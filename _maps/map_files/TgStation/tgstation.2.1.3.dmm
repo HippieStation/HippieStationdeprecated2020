@@ -1,5 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-//Model dictionary trimmed on: 05-02-2017 19:39 (UTC)
 "aaa" = (
 /turf/open/space,
 /area/space)
@@ -21410,9 +21409,6 @@
 /turf/open/floor/carpet,
 /area/chapel/main)
 "aVv" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers,
 /obj/structure/bed,
 /obj/item/weapon/bedsheet/mime,
