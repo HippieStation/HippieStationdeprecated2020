@@ -18,7 +18,7 @@
 
 	shuttle_caller_list -= src
 	SSshuttle.autoEvac()
-
+	
 	ShutOffDoomsdayDevice()
 
 	if(explosive)

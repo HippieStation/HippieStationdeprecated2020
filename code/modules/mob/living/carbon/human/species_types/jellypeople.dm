@@ -248,10 +248,10 @@
 	var/list/data = list()
 	data["bodies"] = list()
 	for(var/b in SS.bodies)
-		if(!b || qdeleted(b) || !isslimeperson(b))
+		var/mob/living/carbon/human/body = b
+		if(!body || QDELETED(body) || !isslimeperson(body))
 			SS.bodies -= b
 			continue
-		var/mob/living/carbon/human/body = b
 
 		var/list/L = list()
 		// HTML colors need a # prefix
@@ -311,7 +311,7 @@
 			var/mob/living/carbon/human/selected = locate(params["ref"])
 			if(!(selected in SS.bodies))
 				return
-			if(!selected || qdeleted(selected) || !isslimeperson(selected))
+			if(!selected || QDELETED(selected) || !isslimeperson(selected))
 				SS.bodies -= selected
 				return
 			if(M.current == selected)
