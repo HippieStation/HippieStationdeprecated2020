@@ -42,14 +42,13 @@
 			A.loseMainPower()
 		if(WIRE_BACKUP1, WIRE_BACKUP2) // Pulse to loose backup power.
 			A.loseBackupPower()
-		if(WIRE_OPEN) // Pulse to open door (only works not emagged and ID wire is cut or no access is required).
+		if(WIRE_OPEN) // Pulse to open door
 			if(A.emagged)
 				return
-			if(!A.requiresID() || A.check_access(null))
-				if(A.density)
-					A.open()
-				else
-					A.close()
+			if(A.density)
+				A.open()
+			else
+				A.close()
 		if(WIRE_BOLTS) // Pulse to toggle bolts (but only raise if power is on).
 			if(!A.locked)
 				A.bolt()

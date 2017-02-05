@@ -68,8 +68,11 @@ var/list/crit_allowed_modes = list(MODE_WHISPER,MODE_CHANGELING,MODE_ALIEN)
 
 
 	if(stat == DEAD)
-		say_dead(message)
-		return
+		if(message == "*scream" || message == "*fart")
+			return
+		else
+			say_dead(message)
+			return
 
 	if(check_emote(message))
 		return

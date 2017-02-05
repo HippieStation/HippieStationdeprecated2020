@@ -528,7 +528,10 @@
 	name = "health doll"
 	screen_loc = ui_healthdoll
 
-
+/obj/screen/staminas
+	name = "stamina"
+	icon_state = "stamina0"
+	screen_loc = ui_stamina
 
 /obj/screen/wheel
 	name = "wheel"

@@ -144,20 +144,24 @@
 		skipcatch = 1
 		blocked = 1
 	else if(I)
-		if(I.throw_speed >= EMBED_THROWSPEED_THRESHOLD)
-			if(can_embed(I))
-				if(prob(I.embed_chance) && !(dna && (PIERCEIMMUNE in dna.species.species_traits)))
-					throw_alert("embeddedobject", /obj/screen/alert/embeddedobject)
-					var/obj/item/bodypart/L = pick(bodyparts)
-					L.embedded_objects |= I
-					I.add_mob_blood(src)//it embedded itself in you, of course it's bloody!
-					I.loc = src
-					L.receive_damage(I.w_class*I.embedded_impact_pain_multiplier)
-					visible_message("<span class='danger'>\the [I.name] embeds itself in [src]'s [L.name]!</span>","<span class='userdanger'>\the [I.name] embeds itself in your [L.name]!</span>")
-					hitpush = 0
-					skipcatch = 1 //can't catch the now embedded item
+		try_to_embed(I)
+		hitpush = 0
+		skipcatch = 1 //can't catch the now embedded item
 
 	return ..()
+
+/mob/living/carbon/human/proc/try_to_embed(obj/item/I, obj/item/bodypart/L, force = 0)
+	if((I.throw_speed >= EMBED_THROWSPEED_THRESHOLD) || I.embedded_ignore_throwspeed_threshold || force)
+		if(can_embed(I) || force)
+			if((prob(I.embed_chance) && !(dna && (PIERCEIMMUNE in dna.species.species_traits))) || force)
+				throw_alert("embeddedobject", /obj/screen/alert/embeddedobject)
+				if(!L)
+					L = pick(bodyparts)
+				L.embedded_objects |= I
+				I.add_mob_blood(src)//it embedded itself in you, of course it's bloody!
+				I.loc = src
+				L.take_damage(I.w_class*I.embedded_impact_pain_multiplier)
+				visible_message("<span class='danger'>\the [I.name] embeds itself in [src]'s [L.name]!</span>","<span class='userdanger'>\the [I.name] embeds itself in your [L.name]!</span>")
 
 /mob/living/carbon/human/grabbedby(mob/living/carbon/user, supress_message = 0)
 	if(user.zone_selected == "groin")

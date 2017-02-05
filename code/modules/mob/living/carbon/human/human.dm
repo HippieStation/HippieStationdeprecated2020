@@ -800,7 +800,7 @@
 		return
 	else
 		if(hud_used.healths)
-			var/health_amount = health - staminaloss
+			var/health_amount = health
 			if(..(health_amount)) //not dead
 				switch(hal_screwyhud)
 					if(1)
@@ -836,6 +836,25 @@
 					hud_used.healthdoll.add_overlay(image('icons/mob/screen_gen.dmi',"[t]6"))
 			else
 				hud_used.healthdoll.icon_state = "healthdoll_DEAD"
+		if(hud_used.staminas)
+			if(stat == DEAD)
+				hud_used.staminas.icon_state = "stamina6"
+			else if(stunned || weakened)
+				hud_used.staminas.icon_state = "stamina6"
+			else
+				switch(hal_screwyhud)
+					if(1 to 2)	hud_used.staminas.icon_state = "stamina6"
+					if(5)	hud_used.staminas.icon_state = "stamina0"
+					else
+						switch(health - staminaloss)
+							if(100 to INFINITY)     hud_used.staminas.icon_state = "stamina0"
+							if(80 to 100)           hud_used.staminas.icon_state = "stamina1"
+							if(60 to 80)            hud_used.staminas.icon_state = "stamina2"
+							if(40 to 60)            hud_used.staminas.icon_state = "stamina3"
+							if(20 to 40)            hud_used.staminas.icon_state = "stamina4"
+							if(0 to 20)             hud_used.staminas.icon_state = "stamina5"
+							else                    hud_used.staminas.icon_state = "stamina6"
+
 
 /mob/living/carbon/human/fully_heal(admin_revive = 0)
 	if(admin_revive)

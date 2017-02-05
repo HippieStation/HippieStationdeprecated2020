@@ -782,6 +782,7 @@
 	return 1
 
 /mob/living/carbon/proc/update_stamina()
+	update_health_hud()
 	return
 
 /mob/living/carbon/human/update_stamina()

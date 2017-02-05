@@ -29,6 +29,8 @@
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/carbon/human/fart/run_emote(mob/user, params)
+	if(user.stat != CONSCIOUS)
+		return
 	var/obj/item/organ/internal/butt/B = user.getorgan(/obj/item/organ/internal/butt)
 	if(!B)
 		user << "\red You don't have a butt!"
@@ -44,16 +46,15 @@
 			message = " farts in <b>[M]</b>'s face!"
 	if(!message)
 		message = "<B>[user]</B> [pick(
-			" rears up and lets loose a fart of tremendous magnitude!",
-			" farts!",
-			" toots.",
-			" harvests methane from uranus at mach 3!",
-			" assists global warming!",
-			" farts and waves their hand dismissively.",
-			" farts and pretends nothing happened.",
-			" is a <b>farting</b> motherfucker!",
-			" <B><font color='red'>f</font><font color='blue'>a</font><font color='red'>r</font><font color='blue'>t</font><font color='red'>s</font></B>")]"
-	user.visible_message("<b>[user]</b>[message]", "<b>[user]</b>[message]")
+			"rears up and lets loose a fart of tremendous magnitude!",
+			"farts!",
+			"toots.",
+			"harvests methane from uranus at mach 3!",
+			"assists global warming!",
+			"farts and waves their hand dismissively.",
+			"farts and pretends nothing happened.",
+			"is a <b>farting</b> motherfucker!",
+			"<B><font color='red'>f</font><font color='blue'>a</font><font color='red'>r</font><font color='blue'>t</font><font color='red'>s</font></B>")]"
 	spawn(0)
 		var/obj/item/weapon/storage/book/bible/Y = locate() in get_turf(user.loc)
 		if(istype(Y))

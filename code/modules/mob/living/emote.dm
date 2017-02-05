@@ -253,6 +253,12 @@
 	message = "screams."
 	message_mime = "acts out a scream!"
 	emote_type = EMOTE_AUDIBLE
+		
+/datum/emote/living/scream/run_emote(mob/user, params)
+	if(user.stat != CONSCIOUS)
+		return
+	else
+		. = ..()
 
 /datum/emote/living/scowl
 	key = "scowl"
