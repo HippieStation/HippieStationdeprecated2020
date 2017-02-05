@@ -72,11 +72,11 @@
 
 /obj/item/clothing/under/rank/clown/cluwne/equipped(mob/living/carbon/user, slot)
 	if(slot == slot_w_uniform)
-//		if(ishuman(user))
-//			var/mob/living/carbon/human/H = user
-//			H.reindex_screams() // Use the more robust version
-//		else
-//			user.reindex_screams()
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			H.reindex_screams() // Use the more robust version
+		else
+			user.reindex_screams()
 		user.dna.add_mutation(CLUWNEMUT)
 	return ..()
 

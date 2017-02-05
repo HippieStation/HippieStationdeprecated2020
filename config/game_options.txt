@@ -383,7 +383,7 @@ LAW_WEIGHT buildawall,0
 SILICON_MAX_LAW_AMOUNT 12
 
 ## Uncomment to give players the choice of their species before they join the game
-JOIN_WITH_MUTANT_RACE
+#JOIN_WITH_MUTANT_RACE
 
 
 ## Roundstart Races

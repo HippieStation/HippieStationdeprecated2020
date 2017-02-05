@@ -253,12 +253,57 @@
 	message = "screams."
 	message_mime = "acts out a scream!"
 	emote_type = EMOTE_AUDIBLE
+	var/screamdown
 		
-/datum/emote/living/scream/run_emote(mob/user, params)
+/datum/emote/living/scream/run_emote(mob/living/user, params)
+	if(screamdown)
+		return
 	if(user.stat != CONSCIOUS)
 		return
 	else
+		var/sound
+		if(!user.is_muzzled() && !user.mind.miming)
+			if(iscyborg(user))
+				var/mob/living/silicon/robot/S = user
+				if(S.cell.charge < 20)
+					S << "<span class='warning'>Scream module deactivated. Please recharge.</span>"
+					return
+				else
+					sound = 'sound/voice/screamsilicon.ogg'
+					S.cell.use(100)
+			if(isAI(user))
+				sound = 'sound/voice/screamsilicon.ogg'
+			if(ishuman(user))
+				sound = pick('sound/misc/scream_m1.ogg', 'sound/misc/scream_m2.ogg')
+				if(is_species(user, /datum/species/android) || is_species(user, /datum/species/synth))
+					sound = 'sound/voice/screamsilicon.ogg'
+				if(is_species(user, /datum/species/tarajan))
+					sound = 'sound/misc/cat.ogg'
+				if(is_species(user, /datum/species/lizard))
+					sound = 'sound/misc/lizard.ogg'
+				if(is_species(user, /datum/species/skeleton) || is_species(user, /datum/species/skeleton/playable))
+					sound = 'sound/misc/skeleton.ogg'
+				if (is_species(user, /datum/species/fly))
+					sound = 'sound/misc/moth.ogg'
+				else
+					if(user.gender == FEMALE)
+						sound = pick('sound/misc/scream_f1.ogg', 'sound/misc/scream_f2.ogg')
+			if(isalien(user))
+				sound = 'sound/voice/hiss6.ogg'
+			if(user.alternate_screams.len > 0)
+				sound = pick(user.alternate_screams)
+			if(!issilicon(user))
+				user.adjustOxyLoss(5)
+			playsound(user.loc, sound, 50, 1, 4, 1.2)
+			message = "<B>[user]</B> screams!"
+		else if(user.mind.miming)
+			message = "<B>[user]</B> acts out a scream."
+		else
+			message = "<B>[user]</B> makes a very loud noise."
 		. = ..()
+		screamdown = TRUE
+		spawn(7)
+			screamdown = FALSE
 
 /datum/emote/living/scowl
 	key = "scowl"

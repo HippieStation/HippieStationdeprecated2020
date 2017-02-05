@@ -783,3 +783,21 @@
 	.["Make AI"] = "?_src_=vars;makeai=\ref[src]"
 	.["Modify bodypart"] = "?_src_=vars;editbodypart=\ref[src]"
 	.["Modify organs"] = "?_src_=vars;editorgans=\ref[src]"
+
+/mob/living/carbon/proc/add_screams(var/list/screams)
+	if(!screams || screams.len == 0)
+		return
+
+	for(var/S in screams)
+		alternate_screams |= S
+
+/mob/living/carbon/proc/reindex_screams()
+	src.alternate_screams = list()
+
+	// Check equipped items for alternate screams
+	if(head)
+		add_screams(head.alternate_screams)
+	if(wear_mask)
+		add_screams(wear_mask.alternate_screams)
+	if(back)
+		add_screams(back.alternate_screams)
