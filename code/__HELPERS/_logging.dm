@@ -24,6 +24,10 @@
 	if (config.log_adminchat)
 		log_admin("ASAY: [text]")
 
+/proc/log_mentor(text)
+		mentorlog.Add(text)
+		diary << "\[[time_stamp()]]MENTOR: [text]"
+
 /proc/log_dsay(text)
 	if (config.log_adminchat)
 		log_admin("DSAY: [text]")

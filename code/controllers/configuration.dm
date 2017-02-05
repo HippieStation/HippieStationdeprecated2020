@@ -79,6 +79,9 @@
 	var/forbid_singulo_possession = 0
 	var/useircbot = 0
 
+	var/mentors_mobname_only = 0		// Only display mob name to mentors in mentorhelps
+	var/mentor_legacy_system = 0		// Whether to use the legacy mentor system (flat file) instead of SQL
+
 	var/check_randomizer = 0
 
 	var/allow_panic_bunker_bounce = 0 //Send new players somewhere else
@@ -495,6 +498,10 @@
 					config.minutetopiclimit = text2num(value)
 				if("second_topic_limit")
 					config.secondtopiclimit = text2num(value)
+				if ("mentor_mobname_only")
+					config.mentors_mobname_only = 1
+				if ("mentor_legacy_system")
+					config.mentor_legacy_system = 1
 				else
 					diary << "Unknown setting in configuration: '[name]'"
 
