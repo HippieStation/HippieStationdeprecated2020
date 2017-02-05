@@ -31,6 +31,18 @@
 	//initialise organs
 	create_internal_organs()
 
+	//initialise teeth
+	var/obj/item/bodypart/head/U = locate() in bodyparts
+	if(istype(U))
+		U.teeth_list.Cut() //Clear out their mouth of teeth
+		var/obj/item/stack/teeth/T = new dna.species.teeth_type(U)
+		U.max_teeth = T.max_amount //Set max teeth for the head based on teeth spawntype
+		T.amount = T.max_amount
+		U.teeth_list += T
+
+	for(var/obj/item/organ/I in internal_organs)
+		I.Insert(src)
+
 	martial_art = default_martial_art
 
 	handcrafting = new()
@@ -48,6 +60,7 @@
 	if(!(NOBLOOD in dna.species.species_traits))
 		internal_organs += new /obj/item/organ/heart
 	internal_organs += new /obj/item/organ/brain
+	internal_organs += new /obj/item/organ/internal/butt
 	..()
 
 /mob/living/carbon/human/OpenCraftingMenu()

@@ -100,3 +100,9 @@
 	id = "anacea"
 	results = list("anacea" = 3)
 	required_reagents = list("haloperidol" = 1, "impedrezene" = 1, "radium" = 1)
+
+/datum/chemical_reaction/bleach
+	name = "bleach"
+	id = "bleach"
+	results = list("bleach" = 3)
+	required_reagents = list("cleaner" = 1, "sodium" = 1, "chlorine" = 1)

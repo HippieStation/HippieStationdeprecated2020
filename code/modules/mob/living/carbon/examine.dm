@@ -74,6 +74,10 @@
 	if(pulledby && pulledby.grab_state)
 		msg += "[t_He] [t_is] restrained by [pulledby]'s grip.\n"
 
+	var/obj/item/bodypart/head/O = locate(/obj/item/bodypart/head) in bodyparts
+	if(O && O.get_teeth() < O.max_teeth)
+		msg += "[O.get_teeth() <= 0 ? "All" : "[O.max_teeth - O.get_teeth()]"] of [t_his] teeth are missing!\n"
+
 	msg += "</span>"
 
 	if(!appears_dead)

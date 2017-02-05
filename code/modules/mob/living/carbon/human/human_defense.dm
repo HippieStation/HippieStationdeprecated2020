@@ -160,6 +160,31 @@
 	return ..()
 
 /mob/living/carbon/human/grabbedby(mob/living/carbon/user, supress_message = 0)
+	if(user.zone_selected == "groin")
+		var/obj/item/organ/internal/butt/B = getorgan(/obj/item/organ/internal/butt)
+		if(!w_uniform)
+			if(B && B.inv)
+				var/obj/item/weapon/storage/internal/pocket/butt/pocket = B.inv
+				user.visible_message("<span class='warning'>[user] starts inspecting [user == src ? "his own" : "[src]'s"] ass!</span>", "<span class='warning'>You start inspecting [user == src ? "your" : "[src]'s"] ass!</span>")
+				if(do_mob(user, src, 40))
+					user.visible_message("<span class='warning'>[user] inspects [user == src ? "his own" : "[src]'s"] ass!</span>", "<span class='warning'>You inspect [user == src ? "your" : "[src]'s"] ass!</span>")
+					pocket.show_to(user)
+					return 0
+				else
+					user.visible_message("<span class='warning'>[user] fails to inspect [user == src ? "his own" : "[src]'s"] ass!</span>", "<span class='warning'>You fail to inspect [user == src ? "your" : "[src]'s"] ass!</span>")
+					return 0
+			else
+				user << "<span class='warning'>There's nothing to inspect!</span>"
+				return 0
+		else
+			if(user == src)
+				user.visible_message("<span class='warning'>[user] grabs his own butt!</span>", "<span class='warning'>You grab your own butt!</span>")
+				user << "<span class='warning'>You'll need to remove your jumpsuit first!</span>"
+			else
+				user.visible_message("<span class='warning'>[user] grabs [src]'s butt!</span>", "<span class='warning'>You grab [src]'s butt!</span>")
+				user << "<span class='warning'>You'll need to remove [src]'s jumpsuit first!</span>"
+				src << "<span class='warning'>You feel your butt being grabbed!</span>"
+			return 0
 	if(user == src && pulling && !pulling.anchored && grab_state >= GRAB_AGGRESSIVE && (disabilities & FAT) && ismonkey(pulling))
 		devour_mob(pulling)
 	else

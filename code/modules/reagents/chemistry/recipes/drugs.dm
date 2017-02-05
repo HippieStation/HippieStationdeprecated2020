@@ -12,7 +12,6 @@
 	mix_message = "The mixture violently reacts, leaving behind a few crystalline shards."
 	required_temp = 390
 
-
 /datum/chemical_reaction/krokodil
 	name = "Krokodil"
 	id = "krokodil"
@@ -34,6 +33,24 @@
 	results = list("bath_salts" = 7)
 	required_reagents = list("bad_food" = 1, "saltpetre" = 1, "nutriment" = 1, "cleaner" = 1, "enzyme" = 1, "tea" = 1, "mercury" = 1)
 	required_temp = 374
+
+/datum/chemical_reaction/spookium
+	name = "spookium"
+	id = "spookium"
+	results = list("spookium" = 3)
+	required_reagents = list("atropine" = 1, "cryostylane" = 1, "aluminum" = 1)
+
+/datum/chemical_reaction/burpium
+	name = "burpium"
+	id = "burpium"
+	results = list("burpium" = 3)
+	required_reagents = list("hydrogen" = 1, "fartium" = 1, "pyrosium" = 1)
+
+/datum/chemical_reaction/flipout
+	name = "flipout"
+	id = "flipout"
+	results = list("flipout" = 3)
+	required_reagents = list("cryptobiolin" = 1, "lube" = 1, "mindbreaker" = 1)
 
 /datum/chemical_reaction/aranesp
 	name = "aranesp"

@@ -43,6 +43,7 @@
 	var/ear_damage = 0		//Carbon
 	var/stuttering = 0		//Carbon
 	var/slurring = 0		//Carbon
+	var/lisp = 0
 	var/cultslurring = 0	//Carbon
 	var/real_name = null
 	var/druggy = 0			//Carbon

@@ -73,3 +73,29 @@
 /obj/item/weapon/storage/internal/pocket/small/detective/New()
 	..()
 	new /obj/item/weapon/reagent_containers/food/drinks/flask/det(src)
+
+/obj/item/weapon/storage/internal/pocket/butt
+
+/obj/item/weapon/storage/internal/pocket/butt/handle_item_insertion(obj/item/W, prevent_warning = 1, mob/user)
+	if(istype(loc, /obj/item/organ/internal/butt))
+		var/obj/item/organ/internal/butt/B = loc
+		if(B.owner && ishuman(B.owner))
+			var/mob/living/carbon/human/H = B.owner
+			if(H.w_uniform)
+				user << "<span class='danger'>Remove the jumpsuit first!</span>"
+				return
+	. = ..()
+
+/obj/item/weapon/storage/internal/pocket/butt/Adjacent(A)
+	if(istype(loc, /obj/item/organ/internal/butt))
+		var/obj/item/organ/internal/butt/B = loc
+		if(B.owner)
+			var/mob/guy = B.owner
+			return guy.Adjacent(A)
+
+/obj/item/weapon/storage/internal/pocket/butt/xeno
+	storage_slots = 3
+
+/obj/item/weapon/storage/internal/pocket/butt/bluespace
+	storage_slots = 4
+	max_w_class = 3

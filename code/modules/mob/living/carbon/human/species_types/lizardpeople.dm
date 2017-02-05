@@ -14,6 +14,7 @@
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/lizard
 	skinned_type = /obj/item/stack/sheet/animalhide/lizard
 	exotic_bloodtype = "L"
+	teeth_type = /obj/item/stack/teeth/lizard
 
 /datum/species/lizard/random_name(gender,unique,lastname)
 	if(unique)

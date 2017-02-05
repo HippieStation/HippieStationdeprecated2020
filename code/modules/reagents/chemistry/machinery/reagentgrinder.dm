@@ -45,6 +45,10 @@
 				/obj/item/weapon/reagent_containers/food/snacks/grown/tea/astra = list("teapowder" = 0, "salglu_solution" = 0),
 				/obj/item/weapon/reagent_containers/food/snacks/grown/tea = list("teapowder" = 0),
 
+				//Random Meme-tier stuff!!
+				/obj/item/weapon/screwdriver = list("screwdrivercocktail" = 30),
+				/obj/item/organ/internal/butt = list("fartium" = 20),
+				/obj/item/weapon/storage/book/bible = list("holywater" = 100),
 
 				//All types that you can put into the grinder to transfer the reagents to the beaker. !Put all recipes above this.!
 				/obj/item/slime_extract = list(),
@@ -445,10 +449,14 @@
 				remove_object(O)
 
 		//Everything else - Transfers reagents from it into beaker
-		for (var/obj/item/weapon/reagent_containers/O in holdingitems)
+		for (var/obj/item/O in holdingitems)
 				if (beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 						break
-				var/amount = O.reagents.total_volume
-				O.reagents.trans_to(beaker, amount)
-				if(!O.reagents.total_volume)
-						remove_object(O)
+				var/allowed = get_allowed_by_id(O)
+				for (var/r_id in allowed)
+						var/space = beaker.reagents.maximum_volume - beaker.reagents.total_volume
+						var/amount = allowed[r_id]
+						beaker.reagents.add_reagent(r_id,min(amount, space))
+						if (space < amount)
+								break
+				remove_object(O)

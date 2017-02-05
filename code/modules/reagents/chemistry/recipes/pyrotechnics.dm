@@ -135,26 +135,20 @@
 		new /obj/effect/hotspot(turf)
 	holder.chem_temp = 1000 // hot as shit
 
-/datum/chemical_reaction/reagent_explosion/methsplosion
-	name = "Meth explosion"
-	id = "methboom1"
-	results = list("methboom1" = 1)
-	required_temp = 380 //slightly above the meth mix time.
-	required_reagents = list("methamphetamine" = 1)
-	strengthdiv = 6
-	modifier = 1
+/datum/chemical_reaction/fartium_explosion
+	name = "Fartium explosion"
+	id = "fartium_explosion"
+	results = null
+	required_reagents = list("fartium" = 1)
+	required_temp = 474
 
-/datum/chemical_reaction/reagent_explosion/methsplosion/on_reaction(datum/reagents/holder, created_volume)
-	var/turf/T = get_turf(holder.my_atom)
-	for(var/turf/turf in range(1,T))
-		new /obj/effect/hotspot(turf)
-	holder.chem_temp = 1000 // hot as shit
-	..()
-
-/datum/chemical_reaction/reagent_explosion/methsplosion/methboom2
-	required_reagents = list("diethylamine" = 1, "iodine" = 1, "phosphorus" = 1, "hydrogen" = 1) //diethylamine is often left over from mixing the ephedrine.
-	required_temp = 300 //room temperature, chilling it even a little will prevent the explosion
-	results = list("methboom1" = 4) // this is ugly. Sorry goof.
+/datum/chemical_reaction/fartium_explosion/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	var/datum/effect_system/reagents_explosion/e = new()
+	e.set_up(round(created_volume/3, 1), location, 0, 0)
+	playsound(src, 'sound/misc/fartmassive.ogg', 75, 1, 5)
+	e.start()
+	holder.clear_reagents()
 
 /datum/chemical_reaction/sorium
 	name = "Sorium"

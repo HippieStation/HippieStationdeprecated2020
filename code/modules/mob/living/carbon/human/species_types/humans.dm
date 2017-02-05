@@ -7,6 +7,7 @@
 	default_features = list("mcolor" = "FFF", "tail_human" = "None", "ears" = "None", "wings" = "None")
 	use_skintones = 1
 	skinned_type = /obj/item/stack/sheet/animalhide/human
+	teeth_type = /obj/item/stack/teeth/human
 
 
 /datum/species/human/qualifies_for_rank(rank, list/features)
