@@ -1271,6 +1271,7 @@
 #include "code\modules\food_and_drinks\recipes\tablecraft\recipes_spaghetti.dm"
 #include "code\modules\games\cards.dm"
 #include "code\modules\games\cas.dm"
+#include "code\modules\hippie\mob\human\species\cat.dm"
 #include "code\modules\hippie\mobs\simple\buttbot.dm"
 #include "code\modules\holiday\easter.dm"
 #include "code\modules\holiday\holidays.dm"

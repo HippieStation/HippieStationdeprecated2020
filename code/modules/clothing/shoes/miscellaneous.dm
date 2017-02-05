@@ -87,6 +87,20 @@
 	else
 		footstep++
 
+/obj/item/clothing/shoes/clown_shoes/cluwne
+	icon_state = "cluwne"
+	item_state = "cluwne"
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	flags = NODROP
+
+/obj/item/clothing/shoes/clown_shoes/cluwne/equipped(mob/user, slot)
+	if(!ishuman(user))
+		return
+	if(slot == slot_shoes)
+		var/mob/living/carbon/human/H = user
+		H.dna.add_mutation(CLUWNEMUT)
+	return
+
 /obj/item/clothing/shoes/jackboots
 	name = "jackboots"
 	desc = "Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time."

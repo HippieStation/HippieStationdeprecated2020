@@ -292,6 +292,8 @@
 
 
 /mob/new_player/proc/AttemptLateSpawn(rank)
+	if(jobban_isbanned(src, "catban"))
+		rank = "Assistant"
 	if(!IsJobAvailable(rank))
 		src << alert("[rank] is not available. Please try another.")
 		return 0

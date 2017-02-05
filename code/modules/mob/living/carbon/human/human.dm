@@ -917,3 +917,4 @@
 	.["Make alien"] = "?_src_=vars;makealien=\ref[src]"
 	.["Make slime"] = "?_src_=vars;makeslime=\ref[src]"
 	.["Toggle Purrbation"] = "?_src_=vars;purrbation=\ref[src]"
+	.["Make Cluwne"] = "?_src_=vars;cluwneing=\ref[src]"

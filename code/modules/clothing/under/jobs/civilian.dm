@@ -62,6 +62,24 @@
 	playsound(loc, 'sound/items/bikehorn.ogg', 50, 1, -1)
 	return 0
 
+/obj/item/clothing/under/rank/clown/cluwne
+//	alternate_screams = list('sound/voice/cluwnelaugh1.ogg','sound/voice/cluwnelaugh2.ogg','sound/voice/cluwnelaugh3.ogg')
+	icon_state = "cluwne"
+	item_state = "cluwne"
+	item_color = "cluwne"
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	flags = NODROP
+
+/obj/item/clothing/under/rank/clown/cluwne/equipped(mob/living/carbon/user, slot)
+	if(slot == slot_w_uniform)
+//		if(ishuman(user))
+//			var/mob/living/carbon/human/H = user
+//			H.reindex_screams() // Use the more robust version
+//		else
+//			user.reindex_screams()
+		user.dna.add_mutation(CLUWNEMUT)
+	return ..()
+
 /obj/item/clothing/under/rank/head_of_personnel
 	desc = "It's a jumpsuit worn by someone who works in the position of \"Head of Personnel\"."
 	name = "head of personnel's jumpsuit"

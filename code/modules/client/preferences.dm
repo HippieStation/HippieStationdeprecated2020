@@ -451,20 +451,22 @@ var/list/preferences_datums = list()
 
 
 			for (var/i in special_roles)
-				if(jobban_isbanned(user, i))
-					dat += "<b>Be [capitalize(i)]:</b> <a href='?_src_=prefs;jobbancheck=[i]'>BANNED</a><br>"
+				if(jobban_isbanned(user, "catban"))
+					dat += "<b>Be [capitalize(i)]:</b> <font color=red>CAT-BANNED</font><br>"
 				else
-					var/days_remaining = null
-					if(config.use_age_restriction_for_jobs && ispath(special_roles[i])) //If it's a game mode antag, check if the player meets the minimum age
-						var/mode_path = special_roles[i]
-						var/datum/game_mode/temp_mode = new mode_path
-						days_remaining = temp_mode.get_remaining_days(user.client)
-
-					if(days_remaining)
-						dat += "<b>Be [capitalize(i)]:</b> <font color=red> \[IN [days_remaining] DAYS]</font><br>"
+					if(jobban_isbanned(user, i))
+						dat += "<b>Be [capitalize(i)]:</b> <a href='?_src_=prefs;jobbancheck=[i]'>BANNED</a><br>"
 					else
-						dat += "<b>Be [capitalize(i)]:</b> <a href='?_src_=prefs;preference=be_special;be_special_type=[i]'>[(i in be_special) ? "Yes" : "No"]</a><br>"
+						var/days_remaining = null
+						if(config.use_age_restriction_for_jobs && ispath(special_roles[i])) //If it's a game mode antag, check if the player meets the minimum age
+							var/mode_path = special_roles[i]
+							var/datum/game_mode/temp_mode = new mode_path
+							days_remaining = temp_mode.get_remaining_days(user.client)
 
+						if(days_remaining)
+							dat += "<b>Be [capitalize(i)]:</b> <font color=red> \[IN [days_remaining] DAYS]</font><br>"
+						else
+							dat += "<b>Be [capitalize(i)]:</b> <a href='?_src_=prefs;preference=be_special;be_special_type=[i]'>[(i in be_special) ? "Yes" : "No"]</a><br>"
 			dat += "</td></tr></table>"
 
 	dat += "<hr><center>"
@@ -524,6 +526,9 @@ var/list/preferences_datums = list()
 			HTML += "<tr bgcolor='[job.selection_color]'><td width='60%' align='right'>"
 			var/rank = job.title
 			lastJob = job
+			if(jobban_isbanned(user, "catban") && rank != "Assistant") 
+				HTML += "<font color=red>[rank]</font></td><td><font color=red><b> \[CAT-BANNED\]</b></font></td></tr>"
+				continue
 			if(jobban_isbanned(user, rank))
 				HTML += "<font color=red>[rank]</font></td><td><a href='?_src_=prefs;jobbancheck=[rank]'> BANNED</a></td></tr>"
 				continue
@@ -577,10 +582,13 @@ var/list/preferences_datums = list()
 			HTML += "<a class='white' href='?_src_=prefs;preference=job;task=setJobLevel;level=[prefUpperLevel];text=[rank]' oncontextmenu='javascript:return setJobPrefRedirect([prefLowerLevel], \"[rank]\");'>"
 
 			if(rank == "Assistant")//Assistant is special
-				if(job_civilian_low & ASSISTANT)
-					HTML += "<font color=green>Yes</font>"
+				if(jobban_isbanned(user, "catban"))
+					HTML += "<font color=orange>Mandatory</font>"
 				else
-					HTML += "<font color=red>No</font>"
+					if(job_civilian_low & ASSISTANT)
+						HTML += "<font color=green>Yes</font>"
+					else
+						HTML += "<font color=red>No</font>"
 				HTML += "</a></td></tr>"
 				continue
 

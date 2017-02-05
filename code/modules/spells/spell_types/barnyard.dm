@@ -48,3 +48,46 @@
 	playsound(get_turf(target), mSounds[randM], 50, 1)
 
 	target.flash_act()
+
+/obj/effect/proc_holder/spell/targeted/cluwnecurse
+	name = "Curse of the Cluwne"
+	desc = "This spell dooms the fate of any unlucky soul to the live of a pitiful cluwne, a terrible creature that is hunted for fun."
+	school = "transmutation"
+	charge_type = "recharge"
+	charge_max	= 600
+	charge_counter = 0
+	clothes_req = 1
+	stat_allowed = 0
+	invocation = "CLU WO'NIS CA'TE'BEST'IS MAXIMUS!"
+	invocation_type = "shout"
+	range = 3
+	cooldown_min = 75
+	selection_type = "range"
+	var/list/compatible_mobs = list(/mob/living/carbon/human)
+
+	action_icon_state = "cluwne"
+
+/obj/effect/proc_holder/spell/targeted/cluwnecurse/cast(list/targets, mob/user = usr)
+	if(!targets.len)
+		user << "<span class='notice'>No target found in range.</span>"
+		return
+
+	var/mob/living/carbon/target = targets[1]
+
+	if(!(target.type in compatible_mobs))
+		user << "<span class='notice'>You are unable to curse [target]!</span>"
+		return
+
+	if(!(target in oview(range)))
+		user << "<span class='notice'>They are too far away!</span>"
+		return
+
+// here begins the cluwning
+
+	target.dna.add_mutation(CLUWNEMUT)
+	target.emote("scream")
+
+	target.visible_message("<span class='danger'>[target]'s body glows green, the glow dissipating only to leave behind a cluwne formerly known as [target]!</span>", \
+		  "<span class='danger'>Your brain feels like it's being torn apart, and after a short while, you notice that you've become a cluwne!</span>")
+
+	target.flash_act()

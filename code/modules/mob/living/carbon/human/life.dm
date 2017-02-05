@@ -29,6 +29,9 @@
 	if (notransform)
 		return
 
+	if(jobban_isbanned("catban") && dna.species.name != "Tarajan")
+		set_species(/datum/species/tarajan, icon_update=1)
+
 	if(..()) //not dead
 		for(var/datum/mutation/human/HM in dna.mutations)
 			HM.on_life(src)
