@@ -205,6 +205,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Electrical Maintenance"
 	icon_state = "yellow"
 
+/area/maintenance/commieespy
+	name = "Russian Room"
+	icon_state = "yellow"
 
 //Hallway
 
