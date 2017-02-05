@@ -128,3 +128,12 @@
 /area/prison/cell_block/C
 	name = "Prison Cell Block C"
 	icon_state = "brig"
+
+// Clown and Mime office
+/area/crew_quarters/clown
+	name = "Clown's Office"
+	icon_state = "clown_office"
+
+/area/crew_quarters/mime
+	name = "Mime's Office"
+	icon_state = "mime_office"
