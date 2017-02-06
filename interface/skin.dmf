@@ -187,6 +187,10 @@ macro "default"
 		name = "F5"
 		command = "Aghost"
 		is-disabled = false
+	elem
+		name = "F3"
+		command = "asay"
+		is-disabled = false
 	elem 
 		name = "F6"
 		command = "Player-Panel"
@@ -482,6 +486,10 @@ macro "hotkeys"
 		command = ".screenshot"
 		is-disabled = false
 	elem 
+		name = "F3"
+		command = "asay"
+		is-disabled = false
+	elem 
 		name = "F5"
 		command = "Aghost"
 		is-disabled = false
@@ -662,6 +670,10 @@ macro "robot-default"
 	elem 
 		name = "SHIFT+F2+REP"
 		command = ".screenshot"
+		is-disabled = false
+	elem 
+		name = "F3"
+		command = "asay"
 		is-disabled = false
 	elem 
 		name = "F5"
@@ -920,6 +932,10 @@ macro "robot-hotkeys"
 	elem 
 		name = "SHIFT+F2+REP"
 		command = ".screenshot"
+		is-disabled = false
+	elem 
+		name = "F3"
+		command = "asay"
 		is-disabled = false
 	elem 
 		name = "F5"

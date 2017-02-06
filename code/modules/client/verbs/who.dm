@@ -21,7 +21,7 @@
 
 	Lines += "<b>Players:</b>"
 	for(var/client/C in sortList(clients))
-		if(!check_mentor_other(C) || C.holder.fakekey)
+		if(!check_mentor_other(C) || (C.holder && C.holder.fakekey))
 			Lines += "\t [C.key][show_info(C)]"
 
 	for(var/line in sortList(Lines))

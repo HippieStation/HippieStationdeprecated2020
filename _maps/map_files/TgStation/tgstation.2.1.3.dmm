@@ -13051,7 +13051,9 @@
 /turf/open/floor/plating,
 /area/crew_quarters/fitness)
 "aCh" = (
-/obj/machinery/atmospherics/components/binary/valve,
+/obj/machinery/atmospherics/components/binary/valve{
+	open = 1
+	},
 /turf/open/floor/plating,
 /area/maintenance/fsmaint2)
 "aCi" = (
@@ -25418,6 +25420,9 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bez" = (
@@ -26436,9 +26441,7 @@
 	pixel_y = 0
 	},
 /obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 5
-	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bgW" = (
@@ -63653,6 +63656,10 @@
 "cHi" = (
 /turf/open/space,
 /area/maintenance/incinerator)
+"cHj" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/closed/wall,
+/area/maintenance/aft)
 
 (1,1,1) = {"
 aaa
@@ -86689,7 +86696,7 @@ bBe
 bBe
 bBe
 cGw
-bBe
+cHj
 cGA
 cGF
 cGK
