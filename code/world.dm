@@ -120,8 +120,8 @@ var/last_irc_status = 0
 		var/list/adm = get_admin_counts()
 		s["admins"] = adm["present"] + adm["afk"] //equivalent to the info gotten from adminwho
 
-		var/list/mnt = get_mentor_counts()
-		s["mentors"] = mnt["total"] // we don't have stealth mentors, so we can just use the total.'
+		//var/list/mnt = get_mentor_counts()
+		//s["mentors"] = mnt["total"] // we don't have stealth mentors, so we can just use the total.'
 
 		s["gamestate"] = 1
 		if(ticker)
