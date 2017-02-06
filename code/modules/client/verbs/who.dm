@@ -10,21 +10,21 @@
 		Lines += "<b>Admins:</b>"
 		for(var/client/C in sortList(admins))
 			if(!C.holder.fakekey)
-				Lines += "\t <font color='#FF0000'>[C.key]</font>[show_info(C)] ([round(C.avgping, 1)]ms)"
+				Lines += "\t <font color='#FF0000'>[C.key]</font>[show_info(C)]"
 
 	if(length(mentors) > 0)
 		Lines += "<b>Mentors:</b>"
 		for(var/client/C in sortList(clients))
 			var/mentor = mentor_datums[C.ckey]
 			if(mentor)
-				Lines += "\t <font color='#0033CC'>[C.key]</font>[show_info(C)] ([round(C.avgping, 1)]ms)"
+				Lines += "\t <font color='#0033CC'>[C.key]</font>[show_info(C)]"
 
 	Lines += "<b>Players:</b>"
 	for(var/client/C in sortList(clients))
 		if(!check_mentor_other(C) || (C.holder && C.holder.fakekey))
 			Lines += "\t [C.key][show_info(C)]"
 
-	for(var/line in sortList(Lines))
+	for(var/line in Lines)
 		msg += "[line]\n"
 
 	msg += "<b>Total Players: [length(Lines)]</b>"
@@ -59,6 +59,7 @@
 		if(is_special_character(C.mob))
 			entry += " - <b><font color='red'>Antagonist</font></b>"
 	entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
+	entry += " ([round(C.avgping, 1)]ms)"
 	return entry
 
 /client/verb/adminwho()
