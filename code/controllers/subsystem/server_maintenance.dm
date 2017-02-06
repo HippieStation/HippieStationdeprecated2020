@@ -10,6 +10,7 @@ var/datum/subsystem/server_maint/SSserver
 
 /datum/subsystem/server_maint/Initialize(timeofday)
 	if (config.hub)
+		message_admins("This server is on the SS13 hub.")
 		world.visibility = 1
 	..()
 

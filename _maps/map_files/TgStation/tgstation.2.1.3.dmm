@@ -8630,7 +8630,7 @@
 /turf/closed/wall,
 /area/maintenance/electrical)
 "asq" = (
-/obj/machinery/atmospherics/pipe/simple,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/wood,
 /area/maintenance/fpmaint2{
 	icon_state = "storage";
@@ -10033,10 +10033,8 @@
 /area/maintenance/fpmaint2)
 "avK" = (
 /obj/structure/grille,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
 /obj/structure/window/reinforced/fulltile,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /turf/open/floor/plating,
 /area/maintenance/fpmaint)
 "avL" = (
@@ -10046,10 +10044,10 @@
 /turf/closed/wall,
 /area/maintenance/fpmaint)
 "avM" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	tag = "icon-manifold-b-f (NORTH)";
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple,
 /turf/closed/wall,
 /area/maintenance/fpmaint2)
 "avN" = (
@@ -23419,7 +23417,6 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aZU" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
 	},
@@ -32480,7 +32477,9 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 5
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "bth" = (
@@ -61723,7 +61722,7 @@
 	icon_state = "4-8";
 	pixel_y = 0
 	},
-/obj/machinery/atmospherics/pipe/simple{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -61737,15 +61736,15 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 4
-	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
 	pixel_x = 0;
 	tag = ""
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/maintenance/fpmaint2{
@@ -61753,15 +61752,15 @@
 	name = "Speakeasy"
 	})
 "cCB" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 4
-	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
 	pixel_x = 0;
 	tag = ""
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/maintenance/fpmaint2{
@@ -61769,15 +61768,15 @@
 	name = "Speakeasy"
 	})
 "cCC" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 10
-	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
 	pixel_x = 0;
 	tag = ""
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
 	},
 /turf/open/floor/wood,
 /area/maintenance/fpmaint2{
@@ -61899,7 +61898,7 @@
 	})
 "cCQ" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/wood,
 /area/maintenance/fpmaint2{
 	icon_state = "storage";
@@ -62005,20 +62004,20 @@
 	name = "Speakeasy"
 	})
 "cDd" = (
-/obj/machinery/atmospherics/pipe/simple,
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4;
 	on = 1;
 	scrub_N2O = 0;
 	scrub_Toxins = 0
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/wood,
 /area/maintenance/fpmaint2{
 	icon_state = "storage";
 	name = "Speakeasy"
 	})
 "cDe" = (
-/obj/machinery/atmospherics/pipe/simple{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
 /turf/open/floor/wood,
@@ -62189,7 +62188,7 @@
 	})
 "cDz" = (
 /obj/effect/decal/cleanable/oil,
-/obj/machinery/atmospherics/pipe/simple,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/maintenance/fpmaint2{
 	icon_state = "storage";
@@ -62213,7 +62212,7 @@
 /area/maintenance/fsmaint2)
 "cDD" = (
 /obj/structure/mineral_door/wood,
-/obj/machinery/atmospherics/pipe/simple,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/wood,
 /area/maintenance/fpmaint2{
 	icon_state = "storage";
@@ -62233,13 +62232,13 @@
 /turf/closed/wall,
 /area/maintenance/fpmaint2)
 "cDG" = (
-/obj/machinery/atmospherics/pipe/simple{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10
 	},
 /turf/closed/wall,
 /area/maintenance/fpmaint2)
 "cDH" = (
-/obj/machinery/atmospherics/pipe/manifold{
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 1
 	},
 /turf/closed/wall,
@@ -62267,6 +62266,7 @@
 /turf/closed/wall,
 /area/maintenance/fpmaint2)
 "cDM" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel{
 	tag = "icon-damaged1";
 	icon_state = "damaged1"
@@ -62275,17 +62275,17 @@
 "cDN" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance,
-/obj/machinery/atmospherics/components/unary/vent_scrubber{
-	dir = 1;
-	on = 1;
-	scrub_N2O = 0;
-	scrub_Toxins = 0
-	},
 /obj/item/device/flashlight{
 	luminosity = 0;
 	on = 1;
 	pixel_x = 1;
 	pixel_y = 5
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber{
+	dir = 4;
+	on = 1;
+	scrub_N2O = 0;
+	scrub_Toxins = 0
 	},
 /turf/open/floor/plasteel{
 	icon_state = "floorgrime"
@@ -62294,17 +62294,17 @@
 "cDO" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance,
-/obj/machinery/atmospherics/components/unary/vent_scrubber{
-	dir = 1;
-	on = 1;
-	scrub_N2O = 0;
-	scrub_Toxins = 0
-	},
 /obj/item/device/flashlight{
 	luminosity = 0;
 	on = 1;
 	pixel_x = 1;
 	pixel_y = 5
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber{
+	dir = 8;
+	on = 1;
+	scrub_N2O = 0;
+	scrub_Toxins = 0
 	},
 /turf/open/floor/plating,
 /area/maintenance/fpmaint)
@@ -62323,8 +62323,8 @@
 /turf/open/floor/plating,
 /area/maintenance/fsmaint2)
 "cDR" = (
-/obj/machinery/atmospherics/pipe/simple,
 /obj/effect/decal/cleanable/oil,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/maintenance/fpmaint2)
 "cDS" = (
@@ -62345,6 +62345,7 @@
 	req_access_txt = "0";
 	specialfunctions = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /mob/living/simple_animal/mouse/white,
 /turf/open/floor/plasteel{
 	icon_state = "floorgrime"
@@ -62383,7 +62384,6 @@
 	id_tag = "hobodorm1";
 	req_access_txt = "12"
 	},
-/obj/machinery/atmospherics/pipe/simple,
 /turf/open/floor/plating,
 /area/maintenance/fpmaint2)
 "cDY" = (
@@ -62409,7 +62409,7 @@
 /turf/open/floor/plating,
 /area/maintenance/fpmaint2)
 "cEa" = (
-/obj/machinery/atmospherics/pipe/manifold,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /turf/closed/wall,
 /area/maintenance/fpmaint2)
 "cEb" = (
@@ -62432,14 +62432,12 @@
 /turf/open/floor/plating,
 /area/maintenance/fpmaint2)
 "cEd" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/maintenance/fpmaint2)
 "cEe" = (
@@ -63657,6 +63655,66 @@
 /turf/open/space,
 /area/maintenance/incinerator)
 "cHj" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/wood,
+/area/maintenance/fpmaint2{
+	icon_state = "storage";
+	name = "Speakeasy"
+	})
+"cHk" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/wood,
+/area/maintenance/fpmaint2{
+	icon_state = "storage";
+	name = "Speakeasy"
+	})
+"cHl" = (
+/obj/structure/mineral_door/wood,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/wood,
+/area/maintenance/fpmaint2{
+	icon_state = "storage";
+	name = "Speakeasy"
+	})
+"cHm" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/turf/closed/wall,
+/area/maintenance/fpmaint2)
+"cHn" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plating,
+/area/maintenance/fpmaint)
+"cHo" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/closed/wall,
+/area/maintenance/fpmaint2)
+"cHp" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/turf/open/floor/plating,
+/area/maintenance/fpmaint)
+"cHq" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	tag = "icon-manifold-r-f (NORTH)";
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/fpmaint2)
+"cHr" = (
+/obj/structure/closet/coffin,
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/plasteel{
+	icon_state = "dark"
+	},
+/area/chapel/main)
+"cHs" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/closed/wall,
 /area/maintenance/aft)
@@ -83547,11 +83605,11 @@ cCQ
 cDd
 asq
 asq
-cCQ
+asq
 cDD
-cDK
-cDK
-cDK
+awW
+awW
+awW
 avK
 awZ
 ayl
@@ -83802,15 +83860,15 @@ cCq
 cCD
 cBx
 cDe
-cCQ
-asq
+cHj
+cHk
 cDz
-cDD
-cDK
+cHl
+ayi
 cDR
-cDK
-avK
-awZ
+ayi
+cHn
+cHp
 ayk
 aae
 aAK
@@ -84324,7 +84382,7 @@ aoa
 cDS
 cDE
 atB
-aAI
+cHq
 aym
 azr
 aAL
@@ -84833,12 +84891,12 @@ aod
 aoM
 alM
 aqC
-cDF
-cDL
-cDL
+alM
+alM
+alM
 cDX
 avM
-axa
+axR
 ayn
 azs
 aAM
@@ -85090,11 +85148,11 @@ alM
 alM
 alM
 cDB
-cDG
+atb
 cDM
 cDT
 cDM
-atB
+cHo
 cEd
 ayk
 aaa
@@ -85347,7 +85405,7 @@ aaa
 aaa
 aaa
 aaa
-cDH
+ate
 cDN
 cDU
 cDY
@@ -85605,7 +85663,7 @@ akv
 aaa
 aaa
 cDG
-alM
+cHm
 alM
 cDH
 cEa
@@ -85861,7 +85919,7 @@ aoe
 aoN
 aaa
 aaa
-cDI
+arD
 cDO
 cDV
 auP
@@ -86696,7 +86754,7 @@ bBe
 bBe
 bBe
 cGw
-cHj
+cHs
 cGA
 cGF
 cGK
@@ -112343,7 +112401,7 @@ aup
 aCB
 bej
 aCB
-cEn
+cHr
 cEn
 cEv
 cED
