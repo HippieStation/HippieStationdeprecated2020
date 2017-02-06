@@ -13,7 +13,7 @@
 	var/heal_brute = 0
 	var/heal_burn = 0
 	var/stop_bleeding = 0
-	var/self_delay = 50
+
 
 /obj/item/stack/medical/attack(mob/living/M, mob/user)
 
@@ -65,17 +65,14 @@
 				else if(src.heal_brute < 1)
 					user << "<span class='notice'> [src] won't help [M] at all.</span>"
 					return
-			user.visible_message("<span class='green'>[user] applies [src] on [M].</span>", "<span class='green'>You apply [src] on [M].</span>")
+			user.visible_message("<span class='notice'>[user] applies [src] on [M].</span>", "<span class='notice'>You apply [src] on [M].</span>")
 		else
 			var/t_himself = "itself"
 			if(user.gender == MALE)
 				t_himself = "himself"
 			else if(user.gender == FEMALE)
 				t_himself = "herself"
-			user.visible_message("<span class='notice'>[user] starts to apply [src] on [t_himself]...</span>", "<span class='notice'>You begin applying [src] on yourself...</span>")
-			if(!do_mob(user, M, self_delay))
-				return
-			user.visible_message("<span class='green'>[user] applies [src] on [t_himself].</span>", "<span class='green'>You apply [src] on yourself.</span>")
+			user.visible_message("<span class='notice'>[user] applies [src] on [t_himself].</span>", "<span class='notice'>You apply [src] on yourself.</span>")
 
 
 	if(iscarbon(M))
@@ -108,7 +105,6 @@
 	icon_state = "brutepack"
 	heal_brute = 40
 	origin_tech = "biotech=2"
-	self_delay = 20
 
 /obj/item/stack/medical/gauze
 	name = "medical gauze"
@@ -117,7 +113,6 @@
 	singular_name = "medical gauze"
 	icon_state = "gauze"
 	stop_bleeding = 1800
-	self_delay = 20
 
 /obj/item/stack/medical/gauze/improvised
 	name = "improvised gauze"
@@ -138,4 +133,3 @@
 	icon_state = "ointment"
 	heal_burn = 40
 	origin_tech = "biotech=2"
-	self_delay = 20
