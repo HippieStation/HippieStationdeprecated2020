@@ -18,7 +18,7 @@
 				anchored = 1
 		else if(anchored)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-			user << "<span class='notice'> You begin to loosen \the [src]'s casters...</span>"
+			user << "<span class='notice'>You begin to loosen \the [src]'s casters...</span>"
 			if (do_after(user, 40, target = src))
 				user.visible_message( \
 					"[user] loosens \the [src]'s casters.", \
