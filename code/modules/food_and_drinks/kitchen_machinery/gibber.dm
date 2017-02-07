@@ -124,7 +124,7 @@
 			if(C && user.pulling == C && !C.buckled && !C.has_buckled_mobs() && !occupant)
 				var/turf/prevloc = C.loc
 				user.visible_message("<span class='danger'>[user] stuffs [C] into the gibber!</span>")
-				C.forceMove(src)
+//				C.forceMove(src)
 				occupant = C
 				update_icon()
 				StuffAnim(prevloc)
@@ -145,6 +145,7 @@
 	var/obj/effect/overlay/feedee = new(newloc)
 	feedee.name = src.occupant.name
 	feedee.icon = getFlatIcon(src.occupant)
+	occupant.alpha = 0
 
 	var/matrix/span1 = matrix(feedee.transform)
 	sleep (5)

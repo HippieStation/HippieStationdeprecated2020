@@ -839,8 +839,6 @@
 			dat += "<td width='20%'><a href='?src=\ref[src];jobban3=borer;jobban4=\ref[M]'>Borer</a></td>"
 
 		dat += "</tr></table>"
-		usr << browse(dat, "window=jobban2;size=800x450")
-		return
 
 		//Misc
 		dat += "<table cellpadding='1' cellspacing='0' width='100%'>"

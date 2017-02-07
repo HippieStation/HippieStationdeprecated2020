@@ -119,10 +119,6 @@
 			open_machine()
 			return
 		if(air1.gases.len)
-			if(occupant.bodytemperature < T0C) // Sleepytime. Why? More cryo magic.
-				occupant.Sleeping((occupant.bodytemperature / sleep_factor) * 100)
-				occupant.Paralyse((occupant.bodytemperature / paralyze_factor) * 100)
-
 			if(beaker)
 				if(reagent_transfer == 0) // Magically transfer reagents. Because cryo magic.
 					beaker.reagents.trans_to(occupant, 1, 10 * efficiency) // Transfer reagents, multiplied because cryo magic.
