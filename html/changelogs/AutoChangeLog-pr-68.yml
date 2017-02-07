@@ -1,0 +1,4 @@
+author: "Kitty Kathy"
+delete-after: True
+changes: 
+  - tweak: "oxygen tank suicide now gibs you and and drops the stuff you are wearing."
