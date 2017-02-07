@@ -11,6 +11,7 @@
 		/obj/item/weapon/reagent_containers/food/snacks/grown/carrot = 2,
 		/obj/item/weapon/reagent_containers/food/snacks/grown/corn = 2,
 		/obj/item/weapon/reagent_containers/food/snacks/grown/apple = 2,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/watermelon = 2,
 		/obj/item/weapon/reagent_containers/food/snacks/grown/wheat = 2)
 
 
