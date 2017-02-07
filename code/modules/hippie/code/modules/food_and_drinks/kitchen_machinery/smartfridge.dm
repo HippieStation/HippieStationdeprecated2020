@@ -20,7 +20,7 @@
 	for(var/typekey in spawn_harvest)
 		var/amount = spawn_harvest[typekey]
 		if(isnull(amount)) amount = 1
-		while(while(amount > 0))
+		while(amount > 0)
 			var/obj/item/I = new typekey(src)
 			load(I)
 			amount--
