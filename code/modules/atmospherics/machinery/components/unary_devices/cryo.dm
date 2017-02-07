@@ -10,7 +10,6 @@
 
 	var/on = FALSE
 	state_open = FALSE
-	var/autoeject = FALSE
 	var/volume = 100
 
 	var/efficiency = 1
@@ -112,24 +111,14 @@
 	var/turf/T = get_turf(src)
 	if(occupant)
 		if(occupant.health >= 100) // Don't bother with fully healed people.
-			on = FALSE
-			update_icon()
-			playsound(T, 'sound/machines/cryo_warning.ogg', volume, 1) // Bug the doctors.
-			radio.talk_into(src, "Patient fully restored", radio_channel)
-			if(autoeject) // Eject if configured.
-				radio.talk_into(src, "Auto ejecting patient now", radio_channel)
-				open_machine()
+			playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+			open_machine()
 			return
 		else if(occupant.stat == DEAD) // We don't bother with dead people.
-			return
-			if(autoeject) // Eject if configured.
-				open_machine()
+			playsound(T, 'sound/machines/cryo_warning.ogg', 50, 1) // Bug the doctors.
+			open_machine()
 			return
 		if(air1.gases.len)
-			if(occupant.bodytemperature < T0C) // Sleepytime. Why? More cryo magic.
-				occupant.Sleeping((occupant.bodytemperature / sleep_factor) * 100)
-				occupant.Paralyse((occupant.bodytemperature / paralyze_factor) * 100)
-
 			if(beaker)
 				if(reagent_transfer == 0) // Magically transfer reagents. Because cryo magic.
 					beaker.reagents.trans_to(occupant, 1, 10 * efficiency) // Transfer reagents, multiplied because cryo magic.
@@ -189,11 +178,8 @@
 		return occupant
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/container_resist(mob/living/user)
-	user << "<span class='notice'>You struggle inside the cryotube, kicking the release with your foot... (This will take around 30 seconds.)</span>"
-	audible_message("<span class='notice'>You hear a thump from [src].</span>")
-	if(do_after(user, 300))
-		if(occupant == user) // Check they're still here.
-			open_machine()
+	open_machine()
+	return
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/examine(mob/user)
 	..()
@@ -248,7 +234,6 @@
 	data["isOperating"] = on
 	data["hasOccupant"] = occupant ? 1 : 0
 	data["isOpen"] = state_open
-	data["autoEject"] = autoeject
 
 	var/list/occupantData = list()
 	if(occupant)
@@ -291,9 +276,6 @@
 				close_machine()
 			else
 				open_machine()
-			. = TRUE
-		if("autoeject")
-			autoeject = !autoeject
 			. = TRUE
 		if("ejectbeaker")
 			if(beaker)

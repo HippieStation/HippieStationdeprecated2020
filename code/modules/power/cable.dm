@@ -441,6 +441,27 @@ var/global/list/datum/stack_recipe/cable_coil_recipes = list ( \
 	new/datum/stack_recipe("cable restraints", /obj/item/weapon/restraints/handcuffs/cable, 15), \
 	)
 
+/obj/item/stack/cable_coil/proc/makeRestraints(mob/user)
+	if(ishuman(user) && !user.restrained() && !user.stat && user.canmove)
+		if(!istype(user.loc,/turf))
+			return
+		if(src.amount <= 14)
+			usr << "<span class='danger'>You need at least 15 lengths to make restraints!</span>"
+			return
+		var/obj/item/weapon/restraints/handcuffs/cable/B = new /obj/item/weapon/restraints/handcuffs/cable(user.loc)
+		B.icon_state = "cuff_[item_color]"
+		user.put_in_hands(B)
+		user << "<span class='notice'>You wind some cable together to make some restraints.</span>"
+		src.use(15)
+	else
+		user << "<span class='notice'>You cannot do that.</span>"
+
+/obj/item/stack/cable_coil/verb/make_restraint()
+	set name = "Make Cable Restraints"
+	set category = "Object"
+	makeRestraints(usr)
+	..()
+
 /obj/item/stack/cable_coil
 	name = "cable coil"
 	gender = NEUTER //That's a cable coil sounds better than that's some cable coils

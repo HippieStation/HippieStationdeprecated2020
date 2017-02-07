@@ -295,11 +295,11 @@
 			if(!issilicon(user))
 				user.adjustOxyLoss(5)
 			playsound(user.loc, sound, 50, 1, 4, 1.2)
-			message = "<B>[user]</B> screams!"
+			message = "screams!"
 		else if(user.mind.miming)
-			message = "<B>[user]</B> acts out a scream."
+			message = "acts out a scream."
 		else
-			message = "<B>[user]</B> makes a very loud noise."
+			message = "makes a very loud noise."
 		. = ..()
 		screamdown = TRUE
 		spawn(7)
