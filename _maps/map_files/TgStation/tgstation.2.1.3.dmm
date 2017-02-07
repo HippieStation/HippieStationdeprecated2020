@@ -14094,13 +14094,9 @@
 /area/security/checkpoint2)
 "aEo" = (
 /obj/structure/table/glass,
-/obj/item/weapon/reagent_containers/food/snacks/grown/wheat,
-/obj/item/weapon/reagent_containers/food/snacks/grown/watermelon,
-/obj/item/weapon/reagent_containers/food/snacks/grown/watermelon,
-/obj/item/weapon/reagent_containers/food/snacks/grown/watermelon,
-/obj/item/weapon/reagent_containers/food/snacks/grown/citrus/orange,
-/obj/item/weapon/reagent_containers/food/snacks/grown/grapes,
-/obj/item/weapon/reagent_containers/food/snacks/grown/cocoapod,
+/obj/effect/spawner/lootdrop/plants{
+	lootcount = 12
+	},
 /turf/open/floor/plasteel/green/side{
 	dir = 4
 	},
@@ -20050,7 +20046,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aSj" = (
-/obj/machinery/smartfridge,
+/obj/machinery/smartfridge/kitchen,
 /turf/closed/wall,
 /area/crew_quarters/kitchen)
 "aSk" = (
@@ -20567,6 +20563,7 @@
 	dir = 8;
 	on = 1
 	},
+/obj/structure/closet/crate/bin,
 /turf/open/floor/plasteel/green,
 /area/crew_quarters/clown)
 "aTE" = (
@@ -20691,6 +20688,7 @@
 	icon_state = "right";
 	layer = 3
 	},
+/obj/structure/showcase/mimestatue,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/mime)
 "aTS" = (
@@ -20784,6 +20782,7 @@
 	dir = 4;
 	network = list("SS13")
 	},
+/obj/structure/closet/crate/bin,
 /turf/open/floor/plasteel/black,
 /area/crew_quarters/mime)
 "aUg" = (
@@ -20844,6 +20843,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/structure/reagent_dispensers/water_cooler/clown,
 /turf/open/floor/plasteel/green,
 /area/crew_quarters/clown)
 "aUn" = (
@@ -21192,14 +21192,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "aUT" = (
-/obj/structure/table,
-/obj/item/weapon/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -3;
-	pixel_y = 0
-	},
-/obj/item/weapon/reagent_containers/food/condiment/peppermill{
-	pixel_x = 3
-	},
+/obj/machinery/deepfryer,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aUU" = (
@@ -21495,6 +21488,7 @@
 	pixel_y = 0
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
+/obj/structure/closet/secure_closet/mime,
 /turf/open/floor/plasteel/black,
 /area/crew_quarters/mime)
 "aVD" = (
@@ -21534,6 +21528,7 @@
 	icon_state = "window";
 	dir = 8
 	},
+/obj/structure/showcase/mimestatue,
 /turf/open/floor/plasteel/black,
 /area/crew_quarters/mime)
 "aVI" = (
@@ -22253,6 +22248,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/closet/secure_closet/clown,
 /turf/open/floor/plasteel/red,
 /area/crew_quarters/clown)
 "aXc" = (
@@ -63042,6 +63038,7 @@
 /obj/structure/table,
 /obj/item/weapon/reagent_containers/food/snacks/baguette,
 /obj/item/weapon/reagent_containers/food/snacks/baguette,
+/obj/item/toy/figure/mime,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/mime)
 "cFz" = (
@@ -63803,6 +63800,7 @@
 	pixel_x = -2;
 	pixel_y = 2
 	},
+/obj/effect/spawner/lootdrop/food,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "cHA" = (
@@ -63857,7 +63855,15 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "cHH" = (
-/obj/machinery/deepfryer,
+/obj/structure/table,
+/obj/item/weapon/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -3;
+	pixel_y = 0
+	},
+/obj/item/weapon/reagent_containers/food/condiment/peppermill{
+	pixel_x = 3
+	},
+/obj/effect/spawner/lootdrop/food,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "cHI" = (
@@ -63875,13 +63881,17 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "cHK" = (
+/obj/machinery/vending/snack/kitchen,
+/turf/closed/wall,
+/area/crew_quarters/kitchen)
+"cHL" = (
 /obj/structure/table,
 /obj/item/toy/crayon/mime,
 /obj/item/toy/crayon/spraycan,
 /obj/item/weapon/storage/crayons,
 /turf/open/floor/plasteel/black,
 /area/crew_quarters/mime)
-"cHL" = (
+"cHM" = (
 /obj/structure/table,
 /obj/item/toy/crayon/rainbow,
 /obj/item/toy/crayon/spraycan,
@@ -77635,7 +77645,7 @@ cFl
 aTR
 aVH
 aXo
-cHK
+cHL
 cyo
 baq
 bdW
@@ -78663,7 +78673,7 @@ cFm
 aTD
 aVJ
 aXs
-cHL
+cHM
 cBb
 bas
 cFI
@@ -97418,7 +97428,7 @@ aCb
 aCb
 aJi
 bXA
-aPD
+baJ
 aJi
 aPD
 aJi
@@ -101792,7 +101802,7 @@ aUP
 aUP
 aUP
 aXZ
-aJo
+cHK
 baL
 aYj
 bcA
@@ -102560,7 +102570,7 @@ aPG
 aQX
 aSf
 aTe
-cHH
+aUT
 aUP
 cyK
 aZx
@@ -102817,7 +102827,7 @@ aJo
 aRc
 aSi
 aTf
-aUT
+cHH
 aUP
 aUP
 aZx
