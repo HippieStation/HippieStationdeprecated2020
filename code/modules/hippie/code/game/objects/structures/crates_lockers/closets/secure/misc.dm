@@ -2,7 +2,7 @@
 	name = "Mime closet"
 	desc = "Filled with mime stuff"
 	req_access = list(access_theatre)
-	icon = 'code/modules/hippie/icons/obj/closet.dmi'
+	icon = 'icons/hippie/obj/closet.dmi'
 	icon_state = "mime"
 
 /obj/structure/closet/secure_closet/mime/New()
@@ -21,7 +21,7 @@
 	name = "Clown closet"
 	desc = "Filled with clown stuff"
 	req_access = list(access_theatre)
-	icon = 'code/modules/hippie/icons/obj/closet.dmi'
+	icon = 'icons/hippie/obj/closet.dmi'
 	icon_state = "clown"
 
 /obj/structure/closet/secure_closet/clown/New()
