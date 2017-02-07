@@ -117,17 +117,18 @@
 	user.visible_message("<span class='suicide'>[user] is putting [src]'s valve to [user.p_their()] lips! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	playsound(loc, 'sound/effects/spray.ogg', 10, 1, -3)
 	if (H && !qdeleted(H))
-		for(var/obj/item/W in H)
-			H.dropItemToGround(W)
-			if(prob(50))
-				step(W, pick(alldirs))
-		H.hair_style = "Bald"
-		H.update_hair()
-		H.bleed_rate = 5
-		new /obj/effect/gibspawner/generic(H.loc, H.viruses, H.dna)
-		H.adjustBruteLoss(1000) //to make the body super-bloody
-
-	return (BRUTELOSS)
+		spawn(3)
+			var/list/items = H.get_equipped_items()
+			for(var/obj/item/i in items)
+				H.dropItemToGround(i)
+			H.drop_all_held_items()
+			for(var/obj/item/i in get_turf(H))
+				i.add_blood(H)
+			if(H.loc)
+				src.loc = null
+				src.loc = H.loc
+			H.gib()
+	return BRUTELOSS
 
 /obj/item/weapon/tank/attackby(obj/item/weapon/W, mob/user, params)
 	add_fingerprint(user)
