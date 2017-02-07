@@ -1,0 +1,4 @@
+author: "Spacedong"
+delete-after: True
+changes: 
+  - tweak: "E-guns now shoot electrodes instead of disablers"
