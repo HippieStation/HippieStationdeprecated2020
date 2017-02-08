@@ -18917,7 +18917,7 @@
 /obj/item/device/radio/intercom{
 	pixel_y = 25
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aPn" = (
 /turf/closed/wall,
@@ -23615,15 +23615,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "Mime Office APC";
-	pixel_x = 0;
-	pixel_y = 24
-	},
 /obj/structure/cable{
 	icon_state = "0-4";
 	d2 = 4
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "Mime Office APC";
+	pixel_x = 1;
+	pixel_y = 24
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/mime)
@@ -25214,10 +25214,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
-	dir = 4
-	},
+/turf/open/floor/plating,
 /area/maintenance/disposal)
 "bdZ" = (
 /obj/machinery/conveyor{
@@ -25247,7 +25244,7 @@
 /area/maintenance/disposal)
 "bec" = (
 /obj/machinery/conveyor{
-	dir = 9;
+	dir = 6;
 	id = "garbage";
 	verted = -1
 	},
@@ -82489,7 +82486,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aoK
 cBl
 cBt
 cBx
@@ -82746,7 +82743,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aoK
 cBl
 cBu
 cBx
@@ -83003,7 +83000,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aoK
 cBl
 cBv
 cBM
@@ -83260,7 +83257,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aoK
 cBk
 cBw
 cBN
@@ -83517,7 +83514,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aoK
 cBl
 cBx
 cBx
@@ -83774,7 +83771,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aoK
 cBl
 cBx
 cBO
@@ -84031,7 +84028,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aoK
 cBl
 cBy
 cBP
@@ -84288,7 +84285,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aoK
 cBk
 cBk
 cBl
@@ -85327,7 +85324,7 @@ ala
 alM
 alM
 alM
-cDB
+alM
 atb
 cDM
 cDT
@@ -85576,12 +85573,12 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aoK
+aoK
+aoK
+aoK
+aoK
+aoK
 aaa
 aaa
 aaa
@@ -86593,9 +86590,9 @@ aaa
 aaa
 adA
 aaa
-aaa
-aaa
-aaa
+aoK
+aoK
+aoK
 aaa
 aaa
 aaa
@@ -87116,7 +87113,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aoK
 aiN
 alf
 aiN
@@ -87373,7 +87370,7 @@ aaa
 aae
 aae
 aae
-aae
+apF
 aiN
 alh
 aiN
@@ -88141,7 +88138,7 @@ aga
 abb
 aae
 aaa
-aaa
+aoK
 aiN
 ajk
 ajS
@@ -88398,7 +88395,7 @@ afx
 afx
 aae
 aaa
-aaa
+aoK
 aiN
 ajn
 ajV
@@ -97944,7 +97941,7 @@ aPv
 aKw
 aKw
 aKw
-cHE
+cHy
 aKw
 aKw
 aZm
@@ -98458,7 +98455,7 @@ aKw
 aKw
 aKw
 aKw
-cHG
+cHA
 aKw
 aKw
 aZo
@@ -98973,7 +98970,7 @@ cHz
 aSb
 aKw
 aKw
-aQT
+cHy
 aKw
 aKw
 aPD
@@ -99487,7 +99484,7 @@ aKr
 aRJ
 aKw
 aKw
-aRK
+cHA
 aKw
 aZq
 baK
@@ -99997,11 +99994,11 @@ aKw
 aNl
 aOh
 cHw
-acM
+cHw
 cHB
 cHC
-acM
-acM
+cHw
+cHw
 cHI
 aZr
 aJi
@@ -100515,7 +100512,7 @@ aKw
 aKw
 aSt
 aKw
-acM
+cHw
 aKw
 aZt
 aJi
@@ -100772,7 +100769,7 @@ aQV
 aRZ
 aKw
 aKw
-acM
+cHw
 aKw
 aZv
 aJi
