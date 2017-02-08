@@ -23615,15 +23615,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "Mime Office APC";
-	pixel_x = 0;
-	pixel_y = 24
-	},
 /obj/structure/cable{
 	icon_state = "0-4";
 	d2 = 4
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "Mime Office APC";
+	pixel_x = 1;
+	pixel_y = 24
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/mime)
