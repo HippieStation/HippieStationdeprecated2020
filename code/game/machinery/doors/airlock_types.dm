@@ -191,6 +191,7 @@
 	icon = 'icons/obj/doors/airlocks/station/bananium.dmi'
 	var/mineral = "bananium"
 	doorOpen = 'sound/items/bikehorn.ogg'
+	doorClose = 'sound/items/bikehorn.ogg'
 	assemblytype = /obj/structure/door_assembly/door_assembly_clown
 
 /obj/machinery/door/airlock/sandstone
