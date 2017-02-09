@@ -1,0 +1,4 @@
+author: "JohnFG"
+delete-after: True
+changes: 
+  - bugfix: "Bible can now hold 5 items, rather than 1."
