@@ -143,7 +143,8 @@
 
 	for(var/mob/living/carbon/human/H in living_crew)
 		if(H.client && H.client.prefs.allow_midround_antag)
-			antag_candidates += H
+			if(!jobban_isbanned(H, "catban"))
+				antag_candidates += H
 
 	if(!antag_candidates)
 		message_admins("Convert_roundtype failed due to no antag candidates.")
