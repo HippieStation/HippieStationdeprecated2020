@@ -1,0 +1,4 @@
+author: "cacogen"
+delete-after: True
+changes: 
+  - tweak: "Robustness scanner will no longer print if there's no values to print, saving lines in chat"
