@@ -344,7 +344,8 @@ var/global/image/fire_overlay = image("icon" = 'icons/effects/fire.dmi', "icon_s
 		var/obj/item/weapon/storage/S = loc
 		S.remove_from_storage(src, user.loc)
 
-	throwing = 0
+	if(throwing)
+		throwing.finalize(FALSE)
 	if(loc == user)
 		if(!user.dropItemToGround(src))
 			return
@@ -365,7 +366,8 @@ var/global/image/fire_overlay = image("icon" = 'icons/effects/fire.dmi', "icon_s
 		var/obj/item/weapon/storage/S = loc
 		S.remove_from_storage(src, user.loc)
 
-	throwing = 0
+	if(throwing)
+		throwing.finalize(FALSE)
 	if(loc == user)
 		if(!user.dropItemToGround(src))
 			return
