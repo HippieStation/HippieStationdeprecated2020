@@ -191,14 +191,14 @@ var/global/image/fire_overlay = image("icon" = 'icons/effects/fire.dmi', "icon_s
 		user << "[list_obj_robustness()]"
 
 /obj/item/proc/list_obj_robustness()
-	var/nil = "<font color='red'>Null</font>"
+	var/nil = "No"
 	var/vlow = "<font color='red'>Very low</font>"
 	var/low = "<font color='red'>Low</font>"
 	var/med = "<font color='#FF8000'>Medium</font>"
 	var/high = "<font color='blue'>High</font>"
 	var/vhigh = "<font color='green'>Very high</font>"
 
-	var/msg
+	var/msg = ""
 
 	var/force_str
 	var/throwforce_str
@@ -235,7 +235,7 @@ var/global/image/fire_overlay = image("icon" = 'icons/effects/fire.dmi', "icon_s
 			if(21 to INFINITY)
 				throwforce_str = "[vhigh]"
 
-		msg += "[force_str] melee damage in its current state. [throwforce_str] throwing damage in its current state."
+		msg += "[force_str] melee damage and [lowertext(throwforce_str)] throwing damage in its current state."
 
 		if(!istype(src, /obj/item/clothing)) //if the next section doesn't exist, add the ending divider
 			msg += "<BR>*--------*"
@@ -244,7 +244,7 @@ var/global/image/fire_overlay = image("icon" = 'icons/effects/fire.dmi', "icon_s
 		var/damdesc
 		var/damquality
 
-		if(force_str) //if the previous section exists, add a linebreak
+		if(force_str || throwforce_str) //if the previous section exists, add a linebreak
 			msg += "<BR>"
 		else
 			msg += "*--------*<BR>" //else add the starting divider
