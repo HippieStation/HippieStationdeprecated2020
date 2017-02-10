@@ -355,6 +355,21 @@
 		var/image/img = image(button_icon, current_button, "scan_mode")
 		current_button.add_overlay(img)
 
+/datum/action/item_action/toggle_robustness_scanner
+	name = "Toggle Robustness Scanner"
+	desc = "Allows you to analyze clothing protection and object damage."
+
+/datum/action/item_action/toggle_robustness_scanner/Trigger()
+	if(IsAvailable())
+		owner.robustness_scanner = !owner.robustness_scanner
+		owner << "<span class='notice'>Robustness analyzer is now [owner.robustness_scanner ? "active" : "deactivated"].</span>"
+		return 1
+
+/datum/action/item_action/toggle_robustness_scanner/Remove(mob/M)
+	if(owner)
+		owner.robustness_scanner = 0
+	..()
+
 /datum/action/item_action/organ_action
 	check_flags = AB_CHECK_CONSCIOUS
 
