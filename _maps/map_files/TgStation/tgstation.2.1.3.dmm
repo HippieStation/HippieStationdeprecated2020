@@ -8021,6 +8021,7 @@
 	pixel_x = 1;
 	pixel_y = 5
 	},
+/obj/item/weapon/staplegun,
 /turf/open/floor/wood,
 /area/lawoffice)
 "aqT" = (
@@ -19353,6 +19354,7 @@
 /obj/structure/table,
 /obj/item/stack/cable_coil/random,
 /obj/item/stack/cable_coil/random,
+/obj/item/weapon/staplegun,
 /turf/open/floor/plasteel,
 /area/storage/art)
 "aQv" = (
@@ -33389,6 +33391,7 @@
 	pixel_x = 6;
 	pixel_y = -5
 	},
+/obj/item/weapon/staplegun,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "buR" = (
@@ -63902,6 +63905,11 @@
 	dir = 1
 	},
 /area/hallway/secondary/exit)
+"cHO" = (
+/obj/structure/table/wood,
+/obj/item/weapon/staplegun,
+/turf/open/floor/wood,
+/area/library)
 
 (1,1,1) = {"
 aaa
@@ -108999,7 +109007,7 @@ aPQ
 aRm
 aIa
 aTW
-aKL
+cHO
 aYk
 aYk
 aVg
