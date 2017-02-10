@@ -273,6 +273,8 @@
 					S.cell.use(100)
 			if(isAI(user))
 				sound = 'sound/voice/screamsilicon.ogg'
+			if(ismonkey(user))
+				sound = 'sound/misc/monkey_scream.ogg'
 			if(ishuman(user))
 				sound = pick('sound/misc/scream_m1.ogg', 'sound/misc/scream_m2.ogg')
 				if(is_species(user, /datum/species/android) || is_species(user, /datum/species/synth))

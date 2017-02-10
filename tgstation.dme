@@ -1512,6 +1512,7 @@
 #include "code\modules\mob\living\carbon\human\species_types\zombies.dm"
 #include "code\modules\mob\living\carbon\monkey\combat.dm"
 #include "code\modules\mob\living\carbon\monkey\death.dm"
+#include "code\modules\mob\living\carbon\monkey\emote.dm"
 #include "code\modules\mob\living\carbon\monkey\inventory.dm"
 #include "code\modules\mob\living\carbon\monkey\life.dm"
 #include "code\modules\mob\living\carbon\monkey\monkey.dm"
