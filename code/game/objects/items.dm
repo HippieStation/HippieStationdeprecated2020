@@ -187,23 +187,25 @@ var/global/image/fire_overlay = image("icon" = 'icons/effects/fire.dmi', "icon_s
 		msg += "*--------*"
 		user << msg
 
-	if(user.robustness_scanner)
+	if(user.robustness_scanner && list_obj_robustness()) //if they have a robustness scanner that can tell us anything
 		user << "[list_obj_robustness()]"
 
 /obj/item/proc/list_obj_robustness()
-	var/nil = "<b>Null</b>"
+	var/nil = "No"
 	var/vlow = "<font color='red'>Very low</font>"
 	var/low = "<font color='red'>Low</font>"
 	var/med = "<font color='#FF8000'>Medium</font>"
 	var/high = "<font color='blue'>High</font>"
 	var/vhigh = "<font color='green'>Very high</font>"
 
-	var/msg = "*--------* <BR>"
+	var/msg = ""
 
+	var/force_str
+	var/throwforce_str
 	if(force || throwforce)
+		msg += "*--------* <BR>"
 		msg += "Weapon potential:<BR>"
-		var/force_str
-		var/throwforce_str
+
 
 		switch(force)
 			if(0)
@@ -233,14 +235,19 @@ var/global/image/fire_overlay = image("icon" = 'icons/effects/fire.dmi', "icon_s
 			if(21 to INFINITY)
 				throwforce_str = "[vhigh]"
 
-		msg += "[force_str] melee damage in its current state. [throwforce_str] throwing damage in its current state."
+		msg += "[force_str] melee damage and [lowertext(throwforce_str)] throwing damage in its current state."
+
+		if(!istype(src, /obj/item/clothing)) //if the next section doesn't exist, add the ending divider
+			msg += "<BR>*--------*"
 
 	if(istype(src, /obj/item/clothing))
 		var/damdesc
 		var/damquality
 
-		if(force || throwforce)
-			msg += "<BR><BR>"
+		if(force_str || throwforce_str) //if the previous section exists, add a linebreak
+			msg += "<BR>"
+		else
+			msg += "*--------*<BR>" //else add the starting divider
 
 		msg += "Armor:<BR>"
 
@@ -283,8 +290,7 @@ var/global/image/fire_overlay = image("icon" = 'icons/effects/fire.dmi', "icon_s
 		if(!damquality)
 			msg += "No armor detected."
 
-
-	msg += "<BR>*--------*"
+		msg += "<BR>*--------*"
 
 	return msg
 
