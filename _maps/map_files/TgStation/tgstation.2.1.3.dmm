@@ -29298,14 +29298,14 @@
 	name = "Privacy Shutters Control";
 	pixel_x = 6;
 	pixel_y = 25;
-	req_access_txt = "28"
+	req_access_txt = "57"
 	},
 /obj/machinery/button/door{
 	id = "hopqueue";
 	name = "Queue Shutters Control";
 	pixel_x = -4;
 	pixel_y = 25;
-	req_access_txt = "28"
+	req_access_txt = "57"
 	},
 /obj/machinery/light_switch{
 	pixel_x = -4;
@@ -63895,6 +63895,13 @@
 /obj/machinery/vending/snack/kitchen,
 /turf/closed/wall,
 /area/crew_quarters/kitchen)
+"cHN" = (
+/obj/structure/chair,
+/turf/open/floor/plasteel{
+	icon_state = "red";
+	dir = 1
+	},
+/area/hallway/secondary/exit)
 
 (1,1,1) = {"
 aaa
@@ -111557,9 +111564,9 @@ cEB
 cEI
 cEg
 aNA
-aCB
-aPX
-aCB
+aFi
+aFi
+aFi
 aSD
 aFi
 aVl
@@ -111814,8 +111821,8 @@ cEB
 cEI
 aCB
 aCB
-aOL
-aPW
+aCB
+aCB
 aCB
 aCB
 aCB
@@ -112071,9 +112078,9 @@ cEC
 cEI
 cEN
 aMC
-aCB
-aCB
-aCB
+aOM
+aPY
+aMD
 aSF
 aUc
 aVm
@@ -112328,8 +112335,8 @@ cEz
 cEI
 cEO
 aMC
-aOM
-aPY
+cHN
+cFb
 aMD
 aSE
 aON
