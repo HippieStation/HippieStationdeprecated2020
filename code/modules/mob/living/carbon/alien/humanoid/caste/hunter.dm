@@ -8,6 +8,7 @@
 
 /mob/living/carbon/alien/humanoid/hunter/create_internal_organs()
 	internal_organs += new /obj/item/organ/alien/plasmavessel/small
+	internal_organs += new /obj/item/organ/internal/butt/xeno
 	..()
 
 /mob/living/carbon/alien/humanoid/hunter/movement_delay()

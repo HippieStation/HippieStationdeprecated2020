@@ -22,8 +22,31 @@
 /obj/item/weapon/reagent_containers/pill/attack_self(mob/user)
 	return
 
+/obj/item/weapon/reagent_containers/pill/process()
+	if(!istype(loc, /obj/item/weapon/storage/internal/pocket/butt))
+		STOP_PROCESSING(SSobj, src)
+		return
+	var/obj/item/weapon/storage/internal/pocket/butt/inv = loc
+	var/obj/item/organ/internal/butt/B = inv.loc
+	if(!B.owner)
+		STOP_PROCESSING(SSobj, src)
+		return
+	if(reagents.total_volume)
+		sleep(10)
+		reagents.trans_to(B.owner, 1)
+	else
+		STOP_PROCESSING(SSobj, src)
+		qdel(src)
 
 /obj/item/weapon/reagent_containers/pill/attack(mob/M, mob/user, def_zone)
+	if(user.zone_selected == "groin" && user.a_intent == "grab")
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			var/datum/species/S = H.dna.species
+			if(S.spec_attacked_by(src, user, H = M) == 2)
+				START_PROCESSING(SSobj, src)
+			return
+
 	if(!canconsume(M, user))
 		return 0
 

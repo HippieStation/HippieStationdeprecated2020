@@ -128,11 +128,15 @@
 	..()
 
 	if(slot_flags & slotdefine2slotbit(slot)) //Was equipped to a valid slot for this item?
+		var/obj/item/organ/internal/butt/B = user.getorgan(/obj/item/organ/internal/butt)
+		if(B)
+			var/obj/item/weapon/storage/internal/pocket/butt/pocket = B.inv
+			if(pocket)
+				pocket.close_all()
 		for(var/variable in user_vars_to_edit)
 			if(variable in user.vars)
 				user_vars_remembered[variable] = user.vars[variable]
 				user.vars[variable] = user_vars_to_edit[variable]
-
 
 /obj/item/clothing/examine(mob/user)
 	..()

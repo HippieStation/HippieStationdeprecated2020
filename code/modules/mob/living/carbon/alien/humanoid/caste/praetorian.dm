@@ -20,6 +20,7 @@
 	internal_organs += new /obj/item/organ/alien/resinspinner
 	internal_organs += new /obj/item/organ/alien/acid
 	internal_organs += new /obj/item/organ/alien/neurotoxin
+	internal_organs += new /obj/item/organ/internal/butt/xeno
 	..()
 
 
