@@ -6580,6 +6580,7 @@
 /area/maintenance/fpmaint2)
 "anz" = (
 /obj/effect/decal/cleanable/egg_smudge,
+/mob/living/simple_animal/mouse/brown,
 /turf/open/floor/wood,
 /area/maintenance/fpmaint2{
 	icon_state = "storage";
@@ -7053,6 +7054,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
+/mob/living/simple_animal/mouse/gray,
 /turf/open/floor/plating,
 /area/maintenance/fsmaint)
 "aoB" = (
@@ -46912,6 +46914,7 @@
 	name = "Mix to Space";
 	on = 0
 	},
+/mob/living/simple_animal/mouse/gray,
 /turf/open/floor/plasteel/floorgrime,
 /area/maintenance/aft)
 "bXh" = (
@@ -48016,6 +48019,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
 	},
+/mob/living/simple_animal/mouse/white,
 /turf/open/floor/plating,
 /area/maintenance/asmaint)
 "bZB" = (
@@ -49990,6 +49994,7 @@
 /area/maintenance/asmaint2)
 "cdE" = (
 /obj/machinery/light/small,
+/mob/living/simple_animal/mouse/brown,
 /turf/open/floor/plating,
 /area/maintenance/asmaint2)
 "cdF" = (
@@ -52122,6 +52127,7 @@
 	on = 1;
 	pressure_checks = 1
 	},
+/mob/living/simple_animal/mouse/white,
 /turf/open/floor/plasteel/floorgrime,
 /area/maintenance/incinerator)
 "cid" = (
@@ -53702,6 +53708,7 @@
 	dir = 1;
 	icon_state = "pipe-c"
 	},
+/mob/living/simple_animal/mouse/white,
 /turf/open/floor/plating,
 /area/maintenance/asmaint)
 "clL" = (
@@ -63306,6 +63313,7 @@
 /area/maintenance/asmaint2)
 "cGb" = (
 /obj/structure/chair/stool,
+/mob/living/simple_animal/mouse/gray,
 /turf/open/floor/plating,
 /area/maintenance/disposal)
 "cGc" = (
@@ -63918,6 +63926,91 @@
 /obj/item/weapon/staplegun,
 /turf/open/floor/wood,
 /area/library)
+"cHP" = (
+/mob/living/simple_animal/mouse/gray,
+/turf/open/floor/plasteel{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/maintenance/commieespy)
+"cHQ" = (
+/mob/living/simple_animal/mouse/gray,
+/turf/open/floor/plasteel,
+/area/maintenance/fsmaint2)
+"cHR" = (
+/mob/living/simple_animal/mouse/gray,
+/turf/open/floor/wood,
+/area/maintenance/fsmaint2)
+"cHS" = (
+/mob/living/simple_animal/mouse/gray,
+/turf/open/floor/plating,
+/area/maintenance/fpmaint2)
+"cHT" = (
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
+	name = "2maintenance loot spawner"
+	},
+/obj/structure/closet/crate{
+	icon_state = "crateopen";
+	opened = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/fpmaint2)
+"cHU" = (
+/mob/living/simple_animal/mouse/white,
+/turf/open/floor/plating,
+/area/maintenance/fpmaint)
+"cHV" = (
+/mob/living/simple_animal/mouse/white,
+/turf/open/floor/plating,
+/area/maintenance/fsmaint2)
+"cHW" = (
+/mob/living/simple_animal/mouse/white,
+/turf/open/floor/plating,
+/area/maintenance/fpmaint2)
+"cHX" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "12"
+	},
+/turf/open/floor/plating,
+/area/maintenance/fpmaint2)
+"cHY" = (
+/mob/living/simple_animal/mouse/white,
+/turf/open/floor/plating,
+/area/maintenance/fsmaint2)
+"cHZ" = (
+/mob/living/simple_animal/mouse/white,
+/turf/open/floor/plating,
+/area/maintenance/fsmaint2)
+"cIa" = (
+/obj/machinery/atmospherics/components/binary/valve{
+	dir = 4
+	},
+/mob/living/simple_animal/mouse/brown,
+/turf/open/floor/plating,
+/area/maintenance/asmaint2)
+"cIb" = (
+/mob/living/simple_animal/mouse/gray,
+/turf/open/floor/plating,
+/area/maintenance/aft)
+"cIc" = (
+/mob/living/simple_animal/mouse/gray,
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"cId" = (
+/mob/living/simple_animal/mouse/white,
+/turf/open/floor/plating,
+/area/maintenance/aft)
+"cIe" = (
+/mob/living/simple_animal/mouse/white,
+/turf/open/floor/plating,
+/area/maintenance/aft)
+"cIf" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/mouse/brown,
+/turf/open/floor/plating,
+/area/maintenance/asmaint2)
 
 (1,1,1) = {"
 aaa
@@ -78150,7 +78243,7 @@ aaa
 aaa
 alM
 aoH
-amt
+cHS
 aob
 amZ
 arQ
@@ -78413,7 +78506,7 @@ art
 arQ
 ate
 auK
-amt
+cCS
 amt
 ayd
 alM
@@ -82265,7 +82358,7 @@ cDo
 cBl
 amt
 alM
-arB
+cHT
 atG
 alM
 atG
@@ -82526,7 +82619,7 @@ amt
 amt
 alM
 aqC
-amt
+cHW
 atw
 atB
 aAI
@@ -82779,11 +82872,11 @@ cCZ
 cBk
 alM
 alM
-alM
+amt
 amt
 alM
 atz
-awW
+cHX
 auH
 azq
 aAI
@@ -83036,10 +83129,10 @@ cDp
 cBk
 arC
 alM
-alM
 amt
-auO
-atB
+amt
+amt
+awT
 awV
 ayi
 ayi
@@ -83293,7 +83386,7 @@ cDq
 cBk
 alM
 alM
-alM
+auO
 atI
 atI
 atB
@@ -83353,7 +83446,7 @@ aaa
 bBe
 bOE
 bPP
-bOE
+cIc
 bOE
 bBe
 bZV
@@ -83364,7 +83457,7 @@ aae
 bBe
 cze
 bGq
-bGq
+cIe
 cbK
 czn
 ceh
@@ -83550,7 +83643,7 @@ cDc
 cBJ
 cDy
 cBk
-amZ
+alM
 alM
 alM
 atB
@@ -84825,7 +84918,7 @@ aaa
 aaa
 alM
 amt
-amt
+cCS
 aKD
 amt
 ane
@@ -85161,7 +85254,7 @@ bGq
 bKg
 bBe
 bBe
-bGq
+cId
 bBe
 bGq
 bGq
@@ -85922,7 +86015,7 @@ apF
 apF
 bKh
 bOM
-bGq
+cIb
 bGq
 bBe
 bGq
@@ -87920,7 +88013,7 @@ apG
 cAJ
 arD
 asH
-aqF
+cHU
 auR
 avN
 axd
@@ -102318,7 +102411,7 @@ aqX
 aqX
 aqX
 amU
-amU
+cHY
 amU
 awp
 alH
@@ -103597,7 +103690,7 @@ cwC
 amU
 aqk
 amU
-amU
+cHV
 amU
 aDU
 amU
@@ -104117,7 +104210,7 @@ awq
 amU
 apt
 amU
-amU
+cHZ
 alH
 amU
 alH
@@ -107187,7 +107280,7 @@ alH
 cBQ
 cCg
 cCg
-cCg
+cHR
 cCg
 cCg
 cDs
@@ -109240,7 +109333,7 @@ cBe
 cBh
 cBq
 cBq
-cBq
+cHP
 cCj
 cCt
 cCL
@@ -109593,7 +109686,7 @@ bjB
 bjB
 bjB
 ckW
-ckW
+cIf
 ckW
 bXT
 aaa
@@ -111040,7 +111133,7 @@ abX
 alH
 cBF
 cBF
-cBF
+cHQ
 cBF
 amU
 alH
@@ -115463,7 +115556,7 @@ bpi
 bqE
 bqE
 bsj
-bqE
+cIa
 bqE
 bBU
 bDf
