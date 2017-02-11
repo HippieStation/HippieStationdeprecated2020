@@ -6,7 +6,7 @@
 **Website:** http://www.hippiestation.com <BR>
 **Code:** https://github.com/HippieStation/HippieStation13 <BR>
 **Wiki** http://wiki.hippiestation.com/index.php?title=Main_Page <BR>
-**Discord:** https://discord.gg/NFpSjKK <BR>
+**Discord:** Ask a maintainer for the invite. <BR>
 
 
 ##INFORMATION
