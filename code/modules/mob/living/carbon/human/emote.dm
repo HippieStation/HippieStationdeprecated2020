@@ -26,7 +26,6 @@
 /datum/emote/living/carbon/human/fart
 	key = "fart"
 	key_third_person = "farts"
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/carbon/human/fart/run_emote(mob/user, params)
 	message = null
@@ -105,7 +104,6 @@
 /datum/emote/living/carbon/human/superfart
 	key = "superfart"
 	key_third_person = "superfarts"
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/carbon/human/superfart/run_emote(mob/user, params)
 	var/obj/item/organ/internal/butt/B = user.getorgan(/obj/item/organ/internal/butt)

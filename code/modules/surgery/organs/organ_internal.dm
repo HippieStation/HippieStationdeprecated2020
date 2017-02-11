@@ -729,6 +729,23 @@
 			T = new()
 			T.Insert(src)
 
+	if(!getorganslot("butt"))
+		if(ishuman(src) || ismonkey(src))
+			var/obj/item/organ/internal/butt/B = new()
+			B.Insert(src)
+		if(isalien(src))
+			var/obj/item/organ/internal/butt/xeno/X = new()
+			X.Insert(src)
+	
+	if(ishuman(src))
+		var/obj/item/bodypart/head/U = locate() in bodyparts
+		if(istype(U))
+			U.teeth_list.Cut() //Clear out their mouth of teeth
+			var/obj/item/stack/teeth/T = new dna.species.teeth_type(U)
+			U.max_teeth = T.max_amount //Set max teeth for the head based on teeth spawntype
+			T.amount = T.max_amount
+			U.teeth_list += T
+
 /obj/item/organ/internal/butt //nvm i need to make it internal for surgery fuck
 	name = "butt"
 	desc = "extremely treasured body part"
