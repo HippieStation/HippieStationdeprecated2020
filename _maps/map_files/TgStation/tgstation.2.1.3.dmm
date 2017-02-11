@@ -43143,6 +43143,10 @@
 /area/security/checkpoint/engineering)
 "bPd" = (
 /obj/structure/closet/crate,
+/obj/item/weapon/storage/inflatable,
+/obj/item/weapon/storage/inflatable,
+/obj/item/weapon/storage/inflatable,
+/obj/item/weapon/storage/inflatable,
 /turf/open/floor/plasteel,
 /area/atmos)
 "bPe" = (
@@ -55234,6 +55238,10 @@
 	dir = 4;
 	network = list("SS13")
 	},
+/obj/item/weapon/storage/inflatable,
+/obj/item/weapon/storage/inflatable,
+/obj/item/weapon/storage/inflatable,
+/obj/item/weapon/storage/inflatable,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "coF" = (
