@@ -24,7 +24,7 @@
 	name = "Mechanized Sentience"
 	id = "mecha"
 	say_mod = "states"
-	species_traits = list(MUTCOLORS,EYECOLOR,LIPS)
+	species_traits = list(EYECOLOR,NOBREATH,NOBLOOD,EASYLIMBATTACHMENT)
 	blacklisted = 0
 	sexes = 0
 	damage_overlay_type = "synth"

@@ -3,7 +3,7 @@
 	id = "tarajan"
 	say_mod = "meows"
 	default_color = "00FF00"
-	species_traits = list(MUTCOLORS,EYECOLOR)
+	species_traits = list(MUTCOLORS,EYECOLOR,NOTRANSSTING)
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'

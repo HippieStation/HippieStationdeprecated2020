@@ -75,13 +75,14 @@
 	message = "coughs!"
 	emote_type = EMOTE_AUDIBLE
 
-/datum/emote/living/cough/run_emote(mob/user, params)
+/datum/emote/living/cough/run_emote(mob/living/user, params)
 	. = ..()
 	if(. && ishuman(user))
 		var/coughsound = pick('sound/misc/cough1.ogg', 'sound/misc/cough2.ogg', 'sound/misc/cough3.ogg', 'sound/misc/cough4.ogg')
 		if(user.gender == FEMALE)
 			coughsound = pick('sound/misc/cough_f1.ogg', 'sound/misc/cough_f2.ogg', 'sound/misc/cough_f3.ogg')
 		playsound(user.loc, coughsound, 50, 1, 5)
+		user.adjustOxyLoss(5)
 
 /datum/emote/living/dance
 	key = "dance"
