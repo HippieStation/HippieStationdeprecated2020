@@ -125,6 +125,8 @@
 
 	//send it to irc if nobody is on and tell us how many were on
 	var/admin_number_present = send2irc_adminless_only(ckey,original_msg)
+	send2admindiscord_adminless_only(ckey,original_msg)
+
 	log_admin("HELP: [key_name(src)]: [original_msg] - heard by [admin_number_present] non-AFK admins who have +BAN.")
 	if(admin_number_present <= 0)
 		src << "<span class='notice'>No active admins are online, your adminhelp was sent to the admin irc.</span>"
@@ -155,6 +157,7 @@
 			final = "[msg] - All admins AFK ([adm["afk"]]/[adm["total"]]), stealthminned ([adm["stealth"]]/[adm["total"]]), or lack[rights2text(requiredflags, " ")] ([adm["noflags"]]/[adm["total"]])"
 		send2irc(source,final)
 		send2otherserver(source,final)
+		
 
 
 /proc/send2irc(msg,msg2)

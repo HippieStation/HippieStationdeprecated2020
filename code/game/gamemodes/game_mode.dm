@@ -257,7 +257,10 @@
 		feedback_set("escaped_human",escaped_humans)
 	if(escaped_total > 0)
 		feedback_set("escaped_total",escaped_total)
+
 	send2irc("Server", "Round just ended.")
+	send2maindiscord("A round of **[name]** has ended - **[surviving_total]** survivors, **[ghosts]** ghosts.")
+
 	return 0
 
 

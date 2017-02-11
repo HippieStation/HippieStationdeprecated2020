@@ -1274,6 +1274,7 @@
 #include "code\modules\food_and_drinks\recipes\tablecraft\recipes_spaghetti.dm"
 #include "code\modules\games\cards.dm"
 #include "code\modules\games\cas.dm"
+#include "code\modules\hippie\discord.dm"
 #include "code\modules\hippie\code\game\machinery\vending.dm"
 #include "code\modules\hippie\code\game\objects\effects\spawners\lootdrop.dm"
 #include "code\modules\hippie\code\game\objects\structures\showcase.dm"

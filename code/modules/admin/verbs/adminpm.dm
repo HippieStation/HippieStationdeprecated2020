@@ -134,6 +134,7 @@
 		src << "<font color='blue'>PM to-<b>Admins</b>: [rawmsg]</font>"
 		ircreplyamount--
 		send2irc("Reply: [ckey]",rawmsg)
+		send2admindiscord("Reply: [ckey] [rawmsg]")
 	else
 		if(C.holder)
 			if(holder)	//both are admins
