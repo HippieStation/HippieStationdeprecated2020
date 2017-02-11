@@ -48,8 +48,8 @@
 
 /datum/progressbar/proc/shiftDown()
 	--listindex
-	var/tempsfsadf = bar.pixel_y - PROGRESSBAR_HEIGHT
-	animate(bar, pixel_y = tempsfsadf, time = 5)
+	var/shiftheight = bar.pixel_y - PROGRESSBAR_HEIGHT
+	animate(bar, pixel_y = shiftheight, time = 5)
 
 /datum/progressbar/Destroy()
 	for(var/I in user.progressbars[bar.loc])

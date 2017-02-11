@@ -14,7 +14,7 @@
 	var/origin_oldloc = null
 	var/static_beam = 0
 	var/beam_type = /obj/effect/ebeam //must be subtype
-	var/alpha_fade = 0
+	var/alpha_fade = FALSE
 	var/last_time = 0
 
 
@@ -132,7 +132,7 @@
 	owner = null
 	return ..()
 
-/obj/effect/ebeam/New(origin_oldloc,alpha_fade = 0, time_exist = 10)
+/obj/effect/ebeam/New(origin_oldloc,alpha_fade = FALSE, time_exist = 10)
 	if(alpha_fade)
 		animate(src, alpha = 0, time = time_exist*10)
 	..()
