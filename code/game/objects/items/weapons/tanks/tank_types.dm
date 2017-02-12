@@ -179,3 +179,22 @@
 	name = "double emergency oxygen tank"
 	icon_state = "emergency_engi"
 	volume = 10
+
+/*
+ * Freon
+ */
+/obj/item/weapon/tank/internals/freon
+	name = "freon tank"
+	desc = "The tank is well insulated but whatever is inside feels really cold."
+	icon_state = "freon"
+	flags = CONDUCT
+	slot_flags = null	//they have no straps!
+	force = 8
+
+
+/obj/item/weapon/tank/internals/freon/New()
+	..()
+	air_contents.assert_gas("freon")
+	air_contents.gases["freon"][MOLES] = (3*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
+	air_contents.temperature = 120
+	return
