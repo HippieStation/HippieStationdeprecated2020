@@ -35,7 +35,7 @@ Coders are official maintainers of the Github that help.
 
 There are lots of members of the playerbase and staff that also contribute, and you can be a part of this group too!
 
-###/tg/ Coding Standards
+##/tg/ Coding Standards
 Most of what follows is from /tg/'s coding standards. They are strict, but in general provide a very good ruleset to follow when developing for this game.
 
 ###Object Oriented code
