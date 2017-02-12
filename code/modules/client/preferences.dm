@@ -108,6 +108,11 @@ var/list/preferences_datums = list()
 	custom_names["cyborg"] = pick(ai_names)
 	custom_names["clown"] = pick(clown_names)
 	custom_names["mime"] = pick(mime_names)
+
+	if(istype(C))
+		if(!IsGuestKey(C.key))
+			load_path(C.ckey)
+
 	var/loaded_preferences_successfully = load_preferences()
 	if(loaded_preferences_successfully)
 		if(load_character())
