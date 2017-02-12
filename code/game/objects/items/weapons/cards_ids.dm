@@ -205,7 +205,7 @@ update_label("John Doe", "Clowny")
 	assignment = "General"
 
 /obj/item/weapon/card/id/admin/New()
-	access = get_all_accesses()
+	access = get_all_accesses()+get_all_centcom_access()+get_all_syndicate_access()+get_ert_access("commander")
 	..()
 
 /obj/item/weapon/card/id/centcom
