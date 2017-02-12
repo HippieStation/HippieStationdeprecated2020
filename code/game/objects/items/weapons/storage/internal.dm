@@ -84,6 +84,8 @@
 			if(H.w_uniform)
 				user << "<span class='danger'>Remove the jumpsuit first!</span>"
 				return
+		if(istype(W, /obj/item/weapon/reagent_containers/pill) || istype(W, /obj/item/weapon/reagent_containers/food))
+			START_PROCESSING(SSobj, W)
 	. = ..()
 
 /obj/item/weapon/storage/internal/pocket/butt/Adjacent(A)
