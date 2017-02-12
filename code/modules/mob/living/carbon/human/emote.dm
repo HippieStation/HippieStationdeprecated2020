@@ -26,10 +26,10 @@
 /datum/emote/living/carbon/human/fart
 	key = "fart"
 	key_third_person = "farts"
-	var/fartsound
-	var/bloodkind
 
 /datum/emote/living/carbon/human/fart/run_emote(mob/user, params)
+	var/fartsound = 'sound/misc/fart.ogg'
+	var/bloodkind = /obj/effect/decal/cleanable/blood
 	message = null
 	if(user.stat != CONSCIOUS)
 		return
@@ -57,18 +57,15 @@
 			"farts and pretends nothing happened.",
 			"is a <b>farting</b> motherfucker!",
 			"<B><font color='red'>f</font><font color='blue'>a</font><font color='red'>r</font><font color='blue'>t</font><font color='red'>s</font></B>")
+	if(istype(user,/mob/living/carbon/alien))
+		fartsound = 'sound/misc/alienfart.ogg'
+		bloodkind = /obj/effect/decal/cleanable/xenoblood
 	spawn(0)
 		var/obj/item/weapon/storage/book/bible/Y = locate() in get_turf(user.loc)
 		if(istype(Y))
 			playsound(Y,'sound/effects/thunder.ogg', 90, 1)
 			spawn(10)
 				user.gib()
-		if(ishuman(user) || ismonkey(user))
-			fartsound = 'sound/misc/fart.ogg'
-			bloodkind = /obj/effect/decal/cleanable/blood
-		else //must be an alien. The check for aliens doesn't work so there has to be a check for human and monkey instead
-			fartsound = 'sound/misc/alienfart.ogg'
-			bloodkind = /obj/effect/decal/cleanable/xenoblood
 		var/obj/item/weapon/storage/internal/pocket/butt/theinv = B.inv
 		if(theinv.contents.len)
 			var/obj/item/O = pick(theinv.contents)
