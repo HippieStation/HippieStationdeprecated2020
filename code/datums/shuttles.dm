@@ -45,6 +45,10 @@
 	admin_notes = "No brig, no medical facilities, no air."
 	credit_cost = -7500
 
+/datum/map_template/shuttle/emergency/airless/prerequisites_met()
+	// first 10 minutes only
+	return world.time - round_start_time < 6000
+
 /datum/map_template/shuttle/emergency/asteroid
 	suffix = "asteroid"
 	name = "Asteroid Station Emergency Shuttle"
@@ -161,7 +165,7 @@
 	suffix = "goon"
 	name = "NES Port"
 	description = "The Nanotrasen Emergency Shuttle Port(NES Port for short) is a shuttle used at other less known nanotrasen facilities and has a more open inside for larger crowds."
-	credit_cost = 3000
+	credit_cost = 500
 
 /datum/map_template/shuttle/emergency/wabbajack
 	suffix = "wabbajack"
