@@ -2,7 +2,7 @@
 
 ##Reporting Issues
 
-To report an issue, read the format in the text box when you create one! Be descriptive, provide images if there is something visual, and if possible test the issue yourself. An issue must be replicatable or it will be closed!
+To report an issue, read the format in the text box when you create one! Be descriptive, provide images if there is something visual, and if possible test the issue yourself. An issue must be replicatable or it will be closed! If possible, please list the STEPS required to replicate the issue.
 
 ##Introduction
 
@@ -15,7 +15,7 @@ There is no set list of goals to add, so you need to be creative and come up wit
 
 If you want to contribute the first thing you'll need to do is [set up Git](http://wiki.hippiestation.com/index.php?title=Setting_up_git) so you can download the source code.
 
-We have a [list of guides on the wiki](http://wiki.hippiestation.com/index.php?title=Guides#Development_and_Contribution_Guides) which will help you get started contributing to /tg/station with git and Dream Maker. For beginners, it is recommended you work on small projects, at first. If you need help learning to program in BYOND check out this [repository of resources](http://www.byond.com/developer/articles/resources).
+We have a [list of guides on the wiki](http://wiki.hippiestation.com/index.php?title=Guides#Development_and_Contribution_Guides) which will help you get started contributing to HippieStation with git and Dream Maker. For beginners, it is recommended you work on small projects, at first. If you need help learning to program in BYOND check out this [repository of resources](http://www.byond.com/developer/articles/resources).
 
 There are probably [a bunch of issues that you can try to fix too](https://github.com/HippieStation/HippieStation13/issues).
 
@@ -126,7 +126,7 @@ Hacky code, such as adding specific checks, is highly discouraged and only allow
 You can avoid hacky code by using object oriented methodologies, such as overriding a function (called procs in DM) or sectioning code into functions and then overriding them as required.
 
 ###No duplicated code.
-Copying code from one place to another maybe suitable for small short time projects but /tg/station focuses on the long term and thus discourages this.
+Copying code from one place to another maybe suitable for small short time projects but HippieStation focuses on the long term and thus discourages this.
 
 Instead you can use object orientation, or simply placing repeated code in a function, to obey this specification easily.
 
