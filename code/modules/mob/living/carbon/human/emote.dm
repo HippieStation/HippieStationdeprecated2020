@@ -26,6 +26,8 @@
 /datum/emote/living/carbon/human/fart
 	key = "fart"
 	key_third_person = "farts"
+	var/fartsound
+	var/bloodkind
 
 /datum/emote/living/carbon/human/fart/run_emote(mob/user, params)
 	message = null
@@ -61,6 +63,12 @@
 			playsound(Y,'sound/effects/thunder.ogg', 90, 1)
 			spawn(10)
 				user.gib()
+		if(ishuman(user) || ismonkey(user))
+			fartsound = 'sound/misc/fart.ogg'
+			bloodkind = /obj/effect/decal/cleanable/blood
+		else //must be an alien. The check for aliens doesn't work so there has to be a check for human and monkey instead
+			fartsound = 'sound/misc/alienfart.ogg'
+			bloodkind = /obj/effect/decal/cleanable/xenoblood
 		var/obj/item/weapon/storage/internal/pocket/butt/theinv = B.inv
 		if(theinv.contents.len)
 			var/obj/item/O = pick(theinv.contents)
@@ -68,12 +76,12 @@
 				var/obj/item/weapon/lighter/G = O
 				if(G.lit && user.loc)
 					new/obj/effect/hotspot(user.loc)
-					playsound(user, 'sound/misc/fart.ogg', 50, 1, 5)
+					playsound(user, fartsound, 50, 1, 5)
 			else if(istype(O, /obj/item/weapon/weldingtool))
 				var/obj/item/weapon/weldingtool/J = O
 				if(J.welding == 1 && user.loc)
 					new/obj/effect/hotspot(user.loc)
-					playsound(user, 'sound/misc/fart.ogg', 50, 1, 5)
+					playsound(user, fartsound, 50, 1, 5)
 			else if(istype(O, /obj/item/weapon/bikehorn))
 				for(var/obj/item/weapon/bikehorn/Q in theinv.contents)
 					playsound(Q, Q.honksound, 50, 1, 5)
@@ -82,29 +90,34 @@
 				message = "<span class='reallybig'>farts.</span>"
 				playsound(user, 'sound/misc/fartmassive.ogg', 75, 1, 5)
 			else
-				playsound(user, 'sound/misc/fart.ogg', 50, 1, 5)
+				playsound(user, fartsound, 50, 1, 5)
 			if(prob(33))
 				theinv.remove_from_storage(O, user.loc)
 		else
-			playsound(user, 'sound/misc/fart.ogg', 50, 1, 5)
+			playsound(user, fartsound, 50, 1, 5)
 		sleep(1)
 		if(lose_butt)
 			for(var/obj/item/I in theinv.contents)
 				theinv.remove_from_storage(I, user.loc)
 			B.loc = get_turf(user)
 			B.Remove(user)
-			new /obj/effect/decal/cleanable/blood(user.loc)
+			new bloodkind(user.loc)
 			user.nutrition -= rand(5, 20)
 			user.visible_message("\red <b>[user]</b> blows their ass off!", "\red Holy shit, your butt flies off in an arc!")
 		else
 			user.nutrition -= rand(2, 10)
 		..()
+		if(!ishuman(user)) //nonhumans don't have the message appear for some reason
+			user.visible_message("<b>[user]</b> [message]")
 
 /datum/emote/living/carbon/human/superfart
 	key = "superfart"
 	key_third_person = "superfarts"
 
 /datum/emote/living/carbon/human/superfart/run_emote(mob/user, params)
+	if(!ishuman(user))
+		user << "<span class='warning'>You lack that ability!</span>"
+		return
 	var/obj/item/organ/internal/butt/B = user.getorgan(/obj/item/organ/internal/butt)
 	if(!B)
 		user << "<span class='danger'>You don't have a butt!</span>"
