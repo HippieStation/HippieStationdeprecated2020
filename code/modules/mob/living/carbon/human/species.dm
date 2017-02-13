@@ -1001,6 +1001,12 @@
 			"<span class='userdanger'>[user] has attempted to [atk_verb] [target]!</span>", null, COMBAT_MESSAGE_RANGE)
 			return 0
 
+		var/teethhitcheck = rand(0,9)
+		if(istype(affecting, /obj/item/bodypart/head) && prob(teethhitcheck * (user.zone_selected == "mouth" ? 3 : 1))) //MUCH higher chance to knock out teeth if you aim for mouth
+			var/obj/item/bodypart/head/U = affecting
+			if(U.knock_out_teeth(get_dir(user, target), round(rand(28, 38) * ((teethhitcheck*2)/100))))
+				target.visible_message("<span class='danger'>[target]'s teeth sail off in an arc!</span>", \
+								"<span class='userdanger'>[target]'s teeth sail off in an arc!</span>")
 
 		var/armor_block = target.run_armor_check(affecting, "melee")
 
@@ -1176,6 +1182,12 @@
 
 					if(prob(I.force + ((100 - H.health)/2)) && H != user)
 						ticker.mode.remove_revolutionary(H.mind)
+
+				if(istype(affecting, /obj/item/bodypart/head) && prob(I.force * (user.zone_selected == "mouth" ? 3 : 1))) //MUCH higher chance to knock out teeth if you aim for mouth
+					var/obj/item/bodypart/head/U = affecting
+					if(U.knock_out_teeth(get_dir(user, H), round(rand(28, 38) * ((I.force*1.5)/100))))
+						H.visible_message("<span class='danger'>[H]'s teeth sail off in an arc!</span>", \
+										"<span class='userdanger'>[H]'s teeth sail off in an arc!</span>")
 
 				if(bloody)	//Apply blood
 					if(H.wear_mask)
