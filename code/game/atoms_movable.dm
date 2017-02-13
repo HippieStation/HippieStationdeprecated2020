@@ -142,7 +142,6 @@
 	if(destination)
 		if(pulledby)
 			pulledby.stop_pulling()
-
 		var/atom/oldloc = loc
 		var/same_loc = oldloc == destination
 		var/area/old_area = get_area(oldloc)
@@ -160,10 +159,10 @@
 			if(destarea && old_area != destarea)
 				destarea.Entered(src, oldloc)
 
-		for(var/atom/movable/AM in destination)
-			if(AM == src)
-				continue
-			AM.Crossed(src)
+			for(var/atom/movable/AM in destination)
+				if(AM == src)
+					continue
+				AM.Crossed(src)
 
 		Moved(oldloc, 0)
 		return 1
