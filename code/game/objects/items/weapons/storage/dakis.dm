@@ -21,7 +21,6 @@
 	var/body_choice
 	if(icon_state == "daki_base")
 		body_choice = input("Pick a body.") in list(
-
 		"Callie",
 		"Casca",
 		"Chaika",
@@ -32,7 +31,7 @@
 		"Hotwheels",
 		"Ian",
 		"Jolyne",
-		"Kurisu", //Kurisu is the ideal girl." - Me, Logos.  
+		"Kurisu", //Kurisu is the ideal girl." - Me, Logos.
 		"Marie",
 		"Mugi",
 		"Nar'Sie",
@@ -50,12 +49,12 @@
 		"Yoko")
 
 		icon_state = "daki_[body_choice]"
-		custom_name = input("What's her name?") as text
+		custom_name = stripped_input(user, "What's her name?")
 		if(length(custom_name) > MAX_NAME_LEN)
 			user << "<span class='danger'>Name is too long!</span>"
-			return
+			return FALSE
 		if(custom_name)
-			name = sanitize(custom_name + " " + name)
+			name = custom_name + " " + name
 			desc = "A large pillow depicting [custom_name] in a compromising position. Featuring as many dimensions as you."
 	else
 		if(!spam_flag)
