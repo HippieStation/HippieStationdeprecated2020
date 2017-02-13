@@ -124,10 +124,12 @@
 			if(C && user.pulling == C && !C.buckled && !C.has_buckled_mobs() && !occupant)
 				var/turf/prevloc = C.loc
 				user.visible_message("<span class='danger'>[user] stuffs [C] into the gibber!</span>")
-//				C.forceMove(src)
 				occupant = C
 				update_icon()
-				StuffAnim(prevloc)
+				if(ishuman(occupant) || isalien(occupant))
+					StuffAnim(prevloc)
+				else
+					C.alpha = 0
 	if(locked)
 		user << "<span class='danger'>Wait for [occupant.name] to finish being loaded!</span>"
 	if(occupant)

@@ -49,7 +49,7 @@
 	if (notransform)
 		return
 
-	if(jobban_isbanned("catban") && dna.species.name != "Tarajan")
+	if(jobban_isbanned(src, "catban") && dna.species.id != "tarajan")
 		set_species(/datum/species/tarajan, icon_update=1)
 
 	if(..()) //not dead
