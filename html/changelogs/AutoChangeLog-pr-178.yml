@@ -1,0 +1,5 @@
+author: "Tortellini Tony"
+delete-after: True
+changes: 
+  - bugfix: "Fixed catbans (again)"
+  - bugfix: "Minor fix to farts and the gibber"
