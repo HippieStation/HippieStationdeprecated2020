@@ -1,0 +1,4 @@
+author: "ErikHanson"
+delete-after: True
+changes: 
+  - rscdel: "You can no longer inject HTML trough anime, thanks coderbus"
