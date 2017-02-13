@@ -157,10 +157,10 @@
 			if(destarea && old_area != destarea)
 				destarea.Entered(src, oldloc)
 
-				for(var/atom/movable/AM in destination)
-					if(AM == src)
-						continue
-					AM.Crossed(src)
+			for(var/atom/movable/AM in destination)
+				if(AM == src)
+					continue
+				AM.Crossed(src)
 
 		Moved(oldloc, 0)
 		return 1
