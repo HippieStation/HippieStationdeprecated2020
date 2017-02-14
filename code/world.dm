@@ -218,6 +218,8 @@ var/last_irc_status = 0
 	if(ticker.delay_end)
 		world << "<span class='boldannounce'>Reboot was cancelled by an admin.</span>"
 		return
+	if(config.update_check_enabled)
+		install_update()
 	if(mapchanging)
 		world << "<span class='boldannounce'>Map change operation detected, delaying reboot.</span>"
 		rebootingpendingmapchange = 1
@@ -500,3 +502,33 @@ var/rebootingpendingmapchange = 0
 			log_game("Failed to change map: Unknown error: Error code #[.]")
 	if(rebootingpendingmapchange)
 		world.Reboot("Map change finished", time = 10)
+
+// Shamelessly stolen from Goonstation
+// https://github.com/goonstation/goonstation-2016/blob/master/code/world.dm#L510
+/proc/install_update()
+	log_admin("Checking for updated [config.dmb_filename].dmb...")
+	message_admins("Checking for updated [config.dmb_filename].dmb...")
+
+	// Check if the DMB exists in the update folder
+	if(fexists("update/[config.dmb_filename].dmb"))
+		log_admin("Updated [config.dmb_filename].dmb found. Updating...")
+		message_admins("Updated [config.dmb_filename].dmb found. Updating....")
+
+		// Copy all files in the update folder
+		for(var/f in flist("update/"))
+			log_admin("\tMoving [f]...")
+			message_admins("\tMoving [f]...")
+			fcopy("update/[f]", "[f]")
+
+			// Make sure we clean the update folder back up again
+			fdel("update/[f]")
+
+		// Make sure we delete the .dyn.rsc which holds dynamic resources
+		// These could collide with new resource ids
+		fdel("[config.dmb_filename].dyn.rsc")
+
+		log_admin("Update complete.")
+		message_admins("Update complete.")
+	else
+		log_admin("No update found. Skipping update process.")
+		message_admins("No update found. Skipping update process.")

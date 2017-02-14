@@ -248,6 +248,10 @@
 	var/discord_url
 	var/discord_password
 
+	// Updater
+	var/update_check_enabled = FALSE
+	var/dmb_filename
+
 /datum/configuration/New()
 	gamemode_cache = typecacheof(/datum/game_mode,TRUE)
 	for(var/T in gamemode_cache)
@@ -510,6 +514,10 @@
 					discord_url = value
 				if("discord_password")
 					discord_password = value
+				if("update_check_enabled")
+					update_check_enabled = TRUE
+				if("dmb_filename")
+					dmb_filename = value
 				else
 					diary << "Unknown setting in configuration: '[name]'"
 
