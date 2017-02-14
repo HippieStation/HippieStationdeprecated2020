@@ -1,4 +1,0 @@
-author: "JamieH"
-delete-after: True
-changes: 
-  - experiment: "Ports a PR from /tg/ which makes the server start in INSANE times."

@@ -1,8 +1,0 @@
-author: "Hippie bar & fixes"
-delete-after: True
-changes: 
-  - rscadd: "more stuff to clown/mime offices"
-  - rscadd: "deepfryer to kitchen"
-  - rscdel: "removed some accidental areas in space"
-  - tweak: "Hippie bar reinstated"
-  - bugfix: "det office apc fixed"

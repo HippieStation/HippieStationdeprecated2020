@@ -1,7 +1,0 @@
-author: "JamieH"
-delete-after: True
-changes: 
-  - rscadd: "The Build your own shuttle kit can only be bought in the first ten
-minutes of the shift. Ported from /tg/"
-  - rscadd: "The Luxury Shuttle grabs cash in your wallet and backpack, and
-shares approval between the entrance gates. Ported from /tg/"

@@ -1,4 +1,0 @@
-author: "optional name here"
-delete-after: True
-changes: 
-  - bugfix: "fixed mentor say and mentor memos for admins"
