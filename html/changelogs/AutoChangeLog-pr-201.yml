@@ -1,0 +1,5 @@
+author: "Your local wizard"
+delete-after: True
+changes: 
+  - experiment: "The server has now gained the ability to automatically update it self before the round ends! Woah Wow! Magical!"
+  - experiment: "Thanks Goonstation!"
