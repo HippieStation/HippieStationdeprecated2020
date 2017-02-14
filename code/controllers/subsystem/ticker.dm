@@ -532,7 +532,7 @@ var/datum/subsystem/ticker/ticker
 		for(var/path in SSgarbage.didntgc)
 			dellog += "Path : [path] \n"
 			dellog += "Failures : [SSgarbage.didntgc[path]] \n"
-		world.log << dellog
+		log_world(dellog)
 
 	//Collects persistence features
 	SSpersistence.CollectData()

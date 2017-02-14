@@ -42,6 +42,7 @@
 	var/log_hrefs = 0					// log all links clicked in-game. Could be used for debugging and tracking down exploits
 	var/log_twitter = 0					// log certain expliotable parrots and other such fun things in a JSON file of twitter valid phrases.
 	var/log_world_topic = 0				// log all world.Topic() calls
+	var/log_runtimes = FALSE			// log runtimes into a file
 	var/sql_enabled = 0					// for sql switching
 	var/allow_admin_ooccolor = 0		// Allows admins with relevant permissions to have their own ooc colour
 	var/allow_vote_restart = 0 			// allow votes to restart
@@ -247,6 +248,10 @@
 	// Discord crap.
 	var/discord_url
 	var/discord_password
+	var/error_cooldown = 600 // The "cooldown" time for each occurrence of a unique error
+	var/error_limit = 50 // How many occurrences before the next will silence them
+	var/error_silence_time = 6000 // How long a unique error will be silenced for
+	var/error_msg_delay = 50 // How long to wait between messaging admins about occurrences of a unique error
 
 	// Updater
 	var/update_check_enabled = FALSE
@@ -470,10 +475,11 @@
 				if("aggressive_changelog")
 					config.aggressive_changelog = 1
 				if("log_runtimes")
+					log_runtimes = TRUE
 					var/newlog = file("data/logs/runtimes/runtime-[time2text(world.realtime, "YYYY-MM-DD")].log")
-					if (world.log != newlog)
+					if(runtime_diary != newlog)
 						world.log << "Now logging runtimes to data/logs/runtimes/runtime-[time2text(world.realtime, "YYYY-MM-DD")].log"
-						world.log = newlog
+						runtime_diary = newlog
 				if("autoconvert_notes")
 					config.autoconvert_notes = 1
 				if("allow_webclient")
@@ -514,6 +520,14 @@
 					discord_url = value
 				if("discord_password")
 					discord_password = value
+				if("error_cooldown")
+					error_cooldown = text2num(value)
+				if("error_limit")
+					error_limit = text2num(value)
+				if("error_silence_time")
+					error_silence_time = text2num(value)
+				if("error_msg_delay")
+					error_msg_delay = text2num(value)
 				if("update_check_enabled")
 					update_check_enabled = TRUE
 				if("dmb_filename")
