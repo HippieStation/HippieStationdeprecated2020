@@ -1,0 +1,4 @@
+author: "Donald Trump"
+delete-after: True
+changes: 
+  - bugfix: "You can now apply patches to yourself without any delay, who the fuck ever added this?"
