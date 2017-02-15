@@ -1166,6 +1166,15 @@ var/list/uplink_items = list() // Global list so we only initialize this once.
 	category = "Role-Restricted"
 	exclude_modes = list(/datum/game_mode/nuclear)
 
+/* Science Division */
+/datum/uplink_item/role_restricted/experimental_teleporter
+	name = "Experimental Teleporter"
+	desc = "An imperfect bluespace teleportation device recovered from an abandoned mine that relocates the user 3 to 5 metres in their direction. The teleportation will telefrag any living creature in the new location. Relocating into solid walls will yield less than stellar results."
+	restricted_roles = list("Research Director")
+	cost = 14
+	item = /obj/item/device/experimental_teleporter
+	cant_discount = TRUE
+
 // Pointless
 /datum/uplink_item/badass
 	category = "(Pointless) Badassery"
