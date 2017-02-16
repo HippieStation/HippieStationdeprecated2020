@@ -1,0 +1,4 @@
+author: "ErikHanson"
+delete-after: True
+changes: 
+  - rscdel: "Electrocution is no longer capped to 90, instead it's now capped at 500"
