@@ -116,6 +116,7 @@
 	var/id_icon = null			//For setting it to be a gold, silver, centcom etc ID
 	var/husk = null
 	var/list/implants = list()
+	var/list/disabilities = list()
 
 /obj/effect/mob_spawn/human/equip(mob/living/carbon/human/H)
 	if(mob_species)
@@ -184,6 +185,9 @@
 	for(var/I in implants)
 		var/obj/item/weapon/implant/X = new I
 		X.implant(H)
+	
+	for(var/I in disabilities)
+		H.disabilities |= I
 
 	if(!H.head && istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit))
 		var/obj/item/clothing/suit/space/hardsuit/HS = H.wear_suit
