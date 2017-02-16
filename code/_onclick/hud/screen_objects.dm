@@ -667,3 +667,16 @@
 		if(word_messages.len && talk_cooldown < world.time)
 			talk_cooldown = world.time + 10
 			L.say(pick(word_messages))
+
+/obj/screen/splash
+	icon = 'icons/misc/fullscreen.dmi'
+	icon_state = "title"
+	screen_loc = "1,1"
+	alpha = 0
+
+/obj/screen/splash/New()
+	..()
+	var/titlescreen = TITLESCREEN
+	if(titlescreen)
+		icon_state = titlescreen
+	animate(src, alpha = 255, time = 30)
