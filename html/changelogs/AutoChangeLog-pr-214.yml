@@ -1,0 +1,6 @@
+author: "TDcoolguy300"
+delete-after: True
+changes: 
+  - imageadd: "Brought back the old Emoticons from pre-rebase"
+  - imageadd: "Added the tgs icon for changelogs to signify ports or likewise"
+  - tgs: "Example"
