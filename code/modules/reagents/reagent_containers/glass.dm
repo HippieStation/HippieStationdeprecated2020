@@ -77,6 +77,15 @@
 
 		var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 		user << "<span class='notice'>You transfer [trans] unit\s of the solution to [target].</span>"
+	
+	else if(istype(target, /turf/open/pool/water))
+		if(reagents.total_volume)
+			user << "<span class='notice'>Doing that would be useless.</span>"
+		else
+			user << "<span class='notice'>You plunge [src] in the [target].</span>"
+			reagents.add_reagent("water", 100)
+			return
+
 
 	else if(reagents.total_volume)
 		if(user.a_intent == INTENT_HARM)
