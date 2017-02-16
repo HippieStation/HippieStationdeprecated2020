@@ -249,7 +249,7 @@ var/last_irc_status = 0
 	if(blackbox)
 		blackbox.save_all_data_to_sql()
 	Master.Shutdown()	//run SS shutdowns
-	RoundEndSound(round_end_sound_sent)
+	RoundEndAnimation(round_end_sound_sent)
 	kick_clients_in_lobby("<span class='boldannounce'>The round came to an end with you in the lobby.</span>", 1) //second parameter ensures only afk clients are kicked
 	world << "<span class='boldannounce'>Rebooting world.</span>"
 	for(var/thing in clients)
@@ -259,7 +259,7 @@ var/last_irc_status = 0
 	if(config.update_check_enabled)
 		install_update()
 
-/world/proc/RoundEndSound(round_end_sound_sent)
+/world/proc/RoundEndAnimation(round_end_sound_sent)
 	set waitfor = FALSE
 	var/round_end_sound
 	if(!ticker && ticker.round_end_sound)
@@ -280,28 +280,19 @@ var/last_irc_status = 0
 		'sound/hippie/roundend/yeehaw.ogg',
 		'sound/hippie/roundend/disappointed.ogg'\
 		)
+
+	var/titlescreen = TITLESCREEN
+	if(!titlescreen)
+		titlescreen = "title"
+
+	for(var/thing in clients)
+		if(thing)
+			var/client/C = thing
+			C.screen.Cut()
+			C.screen += new /obj/screen/splash
+
 	world << sound(round_end_sound)
 	
-var/inerror = 0
-/world/Error(var/exception/e)
-	//runtime while processing runtimes
-	if (inerror)
-		inerror = 0
-		return ..(e)
-	inerror = 1
-	//newline at start is because of the "runtime error" byond prints that can't be timestamped.
-	e.name = "\n\[[time2text(world.timeofday,"hh:mm:ss")]\][e.name]"
-
-	//this is done this way rather then replace text to pave the way for processing the runtime reports more thoroughly
-	//	(and because runtimes end with a newline, and we don't want to basically print an empty time stamp)
-	var/list/split = splittext(e.desc, "\n")
-	for (var/i in 1 to split.len)
-		if (split[i] != "")
-			split[i] = "\[[time2text(world.timeofday,"hh:mm:ss")]\][split[i]]"
-	e.desc = jointext(split, "\n")
-	inerror = 0
-	return ..(e)
-
 /world/proc/load_mode()
 	var/list/Lines = file2list("data/mode.txt")
 	if(Lines.len)
