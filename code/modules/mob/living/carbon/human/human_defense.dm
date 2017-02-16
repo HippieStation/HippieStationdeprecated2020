@@ -226,8 +226,9 @@
 		var/message = "[user] has [hulk_verb]ed [src]!"
 		visible_message("<span class='danger'>[message]</span>", \
 								"<span class='userdanger'>[message]</span>")
-		adjustBruteLoss(15)
-		damage_clothes(15, BRUTE, "melee")
+		adjustBruteLoss(5)
+		Weaken(4)
+		damage_clothes(5, BRUTE, "melee")
 		return 1
 
 /mob/living/carbon/human/attack_hand(mob/living/carbon/human/M)
