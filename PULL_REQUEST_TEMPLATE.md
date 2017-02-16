@@ -15,6 +15,7 @@ imageadd: added some icons and images
 imagedel: deleted some icons and images
 spellcheck: fixed a few typos
 experiment: added an experimental thingy
+tgs: TG-station ports, or just the (old)TGstation icon
 /:cl:
 
 []: # (Please add a short description of why you think these changes would benefit the game. If you can't justify it in words, it might not be worth adding:)

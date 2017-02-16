@@ -9,6 +9,7 @@ a img {border:none;}
 	border-left:4px solid #999;
 	margin-bottom:2px;
 }
+.tgs {background-image:url(tg-ports.png)}
 .bugfix {background-image:url(bug-minus.png)}
 .wip {background-image:url(hard-hat-exclamation.png)}
 .tweak {background-image:url(wrench-screwdriver.png)}
