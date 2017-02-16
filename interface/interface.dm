@@ -58,7 +58,7 @@
 			if(line)
 				if(first)
 					first = FALSE
-					message += ". The following experimental changes are active and are probably the cause of any new or sudden issues you may experience. If possible, please try to find a specific thread for your issue instead of posting to the general issue tracker:"	
+					message += ". The following experimental changes are active and are probably the cause of any new or sudden issues you may experience. If possible, please try to find a specific thread for your issue instead of posting to the general issue tracker:"
 				message += " <a href='[config.githuburl]/pull/[line]'>#[line]</a>"
 		if(tgalert(src, message, "Report Issue","Yes","No")=="No")
 			return
@@ -89,6 +89,7 @@ Admin:
 	set category = "OOC"
 	getFiles(
 		'html/88x31.png',
+		'html/tg-ports.png',
 		'html/bug-minus.png',
 		'html/cross-circle.png',
 		'html/hard-hat-exclamation.png',
@@ -138,7 +139,7 @@ Hotkey-Mode: (hotkey-mode must be on)
 \t3 = grab-intent
 \t4 = harm-intent
 \tNumpad = Body target selection (Press 8 repeatedly for Head->Eyes->Mouth)
-\tAlt(HOLD) = Alter movement intent 
+\tAlt(HOLD) = Alter movement intent
 </font>"}
 
 	var/other = {"<font color='purple'>
