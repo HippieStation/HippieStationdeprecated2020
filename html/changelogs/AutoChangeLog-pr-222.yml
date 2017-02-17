@@ -1,0 +1,4 @@
+author: "ErikHanson"
+delete-after: True
+changes: 
+  - rscadd: "Lawn mowers are now on sale for Botanists in the uplink!"
