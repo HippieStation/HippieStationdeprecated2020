@@ -6,7 +6,7 @@
 	var/relic_hat	//Note: these two are paths
 	var/relic_mask
 	var/memory_saved = 0
-	var/list/pet_monkey_names = list("Pun Pun", "Bubbles", "Mojo", "George", "Darwin", "Aldo", "Caeser", "Kanzi", "Kong", "Terk", "Grodd", "Mala", "Bojangles", "Coco", "Able", "Baker", "Scatter", "Norbit", "Travis")
+	var/list/pet_monkey_names = list("Pun Pun", "Spankmonkey", "Bubbles", "Mojo", "George", "Darwin", "Aldo", "Caeser", "Kanzi", "Kong", "Terk", "Grodd", "Mala", "Bojangles", "Coco", "Able", "Baker", "Scatter", "Norbit", "Travis")
 	var/list/rare_pet_monkey_names = list("Professor Bobo", "Deempisi's Revenge", "Furious George", "King Louie", "Dr. Zaius", "Jimmy Rustles", "Dinner", "Lanky")
 
 /mob/living/carbon/monkey/punpun/New()
@@ -24,7 +24,7 @@
 	..()
 
 	//These have to be after the parent new to ensure that the monkey
-	//bodyparts are actually created before we try to equip things to 
+	//bodyparts are actually created before we try to equip things to
 	//those slots
 	if(relic_hat)
 		equip_to_slot_or_del(new relic_hat, slot_head)
