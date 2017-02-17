@@ -157,7 +157,7 @@ var/global/list/cargopads = list() // Global List of Cargo Pads
 
 	var/charges = 10
 	var/maximum_charges = 10.0
-	var/obj/machinery/telepad/target_pad = null
+	var/obj/machinery/telepad_cargo/target_pad = null
 	var/target_turf = null
 
 /obj/item/weapon/rcs/examine(mob/user)
@@ -165,7 +165,7 @@ var/global/list/cargopads = list() // Global List of Cargo Pads
 	user << "There are [charges]/[maximum_charges] charge\s left."
 
 /obj/item/weapon/rcs/attack_self(mob/user)
-	if (src.charges < 1)
+	if (charges < 1)
 		user << "<span style=\"color:red\">The transporter is out of charge.</span>"
 		return
 	if (!cargopads.len) usr << "<span style=\"color:red\">No receivers available.</span>"
@@ -186,16 +186,16 @@ var/global/list/cargopads = list() // Global List of Cargo Pads
 			return
 		usr << "Target set to [T.loc]."
 		//blammo! works!
-		src.target_pad = P
-		src.target_turf = T
+		target_pad = P
+		target_turf = T
 
 /obj/item/weapon/rcs/proc/cargoteleport(var/obj/T, var/mob/user)
-	if (!src.target_turf)
+	if (!target_turf)
 		user << "<span style=\"color:red\">You need to set a target first!</span>"
 		return
-	if (!src.target_pad.active)
+	if (!target_pad.active)
 		user << "<span style=\"color:red\">Unable to connect to remote pad!</span>"
-	if (src.charges < 1)
+	if (charges < 1)
 		user << " <span style=\"color:red\">The transporter is out of charge.</span>"
 		return
 
@@ -217,13 +217,13 @@ var/global/list/cargopads = list() // Global List of Cargo Pads
 		
 		target_pad.icon_state = "pad-idle"
 		
-		src.charges -= 1
-		if (src.charges < 0)
-			src.charges = 0
-		if (src.charges == 0)
+		charges -= 1
+		if (charges < 0)
+			charges = 0
+		if (charges == 0)
 			user << "<span style=\"color:red\">Transfer successful. The transporter is now out of charge.</span>"
 		else
-			user << "<span style=\"color:blue\">Transfer successful. [src.charges] charges remain.</span>"
+			user << "<span style=\"color:blue\">Transfer successful. [charges] charges remain.</span>"
 	else
 		target_pad.icon_state = "pad-idle"
 	return
