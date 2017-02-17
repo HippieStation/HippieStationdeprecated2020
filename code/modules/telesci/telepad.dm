@@ -69,7 +69,8 @@
 	..()
 	if (name == initial(src.name))
 		name += " ([rand(100,999)])"
-	if (active && cargopads[src] != null)
+	if (active && cargopads[src] == null)
+		icon_state = "pad-idle"
 		LAZYADD(cargopads, src)
 
 /obj/machinery/telepad_cargo/Destroy()
@@ -101,7 +102,7 @@
 		if(WT.remove_fuel(0,user))
 			playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
 			user << "<span class='notice'>You start disassembling [src]...</span>"
-			if(do_after(user,20*WT.toolspeed, target = src))
+			if(do_after_mob(user,20*WT.toolspeed, target = src))
 				if(!WT.isOn())
 					return
 				user << "<span class='notice'>You disassemble [src].</span>"
@@ -112,7 +113,7 @@
 		return ..()
 
 /obj/machinery/telepad_cargo/attack_hand(mob/living/user)
-	if(do_after(user, 20*W.toolspeed, target = src, unique=TRUE))
+	if(do_after(user, 5, target = src))
 		message_admins("[key_name_admin(user)] has toggled the power to [name]")
 		if (active == TRUE)
 			user << "You switch the receiver off."
@@ -124,7 +125,7 @@
 			user << "You switch the receiver on."
 			icon_state = "pad-idle"
 			active = TRUE
-			if (cargopads[src] != null)
+			if (cargopads[src] == null)
 				LAZYADD(cargopads, src)
 
 ///TELEPAD CALLER///
@@ -197,7 +198,7 @@
 	if (!target_turf)
 		user << "<span style=\"color:red\">You need to set a target first!</span>"
 		return
-	if (!target_pad.active)
+	if (cargopads[target_pad] != null)
 		user << "<span style=\"color:red\">Unable to connect to remote pad!</span>"
 	if (charges < 1)
 		user << " <span style=\"color:red\">The transporter is out of charge.</span>"
