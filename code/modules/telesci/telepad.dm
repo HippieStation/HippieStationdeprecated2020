@@ -4,8 +4,8 @@
 	desc = "A bluespace telepad used for teleporting objects to and from a location."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "pad-idle"
-	anchored = 1
-	use_power = 1
+	anchored = TRUE
+	use_power = TRUE
 	idle_power_usage = 200
 	active_power_usage = 5000
 	var/efficiency
@@ -51,42 +51,40 @@
 
 	return ..()
 
-var/global/list/cargopads = list() // Global List of Cargo Pads
-
 //CARGO TELEPAD//
 /obj/machinery/telepad_cargo
 	name = "cargo telepad"
 	desc = "A telepad used by the cargo transporter."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "pad-idle-o"
-	anchored = 1
-	use_power = 1
+	anchored = TRUE
+	use_power = TRUE
 	idle_power_usage = 20
 	active_power_usage = 500
 	var/stage = 0
-	var/active = 0
+	var/active = FALSE
 
 /obj/machinery/telepad_cargo/New()
 	..()
 	if (name == "cargo telepad")
 		name += " ([rand(100,999)])"
 	if (active && !cargopads.Find(src))
-		cargopads.Add(src)
+		LAZYADD(cargopads, src)
 
 /obj/machinery/telepad_cargo/Destroy()
 	if (cargopads.Find(src))
-		cargopads.Remove(src)
+		LAZYREMOVE(cargopads, src)
 	..()
 
 /obj/machinery/telepad_cargo/attackby(obj/item/weapon/W, mob/user, params)
 	if(istype(W, /obj/item/weapon/wrench))
-		anchored = 0
+		anchored = FALSE
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		if(anchored)
-			anchored = 0
+			anchored = FALSE
 			user << "<span class='caution'>\The [src] can now be moved.</span>"
 		else if(!anchored)
-			anchored = 1
+			anchored = TRUE
 			user << "<span class='caution'>\The [src] is now secured.</span>"
 	else if(istype(W, /obj/item/weapon/screwdriver))
 		if(stage == 0)
@@ -113,18 +111,18 @@ var/global/list/cargopads = list() // Global List of Cargo Pads
 		return ..()
 
 /obj/machinery/telepad_cargo/attack_hand(mob/living/user)
-	if (active == 1)
+	if (active == TRUE)
 		user << "You switch the receiver off."
 		icon_state = "pad-idle-o"
-		active = 0
+		active = FALSE
 		if (cargopads.Find(src))
-			cargopads.Remove(src)
+			LAZYREMOVE(cargopads, src)
 	else
 		user << "You switch the receiver on."
 		icon_state = "pad-idle"
-		active = 1
+		active = TRUE
 		if (!cargopads.Find(src))
-			cargopads.Add(src)
+			LAZYADD(cargopads, src)
 
 ///TELEPAD CALLER///
 /obj/item/device/telepad_beacon
@@ -151,7 +149,7 @@ var/global/list/cargopads = list() // Global List of Cargo Pads
 	icon_state = "rcs"
 	flags = CONDUCT
 	force = 10
-	throwforce = 10
+	throwforce = 4
 	throw_speed = 2
 	throw_range = 5
 
@@ -204,7 +202,7 @@ var/global/list/cargopads = list() // Global List of Cargo Pads
 
 	target_pad.icon_state = "pad-beam"
 
-	if(do_after(user, 50, target=T, progress = 1))
+	if(do_after(user, 50, target=T, progress = TRUE))
 		T.loc = target_turf
 
 		var/datum/effect_system/spark_spread/S1 = new /datum/effect_system/spark_spread

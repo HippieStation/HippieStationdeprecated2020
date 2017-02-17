@@ -26,7 +26,7 @@
 			user.visible_message("[user] pries \the [src] apart.", "<span class='notice'>You pry apart \the [src].</span>", "<span class='italics'>You hear splitting wood.</span>")
 			deconstruct(TRUE, user)
 	else if(istype(W, /obj/item/weapon/rcs))
-		W:cargoteleport(src, user)
+		W.cargoteleport(src, user)
 		return
 	else
 		return ..()

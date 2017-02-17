@@ -199,7 +199,7 @@
 
 /obj/machinery/portable_atmospherics/canister/attackby(obj/item/weapon/W, mob/user, params)
 	if(user.a_intent != INTENT_HARM && istype(W, /obj/item/weapon/rcs))
-		W:cargoteleport(src, user)
+		W.cargoteleport(src, user)
 		return
 	else if(user.a_intent != INTENT_HARM && istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
