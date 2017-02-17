@@ -78,9 +78,6 @@ var/global/list/cargopads = list() // Global List of Cargo Pads
 		cargopads.Remove(src)
 	..()
 
-/obj/machinery/telepad_cargo/proc/setIdle()
-	icon_state = "pad-idle"
-
 /obj/machinery/telepad_cargo/attackby(obj/item/weapon/W, mob/user, params)
 	if(istype(W, /obj/item/weapon/wrench))
 		anchored = 0
