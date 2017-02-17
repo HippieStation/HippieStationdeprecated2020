@@ -241,7 +241,8 @@
 							"<span class='italics'>You hear welding.</span>")
 			update_icon()
 	if (istype(W, /obj/item/weapon/rcs))
-		W.cargoteleport(src, user)
+		var/obj/item/weapon/rcs/R = W
+		R.cargoteleport(src, user)
 		return
 	else if(istype(W, /obj/item/weapon/wrench))
 		if(isinspace() && !anchored)

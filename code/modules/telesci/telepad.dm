@@ -61,6 +61,7 @@
 	use_power = TRUE
 	idle_power_usage = 20
 	active_power_usage = 500
+
 	var/stage = 0
 	var/active = FALSE
 
@@ -68,11 +69,11 @@
 	..()
 	if (name == "cargo telepad")
 		name += " ([rand(100,999)])"
-	if (active && !cargopads.Find(src))
+	if (active && cargopads[src] != null)
 		LAZYADD(cargopads, src)
 
 /obj/machinery/telepad_cargo/Destroy()
-	if (cargopads.Find(src))
+	if (cargopads[src] != null)
 		LAZYREMOVE(cargopads, src)
 	..()
 
@@ -115,13 +116,13 @@
 		user << "You switch the receiver off."
 		icon_state = "pad-idle-o"
 		active = FALSE
-		if (cargopads.Find(src))
+		if (cargopads[src] != null)
 			LAZYREMOVE(cargopads, src)
 	else
 		user << "You switch the receiver on."
 		icon_state = "pad-idle"
 		active = TRUE
-		if (!cargopads.Find(src))
+		if (cargopads[src] != null)
 			LAZYADD(cargopads, src)
 
 ///TELEPAD CALLER///
@@ -147,11 +148,14 @@
 	desc = "A device for teleporting crated goods."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "rcs"
+	w_class = WEIGHT_CLASS_SMALL
+	materials = list(MAT_METAL=10000)
 	flags = CONDUCT
 	force = 10
-	throwforce = 4
-	throw_speed = 2
+	throwforce = 0
+	throw_speed = 3
 	throw_range = 5
+	origin_tech = "magnets=3;bluespace=3"
 
 	var/charges = 10
 	var/maximum_charges = 10.0
