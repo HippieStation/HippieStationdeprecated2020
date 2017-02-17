@@ -67,7 +67,7 @@
 
 /obj/machinery/telepad_cargo/Initialize()
 	..()
-	if (if name == initial(src.name))
+	if (name == initial(src.name))
 		name += " ([rand(100,999)])"
 	if (active && cargopads[src] != null)
 		LAZYADD(cargopads, src)
