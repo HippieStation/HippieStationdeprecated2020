@@ -240,6 +240,9 @@
 							"<span class='notice'>You [welded ? "weld" : "unwelded"] \the [src] with \the [WT].</span>",
 							"<span class='italics'>You hear welding.</span>")
 			update_icon()
+	if (istype(W, /obj/item/weapon/rcs))
+		W:cargoteleport(src, user)
+		return
 	else if(istype(W, /obj/item/weapon/wrench))
 		if(isinspace() && !anchored)
 			return

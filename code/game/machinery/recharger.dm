@@ -8,7 +8,7 @@
 	idle_power_usage = 4
 	active_power_usage = 250
 	var/obj/item/charging = null
-	var/list/allowed_devices = list(/obj/item/weapon/gun/energy,/obj/item/weapon/melee/baton,/obj/item/ammo_box/magazine/recharge,/obj/item/device/modular_computer)
+	var/list/allowed_devices = list(/obj/item/weapon/gun/energy,/obj/item/weapon/melee/baton,/obj/item/ammo_box/magazine/recharge,/obj/item/device/modular_computer,/obj/item/weapon/rcs)
 	var/recharge_coeff = 1
 
 /obj/machinery/recharger/New()
@@ -141,6 +141,13 @@
 						B.battery.give(B.battery.chargerate * recharge_coeff)
 						use_power(200 * recharge_coeff)
 						using_power = 1
+
+		if(istype(charging, /obj/item/weapon/rcs))
+			var/obj/item/weapon/rcs/C = charging
+			if (C.charges < C.maximum_charges)
+				C.charges++
+				use_power(250 * recharge_coeff)
+				using_power = 1
 
 	update_icon(using_power)
 

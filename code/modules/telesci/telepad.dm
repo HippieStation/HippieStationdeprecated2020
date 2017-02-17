@@ -51,18 +51,36 @@
 
 	return ..()
 
+var/global/list/cargopads = list() // Global List of Cargo Pads
 
 //CARGO TELEPAD//
 /obj/machinery/telepad_cargo
 	name = "cargo telepad"
 	desc = "A telepad used by the Rapid Crate Sender."
 	icon = 'icons/obj/telescience.dmi'
-	icon_state = "pad-idle"
+	icon_state = "pad-idle-o"
 	anchored = 1
 	use_power = 1
 	idle_power_usage = 20
 	active_power_usage = 500
 	var/stage = 0
+	var/active = 0
+
+/obj/machinery/telepad_cargo/New()
+	..()
+	if (name == "cargo telepad")
+		name += " ([rand(100,999)])"
+	if (active && !cargopads.Find(src))
+		cargopads.Add(src)
+
+/obj/machinery/telepad_cargo/Destroy()
+	if (cargopads.Find(src))
+		cargopads.Remove(src)
+	..()
+
+/obj/machinery/telepad_cargo/proc/setIdle()
+	icon_state = "pad-idle"
+
 /obj/machinery/telepad_cargo/attackby(obj/item/weapon/W, mob/user, params)
 	if(istype(W, /obj/item/weapon/wrench))
 		anchored = 0
@@ -97,6 +115,20 @@
 	else
 		return ..()
 
+/obj/machinery/telepad_cargo/attack_hand(mob/living/user)
+	if (active == 1)
+		user << "You switch the receiver off."
+		icon_state = "pad-idle-o"
+		active = 0
+		if (cargopads.Find(src))
+			cargopads.Remove(src)
+	else
+		user << "You switch the receiver on."
+		icon_state = "pad-idle"
+		active = 1
+		if (!cargopads.Find(src))
+			cargopads.Add(src)
+
 ///TELEPAD CALLER///
 /obj/item/device/telepad_beacon
 	name = "telepad beacon"
@@ -116,8 +148,8 @@
 
 ///HANDHELD TELEPAD USER///
 /obj/item/weapon/rcs
-	name = "rapid-crate-sender (RCS)"
-	desc = "Use this to send crates and closets to cargo telepads."
+	name = "cargo transporter"
+	desc = "A device for teleporting crated goods."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "rcs"
 	flags = CONDUCT
@@ -125,50 +157,76 @@
 	throwforce = 10
 	throw_speed = 2
 	throw_range = 5
-	var/rcharges = 10
-	var/obj/machinery/pad = null
-	var/last_charge = 30
-	var/mode = 0
-	var/rand_x = 0
-	var/rand_y = 0
-	var/emagged = 0
-	var/teleporting = 0
 
-/obj/item/weapon/rcs/New()
-	..()
-	START_PROCESSING(SSobj, src)
+	var/charges = 10
+	var/maximum_charges = 10.0
+	var/obj/machinery/telepad/target_pad = null
+	var/target_turf = null
 
 /obj/item/weapon/rcs/examine(mob/user)
 	..()
-	user << "There are [rcharges] charge\s left."
-
-/obj/item/weapon/rcs/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
-/obj/item/weapon/rcs/process()
-	if(rcharges > 10)
-		rcharges = 10
-	if(last_charge == 0)
-		rcharges++
-		last_charge = 30
-	else
-		last_charge--
+	user << "There are [charges]/[maximum_charges] charge\s left."
 
 /obj/item/weapon/rcs/attack_self(mob/user)
-	if(emagged)
-		if(mode == 0)
-			mode = 1
-			playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
-			user << "<span class='caution'>The telepad locator has become uncalibrated.</span>"
-		else
-			mode = 0
-			playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
-			user << "<span class='caution'>You calibrate the telepad locator.</span>"
+	if (src.charges < 1)
+		user << "<span style=\"color:red\">The transporter is out of charge.</span>"
+		return
+	if (!cargopads.len) usr << "<span style=\"color:red\">No receivers available.</span>"
+	else
+	//here i set up an empty var that can take any object, and tell it to look for absolutely anything in the list
+		var/selection = input("Select Cargo Pad Location:", "Cargo Pads", null, null) as null|anything in cargopads
+		if(!istype(selection, /obj/machinery/telepad_cargo))
+			return
+		
+		var/obj/machinery/telepad_cargo/P = selection
+		
+		if(!selection)
+			return
+		var/turf/T = get_turf(selection)
+		//get the turf of the pad itself
+		if (!T)
+			usr << "<span style=\"color:red\">Target not set!</span>"
+			return
+		usr << "Target set to [T.loc]."
+		//blammo! works!
+		src.target_pad = P
+		src.target_turf = T
 
-/obj/item/weapon/rcs/emag_act(mob/user)
-	if(!emagged)
-		emagged = 1
-		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-		s.set_up(5, 1, src)
-		s.start()
-		user << "<span class='caution'>You emag the RCS. Click on it to toggle between modes.</span>"
+/obj/item/weapon/rcs/proc/cargoteleport(var/obj/T, var/mob/user)
+	if (!src.target_turf)
+		user << "<span style=\"color:red\">You need to set a target first!</span>"
+		return
+	if (!src.target_pad.active)
+		user << "<span style=\"color:red\">Unable to connect to remote pad!</span>"
+	if (src.charges < 1)
+		user << " <span style=\"color:red\">The transporter is out of charge.</span>"
+		return
+
+	user << "<span style=\"color:blue\">Teleporting [T]...</span>"
+	playsound(user.loc, "sound/machines/click.ogg", 50, 1)
+
+	target_pad.icon_state = "pad-beam"
+
+	if(do_after(user, 50, target=T, progress = 1))
+		T.loc = target_turf
+
+		var/datum/effect_system/spark_spread/S1 = new /datum/effect_system/spark_spread
+		S1.set_up(5, 1, src)
+		S1.start()
+
+		var/datum/effect_system/spark_spread/S2 = new /datum/effect_system/spark_spread
+		S2.set_up(5, 1, target_turf)
+		S2.start()
+		
+		target_pad.icon_state = "pad-idle"
+		
+		src.charges -= 1
+		if (src.charges < 0)
+			src.charges = 0
+		if (src.charges == 0)
+			user << "<span style=\"color:red\">Transfer successful. The transporter is now out of charge.</span>"
+		else
+			user << "<span style=\"color:blue\">Transfer successful. [src.charges] charges remain.</span>"
+	else
+		target_pad.icon_state = "pad-idle"
+	return

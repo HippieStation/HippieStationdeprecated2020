@@ -54,7 +54,7 @@ Cargo Technician
 	belt = /obj/item/device/pda/cargo
 	ears = /obj/item/device/radio/headset/headset_cargo
 	uniform = /obj/item/clothing/under/rank/cargotech
-
+	l_pocket = /obj/item/weapon/rcs
 
 /*
 Shaft Miner
@@ -89,7 +89,8 @@ Shaft Miner
 	backpack_contents = list(
 		/obj/item/weapon/storage/bag/ore=1,\
 		/obj/item/weapon/kitchen/knife/combat/survival=1,\
-		/obj/item/weapon/mining_voucher=1)
+		/obj/item/weapon/mining_voucher=1,\
+		/obj/item/weapon/rcs=1)
 
 	backpack = /obj/item/weapon/storage/backpack/explorer
 	satchel = /obj/item/weapon/storage/backpack/satchel/explorer

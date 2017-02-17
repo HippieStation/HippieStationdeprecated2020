@@ -31332,6 +31332,9 @@
 	dir = 4;
 	network = list("SS13")
 	},
+/obj/item/weapon/rcs,
+/obj/item/weapon/rcs,
+/obj/item/weapon/rcs,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "bqN" = (
@@ -32450,6 +32453,10 @@
 	},
 /area/quartermaster/office)
 "bsX" = (
+/obj/machinery/telepad_cargo{
+	active = 1;
+	name = "cargo bay telepad"
+	},
 /turf/open/floor/plasteel/brown/corner{
 	dir = 8
 	},
@@ -64164,6 +64171,33 @@
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/crew_quarters/pool)
+"cIA" = (
+/obj/machinery/telepad_cargo{
+	active = 1;
+	name = "research telepad"
+	},
+/turf/open/floor/plasteel/white,
+/area/toxins/lab)
+"cIB" = (
+/obj/machinery/telepad_cargo{
+	active = 1;
+	name = "medbay telepad"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay)
+"cIC" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/telepad_cargo{
+	active = 1;
+	name = "engineering telepad"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 
 (1,1,1) = {"
 aaa
@@ -92099,7 +92133,7 @@ cbh
 cgO
 ccE
 cmj
-cmj
+cIC
 cdg
 cdR
 cfF
@@ -102860,7 +102894,7 @@ boH
 cGu
 bsU
 bsU
-bgp
+cIB
 bgp
 bsP
 bni
@@ -112355,7 +112389,7 @@ bcI
 bdQ
 bfk
 bgN
-bid
+cIA
 bhi
 bjl
 bld
