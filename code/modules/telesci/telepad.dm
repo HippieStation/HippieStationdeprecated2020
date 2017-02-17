@@ -65,9 +65,9 @@
 	var/stage = 0
 	var/active = FALSE
 
-/obj/machinery/telepad_cargo/New()
+/obj/machinery/telepad_cargo/Initialize()
 	..()
-	if (name == "cargo telepad")
+	if (if name == initial(src.name))
 		name += " ([rand(100,999)])"
 	if (active && cargopads[src] != null)
 		LAZYADD(cargopads, src)
@@ -112,18 +112,20 @@
 		return ..()
 
 /obj/machinery/telepad_cargo/attack_hand(mob/living/user)
-	if (active == TRUE)
-		user << "You switch the receiver off."
-		icon_state = "pad-idle-o"
-		active = FALSE
-		if (cargopads[src] != null)
-			LAZYREMOVE(cargopads, src)
-	else
-		user << "You switch the receiver on."
-		icon_state = "pad-idle"
-		active = TRUE
-		if (cargopads[src] != null)
-			LAZYADD(cargopads, src)
+	if(do_after(user, 20*W.toolspeed, target = src, unique=TRUE))
+		message_admins("[key_name_admin(user)] has toggled the power to [name]")
+		if (active == TRUE)
+			user << "You switch the receiver off."
+			icon_state = "pad-idle-o"
+			active = FALSE
+			if (cargopads[src] != null)
+				LAZYREMOVE(cargopads, src)
+		else
+			user << "You switch the receiver on."
+			icon_state = "pad-idle"
+			active = TRUE
+			if (cargopads[src] != null)
+				LAZYADD(cargopads, src)
 
 ///TELEPAD CALLER///
 /obj/item/device/telepad_beacon
@@ -200,6 +202,8 @@
 	if (charges < 1)
 		user << " <span style=\"color:red\">The transporter is out of charge.</span>"
 		return
+
+	message_admins("[key_name_admin(user)] is using the Cargo Teleporter - [T]")
 
 	user << "<span style=\"color:blue\">Teleporting [T]...</span>"
 	playsound(user.loc, "sound/machines/click.ogg", 50, 1)
