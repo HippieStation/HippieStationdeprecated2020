@@ -56,7 +56,7 @@ var/global/list/cargopads = list() // Global List of Cargo Pads
 //CARGO TELEPAD//
 /obj/machinery/telepad_cargo
 	name = "cargo telepad"
-	desc = "A telepad used by the Rapid Crate Sender."
+	desc = "A telepad used by the cargo transporter."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "pad-idle-o"
 	anchored = 1
