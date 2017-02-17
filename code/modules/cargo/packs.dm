@@ -1266,6 +1266,18 @@
 /datum/supply_pack/misc
 	group = "Miscellaneous Supplies"
 
+/datum/supply_pack/misc/telepads
+	name = "Cargo Transporter Crate"
+	contains = list(/obj/item/device/telepad_beacon,
+		/obj/item/device/telepad_beacon,
+		/obj/item/device/telepad_beacon,
+		/obj/item/weapon/rcs,
+		/obj/item/weapon/rcs,
+		/obj/item/weapon/rcs,
+		/obj/item/weapon/rcs)
+	cost = 4000
+	crate_name = "cargo transporter crate"
+
 /datum/supply_pack/misc/minerkit
 	name = "Shaft Miner Starter Kit"
 	cost = 2500
