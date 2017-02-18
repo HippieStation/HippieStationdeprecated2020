@@ -37,7 +37,7 @@
 /turf/closed/indestructible/splashscreen/Initialize()
 	..()
 	if(titlescreen)
-		icon_state = titlescreen
+		icon_state = pick("title1","title2")
 
 /turf/closed/indestructible/riveted
 	icon = 'icons/turf/walls/riveted.dmi'
