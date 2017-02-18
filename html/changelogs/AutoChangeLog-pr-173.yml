@@ -1,4 +1,0 @@
-author: "John Ginnane"
-delete-after: True
-changes: 
-  - rscadd: "Added the cyborg animations back in for cyborg models that had them in the old codebase."
