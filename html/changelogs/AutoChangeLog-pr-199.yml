@@ -1,4 +1,0 @@
-author: "PopNotes"
-delete-after: True
-changes: 
-  - bugfix: "The Mass Hallucination random event is temporarily out of rotation due to causing crashes."

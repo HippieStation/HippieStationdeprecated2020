@@ -1,5 +1,0 @@
-author: "Tortellini Tony"
-delete-after: True
-changes: 
-  - rscadd: "Ported various admin verbs, including fill-hull-breach, clean-air, and also added humanrunes (search for humanrunes in the spawn menu.)"
-  - rscadd: "There is now a sound when a timer device is counting down."

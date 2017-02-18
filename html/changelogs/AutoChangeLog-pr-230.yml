@@ -1,5 +1,0 @@
-author: "JamieH"
-delete-after: True
-changes: 
-  - rscadd: "Added the cargo transporter, inspired/ported from Goon."
-  - rscadd: "You can use it to teleport various different items around the station, cargo and mining start with the cargo transported and they have some spares lying around too."

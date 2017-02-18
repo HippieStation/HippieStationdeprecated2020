@@ -1,4 +1,0 @@
-author: "JamieH"
-delete-after: True
-changes: 
-  - rscadd: "Ported from /tg/: Round end animation"
