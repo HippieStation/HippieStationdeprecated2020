@@ -141,7 +141,7 @@ var/CURRENT_TICKLIMIT = TICK_LIMIT_RUNNING
 	var/time = (world.timeofday - start_timeofday) / 10
 
 	var/msg = "Initializations complete within [time] second[time == 1 ? "" : "s"]!"
-	world << "<span class='boldannounce'>msg</span>"
+	world << "<span class='boldannounce'>[msg]</span>"
 	log_world(msg)
 
 	// Sort subsystems by display setting for easy access.
@@ -325,6 +325,7 @@ var/CURRENT_TICKLIMIT = TICK_LIMIT_RUNNING
 		SS_flags = SS.flags
 		if (SS_flags & SS_NO_FIRE)
 			subsystemstocheck -= SS
+			continue
 		if (!(SS_flags & SS_TICKER) && (SS_flags & SS_KEEP_TIMING) && SS.last_fire + (SS.wait * 0.75) > world.time)
 			continue
 		SS.enqueue()

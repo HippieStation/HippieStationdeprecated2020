@@ -282,7 +282,7 @@
 			var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread
 			sparks.set_up(1, 1, src)
 			sparks.start()
-			owner.visible_message("<span class='danger'>The tesla capacitors on [owner]'s reactive telsa armor are still recharging! The armor merely emits some sparks.</spawn>")
+			owner.visible_message("<span class='danger'>The tesla capacitors on [owner]'s reactive tesla armor are still recharging! The armor merely emits some sparks.</spawn>")
 			return
 		owner.visible_message("<span class='danger'>The [src] blocks the [attack_text], sending out arcs of lightning!</span>")
 		tesla_zap(owner,tesla_range,tesla_power,tesla_boom, tesla_stun)

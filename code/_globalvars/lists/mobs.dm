@@ -4,7 +4,6 @@ var/list/mentors = list()                           // all clients whom are ment
 var/list/deadmins = list()							//all clients who have used the de-admin verb.
 var/list/directory = list()							//all ckeys with associated client
 var/list/stealthminID = list()						//reference list with IDs that store ckeys, for stealthmins
-var/global/list/current_watchlist = list()			//stores players that are currently online and in the watchlist
 
 //Since it didn't really belong in any other category, I'm putting this here
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code

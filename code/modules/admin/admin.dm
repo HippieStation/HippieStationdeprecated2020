@@ -825,4 +825,4 @@ var/global/BSACooldown = 0
 			message_admins("[string]")
 
 /datum/admins/SDQL_update()
-	return FALSE //"No." --whoever wrote this
+	return FALSE	//No.

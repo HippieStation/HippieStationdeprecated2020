@@ -152,15 +152,13 @@
 	animate(src, alpha = 0, time = 5)
 	SetLuminosity(0)
 	SSair.hotspots -= src
-	if(isturf(loc))
-		var/turf/open/T = loc
-		if(T.active_hotspot == src)
-			T.active_hotspot = null
+	var/turf/open/T = loc
+	if(istype(T) && T.active_hotspot == src)
+		T.active_hotspot = null
 	DestroyTurf()
 	loc = null
 	QDEL_IN(src,5)
 	. = ..()
-
 
 /obj/effect/hotspot/proc/DestroyTurf()
 	if(isturf(loc))

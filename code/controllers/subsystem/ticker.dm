@@ -1,3 +1,5 @@
+#define ROUND_START_MUSIC_LIST "strings/round_start_sounds.txt"
+
 var/round_start_time = 0
 
 var/datum/subsystem/ticker/ticker
@@ -57,9 +59,11 @@ var/datum/subsystem/ticker/ticker
 /datum/subsystem/ticker/New()
 	NEW_SS_GLOBAL(ticker)
 
-	login_music = pickweight(list('sound/ambience/title2.ogg' = 25, 'sound/ambience/title1.ogg' = 25, 'sound/ambience/title3.ogg' = 25, 'sound/ambience/clown.ogg' = 25)) // choose title music!
 	if(SSevent.holidays && SSevent.holidays[APRIL_FOOLS])
 		login_music = 'sound/ambience/clown.ogg'
+	else
+		var/list/music = file2list(ROUND_START_MUSIC_LIST, "\n")
+		login_music = pick(music)
 
 /datum/subsystem/ticker/Initialize(timeofday)
 	if(!syndicate_code_phrase)
@@ -212,9 +216,9 @@ var/datum/subsystem/ticker/ticker
 			qdel(S)
 
 	var/list/adm = get_admin_counts()
-	if(!adm["present"])
-		send2irc("Server", "Round just started with no active admins online!")
-		send2admindiscord("**Round has started with no admins online.**", TRUE)
+	var/list/allmins = adm["present"]
+	send2irc("Server", "Round of [hide_mode ? "secret":"[mode.name]"] has started[allmins.len ? ".":" with no active admins online!"]")
+	send2admindiscord("Round of [hide_mode ? "secret":"[mode.name]"] has started[allmins.len ? ".":" with no active admins online!"]")
 
 /datum/subsystem/ticker/proc/station_explosion_detonation(atom/bomb)
 	if(bomb)	//BOOM
@@ -548,11 +552,16 @@ var/datum/subsystem/ticker/ticker
 	CHECK_TICK
 
 	//Adds the del() log to world.log in a format condensable by the runtime condenser found in tools
-	if(SSgarbage.didntgc.len)
+	if(SSgarbage.didntgc.len || SSgarbage.sleptDestroy.len)
 		var/dellog = ""
 		for(var/path in SSgarbage.didntgc)
 			dellog += "Path : [path] \n"
 			dellog += "Failures : [SSgarbage.didntgc[path]] \n"
+
+		for(var/path in SSgarbage.sleptDestroy)
+			dellog += "Path : [path] \n"
+			dellog += "Sleeps : [SSgarbage.sleptDestroy[path]] \n"
+
 		log_world(dellog)
 
 	CHECK_TICK

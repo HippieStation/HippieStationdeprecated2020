@@ -23446,13 +23446,6 @@
 "bay" = (
 /turf/open/floor/plasteel/black,
 /area/ai_monitored/turret_protected/ai_upload)
-"baz" = (
-/obj/structure/table,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel/black,
-/area/ai_monitored/turret_protected/ai_upload)
 "baA" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -24581,28 +24574,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
-"bdj" = (
-/obj/structure/table,
-/obj/item/weapon/aiModule/core/full/asimov,
-/obj/item/weapon/aiModule/core/freeformcore,
-/obj/machinery/door/window{
-	base_state = "right";
-	dir = 4;
-	icon_state = "right";
-	name = "Core Modules";
-	req_access_txt = "20"
-	},
-/obj/structure/window/reinforced,
-/obj/item/weapon/aiModule/core/full/corp,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/item/weapon/aiModule/core/full/custom,
-/turf/open/floor/plasteel/black,
-/area/ai_monitored/turret_protected/ai_upload)
 "bdk" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -63714,6 +63685,14 @@
 	},
 /turf/open/floor/plating,
 /area/medical/cmo)
+"jdB" = (
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/weapon/aiModule/remove,
+/turf/open/floor/plasteel/black,
+/area/ai_monitored/turret_protected/ai_upload)
 "jsG" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
@@ -63834,6 +63813,29 @@
 	dir = 8
 	},
 /area/medical/medbay)
+"LCy" = (
+/obj/structure/table,
+/obj/item/weapon/aiModule/core/full/asimov,
+/obj/item/weapon/aiModule/core/freeformcore,
+/obj/machinery/door/window{
+	base_state = "right";
+	dir = 4;
+	icon_state = "right";
+	name = "Core Modules";
+	req_access_txt = "20"
+	},
+/obj/structure/window/reinforced,
+/obj/item/weapon/aiModule/core/full/corp,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/weapon/aiModule/core/full/custom,
+/obj/item/weapon/aiModule/core/full/balance,
+/turf/open/floor/plasteel/black,
+/area/ai_monitored/turret_protected/ai_upload)
 "Utk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -91747,7 +91749,7 @@ aXL
 bav
 bbp
 bcp
-bdj
+LCy
 aXJ
 aae
 aae
@@ -93800,7 +93802,7 @@ aUE
 aWm
 aXO
 aXN
-baz
+jdB
 bbr
 aZh
 bdo

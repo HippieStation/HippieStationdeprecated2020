@@ -20,8 +20,8 @@
 	var/name = "Configuration"			// datum name
 
 	var/server_name = null				// server name (the name of the game window)
+	var/server_sql_name = null			// short form server name used for the DB
 	var/station_name = null				// station name (the name of the station in-game)
-	var/server_suffix = 0				// generate numeric suffix based on server port
 	var/lobby_countdown = 120			// In between round countdown.
 	var/round_end_countdown = 25		// Post round murder death kill countdown
 	var/hub = 0
@@ -76,6 +76,7 @@
 	var/forumurl = "http://tgstation13.org/phpBB/index.php" //default forums
 	var/rulesurl = "http://www.tgstation13.org/wiki/Rules" // default rules
 	var/githuburl = "https://www.github.com/tgstation/-tg-station" //default github
+	var/githubrepoid
 
 	var/forbid_singulo_possession = 0
 	var/useircbot = 0
@@ -248,6 +249,7 @@
 	// Discord crap.
 	var/discord_url
 	var/discord_password
+
 	var/error_cooldown = 600 // The "cooldown" time for each occurrence of a unique error
 	var/error_limit = 50 // How many occurrences before the next will silence them
 	var/error_silence_time = 6000 // How long a unique error will be silenced for
@@ -367,10 +369,10 @@
 					config.respawn = 0
 				if("servername")
 					config.server_name = value
+				if("serversqlname")
+					config.server_sql_name = value
 				if("stationname")
 					config.station_name = value
-				if("serversuffix")
-					config.server_suffix = 1
 				if("hostedby")
 					config.hostedby = value
 				if("server")
@@ -385,6 +387,8 @@
 					config.rulesurl = value
 				if("githuburl")
 					config.githuburl = value
+				if("githubrepoid")
+					config.githubrepoid = value
 				if("guest_jobban")
 					config.guest_jobban = 1
 				if("guest_ban")

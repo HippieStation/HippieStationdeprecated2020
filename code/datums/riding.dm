@@ -43,7 +43,7 @@
 		buckled_mob.pixel_x = 0
 		buckled_mob.pixel_y = 0
 		if(buckled_mob.client)
-			buckled_mob.client.view = world.view
+			buckled_mob.client.change_view(world.view)
 
 
 
@@ -368,7 +368,6 @@
 		M.visible_message("<span class='boldwarning'>[M] is thrown clear of [ridden] by rapid spinning!</span>")
 		M.throw_at(target, 14, 5, ridden)
 		M.Weaken(3)
-
 
 /datum/riding/lawnmower
 	keytype = null

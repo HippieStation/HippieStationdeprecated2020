@@ -163,11 +163,12 @@
 				/obj/item/weapon/staplegun = 3,
 				/obj/item/clothing/under/cosby = 3,
 				/obj/item/weapon/storage/inflatable = 2,
+				/obj/item/weapon/storage/toolbox/artistic = 2,
 				"" = 3
 				)
 
 /obj/effect/spawner/lootdrop/crate_spawner
-	name = "lootcrate spawner"
+	name = "lootcrate spawner" //USE PROMO CODE "SELLOUT" FOR 20% OFF!
 	lootdoubles = 0
 
 	loot = list(

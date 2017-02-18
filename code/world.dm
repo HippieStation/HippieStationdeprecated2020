@@ -18,7 +18,6 @@ var/list/map_transition_config = MAP_TRANSITION_CONFIG
 /world/New()
 	log_world("World loaded at [world.timeofday]")
 	map_ready = 1
-	world.log << "Map is ready."
 
 #if (PRELOAD_RSC == 0)
 	external_rsc_urls = file2list("config/external_rsc_urls.txt","\n")
@@ -40,6 +39,7 @@ var/list/map_transition_config = MAP_TRANSITION_CONFIG
 
 	make_datum_references_lists()	//initialises global lists for referencing frequently used datums (so that we only ever do it once)
 	load_configuration()
+	revdata.DownloadPRDetails()
 	load_mode()
 	load_motd()
 	load_admins()
@@ -48,9 +48,6 @@ var/list/map_transition_config = MAP_TRANSITION_CONFIG
 		load_whitelist()
 	LoadBans()
 	investigate_reset()
-
-	if(config && config.server_name != null && config.server_suffix && world.port > 0)
-		config.server_name += " #[(world.port % 1000) / 100]"
 
 	timezoneOffset = text2num(time2text(0,"hh")) * 36000
 
@@ -76,16 +73,14 @@ var/list/map_transition_config = MAP_TRANSITION_CONFIG
 
 	Master.Setup(10, FALSE)
 
-
 #define IRC_STATUS_THROTTLE 50
-var/last_irc_status = 0
-
 /world/Topic(T, addr, master, key)
 	if(config && config.log_world_topic)
 		diary << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key]"
 
 	var/list/input = params2list(T)
 	var/key_valid = (global.comms_allowed && input["key"] == global.comms_key)
+	var/static/last_irc_status = 0
 
 	if("ping" in input)
 		var/x = 1
@@ -104,7 +99,8 @@ var/last_irc_status = 0
 		if(world.time - last_irc_status < IRC_STATUS_THROTTLE)
 			return
 		var/list/adm = get_admin_counts()
-		var/status = "Admins: [adm["total"]] (Active: [adm["present"]] AFK: [adm["afk"]] Stealth: [adm["stealth"]] Skipped: [adm["noflags"]]). "
+		var/list/allmins = adm["total"]
+		var/status = "Admins: [allmins.len] (Active: [english_list(adm["present"])] AFK: [english_list(adm["afk"])] Stealth: [english_list(adm["stealth"])] Skipped: [english_list(adm["noflags"])]). "
 		status += "Players: [clients.len] (Active: [get_active_player_count(0,1,0)]). Mode: [ticker.mode.name]."
 		send2irc("Status", status)
 		last_irc_status = world.time
@@ -124,10 +120,10 @@ var/last_irc_status = 0
 		s["revision_date"] = revdata.date
 
 		var/list/adm = get_admin_counts()
-		s["admins"] = adm["present"] + adm["afk"] //equivalent to the info gotten from adminwho
 
-		//var/list/mnt = get_mentor_counts()
-		//s["mentors"] = mnt["total"] // we don't have stealth mentors, so we can just use the total.'
+		var/list/presentmins = adm["present"]
+		var/list/afkmins = adm["afk"]
+		s["admins"] = presentmins.len + afkmins.len //equivalent to the info gotten from adminwho
 
 		s["gamestate"] = 1
 		if(ticker)
@@ -193,7 +189,6 @@ var/last_irc_status = 0
 		else
 			return ircadminwho()
 
-
 #define WORLD_REBOOT(X) log_world("World rebooted at [world.timeofday]"); ..(X); return;
 
 /world/Reboot(var/reason, var/feedback_c, var/feedback_r, var/time)
@@ -234,6 +229,8 @@ var/last_irc_status = 0
 		return
 	OnReboot(reason, feedback_c, feedback_r, round_end_sound_sent)
 	WORLD_REBOOT(0)
+
+#undef WORLD_REBOOT
 
 /world/proc/OnReboot(reason, feedback_c, feedback_r, round_end_sound_sent)
 	feedback_set_details("[feedback_c]","[feedback_r]")
@@ -281,18 +278,11 @@ var/last_irc_status = 0
 		'sound/hippie/roundend/disappointed.ogg'\
 		)
 
-	var/titlescreen = TITLESCREEN
-	if(!titlescreen)
-		titlescreen = "title"
-
 	for(var/thing in clients)
-		if(thing)
-			var/client/C = thing
-			C.screen.Cut()
-			C.screen += new /obj/screen/splash
+		new /obj/screen/splash(thing, FALSE, FALSE)
 
 	world << sound(round_end_sound)
-	
+
 /world/proc/load_mode()
 	var/list/Lines = file2list("data/mode.txt")
 	if(Lines.len)
@@ -306,11 +296,7 @@ var/last_irc_status = 0
 	F << the_mode
 
 /world/proc/load_motd()
-	join_motd = file2text("config/motd.txt")
-	join_motd += "<br>"
-	for(var/line in revdata.testmerge)
-		if(line)
-			join_motd += "Test merge active of PR <a href='[config.githuburl]/pull/[line]'>#[line]</a><br>"
+	join_motd = file2text("config/motd.txt") + "<br>" + revdata.GetTestMergeInfo()
 
 /world/proc/load_configuration()
 	protected_config = new /datum/protected_configuration()
