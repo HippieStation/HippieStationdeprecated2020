@@ -539,6 +539,36 @@
 	log_admin("[key_name(G)] was made a golem by [key_name(user)].")
 	qdel(src)
 
+//Ghost-to-Human rune for badmins
+
+/obj/effect/golemrune/humanrune		//Summons humans instead of golems - for admins exclusively
+	name = "Admin Rune"
+	desc = "A rune used by badmins to turn ghosts into humans. Oh boy."
+
+/obj/effect/golemrune/humanrune/attack_hand(mob/living/user)
+	var/mob/dead/observer/ghost
+	for(var/mob/dead/observer/O in src.loc)
+		if(!O.client)	continue
+		if(O.mind && O.mind.current && O.mind.current.stat != DEAD)	continue
+		ghost = O
+		break
+	if(!ghost)
+		user << "<span class='warning'>The rune fizzles uselessly! There is no spirit nearby.</span>"
+		return
+	var/mob/living/carbon/human/G = new /mob/living/carbon/human
+	G.set_species(/datum/species/human)
+	G.set_cloned_appearance()
+	G.real_name = G.dna.species.random_name(G.gender,1)
+	G.dna.unique_enzymes = G.dna.generate_unique_enzymes()
+	G.dna.species.auto_equip(G)
+	G.loc = src.loc
+	G.key = ghost.key
+	G << "You are a human most likely summoned by an admin. Have a good time shitlord. Also please listen to [user], and do what they tell you to do."
+	G.mind.store_memory("<b>Serve [user.real_name], your creator.</b>")
+	if(user.mind.special_role)
+		message_admins("[G.real_name] has been summoned by [user.real_name], an antagonist.")
+	log_game("[G.real_name] ([G.key]) was made a human by [user.real_name]([user.key] using a human-rune).")
+	qdel(src)
 
 
 
