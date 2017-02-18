@@ -1,0 +1,4 @@
+author: "John Ginnane"
+delete-after: True
+changes: 
+  - bugfix: "Fixed being unable to remove embedded objects without surgery"
