@@ -263,7 +263,9 @@
 		return
 	else
 		var/sound
-		if(!user.is_muzzled() && !user.mind.miming)
+		var/miming = user.mind ? user.mind.miming : 0
+
+		if(!user.is_muzzled() && !miming)
 			if(iscyborg(user))
 				var/mob/living/silicon/robot/S = user
 				if(S.cell.charge < 20)
@@ -299,7 +301,7 @@
 				user.adjustOxyLoss(5)
 			playsound(user.loc, sound, 50, 1, 4, 1.2)
 			message = "screams!"
-		else if(user.mind.miming)
+		else if(miming)
 			message = "acts out a scream."
 		else
 			message = "makes a very loud noise."
