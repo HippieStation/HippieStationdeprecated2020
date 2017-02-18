@@ -1,5 +1,0 @@
-author: "ErikHanson"
-delete-after: True
-changes: 
-  - rscadd: "The medical bay has received a small update! There are now two extra doors"
-  - rscadd: "The CMO has also received shocked grilles, breaking into their office should be somewhat harder now"
