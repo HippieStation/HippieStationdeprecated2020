@@ -4,8 +4,8 @@
 	desc = "A bluespace telepad used for teleporting objects to and from a location."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "pad-idle"
-	anchored = 1
-	use_power = 1
+	anchored = TRUE
+	use_power = TRUE
 	idle_power_usage = 200
 	active_power_usage = 5000
 	var/efficiency
@@ -51,27 +51,42 @@
 
 	return ..()
 
-
 //CARGO TELEPAD//
 /obj/machinery/telepad_cargo
 	name = "cargo telepad"
-	desc = "A telepad used by the Rapid Crate Sender."
+	desc = "A telepad used by the cargo transporter."
 	icon = 'icons/obj/telescience.dmi'
-	icon_state = "pad-idle"
-	anchored = 1
-	use_power = 1
+	icon_state = "pad-idle-o"
+	anchored = TRUE
+	use_power = TRUE
 	idle_power_usage = 20
 	active_power_usage = 500
+
 	var/stage = 0
+	var/active = FALSE
+
+/obj/machinery/telepad_cargo/Initialize()
+	..()
+	if (name == initial(src.name))
+		name += " ([rand(100,999)])"
+	if (active && cargopads[src] == null)
+		icon_state = "pad-idle"
+		LAZYADD(cargopads, src)
+
+/obj/machinery/telepad_cargo/Destroy()
+	if (cargopads[src] != null)
+		LAZYREMOVE(cargopads, src)
+	..()
+
 /obj/machinery/telepad_cargo/attackby(obj/item/weapon/W, mob/user, params)
 	if(istype(W, /obj/item/weapon/wrench))
-		anchored = 0
+		anchored = FALSE
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		if(anchored)
-			anchored = 0
+			anchored = FALSE
 			user << "<span class='caution'>\The [src] can now be moved.</span>"
 		else if(!anchored)
-			anchored = 1
+			anchored = TRUE
 			user << "<span class='caution'>\The [src] is now secured.</span>"
 	else if(istype(W, /obj/item/weapon/screwdriver))
 		if(stage == 0)
@@ -87,7 +102,7 @@
 		if(WT.remove_fuel(0,user))
 			playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
 			user << "<span class='notice'>You start disassembling [src]...</span>"
-			if(do_after(user,20*WT.toolspeed, target = src))
+			if(do_after_mob(user,20*WT.toolspeed, target = src))
 				if(!WT.isOn())
 					return
 				user << "<span class='notice'>You disassemble [src].</span>"
@@ -96,6 +111,22 @@
 				qdel(src)
 	else
 		return ..()
+
+/obj/machinery/telepad_cargo/attack_hand(mob/living/user)
+	if(do_after(user, 5, target = src))
+		message_admins("[key_name_admin(user)] has toggled the power to [name]")
+		if (active == TRUE)
+			user << "You switch the receiver off."
+			icon_state = "pad-idle-o"
+			active = FALSE
+			if (cargopads[src] != null)
+				LAZYREMOVE(cargopads, src)
+		else
+			user << "You switch the receiver on."
+			icon_state = "pad-idle"
+			active = TRUE
+			if (cargopads[src] == null)
+				LAZYADD(cargopads, src)
 
 ///TELEPAD CALLER///
 /obj/item/device/telepad_beacon
@@ -116,59 +147,90 @@
 
 ///HANDHELD TELEPAD USER///
 /obj/item/weapon/rcs
-	name = "rapid-crate-sender (RCS)"
-	desc = "Use this to send crates and closets to cargo telepads."
+	name = "cargo transporter"
+	desc = "A device for teleporting crated goods."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "rcs"
+	w_class = WEIGHT_CLASS_SMALL
+	materials = list(MAT_METAL=10000)
 	flags = CONDUCT
 	force = 10
-	throwforce = 10
-	throw_speed = 2
+	throwforce = 0
+	throw_speed = 3
 	throw_range = 5
-	var/rcharges = 10
-	var/obj/machinery/pad = null
-	var/last_charge = 30
-	var/mode = 0
-	var/rand_x = 0
-	var/rand_y = 0
-	var/emagged = 0
-	var/teleporting = 0
+	origin_tech = "magnets=3;bluespace=3"
 
-/obj/item/weapon/rcs/New()
-	..()
-	START_PROCESSING(SSobj, src)
+	var/charges = 10
+	var/maximum_charges = 10.0
+	var/obj/machinery/telepad_cargo/target_pad = null
+	var/target_turf = null
 
 /obj/item/weapon/rcs/examine(mob/user)
 	..()
-	user << "There are [rcharges] charge\s left."
-
-/obj/item/weapon/rcs/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
-/obj/item/weapon/rcs/process()
-	if(rcharges > 10)
-		rcharges = 10
-	if(last_charge == 0)
-		rcharges++
-		last_charge = 30
-	else
-		last_charge--
+	user << "There are [charges]/[maximum_charges] charge\s left."
 
 /obj/item/weapon/rcs/attack_self(mob/user)
-	if(emagged)
-		if(mode == 0)
-			mode = 1
-			playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
-			user << "<span class='caution'>The telepad locator has become uncalibrated.</span>"
-		else
-			mode = 0
-			playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
-			user << "<span class='caution'>You calibrate the telepad locator.</span>"
+	if (charges < 1)
+		user << "<span style=\"color:red\">The transporter is out of charge.</span>"
+		return
+	if (!cargopads.len) usr << "<span style=\"color:red\">No receivers available.</span>"
+	else
+	//here i set up an empty var that can take any object, and tell it to look for absolutely anything in the list
+		var/selection = input("Select Cargo Pad Location:", "Cargo Pads", null, null) as null|anything in cargopads
+		if(!istype(selection, /obj/machinery/telepad_cargo))
+			return
+		
+		var/obj/machinery/telepad_cargo/P = selection
+		
+		if(!selection)
+			return
+		var/turf/T = get_turf(selection)
+		//get the turf of the pad itself
+		if (!T)
+			usr << "<span style=\"color:red\">Target not set!</span>"
+			return
+		usr << "Target set to [T.loc]."
+		//blammo! works!
+		target_pad = P
+		target_turf = T
 
-/obj/item/weapon/rcs/emag_act(mob/user)
-	if(!emagged)
-		emagged = 1
-		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-		s.set_up(5, 1, src)
-		s.start()
-		user << "<span class='caution'>You emag the RCS. Click on it to toggle between modes.</span>"
+/obj/item/weapon/rcs/proc/cargoteleport(var/obj/T, var/mob/user)
+	if (!target_turf)
+		user << "<span style=\"color:red\">You need to set a target first!</span>"
+		return
+	if (cargopads[target_pad] != null)
+		user << "<span style=\"color:red\">Unable to connect to remote pad!</span>"
+	if (charges < 1)
+		user << " <span style=\"color:red\">The transporter is out of charge.</span>"
+		return
+
+	message_admins("[key_name_admin(user)] is using the Cargo Teleporter - [T]")
+
+	user << "<span style=\"color:blue\">Teleporting [T]...</span>"
+	playsound(user.loc, "sound/machines/click.ogg", 50, 1)
+
+	target_pad.icon_state = "pad-beam"
+
+	if(do_after(user, 50, target=T, progress = TRUE))
+		T.loc = target_turf
+
+		var/datum/effect_system/spark_spread/S1 = new /datum/effect_system/spark_spread
+		S1.set_up(5, 1, src)
+		S1.start()
+
+		var/datum/effect_system/spark_spread/S2 = new /datum/effect_system/spark_spread
+		S2.set_up(5, 1, target_turf)
+		S2.start()
+		
+		target_pad.icon_state = "pad-idle"
+		
+		charges -= 1
+		if (charges < 0)
+			charges = 0
+		if (charges == 0)
+			user << "<span style=\"color:red\">Transfer successful. The transporter is now out of charge.</span>"
+		else
+			user << "<span style=\"color:blue\">Transfer successful. [charges] charges remain.</span>"
+	else
+		target_pad.icon_state = "pad-idle"
+	return
