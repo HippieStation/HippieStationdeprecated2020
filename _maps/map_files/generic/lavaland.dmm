@@ -720,7 +720,7 @@
 	icon_state = "1-4"
 	},
 /mob/living/simple_animal/bot/secbot/beepsky{
-	desc = "Powered by tears and swet of laborer.";
+	desc = "Powered by the tears and sweat of laborers.";
 	name = "Prison Ofitser"
 	},
 /turf/open/floor/plasteel{
@@ -12298,7 +12298,7 @@ fK
 fK
 fK
 dq
-fP
+dq
 fL
 fK
 dq

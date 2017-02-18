@@ -76,6 +76,7 @@ var/datum/subsystem/ticker/ticker
 
 /datum/subsystem/ticker/fire()
 	switch(current_state)
+
 		if(GAME_STATE_PREGAME)
 				//lobby stats for statpanels
 			if(isnull(timeLeft))
@@ -329,7 +330,7 @@ var/datum/subsystem/ticker/ticker
 			bombloc = bomb.z
 		else if(!station_missed)
 			bombloc = ZLEVEL_STATION
-		
+
 		if(mode)
 			mode.explosion_in_progress = 0
 			world << "<B>The station was destoyed by the nuclear blast!</B>"
@@ -720,4 +721,3 @@ var/datum/subsystem/ticker/ticker
 		start_at = world.time + newtime
 	else
 		timeLeft = newtime
-		
