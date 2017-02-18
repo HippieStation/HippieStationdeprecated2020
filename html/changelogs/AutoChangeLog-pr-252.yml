@@ -1,0 +1,4 @@
+author: "ErikHanson"
+delete-after: True
+changes: 
+  - tweak: "The default setting for parallax space (pretty space) has been set to off pending it becoming a more stable feature. New players should check to see if they can run it. Old players are completely unaffected."
