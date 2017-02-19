@@ -5,4 +5,4 @@ $oggVariables = $oggVariables | %{$_ + ",\
 $output = "var/global/list/soundCache = list(
 $oggVariables
 `"NONE`" = null)"
-$output | Out-File -encoding ascii code\modules\hippie\soundCache.dm
+$output | Out-File -encoding ascii code\modules\hippie\robustsound\cache.dm
