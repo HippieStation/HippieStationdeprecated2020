@@ -1,10 +1,12 @@
 /area/crew_quarters/pool
 	name = "\improper Pool"
 	icon_state = "pool"
+	sound_environment = SOUND_ENVIRONMENT_BATHROOM
 
 /area/centcom/pool
 	name = "\improper Centcomm Pool"
 	icon_state = "pool"
+	sound_environment = SOUND_ENVIRONMENT_BATHROOM
 
 /mob
   var/swimming = 0
