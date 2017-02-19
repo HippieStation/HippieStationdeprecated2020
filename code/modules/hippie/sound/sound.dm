@@ -8,7 +8,7 @@
 	var/area/source_area = get_area(source)
 	var/turf/source_turf = get_turf(source)
 
-	var/source_area_root = null
+	var/source_area_root
 
 	if(source_area)
 		source_area_root = get_top_ancestor(source_area, /area)
@@ -63,8 +63,6 @@
 /atom/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff, surround = 1)
 
 	var/sound/S = generate_sound(turf_source, soundin, vol, vary, 0, frequency)
-	S.wait = 0 //No queue
-	S.channel = 0 //Any channel
 	S.volume = vol
 
 	if (vary)
@@ -93,7 +91,7 @@
 		S.volume *= pressure_factor
 
 		if(S.volume <= 0)
-			return //No sound
+			return
 
 		var/dx = turf_source.x - src.x
 		S.pan = max(-100, min(100, dx/8.0 * 100))
@@ -102,35 +100,24 @@
 
 /proc/generate_sound(var/atom/source, soundin, vol as num, vary, extrarange as num, frequency = 1)
 
-	if(islist(soundin))
-		soundin = pick(soundin)
-	else
-		soundin = get_sfx(soundin)
-
-	var/sound/S
-
-	if(istext(soundin))
-		S = new /sound
-		S.file = csound(soundin)
-	else if (isfile(soundin))
-		S = new /sound
-		S.file = soundin
-	else if (istype(soundin, /sound))
-		S = soundin
+	var/sound/S = get_sound(soundin)
 
 	S.falloff = (world.view + extrarange) / 10
-	S.wait = 0 //No queue
-	S.channel = 0 //Any channel
+	S.wait = 0
+	S.channel = 0
 	S.volume = vol
 	S.priority = 5
 	S.environment = 0
 
 	var/location = null
-	if(source) //runtime error fix
+
+	if(source)
 		location = source.loc
+
 	if(location != null && isturf(location))
 		var/turf/T = location
 		location = T.loc
+
 	if(location != null && isarea(location))
 		var/area/A = location
 		S.environment = A.sound_environment
@@ -156,48 +143,80 @@
 		return
 	..()
 
-/proc/get_sfx(soundin)
-	if(istext(soundin))
-		switch(soundin)
-			if ("shatter")
-				soundin = pick('sound/effects/Glassbr1.ogg','sound/effects/Glassbr2.ogg','sound/effects/Glassbr3.ogg')
-			if ("explosion")
-				soundin = pick('sound/effects/Explosion1.ogg','sound/effects/Explosion2.ogg')
-			if ("sparks")
-				soundin = pick('sound/effects/sparks1.ogg','sound/effects/sparks2.ogg','sound/effects/sparks3.ogg','sound/effects/sparks4.ogg')
-			if ("rustle")
-				soundin = pick('sound/effects/rustle1.ogg','sound/effects/rustle2.ogg','sound/effects/rustle3.ogg','sound/effects/rustle4.ogg','sound/effects/rustle5.ogg')
-			if ("bodyfall")
-				soundin = pick('sound/effects/bodyfall1.ogg','sound/effects/bodyfall2.ogg','sound/effects/bodyfall3.ogg','sound/effects/bodyfall4.ogg')
-			if ("punch")
-				soundin = pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg')
-			if ("clownstep")
-				soundin = pick('sound/effects/clownstep1.ogg','sound/effects/clownstep2.ogg')
-			if ("swing_hit")
-				soundin = pick('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg')
-			if ("hiss")
-				soundin = pick('sound/voice/hiss1.ogg','sound/voice/hiss2.ogg','sound/voice/hiss3.ogg','sound/voice/hiss4.ogg')
-			if ("pageturn")
-				soundin = pick('sound/effects/pageturn1.ogg', 'sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg')
-			if ("gunshot")
-				soundin = pick('sound/weapons/Gunshot.ogg', 'sound/weapons/Gunshot2.ogg','sound/weapons/Gunshot3.ogg','sound/weapons/Gunshot4.ogg')
-			if ("ricochet")
-				soundin = pick(	'sound/weapons/effects/ric1.ogg', 'sound/weapons/effects/ric2.ogg','sound/weapons/effects/ric3.ogg','sound/weapons/effects/ric4.ogg','sound/weapons/effects/ric5.ogg')
-			if ("terminal_type")
-				soundin = pick('sound/machines/terminal_button01.ogg', 'sound/machines/terminal_button02.ogg', 'sound/machines/terminal_button03.ogg', \
-								'sound/machines/terminal_button04.ogg', 'sound/machines/terminal_button05.ogg', 'sound/machines/terminal_button06.ogg', \
-								'sound/machines/terminal_button07.ogg', 'sound/machines/terminal_button08.ogg')
-	return soundin
-
-// Plays a sound globally without any echo
 /proc/playsound_global(file, repeat=0, wait, channel, volume)
 	for(var/V in clients)
 		V << sound(file, repeat, wait, channel, volume)
 
-// Grabs a sound from the sound cache
+/proc/get_sfx(soundin)
+	if(istext(soundin))
+		switch(soundin)
+			if ("shatter")
+				soundin = pick("sound/effects/Glassbr1.ogg","sound/effects/Glassbr2.ogg","sound/effects/Glassbr3.ogg")
+			if ("explosion")
+				soundin = pick("sound/effects/Explosion1.ogg","sound/effects/Explosion2.ogg")
+			if ("sparks")
+				soundin = pick("sound/effects/sparks1.ogg","sound/effects/sparks2.ogg","sound/effects/sparks3.ogg","sound/effects/sparks4.ogg")
+			if ("rustle")
+				soundin = pick("sound/effects/rustle1.ogg","sound/effects/rustle2.ogg","sound/effects/rustle3.ogg","sound/effects/rustle4.ogg","sound/effects/rustle5.ogg")
+			if ("bodyfall")
+				soundin = pick("sound/effects/bodyfall1.ogg","sound/effects/bodyfall2.ogg","sound/effects/bodyfall3.ogg","sound/effects/bodyfall4.ogg")
+			if ("punch")
+				soundin = pick("sound/weapons/punch1.ogg","sound/weapons/punch2.ogg","sound/weapons/punch3.ogg","sound/weapons/punch4.ogg")
+			if ("clownstep")
+				soundin = pick("sound/effects/clownstep1.ogg","sound/effects/clownstep2.ogg")
+			if ("swing_hit")
+				soundin = pick("sound/weapons/genhit1.ogg", "sound/weapons/genhit2.ogg", "sound/weapons/genhit3.ogg")
+			if ("hiss")
+				soundin = pick("sound/voice/hiss1.ogg","sound/voice/hiss2.ogg","sound/voice/hiss3.ogg","sound/voice/hiss4.ogg")
+			if ("pageturn")
+				soundin = pick("sound/effects/pageturn1.ogg", "sound/effects/pageturn2.ogg","sound/effects/pageturn3.ogg")
+			if ("gunshot")
+				soundin = pick("sound/weapons/Gunshot.ogg", "sound/weapons/Gunshot2.ogg","sound/weapons/Gunshot3.ogg","sound/weapons/Gunshot4.ogg")
+			if ("ricochet")
+				soundin = pick(	"sound/weapons/effects/ric1.ogg", "sound/weapons/effects/ric2.ogg","sound/weapons/effects/ric3.ogg","sound/weapons/effects/ric4.ogg","sound/weapons/effects/ric5.ogg")
+			if ("terminal_type")
+				soundin = pick("sound/machines/terminal_button01.ogg", "sound/machines/terminal_button02.ogg", "sound/machines/terminal_button03.ogg", \
+								"sound/machines/terminal_button04.ogg", "sound/machines/terminal_button05.ogg", "sound/machines/terminal_button06.ogg", \
+								"sound/machines/terminal_button07.ogg", "sound/machines/terminal_button08.ogg")
+	return soundin
+
+/proc/get_rand_frequency()
+	return rand(32000, 55000)
+
+/proc/get_sound(soundin)
+
+	if(islist(soundin))
+		soundin = pick(soundin)
+	else
+		soundin = get_sfx(soundin)
+
+	var/sound/S
+
+	if(istext(soundin))
+		S = new /sound
+		S.file = csound(soundin)
+	else if (isfile(soundin))
+		S = new /sound
+		S.file = soundin
+	else if (istype(soundin, /sound))
+		S = soundin
+
+	return S
+
 /proc/csound(var/name)
 	return sound_cache[name]
 
-// Legacy proc that needs to be kept around for other procs
-/proc/get_rand_frequency()
-	return rand(32000, 55000)
+/proc/get_top_ancestor(var/datum/object, var/ancestor_of_ancestor=/datum)
+	if(!object || !ancestor_of_ancestor)
+		CRASH("Null value parameters in get top ancestor.")
+	if(!ispath(ancestor_of_ancestor))
+		CRASH("Non-Path ancestor of ancestor parameter supplied.")
+	var/stringancestor = "[ancestor_of_ancestor]"
+	var/stringtype = "[object.type]"
+	var/ancestorposition = findtextEx(stringtype, stringancestor)
+	if(!ancestorposition)
+		return null
+	var/parentstart = ancestorposition + length(stringancestor) + 1
+	var/parentend = findtextEx(stringtype, "/", parentstart)
+	var/stringtarget = copytext(stringtype, 1, parentend ? parentend : 0)
+	return text2path(stringtarget)

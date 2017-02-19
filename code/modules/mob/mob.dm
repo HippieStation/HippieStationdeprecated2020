@@ -545,6 +545,12 @@ var/next_mob_id = 0
 		stat(null, "Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]")
 		stat(null, "Station Time: [worldtime2text()]")
 		stat(null, "Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
+
+
+		if(client.mob)
+			var/area/A = get_area(client.mob)
+			stat(null, "Area: [A] - [A.name] - [A.sound_environment]")
+
 		if(SSshuttle.emergency)
 			var/ETA = SSshuttle.emergency.getModeStr()
 			if(ETA)

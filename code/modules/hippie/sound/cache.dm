@@ -1,4 +1,4 @@
-/var/global/list/sound_cache = list(
+var/global/list/sound_cache = list(
 	"goon/sound/effects/spring.ogg" = 'goon/sound/effects/spring.ogg',\
  	"goon/sound/machinery/FireAlarm.ogg" = 'goon/sound/machinery/FireAlarm.ogg',\
  	"sound/AI/aimalf.ogg" = 'sound/AI/aimalf.ogg',\
