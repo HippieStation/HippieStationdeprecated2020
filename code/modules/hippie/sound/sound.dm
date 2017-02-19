@@ -65,8 +65,6 @@
 							S.environment = SOUND_ENVIRONMENT_DIZZY
 						else if (L.sleeping)
 							S.environment = SOUND_ENVIRONMENT_UNDERWATER
-						else if (pressure_factor < 0.5)
-							S.environment = SOUND_ENVIRONMENT_UNDERWATER
 
 					if(S.volume <= 0)
 						return
@@ -119,7 +117,7 @@
 
 	var/sound/S = get_sound(soundin)
 
-	S.falloff = (world.view + extrarange) / 10
+	S.falloff = (world.view + extrarange) / 12
 	S.wait = 0
 	S.channel = 0
 	S.volume = vol
