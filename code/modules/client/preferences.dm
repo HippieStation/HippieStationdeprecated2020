@@ -98,7 +98,7 @@ var/list/preferences_datums = list()
 
 	var/clientfps = 0
 
-	var/parallax = PARALLAX_HIGH
+	var/parallax = PARALLAX_DISABLE
 
 	var/uplink_spawn_loc = UPLINK_PDA
 
@@ -526,7 +526,7 @@ var/list/preferences_datums = list()
 			HTML += "<tr bgcolor='[job.selection_color]'><td width='60%' align='right'>"
 			var/rank = job.title
 			lastJob = job
-			if(jobban_isbanned(user, "catban") && rank != "Assistant") 
+			if(jobban_isbanned(user, "catban") && rank != "Assistant")
 				HTML += "<font color=red>[rank]</font></td><td><font color=red><b> \[CAT-BANNED\]</b></font></td></tr>"
 				continue
 			if(jobban_isbanned(user, rank))
