@@ -125,18 +125,18 @@
 	else
 		icon_state = "juicer0"
 
-/obj/machinery/poolcontroller/attack_hand(mob/user)
+/obj/machinery/reagentgrinder/attack_hand(mob/user)
 	if(stat & (NOPOWER|BROKEN))
 		return
 	..()
 
-/obj/machinery/poolcontroller/attack_paw(mob/user)
+/obj/machinery/reagentgrinder/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/poolcontroller/attack_alien(mob/user)
+/obj/machinery/reagentgrinder/attack_alien(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/poolcontroller/attack_hulk(mob/user)
+/obj/machinery/reagentgrinder/attack_hulk(mob/user)
 	return attack_hand(user)
 
 /obj/machinery/reagentgrinder/attackby(obj/item/I, mob/user, params)
