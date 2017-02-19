@@ -68,6 +68,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	has_gravity = 1
 	blob_allowed = 0 //Nope, no winning on the asteroid as a blob. Gotta eat the station.
 	valid_territory = 0
+	sound_environment = SOUND_ENVIRONMENT_CAVE
 
 /area/asteroid/cave
 	name = "Asteroid - Underground"
@@ -97,9 +98,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 //STATION13
 
 /area/atmos
- 	name = "Atmospherics"
- 	icon_state = "atmos"
- 	flags = NONE
+	name = "Atmospherics"
+	icon_state = "atmos"
+	flags = NONE
+	sound_environment = SOUND_ENVIRONMENT_HANGAR
 
 //Maintenance
 /area/maintenance
@@ -112,6 +114,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 						 'sound/voice/lowHiss3.ogg',
 						 'sound/voice/lowHiss4.ogg')
 	valid_territory = 0
+	sound_environment = SOUND_ENVIRONMENT_SEWER_PIPE
 
 /area/maintenance/atmos_control
 	name = "Atmospherics Maintenance"
@@ -211,6 +214,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 //Hallway
 
+/area/hallway
+	sound_environment = SOUND_ENVIRONMENT_HANGAR
+
 /area/hallway/primary/fore
 	name = "Fore Primary Hallway"
 	icon_state = "hallF"
@@ -249,6 +255,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Bridge"
 	icon_state = "bridge"
 	music = "signal"
+	sound_environment = SOUND_ENVIRONMENT_LIVINGROOM
 
 /area/bridge/meeting_room
 	name = "Heads of Staff Meeting Room"
