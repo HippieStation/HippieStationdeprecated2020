@@ -742,8 +742,8 @@
 
 /mob/living/carbon/human/wash_cream()
 	//clean both to prevent a rare bug
-	overlays -=image('icons/effects/creampie.dmi', "creampie_lizard")
-	overlays -=image('icons/effects/creampie.dmi', "creampie_human")
+	cut_overlay(image('icons/effects/creampie.dmi', "creampie_lizard"))
+	cut_overlay(image('icons/effects/creampie.dmi', "creampie_human"))
 
 
 //Turns a mob black, flashes a skeleton overlay
@@ -762,7 +762,7 @@
 
 /mob/living/carbon/human/proc/end_electrocution_animation(image/I)
 	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, "#000000")
-	overlays -= I
+	cut_overlay(I)
 
 /mob/living/carbon/human/canUseTopic(atom/movable/M, be_close = 0)
 	if(incapacitated() || lying )
