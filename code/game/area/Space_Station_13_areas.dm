@@ -57,6 +57,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	luminosity = 1
 	lighting_use_dynamic = DYNAMIC_LIGHTING_DISABLED
 	has_gravity = 1
+	sound_group = "start"
 
 
 //EXTRA
@@ -308,6 +309,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters/toilet
 	name = "Dormitory Toilets"
 	icon_state = "toilet"
+	sound_environment = SOUND_ENVIRONMENT_BATHROOM
 
 /area/crew_quarters/sleep
 	name = "Dormitories"
@@ -320,6 +322,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters/sleep_male/toilet_male
 	name = "Male Toilets"
 	icon_state = "toilet"
+	sound_environment = SOUND_ENVIRONMENT_BATHROOM
 
 /area/crew_quarters/sleep_female
 	name = "Female Dorm"
@@ -328,6 +331,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters/sleep_female/toilet_female
 	name = "Female Toilets"
 	icon_state = "toilet"
+	sound_environment = SOUND_ENVIRONMENT_BATHROOM
 
 /area/crew_quarters/locker
 	name = "Locker Room"
@@ -336,6 +340,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters/locker/locker_toilet
 	name = "Locker Toilets"
 	icon_state = "toilet"
+	sound_environment = SOUND_ENVIRONMENT_BATHROOM
 
 /area/crew_quarters/fitness
 	name = "Fitness Room"

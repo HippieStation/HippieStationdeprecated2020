@@ -23,7 +23,6 @@
 			var/turf/mob_loc = get_turf(M)
 			if(!isnull(mob_loc) && M.client && source && mob_loc.z == source.z)
 				var/area/listener_location = get_area(mob_loc)
-
 				if(listener_location)
 					var/listener_location_root = get_top_ancestor(listener_location, /area)
 					if(listener_location_root != source_area_root && !(listener_location != /area && source_area != /area))
@@ -53,6 +52,24 @@
 						pressure_factor = max(pressure_factor, 0.15) //touching the source of the sound
 
 					S.volume *= pressure_factor
+
+					if(isliving(M))
+						var/mob/living/L = M
+						if (L.hallucination)
+							S.environment = SOUND_ENVIRONMENT_PSYCHOTIC
+						else if (L.druggy)
+							S.environment = SOUND_ENVIRONMENT_DRUGGED
+						else if (L.drowsyness)
+							S.environment = SOUND_ENVIRONMENT_DIZZY
+						else if (L.confused)
+							S.environment = SOUND_ENVIRONMENT_DIZZY
+						else if (L.sleeping)
+							S.environment = SOUND_ENVIRONMENT_UNDERWATER
+						else if (pressure_factor < 0.5)
+							S.environment = SOUND_ENVIRONMENT_UNDERWATER
+
+					if(S.volume <= 0)
+						return
 
 				S.x = source.x - mob_loc.x
 				S.z = source.y - mob_loc.y
