@@ -323,7 +323,7 @@
 		qdel(src)
 
 /* Singulos EMPing the PA to escape is bad */
-/obj/machinery/praticle_acclerator/control_box/emp_act(severity)
+/obj/machinery/particle_accelerator/control_box/emp_act(severity)
 	return
 
 #undef PA_CONSTRUCTION_UNSECURED
