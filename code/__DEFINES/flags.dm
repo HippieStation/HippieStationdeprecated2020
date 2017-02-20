@@ -22,7 +22,7 @@
 #define EARBANGPROTECT		1024
 
 #define NOSLIP		1024 		//prevents from slipping on wet floors, in space etc (NOTE: flag shared with THICKMATERIAL for external suits and helmet)
-#define OVERLAY_QUEUED  2048	//atom queued to SSoverlay
+
 #define HEADBANGPROTECT		4096
 
 // BLOCK_GAS_SMOKE_EFFECT only used in masks at the moment.
@@ -30,6 +30,7 @@
 #define THICKMATERIAL 8192		//prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body. (NOTE: flag shared with BLOCK_GAS_SMOKE_EFFECT)
 #define DROPDEL			16384 // When dropped, it calls qdel on itself
 #define HOLOGRAM		32768	// HOlodeck shit should not be used in any fucking things
+#define OVERLAY_QUEUED  65536	//atom queued to SSoverlay
 
 //turf-only flags
 #define NOJAUNT		1
