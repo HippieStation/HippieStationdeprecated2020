@@ -35125,10 +35125,7 @@
 /area/medical/sleeper)
 "bzh" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/wrench{
-	pixel_x = 5;
-	pixel_y = -5
-	},
+/obj/item/weapon/wrench/medical,
 /obj/machinery/cell_charger,
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
@@ -38191,8 +38188,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bFF" = (
-/obj/machinery/limbgrower,
-/obj/item/weapon/reagent_containers/glass/beaker/synthflesh,
+/obj/structure/closet/crate/freezer/surplus_limbs,
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bFG" = (
