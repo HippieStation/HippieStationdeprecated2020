@@ -1,0 +1,5 @@
+author: "Tortellini Tony"
+delete-after: True
+changes: 
+  - bugfix: "Fixed the fade-out screen."
+  - rscadd: "New title screens."
