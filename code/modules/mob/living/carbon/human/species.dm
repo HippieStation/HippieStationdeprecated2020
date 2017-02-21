@@ -1156,11 +1156,13 @@
 		switch(hit_area)
 			if("head")
 				if(H.stat == CONSCIOUS && armor_block < 50)
-					if(prob(I.force))
-						H.visible_message("<span class='danger'>[H] has been knocked senseless!</span>", \
-										"<span class='userdanger'>[H] has been knocked senseless!</span>")
-						H.confused = max(H.confused, 20)
+					if(prob(min(I.force, 25)))
+						H.visible_message("<span class='danger'>[H] has received a concussion!</span>", \
+										"<span class='userdanger'>[H] has received a concussion!</span>")
+						H.confused += 10
+						H.apply_effect(0.5, WEAKEN, armor_block)
 						H.adjust_blurriness(10)
+						H.adjustBrainLoss(max(10, I.force/2))
 
 					if(prob(I.force + ((100 - H.health)/2)) && H != user)
 						ticker.mode.remove_revolutionary(H.mind)
@@ -1183,11 +1185,12 @@
 						H.update_inv_glasses()
 
 			if("chest")
-				if(H.stat == CONSCIOUS && armor_block < 50)
+				if(H.stat == CONSCIOUS && I.force && prob(min(I.force, 35)))
 					if(prob(I.force))
-						H.visible_message("<span class='danger'>[H] has been knocked down!</span>", \
-									"<span class='userdanger'>[H] has been knocked down!</span>")
-						H.apply_effect(3, WEAKEN, armor_block)
+						H.visible_message("<span class='danger'>[H] recoils and stumbles from the attack!</span>", \
+									"<span class='userdanger'>[H] recoils and stumbles from the attack!</span>")
+						H.apply_effect(0.5, WEAKEN, armor_block)
+						H.adjustStaminaLoss(20)
 
 				if(bloody)
 					if(H.wear_suit)
