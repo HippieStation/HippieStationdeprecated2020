@@ -799,6 +799,7 @@
 #include "code\game\objects\items\weapons\implants\implant_misc.dm"
 #include "code\game\objects\items\weapons\implants\implant_storage.dm"
 #include "code\game\objects\items\weapons\implants\implant_track.dm"
+#include "code\game\objects\items\weapons\implants\implant_mindslave.dm"
 #include "code\game\objects\items\weapons\implants\implantcase.dm"
 #include "code\game\objects\items\weapons\implants\implantchair.dm"
 #include "code\game\objects\items\weapons\implants\implanter.dm"
