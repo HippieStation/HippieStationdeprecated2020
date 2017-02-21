@@ -4443,9 +4443,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 5
 	},
-/turf/open/floor/plasteel/vault{
-	dir = 5
-	},
+/turf/open/floor/plasteel/yellowsiding,
 /area/ruin/hotel/pool)
 "kS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -4566,14 +4564,12 @@
 /area/ruin/hotel/pool)
 "li" = (
 /obj/effect/light_emitter,
-/turf/open/floor/plating/beach/water{
-	baseturf = /turf/open/space
-	},
+/turf/open/floor/plasteel/blueyellow,
+/turf/open/pool/water,
 /area/ruin/hotel/pool)
 "lj" = (
-/turf/open/floor/plating/beach/water{
-	baseturf = /turf/open/space
-	},
+/turf/open/floor/plasteel/blueyellow,
+/turf/open/pool/water,
 /area/ruin/hotel/pool)
 "lk" = (
 /obj/structure/chair{
@@ -4806,9 +4802,8 @@
 /area/ruin/hotel/security)
 "lP" = (
 /obj/item/weapon/bikehorn/rubberducky,
-/turf/open/floor/plating/beach/water{
-	baseturf = /turf/open/space
-	},
+/turf/open/floor/plasteel/blueyellow,
+/turf/open/pool/water,
 /area/ruin/hotel/pool)
 "lQ" = (
 /obj/structure/table,
@@ -5250,6 +5245,260 @@
 	},
 /turf/open/floor/carpet,
 /area/ruin/hotel)
+"mW" = (
+/turf/open/floor/plasteel/yellowsiding/corner,
+/area/ruin/hotel/pool)
+"mX" = (
+/turf/open/floor/plasteel/yellowsiding,
+/area/ruin/hotel/pool)
+"mY" = (
+/turf/open/floor/plasteel/yellowsiding,
+/area/ruin/hotel/pool)
+"mZ" = (
+/turf/open/floor/plasteel/yellowsiding,
+/area/ruin/hotel/pool)
+"na" = (
+/turf/open/floor/plasteel/yellowsiding,
+/area/ruin/hotel/pool)
+"nb" = (
+/turf/open/floor/plasteel/yellowsiding,
+/area/ruin/hotel/pool)
+"nc" = (
+/turf/open/floor/plasteel/yellowsiding,
+/area/ruin/hotel/pool)
+"nd" = (
+/obj/machinery/poolcontroller{
+	srange = 20
+	},
+/turf/open/floor/plasteel/yellowsiding,
+/area/ruin/hotel/pool)
+"ne" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/yellowsiding,
+/area/ruin/hotel/pool)
+"nf" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/yellowsiding,
+/area/ruin/hotel/pool)
+"ng" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/yellowsiding,
+/area/ruin/hotel/pool)
+"nh" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/yellowsiding,
+/area/ruin/hotel/pool)
+"ni" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/yellowsiding,
+/area/ruin/hotel/pool)
+"nj" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/yellowsiding/corner{
+	dir = 8
+	},
+/area/ruin/hotel/pool)
+"nk" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 4
+	},
+/area/ruin/hotel/pool)
+"nl" = (
+/obj/machinery/poolfilter,
+/turf/open/floor/plasteel/blueyellow,
+/turf/open/pool/water,
+/area/ruin/hotel/pool)
+"nm" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 8
+	},
+/area/ruin/hotel/pool)
+"nn" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 4
+	},
+/area/ruin/hotel/pool)
+"no" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 8
+	},
+/area/ruin/hotel/pool)
+"np" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 4
+	},
+/area/ruin/hotel/pool)
+"nq" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 8
+	},
+/area/ruin/hotel/pool)
+"nr" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 4
+	},
+/area/ruin/hotel/pool)
+"ns" = (
+/obj/machinery/drain,
+/turf/open/floor/plasteel/blueyellow,
+/turf/open/pool/water,
+/area/ruin/hotel/pool)
+"nt" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 8
+	},
+/area/ruin/hotel/pool)
+"nu" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 4
+	},
+/area/ruin/hotel/pool)
+"nv" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 8
+	},
+/area/ruin/hotel/pool)
+"nw" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 4
+	},
+/area/ruin/hotel/pool)
+"nx" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 8
+	},
+/area/ruin/hotel/pool)
+"ny" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 4
+	},
+/area/ruin/hotel/pool)
+"nz" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 8
+	},
+/area/ruin/hotel/pool)
+"nA" = (
+/obj/structure/closet{
+	density = 1;
+	desc = "There are noodles inside!";
+	name = "noodle closet"
+	},
+/obj/item/toy/poolnoodle/blue,
+/obj/item/toy/poolnoodle/blue,
+/obj/item/toy/poolnoodle/red,
+/obj/item/toy/poolnoodle/red,
+/obj/item/toy/poolnoodle/yellow,
+/obj/item/toy/poolnoodle/yellow,
+/turf/open/floor/plasteel,
+/area/ruin/hotel/pool)
+"nB" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 4
+	},
+/area/ruin/hotel/pool)
+"nC" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 8
+	},
+/area/ruin/hotel/pool)
+"nD" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 4
+	},
+/area/ruin/hotel/pool)
+"nE" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 8
+	},
+/area/ruin/hotel/pool)
+"nF" = (
+/turf/open/floor/plasteel/yellowsiding/corner{
+	dir = 4
+	},
+/area/ruin/hotel/pool)
+"nG" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 1
+	},
+/area/ruin/hotel/pool)
+"nH" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 1
+	},
+/area/ruin/hotel/pool)
+"nI" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 1
+	},
+/area/ruin/hotel/pool)
+"nJ" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 1
+	},
+/area/ruin/hotel/pool)
+"nK" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 1
+	},
+/area/ruin/hotel/pool)
+"nL" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 1
+	},
+/area/ruin/hotel/pool)
+"nM" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 1
+	},
+/area/ruin/hotel/pool)
+"nN" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 1
+	},
+/area/ruin/hotel/pool)
+"nO" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 1
+	},
+/area/ruin/hotel/pool)
+"nP" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 1
+	},
+/area/ruin/hotel/pool)
+"nQ" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 1
+	},
+/area/ruin/hotel/pool)
+"nR" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 1
+	},
+/area/ruin/hotel/pool)
+"nS" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 1
+	},
+/area/ruin/hotel/pool)
+"nT" = (
+/turf/open/floor/plasteel/yellowsiding/corner{
+	dir = 1
+	},
+/area/ruin/hotel/pool)
 
 (1,1,1) = {"
 aa
@@ -7996,17 +8245,17 @@ jt
 jS
 ko
 kD
-kD
-kD
-kD
-kD
-kD
-kD
-kD
-kD
-kD
-kD
-kD
+mW
+nk
+nn
+np
+nr
+nu
+nw
+ny
+nB
+nD
+nF
 kD
 jR
 mK
@@ -8073,7 +8322,7 @@ jt
 jR
 jR
 kE
-kD
+mX
 li
 lj
 lj
@@ -8083,7 +8332,7 @@ lj
 lj
 lj
 li
-kD
+nG
 mC
 jR
 mK
@@ -8150,7 +8399,7 @@ jt
 jT
 jR
 kE
-kD
+mY
 lj
 lj
 lj
@@ -8160,7 +8409,7 @@ lj
 lj
 lj
 lj
-kD
+nH
 mC
 jR
 mK
@@ -8227,7 +8476,7 @@ jt
 jU
 jR
 kE
-kD
+mZ
 lj
 lj
 lj
@@ -8237,7 +8486,7 @@ lj
 lj
 lj
 lj
-kD
+nI
 mC
 jR
 mL
@@ -8304,7 +8553,7 @@ jt
 jR
 jR
 kD
-kD
+na
 lj
 lj
 lj
@@ -8314,7 +8563,7 @@ lj
 lj
 lj
 lj
-kD
+nJ
 kD
 jR
 ll
@@ -8381,8 +8630,8 @@ jt
 jV
 jY
 jY
-kD
-lj
+nb
+nl
 lj
 lj
 lj
@@ -8391,7 +8640,7 @@ lP
 lj
 lj
 lj
-kD
+nK
 kD
 jR
 mK
@@ -8458,7 +8707,7 @@ ju
 jW
 jW
 jY
-kD
+nc
 lj
 lj
 lj
@@ -8468,7 +8717,7 @@ lj
 lj
 lj
 lj
-kD
+nL
 mC
 jR
 mK
@@ -8535,17 +8784,17 @@ jv
 jW
 jW
 jY
-kD
+nd
 lj
 lj
 lj
-lj
+ns
 li
 lj
 lj
 lj
 lj
-kD
+nM
 mC
 jR
 mK
@@ -8622,7 +8871,7 @@ lj
 lj
 lj
 lj
-kD
+nN
 mC
 jR
 mK
@@ -8689,7 +8938,7 @@ jx
 jY
 jY
 jY
-kS
+ne
 lj
 lj
 lj
@@ -8699,7 +8948,7 @@ lj
 lj
 lj
 lj
-kD
+nO
 kD
 jR
 mK
@@ -8766,7 +9015,7 @@ jt
 jZ
 jR
 kD
-kS
+nf
 lj
 lj
 lj
@@ -8776,7 +9025,7 @@ lj
 lj
 lj
 lj
-kD
+nP
 kD
 jR
 ll
@@ -8843,7 +9092,7 @@ jt
 jU
 jR
 kE
-kS
+ng
 lj
 lj
 lj
@@ -8853,7 +9102,7 @@ lj
 lj
 lj
 lj
-kD
+nQ
 mC
 jR
 mM
@@ -8920,7 +9169,7 @@ jt
 jR
 jR
 kE
-kS
+nh
 lj
 lj
 lj
@@ -8930,7 +9179,7 @@ lj
 lj
 lj
 lj
-kD
+nR
 mC
 jR
 mK
@@ -8997,7 +9246,7 @@ jt
 jR
 jR
 kE
-kS
+ni
 li
 lj
 lj
@@ -9007,7 +9256,7 @@ lj
 lj
 lj
 li
-kD
+nS
 mC
 jR
 mK
@@ -9074,17 +9323,17 @@ jt
 jS
 ko
 kD
-kS
-kD
-kD
-kD
-kD
-kD
-kD
-kD
-kD
-kD
-kD
+nj
+nm
+no
+nq
+nt
+nv
+nx
+nz
+nC
+nE
+nT
 kD
 jR
 mK
@@ -9312,7 +9561,7 @@ ll
 jR
 jR
 kU
-jR
+nA
 jR
 jR
 jR
