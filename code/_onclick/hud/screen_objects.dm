@@ -671,19 +671,22 @@
 
 /obj/screen/splash
 	icon = 'icons/misc/fullscreen.dmi'
-	icon_state = "title"
+	icon_state = ""
 	screen_loc = "1,1"
 	layer = SPLASHSCREEN_LAYER
 	plane = SPLASHSCREEN_PLANE
 	var/client/holder
 
+/obj/screen/splash/proc/LoadIcon()
+	if(fexists("data/npc_saves/TitleScreen.sav"))
+		var savefile/s = new /savefile("data/npc_saves/TitleScreen.sav")
+		s["icon"] >> icon_state
+
 /obj/screen/splash/New(client/C, fadeout, qdel_after = TRUE)
+	LoadIcon()
 	..()
 	holder = C
 	holder.screen += src
-	var/titlescreen = TITLESCREEN
-	if(titlescreen)
-		icon_state = titlescreen
 	if(fadeout)
 		animate(src, alpha = 0, time = 30)
 	else

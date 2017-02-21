@@ -30,14 +30,22 @@
 /turf/closed/indestructible/splashscreen
 	name = "Space Station 13"
 	icon = 'icons/misc/fullscreen.dmi'
-	icon_state = "title"
+	icon_state = ""
 	layer = FLY_LAYER
 	var/titlescreen = TITLESCREEN
+	var/currenticon
+	var/newicon
+	
+/turf/closed/indestructible/splashscreen/New() //Do not change this to Initialize().
+	LoadIcon()
 
-/turf/closed/indestructible/splashscreen/Initialize()
-	..()
-	if(titlescreen)
-		icon_state = pick("title1","title2")
+/turf/closed/indestructible/splashscreen/proc/LoadIcon()
+	var savefile/s = new /savefile("data/npc_saves/TitleScreen.sav")
+	s["icon"] >> currenticon
+	if(!isnull(currenticon))
+		icon_state = currenticon
+	newicon = pick("title1","title2","title3","title4")
+	s["icon"] << newicon
 
 /turf/closed/indestructible/riveted
 	icon = 'icons/turf/walls/riveted.dmi'
