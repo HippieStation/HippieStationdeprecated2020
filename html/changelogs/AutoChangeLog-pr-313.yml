@@ -1,6 +1,0 @@
-author: "Kierany9"
-delete-after: True
-changes: 
-  - tweak: "Knockouts when aiming for the head in melee combat has been replaced with concussions. These cause a brief knockdown, dizzyness and brain damage."
-  - tweak: "Knockdowns when aiming for the body have had their duration drastically reduced but deal decent stamina damage."
-  - tweak: "Knockdown and knockout chance is capped at 35% and 25% respectively, and the bonus chance when aiming for the chest has been removed."

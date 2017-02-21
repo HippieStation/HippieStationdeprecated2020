@@ -1,4 +1,0 @@
-author: "Tortellini Tony"
-delete-after: True
-changes: 
-  - bugfix: "Fixed two game-breaking bugs involving toolboxes and the round end sound."
