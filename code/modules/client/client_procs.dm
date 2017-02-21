@@ -217,9 +217,9 @@ var/next_external_rsc = 0
 	prefs.last_id = computer_id			//these are gonna be used for banning
 	if(world.byond_version >= 511 && byond_version >= 511 && prefs.clientfps)
 		if (prefs.clientfps == 0)
-		    vars["fps"] = 50
+			vars["fps"] = 50
 		else
-		    vars["fps"] = prefs.clientfps
+			vars["fps"] = prefs.clientfps
 	else if (world.byond_version >= 511 && byond_version >= 511 && !prefs.clientfps)
 		vars["fps"] = 50
 	sethotkeys(1)						//set hoykeys from preferences (from_pref = 1)
