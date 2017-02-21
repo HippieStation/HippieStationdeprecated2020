@@ -107,7 +107,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/firelemon/attack_self(mob/living/user)
 	var/area/A = get_area(user)
-	user.visible_message("<span class='warning'>[user] primes the [src]!</span>", "<span class='userdanger'>You prime the [src]!</span>")
+	user.visible_message("<span class='warning'>[user] squeezes the [src]!</span>", "<span class='userdanger'>You squeeze the [src]!</span>")
 	var/message = "[ADMIN_LOOKUPFLW(user)] primed a combustible lemon for detonation at [A] [ADMIN_COORDJMP(user)]"
 	bombers += message
 	message_admins(message)
@@ -132,24 +132,24 @@
 	qdel(src) //Ensuring that it's deleted by its own explosion
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/firelemon/proc/prime()
-	switch(seed.potency) //Combustible lemons are alot like IEDs, lots of flame, very little bang.
+	switch(seed.potency) //Explosion size is proportional to potency.
 		if(0 to 30)
 			update_mob()
 			explosion(src.loc,-1,-1,2, flame_range = 1)
 			qdel(src)
 		if(31 to 50)
 			update_mob()
-			explosion(src.loc,-1,-1,2, flame_range = 2)
+			explosion(src.loc,-1,-1,3, flame_range = 2)
 			qdel(src)
 		if(51 to 70)
 			update_mob()
-			explosion(src.loc,-1,-1,2, flame_range = 3)
+			explosion(src.loc,-1,-1,3, flame_range = 4)
 			qdel(src)
 		if(71 to 90)
 			update_mob()
-			explosion(src.loc,-1,-1,2, flame_range = 4)
+			explosion(src.loc,-1,1,3, flame_range = 5)
 			qdel(src)
-		else
+		if(91 to 100)
 			update_mob()
-			explosion(src.loc,-1,-1,2, flame_range = 5)
+			explosion(src.loc,1,1,4, flame_range = 6)
 			qdel(src)
