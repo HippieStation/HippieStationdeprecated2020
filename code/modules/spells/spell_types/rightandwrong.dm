@@ -90,7 +90,7 @@
 				if("car")
 					G = new /obj/item/weapon/gun/ballistic/automatic/m90(get_turf(H))
 				if("glock17")
-					new /obj/item/weapon/gun/projectile/automatic/pistol/g17(get_turf(H))
+					G = new /obj/item/weapon/gun/ballistic/automatic/pistol/g17(get_turf(H))
 				if("alienpistol")
 					G = new /obj/item/weapon/gun/energy/alien(get_turf(H))
 				if("dragnet")
