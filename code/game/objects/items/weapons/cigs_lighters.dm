@@ -608,7 +608,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(istype(O, /obj/item/weapon/screwdriver))
 		if(!screw)
 			screw = TRUE
-			flags |= OPENCONTAINER
+			container_type |= OPENCONTAINER
 			user << "<span class='notice'>You open the cap on the [name].</span>"
 			if(emagged)
 				var/image/I = (image(icon, "vapeopen_high"))
@@ -621,20 +621,20 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				overlays += I
 		else
 			screw = FALSE
-			flags &= ~OPENCONTAINER
+			container_type &= ~OPENCONTAINER
 			user << "<span class='notice'>You close the cap on the [name].</span>"
-			cut_overlays()
+			overlays.Cut()
 
 	if(istype(O, /obj/item/device/multitool))
 		if(screw && !emagged)//also kinky
 			if(!super)
-				cut_overlays()
+				overlays.Cut()
 				super = TRUE
 				user << "<span class='notice'>You increase the voltage in the [name].</span>"
 				var/image/I = (image(icon, "vapeopen_med"))
 				overlays += I
 			else
-				cut_overlays()
+				overlays.Cut()
 				super = FALSE
 				user << "<span class='notice'>You decrease the voltage in the [name].</span>"
 				var/image/I = (image(icon, "vapeopen_low"))
@@ -642,12 +642,14 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 		if(screw && emagged)
 			user << "<span class='notice'>The [name] can't be modified!</span>"
+	else
+		..()
 
 
 /obj/item/clothing/mask/vape/emag_act(mob/user)
 	if(screw)
 		if(!emagged)
-			cut_overlays()
+			overlays.Cut()
 			emagged = TRUE
 			super = FALSE
 			user << "<span class='warning'>You maximize the voltage in the [name]!</span>"

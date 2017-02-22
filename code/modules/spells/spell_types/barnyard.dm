@@ -84,7 +84,8 @@
 
 // here begins the cluwning
 
-	target.dna.add_mutation(CLUWNEMUT)
+	var/datum/mutation/human/HM = mutations_list[CLUWNEMUT]
+	HM.force_give(target)
 	target.emote("scream")
 
 	target.visible_message("<span class='danger'>[target]'s body glows green, the glow dissipating only to leave behind a cluwne formerly known as [target]!</span>", \
