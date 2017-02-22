@@ -10,6 +10,7 @@ CLOTHESMATE
 	icon_state = "clothes"
 	product_slogans = "Dress for success!;Prepare to look swagalicious!;Look at all this free swag!;Why leave style up to fate? Use the ClothesMate!"
 	vend_reply = "Thank you for using the ClothesMate!"
+	height = 750
 	refill_canister = /obj/item/weapon/vending_refill/clothing
 	products = list(
 		/obj/item/clothing/head/that=2,
@@ -397,6 +398,7 @@ MAGIVEND
 	contraband = list(/obj/item/weapon/reagent_containers/glass/bottle/wizarditis = 1)	//No one can get to the machine to hack it anyways; for the lulz - Microwave
 	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0, fire = 100, acid = 50)
 	resistance_flags = FIRE_PROOF
+	height = 350
 	products = list(
 		/obj/item/clothing/head/wizard = 1,
 		/obj/item/clothing/suit/wizrobe = 1,
@@ -423,6 +425,7 @@ MEGASEED SERVITOR
 	premium = list(/obj/item/weapon/reagent_containers/spray/waterflower = 1)
 	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0, fire = 100, acid = 50)
 	resistance_flags = FIRE_PROOF
+	height = 750
 	products = list(
 		/obj/item/seeds/ambrosia = 3,
 		/obj/item/seeds/apple = 3,
@@ -482,6 +485,7 @@ NUTRIMAX
 	product_slogans = "Aren't you glad you don't have to fertilize the natural way?;Now with 50% less stink!;Plants are people too!"
 	product_ads = "We like plants!;Don't you want some?;The greenest thumbs ever.;We like big plants.;Soft soil..."
 	icon_state = "nutri"
+	height = 400
 	icon_deny = "nutri-deny"
 	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0, fire = 100, acid = 50)
 	resistance_flags = FIRE_PROOF
@@ -585,6 +589,7 @@ VENDOMAT
 	product_ads = "Only the finest!;Have some tools.;The most robust equipment.;The finest gear in space!"
 	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0, fire = 100, acid = 50)
 	resistance_flags = FIRE_PROOF
+	height = 350
 	products = list(
 		/obj/item/device/assembly/prox_sensor = 5,
 		/obj/item/device/assembly/igniter = 3,
@@ -613,6 +618,7 @@ HOTDRINKS
 	icon_vend = "coffee-vend"
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/ice = 12)
 	refill_canister = /obj/item/weapon/vending_refill/coffee
+	height = 250
 	products = list(
 	/obj/item/weapon/reagent_containers/food/drinks/coffee = 25,
 	/obj/item/weapon/reagent_containers/food/drinks/mug/tea = 25,
@@ -633,6 +639,7 @@ NANOMED
 	icon_deny = "med-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_access_txt = "5"
+	height = 675
 	premium = list(/obj/item/weapon/storage/box/hug/medical = 1,/obj/item/weapon/reagent_containers/hypospray/medipen = 3, /obj/item/weapon/storage/belt/medical = 3, /obj/item/weapon/wrench/medical = 1)
 	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0, fire = 100, acid = 50)
 	resistance_flags = FIRE_PROOF
@@ -672,6 +679,7 @@ WALLMED
 	icon_state = "wallmed"
 	icon_deny = "wallmed-deny"
 	density = 0
+	height = 300
 	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0, fire = 100, acid = 50)
 	resistance_flags = FIRE_PROOF
 	products = list(
@@ -698,9 +706,10 @@ CHOCOLATE
 	product_slogans = "Try our new nougat bar!;Twice the calories for half the price!"
 	product_ads = "The healthiest!;Award-winning chocolate bars!;Mmm! So good!;Oh my god it's so juicy!;Have a snack.;Snacks are good for you!;Have some more Getmore!;Best quality snacks straight from mars.;We love chocolate!;Try our new jerky!"
 	icon_state = "snack"
+	width = 375
+	height = 350
 	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/syndicake = 6)
 	refill_canister = /obj/item/weapon/vending_refill/snack
-	var/chef_compartment_access = "28"
 	products = list(
 		/obj/item/weapon/reagent_containers/food/snacks/candy = 6,
 		/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 6,
@@ -723,6 +732,7 @@ CIGARETTE
 	product_slogans = "Space cigs taste good like a cigarette should.;I'd rather toolbox than switch.;Smoke!;Don't believe the reports - smoke today!"
 	product_ads = "Probably not bad for you!;Don't believe the scientists!;It's good for you!;Don't quit, buy more!;Smoke!;Nicotine heaven.;Best cigarettes since 2150.;Award-winning cigs."
 	icon_state = "cigs"
+	height = 550
 	premium = list(
 		/obj/item/weapon/storage/fancy/cigarettes/cigpack_robustgold = 3,
 		/obj/item/weapon/storage/fancy/cigarettes/cigars = 1,
@@ -798,6 +808,7 @@ SODA
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/soda_cans/thirteenloko = 6)
 	premium = list(/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/filled/nuka_cola = 1)
 	refill_canister = /obj/item/weapon/vending_refill/cola
+	height = 400
 	products = list(
 		/obj/item/weapon/reagent_containers/food/drinks/soda_cans/cola = 10,
 		/obj/item/weapon/reagent_containers/food/drinks/soda_cans/space_mountain_wind = 10,

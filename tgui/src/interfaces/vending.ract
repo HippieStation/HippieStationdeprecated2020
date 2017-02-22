@@ -2,7 +2,7 @@
 	{{#each data.products}}
 	<ui-section label='{{name}}' labelcolor='{{color}}' candystripe right>
 		<span><b>{{amount}}</b></span>
-		<ui-button  state='{{(amount > 0) ? null : "disabled"}}' icon='{{(amount > 0) ? "cart" : null}}' action='vend' params='{"key": {{key}}}'>{{(amount > 0) ? "Vend" : "Sold Out"}}</ui-button>
+		<ui-button  state='{{(amount > 0) ? null : "disabled"}}' icon='{{(amount > 0) ? "cart-arrow-down" : "ban"}}' action='vend' params='{"key": {{key}}}'>{{(amount > 0) ? "Vend" : "Sold Out"}}</ui-button>
 	</ui-section>
 	{{/each}}
 </ui-display>
@@ -10,7 +10,7 @@
 	<ui-display title='Coin Slot'>
 		<ui-section label='Coin'>
 		<span class='{{data.coin ? "bold" : null}}'>{{data.coin ? data.coin : "No Coin"}}</span>
-		 <ui-button icon='eject' state='{{data.coin && data.canvend ? null : "disabled"}}'
+		 <ui-button icon='gg-circle' state='{{data.coin && data.canvend ? null : "disabled"}}'
       action='eject'>Eject Coin</ui-button>
 	</ui-display>
 {{/if}}

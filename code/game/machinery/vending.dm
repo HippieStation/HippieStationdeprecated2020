@@ -53,6 +53,8 @@
 	var/extended_inventory = 0	//can we access the hidden inventory?
 	var/scan_id = 1
 	var/obj/item/weapon/coin/coin
+	var/width = 350
+	var/height = 475
 
 	var/dish_quants = list()  //used by the snack machine's custom compartment to count dishes.
 
@@ -321,7 +323,7 @@
 															datum/tgui/master_ui = null, datum/ui_state/state = physical_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "vending", name, 350, 475, master_ui, state)
+		ui = new(user, src, ui_key, "vending", name, width, height, master_ui, state)
 		ui.open()
 
 /obj/machinery/vending/ui_data()
