@@ -126,6 +126,17 @@
 	caliber = ".45"
 	max_ammo = 50
 
+/obj/item/ammo_box/magazine/g17
+	name = "G17 magazine (9mm)"
+	icon_state = "g17"
+	ammo_type = /obj/item/ammo_casing/c9mm
+	caliber = "9mm"
+	max_ammo = 14
+
+/obj/item/ammo_box/magazine/g17/update_icon()
+	..()
+	icon_state = "[initial(icon_state)]-[Ceiling(ammo_count(0)/14)*14]"
+
 /obj/item/ammo_box/magazine/m50
 	name = "handgun magazine (.50ae)"
 	icon_state = "50ae"
