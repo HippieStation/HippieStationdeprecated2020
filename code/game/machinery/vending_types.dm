@@ -426,6 +426,7 @@ MEGASEED SERVITOR
 	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0, fire = 100, acid = 50)
 	resistance_flags = FIRE_PROOF
 	height = 750
+	width = 400
 	products = list(
 		/obj/item/seeds/ambrosia = 3,
 		/obj/item/seeds/apple = 3,
