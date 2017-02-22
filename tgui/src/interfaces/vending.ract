@@ -10,7 +10,7 @@
 	<ui-display title='Coin Slot'>
 		<ui-section label='Coin'>
 		<span class='{{data.coin ? "bold" : null}}'>{{data.coin ? data.coin : "No Coin"}}</span>
-		 <ui-button icon='gg-circle' state='{{data.coin && data.canvend ? null : "disabled"}}'
+		 <ui-button icon='arrow-circle-up' state='{{data.coin && data.canvend ? null : "disabled"}}'
       action='eject'>Eject Coin</ui-button>
 	</ui-display>
 {{/if}}
