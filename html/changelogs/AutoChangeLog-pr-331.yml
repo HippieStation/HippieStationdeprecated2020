@@ -1,0 +1,5 @@
+author: "Tortellini Tony"
+delete-after: True
+changes: 
+  - rscadd: "Added mentorwho verb to see who mentors are."
+  - bugfix: "Fixed msay and added an F4 hotkey."
