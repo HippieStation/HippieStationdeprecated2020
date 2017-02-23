@@ -16,8 +16,8 @@ var/list/blend_items = list (
 	/obj/item/weapon/coin/plasma = list("plasma" = 4),
 	/obj/item/weapon/coin/uranium = list("uranium" = 4),
 	/obj/item/weapon/coin/clown = list("banana" = 4),
-	/obj/item/stack/sheet/bluespace_crystal = /datum/reagent/bluespace,
-	/obj/item/weapon/ore/bluespace_crystal = /datum/reagent/bluespace,
+	/obj/item/stack/sheet/bluespace_crystal = list("bluespace = 20"),
+	/obj/item/weapon/ore/bluespace_crystal = list("bluespace = 20"), //This isn't a sheet actually, but you break it off
 	
 	//Crayons (for overriding colours)
 	/obj/item/toy/crayon/red = list("redcrayonpowder" = 50),
@@ -157,7 +157,10 @@ var/list/dried_items = list(
 			var/obj/item/weapon/reagent_containers/food/snacks/grown/G = I
 			if(!G.dry)
 				user << "<span class='warning'>You must dry that first!</span>"
-		return 1
+			user.drop_item()
+			I.loc = src
+			holdingitems += I
+			return 0
 	if(holdingitems && holdingitems.len >= limit)
 		usr << "The machine cannot hold anymore items."
 		return 1
@@ -222,7 +225,7 @@ var/list/dried_items = list(
 		if(istype(O, /obj/item/slime_extract)) //these have to be separate in case they are used, and I don't know what category they go under..
 			var/obj/item/slime_extract/slime = O
 			if (O.reagents.reagent_list.len)
-				var/amount = O.reagents.total_volume
+				var/amount = round(O.reagents.total_volume)
 				O.reagents.trans_to(beaker, min(amount, space))
 			if (slime.Uses > 0)
 				beaker.reagents.add_reagent("slimejelly",min(20, space))
@@ -231,9 +234,14 @@ var/list/dried_items = list(
 			if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/grown)) //This adds reagents based on POTENCY.
 				var/allowed = get_allowed_by_id(O)
 				for (var/r_id in allowed)
-					var/amount = get_grownweapon_amount(O)
+					var/amount = round((sqrt(get_grownweapon_amount(O)) * 0.7 + 2))
 					beaker.reagents.add_reagent(r_id,min(amount, space))
 					if (space < amount)
+						break
+				if(O.reagents.reagent_list.len)
+					var/ramount = round(O.reagents.total_volume * 0.7)
+					O.reagents.trans_to(beaker, min(ramount, space))
+					if (space < ramount)
 						break
 				remove_object(O)
 			else if (istype(O, /obj/item/stack)) //Stacks, because there is more than one.
@@ -258,7 +266,7 @@ var/list/dried_items = list(
 					remove_object(O)
 		else if(O.reagents)
 			if(O.reagents.reagent_list.len)
-				var/amount = O.reagents.total_volume
+				var/amount = round(O.reagents.total_volume)
 				O.reagents.trans_to(beaker, min(amount, space))
 				remove_object(O)
 		else

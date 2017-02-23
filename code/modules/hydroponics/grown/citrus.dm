@@ -104,8 +104,11 @@
 	desc = "Made for burning houses down."
 	icon_state = "firelemon"
 	bitesize_mod = 2
+	var/isprimed = FALSE
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/firelemon/attack_self(mob/living/user)
+	if(isprimed)
+		return
 	var/area/A = get_area(user)
 	user.visible_message("<span class='warning'>[user] squeezes the [src]!</span>", "<span class='userdanger'>You squeeze the [src]!</span>")
 	var/message = "[ADMIN_LOOKUPFLW(user)] primed a combustible lemon for detonation at [A] [ADMIN_COORDJMP(user)]"
@@ -116,10 +119,12 @@
 		var/mob/living/carbon/C = user
 		C.throw_mode_on()
 	icon_state = "firelemon_active"
+	isprimed = TRUE
 	playsound(loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
 	addtimer(CALLBACK(src, .proc/prime), rand(10, 60))
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/firelemon/burn()
+	isprimed = TRUE
 	prime()
 	..()
 
@@ -133,23 +138,23 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/firelemon/proc/prime()
 	switch(seed.potency) //Explosion size is proportional to potency.
-		if(0 to 30)
+		if(0 to 20)
+			update_mob()
+			explosion(src.loc,-1,-1,1, flame_range = -1)
+			qdel(src)
+		if(21 to 40)
 			update_mob()
 			explosion(src.loc,-1,-1,2, flame_range = 1)
 			qdel(src)
-		if(31 to 50)
+		if(41 to 60)
 			update_mob()
 			explosion(src.loc,-1,-1,3, flame_range = 2)
 			qdel(src)
-		if(51 to 70)
+		if(61 to 80)
 			update_mob()
-			explosion(src.loc,-1,-1,3, flame_range = 4)
+			explosion(src.loc,-1,1,3, flame_range = 2)
 			qdel(src)
-		if(71 to 90)
+		if(80 to 100)
 			update_mob()
-			explosion(src.loc,-1,1,3, flame_range = 5)
-			qdel(src)
-		if(91 to 100)
-			update_mob()
-			explosion(src.loc,1,1,4, flame_range = 6)
+			explosion(src.loc,-1,1,5, flame_range = 3)
 			qdel(src)
