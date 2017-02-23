@@ -319,8 +319,11 @@
 		R.max_amount = amount
 		R.display_color = pick("firebrick", "dodgerblue", "royalblue", "indianred", "mediumaquamarine", "mediumpurple", "forestgreen", "goldenrod", "chocolate", "olivedrab")
 		if(hidden)
+			LAZYADD(hidden_records, R)
 		else if(req_coin)
+			LAZYADD(coin_records, R)
 		else
+			LAZYADD(product_records, R)
 
 /obj/machinery/vending/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, \
 															datum/tgui/master_ui = null, datum/ui_state/state = physical_state)
