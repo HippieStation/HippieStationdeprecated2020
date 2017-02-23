@@ -632,7 +632,14 @@ var/next_mob_id = 0
 		return 0
 	return 1
 
-
+/proc/is_nearcrit(mob/living/M)
+	if(!ismonkey(M) && !ishuman(M))
+		return FALSE
+	if(M.health <= HEALTH_THRESHOLD_CRIT && M.health > HEALTH_THRESHOLD_DEEPCRIT)
+		return TRUE
+	else
+		return FALSE
+	
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 //Robots, animals and brains have their own version so don't worry about them
 /mob/proc/update_canmove()
@@ -657,7 +664,7 @@ var/next_mob_id = 0
 			fall()
 		else if(ko || (!has_legs && !ignore_legs) || chokehold)
 			fall(forced = 1)
-	canmove = !(ko || resting || stunned || chokehold || buckled || (!has_legs && !ignore_legs && !has_arms))
+	canmove = !((is_nearcrit(src) ? 0 : ko) || resting || stunned || chokehold || buckled || (!has_legs && !ignore_legs && !has_arms))
 	density = !lying
 	if(lying)
 		if(layer == initial(layer)) //to avoid special cases like hiding larvas.

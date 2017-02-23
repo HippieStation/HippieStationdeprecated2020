@@ -668,11 +668,16 @@
 		if(health<= HEALTH_THRESHOLD_DEAD || !getorgan(/obj/item/organ/brain))
 			death()
 			return
-		if(paralysis || sleeping || getOxyLoss() > 50 || (status_flags & FAKEDEATH) || health <= HEALTH_THRESHOLD_CRIT)
+		if(paralysis || sleeping || getOxyLoss() > 50 || (status_flags & FAKEDEATH) || health <= HEALTH_THRESHOLD_DEEPCRIT)
 			if(stat == CONSCIOUS)
 				stat = UNCONSCIOUS
 				blind_eyes(1)
 				update_canmove()
+		else if(health <= HEALTH_THRESHOLD_CRIT)
+			Weaken(3)
+			update_canmove()
+			if(prob(15))
+				INVOKE_ASYNC(src, .proc/emote, pick("moan", "cough", "groan", "whimper"))
 		else
 			if(stat == UNCONSCIOUS)
 				stat = CONSCIOUS
