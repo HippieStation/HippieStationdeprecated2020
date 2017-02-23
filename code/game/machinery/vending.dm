@@ -36,9 +36,9 @@
 
 	var/product_slogans = ""	//String of slogans separated by semicolons, optional
 	var/product_ads = ""		//String of small ad messages in the vending screen - random chance
-	var/list/product_records = list()
-	var/list/hidden_records = list()
-	var/list/coin_records = list()
+	var/list/product_records
+	var/list/hidden_records
+	var/list/coin_records
 	var/list/slogan_list = list()
 	var/list/small_ads = list()	//Small ad messages in the vending screen - random chance of popping up whenever you open it
 	var/vend_reply				//Thank you for shopping!
@@ -133,9 +133,12 @@
 
 /obj/machinery/vending/RefreshParts()         //Better would be to make constructable child
 	if(component_parts)
-		product_records = list()
-		hidden_records = list()
-		coin_records = list()
+		LAZYINITLIST(product_records)
+		LAZYINITLIST(hidden_records)
+		LAZYINITLIST(coin_records)
+		LAZYCLEARLIST(product_records)
+		LAZYCLEARLIST(hidden_records)
+		LAZYCLEARLIST(coin_records)
 		build_inventory(products, start_empty = 1)
 		build_inventory(contraband, 1, start_empty = 1)
 		build_inventory(premium, 0, 1, start_empty = 1)
@@ -300,6 +303,9 @@
 		return ..()
 
 /obj/machinery/vending/proc/build_inventory(list/productlist, hidden=0, req_coin=0, start_empty = null)
+	LAZYINITLIST(product_records)
+	LAZYINITLIST(hidden_records)
+	LAZYINITLIST(coin_records)
 	for(var/typepath in productlist)
 		var/amount = productlist[typepath]
 		if(isnull(amount))
@@ -313,11 +319,8 @@
 		R.max_amount = amount
 		R.display_color = pick("firebrick", "dodgerblue", "royalblue", "indianred", "mediumaquamarine", "mediumpurple", "forestgreen", "goldenrod", "chocolate", "olivedrab")
 		if(hidden)
-			hidden_records += R
 		else if(req_coin)
-			coin_records += R
 		else
-			product_records += R
 
 /obj/machinery/vending/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, \
 															datum/tgui/master_ui = null, datum/ui_state/state = physical_state)
