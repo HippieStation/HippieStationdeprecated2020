@@ -1,0 +1,6 @@
+author: "Tortellini Tony"
+delete-after: True
+changes: 
+  - rscadd: "Ported vending machines to tgui."
+  - bugfix: "Removed access restrictions from Liberation Stations.
+imgadd: New vending machine icons."
