@@ -18,7 +18,10 @@
 			. += 6 - 3*get_num_arms() //crawling is harder with fewer arms
 		if(legcuffed)
 			. += legcuffed.slowdown
-
+	if(lying)
+		. += 10
+		if(is_nearcrit(src))
+			. += 20
 
 var/const/NO_SLIP_WHEN_WALKING = 1
 var/const/SLIDE = 2

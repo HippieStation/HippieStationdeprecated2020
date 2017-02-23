@@ -160,7 +160,15 @@
 	//We are now going to move
 	moving = 1
 	move_delay = mob.movement_delay() + world.time
-
+	if(isliving(mob))
+		var/mob/living/L = mob
+		if(is_nearcrit(L))
+			L.visible_message("<span class='danger'>[L] crawls forward!</span>",
+			"<span class='userdanger'>You crawl forward at the expense of some of your strength.</span>")
+			L.apply_damage(1, OXY) //FUck having variables for different types!
+			playsound(L.loc, pick('sound/hippie/effects/bodyscrape-01.ogg', 'sound/hippie/effects/bodyscrape-02.ogg'), 20, 1, -4)
+		if(L.lying && !is_nearcrit(L))
+			playsound(L.loc, pick('sound/hippie/effects/bodyscrape-01.ogg', 'sound/hippie/effects/bodyscrape-02.ogg'), 20, 1, -4) //gives legless people that juicy-ass crawl noise
 	if(mob.confused)
 		if(mob.confused > 40)
 			step(mob, pick(cardinal))

@@ -42,6 +42,7 @@
 
 //Health Defines
 #define HEALTH_THRESHOLD_CRIT 0
+#define HEALTH_THRESHOLD_DEEPCRIT -50
 #define HEALTH_THRESHOLD_DEAD -100
 
 //Actual combat defines
