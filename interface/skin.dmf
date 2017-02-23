@@ -490,12 +490,12 @@ macro "hotkeys"
 		command = ".screenshot"
 		is-disabled = false
 	elem 
-		name = "F4"
-		command = "msay"
-		is-disabled = false
-	elem 
 		name = "F3"
 		command = "asay"
+		is-disabled = false
+	elem 
+		name = "F4"
+		command = "msay"
 		is-disabled = false
 	elem 
 		name = "F5"
@@ -680,12 +680,12 @@ macro "robot-default"
 		command = ".screenshot"
 		is-disabled = false
 	elem 
-		name = "F4"
-		command = "msay"
-		is-disabled = false
-	elem 
 		name = "F3"
 		command = "asay"
+		is-disabled = false
+	elem 
+		name = "F4"
+		command = "msay"
 		is-disabled = false
 	elem 
 		name = "F5"
@@ -946,12 +946,12 @@ macro "robot-hotkeys"
 		command = ".screenshot"
 		is-disabled = false
 	elem 
-		name = "F4"
-		command = "msay"
-		is-disabled = false
-	elem 
 		name = "F3"
 		command = "asay"
+		is-disabled = false
+	elem 
+		name = "F4"
+		command = "msay"
 		is-disabled = false
 	elem 
 		name = "F5"
