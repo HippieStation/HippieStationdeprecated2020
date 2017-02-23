@@ -1,0 +1,5 @@
+author: "Tortellini Tony"
+delete-after: True
+changes: 
+  - bugfix: "Fixed cluwnes and the curse of cluwne."
+  - bugfix: "Fixed vape."
