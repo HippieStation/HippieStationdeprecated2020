@@ -187,6 +187,10 @@ macro "default"
 		name = "F5"
 		command = "Aghost"
 		is-disabled = false
+	elem 
+		name = "F4"
+		command = "msay"
+		is-disabled = false
 	elem
 		name = "F3"
 		command = "asay"
@@ -490,6 +494,10 @@ macro "hotkeys"
 		command = "asay"
 		is-disabled = false
 	elem 
+		name = "F4"
+		command = "msay"
+		is-disabled = false
+	elem 
 		name = "F5"
 		command = "Aghost"
 		is-disabled = false
@@ -674,6 +682,10 @@ macro "robot-default"
 	elem 
 		name = "F3"
 		command = "asay"
+		is-disabled = false
+	elem 
+		name = "F4"
+		command = "msay"
 		is-disabled = false
 	elem 
 		name = "F5"
@@ -936,6 +948,10 @@ macro "robot-hotkeys"
 	elem 
 		name = "F3"
 		command = "asay"
+		is-disabled = false
+	elem 
+		name = "F4"
+		command = "msay"
 		is-disabled = false
 	elem 
 		name = "F5"
