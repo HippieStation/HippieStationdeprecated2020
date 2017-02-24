@@ -1,0 +1,4 @@
+author: "cacogen"
+delete-after: True
+changes: 
+  - rscadd: "Added toggleable robustness scanner to science goggles to see clothing armour values on examine"

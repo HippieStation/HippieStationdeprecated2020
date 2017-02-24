@@ -72,8 +72,8 @@ var/list/airlock_overlays = list()
 	var/obj/item/device/doorCharge/charge = null //If applied, causes an explosion upon opening the door
 	var/detonated = 0
 	var/doorOpen = 'sound/machines/airlock.ogg'
-	var/doorClose = 'sound/machines/AirlockClose.ogg'
-	var/doorDeni = 'sound/machines/DeniedBeep.ogg' // i'm thinkin' Deni's
+	var/doorClose = 'sound/machines/airlock.ogg'
+	var/doorDeni = 'sound/machines/denied.ogg'
 	var/boltUp = 'sound/machines/BoltsUp.ogg'
 	var/boltDown = 'sound/machines/BoltsDown.ogg'
 	var/noPower = 'sound/machines/DoorClick.ogg'
@@ -274,7 +274,7 @@ var/list/airlock_overlays = list()
 			var/cont = 1
 			while (cont)
 				sleep(10)
-				if(qdeleted(src))
+				if(QDELETED(src))
 					return
 				cont = 0
 				if(secondsMainPowerLost>0)
@@ -1404,7 +1404,7 @@ var/list/airlock_overlays = list()
 		operating = 1
 		update_icon(AIRLOCK_EMAG, 1)
 		sleep(6)
-		if(qdeleted(src))
+		if(QDELETED(src))
 			return
 		operating = 0
 		if(!open())

@@ -45,15 +45,17 @@
 	icon_state = "speedwagon"
 	layer = LYING_MOB_LAYER
 	overlay_state = "speedwagon_cover"
+	var/dealsdamage = FALSE
 
 /obj/vehicle/space/speedbike/speedwagon/Bump(mob/living/A)
 	. = ..()
 	if(A.density && has_buckled_mobs() && (istype(A, /mob/living/carbon/human) && has_buckled_mobs()))
 		var/atom/throw_target = get_edge_target_turf(A, pick(cardinal))
 		A.throw_at(throw_target, 4, 3)
-		A.Weaken(5)
-		A.adjustStaminaLoss(30)
-		A.apply_damage(rand(20,35), BRUTE)
+		A.Weaken(3)
+		A.adjustStaminaLoss(5)
+		if(dealsdamage)
+			A.apply_damage(rand(20,35), damtype)
 		visible_message("<span class='danger'>[src] crashes into [A]!</span>")
 		playsound(src, 'sound/effects/bang.ogg', 50, 1)
 

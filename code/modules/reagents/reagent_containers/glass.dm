@@ -52,7 +52,7 @@
 /obj/item/weapon/reagent_containers/glass/afterattack(obj/target, mob/user, proximity)
 	if((!proximity) || !check_allowed_items(target,target_self=1)) return
 
-	else if(istype(target, /obj/structure/reagent_dispensers)) //A dispenser. Transfer FROM it TO us.
+	else if(istype(target, /obj/structure/reagent_dispensers) && !target.is_open_container()) //A dispenser. Transfer FROM it TO us.
 
 		if(target.reagents && !target.reagents.total_volume)
 			user << "<span class='warning'>[target] is empty and can't be refilled!</span>"

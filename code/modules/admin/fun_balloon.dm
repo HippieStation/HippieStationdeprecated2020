@@ -15,7 +15,7 @@
 	. = ..()
 
 /obj/effect/fun_balloon/process()
-	if(!popped && check() && !qdeleted(src))
+	if(!popped && check() && !QDELETED(src))
 		popped = TRUE
 		effect()
 		pop()
@@ -99,44 +99,6 @@
 			break
 	qdel(src)
 
-
-//Luxury Shuttle Blockers
-
-/obj/effect/forcefield/luxury_shuttle
-	var/threshhold = 500
-	var/list/approved_passengers = list()
-
-/obj/effect/forcefield/luxury_shuttle/CanPass(atom/movable/mover, turf/target, height=0)
-	if(mover in approved_passengers)
-		return 1
-
-	if(!isliving(mover)) //No stowaways
-		return 0
-
-	var/total_cash = 0
-	var/list/counted_money = list()
-
-	for(var/obj/item/weapon/coin/C in mover)
-		total_cash += C.value
-		counted_money += C
-		if(total_cash >= threshhold)
-			break
-	for(var/obj/item/stack/spacecash/S in mover)
-		total_cash += S.value * S.amount
-		counted_money += S
-		if(total_cash >= threshhold)
-			break
-
-	if(total_cash >= threshhold)
-		for(var/obj/I in counted_money)
-			qdel(I)
-
-		mover << "Thank you for your payment! Please enjoy your flight."
-		approved_passengers += mover
-		return 1
-	else
-		mover << "You don't have enough money to enter the main shuttle. You'll have to fly coach."
-		return 0
 
 //Shuttle Build
 

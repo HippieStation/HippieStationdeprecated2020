@@ -19,3 +19,14 @@
 	for(var/X in C.bodyparts)
 		var/obj/item/bodypart/O = X
 		O.change_bodypart_status(BODYPART_ORGANIC)
+
+/datum/species/android/playable
+	name = "Mechanized Sentience"
+	id = "mecha"
+	say_mod = "states"
+	species_traits = list(EYECOLOR,NOBREATH,NOBLOOD,EASYLIMBATTACHMENT)
+	blacklisted = 0
+	sexes = 0
+	damage_overlay_type = "synth"
+	mutant_organs = list(/obj/item/organ/tongue/robot)
+	limbs_id = "synth"

@@ -419,7 +419,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	powernet.remove_cable(src) //remove the cut cable from its powernet
 
 	spawn(0) //so we don't rebuild the network X times when singulo/explosion destroys a line of X cables
-		if(O && !qdeleted(O))
+		if(O && !QDELETED(O))
 			var/datum/powernet/newPN = new()// creates a new powernet...
 			propagate_network(O, newPN)//... and propagates it to the other side of the cable
 
@@ -440,6 +440,27 @@ By design, d1 is the smallest direction and d2 is the highest
 var/global/list/datum/stack_recipe/cable_coil_recipes = list ( \
 	new/datum/stack_recipe("cable restraints", /obj/item/weapon/restraints/handcuffs/cable, 15), \
 	)
+
+/obj/item/stack/cable_coil/proc/makeRestraints(mob/user)
+	if(ishuman(user) && !user.restrained() && !user.stat && user.canmove)
+		if(!istype(user.loc,/turf))
+			return
+		if(src.amount <= 14)
+			usr << "<span class='danger'>You need at least 15 lengths to make restraints!</span>"
+			return
+		var/obj/item/weapon/restraints/handcuffs/cable/B = new /obj/item/weapon/restraints/handcuffs/cable(user.loc)
+		B.icon_state = "cuff_[item_color]"
+		user.put_in_hands(B)
+		user << "<span class='notice'>You wind some cable together to make some restraints.</span>"
+		src.use(15)
+	else
+		user << "<span class='notice'>You cannot do that.</span>"
+
+/obj/item/stack/cable_coil/verb/make_restraint()
+	set name = "Make Cable Restraints"
+	set category = "Object"
+	makeRestraints(usr)
+	..()
 
 /obj/item/stack/cable_coil
 	name = "cable coil"

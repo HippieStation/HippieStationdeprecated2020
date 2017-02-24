@@ -244,6 +244,10 @@
 	var/minutetopiclimit
 	var/secondtopiclimit
 
+	// Discord crap.
+	var/discord_url
+	var/discord_password
+
 /datum/configuration/New()
 	gamemode_cache = typecacheof(/datum/game_mode,TRUE)
 	for(var/T in gamemode_cache)
@@ -502,6 +506,10 @@
 					config.mentors_mobname_only = 1
 				if ("mentor_legacy_system")
 					config.mentor_legacy_system = 1
+				if("discord_url")
+					discord_url = value
+				if("discord_password")
+					discord_password = value
 				else
 					diary << "Unknown setting in configuration: '[name]'"
 

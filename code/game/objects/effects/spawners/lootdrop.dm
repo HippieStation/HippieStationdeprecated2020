@@ -107,6 +107,8 @@
 				/obj/item/stack/rods{amount = 10} = 9,
 				/obj/item/stack/rods{amount = 23} = 1,
 				/obj/item/stack/rods{amount = 50} = 1,
+				/obj/item/stack/ducttape{amount = 5} = 6,
+				/obj/item/stack/ducttape{amount = 10} = 2,
 				/obj/item/stack/sheet/cardboard = 2,
 				/obj/item/stack/sheet/metal{amount = 20} = 1,
 				/obj/item/stack/sheet/mineral/plasma = 1,
@@ -134,6 +136,7 @@
 				/obj/item/weapon/storage/box/donkpockets = 1,
 				/obj/item/weapon/storage/box/lights/mixed = 3,
 				/obj/item/weapon/storage/box/hug/medical = 1,
+				/obj/item/weapon/storage/daki = 3,
 				/obj/item/weapon/storage/fancy/cigarettes/dromedaryco = 1,
 				/obj/item/weapon/storage/toolbox/mechanical = 1,
 				/obj/item/weapon/screwdriver = 3,
@@ -159,6 +162,7 @@
 				/obj/item/weapon/storage/secure/briefcase = 3,
 				/obj/item/weapon/staplegun = 3,
 				/obj/item/clothing/under/cosby = 3,
+				/obj/item/weapon/storage/inflatable = 2,
 				"" = 3
 				)
 

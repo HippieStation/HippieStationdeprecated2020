@@ -151,9 +151,9 @@
 	return ..()
 
 /mob/living/carbon/human/proc/try_to_embed(obj/item/I, obj/item/bodypart/L, force = 0)
-	if((I.throw_speed >= EMBED_THROWSPEED_THRESHOLD) || I.embedded_ignore_throwspeed_threshold || force)
-		if(can_embed(I) || force)
-			if((prob(I.embed_chance) && !(dna && (PIERCEIMMUNE in dna.species.species_traits))) || force)
+	if((I.throw_speed >= EMBED_THROWSPEED_THRESHOLD) || I.embedded_ignore_throwspeed_threshold || force || I.assthrown)
+		if(can_embed(I) || force || I.assthrown)
+			if((prob(I.embed_chance) && !(dna && (PIERCEIMMUNE in dna.species.species_traits))) || force || I.assthrown)
 				throw_alert("embeddedobject", /obj/screen/alert/embeddedobject)
 				if(!L)
 					L = pick(bodyparts)
@@ -168,11 +168,14 @@
 		var/obj/item/organ/internal/butt/B = getorgan(/obj/item/organ/internal/butt)
 		if(!w_uniform)
 			if(B && B.inv)
-				var/obj/item/weapon/storage/internal/pocket/butt/pocket = B.inv
+//				var/obj/item/weapon/storage/internal/pocket/butt/pocket = B.inv
 				user.visible_message("<span class='warning'>[user] starts inspecting [user == src ? "his own" : "[src]'s"] ass!</span>", "<span class='warning'>You start inspecting [user == src ? "your" : "[src]'s"] ass!</span>")
 				if(do_mob(user, src, 40))
 					user.visible_message("<span class='warning'>[user] inspects [user == src ? "his own" : "[src]'s"] ass!</span>", "<span class='warning'>You inspect [user == src ? "your" : "[src]'s"] ass!</span>")
-					pocket.show_to(user)
+					if (user.s_active)
+						user.s_active.close(user)
+					B.inv.orient2hud(user)
+					B.inv.show_to(user)
 					return 0
 				else
 					user.visible_message("<span class='warning'>[user] fails to inspect [user == src ? "his own" : "[src]'s"] ass!</span>", "<span class='warning'>You fail to inspect [user == src ? "your" : "[src]'s"] ass!</span>")

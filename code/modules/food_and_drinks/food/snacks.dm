@@ -33,10 +33,33 @@
 /obj/item/weapon/reagent_containers/food/snacks/attack_self(mob/user)
 	return
 
+/obj/item/weapon/reagent_containers/food/snacks/process()
+	if(!istype(loc, /obj/item/weapon/storage/internal/pocket/butt))
+		STOP_PROCESSING(SSobj, src)
+		return
+	var/obj/item/weapon/storage/internal/pocket/butt/inv = loc
+	var/obj/item/organ/internal/butt/B = inv.loc
+	if(!B.owner)
+		STOP_PROCESSING(SSobj, src)
+		return
+	if(reagents.total_volume)
+		sleep(10)
+		reagents.trans_to(B.owner, 1)
+	else
+		STOP_PROCESSING(SSobj, src)
+		qdel(src)
 
 /obj/item/weapon/reagent_containers/food/snacks/attack(mob/M, mob/user, def_zone)
 	if(user.a_intent == INTENT_HARM)
 		return ..()
+	if(user.zone_selected == "groin" && user.a_intent == "grab")
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			var/datum/species/S = H.dna.species
+			if(S.spec_attacked_by(src, user, H = M) == 2)
+				START_PROCESSING(SSobj, src)
+			return
+
 	if(!eatverb)
 		eatverb = pick("bite","chew","nibble","gnaw","gobble","chomp")
 	if(!reagents.total_volume)						//Shouldn't be needed but it checks to see if it has anything left in it.

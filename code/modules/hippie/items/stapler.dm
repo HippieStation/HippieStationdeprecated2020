@@ -175,3 +175,74 @@
 				user << "<span class='notice'>There is already a butt in \the [src]!</span>"
 		else
 			user << "<span class='notice'>There is already a paper in \the [src]!</span>"
+
+//coffin nailing for stapler instead of welding
+/obj/structure/closet/coffin/update_icon()
+	overlays.Cut()
+	if(!opened)
+		if(icon_door)
+			overlays += "[icon_door]_door"
+		else
+			overlays += "[icon_state]_door"
+		if(welded)
+			overlays += "nailed"
+		if(secure)
+			if(!broken)
+				if(locked)
+					overlays += "locked"
+				else
+					overlays += "unlocked"
+			else
+				overlays += "off"
+
+	else
+		if(icon_door_override)
+			overlays += "[icon_door]_open"
+		else
+			overlays += "[icon_state]_open"
+
+/obj/structure/closet/coffin/attackby(obj/item/weapon/W, mob/user, params)
+	if(user in src)
+		return
+	if(opened)
+		if(user.drop_item())
+			W.forceMove(loc)
+			return 1
+	else if(istype(W, /obj/item/weapon/staplegun) && !welded)
+		var/obj/item/weapon/staplegun/WS = W
+		if(WS.ammo >= 10)
+			user << "<span class='notice'>You begin stapling \the [src]...</span>"
+			playsound(loc, 'sound/weapons/staplegun.ogg', 50, 1)
+			if(do_after(user,40,5,1, target = src))
+				if(opened || !istype(src, /obj/structure/closet) || !user || !WS || !user.loc )
+					return
+				playsound(loc, 'sound/weapons/staplegun.ogg', 50, 1)
+				welded = 1
+				user << "<span class='notice'>You staple [src] shut.</span>"
+				update_icon()
+				user.visible_message("[user.name] has stapled [src] shut with \the [WS].", "<span class='warning'>You staple [src] shut.</span>")
+				WS.ammo = WS.ammo-10
+			return
+	else if(istype(W, /obj/item/weapon/crowbar) && welded)
+		user << "<span class='notice'>You begin prying out staples from \the [src]...</span>"
+		playsound(loc, 'sound/items/crowbar.ogg', 50, 1)
+		if(do_after(user,80,5,1, target = src))
+			if(opened || !istype(src, /obj/structure/closet) || !user || !W || !user.loc )
+				return
+			playsound(loc, 'sound/items/crowbar.ogg', 50, 1)
+			welded = 0
+			user << "<span class='notice'>You pry off the staples keeping [src] shut.</span>"
+			update_icon()
+			user.visible_message("[user.name] has pried out the staples keeping [src] shut.", "<span class='warning'>You pry out staples keeping [src] shut.</span>")
+			for(var/i = 1; i <= 9; i++)
+				new/obj/item/stack/staples(src.loc)
+			return
+
+	else if(istype(W, /obj/item/weapon/wrench))
+		if(isinspace() && !anchored)
+			return
+		anchored = !anchored
+		playsound(src.loc, W.usesound, 75, 1)
+		user.visible_message("<span class='notice'>[user] [anchored ? "anchored" : "unanchored"] \the [src] [anchored ? "to" : "from"] the ground.</span>", \
+					"<span class='notice'>You [anchored ? "anchored" : "unanchored"] \the [src] [anchored ? "to" : "from"] the ground.</span>", \
+					"<span class='italics'>You hear a ratchet.</span>")

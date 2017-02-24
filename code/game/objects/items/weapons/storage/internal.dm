@@ -84,6 +84,8 @@
 			if(H.w_uniform)
 				user << "<span class='danger'>Remove the jumpsuit first!</span>"
 				return
+		if(istype(W, /obj/item/weapon/reagent_containers/pill) || istype(W, /obj/item/weapon/reagent_containers/food))
+			START_PROCESSING(SSobj, W)
 	. = ..()
 
 /obj/item/weapon/storage/internal/pocket/butt/Adjacent(A)
@@ -92,10 +94,3 @@
 		if(B.owner)
 			var/mob/guy = B.owner
 			return guy.Adjacent(A)
-
-/obj/item/weapon/storage/internal/pocket/butt/xeno
-	storage_slots = 3
-
-/obj/item/weapon/storage/internal/pocket/butt/bluespace
-	storage_slots = 4
-	max_w_class = 3

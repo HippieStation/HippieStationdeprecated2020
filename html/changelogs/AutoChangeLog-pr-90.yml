@@ -1,0 +1,4 @@
+author: "Skeleton patch"
+delete-after: True
+changes: 
+  - tweak: "Skeletons can no longer breathe in space"

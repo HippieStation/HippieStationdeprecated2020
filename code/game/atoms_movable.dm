@@ -2,7 +2,7 @@
 	layer = OBJ_LAYER
 	var/last_move = null
 	var/anchored = 0
-	var/throwing = 0
+	var/datum/thrownthing/throwing = null
 	var/throw_speed = 2 //How many tiles to move per ds when being thrown. Float values are fully supported
 	var/throw_range = 7
 	var/mob/pulledby = null
@@ -25,8 +25,11 @@
 	appearance_flags = TILE_BOUND
 	var/datum/forced_movement/force_moving = null	//handled soley by forced_movement.dm
 
-
-
+/atom/movable/SDQL_update(const/var_name, new_value)
+	if(var_name == "step_x" || var_name == "step_y" || var_name == "step_size" || var_name == "bound_x" || var_name == "bound_y" || var_name == "bound_width" || var_name == "bound_height")
+		return FALSE	//PLEASE no.
+	. = ..()
+		
 /atom/movable/Move(atom/newloc, direct = 0)
 	if(!loc || !newloc) return 0
 	var/atom/oldloc = loc
@@ -127,19 +130,16 @@
 /atom/movable/Bump(atom/A, yes) //the "yes" arg is to differentiate our Bump proc from byond's, without it every Bump() call would become a double Bump().
 	if((A && yes))
 		if(throwing)
-			throwing = 0
-			throw_impact(A)
+			throwing.hit_atom(A)
 			. = 1
-			if(!A || qdeleted(A))
+			if(!A || QDELETED(A))
 				return
 		A.Bumped(src)
-
 
 /atom/movable/proc/forceMove(atom/destination)
 	if(destination)
 		if(pulledby)
 			pulledby.stop_pulling()
-
 		var/atom/oldloc = loc
 		var/same_loc = oldloc == destination
 		var/area/old_area = get_area(oldloc)
@@ -157,10 +157,10 @@
 			if(destarea && old_area != destarea)
 				destarea.Entered(src, oldloc)
 
-		for(var/atom/movable/AM in destination)
-			if(AM == src)
-				continue
-			AM.Crossed(src)
+			for(var/atom/movable/AM in destination)
+				if(AM == src)
+					continue
+				AM.Crossed(src)
 
 		Moved(oldloc, 0)
 		return 1
@@ -219,7 +219,7 @@
 /atom/movable/proc/checkpass(passflag)
 	return pass_flags&passflag
 
-/atom/movable/proc/throw_impact(atom/hit_atom)
+/atom/movable/proc/throw_impact(atom/hit_atom, throwingdatum)
 	return hit_atom.hitby(src)
 
 /atom/movable/hitby(atom/movable/AM, skipcatch, hitpush = 1, blocked)
@@ -294,7 +294,7 @@
 	if(pulledby)
 		pulledby.stop_pulling()
 
-	throwing = 1
+	throwing = TT
 	if(spin)
 		SpinAnimation(5, 1)
 
@@ -366,8 +366,8 @@
 	else if(direction & WEST)
 		pixel_x_diff = -8
 
-	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2)
-	animate(pixel_x = initial(pixel_x), pixel_y = final_pixel_y, time = 2)
+	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2, easing = CUBIC_EASING)
+	animate(pixel_x = initial(pixel_x), pixel_y = final_pixel_y, time = 2, easing = CUBIC_EASING)
 
 /atom/movable/proc/do_item_attack_animation(atom/A, visual_effect_icon, obj/item/used_item)
 	var/image/I
@@ -402,7 +402,7 @@
 	flick_overlay(I, clients, 5) // 5 ticks/half a second
 
 	// And animate the attack!
-	animate(I, alpha = 175, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3)
+	animate(I, alpha = 175, pixel_x = 0, pixel_y = 0, pixel_z = 0, time = 3, easing = QUAD_EASING)
 
 /atom/movable/vv_get_dropdown()
 	. = ..()

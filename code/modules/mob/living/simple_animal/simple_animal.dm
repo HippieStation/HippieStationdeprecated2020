@@ -304,18 +304,17 @@
 		else if(!del_on_death)
 			visible_message("<span class='danger'>\The [src] stops moving...</span>")
 	if(del_on_death)
-		ghostize()
+		..()
 		//Prevent infinite loops if the mob Destroy() is overriden in such
 		//a manner as to cause a call to death() again
 		del_on_death = FALSE
 		qdel(src)
-		return
 	else
 		health = 0
 		icon_state = icon_dead
 		density = 0
 		lying = 1
-	..()
+		..()
 
 /mob/living/simple_animal/proc/CanAttack(atom/the_target)
 	if(see_invisible < the_target.invisibility)

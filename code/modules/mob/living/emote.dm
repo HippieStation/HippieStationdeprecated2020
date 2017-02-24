@@ -75,13 +75,14 @@
 	message = "coughs!"
 	emote_type = EMOTE_AUDIBLE
 
-/datum/emote/living/cough/run_emote(mob/user, params)
+/datum/emote/living/cough/run_emote(mob/living/user, params)
 	. = ..()
 	if(. && ishuman(user))
 		var/coughsound = pick('sound/misc/cough1.ogg', 'sound/misc/cough2.ogg', 'sound/misc/cough3.ogg', 'sound/misc/cough4.ogg')
 		if(user.gender == FEMALE)
 			coughsound = pick('sound/misc/cough_f1.ogg', 'sound/misc/cough_f2.ogg', 'sound/misc/cough_f3.ogg')
 		playsound(user.loc, coughsound, 50, 1, 5)
+		user.adjustOxyLoss(5)
 
 /datum/emote/living/dance
 	key = "dance"
@@ -273,6 +274,8 @@
 					S.cell.use(100)
 			if(isAI(user))
 				sound = 'sound/voice/screamsilicon.ogg'
+			if(ismonkey(user))
+				sound = 'sound/misc/monkey_scream.ogg'
 			if(ishuman(user))
 				sound = pick('sound/misc/scream_m1.ogg', 'sound/misc/scream_m2.ogg')
 				if(is_species(user, /datum/species/android) || is_species(user, /datum/species/synth))
@@ -295,11 +298,11 @@
 			if(!issilicon(user))
 				user.adjustOxyLoss(5)
 			playsound(user.loc, sound, 50, 1, 4, 1.2)
-			message = "<B>[user]</B> screams!"
+			message = "screams!"
 		else if(user.mind.miming)
-			message = "<B>[user]</B> acts out a scream."
+			message = "acts out a scream."
 		else
-			message = "<B>[user]</B> makes a very loud noise."
+			message = "makes a very loud noise."
 		. = ..()
 		screamdown = TRUE
 		spawn(7)
@@ -511,3 +514,15 @@
 	message = "beeps."
 	message_param = "beeps at %t."
 	sound = 'sound/machines/twobeep.ogg'
+
+/datum/emote/living/spin
+	key = "spin"
+	key_third_person = "spins"
+	message = "spins around dizzily!"
+
+/datum/emote/living/spin/run_emote(mob/user)
+	user.spin(20, 1)
+	if(istype(user, /mob/living/silicon/robot))
+		var/mob/living/silicon/robot/R = user
+		R.riding_datum.force_dismount()
+	..()

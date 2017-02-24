@@ -1,0 +1,5 @@
+author: "Pyko kills the wubwubwub"
+delete-after: True
+changes: 
+  - tweak: "Changed the airlock close and denied sounds to the old ones."
+  - bugfix: "Clown door now honks on close as well."

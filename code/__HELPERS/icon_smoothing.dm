@@ -116,7 +116,7 @@
 	A.smooth &= ~SMOOTH_QUEUED
 	if (!A.z)
 		return
-	if(qdeleted(A))
+	if(QDELETED(A))
 		return
 	if((A.smooth & SMOOTH_TRUE) || (A.smooth & SMOOTH_MORE))
 		var/adjacencies = calculate_adjacencies(A)

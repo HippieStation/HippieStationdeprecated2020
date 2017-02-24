@@ -26,9 +26,10 @@
 /datum/emote/living/carbon/human/fart
 	key = "fart"
 	key_third_person = "farts"
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/carbon/human/fart/run_emote(mob/user, params)
+	var/fartsound = 'sound/misc/fart.ogg'
+	var/bloodkind = /obj/effect/decal/cleanable/blood
 	message = null
 	if(user.stat != CONSCIOUS)
 		return
@@ -36,7 +37,7 @@
 	if(!B)
 		user << "\red You don't have a butt!"
 		return
-	var/lose_butt = prob(22)
+	var/lose_butt = prob(12)
 	for(var/mob/living/M in get_turf(user))
 		if(M == user)
 			continue
@@ -56,58 +57,64 @@
 			"farts and pretends nothing happened.",
 			"is a <b>farting</b> motherfucker!",
 			"<B><font color='red'>f</font><font color='blue'>a</font><font color='red'>r</font><font color='blue'>t</font><font color='red'>s</font></B>")
+	if(istype(user,/mob/living/carbon/alien))
+		fartsound = 'sound/misc/alienfart.ogg'
+		bloodkind = /obj/effect/decal/cleanable/xenoblood
 	spawn(0)
 		var/obj/item/weapon/storage/book/bible/Y = locate() in get_turf(user.loc)
 		if(istype(Y))
 			playsound(Y,'sound/effects/thunder.ogg', 90, 1)
 			spawn(10)
 				user.gib()
-		if(B.contents.len)
-			var/obj/item/O = pick(B.contents)
-			var/turf/location = get_turf(B)
+		var/obj/item/weapon/storage/internal/pocket/butt/theinv = B.inv
+		if(theinv.contents.len)
+			var/obj/item/O = pick(theinv.contents)
 			if(istype(O, /obj/item/weapon/lighter))
 				var/obj/item/weapon/lighter/G = O
-				if(G.lit && location)
-					new/obj/effect/hotspot(location)
-					playsound(user, 'sound/misc/fart.ogg', 50, 1, 5)
+				if(G.lit && user.loc)
+					new/obj/effect/hotspot(user.loc)
+					playsound(user, fartsound, 50, 1, 5)
 			else if(istype(O, /obj/item/weapon/weldingtool))
 				var/obj/item/weapon/weldingtool/J = O
-				if(J.welding == 1 && location)
-					new/obj/effect/hotspot(location)
-					playsound(user, 'sound/misc/fart.ogg', 50, 1, 5)
-			else if(istype(O, /obj/item/weapon/bikehorn) || istype(O, /obj/item/weapon/bikehorn/rubberducky))
-				playsound(user, 'sound/items/bikehorn.ogg', 50, 1, 5)
+				if(J.welding == 1 && user.loc)
+					new/obj/effect/hotspot(user.loc)
+					playsound(user, fartsound, 50, 1, 5)
+			else if(istype(O, /obj/item/weapon/bikehorn))
+				for(var/obj/item/weapon/bikehorn/Q in theinv.contents)
+					playsound(Q, pick(Q.honksound), 50, 1, 5)
+				message = "<span class='clown'>farts.</span>"
 			else if(istype(O, /obj/item/device/megaphone))
+				message = "<span class='reallybig'>farts.</span>"
 				playsound(user, 'sound/misc/fartmassive.ogg', 75, 1, 5)
 			else
-				playsound(user, 'sound/misc/fart.ogg', 50, 1, 5)
+				playsound(user, fartsound, 50, 1, 5)
 			if(prob(33))
-				O.loc = get_turf(user)
-				B.contents -= O
-				B.stored -= O.itemstorevalue
+				theinv.remove_from_storage(O, user.loc)
 		else
-			playsound(user, 'sound/misc/fart.ogg', 50, 1, 5)
+			playsound(user, fartsound, 50, 1, 5)
 		sleep(1)
 		if(lose_butt)
-			for(var/obj/item/O in B.contents)
-				O.loc = get_turf(user)
-				B.contents -= O
-				B.stored -= O.itemstorevalue
-			B.Remove(user)
+			for(var/obj/item/I in theinv.contents)
+				theinv.remove_from_storage(I, user.loc)
 			B.loc = get_turf(user)
-			new /obj/effect/decal/cleanable/blood(user.loc)
+			B.Remove(user)
+			new bloodkind(user.loc)
 			user.nutrition -= rand(5, 20)
 			user.visible_message("\red <b>[user]</b> blows their ass off!", "\red Holy shit, your butt flies off in an arc!")
 		else
 			user.nutrition -= rand(2, 10)
-	..()
+		..()
+		if(!ishuman(user)) //nonhumans don't have the message appear for some reason
+			user.visible_message("<b>[user]</b> [message]")
 
 /datum/emote/living/carbon/human/superfart
 	key = "superfart"
 	key_third_person = "superfarts"
-	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/carbon/human/superfart/run_emote(mob/user, params)
+	if(!ishuman(user))
+		user << "<span class='warning'>You lack that ability!</span>"
+		return
 	var/obj/item/organ/internal/butt/B = user.getorgan(/obj/item/organ/internal/butt)
 	if(!B)
 		user << "<span class='danger'>You don't have a butt!</span>"
@@ -116,11 +123,6 @@
 		user << "<span class='danger'>Your butt's too loose to superfart!</span>"
 		return
 	B.loose = 1 // to avoid spamsuperfart
-	if(B.contents.len)
-		for(var/obj/item/O in B.contents)
-			O.loc = get_turf(user)
-			B.contents -= O
-			B.stored -= O.itemstorevalue
 	var/fart_type = 1 //Put this outside probability check just in case. There were cases where superfart did a normal fart.
 	if(prob(76)) // 76%     1: ASSBLAST  2:SUPERNOVA  3: FARTFLY
 		fart_type = 1
@@ -147,10 +149,10 @@
 			playsound(user, 'sound/misc/fart.ogg', 50, 1, 5)
 			sleep(1)
 		playsound(user, 'sound/misc/fartmassive.ogg', 75, 1, 5)
-		var/obj/item/weapon/storage/internal/pocket/P = B.inv
-		if(P.contents.len)
-			for(var/obj/item/O in P.contents)
-				P.remove_from_storage(O, get_turf(user))
+		var/obj/item/weapon/storage/internal/pocket/butt/theinv = B.inv
+		if(theinv.contents.len)
+			for(var/obj/item/O in theinv.contents)
+				theinv.remove_from_storage(O, user.loc)
 				O.throw_range = 7//will be reset on hit
 				O.assthrown = 1
 				var/turf/target = get_turf(O)

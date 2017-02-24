@@ -37,7 +37,7 @@
 		return
 
 	if (t)
-		src.name = "data disk- '[t]'"
+		src.name = sanitize("data disk- '[t]'")
 	else
 		src.name = "data disk"
 	src.add_fingerprint(usr)
@@ -194,6 +194,18 @@ update_label("John Doe", "Clowny")
 /obj/item/weapon/card/id/captains_spare/New()
 	var/datum/job/captain/J = new/datum/job/captain
 	access = J.get_access()
+	..()
+
+
+/obj/item/weapon/card/id/admin
+	name = "Admin ID"
+	desc = "How the hell did you get this?"
+	icon_state = "admin"
+	registered_name = "Admin"
+	assignment = "General"
+
+/obj/item/weapon/card/id/admin/New()
+	access = get_all_accesses()+get_all_centcom_access()+get_all_syndicate_access()+get_ert_access("commander")
 	..()
 
 /obj/item/weapon/card/id/centcom

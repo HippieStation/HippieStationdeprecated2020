@@ -187,6 +187,112 @@ var/global/image/fire_overlay = image("icon" = 'icons/effects/fire.dmi', "icon_s
 		msg += "*--------*"
 		user << msg
 
+	if(user.robustness_scanner && list_obj_robustness()) //if they have a robustness scanner that can tell us anything
+		user << "[list_obj_robustness()]"
+
+/obj/item/proc/list_obj_robustness()
+	var/nil = "No"
+	var/vlow = "<font color='red'>Very low</font>"
+	var/low = "<font color='red'>Low</font>"
+	var/med = "<font color='#FF8000'>Medium</font>"
+	var/high = "<font color='blue'>High</font>"
+	var/vhigh = "<font color='green'>Very high</font>"
+
+	var/msg = ""
+
+	var/force_str
+	var/throwforce_str
+	if(force || throwforce)
+		msg += "*--------* <BR>"
+		msg += "Weapon potential:<BR>"
+
+
+		switch(force)
+			if(0)
+				force_str = "[nil]"
+			if(1 to 5)
+				force_str = "[vlow]"
+			if(6 to 10)
+				force_str = "[low]"
+			if(11 to 15)
+				force_str = "[med]"
+			if(16 to 20)
+				force_str = "[high]"
+			if(21 to INFINITY)
+				force_str = "[vhigh]"
+
+		switch(throwforce)
+			if(0)
+				throwforce_str = "[nil]"
+			if(1 to 5)
+				throwforce_str = "[vlow]"
+			if(6 to 10)
+				throwforce_str = "[low]"
+			if(11 to 15)
+				throwforce_str = "[med]"
+			if(16 to 20)
+				throwforce_str = "[high]"
+			if(21 to INFINITY)
+				throwforce_str = "[vhigh]"
+
+		msg += "[force_str] melee damage and [lowertext(throwforce_str)] throwing damage in its current state."
+
+		if(!istype(src, /obj/item/clothing)) //if the next section doesn't exist, add the ending divider
+			msg += "<BR>*--------*"
+
+	if(istype(src, /obj/item/clothing))
+		var/damdesc
+		var/damquality
+
+		if(force_str || throwforce_str) //if the previous section exists, add a linebreak
+			msg += "<BR>"
+		else
+			msg += "*--------*<BR>" //else add the starting divider
+
+		msg += "Armor:<BR>"
+
+		for(var/damtype in armor)
+
+			switch(armor["[damtype]"])
+				if(0)
+					continue
+				if(1 to 25)
+					damquality = "[low]"
+				if(26 to 50)
+					damquality = "[med]"
+				if(51 to 75)
+					damquality = "[high]"
+				if(76 to 100)
+					damquality = "[vhigh]"
+
+			switch("[damtype]")
+				if ("melee")
+					damdesc = "<font color='red'>melee</font>"
+				if ("bullet")
+					damdesc = "<font color='red'>ballistic</font>"
+				if ("laser")
+					damdesc = "<font color='#FF8000'>laser</font>"
+				if ("energy")
+					damdesc = "<font color='blue'>energy</font>"
+				if ("bomb")
+					damdesc = "<font color='red'>blast</font>"
+				if ("bio")
+					damdesc = "<font color='green'>biohazard</font>"
+				if ("rad")
+					damdesc = "<font color='green'>radiation</font>"
+				if ("fire")
+					damdesc = "<font color='#FF8000'>fire</font>"
+				if ("acid")
+					damdesc = "<font color='#FF8000'>acid</font>"
+
+			msg += "[damquality] protection from [damdesc] damage. "
+
+		if(!damquality)
+			msg += "No armor detected."
+
+		msg += "<BR>*--------*"
+
+	return msg
 
 /obj/item/attack_self(mob/user)
 	interact(user)
@@ -238,7 +344,8 @@ var/global/image/fire_overlay = image("icon" = 'icons/effects/fire.dmi', "icon_s
 		var/obj/item/weapon/storage/S = loc
 		S.remove_from_storage(src, user.loc)
 
-	throwing = 0
+	if(throwing)
+		throwing.finalize(FALSE)
 	if(loc == user)
 		if(!user.dropItemToGround(src))
 			return
@@ -259,7 +366,8 @@ var/global/image/fire_overlay = image("icon" = 'icons/effects/fire.dmi', "icon_s
 		var/obj/item/weapon/storage/S = loc
 		S.remove_from_storage(src, user.loc)
 
-	throwing = 0
+	if(throwing)
+		throwing.finalize(FALSE)
 	if(loc == user)
 		if(!user.dropItemToGround(src))
 			return
@@ -507,7 +615,7 @@ var/global/image/fire_overlay = image("icon" = 'icons/effects/fire.dmi', "icon_s
 	else ..()
 
 /obj/item/throw_impact(atom/A)
-	if(A && !qdeleted(A))
+	if(A && !QDELETED(A))
 		var/itempush = 1
 		if(w_class < 4)
 			itempush = 0 //too light to push anything
@@ -586,7 +694,7 @@ var/global/image/fire_overlay = image("icon" = 'icons/effects/fire.dmi', "icon_s
 	return 0
 
 /obj/item/burn()
-	if(!qdeleted(src))
+	if(!QDELETED(src))
 		var/turf/T = get_turf(src)
 		var/ash_type = /obj/effect/decal/cleanable/ash
 		if(w_class == WEIGHT_CLASS_HUGE || w_class == WEIGHT_CLASS_GIGANTIC)
@@ -596,7 +704,7 @@ var/global/image/fire_overlay = image("icon" = 'icons/effects/fire.dmi', "icon_s
 		..()
 
 /obj/item/acid_melt()
-	if(!qdeleted(src))
+	if(!QDELETED(src))
 		var/turf/T = get_turf(src)
 		var/obj/effect/decal/cleanable/molten_object/MO = new(T)
 		MO.pixel_x = rand(-16,16)

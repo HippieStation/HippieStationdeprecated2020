@@ -92,6 +92,8 @@
 
 	var/research_scanner = 0 //For research scanner equipped mobs. Enable to show research data when examining.
 
+	var/robustness_scanner = 0 //For mobs with science goggles. Enable to see armour rating of clothing items and damage of weapons when examining.
+
 	var/list/mapobjs = list()
 
 	var/in_throw_mode = 0

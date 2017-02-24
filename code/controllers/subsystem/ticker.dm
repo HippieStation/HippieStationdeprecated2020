@@ -217,6 +217,7 @@ var/datum/subsystem/ticker/ticker
 	var/list/adm = get_admin_counts()
 	if(!adm["present"])
 		send2irc("Server", "Round just started with no active admins online!")
+		send2admindiscord("**Round has started with no admins online.**", TRUE)
 
 /datum/subsystem/ticker/proc/station_explosion_detonation(atom/bomb)
 	if(bomb)	//BOOM

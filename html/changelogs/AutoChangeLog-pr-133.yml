@@ -1,0 +1,4 @@
+author: "Pyko"
+delete-after: True
+changes: 
+  - tweak: "coffins cant be welded anymore, isntead they can be stapled shut, and crowbarred open."

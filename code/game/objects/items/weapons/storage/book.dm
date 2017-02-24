@@ -11,7 +11,7 @@
 	var/title = "book"
 
 /obj/item/weapon/storage/book/attack_self(mob/user)
-		user << "<span class='notice'>The pages of [title] have been cut out!</span>"
+	user << "<span class='notice'>The pages of [title] have been cut out!</span>"
 
 var/global/list/biblenames      = list("Bible", "Quran", "Scrapbook", "Burning Bible", "Clown Bible", "Banana Bible", "Creeper Bible", "White Bible", "Holy Light",  "The God Delusion", "Tome",        "The King in Yellow", "Ithaqua", "Scientology", "Melted Bible", "Necronomicon")
 var/global/list/biblestates     = list("bible", "koran", "scrapbook", "burning",       "honk1",       "honk2",        "creeper",       "white",       "holylight",   "atheist",          "tome",        "kingyellow",         "ithaqua", "scientology", "melted",       "necronomicon")
@@ -24,6 +24,7 @@ var/global/list/bibleitemstates = list("bible", "koran", "scrapbook", "bible",  
 	icon_state ="bible"
 	var/mob/affecting = null
 	var/deity_name = "Christ"
+	storage_slots = 5
 
 /obj/item/weapon/storage/book/bible/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is offering [user.p_them()]self to [deity_name]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -87,7 +88,6 @@ var/global/list/bibleitemstates = list("bible", "koran", "scrapbook", "bible",  
 	return 1
 
 /obj/item/weapon/storage/book/bible/attack(mob/living/M, mob/living/carbon/human/user)
-
 	if (!user.IsAdvancedToolUser())
 		user << "<span class='warning'>You don't have the dexterity to do this!</span>"
 		return

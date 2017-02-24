@@ -1153,8 +1153,8 @@
 	},
 /area/ai_monitored/security/armory)
 "acM" = (
-/obj/structure/chair/stool/bar,
-/turf/open/floor/plasteel/bar,
+/obj/structure/table/reinforced,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "acN" = (
 /obj/structure/closet/l3closet/security,
@@ -1417,7 +1417,7 @@
 /obj/item/device/instrument/eguitar{
 	pixel_x = 5
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet,
 /area/crew_quarters/theatre)
 "adq" = (
 /obj/structure/sign/securearea{
@@ -6580,6 +6580,7 @@
 /area/maintenance/fpmaint2)
 "anz" = (
 /obj/effect/decal/cleanable/egg_smudge,
+/mob/living/simple_animal/mouse/brown,
 /turf/open/floor/wood,
 /area/maintenance/fpmaint2{
 	icon_state = "storage";
@@ -7053,6 +7054,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
+/mob/living/simple_animal/mouse/gray,
 /turf/open/floor/plating,
 /area/maintenance/fsmaint)
 "aoB" = (
@@ -8021,6 +8023,7 @@
 	pixel_x = 1;
 	pixel_y = 5
 	},
+/obj/item/weapon/staplegun,
 /turf/open/floor/wood,
 /area/lawoffice)
 "aqT" = (
@@ -14094,13 +14097,9 @@
 /area/security/checkpoint2)
 "aEo" = (
 /obj/structure/table/glass,
-/obj/item/weapon/reagent_containers/food/snacks/grown/wheat,
-/obj/item/weapon/reagent_containers/food/snacks/grown/watermelon,
-/obj/item/weapon/reagent_containers/food/snacks/grown/watermelon,
-/obj/item/weapon/reagent_containers/food/snacks/grown/watermelon,
-/obj/item/weapon/reagent_containers/food/snacks/grown/citrus/orange,
-/obj/item/weapon/reagent_containers/food/snacks/grown/grapes,
-/obj/item/weapon/reagent_containers/food/snacks/grown/cocoapod,
+/obj/effect/spawner/lootdrop/plants{
+	lootcount = 12
+	},
 /turf/open/floor/plasteel/green/side{
 	dir = 4
 	},
@@ -16768,14 +16767,14 @@
 	c_tag = "Theatre Stage";
 	dir = 2
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet,
 /area/crew_quarters/theatre)
 "aJW" = (
 /obj/machinery/airalarm{
 	dir = 2;
 	pixel_y = 24
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet,
 /area/crew_quarters/theatre)
 "aJX" = (
 /obj/structure/grille,
@@ -16932,7 +16931,12 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/wood,
+/obj/structure/table/wood,
+/obj/item/weapon/lipstick/random{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/turf/open/floor/carpet,
 /area/crew_quarters/theatre)
 "aKp" = (
 /obj/structure/closet/wardrobe/botanist,
@@ -16954,13 +16958,13 @@
 /area/hydroponics)
 "aKr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aKs" = (
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet,
 /area/crew_quarters/theatre)
 "aKt" = (
 /obj/machinery/disposal/bin,
@@ -16971,7 +16975,7 @@
 	dir = 2;
 	pixel_y = 24
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aKu" = (
 /obj/structure/disposalpipe/segment{
@@ -16979,11 +16983,19 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aKv" = (
 /obj/machinery/reagentgrinder,
 /obj/structure/table/wood,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/airalarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aKw" = (
@@ -17434,7 +17446,7 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet,
 /area/crew_quarters/theatre)
 "aLy" = (
 /obj/machinery/door/firedoor,
@@ -17596,17 +17608,17 @@
 /obj/structure/chair/stool{
 	pixel_y = 8
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet,
 /area/crew_quarters/theatre)
 "aLV" = (
 /obj/structure/piano{
 	tag = "icon-piano";
 	icon_state = "piano"
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet,
 /area/crew_quarters/theatre)
 "aLW" = (
-/turf/open/floor/wood,
+/turf/open/floor/carpet,
 /area/crew_quarters/theatre)
 "aLX" = (
 /obj/structure/disposalpipe/segment{
@@ -17633,7 +17645,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aMa" = (
 /obj/structure/window/reinforced{
@@ -17642,16 +17654,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet,
 /area/crew_quarters/theatre)
 "aMb" = (
 /obj/machinery/computer/slot_machine,
 /turf/open/floor/plasteel/bar,
 /area/crew_quarters/bar)
 "aMc" = (
-/obj/structure/chair/stool,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aMd" = (
 /obj/structure/disposalpipe/segment{
@@ -17962,11 +17973,15 @@
 	scrub_N2O = 0;
 	scrub_Toxins = 0
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet,
 /area/crew_quarters/theatre)
 "aMX" = (
 /obj/structure/closet/secure_closet/bar{
 	req_access_txt = "25"
+	},
+/obj/item/weapon/storage/secure/safe{
+	pixel_x = 4;
+	pixel_y = -28
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -18048,14 +18063,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet,
 /area/crew_quarters/theatre)
 "aNj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aNk" = (
 /obj/machinery/door/window{
@@ -18066,7 +18081,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet,
 /area/crew_quarters/theatre)
 "aNl" = (
 /obj/machinery/computer/slot_machine,
@@ -18079,14 +18094,14 @@
 	pixel_x = 32;
 	pixel_y = 0
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aNm" = (
 /obj/structure/chair/stool,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aNn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -18100,10 +18115,10 @@
 /turf/closed/wall,
 /area/hydroponics)
 "aNp" = (
-/obj/structure/kitchenspike,
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/machinery/food_cart,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
 "aNq" = (
@@ -18504,7 +18519,7 @@
 /area/hallway/primary/central)
 "aOe" = (
 /obj/structure/window/reinforced,
-/turf/open/floor/wood,
+/turf/open/floor/carpet,
 /area/crew_quarters/theatre)
 "aOf" = (
 /obj/structure/kitchenspike,
@@ -18515,7 +18530,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/wood,
+/turf/open/floor/carpet,
 /area/crew_quarters/theatre)
 "aOh" = (
 /obj/structure/grille,
@@ -18524,7 +18539,8 @@
 /area/crew_quarters/bar)
 "aOi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plasteel/bar,
+/obj/structure/chair/stool,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aOj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -18783,24 +18799,16 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aOT" = (
-/obj/machinery/disposal/bin,
-/obj/structure/sign/securearea{
-	desc = "Under the painting a plaque reads: 'While the meat grinder may not have spared you, fear not. Not one part of you has gone to waste... You were delicious.'";
-	icon_state = "monkey_painting";
-	name = "Mr. Deempisi portrait";
-	pixel_x = -28;
-	pixel_y = -4
+/obj/machinery/requests_console{
+	department = "Bar";
+	departmentType = 2;
+	pixel_x = 0;
+	pixel_y = 30
 	},
-/obj/structure/disposalpipe/trunk{
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/button/door{
-	id = "barShutters";
-	name = "bar shutters";
-	pixel_x = 4;
-	pixel_y = 28
-	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aOU" = (
 /obj/structure/chair/comfy/beige{
@@ -18912,7 +18920,7 @@
 /obj/item/device/radio/intercom{
 	pixel_y = 25
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aPn" = (
 /turf/closed/wall,
@@ -19034,7 +19042,7 @@
 /area/bridge)
 "aPv" = (
 /obj/structure/chair/stool,
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aPw" = (
 /obj/structure/table,
@@ -19042,7 +19050,7 @@
 	pixel_x = -31
 	},
 /obj/item/clothing/head/hardhat/cakehat,
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aPx" = (
 /obj/structure/table,
@@ -19053,10 +19061,11 @@
 /obj/structure/window/reinforced,
 /obj/structure/table/wood,
 /obj/item/device/instrument/violin,
-/turf/open/floor/wood,
+/turf/open/floor/carpet,
 /area/crew_quarters/theatre)
 "aPz" = (
-/turf/open/floor/plasteel/bar,
+/obj/structure/chair/wood/normal,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aPA" = (
 /obj/structure/chair,
@@ -19096,7 +19105,7 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aPG" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -19347,6 +19356,7 @@
 /obj/structure/table,
 /obj/item/stack/cable_coil/random,
 /obj/item/stack/cable_coil/random,
+/obj/item/weapon/staplegun,
 /turf/open/floor/plasteel,
 /area/storage/art)
 "aQv" = (
@@ -19407,7 +19417,7 @@
 /area/storage/tools)
 "aQC" = (
 /obj/machinery/vending/boozeomat,
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aQD" = (
 /obj/machinery/light{
@@ -19511,28 +19521,29 @@
 	dir = 8
 	},
 /obj/structure/chair/stool,
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aQR" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/turf/open/floor/plasteel/bar,
-/area/crew_quarters/bar)
-"aQS" = (
-/obj/structure/chair{
-	dir = 1
-	},
+/obj/structure/chair/wood/normal,
 /obj/effect/landmark/start{
 	name = "Assistant"
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"aQS" = (
+/obj/effect/landmark/start{
+	name = "Assistant"
+	},
+/obj/structure/chair/wood/normal{
+	dir = 1
+	},
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aQT" = (
-/obj/structure/chair{
+/obj/structure/chair/wood/normal{
 	dir = 4
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aQU" = (
 /obj/structure/extinguisher_cabinet{
@@ -19546,7 +19557,7 @@
 	dir = 4;
 	icon_state = "tube1"
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aQW" = (
 /obj/machinery/vending/dinnerware,
@@ -19568,7 +19579,6 @@
 /obj/structure/sink/kitchen{
 	pixel_y = 28
 	},
-/obj/machinery/food_cart,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aQZ" = (
@@ -19833,20 +19843,19 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aRJ" = (
-/obj/structure/chair/stool,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aRK" = (
-/obj/structure/chair{
+/obj/structure/chair/wood/normal{
 	dir = 8
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aRL" = (
 /turf/open/floor/plasteel,
@@ -19954,27 +19963,33 @@
 /area/bridge)
 "aRZ" = (
 /mob/living/carbon/monkey/punpun,
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aSa" = (
-/obj/structure/table/wood/poker,
-/obj/item/toy/cards/deck,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aSb" = (
-/obj/structure/chair/stool,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/bar,
+/obj/structure/chair/wood/normal{
+	dir = 1
+	},
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aSc" = (
 /obj/machinery/door/airlock/glass{
 	name = "Kitchen";
-	req_access_txt = "28"
+	req_access_txt = "28,25"
+	},
+/obj/machinery/button/door{
+	id = "barShutters";
+	name = "bar shutters";
+	pixel_x = -8;
+	pixel_y = 24
 	},
 /turf/open/floor/plasteel/bar,
 /area/crew_quarters/kitchen)
@@ -20035,7 +20050,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aSj" = (
-/obj/machinery/smartfridge,
+/obj/machinery/smartfridge/kitchen,
 /turf/closed/wall,
 /area/crew_quarters/kitchen)
 "aSk" = (
@@ -20109,15 +20124,9 @@
 /obj/effect/landmark/start{
 	name = "Bartender"
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aSu" = (
-/obj/machinery/requests_console{
-	department = "Bar";
-	departmentType = 2;
-	pixel_x = 30;
-	pixel_y = 0
-	},
 /obj/machinery/camera{
 	c_tag = "Bar";
 	dir = 8;
@@ -20125,7 +20134,14 @@
 	},
 /obj/structure/table,
 /obj/machinery/chem_dispenser/drinks,
-/turf/open/floor/plasteel/bar,
+/obj/machinery/button/door{
+	id = "kitchenbar";
+	name = "Kitchen Shutters Control";
+	pixel_x = 24;
+	pixel_y = -8;
+	req_access_txt = "28"
+	},
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aSv" = (
 /obj/machinery/newscaster{
@@ -20509,7 +20525,7 @@
 	dir = 4;
 	network = list("SS13")
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aTx" = (
 /obj/structure/chair,
@@ -20551,6 +20567,7 @@
 	dir = 8;
 	on = 1
 	},
+/obj/structure/closet/crate/bin,
 /turf/open/floor/plasteel/green,
 /area/crew_quarters/clown)
 "aTE" = (
@@ -20675,6 +20692,7 @@
 	icon_state = "right";
 	layer = 3
 	},
+/obj/structure/showcase/mimestatue,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/mime)
 "aTS" = (
@@ -20768,6 +20786,7 @@
 	dir = 4;
 	network = list("SS13")
 	},
+/obj/structure/closet/crate/bin,
 /turf/open/floor/plasteel/black,
 /area/crew_quarters/mime)
 "aUg" = (
@@ -20828,6 +20847,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/structure/reagent_dispensers/water_cooler/clown,
 /turf/open/floor/plasteel/green,
 /area/crew_quarters/clown)
 "aUn" = (
@@ -21126,18 +21146,19 @@
 	},
 /area/hallway/primary/central)
 "aUM" = (
-/obj/structure/table/wood/poker,
-/obj/item/clothing/mask/cigarette/cigar,
-/obj/item/toy/cards/deck,
-/turf/open/floor/plasteel/bar,
+/obj/structure/chair/wood/normal{
+	dir = 1
+	},
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aUN" = (
 /obj/machinery/holopad,
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aUO" = (
 /obj/structure/table/reinforced,
-/turf/open/floor/plasteel/bar,
+/obj/item/weapon/lighter,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aUP" = (
 /turf/open/floor/plasteel/cafeteria,
@@ -21146,6 +21167,10 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor,
 /obj/item/weapon/reagent_containers/food/snacks/pie/cream,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "kitchenbar";
+	name = "kitchen shutters"
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aUR" = (
@@ -21179,6 +21204,7 @@
 /obj/item/weapon/reagent_containers/food/condiment/peppermill{
 	pixel_x = 3
 	},
+/obj/effect/spawner/lootdrop/food,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aUU" = (
@@ -21474,6 +21500,7 @@
 	pixel_y = 0
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
+/obj/structure/closet/secure_closet/mime,
 /turf/open/floor/plasteel/black,
 /area/crew_quarters/mime)
 "aVD" = (
@@ -21513,6 +21540,7 @@
 	icon_state = "window";
 	dir = 8
 	},
+/obj/structure/showcase/mimestatue,
 /turf/open/floor/plasteel/black,
 /area/crew_quarters/mime)
 "aVI" = (
@@ -21533,7 +21561,12 @@
 	dir = 8
 	},
 /obj/structure/window,
-/obj/item/weapon/bikehorn,
+/obj/structure/sign/goldenplaque{
+	desc = "Break the glass, incase of HONK!";
+	name = "Bananium Sign";
+	pixel_x = 30
+	},
+/obj/item/weapon/bikehorn/golden,
 /turf/open/floor/plasteel/red,
 /area/crew_quarters/clown)
 "aVK" = (
@@ -22019,12 +22052,12 @@
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_x = -31
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aWz" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/lighter,
-/turf/open/floor/plasteel/bar,
+/obj/item/toy/cards/deck,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aWA" = (
 /obj/structure/table/reinforced,
@@ -22033,7 +22066,7 @@
 	},
 /obj/item/weapon/book/manual/barman_recipes,
 /obj/item/weapon/reagent_containers/glass/rag,
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aWB" = (
 /obj/machinery/door/window/southright{
@@ -22227,6 +22260,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/closet/secure_closet/clown,
 /turf/open/floor/plasteel/red,
 /area/crew_quarters/clown)
 "aXc" = (
@@ -22642,10 +22676,8 @@
 /area/crew_quarters/locker)
 "aXW" = (
 /obj/structure/chair/stool/bar,
-/obj/effect/landmark/start{
-	name = "Assistant"
-	},
-/turf/open/floor/plasteel/bar,
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aXX" = (
 /obj/machinery/light_switch{
@@ -22657,7 +22689,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
 	name = "Kitchen";
-	req_access_txt = "28"
+	req_access_txt = "28,25"
 	},
 /turf/open/floor/plasteel/bar,
 /area/crew_quarters/kitchen)
@@ -22783,7 +22815,7 @@
 	c_tag = "Bar South";
 	dir = 1
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aYq" = (
 /obj/structure/disposalpipe/segment,
@@ -23130,11 +23162,11 @@
 	pixel_x = 0;
 	pixel_y = 0
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aZn" = (
 /obj/machinery/computer/arcade,
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aZo" = (
 /obj/machinery/light,
@@ -23142,23 +23174,24 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aZp" = (
 /obj/machinery/newscaster{
 	pixel_y = -28
 	},
-/turf/open/floor/plasteel/bar,
+/obj/machinery/computer/slot_machine,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aZq" = (
 /obj/machinery/light,
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aZr" = (
 /obj/structure/noticeboard{
 	pixel_y = -27
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aZs" = (
 /obj/structure/disposalpipe/segment{
@@ -23181,7 +23214,7 @@
 	icon_state = "alarm0";
 	pixel_y = -22
 	},
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aZu" = (
 /obj/structure/extinguisher_cabinet{
@@ -23192,7 +23225,7 @@
 /area/crew_quarters/bar)
 "aZv" = (
 /obj/machinery/light/small,
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aZw" = (
 /obj/structure/table/reinforced,
@@ -23586,15 +23619,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "Mime Office APC";
-	pixel_x = 0;
-	pixel_y = 24
-	},
 /obj/structure/cable{
 	icon_state = "0-4";
 	d2 = 4
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "Mime Office APC";
+	pixel_x = 1;
+	pixel_y = 24
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/mime)
@@ -25185,10 +25218,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
-/turf/open/floor/plating{
-	icon_state = "warnplate";
-	dir = 4
-	},
+/turf/open/floor/plating,
 /area/maintenance/disposal)
 "bdZ" = (
 /obj/machinery/conveyor{
@@ -25218,7 +25248,7 @@
 /area/maintenance/disposal)
 "bec" = (
 /obj/machinery/conveyor{
-	dir = 9;
+	dir = 6;
 	id = "garbage";
 	verted = -1
 	},
@@ -29272,14 +29302,14 @@
 	name = "Privacy Shutters Control";
 	pixel_x = 6;
 	pixel_y = 25;
-	req_access_txt = "28"
+	req_access_txt = "57"
 	},
 /obj/machinery/button/door{
 	id = "hopqueue";
 	name = "Queue Shutters Control";
 	pixel_x = -4;
 	pixel_y = 25;
-	req_access_txt = "28"
+	req_access_txt = "57"
 	},
 /obj/machinery/light_switch{
 	pixel_x = -4;
@@ -33363,6 +33393,7 @@
 	pixel_x = 6;
 	pixel_y = -5
 	},
+/obj/item/weapon/staplegun,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "buR" = (
@@ -37933,16 +37964,13 @@
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bEp" = (
-/obj/structure/table,
 /obj/item/weapon/reagent_containers/food/condiment/peppermill{
 	pixel_x = 5;
 	pixel_y = -2
 	},
-/obj/item/weapon/reagent_containers/food/condiment/saltshaker{
-	pixel_x = -2;
-	pixel_y = 2
-	},
-/turf/open/floor/plasteel/bar,
+/obj/structure/table/wood,
+/obj/item/weapon/kitchen/fork,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "bEq" = (
 /obj/structure/disposalpipe/segment,
@@ -38884,7 +38912,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/event_spawn,
-/turf/open/floor/wood,
+/turf/open/floor/carpet,
 /area/crew_quarters/theatre)
 "bGs" = (
 /obj/structure/rack{
@@ -43117,6 +43145,10 @@
 /area/security/checkpoint/engineering)
 "bPd" = (
 /obj/structure/closet/crate,
+/obj/item/weapon/storage/inflatable,
+/obj/item/weapon/storage/inflatable,
+/obj/item/weapon/storage/inflatable,
+/obj/item/weapon/storage/inflatable,
 /turf/open/floor/plasteel,
 /area/atmos)
 "bPe" = (
@@ -46882,6 +46914,7 @@
 	name = "Mix to Space";
 	on = 0
 	},
+/mob/living/simple_animal/mouse/gray,
 /turf/open/floor/plasteel/floorgrime,
 /area/maintenance/aft)
 "bXh" = (
@@ -47986,6 +48019,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
 	},
+/mob/living/simple_animal/mouse/white,
 /turf/open/floor/plating,
 /area/maintenance/asmaint)
 "bZB" = (
@@ -49960,6 +49994,7 @@
 /area/maintenance/asmaint2)
 "cdE" = (
 /obj/machinery/light/small,
+/mob/living/simple_animal/mouse/brown,
 /turf/open/floor/plating,
 /area/maintenance/asmaint2)
 "cdF" = (
@@ -52092,6 +52127,7 @@
 	on = 1;
 	pressure_checks = 1
 	},
+/mob/living/simple_animal/mouse/white,
 /turf/open/floor/plasteel/floorgrime,
 /area/maintenance/incinerator)
 "cid" = (
@@ -53194,7 +53230,7 @@
 "ckG" = (
 /obj/effect/landmark/event_spawn,
 /obj/effect/landmark/xmastree,
-/turf/open/floor/plasteel/bar,
+/turf/open/floor/wood,
 /area/crew_quarters/bar)
 "ckH" = (
 /obj/effect/landmark{
@@ -53672,6 +53708,7 @@
 	dir = 1;
 	icon_state = "pipe-c"
 	},
+/mob/living/simple_animal/mouse/white,
 /turf/open/floor/plating,
 /area/maintenance/asmaint)
 "clL" = (
@@ -55208,6 +55245,10 @@
 	dir = 4;
 	network = list("SS13")
 	},
+/obj/item/weapon/storage/inflatable,
+/obj/item/weapon/storage/inflatable,
+/obj/item/weapon/storage/inflatable,
+/obj/item/weapon/storage/inflatable,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "coF" = (
@@ -60931,7 +60972,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/maintenance/port)
+/area/security/detectives_office)
 "cAQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -63009,20 +63050,33 @@
 /area/hallway/secondary/exit)
 "cFx" = (
 /obj/structure/table,
+/obj/item/stack/sheet/glass{
+	amount = 50
+	},
+/obj/item/weapon/storage/box/gloves,
 /turf/open/floor/plasteel/black,
 /area/crew_quarters/mime)
 "cFy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/table,
+/obj/item/weapon/reagent_containers/food/snacks/baguette,
+/obj/item/weapon/reagent_containers/food/snacks/baguette,
+/obj/item/toy/figure/mime,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/mime)
 "cFz" = (
 /obj/structure/table,
+/obj/item/weapon/reagent_containers/food/drinks/soda_cans/canned_laughter,
 /turf/open/floor/plasteel/red,
 /area/crew_quarters/clown)
 "cFA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/table,
+/obj/item/toy/prize/honk,
+/obj/item/weapon/bikehorn/rubberducky,
+/obj/item/weapon/bikehorn/rubberducky,
+/obj/item/weapon/bikehorn/airhorn,
+/obj/item/weapon/bikehorn,
 /turf/open/floor/plasteel/green,
 /area/crew_quarters/clown)
 "cFB" = (
@@ -63259,6 +63313,7 @@
 /area/maintenance/asmaint2)
 "cGb" = (
 /obj/structure/chair/stool,
+/mob/living/simple_animal/mouse/gray,
 /turf/open/floor/plating,
 /area/maintenance/disposal)
 "cGc" = (
@@ -63718,6 +63773,244 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/closed/wall,
 /area/maintenance/aft)
+"cHt" = (
+/obj/machinery/door/airlock{
+	name = "Bar Storage";
+	req_access_txt = "25"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"cHu" = (
+/obj/structure/reagent_dispensers/beerkeg,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"cHv" = (
+/obj/structure/sign/securearea{
+	desc = "Under the painting a plaque reads: 'While the meat grinder may not have spared you, fear not. Not one part of you has gone to waste... You were delicious.'";
+	icon_state = "monkey_painting";
+	name = "Mr. Deempisi portrait";
+	pixel_x = -28;
+	pixel_y = -4
+	},
+/turf/closed/wall,
+/area/crew_quarters/bar)
+"cHw" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"cHx" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"cHy" = (
+/obj/structure/chair/wood/normal{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"cHz" = (
+/obj/structure/table/wood,
+/obj/item/weapon/reagent_containers/food/condiment/peppermill{
+	pixel_x = 5;
+	pixel_y = -2
+	},
+/obj/item/weapon/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/effect/spawner/lootdrop/food,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"cHA" = (
+/obj/structure/chair/wood/normal{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"cHB" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/spacecash/c10,
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"cHC" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/head/that{
+	throwforce = 1;
+	throwing = 1
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"cHD" = (
+/obj/machinery/button/door{
+	id = "kitchenbar";
+	name = "Kitchen Shutters Control";
+	pixel_x = -24;
+	pixel_y = -8;
+	req_access_txt = "28,25"
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"cHE" = (
+/obj/structure/chair/wood/normal{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"cHF" = (
+/obj/structure/table/wood,
+/obj/item/weapon/reagent_containers/food/condiment/saltshaker{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/filled/cola,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"cHG" = (
+/obj/structure/chair/wood/normal{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"cHH" = (
+/obj/machinery/deepfryer,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"cHI" = (
+/obj/structure/chair/stool/bar,
+/obj/effect/landmark/start{
+	name = "Assistant"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"cHJ" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 0;
+	pixel_y = -30
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"cHK" = (
+/obj/structure/table,
+/obj/item/toy/crayon/mime,
+/obj/item/toy/crayon/spraycan,
+/obj/item/weapon/storage/crayons,
+/turf/open/floor/plasteel/black,
+/area/crew_quarters/mime)
+"cHL" = (
+/obj/structure/table,
+/obj/item/toy/crayon/rainbow,
+/obj/item/toy/crayon/spraycan,
+/obj/item/weapon/storage/crayons,
+/turf/open/floor/plasteel/red,
+/area/crew_quarters/clown)
+"cHM" = (
+/obj/machinery/vending/snack/kitchen,
+/turf/closed/wall,
+/area/crew_quarters/kitchen)
+"cHN" = (
+/obj/structure/chair,
+/turf/open/floor/plasteel{
+	icon_state = "red";
+	dir = 1
+	},
+/area/hallway/secondary/exit)
+"cHO" = (
+/obj/structure/table/wood,
+/obj/item/weapon/staplegun,
+/turf/open/floor/wood,
+/area/library)
+"cHP" = (
+/mob/living/simple_animal/mouse/gray,
+/turf/open/floor/plasteel{
+	icon_state = "vault";
+	dir = 5
+	},
+/area/maintenance/commieespy)
+"cHQ" = (
+/mob/living/simple_animal/mouse/gray,
+/turf/open/floor/plasteel,
+/area/maintenance/fsmaint2)
+"cHR" = (
+/mob/living/simple_animal/mouse/gray,
+/turf/open/floor/wood,
+/area/maintenance/fsmaint2)
+"cHS" = (
+/mob/living/simple_animal/mouse/gray,
+/turf/open/floor/plating,
+/area/maintenance/fpmaint2)
+"cHT" = (
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 2;
+	name = "2maintenance loot spawner"
+	},
+/obj/structure/closet/crate{
+	icon_state = "crateopen";
+	opened = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/fpmaint2)
+"cHU" = (
+/mob/living/simple_animal/mouse/white,
+/turf/open/floor/plating,
+/area/maintenance/fpmaint)
+"cHV" = (
+/mob/living/simple_animal/mouse/white,
+/turf/open/floor/plating,
+/area/maintenance/fsmaint2)
+"cHW" = (
+/mob/living/simple_animal/mouse/white,
+/turf/open/floor/plating,
+/area/maintenance/fpmaint2)
+"cHX" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "12"
+	},
+/turf/open/floor/plating,
+/area/maintenance/fpmaint2)
+"cHY" = (
+/mob/living/simple_animal/mouse/white,
+/turf/open/floor/plating,
+/area/maintenance/fsmaint2)
+"cHZ" = (
+/mob/living/simple_animal/mouse/white,
+/turf/open/floor/plating,
+/area/maintenance/fsmaint2)
+"cIa" = (
+/obj/machinery/atmospherics/components/binary/valve{
+	dir = 4
+	},
+/mob/living/simple_animal/mouse/brown,
+/turf/open/floor/plating,
+/area/maintenance/asmaint2)
+"cIb" = (
+/mob/living/simple_animal/mouse/gray,
+/turf/open/floor/plating,
+/area/maintenance/aft)
+"cIc" = (
+/mob/living/simple_animal/mouse/gray,
+/turf/open/floor/wood,
+/area/maintenance/aft)
+"cId" = (
+/mob/living/simple_animal/mouse/white,
+/turf/open/floor/plating,
+/area/maintenance/aft)
+"cIe" = (
+/mob/living/simple_animal/mouse/white,
+/turf/open/floor/plating,
+/area/maintenance/aft)
+"cIf" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/mouse/brown,
+/turf/open/floor/plating,
+/area/maintenance/asmaint2)
 
 (1,1,1) = {"
 aaa
@@ -77465,7 +77758,7 @@ cFl
 aTR
 aVH
 aXo
-cFx
+cHK
 cyo
 baq
 bdW
@@ -77950,7 +78243,7 @@ aaa
 aaa
 alM
 aoH
-amt
+cHS
 aob
 amZ
 arQ
@@ -78213,7 +78506,7 @@ art
 arQ
 ate
 auK
-amt
+cCS
 amt
 ayd
 alM
@@ -78493,7 +78786,7 @@ cFm
 aTD
 aVJ
 aXs
-cFz
+cHL
 cBb
 bas
 cFI
@@ -81393,13 +81686,13 @@ aaa
 aaa
 aaa
 aaa
-cHi
-cHi
-cHi
-cHi
-cHi
-cHi
-cHi
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -81649,14 +81942,14 @@ aaa
 aaa
 aaa
 aaa
-cHi
-cHi
 aaa
 aaa
 aaa
 aaa
 aaa
-cHi
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -81905,15 +82198,15 @@ aaa
 aaa
 aaa
 aaa
-cHi
-cHi
-cHi
-cHi
-cHi
-cHi
-cHi
-cHi
-cHi
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -82065,7 +82358,7 @@ cDo
 cBl
 amt
 alM
-arB
+cHT
 atG
 alM
 atG
@@ -82162,7 +82455,6 @@ aaa
 aaa
 aaa
 aaa
-cHi
 aaa
 aaa
 aaa
@@ -82170,8 +82462,9 @@ aaa
 aaa
 aaa
 aaa
-cHi
-cHi
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -82309,7 +82602,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aoK
 cBl
 cBt
 cBx
@@ -82326,7 +82619,7 @@ amt
 amt
 alM
 aqC
-amt
+cHW
 atw
 atB
 aAI
@@ -82419,7 +82712,6 @@ aaa
 aaa
 aaa
 aaa
-cHi
 aaa
 aaa
 aaa
@@ -82428,7 +82720,8 @@ aaa
 aaa
 aaa
 aaa
-cHi
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -82566,7 +82859,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aoK
 cBl
 cBu
 cBx
@@ -82579,11 +82872,11 @@ cCZ
 cBk
 alM
 alM
-alM
+amt
 amt
 alM
 atz
-awW
+cHX
 auH
 azq
 aAI
@@ -82676,7 +82969,6 @@ aaa
 aaa
 aaa
 aaa
-cHi
 aaa
 aaa
 aaa
@@ -82685,7 +82977,8 @@ aaa
 aaa
 aaa
 aaa
-cHi
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -82823,7 +83116,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aoK
 cBl
 cBv
 cBM
@@ -82836,10 +83129,10 @@ cDp
 cBk
 arC
 alM
-alM
 amt
-auO
-atB
+amt
+amt
+awT
 awV
 ayi
 ayi
@@ -82933,7 +83226,6 @@ aaa
 aaa
 aaa
 aaa
-cHi
 aaa
 aaa
 aaa
@@ -82942,7 +83234,8 @@ aaa
 aaa
 aaa
 aaa
-cHi
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -83080,7 +83373,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aoK
 cBk
 cBw
 cBN
@@ -83093,7 +83386,7 @@ cDq
 cBk
 alM
 alM
-alM
+auO
 atI
 atI
 atB
@@ -83153,7 +83446,7 @@ aaa
 bBe
 bOE
 bPP
-bOE
+cIc
 bOE
 bBe
 bZV
@@ -83164,7 +83457,7 @@ aae
 bBe
 cze
 bGq
-bGq
+cIe
 cbK
 czn
 ceh
@@ -83190,7 +83483,6 @@ aaa
 aaa
 aaa
 aaa
-cHi
 aaa
 aaa
 aaa
@@ -83199,7 +83491,8 @@ aaa
 aaa
 aaa
 aaa
-cHi
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -83337,7 +83630,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aoK
 cBl
 cBx
 cBx
@@ -83350,7 +83643,7 @@ cDc
 cBJ
 cDy
 cBk
-amZ
+alM
 alM
 alM
 atB
@@ -83447,7 +83740,6 @@ aaa
 aaa
 aaa
 aaa
-cHi
 aaa
 aaa
 aaa
@@ -83456,7 +83748,8 @@ aaa
 aaa
 aaa
 aaa
-cHi
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -83594,7 +83887,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aoK
 cBl
 cBx
 cBO
@@ -83704,16 +83997,16 @@ aaa
 aaa
 aaa
 aaa
-cHi
-cHi
-cHi
-cHi
-cHi
-cHi
-cHi
-cHi
-cHi
-cHi
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -83851,7 +84144,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aoK
 cBl
 cBy
 cBP
@@ -84108,7 +84401,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aoK
 cBk
 cBk
 cBl
@@ -84625,7 +84918,7 @@ aaa
 aaa
 alM
 amt
-amt
+cCS
 aKD
 amt
 ane
@@ -84961,7 +85254,7 @@ bGq
 bKg
 bBe
 bBe
-bGq
+cId
 bBe
 bGq
 bGq
@@ -85147,7 +85440,7 @@ ala
 alM
 alM
 alM
-cDB
+alM
 atb
 cDM
 cDT
@@ -85396,12 +85689,12 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aoK
+aoK
+aoK
+aoK
+aoK
+aoK
 aaa
 aaa
 aaa
@@ -85722,7 +86015,7 @@ apF
 apF
 bKh
 bOM
-bGq
+cIb
 bGq
 bBe
 bGq
@@ -86413,9 +86706,9 @@ aaa
 aaa
 adA
 aaa
-aaa
-aaa
-aaa
+aoK
+aoK
+aoK
 aaa
 aaa
 aaa
@@ -86936,7 +87229,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aoK
 aiN
 alf
 aiN
@@ -87193,7 +87486,7 @@ aaa
 aae
 aae
 aae
-aae
+apF
 aiN
 alh
 aiN
@@ -87720,7 +88013,7 @@ apG
 cAJ
 arD
 asH
-aqF
+cHU
 auR
 avN
 axd
@@ -87961,7 +88254,7 @@ aga
 abb
 aae
 aaa
-aaa
+aoK
 aiN
 ajk
 ajS
@@ -88218,7 +88511,7 @@ afx
 afx
 aae
 aaa
-aaa
+aoK
 aiN
 ajn
 ajV
@@ -97248,7 +97541,7 @@ aCb
 aCb
 aJi
 bXA
-aPD
+baJ
 aJi
 aPD
 aJi
@@ -97505,11 +97798,11 @@ adp
 aPy
 aPw
 aQQ
-aPz
+aKw
 aTw
-aPz
+aKw
 aWy
-aPz
+aKw
 aZn
 aJi
 bbB
@@ -97761,12 +98054,12 @@ aLU
 aLW
 aOe
 aPv
-aPz
-aQT
-aPz
-aPz
-aPv
-aPz
+aKw
+aKw
+aKw
+cHy
+aKw
+aKw
 aZm
 aJi
 aYj
@@ -98017,13 +98310,13 @@ aKo
 aLW
 aLW
 aOe
-aPz
-aPA
-aPx
+aKw
+aKw
+aKw
 aQR
-aPv
+cHF
 aUM
-aPv
+aKw
 aZp
 aJi
 aYj
@@ -98274,13 +98567,13 @@ aLW
 aLW
 aMW
 aOe
-aPz
-aPz
-aRK
-aPz
-aPz
-aPv
-aPz
+aKw
+aKw
+aKw
+aKw
+cHA
+aKw
+aKw
 aZo
 aJi
 aYj
@@ -98531,14 +98824,14 @@ aJW
 aLW
 bGr
 aOe
-aPz
-aPz
+aKw
+cHy
 aRI
 ckG
 aUN
-aPz
-aPz
-aPz
+aKw
+aKw
+aKw
 baJ
 aYj
 aYj
@@ -98789,13 +99082,13 @@ aLx
 aNi
 aOe
 aPz
-aPz
+cHz
 aSb
-aPz
-aPz
-aQT
-aPz
-aPz
+aKw
+aKw
+cHy
+aKw
+aKw
 aPD
 aYj
 aYj
@@ -99045,14 +99338,14 @@ aKs
 aMa
 aNk
 aOg
-aPz
-aPv
+aKw
+cHA
 aSa
-aPv
-aTx
+aKw
+aPz
 bEp
 aQS
-aPz
+aKw
 baJ
 aYj
 aYj
@@ -99305,10 +99598,10 @@ aKr
 aKr
 aKr
 aRJ
-aPz
-aPz
-aRK
-aPz
+aKw
+aKw
+cHA
+aKw
 aZq
 baK
 aYj
@@ -99558,14 +99851,14 @@ aJj
 aKu
 aMc
 aNm
-aPB
+aMc
 aOi
 aOi
 aOi
 aOi
 aOi
 aOi
-aXd
+aKe
 aYp
 aJi
 aYj
@@ -99813,16 +100106,16 @@ aGp
 aHJ
 aJi
 aKt
-aMb
+aKw
 aNl
-aMb
 aOh
-acM
-acM
-acM
-acM
-acM
-aPz
+cHw
+cHw
+cHB
+cHC
+cHw
+cHw
+cHI
 aZr
 aJi
 bbC
@@ -100070,17 +100363,17 @@ aGs
 aHL
 aJi
 aJi
+cHt
 aJi
 aJi
-aJi
-aJi
+cHx
 aWz
-aUO
-aSs
-aUO
+aPv
+aKw
+aKw
 aUO
 aXW
-aZu
+aKw
 aJi
 aYj
 bcy
@@ -100327,16 +100620,16 @@ aGr
 aHL
 aJk
 aKv
-aLz
+aKw
 aMX
-aJi
+cHv
 aOT
-aPz
-aPz
+aKw
+aKw
 aSt
-aPz
-aUO
-cyt
+aKw
+cHw
+aKw
 aZt
 aJi
 aYj
@@ -100590,10 +100883,10 @@ aOl
 aPF
 aQV
 aRZ
-aPz
-aPz
-aWB
-aPz
+aKw
+aKw
+cHw
+aKw
 aZv
 aJi
 aYj
@@ -100846,12 +101139,12 @@ aNg
 aJi
 aPm
 aQC
-aPz
+aKw
 aSu
-aPz
+aKw
 aWA
-aPz
-aPz
+aKw
+cHJ
 aJi
 aYj
 aYj
@@ -101098,8 +101391,8 @@ aGt
 aHL
 aJi
 aKx
+aKw
 aMh
-aJi
 aJi
 aJo
 aJo
@@ -101355,13 +101648,13 @@ aGt
 aHN
 aJn
 aKw
+cHu
 aMg
 aJi
-aOm
-aJo
 aQW
 aUP
 aUP
+cHD
 aUP
 aUP
 aXX
@@ -101622,7 +101915,7 @@ aUP
 aUP
 aUP
 aXZ
-aJo
+cHM
 baL
 aYj
 bcA
@@ -102118,7 +102411,7 @@ aqX
 aqX
 aqX
 amU
-amU
+cHY
 amU
 awp
 alH
@@ -102390,7 +102683,7 @@ aPG
 aQX
 aSf
 aTe
-aUT
+cHH
 aUP
 cyK
 aZx
@@ -102647,7 +102940,7 @@ aJo
 aRc
 aSi
 aTf
-aUW
+aUT
 aUP
 aUP
 aZx
@@ -102899,7 +103192,7 @@ aJo
 aJo
 aJo
 aNr
-aOq
+aMk
 aJo
 aRb
 aSh
@@ -103156,7 +103449,7 @@ aJr
 aKC
 aJo
 aJo
-aJo
+aOq
 aJo
 aRd
 aUP
@@ -103397,7 +103690,7 @@ cwC
 amU
 aqk
 amU
-amU
+cHV
 amU
 aDU
 amU
@@ -103412,8 +103705,8 @@ aHR
 aHW
 aKB
 aMl
-aHW
-aHW
+aJo
+aJo
 aJo
 aJo
 aSj
@@ -103917,7 +104210,7 @@ awq
 amU
 apt
 amU
-amU
+cHZ
 alH
 amU
 alH
@@ -106987,7 +107280,7 @@ alH
 cBQ
 cCg
 cCg
-cCg
+cHR
 cCg
 cCg
 cDs
@@ -108815,7 +109108,7 @@ aPQ
 aRm
 aIa
 aTW
-aKL
+cHO
 aYk
 aYk
 aVg
@@ -109040,7 +109333,7 @@ cBe
 cBh
 cBq
 cBq
-cBq
+cHP
 cCj
 cCt
 cCL
@@ -109393,7 +109686,7 @@ bjB
 bjB
 bjB
 ckW
-ckW
+cIf
 ckW
 bXT
 aaa
@@ -110840,7 +111133,7 @@ abX
 alH
 cBF
 cBF
-cBF
+cHQ
 cBF
 amU
 alH
@@ -111380,9 +111673,9 @@ cEB
 cEI
 cEg
 aNA
-aCB
-aPX
-aCB
+aFi
+aFi
+aFi
 aSD
 aFi
 aVl
@@ -111637,8 +111930,8 @@ cEB
 cEI
 aCB
 aCB
-aOL
-aPW
+aCB
+aCB
 aCB
 aCB
 aCB
@@ -111894,9 +112187,9 @@ cEC
 cEI
 cEN
 aMC
-aCB
-aCB
-aCB
+aOM
+aPY
+aMD
 aSF
 aUc
 aVm
@@ -112151,8 +112444,8 @@ cEz
 cEI
 cEO
 aMC
-aOM
-aPY
+cHN
+cFb
 aMD
 aSE
 aON
@@ -115263,7 +115556,7 @@ bpi
 bqE
 bqE
 bsj
-bqE
+cIa
 bqE
 bBU
 bDf

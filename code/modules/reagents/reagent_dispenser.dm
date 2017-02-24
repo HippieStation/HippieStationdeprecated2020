@@ -18,6 +18,26 @@
 			boom()
 
 /obj/structure/reagent_dispensers/attackby(obj/item/weapon/W, mob/user, params)
+	if(istype(W, /obj/item/weapon/screwdriver))
+		if(src.icon_state == "water" && !src.is_open_container())
+			src.icon_state = "wateropen"
+			user << "<span class='notice'>You unscrew and remove the lid from [src].</span>"
+			src.container_type |= OPENCONTAINER
+			src.update_icon()
+			playsound(src, 'sound/items/Deconstruct.ogg', 20, 1)
+			desc = "A water tank. It's top has been removed."
+			return
+		if(src.icon_state == "wateropen" && src.is_open_container())
+			src.icon_state = "water"
+			user << "<span class='notice'>You reattach and screw the [src]'s lid into place.</span>"
+			src.container_type &= ~OPENCONTAINER
+			src.update_icon()
+			playsound(src, 'sound/items/Deconstruct.ogg', 20, 1)
+			desc = "A water tank. It has a top that can be removed."
+			return
+		else
+			user << "<span class='warning'>This device does not have a removable lid!</span>"
+			return
 	if(istype(W, /obj/item/weapon/reagent_containers))
 		return 0 //so we can refill them via their afterattack.
 	else
@@ -50,8 +70,10 @@
 
 /obj/structure/reagent_dispensers/watertank
 	name = "water tank"
-	desc = "A water tank."
+	desc = "A water tank. It has a top that can be removed."
 	icon_state = "water"
+	tank_volume = 600
+	var/volume = 600
 
 /obj/structure/reagent_dispensers/watertank/high
 	name = "high-capacity water tank"
@@ -84,7 +106,7 @@
 
 /obj/structure/reagent_dispensers/fueltank/bullet_act(obj/item/projectile/P)
 	..()
-	if(!qdeleted(src)) //wasn't deleted by the projectile's effects.
+	if(!QDELETED(src)) //wasn't deleted by the projectile's effects.
 		if(!P.nodamage && ((P.damage_type == BURN) || (P.damage_type == BRUTE)))
 			var/boom_message = "[key_name_admin(P.firer)] triggered a fueltank explosion via projectile."
 			bombers += boom_message
@@ -162,7 +184,7 @@
 
 /obj/structure/reagent_dispensers/beerkeg/blob_act(obj/structure/blob/B)
 	explosion(src.loc,0,3,5,7,10)
-	if(!qdeleted(src))
+	if(!QDELETED(src))
 		qdel(src)
 
 

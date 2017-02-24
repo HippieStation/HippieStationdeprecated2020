@@ -58,7 +58,7 @@
 		return
 
 	playsound(get_turf(user), 'sound/magic/lightningbolt.ogg', 50, 1)
-	user.Beam(target,icon_state="lightning[rand(1,12)]",time=5)
+	user.Beam(target,icon_state="lightning[rand(1,12)]",time=5,alphafade=1)
 
 	Bolt(user,target,30,5,user)
 	Reset(user)

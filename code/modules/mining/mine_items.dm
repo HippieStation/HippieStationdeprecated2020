@@ -232,6 +232,7 @@
 	var/template_id = "shelter_alpha"
 	var/datum/map_template/shelter/template
 	var/used = FALSE
+	var/can_use_on_station = FALSE
 
 /obj/item/weapon/survivalcapsule/proc/get_template()
 	if(template)
@@ -250,6 +251,10 @@
 	get_template()
 	user << "This capsule has the [template.name] stored."
 	user << template.description
+
+/obj/item/weapon/survivalcapsule/emag_act(mob/user)
+	can_use_on_station = TRUE
+	playsound(src.loc, "sparks", 100, 1)
 
 /obj/item/weapon/survivalcapsule/attack_self()
 	// Can't grab when capsule is New() because templates aren't loaded then
@@ -282,6 +287,12 @@
 		if(T.z != ZLEVEL_MINING && T.z != ZLEVEL_LAVALAND)//only report capsules away from the mining/lavaland level
 			message_admins("[key_name_admin(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservefollow=\ref[usr]'>FLW</A>) activated a bluespace capsule away from the mining level! (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)")
 			log_admin("[key_name(usr)] activated a bluespace capsule away from the mining level at [T.x], [T.y], [T.z]")
+
+			if(!can_use_on_station)
+				playsound(get_turf(src), 'sound/misc/sadtrombone.ogg', 100, 1)
+				new /obj/effect/particle_effect/smoke(get_turf(src))
+				return
+
 		template.load(deploy_location, centered = TRUE)
 		new /obj/effect/particle_effect/smoke(get_turf(src))
 		qdel(src)

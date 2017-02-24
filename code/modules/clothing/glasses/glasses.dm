@@ -68,7 +68,7 @@
 	item_state = "glasses"
 	origin_tech = "magnets=2;engineering=1"
 	scan_reagents = 1 //You can see reagents while wearing science goggles
-	actions_types = list(/datum/action/item_action/toggle_research_scanner)
+	actions_types = list(/datum/action/item_action/toggle_research_scanner, /datum/action/item_action/toggle_robustness_scanner)
 	glass_colour_type = /datum/client_colour/glass_colour/purple
 	resistance_flags = ACID_PROOF
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 80, acid = 100)

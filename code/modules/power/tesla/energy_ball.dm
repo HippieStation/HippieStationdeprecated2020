@@ -147,7 +147,7 @@ var/list/blacklisted_tesla_types = typecacheof(list(/obj/machinery/atmospherics,
 		orbitingball.orbiting_balls -= src
 		orbitingball.dissipate_strength = orbitingball.orbiting_balls.len
 	..()
-	if (!loc && !qdeleted(src))
+	if (!loc && !QDELETED(src))
 		qdel(src)
 
 
@@ -240,7 +240,7 @@ var/list/blacklisted_tesla_types = typecacheof(list(/obj/machinery/atmospherics,
 	//Alright, we've done our loop, now lets see if was anything interesting in range
 	if(closest_atom)
 		//common stuff
-		source.Beam(closest_atom, icon_state="lightning[rand(1,12)]", time=5)
+		source.Beam(closest_atom, icon_state="lightning[rand(1,12)]", time=5, alphafade=1)
 		var/zapdir = get_dir(source, closest_atom)
 		if(zapdir)
 			. = zapdir

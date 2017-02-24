@@ -1,0 +1,5 @@
+author: "Tortellini Tony"
+delete-after: True
+changes: 
+  - bugfix: "Fixes the stamina indicator not working"
+  - bugfix: "Fixes messages from monkeys and aliens farting"

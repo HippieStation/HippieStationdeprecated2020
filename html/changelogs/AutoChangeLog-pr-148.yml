@@ -1,0 +1,6 @@
+author: "Pyko"
+delete-after: True
+changes: 
+  - rscadd: "Added Inflatable barrier boxes to engineering, atmos and to maintloot spawner."
+  - rscadd: "Added ducktape to maintloot and contraband spawners."
+  - rscadd: "Added ratkebab and double ratkebab to food spawner."

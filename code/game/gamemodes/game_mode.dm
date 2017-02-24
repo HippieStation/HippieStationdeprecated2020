@@ -143,7 +143,8 @@
 
 	for(var/mob/living/carbon/human/H in living_crew)
 		if(H.client && H.client.prefs.allow_midround_antag)
-			antag_candidates += H
+			if(!jobban_isbanned(H, "catban"))
+				antag_candidates += H
 
 	if(!antag_candidates)
 		message_admins("Convert_roundtype failed due to no antag candidates.")
@@ -257,7 +258,10 @@
 		feedback_set("escaped_human",escaped_humans)
 	if(escaped_total > 0)
 		feedback_set("escaped_total",escaped_total)
+
 	send2irc("Server", "Round just ended.")
+	send2maindiscord("A round of **[name]** has ended - **[surviving_total]** survivors, **[ghosts]** ghosts.")
+
 	return 0
 
 
