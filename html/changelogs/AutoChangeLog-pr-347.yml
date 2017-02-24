@@ -1,4 +1,0 @@
-author: "Guyonbroadway"
-delete-after: True
-changes: 
-  - bugfix: "Fixes blob spores spawning invincible yet inert fragile blob spores. Credit to lzimann from /tg/ for the fix."
