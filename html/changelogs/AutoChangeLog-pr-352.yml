@@ -1,0 +1,4 @@
+author: "Spyridon10"
+delete-after: True
+changes: 
+  - bugfix: "Removes the singularity hallucination, as it was causing crashes."
