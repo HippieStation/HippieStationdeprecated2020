@@ -27,7 +27,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 	//Something's wrong here
 	var/list/medium = list("hudscrew"=15,"items"=15,"dangerflash"=15,"bolts"=10,"flood"=10,"husks"=10,"battle"=10)
 	//AAAAH
-	var/list/major = list("fake"=10,"death"=5,"xeno"=10,"singulo"=10,"delusion"=10)
+	var/list/major = list("fake"=10,"death"=5,"xeno"=10,"delusion"=10)
 
 	var/grade = 0
 	var/current = list()
@@ -218,6 +218,8 @@ Gunshots/explosions/opening doors/less rare audio (done)
 /obj/effect/hallucination/simple/clown/scary
 	image_state = "scary_clown"
 
+//Singularity scare causes crashes for some reason
+
 /obj/effect/hallucination/singularity_scare
 	//Singularity moving towards you.
 	//todo Hide where it moved with fake space images
@@ -238,6 +240,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 	qdel(s)
 
 /obj/effect/hallucination/simple/singularity
+
 	image_icon = 'icons/effects/224x224.dmi'
 	image_state = "singularity_s7"
 	image_layer = MASSIVE_OBJ_LAYER
