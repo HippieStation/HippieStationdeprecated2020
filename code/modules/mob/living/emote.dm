@@ -295,7 +295,7 @@
 					sound = 'sound/misc/skeleton.ogg'
 				if (is_species(user, /datum/species/fly))
 					sound = 'sound/misc/moth.ogg'
-				else
+				if (is_species(user, /datum/species/human))
 					if(user.gender == FEMALE)
 						sound = pick('sound/misc/scream_f1.ogg', 'sound/misc/scream_f2.ogg')
 			if(isalien(user))
