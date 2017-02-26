@@ -1,6 +1,0 @@
-author: "Banthebantz"
-delete-after: True
-changes: 
-  - rscadd: "Readds plasma weaponry for ERT and Deathsquad, comes as both combi revolver and rifle"
-  - rscadd: "Plasma weaponry is highly damaging but lacks range and has a high energy draw"
-  - tweak: "Tweaked ERT and DS loadouts accordingly, now normal ERT commanders get a combi revolver, High alert get a rifle, DS all get combi revolvers in place of the mateba and DS officer gets a plasma rifle in place of the pulse"
