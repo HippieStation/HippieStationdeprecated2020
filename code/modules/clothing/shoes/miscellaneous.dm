@@ -91,7 +91,7 @@
 	icon_state = "cluwne"
 	item_state = "cluwne"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	flags = NODROP
+	flags = NODROP | DROPDEL
 
 /obj/item/clothing/shoes/clown_shoes/cluwne/equipped(mob/user, slot)
 	if(!ishuman(user))

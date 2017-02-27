@@ -159,13 +159,13 @@ var/list/image/ghost_images_simple = list() //this is a list of all ghost images
 		ghost_others = client.prefs.ghost_others
 
 	if(hair_image)
-		overlays -= hair_image
-		ghostimage.overlays -= hair_image
+		cut_overlay(hair_image)
+		ghostimage.overlays += hair_image
 		hair_image = null
 
 	if(facial_hair_image)
-		overlays -= facial_hair_image
-		ghostimage.overlays -= facial_hair_image
+		cut_overlay(facial_hair_image)
+		ghostimage.overlays += facial_hair_image
 		facial_hair_image = null
 
 
@@ -300,7 +300,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/Stat()
 	..()
 	if(statpanel("Status"))
-		stat(null, "Station Time: [worldtime2text()]")
 		if(ticker && ticker.mode)
 			for(var/datum/gang/G in ticker.mode.gangs)
 				if(G.is_dominating)
@@ -329,7 +328,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	mind.current.key = key
 	return 1
 
-/mob/dead/observer/proc/notify_cloning(var/message, var/sound, var/atom/source)
+/mob/dead/observer/proc/notify_cloning(var/message, var/sound, var/atom/source, flashwindow = TRUE)
+	if(flashwindow)
+		window_flash(client)
 	if(message)
 		src << "<span class='ghostalert'>[message]</span>"
 		if(source)
@@ -782,3 +783,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			SSpai.recruitWindow(src)
 	else
 		usr << "Can't become a pAI candidate while not dead!"
+
+/mob/dead/observer/CtrlShiftClick(mob/user)
+	if(isobserver(user) && check_rights(R_SPAWN))
+		change_mob_type( /mob/living/carbon/human , null, null, TRUE) //always delmob, ghosts shouldn't be left lingering
+

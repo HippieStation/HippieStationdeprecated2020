@@ -216,15 +216,20 @@ var/next_external_rsc = 0
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
 	if(world.byond_version >= 511 && byond_version >= 511 && prefs.clientfps)
-		vars["fps"] = prefs.clientfps
+		if (prefs.clientfps == 0)
+			vars["fps"] = 50
+		else
+			vars["fps"] = prefs.clientfps
+	else if (world.byond_version >= 511 && byond_version >= 511 && !prefs.clientfps)
+		vars["fps"] = 50
 	sethotkeys(1)						//set hoykeys from preferences (from_pref = 1)
 
 	. = ..()	//calls mob.Login()
-
+	
 	connection_time = world.time
 	connection_realtime = world.realtime
 	connection_timeofday = world.timeofday
-
+	winset(src, null, "command=\".configure graphics-hwmode on\"")
 	if (byond_version < config.client_error_version)		//Out of date client.
 		src << "<span class='danger'><b>Your version of byond is too old:</b></span>"
 		src << config.client_error_message
@@ -579,3 +584,10 @@ var/next_external_rsc = 0
 			return FALSE
 		if ("key")
 			return FALSE
+
+
+/client/proc/change_view(new_size)
+	if (isnull(new_size))
+		CRASH("change_view called without argument.")
+
+	view = new_size

@@ -508,7 +508,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		log_admin("[key_name(usr)] deleted [O] at ([O.x],[O.y],[O.z])")
 		message_admins("[key_name_admin(usr)] deleted [O] at ([O.x],[O.y],[O.z])")
 		feedback_add_details("admin_verb","DEL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		qdel(O)
+		if(isturf(O))
+			var/turf/T = O
+			T.ChangeTurf(T.baseturf)
+		else
+			qdel(O)
 
 /client/proc/cmd_admin_list_open_jobs()
 	set category = "Admin"
@@ -1170,3 +1174,47 @@ var/list/datum/outfit/custom_outfits = list() //Admin created outfits
 		message_admins("WARNING: The server will not show up on the hub because byond is detecting that a filewall is blocking incoming connections.")
 
 	feedback_add_details("admin_verb","HUB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/spawn_human()
+	set category = "Fun"
+	set name = "Spawn Human"
+	set desc = "Spawns a normal Human"
+
+	if(!holder)
+		return
+
+	var/turf/T = get_turf(usr)
+	new /mob/living/carbon/human(T)
+	message_admins("[key_name_admin(usr)] spawned a human.")
+	log_admin("[key_name(usr)] spawned a human.")
+	feedback_add_details("admin_verb","SH")
+
+/client/proc/reset_atmos()
+	set name = "Clean Air"
+	set category = "Special Verbs"
+	set desc = "Cleans the air in a radius of harmful gasses like plasma and n2o "
+	var/size = input("How big?", "Input") in list(5, 10, 20, "Cancel")
+	if(size == "Cancel")
+		return 0
+	for(var/turf/open/T in range(size))
+		if(T.air)
+			var/datum/gas_mixture/A = T.air
+			T.overlays.Cut()
+			if(A)
+				CHECK_TICK
+				A = initial(A)
+	message_admins("[key_name(src)] cleaned air within [size] tiles.")
+	log_game("[key_name(src)] cleaned air within [size] tiles.")
+
+/client/proc/fill_breach()
+	set name = "Fill Hull Breach"
+	set category = "Special Verbs"
+	set desc = "Spawns plating over space breachs"
+	var/size = input("How big?", "Input") in list(5, 10, "Cancel")
+	if(size == "Cancel")
+		return 0
+	for(var/turf/open/space/T in range(size))
+		CHECK_TICK
+		T.ChangeTurf(/turf/open/floor/plating)
+	message_admins("[key_name(src)] filled the hullbreachs in [size] tiles.")
+	log_game("[key_name(src)] filled the hullbreachs in [size] tiles.")

@@ -1,4 +1,4 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE 
 "aa" = (
 /turf/open/space,
 /area/space)
@@ -7999,15 +7999,6 @@
 	dir = 8
 	},
 /area/centcom/evac)
-"tN" = (
-/obj/item/weapon/twohanded/required/kirbyplants{
-	icon_state = "plant-22"
-	},
-/turf/open/floor/plasteel,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/area/centcom/evac)
 "tO" = (
 /obj/machinery/door/airlock{
 	icon = 'icons/obj/doors/airlocks/station/uranium.dmi';
@@ -8198,16 +8189,6 @@
 	tag = "icon-blue (SOUTHEAST)";
 	icon_state = "blue";
 	dir = 6
-	},
-/area/centcom/evac)
-"up" = (
-/obj/item/weapon/twohanded/required/kirbyplants{
-	icon_state = "plant-21";
-	layer = 4.1
-	},
-/turf/open/floor/plasteel,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
 	},
 /area/centcom/evac)
 "uq" = (
@@ -9335,13 +9316,6 @@
 /turf/open/floor/plasteel,
 /obj/effect/turf_decal/stripes/line,
 /area/centcom/evac)
-"xr" = (
-/obj/item/weapon/twohanded/required/kirbyplants{
-	icon_state = "plant-22"
-	},
-/turf/open/floor/plasteel,
-/obj/effect/turf_decal/stripes/line,
-/area/centcom/evac)
 "xs" = (
 /obj/structure/table,
 /obj/item/toy/sword,
@@ -9557,44 +9531,6 @@
 	},
 /turf/open/floor/plasteel/cmo,
 /area/centcom/control)
-"xP" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
-/obj/item/weapon/storage/fancy/donut_box,
-/obj/machinery/door/window/brigdoor{
-	base_state = "rightsecure";
-	dir = 1;
-	icon_state = "rightsecure";
-	name = "Centcom Customs";
-	req_access_txt = "109"
-	},
-/turf/open/floor/plasteel,
-/obj/effect/turf_decal/bot,
-/area/centcom/evac)
-"xQ" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
-/obj/item/weapon/folder/red,
-/obj/item/weapon/pen/red,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/obj/effect/turf_decal/bot,
-/area/centcom/evac)
-"xR" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/firedoor,
-/obj/machinery/door/window/brigdoor{
-	base_state = "rightsecure";
-	dir = 1;
-	icon_state = "rightsecure";
-	name = "Centcom Customs";
-	req_access_txt = "109"
-	},
-/turf/open/floor/plasteel,
-/obj/effect/turf_decal/bot,
-/area/centcom/evac)
 "xS" = (
 /obj/machinery/door/airlock{
 	icon = 'icons/obj/doors/airlocks/station/uranium.dmi';
@@ -9647,30 +9583,9 @@
 /obj/structure/flora/ausbushes/genericbush,
 /turf/open/floor/grass,
 /area/centcom/evac)
-"xY" = (
-/obj/structure/table/reinforced,
-/obj/item/weapon/restraints/handcuffs/cable/zipties,
-/obj/item/device/assembly/flash/handheld,
-/turf/open/floor/plasteel/vault{
-	dir = 8
-	},
-/area/centcom/evac)
 "xZ" = (
 /turf/open/floor/plasteel/darkred/side{
 	dir = 1
-	},
-/area/centcom/evac)
-"ya" = (
-/obj/machinery/computer/secure_data,
-/obj/machinery/button/door{
-	id = "XCCcustoms1";
-	layer = 3;
-	name = "CC Emergency Docks Control";
-	pixel_x = 24;
-	pixel_y = 24
-	},
-/turf/open/floor/plasteel/vault{
-	dir = 8
 	},
 /area/centcom/evac)
 "yb" = (
@@ -9942,16 +9857,6 @@
 "yC" = (
 /turf/open/floor/plasteel/vault{
 	dir = 5
-	},
-/area/centcom/evac)
-"yD" = (
-/obj/machinery/computer/security,
-/obj/machinery/newscaster{
-	pixel_x = 32;
-	pixel_y = 0
-	},
-/turf/open/floor/plasteel/vault{
-	dir = 8
 	},
 /area/centcom/evac)
 "yE" = (
@@ -13504,59 +13409,41 @@
 /turf/open/floor/plasteel,
 /obj/effect/turf_decal/delivery,
 /area/centcom/evac)
-"HW" = (
-/turf/open/floor/plasteel,
-/obj/effect/turf_decal/delivery,
-/area/centcom/evac)
-"HX" = (
-/turf/open/floor/plasteel,
-/obj/effect/turf_decal/delivery,
-/area/centcom/evac)
-"HY" = (
-/turf/open/floor/plasteel,
-/obj/effect/turf_decal/delivery,
-/area/centcom/evac)
-"HZ" = (
-/turf/open/floor/plasteel,
-/obj/effect/turf_decal/delivery,
-/area/centcom/evac)
-"Ia" = (
-/turf/open/floor/plasteel,
-/obj/effect/turf_decal/delivery,
-/area/centcom/evac)
-"Ib" = (
-/turf/open/floor/plasteel,
-/obj/effect/turf_decal/delivery,
-/area/centcom/evac)
-"Ic" = (
-/turf/open/floor/plasteel,
-/obj/effect/turf_decal/delivery,
-/area/centcom/evac)
-"Id" = (
-/turf/open/floor/plasteel,
-/obj/effect/turf_decal/delivery,
-/area/centcom/evac)
-"Ie" = (
-/turf/open/floor/plasteel,
-/obj/effect/turf_decal/delivery,
-/area/centcom/evac)
-"If" = (
-/turf/open/floor/plasteel,
-/obj/effect/turf_decal/delivery,
-/area/centcom/evac)
-"Ig" = (
-/turf/open/floor/plasteel,
-/obj/effect/turf_decal/delivery,
-/area/centcom/evac)
 "Ih" = (
 /turf/open/floor/plasteel,
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
 /area/centcom/evac)
-"Ii" = (
-/turf/open/floor/plasteel,
-/obj/effect/turf_decal/delivery,
+"LL" = (
+/obj/machinery/newscaster{
+	pixel_x = 32;
+	pixel_y = 0
+	},
+/obj/machinery/vending/liberationstation,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/centcom/evac)
+"TU" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/grenade/clusterbuster/random,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/centcom/evac)
+"WH" = (
+/obj/machinery/button/door{
+	id = "XCCcustoms1";
+	layer = 3;
+	name = "CC Emergency Docks Control";
+	pixel_x = 24;
+	pixel_y = 24
+	},
+/obj/machinery/vending/liberationstation,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
 /area/centcom/evac)
 
 (1,1,1) = {"
@@ -63085,7 +62972,7 @@ sv
 wW
 xq
 ql
-xY
+TU
 yB
 yL
 yT
@@ -63341,8 +63228,8 @@ vF
 sv
 wW
 xp
-xP
 xZ
+yC
 yC
 yC
 yS
@@ -63597,9 +63484,9 @@ tM
 wd
 sv
 wW
-xr
-xQ
+xp
 xZ
+yC
 yC
 yC
 yU
@@ -63855,8 +63742,8 @@ sZ
 sv
 wW
 xp
-xR
 xZ
+yC
 yC
 yC
 yV
@@ -64113,8 +64000,8 @@ sv
 wW
 xq
 ql
-ya
-yD
+WH
+LL
 yM
 yW
 qk
@@ -65899,18 +65786,18 @@ it
 it
 qk
 HV
-HW
-HX
-HY
-HZ
-Ia
-Ib
-Ic
-Id
-Ie
-If
-Ig
-Ii
+HV
+HV
+HV
+HV
+HV
+HV
+HV
+HV
+HV
+HV
+HV
+HV
 qk
 qk
 qk

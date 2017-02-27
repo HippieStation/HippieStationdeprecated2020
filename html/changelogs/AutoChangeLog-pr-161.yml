@@ -1,4 +1,0 @@
-author: "Tortellini Tony"
-delete-after: True
-changes: 
-  - bugfix: "Deepfryer will no longer cook tools and shrink things' w_class"

@@ -37,16 +37,10 @@
 	create(ckey = user.ckey)
 
 /obj/effect/mob_spawn/Initialize(mapload)
-	if(roundstart && (mapload || (ticker && ticker.current_state > GAME_STATE_SETTING_UP)))
+	if(instant || (roundstart && (mapload || (ticker && ticker.current_state > GAME_STATE_SETTING_UP))))
 		create()
 	else
 		poi_list |= src
-
-/obj/effect/mob_spawn/New()
-	..()
-
-	if(instant)
-		create()
 
 /obj/effect/mob_spawn/Destroy()
 	poi_list.Remove(src)
@@ -116,6 +110,7 @@
 	var/id_icon = null			//For setting it to be a gold, silver, centcom etc ID
 	var/husk = null
 	var/list/implants = list()
+	var/list/disabilities = list()
 
 /obj/effect/mob_spawn/human/equip(mob/living/carbon/human/H)
 	if(mob_species)
@@ -184,6 +179,9 @@
 	for(var/I in implants)
 		var/obj/item/weapon/implant/X = new I
 		X.implant(H)
+	
+	for(var/I in disabilities)
+		H.disabilities |= I
 
 	if(!H.head && istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit))
 		var/obj/item/clothing/suit/space/hardsuit/HS = H.wear_suit

@@ -214,7 +214,7 @@
 	name = "Unholy Water"
 	id = "unholywater"
 	description = "Something that shouldn't exist on this plane of existence."
-	
+
 /datum/reagent/fuel/unholywater/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(method == TOUCH || method == VAPOR)
 		M.reagents.add_reagent("unholywater", (reac_volume/4))
@@ -807,6 +807,26 @@
 				GG = new/obj/effect/decal/cleanable/greenglow(T)
 			GG.reagents.add_reagent("uranium", reac_volume)
 
+/datum/reagent/bluespace
+	name = "Bluespace Dust"
+	id = "bluespace"
+	description = "A dust composed of microscopic bluespace crystals, with minor space-warping properties."
+	reagent_state = SOLID
+	color = "#0000CC"
+
+/datum/reagent/bluespace/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+	if(method == TOUCH || method == VAPOR)
+		do_teleport(M, get_turf(M), (reac_volume / 5), asoundin = 'sound/effects/phasein.ogg') //4 tiles per crystal
+	..()
+
+/datum/reagent/bluespace/on_mob_life(mob/living/M)
+	if(current_cycle > 10 && prob(15))
+		M << "<span class='warning'>You feel unstable...</span>"
+		M.Jitter(2)
+		current_cycle = 1
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/do_teleport, M, get_turf(M), 5, asoundin = 'sound/effects/phasein.ogg'), 30)
+	..()
+
 /datum/reagent/aluminium
 	name = "Aluminium"
 	id = "aluminium"
@@ -896,6 +916,23 @@
 				H.wash_cream()
 			M.clean_blood()
 
+/datum/reagent/space_cleaner/ez_clean
+	name = "EZ Clean"
+	id = "ez_clean"
+	description = "A powerful, acidic cleaner sold by Waffle Co. Affects organic matter while leaving other objects unaffected."
+	metabolization_rate = 1.5 * REAGENTS_METABOLISM
+
+/datum/reagent/space_cleaner/ez_clean/on_mob_life(mob/living/M)
+	M.adjustBruteLoss(3.33)
+	M.adjustFireLoss(3.33)
+	M.adjustToxLoss(3.33)
+	..()
+
+/datum/reagent/space_cleaner/ez_clean/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+	..()
+	if((method == TOUCH || method == VAPOR) && !issilicon(M))
+		M.adjustBruteLoss(1)
+		M.adjustFireLoss(1)
 
 /datum/reagent/cryptobiolin
 	name = "Cryptobiolin"

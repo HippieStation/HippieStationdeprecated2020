@@ -197,6 +197,16 @@
 	..()
 	new /obj/item/weapon/implanter/storage(src)
 
+/obj/item/weapon/storage/box/syndie_kit/imp_mindslave
+	name = "Mindslave Implant (with injector)"
+
+/obj/item/weapon/storage/box/syndie_kit/imp_mindslave/New()
+	..()
+	var/obj/item/weapon/implanter/O = new(src)
+	O.imp = new /obj/item/weapon/implant/mindslave(O)
+	O.update_icon()
+	return
+
 /obj/item/weapon/storage/box/syndie_kit/space
 	name = "boxed space suit and helmet"
 	can_hold = list(/obj/item/clothing/suit/space/syndicate, /obj/item/clothing/head/helmet/space/syndicate)
@@ -301,3 +311,17 @@
 	new /obj/item/weapon/reagent_containers/glass/bottle/romerol(src)
 	new /obj/item/weapon/reagent_containers/syringe(src)
 	new /obj/item/weapon/reagent_containers/dropper(src)
+
+/obj/item/weapon/storage/box/syndie_kit/ez_clean/New()
+	..()
+	for(var/i in 1 to 3)
+		new/obj/item/weapon/grenade/chem_grenade/ez_clean(src)
+
+/obj/item/weapon/storage/box/hug/reverse_revolver/New()
+	..()
+	new /obj/item/weapon/gun/ballistic/revolver/reverse(src)
+
+/obj/item/weapon/storage/box/syndie_kit/mimery/New()
+	..()
+	new /obj/item/weapon/spellbook/oneuse/mimery_blockade(src)
+	new /obj/item/weapon/spellbook/oneuse/mimery_guns(src)

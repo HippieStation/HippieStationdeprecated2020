@@ -8,9 +8,10 @@
 /mob/living/carbon/alien/humanoid/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
 	if(user.a_intent == INTENT_HARM)
 		..(user, 1)
-		adjustBruteLoss(15)
+		adjustBruteLoss(14 + rand(1,9))
 		var/hitverb = "punched"
 		if(mob_size < MOB_SIZE_LARGE)
+			Paralyse(1)
 			step_away(src,user,15)
 			sleep(1)
 			step_away(src,user,15)

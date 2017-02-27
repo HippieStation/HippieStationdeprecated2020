@@ -53,6 +53,7 @@
 
 /obj/item/device/assembly/timer/process()
 	if(timing)
+		playsound(get_turf(src), 'sound/misc/timerboop.ogg', 40, 0)
 		time--
 		if(time <= 0)
 			timing = 0

@@ -322,6 +322,10 @@
 	if(prob(50))
 		qdel(src)
 
+/* Singulos EMPing the PA to escape is bad */
+/obj/machinery/particle_accelerator/control_box/emp_act(severity)
+	return
+
 #undef PA_CONSTRUCTION_UNSECURED
 #undef PA_CONSTRUCTION_UNWIRED
 #undef PA_CONSTRUCTION_PANEL_OPEN

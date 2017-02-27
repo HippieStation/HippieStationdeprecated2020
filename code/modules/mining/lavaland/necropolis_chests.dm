@@ -331,17 +331,13 @@
 		if (istype(usr.loc,/obj/mecha))
 			return
 
-		if(!M.restrained() && !M.stat)
+		if(!M.incapacitated())
 			playsound(loc, "rustle", 50, 1, -5)
 
 
 			if(istype(over_object, /obj/screen/inventory/hand))
 				var/obj/screen/inventory/hand/H = over_object
-				if(!M.temporarilyRemoveItemFromInventory(src))
-					return
-				if(!M.put_in_hand(src, H.held_index))
-					qdel(src)
-					return //fuck these things
+				M.putItemFromInventoryInHandIfPossible(src, H.held_index)
 
 			add_fingerprint(usr)
 
@@ -355,7 +351,7 @@
 	icon = 'icons/obj/lavaland/dragonboat.dmi'
 	resistance_flags = LAVA_PROOF | FIRE_PROOF
 
-/obj/vehicle/lavaboat/buckle_mob()
+/obj/vehicle/lavaboat/buckle_mob(mob/living/M, force = 0, check_loc = 1)
 	. = ..()
 	riding_datum = new/datum/riding/boat
 
@@ -403,7 +399,7 @@
 	desc = "This boat moves where you will it, without the need for an oar."
 	icon_state = "dragon_boat"
 
-/obj/vehicle/lavaboat/dragon/buckle_mob()
+/obj/vehicle/lavaboat/dragon/buckle_mob(mob/living/M, force = 0, check_loc = 1)
 	..()
 	riding_datum = new/datum/riding/boat/dragon
 

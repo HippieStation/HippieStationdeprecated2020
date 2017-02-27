@@ -1,4 +1,0 @@
-author: "JamieH"
-delete-after: True
-changes: 
-  - rscadd: "Add support for a Discord bot"

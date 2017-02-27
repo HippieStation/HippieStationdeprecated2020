@@ -1,6 +1,0 @@
-author: "Pyko"
-delete-after: True
-changes: 
-  - rscdel: "removed the remains of old chapel obstructing doorways."
-  - bugfix: "Hop shutter now properly ask for hop access instead of kitchen."
-  - rscadd: "Staplers to cargo, library, law office and art supply storage."

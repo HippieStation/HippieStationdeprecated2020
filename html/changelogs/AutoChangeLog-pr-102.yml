@@ -1,4 +1,0 @@
-author: "EMP sound update"
-delete-after: True
-changes: 
-  - rscadd: "Electromagnetic pulses make noise."

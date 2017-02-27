@@ -63,5 +63,11 @@
 		if(ismegafauna(M))
 			message_admins("[M] (<A HREF='?_src_=holder;adminplayerobservefollow=\ref[M]'>FLW</A>) has teleported through [src].")
 		do_teleport(M, target, precision) ///You will appear adjacent to the beacon
+		if(do_teleport(M, target))
+			for(var/mob/living/carbon/human/human in M.contents)
+				noteleport_affect(human)
+			if(ishuman(M))
+				var/mob/living/carbon/human/human = M
+				noteleport_affect(human)
 
 

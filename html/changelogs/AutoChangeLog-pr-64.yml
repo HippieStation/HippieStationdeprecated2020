@@ -1,9 +1,0 @@
-author: "tortellinitony"
-delete-after: True
-changes: 
-  - rscadd: "Self surgery"
-  - rscadd: "Test dummy spawn admin verb"
-  - rscadd: "Mecha race"
-  - tweak: "Gib animation tweaked"
-  - tweak: "Cryo tweaked"
-  - tweak: "Speeder car tweaked"

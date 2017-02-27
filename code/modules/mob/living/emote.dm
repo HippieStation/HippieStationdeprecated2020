@@ -99,10 +99,15 @@
 	message_alien = "lets out a waning guttural screech, green blood bubbling from its maw..."
 	message_larva = "lets out a sickly hiss of air and falls limply to the floor..."
 	message_monkey = "lets out a faint chimper as it collapses and stops moving..."
+	message_simple =  "stops moving..."
 	stat_allowed = UNCONSCIOUS
 
 /datum/emote/living/deathgasp/run_emote(mob/user, params)
+	var/mob/living/simple_animal/S = user
+	if(istype(S) && S.deathmessage)
+		message_simple = S.deathmessage
 	. = ..()
+	message_simple = initial(message_simple)
 	if(. && isalienadult(user))
 		playsound(user.loc, 'sound/voice/hiss6.ogg', 80, 1, 1)
 
@@ -255,7 +260,7 @@
 	message_mime = "acts out a scream!"
 	emote_type = EMOTE_AUDIBLE
 	var/screamdown
-		
+
 /datum/emote/living/scream/run_emote(mob/living/user, params)
 	if(screamdown)
 		return
@@ -263,7 +268,9 @@
 		return
 	else
 		var/sound
-		if(!user.is_muzzled() && !user.mind.miming)
+		var/miming = user.mind ? user.mind.miming : 0
+
+		if(!user.is_muzzled() && !miming)
 			if(iscyborg(user))
 				var/mob/living/silicon/robot/S = user
 				if(S.cell.charge < 20)
@@ -299,7 +306,7 @@
 				user.adjustOxyLoss(5)
 			playsound(user.loc, sound, 50, 1, 4, 1.2)
 			message = "screams!"
-		else if(user.mind.miming)
+		else if(miming)
 			message = "acts out a scream."
 		else
 			message = "makes a very loud noise."
@@ -524,5 +531,6 @@
 	user.spin(20, 1)
 	if(istype(user, /mob/living/silicon/robot))
 		var/mob/living/silicon/robot/R = user
-		R.riding_datum.force_dismount()
+		if(R.riding_datum)
+			R.riding_datum.force_dismount()
 	..()

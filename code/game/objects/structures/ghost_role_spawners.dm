@@ -57,7 +57,7 @@
 	..()
 	var/area/A = get_area(src)
 	if(A)
-		notify_ghosts("An ash walker egg is ready to hatch in \the [A.name].", source = src, action=NOTIFY_ATTACK)
+		notify_ghosts("An ash walker egg is ready to hatch in \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE)
 
 //Timeless prisons: Spawns in Wish Granter prisons in lavaland. Ghosts become age-old users of the Wish Granter and are advised to seek repentance for their past.
 /obj/effect/mob_spawn/human/exile
@@ -113,7 +113,7 @@
 		mob_species = species
 	var/area/A = get_area(src)
 	if(A)
-		notify_ghosts("\A [initial(species.id)] golem shell has been completed in \the [A.name].", source = src, action=NOTIFY_ATTACK)
+		notify_ghosts("\A [initial(species.id)] golem shell has been completed in \the [A.name].", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE)
 	if(has_owner && creator)
 		flavour_text = "You are a golem. You move slowly, but are highly resistant to heat and cold as well as blunt trauma. You are unable to wear clothes, but can still use most tools. \
 		Serve [creator], and assist [creator.p_them()] in completing [creator.p_their()] goals at any cost."
@@ -268,8 +268,12 @@
 	death = FALSE
 	roundstart = FALSE
 	random = TRUE
-	flavour_text = "You are a staff member of a top-of-the-line space hotel! Cater to guests and <font size=6><b>DON'T</b></font> leave the hotel, lest the manager fire you for\
-		dereliction of duty!"
+	has_id = 1
+	id_job = "Hotel Staff"
+	id_access_list = list(access_away_general, access_away_maint)
+	disabilities = list(NOTP)
+	flavour_text = "You are a staff member of a top-of-the-line space hotel! Cater to guests and don't leave the hotel. You feel that it would be an awful idea to use a teleporter."
+	objectives = "Do not leave your assigned hotel. Serve the guests and staff."
 
 /obj/effect/mob_spawn/human/hotel_staff/security
 	name = "hotel security sleeper"
@@ -280,8 +284,10 @@
 	helmet = /obj/item/clothing/head/helmet/blueshirt
 	back = /obj/item/weapon/storage/backpack/security
 	belt = /obj/item/weapon/storage/belt/security/full
+	id_job = "Hotel Security"
+	id_access_list = list(access_away_general, access_away_maint, access_away_sec)
 	flavour_text = "You are a peacekeeper assigned to this hotel to protect the intrests of the company while keeping the peace between \
-		guests and the staff.Do <font size=6><b>NOT</b></font> leave the hotel, as that is grounds for contract termination."
+		guests and the staff. You feel that it would be an awful idea to use a teleporter."
 	objectives = "Do not leave your assigned hotel. Try and keep the peace between staff and guests, non-lethal force heavily advised if possible."
 
 /obj/effect/mob_spawn/human/hotel_staff/Destroy()

@@ -104,7 +104,7 @@
 
 /datum/spellbook_entry/fireball
 	name = "Fireball"
-	spell_type = /obj/effect/proc_holder/spell/fireball
+	spell_type = /obj/effect/proc_holder/spell/aimed/fireball
 	log_name = "FB"
 
 /datum/spellbook_entry/rod_form
@@ -230,10 +230,20 @@
 	log_name = "LD"
 	category = "Defensive"
 
+/datum/spellbook_entry/teslablast
+	name = "Tesla Blast"
+	spell_type = /obj/effect/proc_holder/spell/targeted/tesla
+	log_name = "TB"
+
 /datum/spellbook_entry/lightningbolt
 	name = "Lightning Bolt"
-	spell_type = /obj/effect/proc_holder/spell/targeted/lightning
+	spell_type = /obj/effect/proc_holder/spell/aimed/lightningbolt
 	log_name = "LB"
+	cost = 3
+
+/datum/spellbook_entry/lightningbolt/Buy(mob/living/carbon/human/user,obj/item/weapon/spellbook/book) //return 1 on success
+	. = ..()
+	user.tesla_ignore = TRUE
 
 /datum/spellbook_entry/infinite_guns
 	name = "Lesser Summon Guns"
@@ -510,7 +520,7 @@
 	feedback_add_details("wizard_spell_learned",log_name)
 	rightandwrong(0, user, 25)
 	active = 1
-	playsound(get_turf(user),"sound/magic/CastSummon.ogg",50,1)
+	playsound(get_turf(user), 'sound/magic/CastSummon.ogg', 50, 1)
 	user << "<span class='notice'>You have cast summon guns!</span>"
 	return 1
 
@@ -528,7 +538,7 @@
 	feedback_add_details("wizard_spell_learned",log_name)
 	rightandwrong(1, user, 25)
 	active = 1
-	playsound(get_turf(user),"sound/magic/CastSummon.ogg",50,1)
+	playsound(get_turf(user), 'sound/magic/CastSummon.ogg', 50, 1)
 	user << "<span class='notice'>You have cast summon magic!</span>"
 	return 1
 
@@ -548,7 +558,7 @@
 	feedback_add_details("wizard_spell_learned",log_name)
 	summonevents()
 	times++
-	playsound(get_turf(user),"sound/magic/CastSummon.ogg",50,1)
+	playsound(get_turf(user), 'sound/magic/CastSummon.ogg', 50, 1)
 	user << "<span class='notice'>You have cast summon events.</span>"
 	return 1
 
@@ -791,7 +801,7 @@
 	return
 
 /obj/item/weapon/spellbook/oneuse/fireball
-	spell = /obj/effect/proc_holder/spell/fireball
+	spell = /obj/effect/proc_holder/spell/aimed/fireball
 	spellname = "fireball"
 	icon_state ="bookfireball"
 	desc = "This book feels warm to the touch."
@@ -924,7 +934,8 @@
 	qdel(src)
 
 /obj/item/weapon/spellbook/oneuse/random/New()
-	var/real_type = pick(subtypesof(/obj/item/weapon/spellbook/oneuse))
+	var/static/banned_spells = list(/obj/item/weapon/spellbook/oneuse/mimery_blockade,/obj/item/weapon/spellbook/oneuse/mimery_guns)
+	var/real_type = pick(subtypesof(/obj/item/weapon/spellbook/oneuse) - banned_spells)
 	new real_type(loc)
 	qdel(src)
 

@@ -4,10 +4,10 @@
 
 /area/CATEGORY/OR/DESCRIPTOR/NAME 	(you can make as many subdivisions as you want)
 	name = "NICE NAME" 				(not required but makes things really nice)
-	icon = "ICON FILENAME" 			(defaults to areas.dmi)
+	icon = 'ICON FILENAME' 			(defaults to 'icons/turf/areas.dmi')
 	icon_state = "NAME OF ICON" 	(defaults to "unknown" (blank))
 	requires_power = 0 				(defaults to 1)
-	music = "music/music.ogg"		(defaults to "music/music.ogg")
+	music = null					(defaults to nothing, look in sound/ambience for music)
 
 NOTE: there are two lists of areas in the end of this file: centcom and station itself. Please maintain these lists valid. --rastaf0
 
@@ -57,6 +57,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	luminosity = 1
 	lighting_use_dynamic = DYNAMIC_LIGHTING_DISABLED
 	has_gravity = 1
+	sound_group = "start"
 
 
 //EXTRA
@@ -68,6 +69,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	has_gravity = 1
 	blob_allowed = 0 //Nope, no winning on the asteroid as a blob. Gotta eat the station.
 	valid_territory = 0
+	sound_environment = SOUND_ENVIRONMENT_CAVE
 
 /area/asteroid/cave
 	name = "Asteroid - Underground"
@@ -97,9 +99,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 //STATION13
 
 /area/atmos
- 	name = "Atmospherics"
- 	icon_state = "atmos"
- 	flags = NONE
+	name = "Atmospherics"
+	icon_state = "atmos"
+	flags = NONE
+	sound_environment = SOUND_ENVIRONMENT_HANGAR
 
 //Maintenance
 /area/maintenance
@@ -112,6 +115,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 						 'sound/voice/lowHiss3.ogg',
 						 'sound/voice/lowHiss4.ogg')
 	valid_territory = 0
+	sound_environment = SOUND_ENVIRONMENT_SEWER_PIPE
 
 /area/maintenance/atmos_control
 	name = "Atmospherics Maintenance"
@@ -211,6 +215,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 //Hallway
 
+/area/hallway
+	sound_environment = SOUND_ENVIRONMENT_HANGAR
+
 /area/hallway/primary/fore
 	name = "Fore Primary Hallway"
 	icon_state = "hallF"
@@ -249,6 +256,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Bridge"
 	icon_state = "bridge"
 	music = "signal"
+	sound_environment = SOUND_ENVIRONMENT_LIVINGROOM
 
 /area/bridge/meeting_room
 	name = "Heads of Staff Meeting Room"
@@ -301,6 +309,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters/toilet
 	name = "Dormitory Toilets"
 	icon_state = "toilet"
+	sound_environment = SOUND_ENVIRONMENT_BATHROOM
 
 /area/crew_quarters/sleep
 	name = "Dormitories"
@@ -313,6 +322,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters/sleep_male/toilet_male
 	name = "Male Toilets"
 	icon_state = "toilet"
+	sound_environment = SOUND_ENVIRONMENT_BATHROOM
 
 /area/crew_quarters/sleep_female
 	name = "Female Dorm"
@@ -321,6 +331,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters/sleep_female/toilet_female
 	name = "Female Toilets"
 	icon_state = "toilet"
+	sound_environment = SOUND_ENVIRONMENT_BATHROOM
 
 /area/crew_quarters/locker
 	name = "Locker Room"
@@ -329,6 +340,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters/locker/locker_toilet
 	name = "Locker Toilets"
 	icon_state = "toilet"
+	sound_environment = SOUND_ENVIRONMENT_BATHROOM
 
 /area/crew_quarters/fitness
 	name = "Fitness Room"
@@ -771,65 +783,80 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/toxins/mixing
 	name = "Toxins Mixing Lab"
 	icon_state = "toxmix"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/toxins/misc_lab
 	name = "Testing Lab"
 	icon_state = "toxmisc"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/toxins/server
 	name = "Research Division Server Room"
 	icon_state = "server"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/toxins/explab
 	name = "Experimentation Lab"
 	icon_state = "toxmisc"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 //Storage
 
 /area/storage/tools
 	name = "Auxiliary Tool Storage"
 	icon_state = "storage"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/storage/primary
 	name = "Primary Tool Storage"
 	icon_state = "primarystorage"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/storage/autolathe
 	name = "Autolathe Storage"
 	icon_state = "storage"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/storage/art
 	name = "Art Supply Storage"
 	icon_state = "storage"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/storage/auxillary
 	name = "Auxillary Storage"
 	icon_state = "auxstorage"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/storage/eva
 	name = "EVA Storage"
 	icon_state = "eva"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/storage/secure
 	name = "Secure Storage"
 	icon_state = "storage"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/storage/emergency
 	name = "Starboard Emergency Storage"
 	icon_state = "emergencystorage"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/storage/emergency2
 	name = "Port Emergency Storage"
 	icon_state = "emergencystorage"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/storage/tech
 	name = "Technical Storage"
 	icon_state = "auxstorage"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/storage/testroom
 	requires_power = 0
 	name = "Test Room"
 	icon_state = "storage"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 
 //Construction
@@ -837,119 +864,146 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/construction
 	name = "Construction Area"
 	icon_state = "yellow"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/construction/minisat_exterior
 	name = "Minisat Exterior"
 	icon_state = "yellow"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/mining_construction
 	name = "Auxillary Base Construction"
 	icon_state = "yellow"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/construction/supplyshuttle
 	name = "Supply Shuttle"
 	icon_state = "yellow"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/construction/quarters
 	name = "Engineers' Quarters"
 	icon_state = "yellow"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/construction/qmaint
 	name = "Maintenance"
 	icon_state = "yellow"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/construction/hallway
 	name = "Hallway"
 	icon_state = "yellow"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/construction/solars
 	name = "Solar Panels"
 	icon_state = "yellow"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/construction/solarscontrol
 	name = "Solar Panel Control"
 	icon_state = "yellow"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/construction/Storage
 	name = "Construction Site Storage"
 	icon_state = "yellow"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 //AI
 /area/ai_monitored/security/armory
 	name = "Armory"
 	icon_state = "armory"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/ai_monitored/storage/eva
 	name = "EVA Storage"
 	icon_state = "eva"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/ai_monitored/storage/secure
 	name = "AI Satellite Storage"
 	icon_state = "storage"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/ai_monitored/storage/emergency
 	name = "Emergency Storage"
 	icon_state = "storage"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/ai_monitored/storage/satellite
 	name = "AI Satellite Maint"
 	icon_state = "storage"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 
 /area/ai_monitored/turret_protected
 	ambientsounds = list('sound/ambience/ambimalf.ogg')
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/ai_monitored/turret_protected/ai_upload
 	name = "AI Upload Chamber"
 	icon_state = "ai_upload"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/ai_monitored/turret_protected/ai_upload_foyer
 	name = "AI Upload Access"
 	icon_state = "ai_foyer"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/ai_monitored/turret_protected/ai
 	name = "AI Chamber"
 	icon_state = "ai_chamber"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/ai_monitored/turret_protected/aisat
 	name = "AI Satellite"
 	icon_state = "ai"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/aisat
 	name = "AI Satellite Exterior"
 	icon_state = "yellow"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/ai_monitored/turret_protected/aisat_interior
 	name = "AI Satellite Antechamber"
 	icon_state = "ai"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/ai_monitored/turret_protected/AIsatextFP
 	name = "AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
 	lighting_use_dynamic = DYNAMIC_LIGHTING_IFSTARLIGHT
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/ai_monitored/turret_protected/AIsatextFS
 	name = "AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
 	lighting_use_dynamic = DYNAMIC_LIGHTING_IFSTARLIGHT
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/ai_monitored/turret_protected/AIsatextAS
 	name = "AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
 	lighting_use_dynamic = DYNAMIC_LIGHTING_IFSTARLIGHT
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/ai_monitored/turret_protected/AIsatextAP
 	name = "AI Sat Ext"
 	icon_state = "storage"
 	luminosity = 1
 	lighting_use_dynamic = DYNAMIC_LIGHTING_IFSTARLIGHT
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/ai_monitored/turret_protected/NewAIMain
 	name = "AI Main New"
 	icon_state = "storage"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 
 
@@ -957,46 +1011,57 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/tcommsat
 	ambientsounds = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/tcommsat/entrance
 	name = "Telecoms Teleporter"
 	icon_state = "tcomsatentrance"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/tcommsat/chamber
 	name = "Abandoned Satellite"
 	icon_state = "tcomsatcham"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/ai_monitored/turret_protected/tcomsat
 	name = "Telecoms Satellite"
 	icon_state = "tcomsatlob"
 	ambientsounds = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/ai_monitored/turret_protected/tcomfoyer
 	name = "Telecoms Foyer"
 	icon_state = "tcomsatentrance"
 	ambientsounds = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/ai_monitored/turret_protected/tcomwest
 	name = "Telecommunications Satellite West Wing"
 	icon_state = "tcomsatwest"
 	ambientsounds = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/ai_monitored/turret_protected/tcomeast
 	name = "Telecommunications Satellite East Wing"
 	icon_state = "tcomsateast"
 	ambientsounds = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/tcommsat/computer
 	name = "Telecoms Control Room"
 	icon_state = "tcomsatcomp"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/tcommsat/server
 	name = "Telecoms Server Room"
 	icon_state = "tcomsatcham"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/tcommsat/lounge
 	name = "Telecommunications Satellite Lounge"
 	icon_state = "tcomsatlounge"
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
+
 
 
 

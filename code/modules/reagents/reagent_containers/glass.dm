@@ -28,6 +28,10 @@
 				for(var/datum/reagent/A in reagents.reagent_list)
 					R += A.id + " ("
 					R += num2text(A.volume) + "),"
+			if(isturf(target) && reagents.reagent_list.len && thrownby)
+				add_logs(thrownby, target, "splashed [english_list(reagents.reagent_list)]", "at [target][COORD(target)]")
+				log_game("[key_name(thrownby)] splashed [english_list(reagents.reagent_list)] at [COORD(target)].")
+				message_admins("[key_name_admin(thrownby)] splashed [english_list(reagents.reagent_list)] at [ADMIN_COORDJMP(target)].")
 			reagents.reaction(M, TOUCH)
 			add_logs(user, M, "splashed", R)
 			reagents.clear_reagents()
@@ -77,6 +81,15 @@
 
 		var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 		user << "<span class='notice'>You transfer [trans] unit\s of the solution to [target].</span>"
+	
+	else if(istype(target, /turf/open/pool/water))
+		if(reagents.total_volume)
+			user << "<span class='notice'>Doing that would be useless.</span>"
+		else
+			user << "<span class='notice'>You plunge [src] in the [target].</span>"
+			reagents.add_reagent("water", 100)
+			return
+
 
 	else if(reagents.total_volume)
 		if(user.a_intent == INTENT_HARM)

@@ -1,6 +1,0 @@
-author: "Tortellini Tony"
-delete-after: True
-changes: 
-  - rscadd: "You can remove the top from a water tank and put chemicals in it"
-  - bugfix: "You can craft staples"
-  - rscadd: "New tank sprites"

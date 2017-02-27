@@ -618,6 +618,13 @@ var/list/uplink_items = list() // Global list so we only initialize this once.
 	cost = 4
 	exclude_modes = list(/datum/game_mode/nuclear,/datum/game_mode/gang)
 
+/datum/uplink_item/stealthy_weapons/poison_pen
+	name = "Poison Pen"
+	desc = "Cutting edge of deadly writing implements technology, this gadget will infuse any piece of paper with delayed contact poison."
+	item = /obj/item/weapon/pen/poison
+	cost = 2
+	exclude_modes = list(/datum/game_mode/nuclear)
+
 /datum/uplink_item/stealthy_weapons/soap
 	name = "Syndicate Soap"
 	desc = "A sinister-looking surfactant used to clean blood stains to hide murders and prevent DNA analysis. \
@@ -638,6 +645,7 @@ var/list/uplink_items = list() // Global list so we only initialize this once.
 	desc = "A highly experimental bioterror agent which creates dormant nodules to be etched into the grey matter of the brain. On death, these nodules take control of the dead body, causing limited revivification, along with slurred speech, aggression, and the ability to infect others with this agent."
 	item = /obj/item/weapon/storage/box/syndie_kit/romerol
 	cost = 25
+	cant_discount = TRUE
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/gang)
 
 /datum/uplink_item/stealthy_weapons/dart_pistol
@@ -1115,6 +1123,13 @@ var/list/uplink_items = list() // Global list so we only initialize this once.
 	cost = 20
 	include_modes = list(/datum/game_mode/nuclear)
 
+/datum/uplink_item/implants/mindslave
+	name = "Mindslave Implant"
+	desc = "An implant injected into another body, forcing the vitcim to obey any command by the user for around 15 to 20 mintues."
+	exclude_modes = list(/datum/game_mode/nuclear)
+	item = /obj/item/weapon/storage/box/syndie_kit/imp_mindslave
+	cost = 9
+	surplus = 20
 
 // Cybernetics
 /datum/uplink_item/cyber_implants
@@ -1131,15 +1146,15 @@ var/list/uplink_items = list() // Global list so we only initialize this once.
 
 
 /datum/uplink_item/cyber_implants/thermals
-	name = "Thermal Vision Implant"
+	name = "Thermal eyes"
 	desc = "These cybernetic eyes will give you thermal vision. Comes with a free autoimplanter."
-	item = /obj/item/organ/cyberimp/eyes/thermals
+	item = /obj/item/organ/eyes/robotic/thermals
 	cost = 8
 
 /datum/uplink_item/cyber_implants/xray
 	name = "X-Ray Vision Implant"
 	desc = "These cybernetic eyes will give you X-ray vision. Comes with an autoimplanter."
-	item = /obj/item/organ/cyberimp/eyes/xray
+	item = /obj/item/organ/eyes/robotic/xray
 	cost = 10
 
 /datum/uplink_item/cyber_implants/antistun
@@ -1165,6 +1180,58 @@ var/list/uplink_items = list() // Global list so we only initialize this once.
 /datum/uplink_item/role_restricted
 	category = "Role-Restricted"
 	exclude_modes = list(/datum/game_mode/nuclear)
+	surplus = 0
+
+/datum/uplink_item/role_restricted/reverse_revolver
+	name = "Reverse Revolver"
+	desc = "A revolver that always fires at its user. \"Accidentally\" drop your weapon, then watch as the greedy corporate pigs blow their own brains all over the wall. \
+	The revolver itself is actually real. Only clumsy people, and clowns, can fire it normally. Comes in a box of hugs. Honk."
+	cost = 14
+	item = /obj/item/weapon/storage/box/hug/reverse_revolver
+	restricted_roles = list("Clown")
+
+/datum/uplink_item/role_restricted/mimery
+	name = "Guide to Advanced Mimery Series"
+	desc = "The classical two part series on how to further hone your mime skills. Upon studying the series, the user should be able to make 3x1 invisble walls, and shoot bullets out of their fingers. Obviously only works for Mimes."
+	cost = 15
+	item = /obj/item/weapon/storage/box/syndie_kit/mimery
+	restricted_roles = list("Mime")
+
+/datum/uplink_item/role_restricted/ez_clean_bundle
+	name = "EZ Clean Grenade Bundle"
+	desc = "A box with three cleaner grenades using the trademark Waffle Co. formula. Serves as a cleaner and causes acid damage to anyone standing nearby. The acid only affects carbon-based creatures."
+	item = /obj/item/weapon/storage/box/syndie_kit/ez_clean
+	cost = 6
+	surplus = 20
+	restricted_roles = list("Janitor")
+
+/datum/uplink_item/role_restricted/his_grace
+	name = "His Grace"
+	desc = "An incredibly dangerous weapon recovered from a station overcome by the grey tide. Once activated, He will thirst for blood and must be used to kill to sate that thirst. \
+	His Grace grants gradual regeneration and complete stun immunity to His wielder, but be wary: if He gets too hungry, He will become impossible to drop and eventually kill you if not fed. \
+	However, if left alone for long enough, He will fall back to slumber. \
+	To activate His Grace, simply unlatch Him."
+	item = /obj/item/weapon/his_grace
+	cost = 20
+	restricted_roles = list("Chaplain")
+	surplus = 5 //Very low chance to get it in a surplus crate even without being the chaplain
+
+/* Science Division */
+/datum/uplink_item/role_restricted/experimental_teleporter
+	name = "Experimental Teleporter"
+	desc = "An imperfect bluespace teleportation device recovered from an abandoned mine that relocates the user 3 to 5 metres in their direction. The teleportation will telefrag any living creature in the new location. Relocating into solid walls will yield less than stellar results."
+	restricted_roles = list("Research Director")
+	cost = 14
+	item = /obj/item/device/experimental_teleporter
+	cant_discount = TRUE
+
+/* Botany */
+/datum/uplink_item/role_restricted/lawnmower
+	name = "Gas powered lawn mower"
+	desc = "A lawn mower is a machine utilizing one or more revolving blades to cut a grass surface to an even height, or bodies if that's your thing"
+	restricted_roles = list("Botanist")
+	cost = 14
+	item = /obj/vehicle/lawnmower/emagged
 
 // Pointless
 /datum/uplink_item/badass

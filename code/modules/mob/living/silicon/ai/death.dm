@@ -18,7 +18,7 @@
 
 	shuttle_caller_list -= src
 	SSshuttle.autoEvac()
-	
+
 	ShutOffDoomsdayDevice()
 
 	if(explosive)
@@ -31,7 +31,6 @@
 			if(istype(loc, /obj/item/device/aicard))
 				loc.icon_state = "aicard-404"
 
-
 /mob/living/silicon/ai/proc/ShutOffDoomsdayDevice()
 	if(nuking)
 		set_security_level("red")
@@ -43,4 +42,4 @@
 	if(doomsday_device)
 		doomsday_device.timing = FALSE
 		SSshuttle.clearHostileEnvironment(doomsday_device)
-		qdel(doomsday_device) 
+		qdel(doomsday_device)

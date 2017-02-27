@@ -55,16 +55,6 @@
 /obj/item/weapon/reagent_containers/proc/canconsume(mob/eater, mob/user)
 	if(!iscarbon(eater))
 		return 0
-	var/mob/living/carbon/C = eater
-	var/covered = ""
-	if(C.is_mouth_covered(head_only = 1))
-		covered = "headgear"
-	else if(C.is_mouth_covered(mask_only = 1))
-		covered = "mask"
-	if(covered)
-		var/who = (isnull(user) || eater == user) ? "your" : "[eater.p_their()]"
-		user << "<span class='warning'>You have to remove [who] [covered] first!</span>"
-		return 0
 	return 1
 
 /obj/item/weapon/reagent_containers/ex_act()
@@ -107,6 +97,10 @@
 		return
 
 	else
+		if(isturf(target) && reagents.reagent_list.len && thrownby)
+			add_logs(thrownby, target, "splashed (thrown) [english_list(reagents.reagent_list)]", "at [target][COORD(target)]")
+			log_game("[key_name(thrownby)] splashed (thrown) [english_list(reagents.reagent_list)] at [COORD(target)].")
+			message_admins("[key_name_admin(thrownby)] splashed (thrown) [english_list(reagents.reagent_list)] at [ADMIN_COORDJMP(target)].")
 		visible_message("<span class='notice'>[src] spills its contents all over [target].</span>")
 		reagents.reaction(target, TOUCH)
 		if(QDELETED(src))

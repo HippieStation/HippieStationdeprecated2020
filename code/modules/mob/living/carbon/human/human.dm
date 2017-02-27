@@ -59,6 +59,8 @@
 			internal_organs += new /obj/item/organ/lungs()
 	if(!(NOBLOOD in dna.species.species_traits))
 		internal_organs += new /obj/item/organ/heart
+
+	internal_organs += new dna.species.mutanteyes()
 	internal_organs += new /obj/item/organ/brain
 	internal_organs += new /obj/item/organ/internal/butt
 	..()
@@ -213,6 +215,13 @@
 	if(legcuffed)
 		dat += "<tr><td><A href='?src=\ref[src];item=[slot_legcuffed]'>Legcuffed</A></td></tr>"
 
+	for(var/I in bodyparts)
+		if(istype(I, /obj/item/bodypart))
+			var/obj/item/bodypart/L = I
+
+			for(var/obj/item/J in L.embedded_objects)
+				dat += "<tr><td><a href='byond://?src=\ref[src];embedded_object=\ref[J];embedded_limb=\ref[L]'>Embedded in [L]: [J]</a><br></td></tr>"
+	
 	dat += {"</table>
 	<A href='?src=\ref[user];mach_close=mob\ref[src]'>Close</A>
 	"}
@@ -230,7 +239,6 @@
 
 	spreadFire(AM)
 
-
 /mob/living/carbon/human/Topic(href, href_list)
 	if(usr.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
 
@@ -240,7 +248,8 @@
 			if(!I || !L || I.loc != src || !(I in L.embedded_objects)) //no item, no limb, or item is not in limb or in the person anymore
 				return
 			var/time_taken = I.embedded_unsafe_removal_time*I.w_class
-			usr.visible_message("<span class='warning'>[usr] attempts to remove [I] from their [L.name].</span>","<span class='notice'>You attempt to remove [I] from your [L.name]... (It will take [time_taken/10] seconds.)</span>")
+			usr.visible_message("<span class='warning'>[usr] attempts to remove \the [I] from [usr == src ? "their" : name + "'s"] [L.name].</span>",\
+				                "<span class='notice'>You attempt to remove \the [I] from [usr == src ? "your" : name + "'s"] [L.name]... (It will take [time_taken/10] seconds.)</span>")
 			if(do_after(usr, time_taken, needhand = 1, target = src))
 				if(!I || !L || I.loc != src || !(I in L.embedded_objects))
 					return
@@ -248,8 +257,10 @@
 				L.receive_damage(I.embedded_unsafe_removal_pain_multiplier*I.w_class)//It hurts to rip it out, get surgery you dingus.
 				I.forceMove(get_turf(src))
 				usr.put_in_hands(I)
-				usr.emote("scream")
-				usr.visible_message("[usr] successfully rips [I] out of their [L.name]!","<span class='notice'>You successfully remove [I] from your [L.name].</span>")
+				emote("scream")
+
+				visible_message("[usr] successfully rips \the [I] out of [usr == src ? "their" : name + "'s"] [L.name]!",\
+					            "<span class='notice'>You successfully remove \the [I] from [usr == src ? "your" : name + "'s"] [L.name].</span>")
 				if(!has_embedded_objects())
 					clear_alert("embeddedobject")
 			return
@@ -731,8 +742,8 @@
 
 /mob/living/carbon/human/wash_cream()
 	//clean both to prevent a rare bug
-	overlays -=image('icons/effects/creampie.dmi', "creampie_lizard")
-	overlays -=image('icons/effects/creampie.dmi', "creampie_human")
+	cut_overlay(image('icons/effects/creampie.dmi', "creampie_lizard"))
+	cut_overlay(image('icons/effects/creampie.dmi', "creampie_human"))
 
 
 //Turns a mob black, flashes a skeleton overlay
@@ -751,7 +762,7 @@
 
 /mob/living/carbon/human/proc/end_electrocution_animation(image/I)
 	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, "#000000")
-	overlays -= I
+	cut_overlay(I)
 
 /mob/living/carbon/human/canUseTopic(atom/movable/M, be_close = 0)
 	if(incapacitated() || lying )
@@ -776,17 +787,6 @@
 		var/datum/data/record/R = find_record("name", oldname, L)
 		if(R)
 			R.fields["name"] = newname
-
-/mob/living/carbon/human/update_sight()
-	if(!client)
-		return
-	if(stat == DEAD)
-		sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		see_in_dark = 8
-		see_invisible = SEE_INVISIBLE_OBSERVER
-		return
-
-	dna.species.update_sight(src)
 
 /mob/living/carbon/human/get_total_tint()
 	. = ..()

@@ -542,9 +542,11 @@ var/next_mob_id = 0
 		stat(null, "Map: [MAP_NAME]")
 		if(nextmap && istype(nextmap))
 			stat(null, "Next Map: [nextmap.friendlyname]")
-		stat(null, "Server Time: [time2text(world.realtime, "YYYY-MM-DD hh:mm")]")
+		stat(null, "Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]")
+		stat(null, "Station Time: [worldtime2text()]")
+		stat(null, "Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
+
 		if(SSshuttle.emergency)
-			stat(null, "Current Shuttle: [SSshuttle.emergency.name]")
 			var/ETA = SSshuttle.emergency.getModeStr()
 			if(ETA)
 				stat(null, "[ETA] [SSshuttle.emergency.getTimerStr()]")
@@ -630,7 +632,14 @@ var/next_mob_id = 0
 		return 0
 	return 1
 
-
+/proc/is_nearcrit(mob/living/M)
+	if(!ismonkey(M) && !ishuman(M))
+		return FALSE
+	if(M.health <= HEALTH_THRESHOLD_CRIT && M.health > HEALTH_THRESHOLD_DEEPCRIT)
+		return TRUE
+	else
+		return FALSE
+	
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 //Robots, animals and brains have their own version so don't worry about them
 /mob/proc/update_canmove()
@@ -655,7 +664,7 @@ var/next_mob_id = 0
 			fall()
 		else if(ko || (!has_legs && !ignore_legs) || chokehold)
 			fall(forced = 1)
-	canmove = !(ko || resting || stunned || chokehold || buckled || (!has_legs && !ignore_legs && !has_arms))
+	canmove = !((is_nearcrit(src) ? 0 : ko) || resting || stunned || chokehold || buckled || (!has_legs && !ignore_legs && !has_arms))
 	density = !lying
 	if(lying)
 		if(layer == initial(layer)) //to avoid special cases like hiding larvas.
@@ -669,6 +678,9 @@ var/next_mob_id = 0
 		var/mob/living/L = src
 		if(L.has_status_effect(/datum/status_effect/freon))
 			canmove = 0
+	if(!lying && lying_prev)
+		if(client)
+			client.move_delay = world.time + movement_delay()
 	lying_prev = lying
 	return canmove
 
@@ -732,10 +744,10 @@ var/next_mob_id = 0
 	if(mind)
 		return mind.grab_ghost(force = force)
 
-/mob/proc/notify_ghost_cloning(var/message = "Someone is trying to revive you. Re-enter your corpse if you want to be revived!", var/sound = 'sound/effects/genetics.ogg', var/atom/source = null)
+/mob/proc/notify_ghost_cloning(var/message = "Someone is trying to revive you. Re-enter your corpse if you want to be revived!", var/sound = 'sound/effects/genetics.ogg', var/atom/source = null, flashwindow)
 	var/mob/dead/observer/ghost = get_ghost()
 	if(ghost)
-		ghost.notify_cloning(message, sound, source)
+		ghost.notify_cloning(message, sound, source, flashwindow)
 		return ghost
 
 /mob/proc/AddSpell(obj/effect/proc_holder/spell/S)

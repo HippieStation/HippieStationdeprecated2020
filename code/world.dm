@@ -9,12 +9,15 @@
 	name = "/tg/ Station 13"
 	fps = 20
 	visibility = 0
+#ifdef GC_FAILURE_HARD_LOOKUP
+	loop_checks = FALSE
+#endif
 
 var/list/map_transition_config = MAP_TRANSITION_CONFIG
 
 /world/New()
+	log_world("World loaded at [world.timeofday]")
 	map_ready = 1
-	world.log << "Map is ready."
 
 #if (PRELOAD_RSC == 0)
 	external_rsc_urls = file2list("config/external_rsc_urls.txt","\n")
@@ -36,6 +39,7 @@ var/list/map_transition_config = MAP_TRANSITION_CONFIG
 
 	make_datum_references_lists()	//initialises global lists for referencing frequently used datums (so that we only ever do it once)
 	load_configuration()
+	revdata.DownloadPRDetails()
 	load_mode()
 	load_motd()
 	load_admins()
@@ -45,16 +49,13 @@ var/list/map_transition_config = MAP_TRANSITION_CONFIG
 	LoadBans()
 	investigate_reset()
 
-	if(config && config.server_name != null && config.server_suffix && world.port > 0)
-		config.server_name += " #[(world.port % 1000) / 100]"
-
 	timezoneOffset = text2num(time2text(0,"hh")) * 36000
 
 	if(config.sql_enabled)
 		if(!setup_database_connection())
-			world.log << "Your server failed to establish a connection with the database."
+			log_world("Your server failed to establish a connection with the database.")
 		else
-			world.log << "Database connection established."
+			log_world("Database connection established.")
 
 
 	data_core = new /datum/datacore()
@@ -72,16 +73,14 @@ var/list/map_transition_config = MAP_TRANSITION_CONFIG
 
 	Master.Setup(10, FALSE)
 
-
 #define IRC_STATUS_THROTTLE 50
-var/last_irc_status = 0
-
 /world/Topic(T, addr, master, key)
 	if(config && config.log_world_topic)
 		diary << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key]"
 
 	var/list/input = params2list(T)
 	var/key_valid = (global.comms_allowed && input["key"] == global.comms_key)
+	var/static/last_irc_status = 0
 
 	if("ping" in input)
 		var/x = 1
@@ -100,7 +99,8 @@ var/last_irc_status = 0
 		if(world.time - last_irc_status < IRC_STATUS_THROTTLE)
 			return
 		var/list/adm = get_admin_counts()
-		var/status = "Admins: [adm["total"]] (Active: [adm["present"]] AFK: [adm["afk"]] Stealth: [adm["stealth"]] Skipped: [adm["noflags"]]). "
+		var/list/allmins = adm["total"]
+		var/status = "Admins: [allmins.len] (Active: [english_list(adm["present"])] AFK: [english_list(adm["afk"])] Stealth: [english_list(adm["stealth"])] Skipped: [english_list(adm["noflags"])]). "
 		status += "Players: [clients.len] (Active: [get_active_player_count(0,1,0)]). Mode: [ticker.mode.name]."
 		send2irc("Status", status)
 		last_irc_status = world.time
@@ -120,10 +120,10 @@ var/last_irc_status = 0
 		s["revision_date"] = revdata.date
 
 		var/list/adm = get_admin_counts()
-		s["admins"] = adm["present"] + adm["afk"] //equivalent to the info gotten from adminwho
 
-		//var/list/mnt = get_mentor_counts()
-		//s["mentors"] = mnt["total"] // we don't have stealth mentors, so we can just use the total.'
+		var/list/presentmins = adm["present"]
+		var/list/afkmins = adm["afk"]
+		s["admins"] = presentmins.len + afkmins.len //equivalent to the info gotten from adminwho
 
 		s["gamestate"] = 1
 		if(ticker)
@@ -189,6 +189,7 @@ var/last_irc_status = 0
 		else
 			return ircadminwho()
 
+#define WORLD_REBOOT(X) log_world("World rebooted at [world.timeofday]"); ..(X); return;
 
 /world/Reboot(var/reason, var/feedback_c, var/feedback_r, var/time)
 	if (reason == 1) //special reboot, do none of the normal stuff
@@ -196,7 +197,7 @@ var/last_irc_status = 0
 			log_admin("[key_name(usr)] Has requested an immediate world restart via client side debugging tools")
 			message_admins("[key_name_admin(usr)] Has requested an immediate world restart via client side debugging tools")
 		world << "<span class='boldannounce'>Rebooting World immediately due to host request</span>"
-		return ..(1)
+		WORLD_REBOOT(1)
 	var/delay
 	if(time)
 		delay = time
@@ -205,7 +206,7 @@ var/last_irc_status = 0
 	if(ticker.delay_end)
 		world << "<span class='boldannounce'>An admin has delayed the round end.</span>"
 		return
-	world << "<span class='boldannounce'>Rebooting World in [delay/10] [delay > 10 ? "seconds" : "second"]. [reason]</span>"
+	world << "<span class='boldannounce'>Rebooting World in [delay/10] [(delay >= 10 && delay < 20) ? "second" : "seconds"]. [reason]</span>"
 	var/round_end_sound_sent = FALSE
 	if(ticker.round_end_sound)
 		round_end_sound_sent = TRUE
@@ -227,12 +228,13 @@ var/last_irc_status = 0
 				Reboot("Map change timed out", time = 10)
 		return
 	OnReboot(reason, feedback_c, feedback_r, round_end_sound_sent)
-	..(0)
+	WORLD_REBOOT(0)
+
+#undef WORLD_REBOOT
 
 /world/proc/OnReboot(reason, feedback_c, feedback_r, round_end_sound_sent)
 	feedback_set_details("[feedback_c]","[feedback_r]")
 	log_game("<span class='boldannounce'>Rebooting World. [reason]</span>")
-	kick_clients_in_lobby("<span class='boldannounce'>The round came to an end with you in the lobby.</span>", 1) //second parameter ensures only afk clients are kicked
 #ifdef dellogging
 	var/log = file("data/logs/del.log")
 	log << time2text(world.realtime)
@@ -241,49 +243,45 @@ var/last_irc_status = 0
 		if(count > 10)
 			log << "#[count]\t[index]"
 #endif
-	var/soundwait = 0
-	if (ticker.round_end_sound && !round_end_sound_sent)
-		soundwait = 10
-		for(var/thing in clients)
-			var/client/C = thing
-			if (!C)
-				continue
-			C.Export("##action=load_rsc", ticker.round_end_sound)
-	spawn(soundwait/2)
-		if(ticker && ticker.round_end_sound)
-			world << sound(ticker.round_end_sound)
-		else
-			world << sound(pick('sound/AI/newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg','sound/misc/leavingtg.ogg', 'sound/misc/its_only_game.ogg', 'sound/misc/yeehaw.ogg')) // random end sounds!! - LastyBatsy
 	if(blackbox)
 		blackbox.save_all_data_to_sql()
-	sleep(soundwait)
 	Master.Shutdown()	//run SS shutdowns
+	RoundEndAnimation(round_end_sound_sent)
+	kick_clients_in_lobby("<span class='boldannounce'>The round came to an end with you in the lobby.</span>", 1) //second parameter ensures only afk clients are kicked
+	world << "<span class='boldannounce'>Rebooting world.</span>"
 	for(var/thing in clients)
 		var/client/C = thing
-		if (!C)
-			continue
-		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
+		if(C && config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 			C << link("byond://[config.server]")
+	if(config.update_check_enabled)
+		install_update()
 
-var/inerror = 0
-/world/Error(var/exception/e)
-	//runtime while processing runtimes
-	if (inerror)
-		inerror = 0
-		return ..(e)
-	inerror = 1
-	//newline at start is because of the "runtime error" byond prints that can't be timestamped.
-	e.name = "\n\[[time2text(world.timeofday,"hh:mm:ss")]\][e.name]"
+/world/proc/RoundEndAnimation(round_end_sound_sent)
+	set waitfor = FALSE
+	var/round_end_sound
+	if(!ticker && ticker.round_end_sound)
+		round_end_sound = ticker.round_end_sound
+		if (!round_end_sound_sent)
+			for(var/thing in clients)
+				var/client/C = thing
+				if (!C)
+					continue
+				C.Export("##action=load_rsc", round_end_sound)
+	else
+		round_end_sound = pick(\
+		'sound/hippie/roundend/newroundsexy.ogg',
+		'sound/hippie/roundend/apcdestroyed.ogg',
+		'sound/hippie/roundend/bangindonk.ogg',
+		'sound/hippie/roundend/leavingtg.ogg',
+		'sound/hippie/roundend/its_only_game.ogg',
+		'sound/hippie/roundend/yeehaw.ogg',
+		'sound/hippie/roundend/disappointed.ogg'\
+		)
 
-	//this is done this way rather then replace text to pave the way for processing the runtime reports more thoroughly
-	//	(and because runtimes end with a newline, and we don't want to basically print an empty time stamp)
-	var/list/split = splittext(e.desc, "\n")
-	for (var/i in 1 to split.len)
-		if (split[i] != "")
-			split[i] = "\[[time2text(world.timeofday,"hh:mm:ss")]\][split[i]]"
-	e.desc = jointext(split, "\n")
-	inerror = 0
-	return ..(e)
+	for(var/thing in clients)
+		new /obj/screen/splash(thing, FALSE, FALSE)
+
+	world << sound(round_end_sound)
 
 /world/proc/load_mode()
 	var/list/Lines = file2list("data/mode.txt")
@@ -298,11 +296,7 @@ var/inerror = 0
 	F << the_mode
 
 /world/proc/load_motd()
-	join_motd = file2text("config/motd.txt")
-	join_motd += "<br>"
-	for(var/line in revdata.testmerge)
-		if(line)
-			join_motd += "Test merge active of PR <a href='[config.githuburl]/pull/[line]'>#[line]</a><br>"
+	join_motd = file2text("config/motd.txt") + "<br>" + revdata.GetTestMergeInfo()
 
 /world/proc/load_configuration()
 	protected_config = new /datum/protected_configuration()
@@ -392,7 +386,7 @@ var/failed_db_connections = 0
 	else
 		failed_db_connections++		//If it failed, increase the failed connections counter.
 		if(config.sql_enabled)
-			world.log << "SQL error: " + dbcon.ErrorMsg()
+			log_world("SQL error: " + dbcon.ErrorMsg())
 
 	return .
 
@@ -500,3 +494,33 @@ var/rebootingpendingmapchange = 0
 			log_game("Failed to change map: Unknown error: Error code #[.]")
 	if(rebootingpendingmapchange)
 		world.Reboot("Map change finished", time = 10)
+
+// Shamelessly stolen from Goonstation
+// https://github.com/goonstation/goonstation-2016/blob/master/code/world.dm#L510
+/proc/install_update()
+	log_admin("Checking for updated [config.dmb_filename].dmb...")
+	message_admins("Checking for updated [config.dmb_filename].dmb...")
+
+	// Check if the DMB exists in the update folder
+	if(fexists("update/[config.dmb_filename].dmb"))
+		log_admin("Updated [config.dmb_filename].dmb found. Updating...")
+		message_admins("Updated [config.dmb_filename].dmb found. Updating....")
+
+		// Copy all files in the update folder
+		for(var/f in flist("update/"))
+			log_admin("\tMoving [f]...")
+			message_admins("\tMoving [f]...")
+			fcopy("update/[f]", "[f]")
+
+			// Make sure we clean the update folder back up again
+			fdel("update/[f]")
+
+		// Make sure we delete the .dyn.rsc which holds dynamic resources
+		// These could collide with new resource ids
+		fdel("[config.dmb_filename].dyn.rsc")
+
+		log_admin("Update complete.")
+		message_admins("Update complete.")
+	else
+		log_admin("No update found. Skipping update process.")
+		message_admins("No update found. Skipping update process.")
