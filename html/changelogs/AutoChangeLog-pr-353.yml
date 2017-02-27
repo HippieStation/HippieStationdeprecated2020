@@ -1,0 +1,5 @@
+author: "Tortellini Tony"
+delete-after: True
+changes: 
+  - rscadd: "Added a RoboTech to robotics."
+  - bugfix: "Redid a number of sprites."
