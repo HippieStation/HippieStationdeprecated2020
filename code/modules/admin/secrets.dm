@@ -120,7 +120,8 @@
 			D.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(D), slot_ears)
 			D.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(D), slot_back)
 			D.equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(D.back), slot_in_backpack)
-			playsound(D.loc, 'sound/effects/pray.ogg', 50)
+			var/obj/effect/holy/HL = new /obj/effect/holy()
+			HL.start(D)
 			D.name = "Admin"
 			D.real_name = "Admin"
 			var/newname = ""
