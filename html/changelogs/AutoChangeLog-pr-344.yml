@@ -1,0 +1,4 @@
+author: "GuyonBroadway"
+delete-after: True
+changes: 
+  - tweak: "Roughly doubles the tiles it takes for the blob to win."
