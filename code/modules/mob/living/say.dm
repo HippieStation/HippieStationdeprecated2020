@@ -81,10 +81,12 @@ var/list/crit_allowed_modes = list(MODE_WHISPER,MODE_CHANGELING,MODE_ALIEN)
 		return
 
 	var/message_mode = get_message_mode(message)
-	if(is_nearcrit(src))
+
+	if(is_nearcrit(src) && !stat)
 		whisper(message)
 		adjustOxyLoss(1)
 		return
+	
 	if(stat && !(message_mode in crit_allowed_modes))
 		return
 
