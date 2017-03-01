@@ -15344,13 +15344,13 @@
 	name = "\improper Garden"
 	})
 "aHh" = (
-/obj/item/weapon/reagent_containers/spray/plantbgone,
-/obj/item/weapon/reagent_containers/spray/pestspray{
+/obj/item/weapon/reagent_containers/spray/hydroponics/plantbgonespray,
+/obj/item/weapon/reagent_containers/spray/hydroponics/pestkillerspray{
 	pixel_x = 3;
 	pixel_y = 4
 	},
-/obj/item/weapon/reagent_containers/glass/bottle/nutrient/ez,
-/obj/item/weapon/reagent_containers/glass/bottle/nutrient/rh{
+/obj/item/weapon/reagent_containers/glass/bottle/precision/eznutriment,
+/obj/item/weapon/reagent_containers/glass/bottle/precision/robustharvestnutriment{
 	pixel_x = 2;
 	pixel_y = 1
 	},
@@ -16943,15 +16943,15 @@
 /area/chapel/office)
 "aKI" = (
 /obj/structure/table,
-/obj/item/weapon/reagent_containers/spray/plantbgone{
+/obj/item/weapon/reagent_containers/spray/hydroponics/plantbgonespray{
 	pixel_x = 0;
 	pixel_y = 3
 	},
-/obj/item/weapon/reagent_containers/spray/plantbgone{
+/obj/item/weapon/reagent_containers/spray/hydroponics/plantbgonespray{
 	pixel_x = 8;
 	pixel_y = 8
 	},
-/obj/item/weapon/reagent_containers/spray/plantbgone{
+/obj/item/weapon/reagent_containers/spray/hydroponics/plantbgonespray{
 	pixel_x = 13;
 	pixel_y = 5
 	},

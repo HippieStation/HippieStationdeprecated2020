@@ -3,7 +3,7 @@
 ///////////////////////////////////
 
 /datum/design/milk
-	name = "10 milk"
+	name = "Milk"
 	id = "milk"
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 20)
@@ -11,7 +11,7 @@
 	category = list("initial","Food")
 
 /datum/design/cream
-	name = "10 cream"
+	name = "Cream"
 	id = "cream"
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 30)
@@ -35,7 +35,7 @@
 	category = list("initial","Food")
 
 /datum/design/black_pepper
-	name = "10u black pepper"
+	name = "Black pepper"
 	id = "black_pepper"
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 25)
@@ -43,12 +43,11 @@
 	category = list("initial","Food")
 
 /datum/design/pepper_mill
-	name = "Pepper mill"
+	name = "Black pepper mill"
 	id = "pepper_mill"
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 50)
 	build_path = /obj/item/weapon/reagent_containers/food/condiment/peppermill
-	make_reagents = list()
 	category = list("initial","Food")
 
 /datum/design/monkey_cube
@@ -59,61 +58,189 @@
 	build_path = /obj/item/weapon/reagent_containers/food/snacks/monkeycube
 	category = list("initial", "Food")
 
-/datum/design/ez_nut
+/datum/design/eznutriment
 	name = "E-Z-Nutrient"
-	id = "ez_nut"
+	id = "eznutriment"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 2)
+	make_reagents = list("eznutriment" = 10)
+	category = list("initial","Botany Chemicals")
+
+/datum/design/left4zednutriment
+	name = "Left 4 Zed"
+	id = "left4zednutriment"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 4)
+	make_reagents = list("left4zednutriment" = 10)
+	category = list("initial","Botany Chemicals")
+
+/datum/design/robustharvestnutriment
+	name = "Robust Harvest"
+	id = "robustharvestnutriment"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 5)
+	make_reagents = list("robustharvestnutriment" = 10)
+	category = list("initial","Botany Chemicals")
+
+/datum/design/plantbgone
+	name = "Plant-B-Gone"
+	id = "plantbgone"
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 10)
-	build_path = /obj/item/weapon/reagent_containers/glass/bottle/nutrient/ez
+	make_reagents = list("plantbgone" = 10)
 	category = list("initial","Botany Chemicals")
 
-/datum/design/l4z_nut
-	name = "Left 4 Zed"
-	id = "l4z_nut"
-	build_type = BIOGENERATOR
-	materials = list(MAT_BIOMASS = 20)
-	build_path = /obj/item/weapon/reagent_containers/glass/bottle/nutrient/l4z
-	category = list("initial","Botany Chemicals")
-
-/datum/design/rh_nut
-	name = "Robust Harvest"
-	id = "rh_nut"
-	build_type = BIOGENERATOR
-	materials = list(MAT_BIOMASS = 25)
-	build_path = /obj/item/weapon/reagent_containers/glass/bottle/nutrient/rh
-	category = list("initial","Botany Chemicals")
-
-/datum/design/weed_killer
+/datum/design/weedkiller
 	name = "Weed Killer"
-	id = "weed_killer"
+	id = "weedkiller"
 	build_type = BIOGENERATOR
-	materials = list(MAT_BIOMASS = 50)
-	build_path = /obj/item/weapon/reagent_containers/glass/bottle/killer/weedkiller
+	materials = list(MAT_BIOMASS = 10)
+	make_reagents = list("weedkiller" = 10)
 	category = list("initial","Botany Chemicals")
 
-/datum/design/pest_spray
+/datum/design/pestkiller
 	name = "Pest Killer"
-	id = "pest_spray"
+	id = "pestkiller"
 	build_type = BIOGENERATOR
-	materials = list(MAT_BIOMASS = 50)
-	build_path = /obj/item/weapon/reagent_containers/glass/bottle/killer/pestkiller
+	materials = list(MAT_BIOMASS = 10)
+	make_reagents = list("pestkiller" = 10)
 	category = list("initial","Botany Chemicals")
 
-/datum/design/unstable_mutagen
-	name = "10u unstable mutagen"
+/datum/design/mutagen
+	name = "Unstable Mutagen"
 	id = "mutagen"
 	build_type = BIOGENERATOR
-	materials = list(MAT_BIOMASS = 50)
+	materials = list(MAT_BIOMASS = 40)
 	make_reagents = list("mutagen" = 10)
 	category = list("initial","Botany Chemicals")
 
-/datum/design/botany_bottle
-	name = "Empty Bottle"
-	id = "botany_bottle"
+/datum/design/ash
+	name = "Ash"
+	id = "ash"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 3)
+	make_reagents = list("ash" = 10)
+	category = list("initial","Botany Chemicals")
+
+/datum/design/ammonia
+	name = "Ammonia"
+	id = "ammonia"
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 5)
-	build_path = /obj/item/weapon/reagent_containers/glass/bottle/nutrient/empty
-	category = list("initial", "Botany Chemicals")
+	make_reagents = list("ammonia" = 10)
+	category = list("initial","Botany Chemicals")
+
+/datum/design/saltpetre
+	name = "Saltpetre"
+	id = "saltpetre"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 10)
+	make_reagents = list("saltpetre" = 10)
+	category = list("initial","Botany Chemicals")
+
+/datum/design/diethylamine
+	name = "Diethylamine"
+	id = "diethylamine"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 20)
+	make_reagents = list("diethylamine" = 10)
+	category = list("initial","Botany Chemicals")
+
+/datum/design/eznutriment_bottle
+	name = "E-Z-Nutrient Bottle"
+	id = "eznutrimen_bottlet"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 10)
+	build_path = /obj/item/weapon/reagent_containers/glass/bottle/precision/eznutriment
+	category = list("initial","Botany Chemical Bottles")
+
+/datum/design/left4zednutriment_bottle
+	name = "Left 4 Zed Bottle"
+	id = "left4zednutriment_bottle"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 20)
+	build_path = /obj/item/weapon/reagent_containers/glass/bottle/precision/left4zednutriment
+	category = list("initial","Botany Chemical Bottles")
+
+/datum/design/robustharvestnutriment_bottle
+	name = "Robust Harvest Bottle"
+	id = "robustharvestnutriment_bottle"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 25)
+	build_path = /obj/item/weapon/reagent_containers/glass/bottle/precision/robustharvestnutriment
+	category = list("initial","Botany Chemical Bottles")
+
+/datum/design/plantbgone_bottle
+	name = "Plant-B-Gone Bottle"
+	id = "plantbgone_bottle"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 50)
+	build_path = /obj/item/weapon/reagent_containers/glass/bottle/precision/plantbgone
+	category = list("initial","Botany Chemical Bottles")
+
+/datum/design/weedkiller_bottle
+	name = "Weed Killer Bottle"
+	id = "weedkiller_bottle"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 50)
+	build_path = /obj/item/weapon/reagent_containers/glass/bottle/precision/weedkiller
+	category = list("initial","Botany Chemical Bottles")
+
+/datum/design/pestkiller_bottle
+	name = "Pest Killer Bottle"
+	id = "pestkiller_bottle"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 50)
+	build_path = /obj/item/weapon/reagent_containers/glass/bottle/precision/pestkiller
+	category = list("initial","Botany Chemical Bottles")
+
+/datum/design/mutagen_bottle
+	name = "Unstable Mutagen Bottle"
+	id = "mutagen_bottle"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 200)
+	build_path = /obj/item/weapon/reagent_containers/glass/bottle/precision/mutagen
+	category = list("initial","Botany Chemical Bottles")
+
+/datum/design/ash_bottle
+	name = "Ash Bottle"
+	id = "ash_bottle"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 15)
+	build_path = /obj/item/weapon/reagent_containers/glass/bottle/precision/ash
+	category = list("initial","Botany Chemical Bottles")
+
+/datum/design/ammonia_bottle
+	name = "Ammonia Bottle"
+	id = "ammonia_bottle"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 25)
+	build_path = /obj/item/weapon/reagent_containers/glass/bottle/precision/ammonia
+	category = list("initial","Botany Chemical Bottles")
+
+/datum/design/saltpetre_bottle
+	name = "Saltpetre Bottle"
+	id = "saltpetre_bottle"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 50)
+	build_path = /obj/item/weapon/reagent_containers/glass/bottle/precision/saltpetre
+	category = list("initial", "Botany Chemical Bottles")
+
+/datum/design/diethylamine_bottle
+	name = "Diethylamine Bottle"
+	id = "diethylamine_bottle"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 100)
+	build_path = /obj/item/weapon/reagent_containers/glass/bottle/precision/diethylamine
+	category = list("initial", "Botany Chemical Bottles")
+
+/datum/design/empty_bottle
+	name = "Empty Bottle"
+	id = "empty_bottle"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 5)
+	build_path = /obj/item/weapon/reagent_containers/glass/bottle/precision
+	category = list("initial", "Botany Chemical Bottles")
 
 /datum/design/cloth
 	name = "Roll of cloth"
@@ -129,6 +256,46 @@
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 100)
 	build_path = /obj/item/weapon/storage/wallet
+	category = list("initial","Leather and Cloth")
+
+/datum/design/book_bag
+	name = "Book bag"
+	id = "book_bag"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 200)
+	build_path = /obj/item/weapon/storage/bag/books
+	category = list("initial","Leather and Cloth")
+
+/datum/design/plant_bag
+	name = "Plant bag"
+	id = "plant_bag"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 200)
+	build_path = /obj/item/weapon/storage/bag/plants
+	category = list("initial","Leather and Cloth")
+
+/datum/design/damp_rag
+	name = "Damp rag"
+	id = "damp_rag"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 200)
+	build_path = /obj/item/weapon/reagent_containers/glass/rag
+	category = list("initial","Leather and Cloth")
+
+/datum/design/mining_satchel
+	name = "Mining satchel"
+	id = "mining_satchel"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 200)
+	build_path = /obj/item/weapon/storage/bag/ore
+	category = list("initial","Leather and Cloth")
+
+/datum/design/chemistry_bag
+	name = "Chemistry bag"
+	id = "chemistry_bag"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 200)
+	build_path = /obj/item/weapon/storage/bag/chemistry
 	category = list("initial","Leather and Cloth")
 
 /datum/design/botany_gloves
@@ -217,4 +384,12 @@
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 300)
 	build_path = /obj/item/clothing/head/rice_hat
+	category = list("initial","Leather and Cloth")
+
+/datum/design/baseball_bat
+	name = "Baseball bat"
+	id = "baseball_bat"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 100)
+	build_path = /obj/item/weapon/melee/baseball_bat
 	category = list("initial","Leather and Cloth")

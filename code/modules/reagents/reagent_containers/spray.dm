@@ -134,14 +134,14 @@
 /obj/item/weapon/reagent_containers/spray/cleaner
 	name = "space cleaner"
 	desc = "BLAM!-brand non-foaming space cleaner!"
-	list_reagents = list("cleaner" = 250)
+	list_reagents_fill = list("cleaner")
 
 //spray tan
 /obj/item/weapon/reagent_containers/spray/spraytan
 	name = "spray tan"
 	volume = 50
 	desc = "Gyaro brand spray tan. Do not spray near eyes or other orifices."
-	list_reagents = list("spraytan" = 50)
+	list_reagents_fill = list("spraytan")
 
 
 /obj/item/weapon/reagent_containers/spray/medical
@@ -154,7 +154,7 @@
 /obj/item/weapon/reagent_containers/spray/medical/sterilizer
 	name = "sterilizer spray"
 	desc = "Spray bottle loaded with non-toxic sterilizer. Useful in preparation for surgery."
-	list_reagents = list("sterilizine" = 100)
+	list_reagents_fill = list("sterilizine")
 
 
 //pepperspray
@@ -167,7 +167,7 @@
 	volume = 40
 	stream_range = 4
 	amount_per_transfer_from_this = 5
-	list_reagents = list("condensedcapsaicin" = 40)
+	list_reagents_fill = list("condensedcapsaicin")
 
 //water flower
 /obj/item/weapon/reagent_containers/spray/waterflower
@@ -175,10 +175,9 @@
 	desc = "A seemingly innocent sunflower...with a twist."
 	icon = 'icons/obj/hydroponics/harvest.dmi'
 	icon_state = "sunflower"
-	item_state = "sunflower"
 	amount_per_transfer_from_this = 1
 	volume = 10
-	list_reagents = list("water" = 10)
+	list_reagents_fill = list("water")
 
 /obj/item/weapon/reagent_containers/spray/waterflower/attack_self(mob/user) //Don't allow changing how much the flower sprays
 	return
@@ -189,7 +188,6 @@
 	desc = "A utility used to spray large amounts of reagents in a given area."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "chemsprayer"
-	item_state = "chemsprayer"
 	throwforce = 0
 	w_class = WEIGHT_CLASS_NORMAL
 	stream_mode = 1
@@ -216,12 +214,33 @@
 /obj/item/weapon/reagent_containers/spray/chemsprayer/bioterror
 	list_reagents = list("sodium_thiopental" = 100, "coniine" = 100, "venom" = 100, "condensedcapsaicin" = 100, "initropidril" = 100, "polonium" = 100)
 
-// Plant-B-Gone
-/obj/item/weapon/reagent_containers/spray/plantbgone // -- Skie
-	name = "Plant-B-Gone"
-	desc = "Kills those pesky weeds!"
+// Hydroponics
+
+/obj/item/weapon/reagent_containers/spray/hydroponics
+	name = "hydroponics spray bottle"
+	desc = "A hydroponics spray bottle, with an unscrewable top."
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "plantbgone"
 	item_state = "plantbgone"
 	volume = 100
-	list_reagents = list("plantbgone" = 100)
+
+/obj/item/weapon/reagent_containers/spray/hydroponics/suicide_act(mob/user)
+	user.visible_message("<span class='suicide'>[user] is huffing [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	return (TOXLOSS)
+
+/obj/item/weapon/reagent_containers/spray/hydroponics/plantbgonespray // -- Skie
+	name = "plant-b-gone spray"
+	desc = "Kills those pesky weeds!"
+	list_reagents_fill = list("plantbgone")
+
+/obj/item/weapon/reagent_containers/spray/hydroponics/weedkillerspray // -- Skie
+	name = "weed killer spray"
+	desc = "It's a toxic mixture, in spray form, to kill small weeds."
+	icon_state = "weedspray"
+	list_reagents_fill = list("weedkiller")
+
+/obj/item/weapon/reagent_containers/spray/hydroponics/pestkillerspray // -- Skie
+	name = "pest killer spray"
+	desc = "It's some pest eliminator spray! <I>Do not inhale!</I>"
+	icon_state = "pestspray"
+	list_reagents_fill = list("pestkiller")

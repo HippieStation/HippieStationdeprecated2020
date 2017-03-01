@@ -34,8 +34,8 @@
 /obj/item/weapon/vending_refill/boozeomat
 	machine_name = "Booze-O-Mat"
 	icon_state = "refill_booze"
-	charges = list(54, 4, 0)//of 159 standard, 12 contraband
-	init_charges = list(54, 4, 0)
+	charges = list(56, 4, 0)//of 168 standard, 12 contraband
+	init_charges = list(56, 4, 0)
 
 /obj/item/weapon/vending_refill/coffee
 	machine_name = "Solar's Best Hot Drinks"
@@ -45,8 +45,8 @@
 
 /obj/item/weapon/vending_refill/snack
 	machine_name = "Getmore Chocolate Corp"
-	charges = list(12, 2, 0)//of 36 standard, 6 contraband
-	init_charges = list(12, 2, 0)
+	charges = list(14, 2, 0)//of 42 standard, 6 contraband
+	init_charges = list(14, 2, 0)
 
 /obj/item/weapon/vending_refill/cola
 	machine_name = "Robust Softdrinks"
@@ -57,17 +57,17 @@
 /obj/item/weapon/vending_refill/cigarette
 	machine_name = "ShadyCigs Deluxe"
 	icon_state = "refill_smoke"
-	charges = list(12, 3, 2)// of 36 standard, 9 contraband, 6 premium
-	init_charges = list(12, 3, 2)
+	charges = list(13, 3, 2)// of 39 standard, 9 contraband, 6 premium
+	init_charges = list(13, 3, 2)
 
 /obj/item/weapon/vending_refill/autodrobe
 	machine_name = "AutoDrobe"
 	icon_state = "refill_costume"
-	charges = list(31, 2, 3)// of 94 standard, 6 contraband, 9 premium
-	init_charges = list(27, 2, 3)
+	charges = list(33, 2, 4)// of 99 standard, 6 contraband, 12 premium
+	init_charges = list(33, 2, 4)
 
 /obj/item/weapon/vending_refill/clothing
 	machine_name = "ClothesMate"
 	icon_state = "refill_clothes"
-	charges = list(31, 4, 4)// of 101 standard, 12 contraband, 10 premium(?)
-	init_charges = list(31, 4, 4)
+	charges = list(35, 3, 4)// of 105 standard, 9 contraband, 12 premium
+	init_charges = list(35, 3, 4)

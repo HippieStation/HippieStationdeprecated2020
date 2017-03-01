@@ -1,7 +1,7 @@
 /obj/machinery/hydroponics
 	name = "hydroponics tray"
 	icon = 'icons/obj/hydroponics/equipment.dmi'
-	icon_state = "hydrotray"
+	icon_state = "hydrotray2"
 	density = 1
 	anchored = 1
 	pixel_y = 8
@@ -17,7 +17,7 @@
 	var/toxic = 0			//Toxicity in the tray?
 	var/age = 0				//Current age
 	var/dead = 0			//Is it dead?
-	var/plant_health		//Its health
+	var/plant_health = 0		//Its health
 	var/lastproduce = 0		//Last time it was harvested
 	var/lastcycle = 0		//Used for timing of cycles.
 	var/cycledelay = 200	//About 10 seconds / cycle
@@ -28,12 +28,16 @@
 	var/recent_bee_visit = FALSE //Have we been visited by a bee recently, so bees dont overpollinate one plant
 	var/using_irrigation = FALSE //If the tray is connected to other trays via irrigation hoses
 	var/self_sustaining = FALSE //If the tray generates nutrients and water on its own
+	var/frozen = FALSE
+	var/allowshoses = FALSE //Used to see if that type of tray can have hoses.
 
 
 /obj/machinery/hydroponics/constructable
 	name = "hydroponics tray"
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "hydrotray3"
+	frozen = FALSE
+	allowshoses = TRUE
 
 /obj/machinery/hydroponics/constructable/New()
 	..()
@@ -76,9 +80,6 @@
 	if(default_pry_open(I))
 		return
 
-	if(default_unfasten_wrench(user, I))
-		return
-
 	if(istype(I, /obj/item/weapon/crowbar))
 		if(using_irrigation)
 			user << "<span class='warning'>Disconnect the hoses first!</span>"
@@ -116,6 +117,9 @@
 		return ..()
 
 /obj/machinery/hydroponics/process()
+	if(frozen)
+		return
+
 	var/needs_update = 0 // Checks if the icon needs updating so we don't redraw empty trays every time
 
 	if(myseed && (myseed.loc != src))
@@ -262,7 +266,8 @@
 			add_overlay(image('icons/obj/hydroponics/equipment.dmi', icon_state = "gaia_blessing"))
 		SetLuminosity(3)
 
-	update_icon_hoses()
+	if(allowshoses)
+		update_icon_hoses()
 
 	if(myseed)
 		update_icon_plant()
@@ -274,6 +279,9 @@
 			SetLuminosity(G.get_lum(myseed))
 		else
 			SetLuminosity(0)
+
+	if(frozen && !myseed)
+		update_icon_lights()
 
 	return
 
@@ -299,6 +307,11 @@
 		var/t_growthstate = min(round((age / myseed.maturation) * myseed.growthstages), myseed.growthstages)
 		I = image(icon = myseed.growing_icon, icon_state = "[myseed.icon_grow][t_growthstate]")
 	I.layer = OBJ_LAYER + 0.01
+	if(frozen)//Goofcode incoming his freon freezing thing
+		var/icon/O = new('icons/effects/freeze.dmi', "ice_cube")
+		var/icon/IC = new(I.icon, I.icon_state)
+		O.Blend(IC, ICON_ADD)
+		I.icon = O.icon
 	add_overlay(I)
 
 /obj/machinery/hydroponics/proc/update_icon_lights()
@@ -306,13 +319,18 @@
 		add_overlay(image('icons/obj/hydroponics/equipment.dmi', icon_state = "over_lowwater3"))
 	if(nutrilevel <= 2)
 		add_overlay(image('icons/obj/hydroponics/equipment.dmi', icon_state = "over_lownutri3"))
-	if(plant_health <= (myseed.endurance / 2))
+	if(myseed && plant_health <= (myseed.endurance / 2))
 		add_overlay(image('icons/obj/hydroponics/equipment.dmi', icon_state = "over_lowhealth3"))
 	if(weedlevel >= 5 || pestlevel >= 5 || toxic >= 40)
 		add_overlay(image('icons/obj/hydroponics/equipment.dmi', icon_state = "over_alert3"))
 	if(harvest)
 		add_overlay(image('icons/obj/hydroponics/equipment.dmi', icon_state = "over_harvest3"))
-
+	if(frozen) //Frozen should appear regardless if there is a plant present
+		for(var/i = 0 to 4)
+			var/image/I = image('icons/hippie/obj/hydroponics/equipment.dmi', icon_state = "over_frozen3")
+			I.pixel_x = I.pixel_x + i * 5
+			I.alpha = 100
+			add_overlay(I)
 
 /obj/machinery/hydroponics/examine(user)
 	..()
@@ -326,7 +344,8 @@
 			user << "<span class='warning'>It looks unhealthy.</span>"
 	else
 		user << "<span class='info'>[src] is empty.</span>"
-
+	if(frozen)
+		user << "<span class='info'>[src] is cryogenically frozen.</span>"
 	if(!self_sustaining)
 		user << "<span class='info'>Water: [waterlevel]/[maxwater]</span>"
 		user << "<span class='info'>Nutrient: [nutrilevel]/[maxnutri]</span>"
@@ -337,6 +356,7 @@
 		user << "<span class='warning'>[src] is filled with weeds!</span>"
 	if(pestlevel >= 5)
 		user << "<span class='warning'>[src] is filled with tiny worms!</span>"
+
 	user << "" // Empty line for readability.
 
 
@@ -502,11 +522,14 @@
 		adjustNutri(round(S.get_reagent_amount("left4zednutriment") * 1))
 
 	if(S.has_reagent("robustharvestnutriment", 1))
-		yieldmod = 1.3
+		yieldmod = 2
 		mutmod = 0
 		adjustNutri(round(S.get_reagent_amount("robustharvestnutriment") *1 ))
 
 	// Antitoxin binds shit pretty well. So the tox goes significantly down
+	if(S.has_reagent("antitoxin", 1))
+		adjustToxic(-round(S.get_reagent_amount("antitoxin") * 2))
+
 	if(S.has_reagent("charcoal", 1))
 		adjustToxic(-round(S.get_reagent_amount("charcoal") * 2))
 
@@ -623,6 +646,7 @@
 		if (myseed)
 			myseed.adjust_production(-round(salt/100)-prob(salt%100))
 			myseed.adjust_potency(round(salt*0.50))
+
 	// Ash is also used IRL in gardening, as a fertilizer enhancer and weed killer
 	if(S.has_reagent("ash", 1))
 		adjustHealth(round(S.get_reagent_amount("ash") * 0.25))
@@ -676,6 +700,12 @@
 
 /obj/machinery/hydroponics/attackby(obj/item/O, mob/user, params)
 	//Called when mob user "attacks" it with object O
+	if(istype(O, /obj/item/device/multitool) && unwrenchable)
+		user << "<span class='notice'>You [frozen ? "disable" : "enable"] the cryogenic freezing.</span>"
+		frozen = !frozen
+		update_icon()
+		return
+
 	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/grown/ambrosia/gaia)) //Checked early on so it doesn't have to deal with composting checks
 		if(self_sustaining)
 			user << "<span class='warning'>This [name] is already self-sustaining!</span>"
@@ -808,7 +838,7 @@
 		else
 			user << "<span class='warning'>This plot is completely devoid of weeds! It doesn't need uprooting.</span>"
 
-	else if(istype(O, /obj/item/weapon/storage/bag/plants))
+	else if(istype(O, /obj/item/weapon/storage/bag/plants) && !frozen)
 		attack_hand(user)
 		var/obj/item/weapon/storage/bag/plants/S = O
 		for(var/obj/item/weapon/reagent_containers/food/snacks/grown/G in locate(user.x,user.y,user.z))
@@ -842,7 +872,7 @@
 				user.visible_message("[user] unwrenches [src].", \
 									"<span class='notice'>You unwrench [src].</span>")
 
-	else if(istype(O, /obj/item/weapon/wirecutters) && unwrenchable)
+	else if(istype(O, /obj/item/weapon/wirecutters) && unwrenchable && allowshoses)
 		using_irrigation = !using_irrigation
 		playsound(src, O.usesound, 50, 1)
 		user.visible_message("<span class='notice'>[user] [using_irrigation ? "" : "dis"]connects [src]'s irrigation hoses.</span>", \
@@ -850,7 +880,7 @@
 		for(var/obj/machinery/hydroponics/h in range(1,src))
 			h.update_icon()
 
-	else if(istype(O, /obj/item/weapon/shovel/spade) && unwrenchable)
+	else if(istype(O, /obj/item/weapon/shovel/spade))
 		if(!myseed && !weedlevel)
 			user << "<span class='warning'>[src] doesn't have any plants or weeds!</span>"
 			return
@@ -876,7 +906,7 @@
 /obj/machinery/hydroponics/attack_hand(mob/user)
 	if(issilicon(user)) //How does AI know what plant is?
 		return
-	if(harvest)
+	if(harvest && !frozen)
 		myseed.harvest(user)
 	else if(dead)
 		dead = 0

@@ -8,8 +8,8 @@
 	var/list/possible_transfer_amounts = list(5,10,15,20,25,30)
 	var/volume = 30
 	var/list/list_reagents = null
+	var/list/list_reagents_fill = null
 	var/spawned_disease = null
-	var/disease_amount = 20
 	var/spillable = 0
 
 /obj/item/weapon/reagent_containers/New(location, vol = 0)
@@ -20,9 +20,11 @@
 	if(spawned_disease)
 		var/datum/disease/F = new spawned_disease(0)
 		var/list/data = list("viruses"= list(F))
-		reagents.add_reagent("blood", disease_amount, data)
+		reagents.add_reagent("blood", volume, data)
 	if(list_reagents)
 		reagents.add_reagent_list(list_reagents)
+	else if(list_reagents_fill)
+		reagents.add_reagent_list_fill(list_reagents_fill)
 
 /obj/item/weapon/reagent_containers/attack_self(mob/user)
 	if(possible_transfer_amounts.len)

@@ -557,6 +557,11 @@ var/const/INJECT = 5 //injection
 		var/amt = list_reagents[r_id]
 		add_reagent(r_id, amt, data)
 
+/datum/reagents/proc/add_reagent_list_fill(list/list_reagents_fill, list/data=null) // Like add_reagent_list but you it adds equal parts of each in the list to evenly fill the container.
+	var/amt = (maximum_volume - total_volume)/list_reagents_fill.len// Format it like this: list("toxin", "beer")
+	for(var/r_id in list_reagents_fill)
+		add_reagent(r_id, amt, data)
+
 /datum/reagents/proc/remove_reagent(reagent, amount, safety)//Added a safety check for the trans_id_to
 
 	if(isnull(amount))

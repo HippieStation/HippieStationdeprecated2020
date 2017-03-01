@@ -81,7 +81,7 @@
 
 		var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 		user << "<span class='notice'>You transfer [trans] unit\s of the solution to [target].</span>"
-	
+
 	else if(istype(target, /turf/open/pool/water))
 		if(reagents.total_volume)
 			user << "<span class='notice'>Doing that would be useless.</span>"
@@ -173,6 +173,11 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,50,100)
 	flags = OPENCONTAINER
+
+/obj/item/weapon/reagent_containers/glass/beaker/large/precision
+	name = "large precision beaker"
+	desc = "A large precision beaker. Can hold up to 100 units."
+	possible_transfer_amounts = list(1,2,5,10,15,20,25,30,50,100)
 
 /obj/item/weapon/reagent_containers/glass/beaker/noreact
 	name = "cryostasis beaker"

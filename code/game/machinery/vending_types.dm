@@ -84,6 +84,7 @@ CLOTHESMATE
 		/obj/item/weapon/storage/belt/fannypack/blue=1,
 		/obj/item/weapon/storage/belt/fannypack/red=1,
 		/obj/item/clothing/suit/jacket/letterman=2,
+		/obj/item/clothing/head/kitty = 2,
 		/obj/item/clothing/head/beanie=1,
 		/obj/item/clothing/head/beanie/black=1,
 		/obj/item/clothing/head/beanie/red=1,
@@ -105,7 +106,7 @@ CLOTHESMATE
 		/obj/item/clothing/mask/balaclava=1,
 		/obj/item/clothing/head/ushanka=1,
 		/obj/item/clothing/under/soviet=1,
-		/obj/item/weapon/storage/belt/fannypack/black=2,
+		/obj/item/weapon/storage/belt/fannypack/black=1,
 		/obj/item/clothing/suit/jacket/letterman_syndie=1,
 		/obj/item/clothing/under/jabroni=1,
 		/obj/item/clothing/suit/vapeshirt=1,
@@ -118,7 +119,7 @@ CLOTHESMATE
 		/obj/item/clothing/suit/jacket/leather=1,
 		/obj/item/clothing/suit/jacket/leather/overcoat=1,
 		/obj/item/clothing/under/pants/mustangjeans=1,
-		/obj/item/clothing/neck/necklace/dope=3,
+		/obj/item/clothing/neck/necklace/dope=5,
 		/obj/item/clothing/suit/jacket/letterman_nanotrasen=1
 		)
 
@@ -263,6 +264,7 @@ AUTODROBE
 	req_access_txt = "46" //Theatre access needed, unless hacked.
 	product_slogans = "Dress for success!;Suited and booted!;It's show time!;Why leave style up to fate? Use AutoDrobe!"
 	vend_reply = "Thank you for using AutoDrobe!"
+	height = 750
 	refill_canister = /obj/item/weapon/vending_refill/autodrobe
 	products = list(
 		/obj/item/clothing/suit/chickensuit = 1,
@@ -379,7 +381,7 @@ AUTODROBE
 		/obj/item/clothing/under/roman = 1,
 		/obj/item/clothing/shoes/roman = 1,
 		/obj/item/weapon/shield/riot/roman = 1,
-		/obj/item/weapon/skub = 1
+		/obj/item/weapon/skub = 3
 		)
 
 /*
@@ -422,7 +424,6 @@ MEGASEED SERVITOR
 	product_slogans = "THIS'S WHERE TH' SEEDS LIVE! GIT YOU SOME!;Hands down the best seed selection on the station!;Also certain mushroom varieties available, more for experts! Get certified today!"
 	product_ads = "We like plants!;Grow some crops!;Grow, baby, growww!;Aw h'yeah son!"
 	icon_state = "seeds"
-	premium = list(/obj/item/weapon/reagent_containers/spray/waterflower = 1)
 	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0, fire = 100, acid = 50)
 	resistance_flags = FIRE_PROOF
 	height = 750
@@ -473,6 +474,10 @@ MEGASEED SERVITOR
 		/obj/item/seeds/cannabis = 3,
 		/obj/item/seeds/random = 2
 		)
+	premium = list(
+		/obj/item/weapon/reagent_containers/spray/waterflower = 1,
+		/obj/item/seeds/random = 10
+		)
 
 /*
 
@@ -486,24 +491,49 @@ NUTRIMAX
 	product_slogans = "Aren't you glad you don't have to fertilize the natural way?;Now with 50% less stink!;Plants are people too!"
 	product_ads = "We like plants!;Don't you want some?;The greenest thumbs ever.;We like big plants.;Soft soil..."
 	icon_state = "nutri"
-	height = 400
+	height = 750
 	icon_deny = "nutri-deny"
 	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0, fire = 100, acid = 50)
 	resistance_flags = FIRE_PROOF
 	products = list(
-		/obj/item/weapon/reagent_containers/glass/bottle/nutrient/ez = 30,
-		/obj/item/weapon/reagent_containers/glass/bottle/nutrient/l4z = 20,
-		/obj/item/weapon/reagent_containers/glass/bottle/nutrient/rh = 10,
-		/obj/item/weapon/reagent_containers/spray/pestspray = 20,
+		/obj/item/weapon/reagent_containers/glass/bottle/precision/eznutriment = 30,
+		/obj/item/weapon/reagent_containers/glass/bottle/precision/left4zednutriment = 30,
+		/obj/item/weapon/reagent_containers/glass/bottle/precision/robustharvestnutriment = 30,
+		/obj/item/weapon/reagent_containers/glass/bottle/precision/mutagen = 30,
+		/obj/item/weapon/reagent_containers/glass/bottle/precision/ash = 25,
+		/obj/item/weapon/reagent_containers/glass/bottle/precision/ammonia = 20,
+		/obj/item/weapon/reagent_containers/glass/bottle/precision/saltpetre = 15,
+		/obj/item/weapon/reagent_containers/glass/bottle/precision/diethylamine = 10,
+		/obj/item/weapon/reagent_containers/glass/bottle/precision/plantbgone = 10,
+		/obj/item/weapon/reagent_containers/glass/bottle/precision/weedkiller = 10,
+		/obj/item/weapon/reagent_containers/glass/bottle/precision/pestkiller = 10,
+		/obj/item/weapon/reagent_containers/glass/bottle/precision = 10,
+		/obj/item/weapon/reagent_containers/spray/hydroponics/plantbgonespray = 5,
+		/obj/item/weapon/reagent_containers/spray/hydroponics/weedkillerspray = 5,
+		/obj/item/weapon/reagent_containers/spray/hydroponics/pestkillerspray = 5,
+		/obj/item/weapon/reagent_containers/spray/hydroponics = 5,
+		/obj/item/weapon/reagent_containers/glass/beaker/large = 5,
 		/obj/item/weapon/reagent_containers/syringe = 5,
 		/obj/item/weapon/storage/bag/plants = 5,
+		/obj/item/weapon/storage/box/disks_plantgene = 5,
+		/obj/item/device/plant_analyzer = 3,
 		/obj/item/weapon/cultivator = 3,
 		/obj/item/weapon/shovel/spade = 3,
-		/obj/item/device/plant_analyzer = 4
+		/obj/item/device/multitool = 3,
+		/obj/item/weapon/reagent_containers/glass/bucket =3
 		)
 	contraband = list(
-		/obj/item/weapon/reagent_containers/glass/bottle/ammonia = 10,
-		/obj/item/weapon/reagent_containers/glass/bottle/diethylamine = 5
+		/obj/item/weapon/disk/plantgene = 30,
+		/obj/item/weapon/reagent_containers/glass/bottle/charcoal = 5,
+		/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 5,
+		/obj/item/weapon/reagent_containers/glass/bottle/cryoxadone = 5,
+		/obj/item/weapon/reagent_containers/dropper = 3,
+		/obj/item/weapon/hatchet = 3
+		)
+	premium = list(
+		/obj/item/weapon/reagent_containers/glass/beaker/large/precision = 10,
+		/obj/item/weapon/watertank = 3,
+		/obj/item/weapon/scythe = 3
 		)
 
 /*
@@ -626,13 +656,13 @@ HOTDRINKS
 	/obj/item/weapon/reagent_containers/food/drinks/mug/coco = 25
 	)
 
-	
+
 /*
 
 NANOMED
 
 */
-	
+
 /obj/machinery/vending/medical
 	name = "\improper NanoMed Plus"
 	desc = "Medical drug dispenser."
@@ -667,7 +697,7 @@ NANOMED
 		/obj/item/weapon/reagent_containers/pill/morphine = 4,
 		/obj/item/weapon/reagent_containers/pill/charcoal = 6
 		)
-	
+
 /*
 
 WALLMED
@@ -750,11 +780,13 @@ CIGARETTE
 		/obj/item/weapon/storage/box/matches = 10,
 		/obj/item/weapon/lighter/greyscale = 4,
 		/obj/item/weapon/storage/fancy/rollingpapers = 5,
+		/obj/item/weapon/lighter = 1,
 		/obj/item/clothing/mask/vape = 2
 		)
 	contraband = list(
 		/obj/item/weapon/lighter = 3,
-		/obj/item/clothing/mask/vape = 3
+		/obj/item/clothing/mask/vape = 3,
+		/obj/item/weapon/storage/fancy/cigarettes/cigpack_shadyjims = 3
 		)
 
 /*

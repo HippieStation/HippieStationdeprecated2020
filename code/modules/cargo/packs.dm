@@ -1087,8 +1087,8 @@
 /datum/supply_pack/organic/hydroponics
 	name = "Hydroponics Crate"
 	cost = 1500
-	contains = list(/obj/item/weapon/reagent_containers/spray/plantbgone,
-					/obj/item/weapon/reagent_containers/spray/plantbgone,
+	contains = list(/obj/item/weapon/reagent_containers/spray/hydroponics/plantbgonespray,
+					/obj/item/weapon/reagent_containers/spray/hydroponics/plantbgonespray,
 					/obj/item/weapon/reagent_containers/glass/bottle/ammonia,
 					/obj/item/weapon/reagent_containers/glass/bottle/ammonia,
 					/obj/item/weapon/hatchet,
