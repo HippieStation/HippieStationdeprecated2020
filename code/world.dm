@@ -317,48 +317,21 @@ var/list/map_transition_config = MAP_TRANSITION_CONFIG
 	if (config && config.server_name)
 		s += "<b>[config.server_name]</b> &#8212; "
 
-	s += "<b>[station_name()]</b>";
-	s += " ("
-	s += "<a href=\"http://\">" //Change this to wherever you want the hub to link to.
-//	s += "[game_version]"
-	s += "Default"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
-	s += "</a>"
-	s += ")"
-
-	var/list/features = list()
-
-	if(ticker)
-		if(master_mode)
-			features += master_mode
-	else
-		features += "<b>STARTING</b>"
-
-	if (!enter_allowed)
-		features += "closed"
-
-	features += abandon_allowed ? "respawn" : "no respawn"
-
-	if (config && config.allow_vote_mode)
-		features += "vote"
-
-	if (config && config.allow_ai)
-		features += "AI allowed"
-
-	var/n = 0
-	for (var/mob/M in player_list)
-		if (M.client)
-			n++
-
-	if (n > 1)
-		features += "~[n] players"
-	else if (n > 0)
-		features += "~[n] player"
+	s += "<big><b>[station_name()]</b></big>";
 
 	if (!host && config && config.hostedby)
-		features += "hosted by <b>[config.hostedby]</b>"
+		s += "<br>Hosted by <b>[config.hostedby]</b>."
 
-	if (features)
-		s += ": [jointext(features, ", ")]"
+	s += "<br>("
+	s += "<a href=\"http://hippiestation.com\">"
+	s += "Forums"
+	s += "</a>"
+	s += ")"
+	s += " ("
+	s += "<a href=\"https://github.com/HippieStation/HippieStation13\">"
+	s += "Github"
+	s += "</a>"
+	s += ")"
 
 	status = s
 
