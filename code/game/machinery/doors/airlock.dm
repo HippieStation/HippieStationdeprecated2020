@@ -1215,7 +1215,7 @@ var/list/airlock_overlays = list()
 		if(emagged)
 			return 0
 		use_power(50)
-		playsound(src.loc, doorOpen, 30, 1)
+		playsound(src.loc, doorOpen, 15, 1)
 		if(src.closeOther != null && istype(src.closeOther, /obj/machinery/door/airlock/) && !src.closeOther.density)
 			src.closeOther.close()
 	else
@@ -1264,7 +1264,7 @@ var/list/airlock_overlays = list()
 		if(emagged)
 			return
 		use_power(50)
-		playsound(src.loc, doorClose, 30, 1)
+		playsound(src.loc, doorClose, 15, 1)
 	else
 		playsound(src.loc, 'sound/machines/airlockforced.ogg', 30, 1)
 

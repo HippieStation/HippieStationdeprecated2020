@@ -26581,7 +26581,7 @@
 	},
 /area/assembly/robotics)
 "bhW" = (
-/obj/structure/filingcabinet/chestdrawer,
+/obj/machinery/vending/robotics,
 /turf/open/floor/plasteel/whitered/side{
 	dir = 1
 	},

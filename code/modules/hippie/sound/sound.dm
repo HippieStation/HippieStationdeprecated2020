@@ -4,7 +4,8 @@
  */
 
 /proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, surround = 1, frequency = null)
-
+	if (!limiter || !limiter.canISpawn(/sound))
+		return
 	var/area/source_area = get_area(source)
 	var/turf/source_turf = get_turf(source)
 

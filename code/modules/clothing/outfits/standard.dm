@@ -338,13 +338,12 @@
 	l_pocket = /obj/item/weapon/melee/energy/sword/saber
 	r_pocket = /obj/item/weapon/shield/energy
 	suit_store = /obj/item/weapon/tank/internals/emergency_oxygen
-	belt = /obj/item/weapon/gun/ballistic/revolver/mateba
+	belt = /obj/item/weapon/gun/energy/revolver/plasmoidcombi
 	r_hand = /obj/item/weapon/gun/energy/pulse/loyalpin
 	id = /obj/item/weapon/card/id
 	ears = /obj/item/device/radio/headset/headset_cent/alt
 
 	backpack_contents = list(/obj/item/weapon/storage/box=1,\
-		/obj/item/ammo_box/a357=1,\
 		/obj/item/weapon/storage/firstaid/regular=1,\
 		/obj/item/weapon/storage/box/flashbangs=1,\
 		/obj/item/device/flashlight=1,\
@@ -373,6 +372,7 @@
 /datum/outfit/death_commando/officer
 	name = "Death Commando Officer"
 	head = /obj/item/clothing/head/helmet/space/beret
+	r_hand = /obj/item/weapon/gun/energy/pulse/plasmoid
 
 /datum/outfit/chrono_agent
 	name = "Timeline Eradication Agent"

@@ -1,6 +1,3 @@
-
-
-
 ///////////EXTERNAL MAGAZINES////////////////
 
 /obj/item/ammo_box/magazine/m10mm
@@ -125,6 +122,19 @@
 	ammo_type = /obj/item/ammo_casing/c45
 	caliber = ".45"
 	max_ammo = 50
+
+/obj/item/ammo_box/magazine/g17
+	name = "Glock 17 magazine (9mm)"
+	desc = "A gun magazine."
+	icon_state = "g17"
+	origin_tech = "combat=2"
+	ammo_type = /obj/item/ammo_casing/c9mm
+	caliber = "9mm"
+	max_ammo = 14
+
+/obj/item/ammo_box/magazine/g17/update_icon()
+	..()
+	icon_state = "[initial(icon_state)]-[Ceiling(ammo_count(0)/14)*14]"
 
 /obj/item/ammo_box/magazine/m50
 	name = "handgun magazine (.50ae)"
