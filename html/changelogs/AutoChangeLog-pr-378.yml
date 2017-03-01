@@ -1,4 +1,0 @@
-author: "John Ginnane"
-delete-after: True
-changes: 
-  - bugfix: "Fixed players dying while being cloned due to brain damage"

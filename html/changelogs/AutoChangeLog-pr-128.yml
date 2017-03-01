@@ -1,5 +1,0 @@
-author: "Kitty Kathy"
-delete-after: True
-changes: 
-  - rscadd: "Ports back the admin command smite and improves it a bit"
-  - tweak: "They can now smite you for clone, brain and stamina damage"
