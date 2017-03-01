@@ -1,0 +1,5 @@
+author: "banthebantz"
+delete-after: True
+changes: 
+  - rscadd: "Readded Cryogenic fluid as an even more effective fire fighting chemical. It reduces firestacks very effectively and instantly deletes hotspots, it is found in trace quantities in fire extinguishers. On contact and when ingested it causes scaling brain damage and cooling along with suffocation. When applied to a turf or object in sufficient quantities it will also act like freon creating a winter wonderland."
+  - rscadd: "Cryogenic fluid is now made with 2 parts cryostylane, 1 part lube and 2 parts pyrosium in the presence of a plasma catalyst and when cooled to 100 kelvin or below"
