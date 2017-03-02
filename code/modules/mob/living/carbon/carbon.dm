@@ -169,9 +169,23 @@
 		dropItemToGround(I)
 
 	if(thrown_thing)
-		visible_message("<span class='danger'>[src] has thrown [thrown_thing].</span>")
+		var/range = thrown_thing.throw_range
+		var/throw_speed = thrown_thing.throw_speed
+		var/did = "thrown"
+		var/obj/item/B = src.get_inactive_held_item()
+		var/obj/item/E = thrown_thing
+		if(istype(B) && B.special_throw && istype(E) && B.specthrow_maxwclass >= E.w_class) //For special items that multiply something's throw range when in inactive hand (example: baseball bat)
+			range = round(range * B.throwrange_mult)
+			if(B.specthrowmsg)
+				did = B.specthrowmsg
+			if(B.specthrowsound)
+				playsound(loc, B.specthrowsound, 50, 1, -1)
+			if(I.throwforce_mult)
+				E.throwforce = round(E.throwforce * B.throwforce_mult)
+				E.mult = 1 //Tell the code we have modified this item's throwforce and would like for it to be set back to normal after it hits something.
+		visible_message("<span class='danger'>[src] has [did] [thrown_thing].</span>")
 		newtonian_move(get_dir(target, src))
-		thrown_thing.throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed, src)
+		thrown_thing.throw_at(target, range, throw_speed)
 
 /mob/living/carbon/restrained(ignore_grab)
 	. = (handcuffed || (!ignore_grab && pulledby && pulledby.grab_state >= GRAB_AGGRESSIVE))

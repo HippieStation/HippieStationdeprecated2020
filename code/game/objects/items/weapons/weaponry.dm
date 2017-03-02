@@ -449,6 +449,13 @@ var/highlander_claymores = 0
 	w_class = WEIGHT_CLASS_HUGE
 	var/homerun_ready = 0
 	var/homerun_able = 0
+	deflect_item = TRUE
+	special_throw = TRUE
+	throwrange_mult = 1.5
+	throwforce_mult = 1.2
+	specthrow_maxwclass = 2
+	specthrowmsg = "batted"
+	specthrowsound = 'sound/weapons/basebat.ogg'
 
 /obj/item/weapon/melee/baseball_bat/homerun
 	name = "home run bat"
@@ -490,6 +497,10 @@ var/highlander_claymores = 0
 	item_state = "baseball_bat_metal"
 	force = 12
 	throwforce = 15
+	specthrow_maxwclass = 3
+
+
+
 
 /obj/item/weapon/melee/baseball_bat/ablative/IsReflect()//some day this will reflect thrown items instead of lasers
 	var/picksound = rand(1,2)

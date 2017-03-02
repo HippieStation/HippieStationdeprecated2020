@@ -20,14 +20,23 @@
 
 /mob/living/carbon/hitby(atom/movable/AM, skipcatch, hitpush = 1, blocked = 0)
 	if(!skipcatch)	//ugly, but easy
-		if(in_throw_mode && !get_active_held_item())	//empty active hand and we're in throw mode
+		if(in_throw_mode)	//we're in throw mode
 			if(canmove && !restrained())
 				if(istype(AM, /obj/item))
 					var/obj/item/I = AM
 					if(isturf(I.loc))
-						put_in_active_hand(I)
-						visible_message("<span class='warning'>[src] catches [I]!</span>")
-						throw_mode_off()
+						var/obj/item/B = get_active_held_item()
+						if(istype(B) && B.deflect_item && B.specthrow_maxwclass >= I.w_class)
+							throw_mode_off()
+							visible_message("<span class='warning'>[src] has [B.specthrowmsg] [I]!</span>")
+							var/atom/throw_target = get_edge_target_turf(src, src.dir)
+							I.throw_at(throw_target, I.throw_range, I.throw_speed)
+							if(B.specthrowsound)
+								playsound(loc, B.specthrowsound, 50, 1, -1)
+						else if(!istype(B)) //empty hand
+							put_in_active_hand(I)
+							visible_message("<span class='warning'>[src] catches [I]!</span>")
+							throw_mode_off()
 						return 1
 	..()
 
