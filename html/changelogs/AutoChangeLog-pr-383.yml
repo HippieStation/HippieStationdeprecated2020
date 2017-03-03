@@ -1,5 +1,0 @@
-author: "GuyonBroadway"
-delete-after: True
-changes: 
-  - rscadd: "Baseball bats now work the way they did pre-rebase, they multiply the thrown damage and range of any crowbar sized object or smaller. Metal baseball bats can do so for objects a size larger."
-  - tweak: "We've been getting reports of a Canadian broadcasting company looking to start a new season of their popular bloodsports event, this company are known syndicate agent sponsors, will continue monitoring."
