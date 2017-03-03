@@ -134,11 +134,12 @@
 	return ..()
 
 /obj/effect/ebeam/New(origin_oldloc,alpha_fade = FALSE, time_exist = 10)
-	if(alpha_fade)
-		animate(src, alpha = 0, time = time_exist*10)
-	..()
+	spawn(1)
+		if(alpha_fade)
+			animate(src, alpha = 0, time = time_exist*10)
+		..()
 
-/atom/proc/Beam(atom/BeamTarget,icon_state="b_beam",icon='icons/effects/beam.dmi',time=50, maxdistance=10,beam_type=/obj/effect/ebeam,beam_sleep_time = 3, alphafade=0)
+/atom/proc/Beam(atom/BeamTarget,icon_state="b_beam",icon='icons/effects/beam.dmi',time=50, maxdistance=10,beam_type=/obj/effect/ebeam,beam_sleep_time = 3, alphafade=1)
 	var/datum/beam/newbeam = new(src,BeamTarget,icon,icon_state,time,maxdistance,beam_type,beam_sleep_time,alphafade)
 	INVOKE_ASYNC(newbeam, /datum/beam/.proc/Start)
 	return newbeam

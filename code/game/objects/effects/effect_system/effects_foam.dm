@@ -7,7 +7,7 @@
 	opacity = 0
 	anchored = 1
 	density = 0
-	layer = WALL_OBJ_LAYER
+	layer = BELOW_OBJ_LAYER
 	mouse_opacity = 0
 	var/amount = 3
 	animate_movement = 0
@@ -34,7 +34,8 @@
 /obj/effect/particle_effect/foam/New(loc)
 	alpha = 0
 	..(loc)
-	animate(src, alpha = 255, time = 5)
+	spawn(0)
+		animate(src, alpha = 255, time = 5)
 	create_reagents(1000) //limited by the size of the reagent holder anyway.
 	START_PROCESSING(SSfastprocess, src)
 	playsound(src, 'sound/effects/bubbles2.ogg', 80, 1, -3)
