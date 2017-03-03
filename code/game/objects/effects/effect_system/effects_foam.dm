@@ -7,7 +7,7 @@
 	opacity = 0
 	anchored = 1
 	density = 0
-	layer = WALL_OBJ_LAYER
+	layer = BELOW_OBJ_LAYER
 	mouse_opacity = 0
 	var/amount = 3
 	animate_movement = 0
