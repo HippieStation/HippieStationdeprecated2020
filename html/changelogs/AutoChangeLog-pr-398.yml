@@ -1,0 +1,4 @@
+author: "John Ginnane"
+delete-after: True
+changes: 
+  - bugfix: "Fixed ashwalker's clothing having the sensors being set despite not actually having them"
