@@ -450,6 +450,7 @@
 	name = "chainsaw"
 	desc = "A versatile power tool. Useful for limbing trees and delimbing humans."
 	icon_state = "chainsaw_off"
+	wieldsound = 'sound/weapons/chainsawstart.ogg'
 	flags = CONDUCT
 	force = 13
 	var/force_on = 21
