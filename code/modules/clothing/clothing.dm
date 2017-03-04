@@ -510,7 +510,7 @@ BLIND     // can't see anything
 		M.update_inv_w_uniform()
 
 /obj/item/clothing/under/New()
-	if(random_sensor)
+	if(random_sensor && has_sensor)
 		//make the sensor mode favor higher levels, except coords.
 		sensor_mode = pick(0, 1, 1, 2, 2, 2, 3, 3)
 	adjusted = NORMAL_STYLE
