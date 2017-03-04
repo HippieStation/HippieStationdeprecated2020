@@ -472,6 +472,8 @@
 	force = on ? force_on : initial(force)
 	throwforce = on ? force_on : initial(force)
 	icon_state = "chainsaw_[on ? "on" : "off"]"
+	if(on)
+		playsound(loc, wieldsound, 50, 1)
 
 	if(hitsound == "swing_hit")
 		hitsound = 'sound/weapons/chainsawhit.ogg'
