@@ -87,7 +87,7 @@
 
 /obj/vehicle/lawnmower
 	name = "lawn mower"
-	desc = "Equipped with realible safeties to prevent <i>accidents</i> in the workplace."
+	desc = "Equipped with realiable safeties to prevent <i>accidents</i> in the workplace."
 	icon = 'icons/hippie/obj/vehicles.dmi'
 	icon_state = "lawnmower"
 	var/emagged = FALSE
