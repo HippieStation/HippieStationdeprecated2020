@@ -592,7 +592,7 @@ var/global/list/datum/stack_recipe/cable_coil_recipes = list ( \
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = M
 			H.noosed = FALSE
-		unbuckle_mob()
+		unbuckle_all_mobs(force=1)
 		M.pixel_z = initial(M.pixel_z)
 		pixel_z = initial(pixel_z)
 		add_fingerprint(user)
