@@ -1,0 +1,4 @@
+author: "Jaygriff"
+delete-after: True
+changes: 
+  - rscadd: "Added access restrictions on brig cell controllers"
