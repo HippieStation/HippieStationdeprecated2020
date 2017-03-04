@@ -74,6 +74,9 @@
 		var/mob/living/carbon/human/H = C
 		var/datum/species/S = H.dna.species
 
+		if(H.buckled && H.noosed)
+			H.buckled.unbuckle_mob(H,force=1)
+
 		//Facial hair
 		if(H.facial_hair_style && (FACEHAIR in S.species_traits))
 			facial_hair_style = H.facial_hair_style

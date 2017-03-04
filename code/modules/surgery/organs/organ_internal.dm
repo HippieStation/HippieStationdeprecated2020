@@ -916,6 +916,7 @@
 	desc = "This butt has bluespace properties, letting you store more items in it. Four tiny items, or two small ones, or one normal one can fit."
 	icon_state = "bluebutt"
 	item_state = "bluebutt"
+	status = ORGAN_ROBOTIC
 	origin_tech = "bluespace=5;biotech=4"
 	max_combined_w_class = 12
 	max_w_class = 3

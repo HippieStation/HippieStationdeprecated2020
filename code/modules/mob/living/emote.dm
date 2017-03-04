@@ -285,6 +285,8 @@
 				sound = 'sound/misc/monkey_scream.ogg'
 			if(ishuman(user))
 				sound = pick('sound/misc/scream_m1.ogg', 'sound/misc/scream_m2.ogg')
+				if(user.gender == FEMALE)
+					sound = pick('sound/misc/scream_f1.ogg', 'sound/misc/scream_f2.ogg')
 				if(is_species(user, /datum/species/android) || is_species(user, /datum/species/synth))
 					sound = 'sound/voice/screamsilicon.ogg'
 				if(is_species(user, /datum/species/tarajan))
@@ -295,9 +297,6 @@
 					sound = 'sound/misc/skeleton.ogg'
 				if (is_species(user, /datum/species/fly))
 					sound = 'sound/misc/moth.ogg'
-				if (is_species(user, /datum/species/human))
-					if(user.gender == FEMALE)
-						sound = pick('sound/misc/scream_f1.ogg', 'sound/misc/scream_f2.ogg')
 			if(isalien(user))
 				sound = 'sound/voice/hiss6.ogg'
 			if(user.alternate_screams.len > 0)

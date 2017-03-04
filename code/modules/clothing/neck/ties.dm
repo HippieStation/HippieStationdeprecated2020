@@ -17,6 +17,12 @@
 	icon_state = "redtie"
 	item_color = "redtie"
 
+/obj/item/clothing/neck/tie/cable
+	name = "cable-coil bowtie"
+	desc = "When you're too lazy to tie a noose to the ceiling."
+	icon_state = "coiltie"
+	item_color = "coiltie"
+
 /obj/item/clothing/neck/tie/black
 	name = "black tie"
 	icon_state = "blacktie"
