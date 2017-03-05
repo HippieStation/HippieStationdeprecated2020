@@ -2,6 +2,7 @@
 	name = "glasses"
 	materials = list(MAT_GLASS = 250)
 	var/glass_colour_type = null //colors your vision when worn
+	icon_state = "glasses"
 
 /obj/item/clothing/glasses/visor_toggling()
 	..()
