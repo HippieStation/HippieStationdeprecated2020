@@ -1304,6 +1304,7 @@
 #include "code\modules\hippie\items\inflatables.dm"
 #include "code\modules\hippie\items\stapler.dm"
 #include "code\modules\hippie\items\devices\traitordevices.dm"
+#include "code\modules\hippie\items\weapons\hockey.dm"
 #include "code\modules\hippie\mentor\follow.dm"
 #include "code\modules\hippie\mentor\holder2.dm"
 #include "code\modules\hippie\mentor\mentor_ranks.dm"

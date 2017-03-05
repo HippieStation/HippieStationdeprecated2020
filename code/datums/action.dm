@@ -203,6 +203,12 @@
 /datum/action/item_action/toggle_mister
 	name = "Toggle Mister"
 
+/datum/action/item_action/toggle_stick
+	name = "Get Stick"
+
+/datum/action/item_action/make_puck
+	name = "Produce Puck"
+
 /datum/action/item_action/activate_injector
 	name = "Activate Injector"
 

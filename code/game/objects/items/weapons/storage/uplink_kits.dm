@@ -325,3 +325,13 @@
 	..()
 	new /obj/item/weapon/spellbook/oneuse/mimery_blockade(src)
 	new /obj/item/weapon/spellbook/oneuse/mimery_guns(src)
+
+
+/obj/item/weapon/storage/box/syndie_kit/hockey/New()
+	..()
+	new /obj/item/weapon/hockeypack(src)
+	new /obj/item/weapon/storage/belt/hockey(src)
+	new /obj/item/clothing/suit/armor/hockey(src)
+	new /obj/item/clothing/shoes/hockey(src)
+	new /obj/item/clothing/mask/gas/hockey(src)
+	new /obj/item/clothing/head/helmet/hockey(src)
