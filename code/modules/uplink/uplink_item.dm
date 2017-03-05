@@ -287,19 +287,6 @@ var/list/uplink_items = list() // Global list so we only initialize this once.
 	item = /obj/item/weapon/melee/powerfist
 	cost = 8
 
-/datum/uplink_item/dangerous/hockey
-	name = "Ka-Nada Boxed S.S.F Hockey Set"
-	desc = "The iconic extreme environment gear used by Ka-Nada special sport forces.\
-	Used to devastating effect during the great northern sports wars of the second great athletic republic.\
-	The unmistakeable grey and red gear provides great protection from most if not all environmental hazards\
-	and combat threats in addition to coming with the signature weapon of the Ka-Nada SSF and all terrain Hyper-Blades\
-	for enhanced mobility and lethality in melee combat. This power comes at a cost as your Ka-Nada benefactors expect\
-	absolute devotion to the cause, once equipped you will be unable to remove the gear so be sure to make it count."
-	item = /obj/item/weapon/storage/box/syndie_kit/hockey
-	exclude_modes  = list(/datum/game_mode/nuclear,/datum/game_mode/gang) //While Hockey-Ops MIGHT be funny, a gangsworth of hockey players will be terrible, best limit it to traitor type modes for now.
-	cost = 20
-	cant_discount = TRUE //You got speedboost-boots, infinite super floortiles, some of the best armour in game that is also space, fire AND acid proof and a better powerfist. No you can't have a freedom implant with that!
-
 /datum/uplink_item/dangerous/emp
 	name = "EMP Grenades and Implanter Kit"
 	desc = "A box that contains two EMP grenades and an EMP implant. Useful to disrupt communication, \
@@ -1304,6 +1291,25 @@ var/list/uplink_items = list() // Global list so we only initialize this once.
 	cost = 20
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/gang)
 	cant_discount = TRUE
+
+/datum/uplink_item/badass/sports
+	name = "Sports bundle"
+	desc = "A hand-selected box of paraphernalia from one of the best sports. \
+			Currently available are hockey, wrestling, and bowling kits."
+	item = /obj/item/weapon/paper
+	cost = 20
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/gang)
+	cant_discount = TRUE
+
+/datum/uplink_item/badass/sports/spawn_item(turf/loc, obj/item/device/uplink/U)
+	var/list/possible_items = list(
+								"/obj/item/weapon/storage/box/syndie_kit/wrestling",
+								"/obj/item/weapon/storage/box/syndie_kit/bowling",
+								"/obj/item/weapon/storage/box/syndie_kit/hockey"
+								)
+	if(possible_items.len)
+		var/obj/item/I = pick(possible_items)
+		return new I(loc)
 
 /datum/uplink_item/badass/surplus
 	name = "Syndicate Surplus Crate"

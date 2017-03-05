@@ -326,6 +326,14 @@
 	new /obj/item/weapon/spellbook/oneuse/mimery_blockade(src)
 	new /obj/item/weapon/spellbook/oneuse/mimery_guns(src)
 
+/obj/item/weapon/storage/box/syndie_kit/hockey
+	name = "\improper Ka-Nada Boxed S.S.F Hockey Set"
+	desc = "The iconic extreme environment gear used by Ka-Nada special sport forces.\
+	Used to devastating effect during the great northern sports wars of the second great athletic republic.\
+	The unmistakeable grey and red gear provides great protection from most if not all environmental hazards\
+	and combat threats in addition to coming with the signature weapon of the Ka-Nada SSF and all terrain Hyper-Blades\
+	for enhanced mobility and lethality in melee combat. This power comes at a cost as your Ka-Nada benefactors expect\
+	absolute devotion to the cause, once equipped you will be unable to remove the gear so be sure to make it count."
 
 /obj/item/weapon/storage/box/syndie_kit/hockey/New()
 	..()

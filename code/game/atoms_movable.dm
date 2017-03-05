@@ -5,6 +5,7 @@
 	var/datum/thrownthing/throwing = null
 	var/throw_speed = 2 //How many tiles to move per ds when being thrown. Float values are fully supported
 	var/throw_range = 7
+	var/unlimitedthrow = FALSE
 	var/mob/pulledby = null
 	var/languages_spoken = 0 //For say() and Hear()
 	var/languages_understood = 0
