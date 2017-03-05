@@ -1,5 +1,0 @@
-author: "Tortellini Tony"
-delete-after: True
-changes: 
-  - rscadd: "Bowling and wrestling kits are now available."
-  - tweak: "The hockey, bowling, and wrestling kits can be purchased under the \"sports kit\" item in the badassery section of an uplink."
