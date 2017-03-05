@@ -450,6 +450,7 @@
 	name = "chainsaw"
 	desc = "A versatile power tool. Useful for limbing trees and delimbing humans."
 	icon_state = "chainsaw_off"
+	wieldsound = 'sound/weapons/chainsawstart.ogg'
 	flags = CONDUCT
 	force = 13
 	var/force_on = 21
@@ -471,6 +472,8 @@
 	force = on ? force_on : initial(force)
 	throwforce = on ? force_on : initial(force)
 	icon_state = "chainsaw_[on ? "on" : "off"]"
+	if(on)
+		playsound(loc, wieldsound, 50, 1)
 
 	if(hitsound == "swing_hit")
 		hitsound = 'sound/weapons/chainsawhit.ogg'
