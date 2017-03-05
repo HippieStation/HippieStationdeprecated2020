@@ -1,0 +1,4 @@
+author: "John Ginnane"
+delete-after: True
+changes: 
+  - bugfix: "Fixed chameleon thermals allowing you to select items with no icon_state, so no more invisible items! This also means \"glasses\" now show up properly"
