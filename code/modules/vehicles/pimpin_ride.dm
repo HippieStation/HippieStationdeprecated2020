@@ -11,7 +11,7 @@
 	if(mybag)
 		qdel(mybag)
 		mybag = null
-	return ..()
+	return ..() 
 
 /obj/vehicle/janicart/buckle_mob(mob/living/buckled_mob, force = 0, check_loc = 0)
 	. = ..()
@@ -87,7 +87,7 @@
 
 /obj/vehicle/lawnmower
 	name = "lawn mower"
-	desc = "Equipped with realiable safeties to prevent <i>accidents</i> in the workplace."
+	desc = "Equipped with reliable safeties to prevent <i>accidents</i> in the workplace."
 	icon = 'icons/hippie/obj/vehicles.dmi'
 	icon_state = "lawnmower"
 	var/emagged = FALSE
