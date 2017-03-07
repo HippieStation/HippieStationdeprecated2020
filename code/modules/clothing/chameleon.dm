@@ -79,13 +79,14 @@
 	if(button)
 		button.name = "Change [chameleon_name] Appearance"
 
-
 	chameleon_blacklist |= typecacheof(target.type)
+
 	for(var/V in typesof(chameleon_type))
 		if(ispath(V, /obj/item))
 			var/obj/item/I = V
-			if(chameleon_blacklist[V] || (initial(I.flags) & ABSTRACT) || !I.icon_state)
+			if(chameleon_blacklist[V] || (initial(I.flags) & ABSTRACT) || !initial(I.icon_state))
 				continue
+
 			chameleon_list += I
 
 /datum/action/item_action/chameleon/change/proc/select_look(mob/user)
