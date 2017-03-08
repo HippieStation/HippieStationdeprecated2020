@@ -1,0 +1,4 @@
+author: "blute"
+delete-after: True
+changes: 
+  - rscadd: "You can now automatically activate a cryotube by standing inside it and pressing the Close button."
