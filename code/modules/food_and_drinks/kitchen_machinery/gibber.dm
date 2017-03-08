@@ -82,7 +82,7 @@
 	if (dirty)
 		var/image/I = image('icons/obj/kitchen.dmi', "grbloody")
 		I.color = bloodToUse
-		overlays += I
+		add_overlay(I)
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if (!occupant)
@@ -126,14 +126,14 @@
 				user.visible_message("<span class='danger'>[user] stuffs [C] into the gibber!</span>")
 				occupant = C
 				update_icon()
-				if(ishuman(occupant) || isalien(occupant))
-					StuffAnim(prevloc)
-				else
-					C.alpha = 0
+				StuffAnim(prevloc)
 	if(locked)
 		user << "<span class='danger'>Wait for [occupant.name] to finish being loaded!</span>"
 	if(occupant)
 		startgibbing(user)
+
+/obj/effect/overlay/gibberperson
+	use_fade = FALSE
 
 /obj/machinery/gibber/proc/StuffAnim(var/turf/prevloc)
 	if(!src.occupant)
@@ -144,7 +144,7 @@
 	if(prevloc) newloc = prevloc
 
 	if(!isturf(newloc)) return
-	var/obj/effect/overlay/feedee = new(newloc)
+	var/obj/effect/overlay/gibberperson/feedee = new(newloc)
 	feedee.name = src.occupant.name
 	feedee.icon = getFlatIcon(src.occupant)
 	occupant.alpha = 0
@@ -226,14 +226,13 @@
 	playsound(src.loc, 'sound/machines/juicer.ogg', 50, 1)
 	src.operating = 1
 	dirty = 1
+	bloodToUse = "#A10808"
 	if(isalien(occupant))
 		bloodToUse = "green"
-	else
-		bloodToUse = "#A10808"
 	update_icon()
 	var/image/blood = new('icons/obj/kitchen.dmi', "grinding")
 	blood.color = bloodToUse
-	overlays += blood
+	add_overlay(blood)
 	var/offset = prob(50) ? -2 : 2
 	animate(src, pixel_x = pixel_x + offset, time = 0.2, loop = 200) //start shaking
 	var/sourcename = src.occupant.real_name
