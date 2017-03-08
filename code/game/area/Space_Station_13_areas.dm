@@ -216,7 +216,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 //Hallway
 
 /area/hallway
-	sound_environment = SOUND_ENVIRONMENT_HANGAR
+	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/hallway/primary/fore
 	name = "Fore Primary Hallway"
@@ -305,6 +305,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Dormitories"
 	icon_state = "Sleep"
 	safe = 1
+	sound_environment = SOUND_ENVIRONMENT_LIVINGROOM
 
 /area/crew_quarters/toilet
 	name = "Dormitory Toilets"
@@ -314,6 +315,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters/sleep
 	name = "Dormitories"
 	icon_state = "Sleep"
+	sound_environment = SOUND_ENVIRONMENT_UNDERWATER
 
 /area/crew_quarters/sleep_male
 	name = "Male Dorm"
@@ -357,6 +359,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters/bar
 	name = "Bar"
 	icon_state = "bar"
+	sound_environment = SOUND_ENVIRONMENT_PARKING_LOT
 
 /area/crew_quarters/bar/atrium
 	name = "Atrium"
@@ -388,6 +391,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "chapel"
 	ambientsounds = list('sound/ambience/ambicha1.ogg','sound/ambience/ambicha2.ogg','sound/ambience/ambicha3.ogg','sound/ambience/ambicha4.ogg')
 	flags = NONE
+	sound_environment = SOUND_ENVIRONMENT_STONE_CORRIDOR
 
 /area/chapel/main
 	name = "Chapel"
@@ -404,6 +408,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/engine
 	ambientsounds = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg','sound/ambience/ambisin4.ogg')
+	sound_environment = SOUND_ENVIRONMENT_HANGAR
 
 /area/engine/engine_smes
 	name = "Engineering SMES"
@@ -517,6 +522,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Medbay Central"
 	icon_state = "medbay"
 	music = 'sound/ambience/signal.ogg'
+	sound_environment = SOUND_ENVIRONMENT_CITY
 
 /area/medical/medbay/front_office
 	name = "Medbay Front Office"
@@ -616,6 +622,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/security/main
 	name = "Security Office"
 	icon_state = "security"
+	sound_environment = SOUND_ENVIRONMENT_STONE_CORRIDOR
 
 /area/security/brig
 	name = "Brig"
@@ -1011,23 +1018,21 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/tcommsat
 	ambientsounds = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
-	sound_environment = SOUND_ENVIRONMENT_HALLWAY
+	sound_environment = SOUND_ENVIRONMENT_ARENA
 
 /area/tcommsat/entrance
 	name = "Telecoms Teleporter"
 	icon_state = "tcomsatentrance"
-	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/tcommsat/chamber
 	name = "Abandoned Satellite"
 	icon_state = "tcomsatcham"
-	sound_environment = SOUND_ENVIRONMENT_HALLWAY
 
 /area/ai_monitored/turret_protected/tcomsat
 	name = "Telecoms Satellite"
 	icon_state = "tcomsatlob"
 	ambientsounds = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
-	sound_environment = SOUND_ENVIRONMENT_HALLWAY
+	sound_environment = SOUND_ENVIRONMENT_ARENA
 
 /area/ai_monitored/turret_protected/tcomfoyer
 	name = "Telecoms Foyer"

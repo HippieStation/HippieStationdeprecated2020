@@ -3,147 +3,166 @@
  * https://github.com/goonstation/goonstation-2016/blob/d8a2d60915fd3b74653a1b7d4b8a0910c6fc2f19/code/sound.dm
  */
 
-/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, surround = 1, frequency = null)
-	if (!limiter || !limiter.canISpawn(/sound))
-		return
-	var/area/source_area = get_area(source)
-	var/turf/source_turf = get_turf(source)
+// returns 0 to 1
+/proc/attenuate_for_location(var/atom/loc)
+	var/attenuate = 1
+	var/turf/T = get_turf(loc)
+	if (istype(T, /turf/open/space))
+		return 0 // in space nobody can hear you fart
+	var/turf/open/sim_T = T
+	if (istype(sim_T) && sim_T.air)
+		attenuate *= sim_T.air.return_pressure() / ONE_ATMOSPHERE
+		attenuate = min(1, max(0, attenuate))
 
-	var/source_area_root
+	return attenuate
 
-	if(source_area)
-		source_area_root = get_top_ancestor(source_area, /area)
+/proc/playsound(var/atom/source, soundin, vol as num, vary, extrarange as num, pitch)
+	var/area/source_location = get_area(source)
+	vol *= attenuate_for_location(source)
+	var/source_location_root = null
+	if(source_location)
+		source_location_root = get_top_ancestor(source_location, /area)
 
-	var/sound/S = generate_sound(source, soundin, vol, vary, extrarange, frequency)
-
+	var/sound/S = generate_sound(source, soundin, vol, vary, extrarange, pitch)
 	if(S && source)
 		for (var/P in player_list)
 			var/mob/M = P
-			if(!M || !M.client)
-				continue
-			var/turf/mob_loc = get_turf(M)
-			if(!isnull(mob_loc) && M.client && source && mob_loc.z == source.z)
-				var/area/listener_location = get_area(mob_loc)
+			if(isliving(M))
+				var/mob/living/L = M
+				if (L.hallucination)
+					S.environment = SOUND_ENVIRONMENT_PSYCHOTIC
+				else if (L.druggy)
+					S.environment = SOUND_ENVIRONMENT_DRUGGED
+				else if (L.drowsyness)
+					S.environment = SOUND_ENVIRONMENT_DIZZY
+				else if (L.confused)
+					S.environment = SOUND_ENVIRONMENT_DIZZY
+				else if (L.sleeping)
+					S.environment = SOUND_ENVIRONMENT_UNDERWATER
+			var/turf/Mloc = get_turf(M)
+			if(!isnull(Mloc) && M.client && source && Mloc.z == source.z)
+				var/area/listener_location = get_area(Mloc)
 				if(listener_location)
 					var/listener_location_root = get_top_ancestor(listener_location, /area)
-					if(listener_location_root != source_area_root && !(listener_location != /area && source_area != /area))
+					if(listener_location_root != source_location_root && !(listener_location != /area && source_location != /area))
 						continue
-					if(source_area && source_area.sound_group && source_area.sound_group != listener_location.sound_group)
+
+					if(source_location && source_location.sound_group && source_location.sound_group != listener_location.sound_group)
 						continue
-					if(listener_location != source_area)
-						S.echo = list(0,0,0,0,0,0,-10000,1.0,1.5,1.0,0,1.0,0,0,0,0,1.0,7)
+
+					if(listener_location != source_location)
+						S.echo = list(0,0,0,0,0,0,-10000,1.0,1.5,1.0,0,1.0,0,0,0,0,1.0,7) //Sound is occluded
 					else
 						S.echo = list(0,0,0,0,0,0,0,0.25,1.5,1.0,0,1.0,0,0,0,0,1.0,7)
-
-					var/pressure_factor = 1
-
-					var/datum/gas_mixture/hearer_env = mob_loc.return_air()
-					var/datum/gas_mixture/source_env = source_turf.return_air()
-
-					if(hearer_env && source_env)
-						var/pressure = min(hearer_env.return_pressure(), source_env.return_pressure())
-						if(pressure < ONE_ATMOSPHERE)
-							pressure_factor = max((pressure - SOUND_MINIMUM_PRESSURE)/(ONE_ATMOSPHERE - SOUND_MINIMUM_PRESSURE), 0)
-					else //space
-						pressure_factor = 0
-
-					var/distance = get_dist(mob_loc, source_turf)
-
-					if(distance <= 1)
-						pressure_factor = max(pressure_factor, 0.15) //touching the source of the sound
-
-					S.volume *= pressure_factor
-
-					if(isliving(M))
-						var/mob/living/L = M
-						if (L.hallucination)
-							S.environment = SOUND_ENVIRONMENT_PSYCHOTIC
-						else if (L.druggy)
-							S.environment = SOUND_ENVIRONMENT_DRUGGED
-						else if (L.drowsyness)
-							S.environment = SOUND_ENVIRONMENT_DIZZY
-						else if (L.confused)
-							S.environment = SOUND_ENVIRONMENT_DIZZY
-						else if (L.sleeping)
-							S.environment = SOUND_ENVIRONMENT_UNDERWATER
-
-					if(S.volume <= 0)
-						return
-
-				S.x = source.x - mob_loc.x
-				S.z = source.y - mob_loc.y
+				S.x = source.x - Mloc.x
+				S.z = source.y - Mloc.y //Since sound coordinates are 3D, z for sound falls on y for the map.  BYOND.
 				S.y = 0
+				S.volume *= attenuate_for_location(Mloc)
 				M << S
 				S.volume = vol
 
-/atom/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff, surround = 1)
-
-	var/sound/S = generate_sound(turf_source, soundin, vol, vary, 0, frequency)
+/mob/proc/playsound_local(var/atom/source, soundin, vol as num, vary, frequency, falloff, surround = 1)
+	if(!src.client || src.ear_deaf)
+		return
+	switch(soundin)
+		if ("shatter") soundin = pick(sounds_shatter)
+		if ("explosion") soundin = pick(sounds_explosion)
+		if ("sparks") soundin = pick(sounds_sparks)
+		if ("rustle") soundin = pick(sounds_rustle)
+		if ("punch") soundin = pick(sounds_punch)
+		if ("clownstep") soundin = pick(sounds_clownstep)
+		if ("swing_hit") soundin = pick(sounds_hit)
+		if ("hiss") soundin = pick(sounds_hiss)
+		if ("pageturn") soundin = pick(sounds_pageturn)
+		if ("bodyfall") soundin = pick(sounds_bodyfall)
+		if ("gunshot") soundin = pick(sounds_gunshot)
+		if ("ricochet") soundin = pick(sounds_ricochet)
+		if ("terminal_type") soundin = pick(sounds_terminal)
+	if(islist(soundin))
+		soundin = pick(soundin)
+	var/sound/S = sound(soundin)
+	S.wait = 0 //No queue
+	S.channel = 0 //Any channel
 	S.volume = vol
-
 	if (vary)
-		S.frequency = rand(725, 1250) / 1000 * frequency
-	else
-		S.frequency = frequency
-
-	if(isturf(turf_source))
-		var/turf/T = get_turf(src)
-
-		var/pressure_factor = 1
-		var/datum/gas_mixture/hearer_env = T.return_air()
-		var/datum/gas_mixture/source_env = turf_source.return_air()
-
-		if(hearer_env && source_env)
-			var/pressure = min(hearer_env.return_pressure(), source_env.return_pressure())
-			if(pressure < ONE_ATMOSPHERE)
-				pressure_factor = max((pressure - SOUND_MINIMUM_PRESSURE)/(ONE_ATMOSPHERE - SOUND_MINIMUM_PRESSURE), 0)
+		if(frequency)
+			S.frequency = frequency
 		else
-			pressure_factor = 0
-
-		var/distance = get_dist(T, turf_source)
-		if(distance <= 1)
-			pressure_factor = max(pressure_factor, 0.15)
-
-		S.volume *= pressure_factor
-
-		if(S.volume <= 0)
-			return
-
-		var/dx = turf_source.x - src.x
-		S.pan = max(-100, min(100, dx/8.0 * 100))
-
+			S.frequency = get_rand_frequency()
+	S.volume *= attenuate_for_location(source)
+	if(isturf(source))
+		var/turf/T = get_turf(src)
+		if (surround)
+			var/dx = source.x - T.x
+			S.x = round(max(-SURROUND_CAP, min(SURROUND_CAP, dx)), 1)
+			var/dz = source.y - T.y
+			S.z = round(max(-SURROUND_CAP, min(SURROUND_CAP, dz)), 1)
+		S.y = 1
+		S.falloff = (falloff ? falloff : FALLOFF_SOUNDS)
 	src << S
 
-/proc/generate_sound(var/atom/source, soundin, vol as num, vary, extrarange as num, frequency = 1)
+/proc/generate_sound(var/atom/source, soundin, vol as num, vary, extrarange as num, pitch = 1)
+	//Frequency stuff only works with 45kbps oggs.
 
-	var/sound/S = get_sound(soundin)
+	switch(soundin)
+		if ("shatter") soundin = pick(sounds_shatter)
+		if ("explosion") soundin = pick(sounds_explosion)
+		if ("sparks") soundin = pick(sounds_sparks)
+		if ("rustle") soundin = pick(sounds_rustle)
+		if ("punch") soundin = pick(sounds_punch)
+		if ("clownstep") soundin = pick(sounds_clownstep)
+		if ("swing_hit") soundin = pick(sounds_hit)
+		if ("hiss") soundin = pick(sounds_hiss)
+		if ("pageturn") soundin = pick(sounds_pageturn)
+		if ("bodyfall") soundin = pick(sounds_bodyfall)
+		if ("gunshot") soundin = pick(sounds_gunshot)
+		if ("ricochet") soundin = pick(sounds_ricochet)
+		if ("terminal_type") soundin = pick(sounds_terminal)
 
-	S.falloff = (world.view + extrarange) / 12
-	S.wait = 0
-	S.channel = 0
+	if(islist(soundin))
+		soundin = pick(soundin)
+
+	var/sound/S
+	if(istext(soundin))
+		S = new /sound
+		S.file = csound(soundin)
+	else if (isfile(soundin))
+		S = new /sound
+		S.file = soundin
+	else if (istype(soundin, /sound))
+		S = soundin
+	S.falloff = (world.view + extrarange)/10
+	S.wait = 0 //No queue
+	S.channel = 0 //Any channel
 	S.volume = vol
 	S.priority = 5
 	S.environment = 0
 
 	var/location = null
-
-	if(source)
+	if(source) //runtime error fix
 		location = source.loc
-
 	if(location != null && isturf(location))
 		var/turf/T = location
 		location = T.loc
-
 	if(location != null && isarea(location))
 		var/area/A = location
 		S.environment = A.sound_environment
 
 	if (vary)
-		S.frequency = rand(725, 1250) / 1000 * frequency
+		S.frequency = get_rand_frequency()
 	else
-		S.frequency = frequency
+		S.frequency = pitch
+
+	S.volume *= attenuate_for_location(source)
 
 	return S
+
+/*
+LEGACY B.S.
+*/
+
+/proc/get_rand_frequency()
+	return rand(32000, 55000)
 
 /mob/proc/stopLobbySound()
 	src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)
@@ -154,71 +173,17 @@
 	if(prefs && (prefs.toggles & SOUND_LOBBY))
 		src << sound(ticker.login_music, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS
 
-/mob/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff, surround = 1)
-	if(!client || ear_deaf > 0)
-		return
-	..()
-
 /proc/playsound_global(file, repeat=0, wait, channel, volume)
 	for(var/V in clients)
 		V << sound(file, repeat, wait, channel, volume)
 
-/proc/get_sfx(soundin)
-	if(istext(soundin))
-		switch(soundin)
-			if ("shatter")
-				soundin = pick("sound/effects/Glassbr1.ogg","sound/effects/Glassbr2.ogg","sound/effects/Glassbr3.ogg")
-			if ("explosion")
-				soundin = pick("sound/effects/Explosion1.ogg","sound/effects/Explosion2.ogg")
-			if ("sparks")
-				soundin = pick("sound/effects/sparks1.ogg","sound/effects/sparks2.ogg","sound/effects/sparks3.ogg","sound/effects/sparks4.ogg")
-			if ("rustle")
-				soundin = pick("sound/effects/rustle1.ogg","sound/effects/rustle2.ogg","sound/effects/rustle3.ogg","sound/effects/rustle4.ogg","sound/effects/rustle5.ogg")
-			if ("bodyfall")
-				soundin = pick("sound/effects/bodyfall1.ogg","sound/effects/bodyfall2.ogg","sound/effects/bodyfall3.ogg","sound/effects/bodyfall4.ogg")
-			if ("punch")
-				soundin = pick("sound/weapons/punch1.ogg","sound/weapons/punch2.ogg","sound/weapons/punch3.ogg","sound/weapons/punch4.ogg")
-			if ("clownstep")
-				soundin = pick("sound/effects/clownstep1.ogg","sound/effects/clownstep2.ogg")
-			if ("swing_hit")
-				soundin = pick("sound/weapons/genhit1.ogg", "sound/weapons/genhit2.ogg", "sound/weapons/genhit3.ogg")
-			if ("hiss")
-				soundin = pick("sound/voice/hiss1.ogg","sound/voice/hiss2.ogg","sound/voice/hiss3.ogg","sound/voice/hiss4.ogg")
-			if ("pageturn")
-				soundin = pick("sound/effects/pageturn1.ogg", "sound/effects/pageturn2.ogg","sound/effects/pageturn3.ogg")
-			if ("gunshot")
-				soundin = pick("sound/weapons/Gunshot.ogg", "sound/weapons/Gunshot2.ogg","sound/weapons/Gunshot3.ogg","sound/weapons/Gunshot4.ogg")
-			if ("ricochet")
-				soundin = pick(	"sound/weapons/effects/ric1.ogg", "sound/weapons/effects/ric2.ogg","sound/weapons/effects/ric3.ogg","sound/weapons/effects/ric4.ogg","sound/weapons/effects/ric5.ogg")
-			if ("terminal_type")
-				soundin = pick("sound/machines/terminal_button01.ogg", "sound/machines/terminal_button02.ogg", "sound/machines/terminal_button03.ogg", \
-								"sound/machines/terminal_button04.ogg", "sound/machines/terminal_button05.ogg", "sound/machines/terminal_button06.ogg", \
-								"sound/machines/terminal_button07.ogg", "sound/machines/terminal_button08.ogg")
-	return soundin
-
-/proc/get_rand_frequency()
-	return rand(32000, 55000)
-
-/proc/get_sound(soundin)
-
-	if(islist(soundin))
-		soundin = pick(soundin)
-	else
-		soundin = get_sfx(soundin)
-
-	var/sound/S
-
-	if(istext(soundin))
-		S = new /sound
-		S.file = csound(soundin)
-	else if (isfile(soundin))
-		S = new /sound
-		S.file = soundin
-	else if (istype(soundin, /sound))
-		S = soundin
-
-	return S
-
+/**
+ * Soundcache
+ * NEVER use these sounds for modifying.
+ * This should only be used for sounds that are played unaltered to the user.
+ * @param text name the name of the sound that will be returned
+ * @return sound
+ */
 /proc/csound(var/name)
 	return sound_cache[name]
 

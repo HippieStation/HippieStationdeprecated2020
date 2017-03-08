@@ -60,7 +60,6 @@
 		forced_disable(FALSE)
 		return
 	var/turf/T = get_turf(src)
-	var/hum = get_sfx('sound/effects/screech.ogg') //like playsound, same sound for everyone affected
 	var/efficiency = get_efficiency_mod()
 	for(var/mob/living/carbon/human/H in viewers(7, src))
 		if(is_servant_of_ratvar(H)) //heals servants of braindamage, hallucination, druggy, dizziness, and confusion
@@ -85,12 +84,12 @@
 			if(distance <= 1)
 				if(!H.Adjacent(src))
 					H << "<span class='sevtug'>\"[text2ratvar(pick(close_messages))]\"</span>"
-					H.playsound_local(T, hum, sound_distance, 1)
+					H.playsound_local(T, 'sound/effects/screech.ogg', sound_distance, 1)
 				else if(!try_use_power(convert_cost))
 					visible_message("<span class='warning'>[src]'s antennae fizzle quietly.</span>")
 					playsound(src, 'sound/effects/light_flicker.ogg', 50, 1)
 				else
-					H.playsound_local(T, hum, 80, 1)
+					H.playsound_local(T, 'sound/effects/screech.ogg', 80, 1)
 					if(!H.stat)
 						if(H.getBrainLoss() < 100)
 							H.adjustBrainLoss(20 * efficiency)
@@ -102,7 +101,7 @@
 						add_servant_of_ratvar(H)
 						H.Paralyse(5)
 			else
-				H.playsound_local(T, hum, sound_distance, 1)
+				H.playsound_local(T, 'sound/effects/screech.ogg', sound_distance, 1)
 			switch(distance)
 				if(0 to 3)
 					if(prob(falloff_distance * 0.5))

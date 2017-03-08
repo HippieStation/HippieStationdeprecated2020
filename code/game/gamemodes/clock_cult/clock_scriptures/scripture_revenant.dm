@@ -71,7 +71,6 @@
 	hierophant_message("<span class='sevtug_large'>[text2ratvar("Fright: \"I heed your call, idiots. Get going and use this chance while it lasts!")]\"</span>", FALSE, invoker)
 	clockwork_generals_invoked["sevtug"] = world.time + CLOCKWORK_GENERAL_COOLDOWN
 	playsound(invoker, 'sound/magic/clockwork/invoke_general.ogg', 50, 0)
-	var/hum = get_sfx('sound/effects/screech.ogg') //like playsound, same sound for everyone affected
 	var/turf/T = get_turf(invoker)
 	for(var/mob/living/carbon/human/H in living_mob_list)
 		if(H.z == invoker.z && !is_servant_of_ratvar(H))
@@ -91,7 +90,7 @@
 				H << "<span class='sevtug'>[text2ratvar("Oh, look, a mindshield. Cute, I suppose I'll humor it.")]</span>"
 			else if(prob(visualsdistance))
 				H << "<span class='sevtug'>[text2ratvar(pick(mindbreaksayings))]</span>"
-			H.playsound_local(T, hum, visualsdistance, 1)
+			H.playsound_local(T, 'sound/effects/screech.ogg', visualsdistance, 1)
 			flash_color(H, flash_color="#AF0AAF", flash_time=visualsdistance*10)
 			H.dizziness = minordistance + H.dizziness
 			H.hallucination = minordistance + H.hallucination
