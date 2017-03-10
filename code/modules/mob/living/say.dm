@@ -62,6 +62,12 @@ var/list/crit_allowed_modes = list(MODE_WHISPER,MODE_CHANGELING,MODE_ALIEN)
 
 /mob/living/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE)
 
+	if(check_emote(message))
+		return
+
+	if(!can_speak_basic(message)) //Stat is seperate so I can handle whispers properly.
+		return
+
 	if(is_nearcrit(src) && !stat)
 		whisper(message)
 		adjustOxyLoss(1)
@@ -72,19 +78,12 @@ var/list/crit_allowed_modes = list(MODE_WHISPER,MODE_CHANGELING,MODE_ALIEN)
 	if(!message || message == "")
 		return
 
-
 	if(stat == DEAD)
 		if(message == "*scream" || message == "*fart")
 			return
 		else
 			say_dead(message)
 			return
-
-	if(check_emote(message))
-		return
-
-	if(!can_speak_basic(message)) //Stat is seperate so I can handle whispers properly.
-		return
 
 	var/message_mode = get_message_mode(message)
 
