@@ -10,7 +10,7 @@
 		return
 	var/obj/item/organ/butt/B = user.getorgan(/obj/item/organ/butt)
 	if(!B)
-		to_chat(user, "\red You don't have a butt!")
+		to_chat(user, "<span class='warning'>You don't have a butt!</span>")
 		return
 	var/lose_butt = prob(12)
 	for(var/mob/living/M in get_turf(user))
@@ -75,7 +75,7 @@
 			B.Remove(user)
 			new bloodkind(user.loc)
 			user.nutrition -= rand(5, 20)
-			user.visible_message("\red <b>[user]</b> blows their ass off!", "\red Holy shit, your butt flies off in an arc!")
+			user.visible_message("<span class='warning'><b>[user]</b> blows their ass off!</span>", "<span class='warning'>Holy shit, your butt flies off in an arc!</span>")
 		else
 			user.nutrition -= rand(2, 10)
 		..()
@@ -157,13 +157,13 @@
 			if(1)
 				for(var/mob/living/M in range(0))
 					if(M != user)
-						user.visible_message("\red <b>[user]</b>'s ass blasts <b>[M]</b> in the face!", "\red You ass blast <b>[M]</b>!")
+						user.visible_message("<span class='warning'><b>[user]</b>'s ass blasts <b>[M]</b> in the face!</span>", "<span class='warning'>You ass blast <b>[M]</b>!</span>")
 						M.apply_damage(50,"brute","head")
 
-				user.visible_message("\red <b>[user]</b> blows their ass off!", "\red Holy shit, your butt flies off in an arc!")
+				user.visible_message("<span class='warning'><b>[user]</b> blows their ass off!</span>", "<span class='warning'>Holy shit, your butt flies off in an arc!</span>")
 
 			if(2)
-				user.visible_message("\red <b>[user]</b> rips their ass apart in a massive explosion!", "\red Holy shit, your butt goes supernova!")
+				user.visible_message("<span class='warning'><b>[user]</b> rips their ass apart in a massive explosion!</span>", "<span class='warning'>Holy shit, your butt goes supernova!</span>")
 				explosion(user.loc, 0, 1, 3, adminlog = 0, flame_range = 3)
 				user.gib()
 
@@ -186,7 +186,7 @@
 						endx = 247
 
 				//ASS BLAST USA
-				user.visible_message("\red <b>[user]</b> blows their ass off with such force, they explode!", "\red Holy shit, your butt flies off into the galaxy!")
+				user.visible_message("<span class='warning'><b>[user]</b> blows their ass off with such force, they explode!</span>", "<span class='warning'>Holy shit, your butt flies off into the galaxy!</span>")
 				user.gib() //can you belive I forgot to put this here?? yeah you need to see the message BEFORE you gib
 				new /obj/effect/immovablerod/butt(B.loc, locate(endx, endy, 1))
 				priority_announce("What the fuck was that?!", "General Alert")
