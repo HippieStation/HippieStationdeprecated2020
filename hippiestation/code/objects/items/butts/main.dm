@@ -70,7 +70,7 @@
 
 	if(istype(W, /obj/item/bodypart/l_arm/robot) || istype(W, /obj/item/bodypart/r_arm/robot))
 		if(istype(src, /obj/item/organ/butt/bluebutt)) //nobody sprited a blue butt buttbot
-			user << "<span class='warning'>Why the heck would you want to make a robot out of this?</span>"
+			to_chat(user, "<span class='warning'>Why the heck would you want to make a robot out of this?</span>")
 			return
 		user.drop_item()
 		qdel(W)
@@ -80,7 +80,7 @@
 			B.xeno = 1
 			B.icon_state = "buttbot_xeno"
 			B.speech_list = list("hissing butts", "hiss hiss motherfucker", "nice trophy nerd", "butt", "woop get an alien inspection")
-		user << "<span class='notice'>You add the robot arm to the butt and... What?</span>"
+		to_chat(user, "<span class='notice'>You add the robot arm to the butt and... What?</span>")
 		user.drop_item(src)
 		qdel(src)
 

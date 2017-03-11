@@ -15,7 +15,7 @@
 			if(B)
 				H.emote("fart")
 			else
-				H << "<span class='danger'>Your stomach rumbles as pressure builds up inside of you.</span>"
+				to_chat(H, "<span class='danger'>Your stomach rumbles as pressure builds up inside of you.</span>")
 				H.adjustToxLoss(1*REM)
 	..()
 	return
@@ -28,7 +28,7 @@
 			if(B)
 				H.emote("fart")
 			else
-				H << "<span class='danger'>Your stomach hurts a bit as pressure builds up inside of you.</span>"
+				to_chat(H, "<span class='danger'>Your stomach hurts a bit as pressure builds up inside of you.</span>")
 				H.adjustToxLoss(2*REM)
 	..()
 
@@ -40,7 +40,7 @@
 			if(B)
 				H.emote("fart")
 			else
-				H << "<span class='danger'>Your stomach hurts as pressure builds up inside of you.</span>"
+				to_chat(H, "<span class='danger'>Your stomach hurts as pressure builds up inside of you.</span>")
 				H.adjustToxLoss(3*REM)
 	..()
 
@@ -52,7 +52,7 @@
 			if(B)
 				H.emote("fart")
 			else
-				H << "<span class='danger'>Your stomach hurts a lot as pressure builds up inside of you.</span>"
+				to_chat(H, "<span class='danger'>Your stomach hurts a lot as pressure builds up inside of you.</span>")
 				H.adjustToxLoss(4*REM)
 	..()
 
@@ -65,7 +65,7 @@
 				if(prob(2) && !B.loose) H.emote("superfart")
 				else H.emote("fart")
 			else
-				H << "<span class='danger'>Your stomach hurts too much as pressure builds up inside of you.</span>"
+				to_chat(H, "<span class='danger'>Your stomach hurts too much as pressure builds up inside of you.</span>")
 				H.adjustToxLoss(5*REM)
 	..()
 
@@ -78,6 +78,6 @@
 				if(prob(5) && !B.loose) H.emote("superfart")
 				else H.emote("fart")
 			else
-				H << "<span class='danger'>Your stomach hurts too much as pressure builds up inside of you.</span>"
+				to_chat(H, "<span class='danger'>Your stomach hurts too much as pressure builds up inside of you.</span>")
 				H.adjustToxLoss(6*REM)
 	..()

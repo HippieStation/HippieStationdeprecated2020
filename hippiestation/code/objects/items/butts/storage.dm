@@ -6,7 +6,7 @@
 		if(B.owner && ishuman(B.owner))
 			var/mob/living/carbon/human/H = B.owner
 			if(H.w_uniform)
-				user << "<span class='danger'>Remove the jumpsuit first!</span>"
+				to_chat(user, "<span class='danger'>Remove the jumpsuit first!</span>")
 				return
 	. = ..()
 
@@ -34,16 +34,16 @@
 					user.visible_message("<span class='warning'>[user] fails to inspect [user == src ? "his own" : "[src]'s"] ass!</span>", "<span class='warning'>You fail to inspect [user == src ? "your" : "[src]'s"] ass!</span>")
 					return 1
 			else
-				user << "<span class='warning'>There's nothing to inspect!</span>"
+				to_chat(user, "<span class='warning'>There's nothing to inspect!</span>")
 				return 1
 		else
 			if(user == src)
 				user.visible_message("<span class='warning'>[user] grabs his own butt!</span>", "<span class='warning'>You grab your own butt!</span>")
-				user << "<span class='warning'>You'll need to remove your jumpsuit first!</span>"
+				to_chat(user,  "<span class='warning'>You'll need to remove your jumpsuit first!</span>")
 			else
 				user.visible_message("<span class='warning'>[user] grabs [src]'s butt!</span>", "<span class='warning'>You grab [src]'s butt!</span>")
-				user << "<span class='warning'>You'll need to remove [src]'s jumpsuit first!</span>"
-				src << "<span class='userdanger'>You feel your butt being grabbed!</span>"
+				to_chat(user, "<span class='warning'>You'll need to remove [src]'s jumpsuit first!</span>")
+				to_chat(src, "<span class='userdanger'>You feel your butt being grabbed!</span>")
 			return 1
 
 /mob/living/carbon/proc/checkbuttinsert(obj/item/I, mob/living/carbon/user)
