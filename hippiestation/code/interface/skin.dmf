@@ -88,16 +88,16 @@ macro "default"
 		command = "resist"
 		is-disabled = false
 	elem 
+		name = "CTRL+D+REP"
+		command = ".moveright"
+		is-disabled = false
+	elem 
 		name = "CTRL+E"
 		command = "quick-equip"
 		is-disabled = false
 	elem 
 		name = "CTRL+F"
 		command = "say *fart"
-		is-disabled = false
-	elem 
-		name = "CTRL+S"
-		command = "say *scream"
 		is-disabled = false
 	elem 
 		name = "CTRL+G"
@@ -118,6 +118,14 @@ macro "default"
 	elem 
 		name = "CTRL+R"
 		command = ".southwest"
+		is-disabled = false
+	elem 
+		name = "CTRL+S+REP"
+		command = ".movedown"
+		is-disabled = false
+	elem 
+		name = "CTRL+W+REP"
+		command = ".moveup"
 		is-disabled = false
 	elem 
 		name = "CTRL+X"
@@ -186,14 +194,6 @@ macro "default"
 	elem 
 		name = "F5"
 		command = "Aghost"
-		is-disabled = false
-	elem 
-		name = "F4"
-		command = "msay"
-		is-disabled = false
-	elem
-		name = "F3"
-		command = "asay"
 		is-disabled = false
 	elem 
 		name = "F6"
@@ -342,6 +342,10 @@ macro "hotkeys"
 		command = ".moveright"
 		is-disabled = false
 	elem 
+		name = "CTRL+D+REP"
+		command = ".moveright"
+		is-disabled = false
+	elem 
 		name = "E"
 		command = "quick-equip"
 		is-disabled = false
@@ -358,11 +362,11 @@ macro "hotkeys"
 		command = "say *fart"
 		is-disabled = false
 	elem 
-		name = "CTRL+S"
-		command = "say *scream"
+		name = "G"
+		command = "a-intent right"
 		is-disabled = false
 	elem 
-		name = "G"
+		name = "CTRL+G"
 		command = "a-intent right"
 		is-disabled = false
 	elem 
@@ -406,11 +410,19 @@ macro "hotkeys"
 		command = ".movedown"
 		is-disabled = false
 	elem 
+		name = "CTRL+S+REP"
+		command = ".movedown"
+		is-disabled = false
+	elem 
 		name = "T"
 		command = "say"
 		is-disabled = false
 	elem "w_key"
 		name = "W+REP"
+		command = ".moveup"
+		is-disabled = false
+	elem 
+		name = "CTRL+W+REP"
 		command = ".moveup"
 		is-disabled = false
 	elem 
@@ -488,14 +500,6 @@ macro "hotkeys"
 	elem 
 		name = "SHIFT+F2+REP"
 		command = ".screenshot"
-		is-disabled = false
-	elem 
-		name = "F3"
-		command = "asay"
-		is-disabled = false
-	elem 
-		name = "F4"
-		command = "msay"
 		is-disabled = false
 	elem 
 		name = "F5"
@@ -608,6 +612,10 @@ macro "robot-default"
 		command = "a-intent left"
 		is-disabled = false
 	elem 
+		name = "CTRL+A+REP"
+		command = ".moveleft"
+		is-disabled = false
+	elem 
 		name = "CTRL+B"
 		command = "resist"
 		is-disabled = false
@@ -620,8 +628,28 @@ macro "robot-default"
 		command = "ooc"
 		is-disabled = false
 	elem 
+		name = "CTRL+D+REP"
+		command = ".moveright"
+		is-disabled = false
+	elem 
+		name = "CTRL+F"
+		command = "a-intent left"
+		is-disabled = false
+	elem 
+		name = "CTRL+G"
+		command = "a-intent right"
+		is-disabled = false
+	elem 
 		name = "CTRL+Q"
 		command = "unequip-module"
+		is-disabled = false
+	elem 
+		name = "CTRL+S+REP"
+		command = ".movedown"
+		is-disabled = false
+	elem 
+		name = "CTRL+W+REP"
+		command = ".moveup"
 		is-disabled = false
 	elem 
 		name = "CTRL+X"
@@ -678,14 +706,6 @@ macro "robot-default"
 	elem 
 		name = "SHIFT+F2+REP"
 		command = ".screenshot"
-		is-disabled = false
-	elem 
-		name = "F3"
-		command = "asay"
-		is-disabled = false
-	elem 
-		name = "F4"
-		command = "msay"
 		is-disabled = false
 	elem 
 		name = "F5"
@@ -810,6 +830,10 @@ macro "robot-hotkeys"
 		command = ".moveleft"
 		is-disabled = false
 	elem 
+		name = "CTRL+A+REP"
+		command = ".moveleft"
+		is-disabled = false
+	elem 
 		name = "B"
 		command = "resist"
 		is-disabled = false
@@ -842,19 +866,23 @@ macro "robot-hotkeys"
 		command = ".moveright"
 		is-disabled = false
 	elem 
+		name = "CTRL+D+REP"
+		command = ".moveright"
+		is-disabled = false
+	elem 
 		name = "F"
 		command = "a-intent left"
 		is-disabled = false
 	elem 
 		name = "CTRL+F"
-		command = "say *fart"
-		is-disabled = false
-	elem 
-		name = "CTRL+S"
-		command = "say *scream"
+		command = "a-intent left"
 		is-disabled = false
 	elem 
 		name = "G"
+		command = "a-intent right"
+		is-disabled = false
+	elem 
+		name = "CTRL+G"
 		command = "a-intent right"
 		is-disabled = false
 	elem 
@@ -870,11 +898,19 @@ macro "robot-hotkeys"
 		command = ".movedown"
 		is-disabled = false
 	elem 
+		name = "CTRL+S+REP"
+		command = ".movedown"
+		is-disabled = false
+	elem 
 		name = "T"
 		command = "say"
 		is-disabled = false
 	elem "w_key"
 		name = "W+REP"
+		command = ".moveup"
+		is-disabled = false
+	elem 
+		name = "CTRL+W+REP"
 		command = ".moveup"
 		is-disabled = false
 	elem 
@@ -944,14 +980,6 @@ macro "robot-hotkeys"
 	elem 
 		name = "SHIFT+F2+REP"
 		command = ".screenshot"
-		is-disabled = false
-	elem 
-		name = "F3"
-		command = "asay"
-		is-disabled = false
-	elem 
-		name = "F4"
-		command = "msay"
 		is-disabled = false
 	elem 
 		name = "F5"
@@ -1731,3 +1759,4 @@ window "statwindow"
 		on-tab = ""
 		prefix-color = none
 		suffix-color = none
+
