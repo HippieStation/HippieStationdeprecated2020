@@ -923,3 +923,28 @@ RUSSIAN SODA
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/filled/cola = 20)
 	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0, fire = 100, acid = 50)
 	resistance_flags = FIRE_PROOF
+
+/*
+
+PDA TECH
+
+*/
+
+/obj/machinery/vending/cart
+	name = "\improper PTech"
+	desc = "Cartridges for PDAs"
+	product_slogans = "Carts to go!"
+	icon_state = "cart"
+	icon_deny = "cart-deny"
+	products = list(
+					/obj/item/weapon/cartridge/medical = 10,
+					/obj/item/weapon/cartridge/engineering = 10,
+					/obj/item/weapon/cartridge/security = 10,
+					/obj/item/weapon/cartridge/janitor = 10,
+					/obj/item/weapon/cartridge/signal/toxins = 10,
+					/obj/item/device/pda/heads = 10,
+					/obj/item/weapon/cartridge/captain = 3,
+					/obj/item/weapon/cartridge/quartermaster = 10
+					)
+	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0, fire = 100, acid = 50)
+	resistance_flags = FIRE_PROOF

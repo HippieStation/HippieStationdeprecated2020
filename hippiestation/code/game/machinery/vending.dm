@@ -54,6 +54,7 @@
 	var/obj/item/weapon/coin/coin
 	var/width = 350
 	var/height = 475
+	var/product_ads
 
 	var/obj/item/weapon/vending_refill/refill_canister = null		//The type of refill canisters used by this machine.
 
