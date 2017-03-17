@@ -44,7 +44,7 @@
 	s["icon"] >> currenticon
 	if(!isnull(currenticon))
 		icon_state = currenticon
-	newicon = pick("title1","title2","title3","title4")
+	newicon = pick("title1","title2","title3","title4","title5","title6","title7","title8","title9","title10")
 	s["icon"] << newicon
 
 /turf/closed/indestructible/riveted
