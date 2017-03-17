@@ -1,5 +1,0 @@
-author: "JamieH"
-delete-after: True
-changes: 
-  - rscadd: "New lobby titles and sound"
-  - rscdel: "Goon Sound"
