@@ -728,8 +728,8 @@
 	description = "Minor boost to stun resistance. Slowly heals damage if a patient is in critical condition, as well as regulating oxygen loss. Overdose causes weakness and toxin damage."
 	reagent_state = LIQUID
 	color = "#D2FFFA"
-	metabolization_rate = 0.25 * REAGENTS_METABOLISM
-	overdose_threshold = 30
+	metabolization_rate = 1 * REAGENTS_METABOLISM
+	overdose_threshold = 10
 
 /datum/reagent/medicine/epinephrine/on_mob_life(mob/living/M)
 	if(M.health < 0)

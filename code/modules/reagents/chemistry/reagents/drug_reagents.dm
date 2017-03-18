@@ -35,7 +35,7 @@
 	description = "Slightly reduces stun times. If overdosed it will deal toxin and oxygen damage."
 	reagent_state = LIQUID
 	color = "#60A584" // rgb: 96, 165, 132
-	addiction_threshold = 30
+	addiction_threshold = 1
 	taste_description = "smoke"
 
 /datum/reagent/drug/nicotine/on_mob_life(mob/living/M)
@@ -55,8 +55,8 @@
 	description = "Reduces stun times by about 200%. If overdosed or addicted it will deal significant Toxin, Brute and Brain damage."
 	reagent_state = LIQUID
 	color = "#FA00C8"
-	overdose_threshold = 20
-	addiction_threshold = 10
+	overdose_threshold = 10
+	addiction_threshold = 5
 
 /datum/reagent/drug/crank/on_mob_life(mob/living/M)
 	var/high_message = pick("You feel jittery.", "You feel like you gotta go fast.", "You feel like you need to step it up.")
@@ -102,8 +102,8 @@
 	description = "Cools and calms you down. If overdosed it will deal significant Brain and Toxin damage. If addicted it will begin to deal fatal amounts of Brute damage as the subject's skin falls off."
 	reagent_state = LIQUID
 	color = "#0064B4"
-	overdose_threshold = 20
-	addiction_threshold = 15
+	overdose_threshold = 10
+	addiction_threshold = 5
 
 
 /datum/reagent/drug/krokodil/on_mob_life(mob/living/M)
@@ -153,23 +153,28 @@
 	description = "Reduces stun times by about 300%, speeds the user up, and allows the user to quickly recover stamina while dealing a small amount of Brain damage. If overdosed the subject will move randomly, laugh randomly, drop items and suffer from Toxin and Brain damage. If addicted the subject will constantly jitter and drool, before becoming dizzy and losing motor control and eventually suffer heavy toxin damage."
 	reagent_state = LIQUID
 	color = "#FAFAFA"
-	overdose_threshold = 20
-	addiction_threshold = 10
-	metabolization_rate = 0.75 * REAGENTS_METABOLISM
+	overdose_threshold = 5
+	addiction_threshold = 1
+	metabolization_rate = 1 * REAGENTS_METABOLISM
 
 /datum/reagent/drug/methamphetamine/on_mob_life(mob/living/M)
 	var/high_message = pick("You feel hyper.", "You feel like you need to go faster.", "You feel like you can run the world.")
 	if(prob(5))
 		to_chat(M, "<span class='notice'>[high_message]</span>")
-	M.AdjustParalysis(-2, 0)
-	M.AdjustStunned(-2, 0)
-	M.AdjustWeakened(-2, 0)
-	M.adjustStaminaLoss(-2, 0)
-	M.status_flags |= GOTTAGOREALLYFAST
+	M.AdjustParalysis(-1.75, 0)
+	M.AdjustStunned(-1.75, 0)
+	M.AdjustWeakened(-1.75, 0)
+	M.adjustStaminaLoss(-1.75, 0)
+	M.status_flags |= GOTTAGOFAST
 	M.Jitter(2)
-	M.adjustBrainLoss(0.25)
+	M.adjustBrainLoss(0.75)
 	if(prob(5))
 		M.emote(pick("twitch", "shiver"))
+	if(prob(50))
+		M.visible_message("<span class='danger'>[M]'s hands flip out and flail everywhere!</span>")
+		var/obj/item/I = M.get_active_held_item()
+		if(I)
+			M.drop_item()
 	..()
 	. = 1
 
@@ -179,11 +184,6 @@
 			step(M, pick(cardinal))
 	if(prob(20))
 		M.emote("laugh")
-	if(prob(33))
-		M.visible_message("<span class='danger'>[M]'s hands flip out and flail everywhere!</span>")
-		var/obj/item/I = M.get_active_held_item()
-		if(I)
-			M.drop_item()
 	..()
 	M.adjustToxLoss(1, 0)
 	M.adjustBrainLoss(pick(0.5, 0.6, 0.7, 0.8, 0.9, 1))
@@ -230,8 +230,8 @@
 	description = "Makes you nearly impervious to stuns and grants a stamina regeneration buff, but you will be a nearly uncontrollable tramp-bearded raving lunatic."
 	reagent_state = LIQUID
 	color = "#FAFAFA"
-	overdose_threshold = 20
-	addiction_threshold = 10
+	overdose_threshold = 5
+	addiction_threshold = 1
 	taste_description = "salt" // because they're bathsalts?
 
 
@@ -243,9 +243,9 @@
 	M.AdjustStunned(-3, 0)
 	M.AdjustWeakened(-3, 0)
 	M.adjustStaminaLoss(-5, 0)
-	M.adjustBrainLoss(0.5)
+	M.adjustBrainLoss(0.75)
 	M.adjustToxLoss(0.1, 0)
-	M.hallucination += 10
+	M.hallucination += 20
 	if(M.canmove && !istype(M.loc, /atom/movable))
 		step(M, pick(cardinal))
 		step(M, pick(cardinal))
