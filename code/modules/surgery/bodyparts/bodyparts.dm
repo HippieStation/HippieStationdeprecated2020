@@ -326,10 +326,6 @@
 		standing += I
 		return standing
 
-	if(should_draw_hippie)
-		I = image("icon"='hippiestation/icons/mob/mutant_bodyparts.dmi', "icon_state"="[species_id]_[body_zone]", "layer"=-BODYPARTS_LAYER, "dir"=image_dir)
-		standing += I
-		return standing
 
 	if(!should_draw_greyscale)
 		standing += I
