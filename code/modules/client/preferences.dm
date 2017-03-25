@@ -112,6 +112,7 @@ var/list/preferences_datums = list()
 	if(istype(C))
 		if(!IsGuestKey(C.key))
 			load_path(C.ckey)
+			unlock_content = C.IsByondMember()
 
 	var/loaded_preferences_successfully = load_preferences()
 	if(loaded_preferences_successfully)
