@@ -16,6 +16,10 @@
 	var/obj/item/robot_suit/robot_suit = null //Used for deconstruction to remember what the borg was constructed out of..
 	var/obj/item/device/mmi/mmi = null
 
+	var/shell = FALSE
+	var/deployed = FALSE
+	var/mob/living/silicon/ai/mainframe = null
+	var/datum/action/innate/undeployment/undeployment_action = new
 
 //Hud stuff
 
@@ -73,7 +77,7 @@
 
 	var/sight_mode = 0
 	var/updating = 0 //portable camera camerachunk update
-	hud_possible = list(ANTAG_HUD, DIAG_STAT_HUD, DIAG_HUD, DIAG_BATT_HUD)
+	hud_possible = list(ANTAG_HUD, DIAG_STAT_HUD, DIAG_HUD, DIAG_BATT_HUD, DIAG_TRACK_HUD)
 
 	var/list/upgrades = list()
 
@@ -129,8 +133,12 @@
 	update_icons()
 	..()
 
+	//If this body is meant to be a borg controlled by the AI player
+	if(newshell)
+		make_shell()
+
 	//MMI stuff. Held togheter by magic. ~Miauw
-	if(!mmi || !mmi.brainmob)
+	else if(!mmi || !mmi.brainmob)
 		mmi = new (src)
 		mmi.brain = new /obj/item/organ/brain(mmi)
 		mmi.brain.name = "[real_name]'s brain"
@@ -170,6 +178,8 @@
 		mmi = null
 	if(connected_ai)
 		connected_ai.connected_robots -= src
+	if(shell)
+		available_ai_shells -= src
 	qdel(wires)
 	qdel(module)
 	qdel(eye_lights)
@@ -204,6 +214,8 @@
 
 
 /mob/living/silicon/robot/proc/updatename()
+	if(shell)
+		return
 	var/changed_name = ""
 	if(custom_name)
 		changed_name = custom_name
@@ -452,6 +464,9 @@
 			return
 		if(!cell)
 			to_chat(user, "<span class='warning'>You need to install a power cell to do that!</span>")
+			return
+		if(shell) //AI shells always have the laws of the AI
+			to_chat(user, "<span class='warning'>[src] is controlled remotely! You cannot upload new laws this way!</span>")
 			return
 		if(emagged || (connected_ai && lawupdate)) //Can't be sure which, metagamers
 			emote("buzz-[user.name]")
@@ -901,6 +916,7 @@
 				update_headlamp()
 	diag_hud_set_status()
 	diag_hud_set_health()
+	diag_hud_set_aishell()
 	update_health_hud()
 
 /mob/living/silicon/robot/revive(full_heal = 0, admin_revive = 0)
@@ -910,13 +926,13 @@
 		update_headlamp()
 		if(admin_revive)
 			locked = 1
-		notify_ai(1)
+		notify_ai(NEW_BORG)
 		. = 1
 
 /mob/living/silicon/robot/fully_replace_character_name(oldname, newname)
 	..()
 	if(oldname != real_name)
-		notify_ai(3, oldname, newname)
+		notify_ai(RENAME, oldname, newname)
 	if(camera)
 		camera.c_tag = real_name
 	custom_name = newname
@@ -937,6 +953,7 @@
 
 	speed = 0
 	ionpulse = FALSE
+	revert_shell()
 
 	return 1
 
@@ -972,6 +989,76 @@
 	hat = new_hat
 	new_hat.forceMove(src)
 	update_icons()
+
+/mob/living/silicon/robot/proc/make_shell(var/obj/item/borg/upgrade/ai/board)
+	if(!board)
+		new /obj/item/borg/upgrade/ai(src)
+	shell = TRUE
+	braintype = "AI Shell"
+	available_ai_shells |= src
+	real_name = "AI Shell [rand(100,999)]"
+	name = real_name
+	if(camera)
+		camera.c_tag = real_name	//update the camera name too
+	diag_hud_set_aishell()
+
+/mob/living/silicon/robot/proc/deploy_init(var/mob/living/silicon/ai/AI)
+	real_name = AI.real_name
+	name = real_name
+	if(camera)
+		camera.c_tag = real_name	//update the camera name too
+	mainframe = AI
+	deployed = TRUE
+	connected_ai = mainframe
+	mainframe.connected_robots |= src
+	lawupdate = TRUE
+	lawsync()
+	if(radio && AI.radio) //AI keeps all channels, including Syndie if it is a Traitor
+		if(AI.radio.syndie)
+			radio.make_syndie()
+		radio.subspace_transmission = TRUE
+		radio.channels = AI.radio.channels
+		for(var/chan in radio.channels)
+			radio.secure_radio_connections[chan] = add_radio(radio, radiochannels[chan])
+
+	diag_hud_set_aishell()
+	undeployment_action.Grant(src)
+
+/datum/action/innate/undeployment
+ 	name = "Disconnect from shell"
+ 	desc = "Stop controlling your shell and resume normal core operations."
+ 	button_icon_state = "ai_core"
+
+/datum/action/innate/undeployment/Trigger()
+	if(!..())
+		return FALSE
+	var/mob/living/silicon/robot/R = owner
+
+	R.undeploy()
+	return TRUE
+
+
+/mob/living/silicon/robot/proc/undeploy()
+
+	if(!deployed || !mainframe)
+		return
+	mainframe.redeploy_action.Grant(mainframe)
+	mainframe.redeploy_action.last_used_shell = src
+	mind.transfer_to(mainframe)
+	deployed = FALSE
+	mainframe.deployed_shell = null
+	undeployment_action.Remove(src)
+	if(radio) //Return radio to normal
+		radio.recalculateChannels()
+	if(camera)
+		camera.c_tag = real_name	//update the camera name too
+	diag_hud_set_aishell()
+	mainframe.diag_hud_set_deployed()
+	mainframe.show_laws() //Always remind the AI when switching
+	mainframe = null
+
+/mob/living/silicon/robot/shell/New(loc,newshell = TRUE)
+	..()
 
 /mob/living/silicon/robot/MouseDrop_T(mob/living/M, mob/living/user)
 	. = ..()
