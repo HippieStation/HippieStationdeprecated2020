@@ -320,12 +320,16 @@
 				I = image("icon"='icons/mob/human_parts.dmi', "icon_state"="[species_id]_[body_zone]", "layer"=-BODYPARTS_LAYER, "dir"=image_dir)
 	else
 		if(should_draw_gender)
-			I = image("icon"='icons/mob/augments.dmi', "icon_state"="[initial(icon_state)]_[icon_gender]", "layer"=-BODYPARTS_LAYER, "dir"=image_dir)
+			I = image("icon"= icon, "icon_state"="[body_zone]_[icon_gender]", "layer"=-BODYPARTS_LAYER, "dir"=image_dir)
 		else
-			I = image("icon"='icons/mob/augments.dmi', "icon_state"="[initial(icon_state)]", "layer"=-BODYPARTS_LAYER, "dir"=image_dir)
+			I = image("icon"= icon, "icon_state"="[body_zone]", "layer"=-BODYPARTS_LAYER, "dir"=image_dir)
 		standing += I
 		return standing
 
+	if(should_draw_hippie)
+		I = image("icon"='hippiestation/icons/mob/mutant_bodyparts.dmi', "icon_state"="[species_id]_[body_zone]", "layer"=-BODYPARTS_LAYER, "dir"=image_dir)
+		standing += I
+		return standing
 
 	if(!should_draw_greyscale)
 		standing += I
