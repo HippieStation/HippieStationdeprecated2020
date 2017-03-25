@@ -862,6 +862,23 @@
 			dat += "<td width='20%'><a href='?src=\ref[src];jobban3=borer;jobban4=\ref[M]'>Borer</a></td>"
 
 		dat += "</tr></table>"
+
+	//Misc (Gray)
+		dat += "<table cellpadding='1' cellspacing='0' width='100%'>"
+		dat += "<tr bgcolor='ffeeaa'><th colspan='5'>Misc</th></tr><tr align='center'>"
+
+		//Catban
+		if(jobban_isbanned(M, "catban") || isbanned_dept)
+			dat += "<td width='20%'><a href='?src=\ref[src];jobban3=catban;jobban4=\ref[M]'><font color=red>Cat</font></a></td>"
+		else
+			dat += "<td width='20%'><a href='?src=\ref[src];jobban3=catban;jobban4=\ref[M]'>catban</a></td>"
+
+		//Cluwneban
+		if(jobban_isbanned(M, "cluwneban") || isbanned_dept)
+			dat += "<td width='20%'><a href='?src=\ref[src];jobban3=cluwneban;jobban4=\ref[M]'><font color=red>Cluwne</font></a></td>"
+		else
+			dat += "<td width='20%'><a href='?src=\ref[src];jobban3=cluwneban;jobban4=\ref[M]'>cluwneban</a></td>"
+
 		usr << browse(dat, "window=jobban2;size=800x450")
 		return
 

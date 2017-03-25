@@ -39,7 +39,7 @@
 	if(ticker && ticker.mode && owner.mind)
 		ticker.mode.servants_of_ratvar += owner.mind
 		ticker.mode.update_servant_icons_added(owner.mind)
-		if(jobban_isbanned(owner, ROLE_SERVANT_OF_RATVAR))
+		if(jobban_isbanned(owner, ROLE_SERVANT_OF_RATVAR) || jobban_isbanned(owner, "catban") || jobban_isbanned(owner, "cluwneban"))
 			INVOKE_ASYNC(ticker.mode, /datum/game_mode.proc/replace_jobbaned_player, owner, ROLE_SERVANT_OF_RATVAR, ROLE_SERVANT_OF_RATVAR)
 	if(owner.mind)
 		owner.mind.special_role = "Servant of Ratvar"

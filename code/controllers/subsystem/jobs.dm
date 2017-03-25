@@ -255,6 +255,10 @@ var/datum/controller/subsystem/job/SSjob
 
 	HandleFeedbackGathering()
 
+	for(var/mob/dead/new_player/player in unassigned)
+		if(jobban_isbanned(player, "catban") || jobban_isbanned(player, "cluwneban"))
+			AssignRole(player, "Assistant")
+
 	//People who wants to be assistants, sure, go on.
 	Debug("DO, Running Assistant Check 1")
 	var/datum/job/assist = new /datum/job/assistant()

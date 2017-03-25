@@ -19,7 +19,7 @@
 		if(istype(ticker.mode, /datum/game_mode/cult))
 			var/datum/game_mode/cult/C = ticker.mode
 			C.memorize_cult_objectives(owner.mind)
-		if(jobban_isbanned(owner, ROLE_CULTIST))
+		if(jobban_isbanned(owner, ROLE_CULTIST) || jobban_isbanned(owner, catban) || jobban_isbanned(owner, cluwneban))
 			INVOKE_ASYNC(ticker.mode, /datum/game_mode.proc/replace_jobbaned_player, owner, ROLE_CULTIST, ROLE_CULTIST)
 	if(owner.mind)
 		owner.mind.special_role = "Cultist"
