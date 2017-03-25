@@ -29,10 +29,10 @@
 	if (notransform)
 		return
 
-	if(jobban_isbanned(src, "catban") && src.dna.species.name != "Tarajan")
+	if(jobban_isbanned(src, "catban") && src.dna.species.name != "Catbeast")
 		set_species(/datum/species/tarajan, icon_update=1)
-	if(jobban_isbanned(src, "cluwneban") && !src.dna.check_mutation(CLUWNEMUT))
-		src.dna.add_mutation(CLUWNEMUT)
+	if(jobban_isbanned(src, "cluwneban") && !src.dna.check_mutation("Cluwne"))
+		src.dna.add_mutation("Cluwne")
 
 	if(..()) //not dead
 		for(var/datum/mutation/human/HM in dna.mutations)
