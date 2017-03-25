@@ -299,7 +299,7 @@
 
 
 /mob/dead/new_player/proc/AttemptLateSpawn(rank)
-	if(jobban_isbanned(src, "catban") || jobban_isbanned(src, "cluwneban"))
+	if(jobban_isbanned(src, CATBAN) || jobban_isbanned(src, CLUWNEBAN))
 		rank = "Assistant"
 
 	if(!IsJobAvailable(rank))

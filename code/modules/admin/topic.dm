@@ -868,13 +868,13 @@
 		dat += "<tr bgcolor='ffeeaa'><th colspan='5'>Misc</th></tr><tr align='center'>"
 
 		//Catban
-		if(jobban_isbanned(M, "catban") || isbanned_dept)
+		if(jobban_isbanned(M, CATBAN) || isbanned_dept)
 			dat += "<td width='20%'><a href='?src=\ref[src];jobban3=catban;jobban4=\ref[M]'><font color=red>Catbanned</font></a></td>"
 		else
 			dat += "<td width='20%'><a href='?src=\ref[src];jobban3=catban;jobban4=\ref[M]'>Catban</a></td>"
 
 		//Cluwneban
-		if(jobban_isbanned(M, "cluwneban") || isbanned_dept)
+		if(jobban_isbanned(M, CLUWNEBAN) || isbanned_dept)
 			dat += "<td width='20%'><a href='?src=\ref[src];jobban3=cluwneban;jobban4=\ref[M]'><font color=red>Cluwnebanned</font></a></td>"
 		else
 			dat += "<td width='20%'><a href='?src=\ref[src];jobban3=cluwneban;jobban4=\ref[M]'>Cluwneban</a></td>"

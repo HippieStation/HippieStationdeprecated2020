@@ -13,6 +13,7 @@
 #define COUGH		"Cough"
 #define DWARFISM	"Dwarfism"
 #define CLOWNMUT	"Clumsiness"
+#define CLUWNEMUT	"Cluwne"
 #define TOURETTES	"Tourettes Syndrome"
 #define DEAFMUT		"Deafness"
 #define BLINDMUT	"Blindness"

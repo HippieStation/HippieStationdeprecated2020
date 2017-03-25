@@ -143,8 +143,8 @@
 
 	for(var/mob/living/carbon/human/H in living_crew)
 		if(H.client && H.client.prefs.allow_midround_antag)
-			if(!jobban_isbanned(H, "catban"))
-				if(!jobban_isbanned(H, "cluwneban"))
+			if(!jobban_isbanned(H, CATBAN))
+				if(!jobban_isbanned(H, CLUWNEBAN))
 					antag_candidates += H
 
 	if(!antag_candidates)
@@ -305,7 +305,7 @@
 
 	// Ultimate randomizing code right here
 	for(var/mob/dead/new_player/player in player_list)
-		if(player.client && player.ready && !jobban_isbanned(player, "catban") && !jobban_isbanned(player, "cluwneban"))
+		if(player.client && player.ready && !jobban_isbanned(player, CATBAN) && !jobban_isbanned(player, CLUWNEBAN))
 			players += player
 
 	// Shuffling, the players list is now ping-independent!!!
