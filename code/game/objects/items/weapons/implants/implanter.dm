@@ -62,11 +62,11 @@
 
 
 
-/obj/item/weapon/implanter/adrenalin
-	name = "implanter (adrenalin)"
+/obj/item/weapon/implanter/comstimm
+	name = "implanter (Combat Stimulants)"
 
-/obj/item/weapon/implanter/adrenalin/New()
-	imp = new /obj/item/weapon/implant/adrenalin(src)
+/obj/item/weapon/implanter/comstimm/New()
+	imp = new /obj/item/weapon/implant/comstimms(src)
 	..()
 
 
