@@ -2091,9 +2091,8 @@
 	tag = ""
 	},
 /mob/living/simple_animal/bot/secbot{
-	arrest_type = 1;
 	baton_type = /obj/item/weapon/melee/baton;
-	desc = "It's Officer Camile! Would have an itchy trigger finger if he had hands.";
+	desc = "It's Officer Camile! Would have an itchy trigger finger if he had hands."; //apparently intentional typo
 	idcheck = 1;
 	name = "\improper Officer Camile";
 	radio_key = /obj/item/device/encryptionkey/secbot;
@@ -64288,7 +64287,6 @@
 	dir = 1
 	},
 /mob/living/simple_animal/bot/secbot{
-	arrest_type = 1;
 	baton_type = /obj/item/weapon/melee/baton;
 	desc = "It's Officer Cappy! Would have an itchy trigger finger if he had hands.";
 	idcheck = 1;

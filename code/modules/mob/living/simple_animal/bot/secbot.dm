@@ -103,14 +103,13 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 Arrest Unidentifiable Persons: []<BR>
 Arrest for Unauthorized Weapons: []<BR>
 Arrest for Warrant: []<BR>
-Operating Mode: []<BR>
 Report Arrests[]<BR>
 Auto Patrol: []"},
 
 "<A href='?src=\ref[src];operation=idcheck'>[idcheck ? "Yes" : "No"]</A>",
 "<A href='?src=\ref[src];operation=weaponscheck'>[weaponscheck ? "Yes" : "No"]</A>",
 "<A href='?src=\ref[src];operation=ignorerec'>[check_records ? "Yes" : "No"]</A>",
-"<A href='?src=\ref[src];operation=switchmode'>[arrest_type ? "Detain" : "Arrest"]</A>",
+
 "<A href='?src=\ref[src];operation=declarearrests'>[declare_arrests ? "Yes" : "No"]</A>",
 "<A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "Off"]</A>" )
 
@@ -129,9 +128,6 @@ Auto Patrol: []"},
 			update_controls()
 		if("ignorerec")
 			check_records = !check_records
-			update_controls()
-		if("switchmode")
-			arrest_type = !arrest_type
 			update_controls()
 		if("declarearrests")
 			declare_arrests = !declare_arrests
@@ -174,7 +170,6 @@ Auto Patrol: []"},
 				retaliate(Proj.firer)
 	..()
 
-
 /mob/living/simple_animal/bot/secbot/UnarmedAttack(atom/A)
 	if(!on)
 		return
@@ -187,7 +182,6 @@ Auto Patrol: []"},
 	else
 		..()
 
-
 /mob/living/simple_animal/bot/secbot/hitby(atom/movable/AM, skipcatch = 0, hitpush = 1, blocked = 0)
 	if(istype(AM, /obj/item))
 		var/obj/item/I = AM
@@ -195,7 +189,6 @@ Auto Patrol: []"},
 			var/mob/living/carbon/human/H = I.thrownby
 			retaliate(H)
 	..()
-
 
 /mob/living/simple_animal/bot/secbot/proc/cuff(mob/living/carbon/C)
 	mode = BOT_ARREST
@@ -319,7 +312,6 @@ Auto Patrol: []"},
 		if(BOT_PATROL)
 			look_for_perp()
 			bot_patrol()
-
 
 	return
 
