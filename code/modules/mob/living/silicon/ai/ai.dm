@@ -138,6 +138,8 @@ var/list/ai_list = list()
 	radio = new /obj/item/device/radio/headset/ai(src)
 	aicamera = new/obj/item/device/camera/siliconcam/ai_camera(src)
 
+	deploy_action.Grant(src)
+
 	if(isturf(loc))
 		verbs.Add(/mob/living/silicon/ai/proc/ai_network_change, \
 		/mob/living/silicon/ai/proc/ai_statuschange, /mob/living/silicon/ai/proc/ai_hologram_change, \
@@ -247,13 +249,16 @@ var/list/ai_list = list()
 			for(var/mob/living/silicon/robot/R in connected_robots)
 				borg_area = get_area(R)
 				var/robot_status = "Nominal"
-				if(R.stat || !R.client)
+				if(R.shell)
+					robot_status = "AI SHELL"
+				else if(R.stat || !R.client)
 					robot_status = "OFFLINE"
 				else if(!R.cell || R.cell.charge <= 0)
 					robot_status = "DEPOWERED"
 				//Name, Health, Battery, Module, Area, and Status! Everything an AI wants to know about its borgies!
 				stat(null, text("[R.name] | S.Integrity: [R.health]% | Cell: [R.cell ? "[R.cell.charge]/[R.cell.maxcharge]" : "Empty"] | \
- 				Module: [R.designation] | Loc: [borg_area.name] | Status: [robot_status]"))
+				Module: [R.designation] | Loc: [borg_area.name] | Status: [robot_status]"))
+			stat(null, text("AI shell beacons detected: [LAZYLEN(available_ai_shells)]")) //Count of total AI shells
 		else
 			stat(null, text("Systems nonfunctional"))
 
@@ -791,11 +796,12 @@ var/list/ai_list = list()
 	if(!..())
 		return
 	if(interaction == AI_TRANS_TO_CARD)//The only possible interaction. Upload AI mob to a card.
-		if(!mind)
-			to_chat(user, "<span class='warning'>No intelligence patterns detected.</span>"    )
-			return
 		if(!can_be_carded)
 			to_chat(user, "<span class='boldwarning'>Transfer failed.</span>")
+			return
+		disconnect_shell() //If the AI is controlling a borg, force the player back to core!
+		if(!mind)
+			to_chat(user, "<span class='warning'>No intelligence patterns detected.</span>"    )
 			return
 		ShutOffDoomsdayDevice()
 		new /obj/structure/AIcore/deactivated(loc)//Spawns a deactivated terminal at AI location.
