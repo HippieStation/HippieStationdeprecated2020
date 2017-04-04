@@ -87,6 +87,7 @@ var/datum/controller/subsystem/timer/SStimer
 				spent += timer
 				timer.spent = TRUE
 				callBack.InvokeAsync()
+				last_invoke_tick = world.time
 
 			timer = timer.next
 
