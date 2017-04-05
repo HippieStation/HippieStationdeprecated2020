@@ -1,0 +1,11 @@
+diff a/code/modules/atmospherics/gasmixtures/gas_mixture.dm b/code/modules/atmospherics/gasmixtures/gas_mixture.dm	(rejected hunks)
+@@ -31,8 +31,7 @@ var/list/gaslist_cache = init_gaslist_cache()
+ 	var/tmp/temperature_archived
+ 	var/volume //liters
+ 	var/last_share
+-	var/tmp/fuel_burnt
+-	//var/datum/holder
++	var/list/reaction_results
+ 
+ /datum/gas_mixture/New(volume = CELL_VOLUME)
+ 	gases = new
