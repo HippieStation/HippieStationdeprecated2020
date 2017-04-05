@@ -934,7 +934,6 @@ var/datum/controller/subsystem/garbage_collector/SSgarbage
 	SearchVar(plasmaman_on_fire)
 	SearchVar(ai_list)
 	SearchVar(announcing_vox)
-	SearchVar(VOX_CHANNEL)
 	SearchVar(VOX_DELAY)
 	SearchVar(vox_sounds)
 	SearchVar(CHUNK_SIZE)
