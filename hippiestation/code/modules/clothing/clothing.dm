@@ -42,5 +42,18 @@
 	alternate_worn_icon = 'hippiestation/icons/mob/belt.dmi'
 	icon = 'hippiestation/icons/obj/clothing/belts.dmi'
 
+/obj/item/clothing/suit/jacket/hippie
+	alternate_worn_icon = 'hippiestation/icons/mob/suit.dmi'
+	icon = 'hippiestation/icons/obj/clothing/suits.dmi'
+
+//Custom Section
+/obj/item/clothing/suit/jacket/hippie/custom
+	alternate_worn_icon = 'hippiestation/icons/mob/suitcustom.dmi'
+	icon = 'hippiestation/icons/obj/clothing/suitscustom.dmi'
+
+/obj/item/clothing/suit/toggle/jacket/hippie/custom
+	alternate_worn_icon = 'hippiestation/icons/mob/suitcustom.dmi'
+	icon = 'hippiestation/icons/obj/clothing/suitscustom.dmi'
+
 /obj/item
 	var/list/alternate_screams = list()

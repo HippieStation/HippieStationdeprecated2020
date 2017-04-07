@@ -17,3 +17,19 @@
 		H.dna.add_mutation(CLUWNEMUT)
 		H.reindex_screams()
 	return ..()
+
+/obj/item/clothing/suit/toggle/jacket/hippie/custom/jojinam_medals
+	name = "old military jacket"
+	desc = "an old but well maintained military jacket with lots of army ribbons."
+	icon_state = "joji01"
+	item_state = "joji01"
+	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank/internals/emergency_oxygen,/obj/item/toy,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/lighter,/obj/item/weapon/gun/ballistic/automatic/pistol,/obj/item/weapon/gun/ballistic/revolver,/obj/item/weapon/gun/ballistic/revolver/detective,/obj/item/device/radio)
+	togglename = "buttons"
+
+/obj/item/clothing/suit/toggle/jacket/hippie/custom/jojinam
+	name = "old military jacket"
+	desc = "an old but well maintained military jacket."
+	icon_state = "joji02"
+	item_state = "joji02"
+	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank/internals/emergency_oxygen,/obj/item/toy,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/lighter,/obj/item/weapon/gun/ballistic/automatic/pistol,/obj/item/weapon/gun/ballistic/revolver,/obj/item/weapon/gun/ballistic/revolver/detective,/obj/item/device/radio)
+	togglename = "buttons"
