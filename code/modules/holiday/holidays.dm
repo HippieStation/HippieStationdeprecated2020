@@ -330,7 +330,7 @@
 	end_day = 31
 
 /datum/holiday/festive_season/celebrate()
-	for(var/obj/effect/landmark/xmastree/XT in landmarks_list)
+	for(var/obj/effect/landmark/xmastree/XT in GLOB.landmarks_list)
 		new XT.tree(get_turf(XT))
 		qdel(XT)
 

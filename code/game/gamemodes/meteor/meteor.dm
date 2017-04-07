@@ -11,11 +11,11 @@
 
 
 /datum/game_mode/meteor/process()
-	if(nometeors || meteordelay > world.time - round_start_time)
+	if(nometeors || meteordelay > world.time - ticker.round_start_time)
 		return
 
 	var/list/wavetype = meteors_normal
-	var/meteorminutes = (world.time - round_start_time - meteordelay) / 10 / 60
+	var/meteorminutes = (world.time - ticker.round_start_time - meteordelay) / 10 / 60
 
 
 	if (prob(meteorminutes))
@@ -33,7 +33,7 @@
 	var/text
 	var/survivors = 0
 
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(player.stat != DEAD)
 			++survivors
 

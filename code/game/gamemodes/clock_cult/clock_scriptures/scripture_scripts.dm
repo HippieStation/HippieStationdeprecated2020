@@ -180,7 +180,7 @@
 	owner.visible_message("<span class='warning'>A strange spear materializes in [owner]'s hands!</span>", "<span class='brass'>You call forth your spear!</span>")
 	var/obj/item/clockwork/ratvarian_spear/R = new(get_turf(usr))
 	owner.put_in_hands(R)
-	if(!ratvar_awakens)
+	if(!GLOB.ratvar_awakens)
 		to_chat(owner, "<span class='warning'>Your spear begins to break down in this plane of existence. You can't use it for long!</span>")
 	cooldown = base_cooldown + world.time
 	owner.update_action_buttons_icon()
@@ -229,7 +229,7 @@
 		if(!L.stat && is_servant_of_ratvar(L))
 			portal_uses++
 			duration += 40 //4 seconds
-	if(ratvar_awakens)
+	if(GLOB.ratvar_awakens)
 		portal_uses = max(portal_uses, 100) //Very powerful if Ratvar has been summoned
 		duration = max(duration, 100)
 	return slab.procure_gateway(invoker, duration, portal_uses)
@@ -263,7 +263,7 @@
 	var/turf/T = get_turf(invoker)
 	if(!ray.run_scripture() && slab && invoker)
 		if(can_recite() && T == get_turf(invoker))
-			if(!ratvar_awakens)
+			if(!GLOB.ratvar_awakens)
 				var/obj/structure/destructible/clockwork/powered/volt_checker/VC = new/obj/structure/destructible/clockwork/powered/volt_checker(get_turf(invoker))
 				var/multiplier = 0.5
 				var/usable_power = min(Floor(VC.total_accessable_power() * 0.2, MIN_CLOCKCULT_POWER), 1000)

@@ -1,0 +1,10 @@
+diff a/code/__HELPERS/unsorted.dm b/code/__HELPERS/unsorted.dm	(rejected hunks)
+@@ -231,7 +231,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
+ //Returns a list of unslaved cyborgs
+ /proc/active_free_borgs()
+ 	. = list()
+-	for(var/mob/living/silicon/robot/R in SLOTH.living_mob_list)
++	for(var/mob/living/silicon/robot/R in GLOB.living_mob_list)
+ 		if(R.connected_ai)
+ 			continue
+ 		if(R.stat == DEAD)

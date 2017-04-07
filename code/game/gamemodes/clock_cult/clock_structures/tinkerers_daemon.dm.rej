@@ -1,0 +1,23 @@
+diff a/code/game/gamemodes/clock_cult/clock_structures/tinkerers_daemon.dm b/code/game/gamemodes/clock_cult/clock_structures/tinkerers_daemon.dm	(rejected hunks)
+@@ -72,17 +72,17 @@
+ 			to_chat(user, "<span class='warning'>[src] needs to be secured to the floor before it can be activated!</span>")
+ 			return FALSE
+ 		var/servants = 0
+-		for(var/mob/living/L in SLOTH.living_mob_list)
++		for(var/mob/living/L in GLOB.living_mob_list)
+ 			if(is_servant_of_ratvar(L))
+ 				servants++
+-		if(servants * 0.2 < SLOTH.clockwork_daemons)
++		if(servants * 0.2 < GLOB.clockwork_daemons)
+ 			to_chat(user, "<span class='nezbere'>\"There are too few servants for this daemon to work.\"</span>")
+ 			return
+-		if(!SLOTH.clockwork_caches)
++		if(!GLOB.clockwork_caches)
+ 			to_chat(user, "<span class='nezbere'>\"You require a cache for this daemon to operate. Get to it.\"</span>")
+ 			return
+ 		var/min_power_usable = 0
+-		for(var/i in SLOTH.clockwork_component_cache)
++		for(var/i in GLOB.clockwork_component_cache)
+ 			if(!min_power_usable)
+ 				min_power_usable = get_component_cost(i)
+ 			else

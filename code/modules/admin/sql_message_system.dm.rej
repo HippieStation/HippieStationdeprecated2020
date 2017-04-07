@@ -1,0 +1,74 @@
+diff a/code/modules/admin/sql_message_system.dm b/code/modules/admin/sql_message_system.dm	(rejected hunks)
+@@ -1,5 +1,5 @@
+ /proc/create_message(type, target_ckey, admin_ckey, text, timestamp, server, secret, logged = 1, browse)
+-	if(!SLOTH.dbcon.IsConnected())
++	if(!GLOB.dbcon.IsConnected())
+ 		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+ 		return
+ 	if(!type)
+@@ -56,7 +56,7 @@
+ 			browse_messages(target_ckey = target_ckey)
+ 
+ /proc/delete_message(message_id, logged = 1, browse)
+-	if(!SLOTH.dbcon.IsConnected())
++	if(!GLOB.dbcon.IsConnected())
+ 		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+ 		return
+ 	message_id = text2num(message_id)
+@@ -84,13 +84,13 @@
+ 			browse_messages(target_ckey = target_ckey)
+ 
+ /proc/edit_message(message_id, browse)
+-	if(!SLOTH.dbcon.IsConnected())
++	if(!GLOB.dbcon.IsConnected())
+ 		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+ 		return
+ 	message_id = text2num(message_id)
+ 	if(!message_id)
+ 		return
+-	var/DBQuery/query_find_edit_message = SLOTH.dbcon.NewQuery("SELECT type, targetckey, adminckey, text FROM [format_table_name("messages")] WHERE id = [message_id]")
++	var/DBQuery/query_find_edit_message = GLOB.dbcon.NewQuery("SELECT type, targetckey, adminckey, text FROM [format_table_name("messages")] WHERE id = [message_id]")
+ 	if(!query_find_edit_message.warn_execute())
+ 		return
+ 	if(query_find_edit_message.NextRow())
+@@ -115,13 +115,13 @@
+ 			browse_messages(target_ckey = target_ckey)
+ 
+ /proc/toggle_message_secrecy(message_id)
+-	if(!SLOTH.dbcon.IsConnected())
++	if(!GLOB.dbcon.IsConnected())
+ 		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+ 		return
+ 	message_id = text2num(message_id)
+ 	if(!message_id)
+ 		return
+-	var/DBQuery/query_find_message_secret = SLOTH.dbcon.NewQuery("SELECT type, targetckey, adminckey, secret FROM [format_table_name("messages")] WHERE id = [message_id]")
++	var/DBQuery/query_find_message_secret = GLOB.dbcon.NewQuery("SELECT type, targetckey, adminckey, secret FROM [format_table_name("messages")] WHERE id = [message_id]")
+ 	if(!query_find_message_secret.warn_execute())
+ 		return
+ 	if(query_find_message_secret.NextRow())
+@@ -139,13 +139,13 @@
+ 		browse_messages(target_ckey = target_ckey)
+ 
+ /proc/browse_messages(type, target_ckey, index, linkless = 0, filter)
+-	if(!SLOTH.dbcon.IsConnected())
++	if(!GLOB.dbcon.IsConnected())
+ 		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+ 		return
+ 	var/output
+ 	var/ruler = "<hr style='background:#000000; border:0; height:3px'>"
+ 	var/navbar = "<a href='?_src_=holder;nonalpha=1'>\[All\]</a>|<a href='?_src_=holder;nonalpha=2'>\[#\]</a>"
+-	for(var/letter in SLOTH.alphabet)
++	for(var/letter in GLOB.alphabet)
+ 		navbar += "|<a href='?_src_=holder;showmessages=[letter]'>\[[letter]\]</a>"
+ 	navbar += "|<a href='?_src_=holder;showmemo=1'>\[Memos\]</a>|<a href='?_src_=holder;showwatch=1'>\[Watchlist\]</a>"
+ 	navbar += "<br><form method='GET' name='search' action='?'>\
+@@ -277,7 +277,7 @@
+ 	usr << browse(output, "window=browse_messages;size=900x500")
+ 
+ proc/get_message_output(type, target_ckey)
+-	if(!SLOTH.dbcon.IsConnected())
++	if(!GLOB.dbcon.IsConnected())
+ 		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+ 		return
+ 	if(!type)

@@ -25,7 +25,7 @@ var/global/list/datum/stack_recipe/rod_recipes = list ( \
 /obj/item/stack/rods/Initialize(mapload, new_amount, merge = TRUE)
 	..()
 
-	recipes = rod_recipes
+	recipes = GLOB.rod_recipes
 	update_icon()
 
 /obj/item/stack/rods/update_icon()

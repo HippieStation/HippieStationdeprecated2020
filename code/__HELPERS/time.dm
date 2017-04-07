@@ -7,7 +7,7 @@
 	return show_ds ? "[time_string]:[world.timeofday % 10]" : time_string
 
 /proc/gameTimestamp(format = "hh:mm:ss") // Get the game time in text
-	return time2text(world.time - timezoneOffset + 432000 - round_start_time, format)
+	return time2text(world.time - GLOB.timezoneOffset + 432000 - (ticker ? ticker.round_start_time : 0), format)
 
 /* Returns 1 if it is the selected month and day */
 /proc/isDay(month, day)
@@ -28,10 +28,10 @@
 	return time2text(timevar, "YYYY-MM-DD hh:mm:ss")
 
 
-/var/midnight_rollovers = 0
-/var/rollovercheck_last_timeofday = 0
+GLOBAL_VAR_INIT(midnight_rollovers, 0)
+GLOBAL_VAR_INIT(rollovercheck_last_timeofday, 0)
 /proc/update_midnight_rollover()
-	if (world.timeofday < rollovercheck_last_timeofday) //TIME IS GOING BACKWARDS!
-		return midnight_rollovers++
-	return midnight_rollovers
+	if (world.timeofday < GLOB.rollovercheck_last_timeofday) //TIME IS GOING BACKWARDS!
+		return GLOB.midnight_rollovers++
+	return GLOB.midnight_rollovers
 

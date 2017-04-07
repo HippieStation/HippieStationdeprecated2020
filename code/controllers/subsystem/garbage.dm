@@ -1,4 +1,4 @@
-var/datum/controller/subsystem/garbage_collector/SSgarbage
+GLOBAL_REAL(SSgarbage, /datum/controller/subsystem/garbage_collector)
 
 /datum/controller/subsystem/garbage_collector
 	name = "Garbage"
@@ -264,7 +264,7 @@ var/datum/controller/subsystem/garbage_collector/SSgarbage
 
 	testing("Beginning search for references to a [type].")
 	last_find_references = world.time
-	find_references_in_globals()
+	DoSearchVar(GLOB)
 	for(var/datum/thing in world)
 		DoSearchVar(thing, "WorldRef: [thing]")
 	testing("Completed search for references to a [type].")
@@ -313,8 +313,6 @@ var/datum/controller/subsystem/garbage_collector/SSgarbage
 		dat += "[path] - [tmplist[path]] times<BR>"
 
 	usr << browse(dat, "window=qdeletedlog")
-
-#define SearchVar(X) DoSearchVar(X, "Global: " + #X)
 
 /datum/proc/DoSearchVar(X, Xname)
 	if(usr && usr.client && !usr.client.running_find_references) return

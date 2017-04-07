@@ -15,12 +15,12 @@
 
 /obj/item/clothing/glasses/judicial_visor/New()
 	..()
-	all_clockwork_objects += src
+	GLOB.all_clockwork_objects += src
 	blaster = new(src)
 	blaster.visor = src
 
 /obj/item/clothing/glasses/judicial_visor/Destroy()
-	all_clockwork_objects -= src
+	GLOB.all_clockwork_objects -= src
 	if(blaster.ranged_ability_user)
 		blaster.remove_ranged_ability()
 	blaster.visor = null
@@ -139,7 +139,7 @@
 		add_logs(ranged_ability_user, targetturf, "created a judicial marker")
 		ranged_ability_user.update_action_buttons_icon()
 		ranged_ability_user.update_inv_glasses()
-		addtimer(CALLBACK(visor, /obj/item/clothing/glasses/judicial_visor.proc/recharge_visor, ranged_ability_user), ratvar_awakens ? visor.recharge_cooldown*0.1 : visor.recharge_cooldown)//Cooldown is reduced by 10x if Ratvar is up
+		addtimer(CALLBACK(visor, /obj/item/clothing/glasses/judicial_visor.proc/recharge_visor, ranged_ability_user), GLOB.ratvar_awakens ? visor.recharge_cooldown*0.1 : visor.recharge_cooldown)//Cooldown is reduced by 10x if Ratvar is up
 		remove_ranged_ability()
 
 		return TRUE

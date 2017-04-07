@@ -1,0 +1,17 @@
+diff a/code/game/gamemodes/clock_cult/clock_helpers/scripture_checks.dm b/code/game/gamemodes/clock_cult/clock_helpers/scripture_checks.dm	(rejected hunks)
+@@ -35,12 +35,12 @@
+ /proc/update_slab_info(obj/item/clockwork/slab/set_slab)
+ 	generate_all_scripture()
+ 	var/needs_update = FALSE //if everything needs an update, for whatever reason
+-	for(var/s in SLOTH.all_scripture)
+-		var/datum/clockwork_scripture/S = SLOTH.all_scripture[s]
++	for(var/s in GLOB.all_scripture)
++		var/datum/clockwork_scripture/S = GLOB.all_scripture[s]
+ 		if(S.creation_update())
+ 			needs_update = TRUE
+ 	if(!set_slab || needs_update)
+-		for(var/obj/item/clockwork/slab/S in SLOTH.all_clockwork_objects)
++		for(var/obj/item/clockwork/slab/S in GLOB.all_clockwork_objects)
+ 			SStgui.update_uis(S)
+ 			if(needs_update)
+ 				S.update_quickbind()

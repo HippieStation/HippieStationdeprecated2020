@@ -1,0 +1,16 @@
+diff a/code/datums/antagonists/datum_clockcult.dm b/code/datums/antagonists/datum_clockcult.dm	(rejected hunks)
+@@ -110,12 +110,12 @@
+ 		hierophant_network.span_for_name = "nezbere"
+ 		hierophant_network.span_for_message = "brass"
+ 	owner.throw_alert("clockinfo", /obj/screen/alert/clockwork/infodump)
+-	if(!SLOTH.clockwork_gateway_activated)
++	if(!GLOB.clockwork_gateway_activated)
+ 		owner.throw_alert("scripturereq", /obj/screen/alert/clockwork/scripture_reqs)
+ 	..()
+ 
+ /datum/antagonist/clockcultist/remove_innate_effects()
+-	SLOTH.all_clockwork_mobs -= owner
++	GLOB.all_clockwork_mobs -= owner
+ 	owner.faction -= "ratvar"
+ 	owner.languages_spoken &= ~RATVAR
+ 	owner.languages_understood &= ~RATVAR

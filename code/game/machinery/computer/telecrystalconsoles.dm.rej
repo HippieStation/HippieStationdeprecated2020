@@ -1,0 +1,14 @@
+diff a/code/game/machinery/computer/telecrystalconsoles.dm b/code/game/machinery/computer/telecrystalconsoles.dm	(rejected hunks)
+@@ -25,9 +25,9 @@ var/list/possible_uplinker_IDs = list("Alfa","Bravo","Charlie","Delta","Echo","F
+ 	..()
+ 
+ 	var/ID
+-	if(possible_uplinker_IDs.len)
+-		ID = pick(possible_uplinker_IDs)
+-		possible_uplinker_IDs -= ID
++	if(GLOB.possible_uplinker_IDs.len)
++		ID = pick(GLOB.possible_uplinker_IDs)
++		GLOB.possible_uplinker_IDs -= ID
+ 		name = "[name] [ID]"
+ 	else
+ 		name = "[name] [rand(1,999)]"

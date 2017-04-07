@@ -1,4 +1,4 @@
-var/datum/controller/subsystem/parallax/SSparallax
+GLOBAL_REAL(SSparallax, /datum/controller/subsystem/parallax)
 
 /datum/controller/subsystem/parallax
 	name = "Parallax"
@@ -13,7 +13,7 @@ var/datum/controller/subsystem/parallax/SSparallax
 
 /datum/controller/subsystem/parallax/fire(resumed = 0)
 	if (!resumed)
-		src.currentrun = clients.Copy()
+		src.currentrun = GLOB.clients.Copy()
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun

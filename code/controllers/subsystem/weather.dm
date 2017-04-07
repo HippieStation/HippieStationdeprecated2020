@@ -1,6 +1,6 @@
 //Used for all kinds of weather, ex. lavaland ash storms.
 
-var/datum/controller/subsystem/weather/SSweather
+GLOBAL_REAL(SSweather, /datum/controller/subsystem/weather)
 /datum/controller/subsystem/weather
 	name = "Weather"
 	flags = SS_BACKGROUND
@@ -17,7 +17,7 @@ var/datum/controller/subsystem/weather/SSweather
 		var/datum/weather/W = V
 		if(W.aesthetic)
 			continue
-		for(var/mob/living/L in mob_list)
+		for(var/mob/living/L in GLOB.mob_list)
 			if(W.can_impact(L))
 				W.impact(L)
 	for(var/Z in eligible_zlevels)

@@ -1,0 +1,10 @@
+diff a/code/modules/mob/living/simple_animal/hostile/megafauna/bubblegum.dm b/code/modules/mob/living/simple_animal/hostile/megafauna/bubblegum.dm	(rejected hunks)
+@@ -105,7 +105,7 @@ Difficulty: Hard
+ 
+ /mob/living/simple_animal/hostile/megafauna/bubblegum/Initialize()
+ 	..()
+-	for(var/mob/living/simple_animal/hostile/megafauna/bubblegum/B in SLOTH.mob_list)
++	for(var/mob/living/simple_animal/hostile/megafauna/bubblegum/B in GLOB.mob_list)
+ 		if(B != src)
+ 			qdel(src) //There can be only one
+ 			break

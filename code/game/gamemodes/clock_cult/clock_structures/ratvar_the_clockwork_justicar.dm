@@ -19,8 +19,8 @@
 
 /obj/structure/destructible/clockwork/massive/ratvar/New()
 	..()
-	ratvar_awakens++
-	for(var/obj/O in all_clockwork_objects)
+	GLOB.ratvar_awakens++
+	for(var/obj/O in GLOB.all_clockwork_objects)
 		O.ratvar_act()
 	START_PROCESSING(SSobj, src)
 	send_to_playing_players("<span class='ratvar'>\"[text2ratvar("ONCE AGAIN MY LIGHT SHALL SHINE ACROSS THIS PATHETIC REALM")]!!\"</span>")
@@ -113,13 +113,13 @@
 	while(src && narsie)
 		send_to_playing_players('sound/magic/clockwork/ratvar_attack.ogg')
 		sleep(5.2)
-		for(var/mob/M in mob_list)
+		for(var/mob/M in GLOB.mob_list)
 			if(!isnewplayer(M))
 				flash_color(M, flash_color="#966400", flash_time=1)
 				shake_camera(M, 4, 3)
 		var/ratvar_chance = min(ticker.mode.servants_of_ratvar.len, 50)
 		var/narsie_chance = ticker.mode.cult.len
-		for(var/mob/living/simple_animal/hostile/construct/harvester/C in player_list)
+		for(var/mob/living/simple_animal/hostile/construct/harvester/C in GLOB.player_list)
 			narsie_chance++
 		ratvar_chance = rand(base_victory_chance, ratvar_chance)
 		narsie_chance = rand(base_victory_chance, min(narsie_chance, 50))
@@ -129,7 +129,7 @@
 		sleep(rand(2,5))
 		send_to_playing_players('sound/magic/clockwork/narsie_attack.ogg')
 		sleep(7.4)
-		for(var/mob/M in mob_list)
+		for(var/mob/M in GLOB.mob_list)
 			if(!isnewplayer(M))
 				flash_color(M, flash_color="#C80000", flash_time=1)
 				shake_camera(M, 4, 3)
