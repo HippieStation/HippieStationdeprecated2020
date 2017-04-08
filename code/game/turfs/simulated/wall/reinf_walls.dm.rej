@@ -1,0 +1,8 @@
+diff a/code/game/turfs/simulated/wall/reinf_walls.dm b/code/game/turfs/simulated/wall/reinf_walls.dm	(rejected hunks)
+@@ -257,4 +259,4 @@
+ /turf/closed/wall/r_wall/rcd_act(mob/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+ 	if(!the_rcd.canRturf)
+ 		return FALSE
+-	return ..()
+\ No newline at end of file
++	return ..()
