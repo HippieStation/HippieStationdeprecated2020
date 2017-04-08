@@ -1,0 +1,10 @@
+diff a/code/game/objects/effects/anomalies.dm b/code/game/objects/effects/anomalies.dm	(rejected hunks)
+@@ -19,7 +19,7 @@
+ 
+ /obj/effect/anomaly/New()
+ 	..()
+-	SLOTH.poi_list |= src
++	GLOB.poi_list |= src
+ 	START_PROCESSING(SSobj, src)
+ 	impact_area = get_area(src)
+ 

@@ -1,4 +1,4 @@
-var/datum/controller/subsystem/atoms/SSatoms
+GLOBAL_REAL(SSatoms, /datum/controller/subsystem/atoms)
 
 #define INITIALIZATION_INSSATOMS 0	//New should not call Initialize
 #define INITIALIZATION_INNEW_MAPLOAD 1	//New should call Initialize(TRUE)
@@ -108,9 +108,9 @@ var/datum/controller/subsystem/atoms/SSatoms
 			continue
 		B.dna_block = pick_n_take(avnums)
 		if(B.quality == POSITIVE)
-			good_mutations |= B
+			GLOB.good_mutations |= B
 		else if(B.quality == NEGATIVE)
-			bad_mutations |= B
+			GLOB.bad_mutations |= B
 		else if(B.quality == MINOR_NEGATIVE)
-			not_good_mutations |= B
+			GLOB.not_good_mutations |= B
 		CHECK_TICK

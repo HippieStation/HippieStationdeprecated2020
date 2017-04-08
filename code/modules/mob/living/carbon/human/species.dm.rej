@@ -1,0 +1,10 @@
+diff a/code/modules/mob/living/carbon/human/species.dm b/code/modules/mob/living/carbon/human/species.dm	(rejected hunks)
+@@ -1077,7 +1077,7 @@
+ 			target.visible_message("<span class='danger'>[user] has pushed [target]!</span>",
+ 				"<span class='userdanger'>[user] has pushed [target]!</span>", null, COMBAT_MESSAGE_RANGE)
+ 			target.apply_effect(2, WEAKEN, target.run_armor_check(affecting, "melee", "Your armor prevents your fall!", "Your armor softens your fall!"))
+-			target.forcesay(SLOTH.hit_appends)
++			target.forcesay(GLOB.hit_appends)
+ 			return
+ 
+ 		var/talked = 0	// BubbleWrap

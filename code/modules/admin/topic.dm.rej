@@ -1,0 +1,33 @@
+diff a/code/modules/admin/topic.dm b/code/modules/admin/topic.dm	(rejected hunks)
+@@ -1579,7 +1579,7 @@
+ 		output_devil_info(M)
+ 
+ 	else if(href_list["adminmoreinfo"])
+-		var/mob/M = locate(href_list["adminmoreinfo"]) in SLOTH.mob_list
++		var/mob/M = locate(href_list["adminmoreinfo"]) in GLOB.mob_list
+ 		if(!ismob(M))
+ 			to_chat(usr, "This can only be used on instances of type /mob.")
+ 			return
+@@ -1714,7 +1714,7 @@
+ 		if(!check_rights(R_ADMIN|R_FUN))
+ 			return
+ 
+-		var/mob/living/carbon/human/H = locate(href_list["adminsmite"]) in SLOTH.mob_list
++		var/mob/living/carbon/human/H = locate(href_list["adminsmite"]) in GLOB.mob_list
+ 		if(!H || !istype(H))
+ 			return
+ 
+@@ -1741,11 +1741,11 @@
+ 		log_admin("[key_name(usr)] punished [key_name(H)] with [punishment].")
+ 
+ 	else if(href_list["BlueSpaceArtillery"])
+-		var/mob/living/M = locate(href_list["BlueSpaceArtillery"]) in SLOTH.mob_list
++		var/mob/living/M = locate(href_list["BlueSpaceArtillery"]) in GLOB.mob_list
+ 		usr.client.bluespace_artillery(M)
+ 
+ 	else if(href_list["CentcommReply"])
+-		var/mob/living/carbon/human/H = locate(href_list["CentcommReply"]) in SLOTH.mob_list
++		var/mob/living/carbon/human/H = locate(href_list["CentcommReply"]) in GLOB.mob_list
+ 		if(!istype(H))
+ 			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+ 			return

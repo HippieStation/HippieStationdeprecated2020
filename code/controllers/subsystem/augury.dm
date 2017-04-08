@@ -1,4 +1,4 @@
-var/datum/controller/subsystem/augury/SSaugury
+GLOBAL_REAL(SSaugury, /datum/controller/subsystem/augury)
 
 /datum/controller/subsystem/augury
 	name = "Augury"
@@ -33,7 +33,7 @@ var/datum/controller/subsystem/augury/SSaugury
 			biggest_threat = threat
 
 	if(doombringers.len)
-		for(var/i in player_list)
+		for(var/i in GLOB.player_list)
 			if(isobserver(i) && (!(observers_given_action[i])))
 				var/datum/action/innate/augury/A = new
 				A.Grant(i)

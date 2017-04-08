@@ -1,4 +1,4 @@
-var/datum/controller/subsystem/mobs/SSmob
+GLOBAL_REAL(SSmob, /datum/controller/subsystem/mobs)
 
 /datum/controller/subsystem/mobs
 	name = "Mobs"
@@ -13,13 +13,13 @@ var/datum/controller/subsystem/mobs/SSmob
 
 
 /datum/controller/subsystem/mobs/stat_entry()
-	..("P:[mob_list.len]")
+	..("P:[GLOB.mob_list.len]")
 
 
 /datum/controller/subsystem/mobs/fire(resumed = 0)
 	var/seconds = wait * 0.1
 	if (!resumed)
-		src.currentrun = mob_list.Copy()
+		src.currentrun = GLOB.mob_list.Copy()
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
@@ -30,6 +30,6 @@ var/datum/controller/subsystem/mobs/SSmob
 		if(M)
 			M.Life(seconds)
 		else
-			mob_list.Remove(M)
+			GLOB.mob_list.Remove(M)
 		if (MC_TICK_CHECK)
 			return

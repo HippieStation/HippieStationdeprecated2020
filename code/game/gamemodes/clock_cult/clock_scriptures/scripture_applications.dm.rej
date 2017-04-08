@@ -1,0 +1,18 @@
+diff a/code/game/gamemodes/clock_cult/clock_scriptures/scripture_applications.dm b/code/game/gamemodes/clock_cult/clock_scriptures/scripture_applications.dm	(rejected hunks)
+@@ -281,13 +281,13 @@
+ 
+ /datum/clockwork_scripture/create_object/tinkerers_daemon/check_special_requirements()
+ 	var/servants = 0
+-	for(var/mob/living/L in SLOTH.living_mob_list)
++	for(var/mob/living/L in GLOB.living_mob_list)
+ 		if(is_servant_of_ratvar(L))
+ 			servants++
+-	if(servants * 0.2 < SLOTH.clockwork_daemons)
++	if(servants * 0.2 < GLOB.clockwork_daemons)
+ 		to_chat(invoker, "<span class='nezbere'>\"Daemons are already disabled, making more of them would be a waste.\"</span>")
+ 		return FALSE
+-	if(servants * 0.2 < SLOTH.clockwork_daemons+1)
++	if(servants * 0.2 < GLOB.clockwork_daemons+1)
+ 		to_chat(invoker, "<span class='nezbere'>\"This daemon would be useless, friend.\"</span>")
+ 		return FALSE
+ 	return ..()

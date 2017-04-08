@@ -1,0 +1,13 @@
+diff a/code/controllers/subsystem/garbage.dm b/code/controllers/subsystem/garbage.dm	(rejected hunks)
+@@ -344,11 +344,4 @@ var/datum/controller/subsystem/garbage_collector/SSgarbage
+ #else
+ 	CHECK_TICK
+ #endif
+-
+-//if find_references isn't working for some datum
+-//update this list using tools/DMTreeToGlobalsList
+-/datum/proc/find_references_in_globals()
+-	var/list/globals = world.ListGlobals()
+-	for(var/I in globals)
+-		DoSearchVar(globals[I], "Global: [I]")
+ #endif

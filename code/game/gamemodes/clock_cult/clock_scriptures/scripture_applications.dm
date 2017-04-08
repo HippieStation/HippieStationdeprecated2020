@@ -86,7 +86,7 @@
 		return TRUE
 	if(is_type_in_typecache(I, ratvarian_armor_typecache))
 		return FALSE
-	if(!ratvar_awakens && is_type_in_typecache(I, better_armor_typecache))
+	if(!GLOB.ratvar_awakens && is_type_in_typecache(I, better_armor_typecache))
 		return FALSE
 	return user.dropItemToGround(I)
 
@@ -106,7 +106,7 @@
 	sort_priority = 3
 
 /datum/clockwork_scripture/memory_allocation/check_special_requirements()
-	for(var/mob/living/simple_animal/hostile/clockwork/marauder/M in all_clockwork_mobs)
+	for(var/mob/living/simple_animal/hostile/clockwork/marauder/M in GLOB.all_clockwork_mobs)
 		if(M.host == invoker)
 			to_chat(invoker, "<span class='warning'>You can only house one marauder at a time!</span>")
 			return FALSE

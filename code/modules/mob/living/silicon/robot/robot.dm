@@ -51,7 +51,7 @@
 
 	var/ident = 0
 	var/locked = 1
-	var/list/req_access = list(access_robotics)
+	var/list/req_access = list(GLOB.access_robotics)
 
 	var/alarms = list("Motion"=list(), "Fire"=list(), "Atmosphere"=list(), "Power"=list(), "Camera"=list(), "Burglar"=list())
 
@@ -167,8 +167,8 @@
 		if(mmi.brainmob)
 			if(mmi.brainmob.stat == DEAD)
 				mmi.brainmob.stat = CONSCIOUS
-				dead_mob_list -= mmi.brainmob
-				living_mob_list += mmi.brainmob
+				GLOB.dead_mob_list -= mmi.brainmob
+				GLOB.living_mob_list += mmi.brainmob
 			mind.transfer_to(mmi.brainmob)
 			mmi.update_icon()
 		else
@@ -611,7 +611,7 @@
 
 /mob/living/silicon/robot/proc/do_camera_update(oldLoc)
 	if(oldLoc != src.loc)
-		cameranet.updatePortableCamera(src.camera)
+		GLOB.cameranet.updatePortableCamera(src.camera)
 	updating = 0
 
 /mob/living/silicon/robot/Move(a, b, flag)
@@ -793,7 +793,7 @@
 	icon_state = "syndie_bloodhound"
 	faction = list("syndicate")
 	bubble_icon = "syndibot"
-	req_access = list(access_syndicate)
+	req_access = list(GLOB.access_syndicate)
 	lawupdate = FALSE
 	scrambledcodes = TRUE // These are rogue borgs.
 	ionpulse = TRUE
@@ -1039,7 +1039,7 @@
 		radio.subspace_transmission = TRUE
 		radio.channels = AI.radio.channels
 		for(var/chan in radio.channels)
-			radio.secure_radio_connections[chan] = add_radio(radio, radiochannels[chan])
+			radio.secure_radio_connections[chan] = add_radio(radio, GLOB.radiochannels[chan])
 
 	diag_hud_set_aishell()
 	undeployment_action.Grant(src)

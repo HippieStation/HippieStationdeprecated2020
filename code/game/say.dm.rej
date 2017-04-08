@@ -1,0 +1,10 @@
+diff a/code/game/say.dm b/code/game/say.dm	(rejected hunks)
+@@ -16,7 +16,7 @@ var/list/freqtospan = list(
+ 	"1337" = "centcomradio",
+ 	"1215" = "redteamradio",
+ 	"1217" = "blueteamradio"
+-	)
++	))
+ 
+ /atom/movable/proc/say(message, datum/language/language = null)
+ 	if(!can_speak())

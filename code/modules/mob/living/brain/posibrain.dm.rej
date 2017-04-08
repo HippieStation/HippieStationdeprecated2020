@@ -1,0 +1,9 @@
+diff a/code/modules/mob/living/brain/posibrain.dm b/code/modules/mob/living/brain/posibrain.dm	(rejected hunks)
+@@ -27,6 +25,7 @@ var/global/posibrain_notif_cooldown = 0
+ 	var/dead_message = "<span class='deadsay'>It appears to be completely inactive. The reset light is blinking.</span>"
+ 	var/list/fluff_names
+ 	var/picked_fluff_name //which fluff name we picked
++	var/static/posibrain_notif_cooldown = FALSE
+ 
+ 
+ /obj/item/device/mmi/posibrain/Topic(href, href_list)

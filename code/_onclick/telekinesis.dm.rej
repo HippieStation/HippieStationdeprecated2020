@@ -1,0 +1,10 @@
+diff a/code/_onclick/telekinesis.dm b/code/_onclick/telekinesis.dm	(rejected hunks)
+@@ -151,7 +150,7 @@ GLOBAL_VAR_INIT(tk_maxrange, 15)
+ 	var/d = get_dist(user, target)
+ 	if(focus)
+ 		d = max(d,get_dist(user,focus)) // whichever is further
+-	if(d > GLOB.tk_maxrange)
++	if(d > TK_MAXRANGE)
+ 		to_chat(user, "<span class ='warning'>Your mind won't reach that far.</span>")
+ 		return 0
+ 	return 1

@@ -1,0 +1,10 @@
+diff a/code/modules/clothing/spacesuits/flightsuit.dm b/code/modules/clothing/spacesuits/flightsuit.dm	(rejected hunks)
+@@ -590,7 +590,7 @@
+ 			knockback = 1
+ 		if(2)
+ 			knockback /= 1.5
+-	var/throwdir = pick(alldirs)
++	var/throwdir = pick(SLOTH.alldirs)
+ 	var/turf/target = get_step(victim, throwdir)
+ 	for(var/i in 1 to (knockback-1))
+ 		target = get_step(target, throwdir)

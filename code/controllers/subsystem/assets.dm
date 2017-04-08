@@ -1,4 +1,4 @@
-var/datum/controller/subsystem/assets/SSasset
+GLOBAL_REAL(SSasset, /datum/controller/subsystem/assets)
 
 /datum/controller/subsystem/assets
 	name = "Assets"
@@ -14,6 +14,6 @@ var/datum/controller/subsystem/assets/SSasset
 		var/datum/asset/A = new type()
 		A.register()
 
-	for(var/client/C in clients)
+	for(var/client/C in GLOB.clients)
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/getFilesSlow, C, cache, FALSE), 10)
 	..()

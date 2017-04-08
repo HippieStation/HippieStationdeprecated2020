@@ -1,0 +1,32 @@
+diff a/code/modules/admin/admin_verbs.dm b/code/modules/admin/admin_verbs.dm	(rejected hunks)
+@@ -67,21 +71,15 @@ GLOBAL_LIST_INIT(admin_verbs_admin, list(
+ 	/client/proc/customiseSNPC, /* Customise any interactive crewmembers in the world */
+ 	/client/proc/resetSNPC, /* Resets any interactive crewmembers in the world */
+ 	/client/proc/open_shuttle_manipulator /* Opens shuttle manipulator UI */
+-	))
+-PROTECT_GLOBAL(admin_verbs_ban)
+-GLOBAL_LIST_INIT(admin_verbs_ban, list(
+-	/client/proc/unban_panel,
+-	/client/proc/DB_ban_panel,
+-	/client/proc/stickybanpanel
+-	))
+-PROTECT_GLOBAL(admin_verbs_sounds)
+-GLOBAL_LIST_INIT(admin_verbs_sounds, list(
+-	/client/proc/play_local_sound,
+-	/client/proc/play_sound,
+-	/client/proc/set_round_end_sound,
+-	))
+-PROTECT_GLOBAL(admin_verbs_fun)
+-GLOBAL_LIST_INIT(admin_verbs_fun, list(
++	)
++GLOBAL_PROTECT(admin_verbs_ban)
++GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel,/client/proc/DB_ban_panel,/client/proc/stickybanpanel))
++GLOBAL_PROTECT(admin_verbs_sounds)
++GLOBAL_LIST_INIT(admin_verbs_sounds, list(/client/proc/play_local_sound,/client/proc/play_sound,/client/proc/set_round_end_sound))
++GLOBAL_PROTECT(admin_verbs_fun)
++GLOBAL_LIST_INIT(admin_verbs_fun, AVerbsFun())
++/proc/AVerbsFun()
++	return list(
+ 	/client/proc/cmd_admin_dress,
+ 	/client/proc/cmd_admin_gib_self,
+ 	/client/proc/drop_bomb,

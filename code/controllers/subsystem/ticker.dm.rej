@@ -1,0 +1,10 @@
+diff a/code/controllers/subsystem/ticker.dm b/code/controllers/subsystem/ticker.dm	(rejected hunks)
+@@ -58,6 +56,8 @@ GLOBAL_REAL(ticker, /datum/controller/subsystem/ticker)
+ 
+ 	var/late_join_disabled
+ 
++	var/round_start_time = 0
++
+ /datum/controller/subsystem/ticker/New()
+ 	NEW_SS_GLOBAL(ticker)
+ 

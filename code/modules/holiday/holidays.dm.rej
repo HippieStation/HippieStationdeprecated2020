@@ -1,0 +1,10 @@
+diff a/code/modules/holiday/holidays.dm b/code/modules/holiday/holidays.dm	(rejected hunks)
+@@ -144,7 +144,7 @@
+ /datum/holiday/april_fools/celebrate()
+ 	if(ticker)
+ 		ticker.login_music = 'sound/ambience/clown.ogg'
+-		for(var/mob/dead/new_player/P in SLOTH.mob_list)
++		for(var/mob/dead/new_player/P in GLOB.mob_list)
+ 			if(P.client)
+ 				P.stopLobbySound()
+ 				P.client.playtitlemusic()

@@ -1,0 +1,37 @@
+diff a/code/game/objects/items/weapons/cards_ids.dm b/code/game/objects/items/weapons/cards_ids.dm	(rejected hunks)
+@@ -215,7 +215,7 @@ update_label("John Doe", "Clowny")
+ 	assignment = "Emergency Response Team Commander"
+ 
+ /obj/item/weapon/card/id/ert/Initialize()
+-	access = get_all_accesses()+get_ert_access("commander")-access_change_ids
++	access = get_all_accesses()+get_ert_access("commander")-GLOB.access_change_ids
+ 	..()
+ 
+ /obj/item/weapon/card/id/ert/Security
+@@ -223,7 +223,7 @@ update_label("John Doe", "Clowny")
+ 	assignment = "Security Response Officer"
+ 
+ /obj/item/weapon/card/id/ert/Security/Initialize()
+-	access = get_all_accesses()+get_ert_access("sec")-access_change_ids
++	access = get_all_accesses()+get_ert_access("sec")-GLOB.access_change_ids
+ 	..()
+ 
+ /obj/item/weapon/card/id/ert/Engineer
+@@ -231,7 +231,7 @@ update_label("John Doe", "Clowny")
+ 	assignment = "Engineer Response Officer"
+ 
+ /obj/item/weapon/card/id/ert/Engineer/Initialize()
+-	access = get_all_accesses()+get_ert_access("eng")-access_change_ids
++	access = get_all_accesses()+get_ert_access("eng")-GLOB.access_change_ids
+ 	..()
+ 
+ /obj/item/weapon/card/id/ert/Medical
+@@ -239,7 +239,7 @@ update_label("John Doe", "Clowny")
+ 	assignment = "Medical Response Officer"
+ 
+ /obj/item/weapon/card/id/ert/Medical/Initialize()
+-	access = get_all_accesses()+get_ert_access("med")-access_change_ids
++	access = get_all_accesses()+get_ert_access("med")-GLOB.access_change_ids
+ 	..()
+ 
+ /obj/item/weapon/card/id/prisoner

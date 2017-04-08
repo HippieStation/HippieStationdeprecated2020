@@ -1,0 +1,21 @@
+diff a/code/game/gamemodes/clock_cult/clock_scriptures/scripture_revenant.dm b/code/game/gamemodes/clock_cult/clock_scriptures/scripture_revenant.dm	(rejected hunks)
+@@ -131,14 +131,14 @@
+ /datum/clockwork_scripture/invoke_nezbere/scripture_effects()
+ 	new/obj/effect/clockwork/general_marker/nezbere(get_turf(invoker))
+ 	hierophant_message("<span class='nezbere_large'>[text2ratvar("Armorer: \"I heed your call, champions. May your artifacts bring ruin upon the heathens that oppose our master!")]\"</span>", FALSE, invoker)
+-	SLOTH.clockwork_generals_invoked["nezbere"] = world.time + GLOBAL_CLOCKWORK_GENERAL_COOLDOWN
++	GLOB.clockwork_generals_invoked["nezbere"] = world.time + GLOBAL_CLOCKWORK_GENERAL_COOLDOWN
+ 	playsound(invoker, 'sound/magic/clockwork/invoke_general.ogg', 50, 0)
+-	SLOTH.nezbere_invoked++
+-	for(var/obj/O in SLOTH.all_clockwork_objects)
++	GLOB.nezbere_invoked++
++	for(var/obj/O in GLOB.all_clockwork_objects)
+ 		O.ratvar_act()
+ 	spawn(600)
+-		SLOTH.nezbere_invoked--
+-		for(var/obj/O in SLOTH.all_clockwork_objects)
++		GLOB.nezbere_invoked--
++		for(var/obj/O in GLOB.all_clockwork_objects)
+ 			O.ratvar_act()
+ 	return TRUE
+ 

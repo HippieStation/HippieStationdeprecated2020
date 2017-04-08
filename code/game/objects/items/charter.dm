@@ -18,10 +18,10 @@
 /obj/item/station_charter/New()
 	. = ..()
 	if(!standard_station_regex)
-		var/prefixes = jointext(station_prefixes, "|")
-		var/names = jointext(station_names, "|")
-		var/suffixes = jointext(station_suffixes, "|")
-		var/numerals = jointext(station_numerals, "|")
+		var/prefixes = jointext(GLOB.station_prefixes, "|")
+		var/names = jointext(GLOB.station_names, "|")
+		var/suffixes = jointext(GLOB.station_suffixes, "|")
+		var/numerals = jointext(GLOB.station_numerals, "|")
 		var/regexstr = "(([prefixes]) )?(([names]) ?)([suffixes]) ([numerals])"
 		standard_station_regex = new(regexstr)
 
@@ -35,7 +35,7 @@
 	if(used)
 		to_chat(user, "This charter has already been used to name the station.")
 		return
-	if(!ignores_timeout && (world.time-round_start_time > STATION_RENAME_TIME_LIMIT)) //5 minutes
+	if(!ignores_timeout && (world.time-ticker.round_start_time > STATION_RENAME_TIME_LIMIT)) //5 minutes
 		to_chat(user, "The crew has already settled into the shift. It probably wouldn't be good to rename the station right now.")
 		return
 	if(response_timer_id)

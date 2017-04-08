@@ -3,18 +3,18 @@
 #define Z_SOUTH 3
 #define Z_WEST 4
 
-var/list/cardinal = list( NORTH, SOUTH, EAST, WEST )
-var/list/alldirs = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
-var/list/diagonals = list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+GLOBAL_LIST_INIT(cardinal, list( NORTH, SOUTH, EAST, WEST ))
+GLOBAL_LIST_INIT(alldirs, list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+GLOBAL_LIST_INIT(diagonals, list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 
 //This list contains the z-level numbers which can be accessed via space travel and the percentile chances to get there.
 //(Exceptions: extended, sandbox and nuke) -Errorage
 //Was list("3" = 30, "4" = 70).
 //Spacing should be a reliable method of getting rid of a body -- Urist.
 //Go away Urist, I'm restoring this to the longer list. ~Errorage
-var/list/accessable_z_levels = list(1,3,4,5,6,7) //Keep this to six maps, repeating z-levels is ok if needed
+GLOBAL_LIST_INIT(accessable_z_levels, list(1,3,4,5,6,7)) //Keep this to six maps, repeating z-levels is ok if needed
 
-var/global/list/global_map = null
+GLOBAL_LIST(global_map)
 	//list/global_map = list(list(1,5),list(4,3))//an array of map Z levels.
 	//Resulting sector map looks like
 	//|_1_|_4_|

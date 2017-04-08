@@ -1,0 +1,28 @@
+diff a/code/game/gamemodes/clock_cult/clock_structures/ark_of_the_clockwork_justicar.dm b/code/game/gamemodes/clock_cult/clock_structures/ark_of_the_clockwork_justicar.dm	(rejected hunks)
+@@ -278,12 +278,12 @@
+ 				QDEL_IN(src, 3)
+ 				if(ratvar_portal)
+ 					sleep(3)
+-					SLOTH.clockwork_gateway_activated = TRUE
++					GLOB.clockwork_gateway_activated = TRUE
+ 					new/obj/structure/destructible/clockwork/massive/ratvar(startpoint)
+ 				else
+ 					INVOKE_ASYNC(SSshuttle.emergency, /obj/docking_port/mobile/emergency.proc/request, null, 0) //call the shuttle immediately
+ 					sleep(3)
+-					SLOTH.clockwork_gateway_activated = TRUE
++					GLOB.clockwork_gateway_activated = TRUE
+ 					send_to_playing_players("<span class='ratvar'>\"[text2ratvar("Behold")]!\"</span>\n<span class='inathneq_large'>\"[text2ratvar("See Engine's mercy")]!\"</span>\n\
+ 					<span class='sevtug_large'>\"[text2ratvar("Observe Engine's design skills")]!\"</span>\n<span class='nezbere_large'>\"[text2ratvar("Behold Engine's light")]!!\"</span>\n\
+ 					<span class='nzcrentr_large'>\"[text2ratvar("Gaze upon Engine's power")]!\"</span>")
+@@ -301,9 +301,9 @@
+ 							dist = FALSE
+ 						T.ratvar_act(dist)
+ 						CHECK_TICK
+-					for(var/mob/living/L in SLOTH.living_mob_list)
++					for(var/mob/living/L in GLOB.living_mob_list)
+ 						L.ratvar_act()
+-					for(var/I in SLOTH.all_clockwork_mobs)
++					for(var/I in GLOB.all_clockwork_mobs)
+ 						var/mob/M = I
+ 						if(M.stat == CONSCIOUS)
+ 							clockwork_say(M, text2ratvar(pick("Purge all untruths and honor Engine!", "All glory to Engine's light!", "Engine's power is unmatched!")))
