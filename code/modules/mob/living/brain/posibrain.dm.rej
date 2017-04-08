@@ -1,0 +1,7 @@
+diff a/code/modules/mob/living/brain/posibrain.dm b/code/modules/mob/living/brain/posibrain.dm	(rejected hunks)
+@@ -1,4 +1,4 @@
+-GLOBAL_VAR(global_posibrain_notify_cooldown)
++GLOBAL_VAR(posibrain_notify_cooldown)
+ 
+ /obj/item/device/mmi/posibrain
+ 	name = "positronic brain"
