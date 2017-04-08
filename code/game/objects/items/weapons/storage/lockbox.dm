@@ -1,5 +1,3 @@
-
-
 /obj/item/weapon/storage/lockbox
 	name = "lockbox"
 	desc = "A locked box."
@@ -109,8 +107,7 @@
 	icon_closed = "medalbox"
 	icon_broken = "medalbox+b"
 
-/obj/item/weapon/storage/lockbox/medal/New()
-	..()
+/obj/item/weapon/storage/lockbox/medal/PopulateContents()
 	new /obj/item/clothing/tie/medal/silver/valor(src)
 	new /obj/item/clothing/tie/medal/bronze_heart(src)
 	for(var/i in 1 to 3)

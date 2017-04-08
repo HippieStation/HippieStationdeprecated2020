@@ -1,0 +1,21 @@
+diff a/code/game/objects/items/weapons/storage/lockbox.dm b/code/game/objects/items/weapons/storage/lockbox.dm	(rejected hunks)
+@@ -80,8 +78,7 @@
+ 	name = "lockbox of mindshield implants"
+ 	req_access = list(GLOB.access_security)
+ 
+-/obj/item/weapon/storage/lockbox/loyalty/New()
+-	..()
++/obj/item/weapon/storage/lockbox/loyalty/PopulateContents()
+ 	for(var/i in 1 to 3)
+ 		new /obj/item/weapon/implantcase/mindshield(src)
+ 	new /obj/item/weapon/implanter/mindshield(src)
+@@ -92,8 +89,7 @@
+ 	desc = "You have a bad feeling about opening this."
+ 	req_access = list(GLOB.access_security)
+ 
+-/obj/item/weapon/storage/lockbox/clusterbang/New()
+-	..()
++/obj/item/weapon/storage/lockbox/clusterbang/PopulateContents()
+ 	new /obj/item/weapon/grenade/clusterbuster(src)
+ 
+ /obj/item/weapon/storage/lockbox/medal

@@ -1,0 +1,12 @@
+diff a/code/game/objects/items/weapons/storage/boxes.dm b/code/game/objects/items/weapons/storage/boxes.dm	(rejected hunks)
+@@ -30,8 +30,8 @@
+ 	var/foldable = /obj/item/stack/sheet/cardboard
+ 	var/illustration = "writing"
+ 
+-/obj/item/weapon/storage/box/Initialize()
+-	. = ..()
++/obj/item/weapon/storage/box/Initialize(mapload)
++	..()
+ 	update_icon()
+ 
+ /obj/item/weapon/storage/box/update_icon()
