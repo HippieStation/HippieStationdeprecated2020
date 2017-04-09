@@ -1,4 +1,4 @@
-var/global/posibrain_notif_cooldown = 0
+var/global/global_posibrain_notify_cooldown = 0
 
 /obj/item/device/mmi/posibrain
 	name = "positronic brain"
@@ -7,9 +7,9 @@ var/global/posibrain_notif_cooldown = 0
 	icon_state = "posibrain"
 	w_class = WEIGHT_CLASS_NORMAL
 	origin_tech = "biotech=3;programming=3;plasmatech=2"
-	var/notified = 0
+	var/next_ask
 	var/askDelay = 600 //one minute
-	var/used = 0 //Prevents split personality virus. May be reset if personality deletion code is added.
+	var/searching = FALSE
 	brainmob = null
 	req_access = list(access_robotics)
 	mecha = null//This does not appear to be used outside of reference in mecha.dm.
@@ -36,42 +36,42 @@ var/global/posibrain_notif_cooldown = 0
 			activate(ghost)
 
 /obj/item/device/mmi/posibrain/proc/ping_ghosts(msg, newlymade)
-	if(newlymade || !posibrain_notif_cooldown)
+	if(newlymade || global_posibrain_notify_cooldown <= world.time)
 		notify_ghosts("[name] [msg] in [get_area(src)]!", ghost_sound = !newlymade ? 'sound/effects/ghost2.ogg':null, enter_link = "<a href=?src=\ref[src];activate=1>(Click to enter)</a>", source = src, action = NOTIFY_ATTACK, flashwindow = FALSE)
 		if(!newlymade)
-			posibrain_notif_cooldown = 1
-			addtimer(CALLBACK(src, .proc/reset_posibrain_cooldown), askDelay)
-
-/obj/item/device/mmi/posibrain/proc/reset_posibrain_cooldown()
-	posibrain_notif_cooldown = 0
+			global_posibrain_notify_cooldown = world.time + askDelay
 
 /obj/item/device/mmi/posibrain/attack_self(mob/user)
-	if(brainmob && !brainmob.key && !notified)
-		//Start the process of requesting a new ghost.
-		to_chat(user, begin_activation_message)
-		ping_ghosts("requested", FALSE)
-		notified = 1
-		used = 0
-		update_icon()
-		spawn(askDelay) //Seperate from the global cooldown.
-			notified = 0
-			update_icon()
-			if(brainmob.client)
-				visible_message(success_message)
-			else
-				visible_message(fail_message)
+	if(!brainmob || brainmob.key)
+		return
+	if(next_ask > world.time)
+		return
+	//Start the process of requesting a new ghost.
+	to_chat(user, begin_activation_message)
+	ping_ghosts("requested", FALSE)
+	next_ask = world.time + askDelay
+	searching = TRUE
+	addtimer(CALLBACK(src, .proc/check_success), askDelay)
 
-	return //Code for deleting personalities recommended here.
-
+/obj/item/device/mmi/posibrain/proc/check_success()
+	searching = FALSE
+	update_icon()
+	if(QDELETED(brainmob))
+		return
+	if(brainmob.client)
+		visible_message(success_message)
+	else
+		visible_message(fail_message)
 
 /obj/item/device/mmi/posibrain/attack_ghost(mob/user)
 	activate(user)
 
 //Two ways to activate a positronic brain. A clickable link in the ghost notif, or simply clicking the object itself.
 /obj/item/device/mmi/posibrain/proc/activate(mob/user)
-	if(used || (brainmob && brainmob.key) || jobban_isbanned(user,"posibrain"))
+	if(QDELETED(brainmob))
 		return
-
+	if(brainmob.key || jobban_isbanned(user,"posibrain"))
+		return
 	var/posi_ask = alert("Become a [name]? (Warning, You can no longer be cloned, and all past lives will be forgotten!)","Are you positive?","Yes","No")
 	if(posi_ask == "No" || QDELETED(src))
 		return
@@ -97,10 +97,11 @@ var/global/posibrain_notif_cooldown = 0
 	update_icon()
 
 /obj/item/device/mmi/posibrain/proc/transfer_personality(mob/candidate)
-	if(used || (brainmob && brainmob.key)) //Prevents hostile takeover if two ghosts get the prompt or link for the same brain.
+	if(QDELETED(brainmob))
+		return
+	if(brainmob.key) //Prevents hostile takeover if two ghosts get the prompt or link for the same brain.
 		to_chat(candidate, "This brain has already been taken! Please try your possession again later!")
 		return FALSE
-	notified = 0
 	if(candidate.mind && !isobserver(candidate))
 		candidate.mind.transfer_to(brainmob)
 	else
@@ -114,7 +115,6 @@ var/global/posibrain_notif_cooldown = 0
 
 	visible_message(new_mob_message)
 	update_icon()
-	used = 1
 	return TRUE
 
 
@@ -124,7 +124,7 @@ var/global/posibrain_notif_cooldown = 0
 	if(brainmob && brainmob.key)
 		switch(brainmob.stat)
 			if(CONSCIOUS)
-				if(!src.brainmob.client)
+				if(!brainmob.client)
 					msg = "It appears to be in stand-by mode." //afk
 			if(DEAD)
 				msg = "<span class='deadsay'>It appears to be completely inactive.</span>"

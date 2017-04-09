@@ -48,14 +48,16 @@
 /obj/item/device/mmi/posibrain/soul_vessel/attack_self(mob/living/user)
 	if(!is_servant_of_ratvar(user))
 		to_chat(user, "<span class='warning'>You fiddle around with [src], to no avail.</span>")
-		return 0
+		return FALSE
 	..()
 
 /obj/item/device/mmi/posibrain/soul_vessel/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!is_servant_of_ratvar(user) || !ishuman(target))
 		..()
 		return
-	if(used || (brainmob && brainmob.key))
+	if(QDELETED(brainmob))
+		return
+	if(brainmob.key)
 		to_chat(user, "<span class='nezbere'>\"This vessel is filled, friend. Provide it with a body.\"</span>")
 		return
 	if(is_servant_of_ratvar(target))
@@ -94,8 +96,8 @@
 	if(!prev_fakedeath)
 		H.status_flags &= ~FAKEDEATH
 	H.apply_status_effect(STATUS_EFFECT_SIGILMARK) //let them be affected by vitality matrices
-	picked_fluff_name = "Slave"
-	braintype = picked_fluff_name
+	picked_name = "Slave"
+	braintype = picked_name
 	brainmob.timeofhostdeath = H.timeofdeath
 	user.visible_message("<span class='warning'>[user] presses [src] to [H]'s head, ripping through the skull and carefully extracting the brain!</span>", \
 	"<span class='brass'>You extract [H]'s consciousness from [H.p_their()] body, trapping it in the soul vessel.</span>")
