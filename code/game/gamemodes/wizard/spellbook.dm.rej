@@ -1,0 +1,9 @@
+diff a/code/game/gamemodes/wizard/spellbook.dm b/code/game/gamemodes/wizard/spellbook.dm	(rejected hunks)
+@@ -505,6 +506,7 @@
+ 	name = "Summon Ghosts"
+ 	desc = "Spook the crew out by making them see dead people. Be warned, ghosts are capricious and occasionally vindicative, and some will use their incredibly minor abilties to frustrate you."
+ 	log_name = "SGH"
++	cost = 0
+ 
+ /datum/spellbook_entry/summon/ghosts/IsAvailible()
+ 	if(!SSticker.mode)

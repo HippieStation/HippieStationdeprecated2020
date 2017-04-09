@@ -484,6 +484,7 @@
 	category = "Rituals"
 	refundable = 0
 	buy_word = "Cast"
+	cost = 2
 	var/active = 0
 
 /datum/spellbook_entry/summon/CanBuy(mob/living/carbon/human/user,obj/item/weapon/spellbook/book)
