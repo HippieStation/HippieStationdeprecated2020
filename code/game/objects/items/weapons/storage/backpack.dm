@@ -531,5 +531,5 @@
 	new /obj/item/ammo_box/magazine/pistolm9mm(src)
 	new /obj/item/ammo_box/magazine/pistolm9mm(src)
 	new /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka/badminka(src)
-	new /obj/item/weapon/reagent_containers/syringe/stimulants(src)
+	new /obj/item/weapon/reagent_containers/syringe/nanoboost(src)
 	new /obj/item/weapon/grenade/syndieminibomb(src)

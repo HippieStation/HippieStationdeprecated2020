@@ -62,9 +62,9 @@
 		imp = new imp_type(src)
 	update_icon()
 
-/obj/item/weapon/implanter/adrenalin
-	name = "implanter (adrenalin)"
-	imp_type = /obj/item/weapon/implant/adrenalin
+/obj/item/weapon/implanter/comstimms
+	name = "implanter (Combat Stims)"
+	imp_type = /obj/item/weapon/implant/comstimms
 
 /obj/item/weapon/implanter/emp
 	name = "implanter (EMP)"
