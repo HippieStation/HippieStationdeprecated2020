@@ -7,5 +7,4 @@ sound/ambience/title5.ogg
 sound/ambience/title6.ogg
 sound/ambience/title7.ogg
 sound/ambience/title8.ogg
-sound/misc/i_did_not_grief_them.ogg
 sound/ambience/clown.ogg
