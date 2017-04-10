@@ -204,7 +204,7 @@ var/datum/controller/subsystem/ticker/ticker
 	transfer_characters()	//transfer keys to the new mobs
 
 	Master.RoundStart()	//let the party begin...
-	
+
 	for(var/I in round_start_events)
 		var/datum/callback/cb = I
 		cb.InvokeAsync()
@@ -213,8 +213,8 @@ var/datum/controller/subsystem/ticker/ticker
 	log_world("Game start took [(world.timeofday - init_start)/10]s")
 	round_start_time = world.time
 
-	to_chat(world, "<FONT color='blue'><B>Welcome to [station_name()], enjoy your stay!</B></FONT>")
-	world << sound('sound/AI/welcome.ogg')
+	to_chat(world, "<FONT color='blue'><B>Welcome to [station_name()], don't forget, you're here forever!</B></FONT>")
+	world << sound('sound/ambience/startup.ogg')
 
 	current_state = GAME_STATE_PLAYING
 
