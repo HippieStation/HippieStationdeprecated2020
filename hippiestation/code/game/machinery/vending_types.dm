@@ -110,7 +110,8 @@ CLOTHESMATE
 		/obj/item/clothing/suit/jacket/letterman_syndie=1,
 		/obj/item/clothing/under/jabroni=1,
 		/obj/item/clothing/suit/vapeshirt=1,
-		/obj/item/clothing/under/geisha=1
+		/obj/item/clothing/under/geisha=1,
+		/obj/item/clothing/suit/toggle/jacket/hippie/custom/jojinam_medals=1
 		)
 	premium = list(
 		/obj/item/clothing/under/suit_jacket/checkered=1,
@@ -120,7 +121,8 @@ CLOTHESMATE
 		/obj/item/clothing/suit/jacket/leather/overcoat=1,
 		/obj/item/clothing/under/pants/mustangjeans=1,
 		/obj/item/clothing/neck/necklace/dope=5,
-		/obj/item/clothing/suit/jacket/letterman_nanotrasen=1
+		/obj/item/clothing/suit/jacket/letterman_nanotrasen=1,
+		/obj/item/clothing/suit/toggle/jacket/hippie/custom/jojinam=1
 		)
 
 /*
