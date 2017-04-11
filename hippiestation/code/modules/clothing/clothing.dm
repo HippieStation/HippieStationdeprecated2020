@@ -42,5 +42,51 @@
 	alternate_worn_icon = 'hippiestation/icons/mob/belt.dmi'
 	icon = 'hippiestation/icons/obj/clothing/belts.dmi'
 
+/obj/item/clothing/suit/jacket/hippie
+	alternate_worn_icon = 'hippiestation/icons/mob/suit.dmi'
+	icon = 'hippiestation/icons/obj/clothing/suits.dmi'
+
+ //               ///Custom Section\\             \\\
+
+/obj/item/clothing/suit/jacket/hippie/custom
+	alternate_worn_icon = 'hippiestation/icons/mob/suitcustom.dmi'
+	icon = 'hippiestation/icons/obj/clothing/suitscustom.dmi'
+
+/obj/item/clothing/under/hippie/custom
+	alternate_worn_icon = 'hippiestation/icons/mob/uniformcustom.dmi'
+	icon = 'hippiestation/icons/obj/clothing/uniformscustom.dmi'
+
+/obj/item/clothing/suit/toggle/jacket/hippie/custom
+	alternate_worn_icon = 'hippiestation/icons/mob/suitcustom.dmi'
+	icon = 'hippiestation/icons/obj/clothing/suitscustom.dmi'
+
+/obj/item/clothing/suit/hippie/custom
+	alternate_worn_icon = 'hippiestation/icons/mob/suitcustom.dmi'
+	icon = 'hippiestation/icons/obj/clothing/suitscustom.dmi'
+
+/obj/item/clothing/shoes/hippie/custom
+	alternate_worn_icon = 'hippiestation/icons/mob/feetcustom.dmi'
+	icon = 'hippiestation/icons/obj/clothing/shoescustom.dmi'
+
+/obj/item/clothing/glasses/hippie/custom
+	alternate_worn_icon = 'hippiestation/icons/mob/eyescustom.dmi'
+	icon = 'hippiestation/icons/obj/clothing/glassescustom.dmi'
+
+/obj/item/clothing/gloves/hippie/custom
+	alternate_worn_icon = 'hippiestation/icons/mob/handscustom.dmi'
+	icon = 'hippiestation/icons/obj/clothing/glovescustom.dmi'
+
+/obj/item/clothing/head/hippie/custom
+	alternate_worn_icon = 'hippiestation/icons/mob/headcustom.dmi'
+	icon = 'hippiestation/icons/obj/clothing/hatscustom.dmi'
+
+/obj/item/clothing/suit/space/hardsuit/hippie/custom
+	alternate_worn_icon = 'hippiestation/icons/mob/suitcustom.dmi'
+	icon = 'hippiestation/icons/obj/clothing/suitscustom.dmi'
+
+/obj/item/clothing/head/helmet/space/hardsuit/hippie/custom
+	alternate_worn_icon = 'hippiestation/icons/mob/headcustom.dmi'
+	icon = 'hippiestation/icons/obj/clothing/hatscustom.dmi'
+
 /obj/item
 	var/list/alternate_screams = list()

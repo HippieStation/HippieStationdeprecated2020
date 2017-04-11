@@ -1124,6 +1124,25 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	premium = list(/obj/item/clothing/under/suit_jacket/checkered=1,/obj/item/clothing/head/mailman=1,/obj/item/clothing/under/rank/mailman=1,/obj/item/clothing/suit/jacket/leather=1,/obj/item/clothing/suit/jacket/leather/overcoat=1,/obj/item/clothing/under/pants/mustangjeans=1,/obj/item/clothing/neck/necklace/dope=3,/obj/item/clothing/suit/jacket/letterman_nanotrasen=1)
 	refill_canister = /obj/item/weapon/vending_refill/clothing
 
+/obj/machinery/vending/custom/sovietvend
+	name = "KomradeVendtink"
+	desc = "Rodina-mat' zovyot!"
+	icon_state = "soviet"
+	product_slogans = "Quality worth waiting in line for!; Get Hammer and Sickled!; Sosvietsky soyuz above all!; With capitalist pigsky, you would have paid a fortunetink!"
+	product_ads = "Float like an astronaut, sting like a bullet!;Express your second ammendment today!;Guns don't kill people, but you can!;Who needs responsibilities when you have guns?"
+	vend_reply = "The fascist and capitalist svin'ya shall fall, komrade!"
+	products = list(/obj/item/clothing/under/soviet = 20,/obj/item/clothing/head/ushanka = 20,
+	/obj/item/clothing/shoes/jackboots = 20,
+	/obj/item/clothing/head/squatter_hat = 20,
+	/obj/item/clothing/under/squatter_outfit = 20,
+	/obj/item/clothing/under/russobluecamooutfit = 20,
+	/obj/item/clothing/head/russobluecamohat = 20,
+	)
+	premium = list(/obj/item/weapon/gun/ballistic/automatic/pistol/APS = 2,/obj/item/ammo_box/magazine/m50 = 4,/obj/item/ammo_box/magazine/m45 = 2,/obj/item/ammo_box/magazine/m75 = 2)
+	contraband = list(/obj/item/clothing/under/syndicate/tacticool = 4,/obj/item/clothing/mask/balaclava = 4,/obj/item/clothing/suit/russofurcoat = 4,/obj/item/clothing/head/russofurhat = 4,)
+	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0, fire = 100, acid = 50)
+	resistance_flags = FIRE_PROOF
+
 #undef STANDARD_CHARGE
 #undef CONTRABAND_CHARGE
 #undef COIN_CHARGE

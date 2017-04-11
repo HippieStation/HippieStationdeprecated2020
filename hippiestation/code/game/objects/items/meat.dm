@@ -17,3 +17,10 @@
 	desc = "Gross robot meat."
 	filling_color = "#000000"
 	tastes = list("metal" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/goat
+	icon = 'hippiestation/icons/obj/foods.dmi'
+	icon_state = "birdmeat"
+	desc = "R.I.P Joji."
+	filling_color = "#BF896B"
+	tastes = list("lamb" = 1)
