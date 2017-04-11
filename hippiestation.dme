@@ -2124,4 +2124,5 @@
 #include "hippiestation\code\modules\teeth\teeth.dm"
 #include "interface\interface.dm"
 #include "interface\stylesheet.dm"
+#include "interface\skin.dmf"
 // END_INCLUDE
