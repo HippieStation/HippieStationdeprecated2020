@@ -47,6 +47,7 @@
 	icon = 'hippiestation/icons/obj/clothing/suits.dmi'
 
  //               ///Custom Section\\             \\\
+
 /obj/item/clothing/suit/jacket/hippie/custom
 	alternate_worn_icon = 'hippiestation/icons/mob/suitcustom.dmi'
 	icon = 'hippiestation/icons/obj/clothing/suitscustom.dmi'
@@ -76,6 +77,14 @@
 	icon = 'hippiestation/icons/obj/clothing/glovescustom.dmi'
 
 /obj/item/clothing/head/hippie/custom
+	alternate_worn_icon = 'hippiestation/icons/mob/headcustom.dmi'
+	icon = 'hippiestation/icons/obj/clothing/hatscustom.dmi'
+
+/obj/item/clothing/suit/space/hardsuit/hippie/custom
+	alternate_worn_icon = 'hippiestation/icons/mob/suitcustom.dmi'
+	icon = 'hippiestation/icons/obj/clothing/suitscustom.dmi'
+
+/obj/item/clothing/head/helmet/space/hardsuit/hippie/custom
 	alternate_worn_icon = 'hippiestation/icons/mob/headcustom.dmi'
 	icon = 'hippiestation/icons/obj/clothing/hatscustom.dmi'
 

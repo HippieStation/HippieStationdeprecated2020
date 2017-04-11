@@ -99,7 +99,8 @@ CLOTHESMATE
 		/obj/item/clothing/head/beanie/stripedred=1,
 		/obj/item/clothing/head/beanie/stripedblue=1,
 		/obj/item/clothing/head/beanie/stripedgreen=1,
-		/obj/item/clothing/suit/jacket/letterman_red=1
+		/obj/item/clothing/suit/jacket/letterman_red=1,
+		/obj/item/clothing/suit/toggle/jacket/hippie/custom/jojinamnew=1
 		)
 	contraband = list(
 		/obj/item/clothing/under/syndicate/tacticool=1,
