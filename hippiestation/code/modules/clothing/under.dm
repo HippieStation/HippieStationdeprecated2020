@@ -33,3 +33,52 @@
 	item_state = "joji02"
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank/internals/emergency_oxygen,/obj/item/toy,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/lighter,/obj/item/weapon/gun/ballistic/automatic/pistol,/obj/item/weapon/gun/ballistic/revolver,/obj/item/weapon/gun/ballistic/revolver/detective,/obj/item/device/radio)
 	togglename = "buttons"
+
+//KAZ SHIT\\
+/obj/item/clothing/under/hippie/custom/kazsuit
+	name = "Olive Suit"
+	desc = "an old olive colored suit."
+	icon_state = "kazsuit"
+	item_state = "kazsuit"
+
+/obj/item/clothing/suit/hippie/custom/kazcoat
+	name = "miller's coat"
+	desc = "smells like hamburgers."
+	icon_state = "kazcoat"
+	item_state = "kazcoat"
+
+/obj/item/clothing/shoes/hippie/custom/kazshoes
+	name = "miller's shoes"
+	desc = "facny."
+	icon_state = "kazshoes"
+	item_state = "kazshoes"
+
+/obj/item/clothing/gloves/hippie/custom/kazgloves
+	name = "miller's gloves"
+	desc = "why does a man with one arm need two?"
+	icon_state = "kazgloves"
+	item_state = "kazgloves"
+
+/obj/item/clothing/head/hippie/custom/kazhat
+	name = "miller's beret"
+	desc = "a very normal looking beret, with a strange logo on the front."
+	icon_state = "kazhat"
+	item_state = "kazhat"
+
+/obj/item/clothing/glasses/hippie/custom/kazglasses
+	name = "miller's glasses"
+	desc = "its too bright."
+	icon_state = "kazglasses"
+	item_state = "kazglasses"
+
+/obj/item/weapon/cane/custom/kaz
+	name = "crutch"
+	desc = "a crutch, pretty self explanatory."
+	icon = 'hippiestation/icons/obj/Kaz_crutch.dmi'
+	icon_state = "Kaz_crutch"
+	item_state = "Kaz_crutch"
+	force = 5
+	throwforce = 5
+	lefthand_file = 'hippiestation/icons/mob/Kaz_crutch_left.dmi'
+	righthand_file = 'hippiestation/icons/mob/Kaz_crutch_right.dmi'
+// END OF THE KAZ SHIT \\
