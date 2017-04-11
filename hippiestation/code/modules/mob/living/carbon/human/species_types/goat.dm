@@ -3,7 +3,7 @@
 	name = "Goat"
 	id = "goat"
 	default_color = "FFFFFF"
-	say_mod = "bleets"
+	say_mod = "bleats"
 	sexes = 1
 	blacklisted = 0
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS)
