@@ -52,7 +52,7 @@
 		icon_state = "daki_[body_choice]"
 		custom_name = stripped_input(user, "What's her name?")
 		if(length(custom_name) > MAX_NAME_LEN)
-			to_chat("<span class='danger'>Name is too long!</span>")
+			to_chat(user, "<span class='danger'>Name is too long!</span>")
 		if(custom_name)
 			name = custom_name + " " + name
 			desc = "A large pillow depicting [custom_name] in a compromising position. Featuring as many dimensions as you."
