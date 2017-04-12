@@ -13,9 +13,9 @@
 
 /obj/vehicle/lawnmower/emag_act(mob/user)
 	if(emagged)
-		user << "<span class='warning'>The safety mechanisms on \the [src] are already disabled!</span>"
+		to_chat(user, "<span class='warning'>The safety mechanisms on \the [src] are already disabled!</span>")
 		return
-	user << "<span class='warning'>You disable the safety mechanisms on \the [src].</span>"
+	to_chat(user, "<span class='warning'>You disable the safety mechanisms on \the [src].</span>")
 	emagged = TRUE
 
 /obj/vehicle/lawnmower/buckle_mob(mob/living/buckled_mob, force = 0, check_loc = 0)
