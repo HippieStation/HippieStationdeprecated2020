@@ -119,6 +119,7 @@ SUBSYSTEM_DEF(throwing)
 			thrownthing.newtonian_move(init_dir)
 	else
 		thrownthing.newtonian_move(init_dir)
+	check_reset_throwforce(thrownthing)
 	if (callback)
 		callback.Invoke()
 

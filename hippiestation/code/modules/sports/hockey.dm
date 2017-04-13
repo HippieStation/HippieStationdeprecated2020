@@ -1,3 +1,6 @@
+#define HOCKEYSTICK_CD	1.3
+#define PUCK_STUN_AMT	2
+
 /obj/item/weapon/hockeypack
 	name = "Ka-Nada Special Sport Forces Hockey Pack"
 	desc = "Holds and powers a Ka-Nada SSF Hockey Stick, A devastating weapon capable of knocking men around like toys and batting objects at deadly velocities."
@@ -5,7 +8,7 @@
 	alternate_worn_icon = 'hippiestation/icons/mob/back.dmi'
 	icon_state = "hockey_bag"
 	item_state = "hockey_bag"
-	w_class = 4
+	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = SLOT_BACK
 	flags = NODROP
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
@@ -17,7 +20,8 @@
 /obj/item/weapon/hockeypack/ui_action_click()
 	toggle_stick()
 
-/obj/item/weapon/hockeypack/New() //A lot of this is copied from how backpack watertanks work, ain't broke, don't fix.
+/obj/item/weapon/hockeypack/New()
+	..()
 	packstick = make_stick()
 
 /obj/item/weapon/hockeypack/verb/toggle_stick()
@@ -32,7 +36,7 @@
 
 	var/mob/living/carbon/human/user = usr
 	if(on)
-		if(packstick == null)
+		if(!packstick)
 			packstick = make_stick()
 
 		if(!user.put_in_hands(packstick))
@@ -94,25 +98,20 @@
 	name = "Ka-Nada SSF Hockey Stick"
 	desc = "A Ka-Nada specification Power Stick designed after the implement of a violent sport, it is locked to and powered by the back mounted pack."
 	force = 5
-	w_class = 4
-	//item_state = "hockey_stick"
+	w_class = WEIGHT_CLASS_BULKY
 	slot_flags = SLOT_BACK
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 	force_unwielded = 10
 	force_wielded = 25
-	special_throw = 1
-	specthrowsound = 'sound/weapons/resonator_blast.ogg'
+	specthrow_sound = 'sound/weapons/resonator_blast.ogg'
 	throwforce = 3
 	throw_speed = 4
 	flags = NODROP
 	attack_verb = list("smacked", "thwacked", "bashed", "struck", "battered")
-	throwforce_mult = 1.4 //More powerful than a baseball bat because it costs 20 fucking tc and more or less denies you any ranged option.
-	specthrow_maxwclass = 4 //If you have the time to build a spear on the fly with no backpack to keep the bits in you deserve to be able to chuck it around freely.
-	specthrowmsg = "chipped"
-	sharpness = IS_SHARP_ACCURATE //Very sharp to make up for the comparativly low damage.
-	var/click_delay = 1.3
-	var/deflect_chance = 50 //the game does have a built in block viarable for items but it would mean that you have an absurd chance not to get hit by tasers due to it rolling both reflect AND block and could block bullets and stun batons which would also be absurd
-
+	specthrow_forcemult = 1.4
+	specthrow_msg = list("chipped", "shot")
+	sharpness = IS_SHARP_ACCURATE
+	block_chance = 20
 	var/obj/item/weapon/hockeypack/pack
 
 /obj/item/weapon/twohanded/hockeystick/update_icon()
@@ -146,7 +145,7 @@
 
 	add_logs(user, target, "used a hockey stick on", src) //Very unlikeley non-antags are going to get their hands on this but just in case...
 
-	user.changeNext_move(CLICK_CD_MELEE * click_delay)
+	user.changeNext_move(CLICK_CD_MELEE * HOCKEYSTICK_CD)
 
 
 	return
@@ -171,9 +170,7 @@
 		loc = pack.loc
 
 /obj/item/weapon/twohanded/hockeystick/IsReflect()
-	if(wielded)
-		if(prob(deflect_chance))
-			return TRUE
+	return (wielded)
 
 /obj/item/weapon/storage/belt/hippie/hockey
 	name = "Holopuck Generator"
@@ -188,10 +185,10 @@
 	var/charged = TRUE
 	var/obj/item/holopuck/newpuck
 
-/obj/item/weapon/storage/belt/hockey/ui_action_click()
+/obj/item/weapon/storage/belt/hippie/hockey/ui_action_click()
 	make_puck()
 
-/obj/item/weapon/storage/belt/hockey/verb/make_puck()
+/obj/item/weapon/storage/belt/hippie/hockey/verb/make_puck()
 	set name = "Produce Puck"
 	set category = "Object"
 	if (usr.get_item_by_slot(usr.getHockeybeltSlot()) != src)
@@ -214,13 +211,13 @@
 
 	charged = FALSE
 
-/obj/item/weapon/storage/belt/hockey/proc/build_puck()
+/obj/item/weapon/storage/belt/hippie/hockey/proc/build_puck()
 	return new /obj/item/holopuck(src)
 
 /mob/proc/getHockeybeltSlot()
 	return slot_belt
 
-/obj/item/weapon/storage/belt/hockey/proc/reset_puck()
+/obj/item/weapon/storage/belt/hippie/hockey/proc/reset_puck()
 	charged = TRUE
 	var/mob/M = get(src, /mob)
 	to_chat(M, "<span class='notice'>The belt is now ready to fabricate another holopuck!</span>")
@@ -233,14 +230,13 @@
 	item_state = "eshield0"
 	w_class = 1
 	force = 3
-	var/puckdaze = 2
 	throwforce = 10 //As good as a floor tile, three of these should knock someone out.
 
 /obj/item/holopuck/throw_impact(atom/hit_atom)
 	if(..() || !iscarbon(hit_atom))
 		return
 	var/mob/living/carbon/C = hit_atom
-	C.apply_effect(puckdaze, STUN)
+	C.apply_effect(PUCK_STUN_AMT, STUN)
 	C.apply_damage((throwforce * 2), STAMINA) //This way the stamina damage is ALSO buffed by special throw items, the hockey stick for example.
 	playsound(src, 'sound/effects/snap.ogg', 50, 1)
 	visible_message("<span class='danger'>[C] has been dazed by a holopuck!</span>", \
@@ -256,10 +252,8 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
-	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	max_heat_protection_temperature = FIRE_SUIT_MAX_TEMP_PROTECT
 	flags = THICKMATERIAL | NODROP | STOPSPRESSUREDMAGE
-	armor = list(melee = 70, bullet = 45, laser = 80, energy = 45, bomb = 75, bio = 0, rad = 30, fire = 100, acid = 100)
+	armor = list(melee = 70, bullet = 45, laser = 80, energy = 45, bomb = 75, bio = 0, rad = 30, fire = 80, acid = 100)
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/shoes/hippie/hockey
@@ -284,11 +278,9 @@
 	desc = "A combat helmet used by Ka-Nada extreme environment teams. Protects you from the elements as well as your opponents."
 	icon_state = "hockey_helmet"
 	item_state = "hockey_helmet"
-	armor = list(melee = 80, bullet = 40, laser = 80,energy = 45, bomb = 50, bio = 10, rad = 0, fire = 100, acid = 100)
+	armor = list(melee = 80, bullet = 40, laser = 80,energy = 45, bomb = 50, bio = 10, rad = 0, fire = 80, acid = 100)
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
-	heat_protection = HEAD
-	max_heat_protection_temperature = FIRE_HELM_MAX_TEMP_PROTECT
 	flags = STOPSPRESSUREDMAGE | NODROP
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 
@@ -297,3 +289,6 @@
 
 /datum/action/item_action/make_puck
 	name = "Produce Puck"
+
+#undef HOCKEYSTICK_CD
+#undef PUCK_STUN_AMT

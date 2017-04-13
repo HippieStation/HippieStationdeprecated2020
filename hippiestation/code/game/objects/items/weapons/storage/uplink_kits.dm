@@ -10,11 +10,11 @@
 /obj/item/weapon/storage/box/syndie_kit/hockey/New()
 	..()
 	new /obj/item/weapon/hockeypack(src)
-	new /obj/item/weapon/storage/belt/hockey(src)
-	new /obj/item/clothing/suit/armor/hockey(src)
-	new /obj/item/clothing/shoes/hockey(src)
-	new /obj/item/clothing/mask/gas/hockey(src)
-	new /obj/item/clothing/head/helmet/hockey(src)
+	new /obj/item/weapon/storage/belt/hippie/hockey(src)
+	new /obj/item/clothing/suit/hippie/hockey(src)
+	new /obj/item/clothing/shoes/hippie/hockey(src)
+	new /obj/item/clothing/mask/hippie/hockey(src)
+	new /obj/item/clothing/head/hippie/hockey(src)
 
 /obj/item/weapon/storage/box/syndie_kit/bowling
 	name = "\improper Right-Up-Your-Alley bowling kit"
@@ -27,26 +27,20 @@
 	..()
 	new /obj/item/clothing/shoes/hippie/bowling(src)
 	new /obj/item/clothing/under/hippie/bowling(src)
-	new /obj/item/weapon/twohanded/bowling(src)
-	new /obj/item/weapon/twohanded/bowling(src)
-	new /obj/item/weapon/twohanded/bowling(src)
-	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(src)
-	P.info = "<B><center>The Art of the Bowl</center></B>:<BR>Bowling is a centuries old craft, one long-forgotten by most. Because of this, very few posses the ability to bowl correctly. This is why your bowling uniform has
-			been imbued with the latest in nanobot technology. This will help you bowl correctly without any proper training. To bowl, first make sure you are wearing your uniform.
-			Then, equip a bowling ball as if you would a chainsaw or other two-handed weapon. When you throw the bowling ball, it will barrel down the hallway and knock down anybody
-			in its path. Make sure not to walk into your own bowling ball!"
-	P.name = "The Art of the Bowl"
+	new /obj/item/weapon/bowling(src)
+	new /obj/item/weapon/bowling(src)
+	new /obj/item/weapon/bowling(src)
 
 /obj/item/weapon/storage/box/syndie_kit/wrestling
 	name = "\improper Squared-Circle smackdown set"
 	desc = "For millenia, man has dreamed of wrestling. In 1980, it was invented by the great Macho\
 	Man Randy Savage. Although he is no longer with us, you can live on in his name with the latest in\
 	wrestling technology. Corkscrew your enemies and smash them into a pulp with your newfound wrestling skills,\
-	which you will obtain from this set. Now with a complimentary space-unitard and space-wrestling helmet!"
+	which you will obtain from this set. Now with a complimentary space-wrestling gear!"
 
 /obj/item/weapon/storage/box/syndie_kit/wrestling/New()
 	..()
-	new /obj/item/clothing/mask/gas/wrestling(src)
-	new /obj/item/clothing/glasses/wrestling(src)
-	new /obj/item/clothing/under/wrestling(src)
+	new /obj/item/clothing/mask/hippie/wrestling(src)
+	new /obj/item/clothing/glasses/hippie/wrestling(src)
+	new /obj/item/clothing/under/hippie/wrestling(src)
 	new /obj/item/weapon/storage/belt/champion/wrestling(src)

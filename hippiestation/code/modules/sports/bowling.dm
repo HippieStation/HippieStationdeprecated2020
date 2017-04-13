@@ -21,56 +21,36 @@
 	can_adjust = FALSE
 	var/next_bowl = 1
 
-/obj/item/weapon/twohanded/bowling
+/obj/item/weapon/bowling
 	name = "bowling ball"
-	icon = 'icons/hippie/obj/sports.dmi'
+	icon = 'hippiestation/icons/obj/weapons.dmi'
 	icon_state = "bowling_ball"
 	desc = "A heavy, round device used to knock pins (or people) down."
-	force_unwielded = 3
-	force_wielded = 6
-	w_class = 3.0
-	throwforce = 0
-	throw_range = 1
+	force = 6
+	w_class = WEIGHT_CLASS_NORMAL
+	throwforce = 3
+	throw_range = 2
 	throw_speed = 1
 	var/pro_wielded = FALSE
 
-/obj/item/weapon/twohanded/bowling/New()
+/obj/item/weapon/bowling/New()
 	color = pick("white","green","yellow","purple")
 	..()
 
-/obj/item/weapon/twohanded/bowling/attack_self(mob/living/carbon/human/user)
-	if(wielded) //Trying to unwield it
-		unwield(user)
-		unspin()
-		if(user.w_uniform && istype(user.w_uniform, /obj/item/clothing/under/bowling))
-			var/obj/item/clothing/under/bowling/bowling = user.w_uniform
-			bowling.next_bowl = (world.time - 1) //SO that you don't have to wait a cooldown if you unwield it.
-		return
-	else //Trying to wield it
-		if(user.w_uniform && istype(user.w_uniform, /obj/item/clothing/under/bowling))
-			var/obj/item/clothing/under/bowling/bowling = user.w_uniform
-			if(bowling.next_bowl >= world.time)
-				to_chat(user, "<span class='warning'>Your coach always said that you need to wait at least a second between bowls!</span>")
-				unspin()
-			else
-				wield(user)
-				if(!wielded)
-					return
-				bowling.next_bowl = (world.time + 10)
+/obj/item/weapon/bowling/throw_at(atom/target, range, speed, mob/thrower, spin=FALSE, diagonals_first = FALSE, datum/callback/callback)
+	if(istype(thrower, /mob/living/carbon/human))
+		var/mob/living/carbon/human/user = thrower
+		if(user.w_uniform && istype(user.w_uniform, /obj/item/clothing/under/hippie/bowling))
+			var/obj/item/clothing/under/hippie/bowling/bowling = user.w_uniform
+			if(bowling.next_bowl <= world.time)
 				unlimitedthrow = TRUE
 				pro_wielded = TRUE
-		else
-			user << "<span class='warning'>You don't have the skills to wield such an amazing weapon!</span>"
-			unspin()
-			return
-
-/obj/item/weapon/twohanded/bowling/throw_at(atom/target, range, speed, mob/thrower, spin=FALSE, diagonals_first = FALSE, datum/callback/callback)
-	if(pro_wielded) //Only pros can wield a bowling ball
-		icon_state = "bowling_ball_spin"
-		playsound(src,'hippiestation/sound/effects/bowl.ogg',40,0)
+				icon_state = "bowling_ball_spin"
+				playsound(src,'hippiestation/sound/effects/bowl.ogg',40,0)
+				bowling.next_bowl = world.time + 10
 	. = ..(target, range, speed, thrower, FALSE, diagonals_first, callback)
 
-/obj/item/weapon/twohanded/bowling/throw_impact(atom/hit_atom)
+/obj/item/weapon/bowling/throw_impact(atom/hit_atom)
 	if(!ishuman(hit_atom))//if the ball hits a nonhuman
 		unspin()
 		return ..()
@@ -88,8 +68,7 @@
 		unspin()
 		return ..()
 
-/obj/item/weapon/twohanded/bowling/proc/unspin()
+/obj/item/weapon/bowling/proc/unspin()
 	icon_state = "bowling_ball"
 	unlimitedthrow = FALSE
 	pro_wielded = FALSE
-	qdel(src)
