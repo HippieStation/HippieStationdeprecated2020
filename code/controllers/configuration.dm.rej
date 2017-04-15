@@ -1,0 +1,16 @@
+diff a/code/controllers/configuration.dm b/code/controllers/configuration.dm	(rejected hunks)
+@@ -411,11 +411,11 @@
+ 				if("allow_metadata")
+ 					allow_Metadata = 1
+ 				if("inactivity_period")
+-					inactivity_period = text2num(value)
++					inactivity_period = text2num(value) * 10 //documented as seconds in config.txt
+ 				if("afk_period")
+-					afk_period = text2num(value) * 10 //documented as seconds in config.txt
++					afk_period = text2num(value) * 10 // ^^^
+ 				if("kick_inactive")
+-					kick_inactive = text2num(value) * 10 // ^^^
++					kick_inactive = TRUE
+ 				if("load_jobs_from_txt")
+ 					load_jobs_from_txt = 1
+ 				if("forbid_singulo_possession")
