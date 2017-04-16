@@ -86612,10 +86612,8 @@
 	name = "Xeno Maintenance"
 	})
 "cTD" = (
-/obj/machinery/shieldwallgen{
-	req_access_txt = "55"
-	},
 /obj/structure/cable/yellow,
+/obj/machinery/shieldwallgen/xenobiologyaccess,
 /turf/open/floor/plating,
 /area/toxins/xenobiology)
 "cTE" = (
