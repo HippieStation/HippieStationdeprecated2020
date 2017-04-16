@@ -156,8 +156,8 @@
 	layer = BELOW_MOB_LAYER
 	var/mob/user
 
-/obj/effect/clockwork/judicial_marker/New(loc, caster)
-	..()
+/obj/effect/clockwork/judicial_marker/Initialize(mapload, caster)
+	. = ..()
 	set_light(1.4, 2, "#FE9C11")
 	user = caster
 	INVOKE_ASYNC(src, .proc/judicialblast)
