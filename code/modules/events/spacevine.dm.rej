@@ -1,0 +1,10 @@
+diff a/code/modules/events/spacevine.dm b/code/modules/events/spacevine.dm	(rejected hunks)
+@@ -494,7 +494,7 @@
+ 	if(!LAZYLEN(vines))
+ 		qdel(src) //space vines exterminated. Remove the controller
+ 		return
+-	if(!LAZYLEN(growth_queue))
++	if(!growth_queue)
+ 		qdel(src) //Sanity check
+ 		return
+ 
