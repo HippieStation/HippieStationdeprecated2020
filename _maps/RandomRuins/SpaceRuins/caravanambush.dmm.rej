@@ -1,0 +1,18 @@
+diff a/_maps/RandomRuins/SpaceRuins/caravanambush.dmm b/_maps/RandomRuins/SpaceRuins/caravanambush.dmm	(rejected hunks)
+@@ -281,14 +281,14 @@
+ /turf/open/floor/mineral/plastitanium/airless,
+ /area/ruin/unpowered/no_grav)
+ "aX" = (
+-/turf/open/space,
++/turf/template_noop,
+ /turf/open/floor/plating/airless{
+ 	icon = 'icons/obj/smooth_structures/lattice.dmi';
+ 	icon_plating = "lattice";
+ 	icon_state = "lattice";
+ 	name = "anchor chain"
+ 	},
+-/area/space)
++/area/template_noop)
+ "aY" = (
+ /obj/structure/statue/gold/cmo,
+ /turf/open/floor/plasteel,
