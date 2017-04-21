@@ -1,0 +1,11 @@
+diff a/code/game/objects/effects/effects.dm b/code/game/objects/effects/effects.dm	(rejected hunks)
+@@ -47,6 +47,9 @@
+ 	qdel(src)
+ 	return 0
+ 
++/obj/effect/ConveyorMove()
++	return
++
+ /obj/effect/abstract/ex_act(severity, target)
+ 	return
+ 
