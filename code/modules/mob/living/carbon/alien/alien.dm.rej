@@ -1,0 +1,9 @@
+diff a/code/modules/mob/living/carbon/alien/alien.dm b/code/modules/mob/living/carbon/alien/alien.dm	(rejected hunks)
+@@ -47,6 +47,7 @@
+ 	internal_organs += new /obj/item/organ/alien/hivenode
+ 	internal_organs += new /obj/item/organ/tongue/alien
+ 	internal_organs += new /obj/item/organ/eyes/night_vision/alien
++	internal_organs += new /obj/item/organ/ears
+ 	..()
+ 
+ /mob/living/carbon/alien/assess_threat() // beepsky won't hunt aliums
