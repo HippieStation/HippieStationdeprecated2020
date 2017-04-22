@@ -1279,6 +1279,9 @@ proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 
 #define QDEL_IN(item, time) addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, item), time, TIMER_STOPPABLE)
 #define QDEL_NULL(item) qdel(item); item = null
+#define QDEL_LIST(L) if(L) { for(var/I in L) qdel(I); L.Cut(); }
+#define QDEL_LIST_ASSOC(L) if(L) { for(var/I in L) { qdel(L[I]); qdel(I); } L.Cut(); }
+#define QDEL_LIST_ASSOC_VAL(L) if(L) { for(var/I in L) qel(L[I]); L.Cut(); }
 
 /proc/random_nukecode()
 	var/val = rand(0, 99999)
@@ -1352,6 +1355,8 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	GLOB.dview_mob.see_invisible = invis_flags; \
 	for(type in view(range, GLOB.dview_mob))
 
+#define FOR_DVIEW_END GLOB.dview_mob.loc = null
+
 //can a window be here, or is there a window blocking it?
 /proc/valid_window_location(turf/T, dir_to_check)
 	if(!T)
@@ -1401,7 +1406,7 @@ GLOBAL_VAR_INIT(valid_HTTPSGet, FALSE)
 			| \____(      )___) )___
 			\______(_______;;; __;;;
 		*/
-	var/temp_file = "HTTPSGetOutput.txt"
+	var/temp_file = "data/HTTPSGetOutput.txt"
 	var/command
 	if(world.system_type == MS_WINDOWS)
 		command = "powershell -Command \"wget [url] -OutFile [temp_file]\""
