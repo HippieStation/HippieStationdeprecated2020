@@ -38,6 +38,7 @@
 	item = /obj/item/ammo_box/magazine/g17
 	cost = 1
 
+
 /* Sports */
 /datum/uplink_item/badass/sports
 	name = "Sports bundle"
