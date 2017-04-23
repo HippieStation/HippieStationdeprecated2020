@@ -98,8 +98,11 @@ DBConnection/proc/ErrorMsg() return _dm_db_error_msg(_db_con)
 DBConnection/proc/SelectDB(database_name,dbi)
 	if(IsConnected()) Disconnect()
 	//return Connect("[dbi?"[dbi]":"dbi:mysql:[database_name]:[DB_SERVER]:[DB_PORT]"]",user,password)
-	return Connect("[dbi?"[dbi]":"dbi:mysql:[database_name]:[global.sqladdress]:[global.sqlport]"]",user,password)
-DBConnection/proc/NewQuery(sql_query,cursor_handler=src.default_cursor) return new/DBQuery(sql_query,src,cursor_handler)
+	return Connect("[dbi?"[dbi]":"dbi:mysql:[database_name]:[GLOB.sqladdress]:[GLOB.sqlport]"]",user,password)
+DBConnection/proc/NewQuery(sql_query,cursor_handler=src.default_cursor)
+	if(IsAdminAdvancedProcCall())
+		log_admin_private("WARNING: Advanced admin proc call DB query created!: [sql_query]")
+	return new/DBQuery(sql_query,src,cursor_handler)
 
 
 DBQuery/New(sql_query,DBConnection/connection_handler,cursor_handler)
