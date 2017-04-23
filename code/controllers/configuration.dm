@@ -66,7 +66,9 @@
 	var/respawn = 1
 	var/guest_jobban = 1
 	var/usewhitelist = 0
-	var/kick_inactive = 0				//force disconnect for inactive players
+	var/inactivity_period = 3000		//time in ds until a player is considered inactive
+	var/afk_period = 6000				//time in ds until a player is considered afk and kickable
+	var/kick_inactive = FALSE			//force disconnect for inactive players
 	var/load_jobs_from_txt = 0
 	var/automute_on = 0					//enables automuting/spam prevention
 	var/minimal_access_threshold = 0	//If the number of players is larger than this threshold, minimal access will be turned on.
