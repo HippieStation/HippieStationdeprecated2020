@@ -69,7 +69,9 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			to_chat(usr, "<font color='red'>Error: callproc(): owner of proc no longer exists.</font>")
 			return
 		log_admin("[key_name(src)] called [target]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
-		message_admins("[key_name(src)] called [target]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
+		var/msg = "[key_name(src)] called [target]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"]."
+		message_admins(msg)
+		admin_ticket_log(target, msg)
 		returnval = call(target,procname)(arglist(lst)) // Pass the lst as an argument list to the proc
 	else
 		//this currently has no hascall protection. wasn't able to get it working.
