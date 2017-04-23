@@ -134,15 +134,6 @@
 	protection = protection/7 //the rest of the body isn't covered.
 	return protection
 
-/mob/living/carbon/monkey/fully_heal(admin_revive = 0)
-	if(!getorganslot("lungs"))
-		var/obj/item/organ/lungs/L = new()
-		L.Insert(src)
-	if(!getorganslot("tongue"))
-		var/obj/item/organ/tongue/T = new()
-		T.Insert(src)
-	..()
-
 /mob/living/carbon/monkey/IsVocal()
 	if(!getorganslot("lungs"))
 		return 0

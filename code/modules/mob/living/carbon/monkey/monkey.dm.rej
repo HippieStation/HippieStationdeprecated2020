@@ -1,0 +1,9 @@
+diff a/code/modules/mob/living/carbon/monkey/monkey.dm b/code/modules/mob/living/carbon/monkey/monkey.dm	(rejected hunks)
+@@ -44,6 +44,7 @@
+ 	internal_organs += new /obj/item/organ/brain
+ 	internal_organs += new /obj/item/organ/tongue
+ 	internal_organs += new /obj/item/organ/eyes
++	internal_organs += new /obj/item/organ/ears
+ 	..()
+ 
+ /mob/living/carbon/monkey/movement_delay()
