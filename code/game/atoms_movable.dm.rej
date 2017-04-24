@@ -1,0 +1,25 @@
+diff a/code/game/atoms_movable.dm b/code/game/atoms_movable.dm	(rejected hunks)
+@@ -125,6 +125,7 @@
+ 	var/datum/proximity_monitor/proximity_monitor = src.proximity_monitor
+ 	if(proximity_monitor)
+ 		proximity_monitor.HandleMove()
++
+ 	return 1
+ 
+ /atom/movable/proc/clean_on_move()
+@@ -175,7 +176,7 @@
+ 
+ 	if(stationloving && force)
+ 		STOP_PROCESSING(SSinbounds, src)
+-	
++
+ 	QDEL_NULL(proximity_monitor)
+ 
+ 	. = ..()
+@@ -627,4 +628,4 @@
+ /atom/movable/proc/ConveyorMove(movedir)
+ 	set waitfor = FALSE
+ 	if(!anchored && has_gravity())
+-		step(src, movedir)
+\ No newline at end of file
++		step(src, movedir)
