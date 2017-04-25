@@ -642,9 +642,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			screw = 1
 			to_chat(user, "<span class='notice'>You open the cap on the [src]</span>")
 			if(super)
-				add_overlay(image(icon, "vapeopen_med"))
+				add_overlay("vapeopen_med")
 			else
-				add_overlay(image(icon, "vapeopen_low"))
+				add_overlay("vapeopen_low")
 		else
 			screw = 0
 			to_chat(user, "<span class='notice'>You close the cap on the [src]</span>")
@@ -656,12 +656,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				cut_overlays()
 				super = 1
 				to_chat(user, "<span class='notice'>You increase the voltage in the [src]</span>")
-				add_overlay(image(icon, "vapeopen_med"))
+				add_overlay("vapeopen_med")
 			else
 				cut_overlays()
 				super = 0
 				to_chat(user, "<span class='notice'>You decrease the voltage in the [src]</span>")
-				add_overlay(image(icon, "vapeopen_low"))
+				add_overlay("vapeopen_low")
 
 		if(screw && emagged)
 			to_chat(user, "<span class='notice'>The [name] can't be modified!</span>")
@@ -674,7 +674,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			emagged = 1
 			super = 0
 			to_chat(user, "<span class='warning'>You maximize the voltage in the [src]</span>")
-			add_overlay(image(icon, "vapeopen_high"))
+			add_overlay("vapeopen_high")
 			var/datum/effect_system/spark_spread/sp = new /datum/effect_system/spark_spread //for effect
 			sp.set_up(5, 1, src)
 			sp.start()

@@ -1,0 +1,17 @@
+diff a/code/game/objects/items/weapons/cigs_lighters.dm b/code/game/objects/items/weapons/cigs_lighters.dm	(rejected hunks)
+@@ -496,11 +496,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
+ 
+ /obj/item/weapon/lighter/greyscale/update_icon()
+ 	cut_overlays()
+-	var/image/I = image(icon,"[initial(icon_state)]_base")
+-	I.appearance_flags = RESET_COLOR //the edging doesn't change color
++	var/mutable_appearance/base_overlay = mutable_appearance(icon,"[initial(icon_state)]_base")
++	base_overlay.appearance_flags = RESET_COLOR //the edging doesn't change color
+ 	if(lit)
+-		I.icon_state = "[initial(icon_state)]_on"
+-	add_overlay(I)
++		base_overlay.icon_state = "[initial(icon_state)]_on"
++	add_overlay(base_overlay)
+ 
+ /obj/item/weapon/lighter/greyscale/ignition_effect(atom/A, mob/user)
+ 	. = "<span class='notice'>After some fiddling, [user] manages to light [A] with [src].</span>"
