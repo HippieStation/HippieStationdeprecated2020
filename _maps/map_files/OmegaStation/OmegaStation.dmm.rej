@@ -1,0 +1,246 @@
+diff a/_maps/map_files/OmegaStation/OmegaStation.dmm b/_maps/map_files/OmegaStation/OmegaStation.dmm	(rejected hunks)
+@@ -41743,6 +41721,197 @@
+ "bvf" = (
+ /turf/closed/wall/r_wall,
+ /area/engine/supermatter)
++"bvg" = (
++/turf/open/floor/plating/airless/astplate,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvh" = (
++/obj/effect/decal/cleanable/dirt,
++/turf/open/floor/plating/airless/astplate,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvi" = (
++/turf/open/floor/plating/airless/astplate,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvj" = (
++/obj/effect/decal/cleanable/dirt,
++/turf/open/floor/plating/airless/astplate,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvk" = (
++/obj/effect/decal/cleanable/dirt,
++/turf/open/floor/plating/airless/astplate,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvl" = (
++/obj/effect/decal/cleanable/dirt,
++/turf/open/floor/plating/airless/astplate,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvm" = (
++/turf/open/floor/plating/airless/astplate,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvn" = (
++/turf/open/floor/plating/airless/astplate,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvo" = (
++/obj/structure/girder,
++/turf/open/floor/plating/airless,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvp" = (
++/obj/structure/girder,
++/turf/open/floor/plating/airless,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvq" = (
++/turf/open/floor/plating/airless/astplate,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvr" = (
++/obj/structure/girder,
++/turf/open/floor/plating/airless,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvs" = (
++/obj/effect/decal/cleanable/dirt,
++/turf/open/floor/plating/airless/astplate,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvt" = (
++/obj/structure/girder,
++/turf/open/floor/plating/airless,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvu" = (
++/obj/structure/girder,
++/turf/open/floor/plating/airless,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvv" = (
++/obj/structure/girder,
++/turf/open/floor/plating/airless,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvw" = (
++/obj/effect/decal/cleanable/dirt,
++/turf/open/floor/plating/airless/astplate,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvx" = (
++/turf/open/floor/plating/airless/astplate,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvy" = (
++/turf/open/floor/plating/airless/astplate,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvz" = (
++/obj/effect/decal/cleanable/dirt,
++/turf/open/floor/plating/airless/astplate,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvA" = (
++/obj/structure/girder,
++/turf/open/floor/plating/airless,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvB" = (
++/obj/structure/girder,
++/turf/open/floor/plating/airless,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvC" = (
++/obj/structure/girder,
++/turf/open/floor/plating/airless,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvD" = (
++/obj/structure/girder,
++/turf/open/floor/plating/airless,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvE" = (
++/obj/effect/decal/cleanable/dirt,
++/turf/open/floor/plating/airless/astplate,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvF" = (
++/obj/structure/girder,
++/turf/open/floor/plating/airless,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvG" = (
++/obj/effect/decal/cleanable/dirt,
++/turf/open/floor/plating/airless/astplate,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvH" = (
++/turf/open/floor/plating/airless/astplate,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvI" = (
++/obj/item/weapon/pickaxe/emergency,
++/turf/open/floor/plating/asteroid/airless,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvJ" = (
++/turf/open/floor/plating/airless/astplate,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvK" = (
++/turf/open/floor/plating/airless/astplate,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvL" = (
++/turf/open/floor/plating/airless/astplate,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvM" = (
++/turf/open/floor/plating/airless/astplate,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
++"bvN" = (
++/turf/open/floor/plating/airless/astplate,
++/area/ruin/unpowered{
++	name = "Asteroid"
++	})
+ 
+ (1,1,1) = {"
+ aaa
+@@ -72445,11 +72614,11 @@ aHl
+ aIi
+ aJs
+ aKz
+-buX
++buW
+ aMR
+ buZ
+-bva
+-bvb
++buZ
++buW
+ aQL
+ aRI
+ aSS
+@@ -72706,7 +72875,7 @@ aLP
+ aMS
+ aMS
+ aOC
+-bvc
++buW
+ aQM
+ aRJ
+ aST
+@@ -73734,7 +73903,7 @@ aLT
+ aMW
+ aMW
+ aOD
+-bve
++buW
+ aQQ
+ aRN
+ aSX
+@@ -73987,11 +74156,11 @@ aHr
+ aIo
+ aJw
+ aKE
+-buY
++buW
+ aMX
+ aMX
+ aMX
+-bvf
++buW
+ aQR
+ aRO
+ aSY
