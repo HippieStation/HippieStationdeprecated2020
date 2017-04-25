@@ -119,14 +119,9 @@
 	. = ..()
 	if(active)
 		var/component_color = get_component_color(component_id_to_produce)
-		if(!daemon_glow)
-			daemon_glow = new('icons/obj/clockwork_objects.dmi', "tinkerglow")
 		daemon_glow.color = component_color
 		add_overlay(daemon_glow)
-		if(!component_glow)
-			component_glow = new('icons/obj/clockwork_objects.dmi', "t_[component_id_to_produce ? component_id_to_produce :"random_component"]")
-		else
-			component_glow.icon_state = "t_[component_id_to_produce ? component_id_to_produce :"random_component"]"
+		component_glow.icon_state = "t_[component_id_to_produce ? component_id_to_produce :"random_component"]"
 		component_glow.color = component_color
 		add_overlay(component_glow)
 		production_time = world.time + production_cooldown //don't immediately produce when turned on after being off
