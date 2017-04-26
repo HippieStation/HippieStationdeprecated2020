@@ -35,7 +35,6 @@
 	..()
 	if(randomdir)
 		setDir(pick(GLOB.cardinal))
-	flick("[icon_state]", src) //Because we might be pulling it from a pool, flick whatever icon it uses so it starts at the start of the icon's animation.
 
 	timerid = QDEL_IN(src, duration)
 
