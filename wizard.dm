@@ -1,261 +1,348 @@
-/datum/game_mode
-	var/list/datum/mind/wizards = list()
-	var/list/datum/mind/apprentices = list()
+/obj/effect/proc_holder/spell/targeted/projectile/magic_missile
+	name = "Magic Missile"
+	desc = "This spell fires several, slow moving, magic projectiles at nearby targets."
 
-/datum/game_mode/wizard
-	name = "wizard"
-	config_tag = "wizard"
-	antag_flag = ROLE_WIZARD
-	required_players = 20
-	required_enemies = 1
-	recommended_enemies = 1
-	enemy_minimum_age = 14
-	round_ends_with_antag_death = 1
-	announce_span = "danger"
-	announce_text = "There is a space wizard attacking the station!\n\
-	<span class='danger'>Wizard</span>: Accomplish your objectives and cause mayhem on the station.\n\
-	<span class='notice'>Crew</span>: Eliminate the wizard before they can succeed!"
-	var/use_huds = 0
-	var/finished = 0
+	school = "evocation"
+	charge_max = 200
+	clothes_req = 1
+	invocation = "FORTI GY AMA"
+	invocation_type = "shout"
+	range = 7
+	cooldown_min = 60 //35 deciseconds reduction per rank
 
-/datum/game_mode/wizard/pre_setup()
+	max_targets = 0
 
-	var/datum/mind/wizard = pick(antag_candidates)
-	wizards += wizard
-	modePlayer += wizard
-	wizard.assigned_role = "Wizard"
-	wizard.special_role = "Wizard"
-	if(GLOB.wizardstart.len == 0)
-		to_chat(wizard.current, "<span class='boldannounce'>A starting location for you could not be found, please report this bug!</span>")
-		return 0
-	for(var/datum/mind/wiz in wizards)
-		wiz.current.loc = pick(GLOB.wizardstart)
+	proj_icon_state = "magicm"
+	proj_name = "a magic missile"
+	proj_lingering = 1
+	proj_type = "/obj/effect/proc_holder/spell/targeted/inflict_handler/magic_missile"
 
-	return 1
+	proj_lifespan = 20
+	proj_step_delay = 5
+
+	proj_trail = 1
+	proj_trail_lifespan = 5
+	proj_trail_icon_state = "magicmd"
+
+	action_icon_state = "magicm"
+	sound = 'sound/magic/MAGIC_MISSILE.ogg'
+
+/obj/effect/proc_holder/spell/targeted/inflict_handler/magic_missile
+	amt_weakened = 3
+	sound = 'sound/magic/MM_Hit.ogg'
+
+/obj/effect/proc_holder/spell/targeted/genetic/mutate
+	name = "Mutate"
+	desc = "This spell causes you to turn into a hulk and gain laser vision for a short while."
+
+	school = "transmutation"
+	charge_max = 400
+	clothes_req = 1
+	invocation = "BIRUZ BENNAR"
+	invocation_type = "shout"
+	range = -1
+	include_user = 1
+
+	mutations = list(LASEREYES, HULK)
+	duration = 300
+	cooldown_min = 300 //25 deciseconds reduction per rank
+
+	action_icon_state = "mutate"
+	sound = 'sound/magic/Mutate.ogg'
 
 
-/datum/game_mode/wizard/post_setup()
-	for(var/datum/mind/wizard in wizards)
-		log_game("[wizard.key] (ckey) has been selected as a Wizard")
-		equip_wizard(wizard.current)
-		forge_wizard_objectives(wizard)
-		if(use_huds)
-			update_wiz_icons_added(wizard)
-		greet_wizard(wizard)
-		name_wizard(wizard.current)
-	..()
-	return
+/obj/effect/proc_holder/spell/targeted/smoke
+	name = "Smoke"
+	desc = "This spell spawns a cloud of choking smoke at your location and does not require wizard garb."
+
+	school = "conjuration"
+	charge_max = 120
+	clothes_req = 0
+	invocation = "none"
+	invocation_type = "none"
+	range = -1
+	include_user = 1
+	cooldown_min = 20 //25 deciseconds reduction per rank
+
+	smoke_spread = 2
+	smoke_amt = 4
+
+	action_icon_state = "smoke"
+
+/obj/effect/proc_holder/spell/targeted/emplosion/disable_tech
+	name = "Disable Tech"
+	desc = "This spell disables all weapons, cameras and most other technology in range."
+	charge_max = 400
+	clothes_req = 1
+	invocation = "NEC CANTIO"
+	invocation_type = "shout"
+	range = -1
+	include_user = 1
+	cooldown_min = 200 //50 deciseconds reduction per rank
+
+	emp_heavy = 6
+	emp_light = 10
+	sound = 'sound/magic/Disable_Tech.ogg'
+
+/obj/effect/proc_holder/spell/targeted/turf_teleport/blink
+	name = "Blink"
+	desc = "This spell randomly teleports you a short distance."
+
+	school = "abjuration"
+	charge_max = 20
+	clothes_req = 1
+	invocation = "none"
+	invocation_type = "none"
+	range = -1
+	include_user = 1
+	cooldown_min = 5 //4 deciseconds reduction per rank
 
 
-/datum/game_mode/proc/forge_wizard_objectives(datum/mind/wizard)
-	switch(rand(1,100))
-		if(1 to 30)
+	smoke_spread = 1
+	smoke_amt = 0
 
-			var/datum/objective/assassinate/kill_objective = new
-			kill_objective.owner = wizard
-			kill_objective.find_target()
-			wizard.objectives += kill_objective
+	inner_tele_radius = 0
+	outer_tele_radius = 6
 
-			if (!(locate(/datum/objective/escape) in wizard.objectives))
-				var/datum/objective/escape/escape_objective = new
-				escape_objective.owner = wizard
-				wizard.objectives += escape_objective
-		if(31 to 60)
-			var/datum/objective/steal/steal_objective = new
-			steal_objective.owner = wizard
-			steal_objective.find_target()
-			wizard.objectives += steal_objective
+	action_icon_state = "blink"
+	sound1 = 'sound/magic/blink.ogg'
+	sound2 = 'sound/magic/blink.ogg'
 
-			if (!(locate(/datum/objective/escape) in wizard.objectives))
-				var/datum/objective/escape/escape_objective = new
-				escape_objective.owner = wizard
-				wizard.objectives += escape_objective
+/obj/effect/proc_holder/spell/targeted/turf_teleport/blink/cult
+	name = "quickstep"
 
-		if(61 to 85)
-			var/datum/objective/assassinate/kill_objective = new
-			kill_objective.owner = wizard
-			kill_objective.find_target()
-			wizard.objectives += kill_objective
+	charge_max = 100
+	clothes_req = 0
+	cult_req = 1
 
-			var/datum/objective/steal/steal_objective = new
-			steal_objective.owner = wizard
-			steal_objective.find_target()
-			wizard.objectives += steal_objective
+/obj/effect/proc_holder/spell/targeted/area_teleport/teleport
+	name = "Teleport"
+	desc = "This spell teleports you to a type of area of your selection."
 
-			if (!(locate(/datum/objective/survive) in wizard.objectives))
-				var/datum/objective/survive/survive_objective = new
-				survive_objective.owner = wizard
-				wizard.objectives += survive_objective
+	school = "abjuration"
+	charge_max = 600
+	clothes_req = 1
+	invocation = "SCYAR NILA"
+	invocation_type = "shout"
+	range = -1
+	include_user = 1
+	cooldown_min = 200 //100 deciseconds reduction per rank
 
+	smoke_spread = 1
+	smoke_amt = 2
+	sound1 = 'sound/magic/Teleport_diss.ogg'
+	sound2 = 'sound/magic/Teleport_app.ogg'
+
+/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop
+	name = "Stop Time"
+	desc = "This spell stops time for everyone except for you, allowing you to move freely while your enemies and even projectiles are frozen."
+	charge_max = 500
+	clothes_req = 1
+	invocation = "TOKI WO TOMARE"
+	invocation_type = "shout"
+	range = 0
+	cooldown_min = 100
+	summon_amt = 1
+	action_icon_state = "time"
+
+	summon_type = list(/obj/effect/timestop/wizard)
+
+/obj/effect/proc_holder/spell/aoe_turf/conjure/carp
+	name = "Summon Carp"
+	desc = "This spell conjures a simple carp."
+
+	school = "conjuration"
+	charge_max = 1200
+	clothes_req = 1
+	invocation = "NOUK FHUNMM SACP RISSKA"
+	invocation_type = "shout"
+	range = 1
+
+	summon_type = list(/mob/living/simple_animal/hostile/carp)
+	cast_sound = 'sound/magic/Summon_Karp.ogg'
+
+
+/obj/effect/proc_holder/spell/aoe_turf/conjure/construct
+	name = "Artificer"
+	desc = "This spell conjures a construct which may be controlled by Shades"
+
+	school = "conjuration"
+	charge_max = 600
+	clothes_req = 0
+	invocation = "none"
+	invocation_type = "none"
+	range = 0
+
+	summon_type = list(/obj/structure/constructshell)
+
+	action_icon_state = "artificer"
+	cast_sound = 'sound/magic/SummonItems_generic.ogg'
+
+
+/obj/effect/proc_holder/spell/aoe_turf/conjure/creature
+	name = "Summon Creature Swarm"
+	desc = "This spell tears the fabric of reality, allowing horrific daemons to spill forth"
+
+	school = "conjuration"
+	charge_max = 1200
+	clothes_req = 0
+	invocation = "IA IA"
+	invocation_type = "shout"
+	summon_amt = 10
+	range = 3
+
+	summon_type = list(/mob/living/simple_animal/hostile/creature)
+	cast_sound = 'sound/magic/SummonItems_generic.ogg'
+
+/obj/effect/proc_holder/spell/targeted/trigger/blind
+	name = "Blind"
+	desc = "This spell temporarily blinds a single person and does not require wizard garb."
+
+	school = "transmutation"
+	charge_max = 300
+	clothes_req = 0
+	invocation = "STI KALY"
+	invocation_type = "whisper"
+	message = "<span class='notice'>Your eyes cry out in pain!</span>"
+	cooldown_min = 50 //12 deciseconds reduction per rank
+
+	starting_spells = list("/obj/effect/proc_holder/spell/targeted/inflict_handler/blind","/obj/effect/proc_holder/spell/targeted/genetic/blind")
+
+	action_icon_state = "blind"
+
+/obj/effect/proc_holder/spell/aoe_turf/conjure/creature/cult
+	name = "Summon Creatures (DANGEROUS)"
+	cult_req = 1
+	charge_max = 5000
+	summon_amt = 2
+
+
+
+/obj/effect/proc_holder/spell/targeted/inflict_handler/blind
+	amt_eye_blind = 10
+	amt_eye_blurry = 20
+	sound = 'sound/magic/Blind.ogg'
+
+/obj/effect/proc_holder/spell/targeted/genetic/blind
+	mutations = list(BLINDMUT)
+	duration = 300
+	sound = 'sound/magic/Blind.ogg'
+/obj/effect/proc_holder/spell/aoe_turf/repulse
+	name = "Repulse"
+	desc = "This spell throws everything around the user away."
+	charge_max = 400
+	clothes_req = 1
+	invocation = "GITTAH WEIGH"
+	invocation_type = "shout"
+	range = 5
+	cooldown_min = 150
+	selection_type = "view"
+	sound = 'sound/magic/Repulse.ogg'
+	var/maxthrow = 5
+	var/sparkle_path = /obj/effect/overlay/temp/gravpush
+
+	action_icon_state = "repulse"
+
+/obj/effect/proc_holder/spell/aoe_turf/repulse/cast(list/targets,mob/user = usr, var/stun_amt = 2)
+	var/list/thrownatoms = list()
+	var/atom/throwtarget
+	var/distfromcaster
+	playMagSound()
+	for(var/turf/T in targets) //Done this way so things don't get thrown all around hilariously.
+		for(var/atom/movable/AM in T)
+			thrownatoms += AM
+
+	for(var/am in thrownatoms)
+		var/atom/movable/AM = am
+		if(AM == user || AM.anchored)
+			continue
+
+		throwtarget = get_edge_target_turf(user, get_dir(user, get_step_away(AM, user)))
+		distfromcaster = get_dist(user, AM)
+		if(distfromcaster == 0)
+			if(isliving(AM))
+				var/mob/living/M = AM
+				M.Weaken(5)
+				M.adjustBruteLoss(5)
+				to_chat(M, "<span class='userdanger'>You're slammed into the floor by [user]!</span>")
 		else
-			if (!(locate(/datum/objective/hijack) in wizard.objectives))
-				var/datum/objective/hijack/hijack_objective = new
-				hijack_objective.owner = wizard
-				wizard.objectives += hijack_objective
-	return
+			new sparkle_path(get_turf(AM), get_dir(user, AM)) //created sparkles will disappear on their own
+			if(isliving(AM))
+				var/mob/living/M = AM
+				M.Weaken(stun_amt)
+				to_chat(M, "<span class='userdanger'>You're thrown back by [user]!</span>")
+			AM.throw_at(throwtarget, ((Clamp((maxthrow - (Clamp(distfromcaster - 2, 0, distfromcaster))), 3, maxthrow))), 1,user)//So stuff gets tossed around at the same time.
 
+/obj/effect/proc_holder/spell/aoe_turf/repulse/xeno //i fixed conflicts only to find out that this is in the WIZARD file instead of the xeno file?!
+	name = "Tail Sweep"
+	desc = "Throw back attackers with a sweep of your tail."
+	sound = 'sound/magic/Tail_swing.ogg'
+	charge_max = 150
+	clothes_req = 0
+	range = 2
+	cooldown_min = 150
+	invocation_type = "none"
+	sparkle_path = /obj/effect/overlay/temp/dir_setting/tailsweep
+	action_icon_state = "tailsweep"
+	action_background_icon_state = "bg_alien"
 
-/datum/game_mode/proc/name_wizard(mob/living/carbon/human/wizard_mob)
-	//Allows the wizard to choose a custom name or go with a random one. Spawn 0 so it does not lag the round starting.
-	var/wizard_name_first = pick(GLOB.wizard_first)
-	var/wizard_name_second = pick(GLOB.wizard_second)
-	var/randomname = "[wizard_name_first] [wizard_name_second]"
-	spawn(0)
-		var/newname = copytext(sanitize(input(wizard_mob, "You are the Space Wizard. Would you like to change your name to something else?", "Name change", randomname) as null|text),1,MAX_NAME_LEN)
+/obj/effect/proc_holder/spell/aoe_turf/repulse/xeno/cast(list/targets,mob/user = usr)
+	if(istype(user, /mob/living/carbon))
+		var/mob/living/carbon/C = user
+		playsound(C.loc, 'sound/voice/hiss5.ogg', 80, 1, 1)
+		C.spin(6,1)
+	..(targets, user, 3)
 
-		if (!newname)
-			newname = randomname
+/obj/effect/proc_holder/spell/targeted/sacred_flame
+	name = "Sacred Flame"
+	desc = "Makes everyone around you more flammable, and lights yourself on fire."
+	charge_max = 60
+	clothes_req = 0
+	invocation = "FI'RAN DADISKO"
+	invocation_type = "shout"
+	max_targets = 0
+	range = 6
+	include_user = 1
+	selection_type = "view"
+	action_icon_state = "sacredflame"
+	sound = 'sound/magic/Fireball.ogg'
 
-		wizard_mob.real_name = newname
-		wizard_mob.name = newname
-		if(wizard_mob.mind)
-			wizard_mob.mind.name = newname
-	return
+/obj/effect/proc_holder/spell/targeted/sacred_flame/cast(list/targets, mob/user = usr)
+	for(var/mob/living/L in targets)
+		L.adjust_fire_stacks(20)
+	if(isliving(user))
+		var/mob/living/U = user
+		U.IgniteMob()
 
+/obj/effect/proc_holder/spell/targeted/conjure_item/spellpacket
+	name = "Thrown Lightning"
+	desc = "Forged from eldrich energies, a packet of pure power, known as a spell packet will appear in your hand, that when thrown will stun the target."
+	clothes_req = 1
+	item_type = /obj/item/spellpacket/lightningbolt
+	charge_max = 10
 
-/datum/game_mode/proc/greet_wizard(datum/mind/wizard, you_are=1)
-	if (you_are)
-		to_chat(wizard.current, "<span class='boldannounce'>You are the Space Wizard!</span>")
-	to_chat(wizard.current, "<B>The Space Wizards Federation has given you the following tasks:</B>")
-
-	wizard.announce_objectives()
-	return
-
-
-/datum/game_mode/proc/learn_basic_spells(mob/living/carbon/human/wizard_mob)
-	if(!istype(wizard_mob) || !wizard_mob.mind)
-		return 0
-	wizard_mob.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/projectile/magic_missile(null)) //Wizards get Magic Missile and Ethereal Jaunt by default
-	wizard_mob.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/ethereal_jaunt(null))
-
-
-/datum/game_mode/proc/equip_wizard(mob/living/carbon/human/wizard_mob)
-	if (!istype(wizard_mob))
-		return
-
-	//So zards properly get their items when they are admin-made.
-	qdel(wizard_mob.wear_suit)
-	qdel(wizard_mob.head)
-	qdel(wizard_mob.shoes)
-	for(var/obj/item/I in wizard_mob.held_items)
-		qdel(I)
-	qdel(wizard_mob.r_store)
-	qdel(wizard_mob.l_store)
-
-	wizard_mob.set_species(/datum/species/human)
-	wizard_mob.equip_to_slot_or_del(new /obj/item/device/radio/headset(wizard_mob), slot_ears)
-	wizard_mob.equip_to_slot_or_del(new /obj/item/clothing/under/color/lightpurple(wizard_mob), slot_w_uniform)
-	wizard_mob.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal/magic(wizard_mob), slot_shoes)
-	wizard_mob.equip_to_slot_or_del(new /obj/item/clothing/suit/wizrobe(wizard_mob), slot_wear_suit)
-	wizard_mob.equip_to_slot_or_del(new /obj/item/clothing/head/wizard(wizard_mob), slot_head)
-	wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(wizard_mob), slot_back)
-	wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival(wizard_mob), slot_in_backpack)
-	wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/teleportation_scroll(wizard_mob), slot_r_store)
-	var/obj/item/weapon/spellbook/spellbook = new /obj/item/weapon/spellbook(wizard_mob)
-	spellbook.owner = wizard_mob
-	wizard_mob.put_in_hands_or_del(spellbook)
-
-	to_chat(wizard_mob, "You will find a list of available spells in your spell book. Choose your magic arsenal carefully.")
-	to_chat(wizard_mob, "The spellbook is bound to you, and others cannot use it.")
-	to_chat(wizard_mob, "In your pockets you will find a teleport scroll. Use it as needed.")
-	wizard_mob.mind.store_memory("<B>Remember:</B> do not forget to prepare your spells.")
-	return 1
-
-
-/datum/game_mode/wizard/check_finished()
-
-	for(var/datum/mind/wizard in wizards)
-		if(isliving(wizard.current) && wizard.current.stat!=DEAD)
-			return ..()
-
-	if(SSevents.wizardmode) //If summon events was active, turn it off
-		SSevents.toggleWizardmode()
-		SSevents.resetFrequency()
-
-	return ..()
-
-/datum/game_mode/wizard/declare_completion()
-	if(finished)
-		SSblackbox.set_details("round_end_result","loss - wizard killed")
-		to_chat(world, "<span class='userdanger'>The wizard[(wizards.len>1)?"s":""] has been killed by the crew! The Space Wizards Federation has been taught a lesson they will not soon forget!</span>")
-
-		SSticker.news_report = WIZARD_KILLED
-
+/obj/effect/proc_holder/spell/targeted/conjure_item/spellpacket/cast(list/targets, mob/user = usr)
 	..()
-	return 1
+	for(var/mob/living/carbon/C in targets)
+		C.throw_mode_on()
 
+/obj/item/spellpacket/lightningbolt
+	name = "\improper Lightning bolt Spell Packet"
+	desc = "Some birdseed wrapped in cloth that somehow crackles with electricity."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "snappop"
+	w_class = WEIGHT_CLASS_TINY
 
-/datum/game_mode/proc/auto_declare_completion_wizard()
-	if(wizards.len)
-		var/text = "<br><font size=3><b>the wizards/witches were:</b></font>"
+/obj/item/spellpacket/lightningbolt/throw_impact(atom/hit_atom)
+	if(!..())
+		if(isliving(hit_atom))
+			var/mob/living/M = hit_atom
+			M.electrocute_act(80, src, illusion = 1)
+		qdel(src)
 
-		for(var/datum/mind/wizard in wizards)
+/obj/item/spellpacket/lightningbolt/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback)
+	. = ..()
+	if(ishuman(thrower))
+		var/mob/living/carbon/human/H = thrower
+		H.say("LIGHTNINGBOLT!!")
 
-			text += "<br><b>[wizard.key]</b> was <b>[wizard.name]</b> ("
-			if(wizard.current)
-				if(wizard.current.stat == DEAD)
-					text += "died"
-				else
-					text += "survived"
-				if(wizard.current.real_name != wizard.name)
-					text += " as <b>[wizard.current.real_name]</b>"
-			else
-				text += "body destroyed"
-			text += ")"
-
-			var/count = 1
-			var/wizardwin = 1
-			for(var/datum/objective/objective in wizard.objectives)
-				if(objective.check_completion())
-					text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='green'><B>Success!</B></font>"
-					SSblackbox.add_details("wizard_objective","[objective.type]|SUCCESS")
-				else
-					text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='red'>Fail.</font>"
-					SSblackbox.add_details("wizard_objective","[objective.type]|FAIL")
-					wizardwin = 0
-				count++
-
-			if(wizard.current && wizard.current.stat!=2 && wizardwin)
-				text += "<br><font color='green'><B>The wizard was successful!</B></font>"
-				SSblackbox.add_details("wizard_success","SUCCESS")
-			else
-				text += "<br><font color='red'><B>The wizard has failed!</B></font>"
-				SSblackbox.add_details("wizard_success","FAIL")
-			if(wizard.spell_list.len>0)
-				text += "<br><B>[wizard.name] used the following spells: </B>"
-				var/i = 1
-				for(var/obj/effect/proc_holder/spell/S in wizard.spell_list)
-					text += "[S.name]"
-					if(wizard.spell_list.len > i)
-						text += ", "
-					i++
-			text += "<br>"
-
-		to_chat(world, text)
-	return 1
-
-//OTHER PROCS
-
-//To batch-remove wizard spells. Linked to mind.dm.
-/mob/proc/spellremove(mob/M)
-	if(!mind)
-		return
-	for(var/X in src.mind.spell_list)
-		var/obj/effect/proc_holder/spell/spell_to_remove = X
-		qdel(spell_to_remove)
-		mind.spell_list -= spell_to_remove
-
-//returns whether the mob is a wizard (or apprentice)
-/proc/iswizard(mob/living/M)
-	return istype(M) && M.mind && SSticker && SSticker.mode && ((M.mind in SSticker.mode.wizards) || (M.mind in SSticker.mode.apprentices))
-
-
-/datum/game_mode/proc/update_wiz_icons_added(datum/mind/wiz_mind)
-	var/datum/atom_hud/antag/wizhud = GLOB.huds[ANTAG_HUD_WIZ]
-	wizhud.join_hud(wiz_mind.current)
-	set_antag_hud(wiz_mind.current, ((wiz_mind in wizards) ? "wizard" : "apprentice"))
-
-/datum/game_mode/proc/update_wiz_icons_removed(datum/mind/wiz_mind)
-	var/datum/atom_hud/antag/wizhud = GLOB.huds[ANTAG_HUD_WIZ]
-	wizhud.leave_hud(wiz_mind.current)
-	set_antag_hud(wiz_mind.current, null)
