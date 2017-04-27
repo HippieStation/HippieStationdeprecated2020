@@ -1,0 +1,12 @@
+diff a/_maps/map_files/Cerestation/cerestation.dmm b/_maps/map_files/Cerestation/cerestation.dmm	(rejected hunks)
+@@ -37489,7 +37489,9 @@
+ 	},
+ /area/engine/engineering)
+ "box" = (
+-/obj/structure/reflector/box,
++/obj/structure/reflector/box{
++	anchored = 1
++	},
+ /turf/open/floor/plasteel/black{
+ 	baseturf = /turf/open/floor/plating/asteroid/airless
+ 	},
