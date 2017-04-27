@@ -2,6 +2,11 @@
 
 INITIALIZE_IMMEDIATE(/mob/dead)
 
+/mob/dead/Initialize()
+	. = ..()
+	if(config.cross_allowed)
+		verbs += /mob/dead/proc/server_hop
+
 /mob/dead/dust()	//ghosts can't be vaporised.
 	return
 
