@@ -514,7 +514,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 
 //Rite of Resurrection: Requires the corpse of a cultist and that there have been less revives than the number of people GLOB.sacrificed
 /obj/effect/rune/raise_dead
-	cultist_name = "Raise Dead"
+	cultist_name = "Resurrect Cultist"
 	cultist_desc = "requires the corpse of a cultist placed upon the rune. Provided there have been sufficient sacrifices, they will be revived."
 	invocation = null //Depends on the name of the user - see below
 	icon_state = "1"
