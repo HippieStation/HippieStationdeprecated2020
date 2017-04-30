@@ -27887,18 +27887,6 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /turf/open/floor/plating,
 /area/tcommsat/server)
-"aSN" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/fulltile,
-/obj/machinery/atmospherics/pipe/simple/general/visible,
-/turf/open/floor/plating,
-/area/tcommsat/server)
-"aSN" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/fulltile,
-/obj/machinery/atmospherics/pipe/simple/general/visible,
-/turf/open/floor/plating,
-/area/tcommsat/server)
 "aSO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	tag = "icon-intact (NORTHEAST)";
@@ -72634,11 +72622,11 @@ aHl
 aIi
 aJs
 aKz
-buX
+buW
 aMR
 buZ
-bva
-bvb
+buZ
+buW
 aQL
 aRI
 aSS
@@ -72895,7 +72883,7 @@ aLP
 aMS
 aMS
 aOC
-bvc
+buW
 aQM
 aRJ
 aST
@@ -73923,7 +73911,7 @@ aLT
 aMW
 aMW
 aOD
-bve
+buW
 aQQ
 aRN
 aSX
@@ -74176,11 +74164,11 @@ aHr
 aIo
 aJw
 aKE
-buY
+buW
 aMX
 aMX
 aMX
-bvf
+buW
 aQR
 aRO
 aSY
