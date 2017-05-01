@@ -78,6 +78,24 @@
 		cmd_admin_pm(href_list["priv_msg"],null)
 		return
 
+	//Mentor Msg
+	if(href_list["mentor_msg"])
+		if(config.mentors_mobname_only)
+			var/mob/M = locate(href_list["mentor_msg"])
+			cmd_mentor_pm(M,null)
+		else
+			cmd_mentor_pm(href_list["mentor_msg"],null)
+		return
+
+	//Mentor Follow
+	if(href_list["mentor_follow"])
+		var/mob/living/M = locate(href_list["mentor_follow"])
+
+		if(istype(M))
+			mentor_follow(M)
+
+		return
+
 	switch(href_list["_src_"])
 		if("holder")
 			hsrc = holder
@@ -182,6 +200,13 @@ GLOBAL_LIST(external_rsc_urls)
 		GLOB.admins |= src
 		holder.owner = src
 
+	//Mentor Authorisation
+	var/mentor = mentor_datums[ckey]
+	if(mentor)
+		verbs += /client/proc/cmd_mentor_say
+		verbs += /client/proc/show_mentor_memo
+		GLOB.mentors += src
+
 	//preferences datum - also holds some persistent data for the client (because we may as well keep these datums to a minimum)
 	prefs = GLOB.preferences_datums[ckey]
 	if(!prefs)
@@ -266,17 +291,21 @@ GLOBAL_LIST(external_rsc_urls)
 		if((global.comms_key == "default_pwd" || length(global.comms_key) <= 6) && global.comms_allowed) //It's the default value or less than 6 characters long, but it somehow didn't disable comms.
 			to_chat(src, "<span class='danger'>The server's API key is either too short or is the default value! Consider changing it immediately!</span>")
 
+	if(mentor && !holder)
+		mentor_memo_output("Show")
+
+
 	add_verbs_from_config()
 	set_client_age_from_db()
 	var/cached_player_age = player_age //we have to cache this because other shit may change it and we need it's current value now down below.
 	if (isnum(cached_player_age) && cached_player_age == -1) //first connection
-		player_age = 0	
+		player_age = 0
 	if(!IsGuestKey(key) && SSdbcore.IsConnected())
 		findJoinDate()
 
 	sync_client_with_db(tdata)
-	
-	
+
+
 	if (isnum(cached_player_age) && cached_player_age == -1) //first connection
 		if (config.panic_bunker && !holder && !(ckey in GLOB.deadmins))
 			log_access("Failed Login: [key] - New account attempting to connect during panic bunker")
@@ -295,7 +324,7 @@ GLOBAL_LIST(external_rsc_urls)
 				send2irc_adminless_only("New-user", "[key_name(src)] is connecting for the first time!")
 	else if (isnum(cached_player_age) && cached_player_age < config.notify_new_player_age)
 		message_admins("New user: [key_name_admin(src)] just connected with an age of [cached_player_age] day[(player_age==1?"":"s")]")
-	
+
 	get_message_output("watchlist entry", ckey)
 	check_ip_intel()
 
@@ -340,7 +369,7 @@ GLOBAL_LIST(external_rsc_urls)
 		adminGreet(1)
 		holder.owner = null
 		GLOB.admins -= src
-    
+
 		if (!GLOB.admins.len && SSticker.IsRoundInProgress()) //Only report this stuff if we are currently playing.
 			if(!GLOB.admins.len) //Apparently the admin logging out is no longer an admin at this point, so we have to check this towards 0 and not towards 1. Awell.
 				var/cheesy_message = pick(
@@ -357,9 +386,9 @@ GLOBAL_LIST(external_rsc_urls)
 					"What happened? Where has everyone gone?",\
 					"Forever alone :("\
 				)
-				
+
 				send2irc("Server", "[cheesy_message] (No admins online)")
-	
+
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src

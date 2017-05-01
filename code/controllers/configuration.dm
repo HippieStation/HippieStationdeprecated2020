@@ -105,6 +105,9 @@
 	var/use_age_restriction_for_jobs = 0 //Do jobs use account age restrictions? --requires database
 	var/use_account_age_for_jobs = 0	//Uses the time they made the account for the job restriction stuff. New player joining alerts should be unaffected.
 	var/see_own_notes = 0 //Can players see their own admin notes (read-only)? Config option in config.txt
+	var/mentors_mobname_only = 0		// Only display mob name to mentors in mentorhelps
+	var/mentor_legacy_system = 0		// Whether to use the legacy mentor system (flat file) instead of SQL
+
 
 	//Population cap vars
 	var/soft_popcap				= 0
@@ -543,6 +546,10 @@
 					error_silence_time = text2num(value)
 				if("error_msg_delay")
 					error_msg_delay = text2num(value)
+				if ("mentor_mobname_only")
+					config.mentors_mobname_only = 1
+				if ("mentor_legacy_system")
+					config.mentor_legacy_system = 1
 				else
 					GLOB.diary << "Unknown setting in configuration: '[name]'"
 
