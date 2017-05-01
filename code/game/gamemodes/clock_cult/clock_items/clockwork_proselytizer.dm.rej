@@ -1,0 +1,9 @@
+diff a/code/game/gamemodes/clock_cult/clock_items/clockwork_proselytizer.dm b/code/game/gamemodes/clock_cult/clock_items/clockwork_proselytizer.dm	(rejected hunks)
+@@ -12,6 +12,7 @@
+ 	var/uses_power = TRUE
+ 	var/metal_to_power = FALSE
+ 	var/repairing = null //what we're currently repairing, if anything
++	var/obj/effect/clockwork/sigil/transmission/recharging = null //the sigil we're charging from, if any
+ 	var/speed_multiplier = 1 //how fast this proselytizer works
+ 	var/charge_rate = MIN_CLOCKCULT_POWER //how much power we gain every two seconds
+ 	var/charge_delay = 2 //how many proccess ticks remain before we can start to charge
