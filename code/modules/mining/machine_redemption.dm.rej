@@ -1,0 +1,104 @@
+diff a/code/modules/mining/machine_redemption.dm b/code/modules/mining/machine_redemption.dm	(rejected hunks)
+@@ -228,69 +247,52 @@
+ 		else
+ 			to_chat(usr, "<span class='warning'>Not a valid ID!</span>")
+ 	if(href_list["release"])
+-		if(check_access(inserted_id) || allowed(usr)) //Check the ID inside, otherwise check the user.
+-			if(!(text2path(href_list["release"]) in stack_list))
++		if(check_access(inserted_id) || allowed(usr)) //Check the ID inside, otherwise check the user
++			var/mat_id = href_list["release"]
++			if(!materials.materials[mat_id])
++				return
++
++			var/datum/material/mat = materials.materials[mat_id]
++			var/stored_amount = mat.amount / MINERAL_MATERIAL_AMOUNT
++
++			if(!stored_amount)
+ 				return
+-			var/obj/item/stack/sheet/inp = stack_list[text2path(href_list["release"])]
+-			var/obj/item/stack/sheet/out = new inp.type(src, 0, FALSE)
++
+ 			var/desired = input("How many sheets?", "How many sheets to eject?", 1) as null|num
+-			out.amount = round(min(desired,50,inp.amount))
+-			if(out.amount >= 1)
+-				inp.amount -= out.amount
+-				unload_mineral(out)
+-			if(inp.amount < 1)
+-				stack_list -= text2path(href_list["release"])
+-				qdel(inp)
++			var/sheets_to_remove = round(min(desired,50,stored_amount))
++
++			var/out = get_step(src, output_dir)
++			materials.retrieve_sheets(sheets_to_remove, mat_id, out)
++
+ 		else
+ 			to_chat(usr, "<span class='warning'>Required access not found.</span>")
+-	if(href_list["alloytype1"] && href_list["alloytype2"] && href_list["alloytypeout"])
+-		var/alloytype1 = text2path(href_list["alloytype1"])
+-		var/alloytype2 = text2path(href_list["alloytype2"])
+-		var/alloytypeout = text2path(href_list["alloytypeout"])
+-		if(check_access(inserted_id) || allowed(usr))
+-			if(!(alloytype1 in stack_list))
+-				return
+-			if(!(alloytype2 in stack_list))
+-				return
+-			var/obj/item/stack/sheet/stack1 = stack_list[alloytype1]
+-			var/obj/item/stack/sheet/stack2 = stack_list[alloytype2]
++
++	if(href_list["alloy"])
++		var/alloy_id = href_list["alloy"]
++		var/datum/design/alloy = files.FindDesignByID(alloy_id)
++		if((check_access(inserted_id) || allowed(usr)) && alloy)
+ 			var/desired = input("How many sheets?", "How many sheets would you like to smelt?", 1) as null|num
+-			var/obj/item/stack/sheet/alloyout = new alloytypeout
+-			alloyout.amount = round(min(desired,50,stack1.amount,stack2.amount))
+-			if(alloyout.amount >= 1)
+-				stack1.amount -= alloyout.amount
+-				stack2.amount -= alloyout.amount
+-				unload_mineral(alloyout)
+-			if(stack1.amount < 1)
+-				stack_list -= stack1
+-				qdel(stack1)
+-			if(stack2.amount < 1)
+-				stack_list -= stack2
+-				qdel(stack2)
++			var/smelt_amount = can_smelt_alloy(alloy)
++			var/amount = round(min(desired,50,smelt_amount))
++			materials.use_amount(alloy.materials, amount)
++
++			var/output = new alloy.build_path(src)
++			if(istype(output, /obj/item/stack/sheet))
++				var/obj/item/stack/sheet/mineral/produced_alloy = output
++				produced_alloy.amount = amount
++				unload_mineral(produced_alloy)
++			else
++				unload_mineral(output)
++
+ 		else
+ 			to_chat(usr, "<span class='warning'>Required access not found.</span>")
+ 	updateUsrDialog()
+ 	return
+ 
+ /obj/machinery/mineral/ore_redemption/ex_act(severity, target)
+-	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+-	s.set_up(5, 1, src)
+-	s.start()
++	do_sparks(5, TRUE, src)
+ 	..()
+ 
+-//empty the redemption machine by stacks of at most max_amount (50 at this time) size
+-/obj/machinery/mineral/ore_redemption/proc/empty_content()
+-	var/obj/item/stack/sheet/s
+-
+-	for(var/O in stack_list)
+-		s = stack_list[O]
+-		while(s.amount > s.max_amount)
+-			new s.type(loc,s.max_amount)
+-			s.use(s.max_amount)
+-		s.forceMove(get_turf(src))
+-		s.layer = initial(s.layer)
+-		s.plane = initial(s.plane)
+-
+ /obj/machinery/mineral/ore_redemption/power_change()
+ 	..()
+ 	update_icon()

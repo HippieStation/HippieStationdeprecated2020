@@ -12,9 +12,6 @@
 	output_dir = SOUTH
 	req_access = list(GLOB.access_mineral_storeroom)
 	var/req_access_reclaim = GLOB.access_mining_station
-	var/stk_types = list()
-	var/stk_amt   = list()
-	var/stack_list = list() //Key: Type.  Value: Instance of type.
 	var/obj/item/weapon/card/id/inserted_id
 	var/points = 0
 	var/ore_pickup_rate = 15
@@ -24,11 +21,20 @@
 	speed_process = 1
 	var/message_sent = FALSE
 	var/list/ore_buffer = list()
+	var/datum/material_container/materials
+	var/datum/research/files
 
-/obj/machinery/mineral/ore_redemption/New()
-	..()
+/obj/machinery/mineral/ore_redemption/Initialize()
+	. = ..()
 	var/obj/item/weapon/circuitboard/machine/ore_redemption/B = new
 	B.apply_default_parts(src)
+	materials = new(src, list(MAT_METAL, MAT_GLASS, MAT_SILVER, MAT_GOLD, MAT_DIAMOND, MAT_PLASMA, MAT_URANIUM, MAT_BANANIUM, MAT_TITANIUM, MAT_BLUESPACE),INFINITY)
+	files = new /datum/research/smelter(src)
+
+/obj/machinery/mineral/ore_redemption/Destroy()
+	QDEL_NULL(materials)
+	QDEL_NULL(files)
+	return ..()
 
 /obj/item/weapon/circuitboard/machine/ore_redemption
 	name = "Ore Redemption (Machine Board)"
@@ -55,35 +61,67 @@
 	point_upgrade = point_upgrade_temp
 	sheet_per_ore = sheet_per_ore_temp
 
-/obj/machinery/mineral/ore_redemption/proc/process_sheet(obj/item/weapon/ore/O)
-	var/obj/item/stack/sheet/processed_sheet = SmeltMineral(O)
-	if(processed_sheet)
-		var/obj/item/stack/sheet/s
-		if(!stack_list[processed_sheet])
-			s = new processed_sheet(src, FALSE)
-			s.amount = 0
-			stack_list[processed_sheet] = s
-		s = stack_list[processed_sheet]
-		s.amount += sheet_per_ore //Stack the sheets
-		ore_buffer -= O
-		qdel(O) //... garbage collect
+/obj/machinery/mineral/ore_redemption/proc/smelt_ore(obj/item/weapon/ore/O)
+
+	ore_buffer -= O
+
+	if(O && O.refined_type)
+		points += O.points * point_upgrade
+
+	var/material_amount = materials.get_item_material_amount(O)
+
+	if(!material_amount)
+		qdel(O) //no materials, incinerate it
+
+	else if(!materials.has_space(material_amount)) //if there is no space, eject it
+		unload_mineral(O)
+
+	else
+		materials.insert_item(O) //insert it
+		qdel(O)
+
+/obj/machinery/mineral/ore_redemption/proc/can_smelt_alloy(datum/design/D)
+	if(D.make_reagents.len)
+		return 0
+
+	var/build_amount = 1
+
+	for(var/mat_id in D.materials)
+		var/M = D.materials[mat_id]
+		var/datum/material/redemption_mat = materials.materials[mat_id]
+
+		if(!M || !redemption_mat)
+			return 0
+
+		build_amount = min(build_amount, round(redemption_mat.amount / M))
+
+	return build_amount
 
 /obj/machinery/mineral/ore_redemption/proc/process_ores(list/ores_to_process)
 	var/current_amount = 0
 	for(var/ore in ores_to_process)
 		if(current_amount >= ore_pickup_rate)
 			break
-		process_sheet(ore)
+		smelt_ore(ore)
 
 /obj/machinery/mineral/ore_redemption/proc/send_console_message()
-	if(z != ZLEVEL_STATION || !LAZYLEN(stack_list))
+	if(z != ZLEVEL_STATION)
 		return
 	message_sent = TRUE
 	var/area/A = get_area(src)
 	var/msg = "Now available in [A]:<br>"
-	for(var/s in stack_list)
-		var/obj/item/stack/sheet/sheet = stack_list[s]
-		msg += "[capitalize(sheet.name)]: [sheet.amount] sheets<br>"
+
+	var/has_minerals = FALSE
+
+	for(var/mat_id in materials.materials)
+		var/datum/material/M = materials.materials[mat_id]
+		var/mineral_amount = M.amount / MINERAL_MATERIAL_AMOUNT
+		if(mineral_amount)
+			has_minerals = TRUE
+		msg += "[capitalize(M.name)]: [mineral_amount] sheets<br>"
+
+	if(!has_minerals)
+		return
 
 	for(var/obj/machinery/requests_console/D in GLOB.allConsoles)
 		if(D.receive_ore_updates)
@@ -144,15 +182,8 @@
 	return ..()
 
 /obj/machinery/mineral/ore_redemption/on_deconstruction()
-	empty_content()
-
-/obj/machinery/mineral/ore_redemption/proc/SmeltMineral(obj/item/weapon/ore/O)
-	if(O && O.refined_type)
-		var/obj/item/stack/sheet/M = O.refined_type
-		points += O.points * point_upgrade
-		return M
-	qdel(O)//No refined type? Purge it.
-	return
+	materials.retrieve_all()
+	..()
 
 /obj/machinery/mineral/ore_redemption/attack_hand(mob/user)
 	if(..())
@@ -169,30 +200,26 @@
 	else
 		dat += "No ID inserted.  <A href='?src=\ref[src];insert_id=1'>Insert ID.</A><br><br>"
 
-	for(var/O in stack_list)
-		var/obj/item/stack/sheet/s = stack_list[O]
-		if(s.amount)
-			dat += "[capitalize(s.name)]: [s.amount] <A href='?src=\ref[src];release=[s.type]'>Release</A><br>"
+	for(var/mat_id in materials.materials)
+		var/datum/material/M = materials.materials[mat_id]
+		if(M.amount)
+			var/sheet_amount = M.amount / MINERAL_MATERIAL_AMOUNT
+			dat += "[capitalize(M.name)]: [sheet_amount] "
+			if(sheet_amount >= 1)
+				dat += "<A href='?src=\ref[src];release=[mat_id]'>Release</A><br>"
+			else
+				dat += "<span  class='linkOff'>Release</span><br>"
 
-	var/obj/item/stack/sheet/metalstack
-	if(/obj/item/stack/sheet/metal in stack_list)
-		metalstack = stack_list[/obj/item/stack/sheet/metal]
+	for(var/v in files.known_designs)
+		var/datum/design/D = files.known_designs[v]
+		if(can_smelt_alloy(D))
+			dat += "[D.name]: <A href='?src=\ref[src];alloy=[D.id]'>Smelt</A><br>"
+		else
+			dat += "[D.name]: <span class='linkOff'>Smelt</span><br>"
 
-	var/obj/item/stack/sheet/plasmastack
-	if((/obj/item/stack/sheet/mineral/plasma in stack_list))
-		plasmastack = stack_list[/obj/item/stack/sheet/mineral/plasma]
+	dat += "<br><div class='statusDisplay'><b>Mineral Value List:</b><br>[get_ore_values()]</div>"
 
-	var/obj/item/stack/sheet/mineral/titaniumstack
-	if((/obj/item/stack/sheet/mineral/titanium in stack_list))
-		titaniumstack = stack_list[/obj/item/stack/sheet/mineral/titanium]
-
-	if(metalstack && plasmastack && min(metalstack.amount, plasmastack.amount))
-		dat += "Plasteel Alloy (Metal + Plasma): <A href='?src=\ref[src];alloytype1=/obj/item/stack/sheet/metal;alloytype2=/obj/item/stack/sheet/mineral/plasma;alloytypeout=/obj/item/stack/sheet/plasteel'>Smelt</A><BR>"
-	if(titaniumstack && plasmastack && min(titaniumstack.amount, plasmastack.amount))
-		dat += "Plastitanium Alloy (Titanium + Plasma): <A href='?src=\ref[src];alloytype1=/obj/item/stack/sheet/mineral/titanium;alloytype2=/obj/item/stack/sheet/mineral/plasma;alloytypeout=/obj/item/stack/sheet/mineral/plastitanium'>Smelt</A><BR>"
-	dat += "<br><div class='statusDisplay'><b>Mineral Value List:</b><BR>[get_ore_values()]</div>"
-
-	var/datum/browser/popup = new(user, "console_stacking_machine", "Ore Redemption Machine", 400, 500)
+	var/datum/browser/popup = new(user, "ore_redemption_machine", "Ore Redemption Machine", 400, 500)
 	popup.set_content(dat)
 	popup.open()
 	return
