@@ -68,6 +68,10 @@
 
 /datum/mind/Destroy()
 	SSticker.minds -= src
+	if(islist(antag_datums))
+		for(var/i in antag_datums)
+			qdel(i)
+		antag_datums = null
 	return ..()
 
 /datum/mind/proc/transfer_to(mob/new_character, var/force_key_move = 0)
