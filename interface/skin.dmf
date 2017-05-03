@@ -192,10 +192,6 @@ macro "default"
 		command = "Aghost"
 		is-disabled = false
 	elem 
-		name = "F4"
-		command = "msay"
-		is-disabled = false
-	elem 
 		name = "F6"
 		command = "Player-Panel"
 		is-disabled = false
@@ -498,10 +494,6 @@ macro "hotkeys"
 		command = "Aghost"
 		is-disabled = false
 	elem 
-		name = "F4"
-		command = "msay"
-		is-disabled = false
-	elem 
 		name = "F6"
 		command = "Player-Panel"
 		is-disabled = false
@@ -702,10 +694,6 @@ macro "robot-default"
 	elem 
 		name = "F5"
 		command = "Aghost"
-		is-disabled = false
-	elem 
-		name = "F4"
-		command = "msay"
 		is-disabled = false
 	elem 
 		name = "F6"
@@ -972,10 +960,6 @@ macro "robot-hotkeys"
 	elem 
 		name = "F5"
 		command = "Aghost"
-		is-disabled = false
-	elem 
-		name = "F4"
-		command = "msay"
 		is-disabled = false
 	elem 
 		name = "F6"
