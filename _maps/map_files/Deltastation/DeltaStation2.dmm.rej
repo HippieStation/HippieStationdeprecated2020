@@ -1,0 +1,67 @@
+diff a/_maps/map_files/Deltastation/DeltaStation2.dmm b/_maps/map_files/Deltastation/DeltaStation2.dmm	(rejected hunks)
+@@ -137322,7 +137322,7 @@ ehy
+ auC
+ auC
+ auC
+-ehH
++ehy
+ azc
+ aAc
+ aAZ
+@@ -137575,13 +137575,13 @@ aoJ
+ apL
+ are
+ asj
+-ehz
++ehy
+ auD
+ avP
+ avP
+ axP
+ ehJ
+-ehL
++ehy
+ aAY
+ ark
+ aDH
+@@ -138346,7 +138346,7 @@ aoK
+ apO
+ arh
+ asm
+-ehC
++ehy
+ auF
+ auF
+ auF
+@@ -138603,13 +138603,13 @@ aoL
+ apP
+ ari
+ asn
+-ehD
++ehy
+ auG
+ avR
+ avR
+ axT
+-ehK
+-ehM
++ehJ
++ehy
+ aBd
+ ark
+ aDL
+@@ -138860,11 +138860,11 @@ aoI
+ apK
+ ebP
+ aso
+-ehE
++ehy
+ auH
+ ehF
+-ehG
+-ehI
++ehF
++ehy
+ azg
+ aAe
+ aBe
