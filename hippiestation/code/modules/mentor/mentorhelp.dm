@@ -25,7 +25,7 @@
 		A << 'sound/items/bikehorn.ogg'
 		to_chat(A, mentor_msg)
 
-	src << "<span class='mentornotice'><font color='purple'>PM to-<b>Mentors</b>: [msg]</font></span>"
+	to_chat(src, "<span class='mentornotice'><font color='purple'>PM to-<b>Mentors</b>: [msg]</font></span>")
 	return
 
 /proc/get_mentor_counts()

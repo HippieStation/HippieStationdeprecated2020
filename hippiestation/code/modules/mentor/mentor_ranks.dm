@@ -6,7 +6,7 @@
 	if(!config.mentor_legacy_system)
 		SSdbcore.Connect()
 		if(!SSdbcore.IsConnected())
-			world.log << "Failed to connect to database in load_mentors()."
+			log_world("Failed to connect to database in load_mentors().")
 			GLOB.diary << "Failed to connect to database in load_mentors()."
 			config.mentor_legacy_system = 1
 			load_mentors()
@@ -20,7 +20,7 @@
 			if(!D)	continue									//will occur if an invalid rank is provided
 			D.associate(GLOB.directory[ckey])	//find the client for a ckey if they are connected and associate them with the new mentor datum
 	else
-		world.log << "Using legacy mentor system."
+		log_world("Using legacy mentor system.")
 		var/list/Lines = world.file2list("config/mentors.txt")
 
 		//process each line seperately
