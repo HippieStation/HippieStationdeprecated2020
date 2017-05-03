@@ -35,10 +35,3 @@
 			var/datum/mentors/D = new(ckey)	//create the admin datum and store it for later use
 			if(!D)	continue									//will occur if an invalid rank is provided
 			D.associate(GLOB.directory[ckey])	//find the client for a ckey if they are connected and associate them with the new admin datum
-
-	#ifdef TESTING
-	var/msg = "mentors Built:\n"
-	for(var/ckey in mentor_datums)
-		msg += "\t[ckey] - mentor\n"
-	testing(msg)
-	#endif
