@@ -2,7 +2,7 @@
 	/datum/configuration/var/mentor_legacy_system = 0		// Whether to use the legacy mentor system (flat file) instead of SQL
 
 //Here we can load hippie specific config settings.
-//Perhaps consider putting them in an alternate config file at some point, but for now this is fine.
+//They go in hippiestation/config/config.txt
 /proc/load_hippie_config(filename, type = "config")
 	var/list/Lines = world.file2list(filename)
 
