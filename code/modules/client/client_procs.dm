@@ -613,7 +613,7 @@ GLOBAL_LIST(external_rsc_urls)
 
 
 //Hook, override it to run code when dir changes
-//Like for /atoms, but clients are their own snowflake FUCK
+//Like for /atoms, but clients are their own snowflake FUCK!
 /client/proc/setDir(newdir)
 	dir = newdir
 
