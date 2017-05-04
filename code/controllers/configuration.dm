@@ -543,10 +543,6 @@
 					error_silence_time = text2num(value)
 				if("error_msg_delay")
 					error_msg_delay = text2num(value)
-				if ("mentor_mobname_only")
-					config.mentors_mobname_only = 1
-				if ("mentor_legacy_system")
-					config.mentor_legacy_system = 1
 				else
 					GLOB.diary << "Unknown setting in configuration: '[name]'"
 
