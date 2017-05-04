@@ -53,7 +53,7 @@
 	for(var/line in sortList(Lines))
 		msg += "[line]\n"
 
-	msg += "<b>Total Players: [length(GLOB.clients)]</b>"
+	msg += "<b>Total Players: [length(GLOB.client)]</b>"
 	to_chat(src, msg)
 
 /client/verb/adminwho()
