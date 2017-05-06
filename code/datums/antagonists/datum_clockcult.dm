@@ -106,58 +106,55 @@
 		hierophant_network.title = "Silicon"
 		hierophant_network.span_for_name = "nezbere"
 		hierophant_network.span_for_message = "brass"
-	else if(isbrain(owner))
-		hierophant_network.Grant(owner)
+	else if(isbrain(current))
+		hierophant_network.Grant(current)
 		hierophant_network.title = "Vessel"
 		hierophant_network.span_for_name = "nezbere"
 		hierophant_network.span_for_message = "alloy"
-	else if(isclockmob(owner))
-		hierophant_network.Grant(owner)
+	else if(isclockmob(current))
+		hierophant_network.Grant(current)
 		hierophant_network.title = "Construct"
 		hierophant_network.span_for_name = "nezbere"
 		hierophant_network.span_for_message = "brass"
-	owner.throw_alert("clockinfo", /obj/screen/alert/clockwork/infodump)
+	current.throw_alert("clockinfo", /obj/screen/alert/clockwork/infodump)
 	if(!GLOB.clockwork_gateway_activated)
-		owner.throw_alert("scripturereq", /obj/screen/alert/clockwork/scripture_reqs)
-	..()
+		current.throw_alert("scripturereq", /obj/screen/alert/clockwork/scripture_reqs)
+	update_slab_info()
 
-/datum/antagonist/clockcultist/remove_innate_effects()
-	GLOB.all_clockwork_mobs -= owner
-	owner.faction -= "ratvar"
-	owner.remove_language(/datum/language/ratvar)
-	owner.clear_alert("clockinfo")
-	owner.clear_alert("scripturereq")
-	for(var/datum/action/innate/function_call/F in owner.actions) //Removes any bound Ratvarian spears
+
+/datum/antagonist/clockcult/remove_innate_effects(mob/living/mob_override)
+	var/mob/living/current = owner.current
+	if(istype(mob_override))
+		current = mob_override
+	GLOB.all_clockwork_mobs -= current
+	current.faction -= "ratvar"
+	current.remove_language(/datum/language/ratvar)
+	current.clear_alert("clockinfo")
+	current.clear_alert("scripturereq")
+	for(var/datum/action/innate/function_call/F in owner.current.actions) //Removes any bound Ratvarian spears
 		qdel(F)
-	if(issilicon(owner))
-		var/mob/living/silicon/S = owner
+	if(issilicon(current))
+		var/mob/living/silicon/S = current
 		if(isAI(S))
 			var/mob/living/silicon/ai/A = S
-			A.can_be_carded = initial(A.can_be_carded)
 			A.requires_power = initial(A.requires_power)
-			A.cut_overlays()
 		S.make_laws()
 		S.update_icons()
 		S.show_laws()
-	var/mob/living/temp_owner = owner
+	var/mob/living/temp_owner = current
 	..()
 	if(iscyborg(temp_owner))
 		var/mob/living/silicon/robot/R = temp_owner
 		R.module.rebuild_modules()
 	if(temp_owner)
 		temp_owner.update_action_buttons_icon() //because a few clockcult things are action buttons and we may be wearing/holding them, we need to update buttons
+	update_slab_info()
 
-/datum/antagonist/clockcultist/on_remove()
-	if(!silent_update)
-		owner.visible_message("<span class='big'>[owner] seems to have remembered their true allegiance!</span>", \
+/datum/antagonist/clockcult/on_removal()
+	. = ..()
+	if(!silent)
+		owner.current.visible_message("<span class='big'>[owner] seems to have remembered their true allegiance!</span>", \
 		"<span class='userdanger'>A cold, cold darkness flows through your mind, extinguishing the Justiciar's light and all of your memories as his servant.</span>")
-	if(SSticker && SSticker.mode && owner.mind)
-		SSticker.mode.servants_of_ratvar -= owner.mind
-		SSticker.mode.update_servant_icons_removed(owner.mind)
-	if(owner.mind)
-		owner.mind.wipe_memory()
-		owner.mind.special_role = null
-	owner.log_message("<font color=#BE8700>Has renounced the cult of Ratvar!</font>", INDIVIDUAL_ATTACK_LOG)
-	if(iscyborg(owner))
-		to_chat(owner, "<span class='warning'>Despite your freedom from Ratvar's influence, you are still irreparably damaged and no longer possess certain functions such as AI linking.</span>")
-	..()
+	owner.current.log_message("<font color=#BE8700>Has renounced the cult of Ratvar!</font>", INDIVIDUAL_ATTACK_LOG)
+	if(iscyborg(owner.current))
+		to_chat(owner.current, "<span class='warning'>Despite your freedom from Ratvar's influence, you are still irreparably damaged and no longer possess certain functions such as AI linking.</span>")
