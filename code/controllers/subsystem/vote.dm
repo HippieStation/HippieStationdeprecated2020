@@ -202,10 +202,8 @@ SUBSYSTEM_DEF(vote)
 /datum/controller/subsystem/vote/proc/interface(client/C)
 	if(!C)
 		return
-	var/admin = 0
 	var/trialmin = 0
 	if(C.holder)
-		admin = 1
 		if(check_rights_for(C, R_ADMIN))
 			trialmin = 1
 	voting |= C
