@@ -2,7 +2,12 @@
 	// Animated beings of stone. They have increased defenses, and do not need to breathe. They're also slow as fuuuck.
 	name = "Golem"
 	id = "iron golem"
+<<<<<<< HEAD
 	species_traits = list(NOBREATH,RESISTHOT,RESISTCOLD,RESISTPRESSURE,NOFIRE,NOGUNS,NOBLOOD,RADIMMUNE,VIRUSIMMUNE,PIERCEIMMUNE,NODISMEMBER,MUTCOLORS)
+=======
+	species_traits = list(NOBREATH,RESISTHOT,RESISTCOLD,RESISTPRESSURE,NOFIRE,NOGUNS,NOBLOOD,RADIMMUNE,VIRUSIMMUNE,PIERCEIMMUNE,NODISMEMBER,MUTCOLORS,NO_UNDERWEAR)
+	mutant_organs = list(/obj/item/organ/adamantine_resonator)
+>>>>>>> 5aed96d5e4... Merge pull request #26772 from coiax/adamantine-leaders
 	speedmod = 2
 	armor = 55
 	siemens_coeff = 0
@@ -54,8 +59,9 @@
 	name = "Adamantine Golem"
 	id = "adamantine golem"
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/golem/adamantine
+	mutant_organs = list(/obj/item/organ/adamantine_resonator, /obj/item/organ/vocal_cords/adamantine)
 	fixed_mut_color = "4ed"
-	info_text = "As an <span class='danger'>Adamantine Golem</span>, you don't have any special traits."
+	info_text = "As an <span class='danger'>Adamantine Golem</span>, you possess special vocal cords allowing you to \"resonate\" messages to all golems."
 	prefix = "Adamantine"
 
 //Explodes on death
