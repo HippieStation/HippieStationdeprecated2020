@@ -20,6 +20,7 @@
 	var/oxy_damage = 0
 	density = 1
 	anchored = 1
+	var/banType = "lavaland"
 
 /obj/effect/mob_spawn/attack_ghost(mob/user)
 	if(!SSticker.HasRoundStarted() || !loc)
@@ -27,7 +28,11 @@
 	if(!uses)
 		to_chat(user, "<span class='warning'>This spawner is out of charges!</span>")
 		return
+<<<<<<< HEAD
 	if(jobban_isbanned(user, "lavaland") || jobban_isbanned(user, CATBAN) || jobban_isbanned(user, CLUWNEBAN))
+=======
+	if(jobban_isbanned(user, banType))
+>>>>>>> 4687dd0117... Devil refactor+small revamp (#26815)
 		to_chat(user, "<span class='warning'>You are jobanned!</span>")
 		return
 	var/ghost_role = alert("Become [mob_name]? (Warning, You can no longer be cloned!)",,"Yes","No")
