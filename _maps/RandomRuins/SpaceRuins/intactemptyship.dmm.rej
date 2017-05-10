@@ -1,0 +1,28 @@
+diff a/_maps/RandomRuins/SpaceRuins/intactemptyship.dmm b/_maps/RandomRuins/SpaceRuins/intactemptyship.dmm	(rejected hunks)
+@@ -13,7 +13,7 @@
+ /turf/closed/wall/mineral/plastitanium,
+ /area/ruin/powered/authorship)
+ "d" = (
+-/turf/open/space,
++/turf/template_noop,
+ /turf/closed/wall/mineral/plastitanium{
+ 	dir = 1;
+ 	icon_state = "diagonalWall3"
+@@ -138,7 +138,7 @@
+ /turf/open/floor/mineral/titanium/purple,
+ /area/ruin/powered/authorship)
+ "z" = (
+-/turf/open/space,
++/turf/template_noop,
+ /turf/closed/wall/mineral/plastitanium{
+ 	icon_state = "diagonalWall3"
+ 	},
+@@ -148,7 +148,7 @@
+ /turf/open/floor/mineral/titanium/purple,
+ /area/ruin/powered/authorship)
+ "B" = (
+-/turf/open/space,
++/turf/template_noop,
+ /turf/closed/wall/mineral/plastitanium{
+ 	dir = 4;
+ 	icon_state = "diagonalWall3"
