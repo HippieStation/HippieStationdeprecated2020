@@ -28,11 +28,7 @@
 	if(!uses)
 		to_chat(user, "<span class='warning'>This spawner is out of charges!</span>")
 		return
-<<<<<<< HEAD
-	if(jobban_isbanned(user, "lavaland") || jobban_isbanned(user, CATBAN) || jobban_isbanned(user, CLUWNEBAN))
-=======
-	if(jobban_isbanned(user, banType))
->>>>>>> 4687dd0117... Devil refactor+small revamp (#26815)
+	if(jobban_isbanned(user, banType) || jobban_isbanned(user, CATBAN) || jobban_isbanned(user, CLUWNEBAN))
 		to_chat(user, "<span class='warning'>You are jobanned!</span>")
 		return
 	var/ghost_role = alert("Become [mob_name]? (Warning, You can no longer be cloned!)",,"Yes","No")
