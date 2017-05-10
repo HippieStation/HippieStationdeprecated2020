@@ -1,0 +1,12 @@
+diff a/code/modules/surgery/organs/organ_internal.dm b/code/modules/surgery/organs/organ_internal.dm	(rejected hunks)
+@@ -78,7 +78,9 @@
+ 
+ /obj/item/organ/Destroy()
+ 	if(owner)
+-		Remove(owner)
++		// The special flag is important, because otherwise mobs can die
++		// while undergoing transformation into different mobs.
++		Remove(owner, special=TRUE)
+ 	return ..()
+ 
+ /obj/item/organ/attack(mob/living/carbon/M, mob/user)
