@@ -313,7 +313,17 @@ GLOBAL_LIST_INIT(gang_colors_pool, list("red","orange","yellow","green","blue","
 				G.domination(0.5)
 			priority_announce("Multiple station takeover attempts have made simultaneously. Conflicting takeover attempts appears to have restarted.","Network Alert")
 		else
+<<<<<<< HEAD
+=======
+			var/datum/gang/G = winners[1]
+			G.is_dominating = FALSE
+>>>>>>> aab2bdb1c9... 150 hours of testing (fixes master) (#27113)
 			SSticker.mode.explosion_in_progress = 1
 			SSticker.station_explosion_cinematic(1)
 			SSticker.mode.explosion_in_progress = 0
+<<<<<<< HEAD
 			SSticker.force_ending = pick(winners)
+=======
+			SSticker.force_ending = TRUE
+
+>>>>>>> aab2bdb1c9... 150 hours of testing (fixes master) (#27113)
