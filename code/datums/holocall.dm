@@ -36,7 +36,7 @@
 		calling_pad.say("Connection failure.")
 		qdel(src)
 		return
-	
+
 	testing("Holocall started")
 
 //cleans up ALL references :)
@@ -44,7 +44,7 @@
 	QDEL_NULL(eye)
 
 	user.reset_perspective()
-	
+
 	user = null
 	hologram.HC = null
 	hologram = null
@@ -61,7 +61,7 @@
 	if(connected_holopad)
 		connected_holopad.SetLightsAndPower()
 		connected_holopad = null
-	
+
 	testing("Holocall destroyed")
 
 	return ..()
@@ -109,7 +109,7 @@
 		if(I == H)
 			continue
 		Disconnect(I)
-	
+
 	for(var/I in H.holo_calls)
 		var/datum/holocall/HC = I
 		if(HC != src)
@@ -139,7 +139,7 @@
 		var/obj/machinery/holopad/H = I
 		if(!H.is_operational())
 			ConnectionFailure(H)
-	
+
 	if(QDELETED(src))
 		return FALSE
 
