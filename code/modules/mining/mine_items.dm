@@ -289,6 +289,7 @@
 		if(!can_use_on_station)
 			src.loc.visible_message("<span class='warning'>\The [src] \
 			will not function in this area.</span>")
+			used = TRUE
 			return
 				
 		template.load(deploy_location, centered = TRUE)
