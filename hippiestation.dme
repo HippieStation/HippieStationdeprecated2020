@@ -2152,6 +2152,7 @@
 #include "hippiestation\code\modules\mentor\mentorhelp.dm"
 #include "hippiestation\code\modules\mentor\mentorpm.dm"
 #include "hippiestation\code\modules\mentor\mentorsay.dm"
+#include "hippiestation\code\modules\mining\mine_items.dm"
 #include "hippiestation\code\modules\mob\nearcrit.dm"
 #include "hippiestation\code\modules\mob\sprite_accessories.dm"
 #include "hippiestation\code\modules\mob\living\emote.dm"
