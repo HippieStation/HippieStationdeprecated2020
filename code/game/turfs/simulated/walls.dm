@@ -50,6 +50,7 @@
 
 /turf/closed/wall/proc/devastate_wall()
 	new sheet_type(src, sheet_amount)
+	if(girder_type)
 	new /obj/item/stack/sheet/metal(src)
 
 /turf/closed/wall/ex_act(severity, target)
