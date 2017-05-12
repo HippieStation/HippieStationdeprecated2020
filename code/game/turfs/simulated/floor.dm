@@ -3,7 +3,7 @@
 	//- you should use istype() if you want to find out whether a floor has a certain type
 	//- floor_tile is now a path, and not a tile obj
 	name = "floor"
-	icon = 'icons/turf/floors.dmi'
+	icon = 'hippiestation/icons/turf/floors.dmi'
 
 	var/icon_regular_floor = "floor" //used to remember what icon the tile should have by default
 	var/icon_plating = "plating"
