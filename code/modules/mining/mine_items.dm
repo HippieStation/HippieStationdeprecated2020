@@ -287,8 +287,8 @@
 			log_admin("[key_name(usr)] activated a bluespace capsule away from the mining level at [get_area(T)][COORD(T)]")
 		
 		if(!can_use_on_station)
-				src.loc.visible_message("<span class='warning'>\The [src] \
-				will not function in this area.</span>")
+			src.loc.visible_message("<span class='warning'>\The [src] \
+			will not function in this area.</span>")
 				
 		template.load(deploy_location, centered = TRUE)
 		new /obj/effect/particle_effect/smoke(get_turf(src))
