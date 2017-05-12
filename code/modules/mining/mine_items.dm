@@ -289,6 +289,7 @@
 		if(!can_use_on_station)
 			src.loc.visible_message("<span class='warning'>\The [src] \
 			will not function in this area.</span>")
+			return
 				
 		template.load(deploy_location, centered = TRUE)
 		new /obj/effect/particle_effect/smoke(get_turf(src))
