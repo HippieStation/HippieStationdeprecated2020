@@ -259,9 +259,7 @@
 	get_template()
 	if(used == FALSE)
 		src.loc.visible_message("<span class='warning'>\The [src] begins \
-			to shake. Stand back!</span>")/obj/item/weapon/survivalcapsule/emag_act(mob/user)
-	can_use_on_station = TRUE
-	playsound(src.loc, "sparks", 100, 1)
+			to shake. Stand back!</span>")
 		used = TRUE
 		sleep(50)
 		var/turf/deploy_location = get_turf(src)
