@@ -331,8 +331,8 @@ SUBSYSTEM_DEF(job)
 			if (validjob)
 				Debug("DO pass, Player: [player], Level:[level], Job:[validjob.title]")
 				AssignRole(player, validjob.title)
-						unassigned -= player
-						break
+				unassigned -= player
+				break
 
 	// Hand out random jobs to the people who didn't get any in the last check
 	// Also makes sure that they got their preference correct
