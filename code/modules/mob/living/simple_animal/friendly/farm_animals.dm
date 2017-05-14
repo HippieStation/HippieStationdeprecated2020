@@ -31,8 +31,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/Initialize()
 	udder = new()
-	. = ..()
-
+	..()
 /mob/living/simple_animal/hostile/retaliate/goat/Destroy()
 	qdel(udder)
 	udder = null
@@ -70,9 +69,9 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/proc/eat_plants()
 	var/eaten = FALSE
-		var/obj/structure/spacevine/SV = locate(/obj/structure/spacevine) in loc
-		if(SV)
-			SV.eat(src)
+	var/obj/structure/spacevine/SV = locate(/obj/structure/spacevine) in loc
+	if(SV)
+		SV.eat(src)
 		eaten = TRUE
 
 	var/obj/structure/glowshroom/GS = locate(/obj/structure/glowshroom) in loc
@@ -120,7 +119,7 @@
 
 /mob/living/simple_animal/cow/Initialize()
 	udder = new()
-	. = ..()
+	..()
 
 /mob/living/simple_animal/cow/Destroy()
 	qdel(udder)
@@ -194,7 +193,7 @@
 	gold_core_spawnable = 2
 
 /mob/living/simple_animal/chick/Initialize()
-	. = ..()
+	..()
 	pixel_x = rand(-6, 6)
 	pixel_y = rand(0, 10)
 
@@ -249,7 +248,7 @@
 	var/static/chicken_count = 0
 
 /mob/living/simple_animal/chicken/Initialize()
-	. = ..()
+	..()
 	if(!body_color)
 		body_color = pick(validColors)
 	icon_state = "[icon_prefix]_[body_color]"
@@ -311,7 +310,7 @@
 	reagents = new(50)
 	reagents.my_atom = src
 	reagents.add_reagent("milk", 20)
-	. = ..()
+	..()
 
 /obj/item/udder/proc/generateMilk()
 	if(prob(5))
