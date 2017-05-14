@@ -2,6 +2,7 @@
 /obj/item/device/experimental_teleporter
 	name = "experimental teleporter"
 	desc = "An imperfect teleportation device."
+	icon = 'hippiestation/icons/obj/device.dmi'
 	icon_state = "spe_teleporter"
 	force = 0
 	throwforce = 0
@@ -23,6 +24,7 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.start()
 
+	playsound(get_turf(user), 'hippiestation/sound/effects/teleport.ogg', 40, 1)
 
 	user.visible_message("<span class='warning'>[user.name] teleports away!</span>")
 
