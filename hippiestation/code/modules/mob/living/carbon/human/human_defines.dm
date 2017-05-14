@@ -1,1 +1,0 @@
-mob/living/carbon/human/var/gender_ambiguous = 0

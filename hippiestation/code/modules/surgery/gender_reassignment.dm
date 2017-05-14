@@ -33,8 +33,7 @@
 
 /datum/surgery_step/reshape_genitals/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/mob/living/carbon/human/H = target
-	H.gender_ambiguous = 1
+	target.gender = NEUTER
 	user.visible_message("<span class='warning'>[user] accidentally mutilates [target]'s genitals beyond the point of recognition!</span>", "<span class='warning'>You accidentally mutilate [target]'s genitals beyond the point of recognition!</span>")
-	target.gender = pick(MALE, FEMALE)
 	target.regenerate_icons()
 	return 1
