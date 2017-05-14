@@ -35,7 +35,7 @@
 			timerid = addtimer(CALLBACK(src, .proc/remove_mindslave), time, TIMER_STOPPABLE)
 			if(!target.mind.special_role)
 				target.mind.special_role = "Mindslave"
-				ticker.mode.traitors |= target.mind
+				SSticker.mode.traitors |= target.mind
 			protect_objective = new /datum/objective/protect
 			protect_objective.owner = target.mind
 			protect_objective.target = user.mind
@@ -60,7 +60,7 @@
 	if(imp_in)
 		if(imp_in.mind.special_role == "Mindslave")
 			imp_in.mind.special_role = ""
-			ticker.mode.traitors -= imp_in.mind
+			SSticker.mode.traitors -= imp_in.mind
 		imp_in << "<span class='userdanger'>You feel your free will come back to you! You no longer have to obey your master!</span>"
 		imp_in << "<span class='userdanger'>If you were not an antagonist BEFORE being mindslave, then you no longer are one.</span>"
 		qdel(protect_objective)
