@@ -23,7 +23,15 @@
 	restricted_roles = list("Botanist")
 	cost = 14
 	item = /obj/vehicle/lawnmower/emagged
-
+/* Science */
+/datum/uplink_item/role_restricted/experimental_teleporter
+	name = "Experimental Teleporter"
+	desc = "An imperfect bluespace teleportation device recovered from an abandoned mine that relocates the user 3 to 5 metres in their direction. The teleportation will telefrag any living creature in the new location. Relocating into solid walls will yield less than stellar results."
+	restricted_roles = list("Research Director")
+	cost = 14
+	item = /obj/item/device/experimental_teleporter
+	cant_discount = TRUE	
+	
 /* Glock */
 /datum/uplink_item/dangerous/g17
 	name = "Glock 17 Handgun"
