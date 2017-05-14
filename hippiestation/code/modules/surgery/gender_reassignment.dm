@@ -21,7 +21,6 @@
 
 /datum/surgery_step/reshape_genitals/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	var/mob/living/carbon/human/H = target	//no type check, as that should be handled by the surgery
-	H.gender_ambiguous = 0
 	if(target.gender == FEMALE)
 		user.visible_message("[user] has made a man of [target]!", "<span class='notice'>You made [target] a man.</span>")
 		target.gender = MALE
