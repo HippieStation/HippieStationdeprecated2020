@@ -21,11 +21,11 @@
 		if(method in list(INGEST,INJECT))
 			M.bodytemperature = max(M.bodytemperature - 50, TCMB)
 			if(show_message)
-				M << "<span class='warning'>You feel like you are freezing from the inside!</span>"
+				to_chat(M, "<span class='warning'>You feel like you are freezing from the inside!</span>")
 		else
 			if (reac_volume >= 5)
 				if(show_message)
-					M << "<span class='danger'>You can feel your body freezing up and your metabolism slow, the pain is excruciating!</span>"
+					to_chat(M, "<span class='danger'>You can feel your body freezing up and your metabolism slow, the pain is excruciating!</span>")
 				M.bodytemperature = max(M.bodytemperature - 5*reac_volume, TCMB) //cold
 				M.adjust_fire_stacks(-(12*reac_volume))
 				M.losebreath += (0.2*reac_volume) //no longer instadeath rape but losebreath instead much more immulshion friendly
