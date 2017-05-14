@@ -75,7 +75,7 @@
 	var/detonated = 0
 	var/doorOpen = 'sound/machines/airlock.ogg'
 	var/doorClose = 'sound/machines/AirlockClose.ogg'
-	var/doorDeni = 'hippiestation/sound/machines/denied.ogg' // i'm thinkin' Deni's
+	var/doorDeni = 'sound/machines/DeniedBeep.ogg' // i'm thinkin' Deni's
 	var/boltUp = 'sound/machines/BoltsUp.ogg'
 	var/boltDown = 'sound/machines/BoltsDown.ogg'
 	var/noPower = 'sound/machines/DoorClick.ogg'
