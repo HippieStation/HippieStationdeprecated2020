@@ -288,3 +288,4 @@ Delayed insert mode was removed in mysql 7 and only works with MyISAM type table
 		if(TIME) return "TIME"
 		if(STRING) return "STRING"
 		if(BLOB) return "BLOB"
+	
