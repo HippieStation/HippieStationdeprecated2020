@@ -5,6 +5,11 @@ SUBSYSTEM_DEF(server_maint)
 	wait = 6
 	flags = SS_POST_FIRE_TIMING|SS_FIRE_IN_LOBBY
 	priority = 10
+<<<<<<< HEAD
+=======
+	init_order = INIT_ORDER_SERVER_MAINT
+	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
+>>>>>>> ee404b2170... World.dm Refactor (#27268)
 	var/list/currentrun
 
 /datum/controller/subsystem/server_maint/Initialize(timeofday)
@@ -35,5 +40,12 @@ SUBSYSTEM_DEF(server_maint)
 
 		if (MC_TICK_CHECK) //one day, when ss13 has 1000 people per server, you guys are gonna be glad I added this tick check
 			return
+
+/datum/controller/subsystem/server_maint/Shutdown()
+	kick_clients_in_lobby("<span class='boldannounce'>The round came to an end with you in the lobby.</span>", TRUE) //second parameter ensures only afk clients are kicked
+	for(var/thing in GLOB.clients)
+		var/client/C = thing
+		if(C && config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
+			C << link("byond://[config.server]")
 
 #undef PING_BUFFER_TIME
