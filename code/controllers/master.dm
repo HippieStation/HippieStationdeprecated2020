@@ -187,7 +187,6 @@ GLOBAL_VAR_INIT(CURRENT_TICKLIMIT, TICK_LIMIT_RUNNING)
 	// Loop.
 	Master.StartProcessing(0)
 
-<<<<<<< HEAD
 // Notify the MC that the round has started.
 /datum/controller/master/proc/RoundStart()
 	local_round_started = TRUE
@@ -198,7 +197,7 @@ GLOBAL_VAR_INIT(CURRENT_TICKLIMIT, TICK_LIMIT_RUNNING)
 		// Stagger subsystems.
 		timer += world.tick_lag * rand(1, 5)
 		SS.next_fire = timer
-=======
+		
 /datum/controller/master/proc/SetRunLevel(new_runlevel)
 	var/old_runlevel = current_runlevel
 	if(isnull(old_runlevel))
@@ -208,7 +207,7 @@ GLOBAL_VAR_INIT(CURRENT_TICKLIMIT, TICK_LIMIT_RUNNING)
 	current_runlevel = log(2, new_runlevel) + 1
 	if(current_runlevel < 1)
 		CRASH("Attempted to set invalid runlevel: [new_runlevel]")
->>>>>>> f1f5149e2e... Fixes a bug where shuttles would not function (#27338)
+
 
 // Starts the mc, and sticks around to restart it if the loop ever ends.
 /datum/controller/master/proc/StartProcessing(delay)
@@ -253,7 +252,7 @@ GLOBAL_VAR_INIT(CURRENT_TICKLIMIT, TICK_LIMIT_RUNNING)
 			timer += world.tick_lag * rand(1, 5)
 			SS.next_fire = timer
 			continue
-<<<<<<< HEAD
+
 		if (SS.flags & SS_FIRE_IN_LOBBY)
 			lobbysubsystems += SS
 			timer += world.tick_lag * rand(1, 5)
@@ -262,7 +261,6 @@ GLOBAL_VAR_INIT(CURRENT_TICKLIMIT, TICK_LIMIT_RUNNING)
 			timer += world.tick_lag * rand(1, 5)
 			SS.next_fire = timer
 		normalsubsystems += SS
-=======
 
 		var/ss_runlevels = SS.runlevels
 		var/added_to_any = FALSE
@@ -274,27 +272,26 @@ GLOBAL_VAR_INIT(CURRENT_TICKLIMIT, TICK_LIMIT_RUNNING)
 				added_to_any = TRUE
 		if(!added_to_any)
 			WARNING("[SS.name] subsystem is not SS_NO_FIRE but also does not have any runlevels set!")
->>>>>>> f1f5149e2e... Fixes a bug where shuttles would not function (#27338)
 
 	queue_head = null
 	queue_tail = null
 	//these sort by lower priorities first to reduce the number of loops needed to add subsequent SS's to the queue
 	//(higher subsystems will be sooner in the queue, adding them later in the loop means we don't have to loop thru them next queue add)
 	sortTim(tickersubsystems, /proc/cmp_subsystem_priority)
-<<<<<<< HEAD
+
 	sortTim(normalsubsystems, /proc/cmp_subsystem_priority)
 	sortTim(lobbysubsystems, /proc/cmp_subsystem_priority)
 
 	normalsubsystems += tickersubsystems
 	lobbysubsystems += tickersubsystems
-=======
+
 	for(var/I in runlevel_sorted_subsystems)
 		sortTim(runlevel_sorted_subsystems, /proc/cmp_subsystem_priority)
 		I += tickersubsystems
 
 	var/cached_runlevel = current_runlevel
 	var/list/current_runlevel_subsystems = runlevel_sorted_subsystems[cached_runlevel]
->>>>>>> f1f5149e2e... Fixes a bug where shuttles would not function (#27338)
+
 
 	init_timeofday = REALTIMEOFDAY
 	init_time = world.time
