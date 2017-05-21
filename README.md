@@ -1,9 +1,16 @@
 ## HippieStation 13 [![Build Status](https://jenkins.hippiestation.com/buildStatus/icon?job=HippieStation)](https://jenkins.hippiestation.com/job/HippieStation/) [![Krihelimeter](http://www.krihelinator.xyz/badge/HippieStation/HippieStation)](http://www.krihelinator.xyz/repositories/HippieStation/HippieStation) [![GitHub forks](https://img.shields.io/github/forks/HippieStation/HippieStation.svg?style=social&label=Fork)](https://github.com/HippieStation/HippieStation#fork-destination-box)
 
+<<<<<<< HEAD
 **Website:** http://www.hippiestation.com <BR>
 **Code:** https://github.com/hippiestation/hippiestation <BR>
 **Wiki** https://wiki.hippiestation.com/index.php?title=Main_Page <BR>
 **Discord:** https://discordapp.com/invite/RBm2HJt <BR>
+=======
+[![Build Status](https://travis-ci.org/tgstation/tgstation.png)](https://travis-ci.org/tgstation/tgstation) [![Krihelimeter](http://www.krihelinator.xyz/badge/tgstation/tgstation)](http://www.krihelinator.xyz)  
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/tgstation/tgstation.svg)](http://isitmaintained.com/project/tgstation/tgstation "Percentage of issues still open") [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/tgstation/tgstation.svg)](http://isitmaintained.com/project/tgstation/tgstation "Average time to resolve an issue")
+
+[![forthebadge](http://forthebadge.com/images/badges/built-with-resentment.svg)](http://forthebadge.com)
+>>>>>>> 90451a1f17... Adds some more badges to the readme. (#27146)
 
 ## ABOUT
 
