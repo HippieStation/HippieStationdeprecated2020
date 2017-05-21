@@ -288,6 +288,14 @@
 		minor_announce("The emergency shuttle will reach its destination in [round(SSshuttle.emergency.timeLeft(600))] minutes.")
 		message_admins("<span class='adminnotice'>[key_name_admin(usr)] edited the Emergency Shuttle's timeleft to [timer] seconds.</span>")
 		href_list["secrets"] = "check_antagonist"
+<<<<<<< HEAD
+=======
+	else if(href_list["trigger_centcom_recall"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		usr.client.trigger_centcom_recall()
+>>>>>>> 5c4011befd... Merge pull request #27450 from lzimann/fucking
 
 	else if(href_list["toggle_continuous"])
 		if(!check_rights(R_ADMIN))
