@@ -326,8 +326,13 @@
 /mob/living/carbon/human/CtrlClick(mob/user)
 	if(ishuman(user) && Adjacent(user))
 		var/mob/living/carbon/human/H = user
+<<<<<<< HEAD
 		H.dna.species.grab(H, src, H.martial_art)
 		H.next_click = world.time + CLICK_CD_MELEE
+=======
+		H.dna.species.grab(H, src, H.mind.martial_art)
+		H.changeNext_move(CLICK_CD_MELEE)
+>>>>>>> 41294bd58d... Reorganizes martial arts and stores them in the MIND. (#27324)
 	else
 		..()
 /*
