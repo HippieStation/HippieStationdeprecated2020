@@ -369,6 +369,42 @@
 		to_chat(the_construct, "<span class='cultitalic'>You are now tracking your master.</span>")
 
 
+<<<<<<< HEAD
+=======
+/datum/action/innate/seek_prey
+	name = "Seek the Harvest"
+	desc = "None can hide from Nar'Sie, activate to track a survivor attempting to flee the red harvest!"
+	background_icon_state = "bg_demon"
+	buttontooltipstyle = "cult"
+	button_icon_state = "cult_mark"
+	var/mob/living/simple_animal/hostile/construct/harvester/the_construct
+
+/datum/action/innate/seek_prey/Grant(var/mob/living/C)
+	the_construct = C
+	..()
+
+/datum/action/innate/seek_prey/Activate()
+	if(GLOB.cult_narsie == null)
+		return
+	if(the_construct.seeking)
+		desc = "None can hide from Nar'Sie, activate to track a survivor attempting to flee the red harvest!"
+		button_icon_state = "cult_mark"
+		the_construct.seeking = FALSE
+		to_chat(the_construct, "<span class='cultitalic'>You are now tracking Nar'Sie, return to reap the harvest!</span>")
+		return
+	else
+		if(LAZYLEN(GLOB.cult_narsie.souls_needed))
+			the_construct.master = pick(GLOB.cult_narsie.souls_needed)
+			to_chat(the_construct, "<span class='cultitalic'>You are now tracking your prey, [the_construct.master] - harvest them!</span>")
+		else
+			to_chat(the_construct, "<span class='cultitalic'>Nar'Sie has completed her harvest!</span>")
+			return
+		desc = "Activate to track Nar'Sie!"
+		button_icon_state = "sintouch"
+		the_construct.seeking = TRUE
+
+
+>>>>>>> 20972a523e... Merge pull request #27442 from Robustin/culttweaks2
 /////////////////////////////ui stuff/////////////////////////////
 
 /mob/living/simple_animal/hostile/construct/update_health_hud()

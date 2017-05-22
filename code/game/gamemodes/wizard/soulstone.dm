@@ -3,6 +3,7 @@
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "soulstone"
 	item_state = "electronic"
+	layer = HIGH_OBJ_LAYER
 	desc = "A fragment of the legendary treasure known simply as the 'Soul Stone'. The shard still flickers with a fraction of the full artefact's power."
 	w_class = WEIGHT_CLASS_TINY
 	slot_flags = SLOT_BELT
@@ -216,7 +217,13 @@
 		to_chat(newstruct, "<b>You are still bound to serve the cult[stoner ? " and [stoner]":""], follow their orders and help them complete their goals at all costs.</b>")
 	else if(stoner)
 		to_chat(newstruct, "<b>You are still bound to serve your creator, [stoner], follow their orders and help them complete their goals at all costs.</b>")
+<<<<<<< HEAD
 		var/obj/screen/alert/bloodsense/BS = newstruct.throw_alert("bloodsense", /obj/screen/alert/bloodsense)
+=======
+	newstruct.clear_alert("bloodsense")
+	BS = newstruct.throw_alert("bloodsense", /obj/screen/alert/bloodsense)
+	if(BS)
+>>>>>>> 20972a523e... Merge pull request #27442 from Robustin/culttweaks2
 		BS.Cviewer = newstruct
 	newstruct.cancel_camera()
 
