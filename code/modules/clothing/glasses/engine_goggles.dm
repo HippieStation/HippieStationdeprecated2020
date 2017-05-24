@@ -7,6 +7,7 @@
 	actions_types = list(/datum/action/item_action/toggle_mode)
 	origin_tech = "materials=3;magnets=3;engineering=3;plasmatech=3"
 
+<<<<<<< HEAD
 	var/mode = 0	//0 - regular mesons mode	1 - t-ray mode
 	var/range = 1
 
@@ -15,6 +16,20 @@
 
 	if(mode)
 		START_PROCESSING(SSobj, src)
+=======
+	mesons_on = TRUE //if set to FALSE, these goggles work as t-ray scanners.
+	var/range = 1
+
+/obj/item/clothing/glasses/meson/engine/toggle_mode(mob/user, voluntary)
+	var/turf/T = get_turf(src)
+	if(T && T.z == ZLEVEL_MINING && !mesons_on)
+		if(picked_excuse)
+			to_chat(user, "<span class='warning'>Due to [picked_excuse], the [name] cannot currently be swapped to \[Meson] mode.</span>")
+		return
+	mesons_on = !mesons_on
+
+	if(!mesons_on)
+>>>>>>> f7cb6c8484... Renames a var (#27578)
 		vision_flags = 0
 		darkness_view = 2
 		invis_view = SEE_INVISIBLE_LIVING
@@ -38,7 +53,14 @@
 		A.UpdateButtonIcon()
 
 /obj/item/clothing/glasses/meson/engine/process()
+<<<<<<< HEAD
 	if(!mode)
+=======
+	if(mesons_on)
+		var/turf/T = get_turf(src)
+		if(T && T.z == ZLEVEL_MINING)
+			toggle_mode(loc)
+>>>>>>> f7cb6c8484... Renames a var (#27578)
 		return
 
 	if(!ishuman(loc))
@@ -69,15 +91,8 @@
 		if(M.client)
 			flick_overlay(I, list(M.client), 8)
 
-/obj/item/clothing/glasses/meson/engine/proc/t_ray_on()
-	if(!ishuman(loc))
-		return 0
-
-	var/mob/living/carbon/human/user = loc
-	return mode & (user.glasses == src)
-
 /obj/item/clothing/glasses/meson/engine/update_icon()
-	icon_state = mode ? "trayson-tray" : "trayson-meson"
+	icon_state = mesons_on ? "trayson-meson" : "trayson-tray"
 	if(istype(loc,/mob/living/carbon/human/))
 		var/mob/living/carbon/human/user = loc
 		if(user.glasses == src)
@@ -89,8 +104,13 @@
 	icon_state = "trayson-tray_off"
 	origin_tech = "materials=3;magnets=2;engineering=2"
 
+<<<<<<< HEAD
 	mode = 1
 	var/on = 0
+=======
+	mesons_on = FALSE
+	var/on = FALSE
+>>>>>>> f7cb6c8484... Renames a var (#27578)
 	vision_flags = 0
 	darkness_view = 2
 	invis_view = SEE_INVISIBLE_LIVING
@@ -122,6 +142,3 @@
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
-
-/obj/item/clothing/glasses/meson/engine/tray/t_ray_on()
-	return on && ..()
