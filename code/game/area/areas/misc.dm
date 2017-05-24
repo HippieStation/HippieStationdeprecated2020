@@ -115,6 +115,13 @@
 /area/prison/solitary
 	name = "Solitary Confinement"
 	icon_state = "brig"
+<<<<<<< HEAD
+=======
+	
+/area/prison/execution_room
+	name = "Prisoner Education Chamber"
+	icon_state = "execution_room"
+>>>>>>> 3ce8b2922c... More Map Cleanup (#27559)
 
 /area/prison/cell_block/A
 	name = "Prison Cell Block A"

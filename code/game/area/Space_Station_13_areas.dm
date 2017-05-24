@@ -16,10 +16,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /*-----------------------------------------------------------------------------*/
 
-/area/engine/supermatter
-	name = "Supermatter Engine"
-	icon_state = "engine_sm"
-
 /area/ai_monitored	//stub defined ai_monitored.dm
 
 /area/ai_monitored/turret_protected
@@ -162,6 +158,24 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Bridge Maintenance"
 	icon_state = "maintcentral"
 
+<<<<<<< HEAD
+=======
+/area/maintenance/aft
+//	/area/maintenance/aft/Aft_Maintenance // old aft maint path was engi maint
+	name = "Aft Maintenance"
+	icon_state = "amaint"
+	
+/area/maintenance/port
+//	/area/maintenance/fpmaint2/port_maintenance
+	name = "Port Maintenance"
+	icon_state = "pmaint"
+	
+/area/maintenance/central
+//	/area/maintenance/maintcentral
+	name = "Central Maintenance"
+	icon_state = "maintcentral"
+	
+>>>>>>> 3ce8b2922c... More Map Cleanup (#27559)
 /area/maintenance/fore
 	name = "Fore Maintenance"
 	icon_state = "fmaint"
@@ -169,6 +183,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/maintenance/starboard
 	name = "Starboard Maintenance"
 	icon_state = "smaint"
+<<<<<<< HEAD
 
 /area/maintenance/starboard/aft_starboard_maintenance
 	name = "Aft Starboard Maintenance"
@@ -184,6 +199,50 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/maintenance/aft
 	name = "Engineering Maintenance"
+=======
+	
+/area/maintenance/starboard/central
+	name = "Central Starboard Maintenance"
+	icon_state = "smaint"
+	
+/area/maintenance/starboard/aft
+//	/area/maintenance/starboard/aft_starboard_maintenance
+	name = "Starboard Quarter Maintenance"
+	icon_state = "asmaint"
+	
+/area/maintenance/starboard/fore
+//	/area/maintenance/starboard/fore_starboard_maintenance
+	name = "Starboard Bow Maintenance"
+	icon_state = "fsmaint"
+	
+/area/maintenance/port/central
+	name = "Central Port Maintenance"
+	icon_state = "maintcentral"
+	
+/area/maintenance/port/aft
+//	/area/maintenance/fpmaint2/aft_port_maintenance
+	name = "Port Quarter Maintenance"
+	icon_state = "apmaint"
+	
+/area/maintenance/port/fore
+	name = "Port Bow Maintenance"
+	icon_state = "fpmaint"
+	
+/area/maintenance/disposal
+	name = "Waste Disposal"
+	icon_state = "disposal"
+	
+/area/maintenance/disposal/incinerator
+//	/area/maintenance/incinerator
+	name = "Incinerator"
+	icon_state = "disposal"
+	
+	
+//Cere / Asteroid Specific
+	
+/area/maintenance/asteroid/aft/science
+	name = "Aft Maintenance"
+>>>>>>> 3ce8b2922c... More Map Cleanup (#27559)
 	icon_state = "amaint"
 
 /area/maintenance/aft/Aft_Maintenance
@@ -232,7 +291,55 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/hallway/secondary/exit
 	name = "Escape Shuttle Hallway"
 	icon_state = "escape"
+<<<<<<< HEAD
 
+=======
+	
+/area/hallway/secondary/exit/departure_lounge
+	name = "Departure Lounge"
+	icon_state = "escape"
+	
+/area/hallway/secondary/bridges/cargo_ai
+	name = "Cargo-AI-Command Bridge"
+	icon_state = "yellow"
+	
+/area/hallway/secondary/bridges/com_engi
+	name = "Command-Engineering Bridge"
+	icon_state = "yellow"
+	
+/area/hallway/secondary/bridges/com_serv
+	name = "Command-Service Bridge"
+	icon_state = "yellow"	
+	
+/area/hallway/secondary/bridges/dock_med
+	name = "Docking-Medical Bridge"
+	icon_state = "yellow"
+	
+/area/hallway/secondary/bridges/engi_med
+	name = "Engineering-Medical Bridge"
+	icon_state = "yellow"
+	
+/area/hallway/secondary/bridges/med_cargo
+	name = "Medical-Cargo Bridge"
+	icon_state = "yellow"
+	
+/area/hallway/secondary/bridges/sci_dock
+	name = "Science-Docking Bridge"
+	icon_state = "yellow"
+	
+/area/hallway/secondary/bridges/serv_engi
+	name = "Service-Engineering Bridge"
+	icon_state = "yellow"
+	
+/area/hallway/secondary/bridges/serv_sci
+	name = "Service-Science Bridge"
+	icon_state = "yellow"
+	
+/area/hallway/secondary/command
+	name = "Command Hallway"
+	icon_state = "bridge_hallway"
+	
+>>>>>>> 3ce8b2922c... More Map Cleanup (#27559)
 /area/hallway/secondary/construction
 	name = "Construction Area"
 	icon_state = "construction"
@@ -260,6 +367,30 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters/captain/captains_quarters
 	name = "Captain's Quarters"
 	icon_state = "captain"
+<<<<<<< HEAD
+=======
+	
+/area/crew_quarters/heads/chief
+//	/area/crew_quarters/chief
+//	/area/engine/chiefs_office
+	name = "Chief Engineer's Office"
+	icon_state = "ce_office"
+	
+/area/crew_quarters/heads/chief/private
+//	/area/crew_quarters/chief/private
+	name = "Chief Engineer's Private Quarters"
+	icon_state = "ce_private"
+	
+/area/crew_quarters/heads/cmo
+//	/area/medical/cmo
+	name = "Chief Medical Officer's Office"
+	icon_state = "cmo_office"
+	
+/area/crew_quarters/heads/cmo/private
+//	/area/medical/cmo/private
+	name = "Chief Medical Officer's Private Quarters"
+	icon_state = "cmo_private"
+>>>>>>> 3ce8b2922c... More Map Cleanup (#27559)
 
 /area/crew_quarters/courtroom
 	name = "Courtroom"
@@ -267,6 +398,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/crew_quarters/heads
 	name = "Head of Personnel's Office"
+<<<<<<< HEAD
 	icon_state = "head_quarters"
 
 /area/crew_quarters/hor
@@ -276,6 +408,34 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters/chief
 	name = "Chief Engineer's Office"
 	icon_state = "head_quarters"
+=======
+	icon_state = "hop_office"
+	
+/area/crew_quarters/heads/hop/private
+//	/area/crew_quarters/heads
+	name = "Head of Personnel's Private Quarters"
+	icon_state = "hop_private"
+	
+/area/crew_quarters/heads/hos
+//	/area/security/hos
+	name = "Head of Security's Office"
+	icon_state = "hos_office"
+	
+/area/crew_quarters/heads/hos/private
+//	/area/security/hos/private
+	name = "Head of Security's Private Quarters"
+	icon_state = "hos_private"
+	
+/area/crew_quarters/heads/hor
+//	/area/crew_quarters/hor
+	name = "Research Director's Office"
+	icon_state = "rd_office"
+	
+/area/crew_quarters/heads/hor/private
+//	/area/crew_quarters/hor/private
+	name = "Research Director's Private Quarters"
+	icon_state = "rd_private"
+>>>>>>> 3ce8b2922c... More Map Cleanup (#27559)
 
 /area/mint
 	name = "Mint"
@@ -398,6 +558,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/engine/engineering
 	name = "Engineering"
 	icon_state = "engine"
+<<<<<<< HEAD
 
 /area/engine/break_room
 	name = "Engineering Foyer"
@@ -415,6 +576,44 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Gravity Generator Room"
 	icon_state = "blue"
 
+=======
+	
+/area/engine/atmos
+//	/area/atmos
+ 	name = "Atmospherics"
+ 	icon_state = "atmos"
+ 	flags = NONE
+	
+/area/engine/atmospherics_engine
+	name = "Atmospherics Engine"
+	icon_state = "atmos_engine"
+	
+/area/engine/supermatter
+	name = "Supermatter Engine"
+	icon_state = "engine_sm"
+	
+/area/engine/break_room
+	name = "Engineering Foyer"
+	icon_state = "engine_foyer"
+	
+/area/engine/gravity_generator
+	name = "Gravity Generator Room"
+	icon_state = "grav_gen"
+	
+/area/engine/secure_construction
+	name = "Secure Construction Area"
+	icon_state = "engine"
+	
+/area/engine/storage
+	name = "Engineering Storage"
+	icon_state = "engi_storage"
+	
+/area/engine/transit_tube
+	name = "Transit Tube"
+	icon_state = "transit_tube"
+	
+	
+>>>>>>> 3ce8b2922c... More Map Cleanup (#27559)
 //Solars
 
 /area/solar
@@ -441,6 +640,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 		icon_state = "aft"
 
 /area/solar/starboard
+<<<<<<< HEAD
 		name = "Aft Starboard Solar Array"
 		icon_state = "panelsS"
 
@@ -462,6 +662,103 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/maintenance/auxsolarstarboard
 	name = "Fore Starboard Solar Maintenance"
+=======
+	name = "Starboard Solar Array"
+	icon_state = "panelsS"
+	
+/area/solar/starboard/aft
+//	/area/solar/starboard
+	name = "Starboard Quarter Solar Array"
+	icon_state = "panelsAS"
+	
+/area/solar/starboard/fore
+	name = "Starboard Bow Solar Array"
+	icon_state = "panelsFS"
+	
+/area/solar/port
+	name = "Port Solar Array"
+	icon_state = "panelsP"
+	
+/area/solar/port/aft
+//	/area/solar/port
+	name = "Port Quarter Solar Array"
+	icon_state = "panelsAP"
+	
+/area/solar/port/fore
+	name = "Port Bow Solar Array"
+	icon_state = "panelsFP"
+
+	
+//Solar Maint
+
+/area/maintenance/solars
+	name = "Solar Maintenance"
+	icon_state = "yellow"
+	
+/area/maintenance/solars/asteroid/aft
+	name = "Aft Asteroid Solar Maintenance"
+	icon_state = "SolarcontrolA"
+	
+/area/maintenance/solars/asteroid/command
+	name = "Command Asteroid Solar Maintenance"
+	icon_state = "SolarcontrolP"
+	
+/area/maintenance/solars/asteroid/fore
+	name = "Fore Asteroid Solar Maintenance"
+	icon_state = "SolarcontrolP"
+	
+/area/maintenance/solars/port
+	name = "Port Solar Maintenance"
+	icon_state = "SolarcontrolP"
+	
+/area/maintenance/solars/port/aft
+	name = "Port Quarter Solar Maintenance"
+	icon_state = "SolarcontrolAP"
+	
+/area/maintenance/solars/port/fore
+	name = "Port Bow Solar Maintenance"
+	icon_state = "SolarcontrolFP"
+	
+/area/maintenance/solars/starboard
+	name = "Starboard Solar Maintenance"
+	icon_state = "SolarcontrolS"
+	
+/area/maintenance/solars/starboard/aft
+	name = "Starboard Quarter Solar Maintenance"
+	icon_state = "SolarcontrolAS"
+	
+/area/maintenance/solars/starboard/fore
+	name = "Starboard Bow Solar Maintenance"
+	icon_state = "SolarcontrolFS"
+	
+/area/maintenance/solars/aux/port
+	name = "Port Auxiliary Solar Maintenance"
+	icon_state = "SolarcontrolA"
+	
+/area/maintenance/solars/aux/port/aft
+//	/area/maintenance/portsolar
+	name = "Port Quarter Auxiliary Solar Maintenance"
+	icon_state = "SolarcontrolAP"
+	
+/area/maintenance/solars/aux/port/fore
+//	/area/maintenance/auxsolarport
+	name = "Port Bow Auxiliary Solar Maintenance"
+	icon_state = "SolarcontrolA"
+	
+/area/maintenance/solars/aux/starboard
+	name = "Starboard Auxiliary Solar Maintenance"
+	icon_state = "SolarcontrolA"
+
+/area/maintenance/solars/aux/starboard/aft
+//	/area/maintenance/starboardsolar
+//	/area/maintenance/solars/aux/starboard/port/aft
+	name = "Starboard Quarter Auxiliary Solar Maintenance"
+	icon_state = "SolarcontrolA"
+
+/area/maintenance/solars/aux/starboard/fore
+//	/area/maintenance/auxsolarstarboard
+	name = "Starboard Bow Auxiliary Solar Maintenance"
+>>>>>>> 3ce8b2922c... More Map Cleanup (#27559)
 	icon_state = "SolarcontrolA"
 
 
@@ -642,7 +939,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/security/transfer
 	name = "Transfer Centre"
-	icon_state = "armory"
+	icon_state = "execution_room"
 
 
 /area/security/nuke_storage
@@ -693,12 +990,21 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/quartermaster/sorting
 	name = "Delivery Office"
+<<<<<<< HEAD
 	icon_state = "quartstorage"
 
 /area/quartermaster/warehouse
 	name = "Warehouse"
 	icon_state = "quartstorage"
 
+=======
+	icon_state = "cargo_delivery"
+	
+/area/quartermaster/warehouse
+	name = "Warehouse"
+	icon_state = "cargo_warehouse"
+	
+>>>>>>> 3ce8b2922c... More Map Cleanup (#27559)
 ////////////WORK IN PROGRESS//////////
 
 /area/quartermaster/office
@@ -707,8 +1013,13 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/quartermaster/storage
 	name = "Cargo Bay"
+<<<<<<< HEAD
 	icon_state = "quartstorage"
 
+=======
+	icon_state = "cargo_bay"
+	
+>>>>>>> 3ce8b2922c... More Map Cleanup (#27559)
 /area/quartermaster/qm
 	name = "Quartermaster's Office"
 	icon_state = "quart"
@@ -737,10 +1048,28 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/hydroponics
 	name = "Hydroponics"
 	icon_state = "hydro"
+<<<<<<< HEAD
 
 /area/hydroponics/Abandoned_Garden
 	name = "Abandoned Garden"
 	icon_state = "hydro"
+=======
+	
+/area/hydroponics/garden
+	name = "Garden"
+	icon_state = "garden"
+	
+/area/hydroponics/garden/abandoned
+	name = "Abandoned Garden"
+	icon_state = "abandoned_garden"
+	
+/area/hydroponics/garden/monastery
+	name = "Monastery Garden"
+	icon_state = "hydro"
+	
+	
+//Science
+>>>>>>> 3ce8b2922c... More Map Cleanup (#27559)
 
 //Toxins
 
@@ -870,6 +1199,15 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/construction/Storage
 	name = "Construction Site Storage"
 	icon_state = "yellow"
+<<<<<<< HEAD
+=======
+	
+/area/construction/storage/wing
+//	/area/construction/Storage
+	name = "Storage Wing"
+	icon_state = "storage_wing"
+	
+>>>>>>> 3ce8b2922c... More Map Cleanup (#27559)
 
 //AI
 /area/ai_monitored/security/armory
