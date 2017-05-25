@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ## HippieStation 13 [![Build Status](https://jenkins.hippiestation.com/buildStatus/icon?job=HippieStation)](https://jenkins.hippiestation.com/job/HippieStation/) [![Krihelimeter](http://www.krihelinator.xyz/badge/HippieStation/HippieStation)](http://www.krihelinator.xyz/repositories/HippieStation/HippieStation) [![GitHub forks](https://img.shields.io/github/forks/HippieStation/HippieStation.svg?style=social&label=Fork)](https://github.com/HippieStation/HippieStation#fork-destination-box)
+=======
+## /tg/station codebase
+>>>>>>> a37ab4f871... Merge pull request #27648 from Iamgoofball/patch-254
 
 **Website:** http://www.hippiestation.com <BR>
 **Code:** https://github.com/hippiestation/hippiestation <BR>
