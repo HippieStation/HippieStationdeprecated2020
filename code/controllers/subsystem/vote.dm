@@ -2,7 +2,13 @@ SUBSYSTEM_DEF(vote)
 	name = "Vote"
 	wait = 10
 
+<<<<<<< HEAD
 	flags = SS_FIRE_IN_LOBBY|SS_KEEP_TIMING|SS_NO_INIT
+=======
+	flags = SS_KEEP_TIMING|SS_NO_INIT
+
+	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
+>>>>>>> f042d97448... Adds round table to replace tacking some data in feedback table (#27454)
 
 	var/initiator = null
 	var/started_time = null
@@ -128,7 +134,11 @@ SUBSYSTEM_DEF(vote)
 				active_admins = 1
 				break
 		if(!active_admins)
+<<<<<<< HEAD
 			world.Reboot("Restart vote successful.", "end_error", "restart vote")
+=======
+			SSticker.Reboot("Restart vote successful.", "restart vote")
+>>>>>>> f042d97448... Adds round table to replace tacking some data in feedback table (#27454)
 		else
 			to_chat(world, "<span style='boldannounce'>Notice:Restart vote will not restart the server automatically because there are active admins on.</span>")
 			message_admins("A restart vote has passed, but there are active admins on with +server, so it has been canceled. If you wish, you may restart the server.")

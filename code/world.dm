@@ -32,6 +32,7 @@
 	if(config.sql_enabled)
 		if(SSdbcore.Connect())
 			log_world("Database connection established.")
+<<<<<<< HEAD
 			var/datum/DBQuery/query_feedback_create_round = SSdbcore.NewQuery("INSERT INTO [format_table_name("feedback")] SELECT null, Now(), IFNULL(MAX(round_id),0)+1, \"server_ip\", 0, \"[world.internet_address]:[world.port]\" FROM [format_table_name("feedback")]")
 			query_feedback_create_round.Execute()
 			var/datum/DBQuery/query_feedback_max_id = SSdbcore.NewQuery("SELECT MAX(round_id) FROM [format_table_name("feedback")]")
@@ -39,6 +40,14 @@
 			if(query_feedback_max_id.NextRow())
 				GLOB.round_id = query_feedback_max_id.item[1]
 				GLOB.log_directory += "[GLOB.round_id]"
+=======
+			var/datum/DBQuery/query_round_start = SSdbcore.NewQuery("INSERT INTO [format_table_name("round")] (start_datetime, server_ip, server_port) VALUES (Now(), INET_ATON('[world.internet_address]'), '[world.port]')")
+			query_round_start.Execute()
+			var/datum/DBQuery/query_round_last_id = SSdbcore.NewQuery("SELECT LAST_INSERT_ID()")
+			query_round_last_id.Execute()
+			if(query_round_last_id.NextRow())
+				GLOB.round_id = query_round_last_id.item[1]
+>>>>>>> f042d97448... Adds round table to replace tacking some data in feedback table (#27454)
 		else
 			log_world("Your server failed to establish a connection with the database.")
 	if(!GLOB.round_id)
@@ -266,6 +275,7 @@
 					continue
 				C.Export("##action=load_rsc", round_end_sound)
 	else
+<<<<<<< HEAD
 		round_end_sound = pick(\
 		'sound/roundend/newroundsexy.ogg',
 		'sound/roundend/apcdestroyed.ogg',
@@ -294,6 +304,12 @@
 	var/F = file("data/mode.txt")
 	fdel(F)
 	F << the_mode
+=======
+		to_chat(world, "<span class='boldannounce'>Rebooting world...</span>")
+		Master.Shutdown()	//run SS shutdowns
+	log_world("World rebooted at [time_stamp()]")
+	..()
+>>>>>>> f042d97448... Adds round table to replace tacking some data in feedback table (#27454)
 
 /world/proc/load_motd()
 	GLOB.join_motd = file2text("config/motd.txt") + "<br>" + GLOB.revdata.GetTestMergeInfo()
