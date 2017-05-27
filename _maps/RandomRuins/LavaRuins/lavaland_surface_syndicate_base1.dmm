@@ -729,7 +729,11 @@
 	dir = 8
 	},
 /area/ruin/powered/syndicate_lava_base)
+<<<<<<< HEAD
 "bN" = (
+=======
+"bM" = (
+>>>>>>> ca9e72aeec... Refixes #27288 (#27724)
 /obj/machinery/smartfridge/chemistry/virology/preloaded,
 /turf/open/floor/plasteel/podhatch{
 	tag = "icon-podhatch (EAST)";
