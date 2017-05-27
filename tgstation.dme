@@ -1384,6 +1384,11 @@
 #include "code\modules\jobs\job_types\security.dm"
 #include "code\modules\jobs\job_types\silicon.dm"
 #include "code\modules\jobs\map_changes\map_changes.dm"
+<<<<<<< HEAD
+=======
+#include "code\modules\language\beachbum.dm"
+#include "code\modules\language\codespeak.dm"
+>>>>>>> 72cc75478f... Merge pull request #27528 from Really-Good-Soda-Flavor/Beach-BUMS
 #include "code\modules\language\common.dm"
 #include "code\modules\language\draconic.dm"
 #include "code\modules\language\drone.dm"
