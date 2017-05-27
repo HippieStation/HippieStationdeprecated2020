@@ -5446,7 +5446,7 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "alj" = (
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/labor)
@@ -5652,7 +5652,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "alG" = (
 /obj/structure/chair{
 	dir = 4;
@@ -5774,16 +5774,16 @@
 /area/maintenance/solars/port/fore)
 "alU" = (
 /turf/closed/wall,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "alV" = (
 /obj/effect/decal/cleanable/vomit,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "alW" = (
 /obj/item/weapon/cigbutt/cigarbutt,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "alX" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
@@ -6056,7 +6056,7 @@
 /area/shuttle/escape)
 "amC" = (
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "amD" = (
 /obj/structure/sink{
 	icon_state = "sink";
@@ -6065,13 +6065,13 @@
 	pixel_y = 2
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "amE" = (
 /obj/structure/bed,
 /obj/effect/landmark/xeno_spawn,
 /obj/item/weapon/bedsheet,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "amF" = (
 /obj/machinery/computer/slot_machine{
 	balance = 15;
@@ -6082,14 +6082,14 @@
 /obj/item/weapon/coin/diamond,
 /obj/item/weapon/coin/diamond,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "amG" = (
 /obj/structure/chair{
 	dir = 1
 	},
 /obj/item/toy/sword,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "amH" = (
 /obj/structure/chair{
 	dir = 1
@@ -6101,7 +6101,7 @@
 	},
 /obj/item/trash/plate,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "amI" = (
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/labor)
@@ -6394,24 +6394,24 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "ank" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "anl" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden{
 	icon_state = "intact";
 	dir = 9
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "anm" = (
 /obj/item/trash/sosjerky,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "ann" = (
 /obj/item/weapon/electronics/airalarm,
 /obj/item/weapon/circuitboard/machine/seed_extractor,
@@ -6421,20 +6421,20 @@
 	name = "4maintenance loot spawner"
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "ano" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "anp" = (
 /obj/item/weapon/cigbutt,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "anq" = (
 /obj/structure/chair{
 	dir = 4
@@ -6625,16 +6625,16 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "anK" = (
 /obj/effect/decal/cleanable/egg_smudge,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "anL" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "anM" = (
 /obj/structure/closet/crate,
 /turf/open/floor/mineral/titanium/blue,
@@ -6847,14 +6847,14 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aok" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden{
 	icon_state = "intact";
 	dir = 6
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aol" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -6862,22 +6862,22 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aom" = (
 /obj/machinery/atmospherics/components/binary/valve{
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aon" = (
 /obj/structure/chair,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aoo" = (
 /obj/structure/rack,
 /obj/item/weapon/circuitboard/machine/monkey_recycler,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aop" = (
 /obj/structure/shuttle/engine/heater,
 /obj/structure/window/reinforced{
@@ -7138,25 +7138,25 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aoS" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 4
 	},
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aoT" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aoU" = (
 /obj/structure/bed,
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aoV" = (
 /turf/open/space,
 /area/space/nearstation)
@@ -7165,11 +7165,11 @@
 /obj/item/weapon/stamp,
 /obj/item/weapon/poster/random_official,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aoX" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aoY" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/airless,
@@ -7471,14 +7471,14 @@
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plasteel/floorgrime,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "apM" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /obj/machinery/light/small{
 	dir = 1
 	},
 /turf/open/floor/plasteel/floorgrime,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "apN" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -7490,14 +7490,14 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "apP" = (
 /obj/structure/grille,
 /obj/structure/window/fulltile{
 	obj_integrity = 35
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "apQ" = (
 /obj/structure/lattice,
 /turf/open/space,
@@ -7884,18 +7884,18 @@
 	req_access_txt = "13"
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aqK" = (
 /obj/structure/chair/stool,
 /turf/open/floor/plasteel/floorgrime,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aqL" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden{
 	icon_state = "intact";
 	dir = 5
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aqM" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden{
 	icon_state = "intact";
@@ -7903,7 +7903,7 @@
 	},
 /obj/machinery/meter,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aqN" = (
 /obj/structure/closet/secure_closet/miner{
 	locked = 0
@@ -7920,7 +7920,7 @@
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aqP" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -7933,7 +7933,7 @@
 	d2 = 2
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aqQ" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
@@ -8233,14 +8233,14 @@
 	dir = 5
 	},
 /turf/closed/wall,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "arG" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden{
 	icon_state = "intact";
 	dir = 4
 	},
 /turf/closed/wall,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "arH" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -8252,7 +8252,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "arI" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -8264,7 +8264,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "arJ" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -8281,7 +8281,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "arK" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden{
 	icon_state = "intact";
@@ -8290,7 +8290,7 @@
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "arL" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -8302,7 +8302,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "arM" = (
 /obj/structure/closet/crate{
 	icon_state = "crateopen";
@@ -8313,20 +8313,20 @@
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "arN" = (
 /obj/effect/spawner/lootdrop/maintenance{
 	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "arO" = (
 /obj/machinery/monkey_recycler,
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube,
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "arP" = (
 /turf/closed/wall,
 /area/maintenance/department/eva)
@@ -8435,7 +8435,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "asd" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -8452,7 +8452,7 @@
 	dir = 6
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "asf" = (
 /obj/machinery/airalarm{
 	pixel_y = 23
@@ -8483,7 +8483,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "asi" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -8499,7 +8499,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "asj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/chair{
@@ -8692,7 +8692,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "asL" = (
 /obj/structure/bed,
 /obj/item/weapon/bedsheet/red,
@@ -8733,7 +8733,7 @@
 "asO" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "asP" = (
 /obj/structure/chair/stool,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -8903,7 +8903,7 @@
 	dir = 6
 	},
 /turf/closed/wall,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "ato" = (
 /obj/machinery/light_switch{
 	pixel_y = -23
@@ -8926,7 +8926,7 @@
 	dir = 4
 	},
 /turf/closed/wall,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "atr" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -8937,7 +8937,7 @@
 	dir = 10
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "ats" = (
 /obj/structure/table/wood,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -9058,7 +9058,7 @@
 "atJ" = (
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "atK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
@@ -9066,13 +9066,13 @@
 "atL" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "atM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
 	},
 /turf/closed/wall,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "atN" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -9081,19 +9081,19 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "atO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /turf/closed/wall,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "atP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
 	},
 /turf/closed/wall,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "atQ" = (
 /obj/machinery/door/airlock{
 	id_tag = "Dorm5";
@@ -9114,7 +9114,7 @@
 /obj/structure/closet,
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "atU" = (
 /obj/structure/rack{
 	dir = 1
@@ -9124,7 +9124,7 @@
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "atV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
@@ -9140,7 +9140,7 @@
 "atW" = (
 /obj/structure/chair/stool,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "atX" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -9187,11 +9187,11 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aue" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/closed/wall,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "auf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/closed/wall,
@@ -9279,7 +9279,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aun" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/closed/wall,
@@ -9539,7 +9539,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "auU" = (
 /obj/machinery/firealarm{
 	dir = 2;
@@ -9555,7 +9555,7 @@
 "auV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/closed/wall,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "auW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -9573,7 +9573,7 @@
 	},
 /obj/machinery/iv_drip,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "auY" = (
 /obj/structure/mirror{
 	icon_state = "mirror_broke";
@@ -9585,17 +9585,17 @@
 	},
 /obj/item/weapon/circuitboard/computer/operating,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "auZ" = (
 /obj/structure/frame/computer,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "ava" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/structure/chair,
 /obj/item/weapon/reagent_containers/blood/random,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "avb" = (
 /turf/open/floor/plasteel/airless{
 	icon_state = "damaged3"
@@ -9608,7 +9608,7 @@
 	name = "4maintenance loot spawner"
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "avd" = (
 /obj/machinery/door/airlock/external{
 	cyclelinkeddir = 4;
@@ -9745,7 +9745,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "avr" = (
 /obj/machinery/firealarm{
 	pixel_y = 24
@@ -9970,7 +9970,7 @@
 "avS" = (
 /obj/item/weapon/wrench,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "avT" = (
 /obj/docking_port/stationary{
 	dheight = 9;
@@ -9994,7 +9994,7 @@
 /obj/structure/table,
 /obj/machinery/cell_charger,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "avW" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance{
@@ -10002,14 +10002,14 @@
 	name = "2maintenance loot spawner"
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "avX" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
 /obj/structure/chair/stool,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "avY" = (
 /obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -10569,23 +10569,23 @@
 "axd" = (
 /mob/living/simple_animal/mouse,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "axe" = (
 /obj/machinery/sleeper{
 	dir = 4;
 	icon_state = "sleeper-open"
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "axf" = (
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "axg" = (
 /obj/structure/table/glass,
 /obj/item/weapon/storage/bag/trash,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "axh" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4;
@@ -10605,24 +10605,24 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "axj" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Firefighting equipment";
 	req_access_txt = "12"
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "axk" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "axl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "axm" = (
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'HIGH VOLTAGE'";
@@ -10643,7 +10643,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "axo" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -10862,13 +10862,13 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "axK" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
 	},
 /turf/closed/wall,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "axL" = (
 /obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -11070,7 +11070,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "ayi" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -11081,7 +11081,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "ayj" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
@@ -11152,18 +11152,18 @@
 /obj/item/weapon/reagent_containers/blood/random,
 /obj/item/weapon/reagent_containers/food/drinks/bottle/vodka/badminka,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "ayt" = (
 /obj/structure/table/glass,
 /obj/item/weapon/hemostat,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "ayu" = (
 /obj/structure/table/glass,
 /obj/item/weapon/restraints/handcuffs/cable/zipties,
 /obj/item/weapon/reagent_containers/blood/random,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "ayv" = (
 /obj/machinery/airalarm{
 	pixel_y = 23
@@ -11182,18 +11182,18 @@
 	dir = 10
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "ayx" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "ayy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "ayz" = (
 /turf/closed/wall/r_wall,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "ayA" = (
 /obj/structure/grille,
 /obj/structure/cable{
@@ -11511,7 +11511,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "azj" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -11701,7 +11701,7 @@
 	dir = 9
 	},
 /turf/closed/wall,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "azH" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -11915,7 +11915,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aAf" = (
 /obj/structure/closet/wardrobe/pjs,
 /turf/open/floor/plasteel/neutral/side,
@@ -12262,7 +12262,7 @@
 	pixel_x = 0
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aAN" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -12279,13 +12279,13 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aAO" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aAP" = (
 /obj/machinery/hydroponics/soil,
 /turf/open/floor/grass,
@@ -12344,7 +12344,7 @@
 	dir = 5
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aAW" = (
 /obj/structure/rack{
 	dir = 8;
@@ -12374,7 +12374,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aAZ" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -12690,7 +12690,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aBM" = (
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel,
@@ -13207,7 +13207,7 @@
 /obj/structure/reagent_dispensers/watertank,
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aCX" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	on = 1;
@@ -14487,7 +14487,7 @@
 	},
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aFK" = (
 /obj/item/weapon/paper_bin{
 	pixel_x = 1;
@@ -16921,7 +16921,7 @@
 "aKY" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aKZ" = (
 /obj/machinery/airalarm{
 	dir = 4;
@@ -17133,7 +17133,7 @@
 	dir = 4
 	},
 /turf/closed/wall,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "aLu" = (
 /obj/machinery/door/airlock/engineering{
 	cyclelinkeddir = 1;
@@ -31801,7 +31801,7 @@
 	},
 /obj/item/weapon/surgical_drapes,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "bsV" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -37548,7 +37548,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "bEK" = (
 /obj/machinery/computer/security/mining{
 	network = list("MINE","AuxBase")
@@ -58588,7 +58588,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/eva2)
+/area/maintenance/arrivals/north)
 "cwI" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
