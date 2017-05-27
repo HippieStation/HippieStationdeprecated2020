@@ -40,6 +40,11 @@
 // Subsystem init_order, from highest priority to lowest priority
 // The numbers just define the ordering, they are meaningless otherwise.
 
+<<<<<<< HEAD
+=======
+#define INIT_ORDER_DBCORE 17
+#define INIT_ORDER_SERVER_MAINT 16
+>>>>>>> f042d97448... Adds round table to replace tacking some data in feedback table (#27454)
 #define INIT_ORDER_JOBS 15
 #define INIT_ORDER_EVENTS 14
 #define INIT_ORDER_TICKER 13
