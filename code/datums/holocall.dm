@@ -41,6 +41,14 @@
 
 //cleans up ALL references :)
 /datum/holocall/Destroy()
+<<<<<<< HEAD
+=======
+	user.reset_perspective()
+	if(user.client)
+		for(var/datum/camerachunk/chunk in eye.visibleCameraChunks)
+			chunk.remove(eye)
+	user.remote_control = null
+>>>>>>> 13aa02f56d... Merge pull request #27543 from AnturK/advanced_cam_fix
 	QDEL_NULL(eye)
 
 	user.reset_perspective()
