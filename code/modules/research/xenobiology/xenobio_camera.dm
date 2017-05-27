@@ -96,12 +96,16 @@
 	origin.feed_slime_action.Remove(C)
 	origin.monkey_recycle_action.Remove(C)
 	//All of this stuff below could probably be a proc for all advanced cameras, only the action removal needs to be camera specific
-	remote_eye.eye_user = null
 	C.reset_perspective(null)
 	if(C.client)
 		C.client.images -= remote_eye.user_image
 		for(var/datum/camerachunk/chunk in remote_eye.visibleCameraChunks)
+<<<<<<< HEAD
 			C.client.images -= chunk.obscured
+=======
+			chunk.remove(remote_eye)
+	remote_eye.eye_user = null
+>>>>>>> 843ee5f7c0... Merge pull request #27658 from AnturK/alright-i-give-up-ill-rewrite-this-tomorrow
 	C.remote_control = null
 	C.unset_machine()
 	Remove(C)

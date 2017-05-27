@@ -70,12 +70,16 @@
 	origin.vest_mode_action.Remove(C)
 	origin.vest_disguise_action.Remove(C)
 	origin.set_droppoint_action.Remove(C)
-	remote_eye.eye_user = null
 	C.reset_perspective(null)
 	if(C.client)
 		C.client.images -= remote_eye.user_image
 		for(var/datum/camerachunk/chunk in remote_eye.visibleCameraChunks)
+<<<<<<< HEAD
 			C.client.images -= chunk.obscured
+=======
+			chunk.remove(remote_eye)
+	remote_eye.eye_user = null
+>>>>>>> 843ee5f7c0... Merge pull request #27658 from AnturK/alright-i-give-up-ill-rewrite-this-tomorrow
 	C.remote_control = null
 	C.unset_machine()
 	Remove(C)
