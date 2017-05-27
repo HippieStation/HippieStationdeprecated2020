@@ -399,7 +399,7 @@
 	pixel_y = 0
 	},
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "abl" = (
 /obj/machinery/vending/security,
 /turf/open/floor/plasteel/showroomfloor,
@@ -434,12 +434,12 @@
 /area/security/main)
 "abq" = (
 /turf/closed/wall,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "abr" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "abs" = (
 /obj/structure/cable{
 	icon_state = "0-2";
@@ -737,7 +737,7 @@
 "abS" = (
 /obj/machinery/computer/secure_data,
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "abT" = (
 /obj/machinery/requests_console{
 	announcementConsole = 1;
@@ -759,15 +759,15 @@
 	},
 /obj/item/weapon/storage/box/deputy,
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "abU" = (
 /obj/machinery/computer/card/minor/hos,
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "abV" = (
 /obj/machinery/computer/security,
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "abW" = (
 /obj/machinery/airalarm{
 	pixel_y = 23
@@ -781,7 +781,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "abX" = (
 /obj/structure/cable{
 	icon_state = "0-2";
@@ -887,7 +887,7 @@
 	},
 /obj/machinery/suit_storage_unit/hos,
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "ack" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -924,7 +924,7 @@
 	},
 /obj/structure/closet/secure_closet/hos,
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "aco" = (
 /obj/structure/closet/bombcloset,
 /turf/open/floor/plasteel/showroomfloor,
@@ -942,7 +942,7 @@
 "acr" = (
 /obj/structure/chair/comfy/black,
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "acs" = (
 /obj/machinery/newscaster/security_unit{
 	pixel_x = -30;
@@ -958,14 +958,14 @@
 	},
 /obj/structure/table/wood,
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "act" = (
 /obj/machinery/holopad,
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "acu" = (
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "acv" = (
 /obj/structure/closet/secure_closet{
 	anchored = 1;
@@ -1182,7 +1182,7 @@
 /obj/item/weapon/folder/red,
 /obj/item/weapon/stamp/hos,
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "acR" = (
 /obj/structure/table/wood,
 /obj/item/device/flashlight/lamp/green{
@@ -1195,12 +1195,12 @@
 	pixel_y = 7
 	},
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "acS" = (
 /obj/item/weapon/book/manual/wiki/security_space_law,
 /obj/structure/table/wood,
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "acT" = (
 /obj/machinery/door/window/eastleft{
 	name = "armoury desk";
@@ -1332,7 +1332,7 @@
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "adi" = (
 /obj/machinery/flasher/portable,
 /turf/open/floor/plasteel/vault{
@@ -1397,19 +1397,19 @@
 /obj/structure/disposalpipe/segment,
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "adn" = (
 /obj/structure/chair{
 	dir = 1
 	},
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "ado" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
 	},
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "adp" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	on = 1;
@@ -1417,7 +1417,7 @@
 	scrub_Toxins = 0
 	},
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "adq" = (
 /obj/structure/table/wood,
 /obj/item/device/instrument/guitar{
@@ -1652,7 +1652,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "adN" = (
 /obj/machinery/power/apc{
 	dir = 8;
@@ -1666,7 +1666,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "adO" = (
 /obj/structure/chair/stool,
 /obj/effect/landmark/event_spawn,
@@ -1680,7 +1680,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "adQ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
@@ -2073,7 +2073,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "aey" = (
 /obj/machinery/door/airlock/glass_command{
 	name = "Head of Security";
@@ -2087,7 +2087,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "aez" = (
 /obj/structure/closet{
 	name = "Evidence Closet"
@@ -8910,7 +8910,7 @@
 	},
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/carpet,
-/area/security/hos)
+/area/crew_quarters/heads/hos)
 "atp" = (
 /obj/machinery/door/airlock/external{
 	cyclelinkeddir = 1;
