@@ -44,6 +44,45 @@
 		/datum/gang_item/equipment/dominator
 	)
 
+<<<<<<< HEAD
+=======
+	var/reg_item_list
+	var/reg_category_list
+	var/static/list/soldier_items = list(
+		/datum/gang_item/clothing/under,
+		/datum/gang_item/clothing/suit,
+		/datum/gang_item/clothing/hat,
+		/datum/gang_item/clothing/neck,
+		/datum/gang_item/clothing/shoes,
+		/datum/gang_item/clothing/mask,
+		/datum/gang_item/clothing/hands,
+		/datum/gang_item/clothing/belt,
+
+		/datum/gang_item/weapon/shuriken,
+		/datum/gang_item/weapon/switchblade,
+		/datum/gang_item/weapon/improvised,
+		/datum/gang_item/weapon/ammo/improvised_ammo,
+		/datum/gang_item/weapon/surplus,
+		/datum/gang_item/weapon/ammo/surplus_ammo,
+		/datum/gang_item/weapon/pistol,
+		/datum/gang_item/weapon/ammo/pistol_ammo,
+		/datum/gang_item/weapon/sniper,
+		/datum/gang_item/weapon/ammo/sniper_ammo,
+		/datum/gang_item/weapon/machinegun,
+		/datum/gang_item/weapon/uzi,
+		/datum/gang_item/weapon/ammo/uzi_ammo,
+		/datum/gang_item/equipment/sharpener,
+		/datum/gang_item/equipment/spraycan,
+		/datum/gang_item/equipment/sharpener,
+		/datum/gang_item/equipment/emp,
+		/datum/gang_item/equipment/c4,
+		/datum/gang_item/equipment/frag,
+		/datum/gang_item/equipment/stimpack,
+		/datum/gang_item/equipment/implant_breaker,
+		/datum/gang_item/equipment/wetwork_boots,
+	)
+
+>>>>>>> a596fc442a... Merge pull request #27611 from Robustin/GangBang
 /datum/gang/New(loc,gangname)
 	if(!GLOB.gang_colors_pool.len)
 		message_admins("WARNING: Maximum number of gangs have been exceeded!")

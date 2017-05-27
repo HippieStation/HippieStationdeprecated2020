@@ -78,12 +78,111 @@
 		gangtool.recall(user)
 
 
+<<<<<<< HEAD
 /datum/gang_item/function/outfit
 	name = "Create Armored Gang Outfit"
 	id = "outfit"
 
 /datum/gang_item/function/outfit/can_buy(mob/living/carbon/user, datum/gang/gang, obj/item/device/gangtool/gangtool)
 	return gangtool && (gangtool.outfits > 0) && ..()
+=======
+///////////////////
+//CLOTHING
+///////////////////
+
+/datum/gang_item/clothing
+	category = "Purchase Influence-Enhancing Clothes:"
+
+/datum/gang_item/clothing/under
+	name = "Gang Uniform"
+	id = "under"
+	cost = 1
+
+/datum/gang_item/clothing/under/spawn_item(mob/living/carbon/user, datum/gang/gang, obj/item/device/gangtool/gangtool)
+	if(gang.inner_outfit)
+		var/obj/item/O = new gang.inner_outfit(user.loc)
+		user.put_in_hands(O)
+		to_chat(user, "<span class='notice'> This is your gang's official uniform, wearing it will increase your influence")
+
+/datum/gang_item/clothing/suit
+	name = "Gang Armored Outerwear"
+	id = "suit"
+	cost = 1
+
+/datum/gang_item/clothing/suit/spawn_item(mob/living/carbon/user, datum/gang/gang, obj/item/device/gangtool/gangtool)
+	if(gang.outer_outfit)
+		var/obj/item/O = new gang.outer_outfit(user.loc)
+		O.armor = list(melee = 20, bullet = 35, laser = 10, energy = 10, bomb = 30, bio = 0, rad = 0, fire = 30, acid = 30)
+		O.desc += " Tailored for the [gang.name] Gang to offer the wearer moderate protection against ballistics and physical trauma."
+		user.put_in_hands(O)
+		to_chat(user, "<span class='notice'> This is your gang's official outerwear, wearing it will increase your influence")
+
+
+/datum/gang_item/clothing/hat
+	name = "Pimp Hat"
+	id = "hat"
+	cost = 16
+	item_path = /obj/item/clothing/head/collectable/petehat/gang
+
+/obj/item/clothing/head/collectable/petehat/gang
+	name = "pimpin' hat"
+	desc = "The undisputed king of style."
+
+/datum/gang_item/clothing/mask
+	name = "Golden Death Mask"
+	id = "mask"
+	cost = 18
+	item_path = /obj/item/clothing/mask/gskull
+
+/obj/item/clothing/mask/gskull
+	name = "golden death mask"
+	icon_state = "gskull"
+	desc = "Strike terror, and envy, into the hearts of your enemies."
+
+
+/datum/gang_item/clothing/shoes
+	name = "Bling Boots"
+	id = "boots"
+	cost = 22
+	item_path = /obj/item/clothing/shoes/gang
+
+/obj/item/clothing/shoes/gang
+	name = "blinged-out boots"
+	desc = "Stand aside peasants."
+	icon_state = "bling"
+
+/datum/gang_item/clothing/neck
+	name = "Gold Necklace"
+	id = "necklace"
+	cost = 9
+	item_path = /obj/item/clothing/neck/necklace/dope
+
+
+/datum/gang_item/clothing/hands
+	name = "Decorative Brass Knuckles"
+	id = "hand"
+	cost = 11
+	item_path = /obj/item/clothing/gloves/gang
+
+/obj/item/clothing/gloves/gang
+	name = "braggadocio's brass knuckles"
+	desc = "Purely decorative, don't find out the hard way."
+	icon_state = "knuckles"
+	w_class = 3
+
+/datum/gang_item/clothing/belt
+	name = "Badass Belt"
+	id = "belt"
+	cost = 13
+	item_path = /obj/item/weapon/storage/belt/military/gang
+
+/obj/item/weapon/storage/belt/military/gang
+	name = "badass belt"
+	icon_state = "gangbelt"
+	item_state = "gang"
+	desc = "The belt buckle simply reads 'BAMF'."
+	storage_slots = 1
+>>>>>>> a596fc442a... Merge pull request #27611 from Robustin/GangBang
 
 /datum/gang_item/function/outfit/get_cost_display(mob/living/carbon/user, datum/gang/gang, obj/item/device/gangtool/gangtool)
 	if(gangtool && !gangtool.outfits)
@@ -120,6 +219,32 @@
 	cost = 5
 	item_path = /obj/item/weapon/switchblade
 
+<<<<<<< HEAD
+=======
+/datum/gang_item/weapon/surplus
+	name = "Surplus Rifle"
+	id = "surplus"
+	cost = 8
+	item_path = /obj/item/weapon/gun/ballistic/automatic/surplus
+
+/datum/gang_item/weapon/ammo/surplus_ammo
+	name = "Surplus Rifle Ammo"
+	id = "surplus_ammo"
+	cost = 5
+	item_path = /obj/item/ammo_box/magazine/m10mm/rifle
+
+/datum/gang_item/weapon/improvised
+	name = "Sawn-Off Improvised Shotgun"
+	id = "sawn"
+	cost = 6
+
+/datum/gang_item/weapon/ammo/improvised_ammo
+	name = "Box of Buckshot"
+	id = "buckshot"
+	cost = 5
+	item_path = /obj/item/weapon/storage/box/lethalshot
+
+>>>>>>> a596fc442a... Merge pull request #27611 from Robustin/GangBang
 /datum/gang_item/weapon/pistol
 	name = "10mm Pistol"
 	id = "pistol"
@@ -133,16 +258,24 @@
 	item_path = /obj/item/ammo_box/magazine/m10mm
 
 /datum/gang_item/weapon/sniper
-	name = ".50cal Sniper Rifle"
+	name = "Black Market .50cal Sniper Rifle"
 	id = "sniper"
 	cost = 40
 	item_path = /obj/item/weapon/gun/ballistic/automatic/sniper_rifle
 
 /datum/gang_item/weapon/ammo/sniper_ammo
-	name = "Standard .50cal Sniper Rounds"
+	name = "Smuggled .50cal Sniper Rounds"
 	id = "sniper_ammo"
 	cost = 15
-	item_path = /obj/item/ammo_box/magazine/sniper_rounds
+	item_path = /obj/item/ammo_box/magazine/sniper_rounds/gang
+
+
+/datum/gang_item/weapon/ammo/sleeper_ammo
+	name = "Illicit Tranquilizer Cartridges"
+	id = "sniper_ammo"
+	cost = 15
+	item_path = /obj/item/ammo_box/magazine/sniper_rounds/gang/sleeper
+
 
 /datum/gang_item/weapon/uzi
 	name = "Uzi SMG"
@@ -222,6 +355,21 @@
 		user.put_in_hands(O)
 	if(spawn_msg)
 		to_chat(user, spawn_msg)
+<<<<<<< HEAD
+=======
+
+/datum/gang_item/equipment/wetwork_boots
+	name = "Wetwork boots"
+	id = "wetwork"
+	cost = 20
+	item_path = /obj/item/clothing/shoes/combat/gang
+
+/obj/item/clothing/shoes/combat/gang
+	name = "Wetwork boots"
+	desc = "A gang's best hitmen are prepared for anything."
+	permeability_coefficient = 0.01
+	flags = NOSLIP
+>>>>>>> a596fc442a... Merge pull request #27611 from Robustin/GangBang
 
 /datum/gang_item/equipment/pen
 	name = "Recruitment Pen"
