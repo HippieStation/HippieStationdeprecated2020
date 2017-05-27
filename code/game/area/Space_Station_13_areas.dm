@@ -162,10 +162,39 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Bridge Maintenance"
 	icon_state = "maintcentral"
 
+<<<<<<< HEAD
 /area/maintenance/fore
 	name = "Fore Maintenance"
 	icon_state = "fmaint"
 
+=======
+/area/maintenance/aft
+//	/area/maintenance/aft/Aft_Maintenance // old aft maint path was engi maint
+	name = "Aft Maintenance"
+	icon_state = "amaint"
+	
+/area/maintenance/aft/secondary
+	name = "Aft Maintenance"
+	icon_state = "amaint_2"
+	
+/area/maintenance/central
+//	/area/maintenance/maintcentral
+	name = "Central Maintenance"
+	icon_state = "maintcentral"
+	
+/area/maintenance/central/secondary
+	name = "Central Maintenance"
+	icon_state = "maintcentral"
+	
+/area/maintenance/fore
+	name = "Fore Maintenance"
+	icon_state = "fmaint"
+	
+/area/maintenance/fore/secondary
+	name = "Fore Maintenance"
+	icon_state = "fmaint_2"
+	
+>>>>>>> ec6185dbfd... [Box] Maintenance Cleanup (#27645)
 /area/maintenance/starboard
 	name = "Starboard Maintenance"
 	icon_state = "smaint"
@@ -173,6 +202,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/maintenance/starboard/aft_starboard_maintenance
 	name = "Aft Starboard Maintenance"
 	icon_state = "smaint"
+<<<<<<< HEAD
 
 /area/maintenance/starboard/fore_starboard_maintenance
 	name = "Fore Starboard Maintenance"
@@ -184,6 +214,51 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/maintenance/aft
 	name = "Engineering Maintenance"
+=======
+	
+/area/maintenance/starboard/aft
+//	/area/maintenance/starboard/aft_starboard_maintenance
+	name = "Starboard Quarter Maintenance"
+	icon_state = "asmaint"
+	
+/area/maintenance/starboard/fore
+//	/area/maintenance/starboard/fore_starboard_maintenance
+	name = "Starboard Bow Maintenance"
+	icon_state = "fsmaint"
+	
+/area/maintenance/port
+//	/area/maintenance/fpmaint2/port_maintenance
+	name = "Port Maintenance"
+	icon_state = "pmaint"
+	
+/area/maintenance/port/central
+	name = "Central Port Maintenance"
+	icon_state = "maintcentral"
+	
+/area/maintenance/port/aft
+//	/area/maintenance/fpmaint2/aft_port_maintenance
+	name = "Port Quarter Maintenance"
+	icon_state = "apmaint"
+	
+/area/maintenance/port/fore
+	name = "Port Bow Maintenance"
+	icon_state = "fpmaint"
+	
+/area/maintenance/disposal
+	name = "Waste Disposal"
+	icon_state = "disposal"
+	
+/area/maintenance/disposal/incinerator
+//	/area/maintenance/incinerator
+	name = "Incinerator"
+	icon_state = "disposal"
+	
+	
+//Cere / Asteroid Specific
+	
+/area/maintenance/asteroid/aft/science
+	name = "Aft Maintenance"
+>>>>>>> ec6185dbfd... [Box] Maintenance Cleanup (#27645)
 	icon_state = "amaint"
 
 /area/maintenance/aft/Aft_Maintenance
