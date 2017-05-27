@@ -176,6 +176,12 @@ GLOBAL_VAR_INIT(CURRENT_TICKLIMIT, TICK_LIMIT_RUNNING)
 	to_chat(world, "<span class='boldannounce'>[msg]</span>")
 	log_world(msg)
 
+<<<<<<< HEAD
+=======
+	if (!current_runlevel)
+		SetRunLevel(1)
+
+>>>>>>> b46dd5cfce... Merge pull request #27576 from Cyberboss/BetterRecovery
 	// Sort subsystems by display setting for easy access.
 	sortTim(subsystems, /proc/cmp_subsystem_display)
 	// Set world options.
