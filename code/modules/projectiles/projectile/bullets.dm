@@ -28,8 +28,8 @@
 	damage = 10
 
 /obj/item/projectile/bullet/armourpiercing
-	damage = 17
-	armour_penetration = 10
+	damage = 15
+	armour_penetration = 40
 
 /obj/item/projectile/bullet/pellet
 	name = "pellet"
@@ -240,6 +240,27 @@
 		nodamage = 1
 	. = ..() // Execute the rest of the code.
 
+<<<<<<< HEAD
+=======
+/obj/item/projectile/bullet/dnainjector
+	name = "\improper DNA injector"
+	icon_state = "syringeproj"
+	var/obj/item/weapon/dnainjector/injector
+
+/obj/item/projectile/bullet/dnainjector/on_hit(atom/target, blocked = 0)
+	if(iscarbon(target))
+		var/mob/living/carbon/M = target
+		if(blocked != 100)
+			if(M.can_inject(null, FALSE, def_zone, FALSE))
+				if(injector.inject(M, firer))
+					QDEL_NULL(injector)
+					return TRUE
+			else
+				blocked = 100
+				target.visible_message("<span class='danger'>\The [src] was deflected!</span>", \
+									   "<span class='userdanger'>You were protected against \the [src]!</span>")
+	return ..()
+>>>>>>> 075f90590e... Merge pull request #27533 from Steelpoint/ArmourPiercing
 
 
 //// SNIPER BULLETS
