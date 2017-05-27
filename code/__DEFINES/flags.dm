@@ -12,6 +12,7 @@
 #define NOBLUDGEON		4		// when an item has this it produces no "X has been hit by Y with Z" message in the default attackby()
 #define MASKINTERNALS	8		// mask allows internals
 #define HEAR 			16		// This flag is what recursive_hear_check() uses to determine wether to add an item to the hearer list or not.
+#define CHECK_RICOCHET	32		// Projectiels will check ricochet on things impacted that have this.
 #define CONDUCT			64		// conducts electricity (metal etc.)
 #define ABSTRACT    	128		// for all things that are technically items but used for various different stuff, made it 128 because it could conflict with other flags other way
 #define NODECONSTRUCT  	128		// For machines and structures that should not break into parts, eg, holodeck stuff
@@ -55,6 +56,7 @@
 #define UNUSED_TRANSIT_TURF 2
 #define CAN_BE_DIRTY 4 //If a turf can be made dirty at roundstart. This is also used in areas.
 #define NO_DEATHRATTLE 16 // Do not notify deadchat about any deaths that occur on this turf.
+//#define CHECK_RICOCHET	32		//Same thing as atom flag.
 
 /*
 	These defines are used specifically with the atom/pass_flags bitmask
