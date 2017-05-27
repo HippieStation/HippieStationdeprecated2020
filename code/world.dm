@@ -16,6 +16,35 @@
 /world/New()
 	log_world("World loaded at [time_stamp()]")
 
+<<<<<<< HEAD
+=======
+	SetupExternalRSC()
+
+	GLOB.config_error_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = file("data/logs/config_error.log") //temporary file used to record errors with loading config, moved to log directory once logging is set bl
+
+	make_datum_references_lists()	//initialises global lists for referencing frequently used datums (so that we only ever do it once)
+
+	config = new
+
+	SetRoundID()
+
+	SetupLogs()
+
+	GLOB.revdata.DownloadPRDetails()
+
+	load_motd()
+	load_admins()
+	load_menu()
+	if(config.usewhitelist)
+		load_whitelist()
+	LoadBans()
+
+	GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
+
+	Master.Initialize(10, FALSE)
+
+/world/proc/SetupExternalRSC()
+>>>>>>> c4c5f7f5d9... Merge pull request #27720 from MrStonedOne/patch-370
 #if (PRELOAD_RSC == 0)
 	external_rsc_urls = world.file2list("config/external_rsc_urls.txt","\n")
 	var/i=1
