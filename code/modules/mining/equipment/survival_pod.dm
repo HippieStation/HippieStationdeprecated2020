@@ -1,95 +1,12 @@
-/**********************Light************************/
-
-//this item is intended to give the effect of entering the mine, so that light gradually fades
-/obj/effect/light_emitter
-	name = "Light emitter"
-	anchored = 1
-	invisibility = 101
-	var/set_luminosity = 8
-	var/set_cap = 0
-
-/obj/effect/light_emitter/New()
-	..()
-	set_light(set_luminosity, set_cap)
-
-/**********************Miner Lockers**************************/
-
-/obj/structure/closet/wardrobe/miner
-	name = "mining wardrobe"
-	icon_door = "mixed"
-
-/obj/structure/closet/wardrobe/miner/PopulateContents()
-	new /obj/item/weapon/storage/backpack/dufflebag(src)
-	new /obj/item/weapon/storage/backpack/explorer(src)
-	new /obj/item/weapon/storage/backpack/satchel/explorer(src)
-	new /obj/item/clothing/under/rank/miner/lavaland(src)
-	new /obj/item/clothing/under/rank/miner/lavaland(src)
-	new /obj/item/clothing/under/rank/miner/lavaland(src)
-	new /obj/item/clothing/shoes/workboots/mining(src)
-	new /obj/item/clothing/shoes/workboots/mining(src)
-	new /obj/item/clothing/shoes/workboots/mining(src)
-	new /obj/item/clothing/gloves/color/black(src)
-	new /obj/item/clothing/gloves/color/black(src)
-	new /obj/item/clothing/gloves/color/black(src)
-
-/obj/structure/closet/secure_closet/miner
-	name = "miner's equipment"
-	icon_state = "mining"
-	req_access = list(GLOB.access_mining)
-
-/obj/structure/closet/secure_closet/miner/PopulateContents()
-	..()
-	new /obj/item/stack/sheet/mineral/sandbags(src, 5)
-	new /obj/item/weapon/storage/box/emptysandbags(src)
-	new /obj/item/weapon/shovel(src)
-	new /obj/item/weapon/pickaxe/mini(src)
-	new /obj/item/device/radio/headset/headset_cargo/mining(src)
-	new /obj/item/device/flashlight/seclite(src)
-	new /obj/item/weapon/storage/bag/plants(src)
-	new /obj/item/weapon/storage/bag/ore(src)
-	new /obj/item/device/t_scanner/adv_mining_scanner/lesser(src)
-	new /obj/item/weapon/gun/energy/kinetic_accelerator(src)
-	new /obj/item/clothing/glasses/meson(src)
-	new /obj/item/weapon/survivalcapsule(src)
-	new /obj/item/device/assault_pod/mining(src)
-
-
-/**********************Shuttle Computer**************************/
-
-/obj/machinery/computer/shuttle/mining
-	name = "Mining Shuttle Console"
-	desc = "Used to call and send the mining shuttle."
-	circuit = /obj/item/weapon/circuitboard/computer/mining_shuttle
-	shuttleId = "mining"
-	possible_destinations = "mining_home;mining_away;landing_zone_dock;mining_public"
-	no_destination_swap = 1
-	var/global/list/dumb_rev_heads = list()
-
-/obj/machinery/computer/shuttle/mining/attack_hand(mob/user)
-	if(user.z == ZLEVEL_STATION && user.mind && (user.mind in SSticker.mode.head_revolutionaries) && !(user.mind in dumb_rev_heads))
-		to_chat(user, "<span class='warning'>You get a feeling that leaving the station might be a REALLY dumb idea...</span>")
-		dumb_rev_heads += user.mind
-		return
-	..()
-
-/**********************Mining car (Crate like thing, not the rail car)**************************/
-
-/obj/structure/closet/crate/miningcar
-	desc = "A mining car. This one doesn't work on rails, but has to be dragged."
-	name = "Mining car (not for rails)"
-	icon_state = "miningcar"
-<<<<<<< HEAD
-
 /*****************************Survival Pod********************************/
-
-
 /area/survivalpod
 	name = "\improper Emergency Shelter"
 	icon_state = "away"
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
-	requires_power = 0
-	has_gravity = 1
+	requires_power = FALSE
+	has_gravity = TRUE
 
+//Survival Capsule
 /obj/item/weapon/survivalcapsule
 	name = "bluespace shelter capsule"
 	desc = "An emergency shelter stored within a pocket of bluespace."
@@ -100,7 +17,6 @@
 	var/template_id = "shelter_alpha"
 	var/datum/map_template/shelter/template
 	var/used = FALSE
-	var/can_use_on_station = FALSE 
 
 /obj/item/weapon/survivalcapsule/proc/get_template()
 	if(template)
@@ -119,31 +35,23 @@
 	get_template()
 	to_chat(user, "This capsule has the [template.name] stored.")
 	to_chat(user, template.description)
-	
-/obj/item/weapon/survivalcapsule/emag_act(mob/user)
-	can_use_on_station = TRUE
-	playsound(src.loc, "sparks", 100, 1)	
 
 /obj/item/weapon/survivalcapsule/attack_self()
-	// Can't grab when capsule is New() because templates aren't loaded then
+	//Can't grab when capsule is New() because templates aren't loaded then
 	get_template()
-	if(used == FALSE)
-		src.loc.visible_message("<span class='warning'>\The [src] begins \
-			to shake. Stand back!</span>")
+	if(!used)
+		loc.visible_message("<span class='warning'>\The [src] begins to shake. Stand back!</span>")
 		used = TRUE
 		sleep(50)
 		var/turf/deploy_location = get_turf(src)
 		var/status = template.check_deploy(deploy_location)
 		switch(status)
 			if(SHELTER_DEPLOY_BAD_AREA)
-				src.loc.visible_message("<span class='warning'>\The [src] \
-				will not function in this area.</span>")
+				src.loc.visible_message("<span class='warning'>\The [src] will not function in this area.</span>")
 			if(SHELTER_DEPLOY_BAD_TURFS, SHELTER_DEPLOY_ANCHORED_OBJECTS)
 				var/width = template.width
 				var/height = template.height
-				src.loc.visible_message("<span class='warning'>\The [src] \
-				doesn't have room to deploy! You need to clear a \
-				[width]x[height] area!</span>")
+				src.loc.visible_message("<span class='warning'>\The [src] doesn't have room to deploy! You need to clear a [width]x[height] area!</span>")
 
 		if(status != SHELTER_DEPLOY_ALLOWED)
 			used = FALSE
@@ -155,21 +63,11 @@
 		if(T.z != ZLEVEL_MINING && T.z != ZLEVEL_LAVALAND)//only report capsules away from the mining/lavaland level
 			message_admins("[ADMIN_LOOKUPFLW(usr)] activated a bluespace capsule away from the mining level! [ADMIN_JMP(T)]")
 			log_admin("[key_name(usr)] activated a bluespace capsule away from the mining level at [get_area(T)][COORD(T)]")
-		
-			if(!can_use_on_station)
-				src.loc.visible_message("<span class='warning'>\The [src] \
-				will not function in this area.</span>")
-				used = FALSE
-				return
-				
 		template.load(deploy_location, centered = TRUE)
 		new /obj/effect/particle_effect/smoke(get_turf(src))
 		qdel(src)
 
-
-
-//Pod turfs and objects
-
+//Pod objects
 
 //Window
 /obj/structure/window/shuttle/survival_pod
@@ -185,8 +83,8 @@
 	icon = 'icons/obj/doors/airlocks/survival/survival.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/survival/survival_overlays.dmi'
 	assemblytype = /obj/structure/door_assembly/door_assembly_pod
-	opacity = 0
-	glass = 1
+	opacity = FALSE
+	glass = TRUE
 	var/expected_dir = SOUTH //we visually turn when shuttle rotated, but need to not turn for any other reason
 
 /obj/machinery/door/airlock/survival_pod/setDir(direction)
@@ -206,7 +104,7 @@
 	icon = 'icons/obj/doors/airlocks/survival/survival.dmi'
 	overlays_file = 'icons/obj/doors/airlocks/survival/survival_overlays.dmi'
 	airlock_type = /obj/machinery/door/airlock/survival_pod
-	anchored = 1
+	anchored = TRUE
 	state = 1
 	mineral = "glass"
 	material = "glass"
@@ -246,8 +144,8 @@
 	name = "pod computer"
 	icon_state = "pod_computer"
 	icon = 'icons/obj/lavaland/pod_computer.dmi'
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	pixel_y = -32
 
 /obj/item/device/gps/computer/attackby(obj/item/weapon/W, mob/user, params)
@@ -256,9 +154,10 @@
 		user.visible_message("<span class='warning'>[user] disassembles the gps.</span>", \
 						"<span class='notice'>You start to disassemble the gps...</span>", "You hear clanking and banging noises.")
 		if(do_after(user, 20*W.toolspeed, target = src))
-			new /obj/item/device/gps(src.loc)
+			new /obj/item/device/gps(loc)
 			qdel(src)
-			return ..()
+		return
+	return ..()
 
 /obj/item/device/gps/computer/attack_hand(mob/user)
 	attack_self(user)
@@ -296,7 +195,7 @@
 	return 0
 
 /obj/machinery/smartfridge/survival_pod/Initialize(mapload, empty)
-	..()
+	. = ..()
 	if(empty)
 		return
 	for(var/i in 1 to 5)
@@ -315,8 +214,8 @@
 	icon_state = "fans"
 	name = "environmental regulation system"
 	desc = "A large machine releasing a constant gust of air."
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/arbitraryatmosblockingvar = TRUE
 	var/buildstacktype = /obj/item/stack/sheet/metal
 	var/buildstackamount = 5
@@ -341,12 +240,12 @@
 	name = "tiny fan"
 	desc = "A tiny fan, releasing a thin gust of air."
 	layer = ABOVE_NORMAL_TURF_LAYER
-	density = 0
+	density = FALSE
 	icon_state = "fan_tiny"
 	buildstackamount = 2
 
-/obj/structure/fans/New(loc)
-	..()
+/obj/structure/fans/Initialize(mapload)
+	. = ..()
 	air_update_turf(1)
 
 /obj/structure/fans/Destroy()
@@ -359,7 +258,6 @@
 	name = "air flow blocker"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	invisibility = INVISIBILITY_ABSTRACT
-
 
 //Signs
 /obj/structure/sign/mining
@@ -379,8 +277,6 @@
 	icon_state = "tubes"
 	icon = 'icons/obj/lavaland/survival_pod.dmi'
 	name = "tubes"
-	anchored = 1
+	anchored = TRUE
 	layer = BELOW_MOB_LAYER
-	density = 0
-=======
->>>>>>> 5387d795a8... Splits up mine_items.dmi (#27669)
+	density = FALSE
