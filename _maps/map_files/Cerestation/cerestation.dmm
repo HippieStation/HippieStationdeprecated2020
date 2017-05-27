@@ -2402,7 +2402,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/shuttle/syndicate)
 "aeX" = (
 /obj/structure/reagent_dispensers/fueltank,
@@ -2651,17 +2651,17 @@
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "propulsion_l"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/shuttle/syndicate)
 "afu" = (
 /obj/structure/shuttle/engine/propulsion,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/shuttle/syndicate)
 "afv" = (
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "propulsion_r"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/shuttle/syndicate)
 "afw" = (
 /obj/structure/closet,
@@ -109905,6 +109905,7 @@ cdN
 aaa
 aaa
 aaa
+<<<<<<< HEAD
 cdN
 cqb
 cqX
@@ -109928,6 +109929,31 @@ cdM
 cdM
 cdM
 cdM
+=======
+cdb
+cpo
+cqk
+cri
+cqk
+dkx
+ctm
+cua
+cKv
+cKx
+cKy
+cpo
+cxM
+djz
+djR
+djF
+djE
+djR
+djz
+cda
+cda
+cda
+cda
+>>>>>>> 5d9c280802... Roundstart AT cleanup (#27718)
 aaa
 aaa
 aaa
@@ -110162,6 +110188,7 @@ cdN
 aaa
 aaa
 aaa
+<<<<<<< HEAD
 cdI
 cqb
 cqY
@@ -110185,6 +110212,31 @@ cdq
 cdM
 cdM
 cdM
+=======
+ccW
+cpo
+cql
+crj
+csf
+dkx
+ctn
+cub
+cuu
+cvm
+cwh
+cKz
+cxO
+cyF
+cSC
+czZ
+cAk
+djT
+djR
+djW
+cda
+cda
+cda
+>>>>>>> 5d9c280802... Roundstart AT cleanup (#27718)
 aaa
 aaa
 aaa
