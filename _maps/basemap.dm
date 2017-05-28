@@ -1,6 +1,11 @@
 #ifndef ALL_MAPS
+<<<<<<< HEAD
 #include "map_files\generic\SpaceStation.dmm"
+=======
+
+>>>>>>> 12f6ef45ff... Merge pull request #27697 from KorPhaeron/z2
 #include "map_files\generic\Centcomm.dmm"
+#include "map_files\generic\SpaceStation.dmm"
 #include "map_files\generic\Space.dmm"
 #include "map_files\generic\SpaceDock.dmm"
 <<<<<<< HEAD
