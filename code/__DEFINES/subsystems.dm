@@ -38,6 +38,7 @@
 }
 
 // Subsystem init_order, from highest priority to lowest priority
+// Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
 
 #define INIT_ORDER_JOBS 15
@@ -60,3 +61,16 @@
 #define INIT_ORDER_LIGHTING -20
 #define INIT_ORDER_SQUEAK -40
 #define INIT_ORDER_PERSISTENCE -100
+<<<<<<< HEAD
+=======
+
+// SS runlevels
+
+#define RUNLEVEL_INIT 0
+#define RUNLEVEL_LOBBY 1
+#define RUNLEVEL_SETUP 2
+#define RUNLEVEL_GAME 4
+#define RUNLEVEL_POSTGAME 8
+
+#define RUNLEVELS_DEFAULT (RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME)
+>>>>>>> 2df8f64ff0... Merge pull request #27465 from Cyberboss/patch-85
