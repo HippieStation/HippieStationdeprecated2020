@@ -251,3 +251,25 @@
 		return ..()
 	to_chat(user, "<span class='warning'>[src] only accepts pies!</span>")
 	return FALSE
+<<<<<<< HEAD
+=======
+
+/obj/item/weapon/pneumatic_cannon/pie/selfcharge
+	automatic = TRUE
+	var/charge_amount = 1
+	var/charge_ticks = 1
+	var/charge_tick = 0
+	maxWeightClass = 60	//20 pies.
+
+/obj/item/weapon/pneumatic_cannon/pie/selfcharge/Initialize()
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
+/obj/item/weapon/pneumatic_cannon/pie/selfcharge/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+/obj/item/weapon/pneumatic_cannon/pie/selfcharge/process()
+	if(++charge_tick >= charge_ticks)
+		fill_with_type(/obj/item/weapon/reagent_containers/food/snacks/pie/cream, charge_amount)
+>>>>>>> 9275ec2327... Merge pull request #27750 from kevinz000/patch-189
