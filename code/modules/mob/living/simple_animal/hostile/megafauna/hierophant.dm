@@ -78,6 +78,9 @@ Difficulty: Hard
 	internal = new/obj/item/device/gps/internal/hierophant(src)
 	spawned_beacon = new(loc)
 
+/mob/living/simple_animal/hostile/megafauna/hierophant/spawn_crusher_loot()
+	new /obj/item/crusher_trophy/vortex_talisman(get_turf(spawned_beacon))
+
 /mob/living/simple_animal/hostile/megafauna/hierophant/Life()
 	. = ..()
 	if(. && spawned_beacon && !QDELETED(spawned_beacon) && !client)
@@ -460,7 +463,17 @@ Difficulty: Hard
 	queue_smooth_neighbors(src)
 	return ..()
 
+<<<<<<< HEAD
 /obj/effect/overlay/temp/hierophant/wall/CanPass(atom/movable/mover, turf/target, height = 0)
+=======
+/obj/effect/temp_visual/hierophant/wall/CanPass(atom/movable/mover, turf/target, height = 0)
+	if(mover == caster.pulledby)
+		return TRUE
+	if(istype(mover, /obj/item/projectile))
+		var/obj/item/projectile/P = mover
+		if(P.firer == caster)
+			return TRUE
+>>>>>>> 91022c6f29... The kinetic crusher can now gain bonus effects via trophies gained by killing bosses with it (#27728)
 	if(mover == caster)
 		return TRUE
 	return FALSE
@@ -478,6 +491,11 @@ Difficulty: Hard
 	var/speed = 3 //how many deciseconds between each step
 	var/currently_seeking = FALSE
 	var/friendly_fire_check = FALSE //if blasts produced apply friendly fire
+<<<<<<< HEAD
+=======
+	var/monster_damage_boost = TRUE
+	var/damage = 10
+>>>>>>> 91022c6f29... The kinetic crusher can now gain bonus effects via trophies gained by killing bosses with it (#27728)
 
 /obj/effect/overlay/temp/hierophant/chaser/Initialize(mapload, new_caster, new_target, new_speed, is_friendly_fire)
 	. = ..()
@@ -583,7 +601,13 @@ Difficulty: Hard
 	if(bursting)
 		do_damage(get_turf(src))
 
+<<<<<<< HEAD
 /obj/effect/overlay/temp/hierophant/blast/proc/do_damage(turf/T)
+=======
+/obj/effect/temp_visual/hierophant/blast/proc/do_damage(turf/T)
+	if(!damage)
+		return
+>>>>>>> 91022c6f29... The kinetic crusher can now gain bonus effects via trophies gained by killing bosses with it (#27728)
 	for(var/mob/living/L in T.contents - hit_things) //find and damage mobs...
 		hit_things += L
 		if((friendly_fire_check && caster && caster.faction_check_mob(L)) || L.stat == DEAD)
