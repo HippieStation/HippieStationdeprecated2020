@@ -60,13 +60,11 @@ GLOBAL_LIST_EMPTY(holopads)
 
 /obj/machinery/holopad/Destroy()
 	if(outgoing_call)
-		LAZYADD(holo_calls, outgoing_call)
-		outgoing_call = null
+		outgoing_call.ConnectionFailure(src)
 
 	for(var/I in holo_calls)
 		var/datum/holocall/HC = I
 		HC.ConnectionFailure(src)
-	LAZYCLEARLIST(holo_calls)
 
 	for (var/I in masters)
 		clear_holo(I)
@@ -78,6 +76,13 @@ GLOBAL_LIST_EMPTY(holopads)
 		stat &= ~NOPOWER
 	else
 		stat |= ~NOPOWER
+		if(outgoing_call)
+			outgoing_call.ConnectionFailure(src)
+
+/obj/machinery/holopad/obj_break()
+	. = ..()
+	if(outgoing_call)
+		outgoing_call.ConnectionFailure(src)
 
 /obj/machinery/holopad/RefreshParts()
 	var/holograph_range = 4
