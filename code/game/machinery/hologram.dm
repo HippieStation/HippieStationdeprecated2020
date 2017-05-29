@@ -53,7 +53,7 @@ GLOBAL_LIST_EMPTY(holopads)
 	var/static/list/holopads = list()
 
 /obj/machinery/holopad/Initialize()
-	..()
+	. = ..()
 	var/obj/item/weapon/circuitboard/machine/B = new /obj/item/weapon/circuitboard/machine/holopad(null)
 	B.apply_default_parts(src)
 	holopads += src
