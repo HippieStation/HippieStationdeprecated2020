@@ -528,8 +528,13 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 		user.visible_message("<span class='suicide'>[user] is strangling [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return(OXYLOSS)
 
+<<<<<<< HEAD
 /obj/item/stack/cable_coil/New(loc, new_amount = null, var/param_color = null)
 	..()
+=======
+/obj/item/stack/cable_coil/Initialize(mapload, new_amount = null, param_color = null)
+	. = ..()
+>>>>>>> 6d68f6bc79... Merge pull request #27768 from AnturK/coil
 	if(new_amount) // MAXCOIL by default
 		amount = new_amount
 	if(param_color)
@@ -780,9 +785,9 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 /obj/item/stack/cable_coil/cut
 	item_state = "coil_red2"
 
-/obj/item/stack/cable_coil/cut/New(loc)
-	..()
-	src.amount = rand(1,2)
+/obj/item/stack/cable_coil/cut/Initialize(mapload)
+	. =..()
+	amount = rand(1,2)
 	pixel_x = rand(-2,2)
 	pixel_y = rand(-2,2)
 	update_icon()
@@ -820,10 +825,11 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list (new/datum/stack_recipe("cable restrai
 	item_color = "white"
 	icon_state = "coil_white"
 
-/obj/item/stack/cable_coil/random/New()
+/obj/item/stack/cable_coil/random/Initialize(mapload)
+	. = ..()
 	item_color = pick("red","orange","yellow","green","cyan","blue","pink","white")
 	icon_state = "coil_[item_color]"
-	..()
+
 
 /obj/item/stack/cable_coil/random/five
 	amount = 5
