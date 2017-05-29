@@ -43,6 +43,17 @@
 	butcher_results = list(/obj/item/weapon/reagent_containers/food/snacks/meat/slab/pug = 3)
 	gold_core_spawnable = 2
 
+<<<<<<< HEAD
+=======
+/mob/living/simple_animal/pet/dog/Initialize()
+	. = ..()
+	var/dog_area = get_area(src)
+	for(var/obj/structure/bed/dogbed/D in dog_area)
+		if(!D.owner)
+			D.update_owner(src)
+			break
+
+>>>>>>> 90335b64bb... Merge pull request #27796 from bgobandit/whosagoodianyesyouareianyapyapyap
 /mob/living/simple_animal/pet/dog/corgi/Initialize()
 	..()
 	regenerate_icons()
