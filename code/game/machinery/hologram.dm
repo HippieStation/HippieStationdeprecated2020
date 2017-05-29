@@ -115,6 +115,10 @@ GLOBAL_LIST_EMPTY(holopads)
 		return ..()
 
 /obj/machinery/holopad/AltClick(mob/living/carbon/human/user)
+	if(isAI(user))
+		hangup_all_calls()
+		return
+
 	if(!CheckCallClose())
 		interact(user)
 
@@ -159,6 +163,12 @@ GLOBAL_LIST_EMPTY(holopads)
 	popup.set_content(dat)
 	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
+
+//Stop ringing the AI!!
+/obj/machinery/holopad/proc/hangup_all_calls()
+	for(var/I in holo_calls)
+		var/datum/holocall/HC = I
+		HC.Disconnect(src)
 
 /obj/machinery/holopad/Topic(href, href_list)
 	if(..() || isAI(usr))
