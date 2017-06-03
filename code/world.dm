@@ -90,11 +90,8 @@
 	if(GLOB.round_id)
 		log_game("Round ID: [GLOB.round_id]")
 
-<<<<<<< HEAD
 	hippie_initialize()
-#define IRC_STATUS_THROTTLE 50
-=======
->>>>>>> 916d1b4cd7... TGS3 DM changes (#26534)
+
 /world/Topic(T, addr, master, key)
 	if(config && config.log_world_topic)
 		GLOB.world_game_log << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key]"
