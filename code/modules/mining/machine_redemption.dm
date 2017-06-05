@@ -237,6 +237,7 @@
 	dat += "<br><div class='statusDisplay'><b>Mineral Value List:</b><br>[get_ore_values()]</div>"
 
 	if(inserted_disk)
+<<<<<<< HEAD
 		dat += "<A href='?src=\ref[src];eject_disk=1'>Eject disk</A><br>"
 		dat += "<div class='statusDisplay'><b>Uploadable designs: </b><br>"
 
@@ -264,6 +265,18 @@
 	return dat
 
 /obj/machinery/mineral/ore_redemption/Topic(href, href_list)
+=======
+		data["hasDisk"] = TRUE
+		if(inserted_disk.blueprints.len)
+			var/index = 1
+			for (var/datum/design/thisdesign in inserted_disk.blueprints)
+				if(thisdesign)
+					data["diskDesigns"] += list(list("name" = thisdesign.name, "index" = index, "canupload" = thisdesign.build_type&SMELTER))
+				index++
+	return data
+
+/obj/machinery/mineral/ore_redemption/ui_act(action, params)
+>>>>>>> bd95b45766... Merge pull request #28096 from tgstation/lzimann-patch-1
 	if(..())
 		return
 	if(href_list["eject_id"])
