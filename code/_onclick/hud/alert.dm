@@ -411,10 +411,6 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 				req_servants = APPLICATION_SERVANT_REQ
 				req_caches = APPLICATION_CACHE_REQ
 				req_cv = APPLICATION_CV_REQ
-			if(SCRIPTURE_REVENANT)
-				req_servants = REVENANT_SERVANT_REQ
-				req_caches = REVENANT_CACHE_REQ
-				req_cv = REVENANT_CV_REQ
 			if(SCRIPTURE_JUDGEMENT)
 				req_servants = JUDGEMENT_SERVANT_REQ
 				req_caches = JUDGEMENT_CACHE_REQ
@@ -496,6 +492,7 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 				textlist += "<b>[unconverted_ais_exist] unconverted AIs exist!</b><br>"
 			else
 				textlist += "<b>An unconverted AI exists!</b><br>"
+<<<<<<< HEAD
 		if(scripture_states[SCRIPTURE_REVENANT])
 			var/inathneq_available = GLOB.clockwork_generals_invoked["inath-neq"] <= world.time
 			var/sevtug_available = GLOB.clockwork_generals_invoked["sevtug"] <= world.time
@@ -509,6 +506,9 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 		else
 			textlist += "Generals available: <b>NONE</b><br>"
 		for(var/i in scripture_states)
+=======
+		for(var/i in SSticker.scripture_states)
+>>>>>>> aefad8c690... Removes Revenant scriptures entirely (#28061)
 			if(i != SCRIPTURE_DRIVER) //ignore the always-unlocked stuff
 				textlist += "[i] Scripture: <b>[scripture_states[i] ? "UNLOCKED":"LOCKED"]</b><br>"
 		desc = textlist.Join()
