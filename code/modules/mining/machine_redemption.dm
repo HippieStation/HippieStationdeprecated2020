@@ -205,9 +205,17 @@
 		return
 	interact(user)
 
+<<<<<<< HEAD
 /obj/machinery/mineral/ore_redemption/interact(mob/user)
 	var/dat = "This machine only accepts ore. Gibtonite and Slag are not accepted.<br><br>"
 	dat += "Current unclaimed points: [points]<br>"
+=======
+/obj/machinery/mineral/ore_redemption/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "ore_redemption_machine", "Ore Redemption Machine", 440, 550, master_ui, state)
+		ui.open()
+>>>>>>> ed480ef08e... Fixes problems that were in the original PR (#28099)
 
 	if(inserted_id)
 		dat += "You have [inserted_id.mining_points] mining points collected. <A href='?src=\ref[src];eject_id=1'>Eject ID.</A><br>"
