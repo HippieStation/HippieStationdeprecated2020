@@ -64512,8 +64512,7 @@
 	icon_state = "radiation";
 	name = "RADIOACTIVE AREA";
 	pixel_x = 0;
-	pixel_y = -32;
-	step_y = 0
+	pixel_y = -32
 	},
 /obj/machinery/light,
 /turf/open/floor/plasteel,
