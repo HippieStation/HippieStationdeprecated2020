@@ -7,8 +7,12 @@
 
 GLOBAL_VAR_INIT(clockwork_construction_value, 0) //The total value of all structures built by the clockwork cult
 GLOBAL_VAR_INIT(clockwork_caches, 0) //How many clockwork caches exist in the world (not each individual)
+<<<<<<< HEAD
 GLOBAL_VAR_INIT(clockwork_daemons, 0) //How many daemons exist in the world
 GLOBAL_LIST_INIT(clockwork_generals_invoked, list("nezbere" = FALSE, "sevtug" = FALSE, "nzcrentr" = FALSE, "inath-neq" = FALSE)) //How many generals have been recently invoked
+=======
+GLOBAL_LIST_EMPTY(active_daemons) //A list of all active tinkerer's daemons
+>>>>>>> 6a2d5e1946... Merge pull request #28135 from ChangelingRain/daemontweak
 GLOBAL_LIST_EMPTY(all_clockwork_objects) //All clockwork items, structures, and effects in existence
 GLOBAL_LIST_EMPTY(all_clockwork_mobs) //All clockwork SERVANTS (not creatures) in existence
 GLOBAL_LIST_INIT(clockwork_component_cache, list(BELLIGERENT_EYE = 0, VANGUARD_COGWHEEL = 0, GEIS_CAPACITOR = 0, REPLICANT_ALLOY = 0, HIEROPHANT_ANSIBLE = 0)) //The pool of components that caches draw from
