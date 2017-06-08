@@ -29,7 +29,7 @@
 	SetupLogs()
 
 	if(!RunningService())	//tgs2 support
-		GLOB.revdata.DownloadPRDetails() 
+		GLOB.revdata.DownloadPRDetails()
 
 	load_motd()
 	load_admins()
@@ -60,7 +60,11 @@
 	if(config.sql_enabled)
 		if(SSdbcore.Connect())
 			log_world("Database connection established.")
+<<<<<<< HEAD
 			var/datum/DBQuery/query_round_start = SSdbcore.NewQuery("INSERT INTO [format_table_name("round")] (start_datetime, server_ip, server_port) VALUES (Now(), COALESCE(INET_ATON('[GLOB.ip_address]'), 0), '[world.port]')")
+=======
+			var/datum/DBQuery/query_round_start = SSdbcore.NewQuery("INSERT INTO [format_table_name("round")] (start_datetime, server_ip, server_port) VALUES (Now(), INET_ATON(IF('[world.internet_address]' LIKE '', '0', '[world.internet_address]')), '[world.port]')")
+>>>>>>> 73882dcc49... Fix to round_id and .getserverlog (#28130)
 			query_round_start.Execute()
 			var/datum/DBQuery/query_round_last_id = SSdbcore.NewQuery("SELECT LAST_INSERT_ID()")
 			query_round_last_id.Execute()
