@@ -73,6 +73,7 @@ GLOBAL_LIST_EMPTY(menulist)
 		myparent.Load_verbs(verb_parent_type, verbs)
 		return
 
+<<<<<<< HEAD
 	for (var/verbpath in verbs)
 		verblist[verbpath] = verb_parent_type
 
@@ -121,6 +122,30 @@ GLOBAL_LIST_EMPTY(menulist)
 		.[verbpath] = list2params(entry)
 
 /datum/menu/proc/Get_checked(client/C)
+=======
+/datum/verbs/menu/GetList()
+	return GLOB.menulist
+
+/datum/verbs/menu/HandleVerb(list/entry, verbpath, client/C)
+	var/datum/verbs/menu/verb_true_parent = GLOB.menulist[verblist[verbpath]]
+	var/true_checkbox = verb_true_parent.checkbox
+	if (true_checkbox != CHECKBOX_NONE)
+		var/checkedverb = verb_true_parent.Get_checked(C)
+		if (true_checkbox == CHECKBOX_GROUP)
+			if (verbpath == checkedverb)
+				entry["is-checked"] = TRUE
+			else
+				entry["is-checked"] = FALSE
+		else if (true_checkbox == CHECKBOX_TOGGLE)
+			entry["is-checked"] = checkedverb
+
+		entry["command"] = ".updatemenuchecked \"[verb_true_parent.type]\" \"[verbpath]\"\n[entry["command"]]"
+		entry["can-check"] = TRUE
+		entry["group"] = "[verb_true_parent.type]"
+	return list2params(entry)
+
+/datum/verbs/menu/proc/Get_checked(client/C)
+>>>>>>> 11bf285c16... Merge pull request #28199 from Cyberboss/MenuFix
 	return C.prefs.menuoptions[type] || default || FALSE
 
 /datum/menu/proc/Load_checked(client/C) //Loads the checked menu item into a new client. Used by icon menus to invoke the checked item.
