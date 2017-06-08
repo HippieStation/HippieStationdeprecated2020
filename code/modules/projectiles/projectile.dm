@@ -186,6 +186,16 @@
 		return TRUE
 	return FALSE
 
+/obj/item/projectile/proc/check_ricochet()
+	if(prob(ricochet_chance))
+		return TRUE
+	return FALSE
+
+/obj/item/projectile/proc/check_ricochet_flag(atom/A)
+	if(A.flags & CHECK_RICOCHET)
+		return TRUE
+	return FALSE
+
 /obj/item/projectile/Process_Spacemove(var/movement_dir = 0)
 	return 1 //Bullets don't drift in space
 
