@@ -55797,7 +55797,7 @@
 	c_tag = "Singularity North-West";
 	network = list("Singularity")
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "crL" = (
 /obj/structure/cable{
@@ -55814,7 +55814,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "crN" = (
 /obj/structure/table,
@@ -55864,7 +55864,7 @@
 /area/space)
 "crV" = (
 /obj/item/weapon/wrench,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "crW" = (
 /obj/machinery/light/small{
@@ -55912,7 +55912,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "csc" = (
 /obj/structure/lattice,
@@ -55934,7 +55934,7 @@
 	icon_state = "1-8"
 	},
 /obj/structure/grille,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "csf" = (
 /obj/machinery/power/emitter{
@@ -55971,7 +55971,7 @@
 /area/space)
 "csj" = (
 /obj/item/device/multitool,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "csk" = (
 /obj/structure/disposalpipe/segment,
@@ -56061,7 +56061,7 @@
 	icon_state = "1-8"
 	},
 /obj/structure/grille,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "csv" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
@@ -56098,7 +56098,7 @@
 	anchored = 1;
 	state = 2
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "csB" = (
 /obj/item/weapon/wirecutters,
@@ -56109,7 +56109,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "csD" = (
 /obj/structure/grille,
@@ -56150,13 +56150,13 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "csI" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "csJ" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
@@ -56218,14 +56218,14 @@
 /area/engine/engineering)
 "csQ" = (
 /obj/item/weapon/wrench,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "csR" = (
 /obj/machinery/the_singularitygen,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "csS" = (
 /obj/item/weapon/weldingtool,
@@ -59308,7 +59308,7 @@
 	c_tag = "Singularity North-East";
 	network = list("Singularity")
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "czG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -59617,7 +59617,7 @@
 	icon_state = "4-8";
 	pixel_y = 0
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "cAm" = (
 /obj/structure/cable/yellow{
@@ -59630,7 +59630,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "cAn" = (
 /obj/structure/cable/yellow{
@@ -59660,7 +59660,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "cAq" = (
 /obj/machinery/power/tesla_coil,
@@ -59668,7 +59668,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "cAr" = (
 /obj/structure/cable/yellow{
@@ -59681,7 +59681,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "cAs" = (
 /obj/machinery/power/tesla_coil,
@@ -59689,14 +59689,14 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "cAt" = (
 /obj/machinery/the_singularitygen/tesla,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "cAu" = (
 /obj/structure/cable{
@@ -61375,7 +61375,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "cEk" = (
 /obj/machinery/firealarm{
@@ -61393,7 +61393,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "cEn" = (
 /obj/structure/cable{
@@ -61407,7 +61407,7 @@
 	icon_state = "1-4"
 	},
 /obj/structure/grille,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "cEo" = (
 /obj/structure/lattice,
@@ -61423,7 +61423,7 @@
 	icon_state = "2-4"
 	},
 /obj/structure/grille,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "cEq" = (
 /obj/structure/lattice,
@@ -61440,7 +61440,7 @@
 /area/space/nearstation)
 "cEt" = (
 /obj/machinery/power/grounding_rod,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "cEu" = (
 /obj/machinery/power/rad_collector{
@@ -61574,7 +61574,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/grille,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "cEG" = (
 /obj/structure/lattice/catwalk,
@@ -61981,7 +61981,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "cFD" = (
 /obj/structure/cable{
@@ -61990,7 +61990,7 @@
 	icon_state = "1-4"
 	},
 /obj/structure/grille,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "cFE" = (
 /obj/structure/lattice/catwalk,
@@ -62584,7 +62584,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "cHi" = (
 /obj/structure/reflector/box{
@@ -66825,7 +66825,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "cUd" = (
 /obj/structure/cable/yellow{
@@ -66833,7 +66833,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "cUe" = (
 /obj/structure/cable/yellow{
@@ -66841,7 +66841,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "cUf" = (
 /obj/structure/cable/yellow{
@@ -66862,7 +66862,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "cUh" = (
 /obj/structure/cable/yellow{
@@ -66891,7 +66891,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "cUk" = (
 /obj/item/weapon/weldingtool,
@@ -66905,7 +66905,7 @@
 /area/space/nearstation)
 "cUm" = (
 /obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "cUn" = (
 /obj/effect/turf_decal/stripes/line{
@@ -66915,7 +66915,7 @@
 /area/space/nearstation)
 "cUo" = (
 /obj/item/device/radio,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "cUp" = (
 /obj/machinery/power/emitter{
@@ -66932,7 +66932,7 @@
 /area/engine/engineering)
 "cUq" = (
 /obj/structure/grille,
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "cUr" = (
 /obj/structure/grille,
@@ -66948,7 +66948,7 @@
 	dir = 1;
 	network = list("Singularity")
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "cUu" = (
 /obj/structure/cable/yellow{
@@ -66956,7 +66956,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "cUv" = (
 /obj/structure/cable/yellow{
@@ -66970,7 +66970,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "cUw" = (
 /obj/structure/cable/yellow{
@@ -67006,7 +67006,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/space/nearstation)
 "cUz" = (
 /obj/machinery/camera/emp_proof{
@@ -67014,7 +67014,7 @@
 	dir = 1;
 	network = list("Singularity")
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/airless,
 /area/engine/engineering)
 "cUA" = (
 /obj/structure/grille,
@@ -67133,6 +67133,99 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space)
+"cVd" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVe" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVf" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVg" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVh" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVi" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVj" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVk" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVl" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVm" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVn" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVo" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVp" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVq" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVr" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVs" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVt" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVu" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVv" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVw" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVx" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVy" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVz" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVA" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVB" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVC" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVD" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVE" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
+"cVF" = (
+/turf/open/floor/plating/airless,
+/area/engine/engineering)
 
 (1,1,1) = {"
 aaa
@@ -91739,7 +91832,7 @@ cqw
 cqO
 crp
 aaa
-cUb
+cUa
 aaa
 aaa
 cEl
@@ -93294,8 +93387,8 @@ ccw
 ccw
 ccw
 ccw
-cUB
-cUG
+cUa
+cUa
 aaa
 aaa
 aaa
@@ -93549,7 +93642,7 @@ cEp
 cEF
 cFD
 cUq
-cUs
+cUq
 ccw
 aaa
 cEl
@@ -93795,20 +93888,20 @@ cqA
 cqT
 czh
 cEm
-ciZ
+cVd
 csb
-ciZ
-crL
+cVh
+cst
 cEF
 cFC
 cEF
 csu
-ciZ
+cVu
 csb
-ciZ
-ciZ
+cVy
+cVC
 ccw
-cUC
+cUq
 cEl
 cEl
 aaa
@@ -94052,21 +94145,21 @@ ccw
 ccw
 ccw
 crK
-ciZ
-crh
+cVe
+cVg
 csj
-ciZ
-ciZ
-ciZ
-ciZ
-ciZ
+cVk
+cVm
+cVo
+cVq
+cVs
 cUo
-crh
-ciZ
+cVx
+cVz
 cUt
 ccw
 ccw
-cUH
+cUq
 aaa
 aaa
 aaa
@@ -94321,10 +94414,10 @@ cEr
 cFb
 cEr
 cEr
-ciZ
+cVE
 ccw
-cUI
-cUW
+cUq
+cUa
 aaa
 aaa
 aaa
@@ -94565,25 +94658,25 @@ cqb
 cTU
 cTW
 cqY
-cEs
+aaH
 cUc
 cUe
 cAp
-cUh
-cAo
+cUe
+cUe
 cAp
-cAo
-cAo
+cUe
+cUe
 cAp
-cAo
-cAo
+cUe
+cUe
 cUu
 cFb
 ccw
-cUJ
-cUX
-cUZ
-cVa
+cUq
+cUa
+cUa
+cUa
 aaa
 aaa
 aaa
@@ -94819,25 +94912,25 @@ cgK
 cjS
 cpv
 cqb
-cqB
+cTU
 cTX
 cqY
-cEs
+aaH
 cAl
-cEs
+aaH
 cAq
-cEs
-cEs
+aaH
+aaH
 cAq
-cEs
-cEs
+aaH
+aaH
 cAq
-cEs
-cEs
+aaH
+aaH
 cAl
 cFb
 ccw
-cUK
+cUq
 aaf
 aaa
 aaa
@@ -95076,8 +95169,8 @@ cgU
 chG
 cpv
 cqd
-cqB
-cqU
+cTU
+cTW
 cqY
 cEt
 cAl
@@ -95090,7 +95183,7 @@ cEr
 cEr
 cEr
 csA
-cEs
+aaH
 cAl
 cFb
 ccw
@@ -95351,7 +95444,7 @@ cHh
 cUv
 cFb
 ccw
-cUL
+cUq
 cEl
 aaa
 aaa
@@ -95604,11 +95697,11 @@ cFb
 cFb
 cEr
 cEr
-cEs
+aaH
 cAl
 cEr
 ccw
-cUM
+cUq
 cEl
 aaa
 aaa
@@ -95849,7 +95942,7 @@ cTP
 cqh
 ciZ
 cra
-crI
+cTR
 cqY
 cAl
 cEr
@@ -95857,15 +95950,15 @@ cEr
 cFb
 csH
 csR
-cUl
+ctm
 cFb
 cFb
 csA
-cEs
+aaH
 cAl
 cEr
 ccw
-cUN
+cUq
 cEl
 aaa
 aaa
@@ -96119,10 +96212,10 @@ cFb
 cEr
 cEr
 cHh
-cUw
+cUv
 cEr
 ccw
-cUO
+cUq
 cEl
 aaa
 aaa
@@ -96371,15 +96464,15 @@ cFb
 cFb
 csI
 cAt
-cUn
+czD
 cFb
 cEr
 cEr
-cEs
+aaH
 cAl
 cEr
 ccw
-cUP
+cUq
 cEl
 aaa
 aaa
@@ -96632,11 +96725,11 @@ cFb
 cFM
 cEr
 cEr
-cEs
+aaH
 cAl
 cEr
 ccw
-cUQ
+cUq
 aaf
 aaa
 aaa
@@ -96890,10 +96983,10 @@ cEr
 cEr
 cEr
 cHh
-cUx
+cUv
 cFb
 ccw
-cUR
+cUq
 aaf
 aaa
 aaa
@@ -97132,8 +97225,8 @@ cgR
 cgR
 cpD
 cDw
-cqB
-cqU
+cTU
+cTW
 cqY
 cEt
 cAl
@@ -97146,15 +97239,15 @@ csA
 cEr
 cEr
 csA
-cEs
+aaH
 cAl
 cFb
 ccw
 csF
 aaf
 aaf
-cVb
-cVc
+cUa
+cUa
 aaa
 aaa
 aaa
@@ -97389,25 +97482,25 @@ cgR
 cgR
 cpD
 cqb
-cqB
-cqU
+cTU
+cTW
 cqY
-cEs
+aaH
 cAl
-cEs
+aaH
 cAs
-cEs
-cEs
+aaH
+aaH
 cAs
-cEs
-cEs
+aaH
+aaH
 cAs
-cEs
-cEs
+aaH
+aaH
 cAl
 cFb
 ccw
-cUS
+cUq
 aaf
 aaa
 aaa
@@ -97644,27 +97737,27 @@ cmQ
 cny
 cgR
 cgR
-cnx
+cTL
 cqb
-cqB
-cqU
+cTU
+cTW
 cqY
-cEs
+aaH
 cUd
-cUf
+cUe
 cAr
-cUi
-cAo
+cUe
+cUe
 cAr
-cAo
-cAo
+cUe
+cUe
 cAr
-cAo
-cAo
+cUe
+cUe
 cUy
 cFb
 ccw
-cUT
+cUq
 cEl
 aaa
 aaa
@@ -97903,7 +97996,7 @@ cgR
 cgR
 cen
 cqc
-cqC
+cTT
 crc
 ccw
 cEr
@@ -97919,9 +98012,9 @@ cEr
 cFb
 cEr
 cEr
-ciZ
+cVF
 ccw
-cUU
+cUq
 aaa
 aaa
 aaa
@@ -98159,26 +98252,26 @@ ckF
 cDe
 ckF
 cgw
-cqa
+cMm
 ccw
 ccw
 ccw
 czF
-ciZ
+cVf
 cEj
-ciZ
-ciZ
-ciZ
-ciZ
-ciZ
-ciZ
-ciZ
+cVi
+cVl
+cVn
+cVp
+cVr
+cVt
+cVv
 cEj
-ciZ
+cVA
 cUz
 ccw
 ccw
-cUV
+cUq
 aaa
 aaa
 aaa
@@ -98413,7 +98506,7 @@ ckT
 cgU
 cTK
 cTM
-cTN
+cTM
 cis
 cTS
 ckH
@@ -98423,18 +98516,18 @@ cDH
 crM
 crV
 cUg
-ciZ
+cVj
 cEp
 cEF
 cUj
 cEF
 cFD
-ciZ
-cUp
-ciZ
-ciZ
+cVw
+cUg
+cVB
+cVD
 ccw
-cUD
+cUq
 cEl
 cEl
 cEl
@@ -98677,7 +98770,7 @@ cqc
 cig
 crd
 ccw
-crL
+cst
 cEF
 cse
 cEF
@@ -98685,13 +98778,13 @@ csu
 ccw
 ccw
 ccw
-crL
+cst
 cEF
 csu
-cUr
-cUA
+cUq
+cUq
 ccw
-cUE
+cUa
 cEl
 aaa
 aaa
@@ -98950,7 +99043,7 @@ ccw
 ccw
 cUF
 aaf
-cUY
+cUa
 aaa
 aaa
 aaa
