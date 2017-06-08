@@ -312,8 +312,12 @@
 	// Ultimate randomizing code right here
 	for(var/mob/dead/new_player/player in GLOB.player_list)
 		if(player.client && player.ready)
+<<<<<<< HEAD
 			if(!jobban_isbanned(player, CATBAN) && !jobban_isbanned(player, CLUWNEBAN))
 				players += player
+=======
+			players += player
+>>>>>>> 8a4cdb1b5c... Merge pull request #28229 from Cyberboss/revert-28170-observerspeep
 
 	// Shuffling, the players list is now ping-independent!!!
 	// Goodbye antag dante
