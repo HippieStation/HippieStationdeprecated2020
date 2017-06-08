@@ -16,7 +16,11 @@
 			if(search)
 				emoji = lowertext(copytext(text, pos+1, search))
 				if(emoji in emojis)
+<<<<<<< HEAD
 					parsed += " <img class=icon src=\ref['hippiestation/icons/emoji.dmi'] iconstate='[emoji]'>"
+=======
+					parsed += bicon(icon('icons/emoji.dmi', emoji))
+>>>>>>> 5bace697c3... Merge pull request #26965 from Cyberboss/goonchatv3
 					pos = search + 1
 				else
 					parsed += copytext(text, pos, search)
