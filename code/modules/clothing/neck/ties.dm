@@ -164,6 +164,7 @@
 	icon_state = "bling"
 	item_color = "bling"
 
+<<<<<<< HEAD:code/modules/clothing/neck/ties.dm
 ////////////////
 //OONGA BOONGA//
 ////////////////
@@ -174,3 +175,7 @@
 	icon_state = "talisman"
 	item_color = "talisman"
 	armor = list(melee = 5, bullet = 5, laser = 5, energy = 5, bomb = 20, bio = 20, rad = 5, fire = 0, acid = 25)
+=======
+/obj/item/clothing/neck/necklace/dope/gang_contraband_value()
+	return 2
+>>>>>>> ee7a1975d5... Merge pull request #27960 from kevinz000/gang_points_refactor:code/modules/clothing/neck/neck.dm
