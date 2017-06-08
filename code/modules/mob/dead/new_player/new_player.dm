@@ -140,8 +140,12 @@
 				observer.name = observer.real_name
 			observer.update_icon()
 			observer.stop_sound_channel(CHANNEL_LOBBYMUSIC)
+<<<<<<< HEAD
 			qdel(mind)
 
+=======
+			QDEL_NULL(mind)
+>>>>>>> 8a4cdb1b5c... Merge pull request #28229 from Cyberboss/revert-28170-observerspeep
 			qdel(src)
 			return 1
 
