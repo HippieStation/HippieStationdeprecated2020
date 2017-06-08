@@ -246,7 +246,16 @@
 	if (config && config.server_name)
 		s += "<b>[config.server_name]</b> &#8212; "
 
+<<<<<<< HEAD
 	s += "<big><b>[station_name()]</b></big>";
+=======
+	s += "<b>[station_name()]</b>";
+	s += " ("
+	s += "<a href=\"http://\">" //Change this to wherever you want the hub to link to.
+	s += "Default"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
+	s += "</a>"
+	s += ")"
+>>>>>>> e7351fa885... Merge pull request #28241 from Cyberboss/patch-109
 
 	if (!host && config && config.hostedby)
 		s += "<br>Hosted by <b>[config.hostedby]</b>."
