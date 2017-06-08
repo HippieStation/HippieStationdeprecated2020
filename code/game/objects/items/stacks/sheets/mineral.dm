@@ -7,7 +7,7 @@ Mineral Sheets
 		- Snow
 		- Uranium
 		- Plasma
-		- Gold
+		- Cash Money (Gold)
 		- Silver
 		- Clown
 		- Titanium
@@ -183,7 +183,7 @@ GLOBAL_LIST_INIT(plasma_recipes, list ( \
  * Gold
  */
 /obj/item/stack/sheet/mineral/gold
-	name = "gold"
+	name = "cash money"
 	icon_state = "sheet-gold"
 	singular_name = "gold bar"
 	origin_tech = "materials=4"
@@ -191,8 +191,8 @@ GLOBAL_LIST_INIT(plasma_recipes, list ( \
 	materials = list(MAT_GOLD=MINERAL_MATERIAL_AMOUNT)
 
 GLOBAL_LIST_INIT(gold_recipes, list ( \
-	new/datum/stack_recipe("golden door", /obj/structure/mineral_door/gold, 10, one_per_turf = 1, on_floor = 1), \
-	new/datum/stack_recipe("gold tile", /obj/item/stack/tile/mineral/gold, 1, 4, 20), \
+	new/datum/stack_recipe("cash money door", /obj/structure/mineral_door/gold, 10, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("cash money tile", /obj/item/stack/tile/mineral/gold, 1, 4, 20), \
 	new/datum/stack_recipe("HoS Statue", /obj/structure/statue/gold/hos, 5, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("HoP Statue", /obj/structure/statue/gold/hop, 5, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("CE Statue", /obj/structure/statue/gold/ce, 5, one_per_turf = 1, on_floor = 1), \
