@@ -126,23 +126,15 @@
 
 	if(user.a_intent != INTENT_HARM)
 		if(status)
-			if(istype(src, /obj/item/weapon/melee/baton/cattleprod/hippie_cattleprod))
-				if(baton_stun_hippie_makeshift(M, user))
-					user.do_attack_animation(M)
-					return
-			else
-				if(baton_stun(M, user))
-					user.do_attack_animation(M)
-					return
+			if(baton_stun(M, user))
+				user.do_attack_animation(M)
+				return
 		else
 			M.visible_message("<span class='warning'>[user] has prodded [M] with [src]. Luckily it was off.</span>", \
 							"<span class='warning'>[user] has prodded you with [src]. Luckily it was off</span>")
 	else
 		if(status)
-			if(istype(src, /obj/item/weapon/melee/baton/cattleprod/hippie_cattleprod))
-				baton_stun_hippie_makeshift(M, user)
-			else
-				baton_stun(M, user)
+			baton_stun(M, user)
 		..()
 
 
