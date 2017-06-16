@@ -2265,6 +2265,7 @@
 #include "hippiestation\code\modules\projectiles\guns\grenade_launcher.dm"
 #include "hippiestation\code\modules\projectiles\guns\ballistic\pistols.dm"
 #include "hippiestation\code\modules\projectiles\guns\magic\staffofrevenant.dm"
+#include "hippiestation\code\modules\projectiles\projectile\special.dm"
 #include "hippiestation\code\modules\projectiles\projectile\bullets.dm"
 #include "hippiestation\code\modules\projectiles\projectile\energy.dm"
 #include "hippiestation\code\modules\reagents\reagent_dispenser.dm"
