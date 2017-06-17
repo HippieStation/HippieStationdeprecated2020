@@ -2279,6 +2279,7 @@
 #include "hippiestation\code\modules\reagents\reagent_containers\bottle.dm"
 #include "hippiestation\code\modules\reagents\reagent_containers\patch.dm"
 #include "hippiestation\code\modules\reagents\reagent_containers\syringes.dm"
+#include "hippiestation\code\modules\research\message_server.dm"
 #include "hippiestation\code\modules\research\rdmachines.dm"
 #include "hippiestation\code\modules\research\stock_parts.dm"
 #include "hippiestation\code\modules\research\designs\biogenerator_designs.dm"
