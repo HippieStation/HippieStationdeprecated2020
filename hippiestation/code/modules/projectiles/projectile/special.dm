@@ -7,4 +7,5 @@
 		var/mob/living/carbon/C = target
 		if(!C.reagents.has_reagent("skewium", 5)) //you can keep them topped off with just under 10 skewium.
 			C.reagents.add_reagent("skewium", 5)
-		C.hallucination += 10
+		if(C.hallucination < 20) // We only want to go about as high as 30 halucination.
+			C.hallucination += 10
