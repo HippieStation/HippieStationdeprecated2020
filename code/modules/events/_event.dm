@@ -63,6 +63,14 @@
 	if (alertadmins)
 		message_admins("Random Event triggering in 10 seconds: [name] ([typepath]) (<a href='?src=\ref[src];cancel=1'>CANCEL</a>)")
 		sleep(100)
+<<<<<<< HEAD
+=======
+		var/gamemode = SSticker.mode.config_tag
+		var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)
+		if(!canSpawnEvent(players_amt, gamemode))
+			message_admins("Second pre-condition check for [name] failed, skipping...")
+			return EVENT_INTERRUPTED
+>>>>>>> 27d8a733a7... AGHH (#28547)
 
 	if(!triggering)
 		return EVENT_CANCELLED	//admin cancelled
