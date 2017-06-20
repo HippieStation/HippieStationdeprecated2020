@@ -281,7 +281,11 @@
 			var/mob/living/L = O
 			if(wash_mob(L)) //it's a carbon mob.
 				var/mob/living/carbon/C = L
+<<<<<<< HEAD
 				C.slip(4,2,null,NO_SLIP_WHEN_WALKING)
+=======
+				C.slip(80,null,NO_SLIP_WHEN_WALKING)
+>>>>>>> 6440a70ec2... Merge pull request #28605 from ChangelingRain/slipfix
 		else
 			wash_obj(O)
 

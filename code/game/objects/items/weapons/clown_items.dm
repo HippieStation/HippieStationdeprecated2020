@@ -50,7 +50,11 @@
 /obj/item/weapon/soap/Crossed(AM as mob|obj)
 	if (istype(AM, /mob/living/carbon))
 		var/mob/living/carbon/M = AM
+<<<<<<< HEAD
 		M.slip(4, 2, src)
+=======
+		M.slip(80, src)
+>>>>>>> 6440a70ec2... Merge pull request #28605 from ChangelingRain/slipfix
 
 /obj/item/weapon/soap/afterattack(atom/target, mob/user, proximity)
 	if(!proximity || !check_allowed_items(target))
