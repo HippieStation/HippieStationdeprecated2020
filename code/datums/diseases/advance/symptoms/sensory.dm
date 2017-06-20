@@ -125,4 +125,8 @@ Bonus
 		if(12 to 24)
 			M.drowsyness += 1
 		if(24 to INFINITY)
+<<<<<<< HEAD
 			M.Sleeping(2, 0)
+=======
+			M.Sleeping(40)
+>>>>>>> 50f00bc023... Merge pull request #28603 from ChangelingRain/sleeptostatus

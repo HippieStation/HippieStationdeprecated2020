@@ -97,11 +97,19 @@
 
 /datum/reagent/consumable/sugar/overdose_start(mob/living/M)
 	to_chat(M, "<span class='userdanger'>You go into hyperglycaemic shock! Lay off the twinkies!</span>")
+<<<<<<< HEAD
 	M.AdjustSleeping(30, 0)
 	. = 1
 
 /datum/reagent/consumable/sugar/overdose_process(mob/living/M)
 	M.AdjustSleeping(3, 0)
+=======
+	M.AdjustSleeping(600, FALSE)
+	. = 1
+
+/datum/reagent/consumable/sugar/overdose_process(mob/living/M)
+	M.AdjustSleeping(40, FALSE)
+>>>>>>> 50f00bc023... Merge pull request #28603 from ChangelingRain/sleeptostatus
 	..()
 	. = 1
 

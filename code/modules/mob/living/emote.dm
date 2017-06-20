@@ -110,8 +110,14 @@
 
 /datum/emote/living/faint/run_emote(mob/user, params)
 	. = ..()
+<<<<<<< HEAD
 	if(.)
 		user.SetSleeping(10)
+=======
+	if(. && isliving(user))
+		var/mob/living/L = user
+		L.SetSleeping(200)
+>>>>>>> 50f00bc023... Merge pull request #28603 from ChangelingRain/sleeptostatus
 
 /datum/emote/living/flap
 	key = "flap"

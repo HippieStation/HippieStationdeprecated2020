@@ -114,9 +114,14 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/kahlua/on_mob_life(mob/living/M)
 	M.dizziness = max(0,M.dizziness-5)
 	M.drowsyness = max(0,M.drowsyness-3)
+<<<<<<< HEAD
 	M.AdjustSleeping(-2, 0)
+=======
+	M.AdjustSleeping(-40, FALSE)
+>>>>>>> 50f00bc023... Merge pull request #28603 from ChangelingRain/sleeptostatus
 	M.Jitter(5)
-	return ..()
+	..()
+	. = 1
 
 /datum/reagent/consumable/ethanol/whiskey
 	name = "Whiskey"
@@ -1111,10 +1116,17 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	M.slurring += 3
 	switch(current_cycle)
 		if(51 to 200)
+<<<<<<< HEAD
 			M.Sleeping(5, 0)
 			. = 1
 		if(201 to INFINITY)
 			M.AdjustSleeping(2, 0)
+=======
+			M.Sleeping(100, FALSE)
+			. = 1
+		if(201 to INFINITY)
+			M.AdjustSleeping(40, FALSE)
+>>>>>>> 50f00bc023... Merge pull request #28603 from ChangelingRain/sleeptostatus
 			M.adjustToxLoss(2, 0)
 			. = 1
 	..()

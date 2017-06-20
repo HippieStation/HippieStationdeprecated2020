@@ -385,10 +385,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	..()
 	checklisp()
 	if(drunkenness)
-		if(sleeping)
-			drunkenness = max(drunkenness - (drunkenness / 10), 0)
-		else
-			drunkenness = max(drunkenness - (drunkenness / 25), 0)
+		drunkenness = max(drunkenness - (drunkenness * 0.04), 0)
 
 		if(drunkenness >= 6)
 			if(prob(25))

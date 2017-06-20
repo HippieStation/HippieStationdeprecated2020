@@ -281,7 +281,7 @@
 	set name = "Sleep"
 	set category = "IC"
 
-	if(sleeping)
+	if(IsSleeping())
 		to_chat(src, "<span class='notice'>You are already sleeping.</span>")
 		return
 	else
@@ -368,10 +368,17 @@
 	setCloneLoss(0, 0)
 	setBrainLoss(0)
 	setStaminaLoss(0, 0)
+<<<<<<< HEAD
 	SetParalysis(0, 0)
 	SetStunned(0, 0)
 	SetWeakened(0, 0)
 	SetSleeping(0, 0)
+=======
+	SetUnconscious(0, FALSE)
+	SetStun(0, FALSE)
+	SetKnockdown(0, FALSE)
+	SetSleeping(0, FALSE)
+>>>>>>> 50f00bc023... Merge pull request #28603 from ChangelingRain/sleeptostatus
 	radiation = 0
 	nutrition = NUTRITION_LEVEL_FED + 50
 	bodytemperature = 310
