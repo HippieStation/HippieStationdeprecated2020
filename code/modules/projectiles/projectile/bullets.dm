@@ -103,8 +103,12 @@
 /obj/item/projectile/bullet/stunshot //taser slugs for shotguns, nothing special
 	name = "stunshot"
 	damage = 5
+<<<<<<< HEAD
 	stun = 5
 	weaken = 5
+=======
+	knockdown = 100
+>>>>>>> c5e67b5ce1... Merge pull request #28619 from ChangelingRain/taserfix
 	stutter = 5
 	jitter = 20
 	range = 7
@@ -140,12 +144,17 @@
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "dust"
 	damage = 30
+<<<<<<< HEAD
 	weaken = 8
 	stun = 8
+=======
+	knockdown = 160
+>>>>>>> c5e67b5ce1... Merge pull request #28619 from ChangelingRain/taserfix
 	hitsound = 'sound/effects/meteorimpact.ogg'
 
 /obj/item/projectile/bullet/meteorshot/weak
 	damage = 10
+<<<<<<< HEAD
 	weaken = 4
 	stun = 4
 
@@ -153,6 +162,13 @@
 	damage = 0
 	weaken = 3
 	stun = 3
+=======
+	knockdown = 80
+
+/obj/item/projectile/bullet/honker
+	damage = 0
+	knockdown = 60
+>>>>>>> c5e67b5ce1... Merge pull request #28619 from ChangelingRain/taserfix
 	forcedodge = 1
 	nodamage = 1
 	hitsound = 'sound/items/bikehorn.ogg'
@@ -232,7 +248,11 @@
 	icon_state = "neurotoxin"
 	damage = 5
 	damage_type = TOX
+<<<<<<< HEAD
 	weaken = 5
+=======
+	knockdown = 100
+>>>>>>> c5e67b5ce1... Merge pull request #28619 from ChangelingRain/taserfix
 
 /obj/item/projectile/bullet/neurotoxin/on_hit(atom/target, blocked = 0)
 	if(isalien(target))
@@ -268,8 +288,12 @@
 /obj/item/projectile/bullet/sniper
 	speed = 0		//360 alwaysscope.
 	damage = 70
+<<<<<<< HEAD
 	stun = 5
 	weaken = 5
+=======
+	knockdown = 100
+>>>>>>> c5e67b5ce1... Merge pull request #28619 from ChangelingRain/taserfix
 	dismemberment = 50
 	armour_penetration = 50
 	var/breakthings = TRUE
@@ -281,8 +305,12 @@
 
 /obj/item/projectile/bullet/sniper/gang
 	damage = 55
+<<<<<<< HEAD
 	stun = 1
 	weaken = 1
+=======
+	knockdown = 20
+>>>>>>> c5e67b5ce1... Merge pull request #28619 from ChangelingRain/taserfix
 	dismemberment = 15
 	armour_penetration = 25
 
