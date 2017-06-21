@@ -216,12 +216,8 @@
 		if(!istype(G, /obj/item/weapon/grown/bananapeel) && (!G.reagents || !G.reagents.has_reagent("lube")))
 			stun_len /= 3
 
-<<<<<<< HEAD
-		var/stun = min(stun_len, 7)
-		var/weaken = min(stun_len, 7)
-=======
-		var/knockdown = min(stun_len, 140)
->>>>>>> 6440a70ec2... Merge pull request #28605 from ChangelingRain/slipfix
+		var/stun = min(stun_len, 140)
+		var/weaken = min(stun_len, 140)
 
 		if(M.slip(stun, weaken, G))
 			for(var/datum/plant_gene/trait/T in seed.genes)
