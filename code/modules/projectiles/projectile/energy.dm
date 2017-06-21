@@ -13,8 +13,12 @@
 	icon_state = "spark"
 	color = "#FFFF00"
 	nodamage = 1
+<<<<<<< HEAD
 	stun = 5
 	weaken = 5
+=======
+	knockdown = 100
+>>>>>>> c5e67b5ce1... Merge pull request #28619 from ChangelingRain/taserfix
 	stutter = 5
 	jitter = 20
 	hitsound = 'sound/weapons/taserhit.ogg'
@@ -91,7 +95,11 @@
 	name = "energy snare"
 	icon_state = "e_snare"
 	nodamage = 1
+<<<<<<< HEAD
 	weaken = 1
+=======
+	knockdown = 20
+>>>>>>> c5e67b5ce1... Merge pull request #28619 from ChangelingRain/taserfix
 	hitsound = 'sound/weapons/taserhit.ogg'
 	range = 4
 
@@ -142,7 +150,11 @@
 	icon_state = "toxin"
 	damage = 5
 	damage_type = TOX
+<<<<<<< HEAD
 	weaken = 5
+=======
+	knockdown = 100
+>>>>>>> c5e67b5ce1... Merge pull request #28619 from ChangelingRain/taserfix
 	range = 7
 
 /obj/item/projectile/energy/bolt //ebow bolts
@@ -151,7 +163,11 @@
 	damage = 8
 	damage_type = TOX
 	nodamage = 0
+<<<<<<< HEAD
 	weaken = 5
+=======
+	knockdown = 100
+>>>>>>> c5e67b5ce1... Merge pull request #28619 from ChangelingRain/taserfix
 	stutter = 5
 
 /obj/item/projectile/energy/bolt/halloween
