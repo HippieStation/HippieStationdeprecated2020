@@ -348,7 +348,11 @@ Gunshots/explosions/opening doors/less rare audio (done)
 	var/target_dist = get_dist(src,target)
 	if(target_dist<=3) //"Eaten"
 		target.hal_screwyhud = SCREWYHUD_CRIT
+<<<<<<< HEAD
 		target.SetSleeping(8, no_alert = TRUE)
+=======
+		target.SetUnconscious(160)
+>>>>>>> 50f00bc023... Merge pull request #28603 from ChangelingRain/sleeptostatus
 		addtimer(CALLBACK(parent, .proc/wake_and_restore), rand(30, 50))
 
 /obj/effect/hallucination/battle
@@ -1008,7 +1012,11 @@ Gunshots/explosions/opening doors/less rare audio (done)
 		if("death")
 			//Fake death
 			hal_screwyhud = SCREWYHUD_DEAD
+<<<<<<< HEAD
 			SetSleeping(20, no_alert = TRUE)
+=======
+			SetUnconscious(400)
+>>>>>>> 50f00bc023... Merge pull request #28603 from ChangelingRain/sleeptostatus
 			var/area/area = get_area(src)
 			to_chat(src, "<span class='deadsay'><b>[mind.name]</b> has died at <b>[area.name]</b>.</span>")
 			if(prob(50))

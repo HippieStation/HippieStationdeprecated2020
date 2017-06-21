@@ -179,7 +179,11 @@
 		if(SA_partialpressure > SA_para_min)
 			Paralyse(3)
 			if(SA_partialpressure > SA_sleep_min)
+<<<<<<< HEAD
 				Sleeping(max(sleeping+2, 10))
+=======
+				Sleeping(max(AmountSleeping() + 40, 200))
+>>>>>>> 50f00bc023... Merge pull request #28603 from ChangelingRain/sleeptostatus
 		else if(SA_partialpressure > 0.01)
 			if(prob(20))
 				emote(pick("giggle","laugh"))
@@ -302,6 +306,7 @@
 	..()
 
 	if(staminaloss)
+<<<<<<< HEAD
 		if(sleeping)
 			adjustStaminaLoss(-10)
 		else
@@ -312,6 +317,9 @@
 		AdjustSleeping(-1)
 		if(prob(10) && health>HEALTH_THRESHOLD_CRIT)
 			emote("snore")
+=======
+		adjustStaminaLoss(-3)
+>>>>>>> 50f00bc023... Merge pull request #28603 from ChangelingRain/sleeptostatus
 
 	var/restingpwr = 1 + 4 * resting
 

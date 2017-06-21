@@ -207,7 +207,11 @@
 /obj/effect/particle_effect/smoke/sleeping/smoke_mob(mob/living/carbon/M)
 	if(..())
 		M.drop_item()
+<<<<<<< HEAD
 		M.Sleeping(max(M.sleeping,10))
+=======
+		M.Sleeping(200)
+>>>>>>> 50f00bc023... Merge pull request #28603 from ChangelingRain/sleeptostatus
 		M.emote("cough")
 		return 1
 

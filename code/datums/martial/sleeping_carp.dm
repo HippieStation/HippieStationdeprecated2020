@@ -230,8 +230,13 @@
 		if(prob(10))
 			H.visible_message("<span class='warning'>[H] collapses!</span>", \
 								   "<span class='userdanger'>Your legs give out!</span>")
+<<<<<<< HEAD
 			H.Weaken(4)
 		if(H.staminaloss && !H.sleeping)
+=======
+			H.Knockdown(80)
+		if(H.staminaloss && !H.IsSleeping())
+>>>>>>> 50f00bc023... Merge pull request #28603 from ChangelingRain/sleeptostatus
 			var/total_health = (H.health - H.staminaloss)
 			if(total_health <= HEALTH_THRESHOLD_CRIT && !H.stat)
 				H.visible_message("<span class='warning'>[user] delivers a heavy hit to [H]'s head, knocking them out cold!</span>", \

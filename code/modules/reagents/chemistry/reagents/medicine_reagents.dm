@@ -888,8 +888,12 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 
 /datum/reagent/medicine/insulin/on_mob_life(mob/living/M)
+<<<<<<< HEAD
 	if(M.sleeping)
 		M.AdjustSleeping(-1, 0)
+=======
+	if(M.AdjustSleeping(-20, FALSE))
+>>>>>>> 50f00bc023... Merge pull request #28603 from ChangelingRain/sleeptostatus
 		. = 1
 	M.reagents.remove_reagent("sugar", 3)
 	..()
