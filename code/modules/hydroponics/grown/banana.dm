@@ -117,9 +117,5 @@
 /obj/item/weapon/grown/bananapeel/specialpeel/Crossed(AM)
 	if(iscarbon(AM))
 		var/mob/living/carbon/carbon = AM
-<<<<<<< HEAD
-		if(carbon.slip(2, 2, src, FALSE))
-=======
-		if(carbon.slip(40, src, FALSE))
->>>>>>> 6440a70ec2... Merge pull request #28605 from ChangelingRain/slipfix
+		if(carbon.slip(40, 40, src, FALSE))
 			qdel(src)
