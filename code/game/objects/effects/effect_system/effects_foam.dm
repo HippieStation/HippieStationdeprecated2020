@@ -95,11 +95,7 @@
 /obj/effect/particle_effect/foam/Crossed(atom/movable/AM)
 	if(istype(AM, /mob/living/carbon))
 		var/mob/living/carbon/M = AM
-<<<<<<< HEAD
-		M.slip(5, 2, src)
-=======
-		M.slip(100, src)
->>>>>>> 6440a70ec2... Merge pull request #28605 from ChangelingRain/slipfix
+		M.slip(100, 2, src)
 
 /obj/effect/particle_effect/foam/metal/Crossed(atom/movable/AM)
 	return
