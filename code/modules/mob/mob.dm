@@ -657,8 +657,6 @@
 		return 0
 	return 1
 
-<<<<<<< HEAD
-
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 //Robots, animals and brains have their own version so don't worry about them
 /mob/proc/update_canmove()
@@ -703,9 +701,6 @@
 	lying_prev = lying
 	return canmove
 
-
-=======
->>>>>>> 58c054acb5... Stun is now a status effect (#28654)
 /mob/proc/fall(forced)
 	drop_all_held_items()
 
