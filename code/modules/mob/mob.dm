@@ -369,9 +369,9 @@
 
 	if(pulling)
 		pulling.pulledby = null
-		if(ismob(pulling))
-			var/mob/M = pulling
-			M.update_canmove()// mob gets up if it was lyng down in a chokehold
+		if(isliving(pulling))
+			var/mob/living/L = pulling
+			L.update_canmove()// mob gets up if it was lyng down in a chokehold
 		pulling = null
 		grab_state = 0
 		update_pull_hud_icon()
@@ -657,6 +657,7 @@
 		return 0
 	return 1
 
+<<<<<<< HEAD
 
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 //Robots, animals and brains have their own version so don't worry about them
@@ -703,6 +704,8 @@
 	return canmove
 
 
+=======
+>>>>>>> 58c054acb5... Stun is now a status effect (#28654)
 /mob/proc/fall(forced)
 	drop_all_held_items()
 
