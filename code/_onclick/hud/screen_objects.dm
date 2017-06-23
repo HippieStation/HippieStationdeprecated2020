@@ -348,7 +348,11 @@
 /obj/screen/storage/Click(location, control, params)
 	if(world.time <= usr.next_move)
 		return 1
+<<<<<<< HEAD
 	if(usr.stat || usr.unconscious || usr.stun || usr.knockdown)
+=======
+	if(usr.stat || usr.IsUnconscious() || usr.IsKnockdown() || usr.IsStun())
+>>>>>>> deae811756... Unconscious and Knockdown are now status effects (#28696)
 		return 1
 	if (istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
 		return 1

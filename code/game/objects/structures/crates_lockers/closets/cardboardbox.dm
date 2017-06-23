@@ -20,7 +20,11 @@
 	var/egged = 0
 
 /obj/structure/closet/cardboard/relaymove(mob/user, direction)
+<<<<<<< HEAD
 	if(opened || move_delay || user.stat || user.stun || user.knockdown || user.unconscious || !isturf(loc) || !has_gravity(loc))
+=======
+	if(opened || move_delay || user.stat || user.IsStun() || user.IsKnockdown() || user.IsUnconscious() || !isturf(loc) || !has_gravity(loc))
+>>>>>>> deae811756... Unconscious and Knockdown are now status effects (#28696)
 		return
 	move_delay = 1
 	if(step(src, direction))

@@ -15,7 +15,11 @@
 		if(call(client.click_intercept,"InterceptClickOn")(src,params,A))
 			return
 
+<<<<<<< HEAD
 	if(stat || lockcharge || knockdown || stun || unconscious)
+=======
+	if(stat || lockcharge || IsKnockdown() || IsStun() || IsUnconscious())
+>>>>>>> deae811756... Unconscious and Knockdown are now status effects (#28696)
 		return
 
 	var/list/modifiers = params2list(params)

@@ -226,7 +226,11 @@
 /obj/item/device/gangtool/proc/can_use(mob/living/carbon/human/user)
 	if(!istype(user))
 		return 0
+<<<<<<< HEAD
 	if(user.restrained() || user.lying || user.stat || user.stun || user.knockdown)
+=======
+	if(user.incapacitated())
+>>>>>>> deae811756... Unconscious and Knockdown are now status effects (#28696)
 		return 0
 	if(!(src in user.contents))
 		return 0
