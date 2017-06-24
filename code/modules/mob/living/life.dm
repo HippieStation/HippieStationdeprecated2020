@@ -99,12 +99,15 @@
 
 //this updates all special effects: stun, sleeping, knockdown, druggy, stuttering, etc..
 /mob/living/proc/handle_status_effects()
+<<<<<<< HEAD
 	if(stun)
 		AdjustStun(-20, 1, 1)
 	if(knockdown)
 		AdjustKnockdown(-20, 1, 1)
 	if(unconscious)
 		AdjustUnconscious(-20, 1, 1)
+=======
+>>>>>>> deae811756... Unconscious and Knockdown are now status effects (#28696)
 	if(confused)
 		confused = max(0, confused - 1)
 

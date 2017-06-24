@@ -591,7 +591,11 @@
 /mob/living/silicon/robot/update_icons()
 	cut_overlays()
 	icon_state = module.cyborg_base_icon
+<<<<<<< HEAD
 	if(stat != DEAD && !(unconscious || stun || knockdown || low_power_mode)) //Not dead, not stunned.
+=======
+	if(stat != DEAD && !(IsUnconscious() || IsStun() || IsKnockdown() || low_power_mode)) //Not dead, not stunned.
+>>>>>>> deae811756... Unconscious and Knockdown are now status effects (#28696)
 		if(!eye_lights)
 			eye_lights = new()
 		if(lamp_intensity > 2)
@@ -917,7 +921,11 @@
 		if(health <= -maxHealth) //die only once
 			death()
 			return
+<<<<<<< HEAD
 		if(unconscious || stun || knockdown || getOxyLoss() > maxHealth*0.5)
+=======
+		if(IsUnconscious() || IsStun() || IsKnockdown() || getOxyLoss() > maxHealth*0.5)
+>>>>>>> deae811756... Unconscious and Knockdown are now status effects (#28696)
 			if(stat == CONSCIOUS)
 				stat = UNCONSCIOUS
 				blind_eyes(1)

@@ -68,9 +68,12 @@
 	var/satiety = 0//Carbon
 
 	var/overeatduration = 0		// How long this guy is overeating //Carbon
+<<<<<<< HEAD
 	var/unconscious = 0
 	var/stun = 0
 	var/knockdown = 0
+=======
+>>>>>>> deae811756... Unconscious and Knockdown are now status effects (#28696)
 	var/losebreath = 0//Carbon
 	var/a_intent = INTENT_HELP//Living
 	var/list/possible_a_intents = null//Living

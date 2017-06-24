@@ -3,10 +3,9 @@
 //The effects include: stun, knockdown, unconscious, sleeping, resting, jitteriness, dizziness, ear damage,
 // eye damage, eye_blind, eye_blurry, druggy, BLIND disability, and NEARSIGHT disability.
 
-#define STUN_TIME_MULTIPLIER 0.05 //temporary; multiplies input stun times by this, will be removed once stuns are status effects
-
 /////////////////////////////////// STUN ////////////////////////////////////
 
+<<<<<<< HEAD
 /mob/proc/Stun(amount, updating = 1, ignore_canstun = 0)
 	if(status_flags & CANSTUN || ignore_canstun)
 		stun = max(max(stun,amount * STUN_TIME_MULTIPLIER),0) //can't go below 0, getting a low amount of stun doesn't lower your current stun
@@ -52,33 +51,72 @@
 		return TRUE
 
 /////////////////////////////////// UNCONSCIOUS ////////////////////////////////////
+=======
+/mob/proc/IsStun() //non-living mobs shouldn't be stunned
+	return FALSE
 
-/mob/proc/Unconscious(amount, updating = TRUE, ignore_canunconscious = FALSE)
-	if(status_flags & CANUNCONSCIOUS || ignore_canunconscious)
-		var/old_unconscious = unconscious
-		unconscious = max(max(unconscious,amount * STUN_TIME_MULTIPLIER),0)
-		if((!old_unconscious && unconscious) || (old_unconscious && !unconscious))
-			if(updating)
-				update_stat()
-		return TRUE
+/////////////////////////////////// KNOCKDOWN ////////////////////////////////////
 
-/mob/proc/SetUnconscious(amount, updating = TRUE, ignore_canunconscious = FALSE)
-	if(status_flags & CANUNCONSCIOUS || ignore_canunconscious)
-		var/old_unconscious = unconscious
-		unconscious = max(amount * STUN_TIME_MULTIPLIER,0)
-		if((!old_unconscious && unconscious) || (old_unconscious && !unconscious))
-			if(updating)
-				update_stat()
-		return TRUE
+/mob/proc/IsKnockdown() //non-living mobs shouldn't be knocked down
+	return FALSE
 
-/mob/proc/AdjustUnconscious(amount, updating = TRUE, ignore_canunconscious = FALSE)
-	if(status_flags & CANUNCONSCIOUS || ignore_canunconscious)
-		var/old_unconscious = unconscious
-		unconscious = max(unconscious + (amount * STUN_TIME_MULTIPLIER) ,0)
-		if((!old_unconscious && unconscious) || (old_unconscious && !unconscious))
-			if(updating)
-				update_stat()
-		return TRUE
+/////////////////////////////////// UNCONSCIOUS ////////////////////////////////////
+
+/mob/proc/IsUnconscious() //non-living mobs shouldn't be unconscious
+	return FALSE
+
+/mob/living/IsUnconscious() //If we're unconscious
+	return has_status_effect(STATUS_EFFECT_UNCONSCIOUS)
+
+/mob/living/proc/AmountUnconscious() //How many deciseconds remain in our unconsciousness
+	var/datum/status_effect/incapacitating/unconscious/U = IsUnconscious()
+	if(U)
+		if(U.isprocessing)
+			return U.duration - world.time
+		else
+			return U.duration
+	return 0
+
+/mob/living/proc/Unconscious(amount, updating = TRUE, ignore_canunconscious = FALSE) //Can't go below remaining duration
+	if((status_flags & CANUNCONSCIOUS) || ignore_canunconscious)
+		var/datum/status_effect/incapacitating/unconscious/U = IsUnconscious()
+		if(U)
+			if(U.isprocessing)
+				U.duration = max(world.time + amount, U.duration)
+			else
+				U.duration = max(amount, U.duration)
+		else if(amount > 0)
+			U = apply_status_effect(STATUS_EFFECT_UNCONSCIOUS, updating)
+			U.duration = amount
+		return U
+>>>>>>> deae811756... Unconscious and Knockdown are now status effects (#28696)
+
+/mob/living/proc/SetUnconscious(amount, updating = TRUE, ignore_canunconscious = FALSE) //Sets remaining duration
+	if((status_flags & CANUNCONSCIOUS) || ignore_canunconscious)
+		var/datum/status_effect/incapacitating/unconscious/U = IsUnconscious()
+		if(amount <= 0)
+			if(U)
+				U.update_canmove = updating
+				qdel(U)
+		else if(U)
+			if(U.isprocessing)
+				U.duration = world.time + amount
+			else
+				U.duration = amount
+		else
+			U = apply_status_effect(STATUS_EFFECT_UNCONSCIOUS, updating)
+			U.duration = amount
+		return U
+
+/mob/living/proc/AdjustUnconscious(amount, updating = TRUE, ignore_canunconscious = FALSE) //Adds to remaining duration
+	if((status_flags & CANUNCONSCIOUS) || ignore_canunconscious)
+		var/datum/status_effect/incapacitating/unconscious/U = IsUnconscious()
+		if(U)
+			U.duration += amount
+		else if(amount > 0)
+			U = apply_status_effect(STATUS_EFFECT_UNCONSCIOUS, updating)
+			U.duration = amount
+		return U
 
 /////////////////////////////////// SLEEPING ////////////////////////////////////
 
@@ -88,18 +126,26 @@
 /mob/living/proc/AmountSleeping() //How many deciseconds remain in our sleep
 	var/datum/status_effect/incapacitating/sleeping/S = IsSleeping()
 	if(S)
+<<<<<<< HEAD
 		return world.time - S.duration
+=======
+		if(S.isprocessing)
+			return S.duration - world.time
+		else
+			return S.duration
+>>>>>>> deae811756... Unconscious and Knockdown are now status effects (#28696)
 	return 0
 
 /mob/living/proc/Sleeping(amount, updating = TRUE) //Can't go below remaining duration
 	var/datum/status_effect/incapacitating/sleeping/S = IsSleeping()
 	if(S)
-		var/remaining_duration = world.time - S.duration
-		S.duration = world.time + max(amount, remaining_duration)
+		if(S.isprocessing)
+			S.duration = max(world.time + amount, S.duration)
+		else
+			S.duration = max(amount, S.duration)
 	else if(amount > 0)
-		S = apply_status_effect(STATUS_EFFECT_SLEEPING)
+		S = apply_status_effect(STATUS_EFFECT_SLEEPING, updating)
 		S.duration = amount
-		S.update_canmove = updating
 	return S
 
 /mob/living/proc/SetSleeping(amount, updating = TRUE) //Sets remaining duration
@@ -108,11 +154,20 @@
 		if(S)
 			S.update_canmove = updating
 			qdel(S)
+<<<<<<< HEAD
 	else
 		S = apply_status_effect(STATUS_EFFECT_SLEEPING)
 	if(S)
+=======
+	else if(S)
+		if(S.isprocessing)
+			S.duration = world.time + amount
+		else
+			S.duration = amount
+	else
+		S = apply_status_effect(STATUS_EFFECT_SLEEPING, updating)
+>>>>>>> deae811756... Unconscious and Knockdown are now status effects (#28696)
 		S.duration = amount
-		S.update_canmove = updating
 	return S
 
 /mob/living/proc/AdjustSleeping(amount, updating = TRUE) //Adds to remaining duration
@@ -120,9 +175,8 @@
 	if(S)
 		S.duration += amount
 	else if(amount > 0)
-		S = apply_status_effect(STATUS_EFFECT_SLEEPING)
+		S = apply_status_effect(STATUS_EFFECT_SLEEPING, updating)
 		S.duration = amount
-		S.update_canmove = updating
 	return S
 
 /////////////////////////////////// RESTING ////////////////////////////////////

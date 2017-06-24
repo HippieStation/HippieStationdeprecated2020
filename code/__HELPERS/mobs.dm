@@ -307,7 +307,11 @@ Proc for attack log creation, because really why not
 			drifting = 0
 			Uloc = user.loc
 
+<<<<<<< HEAD
 		if(QDELETED(user) || user.stat || user.knockdown || user.stun  || (!drifting && user.loc != Uloc) || (extra_checks && !extra_checks.Invoke()))
+=======
+		if(QDELETED(user) || user.stat || user.IsKnockdown() || user.IsStun() || (!drifting && user.loc != Uloc) || (extra_checks && !extra_checks.Invoke()))
+>>>>>>> deae811756... Unconscious and Knockdown are now status effects (#28696)
 			. = 0
 			break
 

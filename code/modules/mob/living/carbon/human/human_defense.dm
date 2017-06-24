@@ -105,9 +105,13 @@
 
 /mob/living/carbon/human/proc/check_block()
 	if(mind)
+<<<<<<< HEAD
 		if(mind.martial_art && mind.martial_art.block_chance \
 		&& prob(mind.martial_art.block_chance) && in_throw_mode \
 		&& !stat && !knockdown && !stun)
+=======
+		if(mind.martial_art && prob(mind.martial_art.block_chance) && in_throw_mode && !stat && !IsKnockdown() && !IsStun())
+>>>>>>> deae811756... Unconscious and Knockdown are now status effects (#28696)
 			return TRUE
 	return FALSE
 

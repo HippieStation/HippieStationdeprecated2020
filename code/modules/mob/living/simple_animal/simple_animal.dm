@@ -387,7 +387,11 @@
 		..()
 
 /mob/living/simple_animal/update_canmove()
+<<<<<<< HEAD
 	if(unconscious || stun || knockdown || stat || resting)
+=======
+	if(IsUnconscious() || IsStun() || IsKnockdown() || stat || resting)
+>>>>>>> deae811756... Unconscious and Knockdown are now status effects (#28696)
 		drop_all_held_items()
 		canmove = 0
 	else if(buckled)

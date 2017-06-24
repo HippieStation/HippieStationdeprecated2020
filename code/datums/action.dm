@@ -73,7 +73,11 @@
 		if(owner.restrained())
 			return 0
 	if(check_flags & AB_CHECK_STUN)
+<<<<<<< HEAD
 		if(owner.stun || owner.knockdown)
+=======
+		if(owner.IsKnockdown() || owner.IsStun())
+>>>>>>> deae811756... Unconscious and Knockdown are now status effects (#28696)
 			return 0
 	if(check_flags & AB_CHECK_LYING)
 		if(owner.lying)
