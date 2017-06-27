@@ -268,7 +268,7 @@
 		user.forceMove(get_step(user, get_dir(user, src))) //Either way, you're getting IN or OUT of the pool.
 	else if(user.loc == loc && user.swimming == 1)
 		user.swimming = 0
-		user.forceMove(get_step(user, reverse_direction(dir)))
+		user.forceMove(get_step(user, turn(dir, 180)))
 
 /obj/structure/pool/Rboard
 	name = "JumpBoard"
@@ -433,22 +433,3 @@
 	icon = 'hippiestation/icons/turf/pool.dmi'
 	icon_state = "splash"
 	layer = MOB_LAYER + 0.1
-
-/proc/reverse_direction(var/dir) // Could not find an equivalent in this new TGcode.
-	switch(dir)
-		if(NORTH)
-			return SOUTH
-		if(NORTHEAST)
-			return SOUTHWEST
-		if(EAST)
-			return WEST
-		if(SOUTHEAST)
-			return NORTHWEST
-		if(SOUTH)
-			return NORTH
-		if(SOUTHWEST)
-			return NORTHEAST
-		if(WEST)
-			return EAST
-		if(NORTHWEST)
-			return SOUTHEAST
