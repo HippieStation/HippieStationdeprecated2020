@@ -35,8 +35,3 @@
 	if(rank in GLOB.command_positions)
 		return 0
 	return 1
-
-// Procs edited on tg files:
-//1) Added add_hippie_choices(dat) proc to preferences, in the lines showing the various mutant bodyparts choices
-//2) Added hippie_pref_load(savefile/S) and hippie_pref_save(savefile/S) proc to preferences_savefile, to load and save custom hippie stuff like moth wings choices
-//3) Added moth_wings, along with their entry in the random_features proc inside mobs.dm in __HELPERS
