@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 hippiestation/sound/lobby/title1.ogg
 hippiestation/sound/lobby/title2.ogg
 hippiestation/sound/lobby/title3.ogg
 hippiestation/sound/lobby/title4.ogg
+=======
+sound/ambience/title1.ogg
+sound/ambience/title2.ogg
+sound/ambience/title3.ogg
+sound/ambience/clown.ogg
+>>>>>>> 58194c3b8e... Removes title4.ogg (#28882)
