@@ -83,8 +83,6 @@ else
   git add -A .
 fi
 
-git add -A .
-
 # Commit these changes
 git commit --allow-empty -m "$2"
 
