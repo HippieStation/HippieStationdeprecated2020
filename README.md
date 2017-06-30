@@ -81,6 +81,15 @@ install, overwriting when prompted except if we've specified otherwise, and
 recompile the game.  Once you start the server up again, you should be running
 the new version.
 
+<<<<<<< HEAD
+=======
+## HOSTING
+
+If you'd like a more robust server hosting option for tgstation and its
+derivatives. Check out our server tools suite at 
+https://github.com/tgstation/tgstation-server
+
+>>>>>>> 7aea4644f2... Merge pull request #28950 from tgstation/Cyberboss-patch-1
 ## MAPS
 
 Hippie Station currently comes equipped with six maps.
