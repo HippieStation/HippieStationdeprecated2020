@@ -100,6 +100,15 @@
 		U.telecrystals += cost //So the admins don't have to refund you
 	return
 
+/datum/uplink_item/dangerous/crossbow
+	desc = "A short bow mounted across a tiller in miniature. Small enough to \
+		fit into a pocket or slip into a bag unnoticed. It will synthesize \
+		and fire bolts tipped with a debilitating toxin that will disorient \
+		targets and cause them to hallucinate. It can produce an \
+		infinite amount of bolts, but takes time to automatically recharge \
+		after each shot."
+	cost = 8
+
 /datum/uplink_item/role_restricted/fire_axe
 	name = "Fire Axe"
 	desc = "A rather blunt fire axe recovered from the burnt out wreck of an old space station. \
@@ -119,3 +128,4 @@
 	cost = 5
 	item = /obj/item/weapon/bikehorn/golden/retardhorn
 	restricted_roles = list("Clown")
+
