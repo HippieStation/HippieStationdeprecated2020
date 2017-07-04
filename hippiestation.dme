@@ -2263,6 +2263,7 @@
 #include "hippiestation\code\modules\mob\living\carbon\human\species_types\lizardpeople.dm"
 #include "hippiestation\code\modules\mob\living\carbon\human\species_types\meeseeks.dm"
 #include "hippiestation\code\modules\mob\living\carbon\human\species_types\moth.dm"
+#include "hippiestation\code\modules\mob\living\carbon\human\species_types\sharks.dm"
 #include "hippiestation\code\modules\mob\living\carbon\human\species_types\skeletons.dm"
 #include "hippiestation\code\modules\mob\living\carbon\human\species_types\species.dm"
 #include "hippiestation\code\modules\mob\living\carbon\human\species_types\tarajans.dm"
