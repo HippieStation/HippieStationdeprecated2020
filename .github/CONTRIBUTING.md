@@ -56,7 +56,7 @@ The use of this is not allowed in this project as it makes finding definitions v
 
 The previous code made compliant:
 
-```c++
+```DM
 /datum/datum1
 		var/varname1
 		var/varname2
@@ -92,7 +92,7 @@ In byond this is optional, but omitting it makes finding definitions harder.
 ### Do not use text/string based type paths
 It is rarely allowed to put type paths in a text format, as there are no compile errors if the type path no longer exists. Here is an example:
 
-```C++
+```DM
 //Good
 var/path_type = /obj/item/weapon/baseball_bat
 
@@ -141,7 +141,7 @@ Make these #defines with a name that more clearly states what it's for.
 ### Use early return.
 Do not enclose a proc in an if block when returning on a condition is more feasible
 This is bad:
-````
+````DM
 /datum/datum1/proc/proc1()
 	if (thing1)
 		if (!thing2)
@@ -149,7 +149,7 @@ This is bad:
 				do stuff
 ````
 This is good:
-````
+````DM
 /datum/datum1/proc/proc1()
 	if (!thing1)
 		return
@@ -208,38 +208,62 @@ The following different coding styles are not only not enforced, but it is gener
 * Spaces after control statements
 	* if() if () nobody cares.
 
-#### Operators and spaces:
+### Operators
+#### Spacing
 (this is not strictly enforced, but more a guideline for readability's sake)
 
 * Operators that should be separated by spaces
 	* Boolean and logic operators like &&, || <, >, ==, etc (but not !)
+	* Bitwise AND &
 	* Argument separator operators like , (and ; when used in a forloop)
 	* Assignment operators like = or += or the like
 * Operators that should not be separated by spaces
-	* Bitwise operators like & or |
+	* Bitwise OR |
 	* Access operators like . and :
 	* Parentheses ()
 	* logical not !
 
 Math operators like +, -, /, *, etc are up in the air, just choose which version looks more readable.
 
-### Dream Maker Quirks/Tricks:
+#### Use
+* Bitwise AND - '&'
+	* Should be written as ```bitfield & bitflag``` NEVER ```bitflag & bitfield```, both are valid, but the latter is confusing and nonstandard.
+
+
+### Dream Maker Quirks/Tricks
 Like all languages, Dream Maker has its quirks, some of them are beneficial to us, like these
 
+<<<<<<< HEAD
 * In-To for loops: ```for(var/i = 1, i <= some_value, i++)``` is a fairly standard way to write an incremental for loop in most languages (especially those in the C family) however DM's ```for(var/i in 1 to some_value)``` syntax is oddly faster than its implementation of the former syntax; where possible it's advised to use DM's syntax. (Note, the ```to``` keyword is inclusive, so it automatically defaults to replacing ```<=```, if you want ```<``` then you should write it as ```1 to some_value-1```).
 HOWEVER, if either ```some_value``` or ```i``` changes within the body of the for (underneath the ```for(...)``` header) or if you are looping over a list AND changing the length of the list then you can NOT use this type of for loop!
 
 
 * Istypeless for loops: a name for a differing syntax for writing for-each style loops in DM, however it is NOT DM's standard syntax hence why this is considered a quirk. Take a look at this:
 ```
+=======
+#### In-To for-loops
+```for(var/i = 1, i <= some_value, i++)``` is a fairly standard way to write an incremental for loop in most languages (especially those in the C family), but DM's ```for(var/i in 1 to some_value)``` syntax is oddly faster than its implementation of the former syntax; where possible, it's advised to use DM's syntax. (Note, the ```to``` keyword is inclusive, so it automatically defaults to replacing ```<=```; if you want ```<``` then you should write it as ```1 to some_value-1```).
+
+HOWEVER, if either ```some_value``` or ```i``` changes within the body of the for (underneath the ```for(...)``` header) or if you are looping over a list AND changing the length of the list then you can NOT use this type of for-loop!
+
+
+#### Istypeless for loops
+A name for a differing syntax for writing for-each style loops in DM. It's NOT DM's standard syntax, hence why this is considered a quirk. Take a look at this:
+```DM
+>>>>>>> ffa07fb0c5... Merge pull request #29029 from tgstation/RemieRichards-patch-2
 var/list/bag_of_items = list(sword, apple, coinpouch, sword, sword)
 var/obj/item/sword/best_sword = null
 for(var/obj/item/sword/S in bag_of_items)
 	if(!best_sword || S.damage > best_sword.damage)
     		best_sword = S
 ```
+<<<<<<< HEAD
 The above is a simple proc for checking all swords in a container and returning the one with the highest damage, it uses DM's standard syntax for a for loop, it does this by specifying a type in the variable of the for header which byond interprets as a type to filter by, it performs this filter using ```istype()``` (or some internal-magic similar to ```istype()```, I wouldn't put it past byond), the above example is fine with the data currently contained in ```bag_of_items```, however if ```bag_of_items``` contained ONLY swords, or only SUBTYPES of swords, then the above is inefficient, for example:
 ```
+=======
+The above is a simple proc for checking all swords in a container and returning the one with the highest damage, and it uses DM's standard syntax for a for-loop by specifying a type in the variable of the for's header that DM interprets as a type to filter by. It performs this filter using ```istype()``` (or some internal-magic similar to ```istype()``` - this is BYOND, after all). This is fine in its current state for ```bag_of_items```, but if ```bag_of_items``` contained ONLY swords, or only SUBTYPES of swords, then the above is inefficient. For example:
+```DM
+>>>>>>> ffa07fb0c5... Merge pull request #29029 from tgstation/RemieRichards-patch-2
 var/list/bag_of_swords = list(sword, sword, sword, sword)
 var/obj/item/sword/best_sword = null
 for(var/obj/item/sword/S in bag_of_swords)
@@ -248,7 +272,7 @@ for(var/obj/item/sword/S in bag_of_swords)
 ```
 specifies a type for DM to filter by, with the previous example that's perfectly fine, we only want swords, but here the bag only contains swords? is DM still going to try to filter because we gave it a type to filter by? YES, and here comes the inefficiency. Whereever a list (or other container, such as an atom (in which case you're technically accessing their special contents list but I digress)) contains datums of the same datatype or subtypes of the datatype you require for your for body
 you can circumvent DM's filtering and automatic ```istype()``` checks by writing the loop as such:
-```
+```DM
 var/list/bag_of_swords = list(sword, sword, sword, sword)
 var/obj/item/sword/best_sword = null
 for(var/s in bag_of_swords)
@@ -260,12 +284,36 @@ Of course, if the list contains data of a mixed type then the above optimisation
 
 * Dot variable: like other languages in the C family, Dream maker has a ```.``` or "Dot" operator, used for accessing variables/members/functions of an object instance.
 eg:
-```
+```DM
 var/mob/living/carbon/human/H = YOU_THE_READER
 H.gib()
 ```
+<<<<<<< HEAD
 however DM also has a dot variable, accessed just as ```.``` on it's own, defaulting to a value of null, now what's special about the dot operator is that it is automatically returned (as in the ```return``` statment) at the end of a proc, provided the proc does not already manually return (```return count``` for example). Why is this special? well the ```return``` statement should ideally be free from overhead (functionally free, of course nothing's free) but DM fails to fulfill this,  DM's return statement is actually fairly costly for what it does and for what it's used for.
 With ```.``` being everpresent in every proc can we use it as a temporary variable? Of course we can! However the ```.``` operator cannot replace a typecasted variable, it can hold data any other var in DM can, it just can't be accessed as one, however the ```.``` operator is compatible with a few operators that look weird but work perfectly fine, such as: ```.++``` for incrementing ```.'s``` value, or ```.[1]``` for accessing the first element of ```.``` (provided it's a list).
+=======
+However, DM also has a dot variable, accessed just as ```.``` on its own, defaulting to a value of null. Now, what's special about the dot operator is that it is automatically returned (as in the ```return``` statement) at the end of a proc, provided the proc does not already manually return (```return count``` for example.) Why is this special? 
+
+Well, the ```return``` statement should ideally be free from overhead (functionally free, although of course nothing's free), but DM fails to fulfill this. DM's return statement is actually fairly costly for what it does and for what it's used for.
+
+With ```.``` being everpresent in every proc, can we use it as a temporary variable? Of course we can! However, the ```.``` operator cannot replace a typecasted variable - it can hold data any other var in DM can, it just can't be accessed as one, although the ```.``` operator is compatible with a few operators that look weird but work perfectly fine, such as: ```.++``` for incrementing ```.'s``` value, or ```.[1]``` for accessing the first element of ```.```, provided that it's a list.
+
+## Globals versus static
+
+DM has a var keyword, called global. This var keyword is for vars inside of types. For instance:
+
+```DM
+mob
+    var
+        global
+            thing = TRUE
+```
+This does NOT mean that you can access it everywhere like a global var. Instead, it means that that var will only exist once for all instances of its type, in this case that var will only exist once for all mobs - it's shared across everything in its type. (Much more like the keyword `static` in other languages like PHP/C++/C#/Java)
+
+Isn't that confusing? 
+
+There is also an undocumented keyword called `static` that has the same behaviour as global but more correctly describes BYOND's behaviour. Therefore, we always use static instead of global where we need it, as it reduces suprise when reading BYOND code.
+>>>>>>> ffa07fb0c5... Merge pull request #29029 from tgstation/RemieRichards-patch-2
 
 ## Pull Request Process
 
