@@ -6657,7 +6657,7 @@
 /area/engine/atmospherics_engine)
 "aoK" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/highpressure/fulltile,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/atmospherics_engine)
 "aoL" = (
@@ -7217,10 +7217,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 8;
-	external_pressure_bound = 140;
-	name = "server vent";
-	pressure_checks = 0
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmospherics_engine)
@@ -9172,7 +9169,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 4
 	},
-/obj/structure/window/reinforced/highpressure/fulltile,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/atmospherics_engine)
 "ats" = (
@@ -9723,7 +9720,7 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6
 	},
-/obj/structure/window/reinforced/highpressure/fulltile,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/supermatter)
 "auE" = (
@@ -9743,7 +9740,7 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10
 	},
-/obj/structure/window/reinforced/highpressure/fulltile,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/supermatter)
 "auH" = (
@@ -10293,7 +10290,7 @@
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 8
 	},
-/obj/structure/window/reinforced/highpressure/fulltile,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/supermatter)
 "avQ" = (
@@ -10305,7 +10302,7 @@
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 4
 	},
-/obj/structure/window/reinforced/highpressure/fulltile,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/supermatter)
 "avS" = (
@@ -11298,10 +11295,6 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
 	},
-<<<<<<< HEAD
-/obj/structure/window/reinforced/highpressure/fulltile,
-=======
->>>>>>> c3d2f641af... Merge pull request #29101 from ShizCalev/delta_atmos_rework
 /turf/open/floor/plating,
 /area/engine/atmospherics_engine)
 "axZ" = (
@@ -15264,7 +15257,7 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/window/reinforced/highpressure/fulltile,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/atmospherics_engine)
 "aFi" = (
@@ -15300,7 +15293,7 @@
 	icon_state = "0-8"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/window/reinforced/highpressure/fulltile,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/atmospherics_engine)
 "aFk" = (
@@ -73194,7 +73187,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 2;
 	external_pressure_bound = 140;
-	name = "server vent";
+	name = "killroom vent";
 	pressure_checks = 0
 	},
 /turf/open/floor/circuit{
@@ -110180,7 +110173,7 @@
 /area/engine/supermatter)
 "ehB" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/highpressure/fulltile,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/supermatter)
 "ehC" = (
@@ -112743,7 +112736,7 @@
 /area/science/xenobiology)
 "epo" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/highpressure/fulltile,
+/obj/structure/window/plasma/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -112751,7 +112744,7 @@
 /area/engine/atmospherics_engine)
 "epp" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/highpressure/fulltile,
+/obj/structure/window/plasma/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -112759,7 +112752,7 @@
 /area/engine/atmospherics_engine)
 "epq" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/highpressure/fulltile,
+/obj/structure/window/plasma/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -112767,7 +112760,7 @@
 /area/engine/atmospherics_engine)
 "epr" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/highpressure/fulltile,
+/obj/structure/window/plasma/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -112775,7 +112768,7 @@
 /area/engine/atmospherics_engine)
 "eps" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/highpressure/fulltile,
+/obj/structure/window/plasma/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
@@ -153756,13 +153749,13 @@ aaa
 dMY
 epO
 dMY
-epP
+epO
 dMY
 aaa
 aaa
 aaa
 dMY
-epR
+epO
 dXk
 epS
 dXk
