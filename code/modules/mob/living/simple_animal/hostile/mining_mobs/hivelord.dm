@@ -191,7 +191,7 @@
 /mob/living/simple_animal/hostile/spawner/legion
 	name = "legion"
 	desc = "One of many."
-	icon = 'icons/mob/lavaland/dragon.dmi'
+	icon = 'icons/mob/lavaland/64x64megafauna.dmi'
 	icon_state = "legion"
 	icon_living = "legion"
 	icon_dead = "legion"
@@ -321,7 +321,7 @@
 		if("Shadow")
 			mob_species = /datum/species/shadow
 			r_pocket = /obj/item/weapon/reagent_containers/pill/shadowtoxin
-			neck = /obj/item/clothing/tie/medal/nobel_science
+			neck = /obj/item/clothing/accessory/medal/plasma/nobel_science
 			uniform = /obj/item/clothing/under/color/black
 			shoes = /obj/item/clothing/shoes/sneakers/black
 			suit = /obj/item/clothing/suit/toggle/labcoat

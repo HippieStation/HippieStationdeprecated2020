@@ -9,10 +9,10 @@
 #define SPEAK(message) radio.talk_into(src, message, radio_channel, get_spans(), get_default_language())
 
 /obj/machinery/clonepod
-	anchored = 1
+	anchored = TRUE
 	name = "cloning pod"
 	desc = "An electronically-lockable pod for growing organic tissue."
-	density = 1
+	density = TRUE
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "pod_0"
 	req_access = list(GLOB.access_cloning) //For premature unlocking.
@@ -205,7 +205,7 @@
 	//Get the clone body ready
 	maim_clone(H)
 	check_brine() // put in chemicals NOW to stop death via cardiac arrest
-	H.Paralyse(4)
+	H.Unconscious(80)
 
 	clonemind.transfer_to(H)
 
@@ -243,7 +243,7 @@
 			go_out()
 
 		else if(mob_occupant.cloneloss > (100 - heal_level))
-			mob_occupant.Paralyse(4)
+			mob_occupant.Unconscious(80)
 
 			 //Slowly get that clone healed and finished.
 			mob_occupant.adjustCloneLoss(-((speed_coeff/2) * config.damage_multiplier))

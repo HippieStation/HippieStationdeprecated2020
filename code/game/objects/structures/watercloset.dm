@@ -3,9 +3,9 @@
 	desc = "The HT-451, a torque rotation-based, waste disposal unit for small matter. This one seems remarkably clean."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "toilet00"
-	density = 0
-	anchored = 1
-	var/open = 0			//if the lid is up
+	density = FALSE
+	anchored = TRUE
+	var/open = FALSE			//if the lid is up
 	var/cistern = 0			//if the cistern bit is open
 	var/w_items = 0			//the combined w_class of all the items in the cistern
 	var/mob/living/swirlie = null	//the mob being given a swirlie
@@ -124,8 +124,8 @@
 	desc = "The HU-452, an experimental urinal. Comes complete with experimental urinal cake."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "urinal"
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	var/exposed = 0 // can you currently put an item inside
 	var/obj/item/hiddenitem = null // what's in the urinal
 
@@ -194,10 +194,10 @@
 	desc = "The HS-451. Installed in the 2550s by the Nanotrasen Hygiene Division."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "shower"
-	density = 0
-	anchored = 1
-	use_power = 0
-	var/on = 0
+	density = FALSE
+	anchored = TRUE
+	use_power = NO_POWER_USE
+	var/on = FALSE
 	var/obj/effect/mist/mymist = null
 	var/ismist = 0				//needs a var so we can make it linger~
 	var/watertemp = "normal"	//freezing, normal, or boiling
@@ -208,7 +208,7 @@
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mist"
 	layer = FLY_LAYER
-	anchored = 1
+	anchored = TRUE
 	mouse_opacity = 0
 
 
@@ -281,7 +281,7 @@
 			var/mob/living/L = O
 			if(wash_mob(L)) //it's a carbon mob.
 				var/mob/living/carbon/C = L
-				C.slip(4,2,null,NO_SLIP_WHEN_WALKING)
+				C.slip(80,null,NO_SLIP_WHEN_WALKING)
 		else
 			wash_obj(O)
 
@@ -289,7 +289,7 @@
 /obj/machinery/shower/proc/wash_obj(atom/movable/O)
 	O.clean_blood()
 
-	if(istype(O,/obj/item))
+	if(isitem(O))
 		var/obj/item/I = O
 		I.acid_level = 0
 		I.extinguish()
@@ -419,8 +419,8 @@
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "sink"
 	desc = "A sink used for washing one's hands and face."
-	anchored = 1
-	var/busy = 0 	//Something's being washed at the moment
+	anchored = TRUE
+	var/busy = FALSE 	//Something's being washed at the moment
 	var/dispensedreagent = "water" // for whenever plumbing happens
 
 
@@ -441,13 +441,13 @@
 		washing_face = 1
 	user.visible_message("<span class='notice'>[user] starts washing their [washing_face ? "face" : "hands"]...</span>", \
 						"<span class='notice'>You start washing your [washing_face ? "face" : "hands"]...</span>")
-	busy = 1
+	busy = TRUE
 
 	if(!do_after(user, 40, target = src))
-		busy = 0
+		busy = FALSE
 		return
 
-	busy = 0
+	busy = FALSE
 
 	user.visible_message("<span class='notice'>[user] washes their [washing_face ? "face" : "hands"] using [src].</span>", \
 						"<span class='notice'>You wash your [washing_face ? "face" : "hands"] using [src].</span>")
@@ -463,7 +463,7 @@
 		user.clean_blood()
 
 
-/obj/structure/sink/attackby(obj/item/O, mob/user, params)
+/obj/structure/sink/attackby(obj/item/O, mob/living/user, params)
 	if(busy)
 		to_chat(user, "<span class='warning'>Someone's already washing here!</span>")
 		return
@@ -484,8 +484,7 @@
 			if(B.cell.charge > 0 && B.status == 1)
 				flick("baton_active", src)
 				var/stunforce = B.stunforce
-				user.Stun(stunforce)
-				user.Weaken(stunforce)
+				user.Knockdown(stunforce)
 				user.stuttering = stunforce
 				B.deductcharge(B.hitcost)
 				user.visible_message("<span class='warning'>[user] shocks themself while attempting to wash the active [B.name]!</span>", \
@@ -513,11 +512,11 @@
 
 	if(user.a_intent != INTENT_HARM)
 		to_chat(user, "<span class='notice'>You start washing [O]...</span>")
-		busy = 1
+		busy = TRUE
 		if(!do_after(user, 40, target = src))
-			busy = 0
+			busy = FALSE
 			return 1
-		busy = 0
+		busy = FALSE
 		O.clean_blood()
 		O.acid_level = 0
 		create_reagents(5)
@@ -568,9 +567,9 @@
 	color = "#ACD1E9" //Default color, didn't bother hardcoding other colors, mappers can and should easily change it.
 	alpha = 200 //Mappers can also just set this to 255 if they want curtains that can't be seen through
 	layer = SIGN_LAYER
-	anchored = 1
+	anchored = TRUE
 	opacity = 0
-	density = 0
+	density = FALSE
 	var/open = TRUE
 
 /obj/structure/curtain/proc/toggle()
@@ -581,13 +580,13 @@
 	if(!open)
 		icon_state = "closed"
 		layer = WALL_OBJ_LAYER
-		density = 1
+		density = TRUE
 		open = FALSE
 
 	else
 		icon_state = "open"
 		layer = SIGN_LAYER
-		density = 0
+		density = FALSE
 		open = TRUE
 
 /obj/structure/curtain/attackby(obj/item/W, mob/user)

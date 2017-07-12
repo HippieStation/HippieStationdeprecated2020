@@ -1,11 +1,11 @@
 /obj/machinery/power/emitter
-	name = "Emitter"
-	desc = "A heavy duty industrial laser.\n<span class='notice'>Alt-click to rotate it clockwise.</span>"
+	name = "emitter"
+	desc = "A heavy-duty industrial laser, often used in containment fields and power generation.\n<span class='notice'>Alt-click to rotate it clockwise.</span>"
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "emitter"
 	var/icon_state_on = "emitter_+a"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	req_access = list(GLOB.access_engine_equip)
 
 	// The following 3 vars are mostly for the prototype
@@ -13,7 +13,7 @@
 	var/charge = 0
 	var/atom/target = null
 
-	use_power = 0
+	use_power = NO_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 300
 
@@ -25,7 +25,7 @@
 	var/last_shot = 0
 	var/shot_number = 0
 	var/state = 0
-	var/locked = 0
+	var/locked = FALSE
 
 	var/projectile_type = /obj/item/projectile/beam/emitter
 
@@ -154,7 +154,7 @@
 /*	if((severity == 1)&&prob(1)&&prob(1))
 		if(src.active)
 			src.active = 0
-			src.use_power = 1	*/
+			src.use_power = IDLE_POWER_USE	*/
 	return 1
 
 
@@ -343,8 +343,8 @@
 
 /obj/machinery/power/emitter/emag_act(mob/user)
 	if(!emagged)
-		locked = 0
-		emagged = 1
+		locked = FALSE
+		emagged = TRUE
 		if(user)
 			user.visible_message("[user.name] emags the [src.name].","<span class='notice'>You short out the lock.</span>")
 
@@ -393,7 +393,7 @@
 	auto.Grant(M, src)
 
 /datum/action/innate/protoemitter
-	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUNNED | AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUN | AB_CHECK_CONSCIOUS
 	var/obj/machinery/power/emitter/prototype/PE
 	var/mob/living/carbon/U
 

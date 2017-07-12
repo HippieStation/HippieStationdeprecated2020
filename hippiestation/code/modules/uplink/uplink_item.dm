@@ -57,17 +57,26 @@
 /datum/uplink_item/badass/sports
 	name = "Sports bundle"
 	desc = "A hand-selected box of paraphernalia from one of the best sports. \
-			Currently available are hockey, wrestling, and bowling kits."
+			Currently available are hockey, wrestling, football, and bowling kits."
 	item = /obj/item/weapon/paper
 	cost = 20
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/gang)
 	cant_discount = TRUE
 
+/* Holo Parasites */
+/datum/uplink_item/dangerous/guardian
+	name = "Holoparasites"
+	desc = "Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, they require an organic host as a home base and source of fuel."
+	item = /obj/item/weapon/storage/box/syndie_kit/guardian
+	cost = 20
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/gang)
+
 /datum/uplink_item/badass/sports/spawn_item(turf/loc, obj/item/device/uplink/U)
 	var/list/possible_items = list(
 								"/obj/item/weapon/storage/box/syndie_kit/wrestling",
 								"/obj/item/weapon/storage/box/syndie_kit/bowling",
-								"/obj/item/weapon/storage/box/syndie_kit/hockey"
+								"/obj/item/weapon/storage/box/syndie_kit/hockey",
+								"/obj/item/weapon/storage/box/syndie_kit/football"
 								)
 	if(possible_items.len)
 		var/obj/item/I = pick(possible_items)
@@ -90,3 +99,23 @@
 		loc.visible_message("<span class='warning'>The purchase was unsuccessful, and spent telecrystals have been refunded.</span>")
 		U.telecrystals += cost //So the admins don't have to refund you
 	return
+
+/datum/uplink_item/role_restricted/fire_axe
+	name = "Fire Axe"
+	desc = "A rather blunt fire axe recovered from the burnt out wreck of an old space station. \
+	Warm to the touch, this axe will set fire to anyone struck with it as long as you hold it with\
+	two hands. The more you strike them, the hotter they burn, it will deal bonus fire damage to lit\
+	targets and will enable you to shoot gouts of fire that will set them ablaze. It will also apply thermite to\
+	standard walls and ignite them on a second hit."
+	cost = 10
+	item = /obj/item/weapon/twohanded/fireaxe/fireyaxe
+	restricted_roles = list("Atmospheric Technician")
+
+/datum/uplink_item/role_restricted/retardhorn
+	name = "Extra Annoying Bike Horn."
+	desc = "This bike horn has been carefully tuned by the clown federation to subtly affect the brains of those who\
+	 hear it using advanced sonic techniques. To the untrained eye, a golden bike horn but each honk will cause small\
+	  amounts of brain damage, most targets will be reduced to a gibbering wreck before they catch on."
+	cost = 5
+	item = /obj/item/weapon/bikehorn/golden/retardhorn
+	restricted_roles = list("Clown")
