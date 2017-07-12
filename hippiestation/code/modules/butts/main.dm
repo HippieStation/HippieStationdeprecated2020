@@ -10,8 +10,7 @@
 	throwforce = 5
 	throw_speed = 4
 	force = 5
-	hitsound = pick('hippiestation/sound/effects/fart.ogg','hippiestation/sound/effects/fart2.ogg','hippiestation/sound/effects/fart3.ogg')
-	body_parts_covered = HEAD
+	hitsound = 'hippiestation/sound/effects/fart.ogg'
 	slot_flags = SLOT_HEAD
 	embed_chance = 5 //This is a joke
 	var/loose = 0
@@ -41,6 +40,7 @@
 
 /obj/item/organ/butt/Initialize()
 	. = ..()
+	hitsound = pick('hippiestation/sound/effects/fart.ogg','hippiestation/sound/effects/fart2.ogg','hippiestation/sound/effects/fart3.ogg')
 	inv = new(src)
 	inv.max_w_class = max_w_class
 	inv.storage_slots = storage_slots
