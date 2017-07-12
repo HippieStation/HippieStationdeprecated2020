@@ -1,6 +1,6 @@
 /obj/item/organ/butt //nvm i need to make it internal for surgery fuck
 	name = "butt"
-	desc = "Extremely treasured body part."
+	desc = "extremely treasured body part"
 	alternate_worn_icon = 'hippiestation/icons/mob/head.dmi'
 	icon = 'hippiestation/icons/obj/butts.dmi'
 	icon_state = "butt"
@@ -22,7 +22,7 @@
 
 /obj/item/organ/butt/xeno //XENOMORPH BUTTS ARE BEST BUTTS yes i agree
 	name = "alien butt"
-	desc = "Best trophy ever."
+	desc = "best trophy ever"
 	icon_state = "xenobutt"
 	item_state = "xenobutt"
 	storage_slots = 3
@@ -30,7 +30,7 @@
 
 /obj/item/organ/butt/bluebutt // bluespace butts, science
 	name = "butt of holding"
-	desc = "This butt has bluespace properties, letting you store more items in it. Four tiny items, two small items or one normal item can fit."
+	desc = "This butt has bluespace properties, letting you store more items in it. Four tiny items, or two small ones, or one normal one can fit."
 	icon_state = "bluebutt"
 	item_state = "bluebutt"
 	status = ORGAN_ROBOTIC
