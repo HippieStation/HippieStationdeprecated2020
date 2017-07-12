@@ -3,6 +3,8 @@
 	id = "fly"
 	say_mod = "buzzes"
 	mutanttongue = /obj/item/organ/tongue/fly
+	mutantliver = /obj/item/organ/liver/fly
+	mutantstomach = /obj/item/organ/stomach/fly
 	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/fly
 
 /datum/species/fly/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
@@ -17,7 +19,7 @@
 		var/datum/reagent/consumable/nutri_check = chem
 		if(nutri_check.nutriment_factor > 0)
 			var/turf/pos = get_turf(H)
-			H.vomit(0, 0, 0, 1, 1)
+			H.vomit(0, FALSE, FALSE, 2, TRUE)
 			playsound(pos, 'sound/effects/splat.ogg', 50, 1)
 			H.visible_message("<span class='danger'>[H] vomits on the floor!</span>", \
 						"<span class='userdanger'>You throw up on the floor!</span>")

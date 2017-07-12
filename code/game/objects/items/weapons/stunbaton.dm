@@ -11,7 +11,7 @@
 	attack_verb = list("beaten")
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 50, bio = 0, rad = 0, fire = 80, acid = 80)
 
-	var/stunforce = 7
+	var/stunforce = 140
 	var/status = 0
 	var/obj/item/weapon/stock_parts/cell/high/cell
 	var/hitcost = 1000
@@ -110,7 +110,7 @@
 	if(status && user.disabilities & CLUMSY && prob(50))
 		user.visible_message("<span class='danger'>[user] accidentally hits themself with [src]!</span>", \
 							"<span class='userdanger'>You accidentally hit yourself with [src]!</span>")
-		user.Weaken(stunforce*3)
+		user.Knockdown(stunforce*3)
 		deductcharge(hitcost)
 		return
 
@@ -126,23 +126,31 @@
 
 	if(user.a_intent != INTENT_HARM)
 		if(status)
-			if(baton_stun(M, user))
-				user.do_attack_animation(M)
-				return
+			if(istype(src, /obj/item/weapon/melee/baton/cattleprod/hippie_cattleprod))
+				if(baton_stun_hippie_makeshift(M, user))
+					user.do_attack_animation(M)
+					return
+			else
+				if(baton_stun(M, user))
+					user.do_attack_animation(M)
+					return
 		else
 			M.visible_message("<span class='warning'>[user] has prodded [M] with [src]. Luckily it was off.</span>", \
 							"<span class='warning'>[user] has prodded you with [src]. Luckily it was off</span>")
 	else
 		if(status)
-			baton_stun(M, user)
+			if(istype(src, /obj/item/weapon/melee/baton/cattleprod/hippie_cattleprod))
+				baton_stun_hippie_makeshift(M, user)
+			else
+				baton_stun(M, user)
 		..()
 
 
 /obj/item/weapon/melee/baton/proc/baton_stun(mob/living/L, mob/user)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(H.check_shields(0, "[user]'s [name]", src, MELEE_ATTACK)) //No message; check_shields() handles that
-			playsound(L, 'sound/weapons/Genhit.ogg', 50, 1)
+		if(H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK)) //No message; check_shields() handles that
+			playsound(L, 'sound/weapons/genhit.ogg', 50, 1)
 			return 0
 	if(iscyborg(loc))
 		var/mob/living/silicon/robot/R = loc
@@ -152,8 +160,7 @@
 		if(!deductcharge(hitcost))
 			return 0
 
-	L.Stun(stunforce)
-	L.Weaken(stunforce)
+	L.Knockdown(stunforce)
 	L.apply_effect(STUTTER, stunforce)
 	if(user)
 		user.lastattacked = L
@@ -162,7 +169,7 @@
 								"<span class='userdanger'>[user] has stunned you with [src]!</span>")
 		add_logs(user, L, "stunned")
 
-	playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+	playsound(loc, 'sound/weapons/egloves.ogg', 50, 1, -1)
 
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
@@ -184,7 +191,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	force = 3
 	throwforce = 5
-	stunforce = 5
+	stunforce = 100
 	hitcost = 2000
 	throw_hit_chance = 10
 	slot_flags = SLOT_BACK

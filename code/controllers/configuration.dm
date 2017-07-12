@@ -194,7 +194,7 @@
 	var/allowwebclient = 0
 	var/webclientmembersonly = 0
 
-	var/sandbox_autoclose = 0 // close the sandbox panel after spawning an item, potentially reducing griff
+	var/sandbox_autoclose = FALSE // close the sandbox panel after spawning an item, potentially reducing griff
 
 	var/default_laws = 0 //Controls what laws the AI spawns with.
 	var/silicon_max_law_amount = 12
@@ -265,6 +265,8 @@
 
 	var/irc_announce_new_game = FALSE
 
+	var/list/policies = list()
+
 /datum/configuration/New()
 	gamemode_cache = typecacheof(/datum/game_mode,TRUE)
 	for(var/T in gamemode_cache)
@@ -288,6 +290,7 @@
 /datum/configuration/proc/Reload()
 	load("config/config.txt")
 	load("config/game_options.txt","game_options")
+	load("config/policies.txt", "policies")
 	loadsql("config/dbconfig.txt")
 	if (maprotation)
 		loadmaplist("config/maps.txt")
@@ -779,6 +782,8 @@
 					mice_roundstart = text2num(value)
 				else
 					GLOB.config_error_log << "Unknown setting in configuration: '[name]'"
+		else if(type == "policies")
+			policies[name] = value
 
 	fps = round(fps)
 	if(fps <= 0)

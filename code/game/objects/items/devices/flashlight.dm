@@ -9,9 +9,9 @@
 	slot_flags = SLOT_BELT
 	materials = list(MAT_METAL=50, MAT_GLASS=20)
 	actions_types = list(/datum/action/item_action/toggle_light)
-	var/on = 0
+	var/on = FALSE
 	var/brightness_on = 4 //range of light when on
-	var/flashlight_power //strength of the light when on. optional
+	var/flashlight_power = 1 //strength of the light when on
 
 /obj/item/device/flashlight/Initialize()
 	..()
@@ -39,7 +39,7 @@
 /obj/item/device/flashlight/suicide_act(mob/living/carbon/human/user)
 	user.visible_message("<span class='suicide'>[user] is putting [src] close to [user.p_their()] eyes and turning it on! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return (FIRELOSS)
-	
+
 
 
 /obj/item/device/flashlight/attack(mob/living/carbon/M, mob/living/carbon/human/user)
@@ -55,6 +55,10 @@
 
 		if(!M.get_bodypart("head"))
 			to_chat(user, "<span class='warning'>[M] doesn't have a head!</span>")
+			return
+
+		if(flashlight_power < 1)
+			to_chat(user, "<span class='warning'>\The [src] isn't bright enough to see anything!</span> ")
 			return
 
 		switch(user.zone_selected)
@@ -204,7 +208,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	flags = CONDUCT
 	materials = list()
-	on = 1
+	on = TRUE
 
 
 // green-shaded desk lamp
@@ -267,7 +271,7 @@
 		. = ""
 
 /obj/item/device/flashlight/flare/proc/turn_off()
-	on = 0
+	on = FALSE
 	force = initial(src.force)
 	damtype = initial(src.damtype)
 	if(ismob(loc))
@@ -411,7 +415,7 @@
 		update_icon()
 
 /obj/item/device/flashlight/glowstick/proc/turn_off()
-	on = 0
+	on = FALSE
 	update_icon()
 
 /obj/item/device/flashlight/glowstick/update_icon()
