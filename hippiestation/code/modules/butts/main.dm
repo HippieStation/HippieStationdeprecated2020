@@ -40,7 +40,6 @@
 
 /obj/item/organ/butt/Initialize()
 	. = ..()
-	hitsound = pick('hippiestation/sound/effects/fart.ogg','hippiestation/sound/effects/fart2.ogg','hippiestation/sound/effects/fart3.ogg')
 	inv = new(src)
 	inv.max_w_class = max_w_class
 	inv.storage_slots = storage_slots
@@ -66,6 +65,10 @@
 		qdel(inv)
 	..()
 
+/obj/item/organ/butt/attack(mob/living/target, mob/living/user)
+     hitsound = pick('hippiestation/sound/effects/fart.ogg','hippiestation/sound/effects/fart2.ogg','hippiestation/sound/effects/fart3.ogg')
+     ..()
+	 
 /obj/item/organ/butt/attackby(var/obj/item/W, mob/user as mob, params) // copypasting bot manufucturing process, im a lazy fuck
 
 	if(istype(W, /obj/item/bodypart/l_arm/robot) || istype(W, /obj/item/bodypart/r_arm/robot))
