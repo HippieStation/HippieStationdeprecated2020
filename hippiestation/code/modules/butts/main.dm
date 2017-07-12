@@ -11,6 +11,7 @@
 	throw_speed = 4
 	force = 5
 	hitsound = 'hippiestation/sound/effects/fart.ogg'
+	body_parts_covered = HEAD
 	slot_flags = SLOT_HEAD
 	embed_chance = 5 //This is a joke
 	var/loose = 0
