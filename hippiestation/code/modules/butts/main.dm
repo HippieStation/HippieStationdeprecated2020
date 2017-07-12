@@ -1,6 +1,6 @@
 /obj/item/organ/butt //nvm i need to make it internal for surgery fuck
 	name = "butt"
-	desc = "extremely treasured body part"
+	desc = "Extremely treasured body part."
 	alternate_worn_icon = 'hippiestation/icons/mob/head.dmi'
 	icon = 'hippiestation/icons/obj/butts.dmi'
 	icon_state = "butt"
@@ -10,7 +10,7 @@
 	throwforce = 5
 	throw_speed = 4
 	force = 5
-	hitsound = 'hippiestation/sound/effects/fart.ogg'
+	hitsound = pick('hippiestation/sound/effects/fart.ogg','hippiestation/sound/effects/fart2.ogg','hippiestation/sound/effects/fart3.ogg')
 	body_parts_covered = HEAD
 	slot_flags = SLOT_HEAD
 	embed_chance = 5 //This is a joke
@@ -22,7 +22,7 @@
 
 /obj/item/organ/butt/xeno //XENOMORPH BUTTS ARE BEST BUTTS yes i agree
 	name = "alien butt"
-	desc = "best trophy ever"
+	desc = "Best trophy ever."
 	icon_state = "xenobutt"
 	item_state = "xenobutt"
 	storage_slots = 3
@@ -30,7 +30,7 @@
 
 /obj/item/organ/butt/bluebutt // bluespace butts, science
 	name = "butt of holding"
-	desc = "This butt has bluespace properties, letting you store more items in it. Four tiny items, or two small ones, or one normal one can fit."
+	desc = "This butt has bluespace properties, letting you store more items in it. Four tiny items, two small items or one normal item can fit."
 	icon_state = "bluebutt"
 	item_state = "bluebutt"
 	status = ORGAN_ROBOTIC
@@ -59,7 +59,7 @@
 
 /obj/item/organ/butt/Destroy()
 	if(inv)
-		if(inv.contents.len)
+		if(LAZYLEN(inv.contents))
 			for(var/i in inv.contents)
 				var/obj/item/I = i
 				inv.remove_from_storage(I, get_turf(src))
@@ -87,11 +87,11 @@
 /obj/item/organ/butt/throw_impact(atom/hit_atom)
 	..()
 	var/mob/living/carbon/M = hit_atom
-	playsound(src, 'hippiestation/sound/effects/fart.ogg', 50, 1, 5)
+	playsound(src, pick('hippiestation/sound/effects/fart.ogg','hippiestation/sound/effects/fart2.ogg','hippiestation/sound/effects/fart3.ogg'), 50, 1, 5)
 	if((ishuman(hit_atom)))
 		M.apply_damage(5, STAMINA)
 		if(prob(5))
-			M.Weaken(3)
+			M.Knockdown(60)
 			visible_message("<span class='danger'>The [src.name] smacks [M] right in the face!</span>", 3)
 
 /proc/buttificate(phrase)
