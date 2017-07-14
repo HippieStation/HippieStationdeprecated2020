@@ -2236,6 +2236,7 @@
 #include "hippiestation\code\modules\client\verbs\forumlink.dm"
 #include "hippiestation\code\modules\client\verbs\who.dm"
 #include "hippiestation\code\modules\clothing\clothing.dm"
+#include "hippiestation\code\modules\clothing\fedora.dm"
 #include "hippiestation\code\modules\clothing\head.dm"
 #include "hippiestation\code\modules\clothing\mask.dm"
 #include "hippiestation\code\modules\clothing\shoe.dm"
