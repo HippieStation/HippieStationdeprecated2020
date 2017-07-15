@@ -9,7 +9,13 @@ We do not have a list of goals and features to add. Instead, there is freedom fo
 
 If you want to contribute the first thing you'll need to do is [set up Git](https://wiki.hippiestation.com/index.php?title=Setting_up_git) so you can download the source code.
 
+<<<<<<< HEAD
 We have a [list of guides on the wiki](https://wiki.hippiestation.com/index.php?title=Guides#Development_and_Contribution_Guides) to get started. We recommend beginners start with small projects. For information on BYOND programming, take a look at BYOND's [repository of resources](http://www.byond.com/developer/articles/resources).
+=======
+**Headcoder**
+
+The Headcoder is responsible for controlling, adding, and removing maintainers from the project. In addition to filling the role of a normal maintainer, they have sole authority on who becomes a maintainer, as well as who remains a maintainer and who does not.
+>>>>>>> 53d2b4cde8... Merge pull request #29259 from tgstation/Cyberboss-patch-3
 
 There is an open list of approachable issues for [your inspiration here](https://www.github.com/HippieStation/HippieStation/issues?&q=is%3Aissue%20is%3Aopen%20label%3A"Easy%20Fix"%20).
 
