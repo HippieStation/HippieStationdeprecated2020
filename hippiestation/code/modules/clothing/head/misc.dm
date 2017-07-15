@@ -1,4 +1,13 @@
+/obj/item/clothing/head/fedora
+	var/cooldown = 35
+	var/current_cooldown = 0
+
 /obj/item/clothing/head/fedora/attack_self(mob/user)
+	if(current_cooldown > world.time)
+		return
+
+	current_cooldown = world.time + cooldown
+
 	var/mob/living/carbon/human/H = user
 	H.adjustBrainLoss(10)
 	H.facial_hair_style = "Neckbeard"
