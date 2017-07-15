@@ -13,22 +13,4 @@ SUBSYSTEM_DEF(disease)
 		diseases = subtypesof(/datum/disease)
 
 /datum/controller/subsystem/disease/stat_entry(msg)
-<<<<<<< HEAD
-	..("P:[processing.len]")
-
-/datum/controller/subsystem/disease/fire(resumed = 0)
-	if(!resumed)
-		src.currentrun = processing.Copy()
-	//cache for sanic speed (lists are references anyways)
-	var/list/currentrun = src.currentrun
-
-	while(currentrun.len)
-		var/datum/thing = currentrun[currentrun.len]
-		currentrun.len--
-		if(thing)
-			thing.process()
-		else
-			processing.Remove(thing)
-		if (MC_TICK_CHECK)
-			return
 	..("P:[active_diseases.len]")
