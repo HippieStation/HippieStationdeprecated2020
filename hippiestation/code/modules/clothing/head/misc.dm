@@ -1,5 +1,5 @@
 /obj/item/clothing/head/fedora
-	var/cooldown = 35
+	cooldown = 35
 	var/current_cooldown = 0
 
 /obj/item/clothing/head/fedora/attack_self(mob/user)
