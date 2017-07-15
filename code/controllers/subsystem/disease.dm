@@ -31,6 +31,4 @@ SUBSYSTEM_DEF(disease)
 			processing.Remove(thing)
 		if (MC_TICK_CHECK)
 			return
-=======
 	..("P:[active_diseases.len]")
->>>>>>> 2cc3e9c41f... Disease Refactor (#29130)
