@@ -1,11 +1,8 @@
 SUBSYSTEM_DEF(disease)
 	name = "Disease"
-	flags = SS_KEEP_TIMING|SS_NO_INIT
-	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
+	flags = SS_NO_FIRE
 
-	var/list/currentrun = list()
-	var/list/processing = list()
-
+	var/list/active_diseases = list() //List of Active disease in all mobs; purely for quick referencing.
 	var/list/diseases
 	var/list/archive_diseases = list()
 
@@ -15,13 +12,8 @@ SUBSYSTEM_DEF(disease)
 	if(!diseases)
 		diseases = subtypesof(/datum/disease)
 
-/datum/controller/subsystem/disease/Recover()
-	currentrun = SSdisease.currentrun
-	processing = SSdisease.processing
-	diseases = SSdisease.diseases
-	archive_diseases = SSdisease.archive_diseases
-
 /datum/controller/subsystem/disease/stat_entry(msg)
+<<<<<<< HEAD
 	..("P:[processing.len]")
 
 /datum/controller/subsystem/disease/fire(resumed = 0)
@@ -39,3 +31,6 @@ SUBSYSTEM_DEF(disease)
 			processing.Remove(thing)
 		if (MC_TICK_CHECK)
 			return
+=======
+	..("P:[active_diseases.len]")
+>>>>>>> 2cc3e9c41f... Disease Refactor (#29130)
