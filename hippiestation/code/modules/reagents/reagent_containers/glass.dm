@@ -4,7 +4,7 @@
 
 	else if(istype(target, /obj/structure/reagent_dispensers)) //A dispenser. Transfer FROM it TO us.
 
-		if(target.container_type & OPENCONTAINER)
+		if(target.is_open_container())
 			if(!reagents.total_volume)
 				to_chat(user, "<span class='warning'>[src] is empty!</span>")
 				return
@@ -16,7 +16,7 @@
 			var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 			to_chat(user, "<span class='notice'>You transfer [trans] unit\s of the solution to [target].</span>")
 
-		else if(!target.container_type & OPENCONTAINER)
+		else if(!target.is_open_container())
 			to_chat(user, "<span class='warning'>Unscrew the cap before tyring to put stuff in [target] dummy!</span>")
 			return
 
