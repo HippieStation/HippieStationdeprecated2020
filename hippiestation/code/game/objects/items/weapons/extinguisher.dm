@@ -3,9 +3,7 @@
 		refilling = TRUE
 		return FALSE
 	else
-		..()
-		if(AttemptRefill(O, user))
-			return
+		return ..()
 
 /obj/item/weapon/extinguisher/proc/attempt_refill_hippie(atom/target, mob/user)
 	if(istype(target, /obj/structure/reagent_dispensers) && target.Adjacent(user))
