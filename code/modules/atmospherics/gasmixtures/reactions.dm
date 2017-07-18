@@ -225,7 +225,7 @@
 			if(air.heat_capacity() > MINIMUM_HEAT_CAPACITY)
 				air.temperature = temperature + max(energy_released / air.heat_capacity(), TCMB)// energy released is thermal energy so we convert back to kelvin via division
 				//Prevents whatever mechanism is causing it to hit negative temperatures.
-			to_chat(world, "PLASMA [cached_gases["plasma"][MOLES]], CO2 [cached_gases["co2"][MOLES]], FUSED [plasma_fused], ENERGY [energy_released], MASS FUSED [mass_fused], MASS CREATED [oxygen_added + nitrogen_added] REACTING")
+			//to_chat(world, "PLASMA [cached_gases["plasma"][MOLES]], CO2 [cached_gases["co2"][MOLES]], FUSED [plasma_fused], ENERGY [energy_released], MASS FUSED [mass_fused], MASS CREATED [oxygen_added + nitrogen_added] REACTING")
 			if(!isnull(location))
 				location.set_light(4, 30)
 				location.light_color = LIGHT_COLOR_GREEN
