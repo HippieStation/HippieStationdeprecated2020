@@ -84,16 +84,6 @@
 	return ..()
 
 /obj/item/organ/attack(mob/living/carbon/M, mob/user)
-	if(M == user && ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(status == ORGAN_ORGANIC)
-			var/obj/item/weapon/reagent_containers/food/snacks/S = prepare_eat()
-			if(S)
-				H.drop_item()
-				H.put_in_active_hand(S)
-				S.attack(H, H)
-				qdel(src)
-	else
 		..()
 
 /obj/item/organ/item_action_slot_check(slot,mob/user)
