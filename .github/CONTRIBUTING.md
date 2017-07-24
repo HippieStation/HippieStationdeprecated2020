@@ -229,6 +229,10 @@ Math operators like +, -, /, *, etc are up in the air, just choose which version
 * Associated lists declarations must have their key value quoted if it's a string
 	* WRONG: list(a = "b")
 	* RIGHT: list("a" = "b")
+* Do not define new variables as `null`. Instead, leave it blank because the default value is null. Variables already defined on a parent object must have `= null`, though.
+	* WRONG: `var/variable = null`
+	* RIGHT: `var/variable`
+	
 
 ### Dream Maker Quirks/Tricks
 Like all languages, Dream Maker has its quirks, some of them are beneficial to us, like these
