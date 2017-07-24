@@ -223,9 +223,6 @@ The following different coding styles are not only not enforced, but it is gener
 
 Math operators like +, -, /, *, etc are up in the air, just choose which version looks more readable.
 
-<<<<<<< HEAD
-### Dream Maker Quirks/Tricks:
-=======
 #### Use
 * Bitwise AND - '&'
 	* Should be written as ```bitfield & bitflag``` NEVER ```bitflag & bitfield```, both are valid, but the latter is confusing and nonstandard.
@@ -234,7 +231,6 @@ Math operators like +, -, /, *, etc are up in the air, just choose which version
 	* RIGHT: list("a" = "b")
 
 ### Dream Maker Quirks/Tricks
->>>>>>> fb3d9e48c0... Adds some contributing guidelines (#29345)
 Like all languages, Dream Maker has its quirks, some of them are beneficial to us, like these
 
 * In-To for loops: ```for(var/i = 1, i <= some_value, i++)``` is a fairly standard way to write an incremental for loop in most languages (especially those in the C family) however DM's ```for(var/i in 1 to some_value)``` syntax is oddly faster than its implementation of the former syntax; where possible it's advised to use DM's syntax. (Note, the ```to``` keyword is inclusive, so it automatically defaults to replacing ```<=```, if you want ```<``` then you should write it as ```1 to some_value-1```).
