@@ -68,15 +68,11 @@
 
 
 /mob/living/carbon/attacked_by(obj/item/I, mob/living/user)
-<<<<<<< HEAD
-	var/obj/item/bodypart/affecting = get_bodypart(ran_zone(user.zone_selected))
-=======
 	var/obj/item/bodypart/affecting
 	if(user == src)
 		affecting = get_bodypart(check_zone(user.zone_selected)) //we're self-mutilating! yay!
 	else
 		affecting = get_bodypart(ran_zone(user.zone_selected))
->>>>>>> d3d05c53a5... you CHECK those zones
 	if(!affecting) //missing limb? we select the first bodypart (you can never have zero, because of chest)
 		affecting = bodyparts[1]
 	send_item_attack_message(I, user, affecting.name)
