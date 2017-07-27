@@ -100,6 +100,7 @@
 		switch(query_tree[1])
 			if("call")
 				for(var/datum/d in objs)
+<<<<<<< HEAD
 					try
 						world.SDQL_var(d, query_tree["call"][1], source = d)
 					catch(var/exception/e)
@@ -107,6 +108,11 @@
 						runtimes++
 					CHECK_TICK
 
+=======
+					world.SDQL_var(d, query_tree["call"][1], source = d)
+					CHECK_TICK
+					
+>>>>>>> e7047572f6... Update SDQL_2.dm
 			if("delete")
 				for(var/datum/d in objs)
 					try
@@ -164,6 +170,7 @@
 	to_chat(usr, "<span class='admin'>SDQL query results: [query_text]</span>")
 	to_chat(usr, "<span class='admin'>SDQL query completed: [objs_all] objects selected by path, and [objs_eligible] objects executed on after WHERE filtering if applicable.</span>")
 	to_chat(usr, "<span class='admin'>SDQL query took [end_time/10] seconds to complete.</span>")
+<<<<<<< HEAD
 	if(runtimes)
 		to_chat(usr, "<span class='boldwarning'>SDQL query encountered [runtimes] runtimes!</span>")
 		to_chat(usr, "<span class='boldwarning'>Opening runtime tracking window.</span>")
@@ -176,6 +183,41 @@
 	returning += "Occured at line [E.line] file [E.file]<BR>"
 	returning += "Description: [E.desc]<BR>"
 	return returning
+=======
+
+/proc/SDQL_qdel_datum(datum/d)
+	qdel(d)
+
+/proc/SDQL_gen_vv_href(t)
+	var/text = ""
+	text += "<A HREF='?_src_=vars;Vars=\ref[t]'>\ref[t]</A>"
+	if(istype(t, /atom))
+		var/atom/a = t
+		var/turf/T = a.loc
+		var/turf/actual = get_turf(a)
+		if(istype(T))
+			text += ": [t] at turf [T] [COORD(T)]<br>"
+		else if(a.loc && istype(actual))
+			text += ": [t] in [a.loc] at turf [actual] [COORD(actual)]<br>"
+		else
+			text += ": [t]<br>"
+	else
+		text += ": [t]<br>"
+	return text
+
+/proc/SDQL_internal_vv(d, list/set_list)
+	for(var/list/sets in set_list)
+		var/datum/temp = d
+		var/i = 0
+		for(var/v in sets)
+			if(++i == sets.len)
+				temp.vv_edit_var(v, SDQL_expression(d, set_list[sets]))
+				break
+			if(temp.vars.Find(v) && (istype(temp.vars[v], /datum)))
+				temp = temp.vars[v]
+			else
+				break
+>>>>>>> e7047572f6... Update SDQL_2.dm
 
 /proc/SDQL_parse(list/query_list)
 	var/datum/SDQL_parser/parser = new()
