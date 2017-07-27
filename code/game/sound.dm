@@ -1,29 +1,49 @@
+<<<<<<< HEAD
 /proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, surround = 1, frequency = null, channel = 0, pressure_affected = TRUE)
 
 	soundin = get_sfx(soundin) // same sound for everyone
 
+=======
+/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, frequency = null, channel = 0, pressure_affected = TRUE)
+>>>>>>> 71c7e1fdee... last tweaks
 	if(isarea(source))
 		throw EXCEPTION("playsound(): source is an area")
 		return
 
+<<<<<<< HEAD
 	if(isnull(frequency))
 		frequency = get_rand_frequency() // Same frequency for everybody
+=======
+>>>>>>> 71c7e1fdee... last tweaks
 	var/turf/turf_source = get_turf(source)
 
 	//allocate a channel if necessary now so its the same for everyone
 	channel = channel || open_sound_channel()
 
  	// Looping through the player list has the added bonus of working for mobs inside containers
+<<<<<<< HEAD
 	for (var/P in GLOB.player_list)
+=======
+	var/sound/S = sound(get_sfx(soundin))
+	var/maxdistance = (world.view + extrarange) * 3
+	for(var/P in GLOB.player_list)
+>>>>>>> 71c7e1fdee... last tweaks
 		var/mob/M = P
 		if(!M || !M.client)
 			continue
 		if(get_dist(M, turf_source) <= world.view + extrarange)
 			var/turf/T = get_turf(M)
+
 			if(T && T.z == turf_source.z)
+<<<<<<< HEAD
 				M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, surround, channel, pressure_affected)
 
 /mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff, surround = 1, channel = 0, pressure_affected = TRUE)
+=======
+				M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, channel, pressure_affected, S)
+
+/mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff, channel = 0, pressure_affected = TRUE, sound/S)
+>>>>>>> 71c7e1fdee... last tweaks
 	if(!client || !can_hear())
 		return
 
@@ -76,7 +96,11 @@
 
 		// The y value is for above your head, but there is no ceiling in 2d spessmens.
 		S.y = 1
+<<<<<<< HEAD
 		S.falloff = falloff || FALLOFF_SOUNDS
+=======
+		S.falloff = (falloff ? falloff : FALLOFF_SOUNDS)
+>>>>>>> 71c7e1fdee... last tweaks
 
 	src << S
 
