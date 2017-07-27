@@ -57,10 +57,15 @@
 /area/ruin/powered/beach)
 "ak" = (
 /obj/structure/toilet,
+<<<<<<< HEAD
 /obj/effect/decal/sandeffect,
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/lava/smooth
 	},
+=======
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plating,
+>>>>>>> 00770a93ec... Merge pull request #29505 from ShizCalev/beach-away-mission-fix
 /area/ruin/powered/beach)
 "al" = (
 /obj/structure/urinal{
@@ -74,10 +79,15 @@
 /obj/structure/urinal{
 	pixel_y = 32
 	},
+<<<<<<< HEAD
 /obj/effect/decal/sandeffect,
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/lava/smooth
 	},
+=======
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plating,
+>>>>>>> 00770a93ec... Merge pull request #29505 from ShizCalev/beach-away-mission-fix
 /area/ruin/powered/beach)
 "an" = (
 /obj/item/device/flashlight/lantern,
@@ -93,7 +103,7 @@
 	dir = 4;
 	pixel_x = 11
 	},
-/obj/effect/decal/sandeffect,
+/obj/effect/turf_decal/sand,
 /obj/structure/mirror{
 	pixel_x = 28
 	},
@@ -124,10 +134,15 @@
 	},
 /area/ruin/powered/beach)
 "au" = (
+<<<<<<< HEAD
 /obj/effect/decal/sandeffect,
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/lava/smooth
 	},
+=======
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plating,
+>>>>>>> 00770a93ec... Merge pull request #29505 from ShizCalev/beach-away-mission-fix
 /area/ruin/powered/beach)
 "av" = (
 /obj/machinery/door/airlock/hatch,
@@ -147,10 +162,15 @@
 /area/ruin/powered/beach)
 "ay" = (
 /obj/machinery/door/airlock/hatch,
+<<<<<<< HEAD
 /obj/effect/decal/sandeffect,
 /turf/open/floor/plating{
 	baseturf = /turf/open/floor/plating/lava/smooth
 	},
+=======
+/obj/effect/turf_decal/sand,
+/turf/open/floor/plating,
+>>>>>>> 00770a93ec... Merge pull request #29505 from ShizCalev/beach-away-mission-fix
 /area/ruin/powered/beach)
 "az" = (
 /obj/item/clothing/neck/necklace/dope,
@@ -158,7 +178,7 @@
 /turf/open/floor/plating/beach/sand,
 /area/ruin/powered/beach)
 "aA" = (
-/obj/effect/decal/sandeffect,
+/obj/effect/turf_decal/sand,
 /turf/open/floor/plating/beach/sand,
 /area/ruin/powered/beach)
 "aB" = (
@@ -325,7 +345,7 @@
 /area/ruin/powered/beach)
 "bc" = (
 /obj/machinery/door/airlock/sandstone,
-/obj/effect/decal/sandeffect,
+/obj/effect/turf_decal/sand,
 /turf/open/floor/wood,
 /area/ruin/powered/beach)
 "bd" = (
@@ -555,7 +575,7 @@
 /turf/open/floor/plating/beach/sand,
 /area/ruin/powered/beach)
 "bL" = (
-/obj/effect/decal/sandeffect{
+/obj/effect/turf_decal/sand{
 	density = 1
 	},
 /obj/effect/decal/fakelattice,
@@ -644,7 +664,7 @@
 	},
 /area/ruin/powered/beach)
 "ce" = (
-/obj/effect/decal/sandeffect,
+/obj/effect/turf_decal/sand,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -697,10 +717,16 @@
 	baseturf = /turf/open/floor/plating/beach/sand
 	},
 /area/ruin/powered/beach)
+<<<<<<< HEAD
 "cl" = (
 /obj/machinery/light{
 	dir = 4
 	},
+=======
+"cz" = (
+/obj/effect/turf_decal/sand,
+/obj/effect/baseturf_helper,
+>>>>>>> 00770a93ec... Merge pull request #29505 from ShizCalev/beach-away-mission-fix
 /turf/open/floor/plating/beach/sand,
 /area/ruin/powered/beach)
 "cm" = (
@@ -708,6 +734,7 @@
 	brightness = 3;
 	dir = 8
 	},
+<<<<<<< HEAD
 /turf/open/floor/pod/dark{
 	baseturf = /turf/open/floor/plating/asteroid/basalt
 	},
@@ -715,6 +742,16 @@
 "cn" = (
 /obj/effect/decal/sandeffect,
 /obj/machinery/light/small{
+=======
+/turf/open/floor/pod/dark,
+/area/ruin/powered/beach)
+"jF" = (
+/obj/effect/turf_decal/sand,
+/turf/open/floor/pod/dark,
+/area/ruin/powered/beach)
+"lF" = (
+/obj/machinery/light{
+>>>>>>> 00770a93ec... Merge pull request #29505 from ShizCalev/beach-away-mission-fix
 	dir = 4
 	},
 /turf/open/floor/pod/dark{
@@ -727,11 +764,18 @@
 	brightness = 3;
 	dir = 8
 	},
+<<<<<<< HEAD
 /turf/open/floor/pod/dark{
 	baseturf = /turf/open/floor/plating/asteroid/basalt
 	},
 /area/ruin/powered)
 "cp" = (
+=======
+/turf/open/floor/pod/dark,
+/area/ruin/powered/beach)
+"qa" = (
+/obj/effect/turf_decal/sand,
+>>>>>>> 00770a93ec... Merge pull request #29505 from ShizCalev/beach-away-mission-fix
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -751,6 +795,7 @@
 	},
 /turf/open/floor/plating/beach/sand,
 /area/ruin/powered/beach)
+<<<<<<< HEAD
 "cs" = (
 /obj/effect/overlay/palmtree_l,
 /obj/machinery/light{
@@ -769,6 +814,28 @@
 "cv" = (
 /obj/machinery/light,
 /turf/open/floor/plating/beach/water,
+=======
+"zw" = (
+/obj/structure/closet/athletic_mixed,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/pod/dark,
+/area/ruin/powered/beach)
+"Ec" = (
+/obj/machinery/door/airlock/sandstone,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/pod/dark,
+/area/ruin/powered/beach)
+"Gc" = (
+/obj/effect/turf_decal/sand,
+/turf/open/floor/pod/light,
+/area/ruin/powered/beach)
+"HC" = (
+/obj/structure/rack,
+/obj/item/clothing/shoes/sandal,
+/obj/item/clothing/shoes/sandal,
+/obj/effect/turf_decal/sand,
+/turf/open/floor/pod/dark,
+>>>>>>> 00770a93ec... Merge pull request #29505 from ShizCalev/beach-away-mission-fix
 /area/ruin/powered/beach)
 "cw" = (
 /obj/machinery/light,
@@ -778,9 +845,19 @@
 /obj/machinery/light,
 /turf/open/floor/plating/beach/water,
 /area/ruin/powered/beach)
+<<<<<<< HEAD
 "cy" = (
 /obj/machinery/light,
 /turf/open/floor/plating/beach/water,
+=======
+"Xp" = (
+/obj/effect/turf_decal/sand,
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/turf/open/floor/pod/dark,
+>>>>>>> 00770a93ec... Merge pull request #29505 from ShizCalev/beach-away-mission-fix
 /area/ruin/powered/beach)
 
 (1,1,1) = {"
