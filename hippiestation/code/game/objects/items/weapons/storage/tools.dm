@@ -8,7 +8,7 @@
 
 /obj/item/weapon/wirecutters/syndicate
 	name = "Bolt cutters"
-	desc = "A sturdy set of bolt cutters, lets the user put more leverage into cutting through grilles, wires and people."
+	desc = "A sturdy set of bolt cutters that lets the user put more leverage into cutting through grilles, wire and people."
 	origin_tech = "materials=1;engineering=1;syndicate=1"
 	icon = 'hippiestation/icons/obj/tools.dmi'
 	icon_state = "cutters_nuke"
