@@ -14,9 +14,5 @@
 
 #define CHANNEL_HIGHEST_AVAILABLE 1015
 
-<<<<<<< HEAD
-=======
-
 #define SOUND_MINIMUM_PRESSURE 10
 #define FALLOFF_SOUNDS 0.5
->>>>>>> 71c7e1fdee... last tweaks
