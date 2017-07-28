@@ -2330,6 +2330,7 @@
 #include "hippiestation\code\modules\research\message_server.dm"
 #include "hippiestation\code\modules\research\rdmachines.dm"
 #include "hippiestation\code\modules\research\stock_parts.dm"
+#include "hippiestation\code\modules\research\designs\autolathe_designs.dm"
 #include "hippiestation\code\modules\research\designs\biogenerator_designs.dm"
 #include "hippiestation\code\modules\research\designs\bluespace.dm"
 #include "hippiestation\code\modules\research\designs\medical_designs.dm"
