@@ -30,7 +30,11 @@
 /obj/singularity/narsie/large/Initialize()
 	. = ..()
 	send_to_playing_players("<span class='narsie'>NAR-SIE HAS RISEN</span>")
+<<<<<<< HEAD
 	sound_to_playing_players('hippiestation/sound/effects/narsierisen.ogg')
+=======
+	sound_to_playing_players('sound/creatures/narsie_rises.ogg')
+>>>>>>> eaf20acdde... Merge branch 'master' of https://github.com/tgstation/tgstation into ashwalkertweak
 
 	var/area/A = get_area(src)
 	if(A)
