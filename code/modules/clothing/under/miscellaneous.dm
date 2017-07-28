@@ -668,3 +668,39 @@
 	icon_state = "hostanclothes"
 	item_state = "hostanclothes"
 	item_color = "hostanclothes"
+<<<<<<< HEAD
+=======
+
+/obj/item/clothing/under/mummy
+	name = "mummy wrapping"
+	desc = "Return the slab or suffer my stale references."
+	icon_state = "mummy"
+	item_state = "mummy"
+	item_color = "mummy"
+	body_parts_covered = CHEST|GROIN|ARMS|LEGS
+	fitted = NO_FEMALE_UNIFORM
+	can_adjust = FALSE
+	resistance_flags = NONE
+
+/obj/item/clothing/under/scarecrow
+	name = "scarecrow clothes"
+	desc = "Perfect camouflage for hiding in botany."
+	icon_state = "scarecrow"
+	item_state = "scarecrow"
+	item_color = "scarecrow"
+	body_parts_covered = CHEST|GROIN|ARMS|LEGS
+	fitted = NO_FEMALE_UNIFORM
+	can_adjust = FALSE
+	resistance_flags = NONE
+
+/obj/item/clothing/under/skeleton
+	name = "skeleton jumpsuit"
+	desc = "A black jumpsuit with a white bone pattern printed on it. Spooky!"
+	icon_state = "skeleton"
+	item_state = "skeleton"
+	item_color = "skeleton"
+	body_parts_covered = CHEST|GROIN|ARMS|LEGS
+	fitted = NO_FEMALE_UNIFORM
+	can_adjust = FALSE
+	resistance_flags = NONE
+>>>>>>> ec9219c1ec... FALSE and NONE
