@@ -19,7 +19,11 @@
 
 /obj/item/stack/spacecash/proc/update_desc()
 	var/total_worth = amount*value
+<<<<<<< HEAD
 	desc = "It's worth [total_worth] credit[( amount > 1 ) ? "s" : ""]"
+=======
+	desc = "It's worth [total_worth] credit[( total_worth > 1 ) ? "s" : ""]"
+>>>>>>> ef251fc3a7... might be better to use total worth instead
 
 
 /obj/item/stack/spacecash/merge(obj/item/stack/S)
