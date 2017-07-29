@@ -400,3 +400,7 @@
 
 /obj/item/weapon/paper/crumpled/bloody
 	icon_state = "scrap_bloodied"
+<<<<<<< HEAD
+=======
+
+>>>>>>> 97fc07898c... Merge branch 'master' into Hallucinations3.0
