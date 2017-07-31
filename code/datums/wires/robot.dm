@@ -45,9 +45,15 @@
 					else
 						R.notify_ai(TRUE)
 		if(WIRE_CAMERA) // Pulse to disable the camera.
+<<<<<<< HEAD
 			if(!isnull(R.camera) && !R.scrambledcodes)
 				R.camera.toggle_cam(usr, 0)
 				R.visible_message("[R]'s camera lense focuses loudly.", "Your camera lense focuses loudly.")
+=======
+			if(!QDELETED(R.builtInCamera) && !R.scrambledcodes)
+				R.builtInCamera.toggle_cam(usr, 0)
+				R.visible_message("[R]'s camera lens focuses loudly.", "Your camera lens focuses loudly.")
+>>>>>>> 3d0884490e... lense is actually a misspelling of flense
 		if(WIRE_LAWSYNC) // Forces a law update if possible.
 			if(R.lawupdate)
 				R.visible_message("[R] gently chimes.", "LawSync protocol engaged.")
