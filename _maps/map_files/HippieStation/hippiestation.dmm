@@ -33522,7 +33522,7 @@
 	},
 /obj/machinery/light{
 	icon_state = "tube1";
-	dir = 8;
+	dir = 8
 	},
 /obj/machinery/dna_scannernew,
 /turf/open/floor/plasteel/white,
@@ -64601,7 +64601,7 @@
 "cMD" = (
 /obj/structure/grille,
 /obj/structure/grille,
-/obj/structure/window/reinforced/fulltile,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "cME" = (
@@ -64615,12 +64615,12 @@
 /area/engine/supermatter)
 "cMH" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "cMI" = (
@@ -94879,7 +94879,7 @@ cpv
 cqb
 cTU
 cTW
-cqY
+cMn
 aaH
 cUc
 cUe
@@ -95136,7 +95136,7 @@ cpv
 cqb
 cTU
 cTX
-cqY
+cMn
 aaH
 cAl
 aaH
@@ -95393,7 +95393,7 @@ cpv
 cqd
 cTU
 cTW
-cqY
+cMn
 cEt
 cAl
 csA
@@ -95649,9 +95649,9 @@ ccw
 cpy
 ccw
 ccw
-cqY
+cMn
 cMD
-cqY
+cMn
 cAl
 cEr
 cEr
@@ -95908,7 +95908,7 @@ cqf
 chX
 chX
 crs
-cqY
+cMn
 cAl
 cEr
 cEr
@@ -96165,7 +96165,7 @@ cqh
 ciZ
 cra
 cTR
-cqY
+cMn
 cAl
 cEr
 cEr
@@ -96679,7 +96679,7 @@ cqj
 cqH
 crb
 ciZ
-cqY
+cMn
 cAl
 csA
 cFb
@@ -96936,7 +96936,7 @@ cqi
 ciZ
 ciZ
 ciZ
-cqY
+cMn
 cAl
 cEr
 cEr
@@ -97191,9 +97191,9 @@ ccw
 cpy
 ccw
 ccw
-cqY
-cqY
-cqY
+cMn
+cMn
+cMn
 cAl
 cEr
 cEr
@@ -97449,7 +97449,7 @@ cpD
 cDw
 cTU
 cTW
-cqY
+cMn
 cEt
 cAl
 csA
@@ -97706,7 +97706,7 @@ cpD
 cqb
 cTU
 cTW
-cqY
+cMn
 aaH
 cAl
 aaH
@@ -97963,7 +97963,7 @@ cTL
 cqb
 cTU
 cTW
-cqY
+cMn
 aaH
 cUd
 cUe
@@ -106908,7 +106908,7 @@ bla
 bmY
 bhh
 boq
-brj
+cWs
 cWv
 bsL
 bum
@@ -107165,7 +107165,7 @@ bkU
 bmX
 bpE
 cWr
-brj
+cWs
 cWw
 bti
 bul
