@@ -482,7 +482,12 @@
 	var/obj/effect/proc_holder/spell/S = target
 	S.action = src
 	name = S.name
+<<<<<<< HEAD
 	button_icon = S.action_icon
+=======
+	desc = S.desc
+	icon_icon = S.action_icon
+>>>>>>> 7ee2b7c228... Update action.dm
 	button_icon_state = S.action_icon_state
 	background_icon_state = S.action_background_icon_state
 	button.name = name
