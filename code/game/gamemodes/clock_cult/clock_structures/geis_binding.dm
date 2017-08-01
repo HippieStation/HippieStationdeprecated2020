@@ -106,6 +106,7 @@
 	animate(T2, pixel_y = pixel_y - 9, alpha = 0, time = 8, easing = EASE_IN)
 
 /obj/structure/destructible/clockwork/geis_binding/user_unbuckle_mob(mob/living/buckled_mob, mob/user)
+<<<<<<< HEAD
 	if(buckled_mob == user)
 		if(!resisting && can_resist)
 			resisting = TRUE
@@ -118,6 +119,9 @@
 				take_damage(5)
 			resisting = FALSE
 	else
+=======
+	if(buckled_mob != user)
+>>>>>>> 2c3f0101a7... Fixes Geis except a little more this time (#29612)
 		return ..()
 
 /obj/item/geis_binding
