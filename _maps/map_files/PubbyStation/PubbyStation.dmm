@@ -42160,7 +42160,11 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+<<<<<<< HEAD
 /turf/open/floor/plasteel,
+=======
+/turf/open/floor/plasteel/black,
+>>>>>>> 747d820904... Cleaned up stacked pipes in engineering
 /area/engine/engine_smes)
 "bMJ" = (
 /obj/structure/grille,
