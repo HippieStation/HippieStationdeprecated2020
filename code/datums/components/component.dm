@@ -66,7 +66,16 @@
 /datum/component/proc/OnTransfer(datum/new_parent)
 	return
 
+<<<<<<< HEAD
 /datum/var/list/datum_components //list of /datum/component
+=======
+/datum/component/proc/_GetInverseTypeListExceptRoot(our_type_cached)
+	var/datum/component/current_type = our_type_cached
+	. = list()
+	while (current_type != /datum/component)
+		. += current_type
+		current_type = type2parent(current_type)
+>>>>>>> 2bf0edb0ce... Merge pull request #29636 from Cyberboss/bdbroundid
 
 /datum/proc/SendSignal(sigtype, ...)
 	var/list/comps = datum_components
