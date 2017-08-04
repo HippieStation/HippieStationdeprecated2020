@@ -491,7 +491,11 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/y=arcsin(x/sqrt(1+x*x))
 	return y
 
+<<<<<<< HEAD
 /atom/proc/GetAllContents()
+=======
+/atom/proc/GetAllContents(list/ignore_typecache)
+>>>>>>> 18efa5656b... Update unsorted.dm
 	var/list/processing_list = list(src)
 	var/list/assembled = list()
 
