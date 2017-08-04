@@ -177,10 +177,20 @@
 	var/area/A = src.loc.loc
 
 	//if area isn't specified use current
+<<<<<<< HEAD
 	if(isarea(A) && src.areastring == null)
 		src.area = A
 	else
 		src.area = get_area_by_name(areastring)
+=======
+	if(areastring)
+		src.area = locate(text2path(areastring)) in GLOB.sortedAreas
+		if(!src.area)
+			src.area = A
+			stack_trace("Bad areastring path for [src], [src.areastring]")
+	else if(isarea(A) && src.areastring == null)
+		src.area = A
+>>>>>>> adfdde370f... Runtime detection, made the argument safer to use.
 	update_icon()
 
 	make_terminal()
