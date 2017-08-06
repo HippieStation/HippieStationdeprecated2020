@@ -301,11 +301,6 @@
 
 /obj/item/clothing/head/jester/alt
 	name = "jester hat"
-<<<<<<< HEAD
-	desc = "A hat with bells, to add some merryness to the suit."
-	icon_state = "jester_hat2"
-=======
 	desc = "A hat with bells, to add some merriness to the suit."
 	icon_state = "jester_hat2"
 	dynamic_hair_suffix = ""
->>>>>>> e526e736f4... Fixes hair sticking through hats. (#29651)
