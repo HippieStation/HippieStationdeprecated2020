@@ -63,9 +63,6 @@
 	modules = list(/datum/mapGeneratorModule/bottomLayer/repressurize)
 
 /datum/mapGenerator/massdelete
-<<<<<<< HEAD
-	modules = list(/datum/mapGeneratorModule/bottomLayer/massdelete)
-=======
 	modules = list(/datum/mapGeneratorModule/bottomLayer/massdelete)
 	buildmode_name = "Block: Full Mass Deletion"
 
@@ -80,4 +77,3 @@
 /datum/mapGenerator/massdelete/regen
 	modules = list(/datum/mapGeneratorModule/bottomLayer/massdelete/regeneration_delete)
 	buildmode_name = "Block: Mass Deletion - Leave Mobs and Turfs"
->>>>>>> 0d2f62499f... Update helpers.dm
