@@ -11842,6 +11842,10 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Primary Tool Storage APC";
+<<<<<<< HEAD
+=======
+	areastring = "/area/storage/primary";
+>>>>>>> adfdde370f... Runtime detection, made the argument safer to use.
 	pixel_x = 1;
 	pixel_y = -24
 	},
