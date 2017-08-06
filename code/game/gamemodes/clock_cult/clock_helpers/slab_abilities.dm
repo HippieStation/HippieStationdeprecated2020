@@ -68,6 +68,7 @@
 				add_logs(ranged_ability_user, L, "bound with Geis")
 				if(slab.speed_multiplier >= 0.5) //excuse my debug...
 					ranged_ability_user.notransform = TRUE
+<<<<<<< HEAD
 					addtimer(CALLBACK(src, .proc/reset_user_notransform, ranged_ability_user), 5) //stop us moving for a little bit so we don't break the scripture following this
 				slab.busy = null
 				var/datum/clockwork_scripture/geis/conversion = new
@@ -75,6 +76,35 @@
 				conversion.invoker = ranged_ability_user
 				conversion.target = target
 				conversion.run_scripture()
+=======
+					addtimer(CALLBACK(src, .proc/reset_user_notransform, ranged_ability_user), 5) //stop us moving for a little bit so we don't break the binding immediately
+				if(L.buckled)
+					L.buckled.unbuckle_mob(target, TRUE)
+				binding = new(get_turf(target))
+				binding.setDir(target.dir)
+				binding.buckle_mob(target, TRUE)
+				pulled_binding = binding
+				ranged_ability_user.start_pulling(binding)
+				slab.busy = "sustaining Geis"
+				slab.flags |= NODROP
+				while(!QDELETED(binding) && !QDELETED(ranged_ability_user))
+					if(ranged_ability_user.pulling == binding)
+						pulled_binding = binding
+						if(ranged_ability_user.client.mouse_pointer_icon == 'icons/effects/geis_target.dmi')
+							remove_mousepointer(ranged_ability_user.client)
+							ranged_mousepointer = 'icons/effects/geis_target_remove.dmi'
+							add_mousepointer(ranged_ability_user.client)
+					else //if we're not pulling it, swap our mousepointer
+						pulled_binding = null
+						if(ranged_ability_user.client.mouse_pointer_icon == 'icons/effects/geis_target_remove.dmi')
+							remove_mousepointer(ranged_ability_user.client)
+							ranged_mousepointer = 'icons/effects/geis_target.dmi'
+							add_mousepointer(ranged_ability_user.client)
+					sleep(1)
+				if(!QDELETED(slab))
+					slab.flags &= ~NODROP
+				in_progress = FALSE
+>>>>>>> c53ed5f6e2... fix
 				successful = TRUE
 
 		remove_ranged_ability()
