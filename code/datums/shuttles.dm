@@ -42,7 +42,7 @@
 
 // Shuttles start here:
 
-/datum/map_template/shuttle/emergency/airless
+///datum/map_template/shuttle/emergency/airless
 	suffix = "airless"
 	name = "Build your own shuttle kit"
 	description = "Save money by building your own shuttle! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Interior and atmosphere not included."
