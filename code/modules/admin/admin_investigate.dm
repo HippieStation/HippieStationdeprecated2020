@@ -5,7 +5,11 @@
 	F << "<small>[time_stamp()] \ref[src] ([x],[y],[z])</small> || [src] [message]<br>"
 
 
+<<<<<<< HEAD
 /client/proc/investigate_show(subject in list("hrefs","notes, memos, watchlist", INVESTIGATE_PORTAL, INVESTIGATE_SINGULO, INVESTIGATE_WIRES, INVESTIGATE_TELESCI, INVESTIGATE_GRAVITY, INVESTIGATE_RECORDS, INVESTIGATE_CARGO, INVESTIGATE_SUPERMATTER, INVESTIGATE_ATMOS, INVESTIGATE_EXPERIMENTOR, INVESTIGATE_BOTANY) )
+=======
+/client/proc/investigate_show(subject in list("hrefs","notes, memos, watchlist", INVESTIGATE_PORTAL, INVESTIGATE_SINGULO, INVESTIGATE_WIRES, INVESTIGATE_TELESCI, INVESTIGATE_GRAVITY, INVESTIGATE_RECORDS, INVESTIGATE_CARGO, INVESTIGATE_SUPERMATTER, INVESTIGATE_ATMOS, INVESTIGATE_EXPERIMENTOR, INVESTIGATE_BOTANY, INVESTIGATE_HALLUCINATIONS) )
+>>>>>>> 97fc07898c... Merge branch 'master' into Hallucinations3.0
 	set name = "Investigate"
 	set category = "Admin"
 	if(!holder)

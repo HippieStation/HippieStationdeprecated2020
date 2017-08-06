@@ -6,8 +6,11 @@
 	Clockwork slabs will only make components if held or if inside an item held by a human, and when making a component will prevent all other slabs held from making components.\n\
 	Hitting a slab, a Servant with a slab, or a cache will <b>transfer</b> this slab's components into the target, the target's slab, or the global cache, respectively."
 	icon_state = "dread_ipad"
+<<<<<<< HEAD
 	lefthand_file = 'icons/mob/inhands/antag/clockwork_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/clockwork_righthand.dmi'
+=======
+>>>>>>> 97fc07898c... Merge branch 'master' into Hallucinations3.0
 	var/inhand_overlay //If applicable, this overlay will be applied to the slab's inhand
 	slot_flags = SLOT_BELT
 	w_class = WEIGHT_CLASS_SMALL

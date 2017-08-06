@@ -229,10 +229,13 @@ Math operators like +, -, /, *, etc are up in the air, just choose which version
 * Associated lists declarations must have their key value quoted if it's a string
 	* WRONG: list(a = "b")
 	* RIGHT: list("a" = "b")
+<<<<<<< HEAD
 * Do not define new variables as `null`. Instead, leave it blank because the default value is null. Variables already defined on a parent object must have `= null`, though.
 	* WRONG: `var/variable = null`
 	* RIGHT: `var/variable`
 	
+=======
+>>>>>>> 97fc07898c... Merge branch 'master' into Hallucinations3.0
 
 ### Dream Maker Quirks/Tricks
 Like all languages, Dream Maker has its quirks, some of them are beneficial to us, like these
@@ -248,8 +251,11 @@ var/obj/item/sword/best_sword
 for(var/obj/item/sword/S in bag_of_items)
 	if(!best_sword || S.damage > best_sword.damage)
 		best_sword = S
+<<<<<<< HEAD
 ```
 The above is a simple proc for checking all swords in a container and returning the one with the highest damage, it uses DM's standard syntax for a for loop, it does this by specifying a type in the variable of the for header which byond interprets as a type to filter by, it performs this filter using ```istype()``` (or some internal-magic similar to ```istype()```, I wouldn't put it past byond), the above example is fine with the data currently contained in ```bag_of_items```, however if ```bag_of_items``` contained ONLY swords, or only SUBTYPES of swords, then the above is inefficient, for example:
+=======
+>>>>>>> 97fc07898c... Merge branch 'master' into Hallucinations3.0
 ```
 var/list/bag_of_swords = list(sword, sword, sword, sword)
 var/obj/item/sword/best_sword

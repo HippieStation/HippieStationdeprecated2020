@@ -1,4 +1,5 @@
 //Investigate logging defines
+<<<<<<< HEAD
 #define INVESTIGATE_ATMOS			"atmos"
 #define INVESTIGATE_BOTANY			"botany"
 #define INVESTIGATE_CARGO			"cargo"
@@ -10,6 +11,20 @@
 #define INVESTIGATE_TELESCI			"telesci"
 #define INVESTIGATE_WIRES			"wires"
 #define INVESTIGATE_PORTAL			"portals"
+=======
+#define INVESTIGATE_ATMOS	         "atmos"
+#define INVESTIGATE_BOTANY 	         "botany"
+#define INVESTIGATE_CARGO 	         "cargo"
+#define INVESTIGATE_EXPERIMENTOR 	 "experimentor"
+#define INVESTIGATE_GRAVITY 	     "gravity"
+#define INVESTIGATE_RECORDS 	     "records"
+#define INVESTIGATE_SINGULO          "singulo"
+#define INVESTIGATE_SUPERMATTER      "supermatter"
+#define INVESTIGATE_TELESCI          "telesci"
+#define INVESTIGATE_WIRES            "wires"
+#define INVESTIGATE_PORTAL			"portals"
+#define INVESTIGATE_HALLUCINATIONS   "hallucinations"
+>>>>>>> 97fc07898c... Merge branch 'master' into Hallucinations3.0
 
 //Individual logging defines
 #define INDIVIDUAL_ATTACK_LOG   "Attack log"

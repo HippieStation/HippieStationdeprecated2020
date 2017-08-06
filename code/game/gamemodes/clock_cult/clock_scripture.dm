@@ -274,8 +274,11 @@ Judgement: 12 servants, 5 caches, 300 CV, and any existing AIs are converted or 
 	if(slab_overlay)
 		slab.add_overlay(slab_overlay)
 		slab.item_state = "clockwork_slab"
+<<<<<<< HEAD
 		slab.lefthand_file = 'icons/mob/inhands/antag/clockwork_lefthand.dmi'
 		slab.righthand_file = 'icons/mob/inhands/antag/clockwork_righthand.dmi'
+=======
+>>>>>>> 97fc07898c... Merge branch 'master' into Hallucinations3.0
 		slab.inhand_overlay = slab_overlay
 	slab.slab_ability = new ranged_type(slab)
 	slab.slab_ability.slab = slab
@@ -301,8 +304,11 @@ Judgement: 12 servants, 5 caches, 300 CV, and any existing AIs are converted or 
 				slab.slab_ability.remove_ranged_ability()
 		slab.cut_overlays()
 		slab.item_state = initial(slab.item_state)
+<<<<<<< HEAD
 		slab.item_state = initial(slab.lefthand_file)
 		slab.item_state = initial(slab.righthand_file)
+=======
+>>>>>>> 97fc07898c... Merge branch 'master' into Hallucinations3.0
 		slab.inhand_overlay = null
 		if(invoker)
 			invoker.update_inv_hands()
