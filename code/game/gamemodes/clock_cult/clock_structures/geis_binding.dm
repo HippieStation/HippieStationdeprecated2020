@@ -16,9 +16,12 @@
 	debris = list()
 	can_buckle = TRUE
 	buckle_lying = 0
+<<<<<<< HEAD
 	buckle_prevents_pull = TRUE
 	var/resisting = FALSE
 	var/can_resist = FALSE
+=======
+>>>>>>> e8863553f8... Merge pull request #29600 from tgstation/ohfuck
 	var/mob_layer = MOB_LAYER
 
 /obj/structure/destructible/clockwork/geis_binding/examine(mob/user)
@@ -26,6 +29,22 @@
 	..()
 	icon_state = "geisbinding"
 
+<<<<<<< HEAD
+=======
+/obj/structure/destructible/clockwork/geis_binding/process()
+	if(LAZYLEN(buckled_mobs))
+		for(var/V in buckled_mobs)
+			var/mob/living/L = V
+			if(is_servant_of_ratvar(L)) //servants are freed automatically
+				take_damage(obj_integrity)
+				return
+	var/tick_damage = 1
+	if(!is_servant_of_ratvar(pulledby))
+		tick_damage++
+	take_damage(tick_damage, sound_effect = FALSE)
+	playsound(src, 'sound/effects/empulse.ogg', tick_damage * 20, TRUE)
+
+>>>>>>> e8863553f8... Merge pull request #29600 from tgstation/ohfuck
 /obj/structure/destructible/clockwork/geis_binding/attack_hand(mob/living/user)
 	return
 
