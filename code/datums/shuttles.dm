@@ -42,21 +42,21 @@
 
 // Shuttles start here:
 
-///datum/map_template/shuttle/emergency/airless
-//	suffix = "airless"
-//	name = "Build your own shuttle kit"
-//	description = "Save money by building your own shuttle! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Interior and atmosphere not included."
-//	admin_notes = "No brig, no medical facilities, no air."
-//	credit_cost = -7500
+/datum/map_template/shuttle/emergency/airless
+	suffix = "airless"
+	name = "Build your own shuttle kit"
+	description = "Save money by building your own shuttle! The chassis will dock upon purchase, but launch will have to be authorized as usual via shuttle call. Interior and atmosphere not included."
+	admin_notes = "No brig, no medical facilities, no air."
+	credit_cost = -7500
 
-///datum/map_template/shuttle/emergency/airless/prerequisites_met()
-//	// first 10 minutes only
-//	return world.time - SSticker.round_start_time < 6000
+/datum/map_template/shuttle/emergency/airless/prerequisites_met()
+	// first 10 minutes only
+	return world.time - SSticker.round_start_time < 6000
 
-///datum/map_template/shuttle/emergency/airless/on_bought()
-//	//enable buying engines from cargo
-//	var/datum/supply_pack/P = SSshuttle.supply_packs[/datum/supply_pack/engineering/shuttle_engine]
-//	P.special_enabled = TRUE
+/datum/map_template/shuttle/emergency/airless/on_bought()
+	//enable buying engines from cargo
+	var/datum/supply_pack/P = SSshuttle.supply_packs[/datum/supply_pack/engineering/shuttle_engine]
+	P.special_enabled = TRUE
 
 /datum/map_template/shuttle/emergency/asteroid
 	suffix = "asteroid"
