@@ -160,11 +160,15 @@
 		var/list/presentmins = adm["present"]
 		var/list/afkmins = adm["afk"]
 		s["admins"] = presentmins.len + afkmins.len //equivalent to the info gotten from adminwho
+<<<<<<< HEAD
 
 
 		s["gamestate"] = 1
 		if(SSticker)
 			s["gamestate"] = SSticker.current_state
+=======
+		s["gamestate"] = SSticker.current_state
+>>>>>>> 6b6fc91172... Merge pull request #29623 from Cyberboss/TiredOfBS
 
 		s["map_name"] = SSmapping.config.map_name
 
@@ -268,6 +272,7 @@
 	if (!host && config && config.hostedby)
 		s += "<br>Hosted by <b>[config.hostedby]</b>."
 
+<<<<<<< HEAD
 	s += "<br>("
 	s += "<a href=\"[config.forumurl]\">"
 	s += "Forums"
@@ -283,6 +288,37 @@
 			s += GLOB.master_mode
 	else
 		s += "<b>STARTING</b>"
+=======
+	if(GLOB.master_mode)
+		features += GLOB.master_mode
+
+	if (!GLOB.enter_allowed)
+		features += "closed"
+
+	features += GLOB.abandon_allowed ? "respawn" : "no respawn"
+
+	if (config && config.allow_vote_mode)
+		features += "vote"
+
+	if (config && config.allow_ai)
+		features += "AI allowed"
+
+	var/n = 0
+	for (var/mob/M in GLOB.player_list)
+		if (M.client)
+			n++
+
+	if (n > 1)
+		features += "~[n] players"
+	else if (n > 0)
+		features += "~[n] player"
+
+	if (!host && config && config.hostedby)
+		features += "hosted by <b>[config.hostedby]</b>"
+
+	if (features)
+		s += ": [jointext(features, ", ")]"
+>>>>>>> 6b6fc91172... Merge pull request #29623 from Cyberboss/TiredOfBS
 
 	status = s
 
