@@ -667,6 +667,7 @@
 	..()
 	if(!mapload)
 		return
+<<<<<<< HEAD
 	if(control_area && istext(control_area))
 		for(var/V in GLOB.sortedAreas)
 			var/area/A = V
@@ -675,6 +676,15 @@
 				break
 
 	if(!control_area)
+=======
+
+	if(control_area)
+		control_area = get_area_instance_from_text(control_area)
+		if(control_area == null)
+			control_area = get_area(src)
+			stack_trace("Bad control_area path for [src], [src.control_area]")
+	else if(!control_area)
+>>>>>>> 1955c2c297... Merge pull request #29718 from ShizCalev/apc-corrections
 		control_area = get_area(src)
 
 	for(var/obj/machinery/porta_turret/T in control_area)
