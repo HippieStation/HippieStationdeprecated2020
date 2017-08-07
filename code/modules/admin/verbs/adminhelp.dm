@@ -257,15 +257,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	AddInteraction("<font color='red'>[LinkedReplyName(ref_src)]: [msg]</font>")
 	
 	//send this msg to all admins
-<<<<<<< HEAD
-
 	for(var/C in GLOB.admins)
 		var/client/X = C
 		if(!check_rights_for(X, R_ADMIN))
 			continue
-=======
-	for(var/client/X in GLOB.admins)
->>>>>>> 2176331d79... Fixes adminhelp sending the wrong message to players
 		if(X.prefs.toggles & SOUND_ADMINHELP)
 			X << 'sound/effects/adminhelp.ogg'
 		window_flash(X, ignorepref = TRUE)
