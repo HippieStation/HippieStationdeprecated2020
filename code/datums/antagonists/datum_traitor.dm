@@ -23,7 +23,6 @@
 /datum/antagonist/traitor/human
 	should_specialise = FALSE
 	var/should_equip = TRUE
-
 /datum/antagonist/traitor/human/custom
 	silent = TRUE
 	should_give_codewords = FALSE
@@ -32,7 +31,6 @@
 
 /datum/antagonist/traitor/AI
 	should_specialise = FALSE
-
 /datum/antagonist/traitor/AI/custom
 	silent = TRUE
 	should_give_codewords = FALSE
@@ -40,8 +38,9 @@
 
 
 /datum/antagonist/traitor/on_body_transfer(mob/living/old_body, mob/living/new_body)
-	// human <-> silicon only
-	if(old_body && issilicon(new_body) ^ issilicon(old_body))
+	if(issilicon(new_body) && issilicon(old_body))
+		..()
+	else
 		silent = TRUE
 		owner.add_antag_datum(base_datum_custom)
 		for(var/datum/antagonist/traitor/new_datum in owner.antag_datums)
@@ -50,14 +49,13 @@
 			transfer_important_variables(new_datum)
 			break
 		on_removal()
-	else
-		..()
+
+
 
 /datum/antagonist/traitor/human/custom //used to give custom objectives
 	silent = TRUE
 	give_objectives = FALSE
 	should_give_codewords = FALSE
-
 /datum/antagonist/traitor/AI/custom //used to give custom objectives
 	silent = TRUE
 	give_objectives = FALSE
@@ -85,8 +83,7 @@
 	if(owner.assigned_role == "Clown")
 		var/mob/living/carbon/human/traitor_mob = owner.current
 		if(traitor_mob&&istype(traitor_mob))
-			if(!silent) 
-				to_chat(traitor_mob, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
+			if(!silent) to_chat(traitor_mob, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 			traitor_mob.dna.remove_mutation(CLOWNMUT)
 
 /datum/antagonist/traitor/remove_innate_effects()

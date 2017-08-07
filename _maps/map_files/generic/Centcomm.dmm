@@ -2855,7 +2855,8 @@
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "iz" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/centcom/control)
 "iA" = (
@@ -3047,7 +3048,8 @@
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "iZ" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/centcom/supply)
 "ja" = (
@@ -3071,7 +3073,8 @@
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "jd" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
@@ -4120,7 +4123,8 @@
 	},
 /area/centcom/supply)
 "lx" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/sign/directions/engineering{
 	desc = "A sign that shows there are doors here. There are doors everywhere!";
 	icon_state = "doors";
@@ -4776,7 +4780,8 @@
 	},
 /area/centcom/control)
 "nf" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/centcom/ferry)
 "ng" = (
@@ -6165,7 +6170,8 @@
 /turf/closed/indestructible/riveted,
 /area/centcom/evac)
 "ql" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/centcom/evac)
 "qm" = (
@@ -7110,7 +7116,8 @@
 /turf/open/floor/plasteel/neutral,
 /area/centcom/evac)
 "sw" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/sign/directions/engineering{
 	desc = "A sign that shows there are doors here. There are doors everywhere!";
 	icon_state = "doors";
@@ -7415,7 +7422,8 @@
 /turf/closed/wall/mineral/plastitanium,
 /area/shuttle/assault_pod)
 "tn" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/sign/directions/engineering{
 	desc = "A sign that shows there are doors here. There are doors everywhere!";
 	icon_state = "doors";
@@ -7960,7 +7968,8 @@
 /turf/open/floor/plasteel,
 /area/centcom/ferry)
 "uF" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/sign/directions/engineering{
 	desc = "A sign that shows there are doors here. There are doors everywhere!";
 	icon_state = "doors";
@@ -8199,7 +8208,8 @@
 /turf/open/floor/plating/airless,
 /area/syndicate_mothership/control)
 "vr" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/sign/vacuum,
 /turf/open/floor/plating,
 /area/centcom/ferry)
@@ -10015,7 +10025,8 @@
 	},
 /area/tdome/tdomeobserve)
 "zN" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/tdome/tdomeobserve)
 "zO" = (
@@ -10319,7 +10330,7 @@
 	base_state = "rightsecure";
 	dir = 2;
 	icon_state = "rightsecure";
-	name = "Thunderdome Booth";
+	name = "Thunderdoom Booth";
 	req_access_txt = "109"
 	},
 /obj/effect/turf_decal/bot,
@@ -11711,7 +11722,8 @@
 	},
 /area/tdome/tdomeadmin)
 "Ef" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/tdome/tdomeadmin)
 "Eg" = (
@@ -12732,7 +12744,8 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom/evac)
 "Hk" = (
-/obj/effect/spawner/structure/window/shuttle,
+/obj/structure/grille,
+/obj/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/centcom/evac)
 "Hl" = (

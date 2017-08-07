@@ -141,7 +141,8 @@
 	},
 /area/engine/gravity_generator)
 "au" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
 	icon_state = "radiation";
@@ -258,7 +259,8 @@
 	},
 /area/engine/gravity_generator)
 "aI" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/gravity_generator)
 "aJ" = (
@@ -543,7 +545,8 @@
 /turf/closed/wall/r_wall,
 /area/bridge)
 "bv" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/bridge)
 "bw" = (
@@ -738,11 +741,13 @@
 	},
 /area/hallway/secondary/entry)
 "bY" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/department/bridge)
 "bZ" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/hallway/primary/central)
 "ca" = (
@@ -776,7 +781,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "cd" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -818,7 +824,8 @@
 	},
 /area/bridge)
 "ch" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -1063,7 +1070,8 @@
 /turf/open/floor/plasteel,
 /area/construction)
 "cR" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/construction)
 "cS" = (

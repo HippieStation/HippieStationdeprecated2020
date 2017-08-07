@@ -25,7 +25,6 @@
 	icon_state = "cocoapod"
 	filling_color = "#FFD700"
 	bitesize_mod = 2
-	foodtype = VEGETABLES
 
 // Vanilla Pod
 /obj/item/seeds/cocoapod/vanillapod
@@ -45,4 +44,3 @@
 	desc = "Fattening... Mmmmm... vanilla."
 	icon_state = "vanillapod"
 	filling_color = "#FFD700"
-	foodtype = VEGETABLES

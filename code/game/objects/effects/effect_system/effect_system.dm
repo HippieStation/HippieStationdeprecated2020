@@ -13,10 +13,12 @@ would spawn and follow the beaker, even if it is carried or thrown.
 
 /obj/effect/particle_effect/New()
 	..()
-	GLOB.cameranet.updateVisibility(src)
+	if(SSticker)
+		GLOB.cameranet.updateVisibility(src)
 
 /obj/effect/particle_effect/Destroy()
-	GLOB.cameranet.updateVisibility(src)
+	if(SSticker)
+		GLOB.cameranet.updateVisibility(src)
 	. = ..()
 
 /datum/effect_system

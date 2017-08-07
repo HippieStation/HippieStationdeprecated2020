@@ -425,7 +425,7 @@
 
 /obj/item/clothing/suit/golem
 	name = "adamantine shell"
-	desc = "a golem's thick outer shell"
+	desc = "a golem's thick outter shell"
 	icon_state = "golem"
 	item_state = "golem"
 	w_class = WEIGHT_CLASS_BULKY

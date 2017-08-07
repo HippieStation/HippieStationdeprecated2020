@@ -8,7 +8,6 @@
 	cooked_type = /obj/item/weapon/reagent_containers/food/snacks/boiledspaghetti
 	filling_color = "#F0E68C"
 	tastes = list("pasta" = 1)
-	foodtype = GRAIN
 
 /obj/item/weapon/reagent_containers/food/snacks/boiledspaghetti
 	name = "boiled spaghetti"
@@ -21,7 +20,6 @@
 	custom_food_type = /obj/item/weapon/reagent_containers/food/snacks/customizable/pasta
 	filling_color = "#F0E68C"
 	tastes = list("pasta" = 1)
-	foodtype = GRAIN
 
 /obj/item/weapon/reagent_containers/food/snacks/pastatomato
 	name = "spaghetti"
@@ -34,7 +32,6 @@
 	list_reagents = list("nutriment" = 6, "tomatojuice" = 10, "vitamin" = 4)
 	filling_color = "#DC143C"
 	tastes = list("pasta" = 1, "tomato" = 1)
-	foodtype = GRAIN | VEGETABLES
 
 /obj/item/weapon/reagent_containers/food/snacks/copypasta
 	name = "copypasta"
@@ -47,7 +44,6 @@
 	list_reagents = list("nutriment" = 12, "tomatojuice" = 20, "vitamin" = 8)
 	filling_color = "#DC143C"
 	tastes = list("pasta" = 1, "tomato" = 1)
-	foodtype = GRAIN | VEGETABLES
 
 /obj/item/weapon/reagent_containers/food/snacks/meatballspaghetti
 	name = "spaghetti and meatballs"
@@ -59,7 +55,6 @@
 	list_reagents = list("nutriment" = 8, "vitamin" = 4)
 	filling_color = "#F0E68C"
 	tastes = list("pasta" = 1, "tomato" = 1, "meat" = 1)
-	foodtype = GRAIN | MEAT
 
 /obj/item/weapon/reagent_containers/food/snacks/spesslaw
 	name = "spesslaw"
@@ -71,7 +66,6 @@
 	list_reagents = list("nutriment" = 8, "vitamin" = 6)
 	filling_color = "#F0E68C"
 	tastes = list("pasta" = 1, "tomato" = 1, "meat" = 1)
-	foodtype = GRAIN
 
 /obj/item/weapon/reagent_containers/food/snacks/chowmein
 	name = "chow mein"
@@ -82,7 +76,6 @@
 	bonus_reagents = list("nutriment" = 3, "vitamin" = 4)
 	list_reagents = list("nutriment" = 7, "vitamin" = 6)
 	tastes = list("noodle" = 1, "tomato" = 1)
-	foodtype = GRAIN
 
 /obj/item/weapon/reagent_containers/food/snacks/beefnoodle
 	name = "beef noodle"
@@ -92,7 +85,6 @@
 	trash = /obj/item/weapon/reagent_containers/glass/bowl
 	bonus_reagents = list("nutriment" = 5, "vitamin" = 6, "liquidgibs" = 3)
 	tastes = list("noodle" = 1, "meat" = 1)
-	foodtype = GRAIN | MEAT
 
 /obj/item/weapon/reagent_containers/food/snacks/butternoodles
 	name = "butter noodles"
@@ -102,4 +94,3 @@
 	trash = /obj/item/trash/plate
 	bonus_reagents = list("nutriment" = 8, "vitamin" = 1)
 	tastes = list("noodle" = 1, "butter" = 1)
-	foodtype = GRAIN | DAIRY

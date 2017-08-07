@@ -1,12 +1,13 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/open/space/basic,
+/turf/open/space,
 /area/space)
 "ab" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "ac" = (
-/obj/effect/spawner/structure/window/shuttle,
+/obj/structure/grille,
+/obj/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "ad" = (
@@ -158,7 +159,7 @@
 	name = "Emergency Shuttle Airlock";
 	req_access_txt = "2"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/mineral/plastitanium/brig,
 /area/shuttle/escape)
 "aE" = (
 /obj/machinery/door/airlock/glass{
@@ -170,6 +171,9 @@
 "aF" = (
 /obj/item/weapon/twohanded/required/kirbyplants{
 	icon_state = "plant-22"
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
@@ -282,7 +286,7 @@
 	port_angle = 90;
 	width = 18
 	},
-/turf/open/floor/plating,
+/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/escape)
 "aY" = (
 /obj/machinery/light{
@@ -307,8 +311,10 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/escape)
 "ba" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /obj/structure/shuttle/engine/heater,
-/obj/structure/window/shuttle,
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
 "bb" = (
@@ -319,24 +325,6 @@
 "bc" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/airless,
-/area/shuttle/escape)
-"bd" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/shuttle/escape)
-"be" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/shuttle/escape)
-"bf" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/shuttle/escape)
-"bg" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/shuttle/escape)
-"bh" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
-/area/shuttle/escape)
-"bi" = (
-/turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/escape)
 
 (1,1,1) = {"
@@ -426,13 +414,13 @@ ab
 ab
 ab
 ab
-bf
-aI
+ab
+ao
 aL
 aL
 aL
-aT
-bh
+ao
+ab
 ab
 ab
 ab
@@ -442,7 +430,7 @@ ab
 (6,1,1) = {"
 ab
 ab
-bd
+ab
 am
 au
 aA
@@ -451,7 +439,7 @@ ao
 ao
 ao
 ao
-ao
+aT
 ab
 aV
 aY
@@ -522,7 +510,7 @@ bc
 (10,1,1) = {"
 ab
 ab
-be
+ab
 aq
 av
 aA
@@ -531,7 +519,7 @@ ao
 ao
 ao
 ao
-ao
+aT
 ab
 aW
 aZ
@@ -546,13 +534,13 @@ ab
 ab
 ab
 ab
-bg
-aI
+ab
+ao
 aK
 aK
 aK
-aT
-bi
+ao
+ab
 ab
 ab
 ab

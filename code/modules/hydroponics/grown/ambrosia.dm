@@ -7,7 +7,6 @@
 	slot_flags = SLOT_HEAD
 	filling_color = "#008000"
 	bitesize_mod = 2
-	foodtype = VEGETABLES
 
 // Ambrosia Vulgaris
 /obj/item/seeds/ambrosia

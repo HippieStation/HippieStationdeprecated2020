@@ -36,8 +36,6 @@
 	var/d_hud = DATA_HUD_DIAGNOSTIC //There is only one kind of diag hud
 
 	var/law_change_counter = 0
-	var/obj/machinery/camera/builtInCamera = null
-	var/updating = FALSE //portable camera camerachunk update
 
 /mob/living/silicon/Initialize()
 	. = ..()
@@ -56,7 +54,6 @@
 /mob/living/silicon/Destroy()
 	radio = null
 	aicamera = null
-	QDEL_NULL(builtInCamera)
 	GLOB.silicon_mobs -= src
 	return ..()
 

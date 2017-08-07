@@ -100,4 +100,3 @@
 	icon_state = "kudzupod"
 	filling_color = "#6B8E23"
 	bitesize_mod = 2
-	foodtype = VEGETABLES | GROSS

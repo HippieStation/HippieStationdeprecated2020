@@ -11,7 +11,6 @@
 	junkiness = 25
 	filling_color = "#D2691E"
 	tastes = list("candy" = 1)
-	foodtype = JUNKFOOD | SUGAR
 
 /obj/item/weapon/reagent_containers/food/snacks/sosjerky
 	name = "\improper Scaredy's Private Reserve Beef Jerky"
@@ -22,7 +21,6 @@
 	junkiness = 25
 	filling_color = "#8B0000"
 	tastes = list("dried meat" = 1)
-	foodtype = JUNKFOOD | MEAT | SUGAR
 
 /obj/item/weapon/reagent_containers/food/snacks/sosjerky/healthy
 	name = "homemade beef jerky"
@@ -40,7 +38,6 @@
 	junkiness = 20
 	filling_color = "#FFD700"
 	tastes = list("salt" = 1, "crisps" = 1)
-	foodtype = JUNKFOOD | FRIED
 
 /obj/item/weapon/reagent_containers/food/snacks/no_raisin
 	name = "4no raisins"
@@ -51,14 +48,12 @@
 	junkiness = 25
 	filling_color = "#8B0000"
 	tastes = list("dried raisins" = 1)
-	foodtype = JUNKFOOD | FRUIT | SUGAR
 
 /obj/item/weapon/reagent_containers/food/snacks/no_raisin/healthy
 	name = "homemade raisins"
 	desc = "homemade raisins, the best in all of spess."
 	list_reagents = list("nutriment" = 3, "vitamin" = 2)
 	junkiness = 0
-	foodtype = FRUIT
 
 /obj/item/weapon/reagent_containers/food/snacks/spacetwinkie
 	name = "space twinkie"
@@ -67,7 +62,6 @@
 	list_reagents = list("sugar" = 4)
 	junkiness = 25
 	filling_color = "#FFD700"
-	foodtype = JUNKFOOD | GRAIN | SUGAR
 
 /obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers
 	name = "cheesie honkers"
@@ -78,7 +72,6 @@
 	junkiness = 25
 	filling_color = "#FFD700"
 	tastes = list("cheese" = 5, "crisps" = 2)
-	foodtype = JUNKFOOD | DAIRY | SUGAR
 
 /obj/item/weapon/reagent_containers/food/snacks/syndicake
 	name = "syndi-cakes"
@@ -88,4 +81,3 @@
 	list_reagents = list("nutriment" = 4, "doctorsdelight" = 5)
 	filling_color = "#F5F5DC"
 	tastes = list("sweetness" = 3, "cake" = 1)
-	foodtype = GRAIN | FRUIT | VEGETABLES

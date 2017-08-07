@@ -290,7 +290,8 @@
 	},
 /area/ruin/powered/clownplanet)
 "aU" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/ruin/powered/clownplanet)
 "aV" = (
