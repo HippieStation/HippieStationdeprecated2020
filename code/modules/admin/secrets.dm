@@ -112,14 +112,15 @@
 
 		if("list_job_debug")
 			var/dat = "<B>Job Debug info.</B><HR>"
-			for(var/line in SSjob.job_debug)
-				dat += "[line]<BR>"
-			dat+= "*******<BR><BR>"
-			for(var/datum/job/job in SSjob.occupations)
-				if(!job)
-					continue
-				dat += "job: [job.title], current_positions: [job.current_positions], total_positions: [job.total_positions] <BR>"
-			usr << browse(dat, "window=jobdebug;size=600x500")
+			if(SSjob)
+				for(var/line in SSjob.job_debug)
+					dat += "[line]<BR>"
+				dat+= "*******<BR><BR>"
+				for(var/datum/job/job in SSjob.occupations)
+					if(!job)
+						continue
+					dat += "job: [job.title], current_positions: [job.current_positions], total_positions: [job.total_positions] <BR>"
+				usr << browse(dat, "window=jobdebug;size=600x500")
 
 		if("show_admins")
 			var/dat = "<B>Current admins:</B><HR>"
@@ -524,14 +525,14 @@
 				return
 			SSblackbox.add_details("admin_secrets_fun_used","There Can Be Only One")
 			usr.client.only_one()
-			sound_to_playing_players('sound/misc/highlander.ogg')
+			send_to_playing_players('sound/misc/highlander.ogg')
 
 		if("delayed_onlyone")
 			if(!check_rights(R_FUN))
 				return
 			SSblackbox.add_details("admin_secrets_fun_used","There Can Be Only One")
 			usr.client.only_one_delayed()
-			sound_to_playing_players('sound/misc/highlander_delayed.ogg')
+			send_to_playing_players('sound/misc/highlander_delayed.ogg')
 
 		if("onlyme")
 			if(!check_rights(R_FUN))

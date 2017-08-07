@@ -6,7 +6,8 @@
 /turf/closed/wall/mineral/titanium/overspace,
 /area/space)
 "c" = (
-/obj/effect/spawner/structure/window/shuttle,
+/obj/structure/grille,
+/obj/structure/window/shuttle,
 /turf/open/floor/plating/airless,
 /area/space)
 "d" = (

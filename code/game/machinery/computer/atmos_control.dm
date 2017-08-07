@@ -52,7 +52,8 @@
 
 /obj/machinery/air_sensor/Destroy()
 	SSair.atmos_machinery -= src
-	SSradio.remove_object(src, frequency)
+	if(SSradio)
+		SSradio.remove_object(src, frequency)
 	return ..()
 
 /////////////////////////////////////////////////////////////
@@ -88,7 +89,8 @@
 	set_frequency(frequency)
 
 /obj/machinery/computer/atmos_control/Destroy()
-	SSradio.remove_object(src, frequency)
+	if(SSradio)
+		SSradio.remove_object(src, frequency)
 	return ..()
 
 /obj/machinery/computer/atmos_control/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \

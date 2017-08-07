@@ -37,7 +37,8 @@ Acts like a normal vent, but has an input AND output.
 	icon_state = "dpvent_map_on"
 
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/Destroy()
-	SSradio.remove_object(src, frequency)
+	if(SSradio)
+		SSradio.remove_object(src, frequency)
 	return ..()
 
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume
