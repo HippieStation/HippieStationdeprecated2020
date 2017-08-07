@@ -250,7 +250,7 @@
 /area/awaymission/cabin)
 "aQ" = (
 /obj/machinery/door/airlock/wood{
-	name = "maintenance"
+	name = "maintence"
 	},
 /turf/open/floor/plating,
 /area/awaymission/cabin)

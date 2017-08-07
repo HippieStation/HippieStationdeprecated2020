@@ -3,7 +3,8 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "b" = (
-/obj/effect/spawner/structure/window/shuttle,
+/obj/structure/grille,
+/obj/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "c" = (

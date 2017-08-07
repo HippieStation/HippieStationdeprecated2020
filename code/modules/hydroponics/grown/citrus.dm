@@ -5,7 +5,6 @@
 	desc = "It's so sour, your face will twist."
 	icon_state = "lime"
 	bitesize_mod = 2
-	foodtype = FRUIT
 
 // Lime
 /obj/item/seeds/lime
@@ -105,7 +104,6 @@
 	desc = "Made for burning houses down."
 	icon_state = "firelemon"
 	bitesize_mod = 2
-	foodtype = FRUIT
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/firelemon/attack_self(mob/living/user)
 	var/area/A = get_area(user)

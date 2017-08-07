@@ -25,7 +25,8 @@
 	var/datum/radio_frequency/radio_connection
 
 /obj/item/radio/integrated/signal/Destroy()
-	SSradio.remove_object(src, frequency)
+	if(SSradio)
+		SSradio.remove_object(src, frequency)
 	radio_connection = null
 	return ..()
 

@@ -1684,7 +1684,10 @@
 
 	else
 		mind = new /datum/mind(key)
-		SSticker.minds += mind
+		if(SSticker)
+			SSticker.minds += mind
+		else
+			stack_trace("mind_initialize(): No SSticker ready")
 	if(!mind.name)
 		mind.name = real_name
 	mind.current = src

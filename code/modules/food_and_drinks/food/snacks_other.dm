@@ -10,7 +10,6 @@
 	list_reagents = list("nutriment" = 15, "vitamin" = 5)
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("cheese" = 1)
-	foodtype = DAIRY
 
 /obj/item/weapon/reagent_containers/food/snacks/cheesewedge
 	name = "cheese wedge"
@@ -19,7 +18,6 @@
 	filling_color = "#FFD700"
 	list_reagents = list("nutriment" = 3, "vitamin" = 1)
 	tastes = list("cheese" = 1)
-	foodtype = DAIRY
 
 /obj/item/weapon/reagent_containers/food/snacks/watermelonslice
 	name = "watermelon slice"
@@ -27,7 +25,6 @@
 	icon_state = "watermelonslice"
 	filling_color = "#FF1493"
 	tastes = list("watermelon" = 1)
-	foodtype = FRUIT
 
 /obj/item/weapon/reagent_containers/food/snacks/candy_corn
 	name = "candy corn"
@@ -36,7 +33,6 @@
 	list_reagents = list("nutriment" = 4, "sugar" = 2)
 	filling_color = "#FF8C00"
 	tastes = list("candy corn" = 1)
-	foodtype = JUNKFOOD | SUGAR
 
 /obj/item/weapon/reagent_containers/food/snacks/chocolatebar
 	name = "chocolate bar"
@@ -45,7 +41,6 @@
 	list_reagents = list("nutriment" = 2, "sugar" = 2, "cocoa" = 2)
 	filling_color = "#A0522D"
 	tastes = list("chocolate" = 1)
-	foodtype = JUNKFOOD | SUGAR
 
 /obj/item/weapon/reagent_containers/food/snacks/hugemushroomslice
 	name = "huge mushroom slice"
@@ -53,7 +48,6 @@
 	icon_state = "hugemushroomslice"
 	list_reagents = list("nutriment" = 3, "vitamin" = 1)
 	tastes = list("mushroom" = 1)
-	foodtype = VEGETABLES
 
 /obj/item/weapon/reagent_containers/food/snacks/popcorn
 	name = "popcorn"
@@ -64,7 +58,6 @@
 	bitesize = 0.1 //this snack is supposed to be eating during looooong time. And this it not dinner food! --rastaf0
 	filling_color = "#FFEFD5"
 	tastes = list("popcorn" = 3, "butter" = 1)
-	foodtype = JUNKFOOD
 
 /obj/item/weapon/reagent_containers/food/snacks/popcorn/New()
 	..()
@@ -78,7 +71,6 @@
 	list_reagents = list("nutriment" = 6)
 	filling_color = "#D2B48C"
 	tastes = list("potato" = 1)
-	foodtype = VEGETABLES | DAIRY
 
 /obj/item/weapon/reagent_containers/food/snacks/fries
 	name = "space fries"
@@ -88,7 +80,6 @@
 	list_reagents = list("nutriment" = 4)
 	filling_color = "#FFD700"
 	tastes = list("fries" = 3, "salt" = 1)
-	foodtype = VEGETABLES | GRAIN | FRIED
 
 /obj/item/weapon/reagent_containers/food/snacks/tatortot
 	name = "tator tot"
@@ -97,7 +88,6 @@
 	list_reagents = list("nutriment" = 4)
 	filling_color = "FFD700"
 	tastes = list("potato" = 3, "valids" = 1)
-	foodtype = FRIED | VEGETABLES
 
 /obj/item/weapon/reagent_containers/food/snacks/soydope
 	name = "soy dope"
@@ -107,7 +97,6 @@
 	list_reagents = list("nutriment" = 2)
 	filling_color = "#DEB887"
 	tastes = list("soy" = 1)
-	foodtype = VEGETABLES
 
 /obj/item/weapon/reagent_containers/food/snacks/cheesyfries
 	name = "cheesy fries"
@@ -118,7 +107,6 @@
 	list_reagents = list("nutriment" = 6)
 	filling_color = "#FFD700"
 	tastes = list("fries" = 3, "cheese" = 1)
-	foodtype = VEGETABLES | GRAIN
 
 /obj/item/weapon/reagent_containers/food/snacks/badrecipe
 	name = "burned mess"
@@ -126,7 +114,6 @@
 	icon_state = "badrecipe"
 	list_reagents = list("bad_food" = 30)
 	filling_color = "#8B4513"
-	foodtype = GROSS
 
 /obj/item/weapon/reagent_containers/food/snacks/carrotfries
 	name = "carrot fries"
@@ -136,7 +123,6 @@
 	list_reagents = list("nutriment" = 3, "oculine" = 3, "vitamin" = 2)
 	filling_color = "#FFA500"
 	tastes = list("carrots" = 3, "salt" = 1)
-	foodtype = VEGETABLES
 
 /obj/item/weapon/reagent_containers/food/snacks/candiedapple
 	name = "candied apple"
@@ -147,7 +133,6 @@
 	list_reagents = list("nutriment" = 3, "sugar" = 2)
 	filling_color = "#FF4500"
 	tastes = list("apple" = 2, "sweetness" = 2)
-	foodtype = JUNKFOOD | FRUIT | SUGAR
 
 /obj/item/weapon/reagent_containers/food/snacks/mint
 	name = "mint"
@@ -157,7 +142,6 @@
 	trash = /obj/item/trash/plate
 	list_reagents = list("minttoxin" = 1)
 	filling_color = "#800000"
-	foodtype = TOXIC | SUGAR
 
 /obj/item/weapon/reagent_containers/food/snacks/eggwrap
 	name = "egg wrap"
@@ -167,7 +151,6 @@
 	list_reagents = list("nutriment" = 5)
 	filling_color = "#F0E68C"
 	tastes = list("egg" = 1)
-	foodtype = MEAT | GRAIN
 
 /obj/item/weapon/reagent_containers/food/snacks/beans
 	name = "tin of beans"
@@ -177,7 +160,6 @@
 	list_reagents = list("nutriment" = 10)
 	filling_color = "#B22222"
 	tastes = list("beans" = 1)
-	foodtype = VEGETABLES
 
 /obj/item/weapon/reagent_containers/food/snacks/spidereggs
 	name = "spider eggs"
@@ -186,7 +168,6 @@
 	list_reagents = list("nutriment" = 2, "toxin" = 2)
 	filling_color = "#008000"
 	tastes = list("cobwebs" = 1)
-	foodtype = MEAT | TOXIC
 
 /obj/item/weapon/reagent_containers/food/snacks/chococoin
 	name = "chocolate coin"
@@ -196,7 +177,6 @@
 	list_reagents = list("nutriment" = 3, "cocoa" = 1)
 	filling_color = "#A0522D"
 	tastes = list("chocolate" = 1)
-	foodtype = JUNKFOOD | SUGAR
 
 /obj/item/weapon/reagent_containers/food/snacks/fudgedice
 	name = "fudge dice"
@@ -207,7 +187,6 @@
 	filling_color = "#A0522D"
 	trash = /obj/item/weapon/dice/fudge
 	tastes = list("fudge" = 1)
-	foodtype = JUNKFOOD | SUGAR
 
 /obj/item/weapon/reagent_containers/food/snacks/chocoorange
 	name = "chocolate orange"
@@ -217,7 +196,6 @@
 	list_reagents = list("nutriment" = 3, "sugar" = 1)
 	filling_color = "#A0522D"
 	tastes = list("chocolate" = 3, "oranges" = 1)
-	foodtype = JUNKFOOD | SUGAR
 
 /obj/item/weapon/reagent_containers/food/snacks/eggplantparm
 	name = "eggplant parmigiana"
@@ -228,7 +206,6 @@
 	list_reagents = list("nutriment" = 6, "vitamin" = 2)
 	filling_color = "#BA55D3"
 	tastes = list("eggplant" = 3, "cheese" = 1)
-	foodtype = VEGETABLES | DAIRY
 
 /obj/item/weapon/reagent_containers/food/snacks/tortilla
 	name = "tortilla"
@@ -238,7 +215,6 @@
 	list_reagents = list("nutriment" = 3, "vitamin" = 1)
 	filling_color = "#FFEFD5"
 	tastes = list("tortilla" = 1)
-	foodtype = GRAIN
 
 /obj/item/weapon/reagent_containers/food/snacks/burrito
 	name = "burrito"
@@ -248,7 +224,6 @@
 	list_reagents = list("nutriment" = 4, "vitamin" = 1)
 	filling_color = "#FFEFD5"
 	tastes = list("torilla" = 2, "meat" = 3)
-	foodtype = GRAIN | MEAT
 
 /obj/item/weapon/reagent_containers/food/snacks/cheesyburrito
 	name = "cheesy burrito"
@@ -258,7 +233,6 @@
 	list_reagents = list("nutriment" = 4, "vitamin" = 2)
 	filling_color = "#FFD800"
 	tastes = list("torilla" = 2, "meat" = 3, "cheese" = 1)
-	foodtype = GRAIN | MEAT | DAIRY
 
 /obj/item/weapon/reagent_containers/food/snacks/carneburrito
 	name = "carne asada burrito"
@@ -268,7 +242,6 @@
 	list_reagents = list("nutriment" = 5, "vitamin" = 1)
 	filling_color = "#A0522D"
 	tastes = list("torilla" = 2, "meat" = 4)
-	foodtype = GRAIN | MEAT
 
 /obj/item/weapon/reagent_containers/food/snacks/fuegoburrito
 	name = "fuego plasma burrito"
@@ -278,7 +251,6 @@
 	list_reagents = list("nutriment" = 4, "capsaicin" = 5, "vitamin" = 3)
 	filling_color = "#FF2000"
 	tastes = list("torilla" = 2, "meat" = 3, "hot peppers" = 1)
-	foodtype = GRAIN | MEAT
 
 /obj/item/weapon/reagent_containers/food/snacks/yakiimo
 	name = "yaki imo"
@@ -288,7 +260,6 @@
 	list_reagents = list("nutriment" = 5, "vitamin" = 4)
 	filling_color = "#8B1105"
 	tastes = list("sweet potato" = 1)
-	foodtype = GRAIN | VEGETABLES | SUGAR
 
 /obj/item/weapon/reagent_containers/food/snacks/roastparsnip
 	name = "roast parsnip"
@@ -298,7 +269,6 @@
 	list_reagents = list("nutriment" = 3, "vitamin" = 4)
 	filling_color = "#FF5500"
 	tastes = list("parsnip" = 1)
-	foodtype = VEGETABLES
 
 /obj/item/weapon/reagent_containers/food/snacks/melonfruitbowl
 	name = "melon fruit bowl"
@@ -309,7 +279,6 @@
 	filling_color = "#FF5500"
 	w_class = WEIGHT_CLASS_NORMAL
 	tastes = list("melon" = 1)
-	foodtype = FRUIT
 
 /obj/item/weapon/reagent_containers/food/snacks/spacefreezy
 	name = "space freezy"
@@ -319,7 +288,6 @@
 	list_reagents = list("nutriment" = 6, "bluecherryjelly" = 5, "vitamin" = 4)
 	filling_color = "#87CEFA"
 	tastes = list("blue cherries" = 2, "ice cream" = 2)
-	foodtype = FRUIT | DAIRY
 
 /obj/item/weapon/reagent_containers/food/snacks/sundae
 	name = "sundae"
@@ -329,7 +297,6 @@
 	list_reagents = list("nutriment" = 6, "banana" = 5, "vitamin" = 2)
 	filling_color = "#FFFACD"
 	tastes = list("ice cream" = 1, "banana" = 1)
-	foodtype = FRUIT | DAIRY | SUGAR
 
 /obj/item/weapon/reagent_containers/food/snacks/honkdae
 	name = "honkdae"
@@ -339,7 +306,6 @@
 	list_reagents = list("nutriment" = 6, "banana" = 10, "vitamin" = 4)
 	filling_color = "#FFFACD"
 	tastes = list("ice cream" = 1, "banana" = 1, "a bad joke" = 1)
-	foodtype = FRUIT | DAIRY | SUGAR
 
 /obj/item/weapon/reagent_containers/food/snacks/nachos
 	name = "nachos"
@@ -349,7 +315,6 @@
 	list_reagents = list("nutriment" = 6, "vitamin" = 2)
 	filling_color = "#F4A460"
 	tastes = list("nachos" = 1)
-	foodtype = VEGETABLES | FRIED
 
 /obj/item/weapon/reagent_containers/food/snacks/cheesynachos
 	name = "cheesy nachos"
@@ -359,7 +324,6 @@
 	list_reagents = list("nutriment" = 6, "vitamin" = 3)
 	filling_color = "#FFD700"
 	tastes = list("nachos" = 2, "cheese" = 1)
-	foodtype = VEGETABLES | FRIED | DAIRY
 
 /obj/item/weapon/reagent_containers/food/snacks/cubannachos
 	name = "cuban nachos"
@@ -369,7 +333,6 @@
 	list_reagents = list("nutriment" = 7, "capsaicin" = 8, "vitamin" = 4)
 	filling_color = "#DC143C"
 	tastes = list("nachos" = 2, "hot pepper" = 1)
-	foodtype = VEGETABLES | FRIED | DAIRY
 
 /obj/item/weapon/reagent_containers/food/snacks/melonkeg
 	name = "melon keg"
@@ -381,7 +344,6 @@
 	volume = 80
 	bitesize = 5
 	tastes = list("grain alcohol" = 1, "fruit" = 1)
-	foodtype = FRUIT | ALCOHOL
 
 /obj/item/weapon/reagent_containers/food/snacks/honeybar
 	name = "honey nut bar"
@@ -391,7 +353,6 @@
 	list_reagents = list("nutriment" = 5, "honey" = 5)
 	filling_color = "#F2CE91"
 	tastes = list("oats" = 3, "nuts" = 2, "honey" = 1)
-	foodtype = FRUIT | SUGAR
 
 /obj/item/weapon/reagent_containers/food/snacks/stuffedlegion
 	name = "stuffed legion"
@@ -400,7 +361,6 @@
 	bonus_reagents = list("vitamin" = 3, "capsaicin" = 1, "tricordrazine" = 5)
 	list_reagents = list("nutriment" = 5, "vitamin" = 5, "capsaicin" = 2, "tricordrazine" = 10)
 	tastes = list("death" = 2, "rock" = 1, "meat" = 1, "hot peppers" = 1)
-	foodtype = MEAT
 
 
 /obj/item/weapon/reagent_containers/food/snacks/powercrepe
@@ -416,7 +376,6 @@
 	attack_verb = list("slapped", "slathered")
 	w_class = WEIGHT_CLASS_BULKY
 	tastes = list("cherry" = 1, "crepe" = 1)
-	foodtype = GRAIN | FRUIT | SUGAR
 
 /obj/item/weapon/reagent_containers/food/snacks/lollipop
 	name = "lollipop"
@@ -427,7 +386,6 @@
 	var/mutable_appearance/head
 	var/headcolor = rgb(0, 0, 0)
 	tastes = list("candy" = 1)
-	foodtype = JUNKFOOD | SUGAR
 
 /obj/item/weapon/reagent_containers/food/snacks/lollipop/New()
 	..()
@@ -467,7 +425,6 @@
 	icon_state = "gumball"
 	list_reagents = list("sugar" = 5, "bicaridine" = 2, "kelotane" = 2)	//Kek
 	tastes = list("candy")
-	foodtype = JUNKFOOD
 
 /obj/item/weapon/reagent_containers/food/snacks/gumball/New()
 	..()
@@ -496,7 +453,6 @@
 	list_reagents = list("nutriment" = 4, "vitamin" = 2)
 	filling_color = "F0D830"
 	tastes = list("taco" = 4, "meat" = 2, "cheese" = 2, "lettuce" = 1)
-	foodtype = MEAT | DAIRY | GRAIN | VEGETABLES
 
 /obj/item/weapon/reagent_containers/food/snacks/taco/plain
 	desc = "A traditional taco with meat and cheese, minus the rabbit food."
@@ -504,7 +460,6 @@
 	bonus_reagents = list("nutriment" = 2, "vitamin" = 2)
 	list_reagents = list("nutriment" = 3, "vitamin" = 1)
 	tastes = list("taco" = 4, "meat" = 2, "cheese" = 2)
-	foodtype = MEAT | DAIRY | GRAIN
 
 /obj/item/weapon/reagent_containers/food/snacks/branrequests
 	name = "Bran Requests Cereal"
@@ -513,7 +468,6 @@
 	list_reagents = list("nutriment" = 3, "vitamin" = 2, "sodiumchloride" = 5)
 	bonus_reagents = list("sodiumchloride" = 10)
 	tastes = list("bran" = 4, "raisins" = 3, "salt" = 1)
-	foodtype = GRAIN | FRUIT
 
 /obj/item/weapon/reagent_containers/food/snacks/butter
 	name = "stick of butter"
@@ -522,7 +476,6 @@
 	list_reagents = list("nutriment" = 5)
 	filling_color = "#FFD700"
 	tastes = list("butter" = 1)
-	foodtype = DAIRY
 
 /obj/item/weapon/reagent_containers/food/snacks/onionrings
 	name = "onion rings"
@@ -532,4 +485,3 @@
 	filling_color = "#C0C9A0"
 	gender = PLURAL
 	tastes = list("batter" = 3, "onion" = 1)
-	foodtype = VEGETABLES

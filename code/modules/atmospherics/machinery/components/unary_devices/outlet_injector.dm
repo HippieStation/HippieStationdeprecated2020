@@ -19,7 +19,8 @@
 	layer = GAS_SCRUBBER_LAYER
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/Destroy()
-	SSradio.remove_object(src,frequency)
+	if(SSradio)
+		SSradio.remove_object(src,frequency)
 	return ..()
 
 /obj/machinery/atmospherics/components/unary/outlet_injector/on

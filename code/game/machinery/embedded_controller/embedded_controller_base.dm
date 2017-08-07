@@ -73,7 +73,8 @@
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/embedded_controller/radio/Destroy()
-	SSradio.remove_object(src,frequency)
+	if(SSradio)
+		SSradio.remove_object(src,frequency)
 	return ..()
 
 /obj/machinery/embedded_controller/radio/Initialize()

@@ -25,7 +25,6 @@
 	slot_flags = SLOT_HEAD
 	filling_color = "#FF6347"
 	bitesize_mod = 3
-	foodtype = VEGETABLES | GROSS
 
 // Lily
 /obj/item/seeds/poppy/lily
