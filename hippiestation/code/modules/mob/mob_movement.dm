@@ -16,9 +16,11 @@ proc/Can_ShadowWalk(var/mob/mob)
 	var/turf/target = get_step(mob, direct)
 	var/turf/mobloc = get_turf(mob)
 
+	var/atom/movable/A
+	var/doPull = FALSE
 	if (istype(mob.pulling))
-		var/doPull = TRUE
-		if (mob.pulling.anchored || !mob.pulling.Adjacent(src))
+		doPull = TRUE
+		if (mob.pulling.anchored)
 			mob.stop_pulling()
 			doPull = FALSE
 		if(isliving(mob.pulling))
@@ -30,11 +32,14 @@ proc/Can_ShadowWalk(var/mob/mob)
 			var/turf/pullloc = get_turf(mob.pulling)
 			if(Is_ShadowWalkable(mobloc) || Is_ShadowWalkable(target) || Is_ShadowWalkable(pullloc))
 				mob.pulling.dir = get_dir(mob.pulling, mob)
+				A = mob.pulling
 				mob.pulling.forceMove(mob.loc)
 
 	if(Is_ShadowWalkable(target))
 		mob.forceMove(target)
 		mob.dir = direct
+		if (doPull)
+			mob.start_pulling(A, TRUE) //this was the only way I could figure out how to do this
 		return TRUE
 
 	return FALSE
