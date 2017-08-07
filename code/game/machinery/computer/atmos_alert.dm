@@ -16,7 +16,8 @@
 	set_frequency(receive_frequency)
 
 /obj/machinery/computer/atmos_alert/Destroy()
-	SSradio.remove_object(src, receive_frequency)
+	if(SSradio)
+		SSradio.remove_object(src, receive_frequency)
 	return ..()
 
 /obj/machinery/computer/atmos_alert/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \

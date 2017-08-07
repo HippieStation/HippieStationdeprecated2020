@@ -442,7 +442,8 @@
 	name = "UO45 Central Hall"
 	})
 "aP" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
 	},
@@ -597,7 +598,8 @@
 	name = "UO45 Central Hall"
 	})
 "bd" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/space,
 /area/awaycontent/a1{
 	has_gravity = 1;
@@ -2596,7 +2598,8 @@
 	name = "UO45 Central Hall"
 	})
 "el" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
 	},
@@ -3988,7 +3991,8 @@
 	name = "UO45 Central Hall"
 	})
 "gr" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
 	},
@@ -4290,7 +4294,8 @@
 	name = "UO45 Gateway"
 	})
 "gU" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
 	},
@@ -4771,7 +4776,8 @@
 	name = "UO45 Research"
 	})
 "hH" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
 	},
@@ -4938,7 +4944,8 @@
 	name = "UO45 Crew Quarters"
 	})
 "hV" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4;
 	level = 2
@@ -4968,7 +4975,8 @@
 	name = "UO45 Central Hall"
 	})
 "hX" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
@@ -5559,7 +5567,8 @@
 	name = "UO45 Gateway"
 	})
 "iS" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -5824,7 +5833,8 @@
 	name = "UO45 Gateway"
 	})
 "jl" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -6150,8 +6160,9 @@
 	name = "UO45 Gateway"
 	})
 "jM" = (
+/obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/spawner/structure/window,
+/obj/structure/window/fulltile,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
 	},
@@ -6176,7 +6187,8 @@
 	name = "UO45 Research"
 	})
 "jO" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
 	},
@@ -8016,7 +8028,8 @@
 	name = "UO45 Research"
 	})
 "mi" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "UO45_rdprivacy";
@@ -8030,7 +8043,8 @@
 	name = "UO45 Research"
 	})
 "mj" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "UO45_rdprivacy";
 	name = "privacy shutters"
@@ -9860,7 +9874,7 @@
 	dir = 8
 	},
 /obj/machinery/button/door{
-	desc = "A remote control-switch which locks the research division down in the event of a biohazard leak or contamination.";
+	desc = "A remote control-switch whichs locks the research division down in the event of a biohazard leak or contamination.";
 	id = "UO45_biohazard";
 	name = "Biohazard Door Control";
 	pixel_y = 8;
@@ -10980,7 +10994,8 @@
 	poweralm = 0
 	})
 "qb" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
 	},
@@ -11008,7 +11023,8 @@
 	name = "UO45 Engineering"
 	})
 "qd" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/meter{
 	layer = 3.3;
 	name = "Mixed Air Tank Out"
@@ -11022,7 +11038,8 @@
 	name = "UO45 Engineering"
 	})
 "qe" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /obj/machinery/meter{
 	layer = 3.3;
@@ -11086,7 +11103,8 @@
 	name = "UO45 Research"
 	})
 "qj" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'SERVER ROOM'.";
 	name = "SERVER ROOM";
@@ -11814,7 +11832,8 @@
 	name = "UO45 Crew Quarters"
 	})
 "rg" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
@@ -12119,7 +12138,8 @@
 	name = "UO45 Research"
 	})
 "rA" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'SERVER ROOM'.";
 	name = "SERVER ROOM";
@@ -12663,7 +12683,8 @@
 	name = "UO45 Engineering"
 	})
 "sg" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -12811,7 +12832,8 @@
 	name = "UO45 Engineering"
 	})
 "sq" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
 	},
@@ -13208,7 +13230,8 @@
 	name = "UO45 Engineering"
 	})
 "sT" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -13342,7 +13365,8 @@
 	name = "UO45 Engineering"
 	})
 "td" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
 	},
@@ -14494,7 +14518,8 @@
 	name = "UO45 Engineering"
 	})
 "uI" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 1
 	},
@@ -14509,7 +14534,8 @@
 	name = "UO45 Engineering"
 	})
 "uJ" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/meter{
 	layer = 3.3
 	},
@@ -14920,7 +14946,8 @@
 	poweralm = 0
 	})
 "vm" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -15602,7 +15629,8 @@
 	name = "UO45 Mining"
 	})
 "wk" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -15616,7 +15644,8 @@
 	name = "UO45 Engineering"
 	})
 "wl" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable{
 	icon_state = "0-4";
 	d2 = 4
@@ -15757,7 +15786,8 @@
 	name = "UO45 Mining"
 	})
 "ww" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
 	},
@@ -16429,7 +16459,8 @@
 	name = "UO45 Mining"
 	})
 "xr" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
 	},
@@ -16544,7 +16575,8 @@
 	name = "UO45 Mining"
 	})
 "xA" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -16874,7 +16906,8 @@
 	name = "UO45 Mining"
 	})
 "xY" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating{
 	heat_capacity = 1e+006

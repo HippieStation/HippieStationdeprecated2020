@@ -61,7 +61,6 @@
 	if(!gibbed)
 		GLOB.dead_mob_list += src
 	set_drugginess(0)
-	set_disgust(0)
 	SetSleeping(0, 0)
 	blind_eyes(1)
 	reset_perspective(null)

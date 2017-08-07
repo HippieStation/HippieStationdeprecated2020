@@ -380,7 +380,8 @@
 		adjust_drugginess(-1)
 
 	if(hallucination)
-		handle_hallucinations()
+		spawn handle_hallucinations()
+		hallucination = max(hallucination-2,0)
 
 //used in human and monkey handle_environment()
 /mob/living/carbon/proc/natural_bodytemperature_stabilization()
@@ -433,3 +434,4 @@
 	adjustToxLoss(8)
 	if(prob(30))
 		to_chat(src, "<span class='notice'>You feel confused and nauseous...</span>")//actual symptoms of liver failure
+

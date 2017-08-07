@@ -191,7 +191,7 @@
 		cell.charge = (charge / capacity) * cell.maxcharge
 
 /obj/machinery/power/smes/Destroy()
-	if(SSticker.IsRoundInProgress())
+	if(SSticker && SSticker.IsRoundInProgress())
 		var/area/A = get_area(src)
 		var/turf/T = get_turf(src)
 		message_admins("SMES deleted at [A][ADMIN_JMP(T)]")

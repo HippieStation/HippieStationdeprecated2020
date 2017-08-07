@@ -8,12 +8,10 @@
 	volume = 80
 	list_reagents = list("nutriment" = 30, "tomatojuice" = 6, "vitamin" = 5)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
-	foodtype = GRAIN | DAIRY | VEGETABLES
 
 /obj/item/weapon/reagent_containers/food/snacks/pizzaslice
 	icon = 'icons/obj/food/pizzaspaghetti.dmi'
 	list_reagents = list("nutriment" = 5)
-	foodtype = GRAIN | DAIRY | VEGETABLES
 
 /obj/item/weapon/reagent_containers/food/snacks/pizza/margherita
 	name = "margherita"
@@ -22,7 +20,6 @@
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/pizzaslice/margherita
 	bonus_reagents = list("nutriment" = 5, "vitamin" = 5)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
-	foodtype = GRAIN | VEGETABLES
 
 /obj/item/weapon/reagent_containers/food/snacks/pizzaslice/margherita
 	name = "margherita slice"
@@ -30,7 +27,6 @@
 	icon_state = "pizzamargheritaslice"
 	filling_color = "#FFA500"
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1)
-	foodtype = GRAIN | VEGETABLES
 
 /obj/item/weapon/reagent_containers/food/snacks/pizza/meat
 	name = "meatpizza"
@@ -40,7 +36,6 @@
 	bonus_reagents = list("nutriment" = 5, "vitamin" = 8)
 	list_reagents = list("nutriment" = 30, "tomatojuice" = 6, "vitamin" = 8)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
-	foodtype = GRAIN | VEGETABLES| DAIRY | MEAT
 
 /obj/item/weapon/reagent_containers/food/snacks/pizzaslice/meat
 	name = "meatpizza slice"
@@ -48,7 +43,6 @@
 	icon_state = "meatpizzaslice"
 	filling_color = "#A52A2A"
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
-	foodtype = GRAIN | VEGETABLES | DAIRY | MEAT
 
 /obj/item/weapon/reagent_containers/food/snacks/pizza/mushroom
 	name = "mushroom pizza"
@@ -58,7 +52,6 @@
 	bonus_reagents = list("nutriment" = 5, "vitamin" = 5)
 	list_reagents = list("nutriment" = 30, "vitamin" = 5)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "mushroom" = 1)
-	foodtype = GRAIN | VEGETABLES | DAIRY
 
 /obj/item/weapon/reagent_containers/food/snacks/pizzaslice/mushroom
 	name = "mushroom pizza slice"
@@ -66,7 +59,6 @@
 	icon_state = "mushroompizzaslice"
 	filling_color = "#FFE4C4"
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "mushroom" = 1)
-	foodtype = GRAIN | VEGETABLES | DAIRY
 
 /obj/item/weapon/reagent_containers/food/snacks/pizza/vegetable
 	name = "vegetable pizza"
@@ -76,7 +68,6 @@
 	bonus_reagents = list("nutriment" = 5, "vitamin" = 5)
 	list_reagents = list("nutriment" = 25, "tomatojuice" = 6, "oculine" = 12, "vitamin" = 5)
 	tastes = list("crust" = 1, "tomato" = 2, "cheese" = 1, "carrot" = 1)
-	foodtype = GRAIN | VEGETABLES | DAIRY
 
 /obj/item/weapon/reagent_containers/food/snacks/pizzaslice/vegetable
 	name = "vegetable pizza slice"
@@ -84,7 +75,6 @@
 	icon_state = "vegetablepizzaslice"
 	filling_color = "#FFA500"
 	tastes = list("crust" = 1, "tomato" = 2, "cheese" = 1, "carrot" = 1)
-	foodtype = GRAIN | VEGETABLES | DAIRY
 
 /obj/item/weapon/reagent_containers/food/snacks/pizza/donkpocket
 	name = "donkpocket pizza"
@@ -94,7 +84,6 @@
 	bonus_reagents = list("nutriment" = 5, "vitamin" = 5)
 	list_reagents = list("nutriment" = 25, "tomatojuice" = 6, "omnizine" = 10, "vitamin" = 5)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1, "laziness" = 1)
-	foodtype = GRAIN | VEGETABLES | DAIRY | MEAT | JUNKFOOD
 
 /obj/item/weapon/reagent_containers/food/snacks/pizzaslice/donkpocket
 	name = "donkpocket pizza slice"
@@ -102,7 +91,6 @@
 	icon_state = "donkpocketpizzaslice"
 	filling_color = "#FFA500"
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1, "laziness" = 1)
-	foodtype = GRAIN | VEGETABLES | DAIRY | MEAT | JUNKFOOD
 
 /obj/item/weapon/reagent_containers/food/snacks/pizza/dank
 	name = "dank pizza"
@@ -112,7 +100,6 @@
 	bonus_reagents = list("nutriment" = 2, "vitamin" = 6)
 	list_reagents = list("nutriment" = 25, "doctorsdelight" = 5, "tomatojuice" = 6, "vitamin" = 5)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
-	foodtype = GRAIN | VEGETABLES | FRUIT | DAIRY
 
 /obj/item/weapon/reagent_containers/food/snacks/pizzaslice/dank
 	name = "dank pizza slice"
@@ -120,7 +107,6 @@
 	icon_state = "dankpizzaslice"
 	filling_color = "#2E8B57"
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
-	foodtype = GRAIN | VEGETABLES | FRUIT | DAIRY
 
 /obj/item/weapon/reagent_containers/food/snacks/pizza/sassysage
 	name = "sassysage pizza"
@@ -129,7 +115,6 @@
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/pizzaslice/sassysage
 	bonus_reagents = list("nutriment" = 6, "vitamin" = 6)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
-	foodtype = GRAIN | VEGETABLES | DAIRY
 
 /obj/item/weapon/reagent_containers/food/snacks/pizzaslice/sassysage
 	name = "sassysage pizza slice"
@@ -137,10 +122,8 @@
 	icon_state = "sassysagepizzaslice"
 	filling_color = "#FF4500"
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
-	foodtype = GRAIN | VEGETABLES | DAIRY
 
 /obj/item/weapon/reagent_containers/food/snacks/pizzaslice/custom
 	name = "pizza slice"
 	icon_state = "pizzamargheritaslice"
 	filling_color = "#FFFFFF"
-	foodtype = GRAIN | VEGETABLES

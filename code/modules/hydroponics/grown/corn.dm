@@ -24,7 +24,6 @@
 	filling_color = "#FFFF00"
 	trash = /obj/item/weapon/grown/corncob
 	bitesize_mod = 2
-	foodtype = VEGETABLES
 
 /obj/item/weapon/grown/corncob
 	name = "corn cob"

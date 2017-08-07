@@ -101,11 +101,9 @@
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
 		ui = new(user, src, ui_key, "chem_dispenser", name, 550, 550, master_ui, state)
-		if(user.hallucinating())
-			ui.set_autoupdate(FALSE) //to not ruin the immersion by constantly changing the fake chemicals
 		ui.open()
 
-/obj/machinery/chem_dispenser/ui_data(mob/user)
+/obj/machinery/chem_dispenser/ui_data()
 	var/data = list()
 	data["amount"] = amount
 	data["energy"] = cell.charge ? cell.charge * powerefficiency : "0" //To prevent NaN in the UI.
@@ -130,16 +128,10 @@
 		data["beakerTransferAmounts"] = null
 
 	var chemicals[0]
-	var/is_hallucinating = FALSE
-	if(user.hallucinating())
-		is_hallucinating = TRUE
 	for(var/re in dispensable_reagents)
 		var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
 		if(temp)
-			var/chemname = temp.name
-			if(is_hallucinating && prob(5))
-				chemname = "[pick_list_replacements("hallucination.json", "chemicals")]"
-			chemicals.Add(list(list("title" = chemname, "id" = temp.id)))
+			chemicals.Add(list(list("title" = temp.name, "id" = temp.id)))
 	data["chemicals"] = chemicals
 	return data
 

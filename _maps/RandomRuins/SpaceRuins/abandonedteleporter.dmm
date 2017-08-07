@@ -4,7 +4,7 @@
 /area/template_noop)
 "b" = (
 /turf/closed/wall/r_wall,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "c" = (
 /obj/structure/lattice,
 /turf/template_noop,
@@ -12,29 +12,29 @@
 "d" = (
 /obj/structure/frame/computer,
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "e" = (
 /obj/machinery/teleport/station,
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "f" = (
 /obj/machinery/teleport/hub,
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "g" = (
 /obj/item/weapon/shard{
 	icon_state = "medium"
 	},
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "h" = (
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "i" = (
 /obj/structure/rack,
 /obj/item/clothing/gloves/color/yellow,
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "j" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced,
@@ -45,7 +45,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "k" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -56,41 +56,41 @@
 /obj/structure/window/reinforced,
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "l" = (
 /obj/item/weapon/stock_parts/cell,
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "m" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "n" = (
 /obj/effect/decal/cleanable/robot_debris/old,
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "o" = (
 /obj/effect/spawner/lootdrop/crate_spawner,
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "p" = (
 /obj/machinery/door/airlock/external,
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "q" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/device/flashlight,
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "r" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/device/radio/beacon,
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "s" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "t" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced,
@@ -101,31 +101,31 @@
 	dir = 1
 	},
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "u" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "v" = (
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "w" = (
 /obj/item/weapon/shard,
 /obj/item/weapon/electronics/apc,
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "x" = (
 /obj/structure/closet,
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "y" = (
 /obj/item/weapon/storage/toolbox/electrical{
 	pixel_x = 1;
 	pixel_y = -1
 	},
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "z" = (
 /obj/structure/closet/crate,
 /obj/item/device/aicard,
@@ -134,19 +134,19 @@
 /obj/item/weapon/wrench,
 /obj/item/weapon/circuitboard/computer/teleporter,
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "A" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "B" = (
 /obj/structure/girder,
 /turf/open/floor/plating/airless,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 "C" = (
 /obj/structure/lattice,
 /turf/open/space,
-/area/ruin/space/abandoned_tele)
+/area/AIsattele)
 
 (1,1,1) = {"
 a

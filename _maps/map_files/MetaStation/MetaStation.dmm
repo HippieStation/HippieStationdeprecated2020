@@ -190,7 +190,8 @@
 /turf/closed/wall/r_wall,
 /area/security/prison)
 "aay" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -254,7 +255,8 @@
 /turf/open/floor/plasteel/floorgrime,
 /area/security/prison)
 "aaF" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -324,7 +326,8 @@
 /turf/open/floor/plasteel/floorgrime,
 /area/security/prison)
 "aaL" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -332,7 +335,8 @@
 /turf/open/floor/plating,
 /area/security/prison)
 "aaM" = (
-/obj/effect/spawner/structure/window/shuttle,
+/obj/structure/grille,
+/obj/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/pod_2)
 "aaN" = (
@@ -420,7 +424,8 @@
 /turf/closed/wall/r_wall,
 /area/prison/execution_room)
 "aba" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -437,7 +442,8 @@
 /turf/open/floor/plasteel/floorgrime,
 /area/security/prison)
 "abc" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -1124,7 +1130,8 @@
 /turf/open/space,
 /area/solar/starboard/fore)
 "acA" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/poddoor/preopen{
 	id = "executionfireblast";
@@ -1137,7 +1144,8 @@
 	},
 /area/prison/execution_room)
 "acB" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/preopen{
 	id = "executionfireblast";
 	layer = 2.9;
@@ -1302,7 +1310,8 @@
 /turf/closed/wall,
 /area/crew_quarters/fitness/recreation)
 "acQ" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/crew_quarters/fitness/recreation)
 "acR" = (
@@ -1464,7 +1473,6 @@
 	cell_type = 2500;
 	dir = 1;
 	name = "Prisoner Education Chamber APC";
-	areastring = "/area/prison/execution_room";
 	pixel_y = 24
 	},
 /obj/structure/cable/yellow{
@@ -1800,7 +1808,8 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/pod_2)
 "adI" = (
-/obj/effect/spawner/structure/window/shuttle,
+/obj/structure/grille,
+/obj/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/pod_3)
 "adJ" = (
@@ -1972,7 +1981,8 @@
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/hos)
 "aea" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -1984,7 +1994,8 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
 "aeb" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -2000,7 +2011,8 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
 "aec" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -2022,7 +2034,8 @@
 /turf/open/floor/plating,
 /area/crew_quarters/fitness/recreation)
 "aee" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/solars/port/fore)
 "aef" = (
@@ -2224,7 +2237,8 @@
 /turf/closed/wall,
 /area/security/range)
 "aez" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/security/range)
 "aeA" = (
@@ -2240,14 +2254,16 @@
 /turf/closed/wall,
 /area/crew_quarters/fitness/recreation)
 "aeC" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/fitness/recreation)
 "aeD" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/effect/landmark/syndicate_breach_area,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -2255,7 +2271,8 @@
 /turf/open/floor/plating,
 /area/crew_quarters/fitness/recreation)
 "aeE" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
 	},
@@ -2558,7 +2575,6 @@
 	cell_type = 5000;
 	dir = 1;
 	name = "Prison Wing APC";
-	areastring = "/area/security/prison";
 	pixel_x = 1;
 	pixel_y = 24
 	},
@@ -2652,7 +2668,8 @@
 	},
 /area/security/prison)
 "afc" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -2900,7 +2917,8 @@
 /turf/open/floor/plasteel/vault,
 /area/crew_quarters/fitness/recreation)
 "afC" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/crew_quarters/fitness/recreation)
@@ -3102,7 +3120,8 @@
 	},
 /area/security/prison)
 "afW" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/security/prison)
@@ -3198,7 +3217,8 @@
 	},
 /area/ai_monitored/security/armory)
 "age" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -3287,7 +3307,8 @@
 /turf/open/floor/plasteel/black,
 /area/crew_quarters/heads/hos)
 "agm" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -3411,7 +3432,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Recreation Area APC";
-	areastring = "/area/crew_quarters/fitness/recreation";
 	pixel_y = 24
 	},
 /obj/structure/cable/yellow{
@@ -3534,7 +3554,8 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "agL" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/security/prison)
 "agM" = (
@@ -3636,7 +3657,8 @@
 	},
 /area/ai_monitored/security/armory)
 "agV" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /obj/machinery/door/poddoor/preopen{
 	id = "hosprivacy";
@@ -3778,7 +3800,8 @@
 /turf/closed/wall,
 /area/maintenance/disposal)
 "ahq" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/disposal)
 "ahr" = (
@@ -3938,7 +3961,6 @@
 	cell_type = 5000;
 	dir = 2;
 	name = "Armory APC";
-	areastring = "/area/ai_monitored/security/armory";
 	pixel_x = 1;
 	pixel_y = -24
 	},
@@ -4264,7 +4286,6 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Port Bow Solar APC";
-	areastring = "/area/maintenance/solars/port/fore";
 	pixel_x = -25;
 	pixel_y = 3
 	},
@@ -4309,11 +4330,13 @@
 /turf/closed/wall/r_wall,
 /area/maintenance/port/fore)
 "aip" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "aiq" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -4442,24 +4465,28 @@
 	},
 /area/security/warden)
 "aiA" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/ai_monitored/security/armory)
 "aiB" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/security/warden)
 "aiC" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/ai_monitored/security/armory)
 "aiD" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -4467,7 +4494,8 @@
 /turf/open/floor/plating,
 /area/security/main)
 "aiE" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -4479,7 +4507,8 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
 "aiF" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -4521,7 +4550,8 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
 "aiH" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -4538,7 +4568,8 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
 "aiI" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -4787,7 +4818,8 @@
 /turf/open/floor/plasteel/red/side,
 /area/security/brig)
 "ajo" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/security/brig)
 "ajp" = (
@@ -4873,7 +4905,8 @@
 /turf/open/floor/plasteel,
 /area/security/warden)
 "ajx" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -5453,7 +5486,8 @@
 /turf/open/floor/plasteel,
 /area/security/warden)
 "akG" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -5480,7 +5514,8 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "akK" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -5679,7 +5714,8 @@
 	},
 /area/security/main)
 "akW" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -5859,7 +5895,8 @@
 /turf/closed/wall,
 /area/maintenance/starboard)
 "alr" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/starboard)
 "als" = (
@@ -5880,7 +5917,8 @@
 /turf/open/floor/plasteel/black,
 /area/engine/gravity_generator)
 "alv" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/solars/starboard/fore)
 "alw" = (
@@ -6337,7 +6375,6 @@
 	cell_type = 5000;
 	dir = 8;
 	name = "Brig Control APC";
-	areastring = "/area/security/warden";
 	pixel_x = -26
 	},
 /obj/structure/cable/yellow,
@@ -6502,7 +6539,6 @@
 	cell_type = 2500;
 	dir = 4;
 	name = "Shooting Range APC";
-	areastring = "/area/security/range";
 	pixel_x = 24
 	},
 /obj/structure/cable/yellow{
@@ -6577,7 +6613,8 @@
 	},
 /area/crew_quarters/fitness/recreation)
 "amD" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/crew_quarters/fitness/recreation)
@@ -6777,7 +6814,8 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "anb" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -6925,7 +6963,8 @@
 /turf/open/floor/plasteel,
 /area/security/warden)
 "anr" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/security/warden)
@@ -7004,7 +7043,6 @@
 	cell_type = 5000;
 	dir = 4;
 	name = "Security Office APC";
-	areastring = "/area/security/main";
 	pixel_x = 24
 	},
 /obj/structure/cable/yellow,
@@ -7458,7 +7496,8 @@
 /turf/open/floor/plasteel,
 /area/security/warden)
 "aov" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/security/warden)
 "aow" = (
@@ -7510,7 +7549,8 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "aoA" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -7646,7 +7686,6 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Disposal APC";
-	areastring = "/area/maintenance/disposal";
 	pixel_y = -24
 	},
 /obj/structure/cable/yellow,
@@ -7870,7 +7909,8 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "aph" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable{
 	icon_state = "0-4";
 	d2 = 4
@@ -7878,7 +7918,8 @@
 /turf/open/floor/plating,
 /area/engine/gravity_generator)
 "api" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable{
 	icon_state = "0-2";
@@ -7898,7 +7939,8 @@
 /turf/open/floor/plasteel/black,
 /area/engine/gravity_generator)
 "apk" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -7907,7 +7949,8 @@
 /turf/open/floor/plating,
 /area/engine/gravity_generator)
 "apl" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable{
 	icon_state = "0-2";
 	d2 = 2
@@ -8135,7 +8178,8 @@
 	},
 /area/security/brig)
 "apH" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -8440,7 +8484,6 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Gravity Generator APC";
-	areastring = "/area/engine/gravity_generator";
 	pixel_x = -25;
 	pixel_y = 1
 	},
@@ -9012,7 +9055,8 @@
 	},
 /area/crew_quarters/dorms)
 "arD" = (
-/obj/effect/spawner/structure/window/reinforced/tinted,
+/obj/structure/grille,
+/obj/structure/window/reinforced/tinted/fulltile,
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
@@ -9155,7 +9199,6 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Starboard Bow Solar APC";
-	areastring = "/area/maintenance/solars/starboard/fore";
 	pixel_x = -25;
 	pixel_y = 3
 	},
@@ -9645,7 +9688,8 @@
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "asA" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -10323,7 +10367,8 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "atJ" = (
-/obj/effect/spawner/structure/window/shuttle,
+/obj/structure/grille,
+/obj/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/labor)
 "atK" = (
@@ -10374,7 +10419,8 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "atQ" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
@@ -10407,7 +10453,8 @@
 /turf/open/floor/plasteel,
 /area/security/warden)
 "atT" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/security/main)
@@ -10438,7 +10485,8 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "atW" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -10447,7 +10495,8 @@
 /turf/open/floor/plating,
 /area/security/main)
 "atX" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -10455,13 +10504,15 @@
 /turf/open/floor/plating,
 /area/security/main)
 "atY" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/security/main)
 "atZ" = (
-/obj/effect/spawner/structure/window/reinforced/tinted,
+/obj/structure/grille,
+/obj/structure/window/reinforced/tinted/fulltile,
 /turf/open/floor/plating,
 /area/security/main)
 "aua" = (
@@ -10817,7 +10868,8 @@
 	},
 /area/maintenance/port/fore)
 "auN" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -10826,7 +10878,8 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "auO" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -10838,7 +10891,8 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "auP" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -10907,7 +10961,6 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Head of Security's Office APC";
-	areastring = "/area/crew_quarters/heads/hos";
 	pixel_x = 24
 	},
 /obj/structure/cable/yellow{
@@ -11998,7 +12051,8 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/mining)
 "awO" = (
-/obj/effect/spawner/structure/window/shuttle,
+/obj/structure/grille,
+/obj/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/mining)
 "awP" = (
@@ -12221,7 +12275,6 @@
 	cell_type = 10000;
 	dir = 2;
 	name = "Brig APC";
-	areastring = "/area/security/brig";
 	pixel_x = 1;
 	pixel_y = -24
 	},
@@ -12696,7 +12749,8 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/mining)
 "ayi" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/quartermaster/miningoffice)
 "ayj" = (
@@ -12770,7 +12824,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Vault APC";
-	areastring = "/area/security/nuke_storage";
 	pixel_y = 25
 	},
 /obj/structure/cable/yellow{
@@ -12802,7 +12855,8 @@
 /turf/closed/wall,
 /area/prison/execution_room)
 "ayw" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -12833,7 +12887,8 @@
 /turf/open/floor/plasteel/red/side,
 /area/security/brig)
 "ayy" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -12920,7 +12975,8 @@
 /turf/open/floor/plasteel/red/side,
 /area/security/brig)
 "ayD" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable/yellow{
 	icon_state = "0-4";
@@ -12959,7 +13015,8 @@
 /turf/closed/wall/r_wall,
 /area/security/detectives_office)
 "ayG" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "detective_shutters";
 	name = "detective's office shutters"
@@ -12986,7 +13043,8 @@
 /turf/open/floor/plasteel,
 /area/security/detectives_office)
 "ayI" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "detective_shutters";
 	name = "detective's office shutters"
@@ -13228,7 +13286,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Mining APC";
-	areastring = "/area/quartermaster/miningoffice";
 	pixel_y = 24
 	},
 /obj/structure/cable/yellow{
@@ -13402,7 +13459,8 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/labor)
 "azC" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/hallway/primary/fore)
 "azD" = (
@@ -13641,7 +13699,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Fore Maintenance APC";
-	areastring = "/area/maintenance/fore";
 	pixel_y = 24
 	},
 /turf/open/floor/plating,
@@ -14462,7 +14519,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Dormitories APC";
-	areastring = "/area/crew_quarters/dorms";
 	pixel_y = 24
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -14644,8 +14700,9 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "aBO" = (
+/obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "aBQ" = (
@@ -14843,7 +14900,8 @@
 /turf/open/floor/plasteel/black,
 /area/hallway/primary/fore)
 "aCk" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -14855,7 +14913,8 @@
 /turf/open/floor/plating,
 /area/security/brig)
 "aCl" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -14872,7 +14931,8 @@
 /turf/open/floor/plating,
 /area/security/brig)
 "aCm" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -14897,7 +14957,8 @@
 	},
 /area/security/brig)
 "aCo" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/preopen{
 	id = "Secure Gate";
 	name = "brig shutters"
@@ -14970,7 +15031,6 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Detective APC";
-	areastring = "/area/security/detectives_office";
 	pixel_x = -24
 	},
 /obj/structure/cable/yellow{
@@ -15197,7 +15257,8 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "aCR" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -15237,17 +15298,19 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
+/obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "aCW" = (
+/obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
 	},
-/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "aCX" = (
@@ -15269,7 +15332,8 @@
 /turf/open/floor/plasteel/black,
 /area/engine/engineering)
 "aCZ" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/structure/grille,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "aDa" = (
@@ -15509,7 +15573,8 @@
 	},
 /area/hallway/primary/fore)
 "aDE" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -16119,7 +16184,6 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Warehouse APC";
-	areastring = "/area/quartermaster/warehouse";
 	pixel_x = 27
 	},
 /obj/structure/cable/yellow{
@@ -16130,7 +16194,8 @@
 /turf/open/floor/plasteel/floorgrime,
 /area/quartermaster/warehouse)
 "aEF" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -16150,7 +16215,8 @@
 	},
 /area/construction/storage/wing)
 "aEH" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -16425,7 +16491,6 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Restrooms APC";
-	areastring = "/area/crew_quarters/toilet/restrooms";
 	pixel_y = -26
 	},
 /obj/structure/cable/yellow{
@@ -16609,7 +16674,8 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "aFu" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -16805,7 +16871,8 @@
 /turf/closed/wall,
 /area/construction/storage/wing)
 "aFO" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -16817,7 +16884,8 @@
 /turf/open/floor/plating,
 /area/construction/storage/wing)
 "aFP" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -16829,7 +16897,8 @@
 /turf/open/floor/plating,
 /area/construction/storage/wing)
 "aFQ" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -16854,7 +16923,8 @@
 	},
 /area/construction/storage/wing)
 "aFS" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -16863,7 +16933,8 @@
 /turf/open/floor/plating,
 /area/construction/storage/wing)
 "aFT" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -16879,7 +16950,8 @@
 /turf/open/floor/plating,
 /area/construction/storage/wing)
 "aFU" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -17040,7 +17112,6 @@
 	cell_type = 5000;
 	dir = 2;
 	name = "Fore Primary Hallway APC";
-	areastring = "/area/hallway/primary/fore";
 	pixel_y = -27
 	},
 /obj/structure/cable/yellow,
@@ -17135,7 +17206,8 @@
 	},
 /area/hallway/primary/fore)
 "aGp" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /obj/machinery/door/poddoor/preopen{
 	id = "briglockdown";
@@ -17564,7 +17636,8 @@
 /turf/open/floor/plating,
 /area/shuttle/auxillary_base)
 "aHc" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/quartermaster/miningoffice)
@@ -17790,7 +17863,8 @@
 /turf/closed/wall/r_wall,
 /area/hallway/primary/fore)
 "aHy" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/hallway/primary/fore)
@@ -18021,10 +18095,11 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "aIc" = (
+/obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/structure/window/plasma/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -18047,7 +18122,8 @@
 /turf/open/floor/plasteel/yellow/side,
 /area/construction/mining/aux_base)
 "aIg" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
 "aIh" = (
@@ -18271,7 +18347,6 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Storage Wing APC";
-	areastring = "/area/construction/storage/wing";
 	pixel_y = -27
 	},
 /obj/structure/cable/yellow{
@@ -18470,7 +18545,8 @@
 /turf/open/floor/plasteel/black,
 /area/hallway/primary/fore)
 "aIG" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -18478,7 +18554,8 @@
 /turf/open/floor/plating,
 /area/hallway/primary/fore)
 "aIH" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -18645,7 +18722,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Law Office APC";
-	areastring = "/area/lawoffice";
 	pixel_y = 24
 	},
 /obj/item/weapon/twohanded/required/kirbyplants{
@@ -18821,7 +18897,8 @@
 /turf/closed/wall/r_wall,
 /area/engine/supermatter)
 "aJB" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
@@ -18954,7 +19031,8 @@
 /turf/closed/wall,
 /area/storage/primary)
 "aJO" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /turf/open/floor/plating,
 /area/storage/primary)
 "aJP" = (
@@ -19175,7 +19253,8 @@
 	},
 /area/crew_quarters/dorms)
 "aKn" = (
-/obj/effect/spawner/structure/window/reinforced/tinted,
+/obj/structure/grille,
+/obj/structure/window/reinforced/tinted/fulltile,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/crew_quarters/dorms)
@@ -20417,7 +20496,8 @@
 	},
 /area/crew_quarters/locker)
 "aNg" = (
-/obj/effect/spawner/structure/window/reinforced/tinted,
+/obj/structure/grille,
+/obj/structure/window/reinforced/tinted/fulltile,
 /turf/open/floor/plating,
 /area/hydroponics/garden)
 "aNh" = (
@@ -20580,7 +20660,8 @@
 /turf/open/space,
 /area/space)
 "aND" = (
-/obj/effect/spawner/structure/window/shuttle,
+/obj/structure/grille,
+/obj/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/pod_1)
 "aNE" = (
@@ -20675,7 +20756,8 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "aNN" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -20703,7 +20785,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Quartermaster's Office APC";
-	areastring = "/area/quartermaster/qm";
 	pixel_y = 30
 	},
 /obj/structure/cable/yellow{
@@ -20795,7 +20876,8 @@
 	},
 /area/storage/primary)
 "aNZ" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -21200,7 +21282,6 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Garden APC";
-	areastring = "/area/hydroponics/garden";
 	pixel_x = 27;
 	pixel_y = 2
 	},
@@ -21226,7 +21307,6 @@
 	cell_type = 10000;
 	dir = 8;
 	name = "Engine Room APC";
-	areastring = "/area/engine/engineering";
 	pixel_x = -26
 	},
 /obj/structure/cable/yellow{
@@ -21360,11 +21440,12 @@
 /turf/open/floor/plating,
 /area/shuttle/auxillary_base)
 "aPc" = (
+/obj/structure/grille,
 /obj/machinery/door/poddoor/shutters{
 	id = "syndieshutters";
 	name = "blast shutters"
 	},
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/shuttle/syndicate)
 "aPd" = (
@@ -21562,7 +21643,8 @@
 	},
 /area/storage/primary)
 "aPs" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -21623,7 +21705,8 @@
 /turf/open/floor/plasteel/black,
 /area/ai_monitored/turret_protected/ai_upload)
 "aPy" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -21659,7 +21742,8 @@
 	},
 /area/hallway/primary/fore)
 "aPB" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/security/courtroom)
 "aPC" = (
@@ -21671,12 +21755,14 @@
 /turf/open/floor/plasteel/black,
 /area/security/courtroom)
 "aPD" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/security/courtroom)
 "aPE" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "lawyer_shutters";
@@ -21699,7 +21785,8 @@
 /turf/open/floor/wood,
 /area/lawoffice)
 "aPG" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "lawyer_shutters";
 	name = "law office shutters"
@@ -21765,7 +21852,8 @@
 	},
 /area/crew_quarters/locker)
 "aPN" = (
-/obj/effect/spawner/structure/window/reinforced/tinted,
+/obj/structure/grille,
+/obj/structure/window/reinforced/tinted/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -21868,7 +21956,8 @@
 /turf/open/floor/plasteel/vault,
 /area/engine/engineering)
 "aPX" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
@@ -22136,7 +22225,6 @@
 	cell_type = 5000;
 	dir = 2;
 	name = "Upload APC";
-	areastring = "/area/ai_monitored/turret_protected/ai_upload";
 	pixel_y = -24
 	},
 /obj/structure/cable/yellow{
@@ -22581,7 +22669,8 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "aRm" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -22937,7 +23026,8 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "aSe" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /turf/open/floor/plating,
 /area/crew_quarters/locker)
 "aSf" = (
@@ -23264,7 +23354,6 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Auxillary Base Construction APC";
-	areastring = "/area/construction/mining/aux_base";
 	pixel_y = -24
 	},
 /turf/open/floor/plasteel/yellow/side,
@@ -23512,7 +23601,8 @@
 	},
 /area/storage/primary)
 "aTh" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -23546,7 +23636,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "aTk" = (
-/obj/effect/spawner/structure/window/reinforced/tinted,
+/obj/structure/grille,
+/obj/structure/window/reinforced/tinted/fulltile,
 /turf/open/floor/plating,
 /area/security/courtroom)
 "aTl" = (
@@ -23644,7 +23735,6 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Locker Room APC";
-	areastring = "/area/crew_quarters/locker";
 	pixel_x = -1;
 	pixel_y = -26
 	},
@@ -24056,7 +24146,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Security Post - Cargo Bay APC";
-	areastring = "/area/security/checkpoint/supply";
 	pixel_x = 1;
 	pixel_y = 24
 	},
@@ -24165,7 +24254,8 @@
 /turf/closed/wall/r_wall,
 /area/hallway/primary/central)
 "aUw" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -24178,7 +24268,7 @@
 "aUy" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/machinery/turretid{
-	control_area = "/area/ai_monitored/turret_protected/ai_upload";
+	control_area = "AI Upload Chamber";
 	icon_state = "control_stun";
 	name = "AI Upload turret control";
 	pixel_y = 28
@@ -24198,7 +24288,6 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "AI Upload Access APC";
-	areastring = "/area/ai_monitored/turret_protected/ai_upload_foyer";
 	pixel_y = -27
 	},
 /obj/machinery/light/small{
@@ -24330,7 +24419,6 @@
 	cell_type = 2500;
 	dir = 2;
 	name = "Courtroom APC";
-	areastring = "/area/security/courtroom";
 	pixel_x = 1;
 	pixel_y = -24
 	},
@@ -24565,10 +24653,11 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "aVh" = (
+/obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "aVk" = (
@@ -24647,7 +24736,8 @@
 /turf/open/floor/plasteel/black,
 /area/ai_monitored/turret_protected/ai)
 "aVs" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
 "aVt" = (
@@ -24908,7 +24998,8 @@
 	},
 /area/security/checkpoint/supply)
 "aVR" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/storage/primary)
@@ -25223,7 +25314,8 @@
 /turf/open/floor/plasteel/vault,
 /area/crew_quarters/heads/chief)
 "aWA" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
 "aWB" = (
@@ -25337,7 +25429,8 @@
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
 "aWS" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
 "aWT" = (
@@ -26217,7 +26310,6 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "CE Office APC";
-	areastring = "/area/crew_quarters/heads/chief";
 	pixel_x = 28
 	},
 /obj/structure/cable/yellow,
@@ -26289,7 +26381,8 @@
 	},
 /area/ai_monitored/turret_protected/ai)
 "aYz" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "AI Core shutters";
 	name = "AI core shutters"
@@ -26478,7 +26571,8 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "aYS" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/security/checkpoint/supply)
 "aYT" = (
@@ -26807,7 +26901,6 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Tech Storage APC";
-	areastring = "/area/storage/tech";
 	pixel_x = -27
 	},
 /obj/structure/cable/yellow{
@@ -27366,7 +27459,6 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Cargo Bay APC";
-	areastring = "/area/quartermaster/storage";
 	pixel_x = 1;
 	pixel_y = -24
 	},
@@ -27810,7 +27902,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Auxiliary Tool Storage APC";
-	areastring = "/area/storage/tools";
 	pixel_y = 24
 	},
 /obj/structure/cable/yellow{
@@ -28226,7 +28317,8 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "bbN" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/quartermaster/office)
 "bbO" = (
@@ -28251,7 +28343,6 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Cargo Office APC";
-	areastring = "/area/quartermaster/office";
 	pixel_x = -24
 	},
 /obj/structure/cable/yellow{
@@ -28408,7 +28499,8 @@
 /turf/open/floor/plating,
 /area/maintenance/central)
 "bci" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/hallway/primary/central)
 "bcj" = (
@@ -28487,7 +28579,8 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "bcu" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/storage/tech)
 "bcv" = (
@@ -28669,7 +28762,6 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Engineering Security APC";
-	areastring = "/area/security/checkpoint/engineering";
 	pixel_x = -24
 	},
 /obj/structure/cable/yellow{
@@ -28736,7 +28828,8 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/arrival)
 "bcU" = (
-/obj/effect/spawner/structure/window/shuttle,
+/obj/structure/grille,
+/obj/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/arrival)
 "bcV" = (
@@ -28780,7 +28873,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Customs APC";
-	areastring = "/area/security/checkpoint/customs";
 	pixel_y = 24
 	},
 /obj/structure/cable/yellow{
@@ -28973,7 +29065,8 @@
 	},
 /area/quartermaster/office)
 "bdq" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -29014,7 +29107,8 @@
 	},
 /area/hallway/primary/port)
 "bdw" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /turf/open/floor/plating,
 /area/hallway/primary/port)
 "bdx" = (
@@ -29564,7 +29658,6 @@
 	aidisabled = 0;
 	dir = 1;
 	name = "AI Chamber APC";
-	areastring = "/area/ai_monitored/turret_protected/ai";
 	pixel_y = 24
 	},
 /obj/structure/cable{
@@ -29677,7 +29770,8 @@
 /turf/open/floor/plating/airless,
 /area/shuttle/arrival)
 "beK" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -30025,11 +30119,13 @@
 /turf/open/floor/plating,
 /area/maintenance/central)
 "bfq" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/central)
 "bfr" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -30046,7 +30142,8 @@
 /turf/open/floor/plating,
 /area/bridge)
 "bfs" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -30067,7 +30164,8 @@
 /turf/open/floor/plating,
 /area/bridge)
 "bft" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -30084,7 +30182,8 @@
 /turf/open/floor/plating,
 /area/bridge)
 "bfu" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -30100,7 +30199,8 @@
 /turf/closed/wall/r_wall,
 /area/bridge)
 "bfw" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -30113,7 +30213,8 @@
 /turf/open/floor/plating,
 /area/bridge)
 "bfx" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -30205,7 +30306,8 @@
 /turf/closed/wall/r_wall,
 /area/storage/tools)
 "bfH" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/storage/tools)
@@ -30219,7 +30321,8 @@
 /turf/open/floor/plasteel,
 /area/storage/tools)
 "bfJ" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/storage/tools)
@@ -30277,7 +30380,8 @@
 	},
 /area/storage/tech)
 "bfQ" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -30290,7 +30394,8 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
 "bfR" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -30335,7 +30440,8 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "bfV" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
@@ -30355,7 +30461,8 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/engineering)
 "bfX" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/security/checkpoint/engineering)
@@ -30919,7 +31026,6 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Custodial Closet APC";
-	areastring = "/area/janitor";
 	pixel_x = -24
 	},
 /obj/structure/table,
@@ -30979,14 +31085,14 @@
 	cell_type = 2500;
 	dir = 4;
 	name = "Central Maintenance APC";
-	areastring = "/area/maintenance/central";
 	pixel_x = 26
 	},
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/maintenance/central)
 "bhg" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/preopen{
 	id = "bridge blast";
 	layer = 2.9;
@@ -31099,7 +31205,8 @@
 	},
 /area/bridge)
 "bhs" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -31358,7 +31465,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Starboard Hallway APC";
-	areastring = "/area/hallway/primary/starboard";
 	pixel_y = 26
 	},
 /obj/structure/cable/yellow{
@@ -31519,7 +31625,8 @@
 	},
 /area/engine/break_room)
 "bie" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/break_room)
 "bif" = (
@@ -31561,7 +31668,8 @@
 /turf/open/space,
 /area/space)
 "bij" = (
-/obj/effect/spawner/structure/window/shuttle,
+/obj/structure/grille,
+/obj/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/pod_4)
 "bik" = (
@@ -31699,7 +31807,8 @@
 /turf/open/floor/plasteel,
 /area/security/checkpoint/customs)
 "biz" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -31906,7 +32015,8 @@
 /turf/open/floor/plating,
 /area/maintenance/central)
 "biY" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -32692,7 +32802,6 @@
 	cell_type = 2500;
 	dir = 4;
 	name = "Delivery Office APC";
-	areastring = "/area/quartermaster/sorting";
 	pixel_x = 26
 	},
 /obj/structure/cable/yellow{
@@ -33239,7 +33348,8 @@
 	},
 /area/hallway/primary/starboard)
 "blj" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -33309,7 +33419,8 @@
 /turf/closed/wall/r_wall,
 /area/engine/break_room)
 "blt" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/disposal)
 "blu" = (
@@ -33700,7 +33811,8 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
 "bmg" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/quartermaster/sorting)
@@ -33710,7 +33822,8 @@
 /turf/open/floor/plasteel/black,
 /area/quartermaster/office)
 "bmi" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/quartermaster/office)
@@ -34067,7 +34180,8 @@
 /turf/closed/wall,
 /area/storage/art)
 "bmM" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /turf/open/floor/plating,
 /area/storage/art)
 "bmN" = (
@@ -34452,7 +34566,7 @@
 /area/ai_monitored/turret_protected/aisat/foyer)
 "bny" = (
 /obj/machinery/turretid{
-	control_area = "/area/ai_monitored/turret_protected/aisat_interior";
+	control_area = "AI Satellite Antechamber";
 	enabled = 1;
 	icon_state = "control_standby";
 	name = "Antechamber Turret Control";
@@ -34520,7 +34634,6 @@
 	cell_type = 2500;
 	dir = 4;
 	name = "MiniSat Antechamber APC";
-	areastring = "/area/ai_monitored/turret_protected/aisat_interior";
 	pixel_x = 29
 	},
 /obj/structure/cable/yellow{
@@ -34775,7 +34888,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Port Hallway APC";
-	areastring = "/area/hallway/primary/port";
 	pixel_x = -1;
 	pixel_y = 26
 	},
@@ -34886,7 +34998,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bol" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -34932,7 +35045,6 @@
 	cell_type = 10000;
 	dir = 8;
 	name = "Bridge APC";
-	areastring = "/area/bridge";
 	pixel_x = -27
 	},
 /obj/structure/cable/yellow,
@@ -35121,7 +35233,8 @@
 	},
 /area/hallway/primary/central)
 "boL" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -35849,7 +35962,6 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Arrivals APC";
-	areastring = "/area/hallway/secondary/entry";
 	pixel_x = 24
 	},
 /obj/structure/cable/yellow{
@@ -36357,7 +36469,6 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Captain's Quarters APC";
-	areastring = "/area/crew_quarters/heads/captain/private";
 	pixel_x = -24
 	},
 /obj/structure/cable/yellow{
@@ -36440,7 +36551,6 @@
 	cell_type = 2500;
 	dir = 8;
 	name = "Art Storage APC";
-	areastring = "/area/storage/art";
 	pixel_x = -25
 	},
 /obj/structure/cable/yellow{
@@ -36768,7 +36878,6 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Engineering Foyer APC";
-	areastring = "/area/engine/break_room";
 	pixel_x = -1;
 	pixel_y = -26
 	},
@@ -36926,7 +37035,6 @@
 	aidisabled = 0;
 	dir = 2;
 	name = "MiniSat Exterior APC";
-	areastring = "/area/aisat";
 	pixel_y = -24
 	},
 /obj/structure/cable/yellow{
@@ -37038,7 +37146,6 @@
 	cell_type = 5000;
 	dir = 2;
 	name = "MiniSat Foyer APC";
-	areastring = "/area/ai_monitored/turret_protected/aisat/foyer";
 	pixel_y = -29
 	},
 /obj/structure/cable/yellow,
@@ -37963,7 +38070,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Head of Personnel APC";
-	areastring = "/area/crew_quarters/heads/hop";
 	pixel_y = 24
 	},
 /turf/open/floor/carpet,
@@ -39588,7 +39694,6 @@
 	cell_type = 5000;
 	dir = 1;
 	name = "Bar APC";
-	areastring = "/area/crew_quarters/bar";
 	pixel_y = 25
 	},
 /obj/structure/cable/yellow{
@@ -40125,7 +40230,6 @@
 	cell_type = 5000;
 	dir = 2;
 	name = "Port Maintenance APC";
-	areastring = "/area/maintenance/port";
 	pixel_y = -24
 	},
 /obj/structure/cable/yellow{
@@ -40186,7 +40290,8 @@
 	},
 /area/hallway/primary/central)
 "bxZ" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /obj/machinery/door/poddoor/preopen{
 	id = "hop";
@@ -40195,7 +40300,8 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hop)
 "bya" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -40515,7 +40621,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Theatre APC";
-	areastring = "/area/crew_quarters/theatre";
 	pixel_y = 25
 	},
 /obj/structure/cable/yellow{
@@ -40554,7 +40659,6 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "MiniSat Maint APC";
-	areastring = "/area/ai_monitored/storage/satellite";
 	pixel_y = -26
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -40688,7 +40792,6 @@
 	cell_type = 10000;
 	dir = 1;
 	name = "Atmospherics APC";
-	areastring = "/area/engine/atmos";
 	pixel_y = 28
 	},
 /obj/structure/cable/yellow{
@@ -40722,7 +40825,8 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bza" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "bzb" = (
@@ -40927,7 +41031,6 @@
 	cell_type = 5000;
 	dir = 4;
 	name = "Telecomms Control Room APC";
-	areastring = "/area/tcommsat/computer";
 	pixel_x = 26
 	},
 /obj/machinery/computer/telecomms/server{
@@ -41443,7 +41546,8 @@
 	},
 /area/hallway/primary/starboard)
 "bAA" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor{
 	density = 0;
 	icon_state = "open";
@@ -41871,7 +41975,8 @@
 /turf/closed/wall,
 /area/hallway/secondary/command)
 "bBz" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -41893,7 +41998,8 @@
 	},
 /area/hallway/secondary/command)
 "bBB" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -41971,7 +42077,8 @@
 	},
 /area/hallway/primary/port)
 "bBH" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor{
 	density = 0;
 	icon_state = "open";
@@ -41987,7 +42094,8 @@
 /turf/open/floor/plating,
 /area/bridge)
 "bBI" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor{
 	density = 0;
 	icon_state = "open";
@@ -42007,7 +42115,8 @@
 /turf/open/floor/plating,
 /area/bridge)
 "bBJ" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor{
 	density = 0;
 	icon_state = "open";
@@ -42031,7 +42140,8 @@
 /turf/open/floor/plating,
 /area/bridge)
 "bBK" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor{
 	density = 0;
 	icon_state = "open";
@@ -42051,7 +42161,8 @@
 /turf/open/floor/plating,
 /area/bridge)
 "bBL" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor{
 	density = 0;
 	icon_state = "open";
@@ -42150,7 +42261,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bBS" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/crew_quarters/bar)
 "bBT" = (
@@ -42317,7 +42429,8 @@
 	},
 /area/engine/atmos)
 "bCm" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -42411,7 +42524,8 @@
 	},
 /area/engine/atmos)
 "bCy" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/purple/visible{
 	dir = 4
 	},
@@ -42452,7 +42566,8 @@
 /turf/closed/wall/r_wall,
 /area/tcommsat/server)
 "bCE" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/tcommsat/server)
 "bCF" = (
@@ -42468,7 +42583,8 @@
 /turf/open/floor/plasteel/black,
 /area/tcommsat/server)
 "bCG" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
@@ -42559,7 +42675,6 @@
 	cell_type = 5000;
 	dir = 2;
 	name = "Auxiliary Restrooms APC";
-	areastring = "/area/crew_quarters/toilet/auxiliary";
 	pixel_y = -24
 	},
 /obj/structure/cable/yellow,
@@ -42815,7 +42930,6 @@
 	cell_type = 10000;
 	dir = 1;
 	name = "Command Hallway APC";
-	areastring = "/area/hallway/secondary/command";
 	pixel_y = 25
 	},
 /obj/structure/cable/yellow{
@@ -44387,7 +44501,8 @@
 	},
 /area/engine/atmos)
 "bFX" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/green/visible{
 	dir = 4
 	},
@@ -44633,7 +44748,8 @@
 /turf/closed/wall/r_wall,
 /area/teleporter)
 "bGF" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/hallway/secondary/command)
@@ -44800,7 +44916,8 @@
 	},
 /area/hallway/primary/central)
 "bGY" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -45022,14 +45139,16 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bHw" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 6
 	},
 /turf/open/floor/plating,
 /area/engine/atmos)
 "bHx" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/purple/visible,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
@@ -45037,14 +45156,16 @@
 /turf/open/floor/plating,
 /area/engine/atmos)
 "bHy" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/engine/atmos)
 "bHz" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
@@ -45052,7 +45173,8 @@
 /turf/open/floor/plating,
 /area/engine/atmos)
 "bHA" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
@@ -45060,7 +45182,8 @@
 /turf/open/floor/plating,
 /area/engine/atmos)
 "bHB" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible{
 	dir = 4
 	},
@@ -45353,7 +45476,6 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Teleporter APC";
-	areastring = "/area/teleporter";
 	pixel_x = 24
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -45413,7 +45535,8 @@
 	},
 /area/hallway/secondary/command)
 "bIl" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -45481,7 +45604,6 @@
 	cell_type = 5000;
 	dir = 4;
 	name = "Gateway APC";
-	areastring = "/area/gateway";
 	pixel_x = 28
 	},
 /obj/structure/cable/yellow{
@@ -45796,7 +45918,8 @@
 /turf/open/floor/plasteel/black,
 /area/engine/atmos)
 "bJa" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
 	},
@@ -46141,7 +46264,8 @@
 	},
 /area/teleporter)
 "bJM" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -46202,7 +46326,8 @@
 	},
 /area/hallway/secondary/command)
 "bJS" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -46282,7 +46407,8 @@
 	},
 /area/gateway)
 "bJX" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -46740,7 +46866,6 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Vacant Office APC";
-	areastring = "/area/security/vacantoffice";
 	pixel_x = -25
 	},
 /obj/structure/cable/yellow{
@@ -46864,7 +46989,6 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "E.V.A. Storage APC";
-	areastring = "/area/ai_monitored/storage/eva";
 	pixel_x = -24
 	},
 /obj/structure/cable/yellow{
@@ -46981,7 +47105,8 @@
 	},
 /area/teleporter)
 "bLv" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -47051,7 +47176,8 @@
 	},
 /area/gateway)
 "bLC" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/gateway)
@@ -47436,7 +47562,6 @@
 	cell_type = 5000;
 	dir = 4;
 	name = "Telecomms Server Room APC";
-	areastring = "/area/tcommsat/server";
 	pixel_x = 25
 	},
 /obj/machinery/light/small{
@@ -47611,7 +47736,6 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Library APC";
-	areastring = "/area/library";
 	pixel_x = -25
 	},
 /obj/structure/cable/yellow{
@@ -48058,7 +48182,8 @@
 	},
 /area/hallway/primary/central)
 "bNv" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -48197,7 +48322,6 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Telecomms Storage APC";
-	areastring = "/area/storage/tcom";
 	pixel_x = -28
 	},
 /obj/structure/cable/yellow{
@@ -48652,7 +48776,6 @@
 	cell_type = 5000;
 	dir = 4;
 	name = "Nanotrasen Corporate Showroom APC";
-	areastring = "/area/bridge/showroom/corporate";
 	pixel_x = 28
 	},
 /obj/structure/cable/yellow{
@@ -48703,7 +48826,8 @@
 /turf/open/floor/plasteel,
 /area/gateway)
 "bOJ" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -48751,7 +48875,8 @@
 	},
 /area/hallway/primary/central)
 "bOP" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /obj/machinery/door/poddoor/preopen{
 	id = "kitchenwindow";
 	name = "kitchen shutters"
@@ -50234,7 +50359,6 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Kitchen APC";
-	areastring = "/area/crew_quarters/kitchen";
 	pixel_y = -24
 	},
 /obj/structure/cable/yellow,
@@ -50754,7 +50878,8 @@
 /turf/open/floor/plasteel,
 /area/teleporter)
 "bSI" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "corporate_privacy";
@@ -50944,7 +51069,6 @@
 	cell_type = 2500;
 	dir = 1;
 	name = "Starboard Maintenance APC";
-	areastring = "/area/maintenance/starboard";
 	pixel_x = -1;
 	pixel_y = 26
 	},
@@ -51395,7 +51519,6 @@
 	cell_type = 10000;
 	dir = 1;
 	name = "Central Primary Hallway APC";
-	areastring = "/area/hallway/primary/central";
 	pixel_y = 24
 	},
 /obj/structure/cable/yellow{
@@ -51510,7 +51633,8 @@
 /turf/open/floor/plasteel/green,
 /area/hallway/primary/central)
 "bUe" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /turf/open/floor/plating,
 /area/hydroponics)
 "bUf" = (
@@ -51854,7 +51978,6 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Port Quarter Solar APC";
-	areastring = "/area/maintenance/solars/port/aft";
 	pixel_x = -26;
 	pixel_y = 3
 	},
@@ -53521,7 +53644,8 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "bYc" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /turf/open/floor/plating,
 /area/hallway/primary/central)
 "bYd" = (
@@ -53780,7 +53904,8 @@
 /turf/open/floor/plasteel/black,
 /area/engine/atmos)
 "bYC" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/solars/port/aft)
 "bYD" = (
@@ -53980,7 +54105,6 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Medical Security Checkpoint APC";
-	areastring = "/area/security/checkpoint/medical";
 	pixel_x = -24
 	},
 /obj/machinery/airalarm{
@@ -54040,7 +54164,8 @@
 	},
 /area/security/checkpoint/medical)
 "bZa" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /turf/open/floor/plating,
 /area/medical/medbay/central)
 "bZb" = (
@@ -54142,7 +54267,8 @@
 /turf/closed/wall,
 /area/science/research)
 "bZj" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /turf/open/floor/plating,
 /area/science/research)
 "bZk" = (
@@ -54557,7 +54683,8 @@
 	},
 /area/security/checkpoint/medical)
 "cah" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -55512,7 +55639,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/maintenance/port/aft)
+/area/medical/storage)
 "cbJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -55605,7 +55732,8 @@
 	},
 /area/security/checkpoint/medical)
 "cbS" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/security/checkpoint/medical)
 "cbT" = (
@@ -55735,7 +55863,8 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "cck" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -55860,7 +55989,6 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Hydroponics APC";
-	areastring = "/area/hydroponics";
 	pixel_y = -28
 	},
 /obj/structure/cable/yellow,
@@ -56556,7 +56684,8 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "cdP" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
@@ -56726,17 +56855,20 @@
 /turf/open/floor/plasteel/floorgrime,
 /area/maintenance/disposal/incinerator)
 "ceg" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "ceh" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "cei" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/open/floor/plating,
 /area/engine/atmos)
@@ -57437,7 +57569,8 @@
 /turf/open/floor/plasteel/floorgrime,
 /area/maintenance/disposal/incinerator)
 "cft" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/disposal/incinerator)
 "cfu" = (
@@ -57556,7 +57689,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Sleeper Room APC";
-	areastring = "/area/medical/sleeper";
 	pixel_y = 24
 	},
 /obj/structure/cable/yellow{
@@ -57595,7 +57727,6 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Medbay Storage APC";
-	areastring = "/area/medical/storage";
 	pixel_y = -24
 	},
 /obj/structure/cable/yellow{
@@ -57724,7 +57855,8 @@
 /turf/closed/wall,
 /area/medical/chemistry)
 "cfX" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "chemistry_shutters";
 	name = "chemistry shutters"
@@ -57786,7 +57918,8 @@
 /turf/closed/wall/r_wall,
 /area/science/lab)
 "cge" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "research_shutters";
 	name = "research shutters"
@@ -57850,7 +57983,6 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Security Post - Research Division APC";
-	areastring = "/area/security/checkpoint/science/research";
 	pixel_x = -24
 	},
 /obj/structure/cable/yellow,
@@ -57926,7 +58058,6 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Incinerator APC";
-	areastring = "/area/maintenance/disposal/incinerator";
 	pixel_x = -24
 	},
 /obj/structure/cable/yellow{
@@ -58237,7 +58368,8 @@
 /turf/open/floor/plasteel/whiteblue,
 /area/medical/storage)
 "cgV" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
@@ -58267,7 +58399,8 @@
 /turf/open/floor/plasteel/whiteblue,
 /area/medical/medbay/central)
 "cgY" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/medical/medbay/central)
@@ -58889,7 +59022,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Medbay Central APC";
-	areastring = "/area/medical/medbay/central";
 	pixel_y = 24
 	},
 /obj/structure/cable/yellow{
@@ -59141,7 +59273,6 @@
 	cell_type = 10000;
 	dir = 1;
 	name = "Research Division APC";
-	areastring = "/area/science/research";
 	pixel_y = 25
 	},
 /obj/structure/cable/yellow{
@@ -59268,7 +59399,8 @@
 	},
 /area/maintenance/starboard/aft)
 "ciY" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
@@ -59785,7 +59917,8 @@
 /turf/open/floor/plasteel,
 /area/science/lab)
 "ckd" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -60115,7 +60248,8 @@
 /turf/open/floor/plating/airless,
 /area/engine/atmos)
 "ckN" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "ckO" = (
@@ -60261,7 +60395,8 @@
 /turf/open/floor/plasteel/whiteblue,
 /area/medical/sleeper)
 "cli" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
@@ -60649,7 +60784,8 @@
 /turf/closed/wall/r_wall,
 /area/science/explab)
 "clT" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/preopen{
 	id = "telelab";
 	name = "test chamber blast door"
@@ -60658,7 +60794,8 @@
 /turf/open/floor/plating,
 /area/science/explab)
 "clU" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/preopen{
 	id = "telelab";
 	name = "test chamber blast door"
@@ -60789,16 +60926,19 @@
 /turf/open/floor/wood,
 /area/maintenance/port/aft)
 "cmk" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /turf/open/floor/plating,
 /area/medical/surgery)
 "cml" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/medical/surgery)
 "cmm" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/medical/surgery)
@@ -60812,7 +60952,8 @@
 /turf/open/floor/plasteel,
 /area/medical/surgery)
 "cmo" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/medical/sleeper)
@@ -60848,7 +60989,8 @@
 /turf/closed/wall,
 /area/crew_quarters/heads/cmo)
 "cmv" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -60860,7 +61002,8 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
 "cmw" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -60876,7 +61019,8 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
 "cmx" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -61369,7 +61513,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Cryogenics APC";
-	areastring = "/area/medical/cryo";
 	pixel_y = 24
 	},
 /obj/structure/cable/yellow{
@@ -61442,7 +61585,8 @@
 /turf/open/floor/plasteel,
 /area/medical/cryo)
 "cnz" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /turf/open/floor/plating,
 /area/medical/cryo)
 "cnA" = (
@@ -61591,7 +61735,8 @@
 	},
 /area/medical/chemistry)
 "cnL" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "chemistry_shutters_2";
 	name = "chemistry shutters"
@@ -61643,7 +61788,8 @@
 /turf/open/floor/plasteel/purple,
 /area/hallway/primary/aft)
 "cnR" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "research_shutters_2";
 	name = "research shutters"
@@ -61698,7 +61844,8 @@
 /turf/open/floor/plasteel,
 /area/science/lab)
 "cnX" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /turf/open/floor/plating,
 /area/science/lab)
 "cnY" = (
@@ -61997,7 +62144,6 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Surgery APC";
-	areastring = "/area/medical/surgery";
 	pixel_x = 26
 	},
 /obj/structure/cable/yellow{
@@ -62036,7 +62182,8 @@
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "coG" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -62151,7 +62298,6 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "CMO's Office APC";
-	areastring = "/area/crew_quarters/heads/cmo";
 	pixel_x = 26
 	},
 /obj/structure/cable/yellow{
@@ -62978,7 +63124,8 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "cqk" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -63079,7 +63226,6 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Chemistry APC";
-	areastring = "/area/medical/chemistry";
 	pixel_x = -24
 	},
 /obj/structure/closet/secure_closet/chemical{
@@ -63145,7 +63291,8 @@
 /turf/open/floor/plasteel/purple,
 /area/hallway/primary/aft)
 "cqw" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "research_shutters_2";
 	name = "research shutters"
@@ -63161,7 +63308,6 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Research Lab APC";
-	areastring = "/area/science/lab";
 	pixel_y = -26
 	},
 /obj/structure/cable/yellow,
@@ -63396,7 +63542,6 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Experimentation Lab APC";
-	areastring = "/area/science/explab";
 	pixel_y = -24
 	},
 /obj/structure/cable/yellow,
@@ -63793,7 +63938,6 @@
 	cell_type = 5000;
 	dir = 4;
 	name = "Aft Hallway APC";
-	areastring = "/area/hallway/primary/aft";
 	pixel_x = 24
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -63847,7 +63991,8 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "crN" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -63864,7 +64009,8 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hor)
 "crO" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -63883,7 +64029,8 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hor)
 "crP" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -64571,7 +64718,8 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "csY" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -64685,7 +64833,6 @@
 	cell_type = 5000;
 	dir = 1;
 	name = "Toxins Storage APC";
-	areastring = "/area/science/storage";
 	pixel_y = 25
 	},
 /obj/structure/cable/yellow{
@@ -65183,7 +65330,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Port Quarter Maintenance APC";
-	areastring = "/area/maintenance/port/aft";
 	pixel_y = 24
 	},
 /turf/open/floor/plating,
@@ -65201,7 +65347,6 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Patient Room A APC";
-	areastring = "/area/medical/patients_rooms/room_a";
 	pixel_x = -26
 	},
 /obj/structure/cable/yellow{
@@ -65239,7 +65384,8 @@
 	},
 /area/medical/patients_rooms/room_a)
 "cun" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -65337,7 +65483,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Genetics Lab APC";
-	areastring = "/area/medical/genetics";
 	pixel_y = 24
 	},
 /obj/structure/cable/yellow{
@@ -65392,7 +65537,8 @@
 	},
 /area/medical/genetics)
 "cuy" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "genetics_shutters";
 	name = "genetics shutters"
@@ -65492,7 +65638,8 @@
 	},
 /area/science/research)
 "cuL" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /obj/machinery/door/poddoor/preopen{
 	id = "rdprivacy";
@@ -66002,7 +66149,8 @@
 	},
 /area/science/misc_lab/range)
 "cvL" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/preopen{
 	id = "researchrangeshutters";
 	name = "blast door"
@@ -66276,7 +66424,6 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Patient Room B APC";
-	areastring = "/area/medical/patients_rooms/room_b";
 	pixel_x = -26
 	},
 /obj/structure/cable/yellow{
@@ -66326,7 +66473,8 @@
 	},
 /area/medical/patients_rooms/room_b)
 "cwr" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -66570,7 +66718,6 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "RD Office APC";
-	areastring = "/area/crew_quarters/heads/hor";
 	pixel_y = -27
 	},
 /obj/structure/cable/yellow,
@@ -66814,7 +66961,8 @@
 	},
 /area/medical/medbay/aft)
 "cxl" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -66847,7 +66995,8 @@
 	},
 /area/medical/genetics/cloning)
 "cxp" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -66899,7 +67048,8 @@
 	},
 /area/medical/genetics)
 "cxv" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /turf/open/floor/plating,
 /area/medical/genetics)
 "cxw" = (
@@ -67681,7 +67831,6 @@
 	dir = 4;
 	locked = 0;
 	name = "Cloning Lab APC";
-	areastring = "/area/medical/genetics/cloning";
 	pixel_x = 24
 	},
 /obj/structure/cable/yellow,
@@ -67906,7 +68055,8 @@
 	},
 /area/science/research)
 "czr" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/preopen{
 	id = "toxins_blastdoor";
 	name = "biohazard containment door"
@@ -68072,7 +68222,8 @@
 /turf/closed/wall,
 /area/science/test_area)
 "czK" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/science/test_area)
 "czL" = (
@@ -68189,7 +68340,6 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Medbay Aft APC";
-	areastring = "/area/medical/medbay/aft";
 	pixel_x = 26
 	},
 /obj/structure/cable/yellow{
@@ -68405,7 +68555,6 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Mech Bay APC";
-	areastring = "/area/science/robotics/mechbay";
 	pixel_x = 28
 	},
 /obj/structure/cable/yellow{
@@ -68723,7 +68872,8 @@
 /turf/open/floor/plasteel,
 /area/science/mixing)
 "cAP" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/science/mixing)
 "cAQ" = (
@@ -68782,7 +68932,8 @@
 	},
 /area/medical/medbay/aft)
 "cAX" = (
-/obj/effect/spawner/structure/window/reinforced/tinted,
+/obj/structure/grille,
+/obj/structure/window/reinforced/tinted/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -68821,7 +68972,8 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
 "cBb" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/medical/genetics/cloning)
@@ -68913,7 +69065,6 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Research Firing Range APC";
-	areastring = "/area/science/misc_lab/range";
 	pixel_y = -28
 	},
 /obj/structure/table,
@@ -68927,7 +69078,8 @@
 /turf/open/floor/plasteel,
 /area/science/misc_lab/range)
 "cBm" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/preopen{
 	id = "researchrangeshutters";
 	name = "blast door"
@@ -68966,7 +69118,8 @@
 	},
 /area/science/research)
 "cBq" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/preopen{
 	id = "toxins_blastdoor";
 	name = "biohazard containment door"
@@ -69210,7 +69363,8 @@
 /turf/closed/wall/r_wall,
 /area/medical/virology)
 "cBS" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/medical/virology)
 "cBT" = (
@@ -69376,7 +69530,8 @@
 /turf/closed/wall/r_wall,
 /area/science/robotics/mechbay)
 "cCo" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "robotics_shutters";
 	name = "robotics shutters"
@@ -69566,7 +69721,6 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Toxins Lab APC";
-	areastring = "/area/science/mixing";
 	pixel_x = 26
 	},
 /obj/structure/cable/yellow{
@@ -69781,7 +69935,8 @@
 /turf/open/floor/plasteel/black,
 /area/hallway/primary/aft)
 "cDa" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "robotics_shutters";
 	name = "robotics shutters"
@@ -69859,7 +70014,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Robotics Lab APC";
-	areastring = "/area/science/robotics/lab";
 	pixel_y = 25
 	},
 /obj/structure/cable/yellow{
@@ -70059,7 +70213,8 @@
 /turf/open/floor/plasteel/freezer,
 /area/medical/virology)
 "cDE" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -70076,7 +70231,6 @@
 	cell_type = 5000;
 	dir = 1;
 	name = "Virology APC";
-	areastring = "/area/medical/virology";
 	pixel_y = 24
 	},
 /obj/structure/cable/yellow{
@@ -70390,7 +70544,6 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Morgue APC";
-	areastring = "/area/medical/morgue";
 	pixel_x = 26
 	},
 /obj/structure/cable/yellow{
@@ -70663,7 +70816,8 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "cEA" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/space)
 "cEB" = (
@@ -70697,7 +70851,8 @@
 /turf/closed/wall,
 /area/medical/virology)
 "cEF" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable/yellow{
 	icon_state = "0-4";
@@ -70729,7 +70884,8 @@
 /turf/open/floor/plasteel/freezer,
 /area/medical/virology)
 "cEH" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -71209,7 +71365,8 @@
 	},
 /area/medical/virology)
 "cFD" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -71278,7 +71435,8 @@
 /turf/closed/wall/r_wall,
 /area/medical/virology)
 "cFK" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -72018,7 +72176,7 @@
 	req_access_txt = "6"
 	},
 /turf/open/floor/plating,
-/area/maintenance/aft)
+/area/medical/morgue)
 "cGU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/extinguisher_cabinet{
@@ -72101,7 +72259,8 @@
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "cGZ" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
@@ -72275,7 +72434,8 @@
 	},
 /area/medical/virology)
 "cHq" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
 	},
@@ -72714,7 +72874,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Research Division Server Room APC";
-	areastring = "/area/science/server";
 	pixel_y = 25
 	},
 /obj/structure/cable/yellow{
@@ -72734,7 +72893,8 @@
 /turf/open/floor/plasteel/black,
 /area/science/server)
 "cId" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'SERVER ROOM'.";
 	name = "SERVER ROOM";
@@ -72857,7 +73017,8 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "cIp" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable/yellow{
 	icon_state = "0-4";
@@ -73144,7 +73305,8 @@
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "cIP" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /turf/open/floor/plating,
 /area/science/robotics/lab)
 "cIQ" = (
@@ -73715,7 +73877,8 @@
 /turf/open/floor/plasteel/black,
 /area/science/server)
 "cJU" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/science/server)
 "cJV" = (
@@ -74002,7 +74165,6 @@
 	cell_type = 5000;
 	dir = 1;
 	name = "Departure Lounge APC";
-	areastring = "/area/hallway/secondary/exit/departure_lounge";
 	pixel_y = 24
 	},
 /obj/structure/cable/yellow{
@@ -74767,7 +74929,6 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Starboard Quarter Solar APC";
-	areastring = "/area/maintenance/solars/starboard/aft";
 	pixel_y = 24
 	},
 /obj/structure/cable/yellow{
@@ -74992,7 +75153,6 @@
 	cell_type = 5000;
 	dir = 2;
 	name = "Aft Maintenance APC";
-	areastring = "/area/maintenance/aft";
 	pixel_y = -24
 	},
 /obj/structure/cable/yellow,
@@ -75100,7 +75260,8 @@
 /turf/open/floor/plating/airless,
 /area/medical/virology)
 "cMw" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
@@ -75828,7 +75989,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "cNP" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
@@ -75995,7 +76157,8 @@
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "cOh" = (
-/obj/effect/spawner/structure/window/reinforced/tinted,
+/obj/structure/grille,
+/obj/structure/window/reinforced/tinted/fulltile,
 /turf/open/floor/plasteel/black,
 /area/chapel/office)
 "cOi" = (
@@ -76006,7 +76169,6 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Chapel APC";
-	areastring = "/area/chapel/main";
 	pixel_x = -25
 	},
 /turf/open/floor/carpet,
@@ -76258,7 +76420,6 @@
 	dir = 2;
 	lighting = 3;
 	name = "Chapel Office APC";
-	areastring = "/area/chapel/office";
 	pixel_y = -25
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -76409,7 +76570,8 @@
 /turf/closed/wall,
 /area/hallway/secondary/exit/departure_lounge)
 "cPc" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -76418,7 +76580,8 @@
 /turf/open/floor/plating,
 /area/hallway/secondary/exit/departure_lounge)
 "cPd" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -76563,7 +76726,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "cPv" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/hallway/secondary/exit/departure_lounge)
 "cPx" = (
@@ -76587,7 +76751,8 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "cPA" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "chapel_shutters_parlour";
 	name = "chapel shutters"
@@ -77622,7 +77787,8 @@
 /turf/open/floor/plasteel/black,
 /area/chapel/main)
 "cRL" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "chapel_shutters_space";
 	name = "chapel shutters"
@@ -78929,7 +79095,8 @@
 /turf/open/floor/mineral/plastitanium,
 /area/shuttle/syndicate)
 "cUg" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/shuttle/syndicate)
 "cUh" = (
@@ -79295,7 +79462,8 @@
 /turf/open/floor/wood,
 /area/library)
 "cUU" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/wood,
 /area/library)
 "cUV" = (
@@ -79463,7 +79631,8 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/transport)
 "cVp" = (
-/obj/effect/spawner/structure/window/shuttle,
+/obj/structure/grille,
+/obj/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/transport)
 "cVr" = (
@@ -79515,7 +79684,8 @@
 /area/shuttle/transport)
 "cVy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible,
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "cVz" = (
@@ -79551,7 +79721,8 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/abandoned)
 "cVG" = (
-/obj/effect/spawner/structure/window/shuttle,
+/obj/structure/grille,
+/obj/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/abandoned)
 "cVH" = (
@@ -80195,7 +80366,8 @@
 /turf/open/floor/plating,
 /area/shuttle/auxillary_base)
 "cWK" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/construction/mining/aux_base)
 "cWL" = (
@@ -81227,7 +81399,8 @@
 	},
 /area/construction/mining/aux_base)
 "cYF" = (
-/obj/effect/spawner/structure/window/shuttle,
+/obj/structure/grille,
+/obj/structure/window/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/escape)
 "cYG" = (
@@ -82307,10 +82480,11 @@
 /turf/open/floor/engine,
 /area/engine/supermatter)
 "daZ" = (
+/obj/structure/grille,
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 1
 	},
-/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/supermatter)
 "dbb" = (
@@ -82830,7 +83004,6 @@
 	cell_type = 10000;
 	dir = 1;
 	name = "Xenobiology APC";
-	areastring = "/area/science/xenobiology";
 	pixel_y = 27
 	},
 /obj/structure/cable/yellow{
@@ -83668,7 +83841,6 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "Test Chamber Maintenance APC";
-	areastring = "/area/maintenance/department/science/xenobiology";
 	pixel_x = 26
 	},
 /turf/open/floor/plating,
@@ -83891,17 +84063,19 @@
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
 "ded" = (
+/obj/structure/grille,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
 	},
-/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "dee" = (
+/obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "def" = (
@@ -83911,12 +84085,13 @@
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
 "deh" = (
+/obj/structure/grille,
 /obj/structure/cable/white{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "dei" = (
@@ -84206,10 +84381,11 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "deS" = (
+/obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 10
 	},
-/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/supermatter)
 "deT" = (
@@ -84329,15 +84505,17 @@
 /turf/closed/wall/r_wall,
 /area/engine/supermatter)
 "dfk" = (
+/obj/structure/grille,
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
-/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/supermatter)
 "dfm" = (
+/obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 9
 	},
-/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/supermatter)
 "dfp" = (
@@ -84725,7 +84903,8 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard)
 "dgp" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
 	},
@@ -84889,7 +85068,8 @@
 /turf/open/floor/plasteel/black,
 /area/engine/atmos)
 "dhk" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
 	},
@@ -85206,7 +85386,6 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Tool Storage APC";
-	areastring = "/area/storage/primary";
 	pixel_y = -27
 	},
 /obj/structure/cable/yellow,
@@ -86798,7 +86977,8 @@
 /turf/closed/wall/r_wall,
 /area/engine/supermatter)
 "dlN" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/structure/grille,
+/obj/structure/window/plasma/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/engine/supermatter)
 "dlO" = (
@@ -86967,11 +87147,13 @@
 /turf/closed/wall,
 /area/quartermaster/sorting)
 "dmH" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/quartermaster/sorting)
 "dmI" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/quartermaster/sorting)
 "dmJ" = (
@@ -87023,7 +87205,8 @@
 /turf/closed/wall,
 /area/quartermaster/sorting)
 "dmY" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/quartermaster/sorting)
 "dmZ" = (
@@ -87055,7 +87238,8 @@
 /turf/closed/wall,
 /area/maintenance/starboard/fore)
 "dni" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "dnj" = (
@@ -87092,7 +87276,6 @@
 	cell_type = 2500;
 	dir = 4;
 	name = "Port Bow Maintenance APC";
-	areastring = "/area/maintenance/port/fore";
 	pixel_x = 26
 	},
 /turf/open/floor/plating{
@@ -87136,7 +87319,8 @@
 /turf/closed/wall,
 /area/maintenance/starboard/fore)
 "dnD" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "dnE" = (
@@ -87343,7 +87527,8 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "doI" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "doJ" = (
@@ -87503,7 +87688,8 @@
 /turf/closed/wall,
 /area/maintenance/starboard/fore)
 "dpu" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "dpv" = (
@@ -88330,7 +88516,6 @@
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Starboard Bow Maintenance APC";
-	areastring = "/area/maintenance/starboard/fore";
 	pixel_y = -28
 	},
 /obj/structure/cable/yellow{
@@ -88425,7 +88610,8 @@
 /turf/closed/wall,
 /area/maintenance/starboard/fore)
 "duq" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "dur" = (
@@ -89002,7 +89188,8 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "dxk" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "dxl" = (
@@ -89058,21 +89245,24 @@
 /turf/closed/wall,
 /area/maintenance/starboard/aft)
 "dxB" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "dxC" = (
 /turf/closed/wall,
 /area/maintenance/starboard/aft)
 "dxD" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "dxE" = (
 /turf/closed/wall,
 /area/maintenance/starboard/aft)
 "dxF" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "dxG" = (
@@ -89163,7 +89353,8 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "dyd" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "dye" = (
@@ -89617,7 +89808,6 @@
 	cell_type = 5000;
 	dir = 2;
 	name = "Starboard Quarter Maintenance APC";
-	areastring = "/area/maintenance/starboard/aft";
 	pixel_y = -24
 	},
 /obj/structure/cable/yellow,
@@ -89827,7 +90017,8 @@
 /turf/closed/wall,
 /area/maintenance/starboard/aft)
 "dAS" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "dAT" = (
@@ -89878,7 +90069,8 @@
 /turf/closed/wall,
 /area/maintenance/starboard/aft)
 "dBg" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "dBh" = (
@@ -89976,7 +90168,8 @@
 /turf/closed/wall/r_wall,
 /area/engine/atmos)
 "dBD" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	icon_state = "0-4";
 	d2 = 4
@@ -89984,7 +90177,8 @@
 /turf/open/floor/plating,
 /area/security/brig)
 "dBE" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	icon_state = "0-4";
 	d2 = 4
@@ -89992,7 +90186,8 @@
 /turf/open/floor/plating,
 /area/security/brig)
 "dBF" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -90004,7 +90199,8 @@
 /turf/open/floor/plating,
 /area/security/brig)
 "dBG" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -90012,7 +90208,8 @@
 /turf/open/floor/plating,
 /area/security/brig)
 "dBH" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable/yellow{
 	icon_state = "0-4";
@@ -90021,7 +90218,8 @@
 /turf/open/floor/plating,
 /area/security/brig)
 "dBI" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/engine/break_room)
@@ -90034,7 +90232,8 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "dBK" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/machinery/door/poddoor{
 	density = 0;
 	icon_state = "open";
@@ -90064,7 +90263,8 @@
 	},
 /area/engine/atmos)
 "dBN" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -90081,7 +90281,8 @@
 /turf/open/floor/plasteel/freezer,
 /area/medical/virology)
 "dBP" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -90089,7 +90290,8 @@
 /turf/open/floor/plating,
 /area/medical/virology)
 "dBQ" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -90097,7 +90299,8 @@
 /turf/open/floor/plating,
 /area/medical/virology)
 "dBR" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	icon_state = "0-4";
 	d2 = 4
@@ -90118,7 +90321,8 @@
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "dBT" = (
-/obj/effect/spawner/structure/window,
+/obj/structure/grille,
+/obj/structure/window/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -90127,7 +90331,8 @@
 /turf/open/floor/plating,
 /area/medical/virology)
 "dBU" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
@@ -90135,12 +90340,14 @@
 /turf/open/floor/plating,
 /area/medical/virology)
 "dBV" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/medical/virology)
 "dBW" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/medical/virology)
@@ -111567,7 +111774,7 @@ cia
 cia
 cuj
 cbx
-dDw
+dDx
 bXE
 cxU
 cxU
@@ -113328,7 +113535,7 @@ bok
 bqz
 bsL
 buk
-dCH
+dCQ
 bdP
 baG
 baG
@@ -113337,7 +113544,7 @@ bEB
 baG
 bHW
 baG
-dCH
+dDd
 baG
 bdP
 baG
@@ -113822,7 +114029,7 @@ aJN
 dhI
 aME
 aNW
-dCt
+dCu
 aQx
 aMB
 aTe
@@ -113858,7 +114065,7 @@ bGy
 bGy
 bGy
 bTG
-dCE
+dDj
 bWk
 bXK
 bYV
@@ -116656,7 +116863,7 @@ aJS
 aUx
 aUx
 aXI
-dCE
+dCF
 baQ
 bci
 aaf
@@ -118211,7 +118418,7 @@ bov
 bqN
 bsX
 buA
-dCK
+dCR
 byg
 bzW
 bBJ
@@ -118976,7 +119183,7 @@ aaf
 bfw
 bhp
 bjb
-dCK
+dCL
 bmE
 boy
 bqP
@@ -120540,7 +120747,7 @@ bQr
 bRJ
 bGM
 bTW
-dCE
+dDk
 bWA
 bXV
 bZk
@@ -120768,7 +120975,7 @@ aTp
 aIT
 aTk
 aXS
-dCE
+dCG
 baV
 bcj
 bdH
@@ -120997,7 +121204,7 @@ ajF
 akP
 ami
 anx
-dCb
+dCd
 apU
 arp
 asF
@@ -121598,7 +121805,7 @@ cAu
 cBo
 crL
 cwN
-dDy
+dDD
 cFl
 cGh
 cHb
@@ -123107,7 +123314,7 @@ aWf
 aWf
 aWf
 aWf
-dCT
+dDh
 aWf
 aWf
 bVo
@@ -123590,7 +123797,7 @@ aMY
 aOu
 aOv
 aQR
-dCv
+dCy
 aTw
 aUM
 aWs
@@ -124655,7 +124862,7 @@ bUh
 bVs
 bWN
 bWR
-dDl
+dDn
 caM
 ccu
 bST
@@ -126699,7 +126906,7 @@ dCU
 byC
 bwX
 bHe
-dCU
+dDc
 bKm
 bKe
 bNE
@@ -130517,7 +130724,7 @@ axQ
 ayR
 axY
 aBG
-dCk
+dCm
 aEk
 aFs
 aGT
