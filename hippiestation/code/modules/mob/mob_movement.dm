@@ -1,4 +1,5 @@
 #define MAX_SW_LUMS 0.2
+#define ALLOW_PULL_THROUGH_WALLS 0
 
 proc/Is_ShadowWalkable(var/turf/loc)
 	return (loc.get_lumcount()==null || loc.get_lumcount() <= MAX_SW_LUMS)
@@ -28,6 +29,8 @@ proc/Can_ShadowWalk(var/mob/mob)
 			if(L.buckled && L.buckled.buckle_prevents_pull) //if they're buckled to something that disallows pulling, prevent it
 				mob.stop_pulling()
 				doPull = FALSE
+		if((mobloc.density || target.density) && !ALLOW_PULL_THROUGH_WALLS) //this will disallow the target to be pulled if the shadowwalker is on or going into a solid tile.
+			doPull = FALSE
 		if (doPull)
 			var/turf/pullloc = get_turf(mob.pulling)
 			if(Is_ShadowWalkable(mobloc) || Is_ShadowWalkable(target) || Is_ShadowWalkable(pullloc))
