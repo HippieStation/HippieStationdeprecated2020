@@ -1,44 +1,40 @@
 #define MAX_SW_LUMS 0.2
 
+proc/Is_ShadowWalkable(var/turf/loc)
+	return (loc.get_lumcount()==null || loc.get_lumcount() <= MAX_SW_LUMS)
+
 proc/Can_ShadowWalk(var/mob/mob)
 	if(mob.shadow_walk)
-		return 1
+		return TRUE
 	if(ishuman(mob))
 		var/mob/living/carbon/human/H = mob
 		if(istype(H.dna.species, /datum/species/shadow/ling))
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 /client/proc/Process_ShadowWalk(direct)
 	var/turf/target = get_step(mob, direct)
 	var/turf/mobloc = get_turf(mob)
 
 	if (istype(mob.pulling))
-		var/doPull = 1
-		if (mob.pulling.anchored)
+		var/doPull = TRUE
+		if (mob.pulling.anchored || !mob.pulling.Adjacent(src))
 			mob.stop_pulling()
-			doPull = 0
-		if (mob.pulling == mob.loc && mob.pulling.density)
-			mob.stop_pulling()
-			doPull = 0
-		if (istype(mob.pulling, /mob/))
-			var/mob/M = mob.pulling
-
-			M.stop_pulling()
-			if (M.buckled)
+			doPull = FALSE
+		if(isliving(mob.pulling))
+			var/mob/living/L = mob.pulling
+			if(L.buckled && L.buckled.buckle_prevents_pull) //if they're buckled to something that disallows pulling, prevent it
 				mob.stop_pulling()
-				doPull = 0
+				doPull = FALSE
 		if (doPull)
 			var/turf/pullloc = get_turf(mob.pulling)
-
-			if(mobloc.get_lumcount()==null || mobloc.get_lumcount() <= MAX_SW_LUMS || pullloc.get_lumcount()==null || pullloc.get_lumcount() <= MAX_SW_LUMS || target.get_lumcount()==null || target.get_lumcount() <= MAX_SW_LUMS)
+			if(Is_ShadowWalkable(mobloc) || Is_ShadowWalkable(target) || Is_ShadowWalkable(pullloc))
 				mob.pulling.dir = get_dir(mob.pulling, mob)
-				mob.pulling.loc = mob.loc
-				return 1
+				mob.pulling.forceMove(mob.loc)
 
-	if (target.get_lumcount() == null || target.get_lumcount() <= MAX_SW_LUMS)
-		mob.loc = target
+	if(Is_ShadowWalkable(target))
+		mob.forceMove(target)
 		mob.dir = direct
-		return 1
+		return TRUE
 
-	return 0
+	return FALSE
