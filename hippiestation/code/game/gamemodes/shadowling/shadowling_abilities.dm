@@ -73,7 +73,7 @@
 		if(F.on)
 			if(is_type_in_list(I, blacklisted_lights))
 				I.visible_message("<span class='danger'>[I] dims slightly before scattering the shadows around it.</span>")
-				return F.brightness_on //Necessary because flashlights become 0-luminosity when held.  I don't make the rules of lightcode.
+				retun F.brightness_on //Necessary because flashlights become 0-luminosity when held.  I don't make the rules of lightcode.
 			F.on = 0
 			F.update_brightness()
 	else if(istype(I, /obj/item/device/pda))
@@ -112,7 +112,8 @@
 		for(var/mob/living/silicon/robot/borgie in T.contents)
 			borgie.update_headlamp(1)
 		for(var/obj/machinery/camera/cam in T.contents)
-			if(prob(50))
+			cam.set_light(0)
+			if(prob(10))
 				cam.emp_act(2)
 			
 
