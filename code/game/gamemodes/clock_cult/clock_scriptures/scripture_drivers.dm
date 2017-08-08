@@ -21,10 +21,7 @@
 /datum/clockwork_scripture/channeled/belligerent/chant_effects(chant_number)
 	for(var/mob/living/carbon/C in hearers(7, invoker))
 		C.apply_status_effect(STATUS_EFFECT_BELLIGERENT)
-<<<<<<< HEAD
-=======
 	new /obj/effect/temp_visual/ratvar/belligerent(get_turf(invoker))
->>>>>>> 91ef47fb8f... just that
 	return TRUE
 
 
