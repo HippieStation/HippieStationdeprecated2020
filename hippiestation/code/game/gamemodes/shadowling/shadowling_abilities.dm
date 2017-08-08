@@ -73,7 +73,7 @@
 		if(F.on)
 			if(is_type_in_list(I, blacklisted_lights))
 				I.visible_message("<span class='danger'>[I] dims slightly before scattering the shadows around it.</span>")
-				retun F.brightness_on //Necessary because flashlights become 0-luminosity when held.  I don't make the rules of lightcode.
+				return F.brightness_on //Necessary because flashlights become 0-luminosity when held.  I don't make the rules of lightcode.
 			F.on = 0
 			F.update_brightness()
 	else if(istype(I, /obj/item/device/pda))
