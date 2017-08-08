@@ -62,8 +62,6 @@
 /obj/effect/temp_visual/ratvar/grille/broken
 	icon_state = "ratvarbrokengrilleglow"
 
-<<<<<<< HEAD
-=======
 /obj/effect/temp_visual/ratvar/belligerent
 	layer = ABOVE_MOB_LAYER
 	icon = 'icons/obj/clockwork_objects.dmi'
@@ -75,7 +73,6 @@
 	. = ..()
 	animate(src, alpha = 0, time = duration, easing = EASE_OUT)
 
->>>>>>> 91ef47fb8f... just that
 /obj/effect/temp_visual/ratvar/mending_mantra
 	layer = ABOVE_MOB_LAYER
 	duration = 20
