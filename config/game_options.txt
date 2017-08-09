@@ -116,6 +116,7 @@ CONTINUOUS MALFUNCTION
 CONTINUOUS BLOB
 CONTINUOUS ABDUCTION
 #CONTINUOUS MONKEY
+#CONTINUOUS SHADOWLING
 
 ##Note: do not toggle continuous off for these modes, as they have no antagonists and would thus end immediately!
 
@@ -140,7 +141,8 @@ MIDROUND_ANTAG WIZARD
 MIDROUND_ANTAG MALFUNCTION
 MIDROUND_ANTAG BLOB
 MIDROUND_ANTAG ABDUCTION
-#MIDROUND_ANTAG  MONKEY
+#MIDROUND_ANTAG MONKEY
+#MIDROUND_ANTAG SHADOWLING
 
 ## Uncomment these for overrides of the minimum / maximum number of players in a round type. 
 ## If you set any of these occasionally check to see if you still need them as the modes
@@ -196,6 +198,9 @@ MIDROUND_ANTAG ABDUCTION
 ## Setting at least one mode to be playable at 0/1 players is required.
 #MIN_POP EXTENDED 0
 #MAX_POP EXTENDED -1
+
+#MIN_POP SHADOWLING 25
+#MAX_POP SHADOWLING -1
 
 
 
