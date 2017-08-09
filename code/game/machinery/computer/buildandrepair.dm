@@ -142,6 +142,7 @@
 			new /obj/item/weapon/shard(loc)
 		if(state >= 3)
 			new /obj/item/stack/cable_coil(loc , 5)
+<<<<<<< HEAD
 	..()
 
 
@@ -459,3 +460,6 @@
 	name = "\improper Power Flow Control Console (Computer Board)"
 	build_path = /obj/machinery/computer/apc_control
 	origin_tech = "programming=3;engineering=3;powerstorage=2"
+=======
+	..()
+>>>>>>> df94d4b189... Merge pull request #29747 from lzimann/machinerycopypasta
