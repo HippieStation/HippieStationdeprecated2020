@@ -68,7 +68,7 @@ Made by Xhuis
 	name = "shadowling"
 	config_tag = "shadowling"
 	antag_flag = ROLE_SHADOWLING
-	required_players = 30
+	required_players = 26
 	required_enemies = 3
 	recommended_enemies = 2
 	restricted_jobs = list("AI", "Cyborg")
@@ -120,7 +120,7 @@ Made by Xhuis
 	to_chat(shadow.current, "<b>Currently, you are disguised as an employee aboard [station_name()]].</b>")
 	to_chat(shadow.current, "<b>In your limited state, you have three abilities: Enthrall, Hatch, and Hivemind Commune.</b>")
 	to_chat(shadow.current, "<b>Any other shadowlings are your allies. You must assist them as they shall assist you.</b>")
-	to_chat(shadow.current, "<b>If you are new to shadowling, or want to read about abilities, check the wiki page at https://tgstation13.org/wiki/Shadowling</b><br>")
+	to_chat(shadow.current, "<b>If you are new to shadowling, or want to read about abilities, check the wiki page at https://wiki.hippiestation.com/index.php?title=Shadowling</b><br>")
 	to_chat(shadow.current, "<b>You require [required_thralls] thralls to ascend.</b><br>")
 	shadow.current.playsound_local(get_turf(shadow.current), 'hippiestation/sound/ambience/antag/sling.ogg', 100, FALSE, pressure_affected = FALSE)
 
@@ -160,7 +160,7 @@ Made by Xhuis
 		new_thrall_mind.AddSpell(new /obj/effect/proc_holder/spell/self/lesser_shadowling_hivemind(null))
 		new_thrall_mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/lesser_glare(null))
 		new_thrall_mind.AddSpell(new /obj/effect/proc_holder/spell/self/lesser_shadow_walk(null))
-		new_thrall_mind.AddSpell(new /obj/effect/proc_holder/spell/self/thrall_vision(null))
+		new_thrall_mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/night_vision/thrall(null))
 		to_chat(new_thrall_mind.current, "<span class='shadowling'><b>You see the truth. Reality has been torn away and you realize what a fool you've been.</b></span>")
 		to_chat(new_thrall_mind.current, "<span class='shadowling'><b>The shadowlings are your masters.</b> Serve them above all else and ensure they complete their goals.</span>")
 		to_chat(new_thrall_mind.current, "<span class='shadowling'>You may not harm other thralls or the shadowlings. However, you do not need to obey other thralls.</span>")
@@ -268,7 +268,7 @@ Made by Xhuis
 	id = "shadowling"
 	say_mod = "chitters"
 	species_traits = list(NOBREATH,NOBLOOD,RADIMMUNE,NOGUNS) //Can't use guns due to muzzle flash
-	mutanteyes = /obj/item/organ/eyes/night_vision/sling
+	mutanteyes = /obj/item/organ/eyes/night_vision/alien/sling
 	burnmod = 1.5 //1.5x burn damage, 2x is excessive
 	heatmod = 1.5
 

@@ -110,12 +110,13 @@
 		for(var/mob/living/H in T.contents)
 			extinguishMob(H)
 		for(var/mob/living/silicon/robot/borgie in T.contents)
-			borgie.update_headlamp(1)
+      borgie.update_headlamp(TRUE, 150)
+			borgie.lamp_recharging = TRUE
+			borgie.lamp_intensity = 0
 		for(var/obj/machinery/camera/cam in T.contents)
 			cam.set_light(0)
 			if(prob(10))
 				cam.emp_act(2)
-			
 
 /obj/effect/proc_holder/spell/aoe_turf/flashfreeze //Stuns and freezes nearby people - a bit more effective than a changeling's cryosting
 	name = "Icy Veins"
@@ -210,7 +211,7 @@
 					to_chat(user, "<span class='notice'>You begin preparing [target]'s mind as a blank slate...</span>")
 					user.visible_message("<span class='warning'>[user]'s palms flare a bright red against [target]'s temples!</span>")
 					to_chat(target, "<span class='danger'>A terrible red light floods your mind. You collapse as conscious thought is wiped away.</span>")
-					target.Knockdown(12)
+					target.Knockdown(120)
 					if(target.isloyal())
 						to_chat(user, "<span class='notice'>They are protected by an implant. You begin to shut down the nanobots in their brain - this will take some time..</span>")
 						user.visible_message("<span class='warning'>[user] pauses, then dips their head in concentration!</span>")
@@ -655,28 +656,12 @@
 	addtimer(CALLBACK(src, .proc/reappear, user), 40)
 
 
-/obj/effect/proc_holder/spell/self/thrall_vision //Toggleable night vision for thralls
-	name = "Darksight"
-	desc = "Gives you night vision."
-	panel = "Thrall Abilities"
-	charge_max = 0
-	human_req = 1
-	clothes_req = 0
+
+/obj/effect/proc_holder/spell/targeted/night_vision/thrall //Toggleable night vision for thralls
+	name = "Thrall Darksight"
+	desc = "Allows you to see in the dark!"
 	action_icon_state = "darksight"
-	active = 0
 	action_icon = 'hippiestation/icons/mob/actions.dmi'
-
-/obj/effect/proc_holder/spell/self/thrall_vision/cast(mob/living/carbon/human/user)
-	var/obj/item/organ/eyes/E = user.getorganslot("eye_sight")
-	active = !active
-	if(active)
-		to_chat(user, "<span class='notice'>You shift the nerves in your eyes, allowing you to see in the dark.</span>")
-		E.sight_flags |= (SEE_MOBS|SEE_INFRA|SEE_SELF)
-	else
-		to_chat(user, "<span class='notice'>You return your vision to normal.</span>")
-		E.sight_flags -= (SEE_MOBS|SEE_INFRA|SEE_SELF)
-	user.update_sight()
-
 
 /obj/effect/proc_holder/spell/self/lesser_shadowling_hivemind //Lets a thrall talk with their allies
 	name = "Lesser Commune"
