@@ -1,4 +1,5 @@
 //Please use mob or src (not usr) in these procs. This way they can be called in the same fashion as procs.
+<<<<<<< HEAD
 /client/verb/wiki()
 	set name = "wiki"
 	set desc = "Visit the wiki."
@@ -7,6 +8,18 @@
 		if(alert("This will open the wiki in your browser. Are you sure?",,"Yes","No")=="No")
 			return
 		src << link(config.wikiurl)
+=======
+/client/verb/wiki(query as text | null)
+	set name = "wiki"
+	set desc = "Type what you want to know about.  This will open the wiki on your web browser. Type nothing to go to the main page."
+	set hidden = 1
+	if(config.wikiurl)
+		if(query)
+			var/output = config.wikiurl + "/index.php?title=Special%3ASearch&profile=default&search=" + query
+			src << link(output)
+		else if (query != null)
+			src << link(config.wikiurl)
+>>>>>>> 95e19b85a5... Update interface.dm
 	else
 		to_chat(src, "<span class='danger'>The wiki URL is not set in the server configuration.</span>")
 	return
