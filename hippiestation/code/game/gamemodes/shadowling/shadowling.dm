@@ -75,6 +75,23 @@ Made by Xhuis
 	restricted_jobs = list("AI", "Cyborg")
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 
+/datum/game_mode/shadowling/make_antag_chance(mob/living/carbon/human/character) //Assigns shadowling as a mulligan
+	var/traitorcap = 5
+	if((SSticker.mode.traitors.len + pre_traitors.len) >= traitorcap) //Upper cap for number of latejoin antagonists
+		return
+	if((SSticker.mode.traitors.len + pre_traitors.len) <= (traitorcap - 2) || prob(100 / (config.traitor_scaling_coeff * 2)))
+		if(ROLE_TRAITOR in character.client.prefs.be_special)
+			if(!jobban_isbanned(character, ROLE_SHADOWLING) && !jobban_isbanned(character, "Syndicate"))
+				if(age_check(character.client))
+					if(!(character.job in restricted_jobs))
+						log_game("[character.key] (ckey) has been selected as a Shadowling.")
+						sleep(10)
+						to_chat(character, "<br>")
+						to_chat(character, "<span class='shadowling'><b><font size=3>You are a shadowling!</font></b></span>")
+						greet_shadow(character)
+						finalize_shadowling(character)
+						process_shadow_objectives(character)
+
 /datum/game_mode/shadowling/announce()
 	to_chat(world, "<b>The current game mode is - Shadowling!</b>")
 	to_chat(world, "<b>There are alien <span class='shadowling'>shadowlings</span> on the station. Crew: Kill the shadowlings before they can enthrall the crew. Shadowlings: Enthrall the crew while remaining in hiding.</b>")
