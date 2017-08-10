@@ -71,6 +71,7 @@ Made by Xhuis
 	required_players = 26
 	required_enemies = 3
 	recommended_enemies = 2
+	reroll_friendly = 1
 	restricted_jobs = list("AI", "Cyborg")
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 
