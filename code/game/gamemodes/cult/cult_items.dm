@@ -166,6 +166,12 @@
 	max = 40
 	prefix = "darkened"
 
+<<<<<<< HEAD
+=======
+/obj/item/weapon/sharpener/cult/update_icon()
+	icon_state = "cult_sharpener[used ? "_used" : ""]"
+
+>>>>>>> 10c5366f4a... Compacted the used-check. Corrected whetstone-warning-spans.
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield
 	name = "empowered cultist armor"
 	desc = "Empowered garb which creates a powerful shield around the user."
