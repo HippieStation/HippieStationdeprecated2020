@@ -87,6 +87,7 @@
 	for(var/obj/item/F in H)
 		blacklistLuminosity += extinguishItem(F)
 	H.set_light(blacklistLuminosity) //I hate lightcode for making me do it this way
+	
 
 /obj/effect/proc_holder/spell/aoe_turf/veil/cast(list/targets,mob/user = usr)
 	if(!shadowling_check(user) && !admin_override)
@@ -109,7 +110,13 @@
 		for(var/mob/living/H in T.contents)
 			extinguishMob(H)
 		for(var/mob/living/silicon/robot/borgie in T.contents)
-			borgie.update_headlamp(1)
+			borgie.update_headlamp(TRUE, 150)
+			borgie.lamp_recharging = TRUE
+			borgie.lamp_intensity = 0
+		for(var/obj/machinery/camera/cam in T.contents)
+			cam.set_light(0)
+			if(prob(10))
+				cam.emp_act(2)
 
 /obj/effect/proc_holder/spell/aoe_turf/flashfreeze //Stuns and freezes nearby people - a bit more effective than a changeling's cryosting
 	name = "Icy Veins"
@@ -204,7 +211,7 @@
 					to_chat(user, "<span class='notice'>You begin preparing [target]'s mind as a blank slate...</span>")
 					user.visible_message("<span class='warning'>[user]'s palms flare a bright red against [target]'s temples!</span>")
 					to_chat(target, "<span class='danger'>A terrible red light floods your mind. You collapse as conscious thought is wiped away.</span>")
-					target.Knockdown(12)
+					target.Knockdown(120)
 					if(target.isloyal())
 						to_chat(user, "<span class='notice'>They are protected by an implant. You begin to shut down the nanobots in their brain - this will take some time..</span>")
 						user.visible_message("<span class='warning'>[user] pauses, then dips their head in concentration!</span>")
