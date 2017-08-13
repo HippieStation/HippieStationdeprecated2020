@@ -46829,7 +46829,7 @@
 	pixel_x = 0;
 	pixel_y = -28
 	},
-/obj/structure/chair/stool,
+/obj/machinery/computer/shuttle/mining,
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "bXV" = (
@@ -53598,10 +53598,47 @@
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/space/basic,
+<<<<<<< HEAD
 /area/ai_monitored/turret_protected/AIsatextAS)
 "cnI" = (
 /turf/open/space/basic,
 /area/ai_monitored/turret_protected/AIsatextAS)
+=======
+/area/space/nearstation)
+"cBg" = (
+/obj/structure/lattice,
+/turf/closed/mineral,
+/area/chapel/asteroid{
+	name = "Monastery Asteroid"
+	})
+"cBh" = (
+/obj/structure/lattice,
+/turf/closed/mineral,
+/area/chapel/asteroid{
+	name = "Monastery Asteroid"
+	})
+"cBi" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "Brig Maintenance APC";
+	pixel_y = 24
+	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/security/brig)
+"cBj" = (
+/obj/structure/ore_box,
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
+>>>>>>> cd67ec1079... Adds ore box and shuttle console to aux bases on all maps.
 
 (1,1,1) = {"
 aaa
@@ -77923,7 +77960,7 @@ bUa
 bva
 bVv
 bSw
-bDi
+bPC
 bXU
 bva
 bZt
@@ -79466,7 +79503,7 @@ bva
 bva
 bva
 bDi
-bDi
+cBj
 bva
 bZv
 cad
