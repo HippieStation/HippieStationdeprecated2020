@@ -47,7 +47,7 @@
 /obj/machinery/airalarm
 	name = "air alarm"
 	desc = "A machine that monitors atmosphere levels. Goes off if the area is dangerous."
-	icon = 'icons/obj/monitors.dmi'
+	icon = 'hippiestation/icons/obj/monitors.dmi'
 	icon_state = "alarm0"
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
