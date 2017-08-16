@@ -1,7 +1,13 @@
 //Please use mob or src (not usr) in these procs. This way they can be called in the same fashion as procs.
+<<<<<<< HEAD
 /client/verb/wiki()
 	set name = "wiki"
 	set desc = "Visit the wiki."
+=======
+/client/verb/wiki(query as text)
+	set name = "wiki"
+	set desc = "Type what you want to know about.  This will open the wiki in your web browser. Type nothing to go to the main page."
+>>>>>>> 29f680f4c5... Merge pull request #29916 from NewSta1/master
 	set hidden = 1
 	if(config.wikiurl)
 		if(alert("This will open the wiki in your browser. Are you sure?",,"Yes","No")=="No")
