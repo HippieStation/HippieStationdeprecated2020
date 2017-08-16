@@ -9,6 +9,10 @@
 	icon_state = "bus"
 	anchored = TRUE
 	density = TRUE
+<<<<<<< HEAD
+=======
+	circuit = /obj/item/circuitboard/machine/ntnet_relay
+>>>>>>> bfe27a5f98... Merge branch 'master' into crafting-fixes
 	var/datum/ntnet/NTNet = null // This is mostly for backwards reference and to allow varedit modifications from ingame.
 	var/enabled = 1				// Set to 0 if the relay was turned off
 	var/dos_failure = 0			// Set to 1 if the relay failed due to (D)DoS attack

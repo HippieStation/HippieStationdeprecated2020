@@ -19,6 +19,10 @@
 	machinetype = 2
 	//heatgen = 20
 	netspeed = 40
+<<<<<<< HEAD
+=======
+	circuit = /obj/item/circuitboard/machine/telecomms/bus
+>>>>>>> bfe27a5f98... Merge branch 'master' into crafting-fixes
 	var/change_frequency = 0
 
 /obj/machinery/telecomms/bus/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)

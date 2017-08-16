@@ -16,7 +16,11 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 15
 	machinetype = 4
+<<<<<<< HEAD
 	//heatgen = 50
+=======
+	circuit = /obj/item/circuitboard/machine/telecomms/server
+>>>>>>> bfe27a5f98... Merge branch 'master' into crafting-fixes
 	var/list/log_entries = list()
 	var/list/stored_names = list()
 	var/list/TrafficActions = list()

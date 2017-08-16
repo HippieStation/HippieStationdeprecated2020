@@ -18,6 +18,10 @@
 	//heatgen = 0
 	netspeed = 5
 	long_range_link = 1
+<<<<<<< HEAD
+=======
+	circuit = /obj/item/circuitboard/machine/telecomms/relay
+>>>>>>> bfe27a5f98... Merge branch 'master' into crafting-fixes
 	var/broadcasting = 1
 	var/receiving = 1
 
