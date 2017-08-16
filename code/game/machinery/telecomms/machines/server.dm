@@ -16,7 +16,11 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 15
 	machinetype = 4
+<<<<<<< HEAD
 	//heatgen = 50
+=======
+	circuit = /obj/item/circuitboard/machine/telecomms/server
+>>>>>>> af4d9a85c9... Repaths /obj/item/weapon to /obj/item (#29929)
 	var/list/log_entries = list()
 	var/list/stored_names = list()
 	var/list/TrafficActions = list()

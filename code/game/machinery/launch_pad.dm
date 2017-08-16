@@ -8,6 +8,10 @@
 	use_power = TRUE
 	idle_power_usage = 200
 	active_power_usage = 2500
+<<<<<<< HEAD
+=======
+	circuit = /obj/item/circuitboard/machine/launchpad
+>>>>>>> af4d9a85c9... Repaths /obj/item/weapon to /obj/item (#29929)
 	var/stationary = TRUE //to prevent briefcase pad deconstruction and such
 	var/display_name = "Launchpad"
 	var/teleport_speed = 35
@@ -33,7 +37,7 @@
 
 /obj/machinery/launchpad/RefreshParts()
 	var/E = -1 //to make default parts have the base value
-	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		E += M.rating
 	range = initial(range)
 	range += E

@@ -21,7 +21,11 @@
 	//heatgen = 40
 	long_range_link = 1
 	netspeed = 40
+<<<<<<< HEAD
 
+=======
+	circuit = /obj/item/circuitboard/machine/telecomms/hub
+>>>>>>> af4d9a85c9... Repaths /obj/item/weapon to /obj/item (#29929)
 
 /obj/machinery/telecomms/hub/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 	if(is_freq_listening(signal))
