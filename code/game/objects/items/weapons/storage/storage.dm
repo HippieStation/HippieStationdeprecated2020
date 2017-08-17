@@ -47,7 +47,7 @@
 
 		if(!M.incapacitated())
 			if(!istype(over_object, /obj/screen))
-				return content_can_dump(over_object, M)
+				return dump_content_at(over_object, M)
 
 			if(loc != usr || (loc && loc.loc == usr))
 				return
@@ -71,10 +71,21 @@
 					handle_item_insertion(I, 0 , L)
 
 
+<<<<<<< HEAD:code/game/objects/items/weapons/storage/storage.dm
 //Check if this storage can dump the items
 /obj/item/weapon/storage/proc/content_can_dump(atom/dest_object, mob/user)
 	if(Adjacent(user) && dest_object.Adjacent(user))
 		if(dest_object.storage_contents_dump_act(src, user))
+=======
+/obj/item/weapon/storage/get_dumping_location(obj/item/weapon/storage/source,mob/user)
+	return src
+
+//Tries to dump content
+/obj/item/storage/proc/dump_content_at(atom/dest_object, mob/user)
+	var/atom/dump_destination = dest_object.get_dumping_location()
+	if(Adjacent(user) && dump_destination && user.Adjacent(dump_destination))
+		if(dump_destination.storage_contents_dump_act(src, user))
+>>>>>>> 94a5f4570a... Fixes dumping from inside the lockers (#29896):code/game/objects/items/storage/storage.dm
 			playsound(loc, "rustle", 50, 1, -5)
 			return 1
 	return 0

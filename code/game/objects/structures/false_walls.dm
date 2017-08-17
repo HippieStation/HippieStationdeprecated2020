@@ -137,8 +137,13 @@
 				new mineral(loc)
 	qdel(src)
 
+<<<<<<< HEAD
 /obj/structure/falsewall/storage_contents_dump_act(obj/item/weapon/storage/src_object, mob/user)
 	return 0
+=======
+/obj/structure/falsewall/get_dumping_location(obj/item/storage/source,mob/user)
+	return null
+>>>>>>> 94a5f4570a... Fixes dumping from inside the lockers (#29896)
 
 /obj/structure/falsewall/examine_status(mob/user) //So you can't detect falsewalls by examine.
 	return null
