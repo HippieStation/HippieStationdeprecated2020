@@ -16,7 +16,11 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 30
 	machinetype = 1
+<<<<<<< HEAD
 	//heatgen = 0
+=======
+	circuit = /obj/item/circuitboard/machine/telecomms/receiver
+>>>>>>> af4d9a85c9... Repaths /obj/item/weapon to /obj/item (#29929)
 
 /obj/machinery/telecomms/receiver/receive_signal(datum/signal/signal)
 

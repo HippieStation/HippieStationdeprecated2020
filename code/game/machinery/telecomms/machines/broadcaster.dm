@@ -17,8 +17,12 @@ GLOBAL_VAR_INIT(message_delay, 0) // To make sure restarting the recentmessages 
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 25
 	machinetype = 5
+<<<<<<< HEAD
 	/*heatgen = 0
 	delay = 7*/
+=======
+	circuit = /obj/item/circuitboard/machine/telecomms/broadcaster
+>>>>>>> af4d9a85c9... Repaths /obj/item/weapon to /obj/item (#29929)
 
 /obj/machinery/telecomms/broadcaster/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 	// Don't broadcast rejected signals

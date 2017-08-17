@@ -77,8 +77,13 @@
 
 	//handcuffed?
 	if(handcuffed)
+<<<<<<< HEAD
 		if(istype(handcuffed, /obj/item/weapon/restraints/handcuffs/cable))
 			msg += "<span class='warning'>[t_He] [t_is] [bicon(handcuffed)] restrained with cable!</span>\n"
+=======
+		if(istype(handcuffed, /obj/item/restraints/handcuffs/cable))
+			msg += "<span class='warning'>[t_He] [t_is] [icon2html(handcuffed, user)] restrained with cable!</span>\n"
+>>>>>>> af4d9a85c9... Repaths /obj/item/weapon to /obj/item (#29929)
 		else
 			msg += "<span class='warning'>[t_He] [t_is] [bicon(handcuffed)] handcuffed!</span>\n"
 

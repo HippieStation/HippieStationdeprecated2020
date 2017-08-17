@@ -18,6 +18,10 @@
 	//heatgen = 0
 	netspeed = 5
 	long_range_link = 1
+<<<<<<< HEAD
+=======
+	circuit = /obj/item/circuitboard/machine/telecomms/relay
+>>>>>>> af4d9a85c9... Repaths /obj/item/weapon to /obj/item (#29929)
 	var/broadcasting = 1
 	var/receiving = 1
 

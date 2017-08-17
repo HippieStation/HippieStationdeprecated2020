@@ -19,6 +19,10 @@
 	machinetype = 2
 	//heatgen = 20
 	netspeed = 40
+<<<<<<< HEAD
+=======
+	circuit = /obj/item/circuitboard/machine/telecomms/bus
+>>>>>>> af4d9a85c9... Repaths /obj/item/weapon to /obj/item (#29929)
 	var/change_frequency = 0
 
 /obj/machinery/telecomms/bus/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
