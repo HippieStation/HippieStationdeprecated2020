@@ -341,9 +341,15 @@
 		M.take_damage(damage*2, BRUTE, "melee", 1)
 
 /turf/proc/Bless()
+<<<<<<< HEAD
 	flags |= NOJAUNT
 
 /turf/storage_contents_dump_act(obj/item/weapon/storage/src_object, mob/user)
+=======
+	flags_1 |= NOJAUNT_1
+
+/turf/storage_contents_dump_act(obj/item/storage/src_object, mob/user)
+>>>>>>> 093cb1a184... Adds RCL inhands (#29964)
 	if(src_object.contents.len)
 		to_chat(usr, "<span class='notice'>You start dumping out the contents...</span>")
 		if(!do_after(usr,20,target=src_object))
