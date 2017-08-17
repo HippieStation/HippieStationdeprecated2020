@@ -67,6 +67,7 @@
 		var/zone = ran_zone("chest", 65)//Hits a random part of the body, geared towards the chest
 		var/dtype = BRUTE
 		var/volume = I.get_volume_by_throwforce_and_or_w_class()
+<<<<<<< HEAD
 		if(istype(I, /obj/item/weapon)) //If the item is a weapon...
 			var/obj/item/weapon/W = I
 			dtype = W.damtype
@@ -78,6 +79,17 @@
 					playsound(loc, W.hitsound, volume, 1, -1) //...play the weapon's hitsound.
 				else if(!W.throwhitsound) //Otherwise, if throwhitsound isn't defined...
 					playsound(loc, 'sound/weapons/genhit.ogg',volume, 1, -1) //...play genhit.ogg.
+=======
+		dtype = I.damtype
+
+		if (I.throwforce > 0) //If the weapon's throwforce is greater than zero...
+			if (I.throwhitsound) //...and throwhitsound is defined...
+				playsound(loc, I.throwhitsound, volume, 1, -1) //...play the weapon's throwhitsound.
+			else if(I.hitsound) //Otherwise, if the weapon's hitsound is defined...
+				playsound(loc, I.hitsound, volume, 1, -1) //...play the weapon's hitsound.
+			else if(!I.throwhitsound) //Otherwise, if throwhitsound isn't defined...
+				playsound(loc, 'sound/weapons/genhit.ogg',volume, 1, -1) //...play genhit.ogg.
+>>>>>>> 4fe6c4f06d... Removes redundant check (#29950)
 
 		else if(!I.throwhitsound && I.throwforce > 0) //Otherwise, if the item doesn't have a throwhitsound and has a throwforce greater than zero...
 			playsound(loc, 'sound/weapons/genhit.ogg', volume, 1, -1)//...play genhit.ogg
