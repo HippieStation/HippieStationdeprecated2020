@@ -229,8 +229,8 @@ research holder datum.
 	id = "powerstorage"
 
 /datum/tech/bluespace
-	name = "\"Blue-space\" Research"
-	desc = "Research into the sub-reality known as \"blue-space\"."
+	name = "\"Bluespace\" Research"
+	desc = "Research into the sub-reality known as \"bluespace\"."
 	id = "bluespace"
 	rare = 2
 

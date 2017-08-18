@@ -771,13 +771,13 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/singulo
 	name = "Singulo"
 	id = "singulo"
-	description = "A blue-space beverage!"
+	description = "A bluespace beverage!"
 	color = "#2E6671" // rgb: 46, 102, 113
 	boozepwr = 35
 	taste_description = "concentrated matter"
 	glass_icon_state = "singulo"
 	glass_name = "Singulo"
-	glass_desc = "A blue-space beverage."
+	glass_desc = "A bluespace beverage."
 
 /datum/reagent/consumable/ethanol/sbiten
 	name = "Sbiten"
