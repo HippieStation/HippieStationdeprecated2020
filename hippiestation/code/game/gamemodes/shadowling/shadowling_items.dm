@@ -73,32 +73,8 @@
 	item_state = null
 	origin_tech = null
 	vision_flags = SEE_MOBS
-	darkness_view = 1
 	invis_view = 2
 	flash_protect = -1
-	darkness_view = 8
 	actions_types = list()
 	var/isOn = TRUE
 	flags = ABSTRACT | NODROP | UNACIDABLE
-
-
-/obj/item/clothing/glasses/night/shadowling/attack_self(mob/user)
-	if(!ishuman(user))
-		return
-	var/mob/living/carbon/human/H = user
-	var/obj/item/organ/eyes/E = user.getorganslot("eye_sight")
-	if(H.dna.species.id != "shadowling")
-		to_chat(user, "<span class='warning'>You aren't sure how to do this...</span>")
-		return
-	if (!isOn)
-		E.sight_flags |= (SEE_MOBS|SEE_SELF)
-		E.see_in_dark = 8
-		darkness_view = 8
-		to_chat(user, "<span class='notice>Your night vision rises beyond human levels, allowing you to see no matter the light level</span>")
-	else
-		E.sight_flags -= (SEE_MOBS|SEE_SELF)
-		E.see_in_dark = 2
-		darkness_view = 0
-		to_chat(user, "<span class='notice>Your night vision subsides to that of a human.</span>")
-
-	user.update_sight()
