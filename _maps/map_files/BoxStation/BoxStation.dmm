@@ -25740,7 +25740,6 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/whitered/corner{
-	icon_state = "whiteredcorner";
 	dir = 1
 	},
 /area/science/robotics/lab)
@@ -33500,17 +33499,11 @@
 	pressure_checks = 0;
 	name = "server vent"
 	},
-/turf/open/floor/circuit{
-	name = "Server Base";
-	initial_gas_mix = "n2=500;TEMP=80"
-	},
+/turf/open/floor/circuit/telecomms/server,
 /area/science/server)
 "bzu" = (
 /obj/machinery/r_n_d/server/robotics,
-/turf/open/floor/circuit{
-	name = "Server Base";
-	initial_gas_mix = "n2=500;TEMP=80"
-	},
+/turf/open/floor/circuit/telecomms/server,
 /area/science/server)
 "bzv" = (
 /obj/machinery/atmospherics/pipe/simple{
@@ -34001,10 +33994,7 @@
 /area/maintenance/port/aft)
 "bAy" = (
 /obj/effect/landmark/blobstart,
-/turf/open/floor/plasteel/black{
-	name = "Server Walkway";
-	initial_gas_mix = "n2=500;TEMP=80"
-	},
+/turf/open/floor/plasteel/black/telecomms/server/walkway,
 /area/science/server)
 "bAz" = (
 /obj/machinery/airalarm/server{
@@ -34014,10 +34004,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/plasteel/black{
-	name = "Server Walkway";
-	initial_gas_mix = "n2=500;TEMP=80"
-	},
+/turf/open/floor/plasteel/black/telecomms/server/walkway,
 /area/science/server)
 "bAA" = (
 /obj/machinery/atmospherics/pipe/manifold{
@@ -34661,17 +34648,11 @@
 	external_pressure_bound = 120;
 	name = "server vent"
 	},
-/turf/open/floor/circuit{
-	name = "Server Base";
-	initial_gas_mix = "n2=500;TEMP=80"
-	},
+/turf/open/floor/circuit/telecomms/server,
 /area/science/server)
 "bBT" = (
 /obj/machinery/r_n_d/server/core,
-/turf/open/floor/circuit{
-	name = "Server Base";
-	initial_gas_mix = "n2=500;TEMP=80"
-	},
+/turf/open/floor/circuit/telecomms/server,
 /area/science/server)
 "bBU" = (
 /obj/machinery/atmospherics/pipe/simple{
@@ -47867,10 +47848,7 @@
 	dir = 4;
 	network = list("SS13","RD")
 	},
-/turf/open/floor/circuit{
-	name = "Killroom Floor";
-	initial_gas_mix = "n2=500;TEMP=80"
-	},
+/turf/open/floor/circuit/killroom,
 /area/science/xenobiology)
 "cfs" = (
 /obj/machinery/door/airlock/maintenance{
@@ -48224,10 +48202,7 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "cgi" = (
-/turf/open/floor/circuit{
-	name = "Killroom Floor";
-	initial_gas_mix = "n2=500;TEMP=80"
-	},
+/turf/open/floor/circuit/killroom,
 /area/science/xenobiology)
 "cgj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -48248,10 +48223,7 @@
 	external_pressure_bound = 120;
 	name = "killroom vent"
 	},
-/turf/open/floor/circuit{
-	name = "Killroom Floor";
-	initial_gas_mix = "n2=500;TEMP=80"
-	},
+/turf/open/floor/circuit/killroom,
 /area/science/xenobiology)
 "cgm" = (
 /obj/structure/cable{
@@ -48743,10 +48715,7 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 5
 	},
-/turf/open/floor/circuit{
-	name = "Killroom Floor";
-	initial_gas_mix = "n2=500;TEMP=80"
-	},
+/turf/open/floor/circuit/killroom,
 /area/science/xenobiology)
 "chp" = (
 /obj/structure/disposalpipe/segment{
@@ -48761,10 +48730,7 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
 	},
-/turf/open/floor/circuit{
-	name = "Killroom Floor";
-	initial_gas_mix = "n2=500;TEMP=80"
-	},
+/turf/open/floor/circuit/killroom,
 /area/science/xenobiology)
 "chr" = (
 /obj/machinery/door/firedoor,
@@ -48780,10 +48746,7 @@
 "chs" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
-/turf/open/floor/circuit{
-	name = "Killroom Floor";
-	initial_gas_mix = "n2=500;TEMP=80"
-	},
+/turf/open/floor/circuit/killroom,
 /area/science/xenobiology)
 "cht" = (
 /obj/structure/disposalpipe/segment,
