@@ -168,16 +168,29 @@
 		loaded.item_color	 = colors[current_color_index]
 		last = loaded.place_turf(get_turf(src), user, turn(user.dir, 180))
 		is_empty(user) //If we've run out, display message
+	update_icon()
 
 
+<<<<<<< HEAD:code/game/objects/items/weapons/RCL.dm
 /obj/item/weapon/twohanded/rcl/pre_loaded/Initialize () //Comes preloaded with cable, for testing stuff
+=======
+/obj/item/twohanded/rcl/pre_loaded/Initialize() //Comes preloaded with cable, for testing stuff
+>>>>>>> 4f3657a05b... Makes RCL icons better at updating:code/game/objects/items/RCL.dm
 	. = ..()
 	loaded = new()
 	loaded.max_amount = max_amount
 	loaded.amount = max_amount
 	update_icon()
 
+<<<<<<< HEAD:code/game/objects/items/weapons/RCL.dm
 /obj/item/weapon/twohanded/rcl/ui_action_click(mob/user, action)
+=======
+/obj/item/twohanded/rcl/Initialize()
+	. = ..()
+	update_icon()
+
+/obj/item/twohanded/rcl/ui_action_click(mob/user, action)
+>>>>>>> 4f3657a05b... Makes RCL icons better at updating:code/game/objects/items/RCL.dm
 	if(istype(action, /datum/action/item_action/rcl))
 		current_color_index++;
 		if (current_color_index > colors.len)
