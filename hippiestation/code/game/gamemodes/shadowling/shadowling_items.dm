@@ -67,17 +67,3 @@
 	max_heat_protection_temperature = SPACE_HELM_MAX_TEMP_PROTECT
 	origin_tech = null
 	flags = ABSTRACT | NODROP | STOPSPRESSUREDMAGE | UNACIDABLE
-
-
-/obj/item/clothing/glasses/night/shadowling
-	name = "crimson eyes"
-	desc = "A shadowling's eyes. Very light-sensitive and can detect body heat through walls."
-	icon = 'icons/obj/surgery.dmi'
-	icon_state = "ling_thermal"
-	item_state = null
-	origin_tech = null
-	vision_flags = SEE_MOBS
-	invis_view = 2
-	flash_protect = -1
-	actions_types = list()
-	flags = ABSTRACT | NODROP | UNACIDABLE
