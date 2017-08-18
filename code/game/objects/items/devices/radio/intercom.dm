@@ -2,6 +2,7 @@
 	name = "station intercom"
 	desc = "Talk through this."
 	icon_state = "intercom"
+	icon = 'hippiestation/icons/obj/radio.dmi'
 	anchored = TRUE
 	w_class = WEIGHT_CLASS_BULKY
 	canhear_range = 2
@@ -123,6 +124,7 @@
 /obj/item/wallframe/intercom
 	name = "intercom frame"
 	desc = "A ready-to-go intercom. Just slap it on a wall and screw it in!"
+	icon = 'hippiestation/icons/obj/wallframe.dmi'
 	icon_state = "intercom"
 	result_path = /obj/item/device/radio/intercom/unscrewed
 	pixel_shift = 29
