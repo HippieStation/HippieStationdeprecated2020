@@ -31,6 +31,10 @@
 	density = TRUE
 	resistance_flags = FIRE_PROOF
 	CanAtmosPass = ATMOS_PASS_DENSITY
+<<<<<<< HEAD
+=======
+	circuit = /obj/item/circuitboard/machine/power_compressor
+>>>>>>> bfe27a5f98... Merge branch 'master' into crafting-fixes
 	var/obj/machinery/power/turbine/turbine
 	var/datum/gas_mixture/gas_contained
 	var/turf/inturf
@@ -51,6 +55,10 @@
 	density = TRUE
 	resistance_flags = FIRE_PROOF
 	CanAtmosPass = ATMOS_PASS_DENSITY
+<<<<<<< HEAD
+=======
+	circuit = /obj/item/circuitboard/machine/power_turbine
+>>>>>>> bfe27a5f98... Merge branch 'master' into crafting-fixes
 	var/opened = 0
 	var/obj/machinery/power/compressor/compressor
 	var/turf/outturf
@@ -62,7 +70,7 @@
 	desc = "A computer to remotely control a gas turbine."
 	icon_screen = "turbinecomp"
 	icon_keyboard = "tech_key"
-	circuit = /obj/item/weapon/circuitboard/computer/turbine_computer
+	circuit = /obj/item/circuitboard/computer/turbine_computer
 	var/obj/machinery/power/compressor/compressor
 	var/id = 0
 
@@ -110,7 +118,7 @@
 
 /obj/machinery/power/compressor/RefreshParts()
 	var/E = 0
-	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		E += M.rating
 	efficiency = E / 6
 
@@ -209,7 +217,7 @@
 
 /obj/machinery/power/turbine/RefreshParts()
 	var/P = 0
-	for(var/obj/item/weapon/stock_parts/capacitor/C in component_parts)
+	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		P += C.rating
 	productivity = P / 6
 

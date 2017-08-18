@@ -21,7 +21,11 @@
 	//heatgen = 40
 	long_range_link = 1
 	netspeed = 40
+<<<<<<< HEAD
 
+=======
+	circuit = /obj/item/circuitboard/machine/telecomms/hub
+>>>>>>> bfe27a5f98... Merge branch 'master' into crafting-fixes
 
 /obj/machinery/telecomms/hub/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 	if(is_freq_listening(signal))

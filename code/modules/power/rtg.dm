@@ -9,6 +9,10 @@
 	density = TRUE
 	anchored = TRUE
 	use_power = NO_POWER_USE
+<<<<<<< HEAD
+=======
+	circuit = /obj/item/circuitboard/machine/rtg
+>>>>>>> bfe27a5f98... Merge branch 'master' into crafting-fixes
 
 	// You can buckle someone to RTG, then open its panel. Fun stuff.
 	can_buckle = TRUE
@@ -45,7 +49,7 @@
 
 /obj/machinery/power/rtg/RefreshParts()
 	var/part_level = 0
-	for(var/obj/item/weapon/stock_parts/SP in component_parts)
+	for(var/obj/item/stock_parts/SP in component_parts)
 		part_level += SP.rating
 
 	power_gen = initial(power_gen) * part_level
@@ -68,6 +72,7 @@
 /obj/machinery/power/rtg/advanced
 	desc = "An advanced RTG capable of moderating isotope decay, increasing power output but reducing lifetime. It uses plasma-fueled radiation collectors to increase output even further."
 	power_gen = 1250 // 2500 on T1, 10000 on T4.
+<<<<<<< HEAD
 	board_path = /obj/item/weapon/circuitboard/machine/rtg/advanced
 
 /obj/item/weapon/circuitboard/machine/rtg/advanced
@@ -82,6 +87,9 @@
 		/obj/item/stack/sheet/mineral/plasma = 5)
 
 
+=======
+	circuit = /obj/item/circuitboard/machine/rtg/advanced
+>>>>>>> bfe27a5f98... Merge branch 'master' into crafting-fixes
 
 // Void Core, power source for Abductor ships and bases.
 // Provides a lot of power, but tends to explode when mistreated.
@@ -91,7 +99,11 @@
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "core"
 	desc = "An alien power source that produces energy seemingly out of nowhere."
+<<<<<<< HEAD
 	board_path = /obj/item/weapon/circuitboard/machine/abductor/core
+=======
+	circuit = /obj/item/circuitboard/machine/abductor/core
+>>>>>>> bfe27a5f98... Merge branch 'master' into crafting-fixes
 	power_gen = 20000 // 280 000 at T1, 400 000 at T4. Starts at T4.
 	irradiate = FALSE // Green energy!
 	can_buckle = FALSE

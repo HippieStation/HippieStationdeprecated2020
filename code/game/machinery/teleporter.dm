@@ -230,6 +230,11 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 2000
+<<<<<<< HEAD
+=======
+	circuit = /obj/item/circuitboard/machine/teleporter_hub
+	var/accurate = FALSE
+>>>>>>> bfe27a5f98... Merge branch 'master' into crafting-fixes
 	var/obj/machinery/teleport/station/power_station
 	var/calibrated //Calibration prevents mutation
 
@@ -259,7 +264,7 @@
 
 /obj/machinery/teleport/hub/RefreshParts()
 	var/A = 0
-	for(var/obj/item/weapon/stock_parts/matter_bin/M in component_parts)
+	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
 		A += M.rating
 	accurate = A
 
@@ -327,9 +332,15 @@
 /obj/machinery/teleport/hub/proc/is_ready()
 	. = !panel_open && !(stat & (BROKEN|NOPOWER)) && power_station && power_station.engaged && !(power_station.stat & (BROKEN|NOPOWER))
 
+<<<<<<< HEAD
 /obj/machinery/teleport/hub/syndicate/New()
 	..()
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin/super(null)
+=======
+/obj/machinery/teleport/hub/syndicate/Initialize()
+	. = ..()
+	component_parts += new /obj/item/stock_parts/matter_bin/super(null)
+>>>>>>> bfe27a5f98... Merge branch 'master' into crafting-fixes
 	RefreshParts()
 
 
@@ -341,6 +352,11 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 2000
+<<<<<<< HEAD
+=======
+	circuit = /obj/item/circuitboard/machine/teleporter_station
+	var/engaged = FALSE
+>>>>>>> bfe27a5f98... Merge branch 'master' into crafting-fixes
 	var/obj/machinery/computer/teleporter/teleporter_console
 	var/obj/machinery/teleport/hub/teleporter_hub
 	var/list/linked_stations = list()
@@ -367,7 +383,7 @@
 
 /obj/machinery/teleport/station/RefreshParts()
 	var/E
-	for(var/obj/item/weapon/stock_parts/capacitor/C in component_parts)
+	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		E += C.rating
 	efficiency = E - 1
 
@@ -395,7 +411,7 @@
 		teleporter_console = null
 	return ..()
 
-/obj/machinery/teleport/station/attackby(obj/item/weapon/W, mob/user, params)
+/obj/machinery/teleport/station/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/device/multitool))
 		var/obj/item/device/multitool/M = W
 		if(panel_open)
@@ -420,7 +436,7 @@
 	else if(default_deconstruction_crowbar(W))
 		return
 
-	else if(istype(W, /obj/item/weapon/wirecutters))
+	else if(istype(W, /obj/item/wirecutters))
 		if(panel_open)
 			link_console_and_hub()
 			to_chat(user, "<span class='caution'>You reconnect the station to nearby machinery.</span>")

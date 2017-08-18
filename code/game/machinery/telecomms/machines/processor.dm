@@ -16,8 +16,12 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 30
 	machinetype = 3
+<<<<<<< HEAD
 	//heatgen = 100
 	//delay = 5
+=======
+	circuit = /obj/item/circuitboard/machine/telecomms/processor
+>>>>>>> bfe27a5f98... Merge branch 'master' into crafting-fixes
 	var/process_mode = 1 // 1 = Uncompress Signals, 0 = Compress Signals
 
 /obj/machinery/telecomms/processor/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)

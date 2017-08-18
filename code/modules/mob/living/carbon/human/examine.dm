@@ -77,8 +77,13 @@
 
 	//handcuffed?
 	if(handcuffed)
+<<<<<<< HEAD
 		if(istype(handcuffed, /obj/item/weapon/restraints/handcuffs/cable))
 			msg += "<span class='warning'>[t_He] [t_is] [bicon(handcuffed)] restrained with cable!</span>\n"
+=======
+		if(istype(handcuffed, /obj/item/restraints/handcuffs/cable))
+			msg += "<span class='warning'>[t_He] [t_is] [icon2html(handcuffed, user)] restrained with cable!</span>\n"
+>>>>>>> bfe27a5f98... Merge branch 'master' into crafting-fixes
 		else
 			msg += "<span class='warning'>[t_He] [t_is] [bicon(handcuffed)] handcuffed!</span>\n"
 

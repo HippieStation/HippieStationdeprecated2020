@@ -11,6 +11,10 @@ Note: Must be placed within 3 tiles of the R&D Console
 	name = "destructive analyzer"
 	desc = "Learn science by destroying things!"
 	icon_state = "d_analyzer"
+<<<<<<< HEAD
+=======
+	circuit = /obj/item/circuitboard/machine/destructive_analyzer
+>>>>>>> bfe27a5f98... Merge branch 'master' into crafting-fixes
 	var/decon_mod = 0
 
 /obj/machinery/r_n_d/destructive_analyzer/Initialize()
@@ -29,7 +33,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 
 /obj/machinery/r_n_d/destructive_analyzer/RefreshParts()
 	var/T = 0
-	for(var/obj/item/weapon/stock_parts/S in component_parts)
+	for(var/obj/item/stock_parts/S in component_parts)
 		T += S.rating
 	decon_mod = T
 

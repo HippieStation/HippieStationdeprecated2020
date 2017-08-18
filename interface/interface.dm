@@ -1,7 +1,13 @@
 //Please use mob or src (not usr) in these procs. This way they can be called in the same fashion as procs.
+<<<<<<< HEAD
 /client/verb/wiki()
 	set name = "wiki"
 	set desc = "Visit the wiki."
+=======
+/client/verb/wiki(query as text)
+	set name = "wiki"
+	set desc = "Type what you want to know about.  This will open the wiki in your web browser. Type nothing to go to the main page."
+>>>>>>> bfe27a5f98... Merge branch 'master' into crafting-fixes
 	set hidden = 1
 	if(config.wikiurl)
 		if(alert("This will open the wiki in your browser. Are you sure?",,"Yes","No")=="No")

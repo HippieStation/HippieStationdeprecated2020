@@ -16,7 +16,11 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 30
 	machinetype = 1
+<<<<<<< HEAD
 	//heatgen = 0
+=======
+	circuit = /obj/item/circuitboard/machine/telecomms/receiver
+>>>>>>> bfe27a5f98... Merge branch 'master' into crafting-fixes
 
 /obj/machinery/telecomms/receiver/receive_signal(datum/signal/signal)
 

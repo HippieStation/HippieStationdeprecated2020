@@ -13,6 +13,10 @@
 	density = FALSE
 	anchored = TRUE
 	state_open = TRUE
+<<<<<<< HEAD
+=======
+	circuit = /obj/item/circuitboard/machine/sleeper
+>>>>>>> bfe27a5f98... Merge branch 'master' into crafting-fixes
 	var/efficiency = 1
 	var/min_health = -25
 	var/list/available_chems
@@ -46,10 +50,10 @@
 
 /obj/machinery/sleeper/RefreshParts()
 	var/E
-	for(var/obj/item/weapon/stock_parts/matter_bin/B in component_parts)
+	for(var/obj/item/stock_parts/matter_bin/B in component_parts)
 		E += B.rating
 	var/I
-	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		I += M.rating
 
 	efficiency = initial(efficiency)* E
