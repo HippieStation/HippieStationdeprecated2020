@@ -270,11 +270,17 @@
 	icon_state = "bottle3"
 	spawned_disease = /datum/disease/advance/heal
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/glass/bottle/hullucigen_virion
 	name = "Hullucigen virion culture bottle"
 	desc = "A small bottle. Contains hullucigen virion culture in synthblood medium."
+=======
+/obj/item/reagent_containers/glass/bottle/hallucigen_virion
+	name = "Hallucigen virion culture bottle"
+	desc = "A small bottle. Contains hallucigen virion culture in synthblood medium."
+>>>>>>> 28a5901170... You can now click on symptoms in the Pandemic to see their description and stats (#29866)
 	icon_state = "bottle3"
-	spawned_disease = /datum/disease/advance/hullucigen
+	spawned_disease = /datum/disease/advance/hallucigen
 
 /obj/item/weapon/reagent_containers/glass/bottle/pierrot_throat
 	name = "Pierrot's Throat culture bottle"

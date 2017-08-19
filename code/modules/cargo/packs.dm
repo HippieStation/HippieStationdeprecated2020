@@ -799,6 +799,7 @@
 	name = "Virus Crate"
 	cost = 2500
 	access = ACCESS_CMO
+<<<<<<< HEAD
 	contains = list(/obj/item/weapon/reagent_containers/glass/bottle/flu_virion,
 					/obj/item/weapon/reagent_containers/glass/bottle/cold,
 					/obj/item/weapon/reagent_containers/glass/bottle/epiglottis_virion,
@@ -813,6 +814,22 @@
 					/obj/item/weapon/storage/box/syringes,
 					/obj/item/weapon/storage/box/beakers,
 					/obj/item/weapon/reagent_containers/glass/bottle/mutagen)
+=======
+	contains = list(/obj/item/reagent_containers/glass/bottle/flu_virion,
+					/obj/item/reagent_containers/glass/bottle/cold,
+					/obj/item/reagent_containers/glass/bottle/epiglottis_virion,
+					/obj/item/reagent_containers/glass/bottle/liver_enhance_virion,
+					/obj/item/reagent_containers/glass/bottle/fake_gbs,
+					/obj/item/reagent_containers/glass/bottle/magnitis,
+					/obj/item/reagent_containers/glass/bottle/pierrot_throat,
+					/obj/item/reagent_containers/glass/bottle/brainrot,
+					/obj/item/reagent_containers/glass/bottle/hallucigen_virion,
+					/obj/item/reagent_containers/glass/bottle/anxiety,
+					/obj/item/reagent_containers/glass/bottle/beesease,
+					/obj/item/storage/box/syringes,
+					/obj/item/storage/box/beakers,
+					/obj/item/reagent_containers/glass/bottle/mutagen)
+>>>>>>> 28a5901170... You can now click on symptoms in the Pandemic to see their description and stats (#29866)
 	crate_name = "virus crate"
 	crate_type = /obj/structure/closet/crate/secure/plasma
 	dangerous = TRUE
