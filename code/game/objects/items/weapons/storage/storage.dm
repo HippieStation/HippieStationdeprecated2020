@@ -71,10 +71,21 @@
 					handle_item_insertion(I, 0 , L)
 
 
+<<<<<<< HEAD:code/game/objects/items/weapons/storage/storage.dm
 //Check if this storage can dump the items
 /obj/item/weapon/storage/proc/content_can_dump(atom/dest_object, mob/user)
 	if(Adjacent(user) && dest_object.Adjacent(user))
 		if(dest_object.storage_contents_dump_act(src, user))
+=======
+/obj/item/storage/get_dumping_location(obj/item/storage/source,mob/user)
+	return src
+
+//Tries to dump content
+/obj/item/storage/proc/dump_content_at(atom/dest_object, mob/user)
+	var/atom/dump_destination = dest_object.get_dumping_location()
+	if(Adjacent(user) && dump_destination && user.Adjacent(dump_destination))
+		if(dump_destination.storage_contents_dump_act(src, user))
+>>>>>>> bf94cc5431... Merge pull request #30005 from Cyberboss/nothing_happened:code/game/objects/items/storage/storage.dm
 			playsound(loc, "rustle", 50, 1, -5)
 			return 1
 	return 0
@@ -412,6 +423,11 @@
 
 	handle_item_insertion(W, 0 , user)
 
+<<<<<<< HEAD:code/game/objects/items/weapons/storage/storage.dm
+=======
+/obj/item/storage/AllowDrop()
+	return TRUE
+>>>>>>> bf94cc5431... Merge pull request #30005 from Cyberboss/nothing_happened:code/game/objects/items/storage/storage.dm
 
 /obj/item/weapon/storage/attack_hand(mob/user)
 	if(user.s_active == src && loc == user) //if you're already looking inside the storage item
