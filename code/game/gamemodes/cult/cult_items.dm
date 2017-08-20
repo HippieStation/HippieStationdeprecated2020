@@ -166,12 +166,9 @@
 	max = 40
 	prefix = "darkened"
 
-<<<<<<< HEAD
-=======
 /obj/item/sharpener/cult/update_icon()
 	icon_state = "cult_sharpener[used ? "_used" : ""]"
-
->>>>>>> af4d9a85c9... Repaths /obj/item/weapon to /obj/item (#29929)
+	
 /obj/item/clothing/suit/hooded/cultrobes/cult_shield
 	name = "empowered cultist armor"
 	desc = "Empowered garb which creates a powerful shield around the user."
