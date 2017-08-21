@@ -9,7 +9,13 @@
 	desc = "A toolbox painted bright green. Looking at it makes you feel uneasy."
 	icon_state = "his_grace"
 	item_state = "artistic_toolbox"
+<<<<<<< HEAD:code/game/objects/items/weapons/his_grace.dm
 	icon = 'icons/obj/weapons.dmi'
+=======
+	lefthand_file = 'icons/mob/inhands/equipment/toolbox_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/toolbox_righthand.dmi'
+	icon = 'icons/obj/items_and_weapons.dmi'
+>>>>>>> ffa5d9e388... Fixes missing inhands:code/game/objects/items/his_grace.dm
 	w_class = WEIGHT_CLASS_GIGANTIC
 	origin_tech = "combat=4;engineering=4;syndicate=2"
 	force = 12

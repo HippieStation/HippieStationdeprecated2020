@@ -2,8 +2,14 @@
 	name = "plastic explosive"
 	desc = "Used to put holes in specific areas without too much extra hole."
 	icon_state = "plastic-explosive0"
+<<<<<<< HEAD:code/game/objects/items/weapons/grenades/plastic.dm
 	item_state = "plastic-explosive"
 	flags = NOBLUDGEON
+=======
+	item_state = "plasticx"
+	flags_1 = NOBLUDGEON_1
+	flags_2 = NO_EMP_WIRES_2
+>>>>>>> ffa5d9e388... Fixes missing inhands:code/game/objects/items/grenades/plastic.dm
 	det_time = 10
 	display_timer = 0
 	var/atom/target = null
