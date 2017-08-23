@@ -95751,6 +95751,7 @@
 	dir = 8
 	},
 /mob/living/carbon/monkey,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/white{
 	baseturf = /turf/open/floor/plating/asteroid/airless
 	},
@@ -95762,6 +95763,3946 @@
 	baseturf = /turf/open/floor/plating/asteroid/airless
 	},
 /area/medical/virology)
+=======
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
+"dCX" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/computer/shuttle/mining,
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"dEm" = (
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/west)
+"dPQ" = (
+/obj/machinery/conveyor/auto{
+	dir = 8
+	},
+/obj/structure/plasticflaps,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/east)
+"dTM" = (
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/obj/structure/closet/firecloset/full,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/east)
+"dZe" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north)
+"ecv" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/orange{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north)
+"eec" = (
+/obj/machinery/conveyor/auto{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/east)
+"ehn" = (
+/obj/machinery/conveyor/auto{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/west/secondary)
+"ejj" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/closed/wall,
+/area/maintenance/asteroid/disposal/north/east)
+"enD" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/teleporter)
+"ewd" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/storage/primary)
+"eBB" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"eHJ" = (
+/obj/structure/table,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south)
+"eYG" = (
+/obj/machinery/airalarm{
+	pixel_y = 23
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/black,
+/area/engine/gravity_generator)
+"fbR" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/space/fragile,
+/obj/item/clothing/head/helmet/space/fragile,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/east)
+"fdP" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plating/asteroid,
+/area/maintenance/asteroid/fore/com_south)
+"ffH" = (
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/fore/com_east)
+"fkB" = (
+/obj/machinery/computer/med_data/syndie,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"fsD" = (
+/obj/structure/table/reinforced,
+/obj/machinery/status_display{
+	pixel_x = -32
+	},
+/obj/item/clipboard,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/folder/red,
+/obj/item/toy/figure/syndie,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"fxP" = (
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south/west)
+"fQQ" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal/deliveryChute{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/asteroid/disposal/south)
+"fTb" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/black,
+/area/crew_quarters/heads/hos)
+"fTn" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/airlock/maintenance{
+	name = "Fore Asteroid Maintenance Access";
+	req_access_txt = "12"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"fVk" = (
+/obj/machinery/computer/secure_data/syndie,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"fXq" = (
+/turf/open/space,
+/obj/machinery/porta_turret/syndicate{
+	dir = 9
+	},
+/turf/closed/wall/mineral/plastitanium{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/shuttle/syndicate)
+"ghw" = (
+/obj/structure/disposalpipe/sortjunction{
+	dir = 4;
+	icon_state = "pipe-j2s";
+	name = "disposal pipe - Robotics";
+	sortType = 14
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south)
+"gqd" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/west)
+"gAE" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/heads/hor)
+"gIL" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hop)
+"gOr" = (
+/obj/machinery/nuclearbomb/syndicate,
+/obj/machinery/door/window{
+	dir = 1;
+	name = "Theatre Stage";
+	req_access_txt = "0"
+	},
+/turf/open/floor/circuit/red,
+/area/shuttle/syndicate)
+"gTe" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/white,
+/area/science/lab)
+"gXD" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hos/private)
+"hco" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"hiU" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/neutral,
+/area/hallway/primary/aft)
+"hkI" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"hAB" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/grass,
+/area/crew_quarters/rehab_dome)
+"hKt" = (
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/darkblue/side{
+	dir = 1
+	},
+/area/bridge)
+"hOb" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/cmo/private)
+"hXC" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/east)
+"ieV" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/black,
+/area/teleporter/quantum/docking)
+"inu" = (
+/obj/structure/disposalpipe/trunk,
+/obj/machinery/disposal/deliveryChute{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/asteroid/disposal/west/secondary)
+"iuy" = (
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/starboard)
+"ixb" = (
+/obj/structure/disposalpipe/sortjunction{
+	dir = 8;
+	icon_state = "pipe-j2s";
+	name = "disposal pipe - HoS Office";
+	sortType = 8
+	},
+/obj/structure/girder,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"jfl" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/science/misc_lab)
+"jfM" = (
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/fore/cargo_west)
+"jnf" = (
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "Chief Engineer's Private Quarters APC";
+	areastring = "/area/crew_quarters/heads/chief/private";
+	pixel_x = -23;
+	pixel_y = 2
+	},
+/obj/structure/cable/orange{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/effect/turf_decal/stripes/asteroid/end{
+	icon_state = "ast_warn_end";
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/fore/com_east)
+"jsL" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/closed/wall/rust,
+/area/maintenance/asteroid/disposal/south/west)
+"jXv" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/neutral/corner{
+	dir = 1
+	},
+/area/crew_quarters/fitness)
+"jYi" = (
+/obj/machinery/holopad,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/grimy,
+/area/chapel/office)
+"kds" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/neutral,
+/area/hallway/primary/fore)
+"kdF" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/crew_quarters/locker)
+"kfe" = (
+/obj/item/chair,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/east)
+"kfu" = (
+/obj/structure/disposalpipe/sortjunction{
+	dir = 8;
+	icon_state = "pipe-j2s";
+	name = "disposal pipe - QM Office";
+	sortType = 3
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north)
+"khr" = (
+/obj/structure/disposalpipe/junction{
+	dir = 4;
+	icon_state = "pipe-j2"
+	},
+/obj/structure/cable/orange{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north)
+"klh" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/girder,
+/obj/structure/grille,
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/port/west)
+"knG" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/turf_decal/stripes/asteroid/line{
+	icon_state = "ast_warn";
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/fore/com_west)
+"knQ" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
+"kxH" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/closed/wall,
+/area/maintenance/asteroid/disposal/north)
+"kzz" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plating,
+/area/security/vacantoffice)
+"kEb" = (
+/obj/machinery/quantumpad,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/black,
+/area/teleporter/quantum/security)
+"kLf" = (
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south/west)
+"kNu" = (
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"kQd" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"kSZ" = (
+/obj/structure/closet/emcloset,
+/obj/structure/sign/poster/random{
+	name = "random contraband poster";
+	pixel_x = -32;
+	random_basetype = /obj/structure/sign/poster/contraband
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north/east)
+"kUG" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/item/wrench,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north)
+"lme" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/disposalpipe/segment,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/port/neast)
+"lnN" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/neutral,
+/area/medical/surgery)
+"loB" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/solars/asteroid/fore)
+"lqQ" = (
+/obj/machinery/conveyor/auto,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/west)
+"lqU" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plating/asteroid,
+/area/maintenance/asteroid/fore/com_north)
+"lzY" = (
+/obj/structure/grille,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/west)
+"lFc" = (
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j1";
+	dir = 1
+	},
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/east)
+"lGP" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/structure/closet/crate,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/east)
+"lOB" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/closed/wall,
+/area/maintenance/asteroid/disposal/east)
+"lPU" = (
+/obj/structure/shuttle/engine/propulsion/right,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/shuttle/syndicate)
+"lRC" = (
+/obj/item/grenade/syndieminibomb{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/item/grenade/syndieminibomb{
+	pixel_x = -1
+	},
+/obj/structure/table/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/grenade/plastic/c4,
+/obj/item/grenade/plastic/c4,
+/obj/item/grenade/plastic/c4,
+/obj/item/grenade/plastic/c4,
+/obj/item/grenade/plastic/c4,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"lZv" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/conveyor/auto{
+	dir = 5;
+	verted = -1
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/west/secondary)
+"mfY" = (
+/turf/closed/wall,
+/area/maintenance/asteroid/disposal/north)
+"mhj" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
+"mqe" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/closed/wall,
+/area/maintenance/asteroid/disposal/west/secondary)
+"mro" = (
+/obj/structure/girder,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/west)
+"mKW" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/circuit,
+/area/tcommsat/server)
+"mUO" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/grille,
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"ndV" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/machinery/disposal/deliveryChute{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/east)
+"nhB" = (
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/east)
+"nqz" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/west/secondary)
+"nuB" = (
+/obj/structure/disposaloutlet{
+	dir = 8
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/asteroid/disposal/north/east)
+"nCp" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker,
+/obj/item/reagent_containers/dropper,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"nES" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/west)
+"nFd" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/closed/wall/rust,
+/area/maintenance/asteroid/disposal/south)
+"nJQ" = (
+/turf/closed/wall/rust,
+/area/maintenance/asteroid/disposal/north)
+"nJU" = (
+/obj/machinery/suit_storage_unit/syndicate,
+/turf/open/floor/plasteel/podhatch{
+	dir = 6
+	},
+/area/shuttle/syndicate)
+"nKt" = (
+/obj/machinery/conveyor/auto{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/west/secondary)
+"nSJ" = (
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/west)
+"nYL" = (
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j2";
+	dir = 1
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south)
+"okW" = (
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/fore/com_east)
+"onJ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/starboard)
+"owe" = (
+/obj/machinery/light/small,
+/obj/structure/closet/toolcloset,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south/west)
+"oAh" = (
+/obj/machinery/conveyor/auto{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/west/secondary)
+"oAZ" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/structure/disposaloutlet{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/asteroid/disposal/north/west)
+"oCT" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/asteroid/line{
+	icon_state = "ast_warn";
+	dir = 8
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/fore/com_west)
+"oGf" = (
+/obj/machinery/telecomms/allinone{
+	intercept = 1
+	},
+/turf/open/floor/circuit/red,
+/area/shuttle/syndicate)
+"oHZ" = (
+/obj/structure/table/reinforced,
+/obj/machinery/ai_status_display{
+	pixel_x = 32
+	},
+/obj/item/storage/fancy/donut_box,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"oIk" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/rack,
+/obj/item/storage/toolbox/electrical{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/west)
+"oKd" = (
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south/west)
+"oNh" = (
+/turf/closed/wall,
+/area/maintenance/asteroid/disposal/north/east)
+"oRA" = (
+/obj/structure/disposalpipe/junction{
+	dir = 4;
+	icon_state = "pipe-j2"
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south/west)
+"oVZ" = (
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j1";
+	dir = 1
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north)
+"paW" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north)
+"peP" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/reagent_dispensers/watertank/high,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"ppM" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north/east)
+"pxP" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north)
+"pAt" = (
+/obj/structure/disposalpipe/sortjunction{
+	dir = 2;
+	icon_state = "pipe-j2s";
+	name = "disposal pipe - Hydroponics";
+	sortType = 21
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south/west)
+"pAv" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/engine/break_room)
+"pFg" = (
+/obj/machinery/door/airlock/external{
+	name = "Ready Room";
+	req_access_txt = "150"
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"pGA" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/neutral,
+/area/crew_quarters/dorms/male)
+"pQY" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south/west)
+"pTy" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/structure/disposaloutlet,
+/turf/open/floor/plating/airless,
+/area/maintenance/asteroid/disposal/south/west)
+"pZu" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south)
+"qah" = (
+/turf/open/space,
+/obj/machinery/porta_turret/syndicate{
+	dir = 10
+	},
+/turf/closed/wall/mineral/plastitanium{
+	icon_state = "diagonalWall3"
+	},
+/area/shuttle/syndicate)
+"qbN" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Fore Asteroid Maintenance Access";
+	req_access_txt = "12"
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/east)
+"qel" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/neutral,
+/area/hallway/primary/port)
+"qia" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/sign/poster/random{
+	name = "random contraband poster";
+	pixel_y = -32;
+	random_basetype = /obj/structure/sign/poster/contraband
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north)
+"qwU" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Port Asteroid Maintenance";
+	req_access_txt = "12"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/west)
+"qza" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/neutral,
+/area/hallway/primary/starboard)
+"qFX" = (
+/obj/effect/baseturf_helper/asteroid/airless,
+/turf/open/floor/plasteel/floorgrime,
+/area/ruin/space/derelict/secret{
+	valid_territory = 0
+	})
+"qOD" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/floorgrime,
+/area/quartermaster/miningdock/abandoned)
+"qRT" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/girder,
+/obj/structure/grille,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/east)
+"qTC" = (
+/obj/machinery/door/window{
+	dir = 1;
+	name = "Technological Storage";
+	req_access_txt = "150"
+	},
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"qVE" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/toilet/fitness)
+"rcy" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/disposal/incinerator)
+"rnv" = (
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "South Western Disposals APC";
+	areastring = "/area/maintenance/asteroid/disposal/south/west";
+	pixel_y = -24
+	},
+/obj/structure/cable/orange,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south/west)
+"rsx" = (
+/obj/machinery/disposal/deliveryChute{
+	dir = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/asteroid/disposal/north)
+"rtA" = (
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south)
+"rzu" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/grimy,
+/area/chapel/main)
+"rzC" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south)
+"rBq" = (
+/obj/item/storage/firstaid/regular{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/regular{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"rDs" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/east)
+"rHM" = (
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j1";
+	dir = 8
+	},
+/obj/structure/girder,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"rKN" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/closed/wall,
+/area/maintenance/asteroid/disposal/north/west)
+"rLZ" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/black,
+/area/science/server)
+"rPx" = (
+/obj/structure/chair{
+	dir = 4;
+	name = "tactical chair"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 5
+	},
+/area/shuttle/syndicate)
+"rRb" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/fore/com_east)
+"rWL" = (
+/obj/machinery/light/small,
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south)
+"sck" = (
+/obj/structure/shuttle/engine/propulsion,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/shuttle/syndicate)
+"ssn" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north)
+"stD" = (
+/obj/effect/turf_decal/stripes/corner,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north/west)
+"swy" = (
+/obj/item/weldingtool/largetank{
+	pixel_y = 3
+	},
+/obj/item/device/multitool,
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"szL" = (
+/obj/machinery/conveyor/auto{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/east)
+"sDp" = (
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j2";
+	dir = 2
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south/west)
+"sKT" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plating/asteroid,
+/area/maintenance/asteroid/fore/com_west)
+"sLz" = (
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"sMX" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/port/west)
+"sUE" = (
+/obj/item/device/sbeacondrop/bomb{
+	pixel_y = 5
+	},
+/obj/item/device/sbeacondrop/bomb,
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"sWw" = (
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j2";
+	dir = 2
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/west)
+"sYV" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/item/device/aicard,
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"sZf" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plating,
+/area/maintenance/solars/asteroid/command)
+"tga" = (
+/obj/machinery/light/small,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/port/west)
+"ttS" = (
+/turf/closed/wall/rust,
+/area/maintenance/asteroid/disposal/north/west)
+"tCI" = (
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/fore/com_east)
+"tOG" = (
+/obj/structure/table,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/west)
+"tPc" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/neutral,
+/area/ai_monitored/turret_protected/aisat/hallway)
+"tTl" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/sign/securearea{
+	desc = "A warning sign which reads 'KEEP CLEAR OF PAD WHEN IN USE'.";
+	name = "KEEP CLEAR OF PAD WHEN IN USE";
+	pixel_y = 32
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/black,
+/area/teleporter/quantum/cargo)
+"tUD" = (
+/obj/structure/disposalpipe/sortjunction{
+	dir = 8;
+	icon_state = "pipe-j2s";
+	name = "disposal pipe - CMO Office";
+	sortType = 10
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"ufn" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"ufo" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/light,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/red/side,
+/area/security/prison)
+"ujk" = (
+/obj/machinery/computer/shuttle/syndicate,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"ujN" = (
+/obj/structure/disposalpipe/sortjunction{
+	dir = 2;
+	icon_state = "pipe-j2s";
+	name = "disposal pipe - Chapel";
+	sortType = 17
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south/west)
+"ula" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/black,
+/area/medical/morgue)
+"uBe" = (
+/obj/structure/girder,
+/obj/structure/grille,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/west)
+"uER" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hor/private)
+"uNO" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"uRf" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai_upload)
+"uSr" = (
+/obj/structure/reagent_dispensers/fueltank,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south/west)
+"uTg" = (
+/obj/structure/closet/emcloset,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south/west)
+"uUL" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/bar,
+/area/crew_quarters/theatre)
+"uXC" = (
+/obj/machinery/conveyor/auto{
+	dir = 5;
+	verted = -1
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/west)
+"uYr" = (
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south)
+"uZq" = (
+/obj/item/wrench,
+/obj/item/device/assembly/infra,
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"vls" = (
+/obj/structure/disposalpipe/sortjunction{
+	dir = 8;
+	icon_state = "pipe-j2s";
+	name = "disposal pipe - Custodials";
+	sortType = 22
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north)
+"vlV" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/rack,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/east)
+"vnW" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/neutral,
+/area/hallway/secondary/entry)
+"vol" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/grille/broken,
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/port/west)
+"vtB" = (
+/obj/structure/disposalpipe/junction,
+/obj/effect/landmark/blobstart,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north)
+"vCD" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/neutral,
+/area/hallway/primary/starboard/aft)
+"vFB" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/asteroid/line{
+	icon_state = "ast_warn";
+	dir = 8
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/port/west)
+"vUn" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/west)
+"vZt" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/girder,
+/obj/structure/grille,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/west)
+"wgh" = (
+/obj/machinery/status_display,
+/turf/closed/wall/mineral/plastitanium,
+/area/shuttle/syndicate)
+"wil" = (
+/obj/structure/disposaloutlet{
+	dir = 1
+	},
+/obj/structure/disposalpipe/trunk,
+/obj/structure/disposalpipe/trunk,
+/turf/open/floor/plating/airless,
+/area/maintenance/asteroid/disposal/north)
+"wpW" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/aft/arrivals)
+"wvJ" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "North Eastern Disposals APC";
+	areastring = "/area/maintenance/asteroid/disposal/north/east";
+	pixel_x = 23;
+	pixel_y = 2
+	},
+/obj/structure/cable/orange{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/east)
+"wGW" = (
+/obj/structure/chair/office/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/neutral,
+/area/medical/patients_rooms)
+"wRW" = (
+/obj/structure/disposalpipe/sortjunction{
+	dir = 4;
+	icon_state = "pipe-j2s";
+	name = "disposal pipe - Research";
+	sortType = 12
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south)
+"wVc" = (
+/obj/structure/disposalpipe/sortjunction{
+	dir = 2;
+	icon_state = "pipe-j2s";
+	name = "disposal pipe - Kitchen";
+	sortType = 20
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south/west)
+"xbV" = (
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/east)
+"xgx" = (
+/turf/open/floor/plasteel/podhatch{
+	dir = 10
+	},
+/area/shuttle/syndicate)
+"xis" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/handcuffs{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/box/zipties,
+/turf/open/floor/plasteel/vault{
+	dir = 5
+	},
+/area/shuttle/syndicate)
+"xov" = (
+/obj/structure/disposalpipe/sortjunction{
+	dir = 1;
+	icon_state = "pipe-j2s";
+	name = "disposal pipe - Medbay";
+	sortType = 9
+	},
+/obj/item/wrench,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/east)
+"xqZ" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south)
+"xtR" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/orange{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/port/west)
+"xvx" = (
+/obj/structure/cable/orange{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/port/west)
+"xBc" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south/west)
+"xGd" = (
+/obj/structure/chair/office/dark{
+	dir = 1;
+	name = "tactical swivel chair"
+	},
+/obj/machinery/button/door{
+	id = "syndieshutters";
+	name = "Cockpit View Control";
+	pixel_x = 32;
+	pixel_y = 32;
+	req_access_txt = "150"
+	},
+/turf/open/floor/plasteel/black,
+/area/shuttle/syndicate)
+"xQI" = (
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j2";
+	dir = 1
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/east)
+"ybv" = (
+/obj/structure/disposalpipe/segment,
+/turf/closed/wall,
+/area/maintenance/asteroid/disposal/west/secondary)
+"yfn" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south)
+"yyr" = (
+/obj/machinery/conveyor/auto{
+	dir = 10
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/west)
+"yEH" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plating/asteroid,
+/area/maintenance/asteroid/port/west)
+"yFq" = (
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/west)
+"yGe" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/west)
+"yIe" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south/west)
+"yIq" = (
+/turf/closed/wall/rust,
+/area/maintenance/asteroid/disposal/south)
+"yOy" = (
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/science/storage)
+"yQL" = (
+/obj/machinery/conveyor/auto,
+/obj/structure/plasticflaps,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/west/secondary)
+"yRS" = (
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/table,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north)
+"yWG" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"yWK" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/kitchen)
+"yXg" = (
+/obj/structure/table,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south/west)
+"zdv" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/east)
+"zfh" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/machinery/conveyor/auto{
+	dir = 6;
+	verted = -1
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/east)
+"ziw" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/freezer,
+/area/medical/genetics/cloning)
+"zjN" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/fore/com_east)
+"zlm" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"zns" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	icon_state = "ast_warn";
+	dir = 1
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/fore/com_west)
+"zon" = (
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j1";
+	dir = 4
+	},
+/obj/structure/grille,
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south/west)
+"zpw" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/neutral,
+/area/hallway/primary/starboard/fore)
+"zrU" = (
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/port/west)
+"zsP" = (
+/obj/structure/shuttle/engine/propulsion/left,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/shuttle/syndicate)
+"zuT" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south)
+"zwR" = (
+/turf/open/floor/plasteel/podhatch{
+	dir = 6
+	},
+/area/shuttle/syndicate)
+"zyk" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/airlock/maintenance{
+	name = "Aft Asteroid Maintenance";
+	req_access_txt = "12"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south)
+"zzP" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/east)
+"zBg" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/machinery/disposal/deliveryChute{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/west/secondary)
+"zFO" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/closed/mineral,
+/area/crew_quarters/theatre{
+	name = "Top Secret Clown HQ"
+	})
+"zHG" = (
+/obj/machinery/door/airlock/external{
+	name = "E.V.A. Gear Storage";
+	req_access_txt = "150"
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"zRh" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"zXV" = (
+/obj/structure/disposaloutlet{
+	dir = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/asteroid/disposal/east)
+"zZN" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/closed/wall,
+/area/maintenance/asteroid/disposal/south/west)
+"Aaw" = (
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/east)
+"AbZ" = (
+/obj/structure/disposalpipe/segment,
+/turf/closed/wall,
+/area/maintenance/asteroid/disposal/north/west)
+"AgT" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 8
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/security/processing)
+"Ajf" = (
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/west)
+"Arn" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/brown{
+	dir = 1
+	},
+/area/quartermaster/qm)
+"AGf" = (
+/obj/machinery/disposal/deliveryChute,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/asteroid/disposal/east)
+"ANA" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/port/west)
+"AOn" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/girder,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south)
+"Bhs" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/west)
+"Bju" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/captain)
+"BoD" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Port Asteroid Maintenance";
+	req_access_txt = "12"
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/west)
+"Brt" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai)
+"Bsu" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/airlock/maintenance{
+	name = "Aft Asteroid Maintenance";
+	req_access_txt = "12"
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south)
+"BGO" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/item/wrench,
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south)
+"BMP" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/neutral,
+/area/crew_quarters/heads/chief)
+"BMW" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/grille/broken,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north)
+"BNE" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/west)
+"BPU" = (
+/obj/item/chair,
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south/west)
+"BQj" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/grimy,
+/area/security/detectives_office)
+"BXG" = (
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south)
+"CdN" = (
+/obj/structure/table/optable,
+/obj/item/surgical_drapes,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"Cjh" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/security/checkpoint/science)
+"CuI" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/west)
+"CxW" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/grille/broken,
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/starboard)
+"CFx" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/security/armory)
+"CHb" = (
+/obj/structure/chair{
+	dir = 8;
+	name = "tactical chair"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 5
+	},
+/area/shuttle/syndicate)
+"CJx" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/emergency,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/east)
+"CZk" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/ai_monitored/storage/eva)
+"Dhd" = (
+/obj/item/reagent_containers/glass/bottle/epinephrine{
+	pixel_x = 6
+	},
+/obj/item/reagent_containers/glass/bottle/charcoal{
+	pixel_x = -3
+	},
+/obj/item/reagent_containers/glass/bottle/epinephrine{
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/glass/bottle/charcoal{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/syringe/epinephrine{
+	pixel_x = 3;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/syringe/epinephrine{
+	pixel_x = 4;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/syringe/epinephrine{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/syringe/epinephrine{
+	pixel_x = 2;
+	pixel_y = 8
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"DrB" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Port Asteroid Maintenance";
+	req_access_txt = "12"
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/west/secondary)
+"DEO" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"DHr" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/structure/disposaloutlet,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/west)
+"DHs" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
+"DKn" = (
+/obj/structure/plasticflaps,
+/obj/machinery/conveyor/auto,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/west)
+"DNv" = (
+/turf/closed/wall,
+/area/maintenance/asteroid/disposal/east)
+"DXx" = (
+/obj/structure/disposalpipe/segment,
+/turf/closed/wall,
+/area/maintenance/asteroid/disposal/west)
+"Ebh" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/medical/gauze,
+/obj/item/stack/medical/bruise_pack,
+/obj/item/stack/medical/ointment,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"Eht" = (
+/obj/structure/shuttle/engine/heater,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/shuttle/syndicate)
+"Ekn" = (
+/obj/machinery/door/airlock/glass_external{
+	cyclelinkeddir = 2
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/west/secondary)
+"Esb" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/engine/engine_smes)
+"Esk" = (
+/obj/machinery/door/airlock/glass_external{
+	cyclelinkeddir = 2
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"ExD" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/fore/com_west)
+"EzG" = (
+/obj/structure/cable/orange{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south/west)
+"EDx" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/structure/reagent_dispensers/fueltank,
+/obj/item/weldingtool,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north)
+"EGd" = (
+/obj/structure/disposalpipe/segment,
+/turf/closed/wall,
+/area/maintenance/asteroid/disposal/east)
+"EIe" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Port Asteroid Maintenance";
+	req_access_txt = "12"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south/west)
+"EKN" = (
+/obj/structure/disposalpipe/sortjunction{
+	dir = 8;
+	icon_state = "pipe-j2s";
+	name = "disposal pipe - HoP Office";
+	sortType = 15
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/rack,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north)
+"ERf" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Fore Asteroid Maintenance Access";
+	req_access_txt = "12"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/east)
+"EWs" = (
+/turf/closed/wall,
+/area/maintenance/asteroid/disposal/west)
+"Fbo" = (
+/turf/closed/wall/rust,
+/area/maintenance/asteroid/disposal/west)
+"Foo" = (
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/wood,
+/area/library/lounge)
+"Fov" = (
+/obj/structure/closet/emcloset,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/east)
+"Fsg" = (
+/obj/structure/chair{
+	name = "tactical chair"
+	},
+/turf/open/floor/plasteel/podhatch{
+	dir = 6
+	},
+/area/shuttle/syndicate)
+"FFY" = (
+/obj/machinery/computer/camera_advanced/syndie,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"FQm" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/bar,
+/area/crew_quarters/bar)
+"FRD" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plating,
+/area/maintenance/solars/asteroid/aft)
+"FUy" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 5
+	},
+/area/shuttle/syndicate)
+"FWK" = (
+/turf/closed/wall/rust,
+/area/maintenance/asteroid/disposal/east)
+"FZD" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/airlock/maintenance{
+	name = "Fore Asteroid Maintenance Access";
+	req_access_txt = "12"
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"Gae" = (
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/structure/cable/orange{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/fore/com_east)
+"GiS" = (
+/turf/open/floor/plasteel/podhatch{
+	dir = 1
+	},
+/area/shuttle/syndicate)
+"Goz" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/black,
+/area/teleporter/quantum/research)
+"GBu" = (
+/obj/structure/table,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north/east)
+"GOY" = (
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/east)
+"GPe" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/closed/wall,
+/area/maintenance/asteroid/aft/science)
+"GRh" = (
+/obj/machinery/disposal/deliveryChute{
+	dir = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/asteroid/disposal/north/east)
+"GUQ" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"GWH" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "Eastern Disposals APC";
+	areastring = "/area/maintenance/asteroid/disposal/east";
+	pixel_y = 24
+	},
+/obj/structure/cable/orange{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/east)
+"HdC" = (
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/port/east)
+"Hlj" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/wood,
+/area/lawoffice)
+"Hmg" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
+"HmY" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/syndicate,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"Hpl" = (
+/obj/structure/closet/syndicate/nuclear,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"HsZ" = (
+/obj/machinery/door/airlock/external{
+	req_access_txt = "150"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/syndicate)
+"HKu" = (
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j1";
+	dir = 1
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/east)
+"HLI" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/cmo,
+/area/crew_quarters/heads/cmo)
+"HMd" = (
+/obj/structure/disposalpipe/sortjunction{
+	dir = 1;
+	icon_state = "pipe-j2s";
+	name = "disposal pipe - Atmospherics";
+	sortType = 6
+	},
+/obj/structure/grille/broken,
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/east)
+"HOp" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
+"HUf" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"HWp" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/darkgreen,
+/area/hydroponics)
+"Iad" = (
+/obj/structure/disposalpipe/segment,
+/turf/closed/wall,
+/area/maintenance/asteroid/disposal/south/west)
+"IbX" = (
+/obj/machinery/suit_storage_unit/syndicate,
+/turf/open/floor/plasteel/podhatch{
+	dir = 5
+	},
+/area/shuttle/syndicate)
+"Idz" = (
+/obj/item/cautery,
+/obj/item/scalpel,
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"IeB" = (
+/obj/structure/sign/securearea{
+	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
+	icon_state = "space";
+	layer = 4;
+	name = "EXTERNAL AIRLOCK";
+	pixel_x = -32
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/west/secondary)
+"IHW" = (
+/obj/machinery/ai_status_display,
+/turf/closed/wall/mineral/plastitanium,
+/area/shuttle/syndicate)
+"IIn" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north/west)
+"ILy" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/engine{
+	name = "reinforced floor"
+	},
+/area/engine/supermatter)
+"IMP" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north)
+"IOE" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 5
+	},
+/area/shuttle/syndicate)
+"Jov" = (
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/white,
+/area/science/research)
+"JtY" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/rack,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/east)
+"Jul" = (
+/obj/structure/chair/office/dark{
+	dir = 8;
+	name = "tactical swivel chair"
+	},
+/turf/open/floor/plasteel/black,
+/area/shuttle/syndicate)
+"JvU" = (
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "North Western Disposals APC";
+	areastring = "/area/maintenance/asteroid/disposal/north/west";
+	pixel_x = 23;
+	pixel_y = 2
+	},
+/obj/structure/cable/orange{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north/west)
+"JDQ" = (
+/obj/structure/bed/roller,
+/obj/machinery/iv_drip,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"JZR" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/girder,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"Kae" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"KcZ" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/structure/disposaloutlet{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/east)
+"Kel" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south)
+"KkQ" = (
+/obj/machinery/conveyor/auto{
+	dir = 6;
+	verted = -1
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/east)
+"KEd" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/rack,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/weldingtool/hugetank,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/east)
+"KPR" = (
+/obj/structure/girder,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south)
+"KQP" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "Northern Disposals APC";
+	areastring = "/area/maintenance/asteroid/disposal/north";
+	pixel_x = 23;
+	pixel_y = 2
+	},
+/obj/structure/cable/orange{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"KSc" = (
+/obj/item/device/assembly/signaler,
+/obj/item/device/assembly/signaler,
+/obj/item/device/assembly/prox_sensor{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/device/assembly/prox_sensor{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"LeL" = (
+/obj/machinery/suit_storage_unit/syndicate,
+/turf/open/floor/plasteel/podhatch{
+	dir = 4
+	},
+/area/shuttle/syndicate)
+"Llr" = (
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north/east)
+"Lmy" = (
+/turf/open/floor/plasteel/podhatch{
+	dir = 5
+	},
+/area/shuttle/syndicate)
+"LnK" = (
+/obj/structure/disposalpipe/trunk,
+/obj/machinery/disposal/deliveryChute{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/asteroid/disposal/south/west)
+"LoO" = (
+/obj/item/storage/toolbox/mechanical/old,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/west)
+"Ltv" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south/west)
+"Lxz" = (
+/obj/structure/disposalpipe/junction,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south/west)
+"LDY" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/engine{
+	name = "Holodeck Projector Floor"
+	},
+/area/holodeck/rec_center)
+"LGS" = (
+/obj/machinery/light/small,
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/west)
+"LJP" = (
+/obj/structure/closet/syndicate/personal,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"LTe" = (
+/turf/open/floor/plasteel/podhatch{
+	dir = 9
+	},
+/area/shuttle/syndicate)
+"MaD" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/structure/disposaloutlet{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/asteroid/disposal/west/secondary)
+"MfG" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south)
+"MxO" = (
+/obj/structure/table,
+/obj/item/storage/fancy/cigarettes,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south)
+"MzE" = (
+/turf/closed/wall/rust,
+/area/maintenance/asteroid/disposal/west/secondary)
+"MNm" = (
+/turf/closed/wall,
+/area/maintenance/asteroid/disposal/west/secondary)
+"MTb" = (
+/obj/machinery/door/airlock/glass_external{
+	cyclelinkeddir = 8
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south)
+"MWx" = (
+/obj/structure/disposalpipe/sortjunction{
+	dir = 1;
+	icon_state = "pipe-j2s";
+	name = "disposal pipe - Genetics";
+	sortType = 23
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/east)
+"MXP" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/janitor)
+"MZA" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/closet/crate,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"Nas" = (
+/obj/item/wrench,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north/west)
+"Nbq" = (
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"Nci" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/east)
+"Ner" = (
+/obj/machinery/computer/crew/syndie,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"NkJ" = (
+/obj/structure/disposalpipe/sortjunction{
+	dir = 2;
+	icon_state = "pipe-j2s";
+	name = "disposal pipe - Security";
+	sortType = 7
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/west)
+"Not" = (
+/turf/closed/wall/rust,
+/area/maintenance/asteroid/disposal/south/west)
+"NxB" = (
+/obj/machinery/sleeper/syndie{
+	dir = 4
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"NHH" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/structure/disposaloutlet,
+/turf/open/floor/plating/airless,
+/area/maintenance/asteroid/disposal/west)
+"NOe" = (
+/obj/structure/chair{
+	dir = 1;
+	name = "tactical chair"
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"NTY" = (
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"NUL" = (
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j1";
+	dir = 8
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north)
+"NYl" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/structure/closet/crate,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"OgL" = (
+/obj/machinery/conveyor/auto{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/east)
+"Oih" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/tcommsat/computer)
+"OmI" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/structure/disposaloutlet{
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/asteroid/disposal/south)
+"Oss" = (
+/obj/structure/closet/firecloset/full,
+/obj/item/coin/silver,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south)
+"OPf" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/item/bodypart/r_arm/robot,
+/obj/item/bodypart/l_arm/robot,
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"OPP" = (
+/obj/machinery/holopad,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/cmo,
+/area/medical/medbay/central)
+"OQj" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/science/robotics/lab)
+"OUe" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/chief/private)
+"Pap" = (
+/obj/structure/disposalpipe/sortjunction{
+	dir = 2;
+	icon_state = "pipe-j2s";
+	name = "disposal pipe - Bar";
+	sortType = 19
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south/west)
+"PfX" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Port Asteroid Maintenance";
+	req_access_txt = "12"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/west)
+"PhV" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
+"Pnn" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north/east)
+"PsJ" = (
+/obj/structure/chair/stool,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/wood,
+/area/crew_quarters/abandoned_gambling_den)
+"Pti" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "Western Secondary Disposals APC";
+	areastring = "/area/maintenance/asteroid/disposal/west/secondary";
+	pixel_x = 23;
+	pixel_y = 2
+	},
+/obj/structure/cable/orange{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/west/secondary)
+"PFk" = (
+/obj/structure/disposalpipe/sortjunction{
+	dir = 2;
+	icon_state = "pipe-j2s";
+	name = "disposal pipe - Library";
+	sortType = 16
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south/west)
+"PLn" = (
+/obj/machinery/door/airlock/maintenance{
+	name = "Port Asteroid Maintenance";
+	req_access_txt = "12"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south/west)
+"PTb" = (
+/obj/item/stock_parts/cell/high{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/stock_parts/cell/high,
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"PUG" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/closet,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"PXs" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north/west)
+"PXL" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/security/checkpoint/medical)
+"Qbt" = (
+/obj/structure/chair/office/dark{
+	dir = 4;
+	name = "tactical swivel chair"
+	},
+/turf/open/floor/plasteel/black,
+/area/shuttle/syndicate)
+"QbG" = (
+/obj/structure/disposalpipe/sortjunction{
+	dir = 8;
+	icon_state = "pipe-j2s";
+	name = "disposal pipe - RD Office";
+	sortType = 13
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north)
+"QeW" = (
+/obj/structure/cable/orange{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/fore/com_east)
+"Qmh" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/port/west)
+"Qqu" = (
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j2";
+	dir = 2
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north)
+"QFX" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/storage/firstaid/regular{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/storage/firstaid/brute,
+/obj/item/storage/firstaid/regular{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"QIK" = (
+/turf/closed/wall,
+/area/maintenance/asteroid/disposal/south)
+"QTJ" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plating/asteroid,
+/area/maintenance/asteroid/central)
+"Rhg" = (
+/turf/closed/wall/rust,
+/area/maintenance/asteroid/disposal/north/east)
+"Rsm" = (
+/obj/machinery/gateway,
+/obj/structure/cable/orange{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plating,
+/area/awaymission/research/interior/gateway)
+"RAQ" = (
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south/west)
+"RKn" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal/deliveryChute{
+	dir = 8
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/asteroid/disposal/west)
+"RKE" = (
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/west)
+"RQE" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/west)
+"RQH" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/neutral,
+/area/hallway/primary/central)
+"RTO" = (
+/turf/closed/wall,
+/area/maintenance/asteroid/disposal/south/west)
+"RUN" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/fore/cargo_south)
+"SaA" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/fore/com_east)
+"SfQ" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"Slf" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/girder,
+/obj/structure/grille,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south)
+"SrE" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/structure/grille/broken,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south/west)
+"Svz" = (
+/obj/machinery/conveyor/auto{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/west/secondary)
+"SvE" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/neutral,
+/area/crew_quarters/dorms/female)
+"Sxw" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/east)
+"SHC" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/camera{
+	c_tag = "SM South";
+	dir = 1;
+	network = list("SS13","CE")
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/engine{
+	name = "reinforced floor"
+	},
+/area/engine/engineering)
+"SKM" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/structure/disposaloutlet,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/west/secondary)
+"SMF" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/carpet,
+/area/quartermaster/qm/private)
+"SQL" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/space/syndicate/black/red,
+/obj/item/clothing/head/helmet/space/syndicate/black/red,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"SUs" = (
+/obj/structure/rack,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/item/storage/toolbox/mechanical,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south)
+"Tav" = (
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/obj/structure/sign/poster/random{
+	name = "random contraband poster";
+	pixel_y = 32;
+	random_basetype = /obj/structure/sign/poster/contraband
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south/west)
+"TaH" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/decal/cleanable/cobweb,
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"TaL" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/structure/closet,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/east)
+"Tef" = (
+/obj/effect/turf_decal/stripes/asteroid/line{
+	icon_state = "ast_warn";
+	dir = 8
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/port/west)
+"TfU" = (
+/obj/structure/closet/emcloset,
+/obj/effect/decal/cleanable/cobweb{
+	icon_state = "cobweb2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/west)
+"TiR" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/neutral,
+/area/security/courtroom)
+"TiY" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/grass,
+/area/medical/genetics)
+"Tzw" = (
+/obj/structure/grille/broken,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south/west)
+"TFw" = (
+/obj/structure/disposalpipe/sortjunction{
+	dir = 1;
+	icon_state = "pipe-j2s";
+	name = "disposal pipe - Engineering";
+	sortType = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/east)
+"THy" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/fore/com_east)
+"TJh" = (
+/obj/machinery/door/airlock/hatch{
+	req_access_txt = "150"
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"TRu" = (
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south)
+"TTr" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/security/checkpoint/supply)
+"UdM" = (
+/obj/structure/disposalpipe/junction{
+	dir = 4;
+	icon_state = "pipe-j2"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south)
+"Uhy" = (
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j1";
+	dir = 1
+	},
+/obj/structure/girder,
+/obj/structure/grille,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/east)
+"UnC" = (
+/obj/machinery/door/window{
+	dir = 1;
+	name = "Surgery";
+	req_access_txt = "150"
+	},
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"UrW" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/floorgrime,
+/area/quartermaster/storage)
+"UtE" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/west/secondary)
+"Uwx" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south/west)
+"UwA" = (
+/obj/machinery/conveyor/auto{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/west)
+"UCK" = (
+/obj/structure/chair{
+	dir = 8;
+	name = "tactical chair"
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 5
+	},
+/area/shuttle/syndicate)
+"UCR" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/closed/mineral/random/labormineral,
+/area/mine/unexplored{
+	name = "Civilian Asteroid"
+	})
+"UFv" = (
+/obj/structure/disposalpipe/segment,
+/turf/closed/wall,
+/area/maintenance/asteroid/disposal/north)
+"UJo" = (
+/obj/item/screwdriver{
+	pixel_y = 9
+	},
+/obj/item/device/assembly/voice{
+	pixel_y = 3
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"ULk" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/cable/orange{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north/east)
+"UOh" = (
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/west/secondary)
+"UQc" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/port/west)
+"URO" = (
+/obj/structure/disposalpipe/sortjunction{
+	dir = 8;
+	icon_state = "pipe-j2s";
+	name = "disposal pipe - CE Office";
+	sortType = 5
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north)
+"Van" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/closed/wall,
+/area/maintenance/asteroid/disposal/west)
+"VbR" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "Western Disposals APC";
+	areastring = "/area/maintenance/asteroid/disposal/west";
+	pixel_y = 24
+	},
+/obj/structure/cable/orange{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/west)
+"VdI" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/freezer,
+/area/crew_quarters/toilet)
+"Vud" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/whiteyellow/corner{
+	dir = 1
+	},
+/area/medical/chemistry)
+"VwE" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/white,
+/area/science/robotics/mechbay)
+"VxC" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/security/checkpoint/checkpoint2)
+"VFF" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plating,
+/area/shuttle/auxillary_base)
+"VHp" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/port/west)
+"VIG" = (
+/obj/item/surgicaldrill,
+/obj/item/circular_saw,
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"VMD" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/carpet,
+/area/library)
+"VSX" = (
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/obj/structure/grille/broken,
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north)
+"Wbp" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/closed/wall,
+/area/maintenance/asteroid/disposal/south)
+"WbG" = (
+/turf/open/floor/plasteel/podhatch,
+/area/shuttle/syndicate)
+"Wcl" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/west)
+"Wgl" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/closet/firecloset/full,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/east)
+"Wid" = (
+/obj/machinery/door/poddoor{
+	id = "smindicate";
+	name = "outer blast door"
+	},
+/obj/machinery/button/door{
+	id = "smindicate";
+	name = "external door control";
+	pixel_x = -26;
+	req_access_txt = "150"
+	},
+/obj/docking_port/mobile{
+	dheight = 9;
+	dir = 2;
+	dwidth = 5;
+	height = 24;
+	id = "syndicate";
+	name = "syndicate infiltrator";
+	port_angle = 0;
+	roundstart_move = "syndicate_away";
+	width = 18
+	},
+/obj/docking_port/stationary{
+	dheight = 9;
+	dir = 2;
+	dwidth = 5;
+	height = 24;
+	id = "syndicate_nw";
+	name = "northwest of station";
+	turf_type = /turf/open/space;
+	width = 18
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel/podhatch{
+	dir = 1
+	},
+/area/shuttle/syndicate)
+"WjU" = (
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j2";
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/east)
+"Wub" = (
+/obj/item/retractor,
+/obj/item/hemostat,
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"Wue" = (
+/obj/structure/table,
+/obj/item/storage/fancy/cigarettes,
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/east)
+"WAy" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/security/checkpoint/engineering)
+"WVc" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/item/clothing/head/cone,
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/port/west)
+"WYB" = (
+/obj/structure/rack,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/west)
+"Xhf" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/cable/orange{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south)
+"XmD" = (
+/obj/machinery/conveyor/auto{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/west)
+"XtS" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/cmo,
+/area/medical/medbay/zone2)
+"XFS" = (
+/obj/machinery/recharge_station,
+/turf/open/floor/circuit/red,
+/area/shuttle/syndicate)
+"XLa" = (
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south/west)
+"XRA" = (
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "Southern Disposals APC";
+	areastring = "/area/maintenance/asteroid/disposal/south";
+	pixel_y = -24
+	},
+/obj/structure/cable/orange,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south)
+"XSM" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/fore/com_west)
+"XXu" = (
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south)
+"XZA" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/closet/firecloset/full,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south/west)
+"Yck" = (
+/obj/structure/chair{
+	dir = 4;
+	name = "tactical chair"
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 5
+	},
+/area/shuttle/syndicate)
+"YcZ" = (
+/obj/structure/disposalpipe/trunk,
+/obj/machinery/disposal/deliveryChute{
+	dir = 1
+	},
+/turf/open/floor/plating/airless,
+/area/maintenance/asteroid/disposal/north/west)
+"Yhz" = (
+/obj/machinery/door/airlock/hatch{
+	name = "Cockpit";
+	req_access_txt = "150"
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"Yug" = (
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plating/astplate,
+/area/maintenance/asteroid/starboard)
+"YyX" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/firealarm{
+	pixel_y = 24
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel/whitegreen/corner{
+	dir = 8
+	},
+/area/medical/virology)
+"YBW" = (
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/security/brig)
+"YCP" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/engine{
+	name = "reinforced floor"
+	},
+/area/hallway/secondary/bridges/serv_sci)
+"YHv" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/machinery/disposal/deliveryChute{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/north/west)
+"YLw" = (
+/obj/machinery/conveyor/auto{
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/west/secondary)
+"YNP" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/conveyor_switch{
+	id = "CargoWaste"
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/quartermaster/sorting)
+"YTk" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/asteroid/starboard)
+"YTF" = (
+/obj/structure/table,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 4
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plasteel,
+/area/security/main)
+"YUT" = (
+/obj/item/storage/toolbox/syndicate,
+/obj/item/crowbar/red,
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/podhatch{
+	dir = 10
+	},
+/area/shuttle/syndicate)
+"YWC" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plating,
+/area/storage/tech)
+"YZx" = (
+/obj/structure/grille/broken,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/east)
+"Zed" = (
+/obj/effect/baseturf_helper/asteroid,
+/turf/open/floor/plating/astplate,
+/area/security/execution/transfer)
+"ZeA" = (
+/obj/structure/closet,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/south/west)
+"ZfX" = (
+/turf/open/space,
+/obj/machinery/porta_turret/syndicate{
+	dir = 5
+	},
+/turf/closed/wall/mineral/plastitanium{
+	dir = 1;
+	icon_state = "diagonalWall3"
+	},
+/area/shuttle/syndicate)
+"Zsk" = (
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j1";
+	dir = 4
+	},
+/obj/structure/grille/broken,
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/south/west)
+"ZHk" = (
+/turf/closed/wall,
+/area/maintenance/asteroid/disposal/north/west)
+"ZLG" = (
+/obj/structure/table,
+/turf/open/floor/plating,
+/area/maintenance/asteroid/disposal/west)
+"ZWz" = (
+/obj/structure/tank_dispenser/oxygen,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"ZYy" = (
+/turf/open/space,
+/obj/machinery/porta_turret/syndicate{
+	dir = 6
+	},
+/turf/closed/wall/mineral/plastitanium{
+	dir = 4;
+	icon_state = "diagonalWall3"
+	},
+/area/shuttle/syndicate)
+"ZZE" = (
+/turf/open/floor/plasteel/floorgrime,
+/area/maintenance/asteroid/disposal/north/east)
+>>>>>>> 3274ad4f12... The syndicate shuttle can now fly anywhere on the station z-level (#29909)
 
 (1,1,1) = {"
 aaa

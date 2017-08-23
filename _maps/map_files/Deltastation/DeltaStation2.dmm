@@ -1713,8 +1713,12 @@
 	},
 /area/shuttle/syndicate)
 "adC" = (
+<<<<<<< HEAD
 /obj/structure/table/reinforced,
 /obj/item/weapon/folder/red,
+=======
+/obj/machinery/computer/camera_advanced/shuttle_docker/syndicate,
+>>>>>>> 3274ad4f12... The syndicate shuttle can now fly anywhere on the station z-level (#29909)
 /turf/open/floor/plasteel/vault{
 	dir = 8
 	},
@@ -1838,11 +1842,17 @@
 /obj/machinery/status_display{
 	pixel_x = -32
 	},
+<<<<<<< HEAD
 /obj/item/weapon/clipboard,
 /obj/item/toy/figure/syndie,
+=======
+/obj/item/clipboard,
+>>>>>>> 3274ad4f12... The syndicate shuttle can now fly anywhere on the station z-level (#29909)
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/folder/red,
+/obj/item/toy/figure/syndie,
 /turf/open/floor/plasteel/vault{
 	dir = 8
 	},
@@ -139124,13 +139134,13 @@ bZC
 duO
 cJx
 cHS
-cMI
-cMI
-cMI
+cHX
+cHX
+cHX
 cRJ
-cMI
-cMI
-cMI
+cHX
+cHX
+cHX
 cHS
 cJA
 cFm
@@ -139638,13 +139648,13 @@ cBp
 erO
 cJz
 cHS
-cMI
-cMI
-cMI
-cMI
-cMI
-cMI
-cMI
+cHX
+cHX
+cHX
+cHX
+cHX
+cHX
+cHX
 cHS
 cZL
 dbc
@@ -139897,8 +139907,8 @@ cJA
 cHS
 cHS
 cOs
-cMI
-cMI
+cHX
+cHX
 cTv
 cOs
 cHS
@@ -155834,7 +155844,7 @@ cPm
 cLL
 cSA
 cUj
-cVW
+cUu
 cXJ
 cZi
 dap
