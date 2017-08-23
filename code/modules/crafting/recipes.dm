@@ -294,7 +294,11 @@
 
 /datum/crafting_recipe/ishotgun
 	name = "Improvised Shotgun"
+<<<<<<< HEAD
 	result = /obj/item/weapon/gun/ballistic/revolver/doublebarrel/improvised
+=======
+	result = /obj/item/gun/ballistic/revolver/doublebarrel/improvised
+>>>>>>> b11b33bdac... Merge pull request #29954 from Cyberboss/RemoveItemCrafting
 	reqs = list(/obj/item/weaponcrafting/receiver = 1,
 				/obj/item/pipe = 1,
 				/obj/item/weaponcrafting/stock = 1,
