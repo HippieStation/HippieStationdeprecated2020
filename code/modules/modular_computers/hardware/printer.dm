@@ -24,7 +24,11 @@
 	if(!check_functionality())
 		return FALSE
 
+<<<<<<< HEAD
 	var/obj/item/weapon/paper/P = new/obj/item/weapon/paper(get_turf(holder))
+=======
+	var/obj/item/paper/P = new/obj/item/paper(holder.drop_location())
+>>>>>>> 728aefbd70... Adds DropLocation(). To generally be preferred to get_turf() (#29814)
 
 	// Damaged printer causes the resulting paper to be somewhat harder to read.
 	if(damage > damage_malfunction)
