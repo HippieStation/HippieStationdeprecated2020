@@ -46,8 +46,12 @@
 	},
 /area/shuttle/syndicate)
 "aah" = (
+<<<<<<< HEAD
 /obj/structure/table/reinforced,
 /obj/item/weapon/folder/red,
+=======
+/obj/machinery/computer/camera_advanced/shuttle_docker/syndicate,
+>>>>>>> 7202ee664b... Merge branch 'master' into content_dump_fix
 /turf/open/floor/plasteel/vault{
 	dir = 8
 	},
@@ -81,11 +85,17 @@
 /obj/machinery/status_display{
 	pixel_x = -32
 	},
+<<<<<<< HEAD
 /obj/item/weapon/clipboard,
 /obj/item/toy/figure/syndie,
+=======
+/obj/item/clipboard,
+>>>>>>> 7202ee664b... Merge branch 'master' into content_dump_fix
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/folder/red,
+/obj/item/toy/figure/syndie,
 /turf/open/floor/plasteel/vault{
 	dir = 8
 	},
@@ -75611,7 +75621,13 @@ bva
 bva
 bva
 bva
+<<<<<<< HEAD
 bXP
+=======
+aht
+bIZ
+crA
+>>>>>>> 7202ee664b... Merge branch 'master' into content_dump_fix
 bIZ
 aaa
 bva

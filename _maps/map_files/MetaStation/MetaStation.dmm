@@ -78688,8 +78688,12 @@
 /turf/open/floor/plating,
 /area/science/xenobiology)
 "cTE" = (
+<<<<<<< HEAD
 /obj/structure/table/reinforced,
 /obj/item/weapon/folder/red,
+=======
+/obj/machinery/computer/camera_advanced/shuttle_docker/syndicate,
+>>>>>>> 7202ee664b... Merge branch 'master' into content_dump_fix
 /turf/open/floor/plasteel/vault{
 	dir = 8
 	},
@@ -78711,11 +78715,17 @@
 /obj/machinery/status_display{
 	pixel_x = -32
 	},
+<<<<<<< HEAD
 /obj/item/weapon/clipboard,
 /obj/item/toy/figure/syndie,
+=======
+/obj/item/clipboard,
+>>>>>>> 7202ee664b... Merge branch 'master' into content_dump_fix
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/folder/red,
+/obj/item/toy/figure/syndie,
 /turf/open/floor/plasteel/vault{
 	dir = 8
 	},
@@ -136486,8 +136496,8 @@ cgD
 chW
 cjl
 ckK
-bCC
-bCC
+dbu
+dbu
 ckM
 aaf
 bKK
@@ -136742,9 +136752,9 @@ ccY
 ccY
 ccY
 cjm
-bCC
+dbu
 cme
-bCC
+dbu
 cjo
 aaa
 bKK
@@ -137000,8 +137010,8 @@ cgE
 chX
 cjn
 ckL
-bCC
-bCC
+dbu
+dbu
 bxc
 aaf
 aai
