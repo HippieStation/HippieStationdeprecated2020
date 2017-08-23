@@ -13,4 +13,15 @@ SUBSYSTEM_DEF(disease)
 		diseases = subtypesof(/datum/disease)
 
 /datum/controller/subsystem/disease/stat_entry(msg)
+<<<<<<< HEAD
 	..("P:[active_diseases.len]")
+=======
+	..("P:[active_diseases.len]")
+
+/datum/controller/subsystem/disease/proc/get_disease_name(id)
+	var/datum/disease/advance/A = archive_diseases[id]
+	if(A.name)
+		return A.name
+	else
+		return "Unknown"
+>>>>>>> 28a5901170... You can now click on symptoms in the Pandemic to see their description and stats (#29866)
