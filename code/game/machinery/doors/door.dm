@@ -327,8 +327,13 @@
 /obj/machinery/door/morgue
 	icon = 'icons/obj/doors/doormorgue.dmi'
 
+<<<<<<< HEAD
 /obj/machinery/door/storage_contents_dump_act(obj/item/weapon/storage/src_object, mob/user)
 	return 0
+=======
+/obj/machinery/door/get_dumping_location(obj/item/storage/source,mob/user)
+	return null
+>>>>>>> 94a5f4570a... Fixes dumping from inside the lockers (#29896)
 
 /obj/machinery/door/proc/lock()
 	return

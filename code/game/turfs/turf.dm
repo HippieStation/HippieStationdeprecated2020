@@ -343,7 +343,14 @@
 /turf/proc/Bless()
 	flags |= NOJAUNT
 
+<<<<<<< HEAD
 /turf/storage_contents_dump_act(obj/item/weapon/storage/src_object, mob/user)
+=======
+/turf/get_dumping_location(obj/item/storage/source,mob/user)
+	return src
+
+/turf/storage_contents_dump_act(obj/item/storage/src_object, mob/user)
+>>>>>>> 94a5f4570a... Fixes dumping from inside the lockers (#29896)
 	if(src_object.contents.len)
 		to_chat(usr, "<span class='notice'>You start dumping out the contents...</span>")
 		if(!do_after(usr,20,target=src_object))

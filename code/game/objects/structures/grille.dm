@@ -226,8 +226,13 @@
 				C.powernet.load += C.powernet.avail * 0.0375 // you can gain up to 3.5 via the 4x upgrades power is halved by the pole so thats 2x then 1X then .5X for 3.5x the 3 bounces shock.
 	return ..()
 
+<<<<<<< HEAD
 /obj/structure/grille/storage_contents_dump_act(obj/item/weapon/storage/src_object, mob/user)
 	return 0
+=======
+/obj/structure/grille/get_dumping_location(obj/item/storage/source,mob/user)
+	return null
+>>>>>>> 94a5f4570a... Fixes dumping from inside the lockers (#29896)
 
 /obj/structure/grille/broken // Pre-broken grilles for map placement
 	icon_state = "brokengrille"

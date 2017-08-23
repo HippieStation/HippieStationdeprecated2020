@@ -175,9 +175,17 @@
 /obj/get_spans()
 	return ..() | SPAN_ROBOT
 
+<<<<<<< HEAD
 /obj/storage_contents_dump_act(obj/item/weapon/storage/src_object, mob/user)
 	var/turf/T = get_turf(src)
 	return T.storage_contents_dump_act(src_object, user)
+=======
+/obj/storage_contents_dump_act(obj/item/storage/src_object, mob/user)
+	return
+
+/obj/get_dumping_location(obj/item/storage/source,mob/user)
+	return get_turf(src)
+>>>>>>> 94a5f4570a... Fixes dumping from inside the lockers (#29896)
 
 /obj/proc/CanAStarPass()
 	. = !density

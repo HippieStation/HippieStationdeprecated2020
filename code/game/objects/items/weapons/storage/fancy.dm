@@ -45,7 +45,11 @@
 	fancy_open = !fancy_open
 	update_icon()
 
+<<<<<<< HEAD:code/game/objects/items/weapons/storage/fancy.dm
 /obj/item/weapon/storage/fancy/content_can_dump(atom/dest_object, mob/user)
+=======
+/obj/item/storage/fancy/dump_content_at(atom/dest_object, mob/user)
+>>>>>>> 94a5f4570a... Fixes dumping from inside the lockers (#29896):code/game/objects/items/storage/fancy.dm
 	. = ..()
 	if(.)
 		fancy_open = TRUE

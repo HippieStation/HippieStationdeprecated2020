@@ -485,8 +485,16 @@ GLOBAL_LIST_EMPTY(blood_splatter_icons)
 /atom/proc/rcd_act(mob/user, obj/item/weapon/construction/rcd/the_rcd, passed_mode)
 	return FALSE
 
+<<<<<<< HEAD
 /atom/proc/storage_contents_dump_act(obj/item/weapon/storage/src_object, mob/user)
     return 0
+=======
+/atom/proc/storage_contents_dump_act(obj/item/storage/src_object, mob/user)
+	return 0
+
+/atom/proc/get_dumping_location(obj/item/storage/source,mob/user)
+	return null
+>>>>>>> 94a5f4570a... Fixes dumping from inside the lockers (#29896)
 
 //This proc is called on the location of an atom when the atom is Destroy()'d
 /atom/proc/handle_atom_del(atom/A)
