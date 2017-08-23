@@ -65,9 +65,15 @@
 
 	//Left hand items
 	for(var/obj/item/I in held_items)
+<<<<<<< HEAD
 		if(!(I.flags & ABSTRACT))
 			if(I.blood_DNA)
 				msg += "<span class='warning'>It is holding [bicon(I)] [I.gender==PLURAL?"some":"a"] blood-stained [I.name] in its [get_held_index_name(get_held_index_of_item(I))]!</span>\n"
+=======
+		if(!(I.flags_1 & ABSTRACT_1))
+			if(LAZYLEN(I.forensics.blood))
+				msg += "<span class='warning'>It is holding [icon2html(I, user)] [I.gender==PLURAL?"some":"a"] blood-stained [I.name] in its [get_held_index_name(get_held_index_of_item(I))]!</span>\n"
+>>>>>>> 0a530cff9c... Refactors forensics to a datum (#29542)
 			else
 				msg += "It is holding [bicon(I)] \a [I] in its [get_held_index_name(get_held_index_of_item(I))].\n"
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //CONTAINS: Suit fibers and Detective's Scanning Computer
 
 /atom/var/list/suit_fibers
@@ -121,3 +122,5 @@
 	if(fingerprintshidden)
 		A.fingerprintshidden |= fingerprintshidden.Copy()    //admin
 	A.fingerprintslast = fingerprintslast
+=======
+>>>>>>> 0a530cff9c... Refactors forensics to a datum (#29542)
