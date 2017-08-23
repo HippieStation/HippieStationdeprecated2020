@@ -348,11 +348,18 @@ GLOBAL_PROTECT(AdminProcCallCount)
 			/obj/effect/decal/cleanable = "CLEANABLE",
 			/obj/item/device/radio/headset = "HEADSET",
 			/obj/item/clothing/head/helmet/space = "SPESSHELMET",
+<<<<<<< HEAD
 			/obj/item/weapon/book/manual = "MANUAL",
 			/obj/item/weapon/reagent_containers/food/drinks = "DRINK", //longest paths comes first
 			/obj/item/weapon/reagent_containers/food = "FOOD",
 			/obj/item/weapon/reagent_containers = "REAGENT_CONTAINERS",
 			/obj/item/weapon = "WEAPON",
+=======
+			/obj/item/book/manual = "MANUAL",
+			/obj/item/reagent_containers/food/drinks = "DRINK", //longest paths comes first
+			/obj/item/reagent_containers/food = "FOOD",
+			/obj/item/reagent_containers = "REAGENT_CONTAINERS",
+>>>>>>> 55adaa06c5... Merge pull request #29955 from tgstation/Cyberboss-patch-6
 			/obj/machinery/atmospherics = "ATMOS_MECH",
 			/obj/machinery/portable_atmospherics = "PORT_ATMOS",
 			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack = "MECHA_MISSILE_RACK",
