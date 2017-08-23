@@ -30,27 +30,14 @@
 		msg += "[desc]\n"
 
 		for(var/obj/item/I in held_items)
-<<<<<<< HEAD
-			if(!(I.flags & ABSTRACT))
-				if(I.blood_DNA)
-					msg += "<span class='warning'>It has [bicon(I)] [I.gender==PLURAL?"some":"a"] blood-stained [I.name] in its [get_held_index_name(get_held_index_of_item(I))]!</span>\n"
-=======
 			if(!(I.flags_1 & ABSTRACT_1))
 				if(I.forensics && I.forensics.blood)
 					msg += "<span class='warning'>It has [icon2html(I, user)] [I.gender==PLURAL?"some":"a"] blood-stained [I.name] in its [get_held_index_name(get_held_index_of_item(I))]!</span>\n"
->>>>>>> 0a530cff9c... Refactors forensics to a datum (#29542)
 				else
 					msg += "It has [bicon(I)] \a [I] in its [get_held_index_name(get_held_index_of_item(I))].\n"
-
-<<<<<<< HEAD
-		if(internal_storage && !(internal_storage.flags&ABSTRACT))
-			if(internal_storage.blood_DNA)
-				msg += "<span class='warning'>It is holding [bicon(internal_storage)] [internal_storage.gender==PLURAL?"some":"a"] blood-stained [internal_storage.name] in its internal storage!</span>\n"
-=======
 		if(internal_storage && !(internal_storage.flags_1&ABSTRACT_1))
 			if(internal_storage.forensics && internal_storage.forensics.blood)
 				msg += "<span class='warning'>It is holding [icon2html(internal_storage, user)] [internal_storage.gender==PLURAL?"some":"a"] blood-stained [internal_storage.name] in its internal storage!</span>\n"
->>>>>>> 0a530cff9c... Refactors forensics to a datum (#29542)
 			else
 				msg += "It is holding [bicon(internal_storage)] \a [internal_storage] in its internal storage.\n"
 		msg += "*---------*</span>"
