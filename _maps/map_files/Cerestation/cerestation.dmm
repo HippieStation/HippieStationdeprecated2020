@@ -38867,7 +38867,7 @@
 	},
 /area/engine/supermatter)
 "buX" = (
-/obj/machinery/power/supermatter_shard/crystal,
+/obj/machinery/power/supermatter_shard/crystal/engine,
 /turf/open/floor/engine{
 	baseturf = /turf/open/floor/plating/asteroid/airless;
 	name = "reinforced floor"
