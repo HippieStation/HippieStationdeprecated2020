@@ -141,8 +141,13 @@
 		return 0
 	return 1
 
+<<<<<<< HEAD
 /mob/living/carbon/monkey/can_use_guns(var/obj/item/gun/G)
 	return 1
+=======
+/mob/living/carbon/monkey/can_use_guns(obj/item/G)
+	return TRUE
+>>>>>>> 188f05ae9f... Cleaned up unneeded var from can_use_guns procs (#30106)
 
 /mob/living/carbon/monkey/angry
 	aggressive = TRUE
