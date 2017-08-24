@@ -52,8 +52,13 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	"?" = "Service",
 
 	// Faction
+<<<<<<< HEAD
 	"?" = "Syndicate",
 	"?" = "Centcom",
+=======
+	"å" = "Syndicate",
+	"í" = "CentCom",
+>>>>>>> 55632c9171... Missed a couple
 
 	// Species
 	"?" = "binary",
