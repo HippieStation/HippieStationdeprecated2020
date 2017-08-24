@@ -321,6 +321,12 @@
 	icon_state = "direction_bridge"
 
 /obj/structure/sign/logo
+<<<<<<< HEAD
 	name = "station logo"
 	desc = "A sign: SPACE STATION 13."
 	icon_state = "ss13sign-1"
+=======
+	name = "nanotrasen logo"
+	desc = "The Nanotrasen corporate logo."
+	icon_state = "nanotrasen_sign1"
+>>>>>>> a2e09babd1... Fixed Nanotrasen sign description
