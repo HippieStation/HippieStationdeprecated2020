@@ -120,6 +120,7 @@ function tag_pr($payload, $opened) {
 		'ignore_errors' => true,
 		'user_agent' 	=> 'tgstation13.org-Github-Automation-Tools'
 	));
+<<<<<<< HEAD
 
 	$url = $payload['pull_request']['url'];
 	$payload['pull_request'] = json_decode(file_get_contents($url, false, stream_context_create($scontext)), true);
@@ -127,6 +128,47 @@ function tag_pr($payload, $opened) {
 		//STILL not ready. Give it a bit, then try one more time
 		sleep(10);
 		$payload['pull_request'] = json_decode(file_get_contents($url, false, stream_context_create($scontext)), true);
+=======
+	if ($content)
+		$scontext['http']['content'] = $content;
+	
+	return file_get_contents($url, false, stream_context_create($scontext));
+}
+function validate_user($payload) {
+	global $validation, $validation_count;
+	$query = array();
+	if (empty($validation))
+		$validation = 'org';
+	switch (strtolower($validation)) {
+		case 'disable':
+			return TRUE;
+		case 'repo':
+			$query['repo'] = $payload['pull_request']['base']['repo']['full_name'];
+			break;
+		default:
+			$query['user'] = $payload['pull_request']['base']['repo']['owner']['login'];
+			break;
+	}
+	$query['author'] = $payload['pull_request']['user']['login'];
+	$query['is'] = 'merged';
+	$querystring = '';
+	foreach($query as $key => $value)
+		$querystring .= ($querystring == '' ? '' : '+') . urlencode($key) . ':' . urlencode($value);
+	$res = apisend('https://api.github.com/search/issues?q='.$querystring);
+	$res = json_decode($res, TRUE);
+	return $res['total_count'] >= (int)$validation_count;
+	
+}
+//rip bs-12
+function tag_pr($payload, $opened) {
+	//get the mergeable state
+	$url = $payload['pull_request']['url'];
+	$payload['pull_request'] = json_decode(apisend($url), TRUE);
+	if($payload['pull_request']['mergeable'] == null) {
+		//STILL not ready. Give it a bit, then try one more time
+		sleep(10);
+		$payload['pull_request'] = json_decode(apisend($url), TRUE);
+>>>>>>> f88938bf62... Merge branch 'master' into containers
 	}
 
 	$tags = array();
@@ -134,11 +176,10 @@ function tag_pr($payload, $opened) {
 	if($opened) {	//you only have one shot on these ones so as to not annoy maintainers
 		$tags = checkchangelog($payload, true, false);
 
-		$lowertitle = strtolower($title);
-		if(strpos($lowertitle, 'refactor') !== FALSE)
+		if(strpos(strtolower($title), 'refactor') !== FALSE)
 			$tags[] = 'Refactor';
 		
-		if(strpos($lowertitle, 'revert') !== FALSE || strpos($lowertitle, 'removes') !== FALSE)
+		if(strpos(strtolower($title), 'revert') !== FALSE || strpos($lowertitle, 'removes') !== FALSE)
 			$tags[] = 'Revert/Removal';
 	}
 
@@ -162,16 +203,15 @@ function tag_pr($payload, $opened) {
 			$tags[] = $tag;
 
 	//only maintners should be able to remove these
-	if(strpos($lowertitle, '[dnm]') !== FALSE)
+	if(strpos(strtolower($title), '[dnm]') !== FALSE)
 		$tags[] = 'Do Not Merge';
 
-	if(strpos($lowertitle, '[wip]') !== FALSE)
+	if(strpos(strtolower($title), '[wip]') !== FALSE)
 		$tags[] = 'Work In Progress';
 
 	$url = $payload['pull_request']['base']['repo']['url'] . '/issues/' . $payload['pull_request']['number'] . '/labels';
 
-	$existing_labels = file_get_contents($url, false, stream_context_create($scontext));
-	$existing_labels = json_decode($existing_labels, true);
+	$existing_labels = json_decode(apisend($url), true);
 
 	$existing = array();
 	foreach($existing_labels as $label)

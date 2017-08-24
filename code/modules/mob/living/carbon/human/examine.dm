@@ -56,7 +56,11 @@
 
 	//Hands
 	for(var/obj/item/I in held_items)
+<<<<<<< HEAD
 		if(!(I.flags & ABSTRACT))
+=======
+		if(!(I.flags_1 & ABSTRACT_1))
+>>>>>>> f88938bf62... Merge branch 'master' into containers
 			if(I.blood_DNA)
 				msg += "<span class='warning'>[t_He] [t_is] holding [icon2html(I, user)] [I.gender==PLURAL?"some":"a"] blood-stained [I.name] in [t_his] [get_held_index_name(get_held_index_of_item(I))]!</span>\n"
 			else
