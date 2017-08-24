@@ -793,11 +793,15 @@
 	else
 		to_chat(src, "<span class='warning'>You don't have the dexterity to do this!</span>")
 	return
+<<<<<<< HEAD
 /mob/living/proc/can_use_guns(var/obj/item/gun/G)
+=======
+/mob/living/proc/can_use_guns(obj/item/G)
+>>>>>>> 188f05ae9f... Cleaned up unneeded var from can_use_guns procs (#30106)
 	if (G.trigger_guard != TRIGGER_GUARD_ALLOW_ALL && !IsAdvancedToolUser())
 		to_chat(src, "<span class='warning'>You don't have the dexterity to do this!</span>")
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/proc/update_stamina()
 	if(staminaloss)
