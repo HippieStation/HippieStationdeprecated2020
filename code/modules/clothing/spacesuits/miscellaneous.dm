@@ -57,7 +57,13 @@ Contains:
 	name = "officer's beret"
 	desc = "An armored beret commonly used by special operations officers. Uses advanced force field technology to protect the head from space."
 	icon_state = "beret_badge"
+<<<<<<< HEAD
 	flags = STOPSPRESSUREDMAGE
+=======
+	dynamic_hair_suffix = "+generic"
+	dynamic_fhair_suffix = "+generic"
+	flags_1 = STOPSPRESSUREDMAGE_1
+>>>>>>> 32929314e3... Merge pull request #30027 from ShizCalev/hide-hair
 	flags_inv = 0
 	armor = list(melee = 80, bullet = 80, laser = 50, energy = 50, bomb = 100, bio = 100, rad = 100, fire = 100, acid = 100)
 	strip_delay = 130
