@@ -253,6 +253,7 @@ SUBSYSTEM_DEF(blackbox)
 /datum/feedback_variable/proc/get_variable()
 	return variable
 
+<<<<<<< HEAD
 /datum/feedback_variable/proc/set_details(text)
 	if (istext(text))
 		details = text
@@ -263,6 +264,16 @@ SUBSYSTEM_DEF(blackbox)
 			details = text
 		else
 			details += " [text]"
+=======
+/datum/feedback_variable/proc/set_details(deets)
+	details = "\"[deets]\""
+
+/datum/feedback_variable/proc/add_details(deets)
+	if (!details)
+		set_details(deets)
+	else
+		details += " | \"[deets]\""
+>>>>>>> 5a5307c6d8... Merge pull request #30096 from tgstation/Cyberboss-patch-1
 
 /datum/feedback_variable/proc/get_details()
 	return details
