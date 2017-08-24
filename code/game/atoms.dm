@@ -9,7 +9,11 @@
 	var/list/fingerprints
 	var/list/fingerprintshidden
 	var/list/blood_DNA
+<<<<<<< HEAD
 	var/container_type = 0
+=======
+	var/container_type = NONE
+>>>>>>> f88938bf62... Merge branch 'master' into containers
 	var/admin_spawned = 0	//was this spawned by an admin? used for stat tracking stuff.
 	var/datum/reagents/reagents = null
 
@@ -362,6 +366,7 @@ GLOBAL_LIST_EMPTY(blood_splatter_icons)
 	if(blood_DNA.len > old_length)
 		return 1//some new blood DNA was added
 
+<<<<<<< HEAD
 
 //to add blood from a mob onto something, and transfer their dna info
 /atom/proc/add_mob_blood(mob/living/M)
@@ -377,6 +382,23 @@ GLOBAL_LIST_EMPTY(blood_splatter_icons)
 /obj/add_blood(list/blood_dna)
 	return transfer_blood_dna(blood_dna)
 
+=======
+
+//to add blood from a mob onto something, and transfer their dna info
+/atom/proc/add_mob_blood(mob/living/M)
+	var/list/blood_dna = M.get_blood_dna_list()
+	if(!blood_dna)
+		return 0
+	return add_blood(blood_dna)
+
+//to add blood onto something, with blood dna info to include.
+/atom/proc/add_blood(list/blood_dna)
+	return 0
+
+/obj/add_blood(list/blood_dna)
+	return transfer_blood_dna(blood_dna)
+
+>>>>>>> f88938bf62... Merge branch 'master' into containers
 /obj/item/add_blood(list/blood_dna)
 	var/blood_count = !blood_DNA ? 0 : blood_DNA.len
 	if(!..())
