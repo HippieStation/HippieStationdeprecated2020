@@ -32,7 +32,7 @@
 	attack_sound = 'sound/effects/blobattack.ogg'
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab = 2)
 
-	var/morphed = 0
+	var/morphed = FALSE
 	var/atom/movable/form = null
 	var/morph_time = 0
 	var/static/list/blacklist_typecache = typecacheof(list(
@@ -93,7 +93,14 @@
 		..()
 
 /mob/living/simple_animal/hostile/morph/proc/assume(atom/movable/target)
+<<<<<<< HEAD
 	morphed = 1
+=======
+	if(morphed)
+		to_chat(src, "<span class='warning'>You must restore to your original form first!</span>")
+		return
+	morphed = TRUE
+>>>>>>> d72f30d2e0... Cleaned up true and false statements
 	form = target
 
 	visible_message("<span class='warning'>[src] suddenly twists and changes shape, becoming a copy of [target]!</span>", \
@@ -118,7 +125,7 @@
 /mob/living/simple_animal/hostile/morph/proc/restore()
 	if(!morphed)
 		return
-	morphed = 0
+	morphed = FALSE
 	form = null
 	alpha = initial(alpha)
 	color = initial(color)
