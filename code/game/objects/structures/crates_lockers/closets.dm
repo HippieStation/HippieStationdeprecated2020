@@ -110,17 +110,26 @@
 	return 1
 
 /obj/structure/closet/proc/dump_contents()
+<<<<<<< HEAD
 	var/turf/T = get_turf(src)
+=======
+	var/atom/L = drop_location()
+>>>>>>> 79ce9a6a69... Merge pull request #30025 from tgstation/Cyberboss-patch-2
 	for(var/atom/movable/AM in src)
-		AM.forceMove(T)
+		AM.forceMove(L)
 		if(throwing) // you keep some momentum when getting out of a thrown closet
 			step(AM, dir)
 	if(throwing)
 		throwing.finalize(FALSE)
 
 /obj/structure/closet/proc/take_contents()
+<<<<<<< HEAD
 	var/turf/T = get_turf(src)
 	for(var/atom/movable/AM in T)
+=======
+	var/atom/L = drop_location()
+	for(var/atom/movable/AM in L)
+>>>>>>> 79ce9a6a69... Merge pull request #30025 from tgstation/Cyberboss-patch-2
 		if(AM != src && insert(AM) == -1) // limit reached
 			break
 
