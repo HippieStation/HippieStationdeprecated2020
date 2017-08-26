@@ -120,9 +120,47 @@ function tag_pr($payload, $opened) {
 		'ignore_errors' => true,
 		'user_agent' 	=> 'tgstation13.org-Github-Automation-Tools'
 	));
+<<<<<<< HEAD
 
 	$url = $payload['pull_request']['url'];
 	$payload['pull_request'] = json_decode(file_get_contents($url, false, stream_context_create($scontext)), true);
+=======
+	if ($content)
+		$scontext['content'] = $content;
+	
+	return file_get_contents($url, false, stream_context_create($scontext));
+}
+function validate_user($payload) {
+	global $validation, $validation_count;
+	$query = array();
+	if (empty($validation))
+		$validation = 'org';
+	switch (strtolower($validation)) {
+		case 'disable':
+			return TRUE;
+		case 'repo':
+			$query['repo'] = $payload['pull_request']['base']['repo']['full_name'];
+			break;
+		default:
+			$query['user'] = $payload['pull_request']['base']['repo']['owner']['login'];
+			break;
+	}
+	$query['author'] = $payload['pull_request']['user']['login'];
+	$query['is'] = 'merged';
+	$querystring = '';
+	foreach($query as $key => $value)
+		$querystring .= ($querystring == '' ? '' : '+') . urlencode($key) . ':' . urlencode($value);
+	$res = apisend('https://api.github.com/search/issues?q='.$querystring);
+	$res = json_decode($res, TRUE);
+	return $res['total_count'] >= (int)$validation_count;
+	
+}
+//rip bs-12
+function tag_pr($payload, $opened) {
+	//get the mergeable state
+	$url = $payload['pull_request']['url'];
+	$payload['pull_request'] = json_decode(apisend($url));
+>>>>>>> 66c9c71172... Fixes webhook processor (#30109)
 	if($payload['pull_request']['mergeable'] == null) {
 		//STILL not ready. Give it a bit, then try one more time
 		sleep(10);
@@ -423,7 +461,11 @@ function checkchangelog($payload, $merge = false, $compile = true) {
 		'user_agent' 	=> 'tgstation13.org-Github-Automation-Tools'
     ));
 	$filename = '/html/changelogs/AutoChangeLog-pr-'.$payload['pull_request']['number'].'.yml';
+<<<<<<< HEAD
 	echo file_get_contents($payload['pull_request']['base']['repo']['url'].'/contents'.$filename, false, stream_context_create($scontext));
+=======
+	echo apisend($payload['pull_request']['base']['repo']['url'].'/contents'.$filename, 'PUT', $content);
+>>>>>>> 66c9c71172... Fixes webhook processor (#30109)
 }
 
 function sendtoallservers($str, $payload = null) {
