@@ -164,6 +164,7 @@
 		dropItemToGround(I)
 
 	if(thrown_thing)
+<<<<<<< HEAD
 		var/obj/item/B = get_inactive_held_item()
 		var/action = "thrown"
 		if(istype(thrown_thing, /obj/item) && B)
@@ -178,6 +179,10 @@
 					E.prev_throwforce = E.throwforce
 					E.throwforce = round(E.throwforce * B.specthrow_forcemult)
 		visible_message("<span class='danger'>[src] has [action] [thrown_thing].</span>")
+=======
+		visible_message("<span class='danger'>[src] has thrown [thrown_thing].</span>")
+		add_logs(src, thrown_thing, "has thrown")
+>>>>>>> d4f6f31b06... Improved pull and throw logging
 		newtonian_move(get_dir(target, src))
 		thrown_thing.throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed, src)
 
