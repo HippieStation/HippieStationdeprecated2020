@@ -100,6 +100,14 @@
 	var/glow_type = /obj/effect/temp_visual/ratvar/sigil/submission
 
 /obj/effect/clockwork/sigil/submission/sigil_effects(mob/living/L)
+<<<<<<< HEAD
+=======
+	if(istype(L.buckled, /obj/structure/destructible/clockwork/geis_binding))
+		if(is_servant_of_ratvar(L.pulledby))
+			L.pulledby.stop_pulling()
+		if(is_servant_of_ratvar(L.buckled.pulledby))
+			L.buckled.pulledby.stop_pulling()
+>>>>>>> 4482137fd7... Fixes the Geis+Sigil combo (#30205)
 	L.visible_message("<span class='warning'>[src] begins to glow a piercing magenta!</span>", "<span class='sevtug'>You feel something start to invade your mind...</span>")
 	var/oldcolor = color
 	animate(src, color = "#AF0AAF", time = convert_time, flags = ANIMATION_END_NOW)
