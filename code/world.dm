@@ -1,3 +1,6 @@
+//This file is just for the necessary /world definition
+//Try looking in game/world.dm
+
 /world
 	mob = /mob/dead/new_player
 	turf = /turf/open/space/basic
@@ -11,6 +14,7 @@
 #ifdef GC_FAILURE_HARD_LOOKUP
 	loop_checks = FALSE
 #endif
+<<<<<<< HEAD
 
 /world/New()
 	log_world("World loaded at [time_stamp()]")
@@ -292,3 +296,5 @@
 		hub_password = "kMZy3U5jJHSiBQjr"
 	else
 		hub_password = "SORRYNOPASSWORD"
+=======
+>>>>>>> 29e0863569... Merge pull request #29797 from Cyberboss/RemoveWorld
