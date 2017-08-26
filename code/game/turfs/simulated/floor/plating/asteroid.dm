@@ -104,7 +104,22 @@
 	return
 
 /turf/open/floor/plating/asteroid/singularity_pull(S, current_size)
+<<<<<<< HEAD
 	return
+=======
+	if(dug)
+		return
+	switch(current_size)
+		if(STAGE_THREE)
+			if(!prob(30))
+				gets_dug()
+		if(STAGE_FOUR)
+			if(prob(50))
+				gets_dug()
+		else 
+			if(current_size >= STAGE_FIVE && prob(70))
+				gets_dug()
+>>>>>>> 1d29db3de9... Make the switch more consice
 
 
 /turf/open/floor/plating/asteroid/basalt
