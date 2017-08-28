@@ -73,9 +73,9 @@ All ShuttleMove procs go here
 /////////////////////////////////////////////////////////////////////////////////////
 
 // Called on every atom in shuttle turf contents before anything has been moved
-// Return true if it should be moved regardless of turf being moved
-/atom/movable/proc/beforeShuttleMove(turf/newT, rotation)
-	return FALSE
+// returns the new move_mode (based on the old)
+/atom/movable/proc/beforeShuttleMove(turf/newT, rotation, move_mode)
+	return move_mode
 
 // Called on atoms to move the atom to the new location
 /atom/movable/proc/onShuttleMove(turf/newT, turf/oldT, rotation, list/movement_force, move_dir, old_dock)
@@ -117,7 +117,7 @@ All ShuttleMove procs go here
 
 	var/area/old_dest_area = newT.loc
 	parallax_movedir = old_dest_area.parallax_movedir
-	
+
 	old_dest_area.contents -= newT
 	contents += newT
 	newT.change_area(old_dest_area, src)
@@ -160,9 +160,11 @@ All ShuttleMove procs go here
 	SSair.add_to_active(src, TRUE)
 	SSair.add_to_active(oldT, TRUE)
 
+/************************************Area move procs************************************/
+
 /************************************Machinery move procs************************************/
 
-/obj/machinery/door/airlock/beforeShuttleMove(turf/newT, rotation)
+/obj/machinery/door/airlock/beforeShuttleMove(turf/newT, rotation, move_mode)
 	. = ..()
 	shuttledocked = 0
 	for(var/obj/machinery/door/airlock/A in range(1, src))
@@ -176,11 +178,11 @@ All ShuttleMove procs go here
 	for(var/obj/machinery/door/airlock/A in range(1, src))
 		A.shuttledocked = 1
 
-/obj/machinery/camera/beforeShuttleMove(turf/newT, rotation)
+/obj/machinery/camera/beforeShuttleMove(turf/newT, rotation, move_mode)
 	. = ..()
 	GLOB.cameranet.removeCamera(src)
 	GLOB.cameranet.updateChunk()
-	return TRUE
+	. |= MOVE_CONTENTS
 
 /obj/machinery/camera/afterShuttleMove(list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir)
 	. = ..()
@@ -207,7 +209,7 @@ All ShuttleMove procs go here
 	if(z == ZLEVEL_MINING) //Avoids double logging and landing on other Z-levels due to badminnery
 		SSblackbox.add_details("colonies_dropped", "[x]|[y]|[z]") //Number of times a base has been dropped!
 
-/obj/machinery/gravity_generator/main/beforeShuttleMove(turf/newT, rotation)
+/obj/machinery/gravity_generator/main/beforeShuttleMove(turf/newT, rotation, move_mode)
 	. = ..()
 	on = FALSE
 	update_list()
@@ -218,9 +220,9 @@ All ShuttleMove procs go here
 		on = TRUE
 	update_list()
 
-/obj/machinery/thruster/beforeShuttleMove(turf/newT, rotation)
+/obj/machinery/thruster/beforeShuttleMove(turf/newT, rotation, move_mode)
 	. = ..()
-	. = TRUE
+	. |= MOVE_CONTENTS
 
 //Properly updates pipes on shuttle movement
 /obj/machinery/atmospherics/shuttleRotate(rotation)
@@ -271,7 +273,7 @@ All ShuttleMove procs go here
 	var/turf/T = loc
 	hide(T.intact)
 
-/obj/machinery/navbeacon/beforeShuttleMove(turf/newT, rotation)
+/obj/machinery/navbeacon/beforeShuttleMove(turf/newT, rotation, move_mode)
 	. = ..()
 	GLOB.navbeacons["[z]"] -= src
 	GLOB.deliverybeacons -= src
@@ -333,13 +335,13 @@ All ShuttleMove procs go here
 
 /************************************Structure move procs************************************/
 
-/obj/structure/grille/beforeShuttleMove(turf/newT, rotation)
+/obj/structure/grille/beforeShuttleMove(turf/newT, rotation, move_mode)
 	. = ..()
-	. = TRUE
+	. |= MOVE_CONTENTS
 
-/obj/structure/lattice/beforeShuttleMove(turf/newT, rotation)
+/obj/structure/lattice/beforeShuttleMove(turf/newT, rotation, move_mode)
 	. = ..()
-	. = TRUE
+	. |= MOVE_CONTENTS
 
 /obj/structure/disposalpipe/afterShuttleMove(list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir)
 	. = ..()
@@ -350,6 +352,11 @@ All ShuttleMove procs go here
 	var/turf/T = loc
 	if(level==1)
 		hide(T.intact)
+		
+/obj/structure/shuttle/beforeShuttleMove(turf/newT, rotation, move_mode)
+	. = ..()
+	. |= MOVE_CONTENTS
+
 
 /************************************Misc move procs************************************/
 
