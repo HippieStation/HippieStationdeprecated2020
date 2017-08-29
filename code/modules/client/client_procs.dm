@@ -81,6 +81,24 @@
 		cmd_admin_pm(href_list["priv_msg"],null)
 		return
 
+	//Mentor Msg
+	if(href_list["mentor_msg"])
+		if(config.mentors_mobname_only)
+			var/mob/M = locate(href_list["mentor_msg"])
+			cmd_mentor_pm(M,null)
+		else
+			cmd_mentor_pm(href_list["mentor_msg"],null)
+		return
+
+	//Mentor Follow
+	if(href_list["mentor_follow"])
+		var/mob/living/M = locate(href_list["mentor_follow"])
+
+		if(istype(M))
+			mentor_follow(M)
+
+		return
+
 	switch(href_list["_src_"])
 		if("holder")
 			hsrc = holder
@@ -277,6 +295,9 @@ GLOBAL_LIST(external_rsc_urls)
 		adminGreet()
 		if((global.comms_key == "default_pwd" || length(global.comms_key) <= 6) && global.comms_allowed) //It's the default value or less than 6 characters long, but it somehow didn't disable comms.
 			to_chat(src, "<span class='danger'>The server's API key is either too short or is the default value! Consider changing it immediately!</span>")
+
+		if(!check_rights_for(src, R_ADMIN) && check_rights_for(src, R_MENTOR))
+			mentor_memo_output("Show")
 
 	add_verbs_from_config()
 	var/cached_player_age = set_client_age_from_db(tdata) //we have to cache this because other shit may change it and we need it's current value now down below.
