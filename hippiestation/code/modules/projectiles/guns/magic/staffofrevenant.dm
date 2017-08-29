@@ -1,11 +1,11 @@
-/obj/item/weapon/gun/magic/staff/staffofrevenant
+/obj/item/gun/magic/staff/staffofrevenant
 	name = "staff of revenant"
 	desc = "A cursed artifact that starts off weak, but you can drain the souls of dead bodies in order to make it more powerful! Activate the staff in hand to see how many souls you have and, if you have enough, make your staff stronger."
 	fire_sound = "sound/magic/WandODeath.ogg"
 	ammo_type = /obj/item/ammo_casing/magic/staffofrevenant
 	icon_state = "staffofrevenant"
 	item_state = "staffofrevenant"
-	icon = 'hippiestation/icons/obj/weapons.dmi'
+	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
 	w_class = 4
@@ -17,7 +17,7 @@
 	var/list/drained_mobs
 	var/chambered_dmg = 20
 
-/obj/item/weapon/gun/magic/staff/staffofrevenant/attack(mob/living/carbon/human/target, mob/living/user)
+/obj/item/gun/magic/staff/staffofrevenant/attack(mob/living/carbon/human/target, mob/living/user)
 	if(target.stat & DEAD)
 		if(istype(target, /mob/living/carbon/human))
 			LAZYINITLIST(drained_mobs)
@@ -34,7 +34,7 @@
 			return
 	..()
 
-/obj/item/weapon/gun/magic/staff/staffofrevenant/attack_self(mob/living/user)
+/obj/item/gun/magic/staff/staffofrevenant/attack_self(mob/living/user)
 	if(revenant_level == 0)
 		if(revenant_souls >= 5)
 			to_chat(user, "<font color=purple>As you focus on the staff, you witness the crystal emanating a bright shine, before receeding again. The staff hums at an eerie tone, and has managed to become much stronger...</font>")
@@ -72,7 +72,8 @@
 			recharge_rate = 6
 			chambered = new /obj/item/ammo_casing/magic/staffofrevenant/level4(src)
 			revenant_level = 4
-			playsound_global('sound/hallucinations/i_see_you1.ogg')
+			for(var/mob/M in GLOB.player_list)
+				M.playsound_local(get_turf(M), 'sound/hallucinations/i_see_you1.ogg', 150, 1, pressure_affected = FALSE)
 			to_chat(world, "<font color=purple><b>The end encroaches.</b></font>")
 	else if(revenant_level == 4)
 		if(revenant_souls >= 25) // if you reach this point, you pretty much won already
@@ -84,7 +85,8 @@
 			revenant_level = 5
 			chambered_dmg = 60
 			to_chat(world, "<font size=3 color=purple><b>Time is nearly out.</b></font>")
-			playsound_global('sound/hallucinations/wail.ogg')
+			for(var/mob/M in GLOB.player_list)
+				M.playsound_local(get_turf(M), 'sound/hallucinations/wail.ogg', 150, 1, pressure_affected = FALSE)
 	else if(revenant_level == 5)
 		if(revenant_souls >= 30)
 			to_chat(user, "<font color=purple>The Staff... Somehow, you managed to do what no necrolord had ever managed, to awaken the staff further than this... It does not even seem to react, but you can feel it! The staff, it has become so much more potent! None can stand in your way!</font>")
@@ -94,7 +96,8 @@
 			recharge_rate = 1
 			revenant_level = 666
 			to_chat(world, "<font size=5 color=purple><b>It's all over.</b></font>")
-			playsound_global('sound/ambience/antag/bloodcult.ogg')
+			for(var/mob/M in GLOB.player_list)
+				M.playsound_local(get_turf(M), 'sound/ambience/antag/bloodcult.ogg', 150, 1, pressure_affected = FALSE)
 
 	if(revenant_level <= 4)
 		to_chat(user, "<font color=purple><b>Your [name] has [revenant_souls] souls contained within. Your power will grow every fifth soul...</b></font>")
