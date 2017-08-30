@@ -105,6 +105,8 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 						 'sound/voice/lowHiss3.ogg',
 						 'sound/voice/lowHiss4.ogg')
 	valid_territory = FALSE
+
+
 //Departments
 
 /area/maintenance/department/chapel
@@ -262,21 +264,44 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Central Asteroid Maintenance"
 	icon_state = "maintcentral"
 
-/area/maintenance/asteroid/disposal/east
-	name = "Eastern External Waste Belt"
+/area/maintenance/asteroid/disposal
 	icon_state = "disposal"
 
 /area/maintenance/asteroid/disposal/north
-	name = "Northern External Waste Belt"
-	icon_state = "disposal"
+	name = "Northern Disposal"
 
-/area/maintenance/asteroid/disposal/southeast
-	name = "South-Eastern Disposal"
-	icon_state = "disposal"
+/area/maintenance/asteroid/disposal/north/east
+	name = "North-Eastern Disposal"
 
-/area/maintenance/asteroid/disposal/southwest
+/area/maintenance/asteroid/disposal/north/west
+	name = "North-Western Disposal"
+
+/area/maintenance/asteroid/disposal/east
+	name = "Eastern Disposal"
+
+/area/maintenance/asteroid/disposal/west
+	name = "Western Disposal"
+
+/area/maintenance/asteroid/disposal/west/secondary
+	name = "Secondary Western Disposal"
+
+/area/maintenance/asteroid/disposal/south
+	name = "Southern Disposal"
+
+/area/maintenance/asteroid/disposal/south/west
 	name = "South-Western Disposal"
-	icon_state = "disposal"
+
+/area/maintenance/asteroid/disposal/external/east
+	name = "Eastern External Waste Belt"
+
+/area/maintenance/asteroid/disposal/external/north
+	name = "Northern External Waste Belt"
+
+/area/maintenance/asteroid/disposal/external/southeast
+	name = "South-Eastern External Waste Belt"
+
+/area/maintenance/asteroid/disposal/external/southwest
+	name = "South-Western External Waste Belt"
 
 /area/maintenance/asteroid/fore/cargo_west
 	name = "Fore Asteroid Maintenance"
@@ -530,6 +555,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Locker Toilets"
 	icon_state = "toilet"
 
+/area/crew_quarters/toilet/fitness
+	name = "Fitness Toilets"
+	icon_state = "toilet"
+
 /area/crew_quarters/toilet/female
 	name = "Female Toilets"
 	icon_state = "toilet"
@@ -601,7 +630,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/library
  	name = "Library"
  	icon_state = "library"
- 	flags = NONE
+ 	flags_1 = NONE
 
 /area/library/lounge
  	name = "Library Lounge"
@@ -610,12 +639,12 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/library/abandoned
  	name = "Abandoned Library"
  	icon_state = "library"
- 	flags = NONE
+ 	flags_1 = NONE
 
 /area/chapel
 	icon_state = "chapel"
 	ambientsounds = list('sound/ambience/ambicha1.ogg','sound/ambience/ambicha2.ogg','sound/ambience/ambicha3.ogg','sound/ambience/ambicha4.ogg')
-	flags = NONE
+	flags_1 = NONE
 
 /area/chapel/main
 	name = "Chapel"
@@ -656,7 +685,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/engine/atmos
  	name = "Atmospherics"
  	icon_state = "atmos"
- 	flags = NONE
+ 	flags_1 = NONE
 
 /area/engine/atmospherics_engine
 	name = "Atmospherics Engine"
@@ -694,7 +723,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	dynamic_lighting = DYNAMIC_LIGHTING_IFSTARLIGHT
 	valid_territory = FALSE
 	blob_allowed = FALSE
-	flags = NONE
+	flags_1 = NONE
 
 /area/solar/asteroid/aft
 	name = "Aft Asteroid Solar"
@@ -815,13 +844,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Starboard Bow Auxiliary Solar Maintenance"
 	icon_state = "SolarcontrolA"
 
-/area/assembly/assembly_line //Derelict Assembly Line
-	name = "Assembly Line"
-	icon_state = "ass_line"
-	power_equip = FALSE
-	power_light = FALSE
-	power_environ = FALSE
-
 //Teleporter
 
 /area/teleporter
@@ -917,7 +939,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/medical/virology
 	name = "Virology"
 	icon_state = "virology"
-	flags = NONE
+	flags_1 = NONE
 
 /area/medical/morgue
 	name = "Morgue"
@@ -1005,9 +1027,14 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Firing Range"
 	icon_state = "firingrange"
 
-/area/security/transfer
-	name = "Transfer Centre"
+/area/security/execution
 	icon_state = "execution_room"
+
+/area/security/execution/transfer
+	name = "Transfer Centre"
+
+/area/security/execution/education
+	name = "Prisoner Education Chamber"
 
 /area/security/nuke_storage
 	name = "Vault"
@@ -1112,7 +1139,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/janitor
 	name = "Custodial Closet"
 	icon_state = "janitor"
-	flags = NONE
+	flags_1 = NONE
 
 /area/hydroponics
 	name = "Hydroponics"
@@ -1461,7 +1488,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 //SPACE STATION 13
 GLOBAL_LIST_INIT(the_station_areas, list (
-	/area/assembly,
 	/area/bridge,
 	/area/chapel,
 	/area/construction,

@@ -17,7 +17,7 @@
 	heatmod = 0
 	species_traits = list(RESISTHOT,RESISTCOLD,RESISTPRESSURE,RADIMMUNE,NOBREATH,NOBLOOD,NOFIRE,VIRUSIMMUNE,PIERCEIMMUNE,NOTRANSSTING,NOHUNGER,NOCRITDAMAGE,NOZOMBIE,NO_UNDERWEAR,EASYDISMEMBER)
 	teeth_type = /obj/item/stack/teeth/meeseeks
-	meat = /obj/item/weapon/reagent_containers/food/snacks/meat/slab/human/mutant/meeseeks
+	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/meeseeks
 	damage_overlay_type = ""
 	var/mob/living/carbon/master
 	var/datum/objective/objective
@@ -68,8 +68,6 @@
 		if(SM.objective)
 			SM.objective.completed = TRUE
 	H.Stun(15)
-	for(var/i in H)
-		qdel(i)
 	new /obj/effect/cloud(get_turf(H))
 	H.visible_message("<span class='notice'>[H] disappears into a cloud of smoke!</span>")
 	qdel(H)

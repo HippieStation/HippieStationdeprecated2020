@@ -18,6 +18,7 @@
 	var/sound
 
 /turf/open/indestructible/sound/Entered(var/mob/AM)
+	..()
 	if(istype(AM))
 		playsound(src,sound,50,1)
 
@@ -124,7 +125,7 @@
 	for(var/obj/I in contents)
 		if(I.resistance_flags & FREEZE_PROOF)
 			return
-		if(!HAS_SECONDARY_FLAG(I, FROZEN)) //let it go
+		if(!(I.flags_2 & FROZEN_2)) //let it go
 			I.make_frozen_visual()
 	for(var/mob/living/L in contents)
 		if(L.bodytemperature <= 50)
@@ -189,11 +190,18 @@
 			new /datum/forced_movement(C, get_ranged_target_turf(C, olddir, 1), 1, FALSE)	//spinning would be bad for ice, fucks up the next dir
 		return 1
 
+/turf/open/copyTurf(turf/T)
+	. = ..()
+	if(. && isopenturf(T) && wet_time)
+		var/turf/open/O = T
+		O.MakeSlippery(wet_setting = wet, wet_time_to_add = wet_time) //we're copied, copy how wet we are also
+
 /turf/open/proc/MakeSlippery(wet_setting = TURF_WET_WATER, min_wet_time = 0, wet_time_to_add = 0) // 1 = Water, 2 = Lube, 3 = Ice, 4 = Permafrost, 5 = Slide
 	wet_time = max(wet_time+wet_time_to_add, min_wet_time)
 	if(wet >= wet_setting)
 		return
 	wet = wet_setting
+	UpdateSlip()
 	if(wet_setting != TURF_DRY)
 		if(wet_overlay)
 			cut_overlay(wet_overlay)
@@ -216,6 +224,30 @@
 		add_overlay(wet_overlay)
 	HandleWet()
 
+/turf/open/proc/UpdateSlip()
+	switch(wet)
+		if(TURF_WET_WATER)
+			AddComponent(/datum/component/slippery, 60, NO_SLIP_WHEN_WALKING)
+		if(TURF_WET_LUBE)
+			AddComponent(/datum/component/slippery, 80, SLIDE | GALOSHES_DONT_HELP)
+		if(TURF_WET_ICE)
+			AddComponent(/datum/component/slippery, 120, SLIDE | GALOSHES_DONT_HELP)
+		if(TURF_WET_PERMAFROST)
+			AddComponent(/datum/component/slippery, 120, SLIDE_ICE | GALOSHES_DONT_HELP)
+		if(TURF_WET_SLIDE)
+			AddComponent(/datum/component/slippery, 80, SLIDE | GALOSHES_DONT_HELP)
+		else
+			qdel(GetComponent(/datum/component/slippery))
+
+/turf/open/ComponentActivated(datum/component/C)
+	..()
+	var/datum/component/slippery/S = C
+	if(!istype(S))
+		return
+	if(wet == TURF_WET_LUBE)
+		var/mob/living/L = S.slip_victim
+		L.confused = max(L.confused, 8)
+
 /turf/open/proc/MakeDry(wet_setting = TURF_WET_WATER)
 	if(wet > wet_setting || !wet)
 		return
@@ -228,6 +260,7 @@
 			wet = TURF_DRY
 			if(wet_overlay)
 				cut_overlay(wet_overlay)
+		UpdateSlip()
 
 /turf/open/proc/HandleWet()
 	if(!wet)
@@ -240,7 +273,7 @@
 		wet_time = MAXIMUM_WET_TIME
 	if(wet == TURF_WET_ICE && air.temperature > T0C)
 		for(var/obj/O in contents)
-			if(HAS_SECONDARY_FLAG(O, FROZEN))
+			if(O.flags_2 & FROZEN_2)
 				O.make_unfrozen()
 		MakeDry(TURF_WET_ICE)
 		MakeSlippery(TURF_WET_WATER)
@@ -272,3 +305,13 @@
 		wet_time = 0
 	if(wet)
 		addtimer(CALLBACK(src, .proc/HandleWet), 15, TIMER_UNIQUE)
+
+/turf/open/get_dumping_location()
+	return src
+
+/turf/open/proc/ClearWet()//Nuclear option of immediately removing slipperyness from the tile instead of the natural drying over time
+	wet = TURF_DRY
+	UpdateSlip()
+	if(wet_overlay)
+		cut_overlay(wet_overlay)
+

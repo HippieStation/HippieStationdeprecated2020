@@ -10,7 +10,7 @@
 
 /obj/item/clothing/mask/hippie/tape/attack_hand(mob/user as mob)
 	if (!user) return
-	if (istype(src.loc, /obj/item/weapon/storage))
+	if (istype(src.loc, /obj/item/storage))
 		return ..()
 	var/mob/living/carbon/human/H = user
 	if(loc == user && H.wear_mask == src)
@@ -26,7 +26,7 @@
 
 /obj/item/clothing/mask/hippie/tape/dropped(mob/user as mob)
 	if (!user) return
-	if (istype(src.loc, /obj/item/weapon/storage) || used)
+	if (istype(src.loc, /obj/item/storage) || used)
 		return ..()
 	var/mob/living/carbon/human/H = user
 	..()
@@ -60,7 +60,7 @@
 	if(ishuman(W) && (user.zone_selected == "mouth"))
 		var/mob/living/carbon/human/H = W
 		if( \
-				(H.head && H.head.flags & HEADCOVERSMOUTH) || \
+				(H.head && H.head.flags_cover & HEADCOVERSMOUTH) || \
 				(H.wear_mask) \
 			)
 			to_chat(user, "<span class='danger'>You're going to need to remove that mask/helmet first.</span>")

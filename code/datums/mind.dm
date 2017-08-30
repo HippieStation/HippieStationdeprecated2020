@@ -267,7 +267,7 @@
 	var/list/all_contents = traitor_mob.GetAllContents()
 	var/obj/item/device/pda/PDA = locate() in all_contents
 	var/obj/item/device/radio/R = locate() in all_contents
-	var/obj/item/weapon/pen/P = locate() in all_contents //including your PDA-pen!
+	var/obj/item/pen/P = locate() in all_contents //including your PDA-pen!
 
 	var/obj/item/uplink_loc
 
@@ -396,7 +396,15 @@
 		if (assigned_role in GLOB.command_positions)
 			text += "<b>HEAD</b>|loyal|employee|headrev|rev"
 		else if (src in SSticker.mode.head_revolutionaries)
-			text += "head|loyal|<a href='?src=\ref[src];revolution=clear'>employee</a>|<b>HEADREV</b>|<a href='?src=\ref[src];revolution=rev'>rev</a>"
+			var/last_healthy_headrev = TRUE
+			for(var/I in SSticker.mode.head_revolutionaries)
+				if(I == src)
+					continue
+				var/mob/M = I
+				if(M.z == ZLEVEL_STATION && !M.stat)
+					last_healthy_headrev = FALSE
+					break
+			text += "head|loyal|<a href='?src=\ref[src];revolution=clear'>employee</a>|<b>[last_healthy_headrev ? "<font color='red'>LAST </font> " : ""]HEADREV</b>|<a href='?src=\ref[src];revolution=rev'>rev</a>"
 			text += "<br>Flash: <a href='?src=\ref[src];revolution=flash'>give</a>"
 
 			var/list/L = current.get_contents()
@@ -465,6 +473,25 @@
 			text += "<a href='?src=\ref[src];gang=new'>Create New Gang</a>"
 
 		sections["gang"] = text
+
+		/** SHADOWLING **/
+		text = "shadowling"
+		if(SSticker.mode.config_tag == "shadowling")
+			text = uppertext(text)
+		text = "<i><b>[text]</b></i>: "
+		if(src in SSticker.mode.shadows)
+			text += "<b>SHADOWLING</b>|thrall|<a href='?src=\ref[src];shadowling=clear'>human</a>"
+		else if(src in SSticker.mode.thralls)
+			text += "shadowling|<b>THRALL</b>|<a href='?src=\ref[src];shadowling=clear'>human</a>"
+		else
+			text += "<a href='?src=\ref[src];shadowling=shadowling'>shadowling</a>|<a href='?src=\ref[src];shadowling=thrall'>thrall</a>|<b>HUMAN</b>"
+
+		if(current && current.client && (ROLE_SHADOWLING in current.client.prefs.be_special))
+			text += "|Enabled in Prefs"
+		else
+			text += "|Disabled in Prefs"
+
+		sections["shadowling"] = text
 
 		/** Abductors **/
 		text = "Abductor"
@@ -801,11 +828,11 @@
 						possible_targets += possible_target.current
 
 				var/mob/def_target = null
-				var/objective_list[] = list(/datum/objective/assassinate, /datum/objective/protect, /datum/objective/debrain, /datum/objective/maroon)
-				if (objective&&(objective.type in objective_list) && objective:target)
-					def_target = objective:target.current
+				var/list/objective_list = typecacheof(list(/datum/objective/assassinate, /datum/objective/protect, /datum/objective/debrain, /datum/objective/maroon))
+				if (is_type_in_typecache(objective, objective_list) && objective.target)
+					def_target = objective.target.current
 
-				var/new_target = input("Select target:", "Objective target", def_target) as null|anything in possible_targets
+				var/mob/new_target = input("Select target:", "Objective target", def_target) as null|anything in possible_targets
 				if (!new_target)
 					return
 
@@ -813,12 +840,12 @@
 				if (new_target == "Free objective")
 					new_objective = new objective_path
 					new_objective.owner = src
-					new_objective:target = null
+					new_objective.target = null
 					new_objective.explanation_text = "Free objective"
 				else
 					new_objective = new objective_path
 					new_objective.owner = src
-					new_objective:target = new_target:mind
+					new_objective.target = new_target.mind
 					//Will display as special role if the target is set as MODE. Ninjas/commandos/nuke ops.
 					new_objective.update_explanation_text()
 
@@ -1020,7 +1047,7 @@
 
 			if("takeequip")
 				var/list/L = current.get_contents()
-				for(var/obj/item/weapon/pen/gang/pen in L)
+				for(var/obj/item/pen/gang/pen in L)
 					qdel(pen)
 				for(var/obj/item/device/gangtool/gangtool in L)
 					qdel(gangtool)
@@ -1234,6 +1261,46 @@
 					log_admin("[key_name(usr)] has forged objectives for [current] as part of autoobjectives.")
 					traitordatum.forge_traitor_objectives()
 					to_chat(usr, "<span class='notice'>The objectives for traitor [key] have been generated. You can edit them and anounce manually.</span>")
+
+	else if(href_list["shadowling"])
+		switch(href_list["shadowling"])
+			if("clear")
+				SSticker.mode.update_shadow_icons_removed(src)
+				if(src in SSticker.mode.shadows)
+					SSticker.mode.shadows -= src
+					special_role = null
+					to_chat(current, "<span class='userdanger'>Your powers have been quenched! You are no longer a shadowling!</span>")
+					RemoveSpell(/obj/effect/proc_holder/spell/self/shadowling_hatch)
+					RemoveSpell(/obj/effect/proc_holder/spell/self/shadowling_ascend)
+					RemoveSpell(/obj/effect/proc_holder/spell/targeted/enthrall)
+					RemoveSpell(/obj/effect/proc_holder/spell/self/shadowling_hivemind)
+					message_admins("[key_name_admin(usr)] has de-shadowling'ed [current].")
+					log_admin("[key_name(usr)] has de-shadowling'ed [current].")
+				else if(src in SSticker.mode.thralls)
+					SSticker.mode.remove_thrall(src,0)
+					message_admins("[key_name_admin(usr)] has de-thrall'ed [current].")
+					log_admin("[key_name(usr)] has de-thrall'ed [current].")
+			if("shadowling")
+				if(!ishuman(current))
+					to_chat(usr, "<span class='warning'>This only works on humans!</span>")
+					return
+				SSticker.mode.shadows += src
+				special_role = "shadowling"
+				to_chat(current,"<span class='shadowling'><b>Something stirs deep in your mind. A red light floods your vision, and slowly you remember. Though your human disguise has served you well, the \
+				time is nigh to cast it off and enter your true form. You have disguised yourself amongst the humans, but you are not one of them. You are a shadowling, and you are to ascend at all costs.\
+				</b></span>")
+				SSticker.mode.finalize_shadowling(src)
+				SSticker.mode.update_shadow_icons_added(src)
+				current.playsound_local(get_turf(current), 'hippiestation/sound/ambience/antag/sling.ogg', 100, FALSE, pressure_affected = FALSE)
+			if("thrall")
+				if(!ishuman(current))
+					to_chat(usr, "<span class='warning'>This only works on humans!</span>")
+					return
+				SSticker.mode.add_thrall(src)
+				message_admins("[key_name_admin(usr)] has thrall'ed [current].")
+				log_admin("[key_name(usr)] has thrall'ed [current].")
+
+
 
 	else if(href_list["devil"])
 		var/datum/antagonist/devil/devilinfo = has_antag_datum(ANTAG_DATUM_DEVIL)
@@ -1450,6 +1517,7 @@
 	if(!(src in SSticker.mode.syndicates))
 		SSticker.mode.syndicates += src
 		SSticker.mode.update_synd_icons_added(src)
+		assigned_role = "Syndicate"
 		special_role = "Syndicate"
 		SSticker.mode.forge_syndicate_objectives(src)
 		SSticker.mode.greet_syndicate(src)
@@ -1684,10 +1752,7 @@
 
 	else
 		mind = new /datum/mind(key)
-		if(SSticker)
-			SSticker.minds += mind
-		else
-			stack_trace("mind_initialize(): No SSticker ready")
+		SSticker.minds += mind
 	if(!mind.name)
 		mind.name = real_name
 	mind.current = src
@@ -1700,7 +1765,7 @@
 /mob/living/carbon/human/mind_initialize()
 	..()
 	if(!mind.assigned_role)
-		mind.assigned_role = "Assistant" //defualt
+		mind.assigned_role = "Unassigned" //default
 
 //XENO
 /mob/living/carbon/alien/mind_initialize()

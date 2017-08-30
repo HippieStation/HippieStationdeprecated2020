@@ -5,10 +5,10 @@
 	item_state = "cluwne"
 	item_color = "cluwne"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	flags = NODROP | DROPDEL
+	flags_1 = NODROP_1 | DROPDEL_1
 	slowdown = SHOES_SLOWDOWN+1
 	var/footstep = 1
-	pockets = /obj/item/weapon/storage/internal/pocket/shoes/clown
+	pockets = /obj/item/storage/internal/pocket/shoes/clown
 
 /obj/item/clothing/shoes/hippie/cluwne/step_action()
 	if(footstep > 1)
