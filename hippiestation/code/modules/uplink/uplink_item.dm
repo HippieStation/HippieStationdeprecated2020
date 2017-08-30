@@ -147,3 +147,6 @@
 	cost = 12//80 backstab damage and armour pierce isn't a fucking joke
 	item = /obj/item/melee/transforming/butterfly/energy
 	surplus = 15
+	
+/datum/uplink_item/stealthy_weapons/romerol_kit
+	cost = 20
