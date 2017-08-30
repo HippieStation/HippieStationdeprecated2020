@@ -923,12 +923,32 @@
 	..(gibbed)
 
 /mob/living/simple_animal/parrot/Poly/proc/Read_Memory()
+<<<<<<< HEAD
 	var/savefile/S = new /savefile("data/npc_saves/Poly.sav")
 	S["phrases"] 			>> speech_buffer
 	S["roundssurvived"]		>> rounds_survived
 	S["longestsurvival"]	>> longest_survival
 	S["longestdeathstreak"] >> longest_deathstreak
 
+=======
+	if(fexists("data/npc_saves/Poly.sav")) //legacy compatability to convert old format to new
+		var/savefile/S = new /savefile("data/npc_saves/Poly.sav")
+		S["phrases"] 			>> speech_buffer
+		S["roundssurvived"]		>> rounds_survived
+		S["longestsurvival"]	>> longest_survival
+		S["longestdeathstreak"] >> longest_deathstreak
+		fdel(S)
+	else
+		var/json_file = file("data/npc_saves/Poly.json")
+		if(!fexists(json_file))
+			return
+		var/list/json = list()
+		json = json_decode(file2text(json_file))
+		speech_buffer = json["phrases"]
+		rounds_survived = json["roundssurvived"]
+		longest_survival = json["longestsurvival"]
+		longest_deathstreak = json["longestdeathstreak"]
+>>>>>>> f0eb99a289... adds comments
 	if(!islist(speech_buffer))
 		speech_buffer = list()
 

@@ -21,6 +21,7 @@ SUBSYSTEM_DEF(persistence)
 	..()
 
 /datum/controller/subsystem/persistence/proc/LoadSatchels()
+<<<<<<< HEAD
 	secret_satchels = new /savefile("data/npc_saves/SecretSatchels.sav")
 	satchel_blacklist = typecacheof(list(/obj/item/stack/tile/plasteel, /obj/item/crowbar))
 	secret_satchels[SSmapping.config.map_name] >> old_secret_satchels
@@ -32,6 +33,26 @@ SUBSYSTEM_DEF(persistence)
 		expanded_old_satchels = splittext(old_secret_satchels,"#")
 		if(PlaceSecretSatchel(expanded_old_satchels))
 			placed_satchels++
+=======
+	var/placed_satchel = 0
+	var/path
+	var/obj/item/storage/backpack/satchel/flat/F = new()
+	if(fexists("data/npc_saves/SecretSatchels.sav")) //legacy compatability to convert old format to new
+		var/savefile/secret_satchels = new /savefile("data/npc_saves/SecretSatchels.sav")
+		var/sav_text
+		secret_satchels[SSmapping.config.map_name] >> sav_text
+		fdel(secret_satchels)
+		if(sav_text)
+			old_secret_satchels = splittext(sav_text,"#")
+			if(old_secret_satchels.len >= 20)
+				var/satchel_string = pick_n_take(old_secret_satchels)
+				var/list/chosen_satchel = splittext(satchel_string,"|")
+				if(chosen_satchel.len == 3)
+					F.x = text2num(chosen_satchel[1])
+					F.y = text2num(chosen_satchel[2])
+					F.z = ZLEVEL_STATION
+					path = text2path(chosen_satchel[3])
+>>>>>>> f0eb99a289... adds comments
 	else
 		expanded_old_satchels.len = 0
 
@@ -74,9 +95,27 @@ SUBSYSTEM_DEF(persistence)
 		break //Who's been duping the bird?!
 
 /datum/controller/subsystem/persistence/proc/LoadChiselMessages()
+<<<<<<< HEAD
 	var/savefile/chisel_messages_sav = new /savefile("data/npc_saves/ChiselMessages.sav")
 	var/saved_json
 	chisel_messages_sav[SSmapping.config.map_name] >> saved_json
+=======
+	var/list/saved_messages = list()
+	if(fexists("data/npc_saves/ChiselMessages.sav")) //legacy compatability to convert old format to new
+		var/savefile/chisel_messages_sav = new /savefile("data/npc_saves/ChiselMessages.sav")
+		var/saved_json
+		chisel_messages_sav[SSmapping.config.map_name] >> saved_json
+		if(!saved_json)
+			return
+		saved_messages = json_decode(saved_json)
+		fdel(chisel_messages_sav)
+	else
+		var/json_file = file("data/npc_saves/ChiselMessages[SSmapping.config.map_name].json")
+		if(!fexists(json_file))
+			return
+		var/list/json
+		json = json_decode(file2text(json_file))
+>>>>>>> f0eb99a289... adds comments
 
 	if(!saved_json)
 		return
@@ -109,6 +148,7 @@ SUBSYSTEM_DEF(persistence)
 	log_world("Loaded [saved_messages.len] engraved messages on map [SSmapping.config.map_name]")
 
 /datum/controller/subsystem/persistence/proc/LoadTrophies()
+<<<<<<< HEAD
 	trophy_sav = new /savefile("data/npc_saves/TrophyItems.sav")
 	var/saved_json
 	trophy_sav >> saved_json
@@ -123,6 +163,25 @@ SUBSYSTEM_DEF(persistence)
 
 	saved_trophies = decoded_json
 
+=======
+	if(fexists("data/npc_saves/TrophyItems.sav")) //legacy compatability to convert old format to new
+		var/savefile/S = new /savefile("data/npc_saves/TrophyItems.sav")
+		var/saved_json
+		S >> saved_json
+		if(!saved_json)
+			return
+		saved_trophies = json_decode(saved_json)
+		fdel(S)
+	else
+		var/json_file = file("data/npc_saves/TrophyItems.json")
+		if(!fexists(json_file))
+			return
+		var/list/json = list()
+		json = json_decode(file2text(json_file))
+		if(!json)
+			return
+		saved_trophies = json["data"]
+>>>>>>> f0eb99a289... adds comments
 	SetUpTrophies(saved_trophies.Copy())
 
 /datum/controller/subsystem/persistence/proc/SetUpTrophies(list/trophy_items)
