@@ -7,8 +7,10 @@
 	dat +={"
 			<B>General Secrets</B><BR>
 			<BR>
+			<A href='?src=\ref[src];secrets=spawnselfdummy'>Spawn yourself as a Test Dummy</A><BR>
 			<A href='?src=\ref[src];secrets=list_job_debug'>Show Job Debug</A><BR>
 			<A href='?src=\ref[src];secrets=admin_log'>Admin Log</A><BR>
+			<A href='?src=\ref[src];secrets=mentor_log'>Mentor Log</A><BR>
 			<A href='?src=\ref[src];secrets=show_admins'>Show Admin List</A><BR>
 			<BR>
 			"}
@@ -60,7 +62,6 @@
 			<A href='?src=\ref[src];secrets=events'>Summon Events (Toggle)</A><BR>
 			<A href='?src=\ref[src];secrets=onlyone'>There can only be one!</A><BR>
 			<A href='?src=\ref[src];secrets=delayed_onlyone'>There can only be one! (40-second delay)</A><BR>
-			<A href='?src=\ref[src];secrets=onlyme'>There can only be me!</A><BR>
 			<A href='?src=\ref[src];secrets=retardify'>Make all players retarded</A><BR>
 			<A href='?src=\ref[src];secrets=eagles'>Egalitarian Station Mode</A><BR>
 			<A href='?src=\ref[src];secrets=blackout'>Break all lights</A><BR>
@@ -95,6 +96,8 @@
 	var/datum/round_event/E
 	var/ok = 0
 	switch(item)
+		if("spawnselfdummy")
+			spawntestdummy(usr)
 		if("admin_log")
 			var/dat = "<B>Admin Log<HR></B>"
 			for(var/l in GLOB.admin_log)
@@ -102,6 +105,9 @@
 			if(!GLOB.admin_log.len)
 				dat += "No-one has done anything this round!"
 			usr << browse(dat, "window=admin_log")
+
+		if("mentor_log")
+			HippieMentorLogSecret()
 
 		if("list_job_debug")
 			var/dat = "<B>Job Debug info.</B><HR>"
@@ -525,12 +531,6 @@
 			SSblackbox.add_details("admin_secrets_fun_used","There Can Be Only One")
 			usr.client.only_one_delayed()
 			sound_to_playing_players('sound/misc/highlander_delayed.ogg')
-
-		if("onlyme")
-			if(!check_rights(R_FUN))
-				return
-			SSblackbox.add_details("admin_secrets_fun_used","There Can Be Only Me")
-			only_me()
 
 		if("maint_access_brig")
 			if(!check_rights(R_DEBUG))
