@@ -421,11 +421,7 @@
 		target = safepick(view(3,target))
 		if(!target)
 			return
-<<<<<<< HEAD
-	if(!target.Adjacent(src))
-=======
 	if(!Adjacent(target))
->>>>>>> 5ab21d7c42... Why i even did that
 		if(selected && selected.is_ranged())
 			if(selected.action(target,params))
 				selected.start_cooldown()
