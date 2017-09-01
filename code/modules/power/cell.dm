@@ -176,6 +176,22 @@
 	..()
 	charge = 0
 
+<<<<<<< HEAD
+=======
+/obj/item/stock_parts/cell/upgraded
+	name = "high-capacity power cell"
+	desc = "A power cell with a slightly higher capacity than normal!"
+	maxcharge = 2500
+	materials = list(MAT_GLASS=50)
+	rating = 2
+	chargerate = 1000
+
+/obj/item/stock_parts/cell/upgraded/plus
+	name = "upgraded power cell+"
+	desc = "A power cell with an even higher capacity than the base model!"
+	maxcharge = 5000
+
+>>>>>>> f39ff97a35... Duplicate var
 /obj/item/stock_parts/cell/secborg
 	name = "security borg rechargeable D battery"
 	origin_tech = null
