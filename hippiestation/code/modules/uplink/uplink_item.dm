@@ -64,7 +64,7 @@
 			Currently available are hockey, wrestling, football, and bowling kits."
 	item = /obj/item/paper
 	cost = 20
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/gang)
+	exclude_modes = list(/datum/game_mode/nuclear)
 	cant_discount = TRUE
 
 /* Holo Parasites */
@@ -73,7 +73,7 @@
 	desc = "Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, they require an organic host as a home base and source of fuel."
 	item = /obj/item/storage/box/syndie_kit/guardian
 	cost = 20
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/gang)
+	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/badass/sports/spawn_item(turf/loc, obj/item/device/uplink/U)
 	var/list/possible_items = list(
@@ -113,7 +113,7 @@
 	cost = 4
 	item = /obj/item/storage/box/syndie_kit/firesuit/
 	restricted_roles = list("Atmospheric Technician")
-	
+
 /datum/uplink_item/role_restricted/fire_axe
 	name = "Fire Axe"
 	desc = "A rather blunt fire axe recovered from the burnt out wreck of an old space station. \
@@ -147,3 +147,10 @@
 	cost = 12//80 backstab damage and armour pierce isn't a fucking joke
 	item = /obj/item/melee/transforming/butterfly/energy
 	surplus = 15
+
+/datum/uplink_item/dangerous/beenade
+	name = "Bee delivery grenade"
+	desc = "This grenade is filled with several random posionous bees. Fun for the whole family!"
+	cost = 4
+	item = /obj/item/grenade/spawnergrenade/beenade
+	surplus = 30
