@@ -168,7 +168,10 @@
 			to_chat(C, "<span class='notice'>You slipped[ O ? " on the [O.name]" : ""]!</span>")
 			C.log_message("<font color='orange'>Slipped[O ? " on the [O.name]" : ""][(lube&SLIDE)? " (LUBE)" : ""]!</font>", INDIVIDUAL_ATTACK_LOG)
 		if(!(lube&SLIDE_ICE))
-			playsound(C.loc, 'sound/misc/slip.ogg', 50, 1, -3)
+			if(prob(95))
+				playsound(C.loc, 'sound/misc/slip.ogg', 50, 1, -3)
+			else
+				playsound(C.loc, 'hippiestation/sound/misc/oof.ogg', 50, 1, -3)
 
 		for(var/obj/item/I in C.held_items)
 			C.accident(I)
@@ -225,19 +228,30 @@
 	HandleWet()
 
 /turf/open/proc/UpdateSlip()
+	var/intensity
+	var/lube_flags
 	switch(wet)
 		if(TURF_WET_WATER)
-			AddComponent(/datum/component/slippery, 60, NO_SLIP_WHEN_WALKING)
+			intensity = 60
+			lube_flags = NO_SLIP_WHEN_WALKING
 		if(TURF_WET_LUBE)
-			AddComponent(/datum/component/slippery, 80, SLIDE | GALOSHES_DONT_HELP)
+			intensity = 80
+			lube_flags = SLIDE | GALOSHES_DONT_HELP
 		if(TURF_WET_ICE)
-			AddComponent(/datum/component/slippery, 120, SLIDE | GALOSHES_DONT_HELP)
+			intensity = 120
+			lube_flags = SLIDE | GALOSHES_DONT_HELP
 		if(TURF_WET_PERMAFROST)
-			AddComponent(/datum/component/slippery, 120, SLIDE_ICE | GALOSHES_DONT_HELP)
+			intensity = 120
+			lube_flags = SLIDE_ICE | GALOSHES_DONT_HELP
 		if(TURF_WET_SLIDE)
-			AddComponent(/datum/component/slippery, 80, SLIDE | GALOSHES_DONT_HELP)
+			intensity = 80
+			lube_flags = SLIDE | GALOSHES_DONT_HELP
 		else
 			qdel(GetComponent(/datum/component/slippery))
+			return
+	var/datum/component/slippery/S = LoadComponent(/datum/component/slippery)
+	S.intensity = intensity
+	S.lube_flags = lube_flags
 
 /turf/open/ComponentActivated(datum/component/C)
 	..()
