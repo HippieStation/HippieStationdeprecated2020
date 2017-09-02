@@ -63189,9 +63189,37 @@
 	},
 /area/shuttle/syndicate)
 "cIr" = (
-/obj/machinery/computer/secure_data{
-	icon_keyboard = "syndi_key"
+/obj/item/reagent_containers/glass/bottle/epinephrine{
+	pixel_x = 6
 	},
+/obj/item/reagent_containers/glass/bottle/charcoal{
+	pixel_x = -3
+	},
+/obj/item/reagent_containers/glass/bottle/epinephrine{
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/glass/bottle/charcoal{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/syringe/epinephrine{
+	pixel_x = 3;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/syringe/epinephrine{
+	pixel_x = 4;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/syringe/epinephrine{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/syringe/epinephrine{
+	pixel_x = 2;
+	pixel_y = 8
+	},
+/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/vault{
 	dir = 8
 	},
@@ -69756,6 +69784,379 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+"ddw" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "syndieshutters";
+	name = "blast shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"ddx" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "syndieshutters";
+	name = "blast shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"ddy" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "syndieshutters";
+	name = "blast shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"ddz" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "syndieshutters";
+	name = "blast shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"ddA" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "syndieshutters";
+	name = "blast shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"ddB" = (
+/obj/machinery/computer/med_data/syndie,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"ddC" = (
+/obj/machinery/computer/crew/syndie,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"ddD" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/syndicate,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"ddE" = (
+/obj/machinery/computer/camera_advanced/syndie,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"ddF" = (
+/obj/machinery/computer/secure_data/syndie,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"ddG" = (
+/obj/structure/table/reinforced,
+/obj/machinery/status_display{
+	pixel_x = -32
+	},
+/obj/item/clipboard,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/folder/red,
+/obj/item/toy/figure/syndie,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"ddH" = (
+/turf/open/space/basic,
+/obj/machinery/porta_turret/syndicate{
+	dir = 9
+	},
+/turf/closed/wall/mineral/plastitanium{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/shuttle/syndicate)
+"ddI" = (
+/obj/structure/spacepoddoor,
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"ddJ" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 10
+	},
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"ddK" = (
+/obj/structure/spacepoddoor,
+/obj/machinery/door/poddoor/multi_tile/two_tile_ver,
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"ddL" = (
+/obj/spacepod/template/syndicate,
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"ddM" = (
+/obj/structure/rack,
+/obj/item/device/spacepod_equipment/lock/keyed{
+	id = -192
+	},
+/obj/item/device/spacepod_key{
+	id = -192
+	},
+/obj/item/device/spacepod_key{
+	id = -192
+	},
+/obj/item/device/spacepod_equipment/sec_cargo/chair,
+/obj/item/device/spacepod_equipment/weaponry/disabler,
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"ddN" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 9
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/shuttle/syndicate)
+"ddO" = (
+/obj/machinery/door/airlock/external,
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"ddP" = (
+/obj/structure/chair{
+	dir = 4;
+	name = "tactical chair"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 5
+	},
+/area/shuttle/syndicate)
+"ddQ" = (
+/obj/machinery/suit_storage_unit/syndicate,
+/turf/open/floor/plasteel/podhatch{
+	dir = 4
+	},
+/area/shuttle/syndicate)
+"ddR" = (
+/obj/machinery/door/poddoor{
+	id = "smindicate";
+	name = "outer blast door"
+	},
+/obj/machinery/button/door{
+	id = "smindicate";
+	name = "external door control";
+	pixel_x = -26;
+	req_access_txt = "150"
+	},
+/obj/docking_port/mobile{
+	dheight = 9;
+	dir = 2;
+	dwidth = 5;
+	height = 24;
+	id = "syndicate";
+	name = "syndicate infiltrator";
+	port_angle = 0;
+	roundstart_move = "syndicate_away";
+	width = 18
+	},
+/obj/docking_port/stationary{
+	dheight = 9;
+	dir = 2;
+	dwidth = 5;
+	height = 24;
+	id = "syndicate_nw";
+	name = "northwest of station";
+	turf_type = /turf/open/space;
+	width = 18
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel/podhatch{
+	dir = 1
+	},
+/area/shuttle/syndicate)
+"ddS" = (
+/obj/structure/sign/securearea{
+	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
+	icon_state = "space";
+	layer = 4;
+	name = "EXTERNAL AIRLOCK"
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/shuttle/syndicate)
+"ddT" = (
+/obj/machinery/suit_storage_unit/syndicate,
+/turf/open/floor/plasteel/podhatch{
+	dir = 4
+	},
+/area/shuttle/syndicate)
+"ddU" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"ddV" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"ddW" = (
+/obj/item/storage/toolbox/syndicate,
+/obj/item/crowbar/red,
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/podhatch{
+	dir = 10
+	},
+/area/shuttle/syndicate)
+"ddX" = (
+/obj/structure/chair{
+	name = "tactical chair"
+	},
+/turf/open/floor/plasteel/podhatch{
+	dir = 6
+	},
+/area/shuttle/syndicate)
+"ddY" = (
+/obj/machinery/suit_storage_unit/syndicate,
+/turf/open/floor/plasteel/podhatch{
+	dir = 4
+	},
+/area/shuttle/syndicate)
+"ddZ" = (
+/obj/machinery/suit_storage_unit/syndicate,
+/turf/open/floor/plasteel/podhatch{
+	dir = 6
+	},
+/area/shuttle/syndicate)
+"dea" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"deb" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"dec" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 5
+	},
+/area/shuttle/syndicate)
+"ded" = (
+/turf/open/floor/plasteel/podhatch{
+	dir = 1
+	},
+/area/shuttle/syndicate)
+"dee" = (
+/turf/open/floor/plasteel/podhatch{
+	dir = 1
+	},
+/area/shuttle/syndicate)
+"def" = (
+/turf/open/floor/plasteel/podhatch{
+	dir = 1
+	},
+/area/shuttle/syndicate)
+"deg" = (
+/turf/open/floor/plasteel/podhatch{
+	dir = 1
+	},
+/area/shuttle/syndicate)
+"deh" = (
+/turf/open/floor/plasteel/podhatch{
+	dir = 1
+	},
+/area/shuttle/syndicate)
+"dei" = (
+/turf/open/floor/plasteel/podhatch{
+	dir = 1
+	},
+/area/shuttle/syndicate)
+"dej" = (
+/turf/open/floor/plasteel/podhatch{
+	dir = 1
+	},
+/area/shuttle/syndicate)
+"dek" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"del" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"dem" = (
+/turf/open/floor/plasteel/podhatch{
+	dir = 6
+	},
+/area/shuttle/syndicate)
+"den" = (
+/obj/item/surgicaldrill,
+/obj/item/circular_saw,
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"deo" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/structure/mirror{
+	pixel_x = 30
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 5
+	},
+/area/shuttle/syndicate)
+"dep" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"deq" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"der" = (
+/obj/structure/shuttle/engine/propulsion/left,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/shuttle/syndicate)
+"des" = (
+/obj/structure/shuttle/engine/propulsion/right,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/shuttle/syndicate)
+"det" = (
+/obj/structure/shuttle/engine/propulsion/left,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/shuttle/syndicate)
+"deu" = (
+/obj/structure/shuttle/engine/propulsion/right,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/shuttle/syndicate)
+"dev" = (
+/obj/structure/shuttle/engine/propulsion/left,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/shuttle/syndicate)
+"dew" = (
+/obj/structure/shuttle/engine/propulsion/right,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/shuttle/syndicate)
 
 (1,1,1) = {"
 aaa
@@ -81617,16 +82018,16 @@ aaa
 aaa
 aaa
 aaa
-amO
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-clO
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -81868,22 +82269,22 @@ aaa
 aaa
 aaa
 aaa
-amO
-aac
-aac
-aac
-aac
-aac
-aac
-cJO
-cKb
-cJO
-cKD
-cKQ
-cLd
-cLk
-cLn
-cLw
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -82125,22 +82526,22 @@ aaa
 aaa
 aaa
 aaa
-aac
-cIR
-cIY
-cIY
-cIY
-cJz
-aac
-cJr
-cIz
-cIJ
-cIJ
-cKR
-cIJ
-cLl
-cLn
-cLx
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -82382,22 +82783,22 @@ aaa
 aaa
 aaa
 aaa
-aac
-cIJ
-cIJ
-cIJ
-cIJ
-cIJ
-cJJ
-cJQ
-cIz
-cKq
-cKF
-cKS
-cLf
-cLm
-cLn
-cLy
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -82632,29 +83033,29 @@ aaa
 aaa
 aaa
 aaa
-amO
-aac
-aac
-aac
-clO
 aaa
 aaa
-aac
-cIJ
-cIJ
-cIJ
-cIJ
-cIJ
-aac
-cJR
-cIz
-cKr
-cJm
-cKT
-aac
-aac
-aac
-czv
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -82889,26 +83290,26 @@ aaa
 aaa
 aaa
 aaa
-aac
-cIl
-cIs
-cIz
-aac
-czz
 aaa
-aac
-cIU
-cJb
-cJj
-cJr
-cJC
-aac
-cJS
-cIz
-cKr
-cJm
-cKU
-aac
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -83146,28 +83547,28 @@ aaa
 aaa
 aaa
 aaa
-amP
-cIm
-cIt
-cIz
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-cJs
-coh
-aac
-aac
-aac
-cKt
-coh
-aac
-aac
-aac
-clO
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -83403,28 +83804,28 @@ aaa
 aaa
 aaa
 aaa
-amP
-cIn
-cIu
-cIz
-cIG
-cII
-cIL
-cIO
-cIL
-cIL
-coh
-cIJ
-cIJ
-cIJ
-cIJ
-cKg
-cKr
-cJm
-cIz
-coh
-cLn
-cLw
+amO
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+clO
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -83651,37 +84052,37 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-amP
-cIo
-cIv
-cIz
-cIH
-cIJ
-cIu
-cIu
-cIu
-cIJ
-cJk
-cIJ
-cIu
-cIu
-cIu
-cIu
-cKr
-cJm
-cIz
-cLg
+ddH
+ddI
+ddK
+ddN
+aac
+aac
+aac
+aac
+aac
+aac
+cJO
+cKb
+cJO
+cKD
+cKQ
+den
+cLk
 cLn
-cLx
+det
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -83908,37 +84309,37 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-amP
-cIp
-cIu
-cIz
 aac
-cIK
-cIN
-cIQ
-cIN
-cIN
-coh
-cIJ
-cIJ
-cIJ
-cIJ
-cKi
-cKr
-cJm
 cIz
-coh
+ddL
+aac
+cIR
+ddQ
+ddT
+ddY
+ddZ
+aac
+cJr
+cIz
+cIJ
+cIJ
+cKR
+cIJ
+cLl
 cLn
-cLy
+cLx
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -84165,37 +84566,37 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-amP
-cIq
-cIx
+aac
 cIz
-aac
-aac
-aac
-cmp
-aac
-aac
-aac
-cof
-coh
-aac
-aac
-aac
-cKt
-coh
-aac
-aac
-aac
-cmE
+cIz
+ddO
+cIJ
+cIJ
+cIJ
+cIJ
+cIJ
+cJJ
+cJQ
+cIz
+cKq
+cKF
+cKS
+deo
+cLm
+cLn
+deu
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -84418,39 +84819,39 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amO
+aac
+aac
+aac
+aac
+cIz
+cIz
+aac
+cIJ
+cIJ
+cIJ
+cIJ
+cIJ
 aac
 cIr
-cIy
 cIz
+ded
+cJm
+cKT
+aac
+aac
 aac
 czv
 aaa
 aaa
 aaa
-aac
-cJl
-cIJ
-cJG
-aac
-cJW
-cIz
-cKr
-cJm
-cKY
-aac
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -84675,42 +85076,42 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-bJS
 aac
-aac
-aac
-cmE
-aaa
-aaa
-aaa
-aaa
-cJf
-cJm
-cIJ
-cJG
-aac
-cJX
+ddB
+ddG
 cIz
-cKr
+aac
+ddJ
+ddM
+aac
+cIU
+cJb
+cJj
+cJr
+cJC
+aac
+cJS
+cIz
+dee
 cJm
-cKZ
+cKU
 aac
-aac
-aac
-czz
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -84932,42 +85333,42 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-cni
-cJn
-cIJ
-cJI
-cIG
-cJY
+ddw
+ddC
+cIt
 cIz
-cKA
-cKN
-cKS
-cIJ
-cLq
-cLn
-cLw
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+cJs
+dea
+aac
+aac
+aac
+cKt
+dek
+aac
+aac
+aac
+clO
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -85189,42 +85590,42 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-bJS
-aac
-aac
-aac
-aac
-cJZ
+ddx
+ddD
+cIu
 cIz
+cIG
+cII
+cIL
+ddP
+cIL
+cIL
+ddU
 cIJ
 cIJ
-cLb
 cIJ
-cLr
+cIJ
+dec
+def
+cJm
+cIz
+dep
 cLn
-cLx
+der
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -85446,42 +85847,42 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-cnW
-aac
-cKa
+ddy
+cIo
+cIv
 cIz
-cKC
-cKP
-cLc
-cKi
-cLq
+cIH
+cIJ
+cIu
+cIu
+cIu
+cIJ
+cJk
+cIJ
+cIu
+cIu
+cIu
+cIu
+deg
+cJm
+cIz
+cLg
 cLn
-cLy
+cLx
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -85703,42 +86104,42 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-bJS
+ddz
+cIp
+cIu
+cIz
 aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-cmE
+cIK
+cIN
+cIQ
+cIN
+cIN
+ddV
+cIJ
+cIJ
+cIJ
+cIJ
+cKi
+deh
+cJm
+cIz
+deq
+cLn
+des
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -85960,28 +86361,28 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+ddA
+ddE
+cIx
+cIz
+aac
+aac
+aac
+cmp
+aac
+aac
+aac
+cof
+deb
+aac
+aac
+aac
+cKt
+del
+aac
+aac
+aac
+cmE
 aaa
 aaa
 aaa
@@ -86217,26 +86618,26 @@ aaa
 aaa
 aaa
 aaa
+aac
+ddF
+cIy
+cIz
+aac
+czv
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aac
+ddW
+cIJ
+cJG
+aac
+cJW
+cIz
+dei
+cJm
+cKY
+aac
 aaa
 aaa
 aaa
@@ -86474,29 +86875,29 @@ aaa
 aaa
 aaa
 aaa
+bJS
+aac
+aac
+aac
+cmE
 aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+ddR
+cJm
+cIJ
+cJG
+aac
+cJX
+cIz
+dej
+cJm
+cKZ
+aac
+aac
+aac
+czz
 aaa
 aaa
 aaa
@@ -86740,20 +87141,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+ddS
+ddX
+cIJ
+cJI
+cIG
+cJY
+cIz
+cKA
+dem
+cKS
+cIJ
+cLq
+cLn
+dev
 aaa
 aaa
 aaa
@@ -86997,20 +87398,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bJS
+aac
+aac
+aac
+aac
+cJZ
+cIz
+cIJ
+cIJ
+cLb
+cIJ
+cLr
+cLn
+cLx
 aaa
 aaa
 aaa
@@ -87257,17 +87658,17 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cnW
+aac
+cKa
+cIz
+cKC
+cKP
+cLc
+cKi
+cLq
+cLn
+dew
 aaa
 aaa
 aaa
@@ -87515,16 +87916,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bJS
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+cmE
 aaa
 aaa
 aaa
