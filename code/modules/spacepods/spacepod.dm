@@ -22,6 +22,7 @@
 
 	layer = SPACEPOD_LAYER
 
+
 	var/list/mob/living/pilot //There is only ever one pilot and he gets all the privledge
 	var/list/mob/living/passengers = list() //passengers can't do anything and are variable in number
 	var/max_passengers = 0
@@ -85,6 +86,7 @@
 	var/datum/action/innate/spacepod/airtank/list/tank_action = list()
 
 	var/obj/item/device/radio/mech/radio
+	var/obj/item/device/gps/gps
 
 	hud_possible = list(DIAG_HUD, DIAG_BATT_HUD)
 
@@ -128,6 +130,7 @@
 	add_cabin()
 	add_radio()
 	add_airtank()
+	add_gps()
 	ion_trail = new /datum/effect_system/trail_follow/ion/space_trail()
 	ion_trail.set_up(src)
 	ion_trail.start()
@@ -263,6 +266,13 @@
 	radio.icon_state = icon_state
 	radio.subspace_transmission = TRUE
 	radio.broadcasting = FALSE
+
+/obj/spacepod/proc/add_gps()
+	gps = new(src)
+	gps.name = "[src] gps"
+	gps.icon = icon
+	gps.icon_state = icon_state
+	gps.gpstag = "SPOD"
 
 /obj/spacepod/examine(mob/user)
 	..()
@@ -497,7 +507,7 @@
 
 /obj/spacepod/proc/add_equipment(mob/user, var/obj/item/device/spacepod_equipment/SPE, var/slot)
 	if(equipment_system.vars[slot])
-		to_chat(user, "<span class='notice'>The pod already has a [slot], remove it first.</span>")
+		to_chat(user, "<span class='notice'>The pod already has a [sys_name(slot)], remove it first.</span>")
 		return
 	else
 		to_chat(user, "<span class='notice'>You insert [SPE] into the pod.</span>")
@@ -967,7 +977,7 @@
 
 	to_chat(user, "<span class='notice'>You start rooting around under the seat for lost items</span>")
 	if(do_after(user, 40, target = src))
-		var/obj/badlist = list(internal_tank, cargo_hold, pilot, cell) + passengers + equipment_system.installed_modules
+		var/obj/badlist = list(internal_tank, cargo_hold, pilot, cell, radio, gps) + passengers + equipment_system.installed_modules
 		var/list/true_contents = contents - badlist
 		if(true_contents.len > 0)
 			var/obj/I = pick(true_contents)
@@ -1152,8 +1162,7 @@
 		name = new_name
 
 /obj/spacepod/verb/toggle_speaker()
-	set name = "Toggle Radio Speaker"
-	set desc = "Toggle the internal radio's speaker"
+	set name = "Configure Radio"
 	set category = "Spacepod"
 	set src = usr.loc
 	set popup_menu = 0
@@ -1162,14 +1171,13 @@
 		return
 
 	if(usr != pilot)
-		to_chat(usr, "<span class='danger'>You cannot reach the button!</span>")
+		to_chat(usr, "<span class='danger'>You cannot reach the buttons!</span>")
 	else
-		radio.listening = !radio.listening
-		to_chat(usr, "<span class='notice'>The radio's speaker is now [radio.listening ? "on" : "off"]</span>")
+		radio.interact(usr)
 
-/obj/spacepod/verb/toggle_broadcast()
-	set name = "Toggle Radio Microphone"
-	set desc = "Toggle the internal radio's microphone"
+
+/obj/spacepod/verb/gps()
+	set name = "View GPS"
 	set category = "Spacepod"
 	set src = usr.loc
 	set popup_menu = 0
@@ -1177,11 +1185,23 @@
 	if(usr.incapacitated())
 		return
 
-	if(usr != pilot)
-		to_chat(usr, "<span class='danger'>You cannot reach the button!</span>")
-	else
-		radio.broadcasting 	= !radio.broadcasting
-		to_chat(usr, "<span class='notice'>The radio's microphone is now [radio.listening ? "on" : "off"]</span>")
+	if(!isobserver(usr))
+		gps.ui_interact(usr)
+
+/obj/spacepod/proc/sys_name(sname)
+	switch(sname)
+		if("weapon_system")
+			return "Weapon System"
+		if("cargo_system")
+			return "Cargo System"
+		if("sec_cargo_system")
+			return "Secondary Cargo System"
+		if("lock_system")
+			return "Lock System"
+		if("thruster_system")
+			return "Thruster System"
+	return "Misc System"
+
 
 /obj/spacepod/template
 	var/datum/pod_armor/armortype
