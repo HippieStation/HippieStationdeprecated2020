@@ -4730,36 +4730,11 @@
 /turf/closed/wall,
 /area/maintenance/solars/port/fore)
 "ajj" = (
-/obj/structure/table,
-/obj/item/stack/medical/ointment{
-	pixel_x = 3;
-	pixel_y = -2
-	},
-/obj/item/stack/medical/bruise_pack{
-	pixel_x = -3;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/syringe/epinephrine,
-/obj/item/storage/secure/safe{
-	pixel_x = 6;
-	pixel_y = 28
-	},
-/obj/item/restraints/handcuffs/cable/pink,
+/obj/machinery/chem_dispenser/ghetto,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "ajl" = (
-/obj/item/soap/deluxe,
-/obj/item/storage/secure/safe{
-	pixel_x = 6;
-	pixel_y = 28
-	},
-/obj/item/kitchen/rollingpin,
-/obj/structure/closet/crate,
-/obj/item/clothing/suit/xenos,
-/obj/item/clothing/suit/monkeysuit,
-/obj/item/clothing/head/xenos,
-/obj/item/clothing/mask/gas/monkeymask,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/machinery/chem_master,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "ajm" = (
@@ -5253,18 +5228,10 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "akp" = (
-/obj/structure/rack{
-	dir = 8;
-	layer = 2.9
+/obj/structure/chair/comfy/beige{
+	dir = 1;
+	icon_state = "comfychair"
 	},
-/obj/item/clothing/gloves/color/yellow,
-/obj/item/mop,
-/obj/item/bikehorn/rubberducky,
-/obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 2;
-	name = "2maintenance loot spawner"
-	},
-/obj/item/grenade/empgrenade,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "akq" = (
@@ -5278,22 +5245,8 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "aks" = (
-/obj/structure/rack{
-	dir = 8;
-	layer = 2.9
-	},
-/obj/item/clothing/neck/tie/red{
-	pixel_x = -5;
-	pixel_y = 3
-	},
-/obj/item/clothing/neck/tie/horrible,
-/obj/item/clothing/neck/tie/blue{
-	pixel_x = 5;
-	pixel_y = -2
-	},
-/obj/item/dice/d8,
-/obj/item/device/healthanalyzer,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/structure/table/wood,
+/obj/machinery/reagentgrinder,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "akt" = (
@@ -6000,13 +5953,10 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "alG" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
+/obj/effect/spawner/lootdrop/minor/kittyears_or_rabbitears,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/plating,
 /area/maintenance/port/fore)
 "alH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -6021,18 +5971,8 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "alJ" = (
-/obj/structure/light_construct/small{
-	dir = 4
-	},
-/obj/structure/rack{
-	dir = 8;
-	layer = 2.9
-	},
-/obj/item/storage/secure/briefcase,
-/obj/item/disk/data,
-/obj/item/grenade/flashbang,
-/obj/effect/spawner/lootdrop/maintenance,
-/obj/item/grenade/smokebomb,
+/obj/structure/table/wood,
+/obj/item/organ/butt/xeno,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "alK" = (
@@ -6722,19 +6662,7 @@
 	},
 /area/maintenance/port)
 "amW" = (
-/obj/structure/table/reinforced,
-/obj/item/folder,
-/obj/item/folder,
-/obj/machinery/door/window/westleft{
-	base_state = "right";
-	dir = 2;
-	icon_state = "right";
-	name = "windoor";
-	req_access_txt = "0"
-	},
-/obj/item/book/manual/wiki/engineering_hacking,
-/obj/item/device/tape/random,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/structure/frame/computer,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "amX" = (
@@ -6745,10 +6673,9 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "amY" = (
-/obj/structure/table/reinforced,
-/obj/structure/window/reinforced,
-/obj/item/electronics/firealarm,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/butteredtoast,
+/obj/item/reagent_containers/food/snacks/butter,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "amZ" = (
@@ -8663,16 +8590,20 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "aqQ" = (
-/obj/item/vending_refill/cigarette,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
-"aqR" = (
-/obj/structure/chair{
-	dir = 8
+/obj/structure/chair/comfy/beige{
+	dir = 1;
+	icon_state = "comfychair"
 	},
 /turf/open/floor/plating{
-	icon_state = "panelscorched"
+	icon_state = "platingdmg3"
 	},
+/area/maintenance/port/fore)
+"aqR" = (
+/obj/item/stack/sheet/glass{
+	amount = 7
+	},
+/obj/item/weldingtool/mini,
+/turf/open/floor/plating,
 /area/maintenance/port/fore)
 "aqS" = (
 /obj/structure/closet/crate,
@@ -84787,20 +84718,7 @@
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "dho" = (
-/obj/item/stack/sheet/cardboard,
-/obj/structure/light_construct/small{
-	dir = 1
-	},
-/obj/structure/closet/crate,
-/obj/item/coin/silver,
-/obj/item/grenade/chem_grenade,
-/obj/item/storage/box/lights/mixed,
-/obj/item/watertank,
-/obj/item/storage/box/donkpockets,
-/obj/item/poster/random_contraband,
-/obj/item/poster/random_contraband,
-/obj/item/poster/random_contraband,
-/obj/effect/spawner/lootdrop/maintenance,
+/obj/item/circuitboard/computer/operating,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "dhp" = (
@@ -90924,6 +90842,20 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/closed/wall,
 /area/science/explab)
+"dEm" = (
+/obj/structure/table/optable,
+/obj/item/clothing/gloves/color/latex/nitrile,
+/obj/item/clothing/mask/surgical,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"dEn" = (
+/obj/item/stack/cable_coil/random,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"dEo" = (
+/mob/living/simple_animal/bot/buttbot,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 
 (1,1,1) = {"
 aaa
@@ -110540,10 +110472,10 @@ aio
 ajj
 akp
 alG
-dhq
-aoc
-alG
-aoc
+dnH
+dnH
+dnH
+akp
 dne
 aty
 auL
@@ -110795,12 +110727,12 @@ aaa
 aaf
 aip
 dho
-akq
-alH
-amW
 dnH
-apw
-dod
+dnH
+amW
+dEm
+auG
+akp
 dne
 atz
 auM
@@ -111052,12 +110984,12 @@ aaa
 aaf
 aio
 ajl
-akr
-alI
-amX
-dnH
+akp
 dnZ
-aqP
+dnH
+dEn
+dEo
+akp
 dne
 atA
 dne
@@ -111569,8 +111501,8 @@ aio
 aio
 aio
 aio
-dnM
-apy
+dnH
+cWA
 aqR
 dne
 akm
@@ -124745,7 +124677,7 @@ cgq
 cgq
 dEb
 dEd
-dEi
+dEd
 cmP
 dEl
 cpx
@@ -126213,10 +126145,10 @@ afu
 agu
 ahg
 dDM
-dDO
+dDM
 ajR
-dDQ
-dDS
+dDM
+dDM
 anG
 aoU
 aqd
@@ -126731,7 +126663,7 @@ ahW
 ahW
 ahW
 ahW
-dCc
+dDU
 aoV
 aqf
 arB
@@ -126988,7 +126920,7 @@ ahW
 ahW
 ahW
 ahW
-dCc
+dDU
 aoW
 aqg
 arC
@@ -127245,7 +127177,7 @@ ahW
 ajU
 ahW
 ahW
-dCc
+dDU
 aoX
 aqh
 arD
@@ -127502,7 +127434,7 @@ ahW
 ahW
 ahW
 ahW
-dCc
+dDU
 aoY
 aqi
 arE
@@ -127759,7 +127691,7 @@ ahW
 ahW
 ahW
 ahW
-dCc
+dDU
 aoZ
 aqj
 arB
@@ -128016,7 +127948,7 @@ aiW
 dDP
 ahW
 ahW
-dCc
+dDU
 aoZ
 aqk
 arB
@@ -128272,7 +128204,7 @@ ahZ
 aiX
 ajW
 dDR
-dDT
+dDR
 anL
 aoZ
 aql
