@@ -42042,7 +42042,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/droneDispenser,
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
 "bOx" = (
