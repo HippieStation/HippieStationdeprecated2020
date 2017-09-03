@@ -6,3 +6,4 @@
 	LAZYCLEARLIST(mentor_datums)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_wings, GLOB.moth_wings_list, roundstart = TRUE)
 	initialize_global_loadout_items()
+	init_subtypes(/datum/nations, GLOB.all_nations)
