@@ -233,3 +233,78 @@
 /datum/reagent/drug/flipout/reaction_obj(obj/O, reac_volume)
 	if(istype(O,/obj))
 		O.SpinAnimation(16,40)
+
+
+/datum/reagent/drug/energydrink
+	name = "Energy Drink"
+	id = "energydrink"
+	description = "A highly concentrated energy drink."
+	taste_description = "pure energy"
+	color = "#e7f920" // rgb: 231, 249, 32
+	reagent_state = LIQUID
+	overdose_threshold = 11
+	addiction_threshold = 6
+	metabolization_rate = 0.75 * REAGENTS_METABOLISM
+
+/datum/reagent/drug/energydrink/on_mob_life(mob/living/M)
+	if(prob(5))
+		var/mesg = pick("You feel hyper", "You feel like you could run across the station!", "You feel like a superhero!")
+		to_chat(M, "<span class='notice'>[mesg]</span>")
+	M.AdjustStun(-30, 0)
+	M.AdjustKnockdown(-30, 0)
+	M.AdjustUnconscious(-30, 0)
+	M.adjustStaminaLoss(-2, 0)
+	M.status_flags |= GOTTAGOREALLYFAST
+	M.Jitter(2)
+	..()
+	. = 1
+
+/datum/reagent/drug/energydrink/overdose_process(mob/living/M)
+	if(prob(2*(volume/11)))
+		var/painmesg = pick("Your chest hurts alot!", "You feel like you're about to collapse...", "The... pain... hurts!")
+		M.visible_message("<span class='danger'>[M] clutches their chest in pain!</span>", "<span class='userdanger'>[painmesg]</span>")
+		M.adjustOxyLoss(rand(40,65))
+		if(prob(25))
+			M.adjustToxLoss(rand(5,17))
+	..()
+	. = 1
+
+/datum/reagent/drug/energydrink/addiction_act_stage1(mob/living/M)
+	M.Jitter(5)
+	if(prob(30))
+		M.emote("scream")
+		M.adjustOxyLoss(rand(1,7))
+		if(prob(50))
+			to_chat(M, "<span class='danger'>You wonder if it's possible to die from being too energetic...</span>")
+	..()
+
+/datum/reagent/drug/energydrink/addiction_act_stage2(mob/living/M)
+	M.Jitter(10)
+	M.Dizzy(10)
+	if(prob(30))
+		M.emote(pick("scream", "twitch", "moan"))
+	if(prob(25))
+		to_chat(M, "<span class='danger'>Your legs begin to hurt...</span>")
+	..()
+
+/datum/reagent/drug/energydrink/addiction_act_stage3(mob/living/M)
+	if(M.canmove && !ismovableatom(M.loc))
+		for(var/i = 0, i < 4, i++)
+			step(M, pick(GLOB.cardinals))
+	M.Jitter(15)
+	M.Dizzy(15)
+	if(prob(40))
+		M.emote(pick("twitch","drool","moan"))
+	..()
+
+/datum/reagent/drug/energydrink/addiction_act_stage4(mob/living/carbon/human/M)
+	if(M.canmove && !ismovableatom(M.loc))
+		for(var/i = 0, i < 8, i++)
+			step(M, pick(GLOB.cardinals))
+	M.Jitter(20)
+	M.Dizzy(20)
+	M.adjustToxLoss(5, 0)
+	if(prob(50))
+		M.emote(pick("twitch","drool","moan"))
+	..()
+	. = 1
