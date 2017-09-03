@@ -3,10 +3,15 @@
 	config_tag = "nations"
 	required_players = 25
 	var/kickoff = 0
-	var/victory = 0
+	waittime_h = 1200 //Will always start 2 minutes in
+	waittime_l = 1200
 
-/datum/game_mode/nations/post_setup()
-	sleep(rand(1200, 3000))
+/datum/game_mode/proc/post_setup(report)
+	addtimer(CALLBACK(src, .proc/kickoff), waittime_l)
+	report = TRUE
+	return ..(report)
+
+/datum/game_mode/nations/proc/kickoff()
 	kickoff = TRUE
 	send_intercept()
 	split_teams()
@@ -142,12 +147,7 @@
 			H.verbs += /mob/living/carbon/human/proc/choose_heir
 		N.update_nation_id()
 
-/**
- * LateSpawn hook.
- * Called in newplayer.dm when a humanoid character joins the round after it started.
- * Parameters: var/mob/living/carbon/human, var/rank
- */
-/hook/latespawn/proc/give_latejoiners_nations(var/mob/living/carbon/human/H)
+/datum/game_mode/proc/give_latejoiners_nations(var/mob/living/carbon/human/H)
 	var/datum/game_mode/nations/mode = get_nations_mode()
 	if(!mode)
 		return TRUE
