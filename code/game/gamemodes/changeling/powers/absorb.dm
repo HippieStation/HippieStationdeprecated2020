@@ -42,7 +42,7 @@
 				target.take_overall_damage(40)
 
 		SSblackbox.add_details("changeling_powers","Absorb DNA|[i]")
-		if(!do_mob(user, target, 150))
+		if(!do_mob(user, target, 70))
 			to_chat(user, "<span class='warning'>Our absorption of [target] has been interrupted!</span>")
 			changeling.isabsorbing = 0
 			return
