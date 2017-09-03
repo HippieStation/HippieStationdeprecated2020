@@ -1821,7 +1821,6 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/bridge/access)
 "fw" = (
-/obj/item/drone_shell/dusty,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/bridge/access)
 "fx" = (
@@ -2649,7 +2648,6 @@
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/singularity_engine)
 "in" = (
-/obj/item/drone_shell/dusty,
 /turf/open/floor/plating/airless,
 /area/ruin/space/derelict/singularity_engine)
 "io" = (
@@ -4514,7 +4512,6 @@
 	icon_state = "0-2";
 	d2 = 2
 	},
-/obj/item/drone_shell/dusty,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/se_solar)
 "nV" = (
