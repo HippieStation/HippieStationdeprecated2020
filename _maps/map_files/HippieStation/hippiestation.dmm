@@ -42051,7 +42051,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
-/obj/machinery/droneDispenser,
 /turf/open/floor/plasteel/vault,
 /area/science/misc_lab)
 "bOC" = (
