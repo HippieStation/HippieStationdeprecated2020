@@ -262,10 +262,13 @@
 /datum/reagent/drug/energydrink/overdose_process(mob/living/M)
 	if(prob(2*(volume/11)))
 		var/painmesg = pick("Your chest hurts alot!", "You feel like you're about to collapse...", "The... pain... hurts!")
-		M.visible_message("<span class='danger'>[M] clutches their chest in pain!</span>", "<span class='userdanger'>[painmesg]</span>")
-		M.adjustOxyLoss(rand(40,65))
-		if(prob(25))
-			M.adjustToxLoss(rand(5,17))
+		to_chat(M, "<span class='userdanger'>[painmesg]</span>")
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(!H.undergoing_cardiac_arrest() && H.can_heartattack())
+				H.set_heartattack(TRUE)
+				if(H.stat == CONSCIOUS)
+					H.visible_message("<span class='userdanger'>[H] clutches at [H.p_their()] chest as if [H.p_their()] heart stopped!</span>")
 	..()
 	. = 1
 
