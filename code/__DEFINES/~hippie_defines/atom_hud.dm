@@ -1,0 +1,1 @@
+#define ANTAG_HUD_NATIONS 19

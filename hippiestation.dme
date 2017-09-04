@@ -77,6 +77,7 @@
 #include "code\__DEFINES\wires.dm"
 #include "code\__DEFINES\~hippie_defines\admin.dm"
 #include "code\__DEFINES\~hippie_defines\atmospherics.dm"
+#include "code\__DEFINES\~hippie_defines\atom_hud.dm"
 #include "code\__DEFINES\~hippie_defines\dna.dm"
 #include "code\__DEFINES\~hippie_defines\mobs.dm"
 #include "code\__HELPERS\_lists.dm"

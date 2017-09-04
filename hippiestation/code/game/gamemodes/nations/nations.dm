@@ -3,10 +3,8 @@
 	config_tag = "nations"
 	required_players = 25
 	var/kickoff = 0
-	waittime_h = 1200 //Will always start 2 minutes in
-	waittime_l = 1200
 
-/datum/game_mode/proc/post_setup(report)
+/datum/game_mode/nations/post_setup(report)
 	addtimer(CALLBACK(src, .proc/kickoff), waittime_l)
 	report = TRUE
 	return ..(report)

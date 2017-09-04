@@ -40,7 +40,6 @@
 #define ANTAG_HUD_SINTOUCHED	16
 #define ANTAG_HUD_SOULLESS		17
 #define ANTAG_HUD_CLOCKWORK		18
-#define ANTAG_HUD_NATIONS		19
 
 // Notification action types
 #define NOTIFY_JUMP "jump"
