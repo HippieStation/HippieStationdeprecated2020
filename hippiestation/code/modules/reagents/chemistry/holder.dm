@@ -73,7 +73,7 @@
 					if(!C.required_other)
 						matching_other = 1
 
-					else if(is_type_in_typecache(cached_my_atom, cachetype))
+					else if(istype(cached_my_atom, /obj/item/slime_extract))
 						var/obj/item/slime_extract/M = cached_my_atom
 
 						if(M.Uses > 0) // added a limit to slime cores -- Muskets requested this
@@ -114,7 +114,7 @@
 							for(var/mob/M in seen)
 								to_chat(M, "<span class='notice'>[iconhtml] [C.mix_message]</span>")
 
-						if(is_type_in_typecache(cached_my_atom, cachetype))
+						if(istype(cached_my_atom, /obj/item/slime_extract))
 							var/obj/item/slime_extract/ME2 = my_atom
 							ME2.Uses--
 							if(ME2.Uses <= 0) // give the notification that the slime core is dead
