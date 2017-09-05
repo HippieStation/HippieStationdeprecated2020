@@ -102,6 +102,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		return
 
 	if(stat == DEAD)
+		if(message == "*fart" || message == "*scream") //Avoid deachat spam via the hotkeys		
+ -			return
 		say_dead(original_message)
 		return
 
