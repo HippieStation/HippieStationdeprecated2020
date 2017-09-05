@@ -397,6 +397,8 @@
 /obj/item/storage/box/firingpins,
 /obj/item/storage/box/firingpins,
 /obj/item/key/security,
+/obj/item/device/lock_buster,
+/obj/item/device/lock_buster,
 /turf/open/floor/plasteel/vault{
 	dir = 8
 	},
@@ -866,6 +868,8 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/item/pod_parts/armor/security,
+/obj/item/pod_parts/armor/security,
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
 "acn" = (
@@ -4602,16 +4606,12 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "ajZ" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
-	icon_state = "space";
-	layer = 4;
-	name = "EXTERNAL AIRLOCK";
-	pixel_y = 32
+/obj/effect/turf_decal/stripes/line,
+/obj/docking_port/stationary/public_mining_dock{
+	dir = 1
 	},
 /turf/open/floor/plating,
-/area/construction/mining/aux_base)
+/area/shuttle/auxillary_base)
 "aka" = (
 /obj/structure/chair{
 	dir = 1
@@ -8084,6 +8084,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "asd" = (
@@ -8100,6 +8103,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
@@ -8132,6 +8139,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "asi" = (
@@ -8147,6 +8157,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
@@ -8559,14 +8573,9 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
 "atp" = (
-/obj/machinery/door/airlock/external{
-	cyclelinkeddir = 1;
-	name = "Construction Zone";
-	req_access = null;
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+/turf/open/floor/plasteel/yellow/side{
+	dir = 1
 	},
-/turf/open/floor/plating,
 /area/construction/mining/aux_base)
 "atq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -8583,6 +8592,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "ats" = (
@@ -8696,8 +8706,9 @@
 /turf/open/floor/circuit,
 /area/maintenance/department/electrical)
 "atI" = (
+/obj/machinery/computer/shuttle/mining,
 /turf/open/floor/plasteel/yellow/side{
-	dir = 8
+	dir = 1
 	},
 /area/construction/mining/aux_base)
 "atJ" = (
@@ -8725,6 +8736,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "atO" = (
@@ -8812,14 +8824,18 @@
 	},
 /area/crew_quarters/fitness)
 "aub" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 4
+	},
 /turf/open/floor/plasteel/yellow/side,
 /area/construction/mining/aux_base)
 "auc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plasteel/yellow/side{
-	dir = 10
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
 	},
+/turf/open/floor/plasteel/yellow/side,
 /area/construction/mining/aux_base)
 "aud" = (
 /obj/structure/cable{
@@ -9370,12 +9386,14 @@
 /turf/closed/wall,
 /area/maintenance/department/electrical)
 "avp" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/door/poddoor/shutters{
-	id = "aux_base_shutters";
-	name = "Auxillary Base Shutters"
+/obj/machinery/door/airlock/engineering{
+	cyclelinkeddir = 1;
+	name = "Auxillary Base Construction";
+	req_access_txt = "0";
+	req_one_access_txt = "32;47;48"
 	},
-/obj/effect/turf_decal/delivery,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
 "avq" = (
@@ -9577,20 +9595,30 @@
 /turf/closed/wall,
 /area/hallway/secondary/entry)
 "avQ" = (
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/obj/machinery/light{
+/obj/structure/rack{
 	dir = 4
 	},
-/obj/machinery/camera{
-	c_tag = "Auxillary Base Construction";
-	dir = 8
+/obj/item/electronics/airlock,
+/obj/item/electronics/airlock,
+/obj/item/electronics/airlock,
+/obj/item/electronics/airlock,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/device/assault_pod/mining,
+/obj/structure/sign/securearea{
+	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
+	icon_state = "space";
+	layer = 4;
+	name = "EXTERNAL AIRLOCK";
+	pixel_x = 0;
+	pixel_y = 32
 	},
-/obj/machinery/computer/camera_advanced/base_construction,
 /turf/open/floor/plasteel/yellow/side{
-	dir = 4
+	dir = 5
 	},
 /area/construction/mining/aux_base)
 "avR" = (
@@ -10162,32 +10190,33 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
 /turf/open/floor/plasteel/arrival{
 	dir = 5
 	},
 /area/hallway/secondary/entry)
 "axc" = (
-/obj/structure/rack{
-	dir = 4
+/obj/structure/table,
+/obj/item/stack/sheet/metal{
+	amount = 50
 	},
-/obj/item/electronics/airlock,
-/obj/item/electronics/airlock,
-/obj/item/electronics/airlock,
-/obj/item/electronics/airlock,
-/obj/item/stack/cable_coil,
-/obj/item/stack/cable_coil,
-/obj/item/wallframe/camera,
-/obj/item/wallframe/camera,
-/obj/item/wallframe/camera,
-/obj/item/wallframe/camera,
-/obj/item/device/assault_pod/mining,
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for the Auxillary Mining Base.";
+/obj/item/stack/sheet/metal{
+	amount = 50
+	},
+/obj/item/stack/sheet/glass{
+	amount = 50
+	},
+/obj/machinery/airalarm{
 	dir = 8;
-	name = "Auxillary Base Monitor";
-	network = list("AuxBase");
-	pixel_x = 28
+	pixel_x = 24
 	},
+/obj/item/stack/sheet/mineral/plasma{
+	amount = 10
+	},
+/obj/item/pod_parts/core,
 /turf/open/floor/plasteel/yellow/side{
 	dir = 4
 	},
@@ -10218,8 +10247,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/plasteel/arrival{
-	dir = 1
+/turf/open/floor/plasteel/yellow/corner{
+	dir = 4
 	},
 /area/hallway/secondary/entry)
 "axi" = (
@@ -10458,7 +10487,10 @@
 /area/hallway/secondary/entry)
 "axH" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/turf/open/floor/plasteel/yellow/side{
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/yellow/corner{
 	dir = 1
 	},
 /area/hallway/secondary/entry)
@@ -10467,8 +10499,12 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plasteel/yellow/corner{
-	dir = 4
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/open/floor/plasteel/yellow/side{
+	dir = 1
 	},
 /area/hallway/secondary/entry)
 "axJ" = (
@@ -10668,6 +10704,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "ayi" = (
@@ -10678,6 +10717,10 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
@@ -10722,10 +10765,14 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "ayq" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plasteel/yellow/side{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
 "ayr" = (
 /obj/structure/extinguisher_cabinet{
@@ -10777,6 +10824,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
@@ -11819,6 +11870,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "aAO" = (
@@ -11872,6 +11927,10 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
@@ -12202,6 +12261,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "aBM" = (
@@ -12683,15 +12743,20 @@
 /area/shuttle/arrival)
 "aCT" = (
 /obj/structure/table,
-/obj/item/stack/sheet/metal{
+/obj/item/stack/sheet/plasteel{
+	amount = 10
+	},
+/obj/item/stack/rods{
 	amount = 50
 	},
-/obj/item/stack/sheet/metal{
-	amount = 50
+/obj/machinery/computer/security/telescreen{
+	desc = "Used for the Auxillary Mining Base.";
+	dir = 8;
+	name = "Auxillary Base Monitor";
+	network = list("AuxBase");
+	pixel_x = 28
 	},
-/obj/item/stack/sheet/glass{
-	amount = 50
-	},
+/obj/item/clothing/head/welding,
 /turf/open/floor/plasteel/yellow/side{
 	dir = 4
 	},
@@ -12769,6 +12834,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aDe" = (
@@ -14036,6 +14102,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aFS" = (
@@ -15360,8 +15427,11 @@
 	req_access_txt = "0";
 	req_one_access_txt = "32;47;48"
 	},
+/obj/item/device/gps/engineering,
+/obj/item/device/gps/engineering,
+/obj/item/pod_paint_bucket,
 /turf/open/floor/plasteel/yellow/side{
-	dir = 6
+	dir = 4
 	},
 /area/construction/mining/aux_base)
 "aII" = (
@@ -15918,6 +15988,7 @@
 	name = "Primary Tool Storage"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aKa" = (
@@ -15991,8 +16062,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
-/area/maintenance/port/fore)
+/area/construction/mining/aux_base)
 "aKg" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/mineral/titanium/blue,
@@ -16411,6 +16483,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "aLl" = (
@@ -16505,14 +16578,8 @@
 /turf/closed/wall,
 /area/maintenance/port/fore)
 "aLu" = (
-/obj/machinery/door/airlock/engineering{
-	cyclelinkeddir = 1;
-	name = "Auxillary Base Construction";
-	req_access_txt = "0";
-	req_one_access_txt = "32;47;48"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plasteel,
+/turf/closed/wall,
 /area/construction/mining/aux_base)
 "aLv" = (
 /obj/machinery/firealarm{
@@ -17173,6 +17240,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hallway/primary/port)
 "aNp" = (
@@ -17566,7 +17634,8 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/obj/structure/disposalpipe/segment{
+/obj/structure/disposalpipe/junction{
+	icon_state = "pipe-j2";
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -35913,6 +35982,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "bEK" = (
@@ -50692,7 +50762,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/yellow/corner{
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/arrival{
 	dir = 1
 	},
 /area/hallway/secondary/entry)
@@ -58213,14 +58286,11 @@
 /turf/open/floor/plating,
 /area/shuttle/auxillary_base)
 "cCt" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
+/obj/machinery/mecha_part_fabricator/spacepod,
+/turf/open/floor/plasteel/yellow/side{
+	dir = 1
 	},
-/obj/docking_port/stationary/public_mining_dock{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/auxillary_base)
+/area/construction/mining/aux_base)
 "cCu" = (
 /obj/machinery/door/airlock/external,
 /turf/open/floor/pod/dark,
@@ -63930,6 +64000,736 @@
 	dir = 4
 	},
 /area/construction/mining/aux_base)
+"cTF" = (
+/obj/docking_port/mobile/auxillary_base{
+	dheight = 4;
+	dir = 2;
+	dwidth = 4;
+	height = 9;
+	width = 9
+	},
+/obj/machinery/bluespace_beacon,
+/obj/machinery/computer/auxillary_base,
+/turf/closed/wall,
+/area/shuttle/auxillary_base)
+"cTG" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space)
+"cTH" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space)
+"cTI" = (
+/obj/machinery/door/airlock/external{
+	cyclelinkeddir = 0;
+	name = "Construction Zone";
+	req_access = null;
+	req_access_txt = "0";
+	req_one_access_txt = "0"
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cTJ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"cTK" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"cTL" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "podblastr";
+	name = "Blast Door Control";
+	pixel_x = 7;
+	pixel_y = 26;
+	req_access_txt = "0";
+	req_one_access_txt = "0"
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	id = "podblastl";
+	name = "Blast Door Control";
+	pixel_x = -6;
+	pixel_y = 26;
+	req_access_txt = "0";
+	req_one_access_txt = "0"
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"cTM" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"cTN" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"cTO" = (
+/obj/structure/sign/securearea{
+	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
+	icon_state = "space";
+	layer = 4;
+	name = "EXTERNAL AIRLOCK";
+	pixel_x = 0;
+	pixel_y = 32
+	},
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk,
+/turf/open/floor/plasteel/yellow/side{
+	dir = 9
+	},
+/area/construction/mining/aux_base)
+"cTP" = (
+/obj/machinery/computer/podtracker,
+/turf/open/floor/plasteel/yellow/side{
+	dir = 1
+	},
+/area/construction/mining/aux_base)
+"cTQ" = (
+/obj/machinery/computer/camera_advanced/base_construction,
+/turf/open/floor/plasteel/yellow/side{
+	dir = 1
+	},
+/area/construction/mining/aux_base)
+"cTR" = (
+/obj/structure/closet/emcloset/anchored,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"cTS" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cTT" = (
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cTU" = (
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cTV" = (
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cTW" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cTX" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"cTY" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cTZ" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUa" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUb" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 5
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"cUc" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUd" = (
+/obj/structure/closet/emcloset/anchored,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUe" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUf" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/yellow/side{
+	dir = 8
+	},
+/area/construction/mining/aux_base)
+"cUg" = (
+/obj/structure/chair/office/dark{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"cUh" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"cUi" = (
+/obj/structure/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"cUj" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUk" = (
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUl" = (
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUm" = (
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUn" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUo" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"cUp" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUq" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUr" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUs" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"cUt" = (
+/obj/machinery/door/airlock/external{
+	cyclelinkeddir = 4;
+	name = "Space Pod Dock";
+	req_access = null;
+	req_access_txt = "0";
+	req_one_access_txt = "0"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUu" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUv" = (
+/obj/machinery/door/airlock/external{
+	cyclelinkeddir = 8;
+	name = "Space Pod Dock";
+	req_access = null;
+	req_access_txt = "0";
+	req_one_access_txt = "0"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUw" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/yellow/side{
+	dir = 8
+	},
+/area/construction/mining/aux_base)
+"cUx" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"cUy" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"cUz" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"cUA" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/door/poddoor/multi_tile/three_tile_ver{
+	id = "podblastl"
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUB" = (
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUC" = (
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUD" = (
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUE" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/door/poddoor/multi_tile/three_tile_ver{
+	id = "podblastr"
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUF" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"cUG" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUH" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUI" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUJ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 6
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"cUK" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUL" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUM" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cUN" = (
+/obj/machinery/camera{
+	c_tag = "Auxillary Base Construction";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/plasteel/yellow/side{
+	dir = 8
+	},
+/area/construction/mining/aux_base)
+"cUO" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"cUP" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"cUQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"cUR" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"cUS" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"cUT" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"cUU" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"cUV" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"cUW" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"cUX" = (
+/obj/effect/turf_decal/stripes/corner,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"cUY" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/obj/item/clothing/under/rank/mechanic{
+	desc = "It's a pair of dusty overalls that kinda look like what a mechanic would wear."
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"cUZ" = (
+/obj/structure/closet/toolcloset,
+/turf/open/floor/plasteel/yellow/side{
+	dir = 10
+	},
+/area/construction/mining/aux_base)
+"cVa" = (
+/turf/open/floor/plasteel/yellow/side,
+/area/construction/mining/aux_base)
+"cVb" = (
+/turf/open/floor/plasteel/yellow/side,
+/area/construction/mining/aux_base)
+"cVc" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5
+	},
+/turf/open/floor/plasteel/yellow/side,
+/area/construction/mining/aux_base)
+"cVd" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plasteel/yellow/side{
+	dir = 6
+	},
+/area/construction/mining/aux_base)
+"cVe" = (
+/obj/effect/landmark/carpspawn,
+/turf/open/space/basic,
+/area/space)
+"cVf" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "aux_base_shutters";
+	name = "Auxillary Base Shutters"
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"cVg" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "aux_base_shutters";
+	name = "Auxillary Base Shutters"
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"cVh" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"cVi" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"cVj" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"cVk" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"cVl" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"cVm" = (
+/obj/machinery/computer/rdconsole/robotics{
+	name = "Spacepod R&D Console"
+	},
+/turf/open/floor/plasteel/yellow/side,
+/area/construction/mining/aux_base)
+"cVn" = (
+/obj/item/clothing/under/rank/mechanic{
+	desc = "It's a pair of dusty overalls that kinda look like what a mechanic would wear."
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"cVo" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk,
+/turf/open/floor/plasteel/yellow/side{
+	dir = 9
+	},
+/area/construction/mining/aux_base)
+"cVp" = (
+/obj/machinery/computer/rdconsole/robotics{
+	name = "Spacepod R&D Console"
+	},
+/turf/open/floor/plasteel/yellow/side{
+	dir = 1
+	},
+/area/construction/mining/aux_base)
+"cVq" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"cVr" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/machinery/cell_charger,
+/obj/item/stock_parts/cell/high,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"cVs" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"cVt" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Space Pod Construction";
+	dir = 1
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"cVu" = (
+/obj/structure/closet/toolcloset,
+/turf/open/floor/plasteel/yellow/side,
+/area/construction/mining/aux_base)
+"cVv" = (
+/turf/open/space/basic,
+/obj/machinery/porta_turret/syndicate{
+	dir = 9
+	},
+/turf/closed/wall/mineral/plastitanium{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/shuttle/syndicate)
+"cVw" = (
+/obj/structure/spacepoddoor,
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"cVx" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 10
+	},
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"cVy" = (
+/obj/structure/spacepoddoor,
+/obj/machinery/door/poddoor/multi_tile/two_tile_ver,
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"cVz" = (
+/obj/spacepod/template/syndicate,
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"cVA" = (
+/obj/structure/rack,
+/obj/item/device/spacepod_equipment/lock/keyed{
+	id = -192
+	},
+/obj/item/device/spacepod_key{
+	id = -192
+	},
+/obj/item/device/spacepod_key{
+	id = -192
+	},
+/obj/item/device/spacepod_equipment/sec_cargo/chair,
+/obj/item/device/spacepod_equipment/weaponry/disabler,
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"cVB" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 9
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/shuttle/syndicate)
+"cVC" = (
+/obj/machinery/door/airlock/external,
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
 
 (1,1,1) = {"
 aaa
@@ -70710,12 +71510,12 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+asF
+cTS
+cTS
+cUA
+asF
+cVe
 aaa
 aaa
 aaa
@@ -70967,11 +71767,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+asF
+cTT
+cTT
+cTT
+asF
 aaa
 aaa
 aaa
@@ -71224,11 +72024,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+asF
+cTT
+cTT
+cTT
+asF
 aaa
 aaa
 cpe
@@ -71481,11 +72281,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aae
-aaf
+asF
+cTT
+cTT
+cTT
+asF
 aaa
 aqH
 apK
@@ -71738,11 +72538,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaf
+asF
+cTT
+cTT
+cTT
+asF
 aaa
 aqH
 cpK
@@ -71994,13 +72794,13 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaf
-aaa
+apJ
+asF
+cTS
+cTS
+cUE
+asF
+apJ
 aqH
 cpL
 aqH
@@ -72251,13 +73051,13 @@ aaa
 aaa
 aaa
 aaa
-aaf
-aaa
-aaa
-aaa
-aaa
-aaf
-aaa
+apJ
+cTJ
+cTX
+cTX
+cTX
+cUU
+apJ
 ckq
 cqq
 ckq
@@ -72507,14 +73307,14 @@ aaa
 aaa
 aaa
 aaa
-aaf
-aaf
-aaf
-aaf
-aaf
 aaa
-aaf
-arB
+asF
+cTK
+cTY
+cTY
+cTY
+cUV
+apJ
 asE
 cyb
 asE
@@ -72761,16 +73561,16 @@ aaa
 aaa
 aaa
 aaa
+aaa
+aaa
+aaa
+aaa
 apJ
-apJ
-apJ
-apJ
-apJ
-apJ
-apJ
-apJ
-apJ
-apJ
+cTL
+cTY
+cTY
+cTY
+cVt
 apJ
 auO
 auP
@@ -73018,16 +73818,16 @@ aaa
 aaa
 aaa
 aaa
-apJ
-apN
-arC
-arC
-arC
-arC
-arC
-arC
-arC
-aEp
+aaa
+aaa
+aaa
+aaa
+asF
+cTM
+cTY
+cTY
+cTY
+cUX
 apJ
 avP
 cyb
@@ -73274,17 +74074,17 @@ aaa
 aaa
 aaa
 aaa
-aaf
+aaa
+aaa
+aaa
+aaa
+aaa
 apJ
-aqI
-arD
-arD
-arD
-arD
-arD
-arD
-arD
-auN
+cTN
+cUb
+cUs
+cUJ
+cUY
 apJ
 awY
 ayk
@@ -73531,17 +74331,17 @@ aaa
 aaa
 aaa
 aaa
-aaf
+aaa
+aaa
+aaa
+aaa
+aaa
 apJ
-aqI
-arD
-arD
-arD
-arD
-arD
-arD
-arD
-auN
+apJ
+cUc
+cUt
+cUc
+apJ
 apJ
 awZ
 ayl
@@ -73788,17 +74588,17 @@ aaa
 aaa
 aaa
 aaa
-aaf
+aaa
+aaa
+aaa
+cTG
+cTG
 apJ
-aqI
-arD
-arD
-arD
-atk
-arD
-arD
-arD
-auN
+apJ
+cUd
+cUu
+cVr
+apJ
 apJ
 awZ
 ayk
@@ -74040,22 +74840,22 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 apJ
-aqI
-arD
-arD
-asG
-atl
-awX
-arD
-arD
-auN
+apJ
+apJ
+apJ
+apJ
+apJ
+apJ
+apJ
+apJ
+apJ
+apJ
+apJ
+cUc
+cUv
+cUc
+apJ
 apJ
 awZ
 cqr
@@ -74297,22 +75097,22 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 apJ
-aqI
-arD
-arD
-arD
-cCs
-arD
-arD
-arD
-auN
+apN
+arC
+arC
+arC
+arC
+arC
+arC
+arC
+aEp
+apJ
+cVo
+cUf
+cUw
+cUN
+cUZ
 apJ
 awZ
 aIK
@@ -74554,12 +75354,6 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 apJ
 aqI
 arD
@@ -74570,6 +75364,12 @@ arD
 arD
 arD
 auN
+apJ
+cTP
+cUg
+cUx
+cVs
+cVu
 apJ
 awZ
 aIK
@@ -74811,12 +75611,6 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaf
 apJ
 aqI
 arD
@@ -74827,7 +75621,13 @@ arD
 arD
 arD
 auN
-apJ
+asF
+cVp
+cVq
+cUx
+cUO
+cVa
+cVf
 awZ
 cry
 azA
@@ -75068,23 +75868,23 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 apJ
-aqN
-asD
-asD
-asD
+aqI
+arD
+arD
+arD
+atk
+arD
+arD
+arD
+auN
+asF
 cCt
-asD
-asD
-asD
-aFD
-apJ
+cUh
+cUy
+cUP
+cVa
+cVf
 awZ
 crz
 awW
@@ -75325,22 +76125,22 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 apJ
-apJ
-apJ
+aqI
+arD
+arD
+asG
+cTF
+awX
+arD
+arD
 ajZ
-asF
+cTI
 atp
-asF
-asF
-asF
-asF
+cVn
+cUz
+cUQ
+cVc
 apJ
 axh
 aIK
@@ -75582,20 +76382,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaf
 apJ
-asH
+aqI
+arD
+arD
+arD
+cCs
+arD
+arD
+arD
+auN
+asF
 atI
-atI
-arE
-ayq
+auQ
+auQ
 ayq
 auc
 avp
@@ -75839,19 +76639,19 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+apJ
+aqI
+arD
+arD
+arD
+arD
+arD
+arD
+arD
+auN
 asF
-asI
-auQ
-auQ
-auQ
+cTQ
+cUi
 auQ
 aCX
 aub
@@ -76039,10 +76839,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-amO
+cVv
+cVw
+cVy
+cVB
 aac
 aac
 aac
@@ -76096,22 +76896,22 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 apJ
-asJ
-cTE
+aqI
+arD
+arD
+arD
+arD
+arD
+arD
+arD
+auN
+apJ
 avQ
 axc
 aCT
-atb
 aIH
+cVd
 apJ
 clB
 aIK
@@ -76296,9 +77096,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+aac
+cIz
+cVz
 aac
 cIR
 cIY
@@ -76353,14 +77153,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+apJ
+aqN
+asD
+asD
+asD
+asD
+asD
+asD
+asD
+aFD
 apJ
 apJ
 apJ
@@ -76368,9 +77170,7 @@ apJ
 apJ
 apJ
 apJ
-apJ
-apJ
-axG
+clB
 aIK
 aym
 aAI
@@ -76553,10 +77353,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
 aac
+cIz
+cIz
+cVC
 cIJ
 cIJ
 cIJ
@@ -76610,21 +77410,21 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaf
-aaf
-aaf
-aaf
+apJ
+apJ
+apJ
+apJ
+apJ
+apJ
+apJ
+apJ
+apJ
+apJ
+apJ
+apJ
 alU
 atJ
-amC
+cUR
 aKf
 bEJ
 axb
@@ -76810,9 +77610,9 @@ amO
 aac
 aac
 aac
-clO
-aaa
-aaa
+aac
+cIz
+cIz
 aac
 cIJ
 cIJ
@@ -76878,10 +77678,10 @@ aaa
 aaa
 aag
 alU
-alU
+cTR
 alU
 aCW
-amC
+cUS
 aud
 alU
 alU
@@ -77068,8 +77868,8 @@ cIl
 cIs
 cIz
 aac
-czz
-aaa
+cVx
+cVA
 aac
 cIU
 cJb
@@ -77138,7 +77938,7 @@ aqJ
 amC
 aqJ
 ase
-avq
+cUT
 aum
 avq
 avq
@@ -79712,7 +80512,7 @@ avb
 aaH
 bOi
 atO
-aud
+cVh
 azF
 aAT
 aBw
@@ -79969,7 +80769,7 @@ aaH
 bNb
 apQ
 atO
-aud
+cVh
 azF
 aAS
 aFP
@@ -80226,7 +81026,7 @@ avU
 avb
 bOi
 atO
-aud
+cVh
 azF
 aAU
 aBG
@@ -80483,7 +81283,7 @@ alU
 ali
 alU
 atO
-aud
+cVh
 azF
 aAP
 aAP
@@ -80740,7 +81540,7 @@ amC
 amC
 amC
 axi
-aud
+cVh
 azF
 azF
 azF

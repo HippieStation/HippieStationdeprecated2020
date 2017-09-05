@@ -4810,16 +4810,7 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "ajZ" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/fulltile,
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
-	icon_state = "space";
-	layer = 4;
-	name = "EXTERNAL AIRLOCK";
-	pixel_x = 0;
-	pixel_y = 32
-	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/construction/mining/aux_base)
 "aka" = (
@@ -8192,12 +8183,10 @@
 /turf/open/floor/plating,
 /area/shuttle/auxillary_base)
 "arE" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	on = 1
+/obj/structure/chair/office/dark{
+	dir = 1
 	},
-/turf/open/floor/plasteel/yellow/side{
-	dir = 8
-	},
+/turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
 "arF" = (
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden{
@@ -8633,9 +8622,10 @@
 /turf/closed/wall,
 /area/hallway/secondary/entry)
 "asF" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/fulltile,
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
 "asG" = (
 /obj/machinery/light,
@@ -8860,19 +8850,10 @@
 /turf/open/floor/plating,
 /area/shuttle/auxillary_base)
 "atl" = (
-/obj/docking_port/mobile/auxillary_base{
-	dheight = 4;
-	dir = 4;
-	dwidth = 4;
-	height = 9;
-	width = 9
+/turf/open/floor/plasteel/yellow/side{
+	dir = 9
 	},
-/obj/machinery/bluespace_beacon,
-/obj/machinery/computer/auxillary_base{
-	pixel_y = 0
-	},
-/turf/closed/wall,
-/area/shuttle/auxillary_base)
+/area/construction/mining/aux_base)
 "atm" = (
 /turf/open/floor/wood,
 /area/crew_quarters/dorms)
@@ -8890,14 +8871,10 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
 "atp" = (
-/obj/machinery/door/airlock/external{
-	cyclelinkeddir = 1;
-	name = "Construction Zone";
-	req_access = null;
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+/obj/machinery/computer/shuttle/mining,
+/turf/open/floor/plasteel/yellow/side{
+	dir = 1
 	},
-/turf/open/floor/plating,
 /area/construction/mining/aux_base)
 "atq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -9029,8 +9006,9 @@
 /turf/open/floor/circuit,
 /area/maintenance/department/electrical)
 "atI" = (
+/obj/machinery/computer/camera_advanced/base_construction,
 /turf/open/floor/plasteel/yellow/side{
-	dir = 8
+	dir = 1
 	},
 /area/construction/mining/aux_base)
 "atJ" = (
@@ -9145,14 +9123,16 @@
 	},
 /area/hippie/pool)
 "aub" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plasteel/yellow/side,
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plasteel/yellow/side{
+	dir = 6
+	},
 /area/construction/mining/aux_base)
 "auc" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plasteel/yellow/side{
-	dir = 10
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 4
 	},
+/turf/open/floor/plasteel/yellow/side,
 /area/construction/mining/aux_base)
 "aud" = (
 /obj/structure/cable{
@@ -9706,13 +9686,8 @@
 /turf/closed/wall,
 /area/maintenance/department/electrical)
 "avp" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/door/poddoor/shutters{
-	id = "aux_base_shutters";
-	name = "Auxillary Base Shutters"
-	},
-/obj/effect/turf_decal/delivery,
-/turf/open/floor/plasteel,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/closed/wall,
 /area/construction/mining/aux_base)
 "avq" = (
 /obj/structure/cable{
@@ -11088,10 +11063,8 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "ayq" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plasteel/yellow/side{
-	dir = 8
-	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
 "ayr" = (
 /obj/structure/extinguisher_cabinet{
@@ -13160,12 +13133,22 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "aCX" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber{
-	on = 1;
-	scrub_N2O = 0;
-	scrub_Toxins = 0
+/obj/structure/table,
+/obj/item/storage/box/lights/mixed,
+/obj/item/pipe_dispenser,
+/obj/machinery/button/door{
+	id = "aux_base_shutters";
+	name = "Public Shutters Control";
+	pixel_x = 24;
+	req_access_txt = "0";
+	req_one_access_txt = "32;47;48"
 	},
-/turf/open/floor/plasteel,
+/obj/item/device/gps/engineering,
+/obj/item/device/gps/engineering,
+/obj/item/pod_paint_bucket,
+/turf/open/floor/plasteel/yellow/side{
+	dir = 4
+	},
 /area/construction/mining/aux_base)
 "aCY" = (
 /obj/machinery/computer/security,
@@ -13804,10 +13787,16 @@
 /area/shuttle/arrival)
 "aEp" = (
 /obj/effect/turf_decal/stripes/line{
-	dir = 10
+	dir = 6
 	},
-/turf/open/floor/plating,
-/area/shuttle/auxillary_base)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/obj/item/clothing/under/rank/mechanic{
+	desc = "It's a pair of dusty overalls that kinda look like what a mechanic would wear."
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
 "aEq" = (
 /obj/machinery/computer/arcade,
 /obj/machinery/light{
@@ -60517,14 +60506,10 @@
 /turf/open/floor/plating,
 /area/shuttle/auxillary_base)
 "cCt" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
+/turf/open/floor/plasteel/yellow/side{
+	dir = 1
 	},
-/obj/docking_port/stationary/public_mining_dock{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/shuttle/auxillary_base)
+/area/construction/mining/aux_base)
 "cCu" = (
 /obj/machinery/door/airlock/external,
 /turf/open/floor/pod/dark,
@@ -69284,6 +69269,1090 @@
 	},
 /turf/closed/wall,
 /area/maintenance/starboard/aft)
+"dcz" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "syndieshutters";
+	name = "blast shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"dcA" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "syndieshutters";
+	name = "blast shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"dcB" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "syndieshutters";
+	name = "blast shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"dcC" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "syndieshutters";
+	name = "blast shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"dcD" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "syndieshutters";
+	name = "blast shutters"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"dcE" = (
+/obj/machinery/computer/med_data/syndie,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"dcF" = (
+/obj/machinery/computer/crew/syndie,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"dcG" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/syndicate,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"dcH" = (
+/obj/machinery/computer/camera_advanced/syndie,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"dcI" = (
+/obj/machinery/computer/secure_data/syndie,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"dcJ" = (
+/obj/structure/table/reinforced,
+/obj/machinery/status_display{
+	pixel_x = -32
+	},
+/obj/item/clipboard,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/folder/red,
+/obj/item/toy/figure/syndie,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"dcK" = (
+/turf/open/space/basic,
+/obj/machinery/porta_turret/syndicate{
+	dir = 9
+	},
+/turf/closed/wall/mineral/plastitanium{
+	dir = 8;
+	icon_state = "diagonalWall3"
+	},
+/area/shuttle/syndicate)
+"dcL" = (
+/obj/structure/spacepoddoor,
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"dcM" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 10
+	},
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"dcN" = (
+/obj/structure/spacepoddoor,
+/obj/machinery/door/poddoor/multi_tile/two_tile_ver,
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"dcO" = (
+/obj/spacepod/template/syndicate,
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"dcP" = (
+/obj/structure/rack,
+/obj/item/device/spacepod_equipment/lock/keyed{
+	id = -192
+	},
+/obj/item/device/spacepod_key{
+	id = -192
+	},
+/obj/item/device/spacepod_key{
+	id = -192
+	},
+/obj/item/device/spacepod_equipment/sec_cargo/chair,
+/obj/item/device/spacepod_equipment/weaponry/disabler,
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"dcQ" = (
+/obj/machinery/porta_turret/syndicate{
+	dir = 9
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/shuttle/syndicate)
+"dcR" = (
+/obj/machinery/door/airlock/external,
+/turf/open/floor/plasteel/vault,
+/area/shuttle/syndicate)
+"dcS" = (
+/obj/structure/chair{
+	dir = 4;
+	name = "tactical chair"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 5
+	},
+/area/shuttle/syndicate)
+"dcT" = (
+/obj/machinery/suit_storage_unit/syndicate,
+/turf/open/floor/plasteel/podhatch{
+	dir = 4
+	},
+/area/shuttle/syndicate)
+"dcU" = (
+/obj/machinery/door/poddoor{
+	id = "smindicate";
+	name = "outer blast door"
+	},
+/obj/machinery/button/door{
+	id = "smindicate";
+	name = "external door control";
+	pixel_x = -26;
+	req_access_txt = "150"
+	},
+/obj/docking_port/mobile{
+	dheight = 9;
+	dir = 2;
+	dwidth = 5;
+	height = 24;
+	id = "syndicate";
+	name = "syndicate infiltrator";
+	port_angle = 0;
+	roundstart_move = "syndicate_away";
+	width = 18
+	},
+/obj/docking_port/stationary{
+	dheight = 9;
+	dir = 2;
+	dwidth = 5;
+	height = 24;
+	id = "syndicate_nw";
+	name = "northwest of station";
+	turf_type = /turf/open/space;
+	width = 18
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plasteel/podhatch{
+	dir = 1
+	},
+/area/shuttle/syndicate)
+"dcV" = (
+/obj/structure/sign/securearea{
+	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
+	icon_state = "space";
+	layer = 4;
+	name = "EXTERNAL AIRLOCK"
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/shuttle/syndicate)
+"dcW" = (
+/obj/machinery/suit_storage_unit/syndicate,
+/turf/open/floor/plasteel/podhatch{
+	dir = 4
+	},
+/area/shuttle/syndicate)
+"dcX" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"dcY" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"dcZ" = (
+/obj/item/storage/toolbox/syndicate,
+/obj/item/crowbar/red,
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/podhatch{
+	dir = 10
+	},
+/area/shuttle/syndicate)
+"dda" = (
+/obj/structure/chair{
+	name = "tactical chair"
+	},
+/turf/open/floor/plasteel/podhatch{
+	dir = 6
+	},
+/area/shuttle/syndicate)
+"ddb" = (
+/obj/machinery/suit_storage_unit/syndicate,
+/turf/open/floor/plasteel/podhatch{
+	dir = 4
+	},
+/area/shuttle/syndicate)
+"ddc" = (
+/obj/machinery/suit_storage_unit/syndicate,
+/turf/open/floor/plasteel/podhatch{
+	dir = 6
+	},
+/area/shuttle/syndicate)
+"ddd" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"dde" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"ddf" = (
+/obj/item/reagent_containers/glass/bottle/epinephrine{
+	pixel_x = 6
+	},
+/obj/item/reagent_containers/glass/bottle/charcoal{
+	pixel_x = -3
+	},
+/obj/item/reagent_containers/glass/bottle/epinephrine{
+	pixel_x = -3;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/glass/bottle/charcoal{
+	pixel_x = 6;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/syringe/epinephrine{
+	pixel_x = 3;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/syringe/epinephrine{
+	pixel_x = 4;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/syringe/epinephrine{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/syringe/epinephrine{
+	pixel_x = 2;
+	pixel_y = 8
+	},
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"ddg" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 5
+	},
+/area/shuttle/syndicate)
+"ddh" = (
+/turf/open/floor/plasteel/podhatch{
+	dir = 1
+	},
+/area/shuttle/syndicate)
+"ddi" = (
+/turf/open/floor/plasteel/podhatch{
+	dir = 1
+	},
+/area/shuttle/syndicate)
+"ddj" = (
+/turf/open/floor/plasteel/podhatch{
+	dir = 1
+	},
+/area/shuttle/syndicate)
+"ddk" = (
+/turf/open/floor/plasteel/podhatch{
+	dir = 1
+	},
+/area/shuttle/syndicate)
+"ddl" = (
+/turf/open/floor/plasteel/podhatch{
+	dir = 1
+	},
+/area/shuttle/syndicate)
+"ddm" = (
+/turf/open/floor/plasteel/podhatch{
+	dir = 1
+	},
+/area/shuttle/syndicate)
+"ddn" = (
+/turf/open/floor/plasteel/podhatch{
+	dir = 1
+	},
+/area/shuttle/syndicate)
+"ddo" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"ddp" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"ddq" = (
+/turf/open/floor/plasteel/podhatch{
+	dir = 6
+	},
+/area/shuttle/syndicate)
+"ddr" = (
+/obj/item/surgicaldrill,
+/obj/item/circular_saw,
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 8
+	},
+/area/shuttle/syndicate)
+"dds" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/structure/mirror{
+	pixel_x = 30
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 5
+	},
+/area/shuttle/syndicate)
+"ddt" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"ddu" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/shuttle/syndicate)
+"ddv" = (
+/obj/structure/shuttle/engine/propulsion/left,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/shuttle/syndicate)
+"ddw" = (
+/obj/structure/shuttle/engine/propulsion/right,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/shuttle/syndicate)
+"ddx" = (
+/obj/structure/shuttle/engine/propulsion/left,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/shuttle/syndicate)
+"ddy" = (
+/obj/structure/shuttle/engine/propulsion/right,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/shuttle/syndicate)
+"ddz" = (
+/obj/structure/shuttle/engine/propulsion/left,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/shuttle/syndicate)
+"ddA" = (
+/obj/structure/shuttle/engine/propulsion/right,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plating/airless,
+/area/shuttle/syndicate)
+"ddB" = (
+/obj/structure/closet/secure_closet/miner/unlocked,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/shuttle/auxillary_base)
+"ddC" = (
+/obj/docking_port/mobile/auxillary_base{
+	dheight = 4;
+	dir = 2;
+	dwidth = 4;
+	height = 9;
+	width = 9
+	},
+/obj/machinery/bluespace_beacon,
+/obj/machinery/computer/auxillary_base,
+/turf/closed/wall,
+/area/shuttle/auxillary_base)
+"ddD" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/structure/ore_box,
+/turf/open/floor/plating,
+/area/shuttle/auxillary_base)
+"ddE" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/docking_port/stationary/public_mining_dock{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/auxillary_base)
+"ddF" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"ddG" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"ddH" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"ddI" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"ddJ" = (
+/obj/machinery/door/airlock/external{
+	cyclelinkeddir = 0;
+	name = "Construction Zone";
+	req_access = null;
+	req_access_txt = "0";
+	req_one_access_txt = "0"
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"ddK" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"ddL" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"ddM" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/button/door{
+	id = "podblastr";
+	name = "Blast Door Control";
+	pixel_x = 7;
+	pixel_y = 26;
+	req_access_txt = "0";
+	req_one_access_txt = "0"
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/machinery/button/door{
+	id = "podblastl";
+	name = "Blast Door Control";
+	pixel_x = -6;
+	pixel_y = 26;
+	req_access_txt = "0";
+	req_one_access_txt = "0"
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"ddN" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"ddO" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"ddP" = (
+/obj/machinery/computer/podtracker,
+/turf/open/floor/plasteel/yellow/side{
+	dir = 1
+	},
+/area/construction/mining/aux_base)
+"ddQ" = (
+/obj/machinery/computer/rdconsole/robotics{
+	name = "Spacepod R&D Console"
+	},
+/turf/open/floor/plasteel/yellow/side{
+	dir = 1
+	},
+/area/construction/mining/aux_base)
+"ddR" = (
+/obj/machinery/mecha_part_fabricator/spacepod,
+/turf/open/floor/plasteel/yellow/side{
+	dir = 1
+	},
+/area/construction/mining/aux_base)
+"ddS" = (
+/obj/structure/rack{
+	dir = 4
+	},
+/obj/item/electronics/airlock,
+/obj/item/electronics/airlock,
+/obj/item/electronics/airlock,
+/obj/item/electronics/airlock,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/wallframe/camera,
+/obj/item/device/assault_pod/mining,
+/obj/structure/sign/securearea{
+	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
+	icon_state = "space";
+	layer = 4;
+	name = "EXTERNAL AIRLOCK";
+	pixel_x = 0;
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/yellow/side{
+	dir = 5
+	},
+/area/construction/mining/aux_base)
+"ddT" = (
+/obj/structure/closet/emcloset/anchored,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"ddU" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"ddV" = (
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"ddW" = (
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"ddX" = (
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"ddY" = (
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"ddZ" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"dea" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"deb" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"dec" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"ded" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"dee" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 5
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"def" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"deg" = (
+/obj/structure/closet/emcloset/anchored,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"deh" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"dei" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/plasteel/yellow/side{
+	dir = 8
+	},
+/area/construction/mining/aux_base)
+"dej" = (
+/obj/structure/chair/office/dark{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"dek" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"del" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"dem" = (
+/obj/item/clothing/under/rank/mechanic{
+	desc = "It's a pair of dusty overalls that kinda look like what a mechanic would wear."
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"den" = (
+/obj/structure/table,
+/obj/item/stack/sheet/metal{
+	amount = 50
+	},
+/obj/item/stack/sheet/metal{
+	amount = 50
+	},
+/obj/item/stack/sheet/glass{
+	amount = 50
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/item/stack/sheet/mineral/plasma{
+	amount = 10
+	},
+/obj/item/pod_parts/core,
+/turf/open/floor/plasteel/yellow/side{
+	dir = 4
+	},
+/area/construction/mining/aux_base)
+"deo" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"dep" = (
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"deq" = (
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"der" = (
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"des" = (
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"det" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"deu" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"dev" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"dew" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"dex" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"dey" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"dez" = (
+/obj/machinery/door/airlock/external{
+	cyclelinkeddir = 4;
+	name = "Space Pod Dock";
+	req_access = null;
+	req_access_txt = "0";
+	req_one_access_txt = "0"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"deA" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"deB" = (
+/obj/machinery/door/airlock/external{
+	cyclelinkeddir = 8;
+	name = "Space Pod Dock";
+	req_access = null;
+	req_access_txt = "0";
+	req_one_access_txt = "0"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"deC" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/yellow/side{
+	dir = 8
+	},
+/area/construction/mining/aux_base)
+"deD" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"deE" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"deF" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"deG" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"deH" = (
+/obj/structure/table,
+/obj/item/stack/sheet/plasteel{
+	amount = 10
+	},
+/obj/item/stack/rods{
+	amount = 50
+	},
+/obj/machinery/computer/security/telescreen{
+	desc = "Used for the Auxillary Mining Base.";
+	dir = 8;
+	name = "Auxillary Base Monitor";
+	network = list("AuxBase");
+	pixel_x = 28
+	},
+/obj/item/clothing/head/welding,
+/turf/open/floor/plasteel/yellow/side{
+	dir = 4
+	},
+/area/construction/mining/aux_base)
+"deI" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/door/poddoor/multi_tile/three_tile_ver{
+	id = "podblastl"
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"deJ" = (
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"deK" = (
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"deL" = (
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"deM" = (
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"deN" = (
+/obj/effect/turf_decal/delivery,
+/obj/machinery/door/poddoor/multi_tile/three_tile_ver{
+	id = "podblastr"
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"deO" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"deP" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"deQ" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"deR" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"deS" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 6
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"deT" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"deU" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/machinery/cell_charger,
+/obj/item/stock_parts/cell/high,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"deV" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"deW" = (
+/obj/machinery/camera{
+	c_tag = "Auxillary Base Construction";
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/plasteel/yellow/side{
+	dir = 8
+	},
+/area/construction/mining/aux_base)
+"deX" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"deY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"deZ" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden,
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"dfa" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"dfb" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"dfc" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"dfd" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"dfe" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"dff" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Space Pod Construction";
+	dir = 1
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"dfg" = (
+/obj/effect/turf_decal/stripes/corner,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/black,
+/area/construction/mining/aux_base)
+"dfh" = (
+/obj/structure/closet/toolcloset,
+/turf/open/floor/plasteel/yellow/side{
+	dir = 10
+	},
+/area/construction/mining/aux_base)
+"dfi" = (
+/obj/structure/closet/toolcloset,
+/turf/open/floor/plasteel/yellow/side,
+/area/construction/mining/aux_base)
+"dfj" = (
+/turf/open/floor/plasteel/yellow/side,
+/area/construction/mining/aux_base)
+"dfk" = (
+/turf/open/floor/plasteel/yellow/side,
+/area/construction/mining/aux_base)
+"dfl" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5
+	},
+/turf/open/floor/plasteel/yellow/side,
+/area/construction/mining/aux_base)
+"dfm" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel/yellow/side,
+/area/construction/mining/aux_base)
+"dfn" = (
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "Auxillary Base Construction APC";
+	areastring = "/area/construction/mining/aux_base";
+	pixel_x = -24
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 6
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
+"dfo" = (
+/obj/effect/landmark/carpspawn,
+/turf/open/space/basic,
+/area/space)
+"dfp" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "aux_base_shutters";
+	name = "Auxillary Base Shutters"
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"dfq" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "aux_base_shutters";
+	name = "Auxillary Base Shutters"
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"dfr" = (
+/obj/machinery/door/airlock/engineering{
+	cyclelinkeddir = 1;
+	name = "Auxillary Base Construction";
+	req_access_txt = "0";
+	req_one_access_txt = "32;47;48"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"dfs" = (
+/obj/machinery/door/airlock/maintenance{
+	req_access_txt = "12"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 
 (1,1,1) = {"
 aaa
@@ -75807,12 +76876,12 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+ajZ
+ddU
+deo
+deI
+ajZ
+dfo
 aaa
 aaa
 aaa
@@ -76064,11 +77133,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+ajZ
+ddV
+dep
+deJ
+ajZ
 aaa
 aaa
 aaa
@@ -76321,11 +77390,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+ajZ
+ddW
+deq
+deK
+ajZ
 aaa
 aaa
 aaa
@@ -76578,11 +77647,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+ajZ
+ddX
+der
+deL
+ajZ
 aaa
 aaa
 cpe
@@ -76835,11 +77904,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aae
-aaf
+ajZ
+ddY
+des
+deM
+ajZ
 aaa
 aqH
 apK
@@ -77091,13 +78160,13 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaf
-aaa
+apJ
+ajZ
+ddZ
+det
+deN
+ajZ
+apJ
 aqH
 cpK
 aqH
@@ -77348,13 +78417,13 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaf
-aaa
+apJ
+ddK
+dea
+deu
+deO
+dfd
+apJ
 aqH
 cpL
 aqH
@@ -77605,13 +78674,13 @@ aaa
 aaa
 aaa
 aaa
-aaf
-aaa
-aaa
-aaa
-aaa
-aaf
-aaa
+ddF
+ddL
+deb
+dev
+deP
+dfe
+apJ
 ckq
 cqq
 ckq
@@ -77861,14 +78930,14 @@ aaa
 aaa
 aaa
 aaa
-aaf
-aaf
-aaf
-aaf
-aaf
 aaa
-aaf
-arB
+apJ
+ddM
+dec
+dew
+deQ
+dff
+apJ
 asE
 cyb
 asE
@@ -78115,16 +79184,16 @@ aaa
 aaa
 aaa
 aaa
-apJ
-apJ
-apJ
-apJ
-apJ
-apJ
-apJ
-apJ
-apJ
-apJ
+aaa
+aaa
+aaa
+aaa
+ddG
+ddN
+ded
+dex
+deR
+dfg
 apJ
 auO
 auP
@@ -78372,15 +79441,15 @@ aaa
 aaa
 aaa
 aaa
+aaa
+aaa
+aaa
+aaa
 apJ
-apN
-arC
-arC
-arC
-arC
-arC
-arC
-arC
+ddO
+dee
+dey
+deS
 aEp
 apJ
 avP
@@ -78628,17 +79697,17 @@ aaa
 aaa
 aaa
 aaa
-aaf
+aaa
+aaa
+aaa
+aaa
+aaa
 apJ
-aqI
-arD
-arD
-arD
-arD
-arD
-arD
-arD
-auN
+apJ
+def
+dez
+deT
+apJ
 apJ
 awY
 ayk
@@ -78885,17 +79954,17 @@ aaa
 aaa
 aaa
 aaa
-aaf
+aaa
+aaa
+aaa
+cUa
+cUa
 apJ
-aqI
-arD
-arD
-arD
-arD
-arD
-arD
-arD
-auN
+apJ
+deg
+deA
+deU
+apJ
 apJ
 awZ
 ayl
@@ -79137,22 +80206,22 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaf
 apJ
-aqI
-arD
-arD
-arD
-atk
-arD
-arD
-arD
-auN
+apJ
+apJ
+apJ
+apJ
+apJ
+apJ
+apJ
+apJ
+apJ
+apJ
+apJ
+deh
+deB
+deV
+apJ
 apJ
 awZ
 ayk
@@ -79394,22 +80463,22 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 apJ
-aqI
-arD
-arD
-asG
+apN
+arC
+arC
+arC
+arC
+arC
+arC
+arC
+ddD
+apJ
 atl
-awX
-arD
-arD
-auN
+dei
+deC
+deW
+dfh
 apJ
 awZ
 cqr
@@ -79651,22 +80720,22 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 apJ
 aqI
 arD
 arD
 arD
-cCs
+arD
 arD
 arD
 arD
 auN
+apJ
+ddP
+dej
+deD
+deX
+dfi
 apJ
 awZ
 aIK
@@ -79908,12 +80977,6 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 apJ
 aqI
 arD
@@ -79924,7 +80987,13 @@ arD
 arD
 arD
 auN
-apJ
+ddH
+ddQ
+dek
+deE
+deY
+dfj
+dfp
 awZ
 aIK
 ayl
@@ -80165,23 +81234,23 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaf
 apJ
 aqI
 arD
 arD
 arD
-arD
+atk
 arD
 arD
 arD
 auN
-apJ
+ddI
+ddR
+del
+deF
+deZ
+dfk
+dfq
 awZ
 cry
 azA
@@ -80422,22 +81491,22 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 apJ
-aqN
-asD
-asD
-asD
+aqI
+arD
+arD
+asG
+ddC
+awX
+arD
+arD
+ddE
+ddJ
 cCt
-asD
-asD
-asD
-aFD
+dem
+deG
+dfa
+dfl
 apJ
 awZ
 crz
@@ -80679,23 +81748,23 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 apJ
-apJ
-apJ
-apJ
+aqI
+arD
+arD
+arD
+cCs
+arD
+arD
+arD
+auN
 ajZ
 atp
+auQ
+auQ
 asF
-asF
-asF
-asF
-apJ
+dfm
+dfr
 axh
 aIK
 azy
@@ -80936,20 +82005,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaf
-aaf
 apJ
-asH
+aqI
+arD
+arD
+arD
+arD
+arD
+arD
+arD
+auN
+ajZ
 atI
 arE
-ayq
+auQ
 ayq
 auc
 avp
@@ -81145,16 +82214,6 @@ aaa
 aaa
 aaa
 aaa
-amO
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-clO
 aaa
 aaa
 aaa
@@ -81202,14 +82261,24 @@ aaa
 aaa
 aaa
 aaa
-asF
-asI
-auQ
-auQ
-auQ
+aaa
+apJ
+aqI
+arD
+arD
+arD
+arD
+arD
+arD
+arD
+auN
+apJ
+ddS
+den
+deH
 aCX
 aub
-aLu
+apJ
 axH
 ayo
 azB
@@ -81396,22 +82465,13 @@ aaa
 aaa
 aaa
 aaa
-amO
-aac
-aac
-aac
-aac
-aac
-aac
-cJO
-cKb
-cJO
-cKD
-cKQ
-cLd
-cLk
-cLn
-cLw
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -81460,12 +82520,21 @@ aaa
 aaa
 aaa
 apJ
-asJ
-avQ
-axc
-aCT
-atb
-aIH
+ddB
+asD
+asD
+asD
+asD
+asD
+asD
+asD
+aFD
+apJ
+apJ
+apJ
+apJ
+apJ
+apJ
 apJ
 clB
 aIK
@@ -81653,22 +82722,13 @@ aaa
 aaa
 aaa
 aaa
-aac
-cIR
-cIY
-cIY
-cIY
-cJz
-aac
-cJr
-cIz
-cIJ
-cIJ
-cKR
-cIJ
-cLl
-cLn
-cLx
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -81724,6 +82784,15 @@ apJ
 apJ
 apJ
 apJ
+apJ
+apJ
+apJ
+apJ
+alU
+atJ
+dfb
+dfn
+dfs
 axG
 aIK
 aym
@@ -81910,22 +82979,6 @@ aaa
 aaa
 aaa
 aaa
-aac
-cIJ
-cIJ
-cIJ
-cIJ
-cIJ
-cJJ
-cJQ
-cIz
-cKq
-cKF
-cKS
-cLf
-cLm
-cLn
-cLy
 aaa
 aaa
 aaa
@@ -81972,15 +83025,31 @@ aaa
 aaa
 aaa
 aaa
-aaf
-aaf
-aaf
-aaf
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aae
+aaa
+aaa
+aaa
+aag
 alU
-atJ
-amC
-aKf
-bEJ
+ddT
+alU
+aCW
+dfc
+asK
+alU
 axb
 ayr
 azD
@@ -82160,29 +83229,29 @@ aaa
 aaa
 aaa
 aaa
-amO
-aac
-aac
-aac
-clO
 aaa
 aaa
-aac
-cIJ
-cIJ
-cIJ
-cIJ
-cIJ
-aac
-cJR
-cIz
-cKr
-cJm
-cKT
-aac
-aac
-aac
-czv
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -82417,26 +83486,26 @@ aaa
 aaa
 aaa
 aaa
-aac
-cIl
-cIs
-cIz
-aac
-czz
 aaa
-aac
-cIU
-cJb
-cJj
-cJr
-cJC
-aac
-cJS
-cIz
-cKr
-cJm
-cKU
-aac
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -82674,28 +83743,28 @@ aaa
 aaa
 aaa
 aaa
-amP
-cIm
-cIt
-cIz
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-cJs
-coh
-aac
-aac
-aac
-cKt
-coh
-aac
-aac
-aac
-clO
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -82928,31 +83997,31 @@ aaa
 aaa
 aaa
 aaa
+amO
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+clO
 aaa
 aaa
 aaa
-amP
-cIn
-cIu
-cIz
-cIG
-cII
-cIL
-cIO
-cIL
-cIL
-coh
-cIJ
-cIJ
-cIJ
-cIJ
-cKg
-cKr
-cJm
-cIz
-coh
-cLn
-cLw
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -83176,40 +84245,40 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-amP
-cIo
-cIv
-cIz
-cIH
-cIJ
-cIu
-cIu
-cIu
-cIJ
-cJk
-cIJ
-cIu
-cIu
-cIu
-cIu
-cKr
-cJm
-cIz
-cLg
+dcK
+dcL
+dcN
+dcQ
+aac
+aac
+aac
+aac
+aac
+aac
+cJO
+cKb
+cJO
+cKD
+cKQ
+ddr
+cLk
 cLn
-cLx
+ddx
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -83433,40 +84502,40 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-amP
-cIp
-cIu
-cIz
 aac
-cIK
-cIN
-cIQ
-cIN
-cIN
-coh
-cIJ
-cIJ
-cIJ
-cIJ
-cKi
-cKr
-cJm
 cIz
-coh
+dcO
+aac
+cIR
+dcT
+dcW
+ddb
+ddc
+aac
+cJr
+cIz
+cIJ
+cIJ
+cKR
+cIJ
+cLl
 cLn
-cLy
+cLx
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -83690,40 +84759,40 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-amP
-cIq
-cIx
+aac
 cIz
-aac
-aac
-aac
-cmp
-aac
-aac
-aac
-cof
-coh
-aac
-aac
-aac
-cKt
-coh
-aac
-aac
-aac
-cmE
+cIz
+dcR
+cIJ
+cIJ
+cIJ
+cIJ
+cIJ
+cJJ
+cJQ
+cIz
+cKq
+cKF
+cKS
+dds
+cLm
+cLn
+ddy
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -83943,42 +85012,42 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+amO
 aac
-cIr
-cIy
+aac
+aac
+aac
 cIz
+cIz
+aac
+cIJ
+cIJ
+cIJ
+cIJ
+cIJ
+aac
+ddf
+cIz
+ddh
+cJm
+cKT
+aac
+aac
 aac
 czv
 aaa
 aaa
 aaa
-aac
-cJl
-cIJ
-cJG
-aac
-cJW
-cIz
-cKr
-cJm
-cKY
-aac
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -84200,45 +85269,45 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-bJS
 aac
-aac
-aac
-cmE
-aaa
-aaa
-aaa
-aaa
-cJf
-cJm
-cIJ
-cJG
-aac
-cJX
+dcE
+dcJ
 cIz
-cKr
+aac
+dcM
+dcP
+aac
+cIU
+cJb
+cJj
+cJr
+cJC
+aac
+cJS
+cIz
+ddi
 cJm
-cKZ
+cKU
 aac
-aac
-aac
-czz
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -84457,45 +85526,45 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-cni
-cJn
-cIJ
-cJI
-cIG
-cJY
+dcz
+dcF
+cIt
 cIz
-cKA
-cKN
-cKS
-cIJ
-cLq
-cLn
-cLw
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+cJs
+ddd
+aac
+aac
+aac
+cKt
+ddo
+aac
+aac
+aac
+clO
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -84714,45 +85783,45 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-bJS
-aac
-aac
-aac
-aac
-cJZ
+dcA
+dcG
+cIu
 cIz
+cIG
+cII
+cIL
+dcS
+cIL
+cIL
+dcX
 cIJ
 cIJ
-cLb
 cIJ
-cLr
+cIJ
+ddg
+ddj
+cJm
+cIz
+ddt
 cLn
-cLx
+ddv
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -84971,45 +86040,45 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-cnW
-aac
-cKa
+dcB
+cIo
+cIv
 cIz
-cKC
-cKP
-cLc
-cKi
-cLq
+cIH
+cIJ
+cIu
+cIu
+cIu
+cIJ
+cJk
+cIJ
+cIu
+cIu
+cIu
+cIu
+ddk
+cJm
+cIz
+cLg
 cLn
-cLy
+cLx
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -85228,45 +86297,45 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-bJS
+dcC
+cIp
+cIu
+cIz
 aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-cmE
+cIK
+cIN
+cIQ
+cIN
+cIN
+dcY
+cIJ
+cIJ
+cIJ
+cIJ
+cKi
+ddl
+cJm
+cIz
+ddu
+cLn
+ddw
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -85485,28 +86554,28 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+dcD
+dcH
+cIx
+cIz
+aac
+aac
+aac
+cmp
+aac
+aac
+aac
+cof
+dde
+aac
+aac
+aac
+cKt
+ddp
+aac
+aac
+aac
+cmE
 aaa
 aaa
 aaa
@@ -85742,26 +86811,26 @@ aaa
 aaa
 aaa
 aaa
+aac
+dcI
+cIy
+cIz
+aac
+czv
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aac
+dcZ
+cIJ
+cJG
+aac
+cJW
+cIz
+ddm
+cJm
+cKY
+aac
 aaa
 aaa
 aaa
@@ -85999,29 +87068,29 @@ aaa
 aaa
 aaa
 aaa
+bJS
+aac
+aac
+aac
+cmE
 aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+dcU
+cJm
+cIJ
+cJG
+aac
+cJX
+cIz
+ddn
+cJm
+cKZ
+aac
+aac
+aac
+czz
 aaa
 aaa
 aaa
@@ -86265,20 +87334,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+dcV
+dda
+cIJ
+cJI
+cIG
+cJY
+cIz
+cKA
+ddq
+cKS
+cIJ
+cLq
+cLn
+ddz
 aaa
 aaa
 aaa
@@ -86522,20 +87591,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bJS
+aac
+aac
+aac
+aac
+cJZ
+cIz
+cIJ
+cIJ
+cLb
+cIJ
+cLr
+cLn
+cLx
 aaa
 aaa
 aaa
@@ -86782,17 +87851,17 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+cnW
+aac
+cKa
+cIz
+cKC
+cKP
+cLc
+cKi
+cLq
+cLn
+ddA
 aaa
 aaa
 aaa
@@ -87040,16 +88109,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+bJS
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+aac
+cmE
 aaa
 aaa
 aaa
@@ -115448,15 +116517,15 @@ bJO
 bWr
 bWr
 dbS
-bTo
-bTo
-bTo
-bTo
+dbN
+dbN
+dbN
+dbN
 bYj
 bZc
 bPN
-bTo
-bTo
+dbN
+dbN
 bQZ
 bNB
 ceM
@@ -115706,13 +116775,13 @@ bQX
 dbO
 bPN
 dbT
-bTo
+dbN
 bWp
-bTo
+dbN
 bYi
 dcg
 dck
-bTo
+dbN
 cbV
 bQZ
 blQ
@@ -115970,7 +117039,7 @@ caZ
 cba
 dcl
 cbc
-bTo
+dbN
 bQZ
 cdR
 ceO
@@ -116474,11 +117543,11 @@ bMu
 bMu
 bEC
 dbM
-dbP
+dbM
 bTl
 bQU
 dbW
-bTo
+dbN
 bOw
 dce
 dci
@@ -116734,10 +117803,10 @@ bQT
 bSg
 bTk
 bSh
-dbX
+dbW
 dcb
 bOv
-bYk
+dce
 dcj
 bPN
 cjW
@@ -116992,9 +118061,9 @@ bSi
 bTm
 bUn
 dbY
-bTo
+dbN
 bOw
-bYk
+dce
 bYm
 bZZ
 ckN
@@ -117248,7 +118317,7 @@ bQT
 bSh
 coT
 bTl
-dbZ
+dbY
 bNZ
 bOy
 bZd
@@ -117514,7 +118583,7 @@ cab
 cbd
 cbX
 ccT
-bSc
+dcl
 dcx
 cfu
 cgu
@@ -118016,11 +119085,11 @@ bNy
 bOH
 bEs
 bQY
-dbQ
-bTo
-bTo
-bTo
-bTo
+dbN
+dbN
+dbN
+dbN
+dbN
 bXs
 bPL
 bQI
@@ -118274,16 +119343,16 @@ bOG
 bEs
 dbN
 bSk
-bTo
-bTo
-bTo
-bTo
+dbN
+dbN
+dbN
+dbN
 bXr
 bPF
-bTo
-bTo
-bTo
-cbY
+dbN
+dbN
+dbN
+dcj
 bQZ
 cOe
 cNW
@@ -118530,11 +119599,11 @@ bNz
 bOI
 bEs
 bRa
-dbR
-bTo
-bTo
+dbN
+dbN
+dbN
 bVs
-bTo
+dbN
 bXt
 bPM
 bZh

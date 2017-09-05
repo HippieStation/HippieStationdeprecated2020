@@ -27,6 +27,7 @@
 	var/list/unique_reskin //List of options to reskin.
 	var/dangerous_possession = FALSE	//Admin possession yes/no
 
+
 /obj/vv_edit_var(vname, vval)
 	switch(vname)
 		if("dangerous_possession")
@@ -117,6 +118,9 @@
 						is_in_use = 1
 						src.attack_hand(usr)
 		in_use = is_in_use
+
+/obj/proc/return_temperature()
+	return
 
 /obj/proc/updateDialog()
 	// Check that people are actually using the machine. If not, don't update anymore.
