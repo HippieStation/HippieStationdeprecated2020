@@ -118,6 +118,7 @@
 	..()
 	var/soft = href_list["software"]
 	var/sub = href_list["sub"]
+	var/is_bought = FALSE
 	if(soft)
 		src.screen = soft
 	if(sub)
@@ -125,17 +126,19 @@
 	switch(soft)
 		// Purchasing new software
 		if("buy")
-			if(subscreen == 1)
-				var/target = href_list["buy"]
-				if(available_software.Find(target))
-					var/cost = src.available_software[target]
-					if(ram >= cost)
-						software.Add(target)
-						ram -= cost
+			if(!is_bought)
+				if(subscreen == 1)
+					var/target = href_list["buy"]
+					if(available_software.Find(target))
+						var/cost = src.available_software[target]
+						if(ram >= cost)
+							is_bought = TRUE
+							software.Add(target)
+							ram -= cost
+						else
+							temp = "Insufficient RAM available."
 					else
-						temp = "Insufficient RAM available."
-				else
-					temp = "Trunk <TT> \"[target]\"</TT> not found."
+						temp = "Trunk <TT> \"[target]\"</TT> not found."
 
 		// Configuring onboard radio
 		if("radio")
