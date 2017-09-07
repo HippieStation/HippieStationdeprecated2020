@@ -115,3 +115,11 @@
 				else
 					I.name = "[I.registered_name]'s ID Card ([current_name] [member_rank])"
 					I.assignment = "[current_name] [member_rank]"
+
+#undef ATMOSIA
+#undef BRIGSTON
+#undef CARGONIA
+#undef COMMANDZAKSTAN
+#undef MEDISTAN
+#undef SCIENTOPIA
+#undef SERVICION

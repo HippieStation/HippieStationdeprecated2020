@@ -1,8 +1,45 @@
+/* Below is a list of nations types, indexed in alphabetical order.
+Use these to refer to nations in GLOB.all_nations: */
+
+#define ATMOSIA			1
+#define BRIGSTON		2
+#define CARGONIA		3
+#define COMMANDZAKSTAN	4
+#define MEDISTAN		5
+#define SCIENTOPIA		6
+#define SERVICION		7
+
 /datum/game_mode/nations
 	name = "nations"
 	config_tag = "nations"
 	required_players = 25
 	var/kickoff = 0
+
+/datum/nations/brigston
+	default_name = "Brigston"
+	default_leader = "Head of Security"
+
+/datum/nations/cargonia
+	default_name = "Cargonia"
+	default_leader = "Quartermaster"
+
+/datum/nations/command
+	default_name = "People's Republic of Commandzakstan"
+	default_leader = "Captain"
+
+/datum/nations/medistan
+	default_name = "Medistan"
+	default_leader = "Chief Medical Officer"
+
+/datum/nations/scientopia
+	default_name = "Scientopia"
+	default_leader = "Research Director"
+
+/datum/nations/service
+	default_name = "Servicion"
+	default_leader = "Bartender"
+
+
 
 /datum/game_mode/nations/send_intercept()
 	priority_announce("Due to recent and COMPLETELY UNFOUNDED allegations of massive fraud and insider trading \
@@ -22,93 +59,93 @@
 		if(!H.mind)
 			continue
 		if(H.mind.assigned_role in GLOB.engineering_positions)
-			H.mind.nation = GLOB.all_nations["Atmosia"]
+			H.mind.nation = GLOB.all_nations[ATMOSIA]
 			update_nations_icons_added(H,"hudatmosia")
 			H.mind.nation.membership += H.mind.current
 			if(H.mind.assigned_role == H.mind.nation.default_leader)
 				H.mind.nation.current_leader = H.mind.current
-				to_chat(H, "You have been chosen to lead the nation of [H.mind.nation.name]!")
-				H.mind.special_role = "[H.mind.nation.name] Leader"
+				to_chat(H, "You have been chosen to lead the nation of [H.mind.nation.default_name]!")
+				H.mind.special_role = "[H.mind.nation.default_name] Leader"
 				continue
-			to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.name]!")
-			H.mind.special_role = "[H.mind.nation.name] Member"
+			to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.default_name]!")
+			H.mind.special_role = "[H.mind.nation.default_name] Member"
 			continue
 
 		else if(H.mind.assigned_role in GLOB.medical_positions)
-			H.mind.nation = GLOB.all_nations["Medistan"]
+			H.mind.nation = GLOB.all_nations[MEDISTAN]
 			update_nations_icons_added(H,"hudmedistan")
 			H.mind.nation.membership += H.mind.current
 			if(H.mind.assigned_role == H.mind.nation.default_leader)
 				H.mind.nation.current_leader = H.mind.current
-				to_chat(H, "You have been chosen to lead the nation of [H.mind.nation.name]!")
-				H.mind.special_role = "[H.mind.nation.name] Leader"
+				to_chat(H, "You have been chosen to lead the nation of [H.mind.nation.default_name]!")
+				H.mind.special_role = "[H.mind.nation.default_name] Leader"
 				continue
-			to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.name]!")
-			H.mind.special_role = "[H.mind.nation.name] Member"
+			to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.default_name]!")
+			H.mind.special_role = "[H.mind.nation.default_name] Member"
 			continue
 
 		else if(H.mind.assigned_role in GLOB.science_positions)
-			H.mind.nation = GLOB.all_nations["Scientopia"]
+			H.mind.nation = GLOB.all_nations[SCIENTOPIA]
 			update_nations_icons_added(H,"hudscientopia")
 			H.mind.nation.membership += H.mind.current
 			if(H.mind.assigned_role == H.mind.nation.default_leader)
 				H.mind.nation.current_leader = H.mind.current
-				to_chat(H, "You have been chosen to lead the nation of [H.mind.nation.name]!")
-				H.mind.special_role = "[H.mind.nation.name] Leader"
+				to_chat(H, "You have been chosen to lead the nation of [H.mind.nation.default_name]!")
+				H.mind.special_role = "[H.mind.nation.default_name] Leader"
 				continue
-			to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.name]!")
-			H.mind.special_role = "[H.mind.nation.name] Member"
+			to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.default_name]!")
+			H.mind.special_role = "[H.mind.nation.default_name] Member"
 			continue
 
 		else if(H.mind.assigned_role in GLOB.brigston)
-			H.mind.nation = GLOB.all_nations["Brigston"]
+			H.mind.nation = GLOB.all_nations[BRIGSTON]
 			update_nations_icons_added(H,"hudbrigston")
 			H.mind.nation.membership += H.mind.current
 			if(H.mind.assigned_role == H.mind.nation.default_leader)
 				H.mind.nation.current_leader = H.mind.current
-				to_chat(H, "You have been chosen to lead the nation of [H.mind.nation.name]!")
-				H.mind.special_role = "[H.mind.nation.name] Leader"
+				to_chat(H, "You have been chosen to lead the nation of [H.mind.nation.default_name]!")
+				H.mind.special_role = "[H.mind.nation.default_name] Leader"
 				continue
-			to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.name]!")
-			H.mind.special_role = "[H.mind.nation.name] Member"
+			to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.default_name]!")
+			H.mind.special_role = "[H.mind.nation.default_name] Member"
 			continue
 
 		else if(H.mind.assigned_role in GLOB.cargonia)
-			H.mind.nation = GLOB.all_nations["Cargonia"]
+			H.mind.nation = GLOB.all_nations[CARGONIA]
 			update_nations_icons_added(H,"hudcargonia")
 			H.mind.nation.membership += H.mind.current
 			if(H.mind.assigned_role == H.mind.nation.default_leader)
 				H.mind.nation.current_leader = H.mind.current
-				to_chat(H, "You have been chosen to lead the nation of [H.mind.nation.name]!")
-				H.mind.special_role = "[H.mind.nation.name] Leader"
+				to_chat(H, "You have been chosen to lead the nation of [H.mind.nation.default_name]!")
+				H.mind.special_role = "[H.mind.nation.default_name] Leader"
 				continue
-			to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.name]!")
-			H.mind.special_role = "[H.mind.nation.name] Member"
+			to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.default_name]!")
+			H.mind.special_role = "[H.mind.nation.default_name] Member"
 			continue
 
 		else if(H.mind.assigned_role in GLOB.servicion)
-			H.mind.nation = GLOB.all_nations["Servicion"]
+			H.mind.nation = GLOB.all_nations[SERVICION]
 			update_nations_icons_added(H,"hudservice")
 			H.mind.nation.membership += H.mind.current
 			if(H.mind.assigned_role == H.mind.nation.default_leader)
 				H.mind.nation.current_leader = H.mind.current
-				to_chat(H, "You have been chosen to lead the nation of [H.mind.nation.name]!")
-				H.mind.special_role = "[H.mind.nation.name] Leader"
+				to_chat(H, "You have been chosen to lead the nation of [H.mind.nation.default_name]!")
+				H.mind.special_role = "[H.mind.nation.default_name] Leader"
 				continue
-			to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.name]!")
-			H.mind.special_role = "[H.mind.nation.name] Member"
+			to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.default_name]!")
+			H.mind.special_role = "[H.mind.nation.default_name] Member"
 			continue
 		else if(H.mind.assigned_role in (GLOB.command_positions))
-			H.mind.nation = GLOB.all_nations["People's Republic of Commandzakstan"]
+			H.mind.nation = GLOB.all_nations[COMMANDZAKSTAN]
 			update_nations_icons_added(H,"hudcommand")
 			H.mind.nation.membership += H.mind.current
 			if(H.mind.assigned_role == H.mind.nation.default_leader)
 				H.mind.nation.current_leader = H.mind.current
-				to_chat(H, "You have been chosen to lead the nation of [H.mind.nation.name]!")
-				H.mind.special_role = "[H.mind.nation.name] Leader"
+				to_chat(H, "You have been chosen to lead the nation of [H.mind.nation.default_name]!")
+				H.mind.special_role = "[H.mind.nation.default_name] Leader"
 				continue
-			to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.name]!")
-			H.mind.special_role = "[H.mind.nation.name] Member"
+			to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.default_name]!")
+			H.mind.special_role = "[H.mind.nation.default_name] Member"
 			continue
 		else
 			to_chat(H, "You do not belong to any nation and are free to sell your services to the highest bidder.")
@@ -134,7 +171,7 @@
 	for(var/name in GLOB.all_nations)
 		var/datum/nations/N = GLOB.all_nations[name]
 		if(!N.current_name)
-			N.current_name = N.name
+			N.current_name = N.default_name
 		if(!N.current_leader && N.membership.len)
 			N.current_leader = pick(N.membership)
 			to_chat(N.current_leader, "You have been chosen to lead the nation of [N.current_name]!")
@@ -154,53 +191,53 @@
 	if(!H.mind)
 		return TRUE
 	if(H.mind.assigned_role in GLOB.engineering_positions)
-		H.mind.nation = GLOB.all_nations["Atmosia"]
+		H.mind.nation = GLOB.all_nations[ATMOSIA]
 		mode.update_nations_icons_added(H,"atmosia")
 		H.mind.nation.membership += H.mind.current
 		to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.current_name]!")
-		H.mind.special_role = "[H.mind.nation.name] Member"
+		H.mind.special_role = "[H.mind.nation.default_name] Member"
 		return TRUE
 	if(H.mind.assigned_role in GLOB.medical_positions)
-		H.mind.nation = GLOB.all_nations["Medistan"]
+		H.mind.nation = GLOB.all_nations[MEDISTAN]
 		mode.update_nations_icons_added(H,"hudmedistan")
 		H.mind.nation.membership += H.mind.current
 		to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.current_name]!")
-		H.mind.special_role = "[H.mind.nation.name] Member"
+		H.mind.special_role = "[H.mind.nation.default_name] Member"
 		return TRUE
 	if(H.mind.assigned_role in GLOB.science_positions)
-		H.mind.nation = GLOB.all_nations["Scientopia"]
+		H.mind.nation = GLOB.all_nations[SCIENTOPIA]
 		mode.update_nations_icons_added(H,"hudscientopia")
 		H.mind.nation.membership += H.mind.current
 		to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.current_name]!")
-		H.mind.special_role = "[H.mind.nation.name] Member"
+		H.mind.special_role = "[H.mind.nation.default_name] Member"
 		return TRUE
 	if(H.mind.assigned_role in GLOB.brigston)
-		H.mind.nation = GLOB.all_nations["Brigston"]
+		H.mind.nation = GLOB.all_nations[BRIGSTON]
 		mode.update_nations_icons_added(H,"hudbrigston")
 		H.mind.nation.membership += H.mind.current
 		to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.current_name]!")
-		H.mind.special_role = "[H.mind.nation.name] Member"
+		H.mind.special_role = "[H.mind.nation.default_name] Member"
 		return TRUE
 	if(H.mind.assigned_role in GLOB.cargonia)
-		H.mind.nation = GLOB.all_nations["Cargonia"]
+		H.mind.nation = GLOB.all_nations[CARGONIA]
 		mode.update_nations_icons_added(H,"hudcargonia")
 		H.mind.nation.membership += H.mind.current
 		to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.current_name]!")
-		H.mind.special_role = "[H.mind.nation.name] Member"
+		H.mind.special_role = "[H.mind.nation.default_name] Member"
 		return TRUE
 	if(H.mind.assigned_role in GLOB.servicion)
-		H.mind.nation = GLOB.all_nations["Servicion"]
+		H.mind.nation = GLOB.all_nations[SERVICION]
 		mode.update_nations_icons_added(H,"hudservice")
 		H.mind.nation.membership += H.mind.current
 		to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.current_name]!")
-		H.mind.special_role = "[H.mind.nation.name] Member"
+		H.mind.special_role = "[H.mind.nation.default_name] Member"
 		return TRUE
 	if(H.mind.assigned_role in (GLOB.command_positions))
-		H.mind.nation = GLOB.all_nations["People's Republic of Commandzakstan"]
+		H.mind.nation = GLOB.all_nations[COMMANDZAKSTAN]
 		mode.update_nations_icons_added(H,"hudcommand")
 		H.mind.nation.membership += H.mind.current
 		to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.current_name]!")
-		H.mind.special_role = "[H.mind.nation.name] Member"
+		H.mind.special_role = "[H.mind.nation.default_name] Member"
 		return TRUE
 	if(H.mind.assigned_role == "AI")
 		mode.set_ai()
