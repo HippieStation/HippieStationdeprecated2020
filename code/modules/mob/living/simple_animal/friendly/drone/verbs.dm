@@ -15,12 +15,9 @@
 /mob/living/simple_animal/drone/verb/toggle_light()
 	set category = "Drone"
 	set name = "Toggle drone light"
-<<<<<<< HEAD
-=======
 	if(stat == DEAD)
 		to_chat(src, "<span class='warning'>There's no light in your life... by that I mean you're dead.</span>")
 		return
->>>>>>> a2511ab605... Makes things worse for someone who's already having a difficult time.
 	if(light_on)
 		set_light(0)
 	else
@@ -41,7 +38,6 @@
 	if(alert_s && A && stat != DEAD)
 		var/msg = "<span class='boldnotice'>DRONE PING: [name]: [alert_s] priority alert in [A.name]!</span>"
 		alert_drones(msg)
-
 
 /mob/living/simple_animal/drone/verb/toggle_statics()
 	set name = "Change Vision Filter"
