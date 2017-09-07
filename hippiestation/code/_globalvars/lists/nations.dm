@@ -22,3 +22,7 @@ GLOBAL_LIST_INIT(brigston, list(
 	"Lawyer",
 	"Detective",
 	"Security Officer"))
+
+GLOBAL_LIST_INIT(commandzakstan, list(
+	"Captain",
+	"Head of Personnel"))

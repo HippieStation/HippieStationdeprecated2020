@@ -12,7 +12,7 @@ Use these to refer to nations in GLOB.all_nations: */
 /datum/game_mode/nations
 	name = "nations"
 	config_tag = "nations"
-	required_players = 25
+	required_players = 0
 	var/kickoff = 0
 
 /datum/nations/brigston
@@ -39,8 +39,6 @@ Use these to refer to nations in GLOB.all_nations: */
 	default_name = "Servicion"
 	default_leader = "Bartender"
 
-
-
 /datum/game_mode/nations/send_intercept()
 	priority_announce("Due to recent and COMPLETELY UNFOUNDED allegations of massive fraud and insider trading \
 					affecting trillions of investors, the Nanotrasen Corporation has decided to liquidate all \
@@ -60,7 +58,7 @@ Use these to refer to nations in GLOB.all_nations: */
 			continue
 		if(H.mind.assigned_role in GLOB.engineering_positions)
 			H.mind.nation = GLOB.all_nations[ATMOSIA]
-			update_nations_icons_added(H,"hudatmosia")
+			update_nations_icons_added(H.mind,"hudatmosia")
 			H.mind.nation.membership += H.mind.current
 			if(H.mind.assigned_role == H.mind.nation.default_leader)
 				H.mind.nation.current_leader = H.mind.current
@@ -73,7 +71,7 @@ Use these to refer to nations in GLOB.all_nations: */
 
 		else if(H.mind.assigned_role in GLOB.medical_positions)
 			H.mind.nation = GLOB.all_nations[MEDISTAN]
-			update_nations_icons_added(H,"hudmedistan")
+			update_nations_icons_added(H.mind,"hudmedistan")
 			H.mind.nation.membership += H.mind.current
 			if(H.mind.assigned_role == H.mind.nation.default_leader)
 				H.mind.nation.current_leader = H.mind.current
@@ -86,7 +84,7 @@ Use these to refer to nations in GLOB.all_nations: */
 
 		else if(H.mind.assigned_role in GLOB.science_positions)
 			H.mind.nation = GLOB.all_nations[SCIENTOPIA]
-			update_nations_icons_added(H,"hudscientopia")
+			update_nations_icons_added(H.mind,"hudscientopia")
 			H.mind.nation.membership += H.mind.current
 			if(H.mind.assigned_role == H.mind.nation.default_leader)
 				H.mind.nation.current_leader = H.mind.current
@@ -99,7 +97,7 @@ Use these to refer to nations in GLOB.all_nations: */
 
 		else if(H.mind.assigned_role in GLOB.brigston)
 			H.mind.nation = GLOB.all_nations[BRIGSTON]
-			update_nations_icons_added(H,"hudbrigston")
+			update_nations_icons_added(H.mind,"hudbrigston")
 			H.mind.nation.membership += H.mind.current
 			if(H.mind.assigned_role == H.mind.nation.default_leader)
 				H.mind.nation.current_leader = H.mind.current
@@ -112,7 +110,7 @@ Use these to refer to nations in GLOB.all_nations: */
 
 		else if(H.mind.assigned_role in GLOB.cargonia)
 			H.mind.nation = GLOB.all_nations[CARGONIA]
-			update_nations_icons_added(H,"hudcargonia")
+			update_nations_icons_added(H.mind,"hudcargonia")
 			H.mind.nation.membership += H.mind.current
 			if(H.mind.assigned_role == H.mind.nation.default_leader)
 				H.mind.nation.current_leader = H.mind.current
@@ -125,7 +123,7 @@ Use these to refer to nations in GLOB.all_nations: */
 
 		else if(H.mind.assigned_role in GLOB.servicion)
 			H.mind.nation = GLOB.all_nations[SERVICION]
-			update_nations_icons_added(H,"hudservice")
+			update_nations_icons_added(H.mind,"hudservice")
 			H.mind.nation.membership += H.mind.current
 			if(H.mind.assigned_role == H.mind.nation.default_leader)
 				H.mind.nation.current_leader = H.mind.current
@@ -135,9 +133,9 @@ Use these to refer to nations in GLOB.all_nations: */
 			to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.default_name]!")
 			H.mind.special_role = "[H.mind.nation.default_name] Member"
 			continue
-		else if(H.mind.assigned_role in (GLOB.command_positions))
+		else if(H.mind.assigned_role in (GLOB.commandzakstan))
 			H.mind.nation = GLOB.all_nations[COMMANDZAKSTAN]
-			update_nations_icons_added(H,"hudcommand")
+			update_nations_icons_added(H.mind,"hudcommand")
 			H.mind.nation.membership += H.mind.current
 			if(H.mind.assigned_role == H.mind.nation.default_leader)
 				H.mind.nation.current_leader = H.mind.current
@@ -169,7 +167,7 @@ Use these to refer to nations in GLOB.all_nations: */
 
 /datum/game_mode/nations/proc/assign_leaders()
 	for(var/name in GLOB.all_nations)
-		var/datum/nations/N = GLOB.all_nations[name]
+		var/datum/nations/N = name
 		if(!N.current_name)
 			N.current_name = N.default_name
 		if(!N.current_leader && N.membership.len)
@@ -192,54 +190,54 @@ Use these to refer to nations in GLOB.all_nations: */
 		return TRUE
 	if(H.mind.assigned_role in GLOB.engineering_positions)
 		H.mind.nation = GLOB.all_nations[ATMOSIA]
-		mode.update_nations_icons_added(H,"atmosia")
+		mode.update_nations_icons_added(H.mind,"atmosia")
 		H.mind.nation.membership += H.mind.current
 		to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.current_name]!")
 		H.mind.special_role = "[H.mind.nation.default_name] Member"
 		return TRUE
-	if(H.mind.assigned_role in GLOB.medical_positions)
+	else if(H.mind.assigned_role in GLOB.medical_positions)
 		H.mind.nation = GLOB.all_nations[MEDISTAN]
-		mode.update_nations_icons_added(H,"hudmedistan")
+		mode.update_nations_icons_added(H.mind,"hudmedistan")
 		H.mind.nation.membership += H.mind.current
 		to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.current_name]!")
 		H.mind.special_role = "[H.mind.nation.default_name] Member"
 		return TRUE
-	if(H.mind.assigned_role in GLOB.science_positions)
+	else if(H.mind.assigned_role in GLOB.science_positions)
 		H.mind.nation = GLOB.all_nations[SCIENTOPIA]
-		mode.update_nations_icons_added(H,"hudscientopia")
+		mode.update_nations_icons_added(H.mind,"hudscientopia")
 		H.mind.nation.membership += H.mind.current
 		to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.current_name]!")
 		H.mind.special_role = "[H.mind.nation.default_name] Member"
 		return TRUE
-	if(H.mind.assigned_role in GLOB.brigston)
+	else if(H.mind.assigned_role in GLOB.brigston)
 		H.mind.nation = GLOB.all_nations[BRIGSTON]
-		mode.update_nations_icons_added(H,"hudbrigston")
+		mode.update_nations_icons_added(H.mind,"hudbrigston")
 		H.mind.nation.membership += H.mind.current
 		to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.current_name]!")
 		H.mind.special_role = "[H.mind.nation.default_name] Member"
 		return TRUE
-	if(H.mind.assigned_role in GLOB.cargonia)
+	else if(H.mind.assigned_role in GLOB.cargonia)
 		H.mind.nation = GLOB.all_nations[CARGONIA]
-		mode.update_nations_icons_added(H,"hudcargonia")
+		mode.update_nations_icons_added(H.mind,"hudcargonia")
 		H.mind.nation.membership += H.mind.current
 		to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.current_name]!")
 		H.mind.special_role = "[H.mind.nation.default_name] Member"
 		return TRUE
-	if(H.mind.assigned_role in GLOB.servicion)
+	else if(H.mind.assigned_role in GLOB.servicion)
 		H.mind.nation = GLOB.all_nations[SERVICION]
-		mode.update_nations_icons_added(H,"hudservice")
+		mode.update_nations_icons_added(H.mind,"hudservice")
 		H.mind.nation.membership += H.mind.current
 		to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.current_name]!")
 		H.mind.special_role = "[H.mind.nation.default_name] Member"
 		return TRUE
-	if(H.mind.assigned_role in (GLOB.command_positions))
+	else if(H.mind.assigned_role in (GLOB.commandzakstan))
 		H.mind.nation = GLOB.all_nations[COMMANDZAKSTAN]
-		mode.update_nations_icons_added(H,"hudcommand")
+		mode.update_nations_icons_added(H.mind,"hudcommand")
 		H.mind.nation.membership += H.mind.current
 		to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.current_name]!")
 		H.mind.special_role = "[H.mind.nation.default_name] Member"
 		return TRUE
-	if(H.mind.assigned_role == "AI")
+	else if(H.mind.assigned_role == "AI")
 		mode.set_ai()
 		return TRUE
 	else
@@ -251,8 +249,6 @@ Use these to refer to nations in GLOB.all_nations: */
 		return null
 	return SSticker.mode
 
-//prepare for copypaste
-//While not an Antag i AM using the set_antag hud on this to make this easier.
 /datum/game_mode/proc/update_nations_icons_added(datum/mind/nations_mind, naticon)
 	var/datum/atom_hud/antag/nations_hud = GLOB.huds[ANTAG_HUD_NATIONS]
 	nations_hud.join_hud(nations_mind.current)
