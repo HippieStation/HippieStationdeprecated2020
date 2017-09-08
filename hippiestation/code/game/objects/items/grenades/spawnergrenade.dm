@@ -8,4 +8,4 @@
 /obj/item/grenade/spawnergrenade/gremlin
 	name = "Shitty EMP Grenade"
 	spawner_type = /mob/living/simple_animal/hostile/gremlin
-	deliveramt = 5
+	deliveryamt = 5
