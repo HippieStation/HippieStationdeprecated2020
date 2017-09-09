@@ -109,6 +109,8 @@ var/list/bad_gremlin_items = list()
 			return FALSE
 		if(NPC_TAMPER_ACT_NOMSG)
 			//Don't create a visible message
+			if(!M.suit_fibers) 
+				M.suit_fibers = list()
 			M.suit_fibers += "Hairs from a gremlin."
 			return TRUE
 
@@ -121,6 +123,8 @@ var/list/bad_gremlin_items = list()
 			"<span class='danger'>\The [src] turns a small valve on \the [M].</span>"))
 
 	//Add a clue for detectives to find. The clue is only added if no such clue already existed on that machine
+	if(!M.suit_fibers) 
+		M.suit_fibers = list()
 	M.suit_fibers += "Hairs from a gremlin."
 	return TRUE
 
