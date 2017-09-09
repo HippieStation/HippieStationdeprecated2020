@@ -121,7 +121,8 @@ GLOBAL_LIST_EMPTY(PDAs)
 		hidden_uplink.interact(user)
 		return
 
-	var/dat = "<html><head><title>Personal Data Assistant</title></head><body bgcolor=\"#808000\"><style>a, a:link, a:visited, a:active, a:hover { color: #000000; }img {border-style:none;}</style>"
+	var/dat = "<!DOCTYPE html><html><head><title>Personal Data Assistant</title><link href=\"https://fonts.googleapis.com/css?family=VT323\" rel=\"stylesheet\"></head><body bgcolor=\"#808000\"><style>body{font-family:VT323, monospace;letter-spacing:1px;}ul,ol{list-style-type: none;}a, a:link, a:visited, a:active, a:hover { color: #000000;text-decoration:none; }img {border-style:none;}</style>"
+
 
 	dat += "<a href='byond://?src=\ref[src];choice=Refresh'><img src=pda_refresh.png> Refresh</a>"
 
