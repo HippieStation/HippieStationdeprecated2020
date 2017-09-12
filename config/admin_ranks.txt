@@ -32,6 +32,7 @@
 # END_KEYWORDS
 
 Mentor			= +MENTOR
+Maintainer		= +DEBUG +MENTOR
 Moderator		= +@ +ADMIN
 Trial Admin		= +@ +SPAWN +VAREDIT +BAN
 Badmin			= +@ +POSSESS +POLL +BUILDMODE +SERVER +FUN
