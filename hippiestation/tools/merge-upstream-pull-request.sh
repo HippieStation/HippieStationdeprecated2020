@@ -59,7 +59,7 @@ git checkout master
 git reset --hard origin/master
 git clean -f
 
-git fetch upstream pull/$1/head:$BASE_BRANCH_NAME-$1
+git fetch remote pull/$1/head:$BASE_BRANCH_NAME-$1
 
 git checkout $BASE_BRANCH_NAME-$1
 
