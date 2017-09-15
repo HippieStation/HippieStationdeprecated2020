@@ -716,8 +716,6 @@ GLOBAL_LIST_EMPTY(uplink_items) // Global list so we only initialize this once.
 	desc = "A set of items that contain chameleon technology allowing you to disguise as pretty much anything on the station, and more!"
 	item = /obj/item/storage/box/syndie_kit/chameleon
 	cost = 4
-	exclude_modes = list(/datum/game_mode/nuclear)
-	player_minimum = 20
 
 /datum/uplink_item/stealthy_tools/chameleon/nuke
 	cost = 6
@@ -729,8 +727,6 @@ GLOBAL_LIST_EMPTY(uplink_items) // Global list so we only initialize this once.
 			They do not work on heavily lubricated surfaces."
 	item = /obj/item/clothing/shoes/chameleon
 	cost = 2
-	exclude_modes = list(/datum/game_mode/nuclear)
-	player_minimum = 20
 
 /datum/uplink_item/stealthy_tools/frame
 	name = "F.R.A.M.E. PDA Cartridge"
