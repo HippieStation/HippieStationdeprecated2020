@@ -29,6 +29,9 @@ var/list/mentor_datums
 
 	if(!check_rights(R_MENTOR))
 		return
+	
+	to_chat(GLOB.admins, "<span class='mentor'><span class='prefix'>MENTOR:</span> <EM>[key_name(usr)]</EM> is no longer following <EM>[key_name(following)]</span>")
+	log_mentor("[key_name(usr)] stopped following [key_name(following)]")
 
 	usr.reset_perspective(null)
 	src.verbs -= /client/proc/mentor_unfollow
@@ -37,9 +40,5 @@ var/list/mentor_datums
 	if(!holder)
 		var/datum/mentors/mentor = mentor_datums[usr.client.ckey]
 		following = mentor.following
-
-
-	to_chat(GLOB.admins, "<span class='mentor'><span class='prefix'>MENTOR:</span> <EM>[key_name(usr)]</EM> is no longer following <EM>[key_name(following)]</span>")
-	log_mentor("[key_name(usr)] stopped following [key_name(following)]")
 
 	following = null
