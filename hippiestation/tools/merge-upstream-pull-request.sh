@@ -63,6 +63,12 @@ git fetch upstream pull/$1/head:$BASE_BRANCH_NAME-$1
 
 git checkout $BASE_BRANCH_NAME-$1
 
+echo "Adding files to branch:"
+git add -A .
+
+echo "Commiting changes"
+git commit --allow-empty -m "$2"
+
 # Push them onto the branch
 echo "Pushing changes"
 git push -u origin "$BASE_BRANCH_NAME$1"
