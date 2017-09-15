@@ -55,9 +55,9 @@
 	color = "#ffff66" //RGB: 255, 255, 102
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 
-/datum/reagent/arclumin/on_mob_life(mob/living/M)//windup starts off with constant shocking, confusion, dizziness and oscillating luminosity
+/datum/reagent/arclumin/on_mob_life(mob/living/carbon/M)//windup starts off with constant shocking, confusion, dizziness and oscillating luminosity
 	M.electrocute_act(1, 1, 1, stun = FALSE) //Override because it's caused from INSIDE of you
-	M.SetLuminosity(rand(1,3))
+	M.set_light(rand(1,3))
 	M.confused += 2
 	M.dizziness += 4
 	if(current_cycle >= 20) //the fun begins as you become a demigod of chaos
@@ -91,12 +91,12 @@
 	..()
 
 /datum/reagent/arclumin/on_mob_delete(mob/living/M)// so you don't remain at luminosity 3 forever
-	M.SetLuminosity(0)
+	M.set_light(0)
 
-/datum/reagent/arclumin/reaction_mob(mob/M, method=TOUCH, reac_volume)
+/datum/reagent/arclumin/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(method == TOUCH)
 		M.electrocute_act(5, 1, 1, stun = FALSE)
-		M.SetLuminosity(1)
+		M.set_light(1)
 		var/turf/T = get_turf(M)
 		do_teleport(M, T, 2)
 

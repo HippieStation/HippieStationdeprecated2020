@@ -13,6 +13,6 @@
 	for(var/mob/living/carbon/C in get_hearers_in_view(3, location))
 		if(C.flash_act())
 			if(get_dist(C, location) < 2)
-				C.Weaken(5)
+				C.Knockdown(50)
 			else
-				C.Stun(5)
+				C.Stun(50)
