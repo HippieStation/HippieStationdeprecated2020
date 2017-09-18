@@ -5,7 +5,6 @@
 /datum/game_mode/traitor/internal_affairs
 	name = "Internal Affairs"
 	config_tag = "internal_affairs"
-	false_report_weight = 10
 	required_players = 25
 	required_enemies = 5
 	recommended_enemies = 8
@@ -76,6 +75,3 @@
 		late_joining_list -= M
 
 
-/datum/game_mode/traitor/internal_affairs/generate_report()
-	return "Nanotrasen denies any accusations of placing internal affairs agents onboard your station to eliminate inconvenient employees.  Any further accusations against Centcom for such \
-			actions will be met with a conversation with an official internal affairs agent."

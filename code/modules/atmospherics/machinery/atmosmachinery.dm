@@ -222,7 +222,6 @@ Pipelines + Other Objects -> Pipe network
 	build_network()
 
 /obj/machinery/atmospherics/singularity_pull(S, current_size)
-	..()
 	if(current_size >= STAGE_FIVE)
 		deconstruct(FALSE)
 

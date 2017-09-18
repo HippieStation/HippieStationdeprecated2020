@@ -15,7 +15,7 @@ GLOBAL_PROTECT(config_dir)
 	return ..()
 
 /datum/configuration/vv_edit_var(var_name, var_value)
-	var/static/list/banned_edits = list("cross_address", "cross_allowed", "autoadmin", "autoadmin_rank", "invoke_youtubedl")
+	var/static/list/banned_edits = list("cross_address", "cross_allowed", "autoadmin", "autoadmin_rank")
 	if(var_name in banned_edits)
 		return FALSE
 	return ..()
@@ -93,8 +93,6 @@ GLOBAL_PROTECT(config_dir)
 	var/panic_server_name
 	var/panic_address //Reconnect a player this linked server if this server isn't accepting new players
 
-	var/invoke_youtubedl
-
 	//IP Intel vars
 	var/ipintel_email
 	var/ipintel_rating_bad = 1
@@ -128,14 +126,11 @@ GLOBAL_PROTECT(config_dir)
 	//game_options.txt configs
 	var/force_random_names = 0
 	var/list/mode_names = list()
-	var/list/mode_reports = list()
-	var/list/mode_false_report_weight = list()
 	var/list/modes = list()				// allowed modes
 	var/list/votable_modes = list()		// votable modes
 	var/list/probabilities = list()		// relative probability of each mode
 	var/list/min_pop = list()			// overrides for acceptible player counts in a mode
 	var/list/max_pop = list()
-	var/list/repeated_mode_adjust = list() 			// weight adjustments for recent modes
 
 	var/humans_need_surnames = 0
 	var/allow_ai = 0					// allow ai job
@@ -147,13 +142,11 @@ GLOBAL_PROTECT(config_dir)
 	var/irc_first_connection_alert = 0	// do we notify the irc channel when somebody is connecting for the first time?
 
 	var/traitor_scaling_coeff = 6		//how much does the amount of players get divided by to determine traitors
-	var/brother_scaling_coeff = 25		//how many players per brother team
 	var/changeling_scaling_coeff = 6	//how much does the amount of players get divided by to determine changelings
 	var/security_scaling_coeff = 8		//how much does the amount of players get divided by to determine open security officer positions
 	var/abductor_scaling_coeff = 15 	//how many players per abductor team
 
 	var/traitor_objectives_amount = 2
-	var/brother_objectives_amount = 2
 	var/protect_roles_from_antagonist = 0 //If security and such can be traitor/cult/other
 	var/protect_assistant_from_antagonist = 0 //If assistants can be traitor/cult/other
 	var/enforce_human_authority = 0		//If non-human species are barred from joining as a head of staff
@@ -286,8 +279,6 @@ GLOBAL_PROTECT(config_dir)
 
 	var/list/policies = list()
 
-	var/debug_admin_hrefs = FALSE	//turns off admin href token protection for debugging purposes
-
 /datum/configuration/New()
 	gamemode_cache = typecacheof(/datum/game_mode,TRUE)
 	for(var/T in gamemode_cache)
@@ -301,8 +292,6 @@ GLOBAL_PROTECT(config_dir)
 				modes += M.config_tag
 				mode_names[M.config_tag] = M.name
 				probabilities[M.config_tag] = M.probability
-				mode_reports[M.config_tag] = M.generate_report()
-				mode_false_report_weight[M.config_tag] = M.false_report_weight
 				if(M.votable)
 					votable_modes += M.config_tag
 		qdel(M)
@@ -486,8 +475,6 @@ GLOBAL_PROTECT(config_dir)
 				if("panic_server_address")
 					if(value != "byond://address:port")
 						panic_address = value
-				if("invoke_youtubedl")
-					invoke_youtubedl = value
 				if("show_irc_name")
 					showircname = 1
 				if("see_own_notes")
@@ -575,8 +562,6 @@ GLOBAL_PROTECT(config_dir)
 					error_msg_delay = text2num(value)
 				if("irc_announce_new_game")
 					irc_announce_new_game = TRUE
-				if("debug_admin_hrefs")
-					debug_admin_hrefs = TRUE
 				else
 #if DM_VERSION > 511
 #error Replace the line below with WRITE_FILE(GLOB.config_error_log, "Unknown setting in configuration: '[name]'")
@@ -694,8 +679,6 @@ GLOBAL_PROTECT(config_dir)
 					ghost_interaction		= 1
 				if("traitor_scaling_coeff")
 					traitor_scaling_coeff	= text2num(value)
-				if("brother_scaling_coeff")
-					brother_scaling_coeff	= text2num(value)
 				if("changeling_scaling_coeff")
 					changeling_scaling_coeff	= text2num(value)
 				if("security_scaling_coeff")
@@ -704,8 +687,6 @@ GLOBAL_PROTECT(config_dir)
 					abductor_scaling_coeff	= text2num(value)
 				if("traitor_objectives_amount")
 					traitor_objectives_amount = text2num(value)
-				if("brother_objectives_amount")
-					brother_objectives_amount = text2num(value)
 				if("probability")
 					var/prob_pos = findtext(value, " ")
 					var/prob_name = null
@@ -720,14 +701,7 @@ GLOBAL_PROTECT(config_dir)
 							WRITE_FILE(GLOB.config_error_log, "Unknown game mode probability configuration definition: [prob_name].")
 					else
 						WRITE_FILE(GLOB.config_error_log, "Incorrect probability configuration definition: [prob_name]  [prob_value].")
-				if("repeated_mode_adjust")
-					if(value)
-						repeated_mode_adjust.Cut()
-						var/values = splittext(value," ")
-						for(var/v in values)
-							repeated_mode_adjust += text2num(v)
-					else
-						WRITE_FILE(GLOB.config_error_log, "Incorrect round weight adjustment configuration definition for [value].")
+
 				if("protect_roles_from_antagonist")
 					protect_roles_from_antagonist	= 1
 				if("protect_assistant_from_antagonist")
@@ -955,12 +929,11 @@ GLOBAL_PROTECT(config_dir)
 /datum/configuration/proc/pick_mode(mode_name)
 	// I wish I didn't have to instance the game modes in order to look up
 	// their information, but it is the only way (at least that I know of).
-	// ^ This guy didn't try hard enough
 	for(var/T in gamemode_cache)
-		var/datum/game_mode/M = T
-		var/ct = initial(M.config_tag)
-		if(ct && ct == mode_name)
-			return new T
+		var/datum/game_mode/M = new T()
+		if(M.config_tag && M.config_tag == mode_name)
+			return M
+		qdel(M)
 	return new /datum/game_mode/extended()
 
 /datum/configuration/proc/get_runnable_modes()
@@ -979,15 +952,8 @@ GLOBAL_PROTECT(config_dir)
 		if(max_pop[M.config_tag])
 			M.maximum_players = max_pop[M.config_tag]
 		if(M.can_start())
-			var/final_weight = probabilities[M.config_tag]
-			if(SSpersistence.saved_modes.len == 3 && repeated_mode_adjust.len == 3)
-				var/recent_round = min(SSpersistence.saved_modes.Find(M.config_tag),3)
-				var/adjustment = 0
-				while(recent_round)
-					adjustment += repeated_mode_adjust[recent_round]
-					recent_round = SSpersistence.saved_modes.Find(M.config_tag,recent_round+1,0)
-				final_weight *= ((100-adjustment)/100)
-			runnable_modes[M] = final_weight
+			runnable_modes[M] = probabilities[M.config_tag]
+			//to_chat(world, "DEBUG: runnable_mode\[[runnable_modes.len]\] = [M.config_tag]")
 	return runnable_modes
 
 /datum/configuration/proc/get_runnable_midround_modes(crew)

@@ -6,7 +6,7 @@
 	device_type = TRINARY
 	layer = GAS_FILTER_LAYER
 
-	var/flipped = FALSE
+	var/flipped = 0
 
 /obj/machinery/atmospherics/components/trinary/SetInitDirections()
 	switch(dir)

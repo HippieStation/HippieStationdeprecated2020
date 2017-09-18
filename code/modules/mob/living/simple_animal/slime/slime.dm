@@ -74,7 +74,7 @@
 	var/static/list/slime_colours = list("rainbow", "grey", "purple", "metal", "orange",
 	"blue", "dark blue", "dark purple", "yellow", "silver", "pink", "red",
 	"gold", "green", "adamantine", "oil", "light pink", "bluespace",
-	"cerulean", "sepia", "black", "pyrite")
+	"cerulean", "sepia", "black", "pyrite", "wizard")
 
 /mob/living/simple_animal/slime/Initialize(mapload, new_colour="grey", new_is_adult=FALSE)
 	var/datum/action/innate/slime/feed/F = new
@@ -95,12 +95,12 @@
 	. = ..()
 
 /mob/living/simple_animal/slime/proc/set_colour(new_colour)
-	colour = new_colour
-	update_name()
-	slime_mutation = mutation_table(colour)
-	var/sanitizedcolour = replacetext(colour, " ", "")
-	coretype = text2path("/obj/item/slime_extract/[sanitizedcolour]")
-	regenerate_icons()
+		colour = new_colour
+		update_name()
+		slime_mutation = mutation_table(colour)
+		var/sanitizedcolour = replacetext(colour, " ", "")
+		coretype = text2path("/obj/item/slime_extract/[sanitizedcolour]")
+		regenerate_icons()
 
 /mob/living/simple_animal/slime/proc/update_name()
 	if(slime_name_regex.Find(name))

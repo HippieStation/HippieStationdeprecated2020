@@ -185,7 +185,8 @@ SUBSYSTEM_DEF(blackbox)
 		return
 	if(!L || !L.key || !L.mind)
 		return
-	var/area/placeofdeath = get_area(L)
+	var/turf/T = get_turf(L)
+	var/area/placeofdeath = get_area(T.loc)
 	var/sqlname = sanitizeSQL(L.real_name)
 	var/sqlkey = sanitizeSQL(L.ckey)
 	var/sqljob = sanitizeSQL(L.mind.assigned_role)

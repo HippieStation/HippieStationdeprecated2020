@@ -7,9 +7,6 @@
 /area/ruin/powered/golem_ship)
 "c" = (
 /obj/structure/closet/crate,
-/obj/item/shovel,
-/obj/item/shovel,
-/obj/item/shovel,
 /obj/item/pickaxe,
 /obj/item/pickaxe,
 /obj/item/pickaxe,
@@ -22,8 +19,6 @@
 /area/ruin/powered/golem_ship)
 "d" = (
 /obj/structure/closet/crate,
-/obj/item/shovel,
-/obj/item/shovel,
 /obj/item/pickaxe,
 /obj/item/pickaxe,
 /obj/item/storage/bag/ore,

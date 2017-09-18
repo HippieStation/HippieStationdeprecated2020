@@ -680,7 +680,8 @@
 /area/shuttle/escape)
 "ca" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
+	icon_state = "plant-21";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)
@@ -702,7 +703,8 @@
 	dir = 4
 	},
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
+	icon_state = "plant-21";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/escape)

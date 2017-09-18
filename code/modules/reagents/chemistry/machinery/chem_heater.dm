@@ -10,11 +10,11 @@
 	circuit = /obj/item/circuitboard/machine/chem_heater
 	var/obj/item/reagent_containers/beaker = null
 	var/target_temperature = 300
-	var/heater_coefficient = 0.1
+	var/heater_coefficient = 0.10
 	var/on = FALSE
 
 /obj/machinery/chem_heater/RefreshParts()
-	heater_coefficient = 0.1
+	heater_coefficient = 0.10
 	for(var/obj/item/stock_parts/micro_laser/M in component_parts)
 		heater_coefficient *= M.rating
 

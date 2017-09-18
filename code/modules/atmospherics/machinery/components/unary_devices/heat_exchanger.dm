@@ -5,7 +5,7 @@
 	name = "heat exchanger"
 	desc = "Exchanges heat between two input gases. Setup for fast heat transfer"
 
-	can_unwrench = TRUE
+	can_unwrench = 1
 
 	layer = LOW_OBJ_LAYER
 
@@ -19,6 +19,8 @@
 		add_atom_colour(node.color, FIXED_COLOUR_PRIORITY)
 	else
 		icon_state = "he_exposed"
+
+	return
 
 /obj/machinery/atmospherics/components/unary/heat_exchanger/atmosinit()
 	if(!partner)
@@ -34,8 +36,11 @@
 
 /obj/machinery/atmospherics/components/unary/heat_exchanger/process_atmos()
 	..()
-	if(!partner || SSair.times_fired <= update_cycle)
-		return
+	if(!partner)
+		return 0
+
+	if(SSair.times_fired <= update_cycle)
+		return 0
 
 	update_cycle = SSair.times_fired
 	partner.update_cycle = SSair.times_fired
@@ -62,3 +67,5 @@
 
 	if(abs(other_old_temperature-partner_air_contents.temperature) > 1)
 		partner.update_parents()
+
+	return 1

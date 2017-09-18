@@ -2098,7 +2098,6 @@
 /obj/structure/table,
 /obj/item/stack/packageWrap,
 /obj/item/pen,
-/obj/item/stack/ducttape,
 /turf/open/floor/plasteel,
 /area/security/main)
 "aeC" = (
@@ -13288,8 +13287,6 @@
 /obj/machinery/airalarm{
 	pixel_y = 23
 	},
-/obj/item/stack/ducttape,
-/obj/item/stack/ducttape,
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aDm" = (
@@ -19230,8 +19227,6 @@
 /obj/structure/table,
 /obj/item/stack/cable_coil/random,
 /obj/item/stack/cable_coil/random,
-/obj/item/stack/ducttape,
-/obj/item/stack/ducttape,
 /turf/open/floor/plasteel,
 /area/storage/art)
 "aQZ" = (
@@ -20285,7 +20280,6 @@
 "aTL" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/emergency,
-/obj/item/stack/ducttape,
 /turf/open/floor/plasteel,
 /area/storage/tools)
 "aTM" = (
@@ -27014,7 +27008,6 @@
 /obj/structure/table,
 /obj/item/clothing/head/soft,
 /obj/item/clothing/head/soft,
-/obj/item/stack/ducttape,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "bjo" = (
@@ -31941,7 +31934,6 @@
 	pixel_x = -24
 	},
 /obj/item/folder/yellow,
-/obj/item/stack/ducttape,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "btu" = (
@@ -40131,15 +40123,27 @@
 /turf/closed/wall,
 /area/quartermaster/miningdock)
 "bKn" = (
-/obj/mecha/working/ripley/mining_roundstart,
-/turf/open/floor/mech_bay_recharge_floor,
+/obj/structure/rack{
+	dir = 1
+	},
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -2;
+	pixel_y = -1
+	},
+/obj/item/pickaxe{
+	pixel_x = 5
+	},
+/obj/item/shovel{
+	pixel_x = -5
+	},
+/turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "bKo" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "bKp" = (
-/obj/machinery/computer/mech_bay_power_console,
+/obj/structure/closet/crate,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "bKq" = (
@@ -58430,7 +58434,7 @@
 	height = 13;
 	id = "ferry";
 	name = "ferry shuttle";
-	port_direction = 1;
+	port_direction =  1;
 	preferred_direction = 4;
 	roundstart_move = "ferry_away";
 	width = 5
@@ -58627,7 +58631,7 @@
 	id = "whiteship";
 	launch_status = 0;
 	name = "NT Medical Ship";
-	port_direction = 8;
+	port_direction =  8;
 	preferred_direction = 4;
 	roundstart_move = "whiteship_away";
 	timid = null;
@@ -63310,7 +63314,7 @@
 	height = 24;
 	id = "syndicate";
 	name = "syndicate infiltrator";
-	port_direction = 1;
+	port_direction =  1;
 	roundstart_move = "syndicate_away";
 	width = 18
 	},
@@ -69270,19 +69274,6 @@
 	},
 /turf/closed/wall,
 /area/maintenance/starboard/aft)
-"dcz" = (
-/obj/structure/rack,
-/obj/item/shovel,
-/obj/item/pickaxe,
-/obj/item/storage/toolbox/mechanical,
-/turf/open/floor/plasteel/brown{
-	dir = 8
-	},
-/area/quartermaster/miningdock)
-"dcA" = (
-/obj/machinery/mech_bay_recharge_port,
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
 
 (1,1,1) = {"
 aaa
@@ -91022,7 +91013,7 @@ bxu
 bxy
 bxy
 bGj
-dcz
+bHA
 bHA
 bKl
 bxy
@@ -91281,7 +91272,7 @@ bEK
 byE
 byE
 byE
-dcA
+byE
 bGi
 apQ
 apQ
@@ -115447,15 +115438,15 @@ bJO
 bWr
 bWr
 dbS
-dbN
-dbN
-dbN
-dbN
+bTo
+bTo
+bTo
+bTo
 bYj
 bZc
 bPN
-dbN
-dbN
+bTo
+bTo
 bQZ
 bNB
 ceM
@@ -115705,13 +115696,13 @@ bQX
 dbO
 bPN
 dbT
-dbN
+bTo
 bWp
-dbN
+bTo
 bYi
 dcg
 dck
-dbN
+bTo
 cbV
 bQZ
 blQ
@@ -115969,7 +115960,7 @@ caZ
 cba
 dcl
 cbc
-dbN
+bTo
 bQZ
 cdR
 ceO
@@ -116473,11 +116464,11 @@ bMu
 bMu
 bEC
 dbM
-dbM
+dbP
 bTl
 bQU
 dbW
-dbN
+bTo
 bOw
 dce
 dci
@@ -116733,10 +116724,10 @@ bQT
 bSg
 bTk
 bSh
-dbW
+dbX
 dcb
 bOv
-dce
+bYk
 dcj
 bPN
 cjW
@@ -116991,9 +116982,9 @@ bSi
 bTm
 bUn
 dbY
-dbN
+bTo
 bOw
-dce
+bYk
 bYm
 bZZ
 ckN
@@ -117247,7 +117238,7 @@ bQT
 bSh
 coT
 bTl
-dbY
+dbZ
 bNZ
 bOy
 bZd
@@ -117513,7 +117504,7 @@ cab
 cbd
 cbX
 ccT
-dcl
+bSc
 dcx
 cfu
 cgu
@@ -118015,11 +118006,11 @@ bNy
 bOH
 bEs
 bQY
-dbN
-dbN
-dbN
-dbN
-dbN
+dbQ
+bTo
+bTo
+bTo
+bTo
 bXs
 bPL
 bQI
@@ -118273,16 +118264,16 @@ bOG
 bEs
 dbN
 bSk
-dbN
-dbN
-dbN
-dbN
+bTo
+bTo
+bTo
+bTo
 bXr
 bPF
-dbN
-dbN
-dbN
-dcj
+bTo
+bTo
+bTo
+cbY
 bQZ
 cOe
 cNW
@@ -118529,11 +118520,11 @@ bNz
 bOI
 bEs
 bRa
-dbN
-dbN
-dbN
+dbR
+bTo
+bTo
 bVs
-dbN
+bTo
 bXt
 bPM
 bZh

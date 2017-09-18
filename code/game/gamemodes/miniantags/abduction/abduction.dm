@@ -7,7 +7,6 @@
 	name = "abduction"
 	config_tag = "abduction"
 	antag_flag = ROLE_ABDUCTOR
-	false_report_weight = 1
 	recommended_enemies = 2
 	required_players = 15
 	maximum_players = 50
@@ -47,7 +46,7 @@
 	team_names[team_number] = "Mothership [pick(GLOB.possible_changeling_IDs)]" //TODO Ensure unique and actual alieny names
 	//Team Objective
 	var/datum/objective/experiment/team_objective = new
-	team_objective.team_number = team_number
+	team_objective.team = team_number
 	team_objectives[team_number] = team_objective
 	//Team Members
 
@@ -212,13 +211,13 @@
 // OBJECTIVES
 /datum/objective/experiment
 	target_amount = 6
-	var/team_number
+	var/team
 
 /datum/objective/experiment/New()
 	explanation_text = "Experiment on [target_amount] humans."
 
 /datum/objective/experiment/check_completion()
-	var/ab_team = team_number
+	var/ab_team = team
 	if(owner)
 		if(!owner.current || !ishuman(owner.current))
 			return 0
@@ -244,7 +243,3 @@
 	var/datum/atom_hud/antag/hud = GLOB.huds[ANTAG_HUD_ABDUCTOR]
 	hud.leave_hud(alien_mind.current)
 	set_antag_hud(alien_mind.current, null)
-
-/datum/game_mode/abduction/generate_report()
-	return "Nearby spaceships report crewmembers having been [pick("kidnapped", "abducted", "captured")] and [pick("tortured", "experimented on", "probed", "implanted")] by mysterious \
-			grey humanoids, before being sent back.  Be advised that the kidnapped crewmembers behave strangely upon return to duties."

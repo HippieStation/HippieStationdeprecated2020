@@ -20,11 +20,17 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	mob_size = MOB_SIZE_LARGE
 	var/icon_aggro = null
-	var/crusher_drop_mod = 5
+	var/shiny = FALSE //If this mob is a much rarer version of its normal self
+	var/shiny_chance = 1 //If this chance passes, the mob will somehow be different from normal ones
 
 /mob/living/simple_animal/hostile/asteroid/Initialize(mapload)
 	. = ..()
 	apply_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
+	if(prob(shiny_chance))
+		shiny = TRUE
+		make_shiny()
+
+/mob/living/simple_animal/hostile/asteroid/proc/make_shiny() //Override this on a per-mob basis
 
 /mob/living/simple_animal/hostile/asteroid/Aggro()
 	..()
@@ -58,7 +64,7 @@
 /mob/living/simple_animal/hostile/asteroid/death(gibbed)
 	SSblackbox.add_details("mobs_killed_mining","[src.type]")
 	var/datum/status_effect/crusher_damage/C = has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
-	if(C && crusher_loot && prob((C.total_damage/maxHealth) * crusher_drop_mod)) //on average, you'll need to kill 20 creatures before getting the item
+	if(C && crusher_loot && prob(((C.total_damage/maxHealth)) * 5) + shiny) //on average, you'll need to kill 20 creatures before getting the item
 		spawn_crusher_loot()
 	..(gibbed)
 

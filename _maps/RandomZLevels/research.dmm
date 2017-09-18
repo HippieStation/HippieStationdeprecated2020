@@ -119,6 +119,7 @@
 "ax" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-20";
+	layer = 4.1;
 	pixel_y = 3
 	},
 /turf/open/floor/plasteel/whiteyellow/corner{
@@ -1316,7 +1317,8 @@
 /area/awaymission/research/interior/secure)
 "dN" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-16"
+	icon_state = "plant-16";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel/darkpurple,
 /area/awaymission/research/interior/genetics)
@@ -2822,7 +2824,8 @@
 /area/awaymission/research/interior/genetics)
 "hV" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-10"
+	icon_state = "plant-10";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel/darkpurple,
 /area/awaymission/research/interior/genetics)
@@ -3303,7 +3306,8 @@
 /area/awaymission/research/interior/dorm)
 "jm" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-14"
+	icon_state = "plant-14";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel/yellowsiding{
 	dir = 9
@@ -4049,7 +4053,8 @@
 /area/awaymission/research/interior/medbay)
 "ly" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-16"
+	icon_state = "plant-16";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel/yellowsiding{
 	dir = 10
@@ -4454,7 +4459,9 @@
 	},
 /area/awaymission/research/interior/escapepods)
 "mJ" = (
-/obj/item/twohanded/required/kirbyplants,
+/obj/item/twohanded/required/kirbyplants{
+	layer = 4.1
+	},
 /turf/open/floor/plasteel/whitegreen/side{
 	dir = 8
 	},
@@ -4488,7 +4495,8 @@
 /area/awaymission/research/interior/escapepods)
 "mN" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "applebush"
+	icon_state = "applebush";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel/whitegreen/side{
 	dir = 4

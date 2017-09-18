@@ -9,8 +9,6 @@
 #define CULT_POLL_WAIT 2400
 
 /proc/get_area(atom/A)
-	if(isarea(A))
-		return A
 	var/turf/T = get_turf(A)
 	return T ? T.loc : null
 

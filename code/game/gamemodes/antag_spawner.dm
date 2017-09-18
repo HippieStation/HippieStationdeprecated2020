@@ -219,7 +219,6 @@
 	R.mmi.brain.name = "[brainopsname]'s brain"
 	R.mmi.brainmob.real_name = brainopsname
 	R.mmi.brainmob.name = brainopsname
-	R.real_name = R.name
 
 	R.key = C.key
 	R.mind.make_Nuke(null, nuke_code = null,leader=0, telecrystals = TRUE)
@@ -239,7 +238,7 @@
 
 
 /obj/item/antag_spawner/slaughter_demon/attack_self(mob/user)
-	if(!(user.z in GLOB.station_z_levels))
+	if(user.z != ZLEVEL_STATION)
 		to_chat(user, "<span class='notice'>You should probably wait until you reach the station.</span>")
 		return
 	if(used)

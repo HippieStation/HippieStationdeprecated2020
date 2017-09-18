@@ -105,10 +105,11 @@ Difficulty: Hard
 
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/Initialize()
-	. = ..()
+	..()
 	for(var/mob/living/simple_animal/hostile/megafauna/bubblegum/B in GLOB.mob_list)
 		if(B != src)
-			return INITIALIZE_HINT_QDEL //There can be only one
+			qdel(src) //There can be only one
+			return
 	var/obj/effect/proc_holder/spell/bloodcrawl/bloodspell = new
 	AddSpell(bloodspell)
 	if(istype(loc, /obj/effect/dummy/slaughter))

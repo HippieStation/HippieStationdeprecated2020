@@ -1,5 +1,4 @@
 #define DEFAULT_DOOMSDAY_TIMER 4500
-#define DOOMSDAY_ANNOUNCE_INTERVAL 600
 
 GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 		/obj/machinery/field/containment,
@@ -233,7 +232,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 
 /datum/action/innate/ai/nuke_station/Activate()
 	var/turf/T = get_turf(owner)
-	if(!istype(T) || !(T.z in GLOB.station_z_levels))
+	if(!istype(T) || T.z != ZLEVEL_STATION)
 		to_chat(owner, "<span class='warning'>You cannot activate the doomsday device while off-station!</span>")
 		return
 	if(alert(owner, "Send arming signal? (true = arm, false = cancel)", "purge_all_life()", "confirm = TRUE;", "confirm = FALSE;") != "confirm = TRUE;")
@@ -325,11 +324,12 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	var/timing = FALSE
 	var/obj/effect/countdown/doomsday/countdown
 	var/detonation_timer
-	var/next_announce
+	var/list/milestones
 
 /obj/machinery/doomsday_device/Initialize()
 	. = ..()
 	countdown = new(src)
+	milestones = list()
 
 /obj/machinery/doomsday_device/Destroy()
 	QDEL_NULL(countdown)
@@ -344,7 +344,6 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 
 /obj/machinery/doomsday_device/proc/start()
 	detonation_timer = world.time + DEFAULT_DOOMSDAY_TIMER
-	next_announce = world.time + DOOMSDAY_ANNOUNCE_INTERVAL
 	timing = TRUE
 	countdown.start()
 	START_PROCESSING(SSfastprocess, src)
@@ -356,7 +355,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 
 /obj/machinery/doomsday_device/process()
 	var/turf/T = get_turf(src)
-	if(!T || !(T.z in GLOB.station_z_levels))
+	if(!T || T.z != ZLEVEL_STATION)
 		minor_announce("DOOMSDAY DEVICE OUT OF STATION RANGE, ABORTING", "ERROR ER0RR $R0RRO$!R41.%%!!(%$^^__+ @#F0E4", TRUE)
 		SSshuttle.clearHostileEnvironment(src)
 		qdel(src)
@@ -368,11 +367,13 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	if(!sec_left)
 		timing = FALSE
 		detonate(T.z)
-	else if(world.time >= next_announce)
-		minor_announce("[sec_left] SECONDS UNTIL DOOMSDAY DEVICE ACTIVATION!", "ERROR ER0RR $R0RRO$!R41.%%!!(%$^^__+ @#F0E4", TRUE)
-		next_announce += DOOMSDAY_ANNOUNCE_INTERVAL
+	else
+		var/key = num2text(sec_left)
+		if(!(sec_left % 60) && !(key in milestones))
+			milestones[key] = TRUE
+			minor_announce("[key] SECONDS UNTIL DOOMSDAY DEVICE ACTIVATION!", "ERROR ER0RR $R0RRO$!R41.%%!!(%$^^__+ @#F0E4", TRUE)
 
-/obj/machinery/doomsday_device/proc/detonate(z_level = ZLEVEL_STATION_PRIMARY)
+/obj/machinery/doomsday_device/proc/detonate(z_level = ZLEVEL_STATION)
 	sound_to_playing_players('sound/machines/alarm.ogg')
 	sleep(100)
 	for(var/mob/living/L in GLOB.mob_list)
@@ -424,7 +425,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 
 /datum/action/innate/ai/lockdown/Activate()
 	for(var/obj/machinery/door/D in GLOB.airlocks)
-		if(!(D.z in GLOB.station_z_levels))
+		if(D.z != ZLEVEL_STATION)
 			continue
 		INVOKE_ASYNC(D, /obj/machinery/door.proc/hostile_lockdown, src)
 		addtimer(CALLBACK(D, /obj/machinery/door.proc/disable_lockdown), 900)
@@ -502,7 +503,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 
 /datum/action/innate/ai/break_fire_alarms/Activate()
 	for(var/obj/machinery/firealarm/F in GLOB.machines)
-		if(!(F.z in GLOB.station_z_levels))
+		if(F.z != ZLEVEL_STATION)
 			continue
 		F.emagged = TRUE
 	to_chat(owner, "<span class='notice'>All thermal sensors on the station have been disabled. Fire alerts will no longer be recognized.</span>")
@@ -529,10 +530,10 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 
 /datum/action/innate/ai/break_air_alarms/Activate()
 	for(var/obj/machinery/airalarm/AA in GLOB.machines)
-		if(!(AA.z in GLOB.station_z_levels))
+		if(AA.z != ZLEVEL_STATION)
 			continue
 		AA.emagged = TRUE
-	to_chat(owner, "<span class='notice'>All air alarm safeties on the station have been overriden. Air alarms may now use the Flood environmental mode.</span>")
+	to_chat(owner, "<span class='notice'>All air alarm safeties on the station have been overriden. Air alarms may now use the Flood environmental mode.")
 	owner.playsound_local(owner, 'sound/machines/terminal_off.ogg', 50, 0)
 
 
@@ -670,7 +671,7 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 	var/obj/machinery/transformer/conveyor = new(T)
 	conveyor.masterAI = owner
 	playsound(T, 'sound/effects/phasein.ogg', 100, 1)
-	owner_AI.can_shunt = FALSE
+	owner_AI.can_shunt = TRUE
 	to_chat(owner, "<span class='warning'>You are no longer able to shunt your core to APCs.</span>")
 	adjust_uses(-1)
 
@@ -827,4 +828,3 @@ GLOBAL_LIST_INIT(blacklisted_malf_machines, typecacheof(list(
 		AI.eyeobj.relay_speech = TRUE
 
 #undef DEFAULT_DOOMSDAY_TIMER
-#undef DOOMSDAY_ANNOUNCE_INTERVAL

@@ -248,15 +248,11 @@
 /turf/open/floor/plating/airless,
 /area/awaymission/challenge/main)
 "aY" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/end{
-	dir = 8
-	},
+/obj/effect/spawner/structure/window/hollow/reinforced/end/west,
 /turf/open/floor/plating/airless,
 /area/awaymission/challenge/main)
 "aZ" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/end{
-	dir = 4
-	},
+/obj/effect/spawner/structure/window/hollow/reinforced/end/east,
 /turf/open/floor/plating/airless,
 /area/awaymission/challenge/main)
 "ba" = (
@@ -878,9 +874,7 @@
 /turf/open/space,
 /area/space)
 "cM" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/directional{
-	dir = 9
-	},
+/obj/effect/spawner/structure/window/hollow/reinforced/corner/northwest,
 /turf/open/floor/plating,
 /area/awaymission/challenge/end)
 "cN" = (
@@ -888,15 +882,11 @@
 /turf/open/floor/plating,
 /area/awaymission/challenge/end)
 "cO" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/directional{
-	dir = 5
-	},
+/obj/effect/spawner/structure/window/hollow/reinforced/corner/northeast,
 /turf/open/floor/plating,
 /area/awaymission/challenge/end)
 "cP" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/middle{
-	dir = 4
-	},
+/obj/effect/spawner/structure/window/hollow/reinforced/middle/vertical,
 /turf/open/floor/plating,
 /area/awaymission/challenge/end)
 "cQ" = (
@@ -1054,9 +1044,7 @@
 /turf/open/floor/plasteel/black,
 /area/awaymission/challenge/end)
 "dl" = (
-/obj/effect/spawner/structure/window/hollow/reinforced/end{
-	dir = 1
-	},
+/obj/effect/spawner/structure/window/hollow/reinforced/end/north,
 /turf/open/floor/plating,
 /area/awaymission/challenge/end)
 "dm" = (

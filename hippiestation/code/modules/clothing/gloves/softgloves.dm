@@ -4,8 +4,7 @@
 
 /obj/item/clothing/gloves/color/white/soft/Touch(mob/living/carbon/human/target,proximity = 1)
 	var/mob/M = loc
-	
-	if(ishuman(target) && get_dist(src, target) <= 1)
+	if(ishuman(target))
 		if(M.a_intent == INTENT_HELP && target.a_intent != INTENT_HELP)
 			target.a_intent_change(INTENT_HELP)
 			if(!emagged)
