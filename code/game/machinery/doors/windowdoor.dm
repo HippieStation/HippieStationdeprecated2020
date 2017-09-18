@@ -213,7 +213,7 @@
 		sleep(6)
 		operating = FALSE
 		desc += "<BR><span class='warning'>Its access panel is smoking slightly.</span>"
-		open(2)
+		open()
 
 /obj/machinery/door/window/attackby(obj/item/I, mob/living/user, params)
 

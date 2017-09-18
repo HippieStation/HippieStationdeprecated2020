@@ -46,7 +46,10 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/transport)
 "am" = (
-/obj/structure/grille/broken,
+/obj/structure/grille{
+	density = 0;
+	icon_state = "brokengrille"
+	},
 /turf/open/floor/plating/airless,
 /area/shuttle/transport)
 "an" = (
@@ -111,7 +114,10 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/transport)
 "aB" = (
-/obj/structure/grille/broken,
+/obj/structure/grille{
+	density = 0;
+	icon_state = "brokengrille"
+	},
 /obj/structure/window/fulltile,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/transport)

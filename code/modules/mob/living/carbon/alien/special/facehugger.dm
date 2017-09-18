@@ -119,11 +119,13 @@
 		Leap(hit_atom)
 
 /obj/item/clothing/mask/facehugger/proc/valid_to_attach(mob/living/M)
-	// valid targets: carbons except aliens and devils
+	// valid targets: corgis, carbons except aliens and devils
 	// facehugger state early exit checks
 	if(stat != CONSCIOUS)
 		return FALSE
 	if(attached)
+		return FALSE
+	if(!iscorgi(M) && !iscarbon(M))
 		return FALSE
 	if(iscarbon(M))
 		// disallowed carbons
@@ -138,8 +140,9 @@
 			return FALSE
 		// carbon, has head, not alien or devil, has no hivenode or embryo: valid
 		return TRUE
-
-	return FALSE
+	else if(iscorgi(M))
+		// corgi: valid
+		return TRUE
 
 /obj/item/clothing/mask/facehugger/proc/Leap(mob/living/M)
 	if(!valid_to_attach(M))
@@ -180,6 +183,11 @@
 	//ensure we detach once we no longer need to be attached
 	addtimer(CALLBACK(src, .proc/detach), MAX_IMPREGNATION_TIME)
 
+	if (iscorgi(M))
+		var/mob/living/simple_animal/pet/dog/corgi/C = M
+		loc = C
+		C.facehugger = src
+		C.regenerate_icons()
 
 	if(!sterile)
 		M.take_bodypart_damage(strength,0) //done here so that humans in helmets take damage
@@ -213,6 +221,10 @@
 		if((!LC || LC.status != BODYPART_ROBOTIC) && !target.getorgan(/obj/item/organ/body_egg/alien_embryo))
 			new /obj/item/organ/body_egg/alien_embryo(target)
 
+		if(iscorgi(target))
+			var/mob/living/simple_animal/pet/dog/corgi/C = target
+			src.loc = get_turf(C)
+			C.facehugger = null
 	else
 		target.visible_message("<span class='danger'>[src] violates [target]'s face!</span>", \
 								"<span class='userdanger'>[src] violates [target]'s face!</span>")
@@ -251,7 +263,7 @@
 	if(M.getorgan(/obj/item/organ/alien/hivenode))
 		return 0
 
-	if(ismonkey(M))
+	if(iscorgi(M) || ismonkey(M))
 		return 1
 
 	var/mob/living/carbon/C = M

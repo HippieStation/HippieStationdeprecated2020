@@ -14,8 +14,7 @@
 		if(call(client.click_intercept, "InterceptClickOn")(src, params, A))
 			return
 
-	if(control_disabled || incapacitated())
-		return
+	if(control_disabled || stat) return
 
 	if(ismob(A))
 		ai_actual_track(A)
@@ -32,7 +31,7 @@
 		if(call(client.click_intercept, "InterceptClickOn")(src, params, A))
 			return
 
-	if(control_disabled || incapacitated())
+	if(control_disabled || stat)
 		return
 
 	var/turf/pixel_turf = get_turf_pixel(A)

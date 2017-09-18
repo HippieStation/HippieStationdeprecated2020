@@ -18,11 +18,9 @@
 	return !config.silent_ai
 
 /mob/living/silicon/ai/radio(message, message_mode, list/spans, language)
-	if(incapacitated())
-		return FALSE
-	if(!radio_enabled) //AI cannot speak if radio is disabled (via intellicard) or depowered.
+	if(!radio_enabled || aiRestorePowerRoutine || stat) //AI cannot speak if radio is disabled (via intellicard) or depowered.
 		to_chat(src, "<span class='danger'>Your radio transmitter is offline!</span>")
-		return FALSE
+		return 0
 	..()
 
 /mob/living/silicon/ai/get_message_mode(message)
@@ -73,8 +71,8 @@
 	set desc = "Display a list of vocal words to announce to the crew."
 	set category = "AI Commands"
 
-	if(incapacitated())
-		return
+	if(usr.stat == DEAD)
+		return //won't work if dead
 
 	var/dat = "Here is a list of words you can type into the 'Announcement' button to create sentences to vocally announce to everyone on the same level at you.<BR> \
 	<UL><LI>You can also click on the word to preview it.</LI>\
@@ -107,11 +105,11 @@
 	if(!message || announcing_vox > world.time)
 		return
 
-	if(incapacitated())
+	if(stat != CONSCIOUS)
 		return
 
 	if(control_disabled)
-		to_chat(src, "<span class='warning'>Wireless interface disabled, unable to interact with announcement PA.</span>")
+		to_chat(src, "<span class='notice'>Wireless interface disabled, unable to interact with announcement PA.</span>")
 		return
 
 	var/list/words = splittext(trim(message), " ")

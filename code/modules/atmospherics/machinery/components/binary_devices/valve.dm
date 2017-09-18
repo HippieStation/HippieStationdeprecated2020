@@ -7,7 +7,7 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 	name = "manual valve"
 	desc = "A pipe valve"
 
-	can_unwrench = TRUE
+	can_unwrench = 1
 
 	var/frequency = 0
 	var/id = null
@@ -65,7 +65,7 @@ It's like a regular ol' straight pipe, but you can turn it on and off.
 	return src.attack_hand(user)
 
 /obj/machinery/atmospherics/components/binary/valve/digital/update_icon_nopipes(animation)
-	if(!is_operational())
+	if(stat & NOPOWER)
 		normalize_dir()
 		icon_state = "dvalve_nopower"
 		return

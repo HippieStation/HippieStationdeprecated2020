@@ -1648,8 +1648,7 @@
 	                /obj/item/stack/tile/fakespace/loaded,
 	                /obj/item/gun/ballistic/shotgun/toy/crossbow,
 	                /obj/item/toy/redbutton,
-					/obj/item/toy/eightball,
-					/obj/item/vending_refill/donksoft)
+					/obj/item/toy/eightball)
 	crate_name = "toy crate"
 
 /datum/supply_pack/misc/autodrobe

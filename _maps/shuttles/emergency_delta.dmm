@@ -153,6 +153,7 @@
 "an" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21";
+	layer = 4.1;
 	pixel_x = -3;
 	pixel_y = 3
 	},
@@ -167,6 +168,7 @@
 "ap" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21";
+	layer = 4.1;
 	pixel_x = -3;
 	pixel_y = 3
 	},
@@ -687,7 +689,8 @@
 /area/shuttle/escape)
 "bz" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
+	icon_state = "plant-21";
+	layer = 4.1
 	},
 /obj/machinery/button/flasher{
 	id = "shuttleflash";
@@ -700,7 +703,8 @@
 /area/shuttle/escape)
 "bA" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
+	icon_state = "plant-21";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel/neutral/corner{
 	dir = 4
@@ -879,6 +883,7 @@
 "cb" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21";
+	layer = 4.1;
 	pixel_x = -3;
 	pixel_y = 3
 	},
@@ -1045,6 +1050,7 @@
 "cA" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21";
+	layer = 4.1;
 	pixel_x = -3;
 	pixel_y = 3
 	},
@@ -1077,6 +1083,7 @@
 "cE" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21";
+	layer = 4.1;
 	pixel_x = -3;
 	pixel_y = 3
 	},

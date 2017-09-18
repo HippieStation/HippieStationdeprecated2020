@@ -5,6 +5,15 @@
 	icon = 'icons/mob/human.dmi'
 	icon_state = "caucasian_m"
 
+/mob/living/carbon/human/dummy
+	real_name = "Test Dummy"
+	status_flags = GODMODE|CANPUSH
+
+INITIALIZE_IMMEDIATE(/mob/living/carbon/human/dummy)
+
+/mob/living/carbon/human/dummy/Life()
+	return
+
 /mob/living/carbon/human/Initialize()
 	verbs += /mob/living/proc/mob_sleep
 	verbs += /mob/living/proc/lay_down
@@ -26,8 +35,10 @@
 	handcrafting = new()
 
 	grant_language(/datum/language/common) // ME TARZAN, YOU JANEBOT
+
 	update_teeth()
-	. = ..()
+
+	..()
 
 /mob/living/carbon/human/create_internal_organs()
 	if(!(NOHUNGER in dna.species.species_traits))
@@ -642,7 +653,6 @@
 	update_hair()
 
 /mob/living/carbon/human/singularity_pull(S, current_size)
-	..()
 	if(current_size >= STAGE_THREE)
 		for(var/obj/item/hand in held_items)
 			if(prob(current_size * 5) && hand.w_class >= ((11-current_size)/2)  && dropItemToGround(hand))
@@ -651,6 +661,7 @@
 	rad_act(current_size * 3)
 	if(mob_negates_gravity())
 		return
+	..()
 
 /mob/living/carbon/human/proc/do_cpr(mob/living/carbon/C)
 	CHECK_DNA_AND_SPECIES(C)
@@ -905,13 +916,13 @@
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
 	. += "---"
-	.["Make monkey"] = "?_src_=vars;[HrefToken()];makemonkey=\ref[src]"
-	.["Set Species"] = "?_src_=vars;[HrefToken()];setspecies=\ref[src]"
-	.["Make cyborg"] = "?_src_=vars;[HrefToken()];makerobot=\ref[src]"
-	.["Make alien"] = "?_src_=vars;[HrefToken()];makealien=\ref[src]"
-	.["Make slime"] = "?_src_=vars;[HrefToken()];makeslime=\ref[src]"
-	.["Toggle Purrbation"] = "?_src_=vars;[HrefToken()];purrbation=\ref[src]"
-	.["Make Cluwne"] = "?_src_=vars;[HrefToken()];cluwneing=\ref[src]"
+	.["Make monkey"] = "?_src_=vars;makemonkey=\ref[src]"
+	.["Set Species"] = "?_src_=vars;setspecies=\ref[src]"
+	.["Make cyborg"] = "?_src_=vars;makerobot=\ref[src]"
+	.["Make alien"] = "?_src_=vars;makealien=\ref[src]"
+	.["Make slime"] = "?_src_=vars;makeslime=\ref[src]"
+	.["Toggle Purrbation"] = "?_src_=vars;purrbation=\ref[src]"
+	.["Make Cluwne"] = "?_src_=vars;cluwneing=\ref[src]"
 
 /mob/living/carbon/human/MouseDrop_T(mob/living/target, mob/living/user)
 	if((target != pulling) || (grab_state < GRAB_AGGRESSIVE) || (user != target) || !isliving(user) || stat || user.stat)//Get consent first :^)

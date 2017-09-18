@@ -6,11 +6,13 @@
  * Engine floor
  * Foam plating
  */
+// note that plating and engine floor do not call their parent attackby, unlike other flooring
+// this is done in order to avoid inheriting the crowbar attackby
 
 /turf/open/floor/plating
 	name = "plating"
 	icon_state = "plating"
-	intact = FALSE
+	intact = 0
 
 /turf/open/floor/plating/Initialize()
 	if (!broken_states)

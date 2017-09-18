@@ -274,7 +274,7 @@
 						"Dark Red Finish" = "dshotgun-d",
 						"Ash" = "dshotgun-f",
 						"Faded Grey" = "dshotgun-g",
-						"Maple" = "dshotgun-l",
+						"Maple" = "dshotgun-1",
 						"Rosewood" = "dshotgun-p"
 						)
 

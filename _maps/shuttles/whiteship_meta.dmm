@@ -1478,7 +1478,9 @@
 	req_access_txt = "0";
 	use_power = 0
 	},
-/obj/machinery/iv_drip,
+/obj/machinery/iv_drip{
+	density = 0
+	},
 /obj/effect/decal/cleanable/dirt{
 	desc = "A thin layer of dust coating the floor.";
 	name = "dust"

@@ -1,4 +1,6 @@
 
+
+
 ///////////EXTERNAL MAGAZINES////////////////
 
 /obj/item/ammo_box/magazine/m10mm
@@ -70,16 +72,25 @@
 /obj/item/ammo_box/magazine/wt550m9/wtap
 	name = "wt550 magazine (Armour Piercing 4.6x30mm)"
 	icon_state = "46x30mmtA-20"
-	ammo_type = /obj/item/ammo_casing/c46x30mm/ap
+	ammo_type = /obj/item/ammo_casing/c46x30mmap
 
 /obj/item/ammo_box/magazine/wt550m9/wtap/update_icon()
 	..()
 	icon_state = "46x30mmtA-[round(ammo_count(),4)]"
 
+/obj/item/ammo_box/magazine/wt550m9/wttx
+	name = "wt550 magazine (Toxin Tipped 4.6x30mm)"
+	icon_state = "46x30mmtT-20"
+	ammo_type = /obj/item/ammo_casing/c46x30mmtox
+
+/obj/item/ammo_box/magazine/wt550m9/wttx/update_icon()
+	..()
+	icon_state = "46x30mmtT-[round(ammo_count(),4)]"
+
 /obj/item/ammo_box/magazine/wt550m9/wtic
 	name = "wt550 magazine (Incindiary 4.6x30mm)"
 	icon_state = "46x30mmtI-20"
-	ammo_type = /obj/item/ammo_casing/c46x30mm/inc
+	ammo_type = /obj/item/ammo_casing/c46x30mminc
 
 /obj/item/ammo_box/magazine/wt550m9/wtic/update_icon()
 	..()
@@ -109,11 +120,15 @@
 
 /obj/item/ammo_box/magazine/smgm9mm/ap
 	name = "SMG magazine (Armour Piercing 9mm)"
-	ammo_type = /obj/item/ammo_casing/c9mm/ap
+	ammo_type = /obj/item/ammo_casing/c9mmap
+
+/obj/item/ammo_box/magazine/smgm9mm/toxin
+	name = "SMG magazine (Toxin Tipped 9mm)"
+	ammo_type = /obj/item/ammo_casing/c9mmtox
 
 /obj/item/ammo_box/magazine/smgm9mm/fire
 	name = "SMG Magazine (Incindiary 9mm)"
-	ammo_type = /obj/item/ammo_casing/c9mm/inc
+	ammo_type = /obj/item/ammo_casing/c9mminc
 
 /obj/item/ammo_box/magazine/pistolm9mm
 	name = "pistol magazine (9mm)"
@@ -130,7 +145,7 @@
 	name = "SMG magazine (.45)"
 	icon_state = "c20r45-24"
 	origin_tech = "combat=2"
-	ammo_type = /obj/item/ammo_casing/c45/nostamina
+	ammo_type = /obj/item/ammo_casing/c45nostamina
 	caliber = ".45"
 	max_ammo = 24
 
@@ -149,7 +164,7 @@
 	name = "handgun magazine (.50ae)"
 	icon_state = "50ae"
 	origin_tech = "combat=2"
-	ammo_type = /obj/item/ammo_casing/a50AE
+	ammo_type = /obj/item/ammo_casing/a50
 	caliber = ".50"
 	max_ammo = 7
 	multiple_sprites = 1
@@ -197,17 +212,17 @@
 /obj/item/ammo_box/magazine/m12g/dragon
 	name = "shotgun magazine (12g dragon's breath)"
 	icon_state = "m12gf"
-	ammo_type = /obj/item/ammo_casing/shotgun/dragonsbreath
+	ammo_type = /obj/item/ammo_casing/shotgun/incendiary/dragonsbreath
 
 /obj/item/ammo_box/magazine/m12g/bioterror
 	name = "shotgun magazine (12g bioterror)"
 	icon_state = "m12gt"
 	ammo_type = /obj/item/ammo_casing/shotgun/dart/bioterror
 
-/obj/item/ammo_box/magazine/m12g/meteor
-	name = "shotgun magazine (12g meteor slugs)"
+/obj/item/ammo_box/magazine/m12g/breach
+	name = "shotgun magazine (12g breacher slugs)"
 	icon_state = "m12gbc"
-	ammo_type = /obj/item/ammo_casing/shotgun/meteorslug
+	ammo_type = /obj/item/ammo_casing/shotgun/breaching
 
 
 //// SNIPER MAGAZINES
@@ -216,7 +231,7 @@
 	name = "sniper rounds (.50)"
 	icon_state = ".50mag"
 	origin_tech = "combat=6;syndicate=2"
-	ammo_type = /obj/item/ammo_casing/p50
+	ammo_type = /obj/item/ammo_casing/point50
 	max_ammo = 6
 	caliber = ".50"
 
@@ -231,16 +246,36 @@
 	desc = "Soporific sniper rounds, designed for happy days and dead quiet nights..."
 	icon_state = "soporific"
 	origin_tech = "combat=6;syndicate=3"
-	ammo_type = /obj/item/ammo_casing/p50/soporific
+	ammo_type = /obj/item/ammo_casing/soporific
 	max_ammo = 3
+	caliber = ".50"
+
+/obj/item/ammo_box/magazine/sniper_rounds/haemorrhage
+	name = "sniper rounds (Bleed)"
+	desc = "Haemorrhage sniper rounds, leaves your target in a pool of crimson pain"
+	icon_state = "haemorrhage"
+	ammo_type = /obj/item/ammo_casing/haemorrhage
+	max_ammo = 5
 	caliber = ".50"
 
 /obj/item/ammo_box/magazine/sniper_rounds/penetrator
 	name = "sniper rounds (penetrator)"
 	desc = "An extremely powerful round capable of passing straight through cover and anyone unfortunate enough to be behind it."
-	ammo_type = /obj/item/ammo_casing/p50/penetrator
+	ammo_type = /obj/item/ammo_casing/penetrator
 	origin_tech = "combat=6;syndicate=3"
 	max_ammo = 5
+
+/obj/item/ammo_box/magazine/sniper_rounds/gang
+	name = "black market sniper rounds (.50)"
+	icon_state = ".50mag"
+	origin_tech = "combat=6"
+	ammo_type = /obj/item/ammo_casing/point50/gang
+
+/obj/item/ammo_box/magazine/sniper_rounds/gang/sleeper
+	name = "illegally modified tranquilizer round"
+	icon_state = "soporific"
+	origin_tech = "combat=6"
+	ammo_type = /obj/item/ammo_casing/point50/gang/sleeper
 
 //// SAW MAGAZINES
 
@@ -251,6 +286,11 @@
 	ammo_type = /obj/item/ammo_casing/mm195x129
 	caliber = "mm195129"
 	max_ammo = 50
+
+/obj/item/ammo_box/magazine/mm195x129/bleeding
+	name = "box magazine (Bleeding 1.95x129mm)"
+	origin_tech = "combat=3"
+	ammo_type = /obj/item/ammo_casing/mm195x129/bleeding
 
 /obj/item/ammo_box/magazine/mm195x129/hollow
 	name = "box magazine (Hollow-Point 1.95x129mm)"
@@ -284,7 +324,6 @@
 /obj/item/ammo_box/magazine/toy/smg
 	name = "foam force SMG magazine"
 	icon_state = "smg9mm-42"
-	ammo_type = /obj/item/ammo_casing/caseless/foam_dart
 	max_ammo = 20
 
 /obj/item/ammo_box/magazine/toy/smg/update_icon()
@@ -309,28 +348,22 @@
 /obj/item/ammo_box/magazine/toy/smgm45
 	name = "donksoft SMG magazine"
 	caliber = "foam_force"
-	ammo_type = /obj/item/ammo_casing/caseless/foam_dart
+	ammo_type = /obj/item/ammo_casing/caseless/foam_dart/riot
 	max_ammo = 20
 
 /obj/item/ammo_box/magazine/toy/smgm45/update_icon()
 	..()
 	icon_state = "c20r45-[round(ammo_count(),2)]"
 
-/obj/item/ammo_box/magazine/toy/smgm45/riot
-	ammo_type = /obj/item/ammo_casing/caseless/foam_dart/riot
-
 /obj/item/ammo_box/magazine/toy/m762
 	name = "donksoft box magazine"
 	caliber = "foam_force"
-	ammo_type = /obj/item/ammo_casing/caseless/foam_dart
+	ammo_type = /obj/item/ammo_casing/caseless/foam_dart/riot
 	max_ammo = 50
 
 /obj/item/ammo_box/magazine/toy/m762/update_icon()
 	..()
 	icon_state = "a762-[round(ammo_count(),10)]"
-
-/obj/item/ammo_box/magazine/toy/m762/riot
-	ammo_type = /obj/item/ammo_casing/caseless/foam_dart/riot
 
 
 

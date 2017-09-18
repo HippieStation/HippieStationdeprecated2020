@@ -465,7 +465,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 /obj/effect/rune/narsie/invoke(var/list/invokers)
 	if(used)
 		return
-	if(!(z in GLOB.station_z_levels))
+	if(z != ZLEVEL_STATION)
 		return
 
 	if(locate(/obj/singularity/narsie) in GLOB.poi_list)

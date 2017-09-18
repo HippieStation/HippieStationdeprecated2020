@@ -170,7 +170,6 @@
 	return make_plating()
 
 /turf/open/floor/singularity_pull(S, current_size)
-	..()
 	if(current_size == STAGE_THREE)
 		if(prob(30))
 			if(floor_tile)

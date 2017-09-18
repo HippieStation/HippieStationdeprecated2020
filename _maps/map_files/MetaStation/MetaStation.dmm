@@ -216,7 +216,8 @@
 	icon_state = "1-2"
 	},
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-03"
+	icon_state = "plant-03";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel/floorgrime,
 /area/security/prison)
@@ -236,7 +237,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/item/twohanded/required/kirbyplants,
+/obj/item/twohanded/required/kirbyplants{
+	layer = 4.1
+	},
 /turf/open/floor/plasteel/floorgrime,
 /area/security/prison)
 "aaE" = (
@@ -580,6 +583,8 @@
 /area/security/prison)
 "abr" = (
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/barber{
@@ -1483,9 +1488,12 @@
 /turf/closed/wall/r_wall,
 /area/security/prison)
 "adb" = (
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor{
+	density = 0;
+	icon_state = "open";
 	id = "permacell3";
-	name = "Cell Shutters"
+	name = "Cell Shutters";
+	opacity = 0
 	},
 /obj/machinery/door/airlock/glass{
 	id_tag = "permabolt3";
@@ -1498,9 +1506,12 @@
 /turf/closed/wall,
 /area/security/prison)
 "add" = (
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor{
+	density = 0;
+	icon_state = "open";
 	id = "permacell2";
-	name = "Cell Shutters"
+	name = "Cell Shutters";
+	opacity = 0
 	},
 /obj/machinery/door/airlock/glass{
 	id_tag = "permabolt2";
@@ -1515,9 +1526,12 @@
 /turf/open/floor/plasteel/floorgrime,
 /area/security/prison)
 "ade" = (
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor{
+	density = 0;
+	icon_state = "open";
 	id = "permacell1";
-	name = "Cell Shutters"
+	name = "Cell Shutters";
+	opacity = 0
 	},
 /obj/machinery/door/airlock/glass{
 	id_tag = "permabolt1";
@@ -1773,6 +1787,8 @@
 	dir = 1
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 3;
 	pixel_x = 32
 	},
 /obj/machinery/computer/shuttle/pod{
@@ -1937,9 +1953,13 @@
 "adX" = (
 /obj/structure/bed/roller,
 /obj/structure/bed/roller,
-/obj/machinery/iv_drip,
+/obj/machinery/iv_drip{
+	density = 0
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/iv_drip,
+/obj/machinery/iv_drip{
+	density = 0
+	},
 /turf/open/floor/plasteel/whitered/side{
 	dir = 2
 	},
@@ -2647,7 +2667,8 @@
 	dir = 9
 	},
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-16"
+	icon_state = "plant-16";
+	layer = 4.1
 	},
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'WARNING: Criminally Insane Inmates', describing the possible hazards of those contained within.";
@@ -2723,6 +2744,8 @@
 /area/crew_quarters/heads/hos)
 "afj" = (
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_x = -32;
 	pixel_y = 32
 	},
@@ -2754,6 +2777,8 @@
 /area/crew_quarters/heads/hos)
 "afn" = (
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_x = 32;
 	pixel_y = 32
 	},
@@ -2897,7 +2922,8 @@
 /area/maintenance/solars/port/fore)
 "afF" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "applebush"
+	icon_state = "applebush";
+	layer = 4.1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -3588,7 +3614,6 @@
 	pixel_y = 3
 	},
 /obj/item/gun/ballistic/shotgun/riot,
-/obj/item/gun/ballistic/shotgun/riot,
 /turf/open/floor/plasteel/vault{
 	dir = 1
 	},
@@ -3822,26 +3847,35 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor{
+	density = 0;
+	icon_state = "open";
 	id = "Prison Gate";
-	name = "Security Blast Door"
+	name = "Security Blast Door";
+	opacity = 0
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "ahz" = (
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor{
+	density = 0;
+	icon_state = "open";
 	id = "Prison Gate";
-	name = "Security Blast Door"
+	name = "Security Blast Door";
+	opacity = 0
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/security/brig)
 "ahA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor{
+	density = 0;
+	icon_state = "open";
 	id = "Prison Gate";
-	name = "Security Blast Door"
+	name = "Security Blast Door";
+	opacity = 0
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -5962,7 +5996,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "alF" = (
-/obj/machinery/door/airlock/maintenance/abandoned{
+/obj/machinery/door/airlock/maintenance{
 	name = "Secure Storage Room";
 	req_access_txt = "65"
 	},
@@ -6989,7 +7023,7 @@
 /area/maintenance/fore)
 "anE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/door/airlock/maintenance/abandoned{
+/obj/machinery/door/airlock/maintenance{
 	name = "Storage Room";
 	req_access_txt = "12"
 	},
@@ -7325,7 +7359,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/iv_drip,
+/obj/machinery/iv_drip{
+	density = 0
+	},
 /turf/open/floor/plasteel/whitered/side,
 /area/security/brig)
 "aoq" = (
@@ -7970,7 +8006,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "apv" = (
-/obj/machinery/door/airlock/maintenance/abandoned{
+/obj/machinery/door/airlock/maintenance{
 	name = "Storage Room";
 	req_access_txt = "12"
 	},
@@ -8018,7 +8054,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/sign/kiddieplaque/library{
+/obj/structure/sign/kiddieplaque{
+	desc = "A long list of rules to be followed when in the library, extolling the virtues of being quiet at all times and threatening those who would dare eat hot food inside.";
+	name = "Library Rules Sign";
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel/neutral/corner{
@@ -9354,7 +9392,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "asl" = (
-/obj/machinery/door/airlock/maintenance/abandoned{
+/obj/machinery/door/airlock/maintenance{
 	name = "Storage Room";
 	req_access_txt = "12"
 	},
@@ -9798,7 +9836,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/maintenance/abandoned{
+/obj/machinery/door/airlock/maintenance{
 	name = "Storage Room";
 	req_access_txt = "12"
 	},
@@ -10574,7 +10612,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "aut" = (
-/obj/machinery/door/airlock/maintenance/abandoned{
+/obj/machinery/door/airlock/maintenance{
 	name = "Storage Room";
 	req_access_txt = "12"
 	},
@@ -11900,7 +11938,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/dorms)
 "awI" = (
-/obj/machinery/door/airlock/maintenance/abandoned{
+/obj/machinery/door/airlock/maintenance{
 	name = "Storage Room";
 	req_access_txt = "12"
 	},
@@ -13149,6 +13187,7 @@
 "azl" = (
 /obj/structure/closet/emcloset,
 /obj/machinery/status_display{
+	density = 0;
 	pixel_y = 32;
 	supply_display = 1
 	},
@@ -13542,6 +13581,7 @@
 /area/security/detectives_office)
 "azU" = (
 /obj/machinery/computer/security/wooden_tv{
+	density = 0;
 	pixel_x = 3;
 	pixel_y = 2
 	},
@@ -14478,6 +14518,7 @@
 /obj/effect/decal/cleanable/cobweb,
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-20";
+	layer = 4.1;
 	pixel_y = 3
 	},
 /obj/effect/turf_decal/bot{
@@ -15433,6 +15474,8 @@
 	dir = 1
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/red/corner{
@@ -18008,6 +18051,7 @@
 	pixel_y = 23
 	},
 /obj/machinery/status_display{
+	density = 0;
 	pixel_y = 32;
 	supply_display = 1
 	},
@@ -18506,6 +18550,8 @@
 	name = "Judge"
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /obj/machinery/light{
@@ -18596,7 +18642,8 @@
 	pixel_y = 24
 	},
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
+	icon_state = "plant-21";
+	layer = 4.1
 	},
 /turf/open/floor/wood,
 /area/lawoffice)
@@ -19615,7 +19662,9 @@
 	c_tag = "AI Upload Chamber - Fore";
 	network = list("SS13","RD","AIUpload")
 	},
-/obj/item/twohanded/required/kirbyplants/photosynthetic{
+/obj/item/twohanded/required/kirbyplants{
+	icon_state = "plant-07";
+	name = "Photosynthetic Potted plant";
 	pixel_y = 10
 	},
 /turf/open/floor/plasteel/black,
@@ -19762,6 +19811,8 @@
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /obj/machinery/portable_atmospherics/scrubber,
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 30
 	},
 /obj/effect/turf_decal/delivery,
@@ -21796,6 +21847,8 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /obj/machinery/camera{
@@ -21864,6 +21917,8 @@
 	dir = 4
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 3;
 	pixel_y = 32
 	},
 /obj/machinery/computer/shuttle/pod{
@@ -21987,6 +22042,7 @@
 /obj/item/clipboard,
 /obj/item/stamp/qm,
 /obj/machinery/status_display{
+	density = 0;
 	pixel_x = 32;
 	supply_display = 1
 	},
@@ -22118,6 +22174,8 @@
 	dir = 4
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_x = 32
 	},
 /obj/machinery/flasher{
@@ -22182,7 +22240,8 @@
 	pixel_x = -27
 	},
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-03"
+	icon_state = "plant-03";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel/neutral/corner{
 	dir = 1
@@ -23299,6 +23358,7 @@
 	dir = 8
 	},
 /obj/machinery/status_display{
+	density = 0;
 	pixel_x = 32;
 	supply_display = 1
 	},
@@ -24504,14 +24564,21 @@
 /area/ai_monitored/turret_protected/ai)
 "aVm" = (
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/plasteel/black,
 /area/ai_monitored/turret_protected/ai)
 "aVn" = (
-/obj/structure/showcase/cyborg/old{
+/obj/structure/showcase{
+	density = 0;
+	desc = "An old, deactivated cyborg. Whilst once actively used to guard against intruders, it now simply intimidates them with its cold, steely gaze.";
 	dir = 2;
+	icon = 'icons/mob/robots.dmi';
+	icon_state = "robot_old";
+	name = "Cyborg Statue";
 	pixel_y = 20
 	},
 /turf/open/floor/plasteel/black,
@@ -24522,8 +24589,13 @@
 	dir = 2;
 	network = list("RD")
 	},
-/obj/structure/showcase/cyborg/old{
+/obj/structure/showcase{
+	density = 0;
+	desc = "An old, deactivated cyborg. Whilst once actively used to guard against intruders, it now simply intimidates them with its cold, steely gaze.";
 	dir = 2;
+	icon = 'icons/mob/robots.dmi';
+	icon_state = "robot_old";
+	name = "Cyborg Statue";
 	pixel_y = 20
 	},
 /obj/structure/cable{
@@ -24536,6 +24608,8 @@
 /area/ai_monitored/turret_protected/ai)
 "aVq" = (
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
@@ -24553,7 +24627,8 @@
 /area/hallway/secondary/entry)
 "aVt" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-13"
+	icon_state = "plant-13";
+	layer = 4.1
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -24603,6 +24678,8 @@
 	dir = 4
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -24706,6 +24783,7 @@
 /area/hallway/secondary/entry)
 "aVG" = (
 /obj/machinery/status_display{
+	density = 0;
 	supply_display = 1
 	},
 /turf/closed/wall,
@@ -24876,7 +24954,8 @@
 	pixel_y = 23
 	},
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "applebush"
+	icon_state = "applebush";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel/neutral/side{
 	dir = 9
@@ -24897,6 +24976,8 @@
 	dir = 1
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/neutral/side{
@@ -24966,7 +25047,8 @@
 	pixel_x = 27
 	},
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-16"
+	icon_state = "plant-16";
+	layer = 4.1
 	},
 /obj/item/device/radio/intercom{
 	freerange = 0;
@@ -25087,6 +25169,8 @@
 	pixel_y = 25
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /obj/structure/extinguisher_cabinet{
@@ -26165,8 +26249,13 @@
 	dir = 4;
 	network = list("RD")
 	},
-/obj/structure/showcase/cyborg/old{
+/obj/structure/showcase{
+	density = 0;
+	desc = "An old, deactivated cyborg. Whilst once actively used to guard against intruders, it now simply intimidates them with its cold, steely gaze.";
 	dir = 4;
+	icon = 'icons/mob/robots.dmi';
+	icon_state = "robot_old";
+	name = "Cyborg Statue";
 	pixel_x = -9;
 	pixel_y = 2
 	},
@@ -26192,8 +26281,13 @@
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
 "aYB" = (
-/obj/structure/showcase/cyborg/old{
+/obj/structure/showcase{
+	density = 0;
+	desc = "An old, deactivated cyborg. Whilst once actively used to guard against intruders, it now simply intimidates them with its cold, steely gaze.";
 	dir = 8;
+	icon = 'icons/mob/robots.dmi';
+	icon_state = "robot_old";
+	name = "Cyborg Statue";
 	pixel_x = 9;
 	pixel_y = 2
 	},
@@ -26219,7 +26313,8 @@
 /area/hallway/secondary/entry)
 "aYF" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-05"
+	icon_state = "plant-05";
+	layer = 4.1
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -26674,7 +26769,7 @@
 /area/storage/tools)
 "aZv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/door/airlock/maintenance/abandoned{
+/obj/machinery/door/airlock/maintenance{
 	name = "Storage Room";
 	req_access_txt = "12"
 	},
@@ -27362,6 +27457,7 @@
 "baA" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/machinery/status_display{
+	density = 0;
 	pixel_y = 32;
 	supply_display = 1
 	},
@@ -28021,8 +28117,13 @@
 	},
 /area/security/checkpoint/engineering)
 "bbF" = (
-/obj/structure/showcase/cyborg/old{
+/obj/structure/showcase{
+	density = 0;
+	desc = "An old, deactivated cyborg. Whilst once actively used to guard against intruders, it now simply intimidates them with its cold, steely gaze.";
 	dir = 4;
+	icon = 'icons/mob/robots.dmi';
+	icon_state = "robot_old";
+	name = "Cyborg Statue";
 	pixel_x = -9;
 	pixel_y = 2
 	},
@@ -28051,8 +28152,13 @@
 	dir = 8;
 	network = list("RD")
 	},
-/obj/structure/showcase/cyborg/old{
+/obj/structure/showcase{
+	density = 0;
+	desc = "An old, deactivated cyborg. Whilst once actively used to guard against intruders, it now simply intimidates them with its cold, steely gaze.";
 	dir = 8;
+	icon = 'icons/mob/robots.dmi';
+	icon_state = "robot_old";
+	name = "Cyborg Statue";
 	pixel_x = 9;
 	pixel_y = 2
 	},
@@ -28150,6 +28256,7 @@
 "bbS" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/machinery/status_display{
+	density = 0;
 	pixel_y = 32;
 	supply_display = 1
 	},
@@ -28228,6 +28335,8 @@
 	pixel_x = -29
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_x = -32
 	},
 /turf/open/floor/plasteel/neutral/corner{
@@ -28982,6 +29091,8 @@
 /area/crew_quarters/heads/captain/private)
 "bdI" = (
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -30171,9 +30282,12 @@
 /turf/open/floor/plasteel/black,
 /area/aisat)
 "bfT" = (
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor{
+	density = 0;
+	icon_state = "open";
 	id = "Engineering";
-	name = "Engineering Security Doors"
+	name = "Engineering Security Doors";
+	opacity = 0
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -30567,6 +30681,7 @@
 /area/quartermaster/sorting)
 "bgL" = (
 /obj/machinery/status_display{
+	density = 0;
 	pixel_y = 32;
 	supply_display = 1
 	},
@@ -30879,6 +30994,8 @@
 /area/bridge)
 "bhk" = (
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /obj/item/folder/yellow{
@@ -31496,6 +31613,8 @@
 	dir = 4
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel/black,
@@ -33223,6 +33342,8 @@
 "blC" = (
 /obj/machinery/teleport/station,
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/vault{
@@ -33242,8 +33363,13 @@
 /turf/open/floor/plasteel/black,
 /area/ai_monitored/turret_protected/ai)
 "blF" = (
-/obj/structure/showcase/cyborg/old{
+/obj/structure/showcase{
+	density = 0;
+	desc = "An old, deactivated cyborg. Whilst once actively used to guard against intruders, it now simply intimidates them with its cold, steely gaze.";
 	dir = 2;
+	icon = 'icons/mob/robots.dmi';
+	icon_state = "robot_old";
+	name = "Cyborg Statue";
 	pixel_y = 20
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -33258,8 +33384,13 @@
 /turf/open/floor/plasteel/black,
 /area/ai_monitored/turret_protected/aisat_interior)
 "blH" = (
-/obj/structure/showcase/cyborg/old{
+/obj/structure/showcase{
+	density = 0;
+	desc = "An old, deactivated cyborg. Whilst once actively used to guard against intruders, it now simply intimidates them with its cold, steely gaze.";
 	dir = 2;
+	icon = 'icons/mob/robots.dmi';
+	icon_state = "robot_old";
+	name = "Cyborg Statue";
 	pixel_y = 20
 	},
 /turf/open/floor/plasteel/darkblue/corner{
@@ -33306,6 +33437,8 @@
 "blK" = (
 /obj/machinery/recharge_station,
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /obj/structure/cable/yellow{
@@ -33867,6 +34000,8 @@
 "bmJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_x = -32
 	},
 /obj/structure/disposalpipe/segment,
@@ -34237,8 +34372,13 @@
 	dir = 1;
 	pixel_y = 1
 	},
-/obj/structure/showcase/cyborg/old{
+/obj/structure/showcase{
+	density = 0;
+	desc = "An old, deactivated cyborg. Whilst once actively used to guard against intruders, it now simply intimidates them with its cold, steely gaze.";
 	dir = 8;
+	icon = 'icons/mob/robots.dmi';
+	icon_state = "robot_old";
+	name = "Cyborg Statue";
 	pixel_x = 9;
 	pixel_y = 2
 	},
@@ -34254,8 +34394,13 @@
 /turf/closed/wall/r_wall,
 /area/aisat)
 "bnw" = (
-/obj/structure/showcase/cyborg/old{
+/obj/structure/showcase{
+	density = 0;
+	desc = "An old, deactivated cyborg. Whilst once actively used to guard against intruders, it now simply intimidates them with its cold, steely gaze.";
 	dir = 4;
+	icon = 'icons/mob/robots.dmi';
+	icon_state = "robot_old";
+	name = "Cyborg Statue";
 	pixel_x = -9;
 	pixel_y = 2
 	},
@@ -34420,8 +34565,13 @@
 /turf/open/floor/plasteel/black,
 /area/ai_monitored/storage/satellite)
 "bnI" = (
-/obj/structure/showcase/cyborg/old{
+/obj/structure/showcase{
+	density = 0;
+	desc = "An old, deactivated cyborg. Whilst once actively used to guard against intruders, it now simply intimidates them with its cold, steely gaze.";
 	dir = 8;
+	icon = 'icons/mob/robots.dmi';
+	icon_state = "robot_old";
+	name = "Cyborg Statue";
 	pixel_x = 9;
 	pixel_y = 2
 	},
@@ -34865,6 +35015,8 @@
 	pixel_y = 5
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /turf/open/floor/wood,
@@ -35187,9 +35339,12 @@
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "bpm" = (
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor{
+	density = 0;
+	icon_state = "open";
 	id = "transittube";
-	name = "Transit Tube Blast Door"
+	name = "Transit Tube Blast Door";
+	opacity = 0
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -36002,6 +36157,8 @@
 /area/crew_quarters/heads/hop)
 "bqF" = (
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/darkblue/corner{
@@ -36784,8 +36941,13 @@
 /area/aisat)
 "brU" = (
 /obj/structure/window/reinforced,
-/obj/structure/showcase/cyborg/old{
+/obj/structure/showcase{
+	density = 0;
+	desc = "An old, deactivated cyborg. Whilst once actively used to guard against intruders, it now simply intimidates them with its cold, steely gaze.";
 	dir = 8;
+	icon = 'icons/mob/robots.dmi';
+	icon_state = "robot_old";
+	name = "Cyborg Statue";
 	pixel_x = 9;
 	pixel_y = 2
 	},
@@ -36904,6 +37066,8 @@
 /area/ai_monitored/turret_protected/aisat_interior)
 "bse" = (
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /obj/machinery/porta_turret/ai{
@@ -37174,6 +37338,8 @@
 	dir = 4
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel/neutral/corner{
@@ -37290,6 +37456,8 @@
 /area/crew_quarters/heads/hop)
 "bsP" = (
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /obj/structure/bed/dogbed/ian,
@@ -37834,7 +38002,8 @@
 /area/hallway/secondary/entry)
 "btR" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-18"
+	icon_state = "plant-18";
+	layer = 4.1
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -37863,7 +38032,8 @@
 /area/hallway/secondary/entry)
 "btU" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-08"
+	icon_state = "plant-08";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel/grimy,
 /area/hallway/primary/port)
@@ -37875,7 +38045,8 @@
 /area/hallway/primary/port)
 "btW" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-03"
+	icon_state = "plant-03";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel/grimy,
 /area/hallway/primary/port)
@@ -38492,17 +38663,23 @@
 /turf/open/floor/plating,
 /area/engine/break_room)
 "bvj" = (
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor{
+	density = 0;
+	icon_state = "open";
 	id = "atmos";
-	name = "Atmos Blast Door"
+	name = "Atmos Blast Door";
+	opacity = 0
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "bvk" = (
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor{
+	density = 0;
+	icon_state = "open";
 	id = "atmos";
-	name = "Atmos Blast Door"
+	name = "Atmos Blast Door";
+	opacity = 0
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -38516,9 +38693,12 @@
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "bvl" = (
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor{
+	density = 0;
+	icon_state = "open";
 	id = "atmos";
-	name = "Atmos Blast Door"
+	name = "Atmos Blast Door";
+	opacity = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -38620,8 +38800,13 @@
 /area/engine/break_room)
 "bvw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/showcase/cyborg/old{
+/obj/structure/showcase{
+	density = 0;
+	desc = "An old, deactivated cyborg. Whilst once actively used to guard against intruders, it now simply intimidates them with its cold, steely gaze.";
 	dir = 2;
+	icon = 'icons/mob/robots.dmi';
+	icon_state = "robot_old";
+	name = "Cyborg Statue";
 	pixel_y = 20
 	},
 /turf/open/floor/plasteel/grimy,
@@ -38639,8 +38824,13 @@
 /obj/machinery/light_switch{
 	pixel_y = 28
 	},
-/obj/structure/showcase/cyborg/old{
+/obj/structure/showcase{
+	density = 0;
+	desc = "An old, deactivated cyborg. Whilst once actively used to guard against intruders, it now simply intimidates them with its cold, steely gaze.";
 	dir = 2;
+	icon = 'icons/mob/robots.dmi';
+	icon_state = "robot_old";
+	name = "Cyborg Statue";
 	pixel_y = 20
 	},
 /turf/open/floor/plasteel/grimy,
@@ -38676,7 +38866,8 @@
 /area/tcommsat/computer)
 "bvB" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-20"
+	icon_state = "plant-20";
+	layer = 4.1
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -39085,6 +39276,8 @@
 "bwu" = (
 /obj/machinery/holopad,
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /obj/machinery/light{
@@ -39627,6 +39820,8 @@
 	network = list("SS13")
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = -32
 	},
 /obj/effect/turf_decal/stripes/line,
@@ -39779,6 +39974,8 @@
 	dir = 4
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel/neutral/side,
@@ -39998,10 +40195,13 @@
 	name = "Reception Window";
 	req_access_txt = "0"
 	},
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor{
+	density = 0;
+	icon_state = "open";
 	id = "hop";
 	layer = 3.1;
-	name = "privacy shutters"
+	name = "privacy shutters";
+	opacity = 0
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
@@ -40268,9 +40468,12 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/theatre)
 "byK" = (
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor{
+	density = 0;
+	icon_state = "open";
 	id = "Engineering";
-	name = "Engineering Security Doors"
+	name = "Engineering Security Doors";
+	opacity = 0
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -40364,6 +40567,8 @@
 /area/engine/atmos)
 "byS" = (
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /obj/machinery/light{
@@ -40746,7 +40951,7 @@
 /area/security/vacantoffice)
 "bzz" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/centcom/abandoned{
+/obj/machinery/door/airlock/centcom{
 	name = "Vacant Office";
 	opacity = 1;
 	req_access_txt = "32"
@@ -40862,6 +41067,8 @@
 /area/hallway/secondary/command)
 "bzN" = (
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /obj/effect/turf_decal/bot,
@@ -41202,9 +41409,12 @@
 /area/hallway/primary/starboard)
 "bAA" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor{
+	density = 0;
+	icon_state = "open";
 	id = "atmos";
-	name = "Atmos Blast Door"
+	name = "Atmos Blast Door";
+	opacity = 0
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -41382,6 +41592,8 @@
 /obj/structure/table/wood,
 /obj/item/folder/blue,
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 31
 	},
 /obj/item/folder/blue,
@@ -41725,10 +41937,13 @@
 /area/hallway/primary/port)
 "bBH" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor{
+	density = 0;
+	icon_state = "open";
 	id = "council blast";
 	layer = 2.9;
-	name = "Council Blast Doors"
+	name = "Council Blast Doors";
+	opacity = 0
 	},
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -41738,10 +41953,13 @@
 /area/bridge)
 "bBI" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor{
+	density = 0;
+	icon_state = "open";
 	id = "council blast";
 	layer = 2.9;
-	name = "Council Blast Doors"
+	name = "Council Blast Doors";
+	opacity = 0
 	},
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -41755,10 +41973,13 @@
 /area/bridge)
 "bBJ" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor{
+	density = 0;
+	icon_state = "open";
 	id = "council blast";
 	layer = 2.9;
-	name = "Council Blast Doors"
+	name = "Council Blast Doors";
+	opacity = 0
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -41776,10 +41997,13 @@
 /area/bridge)
 "bBK" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor{
+	density = 0;
+	icon_state = "open";
 	id = "council blast";
 	layer = 2.9;
-	name = "Council Blast Doors"
+	name = "Council Blast Doors";
+	opacity = 0
 	},
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -41793,10 +42017,13 @@
 /area/bridge)
 "bBL" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor{
+	density = 0;
+	icon_state = "open";
 	id = "council blast";
 	layer = 2.9;
-	name = "Council Blast Doors"
+	name = "Council Blast Doors";
+	opacity = 0
 	},
 /obj/structure/cable/yellow{
 	d2 = 8;
@@ -41978,7 +42205,8 @@
 	density = 0;
 	icon_state = "pdoor0";
 	id = "atmos";
-	name = "Atmos Blast Door"
+	name = "Atmos Blast Door";
+	opacity = 0
 	},
 /obj/machinery/door/window/northleft{
 	dir = 4;
@@ -41990,9 +42218,12 @@
 /obj/item/folder/yellow,
 /obj/item/pen,
 /obj/machinery/door/firedoor,
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor{
+	density = 0;
+	icon_state = "open";
 	id = "atmos";
-	name = "Atmos Blast Door"
+	name = "Atmos Blast Door";
+	opacity = 0
 	},
 /obj/effect/turf_decal/delivery,
 /obj/structure/cable/yellow{
@@ -42472,6 +42703,8 @@
 	dir = 4
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
@@ -42613,6 +42846,8 @@
 	dir = 4
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
@@ -42927,8 +43162,13 @@
 /turf/open/floor/circuit/green/telecomms/mainframe,
 /area/tcommsat/server)
 "bEg" = (
-/obj/structure/showcase/cyborg/old{
+/obj/structure/showcase{
+	density = 0;
+	desc = "An old, deactivated cyborg. Whilst once actively used to guard against intruders, it now simply intimidates them with its cold, steely gaze.";
 	dir = 2;
+	icon = 'icons/mob/robots.dmi';
+	icon_state = "robot_old";
+	name = "Cyborg Statue";
 	pixel_y = 20
 	},
 /turf/open/floor/plasteel/black/telecomms/mainframe,
@@ -42978,6 +43218,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_x = 32
 	},
 /turf/open/floor/plasteel/arrival{
@@ -43953,9 +44195,12 @@
 	freq = 1400;
 	location = "Atmospherics"
 	},
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor{
+	density = 0;
+	icon_state = "open";
 	id = "atmos";
-	name = "Atmos Blast Door"
+	name = "Atmos Blast Door";
+	opacity = 0
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -45554,7 +45799,8 @@
 /area/tcommsat/server)
 "bJh" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
+	icon_state = "plant-21";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
@@ -46019,6 +46265,8 @@
 	dir = 1
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/vault{
@@ -46383,7 +46631,8 @@
 /area/aisat)
 "bKS" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-06"
+	icon_state = "plant-06";
+	level = 4.1
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -46798,6 +47047,8 @@
 "bLH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_x = -32
 	},
 /obj/machinery/camera{
@@ -47261,7 +47512,8 @@
 	pixel_y = -32
 	},
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-03"
+	icon_state = "plant-03";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel/arrival{
 	dir = 6
@@ -47499,7 +47751,12 @@
 /area/teleporter)
 "bNa" = (
 /obj/structure/window/reinforced,
-/obj/structure/showcase/mecha/ripley,
+/obj/structure/showcase{
+	desc = "A stand with an retired construction mech bolted to it. The clamps are rated at 9300PSI. It seems to be falling apart.";
+	icon = 'icons/mecha/mecha.dmi';
+	icon_state = "firefighter";
+	name = "construction mech exhibit"
+	},
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
@@ -47509,7 +47766,10 @@
 /turf/open/floor/carpet,
 /area/bridge/showroom/corporate)
 "bNb" = (
-/obj/structure/sign/kiddieplaque/perfect_drone{
+/obj/structure/sign/atmosplaque{
+	desc = "A guide to the exhibit, detailing the constructive and destructive applications of modern repair drones, as well as the development of the incorruptible cyborg servants of tomorrow, available today.";
+	icon_state = "kiddieplaque";
+	name = "\improper 'Perfect Drone' sign";
 	pixel_y = 32
 	},
 /obj/machinery/droneDispenser,
@@ -47517,7 +47777,12 @@
 /turf/open/floor/carpet,
 /area/bridge/showroom/corporate)
 "bNc" = (
-/obj/structure/showcase/mecha/marauder,
+/obj/structure/showcase{
+	desc = "A stand with an empty old Nanotrasen Corporation combat mech bolted to it. It is described as the premier unit used to defend corporate interests and employees.";
+	icon = 'icons/mecha/mecha.dmi';
+	icon_state = "marauder";
+	name = "combat mech exhibit"
+	},
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -47607,16 +47872,26 @@
 	icon_state = "1-2"
 	},
 /obj/structure/window/reinforced,
-/obj/structure/showcase/machinery/cloning_pod{
+/obj/structure/showcase{
+	desc = "Signs describe how cloning pods like these ensure that every Nanotrasen employee can carry out their contracts in full, even in the unlikely event of their catastrophic death. Hopefully they aren't all made of cardboard, like this one.";
+	icon = 'icons/obj/cloning.dmi';
+	icon_state = "pod_0";
 	layer = 4;
+	name = "cloning pod exhibit";
 	pixel_x = 2;
 	pixel_y = 5
 	},
 /turf/open/floor/carpet,
 /area/bridge/showroom/corporate)
 "bNj" = (
-/obj/structure/showcase/perfect_employee,
-/obj/structure/sign/kiddieplaque/perfect_man{
+/obj/structure/showcase{
+	desc = "A stand with a model of the perfect Nanotrasen Employee bolted to it. Signs indicate it is robustly genetically engineered, as well as being ruthlessly loyal.";
+	name = "'Perfect Man' employee exhibit"
+	},
+/obj/structure/sign/atmosplaque{
+	desc = "A guide to the exhibit, explaining how recent developments in loyalty implant and cloning technologies by Nanotrasen Corporation have led to the development and the effective immortality of the 'perfect man', the loyal Nanotrasen Employee.";
+	icon_state = "kiddieplaque";
+	name = "\improper 'Perfect Man' sign";
 	pixel_y = 32
 	},
 /obj/structure/window/reinforced,
@@ -47630,8 +47905,12 @@
 	},
 /obj/structure/window/reinforced,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/structure/showcase/machinery/implanter{
+/obj/structure/showcase{
+	desc = "A flimsy model of a standard Nanotrasen automated loyalty implant machine. With secure positioning harnesses and a robotic surgical injector, brain damage and other serious medical anomalies are now up to 60% less likely!";
+	icon = 'icons/obj/machines/implantchair.dmi';
+	icon_state = "implantchair";
 	layer = 2.7;
+	name = "Nanotrasen automated loyalty implanter exhibit";
 	pixel_y = 4
 	},
 /turf/open/floor/carpet,
@@ -48643,7 +48922,9 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard)
 "bPn" = (
-/obj/machinery/atmospherics/components/trinary/filter,
+/obj/machinery/atmospherics/components/trinary/filter{
+	req_access = "0"
+	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
 "bPo" = (
@@ -48820,7 +49101,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bPI" = (
-/obj/machinery/door/airlock/maintenance/abandoned{
+/obj/machinery/door/airlock/maintenance{
 	name = "Vacant Office Maintenance";
 	req_access_txt = "32";
 	req_one_access_txt = "0"
@@ -49479,7 +49760,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bRf" = (
-/obj/machinery/door/airlock/maintenance/abandoned{
+/obj/machinery/door/airlock/maintenance{
 	name = "Storage Room";
 	req_access_txt = "12"
 	},
@@ -49634,8 +49915,12 @@
 /turf/open/floor/wood,
 /area/bridge/showroom/corporate)
 "bRz" = (
-/obj/structure/showcase/machinery/microwave{
+/obj/structure/showcase{
+	desc = "The famous Nanotrasen-brand microwave, the multi-purpose cooking appliance every station needs! This one appears to be drawn onto a cardboard box.";
 	dir = 1;
+	icon = 'icons/obj/kitchen.dmi';
+	icon_state = "mw";
+	name = "Nanotrasen-brand microwave";
 	pixel_y = 2
 	},
 /obj/structure/table/wood,
@@ -49713,8 +49998,12 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/showcase/machinery/tv{
+/obj/structure/showcase{
+	desc = "A slightly battered looking TV. Various Nanotrasen infomercials play on a loop, accompanied by a jaunty tune.";
 	dir = 1;
+	icon = 'icons/obj/computer.dmi';
+	icon_state = "television";
+	name = "Nanotrasen corporate newsfeed";
 	pixel_x = 2;
 	pixel_y = 3
 	},
@@ -50753,7 +51042,7 @@
 /area/engine/engineering)
 "bTr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/door/airlock/maintenance/abandoned{
+/obj/machinery/door/airlock/maintenance{
 	name = "Storage Room";
 	req_access_txt = "12"
 	},
@@ -50989,6 +51278,8 @@
 	dir = 1
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/neutral/corner{
@@ -51044,6 +51335,8 @@
 	dir = 1
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/neutral/corner{
@@ -53055,7 +53348,8 @@
 	pixel_x = -27
 	},
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "applebush"
+	icon_state = "applebush";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel/blue/corner{
 	dir = 8
@@ -53156,7 +53450,8 @@
 	pixel_x = 24
 	},
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-10"
+	icon_state = "plant-10";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel/purple/corner{
 	dir = 2
@@ -54039,7 +54334,7 @@
 /turf/open/floor/plating/airless,
 /area/maintenance/solars/port/aft)
 "bZO" = (
-/obj/machinery/door/airlock/maintenance/abandoned{
+/obj/machinery/door/airlock/maintenance{
 	name = "Storage Room";
 	req_access_txt = "12"
 	},
@@ -54407,6 +54702,8 @@
 	},
 /obj/item/pen,
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /obj/machinery/light/small{
@@ -55865,7 +56162,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "cde" = (
-/obj/machinery/door/airlock/maintenance/abandoned{
+/obj/machinery/door/airlock/maintenance{
 	name = "Storage Room";
 	req_access_txt = "12"
 	},
@@ -56762,7 +57059,8 @@
 	pixel_y = -30
 	},
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-08"
+	icon_state = "plant-08";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel/whitepurple/side{
 	dir = 2
@@ -57024,7 +57322,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard)
 "cfl" = (
-/obj/machinery/door/airlock/maintenance/abandoned{
+/obj/machinery/door/airlock/maintenance{
 	name = "Storage Room";
 	req_access_txt = "12"
 	},
@@ -58691,7 +58989,10 @@
 	},
 /area/medical/chemistry)
 "ciA" = (
-/obj/machinery/chem_master,
+/obj/machinery/chem_master{
+	layer = 2.7;
+	pixel_x = -2
+	},
 /obj/machinery/light{
 	dir = 4
 	},
@@ -59960,7 +60261,9 @@
 /area/medical/medbay/central)
 "clo" = (
 /obj/structure/bed/roller,
-/obj/machinery/iv_drip,
+/obj/machinery/iv_drip{
+	density = 0
+	},
 /turf/open/floor/plasteel/whiteblue/side{
 	dir = 2
 	},
@@ -60330,7 +60633,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "clX" = (
-/obj/machinery/door/airlock/maintenance/abandoned{
+/obj/machinery/door/airlock/maintenance{
 	locked = 0;
 	name = "Storage Room";
 	req_access_txt = "0";
@@ -61101,6 +61404,8 @@
 /area/medical/medbay/central)
 "cnC" = (
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /obj/structure/table/glass,
@@ -61458,7 +61763,8 @@
 /area/science/research)
 "coj" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-10"
+	icon_state = "plant-10";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel/whitepurple/corner{
 	dir = 2
@@ -61654,7 +61960,9 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/iv_drip,
+/obj/machinery/iv_drip{
+	density = 0
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "coE" = (
@@ -62752,7 +63060,10 @@
 	},
 /area/medical/chemistry)
 "cqu" = (
-/obj/machinery/chem_master,
+/obj/machinery/chem_master{
+	layer = 2.7;
+	pixel_x = -2
+	},
 /obj/structure/noticeboard{
 	desc = "A board for pinning important notices upon. Probably helpful for keeping track of requests.";
 	dir = 1;
@@ -63201,7 +63512,9 @@
 /area/medical/surgery)
 "cro" = (
 /obj/structure/bed/roller,
-/obj/machinery/iv_drip,
+/obj/machinery/iv_drip{
+	density = 0
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "crp" = (
@@ -63616,7 +63929,9 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "csc" = (
-/obj/machinery/iv_drip,
+/obj/machinery/iv_drip{
+	density = 0
+	},
 /obj/item/roller,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
@@ -63736,7 +64051,9 @@
 /obj/structure/sign/nosmoking_2{
 	pixel_x = -28
 	},
-/obj/machinery/iv_drip,
+/obj/machinery/iv_drip{
+	density = 0
+	},
 /turf/open/floor/plasteel/whiteblue/side{
 	dir = 2
 	},
@@ -64241,6 +64558,8 @@
 /area/crew_quarters/heads/hor)
 "ctc" = (
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /obj/effect/landmark/xmastree/rdrod,
@@ -65236,7 +65555,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "cuZ" = (
-/obj/machinery/door/airlock/maintenance/abandoned{
+/obj/machinery/door/airlock/maintenance{
 	name = "Storage Room";
 	req_access_txt = "0";
 	req_one_access_txt = "12;47"
@@ -66318,7 +66637,7 @@
 /turf/open/floor/plasteel,
 /area/science/storage)
 "cwZ" = (
-/obj/machinery/door/airlock/maintenance/abandoned{
+/obj/machinery/door/airlock/maintenance{
 	name = "airlock access";
 	req_access_txt = "0";
 	req_one_access_txt = "12;47"
@@ -67215,6 +67534,8 @@
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/white/side{
@@ -67585,7 +67906,9 @@
 /area/science/mixing)
 "czz" = (
 /obj/machinery/atmospherics/components/trinary/filter{
-	dir = 8
+	density = 0;
+	dir = 8;
+	req_access = "0"
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
@@ -69760,6 +70083,7 @@
 /obj/item/device/healthanalyzer,
 /obj/item/clothing/glasses/hud/health,
 /obj/structure/reagent_dispensers/virusfood{
+	density = 0;
 	pixel_y = 30
 	},
 /obj/structure/table/glass,
@@ -70949,7 +71273,9 @@
 	dir = 2;
 	pixel_y = 24
 	},
-/obj/machinery/iv_drip,
+/obj/machinery/iv_drip{
+	density = 0
+	},
 /turf/open/floor/plasteel/whitegreen/side{
 	dir = 8
 	},
@@ -70978,6 +71304,7 @@
 "cFQ" = (
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-21";
+	layer = 4.1;
 	pixel_x = -3;
 	pixel_y = 3
 	},
@@ -71591,7 +71918,7 @@
 	},
 /area/medical/medbay/aft)
 "cGP" = (
-/obj/machinery/door/airlock/abandoned{
+/obj/machinery/door/airlock{
 	name = "Medical Surplus Storeroom";
 	req_access_txt = "5"
 	},
@@ -72602,8 +72929,12 @@
 "cIA" = (
 /obj/structure/bed/roller,
 /obj/structure/bed/roller,
-/obj/machinery/iv_drip,
-/obj/machinery/iv_drip,
+/obj/machinery/iv_drip{
+	density = 0
+	},
+/obj/machinery/iv_drip{
+	density = 0
+	},
 /turf/open/floor/plasteel/floorgrime,
 /area/maintenance/aft)
 "cIB" = (
@@ -73071,7 +73402,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/maintenance/abandoned{
+/obj/machinery/door/airlock/maintenance{
 	name = "Medical Surplus Storeroom";
 	req_access_txt = "12";
 	req_one_access_txt = "0"
@@ -73279,7 +73610,8 @@
 /area/science/research)
 "cJQ" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-10"
+	icon_state = "plant-10";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel/whitepurple/corner{
 	dir = 8
@@ -73743,7 +74075,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/maintenance/abandoned{
+/obj/machinery/door/airlock/maintenance{
 	locked = 0;
 	name = "Storage Room";
 	req_access_txt = "0";
@@ -74570,7 +74902,8 @@
 	pixel_x = 27
 	},
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-14"
+	icon_state = "plant-14";
+	layer = 4.1
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -74932,6 +75265,7 @@
 /area/hallway/secondary/exit/departure_lounge)
 "cMU" = (
 /obj/machinery/status_display{
+	density = 0;
 	layer = 4
 	},
 /turf/closed/wall,
@@ -76213,7 +76547,10 @@
 /turf/open/floor/carpet,
 /area/chapel/main)
 "cPE" = (
-/obj/structure/sign/kiddieplaque/badger{
+/obj/structure/sign/atmosplaque{
+	desc = "A plaque commemorating the fallen, may they rest in peace, forever asleep amongst the stars. Someone has drawn a picture of a crying badger at the bottom.";
+	icon_state = "kiddieplaque";
+	name = "Remembrance Plaque";
 	pixel_y = 32
 	},
 /obj/item/reagent_containers/food/snacks/grown/poppy{
@@ -76328,7 +76665,8 @@
 	pixel_x = -27
 	},
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-04"
+	icon_state = "plant-04";
+	layer = 4.1
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -76397,7 +76735,8 @@
 	pixel_x = 29
 	},
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-16"
+	icon_state = "plant-16";
+	layer = 4.1
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -77841,6 +78180,8 @@
 	dir = 1
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 3;
 	pixel_x = 32
 	},
 /obj/machinery/computer/shuttle/pod{
@@ -78029,6 +78370,8 @@
 	dir = 4
 	},
 /obj/machinery/status_display{
+	density = 0;
+	layer = 3;
 	pixel_y = 32
 	},
 /obj/machinery/computer/shuttle/pod{
@@ -80588,7 +80931,9 @@
 	req_access_txt = "0";
 	use_power = 0
 	},
-/obj/machinery/iv_drip,
+/obj/machinery/iv_drip{
+	density = 0
+	},
 /obj/effect/decal/cleanable/dirt{
 	desc = "A thin layer of dust coating the floor.";
 	name = "dust"
@@ -82795,7 +83140,10 @@
 /turf/open/floor/plasteel/whitepurple/side,
 /area/science/xenobiology)
 "dcM" = (
-/obj/machinery/chem_master,
+/obj/machinery/chem_master{
+	pixel_x = -2;
+	pixel_y = 1
+	},
 /obj/item/device/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -29
@@ -85232,6 +85580,8 @@
 "diD" = (
 /obj/machinery/vending/cigarette,
 /obj/machinery/status_display{
+	density = 0;
+	layer = 4;
 	pixel_y = 32
 	},
 /obj/structure/sign/poster/official/random{
@@ -85456,7 +85806,8 @@
 	network = list("SS13")
 	},
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-24"
+	icon_state = "plant-24";
+	layer = 4.1
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -89582,9 +89933,12 @@
 /area/engine/atmos)
 "dBK" = (
 /obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/door/poddoor/preopen{
+/obj/machinery/door/poddoor{
+	density = 0;
+	icon_state = "open";
 	id = "atmos";
-	name = "Atmos Blast Door"
+	name = "Atmos Blast Door";
+	opacity = 0
 	},
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
@@ -90412,22 +90766,6 @@
 	dir = 1
 	},
 /area/construction/mining/aux_base)
-"dDL" = (
-/obj/machinery/door/airlock/maintenance/abandoned{
-	name = "Storage Room";
-	req_access_txt = "12"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
-"dDM" = (
-/obj/machinery/door/airlock/maintenance/abandoned{
-	name = "Storage Room";
-	req_access_txt = "12"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 
 (1,1,1) = {"
 aaa
@@ -99821,7 +100159,7 @@ aVs
 aVs
 aVs
 cVF
-cVF
+cVW
 cWn
 cVF
 cVF
@@ -129583,7 +129921,7 @@ arI
 atd
 bai
 ate
-dDM
+dpP
 axP
 dnS
 axY
@@ -131380,7 +131718,7 @@ ape
 dnS
 arL
 ate
-dDL
+dpP
 avt
 awJ
 axS

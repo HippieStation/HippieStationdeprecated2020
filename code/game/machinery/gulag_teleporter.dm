@@ -19,8 +19,6 @@ The console is located at computer/gulag_teleporter.dm
 	active_power_usage = 5000
 	circuit = /obj/item/circuitboard/machine/gulag_teleporter
 	var/locked = FALSE
-	var/message_cooldown
-	var/breakout_time = 1
 	var/jumpsuit_type = /obj/item/clothing/under/rank/prisoner
 	var/shoes_type = /obj/item/clothing/shoes/sneakers/orange
 	var/obj/machinery/gulag_item_reclaimer/linked_reclaimer
@@ -48,7 +46,7 @@ The console is located at computer/gulag_teleporter.dm
 
 /obj/machinery/gulag_teleporter/interact(mob/user)
 	if(locked)
-		to_chat(user, "<span class='warning'>[src] is locked!</span>")
+		to_chat(user, "[src] is locked.")
 		return
 	toggle_open()
 
@@ -91,27 +89,28 @@ The console is located at computer/gulag_teleporter.dm
 	if(user.stat != CONSCIOUS)
 		return
 	if(locked)
-		if(message_cooldown <= world.time)
-			message_cooldown = world.time + 50
-			to_chat(user, "<span class='warning'>[src]'s door won't budge!</span>")
+		to_chat(user, "[src] is locked!")
 		return
 	open_machine()
 
 /obj/machinery/gulag_teleporter/container_resist(mob/living/user)
+	var/breakout_time = 600
 	if(!locked)
 		open_machine()
 		return
 	user.changeNext_move(CLICK_CD_BREAKOUT)
 	user.last_special = world.time + CLICK_CD_BREAKOUT
-	user.visible_message("<span class='notice'>You see [user] kicking against the door of [src]!</span>", \
-		"<span class='notice'>You lean on the back of [src] and start pushing the door open... (this will take about [(breakout_time<1) ? "[breakout_time*60] seconds" : "[breakout_time] minute\s"].)</span>", \
-		"<span class='italics'>You hear a metallic creaking from [src].</span>")
-	if(do_after(user,(breakout_time*60*10), target = src)) //minutes * 60seconds * 10deciseconds
+	to_chat(user, "<span class='notice'>You lean on the back of [src] and start pushing the door open... (this will take about a minute.)</span>")
+	user.visible_message("<span class='italics'>You hear a metallic creaking from [src]!</span>")
+
+	if(do_after(user,(breakout_time), target = src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || state_open || !locked)
 			return
+
 		locked = FALSE
-		user.visible_message("<span class='warning'>[user] successfully broke out of [src]!</span>", \
-			"<span class='notice'>You successfully break out of [src]!</span>")
+		visible_message("<span class='warning'>[user] successfully broke out of [src]!</span>")
+		to_chat(user, "<span class='notice'>You successfully break out of [src]!</span>")
+
 		open_machine()
 
 /obj/machinery/gulag_teleporter/proc/locate_reclaimer()

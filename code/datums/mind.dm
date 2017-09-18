@@ -127,10 +127,10 @@
 	memory = null
 
 // Datum antag mind procs
-/datum/mind/proc/add_antag_datum(datum_type, team)
+/datum/mind/proc/add_antag_datum(datum_type)
 	if(!datum_type)
 		return
-	var/datum/antagonist/A = new datum_type(src, team)
+	var/datum/antagonist/A = new datum_type(src)
 	if(!A.can_be_owned(src))
 		qdel(A)
 		return
@@ -189,11 +189,6 @@
 	if(src in SSticker.mode.traitors)
 		src.remove_antag_datum(ANTAG_DATUM_TRAITOR)
 	SSticker.mode.update_traitor_icons_removed(src)
-
-/datum/mind/proc/remove_brother()
-	if(src in SSticker.mode.brothers)
-		src.remove_antag_datum(ANTAG_DATUM_BROTHER)
-	SSticker.mode.update_brother_icons_removed(src)
 
 /datum/mind/proc/remove_nukeop()
 	if(src in SSticker.mode.syndicates)
@@ -304,7 +299,7 @@
 			traitor_mob.mind.store_memory("<B>Radio Frequency:</B> [format_frequency(R.traitor_frequency)] ([R.name]).")
 
 		else if(uplink_loc == PDA)
-			PDA.lock_code = "[rand(100,999)] [pick(GLOB.phonetic_alphabet)]"
+			PDA.lock_code = "[rand(100,999)] [pick("Alpha","Bravo","Charlie","Delta","Echo","Foxtrot","Golf","Hotel","India","Juliet","Kilo","Lima","Mike","November","Oscar","Papa","Quebec","Romeo","Sierra","Tango","Uniform","Victor","Whiskey","X-ray","Yankee","Zulu")]"
 
 			if(!silent) to_chat(traitor_mob, "[employer] has cunningly disguised a Syndicate Uplink as your [PDA.name]. Simply enter the code \"[PDA.lock_code]\" into the ringtone select to unlock its hidden features.")
 			traitor_mob.mind.store_memory("<B>Uplink Passcode:</B> [PDA.lock_code] ([PDA.name]).")
@@ -350,12 +345,6 @@
 		var/obj_count = 1
 		for(var/datum/objective/objective in objectives)
 			output += "<br><B>Objective #[obj_count++]</B>: [objective.explanation_text]"
-			var/list/datum/mind/other_owners = objective.get_owners() - src
-			if(other_owners.len)
-				output += "<ul>"
-				for(var/datum/mind/M in other_owners)
-					output += "<li>Conspirator: [M.name]</li>"
-				output += "</ul>"
 
 	if(window)
 		recipient << browse(output,"window=memory")
@@ -392,7 +381,7 @@
 
 	/** TRAITOR ***/
 	text = "traitor"
-	if (SSticker.mode.config_tag=="traitor" || SSticker.mode.config_tag=="traitorchan" || SSticker.mode.config_tag=="traitorbro")
+	if (SSticker.mode.config_tag=="traitor" || SSticker.mode.config_tag=="traitorchan")
 		text = uppertext(text)
 	text = "<i><b>[text]</b></i>: "
 	if (src in SSticker.mode.traitors)
@@ -411,21 +400,6 @@
 
 
 	if(ishuman(current) || ismonkey(current))
-
-		/** BROTHER **/
-		text = "brother"
-		if(SSticker.mode.config_tag == "traitorbro")
-			text = uppertext(text)
-		text = "<i><b>[text]</b></i>: "
-		if(src in SSticker.mode.brothers)
-			text += "<b>Brother</b> | <a href='?src=\ref[src];brother=clear'>no</a>"
-
-		if(current && current.client && (ROLE_BROTHER in current.client.prefs.be_special))
-			text += " | Enabled in Prefs"
-		else
-			text += " | Disabled in Prefs"
-
-		sections["brother"] = text
 
 		/** CHANGELING ***/
 		text = "changeling"
@@ -545,7 +519,7 @@
 				if(I == src)
 					continue
 				var/mob/M = I
-				if((M.z in GLOB.station_z_levels) && !M.stat)
+				if(M.z == ZLEVEL_STATION && !M.stat)
 					last_healthy_headrev = FALSE
 					break
 			text += "head | not mindshielded | <a href='?src=\ref[src];revolution=clear'>employee</a> | <b>[last_healthy_headrev ? "<font color='red'>LAST </font> " : ""]HEADREV</b> | <a href='?src=\ref[src];revolution=rev'>rev</a>"
@@ -1219,6 +1193,7 @@
 				message_admins("[key_name_admin(usr)] has thrall'ed [current].")
 				log_admin("[key_name(usr)] has thrall'ed [current].")
 	else if(href_list["devil"])
+	else if(href_list["devil"])
 		var/datum/antagonist/devil/devilinfo = has_antag_datum(ANTAG_DATUM_DEVIL)
 		switch(href_list["devil"])
 			if("clear")
@@ -1355,13 +1330,6 @@
 						H = M.humanize(TR_KEEPITEMS  |  TR_KEEPIMPLANTS  |  TR_KEEPORGANS  |  TR_KEEPDAMAGE  |  TR_KEEPVIRUS  |  TR_DEFAULTMSG)
 						if(H)
 							src = H.mind
-
-	else if (href_list["brother"])
-		switch(href_list["brother"])
-			if("clear")
-				remove_brother()
-				log_admin("[key_name(usr)] has de-brother'ed [current].")
-				SSticker.mode.update_brother_icons_removed(src)
 
 	else if (href_list["silicon"])
 		switch(href_list["silicon"])

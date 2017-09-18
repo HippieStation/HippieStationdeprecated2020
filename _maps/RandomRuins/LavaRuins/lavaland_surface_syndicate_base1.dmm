@@ -76,7 +76,8 @@
 /area/ruin/powered/syndicate_lava_base)
 "al" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
+	icon_state = "plant-21";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel/vault,
 /area/ruin/powered/syndicate_lava_base)
@@ -319,7 +320,8 @@
 /area/ruin/powered/syndicate_lava_base)
 "aS" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
+	icon_state = "plant-21";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel/vault{
 	dir = 5
@@ -411,7 +413,8 @@
 /area/ruin/powered/syndicate_lava_base)
 "bd" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
+	icon_state = "plant-21";
+	layer = 4.1
 	},
 /obj/machinery/light/small,
 /turf/open/floor/plasteel/black,
@@ -691,15 +694,16 @@
 /area/ruin/powered/syndicate_lava_base)
 "bJ" = (
 /obj/structure/table/reinforced,
-/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/riot,
-/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/riot,
+/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted,
+/obj/item/gun/ballistic/automatic/c20r/toy/unrestricted,
 /turf/open/floor/plasteel/vault{
 	dir = 8
 	},
 /area/ruin/powered/syndicate_lava_base)
 "bK" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
+	icon_state = "plant-21";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel/vault{
 	dir = 8
@@ -965,7 +969,8 @@
 /area/ruin/powered/syndicate_lava_base)
 "cq" = (
 /obj/item/twohanded/required/kirbyplants{
-	icon_state = "plant-21"
+	icon_state = "plant-21";
+	layer = 4.1
 	},
 /turf/open/floor/plasteel/podhatch{
 	dir = 5
