@@ -1,4 +1,3 @@
-
 /datum/chemical_reaction/slime
 	var/deletes_extract = TRUE
 
@@ -130,31 +129,51 @@
 	T.visible_message("<span class='danger'>The slime extract begins to vibrate adorably!</span>")
 	addtimer(CALLBACK(src, .proc/chemical_mob_spawn, holder, 1, "Friendly Gold Slime", "neutral"), 50)
 
-//Silver
-/datum/chemical_reaction/slime/slimebork
-	name = "Slime Bork"
-	id = "m_tele2"
-	required_reagents = list("plasma" = 1)
-	required_container = /obj/item/slime_extract/silver
+	//WizardSlime
+/datum/chemical_reaction/slime/wizardslime
+	name = "WizardSlime"
+	id = "m_wizard"
+	required_reagents = list("strange_reagent" = 1)
+	required_container = /obj/item/slime_extract/wizard
 	required_other = 1
+	deletes_extract = TRUE
 
-/datum/chemical_reaction/slime/slimebork/on_reaction(datum/reagents/holder)
-	//BORK BORK BORK
-	var/list/borks = getborks()
+/datum/chemical_reaction/slime/wizardslime/on_reaction(datum/reagents/holder)
 	var/turf/T = get_turf(holder.my_atom)
 
 	playsound(T, 'sound/effects/phasein.ogg', 100, 1)
+	new /obj/item/spellbook/oneuse/random(get_turf(holder.my_atom))
 
 	for(var/mob/living/carbon/C in viewers(T, null))
 		C.flash_act()
-
-	for(var/i in 1 to 4 + rand(1,2))
-		var/chosen = pick(borks)
-		var/obj/B = new chosen(T)
-		if(prob(50))
-			for(var/j in 1 to rand(1, 3))
-				step(B, pick(NORTH,SOUTH,EAST,WEST))
 	..()
+
+//Silver
+/datum/chemical_reaction/slime/slimebork
+    name = "Slime Bork"
+    id = "m_tele2"
+    required_reagents = list("plasma" = 1)
+    required_container = /obj/item/slime_extract/silver
+    required_other = 1
+
+/datum/chemical_reaction/slime/slimebork/on_reaction(datum/reagents/holder)
+    //BORK BORK BORK
+    var/list/borks = getborks()
+    var/turf/T = get_turf(holder.my_atom)
+
+    playsound(T, 'sound/effects/phasein.ogg', 100, 1)
+
+    for(var/mob/living/carbon/C in viewers(T, null))
+        C.flash_act()
+
+    for(var/i in 1 to 4 + rand(1,2))
+        var/chosen = pick(borks)
+        var/obj/B = new chosen(T)
+        if(prob(50))
+            for(var/j in 1 to rand(1, 3))
+                step(B, pick(NORTH,SOUTH,EAST,WEST))
+    ..()
+
 
 /datum/chemical_reaction/slime/slimebork/proc/getborks()
 	var/list/blocked = list(/obj/item/reagent_containers/food/snacks,
