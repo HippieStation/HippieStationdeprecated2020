@@ -889,8 +889,7 @@
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
 "acm" = (
-/obj/machinery/power/apc{
-	cell_type = 5000;
+/obj/machinery/power/apc/highcap/five_k{
 	dir = 4;
 	name = "Armory APC";
 	pixel_x = 24;
@@ -2099,6 +2098,7 @@
 /obj/structure/table,
 /obj/item/stack/packageWrap,
 /obj/item/pen,
+/obj/item/stack/ducttape,
 /turf/open/floor/plasteel,
 /area/security/main)
 "aeC" = (
@@ -2520,7 +2520,7 @@
 	dir = 4;
 	id = "pod3";
 	name = "escape pod 3";
-	port_angle = 180;
+	port_direction = 2;
 	preferred_direction = 4
 	},
 /turf/open/floor/mineral/titanium/blue,
@@ -6640,7 +6640,7 @@
 	height = 5;
 	id = "laborcamp";
 	name = "labor camp shuttle";
-	port_angle = 90;
+	port_direction = 4;
 	width = 9
 	},
 /obj/docking_port/stationary{
@@ -13288,6 +13288,8 @@
 /obj/machinery/airalarm{
 	pixel_y = 23
 	},
+/obj/item/stack/ducttape,
+/obj/item/stack/ducttape,
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aDm" = (
@@ -17045,7 +17047,7 @@
 	height = 7;
 	id = "arrival";
 	name = "arrival shuttle";
-	port_angle = -90;
+	port_direction = 8;
 	preferred_direction = 8;
 	width = 15
 	},
@@ -19228,6 +19230,8 @@
 /obj/structure/table,
 /obj/item/stack/cable_coil/random,
 /obj/item/stack/cable_coil/random,
+/obj/item/stack/ducttape,
+/obj/item/stack/ducttape,
 /turf/open/floor/plasteel,
 /area/storage/art)
 "aQZ" = (
@@ -20281,6 +20285,7 @@
 "aTL" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/emergency,
+/obj/item/stack/ducttape,
 /turf/open/floor/plasteel,
 /area/storage/tools)
 "aTM" = (
@@ -21699,7 +21704,7 @@
 /area/bridge)
 "aWV" = (
 /obj/machinery/turretid{
-	control_area = "AI Upload Chamber";
+	control_area = "/area/ai_monitored/turret_protected/ai_upload";
 	name = "AI Upload turret control";
 	pixel_y = -25
 	},
@@ -21715,8 +21720,7 @@
 	},
 /area/bridge)
 "aWW" = (
-/obj/machinery/power/apc{
-	cell_type = 5000;
+/obj/machinery/power/apc/highcap/five_k{
 	dir = 2;
 	name = "Bridge APC";
 	pixel_y = -24
@@ -23618,7 +23622,6 @@
 /area/quartermaster/storage)
 "bbu" = (
 /obj/machinery/power/apc{
-	cell_type = 2500;
 	dir = 1;
 	name = "Captain's Office APC";
 	pixel_y = 24
@@ -24737,8 +24740,7 @@
 /turf/open/floor/plasteel/black,
 /area/ai_monitored/turret_protected/ai_upload)
 "bed" = (
-/obj/machinery/power/apc{
-	cell_type = 5000;
+/obj/machinery/power/apc/highcap/five_k{
 	dir = 2;
 	name = "Upload APC";
 	pixel_y = -24
@@ -25397,7 +25399,7 @@
 /area/crew_quarters/heads/captain)
 "bfE" = (
 /obj/structure/table/wood,
-/obj/item/pinpointer,
+/obj/item/pinpointer/nuke,
 /obj/item/disk/nuclear,
 /obj/item/storage/secure/safe{
 	pixel_x = 35;
@@ -27012,6 +27014,7 @@
 /obj/structure/table,
 /obj/item/clothing/head/soft,
 /obj/item/clothing/head/soft,
+/obj/item/stack/ducttape,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "bjo" = (
@@ -31938,6 +31941,7 @@
 	pixel_x = -24
 	},
 /obj/item/folder/yellow,
+/obj/item/stack/ducttape,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "btu" = (
@@ -33821,7 +33825,7 @@
 	height = 24;
 	id = "syndicate";
 	name = "syndicate infiltrator";
-	port_angle = 0;
+	port_direction = 1;
 	roundstart_move = "syndicate_away";
 	width = 18
 	},
@@ -39506,7 +39510,7 @@
 	height = 5;
 	id = "mining";
 	name = "mining shuttle";
-	port_angle = 90;
+	port_direction = 4;
 	width = 7
 	},
 /obj/docking_port/stationary{
@@ -40127,27 +40131,15 @@
 /turf/closed/wall,
 /area/quartermaster/miningdock)
 "bKn" = (
-/obj/structure/rack{
-	dir = 1
-	},
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
-	},
-/obj/item/pickaxe{
-	pixel_x = 5
-	},
-/obj/item/shovel{
-	pixel_x = -5
-	},
-/turf/open/floor/plasteel,
+/obj/mecha/working/ripley/mining_roundstart,
+/turf/open/floor/mech_bay_recharge_floor,
 /area/quartermaster/miningdock)
 "bKo" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "bKp" = (
-/obj/structure/closet/crate,
+/obj/machinery/computer/mech_bay_power_console,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "bKq" = (
@@ -44038,8 +44030,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "bSX" = (
-/obj/machinery/power/apc{
-	cell_type = 5000;
+/obj/machinery/power/apc/highcap/five_k{
 	dir = 1;
 	name = "Virology APC";
 	pixel_x = 0;
@@ -45692,8 +45683,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/power/apc{
-	cell_type = 5000;
+/obj/machinery/power/apc/highcap/five_k{
 	dir = 1;
 	name = "Telecoms Server APC";
 	pixel_x = 0;
@@ -47959,8 +47949,7 @@
 /turf/open/floor/plating,
 /area/tcommsat/computer)
 "cbp" = (
-/obj/machinery/power/apc{
-	cell_type = 5000;
+/obj/machinery/power/apc/highcap/five_k{
 	dir = 4;
 	name = "CE Office APC";
 	pixel_x = 24;
@@ -51175,8 +51164,7 @@
 /turf/open/floor/plasteel/yellow/side,
 /area/engine/engineering)
 "cib" = (
-/obj/machinery/power/apc{
-	cell_type = 15000;
+/obj/machinery/power/apc/highcap/fifteen_k{
 	dir = 1;
 	name = "Engineering APC";
 	pixel_x = 0;
@@ -54790,7 +54778,7 @@
 	dir = 4;
 	id = "pod4";
 	name = "escape pod 4";
-	port_angle = 180;
+	port_direction = 2;
 	preferred_direction = 4
 	},
 /turf/open/floor/mineral/titanium/blue,
@@ -55102,7 +55090,7 @@
 	dir = 8;
 	id = "pod2";
 	name = "escape pod 2";
-	port_angle = 180
+	port_direction = 2
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/pod_2)
@@ -56673,7 +56661,7 @@
 /area/ai_monitored/turret_protected/aisat_interior)
 "cud" = (
 /obj/machinery/turretid{
-	control_area = "AI Satellite Antechamber";
+	control_area = "/area/ai_monitored/turret_protected/aisat_interior";
 	enabled = 1;
 	icon_state = "control_standby";
 	name = "Antechamber Turret Control";
@@ -56974,7 +56962,7 @@
 	start_active = 1
 	},
 /obj/machinery/turretid{
-	control_area = "AI Satellite Atmos";
+	control_area = "/area/ai_monitored/turret_protected/aisat/atmos";
 	enabled = 1;
 	icon_state = "control_standby";
 	name = "Atmospherics Turret Control";
@@ -57000,7 +56988,7 @@
 	dir = 4
 	},
 /obj/machinery/turretid{
-	control_area = "AI Satellite Service";
+	control_area = "/area/ai_monitored/turret_protected/aisat/service";
 	enabled = 1;
 	icon_state = "control_standby";
 	name = "Service Bay Turret Control";
@@ -57346,7 +57334,7 @@
 	scrub_Toxins = 0
 	},
 /obj/machinery/turretid{
-	control_area = "AI Satellite Hallway";
+	control_area = "/area/ai_monitored/turret_protected/aisat/hallway";
 	enabled = 1;
 	icon_state = "control_standby";
 	name = "Chamber Hallway Turret Control";
@@ -58035,7 +58023,7 @@
 	dir = 8
 	},
 /obj/machinery/turretid{
-	control_area = "AI Chamber";
+	control_area = "/area/ai_monitored/turret_protected/ai";
 	name = "AI Chamber turret control";
 	pixel_x = 5;
 	pixel_y = -24
@@ -58053,8 +58041,7 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc{
-	cell_type = 5000;
+/obj/machinery/power/apc/highcap/five_k{
 	dir = 2;
 	name = "AI Chamber APC";
 	pixel_y = -24
@@ -58443,7 +58430,7 @@
 	height = 13;
 	id = "ferry";
 	name = "ferry shuttle";
-	port_angle = 0;
+	port_direction = 1;
 	preferred_direction = 4;
 	roundstart_move = "ferry_away";
 	width = 5
@@ -58467,7 +58454,7 @@
 	dir = 8;
 	id = "pod1";
 	name = "escape pod 1";
-	port_angle = 180
+	port_direction = 2
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/pod_1)
@@ -58640,7 +58627,7 @@
 	id = "whiteship";
 	launch_status = 0;
 	name = "NT Medical Ship";
-	port_angle = -90;
+	port_direction = 8;
 	preferred_direction = 4;
 	roundstart_move = "whiteship_away";
 	timid = null;
@@ -63010,8 +62997,7 @@
 	},
 /area/shuttle/syndicate)
 "cIn" = (
-/obj/structure/table/reinforced,
-/obj/item/folder/red,
+/obj/machinery/computer/camera_advanced/shuttle_docker/syndicate,
 /turf/open/floor/plasteel/vault{
 	dir = 8
 	},
@@ -63050,11 +63036,12 @@
 	pixel_x = -32
 	},
 /obj/item/clipboard,
-/obj/item/toy/figure/syndie,
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 8
 	},
+/obj/item/folder/red,
+/obj/item/toy/figure/syndie,
 /turf/open/floor/plasteel/vault{
 	dir = 8
 	},
@@ -63323,7 +63310,7 @@
 	height = 24;
 	id = "syndicate";
 	name = "syndicate infiltrator";
-	port_angle = 0;
+	port_direction = 1;
 	roundstart_move = "syndicate_away";
 	width = 18
 	},
@@ -64995,7 +64982,6 @@
 /area/quartermaster/sorting)
 "cNL" = (
 /obj/machinery/power/apc{
-	cell_type = 2500;
 	dir = 1;
 	name = "Central Maintenance APC";
 	pixel_y = 24
@@ -69284,6 +69270,19 @@
 	},
 /turf/closed/wall,
 /area/maintenance/starboard/aft)
+"dcz" = (
+/obj/structure/rack,
+/obj/item/shovel,
+/obj/item/pickaxe,
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/plasteel/brown{
+	dir = 8
+	},
+/area/quartermaster/miningdock)
+"dcA" = (
+/obj/machinery/mech_bay_recharge_port,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 
 (1,1,1) = {"
 aaa
@@ -91023,7 +91022,7 @@ bxu
 bxy
 bxy
 bGj
-bHA
+dcz
 bHA
 bKl
 bxy
@@ -91282,7 +91281,7 @@ bEK
 byE
 byE
 byE
-byE
+dcA
 bGi
 apQ
 apQ
@@ -115448,15 +115447,15 @@ bJO
 bWr
 bWr
 dbS
-bTo
-bTo
-bTo
-bTo
+dbN
+dbN
+dbN
+dbN
 bYj
 bZc
 bPN
-bTo
-bTo
+dbN
+dbN
 bQZ
 bNB
 ceM
@@ -115706,13 +115705,13 @@ bQX
 dbO
 bPN
 dbT
-bTo
+dbN
 bWp
-bTo
+dbN
 bYi
 dcg
 dck
-bTo
+dbN
 cbV
 bQZ
 blQ
@@ -115970,7 +115969,7 @@ caZ
 cba
 dcl
 cbc
-bTo
+dbN
 bQZ
 cdR
 ceO
@@ -116474,11 +116473,11 @@ bMu
 bMu
 bEC
 dbM
-dbP
+dbM
 bTl
 bQU
 dbW
-bTo
+dbN
 bOw
 dce
 dci
@@ -116734,10 +116733,10 @@ bQT
 bSg
 bTk
 bSh
-dbX
+dbW
 dcb
 bOv
-bYk
+dce
 dcj
 bPN
 cjW
@@ -116992,9 +116991,9 @@ bSi
 bTm
 bUn
 dbY
-bTo
+dbN
 bOw
-bYk
+dce
 bYm
 bZZ
 ckN
@@ -117248,7 +117247,7 @@ bQT
 bSh
 coT
 bTl
-dbZ
+dbY
 bNZ
 bOy
 bZd
@@ -117514,7 +117513,7 @@ cab
 cbd
 cbX
 ccT
-bSc
+dcl
 dcx
 cfu
 cgu
@@ -118016,11 +118015,11 @@ bNy
 bOH
 bEs
 bQY
-dbQ
-bTo
-bTo
-bTo
-bTo
+dbN
+dbN
+dbN
+dbN
+dbN
 bXs
 bPL
 bQI
@@ -118274,16 +118273,16 @@ bOG
 bEs
 dbN
 bSk
-bTo
-bTo
-bTo
-bTo
+dbN
+dbN
+dbN
+dbN
 bXr
 bPF
-bTo
-bTo
-bTo
-cbY
+dbN
+dbN
+dbN
+dcj
 bQZ
 cOe
 cNW
@@ -118530,11 +118529,11 @@ bNz
 bOI
 bEs
 bRa
-dbR
-bTo
-bTo
+dbN
+dbN
+dbN
 bVs
-bTo
+dbN
 bXt
 bPM
 bZh

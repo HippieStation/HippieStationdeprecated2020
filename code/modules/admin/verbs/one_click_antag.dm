@@ -11,19 +11,19 @@
 /datum/admins/proc/one_click_antag()
 
 	var/dat = {"
-		<a href='?src=\ref[src];makeAntag=traitors'>Make Traitors</a><br>
-		<a href='?src=\ref[src];makeAntag=changelings'>Make Changelings</a><br>
-		<a href='?src=\ref[src];makeAntag=revs'>Make Revs</a><br>
-		<a href='?src=\ref[src];makeAntag=cult'>Make Cult</a><br>
-		<a href='?src=\ref[src];makeAntag=clockcult'>Make Clockwork Cult</a><br>
-		<a href='?src=\ref[src];makeAntag=blob'>Make Blob</a><br>
-		<a href='?src=\ref[src];makeAntag=wizard'>Make Wizard (Requires Ghosts)</a><br>
-		<a href='?src=\ref[src];makeAntag=nukeops'>Make Nuke Team (Requires Ghosts)</a><br>
-		<a href='?src=\ref[src];makeAntag=centcom'>Make CentCom Response Team (Requires Ghosts)</a><br>
-		<a href='?src=\ref[src];makeAntag=abductors'>Make Abductor Team (Requires Ghosts)</a><br>
-		<a href='?src=\ref[src];makeAntag=revenant'>Make Revenant (Requires Ghost)</a><br>
-		<a href='?src=\ref[src];makeAntag=messiah'>Make Messiah (Requires Ghost)</a><br>
-		<a href='?src=\ref[src];makeAntag=shadowling'>Make Shadowling</a><br>
+		<a href='?src=\ref[src];[HrefToken()];makeAntag=traitors'>Make Traitors</a><br>
+		<a href='?src=\ref[src];[HrefToken()];makeAntag=changelings'>Make Changelings</a><br>
+		<a href='?src=\ref[src];[HrefToken()];makeAntag=revs'>Make Revs</a><br>
+		<a href='?src=\ref[src];[HrefToken()];makeAntag=cult'>Make Cult</a><br>
+		<a href='?src=\ref[src];[HrefToken()];makeAntag=clockcult'>Make Clockwork Cult</a><br>
+		<a href='?src=\ref[src];[HrefToken()];makeAntag=blob'>Make Blob</a><br>
+		<a href='?src=\ref[src];[HrefToken()];makeAntag=wizard'>Make Wizard (Requires Ghosts)</a><br>
+		<a href='?src=\ref[src];[HrefToken()];makeAntag=nukeops'>Make Nuke Team (Requires Ghosts)</a><br>
+		<a href='?src=\ref[src];[HrefToken()];makeAntag=centcom'>Make CentCom Response Team (Requires Ghosts)</a><br>
+		<a href='?src=\ref[src];[HrefToken()];makeAntag=abductors'>Make Abductor Team (Requires Ghosts)</a><br>
+		<a href='?src=\ref[src];[HrefToken()];makeAntag=revenant'>Make Revenant (Requires Ghost)</a><br>
+		<a href='?src=\ref[src];[HrefToken()];makeAntag=messiah'>Make Messiah (Requires Ghost)</a><br>
+		<a href='?src=\ref[src];[HrefToken()];makeAntag=shadowling'>Make Shadowling</a><br>
 		"}
 
 	var/datum/browser/popup = new(usr, "oneclickantag", "Quick-Create Antagonist", 400, 400)
@@ -81,7 +81,7 @@
 	for(var/mob/living/carbon/human/applicant in GLOB.player_list)
 		if(ROLE_CHANGELING in applicant.client.prefs.be_special)
 			var/turf/T = get_turf(applicant)
-			if(applicant.stat == CONSCIOUS && applicant.mind && !applicant.mind.special_role && T.z == ZLEVEL_STATION)
+			if(applicant.stat == CONSCIOUS && applicant.mind && !applicant.mind.special_role && (T.z in GLOB.station_z_levels))
 				if(!jobban_isbanned(applicant, ROLE_CHANGELING) && !jobban_isbanned(applicant, "Syndicate"))
 					if(temp.age_check(applicant.client))
 						if(!(applicant.job in temp.restricted_jobs))
@@ -114,7 +114,7 @@
 	for(var/mob/living/carbon/human/applicant in GLOB.player_list)
 		if(ROLE_REV in applicant.client.prefs.be_special)
 			var/turf/T = get_turf(applicant)
-			if(applicant.stat == CONSCIOUS && applicant.mind && !applicant.mind.special_role && T.z == ZLEVEL_STATION)
+			if(applicant.stat == CONSCIOUS && applicant.mind && !applicant.mind.special_role && (T.z in GLOB.station_z_levels))
 				if(!jobban_isbanned(applicant, ROLE_REV) && !jobban_isbanned(applicant, "Syndicate"))
 					if(temp.age_check(applicant.client))
 						if(!(applicant.job in temp.restricted_jobs))
@@ -156,7 +156,7 @@
 	for(var/mob/living/carbon/human/applicant in GLOB.player_list)
 		if(ROLE_CULTIST in applicant.client.prefs.be_special)
 			var/turf/T = get_turf(applicant)
-			if(applicant.stat == CONSCIOUS && applicant.mind && !applicant.mind.special_role && T.z == ZLEVEL_STATION)
+			if(applicant.stat == CONSCIOUS && applicant.mind && !applicant.mind.special_role && (T.z in GLOB.station_z_levels))
 				if(!jobban_isbanned(applicant, ROLE_CULTIST) && !jobban_isbanned(applicant, "Syndicate"))
 					if(temp.age_check(applicant.client))
 						if(!(applicant.job in temp.restricted_jobs))
@@ -189,7 +189,7 @@
 	for(var/mob/living/carbon/human/applicant in GLOB.player_list)
 		if(ROLE_SERVANT_OF_RATVAR in applicant.client.prefs.be_special)
 			var/turf/T = get_turf(applicant)
-			if(applicant.stat == CONSCIOUS && applicant.mind && !applicant.mind.special_role && T.z == ZLEVEL_STATION)
+			if(applicant.stat == CONSCIOUS && applicant.mind && !applicant.mind.special_role && (T.z in GLOB.station_z_levels))
 				if(!jobban_isbanned(applicant, ROLE_SERVANT_OF_RATVAR) && !jobban_isbanned(applicant, "Syndicate"))
 					if(temp.age_check(applicant.client))
 						if(!(applicant.job in temp.restricted_jobs))

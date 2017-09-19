@@ -94,7 +94,8 @@
 	if(!isturf(loc) && command)
 		return
 	var/turf/T = get_turf(loc)
-	T.air_update_turf(command)
+	if(T) //because we need this for some shitty reason
+		T.air_update_turf(command)
 
 /turf/air_update_turf(command = 0)
 	if(command)
@@ -106,7 +107,7 @@
         T.air_update_turf(1)
     air_update_turf(1)
 
-/atom/proc/atmos_spawn_air(text) //because a lot of people loves to copy paste awful code lets just make a easy proc to spawn your plasma fires
+/atom/proc/atmos_spawn_air(text) //because a lot of people loves to copy paste awful code lets just make an easy proc to spawn your plasma fires
 	var/turf/open/T = get_turf(src)
 	if(!istype(T))
 		return
