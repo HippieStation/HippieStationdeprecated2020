@@ -1,5 +1,11 @@
 
 /datum/job/ai/proc/can_be_malf(mob/living/M)
+	var/list/living_crew = list()
+	for(var/mob/Player in GLOB.mob_list)
+		if(Player.mind && Player.stat != DEAD && !isbrain(Player) && Player.client)
+			living_crew += Player
+	if(living_crew.len < config.min_malf)
+		return FALSE
 	if(jobban_isbanned(M, "Syndicate") || jobban_isbanned(M, ROLE_MALF) || jobban_isbanned(M, ROLE_TRAITOR))
 		return FALSE
 	if(ROLE_MALF in M.client.prefs.be_special)

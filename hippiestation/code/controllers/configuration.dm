@@ -3,7 +3,7 @@
 	var/internet_address_to_use = null
 	var/token_generator = null
 	var/token_consumer = null
-
+	var/min_malf = 20
 	var/list/malf_chance = list()
 
 //Here we can load hippie specific config settings.
@@ -56,6 +56,8 @@
 					config.token_generator = value
 				if ("token_consumer")
 					config.token_consumer = value
+				if ("min_malf_pop")
+					config.min_malf = text2num(value)
 				if ("malf_chance")
 					var/prob_pos = findtext(value, " ")
 					var/prob_name = null
