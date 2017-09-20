@@ -45,6 +45,7 @@
 	restricted_roles = list("Botanist", "Chef", "Bartender")
 	item = /obj/item/twohanded/required/chainsaw/energy
 	cost = 16
+	player_minimum = 20
 
 /* Glock */
 /datum/uplink_item/dangerous/g17
