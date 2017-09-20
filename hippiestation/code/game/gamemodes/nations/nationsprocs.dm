@@ -25,23 +25,21 @@
 	set desc = "Click to set a rank for Leaders and Members."
 
 	var/datum/game_mode/nations/mode = get_nations_mode()
-	if(!mode)
+	if(!mode || !mind)
 		return TRUE
-	if(!mode.kickoff)
+	if(!mode.kickoff || stat == DEAD)
 		return TRUE
 
-	var/mob/living/carbon/human/H = src
-	if(H.stat==DEAD) return
-	if(H.mind && H.mind.nation && H.mind.nation.current_leader == H)
+	if(mind.nation && mind.nation.current_leader == src)
 		var/type = input(H, "What rank do you want to change?", "Rename Rank", "") in list("Leader", "Heir", "Member")
 		var/input = stripped_input(H,"What rank do you want?", ,"", MAX_NAME_LEN)
 		if(input)
 			if(type == "Leader")
-				H.mind.nation.leader_rank = input
+				mind.nation.leader_rank = input
 			if(type == "Heir")
-				H.mind.nation.heir_rank = input
+				mind.nation.heir_rank = input
 			if(type == "Member")
-				H.mind.nation.member_rank = input
+				mind.nation.member_rank = input
 			H.mind.nation.update_nation_id()
 			to_chat(H, "You changed the [type] rank of your nation to [input].")
 			return TRUE
@@ -52,17 +50,15 @@
 	set desc = "Click to pick a Heir. Note that the Heir has the ability to take over your role at ANY TIME. Choose carefully."
 
 	var/datum/game_mode/nations/mode = get_nations_mode()
-	if(!mode)
+	if(!mode || !mind)
 		return TRUE
-	if(!mode.kickoff)
+	if(!mode.kickoff || stat == DEAD)
 		return TRUE
-	var/mob/living/carbon/human/H = src
-	if(H.stat==DEAD)
-		return
-	if(H.mind && H.mind.nation && H.mind.nation.current_leader == H)
-		var/heir = input(H, "Who do you wish to make your heir?", "Choose Heir", "") as null|anything in H.mind.nation.membership
+
+	if(mind.nation && mind.nation.current_leader == src)
+		var/heir = input(src, "Who do you wish to make your heir?", "Choose Heir", "") as null|anything in mind.nation.membership
 		if(heir)
-			if(H.mind.nation.heir)
+			if(mind.nation.heir)
 				var/mob/living/carbon/human/oldheir = H.mind.nation.heir
 				to_chat(oldheir, "You are no longer the heir to your nation!")
 				oldheir.verbs -= /mob/living/carbon/human/proc/takeover
@@ -115,6 +111,7 @@
 				else
 					I.name = "[I.registered_name]'s ID Card ([current_name] [member_rank])"
 					I.assignment = "[current_name] [member_rank]"
+
 
 #undef ATMOSIA
 #undef BRIGSTON
