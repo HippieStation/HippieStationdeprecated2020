@@ -10,6 +10,7 @@
 	throwforce = 5
 	hitsound = 'hippiestation/sound/misc/squishy.ogg'
 	attack_verb = list("slapped")
+	w_class = 10
 
 /obj/item/dragon/suicide_act(mob/user)
 	user.visible_message(pick("<span class='suicide'>[user] is shoving [src.name] down \his throat! It looks like they're trying to commit suicide.</span>"))
@@ -21,6 +22,7 @@
 	icon_state = "seadragon"
 	force = 5
 	throwforce = 5
+	w_class = 3
 
 /obj/item/dragon/canine
 	name = "Canine Dildo"
@@ -28,6 +30,7 @@
 	icon_state = "canine"
 	force = 5
 	throwforce = 7
+	w_class = 1
 
 /obj/item/dragon/equine
 	name = "Equine Dildo"
@@ -35,6 +38,7 @@
 	icon_state = "equine"
 	force = 11
 	throwforce = 9
+	w_class = 4
 
 /obj/structure/statue/dragon/shelf
 	name = "Dragon Dildo Shelf"
