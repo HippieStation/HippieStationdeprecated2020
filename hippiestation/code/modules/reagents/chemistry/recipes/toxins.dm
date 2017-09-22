@@ -123,3 +123,9 @@
 	results = list("tabun" = 1, "goop" = 9)
 	required_reagents = list("tabunc" = 3)
 	centrifuge_recipe = TRUE
+
+/datum/chemical_reaction/carborane
+	name = "Carborane Acid"
+	id = "carborane"
+	results = list("carborane" = 1)
+	required_reagents = list("chlorine" = 11, "chloralhydrate" = 11, "hydrogen" = 1)
