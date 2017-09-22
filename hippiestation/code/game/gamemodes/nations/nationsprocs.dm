@@ -2,21 +2,20 @@
 	set name = "Rename Nation"
 	set category = "Nations"
 	set desc = "Click to rename your nation. You are only able to do this once."
+
 	var/datum/game_mode/nations/mode = get_nations_mode()
-	if(!mode)
-		return TRUE
-	if(!mode.kickoff)
-		return TRUE
-	var/mob/living/carbon/human/H = src
-	if(H.stat == DEAD)
+	if(!mode || !mind)
 		return FALSE
-	if(H.mind && H.mind.nation && H.mind.nation.current_leader == H)
-		var/input = stripped_input(H,"What do you want to name your nation?", ,"", MAX_NAME_LEN)
+	if(!mode.kickoff || stat == DEAD)
+		return FALSE
+
+	if(mind.nation && mind.nation.current_leader == src)
+		var/input = stripped_input(src,"What do you want to name your nation?", ,"", MAX_NAME_LEN)
 		if(input)
-			H.mind.nation.current_name = input
-			H.mind.nation.update_nation_id()
-			to_chat(H, "You rename your nation to [input].")
-			H.verbs -= /mob/living/carbon/human/proc/set_nation_name
+			mind.nation.current_name = input
+			mind.nation.update_nation_id()
+			to_chat(src, "You rename your nation to [input].")
+			verbs -= /mob/living/carbon/human/proc/set_nation_name
 			return TRUE
 
 /mob/living/carbon/human/proc/set_ranks()
@@ -26,13 +25,13 @@
 
 	var/datum/game_mode/nations/mode = get_nations_mode()
 	if(!mode || !mind)
-		return TRUE
+		return FALSE
 	if(!mode.kickoff || stat == DEAD)
-		return TRUE
+		return FALSE
 
 	if(mind.nation && mind.nation.current_leader == src)
-		var/type = input(H, "What rank do you want to change?", "Rename Rank", "") in list("Leader", "Heir", "Member")
-		var/input = stripped_input(H,"What rank do you want?", ,"", MAX_NAME_LEN)
+		var/type = input(src, "What rank do you want to change?", "Rename Rank", "") in list("Leader", "Heir", "Member")
+		var/input = stripped_input(src,"What rank do you want?", ,"", MAX_NAME_LEN)
 		if(input)
 			if(type == "Leader")
 				mind.nation.leader_rank = input
@@ -40,8 +39,8 @@
 				mind.nation.heir_rank = input
 			if(type == "Member")
 				mind.nation.member_rank = input
-			H.mind.nation.update_nation_id()
-			to_chat(H, "You changed the [type] rank of your nation to [input].")
+			mind.nation.update_nation_id()
+			to_chat(src, "You changed the [type] rank of your nation to [input].")
 			return TRUE
 
 /mob/living/carbon/human/proc/choose_heir()
@@ -51,9 +50,9 @@
 
 	var/datum/game_mode/nations/mode = get_nations_mode()
 	if(!mode || !mind)
-		return TRUE
+		return FALSE
 	if(!mode.kickoff || stat == DEAD)
-		return TRUE
+		return FALSE
 
 	if(mind.nation && mind.nation.current_leader == src)
 		var/heir = input(src, "Who do you wish to make your heir?", "Choose Heir", "") as null|anything in mind.nation.membership
@@ -68,6 +67,7 @@
 			to_chat(newheir, "You have been selected to be the heir to your nation's leadership!")
 			to_chat(H, "You have selected [heir] to be your heir!")
 			H.mind.nation.update_nation_id()
+			return TRUE
 
 /mob/living/carbon/human/proc/takeover()
 	set name = "Become Leader"
@@ -112,6 +112,8 @@
 					I.name = "[I.registered_name]'s ID Card ([current_name] [member_rank])"
 					I.assignment = "[current_name] [member_rank]"
 
+
+/datum/nations/proc/promote_member(mob/living/carbon/human/H, leader)
 
 #undef ATMOSIA
 #undef BRIGSTON

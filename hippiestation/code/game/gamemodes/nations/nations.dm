@@ -15,30 +15,6 @@ Use these to refer to nations in GLOB.all_nations: */
 	required_players = 0
 	var/kickoff = 0
 
-/datum/nations/brigston
-	default_name = "Brigston"
-	default_leader = "Head of Security"
-
-/datum/nations/cargonia
-	default_name = "Cargonia"
-	default_leader = "Quartermaster"
-
-/datum/nations/command
-	default_name = "People's Republic of Commandzakstan"
-	default_leader = "Captain"
-
-/datum/nations/medistan
-	default_name = "Medistan"
-	default_leader = "Chief Medical Officer"
-
-/datum/nations/scientopia
-	default_name = "Scientopia"
-	default_leader = "Research Director"
-
-/datum/nations/service
-	default_name = "Servicion"
-	default_leader = "Bartender"
-
 /datum/game_mode/nations/send_intercept()
 	priority_announce("Due to recent and COMPLETELY UNFOUNDED allegations of massive fraud and insider trading \
 					affecting trillions of investors, the Nanotrasen Corporation has decided to liquidate all \
