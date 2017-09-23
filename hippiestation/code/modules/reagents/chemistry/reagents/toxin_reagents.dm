@@ -364,3 +364,36 @@
 	if(T && T.color != initial(T.color))
 		T.color = initial(T.color)
 	..()
+
+/datum/reagent/toxin/carborane
+	name = "Carborane Acid"
+	id = "carborane"
+	description = "The strongest acid known to man with the formula H(CHB11Cl11)"
+	color = "#00FF32"
+	toxpwr = 1
+	var/acidpwr = 50 //the amount of protection removed from the armour
+	taste_description = "acid"
+
+/datum/reagent/toxin/acid/reaction_mob(mob/living/carbon/C, method=TOUCH, reac_volume)
+	if(!istype(C))
+		return
+	reac_volume = round(reac_volume,1.5)
+	if(method == INGEST)
+		C.adjustBruteLoss(min(10*toxpwr, reac_volume * toxpwr))
+		return
+	if(method == INJECT)
+		C.adjustBruteLoss(1.5 * min(6*toxpwr, reac_volume * toxpwr))
+		return
+	C.acid_act(acidpwr, reac_volume)
+
+/datum/reagent/toxin/acid/reaction_obj(obj/O, reac_volume)
+	if(ismob(O.loc)) //handled in human acid_act()
+		return
+	reac_volume = round(reac_volume,1.5)
+	O.acid_act(acidpwr, reac_volume)
+
+/datum/reagent/toxin/acid/reaction_turf(turf/T, reac_volume)
+	if (!istype(T))
+		return
+	reac_volume = round(reac_volume,2.0)
+	T.acid_act(acidpwr, reac_volume)
