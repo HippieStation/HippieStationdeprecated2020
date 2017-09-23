@@ -2360,6 +2360,7 @@
 #include "hippiestation\code\modules\jobs\job_types\engineering.dm"
 #include "hippiestation\code\modules\jobs\job_types\medical.dm"
 #include "hippiestation\code\modules\jobs\job_types\science.dm"
+#include "hippiestation\code\modules\jobs\job_types\silicon.dm"
 #include "hippiestation\code\modules\library\lib_machines.dm"
 #include "hippiestation\code\modules\mentor\follow.dm"
 #include "hippiestation\code\modules\mentor\mentor_memo.dm"
