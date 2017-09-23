@@ -448,7 +448,7 @@
 				if("Hardest Restart (No actions, just reboot)")
 					world.Reboot(fast_track = TRUE)
 				if("Server Restart (Kill and restart DD)")
-					to_chat(world, "Server restart - [init_by]")
+					to_chat(world, "Server restart - [usr.client.holder.fakekey ? "Admin" : usr.key]")
 					SERVER_TOOLS_REBOOT_BYOND
 
 /datum/admins/proc/end_round()
