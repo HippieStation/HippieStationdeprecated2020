@@ -1,5 +1,5 @@
-/datum/martial_art/krav_maga
-	name = "Krav Maga"
+/datum/martial_art/krav_magooba
+	name = "Krav Magooba"
 	var/datum/action/neck_chop/neckchop = new/datum/action/neck_chop()
 	var/datum/action/leg_sweep/legsweep = new/datum/action/leg_sweep()
 	var/datum/action/lung_punch/lungpunch = new/datum/action/lung_punch()
@@ -11,7 +11,7 @@
 
 /datum/action/neck_chop/Trigger()
 	if(owner.incapacitated())
-		to_chat(owner, "<span class='warning'>You can't use Krav Maga while you're incapacitated.</span>")
+		to_chat(owner, "<span class='warning'>You can't use Krav Magooba while you're incapacitated.</span>")
 		return
 	var/mob/living/carbon/human/H = owner
 	if (H.mind.martial_art.streak == "neck_chop")
@@ -28,7 +28,7 @@
 
 /datum/action/leg_sweep/Trigger()
 	if(owner.incapacitated())
-		to_chat(owner, "<span class='warning'>You can't use Krav Maga while you're incapacitated.</span>")
+		to_chat(owner, "<span class='warning'>You can't use Krav Magooba while you're incapacitated.</span>")
 		return
 	var/mob/living/carbon/human/H = owner
 	if (H.mind.martial_art.streak == "leg_sweep")
@@ -45,7 +45,7 @@
 
 /datum/action/lung_punch/Trigger()
 	if(owner.incapacitated())
-		to_chat(owner, "<span class='warning'>You can't use Krav Maga while you're incapacitated.</span>")
+		to_chat(owner, "<span class='warning'>You can't use Krav Magooba while you're incapacitated.</span>")
 		return
 	var/mob/living/carbon/human/H = owner
 	if (H.mind.martial_art.streak == "quick_choke")
@@ -55,21 +55,21 @@
 		owner.visible_message("<span class='danger'>[owner] assumes the Lung Punch stance!</span>", "<b><i>Your next attack will be a Lung Punch.</i></b>")
 		H.mind.martial_art.streak = "quick_choke"//internal name for lung punch
 
-/datum/martial_art/krav_maga/teach(mob/living/carbon/human/H,make_temporary=0)
+/datum/martial_art/krav_magooba/teach(mob/living/carbon/human/H,make_temporary=0)
 	if(..())
-		to_chat(H, "<span class = 'userdanger'>You know the arts of Krav Maga!</span>")
+		to_chat(H, "<span class = 'userdanger'>You know the arts of Krav Magooba!</span>")
 		to_chat(H, "<span class = 'danger'>Place your cursor over a move at the top of the screen to see what it does.</span>")
 		neckchop.Grant(H)
 		legsweep.Grant(H)
 		lungpunch.Grant(H)
 
-/datum/martial_art/krav_maga/on_remove(mob/living/carbon/human/H)
-	to_chat(H, "<span class = 'userdanger'>You suddenly forget the arts of Krav Maga...</span>")
+/datum/martial_art/krav_magooba/on_remove(mob/living/carbon/human/H)
+	to_chat(H, "<span class = 'userdanger'>You suddenly forget the arts of Krav Magooba...</span>")
 	neckchop.Remove(H)
 	legsweep.Remove(H)
 	lungpunch.Remove(H)
 
-/datum/martial_art/krav_maga/proc/check_streak(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
+/datum/martial_art/krav_magooba/proc/check_streak(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
 	switch(streak)
 		if("neck_chop")
 			streak = ""
@@ -85,7 +85,7 @@
 			return 1
 	return 0
 
-/datum/martial_art/krav_maga/proc/leg_sweep(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
+/datum/martial_art/krav_magooba/proc/leg_sweep(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
 	if(D.stat || D.IsKnockdown())
 		return 0
 	D.visible_message("<span class='warning'>[A] leg sweeps [D]!</span>", \
@@ -96,7 +96,7 @@
 	add_logs(A, D, "leg sweeped")
 	return 1
 
-/datum/martial_art/krav_maga/proc/quick_choke(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)//is actually lung punch
+/datum/martial_art/krav_magooba/proc/quick_choke(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)//is actually lung punch
 	D.visible_message("<span class='warning'>[A] pounds [D] on the chest!</span>", \
 				  	"<span class='userdanger'>[A] slams your chest! You can't breathe!</span>")
 	playsound(get_turf(A), 'sound/effects/hit_punch.ogg', 50, 1, -1)
@@ -106,7 +106,7 @@
 	add_logs(A, D, "quickchoked")
 	return 1
 
-/datum/martial_art/krav_maga/proc/neck_chop(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
+/datum/martial_art/krav_magooba/proc/neck_chop(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
 	D.visible_message("<span class='warning'>[A] karate chops [D]'s neck!</span>", \
 				  	"<span class='userdanger'>[A] karate chops your neck, rendering you unable to speak!</span>")
 	playsound(get_turf(A), 'sound/effects/hit_punch.ogg', 50, 1, -1)
@@ -116,13 +116,13 @@
 	add_logs(A, D, "neck chopped")
 	return 1
 
-/datum/martial_art/krav_maga/grab_act(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
+/datum/martial_art/krav_magooba/grab_act(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
 	if(check_streak(A,D))
 		return 1
-	add_logs(A, D, "grabbed with krav maga")
+	add_logs(A, D, "grabbed with krav magooba")
 	..()
 
-/datum/martial_art/krav_maga/harm_act(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
+/datum/martial_art/krav_magooba/harm_act(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
 	if(check_streak(A,D))
 		return 1
 	add_logs(A, D, "punched")
@@ -140,10 +140,10 @@
 		playsound(get_turf(D), 'sound/effects/hit_punch.ogg', 50, 1, -1)
 	D.visible_message("<span class='danger'>[A] [picked_hit_type] [D]!</span>", \
 					  "<span class='userdanger'>[A] [picked_hit_type] you!</span>")
-	add_logs(A, D, "[picked_hit_type] with Krav Maga")
+	add_logs(A, D, "[picked_hit_type] with Krav Magooba")
 	return 1
 
-/datum/martial_art/krav_maga/disarm_act(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
+/datum/martial_art/krav_magooba/disarm_act(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
 	if(check_streak(A,D))
 		return 1
 	var/obj/item/I = null
@@ -159,31 +159,31 @@
 		D.visible_message("<span class='danger'>[A] attempted to disarm [D]!</span>", \
 							"<span class='userdanger'>[A] attempted to disarm [D]!</span>")
 		playsound(D, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-	add_logs(A, D, "disarmed with krav maga", "[I ? " removing \the [I]" : ""]")
+	add_logs(A, D, "disarmed with krav magooba", "[I ? " removing \the [I]" : ""]")
 	return 1
 
-//Krav Maga Gloves
+//Krav Magooba Gloves
 
-/obj/item/clothing/gloves/krav_maga
-	var/datum/martial_art/krav_maga/style = new
+/obj/item/clothing/gloves/krav_magooba
+	var/datum/martial_art/krav_magooba/style = new
 
-/obj/item/clothing/gloves/krav_maga/equipped(mob/user, slot)
+/obj/item/clothing/gloves/krav_magooba/equipped(mob/user, slot)
 	if(!ishuman(user))
 		return
 	if(slot == slot_gloves)
 		var/mob/living/carbon/human/H = user
 		style.teach(H,1)
 
-/obj/item/clothing/gloves/krav_maga/dropped(mob/user)
+/obj/item/clothing/gloves/krav_magooba/dropped(mob/user)
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
 	if(H.get_item_by_slot(slot_gloves) == src)
 		style.remove(H)
 
-/obj/item/clothing/gloves/krav_maga/sec//more obviously named, given to sec
-	name = "krav maga gloves"
-	desc = "These gloves can teach you to perform Krav Maga using nanochips."
+/obj/item/clothing/gloves/krav_magooba/sec//more obviously named, given to sec
+	name = "krav magooba gloves"
+	desc = "These gloves can teach you to perform Krav Magooba using nanochips."
 	icon_state = "fightgloves"
 	item_state = "fightgloves"
 	cold_protection = HANDS
