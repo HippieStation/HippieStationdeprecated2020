@@ -544,11 +544,14 @@
 	if(!force_moving)
 		..(pressure_difference, direction, pressure_resistance_prob_delta)
 
+/mob/living/proc/can_resist()
+	return !((next_move > world.time) || incapacitated(ignore_restraints = TRUE))
+
 /mob/living/verb/resist()
 	set name = "Resist"
 	set category = "IC"
 
-	if(!isliving(src) || next_move > world.time || incapacitated(ignore_restraints = 1))
+	if(!can_resist())
 		return
 	changeNext_move(CLICK_CD_RESIST)
 
@@ -706,7 +709,7 @@
 	floating = 0 // If we were without gravity, the bouncing animation got stopped, so we make sure to restart it in next life().
 
 /mob/living/proc/get_temperature(datum/gas_mixture/environment)
-	var/loc_temp = T0C
+	var/loc_temp = environment ? environment.temperature : T0C
 	if(isobj(loc))
 		var/obj/oloc = loc
 		var/obj_temp = oloc.return_temperature()
@@ -715,8 +718,6 @@
 	else if(isspaceturf(get_turf(src)))
 		var/turf/heat_turf = get_turf(src)
 		loc_temp = heat_turf.temperature
-	else
-		loc_temp = environment.temperature
 	return loc_temp
 
 /mob/living/proc/get_standard_pixel_x_offset(lying = 0)

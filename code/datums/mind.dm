@@ -680,6 +680,9 @@
 
 		sections["cult"] = text
 
+		/** VAMPIRE **/
+		sections["vampire"] = vampire_hook()
+
 
 	if(ishuman(current) || issilicon(current))
 		/** CLOCKWORK CULT **/
@@ -1067,7 +1070,7 @@
 					log_admin("[key_name(usr)] has wizard'ed [current].")
 					SSticker.mode.update_wiz_icons_added(src)
 			if("lair")
-				current.loc = pick(GLOB.wizardstart)
+				current.forceMove(pick(GLOB.wizardstart))
 			if("dressup")
 				SSticker.mode.equip_wizard(current)
 			if("name")
@@ -1129,7 +1132,7 @@
 					message_admins("[key_name_admin(usr)] has nuke op'ed [current].")
 					log_admin("[key_name(usr)] has nuke op'ed [current].")
 			if("lair")
-				current.loc = get_turf(locate("landmark*Syndicate-Spawn"))
+				current.forceMove(get_turf(locate("landmark*Syndicate-Spawn")))
 			if("dressup")
 				var/mob/living/carbon/human/H = current
 				qdel(H.belt)
@@ -1181,6 +1184,8 @@
 					log_admin("[key_name(usr)] has forged objectives for [current] as part of autoobjectives.")
 					traitordatum.forge_traitor_objectives()
 					to_chat(usr, "<span class='notice'>The objectives for traitor [key] have been generated. You can edit them and anounce manually.</span>")
+	else if(href_list["vampire"])
+		vampire_href(href_list["vampire"], usr)
 	else if(href_list["shadowling"])
 		switch(href_list["shadowling"])
 			if("clear")
@@ -1324,7 +1329,6 @@
 						src = null
 						M = H.monkeyize()
 						src = M.mind
-						//to_chat(world, "DEBUG: \"healthy\": M=[M], M.mind=[M.mind], src=[src]!")
 					else if (istype(M) && length(M.viruses))
 						for(var/thing in M.viruses)
 							var/datum/disease/D = thing
@@ -1447,7 +1451,7 @@
 		current.faction |= "syndicate"
 
 		if(spawnloc)
-			current.loc = spawnloc
+			current.forceMove(spawnloc)
 
 		if(ishuman(current))
 			var/mob/living/carbon/human/H = current
@@ -1497,7 +1501,7 @@
 			SSjob.SendToLateJoin(current)
 			to_chat(current, "HOT INSERTION, GO GO GO")
 		else
-			current.loc = pick(GLOB.wizardstart)
+			current.forceMove(pick(GLOB.wizardstart))
 
 		SSticker.mode.equip_wizard(current)
 		SSticker.mode.name_wizard(current)

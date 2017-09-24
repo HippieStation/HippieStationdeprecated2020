@@ -83,6 +83,8 @@ ALERT_DELTA Destruction of the station is imminent. All crew are instructed to o
 PROBABILITY TRAITOR 5
 PROBABILITY TRAITORBRO 2
 PROBABILITY TRAITORCHAN 4
+PROBABILITY TRAITORVAMP 3
+PROBABILITY VAMPIRE 3
 PROBABILITY INTERNAL_AFFAIRS 3
 PROBABILITY NUCLEAR 2
 PROBABILITY REVOLUTION 2
@@ -490,6 +492,9 @@ Space_Budget 16
 ## Time in ds from when a player latejoins till the arrival shuttle docks at the station
 ## Must be at least 30 to not break parallax I recommended at least 55 to be visually/aurally appropriate
 ARRIVALS_SHUTTLE_DOCK_WINDOW 55
+
+## Uncomment to require the arrivals shuttle to be in flight (if it can fly) before late join players can join
+#ARRIVALS_SHUTTLE_REQUIRE_UNDOCKED
 
 ## Uncomment to prevent late join players from spawning if the arrivals shuttle is depressurized
 #ARRIVALS_SHUTTLE_REQUIRE_SAFE_LATEJOIN
