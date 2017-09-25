@@ -384,7 +384,7 @@ other types of metals and chemistry for reagents).
 /////////////////////////////////////////
 /datum/design/synth_xeno_sack
 			name = "Synthetic Egg Sack"
-			desc = "A synthetic xenomorph egg sack requires a synthetic hive node to work."
+			desc = "A synthetic xenomorph egg sack requires a hive node and a plasma vessel to work to work."
 			id = "synth_egg_sack"
 			build_type = PROTOLATHE
 			req_tech = list("abductor" = 3, "biotech" = 2)
@@ -400,6 +400,26 @@ other types of metals and chemistry for reagents).
 			req_tech = list("abductor" = 3, "biotech" = 2)
 			materials = list(MAT_PLASMA = 2000, MAT_GLASS = 2300, MAT_BLUESPACE = 100)
 			build_path = /obj/item/organ/alien/hivenode
+			category = list("Organs")
+
+/datum/design/synth_resin_spinner
+			name = "Synthetic Resin Spinner"
+			desc = "A synthetic xenomorph resin spinner allows you to build structures if you have a plasma vessel."
+			id = "synth_hive_node"
+			build_type = PROTOLATHE
+			req_tech = list("abductor" = 3, "biotech" = 2)
+			materials = list(MAT_PLASMA = 2000, MAT_GLASS = 2300, MAT_URANIUM = 500)
+			build_path = /obj/item/organ/alien/resinspinner
+			category = list("Organs")
+
+/datum/design/synth_plasma_vessel
+			name = "Synthetic Hive Node"
+			desc = "A synthetic xenomorph plasma vessel required to do most things"
+			id = "synth_plasma_ves"
+			build_type = PROTOLATHE
+			req_tech = list("abductor" = 3, "biotech" = 3, "plasmatech" = 3)
+			materials = list(MAT_PLASMA = 2500, MAT_GLASS = 2300)
+			build_path = /obj/item/organ/alien/plasmavessel
 			category = list("Organs")
 
 /////////////////////////////////////////
