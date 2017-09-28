@@ -101,8 +101,3 @@
 	sharpness = IS_SHARP
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	hitsound = 'sound/weapons/blade1.ogg'
-
-
-/obj/structure/closet/secure_closet/RD/PopulateContents()
-	. = ..()
-	new /obj/item/holotool(src)
