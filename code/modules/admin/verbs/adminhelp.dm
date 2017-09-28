@@ -497,7 +497,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(findtext(lowertext(msg), "how do i"))
 		var/do_mhelp = alert("Your message \"[msg]\" looks like it was meant for mentorhelp, ahelp it?", "Meant for Adminhelp?", "No", "Yes", "Cancel")
 		switch(do_mhelp)
-			if("Yes")
+			if("No")
 				mentorhelp(msg)
 				return
 			if("Cancel")
