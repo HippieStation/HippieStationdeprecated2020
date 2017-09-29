@@ -1,3 +1,5 @@
+#define CURRENT_RESIDENT_FILE "hippiestation_config.txt"
+
 CONFIG_DEF(flag/mentors_mobname_only)
 
 CONFIG_DEF(string/internet_address_to_use)
