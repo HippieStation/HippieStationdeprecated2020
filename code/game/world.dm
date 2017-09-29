@@ -17,6 +17,8 @@ GLOBAL_PROTECT(security_mode)
 
 	new /datum/controller/configuration
 
+	hippie_initialize()
+
 	CheckSchemaVersion()
 	SetRoundID()
 
