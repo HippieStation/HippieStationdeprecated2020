@@ -11,9 +11,7 @@
 					D.staticOverlays |= staticOverlays["static"]
 					D.client.images |= staticOverlays["static"]
 	if(unique_name)
-		var/rand_int = rand(1, 1000)
-		name = "[name] ([rand_int])"
-		hippie_equip_mob_with_items(rand_int) /* This equips shit for the mob based on the random int they are given */
+		name = "[name] ([rand(1, 1000)])"
 		real_name = name
 	var/datum/atom_hud/data/human/medical/advanced/medhud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	medhud.add_to_hud(src)
@@ -414,7 +412,7 @@
 	set category = "OOC"
 	set src in view()
 
-	if(config.allow_Metadata)
+	if(CONFIG_GET(flag/allow_metadata))
 		if(client)
 			to_chat(src, "[src]'s Metainfo:<br>[client.prefs.metadata]")
 		else
@@ -462,20 +460,25 @@
 		makeTrail(newloc, T, old_direction)
 
 /mob/living/movement_delay(ignorewalk = 0)
-	. = ..()
+	. = 0
 	if(isopenturf(loc) && !is_flying())
 		var/turf/open/T = loc
 		. += T.slowdown
+	var/static/config_run_delay
+	var/static/config_walk_delay
+	if(isnull(config_run_delay))
+		config_run_delay = CONFIG_GET(number/run_delay)
+		config_walk_delay = CONFIG_GET(number/walk_delay)
 	if(ignorewalk)
-		. += config.run_speed
+		. += config_run_delay
 	else
 		switch(m_intent)
 			if(MOVE_INTENT_RUN)
 				if(drowsyness > 0)
 					. += 6
-				. += config.run_speed
+				. += config_run_delay
 			if(MOVE_INTENT_WALK)
-				. += config.walk_speed
+				. += config_walk_delay
 
 /mob/living/proc/makeTrail(turf/target_turf, turf/start, direction)
 	if(!has_gravity())
@@ -938,7 +941,7 @@
 /mob/living/proc/update_canmove()
 	var/ko = IsKnockdown() || IsUnconscious() || (stat && (stat != SOFT_CRIT || pulledby)) || (status_flags & FAKEDEATH)
 	var/move_and_fall = stat == SOFT_CRIT && !pulledby
-	var/chokehold = pulledby && pulledby.grab_state >= GRAB_KILL
+	var/chokehold = pulledby && pulledby.grab_state >= GRAB_NECK
 	var/buckle_lying = !(buckled && !buckled.buckle_lying)
 	var/has_legs = get_num_legs()
 	var/has_arms = get_num_arms()
