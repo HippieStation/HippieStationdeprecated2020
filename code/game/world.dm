@@ -125,8 +125,15 @@ GLOBAL_PROTECT(security_mode)
 	if(!pinging && !playing && config && config.log_world_topic)
 		WRITE_FILE(GLOB.world_game_log, "TOPIC: \"[T]\", from:[addr], master:[master], key:[key]")
 
+<<<<<<< HEAD
 	SERVER_TOOLS_ON_TOPIC
 	var/key_valid = (global.comms_allowed && input["key"] == global.comms_key)
+=======
+	SERVER_TOOLS_ON_TOPIC	//redirect to server tools if necessary
+
+	var/comms_key = CONFIG_GET(string/comms_key)
+	var/key_valid = (comms_key && input["key"] == comms_key)
+>>>>>>> 62f788fbc6... Server tools API v3.1 (#31000)
 
 	if(pinging)
 		var/x = 1
@@ -216,7 +223,7 @@ GLOBAL_PROTECT(security_mode)
 		C.AnnouncePR(final_composed)
 
 /world/Reboot(reason = 0, fast_track = FALSE)
-	ServiceReboot() //handles alternative actions if necessary
+	SERVER_TOOLS_ON_REBOOT
 	if (reason || fast_track) //special reboot, do none of the normal stuff
 		if (usr)
 			log_admin("[key_name(usr)] Has requested an immediate world restart via client side debugging tools")
