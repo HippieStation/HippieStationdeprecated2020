@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 GLOBAL_LIST_EMPTY(chat_round_end_notifiees)
+=======
+>>>>>>> 62f788fbc6... Server tools API v3.1 (#31000)
 #define IRC_STATUS_THROTTLE 5
 
 /datum/server_tools_command/ircstatus
@@ -29,7 +32,12 @@ GLOBAL_LIST_EMPTY(chat_round_end_notifiees)
 	if(rtod - last_irc_check < IRC_STATUS_THROTTLE)
 		return
 	last_irc_check = rtod
+<<<<<<< HEAD
 	return "[GLOB.round_id ? "Round #[GLOB.round_id]: " : ""][GLOB.clients.len] players on [SSmapping.config.map_name], Mode: [GLOB.master_mode]; Round [SSticker.HasRoundStarted() ? (SSticker.IsRoundInProgress() ? "Active" : "Finishing") : "Starting"] -- [config.server ? config.server : "[world.internet_address]:[world.port]"]" 
+=======
+	var/server = CONFIG_GET(string/server)
+	return "[GLOB.round_id ? "Round #[GLOB.round_id]: " : ""][GLOB.clients.len] players on [SSmapping.config.map_name], Mode: [GLOB.master_mode]; Round [SSticker.HasRoundStarted() ? (SSticker.IsRoundInProgress() ? "Active" : "Finishing") : "Starting"] -- [server ? server : "[world.internet_address]:[world.port]"]" 
+>>>>>>> 62f788fbc6... Server tools API v3.1 (#31000)
 
 /datum/server_tools_command/ahelp
 	name = "ahelp"
@@ -61,6 +69,7 @@ GLOBAL_LIST_EMPTY(chat_round_end_notifiees)
 
 /datum/server_tools_command/adminwho/Run(sender, params)
 	return ircadminwho()
+<<<<<<< HEAD
 
 /datum/server_tools_command/notify
 	name = "notify"
@@ -71,3 +80,5 @@ GLOBAL_LIST_EMPTY(chat_round_end_notifiees)
 	if(SSticker.HasRoundStarted() && !SSticker.IsRoundInProgress())
 		return "The round has already ended"
 	GLOB.chat_round_end_notifiees[sender] = TRUE
+=======
+>>>>>>> 62f788fbc6... Server tools API v3.1 (#31000)

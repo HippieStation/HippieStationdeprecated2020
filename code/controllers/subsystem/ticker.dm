@@ -87,7 +87,11 @@ SUBSYSTEM_DEF(ticker)
 			for(var/client/C in GLOB.clients)
 				window_flash(C, ignorepref = TRUE) //let them know lobby has opened up.
 			to_chat(world, "<span class='boldnotice'>Welcome to [station_name()]!</span>")
+<<<<<<< HEAD
 			if(config.irc_announce_new_game)
+=======
+			if(CONFIG_GET(flag/irc_announce_new_game))
+>>>>>>> 62f788fbc6... Server tools API v3.1 (#31000)
 				SERVER_TOOLS_CHAT_BROADCAST("New round starting on [SSmapping.config.map_name]!")
 			current_state = GAME_STATE_PREGAME
 			//Everyone who wants to be an observer is now spawned

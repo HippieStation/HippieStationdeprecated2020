@@ -589,7 +589,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 
 /proc/send2irc(msg,msg2)
+<<<<<<< HEAD
 	SERVER_TOOLS_RELAY_BROADCAST("[msg] | [msg2]")
+=======
+	if(SERVER_TOOLS_PRESENT)
+		SERVER_TOOLS_RELAY_BROADCAST("[msg] | [msg2]")
+>>>>>>> 62f788fbc6... Server tools API v3.1 (#31000)
 
 /proc/send2otherserver(source,msg,type = "Ahelp")
 	if(config.cross_allowed)

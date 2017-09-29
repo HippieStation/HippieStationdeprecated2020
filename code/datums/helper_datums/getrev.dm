@@ -1,7 +1,11 @@
 /datum/getrev
 	var/originmastercommit
 	var/commit
+<<<<<<< HEAD
 	var/list/testmerge
+=======
+	var/list/testmerge = list()
+>>>>>>> 62f788fbc6... Server tools API v3.1 (#31000)
 	var/date
 
 /datum/getrev/New()

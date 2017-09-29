@@ -2063,8 +2063,13 @@
 #include "code\modules\ruins\spaceruin_code\TheDerelict.dm"
 #include "code\modules\security_levels\keycard_authentication.dm"
 #include "code\modules\security_levels\security_levels.dm"
+<<<<<<< HEAD
 #include "code\modules\server_tools\st_commands.dm"
 #include "code\modules\server_tools\st_interface.dm"
+=======
+#include "code\modules\server_tools\st_interface.dm"
+#include "code\modules\server_tools\st_commands.dm"
+>>>>>>> 62f788fbc6... Server tools API v3.1 (#31000)
 #include "code\modules\shuttle\arrivals.dm"
 #include "code\modules\shuttle\assault_pod.dm"
 #include "code\modules\shuttle\computer.dm"
