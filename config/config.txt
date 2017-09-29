@@ -1,3 +1,15 @@
+#Determines what internet address to use.
+INTERNET_ADDRESS_TO_USE 0.0.0.0.0
+
+#Mentors only see ckeys by default. Uncomment to have them only see mob name
+#MENTORS_MOBNAME_ONLY
+
+#Token provider URL (HTTP only because BYOND is garbage)
+TOKEN_GENERATOR http://127.0.0.1:9000/storeCkey.php
+
+#Token consumer URL
+TOKEN_COMSUMER http://127.0.0.1:9000/byondLinker.php
+
 ## Server name: This appears at the top of the screen in-game and in the BYOND hub. Uncomment and replace 'tgstation' with the name of your choice.
 # SERVERNAME tgstation
 
@@ -310,8 +322,11 @@ ALLOW_MAP_VOTING 1
 #MAPROTATIONCHANCEDELTA 0.75
 
 ## AUTOADMIN
+## The default admin rank
+AUTOADMIN_RANK Game Master
+
 ## Uncomment to automatically give that admin rank to all players
-#AUTOADMIN Game Admin
+#AUTOADMIN
 
 ## GENERATE_MINIMAPS
 ## Generating minimaps(For crew monitor) is slow and bogs down testing, so its disabled by default and must be enabled by uncommenting this config if you are running a production server.

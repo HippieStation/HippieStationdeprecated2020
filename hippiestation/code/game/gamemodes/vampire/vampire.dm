@@ -40,13 +40,15 @@
 /datum/game_mode/vampire/pre_setup()
 	var/vampires_num = 1
 
-	if(config.protect_roles_from_antagonist)
+	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
-	if(config.protect_assistant_from_antagonist)
+	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
 
-	if(config.traitor_scaling_coeff)
-		vampires_num = max(required_enemies, min( round(num_players()/(config.traitor_scaling_coeff*3))+ 2 + num_modifier, round(num_players()/(config.traitor_scaling_coeff*1.5)) + num_modifier ))
+	var/tsc = CONFIG_GET(number/traitor_scaling_coeff)
+
+	if(tsc)
+		vampires_num = max(required_enemies, min( round(num_players()/(tsc*3))+ 2 + num_modifier, round(num_players()/(tsc*1.5)) + num_modifier ))
 	else
 		vampires_num = max(required_enemies, min(num_players(), vampires_possible))
 

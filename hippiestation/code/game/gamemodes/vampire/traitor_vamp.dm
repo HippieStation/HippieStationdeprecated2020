@@ -25,20 +25,21 @@
 	return 1
 
 /datum/game_mode/traitor/vampire/pre_setup()
-	if(config.protect_roles_from_antagonist)
+	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
-
-	if(config.protect_assistant_from_antagonist)
+	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		restricted_jobs += "Assistant"
+
+	var/tsc = CONFIG_GET(number/traitor_scaling_coeff)
+	var/num_vamp = 1
+
+	if(tsc)
+		num_vamp = max(1, min( round(num_players()/(tsc*4))+2, round(num_players()/(tsc*2))))
+	else
+		num_vamp = max(required_enemies, min(num_players(), vampire_amt/2))
 
 	var/list/datum/mind/possible_vamps = get_players_for_role(ROLE_VAMPIRE)
 
-	var/num_vamp = 1
-
-	if(config.traitor_scaling_coeff)
-		num_vamp = max(1, min( round(num_players()/(config.traitor_scaling_coeff*4))+2, round(num_players()/(config.traitor_scaling_coeff*2)) ))
-	else
-		num_vamp = max(1, min(num_players(), vampire_amt/2))
 
 	if(possible_vamps.len>0)
 		for(var/j = 0, j < num_vamp, j++)
@@ -60,11 +61,12 @@
 	return
 
 /datum/game_mode/traitor/vampire/make_antag_chance(mob/living/carbon/human/character) //Assigns vampire to latejoiners
-	var/vampcap = min( round(GLOB.joined_player_list.len/(config.traitor_scaling_coeff*4))+2, round(GLOB.joined_player_list.len/(config.traitor_scaling_coeff*2)) )
+	var/tsc = CONFIG_GET(number/traitor_scaling_coeff)
+	var/vampcap = min( round(GLOB.joined_player_list.len/(tsc*4))+2, round(GLOB.joined_player_list.len/(tsc*2)) )
 	if(SSticker.mode.vampires.len >= vampcap) //Caps number of latejoin antagonists
 		..()
 		return
-	if(SSticker.mode.vampires.len <= (vampcap - 2) || prob(100 / (config.traitor_scaling_coeff * 4)))
+	if(SSticker.mode.vampires.len <= (vampcap - 2) || prob(100 / (tsc * 4)))
 		if(ROLE_VAMPIRE in character.client.prefs.be_special)
 			if(!jobban_isbanned(character, ROLE_VAMPIRE) && !jobban_isbanned(character, "Syndicate"))
 				if(age_check(character.client))

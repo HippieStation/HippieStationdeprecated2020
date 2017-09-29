@@ -42,8 +42,7 @@
 /obj/item/extinguisher/New()
 	..()
 	create_reagents(max_water)
-	reagents.add_reagent("water", max_water - 10)
-	reagents.add_reagent("cryogenic_fluid", 10) //improved turf extinguishing
+	reagents.add_reagent("water", max_water)
 
 /obj/item/extinguisher/attack_self(mob/user)
 	safety = !safety
@@ -69,6 +68,7 @@
 	..()
 	if(reagents.total_volume)
 		to_chat(user, "It contains [round(reagents.total_volume)] units.")
+		to_chat(user, "<span class='notice'>Alt-click to empty it.</span>")
 	else
 		to_chat(user, "It is empty.")
 
