@@ -233,3 +233,10 @@
 	item = /obj/item/storage/box/syndie_kit/football
 	cost = 16
 	exclude_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/role_restricted/meeseeks
+	name = "Meeseeks Box"
+	desc = "A mysterious box, able to conjure servants at will."
+	cost = 18
+	item = /obj/item/device/meeseeks_box
+	restricted_roles = list("Scientist", "Research Director", "Geneticist")
