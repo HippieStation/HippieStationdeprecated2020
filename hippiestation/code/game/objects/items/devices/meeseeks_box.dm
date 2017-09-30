@@ -43,9 +43,9 @@
 	else if(next_summon < world.time)
 		next_summon = world.time + MEESEEKS_BOX_COOLDOWN
 		user.visible_message("<span class='notice'>[user] presses the button on [src]!</span>")
-		var/list/candidates = get_candidates(ROLE_MEESEEKS, null, ROLE_MEESEEKS)
+		var/list/candidates = pollghostcandidates("Would you like to become a Mr. Meeseeks and fulfill a task?", poll_time=150)
 		if(LAZYLEN(candidates))
-			var/mob/dead/observer/Z = pick_n_take(candidates)
+			var/mob/dead/observer/Z = pick(candidates)
 			var/mob/living/carbon/human/M = new
 			M.hardset_dna(null, null, "Mr. Meeseeks", null, /datum/species/meeseeks)
 			var/datum/species/meeseeks/SM = M.dna.species
