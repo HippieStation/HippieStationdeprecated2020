@@ -233,3 +233,24 @@
 	item = /obj/item/storage/box/syndie_kit/football
 	cost = 16
 	exclude_modes = list(/datum/game_mode/nuclear)
+	
+/datum/uplink_item/badass/banhammer
+	name = "Ban Hammer"
+	desc = "An ancient weapon recovered from an abandoned bus, this unholy weapon is able to imperfectly mimick the god's wrath on whoever you hit this weapon with. Great for heart attacks.
+	item = /obj/item/banhammer
+	cost = 5
+	
+/datum/uplink_item/dangerous/instantbear
+	name = "Instant Bear"
+	desc = "An instant bear that teleports in immediately and is hostile to both you and everyone else. Use with care.
+	item = /mob/living/simple_animal/hostile/bear
+	cost = 2
+	exclude_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/dangerous/instakill
+	name = "Instakill Gun"
+	desc = "An extremely rare and advanced weapon that can flat out rip apart any being in one shot.
+	item = /obj/item/gun/energy/laser/instakill
+	cost = 100
+	exclude_modes = list(/datum/game_mode/nuclear)
+	cant_discount = TRUE
