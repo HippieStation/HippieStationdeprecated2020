@@ -17,7 +17,6 @@
 			H.add_splatter_floor(T)
 		H.visible_message("<span class='danger'>[user] slashes open one of [H]'s arteries with [src]!</span>", "<span class='userdanger'>[user] slices open one of your arteries with [src]!</span>")
 		playsound(H, 'sound/effects/splat.ogg', 50, 1)
-	..()
 
 /obj/item/melee/transforming/energy/sword/saber
 	special_name = "Lunge"
