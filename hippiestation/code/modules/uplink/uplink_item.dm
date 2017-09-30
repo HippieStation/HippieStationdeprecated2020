@@ -236,7 +236,7 @@
 	
 /datum/uplink_item/badass/banhammer
 	name = "Ban Hammer"
-	desc = "An ancient weapon recovered from an abandoned bus, this unholy weapon is able to imperfectly mimick the god's wrath on whoever you hit this weapon with. Great for heart attacks.
+	desc = "An ancient weapon recovered from an abandoned bus, this unholy weapon is able to imperfectly mimick the god's wrath on whoever you hit this weapon with. Great for heart attacks."
 	item = /obj/item/banhammer
 	cost = 5
 
@@ -249,7 +249,7 @@
 
 /datum/uplink_item/dangerous/instakill
 	name = "Instakill Gun"
-	desc = "An extremely rare and advanced weapon that can flat out rip apart any being in one shot.
+	desc = "An extremely rare and advanced weapon that can flat out rip apart any being in one shot."
 	item = /obj/item/gun/energy/laser/instakill
 	cost = 100
 	exclude_modes = list(/datum/game_mode/nuclear)
