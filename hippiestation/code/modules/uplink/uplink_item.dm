@@ -242,7 +242,7 @@
 
 /datum/uplink_item/dangerous/instantbear
 	name = "Instant Bear"
-	desc = "An instant bear that teleports in immediately and is hostile to both you and everyone else. Use with care.
+	desc = "An instant bear that teleports in immediately and is hostile to both you and everyone else. Use with care."
 	item = /mob/living/simple_animal/hostile/bear
 	cost = 2
 	exclude_modes = list(/datum/game_mode/nuclear)
