@@ -6,7 +6,7 @@
 	icon = 'hippiestation/icons/obj/dicks.dmi'
 	icon_state = null
 	force = 5
-	w_class = 6
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 5
 	hitsound = 'hippiestation/sound/misc/squishy.ogg'
 	attack_verb = list("slapped")
