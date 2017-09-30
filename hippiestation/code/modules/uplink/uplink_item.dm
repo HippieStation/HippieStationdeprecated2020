@@ -239,7 +239,7 @@
 	desc = "An ancient weapon recovered from an abandoned bus, this unholy weapon is able to imperfectly mimick the god's wrath on whoever you hit this weapon with. Great for heart attacks.
 	item = /obj/item/banhammer
 	cost = 5
-	
+
 /datum/uplink_item/dangerous/instantbear
 	name = "Instant Bear"
 	desc = "An instant bear that teleports in immediately and is hostile to both you and everyone else. Use with care.
@@ -254,4 +254,3 @@
 	cost = 100
 	exclude_modes = list(/datum/game_mode/nuclear)
 	cant_discount = TRUE
-
