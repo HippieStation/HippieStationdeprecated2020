@@ -254,3 +254,4 @@
 	cost = 100
 	exclude_modes = list(/datum/game_mode/nuclear)
 	cant_discount = TRUE
+
