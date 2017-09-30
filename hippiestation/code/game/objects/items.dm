@@ -5,7 +5,7 @@
 
 /obj/item/proc/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag, cost)
 	if(user.getStaminaLoss() >= (100 - cost))
-		to_chat(user,"<span class='warning'> You don't have enough stamina to do this!")
+		to_chat(user,"<span class='warning'>You don't have enough stamina to do this!</span>")
 		return FALSE
 	user.do_attack_animation(target)
 	return

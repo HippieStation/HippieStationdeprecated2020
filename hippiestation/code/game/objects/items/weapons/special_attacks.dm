@@ -54,13 +54,13 @@
 					var/obj/effect/decal/cleanable/blood/gibs/G = new(HT.loc)
 					G.streak(pick(GLOB.alldirs))
 				else
-					to_chat(user, "<span class='warning'> You're unable to tear your sword out!")
+					to_chat(user, "<span class='warning'>You're unable to tear your sword out!</span>")
 					user.dropItemToGround(src, TRUE)
 					src.forceMove(HT.loc)
 
 			src.special_attack = FALSE
 	else
-		to_chat(user, "<span class='warning'> You need to be 1 tile away from a human enemy to initiate the attack")
+		to_chat(user, "<span class='warning'>You need to be 1 tile away from a human enemy to initiate the attack</span>")
 		return FALSE
 
 /obj/item/twohanded/dualsaber
@@ -108,7 +108,7 @@
 			H.add_splatter_floor(H.loc)
 			playsound(H, 'sound/misc/splort.ogg', 50, 1, -1)
 		else
-			to_chat(user,"<span class='warning'> They have no butt!")
+			to_chat(user,"<span class='warning'>They have no butt!</span>")
 
 /obj/item/melee/baseball_bat
 	special_name = "Head Bash"
