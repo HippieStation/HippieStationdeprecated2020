@@ -90,6 +90,7 @@
 
 		src.flags_1 &= ~NODROP_1
 		user.confused = max(user.confused - 200, 0)
+		src.block_chance = initial(block_chance)
 		src.special_attack = FALSE
 		return TRUE
 
