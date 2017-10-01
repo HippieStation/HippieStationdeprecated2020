@@ -99,6 +99,7 @@
 /obj/item/melee/transforming/butterfly
 	special_name = "Butt Sever"
 	special_desc = "COST: 15 STAMINA. Humiliate any enemy by instantly slicing their butt clean off!"
+	special_cost = 15
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/melee/transforming/butterfly/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)//no alternative for aliens because their code is cancer
