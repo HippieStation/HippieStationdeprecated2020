@@ -23,6 +23,8 @@
 
 
 /obj/item/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	if(special_attack)
-		do_special_attack(target, user, proximity_flag)
+	if(special_attack && iscarbon(user))
+		if(do_special_attack(target, user, proximity_flag))
+			var/mob/living/carbon/C = user
+			C.adjustStaminaLoss(src.special_cost)
 	return

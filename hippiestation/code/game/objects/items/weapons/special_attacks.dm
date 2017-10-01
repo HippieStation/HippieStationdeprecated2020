@@ -2,13 +2,13 @@
 /obj/item/kitchen/knife
 	special_name = "Artery slash"
 	special_desc = "COST: 30 STAMINA. A precision slash targeting an artery, causes extra bleeding."
+	special_cost = 30
 	actions_types = list(/datum/action/item_action/special_attack)
 
-/obj/item/kitchen/knife/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag, cost = 30)
+/obj/item/kitchen/knife/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)
 	..()
 	if(ishuman(target) && proximity_flag)
 		var/mob/living/carbon/human/H = target
-		user.adjustStaminaLoss(cost)
 		src.special_attack = FALSE
 		H.bleed_rate = min(H.bleed_rate + 10, 10)
 		H.blood_volume -= 25
@@ -17,17 +17,20 @@
 			H.add_splatter_floor(T)
 		H.visible_message("<span class='danger'>[user] slashes open one of [H]'s arteries with [src]!</span>", "<span class='userdanger'>[user] slices open one of your arteries with [src]!</span>")
 		playsound(H, 'sound/effects/splat.ogg', 50, 1)
+		return TRUE
+
+	return FALSE
 
 /obj/item/melee/transforming/energy/sword/saber
 	special_name = "Lunge"
 	special_desc = "COST: 40 STAMINA. Dash forth in a vicious lunge guaranteed to gore an enemy"
+	special_cost = 40
 	actions_types = list(/datum/action/item_action/special_attack)
 
-/obj/item/melee/transforming/energy/sword/saber/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag, cost = 40)
+/obj/item/melee/transforming/energy/sword/saber/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)
 	..()
 	if(!proximity_flag && get_dist(user,target) == 2 && ishuman(target))
 		var/mob/living/carbon/human/HT = target
-		user.adjustStaminaLoss(cost)
 		user.throw_at(target, 1, 10)
 
 		if(do_after(user, 2, target = target))//small window to dodge
@@ -58,22 +61,22 @@
 					src.forceMove(HT.loc)
 
 			src.special_attack = FALSE
+			return TRUE
 	else
 		to_chat(user, "<span class='warning'>You need to be 1 tile away from a human enemy to initiate the attack</span>")
-		return FALSE
+	return FALSE
 
 /obj/item/twohanded/dualsaber
 	special_name = "Dance of the Fates"
 	special_desc = "COST: 50 STAMINA. Launch into an uncontrollable flurry of attacks slicing up any enemies in range"
+	special_cost = 50
 	actions_types = list(/datum/action/item_action/special_attack)
 
-/obj/item/twohanded/dualsaber/do_special_attack(atom/target, mob/living/carbon/user, cost = 50)
+/obj/item/twohanded/dualsaber/do_special_attack(atom/target, mob/living/carbon/user)
 	..()
 	if(wielded)
-		user.adjustStaminaLoss(cost)
 		user.visible_message("<span class='danger'>[user] begins to flail around wildly!</span>")
 		user.confused += 200
-		src.special_attack = FALSE
 		src.block_chance = 100
 		src.flags_1 |= NODROP_1
 		src.SpinAnimation(15, 50)
@@ -86,38 +89,44 @@
 						if(prob(50))
 							AM.attackby(src, user)
 
-	src.flags_1 &= ~NODROP_1
-	user.confused = max(user.confused - 200, 0)
+		src.flags_1 &= ~NODROP_1
+		user.confused = max(user.confused - 200, 0)
+		src.special_attack = FALSE
+		return TRUE
+
+	return FALSE
 
 /obj/item/melee/transforming/butterfly
 	special_name = "Butt Sever"
 	special_desc = "COST: 15 STAMINA. Humiliate any enemy by instantly slicing their butt clean off!"
 	actions_types = list(/datum/action/item_action/special_attack)
 
-/obj/item/melee/transforming/butterfly/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag, cost = 15)//no alternative for aliens because their code is cancer
+/obj/item/melee/transforming/butterfly/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)//no alternative for aliens because their code is cancer
 	..()
 	if(ishuman(target) && proximity_flag && src.active)
 		var/mob/living/carbon/human/H = target
 		var/obj/item/organ/butt/B = H.getorganslot("butt")
 		if(B)
-			user.adjustStaminaLoss(cost)
 			B.Remove(H)
 			B.forceMove(H.loc)
 			H.visible_message("<span class='danger'>In a quick motion [user] slices [H]'s butt clean off with [src]!</span>")
 			H.add_splatter_floor(H.loc)
 			playsound(H, 'sound/misc/splort.ogg', 50, 1, -1)
+			src.special_attack = FALSE
+			return TRUE
 		else
 			to_chat(user,"<span class='warning'>They have no butt!</span>")
+	return FALSE
 
 /obj/item/melee/baseball_bat
 	special_name = "Head Bash"
 	special_desc = "COST: 40 STAMINA. Crush a target's head in, causing brain damage and confusion"
+	special_cost = 40
 	actions_types = list(/datum/action/item_action/special_attack)
 
-/obj/item/melee/baseball_bat/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag, cost = 40)
+/obj/item/melee/baseball_bat/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)
 	..()
 	if(iscarbon(target) && proximity_flag)
-		user.adjustStaminaLoss(cost)
 		var/mob/living/carbon/C = target
 		C.adjustBrainLoss(30)
 		C.confused += 25
@@ -128,33 +137,39 @@
 		user.do_attack_animation(target)
 		playsound(C, src.hitsound, 100, 1, -1)
 		src.special_attack = FALSE
+		return TRUE
+
+	return FALSE
 
 /obj/item/melee/baton
 	special_name = "Wrath of Zeus"
 	special_desc = "COST: 35 STAMINA. Spit on the active end creating vanquishing lightning"
+	special_cost = 35
 	actions_types = list(/datum/action/item_action/special_attack)
 
-/obj/item/melee/baton/do_special_attack(atom/target, mob/living/carbon/user, cost = 35)
+/obj/item/melee/baton/do_special_attack(atom/target, mob/living/carbon/user)
 	..()
 	if(isliving(user) && src.status == TRUE)
-		user.adjustStaminaLoss(cost)
 		tesla_zap(user, 4, 10000)
 		src.deductcharge(hitcost)
 		user.visible_message("<span class='danger'>[user] spits on the active end of [src]!</span>")
 		playsound(user, 'sound/magic/lightningbolt.ogg', 100, 1, -1)
 		src.special_attack = FALSE
+		return TRUE
+
+	return FALSE
 
 
 /obj/item/melee/chainofcommand
 	special_name = "Ensnare"
 	special_desc = "COST: 35 STAMINA. Tie the legs of fleeing criminal scum so they may be brought to justice with greater haste"
+	special_cost = 35
 	actions_types = list(/datum/action/item_action/special_attack)
 
-/obj/item/melee/chainofcommand/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag, cost = 35)
+/obj/item/melee/chainofcommand/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)
 	..()
 	if(!proximity_flag && get_dist(user,target) < 6 && isliving(target))
 		var/mob/living/M = target
-		user.adjustStaminaLoss(cost)
 		user.visible_message("<span class='danger'>[user] flicks [src] towards [M]'s legs!</span>")
 		if(do_after(user, 2, target = target))
 			M.Knockdown(20)
@@ -164,3 +179,6 @@
 					step_towards(M, user)
 					playsound(M, pick('hippiestation/sound/effects/bodyscrape-01.ogg', 'hippiestation/sound/effects/bodyscrape-02.ogg'), 20, 1, -4)
 			src.special_attack = FALSE
+			return TRUE
+
+	return FALSE
