@@ -6,12 +6,12 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/kitchen/knife/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)
-	..()
 	if(ishuman(target) && proximity_flag)
 		var/mob/living/carbon/human/H = target
 		src.special_attack = FALSE
 		H.bleed_rate = min(H.bleed_rate + 10, 10)
 		H.blood_volume -= 25
+		user.do_attack_animation(target)
 
 		for(var/turf/T in range(H.loc, 1))
 			H.add_splatter_floor(T)
@@ -28,7 +28,6 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/melee/transforming/energy/sword/saber/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)
-	..()
 	if(!proximity_flag && get_dist(user,target) == 2 && ishuman(target))
 		var/mob/living/carbon/human/HT = target
 		user.throw_at(target, 1, 10)
@@ -40,8 +39,8 @@
 				var/armor_block = HT.run_armor_check("chest", "melee")
 				HT.apply_damage(25, BRUTE, HT.get_bodypart("chest") , armor_block - armour_penetration)
 				HT.visible_message("<span class='danger'>[user] lunges sword first at [HT] and impales them with [src]!</span>", "<span class='userdanger'>[user] impales you with the full length of [src]!</span>")
-				user.do_attack_animation(target)
 				playsound(HT, 'sound/weapons/slice.ogg', 100, 1)
+				user.do_attack_animation(target)
 
 				if(do_after(user, 15, target = target) && get_dist(user, target) <= 1)
 					HT.apply_damage(25, BRUTE, HT.get_bodypart("chest"), armor_block - armour_penetration)
@@ -52,6 +51,7 @@
 
 					HT.visible_message("<span class='danger'>[user] wrenches [src] out of [HT]!</span>", "<span class='userdanger'>[user] brutally wrenches the [src] out... and your bisected stomach drops to the floor!</span>")
 					playsound(HT, 'hippiestation/sound/misc/tear.ogg', 100, 1)
+					user.do_attack_animation(target)
 					HT.add_splatter_floor(HT.loc)
 					var/obj/effect/decal/cleanable/blood/gibs/G = new(HT.loc)
 					G.streak(pick(GLOB.alldirs))
@@ -73,7 +73,6 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/twohanded/dualsaber/do_special_attack(atom/target, mob/living/carbon/user)
-	..()
 	if(wielded)
 		user.visible_message("<span class='danger'>[user] begins to flail around wildly!</span>")
 		user.confused += 200
@@ -103,7 +102,6 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/melee/transforming/butterfly/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)//no alternative for aliens because their code is cancer
-	..()
 	if(ishuman(target) && proximity_flag && src.active)
 		var/mob/living/carbon/human/H = target
 		var/obj/item/organ/butt/B = H.getorganslot("butt")
@@ -113,6 +111,7 @@
 			H.visible_message("<span class='danger'>In a quick motion [user] slices [H]'s butt clean off with [src]!</span>")
 			H.add_splatter_floor(H.loc)
 			playsound(H, 'sound/misc/splort.ogg', 50, 1, -1)
+			user.do_attack_animation(target)
 			src.special_attack = FALSE
 			return TRUE
 		else
@@ -126,7 +125,6 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/melee/baseball_bat/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)
-	..()
 	if(iscarbon(target) && proximity_flag)
 		var/mob/living/carbon/C = target
 		C.adjustBrainLoss(30)
@@ -135,8 +133,8 @@
 		C.apply_damage(force, BRUTE, C.get_bodypart("head"), armor_block)
 		C.visible_message("<span class='danger'>[user] smashes [C]'s head hard with [src]!</span>", "<span class='userdanger'>[user] smashes your skull in with [src]!</span>")
 		user.say("Ey, is somebody keepin' track of my heads batted in?")
-		user.do_attack_animation(target)
 		playsound(C, src.hitsound, 100, 1, -1)
+		user.do_attack_animation(target)
 		src.special_attack = FALSE
 		return TRUE
 
@@ -149,7 +147,6 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/melee/baton/do_special_attack(atom/target, mob/living/carbon/user)
-	..()
 	if(isliving(user) && src.status == TRUE)
 		tesla_zap(user, 4, 10000)
 		src.deductcharge(hitcost)
@@ -168,10 +165,10 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/melee/chainofcommand/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)
-	..()
 	if(!proximity_flag && get_dist(user,target) < 6 && isliving(target))
 		var/mob/living/M = target
 		user.visible_message("<span class='danger'>[user] flicks [src] towards [M]'s legs!</span>")
+		user.do_attack_animation(target)
 		if(do_after(user, 2, target = target))
 			M.Knockdown(20)
 			M.visible_message("<span class='danger'>[user] starts to reel in [M]!</span>", "<span class='userdanger'>[user]'s [src] ties your legs and trips you as they begin to reel you in!</span>")
