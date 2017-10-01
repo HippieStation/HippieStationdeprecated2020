@@ -10,3 +10,13 @@
 
 	if(istype(M))
 		mentor_follow(M)
+
+/client/proc/do_mhelp()
+	var/mhl = alert("Your message \"[msg]\" looks like it was meant for mentorhelp, ahelp it?", "Meant for Adminhelp?", "No", "Yes", "Cancel")
+	switch(mhl)
+		if("No")
+			mentorhelp(msg)
+			return TRUE
+		if("Cancel")
+			return TRUE
+	return FALSE
