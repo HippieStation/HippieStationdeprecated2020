@@ -54,8 +54,8 @@ AI MODULES
 			for(var/mylaw in lawlist)
 				if(mylaw != "")
 					tot_laws++
-		if(tot_laws > config.silicon_max_law_amount && !bypass_law_amt_check)//allows certain boards to avoid this check, eg: reset
-			to_chat(user, "<span class='caution'>Not enough memory allocated to [law_datum.owner ? law_datum.owner : "the AI core"]'s law processor to handle this amount of laws.")
+		if(tot_laws > CONFIG_GET(number/silicon_max_law_amount) && !bypass_law_amt_check)//allows certain boards to avoid this check, eg: reset
+			to_chat(user, "<span class='caution'>Not enough memory allocated to [law_datum.owner ? law_datum.owner : "the AI core"]'s law processor to handle this amount of laws.</span>")
 			message_admins("[key_name_admin(user)] tried to upload laws to [law_datum.owner ? key_name_admin(law_datum.owner) : "an AI core"] that would exceed the law cap.")
 			overflow = TRUE
 
@@ -564,3 +564,4 @@ AI MODULES
 /obj/item/aiModule/core/full/balance
 	name = "'Guardian of Balance' Core AI Module"
 	law_id = "balance"
+

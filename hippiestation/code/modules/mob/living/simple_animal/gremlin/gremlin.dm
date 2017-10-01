@@ -98,6 +98,8 @@ var/list/bad_gremlin_items = list()
 	return markov_chain(generate_markov_input(), rand(2,5), rand(100,700)) //The numbers are chosen arbitarily
 
 /mob/living/simple_animal/hostile/gremlin/proc/tamper(obj/M)
+	if(!M.suit_fibers) 
+		M.suit_fibers = list()
 	switch(M.npc_tamper_act(src))
 		if(NPC_TAMPER_ACT_FORGET)
 			visible_message(pick(
@@ -141,7 +143,14 @@ var/list/bad_gremlin_items = list()
 
 	return ..()
 
+/mob/living/simple_animal/hostile/gremlin/death(gibbed)
+	walk(src,0)
+	return ..()
+
 /mob/living/simple_animal/hostile/gremlin/Life()
+	. = ..()
+	if(!health || stat == DEAD)
+		return
 	//Don't try to path to one target for too long. If it takes longer than a certain amount of time, assume it can't be reached and find a new one
 	if(!client) //don't do this shit if there's a client, they're capable of ventcrawling manually
 		if(in_vent)

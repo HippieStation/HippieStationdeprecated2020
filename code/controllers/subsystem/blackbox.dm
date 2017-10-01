@@ -35,10 +35,11 @@ SUBSYSTEM_DEF(blackbox)
 		if(M.client)
 			playercount += 1
 	var/admincount = GLOB.admins.len
-	var/datum/DBQuery/query_record_playercount = SSdbcore.NewQuery("INSERT INTO [format_table_name("legacy_population")] (playercount, admincount, time, server_ip, server_port, round_id) VALUES ([playercount], [admincount], '[SQLtime()]', INET_ATON(IF('[config.internet_address_to_use]' LIKE '', '0', '[config.internet_address_to_use]')), '[world.port]', '[GLOB.round_id]')")
+	var/internet_address_to_use = CONFIG_GET(string/internet_address_to_use)
+	var/datum/DBQuery/query_record_playercount = SSdbcore.NewQuery("INSERT INTO [format_table_name("legacy_population")] (playercount, admincount, time, server_ip, server_port, round_id) VALUES ([playercount], [admincount], '[SQLtime()]', INET_ATON(IF('[internet_address_to_use]' LIKE '', '0', '[internet_address_to_use]')), '[world.port]', '[GLOB.round_id]')")
 	query_record_playercount.Execute()
 
-	if(config.use_exp_tracking)
+	if(CONFIG_GET(flag/use_exp_tracking))
 		if((triggertime < 0) || (world.time > (triggertime +3000)))	//subsystem fires once at roundstart then once every 10 minutes. a 5 min check skips the first fire. The <0 is midnight rollover check
 			update_exp(10,FALSE)
 
@@ -185,8 +186,7 @@ SUBSYSTEM_DEF(blackbox)
 		return
 	if(!L || !L.key || !L.mind)
 		return
-	var/turf/T = get_turf(L)
-	var/area/placeofdeath = get_area(T.loc)
+	var/area/placeofdeath = get_area(L)
 	var/sqlname = sanitizeSQL(L.real_name)
 	var/sqlkey = sanitizeSQL(L.ckey)
 	var/sqljob = sanitizeSQL(L.mind.assigned_role)
@@ -275,7 +275,7 @@ SUBSYSTEM_DEF(blackbox)
 		details += "\"[deets]\""
 
 /datum/feedback_variable/proc/get_details()
-	return details.Join(" | ")
+	return details ? details.Join(" | ") : null
 
 /datum/feedback_variable/proc/get_parsed()
 	return list(variable,value,details.Join(" | "))

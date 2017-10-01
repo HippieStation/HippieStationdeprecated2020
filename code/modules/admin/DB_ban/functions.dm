@@ -126,7 +126,8 @@
 		computerid = "0"
 	if(!ip)
 		ip = "0.0.0.0"
-	var/sql = "INSERT INTO [format_table_name("ban")] (`bantime`,`server_ip`,`server_port`,`round_id`,`bantype`,`reason`,`job`,`duration`,`expiration_time`,`ckey`,`computerid`,`ip`,`a_ckey`,`a_computerid`,`a_ip`,`who`,`adminwho`) VALUES (Now(), INET_ATON(IF('[config.internet_address_to_use]' LIKE '', '0', '[config.internet_address_to_use]')), '[world.port]', '[GLOB.round_id]', '[bantype_str]', '[reason]', '[job]', [(duration)?"[duration]":"0"], Now() + INTERVAL [(duration>0) ? duration : 0] MINUTE, '[ckey]', '[computerid]', INET_ATON('[ip]'), '[a_ckey]', '[a_computerid]', INET_ATON('[a_ip]'), '[who]', '[adminwho]')"
+	var/internet_address_to_use = CONFIG_GET(string/internet_address_to_use)
+	var/sql = "INSERT INTO [format_table_name("ban")] (`bantime`,`server_ip`,`server_port`,`round_id`,`bantype`,`reason`,`job`,`duration`,`expiration_time`,`ckey`,`computerid`,`ip`,`a_ckey`,`a_computerid`,`a_ip`,`who`,`adminwho`) VALUES (Now(), INET_ATON(IF('[internet_address_to_use]' LIKE '', '0', '[internet_address_to_use]')), '[world.port]', '[GLOB.round_id]', '[bantype_str]', '[reason]', '[job]', [(duration)?"[duration]":"0"], Now() + INTERVAL [(duration>0) ? duration : 0] MINUTE, '[ckey]', '[computerid]', INET_ATON('[ip]'), '[a_ckey]', '[a_computerid]', INET_ATON('[a_ip]'), '[who]', '[adminwho]')"
 	var/datum/DBQuery/query_add_ban = SSdbcore.NewQuery(sql)
 	if(!query_add_ban.warn_execute())
 		return
@@ -358,6 +359,7 @@
 
 	output += "<form method='GET' action='?src=\ref[src]'><b>Add custom ban:</b> (ONLY use this if you can't ban through any other method)"
 	output += "<input type='hidden' name='src' value='\ref[src]'>"
+	output += HrefTokenFormField()
 	output += "<table width='100%'><tr>"
 	output += "<td><b>Ban type:</b><select name='dbbanaddtype'>"
 	output += "<option value=''>--</option>"
@@ -391,6 +393,7 @@
 
 	output += "<form method='GET' action='?src=\ref[src]'><b>Search:</b> "
 	output += "<input type='hidden' name='src' value='\ref[src]'>"
+	output += HrefTokenFormField()
 	output += "<b>Ckey:</b> <input type='text' name='dbsearchckey' value='[playerckey]'>"
 	output += "<b>Admin ckey:</b> <input type='text' name='dbsearchadmin' value='[adminckey]'>"
 	output += "<input type='submit' value='search'>"

@@ -38,13 +38,20 @@
 		user.emote("scream")
 		qdel(src)
 
+/obj/item/clothing/mask/hippie/tape/speechModification(message)
+	var/M = muffledspeech(message)
+	return M
+
 /obj/item/stack/ducttape
 	desc = "It's duct tape. You can use it to tape something... or someone."
 	name = "duct tape"
 	icon = 'hippiestation/icons/obj/bureaucracy.dmi'
+	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
 	icon_state = "tape"
 	item_state = "tape"
 	amount = 15
+	flags_1 = NOBLUDGEON_1
 	max_amount = 15
 	throwforce = 0
 	w_class = 2.0
@@ -57,23 +64,46 @@
 
 /obj/item/stack/ducttape/afterattack(atom/W, mob/user as mob, proximity_flag)
 	if(!proximity_flag) return //It should only work on adjacent target.
-	if(ishuman(W) && (user.zone_selected == "mouth"))
+	if(istype(W, /obj/item/storage/bag/tray))
+		var/obj/item/shield/trayshield/new_item = new(user.loc)
+		to_chat(user, "<span class='notice'>You strap [src] to \the [W].</span>")
+		var/replace = (user.get_inactive_held_item()==W)
+		qdel(W)
+		if(src.use(3) == 0)
+			user.drop_item()
+			qdel(src)
+		if(replace)
+			user.put_in_hands(new_item)
+		playsound(user, 'hippiestation/sound/misc/ducttape1.ogg', 50, 1)
+	if(istype(W, /obj/item/shard) && !istype(W, /obj/item/shard/shank))
+		var/obj/item/shard/shank/new_item = new(user.loc)
+		to_chat(user, "<span class='notice'>You strap [src] to \the [W].</span>")
+		var/replace = (user.get_inactive_held_item()==W)
+		qdel(W)
+		if(src.use(3) == 0)
+			user.drop_item()
+			qdel(src)
+		if(replace)
+			user.put_in_hands(new_item)
+		playsound(user, 'hippiestation/sound/misc/ducttape1.ogg', 50, 1)
+	if(ishuman(W) && (user.zone_selected == "mouth" || user.zone_selected == "head"))
 		var/mob/living/carbon/human/H = W
-		if( \
-				(H.head && H.head.flags_cover & HEADCOVERSMOUTH) || \
-				(H.wear_mask) \
-			)
-			to_chat(user, "<span class='danger'>You're going to need to remove that mask/helmet first.</span>")
+		if(H.head && (H.head.flags_cover & HEADCOVERSMOUTH))
+			to_chat(user, "<span class='danger'>You're going to need to remove [H.head] first.</span>")
+			return
+		if(H.wear_mask) //don't even check to see if the mask covers the mouth as the tape takes up mask slot
+			to_chat(user, "<span class='danger'>You're going to need to remove [H.wear_mask] first.</span>")
 			return
 		playsound(loc, 'hippiestation/sound/misc/ducttape1.ogg', 30, 1)
-		if(do_mob(user, H, 20) && !H.wear_mask)
+		to_chat(user, "<span class='notice'>You start tape [H]'s mouth shut.</span>")
+		if(do_mob(user, H, 20))
 			// H.wear_mask = new/obj/item/clothing/mask/hippie/tape(H)
 			H.equip_to_slot_or_del(new /obj/item/clothing/mask/hippie/tape(H), slot_wear_mask)
-			to_chat(user, "<span class='notice'>You tape [H]'s mouth.</span>")
+			to_chat(user, "<span class='notice'>You tape [H]'s mouth shut.</span>")
 			playsound(loc, 'hippiestation/sound/misc/ducttape1.ogg', 50, 1)
 			if(src.use(2) == 0)
 				user.drop_item()
 				qdel(src)
 			add_logs(user, H, "mouth-taped")
 		else
-			to_chat(user, "<span class='warning'>You fail to tape [H]'s mouth.</span>")
+			to_chat(user, "<span class='warning'>You fail to tape [H]'s mouth shut.</span>")

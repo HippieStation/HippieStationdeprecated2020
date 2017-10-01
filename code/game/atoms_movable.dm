@@ -116,6 +116,7 @@
 
 //Called after a successful Move(). By this point, we've already moved
 /atom/movable/proc/Moved(atom/OldLoc, Dir)
+	SendSignal(COMSIG_MOVABLE_MOVED, OldLoc, Dir)
 	if (!inertia_moving)
 		inertia_next_move = world.time + inertia_move_delay
 		newtonian_move(Dir)
@@ -216,7 +217,8 @@
 //to differentiate it, naturally everyone forgot about this immediately and so some things
 //would bump twice, so now it's called Collide
 /atom/movable/proc/Collide(atom/A)
-	if((A))
+	SendSignal(COMSIG_MOVABLE_COLLIDE, A)
+	if(A)
 		if(throwing)
 			throwing.hit_atom(A)
 			. = 1
@@ -225,6 +227,17 @@
 		A.CollidedWith(src)
 
 /atom/movable/proc/forceMove(atom/destination)
+	. = FALSE
+	if(destination)
+		. = doMove(destination)
+	else
+		CRASH("No valid destination passed into forceMove")
+
+/atom/movable/proc/moveToNullspace()
+	return doMove(null)
+
+/atom/movable/proc/doMove(atom/destination)
+	. = FALSE
 	if(destination)
 		if(pulledby)
 			pulledby.stop_pulling()
@@ -251,8 +264,17 @@
 				AM.Crossed(src, oldloc)
 
 		Moved(oldloc, 0)
-		return 1
-	return 0
+		. = TRUE
+
+	//If no destination, move the atom into nullspace (don't do this unless you know what you're doing)
+	else
+		. = TRUE
+		var/atom/oldloc = loc
+		var/area/old_area = get_area(oldloc)
+		oldloc.Exited(src, null)
+		if(old_area)
+			old_area.Exited(src, null)
+		loc = null
 
 /mob/living/forceMove(atom/destination)
 	stop_pulling()
@@ -261,9 +283,10 @@
 	if(has_buckled_mobs())
 		unbuckle_all_mobs(force=1)
 	. = ..()
-	if(client)
-		reset_perspective(destination)
-	update_canmove() //if the mob was asleep inside a container and then got forceMoved out we need to make them fall.
+	if(.)
+		if(client)
+			reset_perspective(destination)
+		update_canmove() //if the mob was asleep inside a container and then got forceMoved out we need to make them fall.
 
 /mob/living/brain/forceMove(atom/destination)
 	if(container)
@@ -309,6 +332,7 @@
 
 /atom/movable/proc/throw_impact(atom/hit_atom, throwingdatum)
 	set waitfor = 0
+	SendSignal(COMSIG_MOVABLE_IMPACT, hit_atom, throwingdatum)
 	return hit_atom.hitby(src)
 
 /atom/movable/hitby(atom/movable/AM, skipcatch, hitpush = TRUE, blocked)
@@ -316,7 +340,8 @@
 		step(src, AM.dir)
 	..()
 
-/atom/movable/proc/throw_at(atom/target, range, speed, mob/thrower, spin=TRUE, diagonals_first = FALSE, var/datum/callback/callback)
+/atom/movable/proc/throw_at(atom/target, range, speed, mob/thrower, spin=TRUE, diagonals_first = FALSE, var/datum/callback/callback) //If this returns FALSE then callback will not be called.
+	. = FALSE
 	if (!target || (flags_1 & NODROP_1) || speed <= 0)
 		return
 
@@ -345,7 +370,9 @@
 			//then lets add it to speed
 			speed += user_momentum
 			if (speed <= 0)
-				return //no throw speed, the user was moving too fast.
+				return//no throw speed, the user was moving too fast.
+
+	. = TRUE // No failure conditions past this point.
 
 	var/datum/thrownthing/TT = new()
 	TT.thrownthing = src
@@ -561,7 +588,7 @@
 		flags_2 |= STATIONLOVING_2
 
 /atom/movable/proc/relocate()
-	var/targetturf = find_safe_turf(ZLEVEL_STATION)
+	var/targetturf = find_safe_turf(ZLEVEL_STATION_PRIMARY)
 	if(!targetturf)
 		if(GLOB.blobstart.len > 0)
 			targetturf = get_turf(pick(GLOB.blobstart))
@@ -593,7 +620,7 @@
 /atom/movable/proc/in_bounds()
 	. = FALSE
 	var/turf/currentturf = get_turf(src)
-	if(currentturf && (currentturf.z == ZLEVEL_CENTCOM || currentturf.z == ZLEVEL_STATION || currentturf.z == ZLEVEL_TRANSIT))
+	if(currentturf && (currentturf.z == ZLEVEL_CENTCOM || (currentturf.z in GLOB.station_z_levels) || currentturf.z == ZLEVEL_TRANSIT))
 		. = TRUE
 
 
