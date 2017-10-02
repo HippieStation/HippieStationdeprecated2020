@@ -291,6 +291,9 @@ Made by Xhuis
 	burnmod = 1.5 //1.5x burn damage, 2x is excessive
 	heatmod = 1.5
 
+/datum/species/shadow/ling/space_move(mob/living/carbon/human/H)
+	return TRUE
+
 /datum/species/shadow/ling/on_species_gain(mob/living/carbon/human/C)
 	C.draw_hippie_parts()
 	. = ..()
