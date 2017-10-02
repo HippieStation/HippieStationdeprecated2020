@@ -1,6 +1,6 @@
 /mob/living/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null)
 	if(findtext(message, (pick("rouge", ":^)", ":^(", ":)", ":(", "uwu", "^w^", "^.^", ";w;"))))
-		src.playsound_local(get_turf(src), 'hippiestation/sound/misc/slidewhistle_down.ogg', 90, FALSE, pressure_affected = FALSE)
+		playsound_local(get_turf(src), 'hippiestation/sound/misc/slidewhistle_down.ogg', 90, FALSE, pressure_affected = FALSE)
 		src.Knockdown(80)
 		src.confused += 5
 		if(!issilicon(src))
