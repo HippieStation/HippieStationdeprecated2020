@@ -1,5 +1,5 @@
 /mob/living/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null)
-	if(findtext(message, [pick("rouge", ":^)", ":^(", ":)", ":(", "uwu", "^w^", "^.^")]))
+	if(findtext(message, (pick("rouge", ":^)", ":^(", ":)", ":(", "uwu", "^w^", "^.^"))))
 		src.playsound_local(get_turf(src), 'hippiestation/sound/misc/slidewhistle_down.ogg', 100, FALSE, pressure_affected = FALSE)
 		src.Knockdown(100)
 		src.confused += 5
