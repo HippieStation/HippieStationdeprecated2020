@@ -143,13 +143,14 @@
 
 /obj/item/melee/baton
 	special_name = "Wrath of Zeus"
-	special_desc = "COST: 35 STAMINA. Spit on the active end creating vanquishing lightning"
-	special_cost = 35
+	special_desc = "COST: 30 STAMINA. Spit on the active end creating vanquishing lightning"
+	special_cost = 30
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/melee/baton/do_special_attack(atom/target, mob/living/carbon/user)
 	if(isliving(user) && src.status == TRUE)
-		tesla_zap(user, 4, 10000)
+		tesla_zap(src, 4, 10000)
+		user.electrocute_act(20, src, TRUE, TRUE)
 		src.deductcharge(hitcost)
 		user.visible_message("<span class='danger'>[user] spits on the active end of [src]!</span>")
 		playsound(user, 'sound/magic/lightningbolt.ogg', 100, 1, -1)
