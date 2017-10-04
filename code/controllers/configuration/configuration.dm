@@ -24,8 +24,7 @@ GLOBAL_PROTECT(config_dir)
 	LoadModes()
 	for(var/I in config_files)
 		LoadEntries(I)
-	if(Get(/datum/config_entry/flag/maprotation))
-		loadmaplist(CONFIG_MAPS_FILE)
+	loadmaplist(CONFIG_MAPS_FILE)
 
 /datum/controller/configuration/Destroy()
 	entries_by_type.Cut()
@@ -118,6 +117,9 @@ GLOBAL_PROTECT(config_dir)
 	stat("[name]:", statclick)
 
 /datum/controller/configuration/proc/Get(entry_type)
+	if(IsAdminAdvancedProcCall() && GLOB.LastAdminCalledProc == "Get" && GLOB.LastAdminCalledTargetRef == "\ref[src]")
+		log_admin_private("Config access of [entry_type] attempted by [key_name(usr)]")
+		return
 	var/datum/config_entry/E = entry_type
 	var/entry_is_abstract = initial(E.abstract_type) == entry_type
 	if(entry_is_abstract)
@@ -128,6 +130,9 @@ GLOBAL_PROTECT(config_dir)
 	return E.value
 
 /datum/controller/configuration/proc/Set(entry_type, new_val)
+	if(IsAdminAdvancedProcCall() && GLOB.LastAdminCalledProc == "Set" && GLOB.LastAdminCalledTargetRef == "\ref[src]")
+		log_admin_private("Config rewrite of [entry_type] to [new_val] attempted by [key_name(usr)]")
+		return
 	var/datum/config_entry/E = entry_type
 	var/entry_is_abstract = initial(E.abstract_type) == entry_type
 	if(entry_is_abstract)
@@ -164,6 +169,7 @@ GLOBAL_PROTECT(config_dir)
 
 /datum/controller/configuration/proc/loadmaplist(filename)
 	filename = "[GLOB.config_dir][filename]"
+	log_config("Loading config file [filename]...")
 	var/list/Lines = world.file2list(filename)
 
 	var/datum/map_config/currentmap = null
