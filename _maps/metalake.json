@@ -1,0 +1,8 @@
+{
+    "map_name": "MetaLake",
+    "map_path": "map_files/MetaLake",
+    "map_file": "MetaLake.dmm",
+    "minetype": "lavaland",
+    "transition_config": "default",
+    "allow_custom_shuttles": "yes"
+}
