@@ -493,6 +493,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	if(!msg)
 		return
+	
+	if(findtext(lowertext(msg), "how do i") && hippie_maybe_mhelp())
+		return
 
 	SSblackbox.add_details("admin_verb","Adminhelp") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	if(current_ticket)
