@@ -202,6 +202,19 @@
 	GLOB.mechas_list -= src //global mech list
 	return ..()
 
+/obj/mecha/CheckParts(list/parts_list)
+	..()
+	var/obj/item/C = locate(/obj/item/stock_parts/cell) in contents
+	cell = C
+	var/obj/item/stock_parts/scanning_module/SM = locate() in contents
+	var/obj/item/stock_parts/capacitor/CP = locate() in contents
+	if(SM)
+		step_energy_drain = 20 - (5 * SM.rating) //10 is normal, so on lowest part its worse, on second its ok and on higher its real good up to 0 on best
+		qdel(SM)
+	if(CP)
+		armor["energy"] += (CP.rating * 10) //Each level of capacitor protects the mech against emp by 10%
+		qdel(CP)
+
 ////////////////////////
 ////// Helpers /////////
 ////////////////////////
@@ -580,7 +593,8 @@
 ///////////////////////////////////
 
 /obj/mecha/proc/check_for_internal_damage(list/possible_int_damage,ignore_threshold=null)
-	if(!islist(possible_int_damage) || isemptylist(possible_int_damage)) return
+	if(!islist(possible_int_damage) || isemptylist(possible_int_damage))
+		return
 	if(prob(20))
 		if(ignore_threshold || obj_integrity*100/max_integrity < internal_damage_threshold)
 			for(var/T in possible_int_damage)

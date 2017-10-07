@@ -9,7 +9,7 @@
 	slot_flags = SLOT_BACK
 	origin_tech = "combat=4;materials=2"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot
-	casing_ejector = 0
+	casing_ejector = FALSE
 	var/recentpump = 0 // to prevent spammage
 	weapon_weight = WEAPON_MEDIUM
 
@@ -137,7 +137,7 @@
 
 /obj/item/gun/ballistic/shotgun/boltaction/enchanted/arcane_barrage
 	name = "arcane barrage"
-	desc = "Pew Pew Pew"
+	desc = "Pew Pew Pew."
 	fire_sound = 'sound/weapons/emitter.ogg'
 	pin = /obj/item/device/firing_pin/magic
 	icon_state = "arcane_barrage"
@@ -212,6 +212,10 @@
 	w_class = WEIGHT_CLASS_HUGE
 	var/toggled = FALSE
 	var/obj/item/ammo_box/magazine/internal/shot/alternate_magazine
+
+/obj/item/gun/ballistic/shotgun/automatic/dual_tube/examine(mob/user)
+	..()
+	to_chat(user, "<span class='notice'>Alt-click to pump it.</span>")
 
 /obj/item/gun/ballistic/shotgun/automatic/dual_tube/Initialize()
 	. = ..()

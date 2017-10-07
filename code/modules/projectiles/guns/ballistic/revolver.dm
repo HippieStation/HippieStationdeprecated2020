@@ -4,7 +4,7 @@
 	icon_state = "revolver"
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder
 	origin_tech = "combat=3;materials=2"
-	casing_ejector = 0
+	casing_ejector = FALSE
 
 /obj/item/gun/ballistic/revolver/Initialize()
 	. = ..()
@@ -163,7 +163,7 @@
 	desc = "An old model of revolver that originated in Russia. Able to be suppressed. Uses 7.62x38mmR ammo."
 	icon_state = "nagant"
 	origin_tech = "combat=3"
-	can_suppress = 1
+	can_suppress = TRUE
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rev762
 
 
@@ -345,7 +345,7 @@
 
 /obj/item/gun/ballistic/revolver/doublebarrel/improvised/sawn
 	name = "sawn-off improvised shotgun"
-	desc = "A single-shot shotgun, better not miss"
+	desc = "A single-shot shotgun. Better not miss."
 	icon_state = "ishotgun"
 	item_state = "gun"
 	w_class = WEIGHT_CLASS_NORMAL

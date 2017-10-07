@@ -49,10 +49,10 @@
 
 /datum/reagent/proc/reaction_obj(obj/O, volume)
 	return
-/*overriden and modified to allow for any chem without an existing override to apply turf reagent decals
+
 /datum/reagent/proc/reaction_turf(turf/T, volume)
 	return
-*/
+
 /datum/reagent/proc/on_mob_life(mob/living/M)
 	current_cycle++
 	holder.remove_reagent(src.id, metabolization_rate * M.metabolism_efficiency) //By default it slowly disappears.
@@ -78,10 +78,6 @@
 	return
 
 /datum/reagent/proc/on_update(atom/A)
-	return
-
-// Called every time reagent containers process.
-/datum/reagent/proc/on_tick(data)
 	return
 
 // Called when the reagent container is hit by an explosion

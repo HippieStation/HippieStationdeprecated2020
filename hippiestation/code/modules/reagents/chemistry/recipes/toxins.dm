@@ -58,7 +58,7 @@
 	name = "Bearium"
 	id = "bear"
 	results = list("bear" = 3, "radgoop" = 2)
-	required_reagents = list("life" = 2, "volt" = 3,"ephedrine" = 1)
+	required_reagents = list("liquid_life" = 2, "volt" = 3,"ephedrine" = 1)
 	required_temp = 460
 	bluespace_recipe = TRUE
 	can_overheat = TRUE
@@ -123,3 +123,30 @@
 	results = list("tabun" = 1, "goop" = 9)
 	required_reagents = list("tabunc" = 3)
 	centrifuge_recipe = TRUE
+
+/datum/chemical_reaction/impgluco
+	name = "Impure Glucosaryll"
+	id = "impgluco"
+	results = list("impgluco" = 1)
+	required_temp = 170
+	pressure_required = 45
+	required_reagents = list("sugar" = 3,"isopropyl" = 1,"sodiumchloride" = 1)
+	
+/datum/chemical_reaction/gluco
+	name = "Glucosaryll"
+	id = "gluco"
+	results = list("gluco" = 1)
+	required_temp = 120
+	pressure_required = 85
+	required_reagents = list("impgluco" = 2,"cryogenic_fluid" = 1)
+	centrifuge_recipe = TRUE
+
+/datum/chemical_reaction/over_reactible/screech
+	name = "Screechisol"
+	id = "screech"
+	results = list("screech" = 3)
+	can_overheat = TRUE
+	required_temp = 750
+	pressure_required = 30
+	overheat_threshold = 775
+	required_reagents = list("emote" = 3,"ephedrine" = 1)

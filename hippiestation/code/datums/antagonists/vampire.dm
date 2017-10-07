@@ -3,11 +3,11 @@
 	var/total_blood = 0
 	var/fullpower = FALSE
 	var/draining
-	var/list/objectives_given
+	var/list/objectives_given = list()
 
 	var/iscloaking = FALSE
 
-	var/list/powers // list of current powers
+	var/list/powers = list() // list of current powers
 
 	var/obj/item/clothing/suit/draculacoat/coat
 
@@ -29,9 +29,9 @@
 		/obj/effect/proc_holder/spell/self/revive = 800)
 
 /datum/antagonist/vampire/on_gain()
+	SSticker.mode.vampires += owner
 	give_objectives()
 	check_vampire_upgrade()
-	LAZYADD(SSticker.mode.vampires, owner)
 	owner.special_role = "vampire"
 	owner.current.faction += "vampire"
 	SSticker.mode.update_vampire_icons_added(owner)
@@ -69,7 +69,7 @@
 	blood_objective.gen_amount_goal()
 	add_objective(blood_objective)
 
-	for(var/i = 1, i < config.traitor_objectives_amount, i++)
+	for(var/i = 1, i < CONFIG_GET(number/traitor_objectives_amount), i++)
 		forge_single_objective()
 
 	if(!(locate(/datum/objective/escape) in owner.objectives))
@@ -79,8 +79,8 @@
 		return
 
 /datum/antagonist/vampire/proc/add_objective(var/datum/objective/O)
-	LAZYADD(owner.objectives, O) //fuck this
-	LAZYADD(objectives_given, O)
+	owner.objectives += O
+	objectives_given += O
 
 /datum/antagonist/vampire/proc/forge_single_objective() //Returns how many objectives are added
 	.=1
@@ -175,9 +175,6 @@
 	var/blood = 0
 	var/old_bloodtotal = 0 //used to see if we increased our blood total
 	var/old_bloodusable = 0 //used to see if we increased our blood usable
-	if(!H.ckey)
-		to_chat(O, "<span class='warning'>Their blood is stale and flat.</span>")
-		return FALSE
 	log_attack("[O] ([O.ckey]) bit [H] ([H.ckey]) in the neck")
 	O.visible_message("<span class='danger'>[O] grabs [H]'s neck harshly and sinks in their fangs!</span>", "<span class='danger'>You sink your fangs into [H] and begin to drain their blood.</span>", "<span class='notice'>You hear a soft puncture and a wet sucking noise.</span>")
 	if(!iscarbon(owner))
@@ -216,10 +213,9 @@
 	var/spell = new path(owner)
 	if(istype(spell, /obj/effect/proc_holder/spell))
 		owner.AddSpell(spell)
-	LAZYADD(powers, spell)
+	powers += spell
 
 /datum/antagonist/vampire/proc/get_ability(path)
-	LAZYINITLIST(powers)
 	for(var/P in powers)
 		var/datum/power = P
 		if(power.type == path)

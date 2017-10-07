@@ -40,6 +40,7 @@
 	max_w_class = WEIGHT_CLASS_GIGANTIC
 	max_combined_w_class = 35
 	resistance_flags = FIRE_PROOF
+	flags_2 = NO_MAT_REDEMPTION_2
 	var/pshoom = 'sound/items/pshoom.ogg'
 	var/alt_sound = 'sound/items/pshoom_2.ogg'
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 60, acid = 50)
@@ -517,7 +518,7 @@
 	new /obj/item/ammo_box/foambox/riot(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/med/bioterrorbundle
-	desc = "A large duffel bag containing a deadly chemicals, a chemical spray, chemical grenade, a Donksoft assault rifle, riot grade darts, a minature syringe gun, and a box of syringes"
+	desc = "A large duffel bag containing a deadly chemicals, a chemical spray, chemical grenade, a Donksoft assault rifle, riot grade darts, a minature syringe gun, and a box of syringes."
 
 /obj/item/storage/backpack/duffelbag/syndie/med/bioterrorbundle/PopulateContents()
 	new /obj/item/reagent_containers/spray/chemsprayer/bioterror(src)

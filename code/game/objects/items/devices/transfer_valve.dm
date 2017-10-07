@@ -5,7 +5,7 @@
 	item_state = "ttv"
 	lefthand_file = 'icons/mob/inhands/weapons/bombs_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/bombs_righthand.dmi'
-	desc = "Regulates the transfer of air between two tanks"
+	desc = "Regulates the transfer of air between two tanks."
 	var/obj/item/tank/tank_one
 	var/obj/item/tank/tank_two
 	var/obj/item/device/assembly/attached_device
@@ -165,7 +165,7 @@
 		var/attachment = "no device"
 		if(attached_device)
 			if(istype(attached_device, /obj/item/device/assembly/signaler))
-				attachment = "<A HREF='?_src_=holder;secrets=list_signalers'>[attached_device]</A>"
+				attachment = "<A HREF='?_src_=holder;[HrefToken()];secrets=list_signalers'>[attached_device]</A>"
 			else
 				attachment = attached_device
 
