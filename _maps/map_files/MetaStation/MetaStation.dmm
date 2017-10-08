@@ -78938,7 +78938,6 @@
 /area/shuttle/abandoned)
 "cWT" = (
 /obj/structure/table,
-/obj/item/device/camera,
 /obj/effect/decal/cleanable/dirt{
 	desc = "A thin layer of dust coating the floor.";
 	name = "dust"
@@ -78946,6 +78945,8 @@
 /obj/structure/light_construct{
 	dir = 1
 	},
+/obj/item/folder/blue,
+/obj/item/pen,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "cWU" = (
@@ -78954,6 +78955,8 @@
 	desc = "A thin layer of dust coating the floor.";
 	name = "dust"
 	},
+/obj/structure/table,
+/obj/item/device/camera,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "cWV" = (
@@ -79333,13 +79336,15 @@
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/abandoned)
 "cXH" = (
-/obj/structure/table,
 /obj/effect/decal/cleanable/dirt{
 	desc = "A thin layer of dust coating the floor.";
 	name = "dust"
 	},
-/obj/item/device/megaphone,
 /obj/structure/light_construct,
+/obj/machinery/computer/camera_advanced/shuttle_docker/whiteship{
+	x_offset = -3;
+	y_offset = -7
+	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
 "cXI" = (
@@ -86198,16 +86203,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-<<<<<<< HEAD
-"dDM" = (
-/obj/machinery/door/airlock/maintenance/abandoned{
-	name = "Storage Room";
-	req_access_txt = "12"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
-=======
 "dDN" = (
 /obj/effect/decal/cleanable/dirt{
 	desc = "A thin layer of dust coating the floor.";
@@ -86253,7 +86248,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
->>>>>>> 49438a65f8... Syndicate infiltrator update (#31410)
 
 (1,1,1) = {"
 aaa
@@ -97451,10 +97445,10 @@ cWt
 cWE
 cVF
 cWU
-cXe
-cWo
-cXB
 cXa
+cWo
+cXa
+dDP
 cVF
 cJI
 cYp
@@ -97708,9 +97702,9 @@ cVG
 cVF
 cVF
 cWT
-cVY
+dDN
 cWo
-cWR
+dDO
 cXH
 cVF
 cVF
