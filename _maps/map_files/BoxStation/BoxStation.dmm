@@ -64013,6 +64013,7 @@
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
 	},
+<<<<<<< HEAD
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
 	d1 = 1;
@@ -64026,6 +64027,22 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/whiteship,
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned)
+=======
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"Qlj" = (
+/obj/docking_port/stationary{
+ 	dheight = 9;
+ 	dir = 2;
+ 	dwidth = 5;
+ 	height = 24;
+	id = "syndicate_nw";
+	name = "northwest of station";
+	turf_type = /turf/open/space
+},
+/turf/open/space/basic,
+/area/space)
+>>>>>>> 1fc4537fcb... Kept the wrong dock on box (#31473)
 
 (1,1,1) = {"
 aaa
