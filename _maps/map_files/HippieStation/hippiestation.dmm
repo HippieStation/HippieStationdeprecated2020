@@ -1404,6 +1404,10 @@
 /obj/structure/grille,
 /obj/structure/disposalpipe/segment,
 /obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/preopen{
+	id = "hosoffice";
+	name = "hos secure door"
+	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
 "adn" = (
@@ -2062,10 +2066,14 @@
 /obj/structure/grille,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/preopen{
+	id = "hosoffice";
+	name = "hos secure door"
+	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hos)
 "aey" = (
-/obj/machinery/door/airlock/glass_command{
+/obj/machinery/door/airlock/command{
 	name = "Head of Security";
 	req_access_txt = "58"
 	},
@@ -30110,6 +30118,7 @@
 /area/medical/chemistry)
 "bpG" = (
 /obj/machinery/power/apc{
+	cell_type = /obj/item/stock_parts/cell/high;
 	dir = 1;
 	name = "Genetics APC";
 	pixel_y = 24
@@ -33082,6 +33091,10 @@
 "bvJ" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/preopen{
+	id = "RD Office";
+	name = "rd security door"
+	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hor)
 "bvK" = (
@@ -33596,6 +33609,10 @@
 /obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "RD Office";
+	name = "rd security door"
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hor)
@@ -34171,10 +34188,6 @@
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bxW" = (
-/obj/machinery/door/airlock/glass_command{
-	name = "Research Director";
-	req_access_txt = "30"
-	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -34186,6 +34199,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
+	},
+/obj/machinery/door/airlock/command{
+	name = "Research Director";
+	req_access = null;
+	req_access_txt = "30"
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
@@ -34352,14 +34370,21 @@
 	id = "Biohazard";
 	name = "Biohazard Shutter Control";
 	pixel_x = -5;
-	pixel_y = 5;
+	pixel_y = 7;
 	req_access_txt = "47"
 	},
 /obj/machinery/button/door{
 	id = "rnd2";
 	name = "Research Lab Shutter Control";
 	pixel_x = 5;
-	pixel_y = 5;
+	pixel_y = 7;
+	req_access_txt = "47"
+	},
+/obj/machinery/button/door{
+	id = "toxlab";
+	name = "Toxins Lockdown";
+	pixel_x = 5;
+	pixel_y = -2;
 	req_access_txt = "47"
 	},
 /turf/open/floor/plasteel/cafeteria,
@@ -36193,6 +36218,13 @@
 /area/crew_quarters/heads/hor)
 "bCj" = (
 /obj/structure/closet/secure_closet/RD,
+/obj/machinery/button/door{
+	id = "RD Office";
+	name = "Privacy Shutters Control";
+	pixel_x = -2;
+	pixel_y = -26;
+	req_access_txt = "30"
+	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
 "bCk" = (
@@ -36948,12 +36980,13 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bDU" = (
-/obj/machinery/door/airlock/glass_command{
-	name = "Chief Medical Officer";
-	req_access_txt = "40"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
+	},
+/obj/machinery/door/airlock/command{
+	name = "Chief Medical Officer";
+	req_access = null;
+	req_access_txt = "40"
 	},
 /turf/open/floor/plasteel/barber,
 /area/crew_quarters/heads/cmo)
@@ -37096,6 +37129,10 @@
 "bEi" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/preopen{
+	id = "CMO Office";
+	name = "cmo security door"
+	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
 "bEj" = (
@@ -37869,6 +37906,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/machinery/door/poddoor/preopen{
+	id = "CMO Office";
+	name = "cmo security door"
+	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
 "bFP" = (
@@ -38444,6 +38485,14 @@
 	dir = 1;
 	icon_state = "pipe-c"
 	},
+/obj/machinery/button/door{
+	dir = 2;
+	id = "CMO Office";
+	name = "Privacy Shutters Control";
+	pixel_x = 28;
+	pixel_y = -2;
+	req_access_txt = "40"
+	},
 /turf/open/floor/plasteel/barber,
 /area/crew_quarters/heads/cmo)
 "bHc" = (
@@ -38544,6 +38593,10 @@
 /area/hallway/primary/aft)
 "bHm" = (
 /obj/machinery/door/firedoor/heavy,
+/obj/machinery/door/poddoor/preopen{
+	id = "toxlab";
+	name = "toxins lab lockdown"
+	},
 /obj/machinery/door/airlock/research{
 	name = "Toxins Lab";
 	req_access_txt = "7"
@@ -43441,7 +43494,8 @@
 	dir = 8;
 	frequency = 1441;
 	id = "mix_in";
-	pixel_y = 1
+	pixel_y = 1;
+	volume_rate = 50
 	},
 /turf/open/floor/engine/vacuum,
 /area/engine/atmos)
@@ -45465,7 +45519,8 @@
 	dir = 8;
 	frequency = 1441;
 	id = "n2o_in";
-	pixel_y = 1
+	pixel_y = 1;
+	volume_rate = 200
 	},
 /turf/open/floor/engine/n2o,
 /area/engine/atmos)
@@ -47018,11 +47073,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "bZC" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "Engineering";
-	name = "engineering security door"
-	},
-/obj/machinery/door/airlock/glass_command{
+/obj/machinery/door/airlock/command{
 	name = "Chief Engineer";
 	req_access_txt = "56"
 	},
@@ -47049,22 +47100,27 @@
 	d2 = 2
 	},
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/poddoor/preopen{
-	id = "Engineering";
-	name = "engineering security door"
-	},
 /obj/structure/window/reinforced/fulltile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/door/poddoor/preopen{
+	id = "CE Office";
+	name = "ce security door"
+	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
 "bZE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/door/poddoor/preopen{
+	name = "engineering security door";
+	id = "Engineering"
+	},
 /turf/open/floor/plasteel/yellow/side{
 	dir = 10
 	},
 /area/engine/break_room)
 "bZF" = (
 /obj/machinery/power/apc{
+	cell_type = /obj/item/stock_parts/cell/high;
 	dir = 8;
 	name = "Atmospherics APC";
 	pixel_x = -24
@@ -47121,7 +47177,8 @@
 	dir = 8;
 	frequency = 1441;
 	id = "tox_in";
-	pixel_y = 1
+	pixel_y = 1;
+	volume_rate = 200
 	},
 /turf/open/floor/engine/plasma,
 /area/engine/atmos)
@@ -47399,7 +47456,10 @@
 /area/tcommsat/computer)
 "cap" = (
 /obj/machinery/light,
-/obj/structure/closet/firecloset,
+/obj/machinery/door/poddoor/preopen{
+	name = "engineering security door";
+	id = "Engineering"
+	},
 /turf/open/floor/plasteel/yellow/side{
 	dir = 6
 	},
@@ -49101,7 +49161,8 @@
 	dir = 8;
 	frequency = 1441;
 	id = "co2_in";
-	pixel_y = 1
+	pixel_y = 1;
+	volume_rate = 200
 	},
 /turf/open/floor/engine/co2,
 /area/engine/atmos)
@@ -49379,31 +49440,20 @@
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
 "cej" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "Engineering";
-	name = "engineering security door"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/delivery,
+/obj/structure/closet/firecloset,
 /turf/open/floor/plasteel{
 	name = "floor"
 	},
 /area/engine/engineering)
 "cek" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "Engineering";
-	name = "engineering security door"
-	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel{
 	name = "floor"
 	},
 /area/engine/engineering)
 "cel" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "Engineering";
-	name = "engineering security door"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel{
@@ -49454,6 +49504,10 @@
 	icon_state = "0-8"
 	},
 /obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/preopen{
+	id = "CE Office";
+	name = "ce security door"
+	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
 "cer" = (
@@ -49726,11 +49780,15 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/door/poddoor/preopen{
-	id = "Engineering";
-	name = "engineering security door"
-	},
 /obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/preopen{
+	id = "CE Office";
+	name = "ce security door"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "CE Office";
+	name = "ce security door"
+	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
 "cfd" = (
@@ -49784,6 +49842,10 @@
 /area/engine/engineering)
 "cfh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/door/poddoor/preopen{
+	name = "engineering security door";
+	id = "Engineering"
+	},
 /turf/open/floor/plasteel/yellow/side,
 /area/engine/break_room)
 "cfi" = (
@@ -50520,6 +50582,15 @@
 	pixel_y = 0
 	},
 /obj/machinery/computer/apc_control,
+/obj/machinery/button/door{
+	desc = "A remote control-switch for the engineering security doors.";
+	dir = 3;
+	id = "CE Office";
+	name = "Privacy Shutters";
+	pixel_x = -24;
+	pixel_y = -10;
+	req_access_txt = "56"
+	},
 /turf/open/floor/plasteel/neutral{
 	dir = 2
 	},
@@ -50572,6 +50643,10 @@
 	d2 = 2
 	},
 /obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/preopen{
+	id = "CE Office";
+	name = "ce security door"
+	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
 "cgT" = (
@@ -51349,6 +51424,10 @@
 /obj/structure/grille,
 /obj/structure/cable,
 /obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/preopen{
+	id = "CE Office";
+	name = "ce security door"
+	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
 "cir" = (
@@ -52348,6 +52427,10 @@
 	d2 = 4
 	},
 /obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/preopen{
+	id = "CE Office";
+	name = "ce security door"
+	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
 "ckM" = (
@@ -52376,10 +52459,14 @@
 	icon_state = "0-8"
 	},
 /obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/preopen{
+	id = "CE Office";
+	name = "ce security door"
+	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
 "ckP" = (
-/obj/machinery/door/airlock/glass_command{
+/obj/machinery/door/airlock/command{
 	name = "Chief Engineer";
 	req_access_txt = "56"
 	},
@@ -52441,7 +52528,8 @@
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 1;
 	frequency = 1441;
-	id = "n2_in"
+	id = "n2_in";
+	volume_rate = 200
 	},
 /turf/open/floor/engine/n2,
 /area/engine/atmos)
@@ -52470,7 +52558,8 @@
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 1;
 	frequency = 1441;
-	id = "o2_in"
+	id = "o2_in";
+	volume_rate = 200
 	},
 /turf/open/floor/engine/o2,
 /area/engine/atmos)
@@ -52499,7 +52588,8 @@
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 1;
 	frequency = 1441;
-	id = "air_in"
+	id = "air_in";
+	volume_rate = 200
 	},
 /turf/open/floor/engine/air,
 /area/engine/atmos)
@@ -55320,7 +55410,9 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/closet/emcloset,
+/obj/structure/closet/emcloset{
+	anchored = 1
+	},
 /turf/open/floor/plating,
 /area/engine/engineering)
 "cqT" = (
@@ -55399,7 +55491,9 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/structure/closet/emcloset,
+/obj/structure/closet/emcloset{
+	anchored = 1
+	},
 /turf/open/floor/plating,
 /area/engine/engineering)
 "cre" = (
@@ -55480,6 +55574,10 @@
 	d2 = 4
 	},
 /obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/preopen{
+	id = "Engineering";
+	name = "engineering security door"
+	},
 /turf/open/floor/plating,
 /area/engine/engineering)
 "crp" = (
@@ -55497,6 +55595,10 @@
 	},
 /obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/preopen{
+	id = "Engineering";
+	name = "engineering security door"
+	},
 /turf/open/floor/plating,
 /area/engine/engineering)
 "crr" = (
@@ -55511,6 +55613,10 @@
 	d2 = 4
 	},
 /obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/preopen{
+	id = "Engineering";
+	name = "engineering security door"
+	},
 /turf/open/floor/plating,
 /area/engine/engineering)
 "crs" = (
@@ -55768,7 +55874,9 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "crX" = (
-/obj/structure/closet/emcloset,
+/obj/structure/closet/emcloset{
+	anchored = 1
+	},
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
@@ -69336,6 +69444,52 @@
 /obj/item/reagent_containers/glass/rag,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+"dcH" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/preopen{
+	id = "hosoffice";
+	name = "hos secure door"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/heads/hos)
+"dcI" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/preopen{
+	id = "hosoffice";
+	name = "hos secure door"
+	},
+/turf/open/floor/plating,
+/area/crew_quarters/heads/hos)
+"dcJ" = (
+/obj/machinery/button/door{
+	id = "hosoffice";
+	name = "Privacy Shutters";
+	pixel_x = 2;
+	pixel_y = 8;
+	req_access_txt = "2"
+	},
+/turf/closed/wall,
+/area/crew_quarters/heads/hos)
+"dcK" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/preopen{
+	id = "toxlab";
+	name = "toxins lab lockdown"
+	},
+/turf/open/floor/plating,
+/area/science/mixing)
+"dcL" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/poddoor/preopen{
+	id = "toxlab";
+	name = "toxins lab lockdown"
+	},
+/turf/open/floor/plating,
+/area/science/mixing)
 
 (1,1,1) = {"
 aaa
@@ -101279,8 +101433,8 @@ aaf
 abq
 abq
 abq
-abr
-abr
+dcH
+dcI
 abq
 abq
 aff
@@ -101796,7 +101950,7 @@ acr
 acQ
 adn
 adM
-abq
+dcJ
 afg
 afU
 afU
@@ -116259,9 +116413,9 @@ bxP
 bCf
 bvK
 bEs
-bGc
+dcK
 bHm
-bGc
+dcL
 bEs
 bEs
 aaf
