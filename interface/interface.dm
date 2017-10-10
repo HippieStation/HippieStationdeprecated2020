@@ -66,6 +66,7 @@
 			message += GLOB.revdata.GetTestMergeInfo(FALSE)
 		if(tgalert(src, message, "Report Issue","Yes","No")=="No")
 			return
+		var/compileinfo = "[GLOB.round_id][servername ? " ([servername])" : ""]"
 		var/dat = {"	<title>Hippie Station 13 Github Ingame Reporting</title>
  			<iframe src='https://tools.hippiestation.com/githubreport/?ckey=[ckey(key)]&sinfo=[compileinfo]' style='border:none' width='850' height='660' scroll=no></iframe>"}
 		src << browse(dat, "window=github;size=900x700")
