@@ -231,13 +231,6 @@
 	item = /obj/item/storage/box/syndie_kit/wrestling
 	cost = 8 //The wrestling set is not as powerful as it once was
 	exclude_modes = list(/datum/game_mode/nuclear)
-
-/datum/uplink_item/dangerous/football
-	name = "Football Set"
-	desc = "Actually Rugby."
-	item = /obj/item/storage/box/syndie_kit/football
-	cost = 16
-	exclude_modes = list(/datum/game_mode/nuclear)
 	
 /datum/uplink_item/badass/banhammer
 	name = "Ban Hammer"
