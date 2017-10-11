@@ -1,4 +1,4 @@
-/obj/item/organ/internal/shadowtumor
+/obj/item/organ/shadowtumor
 	name = "black tumor"
 	desc = "A tiny black mass with red tendrils trailing from it. It seems to shrivel in the light."
 	icon_state = "blacktumor"
@@ -58,7 +58,7 @@
 				S.apply_damage(20, "brute")
 				playsound(S, 'sound/effects/bang.ogg', 50, 1)
 		return FALSE
-	SSticker.mode.remove_thrall(target.mind, FALSE)
-	target.visible_message("<span class='warning'>A strange black mass falls from [target]'s head!</span>")
-	new /obj/item/organ/internal/shadowtumor(get_turf(target))
+	SSticker.mode.remove_thrall(M.mind, FALSE)
+	M.visible_message("<span class='warning'>A strange black mass falls from [M]'s head!</span>")
+	new /obj/item/organ/internal/shadowtumor(get_turf(M))
 	return ..()
