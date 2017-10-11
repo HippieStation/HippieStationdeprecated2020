@@ -514,7 +514,7 @@
 					if(!ishuman(M.current))
 						return
 					var/mob/living/carbon/human/H = M.current
-					if(H.dna.species.id == "l_shadowling")
+					if(H.dna.species.id == "l_shadowling" && H.stat != DEAD)
 						empowered_thralls++
 				if(empowered_thralls >= EMPOWERED_THRALL_LIMIT)
 					to_chat(user, "<span class='warning'>You cannot spare this much energy. There are too many empowered thralls.</span>")
