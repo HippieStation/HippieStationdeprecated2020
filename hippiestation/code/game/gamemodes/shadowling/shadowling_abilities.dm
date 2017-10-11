@@ -284,7 +284,7 @@
 		target.setOxyLoss(0) //In case the shadowling was choking them out
 		target.mind.special_role = "thrall"
 		var/obj/item/organ/shadowtumor/ST = new /obj/item/organ/shadowtumor
-		ST.Insert(target)
+		ST.Insert(target, FALSE, FALSE)
 		SSticker.mode.add_thrall(target.mind)
 		if(target.reagents.has_reagent("frostoil")) //Stabilize body temp incase the sling froze them earlier
 			target.reagents.remove_reagent("frostoil", 100)
