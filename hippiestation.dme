@@ -2509,6 +2509,7 @@
 #include "hippiestation\code\modules\teeth\misc.dm"
 #include "hippiestation\code\modules\teeth\teeth.dm"
 #include "hippiestation\code\modules\tts\tts.dm"
+#include "hippiestation\code\modules\tts\tts_say.dm"
 #include "hippiestation\code\modules\uplink\uplink_item.dm"
 #include "hippiestation\code\modules\vehicles\pimpin_ride.dm"
 #include "hippiestation\interface\skin.dmf"
