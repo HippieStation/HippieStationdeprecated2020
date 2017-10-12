@@ -26,5 +26,5 @@
 		var/client/C = client //cache it!
 		var/mesg = url_encode(msg)
 		if((C.prefs.toggles & SOUND_MIDI) && C.chatOutput && !C.chatOutput.broken && C.chatOutput.loaded)
-			to_chat(M, "<audio autoplay><source src=\"[ttsurl][mesg]\" type=\"audio/mpeg\"></audio>")
+			to_chat(src, "<audio autoplay><source src=\"[ttsurl][mesg]\" type=\"audio/mpeg\"></audio>")
 		return TRUE
