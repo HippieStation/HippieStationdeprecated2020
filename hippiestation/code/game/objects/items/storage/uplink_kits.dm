@@ -41,19 +41,6 @@
 /obj/item/storage/box/syndie_kit/imp_gmindslave/PopulateContents()
 	new /obj/item/implanter/mindslave/greater(src)
 
-/obj/item/storage/box/syndie_kit/wrestling
-	name = "\improper Squared-Circle smackdown set"
-	desc = "For millenia, man has dreamed of wrestling. In 1980, it was invented by the great Macho\
-	Man Randy Savage. Although he is no longer with us, you can live on in his name with the latest in\
-	wrestling technology. Corkscrew your enemies and smash them into a pulp with your newfound wrestling skills,\
-	which you will obtain from this set. Now with a complimentary space-wrestling gear!"
-
-/obj/item/storage/box/syndie_kit/wrestling/PopulateContents()
-	new /obj/item/clothing/mask/hippie/wrestling(src)
-	new /obj/item/clothing/glasses/hippie/wrestling(src)
-	new /obj/item/clothing/under/hippie/wrestling(src)
-	new /obj/item/storage/belt/champion/wrestling(src)
-
 /obj/item/storage/box/syndie_kit/imp_comstimms
 	name = "boxed combat stimulant implant (with injector)"
 

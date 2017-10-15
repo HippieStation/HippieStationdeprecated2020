@@ -213,10 +213,10 @@
 	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/dangerous/wrestling
-	name = "Wrestling Set"
-	desc = "OH YEAH BROTHERRRR!"
-	item = /obj/item/storage/box/syndie_kit/wrestling
-	cost = 8 //The wrestling set is not as powerful as it once was
+	name = "Wrestling Belt"
+	desc = "Learn the art of extreme wrestling by putting this belt on."
+	item = /obj/item/storage/belt/champion/wrestling
+	cost = 11
 	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/badass/execution_sword
