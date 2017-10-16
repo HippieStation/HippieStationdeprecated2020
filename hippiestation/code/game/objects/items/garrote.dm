@@ -36,7 +36,7 @@
 	var/garroting = FALSE
 	var/next_garrote = 0
 
-/obj/item/garrote/New()
+/obj/item/garrote/Initialize()
 	..()
 	update_icon()
 
