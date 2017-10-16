@@ -2,7 +2,7 @@
 /obj/item/garrotehandles
 	name = "garrote handles"
 	desc = "Two handles for a garrote to be made. Needs cable to finish it."
-	icon_state = "garrothandles"
+	icon_state = "garrotehandles"
 	// item_state = "rods"
 	icon = 'hippiestation/icons/obj/garrote.dmi'
 	w_class = 2
@@ -19,10 +19,10 @@
 			W.item_color = I.item_color
 			W.update_icon()
 			user.put_in_hands(W)
-			user << "<span class='notice'>You attach the cable to the handles and pull on them tightly, creating a garrote.</span>"
+			to_chat(user, "<span class='notice'>You attach the cable to the handles and pull on them tightly, creating a garrote.</span>")
 			qdel(src)
 		else
-			user << "<span class='warning'>You need 20 cables to make a garrote!</span>"
+			to_chat(user, "<span class='warning'>You need 20 cables to make a garrote!</span>")
 			return
 
 //Wepon
@@ -31,10 +31,10 @@
 	desc = "Extremely robust for stealth takedowns and rapid chokeholds."
 	w_class = 2
 	icon = 'hippiestation/icons/obj/garrote.dmi'
-	icon_state = "garrot"
+	icon_state = "garrote"
 	item_color = ""
 	var/garroting = 0
-	var/next_garrot = 0
+	var/next_garrote = 0
 
 /obj/item/garrote/New()
 	..()
@@ -47,7 +47,7 @@
 /obj/item/garrote/update_icon()
 	if (!item_color)
 		item_color = pick("red", "yellow", "blue", "green")
-	icon_state = "garrot[garroting ? "_w" : ""][item_color ? "_[item_color]" : ""]"
+	icon_state = "garrote[garroting ? "_w" : ""][item_color ? "_[item_color]" : ""]"
 
 /obj/item/garrote/attack_self(mob/user)
 	if(garroting)
@@ -56,7 +56,7 @@
 		SSobj.processing.Remove(src)
 		update_icon()
 		return
-	if(world.time <= next_garrot) return
+	if(world.time <= next_garrote) return
 
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
@@ -71,7 +71,7 @@
 		garroting = 1
 		update_icon()
 		SSobj.processing.Add(src)
-		next_garrot = world.time + 10
+		next_garrote = world.time + 10
 		user.visible_message(
 			"<span class='danger'>[user] has grabbed \the [user.pulling] with \the [src]!</span>",\
 			"<span class='danger'>You grab \the [user.pulling] with \the [src]!</span>",\
@@ -104,7 +104,7 @@
 				garroting = 1
 				update_icon()
 				SSobj.processing.Add(src)
-				next_garrot = world.time + 10
+				next_garrote = world.time + 10
 				user.visible_message(
 					"<span class='danger'>[user] has grabbed \the [C] with \the [src]!</span>",\
 					"<span class='danger'>You grab \the [C] with \the [src]!</span>",\
