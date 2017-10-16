@@ -17,6 +17,6 @@
 	result = /obj/item/clothing/shoes/buttshoes
 	reqs = list(/obj/item/organ/butt = 2,
 				/obj/item/clothing/shoes/sneakers = 1)
-	tools = /obj/item/wirecutters
+	tools = list(/obj/item/wirecutters)
 	time = 50
 	category = CAT_CLOTHING
