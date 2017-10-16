@@ -78,7 +78,6 @@
 	if(world.time <= next_garrote) return
 
 	if(iscarbon(user))
-		var/mob/living/carbon/C = user
 		if(!user.pulling || !iscarbon(user.pulling))
 			to_chat(user, "<span class='warning'>You must be grabbing someone to garrote them!</span>")
 			return
