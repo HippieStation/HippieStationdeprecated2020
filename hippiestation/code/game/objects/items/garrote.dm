@@ -49,6 +49,25 @@
 		item_color = pick("red", "yellow", "blue", "green")
 	icon_state = "garrote[garroting ? "_w" : ""][item_color ? "_[item_color]" : ""]"
 
+/obj/item/garrote/proc/start_garroting(mob/user)
+	var/mob/living/M = user.pulling
+	M.LAssailant = user
+	playsound(C.loc, 'hippiestation/sound/weapons/grapple.ogg', 40, 1, -4)
+	playsound(C.loc, 'sound/weapons/cablecuff.ogg', 15, 1, -5)
+	garroting = TRUE
+	update_icon()
+	START_PROCESSING(SSobj, src)
+	next_garrote = world.time + 10
+	user.visible_message(
+		"<span class='danger'>[user] has grabbed \the [user.pulling] with \the [src]!</span>",\
+		"<span class='danger'>You grab \the [user.pulling] with \the [src]!</span>",\
+		"You hear some struggling and muffled cries of surprise")
+			
+/obj/item/garrote/proc/stop_garroting()
+	garroting = FALSE
+	STOP_PROCESSING(SSobj, src)
+	update_icon()
+
 /obj/item/garrote/attack_self(mob/user)
 	if(garroting)
 		to_chat(user, "<span class='notice'>You release the garrote on your victim.</span>") //Not the grab, though. Only the garrote.
@@ -64,28 +83,13 @@
 			to_chat(user, "<span class='warning'>You must be grabbing someone to garrote them!</span>")
 			return
 
-		var/mob/living/M = user.pulling
-		M.LAssailant = user
-		playsound(C.loc, 'hippiestation/sound/weapons/grapple.ogg', 40, 1, -4)
-		playsound(C.loc, 'sound/weapons/cablecuff.ogg', 15, 1, -5)
-		garroting = TRUE
-		update_icon()
-		START_PROCESSING(SSobj, src)
-		next_garrote = world.time + 10
-		user.visible_message(
-			"<span class='danger'>[user] has grabbed \the [user.pulling] with \the [src]!</span>",\
-			"<span class='danger'>You grab \the [user.pulling] with \the [src]!</span>",\
-			"You hear some struggling and muffled cries of surprise")
+		start_garroting(user)
 
 /obj/item/garrote/afterattack(atom/A, mob/living/user as mob, proximity, click_parameters)
-	//to_chat(user, "ayylmao")
 	if(!proximity) return
-	//to_chat(user, "ayylmao1")
 	if(iscarbon(A))
-		//to_chat(user, "ayylmao2")
 		var/mob/living/carbon/C = A
 		if(user != C)
-			//to_chat(user, "ayylmao3")
 			if(user.zone_selected != "mouth" && user.zone_selected != "eyes" && user.zone_selected != "head")
 				to_chat(user, "<span class='notice'>You must target head for garroting to work!</span>")
 				return
@@ -94,21 +98,9 @@
 				user.grab_state = GRAB_PASSIVE
 				//Autograb. The trick is to switch to grab intent and reinforce it for quick chokehold.
 				// N E V E R  autograb into Aggressive. Passive autograb is good enough.
-				// G.state = GRAB_AGGRESSIVE
-				// G.icon_state = "reinforce1"
 				C.grabbedby(user)
 				C.grippedby(user)
-				C.LAssailant = user
-				playsound(C.loc, 'hippiestation/sound/weapons/grapple.ogg', 40, 1, -4)
-				playsound(C.loc, 'sound/weapons/cablecuff.ogg', 15, 1, -5)
-				garroting = TRUE
-				update_icon()
-				SSobj.processing.Add(src)
-				next_garrote = world.time + 10
-				user.visible_message(
-					"<span class='danger'>[user] has grabbed \the [C] with \the [src]!</span>",\
-					"<span class='danger'>You grab \the [C] with \the [src]!</span>",\
-					"You hear some struggling and muffled cries of surprise")
+				start_garroting(user)
 			else
 				if(user.grab_state == GRAB_KILL)
 					return
@@ -138,29 +130,18 @@
 	if(iscarbon(loc))
 		var/mob/living/carbon/C = loc
 		if(!C.is_holding(src)) //THE GARROTE IS NOT IN HANDS, ABORT
-			//to_chat(C, "not holding")
-			garroting = FALSE
-			SSobj.processing.Remove(src)
-			update_icon()
+			STOP_PROCESSING(SSobj, src)
 			C.grab_state = GRAB_PASSIVE
 			return
 
 		if(!C.pulling || !iscarbon(C.pulling))
-			//to_chat(C, "not holding a nerd")
-			garroting = FALSE
-			SSobj.processing.Remove(src)
-			update_icon()
+			STOP_PROCESSING(SSobj, src)
 			C.grab_state = GRAB_PASSIVE
 			return
 
 		var/mob/living/carbon/human/H = C.pulling
 		if(istype(H))
-			//to_chat(C, "it's a human nerd")
 			if(H.is_mouth_covered())
-				garroting = FALSE
-				SSobj.processing.Remove(src)
-				update_icon()
-				C.grab_state = GRAB_PASSIVE
 				return
 			H.forcesay(list("-hrk!", "-hrgh!", "-urgh!", "-kh!", "-hrnk!"))
 
@@ -173,7 +154,5 @@
 					M.stuttering = max(M.stuttering, 3) //It will hamper your voice, being choked and all.
 					M.losebreath = min(M.losebreath + 2, 3) //Tell the game we're choking them
 	else
-		garroting = FALSE
-		SSobj.processing.Remove(src)
-		update_icon()
+		STOP_PROCESSING(SSobj, src)
 
