@@ -3,7 +3,7 @@
 	id = "emergencyoxy"
 	build_type = ATMOSLATHE
 	materials = list(MAT_METAL = 1000)
-	build_path = /obj/item/weapon/tank/internals/emergency_oxygen
+	build_path = /obj/item/tank/internals/emergency_oxygen
 	category = list("initial", "Atmos")
 
 /datum/design/emergencyoxyyellow
@@ -11,7 +11,7 @@
 	id = "emergencyoxyyellow"
 	build_type = ATMOSLATHE
 	materials = list(MAT_METAL = 2000)
-	build_path = /obj/item/weapon/tank/internals/emergency_oxygen/engi
+	build_path = /obj/item/tank/internals/emergency_oxygen/engi
 	category = list("initial", "Atmos")
 
 /datum/design/emergencyoxydouble
@@ -19,7 +19,7 @@
 	id = "emergencyoxydouble"
 	build_type = ATMOSLATHE
 	materials = list(MAT_METAL = 4000)
-	build_path = /obj/item/weapon/tank/internals/emergency_oxygen/double
+	build_path = /obj/item/tank/internals/emergency_oxygen/double
 	category = list("initial", "Atmos")
 
 /datum/design/oxytank
@@ -27,7 +27,7 @@
 	id = "oxytank"
 	build_type = ATMOSLATHE
 	materials = list(MAT_METAL = 5000)
-	build_path = /obj/item/weapon/tank/internals/oxygen
+	build_path = /obj/item/tank/internals/oxygen
 	category = list("initial", "Atmos")
 
 /datum/design/yellowtank
@@ -35,7 +35,7 @@
 	id = "yellowtank"
 	build_type = ATMOSLATHE
 	materials = list(MAT_METAL = 5000)
-	build_path = /obj/item/weapon/tank/internals/oxygen/yellow
+	build_path = /obj/item/tank/internals/oxygen/yellow
 	category = list("initial", "Atmos")
 
 /datum/design/redtank
@@ -43,7 +43,7 @@
 	id = "redtank"
 	build_type = ATMOSLATHE
 	materials = list(MAT_METAL = 5000)
-	build_path = /obj/item/weapon/tank/internals/oxygen/red
+	build_path = /obj/item/tank/internals/oxygen/red
 	category = list("initial", "Atmos")
 
 /datum/design/anesthetictank
@@ -51,7 +51,7 @@
 	id = "anesthetictank"
 	build_type = ATMOSLATHE
 	materials = list(MAT_METAL = 5000)
-	build_path = /obj/item/weapon/tank/internals/anesthetic
+	build_path = /obj/item/tank/internals/anesthetic
 	category = list("initial", "Atmos")
 
 /datum/design/plasmatank
@@ -59,7 +59,7 @@
 	id = "plasmatank"
 	build_type = ATMOSLATHE
 	materials = list(MAT_METAL = 5000)
-	build_path = /obj/item/weapon/tank/internals/plasma
+	build_path = /obj/item/tank/internals/plasma
 	category = list("initial", "Atmos")
 
 /datum/design/extinguisher
@@ -67,7 +67,7 @@
 	id = "extinguisher"
 	build_type = ATMOSLATHE
 	materials = list(MAT_METAL = 500)
-	build_path = /obj/item/weapon/extinguisher
+	build_path = /obj/item/extinguisher
 	category = list("initial", "Atmos")
 
 /datum/design/miniextinguisher
@@ -75,7 +75,7 @@
 	id = "miniextinguisher"
 	build_type = ATMOSLATHE
 	materials = list(MAT_METAL = 300)
-	build_path = /obj/item/weapon/extinguisher/mini
+	build_path = /obj/item/extinguisher/mini
 	category = list("initial", "Atmos")
 
 /datum/design/pipepainter
@@ -99,7 +99,7 @@
 	id = "watertank"
 	build_type = ATMOSLATHE
 	materials = list(MAT_METAL = 5000, MAT_GLASS = 3000)
-	build_path = /obj/item/weapon/watertank/atmos
+	build_path = /obj/item/watertank/atmos
 	category = list("initial", "Atmos")
 
 /datum/design/chemtank
@@ -115,6 +115,6 @@
 	id = "rpd"
 	build_type = ATMOSLATHE
 	materials = list(MAT_METAL = 75000, MAT_GLASS = 37500)
-	build_path = /obj/item/weapon/pipe_dispenser
+	build_path = /obj/item/pipe_dispenser
 	category = list("hacked", "Atmos")
-  
+
