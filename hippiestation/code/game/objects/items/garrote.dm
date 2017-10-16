@@ -52,8 +52,8 @@
 /obj/item/garrote/proc/start_garroting(mob/user)
 	var/mob/living/M = user.pulling
 	M.LAssailant = user
-	playsound(C.loc, 'hippiestation/sound/weapons/grapple.ogg', 40, 1, -4)
-	playsound(C.loc, 'sound/weapons/cablecuff.ogg', 15, 1, -5)
+	playsound(M.loc, 'hippiestation/sound/weapons/grapple.ogg', 40, 1, -4)
+	playsound(M.loc, 'sound/weapons/cablecuff.ogg', 15, 1, -5)
 	garroting = TRUE
 	update_icon()
 	START_PROCESSING(SSobj, src)
