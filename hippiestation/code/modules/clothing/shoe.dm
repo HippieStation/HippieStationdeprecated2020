@@ -1,3 +1,15 @@
+/obj/item/clothing/shoes/buttshoes
+	desc = "Why?"
+	name = "butt shoes"
+	icon_state = "buttshoes"
+	item_state = "buttshoes"
+	item_color = "buttshoes"
+	slowdown = SHOES_SLOWDOWN+1
+	
+/obj/item/clothing/shoes/buttshoes/Initialize()
+	. = ..()
+	AddComponent(/datum/component/squeak, list('hippiestation/sound/effects/fart.ogg'=1), 50)
+
 /obj/item/clothing/shoes/hippie/cluwne
 	desc = "The prankster's standard-issue clowning shoes. Damn, they're huge!"
 	name = "clown shoes"
