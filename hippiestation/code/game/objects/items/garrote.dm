@@ -33,7 +33,7 @@
 	icon = 'hippiestation/icons/obj/garrote.dmi'
 	icon_state = "garrote"
 	item_color = ""
-	var/garroting = 0
+	var/garroting = FALSE
 	var/next_garrote = 0
 
 /obj/item/garrote/New()
@@ -41,7 +41,7 @@
 	update_icon()
 
 /obj/item/garrote/Destroy()
-	SSobj.processing.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/garrote/update_icon()
@@ -52,8 +52,8 @@
 /obj/item/garrote/attack_self(mob/user)
 	if(garroting)
 		to_chat(user, "<span class='notice'>You release the garrote on your victim.</span>") //Not the grab, though. Only the garrote.
-		garroting = 0
-		SSobj.processing.Remove(src)
+		garroting = FALSE
+		STOP_PROCESSING(SSobj, src)
 		update_icon()
 		return
 	if(world.time <= next_garrote) return
@@ -68,9 +68,9 @@
 		M.LAssailant = user
 		playsound(C.loc, 'hippiestation/sound/weapons/grapple.ogg', 40, 1, -4)
 		playsound(C.loc, 'sound/weapons/cablecuff.ogg', 15, 1, -5)
-		garroting = 1
+		garroting = TRUE
 		update_icon()
-		SSobj.processing.Add(src)
+		START_PROCESSING(SSobj, src)
 		next_garrote = world.time + 10
 		user.visible_message(
 			"<span class='danger'>[user] has grabbed \the [user.pulling] with \the [src]!</span>",\
@@ -101,7 +101,7 @@
 				C.LAssailant = user
 				playsound(C.loc, 'hippiestation/sound/weapons/grapple.ogg', 40, 1, -4)
 				playsound(C.loc, 'sound/weapons/cablecuff.ogg', 15, 1, -5)
-				garroting = 1
+				garroting = TRUE
 				update_icon()
 				SSobj.processing.Add(src)
 				next_garrote = world.time + 10
@@ -139,7 +139,7 @@
 		var/mob/living/carbon/C = loc
 		if(!C.is_holding(src)) //THE GARROTE IS NOT IN HANDS, ABORT
 			//to_chat(C, "not holding")
-			garroting = 0
+			garroting = FALSE
 			SSobj.processing.Remove(src)
 			update_icon()
 			C.grab_state = GRAB_PASSIVE
@@ -147,7 +147,7 @@
 
 		if(!C.pulling || !iscarbon(C.pulling))
 			//to_chat(C, "not holding a nerd")
-			garroting = 0
+			garroting = FALSE
 			SSobj.processing.Remove(src)
 			update_icon()
 			C.grab_state = GRAB_PASSIVE
@@ -157,7 +157,7 @@
 		if(istype(H))
 			//to_chat(C, "it's a human nerd")
 			if(H.is_mouth_covered())
-				garroting = 0
+				garroting = FALSE
 				SSobj.processing.Remove(src)
 				update_icon()
 				C.grab_state = GRAB_PASSIVE
@@ -173,7 +173,7 @@
 					M.stuttering = max(M.stuttering, 3) //It will hamper your voice, being choked and all.
 					M.losebreath = min(M.losebreath + 2, 3) //Tell the game we're choking them
 	else
-		garroting = 0
+		garroting = FALSE
 		SSobj.processing.Remove(src)
 		update_icon()
 
