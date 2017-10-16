@@ -33,18 +33,6 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/IEDStrong
-	name = "Stronger IED"
-	result = /obj/item/grenade/iedcasing/upgrade
-	reqs = list(/datum/reagent/fuel = 100,
-				/obj/item/stack/cable_coil = 2,
-				/obj/item/device/assembly/igniter = 1,
-				/obj/item/reagent_containers/food/drinks/soda_cans = 1)
-	parts = list(/obj/item/reagent_containers/food/drinks/soda_cans = 1)
-	time = 40
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-
 /datum/crafting_recipe/lance
 	name = "explosive lance (grenade)"
 	result = /obj/item/twohanded/spear
