@@ -6,7 +6,6 @@
 	icon_state = "buttshoes"
 	item_state = "buttshoes"
 	item_color = "buttshoes"
-	slowdown = SHOES_SLOWDOWN+1
 	
 /obj/item/clothing/shoes/buttshoes/Initialize()
 	. = ..()
