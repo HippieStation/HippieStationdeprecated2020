@@ -12,7 +12,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/table_recipe/garrote_handles //Still need to apply some wires to finish it
+/datum/crafting_recipe/garrote_handles //Still need to apply some wires to finish it
 	name = "Garrote Handles"
 	result = /obj/item/garrotehandles
 	tools = list(/obj/item/weldingtool)

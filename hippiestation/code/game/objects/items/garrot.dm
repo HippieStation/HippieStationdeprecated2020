@@ -15,7 +15,7 @@
 		if (R.use(20))
 			var/obj/item/garrote/W = new /obj/item/garrote
 			if(!remove_item_from_storage(user))
-				user.unEquip(src)
+				user.temporarilyRemoveItemFromInventory(src)
 			W.item_color = I.item_color
 			W.update_icon()
 			user.put_in_hands(W)
@@ -60,43 +60,40 @@
 
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
-		var/obj/item/grab/G = C.l_hand
-		if(!istype(G))
-			G = C.r_hand
-			if(!istype(G))
-				return
-		if(G && G.affecting)
-			G.affecting.LAssailant = user
-			playsound(C.loc, 'sound/weapons/grapple.ogg', 40, 1, -4)
-			playsound(C.loc, 'sound/weapons/cablecuff.ogg', 15, 1, -5)
-			garroting = 1
-			update_icon()
-			SSobj.processing.Add(src)
-			next_garrot = world.time + 10
-			user.visible_message(
-				"<span class='danger'>[user] has grabbed \the [G.affecting] with \the [src]!</span>",\
-				"<span class='danger'>You grab \the [G.affecting] with \the [src]!</span>",\
-				"You hear some struggling and muffled cries of surprise")
+		if(!user.pulling || !iscarbon(user.pulling))
+			to_chat(user, "<span class='warning'>You must be grabbing someone to garrote them!</span>")
+			return
+
+		var/mob/living/M = user.pulling
+		M.LAssailant = user
+		playsound(C.loc, 'hippiestation/sound/weapons/grapple.ogg', 40, 1, -4)
+		playsound(C.loc, 'sound/weapons/cablecuff.ogg', 15, 1, -5)
+		garroting = 1
+		update_icon()
+		SSobj.processing.Add(src)
+		next_garrot = world.time + 10
+		user.visible_message(
+			"<span class='danger'>[user] has grabbed \the [user.pulling] with \the [src]!</span>",\
+			"<span class='danger'>You grab \the [user.pulling] with \the [src]!</span>",\
+			"You hear some struggling and muffled cries of surprise")
 
 /obj/item/garrote/afterattack(atom/A, mob/living/user as mob, proximity, click_parameters)
 	if(!proximity) return
 	if(iscarbon(A))
 		var/mob/living/carbon/C = A
-		if(user != C && !user.get_inactive_hand())
-			if(user.zone_sel.selecting != "mouth" && user.zone_sel.selecting != "eyes" && user.zone_sel.selecting != "head")
+		if(user != C)
+			if(C.zone_selected != "mouth" && C.zone_selected != "eyes" && C.zone_selected != "head")
 				user << "<span class='notice'>You must target head for garroting to work!</span>"
 				return
 			if(!garroting)
 				add_logs(user, C, "garroted")
-				var/obj/item/grab/G = new /obj/item/grab(user, C)
-				if(!G)	//the grab will delete itself in New if C is anchored
-					return 0
-				user.put_in_inactive_hand(G) //Autograb. The trick is to switch to grab intent and reinforce it for quick chokehold.
+				user.grab_state = GRAB_PASSIVE
+				C.grippedby(user) //Autograb. The trick is to switch to grab intent and reinforce it for quick chokehold.
 				// N E V E R  autograb into Aggressive. Passive autograb is good enough.
 				// G.state = GRAB_AGGRESSIVE
 				// G.icon_state = "reinforce1"
 				C.LAssailant = user
-				playsound(C.loc, 'sound/weapons/grapple.ogg', 40, 1, -4)
+				playsound(C.loc, 'hippiestation/sound/weapons/grapple.ogg', 40, 1, -4)
 				playsound(C.loc, 'sound/weapons/cablecuff.ogg', 15, 1, -5)
 				garroting = 1
 				update_icon()
@@ -113,39 +110,32 @@
 /obj/item/garrote/process()
 	if(iscarbon(loc))
 		var/mob/living/carbon/C = loc
-		if(src != C.r_hand && src != C.l_hand) //THE GARROTE IS NOT IN HANDS, ABORT
+		if(!C.is_holding(src)) //THE GARROTE IS NOT IN HANDS, ABORT
 			garroting = 0
 			SSobj.processing.Remove(src)
 			update_icon()
 			return
-		var/obj/item/grab/G = C.l_hand
-		if(!istype(G))
-			G = C.r_hand
-			if(!istype(G))
-				garroting = 0
-				SSobj.processing.Remove(src)
-				update_icon()
-				return
-		if(!G.affecting)
+		if(!C.pulling || !iscarbon(C.pulling))
 			garroting = 0
 			SSobj.processing.Remove(src)
 			update_icon()
 			return
-		if(ishuman(G.affecting))
-			var/mob/living/carbon/human/H = G.affecting
+		var/mob/living/M = C.pulling
+		if(ishuman(C.pulling))
+			var/mob/living/carbon/human/H = C.pulling
 			if(H.is_mouth_covered())
 				garroting = 0
 				SSobj.processing.Remove(src)
 				update_icon()
 				return
 			H.forcesay(list("-hrk!", "-hrgh!", "-urgh!", "-kh!", "-hrnk!"))
-		if(G.state >= GRAB_NECK) //Only do oxyloss if in neck grab to prevent passive grab choking or something.
-			if(G.state >= GRAB_KILL)
-				G.affecting.adjustOxyLoss(3) //Stack the chokes with additional oxyloss for quicker death
+		if(C.grab_state >= GRAB_NECK) //Only do oxyloss if in neck grab to prevent passive grab choking or something.
+			if(C.grab_state >= GRAB_KILL)
+				M.adjustOxyLoss(3) //Stack the chokes with additional oxyloss for quicker death
 			else
 				if(prob(40))
-					G.affecting.stuttering = max(G.affecting.stuttering, 3) //It will hamper your voice, being choked and all.
-					G.affecting.losebreath = min(G.affecting.losebreath + 2, 3) //Tell the game we're choking them
+					M.stuttering = max(M.stuttering, 3) //It will hamper your voice, being choked and all.
+					M.losebreath = min(M.losebreath + 2, 3) //Tell the game we're choking them
 	else
 		garroting = 0
 		SSobj.processing.Remove(src)
