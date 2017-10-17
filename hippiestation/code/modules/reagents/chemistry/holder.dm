@@ -18,8 +18,6 @@
 	var/list/cached_reagents = reagent_list
 	var/list/cached_reactions = GLOB.chemical_reactions_list
 	var/datum/cached_my_atom = my_atom
-	var/static/list/holder_blacklist_types = list(/obj/effect/particle_effect, /obj/effect/decal/cleanable, /mob/living, /obj/item/reagent_containers/food)//preventing message spam
-	var/static/list/holder_blacklist_typecache = typecacheof(holder_blacklist_typecache)
 	if(flags & REAGENT_NOREACT)
 		return //Yup, no reactions here. No siree.
 
