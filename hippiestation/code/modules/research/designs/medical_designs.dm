@@ -6,7 +6,7 @@
 	build_type = PROTOLATHE
 	materials = list(MAT_METAL = 1000, MAT_GLASS = 500, MAT_GOLD = 500, MAT_URANIUM = 600, MAT_DIAMOND = 600)
 	build_path = /obj/item/implantcase/comstimm
-	category = list("Medical Designs")]
+	category = list("Medical Designs")
 	
 /datum/design/autosurgeon
 	name = "Aurosurgeon"
@@ -15,5 +15,5 @@
 	req_tech = list("biotech" = 7, "materials" = 5, "engineering" = 5, "programming" = 5)
 	build_path = /obj/item/device/autosurgeon
 	build_type = PROTOLATHE
-	materials = list(MAT_METAL = 5000, MAT_SILVER = 3000,)
+	materials = list(MAT_METAL = 5000, MAT_SILVER = 3000)
 	category = list("Medical Designs")
