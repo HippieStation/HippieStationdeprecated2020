@@ -4,9 +4,17 @@
 
 //Note: typecache can only replace istype if you know for sure the thing is at least a datum.
 
-GLOBAL_LIST_INIT(holder_blacklist_typecache, typecacheof(list(
+// Don't show reaction messages in these atoms
+GLOBAL_LIST_INIT(no_reagent_message_typecache, typecacheof(list(
   /obj/effect/particle_effect,
   /obj/effect/decal/cleanable,
   /mob/living,
   /obj/item/reagent_containers/food)
+))
+
+// Don't do state change in these atoms
+GLOBAL_LIST_INIT(no_reagent_statechange_typecache, typecacheof(list(
+  /obj/effect/particle_effect/water,
+  /obj/effect/decal/cleanable,
+  /mob/living)
 ))
