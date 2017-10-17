@@ -32,7 +32,7 @@
 		return
 
 	if(atom)
-		if(is_type_in_typecache(atom, no_reagent_statechange_typecache))
+		if(is_type_in_typecache(atom, GLOB.no_reagent_statechange_typecache))
 			return
 		if(istype(atom, /obj/item))
 			var/obj/item/I = atom
