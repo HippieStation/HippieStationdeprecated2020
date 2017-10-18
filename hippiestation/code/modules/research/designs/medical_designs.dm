@@ -9,7 +9,7 @@
 	category = list("Medical Designs")
 	
 /datum/design/autosurgeon
-	name = "Aurosurgeon"
+	name = "Autosurgeon"
 	desc = "A device that automatically inserts an implant or organ into the user without the hassle of extensive surgery. It has a slot to insert implants/organs and a screwdriver slot for removing accidentally added items."
 	id = "autosurgeon"
 	req_tech = list("biotech" = 7, "materials" = 5, "engineering" = 5, "programming" = 5)
