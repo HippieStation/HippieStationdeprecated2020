@@ -1,5 +1,5 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-//Model dictionary trimmed on: 18-10-2017 20:22 (UTC)
+//Model dictionary trimmed on: 18-10-2017 22:12 (UTC)
 "aaa" = (
 /turf/open/space/basic,
 /area/space)
@@ -62308,6 +62308,10 @@
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "cGK" = (
+/obj/machinery/power/grounding_rod,
+/turf/open/floor/plating,
+/area/space/nearstation)
+"cGL" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
@@ -62320,53 +62324,18 @@
 	},
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
-"cGL" = (
+"cGM" = (
 /obj/structure/window/plasma/reinforced{
 	dir = 4
 	},
 /obj/structure/cable/yellow{
 	d2 = 8;
 	icon_state = "0-8"
-	},
-/obj/machinery/power/rad_collector/anchored,
-/turf/open/floor/plating/airless,
-/area/space/nearstation)
-"cGM" = (
-/obj/structure/window/plasma/reinforced{
-	dir = 8
-	},
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
 	},
 /obj/machinery/power/rad_collector/anchored,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "cGN" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-4";
-	d1 = 1;
-	d2 = 4
-	},
-/turf/open/floor/plating/airless,
-/area/space/nearstation)
-"cGO" = (
-/obj/structure/window/plasma/reinforced{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/machinery/power/rad_collector/anchored,
-/turf/open/floor/plating/airless,
-/area/space/nearstation)
-"cGP" = (
 /obj/structure/window/plasma/reinforced{
 	dir = 8
 	},
@@ -62376,6 +62345,14 @@
 	},
 /obj/machinery/power/rad_collector/anchored,
 /turf/open/floor/plating/airless,
+/area/space/nearstation)
+"cGO" = (
+/obj/machinery/power/grounding_rod,
+/turf/open/floor/plating,
+/area/space/nearstation)
+"cGP" = (
+/obj/machinery/power/grounding_rod,
+/turf/open/floor/plating,
 /area/space/nearstation)
 "cGQ" = (
 /obj/structure/cable/yellow{
@@ -62402,6 +62379,45 @@
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
 "cGS" = (
+/obj/structure/window/plasma/reinforced{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/rad_collector/anchored,
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
+"cGT" = (
+/obj/machinery/power/grounding_rod,
+/turf/open/floor/plating,
+/area/space/nearstation)
+"cGU" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4";
+	d1 = 1;
+	d2 = 4
+	},
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
+"cGV" = (
+/obj/structure/window/plasma/reinforced{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/rad_collector/anchored,
+/turf/open/floor/plating/airless,
+/area/space/nearstation)
+"cGW" = (
 /obj/structure/window/plasma/reinforced{
 	dir = 8
 	},
@@ -89592,9 +89608,9 @@ cvV
 cvZ
 cvV
 cvV
+cGK
 cvV
-cvV
-cvV
+cGP
 cvV
 cvV
 cvZ
@@ -89849,10 +89865,10 @@ cyY
 cza
 ctO
 cGH
-cGK
+cGL
 ctO
-cGN
 cGQ
+cGU
 ctO
 cza
 cza
@@ -90106,10 +90122,10 @@ ctM
 aaF
 ctP
 cGI
-cGL
+cGM
 ctP
-cGO
 cGR
+cGV
 ctP
 aaF
 aaF
@@ -92676,10 +92692,10 @@ ctM
 aaF
 ctR
 cGJ
-cGM
+cGN
 ctR
-cGP
 cGS
+cGW
 ctR
 aaF
 aaF
@@ -93190,9 +93206,9 @@ cvV
 cvZ
 cvV
 cva
+cGO
 cvV
-cvV
-cvV
+cGT
 cvV
 cvV
 cvZ
