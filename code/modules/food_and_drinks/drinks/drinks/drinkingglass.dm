@@ -49,6 +49,10 @@
 				icon_state  = "lemonglass"
 				name = "glass of lemon juice"
 				desc = "Sour..."
+			if("lean")
+				icon_state = "lean"
+				name = "lean cup"
+				desc = "A huge cup full of drank"
 			if("holywater")
 				icon_state  = "glass_clear"
 				name = "glass of Holy Water"
@@ -648,7 +652,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/filled/cola
 	name = "Space Cola"
 	list_reagents = list("cola" = 50)
-	
+
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/filled/nuka_cola
 	name = "Nuka Cola"
 	list_reagents = list("nuka_cola" = 50)
@@ -689,3 +693,12 @@
 		return
 	..()
 
+
+/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/suicide_act(mob/user)
+	if(src.icon_state == "lean")
+		var/mob/living/carbon/human/H = user
+		user.visible_message("<span class='suicide'>[user] is overdosing on that purple stuff!</span>")
+		user.say("Aww hol up mane.. dat too much drank..")
+		H.vomit(80, TRUE, TRUE, 2, TRUE, TRUE)
+		return(TOXLOSS)
+	..()

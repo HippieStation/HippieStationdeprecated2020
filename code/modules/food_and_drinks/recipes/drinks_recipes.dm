@@ -389,6 +389,14 @@
 	results = list("irishcarbomb" = 2)
 	required_reagents = list("ale" = 1, "irishcream" = 1)
 
+/datum/chemical_reaction/lean
+	name = "lean"
+	id = "lean"
+	results = list("lean" = 3)
+	required_reagents = list("diphenhydramine" = 1, "morphine" = 1, "space_up" = 1)
+	mix_message = "The solution swirls lazily into a neon syrup." //The message shown to nearby people upon mixing, if applicable
+	mix_sound = "sound/effects/lean_pour.ogg" //The sound played upon mixing, if applicable
+
 /datum/chemical_reaction/syndicatebomb
 	name = "Syndicate Bomb"
 	id = "syndicatebomb"
@@ -542,9 +550,9 @@
 	results = list("chocolate_milk" = 2)
 	required_reagents = list("milk" = 1, "cocoa" = 1)
 	mix_message = "The color changes as the mixture blends smoothly."
-	
+
 /datum/chemical_reaction/eggnog
 	name = "eggnog"
 	id = "eggnog"
 	results = list("eggnog" = 15)
-	required_reagents = list("rum" = 5, "cream" = 5, "eggyolk" = 5) 
+	required_reagents = list("rum" = 5, "cream" = 5, "eggyolk" = 5)

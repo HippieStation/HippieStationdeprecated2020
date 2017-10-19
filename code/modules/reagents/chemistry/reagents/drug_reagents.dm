@@ -497,6 +497,52 @@
 	..()
 	return
 
+/datum/reagent/drug/lean
+	name = "Lean"
+	id = "lean"
+	description = "A bubbly, neon purple antitussive syrup."
+	color = "#de72f9" //rgb: rgb(222, 103, 252)
+	reagent_state = LIQUID
+	overdose_threshold = 60
+
+/datum/reagent/drug/lean/on_mob_life(mob/living/M)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/list/leanTalk = list("Sipping on some sizzurp, sip, sipping on some, sip..", "I'M LEANIN!!", "Drop some syrup in it, get on my waffle house!", "Dat purple stuff..", "We wuz.. sippin...", "Bup-bup-bup-bup...", "ME AND MY DRANK, ME AND MY DRANK!!!", "Pour you a glass, mane..", "...purple...", "Can't nobody sip mo' than me!")
+		M.adjustBruteLoss(-1)
+		M.set_drugginess(5)
+		if(prob(2))
+			playsound(get_turf(H), 'sound/misc/syrupSippin.ogg', 50, 1)
+		if(prob(8))
+			H.say(pick(leanTalk))
+		if(prob(1))
+			var/syrup_message = pick("You feel relaxed.", "You feel calmed.","You feel like melting into the floor.","The world moves slowly..")
+			H << "<span class='notice'>[syrup_message]</span>"
+
+	.=..()
+	return
+
+datum/reagent/drug/lean/overdose_process(mob/living/M)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(prob(10))
+			M.drowsyness += 1
+		if(prob(10))
+			H << "You feel a sudden urge to lie down."
+			M.lay_down()
+		if(prob(8))
+			H.adjustToxLoss(5)
+		if(prob(5))
+			H << "You suddenly feel dizzy."
+			M.Dizzy(5)
+		if(prob(2))
+			var/syrup_OD = pick("You feel extremely sick.", "Maybe you drank too much syrup..", "Your vision goes purple.")
+			H << "<span class='notice'>[syrup_OD]</span>"
+			H.vomit(10, TRUE)
+	.=..()
+	return
+
+
 /datum/reagent/drug/fartium
 	name = "Fartium"
 	id = "fartium"
@@ -580,3 +626,5 @@
 				H << "<span class='danger'>Your stomach hurts too much as pressure builds up inside of you.</span>"
 				H.adjustToxLoss(6*REM)
 	..()
+
+

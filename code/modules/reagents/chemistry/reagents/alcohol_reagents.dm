@@ -442,6 +442,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	color = "#360000" // rgb: 54, 0, 0
 	boozepwr = 70
 
+
+
 /datum/reagent/consumable/ethanol/manhattan
 	name = "Manhattan"
 	id = "manhattan"
