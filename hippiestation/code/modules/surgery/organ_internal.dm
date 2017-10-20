@@ -43,10 +43,10 @@
 		to_chat(M, "<span class='shadowling'><b><i>NOT LIKE THIS!</i></b></span>")
 		M.visible_message("<span class='danger'>[M] suddenly slams upward and knocks down everyone!</span>")
 		
-		M.resting = FALSE //Remove all stuns
-		M.SetStun(0, FALSE)
-		M.SetKnockdown(FALSE)
-		M.SetUnconscious(FALSE)
+		M.resting = 0 //Remove all stuns
+		M.SetStun(0, 0)
+		M.SetKnockdown(0)
+		M.SetUnconscious(0)
 		for(var/mob/living/user in range(2, src))
 			if(iscarbon(user))
 				var/mob/living/carbon/C = user
