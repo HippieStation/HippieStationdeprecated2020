@@ -282,6 +282,6 @@
 /datum/uplink_item/role_restricted/godhand
 	name = "God's Wrath"
 	desc = "The Syndicate has convinced a particularly vengeful god to agree to a 20 TC transaction from one of its followers. This is a manifestation of the god's power and strength."
-	item /obj/item/syndiegodhand
+	item = /obj/item/syndiegodhand
 	cost = 20
 	restricted_roles = list("Chaplain")
