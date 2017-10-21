@@ -32,21 +32,17 @@
 
 /obj/item/banhammer/syndicate
 	desc = "A banhammer. Upon closer inspection, it appears to have a tag on its handle that says 'Syndicate Technologies Incorporated(TM)'"
-	name = "banhammer"
-	icon = 'icons/obj/items_and_weapons.dmi'
-	icon_state = "toyhammer"
 	force = 20
-	throwforce = 20
+	throw_force = 20
 	armour_penetration = 100 //It takes 5 hits to down someone.
-	max_integrity = 200
 
 /obj/item/syndiegodhand
+	name = "God's Wrath"
+	desc = "A particularly vengeful god has granted this Chaplain ts own strength."
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
-	name = "God's Wrath"
-	desc = "A particularly vengeful god has granted this Chaplain ts own strength."
 	flags_1 = ABSTRACT_1 | NODROP_1 | DROPDEL_1
 	w_class = WEIGHT_CLASS_HUGE
 	hitsound = 'sound/weapons/sear.ogg'
@@ -54,4 +50,3 @@
 	attack_verb = list("decimated", "roasted", "destroyed", "wrecked", "pummeled", "punished", "judged")
 	force = 40
 	armour_penetration = 100 //It takes 3 hits to crit someone
-	throw_force = 180 //What the fuck?
