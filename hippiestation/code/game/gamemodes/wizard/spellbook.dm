@@ -308,6 +308,13 @@ F
 	cost = 6
 	limit = 1
 
+/datum/spellbook_entry/item/voice_of_god
+	name = "Voice Of God"
+	desc = "Carefully salvaged from a dead Lavaland Colossus, this gimmicky item allows you to issue commands to nearby people who can hear."
+	item_path = /obj/item/device/autosurgeon/voice_of_god
+	category = "Assistance"
+	cost = 2
+
 /datum/spellbook_entry/item/staffofrevenant
 	name = "Staff of Revenant"
 	desc = "A weak staff that can drain the souls of the dead to become far more powerful than anything you can lay your hands on. Activate in your hand to view your progress, stats and if possible, progress to the next stage."
