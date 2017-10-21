@@ -33,7 +33,7 @@
 /obj/item/banhammer/syndicate
 	desc = "A banhammer. Upon closer inspection, it appears to have a tag on its handle that says 'Syndicate Technologies Incorporated(TM)'"
 	force = 20
-	throw_force = 20
+	throwforce = 20
 	armour_penetration = 100 //It takes 5 hits to down someone.
 
 /obj/item/syndiegodhand
@@ -50,3 +50,4 @@
 	attack_verb = list("decimated", "roasted", "destroyed", "wrecked", "pummeled", "punished", "judged")
 	force = 40
 	armour_penetration = 100 //It takes 3 hits to crit someone
+	throwforce = 180 //What the fuck?
