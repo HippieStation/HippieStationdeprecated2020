@@ -40,7 +40,7 @@
 
 /obj/item/syndiegodhand
 	name = "God's Wrath"
-	desc = "A particularly vengeful god has granted this Chaplain ts own strength."
+	desc = "A particularly vengeful god has granted this Chaplain its own strength."
 	icon_state = "disintegrateblue"
 	item_state = "disintegrateblue"
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
