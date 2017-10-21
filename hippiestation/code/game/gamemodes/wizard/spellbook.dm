@@ -151,7 +151,7 @@
 	name = "Mindswap"
 	spell_type = /obj/effect/proc_holder/spell/targeted/mind_transfer
 	category = "Mobility"
-F
+
 /datum/spellbook_entry/forcewall
 	name = "Force Wall"
 	spell_type = /obj/effect/proc_holder/spell/targeted/forcewall
@@ -299,6 +299,19 @@ F
 
 /obj/item/spellbook/oneuse/smoke/lesser //Chaplain smoke book
 	spell = /obj/effect/proc_holder/spell/targeted/smoke/lesser
+
+/datum/spellbook_entry/item/colossus
+	name = "Voice Of God"
+	desc = "An auto-surgeon containing magical vocal cords carefully harvested from slain Lavaland Colossi. It forces people to obey certain commands. Does not work over radio or on deaf people. Will drop upon resurrecting as a lich."
+	item_path = /obj/item/device/autosurgeon/colossus
+	category = "Assistance"
+	cost = 1 // It forces the wizard to stay still during combat and it was designed for non-antag miner use in mind.
+
+/datum/spellbook_entry/item/gun
+	name = "Deagle"
+	desc = "'The answer? Use a gun.'"
+	item_path = /obj/item/gun/ballistic/automatic/pistol/deagle
+	cost = 1 //And if that don't work? Use more gun.
 
 /datum/spellbook_entry/item/bookofdarkness
 	name = "Book of Darkness"
