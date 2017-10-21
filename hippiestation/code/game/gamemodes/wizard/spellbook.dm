@@ -307,6 +307,12 @@
 	category = "Assistance"
 	cost = 1 // It forces the wizard to stay still during combat and it was designed for non-antag miner use in mind.
 
+/datum/spellbook_entry/item/gun
+	name = "Deagle"
+	desc = "'The answer? Use a gun.'"
+	item_path = /obj/item/gun/ballistic/automatic/pistol/deagle
+	cost = 1 //And if that don't work? Use more gun.
+
 /datum/spellbook_entry/item/bookofdarkness
 	name = "Book of Darkness"
 	desc = "A forbidden tome, previously outlawed from the Wizard Federation for containing necromancy that is now being redistributed. Contains a powerful artifact that gets stronger with every soul it claims, a stunning spell that deals heavy damage to a single target, an incorporeal move spell and a spell that lets you explode corpses. Comes with a cool set of powerful robes as well that can carry the Staff of Revenant."
