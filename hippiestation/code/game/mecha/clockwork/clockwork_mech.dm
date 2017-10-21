@@ -14,6 +14,7 @@
 	var/breach_time = 100 //ten seconds till all goes to shit
 	var/regen_amount = 5 //Healing per tick
 	var/recharge_rate = 100
+	var/next_pulse = 0
 	wreckage = /obj/structure/mecha_wreckage/durand/neovgre
 
 /obj/mecha/neovgre/GrantActions(mob/living/user, human_occupant = 0) //No Eject action for you sonny jim, your life for Ratvar!
@@ -60,6 +61,10 @@
 
 /obj/mecha/neovgre/process()
 	..()
+	if(!GLOB.ratvar_awakens && z == ZLEVEL_CITYOFCOGS && world.time >= next_pulse && GLOB.ark_of_the_clockwork_justiciar && GLOB.ark_of_the_clockwork_justiciar.active && GLOB.ark_of_the_clockwork_justiciar.progress_in_seconds >= GATEWAY_REEBE_FOUND && prob(50))
+		Beam(GLOB.ark_of_the_clockwork_justiciar, "volt_ray", time = 25, maxdistance = INFINITY)
+		cell.charge += 250
+		next_pulse = world.time + rand(150, 600)
 	if(GLOB.ratvar_awakens) // At this point only timley intervention by lord singulo could hople to stop the superweapon
 		cell.charge = INFINITY
 		max_integrity = INFINITY
