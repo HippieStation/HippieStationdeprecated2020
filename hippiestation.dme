@@ -2522,7 +2522,6 @@
 #include "hippiestation\code\modules\sports\bowling.dm"
 #include "hippiestation\code\modules\sports\hockey.dm"
 #include "hippiestation\code\modules\sports\wrestling.dm"
-#include "hippiestation\code\modules\surgery\dethralling.dm"
 #include "hippiestation\code\modules\surgery\gender_reassignment.dm"
 #include "hippiestation\code\modules\surgery\organ_internal.dm"
 #include "hippiestation\code\modules\surgery\tools.dm"

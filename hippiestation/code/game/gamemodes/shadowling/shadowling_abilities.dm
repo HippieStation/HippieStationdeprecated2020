@@ -283,6 +283,8 @@
 							   "<span class='warning'>False faces all d<b>ark not real not real not--</b></span>")
 		target.setOxyLoss(0) //In case the shadowling was choking them out
 		target.mind.special_role = "thrall"
+		var/obj/item/organ/shadowtumor/ST = new /obj/item/organ/shadowtumor
+		ST.Insert(target, FALSE, FALSE)
 		SSticker.mode.add_thrall(target.mind)
 		if(target.reagents.has_reagent("frostoil")) //Stabilize body temp incase the sling froze them earlier
 			target.reagents.remove_reagent("frostoil", 100)
@@ -514,7 +516,7 @@
 					if(!ishuman(M.current))
 						return
 					var/mob/living/carbon/human/H = M.current
-					if(H.dna.species.id == "l_shadowling")
+					if(H.dna.species.id == "l_shadowling" && H.stat != DEAD)
 						empowered_thralls++
 				if(empowered_thralls >= EMPOWERED_THRALL_LIMIT)
 					to_chat(user, "<span class='warning'>You cannot spare this much energy. There are too many empowered thralls.</span>")
