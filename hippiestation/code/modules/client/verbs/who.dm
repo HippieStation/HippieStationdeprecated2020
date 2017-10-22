@@ -54,7 +54,7 @@
 		var/client/C = X
 		if(!check_rights_for(C, R_MENTOR) || C.holder.fakekey)
 			var/key = C.key
-			if(C.holder.fakekey)
+			if(C.holder && C.holder.fakekey)
 				key = C.holder.fakekey
 			Lines += "\t [key][show_admin_info(C)] ([round(C.avgping, 1)]ms)"
 
