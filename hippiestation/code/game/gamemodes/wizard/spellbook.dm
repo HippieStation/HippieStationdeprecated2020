@@ -300,11 +300,17 @@ F
 /obj/item/spellbook/oneuse/smoke/lesser //Chaplain smoke book
 	spell = /obj/effect/proc_holder/spell/targeted/smoke/lesser
 
-/datum/spellbook_entry/item/gun
+/datum/spellbook_entry/item/stetchkin_gun
 	name = "Stetchkin Gun"
-	desc = "'The answer? Use a gun.'"
+	desc = "'Sometimes you just need a little less gun.'"
 	item_path = /obj/item/gun/ballistic/automatic/pistol
 	cost = 1 //'And if that don't work? Use more gun.'
+
+/datum/spellbook_entry/item/shotgun_gun
+	name = "Shotgun Gun"
+	desc = "'The answer? Use a gun.'"
+	item_path = /obj/item/gun/ballistic/shotgun //'And if that don't work? Use more gun.'
+	cost = 1 //No sense of right and wrong.
 
 /datum/spellbook_entry/item/bookofdarkness
 	name = "Book of Darkness"
