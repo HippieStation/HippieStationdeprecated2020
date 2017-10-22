@@ -304,7 +304,7 @@ F
 	name = "Stetchkin Gun"
 	desc = "'Sometimes you just need a little less gun.'"
 	item_path = /obj/item/gun/ballistic/automatic/pistol
-	cost = 1 //'And if that don't work? Use more gun.'
+	cost = 1
 
 /datum/spellbook_entry/item/shotgun_gun
 	name = "Shotgun Gun"
