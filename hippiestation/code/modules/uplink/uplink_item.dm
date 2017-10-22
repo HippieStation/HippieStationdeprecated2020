@@ -3,7 +3,7 @@
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/nuclear)
 	cant_discount = TRUE
-	
+
 /* Stimpak */
 /datum/uplink_item/stealthy_tools/stimpack
 	name = "Syndicate Nano-Booster"
@@ -240,13 +240,20 @@
 
 /datum/uplink_item/dangerous/guardian
 	player_minimum = 0
-	
+
 /datum/uplink_item/colab/romerol_kit
 	name = "Romerol"
 	desc = "A highly experimental bioterror agent which creates dormant nodules to be etched into the grey matter of the brain. On death, these nodules take control of the dead body, causing limited revivification, along with slurred speech, aggression, and the ability to infect others with this agent."
 	item = /obj/item/storage/box/syndie_kit/romerol
 	cost = 25
 	surplus = 5
-	
+
 /datum/uplink_item/stealthy_weapons/romerol_kit
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor)
+
+/datum/uplink_item/role_restricted/godhand
+	name = "God's Wrath"
+	desc = "Gain the favor of a particularly vengeful god, granting you its strength and energy concentrated in one hand."
+	item = /obj/item/syndicate/godhand
+	cost = 20
+	restricted_roles = list("Chaplain")
