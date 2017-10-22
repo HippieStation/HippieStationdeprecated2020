@@ -44,6 +44,6 @@
 	armour_penetration = 100 //Downs people in 3 hits, the weapon is extremely visible.
 	w_class = WEIGHT_CLASS_HUGE
 	flags_1 = ABSTRACT_1 | NODROP_1 | DROPDEL_1
-	HITSOUND = 'sound/magic/clockwork/ratvar_attack.ogg'
+	hitsound = 'sound/magic/clockwork/ratvar_attack.ogg'
 	damtype = BURN
 	attack_verb = list("destroyed", "decimated", "wrecked", "punished", "judged")
