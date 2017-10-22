@@ -29,3 +29,27 @@
 		visible_message("<span class='greenannounce'>[user] has scored a critical hit on [M]!</span>")
 		playsound(src, 'sound/arcade/mana.ogg', 50, 1)
 	..()
+
+/obj/item/banhammer/syndicate
+	desc = "A banhammer. Upon closer inspection, it appears to have a tag on its handle."
+	icon_state = "toyhammertagged"
+	item_state = "toyhammertagged"
+	force = 20
+	throwforce = 20
+	armour_penetration = 100 //It takes 5 hits to down someone.
+
+/obj/item/syndiegodhand
+	name = "God's Wrath"
+	desc = "A particularly vengeful god has granted this Chaplain its own strength."
+	icon_state = "disintegrateblue"
+	item_state = "disintegrateblue"
+	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
+	flags_1 = ABSTRACT_1 | NODROP_1 | DROPDEL_1
+	w_class = WEIGHT_CLASS_HUGE
+	hitsound = 'sound/weapons/sear.ogg'
+	damtype = BURN
+	attack_verb = list("decimated", "roasted", "destroyed", "wrecked", "pummeled", "punished", "judged")
+	force = 40
+	armour_penetration = 100 //It takes 3 hits to crit someone
+	throwforce = 180 //What the fuck?
