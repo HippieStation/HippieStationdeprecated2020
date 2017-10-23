@@ -12,3 +12,10 @@
 		return FALSE
 		
 	return TRUE
+
+/mob/living/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null)
+	if(findtext(message, "fart man"))
+		to_chat(src, "<span class='boldwarning'>Fucking die.</span>")
+		gib()
+		playsound_local(get_turf(src), 'hippiestation/sound/misc/slidewhistle_down.ogg', 100, FALSE, pressure_affected = FALSE)
+	..()
