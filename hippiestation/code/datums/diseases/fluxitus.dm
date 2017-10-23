@@ -16,7 +16,15 @@
 
 /datum/disease/fluxitus/stage_act()
 	..()
-	affected_mob.add_screams(src.new_scream)
+	affected_mob.add_screams(new_scream)
+	if(is_vampire(affected_mob))
+		to_chat(affected_mob, "<span class='notice'>So what you're autistic? Blood is all you need anyways.</span>")
+		cure()
+		return FALSE
+	if(is_shadow(affected_mob))
+		to_chat(affected_mob, "<span class='notice'>You feel autistic for a second, before your strength is returned by the darkness.</span>")
+		cure()
+		return FALSE
 	switch(stage)
 		if(1)
 			new_cure = list(pick(alternate_cures))
