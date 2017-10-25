@@ -302,15 +302,15 @@ F
 
 /datum/spellbook_entry/item/stetchkin_gun
 	name = "Stetchkin Gun"
-	desc = "'Sometimes you just need a little less gun.'"
+	desc = "Sometimes you just need a little less gun."
 	item_path = /obj/item/gun/ballistic/automatic/pistol
 	cost = 1
 
 /datum/spellbook_entry/item/shotgun_gun
 	name = "Shotgun Gun"
-	desc = "'The answer? Use a gun.'"
-	item_path = /obj/item/gun/ballistic/shotgun //'And if that don't work? Use more gun.'
-	cost = 1 //No sense of right and wrong.
+	desc = "The answer? Use a gun."
+	item_path = /obj/item/gun/ballistic/shotgun/automatic/combat //'And if that don't work? Use more gun.'
+	cost = 2 //No sense of right and wrong.
 
 /datum/spellbook_entry/item/bookofdarkness
 	name = "Book of Darkness"
