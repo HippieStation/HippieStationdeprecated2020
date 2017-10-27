@@ -256,7 +256,7 @@
 	name = "God's Wrath"
 	desc = "Gain the favor of a particularly vengeful god, granting you its strength and energy concentrated in one hand."
 	item = /obj/item/syndicate/godhand
-	cost = 20
+	cost = 18
 	restricted_roles = list("Chaplain")
 
 /datum/uplink_item/badass/surplus
