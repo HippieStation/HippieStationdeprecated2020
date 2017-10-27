@@ -239,6 +239,7 @@
 	surplus = 30 //Theres a good chance this will end up in surplus crates, so its a great way to add a little spice to any meme round.
 
 /datum/uplink_item/dangerous/guardian
+	surplus = 5 //Up yours TGbalanceing
 	player_minimum = 0
 
 /datum/uplink_item/colab/romerol_kit
@@ -257,3 +258,6 @@
 	item = /obj/item/syndicate/godhand
 	cost = 20
 	restricted_roles = list("Chaplain")
+
+/datum/uplink_item/badass/surplus
+	player_minimum = 0
