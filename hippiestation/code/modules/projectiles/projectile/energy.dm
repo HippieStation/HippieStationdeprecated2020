@@ -1,7 +1,6 @@
 /obj/item/projectile/energy/electrode
 	stun = 0
-	knockdown = 0
-	stamina = 60
+	knockdown = 100
 
 /obj/item/projectile/energy/electrode/on_hit(atom/target, blocked = 0)
 	if(iscarbon(target))
