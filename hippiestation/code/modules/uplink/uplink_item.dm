@@ -239,6 +239,7 @@
 	surplus = 30 //Theres a good chance this will end up in surplus crates, so its a great way to add a little spice to any meme round.
 
 /datum/uplink_item/dangerous/guardian
+	surplus = 5 //Up yours TGbalanceing
 	player_minimum = 0
 
 /datum/uplink_item/colab/romerol_kit
@@ -266,3 +267,6 @@
 	cost = 2
 	surplus = 1 //You fail at life.
 	exclude_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/badass/surplus
+	player_minimum = 0
