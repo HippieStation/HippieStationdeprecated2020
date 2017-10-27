@@ -1,7 +1,3 @@
-/obj/item/projectile/energy/electrode
-	stun = 0
-	knockdown = 100
-
 /obj/item/projectile/energy/electrode/on_hit(atom/target, blocked = 0)
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
