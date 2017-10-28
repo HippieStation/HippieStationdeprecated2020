@@ -1,5 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-//Model dictionary trimmed on: 18-10-2017 23:32 (UTC)
 "aaa" = (
 /turf/open/space/basic,
 /area/space)
@@ -25171,7 +25170,6 @@
 	icon_state = "0-2";
 	d2 = 2
 	},
-/obj/machinery/smoke_machine,
 /mob/living/simple_animal/bot/cleanbot{
 	name = "C.L.E.A.N."
 	},
@@ -90173,9 +90171,9 @@ aaF
 ctS
 cGL
 ctS
-cGN
+cGL
 cGR
-cGU
+cGL
 ctS
 aaF
 aaF
@@ -92486,7 +92484,7 @@ cmT
 cvU
 aaa
 aaa
-cGP
+cGO
 aaa
 cvU
 cvU
@@ -92743,9 +92741,9 @@ aaF
 ctU
 cGM
 ctU
-cGQ
+cGM
 cGS
-cGV
+cGM
 ctU
 aaF
 aaF
