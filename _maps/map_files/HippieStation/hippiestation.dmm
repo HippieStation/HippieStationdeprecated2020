@@ -1,5 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-//Model dictionary trimmed on: 18-10-2017 23:32 (UTC)
 "aaa" = (
 /turf/open/space/basic,
 /area/space)
@@ -36763,6 +36762,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/machinery/portable_atmospherics/canister/tritium,
 /turf/open/floor/plasteel/floorgrime,
 /area/science/storage)
 "bDd" = (
@@ -37436,6 +37436,7 @@
 	dir = 4;
 	network = list("SS13","RD")
 	},
+/obj/machinery/portable_atmospherics/canister/tritium,
 /turf/open/floor/plasteel/floorgrime,
 /area/science/storage)
 "bEz" = (
@@ -47328,6 +47329,7 @@
 	dir = 8;
 	pixel_x = -24
 	},
+/obj/machinery/portable_atmospherics/canister/tritium,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bZo" = (
@@ -47799,6 +47801,7 @@
 	icon_state = "alarm0";
 	pixel_x = -22
 	},
+/obj/machinery/portable_atmospherics/canister/tritium,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "cao" = (
@@ -90173,9 +90176,9 @@ aaF
 ctS
 cGL
 ctS
-cGN
+cGL
 cGR
-cGU
+cGL
 ctS
 aaF
 aaF
@@ -92486,7 +92489,7 @@ cmT
 cvU
 aaa
 aaa
-cGP
+cGO
 aaa
 cvU
 cvU
@@ -92743,9 +92746,9 @@ aaF
 ctU
 cGM
 ctU
-cGQ
+cGM
 cGS
-cGV
+cGM
 ctU
 aaF
 aaF
