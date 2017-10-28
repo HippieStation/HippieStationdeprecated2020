@@ -153,7 +153,7 @@
 	switch(action)
 		if("eject")
 			if(beaker)
-				beaker.loc = src.loc
+				usr.put_in_hands(beaker)	//When you make a lot of pills it can be a pain to sift through them to get your beaker back
 				beaker = null
 				reagents.clear_reagents()
 				icon_state = "mixer0"
@@ -161,7 +161,7 @@
 
 		if("ejectp")
 			if(bottle)
-				bottle.loc = src.loc
+				usr.put_in_hands(bottle)
 				bottle = null
 				. = TRUE
 
