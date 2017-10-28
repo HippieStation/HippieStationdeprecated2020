@@ -185,6 +185,9 @@
 	color = "#AAAACB"
 	toxpwr = 1
 
+/datum/reagent/toxin/sarin_a/reaction_turf()
+	return FALSE
+
 /datum/reagent/toxin/sarin_a/on_mob_life(mob/living/M)
 	M.eye_blurry = max(M.eye_blurry, 1)
 	..()
@@ -194,6 +197,9 @@
 	id = "sarinb"
 	description = "A very impure form of sarin"
 	color = "#CCCCCC"
+	
+/datum/reagent/toxin/sarin_b/reaction_turf()
+	return FALSE
 
 /datum/reagent/toxin/sarin_b/on_mob_life(mob/living/M)
 	M.eye_blurry = max(M.eye_blurry, 3)
@@ -208,6 +214,9 @@
 	description = "A family friendly lethal nerve agent, handle with care!"
 	color = "#FFFFFF"
 	toxpwr = 0
+
+/datum/reagent/toxin/sarin/reaction_turf()
+	return FALSE
 
 /datum/reagent/toxin/sarin/on_mob_life(mob/living/M)
 	M.Jitter(50)
