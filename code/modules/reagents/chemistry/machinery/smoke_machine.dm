@@ -60,6 +60,13 @@
 	var/turf/T = get_turf(src)
 	var/smoke_test = locate(/obj/effect/particle_effect/smoke) in T
 	if(on && !smoke_test)
+	//"HEY FOLKS I HAZ NU ID 4 TOPLEL MEEMZ LE SPESS LUBE IN LE VAPE NAYSH MACHEEEN LOLOLOLOL"
+		if(locate(/datum/reagent/lube) in reagents.reagent_list)
+			var/datum/effect_system/reagents_explosion/e = new()
+			e.set_up(3, src.loc, 3, 3, message = 1)
+			e.start()
+			//You could add in a nice text here, like "The machine humms ominously as the rotors start working faster due to the lube."
+	//Else work normally
 		var/datum/effect_system/smoke_spread/chem/smoke_machine/smoke = new()
 		smoke.set_up(reagents, setting, efficiency, T)
 		smoke.start()
