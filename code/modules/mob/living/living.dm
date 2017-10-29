@@ -888,17 +888,14 @@
 		to_chat(G, "<span class='holoparasite'>Your summoner has changed form!</span>")
 
 /mob/living/rad_act(amount)
-	if(!amount || amount < RAD_MOB_SKIN_PROTECTION)
-		return
+	amount = max(amount-RAD_BACKGROUND_RADIATION, 0)
 
-	amount -= RAD_BACKGROUND_RADIATION // This will always be at least 1 because of how skin protection is calculated
+	if(amount)
+		var/blocked = getarmor(null, "rad")
 
-	var/blocked = getarmor(null, "rad")
-
-	if(amount > RAD_BURN_THRESHOLD)
-		apply_damage((amount-RAD_BURN_THRESHOLD)/RAD_BURN_THRESHOLD, BURN, null, blocked)
-
-	apply_effect((amount*RAD_MOB_COEFFICIENT)/max(1, (radiation**2)*RAD_OVERDOSE_REDUCTION), IRRADIATE, blocked)
+		apply_effect(amount * RAD_MOB_COEFFICIENT, IRRADIATE, blocked)
+		if(amount > RAD_AMOUNT_EXTREME)
+			apply_damage((amount-RAD_AMOUNT_EXTREME)/RAD_AMOUNT_EXTREME, BURN, null, blocked)
 
 /mob/living/proc/fakefireextinguish()
 	return
