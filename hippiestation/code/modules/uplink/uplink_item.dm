@@ -252,6 +252,12 @@
 /datum/uplink_item/stealthy_weapons/romerol_kit
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor)
 
+/datum/uplink_item/role_restricted/godhand
+	name = "God's Wrath"
+	desc = "Gain the favor of a particularly vengeful god, granting you its strength and energy concentrated in one hand."
+	item = /obj/item/syndicate/godhand
+	cost = 18
+	restricted_roles = list("Chaplain")
 
 /datum/uplink_item/badass/surplus
 	player_minimum = 0

@@ -29,3 +29,18 @@
 		visible_message("<span class='greenannounce'>[user] has scored a critical hit on [M]!</span>")
 		playsound(src, 'sound/arcade/mana.ogg', 50, 1)
 	..()
+
+/obj/item/syndicate/godhand
+	name = "God's Wrath"
+	desc = "A particularly vengeful god has granted this chaplain its own power."
+	icon_state = "disintegrateblue"
+	item_state = "disintegrateblue"
+	lefthand_file = "hippiestation/icons/mob/inhands/lefthand"
+	righthand_file = "hippiestation/icons/mob/inhands/righthand"
+	force = 40
+	armour_penetration = 100 //Downs people in 3 hits, the weapon is extremely visible.
+	w_class = WEIGHT_CLASS_HUGE
+	flags_1 = ABSTRACT_1 | NODROP_1 | DROPDEL_1
+	hitsound = 'sound/magic/clockwork/ratvar_attack.ogg'
+	damtype = BURN
+	attack_verb = list("destroyed", "obliterated", "wrecked", "punished", "judged")
