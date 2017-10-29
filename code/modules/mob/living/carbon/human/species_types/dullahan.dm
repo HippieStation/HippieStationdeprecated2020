@@ -30,6 +30,7 @@
 		head.flags_1 = HEAR_1
 		head.throwforce = 25
 		myhead = new /obj/item/dullahan_relay (head, H)
+		H.put_in_hands(head)
 
 /datum/species/dullahan/on_species_loss(mob/living/carbon/human/H)
 	if(myhead)
