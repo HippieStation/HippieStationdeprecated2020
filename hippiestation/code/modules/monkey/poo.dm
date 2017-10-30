@@ -15,6 +15,10 @@
 		var/mutable_appearance/poohands = mutable_appearance('hippiestation/icons/effects/poo.dmi', "poohands")
 		H.add_overlay(poohands)
 
+/obj/effect/decal/cleanable/poo/Crossed(atom/movable/O)
+	. = ..()
+	playsound(loc, pick('hippiestation/sound/effects/squish1.ogg', 'hippiestation/sound/effects/squish2.ogg'), 50, 1)
+
 /obj/effect/decal/cleanable/poo/Initialize()
 	..()
 	reagents.add_reagent("poo", 5)
