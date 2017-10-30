@@ -300,6 +300,18 @@ F
 /obj/item/spellbook/oneuse/smoke/lesser //Chaplain smoke book
 	spell = /obj/effect/proc_holder/spell/targeted/smoke/lesser
 
+/datum/spellbook_entry/item/stetchkin_gun
+	name = "Stetchkin Gun"
+	desc = "Sometimes you just need a little less gun."
+	item_path = /obj/item/gun/ballistic/automatic/pistol
+	cost = 1
+
+/datum/spellbook_entry/item/shotgun_gun
+	name = "Shotgun Gun"
+	desc = "The answer? Use a gun."
+	item_path = /obj/item/gun/ballistic/shotgun/automatic/combat //'And if that don't work? Use more gun.'
+	cost = 2 //No sense of right and wrong.
+
 /datum/spellbook_entry/item/bookofdarkness
 	name = "Book of Darkness"
 	desc = "A forbidden tome, previously outlawed from the Wizard Federation for containing necromancy that is now being redistributed. Contains a powerful artifact that gets stronger with every soul it claims, a stunning spell that deals heavy damage to a single target, an incorporeal move spell and a spell that lets you explode corpses. Comes with a cool set of powerful robes as well that can carry the Staff of Revenant."
