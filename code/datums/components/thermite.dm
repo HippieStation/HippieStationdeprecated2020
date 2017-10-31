@@ -41,7 +41,7 @@
 
 	playsound(master, 'sound/items/welder.ogg', 100, 1)
 
-	if(amount >= 50)
+	if(amount >= 15) //changed from 50 to 15 by hippiememes
 		var/burning_time = max(100, 100-amount)
 		master = master.ChangeTurf(master.baseturf)
 		master.burn_tile()
