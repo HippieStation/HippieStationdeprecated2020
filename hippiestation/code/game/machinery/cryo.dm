@@ -89,6 +89,8 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/on_deconstruction()
 	if(beaker)
 		beaker.forceMove(loc)
+		if(Adjacent(usr) && !issilicon(usr))
+			usr.put_in_hands(beaker)
 		beaker = null
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/update_icon()
