@@ -40,10 +40,7 @@
 	var/obj/effect/overlay/thermite/fakefire = new(master)
 
 	playsound(master, 'sound/items/welder.ogg', 100, 1)
-	//hippie start
-	//chnkr is a fucking cheezit
-	if(amount >= 15) //changed from 50 to 15 by hippiememes
-	//hippie end
+	if(amount >= 15) // hippie - change this from 50 to 15
 		var/burning_time = max(100, 100-amount)
 		master = master.ChangeTurf(master.baseturf)
 		master.burn_tile()
