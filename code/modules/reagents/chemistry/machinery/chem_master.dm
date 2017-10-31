@@ -157,6 +157,7 @@
 			if(beaker)
 				beaker.forceMove(drop_location())
 				adjust_item_drop_location(beaker)
+				usr.put_in_hands(beaker)	//When you make a lot of pills it can be a pain to sift through them to get your beaker back
 				beaker = null
 				reagents.clear_reagents()
 				icon_state = "mixer0"
@@ -166,6 +167,7 @@
 			if(bottle)
 				bottle.forceMove(drop_location())
 				adjust_item_drop_location(bottle)
+				usr.put_in_hands(bottle)
 				bottle = null
 				. = TRUE
 
