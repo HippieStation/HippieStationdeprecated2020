@@ -62,11 +62,13 @@
 /obj/machinery/chem_master/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, "mixer0_nopower", "mixer0", I))
 		if(beaker)
-			beaker.loc = src.loc
+			beaker.forceMove(drop_location())
+			adjust_item_drop_location(beaker)
 			beaker = null
 			reagents.clear_reagents()
 		if(bottle)
-			bottle.loc = src.loc
+			bottle.forceMove(drop_location())
+			adjust_item_drop_location(bottle)
 			bottle = null
 		return
 
@@ -153,7 +155,9 @@
 	switch(action)
 		if("eject")
 			if(beaker)
-				usr.put_in_hands(beaker)	//When you make a lot of pills it can be a pain to sift through them to get your beaker back
+				beaker.forceMove(drop_location())
+				adjust_item_drop_location(beaker)
+        usr.put_in_hands(beaker)	//When you make a lot of pills it can be a pain to sift through them to get your beaker back
 				beaker = null
 				reagents.clear_reagents()
 				icon_state = "mixer0"
@@ -161,7 +165,9 @@
 
 		if("ejectp")
 			if(bottle)
-				usr.put_in_hands(bottle)
+				bottle.forceMove(drop_location())
+				adjust_item_drop_location(bottle)
+        usr.put_in_hands(bottle)
 				bottle = null
 				. = TRUE
 
@@ -214,16 +220,15 @@
 					if(bottle && bottle.contents.len < bottle.storage_slots)
 						P = new/obj/item/reagent_containers/pill(bottle)
 					else
-						P = new/obj/item/reagent_containers/pill(src.loc)
+						P = new/obj/item/reagent_containers/pill(drop_location())
 					P.name = trim("[name] pill")
-					P.pixel_x = rand(-7, 7) //random position
-					P.pixel_y = rand(-7, 7)
+					adjust_item_drop_location(P)
 					reagents.trans_to(P,vol_each)
 			else
 				var/name = stripped_input(usr, "Name:", "Name your pack!", reagents.get_master_reagent_name(), MAX_NAME_LEN)
 				if(!name || !reagents.total_volume || !src || QDELETED(src) || !usr.canUseTopic(src, be_close=TRUE))
 					return
-				var/obj/item/reagent_containers/food/condiment/pack/P = new/obj/item/reagent_containers/food/condiment/pack(src.loc)
+				var/obj/item/reagent_containers/food/condiment/pack/P = new/obj/item/reagent_containers/food/condiment/pack(drop_location())
 
 				P.originalname = name
 				P.name = trim("[name] pack")
@@ -248,10 +253,9 @@
 			var/obj/item/reagent_containers/pill/P
 
 			for(var/i = 0; i < amount; i++)
-				P = new/obj/item/reagent_containers/pill/patch(src.loc)
+				P = new/obj/item/reagent_containers/pill/patch(drop_location())
 				P.name = trim("[name] patch")
-				P.pixel_x = rand(-7, 7) //random position
-				P.pixel_y = rand(-7, 7)
+				adjust_item_drop_location(P)
 				reagents.trans_to(P,vol_each)
 			. = TRUE
 
@@ -264,7 +268,7 @@
 				var/name = stripped_input(usr, "Name:","Name your bottle!", (reagents.total_volume ? reagents.get_master_reagent_name() : " "), MAX_NAME_LEN)
 				if(!name || !reagents.total_volume || !src || QDELETED(src) || !usr.canUseTopic(src, be_close=TRUE))
 					return
-				var/obj/item/reagent_containers/food/condiment/P = new(src.loc)
+				var/obj/item/reagent_containers/food/condiment/P = new(drop_location())
 				P.originalname = name
 				P.name = trim("[name] bottle")
 				reagents.trans_to(P, P.volume)
@@ -280,15 +284,15 @@
 
 				var/obj/item/reagent_containers/glass/bottle/P
 				for(var/i = 0; i < amount_full; i++)
-					P = new/obj/item/reagent_containers/glass/bottle(src.loc)
-					P.pixel_x = rand(-7, 7) //random position
-					P.pixel_y = rand(-7, 7)
+					P = new/obj/item/reagent_containers/glass/bottle(drop_location())
 					P.name = trim("[name] bottle")
+					adjust_item_drop_location(P)
 					reagents.trans_to(P, 30)
 
 				if(vol_part)
-					P = new/obj/item/reagent_containers/glass/bottle(src.loc)
+					P = new/obj/item/reagent_containers/glass/bottle(drop_location())
 					P.name = trim("[name] bottle")
+					adjust_item_drop_location(P)
 					reagents.trans_to(P, vol_part)
 			. = TRUE
 
@@ -327,6 +331,29 @@
 	else
 		return 0
 
+
+/obj/machinery/chem_master/adjust_item_drop_location(atom/movable/AM) // Special version for chemmasters and condimasters
+	if (AM == beaker)
+		AM.pixel_x = -8
+		AM.pixel_y = 8
+		return null
+	else if (AM == bottle)
+		if (length(bottle.contents))
+			AM.pixel_x = -13
+		else
+			AM.pixel_x = -7
+		AM.pixel_y = -8
+		return null
+	else
+		var/md5 = md5(AM.name)
+#if DM_VERSION > 511
+#warn Refactor the loop in /obj/machinery/chem_master/adjust_item_drop_location() to make use of 512's list-like access to characters in a string
+#endif
+		for (var/i in 1 to 32)
+			. += hex2num(copytext(md5,i,i+1))
+		. = . % 9
+		AM.pixel_x = ((.%3)*6)
+		AM.pixel_y = -8 + (round( . / 3)*8)
 
 /obj/machinery/chem_master/condimaster
 	name = "CondiMaster 3000"
