@@ -284,7 +284,7 @@
 #include "code\datums\components\material_container.dm"
 #include "code\datums\components\paintable.dm"
 #include "code\datums\components\rad_insulation.dm"
-#include "code\datums\components\turf_decal.dm
+#include "code\datums\components\turf_decal.dm"
 #include "code\datums\components\radioactive.dm"
 #include "code\datums\components\slippery.dm"
 #include "code\datums\components\spooky.dm"
