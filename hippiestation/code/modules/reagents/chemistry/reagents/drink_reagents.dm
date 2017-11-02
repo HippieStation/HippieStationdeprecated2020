@@ -58,7 +58,7 @@
 		H.adjustBruteLoss(-2*REM)
 		H.adjust_drugginess(5)
 		if(prob(2))
-			playsound(get_turf(H), 'hippiestation/sound/misc/syrupSippin.ogg', 50, 1)
+			playsound(get_turf(H), 'hippiestation/sound/misc/syrupSippin.ogg', 50, 1, channel = CHANNEL_GAY)
 		if(prob(8))
 			H.say(pick(leanTalk))
 		if(prob(1))
