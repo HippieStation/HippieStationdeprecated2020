@@ -1,1 +1,2 @@
 #define CHANNEL_NASHEED 1015
+#define CHANNEL_GAY 1016
