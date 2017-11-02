@@ -91,5 +91,5 @@ var/B_shadowling = 8192
 /datum/preferences/proc/hippie_save_preferences(savefile/S)
 	WRITE_FILE(S["anti_gay_music"], anti_gay_music)
 
-/datum/preferences/proc/proc/hippie_load_preferences(savefile/S)
+/datum/preferences/proc/hippie_load_preferences(savefile/S)
 	S["anti_gay_music"] >> anti_gay_music
