@@ -86,3 +86,8 @@ var/B_shadowling = 8192
 			S["loadout"] << text_to_save
 		else
 			S["loadout"] << "" //empty string to reset the value
+
+
+/datum/preferences/proc/hippie_save_preferences(savefile/S)
+	WRITE_FILE(S["anti_gay_music"], anti_gay_music)
+
