@@ -132,3 +132,10 @@
 		else
 			if(L[slot_to_string(slot)] < DEFAULT_SLOT_AMT)
 				return TRUE
+
+/client/verb/no_gay_music()
+	set name = "Toggle gay music"
+	set desc = "Disables shit such as the lean sounds"
+	set category = "Preferences"
+	prefs.anti_gay_music = !prefs.anti_gay_music
+	to_chat(src, "<span class='notice'>Gay sounds toggled [prefs.anti_gay_music ? "on" : "off"]</span>")
