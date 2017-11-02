@@ -8,6 +8,7 @@
 	var/list/gear_categories
 	var/list/chosen_gear
 	var/gear_tab
+	var/anti_gay_music = FALSE
 
 /datum/preferences/New(client/C)
 	..()
