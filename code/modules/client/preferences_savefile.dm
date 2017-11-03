@@ -185,7 +185,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	menuoptions		= SANITIZE_LIST(menuoptions)
 	be_special		= SANITIZE_LIST(be_special)
 	pda_style		= sanitize_inlist(MONO, VT, SHARE, ORBITRON)
-
+	
+	hippie_load_preferences(S)
+	
 	return 1
 
 /datum/preferences/proc/save_preferences()
@@ -225,6 +227,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["enable_tips"], enable_tips)
 	WRITE_FILE(S["tip_delay"], tip_delay)
 	WRITE_FILE(S["pda_style"], pda_style)
+	
+	hippie_save_preferences(S)
 
 	return 1
 
