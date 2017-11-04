@@ -64,7 +64,7 @@
 		if(prob(1) && current_cycle >= 35)
 			var/syrup_feeling = pick(syrup_message)
 			to_chat(H,"<span class='notice'>[syrup_feeling]</span>")
-		if(prob(3) && current_cycle >= 65) //easily a minute or two to get the lean out
+		if(prob(3) && current_cycle >= 35) //easily a minute or two to get the lean out
 			H.skin_tone = "african1"
 			H.hair_style = "Big Afro"
 			H.update_body()
