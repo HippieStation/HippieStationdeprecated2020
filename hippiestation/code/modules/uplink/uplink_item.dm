@@ -252,6 +252,21 @@
 /datum/uplink_item/stealthy_weapons/romerol_kit
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor)
 
+/datum/uplink_item/badass/bear
+	name = "Instant Bear"
+	desc = "Exactly what it says. Instantly teleports in an angry bear that is hostile to everyone including you. Best used when chased."
+	item = /mob/living/simple_animal/hostile/bear
+	cost = 1
+	surplus = 2 //1 in 50 chance of a crate containing a bear. RNG hates you. I hope this won't break cargo.
+	exclude_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/badass/combatbear
+	name = "Instant Combat Bear"
+	desc = "Exactly what it says. Instantly teleports in an angry combat bear, that has twice the health of a regular bear and is hostile to everyone including you. Best used when chased and you want those who chase you dead."
+	item = /mob/living/simple_animal/hostile/bear/russian
+	cost = 2
+	surplus = 1 //You fail at life.
+
 /datum/uplink_item/badass/banhammer
 	name = "Banhammer"
 	desc = "Mimick an imperfect version of god's wrath with this unholy weapon. Found in an abandoned bus."
