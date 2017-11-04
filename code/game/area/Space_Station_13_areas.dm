@@ -883,7 +883,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/medical
 	name = "Medical"
 	icon_state = "medbay3"
-	ambientsounds = MEDICAL
 
 /area/medical/abandoned
 	name = "Abandoned Medbay"
