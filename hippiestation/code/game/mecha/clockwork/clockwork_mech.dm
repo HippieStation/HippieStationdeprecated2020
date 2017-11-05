@@ -12,6 +12,7 @@
 	pixel_x = -16
 	layer = ABOVE_MOB_LAYER
 	var/breach_time = 100 //ten seconds till all goes to shit
+	var/recharge_rate = 100
 	wreckage = /obj/structure/mecha_wreckage/durand/neovgre
 
 /obj/mecha/neovgre/GrantActions(mob/living/user, human_occupant = 0) //No Eject action for you sonny jim, your life for Ratvar!
@@ -55,6 +56,20 @@
 /obj/mecha/neovgre/container_resist(mob/living/user)
 	to_chat(user, "<span class='brass'>Neovgre requires a lifetime commitment friend, no backing out now!</span>")
 	return
+/obj/mecha/neovgre/process()
+	..()
+	if(GLOB.ratvar_awakens) // At this point only timley intervention by lord singulo could hope to stop the superweapon
+		cell.charge = INFINITY
+		max_integrity = INFINITY
+		obj_integrity = max_integrity
+		CHECK_TICK //Just to be on the safe side lag wise
+	else if(cell.charge < cell.maxcharge)
+		for(var/obj/effect/clockwork/sigil/transmission/T in range(SIGIL_ACCESS_RANGE, src))
+			var/delta = min(recharge_rate, cell.maxcharge - cell.charge)
+			if (get_clockwork_power() <= delta)
+				cell.charge += delta
+				adjust_clockwork_power(-delta)
+			CHECK_TICK
 
 /obj/mecha/neovgre/Initialize()
 	.=..()
