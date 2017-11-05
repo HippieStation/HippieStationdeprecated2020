@@ -279,6 +279,13 @@ GLOBAL_LIST_EMPTY(uplink_items) // Global list so we only initialize this once.
 	item = /obj/item/melee/transforming/energy/sword/saber
 	cost = 8
 
+/datum/uplink_item/dangerous/ekatana
+	name = "Energy Katana"
+	desc = "The energy katana is a stolen weapon from the Space Shinobi Clan Assosciation's armory. It can be \
+	used to emag doors, emag structures, dash at enemies, and deal damage."
+	item = /obj/item/energy_katana
+	cost = 18
+
 /datum/uplink_item/dangerous/doublesword
 	name = "Double-Bladed Energy Sword"
 	desc = "The double-bladed energy sword does slightly more damage than a standard energy sword and will deflect \
