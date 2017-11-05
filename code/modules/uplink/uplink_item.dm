@@ -281,7 +281,7 @@ GLOBAL_LIST_EMPTY(uplink_items) // Global list so we only initialize this once.
 
 /datum/uplink_item/dangerous/ekatana
 	name = "Energy Katana"
-	desc = "The energy katana is a stolen weapon from the Space Shinobi Clan Assosciation's armory. It can be \
+	desc = "The energy katana is a stolen weapon from the Space Shinobi Clan Association's armory. It can be \
 	used to emag doors, emag structures, dash at enemies, and deal damage."
 	item = /obj/item/energy_katana
 	cost = 18
