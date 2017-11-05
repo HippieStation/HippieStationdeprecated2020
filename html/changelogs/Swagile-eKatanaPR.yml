@@ -1,0 +1,6 @@
+ author: "Swagile"
+
+delete-after: True
+
+changes: 
+  - rscadd: "Adds ninja's energy katana to the traitor uplink list. Makes it heavier so you can't hide it."
