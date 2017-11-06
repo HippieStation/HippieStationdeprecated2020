@@ -13,7 +13,6 @@
 	active_power_usage = 3000
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	circuit = null
-	var/recipe//currently 6 types of weapon can be forged
 	var/datum/reagent/currently_forging//forge one mat at a time
 	var/list/show_categories = list("Weaponry")
 	var/processing = FALSE
