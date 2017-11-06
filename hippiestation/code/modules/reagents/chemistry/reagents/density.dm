@@ -28,4 +28,4 @@
 
 /datum/reagent/uranium
 	density = 12
-	special_traits = list(SPECIAL_TRAIT_METALLIC)
+	special_traits = list(SPECIAL_TRAIT_METALLIC, SPECIAL_TRAIT_RADIOACTIVE, SPECIAL_TRAIT_ULTRADENSE)

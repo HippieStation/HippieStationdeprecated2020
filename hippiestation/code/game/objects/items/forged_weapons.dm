@@ -3,6 +3,19 @@
 	var/weapon_type
 	var/stabby = 0 //affects reagent transfer 1 is sharp, 1.5 is extremely sharp, anything below 1 is partially or completely blunt
 	var/speed = CLICK_CD_MELEE
+	var/radioactive = FALSE
+	var/knockback = FALSE
+
+
+/obj/item/forged/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+
+/obj/item/forged/process()
+	if(prob(50) && radioactive)
+		radiation_pulse(src, 200, 0.5)
+
 
 /obj/item/forged/proc/assign_properties()
 	if(reagent_type && weapon_type)
@@ -21,6 +34,12 @@
 					stabby += 0.4
 					if(sharpness == IS_SHARP)
 						sharpness = IS_SHARP_ACCURATE
+				if(SPECIAL_TRAIT_RADIOACTIVE)
+					radioactive = TRUE
+					START_PROCESSING(SSobj, src)
+				if(SPECIAL_TRAIT_ULTRADENSE)
+					knockback = TRUE
+
 		armour_penetration += force * 0.2
 
 /obj/item/forged/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
@@ -34,6 +53,10 @@
 		C.reagents.add_reagent(reagent_type.id, max(0, (0.2 * stabby) * max(1, armour_block - armour_penetration)))
 		if(stabby < 1)
 			reagent_type.reaction_mob(C, TOUCH, max(0, 1 / stabby))
+
+	if(isliving(target) && knockback)
+		var/mob/living/M = target
+		M.throw_at(get_edge_target_turf(M, user.dir),1 ,5)
 	..()
 
 /obj/item/forged/melee/dagger
@@ -90,6 +113,18 @@
 	var/weapon_type = MELEE_TYPE_GREATSWORD
 	var/stabby = 2
 	var/speed = CLICK_CD_MELEE
+	var/radioactive = FALSE
+	var/knockback = FALSE
+
+
+/obj/item/twohanded/forged/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+
+/obj/item/twohanded/forged/process()
+	if(prob(50) && radioactive)
+		radiation_pulse(src, 200, 0.5)
 
 
 /obj/item/twohanded/forged/proc/assign_properties()
@@ -113,6 +148,13 @@
 						sharpness = IS_SHARP
 					else if(sharpness == IS_SHARP)
 						sharpness = IS_SHARP_ACCURATE
+				if(SPECIAL_TRAIT_RADIOACTIVE)
+					radioactive = TRUE
+					START_PROCESSING(SSobj, src)
+				if(SPECIAL_TRAIT_ULTRADENSE)
+					knockback = TRUE
+
+
 		armour_penetration += force_wielded * 0.2
 
 
@@ -127,6 +169,10 @@
 		C.reagents.add_reagent(reagent_type.id, max(0, (0.2 * stabby) * max(1, armour_block - armour_penetration)))
 		if(stabby < 1)
 			reagent_type.reaction_mob(C, TOUCH, max(0, 1 / stabby))
+
+	if(isliving(target) && knockback)
+		var/mob/living/M = target
+		M.throw_at(get_edge_target_turf(M, user.dir),1 ,5)
 	..()
 
 /obj/item/twohanded/forged/greatsword
@@ -170,9 +216,25 @@
 
 /obj/item/twohanded/forged/warhammer/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	..()
-	if(iscarbon(user))
+	if(iscarbon(user) && proximity_flag && target)
 		var/mob/living/carbon/CU = user
 		CU.adjustStaminaLoss(15)
+
+	if(iswallturf(target))
+		var/turf/closed/wall/W = target
+		var/chance = force_wielded - W.hardness
+		if(chance < 10)
+			return FALSE
+
+		if(prob(chance))
+			playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1)
+			W.dismantle_wall(TRUE)
+
+		else
+			playsound(src, 'sound/effects/bang.ogg', 50, 1)
+			W.add_dent(WALL_DENT_HIT)
+			visible_message("<span class='danger'>[user] has smashed [W] with [src]!</span>", null, COMBAT_MESSAGE_RANGE)
+	return TRUE
 
 
 /obj/item/projectile/bullet/forged
@@ -181,6 +243,8 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect
 	var/datum/reagent/reagent_type
 	speed = 0.8
+	var/radioactive = FALSE
+	var/knockback = FALSE
 
 
 /obj/item/projectile/bullet/forged/proc/assign_properties(datum/reagent/reagent_type, caliber_multiplier)
@@ -196,6 +260,14 @@
 					armour_penetration += 10
 				if(SPECIAL_TRAIT_SHARP)
 					dismemberment += 20//ouchie sharp bullets
+				if(SPECIAL_TRAIT_RADIOACTIVE)
+					radioactive = TRUE
+				if(SPECIAL_TRAIT_ULTRADENSE)
+					if(damage >= 20)
+						forcedodge = TRUE
+						knockback = TRUE
+						range = range * 0.5//oof
+
 
 
 /obj/item/projectile/bullet/forged/on_hit(atom/target, blocked = FALSE)
@@ -208,10 +280,16 @@
 			armour_block = 1
 		C.reagents.add_reagent(reagent_type.id, max(0, 1 * max(1, armour_block - armour_penetration)))
 		reagent_type.reaction_mob(C, TOUCH, 1)
+	if(isliving(target) && knockback)
+		var/mob/living/M = target
+		M.throw_at(get_edge_target_turf(M, dir),1 ,5)
 
 
 /obj/item/projectile/bullet/forged/Move()
 	. = ..()
+	if(radioactive && !QDELETED(src))
+		radiation_pulse(src, 300)
+
 	var/turf/location = get_turf(src)
 	if(location && reagent_type)
 		reagent_type.reaction_turf(location, 1)
@@ -223,6 +301,10 @@
 	projectile_type = /obj/item/projectile/bullet/forged
 	var/datum/reagent/reagent_type
 	var/static/list/calibers = list("357" = 4.5, "a762" = 5, "n762" = 5, ".50" = 6, "38" = 1.5, "10mm" = 3, "9mm" = 2, "4.6x30mm" = 2, ".45" = 2.5, "a556" = 3.5, "mm195129" = 4.5)
+
+
+/obj/item/ammo_casing/forged/proc/assign_properties()//placeholder proc to prevent runtimes, this SHOULD be the only exception to the rule
+	return
 
 
 /obj/item/ammo_casing/forged/attack_self(mob/user)
