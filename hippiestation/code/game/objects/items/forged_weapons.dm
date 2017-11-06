@@ -4,7 +4,7 @@
 	var/stabby = 0 //affects reagent transfer 1 is sharp, 1.5 is extremely sharp, anything below 1 is partially or completely blunt
 	var/speed = CLICK_CD_MELEE
 
-/obj/item/forged/proc/Assign_Properties()
+/obj/item/forged/proc/assign_properties()
 	if(reagent_type && weapon_type)
 		name = name += " ([reagent_type.name])"
 		color = reagent_type.color
@@ -31,7 +31,7 @@
 		var/armour_block = C.getarmor(affecting, "melee") * 0.01
 		if(!armour_block)
 			armour_block = 1
-		C.reagents.add_reagent(reagent_type.id, max(0, (0.2 * stabby) * armour_block))
+		C.reagents.add_reagent(reagent_type.id, max(0, (0.2 * stabby) * max(1, armour_block - armour_penetration)))
 		if(stabby < 1)
 			reagent_type.reaction_mob(C, TOUCH, max(0, 1 / stabby))
 	..()
@@ -92,7 +92,7 @@
 	var/speed = CLICK_CD_MELEE
 
 
-/obj/item/twohanded/forged/proc/Assign_Properties()
+/obj/item/twohanded/forged/proc/assign_properties()
 	if(reagent_type && weapon_type)
 		name = name += " ([reagent_type.name])"
 		color = reagent_type.color
@@ -124,7 +124,7 @@
 		var/armour_block = C.getarmor(affecting, "melee") * 0.01
 		if(!armour_block)
 			armour_block = 1
-		C.reagents.add_reagent(reagent_type.id, max(0, (0.2 * stabby) * armour_block))
+		C.reagents.add_reagent(reagent_type.id, max(0, (0.2 * stabby) * max(1, armour_block - armour_penetration)))
 		if(stabby < 1)
 			reagent_type.reaction_mob(C, TOUCH, max(0, 1 / stabby))
 	..()
@@ -161,7 +161,6 @@
 	lefthand_file = 'icons/mob/inhands/equipment/kitchen_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
 	hitsound = 'sound/weapons/slam.ogg'
-	/datum/reagent/reagent_type
 	weapon_type = MELEE_TYPE_WARHAMMER
 	stabby = 0.1
 	sharpness = IS_BLUNT
@@ -181,12 +180,10 @@
 	hitsound_wall = "ricochet"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect
 	var/datum/reagent/reagent_type
-	var/weapon_type
-	var/caliber_multiplier
 	speed = 0.8
 
 
-/obj/item/projectile/bullet/forged/proc/Assign_Properties(datum/reagent/reagent_type, caliber_multiplier)
+/obj/item/projectile/bullet/forged/proc/assign_properties(datum/reagent/reagent_type, caliber_multiplier)
 	if(reagent_type)
 		name = name += " ([reagent_type.name])"
 		color = reagent_type.color
@@ -209,7 +206,7 @@
 		var/armour_block = C.getarmor(limb_hit, "bullet") * 0.01
 		if(!armour_block)
 			armour_block = 1
-		C.reagents.add_reagent(reagent_type.id, max(0, 1 * armour_block))
+		C.reagents.add_reagent(reagent_type.id, max(0, 1 * max(1, armour_block - armour_penetration)))
 		reagent_type.reaction_mob(C, TOUCH, 1)
 
 
@@ -235,5 +232,5 @@
 		if(BB)
 			var/obj/item/projectile/bullet/forged/FF = BB
 			FF.reagent_type = reagent_type
-			FF.Assign_Properties(reagent_type, calibers[caliber])
+			FF.assign_properties(reagent_type, calibers[caliber])
 			desc = "A custom [caliber] bullet casing"

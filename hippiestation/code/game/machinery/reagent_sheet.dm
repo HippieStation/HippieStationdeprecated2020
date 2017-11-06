@@ -28,7 +28,7 @@
 			var/chem_material = S.reagents.total_volume * 100
 			use_power = S.reagents.total_volume
 			updateUsrDialog()
-			addtimer(CALLBACK(src, /obj/machinery/reagent_sheet/proc/Create_Sheets, chem_material, S.reagent_type), 300)
+			addtimer(CALLBACK(src, /obj/machinery/reagent_sheet/proc/create_sheets, chem_material, S.reagent_type), 300)
 			working = TRUE
 			to_chat(user, "<span class='notice'>You add [S] to [src]</span>")
 			visible_message("<span class='notice'>[src] activates!</span>")
@@ -38,7 +38,7 @@
 	else
 		..()
 
-/obj/machinery/reagent_sheet/proc/Create_Sheets(amount, R)
+/obj/machinery/reagent_sheet/proc/create_sheets(amount, R)
 	visible_message("<span class='notice'>[src] finishes processing</span>")
 	playsound(src, 'sound/machines/ping.ogg', 50, 0)
 	working = FALSE

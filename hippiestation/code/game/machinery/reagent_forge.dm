@@ -16,7 +16,7 @@
 	var/datum/reagent/currently_forging//forge one mat at a time
 	var/list/show_categories = list("Weaponry")
 	var/processing = FALSE
-	var/efficiency = 0.5
+	var/efficiency = 1
 	var/datum/research/files
 	var/menustat = "menu"
 
@@ -29,10 +29,10 @@
 
 
 /obj/machinery/reagent_forge/attackby(obj/item/I, mob/user)
-	check_cost()
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 
+	check_cost()
 	if(istype(I, /obj/item/stack/sheet/mineral/reagent))
 		var/obj/item/stack/sheet/mineral/reagent/R = I
 
@@ -100,43 +100,17 @@
 		if(D.build_path)
 			var/atom/A = new D.build_path(user.loc)
 			if(currently_forging)
-				if(D.id == "fdagger" || D.id == "fsword" || D.id == "fmace")
+				if(istype(D, /datum/design/forge))
 					var/obj/item/forged/F = A
 					var/paths = subtypesof(/datum/reagent)
 					for(var/path in paths)
 						var/datum/reagent/RR = new path
 						if(RR.id == currently_forging.id)
 							F.reagent_type = RR
-							F.Assign_Properties()
+							F.assign_properties()
 							break
 						else
 							qdel(RR)
-
-
-				else if(D.id == "fgsword" || D.id == "fwhammer")
-					var/obj/item/twohanded/forged/F = A
-					var/paths = subtypesof(/datum/reagent)
-					for(var/path in paths)
-						var/datum/reagent/RR = new path
-						if(RR.id == currently_forging.id)
-							F.reagent_type = RR
-							F.Assign_Properties()
-							break
-						else
-							qdel(RR)
-
-
-				else if(D.id == "fbullet")
-					for(var/I in 1 to 8)
-						var/obj/item/ammo_casing/forged/F = A
-						var/paths = subtypesof(/datum/reagent)
-						for(var/path in paths)
-							var/datum/reagent/RR = new path
-							if(RR.id == currently_forging.id)
-								F.reagent_type = RR
-								break
-							else
-								qdel(RR)
 		. = 1
 
 	menustat = "complete"
