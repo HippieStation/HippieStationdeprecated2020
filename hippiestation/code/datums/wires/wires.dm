@@ -8,16 +8,3 @@
 		cut(wire_to_screw)
 	else
 		pulse(wire_to_screw, L)
-
-/proc/is_wire_tool(obj/item/I)
-	if(istype(I, /obj/item/device/multitool))
-		return TRUE
-	if(istype(I, /obj/item/wirecutters))
-		return TRUE
-	if(istype(I, /obj/item/holotool))
-		return TRUE
-	if(istype(I, /obj/item/device/assembly))
-		var/obj/item/device/assembly/A = I
-		if(A.attachable)
-			return TRUE
-	return
