@@ -5,6 +5,9 @@
 		return TRUE
 	if(istype(I, /obj/item/wirecutters))
 		return TRUE
+	if(istype(I, /obj/item/holotool))
+		return TRUE
+	return
 	if(istype(I, /obj/item/device/assembly))
 		var/obj/item/device/assembly/A = I
 		if(A.attachable)
