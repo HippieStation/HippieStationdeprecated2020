@@ -14,46 +14,43 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	circuit = null
 	var/datum/reagent/currently_forging//forge one mat at a time
-	var/list/show_categories
 	var/processing = FALSE
 	var/efficiency = 1
 	var/datum/research/files
-	//var/menustat = "menu"
 
 
 /obj/machinery/reagent_forge/Initialize()
 	. = ..()
 	AddComponent(/datum/component/material_container, list(MAT_REAGENT), 200000)
 	files = new /datum/research/reagent_forge(src)
-	show_categories = list("Weaponry")
 	dir = NORTH
 
 
 /obj/machinery/reagent_forge/attackby(obj/item/I, mob/user)
+
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 
 	if(istype(I, /obj/item/stack/sheet/mineral/reagent))
 		var/obj/item/stack/sheet/mineral/reagent/R = I
 
+		if(!in_range(src, R) || !user.Adjacent(src))
+			return
 
 		if(panel_open)
 			to_chat(user, "<span class='warning'>You can't load the [src.name] while it's opened!</span>")
 			return
 
-		if(!in_range(src, R) || !user.Adjacent(src))
-			return
+
 
 		if(R.reagent_type)
 			if(!currently_forging || !currently_forging.id)
-				updateUsrDialog()
 				GET_COMPONENT(materials, /datum/component/material_container)
 				if(R.amount <= 0)//this shouldn't exist
 					qdel(R)
 					return FALSE
 				materials.insert_stack(R, R.amount)
 				to_chat(user, "<span class='notice'>You add [R] to [src]</span>")
-				updateUsrDialog()
 				currently_forging = new R.reagent_type.type
 				return
 
@@ -149,6 +146,7 @@
 	data["material_amount"] = materials.amount(MAT_REAGENT)
 	data["can_afford"] = check_cost(lowest_cost, FALSE)
 	return data
+
 
 /obj/machinery/reagent_forge/ui_act(action, params)
 	. = ..()
