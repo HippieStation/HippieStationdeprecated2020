@@ -5,6 +5,14 @@
 #define MELEE_TYPE_MACE 3
 #define MELEE_TYPE_WARHAMMER 5
 
+//STABBINESS DEFINES - //Affects the rate of reagent transfer and the type, values below 1 are considered blunt and will apply touch effects
+#define TRANSFER_SHARP 1
+#define TRANSFER_SHARPER 1.5
+#define TRANSFER_SHARPEST 2
+#define TRANSFER_PARTIALLY_BLUNT 0.5
+#define TRANSFER_BLUNT 0.1
+#define TRANSFER_SHARP_BONUS 0.4
+
 
 //SPECIAL TRAITS
 #define SPECIAL_TRAIT_METALLIC "metallic"//applies to all metallic elements, additive force buff

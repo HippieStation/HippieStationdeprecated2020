@@ -14,17 +14,18 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	circuit = null
 	var/datum/reagent/currently_forging//forge one mat at a time
-	var/list/show_categories = list("Weaponry")
+	var/list/show_categories
 	var/processing = FALSE
 	var/efficiency = 1
 	var/datum/research/files
-	var/menustat = "menu"
+	//var/menustat = "menu"
 
 
 /obj/machinery/reagent_forge/Initialize()
 	. = ..()
 	AddComponent(/datum/component/material_container, list(MAT_REAGENT), 200000)
 	files = new /datum/research/reagent_forge(src)
+	show_categories = list("Weaponry")
 	dir = NORTH
 
 
@@ -32,7 +33,6 @@
 	if(user.a_intent == INTENT_HARM)
 		return ..()
 
-	check_cost()
 	if(istype(I, /obj/item/stack/sheet/mineral/reagent))
 		var/obj/item/stack/sheet/mineral/reagent/R = I
 
@@ -48,6 +48,9 @@
 			if(!currently_forging || !currently_forging.id)
 				updateUsrDialog()
 				GET_COMPONENT(materials, /datum/component/material_container)
+				if(R.amount <= 0)//this shouldn't exist
+					qdel(R)
+					return FALSE
 				materials.insert_stack(R, R.amount)
 				to_chat(user, "<span class='notice'>You add [R] to [src]</span>")
 				updateUsrDialog()
@@ -68,7 +71,7 @@
 		to_chat(user, "<span class='alert'>[src] rejects the [I]</span>")
 
 
-/obj/machinery/reagent_forge/proc/check_cost(materials)
+/obj/machinery/reagent_forge/proc/check_cost(materials, using)
 	GET_COMPONENT(ourmaterials, /datum/component/material_container)
 
 	if(ourmaterials.amount(MAT_REAGENT) <= 0)
@@ -80,22 +83,23 @@
 		return FALSE
 
 	if(materials*efficiency > ourmaterials.amount(MAT_REAGENT))
-		menustat = "nomats"
 		return FALSE
 	else
-		var/list/materials_used = list(MAT_REAGENT=materials*efficiency)
-		ourmaterials.use_amount(materials_used)
-		updateUsrDialog()
+		if(using)
+			var/list/materials_used = list(MAT_REAGENT=materials*efficiency)
+			ourmaterials.use_amount(materials_used)
 		return TRUE
 
 
-/obj/machinery/reagent_forge/proc/create_product(datum/design/D, amount, mob/living/user)
+/obj/machinery/reagent_forge/proc/create_product(datum/design/D, amount, mob/user)
 	if(!loc)
 		return FALSE
 
 	for(var/i in 1 to amount)
-		if(!check_cost(D.materials[MAT_REAGENT]))
-			return .
+		if(!check_cost(D.materials[MAT_REAGENT], TRUE))
+			visible_message("<span class='warning'>The low material indicator flashes on [src]!</span>")
+			playsound(src, 'sound/machines/buzz-two.ogg', 60, 0)
+			return FALSE
 
 		if(D.build_path)
 			var/atom/A = new D.build_path(user.loc)
@@ -111,98 +115,83 @@
 							break
 						else
 							qdel(RR)
-		. = 1
+		. = TRUE
 
-	menustat = "complete"
 	update_icon()
 	return .
 
 
-/obj/machinery/reagent_forge/interact(mob/user)
-	if(stat & BROKEN || panel_open)
-		return
+/obj/machinery/reagent_forge/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "chem_reagent_forge", name, 400, 570, master_ui, state)
+		ui.open()
+
+
+/obj/machinery/reagent_forge/ui_data(mob/user)
+	var/list/listofrecipes = list()
+	var/list/data = list()
+	var/lowest_cost = 1
+
+	for(var/V in files.known_designs)
+		var/datum/design/forge/D = files.known_designs[V]
+		var/md5name = md5(D.name)
+		var/cost = D.materials[MAT_REAGENT]*efficiency
+		if(!listofrecipes[md5name])
+			listofrecipes[md5name] = list("name" = D.name, "category" = D.category[2], "cost" = cost)
+			if(cost < lowest_cost)
+				lowest_cost = cost
+	sortList(listofrecipes)
+
 	GET_COMPONENT(materials, /datum/component/material_container)
-	check_cost()
-	user.set_machine(src)
-	var/dat
-	if(processing)
-		dat += "<div class='statusDisplay'>Reagent Forge is processing! Please wait...</div><BR>"
-	else
-		switch(menustat)
-			if("nomats")
-				dat += "<div class='statusDisplay'>You do not have enough material to create this.<BR>Please insert more [currently_forging] into the forge.</div>"
-				menustat = "menu"
+	data["recipes"] = listofrecipes
+	data["currently_forging"] = currently_forging ? currently_forging : "Nothing"
+	data["material_amount"] = materials.amount(MAT_REAGENT)
+	data["can_afford"] = check_cost(lowest_cost, FALSE)
+	return data
 
-			if("complete")
-				dat += "<div class='statusDisplay'>Operation complete.</div>"
-				menustat = "menu"
-
-		var/categories = show_categories.Copy()
-		for(var/V in categories)
-			categories[V] = list()
-		for(var/V in files.known_designs)
-			var/datum/design/D = files.known_designs[V]
-			for(var/C in categories)
-				if(C in D.category)
-					categories[C] += D
-
-		dat += "<div class='statusDisplay'>[currently_forging]: [materials.amount(MAT_REAGENT)] cm3.<BR>"
-		dat += "<A href='?src=\ref[src];dump=1'>Dump</A></div>"
-		for(var/cat in categories)
-			dat += "<h3>[cat]:</h3>"
-			dat += "<div class='statusDisplay'>"
-			for(var/V in categories[cat])
-				var/datum/design/D = V
-				dat += "[D.name]: <A href='?src=\ref[src];create=\ref[D];amount=1'>Make</A>"
-				dat += "([D.materials[MAT_REAGENT]*efficiency])<br>"
-			dat += "</div>"
-
-	var/datum/browser/popup = new(user, "reagent_forge", name, 400, 570)
-	popup.set_content(dat)
-	popup.open()
-	return
-
-
-/obj/machinery/reagent_forge/Topic(href, href_list)
-	if(..() || panel_open)
+/obj/machinery/reagent_forge/ui_act(action, params)
+	. = ..()
+	if(.)
 		return
+	switch(action)
+		if("Create")
+			var/amount = 0
+			amount = input("How many?", "How many would you like to forge?", 1) as null|num
+			if(amount <= 0)
+				return FALSE
 
-	usr.set_machine(src)
+			for(var/V in files.known_designs)
+				var/datum/design/forge/D = files.known_designs[V]
+				if(D.name == params["name"])
+					create_product(D, amount, usr)
+					return TRUE
 
-	if(href_list["create"])
-		var/amount = (text2num(href_list["amount"]))
-		var/datum/design/D = locate(href_list["create"])
-		if(isliving(usr))
-			create_product(D, amount, usr)
-		updateUsrDialog()
+		if("Dump")
+			if(currently_forging)
+				GET_COMPONENT(materials, /datum/component/material_container)
+				var/amount = materials.amount(MAT_REAGENT)
+				if(amount > 0)
+					var/list/materials_used = list(MAT_REAGENT=amount)
+					materials.use_amount(materials_used)
+					var/obj/item/stack/sheet/mineral/reagent/RS = new(get_turf(usr))
+					RS.amount = materials.amount2sheet(amount)
+					var/paths = subtypesof(/datum/reagent)//one reference per stack
 
-	else if(href_list["menu"])
-		menustat = "menu"
-		updateUsrDialog()
+					for(var/path in paths)
+						var/datum/reagent/RR = new path
+						if(RR.id == currently_forging.id)
+							RS.reagent_type = RR
+							RS.name = "[RR.name] ingots"
+							RS.singular_name = "[RR.name] ingot"
+							RS.add_atom_colour(RR.color, FIXED_COLOUR_PRIORITY)
+							to_chat(usr, "<span class='notice'>You remove the [RS.name] from [src]</span>")
+							break
+						else
+							qdel(RR)
 
-	else if(href_list["dump"])
-		if(currently_forging)
-			GET_COMPONENT(materials, /datum/component/material_container)
-			var/amount = materials.amount(MAT_REAGENT)
-			if(amount > 0)
-				var/list/materials_used = list(MAT_REAGENT=amount)
-				materials.use_amount(materials_used)
-				var/obj/item/stack/sheet/mineral/reagent/RS = new(get_turf(usr))
-				RS.amount = materials.amount2sheet(amount)
-				var/paths = subtypesof(/datum/reagent)//one reference per stack
+			qdel(currently_forging)
+			currently_forging = null
+			return TRUE
 
-				for(var/path in paths)
-					var/datum/reagent/RR = new path
-					if(RR.id == currently_forging.id)
-						RS.reagent_type = RR
-						RS.name = "[RR.name] ingots"
-						RS.singular_name = "[RR.name] ingot"
-						RS.add_atom_colour(RR.color, FIXED_COLOUR_PRIORITY)
-						to_chat(usr, "<span class='notice'>You remove the [RS.name] from [src]</span>")
-						break
-					else
-						qdel(RR)
-
-		qdel(currently_forging)
-		currently_forging = null
-		updateUsrDialog()
+	return FALSE

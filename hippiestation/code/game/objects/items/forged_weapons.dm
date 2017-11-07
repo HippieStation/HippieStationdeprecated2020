@@ -1,7 +1,7 @@
 /obj/item/forged
 	var/datum/reagent/reagent_type
 	var/weapon_type
-	var/stabby = 0 //affects reagent transfer 1 is sharp, 1.5 is extremely sharp, anything below 1 is partially or completely blunt
+	var/stabby = 0
 	var/speed = CLICK_CD_MELEE
 	var/radioactive = FALSE
 	var/knockback = FALSE
@@ -28,10 +28,10 @@
 			switch(I)
 				if(SPECIAL_TRAIT_METALLIC)
 					force = force * 1.3
-					armour_penetration += 10
 					throwforce = throwforce * 1.3
 				if(SPECIAL_TRAIT_SHARP)
-					stabby += 0.4
+					armour_penetration += 10
+					stabby += TRANSFER_SHARP_BONUS
 					if(sharpness == IS_SHARP)
 						sharpness = IS_SHARP_ACCURATE
 				if(SPECIAL_TRAIT_RADIOACTIVE)
@@ -69,7 +69,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
 	hitsound = 'hippiestation/sound/weapons/knife.ogg'
 	weapon_type = MELEE_TYPE_DAGGER
-	stabby = 1
+	stabby = TRANSFER_SHARP
 	w_class = WEIGHT_CLASS_SMALL
 	sharpness = IS_SHARP_ACCURATE
 	attack_verb = list("poked", "prodded", "stabbed", "pierced", "gashed", "punctured")
@@ -85,7 +85,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	weapon_type = MELEE_TYPE_SWORD
-	stabby = 1
+	stabby = TRANSFER_SHARPER
 	w_class = WEIGHT_CLASS_NORMAL
 	sharpness = IS_SHARP
 	attack_verb = list("slashed", "sliced", "stabbed", "pierced", "diced", "run-through")
@@ -101,7 +101,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
 	hitsound = 'hippiestation/sound/misc/crunch.ogg'
 	weapon_type = MELEE_TYPE_MACE
-	stabby = 0.5
+	stabby = TRANSFER_PARTIALLY_BLUNT
 	w_class = WEIGHT_CLASS_NORMAL
 	sharpness = IS_BLUNT
 	attack_verb = list("beaten", "bludgeoned")
@@ -111,7 +111,7 @@
 /obj/item/twohanded/forged
 	var/datum/reagent/reagent_type
 	var/weapon_type = MELEE_TYPE_GREATSWORD
-	var/stabby = 2
+	var/stabby = 0
 	var/speed = CLICK_CD_MELEE
 	var/radioactive = FALSE
 	var/knockback = FALSE
@@ -141,9 +141,9 @@
 					force_unwielded = force_unwielded * 1.3
 					force_wielded = force_wielded * 1.3
 					throwforce = throwforce * 1.3
-					stabby += 0.2
 				if(SPECIAL_TRAIT_SHARP)
 					armour_penetration += 10
+					stabby += TRANSFER_SHARP_BONUS
 					if(sharpness == IS_BLUNT)
 						sharpness = IS_SHARP
 					else if(sharpness == IS_SHARP)
@@ -185,7 +185,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
 	hitsound = 'sound/weapons/slash.ogg'
 	weapon_type = MELEE_TYPE_GREATSWORD
-	stabby = 2
+	stabby = TRANSFER_SHARPEST
 	w_class = WEIGHT_CLASS_BULKY
 	sharpness = IS_SHARP
 	attack_verb = list("gored", "impaled", "stabbed", "slashed", "torn", "run-through")
@@ -208,7 +208,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/kitchen_righthand.dmi'
 	hitsound = 'sound/weapons/slam.ogg'
 	weapon_type = MELEE_TYPE_WARHAMMER
-	stabby = 0.1
+	stabby = TRANSFER_BLUNT
 	sharpness = IS_BLUNT
 	attack_verb = list("crushed", "flattened", "bludgeoned", "pulverised", "shattered")
 	armour_penetration = 10

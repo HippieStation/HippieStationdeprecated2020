@@ -4,7 +4,7 @@
 	for(var/path in subtypesof(/datum/design))
 		var/datum/design/D = new path(src)
 		possible_designs += D
-		if((D.build_type & REAGENT_FORGE) && ("initial" in D.category))  //ATMOSLATHE starts without hacked designs
+		if((D.build_type & REAGENT_FORGE) && ("initial" in D.category))
 			AddDesign2Known(D)
 
 /datum/research/reagent_forge/AddDesign2Known(datum/design/D)
