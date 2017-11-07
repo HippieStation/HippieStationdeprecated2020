@@ -44,64 +44,64 @@
 /datum/reagent/consumable/ethanol/isoproyl/on_mob_life(mob/living/M)
 	M.adjustToxLoss(1)
 	..()
-	
+
 /datum/reagent/consumable/ethanol/ale
 	nutriment_factor = 1 * REAGENTS_METABOLISM
-	
+
 /datum/reagent/consumable/ethanol/beer/on_mob_life(mob/living/M)
 	M.jitteriness = max(0,M.jitteriness-5)
 	..()
 	. = 1
-	
+
 /datum/reagent/consumable/ethanol/whiskey/on_mob_life(mob/living/M)
 	if(ishuman(M) && M.job in list("Detective"))
 		M.adjustBruteLoss(-0.5, 0)
 		. = 1
 	..()
-	
+
 /datum/reagent/consumable/ethanol/threemileisland/on_mob_life(mob/living/M)
 	M.radiation = max(M.radiation-4,0)
 	M.set_drugginess(50)
 	return ..()
-	
+
 /datum/reagent/consumable/ethanol/gin/on_mob_life(mob/living/M)
 	M.hallucination = max(0, M.hallucination - 4)
 	. = 1
 	..()
-	
+
 /datum/reagent/consumable/ethanol/vermouth/on_mob_life(mob/living/M)
 	M.metabolism_efficiency = 1.30
 	. = 1
 	..()
-	
+
 /datum/reagent/consumable/ethanol/wine/on_mob_life(mob/living/M)
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 		if(C.blood_volume < BLOOD_VOLUME_NORMAL)
 			C.blood_volume += 0.5
 	..()
-	
+
 /datum/reagent/consumable/ethanol/grappa/on_mob_life(mob/living/M)
 	M.metabolism_efficiency = 1.30
 	..()
-	
+
 /datum/reagent/consumable/ethanol/cognac/on_mob_life(mob/living/M)
 	if(ishuman(M) && M.job in list("Mime"))
 		M.heal_bodypart_damage(0.5,0.5, 0)
 		. = 1
 	..()
-	
+
 /datum/reagent/consumable/ethanol/hooch/on_mob_life(mob/living/M)
 	if(prob(10))
 		M.emote("scream")
 	..()
-	
+
 /datum/reagent/consumable/ethanol/whiskey_cola/on_mob_life(mob/living/M)
 	if(ishuman(M) && M.job in list("Detective"))
 		M.adjustFireLoss(-0.5, 0)
 		. = 1
 	..()
-	
+
 /datum/reagent/consumable/ethanol/white_russian/on_mob_life(mob/living/M)
 	var/light_amount = 0
 	if(isturf(M.loc))
@@ -112,7 +112,7 @@
 			M.adjustOxyLoss(-1)
 			M.adjustStaminaLoss(-1*REM, 0)
 		..()
-		
+
 /datum/reagent/consumable/ethanol/booger/on_mob_life(mob/living/M)
 	if(prob(30))
 		M.emote("sneeze")
@@ -135,7 +135,7 @@
 	if(prob(20))
 		M.say(pick("YEE HAW!!","YEEE HAAW!!","YEEEE HAAAW!!","YEEEEE HAAAAW!!","YEEEEEE HAAAAAW!!","YEEEEEEE HAAAAAAW!!","YEEEEEEEE HAAAAAAAW!!"))
 	..()
-	
+
 /datum/reagent/consumable/ethanol/black_russian/on_mob_life(mob/living/M)
 	var/light_amount = 0
 	if(isturf(M.loc))
@@ -146,23 +146,23 @@
 			M.adjustOxyLoss(-1)
 			M.adjustStaminaLoss(-1*REM, 0)
 		..()
-		
+
 /datum/reagent/consumable/ethanol/manhattan/on_mob_life(mob/living/M)
 	if(prob(20)) //may cause involuntary brawls
 		M.say(pick("FUCKIN' SHIT!!","JESUS CHRIST!!","AAASSSSSS!!","FUCKER!!","SHITBIRD!!","FUCK YOURSELF!!","GET OFF THE FUCKIN' ROAD!!","EAT SHIT!!","EAT A DICK, PAL!!","GET FUCKED!!","TRY ME, COCKSUCKER!!","JUMP UP YOUR OWN ASS!!","BADA BING!!","YOU TALKIN' TO ME?!!","FUCK OUTTA HERE!!","EY, I'M WALKIN' HERE!!"))
 	..()
-	
+
 /datum/reagent/consumable/ethanol/whiskeysoda/on_mob_life(mob/living/M)
 	if(ishuman(M) && M.job in list("Detective"))
 		M.adjustToxLoss(-0.5, 0)
 		. = 1
 	..()
-	
+
 /datum/reagent/consumable/ethanol/bahama_mama/on_mob_life(mob/living/M)
 	M.stuttering = 0
 	M.slurring = 0
 	..()
-	
+
 /datum/reagent/consumable/ethanol/singulo/on_mob_life(mob/living/M)
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
@@ -174,32 +174,32 @@
 	if(prob(10))
 		M.reagents.add_reagent("honey",2)
 	..()
-	
+
 /datum/reagent/consumable/ethanol/grog/on_mob_life(mob/living/M)
 	if (M.bodytemperature < 330)
 		M.bodytemperature = min(330, M.bodytemperature + (20 * TEMPERATURE_DAMAGE_COEFFICIENT))
 	return ..()
-	
+
 /datum/reagent/consumable/ethanol/aloe/on_mob_life(mob/living/M)
 	M.adjustFireLoss(-1*REM, 0)
 	..()
 	. = 1
-	
+
 /datum/reagent/consumable/ethanol/acid_spit/on_mob_life(mob/living/M)
 	M.nutrition = max(M.nutrition - 1.5, 0)
 	M.overeatduration = 0
 	return ..()
-	
+
 /datum/reagent/consumable/ethanol/irishcarbomb/on_mob_life(mob/living/M) //sorry, irish
 	if(prob(5))
 		playsound(get_turf(M), 'sound/effects/explosionfar.ogg', 100, 1)
 	return ..()
-	
+
 /datum/reagent/consumable/ethanol/driestmartini/reaction_turf(turf/open/T, reac_volume)
 	if(istype(T) && T.wet)
 		T.wet_time = max(0, T.wet_time-reac_volume*5)
 		T.HandleWet()
-		
+
 /datum/reagent/consumable/ethanol/martini/on_mob_life(mob/living/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -210,3 +210,43 @@
 			M.adjustOxyLoss(-0.25, 0)
 			. = 1
 		..()
+
+/datum/reagent/consumable/ethanol/neurotoxin/on_mob_life(mob/living/carbon/M) //Mirrored in order to make getting shot up with 0.1u of a chem instantly fucking stun.
+	M.dizziness +=6
+	switch(current_cycle)
+		if(0 to 15)
+			if(src.volume >= 15)
+				M.Knockdown(60, 1, 0)
+			if(prob(40))
+				M.adjustStaminaLoss(15)
+		if(15 to 45)
+			if(!M.slurring)
+				M.slurring = 1
+			M.slurring += 3
+			if(prob(50))
+				M.adjustStaminaLoss(15)
+		if(45 to 55)
+			if(prob(50))
+				M.confused = max(M.confused+3,0)
+			if(prob(60))
+				M.adjustStaminaLoss(15)
+		if(55 to 200)
+			if(prob(70))
+				M.adjustStaminaLoss(15)
+			M.set_drugginess(55)
+		if(200 to INFINITY)
+			if(prob(80)) //If you managed to get here you are fucked
+				M.adjustStaminaLoss(15)
+			M.adjustToxLoss(2, 0)
+	current_cycle++ //In order to override original proc but have this behave like a reagent I need to do this.
+	holder.remove_reagent(src.id, metabolization_rate * M.metabolism_efficiency)
+	. = 1
+	return
+
+/datum/reagent/consumable/ethanol/beepsky_smash/on_mob_life(mob/living/M)
+	if(prob(70)) // Rapidly stuns but breifly, makes it hard as fuck to fight anyone.
+		M.Stun(5, 0)
+	current_cycle++ //In order to override original proc but have this behave like a reagent I need to do this.
+	holder.remove_reagent(src.id, metabolization_rate * M.metabolism_efficiency)
+	. = 1
+	return
