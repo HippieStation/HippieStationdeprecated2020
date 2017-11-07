@@ -1174,6 +1174,7 @@
 #include "code\modules\cargo\export_scanner.dm"
 #include "code\modules\cargo\exports.dm"
 #include "code\modules\cargo\order.dm"
+#include "code\modules\cargo\packs.dm"
 #include "code\modules\cargo\exports\gear.dm"
 #include "code\modules\cargo\exports\intel.dm"
 #include "code\modules\cargo\exports\large_objects.dm"
