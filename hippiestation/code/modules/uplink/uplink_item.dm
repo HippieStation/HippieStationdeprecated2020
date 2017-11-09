@@ -153,6 +153,12 @@
 	item = /obj/item/grenade/spawnergrenade/cat
 	surplus = 30
 
+/datum/uplink_item/dangerous/ekatana
+	name = "Energy Katana"
+	desc = "A stolen energy katana from a space ninja. Don't cut yourself on its edge."
+	cost = 18
+	item = /obj/item/energy_katana
+
 /datum/uplink_item/stealthy_tools/chameleon
 	cost = 4
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor)
