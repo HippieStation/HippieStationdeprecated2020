@@ -102,7 +102,7 @@
 				message = "<span class='clown'>farts.</span>"
 			else if(istype(O, /obj/item/device/megaphone))
 				message = "<span class='reallybig'>farts.</span>"
-				playsound(user, 'hippiestation/sound/effects/fartmassive.ogg', 75, 1, 5)
+				playsound(user, 'hippiestation/sound/effects/fartmassive.ogg', 100, 1, 5)
 			else
 				playsound(user, fartsound, 100, 1, 5)
 			if(prob(33))
