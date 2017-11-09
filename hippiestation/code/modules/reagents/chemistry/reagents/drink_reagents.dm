@@ -57,14 +57,14 @@
 		var/mob/living/carbon/human/H = M
 		H.adjustBruteLoss(-2*REM)
 		H.adjust_drugginess(5)
-		if(prob(2))
+		if(prob(2) && current_cycle > 55)
 			playsound(get_turf(H), 'hippiestation/sound/misc/syrupSippin.ogg', 50, 1)
-		if(prob(8))
+		if(prob(8) && current_cycle >= 35)
 			H.say(pick(leanTalk))
-		if(prob(1))
+		if(prob(1) && current_cycle >= 35)
 			var/syrup_feeling = pick(syrup_message)
 			to_chat(H,"<span class='notice'>[syrup_feeling]</span>")
-		if(prob(3))
+		if(prob(3) && current_cycle >= 35) //easily a minute or two to get the lean out
 			H.skin_tone = "african1"
 			H.hair_style = "Big Afro"
 			H.update_body()
