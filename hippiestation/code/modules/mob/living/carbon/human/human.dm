@@ -151,7 +151,10 @@
 					update_canmove()
 					I.pinned = null
 
-				I.forceMove(get_turf(src))
+				// Don't move stacks because it could merge items still embedded
+				if (!istype(I, /obj/item/stack))
+					I.forceMove(get_turf(src))
+
 				usr.put_in_hands(I)
 				emote("scream")
 

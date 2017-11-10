@@ -91,3 +91,93 @@
 	else
 		animate(src, pixel_x = initial(pixel_x), pixel_y = initial(pixel_y), time = 2)
 		floating = 0 // If we were without gravity, the bouncing animation got stopped, so we make sure we restart the bouncing after the next movement.
+
+
+//Called when we bump onto a mob
+/mob/living/MobCollide(mob/M)
+	//Even if we don't push/swap places, we "touched" them, so spread fire
+	spreadFire(M)
+	//Also diseases
+	for(var/thing in viruses)
+		var/datum/disease/D = thing
+		if(D.spread_flags & VIRUS_SPREAD_CONTACT_SKIN)
+			M.ContactContractDisease(D)
+
+	for(var/thing in M.viruses)
+		var/datum/disease/D = thing
+		if(D.spread_flags & VIRUS_SPREAD_CONTACT_SKIN)
+			ContactContractDisease(D)
+
+	if(now_pushing)
+		return TRUE
+
+	// Can't move with pinned people
+	if (pinned_to || M.pinned_to)
+		return TRUE	
+
+	//Should stop you pushing a restrained person out of the way
+	if(isliving(M))
+		var/mob/living/L = M
+		if(L.pulledby && L.pulledby != src && L.restrained())
+			if(!(world.time % 5))
+				to_chat(src, "<span class='warning'>[L] is restrained, you cannot push past.</span>")
+			return 1
+
+		if(L.pulling)
+			if(ismob(L.pulling))
+				var/mob/P = L.pulling
+				if(P.restrained())
+					if(!(world.time % 5))
+						to_chat(src, "<span class='warning'>[L] is restraining [P], you cannot push past.</span>")
+					return 1
+
+	if(moving_diagonally)//no mob swap during diagonal moves.
+		return 1
+
+	if(!M.buckled && !M.has_buckled_mobs())
+		var/mob_swap
+		//the puller can always swap with its victim if on grab intent
+		if(M.pulledby == src && a_intent == INTENT_GRAB)
+			mob_swap = 1
+		//restrained people act if they were on 'help' intent to prevent a person being pulled from being separated from their puller
+		else if((M.restrained() || M.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP))
+			mob_swap = 1
+
+		if(mob_swap)
+			//switch our position with M
+			if(loc && !loc.Adjacent(M.loc))
+				return 1
+			now_pushing = 1
+			var/oldloc = loc
+			var/oldMloc = M.loc
+
+
+			var/M_passmob = (M.pass_flags & PASSMOB) // we give PASSMOB to both mobs to avoid bumping other mobs during swap.
+			var/src_passmob = (pass_flags & PASSMOB)
+			M.pass_flags |= PASSMOB
+			pass_flags |= PASSMOB
+
+			var/move_failed = FALSE
+			if(!M.Move(oldloc) || !Move(oldMloc))
+				M.forceMove(oldMloc)
+				forceMove(oldloc)
+				move_failed = TRUE
+			if(!src_passmob)
+				pass_flags &= ~PASSMOB
+			if(!M_passmob)
+				M.pass_flags &= ~PASSMOB
+
+			now_pushing = 0
+
+			if(!move_failed)
+				return 1
+
+	//okay, so we didn't switch. but should we push?
+	//not if he's not CANPUSH of course
+	if(!(M.status_flags & CANPUSH))
+		return 1
+	//anti-riot equipment is also anti-push
+	for(var/obj/item/I in M.held_items)
+		if(!istype(M, /obj/item/clothing))
+			if(prob(I.block_chance*2))
+				return 1
