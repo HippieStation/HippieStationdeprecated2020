@@ -5,6 +5,8 @@
 		return TRUE
 	if(istype(I, /obj/item/wirecutters))
 		return TRUE
+	if(istype(I, /obj/item/holotool))//HIPPIE CODE
+		return TRUE
 	if(istype(I, /obj/item/device/assembly))
 		var/obj/item/device/assembly/A = I
 		if(A.attachable)
@@ -227,14 +229,14 @@
 	var/obj/item/I = L.get_active_held_item()
 	switch(action)
 		if("cut")
-			if(istype(I, /obj/item/wirecutters) || IsAdminGhost(usr))
+			if(istype(I, /obj/item/wirecutters) || istype(I, /obj/item/holotool) || IsAdminGhost(usr)) //HIPPIE CODE
 				playsound(holder, I.usesound, 20, 1)
 				cut_color(target_wire)
 				. = TRUE
 			else
 				to_chat(L, "<span class='warning'>You need wirecutters!</span>")
 		if("pulse")
-			if(istype(I, /obj/item/device/multitool) || IsAdminGhost(usr))
+			if(istype(I, /obj/item/device/multitool) || istype(I, /obj/item/holotool) || IsAdminGhost(usr)) //HIPPIE CODE
 				playsound(holder, 'sound/weapons/empty.ogg', 20, 1)
 				pulse_color(target_wire, L)
 				. = TRUE
