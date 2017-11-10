@@ -23,6 +23,8 @@
 #define SPECIAL_TRAIT_REFLECTIVE /datum/special_trait/reflective
 #define SPECIAL_TRAIT_BOUNCY /datum/special_trait/bouncy
 #define SPECIAL_TRAIT_UNSTABLE /datum/special_trait/unstable
+#define SPECIAL_TRAIT_FIRE /datum/special_trait/fire
+#define SPECIAL_TRAIT_CRYO /datum/special_trait/cryo
 
 //SPECIAL IDENTIFIERS - saving me some istype checks
 #define FORGED_MELEE_SINGLEHANDED "singlehanded"
@@ -209,3 +211,54 @@
 				F.damage = rand(1, 100)
 				F.speed = rand(0, 5)
 				F.damage_type = pick(BRUTE, BURN, TOX, OXY, CLONE)
+
+
+/datum/special_trait/fire
+	name = "Fire"
+	desc = "Found in various pyrotechnic reagents, small chance to ignite on hit and acts as an open flame in regards to flammable gases"
+	effectiveness = 10
+
+
+/datum/special_trait/fire/on_apply(obj/item/I, type)
+	if(I && type)
+		switch(type)
+			if(FORGED_MELEE_SINGLEHANDED)
+				var/obj/item/forged/F = I
+				F.fire = TRUE
+				F.add_overlay(GLOB.fire_overlay, TRUE)
+				START_PROCESSING(SSobj, I)
+			if(FORGED_MELEE_TWOHANDED)
+				var/obj/item/twohanded/forged/F = I
+				F.fire = TRUE
+				F.add_overlay(GLOB.fire_overlay, TRUE)
+				START_PROCESSING(SSobj, I)
+			if(FORGED_BULLET_CASING)
+				var/obj/item/projectile/bullet/forged/F = I
+				F.fire = TRUE
+				F.add_overlay(GLOB.fire_overlay, TRUE)
+
+
+/datum/special_trait/fire/on_hit(atom/target, mob/user, obj/item/I, type)
+	if(I && target)
+		if(isliving(target))
+			var/mob/living/M = target
+			M.adjust_fire_stacks(1)//only one because chances are this is already a chem that adds fire stacks
+			M.IgniteMob()
+
+
+/datum/special_trait/cryo
+	name = "Cryo"
+	desc = "Found in cold reagents, fairly small chance to chill target on hit"
+	effectiveness = 15
+
+
+/datum/special_trait/cryo/on_apply(obj/item/I, type)
+	if(I)
+		I.add_atom_colour(GLOB.freon_color_matrix, FIXED_COLOUR_PRIORITY)
+		I.alpha -= 25
+
+/datum/special_trait/cryo/on_hit(atom/target, mob/user, obj/item/I, type)
+	if(I && target)
+		if(isliving(target))
+			var/mob/living/M = target
+			M.bodytemperature = max(M.bodytemperature - rand(50, 100), TCMB)

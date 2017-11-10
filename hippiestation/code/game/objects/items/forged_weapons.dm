@@ -5,6 +5,7 @@
 	var/speed = CLICK_CD_MELEE
 	var/list/special_traits
 	var/radioactive = FALSE
+	var/fire = FALSE
 
 
 /obj/item/forged/Destroy()
@@ -15,6 +16,8 @@
 /obj/item/forged/process()
 	if(prob(50) && radioactive)
 		radiation_pulse(src, 200, 0.5)
+	if(fire)
+		open_flame()
 
 
 /obj/item/forged/proc/assign_properties()
@@ -104,6 +107,7 @@
 	var/speed = CLICK_CD_MELEE
 	var/list/special_traits
 	var/radioactive = FALSE
+	var/fire = FALSE
 
 
 /obj/item/twohanded/forged/Destroy()
@@ -114,6 +118,8 @@
 /obj/item/twohanded/forged/process()
 	if(prob(50) && radioactive)
 		radiation_pulse(src, 200, 0.5)
+	if(fire)
+		open_flame()
 
 
 /obj/item/twohanded/forged/proc/assign_properties()
@@ -219,6 +225,7 @@
 	speed = 0.8
 	var/list/special_traits
 	var/radioactive = FALSE
+	var/fire = FALSE
 
 
 /obj/item/projectile/bullet/forged/proc/assign_properties(datum/reagent/reagent_type, caliber_multiplier)
@@ -263,6 +270,8 @@
 		if(radioactive)
 			radiation_pulse(src, 300)
 
+		if(fire)
+			open_flame()
 		var/turf/location = get_turf(src)
 		if(location && reagent_type)
 			reagent_type.reaction_turf(location, 1)

@@ -91,7 +91,31 @@
 /datum/reagent/toxin/slimejelly
 	special_traits = list(SPECIAL_TRAIT_BOUNCY)
 
+//PYROTECHNICS
+
+/datum/reagent/dizinc
+	special_traits = list(SPECIAL_TRAIT_FIRE)
+
+/datum/reagent/oxyplas
+	special_traits = list(SPECIAL_TRAIT_FIRE)
+
+/datum/reagent/proto
+	special_traits = list(SPECIAL_TRAIT_FIRE)
+
+/datum/reagent/clf3
+	special_traits = list(SPECIAL_TRAIT_FIRE)
+
+/datum/reagent/phlogiston
+	special_traits = list(SPECIAL_TRAIT_FIRE)
+
+/datum/reagent/cryogenic_fluid
+	special_traits = list(SPECIAL_TRAIT_CRYO)
+
+/datum/reagent/cryostylane
+	special_traits = list(SPECIAL_TRAIT_CRYO)
+
 //MISC
+
 /datum/reagent/oxygen
 	special_traits = list(SPECIAL_TRAIT_MAGNETIC)
 
