@@ -2433,6 +2433,7 @@
 #include "hippiestation\code\modules\food_and_drinks\food\snacks_sandwichtoast.dm"
 #include "hippiestation\code\modules\food_and_drinks\kitchen_machinery\microwave.dm"
 #include "hippiestation\code\modules\food_and_drinks\kitchen_machinery\smartfridge.dm"
+#include "hippiestation\code\modules\food_and_drinks\recipes\food.dm"
 #include "hippiestation\code\modules\food_and_drinks\recipes\tablecraft\recipes_sandwich.dm"
 #include "hippiestation\code\modules\hydroponics\biogenerator.dm"
 #include "hippiestation\code\modules\hydroponics\buttflower.dm"
