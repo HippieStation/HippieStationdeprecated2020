@@ -1,8 +1,8 @@
 /obj/machinery/reagent_sheet
 	name = "Reagent Refinery"
 	desc = "Smelts and refines solid reagents into ingots- useable by the forge"
-	icon_state = "circuit_imprinter"
-	icon = 'icons/obj/machines/research.dmi'
+	icon_state = "furnace"
+	icon = 'icons/obj/machines/mining_machines.dmi'
 	density = TRUE
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
@@ -18,7 +18,7 @@
 			return
 
 		if(panel_open)
-			to_chat(user, "<span class='warning'>You can't load the [src.name] while it's opened!</span>")
+			to_chat(user, "<span class='warning'>You can't load the [I] while it's opened!</span>")
 			return
 
 		if(!in_range(src, S) || !user.Adjacent(src))

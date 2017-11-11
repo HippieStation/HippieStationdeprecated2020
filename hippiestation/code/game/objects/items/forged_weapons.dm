@@ -1,6 +1,7 @@
 /obj/item/forged
 	var/datum/reagent/reagent_type
 	var/weapon_type
+	var/identifier = FORGED_MELEE_SINGLEHANDED
 	var/stabby = 0
 	var/speed = CLICK_CD_MELEE
 	var/list/special_traits
@@ -31,7 +32,7 @@
 		for(var/I in reagent_type.special_traits)
 			var/datum/special_trait/S = new I
 			LAZYADD(special_traits, S)
-			S.on_apply(src, FORGED_MELEE_SINGLEHANDED)
+			S.on_apply(src, identifier)
 		armour_penetration += force * 0.2
 
 /obj/item/forged/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
@@ -103,6 +104,7 @@
 /obj/item/twohanded/forged
 	var/datum/reagent/reagent_type
 	var/weapon_type = MELEE_TYPE_GREATSWORD
+	var/identifier = FORGED_MELEE_TWOHANDED
 	var/stabby = 0
 	var/speed = CLICK_CD_MELEE
 	var/list/special_traits
@@ -134,7 +136,7 @@
 		for(var/I in reagent_type.special_traits)
 			var/datum/special_trait/S = new I
 			LAZYADD(special_traits, S)
-			S.on_apply(src, FORGED_MELEE_TWOHANDED)
+			S.on_apply(src, identifier)
 		armour_penetration += force_wielded * 0.2
 
 
@@ -152,7 +154,7 @@
 		for(var/I in special_traits)
 			var/datum/special_trait/A = I
 			if(prob(A.effectiveness))
-				A.on_hit(target, user, src, FORGED_MELEE_TWOHANDED)
+				A.on_hit(target, user, src, identifier)
 	..()
 
 /obj/item/twohanded/forged/greatsword
@@ -222,6 +224,7 @@
 	hitsound_wall = "ricochet"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect
 	var/datum/reagent/reagent_type
+	var/identifier = FORGED_BULLET_CASING
 	speed = 0.8
 	var/list/special_traits
 	var/radioactive = FALSE
@@ -238,7 +241,7 @@
 		for(var/I in reagent_type.special_traits)
 			var/datum/special_trait/S = new I
 			LAZYADD(special_traits, S)
-			S.on_apply(src, FORGED_BULLET_CASING)
+			S.on_apply(src, identifier)
 
 
 /obj/item/projectile/bullet/forged/on_hit(atom/target, blocked = FALSE)
@@ -248,7 +251,7 @@
 		for(var/I in special_traits)
 			var/datum/special_trait/A = I
 			if(prob(A.effectiveness))
-				A.on_hit(target, I = src, type = FORGED_BULLET_CASING)
+				A.on_hit(target, I = src, type = identifier)
 
 		var/limb_hit =  C.check_limb_hit(def_zone)
 		var/armour_block = C.getarmor(limb_hit, "bullet") * 0.01
@@ -265,7 +268,7 @@
 		for(var/I in special_traits)
 			var/datum/special_trait/A = I
 			if(prob(A.effectiveness))
-				A.on_hit(I = src, type = FORGED_BULLET_CASING)
+				A.on_hit(I = src, type = identifier)
 
 		if(radioactive)
 			radiation_pulse(src, 300)

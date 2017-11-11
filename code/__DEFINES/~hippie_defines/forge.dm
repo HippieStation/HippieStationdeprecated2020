@@ -15,6 +15,8 @@
 
 
 //SPECIAL TRAITS
+#define SPECIAL_TRAIT_MAXIMUM 5
+#define SPECIAL_TRAIT_ADD_COST 50
 #define SPECIAL_TRAIT_METALLIC /datum/special_trait/metallic
 #define SPECIAL_TRAIT_SHARP /datum/special_trait/sharp
 #define SPECIAL_TRAIT_RADIOACTIVE /datum/special_trait/radioactive
@@ -25,11 +27,14 @@
 #define SPECIAL_TRAIT_UNSTABLE /datum/special_trait/unstable
 #define SPECIAL_TRAIT_FIRE /datum/special_trait/fire
 #define SPECIAL_TRAIT_CRYO /datum/special_trait/cryo
+#define SPECIAL_TRAIT_ACID /datum/special_trait/fire
+#define SPECIAL_TRAIT_FLUIDIC /datum/special_trait/cryo
 
 //SPECIAL IDENTIFIERS - saving me some istype checks
 #define FORGED_MELEE_SINGLEHANDED "singlehanded"
 #define FORGED_MELEE_TWOHANDED "twohanded"
 #define FORGED_BULLET_CASING "bullet"
+#define FORGED_INGOT = "ingot"
 
 //SPECIAL TRAIT DATUMS
 
@@ -196,14 +201,12 @@
 			if(FORGED_MELEE_SINGLEHANDED)
 				var/obj/item/forged/F = I
 				F.force = rand(1, 100)
-				F.throwforce = F.force
 				F.speed = rand(CLICK_CD_RAPID, CLICK_CD_MELEE * 5)
 				F.stabby = rand(TRANSFER_BLUNT, TRANSFER_SHARPEST)
 			if(FORGED_MELEE_TWOHANDED)
 				var/obj/item/twohanded/forged/F = I
 				F.force_wielded = rand(1, 100)
 				F.force_unwielded = max(0.1, F.force_wielded / 3)
-				F.throwforce = F.force_unwielded
 				F.speed = rand(CLICK_CD_RAPID, CLICK_CD_MELEE * 5)
 				F.stabby = rand(TRANSFER_BLUNT, TRANSFER_SHARPEST)
 			if(FORGED_BULLET_CASING)
