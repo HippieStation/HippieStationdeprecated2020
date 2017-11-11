@@ -55,3 +55,21 @@
 	visible_message("<span class='danger'>[src]'s body glows green, the glow dissipating only to leave behind a cluwne formerly known as [src]!</span>", \
 					"<span class='danger'>Your brain feels like it's being torn apart, and after a short while, you notice that you've become a cluwne!</span>")
 	flash_act()
+
+/datum/mutation/human/steel
+	name = "Man Of Steel"
+	quality = POSITIVE
+	get_chance = 15
+	lowest_value = 256 * 12
+	text_gain_indication = "<span class='notice'>You feel tougher.</span>"
+	text_lose_indication = "<span class='notice'>You feel weaker.</span>"
+
+/datum/mutation/human/steel/on_acquiring(mob/living/carbon/human/owner)
+	if(..())
+		return
+	S.armor = 5 // You're resistant to punches.
+
+/datum/mutation/human/steel_on_losing(mob/living/carbon/human/owner)
+	if(..())
+		return
+	S.armor = 0 //You're no longer resistant to punches. Do not combine with DNA Vault.
