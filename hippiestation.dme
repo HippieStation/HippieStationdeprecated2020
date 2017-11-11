@@ -2439,6 +2439,7 @@
 #include "hippiestation\code\game\objects\items\implants\implantcase.dm"
 #include "hippiestation\code\game\objects\items\implants\implanter.dm"
 #include "hippiestation\code\game\objects\items\stacks\medical.dm"
+#include "hippiestation\code\game\objects\items\stacks\stack.dm"
 #include "hippiestation\code\game\objects\items\storage\backpack.dm"
 #include "hippiestation\code\game\objects\items\storage\boxes.dm"
 #include "hippiestation\code\game\objects\items\storage\butts.dm"

@@ -1,7 +1,7 @@
 /obj/item/projectile/rod
     name = "metal rod"
-    icon = 'icons/obj/projectiles.dmi'
-    icon_state = "arrow"
+    icon = 'hippiestation/icons/obj/guns/crossbow.dmi'
+    icon_state = "rod_proj"
     suppressed = TRUE
     damage = 10 // multiply by how drawn the bow string is
     range = 10 // also multiply by the bow string
