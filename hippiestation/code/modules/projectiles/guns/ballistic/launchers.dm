@@ -4,6 +4,8 @@
     icon = 'hippiestation/icons/obj/guns/crossbow.dmi'
     icon_state = "crossbow_body"
     item_state = "crossbow_body"
+    lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
+    righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
     w_class = WEIGHT_CLASS_BULKY
     force = 10
     flags_1 = CONDUCT_1
