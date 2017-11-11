@@ -57,25 +57,14 @@
 	flash_act()
 
 /datum/mutation/human/hulk
-
 	get_chance = 99
-
 /datum/mutation/human/telekinesis
-
 	get_chance = 99
-
 /datum/mutation/human/cold_resistance
-
 	get_chance = 99
-
 /datum/mutation/human/x_ray
-
 	get_chance = 99
-
 /datum/mutation/human/dwarfism
-
 	get_chance = 99
-
 /datum/mutation/human/chameleon
-
 	get_chance = 99
