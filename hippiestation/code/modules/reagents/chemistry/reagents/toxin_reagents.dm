@@ -406,6 +406,7 @@
 	reagent_state = LIQUID
 	color = "#853358"
 	taste_description = "salty and sour"
+	toxpwr = 0
 
 /datum/reagent/toxin/screech/on_mob_life(mob/living/M)
 	var/chance = 10
