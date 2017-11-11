@@ -55,3 +55,27 @@
 	visible_message("<span class='danger'>[src]'s body glows green, the glow dissipating only to leave behind a cluwne formerly known as [src]!</span>", \
 					"<span class='danger'>Your brain feels like it's being torn apart, and after a short while, you notice that you've become a cluwne!</span>")
 	flash_act()
+
+/datum/mutation/human/hulk
+
+	get_chance = 99
+
+/datum/mutation/human/telekinesis
+
+	get_chance = 99
+
+/datum/mutation/human/cold_resistance
+
+	get_chance = 99
+
+/datum/mutation/human/x_ray
+
+	get_chance = 99
+
+/datum/mutation/human/dwarfism
+
+	get_chance = 99
+
+/datum/mutation/human/chameleon
+
+	get_chance = 99
