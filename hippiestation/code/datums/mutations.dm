@@ -67,9 +67,9 @@
 /datum/mutation/human/steel/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	S.armor = 5 // You're resistant to punches.
+	owner.armor = 5 // You're resistant to punches.
 
 /datum/mutation/human/steel/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
-	S.armor = 0 //You're no longer resistant to punches. Do not combine with DNA Vault.
+	owner.armor = 0 //You're no longer resistant to punches. Do not combine with DNA Vault.
