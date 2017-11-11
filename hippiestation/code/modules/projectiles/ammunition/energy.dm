@@ -8,4 +8,4 @@
 	projectile_type = /obj/item/projectile/energy/bolt
 	select_name = "bolt"
 	e_cost = 500
-	fire_sound = 'sound/weapons/ebow_shoot.ogg'
+	fire_sound = 'hippiestation/sound/weapons/ebow_shoot.ogg'
