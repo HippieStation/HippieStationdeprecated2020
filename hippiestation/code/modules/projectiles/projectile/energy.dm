@@ -20,8 +20,8 @@
 	nodamage = 0
 	knockdown = 0
 	stun = 30
-	stutter = 30
-	slur = 30
+	stutter = 100 //H-H-HELP I-IN-N-N MA-A-AI-NT-T
+	slur = 100 //HCCH-HH-HEELHP I-INU-HN-NNGH... MA-A-AIH-NT-T
 
 /obj/item/projectile/energy/bolt/on_hit(atom/target, blocked = 0)
 	if(iscarbon(target))
