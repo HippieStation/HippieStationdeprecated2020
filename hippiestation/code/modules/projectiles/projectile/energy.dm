@@ -22,3 +22,9 @@
 	stun = 30
 	stutter = 30
 	slur = 30
+
+/obj/item/projectile/energy/bolt/on_hit(atom/target, blocked = 0)
+	if(iscarbon(target))
+		var/mob/living/carbon/C = target
+		C.dropItemToGround(C.get_active_held_item())
+		..()
