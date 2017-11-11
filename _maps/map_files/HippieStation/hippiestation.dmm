@@ -19429,6 +19429,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/black,
 /area/chapel/main)
 "aRC" = (
@@ -19459,6 +19460,7 @@
 	dir = 4;
 	icon_state = "tube1"
 	},
+/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/black,
 /area/chapel/main)
 "aRH" = (
@@ -20507,6 +20509,7 @@
 	dir = 8;
 	network = list("SS13")
 	},
+/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/black,
 /area/chapel/main)
 "aUj" = (
@@ -62724,48 +62727,68 @@
 /area/hallway/primary/port)
 "cHA" = (
 /obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel/black,
+/area/chapel/main)
+"cHB" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel/black,
+/area/chapel/main)
+"cHC" = (
+/obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
-"cHB" = (
+"cHD" = (
 /obj/machinery/light,
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/arrival{
 	dir = 2
 	},
 /area/hallway/secondary/entry)
-"cHC" = (
+"cHE" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"cHD" = (
+"cHF" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel/black,
+/area/chapel/main)
+"cHG" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
-"cHE" = (
+"cHH" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/wood,
 /area/library)
-"cHF" = (
+"cHI" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel/black,
+/area/chapel/main)
+"cHJ" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel/black,
+/area/chapel/main)
+"cHK" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"cHG" = (
+"cHL" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/white/corner{
 	dir = 1
 	},
 /area/hallway/primary/starboard)
-"cHH" = (
+"cHM" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/white/corner{
 	dir = 1
 	},
 /area/hallway/primary/starboard)
-"cHI" = (
+"cHN" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
-"cHJ" = (
+"cHO" = (
 /obj/machinery/light{
 	dir = 1
 	},
@@ -62774,45 +62797,45 @@
 	dir = 1
 	},
 /area/hallway/secondary/entry)
-"cHK" = (
+"cHP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
-"cHL" = (
+"cHQ" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
-"cHM" = (
+"cHR" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"cHN" = (
+"cHS" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
-"cHO" = (
+"cHT" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
-"cHP" = (
+"cHU" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"cHQ" = (
+"cHV" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/purple/side{
 	dir = 2
 	},
 /area/hallway/primary/starboard)
-"cHR" = (
+"cHW" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"cHS" = (
+"cHX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -62825,15 +62848,15 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/quartermaster/sorting)
-"cHT" = (
+"cHY" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"cHU" = (
+"cHZ" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"cHV" = (
+"cIa" = (
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -62843,49 +62866,19 @@
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hop)
-"cHW" = (
+"cIb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"cHX" = (
+"cIc" = (
 /obj/structure/disposalpipe/segment,
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/brown/corner{
 	dir = 8
 	},
-/area/hallway/primary/central)
-"cHY" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
-"cHZ" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
-"cIa" = (
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel/blue/corner{
-	dir = 4
-	},
-/area/hallway/primary/central)
-"cIb" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
-"cIc" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4;
-	on = 1
-	},
-/obj/item/twohanded/required/kirbyplants/random,
-/turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "cId" = (
 /obj/structure/disposalpipe/segment{
@@ -62897,37 +62890,67 @@
 "cIe" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel,
-/area/engine/atmos)
+/area/quartermaster/office)
 "cIf" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel/blue/corner{
+	dir = 4
+	},
+/area/hallway/primary/central)
+"cIg" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
+"cIh" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4;
+	on = 1
+	},
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
+"cIi" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
+"cIj" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
+"cIk" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"cIg" = (
+"cIl" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/carpet/black,
 /area/maintenance/port/aft)
-"cIh" = (
+"cIm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"cIi" = (
+"cIn" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/wood,
 /area/maintenance/port/aft)
-"cIj" = (
+"cIo" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"cIk" = (
+"cIp" = (
 /obj/item/twohanded/required/kirbyplants/random,
 /turf/open/floor/plasteel/yellow/side{
 	dir = 1
 	},
 /area/engine/engineering)
-"cIl" = (
+"cIq" = (
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -72308,7 +72331,7 @@ aww
 aww
 aww
 aPh
-cHB
+cHD
 arn
 crl
 crl
@@ -72316,8 +72339,8 @@ cvE
 crl
 crl
 arn
-cHJ
-cHM
+cHO
+cHR
 aww
 azL
 aww
@@ -80017,7 +80040,7 @@ aKp
 aLW
 aMQ
 aOd
-cHA
+cHC
 aPo
 aPo
 aSH
@@ -82372,7 +82395,7 @@ bzL
 czv
 czy
 czC
-cIg
+cIl
 bzL
 bYe
 bIN
@@ -85182,7 +85205,7 @@ bhv
 brf
 brM
 buZ
-cIb
+cIg
 buw
 bvU
 byw
@@ -85202,7 +85225,7 @@ bEX
 bQD
 bEX
 bzL
-cIi
+cIn
 bNg
 bNg
 bNg
@@ -85423,7 +85446,7 @@ cvt
 asG
 aZc
 bIW
-cHK
+cHP
 aoU
 bdo
 beG
@@ -85692,7 +85715,7 @@ blz
 bls
 bnr
 aZX
-cHW
+cIb
 boi
 brN
 buY
@@ -86200,7 +86223,7 @@ aXP
 blE
 cxt
 cxv
-cHS
+cHX
 cxu
 blB
 bmI
@@ -86464,7 +86487,7 @@ bmK
 aZX
 aZX
 bsp
-cHZ
+cIe
 btI
 bvd
 bwh
@@ -87491,7 +87514,7 @@ bdt
 bmN
 bkz
 bkz
-cHX
+cIc
 brj
 btK
 brj
@@ -88008,7 +88031,7 @@ aIc
 aIc
 aWt
 aJr
-cIa
+cIf
 aIc
 aIc
 byE
@@ -89546,7 +89569,7 @@ bkj
 blK
 bmV
 bor
-cHV
+cIa
 brn
 bsv
 btP
@@ -90307,7 +90330,7 @@ aXW
 aZn
 bai
 bbj
-cHN
+cHS
 bdw
 beQ
 bgh
@@ -91130,7 +91153,7 @@ cfu
 cdx
 cgW
 chV
-cIk
+cIp
 cdx
 cmX
 bZo
@@ -91352,7 +91375,7 @@ beS
 bpO
 bwo
 aIc
-cIc
+cIh
 bzN
 bzN
 bzN
@@ -93422,7 +93445,7 @@ bLf
 bMi
 bNx
 bLr
-cIe
+cIj
 bOH
 bQT
 bSQ
@@ -95189,7 +95212,7 @@ aWN
 aYc
 aZC
 bat
-cHL
+cHQ
 bcs
 bdJ
 bfb
@@ -96215,11 +96238,11 @@ aIc
 aIc
 aIc
 aKJ
-cHF
+cHK
 bav
 aIc
 bcv
-cHP
+cHU
 bfc
 aIc
 aIc
@@ -99311,7 +99334,7 @@ bji
 bkG
 bmb
 bnn
-cHU
+cHZ
 bqk
 brH
 bsO
@@ -99818,7 +99841,7 @@ aXd
 aXd
 bcy
 bdM
-cHR
+cHW
 bfl
 bfk
 bjj
@@ -99827,7 +99850,7 @@ bmc
 blY
 bfl
 bqk
-cHY
+cId
 bsO
 buk
 bvq
@@ -100069,7 +100092,7 @@ aJD
 cEa
 aVv
 aJD
-cHD
+cHG
 aIo
 aXd
 aXd
@@ -100584,7 +100607,7 @@ aTN
 aTN
 aWR
 aIu
-cHG
+cHL
 aXd
 aXd
 aXd
@@ -100875,7 +100898,7 @@ bGc
 bMC
 bNS
 bOW
-cIf
+cIk
 bRd
 bRZ
 bwO
@@ -101634,7 +101657,7 @@ brK
 brK
 bfl
 bfl
-cId
+cIi
 blY
 bEo
 boG
@@ -101947,7 +101970,7 @@ cEX
 cFf
 cFo
 cFy
-cIl
+cIq
 cnT
 cnn
 cnq
@@ -102383,7 +102406,7 @@ aTU
 aVy
 aWV
 aIu
-cHH
+cHM
 aXd
 aXd
 bcD
@@ -102394,7 +102417,7 @@ bgB
 bgB
 biW
 bkT
-cHT
+cHY
 bmi
 czV
 czY
@@ -103703,7 +103726,7 @@ bLH
 bNW
 bPb
 bLF
-cIh
+cIm
 bTj
 bTj
 bTj
@@ -104696,7 +104719,7 @@ aTZ
 aNC
 aXb
 aYt
-cHI
+cHN
 aYX
 bah
 bbr
@@ -106539,7 +106562,7 @@ bVW
 bJz
 bJz
 bPj
-cIj
+cIo
 bJz
 cdT
 bZH
@@ -107265,7 +107288,7 @@ aHh
 aHh
 aUq
 aWd
-cHE
+cHH
 aZJ
 aXd
 aVB
@@ -108555,7 +108578,7 @@ aBV
 bay
 aVB
 aXd
-cHQ
+cHV
 bea
 bea
 bea
@@ -108800,11 +108823,11 @@ aJO
 aLH
 aEv
 aNO
-aEy
+cHA
 aQr
 aRB
 aSY
-aEy
+cHF
 aQs
 aWe
 aYG
@@ -109064,7 +109087,7 @@ aTa
 aRD
 aQs
 aXn
-aEy
+cHI
 aZL
 aXd
 aVB
@@ -110349,7 +110372,7 @@ aTb
 aRE
 aVK
 aXo
-aEy
+cHJ
 aZL
 aXd
 bbB
@@ -110599,7 +110622,7 @@ aBS
 aEy
 aMH
 aEy
-aEy
+cHB
 aEy
 aRG
 aEy
@@ -111372,7 +111395,7 @@ aLJ
 aMI
 aPc
 aLK
-cHC
+cHE
 aNT
 aNT
 aVN
@@ -112666,7 +112689,7 @@ cCX
 cDc
 cDf
 aNT
-cHO
+cHT
 aLJ
 aLJ
 aaa
