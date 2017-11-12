@@ -8,7 +8,7 @@
         var/mob/living/carbon/human/H = pinned
 
         if (istype(H))
-            H.anchored = 0
+            H.anchored = FALSE
             H.pinned_to = null
             H.do_pindown(src, 0)
             H.update_canmove()
