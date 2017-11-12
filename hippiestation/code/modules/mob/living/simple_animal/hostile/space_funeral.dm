@@ -28,6 +28,7 @@
 	melee_damage_lower = 24
 	melee_damage_upper = 25
 	attacktext = "wallops"
+	attack_sound = 'hippiestation/sound/creatures/philip.ogg'
 
 /mob/living/simple_animal/hostile/space_funeral/bloodhound
 	name = "bloodhound"
@@ -66,3 +67,4 @@
 	melee_damage_lower = 11
 	melee_damage_upper = 20
 	attacktext = "kicks"
+	attack_sound = 'hippiestation/sound/creatures/leghorse.ogg'
