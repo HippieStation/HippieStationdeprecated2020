@@ -183,8 +183,7 @@
 			var/obj/item/bodypart/L = I
 
 			for(var/obj/item/J in L.embedded_objects)
-				// hippie - Show what item has them pinned
-				dat += "<tr><td><a href='byond://?src=\ref[src];embedded_object=\ref[J];embedded_limb=\ref[L]'>Embedded in [L]: [J] [J.pinned ? "(Pinned down)" : ""]</a><br></td></tr>"
+				dat += "<tr><td><a href='byond://?src=\ref[src];embedded_object=\ref[J];embedded_limb=\ref[L]'>Embedded in [L]: [J] [J.pinned ? "(Pinned down)" : ""]</a><br></td></tr>" // hippie - Show what item has them pinned
 
 	dat += {"</table>
 	<A href='?src=[REF(user)];mach_close=mob[REF(src)]'>Close</A>
