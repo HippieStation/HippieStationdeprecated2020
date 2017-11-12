@@ -2512,6 +2512,7 @@
 #include "hippiestation\code\modules\mob\living\simple_animal\hostile\feral_cat.dm"
 #include "hippiestation\code\modules\mob\living\simple_animal\hostile\sharks.dm"
 #include "hippiestation\code\modules\modular_computers\computers\item\laptop.dm"
+#include "hippiestation\code\modules\monkey\poo.dm"
 #include "hippiestation\code\modules\paperwork\photocopier.dm"
 #include "hippiestation\code\modules\pool\pool_controller.dm"
 #include "hippiestation\code\modules\pool\pool_drain.dm"
