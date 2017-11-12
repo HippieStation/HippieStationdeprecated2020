@@ -149,6 +149,7 @@
 				special_traits = null
 				analyse_only = FALSE
 				is_bullet = FALSE
+				to_chat(usr, "<span class='notice'>You eject [loaded]</span>")
 				return TRUE
 		if("Empty")
 			if(synthesis)
@@ -156,12 +157,17 @@
 				synthesis.handle_state_change(get_turf(src), synthesis.volume, src)
 				synthesis = null
 				reagents.clear_reagents()
+				to_chat(usr, "<span class='notice'>[synthesis] is flash frozen and dispensed out of the machine in the form of a solid bar!</span>")
 				return TRUE
 
 		if("Add_Trait")
-			if(loaded && !analyse_only && synthesis && reagent_analyse)
+			if(loaded && synthesis && reagent_analyse)
 				if(reagents.total_volume < 50)
 					to_chat(usr, "<span class='warning'>You need at least [SPECIAL_TRAIT_ADD_COST] units of [synthesis] to add a trait!</span>")
+					return FALSE
+
+				if(analyse_only)
+					to_chat(usr, "<span class='warning'>The machine is locked in analyse only mode, perhaps you are trying to modify the traits of a reagent directly?</span>")
 					return FALSE
 
 				if(LAZYLEN(special_traits) >= SPECIAL_TRAIT_MAXIMUM)
@@ -193,6 +199,7 @@
 							R.special_traits += D//doesn't work with lazyadd due to type mismatch (it checks for an explicitly initialized list)
 							D.on_apply(R, R.identifier)
 							reagents.remove_any(SPECIAL_TRAIT_ADD_COST)
+							to_chat(usr, "<span class='notice'>You add the trait [D] to [R]</span>")
 							return TRUE
 
 	return FALSE

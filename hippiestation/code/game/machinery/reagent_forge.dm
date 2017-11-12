@@ -41,12 +41,11 @@
 			to_chat(user, "<span class='warning'>You can't load the [src.name] while it's opened!</span>")
 			return
 
-
-
 		if(R.reagent_type)
 			if(!currently_forging || !currently_forging.id)
 				GET_COMPONENT(materials, /datum/component/material_container)
 				if(R.amount <= 0)//this shouldn't exist
+					to_chat(user, "<span class='warning'>The sheet crumbles away into dust, perhaps it was a fake one?</span>")
 					qdel(R)
 					return FALSE
 				materials.insert_stack(R, R.amount)
@@ -55,7 +54,6 @@
 				return
 
 			if(currently_forging && currently_forging.id && R.reagent_type.id == currently_forging.id)//preventing unnecessary references from being made
-				updateUsrDialog()
 				GET_COMPONENT(materials, /datum/component/material_container)
 				materials.insert_stack(R, R.amount)
 				to_chat(user, "<span class='notice'>You add [R] to [src]</span>")
@@ -113,7 +111,6 @@
 						else
 							qdel(RR)
 		. = TRUE
-
 	update_icon()
 	return .
 
@@ -187,7 +184,6 @@
 							break
 						else
 							qdel(RR)
-
 			qdel(currently_forging)
 			currently_forging = null
 			return TRUE
