@@ -66,6 +66,11 @@
 		var/obj/item/ammo_casing/forged/F = I
 		if(!F.BB)//this has no bullet
 			return
+
+		if(!F.caliber)
+			to_chat(user, "<span class='warning'>[I] needs to be shaped to a caliber before it can be added!</span>")
+			return
+
 		var/obj/item/projectile/bullet/forged/FB = F.BB
 		special_traits = FB.special_traits
 		is_bullet = TRUE
@@ -108,12 +113,13 @@
 	if(reagents.total_volume <= 0 && synthesis)
 		synthesis = null
 
-	for(var/I in special_traits)
-		var/datum/special_trait/D = I
-		var/md5name = md5(D.name)
-		if(!listoftraits[md5name])
-			listoftraits[md5name] = list("name" = D.name, "desc" = D.desc, "effectiveness" = D.effectiveness)
-	sortList(listoftraits)
+	if(loaded && special_traits && reagent_analyse)
+		for(var/I in special_traits)
+			var/datum/special_trait/D = I
+			var/md5name = md5(D.name)
+			if(!listoftraits[md5name])
+				listoftraits[md5name] = list("name" = D.name, "desc" = D.desc, "effectiveness" = D.effectiveness)
+		sortList(listoftraits)
 
 	if(synthesis && synthesis.special_traits)
 		for(var/D in synthesis.special_traits)
@@ -126,7 +132,7 @@
 	data["item"] = loaded ? loaded.name : "Nothing"
 	data["reagent_analyse"] = reagent_analyse ? reagent_analyse : "Nothing"
 	data["density"] = reagent_analyse ? reagent_analyse.density : "N/A"
-	data["traits"] = listoftraits
+	data["traits"] = listoftraits ? listoftraits : "Nothing"
 	data["traitsadd"] = listoftraitsadd ? listoftraitsadd : "Nothing"
 	data["volume"] = synthesis ? reagents.total_volume : 0
 	data["reagent_synthesis"] = synthesis ? synthesis : "Nothing"
@@ -144,20 +150,20 @@
 				loaded.invisibility = initial(loaded.invisibility)
 				loaded.mouse_opacity = initial(loaded.mouse_opacity)
 				loaded.anchored = initial(loaded.anchored)
+				to_chat(usr, "<span class='notice'>You eject [loaded]</span>")
 				loaded = null
 				reagent_analyse = null
 				special_traits = null
 				analyse_only = FALSE
 				is_bullet = FALSE
-				to_chat(usr, "<span class='notice'>You eject [loaded]</span>")
 				return TRUE
 		if("Empty")
 			if(synthesis)
 				synthesis.reagent_state = SOLID
 				synthesis.handle_state_change(get_turf(src), synthesis.volume, src)
+				to_chat(usr, "<span class='notice'>[synthesis] is flash frozen and dispensed out of the machine in the form of a solid bar!</span>")
 				synthesis = null
 				reagents.clear_reagents()
-				to_chat(usr, "<span class='notice'>[synthesis] is flash frozen and dispensed out of the machine in the form of a solid bar!</span>")
 				return TRUE
 
 		if("Add_Trait")
@@ -197,6 +203,7 @@
 							return FALSE
 						else
 							R.special_traits += D//doesn't work with lazyadd due to type mismatch (it checks for an explicitly initialized list)
+							R.speed += SPECIAL_TRAIT_ADD_SPEED_DEBUFF
 							D.on_apply(R, R.identifier)
 							reagents.remove_any(SPECIAL_TRAIT_ADD_COST)
 							to_chat(usr, "<span class='notice'>You add the trait [D] to [R]</span>")

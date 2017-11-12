@@ -83,7 +83,7 @@
 //BOUNCY
 
 /datum/reagent/lube
-	special_traits = list(SPECIAL_TRAIT_BOUNCY)
+	special_traits = list(SPECIAL_TRAIT_BOUNCY, SPECIAL_TRAIT_FLUIDIC)
 
 /datum/reagent/plastic_polymers
 	special_traits = list(SPECIAL_TRAIT_BOUNCY, SPECIAL_TRAIT_REFLECTIVE)
@@ -114,6 +114,28 @@
 /datum/reagent/cryostylane
 	special_traits = list(SPECIAL_TRAIT_CRYO)
 
+//ACIDS
+
+/datum/reagent/toxin/acid
+	special_traits = list(SPECIAL_TRAIT_ACID)
+
+//EXPLOSIVES
+
+/datum/reagent/superboom
+	special_traits = list(SPECIAL_TRAIT_EXPLOSIVE)
+
+/datum/reagent/toxin/sazide
+	special_traits = list(SPECIAL_TRAIT_EXPLOSIVE)
+
+/datum/reagent/nitroglycerin
+	special_traits = list(SPECIAL_TRAIT_EXPLOSIVE)
+
+/datum/reagent/blackpowder
+	special_traits = list(SPECIAL_TRAIT_EXPLOSIVE)
+
+/datum/reagent/nitrous_oxide
+	special_traits = list(SPECIAL_TRAIT_EXPLOSIVE)
+
 //MISC
 
 /datum/reagent/oxygen
@@ -127,3 +149,9 @@
 
 /datum/reagent/bluespace
 	special_traits = list(SPECIAL_TRAIT_UNSTABLE)
+
+/datum/reagent/drug/flipout
+	special_traits = list(SPECIAL_TRAIT_FLUIDIC)
+
+/datum/reagent/colorful_reagent
+	special_traits = list(SPECIAL_TRAIT_FLUIDIC)

@@ -46,6 +46,7 @@
 		C.reagents.add_reagent(reagent_type.id, max(0, (0.2 * stabby) * max(1, armour_block - armour_penetration)))
 		if(stabby < 1 && stabby > 0)
 			reagent_type.reaction_mob(C, TOUCH, max(0, 1 / stabby))
+	if(proximity_flag && reagent_type)
 		for(var/I in special_traits)
 			var/datum/special_trait/A = I
 			if(prob(A.effectiveness))
@@ -151,10 +152,11 @@
 		C.reagents.add_reagent(reagent_type.id, max(0, (0.2 * stabby) * max(1, armour_block - armour_penetration)))
 		if(stabby < 1 && stabby > 0)
 			reagent_type.reaction_mob(C, TOUCH, max(0, 1 / stabby))
+	if(proximity_flag && reagent_type)
 		for(var/I in special_traits)
 			var/datum/special_trait/A = I
 			if(prob(A.effectiveness))
-				A.on_hit(target, user, src, identifier)
+				A.on_hit(target, user, src, FORGED_MELEE_TWOHANDED)
 	..()
 
 /obj/item/twohanded/forged/greatsword
@@ -246,13 +248,13 @@
 
 /obj/item/projectile/bullet/forged/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	if(iscarbon(target) && reagent_type)
-		var/mob/living/carbon/C = target
+	if(reagent_type)
 		for(var/I in special_traits)
 			var/datum/special_trait/A = I
 			if(prob(A.effectiveness))
 				A.on_hit(target, I = src, type = identifier)
-
+	if(iscarbon(target))
+		var/mob/living/carbon/C = target
 		var/limb_hit =  C.check_limb_hit(def_zone)
 		var/armour_block = C.getarmor(limb_hit, "bullet") * 0.01
 		if(!armour_block)

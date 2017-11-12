@@ -17,6 +17,7 @@
 //SPECIAL TRAITS
 #define SPECIAL_TRAIT_MAXIMUM 5
 #define SPECIAL_TRAIT_ADD_COST 50
+#define SPECIAL_TRAIT_ADD_SPEED_DEBUFF 1
 #define SPECIAL_TRAIT_METALLIC /datum/special_trait/metallic
 #define SPECIAL_TRAIT_SHARP /datum/special_trait/sharp
 #define SPECIAL_TRAIT_RADIOACTIVE /datum/special_trait/radioactive
@@ -27,8 +28,9 @@
 #define SPECIAL_TRAIT_UNSTABLE /datum/special_trait/unstable
 #define SPECIAL_TRAIT_FIRE /datum/special_trait/fire
 #define SPECIAL_TRAIT_CRYO /datum/special_trait/cryo
-#define SPECIAL_TRAIT_ACID /datum/special_trait/fire
-#define SPECIAL_TRAIT_FLUIDIC /datum/special_trait/cryo
+#define SPECIAL_TRAIT_ACID /datum/special_trait/acid
+#define SPECIAL_TRAIT_FLUIDIC /datum/special_trait/fluidic
+#define SPECIAL_TRAIT_EXPLOSIVE /datum/special_trait/explosive
 
 //SPECIAL IDENTIFIERS - saving me some istype checks
 #define FORGED_MELEE_SINGLEHANDED "singlehanded"
@@ -218,7 +220,7 @@
 
 /datum/special_trait/fire
 	name = "Fire"
-	desc = "Found in various pyrotechnic reagents, small chance to ignite on hit and acts as an open flame in regards to flammable gases"
+	desc = "Found in various pyrotechnic reagents, small chance to ignite on hit and acts as an open flame in regards to flammable gases. This may burn your hands!"
 	effectiveness = 10
 
 
@@ -248,6 +250,16 @@
 			M.adjust_fire_stacks(1)//only one because chances are this is already a chem that adds fire stacks
 			M.IgniteMob()
 
+	if(user && iscarbon(user))
+		var/mob/living/carbon/C = user
+		if(C.gloves)
+			return
+		var/hit_zone = (C.held_index_to_dir(C.active_hand_index) == "l" ? "l_":"r_") + "arm"
+		var/obj/item/bodypart/affecting = C.get_bodypart(hit_zone)
+		if(affecting)
+			if(affecting.receive_damage(0, 5))
+				to_chat(C, "<span class='userdanger'>The fire scorches your hand!</span>")
+
 
 /datum/special_trait/cryo
 	name = "Cryo"
@@ -265,3 +277,94 @@
 		if(isliving(target))
 			var/mob/living/M = target
 			M.bodytemperature = max(M.bodytemperature - rand(50, 100), TCMB)
+
+
+/datum/special_trait/acid
+	name = "Acidic"
+	desc = "Self explanatory, chance to apply acid to whatever it touches: including the user's hand!"
+	effectiveness = 25
+	var/datum/reagent/acid
+
+/datum/special_trait/acid/on_apply(obj/item/I, type)
+	if(I)
+		acid = new /datum/reagent/toxin/acid/fluacid
+		I.resistance_flags |= ACID_PROOF
+		I.acid_act(INFINITY, 1)
+
+/datum/special_trait/acid/on_hit(atom/target, mob/user, obj/item/I, type)
+	if(I && target)
+		if(isliving(target))
+			acid.reaction_mob(target, TOUCH, 2)
+		else if(isturf(target))
+			acid.reaction_turf(target, TOUCH, 2)
+		else if(isobj(target))
+			acid.reaction_obj(target, TOUCH, 2)
+
+	if(user && iscarbon(user))
+		var/mob/living/carbon/C = user
+		if(C.gloves)
+			return
+		if(ishuman(C))
+			var/mob/living/carbon/human/H = C
+			if(H.dna && H.dna.species)
+				if(PIERCEIMMUNE in H.dna.species.species_traits)
+					return
+		var/hit_zone = (C.held_index_to_dir(C.active_hand_index) == "l" ? "l_":"r_") + "arm"
+		var/obj/item/bodypart/affecting = C.get_bodypart(hit_zone)
+		if(affecting)
+			if(affecting.receive_damage(0, 5))
+				to_chat(C, "<span class='userdanger'>The acid burns your hand!</span>")
+
+
+/datum/special_trait/fluidic
+	name = "Fluidic"
+	desc = "Chance to randomly spray its reagent type in all directions on hit!"
+	effectiveness = 15
+
+/datum/special_trait/fluidic/on_hit(atom/target, mob/user, obj/item/I, type)
+	if(I && type)
+		switch(type)
+			if(FORGED_MELEE_SINGLEHANDED)
+				if(user)
+					var/obj/item/forged/F = I
+					for(var/atom/A in view(2, user))
+						if(isliving(A))
+							F.reagent_type.reaction_mob(A, TOUCH, 2)
+						else if(isturf(A))
+							F.reagent_type.reaction_turf(A, TOUCH, 2)
+						else if(isobj(A))
+							F.reagent_type.reaction_obj(A, TOUCH, 2)
+
+			if(FORGED_MELEE_TWOHANDED)
+				if(user)
+					var/obj/item/twohanded/forged/F = I
+					for(var/atom/A in view(2, user))
+						if(isliving(A))
+							F.reagent_type.reaction_mob(A, TOUCH, 2)
+						else if(isturf(A))
+							F.reagent_type.reaction_turf(A, TOUCH, 2)
+						else if(isobj(A))
+							F.reagent_type.reaction_obj(A, TOUCH, 2)
+
+			if(FORGED_BULLET_CASING)
+				var/obj/item/projectile/bullet/forged/F = I
+				for(var/atom/A in view(2, F))
+					if(isliving(A))
+						F.reagent_type.reaction_mob(A, TOUCH, 2)
+					else if(isturf(A))
+						F.reagent_type.reaction_turf(A, TOUCH, 2)
+					else if(isobj(A))
+						F.reagent_type.reaction_obj(A, TOUCH, 2)
+
+
+/datum/special_trait/explosive
+	name = "Explosive"
+	desc = "Dangerous and self explanatory!"
+	effectiveness = 5
+
+/datum/special_trait/explosive/on_hit(atom/target, mob/user, obj/item/I, type)
+	if(I && type)
+		if(type == FORGED_BULLET_CASING)
+			explosion(get_turf(I), 0, 1, 2, 4)
+		else if(user)
+			explosion(user, 0, 1, 2, 4)
