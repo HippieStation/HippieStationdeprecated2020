@@ -529,3 +529,12 @@
 	armor = list(melee = 100, bullet = 100, laser = 100, energy = 100, bomb = 0, bio = 0, rad = 0, fire = 100, acid = 50)
 	resistance_flags = FIRE_PROOF
 	refill_canister = /obj/item/vending_refill/donksoft
+
+/obj/machinery/vending/plasmaresearch
+	name = "\improper Toximate 3000"
+	icon = 'icons/obj/vending.dmi'
+	desc = "All the fine parts you need in one vending machine!"
+	products = list(/obj/item/clothing/under/rank/scientist = 6, /obj/item/clothing/suit/bio_suit = 6, /obj/item/clothing/head/bio_hood = 6,
+					/obj/item/device/transfer_valve = 6, /obj/item/device/assembly/timer = 6, /obj/item/device/assembly/signaler = 6,
+					/obj/item/device/assembly/prox_sensor = 6, /obj/item/device/assembly/igniter = 6)
+	contraband = list(/obj/item/device/assembly/health = 3)
