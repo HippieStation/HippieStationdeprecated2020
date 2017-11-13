@@ -62446,7 +62446,6 @@
 /turf/open/floor/plating/airless,
 /area/space)
 "cGX" = (
-<<<<<<< HEAD
 /obj/machinery/icecream_vat,
 /turf/open/floor/wood,
 /area/maintenance/port/aft)
