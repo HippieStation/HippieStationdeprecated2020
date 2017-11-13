@@ -62816,7 +62816,6 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-=======
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
