@@ -1,5 +1,5 @@
 /*
-	list/atom/output_atoms
+	output_atoms	(list of atoms)			The destination(s) for the sounds
 
 	mid_sounds		(list or soundfile)		Since this can be either a list or a single soundfile you can have random sounds. May contain further lists but must contain a soundfile at the end.
 	mid_length		(num)					The length to wait between playing mid_sounds
@@ -9,10 +9,12 @@
 
 	end_sound		(soundfile)				The sound played after the main loop has concluded
 
+	range_modifier (num)			Modifier in max range of sounds played by the sound loop.
 	chance			(num)					Chance per loop to play a mid_sound
 	volume			(num)					Sound output volume
 	muted			(bool)					Private. Used to stop the sound loop.
 	max_loops		(num)					The max amount of loops to run for.
+	direct			(bool)				If true plays directly to provided atoms instead of from them
 */
 /datum/looping_sound
 	var/list/atom/output_atoms
@@ -21,20 +23,20 @@
 	var/start_sound
 	var/start_length
 	var/end_sound
+	var/range_modifier
 	var/chance
-	var/volume
+	var/volume = 100
 	var/muted = TRUE
 	var/max_loops
+	var/direct
 
-/datum/looping_sound/New(list/_output_atoms, start_immediately=FALSE)
+/datum/looping_sound/New(list/_output_atoms=list(), start_immediately=FALSE, _direct=FALSE)
 	if(!mid_sounds)
 		WARNING("A looping sound datum was created without sounds to play.")
 		return
 
-	if(_output_atoms)
-		output_atoms = _output_atoms
-	else
-		output_atoms = list()
+	output_atoms = _output_atoms
+	direct = _direct
 
 	if(start_immediately)
 		start()
@@ -44,13 +46,17 @@
 	output_atoms = null
 	return ..()
 
-/datum/looping_sound/proc/start()
+/datum/looping_sound/proc/start(atom/add_thing)
+	if(add_thing)
+		output_atoms |= add_thing
 	if(!muted)
 		return
 	muted = FALSE
 	on_start()
 
-/datum/looping_sound/proc/stop()
+/datum/looping_sound/proc/stop(atom/remove_thing)
+	if(remove_thing)
+		output_atoms -= remove_thing
 	if(muted)
 		return
 	muted = TRUE
@@ -65,9 +71,16 @@
 
 /datum/looping_sound/proc/play(soundfile)
 	var/list/atoms_cache = output_atoms
+	var/sound/S = sound(soundfile)
+	if(direct)
+		S.channel = open_sound_channel()
+		S.volume = volume
 	for(var/i in 1 to atoms_cache.len)
 		var/atom/thing = atoms_cache[i]
-		playsound(thing, soundfile, volume)
+		if(direct)
+			SEND_SOUND(thing, S)
+		else
+			playsound(thing, S, volume, null, range_modifier)
 
 /datum/looping_sound/proc/get_sound(looped, _mid_sounds)
 	if(!_mid_sounds)
