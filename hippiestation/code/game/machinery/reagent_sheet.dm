@@ -6,6 +6,9 @@
 	density = TRUE
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
+	light_power = 0.5
+	light_range = 2
+	light_color = LIGHT_COLOR_FLARE
 	var/working = FALSE
 
 /obj/machinery/reagent_sheet/attackby(obj/item/I, mob/user)

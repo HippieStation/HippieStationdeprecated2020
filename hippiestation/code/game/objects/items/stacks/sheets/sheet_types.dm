@@ -13,7 +13,7 @@
 GLOBAL_LIST_INIT(reagent_recipes, list ( \
 	new/datum/stack_recipe("reagent door", /obj/structure/mineral_door/transparent/reagent, 5, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("reagent tile", /obj/item/stack/tile/mineral/reagent, 1, 4, 20), \
-	new/datum/stack_recipe("reagent wall", /turf/closed/wall/mineral/reagent, 4, one_per_turf = 1), \
+	new/datum/stack_recipe("reagent wall", /turf/closed/wall/mineral/reagent, 4, one_per_turf = 1, on_floor = 1), \
 	))
 
 /obj/item/stack/sheet/mineral/reagent/Initialize(mapload, new_amount, merge = TRUE)
@@ -92,6 +92,10 @@ GLOBAL_LIST_INIT(reagent_recipes, list ( \
 					else
 						qdel(RR)
 
+			if(src && usr.machine==src) //do not reopen closed window
+				addtimer(CALLBACK(src, /atom/.proc/interact, usr), 0)
+			return
+
 		var/obj/O
 		if(R.max_res_amount > 1) //Is it a stack?
 			O = new R.result_type(usr.drop_location(), R.res_amount * multiplier)
@@ -130,6 +134,3 @@ GLOBAL_LIST_INIT(reagent_recipes, list ( \
 					break
 				else
 					qdel(RR)
-
-	if(src && usr.machine==src) //do not reopen closed window
-		addtimer(CALLBACK(src, /atom/.proc/interact, usr), 0)

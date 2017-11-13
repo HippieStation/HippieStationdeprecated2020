@@ -13,6 +13,9 @@
 	active_power_usage = 3000
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	circuit = null
+	light_range = 5
+	light_power = 1.5
+	light_color = LIGHT_COLOR_FIRE
 	var/datum/reagent/currently_forging//forge one mat at a time
 	var/processing = FALSE
 	var/efficiency = 1
@@ -23,7 +26,6 @@
 	. = ..()
 	AddComponent(/datum/component/material_container, list(MAT_REAGENT), 200000)
 	files = new /datum/research/reagent_forge(src)
-	dir = NORTH
 
 
 /obj/machinery/reagent_forge/attackby(obj/item/I, mob/user)
