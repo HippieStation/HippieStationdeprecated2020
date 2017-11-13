@@ -24,3 +24,7 @@
 						 'sound/voice/lowHiss3.ogg',
 						 'sound/voice/lowHiss4.ogg',
 						 'hippiestation/sound/misc/honk_echo_distant.ogg')
+
+/area/engine/hippie/antimatter
+	name = "Antimatter Engine"
+	icon_state = "engine"

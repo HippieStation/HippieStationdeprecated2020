@@ -53244,6 +53244,11 @@
 	pixel_y = -2
 	},
 /obj/item/storage/firstaid/fire,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "clJ" = (
@@ -53344,17 +53349,8 @@
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
 "clZ" = (
-/obj/structure/grille,
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
 /obj/structure/window/reinforced/fulltile,
-/obj/machinery/door/poddoor/preopen{
-	id = "Engineering";
-	name = "engineering security door"
-	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel,
 /area/engine/engineering)
 "cma" = (
 /obj/structure/sign/securearea{
@@ -53365,35 +53361,25 @@
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
 "cmb" = (
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/structure/grille,
 /obj/structure/window/reinforced/fulltile,
-/obj/machinery/door/poddoor/preopen{
-	id = "Engineering";
-	name = "engineering security door"
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel,
 /area/engine/engineering)
 "cmc" = (
-/obj/structure/grille,
-/obj/structure/cable,
 /obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
 	},
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+/obj/machinery/door/airlock/engineering{
+	name = "Antimatter Engine Room"
 	},
-/obj/structure/window/reinforced/fulltile,
-/obj/machinery/door/poddoor/preopen{
-	id = "Engineering";
-	name = "engineering security door"
-	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel,
 /area/engine/engineering)
 "cmd" = (
 /obj/structure/cable/yellow{
@@ -57837,6 +57823,11 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/station_engineer,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cvR" = (
@@ -62497,6 +62488,504 @@
 /obj/structure/reagent_dispensers/cooking_oil,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"cHb" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"cHc" = (
+/obj/effect/landmark/event_spawn,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"cHd" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"cHe" = (
+/turf/closed/wall/r_wall,
+/area/engine/hippie/antimatter)
+"cHf" = (
+/obj/structure/closet/secure_closet/engineering_electrical,
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHg" = (
+/obj/structure/closet/secure_closet/engineering_personal,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHh" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHi" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHj" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHk" = (
+/obj/structure/closet/secure_closet/engineering_personal,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHl" = (
+/obj/structure/closet/secure_closet/engineering_electrical,
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHm" = (
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHn" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHo" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHp" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHq" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHr" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHs" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHt" = (
+/obj/machinery/power/apc/highcap/five_k{
+	pixel_x = 30
+	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHu" = (
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHv" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHw" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHx" = (
+/turf/open/floor/plasteel/yellowsiding/corner,
+/area/engine/hippie/antimatter)
+"cHy" = (
+/turf/open/floor/plasteel/yellowsiding,
+/area/engine/hippie/antimatter)
+"cHz" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/yellowsiding/corner{
+	dir = 8
+	},
+/area/engine/hippie/antimatter)
+"cHA" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHB" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHC" = (
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHD" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHE" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHF" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 4
+	},
+/area/engine/hippie/antimatter)
+"cHG" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/obj/machinery/power/am_control_unit{
+	anchored = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHH" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 8
+	},
+/area/engine/hippie/antimatter)
+"cHI" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHJ" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHK" = (
+/turf/closed/wall/r_wall,
+/area/engine/hippie/antimatter)
+"cHL" = (
+/obj/structure/closet/crate{
+	name = "Antimatter Sections"
+	},
+/obj/item/device/am_shielding_container,
+/obj/item/device/am_shielding_container,
+/obj/item/device/am_shielding_container,
+/obj/item/device/am_shielding_container,
+/obj/item/device/am_shielding_container,
+/obj/item/device/am_shielding_container,
+/obj/item/device/am_shielding_container,
+/obj/item/device/am_shielding_container,
+/obj/item/device/am_shielding_container,
+/obj/item/device/am_shielding_container,
+/obj/item/device/am_shielding_container,
+/obj/item/device/am_shielding_container,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHM" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHN" = (
+/turf/open/floor/plasteel/yellowsiding/corner{
+	dir = 4
+	},
+/area/engine/hippie/antimatter)
+"cHO" = (
+/turf/open/floor/plasteel/yellowsiding{
+	dir = 1
+	},
+/area/engine/hippie/antimatter)
+"cHP" = (
+/turf/open/floor/plasteel/yellowsiding/corner{
+	dir = 1
+	},
+/area/engine/hippie/antimatter)
+"cHQ" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHR" = (
+/obj/structure/closet/crate{
+	name = "Antimatter Jars"
+	},
+/obj/item/am_containment,
+/obj/item/am_containment,
+/obj/item/am_containment,
+/obj/item/am_containment,
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHS" = (
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHT" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHU" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHV" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHW" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHX" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHY" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cHZ" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIa" = (
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIb" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIc" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cId" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIe" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIf" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIg" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIh" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIi" = (
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIj" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIk" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIl" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIm" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIn" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIo" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIp" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIq" = (
+/turf/closed/wall/r_wall,
+/area/engine/hippie/antimatter)
+"cIr" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIs" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIt" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIu" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIv" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIw" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIx" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIy" = (
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIz" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIA" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIB" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIC" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cID" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIE" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIF" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIG" = (
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIH" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cII" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIJ" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIK" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIL" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIM" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIN" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIO" = (
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIP" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIQ" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIR" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIS" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIT" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIU" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIV" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIW" = (
+/turf/closed/wall/r_wall,
+/area/engine/hippie/antimatter)
+"cIX" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIY" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cIZ" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cJa" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cJb" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cJc" = (
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cJd" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cJe" = (
+/turf/closed/wall/r_wall,
+/area/engine/hippie/antimatter)
+"cJf" = (
+/turf/closed/wall/r_wall,
+/area/engine/hippie/antimatter)
+"cJg" = (
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cJh" = (
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cJi" = (
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cJj" = (
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cJk" = (
+/obj/structure/window/reinforced/fulltile,
+/turf/open/floor/plasteel,
+/area/engine/hippie/antimatter)
+"cJl" = (
+/turf/closed/wall/r_wall,
+/area/engine/hippie/antimatter)
 
 (1,1,1) = {"
 aaa
@@ -85829,8 +86318,8 @@ aaa
 aaa
 aaa
 aaa
-abW
-abW
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -86074,21 +86563,21 @@ cfX
 aaa
 aaa
 clY
-aad
-abW
-abW
-abW
-abW
-abW
-abW
-abW
-abW
-abW
 aaa
-aad
-cwb
-abW
-abW
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -86331,21 +86820,21 @@ cfX
 aaa
 aaa
 clY
-aad
-abW
-cwb
-cwb
-cwb
-cwb
-cwb
-cwb
-cwb
-abW
 aaa
-aad
-cwb
-cwb
-abW
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -86588,20 +87077,20 @@ cfX
 aad
 aad
 ceB
-aad
-czb
-aaR
-aaR
-aaR
-aaR
-aaR
-aaR
-aaR
-aaR
-aad
-aad
-aad
-aad
+cHe
+cHm
+cHu
+cHC
+cHK
+cHS
+cIa
+cIi
+cIq
+cIy
+cIG
+cIO
+cIW
+cJe
 aaa
 aaa
 aaa
@@ -86845,20 +87334,20 @@ bZo
 bZo
 bZo
 bZo
-aaa
-czc
-aaa
-aaa
-aad
-aaa
-aaa
-cvU
-aaa
-aaa
-aaa
-cvU
-aaa
-aaa
+cHf
+cHn
+cHv
+cHD
+cHL
+cHT
+cIb
+cIj
+cIr
+cIz
+cIH
+cIP
+cIX
+cJf
 aaa
 aaa
 aaa
@@ -87102,20 +87591,20 @@ ckY
 clu
 clH
 cma
-aaa
-czc
-aaa
-aaa
-cvU
-aaa
-aaa
-cvU
-aaa
-aaa
-aaa
-cvU
-cvU
-cvU
+cHg
+cHo
+cHw
+cHE
+cHM
+cHU
+cIc
+cIk
+cIs
+cIA
+cII
+cIQ
+cIY
+cJg
 aaa
 aaa
 aaa
@@ -87359,20 +87848,20 @@ cdx
 cdx
 clG
 clZ
-cvU
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-cvU
+cHh
+cHp
+cHx
+cHF
+cHN
+cHV
+cId
+cIl
+cIt
+cIB
+cIJ
+cIR
+cIZ
+cJh
 aaa
 aaa
 aaa
@@ -87614,22 +88103,22 @@ ced
 cfe
 cfe
 cfx
-cvS
+cgU
 cmc
-cvU
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-cvU
-cvU
-cvU
-aaa
-cvU
+cHi
+cHq
+cHy
+cHG
+cHO
+cHW
+cIe
+cIm
+cIu
+cIC
+cIK
+cIS
+cJa
+cJi
 aaa
 aaa
 aaa
@@ -87867,26 +88356,26 @@ bZo
 bZo
 bZo
 ccw
-ckd
-cvb
-cdx
+cHb
+cHc
+cHd
 cvQ
 clI
 cmb
-cvU
-aaa
-cvU
-cvU
-cvU
-cvU
-cvU
-cvU
-cvU
-aaa
-aaa
-cvU
-aaa
-cvU
+cHj
+cHr
+cHz
+cHH
+cHP
+cHX
+cIf
+cIn
+cIv
+cID
+cIL
+cIT
+cJb
+cJj
 aaa
 aaa
 aaa
@@ -88130,20 +88619,20 @@ cdx
 clv
 clK
 cma
-cvU
-aaa
-cvU
-cvU
-cvU
-cvU
-cvU
-cvU
-cvU
-cvU
-cvU
-cvU
-aaa
-cvU
+cHk
+cHs
+cHA
+cHI
+cHQ
+cHY
+cIg
+cIo
+cIw
+cIE
+cIM
+cIU
+cJc
+cJk
 aaa
 aaa
 aaa
@@ -88387,20 +88876,20 @@ cla
 clx
 clJ
 bZo
-cvU
-aaa
-cvU
-cvU
-cvU
-cvU
-cvU
-cvU
-cvU
-aaa
-aaa
-cvU
-aaa
-cvU
+cHl
+cHt
+cHB
+cHJ
+cHR
+cHZ
+cIh
+cIp
+cIx
+cIF
+cIN
+cIV
+cJd
+cJl
 aaa
 aaa
 aaa
@@ -101158,7 +101647,7 @@ aAL
 aBB
 aCX
 alJ
-cGY
+cGX
 aGO
 aOM
 cHa
@@ -101415,7 +101904,7 @@ azy
 aBC
 aBK
 alJ
-cGZ
+cGX
 avj
 aIw
 aJH
