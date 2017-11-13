@@ -53349,7 +53349,7 @@
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
 "clZ" = (
-/obj/structure/window/reinforced/fulltile,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cma" = (
@@ -53361,12 +53361,12 @@
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
 "cmb" = (
-/obj/structure/window/reinforced/fulltile,
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cmc" = (
@@ -62567,7 +62567,7 @@
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cHm" = (
-/obj/structure/window/reinforced/fulltile,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cHn" = (
@@ -62619,7 +62619,7 @@
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cHu" = (
-/obj/structure/window/reinforced/fulltile,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cHv" = (
@@ -62651,7 +62651,7 @@
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cHC" = (
-/obj/structure/window/reinforced/fulltile,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cHD" = (
@@ -62751,7 +62751,7 @@
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cHS" = (
-/obj/structure/window/reinforced/fulltile,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cHT" = (
@@ -62776,7 +62776,7 @@
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cIa" = (
-/obj/structure/window/reinforced/fulltile,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cIb" = (
@@ -62801,7 +62801,7 @@
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cIi" = (
-/obj/structure/window/reinforced/fulltile,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cIj" = (
@@ -62857,7 +62857,7 @@
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cIy" = (
-/obj/structure/window/reinforced/fulltile,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cIz" = (
@@ -62882,7 +62882,7 @@
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cIG" = (
-/obj/structure/window/reinforced/fulltile,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cIH" = (
@@ -62907,7 +62907,7 @@
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cIO" = (
-/obj/structure/window/reinforced/fulltile,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cIP" = (
@@ -62964,23 +62964,23 @@
 /turf/closed/wall/r_wall,
 /area/engine/hippie/antimatter)
 "cJg" = (
-/obj/structure/window/reinforced/fulltile,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cJh" = (
-/obj/structure/window/reinforced/fulltile,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cJi" = (
-/obj/structure/window/reinforced/fulltile,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cJj" = (
-/obj/structure/window/reinforced/fulltile,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cJk" = (
-/obj/structure/window/reinforced/fulltile,
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/engine/hippie/antimatter)
 "cJl" = (
