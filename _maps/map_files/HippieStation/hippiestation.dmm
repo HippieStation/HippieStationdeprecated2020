@@ -62453,54 +62453,28 @@
 /turf/closed/wall/r_wall,
 /area/maintenance/forge)
 "cGZ" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
-"cHa" = (
-/obj/machinery/camera{
-	c_tag = "Kitchen Cold Room"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/reagent_dispensers/cooking_oil,
-/turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
-"cHb" = (
-/obj/machinery/icecream_vat,
-/turf/open/floor/wood,
-/area/maintenance/port/aft)
-"cHc" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/forge)
-"cHd" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
-"cHe" = (
-/obj/machinery/camera{
-	c_tag = "Kitchen Cold Room"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/reagent_dispensers/cooking_oil,
-/turf/open/floor/plasteel/showroomfloor,
-/area/crew_quarters/kitchen)
-"cHf" = (
+"cHa" = (
 /obj/machinery/reagent_sheet,
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHb" = (
+/obj/machinery/reagent_sheet,
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHc" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/pod/dark,
+/area/maintenance/forge)
+"cHd" = (
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHe" = (
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHf" = (
 /turf/open/floor/engine,
 /area/maintenance/forge)
 "cHg" = (
@@ -62508,19 +62482,6 @@
 /turf/open/floor/pod/dark,
 /area/maintenance/forge)
 "cHh" = (
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cHi" = (
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cHj" = (
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cHk" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
-/turf/open/floor/pod/dark,
-/area/maintenance/forge)
-"cHl" = (
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Forge Room APC";
@@ -62534,20 +62495,33 @@
 /obj/item/wrench,
 /turf/open/floor/engine,
 /area/maintenance/forge)
-"cHm" = (
+"cHi" = (
 /obj/machinery/reagent_material_manipulator,
 /turf/open/floor/engine,
 /area/maintenance/forge)
-"cHn" = (
+"cHj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/closed/wall/r_wall,
 /area/maintenance/forge)
-"cHo" = (
+"cHk" = (
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/engine,
 /area/maintenance/forge)
-"cHp" = (
+"cHl" = (
 /obj/effect/decal/cleanable/shreds,
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHm" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/pod/dark,
+/area/maintenance/forge)
+"cHn" = (
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHo" = (
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHp" = (
 /turf/open/floor/engine,
 /area/maintenance/forge)
 "cHq" = (
@@ -62555,37 +62529,39 @@
 /turf/open/floor/pod/dark,
 /area/maintenance/forge)
 "cHr" = (
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cHs" = (
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cHt" = (
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cHu" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
-/turf/open/floor/pod/dark,
-/area/maintenance/forge)
-"cHv" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /turf/open/floor/engine,
 /area/maintenance/forge)
-"cHw" = (
+"cHs" = (
 /obj/structure/reagent_dispensers/chemical,
 /turf/open/floor/engine,
 /area/maintenance/forge)
-"cHx" = (
+"cHt" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/closed/wall/r_wall,
+/area/maintenance/forge)
+"cHu" = (
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHv" = (
+/obj/structure/closet/crate,
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHw" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/pod/dark,
+/area/maintenance/forge)
+"cHx" = (
+/obj/machinery/reagent_forge,
+/turf/open/floor/engine,
 /area/maintenance/forge)
 "cHy" = (
 /turf/open/floor/engine,
 /area/maintenance/forge)
 "cHz" = (
-/obj/structure/closet/crate,
+/obj/effect/decal/cleanable/ash/large,
 /turf/open/floor/engine,
 /area/maintenance/forge)
 "cHA" = (
@@ -62593,21 +62569,6 @@
 /turf/open/floor/pod/dark,
 /area/maintenance/forge)
 "cHB" = (
-/obj/machinery/reagent_forge,
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cHC" = (
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cHD" = (
-/obj/effect/decal/cleanable/ash/large,
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cHE" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
-/turf/open/floor/pod/dark,
-/area/maintenance/forge)
-"cHF" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 4;
@@ -62615,7 +62576,7 @@
 	},
 /turf/open/floor/engine,
 /area/maintenance/forge)
-"cHG" = (
+"cHC" = (
 /obj/structure/cable{
 	d1 = 2;
 	d2 = 8;
@@ -62624,11 +62585,11 @@
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/engine,
 /area/maintenance/forge)
-"cHH" = (
+"cHD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/closed/wall/r_wall,
 /area/maintenance/forge)
-"cHI" = (
+"cHE" = (
 /obj/machinery/door/airlock/engineering{
 	cyclelinkeddir = 8;
 	name = "Forge Room";
@@ -62637,40 +62598,40 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/engine,
 /area/maintenance/forge)
-"cHJ" = (
+"cHF" = (
 /turf/closed/wall,
 /area/maintenance/forge)
-"cHK" = (
+"cHG" = (
 /obj/structure/sign/nosmoking_1,
 /turf/closed/wall,
 /area/maintenance/forge)
-"cHL" = (
+"cHH" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "forge"
 	},
 /obj/effect/decal/cleanable/ash/large,
 /turf/open/floor/pod/dark,
 /area/maintenance/forge)
-"cHM" = (
+"cHI" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "forge"
 	},
 /turf/open/floor/pod/dark,
 /area/maintenance/forge)
-"cHN" = (
+"cHJ" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "forge"
 	},
 /turf/open/floor/pod/dark,
 /area/maintenance/forge)
-"cHO" = (
+"cHK" = (
 /obj/structure/sign/fire,
 /turf/closed/wall,
 /area/maintenance/forge)
-"cHP" = (
+"cHL" = (
 /turf/closed/wall,
 /area/maintenance/forge)
-"cHQ" = (
+"cHM" = (
 /obj/machinery/door/airlock/engineering{
 	cyclelinkeddir = 8;
 	name = "Forge Room";
@@ -62682,36 +62643,36 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/engine,
 /area/maintenance/forge)
-"cHR" = (
+"cHN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/closed/wall/r_wall,
 /area/maintenance/forge)
-"cHS" = (
+"cHO" = (
 /turf/open/floor/engine,
 /area/maintenance/forge)
-"cHT" = (
+"cHP" = (
 /turf/open/floor/engine,
 /area/maintenance/forge)
-"cHU" = (
+"cHQ" = (
 /obj/machinery/firealarm{
 	dir = 1;
 	pixel_y = -24
 	},
 /turf/open/floor/engine,
 /area/maintenance/forge)
-"cHV" = (
+"cHR" = (
 /obj/item/device/flashlight/flare{
 	on = 1
 	},
 /turf/open/floor/engine,
 /area/maintenance/forge)
-"cHW" = (
+"cHS" = (
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
 /turf/open/floor/engine,
 /area/maintenance/forge)
-"cHX" = (
+"cHT" = (
 /obj/machinery/button/door{
 	id = "forge";
 	name = "Blast doors";
@@ -62723,30 +62684,30 @@
 	},
 /turf/open/floor/engine,
 /area/maintenance/forge)
-"cHY" = (
+"cHU" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/engine,
 /area/maintenance/forge)
-"cHZ" = (
+"cHV" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/open/floor/engine,
 /area/maintenance/forge)
-"cIa" = (
+"cHW" = (
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
 /turf/open/floor/engine,
 /area/maintenance/forge)
-"cIb" = (
+"cHX" = (
 /obj/structure/sign/securearea,
 /turf/closed/wall/r_wall,
 /area/maintenance/forge)
-"cIc" = (
+"cHY" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "forge"
 	},
@@ -62764,15 +62725,39 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/forge)
-"cId" = (
+"cHZ" = (
 /obj/structure/sign/electricshock,
 /turf/closed/wall/r_wall,
 /area/maintenance/forge)
-"cIe" = (
+"cIa" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"cIb" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"cIc" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"cId" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"cIe" = (
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
@@ -62783,6 +62768,11 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "cIg" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -62808,11 +62798,6 @@
 /area/maintenance/port/aft)
 "cIk" = (
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
@@ -62824,37 +62809,57 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "cIm" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
+/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "cIn" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
-"cIo" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
-"cIp" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
-"cIq" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"cIr" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
 /turf/open/floor/plating,
-/area/maintenance/port/aft)
+/area/maintenance/starboard/fore)
+"cGY" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
+"cGZ" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
+"cHa" = (
+/obj/machinery/camera{
+	c_tag = "Kitchen Cold Room"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/reagent_dispensers/cooking_oil,
+/turf/open/floor/plasteel/showroomfloor,
+/area/crew_quarters/kitchen)
+>>>>>>> c1c59086664db131bc0547ee9b5dec5a6edaf279
 
 (1,1,1) = {"
 aaa
@@ -84105,7 +84110,7 @@ bPy
 bzL
 bzL
 cdq
-cIe
+cIa
 bzL
 bzL
 bzL
@@ -84355,14 +84360,14 @@ bzL
 bVu
 bzL
 bzL
-cHc
+cGY
 czQ
 czQ
 czQ
 czQ
 czQ
 czQ
-cIf
+cIb
 bzL
 bEX
 cgI
@@ -84613,18 +84618,18 @@ bEX
 bzL
 czO
 czQ
-cHe
-cHo
-cHy
-cHI
-cHS
+cHa
+cHk
+cHu
+cHE
+cHO
 czQ
-cIg
+cIc
 bzL
 bEX
 bGy
 bYV
-cIr
+cIn
 aaa
 aaa
 aad
@@ -84870,13 +84875,13 @@ bzL
 bzL
 bNg
 czQ
-cHf
-cHp
-cHz
-cHJ
-cHT
+cHb
+cHl
+cHv
+cHF
+cHP
 czQ
-cIh
+cId
 bzL
 ctO
 cfX
@@ -85121,19 +85126,19 @@ bEX
 bQD
 bEX
 bzL
-cHb
+cGX
 bNg
 bNg
 bNg
 bNg
 czQ
-cHg
-cHq
-cHA
-cHK
-cHU
+cHc
+cHm
+cHw
+cHG
+cHQ
 czQ
-cIi
+cIe
 bzL
 cfX
 cgJ
@@ -85384,13 +85389,13 @@ bNh
 bba
 bNg
 czQ
-cHh
-cHr
-cHB
-cHL
-cHV
-cIb
-cIj
+cHd
+cHn
+cHx
+cHH
+cHR
+cHX
+cIf
 bzL
 cfX
 cgL
@@ -85641,13 +85646,13 @@ bQw
 czN
 bEX
 czQ
-cHi
-cHs
-cHC
-cHM
-cHW
-cIc
-cIk
+cHe
+cHo
+cHy
+cHI
+cHS
+cHY
+cIg
 bzL
 cfX
 cgK
@@ -85898,13 +85903,13 @@ bEX
 bNg
 bNg
 czQ
-cHj
-cHt
-cHD
-cHN
-cHX
+cHf
+cHp
+cHz
+cHJ
+cHT
 czQ
-cIl
+cIh
 bzL
 cfX
 cgL
@@ -86155,13 +86160,13 @@ bNg
 bNg
 bTx
 czQ
-cHk
-cHu
-cHE
-cHO
-cHY
-cId
-cIm
+cHg
+cHq
+cHA
+cHK
+cHU
+cHZ
+cIi
 bzL
 cfX
 cgM
@@ -86412,13 +86417,13 @@ bNg
 bEX
 bNg
 czQ
-cHl
-cHv
-cHF
-cHP
-cHZ
+cHh
+cHr
+cHB
+cHL
+cHV
 czQ
-cIn
+cIj
 bzL
 cfX
 cfX
@@ -86669,14 +86674,14 @@ czM
 bNg
 bTx
 czQ
-cHm
-cHw
-cHG
-cHQ
-cIa
+cHi
+cHs
+cHC
+cHM
+cHW
 czQ
-cIo
-cIq
+cIk
+cIm
 aad
 aaa
 aaa
@@ -86925,14 +86930,14 @@ bCm
 bCm
 bCm
 czP
-cHd
-cHn
-cHx
-cHH
-cHR
+cGZ
+cHj
+cHt
+cHD
+cHN
 bXm
 czQ
-cIp
+cIl
 bzL
 bzL
 bzL
