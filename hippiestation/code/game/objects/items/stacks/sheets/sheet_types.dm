@@ -10,6 +10,17 @@
 	var/datum/reagent/reagent_type
 
 
+GLOBAL_LIST_INIT(reagent_recipes, list ( \
+	new/datum/stack_recipe("reagent door", /obj/structure/mineral_door/transparent/reagent, 5, one_per_turf = 1, on_floor = 1), \
+	new/datum/stack_recipe("reagent tile", /obj/item/stack/tile/mineral/reagent, 1, 4, 20), \
+	new/datum/stack_recipe("reagent wall", /turf/closed/wall/mineral/reagent, 4, one_per_turf = 1), \
+	))
+
+/obj/item/stack/sheet/mineral/reagent/Initialize(mapload, new_amount, merge = TRUE)
+	recipes = GLOB.reagent_recipes
+	. = ..()
+
+
 /obj/item/stack/sheet/mineral/reagent/change_stack(mob/user,amount)
 	var/obj/item/stack/sheet/mineral/reagent/F = new(user, amount, FALSE)
 	if(!isnull(reagent_type))
@@ -45,3 +56,80 @@
 	S.copy_evidences(src)
 	use(transfer, TRUE)
 	S.add(transfer)
+
+
+/obj/item/stack/sheet/mineral/reagent/Topic(href, href_list)//this is a disgusting proc
+	if(usr.restrained() || usr.stat || usr.get_active_held_item() != src)
+		return
+	if(href_list["make"])
+		if (get_amount() < 1)
+			qdel(src) //Never should happen
+
+		var/datum/stack_recipe/R = recipes[text2num(href_list["make"])]
+		var/multiplier = text2num(href_list["multiplier"])
+		if(!multiplier ||(multiplier <= 0)) //href protection
+			return
+		if(!building_checks(R, multiplier))
+			return
+
+		if(R.result_type == /turf/closed/wall/mineral/reagent)
+			to_chat(usr, "<span class='notice'>You start building the wall</span>")
+			if(do_after(usr, 50, target = src))
+				use(R.req_amount * multiplier)
+				var/turf/T = get_turf(usr)
+				var/turf/closed/wall/mineral/reagent/W = T.ChangeTurf(/turf/closed/wall/mineral/reagent)
+				var/paths = subtypesof(/datum/reagent)
+				for(var/path in paths)
+					var/datum/reagent/RR = new path
+					if(RR.id == reagent_type.id)
+						W.reagent_type = RR
+						W.name ="[reagent_type] plated wall"
+						W.desc = "A wall plated with sheets of [reagent_type]"
+						W.add_atom_colour(reagent_type.color, FIXED_COLOUR_PRIORITY)
+						W.hardness = W.hardness / reagent_type.density
+						W.slicing_duration = 50 * reagent_type.density
+						break
+					else
+						qdel(RR)
+
+		var/obj/O
+		if(R.max_res_amount > 1) //Is it a stack?
+			O = new R.result_type(usr.drop_location(), R.res_amount * multiplier)
+		else
+			O = new R.result_type(usr.drop_location())
+		O.setDir(usr.dir)
+		use(R.req_amount * multiplier)
+
+		if(istype(O, /obj/structure/mineral_door/transparent/reagent))
+			var/obj/structure/mineral_door/transparent/reagent/D = O
+			var/paths = subtypesof(/datum/reagent)
+			for(var/path in paths)
+				var/datum/reagent/RR = new path
+				if(RR.id == reagent_type.id)
+					D.reagent_type = RR
+					D.name ="[reagent_type] door"
+					D.desc = "A slightly transparent door made out of sheets of [reagent_type]"
+					D.add_atom_colour(reagent_type.color, FIXED_COLOUR_PRIORITY)
+					D.max_integrity = reagent_type.density * 100
+					D.obj_integrity = D.max_integrity
+					break
+				else
+					qdel(RR)
+
+		if(istype(O, /obj/item/stack/tile/mineral/reagent))
+			var/obj/item/stack/tile/mineral/reagent/F = O
+			var/paths = subtypesof(/datum/reagent)
+			for(var/path in paths)
+				var/datum/reagent/RR = new path
+				if(RR.id == reagent_type.id)
+					F.reagent_type = RR
+					F.name ="[reagent_type] floor tiles"
+					F.singular_name = "[reagent_type] floor tile"
+					F.desc = "Floor tiles made of [reagent_type]"
+					F.add_atom_colour(reagent_type.color, FIXED_COLOUR_PRIORITY)
+					break
+				else
+					qdel(RR)
+
+	if(src && usr.machine==src) //do not reopen closed window
+		addtimer(CALLBACK(src, /atom/.proc/interact, usr), 0)
