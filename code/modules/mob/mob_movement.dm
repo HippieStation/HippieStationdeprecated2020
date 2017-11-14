@@ -173,11 +173,9 @@
 			delay = delay*SW_LIGHT_FACTOR
 
 	//We are now going to move
-<<<<<<< HEAD
 	moving = 1
-=======
 	var/delay = mob.movement_delay()
->>>>>>> 3f582454a8... Minor speedups to movement: First Blood Part 2 (#32702)
+
 	if (old_move_delay + (delay*MOVEMENT_DELAY_BUFFER_DELTA) + MOVEMENT_DELAY_BUFFER > world.time)
 		move_delay = old_move_delay + delay
 	else
