@@ -163,6 +163,12 @@ F
 	spell_type = /obj/effect/proc_holder/spell/targeted/turf_teleport/blink
 	category = "Mobility"
 
+/datum/spellbook_entry/lesser_heal
+	name "Lesser Heal"
+	spell_type = /obj/effect/proc_holder/spell/self/basic_heal
+	category = "Defensive"
+	cost = 1
+
 /datum/spellbook_entry/teleport
 	name = "Teleport"
 	spell_type = /obj/effect/proc_holder/spell/targeted/area_teleport/teleport
