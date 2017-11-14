@@ -12149,7 +12149,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 8;
 	icon_state = "pipe-j2s";
 	name = "Bar Junction";
@@ -12184,7 +12184,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 8;
 	icon_state = "pipe-j1s";
 	name = "Custodial Junction";
@@ -12809,7 +12809,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 4;
 	icon_state = "pipe-j1s";
 	sortType = 1
@@ -20410,7 +20410,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
 	},
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 2;
 	icon_state = "pipe-j2s";
 	name = "Theatre Junction";
@@ -22500,7 +22500,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 1;
 	icon_state = "pipe-j1s";
 	name = "Quartermaster Junction";
@@ -23472,7 +23472,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 1;
 	icon_state = "pipe-j1s";
 	name = "Cargo Junction";
@@ -24143,7 +24143,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 8;
 	icon_state = "pipe-j2s";
 	name = "Hydroponics Junction";
@@ -29867,7 +29867,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 1;
 	icon_state = "pipe-j2s";
 	name = "Kitchen Junction";
@@ -36802,7 +36802,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	name = "Atmospherics Junction";
 	sortType = 6
 	},
@@ -41168,7 +41168,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 8;
 	icon_state = "pipe-j1s";
 	name = "HoS Junction";
@@ -42013,7 +42013,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 1;
 	icon_state = "pipe-j1s";
 	name = "HoP Junction";
@@ -44666,7 +44666,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	name = "CE's Junction";
 	sortType = 5
 	},
@@ -51966,7 +51966,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 1;
 	icon_state = "pipe-j1s";
 	name = "Security Junction";
@@ -54499,7 +54499,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	name = "Engineering Junction";
 	sortType = 4
 	},
@@ -70961,7 +70961,7 @@
 /area/maintenance/port)
 "cFW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 4;
 	icon_state = "pipe-j2s";
 	name = "Library Junction";
@@ -72779,7 +72779,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 5
 	},
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 1;
 	icon_state = "pipe-j1s";
 	name = "Medbay Junction";
@@ -73399,7 +73399,7 @@
 /area/hallway/primary/central)
 "cKi" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 4;
 	icon_state = "pipe-j1s";
 	name = "Research Junction";
@@ -73483,7 +73483,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 4;
 	icon_state = "pipe-j1s";
 	name = "CMO's Junction";
@@ -77364,7 +77364,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 1;
 	icon_state = "pipe-j1s";
 	name = "Chemistry Junction";
@@ -87548,7 +87548,7 @@
 /obj/structure/table/reinforced,
 /obj/item/device/aicard,
 /obj/item/circuitboard/aicore,
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 4;
 	icon_state = "pipe-j1s";
 	name = "RD's Junction";
@@ -87625,7 +87625,7 @@
 	},
 /area/science/research)
 "dmY" = (
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 1;
 	icon_state = "pipe-j1s";
 	name = "Robotics Junction";
@@ -91396,7 +91396,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 1;
 	icon_state = "pipe-j1s";
 	name = "Genetics Junction";
@@ -104415,7 +104415,7 @@
 /turf/open/floor/plasteel/neutral,
 /area/hallway/secondary/exit/departure_lounge)
 "dTX" = (
-/obj/structure/disposalpipe/sortjunction{
+/obj/structure/disposalpipe/sorting/mail/flip{
 	name = "Chapel Junction";
 	sortType = 17
 	},
