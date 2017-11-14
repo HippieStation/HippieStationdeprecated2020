@@ -30113,9 +30113,8 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 1;
-	dpdir = 0;
-	icon_state = "pipe-c"
+	dir = 5;
+	dpdir = 0
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
@@ -30750,6 +30749,9 @@
 "bqU" = (
 /obj/machinery/newscaster{
 	pixel_y = 32
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
