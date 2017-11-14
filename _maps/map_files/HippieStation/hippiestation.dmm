@@ -32690,13 +32690,11 @@
 /area/storage/primary)
 "buL" = (
 /obj/structure/rack,
-/obj/item/circuitboard/aicore{
-	pixel_x = -2;
-	pixel_y = 4
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
+/obj/item/circuitboard/machine/experimentor,
+/obj/item/circuitboard/aicore,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
 "buM" = (
