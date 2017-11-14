@@ -3289,7 +3289,7 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "agZ" = (
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	dir = 4;
 	icon_state = "pipe-j2s";
 	sortType = 8
@@ -3330,7 +3330,7 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "ahd" = (
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	dir = 4;
 	icon_state = "pipe-j2s";
 	sortType = 7
@@ -4029,9 +4029,7 @@
 	dir = 1;
 	network = list("SS13")
 	},
-/obj/machinery/computer/secure_data{
-	dir = 1
-	},
+/obj/machinery/computer/secure_data,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -4057,9 +4055,7 @@
 	name = "Station Intercom (General)";
 	pixel_y = -29
 	},
-/obj/machinery/computer/security{
-	dir = 1
-	},
+/obj/machinery/computer/security,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -5793,9 +5789,7 @@
 /turf/open/floor/plasteel,
 /area/security/processing)
 "alW" = (
-/obj/machinery/computer/shuttle/labor{
-	dir = 4
-	},
+/obj/machinery/computer/shuttle/labor,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -13484,7 +13478,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	dir = 2;
 	icon_state = "pipe-j1s";
 	sortType = 18
@@ -14387,7 +14381,7 @@
 	icon_state = "4-8";
 	pixel_x = 0
 	},
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	dir = 4;
 	icon_state = "pipe-j1s";
 	sortType = 19
@@ -14399,11 +14393,9 @@
 /area/maintenance/starboard/fore)
 "aFz" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	dir = 4;
 	icon_state = "pipe-j1s";
 	sortType = 20
@@ -14444,7 +14436,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "aFC" = (
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	dir = 4;
 	icon_state = "pipe-j2s";
 	sortType = 17
@@ -14537,16 +14529,12 @@
 /area/chapel/office)
 "aFJ" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -14563,8 +14551,6 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
@@ -14590,10 +14576,7 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8";
-	pixel_y = 0
+	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -15168,7 +15151,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	dir = 4;
 	icon_state = "pipe-j1s";
 	sortType = 21
@@ -20391,7 +20374,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	dir = 2;
 	icon_state = "pipe-j2s";
 	sortType = 16
@@ -23743,7 +23726,7 @@
 	icon_state = "1-2";
 	pixel_y = 0
 	},
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	dir = 1;
 	icon_state = "pipe-j2s";
 	sortType = 1
@@ -23981,30 +23964,22 @@
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
 "bcj" = (
+/obj/machinery/computer/upload/ai,
 /obj/machinery/flasher{
 	id = "AI";
 	pixel_x = 0;
 	pixel_y = -21
 	},
-/obj/machinery/computer/upload/ai{
-	tag = "icon-computer (NORTH)";
-	icon_state = "computer";
-	dir = 1
-	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
 "bck" = (
+/obj/machinery/computer/upload/borg,
 /obj/item/device/radio/intercom{
 	broadcasting = 1;
 	frequency = 1447;
 	listening = 0;
 	name = "Station Intercom (AI Private)";
 	pixel_y = -29
-	},
-/obj/machinery/computer/upload/borg{
-	tag = "icon-computer (NORTH)";
-	icon_state = "computer";
-	dir = 1
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
@@ -25124,12 +25099,8 @@
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
 "beX" = (
+/obj/machinery/computer/communications,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/computer/communications{
-	tag = "icon-computer (WEST)";
-	icon_state = "computer";
-	dir = 8
-	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
 "beY" = (
@@ -25626,7 +25597,7 @@
 	},
 /area/quartermaster/storage)
 "bfZ" = (
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/wrapsortjunction{
 	dir = 1
 	},
 /turf/closed/wall,
@@ -25727,13 +25698,9 @@
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
 "bgn" = (
+/obj/machinery/computer/card,
 /obj/item/card/id/captains_spare,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/computer/card{
-	tag = "icon-computer (WEST)";
-	icon_state = "computer";
-	dir = 8
-	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
 "bgo" = (
@@ -25831,13 +25798,9 @@
 	},
 /area/security/checkpoint/medical)
 "bgA" = (
+/obj/machinery/computer/secure_data,
 /obj/item/device/radio/intercom{
 	pixel_x = 25
-	},
-/obj/machinery/computer/secure_data{
-	tag = "icon-computer (WEST)";
-	icon_state = "computer";
-	dir = 8
 	},
 /turf/open/floor/plasteel/red/side{
 	dir = 4
@@ -25879,7 +25842,7 @@
 /turf/open/floor/plating,
 /area/storage/emergency/starboard)
 "bgH" = (
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	dir = 1;
 	icon_state = "pipe-j2s";
 	sortType = 2
@@ -27223,7 +27186,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	sortType = 9
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
@@ -28107,11 +28070,7 @@
 /turf/closed/wall/r_wall,
 /area/science/research)
 "blg" = (
-/obj/machinery/computer/rdconsole/core{
-	tag = "icon-computer (EAST)";
-	icon_state = "computer";
-	dir = 4
-	},
+/obj/machinery/computer/rdconsole/core,
 /turf/open/floor/plasteel,
 /area/science/lab)
 "blh" = (
@@ -28558,11 +28517,7 @@
 	},
 /area/medical/medbay/central)
 "bmb" = (
-/obj/machinery/computer/med_data{
-	tag = "icon-computer (NORTH)";
-	icon_state = "computer";
-	dir = 1
-	},
+/obj/machinery/computer/med_data,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bmc" = (
@@ -29190,11 +29145,7 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "bnr" = (
-/obj/machinery/computer/cargo{
-	tag = "icon-computer (WEST)";
-	icon_state = "computer";
-	dir = 8
-	},
+/obj/machinery/computer/cargo,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "bns" = (
@@ -29619,11 +29570,7 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hop)
 "boq" = (
-/obj/machinery/computer/card{
-	tag = "icon-computer (EAST)";
-	icon_state = "computer";
-	dir = 4
-	},
+/obj/machinery/computer/card,
 /turf/open/floor/plasteel/blue/side{
 	dir = 10
 	},
@@ -29895,11 +29842,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "boR" = (
-/obj/machinery/computer/scan_consolenew{
-	tag = "icon-computer (WEST)";
-	icon_state = "computer";
-	dir = 8
-	},
+/obj/machinery/computer/scan_consolenew,
 /turf/open/floor/plasteel/whiteblue/side{
 	dir = 6
 	},
@@ -30058,6 +30001,9 @@
 	dir = 2;
 	pixel_y = 24
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/machinery/light{
 	dir = 1
 	},
@@ -30067,6 +30013,9 @@
 /turf/open/floor/plasteel/white,
 /area/science/explab)
 "bpi" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -30078,6 +30027,9 @@
 /turf/open/floor/plasteel/white,
 /area/science/explab)
 "bpj" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/structure/cable{
 	d1 = 2;
 	d2 = 4;
@@ -30085,9 +30037,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
-	},
-/obj/structure/chair{
-	dir = 1
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
@@ -30119,47 +30068,52 @@
 /turf/open/floor/plating,
 /area/science/explab)
 "bpm" = (
-/obj/structure/table/reinforced,
-/obj/item/device/integrated_electronics/wirer,
-/obj/item/device/integrated_electronics/debugger,
-/obj/item/device/integrated_electronics/analyzer,
-/obj/item/device/integrated_electronics/prefab,
+/obj/structure/table,
+/obj/item/pen,
+/obj/machinery/camera{
+	c_tag = "Experimentor Lab";
+	dir = 2;
+	network = list("SS13","RD")
+	},
+/obj/item/hand_labeler,
+/obj/item/stack/packageWrap,
 /turf/open/floor/plasteel/white/side{
 	dir = 2
 	},
 /area/science/explab)
 "bpn" = (
-/obj/structure/table/reinforced,
-/obj/item/device/integrated_circuit_printer,
+/obj/structure/table,
+/obj/item/paper_bin{
+	pixel_x = 0;
+	pixel_y = 6
+	},
 /turf/open/floor/plasteel/white/corner{
 	dir = 2
 	},
 /area/science/explab)
 "bpo" = (
-/obj/structure/table/reinforced,
-/obj/item/device/integrated_circuit_printer,
+/obj/structure/closet/l3closet/scientist,
 /turf/open/floor/plasteel/white/side{
 	dir = 2
 	},
 /area/science/explab)
 "bpp" = (
+/obj/structure/table,
+/obj/item/folder/white,
+/obj/item/folder/white,
 /obj/machinery/airalarm{
 	frequency = 1439;
 	pixel_y = 23
 	},
-/obj/machinery/camera,
-/obj/structure/table/reinforced,
-/obj/item/device/integrated_electronics/wirer,
-/obj/item/device/integrated_electronics/debugger,
-/obj/item/device/integrated_electronics/analyzer,
-/obj/item/device/integrated_electronics/prefab,
+/obj/item/device/radio/off,
 /turf/open/floor/plasteel/white/side{
 	dir = 2
 	},
 /area/science/explab)
 "bpq" = (
-/obj/structure/disposalpipe/trunk,
-/obj/machinery/disposal/bin,
+/obj/structure/closet/emcloset{
+	pixel_x = -2
+	},
 /turf/open/floor/plasteel/white/corner{
 	dir = 8
 	},
@@ -30259,6 +30213,9 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "bpC" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -30271,11 +30228,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	dpdir = 0;
-	icon_state = "pipe-c"
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
@@ -30778,7 +30730,6 @@
 	dir = 1;
 	network = list("SS13","RD")
 	},
-/obj/machinery/vending/robotics,
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
 "bqE" = (
@@ -30912,8 +30863,12 @@
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "bqU" = (
-/obj/machinery/newscaster{
-	pixel_y = 32
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
@@ -30926,7 +30881,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "bqW" = (
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	dir = 2;
 	icon_state = "pipe-j2s";
 	sortType = 12
@@ -31294,6 +31249,14 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "brI" = (
+/obj/machinery/requests_console{
+	department = "Science";
+	departmentType = 2;
+	name = "Science Requests Console";
+	pixel_x = 0;
+	pixel_y = -30;
+	receive_ore_updates = 1
+	},
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	external_pressure_bound = 101.325;
@@ -31360,11 +31323,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "brP" = (
-/obj/machinery/computer/scan_consolenew{
-	tag = "icon-computer (WEST)";
-	icon_state = "computer";
-	dir = 8
-	},
+/obj/machinery/computer/scan_consolenew,
 /turf/open/floor/plasteel/whiteblue/side{
 	dir = 5
 	},
@@ -31486,6 +31445,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "bsc" = (
+/obj/structure/disposalpipe/segment,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -31531,7 +31491,7 @@
 	},
 /area/medical/genetics)
 "bsg" = (
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	sortType = 23
 	},
 /obj/structure/cable{
@@ -31686,11 +31646,7 @@
 	pixel_x = -24;
 	pixel_y = 0
 	},
-/obj/machinery/computer/cargo{
-	tag = "icon-computer (EAST)";
-	icon_state = "computer";
-	dir = 4
-	},
+/obj/machinery/computer/cargo,
 /turf/open/floor/plasteel/blue/side{
 	dir = 8
 	},
@@ -31938,11 +31894,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bsS" = (
-/obj/machinery/computer/cloning{
-	tag = "icon-computer (EAST)";
-	icon_state = "computer";
-	dir = 4
-	},
+/obj/machinery/computer/cloning,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "bsT" = (
@@ -32154,6 +32106,7 @@
 	pixel_x = -20;
 	pixel_y = 0
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/science/explab)
 "bts" = (
@@ -32165,6 +32118,10 @@
 /turf/open/floor/plasteel/white,
 /area/science/explab)
 "btu" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_x = 5;
+	pixel_y = -32
+	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1;
 	on = 1;
@@ -32743,7 +32700,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	dir = 1;
 	icon_state = "pipe-j2s";
 	sortType = 3
@@ -32844,6 +32801,7 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "buI" = (
+/obj/machinery/computer/aifixer,
 /obj/machinery/requests_console{
 	announcementConsole = 1;
 	department = "Research Director's Desk";
@@ -32855,11 +32813,6 @@
 	},
 /obj/structure/window/reinforced{
 	dir = 4
-	},
-/obj/machinery/computer/aifixer{
-	tag = "icon-computer (WEST)";
-	icon_state = "computer";
-	dir = 8
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
@@ -32897,13 +32850,7 @@
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
 "buN" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/toolbox/electrical,
-/obj/item/storage/toolbox/electrical{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/turf/open/floor/plasteel/white,
+/turf/closed/wall,
 /area/science/explab)
 "buO" = (
 /obj/machinery/disposal/bin,
@@ -32916,17 +32863,18 @@
 /turf/open/floor/plasteel,
 /area/science/explab)
 "buP" = (
-/obj/structure/table/reinforced,
-/obj/item/device/integrated_electronics/prefab,
-/obj/item/device/integrated_electronics/debugger,
-/obj/item/device/integrated_electronics/analyzer,
-/obj/item/device/integrated_electronics/wirer,
-/turf/open/floor/plasteel/white,
+/obj/machinery/computer/rdconsole/experiment,
+/turf/open/floor/plasteel/white/side{
+	dir = 1
+	},
 /area/science/explab)
 "buQ" = (
-/obj/structure/table/reinforced,
-/obj/item/device/integrated_circuit_printer,
-/turf/open/floor/plasteel/white,
+/obj/structure/table,
+/obj/item/clipboard,
+/obj/item/book/manual/experimentor,
+/turf/open/floor/plasteel/white/corner{
+	dir = 4
+	},
 /area/science/explab)
 "buR" = (
 /obj/structure/closet/radiation,
@@ -33356,13 +33304,9 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
 "bvL" = (
+/obj/machinery/computer/robotics,
 /obj/structure/window/reinforced{
 	dir = 4
-	},
-/obj/machinery/computer/robotics{
-	tag = "icon-computer (WEST)";
-	icon_state = "computer";
-	dir = 8
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
@@ -33400,12 +33344,14 @@
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
 "bvR" = (
-/obj/structure/table/reinforced,
-/obj/item/pizzabox,
-/obj/item/pizzabox{
-	pixel_y = 5
+/obj/structure/grille,
+/obj/machinery/door/poddoor/preopen{
+	id = "telelab";
+	name = "test chamber blast door"
 	},
-/turf/open/floor/plasteel/white,
+/obj/structure/window/reinforced/fulltile,
+/obj/machinery/door/firedoor/heavy,
+/turf/open/floor/engine,
 /area/science/explab)
 "bvS" = (
 /obj/machinery/door/poddoor/preopen{
@@ -33772,11 +33718,7 @@
 	icon_state = "alarm0";
 	pixel_y = -22
 	},
-/obj/machinery/computer/cloning{
-	tag = "icon-computer (NORTH)";
-	icon_state = "computer";
-	dir = 1
-	},
+/obj/machinery/computer/cloning,
 /turf/open/floor/plasteel/whiteblue/side{
 	dir = 2
 	},
@@ -33972,13 +33914,9 @@
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bxf" = (
+/obj/machinery/computer/mecha,
 /obj/structure/window/reinforced{
 	dir = 4
-	},
-/obj/machinery/computer/mecha{
-	tag = "icon-computer (WEST)";
-	icon_state = "computer";
-	dir = 8
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
@@ -34011,30 +33949,20 @@
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
 "bxj" = (
+/obj/machinery/modular_computer/console/preset/research,
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
-	},
-/obj/machinery/modular_computer/console/preset/research{
-	tag = "icon-console (WEST)";
-	icon_state = "console";
-	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
 "bxk" = (
-/obj/structure/table/reinforced,
-/obj/item/stack/sheet/metal/fifty,
-/turf/open/floor/plasteel/white,
+/turf/open/floor/engine,
 /area/science/explab)
 "bxl" = (
+/obj/machinery/computer/cargo,
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 8
-	},
-/obj/machinery/computer/cargo{
-	tag = "icon-computer (EAST)";
-	icon_state = "computer";
-	dir = 4
 	},
 /turf/open/floor/plasteel/brown{
 	dir = 8
@@ -34529,13 +34457,16 @@
 "bym" = (
 /obj/effect/landmark/blobstart,
 /obj/effect/landmark/xeno_spawn,
-/turf/open/floor/plasteel/white,
+/turf/open/floor/engine,
 /area/science/explab)
 "byn" = (
 /obj/machinery/r_n_d/experimentor,
 /turf/open/floor/engine,
 /area/science/explab)
 "byo" = (
+/obj/machinery/computer/security/mining{
+	network = list("MINE","AuxBase")
+	},
 /obj/machinery/camera{
 	c_tag = "Quartermaster's Office";
 	dir = 4
@@ -34549,11 +34480,6 @@
 	pixel_x = -32;
 	pixel_y = 0;
 	supply_display = 1
-	},
-/obj/machinery/computer/security/mining{
-	tag = "icon-computer (EAST)";
-	icon_state = "computer";
-	dir = 4
 	},
 /turf/open/floor/plasteel/brown{
 	dir = 10
@@ -34835,7 +34761,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "byR" = (
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	dir = 8;
 	icon_state = "pipe-j2s";
 	sortType = 22
@@ -35125,7 +35051,7 @@
 /turf/open/floor/plasteel/red/side,
 /area/security/checkpoint/science)
 "bzy" = (
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	dir = 8;
 	icon_state = "pipe-j1s";
 	sortType = 15
@@ -35186,11 +35112,7 @@
 	pixel_y = -24
 	},
 /obj/machinery/light,
-/obj/machinery/computer/card/minor/rd{
-	tag = "icon-computer (NORTH)";
-	icon_state = "computer";
-	dir = 1
-	},
+/obj/machinery/computer/card/minor/rd,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
 "bzD" = (
@@ -35226,8 +35148,7 @@
 /obj/structure/sign/nosmoking_2{
 	pixel_y = -32
 	},
-/obj/machinery/autolathe,
-/turf/open/floor/plasteel/white,
+/turf/open/floor/engine,
 /area/science/explab)
 "bzH" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -35981,7 +35902,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	sortType = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -36366,15 +36287,13 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "bCe" = (
+/obj/machinery/computer/security/mining{
+	network = list("MINE","AuxBase")
+	},
 /obj/machinery/camera{
 	c_tag = "Mining Dock";
 	dir = 4;
 	network = list("SS13")
-	},
-/obj/machinery/computer/security/mining{
-	tag = "icon-computer (EAST)";
-	icon_state = "computer";
-	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
@@ -36641,7 +36560,7 @@
 /turf/open/floor/plating,
 /area/janitor)
 "bCG" = (
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	dir = 8;
 	icon_state = "pipe-j2s";
 	sortType = 6
@@ -36890,9 +36809,7 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
 "bDj" = (
-/obj/machinery/computer/card/minor/cmo{
-	dir = 1
-	},
+/obj/machinery/computer/card/minor/cmo,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -38019,7 +37936,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	dir = 2;
 	icon_state = "pipe-j2s";
 	sortType = 13
@@ -39326,7 +39243,7 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "bIa" = (
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	dir = 8;
 	icon_state = "pipe-j1s";
 	sortType = 11
@@ -41230,9 +41147,7 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bMk" = (
-/obj/machinery/computer/atmos_control{
-	dir = 8
-	},
+/obj/machinery/computer/atmos_control,
 /obj/machinery/requests_console{
 	department = "Atmospherics";
 	departmentType = 4;
@@ -41500,9 +41415,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "bMO" = (
-/obj/machinery/computer/camera_advanced/xenobio{
-	dir = 1
-	},
+/obj/machinery/computer/camera_advanced/xenobio,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -41784,9 +41697,7 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bNz" = (
-/obj/machinery/computer/atmos_control{
-	dir = 8
-	},
+/obj/machinery/computer/atmos_control,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -41879,7 +41790,6 @@
 	dir = 4
 	},
 /obj/machinery/computer/atmos_control/tank{
-	dir = 8;
 	frequency = 1441;
 	input_tag = "mix_in";
 	name = "Gas Mix Tank Control";
@@ -42196,9 +42106,7 @@
 /turf/closed/wall,
 /area/construction)
 "bOy" = (
-/obj/machinery/computer/secure_data{
-	dir = 8
-	},
+/obj/machinery/computer/secure_data,
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for watching the Engine.";
 	dir = 8;
@@ -42258,9 +42166,7 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bOE" = (
-/obj/machinery/computer/atmos_alert{
-	dir = 8
-	},
+/obj/machinery/computer/atmos_alert,
 /turf/open/floor/plasteel/caution{
 	dir = 4
 	},
@@ -42770,9 +42676,7 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bPK" = (
-/obj/machinery/computer/station_alert{
-	dir = 8
-	},
+/obj/machinery/computer/station_alert,
 /obj/machinery/light{
 	dir = 4;
 	icon_state = "tube1"
@@ -43573,7 +43477,7 @@
 /turf/open/floor/plasteel/vault,
 /area/science/misc_lab)
 "bRo" = (
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	dir = 2;
 	icon_state = "pipe-j2s";
 	sortType = 5
@@ -43873,7 +43777,6 @@
 "bRU" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /obj/machinery/computer/atmos_control/tank{
-	dir = 8;
 	frequency = 1441;
 	input_tag = "n2o_in";
 	name = "Nitrous Oxide Supply Control";
@@ -45088,11 +44991,7 @@
 	},
 /area/tcommsat/server)
 "bUB" = (
-/obj/machinery/computer/message_monitor{
-	tag = "icon-computer (EAST)";
-	icon_state = "computer";
-	dir = 4
-	},
+/obj/machinery/computer/message_monitor,
 /turf/open/floor/plasteel/yellow/side{
 	dir = 8
 	},
@@ -45511,7 +45410,6 @@
 /area/tcommsat/server)
 "bVz" = (
 /obj/machinery/computer/telecomms/server{
-	dir = 4;
 	network = "tcommsat"
 	},
 /turf/open/floor/plasteel/yellow/side{
@@ -47708,7 +47606,6 @@
 /area/tcommsat/server)
 "bZX" = (
 /obj/machinery/computer/telecomms/monitor{
-	dir = 4;
 	network = "tcommsat"
 	},
 /turf/open/floor/plasteel/yellow/side{
@@ -47716,7 +47613,7 @@
 	},
 /area/tcommsat/computer)
 "bZY" = (
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	dir = 8;
 	icon_state = "pipe-j2s";
 	sortType = 4
@@ -48868,7 +48765,6 @@
 	dir = 4
 	},
 /obj/machinery/computer/atmos_control/tank{
-	dir = 1;
 	frequency = 1441;
 	input_tag = "o2_in";
 	name = "Oxygen Supply Control";
@@ -48920,7 +48816,6 @@
 	dir = 9
 	},
 /obj/machinery/computer/atmos_control/tank{
-	dir = 1;
 	frequency = 1441;
 	input_tag = "air_in";
 	name = "Mixed Air Supply Control";
@@ -49336,11 +49231,7 @@
 	pixel_x = -32;
 	pixel_y = 0
 	},
-/obj/machinery/computer/apc_control{
-	tag = "icon-computer (EAST)";
-	icon_state = "computer";
-	dir = 4
-	},
+/obj/machinery/computer/apc_control,
 /turf/open/floor/plasteel/neutral{
 	dir = 2
 	},
@@ -49935,6 +49826,7 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "ceE" = (
+/obj/machinery/computer/station_alert,
 /obj/machinery/button/door{
 	desc = "A remote control-switch for the engineering security doors.";
 	id = "Engineering";
@@ -49957,11 +49849,6 @@
 	pixel_x = -24;
 	pixel_y = 10;
 	req_access_txt = "24"
-	},
-/obj/machinery/computer/station_alert{
-	tag = "icon-computer (EAST)";
-	icon_state = "computer";
-	dir = 4
 	},
 /turf/open/floor/plasteel/neutral{
 	dir = 2
@@ -50330,11 +50217,7 @@
 	icon_state = "alarm0";
 	pixel_x = -22
 	},
-/obj/machinery/computer/card/minor/ce{
-	tag = "icon-computer (EAST)";
-	icon_state = "computer";
-	dir = 4
-	},
+/obj/machinery/computer/card/minor/ce,
 /turf/open/floor/plasteel/neutral{
 	dir = 2
 	},
@@ -58078,7 +57961,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/disposalpipe/sorting/mail/flip{
+/obj/structure/disposalpipe/sortjunction{
 	dir = 2;
 	icon_state = "pipe-j2s";
 	sortType = 14
@@ -61166,7 +61049,6 @@
 /area/crew_quarters/bar)
 "cDZ" = (
 /obj/structure/disposalpipe/segment{
-
 	dir = 1;
 	dpdir = 0;
 	icon_state = "pipe-c"
@@ -61302,7 +61184,6 @@
 "cEn" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /obj/machinery/computer/atmos_control/tank{
-	dir = 8;
 	frequency = 1441;
 	input_tag = "tox_in";
 	name = "Plasma Supply Control";
@@ -61333,7 +61214,6 @@
 "cEp" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /obj/machinery/computer/atmos_control/tank{
-	dir = 8;
 	frequency = 1441;
 	input_tag = "co2_in";
 	name = "Carbon Dioxide Supply Control";
@@ -61379,7 +61259,6 @@
 	initialize_directions = 12
 	},
 /obj/machinery/computer/atmos_control/tank{
-	dir = 1;
 	frequency = 1441;
 	input_tag = "n2_in";
 	name = "Nitrogen Supply Control";
@@ -62618,80 +62497,6 @@
 /obj/structure/reagent_dispensers/cooking_oil,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
-"cHb" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/structure/chair{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/science/explab)
-"cHc" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/storage/toolbox/mechanical,
-/turf/open/floor/plasteel/white,
-/area/science/explab)
-"cHd" = (
-/obj/structure/table/reinforced,
-/obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/high/plus,
-/obj/item/stock_parts/cell/high/plus,
-/obj/item/stock_parts/cell/high/plus,
-/obj/item/stock_parts/cell/high/plus,
-/obj/item/stock_parts/cell/high/plus,
-/obj/item/stock_parts/cell/high/plus,
-/obj/item/stock_parts/cell/high/plus,
-/turf/open/floor/plasteel/white,
-/area/science/explab)
-"cHe" = (
-/obj/machinery/modular_computer/console/preset/research,
-/turf/open/floor/plasteel/white,
-/area/science/explab)
-"cHf" = (
-/obj/structure/table/reinforced,
-/obj/machinery/microwave,
-/turf/open/floor/plasteel/white,
-/area/science/explab)
-"cHg" = (
-/obj/structure/table/reinforced,
-/obj/item/storage/box/donkpockets{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/storage/box/donkpockets,
-/turf/open/floor/plasteel/white,
-/area/science/explab)
-"cHh" = (
-/obj/machinery/vending/snack/random,
-/turf/open/floor/plasteel/white,
-/area/science/explab)
-"cHi" = (
-/obj/machinery/vending/coffee,
-/turf/open/floor/plasteel/white,
-/area/science/explab)
-"cHj" = (
-/obj/machinery/vending/tool,
-/turf/open/floor/plasteel/white,
-/area/science/explab)
-"cHk" = (
-/obj/machinery/vending/cola/random,
-/turf/open/floor/plasteel/white,
-/area/science/explab)
-"cHl" = (
-/obj/structure/table/reinforced,
-/obj/item/stack/sheet/glass/fifty,
-/turf/open/floor/plasteel/white,
-/area/science/explab)
 
 (1,1,1) = {"
 aaa
@@ -76522,7 +76327,7 @@ aaa
 aaa
 aaa
 aaa
-cvi
+aaa
 aaa
 aaa
 aaa
@@ -77373,7 +77178,7 @@ aaa
 aaa
 aaa
 aaa
-cEd
+aaa
 aaa
 aaa
 aaa
@@ -100582,7 +100387,7 @@ ara
 aBA
 aaa
 alJ
-aFH
+cGX
 aGT
 aIu
 aIu
@@ -101353,7 +101158,7 @@ aAL
 aBB
 aCX
 alJ
-aFH
+cGY
 aGO
 aOM
 cHa
@@ -101610,7 +101415,7 @@ azy
 aBC
 aBK
 alJ
-aFH
+cGZ
 avj
 aIw
 aJH
@@ -111407,10 +111212,10 @@ beh
 bqU
 bsc
 btr
-btt
-btt
-btt
-btt
+buO
+bnU
+bxk
+bxk
 bxk
 bnU
 bBV
@@ -111665,10 +111470,10 @@ bph
 bqr
 brI
 buN
-cHd
-btt
-btt
-cHh
+bnU
+bxk
+bxk
+bxk
 bnU
 bBU
 bDp
@@ -111923,9 +111728,9 @@ bse
 btt
 buQ
 bvR
-btt
-btt
-cHi
+bxk
+byn
+bxk
 bnU
 bBX
 bDr
@@ -112176,11 +111981,11 @@ bmw
 bnU
 bpm
 bpi
-bsd
-btt
+cuG
+bts
 buP
-cHe
-btt
+bvR
+bxk
 bym
 bzG
 bnU
@@ -112435,11 +112240,11 @@ bpp
 bpi
 bsd
 btt
-buQ
-cHf
-btt
-btt
-cHj
+buR
+bvR
+bxk
+bxk
+bxk
 bnU
 bBZ
 biu
@@ -112689,14 +112494,14 @@ bll
 bmw
 bnU
 bpo
-cHb
+bpi
 bqs
 btu
-cHc
-cHg
-btt
-btt
-cHk
+buN
+bnU
+bxk
+bxk
+bxk
 bnU
 bBY
 bDs
@@ -112949,11 +112754,11 @@ bpq
 bpC
 bqu
 btt
-btt
-btt
-btt
-btt
-cHl
+buS
+bvS
+bxk
+bxk
+bxk
 bnU
 bCa
 bDu
@@ -114905,7 +114710,7 @@ aaa
 aaa
 aaa
 aaa
-avu
+aaa
 aaa
 aaa
 aaa
@@ -119453,7 +119258,7 @@ aaa
 aaa
 aaa
 aaa
-cvj
+aaa
 aaa
 aaa
 aaa
