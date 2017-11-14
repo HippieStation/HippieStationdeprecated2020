@@ -19,7 +19,7 @@
 		name = R.glass_name
 		desc = R.glass_desc
 		if(R.glass_icon_state)
-			icon_state = R.glass_icon_state
+			check_full_icon_state(R) //Hippie check for icon states.
 		else
 			var/mutable_appearance/reagent_overlay = mutable_appearance(icon, "glassoverlay")
 			reagent_overlay.color = mix_color_from_reagents(reagents.reagent_list)
@@ -74,8 +74,8 @@
 		desc = "A shot glass - the universal symbol for bad decisions."
 		return
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/filled/New()
-	..()
+/obj/item/reagent_containers/food/drinks/drinkingglass/filled/Initialize()
+	. = ..()
 	on_reagent_change()
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/filled/soda
