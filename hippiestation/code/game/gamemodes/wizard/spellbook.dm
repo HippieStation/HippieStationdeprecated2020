@@ -164,7 +164,7 @@ F
 	category = "Mobility"
 
 /datum/spellbook_entry/lesser_heal
-	name "Lesser Heal"
+	name = "Lesser Heal"
 	spell_type = /obj/effect/proc_holder/spell/self/basic_heal
 	category = "Defensive"
 	cost = 1
