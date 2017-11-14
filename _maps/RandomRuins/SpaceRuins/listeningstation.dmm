@@ -101,7 +101,8 @@
 /area/ruin/space/has_grav/powered/listeningstation)
 "s" = (
 /obj/structure/disposalpipe/segment{
-	dir = 6
+	dir = 4;
+	icon_state = "pipe-c"
 	},
 /turf/closed/mineral,
 /area/ruin/unpowered/no_grav)
@@ -179,7 +180,8 @@
 /area/ruin/space/has_grav/powered/listeningstation)
 "F" = (
 /obj/structure/disposalpipe/segment{
-	dir = 9
+	dir = 8;
+	icon_state = "pipe-c"
 	},
 /turf/closed/mineral,
 /area/ruin/unpowered/no_grav)
