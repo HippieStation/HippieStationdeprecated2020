@@ -97,8 +97,8 @@
 	return FALSE
 
 /obj/item/melee/transforming/butterfly
-	special_name = "Butt Sever"
-	special_desc = "COST: 15 STAMINA. Humiliate any enemy by instantly slicing their butt clean off!"
+	special_name = "Ass Sever"
+	special_desc = "COST: 15 STAMINA. Humiliate any enemy by instantly slicing their ass clean off!"
 	special_cost = 15
 	actions_types = list(/datum/action/item_action/special_attack)
 
@@ -109,14 +109,14 @@
 		if(B)
 			B.Remove(H)
 			B.forceMove(H.loc)
-			H.visible_message("<span class='danger'>In a quick motion [user] slices [H]'s butt clean off with [src]!</span>")
+			H.visible_message("<span class='danger'>In a quick motion [user] slices [H]'s ass clean off with [src]!</span>")
 			H.add_splatter_floor(H.loc)
 			playsound(H, 'sound/misc/splort.ogg', 50, 1, -1)
 			user.do_attack_animation(target)
 			src.special_attack = FALSE
 			return TRUE
 		else
-			to_chat(user,"<span class='warning'>They have no butt!</span>")
+			to_chat(user,"<span class='warning'>They have no ass!</span>")
 	return FALSE
 
 /obj/item/melee/baseball_bat
