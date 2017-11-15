@@ -52,7 +52,7 @@
 	if(istype(P))
 		to_chat(user, "<span class='notice'>There's [P] loaded in it.</span>")
 	if(istype(B))
-		to_chat(user, "<span class='notice'>There's a butt loaded in it... What?</span>")
+		to_chat(user, "<span class='notice'>There's an ass loaded in it... What?</span>")
 
 /obj/item/staplegun/update_icon()
 	var/amt = max(0, min(round(ammo/1.5), 6))
@@ -71,11 +71,11 @@
 				if(!(target.getorgan(/obj/item/organ/butt)))
 					if(istype(B))
 						B.Insert(target)
-						user.visible_message("<span class='danger'>[user] staples \the [B] back on [user == target ? "his" : "[target]'s"] groin!</span>", "<span class='userdanger'>You staple [user == target ? "your" : "[target]'s"] butt back on, but it looks loose!</span>")
+						user.visible_message("<span class='danger'>[user] staples \the [B] back on [user == target ? "his" : "[target]'s"] groin!</span>", "<span class='userdanger'>You staple [user == target ? "your" : "[target]'s"] ass back on, but it looks loose!</span>")
 						B.loose = TRUE
 						B = null
 				else
-					to_chat(user, "<span class='danger'>[target == user ? "You" : "[target]"] already [target == user ? "have" : "has"] a butt!</span>")
+					to_chat(user, "<span class='danger'>[target == user ? "You" : "[target]"] already [target == user ? "have" : "has"] an ass!</span>")
 					return FALSE
 			else
 				to_chat(user, "<span class='danger'>You must remove [target == user ? "your" : "[target]'s"] jumpsuit before doing that!</span>")
@@ -168,7 +168,7 @@
 				B = I
 				to_chat(user, "<span class='notice'>You put \the [B] in \the [src].</span>")
 			else
-				to_chat(user, "<span class='notice'>There is already a butt in \the [src]!</span>")
+				to_chat(user, "<span class='notice'>There is already an ass in \the [src]!</span>")
 		else
 			to_chat(user, "<span class='notice'>There is already a paper in \the [src]!</span>")
 
