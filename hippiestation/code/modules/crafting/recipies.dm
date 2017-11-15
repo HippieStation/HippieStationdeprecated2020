@@ -23,7 +23,7 @@
 	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/buttshoes
-	name = "butt shoes"
+	name = "ass shoes"
 	result = /obj/item/clothing/shoes/buttshoes
 	reqs = list(/obj/item/organ/butt = 2,
 				/obj/item/clothing/shoes/sneakers = 1)
