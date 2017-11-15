@@ -1,5 +1,5 @@
 /obj/item/organ/butt
-	name = "butt"
+	name = "ass"
 	desc = "extremely treasured body part"
 	alternate_worn_icon = 'hippiestation/icons/mob/head.dmi'
 	icon = 'hippiestation/icons/obj/butts.dmi'
@@ -21,7 +21,7 @@
 	var/obj/item/storage/internal/pocket/butt/inv = /obj/item/storage/internal/pocket/butt
 
 /obj/item/organ/butt/xeno //XENOMORPH BUTTS ARE BEST BUTTS yes i agree
-	name = "alien butt"
+	name = "alien ass"
 	desc = "best trophy ever"
 	icon_state = "xenobutt"
 	item_state = "xenobutt"
@@ -29,7 +29,7 @@
 	max_combined_w_class = 5
 
 /obj/item/organ/butt/bluebutt // bluespace butts, science
-	name = "butt of holding"
+	name = "ass of holding"
 	desc = "This butt has bluespace properties, letting you store more items in it. Four tiny items, or two small ones, or one normal one can fit."
 	icon_state = "bluebutt"
 	item_state = "bluebutt"
@@ -73,7 +73,7 @@
 /obj/item/organ/butt/attackby(var/obj/item/W, mob/user as mob, params) // copypasting bot manufucturing process, im a lazy fuck
 
 	if(istype(W, /obj/item/bodypart/l_arm/robot) || istype(W, /obj/item/bodypart/r_arm/robot))
-		if(istype(src, /obj/item/organ/butt/bluebutt)) //nobody sprited a blue butt buttbot
+		if(istype(src, /obj/item/organ/butt/bluebutt)) //nobody sprited a blue ass assbot
 			to_chat(user, "<span class='warning'>Why the heck would you want to make a robot out of this?</span>")
 			return
 		user.dropItemToGround(W)
@@ -83,8 +83,8 @@
 		if(istype(src, /obj/item/organ/butt/xeno))
 			B.xeno = 1
 			B.icon_state = "buttbot_xeno"
-			B.speech_list = list("hissing butts", "hiss hiss motherfucker", "nice trophy nerd", "butt", "woop get an alien inspection")
-		to_chat(user, "<span class='notice'>You add the robot arm to the butt and... What?</span>")
+			B.speech_list = list("hissing asses", "hiss hiss motherfucker", "nice trophy nerd", "ass", "woop get an alien inspection")
+		to_chat(user, "<span class='notice'>You add the robot arm to the ass and... What?</span>")
 		user.dropItemToGround(src)
 		qdel(src)
 
