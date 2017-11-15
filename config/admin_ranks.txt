@@ -40,3 +40,5 @@ Game Master		= +EVERYTHING
 Host			= +EVERYTHING
 
 Coder			= +DEBUG +VAREDIT +SERVER +SPAWN +POLL +MENTOR
+
+Gay				= +MENTOR +SOUNDS
