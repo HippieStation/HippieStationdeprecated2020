@@ -1,6 +1,6 @@
 /obj/item/clothing
-  var/poo_stained = FALSE
-  var/pee_stained = FALSE
+  var/poo_stained = 0
+  var/pee_stained = 0
 
 /obj/item/clothing/update_clothes_damaged_state()
 	. = ..()
@@ -9,6 +9,6 @@
 
 /obj/item/clothing/clean_blood()
 	. = ..()
-	poo_stained = FALSE
-	pee_stained = FALSE
+	poo_stained = min(poo_stained-1, 0)
+	pee_stained = min(pee_stained-1, 0)
 	update_clothes_damaged_state()

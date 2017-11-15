@@ -231,3 +231,27 @@
 				new /obj/effect/immovablerod/butt(B.loc, locate(endx, endy, 1))
 				priority_announce("What the fuck was that?!", "General Alert")
 				qdel(B)
+
+
+/datum/emote/living/carbon/pee
+	key = "pee"
+	key_third_person = "pees"
+
+/datum/emote/living/carbon/pee/run_emote(mob/living/carbon/user, params)
+	if(user.bladder_level < 60)
+		to_chat(user, "<span class='warning'>You don't need to pee.</span>")
+		return
+	if(user.w_uniform)
+		user.visible_message("<span class='warning'>[user] pees their pants!</span>", "<span class='danger'>You pee your pants!</span>") //extra emberassment!
+		user.adjust_bladder(-rand(45, 65))
+		w_uniform.pee_stained += 1
+		w_uniform.update_clothes_damaged_state()
+		return
+	if(/obj/structure/toilet in user.loc.contents)
+		user.visible_message("<span class='notice'>[user] pees into the toilet.</span>", "<span class='notice'>You pee in the toilet.</span>")
+		user.adjust_bladder(-rand(45, 65))
+		return
+
+	new /obj/effect/decal/cleanable/pee(get_turf(user))
+	user.visible_message("<span class='danger'>[user] pees all over the floor!</span>")
+	user.adjust_bladder(-rand(45, 65))
