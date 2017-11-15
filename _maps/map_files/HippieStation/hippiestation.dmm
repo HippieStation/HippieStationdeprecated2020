@@ -46021,8 +46021,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
-/turf/closed/wall,
-/area/maintenance/port/aft)
+/turf/closed/wall/r_wall,
+/area/maintenance/forge)
 "bXn" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -47125,6 +47125,9 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 5
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
@@ -48994,12 +48997,7 @@
 /area/maintenance/port/aft)
 "cdq" = (
 /obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
+	icon_state = "2-8"
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
@@ -59272,9 +59270,8 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "czQ" = (
-/obj/machinery/icecream_vat,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
+/turf/closed/wall/r_wall,
+/area/maintenance/forge)
 "czR" = (
 /obj/structure/statue/sandstone/assistant{
 	anchored = 1;
@@ -62273,6 +62270,377 @@
 /obj/structure/reagent_dispensers/cooking_oil,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"cHb" = (
+/obj/machinery/icecream_vat,
+/turf/open/floor/wood,
+/area/maintenance/port/aft)
+"cHc" = (
+/turf/closed/wall/r_wall,
+/area/maintenance/forge)
+"cHd" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/closed/wall/r_wall,
+/area/maintenance/forge)
+"cHe" = (
+/obj/machinery/reagent_sheet,
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHf" = (
+/obj/machinery/reagent_sheet,
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHg" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/pod/dark,
+/area/maintenance/forge)
+"cHh" = (
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHi" = (
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHj" = (
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHk" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/pod/dark,
+/area/maintenance/forge)
+"cHl" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "Forge Room APC";
+	pixel_y = 25;
+	pixel_z = 0
+	},
+/obj/structure/cable{
+	icon_state = "0-2";
+	d2 = 2
+	},
+/obj/item/wrench,
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHm" = (
+/obj/machinery/reagent_material_manipulator,
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHn" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/closed/wall/r_wall,
+/area/maintenance/forge)
+"cHo" = (
+/obj/effect/decal/cleanable/oil,
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHp" = (
+/obj/effect/decal/cleanable/shreds,
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHq" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/pod/dark,
+/area/maintenance/forge)
+"cHr" = (
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHs" = (
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHt" = (
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHu" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/pod/dark,
+/area/maintenance/forge)
+"cHv" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHw" = (
+/obj/structure/reagent_dispensers/chemical,
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHx" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/closed/wall/r_wall,
+/area/maintenance/forge)
+"cHy" = (
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHz" = (
+/obj/structure/closet/crate,
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHA" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/pod/dark,
+/area/maintenance/forge)
+"cHB" = (
+/obj/machinery/reagent_forge,
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHC" = (
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHD" = (
+/obj/effect/decal/cleanable/ash/large,
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHE" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/pod/dark,
+/area/maintenance/forge)
+"cHF" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHG" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHH" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/closed/wall/r_wall,
+/area/maintenance/forge)
+"cHI" = (
+/obj/machinery/door/airlock/engineering{
+	cyclelinkeddir = 8;
+	name = "Forge Room";
+	req_access_txt = "32"
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHJ" = (
+/turf/closed/wall,
+/area/maintenance/forge)
+"cHK" = (
+/obj/structure/sign/nosmoking_1,
+/turf/closed/wall,
+/area/maintenance/forge)
+"cHL" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "forge"
+	},
+/obj/effect/decal/cleanable/ash/large,
+/turf/open/floor/pod/dark,
+/area/maintenance/forge)
+"cHM" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "forge"
+	},
+/turf/open/floor/pod/dark,
+/area/maintenance/forge)
+"cHN" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "forge"
+	},
+/turf/open/floor/pod/dark,
+/area/maintenance/forge)
+"cHO" = (
+/obj/structure/sign/fire,
+/turf/closed/wall,
+/area/maintenance/forge)
+"cHP" = (
+/turf/closed/wall,
+/area/maintenance/forge)
+"cHQ" = (
+/obj/machinery/door/airlock/engineering{
+	cyclelinkeddir = 8;
+	name = "Forge Room";
+	req_access_txt = "32"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHR" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/closed/wall/r_wall,
+/area/maintenance/forge)
+"cHS" = (
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHT" = (
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHU" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHV" = (
+/obj/item/device/flashlight/flare{
+	on = 1
+	},
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHW" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHX" = (
+/obj/machinery/button/door{
+	id = "forge";
+	name = "Blast doors";
+	pixel_z = -25;
+	req_access_txt = "32"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHY" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/spawner/lootdrop/maintenance,
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cHZ" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cIa" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/engine,
+/area/maintenance/forge)
+"cIb" = (
+/obj/structure/sign/securearea,
+/turf/closed/wall/r_wall,
+/area/maintenance/forge)
+"cIc" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "forge"
+	},
+/obj/machinery/door/firedoor/heavy,
+/obj/machinery/door/airlock/engineering{
+	cyclelinkeddir = 8;
+	name = "Forge Room";
+	req_access_txt = "32";
+	security_level = 6
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/forge)
+"cId" = (
+/obj/structure/sign/electricshock,
+/turf/closed/wall/r_wall,
+/area/maintenance/forge)
+"cIe" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"cIf" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"cIg" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"cIh" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"cIi" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"cIj" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"cIk" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"cIl" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"cIm" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"cIn" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"cIo" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"cIp" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"cIq" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"cIr" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 
 (1,1,1) = {"
 aaa
@@ -83523,7 +83891,7 @@ bPy
 bzL
 bzL
 cdq
-bzL
+cIe
 bzL
 bzL
 bzL
@@ -83773,16 +84141,16 @@ bzL
 bVu
 bzL
 bzL
-bIN
+cHc
+cHc
+cHc
+cHc
+cHc
+cHc
+cHc
+cIf
 bzL
-bzL
-bzL
-bzL
-bIN
-cdr
-bIN
-aaa
-bzL
+bEX
 cgI
 bEX
 bzL
@@ -84030,19 +84398,19 @@ bEX
 bEX
 bzL
 czO
-czQ
+cHc
+cHe
+cHo
+cHh
+cHI
+cHh
+cHc
+cIf
 bzL
-aoM
-aoM
-aoM
-bIN
-cdr
-bIN
-aaa
-bIN
+bEX
 bGy
 bYV
-bzL
+cIq
 aaa
 aaa
 aad
@@ -84287,15 +84655,15 @@ bzL
 bzL
 bzL
 bNg
-bNg
+cHc
+cHe
+cHp
+cHz
+cHJ
+cHh
+cHc
+cIf
 bzL
-aoM
-aoM
-apG
-bIN
-cdr
-bIN
-aad
 ctO
 cfX
 cfX
@@ -84539,20 +84907,20 @@ bEX
 bQD
 bEX
 bzL
+cHb
 bNg
 bNg
 bNg
 bNg
-bNg
-bEX
+cHc
+cHg
+cHg
+cHg
+cHK
+cHU
+cHc
+cIf
 bzL
-aoM
-aoM
-aoM
-bIN
-cdr
-bIN
-aaa
 cfX
 cgJ
 chO
@@ -84801,15 +85169,15 @@ bNh
 bNh
 bba
 bNg
-bTx
+cHc
+cHh
+cHh
+cHB
+cHL
+cHV
+cIb
+cIf
 bzL
-aoM
-aoM
-aoM
-bIN
-cdr
-bIN
-aaa
 cfX
 cgL
 chQ
@@ -85058,15 +85426,15 @@ bNg
 bQw
 czN
 bEX
-bTx
+cHc
+cHh
+cHh
+cHh
+cHM
+cHW
+cIc
+cIk
 bzL
-apG
-apG
-apG
-bIN
-cdr
-bIN
-aad
 cfX
 cgK
 chP
@@ -85315,15 +85683,15 @@ czK
 bEX
 bNg
 bNg
-bPA
+cHc
+cHh
+cHh
+cHD
+cHM
+cHX
+cHc
+cIf
 bzL
-aoM
-aoM
-aoM
-bIN
-cdr
-bIN
-aaa
 cfX
 cgL
 chS
@@ -85572,15 +85940,15 @@ bQw
 bNg
 bNg
 bTx
-bEX
+cHc
+cHg
+cHg
+cHg
+cHO
+cHY
+cId
+cIf
 bzL
-aoM
-aoM
-aoM
-bIN
-cdr
-bIN
-aaa
 cfX
 cgM
 chR
@@ -85829,15 +86197,15 @@ bNg
 bNg
 bEX
 bNg
-bTx
+cHc
+cHl
+cHv
+cHF
+cHJ
+cHZ
+cHc
+cIf
 bzL
-aoM
-apG
-apG
-bIN
-cdr
-bIN
-aad
 cfX
 cfX
 cfX
@@ -86086,15 +86454,15 @@ czL
 czM
 bNg
 bTx
-bTx
-bzL
-aoM
-aoM
-aoM
-bzL
-cdr
-bzL
-aaa
+cHc
+cHm
+cHw
+cHG
+cHQ
+cIa
+cHc
+cIf
+cIq
 aad
 aaa
 aaa
@@ -86343,14 +86711,14 @@ bCm
 bCm
 bCm
 czP
-czP
-bCm
-bCm
-bCm
-bCm
+cHd
+cHd
+cHd
+cHd
+cHd
 bXm
-cdr
-bzL
+cHc
+cIf
 bzL
 bzL
 bzL
@@ -100934,7 +101302,7 @@ aAL
 aBB
 aCX
 alJ
-cGY
+cGX
 aGO
 aOM
 cHa
@@ -101191,7 +101559,7 @@ azy
 aBC
 aBK
 alJ
-cGZ
+cGX
 avj
 aIw
 aJH
