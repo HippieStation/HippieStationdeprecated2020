@@ -269,3 +269,7 @@
 
 /datum/uplink_item/badass/surplus
 	player_minimum = 0
+
+/datum/uplink_item/dangerous/crossbow
+	cost = 8
+	surplus = 35
