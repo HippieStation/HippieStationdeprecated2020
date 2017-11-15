@@ -13,7 +13,7 @@
 		return
 	var/obj/item/organ/butt/B = user.getorgan(/obj/item/organ/butt)
 	if(!B)
-		to_chat(user, "<span class='warning'>You don't have a butt!</span>")
+		to_chat(user, "<span class='warning'>You don't have an ass!</span>")
 		return
 	var/lose_butt = prob(12)
 	for(var/mob/living/M in get_turf(user))
@@ -132,10 +132,10 @@
 		return
 	var/obj/item/organ/butt/B = user.getorgan(/obj/item/organ/butt)
 	if(!B)
-		to_chat(user, "<span class='danger'>You don't have a butt!</span>")
+		to_chat(user, "<span class='danger'>You don't have an ass!</span>")
 		return
 	if(B.loose)
-		to_chat(user, "<span class='danger'>Your butt's too loose to superfart!</span>")
+		to_chat(user, "<span class='danger'>Your ass's too loose to superfart!</span>")
 		return
 	B.loose = TRUE // to avoid spamsuperfart
 	var/fart_type = 1 //Put this outside probability check just in case. There were cases where superfart did a normal fart.
