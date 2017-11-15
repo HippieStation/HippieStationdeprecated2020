@@ -23078,8 +23078,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/junction{
-	dir = 8;
-	
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
@@ -29899,9 +29898,6 @@
 	dir = 2;
 	pixel_y = 24
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/light{
 	dir = 1
 	},
@@ -29911,9 +29907,6 @@
 /turf/open/floor/plasteel/white,
 /area/science/explab)
 "bpi" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -29925,9 +29918,6 @@
 /turf/open/floor/plasteel/white,
 /area/science/explab)
 "bpj" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/cable{
 	d1 = 2;
 	d2 = 4;
@@ -29935,6 +29925,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
+	},
+/obj/structure/chair{
+	dir = 1
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
@@ -29966,52 +29959,47 @@
 /turf/open/floor/plating,
 /area/science/explab)
 "bpm" = (
-/obj/structure/table,
-/obj/item/pen,
-/obj/machinery/camera{
-	c_tag = "Experimentor Lab";
-	dir = 2;
-	network = list("SS13","RD")
-	},
-/obj/item/hand_labeler,
-/obj/item/stack/packageWrap,
+/obj/structure/table/reinforced,
+/obj/item/device/integrated_electronics/wirer,
+/obj/item/device/integrated_electronics/debugger,
+/obj/item/device/integrated_electronics/analyzer,
+/obj/item/device/integrated_electronics/prefab,
 /turf/open/floor/plasteel/white/side{
 	dir = 2
 	},
 /area/science/explab)
 "bpn" = (
-/obj/structure/table,
-/obj/item/paper_bin{
-	pixel_x = 0;
-	pixel_y = 6
-	},
+/obj/structure/table/reinforced,
+/obj/item/device/integrated_circuit_printer,
 /turf/open/floor/plasteel/white/corner{
 	dir = 2
 	},
 /area/science/explab)
 "bpo" = (
-/obj/structure/closet/l3closet/scientist,
+/obj/structure/table/reinforced,
+/obj/item/device/integrated_circuit_printer,
 /turf/open/floor/plasteel/white/side{
 	dir = 2
 	},
 /area/science/explab)
 "bpp" = (
-/obj/structure/table,
-/obj/item/folder/white,
-/obj/item/folder/white,
 /obj/machinery/airalarm{
 	frequency = 1439;
 	pixel_y = 23
 	},
-/obj/item/device/radio/off,
+/obj/machinery/camera,
+/obj/structure/table/reinforced,
+/obj/item/device/integrated_electronics/wirer,
+/obj/item/device/integrated_electronics/debugger,
+/obj/item/device/integrated_electronics/analyzer,
+/obj/item/device/integrated_electronics/prefab,
 /turf/open/floor/plasteel/white/side{
 	dir = 2
 	},
 /area/science/explab)
 "bpq" = (
-/obj/structure/closet/emcloset{
-	pixel_x = -2
-	},
+/obj/structure/disposalpipe/trunk,
+/obj/machinery/disposal/bin,
 /turf/open/floor/plasteel/white/corner{
 	dir = 8
 	},
@@ -30111,9 +30099,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "bpC" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -30126,6 +30111,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 5;
+	dpdir = 0
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
@@ -30758,8 +30747,8 @@
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "bqU" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
+/obj/machinery/newscaster{
+	pixel_y = 32
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -31141,14 +31130,6 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "brI" = (
-/obj/machinery/requests_console{
-	department = "Science";
-	departmentType = 2;
-	name = "Science Requests Console";
-	pixel_x = 0;
-	pixel_y = -30;
-	receive_ore_updates = 1
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
 	external_pressure_bound = 101.325;
@@ -31335,7 +31316,6 @@
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "bsc" = (
-/obj/structure/disposalpipe/segment,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -31994,7 +31974,6 @@
 	pixel_x = -20;
 	pixel_y = 0
 	},
-/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
 /area/science/explab)
 "bts" = (
@@ -32006,10 +31985,6 @@
 /turf/open/floor/plasteel/white,
 /area/science/explab)
 "btu" = (
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 5;
-	pixel_y = -32
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 1;
 	on = 1;
@@ -32717,13 +32692,11 @@
 /area/storage/primary)
 "buL" = (
 /obj/structure/rack,
-/obj/item/circuitboard/aicore{
-	pixel_x = -2;
-	pixel_y = 4
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
+/obj/item/circuitboard/machine/experimentor,
+/obj/item/circuitboard/aicore,
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
 "buM" = (
@@ -32734,7 +32707,13 @@
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
 "buN" = (
-/turf/closed/wall,
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/turf/open/floor/plasteel/white,
 /area/science/explab)
 "buO" = (
 /obj/machinery/disposal/bin,
@@ -32747,18 +32726,17 @@
 /turf/open/floor/plasteel,
 /area/science/explab)
 "buP" = (
-/obj/machinery/computer/rdconsole/experiment,
-/turf/open/floor/plasteel/white/side{
-	dir = 1
-	},
+/obj/structure/table/reinforced,
+/obj/item/device/integrated_electronics/prefab,
+/obj/item/device/integrated_electronics/debugger,
+/obj/item/device/integrated_electronics/analyzer,
+/obj/item/device/integrated_electronics/wirer,
+/turf/open/floor/plasteel/white,
 /area/science/explab)
 "buQ" = (
-/obj/structure/table,
-/obj/item/clipboard,
-/obj/item/book/manual/experimentor,
-/turf/open/floor/plasteel/white/corner{
-	dir = 4
-	},
+/obj/structure/table/reinforced,
+/obj/item/device/integrated_circuit_printer,
+/turf/open/floor/plasteel/white,
 /area/science/explab)
 "buR" = (
 /obj/structure/closet/radiation,
@@ -33227,14 +33205,12 @@
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
 "bvR" = (
-/obj/structure/grille,
-/obj/machinery/door/poddoor/preopen{
-	id = "telelab";
-	name = "test chamber blast door"
+/obj/structure/table/reinforced,
+/obj/item/pizzabox,
+/obj/item/pizzabox{
+	pixel_y = 5
 	},
-/obj/structure/window/reinforced/fulltile,
-/obj/machinery/door/firedoor/heavy,
-/turf/open/floor/engine,
+/turf/open/floor/plasteel/white,
 /area/science/explab)
 "bvS" = (
 /obj/machinery/door/poddoor/preopen{
@@ -33836,7 +33812,9 @@
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
 "bxk" = (
-/turf/open/floor/engine,
+/obj/structure/table/reinforced,
+/obj/item/stack/sheet/metal/fifty,
+/turf/open/floor/plasteel/white,
 /area/science/explab)
 "bxl" = (
 /obj/machinery/computer/cargo,
@@ -34333,7 +34311,7 @@
 "bym" = (
 /obj/effect/landmark/blobstart,
 /obj/effect/landmark/xeno_spawn,
-/turf/open/floor/engine,
+/turf/open/floor/plasteel/white,
 /area/science/explab)
 "byn" = (
 /obj/machinery/r_n_d/experimentor,
@@ -35017,7 +34995,8 @@
 /obj/structure/sign/nosmoking_2{
 	pixel_y = -32
 	},
-/turf/open/floor/engine,
+/obj/machinery/autolathe,
+/turf/open/floor/plasteel/white,
 /area/science/explab)
 "bzH" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -51232,8 +51211,7 @@
 /area/maintenance/aft)
 "cip" = (
 /obj/structure/disposalpipe/junction/yjunction{
-	dir = 2;
-	
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -58598,8 +58576,7 @@
 /area/hallway/primary/fore)
 "cyb" = (
 /obj/structure/disposalpipe/junction/flip{
-	dir = 4;
-	
+	dir = 4
 	},
 /turf/open/floor/plasteel/red/corner{
 	dir = 1
@@ -60826,8 +60803,7 @@
 "cDZ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5;
-	dpdir = 0;
-	
+	dpdir = 0
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -62273,6 +62249,80 @@
 /obj/structure/reagent_dispensers/cooking_oil,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/kitchen)
+"cHb" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/chair{
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/science/explab)
+"cHc" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/plasteel/white,
+/area/science/explab)
+"cHd" = (
+/obj/structure/table/reinforced,
+/obj/machinery/cell_charger,
+/obj/item/stock_parts/cell/high/plus,
+/obj/item/stock_parts/cell/high/plus,
+/obj/item/stock_parts/cell/high/plus,
+/obj/item/stock_parts/cell/high/plus,
+/obj/item/stock_parts/cell/high/plus,
+/obj/item/stock_parts/cell/high/plus,
+/obj/item/stock_parts/cell/high/plus,
+/turf/open/floor/plasteel/white,
+/area/science/explab)
+"cHe" = (
+/obj/machinery/modular_computer/console/preset/research,
+/turf/open/floor/plasteel/white,
+/area/science/explab)
+"cHf" = (
+/obj/structure/table/reinforced,
+/obj/machinery/microwave,
+/turf/open/floor/plasteel/white,
+/area/science/explab)
+"cHg" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/storage/box/donkpockets,
+/turf/open/floor/plasteel/white,
+/area/science/explab)
+"cHh" = (
+/obj/machinery/vending/snack/random,
+/turf/open/floor/plasteel/white,
+/area/science/explab)
+"cHi" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/plasteel/white,
+/area/science/explab)
+"cHj" = (
+/obj/machinery/vending/tool,
+/turf/open/floor/plasteel/white,
+/area/science/explab)
+"cHk" = (
+/obj/machinery/vending/cola/random,
+/turf/open/floor/plasteel/white,
+/area/science/explab)
+"cHl" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/sheet/glass/fifty,
+/turf/open/floor/plasteel/white,
+/area/science/explab)
 
 (1,1,1) = {"
 aaa
@@ -100934,7 +100984,7 @@ aAL
 aBB
 aCX
 alJ
-cGY
+cGX
 aGO
 aOM
 cHa
@@ -101191,7 +101241,7 @@ azy
 aBC
 aBK
 alJ
-cGZ
+cGX
 avj
 aIw
 aJH
@@ -110988,10 +111038,10 @@ beh
 bqU
 bsc
 btr
-buO
-bnU
-bxk
-bxk
+btt
+btt
+btt
+btt
 bxk
 bnU
 bBV
@@ -111246,10 +111296,10 @@ bph
 bqr
 brI
 buN
-bnU
-bxk
-bxk
-bxk
+cHd
+btt
+btt
+cHh
 bnU
 bBU
 bDp
@@ -111504,9 +111554,9 @@ bse
 btt
 buQ
 bvR
-bxk
-byn
-bxk
+btt
+btt
+cHi
 bnU
 bBX
 bDr
@@ -111757,11 +111807,11 @@ bmw
 bnU
 bpm
 bpi
-cuG
-bts
+bsd
+btt
 buP
-bvR
-bxk
+cHe
+btt
 bym
 bzG
 bnU
@@ -112016,11 +112066,11 @@ bpp
 bpi
 bsd
 btt
-buR
-bvR
-bxk
-bxk
-bxk
+buQ
+cHf
+btt
+btt
+cHj
 bnU
 bBZ
 biu
@@ -112270,14 +112320,14 @@ bll
 bmw
 bnU
 bpo
-bpi
+cHb
 bqs
 btu
-buN
-bnU
-bxk
-bxk
-bxk
+cHc
+cHg
+btt
+btt
+cHk
 bnU
 bBY
 bDs
@@ -112530,11 +112580,11 @@ bpq
 bpC
 bqu
 btt
-buS
-bvS
-bxk
-bxk
-bxk
+btt
+btt
+btt
+btt
+cHl
 bnU
 bCa
 bDu
