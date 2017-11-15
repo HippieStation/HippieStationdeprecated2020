@@ -1,6 +1,6 @@
 /mob/living/simple_animal/bot/buttbot
-	name = "buttbot"
-	desc = "It's a robotic butt. Are you dense or something??"
+	name = "assbot"
+	desc = "It's a robotic ass. Are you dense or something??"
 	icon = 'hippiestation/icons/obj/butts.dmi'
 	icon_state = "buttbot"
 	layer = 5.0
@@ -11,13 +11,13 @@
 	var/xeno = 0 //Do we hiss when buttspeech?
 	var/cooldown = 0
 	var/list/speech_buffer = list()
-	var/list/speech_list = list("butt.", "butts.", "ass.", "fart.", "assblast usa", "woop get an ass inspection", "woop") //Hilarious.
+	var/list/speech_list = list("ass.", "asses.", "butt.", "fart.", "assblast usa", "woop get an ass inspection", "woop") //Hilarious.
 
 /mob/living/simple_animal/bot/buttbot/Initialize()
 	. = ..()
 	if(xeno)
 		icon_state = "buttbot_xeno"
-		speech_list = list("hissing butts", "hiss hiss motherfucker", "nice trophy nerd", "butt", "woop get an alien inspection")
+		speech_list = list("hissing asses", "hiss hiss motherfucker", "nice trophy nerd", "ass", "woop get an alien inspection")
 
 /mob/living/simple_animal/bot/buttbot/explode()
 	visible_message("<span class='userdanger'>[src] blows apart!</span>")
@@ -71,10 +71,10 @@
 	var/finalphrase = ""
 	for(var/p in buttphrase)
 		if(prob(20))
-			p="butt"
+			p="ass"
 		finalphrase = finalphrase+p+" "
 	finalphrase = replacetext(finalphrase, " #39 ","'")
 	finalphrase = replacetext(finalphrase, " s "," ") //this is really dumb and hacky, gets rid of trailing 's' character on the off chance that '#39' gets swapped
-	if(findtext(finalphrase,"butt"))
+	if(findtext(finalphrase,"ass"))
 		return finalphrase
 	return
