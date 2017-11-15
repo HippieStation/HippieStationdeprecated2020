@@ -2,7 +2,7 @@
   var/poo_stained = 0
   var/pee_stained = 0
 
-/obj/item/clothing/update_clothes_damaged_state()
+/obj/item/clothing/suit/update_clothes_damaged_state()
 	. = ..()
 	if(poo_stained)
 		add_overlay(mutable_appearance('hippiestation/icons/obj/poo.dmi', "poo[blood_overlay_type]"))

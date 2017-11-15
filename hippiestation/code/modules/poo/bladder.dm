@@ -11,5 +11,5 @@
 	. = ..()
 	if(prob(1))
 		adjust_bladder(rand(0.5, 2))
-	if(prob(5) && user.bladder_level < 60)
+	if(prob(5) && bladder_level < 60)
 		to_chat(src, "<span class='notice'>You kinda gotta pee.</span>")
