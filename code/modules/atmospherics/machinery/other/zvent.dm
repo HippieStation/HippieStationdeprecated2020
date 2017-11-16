@@ -1,7 +1,7 @@
 /obj/machinery/zvent
 	name = "interfloor air transfer system"
 
-	icon = 'icons/obj/atmospherics/components/unary_devices.dmi'
+	icon = 'hippiestation/icons/obj/atmospherics/components/unary_devices.dmi'
 	icon_state = "vent_map"
 	density = FALSE
 	anchored=1

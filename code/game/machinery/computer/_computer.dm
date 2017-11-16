@@ -1,6 +1,6 @@
 /obj/machinery/computer
 	name = "computer"
-	icon = 'icons/obj/computer.dmi'
+	icon = 'hippiestation/icons/obj/computer.dmi'
 	icon_state = "computer"
 	density = TRUE
 	anchored = TRUE

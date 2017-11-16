@@ -1394,7 +1394,7 @@
 /obj/machinery/computer/arcade/orion_trail{
 	desc = "A test for cadets";
 	events = list("Raiders" = 3, "Interstellar Flux" = 1, "Illness" = 3, "Breakdown" = 2, "Malfunction" = 2, "Collision" = 1, "Spaceport" = 2);
-	icon = 'icons/obj/machines/particle_accelerator.dmi';
+	icon = 'hippiestation/icons/obj/machines/particle_accelerator.dmi';
 	icon_state = "control_boxp";
 	name = "Kobayashi Maru control computer";
 	prizes = list(/obj/item/paper/fluff/holodeck/trek_diploma = 1);
@@ -1420,7 +1420,7 @@
 /obj/machinery/computer/arcade/orion_trail{
 	desc = "A test for cadets";
 	events = list("Raiders" = 3, "Interstellar Flux" = 1, "Illness" = 3, "Breakdown" = 2, "Malfunction" = 2, "Collision" = 1, "Spaceport" = 2);
-	icon = 'icons/obj/machines/particle_accelerator.dmi';
+	icon = 'hippiestation/icons/obj/machines/particle_accelerator.dmi';
 	icon_state = "control_boxp";
 	name = "Kobayashi Maru control computer";
 	prizes = list(/obj/item/paper/fluff/holodeck/trek_diploma = 1);
@@ -1435,7 +1435,7 @@
 /obj/machinery/computer/arcade/orion_trail{
 	desc = "A test for cadets";
 	events = list("Raiders" = 3, "Interstellar Flux" = 1, "Illness" = 3, "Breakdown" = 2, "Malfunction" = 2, "Collision" = 1, "Spaceport" = 2);
-	icon = 'icons/obj/machines/particle_accelerator.dmi';
+	icon = 'hippiestation/icons/obj/machines/particle_accelerator.dmi';
 	icon_state = "control_boxp";
 	name = "Kobayashi Maru control computer";
 	prizes = list(/obj/item/paper/fluff/holodeck/trek_diploma = 1);
