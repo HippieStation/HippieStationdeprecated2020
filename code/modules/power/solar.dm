@@ -261,7 +261,7 @@
 /obj/machinery/power/solar_control
 	name = "solar panel control"
 	desc = "A controller for solar panel arrays."
-	icon = 'icons/obj/computer.dmi'
+	icon = 'hippiestation/icons/obj/computer.dmi'
 	icon_state = "computer"
 	anchored = TRUE
 	density = TRUE

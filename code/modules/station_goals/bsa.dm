@@ -26,7 +26,7 @@
 	return FALSE
 
 /obj/machinery/bsa
-	icon = 'icons/obj/machines/particle_accelerator.dmi'
+	icon = 'hippiestation/icons/obj/machines/particle_accelerator.dmi'
 	density = TRUE
 	anchored = TRUE
 
@@ -212,7 +212,7 @@
 	var/target
 	use_power = NO_POWER_USE
 	circuit = /obj/item/circuitboard/computer/bsa_control
-	icon = 'icons/obj/machines/particle_accelerator.dmi'
+	icon = 'hippiestation/icons/obj/machines/particle_accelerator.dmi'
 	icon_state = "control_boxp"
 	var/area_aim = FALSE //should also show areas for targeting
 
