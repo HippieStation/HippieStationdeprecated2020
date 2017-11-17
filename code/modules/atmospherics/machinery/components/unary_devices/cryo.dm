@@ -39,11 +39,6 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/Initialize()
 	. = ..()
 	initialize_directions = dir
-<<<<<<< HEAD
-	var/obj/item/circuitboard/machine/cryo_tube/B = new
-	B.apply_default_parts(src)
-=======
->>>>>>> d50b0c6e63f02be4b833ad3063363077c1d769c8
 
 	radio = new(src)
 	radio.keyslot = new radio_key
@@ -51,19 +46,6 @@
 	radio.canhear_range = 0
 	radio.recalculateChannels()
 
-<<<<<<< HEAD
-/obj/item/circuitboard/machine/cryo_tube
-	name = "Cryotube (Machine Board)"
-	build_path = /obj/machinery/atmospherics/components/unary/cryo_cell
-	origin_tech = "programming=4;biotech=3;engineering=4;plasmatech=3"
-	req_components = list(
-							/obj/item/stock_parts/matter_bin = 1,
-							/obj/item/stack/cable_coil = 1,
-							/obj/item/stock_parts/console_screen = 1,
-							/obj/item/stack/sheet/glass = 2)
-
-=======
->>>>>>> d50b0c6e63f02be4b833ad3063363077c1d769c8
 /obj/machinery/atmospherics/components/unary/cryo_cell/on_construction()
 	..(dir, dir)
 
@@ -199,15 +181,18 @@
 	var/datum/gas_mixture/air1 = AIR1
 
 	if(air1.gases.len)
+		if(mob_occupant.bodytemperature < T0C) // Sleepytime. Why? More cryo magic.
+			mob_occupant.Sleeping((mob_occupant.bodytemperature * sleep_factor) * 2000)
+			mob_occupant.Unconscious((mob_occupant.bodytemperature * unconscious_factor) * 2000)
 		if(beaker)
 			if(reagent_transfer == 0) // Magically transfer reagents. Because cryo magic.
-				beaker.reagents.trans_to(occupant, 1, 10 * efficiency) // Transfer reagents, multiplied because cryo magic.
+				beaker.reagents.trans_to(occupant, 1, efficiency * 0.25) // Transfer reagents.
 				beaker.reagents.reaction(occupant, VAPOR)
-				air1.gases["o2"][MOLES] -= 2 / efficiency // Lets use gas for this.
+				air1.gases[/datum/gas/oxygen][MOLES] -= 2 / efficiency //Let's use gas for this
 			if(++reagent_transfer >= 10 * efficiency) // Throttle reagent transfer (higher efficiency will transfer the same amount but consume less from the beaker).
 				reagent_transfer = 0
 
-	return TRUE
+	return 1
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/process_atmos()
 	..()
