@@ -164,6 +164,7 @@
 
 
 	var/delay = mob.movement_delay()
+<<<<<<< HEAD
 
 	if(Can_ShadowWalk(mob))
 		if(Process_ShadowWalk(direct))
@@ -173,6 +174,9 @@
 
 	//We are now going to move
 	if (old_move_delay + (delay*MOVEMENT_DELAY_BUFFER_DELTA) + MOVEMENT_DELAY_BUFFER > world.time)
+=======
+	if(old_move_delay + (delay*MOVEMENT_DELAY_BUFFER_DELTA) + MOVEMENT_DELAY_BUFFER > world.time)
+>>>>>>> e551941b4d... Makes you turn when pulling and adds sound to rolling bed and chair (#32778)
 		move_delay = old_move_delay + delay
 	else
 		move_delay = delay + world.time
@@ -196,6 +200,9 @@
 	if(LAZYLEN(mob.user_movement_hooks))
 		for(var/obj/O in mob.user_movement_hooks)
 			O.intercept_user_move(direct, mob, n, oldloc)
+
+	if(mob.pulling && !ismob(mob.pulling))
+		mob.dir = turn(mob.dir, 180)
 
 /mob/Moved(oldLoc, dir, Forced = FALSE)
 	. = ..()
