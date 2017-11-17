@@ -18,4 +18,9 @@
 		msg = "<span class='adminobserver'><span class='prefix'>ADMIN:</span> <EM>[key_name(usr, 1)]:</EM> <span class='message'>[msg]</span></span>"
 		message_admins(msg)
 
+<<<<<<< HEAD
 	SSblackbox.add_details("admin_verb","Asay") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+=======
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Asay") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+>>>>>>> 8b19b490d1... JSON feedback (#32188)
