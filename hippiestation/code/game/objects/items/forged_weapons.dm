@@ -291,6 +291,8 @@
 
 
 /obj/item/ammo_casing/forged/proc/assign_properties()//placeholder proc to prevent runtimes, this SHOULD be the only exception to the rule
+	if(reagent_type)
+		name = "([reagent_type.name]-[caliber] bullet casing)"
 	return
 
 
