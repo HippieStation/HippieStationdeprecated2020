@@ -206,7 +206,7 @@
 
 	if(iswallturf(target) && proximity_flag)
 		var/turf/closed/wall/W = target
-		var/chance = force_wielded + W.hardness//>lower hardness = stronger wall
+		var/chance = (force_wielded + W.hardness * 0.5)//>lower hardness = stronger wall
 		if(chance < 10)
 			return FALSE
 
