@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/space_funeral
 	name = "creature"
 	desc = "A sanity-destroying otherthing."
-	icon = 'icons/mob/spacefuneral.dmi'
+	icon = 'hippiestation/icons/mob/spacefuneral.dmi'
 	speak_emote = list("gibbers")
 	icon_state = "bloodhound"
 	icon_living = "bloodhound"
