@@ -65,7 +65,7 @@ byondkey = Rank
 where the admin rank must be properly capitalised.
 
 Finally, to start the server, run Dream Daemon and enter the path to your
-compiled tgstation.dmb file.  Make sure to set the port to the one you
+compiled HippieStation.dmb file.  Make sure to set the port to the one you
 specified in the config.txt, and set the Security box to 'Safe'.  Then press GO
 and the server should start up and be ready to join. It is also recommended that
 you set up the SQL backend (see below).
