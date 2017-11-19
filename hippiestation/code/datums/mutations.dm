@@ -68,7 +68,7 @@
 	if(..())
 		return
 	var/datum/species/S = owner.dna.species
-	S.armor = initial(S.armor) + 5 // You're resistant to punches.
+	S.armor += 5 // You're resistant to punches.
 
 /datum/mutation/human/keratin/on_losing(mob/living/carbon/human/owner)
 	if(..())
