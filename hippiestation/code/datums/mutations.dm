@@ -74,7 +74,7 @@
 	if(..())
 		return
 	var/datum/species/S = owner.dna.species
-	S.armor = initial(S.armor) //You're no longer resistant to punches. Do not combine with DNA Vault.
+	S.armor -= 5 //You're no longer resistant to punches.
 
 /datum/mutation/human/tourettes/on_life(mob/living/carbon/human/owner)
 	if(prob(10) && owner.stat == CONSCIOUS)
