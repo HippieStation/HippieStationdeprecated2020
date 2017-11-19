@@ -32,12 +32,9 @@ var/B_shadowling = 8192
 		var/B_ninja = 1024
 		var/B_monkey = 2048
 		var/B_gang = 4096
-		var/B_shadowling = 8192
 		var/B_abductor = 16384
 
-		var/B_vampire = 32768
-
-		var/list/archived = list(B_traitor,B_operative,B_changeling,B_wizard,B_malf,B_rev,B_alien,B_pai,B_cultist,B_blob,B_ninja,B_monkey,B_gang,B_abductor,B_shadowling,B_vampire)
+		var/list/archived = list(B_traitor,B_operative,B_changeling,B_wizard,B_malf,B_rev,B_alien,B_pai,B_cultist,B_blob,B_ninja,B_monkey,B_gang,B_abductor)
 
 		be_special = list()
 
@@ -69,12 +66,7 @@ var/B_shadowling = 8192
 						be_special += ROLE_NINJA
 					if(2048)
 						be_special += ROLE_MONKEY
-					if(8192)
-						be_special += ROLE_SHADOWLING
-					if(16384)
-						be_special += ROLE_ABDUCTOR
-					if(32768)
-						be_special += ROLE_VAMPIRE
+
 
 /datum/preferences/proc/hippie_character_pref_save(savefile/S)
 	//moths

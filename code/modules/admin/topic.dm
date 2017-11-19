@@ -166,10 +166,6 @@
 				else
 					message_admins("[key_name_admin(usr)] tried to create a revenant. Unfortunately, there were no candidates available.")
 					log_admin("[key_name(usr)] failed to create a revenant.")
-			if("shadowling")
-				hippie_makeShadowling(src)
-			if("vampire")
-				hippie_makeVampire(src)
 
 	else if(href_list["forceevent"])
 		if(!check_rights(R_FUN))
