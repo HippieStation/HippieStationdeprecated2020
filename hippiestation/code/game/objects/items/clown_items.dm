@@ -23,4 +23,7 @@
 		M.adjustBrainLoss(HORN_BRAIN_DAMAGE)
 		log_admin("[key_name(user)] dealt brain damage to [key_name(M)] with the Extra annoying bike horn")
 
+/obj/item/clothing/shoes/clown_shoes
+	slowdown = SHOES_SLOWDOWN
+
 #undef HORN_BRAIN_DAMAGE
