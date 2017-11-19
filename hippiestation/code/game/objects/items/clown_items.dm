@@ -24,3 +24,7 @@
 		log_admin("[key_name(user)] dealt brain damage to [key_name(M)] with the Extra annoying bike horn")
 
 #undef HORN_BRAIN_DAMAGE
+
+/obj/item/clothing/shoes/clown_shoes/equipped/equipped(mob/user, slot)
+	if(slot == slot_shoes)
+		flags_1 |= NODROP_1
