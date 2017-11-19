@@ -1,7 +1,7 @@
 #define HORN_BRAIN_DAMAGE 10
 
 /obj/item/bikehorn/golden/retardhorn
-	origin_tech = "engineering=4;syndicate=3" //Science can uncover if this is a regular bike horn or not using science goggles.
+	 //Science can uncover if this is a regular bike horn or not using science goggles.
 
 /obj/item/bikehorn/golden/retardhorn/attack()
 	flip_mobs()

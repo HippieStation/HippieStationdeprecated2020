@@ -3,7 +3,7 @@
 	desc = "A gun magazine."
 	icon = 'hippiestation/icons/obj/ammo/ammo.dmi'
 	icon_state = "g17"
-	origin_tech = "combat=2"
+
 	ammo_type = /obj/item/ammo_casing/c9mm
 	caliber = "9mm"
 	max_ammo = 14
