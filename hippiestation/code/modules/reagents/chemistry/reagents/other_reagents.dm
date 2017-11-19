@@ -20,11 +20,6 @@
 	holder.remove_reagent(src.id, 1)
 	return FINISHONMOBLIFE(M)
 
-/datum/reagent/water/reaction_turf(turf/open/T, reac_volume)
-	. = ..()
-	for(var/mob/living/simple_animal/hostile/gremlin/G in src)
-		G.divide()
-
 /datum/reagent/water/on_mob_life(mob/living/M)
 	M.reagents.remove_all_type(/datum/reagent/consumable/ethanol, 1*REM, 0, 1)
 	M.adjustToxLoss(-0.2*REM, 0)

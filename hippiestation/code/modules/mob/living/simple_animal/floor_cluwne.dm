@@ -285,11 +285,6 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				H.Stun(20)
 
 			if(prob(3))
-				to_chat(H, "<i>KNOH ?od nottub siht seod tahW</i>")
-				for(var/obj/machinery/M in range(H, 6))
-					M.npc_tamper_act(src)
-
-			if(prob(3))
 				for(var/turf/open/O in range(src, 6))
 					O.MakeSlippery(TURF_WET_WATER, 10)
 					playsound(src, 'sound/effects/meteorimpact.ogg', 30, 1)
