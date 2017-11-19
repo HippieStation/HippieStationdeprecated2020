@@ -9,9 +9,7 @@
 		'sound/roundend/yeehaw.ogg',
 		'hippiestation/sound/roundend/disappointed.ogg',
 		'hippiestation/sound/roundend/enjoyedyourchaos.ogg',
-		'hippiestation/sound/roundend/yamakemesick.ogg',
-		'hippiestation/sound/roundend/trapsaregay.ogg',
-		'hippiestation/sound/roundend/gayfrogs.ogg'\
+		'hippiestation/sound/roundend/yamakemesick.ogg'\
 		)
 
 	world << sound(round_end_sound)

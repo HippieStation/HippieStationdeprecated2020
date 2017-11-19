@@ -572,8 +572,7 @@
 
 	if(see_override)
 		see_invisible = see_override
-	
-	vampsight() //HIPPIE PROC!!!! handles vampire sight
+
 	. = ..()
 
 

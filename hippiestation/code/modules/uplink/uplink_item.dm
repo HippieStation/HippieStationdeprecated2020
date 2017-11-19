@@ -139,13 +139,6 @@
 	item = /obj/item/grenade/spawnergrenade/beenade
 	surplus = 30
 
-/datum/uplink_item/dangerous/gremlin
-	name = "Gremlin delivery grenade"
-	desc = "This grenade is filled with several gremlins. Fun for RnD and engineering!"
-	cost = 4
-	item = /obj/item/grenade/spawnergrenade/gremlin
-	surplus = 30
-
 /datum/uplink_item/dangerous/cat
 	name = "Feral cat grenade"
 	desc = "This grenade is filled with 5 feral cats in stasis. Upon activation, the feral cats are awoken and unleashed unto unlucky bystanders."
