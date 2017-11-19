@@ -57,12 +57,12 @@
 	flash_act()
 
 /datum/mutation/human/steel
-	name = "Man Of Steel"
+	name = "Keratin Plates"
 	quality = POSITIVE
 	get_chance = 15
 	lowest_value = 256 * 12
-	text_gain_indication = "<span class='notice'>You feel tougher.</span>"
-	text_lose_indication = "<span class='notice'>You feel weaker.</span>"
+	text_gain_indication = "<span class='notice'>You feel more durable!</span>"
+	text_lose_indication = "<span class='notice'>You feel less durable!</span>"
 
 /datum/mutation/human/steel/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
