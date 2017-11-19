@@ -4,6 +4,7 @@
 	icon_icon = S.action_icon
 
 /obj/effect/proc_holder/spell/self/basic_heal // We stole your debugging tool and turned it into a fully fledged spell
+	name = "Basic Heal"
 	human_req = 0 //Liches and non-humans can use this spell
 	charge_max = 400 //60 seconds
 	cooldown_min = 200
@@ -14,7 +15,7 @@
 	user.adjustFireLoss(-20)
 
 /obj/effect/proc_holder/spell/self/advanced_heal //This is not just a simple heal. This is an ADVANCED heal
-	Name = "Advanced Heal"
+	name = "Advanced Heal"
 	desc = "Heals a moderate amount of damage of ALL types. Requires robes."
 	human_req = 0
 	clothes_req = 1
@@ -30,6 +31,6 @@
 	user.adjustBruteLoss(-30)
 	user.adjustFireLoss(-30)
 	user.adjustToxLoss(-10)
-	user.adjustOxyloss(-50)
+	user.adjustOxyLoss(-50)
 	user.adjustBrainLoss(-10)
 	user.adjustCloneLoss(-10)
