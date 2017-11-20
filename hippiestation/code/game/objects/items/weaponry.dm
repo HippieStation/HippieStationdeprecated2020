@@ -29,3 +29,23 @@
 		visible_message("<span class='greenannounce'>[user] has scored a critical hit on [M]!</span>")
 		playsound(src, 'sound/arcade/mana.ogg', 50, 1)
 	..()
+
+/obj/item/godwrath
+	name = "God's Wrath"
+	desc = "A physical manifestation of the power of a god, now in your hand!"
+	icon_state = "godwrath"
+	item_state = "godwrath"
+	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand
+	righthand_file = 'hippiestation/icons/mob/inhands/righthand
+	force = 60
+	flags_1 = ABSTRACT_ | NODROP_1 | DROPDEL_1
+	w_class = WEIGHT_CLASS_BULKY
+	hitsound = 'sound/effects/curse2.ogg'
+	damtype = BURN
+	attack_verb = list("touched", "grasped")
+	armour_penetration = 100
+	block_chance = 50
+
+/obj/item/godwrath/suicide_act(mob/user)
+	user.visible_message("<span class='suicide'>[user] claims that they have failed their god, so they shove their god's wrath inside themselves!</span>")
+	return (FIRELOSS)
