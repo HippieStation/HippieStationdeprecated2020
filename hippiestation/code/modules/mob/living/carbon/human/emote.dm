@@ -231,3 +231,64 @@
 				new /obj/effect/immovablerod/butt(B.loc, locate(endx, endy, 1))
 				priority_announce("What the fuck was that?!", "General Alert")
 				qdel(B)
+
+
+/datum/emote/living/carbon/human/pee
+	key = "pee"
+	key_third_person = "pees"
+
+/datum/emote/living/carbon/human/pee/run_emote(mob/living/carbon/human/user, params)
+	if(user.bladder_level < 60)
+		to_chat(user, "<span class='warning'>You don't need to pee.</span>")
+		return
+	if(user.w_uniform && istype(user.w_uniform, /obj/item/clothing))
+		var/obj/item/clothing/wu = user.w_uniform
+		user.visible_message("<span class='warning'>[user] pees their pants!</span>", "<span class='danger'>You pee your pants!</span>") //extra emberassment!
+		user.adjust_bladder(-rand(45, 65))
+		wu.pee_stained += 1
+		wu.update_clothes_damaged_state()
+		return
+	if(/obj/structure/toilet in user.loc.contents)
+		user.visible_message("<span class='notice'>[user] pees into the toilet.</span>", "<span class='notice'>You pee in the toilet.</span>")
+		user.adjust_bladder(-rand(45, 65))
+		return
+
+	new /obj/effect/decal/cleanable/pee(get_turf(user))
+	user.visible_message("<span class='danger'>[user] pees all over the floor!</span>")
+	user.adjust_bladder(-rand(45, 65))
+
+/datum/emote/living/carbon/human/poo
+	key = "poo"
+	key_third_person = "poops"
+
+/datum/emote/living/carbon/human/poo/run_emote(mob/living/carbon/human/user, params)
+	var/obj/item/organ/butt/B = user.getorgan(/obj/item/organ/butt)
+	if(!B)
+		to_chat(user, "<span class='warning'>You don't have a butt!</span>")
+		return
+	if(user.nutrition < NUTRITION_LEVEL_FED )
+		to_chat(user, "<span class='warning'>You don't need to poo.</span>")
+		return
+	if(user.w_uniform && istype(user.w_uniform, /obj/item/clothing))
+		var/obj/item/clothing/wu = user.w_uniform
+		user.visible_message("<span class='warning'>[user] poops their pants!</span>", "<span class='danger'>You poop your pants!</span>") //extra emberassment!
+		user.nutrition -= rand(85, 105)
+		wu.poo_stained += 1
+		wu.update_clothes_damaged_state()
+		return
+	if(/obj/structure/toilet in user.loc.contents)
+		user.visible_message("<span class='notice'>[user] poo into the toilet.</span>", "<span class='notice'>You poo in the toilet.</span>")
+		user.adjust_bladder(-rand(45, 65))
+		user.nutrition -= rand(85, 105)
+		return
+
+	new /obj/effect/decal/cleanable/poo(get_turf(user))
+	var/msg = pick(
+	"releases a chocolate fountain out of [user.p_their(TRUE)] asshole!",
+	"gets shit all over the place!",
+	"poos on the floor",
+	"grunts and then drops a big hanky onto the floor!"
+	)
+	user.visible_message("<span class='danger'>[user] [pick(msg)]</span>")
+	user.nutrition -= rand(85, 105)
+	return
