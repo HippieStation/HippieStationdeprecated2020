@@ -19,7 +19,7 @@
 	damage_type = TOX
 	nodamage = 0
 	knockdown = 0
-	stun = 30
+	stun = 50
 	stutter = 100 //H-H-HELP I-IN-N-N MA-A-AI-NT-T
 	slur = 100 //HCCH-HH-HEELHP I-INU-HN-NNGH... MA-A-AIH-NT-T
 
