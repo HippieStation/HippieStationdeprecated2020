@@ -565,3 +565,13 @@ AI MODULES
 	name = "'Guardian of Balance' Core AI Module"
 	law_id = "balance"
 
+<<<<<<< HEAD
+=======
+/obj/item/aiModule/core/full/maintain
+	name = "'Station Efficiency' Core AI Module"
+	law_id = "maintain"
+
+/obj/item/aiModule/core/full/peacekeeper
+	name = "'Peacekeeper' Core AI Module"
+	law_id = "peacekeeper"
+>>>>>>> de7a093ea2... Merge pull request #32905 from vuonojenmustaturska/aispawner
