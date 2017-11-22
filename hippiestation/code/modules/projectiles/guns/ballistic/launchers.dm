@@ -10,7 +10,6 @@
     force = 10
     flags_1 = CONDUCT_1
     slot_flags = SLOT_BACK
-    origin_tech = "combat=3;materials=2"
     fire_sound = "hippiestation/sound/weapons/rodgun_fire.ogg"
     var/charge = 0
     var/max_charge = 3
