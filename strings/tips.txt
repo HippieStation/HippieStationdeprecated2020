@@ -196,5 +196,3 @@ As a Vampire, you can convert normal people into Vampires with Lillith's Pact. B
 As a Shadowling, be aware, Veil does not work on flares, glowsticks, or most other non-electric lights!
 As a Shadowling, you should help thralls if they call for help, as long as it does not put yourself in danger!
 If you see a Cluwne or Catbeast, kill them to death!
-
-
