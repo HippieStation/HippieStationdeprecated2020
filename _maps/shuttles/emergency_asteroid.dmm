@@ -23,11 +23,8 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "ag" = (
-/turf/open/space,
-/area/space/nearstation)
 /turf/template_noop,
 /area/template_noop)
-/area/space)
 "ah" = (
 /obj/effect/spawner/structure/window/shuttle,
 /turf/open/floor/plating,
