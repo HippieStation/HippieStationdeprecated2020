@@ -23,13 +23,11 @@
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
 "ag" = (
-<<<<<<< HEAD
 /turf/open/space,
 /area/space/nearstation)
-=======
 /turf/template_noop,
 /area/template_noop)
->>>>>>> c4213cd255... Cleans up template shuttles (#32932)
+/area/space)
 "ah" = (
 /obj/effect/spawner/structure/window/shuttle,
 /turf/open/floor/plating,
