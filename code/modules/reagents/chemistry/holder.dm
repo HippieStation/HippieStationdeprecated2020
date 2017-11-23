@@ -735,7 +735,7 @@ this has been modified and moved over to the hippie folder to allow for custom r
 					out += "[taste_desc]"
 
 	return english_list(out, "something indescribable")
-	
+
 /datum/reagents/proc/expose_temperature(var/temperature, var/coeff=0.02)
 	var/temp_delta = (temperature - chem_temp) * coeff
 	if(temp_delta > 0)
