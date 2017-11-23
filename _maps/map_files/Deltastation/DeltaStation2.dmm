@@ -50932,9 +50932,16 @@
 	id = "hopline";
 	name = "Queue Shutters"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/loadingarea{
 	dir = 8
 	},
+=======
+/obj/effect/turf_decal/loading_area{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+>>>>>>> 8f164a6bb5... Fixes deleted turfs (#33010)
 /area/hallway/primary/central)
 "bYX" = (
 /obj/machinery/flasher{
@@ -55462,9 +55469,16 @@
 	name = "Queue Shutters"
 	},
 /obj/effect/landmark/event_spawn,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/loadingarea{
 	dir = 4
 	},
+=======
+/obj/effect/turf_decal/loading_area{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+>>>>>>> 8f164a6bb5... Fixes deleted turfs (#33010)
 /area/hallway/primary/central)
 "chZ" = (
 /obj/machinery/computer/security/mining{
@@ -57604,10 +57618,19 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/loadingarea,
 /area/teleporter)
 "cmH" = (
 /turf/open/floor/plasteel/loadingarea,
+=======
+/obj/effect/turf_decal/loading_area,
+/turf/open/floor/plasteel,
+/area/teleporter)
+"cmH" = (
+/obj/effect/turf_decal/loading_area,
+/turf/open/floor/plasteel,
+>>>>>>> 8f164a6bb5... Fixes deleted turfs (#33010)
 /area/teleporter)
 "cmI" = (
 /obj/structure/table,

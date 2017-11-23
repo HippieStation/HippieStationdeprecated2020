@@ -8115,9 +8115,16 @@
 	width = 18
 	},
 /obj/structure/fans/tiny,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/podhatch{
 	dir = 1
 	},
+=======
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium,
+>>>>>>> 8f164a6bb5... Fixes deleted turfs (#33010)
 /area/shuttle/syndicate/airlock)
 "vs" = (
 /obj/structure/sign/securearea{
@@ -8558,9 +8565,16 @@
 	id = "XCCFerry";
 	name = "XCC Ferry Hangar"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/loadingarea{
 	dir = 4
 	},
+=======
+/obj/effect/turf_decal/loading_area{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+>>>>>>> 8f164a6bb5... Fixes deleted turfs (#33010)
 /area/centcom/ferry)
 "ww" = (
 /obj/machinery/button/door{
@@ -40463,7 +40477,7 @@ aa
 aa
 KH
 KH
-KT
+KS
 La
 Lb
 Ld
@@ -42519,7 +42533,7 @@ aa
 aa
 KH
 KH
-KT
+KS
 Lc
 Lb
 Li
@@ -59978,12 +59992,21 @@ HP
 Ic
 Ep
 Ep
+<<<<<<< HEAD
 IK
 IK
 IK
 IK
 IK
 IK
+=======
+Mh
+Mh
+Mh
+Mh
+Mh
+Mh
+>>>>>>> 8f164a6bb5... Fixes deleted turfs (#33010)
 Iv
 Iv
 Iv
@@ -61520,12 +61543,21 @@ HY
 If
 Gq
 Ep
+<<<<<<< HEAD
 IO
 IO
 IO
 IO
 IO
 IO
+=======
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+>>>>>>> 8f164a6bb5... Fixes deleted turfs (#33010)
 Iv
 Iv
 Iv
