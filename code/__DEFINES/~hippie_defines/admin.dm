@@ -1,3 +1,7 @@
+#if DM_VERSION < 512
+#warn Use fucking 512 already
+#endif
+
 //Mentors
 GLOBAL_VAR_INIT(HIPPIE_MENTOR_OOC_COLOUR, "#FF3E96")
 #define R_MENTOR 8192
