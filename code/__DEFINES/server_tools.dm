@@ -1,5 +1,4 @@
-// /tg/station 13 server tools API
-#define SERVICE_API_VERSION_STRING "3.2.0.1"
+// /tg/station 13 server tools API v3.1.0.2
 
 //CONFIGURATION
 //use this define if you want to do configuration outside of this file
@@ -65,15 +64,16 @@
 
 //IMPLEMENTATION
 
+#define SERVICE_API_VERSION_STRING "3.1.0.2"
+
 #define REBOOT_MODE_NORMAL 0
 #define REBOOT_MODE_HARD 1
 #define REBOOT_MODE_SHUTDOWN 2
 
 #define SERVICE_WORLD_PARAM "server_service"
 #define SERVICE_VERSION_PARAM "server_service_version"
-#define SERVICE_INSTANCE_PARAM "server_instance"
 #define SERVICE_PR_TEST_JSON "prtestjob.json"
-#define SERVICE_INTERFACE_DLL "TGDreamDaemonBridge.dll"
+#define SERVICE_INTERFACE_DLL "TGServiceInterface.dll"
 #define SERVICE_INTERFACE_FUNCTION "DDEntryPoint"
 
 #define SERVICE_CMD_HARD_REBOOT "hard_reboot"
@@ -98,12 +98,11 @@
 #define SERVICE_REQUEST_WORLD_REBOOT "worldreboot"
 #define SERVICE_REQUEST_API_VERSION "api_ver"
 
-#define SERVICE_RETURN_SUCCESS "SUCCESS"
-
 /*
 The MIT License
 
-Copyright (c) 2017 Jordan Brown
+Copyright (c) 2011 Dominic Tarr
+
 Permission is hereby granted, free of charge, 
 to any person obtaining a copy of this software and 
 associated documentation files (the "Software"), to 
