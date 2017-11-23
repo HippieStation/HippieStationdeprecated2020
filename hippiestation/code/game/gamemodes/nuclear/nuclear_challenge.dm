@@ -40,11 +40,8 @@
 	for(var/V in GLOB.syndicate_shuttle_boards)
 		var/obj/item/circuitboard/computer/syndicate_shuttle/board = V
 		board.challenge = TRUE
-
-	var/obj/item/device/radio/uplink/nuclear/U = new(get_turf(user))
-	U.hidden_uplink.owner = "[user.key]"
-	U.hidden_uplink.telecrystals = (n_players * 6) //by default is 280 for 50 players, 280 / 50 = 5.6, I rounded it up because nukeops need a little love these days...
-	U.hidden_uplink.set_gamemode(/datum/game_mode/nuclear)
+		
+	new /obj/item/device/radio/uplink/nuclear(get_turf(user), user.key, (n_players * 6)) //by default is 280 for 50 players, 280 / 50 = 5.6, I rounded it up because nukeops need a little love these days...
 	CONFIG_SET(number/shuttle_refuel_delay, max(CONFIG_GET(number/shuttle_refuel_delay), CHALLENGE_SHUTTLE_DELAY))
 	SSblackbox.record_feedback("amount", "nuclear_challenge_mode", 1)
 	qdel(src)
