@@ -30,10 +30,7 @@ SERVER_TOOLS_DEFINE_AND_SET_GLOBAL(server_tools_api_compatible, FALSE)
 		return
 	if(skip_compat_check && !fexists(SERVICE_INTERFACE_DLL))
 		CRASH("Service parameter present but no interface DLL detected. This is symptomatic of running a service less than version 3.1! Please upgrade.")
-	var/instance = params[SERVICE_INSTANCE_PARAM]
-	if(!instance)
-		instance = "TG Station Server"	//maybe just upgraded
-	call(SERVICE_INTERFACE_DLL, SERVICE_INTERFACE_FUNCTION)(instance, command)	//trust no retval
+	call(SERVICE_INTERFACE_DLL, SERVICE_INTERFACE_FUNCTION)(command)	//trust no retval
 	return TRUE
 
 /world/proc/ChatBroadcast(message)
@@ -75,7 +72,7 @@ SERVER_TOOLS_DEFINE_AND_SET_GLOBAL(server_tools_api_compatible, FALSE)
 	switch(command)
 		if(SERVICE_CMD_API_COMPATIBLE)
 			SERVER_TOOLS_WRITE_GLOBAL(server_tools_api_compatible, TRUE)
-			return SERVICE_RETURN_SUCCESS
+			return "SUCCESS"
 		if(SERVICE_CMD_HARD_REBOOT)
 			if(SERVER_TOOLS_READ_GLOBAL(reboot_mode) != REBOOT_MODE_HARD)
 				SERVER_TOOLS_WRITE_GLOBAL(reboot_mode, REBOOT_MODE_HARD)
@@ -91,7 +88,7 @@ SERVER_TOOLS_DEFINE_AND_SET_GLOBAL(server_tools_api_compatible, FALSE)
 			if(!istext(msg) || !msg)
 				return "No message set!"
 			SERVER_TOOLS_WORLD_ANNOUNCE(msg)
-			return SERVICE_RETURN_SUCCESS
+			return "SUCCESS"
 		if(SERVICE_CMD_PLAYER_COUNT)
 			return "[SERVER_TOOLS_CLIENT_COUNT]"
 		if(SERVICE_CMD_LIST_CUSTOM)
@@ -99,32 +96,32 @@ SERVER_TOOLS_DEFINE_AND_SET_GLOBAL(server_tools_api_compatible, FALSE)
 		else
 			var/custom_command_result = HandleServiceCustomCommand(lowertext(command), params[SERVICE_CMD_PARAM_SENDER], params[SERVICE_CMD_PARAM_CUSTOM])
 			if(custom_command_result)
-				return istext(custom_command_result) ? custom_command_result : SERVICE_RETURN_SUCCESS
+				return istext(custom_command_result) ? custom_command_result : "SUCCESS"
 			return "Unknown command: [command]"
 
 /*
 The MIT License
 
-Copyright (c) 2017 Jordan Brown
+Copyright (c) 2011 Dominic Tarr
 
-Permission is hereby granted, free of charge, 
-to any person obtaining a copy of this software and 
-associated documentation files (the "Software"), to 
-deal in the Software without restriction, including 
-without limitation the rights to use, copy, modify, 
-merge, publish, distribute, sublicense, and/or sell 
-copies of the Software, and to permit persons to whom 
-the Software is furnished to do so, 
+Permission is hereby granted, free of charge,
+to any person obtaining a copy of this software and
+associated documentation files (the "Software"), to
+deal in the Software without restriction, including
+without limitation the rights to use, copy, modify,
+merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom
+the Software is furnished to do so,
 subject to the following conditions:
 
-The above copyright notice and this permission notice 
+The above copyright notice and this permission notice
 shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES 
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR 
-ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
+ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
