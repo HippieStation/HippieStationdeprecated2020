@@ -70,3 +70,22 @@
 		var/y_offset = owner.pixel_y + rand(-1,1)
 		animate(owner, pixel_x = x_offset, pixel_y = y_offset, time = 1)
 		animate(owner, pixel_x = x_offset_old, pixel_y = y_offset_old, time = 1)
+
+
+/datum/mutation/human/hulk
+  get_chance = 99
+
+/datum/mutation/human/telekinesis
+	get_chance = 99
+  
+/datum/mutation/human/cold_resistance
+	get_chance = 99
+  
+/datum/mutation/human/x_ray
+	get_chance = 99
+  
+/datum/mutation/human/dwarfism
+	get_chance = 99
+  
+/datum/mutation/human/chameleon
+	get_chance = 99
