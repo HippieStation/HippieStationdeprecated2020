@@ -56,6 +56,26 @@
 					"<span class='danger'>Your brain feels like it's being torn apart, and after a short while, you notice that you've become a cluwne!</span>")
 	flash_act()
 
+/datum/mutation/human/keratin
+	name = "Keratin Plates"
+	quality = POSITIVE
+	get_chance = 15
+	lowest_value = 256 * 12
+	text_gain_indication = "<span class='notice'>You feel more durable!</span>"
+	text_lose_indication = "<span class='notice'>You feel less durable!</span>"
+
+/datum/mutation/human/keratin/on_acquiring(mob/living/carbon/human/owner)
+	if(..())
+		return
+	var/datum/species/S = owner.dna.species
+	S.armor += 5 // You're resistant to punches.
+
+/datum/mutation/human/keratin/on_losing(mob/living/carbon/human/owner)
+	if(..())
+		return
+	var/datum/species/S = owner.dna.species
+	S.armor -= 5 //You're no longer resistant to punches.
+
 /datum/mutation/human/tourettes/on_life(mob/living/carbon/human/owner)
 	if(prob(10) && owner.stat == CONSCIOUS)
 		owner.Stun(100)
