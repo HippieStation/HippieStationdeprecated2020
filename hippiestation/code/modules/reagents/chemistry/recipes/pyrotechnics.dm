@@ -275,3 +275,13 @@
 	e.set_up(modifier + round(created_volume/strengthdiv, 1), T, 0, 0)
 	e.start(log)
 	holder.clear_reagents()
+
+/datum/chemical_reaction/reagent_explosion/potassium_explosion/holyboom/on_reaction(datum/reagents/holder, created_volume)
+	. = ..()
+	if(created_volume >= 150)
+		for(var/mob/living/carbon/C in get_hearers_in_view(round(created_volume/48,1),get_turf(holder.my_atom)))
+			if(is_vampire(C))
+				C.visible_message("<span class='danger'>[C] is ignited by the divine explosion!</span>", "<span class='userdanger'>The divine explosion sears you!</span>")
+				C.Knockdown(40)
+				C.adjust_fire_stacks(5)
+				C.IgniteMob()
