@@ -277,6 +277,20 @@ F
 	spell_type = /obj/effect/proc_holder/spell/aoe_turf/conjure/bees
 	category = "Assistance"
 
+/datum/spellbook_entry/basic_heal
+	name = "Basic Heal"
+	spell_type = /obj/effect/proc_holder/spell/self/basic_heal
+	category = "Defensive"
+	cost = 1
+	no_coexistance_typecache = /obj/effect/proc_holder/spell/self/advanced_heal
+
+/datum/spellbook_entry/advanced_heal
+	name = "Advanced Heal"
+	spell_type = /obj/effect/proc_holder/spell/self/advanced_heal
+	category= "Defensive"
+	cost = 2
+	no_coexistance_typecache = /obj/effect/proc_holder/spell/self/basic_heal
+
 /datum/spellbook_entry/item
 	name = "Buy Item"
 	refundable = 0
