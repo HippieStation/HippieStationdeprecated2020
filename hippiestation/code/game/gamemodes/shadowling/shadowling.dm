@@ -51,7 +51,7 @@ Made by Xhuis
 	var/shadowling_dead = 0 //is shadowling kill
 	var/objective_explanation
 	var/thrall_ratio = 1
-	
+
 /datum/game_mode/proc/replace_jobbaned_player(mob/living/M, role_type, pref)
 	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [role_type]?", "[role_type]", null, pref, 50, M)
 	var/mob/dead/observer/theghost = null
@@ -107,7 +107,7 @@ Made by Xhuis
 		shadowlings--
 
 	var/thrall_scaling = round(num_players() / 3)
-	required_thralls = Clamp(thrall_scaling, 15, 30)
+	required_thralls = CLAMP(thrall_scaling, 15, 30)
 
 	thrall_ratio = required_thralls / 15
 
@@ -260,7 +260,7 @@ Made by Xhuis
 			if(ishuman(shadow_mind.current))
 				return FALSE
 	return TRUE
-	
+
 /datum/game_mode/shadowling/check_finished()
 	. = ..()
 	if(check_shadow_death())

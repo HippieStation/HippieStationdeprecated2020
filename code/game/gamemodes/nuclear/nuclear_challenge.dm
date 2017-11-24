@@ -15,8 +15,11 @@
 	var/declaring_war = FALSE
 
 /obj/item/device/nuclear_challenge/attack_self(mob/living/user)
+
 	if(!check_allowed(user))
 		return
+
+	var/n_players = GLOB.player_list.len
 
 	declaring_war = TRUE
 	var/are_you_sure = alert(user, "Consult your team carefully before you declare war on [station_name()]]. Are you sure you want to alert the enemy crew? You have [DisplayTimeText(world.time-SSticker.round_start_time - CHALLENGE_TIME_LIMIT)] to decide", "Declare war?", "Yes", "No")
@@ -54,10 +57,7 @@
 		var/obj/item/circuitboard/computer/syndicate_shuttle/board = V
 		board.challenge = TRUE
 
-	var/obj/item/device/radio/uplink/nuclear/U = new(get_turf(user))
-	U.hidden_uplink.owner = "[user.key]"
-	U.hidden_uplink.telecrystals = CHALLENGE_TELECRYSTALS
-	U.hidden_uplink.set_gamemode(/datum/game_mode/nuclear)
+	new /obj/item/device/radio/uplink/nuclear(get_turf(user), user.key, n_players * 6) // hippie-code: Changed the amount of TC to scale with the playercount
 	CONFIG_SET(number/shuttle_refuel_delay, max(CONFIG_GET(number/shuttle_refuel_delay), CHALLENGE_SHUTTLE_DELAY))
 	SSblackbox.record_feedback("amount", "nuclear_challenge_mode", 1)
 
@@ -66,22 +66,22 @@
 /obj/item/device/nuclear_challenge/proc/check_allowed(mob/living/user)
 	if(declaring_war)
 		to_chat(user, "You are already in the process of declaring war! Make your mind up.")
-		return 0
+		return FALSE
 	if(GLOB.player_list.len < CHALLENGE_MIN_PLAYERS)
 		to_chat(user, "The enemy crew is too small to be worth declaring war on.")
-		return 0
+		return FALSE
 	if(user.z != ZLEVEL_CENTCOM)
 		to_chat(user, "You have to be at your base to use this.")
-		return 0
+		return FALSE
 	if(world.time-SSticker.round_start_time > CHALLENGE_TIME_LIMIT)
 		to_chat(user, "It's too late to declare hostilities. Your benefactors are already busy with other schemes. You'll have to make do with what you have on hand.")
-		return 0
+		return FALSE
 	for(var/V in GLOB.syndicate_shuttle_boards)
 		var/obj/item/circuitboard/computer/syndicate_shuttle/board = V
 		if(board.moved)
 			to_chat(user, "The shuttle has already been moved! You have forfeit the right to declare war.")
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 #undef CHALLENGE_TELECRYSTALS
 #undef CHALLENGE_MIN_PLAYERS
