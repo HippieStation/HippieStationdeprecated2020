@@ -425,7 +425,7 @@
 "aii" = (/obj/structure/noticeboard{dir = 1; pixel_y = -27},/obj/machinery/atmospherics/pipe/simple/supply/hidden{dir = 4},/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,/turf/open/floor/plasteel/red/side,/area/security/main)
 "aij" = (/obj/machinery/light_switch{pixel_y = -23},/obj/machinery/atmospherics/pipe/manifold/supply/hidden,/turf/open/floor/plasteel/red/side,/area/security/main)
 "aik" = (/obj/machinery/light,/obj/machinery/atmospherics/pipe/simple/supply/hidden{dir = 4},/turf/open/floor/plasteel/red/side,/area/security/main)
-"ail" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden{dir = 4},/obj/machinery/rnd/protolathe/department/security,/turf/open/floor/plasteel/red/side,/area/security/main)
+"ail" = (/obj/machinery/atmospherics/pipe/simple/supply/hidden{dir = 4},/turf/open/floor/plasteel/red/side,/area/security/main)
 "aim" = (/obj/machinery/atmospherics/pipe/manifold/supply/hidden,/turf/open/floor/plasteel/red/side,/area/security/main)
 "ain" = (/obj/machinery/camera{c_tag = "Security Office"; dir = 1; network = list("SS13")},/obj/machinery/computer/secure_data,/obj/machinery/atmospherics/pipe/simple/supply/hidden{dir = 4},/turf/open/floor/plasteel/red/side,/area/security/main)
 "aio" = (/obj/item/device/radio/intercom{name = "Station Intercom (General)"; pixel_y = -29},/obj/machinery/computer/security,/obj/machinery/atmospherics/pipe/simple/supply/hidden{dir = 4},/turf/open/floor/plasteel/red/side,/area/security/main)
