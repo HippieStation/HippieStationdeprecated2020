@@ -8,6 +8,8 @@
 /datum/emote/living/carbon/fart/run_emote(mob/living/carbon/user, params)
 	var/fartsound = 'hippiestation/sound/effects/fart.ogg'
 	var/bloodkind = /obj/effect/decal/cleanable/blood
+	var/egg_fart = FALSE
+	var/fart_egg = null
 	message = null
 	if(user.stat != CONSCIOUS)
 		return
@@ -15,7 +17,13 @@
 	if(!B)
 		to_chat(user, "<span class='warning'>You don't have a butt!</span>")
 		return
-	var/lose_butt = prob(12)
+	var/lose_butt = prob(8)
+	if(!lose_butt && user.gender == FEMALE && is_species(user, /datum/species/lizard || user, /datum/species/bird))
+		egg_fart = prob (20)
+		if(egg_fart)
+			fart_egg = /obj/item/reagent_containers/food/snacks/egg{name = "a lizard egg"; desc = "An egg that came out from a ligger's butt."}
+			if(is_species(user, /datum/species/bird))
+				fart_egg = /obj/item/reagent_containers/food/snacks/egg{name = "a bird egg"; desc = "An egg that came out from a bird's butt."}
 	for(var/mob/living/M in get_turf(user))
 		if(M == user)
 			continue
@@ -32,6 +40,11 @@
 				"poots, singing <b>[M]</b>'s eyebrows!",
 				"humiliates <b>[M]</b> like never before!",
 				"gets real close to <b>[M]</b>'s face and cuts the cheese!")
+	if(egg_fart)
+		user.visible_message("<b>[user]</b> lays an egg.")
+		new fart_egg(user.loc)
+		return
+
 	if(!message)
 		message = pick(
 			"rears up and lets loose a fart of tremendous magnitude!",
