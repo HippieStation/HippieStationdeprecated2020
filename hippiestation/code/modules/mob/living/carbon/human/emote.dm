@@ -9,7 +9,6 @@
 	var/fartsound = 'hippiestation/sound/effects/fart.ogg'
 	var/bloodkind = /obj/effect/decal/cleanable/blood
 	var/egg_fart = FALSE
-	var/fart_egg = null
 	message = null
 	if(user.stat != CONSCIOUS)
 		return
@@ -18,12 +17,21 @@
 		to_chat(user, "<span class='warning'>You don't have a butt!</span>")
 		return
 	var/lose_butt = prob(8)
-	if(!lose_butt && user.gender == FEMALE && is_species(user, /datum/species/lizard || user, /datum/species/bird))
-		egg_fart = prob (20)
-		if(egg_fart)
-			fart_egg = /obj/item/reagent_containers/food/snacks/egg{name = "a lizard egg"; desc = "An egg that came out from a ligger's butt."}
+
+	if(!lose_butt)
+		if(user.egg_chance == null)
+			if(user.gender == FEMALE)
+				user.egg_chance = 20
+			if(user.gender == MALE)
+				user.egg_chance = 0
+		if(!user.fart_egg)
+			if(is_species(user, /datum/species/lizard))
+				user.fart_egg = /obj/item/reagent_containers/food/snacks/egg/lizard
 			if(is_species(user, /datum/species/bird))
-				fart_egg = /obj/item/reagent_containers/food/snacks/egg{name = "a bird egg"; desc = "An egg that came out from a bird's butt."}
+				user.fart_egg = /obj/item/reagent_containers/food/snacks/egg/bird
+		if(user.fart_egg && user.egg_chance)
+			egg_fart = prob (user.egg_chance)
+
 	for(var/mob/living/M in get_turf(user))
 		if(M == user)
 			continue
@@ -40,9 +48,10 @@
 				"poots, singing <b>[M]</b>'s eyebrows!",
 				"humiliates <b>[M]</b> like never before!",
 				"gets real close to <b>[M]</b>'s face and cuts the cheese!")
+
 	if(egg_fart)
-		user.visible_message("<b>[user]</b> lays an egg.")
-		new fart_egg(user.loc)
+		new user.fart_egg(user.loc)
+		user.visible_message("<b>[user]</b> lays [user.fart_egg].")
 		return
 
 	if(!message)
