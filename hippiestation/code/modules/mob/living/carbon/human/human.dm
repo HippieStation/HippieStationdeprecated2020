@@ -22,3 +22,12 @@
 		return FALSE
 	else
 		return ..()
+
+/mob/living/carbon/human/
+	var/fart_egg = null
+	if(user.gender == FEMALE)
+		is_species(user, /datum/species/lizard)
+			fart_egg = /obj/item/reagent_containers/food/snacks/egg/lizard
+		is_species(user, /datum/species/bird)
+			fart_egg = /obj/item/reagent_containers/food/snacks/egg/bird
+		return	

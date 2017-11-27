@@ -8,6 +8,7 @@
 /datum/emote/living/carbon/fart/run_emote(mob/living/carbon/user, params)
 	var/fartsound = 'hippiestation/sound/effects/fart.ogg'
 	var/bloodkind = /obj/effect/decal/cleanable/blood
+	var/egg_fart = FALSE
 	message = null
 	if(user.stat != CONSCIOUS)
 		return
@@ -15,7 +16,9 @@
 	if(!B)
 		to_chat(user, "<span class='warning'>You don't have a butt!</span>")
 		return
-	var/lose_butt = prob(12)
+	var/lose_butt = prob(8)
+	if(!lose_butt && user.fart_egg)
+		egg_fart = prob (20)
 	for(var/mob/living/M in get_turf(user))
 		if(M == user)
 			continue
@@ -32,6 +35,11 @@
 				"poots, singing <b>[M]</b>'s eyebrows!",
 				"humiliates <b>[M]</b> like never before!",
 				"gets real close to <b>[M]</b>'s face and cuts the cheese!")
+	if(egg_fart)
+		user.visible_message("<b>[user]</b> lays [user.fart_egg].")
+		new user.fart_egg(user.loc)
+		return
+
 	if(!message)
 		message = pick(
 			"rears up and lets loose a fart of tremendous magnitude!",
