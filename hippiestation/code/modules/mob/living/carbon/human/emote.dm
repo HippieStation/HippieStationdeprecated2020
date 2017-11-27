@@ -50,8 +50,8 @@
 				"gets real close to <b>[M]</b>'s face and cuts the cheese!")
 
 	if(egg_fart)
-		new user.fart_egg(user.loc)
-		user.visible_message("<b>[user]</b> lays [user.fart_egg].")
+		var/atom/EGG = new user.fart_egg(user.loc)
+		user.visible_message("<b>[user]</b> lays [EGG.name].")
 		return
 
 	if(!message)
