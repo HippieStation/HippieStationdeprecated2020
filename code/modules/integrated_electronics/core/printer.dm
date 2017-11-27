@@ -8,7 +8,7 @@
 	var/can_clone = FALSE		// Same for above, but will allow the printer to duplicate a specific assembly.
 	var/current_category = null
 	var/list/program			// Currently loaded save, in form of list
-	var/enabled = 0
+	var/enabled = 0 //Hippie, Gets Erik to fuck off.
 
 /obj/item/device/integrated_circuit_printer/proc/check_interactivity(mob/user)
 	return user.canUseTopic(src, be_close = TRUE)
@@ -131,7 +131,7 @@
 		new build_type(get_turf(loc))
 
 	if(href_list["print"])
-		if(!CONFIG_GET(flag/ic_printing) || !enabled)
+		if(!CONFIG_GET(flag/ic_printing) || !enabled) //Added "|| !enabled" Gets Erik to fuck off.
 			to_chat(usr, "<span class='warning'>CentCom has disabled printing of custom circuitry due to recent allegations of copyright infringement.</span>")
 			return
 		switch(href_list["print"])
