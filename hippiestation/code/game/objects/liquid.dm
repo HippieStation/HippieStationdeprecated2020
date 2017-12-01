@@ -271,11 +271,15 @@
 	is_immersing = TRUE
 	active = TRUE//a moving atom can trigger a wake up as well
 	blocked = FALSE
+	if(old && isliving(AM))
+		var/mob/living/L = any
+		if(L.movement_type & FLYING)
+			return FALSE
+		L.fire_stacks = 0
+		L.on_fire = FALSE
 	if(iscarbon(AM) && old)
 		var/mob/living/carbon/C = AM
 		if(C.movement_type & FLYING)
-			return FALSE
-
 			return FALSE
 		var/turf/T = get_turf(src)
 		if(old.elevation > T.elevation && C.mob_has_gravity() && C.m_intent != MOVE_INTENT_WALK)
