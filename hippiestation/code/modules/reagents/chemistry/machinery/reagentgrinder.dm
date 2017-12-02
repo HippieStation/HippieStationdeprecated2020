@@ -292,7 +292,7 @@ var/list/global/blend_items = list (
 	/obj/item/coin/uranium = list("uranium" = 4),
 	/obj/item/coin/clown = list("banana" = 4),
 	/obj/item/stack/sheet/bluespace_crystal = list("bluespace = 20"),
-	/obj/item/ore/bluespace_crystal = list("bluespace = 20"), //This isn't a sheet actually, but you break it off
+	/obj/item/stack/ore/bluespace_crystal = list("bluespace = 20"), //This isn't a sheet actually, but you break it off
 
 	//Crayons (for overriding colours)
 	/obj/item/toy/crayon/red = list("redcrayonpowder" = 50),
