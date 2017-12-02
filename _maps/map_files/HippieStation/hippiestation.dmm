@@ -52472,7 +52472,6 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "cnQ" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 1;
 	name = "Air Outlet Pump";
