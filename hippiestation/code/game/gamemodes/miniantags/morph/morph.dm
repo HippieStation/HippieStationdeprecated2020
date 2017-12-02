@@ -9,10 +9,6 @@ mob/living/simple_animal/hostile/morph
 	melee_damage_upper = 35
 	armour_penetration = 100 //Pain
 
-/mob/living/simple_animal/hostile/morph/proc/assume(atom/movable/target)
-	melee_damage_lower = 10
-	melee_damage_upper = 10
-
 /mob/living/simple_animal/hostile/morph/AttackingTarget()
 	if(isliving(target))
 		var/mob/living/L = target
