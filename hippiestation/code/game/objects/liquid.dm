@@ -31,7 +31,10 @@
 		shuffle_inplace(liquids)//randomise
 		for(var/I in liquids)//primary loop
 			var/obj/effect/liquid/L = I
-			if(L.depth > 0)
+			if(L.depth <= 1)
+				qdel(L)
+				continue
+			else
 				INVOKE_ASYNC(L, /obj/effect/liquid.proc/equilibrate)//async to make it more natural
 				total_activity += L.cached_activity
 				average_viscosity += L.viscosity
@@ -42,13 +45,19 @@
 			var/turf/T = get_turf(L)
 			if(T && L.is_immersing)
 				var/check = 0
-				for(var/obj/O in T.contents)
-					L.immerse_obj(O)
-					if(O != src)
+				for(var/_A in T.contents)
+					if(!isatom(_A))
+						continue
+					var/atom/A = _A
+					if(isobj(A))
+						var/obj/O = A
+						L.immerse_obj(O)
+						if(O != src)
+							check++
+					if(ismob(A))
+						var/mob/M = A
+						L.immerse_mob(M)
 						check++
-				for(var/mob/M in T.contents)
-					L.immerse_mob(M)
-					check++
 				if(!check)
 					L.is_immersing = FALSE
 
@@ -73,10 +82,10 @@
 	name = "liquid"
 	desc = "Looks wet."
 	icon = 'hippiestation/icons/obj/liquid.dmi'
-	icon_state = "fulltile_deep"
+	icon_state = "liquid0"
 	alpha = 100
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	layer = LOW_OBJ_LAYER
+	layer = ABOVE_MOB_LAYER
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/viscosity = 0//affects the spread and general properties of the liquid
 	var/depth = 0//how much liquid is on this tile
@@ -98,7 +107,26 @@
 	var/atom/movable/AM = locate() in T//since crossed doesn't work if the liquid is the one doing the 'moving'
 	if(AM)
 		is_immersing = TRUE
+	update_overlays()
 
+
+/obj/effect/liquid/proc/update_overlays()
+	var/l_layer = LOW_OBJ_LAYER
+	var/m_layer = LOW_OBJ_LAYER
+	var/h_layer = LOW_OBJ_LAYER
+	if(depth > 2)
+		l_layer = ABOVE_MOB_LAYER
+	if(depth > 5)
+		m_layer = ABOVE_MOB_LAYER
+	if(depth > 9)
+		h_layer = ABOVE_MOB_LAYER
+	cut_overlays()
+	var/mutable_appearance/low_water = mutable_appearance(icon, "liquid1", l_layer)
+	var/mutable_appearance/mid_water = mutable_appearance(icon, "liquid2", m_layer)
+	var/mutable_appearance/high_water = mutable_appearance(icon, "liquid3", h_layer)
+	add_overlay(low_water)
+	add_overlay(mid_water)
+	add_overlay(high_water)
 
 /obj/effect/liquid/proc/get_pool()
 	if(!pool)
@@ -115,6 +143,7 @@
 	if(!active)
 		return
 
+	update_overlays()
 	var/turf/OT = get_turf(src)
 	if(!OT)
 		return//this is stuck here to HUGELY reduce the amount of unneeded immersed calls
@@ -189,10 +218,11 @@
 		blocked = TRUE
 	else
 		blocked = FALSE
+	update_overlays()
 
 /obj/effect/liquid/proc/update_depth()
 	alpha = LERP(100, 240, depth / 15)
-	layer = LERP(LOW_OBJ_LAYER, FLY_LAYER, depth / 15)
+	update_overlays()
 
 	if(!active && depth <= 1)//something called this but we either gained no depth or lost depth so do not continue
 		return
@@ -215,7 +245,7 @@
 		var/mixcolor = mix_color_from_reagents(reagents.reagent_list)
 		add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
 		reagents.handle_reactions()
-
+	update_overlays()
 
 /obj/effect/liquid/proc/immerse_mob(mob/any)
 	if(iscarbon(any) && reagents)
@@ -329,3 +359,13 @@
 			for(var/I in reagents.reagent_list)
 				var/datum/reagent/R = I
 				R.handle_state_change(get_turf(src), R.volume)
+
+/mob/living/handle_fire()
+	if(!isturf(loc))
+		return ..()
+	var/turf/T = loc
+	var/obj/effect/liquid/L = (/obj/effect/liquid in T.contents)
+	if(L && L.depth > 2)
+		ExtinguishMob()
+		return
+	return ..()
