@@ -1,6 +1,7 @@
-#define LIQUID_TICKS_UNTIL_THROTTLE 50
-#define LIQUID_TICKS_UNTIL_WAKE_UP 200 //failsafe to make sure sleeping liquids aren't failing to distribute depth
-#define REAGENT_TO_DEPTH 4//one 'depth' per 4u
+#define LIQUID_TICKS_UNTIL_EVAPORATION 400
+#define LIQUID_TICKS_UNTIL_THROTTLE 100
+#define LIQUID_TICKS_UNTIL_WAKE_UP 800 //failsafe to make sure sleeping liquids aren't failing to distribute depth
+#define REAGENT_TO_DEPTH 6//one 'depth' per 6u
 #define MAX_INITIAL_DEPTH 25
 #define LERP(a, b, amount) (amount ? (a + (b - a) * amount) : (a + (b - a) * 0.5))
 
@@ -11,16 +12,15 @@
 	var/spread_time = 0
 	var/counter = 0
 	var/average_viscosity = 0
+	var/volatile = TRUE//does it evaporate on its own?
 
 /datum/liquid_pool/New()
 	..()
-	LAZYADD(SSliquids.pools, src)
 	START_PROCESSING(SSliquids, src)
 
 /datum/liquid_pool/Destroy()
 	for(var/I in liquids)
 		qdel(I)
-	LAZYREMOVE(SSliquids.pools, src)
 	STOP_PROCESSING(SSliquids, src)
 	return ..()
 
@@ -52,21 +52,33 @@
 				if(!check)
 					L.is_immersing = FALSE
 
-		if(counter >= LIQUID_TICKS_UNTIL_THROTTLE)
-			if(total_activity <= 4)
-				throttle = 10
-			else
-				throttle = 0
-			total_activity = 0
-		if(counter >= LIQUID_TICKS_UNTIL_WAKE_UP)
-			for(var/I in liquids)
-				var/obj/effect/liquid/L = I
-				L.active = TRUE
-				L.blocked = FALSE
-			counter = 0
 		if(average_viscosity && LAZYLEN(liquids))//fucking division by zero shit
 			average_viscosity = max(average_viscosity / LAZYLEN(liquids), 0.1)
-		spread_time = world.time + throttle + average_viscosity
+			spread_time = world.time + throttle + average_viscosity
+
+	if(counter >= LIQUID_TICKS_UNTIL_THROTTLE)
+		if(total_activity <= 4)
+			throttle = 10
+		else
+			throttle = 0
+		total_activity = 0
+	if(counter == LIQUID_TICKS_UNTIL_EVAPORATION && volatile)
+		for(var/I in liquids)
+			var/obj/effect/liquid/L = I
+			if(prob(30) && !L.is_static)
+				L.depth--
+				if(L.depth < 1)
+					qdel(L)
+				else
+					L.update_depth()
+	if(counter >= LIQUID_TICKS_UNTIL_WAKE_UP)
+		for(var/I in liquids)
+			var/obj/effect/liquid/L = I
+			L.active = TRUE
+			L.blocked = FALSE
+
+
+
 
 
 /obj/effect/liquid
@@ -78,9 +90,9 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	layer = LOW_OBJ_LAYER
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	pass_flags = PASSTABLE | PASSGRILLE
 	var/viscosity = 0//affects the spread and general properties of the liquid
 	var/depth = 0//how much liquid is on this tile
-	var/volatile = FALSE//does it evaporate on its own?
 	var/spread_rate = 1//self explanatory
 	var/is_static = FALSE//a static liquid will never lose volume and will only add to other liquids, good for permanent liquid sources
 	var/datum/liquid_pool/pool //a pool is a group of interconnected liquid tiles that process together, this is used for organisation and optimisation
@@ -127,7 +139,7 @@
 		qdel(src)
 		return
 	if(prob(25) && reagents)
-		reagents.reaction(OT, TOUCH, 0.05 * depth)
+		reagents.reaction(OT, TOUCH, 0.1 * depth)
 
 	if(depth < 2)
 		return
@@ -182,7 +194,7 @@
 		cached_activity++
 		block_counter--
 		for(var/atom/movable/AM in OT)
-			if(prob(50) && !AM.anchored && !AM.pulledby && AM != src)
+			if(depth >= 3 && prob(50) && !AM.anchored && !AM.pulledby && AM != src)
 				step_to(AM, T)
 
 	if(block_counter >= cached_turfs_len)//all adjacent turfs are flagged as blocked
@@ -297,9 +309,9 @@
 
 		if(C.getStaminaLoss() < 85)
 			if(depth < 7)
-				C.adjustStaminaLoss(0.4 * viscosity)
+				C.adjustStaminaLoss(0.2 * viscosity)
 			else
-				C.adjustStaminaLoss(0.8 * viscosity)
+				C.adjustStaminaLoss(0.4 * viscosity)
 
 		if(prob(25))
 			var/obj/effect/splash/S = new /obj/effect/splash(T)
@@ -317,9 +329,23 @@
 /obj/effect/liquid/Destroy()
 	if(pool)
 		LAZYREMOVE(pool.liquids, src)
-	qdel(reagents)
-	return ..()
 
+	if(prob(50) && reagents)
+		var/turf/T = get_turf(src)
+		var/obj/effect/decal/cleanable/chempile/c = locate() in T//handles merging existing chempiles
+		if(c && c.reagents)
+			reagents.trans_to(c, max(reagents.total_volume * 0.25, 0.1))
+			var/mixcolor = mix_color_from_reagents(c.reagents.reagent_list)
+			c.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
+			if(c.reagents && c.reagents.total_volume < 5 & REAGENT_NOREACT)
+				c.reagents.set_reacting(TRUE)
+		else
+			var/obj/effect/decal/cleanable/chempile/C = new /obj/effect/decal/cleanable/chempile(T)//otherwise makes a new one
+			reagents.trans_to(C, max(reagents.total_volume * 0.25, 0.1))
+			var/mixcolor = mix_color_from_reagents(C.reagents.reagent_list)
+			C.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
+
+	return ..()
 
 /obj/effect/liquid/fire_act(exposed_temperature, exposed_volume)
 	..()
@@ -329,3 +355,4 @@
 			for(var/I in reagents.reagent_list)
 				var/datum/reagent/R = I
 				R.handle_state_change(get_turf(src), R.volume)
+			qdel(src)
