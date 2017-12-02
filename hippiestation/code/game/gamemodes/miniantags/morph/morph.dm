@@ -1,4 +1,4 @@
-#define MORPH_COOLDOWN 50
+#define MORPH_COOLDOWN 10
 
 mob/living/simple_animal/hostile/morph
 	speed = 1
