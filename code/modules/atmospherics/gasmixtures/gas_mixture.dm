@@ -6,7 +6,6 @@ What are the archived variables for?
 #define MINIMUM_HEAT_CAPACITY	0.0003
 #define QUANTIZE(variable)		(round(variable,0.0000001))/*I feel the need to document what happens here. Basically this is used to catch most rounding errors, however it's previous value made it so that
 															once gases got hot enough, most procedures wouldnt occur due to the fact that the mole counts would get rounded away. Thus, we lowered it a few orders of magnititude */
-
 GLOBAL_LIST_INIT(meta_gas_info, meta_gas_list()) //see ATMOSPHERICS/gas_types.dm
 GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 
@@ -401,6 +400,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 
 /datum/gas_mixture/react(turf/open/dump_location)
 	. = 0
+
 	reaction_results = new
 
 	var/list/cached_gases = gases
@@ -423,21 +423,9 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 					continue reaction_loop
 			//at this point, all minimum requirements for the reaction are satisfied.
 
-			/* currently no reactions have maximum requirements, so we can leave the checks commented out for a slight performance boost
-			var/list/max_reqs = reaction.max_requirements.Copy()
-			if((max_reqs["TEMP"] && temp > max_reqs["TEMP"]) \
-			|| (max_reqs["ENER"] && ener > max_reqs["ENER"]))
-				continue
-			max_reqs -= "TEMP"
-			max_reqs -= "ENER"
-
-			for(var/id in max_reqs)
-				if(cached_gases[id] && cached_gases[id][MOLES] > max_reqs[id])
-					continue reaction_loop
-			//at this point, all requirements for the reaction are satisfied. we can now react()
-			*/
-
 			. |= reaction.react(src, dump_location)
+			if (. & STOP_REACTIONS)
+				break
 	if(.)
 		garbage_collect()
 		if(temperature < TCMB) //just for safety

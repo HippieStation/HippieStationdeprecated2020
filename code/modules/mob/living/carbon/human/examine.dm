@@ -166,7 +166,7 @@
 		var/obj/item/bodypart/BP = X
 		missing -= BP.body_zone
 		for(var/obj/item/I in BP.embedded_objects)
-			msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] embedded in [t_his] [BP.name]!</B>\n"
+			msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] embedded in [t_his] [BP.name]! [I.pinned ? "It [t_has] pinned [t_him] down to \the [I.pinned]!" : ""]</B>\n" // Hippie - Show what embedded part has them pinned
 
 	//stores missing limbs
 	var/l_limbs_missing = 0
@@ -190,24 +190,30 @@
 		msg += "[t_He] [p_do()]n't seem all there.\n"
 
 	if(temp)
-		if(temp < 30)
+		if(temp < 25)
 			msg += "[t_He] [t_has] minor bruising.\n"
+		else if(temp < 50)
+			msg += "[t_He] [t_has] <b>moderate</b> bruising!\n"
 		else
 			msg += "<B>[t_He] [t_has] severe bruising!</B>\n"
 
 	temp = getFireLoss()
 	if(temp)
-		if(temp < 30)
+		if(temp < 25)
 			msg += "[t_He] [t_has] minor burns.\n"
+		else if (temp < 50)
+			msg += "[t_He] [t_has] <b>moderate</b> burns!\n"
 		else
 			msg += "<B>[t_He] [t_has] severe burns!</B>\n"
 
 	temp = getCloneLoss()
 	if(temp)
-		if(temp < 30)
+		if(temp < 25)
 			msg += "[t_He] [t_has] minor cellular damage.\n"
+		else if(temp < 50)
+			msg += "[t_He] [t_has] <b>moderate</b> cellular damage!\n"
 		else
-			msg += "<B>[t_He] [t_has] severe cellular damage.</B>\n"
+			msg += "<b>[t_He] [t_has] severe cellular damage!</b>\n"
 
 
 	if(fire_stacks > 0)
@@ -307,8 +313,8 @@
 				var/datum/data/record/R = find_record("name", perpname, GLOB.data_core.general)
 				if(R)
 					msg += "<span class='deptradio'>Rank:</span> [R.fields["rank"]]<br>"
-					msg += "<a href='?src=\ref[src];hud=1;photo_front=1'>\[Front photo\]</a> "
-					msg += "<a href='?src=\ref[src];hud=1;photo_side=1'>\[Side photo\]</a><br>"
+					msg += "<a href='?src=[REF(src)];hud=1;photo_front=1'>\[Front photo\]</a> "
+					msg += "<a href='?src=[REF(src)];hud=1;photo_side=1'>\[Side photo\]</a><br>"
 				if(istype(H.glasses, /obj/item/clothing/glasses/hud/health) || istype(CIH, /obj/item/organ/cyberimp/eyes/hud/medical))
 					var/cyberimp_detect
 					for(var/obj/item/organ/cyberimp/CI in internal_organs)
@@ -319,12 +325,12 @@
 						msg += cyberimp_detect
 					if(R)
 						var/health_r = R.fields["p_stat"]
-						msg += "<a href='?src=\ref[src];hud=m;p_stat=1'>\[[health_r]\]</a>"
+						msg += "<a href='?src=[REF(src)];hud=m;p_stat=1'>\[[health_r]\]</a>"
 						health_r = R.fields["m_stat"]
-						msg += "<a href='?src=\ref[src];hud=m;m_stat=1'>\[[health_r]\]</a><br>"
+						msg += "<a href='?src=[REF(src)];hud=m;m_stat=1'>\[[health_r]\]</a><br>"
 					R = find_record("name", perpname, GLOB.data_core.medical)
 					if(R)
-						msg += "<a href='?src=\ref[src];hud=m;evaluation=1'>\[Medical evaluation\]</a><br>"
+						msg += "<a href='?src=[REF(src)];hud=m;evaluation=1'>\[Medical evaluation\]</a><br>"
 
 
 				if(istype(H.glasses, /obj/item/clothing/glasses/hud/security) || istype(CIH, /obj/item/organ/cyberimp/eyes/hud/security))
@@ -336,11 +342,11 @@
 						if(R)
 							criminal = R.fields["criminal"]
 
-						msg += "<span class='deptradio'>Criminal status:</span> <a href='?src=\ref[src];hud=s;status=1'>\[[criminal]\]</a>\n"
-						msg += "<span class='deptradio'>Security record:</span> <a href='?src=\ref[src];hud=s;view=1'>\[View\]</a> "
-						msg += "<a href='?src=\ref[src];hud=s;add_crime=1'>\[Add crime\]</a> "
-						msg += "<a href='?src=\ref[src];hud=s;view_comment=1'>\[View comment log\]</a> "
-						msg += "<a href='?src=\ref[src];hud=s;add_comment=1'>\[Add comment\]</a>\n"
+						msg += "<span class='deptradio'>Criminal status:</span> <a href='?src=[REF(src)];hud=s;status=1'>\[[criminal]\]</a>\n"
+						msg += "<span class='deptradio'>Security record:</span> <a href='?src=[REF(src)];hud=s;view=1'>\[View\]</a> "
+						msg += "<a href='?src=[REF(src)];hud=s;add_crime=1'>\[Add crime\]</a> "
+						msg += "<a href='?src=[REF(src)];hud=s;view_comment=1'>\[View comment log\]</a> "
+						msg += "<a href='?src=[REF(src)];hud=s;add_comment=1'>\[Add comment\]</a>\n"
 	msg += "*---------*</span>"
 
 	to_chat(user, msg)

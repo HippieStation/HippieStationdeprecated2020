@@ -43,15 +43,13 @@
 	return -1
 
 /obj/item/device/radio/headset/syndicate //disguised to look like a normal headset for stealth ops
-	origin_tech = "syndicate=3"
 
 /obj/item/device/radio/headset/syndicate/alt //undisguised bowman with flash protection
 	name = "syndicate headset"
-	desc = "A syndicate headset that can be used to hear all radio frequencies. Protects ears from flashbangs.\nTo access the syndicate channel, use ; before speaking."
-	origin_tech = "syndicate=3"
+	desc = "A syndicate headset that can be used to hear all radio frequencies. Protects ears from flashbangs. \nTo access the syndicate channel, use ; before speaking."
 	icon_state = "syndie_headset"
 	item_state = "syndie_headset"
-	flags_2 = BANG_PROTECT_2
+	flags_2 = BANG_PROTECT_2 | NO_EMP_WIRES_2
 
 /obj/item/device/radio/headset/syndicate/alt/leader
 	name = "team leader headset"
@@ -62,7 +60,6 @@
 	make_syndie()
 
 /obj/item/device/radio/headset/binary
-	origin_tech = "syndicate=3"
 /obj/item/device/radio/headset/binary/Initialize()
 	. = ..()
 	qdel(keyslot)
@@ -80,7 +77,7 @@
 	desc = "This is used by your elite security force. Protects ears from flashbangs.\nTo access the security channel, use :s."
 	icon_state = "sec_headset_alt"
 	item_state = "sec_headset_alt"
-	flags_2 = BANG_PROTECT_2
+	flags_2 = BANG_PROTECT_2 | NO_EMP_WIRES_2
 
 /obj/item/device/radio/headset/headset_eng
 	name = "engineering radio headset"
@@ -132,7 +129,7 @@
 	desc = "The headset of the boss. Protects ears from flashbangs.\nChannels are as follows: :c - command, :s - security, :e - engineering, :u - supply, :v - service, :m - medical, :n - science."
 	icon_state = "com_headset_alt"
 	item_state = "com_headset_alt"
-	flags_2 = BANG_PROTECT_2
+	flags_2 = BANG_PROTECT_2 | NO_EMP_WIRES_2
 
 /obj/item/device/radio/headset/heads/rd
 	name = "\proper the research director's headset"
@@ -151,7 +148,7 @@
 	desc = "The headset of the man in charge of keeping order and protecting the station. Protects ears from flashbangs.\nTo access the security channel, use :s. For command, use :c."
 	icon_state = "com_headset_alt"
 	item_state = "com_headset_alt"
-	flags_2 = BANG_PROTECT_2
+	flags_2 = BANG_PROTECT_2 | NO_EMP_WIRES_2
 
 /obj/item/device/radio/headset/heads/ce
 	name = "\proper the chief engineer's headset"
@@ -205,7 +202,7 @@
 	icon_state = "cent_headset_alt"
 	item_state = "cent_headset_alt"
 	keyslot = null
-	flags_2 = BANG_PROTECT_2
+	flags_2 = BANG_PROTECT_2 | NO_EMP_WIRES_2
 
 /obj/item/device/radio/headset/ai
 	name = "\proper Integrated Subspace Transceiver "

@@ -161,7 +161,7 @@ ROBOTECH DELUXE
 		/obj/item/stock_parts/micro_laser = 5,
 		/obj/item/stock_parts/matter_bin = 5,
 		/obj/item/stock_parts/manipulator = 5,
-		/obj/item/stock_parts/console_screen = 5
+		/obj/item/stack/sheet/glass = 5
 		)
 
 /*
@@ -336,6 +336,7 @@ AUTODROBE
 		/obj/item/clothing/mask/rat/raven = 1,
 		/obj/item/clothing/mask/rat/jackal = 1,
 		/obj/item/clothing/mask/rat/fox = 1,
+		/obj/item/clothing/mask/frog = 2,
 		/obj/item/clothing/mask/rat/tribal = 1,
 		/obj/item/clothing/mask/rat = 1,
 		/obj/item/clothing/suit/apron/overalls = 1,

@@ -6,7 +6,7 @@
 			return 1
 	return 0
 
-
+// Hippie Start - mirrored this proc in the hippie _mobProcs.dm to allow for and cap at a maximum of three viruses.
 /mob/proc/CanContractDisease(datum/disease/D)
 	if(stat == DEAD)
 		return 0
@@ -21,14 +21,14 @@
 		return 0
 
 	return 1
-
+//Hippie end
 
 /mob/proc/ContactContractDisease(datum/disease/D)
 	if(!CanContractDisease(D))
 		return 0
 	AddDisease(D)
 
-
+//Hippie Start - mirrored this proc in the hippie _mobProcs.dm to removed the "a new disease kills any old disease infecting the host based on stats
 /mob/proc/AddDisease(datum/disease/D)
 	for(var/datum/disease/advance/P in viruses)
 		if(istype(D, /datum/disease/advance))
@@ -54,7 +54,7 @@
 				DD.vars[V] = D.vars[V]
 
 		DD.affected_mob.med_hud_set_status()
-
+//Hippie end
 
 /mob/living/carbon/ContactContractDisease(datum/disease/D, target_zone)
 	if(!CanContractDisease(D))
@@ -143,14 +143,25 @@
 //Proc to use when you 100% want to infect someone, as long as they aren't immune
 /mob/proc/ForceContractDisease(datum/disease/D)
 	if(!CanContractDisease(D))
-		return 0
+		return FALSE
 	AddDisease(D)
 
 
 /mob/living/carbon/human/CanContractDisease(datum/disease/D)
-	if(dna && (VIRUSIMMUNE in dna.species.species_traits) && !D.bypasses_immunity)
-		return 0
+
+	if(dna)
+		if((VIRUSIMMUNE in dna.species.species_traits) && !D.bypasses_immunity)
+			return FALSE
+
+		var/can_infect = FALSE
+		for(var/host_type in D.infectable_hosts)
+			if(host_type in dna.species.species_traits)
+				can_infect = TRUE
+				break
+		if(!can_infect)
+			return FALSE
+
 	for(var/thing in D.required_organs)
 		if(!((locate(thing) in bodyparts) || (locate(thing) in internal_organs)))
-			return 0
+			return FALSE
 	return ..()

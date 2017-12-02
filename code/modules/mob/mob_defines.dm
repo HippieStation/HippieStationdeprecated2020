@@ -27,7 +27,7 @@
 	var/damageoverlaytemp = 0
 	var/computer_id = null
 	var/lastattacker = null
-	var/lastattacked = null
+	var/lastattackerckey = null
 	var/list/logging = list(INDIVIDUAL_ATTACK_LOG, INDIVIDUAL_SAY_LOG, INDIVIDUAL_EMOTE_LOG, INDIVIDUAL_OOC_LOG)
 	var/obj/machinery/machine = null
 	var/other_mobs = null
@@ -45,6 +45,7 @@
 	var/slurring = 0		//Carbon
 	var/cultslurring = 0	//Carbon
 	var/real_name = null
+	var/spacewalk = FALSE
 	var/druggy = 0			//Carbon
 	var/confused = 0		//Carbon
 	var/resting = 0			//Carbon
@@ -108,9 +109,6 @@
 
 	var/list/mob_spell_list = list() //construct spells and mime spells. Spells that do not transfer from one mob to another and can not be lost in mindswap.
 
-//Changlings, but can be used in other modes
-//	var/obj/effect/proc_holder/changpower/list/power_list = list()
-
 //List of active diseases
 
 	var/list/viruses = list() // list of all diseases in a mob
@@ -133,14 +131,11 @@
 
 	var/turf/listed_turf = null	//the current turf being examined in the stat panel
 
-	var/list/permanent_huds = list()
-
 	var/resize = 1 //Badminnery resize
 
 	var/list/observers = null	//The list of people observing this mob.
 
 	var/list/progressbars = null	//for stacking do_after bars
-	var/list/can_ride_typecache = list()
 
 	var/list/mousemove_intercept_objects
 

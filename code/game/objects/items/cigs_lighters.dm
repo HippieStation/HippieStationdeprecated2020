@@ -24,7 +24,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/burnt = FALSE
 	var/smoketime = 5
 	w_class = WEIGHT_CLASS_TINY
-	origin_tech = "materials=1"
 	heat = 1000
 
 /obj/item/match/process()
@@ -301,6 +300,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	item_state = "spliffoff"
 	smoketime = 180
 	chem_volume = 50
+	list_reagents = null
 
 /obj/item/clothing/mask/cigarette/rollie/New()
 	..()

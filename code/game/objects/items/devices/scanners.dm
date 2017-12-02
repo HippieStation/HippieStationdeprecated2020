@@ -2,10 +2,8 @@
 /*
 CONTAINS:
 T-RAY
-DETECTIVE SCANNER
 HEALTH ANALYZER
 GAS ANALYZER
-MASS SPECTROMETER
 
 */
 /obj/item/device/t_scanner
@@ -19,7 +17,6 @@ MASS SPECTROMETER
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	materials = list(MAT_METAL=150)
-	origin_tech = "magnets=1;engineering=1"
 
 /obj/item/device/t_scanner/attack_self(mob/user)
 
@@ -35,7 +32,10 @@ MASS SPECTROMETER
 		var/image/I = new(loc = get_turf(pipe))
 		var/mutable_appearance/MA = new(pipe)
 		MA.alpha = 128
+		MA.dir = pipe.dir
 		I.appearance = MA
+		I.dir = pipe.dir
+		// Workaround for a weird bug with icon direction on T-Ray scan not matching the actual disposal pipe dir.
 		if(M.client)
 			flick_overlay(I, list(M.client), 8)
 
@@ -70,7 +70,6 @@ MASS SPECTROMETER
 	throw_speed = 3
 	throw_range = 7
 	materials = list(MAT_METAL=200)
-	origin_tech = "magnets=1;biotech=1"
 	var/mode = 1
 	var/scanmode = 0
 	var/advanced = FALSE
@@ -106,8 +105,8 @@ MASS SPECTROMETER
 
 
 // Used by the PDA medical scanner too
-/proc/healthscan(mob/living/user, mob/living/M, mode = 1, advanced = FALSE)
-	if(user.incapacitated() || user.eye_blind)
+/proc/healthscan(mob/user, mob/living/M, mode = 1, advanced = FALSE)
+	if(isliving(user) && (user.incapacitated() || user.eye_blind))
 		return
 	//Damage specifics
 	var/oxy_loss = M.getOxyLoss()
@@ -275,18 +274,17 @@ MASS SPECTROMETER
 			to_chat(user, "<span class='notice'>[cyberimp_detect]</span>")
 
 /proc/chemscan(mob/living/user, mob/living/M)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.reagents)
-			if(H.reagents.reagent_list.len)
+	if(istype(M))
+		if(M.reagents)
+			if(M.reagents.reagent_list.len)
 				to_chat(user, "<span class='notice'>Subject contains the following reagents:</span>")
-				for(var/datum/reagent/R in H.reagents.reagent_list)
+				for(var/datum/reagent/R in M.reagents.reagent_list)
 					to_chat(user, "<span class='notice'>[R.volume] units of [R.name][R.overdosed == 1 ? "</span> - <span class='boldannounce'>OVERDOSING</span>" : ".</span>"]")
 			else
 				to_chat(user, "<span class='notice'>Subject contains no reagents.</span>")
-			if(H.reagents.addiction_list.len)
+			if(M.reagents.addiction_list.len)
 				to_chat(user, "<span class='boldannounce'>Subject is addicted to the following reagents:</span>")
-				for(var/datum/reagent/R in H.reagents.addiction_list)
+				for(var/datum/reagent/R in M.reagents.addiction_list)
 					to_chat(user, "<span class='danger'>[R.name]</span>")
 			else
 				to_chat(user, "<span class='notice'>Subject is not addicted to any reagents.</span>")
@@ -309,7 +307,6 @@ MASS SPECTROMETER
 	name = "advanced health analyzer"
 	icon_state = "health_adv"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject with high accuracy."
-	origin_tech = "magnets=3;biotech=3"
 	advanced = TRUE
 
 /obj/item/device/analyzer
@@ -326,7 +323,6 @@ MASS SPECTROMETER
 	throw_speed = 3
 	throw_range = 7
 	materials = list(MAT_METAL=30, MAT_GLASS=20)
-	origin_tech = "magnets=1;engineering=1"
 
 /obj/item/device/analyzer/attack_self(mob/user)
 
@@ -388,69 +384,6 @@ MASS SPECTROMETER
 		to_chat(user, "<span class='info'>Temperature: [round(environment.temperature-T0C)] &deg;C</span>")
 
 
-/obj/item/device/mass_spectrometer
-	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
-	name = "mass-spectrometer"
-	icon_state = "spectrometer"
-	item_state = "analyzer"
-	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
-	w_class = WEIGHT_CLASS_SMALL
-	flags_1 = CONDUCT_1
-	slot_flags = SLOT_BELT
-	container_type = OPENCONTAINER_1
-	throwforce = 0
-	throw_speed = 3
-	throw_range = 7
-	materials = list(MAT_METAL=150, MAT_GLASS=100)
-	origin_tech = "magnets=2;biotech=1;plasmatech=2"
-	var/details = 0
-
-/obj/item/device/mass_spectrometer/New()
-	..()
-	create_reagents(5)
-
-/obj/item/device/mass_spectrometer/on_reagent_change()
-	if(reagents.total_volume)
-		icon_state = initial(icon_state) + "_s"
-	else
-		icon_state = initial(icon_state)
-
-/obj/item/device/mass_spectrometer/attack_self(mob/user)
-	if (user.stat || user.eye_blind)
-		return
-	if (!user.IsAdvancedToolUser())
-		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
-		return
-	if(reagents.total_volume)
-		var/list/blood_traces = list()
-		for(var/datum/reagent/R in reagents.reagent_list)
-			if(R.id != "blood")
-				reagents.clear_reagents()
-				to_chat(user, "<span class='warning'>The sample was contaminated! Please insert another sample.</span>")
-				return
-			else
-				blood_traces = params2list(R.data["trace_chem"])
-				break
-		var/dat = "<i><b>Trace Chemicals Found:</b>"
-		if(!blood_traces.len)
-			dat += "<br>None"
-		else
-			for(var/R in blood_traces)
-				dat += "<br>[GLOB.chemical_reagents_list[R]]"
-				if(details)
-					dat += " ([blood_traces[R]] units)"
-		dat += "</i>"
-		to_chat(user, dat)
-		reagents.clear_reagents()
-
-
-/obj/item/device/mass_spectrometer/adv
-	name = "advanced mass-spectrometer"
-	icon_state = "adv_spectrometer"
-	details = 1
-	origin_tech = "magnets=4;biotech=3;plasmatech=3"
-
 /obj/item/device/slime_scanner
 	name = "slime scanner"
 	desc = "A device that analyzes a slime's internal composition and measures its stats."
@@ -458,7 +391,6 @@ MASS SPECTROMETER
 	item_state = "analyzer"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
-	origin_tech = "biotech=2"
 	w_class = WEIGHT_CLASS_SMALL
 	flags_1 = CONDUCT_1
 	throwforce = 0

@@ -19,6 +19,7 @@
 	var/probability = 0
 	var/false_report_weight = 0 //How often will this show up incorrectly in a centcom report?
 	var/station_was_nuked = 0 //see nuclearbomb.dm and malfunction.dm
+	var/nuke_off_station = 0 //Used for tracking where the nuke hit
 	var/round_ends_with_antag_death = 0 //flags the "one verse the station" antags as such
 	var/list/datum/mind/antag_candidates = list()	// List of possible starting antags goes here
 	var/list/restricted_jobs = list()	// Jobs it doesn't make sense to be.  I.E chaplain or AI cultist
@@ -161,7 +162,7 @@
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
 		replacementmode.restricted_jobs += "Assistant"
 
-	message_admins("The roundtype will be converted. If you have other plans for the station or feel the station is too messed up to inhabit <A HREF='?_src_=holder;[HrefToken()];toggle_midround_antag=\ref[usr]'>stop the creation of antags</A> or <A HREF='?_src_=holder;[HrefToken()];end_round=\ref[usr]'>end the round now</A>.")
+	message_admins("The roundtype will be converted. If you have other plans for the station or feel the station is too messed up to inhabit <A HREF='?_src_=holder;[HrefToken()];toggle_midround_antag=[REF(usr)]'>stop the creation of antags</A> or <A HREF='?_src_=holder;[HrefToken()];end_round=[REF(usr)]'>end the round now</A>.")
 
 	. = 1
 	sleep(rand(600,1800))
@@ -174,7 +175,8 @@
 		round_converted = 0
 		return 1
 	for(var/mob/living/carbon/human/H in antag_candidates)
-		replacementmode.make_antag_chance(H)
+		if(H.client)
+			replacementmode.make_antag_chance(H)
 	round_converted = 2
 	message_admins("-- IMPORTANT: The roundtype has been converted to [replacementmode.name], antagonists may have been created! --")
 
@@ -217,7 +219,7 @@
 		if(living_antag_player && living_antag_player.mind && isliving(living_antag_player) && living_antag_player.stat != DEAD && !isnewplayer(living_antag_player) &&!isbrain(living_antag_player))
 			return 0 //A resource saver: once we find someone who has to die for all antags to be dead, we can just keep checking them, cycling over everyone only when we lose our mark.
 
-		for(var/mob/Player in GLOB.living_mob_list)
+		for(var/mob/Player in GLOB.alive_mob_list)
 			if(Player.mind && Player.stat != DEAD && !isnewplayer(Player) &&!isbrain(Player) && Player.client)
 				if(Player.mind.special_role || LAZYLEN(Player.mind.antag_datums)) //Someone's still antaging!
 					living_antag_player = Player
@@ -266,18 +268,19 @@
 			if(isobserver(M))
 				ghosts++
 
-	if(clients > 0)
-		SSblackbox.set_val("round_end_clients",clients)
-	if(ghosts > 0)
-		SSblackbox.set_val("round_end_ghosts",ghosts)
-	if(surviving_humans > 0)
-		SSblackbox.set_val("survived_human",surviving_humans)
-	if(surviving_total > 0)
-		SSblackbox.set_val("survived_total",surviving_total)
-	if(escaped_humans > 0)
-		SSblackbox.set_val("escaped_human",escaped_humans)
-	if(escaped_total > 0)
-		SSblackbox.set_val("escaped_total",escaped_total)
+	if(clients)
+		SSblackbox.record_feedback("nested tally", "round_end_stats", clients, list("clients"))
+	if(ghosts)
+		SSblackbox.record_feedback("nested tally", "round_end_stats", ghosts, list("ghosts"))
+	if(surviving_humans)
+		SSblackbox.record_feedback("nested tally", "round_end_stats", surviving_humans, list("survivors", "human"))
+	if(surviving_total)
+		SSblackbox.record_feedback("nested tally", "round_end_stats", surviving_total, list("survivors", "total"))
+	if(escaped_humans)
+		SSblackbox.record_feedback("nested tally", "round_end_stats", escaped_humans, list("escapees", "human"))
+	if(escaped_total)
+		SSblackbox.record_feedback("nested tally", "round_end_stats", escaped_total, list("escapees", "total"))
+
 	send2irc("Server", "Round just ended.")
 	if(cult.len && !istype(SSticker.mode, /datum/game_mode/cult))
 		datum_cult_completion()
@@ -408,16 +411,11 @@
 //////////////////////////
 /proc/display_roundstart_logout_report()
 	var/msg = "<span class='boldnotice'>Roundstart logout report\n\n</span>"
-	for(var/mob/living/L in GLOB.mob_list)
+	for(var/i in GLOB.mob_living_list)
+		var/mob/living/L = i
 
-		if(L.ckey)
-			var/found = 0
-			for(var/client/C in GLOB.clients)
-				if(C.ckey == L.ckey)
-					found = 1
-					break
-			if(!found)
-				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='#ffcc00'><b>Disconnected</b></font>)\n"
+		if(L.ckey && !GLOB.directory[L.ckey])
+			msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='#ffcc00'><b>Disconnected</b></font>)\n"
 
 
 		if(L.ckey && L.client)
@@ -453,10 +451,8 @@
 						continue //Ghosted while alive
 
 
-
-	for(var/mob/M in GLOB.mob_list)
-		if(M.client && check_rights_for(M.client, R_ADMIN))
-			to_chat(M, msg)
+	for (var/C in GLOB.admins)
+		to_chat(C, msg)
 
 /datum/game_mode/proc/printplayer(datum/mind/ply, fleecheck)
 	var/text = "<br><b>[ply.key]</b> was <b>[ply.name]</b> the <b>[ply.assigned_role]</b> and"
@@ -465,8 +461,10 @@
 			text += " <span class='boldannounce'>died</span>"
 		else
 			text += " <span class='greenannounce'>survived</span>"
-		if(fleecheck && (!(ply.current.z in GLOB.station_z_levels)))
-			text += " while <span class='boldannounce'>fleeing the station</span>"
+		if(fleecheck)
+			var/turf/T = get_turf(ply.current)
+			if(!T || !(T.z in GLOB.station_z_levels))
+				text += " while <span class='boldannounce'>fleeing the station</span>"
 		if(ply.current.real_name != ply.name)
 			text += " as <b>[ply.current.real_name]</b>"
 	else
@@ -533,5 +531,6 @@
 
 //By default nuke just ends the round
 /datum/game_mode/proc/OnNukeExplosion(off_station)
+	nuke_off_station = off_station
 	if(off_station < 2)
 		station_was_nuked = TRUE //Will end the round on next check.
