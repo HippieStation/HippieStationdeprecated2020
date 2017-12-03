@@ -1,16 +1,16 @@
-#define LIQUID_TICKS_UNTIL_THROTTLE 50
-#define LIQUID_TICKS_UNTIL_WAKE_UP 200 //failsafe to make sure sleeping liquids aren't failing to distribute depth
-#define REAGENT_TO_DEPTH 4//one 'depth' per 4u
+#define LIQUID_TICKS_UNTIL_EVAPORATION 400
+#define REAGENT_TO_DEPTH 6//one 'depth' per 6u
+#define MAXIMUM_ACTIVITY 1000//if activity goes above max stop this pool
 #define MAX_INITIAL_DEPTH 25
 #define LERP(a, b, amount) (amount ? (a + (b - a) * amount) : (a + (b - a) * 0.5))
 
 /datum/liquid_pool//abstract shit to manage pools of liquid
-	var/total_activity //cached activity for last 50 runs
 	var/list/liquids = list()
-	var/throttle = 0//we throttle inactive pools
 	var/spread_time = 0
 	var/counter = 0
 	var/average_viscosity = 0
+	var/volatile = TRUE//does it evaporate on its own?
+	var/total_activity
 
 /datum/liquid_pool/New()
 	..()
@@ -29,11 +29,13 @@
 		shuffle_inplace(liquids)//randomise
 		for(var/I in liquids)//primary loop
 			var/obj/effect/liquid/L = I
-			if(L.depth > 0)
+			if(L.depth < 1)
+				qdel(L)
+			if(L.active)
 				INVOKE_ASYNC(L, /obj/effect/liquid.proc/equilibrate)//async to make it more natural
 				total_activity += L.cached_activity
 				average_viscosity += L.viscosity
-			if(L.blocked && L.cached_activity == 0 || L.depth <= 1)//we could have a situation where a liquid of high depth is trapped by dense atoms so it's better to have this affect liquids of any depth that aren't doing anything
+			if(L.cached_activity == 0 || L.depth <= 1)//we could have a situation where a liquid of high depth is trapped by dense atoms so it's better to have this affect liquids of any depth that aren't doing anything
 				L.active = FALSE
 
 			L.cached_activity = 0
@@ -50,22 +52,21 @@
 				if(!check)
 					L.is_immersing = FALSE
 
-		if(counter >= LIQUID_TICKS_UNTIL_THROTTLE)
-			if(total_activity <= 4)
-				throttle = 10
-			else
-				throttle = 0
-			total_activity = 0
-		if(counter >= LIQUID_TICKS_UNTIL_WAKE_UP)
-			for(var/I in liquids)
-				var/obj/effect/liquid/L = I
-				L.active = TRUE
-				L.blocked = FALSE
-			counter = 0
 		if(average_viscosity && LAZYLEN(liquids))//fucking division by zero shit
 			average_viscosity = max(average_viscosity / LAZYLEN(liquids), 0.1)
-		spread_time = world.time + throttle + average_viscosity
+			spread_time = world.time + average_viscosity
 
+	if(counter == LIQUID_TICKS_UNTIL_EVAPORATION && volatile)
+		for(var/I in liquids)
+			var/obj/effect/liquid/L = I
+			if(prob(30) && !L.is_static)
+				L.depth--
+				L.update_depth()
+
+	if(total_activity > MAXIMUM_ACTIVITY)
+		qdel(src)
+
+	total_activity = 0
 
 /obj/effect/liquid
 	name = "liquid"
@@ -76,16 +77,15 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	layer = LOW_OBJ_LAYER
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	pass_flags = PASSTABLE | PASSGRILLE
 	var/viscosity = 0//affects the spread and general properties of the liquid
 	var/depth = 0//how much liquid is on this tile
-	var/volatile = FALSE//does it evaporate on its own?
 	var/spread_rate = 1//self explanatory
 	var/is_static = FALSE//a static liquid will never lose volume and will only add to other liquids, good for permanent liquid sources
 	var/datum/liquid_pool/pool //a pool is a group of interconnected liquid tiles that process together, this is used for organisation and optimisation
 	var/cached_activity = 0//this is used to judge the activity of a pool, if it is 0 or close to 0 the processing for a pool will be throttled or stopped to save performance
 	var/is_immersing = FALSE //do we a share a tile with a mob or obj? reduces proc calls
 	var/active = TRUE//if it isn't doing much we wait for something to change
-	var/blocked = FALSE
 
 
 /obj/effect/liquid/Initialize()
@@ -110,9 +110,6 @@
 
 
 /obj/effect/liquid/proc/equilibrate()
-	if(!active)
-		return
-
 	var/turf/OT = get_turf(src)
 	if(!OT)
 		return//this is stuck here to HUGELY reduce the amount of unneeded immersed calls
@@ -125,14 +122,14 @@
 		qdel(src)
 		return
 	if(prob(25) && reagents)
-		reagents.reaction(OT, TOUCH, 0.05 * depth)
+		reagents.reaction(OT, TOUCH, 0.1 * depth)
 
 	if(depth < 2)
 		return
 	var/list/cached_turfs = OT.GetAtmosAdjacentTurfs()
 	var/cached_turfs_len = LAZYLEN(cached_turfs)
 	if(!cached_turfs_len)
-		blocked = TRUE
+		active = FALSE
 		return
 	var/block_counter = 0
 
@@ -145,6 +142,7 @@
 		if(depth + OT.elevation < T.elevation)
 			continue
 		if(LT && depth > 1)
+			LT.active = TRUE
 			if(LT == src || LT.depth >= depth || LT.is_static || (LT.depth + T.elevation) >= (depth + OT.elevation) || !reagents)
 				block_counter++
 				continue
@@ -180,13 +178,13 @@
 		cached_activity++
 		block_counter--
 		for(var/atom/movable/AM in OT)
-			if(prob(50) && !AM.anchored && !AM.pulledby && AM != src)
+			if(depth >= 3 && prob(50) && !AM.anchored && !AM.pulledby && AM != src)
 				step_to(AM, T)
 
 	if(block_counter >= cached_turfs_len)//all adjacent turfs are flagged as blocked
-		blocked = TRUE
+		active = FALSE
 	else
-		blocked = FALSE
+		active = TRUE
 
 /obj/effect/liquid/proc/update_depth()
 	alpha = LERP(100, 240, depth / 15)
@@ -212,8 +210,6 @@
 			viscosity += Clamp(R.viscosity * (round(R.volume / reagents.total_volume, 0.1)), 0.1, 20)
 		var/mixcolor = mix_color_from_reagents(reagents.reagent_list)
 		add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
-		reagents.handle_reactions()
-
 
 /obj/effect/liquid/proc/immerse_mob(mob/any)
 	if(iscarbon(any) && reagents)
@@ -259,7 +255,6 @@
 
 /obj/effect/liquid/proc/activate()
 	active = TRUE
-	blocked = FALSE
 	for(var/obj/effect/liquid/L in orange(1, src))
 		if(L.depth > 1 && L != src)
 			L.active = TRUE
@@ -268,7 +263,6 @@
 /obj/effect/liquid/Crossed(atom/movable/AM, turf/old)
 	is_immersing = TRUE
 	active = TRUE//a moving atom can trigger a wake up as well
-	blocked = FALSE
 	if(iscarbon(AM) && old)
 		var/mob/living/carbon/C = AM
 		if(C.movement_type & FLYING)
@@ -295,9 +289,9 @@
 
 		if(C.getStaminaLoss() < 85)
 			if(depth < 7)
-				C.adjustStaminaLoss(0.4 * viscosity)
+				C.adjustStaminaLoss(0.2 * viscosity)
 			else
-				C.adjustStaminaLoss(0.8 * viscosity)
+				C.adjustStaminaLoss(0.4 * viscosity)
 
 		if(prob(25))
 			var/obj/effect/splash/S = new /obj/effect/splash(T)
@@ -315,9 +309,23 @@
 /obj/effect/liquid/Destroy()
 	if(pool)
 		LAZYREMOVE(pool.liquids, src)
-	qdel(reagents)
-	return ..()
 
+	if(prob(50) && reagents)
+		var/turf/T = get_turf(src)
+		var/obj/effect/decal/cleanable/chempile/c = locate() in T//handles merging existing chempiles
+		if(c && c.reagents)
+			reagents.trans_to(c, max(reagents.total_volume * 0.25, 0.1))
+			var/mixcolor = mix_color_from_reagents(c.reagents.reagent_list)
+			c.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
+			if(c.reagents && c.reagents.total_volume < 5 & REAGENT_NOREACT)
+				c.reagents.set_reacting(TRUE)
+		else
+			var/obj/effect/decal/cleanable/chempile/C = new /obj/effect/decal/cleanable/chempile(T)//otherwise makes a new one
+			reagents.trans_to(C, max(reagents.total_volume * 0.25, 0.1))
+			var/mixcolor = mix_color_from_reagents(C.reagents.reagent_list)
+			C.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
+
+	return ..()
 
 /obj/effect/liquid/fire_act(exposed_temperature, exposed_volume)
 	..()
@@ -327,3 +335,4 @@
 			for(var/I in reagents.reagent_list)
 				var/datum/reagent/R = I
 				R.handle_state_change(get_turf(src), R.volume)
+			qdel(src)

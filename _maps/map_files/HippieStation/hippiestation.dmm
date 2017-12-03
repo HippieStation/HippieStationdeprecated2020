@@ -39064,6 +39064,7 @@
 "bKy" = (
 /obj/item/storage/box/lights/mixed,
 /obj/item/storage/box/lights/mixed,
+/obj/machinery/fluid_pump,
 /turf/open/floor/plasteel,
 /area/janitor)
 "bKz" = (
@@ -62152,6 +62153,18 @@
 /obj/structure/drain,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"cIC" = (
+/obj/machinery/fluid_pump,
+/turf/open/floor/plating,
+/area/storage/emergency/port)
+"cID" = (
+/obj/machinery/fluid_pump,
+/turf/open/floor/plasteel,
+/area/engine/atmos)
+"cIE" = (
+/obj/machinery/fluid_pump,
+/turf/open/floor/plating,
+/area/engine/engineering)
 
 (1,1,1) = {"
 aaa
@@ -84374,7 +84387,7 @@ aQo
 aRG
 aTg
 aTe
-aVV
+cIC
 aXC
 aTe
 baG
@@ -88285,7 +88298,7 @@ cms
 ccN
 coq
 ckv
-cqH
+cIE
 cqH
 cqH
 cty
@@ -94951,7 +94964,7 @@ bVb
 bWg
 bXA
 bYK
-bUY
+cID
 caU
 bUY
 cda

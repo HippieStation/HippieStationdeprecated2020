@@ -763,8 +763,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	//open flame removed because vapes are a closed system, they wont light anything on fire
 
 	if(super && vapetime > 3)//Time to start puffing those fat vapes, yo.
-		var/datum/effect_system/smoke_spread/chem/s = new
-		s.set_up(reagents, 0, loc, silent=TRUE)
+		var/datum/effect_system/smoke_spread/chem/smoke_machine/s = new
+		s.set_up(reagents, 1, loc = M)
 		s.start()
 		vapetime = 0
 		if(prob(0.5))//Chance added to super vape pens too
@@ -777,7 +777,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			qdel(src)
 
 	if(emagged && vapetime > 3)
-		var/datum/effect_system/smoke_spread/chem/s = new
+		var/datum/effect_system/smoke_spread/chem/smoke_machine/s = new
 		s.set_up(reagents, 3, loc, silent=TRUE)
 		s.start()
 		vapetime = 0
