@@ -359,10 +359,11 @@
 
 
 /mob/living/carbon/human/ex_act(severity, target, origin)
-
 	if(origin && istype(origin, /datum/spacevine_mutation) && isvineimmune(src))
 		return
 	..()
+	if (!severity)
+		return
 	var/b_loss = 0
 	var/f_loss = 0
 	var/bomb_armor = getarmor(null, "bomb")
@@ -671,7 +672,7 @@
 				to_chat(src, "\t <span class='[status == "OK" ? "notice" : "warning"]'>Your [LB.name] is [status].</span>")
 
 				for(var/obj/item/I in LB.embedded_objects)
-					to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] embedded in your [LB.name]!</a>")
+					to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] embedded in your [LB.name]!</a> [I.pinned ? "It has also pinned you down!" : ""]") // Hippie - Show what object has them pinned
 
 			for(var/t in missing)
 				to_chat(src, "<span class='boldannounce'>Your [parse_zone(t)] is missing!</span>")
