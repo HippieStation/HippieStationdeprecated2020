@@ -1,6 +1,6 @@
 PROCESSING_SUBSYSTEM_DEF(liquids)
 	name = "Liquids"
-	wait = 1
+	wait = 5
 	priority = 15
 	stat_tag = "L"
 
