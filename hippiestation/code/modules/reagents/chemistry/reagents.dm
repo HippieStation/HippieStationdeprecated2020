@@ -86,13 +86,13 @@
 
 		for(var/obj/effect/liquid/L in T.contents)//handles merging existing liquids
 			if(L.reagents)
-				L.reagents.add_reagent("[src.id]", volume)
+				L.reagents.add_reagent("[src.id]", volume * 4)
 				L.depth = Clamp(L.depth + (volume / REAGENT_TO_DEPTH), 0, MAX_INITIAL_DEPTH)
 				L.update_depth()
 				return TRUE
 
 		var/obj/effect/liquid/W = new /obj/effect/liquid(T)//otherwise makes a new one
-		W.reagents.add_reagent("[src.id]", volume)
+		W.reagents.add_reagent("[src.id]", volume * 4)
 		W.depth = max(volume / REAGENT_TO_DEPTH, 0)
 		if(W.depth <= 0)
 			return

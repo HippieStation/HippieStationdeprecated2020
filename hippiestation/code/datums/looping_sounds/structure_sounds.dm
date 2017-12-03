@@ -5,3 +5,11 @@
 	mid_length = 8
 	end_sound = 'hippiestation/sound/misc/drain/drain-end.ogg'
 	volume = 40
+
+/datum/looping_sound/pump
+	start_sound = 'hippiestation/sound/machine/fluid_pump/fluid_pump-start.ogg'
+	start_length = 5
+	mid_sounds = list('hippiestation/sound/machine/fluid_pump/fluid_pump-mid1.ogg'=6, 'hippiestation/sound/machine/fluid_pump/fluid_pump-mid2.ogg'=6)
+	mid_length = 12
+	end_sound = 'hippiestation/sound/machine/fluid_pump/fluid_pump-end.ogg'
+	volume = 20
