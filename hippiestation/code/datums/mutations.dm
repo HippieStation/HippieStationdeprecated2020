@@ -70,3 +70,36 @@
 		var/y_offset = owner.pixel_y + rand(-1,1)
 		animate(owner, pixel_x = x_offset, pixel_y = y_offset, time = 1)
 		animate(owner, pixel_x = x_offset_old, pixel_y = y_offset_old, time = 1)
+
+/datum/mutation/human/esumsium
+
+	name = "Esumsium"
+	quality = NEGATIVE
+	dna_block = NON_SCANNABLE
+	text_gain_indication = "<span class='danger'>You feel like you're smarter than everyone else!</span>"
+
+/datum/mutation/human/esumsium/on_life(mob/living/carbon/human/owner)
+	if(prob(10) && owner.stat == CONSCIOUS)
+		owner.Stun(200)
+		switch(rand(1, 3))
+			if(1)
+				owner.emote("drool")
+			if(2 to 3)
+				owner.say("[prob(50) ? ";" : ""][pick("MY IQ 130", "LITTLE GIRLS", "U IQ 85 LOL", "INTERNET SIGMUND FREUD", "BLOCKED LOL", "", "PORT LIFEWEB", "HIPPIESTAYSHUN IS DED", "BLATANTLY OBVIOUS METAGAMING", "I PROMISE I'M NOT INSECURE I'M JUST BETTER THAN YOU", " I A ROBOT BEEPBOOP x3")]")
+		var/x_offset_old = owner.pixel_x
+		var/y_offset_old = owner.pixel_y
+		var/x_offset = owner.pixel_x + rand(-2,2)
+		var/y_offset = owner.pixel_y + rand(-1,1)
+		animate(owner, pixel_x = x_offset, pixel_y = y_offset, time = 1)
+		animate(owner, pixel_x = x_offset_old, pixel_y = y_offset_old, time = 1)
+
+	if((prob(15) && owner.IsUnconscious()))
+		owner.setBrainLoss(200) // thanks for letting me steal your code Creeper Joe
+		switch(rand(1, 6))
+			if(1)
+				owner.say(";I'M BETTER THAN ALL OF YOU AND DON'T NEED TO EXPLAIN WHY!!")
+			if(2 to 5)
+				owner.emote("scream")
+			if(6)
+				owner.Stun(1)
+				owner.Knockdown(20)
