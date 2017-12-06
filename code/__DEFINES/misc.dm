@@ -477,12 +477,9 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 #define NO_SPAWN 0
 #define HOSTILE_SPAWN 1
 #define FRIENDLY_SPAWN 2
-<<<<<<< HEAD
-=======
 
 #define RIDING_OFFSET_ALL "ALL"
 
 //Fullscreen overlay resolution in tiles.
 #define FULLSCREEN_OVERLAY_RESOLUTION_X 15
 #define FULLSCREEN_OVERLAY_RESOLUTION_Y 15
->>>>>>> 08504355d4... Adds support for non-1:1 screen ratios (Doesn't add widescreen) (#32950)
