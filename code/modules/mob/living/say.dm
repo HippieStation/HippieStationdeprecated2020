@@ -327,7 +327,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	return null
 
 /mob/living/proc/treat_message(message)
-	if(getBrainLoss() >= 60)
+	if(derpspeech)
 		message = derpspeech(message, stuttering)
 
 	if(stuttering)
@@ -375,7 +375,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		apply_damage(1, OXY)
 	else if(stuttering)
 		. = "stammers"
-	else if(getBrainLoss() >= 60)
+	else if(derpspeech)
 		. = "gibbers"
 	else
 		. = ..()
