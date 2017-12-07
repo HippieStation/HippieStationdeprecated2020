@@ -5,7 +5,12 @@
 	if(GLOB.say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
 		return
+<<<<<<< HEAD
 	usr.say(message)
+=======
+	if(message)
+		say(message)
+>>>>>>> 9798371b55... Merge pull request #33311 from optimumtact/meme
 
 
 /mob/verb/whisper_verb(message as text)
