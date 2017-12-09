@@ -26,6 +26,11 @@ map metastation
 	#voteweight 0.5
 endmap
 
+map metalake
+	minplayers 25
+	voteweight 1.25
+endmap
+
 map pubbystation
 endmap
 
