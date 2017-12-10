@@ -1,8 +1,8 @@
 #define MAX_SW_LUMS 0.2
 #define ALLOW_PULL_THROUGH_WALLS 0
 
-/proc/Is_ShadowWalkable(var/turf/loc)
-	return (loc.get_lumcount()==null || loc.get_lumcount() <= MAX_SW_LUMS)
+/proc/Is_ShadowWalkable(var/turf/T)
+	return (T.get_lumcount()==null || T.get_rgb_lumcount(r_mul = LIGHT_RED_MULTIPLIER, g_mul = LIGHT_GREEN_MULTIPLIER, b_mul = LIGHT_BLUE_MULTIPLIER) <= MAX_SW_LUMS)
 
 /proc/Can_ShadowWalk(var/mob/mob)
 	if(mob.shadow_walk)

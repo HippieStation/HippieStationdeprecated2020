@@ -162,8 +162,15 @@
 	if(!mob.Process_Spacemove(direct))
 		return FALSE
 
-	//We are now going to move
 	var/delay = mob.movement_delay()
+
+	if(Can_ShadowWalk(mob))
+		if(Process_ShadowWalk(direct))
+			return
+		else
+			delay = delay*SW_LIGHT_FACTOR
+
+	//We are now going to move
 	if(old_move_delay + (delay*MOVEMENT_DELAY_BUFFER_DELTA) + MOVEMENT_DELAY_BUFFER > world.time)
 		move_delay = old_move_delay + delay
 	else
@@ -188,7 +195,7 @@
 	if(LAZYLEN(mob.user_movement_hooks))
 		for(var/obj/O in mob.user_movement_hooks)
 			O.intercept_user_move(direct, mob, n, oldloc)
-	
+
 	var/atom/movable/P = mob.pulling
 	if(P && !ismob(P) && P.density)
 		mob.dir = turn(mob.dir, 180)
