@@ -108,6 +108,7 @@
 
 	. = list()
 
+<<<<<<< HEAD
 	var/xi
 	var/yi
 	for(var/dx=0, dx<width, ++dx)
@@ -154,6 +155,16 @@
 			xi = _x + (dx-dwidth)*cos - (dy-dheight)*sin
 			yi = _y + (dy-dheight)*cos + (dx-dwidth)*sin
 			var/turf/T = locate(xi, yi, _z)
+=======
+	for(var/dx in 0 to width-1)
+		var/compX = dx-dwidth
+		for(var/dy in 0 to height-1)
+			var/compY = dy-dheight
+			// realX = _x + compX*cos - compY*sin
+			// realY = _y + compY*cos - compX*sin
+			// locate(realX, realY, _z)
+			var/turf/T = locate(_x + compX*cos - compY*sin, _y + compY*cos + compX*sin, _z)
+>>>>>>> 1d5eacd59f... Merge pull request #33462 from ninjanomnom/dont-be-so-negative
 			.[T] = NONE
 
 #ifdef DOCKING_PORT_HIGHLIGHT
