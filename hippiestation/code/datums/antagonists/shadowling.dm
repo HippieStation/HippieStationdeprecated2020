@@ -65,14 +65,21 @@
 	to_chat(owner, "<b>As a shadowling, you can naturally speak Shadowtonuge (,8). This is a useful <i>private</i> way to communicate with allies.</b>")
 	SEND_SOUND(owner.current, sound('hippiestation/sound/ambience/antag/sling.ogg'))
 
+/datum/antagonist/shadowling/proc/check_shadow_death()
+	for(var/datum/mind/shadow_mind in get_antagonists(/datum/antagonist/shadowling))
+		var/turf/T = get_turf(shadow_mind.current)
+		if((shadow_mind) && (shadow_mind.current) && (shadow_mind.current.stat != DEAD) && T && (T.z in GLOB.station_z_levels) && ishuman(shadow_mind.current))
+			return FALSE
+	return TRUE
+
 /datum/antagonist/shadowling/roundend_report()
 	var/list/parts = list()
 
-	if(check_shadow_victory()) //Doesn't end instantly - this is hacky and I don't know of a better way ~X
+	if(SSticker.mode.shadowling_ascended) //Doesn't end instantly - this is hacky and I don't know of a better way ~X
 		to_chat(world, "<span class='greentext big'>The shadowlings have ascended and taken over the station!</span>")
-	else if(!check_shadow_victory() && check_shadow_death()) //If the shadowlings have ascended, they can not lose the round
+	else if(!SSticker.mode.shadowling_ascended && check_shadow_death()) //If the shadowlings have ascended, they can not lose the round
 		to_chat(world, "<span class='redtext big'>The shadowlings have been killed by the crew!</span>")
-	else if(!check_shadow_victory() && SSshuttle.emergency.mode >= SHUTTLE_ESCAPE)
+	else if(!SSticker.mode.shadowling_ascended && SSshuttle.emergency.mode >= SHUTTLE_ESCAPE)
 		to_chat(world, "<span class='redtext big'>The crew escaped the station before the shadowlings could ascend!</span>")
 	else
 		to_chat(world, "<span class='redtext big'>The shadowlings have failed!</span>")

@@ -134,7 +134,7 @@ Made by Xhuis
 	return 1*/
 
 /datum/game_mode/shadowling/proc/check_shadow_death()
-	for(var/datum/mind/shadow_mind in shadows)
+	for(var/datum/mind/shadow_mind in get_antagonists(/datum/antagonist/shadowling))
 		var/turf/T = get_turf(shadow_mind.current)
 		if((shadow_mind) && (shadow_mind.current) && (shadow_mind.current.stat != DEAD) && T && (T.z in GLOB.station_z_levels) && ishuman(shadow_mind.current))
 			return FALSE
