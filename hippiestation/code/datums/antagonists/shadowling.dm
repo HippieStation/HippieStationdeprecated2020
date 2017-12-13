@@ -6,8 +6,6 @@
 
 /datum/antagonist/shadowling/on_gain()
 	. = ..()
-	if(owner.current)
-		owner.current.grant_language(/datum/language/shadow)
 	SSticker.mode.update_shadow_icons_added(owner)
 	SSticker.mode.shadows += owner
 	owner.special_role = "thrall"
@@ -29,8 +27,6 @@
 	owner.announce_objectives()
 
 /datum/antagonist/shadowling/on_removal()
-	if(owner.current)
-		owner.current.remove_language(/datum/language/shadow)
 	for(var/O in objectives_given)
 		owner.objectives -= O
 	SSticker.mode.update_shadow_icons_removed(owner)
@@ -62,7 +58,6 @@
 	to_chat(owner, "<b>Any other shadowlings are your allies. You must assist them as they shall assist you.</b>")
 	to_chat(owner, "<b>If you are new to shadowling, or want to read about abilities, check the wiki page at https://wiki.hippiestation.com/index.php?title=Shadowling</b><br>")
 	to_chat(owner, "<b>You require [SSticker.mode.required_thralls || 15] thralls to ascend.</b><br>")
-	to_chat(owner, "<b>As a shadowling, you can naturally speak Shadowtonuge (,8). This is a useful <i>private</i> way to communicate with allies.</b>")
 	SEND_SOUND(owner.current, sound('hippiestation/sound/ambience/antag/sling.ogg'))
 
 /datum/antagonist/shadowling/proc/check_shadow_death()
@@ -76,13 +71,13 @@
 	var/list/parts = list()
 
 	if(SSticker.mode.shadowling_ascended) //Doesn't end instantly - this is hacky and I don't know of a better way ~X
-		to_chat(world, "<span class='greentext big'>The shadowlings have ascended and taken over the station!</span>")
+		parts += "<span class='greentext big'>The shadowlings have ascended and taken over the station!</span>"
 	else if(!SSticker.mode.shadowling_ascended && check_shadow_death()) //If the shadowlings have ascended, they can not lose the round
-		to_chat(world, "<span class='redtext big'>The shadowlings have been killed by the crew!</span>")
+		parts += "<span class='redtext big'>The shadowlings have been killed by the crew!</span>"
 	else if(!SSticker.mode.shadowling_ascended && SSshuttle.emergency.mode >= SHUTTLE_ESCAPE)
-		to_chat(world, "<span class='redtext big'>The crew escaped the station before the shadowlings could ascend!</span>")
+		parts += "<span class='redtext big'>The crew escaped the station before the shadowlings could ascend!</span>"
 	else
-		to_chat(world, "<span class='redtext big'>The shadowlings have failed!</span>")
+		parts += "<span class='redtext big'>The shadowlings have failed!</span>"
 
 	if(objectives.len)
 		parts += "<b>The shadowlings' objectives were:</b>"
@@ -95,12 +90,7 @@
 			count++
 
 	if(LAZYLEN(SSticker.mode.shadows))
-		parts += "<span class='header shadowling'>The shadowlings were:</span>"
 		parts += printplayerlist(SSticker.mode.shadows)
-
-	if(LAZYLEN(SSticker.mode.thralls))
-		parts += "<span class='header shadowling'>The thralls were:</span>"
-		parts += printplayerlist(SSticker.mode.thralls)
 
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
 

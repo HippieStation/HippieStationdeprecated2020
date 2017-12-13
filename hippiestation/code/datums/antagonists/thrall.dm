@@ -3,12 +3,10 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(/obj/effect/proc_holder/spell/s
 /datum/antagonist/thrall
 	name = "Shadowling Thrall"
 	job_rank = ROLE_SHADOWLING
-	show_in_roundend = FALSE //this is handled in the sling datum
+	roundend_category = "thralls"
 
 /datum/antagonist/thrall/on_gain()
 	. = ..()
-	if(owner.current)
-		owner.current.grant_language(/datum/language/shadow)
 	SSticker.mode.update_shadow_icons_added(owner)
 	SSticker.mode.thralls += owner
 	owner.special_role = "thrall"
@@ -21,8 +19,6 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(/obj/effect/proc_holder/spell/s
 	owner.AddSpell(new /obj/effect/proc_holder/spell/self/thrall_night_vision(null))
 
 /datum/antagonist/thrall/on_removal()
-	if(owner.current)
-		owner.current.remove_language(/datum/language/shadow)
 	SSticker.mode.update_shadow_icons_removed(owner)
 	SSticker.mode.thralls -= owner
 	message_admins("[key_name_admin(owner.current)] was dethralled!")
@@ -47,5 +43,8 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(/obj/effect/proc_holder/spell/s
 	to_chat(owner, "<span class='shadowling'>You may not harm other thralls or the shadowlings. However, you do not need to obey other thralls.</span>")
 	to_chat(owner, "<span class='shadowling'>Your body has been irreversibly altered. The attentive can see this - you may conceal it by wearing a mask.</span>")
 	to_chat(owner, "<span class='shadowling'>Though not nearly as powerful as your masters, you possess some weak powers. These can be found in the Thrall Abilities tab.</span>")
-	to_chat(owner, "<span class='shadowling'>You may communicate with your allies by using the Lesser Commune ability, or by speaking to them in the Shadowtonuge (,8).</span>")
+	to_chat(owner, "<span class='shadowling'>You may communicate with your allies by using the Lesser Commune ability.</span>")
 	SEND_SOUND(owner.current, sound('hippiestation/sound/ambience/antag/thrall.ogg'))
+
+/datum/antagonist/thrall/roundend_report()
+	return "<div class='panel redborder'>[printplayerlist(SSticker.mode.thralls)]</div>"
