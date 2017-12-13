@@ -120,19 +120,6 @@ Made by Xhuis
 /datum/game_mode/shadowling/proc/check_shadow_victory()
 	return shadowling_ascended
 
-
-/*/datum/game_mode/shadowling/declare_completion()
-	if(check_shadow_victory()) //Doesn't end instantly - this is hacky and I don't know of a better way ~X
-		to_chat(world, "<span class='greentext'>The shadowlings have ascended and taken over the station!</span>")
-	else if(!check_shadow_victory() && check_shadow_death()) //If the shadowlings have ascended, they can not lose the round
-		to_chat(world, "<span class='redtext'>The shadowlings have been killed by the crew!</span>")
-	else if(!check_shadow_victory() && SSshuttle.emergency.mode >= SHUTTLE_ESCAPE)
-		to_chat(world, "<span class='redtext'>The crew escaped the station before the shadowlings could ascend!</span>")
-	else
-		to_chat(world, "<span class='redtext'>The shadowlings have failed!</span>")
-	..()
-	return 1*/
-
 /datum/game_mode/shadowling/proc/check_shadow_death()
 	for(var/datum/mind/shadow_mind in get_antagonists(/datum/antagonist/shadowling))
 		var/turf/T = get_turf(shadow_mind.current)
@@ -213,7 +200,7 @@ Made by Xhuis
 
 /datum/species/shadow/ling/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
 	var/turf/T = H.loc
-	if(istype(T))
+	if(istype(T) && prob(10))
 		var/light_amount = T.get_rgb_lumcount(r_mul = LIGHT_RED_MULTIPLIER, g_mul = LIGHT_GREEN_MULTIPLIER, b_mul = LIGHT_BLUE_MULTIPLIER)
 		if(light_amount < LIGHT_DAM_THRESHOLD)
 			H.visible_message("<span class='danger'>[H] dances in the shadows, evading [P]!</span>")
