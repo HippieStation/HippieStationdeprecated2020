@@ -3,7 +3,6 @@
 		remove_thrall(src)
 	if(is_shadow(current))
 		remove_shadowling(src)
-	remove_objectives()
 
 /datum/mind/remove_all_antag()
 	. = ..()
