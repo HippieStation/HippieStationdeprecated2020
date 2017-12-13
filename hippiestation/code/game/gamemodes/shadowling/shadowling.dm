@@ -165,6 +165,8 @@ Made by Xhuis
 	burnmod = 1.5 //1.5x burn damage, 2x is excessive
 	heatmod = 1.5
 	var/mutable_appearance/eyes_overlay
+	var/shadow_charges = 3
+	var/last_charge = 0
 
 /datum/species/shadow/ling/on_species_gain(mob/living/carbon/human/C)
 	C.draw_hippie_parts()
@@ -197,14 +199,19 @@ Made by Xhuis
 			H.adjustCloneLoss(-1)
 			H.SetKnockdown(0)
 			H.SetStun(0)
+	var/charge_time = 300 - ((SSticker.mode.thralls && SSticker.mode.thralls.len) || 0)*10
+	if(world.time >= charge_time+last_charge)
+		shadow_charges = max(shadow_charges + 1, 3)
+		last_charge = world.time
 
 /datum/species/shadow/ling/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
 	var/turf/T = H.loc
-	if(istype(T) && prob(10))
+	if(istype(T) && shadow_charges > 0)
 		var/light_amount = T.get_rgb_lumcount(r_mul = LIGHT_RED_MULTIPLIER, g_mul = LIGHT_GREEN_MULTIPLIER, b_mul = LIGHT_BLUE_MULTIPLIER)
 		if(light_amount < LIGHT_DAM_THRESHOLD)
-			H.visible_message("<span class='danger'>[H] dances in the shadows, evading [P]!</span>")
+			H.visible_message("<span class='danger'>The shadows around [H] ripple as they absorb \the [P]!</span>")
 			playsound(T, "bullet_miss", 75, 1)
+			shadow_charges = min(shadow_charges - 1, 0)
 			return -1
 	return 0
 

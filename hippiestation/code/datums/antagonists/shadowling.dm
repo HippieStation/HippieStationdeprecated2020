@@ -105,3 +105,9 @@
 
 /datum/objective/ascend/update_explanation_text()
 	explanation_text = "Ascend to your true form by use of the Ascendance ability. This may only be used with [SSticker.mode.required_thralls] or more collective thralls, while hatched, and is unlocked with the Collective Mind ability."
+
+/mob/living/carbon/human/Stat()
+	. = ..()
+	if(statpanel("Status") && is_shadow(src) && istype(dna.species, /datum/species/shadow/ling))
+		var/datum/species/shadow/ling/SL = dna.species
+		stat("Shadowy Shield Charges", SL.shadow_charges)
