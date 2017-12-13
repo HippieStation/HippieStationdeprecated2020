@@ -199,7 +199,7 @@ Made by Xhuis
 			H.adjustCloneLoss(-1)
 			H.SetKnockdown(0)
 			H.SetStun(0)
-	var/charge_time = 300 - ((SSticker.mode.thralls && SSticker.mode.thralls.len) || 0)*10
+	var/charge_time = 400 - ((SSticker.mode.thralls && SSticker.mode.thralls.len) || 0)*10
 	if(world.time >= charge_time+last_charge)
 		shadow_charges = max(shadow_charges + 1, 3)
 		last_charge = world.time

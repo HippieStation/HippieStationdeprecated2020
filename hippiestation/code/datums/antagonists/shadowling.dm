@@ -108,6 +108,6 @@
 
 /mob/living/carbon/human/Stat()
 	. = ..()
-	if(statpanel("Status") && is_shadow(src) && istype(dna.species, /datum/species/shadow/ling))
+	if(statpanel("Status") && (dna && dna.species) && istype(dna.species, /datum/species/shadow/ling))
 		var/datum/species/shadow/ling/SL = dna.species
 		stat("Shadowy Shield Charges", SL.shadow_charges)
