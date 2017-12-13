@@ -1,6 +1,7 @@
 /datum/antagonist/shadowling
 	name = "Shadowling"
 	job_rank = ROLE_SHADOWLING
+	roundend_category = "shadowlings"
 	var/list/objectives_given = list()
 
 /datum/antagonist/shadowling/on_gain()
@@ -63,6 +64,38 @@
 	to_chat(owner, "<b>You require [SSticker.mode.required_thralls || 15] thralls to ascend.</b><br>")
 	to_chat(owner, "<b>As a shadowling, you can naturally speak Shadowtonuge (,8). This is a useful <i>private</i> way to communicate with allies.</b>")
 	SEND_SOUND(owner.current, sound('hippiestation/sound/ambience/antag/sling.ogg'))
+
+/datum/antagonist/shadowling/roundend_report()
+	var/list/parts = list()
+
+	if(check_shadow_victory()) //Doesn't end instantly - this is hacky and I don't know of a better way ~X
+		to_chat(world, "<span class='greentext big'>The shadowlings have ascended and taken over the station!</span>")
+	else if(!check_shadow_victory() && check_shadow_death()) //If the shadowlings have ascended, they can not lose the round
+		to_chat(world, "<span class='redtext big'>The shadowlings have been killed by the crew!</span>")
+	else if(!check_shadow_victory() && SSshuttle.emergency.mode >= SHUTTLE_ESCAPE)
+		to_chat(world, "<span class='redtext big'>The crew escaped the station before the shadowlings could ascend!</span>")
+	else
+		to_chat(world, "<span class='redtext big'>The shadowlings have failed!</span>")
+
+	if(objectives.len)
+		parts += "<b>The shadowlings' objectives were:</b>"
+		var/count = 1
+		for(var/datum/objective/objective in objectives)
+			if(objective.check_completion())
+				parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='greentext'>Success!</span>"
+			else
+				parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='redtext'>Fail.</span>"
+			count++
+
+	if(LAZYLEN(SSticker.mode.shadows))
+		parts += "<span class='header shadowling'>The shadowlings were:</span>"
+		parts += printplayerlist(SSticker.mode.shadows)
+
+	if(LAZYLEN(SSticker.mode.thralls))
+		parts += "<span class='header shadowling'>The thralls were:</span>"
+		parts += printplayerlist(SSticker.mode.thralls)
+
+	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
 
 
 /datum/objective/ascend

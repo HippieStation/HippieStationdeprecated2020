@@ -3,6 +3,7 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(/obj/effect/proc_holder/spell/s
 /datum/antagonist/thrall
 	name = "Shadowling Thrall"
 	job_rank = ROLE_SHADOWLING
+	show_in_roundend = FALSE //this is handled in the sling datum
 
 /datum/antagonist/thrall/on_gain()
 	. = ..()
