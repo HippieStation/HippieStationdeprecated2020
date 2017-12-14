@@ -14,4 +14,4 @@
 /client/New(TopicData)
 	. = ..()
 	if (byond_version < 512)
-		to_chat(src, "<span class='userdanger'><b>USE BYOND 512, FUCKTARD!</b></span>")
+		to_chat(src, "<span class='userdanger'><b>USE BYOND 512, ELSE YOU'LL HAVE PROBLEMS!</b></span>")
