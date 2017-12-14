@@ -18,7 +18,11 @@
 		return list("reason"="invalid login data", "desc"="Error: Could not check ban status, Please try again. Error message: Your computer provided an invalid Computer ID.)")
 	var/admin = 0
 	var/ckey = ckey(key)
+<<<<<<< HEAD
 	if(!CkeyIsMentor(ckey) && (ckey in GLOB.admin_datums) || (ckey in GLOB.deadmins))
+=======
+	if(GLOB.admin_datums[ckey] || GLOB.deadmins[ckey])
+>>>>>>> 4e929c74a9... Deadmin tweaks: Admins without +AUTOLOGIN start deadmined. AUTOLOGIN defaults to on. (#33480)
 		admin = 1
 
 	//Whitelist
