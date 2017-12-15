@@ -32,26 +32,18 @@
 # +MENTOR = mentor verbs and abilities
 # END_KEYWORDS
 
-<<<<<<< HEAD
 Mentor			= +MENTOR
 Moderator		= +@ +ADMIN
-=======
 Admin Observer	= -AUTOLOGIN
 Moderator		= +ADMIN
 Admin Candidate	= +@
->>>>>>> 4e929c74a9... Deadmin tweaks: Admins without +AUTOLOGIN start deadmined. AUTOLOGIN defaults to on. (#33480)
 Trial Admin		= +@ +SPAWN +VAREDIT +BAN
 Badmin			= +@ +POSSESS +POLL +BUILDMODE +SERVER +FUN
 Game Admin		= +@ +STEALTH +SOUNDS +DEBUG
 Game Master		= +EVERYTHING
-<<<<<<< HEAD
 Host			= +EVERYTHING
 
-Coder			= +DEBUG +VAREDIT +SERVER +SPAWN +POLL +MENTOR
-=======
+Coder			= +DEBUG +VAREDIT +SERVER +SPAWN +POLL +MENTOR -AUTOLOGIN
 Lazy Master 	= +EVERYTHING -AUTOLOGIN
 
 Host			= +EVERYTHING
-
-Coder			= +DEBUG +VAREDIT +SERVER +SPAWN +POLL -AUTOLOGIN
->>>>>>> 4e929c74a9... Deadmin tweaks: Admins without +AUTOLOGIN start deadmined. AUTOLOGIN defaults to on. (#33480)
