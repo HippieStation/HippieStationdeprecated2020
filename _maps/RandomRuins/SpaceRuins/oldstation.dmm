@@ -3755,7 +3755,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/wrench,
 /obj/item/wirecutters,
-/obj/item/screwdriver,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/engi)
 "iX" = (
