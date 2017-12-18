@@ -28,6 +28,7 @@
 	melee_damage_upper = 25
 	attacktext = "wallops"
 	attack_sound = 'hippiestation/sound/weapons/philip.ogg'
+	gold_core_spawnable = HOSTILE_SPAWN
 
 
 /mob/living/simple_animal/hostile/space_funeral/bloodhound
@@ -42,6 +43,7 @@
 	melee_damage_upper = 10
 	attacktext = "bites"
 	attack_sound = 'sound/weapons/bite.ogg'
+	gold_core_spawnable = HOSTILE_SPAWN
 
 /mob/living/simple_animal/hostile/space_funeral/bloodflea
 	name = "bloodflea"
@@ -55,6 +57,7 @@
 	melee_damage_upper = 2
 	attacktext = "bites"
 	attack_sound = 'sound/weapons/bite.ogg'
+	gold_core_spawnable = HOSTILE_SPAWN
 
 	proc/splat()
 		src.health = 0
@@ -73,3 +76,4 @@
 	melee_damage_upper = 20
 	attacktext = "kicks"
 	attack_sound = 'hippiestation/sound/weapons/leghorse.ogg'
+	gold_core_spawnable = HOSTILE_SPAWN
