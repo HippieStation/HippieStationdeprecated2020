@@ -140,9 +140,13 @@
 	return ..()
 
 /mob/living/carbon/human/grabbedby(mob/living/carbon/user, supress_message = 0)
+<<<<<<< HEAD
 	if(checkbuttinspect(user))
 		return 0
 	if(user == src && pulling && !pulling.anchored && grab_state >= GRAB_AGGRESSIVE && (disabilities & FAT) && ismonkey(pulling))
+=======
+	if(user == src && pulling && !pulling.anchored && grab_state >= GRAB_AGGRESSIVE && (has_disability(FAT)) && ismonkey(pulling))
+>>>>>>> 146d167189... [Ready Again]Refactors disabilities into lists, allowing for independent disability sources (#33055)
 		devour_mob(pulling)
 	else
 		..()
