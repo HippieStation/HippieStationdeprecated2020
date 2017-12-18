@@ -106,7 +106,7 @@ PROBABILITY SANDBOX 0
 
 ## Percent weight reductions for three of the most recent modes
 
-REPEATED_MODE_ADJUST 45 30 10
+REPEATED_MODE_ADJUST 55 40 25
 
 ## Toggles for continuous modes.
 ## Modes that aren't continuous will end the instant all antagonists are dead.
