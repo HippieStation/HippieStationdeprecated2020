@@ -157,6 +157,11 @@
 			if(!throwable_mob.buckled)
 				thrown_thing = throwable_mob
 				stop_pulling()
+<<<<<<< HEAD
+=======
+				if(has_disability(PACIFISM))
+					to_chat(src, "<span class='notice'>You gently let go of [throwable_mob].</span>")
+>>>>>>> 146d167189... [Ready Again]Refactors disabilities into lists, allowing for independent disability sources (#33055)
 				var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
 				var/turf/end_T = get_turf(target)
 				if(start_T && end_T)
@@ -168,6 +173,13 @@
 		thrown_thing = I
 		dropItemToGround(I)
 
+<<<<<<< HEAD
+=======
+		if(has_disability(PACIFISM) && I.throwforce)
+			to_chat(src, "<span class='notice'>You set [I] down gently on the ground.</span>")
+			return
+
+>>>>>>> 146d167189... [Ready Again]Refactors disabilities into lists, allowing for independent disability sources (#33055)
 	if(thrown_thing)
 		var/obj/item/B = get_inactive_held_item()
 		var/action = "thrown"
@@ -416,7 +428,7 @@
 	dropItemToGround(I)
 
 	var/modifier = 0
-	if(disabilities & CLUMSY)
+	if(has_disability(CLUMSY))
 		modifier -= 40 //Clumsy people are more likely to hit themselves -Honk!
 
 	switch(rand(1,100)+modifier) //91-100=Nothing special happens
@@ -525,7 +537,7 @@
 	health = maxHealth - getOxyLoss() - getToxLoss() - getCloneLoss() - total_burn - total_brute
 	update_stat()
 	if(((maxHealth - total_burn) < HEALTH_THRESHOLD_DEAD) && stat == DEAD )
-		become_husk()
+		become_husk("burn")
 	med_hud_set_health()
 
 /mob/living/carbon/update_sight()
