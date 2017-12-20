@@ -182,7 +182,11 @@
 	src.add_fingerprint(user)
 	if (src.bullets < 1)
 		user.show_message("<span class='warning'>*click*</span>", 2)
+<<<<<<< HEAD
 		playsound(src, "gun_dry_fire", 50, 1)
+=======
+		playsound(src, "gun_dry_fire", 30, 1)
+>>>>>>> 0f0e3df73b... Merge pull request #33664 from optimumtact/darkgenerallordhassnowflakeears
 		return
 	playsound(user, 'sound/weapons/gunshot.ogg', 100, 1)
 	src.bullets--
