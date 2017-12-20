@@ -233,7 +233,11 @@
 				return
 
 		user.visible_message("<span class='danger'>*click*</span>")
+<<<<<<< HEAD
 		playsound(src, "gun_dry_fire", 50, 1)
+=======
+		playsound(src, "gun_dry_fire", 30, 1)
+>>>>>>> 0f0e3df73b... Merge pull request #33664 from optimumtact/darkgenerallordhassnowflakeears
 
 /obj/item/gun/ballistic/revolver/russian/proc/shoot_self(mob/living/carbon/human/user, affecting = "head")
 	user.apply_damage(300, BRUTE, affecting)

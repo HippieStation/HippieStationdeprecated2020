@@ -175,7 +175,11 @@
 			return(OXYLOSS)
 	else
 		user.visible_message("<span class='suicide'>[user] is pretending to blow [user.p_their()] brains out with [src]! It looks like [user.p_theyre()] trying to commit suicide!</b></span>")
+<<<<<<< HEAD
 		playsound(src, "gun_dry_fire", 50, 1)
+=======
+		playsound(src, "gun_dry_fire", 30, 1)
+>>>>>>> 0f0e3df73b... Merge pull request #33664 from optimumtact/darkgenerallordhassnowflakeears
 		return (OXYLOSS)
 
 
