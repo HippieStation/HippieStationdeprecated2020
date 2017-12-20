@@ -305,6 +305,11 @@
 #include "code\datums\components\chasm.dm"
 #include "code\datums\components\decal.dm"
 #include "code\datums\components\infective.dm"
+<<<<<<< HEAD
+=======
+#include "code\datums\components\jousting.dm"
+#include "code\datums\components\knockoff.dm"
+>>>>>>> 4af5b03bf9... Merge pull request #33678 from ShizCalev/BRAIN-DRAIN
 #include "code\datums\components\material_container.dm"
 #include "code\datums\components\ntnet_interface.dm"
 #include "code\datums\components\paintable.dm"
