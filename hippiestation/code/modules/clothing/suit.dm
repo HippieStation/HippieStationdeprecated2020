@@ -22,7 +22,7 @@
 	armor = list(melee = 70, bullet = 30, laser = 50, energy = 25, bomb = 100, bio = 100, rad = 70)
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = FIRE_IMMUNITY_SUIT_MAX_TEMP_PROTECT
-	
+
 /obj/item/clothing/suit/fire/atmos/syndicate
 	name = "warm firesuit"
 	desc = "A firesuit with blaze-themed colors. You can almost hear the crackling of a distant inferno...."
@@ -32,4 +32,15 @@
 	item_state = "firesuit_syndicate"
 	armor = list(melee = 20, bullet = 10, laser = 30, energy = 15, bomb = 25, bio = 10, rad = 20, fire = 100, acid = 50)
 	w_class = WEIGHT_CLASS_NORMAL
+	slowdown = 0
+
+/obj/item/clothing/suit/monkeybands_suit
+	name = "Monkeyman's Training Suit"
+	desc = "Sweaty, uncleaned orange clothing that replaced your skin with monkey flesh. It won't come off!"
+	icon = 'hippiestation/icons/obj/clothing/suits.dmi'
+	alternate_worn_icon = 'hippiestation/icons/mob/suit.dmi'
+	icon_state = "monkeybands_suit"
+	body_parts_covered = CHEST|GROIN|ARMS|LEGS
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	flags_1 = NODROP_1 | DROPDEL_1
 	slowdown = 0

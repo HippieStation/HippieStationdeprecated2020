@@ -70,3 +70,44 @@
 		var/y_offset = owner.pixel_y + rand(-1,1)
 		animate(owner, pixel_x = x_offset, pixel_y = y_offset, time = 1)
 		animate(owner, pixel_x = x_offset_old, pixel_y = y_offset_old, time = 1)
+
+/datum/mutation/human/monkeymanmut
+
+	name = "MonkeymanMut"
+	quality = NEGATIVE
+	dna_block = NON_SCANNABLE
+	text_gain_indication = "<span class='danger'>You feel your brain completely melt away, your hopes and dreams replaced by an unstoppable desire to do nothing more than eat food and fight strong guys.</span>"
+
+/datum/mutation/human/monkeymanmut/on_acquiring(mob/living/carbon/human/owner)
+	if(..())
+		return
+	owner.dna.add_mutation(CLOWNMUT)
+	//owner.setBrainLoss(200)
+
+	var/mob/living/carbon/human/H = owner
+
+	if(!istype(H.wear_mask, /obj/item/clothing/mask/monkeymask_cursed))
+		if(!H.doUnEquip(H.wear_mask))
+			qdel(H.wear_mask)
+		H.equip_to_slot_or_del(new /obj/item/clothing/mask/monkeymask_cursed(H), slot_wear_mask)
+	if(!istype(H.wear_suit, /obj/item/clothing/suit/monkeybands_suit))
+		if(!H.doUnEquip(H.wear_suit))
+			qdel(H.wear_suit)
+		H.equip_to_slot_or_del(new /obj/item/clothing/suit/monkeybands_suit(H), slot_wear_suit)
+	//if(!istype(H.shoes, /obj/item/clothing/shoes/hippie/cluwne))
+	//	if(!H.doUnEquip(H.shoes))
+	//		qdel(H.shoes)
+	//	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/hippie/cluwne(H), slot_shoes)
+
+	//owner.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/white(owner), slot_gloves) // this is purely for cosmetic purposes incase they aren't wearing anything in that slot
+	//owner.equip_to_slot_or_del(new /obj/item/storage/backpack/clown(owner), slot_back) // ditto
+
+/datum/mutation/human/monkeymanmut/on_losing(mob/living/carbon/human/owner)
+	owner.adjust_fire_stacks(1)
+	owner.IgniteMob()
+	owner.dna.add_mutation(MONKEYMANMUT)
+
+/datum/mutation/human/monkeymanmut/on_acquiring(mob/living/carbon/human/owner)
+	if(..())
+		return
+	owner.add_disability(MONKEYMANMUT, GENETIC_MUTATION)
