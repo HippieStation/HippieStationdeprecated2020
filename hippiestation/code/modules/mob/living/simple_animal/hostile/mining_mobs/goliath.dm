@@ -8,7 +8,7 @@
 	maxHealth = 300
 	health = 300
 
-/obj/effect/temp_visual/goliath_tentacle/proc/trip()
+/obj/effect/temp_visual/goliath_tentacle/trip()
 	var/latched = FALSE
 	for(var/mob/living/L in loc)
 		if((!QDELETED(spawner) && spawner.faction_check_mob(L)) || L.stat == DEAD)
