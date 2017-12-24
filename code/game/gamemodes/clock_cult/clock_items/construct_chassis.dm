@@ -15,11 +15,14 @@
 	. = ..()
 	var/area/A = get_area(src)
 	if(A && construct_type)
-		notify_ghosts("A [construct_name] chassis has been created in [A.name]!", 'sound/magic/clockwork/fellowship_armory.ogg', source = src, action = NOTIFY_ORBIT, flashwindow = FALSE)
+		notify_ghosts("A [construct_name] chassis has been created in [A.name]!", 'sound/magic/clockwork/fellowship_armory.ogg', source = src, action = NOTIFY_ATTACK, flashwindow = FALSE)
 	GLOB.poi_list += src
+	LAZYADD(GLOB.mob_spawners[name], src)
 
 /obj/item/clockwork/construct_chassis/Destroy()
 	GLOB.poi_list -= src
+	var/list/spawners = GLOB.mob_spawners[name]
+	LAZYREMOVE(spawners, src)
 	. = ..()
 
 /obj/item/clockwork/construct_chassis/examine(mob/user)
@@ -37,6 +40,7 @@
 	if(!SSticker.mode)
 		to_chat(user, "<span class='danger'>You cannot use that before the game has started.</span>")
 		return
+	user.forceMove(get_turf(src)) //If we attack through the alert, jump to the chassis so we know what we're getting into
 	if(alert(user, "Become a [construct_name]? You can no longer be cloned!", construct_name, "Yes", "Cancel") == "Cancel")
 		return
 	if(QDELETED(src))
@@ -82,12 +86,13 @@
 
 /obj/item/clockwork/construct_chassis/cogscarab/Initialize()
 	. = ..()
-	if(istype(SSticker.mode, /datum/game_mode/clockwork_cult))
+	if(GLOB.servants_active)
 		infinite_resources = FALSE //For any that are somehow spawned in late
 
 /obj/item/clockwork/construct_chassis/cogscarab/pre_spawn()
 	if(infinite_resources)
-		construct_type = /mob/living/simple_animal/drone/cogscarab/ratvar //During rounds where they can't interact with the station, let them experiment with builds
+		//During rounds where they can't interact with the station, let them experiment with builds
+		construct_type = /mob/living/simple_animal/drone/cogscarab/ratvar
 
 /obj/item/clockwork/construct_chassis/cogscarab/post_spawn(mob/living/construct)
 	if(infinite_resources) //Allow them to build stuff and recite scripture
