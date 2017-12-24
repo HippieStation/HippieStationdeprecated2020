@@ -140,9 +140,13 @@
 	return ..()
 
 /mob/living/carbon/human/grabbedby(mob/living/carbon/user, supress_message = 0)
+<<<<<<< HEAD
 	if(checkbuttinspect(user))
 		return FALSE
 	if(user == src && pulling && !pulling.anchored && grab_state >= GRAB_AGGRESSIVE && (has_disability(FAT)) && ismonkey(pulling))
+=======
+	if(user == src && pulling && !pulling.anchored && grab_state >= GRAB_AGGRESSIVE && (has_disability(DISABILITY_FAT)) && ismonkey(pulling))
+>>>>>>> bc20a758d5... Merge pull request #33783 from Cruix/fix_blind
 		devour_mob(pulling)
 	else
 		..()
