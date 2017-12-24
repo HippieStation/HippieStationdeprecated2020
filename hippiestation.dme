@@ -2431,6 +2431,7 @@
 #include "hippiestation\code\modules\mining\machine_processing.dm"
 #include "hippiestation\code\modules\mining\machine_stacking.dm"
 #include "hippiestation\code\modules\mining\machine_unloading.dm"
+#include "hippiestation\code\modules\mining\lavaland\necropolis_chests.dm"
 #include "hippiestation\code\modules\mob\mob.dm"
 #include "hippiestation\code\modules\mob\mob_defines.dm"
 #include "hippiestation\code\modules\mob\mob_helpers.dm"
