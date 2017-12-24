@@ -5,7 +5,7 @@
 	melee_damage_upper = 10
 
 /obj/effect/temp_visual/hierophant/chaser
-	var/damage = 7
+	damage = 7
 
 /obj/effect/temp_visual/hierophant/blast
-	var/damage = 7
+	damage = 7
