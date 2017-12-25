@@ -29,4 +29,4 @@
 
 /obj/item/lava_staff
 	force = 15
-	create_cooldown = 600 //Jesus Christ, why would you give a miner such a powerful tool that allows you to create impassable lava floors that deal massive burn damage?
+	create_cooldown = 300 //Jesus Christ, why would you give a miner such a powerful tool that allows you to create impassable lava floors that deal massive burn damage?
