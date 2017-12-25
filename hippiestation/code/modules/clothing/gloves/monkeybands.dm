@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/monkeybands
-	name = "Monkeyman's Wristbands"
-	desc = "They're tattered, reek of sweat, and look like they haven't been washed in ages. Said to contain the soul of a braindamaged martial artist monkey."
+	name = "monkeyman's wristbands"
+	desc = "They're tattered, reek of sweat, and look like they haven't been washed in ages. Said to contain the soul of a braindamaged martial artist monkey." //also known as the thing teamstab pulls out of his closet when his wife and kid aren't around
 	icon = 'hippiestation/icons/obj/clothing/gloves.dmi'
 	icon_state = "monkeybands"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -15,6 +15,8 @@
 		var/message = "<span class='sciradio'>You have been possessed by the ghost of the Monkeyman! Your hand-to-hand combat has become all-powerful, and you are now able to deflect any projectiles \
 		directed toward you. Your brain, however, has completely melted away and you are now incapable of using ranged weapons and suffer from similar disabilities as the Clown does. \ You can learn more about your newfound art by using the Recall Training verb in the Monkeyman tab. Don't try to cure your disabilities!</span>"
 		to_chat(user, message)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/aimed/monkey_fireball)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/monkey_rage_spell/)
 		var/datum/martial_art/the_monkeyman/theMonkeyMan = new(null)
 		theMonkeyMan.teach(user)
 	return
@@ -167,7 +169,7 @@
 		add_logs(A, D, "monkey-fisted (Monkeyman)")
 	else
 		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
-		D.visible_message("<span class='warning'>[A]<b> channels a boatload of energy into their fist and blasts [D] away in a single punch!<b></span>", \
+		D.visible_message("<span class='warning'><b>[A] channels a boatload of energy into their fist and blasts [D] away in a single punch!<b></span>", \
 						  "<span class='userdanger'>[A] sends you flying with a legendary Wizard Fist!</span>")
 		D.apply_damage(600, BRUTE, "head", "l_arm", "r_arm", "l_leg", "r_leg", "chest") // Just for flair, the combo would kill you regardless
 		A.apply_damage(15, BRUTE, pick("l_arm", "r_arm"))
@@ -209,15 +211,23 @@
 		return 1
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 	A.setBrainLoss(200) //semi-ensures brainloss
-	var/atk_verb = pick("jabs", "kicks", "mudamudas", "hooks", "slams")
-	D.visible_message("<span class='danger'>[A] [atk_verb] [D]!</span>", \
-					  "<span class='userdanger'>[A] [atk_verb] you!</span>")
-	D.apply_damage(rand(12,17), BRUTE)
-	playsound(get_turf(D), 'sound/effects/pop_expl.ogg', 175, 1, -1)
+	var/attack_verb = "attacked (Monkeyman)"
+	if(A.has_status_effect(STATUS_EFFECT_MONKEY_RAGE))
+		var/atk_verb = pick("pounds", "slams", "mudamudas", "wrecks", "makes a mockery of")
+		D.visible_message("<span class='danger'>[A] [atk_verb] [D]!</span>", \
+			"<span class='userdanger'>[A] [atk_verb] you!</span>")
+		D.apply_damage(rand(17,21), BRUTE)
+		playsound(get_turf(D), 'sound/effects/pop_expl.ogg', 225, 1, -1)
+	else
+		var/atk_verb = pick("jabs", "kicks", "oraoras", "hooks", "slams")
+		D.visible_message("<span class='danger'>[A] [atk_verb] [D]!</span>", \
+			"<span class='userdanger'>[A] [atk_verb] you!</span>")
+		D.apply_damage(rand(12,15), BRUTE)
+		playsound(get_turf(D), 'sound/effects/pop_expl.ogg', 175, 1, -1)
 	if(prob(D.getBruteLoss()) && !D.lying)
 		D.visible_message("<span class='warning'>[D] stumbles and falls!</span>", "<span class='userdanger'>The blow sends you to the ground!</span>")
 		D.Knockdown(40)
-	add_logs(A, D, "[atk_verb] (Monkeyman)")
+	add_logs(A, D, "[attack_verb]")
 	return 1
 
 

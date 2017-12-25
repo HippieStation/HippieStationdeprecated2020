@@ -23,3 +23,19 @@
 
 
 #undef RESET_FISTED
+
+/obj/item/projectile/magic/monkeyman/monkeyball
+	name = "monkey decimation ball"
+	icon = 'hippiestation/icons/obj/projectiles.dmi'
+	icon_state = "monkey_fireball"
+	damage = 15
+	damage_type = BURN
+	nodamage = 0
+
+/obj/item/projectile/magic/monkeyman/monkeyball/on_hit(target)
+	. = ..()
+	var/turf/T = get_turf(target)
+	explosion(T, -1, 0, 1, 1, 0, 0)
+	if(ismob(target)) //multiple flavors of pain
+		var/mob/living/M = target
+		M.take_overall_damage(0,15)

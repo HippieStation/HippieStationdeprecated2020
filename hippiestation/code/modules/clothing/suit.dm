@@ -35,8 +35,8 @@
 	slowdown = 0
 
 /obj/item/clothing/suit/monkeybands_suit
-	name = "Monkeyman's Training Suit"
-	desc = "Sweaty, uncleaned orange clothing that replaced your skin with monkey flesh. It won't come off!"
+	name = "monkeyman's training suit"
+	desc = "Sweaty, uncleaned orange clothing that replaced your skin with monkey flesh. It also stuck some admittedly slick hot pants underneath. <span class='warning'>It won't come off!</span>"
 	icon = 'hippiestation/icons/obj/clothing/suits.dmi'
 	alternate_worn_icon = 'hippiestation/icons/mob/suit.dmi'
 	icon_state = "monkeybands_suit"

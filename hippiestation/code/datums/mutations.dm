@@ -82,7 +82,7 @@
 	if(..())
 		return
 	owner.dna.add_mutation(CLOWNMUT)
-	//owner.setBrainLoss(200)
+	owner.setBrainLoss(200)
 
 	var/mob/living/carbon/human/H = owner
 

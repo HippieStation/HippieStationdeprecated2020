@@ -1,6 +1,6 @@
 /obj/item/clothing/mask/monkeymask_cursed
 	name = "monkey face"
-	desc = "Your face has been replaced entirely with a monkey's face!"
+	desc = "<span class='warning'>Your face has been replaced entirely with a monkey's face!</span>"
 	flags_1 = MASKINTERNALS_1 | NODROP_1 | DROPDEL_1
 	icon_state = "monkeymask"
 	item_state = "monkeymask"
@@ -14,13 +14,18 @@
 
 /obj/item/clothing/mask/monkeymask_cursed/proc/play_ook()
 	if(world.time - delay > last_sound)
-		playsound (src, 'sound/creatures/gorilla.ogg', 65, 0)
+		playsound (src, 'sound/creatures/gorilla.ogg', 55, 0)
+		last_sound = world.time
+
+/obj/item/clothing/mask/monkeymask_cursed/proc/play_aak()
+	if(world.time - delay > last_sound)
+		playsound (src, 'sound/ambience/antag/monkey.ogg', 100, 0)
 		last_sound = world.time
 
 /obj/item/clothing/mask/monkeymask_cursed/equipped(mob/user, slot) //when you put it on
 	var/mob/living/carbon/C = user
 	if((C.wear_mask == src) && (voicechange))
-		play_ook()
+		play_aak()
 	return ..()
 
 /obj/item/clothing/mask/monkeymask_cursed/attack_self(mob/user)
