@@ -1,7 +1,7 @@
 /obj/item/gun/magic/hook
 	force = 10
 /obj/item/projectile/hook
-	damage = 10 //Wait a second, you're just using the same hook and dragged them!
+	damage = 10 //Wait a second, you're just using the same hook to drag them!
 	knockdown = 10
 
 /obj/item/dragons_blood/attack_self(mob/living/carbon/human/user)
