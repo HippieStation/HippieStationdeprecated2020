@@ -2,6 +2,7 @@
 #define AB_CHECK_STUN 2
 #define AB_CHECK_LYING 4
 #define AB_CHECK_CONSCIOUS 8
+#define AB_CHECK_SOFTCRIT 16
 
 /datum/action
 	var/name = "Generic Action"
@@ -102,6 +103,9 @@
 	if(check_flags & AB_CHECK_CONSCIOUS)
 		if(owner.stat)
 			return 0
+	if(check_flags & AB_CHECK_SOFTCRIT) 	//Added by
+		if(owner.stat != SOFT_CRIT && owner.stat) // YoYoBatty
+			return 0
 	return 1
 
 /datum/action/proc/UpdateButtonIcon(status_only = FALSE)
@@ -138,7 +142,7 @@
 
 //Presets for item actions
 /datum/action/item_action
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_LYING|AB_CHECK_CONSCIOUS
+	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUN|AB_CHECK_LYING|AB_CHECK_CONSCIOUS|AB_CHECK_SOFTCRIT //Adds softcrit check - YoYoBatty
 	button_icon_state = null
 	// If you want to override the normal icon being the item
 	// then change this to an icon state

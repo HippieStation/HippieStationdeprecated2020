@@ -26,10 +26,11 @@
 	return 1
 
 /datum/action/item_action/hands_free/activate_pill
+	check_flags = AB_CHECK_SOFTCRIT //Allows us to trigger implant in soft crit - YoYoBatty
 	name = "Activate Pill"
 
 /datum/action/item_action/hands_free/activate_pill/Trigger()
-	if(owner.stat != CONSCIOUS && owner.stat != SOFT_CRIT )
+	if(!..())
 		return 0
 	to_chat(owner, "<span class='caution'>You grit your teeth and burst the implanted [target.name]!</span>")
 	add_logs(owner, null, "swallowed an implanted pill", target)
