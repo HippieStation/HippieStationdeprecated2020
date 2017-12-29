@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /datum/round_event_control/treevenge
 	name = "Treevenge (Christmas)"
 	holidayID = CHRISTMAS
@@ -39,6 +40,8 @@
 	priority_announce("Ho Ho Ho, Merry Xmas!", "Unknown Transmission")
 
 
+=======
+>>>>>>> 39975509ef... Christmas event changes (#33861)
 /obj/item/toy/xmas_cracker
 	name = "xmas cracker"
 	icon = 'icons/obj/christmas.dmi'
@@ -82,17 +85,21 @@
 
 /obj/effect/landmark/xmastree
 	name = "christmas tree spawner"
-	var/tree = /obj/structure/flora/tree/pine/xmas
+	var/festive_tree = /obj/structure/flora/tree/pine/xmas
+	var/christmas_tree = /obj/structure/flora/tree/pine/xmas/presents
 
 /obj/effect/landmark/xmastree/Initialize(mapload)
 	..()
-	if(FESTIVE_SEASON in SSevents.holidays)
-		new tree(get_turf(src))
+	if((CHRISTMAS in SSevents.holidays) && christmas_tree)
+		new christmas_tree(get_turf(src))
+	else if((FESTIVE_SEASON in SSevents.holidays) && festive_tree)
+		new festive_tree(get_turf(src))
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/xmastree/rdrod
 	name = "festivus pole spawner"
-	tree = /obj/structure/festivus
+	festive_tree = /obj/structure/festivus
+	christmas_tree = null
 
 /datum/round_event_control/santa
 	name = "Santa is coming to town! (Christmas)"
@@ -109,7 +116,7 @@
 	priority_announce("Santa is coming to town!", "Unknown Transmission")
 
 /datum/round_event/santa/start()
-	var/list/candidates = pollGhostCandidates("Santa is coming to town! Do you want to be santa?", poll_time=150)
+	var/list/candidates = pollGhostCandidates("Santa is coming to town! Do you want to be Santa?", poll_time=150)
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/Z = pick(candidates)
 		santa = new /mob/living/carbon/human(pick(GLOB.blobstart))
