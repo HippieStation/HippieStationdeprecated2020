@@ -217,7 +217,23 @@
 						num_escapees++
 						if(shuttle_areas[get_area(Player)])
 							num_shuttle_escapees++
+<<<<<<< HEAD
 
+=======
+
+	.[POPCOUNT_SURVIVORS] = num_survivors
+	.[POPCOUNT_ESCAPEES] = num_escapees
+	.[POPCOUNT_SHUTTLE_ESCAPEES] = num_shuttle_escapees
+	.[POPCOUNT_HUMAN_SURVIVORS] = num_human_survivors
+	.[POPCOUNT_HUMAN_ESCAPEES] = num_human_escapees
+	.[POPCOUNT_GHOSTS] = num_ghosts
+
+/datum/controller/subsystem/ticker/proc/survivor_report()
+	var/list/parts = list()
+	var/station_evacuated = EMERGENCY_ESCAPED_OR_ENDGAMED
+	var/popcount = count_survivors()
+
+>>>>>>> f2dbe5cf13... Replace explicit z-level checks with defines (#33829)
 	//Round statistics report
 	var/datum/station_state/end_state = new /datum/station_state()
 	end_state.count()
@@ -416,7 +432,7 @@
 			text += " <span class='greentext'>survived</span>"
 		if(fleecheck)
 			var/turf/T = get_turf(ply.current)
-			if(!T || !(T.z in GLOB.station_z_levels))
+			if(!T || !is_station_level(T.z))
 				text += " while <span class='redtext'>fleeing the station</span>"
 		if(ply.current.real_name != ply.name)
 			text += " as <b>[ply.current.real_name]</b>"
