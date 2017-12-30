@@ -143,13 +143,9 @@
 	return ..()
 
 /mob/living/carbon/human/grabbedby(mob/living/carbon/user, supress_message = 0)
-<<<<<<< HEAD
-	if(user == src && pulling && !pulling.anchored && grab_state >= GRAB_AGGRESSIVE && (has_disability(DISABILITY_FAT)) && ismonkey(pulling))
-=======
 	if(checkbuttinspect(user))
 		return FALSE
-	if(user == src && pulling && !pulling.anchored && grab_state >= GRAB_AGGRESSIVE && (has_disability(FAT)) && ismonkey(pulling))
->>>>>>> d04fb688d3fd0aaa34a55a9f0965cb10309f3f5e
+	if(user == src && pulling && !pulling.anchored && grab_state >= GRAB_AGGRESSIVE && (has_disability(DISABILITY_FAT)) && ismonkey(pulling))
 		devour_mob(pulling)
 	else
 		..()

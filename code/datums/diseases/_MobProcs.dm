@@ -21,11 +21,8 @@
 		return FALSE
 
 	return TRUE
-<<<<<<< HEAD
 
-=======
 //Hippie End
->>>>>>> d04fb688d3fd0aaa34a55a9f0965cb10309f3f5e
 
 /mob/proc/ContactContractDisease(datum/disease/D)
 	if(!CanContractDisease(D))

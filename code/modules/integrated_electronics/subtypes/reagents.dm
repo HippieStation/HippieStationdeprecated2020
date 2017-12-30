@@ -11,13 +11,10 @@
 		create_reagents(volume)
 		push_vol()
 
-<<<<<<< HEAD
 /obj/item/integrated_circuit/reagent/proc/push_vol()
 	set_pin_data(IC_OUTPUT, 1, reagents.total_volume)
 	push_data()
 
-=======
->>>>>>> d04fb688d3fd0aaa34a55a9f0965cb10309f3f5e
 /obj/item/integrated_circuit/reagent/smoke
 	name = "smoke generator"
 	desc = "Unlike most electronics, creating smoke is completely intentional."
@@ -49,7 +46,6 @@
 	//reset warning only if we have reagents now
 	if(changetype == ADD_REAGENT)
 		notified = FALSE
-<<<<<<< HEAD
 	push_vol()
 
 /obj/item/integrated_circuit/reagent/smoke/do_work(ord)
@@ -72,27 +68,6 @@
 			set_pin_data(IC_OUTPUT, 2, WEAKREF(src))
 			push_data()
 
-=======
-	set_pin_data(IC_OUTPUT, 1, reagents.total_volume)
-	push_data()
-
-/obj/item/integrated_circuit/reagent/smoke/do_work()
-	if(!reagents || (reagents.total_volume < IC_SMOKE_REAGENTS_MINIMUM_UNITS))
-		return
-	var/location = get_turf(src)
-	var/datum/effect_system/smoke_spread/chem/S = new
-	S.attach(location)
-	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
-	if(S)
-		S.set_up(reagents, smoke_radius, location, notified)
-		if(!notified)
-			notified = TRUE
-		S.start()
-
-	reagents.clear_reagents()
-	activate_pin(2)
-
->>>>>>> d04fb688d3fd0aaa34a55a9f0965cb10309f3f5e
 /obj/item/integrated_circuit/reagent/injector
 	name = "integrated hypo-injector"
 	desc = "This scary looking thing is able to pump liquids into whatever it's pointed at."

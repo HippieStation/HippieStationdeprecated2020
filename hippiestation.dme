@@ -54,10 +54,7 @@
 #include "code\__DEFINES\logging.dm"
 #include "code\__DEFINES\machines.dm"
 #include "code\__DEFINES\maps.dm"
-<<<<<<< HEAD
-=======
 #include "code\__DEFINES\maths.dm"
->>>>>>> d04fb688d3fd0aaa34a55a9f0965cb10309f3f5e
 #include "code\__DEFINES\MC.dm"
 #include "code\__DEFINES\menu.dm"
 #include "code\__DEFINES\misc.dm"

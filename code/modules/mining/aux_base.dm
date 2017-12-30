@@ -146,11 +146,7 @@ interface with the mining shuttle at the landing site if a mobile beacon is also
 			/turf/open/indestructible,
 			))
 
-<<<<<<< HEAD
 		if(!is_mining_level(T.z))
-=======
-		if(T.z != ZLEVEL_MINING)
->>>>>>> d04fb688d3fd0aaa34a55a9f0965cb10309f3f5e
 			return BAD_ZLEVEL
 
 		var/colony_radius = CEILING(max(base_dock.width, base_dock.height)*0.5, 1)
