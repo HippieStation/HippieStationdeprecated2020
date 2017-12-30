@@ -7497,11 +7497,16 @@
 	},
 /area/shuttle/syndicate/hallway)
 "uc" = (
-/obj/machinery/porta_turret/syndicate{
-	dir = 4
+/obj/structure/chair{
+	dir = 4;
+	name = "tactical chair"
 	},
-/turf/closed/wall/mineral/plastitanium,
-/area/shuttle/syndicate/hallway)
+/obj/effect/turf_decal/bot_white,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/airlock)
 "ud" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "nukeop_ready";
@@ -9441,7 +9446,7 @@
 /turf/open/floor/plasteel,
 /area/centcom/ferry)
 "zk" = (
-/obj/machinery/door/airlock/glass_medical{
+/obj/machinery/door/airlock/medical/glass{
 	name = "Infirmary"
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -14300,7 +14305,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/arena)
-<<<<<<< HEAD
 "Mj" = (
 /obj/machinery/door/poddoor{
 	id = "thunderdome";
@@ -14339,69 +14343,92 @@
 /obj/effect/turf_decal/loading_area{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
-/area/tdome/arena)
-"Mn" = (
-/obj/machinery/door/poddoor{
-	id = "thunderdome";
-	name = "Thunderdome Blast Door"
+/obj/effect/turf_decal/bot_white,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/airlock)
+"Mu" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/syndicate,
+/obj/item/crowbar/red,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
 	},
-/obj/effect/turf_decal/loading_area{
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/syndicate/airlock)
+"Mw" = (
+/obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/turf/open/floor/plasteel,
-/area/tdome/arena)
-"Mo" = (
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/syndicate/airlock)
+"My" = (
+/obj/docking_port/stationary{
+	area_type = /area/syndicate_mothership;
+	baseturf_type = /turf/open/floor/plating/asteroid/snow;
+	dheight = 1;
+	dir = 8;
+	dwidth = 12;
+	height = 17;
+	id = "syndicate_away";
+	name = "syndicate recon outpost";
+	turf_type = /turf/open/floor/plating/asteroid/snow;
+	width = 23
+	},
 /obj/machinery/door/poddoor{
-	id = "thunderdomegen";
-	name = "General Supply"
+	id = "smindicate";
+	name = "outer blast door"
 	},
-/obj/effect/turf_decal/loading_area{
-	dir = 8
+/obj/machinery/button/door{
+	id = "smindicate";
+	name = "external door control";
+	pixel_x = 0;
+	pixel_y = 26;
+	req_access_txt = "150"
 	},
-/turf/open/floor/plasteel,
-/area/tdome/arena)
-"Mp" = (
-/obj/machinery/door/poddoor{
-	id = "thunderdome";
-	name = "Thunderdome Blast Door"
+/obj/docking_port/mobile{
+	dheight = 1;
+	dir = 8;
+	dwidth = 12;
+	height = 17;
+	hidden = 1;
+	id = "syndicate";
+	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0);
+	name = "syndicate infiltrator";
+	port_direction = 4;
+	roundstart_move = null;
+	width = 23
 	},
-/obj/effect/turf_decal/loading_area{
-	dir = 8
+/obj/structure/fans/tiny,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
 	},
-/turf/open/floor/plasteel,
-/area/tdome/arena)
-"Mq" = (
-/obj/machinery/door/poddoor{
-	id = "thunderdomegen";
-	name = "General Supply"
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/syndicate/airlock)
+"Mz" = (
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/airlock)
+"MC" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/space/syndicate/black/red,
+/obj/item/clothing/head/helmet/space/syndicate/black/red,
+/obj/effect/turf_decal/bot_white,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
 	},
-/obj/effect/turf_decal/loading_area{
-	dir = 8
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/syndicate/airlock)
+"MD" = (
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
 	},
-/turf/open/floor/plasteel,
-/area/tdome/arena)
-"Mr" = (
-/obj/machinery/door/poddoor{
-	id = "thunderdome";
-	name = "Thunderdome Blast Door"
+/obj/structure/sign/securearea{
+	desc = "A warning sign which reads 'FOURTH WALL'.";
+	name = "\improper FOURTH WALL";
+	pixel_x = -32
 	},
-/obj/effect/turf_decal/loading_area{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/tdome/arena)
-"Ms" = (
-/obj/machinery/door/poddoor{
-	id = "thunderdomegen";
-	name = "General Supply"
-	},
-/obj/effect/turf_decal/loading_area{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/tdome/arena)
-=======
+/turf/open/floor/plating/asteroid/snow/airless,
+/area/syndicate_mothership)
 "Mt" = (
 /obj/structure/chair{
 	dir = 4;
@@ -14493,8 +14520,6 @@
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/syndicate_mothership)
->>>>>>> b57d15aac8... Improve parts of CentCom's appearance slightly (#33832)
-
 (1,1,1) = {"
 aa
 aa
@@ -26214,38 +26239,38 @@ hl
 hl
 hl
 hh
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
+hh
 aa
 aa
 aa
@@ -26470,41 +26495,41 @@ hl
 hl
 hl
 hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+kt
+MD
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+hl
 hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
-hh
+aa
+aa
 aa
 aa
 aa
@@ -26740,28 +26765,28 @@ hl
 hl
 hl
 hl
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+yc
+yd
+yd
+yd
+yd
+yd
+yd
+yd
+yd
+yd
+kt
 hl
-hl
-hl
-hl
-hl
-hl
-hl
-we
-hl
-kt
-kt
-kt
-kt
-kt
-kt
-kt
-kt
-kt
-kt
-kt
-kt
 hh
+aa
+aa
 aa
 aa
 aa
@@ -26997,28 +27022,28 @@ hl
 hl
 hl
 hl
-hl
-hl
-hl
 kt
+tY
+tZ
+tZ
+tZ
+tZ
+tZ
+yd
+yL
+zs
+yL
+AC
+Bj
+BT
+Cj
+CS
+Di
 kt
-kt
 hl
-hl
-hl
-hl
-yc
-yd
-yd
-yd
-yd
-yd
-yd
-yd
-yd
-yd
-kt
 hh
+aa
+aa
 aa
 aa
 aa
@@ -27254,28 +27279,28 @@ hl
 hl
 hl
 hl
-hl
-hl
-hl
-hl
-tY
-tZ
-tZ
-tZ
-tZ
-tZ
-yd
-yL
-zs
-yL
-AC
-Bj
-BT
-Cj
-CS
-Di
 kt
+tZ
+uG
+vo
+vo
+vo
+xA
+yd
+yM
+zt
+zR
+zR
+Bk
+zR
+Ck
+CS
+Dj
+kt
+hl
 hh
+aa
+aa
 aa
 aa
 aa
@@ -27505,34 +27530,34 @@ hl
 hl
 hl
 hl
-hl
-hl
-hl
-hl
-hl
-hl
-hl
-hl
-hl
+kt
+kt
+kt
+kt
+kt
+kt
 kt
 tZ
-uG
-vo
-vo
-vo
-xA
-yd
-yM
+uH
+uH
+uH
+uH
+uH
+ye
+yN
 zt
-zR
-zR
-Bk
-zR
-Ck
+zS
+AD
+Bl
+BU
+Cl
 CS
-Dj
+Dk
 kt
+hl
 hh
+aa
+aa
 aa
 aa
 aa
@@ -27762,34 +27787,34 @@ hl
 hl
 my
 hl
-hl
-kt
-kt
-hl
-hl
-hl
-hl
+oS
+oT
+oT
+oT
+oT
 hl
 hl
-kt
 tZ
 uH
 uH
 uH
 uH
 uH
-ye
-yN
+yd
+yO
 zt
-zS
-AD
-Bl
-BU
-Cl
-CS
-Dk
+zT
+AE
+Bm
+yf
+yd
+yd
+Dl
 kt
+hl
 hh
+aa
+aa
 aa
 aa
 aa
@@ -28019,34 +28044,34 @@ hl
 hl
 hl
 hl
-hl
-kt
-hl
-oS
 oT
+px
+pR
+qI
 oT
-oT
-oT
-hl
+rY
 hl
 tZ
-uH
-uH
-uH
-uH
-uH
+uI
+vp
+wf
+wR
+xB
 yd
-yO
+yP
 zt
 zT
 AE
-Bm
-yf
+Bn
 yd
-yd
-Dl
+hl
+hl
 kt
+kt
+hl
 hh
+aa
+aa
 aa
 aa
 aa
@@ -28276,34 +28301,34 @@ hl
 hl
 hl
 hl
-hl
-kt
-hl
-oT
-px
-pR
+oU
+py
+pS
 qI
 oT
-rY
-hl
+rZ
+rZ
 tZ
-uI
-vp
-wf
-wR
-xB
+tZ
+tZ
+tZ
+wS
+xC
+yf
+yQ
+yQ
+zU
+yQ
 yd
-yP
-zt
-zT
-AE
-Bn
 yd
+rZ
+rZ
+kt
 hl
 hl
-kt
-kt
 hh
+aa
+aa
 aa
 aa
 aa
@@ -28533,34 +28558,34 @@ hl
 hl
 hl
 nx
-hl
-kt
-hl
 oU
-py
-pS
+pz
+pT
 qI
-oT
-rZ
-rZ
-tZ
-tZ
-tZ
-tZ
-wS
-xC
-yf
-yQ
-yQ
-zU
-yQ
-yd
-yd
-rZ
-rZ
+rb
+sa
+sY
+ua
+sY
+sY
+wg
+sb
+sb
+sb
+sb
+zu
+zV
+AF
+Bo
+BV
+Cm
+CT
+kt
 hl
 hl
 hh
+aa
+aa
 aa
 aa
 aa
@@ -28790,34 +28815,34 @@ hl
 hl
 hl
 hl
-hl
-kt
-hl
 oU
-pz
-pT
+pA
+pU
 qI
-rb
-sa
-sY
-ua
-sY
-sY
-wg
+rc
 sb
+sZ
+sZ
+sZ
 sb
+wh
 sb
-sb
-zu
+sZ
+sZ
+sZ
+sZ
 zV
 AF
 Bo
-BV
+BW
 Cm
-CT
+CU
+kt
 hl
 hl
 hh
+aa
+aa
 aa
 aa
 aa
@@ -29047,34 +29072,34 @@ hl
 my
 hl
 hl
-hl
-kt
-hl
 oU
-pA
-pU
+pB
+pT
 qI
-rc
+oT
+sc
+ta
+ub
+ta
+ta
+wg
 sb
-sZ
-sZ
-sZ
 sb
-wh
 sb
-sZ
-sZ
-sZ
-sZ
+sb
+zv
 zV
 AF
 Bo
-BW
+BV
 Cm
-CU
+CV
+kt
 hl
 hl
 hh
+aa
+aa
 aa
 aa
 aa
@@ -29304,15 +29329,11 @@ hl
 hl
 hl
 hl
-hl
-kt
-hl
 oU
-pB
-pT
+pC
+pV
 qI
 oT
-<<<<<<< HEAD
 sc
 ta
 ub
@@ -29330,7 +29351,6 @@ Bo
 BV
 Cm
 CV
-=======
 rZ
 rZ
 vq
@@ -29349,10 +29369,11 @@ yh
 rZ
 rZ
 kt
->>>>>>> b57d15aac8... Improve parts of CentCom's appearance slightly (#33832)
 hl
 hl
 hh
+aa
+aa
 aa
 aa
 aa
@@ -29582,15 +29603,14 @@ hl
 hl
 hl
 hl
-hl
-kt
-hl
-oU
-pC
-pV
+oT
+pD
+pW
 qI
 oT
-<<<<<<< HEAD
+sd
+hl
+vq
 rZ
 rZ
 uc
@@ -29604,7 +29624,6 @@ yR
 yR
 zW
 yR
-=======
 sd
 hl
 vq
@@ -29613,14 +29632,21 @@ Mt
 uc
 Mz
 Mt
->>>>>>> b57d15aac8... Improve parts of CentCom's appearance slightly (#33832)
 yh
+yS
+zw
+zX
+AG
+Bp
 yh
-rZ
-rZ
 hl
+hl
+kt
+kt
 hl
 hh
+aa
+aa
 aa
 aa
 aa
@@ -29850,34 +29876,34 @@ hl
 hl
 hl
 hl
-hl
-kt
-hl
+oV
 oT
-pD
-pW
-qI
 oT
-sd
-tb
-ng
-nz
+oT
+oT
+hl
+hl
 vq
-wi
 wU
-xE
+wU
+wU
+wU
+wU
 yh
-yS
+yT
 zw
 zX
 AG
-Bp
+Bq
+yg
 yh
-hl
-hl
+yh
+Dm
 kt
-kt
+hl
 hh
+aa
+aa
 aa
 aa
 aa
@@ -30107,34 +30133,34 @@ hl
 mz
 hl
 my
-hl
 kt
-hl
-oV
-oT
-oT
-oT
-oT
-hl
-tc
-ll
-uJ
-vr
-wj
+kt
+kt
+kt
+kt
+kt
+kt
+vq
 wU
-xE
-yh
-yT
+wU
+wU
+wU
+wU
+yi
+yU
 zw
-zX
-AG
-Bq
-yg
-yh
-yh
-Dm
+zY
+AH
+Br
+zZ
+Cn
+CW
+Dn
 kt
+hl
 hh
+aa
+aa
 aa
 aa
 aa
@@ -30365,8 +30391,12 @@ mA
 hl
 hl
 hl
+hl
+hl
+nx
+hl
+hl
 kt
-<<<<<<< HEAD
 kt
 kt
 kt
@@ -30383,7 +30413,6 @@ wU
 xF
 yi
 yU
-=======
 vq
 Mu
 Mw
@@ -30392,17 +30421,19 @@ Mw
 MC
 yh
 yV
->>>>>>> b57d15aac8... Improve parts of CentCom's appearance slightly (#33832)
 zw
-zY
-AH
-Br
 zZ
-Cn
+zZ
+Bs
+zZ
+Co
 CW
-Dn
+Do
 kt
+hl
 hh
+aa
+aa
 aa
 aa
 aa
@@ -30633,36 +30664,36 @@ hl
 hl
 hl
 hl
-my
 hl
 hl
 hl
 hl
-nx
 hl
 kt
-<<<<<<< HEAD
 tc
 ll
 tc
-=======
->>>>>>> b57d15aac8... Improve parts of CentCom's appearance slightly (#33832)
 vt
 vq
 vq
+My
+vs
 vq
 yh
-yV
+yW
 zw
-zZ
-zZ
-Bs
-zZ
-Co
+Aa
+AI
+Bt
+BX
+Cn
 CW
-Do
+Dp
 kt
+hl
 hh
+aa
+aa
 aa
 aa
 aa
@@ -30898,10 +30929,7 @@ hl
 hl
 hl
 hl
-hl
-hl
 kt
-<<<<<<< HEAD
 tc
 ll
 tc
@@ -30909,7 +30937,6 @@ hl
 hl
 hl
 vq
-=======
 kt
 kt
 nz
@@ -30925,19 +30952,12 @@ yh
 yh
 yh
 yh
->>>>>>> b57d15aac8... Improve parts of CentCom's appearance slightly (#33832)
 yh
-yW
-zw
-Aa
-AI
-Bt
-BX
-Cn
-CW
-Dp
 kt
+hl
 hh
+aa
+aa
 aa
 aa
 aa
@@ -31167,7 +31187,7 @@ kt
 hl
 hl
 hl
-mz
+hl
 hl
 hl
 hl
@@ -31178,9 +31198,9 @@ hl
 kt
 nz
 ll
-<<<<<<< HEAD
-tc
-=======
+nz
+kt
+kt
 nz
 kt
 kt
@@ -31194,7 +31214,6 @@ kt
 kt
 kt
 kt
->>>>>>> b57d15aac8... Improve parts of CentCom's appearance slightly (#33832)
 hl
 hl
 hl
@@ -31209,8 +31228,21 @@ yh
 yh
 yh
 yh
+>>>>>>> d04fb688d3fd0aaa34a55a9f0965cb10309f3f5e
 kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+hl
 hh
+aa
+aa
 aa
 aa
 aa
@@ -31449,16 +31481,13 @@ kt
 kt
 rd
 kt
-<<<<<<< HEAD
 td
 ll
 td
-=======
 kt
 nz
 uJ
 nz
->>>>>>> b57d15aac8... Improve parts of CentCom's appearance slightly (#33832)
 kt
 rd
 kt
@@ -31471,10 +31500,25 @@ kt
 kt
 kt
 kt
+nz
+uJ
+nz
+kt
+rd
 kt
 kt
-kt
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
+hl
 hh
+aa
+aa
 aa
 aa
 aa
@@ -31729,9 +31773,9 @@ hl
 hl
 hl
 hl
-hl
-hl
 hh
+aa
+aa
 aa
 aa
 aa
@@ -31986,9 +32030,9 @@ hl
 hl
 hl
 hl
-hl
-hl
 hh
+aa
+aa
 aa
 aa
 aa
@@ -32243,9 +32287,9 @@ hl
 hl
 BY
 hl
-hl
-hl
 hh
+aa
+aa
 aa
 aa
 aa
@@ -32500,9 +32544,9 @@ hl
 BY
 Cp
 BY
-hl
-hl
 hh
+aa
+aa
 aa
 aa
 aa
@@ -32757,9 +32801,9 @@ hl
 hl
 BY
 hl
-hl
-hl
 hh
+aa
+aa
 aa
 aa
 aa
@@ -33014,9 +33058,9 @@ hl
 hl
 hl
 hl
-hl
-hl
 hh
+aa
+aa
 aa
 aa
 aa
@@ -33272,8 +33316,8 @@ hh
 hh
 hh
 hh
-hh
-hh
+aa
+aa
 aa
 aa
 aa

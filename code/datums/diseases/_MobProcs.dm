@@ -21,6 +21,7 @@
 		return FALSE
 
 	return TRUE
+
 //Hippie End
 
 /mob/proc/ContactContractDisease(datum/disease/D)
