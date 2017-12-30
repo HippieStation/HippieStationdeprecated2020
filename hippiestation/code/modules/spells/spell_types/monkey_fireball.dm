@@ -12,3 +12,16 @@
 	active_msg = "You hunch over and form a blue fireball with your hands! "
 	deactive_msg = "You dissipate the ball and assume a normal stance."
 	active = FALSE
+
+/obj/effect/proc_holder/spell/aimed/monkey_fireball/perform(list/targets, recharge = 1, mob/user = usr)
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		if(C.handcuffed)
+			to_chat(C, "<span class='notice'>Your hands are restrained!</span>")
+			revert_cast(user)
+			return
+	if(user.incapacitated())
+		to_chat(user, "<span class='notice'>You can't move your hands into formation!</span>")
+		revert_cast(user)
+		return
+	..()

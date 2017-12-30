@@ -60,3 +60,21 @@ var/effects = FALSE
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		H.adjustStaminaLoss(5)
+
+
+/datum/status_effect/monkeyman_curse // the ultimate semi-ensurance of brainloss
+	id = "monkeyman_curse"
+	duration = -1
+	tick_interval = 20
+	alert_type = /obj/screen/alert/status_effect/monkeyman_curse
+
+/obj/screen/alert/status_effect/monkeyman_curse
+	name = "Monkeyman Curse"
+	desc = "You have been possessed by the ghost of the Monkeyman! You will suffer from permanent brain damage."
+	icon_state = "monkeymask"
+	icon = 'icons/obj/clothing/masks.dmi'
+
+/datum/status_effect/monkeyman_curse/tick()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.setBrainLoss(200)

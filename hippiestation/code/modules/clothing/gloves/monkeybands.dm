@@ -12,6 +12,7 @@
 	var/mob/living/carbon/human/H = user
 	if(slot == slot_gloves)
 		H.dna.add_mutation(MONKEYMANMUT)
+		H.apply_status_effect(STATUS_EFFECT_MONKEYMAN_CURSE)
 		var/message = "<span class='sciradio'>You have been possessed by the ghost of the Monkeyman! Your hand-to-hand combat has become all-powerful, and you are now able to deflect any projectiles \
 		directed toward you. Your brain, however, has completely melted away and you are now incapable of using ranged weapons and suffer from similar disabilities as the Clown does. \ You can learn more about your newfound art by using the Recall Training verb in the Monkeyman tab. Don't try to cure your disabilities!</span>"
 		to_chat(user, message)
@@ -210,19 +211,18 @@
 	if(check_streak(A,D))
 		return 1
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
-	A.setBrainLoss(200) //semi-ensures brainloss
 	var/attack_verb = "attacked (Monkeyman)"
 	if(A.has_status_effect(STATUS_EFFECT_MONKEY_RAGE))
 		var/atk_verb = pick("pounds", "slams", "mudamudas", "wrecks", "makes a mockery of")
 		D.visible_message("<span class='danger'>[A] [atk_verb] [D]!</span>", \
 			"<span class='userdanger'>[A] [atk_verb] you!</span>")
-		D.apply_damage(rand(17,21), BRUTE)
+		D.apply_damage(rand(16,19), BRUTE)
 		playsound(get_turf(D), 'sound/effects/pop_expl.ogg', 225, 1, -1)
 	else
 		var/atk_verb = pick("jabs", "kicks", "oraoras", "hooks", "slams")
 		D.visible_message("<span class='danger'>[A] [atk_verb] [D]!</span>", \
 			"<span class='userdanger'>[A] [atk_verb] you!</span>")
-		D.apply_damage(rand(12,15), BRUTE)
+		D.apply_damage(rand(11,15), BRUTE)
 		playsound(get_turf(D), 'sound/effects/pop_expl.ogg', 175, 1, -1)
 	if(prob(D.getBruteLoss()) && !D.lying)
 		D.visible_message("<span class='warning'>[D] stumbles and falls!</span>", "<span class='userdanger'>The blow sends you to the ground!</span>")
