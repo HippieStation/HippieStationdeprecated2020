@@ -33,7 +33,11 @@
 				last_failed_turf = T
 			to_chat(src, "<span class='warning'>This turf is consecrated and can't be crossed!</span>")
 			return
+<<<<<<< HEAD
 		if(!GLOB.ratvar_awakens && istype(get_area(T), /area/chapel))
+=======
+		if(istype(get_area(T), /area/chapel))
+>>>>>>> d04fb688d3fd0aaa34a55a9f0965cb10309f3f5e
 			to_chat(src, "<span class='warning'>The Chapel is hallowed ground under a heretical deity, and can't be accessed!</span>")
 			return
 		forceMove(T)
@@ -51,7 +55,11 @@
 	add_servant_of_ratvar(src, TRUE)
 	var/datum/antagonist/clockcult/C = mind.has_antag_datum(/datum/antagonist/clockcult,TRUE)
 	if(C && C.clock_team)
+<<<<<<< HEAD
 		if(C.clock_team.eminence && C.clock_team.eminence != src)
+=======
+		if(C.clock_team.eminence)
+>>>>>>> d04fb688d3fd0aaa34a55a9f0965cb10309f3f5e
 			remove_servant_of_ratvar(src,TRUE)
 			qdel(src)
 			return

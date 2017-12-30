@@ -59,6 +59,12 @@
 	SSticker.mode.cult += owner // Only add after they've been given objectives
 	SSticker.mode.update_cult_icons_added(owner)
 	current.log_message("<font color=#960000>Has been converted to the cult of Nar'Sie!</font>", INDIVIDUAL_ATTACK_LOG)
+<<<<<<< HEAD
+=======
+
+	if(jobban_isbanned(current, CLUWNEBAN) || jobban_isbanned(current, CATBAN))
+		addtimer(CALLBACK(SSticker.mode, /datum/game_mode.proc/replace_jobbaned_player, current, ROLE_CULTIST, ROLE_CULTIST), 0)
+>>>>>>> d04fb688d3fd0aaa34a55a9f0965cb10309f3f5e
 
 	if(cult_team.blood_target && cult_team.blood_target_image && current.client)
 		current.client.images += cult_team.blood_target_image

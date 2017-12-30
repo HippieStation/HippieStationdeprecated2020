@@ -33,6 +33,10 @@ GLOBAL_LIST_INIT(movement_keys, list(
 			erase_output = "[erase_output];[macro_name].parent=null"
 	winset(src, null, erase_output)
 
+<<<<<<< HEAD
+=======
+//Mirrored by hippie so we can use our own macro set
+>>>>>>> d04fb688d3fd0aaa34a55a9f0965cb10309f3f5e
 /client/proc/set_macros()
 	set waitfor = FALSE
 

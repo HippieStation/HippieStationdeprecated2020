@@ -14305,6 +14305,130 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/arena)
+"Mj" = (
+/obj/machinery/door/poddoor{
+	id = "thunderdome";
+	name = "Thunderdome Blast Door"
+	},
+/obj/effect/turf_decal/loading_area{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/tdome/arena)
+"Mk" = (
+/obj/machinery/door/poddoor{
+	id = "thunderdomegen";
+	name = "General Supply"
+	},
+/obj/effect/turf_decal/loading_area{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/tdome/arena)
+"Ml" = (
+/obj/machinery/door/poddoor{
+	id = "thunderdome";
+	name = "Thunderdome Blast Door"
+	},
+/obj/effect/turf_decal/loading_area{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/tdome/arena)
+"Mm" = (
+/obj/machinery/door/poddoor{
+	id = "thunderdomegen";
+	name = "General Supply"
+	},
+/obj/effect/turf_decal/loading_area{
+	dir = 8
+	},
+/obj/effect/turf_decal/bot_white,
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/airlock)
+"Mu" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/syndicate,
+/obj/item/crowbar/red,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/syndicate/airlock)
+"Mw" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/syndicate/airlock)
+"My" = (
+/obj/docking_port/stationary{
+	area_type = /area/syndicate_mothership;
+	baseturf_type = /turf/open/floor/plating/asteroid/snow;
+	dheight = 1;
+	dir = 8;
+	dwidth = 12;
+	height = 17;
+	id = "syndicate_away";
+	name = "syndicate recon outpost";
+	turf_type = /turf/open/floor/plating/asteroid/snow;
+	width = 23
+	},
+/obj/machinery/door/poddoor{
+	id = "smindicate";
+	name = "outer blast door"
+	},
+/obj/machinery/button/door{
+	id = "smindicate";
+	name = "external door control";
+	pixel_x = 0;
+	pixel_y = 26;
+	req_access_txt = "150"
+	},
+/obj/docking_port/mobile{
+	dheight = 1;
+	dir = 8;
+	dwidth = 12;
+	height = 17;
+	hidden = 1;
+	id = "syndicate";
+	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0);
+	name = "syndicate infiltrator";
+	port_direction = 4;
+	roundstart_move = null;
+	width = 23
+	},
+/obj/structure/fans/tiny,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/syndicate/airlock)
+"Mz" = (
+/turf/open/floor/plasteel/dark,
+/area/shuttle/syndicate/airlock)
+"MC" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/space/syndicate/black/red,
+/obj/item/clothing/head/helmet/space/syndicate/black/red,
+/obj/effect/turf_decal/bot_white,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/syndicate/airlock)
+"MD" = (
+/obj/effect/light_emitter{
+	set_cap = 1;
+	set_luminosity = 4
+	},
+/obj/structure/sign/securearea{
+	desc = "A warning sign which reads 'FOURTH WALL'.";
+	name = "\improper FOURTH WALL";
+	pixel_x = -32
+	},
+/turf/open/floor/plating/asteroid/snow/airless,
+/area/syndicate_mothership)
 "Mt" = (
 /obj/structure/chair{
 	dir = 4;
@@ -14396,7 +14520,6 @@
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/syndicate_mothership)
-
 (1,1,1) = {"
 aa
 aa
@@ -29211,6 +29334,23 @@ pC
 pV
 qI
 oT
+sc
+ta
+ub
+ta
+ta
+wg
+sb
+sb
+sb
+sb
+zv
+zV
+AF
+Bo
+BV
+Cm
+CV
 rZ
 rZ
 vq
@@ -29468,6 +29608,22 @@ pD
 pW
 qI
 oT
+sd
+hl
+vq
+rZ
+rZ
+uc
+rZ
+vq
+vq
+wT
+xD
+yg
+yR
+yR
+zW
+yR
 sd
 hl
 vq
@@ -30241,6 +30397,22 @@ nx
 hl
 hl
 kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+tc
+ll
+uK
+vs
+wk
+wU
+xF
+yi
+yU
 vq
 Mu
 Mw
@@ -30498,6 +30670,9 @@ hl
 hl
 hl
 kt
+tc
+ll
+tc
 vt
 vq
 vq
@@ -30755,6 +30930,13 @@ hl
 hl
 hl
 kt
+tc
+ll
+tc
+hl
+hl
+hl
+vq
 kt
 kt
 nz
@@ -31019,6 +31201,34 @@ ll
 nz
 kt
 kt
+nz
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+kt
+hl
+hl
+hl
+hl
+yj
+yh
+yh
+yh
+yh
+yh
+yh
+yh
+yh
+yh
+>>>>>>> d04fb688d3fd0aaa34a55a9f0965cb10309f3f5e
 kt
 kt
 kt
@@ -31266,6 +31476,25 @@ hl
 hl
 mA
 hl
+kt
+kt
+kt
+rd
+kt
+td
+ll
+td
+kt
+nz
+uJ
+nz
+kt
+rd
+kt
+kt
+kt
+kt
+kt
 kt
 kt
 kt
