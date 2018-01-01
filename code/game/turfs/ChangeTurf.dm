@@ -123,6 +123,7 @@
 // Take the input as baseturfs and put it underneath the current baseturfs
 // If fake_turf_type is provided and new_baseturfs is not the baseturfs list will be created identical to the turf type's
 // If both or just new_baseturfs is provided they will be inserted below the existing baseturfs
+
 /turf/proc/PlaceOnBottom(list/new_baseturfs, turf/fake_turf_type)
 	if(fake_turf_type)
 		if(!new_baseturfs)
@@ -130,6 +131,7 @@
 			assemble_baseturfs(fake_turf_type)
 			if(!length(baseturfs))
 				baseturfs = list(baseturfs)
+
 			baseturfs += old_baseturfs
 			return
 		else if(!length(new_baseturfs))
@@ -158,7 +160,6 @@
 	if(!length(baseturfs))
 		baseturfs = list(baseturfs)
 	baseturfs += new_baseturfs
-
 
 // Copy an existing turf and put it on top
 /turf/proc/CopyOnTop(turf/copytarget, ignore_bottom=1, depth=INFINITY)
