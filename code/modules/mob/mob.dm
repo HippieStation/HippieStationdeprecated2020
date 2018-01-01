@@ -278,21 +278,15 @@
 			else
 				//Do nothing
 		else
-<<<<<<< HEAD
-=======
 			//Reset to common defaults: mob if on turf, otherwise current loc
->>>>>>> ef97450ced... Merge pull request #33951 from AnturK/perspective_fix
 			if(isturf(loc))
 				client.eye = client.mob
 				client.perspective = MOB_PERSPECTIVE
 			else
 				client.perspective = EYE_PERSPECTIVE
 				client.eye = loc
-<<<<<<< HEAD
 		return 1
-=======
-		return 1 
->>>>>>> ef97450ced... Merge pull request #33951 from AnturK/perspective_fix
+
 
 /mob/living/reset_perspective(atom/A)
 	if(..())
