@@ -1,8 +1,82 @@
+/datum/uplink_item
+	var/party = FALSE /* Whether or not this item spawns in the party surplus crate */
+
+/proc/initialize_global_uplink_items()
+	GLOB.uplink_items = list()
+	for(var/item in subtypesof(/datum/uplink_item))
+		var/datum/uplink_item/I = new item()
+		if(!I.item)
+			continue
+		if(!GLOB.uplink_items[I.category])
+			GLOB.uplink_items[I.category] = list()
+		GLOB.uplink_items[I.category][I.name] = I
+
+/proc/get_uplink_items(var/datum/game_mode/gamemode = null)
+	if(!GLOB.uplink_items.len)
+		initialize_global_uplink_items()
+
+	var/list/filtered_uplink_items = list()
+	var/list/sale_items = list()
+
+	for(var/category in GLOB.uplink_items)
+		for(var/item in GLOB.uplink_items[category])
+			var/datum/uplink_item/I = GLOB.uplink_items[category][item]
+			if(!istype(I))
+				continue
+			if(I.include_modes.len)
+				if(!gamemode && SSticker && SSticker.mode && !(SSticker.mode.type in I.include_modes))
+					continue
+				if(gamemode && !(gamemode in I.include_modes))
+					continue
+			if(I.exclude_modes.len)
+				if(!gamemode && SSticker && SSticker.mode && (SSticker.mode.type in I.exclude_modes))
+					continue
+				if(gamemode && (gamemode in I.exclude_modes))
+					continue
+			if(I.player_minimum && I.player_minimum > GLOB.joined_player_list.len)
+				continue
+			if(I.party) /* Hippie code, used for party surplus crate */
+				continue
+
+			if(!filtered_uplink_items[category])
+				filtered_uplink_items[category] = list()
+			filtered_uplink_items[category][item] = I
+			if(I.limited_stock < 0 && !I.cant_discount && I.item && I.cost > 1)
+				sale_items += I
+
+	for(var/i in 1 to 3)
+		var/datum/uplink_item/I = pick_n_take(sale_items)
+		var/datum/uplink_item/A = new I.type
+		var/discount = A.get_discount()
+		var/list/disclaimer = list("Void where prohibited.", "Not recommended for children.", "Contains small parts.", "Check local laws for legality in region.", "Do not taunt.", "Not responsible for direct, indirect, incidental or consequential damages resulting from any defect, error or failure to perform.", "Keep away from fire or flames.", "Product is provided \"as is\" without any implied or expressed warranties.", "As seen on TV.", "For recreational use only.", "Use only as directed.", "16% sales tax will be charged for orders originating within Space Nebraska.")
+		A.limited_stock = 1
+		I.refundable = FALSE //THIS MAN USES ONE WEIRD TRICK TO GAIN FREE TC, CODERS HATES HIM!
+		A.refundable = FALSE
+		if(A.cost >= 20) //Tough love for nuke ops
+			discount *= 0.5
+		A.cost = max(round(A.cost * discount),1)
+		A.category = "Discounted Gear"
+		A.name += " ([round(((initial(A.cost)-A.cost)/initial(A.cost))*100)]% off!)"
+		A.desc += " Normally costs [initial(A.cost)] TC. All sales final. [pick(disclaimer)]"
+		A.item = I.item
+
+		if(!filtered_uplink_items[A.category])
+			filtered_uplink_items[A.category] = list()
+		filtered_uplink_items[A.category][A.name] = A
+	return filtered_uplink_items
+
 /datum/uplink_item/colab
 	category = "Collaborative Gear"
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/nuclear)
 	cant_discount = TRUE
+
+/datum/uplink_item/party
+	category = "Discontinued Party Gear"
+	surplus = 25
+	exclude_modes = list(/datum/game_mode/nuclear)
+	cant_discount = TRUE
+	party = TRUE
 
 /* Stimpak */
 /datum/uplink_item/stealthy_tools/stimpack
@@ -302,6 +376,88 @@
 
 /datum/uplink_item/role_restricted/reverse_revolver
 	cost = 13
-	
+
 /datum/uplink_item/dangerous/powerfist
 	cost = 6
+
+/datum/uplink_item/badass/party
+	name = "Syndicate Party Crate"
+	desc = "A forgotten birthday crate for valued Syndicate agents. The project was cancelled a long time ago, \
+			and some items you'll find have been discontinued or recalled for varying reasons. \
+			The overall value will always be 50 TC, but a random amount of TC will be set aside for party items. \
+			Will always contain a random cake."
+	item = /obj/structure/closet/crate
+	cost = 20
+	surplus = 0
+	exclude_modes = list(/datum/game_mode/nuclear)
+	cant_discount = TRUE
+
+/datum/uplink_item/badass/party/spawn_item(turf/loc, datum/component/uplink/U)
+	var/list/uplink_items = get_uplink_items(SSticker && SSticker.mode? SSticker.mode : null) + list("Discontinued Party Gear" = GLOB.uplink_items["Discontinued Party Gear"])
+
+	var/crate_value = 50
+	var/obj/structure/closet/crate/C = new(loc)
+	var/party_value = rand(1,20)
+	crate_value = crate_value - party_value
+	while(crate_value)
+		var/category = pick(uplink_items)
+		var/item = pick(uplink_items[category])
+		var/datum/uplink_item/I = uplink_items[category][item]
+
+		if(!I.surplus || prob(100 - I.surplus))
+			continue
+		if(crate_value < I.cost)
+			continue
+		crate_value -= I.cost
+		var/obj/goods = new I.item(C)
+		U.purchase_log.LogPurchase(goods, I.cost)
+	while(party_value)
+		var/itemp = pick(uplink_items["Discontinued Party Gear"])
+		var/datum/uplink_item/IP = uplink_items["Discontinued Party Gear"][itemp]
+
+		if(!IP.surplus || prob(100 - IP.surplus))
+			continue
+		if(party_value < IP.cost)
+			continue
+		party_value -= IP.cost
+		var/obj/goods = new IP.item(C)
+		U.purchase_log.LogPurchase(goods, IP.cost)
+
+	SSblackbox.record_feedback("nested tally", "traitor_uplink_items_bought", 1, list("[initial(name)]", "[cost]"))
+	return C
+
+// descriptions are there in the party items just in case we decide to unhide the category in the future.
+
+/datum/uplink_item/party/monkeybands
+	name = "Monkeyman's Wristbands"
+	desc = "Wristbands that are said to contain the soul of the Monkeyman, a master martial artist who brought down all sorts of space tyrants - but not Nanotrasen. \
+			Was discontinued when we realized that those who equipped the wristbands were quickly possessed and became clones of the Monkeyman himself."
+	item = /obj/item/clothing/gloves/monkeybands
+	cost = 20 // literally gives you an almost-instant-crit spell and rapid disarms
+	surplus = 20 //surplus/party only, fitting for an item this strong.
+
+/datum/uplink_item/party/grudgecoder
+	name = "Grudgecoder"
+	desc = "A laptop that also functions as an energy weapon, used for its ability to bring the wrath of Github upon its victims. \
+			Was recalled once the copies had been reported to be infected with a furry virus, and they were later replaced by the Execution Sword. \
+			Hold by the handle (wield) it and use HELP intent on the head to channel the wrath of Github. This will be announced to the crew, so be cautious!"
+	item = /obj/item/twohanded/grudgecoder
+	cost = 4
+	surplus = 25
+
+/datum/uplink_item/party/riotfoamdart
+	name = "Donksoft C-20r"
+	desc = "A box containing a Donksoft C-20r, and an ammo box. \
+			Use the ammo box in-hand on a foam dart to collect it. If there are multiple on a tile, it'll automatically collect the others. \
+			Was widely mocked by operatives, other gangs, and Nanotrasen crew. They were discontinued before long."
+	item = /obj/item/storage/box/syndie_kit/c20r_foam_box
+	cost = 2 // costs 1/6th of the ebow price, because it's only sixth as good
+	surplus = 40
+
+/datum/uplink_item/party/lightning_box
+	name = "Lightning in a Box"
+	desc = "A box containing several packets of birdseed, which stun those who are hit by it. \
+			Was produced, but never sold to agents."
+	item = /obj/item/storage/box/syndie_kit/lightning_box
+	cost = 1 // devils give you this for free on a 1 second cooldown, the fact that it even costs a telecrystal might be a sin on its own right
+	surplus = 10

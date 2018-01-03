@@ -213,16 +213,16 @@
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 	var/attack_verb = "attacked (Monkeyman)"
 	if(A.has_status_effect(STATUS_EFFECT_MONKEY_RAGE))
-		var/atk_verb = pick("pounds", "slams", "mudamudas", "wrecks", "makes a mockery of")
+		var/atk_verb = pick("pounds", "slams", "mudamudas", "wrecks", "pulverizes")
 		D.visible_message("<span class='danger'>[A] [atk_verb] [D]!</span>", \
 			"<span class='userdanger'>[A] [atk_verb] you!</span>")
-		D.apply_damage(rand(16,19), BRUTE)
+		D.apply_damage(rand(17,21), BRUTE)
 		playsound(get_turf(D), 'sound/effects/pop_expl.ogg', 225, 1, -1)
 	else
 		var/atk_verb = pick("jabs", "kicks", "oraoras", "hooks", "slams")
 		D.visible_message("<span class='danger'>[A] [atk_verb] [D]!</span>", \
 			"<span class='userdanger'>[A] [atk_verb] you!</span>")
-		D.apply_damage(rand(11,15), BRUTE)
+		D.apply_damage(rand(12,16), BRUTE)
 		playsound(get_turf(D), 'sound/effects/pop_expl.ogg', 175, 1, -1)
 	if(prob(D.getBruteLoss()) && !D.lying)
 		D.visible_message("<span class='warning'>[D] stumbles and falls!</span>", "<span class='userdanger'>The blow sends you to the ground!</span>")

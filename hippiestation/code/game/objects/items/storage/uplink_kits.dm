@@ -69,3 +69,24 @@
 /obj/item/storage/box/syndie_kit/firesuit/PopulateContents()
 	new /obj/item/clothing/suit/fire/atmos/syndicate(src)
 	new /obj/item/clothing/head/hardhat/atmos/syndicate(src)
+
+/obj/item/storage/box/syndie_kit/c20r_foam_box
+	name = "\improper Donksoft C-20r Box"
+	desc = "Contains a Donksoft C-20r, and an Ammo Box. Remember to use the ammo box to collect your ammo!"
+
+/obj/item/storage/box/syndie_kit/c20r_foam_box/PopulateContents()
+	new /obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/riot(src)
+	new /obj/item/ammo_box/foambox/riot(src)
+
+/obj/item/storage/box/syndie_kit/lightning_box
+	name = "\improper Lightning in a Box"
+	desc = "Not quite lightning in a bottle, but at least it helps you stun your foes!"
+
+/obj/item/storage/box/syndie_kit/lightning_box/PopulateContents()
+	new /obj/item/spellpacket/lightningbolt(src)
+	new /obj/item/spellpacket/lightningbolt(src)
+	new /obj/item/spellpacket/lightningbolt(src)
+	new /obj/item/spellpacket/lightningbolt(src)
+	new /obj/item/spellpacket/lightningbolt(src)
+	new /obj/item/spellpacket/lightningbolt(src)
+	new /obj/item/spellpacket/lightningbolt(src)

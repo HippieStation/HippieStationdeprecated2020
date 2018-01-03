@@ -19,7 +19,7 @@
 	force_wielded = 16
 	hitsound = "swing_hit"
 	armour_penetration = 35
-	attack_verb = list("bashed", "hit", "beats")
+	attack_verb = list("busses", "hit", "beats")
 	light_color = "#FF0000"//red
 	wieldsound = 'sound/weapons/resonator_fire.ogg'
 	unwieldsound = 'sound/effects/pop.ogg'

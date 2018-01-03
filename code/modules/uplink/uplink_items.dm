@@ -1,6 +1,6 @@
 GLOBAL_LIST_EMPTY(uplink_items) // Global list so we only initialize this once.
-
-/proc/initialize_global_uplink_items()
+// the comment is a hippie edit
+/* /proc/initialize_global_uplink_items()
 	GLOB.uplink_items = list()
 	for(var/item in subtypesof(/datum/uplink_item))
 		var/datum/uplink_item/I = new item()
@@ -60,8 +60,8 @@ GLOBAL_LIST_EMPTY(uplink_items) // Global list so we only initialize this once.
 		if(!filtered_uplink_items[A.category])
 			filtered_uplink_items[A.category] = list()
 		filtered_uplink_items[A.category][A.name] = A
-	return filtered_uplink_items
-
+	return filtered_uplink_items */
+// hippie end
 
 /**
  * Uplink Items
@@ -1340,8 +1340,8 @@ GLOBAL_LIST_EMPTY(uplink_items) // Global list so we only initialize this once.
 	exclude_modes = list(/datum/game_mode/nuclear)
 	cant_discount = TRUE
 
-/datum/uplink_item/badass/surplus/spawn_item(turf/loc, datum/component/uplink/U)
-	var/list/uplink_items = get_uplink_items(SSticker && SSticker.mode? SSticker.mode : null)
+/datum/uplink_item/badass/surplus/spawn_item(turf/loc, datum/component/uplink/U) // the next line is a hippie edit
+	var/list/uplink_items = get_uplink_items(SSticker && SSticker.mode? SSticker.mode : null) + list("Discontinued Party Gear" = GLOB.uplink_items["Discontinued Party Gear"]) //hippie edit end
 
 	var/crate_value = 50
 	var/obj/structure/closet/crate/C = new(loc)
