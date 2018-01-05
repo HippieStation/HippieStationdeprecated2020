@@ -13,7 +13,7 @@
 	var/heating_power = 40000
 	var/delay = 5
 	var/part_bonus = 1 // HIPPIE CODE - value that point income is multiplied by, don't bother changing
- 	var/part_value = 0.333 //HIPPIE CODE- the increase in part_bonus per tier of parts ABOVE stock parts, 2 with maximum parts
+	var/part_value = 0.333 //HIPPIE CODE- the increase in part_bonus per tier of parts ABOVE stock parts, 2 with maximum parts
 	var/temp_tolerance = 2.7 // HIPPIE CODE - kelvin, minimum temperature is 2.7
 	var/temp_penalty_coefficient = 0.5 // HIPPIE CODE - Changes the penalty for high temperatures, 0.5 at 73k is about 2600 points/minutedegree above high tolerance.
 	req_access = list(ACCESS_RD) //ONLY THE R&D CAN CHANGE SERVER SETTINGS.
