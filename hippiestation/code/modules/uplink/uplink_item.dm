@@ -434,7 +434,7 @@
 			Was discontinued when we realized that those who equipped the wristbands were quickly possessed and became clones of the Monkeyman himself."
 	item = /obj/item/clothing/gloves/monkeybands
 	cost = 20 // literally gives you an almost-instant-crit spell and rapid disarms
-	surplus = 20 //surplus/party only, fitting for an item this strong.
+	surplus = 25 //surplus/party only, fitting for an item this strong.
 
 /datum/uplink_item/party/grudgecoder
 	name = "Grudgecoder"
@@ -443,7 +443,7 @@
 			Hold by the handle (wield) it and use HELP intent on the head to channel the wrath of Github. This will be announced to the crew, so be cautious!"
 	item = /obj/item/twohanded/grudgecoder
 	cost = 4
-	surplus = 25
+	surplus = 35
 
 /datum/uplink_item/party/riotfoamdart
 	name = "Donksoft C-20r"
@@ -452,7 +452,7 @@
 			Was widely mocked by operatives, other gangs, and Nanotrasen crew. They were discontinued before long."
 	item = /obj/item/storage/box/syndie_kit/c20r_foam_box
 	cost = 2 // costs 1/6th of the ebow price, because it's only sixth as good
-	surplus = 40
+	surplus = 30
 
 /datum/uplink_item/party/lightning_box
 	name = "Lightning in a Box"
@@ -461,3 +461,11 @@
 	item = /obj/item/storage/box/syndie_kit/lightning_box
 	cost = 1 // devils give you this for free on a 1 second cooldown, the fact that it even costs a telecrystal might be a sin on its own right
 	surplus = 10
+
+/datum/uplink_item/party/rocketpunch
+	name = "Rocket Punch"
+	desc = "A Golden Power-Fist, completely retooled to shoot the fist of the Gauntlet at people. Does not require gas \
+			Every unit was as expensive as Space Station 13 its self. Few were produced, and it was quickly discarded as an item far less useful than the Mini-Energy Crossbow."
+	item = /obj/item/gun/energy/kinetic_accelerator/rocketopaunch
+	cost = 12 // essentially an ebow that deals damage & knocks back instead of stuns, if the person you're shooting hits a wall then they're as good as dead
+	surplus = 35 //good chance to show up in crates means more punches on average
