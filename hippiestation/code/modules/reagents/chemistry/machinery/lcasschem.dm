@@ -13,7 +13,7 @@
 
 /obj/machinery/chem/proc/eject_beaker()
 	if(beaker)
-		beaker.loc = get_turf(src)
+		beaker.forceMove(get_turf(src))
 		beaker.reagents.handle_reactions()
 		beaker.reagents.chem_pressure = 0//pressure, radioactivity and bluespaced activity are tied to the container itself and don't linger outside the machine
 		beaker.reagents.chem_radioactivity = 0
@@ -30,7 +30,7 @@
 	if(default_deconstruction_crowbar(I))
 		return
 
-	if(istype(I, /obj/item/reagent_containers) && (I.container_type & OPENCONTAINER_1))
+	if(istype(I, /obj/item/reagent_containers) && (I.container_type & OPENCONTAINER))
 		. = 1 //no afterattack
 		if(beaker)
 			to_chat(user, "<span class='warning'>A container is already loaded into [src]!</span>")
@@ -152,7 +152,7 @@
 			return
 		to_chat(user, "<span class='notice'>You add the uranium to the [src].</span>")
 		var/obj/item/stack/sheet/mineral/uranium/U = I
-		material_amt = Clamp(material_amt += U.amount * 1000, 0, 50000)//50 sheets max
+		material_amt = CLAMP(material_amt += U.amount * 1000, 0, 50000)//50 sheets max
 		user.dropItemToGround(I)
 		qdel(I)//it's a var now
 		return
@@ -202,7 +202,7 @@
 				target = text2num(target)
 				. = TRUE
 			if(.)
-				target_radioactivity = Clamp(target, 0, 20)
+				target_radioactivity = CLAMP(target, 0, 20)
 		if("eject")
 			on = FALSE
 			eject_beaker()
@@ -305,7 +305,7 @@
 				target = text2num(target)
 				. = TRUE
 			if(.)
-				intensity = Clamp(target, 0, 30)
+				intensity = CLAMP(target, 0, 30)
 		if("eject")
 			on = FALSE
 			eject_beaker()

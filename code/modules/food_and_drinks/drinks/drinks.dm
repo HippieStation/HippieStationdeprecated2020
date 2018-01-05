@@ -8,7 +8,7 @@
 	icon_state = null
 	lefthand_file = 'icons/mob/inhands/misc/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/food_righthand.dmi'
-	container_type = OPENCONTAINER_1
+	container_type = OPENCONTAINER
 	var/gulp_size = 5 //This is now officially broken ... need to think of a nice way to fix it.
 	possible_transfer_amounts = list(5,10,15,20,25,30,50)
 	volume = 50
@@ -30,7 +30,7 @@
 	if(!canconsume(M, user))
 		return 0
 
-	if (!is_open_container())
+	if (!is_drainable())
 		to_chat(user, "<span class='warning'>[src]'s lid hasn't been opened!</span>")
 		return 0
 
@@ -44,7 +44,7 @@
 		if(!reagents || !reagents.total_volume)
 			return // The drink might be empty after the delay, such as by spam-feeding
 		M.visible_message("<span class='danger'>[user] feeds the contents of [src] to [M].</span>", "<span class='userdanger'>[user] feeds the contents of [src] to [M].</span>")
-		add_logs(user, M, "fed", reagentlist(src))
+		add_logs(user, M, "fed", reagents.log_list())
 
 	var/fraction = min(gulp_size/reagents.total_volume, 1)
 	checkLiked(fraction, M)
@@ -56,31 +56,16 @@
 /obj/item/reagent_containers/food/drinks/afterattack(obj/target, mob/user , proximity)
 	if(!proximity)
 		return
-	if(istype(target, /obj/structure/reagent_dispensers)) //A dispenser. Transfer FROM it TO us.
 
-		if (!is_open_container())
-			to_chat(user, "<span class='warning'>[target]'s tab isn't open!</span>")
-			return
-
-		if(!target.reagents.total_volume)
-			to_chat(user, "<span class='warning'>[target] is empty.</span>")
-			return
-
-		if(reagents.total_volume >= reagents.maximum_volume)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
-			return
-
-		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this)
-		to_chat(user, "<span class='notice'>You fill [src] with [trans] units of the contents of [target].</span>")
-
-	else if(target.is_open_container()) //Something like a glass. Player probably wants to transfer TO it.
+	if(target.is_refillable()) //Something like a glass. Player probably wants to transfer TO it.
 		if(!reagents.total_volume)
 			to_chat(user, "<span class='warning'>[src] is empty.</span>")
 			return
 
-		if(target.reagents.total_volume >= target.reagents.maximum_volume)
+		if(target.reagents.holder_full())
 			to_chat(user, "<span class='warning'>[target] is full.</span>")
 			return
+
 		var/refill = reagents.get_master_reagent_id()
 		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
 		to_chat(user, "<span class='notice'>You transfer [trans] units of the solution to [target].</span>")
@@ -89,6 +74,24 @@
 			var/mob/living/silicon/robot/bro = user
 			bro.cell.use(30)
 			addtimer(CALLBACK(reagents, /datum/reagents.proc/add_reagent, refill, trans), 600)
+
+	else if(target.is_drainable()) //A dispenser. Transfer FROM it TO us.
+		if (!is_refillable())
+			to_chat(user, "<span class='warning'>[src]'s tab isn't open!</span>")
+			return
+
+		if(!target.reagents.total_volume)
+			to_chat(user, "<span class='warning'>[target] is empty.</span>")
+			return
+
+		if(reagents.holder_full())
+			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			return
+
+		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this)
+		to_chat(user, "<span class='notice'>You fill [src] with [trans] units of the contents of [target].</span>")
+
+	else
 
 /obj/item/reagent_containers/food/drinks/attackby(obj/item/I, mob/user, params)
 	var/hotness = I.is_hot()
@@ -140,7 +143,7 @@
 	possible_transfer_amounts = list()
 	volume = 5
 	flags_1 = CONDUCT_1
-	container_type = OPENCONTAINER_1
+	container_type = OPENCONTAINER
 	spillable = TRUE
 	resistance_flags = FIRE_PROOF
 	isGlass = FALSE
@@ -391,6 +394,7 @@
 	container_type = NONE
 	spillable = FALSE
 	isGlass = FALSE
+	grind_results = list("aluminum" = 10)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/attack(mob/M, mob/user)
 	if(M == user && !src.reagents.total_volume && user.a_intent == INTENT_HARM && user.zone_selected == "head")
@@ -403,9 +407,9 @@
 
 
 /obj/item/reagent_containers/food/drinks/soda_cans/attack_self(mob/user)
-	if(!is_open_container())
+	if(!is_drainable())
 		to_chat(user, "You pull back the tab of \the [src] with a satisfying pop.") //Ahhhhhhhh
-		container_type = OPENCONTAINER_1
+		container_type = OPENCONTAINER
 		playsound(src, "can_open", 50, 1)
 		spillable = TRUE
 		return
@@ -415,27 +419,27 @@
 	name = "Space Cola"
 	desc = "Cola. in space."
 	icon_state = "cola"
-	list_reagents = list("cola" = 30)
+	list_reagents = list("cola" = 30, "burpinate" = 5)
 	foodtype = SUGAR
 
 /obj/item/reagent_containers/food/drinks/soda_cans/tonic
 	name = "T-Borg's tonic water"
 	desc = "Quinine tastes funny, but at least it'll keep that Space Malaria away."
 	icon_state = "tonic"
-	list_reagents = list("tonic" = 50)
+	list_reagents = list("tonic" = 45, "burpinate" = 5)
 	foodtype = ALCOHOL
 
 /obj/item/reagent_containers/food/drinks/soda_cans/sodawater
 	name = "soda water"
 	desc = "A can of soda water. Why not make a scotch and soda?"
 	icon_state = "sodawater"
-	list_reagents = list("sodawater" = 50)
+	list_reagents = list("sodawater" = 45, "burpinate" = 5)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime
 	name = "orange soda"
 	desc = "You wanted ORANGE. It gave you Lemon Lime."
 	icon_state = "lemon-lime"
-	list_reagents = list("lemon_lime" = 30)
+	list_reagents = list("lemon_lime" = 30, "burpinate" = 5)
 	foodtype = FRUIT
 
 /obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime/Initialize()
@@ -446,48 +450,48 @@
 	name = "Space-Up!"
 	desc = "Tastes like a hull breach in your mouth."
 	icon_state = "space-up"
-	list_reagents = list("space_up" = 30)
+	list_reagents = list("space_up" = 30, "burpinate" = 5)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/starkist
 	name = "Star-kist"
 	desc = "The taste of a star in liquid form. And, a bit of tuna...?"
 	icon_state = "starkist"
-	list_reagents = list("cola" = 15, "orangejuice" = 15)
+	list_reagents = list("cola" = 15, "orangejuice" = 15, "burpinate" = 5)
 	foodtype = SUGAR | FRUIT | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind
 	name = "Space Mountain Wind"
 	desc = "Blows right through you like a space wind."
 	icon_state = "space_mountain_wind"
-	list_reagents = list("spacemountainwind" = 30)
+	list_reagents = list("spacemountainwind" = 30, "burpinate" = 5)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/thirteenloko
 	name = "Thirteen Loko"
 	desc = "The CMO has advised crew members that consumption of Thirteen Loko may result in seizures, blindness, drunkenness, or even death. Please Drink Responsibly."
 	icon_state = "thirteen_loko"
-	list_reagents = list("thirteenloko" = 30)
+	list_reagents = list("thirteenloko" = 30, "burpinate" = 5)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb
 	name = "Dr. Gibb"
 	desc = "A delicious mixture of 42 different flavors."
 	icon_state = "dr_gibb"
-	list_reagents = list("dr_gibb" = 30)
+	list_reagents = list("dr_gibb" = 30, "burpinate" = 5)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/pwr_game
 	name = "Pwr Game"
 	desc = "The only drink with the PWR that true gamers crave."
 	icon_state = "purple_can"
-	list_reagents = list("pwr_game" = 30)
+	list_reagents = list("pwr_game" = 30, "burpinate" = 5)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/shamblers
 	name = "Shambler's juice"
 	desc = "~Shake me up some of that Shambler's Juice!~"
 	icon_state = "shamblers"
-	list_reagents = list("shamblers" = 30)
+	list_reagents = list("shamblers" = 30, "burpinate" = 5)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/air

@@ -247,6 +247,7 @@ SUBSYSTEM_DEF(shuttle)
 			emergency.request(null, signal_origin, html_decode(emergency_reason), 0)
 
 	log_game("[key_name(user)] has called the shuttle.")
+	deadchat_broadcast("<span class='deadsay bold'>[user.name] has called the shuttle.</span>", user)
 	if(call_reason)
 		SSblackbox.record_feedback("text", "shuttle_reason", 1, "[call_reason]")
 		log_game("Shuttle call reason: [call_reason]")
@@ -284,6 +285,7 @@ SUBSYSTEM_DEF(shuttle)
 		emergency.cancel(get_area(user))
 		log_game("[key_name(user)] has recalled the shuttle.")
 		message_admins("[key_name_admin(user)] has recalled the shuttle.")
+		deadchat_broadcast("<span class='deadsay bold'>[user.name] has recalled the shuttle.</span>", user)
 		return 1
 
 /datum/controller/subsystem/shuttle/proc/canRecall()
@@ -305,6 +307,9 @@ SUBSYSTEM_DEF(shuttle)
 	return 1
 
 /datum/controller/subsystem/shuttle/proc/autoEvac()
+	if (!SSticker.IsRoundInProgress())
+		return
+
 	var/callShuttle = 1
 
 	for(var/thing in GLOB.shuttle_caller_list)
@@ -320,7 +325,7 @@ SUBSYSTEM_DEF(shuttle)
 				continue
 
 		var/turf/T = get_turf(thing)
-		if(T && (T.z in GLOB.station_z_levels))
+		if(T && is_station_level(T.z))
 			callShuttle = 0
 			break
 
@@ -395,7 +400,7 @@ SUBSYSTEM_DEF(shuttle)
 		if(M.request(getDock(destination)))
 			return 2
 	else
-		if(M.dock(getDock(destination)) != DOCKING_SUCCESS)
+		if(M.initiate_docking(getDock(destination)) != DOCKING_SUCCESS)
 			return 2
 	return 0	//dock successful
 
@@ -410,7 +415,7 @@ SUBSYSTEM_DEF(shuttle)
 		if(M.request(D))
 			return 2
 	else
-		if(M.dock(D) != DOCKING_SUCCESS)
+		if(M.initiate_docking(D) != DOCKING_SUCCESS)
 			return 2
 	return 0	//dock successful
 
