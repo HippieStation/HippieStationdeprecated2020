@@ -26,6 +26,7 @@
 	return 1
 
 /datum/action/item_action/hands_free/activate_pill
+	check_flags = AB_CHECK_SOFTCRIT //Allows us to trigger implant in soft crit - YoYoBatty
 	name = "Activate Pill"
 
 /datum/action/item_action/hands_free/activate_pill/Trigger()
