@@ -7,7 +7,6 @@
 	var/list/Lines = list()
 	if(length(GLOB.admins) > 0)
 		var/list/adminslist = list()
-		var/list/mentorslist = list()
 		for(var/X in GLOB.admins)
 			var/client/C = X
 			if(check_rights_for(C, R_ADMIN))
