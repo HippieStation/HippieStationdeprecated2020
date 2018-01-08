@@ -2667,6 +2667,7 @@
 #include "hippiestation\code\modules\mob\living\carbon\human\species_types\skeletons.dm"
 #include "hippiestation\code\modules\mob\living\carbon\human\species_types\species.dm"
 #include "hippiestation\code\modules\mob\living\carbon\human\species_types\tarajans.dm"
+#include "hippiestation\code\modules\mob\living\carbon\human\species_types\ugandan_warrior.dm"
 #include "hippiestation\code\modules\mob\living\carbon\human\species_types\vampire.dm"
 #include "hippiestation\code\modules\mob\living\carbon\human\species_types\zombies.dm"
 #include "hippiestation\code\modules\mob\living\carbon\monkey\monkey.dm"
