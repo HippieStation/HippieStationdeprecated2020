@@ -65,7 +65,7 @@
 		playsound(get_turf(src), 'sound/effects/phasein.ogg', 100, 1)
 
 		var/turf/T = deploy_location
-		if(T.z != ZLEVEL_MINING && T.z != ZLEVEL_LAVALAND)//only report capsules away from the mining/lavaland level
+		if(!is_mining_level(T.z))//only report capsules away from the mining/lavaland level
 			if(!can_use_on_station)
 				playsound(get_turf(src), 'sound/misc/sadtrombone.ogg', 100, 1)
 				new /obj/effect/particle_effect/smoke(get_turf(src))
