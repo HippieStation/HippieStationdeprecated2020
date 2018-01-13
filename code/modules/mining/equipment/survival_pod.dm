@@ -36,7 +36,7 @@
 	get_template()
 	to_chat(user, "This capsule has the [template.name] stored.")
 	to_chat(user, template.description)
-	
+
 //hippie start - to prevent station capsule grief
 /obj/item/survivalcapsule/emag_act(mob/user)
 	can_use_on_station = TRUE
