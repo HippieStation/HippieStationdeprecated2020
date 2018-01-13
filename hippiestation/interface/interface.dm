@@ -82,36 +82,6 @@
 	var/adminhotkeys = {"<font color='purple'>
 Admin:
 \tF3 = asay
-\tF5 = Aghost (admin-ghost)
-\tF6 = player-panel
-\tF7 = admin-pm
-\tF8 = Invisimin
-</font>"}
-
-	mob.hotkey_help()
-
-	if(holder)
-		to_chat(src, adminhotkeys)
-
-/client/verb/changelog()
-	set name = "Changelog"
-	set category = "OOC"
-	var/datum/asset/changelog = get_asset_datum(/datum/asset/simple/changelog)
-	changelog.send(src)
-	src << browse('html/changelog.html', "window=changes;size=675x650")
-	if(prefs.lastchangelog != GLOB.changelog_hash)
-		prefs.lastchangelog = GLOB.changelog_hash
-		prefs.save_preferences()
-		winset(src, "infowindow.changelog", "font-style=;")
-
-
-/client/verb/hotkeys_help()
-	set name = "hotkeys-help"
-	set category = "OOC"
-
-	var/adminhotkeys = {"<font color='purple'>
-Admin:
-\tF3 = asay
 \tF4 = msay
 \tF5 = Aghost (admin-ghost)
 \tF6 = player-panel
