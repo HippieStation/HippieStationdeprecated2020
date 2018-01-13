@@ -45,7 +45,7 @@
 	charge_sections = 3
 	shaded_charge = 1
 	charge_tick = 0
-	charge_delay = 10
+	charge_delay = 15
 
 /obj/item/melee/baton/stungun/Initialize()
 	if(cell_type)
