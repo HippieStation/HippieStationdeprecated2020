@@ -2776,6 +2776,7 @@
 #include "hippiestation\code\modules\vehicles\pimpin_ride.dm"
 #include "hippiestation\interface\interface.dm"
 #include "hippiestation\interface\skin.dmf"
+#include "interface\interface.dm"
 #include "interface\menu.dm"
 #include "interface\stylesheet.dm"
 // END_INCLUDE
