@@ -37,6 +37,8 @@
 				sound = 'hippiestation/sound/voice/caw.ogg'
 			if (is_species(user, /datum/species/tarajan))
 				sound = 'hippiestation/sound/voice/cat.ogg'
+			if (is_species(user, /datum/species/ugandan_warrior))
+				sound = pick('hippiestation/sound/voice/ugandan_warrior/bwaa.ogg', 'hippiestation/sound/voice/ugandan_warrior/wayr.ogg', 'hippiestation/sound/voice/ugandan_warrior/dyntw.ogg')
 		if(isalien(user))
 			sound = 'sound/voice/hiss6.ogg'
 		LAZYINITLIST(user.alternate_screams)
