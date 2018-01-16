@@ -67,10 +67,17 @@
 		if(tgalert(src, message, "Report Issue","Yes","No")!="Yes")
 			return
 		var/servername = CONFIG_GET(string/servername)
+<<<<<<< HEAD
 		var/compileinfo = "[GLOB.round_id][servername ? " ([servername])" : ""]"
 		var/dat = {"	<title>Hippie Station 13 Github Ingame Reporting</title>
  			<iframe src='https://tools.hippiestation.com/githubreport/?ckey=[ckey(key)]&sinfo=[compileinfo]' style='border:none' width='850' height='660' scroll=no></iframe>"}
 		src << browse(dat, "window=github;size=900x700")
+=======
+		var/href = issue_template
+		if(GLOB.round_id || servername)
+			href = "Issue reported from [GLOB.round_id ? " Round ID: [GLOB.round_id][servername ? " ([servername])" : ""]" : servername]\n\n[issue_template]"
+		DIRECT_OUTPUT(src, link("[githuburl]/issues/new?body=[url_encode(href)]"))
+>>>>>>> e25f34da76... Makes report issue handle null round IDs and server names (#34124)
 	else
 		to_chat(src, "<span class='danger'>The Github URL is not set in the server configuration.</span>")
 	return
