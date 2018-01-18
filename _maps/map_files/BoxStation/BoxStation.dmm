@@ -37604,9 +37604,6 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 2
-	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
 "bOl" = (
@@ -37738,9 +37735,9 @@
 	dir = 10
 	},
 /obj/effect/turf_decal/stripes/line{
-	dir = 4
+	dir = 9
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plasteel/white,
 /area/science/misc_lab)
 "bOC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -37994,8 +37991,20 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
+=======
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+>>>>>>> f43c9469d6... Minor map fixes
 "bPc" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -38126,10 +38135,23 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+<<<<<<< HEAD
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
+=======
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+>>>>>>> f43c9469d6... Minor map fixes
 /area/science/misc_lab)
 "bPt" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -41851,9 +41873,15 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/line{
+<<<<<<< HEAD
 	dir = 4
 	},
 /turf/open/floor/plasteel,
+=======
+	dir = 10
+	},
+/turf/open/floor/plasteel/white,
+>>>>>>> f43c9469d6... Minor map fixes
 /area/science/misc_lab)
 "bYp" = (
 /obj/structure/sign/securearea{
@@ -57054,6 +57082,416 @@
 "Qph" = (
 /turf/closed/wall,
 /area/quartermaster/warehouse)
+<<<<<<< HEAD
+=======
+"Qpi" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/beer,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"Qpj" = (
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"Qpk" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"Qpl" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/door/airlock/maintenance/abandoned,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"Qpm" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"Qpn" = (
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"Qpo" = (
+/turf/closed/wall/r_wall,
+/area/science/circuit)
+"Qpp" = (
+/turf/closed/wall,
+/turf/open/floor/circuit,
+/area/science/circuit)
+"Qpq" = (
+/turf/closed/wall,
+/turf/open/floor/circuit,
+/area/science/circuit)
+"Qpr" = (
+/turf/closed/wall,
+/turf/open/floor/circuit,
+/area/science/circuit)
+"Qps" = (
+/turf/closed/wall/r_wall,
+/area/science/circuit)
+"Qpt" = (
+/turf/closed/wall/r_wall,
+/area/science/circuit)
+"Qpu" = (
+/turf/closed/wall/r_wall,
+/area/science/circuit)
+"Qpv" = (
+/obj/structure/table,
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 8;
+	name = "8maintenance loot spawner"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"Qpw" = (
+/turf/closed/wall,
+/turf/open/floor/circuit,
+/area/science/circuit)
+"Qpx" = (
+/obj/structure/table/reinforced,
+/obj/item/device/multitool,
+/obj/item/screwdriver,
+/obj/machinery/camera{
+	c_tag = "Circuitry Lab North";
+	network = list("SS13","RD")
+	},
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"Qpy" = (
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"Qpz" = (
+/turf/closed/wall/r_wall,
+/area/science/circuit)
+"QpA" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"QpB" = (
+/turf/closed/wall,
+/turf/open/floor/circuit,
+/area/science/circuit)
+"QpC" = (
+/obj/structure/table/reinforced,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"QpD" = (
+/obj/structure/table/reinforced,
+/obj/item/device/integrated_electronics/analyzer,
+/obj/item/device/integrated_electronics/debugger,
+/obj/item/device/integrated_electronics/wirer,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"QpE" = (
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"QpF" = (
+/obj/machinery/bookbinder,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"QpG" = (
+/turf/closed/wall,
+/turf/open/floor/circuit,
+/area/science/circuit)
+"QpH" = (
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"QpI" = (
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"QpJ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/libraryscanner,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"QpK" = (
+/turf/closed/wall,
+/turf/open/floor/circuit,
+/area/science/circuit)
+"QpL" = (
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"QpM" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"QpN" = (
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"QpO" = (
+/turf/closed/wall,
+/turf/open/floor/circuit,
+/area/science/circuit)
+"QpP" = (
+/obj/machinery/light_switch{
+	pixel_x = -20
+	},
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"QpQ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/science/circuit)
+"QpR" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/science/circuit)
+"QpS" = (
+/turf/closed/wall,
+/obj/structure/sign/nanotrasen,
+/turf/open/floor/circuit,
+/area/science/circuit)
+"QpT" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"QpU" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/science/circuit)
+"QpV" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/plasteel,
+/area/science/circuit)
+"QpW" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plasteel,
+/area/science/circuit)
+"QpX" = (
+/obj/machinery/power/apc{
+	areastring = "/area/science/circuit";
+	name = "Circuitry Lab APC";
+	pixel_x = 30
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plasteel,
+/area/science/circuit)
+"QpY" = (
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/science/circuit)
+"QpZ" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/science/circuit)
+"Qqa" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/science/circuit)
+"Qqb" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/science/circuit)
+"Qqc" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plasteel,
+/area/science/circuit)
+"Qqd" = (
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/camera{
+	c_tag = "Circuitry Lab";
+	dir = 8;
+	network = list("SS13","RD")
+	},
+/turf/open/floor/plasteel,
+/area/science/circuit)
+"Qqe" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal/bin,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"Qqf" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"Qqg" = (
+/turf/closed/wall,
+/obj/structure/sign/nanotrasen,
+/turf/open/floor/circuit,
+/area/science/circuit)
+"Qqh" = (
+/turf/open/floor/plasteel/white,
+/obj/structure/table/reinforced,
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/circuit,
+/area/science/circuit)
+"Qqi" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/autolathe,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"Qqj" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plasteel/floorgrime,
+/area/science/misc_lab)
+"Qqk" = (
+/turf/closed/wall,
+/turf/open/floor/circuit,
+/area/science/circuit)
+"Qql" = (
+/obj/structure/table/reinforced,
+/obj/item/device/radio/intercom{
+	pixel_x = -30
+	},
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"Qqm" = (
+/obj/structure/chair/office/light,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"Qqn" = (
+/obj/machinery/rnd/protolathe/department/science,
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"Qqo" = (
+/turf/closed/wall,
+/turf/open/floor/circuit,
+/area/science/circuit)
+"Qqp" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light,
+/obj/item/stock_parts/cell/super,
+/obj/item/stock_parts/cell/super,
+/obj/item/stack/sheet/metal/fifty,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"Qqq" = (
+/obj/structure/closet/crate,
+/obj/item/target/alien,
+/obj/item/target/alien,
+/obj/item/target/clown,
+/obj/item/target/clown,
+/obj/item/target/syndicate,
+/obj/item/target/syndicate,
+/obj/item/gun/energy/laser/practice,
+/obj/item/gun/energy/laser/practice,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"Qqr" = (
+/obj/structure/closet,
+/obj/effect/spawner/lootdrop/maintenance,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"Qqs" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"Qqt" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"Qqu" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
+"Qqv" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/landmark/event_spawn,
+/turf/open/floor/plasteel,
+/area/science/circuit)
+>>>>>>> f43c9469d6... Minor map fixes
 
 (1,1,1) = {"
 aaa
@@ -105527,6 +105965,7 @@ bEC
 bMv
 bNv
 bMv
+<<<<<<< HEAD
 bEC
 bPN
 bPK
@@ -105541,6 +105980,22 @@ bPN
 bPN
 bPN
 bQZ
+=======
+Qpo
+Qpp
+Qpp
+Qpp
+Qpp
+Qpp
+QpS
+QpY
+bPb
+bQG
+QpS
+Qpp
+Qpp
+Qpo
+>>>>>>> f43c9469d6... Minor map fixes
 bQZ
 bQZ
 bQZ
@@ -105789,15 +106244,25 @@ bQY
 bQX
 bTo
 bUp
+<<<<<<< HEAD
 bUp
 bUp
 bXs
+=======
+QpP
+QpT
+QpE
+>>>>>>> f43c9469d6... Minor map fixes
 bPL
 bQI
 bPN
 bWr
 cbZ
+<<<<<<< HEAD
 bQZ
+=======
+Qpo
+>>>>>>> f43c9469d6... Minor map fixes
 cmo
 cNW
 cOx
@@ -106041,6 +106506,7 @@ bFU
 bMy
 bNx
 bOG
+<<<<<<< HEAD
 bEs
 bQX
 bSk
@@ -106055,6 +106521,22 @@ bWr
 bWr
 cbY
 bQZ
+=======
+Qpp
+Qpx
+bSk
+QpE
+QpE
+QpQ
+QpU
+QpU
+bPF
+bQI
+QpE
+Qqm
+cbY
+Qpo
+>>>>>>> f43c9469d6... Minor map fixes
 cOe
 cNW
 cNW
@@ -106298,12 +106780,17 @@ bFU
 bMA
 bNz
 bOI
+<<<<<<< HEAD
 bEs
+=======
+Qpp
+>>>>>>> f43c9469d6... Minor map fixes
 bRa
 bQX
 bTp
 bUp
 bVs
+<<<<<<< HEAD
 bUp
 bXt
 bPM
@@ -106312,6 +106799,16 @@ bPN
 cbe
 cbY
 bQZ
+=======
+Qqv
+bXt
+bPM
+bZh
+Qqh
+QpD
+Qqp
+Qpo
+>>>>>>> f43c9469d6... Minor map fixes
 cOe
 ceS
 cae
@@ -106555,6 +107052,7 @@ bEC
 bEC
 bEC
 bEC
+<<<<<<< HEAD
 bEC
 bQZ
 bQZ
@@ -106569,6 +107067,22 @@ bQZ
 bQZ
 bQZ
 bQZ
+=======
+Qpo
+Qpy
+QpE
+QpE
+QpE
+QpR
+QpW
+Qqa
+Qqc
+QpE
+QpE
+QpE
+QpE
+Qpo
+>>>>>>> f43c9469d6... Minor map fixes
 cOe
 ceR
 cOe
@@ -106812,12 +107326,17 @@ cNW
 bMB
 bNA
 cOe
+<<<<<<< HEAD
 cOe
+=======
+Qpo
+>>>>>>> f43c9469d6... Minor map fixes
 bRb
 cOx
 bPN
 bUq
 bVt
+<<<<<<< HEAD
 bVt
 bUp
 bUp
@@ -106827,6 +107346,16 @@ cOx
 cmo
 cNW
 cOx
+=======
+QpX
+Qqb
+Qqd
+Qqe
+Qqi
+Qqn
+Qqq
+Qpo
+>>>>>>> f43c9469d6... Minor map fixes
 cOx
 ckS
 cNW
@@ -107068,6 +107597,7 @@ bKb
 cNX
 cNZ
 cNZ
+<<<<<<< HEAD
 cNZ
 cNZ
 cNZ
@@ -107087,6 +107617,27 @@ ccU
 ccU
 ccU
 ccU
+=======
+Qpj
+Qpo
+Qpo
+Qpo
+Qpo
+Qpo
+Qpo
+Qpo
+Qpo
+Qpo
+Qpo
+Qpo
+Qpo
+Qpo
+Qpo
+cNW
+cgr
+cNW
+cNW
+>>>>>>> f43c9469d6... Minor map fixes
 ccr
 cdr
 cjF
@@ -108363,12 +108914,21 @@ aaa
 aaf
 cNW
 bYs
+<<<<<<< HEAD
 cOe
 cae
 cOe
 cOe
 cOe
 cOe
+=======
+Qpm
+ciJ
+cbf
+cbf
+cbf
+cbf
+>>>>>>> f43c9469d6... Minor map fixes
 ceT
 cNW
 cOe
