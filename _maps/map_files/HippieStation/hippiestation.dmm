@@ -63676,20 +63676,36 @@
 /area/hallway/primary/fore)
 "rpm" = (
 /obj/structure/table/reinforced,
-/obj/machinery/button/door{
-	id = "lobbylockdown";
-	name = "Lobby Lockdown Control";
-	pixel_x = 0;
-	pixel_y = 5;
-	req_access_txt = "1"
-	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/machinery/button/flasher{
 	id = "lobbyflash";
-	pixel_x = 0;
+	pixel_x = 4;
 	pixel_y = -4
+	},
+/obj/machinery/button/door{
+	id = "lobbylockdown";
+	name = "Lobby Lockdown Control";
+	pixel_x = 4;
+	pixel_y = 6;
+	req_access_txt = "1"
+	},
+/obj/machinery/button/door{
+	id = "briginner";
+	name = "Brig Interior Door Control";
+	normaldoorcontrol = 1;
+	pixel_x = -6;
+	pixel_y = 6;
+	req_access_txt = "1"
+	},
+/obj/machinery/button/door{
+	id = "brigexterior";
+	name = "Brig Exterior Door Control";
+	normaldoorcontrol = 1;
+	pixel_x = -6;
+	pixel_y = -4;
+	req_access_txt = "1"
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
@@ -64461,7 +64477,7 @@
 "ypu" = (
 /obj/machinery/door/airlock/security/glass{
 	cyclelinkeddir = 2;
-	id_tag = "innerbrig";
+	id_tag = "briginner";
 	name = "Brig";
 	req_access_txt = "63"
 	},
@@ -67420,7 +67436,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/security/glass{
 	cyclelinkeddir = 1;
-	id_tag = "outerbrig";
+	id_tag = "brigexterior";
 	name = "Brig";
 	req_access_txt = "63"
 	},
