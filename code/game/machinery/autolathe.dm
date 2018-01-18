@@ -132,7 +132,7 @@
 				flick("autolathe_o",src)//plays metal insertion animation
 			if (MAT_GLASS)
 				flick("autolathe_r",src)//plays glass insertion animation
-		use_power(amount_inserted * 100)
+		//use_power(amount_inserted * 100) hippie edit - commented out
 	updateUsrDialog()
 
 /obj/machinery/autolathe/Topic(href, href_list)
