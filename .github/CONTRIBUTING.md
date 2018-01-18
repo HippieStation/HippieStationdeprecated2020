@@ -342,7 +342,20 @@ There is no strict process when it comes to merging pull requests, pull requests
 
 * Please explain why you are submitting the pull request, and how you think your change will be beneficial to the game. Failure to do so will be grounds for rejecting the PR.
 
+<<<<<<< HEAD
 ## A word on git
 Yes we know that the files have a tonne of mixed windows and linux line endings, attempts to fix this have been met with less than stellar success and as such we have decided to give up caring until such a time as it matters.
+=======
+## Banned content
+Do not add any of the following in a Pull Request or risk getting the PR closed:
+* National Socialist Party of Germany content, National Socialist Party of Germany related content, or National Socialist Party of Germany references
+* Code where one line of code is split across mutiple lines (except for multiple, separate strings and comments; in those cases, existing longer lines must not be split up)
+* Code adding, removing, or updating the availability of alien races/species/human mutants without prior approval. 
+
+Just becuase something isn't on this list doesn't mean that it's acceptable. Use common sense above all else.
+
+## A word on Git
+Yes, we know that the files have a tonne of mixed Windows and Linux line endings. Attempts to fix this have been met with less than stellar success, and as such we have decided to give up caring until there comes a time when it matters.
+>>>>>>> 553855ec43... Merge pull request #34494 from tgstation/KorPhaeron-patch-1
 
 Therefore EOF settings of main repo are forbidden territory one must avoid wandering into
