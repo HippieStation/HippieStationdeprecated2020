@@ -20493,7 +20493,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/floorgrime,
-/area/quartermaster/storage)
+/area/quartermaster/warehouse)
 "aZq" = (
 /obj/machinery/button/door{
 	id = "heads_meeting";
@@ -37985,16 +37985,12 @@
 /area/engine/atmos)
 "bPb" = (
 /obj/machinery/door/airlock/research/glass{
-	name = "Firing Range";
+	name = "Circuitry Lab";
 	req_access_txt = "47"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-<<<<<<< HEAD
-/turf/open/floor/plasteel,
-/area/science/misc_lab)
-=======
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -38004,7 +38000,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
->>>>>>> f43c9469d6... Minor map fixes
 "bPc" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -38135,12 +38130,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-<<<<<<< HEAD
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-=======
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -38151,7 +38140,6 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
->>>>>>> f43c9469d6... Minor map fixes
 /area/science/misc_lab)
 "bPt" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -38276,10 +38264,16 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/line{
-	dir = 1
+	dir = 10
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel,
-/area/science/misc_lab)
+/area/science/circuit)
 "bPG" = (
 /obj/machinery/chem_master,
 /obj/item/device/radio/intercom{
@@ -38351,26 +38345,37 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/science/misc_lab)
-"bPM" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/corner{
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"bPM" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel,
-/area/science/misc_lab)
+/area/science/circuit)
 "bPN" = (
 /turf/closed/wall,
 /area/science/misc_lab)
 "bPO" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "bPP" = (
@@ -38674,7 +38679,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/science/misc_lab)
+/area/science/circuit)
 "bQH" = (
 /obj/structure/closet/l3closet,
 /obj/effect/turf_decal/stripes/line{
@@ -38683,15 +38688,11 @@
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "bQI" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -24
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/science/misc_lab)
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
 "bQJ" = (
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plasteel/white,
@@ -38812,30 +38813,35 @@
 /turf/open/floor/plasteel/floorgrime,
 /area/science/misc_lab)
 "bQY" = (
-/obj/machinery/light/small{
-	dir = 1
+/obj/structure/table/reinforced,
+/obj/item/device/integrated_circuit_printer/upgraded,
+/obj/machinery/computer/security/telescreen{
+	desc = "Used for watching the RD's goons from the safety of his office.";
+	dir = 2;
+	name = "Research Monitor";
+	network = list("RD");
+	pixel_y = 28
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/science/misc_lab)
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
 "bQZ" = (
 /turf/closed/wall/r_wall,
 /area/science/misc_lab)
 "bRa" = (
-/obj/machinery/light/small{
+/obj/structure/table/reinforced,
+/obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 5
-	},
-/turf/open/floor/plasteel,
-/area/science/misc_lab)
+/obj/item/stock_parts/cell/super,
+/obj/item/stock_parts/cell/super,
+/obj/item/stack/sheet/metal/fifty,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
 "bRb" = (
-/obj/structure/rack,
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
+/obj/structure/table/reinforced,
+/obj/machinery/computer/libraryconsole/bookmanagement,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
 "bRc" = (
 /obj/structure/table/wood,
 /obj/item/soap/nanotrasen,
@@ -39314,33 +39320,20 @@
 /turf/open/floor/engine,
 /area/science/misc_lab)
 "bSk" = (
-/obj/machinery/magnetic_module,
-/obj/effect/landmark/blobstart,
-/obj/structure/target_stake,
-/obj/effect/turf_decal/bot{
-	dir = 2
+/obj/effect/landmark/start/scientist,
+/obj/structure/chair/office/light{
+	dir = 1
 	},
-/turf/open/floor/plasteel{
-	dir = 2
-	},
-/area/science/misc_lab)
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
 "bSl" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/aft)
+/turf/closed/wall/r_wall,
+/area/science/circuit)
 "bSm" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/disposalpipe/segment{
-	dir = 10
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
@@ -39818,17 +39811,19 @@
 /turf/open/floor/engine,
 /area/science/misc_lab)
 "bTo" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 8
 	},
-/turf/open/floor/plasteel,
-/area/science/misc_lab)
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
 "bTp" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/floor/plasteel,
-/area/science/misc_lab)
+/obj/structure/table/reinforced,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
 "bTq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/closed/wall,
@@ -40234,13 +40229,15 @@
 /turf/open/floor/engine,
 /area/science/misc_lab)
 "bUp" = (
-/turf/open/floor/plating,
-/area/science/misc_lab)
+/obj/structure/extinguisher_cabinet{
+	pixel_x = -27
+	},
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
 "bUq" = (
-/obj/structure/target_stake,
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/plating,
-/area/science/misc_lab)
+/obj/machinery/vending/assist,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
 "bUr" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
@@ -40668,18 +40665,23 @@
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "bVs" = (
-/obj/machinery/camera{
-	c_tag = "Testing Firing Range";
-	dir = 8;
-	network = list("SS13","RD");
-	pixel_y = -22
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
 	},
-/turf/open/floor/plating,
-/area/science/misc_lab)
+/turf/open/floor/plasteel,
+/area/science/circuit)
 "bVt" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
 /obj/structure/target_stake,
-/turf/open/floor/plating,
-/area/science/misc_lab)
+/turf/open/floor/plasteel,
+/area/science/circuit)
 "bVu" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
@@ -41479,49 +41481,15 @@
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
 "bXs" = (
-/obj/structure/table/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/recharger{
-	pixel_y = 4
-	},
-/obj/item/paper/guides/jobs/security/range,
-/obj/effect/turf_decal/stripes/line{
-	dir = 6
-	},
-/turf/open/floor/plating,
-/area/science/misc_lab)
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
 "bXt" = (
-/obj/structure/table/reinforced,
-/obj/machinery/magnetic_controller{
-	autolink = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/item/device/radio/intercom{
-	freerange = 0;
-	frequency = 1459;
-	name = "Station Intercom (General)";
-	pixel_x = 29
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
-/turf/open/floor/plating,
-/area/science/misc_lab)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/plasteel,
+/area/science/circuit)
 "bXu" = (
-/obj/structure/grille,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/window/reinforced/tinted/fulltile,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "bXv" = (
@@ -41846,6 +41814,9 @@
 "bYl" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
 "bYm" = (
@@ -41873,15 +41844,9 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/stripes/line{
-<<<<<<< HEAD
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-=======
 	dir = 10
 	},
 /turf/open/floor/plasteel/white,
->>>>>>> f43c9469d6... Minor map fixes
 /area/science/misc_lab)
 "bYp" = (
 /obj/structure/sign/securearea{
@@ -41899,6 +41864,7 @@
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "bYs" = (
@@ -42137,9 +42103,12 @@
 /turf/open/floor/engine,
 /area/science/misc_lab)
 "bZd" = (
-/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
+	},
+/obj/structure/disposalpipe/junction/flip,
+/obj/structure/cable{
+	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
@@ -42158,11 +42127,11 @@
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "bZh" = (
-/obj/structure/rack,
-/obj/item/gun/energy/laser/practice,
-/obj/item/clothing/ears/earmuffs,
-/turf/open/floor/plasteel,
-/area/science/misc_lab)
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
 "bZi" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -42536,6 +42505,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
@@ -43009,11 +42981,12 @@
 /turf/open/floor/plasteel/floorgrime,
 /area/science/misc_lab)
 "cbe" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/science/misc_lab)
+/obj/structure/table/reinforced,
+/obj/item/device/integrated_electronics/analyzer,
+/obj/item/device/integrated_electronics/debugger,
+/obj/item/device/integrated_electronics/wirer,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
 "cbf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
@@ -43173,6 +43146,7 @@
 	name = "Research Delivery access";
 	req_access_txt = "12"
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "cbw" = (
@@ -43394,6 +43368,9 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
 "cbX" = (
@@ -43407,19 +43384,30 @@
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
 "cbY" = (
-/obj/structure/closet/crate,
-/obj/item/target/syndicate,
-/obj/item/target/alien,
-/obj/item/target/clown,
-/turf/open/floor/plasteel,
-/area/science/misc_lab)
+/obj/structure/table/reinforced,
+/obj/item/device/multitool,
+/obj/item/screwdriver,
+/obj/machinery/requests_console{
+	department = "Science";
+	departmentType = 2;
+	name = "Science Requests Console";
+	pixel_y = -30;
+	receive_ore_updates = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
 "cbZ" = (
-/obj/structure/closet/crate,
-/obj/item/target,
-/obj/item/target,
-/obj/item/target,
-/turf/open/floor/plasteel,
-/area/science/misc_lab)
+/obj/structure/table/reinforced,
+/obj/item/device/integrated_circuit_printer/upgraded,
+/obj/machinery/computer/security/telescreen{
+	desc = "Used for watching the RD's goons from the safety of his office.";
+	dir = 1;
+	name = "Research Monitor";
+	network = list("RD");
+	pixel_y = -28
+	},
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
 "cca" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -43563,9 +43551,6 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 9
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
@@ -44482,6 +44467,9 @@
 /area/science/misc_lab)
 "ceR" = (
 /obj/effect/landmark/blobstart,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 6
+	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "ceS" = (
@@ -44490,6 +44478,9 @@
 /area/maintenance/starboard/aft)
 "ceT" = (
 /obj/machinery/light/small,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "ceU" = (
@@ -46779,15 +46770,15 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
 "ckM" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
@@ -57082,8 +57073,6 @@
 "Qph" = (
 /turf/closed/wall,
 /area/quartermaster/warehouse)
-<<<<<<< HEAD
-=======
 "Qpi" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/beer,
@@ -57491,7 +57480,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
 /area/science/circuit)
->>>>>>> f43c9469d6... Minor map fixes
 
 (1,1,1) = {"
 aaa
@@ -78184,7 +78172,7 @@ baS
 bdS
 bdU
 ckQ
-Qpg
+QoZ
 bjq
 bjr
 bjr
@@ -78955,7 +78943,7 @@ bcS
 bbt
 bfi
 beD
-Qph
+QoZ
 aZE
 biA
 bmg
@@ -79206,12 +79194,12 @@ aPK
 aWz
 aWC
 QoZ
-Qpa
-Qpc
+QoZ
+QoZ
 bcT
-Qpd
-Qpe
-Qpf
+QoZ
+QoZ
+QoZ
 aZE
 bju
 biv
@@ -105718,9 +105706,9 @@ bOk
 bOB
 bPs
 bYo
-cab
+bSc
+Qqj
 cbd
-cbX
 ccT
 bSc
 bSc
@@ -105965,22 +105953,6 @@ bEC
 bMv
 bNv
 bMv
-<<<<<<< HEAD
-bEC
-bPN
-bPK
-bPN
-bPN
-bPK
-bPN
-bPK
-bPb
-bQG
-bPN
-bPN
-bPN
-bQZ
-=======
 Qpo
 Qpp
 Qpp
@@ -105995,7 +105967,6 @@ QpS
 Qpp
 Qpp
 Qpo
->>>>>>> f43c9469d6... Minor map fixes
 bQZ
 bQZ
 bQZ
@@ -106239,30 +106210,20 @@ bLi
 bMz
 bNy
 bOH
-bEs
+Qpp
 bQY
-bQX
+QpC
 bTo
 bUp
-<<<<<<< HEAD
-bUp
-bUp
-bXs
-=======
 QpP
 QpT
 QpE
->>>>>>> f43c9469d6... Minor map fixes
 bPL
 bQI
-bPN
-bWr
+bTo
+Qql
 cbZ
-<<<<<<< HEAD
-bQZ
-=======
 Qpo
->>>>>>> f43c9469d6... Minor map fixes
 cmo
 cNW
 cOx
@@ -106506,22 +106467,6 @@ bFU
 bMy
 bNx
 bOG
-<<<<<<< HEAD
-bEs
-bQX
-bSk
-bQX
-bUp
-bUp
-bUp
-bXr
-bPF
-bWr
-bWr
-bWr
-cbY
-bQZ
-=======
 Qpp
 Qpx
 bSk
@@ -106536,7 +106481,6 @@ QpE
 Qqm
 cbY
 Qpo
->>>>>>> f43c9469d6... Minor map fixes
 cOe
 cNW
 cNW
@@ -106780,26 +106724,12 @@ bFU
 bMA
 bNz
 bOI
-<<<<<<< HEAD
-bEs
-=======
 Qpp
->>>>>>> f43c9469d6... Minor map fixes
 bRa
-bQX
+QpD
 bTp
-bUp
+QpM
 bVs
-<<<<<<< HEAD
-bUp
-bXt
-bPM
-bZh
-bPN
-cbe
-cbY
-bQZ
-=======
 Qqv
 bXt
 bPM
@@ -106808,7 +106738,6 @@ Qqh
 QpD
 Qqp
 Qpo
->>>>>>> f43c9469d6... Minor map fixes
 cOe
 ceS
 cae
@@ -107052,22 +106981,6 @@ bEC
 bEC
 bEC
 bEC
-<<<<<<< HEAD
-bEC
-bQZ
-bQZ
-bQZ
-bQZ
-bQZ
-bQZ
-bQZ
-bUp
-bQZ
-bQZ
-bQZ
-bQZ
-bQZ
-=======
 Qpo
 Qpy
 QpE
@@ -107082,12 +106995,11 @@ QpE
 QpE
 QpE
 Qpo
->>>>>>> f43c9469d6... Minor map fixes
 cOe
 ceR
-cOe
+cbf
 cbv
-ccq
+Qqt
 cQw
 cjD
 cjD
@@ -107326,27 +107238,12 @@ cNW
 bMB
 bNA
 cOe
-<<<<<<< HEAD
-cOe
-=======
 Qpo
->>>>>>> f43c9469d6... Minor map fixes
 bRb
-cOx
-bPN
+QpF
+QpJ
 bUq
 bVt
-<<<<<<< HEAD
-bVt
-bUp
-bUp
-bUp
-bPN
-cOx
-cmo
-cNW
-cOx
-=======
 QpX
 Qqb
 Qqd
@@ -107355,11 +107252,11 @@ Qqi
 Qqn
 Qqq
 Qpo
->>>>>>> f43c9469d6... Minor map fixes
 cOx
+Qqr
 ckS
 cNW
-ccq
+Qqu
 cds
 cjD
 ckt
@@ -107597,27 +107494,6 @@ bKb
 cNX
 cNZ
 cNZ
-<<<<<<< HEAD
-cNZ
-cNZ
-cNZ
-bSl
-bTq
-bTq
-bTq
-bTq
-bTq
-bTq
-bTq
-bTq
-cbf
-cbf
-ccU
-ccU
-ccU
-ccU
-ccU
-=======
 Qpj
 Qpo
 Qpo
@@ -107637,7 +107513,6 @@ cNW
 cgr
 cNW
 cNW
->>>>>>> f43c9469d6... Minor map fixes
 ccr
 cdr
 cjF
@@ -107876,9 +107751,9 @@ bKd
 cNY
 bMC
 cOb
-cOb
+Qpk
 bPO
-cOb
+QpA
 bSm
 bTr
 bTr
@@ -107891,8 +107766,8 @@ bTr
 cbg
 bTr
 bTr
-bXu
 bTr
+Qqs
 cbg
 bTr
 cct
@@ -108133,14 +108008,7 @@ bEs
 bEs
 bEs
 cNW
-cNW
-cOe
-cNW
-cNW
-cNW
-cNW
-cNW
-cOe
+Qpl
 cNW
 cNW
 cNW
@@ -108149,7 +108017,14 @@ cNW
 cNW
 cNW
 cNW
-cOe
+cNW
+cNW
+cNW
+cNW
+cNW
+cNW
+cNW
+clt
 cNW
 cNW
 cNW
@@ -108390,23 +108265,23 @@ bKf
 bLk
 bEs
 bNC
-cOe
-cOe
-cNW
-aaa
-aaa
-aaf
-cNW
-cOe
-cOe
+Qpm
+cbf
+cbf
+cbf
+cbf
+cbf
+cbf
+cbf
+cbf
 bYr
-cOe
+clr
 cad
 cbi
 cNW
 ccW
 cdV
-cOe
+clt
 cNW
 cgy
 ccV
@@ -108647,23 +108522,23 @@ bKe
 bLj
 bEs
 bNB
-cOe
+cac
 bPP
 cNW
-aaa
-aaa
-aaf
 cNW
 cNW
 cNW
 cNW
-cOe
+cNW
+cNW
+cNW
+clt
 cac
 cbh
 cNW
 ccV
 cOe
-cOe
+clt
 cfv
 cBL
 cOe
@@ -108903,9 +108778,9 @@ bIW
 bKe
 bLm
 bEs
-cNW
-cNW
-cNW
+Qpi
+Qpn
+Qpv
 cNW
 aaa
 aaa
@@ -108914,21 +108789,12 @@ aaa
 aaf
 cNW
 bYs
-<<<<<<< HEAD
-cOe
-cae
-cOe
-cOe
-cOe
-cOe
-=======
 Qpm
 ciJ
 cbf
 cbf
 cbf
 cbf
->>>>>>> f43c9469d6... Minor map fixes
 ceT
 cNW
 cOe
@@ -109169,10 +109035,10 @@ bGc
 bEs
 bLl
 bEs
-aaf
-aaa
-aaf
-atS
+cOT
+cOT
+cOT
+cNW
 aaa
 aaa
 aaf
