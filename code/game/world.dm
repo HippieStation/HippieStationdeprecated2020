@@ -25,7 +25,6 @@ GLOBAL_PROTECT(security_mode)
 
 	SERVER_TOOLS_ON_NEW
 
-	load_motd()
 	load_admins()
 	LoadVerbs(/datum/verbs/menu)
 	if(CONFIG_GET(flag/usewhitelist))
@@ -196,9 +195,6 @@ GLOBAL_PROTECT(security_mode)
 	log_world("World rebooted at [time_stamp()]")
 	..()
 
-/world/proc/load_motd()
-	GLOB.join_motd = file2text("config/motd.txt") + "<br>" + GLOB.revdata.GetTestMergeInfo()
-
 /world/proc/update_status()
 	var/s = ""
 	var/hostedby
@@ -228,4 +224,3 @@ GLOBAL_PROTECT(security_mode)
 		hub_password = "kMZy3U5jJHSiBQjr"
 	else
 		hub_password = "SORRYNOPASSWORD"
-
