@@ -21,7 +21,7 @@ SUBSYSTEM_DEF(research)
 	var/list/errored_datums = list()
 	//----------------------------------------------
 	var/single_server_income = 54.3
-	var/multiserver_calculation = FALSE
+	var/multiserver_calculation = TRUE //HIPPIE CODE - changed from false
 	var/last_income = 0
 	//^^^^^^^^ ALL OF THESE ARE PER SECOND! ^^^^^^^^
 
@@ -63,8 +63,8 @@ SUBSYSTEM_DEF(research)
 	var/amt = servers.len
 	if(!amt)
 		return 0
-	var/coeff = 100
-	coeff = sqrt(coeff / amt)
+	var/coeff = 0.5 //HIPPIECODE - change from 100
+	coeff = 1 / max(amt, 0) //HIPPIE CODE change from sqrt(coeff / amt)
 	return coeff
 
 /datum/controller/subsystem/research/proc/autosort_categories()
