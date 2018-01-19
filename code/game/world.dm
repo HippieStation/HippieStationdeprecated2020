@@ -25,7 +25,6 @@ GLOBAL_PROTECT(security_mode)
 
 	SERVER_TOOLS_ON_NEW
 
-	load_motd()
 	load_admins()
 	LoadVerbs(/datum/verbs/menu)
 	if(CONFIG_GET(flag/usewhitelist))
@@ -45,13 +44,13 @@ GLOBAL_PROTECT(security_mode)
 
 /world/proc/SetupExternalRSC()
 #if (PRELOAD_RSC == 0)
-	external_rsc_urls = world.file2list("config/external_rsc_urls.txt","\n")
+	GLOB.external_rsc_urls = world.file2list("config/external_rsc_urls.txt","\n")
 	var/i=1
-	while(i<=external_rsc_urls.len)
-		if(external_rsc_urls[i])
+	while(i<=GLOB.external_rsc_urls.len)
+		if(GLOB.external_rsc_urls[i])
 			i++
 		else
-			external_rsc_urls.Cut(i,i+1)
+			GLOB.external_rsc_urls.Cut(i,i+1)
 #endif
 
 /world/proc/CheckSchemaVersion()
@@ -196,19 +195,14 @@ GLOBAL_PROTECT(security_mode)
 	log_world("World rebooted at [time_stamp()]")
 	..()
 
-/world/proc/load_motd()
-	GLOB.join_motd = file2text("config/motd.txt") + "<br>" + GLOB.revdata.GetTestMergeInfo()
-
 /world/proc/update_status()
 	var/s = ""
 	var/hostedby
 	var/forumurl
-	var/githuburl
 	if(config)
 		var/server_name = CONFIG_GET(string/servername)
 		hostedby = CONFIG_GET(string/hostedby)
 		forumurl = CONFIG_GET(string/forumurl)
-		githuburl = CONFIG_GET(string/githuburl)
 		if (server_name)
 			s += "<a href=\"[forumurl]\"><big><b>[server_name]</b> &#8212; [station_name()]</big></a>"
 	if(SSticker)
@@ -219,11 +213,6 @@ GLOBAL_PROTECT(security_mode)
 	if (hostedby)
 		s += "<br>Hosted by <b>[hostedby]</b>."
 	s += "<img src=\"https://i.imgur.com/xfWVypg.png\">" //Banner image
-	s += "<br>("
-	s += "<a href=\"[githuburl]\">"
-	s += "Github"
-	s += "</a>"
-	s += ") "
 
 	status = s
 
@@ -235,4 +224,3 @@ GLOBAL_PROTECT(security_mode)
 		hub_password = "kMZy3U5jJHSiBQjr"
 	else
 		hub_password = "SORRYNOPASSWORD"
-

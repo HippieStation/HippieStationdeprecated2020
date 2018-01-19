@@ -441,9 +441,6 @@
 			if("Yes")
 				delmob = 1
 
-		log_admin("[key_name(usr)] has used rudimentary transformation on [key_name(M)]. Transforming to [href_list["simplemake"]].; deletemob=[delmob]")
-		message_admins("<span class='adminnotice'>[key_name_admin(usr)] has used rudimentary transformation on [key_name_admin(M)]. Transforming to [href_list["simplemake"]].; deletemob=[delmob]</span>")
-
 		switch(href_list["simplemake"])
 			if("observer")
 				M.change_mob_type( /mob/dead/observer , null, null, delmob )
@@ -460,7 +457,10 @@
 			if("larva")
 				M.change_mob_type( /mob/living/carbon/alien/larva , null, null, delmob )
 			if("human")
-				M.change_mob_type( /mob/living/carbon/human , null, null, delmob )
+				var/posttransformoutfit = usr.client.robust_dress_shop()
+				var/mob/living/carbon/human/newmob = M.change_mob_type( /mob/living/carbon/human , null, null, delmob )
+				if(posttransformoutfit && istype(newmob))
+					newmob.equipOutfit(posttransformoutfit)
 			if("slime")
 				M.change_mob_type( /mob/living/simple_animal/slime , null, null, delmob )
 			if("monkey")
@@ -493,6 +493,8 @@
 				M.change_mob_type( /mob/living/simple_animal/hostile/construct/wraith , null, null, delmob )
 			if("shade")
 				M.change_mob_type( /mob/living/simple_animal/shade , null, null, delmob )
+		log_admin("[key_name(usr)] has used rudimentary transformation on [key_name(M)]. Transforming to [href_list["simplemake"]].; deletemob=[delmob]")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] has used rudimentary transformation on [key_name_admin(M)]. Transforming to [href_list["simplemake"]].; deletemob=[delmob]</span>")
 
 
 	/////////////////////////////////////new ban stuff
@@ -827,7 +829,9 @@
 	//Antagonist (Orange)
 		var/isbanned_dept = jobban_isbanned(M, "Syndicate")
 		dat += "<table cellpadding='1' cellspacing='0' width='100%'>"
-		dat += "<tr bgcolor='ffeeaa'><th colspan='10'><a href='?src=[REF(src)];[HrefToken()];jobban3=Syndicate;jobban4=[REF(M)]'>Antagonist Positions</a></th></tr><tr align='center'>"
+		dat += "<tr bgcolor='ffeeaa'><th colspan='10'><a href='?src=[REF(src)];[HrefToken()];jobban3=Syndicate;jobban4=[REF(M)]'>Antagonist Positions</a> | "
+		dat += "<a href='?src=[REF(src)];[HrefToken()];jobban3=teamantags;jobban4=[REF(M)]'>Team Antagonists</a></th>"
+		dat += "<a href='?src=[REF(src)];[HrefToken()];jobban3=convertantags;jobban4=[REF(M)]'>Conversion Antagonists</a></th></tr><tr align='center'>"
 
 		//Traitor
 		if(jobban_isbanned(M, "traitor") || isbanned_dept)
@@ -961,6 +965,10 @@
 					joblist += jobPos
 			if("ghostroles")
 				joblist += list("pAI", "posibrain", "drone", "deathsquad", "lavaland")
+			if("teamantags")
+				joblist += list("operative", "revolutionary", "cultist", "servant of Ratvar", "abductor", "alien candidate")
+			if("convertantags")
+				joblist += list("revolutionary", "cultist", "servant of Ratvar", "alien candidate")
 			else
 				joblist += href_list["jobban3"]
 
@@ -1257,7 +1265,7 @@
 					to_chat(usr, "<span class='danger'>Failed to apply ban.</span>")
 					return
 				ban_unban_log_save("[key_name(usr)] has permabanned [key_name(M)]. - Reason: [reason] - This is a permanent ban.")
-				log_admin_private("[key_name(usr)] has banned [key_name_admin(M)].\nReason: [reason]\nThis is a permanent ban.")
+				log_admin_private("[key_name(usr)] has banned [key_name(M)].\nReason: [reason]\nThis is a permanent ban.")
 				var/msg = "<span class='adminnotice'>[key_name_admin(usr)] has banned [key_name_admin(M)].\nReason: [reason]\nThis is a permanent ban.</span>"
 				message_admins(msg)
 				var/datum/admin_help/AH = M.client ? M.client.current_ticket : null

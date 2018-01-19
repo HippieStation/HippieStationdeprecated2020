@@ -25,11 +25,11 @@
 	create_internal_organs() //most of it is done in set_species now, this is only for parent call
 
 	handcrafting = new()
-	AddComponent(/datum/component/redirect, list(COMSIG_COMPONENT_CLEAN_ACT), CALLBACK(src, .proc/clean_blood))
-
-	grant_language(/datum/language/common) // ME TARZAN, YOU JANEBOT
-	update_teeth()
+	update_teeth()	//hippie - unknown, teeth releated apparently?
+	
 	. = ..()
+	
+	AddComponent(/datum/component/redirect, list(COMSIG_COMPONENT_CLEAN_ACT), CALLBACK(src, .proc/clean_blood))
 
 /mob/living/carbon/human/OpenCraftingMenu()
 	handcrafting.ui_interact(src)
@@ -741,7 +741,7 @@
 	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, "#000000")
 	cut_overlay(MA)
 
-/mob/living/carbon/human/canUseTopic(atom/movable/M, be_close = 0)
+/mob/living/carbon/human/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE)
 	if(incapacitated() || lying )
 		return
 	if(!Adjacent(M) && (M.loc != src))

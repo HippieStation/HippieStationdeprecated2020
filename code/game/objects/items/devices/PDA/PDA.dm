@@ -94,6 +94,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	update_icon()
 
 /obj/item/device/pda/equipped(mob/user, slot)
+	. = ..()
 	if(!equipped)
 		if(user.client)
 			background_color = user.client.prefs.pda_color
@@ -583,7 +584,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 		update_icon()
 
 /obj/item/device/pda/proc/msg_input(mob/living/U = usr)
-	var/t = stripped_input(U, "Please enter message", name, null, MAX_MESSAGE_LEN)
+	var/t = stripped_input(U, "Please enter message", name)
 	if (!t || toff)
 		return
 	if (!in_range(src, U) && loc != U)
