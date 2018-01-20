@@ -66,5 +66,5 @@
 	attack_verb = list("sawed", "shred", "rended", "gutted", "eviscerated")
 	
 /obj/item/mounted_energy_chainsaw/attack(mob/living/M, mob/living/user)
-		playsound(src, pick('hippiestation/sound/weapons/echainsawhit1.ogg','hippiestation/sound/weapons/echainsawhit2.ogg'))
+	playsound(src, pick('hippiestation/sound/weapons/echainsawhit1.ogg','hippiestation/sound/weapons/echainsawhit2.ogg'))
 	..()
