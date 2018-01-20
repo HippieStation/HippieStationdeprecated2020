@@ -40,8 +40,6 @@ if [ "$BUILD_TOOLS" = false ]; then
 		echo "Misspelling(s) of CENTCOM detected in maps, please remove the extra M(s)."
 		exit 1
 	fi;
-<<<<<<< HEAD
-=======
 
 	#config folder should not be mandatory
 	rm -rf config/*
@@ -49,11 +47,11 @@ if [ "$BUILD_TOOLS" = false ]; then
 	#disable all ruins
 	echo -e "LAVALAND_BUDGET 0\nSPACE_BUDGET 0" > config/config.txt
 
->>>>>>> a13d517821... Disable ruins for test run mode (#34653)
     source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
 	if [ "$BUILD_TESTING" = true ]; then
-		tools/travis/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS hippiestation.dme
+		tools/travis/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS tgstation.dme
 	else
-		tools/travis/dm.sh -DTRAVISBUILDING hippiestation.dme
+		tools/travis/dm.sh -DTRAVISBUILDING tgstation.dme && DreamDaemon tgstation.dmb -close -trusted -params "test-run&log-directory=travis"
+		cat data/logs/travis/clean_run.lk
 	fi;
 fi;
