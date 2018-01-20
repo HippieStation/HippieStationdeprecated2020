@@ -64,4 +64,7 @@
 	throw_speed = 0
 	sharpness = IS_SHARP
 	attack_verb = list("sawed", "shred", "rended", "gutted", "eviscerated")
-	hitsound = pick('hippiestation/sound/weapons/echainsawhit1.ogg','hippiestation/sound/weapons/echainsawhit2.ogg')
+	if(hitsound == "swing_hit")
+		hitsound = pick('hippiestation/sound/weapons/echainsawhit1.ogg','hippiestation/sound/weapons/echainsawhit2.ogg')
+	else
+		hitsound = "swing_hit"
