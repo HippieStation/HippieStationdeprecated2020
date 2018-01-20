@@ -44,11 +44,8 @@ if [ "$BUILD_TOOLS" = false ]; then
 	if [ "$BUILD_TESTING" = true ]; then
 		tools/travis/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS hippiestation.dme
 	else
-<<<<<<< HEAD
-		tools/travis/dm.sh -DTRAVISBUILDING hippiestation.dme
-=======
-		tools/travis/dm.sh -DTRAVISBUILDING tgstation.dme && DreamDaemon tgstation.dmb -close -trusted -params "test-run&log-directory=travis"
+		tools/travis/dm.sh -DTRAVISBUILDING hippiestation.dme && DreamDaemon hippiestation.dmb -close -trusted -params "test-run&log-directory=travis"
 		cat data/logs/travis/clean_run.lk
->>>>>>> bf7938cfdf... Adds test run mode. Fails travis if it fails (#34198)
+
 	fi;
 fi;
