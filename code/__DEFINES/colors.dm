@@ -1,9 +1,6 @@
 // This is eventually for wjohn to add more color standardization stuff like I keep asking him >:(
 
 #define COLOR_INPUT_DISABLED "#F0F0F0"
-<<<<<<< HEAD
-#define COLOR_INPUT_ENABLED "#D3B5B5"
-=======
 #define COLOR_INPUT_ENABLED "#D3B5B5"
 
 #define COLOR_WHITE            "#EEEEEE"
@@ -40,4 +37,3 @@
 #define COLOR_PALE_RED_GRAY    "#D59998"
 #define COLOR_PALE_PURPLE_GRAY "#CBB1CA"
 #define COLOR_PURPLE_GRAY      "#AE8CA8"
->>>>>>> a0dc6ab51a... Merge pull request #34620 from ShizCalev/color-correction
