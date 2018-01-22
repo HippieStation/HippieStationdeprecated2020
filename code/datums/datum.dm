@@ -37,14 +37,4 @@
 			qdel(C, FALSE, TRUE)
 		dc.Cut()
 
-<<<<<<< HEAD
-	var/list/focusers = src.focusers
-	if(focusers)
-		for(var/i in 1 to focusers.len)
-			var/mob/M = focusers[i]
-			M.set_focus(M)
-
 	return QDEL_HINT_QUEUE
-=======
-	return QDEL_HINT_QUEUE
->>>>>>> fec2d66318... Datum var cleanup (#34314)
