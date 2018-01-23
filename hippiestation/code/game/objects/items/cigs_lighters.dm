@@ -682,7 +682,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				var/image/I = (image(icon, "vapeopen_low"))
 				add_overlay(I, priority=0)
 
-		if(screw && emagged)
+		if(screw && (obj_flags & EMAGGED))
 			to_chat(user, "<span class='notice'>The [name] can't be modified!</span>")
 	else
 		..()
