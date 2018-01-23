@@ -668,7 +668,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			cut_overlays()
 
 	if(istype(O, /obj/item/device/multitool))
-		if(screw && (!(obj_flags & EMAGGED))
+		if(screw && (!(obj_flags & EMAGGED)))
 			if(!super)
 				cut_overlays()
 				super = TRUE
