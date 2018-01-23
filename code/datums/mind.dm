@@ -582,7 +582,7 @@
 
 		sections["revolution"] = text
 
-		sections["shadowling"] = sling_hook()
+		sections["shadowling"] = sling_hook() // hippie
 
 		/** ABDUCTION **/
 		text = "abductor"
@@ -1158,7 +1158,7 @@
 	else if(href_list["vampire"])
 		vampire_href(href_list["vampire"], usr)
 	else if(href_list["shadowling"])
-		sling_href(href_list["shadowling"], usr)
+		sling_href(href_list["shadowling"], usr) // hippie
 	else if(href_list["devil"])
 		var/datum/antagonist/devil/devilinfo = has_antag_datum(ANTAG_DATUM_DEVIL)
 		switch(href_list["devil"])
