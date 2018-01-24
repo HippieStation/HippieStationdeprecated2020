@@ -89,12 +89,8 @@
 
 /obj/item/device/assembly/infra/Moved()
 	var/t = dir
-	..()
+	. = ..()
 	setDir(t)
-<<<<<<< HEAD
-	qdel(first)
-	return
-=======
 
 /obj/item/device/assembly/infra/throw_at()
 	. = ..()
@@ -106,7 +102,6 @@
 		return
 	setDir(olddir)
 	olddir = null
->>>>>>> 464fd962a3... Infrared Refactor (#34142)
 
 /obj/item/device/assembly/infra/holder_movement()
 	if(!holder)
