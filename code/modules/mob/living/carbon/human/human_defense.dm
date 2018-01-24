@@ -146,9 +146,13 @@
 	return ..()
 
 /mob/living/carbon/human/grabbedby(mob/living/carbon/user, supress_message = 0)
+<<<<<<< HEAD
 	if(checkbuttinspect(user))
 		return FALSE
 	if(user == src && pulling && !pulling.anchored && grab_state >= GRAB_AGGRESSIVE && (has_disability(DISABILITY_FAT)) && ismonkey(pulling))
+=======
+	if(user == src && pulling && !pulling.anchored && grab_state >= GRAB_AGGRESSIVE && (has_trait(TRAIT_FAT)) && ismonkey(pulling))
+>>>>>>> 5a08a3aad0... Extends the disability refactor to include more traits, removing some snowflake code (#34664)
 		devour_mob(pulling)
 	else
 		..()
@@ -603,7 +607,7 @@
 				facial_hair_style = "Shaved"
 				hair_style = "Bald"
 				update_hair()
-				status_flags |= DISFIGURED
+				add_trait(TRAIT_DISFIGURED, TRAIT_GENERIC)
 
 		update_damage_overlays()
 
