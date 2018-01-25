@@ -21,6 +21,7 @@
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
+	materials = list(MAT_METAL = 10, MAT_GLASS = 10)
 
 /*
  * Photo
@@ -116,7 +117,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	flags_1 = CONDUCT_1
 	slot_flags = SLOT_BELT
-	materials = list(MAT_METAL=2000)
+	materials = list(MAT_METAL = 50, MAT_GLASS = 150)
 	var/pictures_max = 10
 	var/pictures_left = 10
 	var/on = TRUE
@@ -210,7 +211,7 @@
 	var/icon/res = icon('icons/effects/96x96.dmi', "")
 
 	for(var/atom/A in sorted)
-		var/icon/img = getFlatIcon(A)
+		var/icon/img = getFlatIcon(A, no_anim = TRUE)
 		if(isliving(A))
 			var/mob/living/L = A
 			if(L.lying)
@@ -231,7 +232,7 @@
 	for(var/turf/T in turfs)
 		var/area/A = T.loc
 		if(A.icon_state)//There's actually something to blend in.
-			res.Blend(getFlatIcon(A), blendMode2iconMode(A.blend_mode), world.icon_size * (T.x - center.x) + 33, world.icon_size * (T.y - center.y) + 33)
+			res.Blend(getFlatIcon(A,no_anim = TRUE), blendMode2iconMode(A.blend_mode), world.icon_size * (T.x - center.x) + 33, world.icon_size * (T.y - center.y) + 33)
 
 	return res
 
