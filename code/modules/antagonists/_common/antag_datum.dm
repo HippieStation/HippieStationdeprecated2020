@@ -131,6 +131,7 @@ GLOBAL_LIST_EMPTY(antagonists)
 /datum/antagonist/proc/roundend_report_footer()
 	return
 
+<<<<<<< HEAD:code/datums/antagonists/antag_datum.dm
 //Should probably be on ticker or job ss ?
 /proc/get_antagonists(antag_type,specific = FALSE)
 	. = list()
@@ -139,6 +140,69 @@ GLOBAL_LIST_EMPTY(antagonists)
 			. += A.owner
 
 
+=======
+
+//ADMIN TOOLS
+
+//Called when using admin tools to give antag status
+/datum/antagonist/proc/admin_add(datum/mind/new_owner,mob/admin)
+	message_admins("[key_name_admin(admin)] made [new_owner.current] into [name].")
+	log_admin("[key_name(admin)] made [new_owner.current] into [name].")
+	new_owner.add_antag_datum(src)
+
+//Called when removing antagonist using admin tools
+/datum/antagonist/proc/admin_remove(mob/user)
+	if(!user)
+		return
+	message_admins("[key_name_admin(user)] has removed [name] antagonist status from [owner.current].")
+	log_admin("[key_name(user)] has removed [name] antagonist status from [owner.current].")
+	on_removal()
+
+//gamemode/proc/is_mode_antag(antagonist/A) => TRUE/FALSE
+
+//Additional data to display in antagonist panel section
+//nuke disk code, genome count, etc
+/datum/antagonist/proc/antag_panel_data()
+	return ""
+
+/datum/antagonist/proc/enabled_in_preferences(datum/mind/M)
+	if(job_rank)
+		if(M.current && M.current.client && (job_rank in M.current.client.prefs.be_special))
+			return TRUE
+		else
+			return FALSE
+	return TRUE
+
+// List if ["Command"] = CALLBACK(), user will be appeneded to callback arguments on execution
+/datum/antagonist/proc/get_admin_commands()
+	. = list()
+
+/datum/antagonist/Topic(href,href_list)
+	if(!check_rights(R_ADMIN))
+		return
+	//Antag memory edit
+	if (href_list["memory_edit"])
+		edit_memory(usr)
+		owner.traitor_panel()
+		return
+	
+	//Some commands might delete/modify this datum clearing or changing owner
+	var/datum/mind/persistent_owner = owner
+
+	var/commands = get_admin_commands()
+	for(var/admin_command in commands)
+		if(href_list["command"] == admin_command)
+			var/datum/callback/C = commands[admin_command]
+			C.Invoke(usr)
+			persistent_owner.traitor_panel()
+			return
+
+/datum/antagonist/proc/edit_memory(mob/user)
+	var/new_memo = copytext(trim(input(user,"Write new memory", "Memory", antag_memory) as null|message),1,MAX_MESSAGE_LEN)
+	if (isnull(new_memo))
+		return
+	antag_memory = new_memo
+>>>>>>> 5ebd91056a... Merge pull request #34886 from AnturK/reshuffle:code/modules/antagonists/_common/antag_datum.dm
 
 //This datum will autofill the name with special_role
 //Used as placeholder for minor antagonists, please create proper datums for these
