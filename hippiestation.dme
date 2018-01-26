@@ -13,7 +13,7 @@
 // END_PREFERENCES
 
 // BEGIN_INCLUDE
-#include "_maps\basemaphippie.dm"
+#include "_maps\_basemaphippie.dm"
 #include "code\_compile_options.dm"
 #include "code\world.dm"
 #include "code\__DEFINES\_globals.dm"
@@ -58,6 +58,7 @@
 #include "code\__DEFINES\mobs.dm"
 #include "code\__DEFINES\monkeys.dm"
 #include "code\__DEFINES\networks.dm"
+#include "code\__DEFINES\obj_flags.dm"
 #include "code\__DEFINES\pinpointers.dm"
 #include "code\__DEFINES\pipe_construction.dm"
 #include "code\__DEFINES\preferences.dm"
@@ -2715,11 +2716,14 @@
 #include "hippiestation\code\modules\power\solar.dm"
 #include "hippiestation\code\modules\projectiles\ammunition\ammo_casings.dm"
 #include "hippiestation\code\modules\projectiles\ammunition\energy.dm"
+#include "hippiestation\code\modules\projectiles\ammunition\magazines.dm"
+#include "hippiestation\code\modules\projectiles\boxes_magazines\ammo_boxes.dm"
 #include "hippiestation\code\modules\projectiles\boxes_magazines\external_mag.dm"
 #include "hippiestation\code\modules\projectiles\guns\grenade_launcher.dm"
 #include "hippiestation\code\modules\projectiles\guns\ballistic\launchers.dm"
 #include "hippiestation\code\modules\projectiles\guns\ballistic\pistols.dm"
 #include "hippiestation\code\modules\projectiles\guns\ballistic\revolver.dm"
+#include "hippiestation\code\modules\projectiles\guns\ballistic\shotgun.dm"
 #include "hippiestation\code\modules\projectiles\guns\magic\staffofrevenant.dm"
 #include "hippiestation\code\modules\projectiles\projectile\bullets.dm"
 #include "hippiestation\code\modules\projectiles\projectile\energy.dm"
