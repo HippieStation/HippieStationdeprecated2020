@@ -330,8 +330,7 @@
 	name = "duffel bag"
 	desc = "A large duffel bag for holding extra things."
 	icon_state = "duffel"
-	item_state = "duffel"
-	slowdown = 1
+	item_state = "duffel" //HIPPIE CODE- Removed slowdown variable
 	max_combined_w_class = 30
 
 /obj/item/storage/backpack/duffelbag/captain
