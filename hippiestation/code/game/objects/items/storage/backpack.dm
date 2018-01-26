@@ -22,3 +22,11 @@
 	new /obj/item/clothing/suit/straight_jacket(src)
 	new /obj/item/clothing/mask/muzzle(src)
 	new /obj/item/device/mmi/syndie(src)
+
+/obj/item/storage/backpack/duffelbag
+	name = "duffel bag"
+	desc = "A large duffel bag for holding extra things."
+	icon_state = "duffel"
+	item_state = "duffel"
+	slowdown = 0
+	max_combined_w_class = 21
