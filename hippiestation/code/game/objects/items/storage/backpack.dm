@@ -25,3 +25,4 @@
 
 /obj/item/storage/backpack/duffelbag
 	slowdown = 0
+	max_combined_w_class = 21
