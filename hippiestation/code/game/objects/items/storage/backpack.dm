@@ -35,7 +35,7 @@
 	adjust_bag()
 	
 /obj/item/storage/backpack/duffelbag/verb/adjust_bag()
-	set name = "Produce Puck"
+	set name = "Adjust Duffel Bag"
 	set category = "Object"
 	if (adjusted = FALSE)
 		var/sum_w_class = 0
