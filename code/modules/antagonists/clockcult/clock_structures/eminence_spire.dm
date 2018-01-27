@@ -45,10 +45,20 @@
 /obj/structure/destructible/clockwork/eminence_spire/attack_ghost(mob/user)
 	if(!IsAdminGhost(user))
 		return
+<<<<<<< HEAD:code/game/gamemodes/clock_cult/clock_structures/eminence_spire.dm
 	var/datum/antagonist/clockcult/random_cultist = locate() in GLOB.antagonists //if theres no cultists new team without eminence will be created anyway.
 	if(random_cultist && random_cultist.clock_team && random_cultist.clock_team.eminence)
 		to_chat(user, "<span class='warning'>There's already an Eminence - too late!</span>")
 		return
+=======
+
+	var/datum/mind/rando = locate() in get_antag_minds(/datum/antagonist/clockcult) //if theres no cultists new team without eminence will be created anyway.
+	if(rando)
+		var/datum/antagonist/clockcult/random_cultist = rando.has_antag_datum(/datum/antagonist/clockcult)
+		if(random_cultist && random_cultist.clock_team && random_cultist.clock_team.eminence)
+			to_chat(user, "<span class='warning'>There's already an Eminence - too late!</span>")
+			return
+>>>>>>> 5ebd91056a... Merge pull request #34886 from AnturK/reshuffle:code/modules/antagonists/clockcult/clock_structures/eminence_spire.dm
 	if(!GLOB.servants_active)
 		to_chat(user, "<span class='warning'>The Ark must be active first!</span>")
 		return

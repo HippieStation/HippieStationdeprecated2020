@@ -31,4 +31,8 @@
 	report += "The [member_name]s were:"
 	report += printplayerlist(members)
 
+<<<<<<< HEAD:code/game/gamemodes/antag_team.dm
 	return report.Join("<br>")
+=======
+	return report.Join("<br>")
+>>>>>>> 5ebd91056a... Merge pull request #34886 from AnturK/reshuffle:code/modules/antagonists/_common/antag_team.dm
