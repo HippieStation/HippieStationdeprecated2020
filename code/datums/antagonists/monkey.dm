@@ -16,7 +16,7 @@
 
 	var/datum/disease/D = new /datum/disease/transformation/jungle_fever/monkeymode
 	if(!owner.current.HasDisease(D))
-		owner.current.AddDisease(D)
+		owner.current.ForceContractDisease(D)
 	else
 		QDEL_NULL(D)
 
@@ -39,9 +39,11 @@
 
 /datum/antagonist/monkey/create_team(datum/team/monkey/new_team)
 	if(!new_team)
-		for(var/datum/antagonist/monkey/N in get_antagonists(/datum/antagonist/monkey, TRUE))
-			if(N.monkey_team)
-				monkey_team = N.monkey_team
+		for(var/datum/antagonist/monkey/H in GLOB.antagonists)
+			if(!H.owner)
+				continue
+			if(H.monkey_team)
+				monkey_team = H.monkey_team
 				return
 		monkey_team = new /datum/team/monkey
 		monkey_team.update_objectives()
@@ -50,9 +52,12 @@
 		stack_trace("Wrong team type passed to [type] initialization.")
 	monkey_team = new_team
 
+/datum/antagonist/monkey/get_team()
+	return monkey_team
+
 /datum/antagonist/monkey/proc/forge_objectives()
-	if(monkey_team)
-		owner.objectives |= monkey_team.objectives
+	objectives |= monkey_team.objectives
+	owner.objectives |= objectives
 
 /datum/antagonist/monkey/leader
 	name = "Monkey Leader"
@@ -100,10 +105,9 @@
 
 /datum/team/monkey/proc/update_objectives()
 	objectives = list()
-	var/datum/objective/monkey/O = new /datum/objective/monkey()
+	var/datum/objective/monkey/O = new()
 	O.team = src
 	objectives += O
-	return
 
 /datum/team/monkey/proc/infected_monkeys_alive()
 	var/datum/disease/D = new /datum/disease/transformation/jungle_fever()

@@ -56,7 +56,7 @@
 /obj/item/stock_parts/cell/update_icon()
 	cut_overlays()
 	if(grown_battery)
-		add_overlay("grown_wires")
+		add_overlay(image('icons/obj/power.dmi',"grown_wires"))
 	if(charge < 0.01)
 		return
 	else if(charge/maxcharge >=0.995)
@@ -116,16 +116,12 @@
 	var/turf/T = get_turf(src.loc)
 	if (charge==0)
 		return
-	var/devastation_range = -1 //round(charge/11000)
-	var/heavy_impact_range = round(sqrt(charge)/60)
-	var/light_impact_range = round(sqrt(charge)/30)
-	var/flash_range = light_impact_range
-	if (light_impact_range==0)
+	var/explosion_power = round(sqrt(charge)/3)
+	if (explosion_power < 5)
 		rigged = 0
 		corrupt()
 		return
-	//explosion(T, 0, 1, 2, 2)
-	explosion(T, devastation_range, heavy_impact_range, light_impact_range, flash_range)
+	dyn_explosion(T, explosion_power, 2, ignorecap = FALSE, flame_range = 2)
 	qdel(src)
 
 /obj/item/stock_parts/cell/proc/corrupt()
