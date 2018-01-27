@@ -24,12 +24,8 @@
 	create_internal_organs() //most of it is done in set_species now, this is only for parent call
 
 	handcrafting = new()
-<<<<<<< HEAD
 	update_teeth()	//hippie - unknown, teeth releated apparently?
-	
-=======
 
->>>>>>> 5a08a3aad0... Extends the disability refactor to include more traits, removing some snowflake code (#34664)
 	. = ..()
 
 	AddComponent(/datum/component/redirect, list(COMSIG_COMPONENT_CLEAN_ACT), CALLBACK(src, .proc/clean_blood))
