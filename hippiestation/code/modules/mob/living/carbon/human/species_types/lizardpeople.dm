@@ -14,6 +14,8 @@
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/lizard
 	skinned_type = /obj/item/stack/sheet/animalhide/lizard
 	teeth_type = /obj/item/stack/teeth/lizard
+	disliked_food = GRAIN | DAIRY
+	liked_food = GROSS | MEAT
 
 /datum/species/lizard/random_name(gender,unique,lastname)
 	if(unique)

@@ -18,3 +18,5 @@
 	damage_overlay_type = ""
 	species_traits = list(LIPS)
 	limbs_id = "skeleton"
+	disliked_food = FRUIT | VEGETABLES
+	liked_food = GROSS | MEAT | RAW

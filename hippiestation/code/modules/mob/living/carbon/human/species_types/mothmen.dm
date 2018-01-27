@@ -10,6 +10,9 @@
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/moth
+	liked_food = VEGETABLES | DAIRY
+	disliked_food = FRUIT | GROSS
+	toxic_food = MEAT | RAW
 
 /datum/species/moth/on_species_gain(mob/living/carbon/C)
 	. = ..()
@@ -36,6 +39,6 @@
 		to_chat(H, "<span class='danger'>Your precious wings burn to a crisp!</span>")
 		H.dna.features["moth_wings"] = "Burnt Off"
 		handle_mutant_bodyparts(H)
-		
+
 /datum/species/moth/check_roundstart_eligible()
 	return TRUE
