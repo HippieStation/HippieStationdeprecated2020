@@ -24,5 +24,25 @@
 	new /obj/item/device/mmi/syndie(src)
 
 /obj/item/storage/backpack/duffelbag
-	slowdown = 0
-	max_combined_w_class = 21
+	slowdown = 1
+	max_combined_w_class = 30
+	var adjusted = FALSE
+	var adjusted_max_combined_w_class = 21
+	var adjusted_slowdown = 0
+	var/datum/action/innate/duffelbag/adjust = new
+	var sum_w_class = W.w_class
+	
+/obj/item/storage/backpack/duffelbag/GrantActions(mob/living/user)
+	..()
+	if(adjust)
+		if (adjusted = FALSE)
+			for(var/obj/item/I in contents)
+				sum_w_class += I.w_class
+			if( sum_w_class > max_combined_w_class)
+				to_chat(usr, "<span class='warning'>There's too many things in there to properly adjsut the [src]!</span>")
+				return 0
+		else
+			adjusted = !adjusted
+			to_chat(user, "You adjust the [src], [adjusted ? "leaving less space, but making it easier to carry around" : "allowing you to carry more stuff, but slowing you down"]")
+			slowdown = adjusted ? adjusted_slowdown : initial(slowdown)
+			max_combined_w_class = adjusted ? adjusted_max_combined_w_class : initial(max_combine_w_class)
