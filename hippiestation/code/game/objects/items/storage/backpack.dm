@@ -31,16 +31,19 @@
 	var/adjusted_slowdown = 0
 	actions_types = list(/datum/action/item_action/adjust_bag)
 	
+/obj/item/storage/backpack/duffelbag/ui_action_click()
+	adjust_bag()
+
 /obj/item/storage/backpack/duffelbag/verb/adjust_bag(mob/living/user)
 	set name = "Adjust Duffel Bag"
 	set category = "Object"
-	if (adjusted = FALSE)
+	if (adjusted == FALSE)
 		var/sum_w_class = 0
 		for(var/obj/item/I in contents)
 			sum_w_class += I.w_class
-		if( sum_w_class > max_combined_w_class)
-		to_chat(usr, "<span class='warning'>There's too many things in there to properly adjust the [src]!</span>")
-		return 0
+		if(sum_w_class > max_combined_w_class)
+			to_chat(usr, "<span class='warning'>There's too many things in there to properly adjust the [src]!</span>")
+			return 0
 	else
 		adjusted = !adjusted
 		to_chat(user, "You adjust the [src], [adjusted ? "leaving less space, but making it easier to carry around" : "allowing you to carry more stuff, but slowing you down"]")
