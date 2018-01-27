@@ -48,4 +48,4 @@
 		adjusted = !adjusted
 		to_chat(user, "You adjust the [src], [adjusted ? "leaving less space, but making it easier to carry around" : "allowing you to carry more stuff, but slowing you down"]")
 		slowdown = adjusted ? adjusted_slowdown : initial(slowdown)
-		max_combined_w_class = adjusted ? adjusted_max_combined_w_class : initial(max_combine_w_class)
+		max_combined_w_class = adjusted ? adjusted_max_combined_w_class : initial(max_combined_w_class)
