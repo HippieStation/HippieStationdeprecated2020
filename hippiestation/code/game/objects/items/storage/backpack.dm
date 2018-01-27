@@ -35,6 +35,8 @@
 	adjust_bag()
 	
 /obj/item/storage/backpack/duffelbag/verb/adjust_bag()
+	set name = "Produce Puck"
+	set category = "Object"
 	if (adjusted = FALSE)
 		var/sum_w_class = 0
 		for(var/obj/item/I in contents)
