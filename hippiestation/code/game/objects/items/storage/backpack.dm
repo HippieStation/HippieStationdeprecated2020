@@ -31,6 +31,9 @@
 	var/adjusted_slowdown = 0
 	actions_types = list(/datum/action/item_action/adjust_bag)
 	
+/obj/item/storage/backpack/duffelbag/ui_action_click()
+	adjust_bag()
+	
 /obj/item/storage/backpack/duffelbag/verb/adjust_bag(mob/living/user)
 	set name = "Adjust Duffel Bag"
 	set category = "Object"
