@@ -46,12 +46,6 @@
 /obj/effect/shuttle_build,
 /turf/open/floor/plating/airless,
 /area/shuttle/escape)
-<<<<<<< HEAD
-"i" = (
-/turf/open/space/basic,
-/area/space)
-=======
->>>>>>> 249bb6b61e... mapmerge2 on lots of maps (#35023)
 
 (1,1,1) = {"
 a
