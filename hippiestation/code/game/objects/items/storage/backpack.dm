@@ -42,7 +42,7 @@
 	else
 		adjust_bag()
 	
-/obj/item/storage/backpack/duffelbag/proc/adjust_bag(obj/item/W, stop_messages = 0, mob/user)
+/obj/item/storage/backpack/duffelbag/proc/adjust_bag(obj/item/O, stop_messages = 0, mob/user)
 	set name = "Adjust Duffel Bag"
 	if(do_after(user, 40, target = src))
 		if (!adjusted)
