@@ -47,7 +47,6 @@
 	if(do_after(user, 40, target = src))
 		if (!adjusted)
 			var/sum_w_class = 0
-			var/I = 0
 			for(var/Objs in src.contents)
 				var/obj/item/O = Objs
 				sum_w_class += O.w_class
