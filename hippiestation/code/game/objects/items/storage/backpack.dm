@@ -35,23 +35,24 @@
 	actions_types = list(/datum/action/item_action/adjust_bag)
 	
 /obj/item/storage/backpack/duffelbag/ui_action_click()
-	var/helditem = get_active_held_item
+	var/helditem = get_active_held_item()
 	if( helditem != src)
 		to_chat(usr, "<span class='warning'>you need to hold the [src] in your hand to do this!</span>")
 		return 0
 	else
 		adjust_bag()
 	
-/obj/item/storage/backpack/duffelbag/verb/adjust_bag(mob/living/user)
+/obj/item/storage/backpack/duffelbag/adjust_bag(mob/living/user)
 	set name = "Adjust Duffel Bag"
-	set category = "Object"
 	if(do_after(user, 40, target = src))
-		if (adjusted == FALSE)
+		if (!adjusted)
 			var/sum_w_class = 0
-			for(var/obj/item/I in contents)
+			var/i
+			for(var/I in contents)
+				I = obj/item/I
 				sum_w_class += I.w_class
 			if( sum_w_class > max_combined_w_class)
-				to_chat(usr, "<span class='warning'>There's too many things in there to properly adjust the [src]!</span>")
+				to_chat(usr, "<span class='warning'>There are too many things in there to properly adjust the [src]!</span>")
 				return 0
 		else
 			adjusted = !adjusted
