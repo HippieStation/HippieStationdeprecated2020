@@ -1031,18 +1031,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/darkgreen/side,
 /area/shuttle/escape)
-<<<<<<< HEAD
-"eJ" = (
-/obj/machinery/button/flasher{
-	id = "cockpit_flasher";
-	pixel_x = 6;
-	pixel_y = -24
-	},
-/obj/machinery/light,
-/turf/open/floor/mineral/titanium/blue,
-/area/space)
-=======
->>>>>>> 249bb6b61e... mapmerge2 on lots of maps (#35023)
 "eN" = (
 /obj/machinery/light{
 	dir = 4
