@@ -377,8 +377,6 @@
 /obj/item/clothing/shoes/chameleon/emp_act(severity)
 	chameleon_action.emp_randomise()
 
-<<<<<<< HEAD
-=======
 /obj/item/clothing/shoes/chameleon/noslip
 	name = "black shoes"
 	icon_state = "black"
@@ -390,7 +388,6 @@
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)	
 	
->>>>>>> eaa3a07597... [Ready] Rebalances Chameleon Kits for lowpop (#34972)
 /obj/item/gun/energy/laser/chameleon
 	name = "practice laser gun"
 	desc = "A modified version of the basic laser gun, this one fires less concentrated energy bolts designed for target practice."
