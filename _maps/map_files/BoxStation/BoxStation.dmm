@@ -55235,9 +55235,17 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
+<<<<<<< HEAD
 "Qll" = (
 /obj/machinery/door/airlock/titanium{
 	name = "recovery shuttle external airlock"
+=======
+"nxv" = (
+/obj/machinery/power/apc{
+	name = "Construction Area APC";
+	areastring = "/area/construction";
+	pixel_y = -24
+>>>>>>> 8caa8cd862... Merge pull request #35073 from ShizCalev/box-fixes
 	},
 /obj/effect/decal/cleanable/dirt{
 	desc = "A thin layer of dust coating the floor.";
