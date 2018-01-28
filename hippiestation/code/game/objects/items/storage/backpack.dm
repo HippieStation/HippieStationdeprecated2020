@@ -48,8 +48,8 @@
 		if (!adjusted)
 			var/sum_w_class = 0
 			var/object/item/I
-			for(var/I in contents)
-				var/O = I
+			for(var/O in contents)
+				O = I
 				sum_w_class += O.w_class
 			if( sum_w_class > max_combined_w_class)
 				to_chat(usr, "<span class='warning'>There are too many things in there to properly adjust the [src]!</span>")
