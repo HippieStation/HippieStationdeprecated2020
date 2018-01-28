@@ -47,8 +47,10 @@
 	if(do_after(user, 40, target = src))
 		if (!adjusted)
 			var/sum_w_class = 0
-			for(var/object/item/I in contents)
-				sum_w_class += I.w_class
+			var/I = 0
+			for(var/Objs in contents)
+				var/object/item/O = Objs
+				sum_w_class += Objs.w_class
 			if( sum_w_class > max_combined_w_class)
 				to_chat(usr, "<span class='warning'>There are too many things in there to properly adjust the [src]!</span>")
 				return 0
