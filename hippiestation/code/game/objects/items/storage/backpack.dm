@@ -48,7 +48,7 @@
 		if (!adjusted)
 			var/sum_w_class = 0
 			var/I = 0
-			for(var/Objs in contents)
+			for(var/Objs in src.contents)
 				var/object/item/O = Objs
 				sum_w_class += Objs.w_class
 			if( sum_w_class > max_combined_w_class)
