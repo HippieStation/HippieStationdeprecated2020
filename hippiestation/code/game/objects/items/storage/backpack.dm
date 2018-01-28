@@ -35,7 +35,7 @@
 	actions_types = list(/datum/action/item_action/adjust_bag)
 	
 /obj/item/storage/backpack/duffelbag/ui_action_click()
-	var/helditem = get_active_held_item()
+	var/helditem = usr.get_active_held_item()
 	if( helditem != src)
 		to_chat(usr, "<span class='warning'>you need to hold the [src] in your hand to do this!</span>")
 		return 0
