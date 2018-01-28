@@ -35,20 +35,26 @@
 	actions_types = list(/datum/action/item_action/adjust_bag)
 	
 /obj/item/storage/backpack/duffelbag/ui_action_click()
-	adjust_bag()
+	var/helditem = get_active_held_item
+	if( helditem != src)
+		to_chat(usr, "<span class='warning'>you need to hold the [src] in your hand to do this!</span>")
+		return 0
+	else
+		adjust_bag()
 	
 /obj/item/storage/backpack/duffelbag/verb/adjust_bag(mob/living/user)
 	set name = "Adjust Duffel Bag"
 	set category = "Object"
-	if (adjusted == FALSE)
-		var/sum_w_class = 0
-		for(var/obj/item/I in contents)
-			sum_w_class += I.w_class
-		if( sum_w_class > max_combined_w_class)
-			to_chat(usr, "<span class='warning'>There's too many things in there to properly adjust the [src]!</span>")
-			return 0
-	else
-		adjusted = !adjusted
-		to_chat(user, "You adjust the [src], [adjusted ? "leaving less space, but making it easier to carry around" : "allowing you to carry more stuff, but slowing you down"]")
-		slowdown = adjusted ? adjusted_slowdown : initial(slowdown)
-		max_combined_w_class = adjusted ? adjusted_max_combined_w_class : initial(max_combined_w_class)
+	if(do_after(user, 40, target = src))
+		if (adjusted == FALSE)
+			var/sum_w_class = 0
+			for(var/obj/item/I in contents)
+				sum_w_class += I.w_class
+			if( sum_w_class > max_combined_w_class)
+				to_chat(usr, "<span class='warning'>There's too many things in there to properly adjust the [src]!</span>")
+				return 0
+		else
+			adjusted = !adjusted
+			to_chat(user, "You adjust the [src], [adjusted ? "leaving less space, but making it easier to carry around" : "allowing you to carry more stuff, but slowing you down"]")
+			slowdown = adjusted ? adjusted_slowdown : initial(slowdown)
+			max_combined_w_class = adjusted ? adjusted_max_combined_w_class : initial(max_combined_w_class)
