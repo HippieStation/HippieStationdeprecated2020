@@ -1731,7 +1731,6 @@
 "adx" = (
 /obj/item/clothing/suit/space/orange,
 /obj/item/clothing/head/helmet/space/orange,
-/obj/effect/landmark/revenantspawn,
 /turf/open/floor/plating,
 /area/asteroid/nearstation)
 "adz" = (
@@ -6158,7 +6157,6 @@
 /area/quartermaster/storage)
 "alG" = (
 /obj/effect/decal/cleanable/blood/old,
-/obj/effect/landmark/revenantspawn,
 /turf/open/floor/plating,
 /area/asteroid/nearstation)
 "alH" = (
@@ -7697,7 +7695,6 @@
 	pixel_x = -32
 	},
 /obj/machinery/light/small,
-/obj/effect/landmark/revenantspawn,
 /turf/open/floor/plasteel/freezer,
 /area/hallway/primary/central)
 "aoD" = (
@@ -11075,7 +11072,6 @@
 	icon_state = "4-8"
 	},
 /obj/effect/decal/cleanable/blood/splatter,
-/obj/effect/landmark/revenantspawn,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
@@ -22030,7 +22026,6 @@
 /obj/structure/chair/office/dark{
 	dir = 4
 	},
-/obj/effect/landmark/revenantspawn,
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/wood,
 /area/maintenance/starboard/aft)
@@ -22643,7 +22638,6 @@
 /area/library)
 "aSe" = (
 /obj/structure/bodycontainer/morgue,
-/obj/effect/landmark/revenantspawn,
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plasteel/vault/side{
 	dir = 4
@@ -23556,7 +23550,6 @@
 /area/library)
 "aUk" = (
 /obj/structure/bodycontainer/morgue,
-/obj/effect/landmark/revenantspawn,
 /obj/item/device/radio/intercom{
 	name = "Station Intercom";
 	pixel_x = -26
@@ -23918,7 +23911,6 @@
 /area/library)
 "aVc" = (
 /obj/structure/bodycontainer/morgue,
-/obj/effect/landmark/revenantspawn,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -24642,7 +24634,6 @@
 /area/library)
 "aWH" = (
 /obj/structure/bodycontainer/morgue,
-/obj/effect/landmark/revenantspawn,
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Morgue APC";
@@ -26954,7 +26945,6 @@
 	},
 /area/maintenance/port)
 "bbm" = (
-/obj/effect/landmark/revenantspawn,
 /turf/open/floor/plasteel/bar,
 /area/maintenance/port)
 "bbn" = (
@@ -28059,7 +28049,6 @@
 /area/maintenance/port)
 "bdE" = (
 /obj/structure/chair/stool/bar,
-/obj/effect/landmark/revenantspawn,
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
 	},
@@ -28072,7 +28061,6 @@
 /area/maintenance/port)
 "bdG" = (
 /obj/structure/chair/stool/bar,
-/obj/effect/landmark/revenantspawn,
 /turf/open/floor/wood{
 	icon_state = "wood-broken2"
 	},
@@ -28118,7 +28106,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/effect/landmark/revenantspawn,
 /turf/open/floor/plasteel/vault{
 	dir = 5
 	},
@@ -29864,7 +29851,6 @@
 /turf/open/floor/circuit/green,
 /area/science/xenobiology)
 "bhh" = (
-/obj/effect/landmark/revenantspawn,
 /turf/open/floor/circuit/green,
 /area/science/xenobiology)
 "bhi" = (
