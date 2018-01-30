@@ -986,6 +986,7 @@
 			return
 		objective.completed = !objective.completed
 		log_admin("[key_name(usr)] toggled the win state for [current]'s objective: [objective.explanation_text]")
+<<<<<<< HEAD
 
 	else if (href_list["revolution"])
 		switch(href_list["revolution"])
@@ -1363,6 +1364,9 @@
 				log_admin("[key_name(usr)] has de-brother'ed [current].")
 				SSticker.mode.update_brother_icons_removed(src)
 
+=======
+    
+>>>>>>> 418a8c0112... Cult Update (#33810)
 	else if (href_list["silicon"])
 		switch(href_list["silicon"])
 			if("unemag")

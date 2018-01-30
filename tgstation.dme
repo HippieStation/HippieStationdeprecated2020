@@ -503,6 +503,7 @@
 #include "code\game\gamemodes\changeling\powers\tiny_prick.dm"
 #include "code\game\gamemodes\changeling\powers\transform.dm"
 #include "code\game\gamemodes\clock_cult\clock_cult.dm"
+<<<<<<< HEAD
 #include "code\game\gamemodes\clock_cult\clock_effect.dm"
 #include "code\game\gamemodes\clock_cult\clock_item.dm"
 #include "code\game\gamemodes\clock_cult\clock_mobs.dm"
@@ -556,6 +557,9 @@
 #include "code\game\gamemodes\clock_cult\clock_structures\trap_triggers\repeater.dm"
 #include "code\game\gamemodes\clock_cult\clock_structures\traps\brass_skewer.dm"
 #include "code\game\gamemodes\clock_cult\clock_structures\traps\steam_vent.dm"
+=======
+#include "code\game\gamemodes\cult\blood_magic.dm"
+>>>>>>> 418a8c0112... Cult Update (#33810)
 #include "code\game\gamemodes\cult\cult.dm"
 #include "code\game\gamemodes\cult\cult_comms.dm"
 #include "code\game\gamemodes\cult\cult_items.dm"
@@ -1288,8 +1292,6 @@
 #include "code\modules\antagonists\cult\ritual.dm"
 #include "code\modules\antagonists\cult\rune_spawn_action.dm"
 #include "code\modules\antagonists\cult\runes.dm"
-#include "code\modules\antagonists\cult\supply.dm"
-#include "code\modules\antagonists\cult\talisman.dm"
 #include "code\modules\antagonists\devil\devil.dm"
 #include "code\modules\antagonists\devil\devil_helpers.dm"
 #include "code\modules\antagonists\devil\imp\imp.dm"
