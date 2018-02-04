@@ -19,6 +19,23 @@
 			stomach_contents.Remove(M)
 		M.forceMove(Tsec)
 		visible_message("<span class='danger'>[M] bursts out of [src]!</span>")
+	
+	// Hippie Start - Throw our hats all over the place
+	var/obj/item/clothing/head/H = head
+	if (istype(H))
+		if (LAZYLEN(H.stacked_hats) > 0)
+			while (LAZYLEN(H.stacked_hats))
+				var/obj/item/clothing/head/J = pop(H.stacked_hats)
+
+				if (istype(J))
+					J.forceMove(Tsec)
+					J.throw_at(get_edge_target_turf(src, pick(GLOB.alldirs)), rand(1, 3), 5)
+
+			H.cut_overlays()
+			LAZYCLEARLIST(H.stacked_hats)
+			H.update_name()
+	// Hippie End
+	
 	..()
 
 /mob/living/carbon/spill_organs(no_brain, no_organs, no_bodyparts)

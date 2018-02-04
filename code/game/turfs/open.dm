@@ -214,6 +214,36 @@
 		for(var/obj/item/I in C.held_items)
 			C.accident(I)
 
+		// Hippie Start - Throw some hats if we slipped
+		var/obj/item/clothing/head/H = C.head
+
+		if (H && istype(H))
+			if (prob(33) && LAZYLEN(H.stacked_hats) > 0)
+				var/remove_hats = 1 + rand(1, 3)
+
+				while (remove_hats >= 1)
+					remove_hats -= 1
+
+					var/obj/item/clothing/head/J = pop(H.stacked_hats)
+
+					if (istype(J))
+						J.forceMove(C.loc)
+
+						var/turf/target = get_turf(C.loc)
+						var/range = rand(2, J.throw_range)
+
+						for (var/i = 1; i < range; i++)
+							var/turf/new_turf = get_step(target, C.dir)
+							target = new_turf
+							if (new_turf.density)
+								break
+
+						J.throw_at(target, J.throw_range, J.throw_speed)
+				H.update_overlays()
+				H.update_name()
+				C.update_inv_head()
+		// Hippie End
+
 		var/olddir = C.dir
 		if(!(lube & SLIDE_ICE))
 			C.Knockdown(knockdown_amount)

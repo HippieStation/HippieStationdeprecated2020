@@ -26,6 +26,36 @@
 	if(.)
 		user.SpinAnimation(7,1)
 
+		if (istype(user, /mob/living/carbon/))
+			var/mob/living/carbon/C = user
+			var/obj/item/clothing/head/H = C.head
+
+			if (H && istype(H))
+				if (prob(33) && LAZYLEN(H.stacked_hats) > 0)
+					var/remove_hats = 1 + rand(1, 3)
+
+					while (remove_hats >= 1)
+						remove_hats -= 1
+
+						var/obj/item/clothing/head/J = pop(H.stacked_hats)
+
+						if (istype(J))
+							J.forceMove(C.loc)
+
+							var/turf/target = get_turf(C.loc)
+							var/range = rand(2, J.throw_range)
+
+							for (var/i = 1; i < range; i++)
+								var/turf/new_turf = get_step(target, pick(GLOB.cardinals))
+								target = new_turf
+								if (new_turf.density)
+									break
+
+							J.throw_at(target, J.throw_range, J.throw_speed)
+					H.update_overlays()
+					H.update_name()
+					C.update_inv_head()
+
 /datum/emote/spin
 	key = "spin"
 	key_third_person = "spins"
@@ -46,3 +76,33 @@
 					riding_datum.force_dismount(M)
 			else
 				R.unbuckle_all_mobs()
+
+		if (istype(user, /mob/living/carbon/))
+			var/mob/living/carbon/C = user
+			var/obj/item/clothing/head/H = C.head
+
+			if (H && istype(H))
+				if (prob(33) && LAZYLEN(H.stacked_hats) > 0)
+					var/remove_hats = 1 + rand(1, 3)
+
+					while (remove_hats >= 1)
+						remove_hats -= 1
+
+						var/obj/item/clothing/head/J = pop(H.stacked_hats)
+
+						if (istype(J))
+							J.forceMove(C.loc)
+
+							var/turf/target = get_turf(C.loc)
+							var/range = rand(2, J.throw_range)
+
+							for (var/i = 1; i < range; i++)
+								var/turf/new_turf = get_step(target, pick(GLOB.cardinals))
+								target = new_turf
+								if (new_turf.density)
+									break
+
+							J.throw_at(target, J.throw_range, J.throw_speed)
+					H.update_overlays()
+					H.update_name()
+					C.update_inv_head()

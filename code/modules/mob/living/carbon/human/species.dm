@@ -1328,6 +1328,42 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			I.add_mob_blood(H)
 			playsound(get_turf(H), I.get_dismember_sound(), 80, 1)
 
+	// Hippie Start - If we're hit then throw off some hats
+	if (prob(25))
+		if (H.head && istype(H.head, /obj/item/clothing/head))
+			var/obj/item/clothing/head/Hat = H.head
+
+			if (LAZYLEN(Hat.stacked_hats) > 0)
+				// Knock of some hats. The more damage, the more hats
+				var/remove_hats = 1 + rand(0, FLOOR((I.force / 5), 1))
+
+				while (remove_hats >= 1)
+					remove_hats -= 1
+
+					var/obj/item/clothing/head/J = pop(Hat.stacked_hats)
+
+					if (istype(J))
+						J.forceMove(H.loc)
+
+						// Taken from the knock_out_teeth() proc because we want similar behaviour
+						var/turf/target = get_turf(H.loc)
+						var/range = rand(2, J.throw_range)
+
+						for(var/i = 1; i < range; i++)
+							var/turf/new_turf = get_step(target, get_dir(user, H))
+
+							target = new_turf
+
+							if (new_turf.density)
+								break
+
+						J.throw_at(target, J.throw_range, J.throw_speed)
+				
+				Hat.update_overlays()
+				Hat.update_name()
+				H.update_inv_head()
+	// Hippie End
+
 	var/bloody = 0
 	if(((I.damtype == BRUTE) && I.force && prob(25 + (I.force * 2))))
 		if(affecting.status == BODYPART_ORGANIC)
