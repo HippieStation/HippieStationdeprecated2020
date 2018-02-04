@@ -1,7 +1,7 @@
 /datum/antagonist/brother
 	name = "Brother"
 	job_rank = ROLE_BROTHER
-	var/special_role = "blood brother"
+	var/special_role = ROLE_BROTHER
 	var/datum/team/brother_team/team
 
 /datum/antagonist/brother/New(datum/mind/new_owner)

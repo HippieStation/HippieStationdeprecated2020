@@ -2,10 +2,17 @@
 	name = "Traitor"
 	roundend_category = "traitors"
 	job_rank = ROLE_TRAITOR
+<<<<<<< HEAD:code/datums/antagonists/datum_traitor.dm
 	var/should_specialise = FALSE //do we split into AI and human, set to true on inital assignment only
 	var/ai_datum = ANTAG_DATUM_TRAITOR_AI
 	var/human_datum = ANTAG_DATUM_TRAITOR_HUMAN
 	var/special_role = "traitor"
+=======
+	var/should_specialise = TRUE //do we split into AI and human, set to true on inital assignment only
+	var/ai_datum = /datum/antagonist/traitor/AI
+	var/human_datum = /datum/antagonist/traitor/human
+	var/special_role = ROLE_TRAITOR
+>>>>>>> ee18d6f8e2... Fixes clockwork sigil candidate runtime, cleans up some jobban checks with defines (#34907):code/modules/antagonists/traitor/datum_traitor.dm
 	var/employer = "The Syndicate"
 	var/give_objectives = TRUE
 	var/should_give_codewords = TRUE

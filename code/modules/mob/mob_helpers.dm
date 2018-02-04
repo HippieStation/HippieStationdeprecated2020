@@ -448,15 +448,23 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 		poll_message = "[poll_message] Job:[M.mind.assigned_role]."
 	if(M.mind && M.mind.special_role)
 		poll_message = "[poll_message] Status:[M.mind.special_role]."
+<<<<<<< HEAD
 	var/list/mob/dead/observer/candidates = pollCandidatesForMob(poll_message, "pAI", null, FALSE, 100, M)
 	var/mob/dead/observer/theghost = null
+=======
+	else if(M.mind)
+		var/datum/antagonist/A = M.mind.has_antag_datum(/datum/antagonist/)
+		if(A)
+			poll_message = "[poll_message] Status:[A.name]."
+	var/list/mob/dead/observer/candidates = pollCandidatesForMob(poll_message, ROLE_PAI, null, FALSE, 100, M)
+>>>>>>> ee18d6f8e2... Fixes clockwork sigil candidate runtime, cleans up some jobban checks with defines (#34907)
 
-	if(candidates.len)
-		theghost = pick(candidates)
+	if(LAZYLEN(candidates))
+		var/client/C = pick(candidates)
 		to_chat(M, "Your mob has been taken over by a ghost!")
-		message_admins("[key_name_admin(theghost)] has taken control of ([key_name_admin(M)])")
+		message_admins("[key_name_admin(C)] has taken control of ([key_name_admin(M)])")
 		M.ghostize(0)
-		M.key = theghost.key
+		M.key = C.key
 		return TRUE
 	else
 		to_chat(M, "There were no ghosts willing to take control.")

@@ -68,9 +68,13 @@
 	var/mob/living/current = owner.current
 	SSticker.mode.servants_of_ratvar += owner
 	SSticker.mode.update_servant_icons_added(owner)
+<<<<<<< HEAD:code/datums/antagonists/clockcult.dm
 	owner.special_role = "Servant of Ratvar"
 	if(jobban_isbanned(current, CLUWNEBAN) || jobban_isbanned(current, CATBAN))
 		addtimer(CALLBACK(SSticker.mode, /datum/game_mode.proc/replace_jobbaned_player, current, ROLE_SERVANT_OF_RATVAR, ROLE_SERVANT_OF_RATVAR), 0)
+=======
+	owner.special_role = ROLE_SERVANT_OF_RATVAR
+>>>>>>> ee18d6f8e2... Fixes clockwork sigil candidate runtime, cleans up some jobban checks with defines (#34907):code/modules/antagonists/clockcult/clockcult.dm
 	owner.current.log_message("<font color=#BE8700>Has been converted to the cult of Ratvar!</font>", INDIVIDUAL_ATTACK_LOG)
 	if(issilicon(current))
 		if(iscyborg(current) && !silent)

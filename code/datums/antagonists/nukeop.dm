@@ -118,6 +118,35 @@
 		stack_trace("Wrong team type passed to [type] initialization.")
 	nuke_team = new_team
 
+<<<<<<< HEAD:code/datums/antagonists/nukeop.dm
+=======
+/datum/antagonist/nukeop/admin_add(datum/mind/new_owner,mob/admin)
+	new_owner.assigned_role = ROLE_SYNDICATE
+	new_owner.add_antag_datum(src)
+	message_admins("[key_name_admin(admin)] has nuke op'ed [new_owner.current].")
+	log_admin("[key_name(admin)] has nuke op'ed [new_owner.current].")
+
+/datum/antagonist/nukeop/get_admin_commands()
+	. = ..()
+	.["Send to base"] = CALLBACK(src,.proc/admin_send_to_base)
+	.["Tell code"] = CALLBACK(src,.proc/admin_tell_code)
+
+/datum/antagonist/nukeop/proc/admin_send_to_base(mob/admin)
+	owner.current.forceMove(pick(GLOB.nukeop_start))
+
+/datum/antagonist/nukeop/proc/admin_tell_code(mob/admin)
+	var/code
+	for (var/obj/machinery/nuclearbomb/bombue in GLOB.machines)
+		if (length(bombue.r_code) <= 5 && bombue.r_code != initial(bombue.r_code))
+			code = bombue.r_code
+			break
+	if (code)
+		antag_memory += "<B>Syndicate Nuclear Bomb Code</B>: [code]<br>"
+		to_chat(owner.current, "The nuclear authorization code is: <B>[code]</B>")
+	else
+		to_chat(admin, "<span class='danger'>No valid nuke found!</span>")
+		
+>>>>>>> ee18d6f8e2... Fixes clockwork sigil candidate runtime, cleans up some jobban checks with defines (#34907):code/modules/antagonists/nukeop/nukeop.dm
 /datum/antagonist/nukeop/leader
 	name = "Nuclear Operative Leader"
 	nukeop_outfit = /datum/outfit/syndicate/leader

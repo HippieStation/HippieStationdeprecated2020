@@ -49,7 +49,7 @@ Contents:
 		return MAP_ERROR
 
 	//selecting a candidate player
-	var/list/candidates = get_candidates("ninja", null, ROLE_NINJA)
+	var/list/candidates = get_candidates(ROLE_NINJA, null, ROLE_NINJA)
 	if(!candidates.len)
 		return NOT_ENOUGH_PLAYERS
 
@@ -57,7 +57,13 @@ Contents:
 	var/key = selected_candidate.key
 
 	//Prepare ninja player mind
+<<<<<<< HEAD
 	var/datum/mind/Mind = create_ninja_mind(key)
+=======
+	var/datum/mind/Mind = new /datum/mind(key)
+	Mind.assigned_role = ROLE_NINJA
+	Mind.special_role = ROLE_NINJA
+>>>>>>> ee18d6f8e2... Fixes clockwork sigil candidate runtime, cleans up some jobban checks with defines (#34907)
 	Mind.active = 1
 
 	//generate objectives - You'll generally get 6 objectives (Ninja is meant to be hardmode!)

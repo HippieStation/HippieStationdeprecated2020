@@ -46,8 +46,12 @@
 			connected_ai = null
 		if(mind)
 			if(!mind.special_role)
+<<<<<<< HEAD
 				mind.special_role = "traitor"
 				SSticker.mode.traitors += mind
+=======
+				mind.special_role = ROLE_TRAITOR
+>>>>>>> ee18d6f8e2... Fixes clockwork sigil candidate runtime, cleans up some jobban checks with defines (#34907)
 				mind.add_antag_datum(/datum/antagonist/auto_custom) // ????
 
 

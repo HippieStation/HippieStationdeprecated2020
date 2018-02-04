@@ -84,9 +84,14 @@
 		objective2.owner = mind
 		mind.objectives += objective2
 		to_chat(src, "<b>Objective #2</b>: [objective2.explanation_text]")
+<<<<<<< HEAD:code/game/gamemodes/miniantags/revenant/revenant.dm
 		mind.assigned_role = "revenant"
 		mind.special_role = "Revenant"
 		SSticker.mode.traitors |= mind //Necessary for announcing
+=======
+		mind.assigned_role = ROLE_REVENANT
+		mind.special_role = ROLE_REVENANT
+>>>>>>> ee18d6f8e2... Fixes clockwork sigil candidate runtime, cleans up some jobban checks with defines (#34907):code/modules/antagonists/revenant/revenant.dm
 		mind.add_antag_datum(/datum/antagonist/auto_custom)
 		AddSpell(new /obj/effect/proc_holder/spell/targeted/night_vision/revenant(null))
 		AddSpell(new /obj/effect/proc_holder/spell/targeted/revenant_transmit(null))
@@ -383,8 +388,8 @@
 				key_of_revenant = client_to_revive.key
 	if(!key_of_revenant)
 		message_admins("The new revenant's old client either could not be found or is in a new, living mob - grabbing a random candidate instead...")
-		var/list/candidates = pollCandidatesForMob("Do you want to be [revenant.name] (reforming)?", "revenant", null, ROLE_REVENANT, 50, revenant)
-		if(!candidates.len)
+		var/list/candidates = pollCandidatesForMob("Do you want to be [revenant.name] (reforming)?", ROLE_REVENANT, null, ROLE_REVENANT, 50, revenant)
+		if(!LAZYLEN(candidates))
 			qdel(revenant)
 			message_admins("No candidates were found for the new revenant. Oh well!")
 			inert = TRUE
