@@ -5,6 +5,7 @@
 	roundend_category = "cultists"
 	var/datum/action/innate/cult/comm/communion = new
 	var/datum/action/innate/cult/mastervote/vote = new
+	var/datum/action/innate/cult/blood_magic/magic = new
 	job_rank = ROLE_CULTIST
 	var/ignore_implant = FALSE
 	var/give_equipment = FALSE
@@ -55,7 +56,7 @@
 	var/mob/living/current = owner.current
 	add_objectives()
 	if(give_equipment)
-		equip_cultist()
+		equip_cultist(TRUE)
 	SSticker.mode.cult += owner // Only add after they've been given objectives
 	SSticker.mode.update_cult_icons_added(owner)
 	current.log_message("<font color=#960000>Has been converted to the cult of Nar'Sie!</font>", INDIVIDUAL_ATTACK_LOG)
@@ -67,18 +68,16 @@
 		current.client.images += cult_team.blood_target_image
 
 
-/datum/antagonist/cult/proc/equip_cultist(tome=FALSE)
+/datum/antagonist/cult/proc/equip_cultist(metal=TRUE)
 	var/mob/living/carbon/H = owner.current
 	if(!istype(H))
 		return
 	if (owner.assigned_role == "Clown")
 		to_chat(owner, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 		H.dna.remove_mutation(CLOWNMUT)
-
-	if(tome)
-		. += cult_give_item(/obj/item/tome, H)
-	else
-		. += cult_give_item(/obj/item/paper/talisman/supply, H)
+	. += cult_give_item(/obj/item/melee/cultblade/dagger, H)
+	if(metal)
+		. += cult_give_item(/obj/item/stack/sheet/runed_metal/ten, H)
 	to_chat(owner, "These will help you start the cult on this station. Use them well, and remember - you are not the only one.</span>")
 
 
@@ -110,10 +109,11 @@
 		current = mob_override
 	current.faction |= "cult"
 	current.grant_language(/datum/language/narsie)
-	current.verbs += /mob/living/proc/cult_help
-	if(!cult_team.cult_mastered)
+	if(!cult_team.cult_master)
 		vote.Grant(current)
 	communion.Grant(current)
+	if(ishuman(current))
+		magic.Grant(current)
 	current.throw_alert("bloodsense", /obj/screen/alert/bloodsense)
 
 /datum/antagonist/cult/remove_innate_effects(mob/living/mob_override)
@@ -123,9 +123,9 @@
 		current = mob_override
 	current.faction -= "cult"
 	current.remove_language(/datum/language/narsie)
-	current.verbs -= /mob/living/proc/cult_help
 	vote.Remove(current)
 	communion.Remove(current)
+	magic.Remove(current)
 	current.clear_alert("bloodsense")
 
 /datum/antagonist/cult/on_removal()
@@ -141,6 +141,33 @@
 		owner.current.client.images -= cult_team.blood_target_image
 	. = ..()
 
+<<<<<<< HEAD:code/datums/antagonists/cult.dm
+=======
+/datum/antagonist/cult/admin_add(datum/mind/new_owner,mob/admin)
+	give_equipment = FALSE
+	new_owner.add_antag_datum(src)
+	message_admins("[key_name_admin(admin)] has cult'ed [new_owner.current].")
+	log_admin("[key_name(admin)] has cult'ed [new_owner.current].")
+
+/datum/antagonist/cult/admin_remove(mob/user)
+	message_admins("[key_name_admin(user)] has decult'ed [owner.current].")
+	log_admin("[key_name(user)] has decult'ed [owner.current].")
+	SSticker.mode.remove_cultist(owner,silent=TRUE) //disgusting
+
+/datum/antagonist/cult/get_admin_commands()
+	. = ..()
+	.["Dagger"] = CALLBACK(src,.proc/admin_give_dagger)
+	.["Dagger and Metal"] = CALLBACK(src,.proc/admin_give_metal)
+
+/datum/antagonist/cult/proc/admin_give_dagger(mob/admin)
+	if(!equip_cultist(FALSE))
+		to_chat(admin, "<span class='danger'>Spawning dagger failed!</span>")
+
+/datum/antagonist/cult/proc/admin_give_metal(mob/admin)
+	if (!equip_cultist(TRUE))
+		to_chat(admin, "<span class='danger'>Spawning runed metal failed!</span>")
+
+>>>>>>> 418a8c0112... Cult Update (#33810):code/modules/antagonists/cult/cult.dm
 /datum/antagonist/cult/master
 	var/datum/action/innate/cult/master/finalreck/reckoning = new
 	var/datum/action/innate/cult/master/cultmark/bloodmark = new
@@ -194,7 +221,7 @@
 	var/blood_target_reset_timer
 
 	var/cult_vote_called = FALSE
-	var/cult_mastered = FALSE
+	var/mob/living/cult_master
 	var/reckoning_complete = FALSE
 
 
@@ -299,4 +326,11 @@
 		parts += "<span class='header'>The cultists were:</span>"
 		parts += printplayerlist(members)
 
+<<<<<<< HEAD:code/datums/antagonists/cult.dm
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
+=======
+	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
+
+/datum/team/cult/is_gamemode_hero()
+	return SSticker.mode.name == "cult"
+>>>>>>> 418a8c0112... Cult Update (#33810):code/modules/antagonists/cult/cult.dm
