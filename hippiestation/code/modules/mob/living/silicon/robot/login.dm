@@ -1,6 +1,6 @@
 /mob/living/silicon/robot/Login()
 	..()
 	if(mind)
-		SSticker.mode.remove_thrall(mind,0)
-		SSticker.mode.remove_shadowling(mind)
+		remove_thrall(mind)
+		remove_sling(mind)
 		remove_vampire(src)
