@@ -26,6 +26,7 @@
 	if(.)
 		user.SpinAnimation(7,1)
 
+		// Hippie Start - Throw some hats
 		if (istype(user, /mob/living/carbon/))
 			var/mob/living/carbon/C = user
 			var/obj/item/clothing/head/H = C.head
@@ -55,6 +56,7 @@
 					H.update_overlays()
 					H.update_name()
 					C.update_inv_head()
+		// Hippie End
 
 /datum/emote/spin
 	key = "spin"
@@ -77,6 +79,7 @@
 			else
 				R.unbuckle_all_mobs()
 
+		// Hippie Start - Throw some hats
 		if (istype(user, /mob/living/carbon/))
 			var/mob/living/carbon/C = user
 			var/obj/item/clothing/head/H = C.head
@@ -106,3 +109,4 @@
 					H.update_overlays()
 					H.update_name()
 					C.update_inv_head()
+		// Hippie End
