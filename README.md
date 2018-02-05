@@ -11,11 +11,15 @@
 
 ## ABOUT
 
+<<<<<<< HEAD
 This is the Github page for the HippieStation codebase, used on the Space Station 13 server. This codebase is built off the work of many different servers, primarily that of /tg/station 13.
 Because of this, the repository inherits /tg/station's licensing, among other things.
 For a full guide on how to set up your own Space Station 13 server, please see the [/tg/station README.md](https://github.com/tgstation/tgstation/blob/master/README.md).
 If you would like to contribute to this codebase, first take a look at the [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 
+=======
+ 
+>>>>>>> e5a6de446e... Merge pull request #35367 from Iamgoofball/patch-391
 ## DOWNLOADING
 
 There are a number of ways to download the source code. Some are described here, an alternative all-inclusive guide is also located at https://wiki.hippiestation.com/index.php?title=Downloading_the_source_code
