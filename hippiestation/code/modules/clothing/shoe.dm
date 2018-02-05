@@ -56,3 +56,4 @@
 
 /obj/item/clothing/shoes/sandal/magic
 	flags_1 = NOSLIP_1
+	desc = "A pair of sandals imbued with magic. Keeps you from slipping."
