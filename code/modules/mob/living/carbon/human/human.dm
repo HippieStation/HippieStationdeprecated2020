@@ -218,8 +218,7 @@
 				if(!I || !L || I.loc != src || !(I in L.embedded_objects))
 					return
 				L.embedded_objects -= I
-<<<<<<< HEAD
-				L.receive_damage(I.embedded_unsafe_removal_pain_multiplier*I.w_class)//It hurts to rip it out, get surgery you dingus.
+				L.receive_damage(I.embedding.embedded_unsafe_removal_pain_multiplier*I.w_class)//It hurts to rip it out, get surgery you dingus.
 				
 				// Hippie Start - Remove pinned item
 				if (I.pinned)
@@ -233,11 +232,7 @@
 				if (!istype(I, /obj/item/stack))
 					I.forceMove(get_turf(src))
 				// Hippie End
-				
-=======
-				L.receive_damage(I.embedding.embedded_unsafe_removal_pain_multiplier*I.w_class)//It hurts to rip it out, get surgery you dingus.
-				I.forceMove(get_turf(src))
->>>>>>> 2871b70733... /obj/item var cleanup (#34909)
+
 				usr.put_in_hands(I)
 				emote("scream")
 
