@@ -421,7 +421,13 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	var/mob/living/silicon/ai/AI = user
 	if(istype(AI) && AI.current == src)
 		AI.current = null
+<<<<<<< HEAD
 	masters -= user // Discard AI from the list of those who use holopad
+=======
+	LAZYREMOVE(masters, user) // Discard AI from the list of those who use holopad
+	qdel(holorays[user])
+	LAZYREMOVE(holorays, user)
+>>>>>>> 66b3628428... Fix holorays staying if you switch holopads (#35295)
 	SetLightsAndPower()
 	return TRUE
 
