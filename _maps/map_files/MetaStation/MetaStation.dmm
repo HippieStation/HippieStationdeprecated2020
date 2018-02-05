@@ -69403,7 +69403,15 @@
 /turf/open/floor/plating/airless,
 /area/medical/virology)
 "cNt" = (
+<<<<<<< HEAD
 /obj/structure/bodycontainer/morgue,
+=======
+/obj/machinery/button/crematorium{
+	id = "crematoriumChapel";
+	pixel_x = -26;
+	req_access_txt = "27"
+	},
+>>>>>>> b94148b330... Fixes crematorium on meta/box. (#35305)
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
 "cNu" = (
@@ -80130,9 +80138,18 @@
 /obj/machinery/door/airlock/titanium{
 	name = "recovery shuttle external airlock"
 	},
+<<<<<<< HEAD
 /obj/effect/decal/cleanable/dirt{
 	desc = "A thin layer of dust coating the floor.";
 	name = "dust"
+=======
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
+"eFN" = (
+/obj/structure/bodycontainer/crematorium{
+	id = "crematoriumChapel";
+	dir = 1
+>>>>>>> b94148b330... Fixes crematorium on meta/box. (#35305)
 	},
 /obj/docking_port/stationary{
 	dir = 2;
