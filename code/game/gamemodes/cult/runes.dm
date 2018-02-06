@@ -120,16 +120,15 @@ structure_check() searches for nearby cultist structures required for the invoca
 				if(L.stat)
 					continue
 				invokers += L
-		if(invokers.len >= req_cultists)
-			invokers -= user
 			if(allow_excess_invokers)
 				chanters += invokers
 			else
 				shuffle_inplace(invokers)
 				for(var/i in 1 to req_cultists)
-					var/L = pick_n_take(invokers)
-					if(L)
-						chanters += L
+					var/C = pick_n_take(invokers)
+					if(!C)
+						break
+					chanters += C
 	return chanters
 
 /obj/effect/rune/proc/invoke(var/list/invokers)
@@ -997,3 +996,152 @@ structure_check() searches for nearby cultist structures required for the invoca
 	. = ..()
 	for(var/obj/item/organ/brain/B in .) //they're not that smart, really
 		. -= B
+<<<<<<< HEAD:code/game/gamemodes/cult/runes.dm
+=======
+
+
+/obj/effect/rune/apocalypse
+	cultist_name = "Apocalypse"
+	cultist_desc = "a harbinger of the end times. Grows in strength with the cult's desperation - but at the risk of... side effects."
+	invocation = "Ta'gh fara'qha fel d'amar det!"
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "apoc"
+	pixel_x = -32
+	pixel_y = -32
+	allow_excess_invokers = TRUE
+	color = RUNE_COLOR_DARKRED
+	req_cultists = 3
+	scribe_delay = 100
+
+/obj/effect/rune/apocalypse/invoke(var/list/invokers)
+	if(rune_in_use)
+		return
+	. = ..()
+	var/area/place = get_area(src)
+	var/mob/living/user = invokers[1]
+	var/datum/antagonist/cult/user_antag = user.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
+	var/datum/objective/eldergod/summon_objective = locate() in user_antag.cult_team.objectives
+	if(summon_objective.summon_spots.len <= 1)
+		to_chat(user, "<span class='cultlarge'>Only one ritual site remains - it must be reserved for the final summoning!</span>")
+		return
+	if(!(place in summon_objective.summon_spots))
+		to_chat(user, "<span class='cultlarge'>The Apocalypse rune will remove a ritual site, where Nar-sie can be summoned, it can only be scribed in [english_list(summon_objective.summon_spots)]!</span>")
+		return
+	summon_objective.summon_spots -= place
+	rune_in_use = TRUE
+	var/turf/T = get_turf(src)
+	new /obj/effect/temp_visual/dir_setting/curse/grasp_portal/fading(T)
+	var/intensity = 0
+	for(var/mob/living/M in GLOB.player_list)
+		if(iscultist(M))
+			intensity++
+	intensity = max(60, 360 - (360*(intensity/GLOB.player_list.len + 0.3)**2)) //significantly lower intensity for "winning" cults
+	var/duration = intensity*10
+	playsound(T, 'sound/magic/enter_blood.ogg', 100, 1)
+	visible_message("<span class='warning'>A colossal shockwave of energy bursts from the rune, disintegrating it in the process!</span>")
+	for(var/mob/living/L in range(src, 3))
+		L.Knockdown(30)
+	empulse(T, 0.42*(intensity), 1)
+	var/list/images = list()
+	var/zmatch = T.z
+	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
+	for(var/mob/living/M in GLOB.alive_mob_list)
+		if(M.z != zmatch)
+			continue
+		if(ishuman(M))
+			if(!iscultist(M))
+				AH.remove_hud_from(M)
+				addtimer(CALLBACK(GLOBAL_PROC, .proc/hudFix, M), duration)
+			var/image/A = image('icons/mob/mob.dmi',M,"cultist", ABOVE_MOB_LAYER)
+			A.override = 1
+			add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/noncult, "human_apoc", A, FALSE)
+			addtimer(CALLBACK(M,/atom/.proc/remove_alt_appearance,"human_apoc",TRUE), duration)
+			images += A
+			SEND_SOUND(M, pick(sound('sound/ambience/antag/bloodcult.ogg'),sound('sound/spookoween/ghost_whisper.ogg'),sound('sound/spookoween/ghosty_wind.ogg')))
+		else
+			var/construct = pick("floater","artificer","behemoth")
+			var/image/B = image('icons/mob/mob.dmi',M,construct, ABOVE_MOB_LAYER)
+			B.override = 1
+			add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/noncult, "mob_apoc", B, FALSE)
+			addtimer(CALLBACK(M,/atom/.proc/remove_alt_appearance,"mob_apoc",TRUE), duration)
+			images += B
+		if(!iscultist(M))
+			if(M.client)
+				var/image/C = image('icons/effects/cult_effects.dmi',M,"bloodsparkles", ABOVE_MOB_LAYER)
+				add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/cult, "cult_apoc", C, FALSE)
+				addtimer(CALLBACK(M,/atom/.proc/remove_alt_appearance,"cult_apoc",TRUE), duration)
+				images += C
+		else
+			to_chat(M, "<span class='cultlarge'>An Apocalypse Rune was invoked in the [place.name], it is no longer available as a summoning site!</span>")
+			SEND_SOUND(M, 'sound/effects/pope_entry.ogg')
+	image_handler(images, duration)
+	if(intensity>=285) // Based on the prior formula, this means the cult makes up <15% of current players
+		var/outcome = rand(1,100)
+		switch(outcome)
+			if(1 to 10)
+				var/datum/round_event_control/disease_outbreak/D = new()
+				var/datum/round_event_control/mice_migration/M = new()
+				D.runEvent()
+				M.runEvent()
+			if(11 to 20)
+				var/datum/round_event_control/radiation_storm/RS = new()
+				RS.runEvent()
+			if(21 to 30)
+				var/datum/round_event_control/brand_intelligence/BI = new()
+				BI.runEvent()
+			if(31 to 40)
+				var/datum/round_event_control/immovable_rod/R = new()
+				R.runEvent()
+				R.runEvent()
+				R.runEvent()
+			if(41 to 50)
+				var/datum/round_event_control/meteor_wave/MW = new()
+				MW.runEvent()
+			if(51 to 60)
+				var/datum/round_event_control/spider_infestation/SI = new()
+				SI.runEvent()
+			if(61 to 70)
+				var/datum/round_event_control/anomaly/anomaly_flux/AF
+				var/datum/round_event_control/anomaly/anomaly_grav/AG
+				var/datum/round_event_control/anomaly/anomaly_pyro/AP
+				var/datum/round_event_control/anomaly/anomaly_vortex/AV
+				AF.runEvent()
+				AG.runEvent()
+				AP.runEvent()
+				AV.runEvent()
+			if(71 to 80)
+				var/datum/round_event_control/spacevine/SV = new()
+				var/datum/round_event_control/grey_tide/GT = new()
+				SV.runEvent()
+				GT.runEvent()
+			if(81 to 100)
+				var/datum/round_event_control/portal_storm_narsie/N = new()
+				N.runEvent()
+	qdel(src)
+
+/obj/effect/rune/apocalypse/proc/image_handler(var/list/images, duration)
+	var/end = world.time + duration
+	set waitfor = 0
+	while(end>world.time)
+		for(var/image/I in images)
+			I.override = FALSE
+			animate(I, alpha = 0, time = 25, flags = ANIMATION_PARALLEL)
+		sleep(35)
+		for(var/image/I in images)
+			animate(I, alpha = 255, time = 25, flags = ANIMATION_PARALLEL)
+		sleep(25)
+		for(var/image/I in images)
+			if(I.icon_state != "bloodsparkles")
+				I.override = TRUE
+		sleep(190)
+
+
+
+/proc/hudFix(mob/living/carbon/human/target)
+	if(!target || !target.client)
+		return
+	var/obj/O = target.get_item_by_slot(slot_glasses)
+	if(istype(O, /obj/item/clothing/glasses/hud/security))
+		var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
+		AH.add_hud_to(target)
+>>>>>>> b87a9f6a15... Fixed insufficient cultists warning (#35292):code/modules/antagonists/cult/runes.dm
