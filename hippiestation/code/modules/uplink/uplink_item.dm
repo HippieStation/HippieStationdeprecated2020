@@ -308,7 +308,7 @@
 
 /datum/uplink_item/role_restricted/reverse_bear_trap
 	cost = 1
-	restricted_roles = list("Clown, Janitor")
+	restricted_roles = list("Clown, Janitor") // janitor because he has the bear trap
 
 /datum/uplink_item/badass/contender
 	name = "Contender G13"
