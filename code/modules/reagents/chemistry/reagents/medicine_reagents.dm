@@ -182,7 +182,7 @@
 		M.adjustFireLoss(-1.5 * power, 0)
 		M.adjustToxLoss(-power, 0, TRUE)
 		M.adjustCloneLoss(-power, 0)
-		M.status_flags &= ~DISFIGURED
+		M.remove_trait(TRAIT_DISFIGURED, TRAIT_GENERIC)
 		. = 1
 	..()
 
