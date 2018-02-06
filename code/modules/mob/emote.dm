@@ -26,12 +26,6 @@
 	if(.)
 		user.SpinAnimation(7,1)
 
-		// Hippie Start - Throw some hats
-		if (istype(user, /mob/living/carbon/))
-			var/mob/living/carbon/C = user
-			C.throw_hats(1 + rand(1, 3), GLOB.alldirs)
-		// Hippie End
-
 /datum/emote/spin
 	key = "spin"
 	key_third_person = "spins"
@@ -52,9 +46,3 @@
 					riding_datum.force_dismount(M)
 			else
 				R.unbuckle_all_mobs()
-
-		// Hippie Start - Throw some hats
-		if (istype(user, /mob/living/carbon/))
-			var/mob/living/carbon/C = user
-			C.throw_hats(1 + rand(1, 3), GLOB.alldirs)
-		// Hippie End
