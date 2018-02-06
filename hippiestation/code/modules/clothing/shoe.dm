@@ -53,6 +53,3 @@
 	item_state = "guardboots"
 	icon = 'hippiestation/icons/obj/clothing/shoes.dmi'
 	alternate_worn_icon = 'hippiestation/icons/mob/feet.dmi'
-
-/obj/item/clothing/shoes/sandal/magic
-	flags_1 = NOSLIP_1
