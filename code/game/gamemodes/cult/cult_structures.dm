@@ -67,6 +67,7 @@
 	if(cooldowntime > world.time)
 		to_chat(user, "<span class='cult italic'>The magic in [src] is weak, it will be ready to use again in [DisplayTimeText(cooldowntime - world.time)].</span>")
 		return
+<<<<<<< HEAD:code/game/gamemodes/cult/cult_structures.dm
 	var/choice = alert(user,"You study the schematics etched into the forge...",,"Eldritch Whetstone","Zealot's Blindfold","Flask of Unholy Water")
 	var/pickedtype
 	switch(choice)
@@ -74,6 +75,15 @@
 			pickedtype = /obj/item/sharpener/cult
 		if("Zealot's Blindfold")
 			pickedtype = /obj/item/clothing/glasses/night/cultblind
+=======
+	var/choice = alert(user,"You study the schematics etched into the altar...",,"Eldritch Whetstone","Construct Shell","Flask of Unholy Water")
+	var/list/pickedtype = list()
+	switch(choice)
+		if("Eldritch Whetstone")
+			pickedtype += /obj/item/sharpener/cult
+		if("Construct Shell")
+			pickedtype += /obj/structure/constructshell
+>>>>>>> 3db6e34dda... Merge pull request #35353 from Robustin/constructlimit:code/modules/antagonists/cult/cult_structures.dm
 		if("Flask of Unholy Water")
 			pickedtype = /obj/item/reagent_containers/food/drinks/bottle/unholywater
 	if(src && !QDELETED(src) && anchored && pickedtype && Adjacent(user) && !user.incapacitated() && iscultist(user) && cooldowntime <= world.time)
