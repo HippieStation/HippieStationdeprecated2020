@@ -12,6 +12,7 @@
 	var/points = 0 //How many points this ore gets you from the ore redemption machine
 	var/refined_type = null //What this ore defaults to being refined into
 
+<<<<<<< HEAD
 /obj/item/ore/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/weldingtool))
 		var/obj/item/weldingtool/W = I
@@ -21,6 +22,17 @@
 		else if(W.isOn())
 			to_chat(user, "<span class='info'>Not enough fuel to smelt [src].</span>")
 	..()
+=======
+/obj/item/stack/ore/welder_act(mob/living/user, obj/item/I)
+	if(!refined_type)
+		return TRUE
+
+	if(I.use_tool(src, user, 0, volume=50, amount=15))
+		new refined_type(drop_location())
+		use(1)
+
+	return TRUE
+>>>>>>> 100c4b6114... Adds new helper: use_tool, shakes things up in tool code (#35095)
 
 /obj/item/ore/Crossed(atom/movable/AM)
 	set waitfor = FALSE
@@ -136,6 +148,7 @@
 	materials = list(MAT_PLASMA=MINERAL_MATERIAL_AMOUNT)
 	refined_type = /obj/item/stack/sheet/mineral/plasma
 
+<<<<<<< HEAD
 /obj/item/ore/plasma/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/weldingtool))
 		var/obj/item/weldingtool/W = I
@@ -143,6 +156,11 @@
 			to_chat(user, "<span class='warning'>You can't hit a high enough temperature to smelt [src] properly!</span>")
 	else
 		..()
+=======
+/obj/item/stack/ore/plasma/welder_act(mob/living/user, obj/item/I)
+	to_chat(user, "<span class='warning'>You can't hit a high enough temperature to smelt [src] properly!</span>")
+	return TRUE
+>>>>>>> 100c4b6114... Adds new helper: use_tool, shakes things up in tool code (#35095)
 
 
 /obj/item/ore/silver
@@ -432,20 +450,18 @@
 		else
 			to_chat(user, "<span class='warning'>You need one length of cable to attach a string to the coin!</span>")
 			return
-
-	else if(istype(W, /obj/item/wirecutters))
-		if(!string_attached)
-			..()
-			return
-
-		var/obj/item/stack/cable_coil/CC = new/obj/item/stack/cable_coil(user.loc)
-		CC.amount = 1
-		CC.update_icon()
-		overlays = list()
-		string_attached = null
-		to_chat(user, "<span class='notice'>You detach the string from the coin.</span>")
 	else
 		..()
+
+/obj/item/coin/wirecutter_act(mob/living/user, obj/item/I)
+	if(!string_attached)
+		return TRUE
+
+	new /obj/item/stack/cable_coil(drop_location(), 1)
+	overlays = list()
+	string_attached = null
+	to_chat(user, "<span class='notice'>You detach the string from the coin.</span>")
+	return TRUE
 
 /obj/item/coin/attack_self(mob/user)
 	if(cooldown < world.time)
