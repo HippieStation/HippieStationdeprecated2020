@@ -1150,8 +1150,6 @@
 	id = "corazone"
 	description = "A medication used to treat pain, fever, and inflammation, along with heart attacks."
 	color = "#F5F5F5"
-<<<<<<< HEAD
-=======
 
 /datum/reagent/medicine/ketrazine
 	name = "Ketrazine"
@@ -1260,4 +1258,3 @@
 		M.Dizzy(7)
 		M.Jitter(7)
 	..()
->>>>>>> 3b7230aef5... Merge pull request #34894 from optimumtact/fixmaster
