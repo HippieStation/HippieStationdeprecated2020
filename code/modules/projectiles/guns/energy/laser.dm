@@ -118,17 +118,25 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/bluetag)
 	clumsy_check = 0
 	item_flags = NONE
+	needs_permit = FALSE
 	pin = /obj/item/device/firing_pin/tag/blue
 	ammo_x_offset = 2
-	selfcharge = 1
+	selfcharge = TRUE
+
+/obj/item/gun/energy/laser/bluetag/hitscan
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/bluetag/hitscan)
 
 /obj/item/gun/energy/laser/redtag
 	name = "laser tag gun"
 	icon_state = "redtag"
 	desc = "A retro laser gun modified to fire harmless beams red of light. Sound effects included!"
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/redtag)
-	clumsy_check = 0
+	needs_permit = FALSE
 	item_flags = NONE
+	clumsy_check = FALSE
 	pin = /obj/item/device/firing_pin/tag/red
 	ammo_x_offset = 2
-	selfcharge = 1
+	selfcharge = TRUE
+
+/obj/item/gun/energy/laser/redtag/hitscan
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/redtag/hitscan)
