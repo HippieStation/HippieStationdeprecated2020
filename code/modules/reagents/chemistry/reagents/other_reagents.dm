@@ -452,6 +452,14 @@
 	race = /datum/species/fly
 	mutationtext = "<span class='danger'>The pain subsides. You feel... buzzy.</span>"
 
+/datum/reagent/mutationtoxin/moth
+	name = "Moth Mutation Toxin"
+	id = "mothmutationtoxin"
+	description = "A glowing toxin."
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	race = /datum/species/moth
+	mutationtext = "<span class='danger'>The pain subsides. You feel... attracted to light.</span>"
+
 /datum/reagent/mutationtoxin/pod
 	name = "Podperson Mutation Toxin"
 	id = "podmutationtoxin"
@@ -1195,8 +1203,19 @@
 	color = "E1A116"
 	taste_description = "sourness"
 
+/datum/reagent/stimulum/on_mob_add(mob/M)
+	..()
+	if(isliving(M))
+		var/mob/living/L = M
+		L.add_trait(TRAIT_GOTTAGOFAST, id)
+
+/datum/reagent/stimulum/on_mob_delete(mob/M)
+	if(isliving(M))
+		var/mob/living/L = M
+		L.remove_trait(TRAIT_GOTTAGOFAST, id)
+	..()
+
 /datum/reagent/stimulum/on_mob_life(mob/living/M) // Has a speedup, and the anti-stun effects of nicotine.
-	M.status_flags |= GOTTAGOFAST
 	M.AdjustStun(-20, 0)
 	M.AdjustKnockdown(-20, 0)
 	M.AdjustUnconscious(-20, 0)
@@ -1214,8 +1233,16 @@
 	color = "90560B"
 	taste_description = "burning"
 
-/datum/reagent/nitryl/on_mob_life(mob/living/M) //Has just a speedup
-	M.status_flags |= GOTTAGOFAST
+/datum/reagent/nitryl/on_mob_add(mob/M)
+	..()
+	if(isliving(M))
+		var/mob/living/L = M
+		L.add_trait(TRAIT_GOTTAGOFAST, id)
+
+/datum/reagent/nitryl/on_mob_delete(mob/M)
+	if(isliving(M))
+		var/mob/living/L = M
+		L.remove_trait(TRAIT_GOTTAGOFAST, id)
 	..()
 
 /////////////////////////Coloured Crayon Powder////////////////////////////
@@ -1625,7 +1652,7 @@
 	can_synth = 0
 	taste_description = "brains"
 
-/datum/reagent/romerol/on_mob_life(mob/living/carbon/human/H)
+/datum/reagent/romerol/reaction_mob(mob/living/carbon/human/H, method=TOUCH, reac_volume)
 	// Silently add the zombie infection organ to be activated upon death
 	if(!H.getorganslot(ORGAN_SLOT_ZOMBIE))
 		var/obj/item/organ/zombie_infection/ZI = new()
@@ -1729,10 +1756,16 @@
 	..()
 	if(isliving(M))
 		var/mob/living/L = M
-		L.add_disability(DISABILITY_PACIFISM, CHEMICAL_DISABILITY)
+		L.add_trait(TRAIT_PACIFISM, id)
 
 /datum/reagent/pax/on_mob_delete(mob/M)
 	if(isliving(M))
 		var/mob/living/L = M
-		L.remove_disability(DISABILITY_PACIFISM, CHEMICAL_DISABILITY)
+		L.remove_trait(TRAIT_PACIFISM, id)
 	..()
+
+/datum/reagent/pax/borg
+	name = "synth-pax"
+	id = "synthpax"
+	description = "A colorless liquid that suppresses violence on the subjects. Cheaper to synthetize, but wears out faster than normal Pax."
+	metabolization_rate = 1.5 * REAGENTS_METABOLISM
