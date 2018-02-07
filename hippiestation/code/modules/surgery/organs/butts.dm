@@ -13,7 +13,6 @@
 	hitsound = 'hippiestation/sound/effects/fart.ogg'
 	body_parts_covered = HEAD
 	slot_flags = SLOT_HEAD
-	embed_chance = 5 //This is a joke
 	var/loose = 0
 	var/max_combined_w_class = 3
 	var/max_w_class = 2
@@ -51,7 +50,14 @@
 		for(var/i in inv.contents)
 			var/obj/item/I = i
 			inv.remove_from_storage(I, T)
+
 	QDEL_NULL(inv)
+
+	if (!embedding)
+		embedding = getEmbeddingBehavior()
+
+	embedding = embedding.setRating(embed_chance = 5) // This is a joke
+
 	..()
 
 /obj/item/organ/butt/on_life()
