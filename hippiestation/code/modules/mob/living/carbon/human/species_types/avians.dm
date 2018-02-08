@@ -10,6 +10,9 @@
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/bird
+	liked_food = FRUIT | VEGETABLES | GRAIN
+	disliked_food = RAW | DAIRY
+	toxic_food = GROSS
 
 /datum/species/bird/on_species_gain(mob/living/carbon/human/C)
 	C.draw_hippie_parts()

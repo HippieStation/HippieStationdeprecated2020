@@ -16,6 +16,8 @@
 	burnmod = 1.25
 	brutemod = 1.25
 	teeth_type = /obj/item/stack/teeth/cat
+	liked_food = RAW | MEAT
+	disliked_food = FRUIT | VEGETABLES
 
 /datum/species/tarajan/qualifies_for_rank(rank, list/features)
 	if(rank in GLOB.command_positions) //even if you turn off humans only
