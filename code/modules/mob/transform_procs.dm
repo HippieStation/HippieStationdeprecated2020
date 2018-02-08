@@ -338,6 +338,7 @@
 			continue
 		if(locate(/mob/living/silicon/ai) in sloc.loc)
 			continue
+<<<<<<< HEAD
 		loc_landmark = sloc.loc
 	if(!loc_landmark)
 		for(var/obj/effect/landmark/tripai/L in GLOB.landmarks_list)
@@ -345,6 +346,14 @@
 				continue
 			loc_landmark = L.loc
 	if(!loc_landmark)
+=======
+		if(sloc.primary_ai)
+			LAZYCLEARLIST(landmark_loc)
+			landmark_loc += sloc.loc
+			break
+		landmark_loc += sloc.loc
+	if(!landmark_loc.len)
+>>>>>>> 6b90cc824a... Merge pull request #35410 from ShizCalev/ai-loc-fix
 		to_chat(src, "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone.")
 		for(var/obj/effect/landmark/start/ai/sloc in GLOB.landmarks_list)
 			loc_landmark = sloc.loc
