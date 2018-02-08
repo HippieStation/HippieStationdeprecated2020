@@ -141,6 +141,16 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(damtype == "brute")
 			hitsound = "swing_hit"
 
+<<<<<<< HEAD
+=======
+	if (!embedding)
+		embedding = getEmbeddingBehavior()
+	else if (islist(embedding))
+		embedding = getEmbeddingBehavior(arglist(embedding))
+	else if (!istype(embedding, /datum/embedding_behavior))
+		stack_trace("Invalid type [embedding.type] found in .embedding during /obj/item Initialize()")
+
+>>>>>>> 8bed4a4d10... Fix intendation on embedding datum initializer (#35447)
 /obj/item/Destroy()
 	flags_1 &= ~DROPDEL_1	//prevent reqdels
 	if(ismob(loc))
