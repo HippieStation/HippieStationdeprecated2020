@@ -289,7 +289,33 @@
 	environment_type = "snow"
 	flags_1 = NONE
 	archdrops = list(/obj/item/stack/sheet/mineral/snow = 5)
+	burnt_states = list("snow_dug")
 
+<<<<<<< HEAD
+=======
+/turf/open/floor/plating/asteroid/snow/burn_tile()
+	if(!burnt)
+		visible_message("<span class='danger'>[src] melts away!.</span>")
+		slowdown = 0
+		burnt = TRUE
+		icon_state = "snow_dug"
+		return TRUE
+	return FALSE
+
+/turf/open/floor/plating/asteroid/snow/ice
+	name = "icey snow"
+	desc = "Looks colder."
+	baseturfs = /turf/open/floor/plating/asteroid/snow/ice
+	initial_gas_mix = "o2=0;n2=82;plasma=24;TEMP=120"
+	floor_variance = 0
+	icon_state = "snow-ice"
+	icon_plating = "snow-ice"
+	environment_type = "snow_cavern"
+
+/turf/open/floor/plating/asteroid/snow/ice/burn_tile()
+	return FALSE
+
+>>>>>>> 8776f5f8ca... Merge pull request #35429 from ShizCalev/snowdin-cleanup
 /turf/open/floor/plating/asteroid/snow/airless
 	initial_gas_mix = "TEMP=2.7"
 

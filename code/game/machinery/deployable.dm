@@ -62,6 +62,23 @@
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "woodenbarricade"
 	material = WOOD
+<<<<<<< HEAD
+=======
+	var/drop_amount = 3
+
+/obj/structure/barricade/wooden/crude
+	name = "crude plank barricade"
+	desc = "This space is blocked off by a crude assortment of planks."
+	icon_state = "woodenbarricade-old"
+	drop_amount = 1
+	max_integrity = 50
+	proj_pass_rate = 65
+
+/obj/structure/barricade/wooden/crude/snow
+	desc = "This space is blocked off by a crude assortment of planks. It seems to be covered in a layer of snow."
+	icon_state = "woodenbarricade-snow-old"
+	max_integrity = 75
+>>>>>>> 8776f5f8ca... Merge pull request #35429 from ShizCalev/snowdin-cleanup
 
 /obj/structure/barricade/wooden/make_debris()
 	new /obj/item/stack/sheet/mineral/wood(get_turf(src), 3)
