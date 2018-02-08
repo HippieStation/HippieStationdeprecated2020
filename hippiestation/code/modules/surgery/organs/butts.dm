@@ -10,6 +10,7 @@
 	throwforce = 5
 	throw_speed = 4
 	force = 5
+	embedding = list("embed_chance" = 5) // This is a joke
 	hitsound = 'hippiestation/sound/effects/fart.ogg'
 	body_parts_covered = HEAD
 	slot_flags = SLOT_HEAD
@@ -52,11 +53,6 @@
 			inv.remove_from_storage(I, T)
 
 	QDEL_NULL(inv)
-
-	if (!embedding)
-		embedding = getEmbeddingBehavior()
-
-	embedding = embedding.setRating(embed_chance = 5) // This is a joke
 
 	..()
 
