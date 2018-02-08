@@ -18,6 +18,11 @@
 #define TRAIT_XENO_HOST			"xeno_host"	//Tracks whether we're gonna be a baby alien's mummy.
 #define TRAIT_STUNIMMUNE		"stun_immunity"
 #define TRAIT_PUSHIMMUNE		"push_immunity"
+<<<<<<< HEAD
+=======
+#define TRAIT_SHOCKIMMUNE		"shock_immunity"
+
+>>>>>>> d1c1a28128... adds italian moustache that makes you italian (#35426)
 
 // common trait sources
 #define TRAIT_GENERIC "generic"
