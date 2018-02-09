@@ -73,9 +73,9 @@
 /datum/game_mode/abduction/proc/post_setup_team(datum/team/abductor_team/team)
 	for(var/datum/mind/M in team.members)
 		if(M.assigned_role == "Abductor Scientist")
-			M.add_antag_datum(ANTAG_DATUM_ABDUCTOR_SCIENTIST, team)
+			M.add_antag_datum(/datum/antagonist/abductor/scientist, team)
 		else
-			M.add_antag_datum(ANTAG_DATUM_ABDUCTOR_AGENT, team)
+			M.add_antag_datum(/datum/antagonist/abductor/agent, team)
 
 /datum/game_mode/abduction/check_finished()
 	if(!finished)

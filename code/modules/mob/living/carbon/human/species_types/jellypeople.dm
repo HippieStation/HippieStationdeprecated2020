@@ -149,6 +149,11 @@
 		if(!H.mind || !H.mind.active)
 			return
 
+/datum/species/jelly/slime/spec_death(gibbed, mob/living/carbon/human/H)
+	if(slime_split)
+		if(!H.mind || !H.mind.active)
+			return
+
 		var/list/available_bodies = (bodies - H)
 		for(var/mob/living/L in available_bodies)
 			if(!swap_body.can_swap(L))
@@ -534,6 +539,7 @@
 	CHECK_DNA_AND_SPECIES(H)
 
 	if(species.current_extract)
+		species.extract_cooldown = world.time + 100
 		var/cooldown = species.current_extract.activate(H, species, activation_type)
 		species.extract_cooldown = world.time + cooldown
 

@@ -13,7 +13,7 @@
 	hitsound = 'hippiestation/sound/effects/fart.ogg'
 	body_parts_covered = HEAD
 	slot_flags = SLOT_HEAD
-	embed_chance = 5 //This is a joke
+	embedding = list("embed_chance" = 5) //This is a joke
 	var/loose = 0
 	var/max_combined_w_class = 3
 	var/max_w_class = 2

@@ -8103,7 +8103,6 @@
 	id = "syndicate";
 	name = "syndicate infiltrator";
 	port_direction = 1;
-	roundstart_move = "syndicate_away";
 	width = 18
 	},
 /obj/structure/fans/tiny,

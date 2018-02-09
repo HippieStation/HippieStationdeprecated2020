@@ -8,12 +8,16 @@
 	return FINISHONMOBLIFE(M)
 
 /datum/reagent/medicine/ephedrine/on_mob_life(mob/living/M)
-	M.status_flags |= GOTTAGOFAST
+	M.add_trait(TRAIT_GOTTAGOFAST, id)
 	M.reagents.remove_reagent("nutriment", rand(0,3))
 	M.reagents.remove_reagent("vitamin", rand(0,3))
 	if(prob(34))
 		M.nutrition = max(M.nutrition - rand(0,10), 1) //Cannot go below 1.
 	return FINISHONMOBLIFE(M)
+
+/datum/reagent/medicine/ephedrine/on_mob_delete(mob/living/M)
+	M.remove_trait(TRAIT_GOTTAGOFAST, id)
+	..()
 
 /datum/reagent/medicine/atropine/on_mob_life(mob/living/M)
 	M.reagents.remove_all_type(/datum/reagent/toxin/sarin, 1*REM, 0, 1)
@@ -44,7 +48,7 @@
 datum/reagent/medicine/superzine/on_mob_life(mob/living/M as mob)
 	if(prob(15))
 		M.emote(pick("twitch","blink_r","shiver"))
-	M.status_flags |= GOTTAGOFAST
+	M.add_trait(TRAIT_GOTTAGOFAST, id)
 	M.adjustStaminaLoss(-5)
 	if(prob(2))
 		M<<"<span class='danger'>You collapse suddenly!"
@@ -61,6 +65,10 @@ datum/reagent/medicine/superzine/on_mob_life(mob/living/M as mob)
 				if(H.stat == CONSCIOUS)
 					H.visible_message("<span class='userdanger'>[H] clutches at [H.p_their()] chest as if [H.p_their()] heart stopped!</span>")
 
+/datum/reagent/medicine/superzine/on_mob_delete(mob/living/M)
+	M.remove_trait(TRAIT_GOTTAGOFAST, id)
+	..()
+
 /datum/reagent/medicine/defib
 	name = "Exstatic mixture"
 	id = "defib"
@@ -76,7 +84,7 @@ datum/reagent/medicine/superzine/on_mob_life(mob/living/M as mob)
 /datum/reagent/medicine/defib/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(M.stat == DEAD)
 		M.electrocute_act(1, "exstatic mixture")
-		if(!M.suiciding && !M.has_disability(DISABILITY_NOCLONE) && !M.hellbound)
+		if(!M.suiciding && !M.has_trait(TRAIT_NOCLONE) && !M.hellbound)
 			if(!M)
 				return
 			if(M.notify_ghost_cloning(source = M))
