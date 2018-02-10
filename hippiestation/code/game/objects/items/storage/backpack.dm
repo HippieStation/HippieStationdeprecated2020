@@ -40,9 +40,9 @@
 		to_chat(usr, "<span class='warning'>you need to hold the [src] in your hand to do this!</span>")
 		return 0
 	else
-		adjust_bag()
+		adjust_bag(usr)
 	
-/obj/item/storage/backpack/duffelbag/proc/adjust_bag()
+/obj/item/storage/backpack/duffelbag/proc/adjust_bag(mob/user)
 	set name = "Adjust Duffel Bag"
 	if(do_after(user, 40, target = src))
 		if (!adjusted)
