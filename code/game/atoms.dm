@@ -570,6 +570,3 @@
 
 /atom/proc/GenerateTag()
 	return
-
-/atom/proc/GenerateTag()
-	return

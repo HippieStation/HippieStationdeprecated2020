@@ -23440,7 +23440,6 @@
 	name = "ferry shuttle";
 	port_direction = 1;
 	preferred_direction = 4;
-	roundstart_move = "ferry_away";
 	width = 5
 	},
 /obj/docking_port/stationary{
@@ -28754,7 +28753,6 @@
 	name = "NT Medical Ship";
 	port_direction = 8;
 	preferred_direction = 4;
-	roundstart_move = "whiteship_away";
 	timid = null;
 	width = 35
 	},
