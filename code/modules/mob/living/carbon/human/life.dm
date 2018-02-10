@@ -302,15 +302,6 @@
 				if(!has_embedded_objects())
 					clear_alert("embeddedobject")
 
-				// Hippie Start - Handle un-impaling player if pinned item falls out
-				if (I.pinned)
-					do_pindown(pinned_to, 0)
-					pinned_to = null
-					anchored = FALSE
-					update_canmove()
-					I.pinned = null
-				// Hippie End
-
 /mob/living/carbon/human/proc/handle_active_genes()
 	for(var/datum/mutation/human/HM in dna.mutations)
 		HM.on_life(src)
@@ -365,7 +356,8 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 												"Best idea ever: Disposal pipes instead of hallways."))
 /mob/living/carbon/human/handle_status_effects()
 	..()
-	checklisp()
+
+
 	if(drunkenness)
 		drunkenness = max(drunkenness - (drunkenness * 0.04), 0)
 		if(drunkenness >= 6)
