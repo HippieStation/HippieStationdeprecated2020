@@ -73,7 +73,31 @@
 	desc = "Apparently a staff used by the wizard. Doesn't shoot anything."
 	w_class = WEIGHT_CLASS_NORMAL
 
-
 /obj/item/staff/Initialize()
 	. = ..()
 	AddComponent(/datum/component/spell_catalyst)
+
+/obj/item/melee/baseball_bat/spike
+    name = "spiked baseball bat"
+    desc = "A wooden baseball bat with metal spikes crudely attached. Very gothic."
+    icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
+    icon_state = "sbaseball_bat"
+    item_state = "sbaseball_bat"
+    lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
+    righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
+    attack_verb = list("beat", "smacked", "brutalized", "pummeled")
+    force = 15
+    throwforce = 16 // Its got spikes sticking out of it bitch
+    armour_penetration = 20
+    w_class = WEIGHT_CLASS_NORMAL
+
+/obj/item/melee/baseball_bat/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/stack/rods))
+		var/obj/item/melee/baseball_bat/spike/B = new /obj/item/melee/baseball_bat/spike
+
+		remove_item_from_storage(user)
+		qdel(I)
+		qdel(src)
+
+		user.put_in_hands(B)
+		to_chat(user, "<span class='notice'>You work some broken metal rods into the bat.</span>")
