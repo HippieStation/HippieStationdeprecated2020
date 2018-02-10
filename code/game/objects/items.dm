@@ -445,6 +445,13 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	SendSignal(COMSIG_ITEM_EQUIPPED,user,slot)
 	item_flags |= IN_INVENTORY
 
+	// Hippie Start - Custom screams
+	if (iscarbon(user))
+		var/mob/living/carbon/C = user
+		if (C)
+			C.reindex_screams()
+	// Hippie End
+
 //sometimes we only want to grant the item's action if it's equipped in a specific slot.
 /obj/item/proc/item_action_slot_check(slot, mob/user)
 	if(slot == slot_in_backpack || slot == slot_legcuffed) //these aren't true slots, so avoid granting actions there

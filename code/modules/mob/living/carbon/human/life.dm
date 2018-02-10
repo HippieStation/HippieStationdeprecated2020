@@ -301,6 +301,15 @@
 				visible_message("<span class='danger'>[I] falls out of [name]'s [BP.name]!</span>","<span class='userdanger'>[I] falls out of your [BP.name]!</span>")
 				if(!has_embedded_objects())
 					clear_alert("embeddedobject")
+				
+				// Hippie Start - Handle un-impaling player if pinned item falls out
+				if (I.pinned)
+					do_pindown(pinned_to, 0)
+					pinned_to = null
+					anchored = FALSE
+					update_canmove()
+					I.pinned = null
+				// Hippie End
 
 /mob/living/carbon/human/proc/handle_active_genes()
 	for(var/datum/mutation/human/HM in dna.mutations)
