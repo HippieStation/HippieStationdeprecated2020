@@ -151,7 +151,12 @@
 	alert = 0;
 	desc = "A display case containing an expensive forgery, probably.";
 	pixel_y = -4;
+<<<<<<< HEAD
 	req_access = 48;
+=======
+	req_access = null;
+	req_access_txt = "48";
+>>>>>>> f0b26dd87b... Merge pull request #35518 from ShizCalev/ACCESS-FIXES-MK2
 	start_showpiece_type = /obj/item/fakeartefact
 	},
 /turf/open/floor/carpet/black,
