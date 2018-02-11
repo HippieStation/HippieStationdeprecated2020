@@ -36,7 +36,7 @@
 	var/mob/living/L = user
 
 	if(istype(L))
-		if(!user.Adjacent(src) || user.incapacitated())
+		if(!user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 			to_chat(user, "<span class='warning'>You can't do that right now!</span>")
 			return FALSE
 		else
@@ -225,7 +225,7 @@
 	if(over_object == usr && Adjacent(usr))
 		if(!item_chair || !usr.can_hold_items() || has_buckled_mobs() || src.flags_1 & NODECONSTRUCT_1)
 			return
-		if(usr.incapacitated())
+		if(!usr.canUseTopic(src, BE_CLOSE, ismonkey(usr)))
 			to_chat(usr, "<span class='warning'>You can't do that right now!</span>")
 			return
 		usr.visible_message("<span class='notice'>[usr] grabs \the [src.name].</span>", "<span class='notice'>You grab \the [src.name].</span>")
@@ -378,7 +378,12 @@
 	return
 
 /obj/structure/chair/brass/AltClick(mob/living/user)
+<<<<<<< HEAD
 	if(!user.canUseTopic(src, be_close = TRUE))
+=======
+	turns = 0
+	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
+>>>>>>> bfde5ac057... [s] Fixes altclick exploits (#35456)
 		return
 	if(!isprocessing)
 		user.visible_message("<span class='notice'>[user] spins [src] around, and Ratvarian technology keeps it spinning FOREVER.</span>", \
