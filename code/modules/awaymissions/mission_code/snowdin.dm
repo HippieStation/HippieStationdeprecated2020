@@ -33,6 +33,139 @@
 	icon_state = "awaycontent7"
 	requires_power = TRUE
 
+<<<<<<< HEAD
+=======
+/area/shuttle/snowdin/elevator1
+	name = "Excavation Elevator"
+
+/area/shuttle/snowdin/elevator2
+	name = "Mining Elevator"
+
+//shuttle console for elevators//
+
+/obj/machinery/computer/shuttle/snowdin/mining
+	name = "shuttle console"
+	desc = "A shuttle control computer."
+	icon_screen = "shuttle"
+	icon_keyboard = "tech_key"
+	light_color = LIGHT_COLOR_CYAN
+	shuttleId = "snowdin_mining"
+	possible_destinations = "snowdin_mining_top;snowdin_mining_down"
+
+
+//liquid plasma!!!!!!//
+
+/turf/open/floor/plasteel/vault/snowdin
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	planetary_atmos = 1
+	temperature = 180
+
+/turf/open/floor/plasteel/dark/snowdin
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	planetary_atmos = 1
+	temperature = 180
+
+/turf/open/lava/plasma
+	name = "liquid plasma"
+	desc = "A flowing stream of chilled liquid plasma. You probably shouldn't get in."
+	icon_state = "liquidplasma"
+	initial_gas_mix = "o2=0;n2=82;plasma=24;TEMP=120"
+	baseturfs = /turf/open/lava/plasma
+	slowdown = 2
+
+	light_range = 3
+	light_power = 0.75
+	light_color = LIGHT_COLOR_PURPLE
+
+/turf/open/lava/plasma/attackby(obj/item/I, mob/user, params)
+	var/obj/item/reagent_containers/glass/C = I
+	if(C.reagents.total_volume >= C.volume)
+		to_chat(user, "<span class='danger'>[C] is full.</span>")
+		return
+	C.reagents.add_reagent("plasma", rand(5, 10))
+	user.visible_message("[user] scoops some plasma from the [src] with \the [C].", "<span class='notice'>You scoop out some plasma from the [src] using \the [C].</span>")
+
+/turf/open/lava/plasma/burn_stuff(AM)
+	. = 0
+
+	if(is_safe())
+		return FALSE
+
+	var/thing_to_check = src
+	if (AM)
+		thing_to_check = list(AM)
+	for(var/thing in thing_to_check)
+		if(isobj(thing))
+			var/obj/O = thing
+			if((O.resistance_flags & (FREEZE_PROOF)) || O.throwing)
+				continue
+
+		else if (isliving(thing))
+			. = 1
+			var/mob/living/L = thing
+			if(L.movement_type & FLYING)
+				continue	//YOU'RE FLYING OVER IT
+			if("snow" in L.weather_immunities)
+				continue
+
+			var/buckle_check = L.buckling
+			if(!buckle_check)
+				buckle_check = L.buckled
+			if(isobj(buckle_check))
+				var/obj/O = buckle_check
+				if(O.resistance_flags & FREEZE_PROOF)
+					continue
+
+			else if(isliving(buckle_check))
+				var/mob/living/live = buckle_check
+				if("snow" in live.weather_immunities)
+					continue
+
+			L.adjustFireLoss(2)
+			if(L)
+				L.adjust_fire_stacks(20) //dipping into a stream of plasma would probably make you more flammable than usual
+				L.bodytemperature -=(rand(50,65)) //its cold, man
+				if(ishuman(L))//are they a carbon?
+					var/list/plasma_parts = list()//a list of the organic parts to be turned into plasma limbs
+					var/list/robo_parts = list()//keep a reference of robotic parts so we know if we can turn them into a plasmaman
+					var/mob/living/carbon/human/PP = L
+					if(istype(PP.dna.species, /datum/species/plasmaman || /datum/species/android || /datum/species/synth)) //ignore plasmamen/robotic species
+						return
+
+					for(var/BP in PP.bodyparts)
+						var/obj/item/bodypart/NN = BP
+						if(NN.status == BODYPART_ORGANIC && NN.species_id != "plasmaman") //getting every organic, non-plasmaman limb (augments/androids are immune to this)
+							plasma_parts += NN
+						if(NN.status == BODYPART_ROBOTIC)
+							robo_parts += NN
+
+					if(prob(35)) //checking if the delay is over & if the victim actually has any parts to nom
+						PP.adjustToxLoss(15)
+						PP.adjustFireLoss(25)
+						if(plasma_parts.len)
+							var/obj/item/bodypart/NB = pick(plasma_parts) //using the above-mentioned list to get a choice of limbs for dismember() to use
+							PP.emote("scream")
+							NB.species_id = "plasmaman"//change the species_id of the limb to that of a plasmaman
+							NB.no_update = TRUE
+							NB.change_bodypart_status()
+							PP.visible_message("<span class='warning'>[L] screams in pain as their [NB] melts down to the bone!</span>", \
+											  "<span class='userdanger'>You scream out in pain as your [NB] melts down to the bone, leaving an eerie plasma-like glow where flesh used to be!</span>")
+						if(!plasma_parts.len && !robo_parts.len) //a person with no potential organic limbs left AND no robotic limbs, time to turn them into a plasmaman
+							PP.IgniteMob()
+							PP.set_species(/datum/species/plasmaman)
+							PP.visible_message("<span class='warning'>[L] bursts into a brilliant purple flame as their entire body is that of a skeleton!</span>", \
+											  "<span class='userdanger'>Your senses numb as all of your remaining flesh is turned into a purple slurry, sloshing off your body and leaving only your bones to show in a vibrant purple!</span>")
+
+
+/obj/vehicle/ridden/lavaboat/plasma
+	name = "plasma boat"
+	desc = "A boat used for traversing the streams of plasma without turning into an icecube."
+	icon_state = "goliath_boat"
+	icon = 'icons/obj/lavaland/dragonboat.dmi'
+	resistance_flags = FREEZE_PROOF
+	can_buckle = TRUE
+///////////	papers
+>>>>>>> 8776f5f8ca... Merge pull request #35429 from ShizCalev/snowdin-cleanup
 
 
 ///////////	papers
@@ -196,6 +329,12 @@
 				)
 
 //special items//--
+
+/obj/structure/barricade/wooden/snowed
+	name = "crude plank barricade"
+	desc = "This space is blocked off by a wooden barricade. It seems to be covered in a layer of snow."
+	icon_state = "woodenbarricade-snow"
+	max_integrity = 125
 
 /obj/item/clothing/under/syndicate/coldres
 	name = "insulated tactical turtleneck"
