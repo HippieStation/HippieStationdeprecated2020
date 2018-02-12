@@ -150,7 +150,8 @@
 				icon_state = "morgue3"
 				return
 			for(var/mob/living/M in compiled)
-				if(M.client && !M.suiciding)
+				var/mob/living/mob_occupant = get_mob_or_brainmob(M)
+				if(mob_occupant.client && !mob_occupant.suiciding && !(mob_occupant.has_trait(TRAIT_NOCLONE)) && !mob_occupant.hellbound)
 					icon_state = "morgue4" // Cloneable
 					break
 
