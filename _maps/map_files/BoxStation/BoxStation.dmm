@@ -14076,9 +14076,16 @@
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "aIB" = (
+<<<<<<< HEAD
 /obj/structure/bodycontainer/crematorium,
 /obj/effect/landmark/revenantspawn,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+=======
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/bodycontainer/crematorium{
+	id = "crematoriumChapel"
+	},
+>>>>>>> b94148b330... Fixes crematorium on meta/box. (#35305)
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
 "aIC" = (
@@ -14509,6 +14516,7 @@
 "aJG" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/button/crematorium{
+	id = "crematoriumChapel";
 	pixel_x = 25
 	},
 /obj/machinery/light/small{
