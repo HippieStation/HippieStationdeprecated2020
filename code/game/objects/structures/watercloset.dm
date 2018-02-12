@@ -187,6 +187,14 @@
 	w_class = WEIGHT_CLASS_TINY
 	list_reagents = list("chlorine" = 3, "ammonia" = 1)
 
+<<<<<<< HEAD
+=======
+/obj/item/reagent_containers/food/urinalcake/attack_self(mob/living/user)
+	user.visible_message("<span class='notice'>[user] squishes [src]!</span>", "<span class='notice'>You squish [src].</span>", "<i>You hear a squish.</i>")
+	icon_state = "urinalcake_squish"
+	addtimer(VARSET_CALLBACK(src, icon_state, "urinalcake"), 8)
+
+>>>>>>> aca0cd453a... Urinal cakes can now be picked up again (#35566)
 /obj/machinery/shower
 	name = "shower"
 	desc = "The HS-451. Installed in the 2550s by the Nanotrasen Hygiene Division."
