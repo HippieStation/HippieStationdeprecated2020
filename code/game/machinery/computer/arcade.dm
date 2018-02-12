@@ -46,7 +46,14 @@
 		/obj/item/toy/eightball									= 2,
 		/obj/item/toy/windupToolbox								= 2,
 		/obj/item/toy/clockwork_watch							= 2,
+<<<<<<< HEAD
 		/obj/item/extendohand/acme								= 1)
+=======
+		/obj/item/toy/toy_dagger								= 2,
+		/obj/item/extendohand/acme								= 1,
+		/obj/item/hot_potato/harmless/toy						= 1,
+		/obj/item/card/emagfake									= 1)
+>>>>>>> f658044e9b... Adds the fake honking emag to the arcade. (#35457)
 
 	light_color = LIGHT_COLOR_GREEN
 
