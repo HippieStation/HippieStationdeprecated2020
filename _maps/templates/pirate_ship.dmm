@@ -707,7 +707,12 @@
 /obj/machinery/airalarm{
 	dir = 8;
 	pixel_x = 24;
+<<<<<<< HEAD
 	req_access = 152
+=======
+	req_access = null;
+	req_access_txt = "152"
+>>>>>>> f0b26dd87b... Merge pull request #35518 from ShizCalev/ACCESS-FIXES-MK2
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack{

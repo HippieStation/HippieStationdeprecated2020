@@ -14,7 +14,12 @@
 	},
 /obj/machinery/airalarm{
 	pixel_y = 24;
+<<<<<<< HEAD
 	req_access = 150
+=======
+	req_access = null;
+	req_access_txt = "150"
+>>>>>>> f0b26dd87b... Merge pull request #35518 from ShizCalev/ACCESS-FIXES-MK2
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -208,7 +213,12 @@
 /obj/machinery/airalarm{
 	dir = 4;
 	pixel_x = -24;
+<<<<<<< HEAD
 	req_access = 150
+=======
+	req_access = null;
+	req_access_txt = "150"
+>>>>>>> f0b26dd87b... Merge pull request #35518 from ShizCalev/ACCESS-FIXES-MK2
 	},
 /turf/open/floor/plasteel/dark,
 /area/ruin/space/has_grav/listeningstation)
@@ -513,7 +523,12 @@
 "aU" = (
 /obj/machinery/airalarm{
 	pixel_y = 24;
+<<<<<<< HEAD
 	req_access = 150
+=======
+	req_access = null;
+	req_access_txt = "150"
+>>>>>>> f0b26dd87b... Merge pull request #35518 from ShizCalev/ACCESS-FIXES-MK2
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
@@ -636,7 +651,12 @@
 /obj/machinery/airalarm{
 	dir = 8;
 	pixel_x = 24;
+<<<<<<< HEAD
 	req_access = 150
+=======
+	req_access = null;
+	req_access_txt = "150"
+>>>>>>> f0b26dd87b... Merge pull request #35518 from ShizCalev/ACCESS-FIXES-MK2
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -808,7 +828,12 @@
 	dir = 4;
 	name = "Syndicate Listening Post APC";
 	pixel_x = 24;
+<<<<<<< HEAD
 	req_access = 150
+=======
+	req_access = null;
+	req_access_txt = "150"
+>>>>>>> f0b26dd87b... Merge pull request #35518 from ShizCalev/ACCESS-FIXES-MK2
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,

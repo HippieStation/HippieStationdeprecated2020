@@ -49699,6 +49699,10 @@
 	icon_state = "control_standby";
 	name = "Antechamber Turret Control";
 	pixel_y = -24;
+<<<<<<< HEAD
+=======
+	req_access = null;
+>>>>>>> f0b26dd87b... Merge pull request #35518 from ShizCalev/ACCESS-FIXES-MK2
 	req_access_txt = "65"
 	},
 /obj/machinery/light/small,
@@ -49935,6 +49939,10 @@
 	icon_state = "control_standby";
 	name = "Atmospherics Turret Control";
 	pixel_x = -27;
+<<<<<<< HEAD
+=======
+	req_access = null;
+>>>>>>> f0b26dd87b... Merge pull request #35518 from ShizCalev/ACCESS-FIXES-MK2
 	req_access_txt = "65"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -49960,6 +49968,10 @@
 	icon_state = "control_standby";
 	name = "Service Bay Turret Control";
 	pixel_x = 27;
+<<<<<<< HEAD
+=======
+	req_access = null;
+>>>>>>> f0b26dd87b... Merge pull request #35518 from ShizCalev/ACCESS-FIXES-MK2
 	req_access_txt = "65"
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers,
@@ -50250,6 +50262,10 @@
 	name = "Chamber Hallway Turret Control";
 	pixel_x = 32;
 	pixel_y = -24;
+<<<<<<< HEAD
+=======
+	req_access = null;
+>>>>>>> f0b26dd87b... Merge pull request #35518 from ShizCalev/ACCESS-FIXES-MK2
 	req_access_txt = "65"
 	},
 /turf/open/floor/plasteel/dark,

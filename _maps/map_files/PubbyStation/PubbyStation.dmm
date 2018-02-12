@@ -48771,7 +48771,12 @@
 /obj/machinery/door/airlock/centcom{
 	name = "Crematorium";
 	opacity = 1;
+<<<<<<< HEAD
 	req_access = "27"
+=======
+	req_access = null;
+	req_access_txt = "27"
+>>>>>>> f0b26dd87b... Merge pull request #35518 from ShizCalev/ACCESS-FIXES-MK2
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel/dark,
