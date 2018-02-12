@@ -1527,12 +1527,21 @@
 /turf/open/floor/plating/snowed/colder,
 /area/awaymission/snowdin/dungeon1)
 "eX" = (
+<<<<<<< HEAD
 /obj/item/device/instrument/guitar{
 	desc = "It's made of wood and has bronze strings. Apparently looks like a ship, too.";
 	name = "ship-shaped guitar"
 	},
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/snowdin)
+=======
+/obj/structure/closet/crate/freezer,
+/obj/item/reagent_containers/blood/random,
+/obj/item/reagent_containers/blood,
+/obj/item/reagent_containers/blood,
+/turf/open/floor/plasteel/cmo,
+/area/awaymission/snowdin/post)
+>>>>>>> c33e32ac22... Fix bloodpack-related Travis failures (#35375)
 "eY" = (
 /obj/effect/decal/remains/human{
 	desc = "They look like human remains. The teeth seem to be oddly sharp."
@@ -1661,9 +1670,17 @@
 /turf/open/floor/plating/snowed/colder,
 /area/awaymission/snowdin/post)
 "fx" = (
+<<<<<<< HEAD
 /mob/living/simple_animal/hostile/bear/snow,
 /turf/open/floor/plating/asteroid/snow{
 	temperature = 140
+=======
+/obj/item/reagent_containers/blood,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	piping_layer = 3;
+	pixel_x = 5;
+	pixel_y = 5
+>>>>>>> c33e32ac22... Fix bloodpack-related Travis failures (#35375)
 	},
 /area/awaymission/snowdin/dungeon1)
 "fy" = (
