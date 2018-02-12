@@ -69965,9 +69965,16 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "cOF" = (
+<<<<<<< HEAD
 /obj/machinery/airalarm{
 	dir = 1;
 	pixel_y = -22
+=======
+/obj/structure/table,
+/obj/item/storage/box/bodybags{
+	pixel_x = 2;
+	pixel_y = 2
+>>>>>>> e8801ecf7e... Merge pull request #35509 from DaxDupont/too-much-assblast
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/office)
