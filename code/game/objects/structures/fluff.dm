@@ -162,6 +162,7 @@
 	desc = "A shrine dedicated to a deity."
 	icon_state = "shrine"
 
+<<<<<<< HEAD
 /obj/structure/fluff/hivebot_swarm_core
 	name = "hivebot swarm core"
 	desc = "The dented, ruined husk of a powerful machine."
@@ -179,3 +180,10 @@
 	visible_message("<span class='warning'>Something tumbles free of [src]!</span>")
 	new/obj/item/device/hivebot_crux(get_turf(src))
 	return ..()
+=======
+/obj/structure/fluff/fokoff_sign
+	name = "crude sign"
+	desc = "A crudely-made sign with the words 'fok of' written in some sort of red paint."
+	icon = 'icons/obj/fluff.dmi'
+	icon_state = "fokof"
+>>>>>>> 6c2db52ab3... Snowdin 2.0 (#35000)
