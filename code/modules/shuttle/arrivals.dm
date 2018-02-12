@@ -22,13 +22,15 @@
 	var/perma_docked = FALSE	//highlander with RESPAWN??? OH GOD!!!
 
 /obj/docking_port/mobile/arrivals/Initialize(mapload)
+<<<<<<< HEAD
 	if(SSshuttle.arrivals)
 		WARNING("More than one arrivals docking_port placed on map!")
 		return INITIALIZE_HINT_QDEL
 	SSshuttle.arrivals = src
 
+=======
+>>>>>>> 8bfe0df2dd... Removes uneedful code
 	. = ..()
-
 	preferred_direction = dir
 	return INITIALIZE_HINT_LATELOAD	//for latejoin list
 
