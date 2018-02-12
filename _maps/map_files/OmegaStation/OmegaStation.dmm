@@ -3010,7 +3010,6 @@
 "aga" = (
 /obj/structure/table/wood,
 /obj/item/device/flashlight/lamp/green,
-/obj/item/card/id/captains_spare,
 /obj/item/toy/figure/captain,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain/private)
@@ -71325,9 +71324,9 @@ aZz
 baq
 bbl
 bbY
-bcP
+bbm
 bdM
-bcP
+bbm
 sKE
 bfv
 bfS
@@ -71582,9 +71581,9 @@ aZA
 bar
 bbm
 bbZ
-bcP
-bcP
-bcP
+bbm
+bbm
+bbm
 baj
 bfu
 bfu
@@ -81868,7 +81867,7 @@ aZl
 sPI
 bfP
 bgm
-bhh
+bhg
 bgm
 sKZ
 bjd
