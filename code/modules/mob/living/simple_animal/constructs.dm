@@ -109,17 +109,25 @@
 	response_harm = "harmlessly punches"
 	harm_intent_damage = 0
 	obj_damage = 90
-	melee_damage_lower = 30
-	melee_damage_upper = 30
+	melee_damage_lower = 25
+	melee_damage_upper = 25
 	attacktext = "smashes their armored gauntlet into"
 	speed = 3
 	environment_smash = ENVIRONMENT_SMASH_WALLS
 	attack_sound = 'sound/weapons/punch3.ogg'
 	status_flags = 0
 	mob_size = MOB_SIZE_LARGE
+<<<<<<< HEAD
 	force_threshold = 11
 	construct_spells = list(/obj/effect/proc_holder/spell/aoe_turf/conjure/lesserforcewall)
 	playstyle_string = "<span class='big bold'>You are a Juggernaut.</span><b> Though slow, your shell can withstand extreme punishment, \
+=======
+	force_threshold = 10
+	construct_spells = list(/obj/effect/proc_holder/spell/targeted/forcewall/cult,
+							/obj/effect/proc_holder/spell/dumbfire/juggernaut)
+	runetype = /datum/action/innate/cult/create_rune/wall
+	playstyle_string = "<b>You are a Juggernaut. Though slow, your shell can withstand heavy punishment, \
+>>>>>>> 6a5c750fb5... Cult Update? Cult Update! (#35433)
 						create shield walls, rip apart enemies and walls alike, and even deflect energy weapons.</b>"
 
 /mob/living/simple_animal/hostile/construct/armored/hostile //actually hostile, will move around, hit things
@@ -128,7 +136,7 @@
 
 /mob/living/simple_animal/hostile/construct/armored/bullet_act(obj/item/projectile/P)
 	if(istype(P, /obj/item/projectile/energy) || istype(P, /obj/item/projectile/beam))
-		var/reflectchance = 80 - round(P.damage/3)
+		var/reflectchance = 60 - round(P.damage/3)
 		if(prob(reflectchance))
 			apply_damage(P.damage * 0.5, P.damage_type)
 			visible_message("<span class='danger'>The [P.name] is reflected by [src]'s armored shell!</span>", \
@@ -164,10 +172,17 @@
 	desc = "A wicked, clawed shell constructed to assassinate enemies and sow chaos behind enemy lines."
 	icon_state = "floating"
 	icon_living = "floating"
+<<<<<<< HEAD
 	maxHealth = 75
 	health = 75
 	melee_damage_lower = 25
 	melee_damage_upper = 25
+=======
+	maxHealth = 65
+	health = 65
+	melee_damage_lower = 20
+	melee_damage_upper = 20
+>>>>>>> 6a5c750fb5... Cult Update? Cult Update! (#35433)
 	retreat_distance = 2 //AI wraiths will move in and out of combat
 	attacktext = "slashes"
 	attack_sound = 'sound/weapons/bladeslice.ogg'

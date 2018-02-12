@@ -450,6 +450,134 @@ structure_check() searches for nearby cultist structures required for the invoca
 			sacrificial.gib()
 	return TRUE
 
+<<<<<<< HEAD:code/game/gamemodes/cult/runes.dm
+=======
+
+/obj/effect/rune/empower
+	cultist_name = "Empower"
+	cultist_desc = "allows cultists to prepare greater amounts of blood magic at far less of a cost."
+	invocation = "H'drak v'loso, mir'kanas verbot!"
+	icon_state = "3"
+	color = RUNE_COLOR_TALISMAN
+	construct_invoke = FALSE
+
+/obj/effect/rune/empower/invoke(var/list/invokers)
+	. = ..()
+	var/mob/living/user = invokers[1] //the first invoker is always the user
+	for(var/datum/action/innate/cult/blood_magic/BM in user.actions)
+		BM.Activate()
+
+/obj/effect/rune/teleport
+	cultist_name = "Teleport"
+	cultist_desc = "warps everything above it to another chosen teleport rune."
+	invocation = "Sas'so c'arta forbici!"
+	icon_state = "2"
+	color = RUNE_COLOR_TELEPORT
+	req_keyword = TRUE
+	light_power = 4
+	var/obj/effect/temp_visual/cult/portal/inner_portal //The portal "hint" for off-station teleportations
+	var/obj/effect/temp_visual/cult/rune_spawn/rune2/outer_portal
+	var/listkey
+
+
+/obj/effect/rune/teleport/Initialize(mapload, set_keyword)
+	. = ..()
+	var/area/A = get_area(src)
+	var/locname = initial(A.name)
+	listkey = set_keyword ? "[set_keyword] [locname]":"[locname]"
+	GLOB.teleport_runes += src
+
+/obj/effect/rune/teleport/Destroy()
+	GLOB.teleport_runes -= src
+	return ..()
+
+/obj/effect/rune/teleport/invoke(var/list/invokers)
+	var/mob/living/user = invokers[1] //the first invoker is always the user
+	var/list/potential_runes = list()
+	var/list/teleportnames = list()
+	for(var/R in GLOB.teleport_runes)
+		var/obj/effect/rune/teleport/T = R
+		if(T != src && !is_away_level(T.z))
+			potential_runes[avoid_assoc_duplicate_keys(T.listkey, teleportnames)] = T
+
+	if(!potential_runes.len)
+		to_chat(user, "<span class='warning'>There are no valid runes to teleport to!</span>")
+		log_game("Teleport rune failed - no other teleport runes")
+		fail_invoke()
+		return
+
+	var/turf/T = get_turf(src)
+	if(is_away_level(T.z))
+		to_chat(user, "<span class='cult italic'>You are not in the right dimension!</span>")
+		log_game("Teleport rune failed - user in away mission")
+		fail_invoke()
+		return
+
+	var/input_rune_key = input(user, "Choose a rune to teleport to.", "Rune to Teleport to") as null|anything in potential_runes //we know what key they picked
+	var/obj/effect/rune/teleport/actual_selected_rune = potential_runes[input_rune_key] //what rune does that key correspond to?
+	if(!Adjacent(user) || !src || QDELETED(src) || user.incapacitated() || !actual_selected_rune)
+		fail_invoke()
+		return
+
+	var/turf/target = get_turf(actual_selected_rune)
+	if(is_blocked_turf(target, TRUE))
+		to_chat(user, "<span class='warning'>The target rune is blocked. Attempting to teleport to it would be massively unwise.</span>")
+		fail_invoke()
+		return
+	var/movedsomething = FALSE
+	var/moveuserlater = FALSE
+	for(var/atom/movable/A in T)
+		if(ishuman(A))
+			new /obj/effect/temp_visual/dir_setting/cult/phase/out(T, A.dir)
+			new /obj/effect/temp_visual/dir_setting/cult/phase(target, A.dir)
+		if(A == user)
+			moveuserlater = TRUE
+			movedsomething = TRUE
+			continue
+		if(!A.anchored)
+			movedsomething = TRUE
+			A.forceMove(target)
+	if(movedsomething)
+		..()
+		visible_message("<span class='warning'>There is a sharp crack of inrushing air, and everything above the rune disappears!</span>", null, "<i>You hear a sharp crack.</i>")
+		to_chat(user, "<span class='cult'>You[moveuserlater ? "r vision blurs, and you suddenly appear somewhere else":" send everything above the rune away"].</span>")
+		if(moveuserlater)
+			user.forceMove(target)
+		if(is_mining_level(z) && !is_mining_level(target.z)) //No effect if you stay on lavaland
+			actual_selected_rune.handle_portal("lava")
+		else
+			var/area/A = get_area(T)
+			if(A.map_name == "Space")
+				actual_selected_rune.handle_portal("space", T)
+		target.visible_message("<span class='warning'>There is a boom of outrushing air as something appears above the rune!</span>", null, "<i>You hear a boom.</i>")
+	else
+		fail_invoke()
+
+/obj/effect/rune/teleport/proc/handle_portal(portal_type, turf/origin)
+	var/turf/T = get_turf(src)
+	close_portal() // To avoid stacking descriptions/animations
+	playsound(T, pick('sound/effects/sparks1.ogg', 'sound/effects/sparks2.ogg', 'sound/effects/sparks3.ogg', 'sound/effects/sparks4.ogg'), 100, TRUE, 14)
+	inner_portal = new /obj/effect/temp_visual/cult/portal(T)
+	if(portal_type == "space")
+		light_color = color
+		desc += "<br><b>A tear in reality reveals a black void interspersed with dots of light... something recently teleported here from space.<br><u>The void feels like it's trying to pull you to the [dir2text(get_dir(T, origin))]!</u></b>"
+	else
+		inner_portal.icon_state = "lava"
+		light_color = LIGHT_COLOR_FIRE
+		desc += "<br><b>A tear in reality reveals a coursing river of lava... something recently teleported here from the Lavaland Mines!</b>"
+	outer_portal = new(T, 600, color)
+	light_range = 4
+	update_light()
+	addtimer(CALLBACK(src, .proc/close_portal), 600, TIMER_UNIQUE)
+
+/obj/effect/rune/teleport/proc/close_portal()
+	qdel(inner_portal)
+	qdel(outer_portal)
+	desc = initial(desc)
+	light_range = 0
+	update_light()
+
+>>>>>>> 6a5c750fb5... Cult Update? Cult Update! (#35433):code/modules/antagonists/cult/runes.dm
 //Ritual of Dimensional Rending: Calls forth the avatar of Nar-Sie upon the station.
 /obj/effect/rune/narsie
 	cultist_name = "Summon Nar-Sie"
@@ -968,6 +1096,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	visible_message("<span class='warning'>A cloud of red mist forms above [src], and from within steps... a [new_human.gender == FEMALE ? "wo":""]man.</span>")
 	to_chat(user, "<span class='cult italic'>Your blood begins flowing into [src]. You must remain in place and conscious to maintain the forms of those summoned. This will hurt you slowly but surely...</span>")
 	var/turf/T = get_turf(src)
+<<<<<<< HEAD:code/game/gamemodes/cult/runes.dm
 	var/obj/structure/emergency_shield/invoker/N = new(T)
 
 	new_human.key = ghost_to_spawn.key
@@ -988,6 +1117,91 @@ structure_check() searches for nearby cultist structures required for the invoca
 		for(var/obj/I in new_human)
 			new_human.dropItemToGround(I, TRUE)
 		new_human.dust()
+=======
+	var/choice = alert(user,"You tear open a connection to the spirit realm...",,"Summon a Cult Ghost","Ascend as a Dark Spirit","Cancel")
+	if(choice == "Summon a Cult Ghost")
+		var/area/A = get_area(T)
+		if(A.map_name == "Space" || is_mining_level(T.z))
+			to_chat(user, "<span class='cultitalic'><b>The veil is not weak enough here to manifest spirits, you must be on station!</b></span>")
+			return
+		notify_ghosts("Manifest rune invoked in [get_area(src)].", 'sound/effects/ghost2.ogg', source = src)
+		var/list/ghosts_on_rune = list()
+		for(var/mob/dead/observer/O in T)
+			if(O.client && !jobban_isbanned(O, ROLE_CULTIST))
+				ghosts_on_rune += O
+		if(!ghosts_on_rune.len)
+			to_chat(user, "<span class='cultitalic'>There are no spirits near [src]!</span>")
+			fail_invoke()
+			log_game("Manifest rune failed - no nearby ghosts")
+			return list()
+		var/mob/dead/observer/ghost_to_spawn = pick(ghosts_on_rune)
+		var/mob/living/carbon/human/cult_ghost/new_human = new(T)
+		new_human.real_name = ghost_to_spawn.real_name
+		new_human.alpha = 150 //Makes them translucent
+		new_human.equipOutfit(/datum/outfit/ghost_cultist) //give them armor
+		new_human.apply_status_effect(STATUS_EFFECT_SUMMONEDGHOST) //ghosts can't summon more ghosts
+		new_human.see_invisible = SEE_INVISIBLE_OBSERVER
+		ghosts++
+		if(ghosts >= ghost_limit)
+			to_chat(user, "<span class='cultitalic'>You are sustaining too many ghosts to summon more!</span>")
+			fail_invoke()
+			log_game("Manifest rune failed - too many summoned ghosts")
+			return list()
+		playsound(src, 'sound/magic/exit_blood.ogg', 50, 1)
+		visible_message("<span class='warning'>A cloud of red mist forms above [src], and from within steps... a [new_human.gender == FEMALE ? "wo":""]man.</span>")
+		to_chat(user, "<span class='cultitalic'>Your blood begins flowing into [src]. You must remain in place and conscious to maintain the forms of those summoned. This will hurt you slowly but surely...</span>")
+		var/obj/structure/emergency_shield/invoker/N = new(T)
+		new_human.key = ghost_to_spawn.key
+		SSticker.mode.add_cultist(new_human.mind, 0)
+		to_chat(new_human, "<span class='cultitalic'><b>You are a servant of the Geometer. You have been made semi-corporeal by the cult of Nar-Sie, and you are to serve them at all costs.</b></span>")
+
+		while(!QDELETED(src) && !QDELETED(user) && !QDELETED(new_human) && (user in T))
+			if(user.stat || new_human.InCritical())
+				break
+			user.apply_damage(0.1, BRUTE)
+			sleep(1)
+
+		qdel(N)
+		ghosts--
+		if(new_human)
+			new_human.visible_message("<span class='warning'>[new_human] suddenly dissolves into bones and ashes.</span>", \
+									  "<span class='cultlarge'>Your link to the world fades. Your form breaks apart.</span>")
+			for(var/obj/I in new_human)
+				new_human.dropItemToGround(I, TRUE)
+			new_human.dust()
+	else if(choice == "Ascend as a Dark Spirit")
+		affecting = user
+		affecting.add_atom_colour(RUNE_COLOR_DARKRED, ADMIN_COLOUR_PRIORITY)
+		affecting.visible_message("<span class='warning'>[affecting] freezes statue-still, glowing an unearthly red.</span>", \
+						 "<span class='cult'>You see what lies beyond. All is revealed. In this form you find that your voice booms louder and you can mark targets for the entire cult</span>")
+		var/mob/dead/observer/G = affecting.ghostize(1)
+		var/datum/action/innate/cult/comm/spirit/CM = new
+		var/datum/action/innate/cult/ghostmark/GM = new
+		G.name = "Dark Spirit of [G.name]"
+		G.color = "red"
+		CM.Grant(G)
+		GM.Grant(G)
+		while(!QDELETED(affecting))
+			if(!(affecting in T))
+				user.visible_message("<span class='warning'>A spectral tendril wraps around [affecting] and pulls [affecting.p_them()] back to the rune!</span>")
+				Beam(affecting, icon_state="drainbeam", time=2)
+				affecting.forceMove(get_turf(src)) //NO ESCAPE :^)
+			if(affecting.key)
+				affecting.visible_message("<span class='warning'>[affecting] slowly relaxes, the glow around [affecting.p_them()] dimming.</span>", \
+									 "<span class='danger'>You are re-united with your physical form. [src] releases its hold over you.</span>")
+				affecting.Knockdown(40)
+				break
+			if(affecting.health <= 10)
+				to_chat(G, "<span class='cultitalic'>Your body can no longer sustain the connection!</span>")
+				break
+			sleep(5)
+		CM.Remove(G)
+		GM.Remove(G)
+		affecting.remove_atom_colour(ADMIN_COLOUR_PRIORITY, RUNE_COLOR_DARKRED)
+		affecting.grab_ghost()
+		affecting = null
+		rune_in_use = FALSE
+>>>>>>> 6a5c750fb5... Cult Update? Cult Update! (#35433):code/modules/antagonists/cult/runes.dm
 
 /mob/living/carbon/human/cult_ghost/spill_organs(no_brain, no_organs, no_bodyparts) //cult ghosts never drop a brain
 	no_brain = TRUE
