@@ -66,7 +66,7 @@
 	name = "crushed can"
 	icon_state = "cola"
 	resistance_flags = NONE
-	grind_results = list("aluminum" = 10)
+	grind_results = list("aluminium" = 10)
 
 /obj/item/trash/attack(mob/M, mob/living/user)
 	return
@@ -80,5 +80,10 @@
 
 /obj/item/trash/coal/burn()
 	visible_message("[src] fuses into a diamond! Someone wasn't so naughty after all...")
+<<<<<<< HEAD
 	new /obj/item/ore/diamond(loc)
 	qdel(src)
+=======
+	new /obj/item/stack/ore/diamond(loc)
+	qdel(src)
+>>>>>>> 6d3721398b... Merge pull request #35443 from Shirbu/patch-1
