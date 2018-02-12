@@ -1518,8 +1518,12 @@
 	name = "White-Ship";
 	port_direction = 8;
 	preferred_direction = 8;
+<<<<<<< HEAD
 	roundstart_move = "whiteship_away";
 	timid = 1;
+=======
+	timid = 0;
+>>>>>>> 9cb814a6b7... Fixes Delta Whiteship being unpilotable (#35343)
 	width = 32
 	},
 /turf/open/floor/plasteel/neutral,
