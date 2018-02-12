@@ -137,6 +137,16 @@
 	connected.connected = src
 	..()
 
+<<<<<<< HEAD
+=======
+/obj/structure/bodycontainer/morgue/AltClick(mob/user)
+	..()
+	if(!user.canUseTopic(src, BE_CLOSE))
+		return
+	beeper = !beeper
+	to_chat(user, "<span class='notice'>You turn the speaker function [beeper ? "off" : "on"].</span>")
+
+>>>>>>> bfde5ac057... [s] Fixes altclick exploits (#35456)
 /obj/structure/bodycontainer/morgue/update_icon()
 	if (!connected || connected.loc != src) // Open or tray is gone.
 		icon_state = "morgue0"
