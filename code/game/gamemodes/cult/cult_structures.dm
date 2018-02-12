@@ -100,8 +100,17 @@
 	if(cooldowntime > world.time)
 		to_chat(user, "<span class='cult italic'>The magic in [src] is weak, it will be ready to use again in [DisplayTimeText(cooldowntime - world.time)].</span>")
 		return
+<<<<<<< HEAD:code/game/gamemodes/cult/cult_structures.dm
 	var/choice = alert(user,"You study the schematics etched into the forge...",,"Shielded Robe","Flagellant's Robe","Bastard Sword")
 	var/pickedtype
+=======
+	var/choice 
+	if(user.mind.has_antag_datum(/datum/antagonist/cult/master))
+		choice = alert(user,"You study the schematics etched into the forge...",,"Shielded Robe","Flagellant's Robe","Bastard Sword")
+	else
+		choice = alert(user,"You study the schematics etched into the forge...",,"Shielded Robe","Flagellant's Robe","Mirror Shield")
+	var/list/pickedtype = list()
+>>>>>>> 7dee5379d7... Cult fixes and UI improvement (#35178):code/modules/antagonists/cult/cult_structures.dm
 	switch(choice)
 		if("Shielded Robe")
 			pickedtype = /obj/item/clothing/suit/hooded/cultrobes/cult_shield
