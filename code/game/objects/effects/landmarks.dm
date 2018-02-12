@@ -186,6 +186,12 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	name = "AI"
 	icon_state = "AI"
 	delete_after_roundstart = FALSE
+	var/primary_ai = TRUE
+
+/obj/effect/landmark/start/ai/secondary
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "ai_spawn"
+	primary_ai = FALSE
 
 
 //Department Security spawns
@@ -274,6 +280,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 	name = "Observer-Start"
 	icon_state = "observer_start"
 
+<<<<<<< HEAD
 // revenant spawn.
 /obj/effect/landmark/revenantspawn
 	name = "revnantspawn"
@@ -285,6 +292,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 	icon_state = "ai_spawn"
 	layer = MOB_LAYER
 
+=======
+>>>>>>> 34897d8709... Removed tripAI landmark (#35256)
 // xenos.
 /obj/effect/landmark/xeno_spawn
 	name = "xeno_spawn"
