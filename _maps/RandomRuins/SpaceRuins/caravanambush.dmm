@@ -1538,7 +1538,7 @@
 	name = "Shuttle turret control";
 	pixel_x = 32;
 	pixel_y = 32;
-	req_access = 150
+	req_access = list(150)
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -3309,7 +3309,7 @@
 	dir = 8;
 	name = "Syndicate Drop Ship APC";
 	pixel_x = -24;
-	req_access = 150
+	req_access = list(150)
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/dark,
@@ -3318,7 +3318,7 @@
 /obj/structure/chair,
 /obj/machinery/airalarm{
 	pixel_y = 24;
-	req_access = 150
+	req_access = list(150)
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/pod/dark,
@@ -3445,7 +3445,7 @@
 	dir = 2;
 	name = "Syndicate Fighter APC";
 	pixel_y = -24;
-	req_access = 150
+	req_access = list(150)
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -3499,7 +3499,7 @@
 /obj/machinery/airalarm{
 	dir = 4;
 	pixel_x = -24;
-	req_access = 150
+	req_access = list(150)
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/dark,
@@ -3517,7 +3517,7 @@
 /obj/machinery/airalarm{
 	dir = 4;
 	pixel_x = -24;
-	req_access = 150
+	req_access = list(150)
 	},
 /turf/open/floor/plasteel/dark,
 /area/shuttle/caravan/syndicate3)
@@ -3533,7 +3533,7 @@
 	lethal = 1;
 	name = "Shuttle turret control";
 	pixel_y = 34;
-	req_access = 150
+	req_access = list(150)
 	},
 /turf/open/floor/plasteel/darkred/corner{
 	dir = 4
@@ -3621,7 +3621,7 @@
 	name = "Shuttle turret control";
 	pixel_x = 32;
 	pixel_y = -28;
-	req_access = 150
+	req_access = list(150)
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -3706,7 +3706,7 @@
 	dir = 8;
 	name = "Syndicate Fighter APC";
 	pixel_x = -24;
-	req_access = 150
+	req_access = list(150)
 	},
 /obj/machinery/computer/security{
 	dir = 1;
