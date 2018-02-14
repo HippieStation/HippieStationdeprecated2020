@@ -7602,7 +7602,7 @@
 	height = 5;
 	id = "laborcamp_home";
 	name = "fore bay 1";
-	roundstart_template = !INVALID_VALUE!;
+	roundstart_template = /datum/map_template/shuttle/labour/box;
 	width = 9
 	},
 /turf/open/space/basic,
@@ -16655,7 +16655,7 @@
 	height = 15;
 	id = "arrivals_stationary";
 	name = "arrivals";
-	roundstart_template = !INVALID_VALUE!;
+	roundstart_template = /datum/map_template/shuttle/arrival/box;
 	width = 7
 	},
 /turf/open/space/basic,
@@ -41621,7 +41621,7 @@
 	height = 5;
 	id = "mining_home";
 	name = "mining shuttle bay";
-	roundstart_template = !INVALID_VALUE!;
+	roundstart_template = /datum/map_template/shuttle/mining/box;
 	width = 7
 	},
 /turf/open/space/basic,
