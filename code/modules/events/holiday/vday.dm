@@ -49,6 +49,7 @@
 			L.mind.objectives += normiesgetout
 			L.mind.add_antag_datum(/datum/antagonist/auto_custom)
 
+// hippie start - Antagonists shouldn't be getting messages that restrict their play on our ruleset.
 /proc/forge_valentines_objective(mob/living/lover,mob/living/date)
 	var/msg = "You're on a date with [date]! Protect them at all costs. This takes priority over all other loyalties."
 
@@ -64,6 +65,7 @@
 		lover.mind.add_antag_datum(/datum/antagonist/auto_custom)
 
 	to_chat(lover, "<span class='warning'><B>[msg]</B></span>")
+// hippie end
 
 
 /datum/round_event/valentines/announce(fake)
