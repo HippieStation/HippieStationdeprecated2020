@@ -20,18 +20,18 @@
 // Listing failure() overrides that normally return false to return true
 /datum/surgery_step/pacify/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	success(user, target, target_zone, tool, surgery)
-	..(user, target, target_zone, tool, surgery)
+	..()
 	
 	return TRUE
 
 /datum/surgery_step/fix_brain/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	success(user, target, target_zone, tool, surgery)
-	..(user, target, target_zone, tool, surgery)
+	..()
 	
 	return TRUE
 
 /datum/surgery_step/fix_eyes/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	success(user, target, target_zone, tool, surgery)
-	..(user, target, target_zone, tool, surgery)
+	..()
 
 	return TRUE
