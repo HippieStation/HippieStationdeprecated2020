@@ -231,6 +231,7 @@
 /datum/uplink_item/dangerous/guardian
 	surplus = 5 //Up yours TGbalanceing
 	player_minimum = 0
+	exclude_modes = list()
 
 /datum/uplink_item/colab/romerol_kit
 	name = "Romerol"
