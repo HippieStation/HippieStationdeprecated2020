@@ -5,6 +5,8 @@
 #define GUILLOTINE_BLADE_MOVING     2
 #define GUILLOTINE_BLADE_DROPPED    3
 #define GUILLOTINE_BLADE_SHARPENING 4
+#define GUILLOTINE_ABOVE_MOB_LAYER  4.1 // The guillotine is above the player, as it's tall
+#define GUILLOTINE_LAYER_DIFF       1.2 // How much to increase/decrease a head when it's nuckled/unbuckled
 
 /obj/structure/guillotine
 	name = "guillotine"
@@ -20,7 +22,7 @@
 	max_buckled_mobs = 1
 	buckle_lying = FALSE
 	buckle_prevents_pull = TRUE
-	layer = 4.1 // Just above players' layer
+	layer = ABOVE_MOB_LAYER
 
 /obj/structure/guillotine/Initialize()
 	LAZYINITLIST(buckled_mobs)
@@ -164,7 +166,7 @@
 				H.cut_overlays()
 				H.update_body_parts_head_only()
 				H.pixel_y += -16
-				H.layer += 1.1
+				H.layer += GUILLOTINE_LAYER_DIFF
 			else
 				unbuckle_all_mobs()
 		else
@@ -177,7 +179,7 @@
 /obj/structure/guillotine/post_unbuckle_mob(mob/living/M)
 	M.regenerate_icons()
 	M.pixel_y -= -16
-	M.layer -= 1.1
+	M.layer -= GUILLOTINE_LAYER_DIFF
 	..()
 
 #undef GUILLOTINE_BLADE_MAX_SHARP
@@ -187,3 +189,5 @@
 #undef GUILLOTINE_BLADE_MOVING
 #undef GUILLOTINE_BLADE_DROPPED
 #undef GUILLOTINE_BLADE_SHARPENING
+#undef GUILLOTINE_ABOVE_MOB_LAYER
+#undef GUILLOTINE_LAYER_DIFF
