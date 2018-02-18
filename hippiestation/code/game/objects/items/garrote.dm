@@ -131,7 +131,7 @@
 				add_logs(user, C, "garroted")
 				user.grab_state = GRAB_PASSIVE
 				//Autograb. The trick is to switch to grab intent and reinforce it for quick chokehold.
-				// N E V E R  autograb into Aggressive. Passive autograb is good enough.
+				// No need to autograb into Aggressive. Passive autograb is good enough.
 				C.grabbedby(user)
 				C.grippedby(user)
 				start_garroting(user)
