@@ -2544,6 +2544,7 @@
 #include "hippiestation\code\game\objects\items\extinguisher.dm"
 #include "hippiestation\code\game\objects\items\forged_weapons.dm"
 #include "hippiestation\code\game\objects\items\garrote.dm"
+#include "hippiestation\code\game\objects\items\hackergloves.dm"
 #include "hippiestation\code\game\objects\items\holotool.dm"
 #include "hippiestation\code\game\objects\items\meat.dm"
 #include "hippiestation\code\game\objects\items\special_attacks.dm"
