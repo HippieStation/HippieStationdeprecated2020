@@ -1,8 +1,8 @@
 /obj/item/clothing/gloves/color/hacker
 	desc = "Original H4CK3RM4N gloves, straight from the cereal box. Should not be exposed to humidity, radiation or people under 12 years."
 	name = "hacker gloves"
-	icon_state = "yellow"
-	item_state = "ygloves"
+	icon_state = "hacker"
+	item_state = "hackergloves"
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	item_color="yellow"
