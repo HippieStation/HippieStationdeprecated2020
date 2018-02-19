@@ -516,7 +516,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "flyswatter"
 	item_state = "flyswatter"
-	force = 2
+	force = 1
 	throwforce = 1
 	attack_verb = list("swatted", "smacked")
 	hitsound = 'sound/effects/snap.ogg'
