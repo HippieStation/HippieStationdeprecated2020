@@ -42,7 +42,7 @@
 
 
 		else
-			to_chat(L, "<span class='warning'><B>You didn't get a date! They're all having fun without you! you'll show them though...</B></span>")
+			to_chat(L, "<span class='warning'><B>You didn't get a date! They're all having fun without you! You'll show them though...</B></span>")
 			var/datum/objective/martyr/normiesgetout = new
 			normiesgetout.owner = L.mind
 			L.mind.special_role = "heartbreaker"
