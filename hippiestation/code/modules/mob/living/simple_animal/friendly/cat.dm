@@ -75,17 +75,7 @@
 	emagged = TRUE
 	playsound(loc, emag_scream_initial, 100)
 	do_sparks(8, FALSE, loc)
-	visible_message("<span class='narsie'>Silent Meow has broken his vow of silence!</span>")
+	visible_message("<span class='narsie'>[src] has broken his vow of silence!</span>")
 	var/mob/living/simple_animal/hostile/feral_cat/feral_mime_cat/K = new /mob/living/simple_animal/hostile/feral_cat/feral_mime_cat(get_turf(src))
 	K.faction |= "[REF(C)]"
 	qdel(src)
-
-
-
-
-
-
-
-
-
-
