@@ -49,6 +49,3 @@
 	if(prob(50) && stat != DEAD)
 		playsound(src, pick(meows), 100, 1)
 		visible_message("[name] lets out an unearthly howl!")
-
-
-
