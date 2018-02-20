@@ -35,7 +35,7 @@
 	name = "Feral Mime Cat"
 	maxHealth = 75
 	health = 75
-	desc = "Punished mime cat.. this one has been tampered with, its vow of silence broken."
+	desc = "Punished mime cat.. This one has been tampered with, its vow of silence broken."
 	speak_emote = list("purrs", "meows", "screeches", "yells", "babbles incoherently")
 	icon = 'hippiestation/icons/mob/pets.dmi'
 	icon_state = "catmime2"
