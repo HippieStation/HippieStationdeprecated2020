@@ -61,7 +61,6 @@
 /mob/living/simple_animal/pet/cat/mime
 	name = "Silent Meow"
 	desc = "An invisible cat, he speaks with his paws."
-	var/emagged = FALSE
 	icon = 'hippiestation/icons/mob/pets.dmi'
 	icon_state = "catmime"
 	icon_living = "catmime"
@@ -72,7 +71,6 @@
 
 /mob/living/simple_animal/pet/cat/mime/emag_act(mob/user)
 	var/mob/living/carbon/C = user
-	emagged = TRUE
 	playsound(loc, emag_scream_initial, 100)
 	do_sparks(8, FALSE, loc)
 	visible_message("<span class='narsie'>[src] has broken his vow of silence!</span>")
