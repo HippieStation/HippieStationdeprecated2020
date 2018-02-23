@@ -9,7 +9,7 @@
 /obj/item/storage/belt/fannypack/clown/full/PopulateContents()
 	new /obj/item/screwdriver/power/clown(src)
 	new /obj/item/crowbar/power(src)
-	new /obj/item/weldingtool/clown(src)//This can be changed if this is too much
+	new /obj/item/weldingtool/clown(src)
 	new /obj/item/device/multitool/clown(src)
 
 /obj/item/screwdriver/power/clown
