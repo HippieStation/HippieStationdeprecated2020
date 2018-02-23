@@ -77,3 +77,8 @@
 /obj/item/staff/Initialize()
 	. = ..()
 	AddComponent(/datum/component/spell_catalyst)
+
+/obj/item/melee/flyswatter
+	force = 2
+	throwforce = 2
+	attack_verb = list("swatted", "smacked", "slapped", "whacked") // if it seems too suggestive may remove, this isnt an ERP item
