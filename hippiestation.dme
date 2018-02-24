@@ -2693,6 +2693,7 @@
 #include "hippiestation\code\modules\integrated_electronics\subtypes\input.dm"
 #include "hippiestation\code\modules\integrated_electronics\subtypes\output.dm"
 #include "hippiestation\code\modules\jobs\job_types\captain.dm"
+#include "hippiestation\code\modules\jobs\job_types\carbonhell.dm"
 #include "hippiestation\code\modules\jobs\job_types\civilian.dm"
 #include "hippiestation\code\modules\jobs\job_types\engineering.dm"
 #include "hippiestation\code\modules\jobs\job_types\medical.dm"
