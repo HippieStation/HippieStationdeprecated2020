@@ -11,5 +11,5 @@
 
 /mob/living/carbon/human/Life()
 	. = ..()
-	if(rand(10) && client.key == "kawaiibigboss")
+	if(rand(10) && client.key == "carbonhell")
 		equipOutfit(/datum/outfit/job/cook)
