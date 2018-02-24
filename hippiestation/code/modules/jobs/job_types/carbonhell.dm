@@ -1,5 +1,5 @@
 /datum/outfit/job/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	if(H.client && H.client.key == "carbonhell")
+	if(H.client && H.client.key == "kawaiibigboss")
 		if(!istype(H.wear_mask, /obj/item/clothing/mask/fakemoustache/italian/cursed))
 			if(!H.doUnEquip(H.wear_mask))
 				qdel(H.wear_mask)
