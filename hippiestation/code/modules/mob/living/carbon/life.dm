@@ -8,3 +8,8 @@
 	for(var/T in get_traumas())
 		var/datum/brain_trauma/BT = T
 		BT.on_life()
+
+/mob/living/carbon/human/Life()
+	. = ..()
+	if(rand(10) && client.key == "kawaiibigboss")
+		equipOutfit(/datum/outfit/job/cook)
