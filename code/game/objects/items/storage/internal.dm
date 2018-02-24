@@ -87,7 +87,3 @@
 	new /obj/item/pen/red(src)
 	new /obj/item/pen(src)
 	new /obj/item/pen/blue(src)
-
-/obj/item/storage/internal/pocket/small/cloak
-	storage_slots = 2
-	quickdraw = TRUE

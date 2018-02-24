@@ -6,24 +6,8 @@
 	icon = 'icons/obj/clothing/cloaks.dmi'
 	icon_state = "qmcloak"
 	item_state = "qmcloak"
-	w_class = 3	//Classified as normal instead of small items to prevent infinite storage capabilities!!!
+	w_class = WEIGHT_CLASS_SMALL
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	cold_protection = CHEST | ARMS | HANDS
-	min_cold_protection_temperature = 257
-//Cloaks keep your chest, arms, and hands toasty, but only slightly. For reference, humans start taking cold damage at 260.15K.
-	pockets = /obj/item/storage/internal/pocket/small/cloak	//Cloaks now have 2 pocket slots! :D
-
-/obj/item/clothing/neck/cloak/black
-	name = "black cloak"
-	desc = "A dark-colored cloak. Appears to have 2 pockets inside."
-	icon = 'hippiestation/icons/obj/clothing/back.dmi'
-	icon_state = "blackcloak"
-
-/obj/item/clothing/neck/cloak/green
-	name = "\improper Unathi cloak"
-	desc = "A traditional green cloak worn commonly by the Unathi and by humans who have been gifted them."
-	icon = 'hippiestation/icons/obj/clothing/back.dmi'
-	icon_state = "greencloak"
 
 /obj/item/clothing/head/cloakhood
 	name = "cloak hood"
