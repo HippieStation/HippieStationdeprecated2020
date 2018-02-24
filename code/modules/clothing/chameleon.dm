@@ -180,7 +180,7 @@
 	random_sensor = FALSE
 	resistance_flags = NONE
 	can_adjust = FALSE
-	armor = list(melee = 10, bullet = 10, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 50, acid = 50)
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
@@ -213,7 +213,7 @@
 	item_state = "armor"
 	blood_overlay_type = "armor"
 	resistance_flags = NONE
-	armor = list(melee = 10, bullet = 10, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 50, acid = 50)
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
@@ -238,7 +238,7 @@
 	icon_state = "meson"
 	item_state = "meson"
 	resistance_flags = NONE
-	armor = list(melee = 10, bullet = 10, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 50, acid = 50)
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
@@ -264,7 +264,7 @@
 	item_state = "ygloves"
 
 	resistance_flags = NONE
-	armor = list(melee = 10, bullet = 10, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 50, acid = 50)
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
@@ -290,7 +290,7 @@
 	item_color = "grey"
 
 	resistance_flags = NONE
-	armor = list(melee = 5, bullet = 5, laser = 5, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 50, acid = 50)
+	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
@@ -313,7 +313,7 @@
 	// The camohat, I mean, holographic hat projection, is part of the
 	// drone itself.
 	flags_1 = NODROP_1
-	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 0, acid = 0)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	// which means it offers no protection, it's just air and light
 
 /obj/item/clothing/head/chameleon/drone/Initialize()
@@ -330,7 +330,7 @@
 	icon_state = "gas_alt"
 	item_state = "gas_alt"
 	resistance_flags = NONE
-	armor = list(melee = 5, bullet = 5, laser = 5, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 50, acid = 50)
+	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 
 	flags_1 = BLOCK_GAS_SMOKE_EFFECT_1 | MASKINTERNALS_1
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE|HIDEFACIALHAIR
@@ -365,7 +365,7 @@
 /obj/item/clothing/mask/chameleon/drone
 	//Same as the drone chameleon hat, undroppable and no protection
 	flags_1 = NODROP_1
-	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 0, acid = 0)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	// Can drones use the voice changer part? Let's not find out.
 	vchange = 0
 
@@ -386,10 +386,9 @@
 	item_color = "black"
 	desc = "A pair of black shoes."
 	permeability_coefficient = 0.05
-	flags_1 = NOSLIP_1
 	resistance_flags = NONE
 	pockets = /obj/item/storage/internal/pocket/shoes
-	armor = list(melee = 10, bullet = 10, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 50, acid = 50)
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
 
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
@@ -412,10 +411,6 @@
 	flags_1 = NOSLIP_1
 
 /obj/item/clothing/shoes/chameleon/noslip/broken/Initialize()
-	. = ..()
-	chameleon_action.emp_randomise(INFINITY)
-
-/obj/item/clothing/shoes/chameleon/broken/Initialize()
 	. = ..()
 	chameleon_action.emp_randomise(INFINITY)
 
@@ -447,7 +442,7 @@
 	chameleon_action.chameleon_name = "Gun"
 	chameleon_action.chameleon_blacklist = typecacheof(/obj/item/gun/magic, ignore_root_path = FALSE)
 	chameleon_action.initialize_disguises()
-	
+
 	projectile_copy_vars = list("name", "icon", "icon_state", "item_state", "speed", "color", "hitsound", "forcedodge", "impact_effect_type", "range", "suppressed", "hitsound_wall", "impact_effect_type", "pass_flags", "tracer_type", "muzzle_type", "impact_type")
 	chameleon_projectile_vars = list("name" = "practice laser", "icon" = 'icons/obj/projectiles.dmi', "icon_state" = "laser")
 	gun_copy_vars = list("fire_sound", "burst_size", "fire_delay")
@@ -584,7 +579,7 @@
 /obj/item/storage/belt/chameleon
 	name = "toolbelt"
 	desc = "Holds tools."
-	silent = 1
+	silent = TRUE
 	var/datum/action/item_action/chameleon/change/chameleon_action
 
 /obj/item/storage/belt/chameleon/Initialize()

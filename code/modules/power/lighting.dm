@@ -43,7 +43,7 @@
 	anchored = TRUE
 	layer = WALL_OBJ_LAYER
 	max_integrity = 200
-	armor = list(melee = 50, bullet = 10, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 80, acid = 50)
+	armor = list("melee" = 50, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 50)
 
 	var/stage = 1
 	var/fixture_type = "tube"
@@ -109,25 +109,19 @@
 	switch(stage)
 		if(1)
 			if(istype(W, /obj/item/wrench))
-				playsound(src.loc, W.usesound, 75, 1)
 				to_chat(usr, "<span class='notice'>You begin deconstructing [src]...</span>")
-				if (!do_after(usr, 30*W.toolspeed, target = src))
-					return
-				new /obj/item/stack/sheet/metal( get_turf(src.loc), sheets_refunded )
-				user.visible_message("[user.name] deconstructs [src].", \
-					"<span class='notice'>You deconstruct [src].</span>", "<span class='italics'>You hear a ratchet.</span>")
-				playsound(src.loc, 'sound/items/deconstruct.ogg', 75, 1)
-				qdel(src)
+				if (W.use_tool(src, user, 30, volume=50))
+					new /obj/item/stack/sheet/metal(drop_location(), sheets_refunded)
+					user.visible_message("[user.name] deconstructs [src].", \
+						"<span class='notice'>You deconstruct [src].</span>", "<span class='italics'>You hear a ratchet.</span>")
+					playsound(src.loc, 'sound/items/deconstruct.ogg', 75, 1)
+					qdel(src)
 				return
 
 			if(istype(W, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/coil = W
 				if(coil.use(1))
-					switch(fixture_type)
-						if ("tube")
-							icon_state = "tube-construct-stage2"
-						if("bulb")
-							icon_state = "bulb-construct-stage2"
+					icon_state = "[fixture_type]-construct-stage2"
 					stage = 2
 					user.visible_message("[user.name] adds wires to [src].", \
 						"<span class='notice'>You add wires to [src].</span>")
@@ -141,25 +135,21 @@
 
 			if(istype(W, /obj/item/wirecutters))
 				stage = 1
-				switch(fixture_type)
-					if ("tube")
-						icon_state = "tube-construct-stage1"
-					if("bulb")
-						icon_state = "bulb-construct-stage1"
-				new /obj/item/stack/cable_coil(get_turf(loc), 1, "red")
+				icon_state = "[fixture_type]-construct-stage1"
+				new /obj/item/stack/cable_coil(drop_location(), 1, "red")
 				user.visible_message("[user.name] removes the wiring from [src].", \
 					"<span class='notice'>You remove the wiring from [src].</span>", "<span class='italics'>You hear clicking.</span>")
-				playsound(loc, W.usesound, 100, 1)
+				W.play_tool_sound(src, 100)
 				return
 
 			if(istype(W, /obj/item/screwdriver))
 				user.visible_message("[user.name] closes [src]'s casing.", \
 					"<span class='notice'>You close [src]'s casing.</span>", "<span class='italics'>You hear screwing.</span>")
-				playsound(loc, W.usesound, 75, 1)
+				W.play_tool_sound(src, 75)
 				switch(fixture_type)
 					if("tube")
 						newlight = new /obj/machinery/light/built(loc)
-					if ("bulb")
+					if("bulb")
 						newlight = new /obj/machinery/light/small/built(loc)
 				newlight.setDir(dir)
 				transfer_fingerprints_to(newlight)
@@ -193,8 +183,9 @@
 /obj/machinery/light
 	name = "light fixture"
 	icon = 'icons/obj/lighting.dmi'
+	var/overlayicon = 'icons/obj/lighting_overlay.dmi'
 	var/base_state = "tube"		// base description and icon_state
-	icon_state = "tube1"
+	icon_state = "tube"
 	desc = "A lighting fixture."
 	anchored = TRUE
 	layer = WALL_OBJ_LAYER
@@ -227,17 +218,23 @@
 	var/bulb_emergency_pow_mul = 0.75	// the multiplier for determining the light's power in emergency mode
 	var/bulb_emergency_pow_min = 0.5	// the minimum value for the light's power in emergency mode
 
+/obj/machinery/light/broken
+	status = LIGHT_BROKEN
+	icon_state = "tube-broken"
+
 // the smaller bulb light fixture
 
 /obj/machinery/light/small
-	icon_state = "bulb1"
+	icon_state = "bulb"
 	base_state = "bulb"
 	fitting = "bulb"
 	brightness = 4
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light/bulb
 
-
+/obj/machinery/light/small/broken
+	status = LIGHT_BROKEN
+	icon_state = "bulb-broken"
 
 /obj/machinery/light/Move()
 	if(status != LIGHT_BROKEN)
@@ -290,12 +287,17 @@
 	return ..()
 
 /obj/machinery/light/update_icon()
+	cut_overlays()
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
 			if(emergency_mode)
 				icon_state = "[base_state]_emergency"
 			else
-				icon_state = "[base_state][on]"
+				icon_state = "[base_state]"
+				if(on)
+					var/mutable_appearance/glowybit = mutable_appearance(overlayicon, base_state, ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE)
+					glowybit.alpha = CLAMP(light_power*250, 30, 200)
+					add_overlay(glowybit)
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
 		if(LIGHT_BURNED)
@@ -422,7 +424,7 @@
 	// attempt to stick weapon into light socket
 	else if(status == LIGHT_EMPTY)
 		if(istype(W, /obj/item/screwdriver)) //If it's a screwdriver open it.
-			playsound(src.loc, W.usesound, 75, 1)
+			W.play_tool_sound(src, 75)
 			user.visible_message("[user.name] opens [src]'s casing.", \
 				"<span class='notice'>You open [src]'s casing.</span>", "<span class='italics'>You hear a noise.</span>")
 			deconstruct()
@@ -699,6 +701,15 @@
 		shatter()
 		return BRUTELOSS
 
+/obj/item/light/suicide_act(mob/living/carbon/user)
+	if (status == LIGHT_BROKEN)
+		user.visible_message("<span class='suicide'>[user] begins to stab [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+		return BRUTELOSS
+	else
+		user.visible_message("<span class='suicide'>[user] begins to eat \the [src]! It looks like [user.p_theyre()] not very bright!</span>")
+		shatter()
+		return BRUTELOSS
+
 /obj/item/light/tube
 	name = "light tube"
 	desc = "A replacement light tube."
@@ -786,7 +797,7 @@
 	name = "floor light"
 	icon = 'icons/obj/lighting.dmi'
 	base_state = "floor"		// base description and icon_state
-	icon_state = "floor1"
+	icon_state = "floor"
 	brightness = 4
 	layer = 2.5
 	light_type = /obj/item/light/bulb

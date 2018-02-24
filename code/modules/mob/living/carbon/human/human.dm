@@ -22,13 +22,17 @@
 
 	//initialise organs
 	create_internal_organs() //most of it is done in set_species now, this is only for parent call
+	physiology = new()
 
 	handcrafting = new()
-	update_teeth()	//hippie - unknown, teeth releated apparently?
 
 	. = ..()
 
 	AddComponent(/datum/component/redirect, list(COMSIG_COMPONENT_CLEAN_ACT), CALLBACK(src, .proc/clean_blood))
+
+/mob/living/carbon/human/Destroy()
+	QDEL_NULL(physiology)
+	return ..()
 
 /mob/living/carbon/human/OpenCraftingMenu()
 	handcrafting.ui_interact(src)
@@ -742,13 +746,15 @@
 
 /mob/living/carbon/human/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE)
 	if(incapacitated() || lying )
-		return
+		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
+		return FALSE
 	if(!Adjacent(M) && (M.loc != src))
 		if((be_close == 0) && (dna.check_mutation(TK)))
 			if(tkMaxRangeCheck(src, M))
-				return 1
-		return
-	return 1
+				return TRUE
+		to_chat(src, "<span class='warning'>You are too far away!</span>")
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/human/resist_restraints()
 	if(wear_suit && wear_suit.breakouttime)
@@ -1051,15 +1057,3 @@
 
 /mob/living/carbon/human/species/zombie/krokodil_addict
 	race = /datum/species/krokodil_addict
-
-/mob/living/carbon/human/species/tarajan
-	race = /datum/species/tarajan
-
-/mob/living/carbon/human/species/moth
-	race = /datum/species/moth
-
-/mob/living/carbon/human/species/ipc
-	race = /datum/species/ipc
-
-/mob/living/carbon/human/species/bird
-	race = /datum/species/bird

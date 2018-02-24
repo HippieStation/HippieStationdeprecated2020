@@ -97,6 +97,15 @@
 						head.add_mob_blood(src)
 						update_inv_head()
 
+		// Hippie Start - If we're hit then throw off some hats
+		var/mob/living/carbon/C = src
+		
+		if (prob(25))
+			var/list/L = list()
+			LAZYADD(L, get_dir(user, C))
+			C.throw_hats(1 + rand(0, FLOOR(I.force / 5, 1)), L)
+		// Hippie End
+
 		//dismemberment
 		var/probability = I.get_dismemberment_chance(affecting)
 		if(prob(probability))
@@ -121,9 +130,9 @@
 			ContactContractDisease(D)
 
 	if(lying && surgeries.len)
-		if(user.a_intent == INTENT_HELP)
+		if(user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM)
 			for(var/datum/surgery/S in surgeries)
-				if(S.next_step(user))
+				if(S.next_step(user, user.a_intent))
 					return 1
 	return 0
 
@@ -212,6 +221,8 @@
 
 /mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
 	if(tesla_shock && (flags_2 & TESLA_IGNORE_2))
+		return FALSE
+	if(has_trait(TRAIT_SHOCKIMMUNE))
 		return FALSE
 	shock_damage *= siemens_coeff
 	if(dna && dna.species)

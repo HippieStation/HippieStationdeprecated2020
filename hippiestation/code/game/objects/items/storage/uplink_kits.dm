@@ -107,7 +107,12 @@
 	for(var/duplicateConcussion in 1 to 2)
 		new /obj/item/grenade/syndieminibomb/concussion(dylanBag)
 
+/obj/item/storage/box/syndie_kit/armstrong
+	name = "\improper Brad Armstrong Family Style Karate Kit"
+	desc = "A kit with the necessary tools to become the best karate master on the planet!\
+	Contains a paper letting you know how to fight. \
+	The only cost is your right to not suck at parenting."
 
-
-
-
+/obj/item/storage/box/syndie_kit/armstrong/PopulateContents()
+	new /obj/item/armstrong_scroll(src)
+	new /obj/item/paper/armstrong_tutorial(src)
