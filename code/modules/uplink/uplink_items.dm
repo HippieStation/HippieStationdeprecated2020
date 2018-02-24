@@ -1,45 +1,31 @@
-GLOBAL_LIST_EMPTY(uplink_items) // Global list so we only initialize this once.
-
-/proc/initialize_global_uplink_items()
-	GLOB.uplink_items = list()
-	for(var/item in subtypesof(/datum/uplink_item))
-		var/datum/uplink_item/I = new item()
-		if(!I.item)
-			continue
-		if(!GLOB.uplink_items[I.category])
-			GLOB.uplink_items[I.category] = list()
-		GLOB.uplink_items[I.category][I.name] = I
+GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /proc/get_uplink_items(var/datum/game_mode/gamemode = null, allow_sales = TRUE)
-	if(!GLOB.uplink_items.len)
-		initialize_global_uplink_items()
-
 	var/list/filtered_uplink_items = list()
 	var/list/sale_items = list()
 
-	for(var/category in GLOB.uplink_items)
-		for(var/item in GLOB.uplink_items[category])
-			var/datum/uplink_item/I = GLOB.uplink_items[category][item]
-			if(!istype(I))
+	for(var/path in GLOB.uplink_items)
+		var/datum/uplink_item/I = new path
+		if(!I.item)
+			continue
+		if(I.include_modes.len)
+			if(!gamemode && SSticker.mode && !(SSticker.mode.type in I.include_modes))
 				continue
-			if(I.include_modes.len)
-				if(!gamemode && SSticker && SSticker.mode && !(SSticker.mode.type in I.include_modes))
-					continue
-				if(gamemode && !(gamemode in I.include_modes))
-					continue
-			if(I.exclude_modes.len)
-				if(!gamemode && SSticker && SSticker.mode && (SSticker.mode.type in I.exclude_modes))
-					continue
-				if(gamemode && (gamemode in I.exclude_modes))
-					continue
-			if(I.player_minimum && I.player_minimum > GLOB.joined_player_list.len)
+			if(gamemode && !(gamemode in I.include_modes))
 				continue
+		if(I.exclude_modes.len)
+			if(!gamemode && SSticker.mode && (SSticker.mode.type in I.exclude_modes))
+				continue
+			if(gamemode && (gamemode in I.exclude_modes))
+				continue
+		if(I.player_minimum && I.player_minimum > GLOB.joined_player_list.len)
+			continue
 
-			if(!filtered_uplink_items[category])
-				filtered_uplink_items[category] = list()
-			filtered_uplink_items[category][item] = new I.type()
-			if(I.limited_stock < 0 && !I.cant_discount && I.item && I.cost > 1)
-				sale_items += I
+		if(!filtered_uplink_items[I.category])
+			filtered_uplink_items[I.category] = list()
+		filtered_uplink_items[I.category][I.name] = I
+		if(I.limited_stock < 0 && !I.cant_discount && I.item && I.cost > 1)
+			sale_items += I
 	if(allow_sales)
 		for(var/i in 1 to 3)
 			var/datum/uplink_item/I = pick_n_take(sale_items)
@@ -109,11 +95,6 @@ GLOBAL_LIST_EMPTY(uplink_items) // Global list so we only initialize this once.
 			return A
 	to_chat(user, "[A] materializes onto the floor.")
 	return A
-
-/datum/uplink_item/Destroy()
-	if(src in GLOB.uplink_items)
-		GLOB.uplink_items -= src	//Take us out instead of leaving a null!
-	return ..()
 
 //Discounts (dynamically filled above)
 /datum/uplink_item/discounts
@@ -710,21 +691,20 @@ GLOBAL_LIST_EMPTY(uplink_items) // Global list so we only initialize this once.
 	name = "Chameleon Kit"
 	desc = "A set of items that contain chameleon technology allowing you to disguise as pretty much anything on the station, and more!"
 	item = /obj/item/storage/box/syndie_kit/chameleon
-	cost = 4
+	cost = 2
 	exclude_modes = list(/datum/game_mode/nuclear)
-	player_minimum = 12
 
 /datum/uplink_item/stealthy_tools/syndigaloshes
 	name = "No-Slip Chameleon Shoes"
 	desc = "These shoes will allow the wearer to run on wet floors and slippery objects without falling down. \
 			They do not work on heavily lubricated surfaces."
-	item = /obj/item/clothing/shoes/chameleon
+	item = /obj/item/clothing/shoes/chameleon/noslip
 	cost = 2
 	exclude_modes = list(/datum/game_mode/nuclear)
 	player_minimum = 20
 
 /datum/uplink_item/stealthy_tools/syndigaloshes/nuke
-	item = /obj/item/clothing/shoes/chameleon
+	item = /obj/item/clothing/shoes/chameleon/noslip
 	cost = 4
 	exclude_modes = list()
 	include_modes = list(/datum/game_mode/nuclear)
@@ -879,6 +859,14 @@ GLOBAL_LIST_EMPTY(uplink_items) // Global list so we only initialize this once.
 			a Syndicate brand MMI, a straitjacket, and a muzzle."
 	item = /obj/item/storage/backpack/duffelbag/syndie/surgery
 	cost = 3
+
+/datum/uplink_item/device_tools/brainwash_disk
+	name = "Brainwashing Surgery Program"
+	desc = "A disk containing the procedure to perform a brainwashing surgery, allowing you to implant an objective onto a target. \
+	Insert into an Operating Console to enable the procedure."
+	item = /obj/item/disk/surgery/brainwashing
+	restricted_roles = list("Medical Doctor")
+	cost = 5
 
 /datum/uplink_item/device_tools/military_belt
 	name = "Chest Rig"
@@ -1237,6 +1225,14 @@ GLOBAL_LIST_EMPTY(uplink_items) // Global list so we only initialize this once.
 	surplus = 20
 	restricted_roles = list("Janitor")
 
+/datum/uplink_item/role_restricted/explosive_hot_potato
+	name = "Exploding Hot Potato"
+	desc = "A potato rigged with explosives. On activation, a special mechanism is activated that prevents it from being dropped. The only way to get rid of it if you are holding it is to attack someone else with it, causing it to latch to that person instead."
+	item = /obj/item/hot_potato/syndicate
+	cost = 4
+	surplus = 0
+	restricted_roles = list("Cook", "Botanist", "Clown", "Mime")
+
 /datum/uplink_item/role_restricted/his_grace
 	name = "His Grace"
 	desc = "An incredibly dangerous weapon recovered from a station overcome by the grey tide. Once activated, He will thirst for blood and must be used to kill to sate that thirst. \
@@ -1294,6 +1290,17 @@ GLOBAL_LIST_EMPTY(uplink_items) // Global list so we only initialize this once.
 	limited_stock = 2 //you can't use more than two!
 	restricted_roles = list("Shaft Miner")
 	
+/datum/uplink_item/device_tools/clown_bomb
+	name = "Clown Bomb"
+	desc = "The Clown bomb is a hilarious device capable of massive pranks. It has an adjustable timer, \
+			with a minimum of 60 seconds, and can be bolted to the floor with a wrench to prevent \
+			movement. The bomb is bulky and cannot be moved; upon ordering this item, a smaller beacon will be \
+			transported to you that will teleport the actual bomb to it upon activation. Note that this bomb can \
+			be defused, and some crew may attempt to do so."
+	item = /obj/item/device/sbeacondrop/clownbomb
+	cost = 15
+	restricted_roles = list("Clown")
+
 /datum/uplink_item/device_tools/clown_bomb
 	name = "Clown Bomb"
 	desc = "The Clown bomb is a hilarious device capable of massive pranks. It has an adjustable timer, \

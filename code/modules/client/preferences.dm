@@ -108,7 +108,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/uplink_spawn_loc = UPLINK_PDA
 
-	var/list/exp
+	var/list/exp = list()
 	var/list/menuoptions
 
 	var/action_buttons_screen_locs = list()
@@ -332,6 +332,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<a href='?_src_=prefs;preference=legs;task=input'>[features["legs"]]</a><BR>"
 
 				dat += "</td>"
+			if("moth_wings" in pref_species.mutant_bodyparts)
+
+				dat += "<td valign='top' width='7%'>"
+
+				dat += "<h3>Moth wings</h3>"
+
+				dat += "<a href='?_src_=prefs;preference=moth_wings;task=input'>[features["moth_wings"]]</a><BR>"
+
+				dat += "</td>"
 
 			if("moth_wings" in pref_species.mutant_bodyparts)
 
@@ -401,7 +410,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b>OOC Notes:</b> <a href='?_src_=prefs;preference=metadata;task=input'>Edit </a><br>"
 
 			if(user.client)
-				if(check_rights_for(user.client, R_ADMIN))
+				if(user.client.holder)
 					dat += "<b>Adminhelp Sound:</b> <a href='?_src_=prefs;preference=hear_adminhelps'>[(toggles & SOUND_ADMINHELP)?"On":"Off"]</a><br>"
 					dat += "<b>Announce Login:</b> <a href='?_src_=prefs;preference=announce_login'>[(toggles & ANNOUNCE_LOGIN)?"On":"Off"]</a><br>"
 
@@ -472,7 +481,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "<h2>Special Role Settings</h2>"
 
-			if(jobban_isbanned(user, "Syndicate"))
+			if(jobban_isbanned(user, ROLE_SYNDICATE))
 				dat += "<font color=red><b>You are banned from antagonist roles.</b></font>"
 				src.be_special = list()
 

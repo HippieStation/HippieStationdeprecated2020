@@ -13,12 +13,12 @@
 	item_state = "draculacoat"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	flags_inv = HIDEJUMPSUIT
-	armor = list(melee = 30, bullet = 20, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
+	armor = list("melee" = 30, "bullet" = 20, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0)
 
 /mob/living/carbon/human/handle_fire()
 	. = ..()
 	if(mind)
-		var/datum/antagonist/vampire/L = mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
+		var/datum/antagonist/vampire/L = mind.has_antag_datum(/datum/antagonist/vampire)
 		if(on_fire && stat == DEAD && L && !L.get_ability(/datum/vampire_passive/full))
 			dust()
 
@@ -32,7 +32,7 @@
 
 /mob/living/carbon/proc/vampsight()
 	if(mind)
-		var/datum/antagonist/vampire/V = mind.has_antag_datum(ANTAG_DATUM_VAMPIRE)
+		var/datum/antagonist/vampire/V = mind.has_antag_datum(/datum/antagonist/vampire)
 		if(V)
 			if(V.get_ability(/datum/vampire_passive/full))
 				sight = (SEE_TURFS|SEE_MOBS|SEE_OBJS)
