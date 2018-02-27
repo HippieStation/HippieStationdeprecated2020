@@ -49,6 +49,7 @@
 	new foodtype(get_turf(src))
 	used = TRUE
 	icon_state = "carboncan-open"
+	desc = "It's been used already."
 
 // Foods
 
