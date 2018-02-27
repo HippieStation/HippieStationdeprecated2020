@@ -73,7 +73,6 @@
 	desc = "Apparently a staff used by the wizard. Doesn't shoot anything."
 	w_class = WEIGHT_CLASS_NORMAL
 
-
 /obj/item/staff/Initialize()
 	. = ..()
 	AddComponent(/datum/component/spell_catalyst)
