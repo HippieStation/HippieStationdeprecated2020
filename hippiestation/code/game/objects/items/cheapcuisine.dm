@@ -81,7 +81,7 @@
 	name = "insta-jelly"
 	desc = "The jelly was so corrupted that it ended up gaining sentience."
 	list_reagents = list("nutriment" = 1, "vitamin" = 3, "amatoxin" = 7, "mushroomhallucinogen" = 3) // will KILL you
-	bonus_reagents = list("fartium" = 1, "coniine" = 3)
+	bonus_reagents = list("fartium" = 1, "rotatium" = 3, "skewium" = 3) // nerfed because perhaps amatoxin is already a lot
 	tastes = list("death" = 10)
 	bitesize = 2
 	foodtype = GROSS | TOXIC
@@ -90,7 +90,7 @@
 	name = "butterdog"
 	desc = "This isn't a hot dog! It smells of heart disease!"
 	list_reagents = list("nutriment" = 4, "vitamin" = 2, "slimejelly" = 5, "mushroomhallucinogen" = 3)
-	bonus_reagents = list("impedrezene" = 3, "initropidril" = 1) // chance to have a heart attack and die
+	bonus_reagents = list("impedrezene" = 3, "sulfonal" = 2) // nerfed but still dangerous
 	tastes = list("cardiac arrest" = 10)
 	bitesize = 2
 	foodtype = GROSS | TOXIC
