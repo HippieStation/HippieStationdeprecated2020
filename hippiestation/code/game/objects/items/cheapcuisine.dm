@@ -13,7 +13,6 @@
 	w_class = WEIGHT_CLASS_SMALL
 	sharpness = IS_BLUNT
 	materials = list(MAT_METAL=4000)
-	var/operating = FALSE
 	var/datum/looping_sound/microwave/soundloop
 	var/selected_food
 	var/used = FALSE
@@ -31,23 +30,21 @@
 
 /obj/item/cheapcuisine/attack_self(mob/user)
 	if(!used)
-		if(!operating)
-			var/choice = input(user, "What would you like to dispense?", "Carbonhell's Can of Cheap Cuisine") as null|anything in possibleFood
-			addtimer(CALLBACK(src, .proc/spawnFood, possibleFood[choice]), 50)
-			soundloop.start()
-			operating = TRUE
-			icon_state = "carboncan-on"
+		var/choice = input(user, "What would you like to dispense?", "Carbonhell's Can of Cheap Cuisine") as null|anything in possibleFood
+		addtimer(CALLBACK(src, .proc/spawnFood, possibleFood[choice]), 50)
+		soundloop.start()
+		used = TRUE
+		icon_state = "carboncan-on"
 	else
 		to_chat(user, "<span class='notice'>It's already been used!</span>")
 
 /obj/item/cheapcuisine/proc/spawnFood(var/foodtype)
 	soundloop.stop()
-	operating = FALSE
 	if(isnull(foodtype))
 		icon_state = "carboncan-off"
+		used = FALSE
 		return
 	new foodtype(get_turf(src))
-	used = TRUE
 	icon_state = "carboncan-open"
 	desc = "It's been used already."
 
