@@ -81,7 +81,7 @@
 	name = "insta-jelly"
 	desc = "The jelly was so corrupted that it ended up gaining sentience."
 	list_reagents = list("nutriment" = 1, "vitamin" = 3, "amatoxin" = 7, "mushroomhallucinogen" = 3) // will KILL you
-	bonus_reagents = list("fartium" = 1, "rotatium" = 3, "skewium" = 3) // nerfed because perhaps amatoxin is already a lot
+	bonus_reagents = list("formaldehyde" = 3, "rotatium" = 3, "skewium" = 3) // who knows what you're gonna get
 	tastes = list("death" = 10)
 	bitesize = 2
 	foodtype = GROSS | TOXIC
