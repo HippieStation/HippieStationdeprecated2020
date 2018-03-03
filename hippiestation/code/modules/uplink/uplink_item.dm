@@ -69,24 +69,6 @@
 	cost = 13
 	surplus = 45
 
-/datum/uplink_item/nukeoffer/blastco
-	name = "Unlock the BlastCo(tm) Armory"
-	desc = "Enough gear to fully equip a team with explosive based weaponry."
-	item = /obj/item/paper
-	cost = 200
-
-/datum/uplink_item/nukeoffer/blastco/spawn_item(turf/loc, datum/component/uplink/U, mob/user)
-	LAZYINITLIST(blastco_doors)
-	if(LAZYLEN(blastco_doors))
-		for(var/V in blastco_doors)
-			var/obj/machinery/door/poddoor/shutters/blastco/X = V
-			X.open()
-		loc.visible_message("<span class='notice'>The Armory has been unlocked successfully!</span>")
-	else
-		loc.visible_message("<span class='warning'>The purchase was unsuccessful, and spent telecrystals have been refunded.</span>")
-		U.telecrystals += cost //So the admins don't have to refund you
-	return
-
 /datum/uplink_item/role_restricted/firesuit_syndie
 	name = "Syndicate Firesuit"
 	desc = "A less heavy, armored version of the common firesuit developed by a now-defunct, \
