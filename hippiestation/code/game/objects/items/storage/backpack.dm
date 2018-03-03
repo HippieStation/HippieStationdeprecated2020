@@ -23,9 +23,6 @@
 	new /obj/item/clothing/mask/muzzle(src)
 	new /obj/item/device/mmi/syndie(src)
 	
-/datum/action/item_action/adjust_bag
-	name = "Adjust Duffel Bag"
-
 /obj/item/storage/backpack/duffelbag
 	slowdown = 1
 	max_combined_w_class = 30
@@ -33,28 +30,41 @@
 	var/adjusted_max_combined_w_class = 21
 	var/adjusted_slowdown = 0
 	actions_types = list(/datum/action/item_action/adjust_bag)
-	
+
+/datum/action/item_action/adjust_bag
+	name = "Adjust Duffel Bag"
+
 /obj/item/storage/backpack/duffelbag/ui_action_click()
-	var/helditem = usr.get_active_held_item()
-	if( helditem != src)
-		to_chat(usr, "<span class='warning'>you need to hold the [src] in your hand to do this!</span>")
-		return 0
-	else
-		adjust_bag(usr)
-	
-/obj/item/storage/backpack/duffelbag/proc/adjust_bag(mob/user)
+	adjust_bag()
+
+/obj/item/storage/backpack/duffelbag/item_action_slot_check(slot, mob/user)
+	if(src == user.get_active_held_item())
+		return 1
+
+/obj/item/storage/backpack/duffelbag/proc/adjust_bag()
 	set name = "Adjust Duffel Bag"
-	if(do_after(user, 40, target = src))
-		if (!adjusted)
-			var/sum_w_class = 0
-			for(var/Objs in contents)
-				var/obj/item/O = Objs
-				sum_w_class += O.w_class
-			if(sum_w_class > max_combined_w_class)
-				to_chat(usr, "<span class='warning'>There are too many things in there to properly adjust the [src]!</span>")
-				return
-			else
-				to_chat(user, "You adjust the [src], [adjusted ? "leaving less space, but making it easier to carry around" : "allowing you to carry more stuff, but slowing you down"]")
-				slowdown = adjusted ? adjusted_slowdown : initial(slowdown)
-				max_combined_w_class = adjusted ? adjusted_max_combined_w_class : initial(max_combined_w_class)
+	set category = "Object"
+
+	var/helditem = usr.get_active_held_item()
+
+	if(helditem != src)
+		to_chat(usr, "<span class='warning'>You need to hold the [src] in your hand to do this!</span>")
+		return
+
+	if (!adjusted)
+		var/sum_w_class = 0
+
+		for(var/obj/item/O in contents)
+			sum_w_class += O.w_class
+
+		if(sum_w_class > adjusted_max_combined_w_class)
+			to_chat(usr, "<span class='warning'>There are too many things in the [src] to adjust it, trying removing some!</span>")
+			return
+
+	to_chat(usr, "<span class='notice'>You start adjusting the [src]</span>")
+	if(do_after(usr, 40, target = src))
 		adjusted = !adjusted
+
+		to_chat(usr, "<span class='notice'>You adjust the [src], [adjusted ? "leaving less space, but making it easier to carry around" : "allowing you to carry more stuff, but slowing you down"]</span>")
+		slowdown = adjusted ? adjusted_slowdown : initial(slowdown)
+		max_combined_w_class = adjusted ? adjusted_max_combined_w_class : initial(max_combined_w_class)
