@@ -96,8 +96,10 @@
 		var/obj/item/melee/baseball_bat/spike/B = new /obj/item/melee/baseball_bat/spike
 
 		remove_item_from_storage(user)
-		qdel(I)
-		qdel(src)
+		var/obj/item/stack/rods/rods = I
+		rods.use(2)
+		forceMove(get_turf(src)) // Just to be sure it won't be in hand for the next instruction
 
 		user.put_in_hands(B)
 		to_chat(user, "<span class='notice'>You work some broken metal rods into the bat.</span>")
+		qdel(src)
