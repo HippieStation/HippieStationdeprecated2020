@@ -47,6 +47,52 @@
 	admin_ticket_log(M, msg)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Subtle Message") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/proc/cmd_admin_mod_antag_rep(client/C in GLOB.clients, var/operation)
+	set category = "Special Verbs"
+	set name = "Modify Antagonist Reputation"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/msg = ""
+	var/log_text = ""
+
+	if(operation == "zero")
+		log_text = "Set to 0"
+		SSpersistence.antag_rep -= C.ckey
+	else
+		var/prompt = "Please enter the amount of reputation to [operation]:"
+
+		if(operation == "set")
+			prompt = "Please enter the new reputation value:"
+
+		msg = input("Message:", prompt) as num
+
+		if (!msg)
+			return
+
+		var/ANTAG_REP_MAXIMUM = CONFIG_GET(number/antag_rep_maximum)
+
+		if(operation == "set")
+			log_text = "Set to [num2text(msg)]"
+			SSpersistence.antag_rep[C.ckey] = max(0, min(msg, ANTAG_REP_MAXIMUM))
+		else if(operation == "add")
+			log_text = "Added [num2text(msg)]"
+			SSpersistence.antag_rep[C.ckey] = min(SSpersistence.antag_rep[C.ckey]+msg, ANTAG_REP_MAXIMUM)
+		else if(operation == "subtract")
+			log_text = "Subtracted [num2text(msg)]"
+			SSpersistence.antag_rep[C.ckey] = max(SSpersistence.antag_rep[C.ckey]-msg, 0)
+		else
+			to_chat(src, "Invalid operation for antag rep modification: [operation] by user [key_name(usr)]")
+			return
+
+		if(SSpersistence.antag_rep[C.ckey] <= 0)
+			SSpersistence.antag_rep -= C.ckey
+
+	log_admin("[key_name(usr)]: Modified [key_name(C)]'s antagonist reputation [log_text]")
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)]: Modified [key_name(C)]'s antagonist reputation ([log_text])</span>")
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Modify Antagonist Reputation") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 /client/proc/cmd_admin_world_narrate()
 	set category = "Special Verbs"
 	set name = "Global Narrate"
@@ -968,7 +1014,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 	set name = "Toggle AntagHUD"
 	set desc = "Toggles the Admin AntagHUD"
 
-	if(!holder)
+	if(!check_rights(R_ADMIN))
 		return
 
 	var/adding_hud = !has_antag_hud()
@@ -981,6 +1027,35 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 	message_admins("[key_name_admin(usr)] toggled their admin antag HUD [adding_hud ? "ON" : "OFF"].")
 	log_admin("[key_name(usr)] toggled their admin antag HUD [adding_hud ? "ON" : "OFF"].")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Antag HUD", "[adding_hud ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/toggle_combo_hud()
+	set category = "Admin"
+	set name = "Toggle Combo HUD"
+	set desc = "Toggles the Admin Combo HUD (antag, sci, med, eng)"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/adding_hud = !has_antag_hud()
+
+	for(var/hudtype in list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED)) // add data huds
+		var/datum/atom_hud/H = GLOB.huds[hudtype]
+		(adding_hud) ? H.add_hud_to(usr) : H.remove_hud_from(usr)
+	for(var/datum/atom_hud/antag/H in GLOB.huds) // add antag huds
+		(adding_hud) ? H.add_hud_to(usr) : H.remove_hud_from(usr)
+
+	if (adding_hud)
+		mob.lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+	else
+		mob.lighting_alpha = initial(mob.lighting_alpha)
+
+	mob.update_sight()
+
+	to_chat(usr, "You toggled your admin combo HUD [adding_hud ? "ON" : "OFF"].")
+	message_admins("[key_name_admin(usr)] toggled their admin combo HUD [adding_hud ? "ON" : "OFF"].")
+	log_admin("[key_name(usr)] toggled their admin combo HUD [adding_hud ? "ON" : "OFF"].")
+	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Combo HUD", "[adding_hud ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 
 /client/proc/has_antag_hud()
 	var/datum/atom_hud/A = GLOB.huds[ANTAG_HUD_TRAITOR]
