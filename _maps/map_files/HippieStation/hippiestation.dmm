@@ -31437,7 +31437,7 @@
 /area/science/lab)
 "buv" = (
 /obj/item/reagent_containers/glass/beaker/sulphuric,
-/obj/machinery/rnd/circuit_imprinter/department/science,
+/obj/machinery/rnd/circuit_imprinter,
 /turf/open/floor/plasteel,
 /area/science/lab)
 "buw" = (
@@ -50439,7 +50439,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
 "ckb" = (
-/obj/machinery/rnd/protolathe/department/science,
+/obj/machinery/rnd/protolathe,
 /obj/structure/sign/poster/official/random{
 	pixel_x = 32
 	},
