@@ -1,4 +1,4 @@
-/datum/crafting_recipe/food/meatballsoup
+/datum/crafting_recipe/food/monkeysoup
 	name = "Sopa de Macaco"
 	reqs = list(
 		/datum/reagent/water = 10,
