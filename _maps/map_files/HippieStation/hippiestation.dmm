@@ -5141,6 +5141,7 @@
 	cyclelinkeddir = 2;
 	req_access_txt = "0"
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "alL" = (
@@ -5890,6 +5891,7 @@
 	cyclelinkeddir = 1;
 	req_access_txt = "0"
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "anI" = (
@@ -39111,21 +39113,11 @@
 	},
 /area/quartermaster/miningdock)
 "bRP" = (
-/obj/structure/rack,
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -1
-	},
-/obj/item/pickaxe{
-	pixel_x = 5
-	},
-/obj/item/shovel{
-	pixel_x = -5
-	},
-/turf/open/floor/plasteel,
+/obj/mecha/working/ripley/mining_roundstart,
+/turf/open/floor/mech_bay_recharge_floor,
 /area/quartermaster/miningdock)
 "bRQ" = (
-/obj/structure/closet/crate,
+/obj/machinery/computer/mech_bay_power_console,
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "bRR" = (
@@ -51868,6 +51860,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cxN" = (
@@ -52929,6 +52924,9 @@
 /area/engine/engineering)
 "czV" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "czX" = (
@@ -53134,12 +53132,6 @@
 /obj/item/clothing/gloves/color/yellow,
 /obj/item/storage/toolbox/electrical{
 	pixel_y = 5
-	},
-/turf/open/floor/plasteel,
-/area/engine/engineering)
-"cAx" = (
-/obj/structure/cable{
-	icon_state = "1-4"
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -53957,6 +53949,9 @@
 /obj/structure/sign/warning/vacuum/external{
 	pixel_x = 32
 	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plating,
 /area/engine/engineering)
 "cCy" = (
@@ -54007,6 +54002,9 @@
 "cCG" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_x = -32
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
@@ -58459,12 +58457,36 @@
 	},
 /turf/open/floor/plating,
 /area/security/main)
+"dlI" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/door/airlock/external{
+	name = "Engineering External Access";
+	req_access = null;
+	req_access_txt = "10;13"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/fans/tiny,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "dnH" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark/telecomms/mainframe,
 /area/tcommsat/server)
+"duF" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "duU" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
@@ -58538,6 +58560,15 @@
 	},
 /turf/open/floor/plasteel/hydrofloor,
 /area/hallway/secondary/service)
+"gwi" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "gxm" = (
 /obj/machinery/computer/atmos_control/tank{
 	dir = 1;
@@ -58626,6 +58657,18 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/solar/starboard/fore)
+"hJj" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/airlock/external{
+	name = "Engineering External Access";
+	req_access = null;
+	req_access_txt = "10;13"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
 "hLq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -58687,6 +58730,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
+"iGF" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "iMt" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
@@ -58770,6 +58820,10 @@
 	dir = 6
 	},
 /area/hallway/primary/aft)
+"lkn" = (
+/obj/machinery/mech_bay_recharge_port,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "lrb" = (
 /obj/machinery/light{
 	dir = 8
@@ -58946,6 +59000,9 @@
 "pjv" = (
 /obj/structure/cable{
 	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -81310,7 +81367,7 @@ bMd
 bNC
 bNC
 bNC
-bNC
+lkn
 bNA
 aai
 aai
@@ -85968,11 +86025,11 @@ cxB
 cyn
 cyZ
 czM
-cAx
-cyp
-cBU
+cwK
+cwK
+hJj
 cCx
-cDh
+dlI
 cDI
 cDL
 cEt
@@ -90076,7 +90133,7 @@ cpm
 cpm
 cpm
 cwL
-cyp
+hUj
 cyp
 czi
 czU
@@ -90590,15 +90647,15 @@ cub
 cva
 cvL
 csV
-crw
-csV
-csV
+gwi
+iGF
+iGF
 czV
-czb
-cyp
-cBU
+duF
+cwK
+hJj
 cCG
-cDh
+dlI
 cDP
 cEi
 cEz
