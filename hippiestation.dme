@@ -2627,6 +2627,8 @@
 #include "hippiestation\code\modules\admin\verbs\spawnfloorcluwne.dm"
 #include "hippiestation\code\modules\admin\verbs\spawnhuman.dm"
 #include "hippiestation\code\modules\admin\verbs\testdummy.dm"
+#include "hippiestation\code\modules\antagonists\changeling\absorb.dm"
+#include "hippiestation\code\modules\antagonists\changeling\mutations.dm"
 #include "hippiestation\code\modules\atmospherics\gasmixtures\reactions.dm"
 #include "hippiestation\code\modules\atmospherics\unary_devices\vent_pump.dm"
 #include "hippiestation\code\modules\atmospherics\unary_devices\vent_scrubber.dm"
