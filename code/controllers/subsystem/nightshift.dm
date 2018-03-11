@@ -21,6 +21,7 @@ SUBSYSTEM_DEF(nightshift)
 		return
 	check_nightshift()
 
+<<<<<<< HEAD
 /datum/controller/subsystem/nightshift/proc/check_nightshift(force_set = FALSE)
 	var/time = station_time()
 	var/nightshift = time < nightshift_end_time || time > nightshift_start_time
@@ -50,6 +51,40 @@ SUBSYSTEM_DEF(nightshift)
 		var/area/A = locate(i) in GLOB.sortedAreas
 		for(var/obj/machinery/power/apc/APC in A)
 			APC.set_nightshift(TRUE)
+=======
+/datum/controller/subsystem/nightshift/proc/announce(message)
+	priority_announce(message, sound='sound/misc/notice2.ogg', sender_override="Automated Lighting System Announcement")
+
+/datum/controller/subsystem/nightshift/proc/check_nightshift()
+	var/emergency = GLOB.security_level >= SEC_LEVEL_RED
+	var/announcing = TRUE
+	var/time = station_time()
+	var/night_time = (time < nightshift_end_time) || (time > nightshift_start_time)
+	if(high_security_mode != emergency)
+		high_security_mode = emergency
+		if(night_time)
+			announcing = FALSE
+			if(!emergency)
+				announce("Restoring night lighting configuration to normal operation.")
+			else
+				announce("Disabling night lighting: Station is in a state of emergency.")  
+	if(emergency)
+		night_time = FALSE
+	if(nightshift_active != night_time)
+		update_nightshift(night_time, announcing)
+
+/datum/controller/subsystem/nightshift/proc/update_nightshift(active, announce = TRUE)
+	nightshift_active = active
+	if(announce)
+		if (active)
+			announce("Good evening, crew. To reduce power consumption and stimulate the circadian rhythms of some species, all of the lights aboard the station have been dimmed for the night.")
+		else
+			announce("Good morning, crew. As it is now day time, all of the lights aboard the station have been restored to their former brightness.")
+	for(var/A in GLOB.apcs_list)
+		var/obj/machinery/power/apc/APC = A
+		if (APC.area && (APC.area.type in GLOB.the_station_areas))
+			APC.set_nightshift(active)
+>>>>>>> dff70097cd... Hopefully fixes unnecessary nightshift announcements (#36173)
 			CHECK_TICK
 
 /datum/controller/subsystem/nightshift/proc/deactivate_nightshift(announce = TRUE)
