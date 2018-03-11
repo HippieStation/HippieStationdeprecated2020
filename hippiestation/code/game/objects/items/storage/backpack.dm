@@ -39,7 +39,7 @@
 
 /obj/item/storage/backpack/duffelbag/item_action_slot_check(slot, mob/user)
 	if(src == user.get_active_held_item())
-		return 1
+		return TRUE
 
 /obj/item/storage/backpack/duffelbag/proc/adjust_bag()
 	set name = "Adjust Duffel Bag"
@@ -58,7 +58,7 @@
 			sum_w_class += O.w_class
 
 		if(sum_w_class > adjusted_max_combined_w_class)
-			to_chat(usr, "<span class='warning'>There are too many things in the [src] to adjust it, trying removing some!</span>")
+			to_chat(usr, "<span class='warning'>There are too many things in the [src] to adjust it, try removing some!</span>")
 			return
 
 	to_chat(usr, "<span class='notice'>You start adjusting the [src]</span>")
