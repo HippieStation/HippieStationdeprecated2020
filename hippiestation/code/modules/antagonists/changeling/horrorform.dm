@@ -61,9 +61,6 @@
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/pizzaslice/cornpotato = 15) //We've solved the mystery!
 	gold_core_spawnable = 0 // No. Xenobio being able to spawn these things would be a crime against sanity.
 	var/transformed_time = 0
-	var/playstyle_string = "<b><font size=3 color='red'>We have entered our true form!</font> We are unbelievably powerful, and regenerate life at a steady rate. However, most of \
-	our abilities are useless in this form, and we must utilise the abilities that we have gained as a result of our transformation. Currently, we are incapable of returning to a human. \
-	After several minutes, we will once again be able to revert into a human. Taking too much damage will also turn us back into a human in addition to knocking us out for a long time.</b>"
 	var/mob/living/carbon/human/stored_changeling = null //The changeling that transformed
 	var/devouring = FALSE //If the true changeling is currently devouring a human
 	var/spam_flag = FALSE
@@ -76,7 +73,9 @@
 
 /mob/living/simple_animal/hostile/true_changeling/Login()
 	..()
-	src << playstyle_string
+	to_chat(src, "<b><font size=3 color='red'>We have entered our true form!</font> We are unbelievably powerful, and regenerate life at a steady rate. However, most of \
+	our abilities are useless in this form, and we must utilise the abilities that we have gained as a result of our transformation. Currently, we are incapable of returning to a human. \
+	After several minutes, we will once again be able to revert into a human. Taking too much damage will also turn us back into a human in addition to knocking us out for a long time.</b>")
 
 /mob/living/simple_animal/hostile/true_changeling/Life()
 	..()
@@ -139,12 +138,12 @@
 	set category = "True Changeling"
 
 	if(!stored_changeling)
-		usr << "<span class='warning'>We do not have a form other than this!</span>"
+		to_chat(usr, "<span class='warning'>We do not have a form other than this!</span>")
 		return 0
 	if(stored_changeling.stat == DEAD)
-		usr << "<span class='warning'>Our human form is dead!</span>"
+		to_chat(usr, "<span class='warning'>Our human form is dead!</span>")
 		return 0
-	usr.visible_message("<span class='warning'>[usr] suddenly crunches and twists into a smaller form!</span>", \
+	to_chat(usr, "<span class='warning'>[usr] suddenly crunches and twists into a smaller form!</span>", \
 						"<span class='danger'>We return to our lesser form.</span>")
 	stored_changeling.loc = get_turf(src)
 	mind.transfer_to(stored_changeling)
@@ -160,7 +159,7 @@
 
 	var/mob/living/simple_animal/hostile/true_changeling/T = usr
 	if(T.devouring)
-		T << "<span class='warning'>We are already feasting on a human!</span>"
+		to_chat(T, "<span class='warning'>We are already feasting on a human!</span>")
 		return 0
 	var/list/potential_targets = list()
 	for(var/mob/living/carbon/human/H in range(1, usr))
@@ -168,7 +167,7 @@
 			continue
 		potential_targets.Add(H)
 	if(!potential_targets.len)
-		T << "<span class='warning'>There are no humans nearby!</span>"
+		to_chat(T, "<span class='warning'>There are no humans nearby!</span>")
 		return 0
 	var/mob/living/carbon/human/lunch
 	if(potential_targets.len == 1)
@@ -195,7 +194,7 @@
 		lunch.adjustBruteLoss(60)
 		T.visible_message("<span class='warning'>[T] tears a chunk from [lunch]'s flesh!</span>", \
 						"<span class='danger'>We tear a chunk of flesh from [lunch] and devour it!</span>")
-		lunch << "<span class='userdanger'>[T] takes a huge bite out of you!</span>"
+		to_chat(lunch, "<span class='userdanger'>[T] takes a huge bite out of you!</span>")
 		var/obj/effect/decal/cleanable/blood/gibs/G = new(get_turf(lunch))
 		step(G, pick(GLOB.alldirs)) //Make some gibs spray out for dramatic effect
 		playsound(lunch, 'sound/effects/splat.ogg', 50, 1)
