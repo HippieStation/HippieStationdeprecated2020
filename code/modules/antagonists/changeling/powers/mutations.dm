@@ -136,7 +136,7 @@
 	desc = "We reform one of our arms into a deadly blade."
 	helptext = "We may retract our armblade in the same manner as we form it. Cannot be used while in lesser form."
 	chemical_cost = 20
-	dna_cost = 2
+	dna_cost = 4 // Hippie edit - changeling proc_holders refuse to modularize properly
 	req_human = 1
 	weapon_type = /obj/item/melee/arm_blade
 	weapon_name_simple = "blade"
