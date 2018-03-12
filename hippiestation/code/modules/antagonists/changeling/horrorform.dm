@@ -188,7 +188,7 @@
 		T.visible_message("<span class='warning'>[lunch] is completely devoured by [T]!</span>", \
 						"<span class='danger'>You completely devour [lunch]!</span>")
 		lunch.gib()
-		if(client)
+		if(client && !adminbus)
 			var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
 			changeling.chem_charges += 20
 	else
@@ -202,7 +202,7 @@
 		playsound(lunch, 'hippiestation/sound/misc/tear.ogg', 50, 1)
 		lunch.emote("scream")
 		T.adjustBruteLoss(-50)
-		if(client)
+		if(client && !adminbus)
 			var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
 			changeling.chem_charges += 10
 // #undef TRUE_CHANGELING_PASSIVE_HEAL

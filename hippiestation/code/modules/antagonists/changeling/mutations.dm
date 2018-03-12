@@ -234,7 +234,7 @@
 	desc = "We transform our arm into a ballistic weapon. Devours our chemicals, and has a rather slow recharge rate."
 	helptext = "You shoot at people and they die. Cannot be used in lesser form."
 	chemical_cost = 35
-	dna_cost = 3
+	dna_cost = 4
 	req_human = 1
 	weapon_type = /obj/item/gun/magic/ling_armcannon
 	weapon_name_simple = "armcannon"
@@ -242,7 +242,7 @@
 
 /obj/item/gun/magic/ling_armcannon
 	name = "armcannon"
-	desc = "A ballistic weapon comparable to a Stetchkin Pistol, made out of our own arm. It stirs and mixes chemicals to create its ammunition."
+	desc = "A ballistic weapon comparable to a Glock 17, made out of our own arm. It stirs and mixes chemicals to create its ammunition."
 	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	icon_state = "gun_arm"
 	item_state = "gun_arm"
@@ -253,11 +253,11 @@
 	ammo_type = /obj/item/ammo_casing/magic/ling_armcannon
 	fire_sound = 'sound/effects/splat.ogg'
 	force = 7 // if you really have to hit someone.
-	max_charges = 8
+	max_charges = 12
 	throwforce = 0 //I don't know why this is here, but it was in the original tentacle code. Keeping it here, too.
 	throw_range = 0
 	throw_speed = 0
-	recharge_rate = 3
+	recharge_rate = 2
 
 /obj/item/gun/magic/ling_armcannon/Initialize(mapload, silent)
 	. = ..()
