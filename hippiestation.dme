@@ -2630,6 +2630,7 @@
 #include "hippiestation\code\modules\antagonists\changeling\absorb.dm"
 #include "hippiestation\code\modules\antagonists\changeling\changeling.dm"
 #include "hippiestation\code\modules\antagonists\changeling\fakedeath.dm"
+#include "hippiestation\code\modules\antagonists\changeling\lesserform.dm"
 #include "hippiestation\code\modules\antagonists\changeling\mutations.dm"
 #include "hippiestation\code\modules\antagonists\changeling\revive.dm"
 #include "hippiestation\code\modules\atmospherics\gasmixtures\reactions.dm"
