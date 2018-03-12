@@ -143,7 +143,7 @@
 	if(stored_changeling.stat == DEAD)
 		to_chat(usr, "<span class='warning'>Our human form is dead!</span>")
 		return 0
-	to_chat(usr, "<span class='warning'>[usr] suddenly crunches and twists into a smaller form!</span>", \
+	usr.visible_message("<span class='warning'>[usr] suddenly crunches and twists into a smaller form!</span>", \
 						"<span class='danger'>We return to our lesser form.</span>")
 	stored_changeling.loc = get_turf(src)
 	mind.transfer_to(stored_changeling)
