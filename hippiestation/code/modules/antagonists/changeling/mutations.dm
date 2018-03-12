@@ -1,3 +1,6 @@
+/obj/effect/proc_holder/changeling/weapon/arm_blade
+	dna_cost = 4
+
 /*
 	Hippiestation changeling mutations
 	Contains:
@@ -234,7 +237,7 @@
 	desc = "We transform our arm into a ballistic weapon. Devours our chemicals, and has a rather slow recharge rate."
 	helptext = "You shoot at people and they die. Cannot be used in lesser form."
 	chemical_cost = 35
-	dna_cost = 2
+	dna_cost = 3
 	req_human = 1
 	weapon_type = /obj/item/gun/magic/ling_armcannon
 	weapon_name_simple = "armcannon"
@@ -257,7 +260,7 @@
 	throwforce = 0 //I don't know why this is here, but it was in the original tentacle code. Keeping it here, too.
 	throw_range = 0
 	throw_speed = 0
-	recharge_rate = 5
+	recharge_rate = 3
 
 /obj/item/gun/magic/ling_armcannon/Initialize(mapload, silent)
 	. = ..()
