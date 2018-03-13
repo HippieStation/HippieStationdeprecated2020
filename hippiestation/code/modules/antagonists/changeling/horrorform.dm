@@ -21,7 +21,7 @@
 						"<span class='userdanger'>We cast off our petty shell and enter our true form!<br>This form will not last forever, so devour as many people as possible!</span>")
 	var/mob/living/simple_animal/hostile/true_changeling/new_mob = new(get_turf(user))
 	new_mob.real_name = pick("True Form Changeling", "panic stinger", "chaos bringer", "Revelations 11:15-19", "Space Satan", \
-	 "teegee coder", "fun destroyer", "lean sipper", "guy who put pineapple on cornpotato pizza", "oversized ham disc", "greyshirt's bane")
+	 "forked from superior teegee codebase", "fun destroyer", "lean sipper", "guy who put pineapple on cornpotato pizza", "oversized ham disc", "greyshirt's bane")
 	new_mob.name = new_mob.real_name
 	new_mob.stored_changeling = user
 	user.loc = new_mob
@@ -64,12 +64,25 @@
 	var/mob/living/carbon/human/stored_changeling = null //The changeling that transformed
 	var/devouring = FALSE //If the true changeling is currently devouring a human
 	var/spam_flag = FALSE
-	var/adminbus = FALSE
+	var/adminbus = FALSE //If an admin wants to play around with a changeling that doesn't run out of chem charges, here's the var to change that.
+	var/datum/action/innate/changeling/reform/reform
+	var/datum/action/innate/changeling/devour/devour
 
-/mob/living/simple_animal/hostile/true_changeling/New()
-	..()
+/mob/living/simple_animal/hostile/true_changeling/Initialize()
+	. = ..()
+	icon_state = "horror[rand(1, 5)]"
+	reform = new
+	reform.Grant(src)
+	devour = new
+	devour.Grant(src)
 	transformed_time = world.time
 	emote("scream")
+
+/mob/living/simple_animal/hostile/true_changeling/Destroy()
+	QDEL_NULL(reform)
+	QDEL_NULL(devour)
+	stored_changeling = null
+	return ..()
 
 /mob/living/simple_animal/hostile/true_changeling/Login()
 	..()
@@ -132,75 +145,88 @@
 	else
 		visible_message("<span class='warning'>[src] lets out a waning scream as it falls, twitching, to the floor.</span>")
 
-/mob/living/simple_animal/hostile/true_changeling/verb/turn_to_human()
-	set name = "Re-Form Human Shell"
-	set desc = "We turn back into a human. This takes considerable effort and will stun us for some time afterwards."
-	set category = "True Changeling"
+/datum/action/innate/changeling
+	icon_icon = 'icons/mob/changeling.dmi'
+	background_icon_state = "bg_ling"
 
+/datum/action/innate/changeling/reform
+	name = "Re-Form Human Shell"
+	desc = "We turn back into a human. This takes considerable effort and will stun us for some time afterwards."
+	check_flags = AB_CHECK_CONSCIOUS
+	button_icon_state = "reform"
+
+/datum/action/innate/changeling/reform/Activate()
+	var/mob/living/simple_animal/hostile/true_changeling/M = owner
+	if(!istype(M))
+		to_chat(M, "<span class='userdanger'>A hippiestation admin(tm) has given you the reform, but you're not even a fucking true changeling. ahelp it!</span>")
+		return 0
 	if(!stored_changeling)
-		to_chat(usr, "<span class='warning'>We do not have a form other than this!</span>")
+		to_chat(M, "<span class='warning'>We do not have a form other than this!</span>")
 		return 0
 	if(stored_changeling.stat == DEAD)
-		to_chat(usr, "<span class='warning'>Our human form is dead!</span>")
+		to_chat(M, "<span class='warning'>Our human form is dead!</span>")
 		return 0
-	usr.visible_message("<span class='warning'>[usr] suddenly crunches and twists into a smaller form!</span>", \
+	usr.visible_message("<span class='warning'>[M] suddenly crunches and twists into a smaller form!</span>", \
 						"<span class='danger'>We return to our lesser form.</span>")
-	stored_changeling.loc = get_turf(src)
+	stored_changeling.loc = get_turf(M)
 	mind.transfer_to(stored_changeling)
 	stored_changeling.Knockdown(100)
 	stored_changeling.status_flags &= ~GODMODE
-	qdel(usr)
+	qdel(M)
 	return 1
 
-/mob/living/simple_animal/hostile/true_changeling/verb/devour()
-	set name = "Devour"
-	set desc = "We tear into the innards of a human. After some time, they will be significantly damaged and our health partially restored."
-	set category = "True Changeling"
+/datum/action/innate/changeling/devour
+	name = "Devour"
+	desc = "We tear into the innards of a human. After some time, they will be significantly damaged and our health partially restored."
+	check_flags = AB_CHECK_CONSCIOUS
+	button_icon_state = "devour"
 
-	var/mob/living/simple_animal/hostile/true_changeling/T = usr
-	if(T.devouring)
-		to_chat(T, "<span class='warning'>We are already feasting on a human!</span>")
+
+/datum/action/innate/changeling/devour/Activate()
+	var/mob/living/simple_animal/hostile/true_changeling/M = usr
+	if(M.devouring)
+		to_chat(M, "<span class='warning'>We are already feasting on a human!</span>")
 		return 0
 	var/list/potential_targets = list()
-	for(var/mob/living/carbon/human/H in range(1, usr))
+	for(var/mob/living/carbon/human/H in range(1, M))
 		if(H == stored_changeling) // You can't eat yourself.
 			continue
 		potential_targets.Add(H)
 	if(!potential_targets.len)
-		to_chat(T, "<span class='warning'>There are no humans nearby!</span>")
+		to_chat(M, "<span class='warning'>There are no humans nearby!</span>")
 		return 0
 	var/mob/living/carbon/human/lunch
 	if(potential_targets.len == 1)
 		lunch = potential_targets[1]
 	else
-		lunch = input(T, "Choose a human to devour.", "Lunch") as null|anything in potential_targets
+		lunch = input(M, "Choose a human to devour.", "Lunch") as null|anything in potential_targets
 	if(!lunch && !ishuman(lunch))
 		return 0
-	T.devouring = TRUE
-	T.visible_message("<span class='warning'>[T] begins ripping apart and feasting on [lunch]!</span>", \
+	M.devouring = TRUE
+	M.visible_message("<span class='warning'>[M] begins ripping apart and feasting on [lunch]!</span>", \
 					"<span class='danger'>We begin to feast upon [lunch]...</span>")
-	if(!do_mob(usr, 10, target = lunch))
-		T.devouring = FALSE
+	if(!do_mob(M, 10, target = lunch))
+		M.devouring = FALSE
 		return 0
-	T.devouring = FALSE
-	if(lunch.getBruteLoss() + lunch.getFireLoss() >= 200) //Overall physical damage, basically
-		T.visible_message("<span class='warning'>[lunch] is completely devoured by [T]!</span>", \
+	M.devouring = FALSE
+	if(lunch.getBruteLoss() + lunch.getFireLoss() >= 200) //OK, ok. this change was actually super rad hippiestation  i like it -Armhulen
+		M.visible_message("<span class='warning'>[lunch] is completely devoured by [M]!</span>", \
 						"<span class='danger'>You completely devour [lunch]!</span>")
-		lunch.gib()
+		lunch.gib() //hell yes.
 		if(client && !adminbus)
 			var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
 			changeling.chem_charges += 20
 	else
 		lunch.adjustBruteLoss(60)
-		T.visible_message("<span class='warning'>[T] tears a chunk from [lunch]'s flesh!</span>", \
+		M.visible_message("<span class='warning'>[M] tears a chunk from [lunch]'s flesh!</span>", \
 						"<span class='danger'>We tear a chunk of flesh from [lunch] and devour it!</span>")
-		to_chat(lunch, "<span class='userdanger'>[T] takes a huge bite out of you!</span>")
+		to_chat(lunch, "<span class='userdanger'>[M] takes a huge bite out of you!</span>")
 		var/obj/effect/decal/cleanable/blood/gibs/G = new(get_turf(lunch))
 		step(G, pick(GLOB.alldirs)) //Make some gibs spray out for dramatic effect
 		playsound(lunch, 'sound/effects/splat.ogg', 50, 1)
 		playsound(lunch, 'hippiestation/sound/misc/tear.ogg', 50, 1)
 		lunch.emote("scream")
-		T.adjustBruteLoss(-50)
+		M.adjustBruteLoss(-50)
 		if(client && !adminbus)
 			var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
 			changeling.chem_charges += 10
