@@ -21,7 +21,7 @@
 						"<span class='userdanger'>We cast off our petty shell and enter our true form!<br>This form will not last forever, so devour as many people as possible!</span>")
 	var/mob/living/simple_animal/hostile/true_changeling/new_mob = new(get_turf(user))
 	new_mob.real_name = pick("True Form Changeling", "panic stinger", "chaos bringer", "Revelations 11:15-19", "Space Satan", \
-	 "forked from superior teegee codebase", "fun destroyer", "lean sipper", "guy who put pineapple on cornpotato pizza", "oversized ham disc", "greyshirt's bane")
+	 "teegee coder", "fun destroyer", "lean sipper", "guy who put pineapple on cornpotato pizza", "oversized ham disc", "greyshirt's bane")
 	new_mob.name = new_mob.real_name
 	new_mob.stored_changeling = user
 	user.loc = new_mob
