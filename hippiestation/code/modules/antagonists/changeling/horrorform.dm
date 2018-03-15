@@ -1,4 +1,5 @@
 // #define TRUE_CHANGELING_PASSIVE_HEAL 3 //Amount of brute damage restored per tick
+#define SCREAM_DELAY 50
 
 /obj/effect/proc_holder/changeling/horror_form //Horror Form: turns the changeling into a terrifying abomination
 	name = "Horror Form"
@@ -63,11 +64,20 @@
 	var/transformed_time = 0
 	var/mob/living/carbon/human/stored_changeling = null //The changeling that transformed
 	var/devouring = FALSE //If the true changeling is currently devouring a human
+	var/spam_timer = 0
+	var/adminbus = FALSE //If an admin wants to play around with a changeling that doesn't run out of chem charges, here's the var to change that.
+	var/datum/action/innate/changeling/reform/reform
+	var/datum/action/innate/changeling/devour/devour
+
+/mob/living/simple_animal/hostile/true_changeling/Initialize()
+	. = ..()
+	icon_state = "horror"
+	reform = new
+	reform.Grant(src)
+	devour = new
+	devour.Grant(src)
 	var/spam_flag = FALSE
 	var/adminbus = FALSE
-
-/mob/living/simple_animal/hostile/true_changeling/New()
-	..()
 	transformed_time = world.time
 	emote("scream")
 
@@ -80,20 +90,32 @@
 /mob/living/simple_animal/hostile/true_changeling/Life()
 	..()
 	// adjustBruteLoss(-TRUE_CHANGELING_PASSIVE_HEAL) //Uncomment for passive healing
+	if(adminbus)
+		return
 	if(client)
 		var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
-		if(changeling.chem_charges >= 4 && !adminbus)
+		if(!changeling) //I'd prefer horror form to not runtime on every tick if someone somehow gets a regular one without a changeling antag datum
+			to_chat(src, "<span class='userdanger'>Your body implodes in on itself as you realise you shouldn't exist! Please submit a bug report!</span>")
+			qdel(src)
+			return
+		if(changeling.chem_charges >= 4)
 			changeling.chem_charges -= 4
 		else
 			death() // forces you to drop horror form
 		if(changeling.chem_charges >= 76)
 			changeling.chem_charges = 75
 
+/mob/living/simple_animal/hostile/true_changeling/Stat()
+	..()
+	var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
+	if(changeling)
+		stat("Chemical Storage", "[changeling.chem_charges]/[changeling.chem_storage]")
+		stat("Absorbed DNA", changeling.absorbedcount)
 
 /mob/living/simple_animal/hostile/true_changeling/emote(act, m_type=1, message = null)
 	if(stat)
 		return
-	if(act == "scream" && !spam_flag)
+	if(act == "scream" && (world.time > spam_timer))
 		message = "<B>[src]</B> makes a loud, bone-chilling roar!"
 		act = "me"
 		var/frequency = get_rand_frequency() //so sound frequency is consistent
@@ -111,9 +133,7 @@
 				if(M.stat == DEAD && (M.client.prefs.chat_toggles & CHAT_GHOSTSIGHT) && !(M in viewers(get_turf(src),null)))
 					M.show_message(message)
 		audible_message(message)
-		spam_flag = TRUE
-		spawn(50)
-			spam_flag = FALSE
+		spam_timer = world.time + SCREAM_DELAY
 		return
 
 	..(act, m_type, message)
@@ -132,24 +152,35 @@
 	else
 		visible_message("<span class='warning'>[src] lets out a waning scream as it falls, twitching, to the floor.</span>")
 
-/mob/living/simple_animal/hostile/true_changeling/verb/turn_to_human()
-	set name = "Re-Form Human Shell"
-	set desc = "We turn back into a human. This takes considerable effort and will stun us for some time afterwards."
-	set category = "True Changeling"
+/datum/action/innate/changeling
+	icon_icon = 'hippiestation/icons/mob/changeling.dmi'
+	background_icon_state = "bg_alien"
 
-	if(!stored_changeling)
-		to_chat(usr, "<span class='warning'>We do not have a form other than this!</span>")
+/datum/action/innate/changeling/reform
+	name = "Re-Form Human Shell"
+	desc = "We turn back into a human. This takes considerable effort and will stun us for some time afterwards."
+	check_flags = AB_CHECK_CONSCIOUS
+	button_icon_state = "reform"
+
+/datum/action/innate/changeling/reform/Activate()
+	var/mob/living/simple_animal/hostile/true_changeling/M = owner
+	if(!istype(M))
+		to_chat(M, "<span class='userdanger'>A hippiestation admin(tm) has given you the reform, but you're not even a fucking true changeling. ahelp it!</span>")
 		return 0
-	if(stored_changeling.stat == DEAD)
-		to_chat(usr, "<span class='warning'>Our human form is dead!</span>")
+	if(!M.stored_changeling)
+		to_chat(M, "<span class='warning'>We do not have a form other than this!</span>")
+		return 0
+	if(M.stored_changeling.stat == DEAD)
+		to_chat(M, "<span class='warning'>Our human form is dead!</span>")
 		return 0
 	usr.visible_message("<span class='warning'>[usr] suddenly crunches and twists into a smaller form!</span>", \
 						"<span class='danger'>We return to our lesser form.</span>")
-	stored_changeling.loc = get_turf(src)
-	mind.transfer_to(stored_changeling)
-	stored_changeling.Knockdown(100)
-	stored_changeling.status_flags &= ~GODMODE
-	qdel(usr)
+	var/mob/living/carbon/human/C = M.stored_changeling
+	C.loc = get_turf(M)
+	M.mind.transfer_to(C)
+	C.Knockdown(100)
+	C.status_flags &= ~GODMODE
+	qdel(M)
 	return 1
 
 /mob/living/simple_animal/hostile/true_changeling/verb/devour()
@@ -162,8 +193,8 @@
 		to_chat(T, "<span class='warning'>We are already feasting on a human!</span>")
 		return 0
 	var/list/potential_targets = list()
-	for(var/mob/living/carbon/human/H in range(1, usr))
-		if(H == stored_changeling) // You can't eat yourself.
+	for(var/mob/living/carbon/human/H in range(1, M))
+		if(H == M.stored_changeling) // You can't eat yourself.
 			continue
 		potential_targets.Add(H)
 	if(!potential_targets.len)
@@ -186,9 +217,9 @@
 	if(lunch.getBruteLoss() + lunch.getFireLoss() >= 200) //Overall physical damage, basically
 		T.visible_message("<span class='warning'>[lunch] is completely devoured by [T]!</span>", \
 						"<span class='danger'>You completely devour [lunch]!</span>")
-		lunch.gib()
-		if(client && !adminbus)
-			var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
+		lunch.gib() //hell yes.
+		if(M.client && !M.adminbus)
+			var/datum/antagonist/changeling/changeling = M.mind.has_antag_datum(/datum/antagonist/changeling)
 			changeling.chem_charges += 20
 	else
 		lunch.adjustBruteLoss(60)
@@ -200,12 +231,14 @@
 		playsound(lunch, 'sound/effects/splat.ogg', 50, 1)
 		playsound(lunch, 'hippiestation/sound/misc/tear.ogg', 50, 1)
 		lunch.emote("scream")
-		T.adjustBruteLoss(-50)
-		if(client && !adminbus)
-			var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
+		M.adjustBruteLoss(-50)
+		if(M.client && !M.adminbus)
+			var/datum/antagonist/changeling/changeling = M.mind.has_antag_datum(/datum/antagonist/changeling)
 			changeling.chem_charges += 10
 // #undef TRUE_CHANGELING_PASSIVE_HEAL
 
 // For admins who want to Thunderdome
 /mob/living/simple_animal/hostile/true_changeling/adminbus
 	adminbus = TRUE
+
+#undef SCREAM_DELAY
