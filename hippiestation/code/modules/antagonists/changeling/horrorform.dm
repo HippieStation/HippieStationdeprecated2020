@@ -1,4 +1,4 @@
-// #define TRUE_CHANGELING_PASSIVE_HEAL 3 //Amount of brute damage restored per tick
+//#define TRUE_CHANGELING_PASSIVE_HEAL 3 //Amount of brute damage restored per tick
 #define SCREAM_DELAY 50
 
 /obj/effect/proc_holder/changeling/horror_form //Horror Form: turns the changeling into a terrifying abomination
@@ -76,10 +76,14 @@
 	reform.Grant(src)
 	devour = new
 	devour.Grant(src)
-	var/spam_flag = FALSE
-	var/adminbus = FALSE
 	transformed_time = world.time
 	emote("scream")
+
+/mob/living/simple_animal/hostile/true_changeling/Destroy()
+	QDEL_NULL(reform)
+	QDEL_NULL(devour)
+	stored_changeling = null
+	return ..()
 
 /mob/living/simple_animal/hostile/true_changeling/Login()
 	..()
@@ -173,7 +177,7 @@
 	if(M.stored_changeling.stat == DEAD)
 		to_chat(M, "<span class='warning'>Our human form is dead!</span>")
 		return 0
-	usr.visible_message("<span class='warning'>[usr] suddenly crunches and twists into a smaller form!</span>", \
+	usr.visible_message("<span class='warning'>[M] suddenly crunches and twists into a smaller form!</span>", \
 						"<span class='danger'>We return to our lesser form.</span>")
 	var/mob/living/carbon/human/C = M.stored_changeling
 	C.loc = get_turf(M)
@@ -183,14 +187,17 @@
 	qdel(M)
 	return 1
 
-/mob/living/simple_animal/hostile/true_changeling/verb/devour()
-	set name = "Devour"
-	set desc = "We tear into the innards of a human. After some time, they will be significantly damaged and our health partially restored."
-	set category = "True Changeling"
+/datum/action/innate/changeling/devour
+	name = "Devour"
+	desc = "We tear into the innards of a human. After some time, they will be significantly damaged and our health partially restored."
+	check_flags = AB_CHECK_CONSCIOUS
+	button_icon_state = "devour"
 
-	var/mob/living/simple_animal/hostile/true_changeling/T = usr
-	if(T.devouring)
-		to_chat(T, "<span class='warning'>We are already feasting on a human!</span>")
+
+/datum/action/innate/changeling/devour/Activate()
+	var/mob/living/simple_animal/hostile/true_changeling/M = usr
+	if(M.devouring)
+		to_chat(M, "<span class='warning'>We are already feasting on a human!</span>")
 		return 0
 	var/list/potential_targets = list()
 	for(var/mob/living/carbon/human/H in range(1, M))
@@ -198,24 +205,24 @@
 			continue
 		potential_targets.Add(H)
 	if(!potential_targets.len)
-		to_chat(T, "<span class='warning'>There are no humans nearby!</span>")
+		to_chat(M, "<span class='warning'>There are no humans nearby!</span>")
 		return 0
 	var/mob/living/carbon/human/lunch
 	if(potential_targets.len == 1)
 		lunch = potential_targets[1]
 	else
-		lunch = input(T, "Choose a human to devour.", "Lunch") as null|anything in potential_targets
+		lunch = input(M, "Choose a human to devour.", "Lunch") as null|anything in potential_targets
 	if(!lunch && !ishuman(lunch))
 		return 0
-	T.devouring = TRUE
-	T.visible_message("<span class='warning'>[T] begins ripping apart and feasting on [lunch]!</span>", \
+	M.devouring = TRUE
+	M.visible_message("<span class='warning'>[M] begins ripping apart and feasting on [lunch]!</span>", \
 					"<span class='danger'>We begin to feast upon [lunch]...</span>")
-	if(!do_mob(usr, 10, target = lunch))
-		T.devouring = FALSE
+	if(!do_mob(M, 10, target = lunch))
+		M.devouring = FALSE
 		return 0
-	T.devouring = FALSE
-	if(lunch.getBruteLoss() + lunch.getFireLoss() >= 200) //Overall physical damage, basically
-		T.visible_message("<span class='warning'>[lunch] is completely devoured by [T]!</span>", \
+	M.devouring = FALSE
+	if(lunch.getBruteLoss() + lunch.getFireLoss() >= 200) //OK, ok. this change was actually super rad hippiestation  i like it -Armhulen
+		M.visible_message("<span class='warning'>[lunch] is completely devoured by [M]!</span>", \
 						"<span class='danger'>You completely devour [lunch]!</span>")
 		lunch.gib() //hell yes.
 		if(M.client && !M.adminbus)
@@ -223,9 +230,9 @@
 			changeling.chem_charges += 20
 	else
 		lunch.adjustBruteLoss(60)
-		T.visible_message("<span class='warning'>[T] tears a chunk from [lunch]'s flesh!</span>", \
+		M.visible_message("<span class='warning'>[M] tears a chunk from [lunch]'s flesh!</span>", \
 						"<span class='danger'>We tear a chunk of flesh from [lunch] and devour it!</span>")
-		to_chat(lunch, "<span class='userdanger'>[T] takes a huge bite out of you!</span>")
+		to_chat(lunch, "<span class='userdanger'>[M] takes a huge bite out of you!</span>")
 		var/obj/effect/decal/cleanable/blood/gibs/G = new(get_turf(lunch))
 		step(G, pick(GLOB.alldirs)) //Make some gibs spray out for dramatic effect
 		playsound(lunch, 'sound/effects/splat.ogg', 50, 1)
@@ -235,10 +242,11 @@
 		if(M.client && !M.adminbus)
 			var/datum/antagonist/changeling/changeling = M.mind.has_antag_datum(/datum/antagonist/changeling)
 			changeling.chem_charges += 10
-// #undef TRUE_CHANGELING_PASSIVE_HEAL
+
 
 // For admins who want to Thunderdome
 /mob/living/simple_animal/hostile/true_changeling/adminbus
 	adminbus = TRUE
 
+//#undef TRUE_CHANGELING_PASSIVE_HEAL
 #undef SCREAM_DELAY
