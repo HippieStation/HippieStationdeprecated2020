@@ -12,6 +12,9 @@
 	if(user.on_fire)
 		to_chat(user, "<span class='warning'>We cannot enter lesser form while on fire!</span>")
 		return 0
+	if(user.IsKnockdown())
+		to_chat(user, "<span class='warning'>We cannot enter lesser form while disabled!</span>")
+		return 0
 	to_chat(user, "<span class='warning'>Our genes cry out!</span>")
 
 	user.monkeyize(TR_KEEPITEMS | TR_KEEPIMPLANTS | TR_KEEPORGANS | TR_KEEPDAMAGE | TR_KEEPVIRUS | TR_KEEPSE)
