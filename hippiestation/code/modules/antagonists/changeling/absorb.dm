@@ -75,8 +75,8 @@
 
 	changeling.chem_charges=min(changeling.chem_charges+10, changeling.chem_storage)
 
-	changeling.isabsorbing = 0
-	changeling.canrespec = 1
+	changeling.isabsorbing = FALSE
+	changeling.canrespec = TRUE
 
 	target.death(0)
 	target.Drain()
