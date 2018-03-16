@@ -127,7 +127,7 @@
 			// Double check for client
 			if(M && M.client)
 				var/turf/M_turf = get_turf(M)
-				if(M_turf && M_turf.z == src.z)
+				if(M_turf && M_turf.z == z)
 					var/dist = get_dist(M_turf, src)
 					if(dist <= 7) //source of sound very close
 						M.playsound_local(src, 'hippiestation/sound/effects/horror_scream.ogg', 80, 1, frequency, falloff = 2)
