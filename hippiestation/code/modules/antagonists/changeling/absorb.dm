@@ -6,6 +6,9 @@
 	if(target.stat != DEAD)
 		to_chat(user, "<span class ='notice'>We cannot absorb a currently living creature. Kill them first.</span>")
 		return
+	if(changeling.isabsorbing)
+		to_chat(user, "<span class ='notice'>We are already absorbing something.</span>")
+		return
 	changeling.isabsorbing = TRUE
 	for(var/i in 1 to 3)
 		switch(i)
