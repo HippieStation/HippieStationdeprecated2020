@@ -254,9 +254,6 @@
 	fire_sound = 'sound/effects/splat.ogg'
 	force = 7 // if you really have to hit someone.
 	max_charges = 12
-	throwforce = 0 //I don't know why this is here, but it was in the original tentacle code. Keeping it here, too.
-	throw_range = 0
-	throw_speed = 0
 	recharge_rate = 2
 
 /obj/item/gun/magic/ling_armcannon/Initialize(mapload, silent)
