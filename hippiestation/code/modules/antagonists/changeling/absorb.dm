@@ -6,7 +6,7 @@
 	if(target.stat != DEAD)
 		to_chat(user, "<span class ='notice'>We cannot absorb a currently living creature. Kill them first.</span>")
 		return
-	changeling.isabsorbing = 1
+	changeling.isabsorbing = TRUE
 	for(var/i in 1 to 3)
 		switch(i)
 			if(1)
@@ -21,7 +21,7 @@
 		SSblackbox.record_feedback("nested tally", "changeling_powers", 1, list("Absorb DNA", "[i]"))
 		if(!do_mob(user, target, 50))
 			to_chat(user, "<span class='warning'>Our absorption of [target] has been interrupted!</span>")
-			changeling.isabsorbing = 0
+			changeling.isabsorbing = FALSE
 			return
 
 	SSblackbox.record_feedback("nested tally", "changeling_powers", 1, list("Absorb DNA", "4"))
