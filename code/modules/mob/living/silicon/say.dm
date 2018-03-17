@@ -10,11 +10,11 @@
 		var/mob/living/silicon/S = src
 		desig = trim_left(S.designation + " " + S.job)
 	var/message_a = say_quote(message, get_spans())
-	var/rendered = "Robotic Talk, <span class='name'>[name]</span> <span class='message'>[message_a]</span>"
+	var/rendered = "<i><span class='game say'>Robotic Talk, <span class='name'>[name]</span> <span class='message'>[message_a]</span></span></i>" // hippie - please don't hurt the eyes
 	for(var/mob/M in GLOB.player_list)
 		if(M.binarycheck())
 			if(isAI(M))
-				var/renderedAI = "<span class='binarysay'>Robotic Talk, <a href='?src=[REF(M)];track=[html_encode(name)]'><span class='name'>[name] ([desig])</span></a> <span class='message'>[message_a]</span></span>"
+				var/renderedAI = "<i><span class='game say'>Robotic Talk, <a href='?src=[REF(M)];track=[html_encode(name)]'><span class='name'>[name] ([desig])</span></a> <span class='message'>[message_a]</span></span></i>" // hippie - please don't hurt the eyes
 				to_chat(M, renderedAI)
 			else
 				to_chat(M, "<span class='binarysay'>[rendered]</span>")
