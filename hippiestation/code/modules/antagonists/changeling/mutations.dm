@@ -114,7 +114,7 @@
 	desc = "We transform our arm into a claw capable of channeling electricity. Can stun our opponents."
 	helptext = "You shoot at people and they die. Cannot be used in lesser form."
 	chemical_cost = 25
-	dna_cost = 3
+	dna_cost = 4
 	req_human = 1
 	weapon_type = /obj/item/melee/baton/stungun/changeling
 	weapon_name_simple = "tesla claw"
@@ -132,15 +132,15 @@
 	w_class = WEIGHT_CLASS_HUGE
 	force = 0
 	throwforce = 5
-	stunforce = 70
-	hitcost = 100
+	stunforce = 50
+	hitcost = 125
 	throw_hit_chance = 20
 	attack_verb = list("poked")
 	selfcharge = 1
 	charge_sections = 2
 	shaded_charge = 1
 	charge_tick = 0
-	charge_delay = 5
+	charge_delay = 7
 
 /obj/item/melee/baton/stungun/changeling/Initialize(mapload, silent)
 	. = ..()
