@@ -96,7 +96,7 @@
 	// adjustBruteLoss(-TRUE_CHANGELING_PASSIVE_HEAL) //Uncomment for passive healing
 	if(adminbus)
 		return
-	if(client)
+	if(client && mind)
 		var/datum/antagonist/changeling/changeling = mind.has_antag_datum(/datum/antagonist/changeling)
 		if(!changeling) //I'd prefer horror form to not runtime on every tick if someone somehow gets a regular one without a changeling antag datum
 			to_chat(src, "<span class='userdanger'>Your body implodes in on itself as you realise you shouldn't exist! Please submit a bug report!</span>")
@@ -140,7 +140,7 @@
 		spam_timer = world.time + SCREAM_DELAY
 		return
 
-	..(act, m_type, message)
+	..()
 
 /mob/living/simple_animal/hostile/true_changeling/death()
 	emote("scream")

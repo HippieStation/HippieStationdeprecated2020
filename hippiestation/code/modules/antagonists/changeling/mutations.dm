@@ -66,7 +66,7 @@
 	dna_cost = 4
 	req_human = 1
 	weapon_type = /obj/item/gun/magic/ling_armcannon
-	weapon_name_simple = "armcannon"
+	weapon_name_simple = "arm cannon"
 	silent = FALSE
 
 /obj/item/gun/magic/ling_armcannon
@@ -90,8 +90,6 @@
 	if(ismob(loc))
 		if(!silent)
 			loc.visible_message("<span class='warning'>[loc.name]\'s arm twists and contorts into a cannon!</span>", "<span class='warning'>Our arm twists and mutates, transforming it into a cannon.</span>", "<span class='italics'>You hear organic matter ripping and tearing!</span>")
-		else
-			to_chat(loc, "<span class='notice'>Your Arm Cannon begins to shake, it's ready to fire!</span>")
 
 /obj/item/ammo_casing/magic/ling_armcannon
 	name = "gelatinous bullet"
@@ -119,7 +117,7 @@
 	dna_cost = 3
 	req_human = 1
 	weapon_type = /obj/item/melee/baton/stungun/changeling
-	weapon_name_simple = "teslaclaw"
+	weapon_name_simple = "tesla claw"
 	silent = FALSE
 
 /obj/item/melee/baton/stungun/changeling
@@ -149,8 +147,6 @@
 	if(ismob(loc))
 		if(!silent)
 			loc.visible_message("<span class='warning'>[loc.name]\'s hand grows out into a claw, with electricity surging through!</span>", "<span class='warning'>Our arm twists and mutates, transforming it into a Tesla Claw.</span>", "<span class='italics'>You hear organic matter ripping and tearing!</span>")
-		else
-			to_chat(loc, "<span class='notice'>Our Tesla Claw can now be used.</span>")
 
 /obj/item/melee/baton/stungun/changeling/update_icon()
 	if(status)
