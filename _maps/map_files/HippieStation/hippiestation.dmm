@@ -63616,6 +63616,27 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
+"iSG" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/courtroom)
+"nIC" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/turf/open/floor/plasteel,
+/area/security/courtroom)
+"tCl" = (
+/obj/structure/guillotine,
+/turf/open/floor/plasteel/dark,
+/area/security/courtroom)
 
 (1,1,1) = {"
 aaa
@@ -95572,7 +95593,7 @@ aiv
 abr
 ajq
 ajX
-akP
+iSG
 alE
 amu
 any
@@ -97369,9 +97390,9 @@ aht
 ahZ
 aiC
 abr
-ajx
+tCl
 ake
-akS
+nIC
 akS
 amA
 any
