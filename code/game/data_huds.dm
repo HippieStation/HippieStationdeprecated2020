@@ -52,19 +52,16 @@
 /datum/atom_hud/data/diagnostic
 
 /datum/atom_hud/data/diagnostic/basic
-	hud_icons = list (DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_CIRCUIT_HUD, DIAG_TRACK_HUD, DIAG_AIRLOCK_HUD)
+	hud_icons = list (DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_TRACK_HUD, DIAG_AIRLOCK_HUD)
 
 /datum/atom_hud/data/diagnostic/advanced
-	hud_icons = list (DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_CIRCUIT_HUD, DIAG_TRACK_HUD, DIAG_AIRLOCK_HUD, DIAG_PATH_HUD)
+	hud_icons = list (DIAG_HUD, DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_MECH_HUD, DIAG_BOT_HUD, DIAG_TRACK_HUD, DIAG_AIRLOCK_HUD, DIAG_PATH_HUD)
 
 /datum/atom_hud/data/bot_path
 	hud_icons = list(DIAG_PATH_HUD)
 
 /datum/atom_hud/abductor
 	hud_icons = list(GLAND_HUD)
-
-/datum/atom_hud/sentient_disease
-	hud_icons = list(SENTIENT_DISEASE_HUD)
 
 /* MED/SEC/DIAG HUD HOOKS */
 
@@ -81,7 +78,7 @@
 //called when a carbon changes virus
 /mob/living/carbon/proc/check_virus()
 	var/threat
-	for(var/thing in diseases)
+	for(var/thing in viruses)
 		var/datum/disease/D = thing
 		if(!(D.visibility_flags & HIDDEN_SCANNER))
 			if(!threat || D.severity > threat) //a buffing virus gets an icon
@@ -178,19 +175,19 @@
 		holder.icon_state = "huddead"
 	else
 		switch(virus_threat)
-			if(DISEASE_SEVERITY_BIOHAZARD)
+			if(VIRUS_SEVERITY_BIOHAZARD)
 				holder.icon_state = "hudill5"
-			if(DISEASE_SEVERITY_DANGEROUS)
+			if(VIRUS_SEVERITY_DANGEROUS)
 				holder.icon_state = "hudill4"
-			if(DISEASE_SEVERITY_HARMFUL)
+			if(VIRUS_SEVERITY_HARMFUL)
 				holder.icon_state = "hudill3"
-			if(DISEASE_SEVERITY_MEDIUM)
+			if(VIRUS_SEVERITY_MEDIUM)
 				holder.icon_state = "hudill2"
-			if(DISEASE_SEVERITY_MINOR)
+			if(VIRUS_SEVERITY_MINOR)
 				holder.icon_state = "hudill1"
-			if(DISEASE_SEVERITY_NONTHREAT)
+			if(VIRUS_SEVERITY_NONTHREAT)
 				holder.icon_state = "hudill0"
-			if(DISEASE_SEVERITY_POSITIVE)
+			if(VIRUS_SEVERITY_POSITIVE)
 				holder.icon_state = "hudbuff"
 			if(null)
 				holder.icon_state = "hudhealthy"
@@ -417,56 +414,6 @@
 			holder.icon_state = "hudmove"
 		else
 			holder.icon_state = ""
-
-/*~~~~~~~~~~~~
-	Circutry!
-~~~~~~~~~~~~~*/
-/obj/item/device/electronic_assembly/proc/diag_hud_set_circuithealth(hide = FALSE)
-	var/image/holder = hud_list[DIAG_CIRCUIT_HUD]
-	var/icon/I = icon(icon, icon_state, dir)
-	holder.pixel_y = I.Height() - world.icon_size
-	if((!isturf(loc))||hide) //if not on the ground dont show overlay
-		holder.icon_state = null
-	else
-		holder.icon_state = "huddiag[RoundDiagBar(obj_integrity/max_integrity)]"
-
-/obj/item/device/electronic_assembly/proc/diag_hud_set_circuitcell(hide = FALSE)
-	var/image/holder = hud_list[DIAG_BATT_HUD]
-	var/icon/I = icon(icon, icon_state, dir)
-	holder.pixel_y = I.Height() - world.icon_size
-	if((!isturf(loc))||hide) //if not on the ground dont show overlay
-		holder.icon_state = null
-	else if(battery)
-		var/chargelvl = battery.charge/battery.maxcharge
-		holder.icon_state = "hudbatt[RoundDiagBar(chargelvl)]"
-	else
-		holder.icon_state = "hudnobatt"
-
-/obj/item/device/electronic_assembly/proc/diag_hud_set_circuitstat(hide = FALSE) //On, On and dangerous, or Off
-	var/image/holder = hud_list[DIAG_STAT_HUD]
-	var/icon/I = icon(icon, icon_state, dir)
-	holder.pixel_y = I.Height() - world.icon_size
-	if((!isturf(loc))||hide) //if not on the ground dont show overlay
-		holder.icon_state = null
-	else if(!battery)
-		holder.icon_state = "hudoffline"
-	else if(battery.charge == 0)
-		holder.icon_state = "hudoffline"
-	else if(combat_circuits) //has a circuit that can harm people
-		holder.icon_state = "hudwarn"
-	else //Bot is on and not dangerous
-		holder.icon_state = prefered_hud_icon
-
-/obj/item/device/electronic_assembly/proc/diag_hud_set_circuittracking(hide = FALSE)
-	var/image/holder = hud_list[DIAG_TRACK_HUD]
-	var/icon/I = icon(icon, icon_state, dir)
-	holder.pixel_y = I.Height() - world.icon_size
-	if((!isturf(loc))||hide) //if not on the ground dont show overlay
-		holder.icon_state = null
-	else if(long_range_circuits)
-		holder.icon_state = "hudtracking"
-	else
-		holder.icon_state = null
 
 /*~~~~~~~~~~~~
 	Airlocks!

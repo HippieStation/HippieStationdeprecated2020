@@ -35,7 +35,6 @@
 	return path
 
 #define FTPDELAY 200	//200 tick delay to discourage spam
-#define ADMIN_FTPDELAY_MODIFIER 0.5		//Admins get to spam files faster since we ~trust~ them!
 /*	This proc is a failsafe to prevent spamming of file requests.
 	It is just a timer that only permits a download every [FTPDELAY] ticks.
 	This can be changed by modifying FTPDELAY's value above.
@@ -46,13 +45,9 @@
 	if(time_to_wait > 0)
 		to_chat(src, "<font color='red'>Error: file_spam_check(): Spam. Please wait [DisplayTimeText(time_to_wait)].</font>")
 		return 1
-	var/delay = FTPDELAY
-	if(holder)
-		delay *= ADMIN_FTPDELAY_MODIFIER
-	GLOB.fileaccess_timer = world.time + delay
+	GLOB.fileaccess_timer = world.time + FTPDELAY
 	return 0
 #undef FTPDELAY
-#undef ADMIN_FTPDELAY_MODIFIER
 
 /proc/pathwalk(path)
 	var/list/jobs = list(path)

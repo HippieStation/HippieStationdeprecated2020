@@ -31,9 +31,11 @@
 
 // Ripples, effects that signal a shuttle's arrival
 #define SHUTTLE_RIPPLE_TIME 100
+#define SHUTTLE_RIPPLE_FADEIN 50
 
 #define TRANSIT_REQUEST 1
 #define TRANSIT_READY 2
+#define TRANSIT_FULL 3
 
 #define SHUTTLE_TRANSIT_BORDER 8
 

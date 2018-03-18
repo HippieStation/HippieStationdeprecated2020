@@ -652,7 +652,6 @@
 /area/ruin/space/has_grav/abandonedzoo)
 "bG" = (
 /obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plasteel/darkgreen,
 /area/ruin/space/has_grav/abandonedzoo)
 "bH" = (
@@ -748,13 +747,6 @@
 /area/template_noop)
 "bX" = (
 /turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/abandonedzoo)
-"lo" = (
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/turf/open/floor/plasteel/darkgreen,
 /area/ruin/space/has_grav/abandonedzoo)
 "KN" = (
 /turf/template_noop,
@@ -945,7 +937,7 @@ aH
 ay
 bG
 bL
-lo
+bG
 aa
 aa
 "}
@@ -966,7 +958,7 @@ bq
 ay
 bG
 bM
-lo
+bG
 aa
 aa
 "}

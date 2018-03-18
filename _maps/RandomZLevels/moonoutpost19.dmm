@@ -699,8 +699,9 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/highsecurity{
+	icon_state = "closed";
+	locked = 1;
 	name = "Gateway";
 	req_access_txt = "150"
 	},
@@ -1022,11 +1023,11 @@
 	},
 /area/awaymission/moonoutpost19/syndicate)
 "cr" = (
-/obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/public/glass{
 	density = 0;
 	set_obj_flags = "EMAGGED";
 	icon_state = "open";
+	locked = 1;
 	name = "Dormitories"
 	},
 /obj/item/stack/rods,
@@ -1335,12 +1336,12 @@
 	},
 /area/awaymission/moonoutpost19/syndicate)
 "cT" = (
-/obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock{
 	density = 0;
 	set_obj_flags = "EMAGGED";
 	icon_state = "open";
 	id_tag = "awaydorm4";
+	locked = 1;
 	name = "Dorm 1";
 	opacity = 0
 	},
@@ -1649,15 +1650,14 @@
 	},
 /area/awaymission/moonoutpost19/syndicate)
 "du" = (
-/obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/external{
 	density = 0;
 	set_obj_flags = "EMAGGED";
 	icon_state = "open";
+	locked = 1;
 	opacity = 0;
 	req_access_txt = "150"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating{
 	initial_gas_mix = "co2=48.7;n2=13.2;o2=32.4;TEMP=251";
 	heat_capacity = 1e+006
@@ -1810,16 +1810,13 @@
 	},
 /area/awaymission/moonoutpost19/main)
 "dI" = (
-/obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/external{
 	density = 0;
 	set_obj_flags = "EMAGGED";
 	icon_state = "open";
+	locked = 1;
 	opacity = 0;
 	req_access_txt = "150"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
 	},
 /turf/open/floor/plating{
 	initial_gas_mix = "co2=48.7;n2=13.2;o2=32.4;TEMP=251";
@@ -2068,7 +2065,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Xenobiology Containment North";
-	network = list("mo19x")
+	network = list("MO19X")
 	},
 /turf/open/floor/engine,
 /area/awaymission/moonoutpost19/research)
@@ -2133,7 +2130,7 @@
 	desc = "Used for watching the contents of the xenobiology containment pen.";
 	dir = 8;
 	name = "xenobiology monitor";
-	network = list("mo19x")
+	network = list("MO19X")
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -2209,7 +2206,7 @@
 /obj/machinery/camera{
 	c_tag = "Xenobiology";
 	dir = 4;
-	network = list("mo19","mo19r")
+	network = list("MO19","MO19R")
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 6;
@@ -2598,11 +2595,11 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/research{
 	density = 0;
 	set_obj_flags = "EMAGGED";
 	icon_state = "open";
+	locked = 1;
 	name = "Xenobiology Lab";
 	opacity = 0;
 	req_access_txt = "201"
@@ -2750,7 +2747,7 @@
 /obj/machinery/camera{
 	c_tag = "Xenobiology Containment East";
 	dir = 8;
-	network = list("mo19x")
+	network = list("MO19X")
 	},
 /turf/open/floor/engine,
 /area/awaymission/moonoutpost19/research)
@@ -3326,7 +3323,7 @@
 /obj/machinery/computer/security{
 	desc = "Used to access the various cameras on the outpost.";
 	dir = 4;
-	network = list("mo19r","mo19")
+	network = list("MO19R","MO19")
 	},
 /turf/open/floor/plasteel/red/side{
 	dir = 8;
@@ -3461,7 +3458,7 @@
 /obj/machinery/camera{
 	c_tag = "Xenobiology Containment South";
 	dir = 1;
-	network = list("mo19x")
+	network = list("MO19X")
 	},
 /turf/open/floor/engine,
 /area/awaymission/moonoutpost19/research)
@@ -3730,11 +3727,11 @@
 /area/awaymission/moonoutpost19/research)
 "hD" = (
 /obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/command{
 	density = 0;
 	set_obj_flags = "EMAGGED";
 	icon_state = "open";
+	locked = 1;
 	name = "Research Director's Office";
 	opacity = 0;
 	req_access_txt = "201";
@@ -3759,7 +3756,7 @@
 /obj/machinery/camera{
 	c_tag = "Research Division";
 	dir = 1;
-	network = list("mo19","mo19r")
+	network = list("MO19","MO19R")
 	},
 /turf/open/floor/plasteel/whitepurple/corner{
 	dir = 8;
@@ -3956,7 +3953,7 @@
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for monitoring the research division and the labs within.";
 	name = "research monitor";
-	network = list("mo19x","mo19r")
+	network = list("MO19X","MO19R")
 	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
@@ -4012,7 +4009,6 @@
 	req_access_txt = "201";
 	req_one_access_txt = "0"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plasteel/white{
 	heat_capacity = 1e+006
 	},
@@ -4078,8 +4074,10 @@
 	pixel_x = 11
 	},
 /obj/structure/mirror{
+	desc = "Oh no, seven years of bad luck!";
 	icon_state = "mirror_broke";
-	pixel_x = 28
+	pixel_x = 28;
+	broken = 1
 	},
 /turf/open/floor/plasteel/freezer{
 	heat_capacity = 1e+006
@@ -4304,7 +4302,7 @@
 /obj/machinery/camera{
 	c_tag = "Research Director's Office";
 	dir = 1;
-	network = list("mo19","mo19r")
+	network = list("MO19","MO19R")
 	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
@@ -5161,7 +5159,7 @@
 /obj/machinery/camera{
 	c_tag = "Arrivals North";
 	dir = 1;
-	network = list("mo19")
+	network = list("MO19")
 	},
 /turf/open/floor/plasteel/arrival{
 	dir = 2;
@@ -5445,7 +5443,7 @@
 /obj/machinery/camera{
 	c_tag = "Kitchen";
 	dir = 8;
-	network = list("mo19")
+	network = list("MO19")
 	},
 /turf/open/floor/plasteel/cafeteria{
 	dir = 5
@@ -5591,7 +5589,7 @@
 /obj/machinery/camera{
 	c_tag = "Bar";
 	dir = 8;
-	network = list("mo19")
+	network = list("MO19")
 	},
 /turf/open/floor/plasteel/bar{
 	heat_capacity = 1e+006
@@ -6089,7 +6087,7 @@
 "mJ" = (
 /obj/structure/sign/warning/vacuum{
 	desc = "A beacon used by a teleporter.";
-	icon = 'icons/obj/device.dmi';
+	icon = 'icons/obj/radio.dmi';
 	icon_state = "beacon";
 	name = "tracking beacon"
 	},
@@ -6105,18 +6103,12 @@
 "mL" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/arrivals)
 "mM" = (
 /obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
 /turf/open/floor/plating{
 	heat_capacity = 1e+006
 	},
@@ -6134,7 +6126,7 @@
 /obj/machinery/camera{
 	c_tag = "Arrivals South";
 	dir = 8;
-	network = list("mo19")
+	network = list("MO19")
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -6377,7 +6369,7 @@
 /obj/machinery/camera{
 	c_tag = "Dormitories";
 	dir = 4;
-	network = list("mo19")
+	network = list("MO19")
 	},
 /turf/open/floor/plasteel{
 	initial_gas_mix = "co2=48.7;n2=13.2;o2=32.4;TEMP=251";
@@ -6622,9 +6614,10 @@
 	},
 /area/awaymission/moonoutpost19/arrivals)
 "nO" = (
-/obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock{
+	icon_state = "closed";
 	id_tag = "awaydorm3";
+	locked = 1;
 	name = "Dorm 3"
 	},
 /turf/open/floor/plasteel{
@@ -6818,45 +6811,6 @@
 /obj/effect/mapping_helpers/planet_z,
 /turf/open/space,
 /area/space)
-"vV" = (
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/turf/open/floor/plating{
-	heat_capacity = 1e+006
-	},
-/area/awaymission/moonoutpost19/arrivals)
-"zZ" = (
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/turf/open/floor/plating{
-	heat_capacity = 1e+006
-	},
-/area/awaymission/moonoutpost19/arrivals)
-"Mm" = (
-/obj/machinery/door/airlock/medical{
-	id_tag = "";
-	name = "Research Division";
-	req_access_txt = "201";
-	req_one_access_txt = "0"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white{
-	heat_capacity = 1e+006
-	},
-/area/awaymission/moonoutpost19/research)
-"Wf" = (
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/turf/open/floor/plating{
-	heat_capacity = 1e+006
-	},
-/area/awaymission/moonoutpost19/arrivals)
 
 (1,1,1) = {"
 aa
@@ -36312,10 +36266,10 @@ jG
 lF
 lF
 no
-zZ
+mM
 nA
 nK
-Wf
+mM
 dM
 ba
 ba
@@ -36556,7 +36510,7 @@ hN
 ie
 hj
 hj
-Mm
+ie
 jy
 jU
 jE
@@ -36569,10 +36523,10 @@ mN
 mg
 mg
 mg
-zZ
+mM
 lM
 lN
-Wf
+mM
 dM
 ba
 ba
@@ -41707,7 +41661,7 @@ hI
 hJ
 hI
 hI
-vV
+mM
 hI
 hI
 nJ

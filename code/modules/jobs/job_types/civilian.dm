@@ -11,7 +11,6 @@ Clown
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
-	antag_rep = 4
 
 	outfit = /datum/outfit/job/clown
 
@@ -73,7 +72,6 @@ Mime
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
-	antag_rep = 4
 
 	outfit = /datum/outfit/job/mime
 
@@ -124,7 +122,6 @@ Curator
 	spawn_positions = 1
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
-	antag_rep = 4
 
 	outfit = /datum/outfit/job/curator
 
@@ -155,7 +152,7 @@ Curator
 		return
 
 	H.grant_all_languages(omnitongue=TRUE)
-	H.gain_trauma(/datum/brain_trauma/mild/phobia, TRAUMA_RESILIENCE_SURGERY, "snakes") //why does it have to be snakes...
+	H.gain_trauma(/datum/brain_trauma/mild/phobia, FALSE, "snakes") //why does it have to be snakes...
 /*
 Lawyer
 */
@@ -170,7 +167,6 @@ Lawyer
 	supervisors = "the head of personnel"
 	selection_color = "#dddddd"
 	var/lawyers = 0 //Counts lawyer amount
-	antag_rep = 8
 
 	outfit = /datum/outfit/job/lawyer
 

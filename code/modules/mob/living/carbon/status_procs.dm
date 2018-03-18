@@ -42,17 +42,12 @@
 
 /mob/living/carbon/adjust_drugginess(amount)
 	druggy = max(druggy+amount, 0)
-	GET_COMPONENT_FROM(mood, /datum/component/mood, src)
 	if(druggy)
 		overlay_fullscreen("high", /obj/screen/fullscreen/high)
 		throw_alert("high", /obj/screen/alert/high)
-		if(mood)
-			mood.add_event("high", /datum/mood_event/drugs/high)
 	else
 		clear_fullscreen("high")
 		clear_alert("high")
-		if(mood)
-			mood.clear_event("high")
 
 /mob/living/carbon/set_drugginess(amount)
 	druggy = max(amount, 0)
@@ -78,27 +73,28 @@
 	if(B)
 		. = B.traumas
 
-/mob/living/carbon/proc/has_trauma_type(brain_trauma_type, resilience)
+/mob/living/carbon/proc/has_trauma_type(brain_trauma_type, consider_permanent = FALSE)
 	var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN)
 	if(B)
-		. = B.has_trauma_type(brain_trauma_type, resilience)
+		. = B.has_trauma_type(brain_trauma_type, consider_permanent)
 
-/mob/living/carbon/proc/gain_trauma(datum/brain_trauma/trauma, resilience, list/arguments)
+/mob/living/carbon/proc/gain_trauma(datum/brain_trauma/trauma, permanent = FALSE, list/arguments)
 	var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN)
 	if(B)
-		. = B.gain_trauma(trauma, resilience, arguments)
+		. = B.gain_trauma(trauma, permanent, arguments)
 
-/mob/living/carbon/proc/gain_trauma_type(brain_trauma_type = /datum/brain_trauma, resilience)
+/mob/living/carbon/proc/gain_trauma_type(brain_trauma_type = /datum/brain_trauma, permanent = FALSE)
 	var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN)
 	if(B)
-		. = B.gain_trauma_type(brain_trauma_type, resilience)
+		. = B.gain_trauma_type(brain_trauma_type, permanent)
 
-/mob/living/carbon/proc/cure_trauma_type(resilience)
+/mob/living/carbon/proc/cure_trauma_type(brain_trauma_type, cure_permanent = FALSE)
 	var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN)
 	if(B)
-		. = B.cure_trauma_type(resilience)
+		. = B.cure_trauma_type(brain_trauma_type, cure_permanent)
 
-/mob/living/carbon/proc/cure_all_traumas(resilience)
+/mob/living/carbon/proc/cure_all_traumas(cure_permanent = FALSE)
 	var/obj/item/organ/brain/B = getorganslot(ORGAN_SLOT_BRAIN)
 	if(B)
-		. = B.cure_all_traumas(resilience)
+		. = B.cure_all_traumas(cure_permanent)
+

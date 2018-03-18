@@ -80,9 +80,6 @@
 	port_direction = 8;
 	width = 7
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/mining)
 "j" = (
@@ -111,9 +108,6 @@
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/mining)

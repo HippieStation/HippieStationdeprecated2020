@@ -22,9 +22,9 @@
 
 /datum/reagent/medicine/leporazine/on_mob_life(mob/living/M)
 	if(M.bodytemperature > BODYTEMP_NORMAL)
-		M.adjust_bodytemperature(-40 * TEMPERATURE_DAMAGE_COEFFICIENT, BODYTEMP_NORMAL)
+		M.bodytemperature = max(BODYTEMP_NORMAL, M.bodytemperature - (40 * TEMPERATURE_DAMAGE_COEFFICIENT))
 	else if(M.bodytemperature < (BODYTEMP_NORMAL + 1))
-		M.adjust_bodytemperature(40 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
+		M.bodytemperature = min(BODYTEMP_NORMAL, M.bodytemperature + (40 * TEMPERATURE_DAMAGE_COEFFICIENT))
 	..()
 
 /datum/reagent/medicine/adminordrazine //An OP chemical for admins
@@ -59,10 +59,10 @@
 	M.confused = 0
 	M.SetSleeping(0, 0)
 	M.jitteriness = 0
-	M.cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
-	for(var/thing in M.diseases)
+	M.cure_all_traumas(TRUE, TRUE)
+	for(var/thing in M.viruses)
 		var/datum/disease/D = thing
-		if(D.severity == DISEASE_SEVERITY_POSITIVE)
+		if(D.severity == VIRUS_SEVERITY_POSITIVE)
 			continue
 		D.cure()
 	..()
@@ -832,8 +832,10 @@
 	M.adjustBrainLoss(-2*REM)
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
-		if(prob(10))
-			C.cure_trauma_type(TRAUMA_RESILIENCE_BASIC)
+		if(prob(30) && C.has_trauma_type(BRAIN_TRAUMA_SPECIAL))
+			C.cure_trauma_type(BRAIN_TRAUMA_SPECIAL)
+		if(prob(10) && C.has_trauma_type(BRAIN_TRAUMA_MILD))
+			C.cure_trauma_type(BRAIN_TRAUMA_MILD)
 	..()
 
 /datum/reagent/medicine/mutadone
@@ -1141,14 +1143,14 @@
 	. = 1
 
 //used for changeling's adrenaline power
-/datum/reagent/medicine/changelingadrenaline
-	name = "Changeling Adrenaline"
-	id = "changelingadrenaline"
-	description = "Reduces the duration of unconciousness, knockdown and stuns. Restores stamina, but deals toxin damage when overdosed."
+/datum/reagent/medicine/changelingAdrenaline
+	name = "Adrenaline"
+	id = "changelingAdrenaline"
+	description = "Reduces stun times. Also deals toxin damage at high amounts."
 	color = "#C8A5DC"
 	overdose_threshold = 30
 
-/datum/reagent/medicine/changelingadrenaline/on_mob_life(mob/living/M as mob)
+/datum/reagent/medicine/changelingAdrenaline/on_mob_life(mob/living/M as mob)
 	M.AdjustUnconscious(-20, 0)
 	M.AdjustStun(-20, 0)
 	M.AdjustKnockdown(-20, 0)
@@ -1156,31 +1158,31 @@
 	. = 1
 	..()
 
-/datum/reagent/medicine/changelingadrenaline/overdose_process(mob/living/M as mob)
+/datum/reagent/medicine/changelingAdrenaline/overdose_process(mob/living/M as mob)
 	M.adjustToxLoss(1, 0)
 	. = 1
 	..()
 
-/datum/reagent/medicine/changelinghaste
-	name = "Changeling Haste"
-	id = "changelinghaste"
-	description = "Drastically increases movement speed, but deals toxin damage."
+/datum/reagent/medicine/changelingAdrenaline2
+	name = "Adrenaline"
+	id = "changelingAdrenaline2"
+	description = "Drastically increases movement speed."
 	color = "#C8A5DC"
 	metabolization_rate = 1
 
-/datum/reagent/medicine/changelinghaste/on_mob_add(mob/M)
+/datum/reagent/medicine/changelingAdrenaline2/on_mob_add(mob/M)
 	..()
 	if(isliving(M))
 		var/mob/living/L = M
 		L.add_trait(TRAIT_GOTTAGOREALLYFAST, id)
 
-/datum/reagent/medicine/changelinghaste/on_mob_delete(mob/M)
+/datum/reagent/medicine/changelingAdrenaline2/on_mob_delete(mob/M)
 	if(isliving(M))
 		var/mob/living/L = M
 		L.remove_trait(TRAIT_GOTTAGOREALLYFAST, id)
 	..()
 
-/datum/reagent/medicine/changelinghaste/on_mob_life(mob/living/M as mob)
+/datum/reagent/medicine/changelingAdrenaline2/on_mob_life(mob/living/M as mob)
 	M.adjustToxLoss(2, 0)
 	. = 1
 	..()
@@ -1192,7 +1194,6 @@
 	id = "corazone"
 	description = "A medication used to treat pain, fever, and inflammation, along with heart attacks."
 	color = "#F5F5F5"
-	self_consuming = TRUE
 
 /datum/reagent/medicine/muscle_stimulant
 	name = "Muscle Stimulant"
@@ -1273,4 +1274,4 @@
 			M.adjustStaminaLoss(1.5*REM, 0)
 	..()
 	. = 1
-
+  

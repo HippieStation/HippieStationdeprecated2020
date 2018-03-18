@@ -62,9 +62,9 @@
 
 	//keep viruses?
 	if (tr_flags & TR_KEEPVIRUS)
-		O.diseases = diseases
-		diseases = list()
-		for(var/thing in O.diseases)
+		O.viruses = viruses
+		viruses = list()
+		for(var/thing in O.viruses)
 			var/datum/disease/D = thing
 			D.affected_mob = O
 
@@ -78,6 +78,9 @@
 		O.setBrainLoss(getBrainLoss(), 0)
 		O.updatehealth()
 		O.radiation = radiation
+		for(var/T in get_traumas())
+			var/datum/brain_trauma/BT = T
+			O.gain_trauma(BT.type, BT.permanent)
 
 	//re-add implants to new mob
 	if (tr_flags & TR_KEEPIMPLANTS)
@@ -218,9 +221,9 @@
 
 	//keep viruses?
 	if (tr_flags & TR_KEEPVIRUS)
-		O.diseases = diseases
-		diseases = list()
-		for(var/thing in O.diseases)
+		O.viruses = viruses
+		viruses = list()
+		for(var/thing in O.viruses)
 			var/datum/disease/D = thing
 			D.affected_mob = O
 		O.med_hud_set_status()
@@ -235,6 +238,9 @@
 		O.setBrainLoss(getBrainLoss(), 0)
 		O.updatehealth()
 		O.radiation = radiation
+		for(var/T in get_traumas())
+			var/datum/brain_trauma/BT = T
+			O.gain_trauma(BT.type, BT.permanent)
 
 	//re-add implants to new mob
 	if (tr_flags & TR_KEEPIMPLANTS)

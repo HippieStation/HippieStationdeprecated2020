@@ -74,4 +74,4 @@
 				return FIELD_EDGE
 		if(O.parent == F)
 			return FIELD_TURF
-	return FALSE
+	return NO_FIELD

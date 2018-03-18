@@ -257,23 +257,26 @@
 		if("Release")
 
 			if(check_access(inserted_id) || allowed(usr)) //Check the ID inside, otherwise check the user
-				var/mat_id = params["id"]
-				if(!materials.materials[mat_id])
-					return
-				var/datum/material/mat = materials.materials[mat_id]
-				var/stored_amount = mat.amount / MINERAL_MATERIAL_AMOUNT
-
-				if(!stored_amount)
-					return
-
-				var/desired = 0
-				if (params["sheets"])
-					desired = text2num(params["sheets"])
+				if(params["id"] == "all")
+					materials.retrieve_all(get_step(src, output_dir))
 				else
-					desired = input("How many sheets?", "How many sheets would you like to smelt?", 1) as null|num
+					var/mat_id = params["id"]
+					if(!materials.materials[mat_id])
+						return
+					var/datum/material/mat = materials.materials[mat_id]
+					var/stored_amount = mat.amount / MINERAL_MATERIAL_AMOUNT
 
-				var/sheets_to_remove = round(min(desired,50,stored_amount))
-				materials.retrieve_sheets(sheets_to_remove, mat_id, get_step(src, output_dir))
+					if(!stored_amount)
+						return
+
+					var/desired = 0
+					if (params["sheets"])
+						desired = text2num(params["sheets"])
+					else
+						desired = input("How many sheets?", "How many sheets would you like to smelt?", 1) as null|num
+
+					var/sheets_to_remove = round(min(desired,50,stored_amount))
+					materials.retrieve_sheets(sheets_to_remove, mat_id, get_step(src, output_dir))
 
 			else
 				to_chat(usr, "<span class='warning'>Required access not found.</span>")

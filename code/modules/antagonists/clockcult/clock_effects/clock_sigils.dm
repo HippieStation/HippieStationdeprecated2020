@@ -11,8 +11,6 @@
 	var/stat_affected = CONSCIOUS
 	var/sigil_name = "Sigil"
 	var/resist_string = "glows blinding white" //string for when a null rod blocks its effects, "glows [resist_string]"
-	var/check_antimagic = TRUE
-	var/check_holy = FALSE
 
 /obj/effect/clockwork/sigil/attackby(obj/item/I, mob/living/user, params)
 	if(I.force)
@@ -45,11 +43,10 @@
 		var/mob/living/L = AM
 		if(L.stat <= stat_affected)
 			if((!is_servant_of_ratvar(L) || (affects_servants && is_servant_of_ratvar(L))) && (L.mind || L.has_status_effect(STATUS_EFFECT_SIGILMARK)) && !isdrone(L))
-				var/atom/I = L.anti_magic_check(check_antimagic, check_holy)
+				var/obj/item/I = L.null_rod_check()
 				if(I)
-					if(isitem(I))
-						L.visible_message("<span class='warning'>[L]'s [I.name] [resist_string], protecting them from [src]'s effects!</span>", \
-						"<span class='userdanger'>Your [I.name] [resist_string], protecting you!</span>")
+					L.visible_message("<span class='warning'>[L]'s [I.name] [resist_string], protecting them from [src]'s effects!</span>", \
+					"<span class='userdanger'>Your [I.name] [resist_string], protecting you!</span>")
 					return
 				sigil_effects(L)
 
@@ -242,17 +239,14 @@
 	return TRUE
 
 /obj/effect/clockwork/sigil/transmission/update_icon()
-	var/power_charge = get_clockwork_power()
 	if(GLOB.ratvar_awakens)
 		alpha = 255
-	else
-		alpha = min(CEILING(initial(alpha) + power_charge * 0.02, 35), 255)
-	var/r = alpha * 0.02
-	var/p = max(alpha * 0.01, 0.1)
-	if(!power_charge && light_range != 0)
+	var/power_charge = get_clockwork_power()
+	alpha = min(initial(alpha) + power_charge * 0.02, 255)
+	if(!power_charge)
 		set_light(0)
-	else if(r != light_range || p != light_power)
-		set_light(r, p)
+	else
+		set_light(max(alpha * 0.02, 1.4), max(alpha * 0.01, 0.1))
 
 //Vitality Matrix: Drains health from non-servants to heal or even revive servants.
 /obj/effect/clockwork/sigil/vitality

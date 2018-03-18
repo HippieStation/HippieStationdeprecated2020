@@ -1,7 +1,7 @@
 /datum/round_event_control/electrical_storm
 	name = "Electrical Storm"
 	typepath = /datum/round_event/electrical_storm
-	earliest_start = 10 MINUTES
+	earliest_start = 6000
 	min_players = 5
 	weight = 40
 	alertadmins = 0

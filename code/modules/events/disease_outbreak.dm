@@ -39,10 +39,10 @@
 			continue
 		if(H.stat == DEAD)
 			continue
-		if(H.has_trait(TRAIT_VIRUSIMMUNE)) //Don't pick someone who's virus immune, only for it to not do anything.
+		if(VIRUSIMMUNE in H.dna.species.species_traits) //Don't pick someone who's virus immune, only for it to not do anything.
 			continue
 		var/foundAlready = FALSE	// don't infect someone that already has a disease
-		for(var/thing in H.diseases)
+		for(var/thing in H.viruses)
 			foundAlready = TRUE
 			break
 		if(foundAlready)
@@ -63,7 +63,7 @@
 		else
 			D = make_virus(max_severity, max_severity)
 		D.carrier = TRUE
-		H.ForceContractDisease(D, FALSE, TRUE)
+		H.AddDisease(D)
 
 		if(advanced_virus)
 			var/datum/disease/advance/A = D
@@ -75,9 +75,10 @@
 		break
 
 /datum/round_event/disease_outbreak/proc/make_virus(max_symptoms, max_level)
-	if(max_symptoms > VIRUS_SYMPTOM_LIMIT)
-		max_symptoms = VIRUS_SYMPTOM_LIMIT
-	var/datum/disease/advance/A = new /datum/disease/advance()
+	if(max_symptoms > SYMPTOM_LIMIT)
+		max_symptoms = SYMPTOM_LIMIT
+	var/datum/disease/advance/A = new(FALSE, null)
+	A.symptoms = list()
 	var/list/datum/symptom/possible_symptoms = list()
 	for(var/symptom in subtypesof(/datum/symptom))
 		var/datum/symptom/S = symptom

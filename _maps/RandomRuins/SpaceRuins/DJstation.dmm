@@ -341,7 +341,6 @@
 	req_access = null;
 	req_access_txt = "0"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/ruin/space/djstation)
 "bj" = (
@@ -351,17 +350,6 @@
 /obj/structure/disposaloutlet,
 /turf/open/floor/plating/airless,
 /area/space/nearstation)
-"Co" = (
-/obj/machinery/door/airlock/external{
-	name = "Ruskie DJ Station";
-	req_access = null;
-	req_access_txt = "0"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/space/djstation)
 
 (1,1,1) = {"
 aa
@@ -636,7 +624,7 @@ bd
 aw
 bi
 ah
-Co
+bi
 "}
 (12,1,1) = {"
 ab

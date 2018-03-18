@@ -10,10 +10,10 @@
 /area/lavaland/surface/outdoors)
 "ad" = (
 /obj/machinery/door/firedoor,
-/obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/virology{
 	frequency = 1449;
 	id_tag = "lavaland_syndie_virology_interior";
+	locked = 1;
 	name = "Virology Lab Interior Airlock";
 	req_access_txt = "150"
 	},
@@ -28,9 +28,6 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/ruin/unpowered/syndicate_lava_base/virology)
@@ -54,25 +51,6 @@
 	dir = 8
 	},
 /area/ruin/unpowered/syndicate_lava_base/main)
-"ah" = (
-/obj/structure/table/wood,
-/obj/machinery/chem_dispenser/drinks/beer{
-	dir = 1
-	},
-/obj/structure/sign/barsign{
-	pixel_y = -32;
-	req_access = null;
-	req_access_txt = "0"
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/syndicate_lava_base/bar)
-"ai" = (
-/obj/structure/table/wood,
-/obj/machinery/chem_dispenser/drinks{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/ruin/unpowered/syndicate_lava_base/bar)
 "ap" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -566,7 +544,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /mob/living/carbon/monkey{
-	faction = list("neutral","Syndicate")
+	faction = list("neutral","syndicate")
 	},
 /turf/open/floor/plasteel/vault{
 	dir = 8
@@ -910,7 +888,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /mob/living/carbon/monkey{
-	faction = list("neutral","Syndicate")
+	faction = list("neutral","syndicate")
 	},
 /turf/open/floor/plasteel/vault{
 	dir = 8
@@ -1608,9 +1586,6 @@
 	req_access_txt = "150"
 	},
 /obj/structure/fans/tiny,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/cargo)
 "gf" = (
@@ -1633,9 +1608,6 @@
 /obj/structure/fans/tiny,
 /obj/machinery/door/airlock/external{
 	req_access_txt = "150"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
 	},
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/cargo)
@@ -1828,9 +1800,6 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/main)
@@ -2233,7 +2202,7 @@
 "hp" = (
 /obj/effect/decal/cleanable/dirt,
 /mob/living/carbon/monkey{
-	faction = list("neutral","Syndicate")
+	faction = list("neutral","syndicate")
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 9
@@ -2254,7 +2223,7 @@
 /area/ruin/unpowered/syndicate_lava_base/virology)
 "hr" = (
 /mob/living/carbon/monkey{
-	faction = list("neutral","Syndicate")
+	faction = list("neutral","syndicate")
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 5
@@ -2318,7 +2287,6 @@
 	req_access_txt = "150"
 	},
 /obj/structure/fans/tiny,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/main)
 "hx" = (
@@ -2381,7 +2349,7 @@
 /area/ruin/unpowered/syndicate_lava_base/cargo)
 "hE" = (
 /mob/living/carbon/monkey{
-	faction = list("neutral","Syndicate")
+	faction = list("neutral","syndicate")
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 10
@@ -2401,7 +2369,7 @@
 "hG" = (
 /obj/effect/decal/cleanable/dirt,
 /mob/living/carbon/monkey{
-	faction = list("neutral","Syndicate")
+	faction = list("neutral","syndicate")
 	},
 /turf/open/floor/plasteel/white/side{
 	dir = 6
@@ -2548,9 +2516,6 @@
 /obj/machinery/door/airlock/external{
 	req_access_txt = "150"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/main)
 "hY" = (
@@ -2559,9 +2524,6 @@
 	req_access_txt = "150"
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/main)
 "hZ" = (
@@ -2895,9 +2857,9 @@
 /turf/open/floor/plasteel,
 /area/ruin/unpowered/syndicate_lava_base/main)
 "iI" = (
-/obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/vault{
 	id_tag = "syndie_lavaland_vault";
+	locked = 1;
 	req_access_txt = "150"
 	},
 /turf/open/floor/plasteel/vault{
@@ -4601,7 +4563,6 @@
 /obj/machinery/door/airlock/external{
 	req_access_txt = "150"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/arrivals)
 "lU" = (
@@ -5046,9 +5007,6 @@
 	req_access_txt = "150"
 	},
 /obj/structure/fans/tiny,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
 /turf/open/floor/plating,
 /area/ruin/unpowered/syndicate_lava_base/arrivals)
 "mT" = (
@@ -5059,6 +5017,21 @@
 /obj/structure/window/plastitanium,
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
+/area/ruin/unpowered/syndicate_lava_base/bar)
+"mV" = (
+/obj/structure/table/wood,
+/obj/machinery/chem_dispenser/drinks/beer,
+/obj/structure/sign/barsign{
+	pixel_y = -32;
+	req_access = null;
+	req_access_txt = "0"
+	},
+/turf/open/floor/wood,
+/area/ruin/unpowered/syndicate_lava_base/bar)
+"mW" = (
+/obj/structure/table/wood,
+/obj/machinery/chem_dispenser/drinks,
+/turf/open/floor/wood,
 /area/ruin/unpowered/syndicate_lava_base/bar)
 "mX" = (
 /obj/structure/rack{
@@ -5449,16 +5422,15 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/glass{
 	autoclose = 0;
 	frequency = 1449;
 	heat_proof = 1;
 	id_tag = "syndie_lavaland_incinerator_interior";
+	locked = 1;
 	name = "Turbine Interior Airlock";
 	req_access_txt = "150"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/engine,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
 "nE" = (
@@ -5928,17 +5900,14 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/glass{
 	autoclose = 0;
 	frequency = 1449;
 	heat_proof = 1;
 	id_tag = "syndie_lavaland_incinerator_exterior";
+	locked = 1;
 	name = "Turbine Exterior Airlock";
 	req_access_txt = "150"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
 	},
 /turf/open/floor/engine,
 /area/ruin/unpowered/syndicate_lava_base/engineering)
@@ -6064,24 +6033,6 @@
 /obj/structure/sign/departments/chemistry,
 /turf/closed/wall/mineral/plastitanium/nodiagonal,
 /area/ruin/unpowered/syndicate_lava_base/testlab)
-"EZ" = (
-/obj/machinery/door/airlock/external{
-	req_access_txt = "150"
-	},
-/obj/structure/fans/tiny,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/turf/open/floor/plating,
-/area/ruin/unpowered/syndicate_lava_base/arrivals)
-"St" = (
-/obj/structure/fans/tiny,
-/obj/machinery/door/airlock/external{
-	req_access_txt = "150"
-	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/unpowered/syndicate_lava_base/arrivals)
 
 (1,1,1) = {"
 aa
@@ -6873,10 +6824,10 @@ mt
 mU
 np
 nP
-EZ
+mS
 oI
 oD
-St
+lT
 ab
 ab
 ab
@@ -7058,7 +7009,7 @@ li
 lA
 lX
 mw
-ah
+mV
 jy
 nu
 oo
@@ -7105,7 +7056,7 @@ lj
 lB
 lY
 lA
-ai
+mW
 jP
 nT
 op

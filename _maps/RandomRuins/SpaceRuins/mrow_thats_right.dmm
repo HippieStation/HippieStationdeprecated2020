@@ -104,9 +104,6 @@
 /area/ruin/space/has_grav/powered/cat_man)
 "au" = (
 /obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/powered/cat_man)
 "av" = (
@@ -859,25 +856,6 @@
 /obj/item/organ/tail/cat,
 /turf/open/floor/plasteel/freezer,
 /area/ruin/space/has_grav/powered/cat_man)
-"Bl" = (
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/powered/cat_man)
-"RT" = (
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/powered/cat_man)
-"Sl" = (
-/obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/powered/cat_man)
 
 (1,1,1) = {"
 aa
@@ -1112,7 +1090,7 @@ ad
 ad
 ad
 ad
-Sl
+au
 ad
 ad
 ad
@@ -1155,9 +1133,9 @@ ad
 bK
 aI
 aG
-RT
+au
 ah
-Bl
+au
 ac
 ac
 ac

@@ -224,7 +224,24 @@
 				bot_patrol()
 
 	if(target)
-		if(loc == target || loc == get_turf(target))
+		if(path.len == 0)
+			if(!isturf(target))
+				var/turf/TL = get_turf(target)
+				path = get_path_to(src, TL, /turf/proc/Distance_cardinal, 0, 30, id=access_card,simulated_only = 0)
+			else
+				path = get_path_to(src, target, /turf/proc/Distance_cardinal, 0, 30, id=access_card,simulated_only = 0)
+
+			if(!bot_move(target))
+				add_to_ignore(target)
+				target = null
+				mode = BOT_IDLE
+				return
+		else if( !bot_move(target) )
+			target = null
+			mode = BOT_IDLE
+			return
+
+		if(loc == target || loc == target.loc)
 			if(check_bot(target))	//Target is not defined at the parent
 				shuffle = TRUE
 				if(prob(50))	//50% chance to still try to repair so we dont end up with 2 floorbots failing to fix the last breach
@@ -245,24 +262,6 @@
 					target = null
 			path = list()
 			return
-		if(path.len == 0)
-			if(!isturf(target))
-				var/turf/TL = get_turf(target)
-				path = get_path_to(src, TL, /turf/proc/Distance_cardinal, 0, 30, id=access_card,simulated_only = 0)
-			else
-				path = get_path_to(src, target, /turf/proc/Distance_cardinal, 0, 30, id=access_card,simulated_only = 0)
-
-			if(!bot_move(target))
-				add_to_ignore(target)
-				target = null
-				mode = BOT_IDLE
-				return
-		else if( !bot_move(target) )
-			target = null
-			mode = BOT_IDLE
-			return
-
-
 
 	oldloc = loc
 

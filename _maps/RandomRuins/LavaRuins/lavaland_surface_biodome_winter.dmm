@@ -311,9 +311,6 @@
 "qt" = (
 /obj/machinery/door/airlock/silver,
 /obj/structure/fans/tiny,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
 /turf/open/floor/pod/dark,
 /area/ruin/powered/snow_biodome)
 "tb" = (
@@ -385,9 +382,6 @@
 "PD" = (
 /obj/machinery/door/airlock/hatch,
 /obj/structure/fans/tiny,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
 /turf/open/floor/pod/dark,
 /area/ruin/powered/snow_biodome)
 "PK" = (
