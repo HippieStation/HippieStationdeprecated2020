@@ -162,14 +162,20 @@
 	return FALSE
 
 /mob/proc/can_put_in_hand(I, hand_index)
+	if(hand_index > held_items.len)
+		return FALSE
 	if(!put_in_hand_check(I))
 		return FALSE
 	if(!has_hand_for_held_index(hand_index))
 		return FALSE
 	return !held_items[hand_index]
 
-/mob/proc/put_in_hand(obj/item/I, hand_index)
-	if(can_put_in_hand(I, hand_index))
+/mob/proc/put_in_hand(obj/item/I, hand_index, forced = FALSE)
+	if(forced || can_put_in_hand(I, hand_index))
+		if(hand_index == null)
+			return FALSE
+		if(get_item_for_held_index(hand_index) != null)
+			dropItemToGround(get_item_for_held_index(hand_index), force = TRUE)
 		I.forceMove(src)
 		held_items[hand_index] = I
 		I.layer = ABOVE_HUD_LAYER
@@ -182,7 +188,6 @@
 		I.pixel_y = initial(I.pixel_y)
 		return hand_index || TRUE
 	return FALSE
-
 
 //Puts the item into the first available left hand if possible and calls all necessary triggers/updates. returns 1 on success.
 /mob/proc/put_in_l_hand(obj/item/I)
@@ -327,10 +332,10 @@
 
 //Outdated but still in use apparently. This should at least be a human proc.
 //Daily reminder to murder this - Remie.
-/mob/living/proc/get_equipped_items()
+/mob/living/proc/get_equipped_items(include_pockets = FALSE)
 	return
 
-/mob/living/carbon/get_equipped_items()
+/mob/living/carbon/get_equipped_items(include_pockets = FALSE)
 	var/list/items = list()
 	if(back)
 		items += back
@@ -342,7 +347,7 @@
 		items += wear_neck
 	return items
 
-/mob/living/carbon/human/get_equipped_items()
+/mob/living/carbon/human/get_equipped_items(include_pockets = FALSE)
 	var/list/items = ..()
 	if(belt)
 		items += belt
@@ -360,6 +365,13 @@
 		items += wear_suit
 	if(w_uniform)
 		items += w_uniform
+	if(include_pockets)
+		if(l_store)
+			items += l_store
+		if(r_store)
+			items += r_store
+		if(s_store)
+			items += s_store
 	return items
 
 /mob/living/proc/unequip_everything()
