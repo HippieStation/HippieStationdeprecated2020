@@ -114,6 +114,14 @@
 					blood_overlay = "guillotine_" + blood_overlay + "_overlay"
 					cut_overlays()
 					add_overlay(mutable_appearance(icon, blood_overlay))
+
+					// The crowd is pleased
+					var/delay_offset = 0
+					for(var/mob/M in viewers(src, 7))
+						var/mob/living/carbon/human/C = M
+						if (ishuman(M))
+							addtimer(CALLBACK(C, /mob/.proc/emote, "clap"), delay_offset * 0.3)
+							delay_offset++
 				else
 					H.apply_damage(15 * blade_sharpness, BRUTE, head)
 					H.emote("scream")
