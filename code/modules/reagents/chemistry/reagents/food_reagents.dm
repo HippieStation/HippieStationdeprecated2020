@@ -184,27 +184,25 @@
 	taste_mult = 1.5
 
 /datum/reagent/consumable/capsaicin/on_mob_life(mob/living/M)
-	var/heating = 0
 	switch(current_cycle)
 		if(1 to 15)
-			heating = 5 * TEMPERATURE_DAMAGE_COEFFICIENT
+			M.bodytemperature += 5 * TEMPERATURE_DAMAGE_COEFFICIENT
 			if(holder.has_reagent("cryostylane"))
 				holder.remove_reagent("cryostylane", 5)
 			if(isslime(M))
-				heating = rand(5,20)
+				M.bodytemperature += rand(5,20)
 		if(15 to 25)
-			heating = 10 * TEMPERATURE_DAMAGE_COEFFICIENT
+			M.bodytemperature += 10 * TEMPERATURE_DAMAGE_COEFFICIENT
 			if(isslime(M))
-				heating = rand(10,20)
+				M.bodytemperature += rand(10,20)
 		if(25 to 35)
-			heating = 15 * TEMPERATURE_DAMAGE_COEFFICIENT
+			M.bodytemperature += 15 * TEMPERATURE_DAMAGE_COEFFICIENT
 			if(isslime(M))
-				heating = rand(15,20)
+				M.bodytemperature += rand(15,20)
 		if(35 to INFINITY)
-			heating = 20 * TEMPERATURE_DAMAGE_COEFFICIENT
+			M.bodytemperature += 20 * TEMPERATURE_DAMAGE_COEFFICIENT
 			if(isslime(M))
-				heating = rand(20,25)
-	M.adjust_bodytemperature(heating)
+				M.bodytemperature += rand(20,25)
 	..()
 
 /datum/reagent/consumable/frostoil
@@ -215,31 +213,31 @@
 	taste_description = "mint"
 
 /datum/reagent/consumable/frostoil/on_mob_life(mob/living/M)
-	var/cooling = 0
-	switch(current_cycle)
-		if(1 to 15)
-			cooling = -10 * TEMPERATURE_DAMAGE_COEFFICIENT
-			if(holder.has_reagent("capsaicin"))
-				holder.remove_reagent("capsaicin", 5)
-			if(isslime(M))
-				cooling = -rand(5,20)
-		if(15 to 25)
-			cooling = -20 * TEMPERATURE_DAMAGE_COEFFICIENT
-			if(isslime(M))
-				cooling = -rand(10,20)
-		if(25 to 35)
-			cooling = -30 * TEMPERATURE_DAMAGE_COEFFICIENT
-			if(prob(1))
-				M.emote("shiver")
-			if(isslime(M))
-				cooling = -rand(15,20)
-		if(35 to INFINITY)
-			cooling = -40 * TEMPERATURE_DAMAGE_COEFFICIENT
-			if(prob(5))
-				M.emote("shiver")
-			if(isslime(M))
-				cooling = -rand(20,25)
-	M.adjust_bodytemperature(cooling, 50)
+	if(M.bodytemperature > 50)
+		switch(current_cycle)
+			if(1 to 15)
+				M.bodytemperature -= 10 * TEMPERATURE_DAMAGE_COEFFICIENT
+				if(holder.has_reagent("capsaicin"))
+					holder.remove_reagent("capsaicin", 5)
+				if(isslime(M))
+					M.bodytemperature -= rand(5,20)
+			if(15 to 25)
+				M.bodytemperature -= 20 * TEMPERATURE_DAMAGE_COEFFICIENT
+				if(isslime(M))
+					M.bodytemperature -= rand(10,20)
+			if(25 to 35)
+				M.bodytemperature -= 30 * TEMPERATURE_DAMAGE_COEFFICIENT
+				if(prob(1))
+					M.emote("shiver")
+				if(isslime(M))
+					M.bodytemperature -= rand(15,20)
+			if(35 to INFINITY)
+				M.bodytemperature -= 40 * TEMPERATURE_DAMAGE_COEFFICIENT
+				if(prob(5))
+					M.emote("shiver")
+				if(isslime(M))
+					M.bodytemperature -= rand(20,25)
+		M.bodytemperature = max(50, M.bodytemperature)
 	..()
 
 /datum/reagent/consumable/frostoil/reaction_turf(turf/T, reac_volume)
@@ -375,10 +373,11 @@
 	glass_desc = "Tasty."
 
 /datum/reagent/consumable/hot_coco/on_mob_life(mob/living/M)
-	M.adjust_bodytemperature(5 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
+	if (M.bodytemperature < BODYTEMP_NORMAL)//310.15 is the normal bodytemp.
+		M.bodytemperature = min(BODYTEMP_NORMAL, M.bodytemperature + (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
 	..()
 
-/datum/reagent/drug/mushroomhallucinogen
+/datum/reagent/mushroomhallucinogen
 	name = "Mushroom Hallucinogen"
 	id = "mushroomhallucinogen"
 	description = "A strong hallucinogenic drug derived from certain species of mushroom."
@@ -466,7 +465,8 @@
 	taste_description = "wet and cheap noodles"
 
 /datum/reagent/consumable/hot_ramen/on_mob_life(mob/living/M)
-	M.adjust_bodytemperature(10 * TEMPERATURE_DAMAGE_COEFFICIENT, 0, BODYTEMP_NORMAL)
+	if (M.bodytemperature < BODYTEMP_NORMAL)//310.15 is the normal bodytemp.
+		M.bodytemperature = min(BODYTEMP_NORMAL, M.bodytemperature + (10 * TEMPERATURE_DAMAGE_COEFFICIENT))
 	..()
 
 /datum/reagent/consumable/hell_ramen
@@ -478,7 +478,7 @@
 	taste_description = "wet and cheap noodles on fire"
 
 /datum/reagent/consumable/hell_ramen/on_mob_life(mob/living/M)
-	M.adjust_bodytemperature(10 * TEMPERATURE_DAMAGE_COEFFICIENT)
+	M.bodytemperature += 10 * TEMPERATURE_DAMAGE_COEFFICIENT
 	..()
 
 /datum/reagent/consumable/flour
@@ -666,11 +666,3 @@
 		M.adjustFireLoss(-1*REM, 0)
 		. = TRUE
 	..()
-
-/datum/reagent/consumable/clownstears
-	name = "Clown's Tears"
-	id = "clownstears"
-	description = "The sorrow and melancholy of a thousand bereaved clowns, forever denied their Honkmechs."
-	nutriment_factor = 5 * REAGENTS_METABOLISM
-	color = "#eef442" // rgb: 238, 244, 66
-	taste_description = "mournful honking"

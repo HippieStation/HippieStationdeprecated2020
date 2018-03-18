@@ -32,9 +32,5 @@
 
 /obj/effect/forcefield/wizard/CanPass(atom/movable/mover, turf/target)
 	if(mover == wizard)
-		return TRUE
-	if(ismob(mover))
-		var/mob/M = mover
-		if(M.anti_magic_check())
-			return TRUE
-	return FALSE
+		return 1
+	return 0

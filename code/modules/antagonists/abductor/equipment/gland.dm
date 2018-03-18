@@ -194,12 +194,15 @@
 	to_chat(owner, "<span class='warning'>You feel sick.</span>")
 	var/datum/disease/advance/A = random_virus(pick(2,6),6)
 	A.carrier = TRUE
-	owner.ForceContractDisease(A, FALSE, TRUE)
+	owner.viruses += A
+	A.affected_mob = owner
+	owner.med_hud_set_status()
 
 /obj/item/organ/heart/gland/viral/proc/random_virus(max_symptoms, max_level)
-	if(max_symptoms > VIRUS_SYMPTOM_LIMIT)
-		max_symptoms = VIRUS_SYMPTOM_LIMIT
-	var/datum/disease/advance/A = new /datum/disease/advance()
+	if(max_symptoms > SYMPTOM_LIMIT)
+		max_symptoms = SYMPTOM_LIMIT
+	var/datum/disease/advance/A = new(FALSE, null)
+	A.symptoms = list()
 	var/list/datum/symptom/possible_symptoms = list()
 	for(var/symptom in subtypesof(/datum/symptom))
 		var/datum/symptom/S = symptom
@@ -216,7 +219,7 @@
 	A.Refresh() //just in case someone already made and named the same disease
 	return A
 
-/obj/item/organ/heart/gland/trauma
+/obj/item/organ/heart/gland/trauma //TODO : Replace with something more interesting
 	cooldown_low = 800
 	cooldown_high = 1200
 	uses = 5
@@ -227,12 +230,12 @@
 /obj/item/organ/heart/gland/trauma/activate()
 	to_chat(owner, "<span class='warning'>You feel a spike of pain in your head.</span>")
 	if(prob(33))
-		owner.gain_trauma_type(BRAIN_TRAUMA_SPECIAL, rand(TRAUMA_RESILIENCE_BASIC, TRAUMA_RESILIENCE_LOBOTOMY))
+		owner.gain_trauma_type(BRAIN_TRAUMA_SPECIAL, TRUE)
 	else
 		if(prob(20))
-			owner.gain_trauma_type(BRAIN_TRAUMA_SEVERE, rand(TRAUMA_RESILIENCE_BASIC, TRAUMA_RESILIENCE_LOBOTOMY))
+			owner.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRUE)
 		else
-			owner.gain_trauma_type(BRAIN_TRAUMA_MILD, rand(TRAUMA_RESILIENCE_BASIC, TRAUMA_RESILIENCE_LOBOTOMY))
+			owner.gain_trauma_type(BRAIN_TRAUMA_MILD, TRUE)
 
 /obj/item/organ/heart/gland/spiderman
 	cooldown_low = 450

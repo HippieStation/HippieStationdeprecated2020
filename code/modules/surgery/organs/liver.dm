@@ -20,11 +20,13 @@
 /obj/item/organ/liver/on_life()
 	var/mob/living/carbon/C = owner
 
+	//slowly heal liver damage
+	damage = max(0, damage - 0.1)
+	if(damage > maxHealth)//cap liver damage
+		damage = maxHealth
+
 	if(istype(C))
 		if(!failing)//can't process reagents with a failing liver
-			//slowly heal liver damage
-			damage = max(0, damage - 0.1)
-
 			if(filterToxins)
 				//handle liver toxin filtration
 				var/toxamount
@@ -44,9 +46,6 @@
 
 			if(damage > 10 && prob(damage/3))//the higher the damage the higher the probability
 				to_chat(C, "<span class='notice'>You feel [pick("nauseous", "dull pain in your lower body", "confused")].</span>")
-
-	if(damage > maxHealth)//cap liver damage
-		damage = maxHealth
 
 /obj/item/organ/liver/prepare_eat()
 	var/obj/S = ..()

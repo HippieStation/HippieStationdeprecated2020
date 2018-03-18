@@ -7,7 +7,11 @@
 	anchored = TRUE
 	icon = 'icons/turf/walls/wall.dmi'
 	icon_state = "wall"
-	layer = CLOSED_TURF_LAYER
+	var/mineral = /obj/item/stack/sheet/metal
+	var/mineral_amount = 2
+	var/walltype = /turf/closed/wall
+	var/girder_type = /obj/structure/girder/displaced
+	var/opening = FALSE
 	density = TRUE
 	opacity = 1
 	max_integrity = 100
@@ -24,11 +28,6 @@
 	smooth = SMOOTH_TRUE
 	can_be_unanchored = FALSE
 	CanAtmosPass = ATMOS_PASS_DENSITY
-	var/mineral = /obj/item/stack/sheet/metal
-	var/mineral_amount = 2
-	var/walltype = /turf/closed/wall
-	var/girder_type = /obj/structure/girder/displaced
-	var/opening = FALSE
 
 /obj/structure/falsewall/Initialize()
 	. = ..()

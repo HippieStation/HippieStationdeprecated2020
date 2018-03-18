@@ -32,6 +32,8 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 
 	var/scribe_delay = 40 //how long the rune takes to create
 	var/scribe_damage = 0.1 //how much damage you take doing it
+
+	var/allow_excess_invokers = FALSE //if we allow excess invokers when being invoked
 	var/invoke_damage = 0 //how much damage invokers take when invoking it
 	var/construct_invoke = TRUE //if constructs can invoke it
 
@@ -107,14 +109,12 @@ structure_check() searches for nearby cultist structures required for the invoca
 /obj/effect/rune/proc/can_invoke(var/mob/living/user=null)
 	//This proc determines if the rune can be invoked at the time. If there are multiple required cultists, it will find all nearby cultists.
 	var/list/invokers = list() //people eligible to invoke the rune
+	var/list/chanters = list() //people who will actually chant the rune when passed to invoke()
 	if(user)
+		chanters += user
 		invokers += user
-	if(req_cultists > 1 || istype(src, /obj/effect/rune/convert))
-		var/list/things_in_range = range(1, src)
-		var/obj/item/toy/plush/narplush/plushsie = locate() in things_in_range
-		if(istype(plushsie) && plushsie.is_invoker)
-			invokers += plushsie
-		for(var/mob/living/L in things_in_range)
+	if(req_cultists > 1 || allow_excess_invokers)
+		for(var/mob/living/L in range(1, src))
 			if(iscultist(L))
 				if(L == user)
 					continue
@@ -125,29 +125,34 @@ structure_check() searches for nearby cultist structures required for the invoca
 				if(L.stat)
 					continue
 				invokers += L
-	return invokers
+			if(allow_excess_invokers)
+				chanters += invokers
+			else
+				shuffle_inplace(invokers)
+				for(var/i in 1 to req_cultists)
+					var/C = pick_n_take(invokers)
+					if(!C)
+						break
+					chanters += C
+	return chanters
 
 /obj/effect/rune/proc/invoke(var/list/invokers)
 	//This proc contains the effects of the rune as well as things that happen afterwards. If you want it to spawn an object and then delete itself, have both here.
 	for(var/M in invokers)
-		if(isliving(M))
-			var/mob/living/L = M
-			if(invocation)
-				L.say(invocation, language = /datum/language/common, ignore_spam = TRUE)
-			if(invoke_damage)
-				L.apply_damage(invoke_damage, BRUTE)
-				to_chat(L, "<span class='cult italic'>[src] saps your strength!</span>")
-		else if(istype(M, /obj/item/toy/plush/narplush))
-			var/obj/item/toy/plush/narplush/P = M
-			P.visible_message("<span class='cult italic'>[P] squeaks loudly!</span>")
+		var/mob/living/L = M
+		if(invocation)
+			L.say(invocation, language = /datum/language/common, ignore_spam = TRUE)
+		if(invoke_damage)
+			L.apply_damage(invoke_damage, BRUTE)
+			to_chat(L, "<span class='cult italic'>[src] saps your strength!</span>")
 	do_invoke_glow()
 
 /obj/effect/rune/proc/do_invoke_glow()
 	set waitfor = FALSE
 	var/oldtransform = transform
-	animate(src, transform = matrix()*2, alpha = 0, time = 5, flags = ANIMATION_END_NOW) //fade out
+	animate(src, transform = matrix()*2, alpha = 0, time = 5) //fade out
 	sleep(5)
-	animate(src, transform = oldtransform, alpha = 255, time = 0, flags = ANIMATION_END_NOW)
+	animate(src, transform = oldtransform, alpha = 255, time = 0)
 
 /obj/effect/rune/proc/fail_invoke()
 	//This proc contains the effects of a rune if it is not invoked correctly, through either invalid wording or not enough cultists. By default, it's just a basic fizzle.
@@ -173,6 +178,18 @@ structure_check() searches for nearby cultist structures required for the invoca
 	..()
 	qdel(src)
 
+/mob/proc/null_rod_check() //The null rod, if equipped, will protect the holder from the effects of most runes
+	var/obj/item/nullrod/N = locate() in src
+	if(N && !GLOB.ratvar_awakens) //If Nar-Sie or Ratvar are alive, null rods won't protect you
+		return N
+	return 0
+
+/mob/proc/bible_check() //The bible, if held, might protect against certain things
+	var/obj/item/storage/book/bible/B = locate() in src
+	if(is_holding(B))
+		return B
+	return 0
+
 //Rite of Offering: Converts or sacrifices a target.
 /obj/effect/rune/convert
 	cultist_name = "Offer"
@@ -182,6 +199,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	icon_state = "3"
 	color = RUNE_COLOR_OFFER
 	req_cultists = 1
+	allow_excess_invokers = TRUE
 	rune_in_use = FALSE
 
 /obj/effect/rune/convert/do_invoke_glow()
@@ -231,13 +249,13 @@ structure_check() searches for nearby cultist structures required for the invoca
 /obj/effect/rune/convert/proc/do_convert(mob/living/convertee, list/invokers)
 	if(invokers.len < 2)
 		for(var/M in invokers)
-			to_chat(M, "<span class='danger'>You need at least two invokers to convert [convertee]!</span>")
+			to_chat(M, "<span class='warning'>You need more invokers to convert [convertee]!</span>")
 		log_game("Offer rune failed - tried conversion with one invoker")
 		return 0
-	if(convertee.anti_magic_check(TRUE, TRUE))
+	if(convertee.null_rod_check())
 		for(var/M in invokers)
 			to_chat(M, "<span class='warning'>Something is shielding [convertee]'s mind!</span>")
-		log_game("Offer rune failed - convertee had anti-magic")
+		log_game("Offer rune failed - convertee had null rod")
 		return 0
 	var/brutedamage = convertee.getBruteLoss()
 	var/burndamage = convertee.getFireLoss()
@@ -754,10 +772,9 @@ structure_check() searches for nearby cultist structures required for the invoca
 	set_light(6, 1, color)
 	for(var/mob/living/L in viewers(T))
 		if(!iscultist(L) && L.blood_volume)
-			var/atom/I = L.anti_magic_check()
-			if(I)
-				if(isitem(I))
-					to_chat(L, "<span class='userdanger'>[I] suddenly burns hotly before returning to normal!</span>")
+			var/obj/item/nullrod/N = L.null_rod_check()
+			if(N)
+				to_chat(L, "<span class='userdanger'>\The [N] suddenly burns hotly before returning to normal!</span>")
 				continue
 			to_chat(L, "<span class='cultlarge'>Your blood boils in your veins!</span>")
 			if(is_servant_of_ratvar(L))
@@ -784,7 +801,8 @@ structure_check() searches for nearby cultist structures required for the invoca
 	set_light(6, 1, color)
 	for(var/mob/living/L in viewers(T))
 		if(!iscultist(L) && L.blood_volume)
-			if(L.anti_magic_check())
+			var/obj/item/nullrod/N = L.null_rod_check()
+			if(N)
 				continue
 			L.take_overall_damage(tick_damage*multiplier, tick_damage*multiplier)
 			if(is_servant_of_ratvar(L))
@@ -926,6 +944,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	icon_state = "apoc"
 	pixel_x = -32
 	pixel_y = -32
+	allow_excess_invokers = TRUE
 	color = RUNE_COLOR_DARKRED
 	req_cultists = 3
 	scribe_delay = 100

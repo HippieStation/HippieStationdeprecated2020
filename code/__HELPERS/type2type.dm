@@ -12,8 +12,7 @@
 //Returns an integer given a hex input, supports negative values "-ff"
 //skips preceding invalid characters
 //breaks when hittin invalid characters thereafter
-// If safe=TRUE, returns null on incorrect input strings instead of CRASHing
-/proc/hex2num(hex, safe=FALSE)
+/proc/hex2num(hex)
 	. = 0
 	var/place = 1
 	for(var/i in length(hex) to 1 step -1)
@@ -28,10 +27,7 @@
 			if(45)
 				return . * -1 // -
 			else
-				if(safe)
-					return null
-				else
-					CRASH("Malformed hex number")
+				CRASH("Malformed hex number")
 
 		. += num * place
 		place *= 16
@@ -182,40 +178,38 @@
 			return ICON_OVERLAY
 
 //Converts a rights bitfield into a string
-/proc/rights2text(rights, seperator="", prefix = "+")
-	seperator += prefix
+/proc/rights2text(rights, seperator="", list/adds, list/subs)
 	if(rights & R_BUILDMODE)
-		. += "[seperator]BUILDMODE"
+		. += "[seperator]+BUILDMODE"
 	if(rights & R_ADMIN)
-		. += "[seperator]ADMIN"
+		. += "[seperator]+ADMIN"
 	if(rights & R_BAN)
-		. += "[seperator]BAN"
+		. += "[seperator]+BAN"
 	if(rights & R_FUN)
-		. += "[seperator]FUN"
+		. += "[seperator]+FUN"
 	if(rights & R_SERVER)
-		. += "[seperator]SERVER"
+		. += "[seperator]+SERVER"
 	if(rights & R_DEBUG)
-		. += "[seperator]DEBUG"
+		. += "[seperator]+DEBUG"
 	if(rights & R_POSSESS)
-		. += "[seperator]POSSESS"
+		. += "[seperator]+POSSESS"
 	if(rights & R_PERMISSIONS)
-		. += "[seperator]PERMISSIONS"
+		. += "[seperator]+PERMISSIONS"
 	if(rights & R_STEALTH)
-		. += "[seperator]STEALTH"
+		. += "[seperator]+STEALTH"
 	if(rights & R_POLL)
-		. += "[seperator]POLL"
+		. += "[seperator]+POLL"
 	if(rights & R_VAREDIT)
-		. += "[seperator]VAREDIT"
+		. += "[seperator]+VAREDIT"
 	if(rights & R_SOUNDS)
-		. += "[seperator]SOUND"
+		. += "[seperator]+SOUND"
 	if(rights & R_SPAWN)
-		. += "[seperator]SPAWN"
-	if(rights & R_AUTOLOGIN)
-		. += "[seperator]AUTOLOGIN"
-	if(rights & R_DBRANKS)
-		. += "[seperator]DBRANKS"
-	if(!.)
-		. = "NONE"
+		. += "[seperator]+SPAWN"
+
+	for(var/verbpath in adds)
+		. += "[seperator]+[verbpath]"
+	for(var/verbpath in subs)
+		. += "[seperator]-[verbpath]"
 	return .
 
 /proc/ui_style2icon(ui_style)
@@ -588,16 +582,12 @@
 		r+= num2hex(c)
 	return r
 
-// Decodes hex to raw byte string.
-// If safe=TRUE, returns null on incorrect input strings instead of CRASHing
-/proc/hextostr(str, safe=FALSE)
+/proc/hextostr(str)
 	if(!istext(str)||!str)
 		return
 	var/r
 	var/c
 	for(var/i = 1 to length(str)/2)
-		c = hex2num(copytext(str,i*2-1,i*2+1), safe)
-		if(isnull(c))
-			return null
-		r += ascii2text(c)
+		c= hex2num(copytext(str,i*2-1,i*2+1))
+		r+= ascii2text(c)
 	return r

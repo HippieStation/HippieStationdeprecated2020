@@ -119,20 +119,20 @@
 
 /mob/living/carbon/attack_hand(mob/living/carbon/human/user)
 
-	for(var/thing in diseases)
+	for(var/thing in viruses)
 		var/datum/disease/D = thing
-		if(D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
+		if(D.spread_flags & VIRUS_SPREAD_CONTACT_SKIN)
 			user.ContactContractDisease(D)
 
-	for(var/thing in user.diseases)
+	for(var/thing in user.viruses)
 		var/datum/disease/D = thing
-		if(D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
+		if(D.spread_flags & VIRUS_SPREAD_CONTACT_SKIN)
 			ContactContractDisease(D)
 
 	if(lying && surgeries.len)
-		if(user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM)
+		if(user.a_intent == INTENT_HELP)
 			for(var/datum/surgery/S in surgeries)
-				if(S.next_step(user, user.a_intent))
+				if(S.next_step(user))
 					return 1
 	return 0
 
@@ -140,14 +140,14 @@
 /mob/living/carbon/attack_paw(mob/living/carbon/monkey/M)
 
 	if(can_inject(M, TRUE))
-		for(var/thing in diseases)
+		for(var/thing in viruses)
 			var/datum/disease/D = thing
-			if((D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN) && prob(85))
+			if((D.spread_flags & VIRUS_SPREAD_CONTACT_SKIN) && prob(85))
 				M.ContactContractDisease(D)
 
-	for(var/thing in M.diseases)
+	for(var/thing in M.viruses)
 		var/datum/disease/D = thing
-		if(D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
+		if(D.spread_flags & VIRUS_SPREAD_CONTACT_SKIN)
 			ContactContractDisease(D)
 
 	if(M.a_intent == INTENT_HELP)
@@ -155,7 +155,7 @@
 		return 0
 
 	if(..()) //successful monkey bite.
-		for(var/thing in M.diseases)
+		for(var/thing in M.viruses)
 			var/datum/disease/D = thing
 			ForceContractDisease(D)
 		return 1
@@ -270,9 +270,6 @@
 		else
 			M.visible_message("<span class='notice'>[M] hugs [src] to make [p_them()] feel better!</span>", \
 						"<span class='notice'>You hug [src] to make [p_them()] feel better!</span>")
-			GET_COMPONENT_FROM(mood, /datum/component/mood, src)
-			if(mood)
-				mood.add_event("hug", /datum/mood_event/hug)
 		AdjustStun(-60)
 		AdjustKnockdown(-60)
 		AdjustUnconscious(-60)

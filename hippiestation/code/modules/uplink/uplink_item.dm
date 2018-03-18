@@ -127,7 +127,7 @@
 /datum/uplink_item/dangerous/butterfly
 	name = "Energy Butterfly Knife"
 	desc = "A highly lethal and concealable knife that causes critical backstab damage when used with harm intent."
-	cost = 8
+	cost = 8//80 backstab damage and armour pierce isn't a fucking joke
 	item = /obj/item/melee/transforming/butterfly/energy
 	surplus = 15
 
@@ -158,7 +158,7 @@
 	player_minimum = 0
 
 /datum/uplink_item/stealthy_tools/syndigaloshes
-	item = /obj/item/clothing/shoes/chameleon/noslip // you have to be a real doofus to forget to add the /noslip part
+	item = /obj/item/clothing/shoes/chameleon
 	cost = 2
 	player_minimum = 0
 
@@ -253,8 +253,9 @@
 	name = "Syndicate Banhammer"
 	desc = "By inserting small kinetic pounders into a banhammer, the banhammer becomes a dangerous object that is able to kill people before they even realize what happened. Completely stealthy unless someone examines it. Don't try this at home."
 	item = /obj/item/banhammer/syndicate
-	cost = 6
+	cost = 10
 	surplus = 10
+	exclude_modes = list(/datum/game_mode/nuclear)
 
 /datum/uplink_item/badass/surplus
 	player_minimum = 0
@@ -323,10 +324,3 @@
 	item = /obj/item/ammo_box/buckshotbox
 	cost = 13 // the math has been done, I assure you.
 	surplus = 25 // let's maybe not have players waste 13 TC on ammo every time they get a crate
-
-/datum/uplink_item/dangerous/armstrong
-	name = "Armstrong Style Kit"
-	desc = "A kit with the necessary equipment to become an excellent martial artist, and terrible parent!"
-	item = /obj/item/storage/box/syndie_kit/armstrong
-	cost = 14
-	surplus = 20 // someone who respects the eldritch god Nar-Sie a little (((too much))) complained

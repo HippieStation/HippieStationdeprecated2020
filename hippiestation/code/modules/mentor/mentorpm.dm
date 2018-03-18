@@ -35,18 +35,10 @@
 	if(!msg)
 		msg = input(src,"Message:", "Private message") as text|null
 
-		if(!msg)
-			return
-
+		if(!msg)	return
 		if(!C)
-			if(is_mentor())
-				to_chat(src, "<font color='red'>Error: Mentor-PM: Client not found.</font>")
-			else
-				mentorhelp(msg)	//Mentor we are replying to has vanished, Mentorhelp instead (how the fuck does this work?let's hope it works,shrug)
-				return
-
-		// Neither party is a mentor, they shouldn't be PMing!
-		if (!C.is_mentor() && !is_mentor())
+			if(is_mentor())	to_chat(src, "<font color='red'>Error: Mentor-PM: Client not found.</font>")
+			else		mentorhelp(msg)	//Mentor we are replying to has vanished, Mentorhelp instead (how the fuck does this work?let's hope it works,shrug)
 			return
 
 	msg = sanitize(copytext(msg,1,MAX_MESSAGE_LEN))

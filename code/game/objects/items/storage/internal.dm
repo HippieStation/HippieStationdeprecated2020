@@ -34,6 +34,7 @@
 
 /obj/item/storage/internal/pocket/small
 	storage_slots = 1
+	priority = FALSE
 
 /obj/item/storage/internal/pocket/tiny
 	storage_slots = 1

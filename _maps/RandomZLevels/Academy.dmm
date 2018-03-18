@@ -233,13 +233,15 @@
 /turf/open/space,
 /area/space/nearstation)
 "aQ" = (
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/machinery/door/airlock/gold,
+/obj/machinery/door/airlock/gold{
+	locked = 1
+	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/headmaster)
 "aR" = (
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/machinery/door/airlock/gold,
+/obj/machinery/door/airlock/gold{
+	locked = 1
+	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -1250,16 +1252,10 @@
 "eA" = (
 /obj/machinery/door/airlock/public/glass,
 /obj/machinery/door/airlock/external,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
 /turf/open/floor/plating,
 /area/awaymission/academy/classrooms)
 "eB" = (
 /obj/machinery/door/airlock/public/glass,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
 /turf/open/floor/plating,
 /area/awaymission/academy/classrooms)
 "eC" = (
@@ -2025,8 +2021,9 @@
 /turf/open/floor/carpet,
 /area/awaymission/academy/academyaft)
 "gT" = (
-/obj/effect/mapping_helpers/airlock/locked,
-/obj/machinery/door/airlock/gold,
+/obj/machinery/door/airlock/gold{
+	locked = 1
+	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
@@ -3961,26 +3958,6 @@
 	},
 /turf/open/floor/carpet,
 /area/awaymission/academy/headmaster)
-"LW" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/awaymission/academy/academyaft)
-"Tk" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/maintenance_hatch,
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/awaymission/academy/academyaft)
 
 (1,1,1) = {"
 aa
@@ -10947,7 +10924,7 @@ gq
 hb
 hc
 hc
-LW
+hD
 hc
 hc
 hc
@@ -11207,7 +11184,7 @@ bE
 bE
 hc
 hc
-Tk
+hD
 hc
 hc
 hc

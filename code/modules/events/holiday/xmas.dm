@@ -64,7 +64,7 @@
 	typepath = /datum/round_event/santa
 	weight = 20
 	max_occurrences = 1
-	earliest_start = 30 MINUTES
+	earliest_start = 20000
 
 /datum/round_event/santa
 	var/mob/living/carbon/human/santa //who is our santa?

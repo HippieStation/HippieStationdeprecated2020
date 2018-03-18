@@ -8,18 +8,12 @@ GLOBAL_LIST_EMPTY(chempiles)
 
 /obj/effect/decal/cleanable/chempile/examine(mob/user)
 	..()
-	to_chat(user, "It contains:")
-	if(reagents.reagent_list.len)
-		if(user.can_see_reagents()) //Show each individual reagent
-			for(var/datum/reagent/R in reagents.reagent_list)
-				to_chat(user, "[R.volume] units of [R.name]")
-		else //Otherwise, just show the total volume
-			var/total_volume = 0
-			for(var/datum/reagent/R in reagents.reagent_list)
-				total_volume += R.volume
-			to_chat(user, "[total_volume] units of various reagents")
-	else
-		to_chat(user, "Nothing.")
+	if(user.research_scanner || isobserver(user))
+		if(LAZYLEN(reagents.reagent_list)) //find a reagent list if there is and check if it has entries
+			to_chat(user, "<span class='notice'>Chemical contents:</span>")
+			for(var/RE in reagents.reagent_list) //no reagents will be left behind
+				var/datum/reagent/R = RE
+				to_chat(user, "<span class='warning'>[R]: [round(R.volume,0.01)]u</span>")
 
 /obj/effect/decal/cleanable/chempile/experience_pressure_difference(pressure_difference)
 	if(reagents)
@@ -27,14 +21,14 @@ GLOBAL_LIST_EMPTY(chempiles)
 
 /obj/effect/decal/cleanable/chempile/Initialize()
 	. = ..()
-	GLOB.chempiles += src
+	LAZYADD(GLOB.chempiles, src)
 	if(reagents && reagents.total_volume)
 		if(reagents.total_volume < 5)
 			reagents.set_reacting(FALSE)
 
 /obj/effect/decal/cleanable/chempile/Destroy()
 	..()
-	GLOB.chempiles -= src
+	LAZYREMOVE(GLOB.chempiles, src)
 
 /obj/effect/decal/cleanable/chempile/ex_act()
 	qdel(src)

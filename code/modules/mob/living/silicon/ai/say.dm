@@ -154,7 +154,6 @@
 		return 1
 	return 0
 
-#undef VOX_DELAY
 #endif
 
 /mob/living/silicon/ai/could_speak_in_language(datum/language/dt)

@@ -6,22 +6,21 @@
 //Dismember a limb
 /obj/item/bodypart/proc/dismember(dam_type = BRUTE)
 	if(!owner)
-		return FALSE
+		return 0
 	var/mob/living/carbon/C = owner
 	if(!dismemberable)
-		return FALSE
+		return 0
 	if(C.status_flags & GODMODE)
-		return FALSE
-	if(C.has_trait(TRAIT_NODISMEMBER))
-		return FALSE
+		return 0
+	if(ishuman(C))
+		var/mob/living/carbon/human/H = C
+		if(NODISMEMBER in H.dna.species.species_traits) // species don't allow dismemberment
+			return 0
 
 	var/obj/item/bodypart/affecting = C.get_bodypart("chest")
 	affecting.receive_damage(CLAMP(brute_dam/2, 15, 50), CLAMP(burn_dam/2, 0, 50)) //Damage the chest based on limb's existing damage
 	C.visible_message("<span class='danger'><B>[C]'s [src.name] has been violently dismembered!</B></span>")
 	C.emote("scream")
-	GET_COMPONENT_FROM(mood, /datum/component/mood, C)
-	if(mood)
-		mood.add_event("dismembered", /datum/mood_event/dismembered)
 	drop_limb()
 
 	if(dam_type == BURN)
@@ -47,12 +46,14 @@
 
 /obj/item/bodypart/chest/dismember()
 	if(!owner)
-		return FALSE
+		return 0
 	var/mob/living/carbon/C = owner
 	if(!dismemberable)
-		return FALSE
-	if(C.has_trait(TRAIT_NODISMEMBER))
-		return FALSE
+		return 0
+	if(ishuman(C))
+		var/mob/living/carbon/human/H = C
+		if(NODISMEMBER in H.dna.species.species_traits) // species don't allow dismemberment
+			return 0
 
 	var/organ_spilled = 0
 	var/turf/T = get_turf(C)
@@ -104,9 +105,6 @@
 		I.forceMove(src)
 	if(!C.has_embedded_objects())
 		C.clear_alert("embeddedobject")
-		GET_COMPONENT_FROM(mood, /datum/component/mood, C)
-		if(mood)
-			mood.add_event("embedded")
 
 	if(!special)
 		if(C.dna)

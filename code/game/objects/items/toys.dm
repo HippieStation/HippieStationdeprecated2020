@@ -1074,7 +1074,7 @@
 
 /obj/item/toy/clockwork_watch/examine(mob/user)
 	..()
-	to_chat(user, "<span class='info'>Station Time: [station_time_timestamp()]")
+	to_chat(user, "<span class='info'>Station Time: [worldtime2text()]")
 
 /*
  * Toy Dagger

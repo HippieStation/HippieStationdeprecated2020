@@ -2,9 +2,6 @@ GLOBAL_VAR_INIT(total_runtimes, GLOB.total_runtimes || 0)
 GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 
 #ifdef DEBUG
-
-#define ERROR_USEFUL_LEN 2
-
 /world/Error(exception/E, datum/e_src)
 	GLOB.total_runtimes++
 	

@@ -40,10 +40,11 @@
 	owner.special_role = null
 	SSticker.mode.ape_infectees -= owner
 
-	var/datum/disease/transformation/jungle_fever/D =  locate() in owner.current.diseases
+	var/datum/disease/transformation/jungle_fever/D =  locate() in owner.current.viruses
 	if(D)
+		D.remove_virus()
 		qdel(D)
-
+	
 	. = ..()
 
 /datum/antagonist/monkey/create_team(datum/team/monkey/new_team)

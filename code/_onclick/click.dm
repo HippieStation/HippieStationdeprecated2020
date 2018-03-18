@@ -61,8 +61,9 @@
 		return
 	next_click = world.time + 1
 
-	if(check_click_intercept(params,A))
-		return
+	if(client && client.click_intercept)
+		if(call(client.click_intercept, "InterceptClickOn")(src, params, A))
+			return
 
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"] && modifiers["middle"])
@@ -471,7 +472,7 @@
 		var/mob/living/carbon/C = usr
 		C.swap_hand()
 	else
-		var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr.client ? usr.client.eye : usr))
+		var/turf/T = params2turf(modifiers["screen-loc"], get_turf(usr))
 		params += "&catcher=1"
 		if(T)
 			T.Click(location, control, params)
@@ -491,16 +492,3 @@
 		else
 			view = 1
 		add_view_range(view)
-
-/mob/proc/check_click_intercept(params,A)
-	//Client level intercept
-	if(client && client.click_intercept)
-		if(call(client.click_intercept, "InterceptClickOn")(src, params, A))
-			return TRUE
-	
-	//Mob level intercept
-	if(click_intercept)
-		if(call(click_intercept, "InterceptClickOn")(src, params, A))
-			return TRUE
-
-	return FALSE

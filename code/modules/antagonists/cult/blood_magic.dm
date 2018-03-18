@@ -72,10 +72,10 @@
 	else
 		to_chat(owner, "<span class='cultitalic'>You are already invoking blood magic!")
 		return
-	if(do_after(owner, 100 - rune*60, target = owner))
+	if(do_after(owner, 100 - rune*65, target = owner))
 		if(ishuman(owner))
 			var/mob/living/carbon/human/H = owner
-			H.bleed(40 - rune*32)
+			H.bleed(30 - rune*25)
 		var/datum/action/innate/cult/blood_spell/new_spell = new BS(owner)
 		new_spell.Grant(owner, src)
 		spells += new_spell
@@ -177,7 +177,6 @@
 	desc = "<u>A sinister spell used to convert:</u><br>Plasteel into runed metal<br>25 metal into a construct shell<br>Cyborgs directly into constructs<br>Cyborg shells into construct shells<br>Airlocks into runed airlocks (harm intent)"
 	button_icon_state = "transmute"
 	magic_path = "/obj/item/melee/blood_magic/construction"
-	health_cost = 10
 
 /datum/action/innate/cult/blood_spell/equipment
 	name = "Summon Equipment"
@@ -415,7 +414,7 @@
 			target.visible_message("<span class='warning'>[L]'s holy weapon absorbs the light!</span>", \
 								   "<span class='userdanger'>Your holy weapon absorbs the blinding light!</span>")
 		else
-			L.Knockdown(160)
+			L.Knockdown(180)
 			L.flash_act(1,1)
 			if(issilicon(target))
 				var/mob/living/silicon/S = L
@@ -526,7 +525,7 @@
 	. = ..()
 
 
-//Construction: Creates a construct shell out of 50 metal sheets, or converts plasteel into runed metal
+//Construction: Creates a construct shell out of 25 metal sheets, or converts plasteel into runed metal
 /obj/item/melee/blood_magic/construction
 	name = "Corrupting Aura"
 	desc = "Corrupts metal and plasteel into more sinister forms."
@@ -547,12 +546,12 @@
 				to_chat(user, "<span class='warning'>You need 50 metal to produce a construct shell!</span>")
 		else if(istype(target, /obj/item/stack/sheet/plasteel))
 			var/obj/item/stack/sheet/plasteel/candidate = target
-			var/quantity = candidate.amount
-			if(candidate.use(quantity))
-				uses --
-				new /obj/item/stack/sheet/runed_metal(T,quantity)
-				to_chat(user, "<span class='warning'>A dark cloud eminates from you hand and swirls around the plasteel, transforming it into runed metal!</span>")
-				SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
+			var/quantity = min(candidate.amount, uses)
+			uses -= quantity
+			new /obj/item/stack/sheet/runed_metal(T,quantity)
+			candidate.use(quantity)
+			to_chat(user, "<span class='warning'>A dark cloud eminates from you hand and swirls around the plasteel, transforming it into runed metal!</span>")
+			SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
 		else if(istype(target,/mob/living/silicon/robot))
 			var/mob/living/silicon/robot/candidate = target
 			if(candidate.mmi)
@@ -734,11 +733,11 @@
 			to_chat(user, "<span class='cultitalic'>You decide against conducting a greater blood rite.</span>")
 			return
 		switch(choice)
-			if("Blood Spear (150)")
-				if(uses < 150)
+			if("Blood Spear (200)")
+				if(uses < 200)
 					to_chat(user, "<span class='cultitalic'>You need 200 charges to perform this rite.</span>")
 				else
-					uses -= 150
+					uses -= 200
 					var/turf/T = get_turf(user)
 					qdel(src)
 					var/datum/action/innate/cult/spear/S = new(user)
@@ -750,24 +749,24 @@
 					else
 						user.visible_message("<span class='warning'>A [rite.name] appears at [user]'s feet!</span>", \
 							 "<span class='cultitalic'>A [rite.name] materializes at your feet.</span>")
-			if("Blood Bolt Barrage (300)")
-				if(uses < 300)
+			if("Blood Bolt Barrage (400)")
+				if(uses < 400)
 					to_chat(user, "<span class='cultitalic'>You need 400 charges to perform this rite.</span>")
 				else
 					var/obj/rite = new /obj/item/gun/ballistic/shotgun/boltaction/enchanted/arcane_barrage/blood()
-					uses -= 300
+					uses -= 400
 					qdel(src)
 					if(user.put_in_hands(rite))
 						to_chat(user, "<span class='cult'><b>Your hands glow with power!</b></span>")
 					else
 						to_chat(user, "<span class='cultitalic'>You need a free hand for this rite!</span>")
 						qdel(rite)
-			if("Blood Beam (500)")
-				if(uses < 500)
+			if("Blood Beam (600)")
+				if(uses < 600)
 					to_chat(user, "<span class='cultitalic'>You need 600 charges to perform this rite.</span>")
 				else
 					var/obj/rite = new /obj/item/blood_beam()
-					uses -= 500
+					uses -= 600
 					qdel(src)
 					if(user.put_in_hands(rite))
 						to_chat(user, "<span class='cultlarge'><b>Your hands glow with POWER OVERWHELMING!!!</b></span>")
