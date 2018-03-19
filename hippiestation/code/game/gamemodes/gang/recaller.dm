@@ -1,4 +1,4 @@
-//gangtool device
+/* gangtool device
 /obj/item/device/gangtool
 	name = "suspicious device"
 	desc = "A strange device of sorts. Hard to really make out what it actually does if you don't know how to operate it."
@@ -588,3 +588,5 @@
 
 /obj/item/device/gangtool/spare/lt
 	promotable = 1
+
+*/

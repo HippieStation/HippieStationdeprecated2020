@@ -1,5 +1,5 @@
-//gang_datum.dm
-//Datum-based gangs
+/*gang_datum.dm
+//Datum-based gangs (EXCEPT THEY'RE FROM OLDBASE SO THEY'RE NOT ACTUALLY DATUM-BASED)
 
 /datum/gang
 	var/name = "ERROR"
@@ -214,3 +214,5 @@
 	//Increase outfit stock
 	for(var/obj/item/device/gangtool/tool in gangtools)
 		tool.outfits = min(tool.outfits+1,5)
+
+*/

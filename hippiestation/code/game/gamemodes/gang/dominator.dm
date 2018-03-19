@@ -1,3 +1,5 @@
+/*
+
 /obj/machinery/dominator
 	name = "dominator"
 	desc = "A visibly sinister device. Looks like you can break it if you hit it enough."
@@ -235,3 +237,5 @@
 		if(I.damtype == BURN || I.damtype == BRUTE)
 			healthcheck(I.force)
 		return
+
+*/

@@ -1,6 +1,5 @@
 /*
  * Gang Boss Pens
- */
 /obj/item/weapon/pen/gang
 	origin_tech = "materials=2;syndicate=5"
 	var/cooldown
@@ -121,3 +120,5 @@
 		return
 	imp = new /obj/item/weapon/implant/gang(src,gang)
 	..()
+
+*/

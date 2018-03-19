@@ -1,4 +1,4 @@
-//gang.dm
+/*gang.dm
 //Gang War Game Mode
 
 var/list/gang_name_pool = list("Clandestine", "Prima", "Zero-G", "Max", "Blasto", "Waffle", "North", "Omni", "Newton", "Cyber", "Donk", "Gene", "Gib", "Tunnel", "Diablo", "Psyke", "Sirius", "Sleeping Carp", "Rigatoni")
@@ -304,3 +304,5 @@ var/list/gang_colors_pool = list("red","orange","yellow","green","blue","purple"
 			ticker.station_explosion_cinematic(1)
 			ticker.mode.explosion_in_progress = 0
 			ticker.force_ending = pick(winners)
+
+*/
