@@ -1,4 +1,5 @@
 /obj/item/disk/surgery/reconstruction
+	name = "Reconstruction Surgery Disk"
 	desc = "The disk provides instructions on how to repair a body without the use of chemicals."
 	surgeries = list(/datum/surgery/advanced/reconstruction)
 
@@ -20,7 +21,7 @@
 
 /datum/surgery_step/reconstruct
 	name = "repair body"
-	implements = list(/obj/item/hemostat = 100, /obj/item/screwdriver = 35, /obj/item/pen = 15)
+	implements = list(/obj/item/hemostat = 100, TOOL_SCREWDRIVER = 35, /obj/item/pen = 15)
 	repeatable = TRUE
 	time = 25
 

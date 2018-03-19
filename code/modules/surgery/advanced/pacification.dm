@@ -1,4 +1,5 @@
 /obj/item/disk/surgery/pacification
+	name = "Pacification Surgery Disk"
 	desc = "The disk provides instructions on how to suppress violence by manipulating the patient's brain."
 	surgeries = list(/datum/surgery/advanced/pacify)
 
@@ -23,7 +24,7 @@
 
 /datum/surgery_step/pacify
 	name = "rewire brain"
-	implements = list(/obj/item/hemostat = 100, /obj/item/screwdriver = 35, /obj/item/pen = 15)
+	implements = list(/obj/item/hemostat = 100, TOOL_SCREWDRIVER = 35, /obj/item/pen = 15)
 	time = 40
 
 /datum/surgery_step/pacify/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
