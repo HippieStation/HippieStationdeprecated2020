@@ -7,7 +7,7 @@
 	name = "dakimakura"
 	var/custom_name = null
 	desc = "A large pillow depicting a girl in a compromising position. Featuring as many dimensions as you."
-	icon = 'hippiestation/icons/obj/daki.dmi'
+	icon_hippie = 'hippiestation/icons/obj/daki.dmi'
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
 	icon_state = "daki_base"

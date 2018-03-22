@@ -29,7 +29,7 @@
 	name = "Honkers"
 	desc = "A goofy little clown cat."
 	var/emagged = FALSE
-	icon = 'hippiestation/icons/mob/pets.dmi'
+	icon_hippie = 'hippiestation/icons/mob/pets.dmi'
 	icon_state = "cat"
 	icon_living = "cat"
 	icon_dead = "cat_dead"
@@ -61,7 +61,7 @@
 /mob/living/simple_animal/pet/cat/mime
 	name = "Silent Meow"
 	desc = "An invisible cat, he speaks with his paws."
-	icon = 'hippiestation/icons/mob/pets.dmi'
+	icon_hippie = 'hippiestation/icons/mob/pets.dmi'
 	icon_state = "catmime"
 	icon_living = "catmime"
 	icon_dead = "catmime_dead"

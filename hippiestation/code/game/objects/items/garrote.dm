@@ -4,7 +4,7 @@
 	desc = "Two handles for a garrote to be made. Needs cable to finish it."
 	icon_state = "garrotehandles"
 	// item_state = "rods"
-	icon = 'hippiestation/icons/obj/garrote.dmi'
+	icon_hippie = 'hippiestation/icons/obj/garrote.dmi'
 	w_class = 2
 	materials = list(MAT_METAL=1000)
 
@@ -30,7 +30,7 @@
 	name = "garrote"
 	desc = "Extremely robust for stealth takedowns and rapid chokeholds."
 	w_class = 2
-	icon = 'hippiestation/icons/obj/garrote.dmi'
+	icon_hippie = 'hippiestation/icons/obj/garrote.dmi'
 	icon_state = "garrote"
 	item_color = "red"
 	color = "#ff0000"

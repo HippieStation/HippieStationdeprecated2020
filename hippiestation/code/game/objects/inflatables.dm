@@ -1,7 +1,7 @@
 /obj/item/inflatable
 	name = "inflatable wall"
 	desc = "A folded membrane which rapidly expands into a large cubical shape on activation."
-	icon = 'hippiestation/icons/obj/inflatable.dmi'
+	icon_hippie = 'hippiestation/icons/obj/inflatable.dmi'
 	icon_state = "folded_wall"
 	w_class = 2
 	var/structuretype = /obj/structure/inflatable
@@ -24,7 +24,7 @@
 	density = 1
 	anchored = 1
 	opacity = 0
-	icon = 'hippiestation/icons/obj/inflatable.dmi'
+	icon_hippie = 'hippiestation/icons/obj/inflatable.dmi'
 	icon_state = "wall"
 	var/health = 20
 	var/torntype = /obj/item/inflatable/torn
@@ -143,7 +143,7 @@
 /obj/item/inflatable/door
 	name = "inflatable door"
 	desc = "A folded membrane which rapidly expands into a simple door on activation."
-	icon = 'hippiestation/icons/obj/inflatable.dmi'
+	icon_hippie = 'hippiestation/icons/obj/inflatable.dmi'
 	icon_state = "folded_door"
 	structuretype = /obj/structure/inflatable/door
 
@@ -152,7 +152,7 @@
 	density = 1
 	anchored = 1
 	opacity = 0
-	icon = 'hippiestation/icons/obj/inflatable.dmi'
+	icon_hippie = 'hippiestation/icons/obj/inflatable.dmi'
 	icon_state = "door_closed"
 	torntype = /obj/item/inflatable/torn/door
 	itemtype = /obj/item/inflatable/door
@@ -227,7 +227,7 @@
 /obj/item/inflatable/torn
 	name = "torn inflatable wall"
 	desc = "A folded membrane which rapidly expands into a large cubical shape on activation. It is too torn to be usable."
-	icon = 'hippiestation/icons/obj/inflatable.dmi'
+	icon_hippie = 'hippiestation/icons/obj/inflatable.dmi'
 	icon_state = "folded_wall_torn"
 	var/fixedtype = /obj/item/inflatable
 
@@ -252,12 +252,12 @@
 /obj/item/inflatable/torn/door
 	name = "torn inflatable door"
 	desc = "A folded membrane which rapidly expands into a simple door on activation. It is too torn to be usable."
-	icon = 'hippiestation/icons/obj/inflatable.dmi'
+	icon_hippie = 'hippiestation/icons/obj/inflatable.dmi'
 	icon_state = "folded_door_torn"
 	fixedtype = /obj/item/inflatable/door
 
 /obj/item/storage/inflatable
-	icon = 'hippiestation/icons/obj/storage.dmi'
+	icon_hippie = 'hippiestation/icons/obj/storage.dmi'
 	name = "inflatable barrier box"
 	desc = "Contains inflatable walls and doors."
 	icon_state = "inf"

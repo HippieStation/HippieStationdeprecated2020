@@ -1,7 +1,7 @@
 /obj/vehicle/ridden/lawnmower
 	name = "lawn mower"
 	desc = "Equipped with reliable safeties to prevent <i>accidents</i> in the workplace."
-	icon = 'hippiestation/icons/obj/vehicles.dmi'
+	icon_hippie = 'hippiestation/icons/obj/vehicles.dmi'
 	icon_state = "lawnmower"
 	var/emagged = FALSE
 	var/list/drive_sounds = list('hippiestation/sound/effects/mowermove1.ogg', 'hippiestation/sound/effects/mowermove2.ogg')

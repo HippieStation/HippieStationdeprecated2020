@@ -1,2 +1,2 @@
 /turf/closed/wall
-	icon = 'hippiestation/icons/turf/walls/wall.dmi'
+	icon_hippie = 'hippiestation/icons/turf/walls/wall.dmi'

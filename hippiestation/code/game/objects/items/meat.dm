@@ -1,12 +1,12 @@
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/bird
-	icon = 'hippiestation/icons/obj/foods.dmi'
+	icon_hippie = 'hippiestation/icons/obj/foods.dmi'
 	icon_state = "birdmeat"
 	desc = "Quality bird meat."
 	filling_color = "#BF896B"
 	tastes = list("chicken" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/moth
-	icon = 'hippiestation/icons/obj/foods.dmi'
+	icon_hippie = 'hippiestation/icons/obj/foods.dmi'
 	icon_state = "mothmeat"
 	desc = "Moth meat."
 	filling_color = "#BF896B"
@@ -19,14 +19,14 @@
 	tastes = list("brains" = 1, "meat" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ipc
-	icon = 'hippiestation/icons/obj/foods.dmi'
+	icon_hippie = 'hippiestation/icons/obj/foods.dmi'
 	icon_state = "ipcmeat"
 	desc = "Gross robot meat."
 	filling_color = "#000000"
 	tastes = list("metal" = 1)
 
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/meeseeks
-	icon = 'hippiestation/icons/obj/foods.dmi'
+	icon_hippie = 'hippiestation/icons/obj/foods.dmi'
 	icon_state = "meatseeks"
 	desc = "I'm Mr. Meatseeks, look at me!"
 	filling_color = "#74E2F3"

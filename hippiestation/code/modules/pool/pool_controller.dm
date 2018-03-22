@@ -4,7 +4,7 @@
 /obj/machinery/poolcontroller
 	name = "\improper Pool Controller"
 	desc = "A controller for the nearby pool."
-	icon = 'hippiestation/icons/turf/pool.dmi'
+	icon_hippie = 'hippiestation/icons/turf/pool.dmi'
 	icon_state = "poolc_3"
 	anchored = TRUE
 	density = TRUE

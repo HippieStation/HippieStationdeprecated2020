@@ -37,7 +37,7 @@
 	health = 75
 	desc = "Punished mime cat.. This one has been tampered with, its vow of silence broken."
 	speak_emote = list("purrs", "meows", "screeches", "yells", "babbles incoherently")
-	icon = 'hippiestation/icons/mob/pets.dmi'
+	icon_hippie = 'hippiestation/icons/mob/pets.dmi'
 	icon_state = "catmime2"
 	icon_living = "catmime2"
 	icon_dead = "catmime_defeated"

@@ -1,6 +1,6 @@
 /obj/machinery/drain
 	name = "drain"
-	icon = 'hippiestation/icons/turf/pool.dmi'
+	icon_hippie = 'hippiestation/icons/turf/pool.dmi'
 	icon_state = "drain"
 	desc = "This removes things that clog the pool."
 	anchored = TRUE
@@ -95,7 +95,7 @@
 
 /obj/effect/whirlpool
 	name = "Whirlpool"
-	icon = 'hippiestation/icons/effects/96x96.dmi'
+	icon_hippie = 'hippiestation/icons/effects/96x96.dmi'
 	icon_state = "whirlpool"
 	layer = 5
 	anchored = TRUE
@@ -111,14 +111,14 @@
 	layer = 5
 	anchored = TRUE
 	mouse_opacity = 0
-	icon = 'hippiestation/icons/effects/96x96.dmi'
+	icon_hippie = 'hippiestation/icons/effects/96x96.dmi'
 	pixel_x = -32
 	pixel_y = -32
 	alpha = 120
 
 /obj/machinery/poolfilter
 	name = "Filter"
-	icon = 'hippiestation/icons/turf/pool.dmi'
+	icon_hippie = 'hippiestation/icons/turf/pool.dmi'
 	icon_state = "filter"
 	desc = "The part of the pool that swallows dangerous stuff and ID's"
 	anchored = TRUE

@@ -32,7 +32,7 @@
 
 /obj/item/banhammer/syndicate
 	desc = "A banhammer. Upon closer inspection, it appears to have a red tag around its handle."
-	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	icon_hippie = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	icon_state = "toyhammertagged"
 	throwforce = 20
 	force = 20
@@ -86,7 +86,7 @@
 /obj/item/pimpstick
 	name = "pimp stick"
 	desc = "A gold-rimmed cane, with a gleaming diamond set at the top. Great for bashing in kneecaps."
-	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	icon_hippie = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	icon_state = "pimpstick"
 	item_state = "pimpstick"
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'

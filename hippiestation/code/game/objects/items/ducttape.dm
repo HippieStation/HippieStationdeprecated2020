@@ -45,7 +45,7 @@
 /obj/item/stack/ducttape
 	desc = "It's duct tape. You can use it to tape something... or someone."
 	name = "duct tape"
-	icon = 'hippiestation/icons/obj/bureaucracy.dmi'
+	icon_hippie = 'hippiestation/icons/obj/bureaucracy.dmi'
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
 	icon_state = "tape"

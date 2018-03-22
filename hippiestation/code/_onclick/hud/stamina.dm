@@ -1,7 +1,7 @@
 /datum/hud/var/obj/screen/staminas/staminas
 
 /obj/screen/staminas
-	icon = 'hippiestation/icons/mob/screen_gen.dmi'
+	icon_hippie = 'hippiestation/icons/mob/screen_gen.dmi'
 	name = "stamina"
 	icon_state = "stamina0"
 	screen_loc = ui_stamina
