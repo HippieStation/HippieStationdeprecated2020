@@ -80,6 +80,9 @@
 /obj/effect/turf_decal/tile/beige/side{
 	dir = 1
 	},
+/obj/item/device/gps{
+	gpstag = "Break Room"
+	},
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/powered/scp_294)
 "an" = (
