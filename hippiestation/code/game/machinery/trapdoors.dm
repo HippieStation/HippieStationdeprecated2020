@@ -5,7 +5,7 @@
 	name = "trapdoor"
 	desc = "Almost like a door, but on floor."
 	density = FALSE
-	icon = 'hippiestation/icons/obj/trapdoors.dmi'
+	icon_hippie = 'hippiestation/icons/obj/trapdoors.dmi'
 	icon_state = "closed"
 	layer = 2.01
 	var/id = 1

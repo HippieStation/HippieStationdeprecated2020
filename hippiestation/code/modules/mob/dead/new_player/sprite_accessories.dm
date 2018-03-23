@@ -29,21 +29,21 @@
 
 /datum/sprite_accessory/ears/tcat
 	name = "TCat"
-	icon = 'hippiestation/icons/mob/mutant_bodyparts.dmi'
+	icon_hippie = 'hippiestation/icons/mob/mutant_bodyparts.dmi'
 	icon_state = "tcat"
 
 /datum/sprite_accessory/tails/human/tcat
 	name = "TCat"
-	icon = 'hippiestation/icons/mob/mutant_bodyparts.dmi'
+	icon_hippie = 'hippiestation/icons/mob/mutant_bodyparts.dmi'
 	icon_state = "tcat"
 
 /datum/sprite_accessory/tails_animated/human/tcat
 	name = "TCat"
-	icon = 'hippiestation/icons/mob/mutant_bodyparts.dmi'
+	icon_hippie = 'hippiestation/icons/mob/mutant_bodyparts.dmi'
 	icon_state = "tcat"
 
 /datum/sprite_accessory/screen
-	icon = 'hippiestation/icons/mob/mutant_bodyparts.dmi'
+	icon_hippie = 'hippiestation/icons/mob/mutant_bodyparts.dmi'
 	color_src = null
 
 /datum/sprite_accessory/screen/sunburst
@@ -76,7 +76,7 @@
 ////////////////////
 
 /datum/sprite_accessory/hair/hippie/
-	icon = 'hippiestation/icons/mob/human_face.dmi'
+	icon_hippie = 'hippiestation/icons/mob/human_face.dmi'
 
 /datum/sprite_accessory/hair/hippie/birdnest
 	name = "Birdnest"

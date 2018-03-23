@@ -36,7 +36,7 @@
 	desc = "Holy shit, what the fuck is that thing?!"
 	speak_emote = list("screeches", "rees", "says with one of its faces")
 	emote_hear = list("says with one of its faces")
-	icon = 'hippiestation/icons/mob/animal.dmi'
+	icon_hippie = 'hippiestation/icons/mob/animal.dmi'
 	icon_state = "horror"
 	icon_living = "horror"
 	icon_dead = "horror_dead"

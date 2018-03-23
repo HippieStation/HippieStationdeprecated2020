@@ -1,7 +1,7 @@
 /mob/living/simple_animal/ascendant_shadowling
 	name = "ascendant shadowling"
 	desc = "HOLY SHIT RUN THE FUCK AWAY- <span class='shadowling'>RAAAAAAA!</span>"
-	icon = 'hippiestation/icons/mob/mob.dmi'
+	icon_hippie = 'hippiestation/icons/mob/mob.dmi'
 	icon_state = "shadowling_ascended"
 	icon_living = "shadowling_ascended"
 	verb_say = "telepathically thunders"

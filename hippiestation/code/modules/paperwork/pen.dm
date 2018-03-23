@@ -1,2 +1,2 @@
 /obj/item/pen
-	icon = 'hippiestation/icons/obj/bureaucracy.dmi'
+	icon_hippie = 'hippiestation/icons/obj/bureaucracy.dmi'

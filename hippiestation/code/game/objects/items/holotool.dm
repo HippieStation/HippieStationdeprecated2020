@@ -3,7 +3,7 @@
 /obj/item/holotool
 	name = "experimental holotool"
 	desc = "A highly experimental holographic tool projector."
-	icon = 'hippiestation/icons/obj/tools.dmi'
+	icon_hippie = 'hippiestation/icons/obj/tools.dmi'
 	icon_state = "holotool"
 	slot_flags = SLOT_BELT
 	usesound = 'sound/items/pshoom.ogg'

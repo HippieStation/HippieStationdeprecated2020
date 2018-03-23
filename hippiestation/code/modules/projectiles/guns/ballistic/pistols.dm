@@ -1,7 +1,7 @@
 /obj/item/gun/ballistic/automatic/pistol/g17
 	name = "Glock 17"
 	desc = "A classic 9mm handgun with a large magazine capacity. Used by security teams everywhere."
-	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
+	icon_hippie = 'hippiestation/icons/obj/guns/projectile.dmi'
 	icon_state = "glock17"
 	w_class = 2
 	mag_type = /obj/item/ammo_box/magazine/g17

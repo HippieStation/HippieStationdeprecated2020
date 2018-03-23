@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/wizrobe/hippie
 	alternate_worn_icon = 'hippiestation/icons/mob/suit.dmi'
-	icon = 'hippiestation/icons/obj/clothing/suits.dmi'
+	icon_hippie = 'hippiestation/icons/obj/clothing/suits.dmi'
 
 /obj/item/clothing/suit/wizrobe/hippie/necrolord
 	name = "Necrolord robes"
@@ -12,7 +12,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/syndi/elite/blastco
 	alternate_worn_icon = 'hippiestation/icons/mob/suit.dmi'
-	icon = 'hippiestation/icons/obj/clothing/suits.dmi'
+	icon_hippie = 'hippiestation/icons/obj/clothing/suits.dmi'
 	name = "BlastCo(tm) Hardsuit"
 	desc = "A specialized hardsuit built for sustaining concussive blasts and shrapnel. It is in travel mode."
 	alt_desc = "A specialized hardsuit built for sustaining concussive blasts and shrapnel. It is in combat mode."
@@ -27,7 +27,7 @@
 	name = "warm firesuit"
 	desc = "A firesuit with blaze-themed colors. You can almost hear the crackling of a distant inferno...."
 	alternate_worn_icon = 'hippiestation/icons/mob/suit.dmi'
-	icon = 'hippiestation/icons/obj/clothing/suits.dmi'
+	icon_hippie = 'hippiestation/icons/obj/clothing/suits.dmi'
 	icon_state = "firesuit_syndicate"
 	item_state = "firesuit_syndicate"
 	armor = list("melee" = 20, "bullet" = 10, "laser" = 30, "energy" = 15, "bomb" = 25, "bio" = 10, "rad" = 20, "fire" = 100, "acid" = 50)
@@ -39,5 +39,5 @@
 	desc = "Old armor with a yellow cloak. Provides decent protection against most types of damage. There's a tag at the bottom of the cloak, saying 'buy my game - Todd.'"
 	icon_state = "guardarmor"
 	item_state = "guardarmor"
-	icon = 'hippiestation/icons/obj/clothing/suits.dmi'
+	icon_hippie = 'hippiestation/icons/obj/clothing/suits.dmi'
 	alternate_worn_icon = 'hippiestation/icons/mob/suit.dmi'

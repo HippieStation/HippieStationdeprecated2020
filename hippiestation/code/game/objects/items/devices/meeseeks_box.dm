@@ -7,7 +7,7 @@
 /obj/item/device/meeseeks_box
 	name = "\improper Mr. Meeseeks Box"
 	desc = "A blue box with a button on top. Press the button to call upon a Mr. Meeseeks."
-	icon = 'hippiestation/icons/obj/device.dmi'
+	icon_hippie = 'hippiestation/icons/obj/device.dmi'
 	icon_state = "meeseeks_box"
 	var/request = "Nothing"
 	var/next_summon

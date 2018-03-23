@@ -29,7 +29,7 @@
 /obj/item/melee/baton/stungun
 	name = "stungun"
 	desc = "A powerful, self-charging electric stun gun, courtesy of Nanotrasen's self-defense implements."
-	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	icon_hippie = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	icon_state = "stungun"
 	item_state = "stungun"
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'

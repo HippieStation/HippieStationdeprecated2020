@@ -9,7 +9,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 /mob/living/simple_animal/hostile/floor_cluwne
 	name = "???"
 	desc = "...."
-	icon = 'hippiestation/icons/obj/clothing/masks.dmi'
+	icon_hippie = 'hippiestation/icons/obj/clothing/masks.dmi'
 	icon_state = "cluwne"
 	icon_living = "cluwne"
 	icon_gib = "clown_gib"
@@ -410,7 +410,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 //manifestation animation
 /obj/effect/temp_visual/fcluwne_manifest
-	icon = 'hippiestation/icons/turf/floors.dmi'
+	icon_hippie = 'hippiestation/icons/turf/floors.dmi'
 	icon_state = "fcluwne_manifest"
 	layer = TURF_LAYER
 	duration = INFINITY
