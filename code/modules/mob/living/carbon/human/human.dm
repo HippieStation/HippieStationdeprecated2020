@@ -791,7 +791,7 @@
 		return
 	else
 		if(hud_used.healths)
-			var/health_amount = health
+			var/health_amount = health - getStaminaLoss()
 			if(..(health_amount)) //not dead
 				switch(hal_screwyhud)
 					if(SCREWYHUD_CRIT)
@@ -945,6 +945,10 @@
 		stop_pulling()
 	else
 		visible_message("<span class='warning'>[M] fails to climb onto [src]!</span>")
+
+/mob/living/carbon/human/do_after_coefficent()
+	. = ..()
+	. *= physiology.do_after_speed
 
 /mob/living/carbon/human/species
 	var/race = null
