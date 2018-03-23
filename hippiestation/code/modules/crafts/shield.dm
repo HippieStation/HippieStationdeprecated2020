@@ -1,7 +1,7 @@
 /obj/item/shield/trayshield
 	name = "tray shield"
 	desc = "A makeshift shield that won't last for long."
-	icon = 'hippiestation/icons/obj/weapons.dmi'
+	icon_hippie = 'hippiestation/icons/obj/weapons.dmi'
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
 	icon_state = "trayshield"

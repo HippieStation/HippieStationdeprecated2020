@@ -37,7 +37,7 @@
 	desc = "Why?"
 	name = "butt shoes"
 	alternate_worn_icon = 'hippiestation/icons/mob/feet.dmi'
-	icon = 'hippiestation/icons/obj/clothing/shoes.dmi'
+	icon_hippie = 'hippiestation/icons/obj/clothing/shoes.dmi'
 	icon_state = "buttshoes"
 	item_state = "buttshoes"
 	item_color = "buttshoes"
@@ -51,5 +51,5 @@
 	desc = "Combat jackboots with a fancier look. The fur isn't any good for keeping the cold away."
 	icon_state = "guardboots"
 	item_state = "guardboots"
-	icon = 'hippiestation/icons/obj/clothing/shoes.dmi'
+	icon_hippie = 'hippiestation/icons/obj/clothing/shoes.dmi'
 	alternate_worn_icon = 'hippiestation/icons/mob/feet.dmi'

@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/retaliate/pottedlean
 	name = "potted lean"
 	desc = "A gorgeous piece of foliage, seemingly both animated and extremely intoxicated by lean."
-	icon = 'hippiestation/icons/mob/animal.dmi'
+	icon_hippie = 'hippiestation/icons/mob/animal.dmi'
 	icon_state = "pot_lean"
 	icon_living = "pot_lean"
 	icon_dead = "pot_lean_dead"

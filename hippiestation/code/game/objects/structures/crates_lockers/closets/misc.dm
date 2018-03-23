@@ -1,7 +1,7 @@
 /obj/structure/closet/secure_closet/mime
 	name = "Mime closet"
 	desc = "Filled with mime stuff"
-	icon = 'hippiestation/icons/obj/closet.dmi'
+	icon_hippie = 'hippiestation/icons/obj/closet.dmi'
 	req_access = list(ACCESS_THEATRE)
 	icon_state = "mime"
 
@@ -17,7 +17,7 @@
 
 /obj/structure/closet/secure_closet/clown
 	name = "Clown closet"
-	icon = 'hippiestation/icons/obj/closet.dmi'
+	icon_hippie = 'hippiestation/icons/obj/closet.dmi'
 	desc = "Filled with clown stuff"
 	req_access = list(ACCESS_THEATRE)
 	icon_state = "clown"

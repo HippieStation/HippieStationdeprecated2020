@@ -6,7 +6,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state = "spurdo"
 	item_state = "spurdo"
-	icon = 'hippiestation/icons/obj/clothing/masks.dmi'
+	icon_hippie = 'hippiestation/icons/obj/clothing/masks.dmi'
 	alternate_worn_icon = 'hippiestation/icons/mob/mask.dmi'
 	alternate_screams = list('hippiestation/sound/voice/finnish_1.ogg', 'hippiestation/sound/voice/finnish_2.ogg', 'hippiestation/sound/voice/finnish_3.ogg')
 	// god emperor pyko has lended us his voice for scream sounds

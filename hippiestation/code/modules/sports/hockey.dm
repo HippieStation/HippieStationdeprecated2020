@@ -4,7 +4,7 @@
 /obj/item/hockeypack
 	name = "Ka-Nada Special Sport Forces Hockey Pack"
 	desc = "Holds and powers a Ka-Nada SSF Hockey Stick, A devastating weapon capable of knocking men around like toys and batting objects at deadly velocities."
-	icon = 'hippiestation/icons/obj/clothing/back.dmi'
+	icon_hippie = 'hippiestation/icons/obj/clothing/back.dmi'
 	alternate_worn_icon = 'hippiestation/icons/mob/back.dmi'
 	icon_state = "hockey_bag"
 	item_state = "hockey_bag"
@@ -96,7 +96,7 @@
 	return slot_back
 
 /obj/item/twohanded/hockeystick
-	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	icon_hippie = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	icon_state = "hockeystick0"
 	name = "Ka-Nada SSF Hockey Stick"
 	desc = "A Ka-Nada specification Power Stick designed after the implement of a violent sport, it is locked to and powered by the back mounted pack."

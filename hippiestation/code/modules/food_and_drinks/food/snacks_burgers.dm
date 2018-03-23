@@ -4,5 +4,5 @@
 	tastes = list("butt" = 4)
 	foodtype = MEAT | GRAIN | GROSS
 	bonus_reagents = list("fartium" = 10, "nutriment" = 2)
-	icon = 'hippiestation/icons/obj/food/burgerbread.dmi'
+	icon_hippie = 'hippiestation/icons/obj/food/burgerbread.dmi'
 	icon_state = "assburger"

@@ -8,7 +8,7 @@
 	name = "Vampire Coat"
 	desc = "What is a man? A miserable little pile of secrets."
 	alternate_worn_icon = 'hippiestation/icons/mob/suit.dmi'
-	icon = 'hippiestation/icons/obj/clothing/suits.dmi'
+	icon_hippie = 'hippiestation/icons/obj/clothing/suits.dmi'
 	icon_state = "draculacoat"
 	item_state = "draculacoat"
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS

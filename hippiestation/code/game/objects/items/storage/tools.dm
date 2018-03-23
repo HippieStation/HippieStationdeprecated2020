@@ -1,14 +1,14 @@
 /obj/item/wrench/syndicate
 	name = "Pipe wrench"
 	desc = "A rather dangerous looking pipe wrench with teeth that grip better than a normal wrench."
-	icon = 'hippiestation/icons/obj/tools.dmi'
+	icon_hippie = 'hippiestation/icons/obj/tools.dmi'
 	icon_state = "wrench_nuke"
 	toolspeed = 0.5
 
 /obj/item/wirecutters/syndicate
 	name = "Bolt cutters"
 	desc = "A sturdy set of bolt cutters that lets the user put more leverage into cutting through grilles, wire and people."
-	icon = 'hippiestation/icons/obj/tools.dmi'
+	icon_hippie = 'hippiestation/icons/obj/tools.dmi'
 	icon_state = "cutters_nuke"
 	toolspeed = 0.5
 	random_color = FALSE
@@ -16,7 +16,7 @@
 /obj/item/weldingtool/syndicate
 	name = "Precision welding tool"
 	desc = "The thin nozzle on this welding tool produces a smaller but far hotter flame, allowing it to cut through thick metal much faster."
-	icon = 'hippiestation/icons/obj/tools.dmi'
+	icon_hippie = 'hippiestation/icons/obj/tools.dmi'
 	icon_state = "welder_nuke"
 	max_fuel = 40
 	toolspeed = 0.5
@@ -27,7 +27,7 @@
 /obj/item/crowbar/syndicate
 	name = "Flat headed crowbar"
 	desc = "This crowbar's prying ends are longer and thinner, letting the user really force it into gaps and crevices."
-	icon = 'hippiestation/icons/obj/tools.dmi'
+	icon_hippie = 'hippiestation/icons/obj/tools.dmi'
 	icon_state = "crowbar_nuke"
 	toolspeed = 0.5
 	var/alien_bonus_damage = 60 //Half life joke, also three shots any non royal alien
