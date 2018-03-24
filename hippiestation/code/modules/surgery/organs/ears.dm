@@ -1,5 +1,5 @@
 /obj/item/organ/ears/cat/tcat
-	icon_hippie = 'hippiestation/icons/obj/surgery.dmi'
+	icon = 'hippiestation/icons/obj/surgery.dmi'
 	var/been_colored = FALSE
 
 /obj/item/organ/ears/cat/tcat/Insert(mob/living/carbon/human/M, special = 0, drop_if_replaced = TRUE)

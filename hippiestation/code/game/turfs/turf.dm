@@ -19,6 +19,5 @@
 					R.pinned = null
 
 /turf/Initialize()
-    if (icon && icon_state && icon_hippie)
-        check_hippie_icon()
+    check_hippie_icon()
     return ..()
