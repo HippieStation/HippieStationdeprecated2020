@@ -2,14 +2,14 @@
 	name = "neep tatty haggis"
 	desc = "Oi mate! No neeps, but double beets! SCAM!!!"
 	icon_state = "neep_tatty_haggis"
-	icon_hippie = 'hippiestation/icons/obj/food/food.dmi'
+	icon = 'hippiestation/icons/obj/food/food.dmi'
 	bonus_reagents = list("nutriment" = 20, "vitamin" = 10, "iron" = 10)
 	trash = /obj/item/trash/plate
 	foodtype = GRAIN | VEGETABLES | MEAT | GROSS
 
 /obj/item/reagent_containers/food/snacks/taco/leg
 	desc = "An untraditional taco with leg, cheese, and lettuce."
-	icon_hippie = 'hippiestation/icons/obj/food/food.dmi'
+	icon = 'hippiestation/icons/obj/food/food.dmi'
 	icon_state = "legtaco"
 	bonus_reagents = list("nutriment" = 3, "vitamin" = 2)
 	list_reagents = list("nutriment" = 4, "vitamin" = 2)

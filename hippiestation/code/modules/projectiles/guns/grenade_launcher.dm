@@ -1,5 +1,5 @@
 /obj/item/gun/ballistic/revolver/grenadelauncher/mgl
-	icon_hippie = 'hippiestation/icons/obj/guns/projectile.dmi'
+	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
 	name = "Strider MGL"
 	desc = "An Aussec Armory-produced Multi-Grenade-Launcher. Can hold six 40mm grenades for maximum firepower."
 	icon_state = "mgl"

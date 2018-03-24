@@ -145,7 +145,7 @@ Jesus icons by rumpelgeist and FurryMcFlurry
 
 /obj/effect/holy
 	name = "holy"
-	icon_hippie = 'hippiestation/icons/effects/96x96.dmi'
+	hippie = 'hippiestation/icons/effects/96x96.dmi'
 	layer = ABOVE_MOB_LAYER
 	mouse_opacity = 0
 	pixel_x = -32

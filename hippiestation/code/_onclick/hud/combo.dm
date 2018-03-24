@@ -1,7 +1,7 @@
 /datum/hud/var/obj/screen/combo/combo_object
 
 /obj/screen/combo
-	icon_hippie = 'hippiestation/icons/mob/screen_gen.dmi'
+	icon = 'hippiestation/icons/mob/screen_gen.dmi'
 	name = "combo"
 	icon_state = null
 	screen_loc = ui_combo

@@ -1,10 +1,10 @@
 /obj/item/clothing/head/helmet/hippie
 	alternate_worn_icon = 'hippiestation/icons/mob/head.dmi'
-	icon_hippie = 'hippiestation/icons/obj/clothing/hats.dmi'
+	icon = 'hippiestation/icons/obj/clothing/hats.dmi'
 
 /obj/item/clothing/head/wizard/hippie
 	alternate_worn_icon = 'hippiestation/icons/mob/head.dmi'
-	icon_hippie = 'hippiestation/icons/obj/clothing/hats.dmi'
+	icon = 'hippiestation/icons/obj/clothing/hats.dmi'
 	dog_fashion = null
 
 /obj/item/clothing/head/wizard/hippie/necrolord
@@ -16,7 +16,7 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/blastco
 	alternate_worn_icon = 'hippiestation/icons/mob/head.dmi'
-	icon_hippie = 'hippiestation/icons/obj/clothing/hats.dmi'
+	icon = 'hippiestation/icons/obj/clothing/hats.dmi'
 	name = "BlastCo(tm) Helmet"
 	desc = "A specialized helmet built for sustaining concussive blasts and shrapnel. It is in travel mode. Property of BlastCo."
 	alt_desc = "A specialized helmet built for sustaining concussive blasts and shrapnel. It is in combat mode. Property of BlastCo."
@@ -32,6 +32,6 @@
 	item_color = "syndicate"
 	armor = list("melee" = 35, "bullet" = 10, "laser" = 25, "energy" = 20, "bomb" = 25, "bio" = 10, "rad" = 20, "fire" = 100, "acid" = 50)
 	alternate_worn_icon = 'hippiestation/icons/mob/head.dmi'
-	icon_hippie = 'hippiestation/icons/obj/clothing/hats.dmi'
+	icon = 'hippiestation/icons/obj/clothing/hats.dmi'
 	name = "warm firefighting helmet"
 	desc = "There appears to be a very faint flame in the visor that's impossible to focus on...."

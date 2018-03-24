@@ -17,7 +17,7 @@ Hint: This is usually Space_Station_13_areas.dm.
 
 /area/hippie
 	name = "Unknown"
-	icon_hippie = 'hippiestation/icons/turf/areas.dmi'
+	icon = 'hippiestation/icons/turf/areas.dmi'
 
 /area/space
 	ambientsounds = list('hippiestation/sound/ambience/ambispace.ogg','hippiestation/sound/ambience/space_stutter.ogg','hippiestation/sound/ambience/space_ambience.ogg')

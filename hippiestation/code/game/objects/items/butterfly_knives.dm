@@ -5,7 +5,7 @@
 	flags_1 = CONDUCT_1
 	force = 0
 	force_on = 10
-	icon_hippie = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	icon_state = "butterflyknife0"
 	icon_state_on = "butterflyknife1"
 	hitsound_on = 'hippiestation/sound/weapons/knife.ogg'

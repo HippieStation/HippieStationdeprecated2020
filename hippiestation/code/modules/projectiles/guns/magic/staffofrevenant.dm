@@ -5,7 +5,7 @@
 	ammo_type = /obj/item/ammo_casing/magic/staffofrevenant
 	icon_state = "staffofrevenant"
 	item_state = "staffofrevenant"
-	icon_hippie = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
 	w_class = 4
@@ -132,7 +132,7 @@
 
 /obj/item/projectile/magic/revenant
 	name = "bolt of revenant"
-	icon_hippie = 'hippiestation/icons/obj/projectiles.dmi'
+	icon = 'hippiestation/icons/obj/projectiles.dmi'
 	icon_state = "darkshard"
 	damage = 20
 	nodamage = 0

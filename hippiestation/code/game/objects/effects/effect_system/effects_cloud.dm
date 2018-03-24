@@ -1,6 +1,6 @@
 /obj/effect/cloud
 	name = "cloud"
-	icon_hippie = 'hippiestation/icons/effects/32x32.dmi'
+	icon = 'hippiestation/icons/effects/32x32.dmi'
 	layer = 16
 
 /obj/effect/cloud/New()

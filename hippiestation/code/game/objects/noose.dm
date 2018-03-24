@@ -9,7 +9,7 @@
 	name = "noose"
 	desc = "Well this just got a whole lot more morbid."
 	icon_state = "noose"
-	icon_hippie = 'hippiestation/icons/obj/objects.dmi'
+	icon = 'hippiestation/icons/obj/objects.dmi'
 	layer = FLY_LAYER
 	flags_1 = NODECONSTRUCT_1
 	var/image/over

@@ -4,7 +4,7 @@
 	desc = "The Contender G13, a favorite amongst space hunters. An easily modified bluespace barrel and break action loading means it can use any ammo available.\
 	The side has an engraving which reads 'Made by ArcWorks'"
 	name = "Contender G13"
-	icon_hippie = 'hippiestation/icons/obj/guns/projectile.dmi'
+	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
 	icon_state = "contender-s"
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/contender
 	weapon_weight = WEAPON_MEDIUM

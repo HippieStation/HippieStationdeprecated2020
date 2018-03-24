@@ -1,7 +1,7 @@
 /obj/mecha/neovgre
 	name = "Neovgre, the Anima Bulwark"
 	desc = "Nezbere's most powerful creation, a mighty war machine of unmatched power said to have ended wars in a single night."
-	icon_hippie = 'hippiestation/icons/mecha/neovgre.dmi'
+	icon = 'hippiestation/icons/mecha/neovgre.dmi'
 	icon_state = "neovgre"
 	max_integrity = 800 //This is THE ratvarian superweaon, its deployment is an investment
 	armor = list("melee" = 50, "bullet" = 40, "laser" = 25, "energy" = 25, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100) //Its similar to the clockwork armour albeit with a few buffs becuase RATVARIAN SUPERWEAPON!!

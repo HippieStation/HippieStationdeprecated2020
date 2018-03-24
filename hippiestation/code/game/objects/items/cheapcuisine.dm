@@ -3,7 +3,7 @@
 	desc = "A one-use miniature microwave that was meant to replace rations on the battlefield, produced by a Space Italian company. \
 	It's said that the food they produce is so terrible, it makes all sorts of aliens attack Nanotrasen facilities. Which is, coincidentally, where you happen to be right now."
 	force = 5
-	icon_hippie = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	icon_state = "carboncan-off"
 	item_state = "syringe_kit"
 	lefthand_file = 'icons/mob/inhands/equipment/medical_lefthand.dmi'
@@ -53,7 +53,7 @@
 /obj/item/reagent_containers/food/snacks/pizza/cornpotato/carbon
 	name = "cornpotato-pizza"
 	desc = "A sanity destroying other thing. Somehow worse than the Cook's."
-	icon_hippie = 'hippiestation/icons/obj/food/pizzaspaghetti.dmi'
+	icon = 'hippiestation/icons/obj/food/pizzaspaghetti.dmi'
 	icon_state = "pizzacornpotato"
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/cornpotato/carbon
 	bitesize = 3
@@ -65,7 +65,7 @@
 /obj/item/reagent_containers/food/snacks/pizzaslice/cornpotato/carbon
 	name = "cornpotato-pizza slice"
 	desc = "A slice of a sanity destroying other thing. Somehow worse than the Cook's."
-	icon_hippie = 'hippiestation/icons/obj/food/pizzaspaghetti.dmi'
+	icon = 'hippiestation/icons/obj/food/pizzaspaghetti.dmi'
 	icon_state = "pizzacornpotatoslice"
 	filling_color = "#FFA500"
 	bitesize = 1
@@ -95,7 +95,7 @@
 /obj/item/reagent_containers/food/snacks/hamdisc
 	name = "ham disc"
 	desc = "The laziest food someone could possibly make, alongside some corn."
-	icon_hippie = 'hippiestation/icons/obj/food/food.dmi'
+	icon = 'hippiestation/icons/obj/food/food.dmi'
 	icon_state = "ham_disk"
 	list_reagents = list("nutriment" = 1, "vitamin" = 1, "soymilk" = 6)
 	tastes = list("laziness" = 2)

@@ -72,7 +72,7 @@
 /obj/item/gun/magic/ling_armcannon
 	name = "armcannon"
 	desc = "A ballistic weapon comparable to a Glock 17, made out of our own arm. It stirs and mixes chemicals to create its ammunition."
-	icon_hippie = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	icon_state = "gun_arm"
 	item_state = "gun_arm"
 	lefthand_file = 'hippiestation/icons/mob/inhands/changeling_lefthand.dmi'
@@ -102,7 +102,7 @@
 /obj/item/projectile/bullet/c9mm/changeling
 	name = "gelatinous bullet"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect
-	icon_hippie = 'hippiestation/icons/obj/projectiles.dmi'
+	icon = 'hippiestation/icons/obj/projectiles.dmi'
 	icon_state = "changeling_bullet"
 
 /***************************************\
@@ -123,7 +123,7 @@
 /obj/item/melee/baton/stungun/changeling
 	name = "tesla claw"
 	desc = "A claw made out of mutated flesh, which is capable of generating electricity."
-	icon_hippie = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	icon_state = "teslaclaw"
 	item_state = "teslaclaw"
 	lefthand_file = 'hippiestation/icons/mob/inhands/changeling_lefthand.dmi'

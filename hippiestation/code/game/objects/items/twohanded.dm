@@ -1,7 +1,7 @@
 /obj/item/twohanded/required/chainsaw/energy
 	name = "energy chainsaw"
 	desc = "Become Leatherspace."
-	icon_hippie = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	icon_state = "echainsaw_off"
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
@@ -45,7 +45,7 @@
 	force_wielded = 5
 	damtype = "fire" //do do doooo, I'll take you to buurn.
 	heat = 1000
-	icon_hippie = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	icon_state = "fireaxe0"
 	alternate_worn_icon = 'hippiestation/icons/mob/back.dmi'
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'

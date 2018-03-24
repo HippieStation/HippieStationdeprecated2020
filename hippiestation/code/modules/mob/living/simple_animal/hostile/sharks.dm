@@ -5,7 +5,7 @@
 	desc = "The best terror of the seas, next to the kraken."
 	icon_state = "shark"
 	icon_living = "shark"
-	icon_hippie = 'hippiestation/icons/mob/sharks.dmi'
+	icon = 'hippiestation/icons/mob/sharks.dmi'
 	icon_dead = "shark_dead"
 	icon_gib = "carp_gib"
 	environment_smash = 0

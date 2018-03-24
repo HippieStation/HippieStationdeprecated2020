@@ -76,7 +76,7 @@
 ////////////////////
 
 /datum/sprite_accessory/hair/hippie/
-	icon_hippie = 'hippiestation/icons/mob/human_face.dmi'
+	icon = 'hippiestation/icons/mob/human_face.dmi'
 
 /datum/sprite_accessory/hair/hippie/birdnest
 	name = "Birdnest"

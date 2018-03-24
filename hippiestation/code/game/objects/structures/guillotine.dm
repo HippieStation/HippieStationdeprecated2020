@@ -12,7 +12,7 @@
 /obj/structure/guillotine
 	name = "guillotine"
 	desc = "A large structure used to remove the heads of traitors and treasonists."
-	icon_hippie = 'hippiestation/icons/obj/structures/guillotine.dmi'
+	icon = 'hippiestation/icons/obj/structures/guillotine.dmi'
 	icon_state = "guillotine_raised"
 	var/blade_status = GUILLOTINE_BLADE_RAISED
 	var/blade_sharpness = GUILLOTINE_BLADE_MAX_SHARP // How sharp the blade is

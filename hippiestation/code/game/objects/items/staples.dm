@@ -2,7 +2,7 @@
 	name = "staples"
 	singular_name = "staple"
 	desc = "Staples for use with a staplegun."
-	icon_hippie = 'hippiestation/icons/obj/staples.dmi'
+	icon = 'hippiestation/icons/obj/staples.dmi'
 	icon_state = "staples"
 	item_state = "staples"
 	force = 0
@@ -29,7 +29,7 @@
 /obj/item/staplegun
 	name = "Staple gun"
 	desc = "Insert paper you want to staple and then use the gun on a wall/floor. CAUTION: Don't use on people."
-	icon_hippie = 'hippiestation/icons/obj/staples.dmi'
+	icon = 'hippiestation/icons/obj/staples.dmi'
 	icon_state = "staplegun"
 	force = 0
 	throw_speed = 2

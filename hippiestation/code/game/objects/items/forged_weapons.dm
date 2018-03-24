@@ -1,5 +1,5 @@
 /obj/item/forged
-	icon_hippie = 'hippiestation/icons/obj/forged_weapons.dmi'
+	icon = 'hippiestation/icons/obj/forged_weapons.dmi'
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
 	var/datum/reagent/reagent_type
@@ -101,7 +101,7 @@
 
 
 /obj/item/twohanded/forged
-	icon_hippie = 'hippiestation/icons/obj/forged_weapons.dmi'
+	icon = 'hippiestation/icons/obj/forged_weapons.dmi'
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
 	var/datum/reagent/reagent_type

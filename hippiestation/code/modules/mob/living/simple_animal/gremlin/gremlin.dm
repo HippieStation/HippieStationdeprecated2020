@@ -10,7 +10,7 @@ var/list/bad_gremlin_items = list()
 /mob/living/simple_animal/hostile/gremlin
 	name = "gremlin"
 	desc = "This tiny creature finds great joy in discovering and using technology. Nothing excites it more than pushing random buttons on a computer to see what it might do."
-	icon_hippie = 'hippiestation/icons/mob/mob.dmi'
+	icon = 'hippiestation/icons/mob/mob.dmi'
 	icon_state = "gremlin"
 	icon_living = "gremlin"
 	icon_dead = "gremlin_dead"

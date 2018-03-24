@@ -23,7 +23,7 @@
 
 /obj/item/bowling
 	name = "bowling ball"
-	icon_hippie = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	icon_state = "bowling_ball"
 	desc = "A heavy, round device used to knock pins (or people) down."
 	force = 6

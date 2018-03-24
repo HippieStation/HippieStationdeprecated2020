@@ -1,7 +1,7 @@
 /obj/item/seeds/limbseed
 	name = "pack of replica limb seeds"
 	desc = "Replica limbs, like arms and legs. Break a leg!"
-	icon_hippie = 'hippiestation/icons/obj/hydroponics/seeds.dmi'
+	icon = 'hippiestation/icons/obj/hydroponics/seeds.dmi'
 	icon_state = "seed-limb"
 	species = "limb"
 	plantname = "Replica Limb Flower"
@@ -17,7 +17,7 @@
 	reagents_add = list("vitamin" = 0.04, "nutriment" = 0.05)
 
 /obj/item/reagent_containers/food/snacks/grown/limb_spawn
-	icon_hippie = 'hippiestation/icons/obj/hydroponics/harvest.dmi'
+	icon = 'hippiestation/icons/obj/hydroponics/harvest.dmi'
 	seed = /obj/item/seeds/limbseed
 	name = "limbflower"
 	desc = "A cluster of limbs sprouting from a stem."

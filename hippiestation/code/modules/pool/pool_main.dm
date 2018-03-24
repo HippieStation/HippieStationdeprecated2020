@@ -1,5 +1,5 @@
 /turf/open/pool
-	icon_hippie = 'hippiestation/icons/turf/pool.dmi'
+	icon = 'hippiestation/icons/turf/pool.dmi'
 	var/filled = TRUE
 	name = "poolwater"
 	desc = "You're safer here than in the deep."
@@ -29,7 +29,7 @@
 
 /obj/effect/overlay/water
 	name = "water"
-	icon_hippie = 'hippiestation/icons/turf/pool.dmi'
+	icon = 'hippiestation/icons/turf/pool.dmi'
 	icon_state = "bottom"
 	density = 0
 	mouse_opacity = 0
@@ -261,7 +261,7 @@
 
 /obj/structure/pool
 	name = "pool"
-	icon_hippie = 'hippiestation/icons/turf/pool.dmi'
+	icon = 'hippiestation/icons/turf/pool.dmi'
 	anchored = 1
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
@@ -439,6 +439,6 @@
 /obj/effect/splash
 	name = "splash"
 	desc = "Wataaa!."
-	icon_hippie = 'hippiestation/icons/turf/pool.dmi'
+	icon = 'hippiestation/icons/turf/pool.dmi'
 	icon_state = "splash"
 	layer = ABOVE_ALL_MOB_LAYER

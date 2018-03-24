@@ -1,7 +1,7 @@
 /obj/machinery/chem
 	density = TRUE
 	anchored = TRUE
-	icon_hippie = 'hippiestation/icons/obj/chemical.dmi'
+	icon = 'hippiestation/icons/obj/chemical.dmi'
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10

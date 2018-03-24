@@ -2,7 +2,7 @@ GLOBAL_LIST_EMPTY(chempiles)
 /obj/effect/decal/cleanable/chempile
 	name = "chemicals"
 	desc = "An indiscernible mixture of chemicals"
-	icon_hippie = 'hippiestation/icons/effects/32x32.dmi'
+	icon = 'hippiestation/icons/effects/32x32.dmi'
 	icon_state = "chempile"
 	mergeable_decal = FALSE
 

@@ -6,7 +6,7 @@
 	max_amount = 32
 	// gender = PLURAL
 	desc = "Welp. Someone had their teeth knocked out."
-	icon_hippie = 'hippiestation/icons/obj/teeth.dmi'
+	icon = 'hippiestation/icons/obj/teeth.dmi'
 	icon_state = "teeth"
 
 /obj/item/stack/teeth/suicide_act(mob/user)

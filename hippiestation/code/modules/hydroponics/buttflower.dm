@@ -1,7 +1,7 @@
 /obj/item/seeds/buttseed
 	name = "pack of replica butt seeds"
 	desc = "Replica butts...has science gone too far?"
-	icon_hippie = 'hippiestation/icons/obj/hydroponics/seeds.dmi'
+	icon = 'hippiestation/icons/obj/hydroponics/seeds.dmi'
 	icon_state = "seed-butt"
 	species = "butt"
 	plantname = "Replica Butt Flower"
@@ -18,7 +18,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/shell/buttflower
 	seed = /obj/item/seeds/buttseed
-	icon_hippie = 'hippiestation/icons/obj/hydroponics/harvest.dmi'
+	icon = 'hippiestation/icons/obj/hydroponics/harvest.dmi'
 	name = "buttflower"
 	desc = "Gives off a pungent aroma once it blooms."
 	icon_state = "buttflower"
