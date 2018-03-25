@@ -2,7 +2,7 @@
     var/icon_hippie
 
 /atom/proc/check_hippie_icon()
-    if (!icon || !icon_state || !icon_hippie)
+    if (!icon || !icon_state || !icon_hippie || !initialized)
         return
 
     var/icon/I = new (icon_hippie)
