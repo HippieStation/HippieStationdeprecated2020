@@ -27,7 +27,6 @@
 		add_logs(src,, "slipped",, "on [O ? O.name : "floor"]")
 	return loc.handle_slip(src, knockdown_amount, O, lube)
 
-
 /mob/living/carbon/Process_Spacemove(movement_dir = 0)
 	if(..())
 		return 1
@@ -50,7 +49,7 @@
 /mob/living/carbon/Move(NewLoc, direct)
 	. = ..()
 	if(. && mob_has_gravity()) //floating is easy
-		if(dna && dna.species && (NOHUNGER in dna.species.species_traits))
+		if(has_trait(TRAIT_NOHUNGER))
 			nutrition = NUTRITION_LEVEL_FED - 1	//just less than feeling vigorous
 		else if(nutrition && stat != DEAD)
 			nutrition -= HUNGER_FACTOR/10

@@ -72,7 +72,7 @@
 		init_sprite_accessory_subtypes(/datum/sprite_accessory/screen, GLOB.ipc_screens_list)
 
 	//For now we will always return none for tail_human and ears.
-	return(list("mcolor" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"), "tail_lizard" = pick(GLOB.tails_list_lizard), "tail_human" = "None", "wings" = "None", "snout" = pick(GLOB.snouts_list), "horns" = pick(GLOB.horns_list), "ears" = "None", "frills" = pick(GLOB.frills_list), "spines" = pick(GLOB.spines_list), "body_markings" = pick(GLOB.body_markings_list), "legs" = "Normal Legs", "ipc_screen" = pick(GLOB.ipc_screens_list)))
+	return(list("mcolor" = pick("FFFFFF","7F7F7F", "7FFF7F", "7F7FFF", "FF7F7F", "7FFFFF", "FF7FFF", "FFFF7F"), "tail_lizard" = pick(GLOB.tails_list_lizard), "tail_human" = "None", "wings" = "None", "snout" = pick(GLOB.snouts_list), "horns" = pick(GLOB.horns_list), "ears" = "None", "frills" = pick(GLOB.frills_list), "spines" = pick(GLOB.spines_list), "body_markings" = pick(GLOB.body_markings_list), "legs" = "Normal Legs", "caps" = pick(GLOB.caps_list),  "ipc_screen" = pick(GLOB.ipc_screens_list), "moth_wings" = pick(GLOB.moth_wings_list)))
 
 /proc/random_hair_style(gender)
 	switch(gender)
@@ -277,7 +277,7 @@ Proc for attack log creation, because really why not
 		checked_health["health"] = health
 	return ..()
 
-/proc/do_after(mob/user, delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null)
+/proc/do_after(mob/user, var/delay, needhand = 1, atom/target = null, progress = 1, datum/callback/extra_checks = null)
 	if(!user)
 		return 0
 	var/atom/Tloc = null
@@ -295,6 +295,8 @@ Proc for attack log creation, because really why not
 	var/holdingnull = 1 //User's hand started out empty, check for an empty hand
 	if(holding)
 		holdingnull = 0 //Users hand started holding something, check to see if it's still holding that
+
+	delay *= user.do_after_coefficent()
 
 	var/datum/progressbar/progbar
 	if (progress)
@@ -333,6 +335,10 @@ Proc for attack log creation, because really why not
 				break
 	if (progress)
 		qdel(progbar)
+
+/mob/proc/do_after_coefficent() // This gets added to the delay on a do_after, default 1
+	. = 1
+	return
 
 /proc/do_after_mob(mob/user, var/list/targets, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks)
 	if(!user || !targets)

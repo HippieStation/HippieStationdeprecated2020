@@ -34,9 +34,8 @@
 	else
 		return ..()
 
-/obj/machinery/computer/med_data/attack_hand(mob/user)
-	if(..())
-		return
+/obj/machinery/computer/med_data/interact(mob/user)
+	. = ..()
 	var/dat
 	if(src.temp)
 		dat = text("<TT>[src.temp]</TT><BR><BR><A href='?src=[REF(src)];temp=1'>Clear Screen</A>")
@@ -192,7 +191,6 @@
 	popup.set_content(dat)
 	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
-	return
 
 /obj/machinery/computer/med_data/Topic(href, href_list)
 	. = ..()
@@ -495,7 +493,7 @@
 				var/counter = 1
 				while(src.active2.fields[text("com_[]", counter)])
 					counter++
-				src.active2.fields[text("com_[]", counter)] = text("Made by [] ([]) on [] [], []<BR>[]", src.authenticated, src.rank, worldtime2text(), time2text(world.realtime, "MMM DD"), GLOB.year_integer+540, t1)
+				src.active2.fields[text("com_[]", counter)] = text("Made by [] ([]) on [] [], []<BR>[]", src.authenticated, src.rank, station_time_timestamp(), time2text(world.realtime, "MMM DD"), GLOB.year_integer+540, t1)
 
 			else if(href_list["del_c"])
 				if((istype(src.active2, /datum/data/record) && src.active2.fields[text("com_[]", href_list["del_c"])]))

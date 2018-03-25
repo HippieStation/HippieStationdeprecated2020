@@ -164,6 +164,9 @@
 	return TRUE
 
 /obj/item/device/gps/computer/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	attack_self(user)
 
 //Bed
@@ -217,7 +220,6 @@
 	desc = "A large machine releasing a constant gust of air."
 	anchored = TRUE
 	density = TRUE
-	var/arbitraryatmosblockingvar = TRUE
 	var/buildstacktype = /obj/item/stack/sheet/metal
 	var/buildstackamount = 5
 	CanAtmosPass = ATMOS_PASS_NO
