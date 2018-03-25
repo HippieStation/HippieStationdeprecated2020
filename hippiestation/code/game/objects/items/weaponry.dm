@@ -77,3 +77,18 @@
 /obj/item/staff/Initialize()
 	. = ..()
 	AddComponent(/datum/component/spell_catalyst)
+
+
+/obj/item/melee/throwingknife
+	name = "Throwing knife"
+	desc = "A short blade, which seems to be made for throwing"
+	icon = 'hippiestation/icons/obj/weapons.dmi'
+	icon_state = "throwingknife"
+	item_state = "throwingknife"
+	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
+	attack_verb = list("stabbed", "shanked", "gutted", "perforated", "jagged")
+	force = 7
+	throwforce = 14 // dude they're tossing knives
+	armour_penetration = 50 // small boi but big sting, stab u in the dingaling
+	w_class = WEIGHT_CLASS_SMALL

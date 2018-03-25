@@ -42,3 +42,12 @@
 	time = 150
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/throwingknife
+	name = "Throwing Knife"
+	result = /obj/item/melee/throwing_knife
+	reqs = list(/obj/item/stack/rods = 2,
+				/obj/item/stack/cable_coil = 15)
+	time = 25
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
