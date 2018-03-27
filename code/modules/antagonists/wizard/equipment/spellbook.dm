@@ -1445,7 +1445,6 @@
 	throw_speed = 2
 	throw_range = 5
 	w_class = WEIGHT_CLASS_TINY
-	persistence_replacement = /obj/item/spellbook/oneuse/random
 	var/uses = 10
 	var/temp = null
 	var/tab = null
@@ -1625,6 +1624,7 @@
 			tab = sanitize(href_list["page"])
 	attack_self(H)
 	return
+<<<<<<< HEAD
 
 //Single Use Spellbooks//
 
@@ -1821,3 +1821,5 @@
 	icon_state ="booksacredflame"
 	desc = "Become one with the flames that burn within... and invite others to do so as well."
 >>>>>>> ca10fa6d7a... Spell Cards (#36147)
+=======
+>>>>>>> 5ed2a56ced... Refactors Spell and Martial Art Books to use Action Granters! (#36442)
