@@ -139,7 +139,8 @@
 		T.MakeSlippery(TURF_WET_WATER, 10 SECONDS, min(reac_volume*1.5 SECONDS, 60 SECONDS))
 
 	for(var/mob/living/simple_animal/slime/M in T)
-		M.apply_water()
+		M.apply_water() //THIS LINE IS MOST LIKELY CAUSING THE ISSUE - APPLY_WATER ONLY WORKS WHEN THE MOB IS ON A TURF THAT CONTAINS WATER - THEREFORE WATER MUST BE ON THE FLOOR TO APPLY
+						//PERHAPS ADD ANOTHER APPLY_WATER AND HAVE IT ACTIVATE UPON CONTACT WITH THE SPRAY FROM EXTINGUISHER?
 
 	var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in T)
 	if(hotspot && !isspaceturf(T))
