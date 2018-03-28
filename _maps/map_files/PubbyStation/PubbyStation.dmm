@@ -6761,7 +6761,7 @@
 /turf/open/floor/plasteel/barber,
 /area/crew_quarters/dorms)
 "asf" = (
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -8957,7 +8957,7 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/dorms)
 "axq" = (
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -10324,7 +10324,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "aAP" = (
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/structure/chair/comfy{
 	dir = 1
 	},
@@ -11296,7 +11296,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -11497,7 +11497,7 @@
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aDy" = (
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aDz" = (
@@ -14665,7 +14665,7 @@
 	dir = 8;
 	name = "Defense"
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/cafeteria/lunchroom)
@@ -15360,7 +15360,7 @@
 /obj/structure/toilet{
 	dir = 4
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/auxiliary)
 "aNd" = (
@@ -20353,7 +20353,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/vault{
 	dir = 5
 	},
@@ -21249,7 +21249,7 @@
 /area/crew_quarters/kitchen)
 "bbm" = (
 /obj/structure/chair/stool/bar,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "bbo" = (
@@ -21312,7 +21312,7 @@
 	},
 /area/crew_quarters/bar)
 "bbw" = (
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/structure/chair/stool,
 /turf/open/floor/carpet{
 	icon_state = "carpetsymbol"
@@ -23816,7 +23816,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/crew_quarters/lounge)
 "bic" = (
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
@@ -47919,14 +47919,14 @@
 /area/chapel/main/monastery)
 "crL" = (
 /obj/structure/chair/wood/normal,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/chapel{
 	dir = 4
 	},
 /area/chapel/main/monastery)
 "crM" = (
 /obj/structure/chair/wood/normal,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/chapel{
 	dir = 1
 	},

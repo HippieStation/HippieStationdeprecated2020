@@ -22,8 +22,8 @@
 /datum/game_mode/devil/pre_setup()
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
-	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
-		restricted_jobs += "Assistant"
+	if(CONFIG_GET(flag/protect_assailant_from_antagonist))
+		restricted_jobs += "Assailant"
 
 	var/num_devils = 1
 

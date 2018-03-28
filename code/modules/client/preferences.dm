@@ -97,7 +97,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/job_engsec_low = 0
 
 		// Want randomjob if preferences already filled - Donkie
-	var/joblessrole = BERANDOMJOB  //defaults to 1 for fewer assistants
+	var/joblessrole = BERANDOMJOB  //defaults to 1 for fewer assailants
 
 	// 0 = character settings, 1 = game preferences
 	var/current_tab = 0

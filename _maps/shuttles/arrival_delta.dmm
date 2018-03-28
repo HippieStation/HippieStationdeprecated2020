@@ -263,7 +263,7 @@
 "B" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
-/obj/item/toy/figure/assistant,
+/obj/item/toy/figure/assailant,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/shuttle/arrival)

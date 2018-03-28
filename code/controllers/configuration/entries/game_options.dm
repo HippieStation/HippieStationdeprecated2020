@@ -36,7 +36,7 @@
 
 /datum/config_entry/flag/jobs_have_minimal_access	//determines whether jobs use minimal access or expanded access.
 
-/datum/config_entry/flag/assistants_have_maint_access
+/datum/config_entry/flag/assailants_have_maint_access
 
 /datum/config_entry/flag/security_has_maint_access
 
@@ -88,7 +88,7 @@
 
 /datum/config_entry/flag/protect_roles_from_antagonist	//If security and such can be traitor/cult/other
 
-/datum/config_entry/flag/protect_assistant_from_antagonist	//If assistants can be traitor/cult/other
+/datum/config_entry/flag/protect_assailant_from_antagonist	//If assailants can be traitor/cult/other
 
 /datum/config_entry/flag/enforce_human_authority	//If non-human species are barred from joining as a head of staff
 
@@ -226,12 +226,12 @@
 /datum/config_entry/keyed_number_list/law_weight
 	splitter = ","
 
-/datum/config_entry/number/assistant_cap
+/datum/config_entry/number/assailant_cap
 	config_entry_value = -1
 	min_val = -1
 
 /datum/config_entry/flag/starlight
-/datum/config_entry/flag/grey_assistants
+/datum/config_entry/flag/grey_assailants
 
 /datum/config_entry/number/lavaland_budget
 	config_entry_value = 60

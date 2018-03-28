@@ -140,7 +140,7 @@
 /obj/item/reagent_containers/food/snacks/hotcrossbun
 	bitesize = 2
 	name = "hot-cross bun"
-	desc = "The Cross represents the Assistants that died for your sins."
+	desc = "The Cross represents the Assailants that died for your sins."
 	icon_state = "hotcrossbun"
 
 /datum/crafting_recipe/food/food/hotcrossbun

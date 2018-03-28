@@ -27,7 +27,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 	//Jobs you cannot open new positions for
 	var/list/blacklisted = list(
 		"AI",
-		"Assistant",
+		"Assailant",
 		"Cyborg",
 		"Captain",
 		"Head of Personnel",
@@ -434,7 +434,7 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 					modify.assignment = t1
 					playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
 		if ("demote")
-			if(modify.assignment in head_subordinates || modify.assignment == "Assistant")
+			if(modify.assignment in head_subordinates || modify.assignment == "Assailant")
 				modify.assignment = "Unassigned"
 				playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
 			else

@@ -57,7 +57,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	var/lock_code = "" // Lockcode to unlock uplink
 	var/honkamt = 0 //How many honks left when infected with honk.exe
 	var/mimeamt = 0 //How many silence left when infected with mime.exe
-	var/note = "Congratulations, your station has chosen the Thinktronic 5230 Personal Data Assistant!" //Current note in the notepad function
+	var/note = "Congratulations, your station has chosen the Thinktronic 5230 Personal Data Assailant!" //Current note in the notepad function
 	var/notehtml = ""
 	var/notescanned = FALSE // True if what is in the notekeeper was from a paper.
 	var/detonatable = TRUE // Can the PDA be blown up?
@@ -181,7 +181,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 	user.set_machine(src)
 
-	var/dat = "<!DOCTYPE html><html><head><title>Personal Data Assistant</title><link href=\"https://fonts.googleapis.com/css?family=Orbitron|Share+Tech+Mono|VT323\" rel=\"stylesheet\"></head><body bgcolor=\"" + background_color + "\"><style>body{" + font_mode + "}ul,ol{list-style-type: none;}a, a:link, a:visited, a:active, a:hover { color: #000000;text-decoration:none; }img {border-style:none;}a img{padding-right: 9px;}</style>"
+	var/dat = "<!DOCTYPE html><html><head><title>Personal Data Assailant</title><link href=\"https://fonts.googleapis.com/css?family=Orbitron|Share+Tech+Mono|VT323\" rel=\"stylesheet\"></head><body bgcolor=\"" + background_color + "\"><style>body{" + font_mode + "}ul,ol{list-style-type: none;}a, a:link, a:visited, a:active, a:hover { color: #000000;text-decoration:none; }img {border-style:none;}a img{padding-right: 9px;}</style>"
 
 
 	dat += "<a href='byond://?src=[REF(src)];choice=Refresh'><img src=pda_refresh.png>Refresh</a>"
@@ -207,7 +207,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	else
 		switch (mode)
 			if (0)
-				dat += "<h2>PERSONAL DATA ASSISTANT v.1.2</h2>"
+				dat += "<h2>PERSONAL DATA ASSAILANT v.1.2</h2>"
 				dat += "Owner: [owner], [ownjob]<br>"
 				dat += text("ID: <a href='?src=[REF(src)];choice=Authenticate'>[id ? "[id.registered_name], [id.assignment]" : "----------"]")
 				dat += text("<br><a href='?src=[REF(src)];choice=UpdateInfo'>[id ? "Update PDA Info" : ""]</A><br><br>")

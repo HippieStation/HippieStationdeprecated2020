@@ -1,7 +1,7 @@
 /*
 Assailant
 */
-/datum/job/assistant
+/datum/job/assailant
 	title = "Assailant"
 	flag = ASSAILANT
 	department_flag = CIVILIAN

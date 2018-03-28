@@ -161,7 +161,7 @@
 /datum/barsign/harmbaton
 	name = "The Harmbaton"
 	icon = "theharmbaton"
-	desc = "A great dining experience for both security members and assistants."
+	desc = "A great dining experience for both security members and assailants."
 
 
 /datum/barsign/thesingulo

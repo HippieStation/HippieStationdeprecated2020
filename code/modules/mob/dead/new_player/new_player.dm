@@ -283,8 +283,8 @@
 	if(!job)
 		return 0
 	if((job.current_positions >= job.total_positions) && job.total_positions != -1)
-		if(job.title == "Assistant")
-			if(isnum(client.player_age) && client.player_age <= 14) //Newbies can always be assistants
+		if(job.title == "Assailant")
+			if(isnum(client.player_age) && client.player_age <= 14) //Newbies can always be assailants
 				return 1
 			for(var/datum/job/J in SSjob.occupations)
 				if(J && J.current_positions < J.total_positions && J.title != job.title)
@@ -302,7 +302,7 @@
 
 /mob/dead/new_player/proc/AttemptLateSpawn(rank)
 	if(jobban_isbanned(src, CATBAN) || jobban_isbanned(src, CLUWNEBAN))
-		rank = "Assistant"
+		rank = "Assailant"
 
 	if(!IsJobAvailable(rank))
 		alert(src, "[rank] is not available. Please try another.")

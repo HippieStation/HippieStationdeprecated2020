@@ -8568,7 +8568,7 @@
 /obj/structure/chair/stool{
 	pixel_y = 8
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -9037,7 +9037,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
 "awB" = (
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/green/side{
 	dir = 4
 	},
@@ -9547,7 +9547,7 @@
 /obj/structure/chair/stool{
 	pixel_y = 8
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "axP" = (
@@ -10909,7 +10909,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "aBm" = (
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 5
 	},
@@ -11089,7 +11089,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "aBM" = (
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel,
 /area/hydroponics/garden)
 "aBN" = (
@@ -12715,7 +12715,7 @@
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aFS" = (
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aFT" = (
@@ -12725,7 +12725,7 @@
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aFU" = (
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
@@ -13435,7 +13435,7 @@
 /obj/structure/chair/stool{
 	pixel_y = 8
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aHE" = (
@@ -13578,7 +13578,7 @@
 /obj/structure/mirror{
 	pixel_x = -28
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet)
 "aHV" = (
@@ -13816,7 +13816,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -14982,7 +14982,7 @@
 /area/hallway/primary/central)
 "aLy" = (
 /obj/structure/chair/comfy/beige,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/grimy,
 /area/hallway/secondary/entry)
 "aLz" = (
@@ -16249,7 +16249,7 @@
 	dir = 1;
 	icon_state = "comfychair"
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/grimy,
 /area/hallway/secondary/entry)
@@ -16627,7 +16627,7 @@
 /area/crew_quarters/bar)
 "aQd" = (
 /obj/structure/chair,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/bar,
 /area/crew_quarters/bar)
 "aQe" = (
@@ -17066,7 +17066,7 @@
 /obj/structure/chair{
 	dir = 1
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/bar,
 /area/crew_quarters/bar)
 "aRx" = (
@@ -17652,7 +17652,7 @@
 "aTi" = (
 /obj/structure/chair/stool,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/chapel{
 	dir = 8
 	},
@@ -17744,7 +17744,7 @@
 /obj/structure/chair/stool{
 	pixel_y = 8
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "aTy" = (
@@ -18024,7 +18024,7 @@
 /obj/structure/chair/stool{
 	pixel_y = 8
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -18098,7 +18098,7 @@
 /area/library)
 "aUC" = (
 /obj/structure/chair/comfy/black,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/wood,
 /area/library)
 "aUD" = (
@@ -18127,7 +18127,7 @@
 /area/chapel/main)
 "aUH" = (
 /obj/structure/chair/stool,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/chapel{
 	dir = 4
 	},
@@ -19845,7 +19845,7 @@
 /area/crew_quarters/locker)
 "aYI" = (
 /obj/structure/chair/stool/bar,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/bar,
 /area/crew_quarters/bar)
 "aYJ" = (

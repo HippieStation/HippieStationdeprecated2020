@@ -707,7 +707,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/stealthy_weapons/detomatix
 	name = "Detomatix PDA Cartridge"
-	desc = "When inserted into a personal digital assistant, this cartridge gives you four opportunities to \
+	desc = "When inserted into a personal digital assailant, this cartridge gives you four opportunities to \
 			detonate PDAs of crewmembers who have their message feature enabled. \
 			The concussive effect from the explosion will knock the recipient out for a short period, and deafen \
 			them for longer. Beware, it has a chance to detonate your PDA."
@@ -782,7 +782,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 
 /datum/uplink_item/stealthy_tools/frame
 	name = "F.R.A.M.E. PDA Cartridge"
-	desc = "When inserted into a personal digital assistant, this cartridge gives you five PDA viruses which \
+	desc = "When inserted into a personal digital assailant, this cartridge gives you five PDA viruses which \
 			when used cause the targeted PDA to become a new uplink with zero TCs, and immediately become unlocked.  \
 			You will receive the unlock code upon activating the virus, and the new uplink may be charged with \
 			telecrystals normally."
@@ -1350,7 +1350,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	desc = "A tattered old jumpsuit that will provide absolutely no benefit to you. It fills the wearer with a strange compulsion to blurt out 'glorf'."
 	item = /obj/item/clothing/under/color/grey/glorf
 	cost = 20
-	restricted_roles = list("Assistant")
+	restricted_roles = list("Assailant")
 	surplus = 0
 
 /datum/uplink_item/role_restricted/haunted_magic_eightball

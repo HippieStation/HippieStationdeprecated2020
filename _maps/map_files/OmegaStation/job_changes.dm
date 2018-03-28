@@ -13,7 +13,7 @@
 	MAP_JOB_CHECK
 	box = /obj/item/storage/box/survival/radio
 
-/datum/job/assistant // Here so assistant appears on the top of the select job list.
+/datum/job/assailant // Here so assailant appears on the top of the select job list.
 
 //Command
 

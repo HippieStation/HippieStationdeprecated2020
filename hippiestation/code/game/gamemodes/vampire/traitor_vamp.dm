@@ -28,8 +28,8 @@
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 
-	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
-		restricted_jobs += "Assistant"
+	if(CONFIG_GET(flag/protect_assailant_from_antagonist))
+		restricted_jobs += "Assailant"
 
 	var/list/datum/mind/possible_vamps = get_players_for_role(ROLE_VAMPIRE)
 

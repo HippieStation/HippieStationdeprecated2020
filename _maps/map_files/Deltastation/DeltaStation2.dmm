@@ -1227,7 +1227,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -1317,7 +1317,7 @@
 /obj/structure/chair{
 	dir = 4
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -3439,7 +3439,7 @@
 /area/hallway/secondary/entry)
 "amr" = (
 /obj/structure/chair/comfy/brown,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/grimy,
 /area/hallway/secondary/entry)
 "ams" = (
@@ -5062,7 +5062,7 @@
 	buildstackamount = 0;
 	dir = 1
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/airalarm{
 	dir = 1;
 	pixel_y = -22
@@ -9901,7 +9901,7 @@
 	pixel_x = -32
 	},
 /obj/machinery/light/small,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/crew_quarters/toilet/auxiliary)
@@ -14756,7 +14756,7 @@
 /area/crew_quarters/bar/atrium)
 "aKA" = (
 /obj/structure/chair/stool/bar,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/redyellow,
 /area/crew_quarters/bar/atrium)
 "aKB" = (
@@ -20009,7 +20009,7 @@
 /area/crew_quarters/bar/atrium)
 "aVq" = (
 /obj/structure/chair/stool,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/redyellow,
 /area/crew_quarters/bar/atrium)
 "aVr" = (
@@ -24733,7 +24733,7 @@
 /obj/structure/chair{
 	dir = 4
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/brown{
 	dir = 8
 	},
@@ -27639,7 +27639,7 @@
 /obj/structure/chair{
 	dir = 1
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/brown,
 /area/hallway/primary/fore)
 "blM" = (
@@ -39383,7 +39383,7 @@
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "bIB" = (
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
@@ -51600,7 +51600,7 @@
 /obj/structure/chair{
 	dir = 4
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -52291,7 +52291,7 @@
 /area/library)
 "chS" = (
 /obj/structure/chair/comfy/brown,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/wood,
 /area/library)
 "chT" = (
@@ -53633,7 +53633,7 @@
 /obj/structure/chair/office/dark{
 	dir = 8
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/wood,
 /area/library)
 "ckP" = (
@@ -54583,7 +54583,7 @@
 /obj/structure/chair{
 	dir = 4
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
 	},
@@ -58108,7 +58108,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/chair/comfy/black,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -58962,7 +58962,7 @@
 /area/crew_quarters/locker)
 "cvT" = (
 /obj/structure/chair/stool,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -59343,7 +59343,7 @@
 /obj/structure/chair/comfy/black{
 	dir = 1
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/blue/corner,
 /area/hallway/secondary/command)
 "cwN" = (
@@ -61820,7 +61820,7 @@
 /obj/structure/cable/white{
 	icon_state = "2-8"
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -62547,7 +62547,7 @@
 	},
 /area/crew_quarters/toilet/restrooms)
 "cDo" = (
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/neutral,
 /area/crew_quarters/toilet/restrooms)
 "cDp" = (
@@ -62708,7 +62708,7 @@
 /obj/structure/chair{
 	dir = 4
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel/neutral/corner{
 	dir = 4
@@ -64811,7 +64811,7 @@
 	pixel_x = -32
 	},
 /obj/machinery/light/small,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/crew_quarters/toilet/restrooms)
@@ -66586,7 +66586,7 @@
 /obj/structure/chair/office/light{
 	dir = 8
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/neutral,
 /area/crew_quarters/fitness/recreation)
 "cLq" = (
@@ -68250,7 +68250,7 @@
 /area/science/research)
 "cOZ" = (
 /obj/structure/chair,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/whitepurple/corner{
 	dir = 1
 	},
@@ -68306,7 +68306,7 @@
 /area/science/research)
 "cPg" = (
 /obj/structure/chair,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/whitepurple/corner{
 	dir = 4
 	},
@@ -68348,7 +68348,7 @@
 /area/medical/medbay/central)
 "cPn" = (
 /obj/structure/chair,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/whiteblue/corner{
 	dir = 1
 	},
@@ -68395,7 +68395,7 @@
 /area/medical/medbay/central)
 "cPt" = (
 /obj/structure/chair,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/whiteblue/corner{
 	dir = 4
 	},
@@ -71156,7 +71156,7 @@
 /obj/structure/chair{
 	dir = 4
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/light{
 	dir = 4
@@ -93474,7 +93474,7 @@
 /obj/structure/chair{
 	dir = 8
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/hallway/primary/aft)
@@ -97333,7 +97333,7 @@
 /area/hallway/secondary/exit/departure_lounge)
 "dZq" = (
 /obj/structure/chair,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/camera{
 	c_tag = "Departures - Center";
 	dir = 2;
@@ -98132,7 +98132,7 @@
 /obj/structure/chair{
 	dir = 1
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)

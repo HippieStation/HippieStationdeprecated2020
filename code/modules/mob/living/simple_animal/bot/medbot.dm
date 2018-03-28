@@ -350,7 +350,7 @@
 		return FALSE
 
 	if(C.suiciding)
-		return FALSE //Kevorkian school of robotic medical assistants.
+		return FALSE //Kevorkian school of robotic medical assailants.
 
 	if(emagged == 2) //Everyone needs our medicine. (Our medicine is toxins)
 		return TRUE

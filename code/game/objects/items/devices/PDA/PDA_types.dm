@@ -173,7 +173,7 @@
 	default_cartridge = /obj/item/cartridge/curator
 	inserted_item = /obj/item/pen/fountain
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. This model is a WGW-11 series e-reader."
-	note = "Congratulations, your station has chosen the Thinktronic 5290 WGW-11 Series E-reader and Personal Data Assistant!"
+	note = "Congratulations, your station has chosen the Thinktronic 5290 WGW-11 Series E-reader and Personal Data Assailant!"
 	silent = TRUE //Quiet in the library!
 	overlays_x_offset = -3
 
@@ -181,7 +181,7 @@
 	name = "clear PDA"
 	icon_state = "pda-clear"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. This model is a special edition with a transparent case."
-	note = "Congratulations, you have chosen the Thinktronic 5230 Personal Data Assistant Deluxe Special Max Turbo Limited Edition!"
+	note = "Congratulations, you have chosen the Thinktronic 5230 Personal Data Assailant Deluxe Special Max Turbo Limited Edition!"
 
 /obj/item/device/pda/cook
 	name = "cook PDA"

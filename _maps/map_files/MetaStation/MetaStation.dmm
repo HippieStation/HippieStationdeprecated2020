@@ -3358,7 +3358,7 @@
 /area/crew_quarters/fitness/recreation)
 "ahj" = (
 /obj/structure/chair,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
 "ahk" = (
@@ -4192,7 +4192,7 @@
 /obj/structure/chair{
 	dir = 8
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
 "ajb" = (
@@ -8928,7 +8928,7 @@
 /obj/machinery/airalarm{
 	pixel_y = 23
 	},
-/obj/item/clothing/under/assistantformal,
+/obj/item/clothing/under/assailantformal,
 /turf/open/floor/wood,
 /area/crew_quarters/dorms)
 "asV" = (
@@ -11634,7 +11634,7 @@
 /obj/machinery/shower{
 	dir = 8
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/restrooms)
 "ayN" = (
@@ -14047,7 +14047,7 @@
 	pixel_x = -25;
 	specialfunctions = 4
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/restrooms)
 "aDQ" = (
@@ -15555,7 +15555,7 @@
 /area/crew_quarters/dorms)
 "aGP" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
-/obj/item/clothing/under/assistantformal,
+/obj/item/clothing/under/assailantformal,
 /turf/open/floor/wood,
 /area/crew_quarters/dorms)
 "aGQ" = (
@@ -16751,7 +16751,7 @@
 	pixel_y = -25;
 	specialfunctions = 4
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/restrooms)
 "aJd" = (
@@ -22047,7 +22047,7 @@
 /area/maintenance/starboard/fore)
 "aUX" = (
 /obj/structure/closet/secure_closet/personal,
-/obj/item/clothing/under/assistantformal,
+/obj/item/clothing/under/assailantformal,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 2
 	},
@@ -24371,7 +24371,7 @@
 /area/ai_monitored/turret_protected/ai)
 "aZU" = (
 /obj/structure/closet/secure_closet/personal,
-/obj/item/clothing/under/assistantformal,
+/obj/item/clothing/under/assailantformal,
 /obj/item/clothing/suit/hooded/wintercoat,
 /obj/item/clothing/shoes/winterboots,
 /turf/open/floor/plasteel/vault,
@@ -24515,7 +24515,7 @@
 /area/maintenance/port/fore)
 "bah" = (
 /obj/structure/closet/secure_closet/personal,
-/obj/item/clothing/under/assistantformal,
+/obj/item/clothing/under/assailantformal,
 /obj/structure/sign/map/right{
 	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
 	icon_state = "map-right-MS";
@@ -25378,7 +25378,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/item/clothing/under/assistantformal,
+/obj/item/clothing/under/assailantformal,
 /obj/structure/sign/map/left{
 	desc = "A framed picture of the station. Clockwise from security at the top (red), you see engineering (yellow), science (purple), escape (red and white), medbay (green), arrivals (blue and white), and finally cargo (brown).";
 	icon_state = "map-left-MS";
@@ -28699,7 +28699,7 @@
 /obj/structure/chair{
 	dir = 8
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/brown{
 	dir = 4
 	},
@@ -32274,7 +32274,7 @@
 	c_tag = "Arrivals - Lounge";
 	dir = 4
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/grimy,
 /area/hallway/primary/port)
 "bqf" = (
@@ -33538,7 +33538,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/grimy,
 /area/hallway/primary/port)
 "bst" = (
@@ -35073,7 +35073,7 @@
 /area/hallway/secondary/entry)
 "bvD" = (
 /obj/structure/chair,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -37762,7 +37762,7 @@
 /area/library)
 "bBv" = (
 /obj/structure/chair/comfy/black,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/wood,
 /area/library)
 "bBw" = (
@@ -38053,7 +38053,7 @@
 /area/crew_quarters/bar)
 "bBV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/structure/chair/stool/bar,
 /turf/open/floor/plasteel/bar,
 /area/crew_quarters/bar)
@@ -38799,7 +38799,7 @@
 /obj/structure/chair/stool{
 	pixel_y = 8
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "bDJ" = (
@@ -42103,7 +42103,7 @@
 /area/hallway/secondary/entry)
 "bKT" = (
 /obj/structure/chair,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -49304,7 +49304,7 @@
 /area/medical/medbay/central)
 "can" = (
 /obj/structure/chair,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/whiteblue/side{
 	dir = 1
 	},
@@ -49366,7 +49366,7 @@
 /area/science/research)
 "cav" = (
 /obj/structure/chair,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/whitepurple/side{
 	dir = 1
 	},
@@ -68404,7 +68404,7 @@
 /obj/structure/chair{
 	dir = 4
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -69573,7 +69573,7 @@
 /obj/structure/chair{
 	dir = 8
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
