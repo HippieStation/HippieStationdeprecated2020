@@ -1,7 +1,7 @@
 /datum/reagent/cryogenic_fluid
 	name = "Cryogenic Fluid"
 	id = "cryogenic_fluid"
-+	description = "Extremely cold superfluid used to put out fires that will viciously freeze people on contact causing severe pain and burn damage, weak if ingested."
+	description = "Extremely cold superfluid used to put out fires that will viciously freeze people on contact causing severe pain and burn damage, weak if ingested."
 	color = "#b3ffff"
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
 	processes = TRUE

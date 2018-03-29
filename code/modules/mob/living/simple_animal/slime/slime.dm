@@ -392,7 +392,8 @@
 		visible_message("<span class='warning'>The mutated core shudders, and collapses into a puddle, unable to maintain its form.</span>")
 	qdel(src)
 
-/mob/living/simple_animal/slime/proc/apply_water()
+/mob/living/simple_animal/slime/proc/apply_water()	//Leaving a note here in case someone wants to change this proc
+													//The brute loss is currently hardcoded and I think it's fine as it is so I'm not going to touch it for now
 	adjustBruteLoss(rand(15,20))
 	if(!client)
 		if(Target) // Like cats
