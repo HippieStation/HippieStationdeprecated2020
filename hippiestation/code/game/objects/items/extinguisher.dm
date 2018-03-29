@@ -1,4 +1,3 @@
-//Marked for PR
 /obj/item/extinguisher/attack_obj(obj/O, mob/living/user)
 	if(attempt_refill_hippie(O, user))
 		refilling = TRUE
