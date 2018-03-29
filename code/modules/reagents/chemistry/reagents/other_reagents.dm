@@ -1,4 +1,3 @@
-//Marked for PR
 /datum/reagent/blood
 	data = list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"=null,"resistances"=null,"trace_chem"=null,"mind"=null,"ckey"=null,"gender"=null,"real_name"=null,"cloneable"=null,"factions"=null)
 	name = "Blood"
@@ -139,8 +138,7 @@
 		T.MakeSlippery(TURF_WET_WATER, 10 SECONDS, min(reac_volume*1.5 SECONDS, 60 SECONDS))
 
 	for(var/mob/living/simple_animal/slime/M in T)
-		M.apply_water() //THIS LINE IS MOST LIKELY CAUSING THE ISSUE - APPLY_WATER ONLY WORKS WHEN THE MOB IS ON A TURF THAT CONTAINS WATER - THEREFORE WATER MUST BE ON THE FLOOR TO APPLY
-						//PERHAPS ADD ANOTHER APPLY_WATER AND HAVE IT ACTIVATE UPON CONTACT WITH THE SPRAY FROM EXTINGUISHER?
+		M.apply_water()
 
 	var/obj/effect/hotspot/hotspot = (locate(/obj/effect/hotspot) in T)
 	if(hotspot && !isspaceturf(T))
@@ -194,8 +192,8 @@
 	else if(reac_volume < 16)
 		M.apply_water()
 		sleep(1)
-		M.apply_water()	//Won't put any more apply_waters for now because we probably don't want instadeath slimes either if we throw a beaker at em
-
+		M.apply_water()	//Won't put any more apply_waters for now because we probably don't want instadeath slimes either if we throw a beaker at em or something
+						//This is a temporary fix for slimes not taking damage from fire extinguishers - remove this when water code is fixed properly, if necessary
 
 /datum/reagent/water/holywater
 	name = "Holy Water"
