@@ -5,12 +5,12 @@
 
 /datum/round_event/weightless
 	startWhen = 5
-	endWhen = 65
+	endWhen = 165
 	announceWhen = 1
 
 /datum/round_event/weightless/setup()
 	startWhen = rand(0,10)
-	endWhen = rand(40,80)
+	endWhen = rand(80,120)
 
 /datum/round_event/weightless/announce()
 	priority_announce("Warning: Failsafes for the station's artificial gravity arrays have been triggered. Please be aware that if this problem recurs it may result in formation of gravitational anomalies. Nanotrasen wishes to remind you that the unauthorised formation of anomalies within Nanotrasen facilities is strictly prohibited by health and safety regulation [rand(99,9999)][pick("a","b","c")]:subclause[rand(1,20)][pick("a","b","c")].")
