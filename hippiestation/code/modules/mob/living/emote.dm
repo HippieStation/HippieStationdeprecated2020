@@ -21,7 +21,7 @@
 		if(istype(user, /mob/living/simple_animal/hostile/gorilla))
 			sound = 'sound/creatures/gorilla.ogg'
 		if(ishuman(user))
-			user.adjustOxyLoss(5)
+			user.adjustOxyLoss(user.scream_oxyloss)
 			sound = pick('hippiestation/sound/voice/scream_m1.ogg', 'hippiestation/sound/voice/scream_m2.ogg')
 			if(user.gender == FEMALE)
 				sound = pick('hippiestation/sound/voice/scream_f1.ogg', 'hippiestation/sound/voice/scream_f2.ogg')
@@ -42,7 +42,7 @@
 		LAZYINITLIST(user.alternate_screams)
 		if(LAZYLEN(user.alternate_screams))
 			sound = pick(user.alternate_screams)
-		playsound(user.loc, sound, 50, 1, 4, 1.2)
+		playsound(user.loc, sound, user.scream_vol, 1, 4, 1.2)
 		message = "screams!"
 	else if(miming)
 		message = "acts out a scream."
@@ -117,19 +117,4 @@
 			return
 		user.nextsoundemote = world.time + 7
 		playsound(user, 'hippiestation/sound/voice/snap3.ogg', 50, 1, -1)
-	. = ..()
-
-/datum/emote/living/carbon/clap/run_emote(mob/living/user, params)
-	if (ishuman(user))
-		// Need hands to clap
-		if (!user.get_bodypart("l_arm") || !user.get_bodypart("r_arm"))
-			return
-		if (user.nextsoundemote >= world.time)
-			return
-		user.nextsoundemote = world.time + 10
-		var/clap = pick('hippiestation/sound/misc/clap1.ogg',
-			            'hippiestation/sound/misc/clap2.ogg',
-			            'hippiestation/sound/misc/clap3.ogg',
-			            'hippiestation/sound/misc/clap4.ogg')
-		playsound(user, clap, 50, 1, -1)
 	. = ..()
