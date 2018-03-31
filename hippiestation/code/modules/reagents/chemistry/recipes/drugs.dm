@@ -19,8 +19,8 @@
 
 /datum/chemical_reaction/Xanax
 	name = "Xanax"
-	id = "Xanax"
-	results = list("Xanax" = 4)
-	required_reagents = list("Fentanyl" = 1, "iodine" = 1, "phosphorus" = 1, "lithium" = 1)
+	id = "xanax"
+	results = list("xanax" = 4)
+	required_reagents = list("fentanyl" = 1, "iodine" = 1, "phosphorus" = 1, "lithium" = 1)
 	required_temp = 374
 	centrifuge_recipe = TRUE
