@@ -266,7 +266,7 @@
 	id = "Xanax"
 	description = "A fast acting benzodiazepene which tastes terrible and is sure to steal your memory."
 	reagent_state = LIQUID
-	var/list/XanaxTalk = list("Yuh!", "Aye!", "Yuh Yuh!", ";I'M XANNED!", "GUCCI GANG!", "BRRRRRRPPP", "BRAAAPPPPPP", ";AY YO FUCK SHITSEC NIGGA")
+	var/list/XanaxTalk = list("Yuh!", "Aye!", "Yuh Yuh!", ";I'M XANNED!", "GUCCI GANG!", "BRRRRRRPPP", "BRAAAPPPPPP", ";AY YO FUCK SHITSEC")
 	var/high_message = list("You feel drowsy.", "You feel like sleeping.", "You feel like taking more xanax.", "You forget where you are.")
 
 /datum/reagent/drug/Xanax/on_mob_life(mob/living/M)
