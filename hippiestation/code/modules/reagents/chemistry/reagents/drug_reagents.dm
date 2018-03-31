@@ -263,7 +263,7 @@
 
 /datum/reagent/drug/Xanax
 	name = "Xanax"
-	id = "Xanax"
+	id = "xanax"
 	description = "A fast acting benzodiazepene which tastes terrible and is sure to steal your memory."
 	reagent_state = LIQUID
 	var/list/XanaxTalk = list("Yuh!", "Aye!", "Yuh Yuh!", ";I'M XANNED!", "GUCCI GANG!", "BRRRRRRPPP", "BRAAAPPPPPP", ";AY YO FUCK SHITSEC")
