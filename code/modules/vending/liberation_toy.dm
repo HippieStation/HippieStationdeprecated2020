@@ -14,7 +14,7 @@
 					/obj/item/toy/foamblade = 10,
 					/obj/item/toy/syndicateballoon = 10,
 					/obj/item/clothing/suit/syndicatefake = 5,
-					/obj/item/clothing/head/syndicatefake = 5) //OPS IN DORMS oh wait it's just an assistant
+					/obj/item/clothing/head/syndicatefake = 5) //OPS IN DORMS oh wait it's just an assailant
 	contraband = list(/obj/item/gun/ballistic/shotgun/toy/crossbow = 10,   //Congrats, you unlocked the +18 setting!
 					  /obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/riot = 10,
 					  /obj/item/gun/ballistic/automatic/l6_saw/toy/unrestricted/riot = 10,

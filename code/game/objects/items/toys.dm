@@ -1163,9 +1163,9 @@
 	icon_state = "cmo"
 	toysay = "Suit sensors!"
 
-/obj/item/toy/figure/assistant
-	name = "Assistant action figure"
-	icon_state = "assistant"
+/obj/item/toy/figure/assailant
+	name = "Assailant action figure"
+	icon_state = "assailant"
 	toysay = "Grey tide world wide!"
 
 /obj/item/toy/figure/atmos
@@ -1350,7 +1350,7 @@
 	name = "ventriloquist dummy"
 	desc = "It's a dummy, dummy."
 	icon = 'icons/obj/toy.dmi'
-	icon_state = "assistant"
+	icon_state = "assailant"
 	item_state = "doll"
 	var/doll_name = "Dummy"
 

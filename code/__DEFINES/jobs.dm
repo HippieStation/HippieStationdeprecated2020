@@ -40,4 +40,4 @@
 #define CHAPLAIN			(1<<10)
 #define CLOWN				(1<<11)
 #define MIME				(1<<12)
-#define ASSISTANT			(1<<13)
+#define ASSAILANT			(1<<13)

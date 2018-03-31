@@ -1829,7 +1829,7 @@
 
 /datum/supply_pack/misc/minerkit
 	name = "Shaft Miner Starter Kit"
-	desc = "All the miners died too fast? Assistant wants to get a taste of life off-station? Either way, this kit is the best way to turn a regular crewman into an ore-producing, monster-slaying machine. Contains meson goggles, a pickaxe, advanced mining scanner, cargo headset, ore bag, gasmask, and explorer suit. Requires QM access to open."
+	desc = "All the miners died too fast? Assailant wants to get a taste of life off-station? Either way, this kit is the best way to turn a regular crewman into an ore-producing, monster-slaying machine. Contains meson goggles, a pickaxe, advanced mining scanner, cargo headset, ore bag, gasmask, and explorer suit. Requires QM access to open."
 	cost = 2500
 	access = ACCESS_QM
 	contains = list(/obj/item/pickaxe/mini,
@@ -1907,8 +1907,8 @@
 	desc = "You're gonna like the way you look, I guaranteed it. Contains an asston of fancy clothing."
 	cost = 3000 //Lots of very expensive items. You gotta pay up to look good!
 	contains = list(/obj/item/clothing/under/blacktango,
-					/obj/item/clothing/under/assistantformal,
-					/obj/item/clothing/under/assistantformal,
+					/obj/item/clothing/under/assailantformal,
+					/obj/item/clothing/under/assailantformal,
 					/obj/item/clothing/under/lawyer/bluesuit,
 					/obj/item/clothing/suit/toggle/lawyer,
 					/obj/item/clothing/under/lawyer/purpsuit,

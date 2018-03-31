@@ -54,11 +54,11 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 
 // START LANDMARKS FOLLOW. Don't change the names unless
 // you are refactoring shitty landmark code.
-/obj/effect/landmark/start/assistant
-	name = "Assistant"
-	icon_state = "Assistant"
+/obj/effect/landmark/start/assailant
+	name = "Assailant"
+	icon_state = "Assailant"
 
-/obj/effect/landmark/start/assistant/override
+/obj/effect/landmark/start/assailant/override
 	jobspawn_override = TRUE
 	delete_after_roundstart = FALSE
 

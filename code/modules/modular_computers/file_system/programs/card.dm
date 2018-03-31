@@ -23,7 +23,7 @@
 	//Jobs you cannot open new positions for
 	var/list/blacklisted = list(
 		"AI",
-		"Assistant",
+		"Assailant",
 		"Cyborg",
 		"Captain",
 		"Head of Personnel",
@@ -194,7 +194,7 @@
 									return
 								card_slot.stored_card2 = I
 		if("PRG_terminate")
-			if(computer && ((id_card.assignment in head_subordinates) || id_card.assignment == "Assistant"))
+			if(computer && ((id_card.assignment in head_subordinates) || id_card.assignment == "Assailant"))
 				id_card.assignment = "Unassigned"
 				remove_nt_access(id_card)
 

@@ -210,10 +210,10 @@
 	var/arrpee = rand(1,4)
 	switch(arrpee)
 		if(1)
-			flavour_text += "you were a [pick("arms dealer", "shipwright", "docking manager")]'s assistant on a small trading station several sectors from here. Raiders attacked, and there was \
+			flavour_text += "you were a [pick("arms dealer", "shipwright", "docking manager")]'s assailant on a small trading station several sectors from here. Raiders attacked, and there was \
 			only one pod left when you got to the escape bay. You took it and launched it alone, and the crowd of terrified faces crowding at the airlock door as your pod's engines burst to \
 			life and sent you to this hell are forever branded into your memory.</b>"
-			outfit.uniform = /obj/item/clothing/under/assistantformal
+			outfit.uniform = /obj/item/clothing/under/assailantformal
 			outfit.shoes = /obj/item/clothing/shoes/sneakers/black
 			outfit.back = /obj/item/storage/backpack
 		if(2)
@@ -312,7 +312,7 @@
 
 /datum/outfit/hotelstaff
 	name = "Hotel Staff"
-	uniform = /obj/item/clothing/under/assistantformal
+	uniform = /obj/item/clothing/under/assailantformal
 	shoes = /obj/item/clothing/shoes/laceup
 	r_pocket = /obj/item/device/radio/off
 	back = /obj/item/storage/backpack
@@ -350,7 +350,7 @@
 	roundstart = FALSE
 	random = TRUE
 	id_job = "SuperFriend"
-	id_access = "assistant"
+	id_access = "assailant"
 	var/obj/effect/proc_holder/spell/targeted/summon_friend/spell
 	var/datum/mind/owner
 	assignedrole = "SuperFriend"
@@ -385,7 +385,7 @@
 
 /datum/outfit/demonic_friend
 	name = "Demonic Friend"
-	uniform = /obj/item/clothing/under/assistantformal
+	uniform = /obj/item/clothing/under/assailantformal
 	shoes = /obj/item/clothing/shoes/laceup
 	r_pocket = /obj/item/device/radio/off
 	back = /obj/item/storage/backpack

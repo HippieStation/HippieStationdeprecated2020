@@ -450,12 +450,12 @@
 	fitted = FEMALE_UNIFORM_TOP
 	can_adjust = FALSE
 
-/obj/item/clothing/under/assistantformal
-	name = "assistant's formal uniform"
-	desc = "An assistant's formal-wear. Why an assistant needs formal-wear is still unknown."
-	icon_state = "assistant_formal"
+/obj/item/clothing/under/assailantformal
+	name = "assailant's formal uniform"
+	desc = "An assailant's formal-wear. Why an assailant needs formal-wear is still unknown."
+	icon_state = "assailant_formal"
 	item_state = "gy_suit"
-	item_color = "assistant_formal"
+	item_color = "assailant_formal"
 	can_adjust = FALSE
 
 /obj/item/clothing/under/blacktango

@@ -13,7 +13,7 @@ SUBSYSTEM_DEF(job)
 	var/list/prioritized_jobs = list()
 	var/list/latejoin_trackers = list()	//Don't read this list, use GetLateJoinTurfs() instead
 
-	var/overflow_role = "Assistant"
+	var/overflow_role = "Assailant"
 
 /datum/controller/subsystem/job/Initialize(timeofday)
 	if(!occupations.len)
@@ -121,7 +121,7 @@ SUBSYSTEM_DEF(job)
 		if(!job)
 			continue
 
-		if(istype(job, GetJob(SSjob.overflow_role))) // We don't want to give him assistant, that's boring!
+		if(istype(job, GetJob(SSjob.overflow_role))) // We don't want to give him assailant, that's boring!
 			continue
 
 		if(job.title in GLOB.command_positions) //If you want a command position, select it!
@@ -256,7 +256,7 @@ SUBSYSTEM_DEF(job)
 	for(var/i in unassigned)
 		var/mob/dead/new_player/player = i
 		if(jobban_isbanned(player, CATBAN) || jobban_isbanned(player, CLUWNEBAN))
-			AssignRole(player, "Assistant")
+			AssignRole(player, "Assailant")
 	// Hippie End
 	
 	//People who wants to be the overflow role, sure, go on.
@@ -349,19 +349,19 @@ SUBSYSTEM_DEF(job)
 
 	Debug("DO, Running AC2")
 
-	// For those who wanted to be assistant if their preferences were filled, here you go.
+	// For those who wanted to be assailant if their preferences were filled, here you go.
 	for(var/mob/dead/new_player/player in unassigned)
 		if(PopcapReached())
 			RejectPlayer(player)
 		if(player.client.prefs.joblessrole == BEOVERFLOW)
-			Debug("AC2 Assistant located, Player: [player]")
+			Debug("AC2 Assailant located, Player: [player]")
 			AssignRole(player, SSjob.overflow_role)
 		else // For those who don't want to play if their preference were filled, back you go.
 			RejectPlayer(player)
 
 	for(var/mob/dead/new_player/player in unassigned) //Players that wanted to back out but couldn't because they're antags (can you feel the edge case?)
 		if(!GiveRandomJob(player))
-			AssignRole(player, SSjob.overflow_role) //If everything is already filled, make them an assistant
+			AssignRole(player, SSjob.overflow_role) //If everything is already filled, make them an assailant
 
 	return 1
 

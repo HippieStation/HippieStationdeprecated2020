@@ -30,8 +30,8 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 
-	if(CONFIG_GET(flag/protect_assistant_from_antagonist))
-		restricted_jobs += "Assistant"
+	if(CONFIG_GET(flag/protect_assailant_from_antagonist))
+		restricted_jobs += "Assailant"
 
 	var/num_changelings = 1
 

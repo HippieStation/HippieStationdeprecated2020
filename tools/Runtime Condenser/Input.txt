@@ -2837,11 +2837,11 @@ Sat Jul 14 20:29:42 2012
 runtime error: Cannot read null.slot_flags
 proc name: db click (/mob/living/carbon/human/db_click)
   source file: inventory.dm,1154
-  usr: Urist McAssistant (/mob/living/carbon/human)
-  src: Urist McAssistant (/mob/living/carbon/human)
+  usr: Urist McAssailant (/mob/living/carbon/human)
+  src: Urist McAssailant (/mob/living/carbon/human)
   call stack:
-Urist McAssistant (/mob/living/carbon/human): db click("storage1", 0)
-the storage1 (/obj/screen): attack hand(Urist McAssistant (/mob/living/carbon/human), 0)
+Urist McAssailant (/mob/living/carbon/human): db click("storage1", 0)
+the storage1 (/obj/screen): attack hand(Urist McAssailant (/mob/living/carbon/human), 0)
 the storage1 (/obj/screen): DblClick(null, null, null)
 the storage1 (/obj/screen): Click(null, "mapwindow.map", "icon-x=19;icon-y=17;left=1;scr...")
 Rebooted server.

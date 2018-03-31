@@ -63,7 +63,7 @@
 		to_chat(src, "Server tools API version: [SERVER_TOOLS_API_VERSION]")
 	to_chat(src, "<b>Current Informational Settings:</b>")
 	to_chat(src, "Protect Authority Roles From Traitor: [CONFIG_GET(flag/protect_roles_from_antagonist)]")
-	to_chat(src, "Protect Assistant Role From Traitor: [CONFIG_GET(flag/protect_assistant_from_antagonist)]")
+	to_chat(src, "Protect Assailant Role From Traitor: [CONFIG_GET(flag/protect_assailant_from_antagonist)]")
 	to_chat(src, "Enforce Human Authority: [CONFIG_GET(flag/enforce_human_authority)]")
 	to_chat(src, "Allow Latejoin Antagonists: [CONFIG_GET(flag/allow_latejoin_antagonists)]")
 	to_chat(src, "Enforce Continuous Rounds: [length(CONFIG_GET(keyed_flag_list/continuous))] of [config.modes.len] roundtypes")

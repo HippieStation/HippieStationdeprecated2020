@@ -261,8 +261,8 @@
 	max_integrity = 50
 	material_drop_type = /obj/item/stack/sheet/mineral/sandstone
 
-/obj/structure/statue/sandstone/assistant
-	name = "statue of an assistant"
+/obj/structure/statue/sandstone/assailant
+	name = "statue of an assailant"
 	desc = "A cheap statue of sandstone for a greyshirt."
 	icon_state = "assist"
 

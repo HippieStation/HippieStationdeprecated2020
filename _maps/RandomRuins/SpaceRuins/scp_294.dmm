@@ -335,7 +335,7 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/powered/scp_294)
 "aZ" = (
-/obj/effect/mob_spawn/human/corpse/assistant,
+/obj/effect/mob_spawn/human/corpse/assailant,
 /obj/structure/table_frame,
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/has_grav/powered/scp_294)

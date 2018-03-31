@@ -58,7 +58,7 @@
 	tokens = list( \
 		"industry" = list("agriculture", "farming", "botany", "horticulture", "hydroponics"), \
 		"industrial" = list("agricultural", "horticultural", "botanical"), \
-		"jobs" = list("farmers", "agricultural experts", "botanists", "assistant gardeners")
+		"jobs" = list("farmers", "agricultural experts", "botanists", "assailant gardeners")
 	)
 	title_templates = list(	"The brand new %product_name% by %company_name% will revolutionize %industry%", \
 							"%jobs% rejoice as %product_name% hits shelves", \
@@ -198,7 +198,7 @@
 	tokens = list( \
 		"industry" = list("shops", "stores"), \
 		"industrial" = list("consumer industrial"), \
-		"jobs" = list("shopkeepers", "assistants", "manual daytime hygiene engineers", "janitors", "chefs", "cooks")
+		"jobs" = list("shopkeepers", "assailants", "manual daytime hygiene engineers", "janitors", "chefs", "cooks")
 	)
 
 /datum/industry/consumer/generateProductName(var/company)

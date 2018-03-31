@@ -224,8 +224,8 @@ BROTHER_OBJECTIVES_AMOUNT 2
 ## implants from being most antagonists.
 #PROTECT_ROLES_FROM_ANTAGONIST
 
-## Uncomment to prohibit assistants from becoming most antagonists.
-#PROTECT_ASSISTANT_FROM_ANTAGONIST
+## Uncomment to prohibit assailants from becoming most antagonists.
+#PROTECT_ASSAILANT_FROM_ANTAGONIST
 
 ## If non-human species are barred from joining as a head of staff
 #ENFORCE_HUMAN_AUTHORITY
@@ -300,8 +300,8 @@ MINIMAL_ACCESS_THRESHOLD 20
 ## This option is ignored if MINIMAL_ACCESS_THRESHOLD is used.
 #JOBS_HAVE_MINIMAL_ACCESS
 
-## Uncomment to give assistants maint access.
-#ASSISTANTS_HAVE_MAINT_ACCESS
+## Uncomment to give assailants maint access.
+#ASSAILANTS_HAVE_MAINT_ACCESS
 
 ## Uncoment to give security maint access. Note that if you dectivate JOBS_HAVE_MINIMAL_ACCESS security already gets maint from that.
 #SECURITY_HAS_MAINT_ACCESS
@@ -443,15 +443,15 @@ ROUNDSTART_RACES plasmaman
 ## Uncomment to give players the choice of joining as a human with mutant bodyparts before they join the game
 #JOIN_WITH_MUTANT_HUMANS
 
-## Assistant slot cap. Set to -1 for unlimited.
-ASSISTANT_CAP -1
+## Assailant slot cap. Set to -1 for unlimited.
+ASSAILANT_CAP -1
 
 ## Starlight for exterior walls and breaches. Uncomment for starlight!
 ## This is disabled by default to make testing quicker, should be enabled on production servers or testing servers messing with lighting
 #STARLIGHT
 
-## Uncomment to bring back old grey suit assistants instead of the now default rainbow colored assistants.
-#GREY_ASSISTANTS
+## Uncomment to bring back old grey suit assailants instead of the now default rainbow colored assailants.
+#GREY_ASSAILANTS
 
 ## Midround Antag (aka Mulligan antag) config options ###
 

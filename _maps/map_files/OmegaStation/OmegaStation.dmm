@@ -7595,7 +7595,7 @@
 	pixel_x = -32
 	},
 /obj/machinery/light/small,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/freezer,
 /area/crew_quarters/toilet/restrooms)
@@ -8531,7 +8531,7 @@
 /obj/structure/chair{
 	dir = 1
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard/fore)
@@ -9308,7 +9308,7 @@
 	},
 /area/storage/primary)
 "arR" = (
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/yellow/side{
 	dir = 1
 	},
@@ -10669,7 +10669,7 @@
 /turf/open/floor/plasteel/yellow/side,
 /area/storage/primary)
 "auV" = (
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
 	},
@@ -11239,7 +11239,7 @@
 /area/crew_quarters/bar/atrium)
 "awk" = (
 /obj/structure/chair/stool,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable/white{
 	icon_state = "1-2"
@@ -12131,7 +12131,7 @@
 	},
 /area/crew_quarters/dorms)
 "ayw" = (
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/neutral/corner{
 	dir = 1
 	},
@@ -14181,7 +14181,7 @@
 	},
 /area/crew_quarters/dorms)
 "aDE" = (
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
@@ -15727,7 +15727,7 @@
 /area/crew_quarters/bar/atrium)
 "aGP" = (
 /obj/structure/chair/stool,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
 	},
@@ -21333,7 +21333,7 @@
 /obj/structure/chair/office/dark{
 	dir = 8
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/dark,
 /area/library)
 "aTd" = (
@@ -21516,7 +21516,7 @@
 /area/crew_quarters/lounge)
 "aTB" = (
 /obj/structure/chair/comfy/brown,
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /turf/open/floor/plasteel/grimy,
 /area/crew_quarters/lounge)
 "aTC" = (
@@ -23002,7 +23002,7 @@
 	buildstackamount = 0;
 	dir = 1
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/airalarm{
 	dir = 1;
 	pixel_y = -22
@@ -27578,7 +27578,7 @@
 	areastring = "/area/chapel/main";
 	pixel_y = 25
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable/white{
 	icon_state = "0-2"
@@ -29580,7 +29580,7 @@
 /obj/structure/chair{
 	dir = 4
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
@@ -30075,7 +30075,7 @@
 /obj/structure/chair{
 	dir = 4
 	},
-/obj/effect/landmark/start/assistant,
+/obj/effect/landmark/start/assailant,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},

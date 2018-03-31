@@ -8,7 +8,7 @@
 	resistance_flags = FLAMMABLE
 	// Possible restyles for the cutout;
 	// add an entry in change_appearance() if you add to here
-	var/list/possible_appearances = list("Assistant", "Clown", "Mime",
+	var/list/possible_appearances = list("Assailant", "Clown", "Mime",
 		"Traitor", "Nuke Op", "Cultist", "Clockwork Cultist",
 		"Revolutionary", "Wizard", "Shadowling", "Xenomorph", "Xenomorph Maid", "Swarmer",
 		"Ash Walker", "Deathsquad Officer", "Ian", "Slaughter Demon",
@@ -99,9 +99,9 @@
 	if(!deceptive)
 		add_atom_colour("#FFD7A7", FIXED_COLOUR_PRIORITY)
 	switch(new_appearance)
-		if("Assistant")
+		if("Assailant")
 			name = "[pick(GLOB.first_names_male)] [pick(GLOB.last_names)]"
-			desc = "A cardboat cutout of an assistant."
+			desc = "A cardboat cutout of an assailant."
 			icon_state = "cutout_greytide"
 		if("Clown")
 			name = pick(GLOB.clown_names)

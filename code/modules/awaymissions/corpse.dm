@@ -273,17 +273,17 @@
 
 ///////////Civilians//////////////////////
 
-/obj/effect/mob_spawn/human/corpse/assistant
-	name = "Assistant"
-	outfit = /datum/outfit/job/assistant
+/obj/effect/mob_spawn/human/corpse/assailant
+	name = "Assailant"
+	outfit = /datum/outfit/job/assailant
 
-/obj/effect/mob_spawn/human/corpse/assistant/beesease_infection
+/obj/effect/mob_spawn/human/corpse/assailant/beesease_infection
 	disease = /datum/disease/beesease
 
-/obj/effect/mob_spawn/human/corpse/assistant/brainrot_infection
+/obj/effect/mob_spawn/human/corpse/assailant/brainrot_infection
 	disease = /datum/disease/brainrot
 
-/obj/effect/mob_spawn/human/corpse/assistant/spanishflu_infection
+/obj/effect/mob_spawn/human/corpse/assailant/spanishflu_infection
 	disease = /datum/disease/fluspanish
 
 /obj/effect/mob_spawn/human/corpse/cargo_tech

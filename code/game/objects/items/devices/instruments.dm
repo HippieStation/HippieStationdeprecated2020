@@ -50,7 +50,7 @@
 
 /obj/item/device/instrument/violin
 	name = "space violin"
-	desc = "A wooden musical instrument with four strings and a bow. \"The devil went down to space, he was looking for an assistant to grief.\""
+	desc = "A wooden musical instrument with four strings and a bow. \"The devil went down to space, he was looking for an assailant to grief.\""
 	icon_state = "violin"
 	item_state = "violin"
 	hitsound = "swing_hit"
@@ -58,7 +58,7 @@
 
 /obj/item/device/instrument/violin/golden
 	name = "golden violin"
-	desc = "A golden musical instrument with four strings and a bow. \"The devil went down to space, he was looking for an assistant to grief.\""
+	desc = "A golden musical instrument with four strings and a bow. \"The devil went down to space, he was looking for an assailant to grief.\""
 	icon_state = "golden_violin"
 	item_state = "golden_violin"
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF

@@ -42,7 +42,7 @@
 				heirloom_type = /obj/item/book/manual/wiki/security_space_law
 			if("Scientist")
 				heirloom_type = /obj/item/toy/plush/slimeplushie
-			if("Assistant")
+			if("Assailant")
 				heirloom_type = /obj/item/storage/toolbox/mechanical/old/heirloom
 	if(!heirloom_type)
 		heirloom_type = pick(

@@ -197,7 +197,7 @@
 	if(!user.bee_friendly())
 		//Time to get stung!
 		var/bees = FALSE
-		for(var/b in bees) //everyone who's ever lived here now instantly hates you, suck it assistant!
+		for(var/b in bees) //everyone who's ever lived here now instantly hates you, suck it assailant!
 			var/mob/living/simple_animal/hostile/poison/bees/B = b
 			if(B.isqueen)
 				continue

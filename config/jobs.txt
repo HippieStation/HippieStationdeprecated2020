@@ -9,7 +9,7 @@ Chief Engineer=1,1
 Research Director=1,1
 Chief Medical Officer=1,1
 
-Assistant=-1,-1
+Assailant=-1,-1
 
 Quartermaster=1,1
 Cargo Technician=3,2
