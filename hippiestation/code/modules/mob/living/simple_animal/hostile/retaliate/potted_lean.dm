@@ -40,6 +40,3 @@
 		user.reagents.add_reagent(attack_inject, 10)
 	else
 		..()
-
-
-
