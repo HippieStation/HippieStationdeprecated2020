@@ -5,7 +5,10 @@
 	alternate_screams = list('hippiestation/sound/voice/scream_silicon.ogg')
 
 /obj/item/clothing/head/ushanka
-	alternate_screams = list('hippiestation/sound/misc/cyka1.ogg', 'hippiestation/sound/misc/cheekibreeki.ogg')
+#define normallist list('hippiestation/sound/misc/cyka1.ogg', 'hippiestation/sound/misc/cheekibreeki.ogg')
+#define speciallist list('hippiestation/sound/misc/cyka2upgradededition.ogg')
+#define summedlist list(normallist, normallist, normallist, speciallist)
+	alternate_screams = summedlist //Sorry
 
 /obj/item/clothing/head/hippie/zoothat
 	name = "zoot suit hat"
