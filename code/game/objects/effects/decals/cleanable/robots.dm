@@ -1,6 +1,6 @@
 // Note: BYOND is object oriented. There is no reason for this to be copy/pasted blood code.
 
-/obj/effect/decal/cleanable/robot_debrisfff
+/obj/effect/decal/cleanable/robot_debris
 	name = "robot debris"
 	desc = "It's a useless heap of junk... <i>or is it?</i>"
 	icon = 'icons/mob/robots.dmi'
