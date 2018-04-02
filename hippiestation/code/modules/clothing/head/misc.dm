@@ -1,3 +1,6 @@
+#define normalscreams list('hippiestation/sound/misc/cyka1.ogg', 'hippiestation/sound/misc/cheekibreeki.ogg')
+#define specialscreams list('hippiestation/sound/misc/cyka2upgradededition.ogg')
+
 /obj/item/clothing/head/xenos
 	alternate_screams = list('sound/voice/hiss6.ogg')
 
@@ -5,10 +8,7 @@
 	alternate_screams = list('hippiestation/sound/voice/scream_silicon.ogg')
 
 /obj/item/clothing/head/ushanka
-#define normallist list('hippiestation/sound/misc/cyka1.ogg', 'hippiestation/sound/misc/cheekibreeki.ogg')
-#define speciallist list('hippiestation/sound/misc/cyka2upgradededition.ogg')
-#define summedlist list(normallist, normallist, normallist, speciallist)
-	alternate_screams = summedlist //Sorry
+	alternate_screams = list(normalscreams, normalscreams, normalscreams, specialscreams) //Sorry
 
 /obj/item/clothing/head/hippie/zoothat
 	name = "zoot suit hat"
@@ -117,3 +117,6 @@
 				C.update_inv_head()
 	else
 		return ..()
+
+#undef normalscreams
+#undef specialscreams
