@@ -17971,7 +17971,7 @@
 "aRP" = (
 /obj/machinery/door/window{
 	dir = 4;
-	name = "Theatre Stage";
+	name = "Theatre Stage"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -25379,7 +25379,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/research{
 	name = "Mech Bay";
-	req_access_txt = "29";
+	req_access_txt = "29"
 	},
 /turf/open/floor/plasteel,
 /area/science/robotics/mechbay)
@@ -59725,7 +59725,10 @@
 	dir = 10
 	},
 /obj/structure/table,
-/obj/item/kitchen/rollingpin,
+/obj/item/coin/gold,
+/obj/item/kitchen/rollingpin{
+	step_x = 0
+	},
 /turf/open/floor/plasteel/hydrofloor,
 /area/hallway/secondary/service)
 "yah" = (
