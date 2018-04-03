@@ -50,8 +50,8 @@
 	name = "Advanced Autism"
 	desc = "Your especially powerful autism causes you to take 2 brain damage every minute."
 	value = -1
-	gain_text = "You feel your autism suddenly becoming far more powerful than normal!"
-	lose_text = "You feel your autism returning to its normal levels."
+	gain_text = "<span class='danger'>You feel your autism suddenly becoming far more powerful than normal!</span>"
+	lose_text = "<span class='notice'>You feel your autism returning to its normal levels.</span>"
 
 /datum/trait/advancedautism/proc/braindamage(mob/living/carbon/M)
 	var/mob/living/carbon/human/H = M
