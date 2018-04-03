@@ -5,7 +5,8 @@
 	say_mod = "squawks"
 	default_color = "00FF00"
 	blacklisted = 0
-	species_traits = list(SPECIES_ORGANIC,MUTCOLORS,EYECOLOR,LIPS)
+	species_traits = list(MUTCOLORS,EYECOLOR,LIPS)
+	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	attack_verb = "claw"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
