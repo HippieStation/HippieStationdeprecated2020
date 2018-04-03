@@ -232,6 +232,6 @@ datum/reagent/medicine/virogone/on_mob_life(mob/living/M)//cures viruses very ef
 		if(prob(10))
 			C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
 		else
-			if(prob(10))
+			if(prob(1))
 				C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_LOBOTOMY)
 	..()
