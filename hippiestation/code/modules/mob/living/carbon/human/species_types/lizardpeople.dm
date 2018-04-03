@@ -41,6 +41,7 @@
 	limbs_id = "lizard"
 	species_traits = list(MUTCOLORS,EYECOLOR,LIPS,DIGITIGRADE)
 	inherent_traits = list(TRAIT_NOGUNS, TRAIT_NOBREATH)
+	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID, MOB_REPTILE)
 
 /datum/outfit/ashwalker/post_equip(mob/living/carbon/human/H)
 	H.remove_all_languages() //Ashwalkers can only speak Draconic
