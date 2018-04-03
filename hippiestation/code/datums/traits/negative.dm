@@ -45,3 +45,24 @@
 		return
 	else
 		B.inv.storage_slots = initial(B.inv.storage_slots)
+
+/datum/trait/advancedautism
+	name = "Advanced Autism"
+	desc = "Your especially powerful autism causes you to take 2 brain damage every minute."
+	value = -1
+	gain_text = "You feel your autism suddenly becoming far more powerful than normal!"
+	lose_text = "You feel your autism returning to its normal levels."
+
+/datum/trait/advancedautism/proc/braindamage(mob/living/carbon/M)
+	var/mob/living/carbon/human/H = M
+	H.adjustBrainLoss(2)
+	addtimer(CALLBACK(src, .proc/braindamage, H), 600)
+
+/datum/trait/advancedautism/add()
+	var/mob/living/carbon/human/H = trait_holder
+	addtimer(CALLBACK(src, .proc/braindamage, H), 600)
+
+/datum/trait/advancedautism/remove()
+
+
+

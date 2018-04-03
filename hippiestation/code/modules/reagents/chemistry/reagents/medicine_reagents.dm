@@ -224,14 +224,3 @@ datum/reagent/medicine/virogone/on_mob_life(mob/living/M)//cures viruses very ef
 
 /datum/reagent/medicine/salglu_solution
 	overdose_threshold = 0 //seriously fuck whoever thought this was a good idea.
-
-/datum/reagent/medicine/mannitol/on_mob_life(mob/living/M)
-	M.adjustBrainLoss(-2*REM)
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
-		if(prob(10))
-			C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
-		else
-			if(prob(1))
-				C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_LOBOTOMY)
-	..()
