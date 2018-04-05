@@ -3,3 +3,9 @@
 		return FALSE
 
 	return ..()
+
+/datum/species/movement_delay(mob/living/carbon/human/H)
+	. = ..()
+
+	if (H.dna.check_mutation(DWARFISM))
+		. += 0.2
