@@ -45,5 +45,3 @@
 		return
 	else
 		B.inv.storage_slots = initial(B.inv.storage_slots)
-
-
