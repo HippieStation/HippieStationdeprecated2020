@@ -9,7 +9,6 @@
 	siemens_coefficient = 1
 	var/spamcheck = 0
 	var/list/voicespan = list(SPAN_COMMAND)
-	alternate_screams = list('hippiestation/sound/voice/scream_cowboy1.ogg', 'hippiestation/sound/voice/scream_cowboy2.ogg', 'hippiestation/sound/voice/scream_cowboy3.ogg')
 
 /obj/item/device/megaphone/suicide_act(mob/living/carbon/user)
 	user.visible_message("<span class='suicide'>[user] is uttering [user.p_their()] last words into \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
