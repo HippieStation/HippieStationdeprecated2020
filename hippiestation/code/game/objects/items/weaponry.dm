@@ -120,4 +120,3 @@
 	force = 15
 	throwforce = 15 // its got spikes sticking out of it - pre rebase comment :D
 	armour_penetration = 10
-
