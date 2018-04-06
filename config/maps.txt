@@ -39,3 +39,7 @@ endmap
 
 map runtimestation
 endmap
+
+map AsteroidStation
+	minplayers 30
+endmap
