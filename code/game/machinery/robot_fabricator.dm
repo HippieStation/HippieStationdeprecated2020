@@ -40,13 +40,9 @@
 	else
 		stat |= NOPOWER
 
-/obj/machinery/robotic_fabricator/attack_paw(mob/user)
-	return src.attack_hand(user)
-
-/obj/machinery/robotic_fabricator/attack_hand(mob/user)
+/obj/machinery/robotic_fabricator/ui_interact(mob/user)
+	. = ..()
 	var/dat
-	if (..())
-		return
 
 	if (src.operating)
 		dat = {"
@@ -137,7 +133,7 @@ Please wait until completion...</TT><BR>
 
 					spawn (build_time)
 						if (!isnull(src.being_built))
-							src.being_built.loc = get_turf(src)
+							src.being_built.forceMove(drop_location())
 							src.being_built = null
 						src.use_power = IDLE_POWER_USE
 						operating = FALSE

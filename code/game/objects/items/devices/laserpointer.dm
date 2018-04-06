@@ -50,7 +50,7 @@
 	else if(istype(W, /obj/item/screwdriver))
 		if(diode)
 			to_chat(user, "<span class='notice'>You remove the [diode.name] from \the [src].</span>")
-			diode.loc = get_turf(src.loc)
+			diode.forceMove(drop_location())
 			diode = null
 	else
 		return ..()
@@ -67,9 +67,12 @@
 	if (!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
+	if(user.has_trait(TRAIT_NOGUNS))
+		to_chat(user, "<span class='warning'>Your fingers can't press the button!</span>")
+		return
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.dna.check_mutation(HULK) || (NOGUNS in H.dna.species.species_traits))
+		if(H.dna.check_mutation(HULK))
 			to_chat(user, "<span class='warning'>Your fingers can't press the button!</span>")
 			return
 
@@ -86,7 +89,7 @@
 	//human/alien mobs
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
-		if(user.zone_selected == "eyes")
+		if(user.zone_selected == BODY_ZONE_PRECISE_EYES)
 			add_logs(user, C, "shone in the eyes", src)
 
 			var/severity = 1

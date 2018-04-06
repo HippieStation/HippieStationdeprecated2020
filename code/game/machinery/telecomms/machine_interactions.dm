@@ -31,24 +31,14 @@
 	else
 		return ..()
 
-
-/obj/machinery/telecomms/attack_ai(mob/user)
-	attack_hand(user)
-
-/obj/machinery/telecomms/attack_hand(mob/user)
-
+/obj/machinery/telecomms/ui_interact(mob/user)
+	. = ..()
 	// You need a multitool to use this, or be silicon
 	if(!issilicon(user))
 		// istype returns false if the value is null
 		if(!istype(user.get_active_held_item(), /obj/item/device/multitool))
 			return
-
-	if(stat & (BROKEN|NOPOWER))
-		return
-
 	var/obj/item/device/multitool/P = get_multitool(user)
-
-	user.set_machine(src)
 	var/dat
 	dat = "<font face = \"Courier\"><HEAD><TITLE>[name]</TITLE></HEAD><center><H3>[name] Access</H3></center>"
 	dat += "<br>[temp]<br>"
@@ -102,23 +92,8 @@
 	dat += "</font>"
 	temp = ""
 	user << browse(dat, "window=tcommachine;size=520x500;can_resize=0")
-	onclose(user, "dormitory")
-
-
-// Off-Site Relays
-//
-// You are able to send/receive signals from the station's z level (changeable in the ZLEVEL_STATION_PRIMARY #define) if
-
-
-/obj/machinery/telecomms/relay/proc/toggle_level()
-
-	var/turf/position = get_turf(src)
-
-	// Toggle on/off getting signals from the station or the current Z level
-	if(listening_level in GLOB.station_z_levels) // equals the station
-		listening_level = position.z
-		return TRUE
-	return FALSE
+	onclose(user, "tcommachine")
+	return TRUE
 
 // Returns a multitool from a user depending on their mobtype.
 
@@ -234,7 +209,7 @@
 				if(newfreq && canAccess(usr))
 					if(findtext(num2text(newfreq), "."))
 						newfreq *= 10 // shift the decimal one place
-					if(newfreq == GLOB.SYND_FREQ)
+					if(newfreq == FREQ_SYNDICATE)
 						temp = "<font color = #FF0000>-% Error: Interference preventing filtering frequency: \"[newfreq] GHz\" %-</font color>"
 					else
 						if(!(newfreq in freq_listening) && newfreq < 10000)

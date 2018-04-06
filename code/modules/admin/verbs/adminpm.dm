@@ -50,7 +50,7 @@
 		if(holder)
 			to_chat(src, "<font color='red'>Error: Admin-PM: Client not found.</font>")
 		return
-	
+
 	var/datum/admin_help/AH = C.current_ticket
 
 	if(AH)
@@ -84,7 +84,7 @@
 			recipient = GLOB.directory[whom]
 	else if(istype(whom, /client))
 		recipient = whom
-	
+
 
 	if(irc)
 		if(!ircreplyamount)	//to prevent people from spamming irc
@@ -111,7 +111,7 @@
 		//get message text, limit it's length.and clean/escape html
 		if(!msg)
 			msg = input(src,"Message:", "Private message to [key_name(recipient, 0, 0)]") as text|null
-
+			msg = trim(msg)
 			if(!msg)
 				return
 

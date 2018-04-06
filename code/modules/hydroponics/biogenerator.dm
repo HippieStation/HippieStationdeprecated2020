@@ -1,7 +1,7 @@
 /obj/machinery/biogenerator
 	name = "biogenerator"
 	desc = "Converts plants into biomass, which can be used to construct useful items."
-	icon = 'icons/obj/biogenerator.dmi'
+	icon = 'icons/obj/machines/biogenerator.dmi'
 	icon_state = "biogen-empty"
 	density = TRUE
 	anchored = TRUE
@@ -78,7 +78,7 @@
 	if(default_deconstruction_screwdriver(user, "biogen-empty-o", "biogen-empty", O))
 		if(beaker)
 			var/obj/item/reagent_containers/glass/B = beaker
-			B.loc = loc
+			B.forceMove(drop_location())
 			beaker = null
 		update_icon()
 		return
@@ -151,10 +151,10 @@
 	else
 		to_chat(user, "<span class='warning'>You cannot put this in [src.name]!</span>")
 
-/obj/machinery/biogenerator/interact(mob/user)
+/obj/machinery/biogenerator/ui_interact(mob/user)
 	if(stat & BROKEN || panel_open)
 		return
-	user.set_machine(src)
+	. = ..()
 	var/dat
 	if(processing)
 		dat += "<div class='statusDisplay'>Biogenerator is processing! Please wait...</div><BR>"
@@ -202,15 +202,11 @@
 	var/datum/browser/popup = new(user, "biogen", name, 350, 520)
 	popup.set_content(dat)
 	popup.open()
-	return
-
-/obj/machinery/biogenerator/attack_hand(mob/user)
-	interact(user)
 
 /obj/machinery/biogenerator/proc/activate()
-	if (usr.stat != 0)
+	if (usr.stat != CONSCIOUS)
 		return
-	if (src.stat != 0) //NOPOWER etc
+	if (src.stat != NONE) //NOPOWER etc
 		return
 	if(processing)
 		to_chat(usr, "<span class='warning'>The biogenerator is in the process of working.</span>")
@@ -233,7 +229,6 @@
 		update_icon()
 	else
 		menustat = "void"
-	return
 
 /obj/machinery/biogenerator/proc/check_cost(list/materials, multiplier = 1, remove_points = 1)
 	if(materials.len != 1 || materials[1] != MAT_BIOMASS)

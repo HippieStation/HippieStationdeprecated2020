@@ -3,7 +3,7 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 20, 25, 30, 50)
 	volume = 50
-	container_type = OPENCONTAINER_1
+	container_type = OPENCONTAINER
 	spillable = TRUE
 	resistance_flags = ACID_PROOF
 
@@ -44,7 +44,7 @@
 				if(!reagents || !reagents.total_volume)
 					return // The drink might be empty after the delay, such as by spam-feeding
 				M.visible_message("<span class='danger'>[user] feeds something to [M].</span>", "<span class='userdanger'>[user] feeds something to you.</span>")
-				add_logs(user, M, "fed", reagentlist(src))
+				add_logs(user, M, "fed", reagents.log_list())
 			else
 				to_chat(user, "<span class='notice'>You swallow a gulp of [src].</span>")
 			var/fraction = min(5/reagents.total_volume, 1)
@@ -56,31 +56,29 @@
 	if((!proximity) || !check_allowed_items(target,target_self=1))
 		return
 
-	else if(istype(target, /obj/structure/reagent_dispensers)) //A dispenser. Transfer FROM it TO us.
-
-		if(target.reagents && !target.reagents.total_volume)
-			to_chat(user, "<span class='warning'>[target] is empty and can't be refilled!</span>")
-			return
-
-		if(reagents.total_volume >= reagents.maximum_volume)
-			to_chat(user, "<span class='notice'>[src] is full.</span>")
-			return
-
-		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this)
-		to_chat(user, "<span class='notice'>You fill [src] with [trans] unit\s of the contents of [target].</span>")
-
-	else if(target.is_open_container() && target.reagents) //Something like a glass. Player probably wants to transfer TO it.
+	if(target.is_refillable()) //Something like a glass. Player probably wants to transfer TO it.
 		if(!reagents.total_volume)
 			to_chat(user, "<span class='warning'>[src] is empty!</span>")
 			return
 
-		if(target.reagents.total_volume >= target.reagents.maximum_volume)
-			to_chat(user, "<span class='notice'>[target] is full.</span>")
+		if(target.reagents.holder_full())
+			to_chat(user, "<span class='warning'>[target] is full.</span>")
 			return
-
 
 		var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 		to_chat(user, "<span class='notice'>You transfer [trans] unit\s of the solution to [target].</span>")
+
+	else if(target.is_drainable()) //A dispenser. Transfer FROM it TO us.
+		if(!target.reagents.total_volume)
+			to_chat(user, "<span class='warning'>[target] is empty and can't be refilled!</span>")
+			return
+
+		if(reagents.holder_full())
+			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			return
+
+		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this)
+		to_chat(user, "<span class='notice'>You fill [src] with [trans] unit\s of the contents of [target].</span>")
 
 	else if(reagents.total_volume)
 		if(user.a_intent == INTENT_HARM)
@@ -102,7 +100,7 @@
 				to_chat(user, "<span class='notice'>[src] is full.</span>")
 			else
 				to_chat(user, "<span class='notice'>You break [E] in [src].</span>")
-				reagents.add_reagent("eggyolk", 5)
+				E.reagents.trans_to(src, E.reagents.total_volume)
 				qdel(E)
 			return
 	..()
@@ -119,6 +117,9 @@
 /obj/item/reagent_containers/glass/beaker/Initialize()
 	. = ..()
 	update_icon()
+
+/obj/item/reagent_containers/glass/beaker/get_part_rating()
+	return reagents.maximum_volume
 
 /obj/item/reagent_containers/glass/beaker/on_reagent_change(changetype)
 	update_icon()
@@ -163,7 +164,29 @@
 	volume = 100
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,50,100)
-	flags_1 = OPENCONTAINER_1
+
+/obj/item/reagent_containers/glass/beaker/plastic
+	name = "x-large beaker"
+	desc = "An extra-large beaker. Can hold up to 120 units."
+	icon_state = "beakerwhite"
+	materials = list(MAT_GLASS=2500, MAT_PLASTIC=3000)
+	volume = 120
+	amount_per_transfer_from_this = 10
+	possible_transfer_amounts = list(10,15,20,25,30,60,120)
+
+/obj/item/reagent_containers/glass/beaker/plastic/update_icon()
+	icon_state = "beakerlarge" // hack to lets us reuse the large beaker reagent fill states
+	..()
+	icon_state = "beakerwhite"
+
+/obj/item/reagent_containers/glass/beaker/meta
+	name = "metamaterial beaker"
+	desc = "A large beaker. Can hold up to 180 units."
+	icon_state = "beakergold"
+	materials = list(MAT_GLASS=2500, MAT_PLASTIC=3000, MAT_GOLD=1000, MAT_TITANIUM=1000)
+	volume = 180
+	amount_per_transfer_from_this = 10
+	possible_transfer_amounts = list(10,15,20,25,30,60,120,180)
 
 /obj/item/reagent_containers/glass/beaker/noreact
 	name = "cryostasis beaker"
@@ -173,7 +196,6 @@
 	materials = list(MAT_METAL=3000)
 	volume = 50
 	amount_per_transfer_from_this = 10
-	flags_1 = OPENCONTAINER_1
 
 /obj/item/reagent_containers/glass/beaker/noreact/Initialize()
 	. = ..()
@@ -189,7 +211,6 @@
 	volume = 300
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,25,30,50,100,300)
-	flags_1 = OPENCONTAINER_1
 
 /obj/item/reagent_containers/glass/beaker/cryoxadone
 	list_reagents = list("cryoxadone" = 30)
@@ -232,11 +253,10 @@
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(10,15,20,25,30,50,70)
 	volume = 70
-	flags_1 = OPENCONTAINER_1
 	flags_inv = HIDEHAIR
 	slot_flags = SLOT_HEAD
 	resistance_flags = NONE
-	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 75, acid = 50) //Weak melee protection, because you can wear it on your head
+	armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 75, "acid" = 50) //Weak melee protection, because you can wear it on your head
 	slot_equipment_priority = list( \
 		slot_back, slot_wear_id,\
 		slot_w_uniform, slot_wear_suit,\
@@ -260,7 +280,7 @@
 		to_chat(user, "<span class='notice'>You add [O] to [src].</span>")
 		qdel(O)
 		qdel(src)
-		user.put_in_hands(new /obj/item/bucket_sensor)
+		user.put_in_hands(new /obj/item/bot_assembly/cleanbot)
 	else
 		..()
 

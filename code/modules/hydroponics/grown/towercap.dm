@@ -154,13 +154,16 @@
 				if(!click_params || !click_params["icon-x"] || !click_params["icon-y"])
 					return
 				//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
-				W.pixel_x = Clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
-				W.pixel_y = Clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
+				W.pixel_x = CLAMP(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
+				W.pixel_y = CLAMP(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
 		else
 			return ..()
 
 
 /obj/structure/bonfire/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(burning)
 		to_chat(user, "<span class='warning'>You need to extinguish [src] before removing the logs!</span>")
 		return
@@ -173,8 +176,6 @@
 			new /obj/item/stack/rods(loc, 1)
 		qdel(src)
 		return
-	..()
-
 
 /obj/structure/bonfire/proc/CheckOxygen()
 	if(isopenturf(loc))

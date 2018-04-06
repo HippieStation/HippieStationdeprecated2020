@@ -28,7 +28,7 @@
 		if(M.rating > 3)
 			max_potency = 95
 		else
-			max_potency = initial(max_potency) + (M.rating**3) // 53,59,77,95 	 Clamps at 100
+			max_potency = initial(max_potency) + (M.rating**3) // 51,58,77,114 	 Clamps at 100
 
 		max_yield = initial(max_yield) + (M.rating*2) // 4,6,8,10 	Clamps at 10
 
@@ -36,16 +36,16 @@
 		if(SM.rating > 3) //If you create t5 parts I'm a step ahead mwahahaha!
 			min_production = 1
 		else
-			min_production = 12 - (SM.rating * 3) //9,6,3,1. Requires if to avoid going below clamp [1]
+			min_production = 10 - (SM.rating * 3) //7,4,1. Requires if to avoid going below clamp [1]
 
-		max_endurance = initial(max_endurance) + (SM.rating * 25) // 35,60,85,100	Clamps at 10min 100max
+		max_endurance = initial(max_endurance) + (SM.rating * 25) // 35,60,85,110	Clamps at 10min 100max
 
 	for(var/obj/item/stock_parts/micro_laser/ML in component_parts)
 		var/wratemod = ML.rating * 2.5
-		min_wrate = Floor(10-wratemod,1) // 7,5,2,0	Clamps at 0 and 10	You want this low
+		min_wrate = FLOOR(10-wratemod,1) // 7,5,2,0	Clamps at 0 and 10	You want this low
 		min_wchance = 67-(ML.rating*16) // 48,35,19,3 	Clamps at 0 and 67	You want this low
 	for(var/obj/item/circuitboard/machine/plantgenes/vaultcheck in component_parts)
-		if(istype(vaultcheck, /obj/item/circuitboard/machine/plantgenes/vault)) // DUMB BOTANY TUTS
+		if(istype(vaultcheck, /obj/item/circuitboard/machine/plantgenes/vault)) // TRAIT_DUMB BOTANY TUTS
 			max_potency = 100
 			max_yield = 10
 			min_production = 1
@@ -98,14 +98,8 @@
 	else
 		..()
 
-
-/obj/machinery/plantgenes/attack_hand(mob/user)
-	if(..())
-		return
-	interact(user)
-
-/obj/machinery/plantgenes/interact(mob/user)
-	user.set_machine(src)
+/obj/machinery/plantgenes/ui_interact(mob/user)
+	. = ..()
 	if(!user)
 		return
 
@@ -260,7 +254,7 @@
 
 	if(href_list["eject_seed"] && !operation)
 		if (seed)
-			seed.loc = src.loc
+			seed.forceMove(drop_location())
 			seed.verb_pickup()
 			seed = null
 			update_genes()
@@ -275,7 +269,7 @@
 		update_icon()
 	else if(href_list["eject_disk"] && !operation)
 		if (disk)
-			disk.loc = src.loc
+			disk.forceMove(drop_location())
 			disk.verb_pickup()
 			disk = null
 			update_genes()
@@ -368,7 +362,7 @@
 /obj/machinery/plantgenes/proc/insert_seed(obj/item/seeds/S)
 	if(!istype(S) || seed)
 		return
-	S.loc = src
+	S.forceMove(src)
 	seed = S
 	update_genes()
 	update_icon()
@@ -420,7 +414,7 @@
 	materials = list(MAT_METAL=30, MAT_GLASS=10)
 	var/datum/plant_gene/gene
 	var/read_only = 0 //Well, it's still a floppy disk
-	unique_rename = 1
+	obj_flags = UNIQUE_RENAME
 
 /obj/item/disk/plantgene/Initialize()
 	. = ..()

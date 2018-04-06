@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(server_maint)
 	name = "Server Tasks"
 	wait = 6
 	flags = SS_POST_FIRE_TIMING
-	priority = 10
+	priority = FIRE_PRIORITY_SERVER_MAINT
 	init_order = INIT_ORDER_SERVER_MAINT
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 	var/list/currentrun
@@ -44,7 +44,7 @@ SUBSYSTEM_DEF(server_maint)
 			return
 
 /datum/controller/subsystem/server_maint/Shutdown()
-	kick_clients_in_lobby("<span class='boldannounce'>The round came to an end with you in the lobby.</span>", TRUE) //second parameter ensures only afk clients are kicked
+	//kick_clients_in_lobby("<span class='boldannounce'>The round came to an end with you in the lobby.</span>", TRUE) //second parameter ensures only afk clients are kicked
 	var/server = CONFIG_GET(string/server)
 	for(var/thing in GLOB.clients)
 		if(!thing)
@@ -55,5 +55,8 @@ SUBSYSTEM_DEF(server_maint)
 			co.ehjax_send(data = "roundrestart")
 		if(server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 			C << link("byond://[server]")
+	if(SERVER_TOOLS_PRESENT)
+		SSblackbox.record_feedback("text", "server_tools", 1, SERVER_TOOLS_VERSION)
+	SSblackbox.record_feedback("text", "server_tools_api", 1, SERVER_TOOLS_API_VERSION)
 
 #undef PING_BUFFER_TIME

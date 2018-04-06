@@ -2,15 +2,13 @@ SUBSYSTEM_DEF(overlays)
 	name = "Overlay"
 	flags = SS_TICKER
 	wait = 1
-	priority = 500
+	priority = FIRE_PRIORITY_OVERLAYS
 	init_order = INIT_ORDER_OVERLAY
-	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_SETUP
 
 	var/list/queue
 	var/list/stats
 	var/list/overlay_icon_state_caches
 	var/list/overlay_icon_cache
-	var/initialized = FALSE
 
 /datum/controller/subsystem/overlays/PreInit()
 	overlay_icon_state_caches = list()

@@ -29,7 +29,7 @@
 		if(alpha < 160)
 			set_opacity(0) //if we were blocking view, we aren't now because we're fading out
 		stoplag()
-
+/*mirrored so smoke processes with reagents subsystem instead
 /obj/effect/particle_effect/smoke/New()
 	..()
 	create_reagents(500)
@@ -44,7 +44,7 @@
 	STOP_PROCESSING(SSobj, src)
 	INVOKE_ASYNC(src, .proc/fade_out)
 	QDEL_IN(src, 10)
-
+*/
 /obj/effect/particle_effect/smoke/process()
 	lifetime--
 	if(lifetime < 1)
@@ -169,7 +169,7 @@
 				qdel(H)
 				var/list/G_gases = G.gases
 				if(G_gases[/datum/gas/plasma])
-					ASSERT_GAS(/datum/gas/nitrogen, G)
+					G.assert_gas(/datum/gas/nitrogen)
 					G_gases[/datum/gas/nitrogen][MOLES] += (G_gases[/datum/gas/plasma][MOLES])
 					G_gases[/datum/gas/plasma][MOLES] = 0
 					G.garbage_collect()
@@ -265,13 +265,13 @@
 	chemholder = null
 	return ..()
 
-/datum/effect_system/smoke_spread/chem/set_up(datum/reagents/carry = null, radius = 1, loca, silent = 0)
+/datum/effect_system/smoke_spread/chem/set_up(datum/reagents/carry = null, radius = 1, loca, silent = FALSE)
 	if(isturf(loca))
 		location = loca
 	else
 		location = get_turf(loca)
 	amount = radius
-	carry.copy_to(chemholder, 4*carry.total_volume) //The smoke holds 4 times the total reagents volume for balance purposes.
+	carry.copy_to(chemholder, carry.total_volume)
 
 	if(!silent)
 		var/contained = ""

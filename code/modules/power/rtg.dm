@@ -18,6 +18,7 @@
 
 	var/power_gen = 1000 // Enough to power a single APC. 4000 output with T4 capacitor.
 
+
 	var/irradiate = TRUE // RTGs irradiate surroundings, but only when panel is open.
 
 /obj/machinery/power/rtg/Initialize()
@@ -46,11 +47,11 @@
 		return
 	return ..()
 
+//ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/machinery/power/rtg/attack_hand(mob/user)
 	if(user.a_intent == INTENT_GRAB && user_buckle_mob(user.pulling, user, check_loc = 0))
 		return
-	..()
-
+	. = ..()
 
 /obj/machinery/power/rtg/advanced
 	desc = "An advanced RTG capable of moderating isotope decay, increasing power output but reducing lifetime. It uses plasma-fueled radiation collectors to increase output even further."

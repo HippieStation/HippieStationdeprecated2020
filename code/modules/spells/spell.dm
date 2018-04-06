@@ -13,11 +13,12 @@
 	var/action_icon = 'icons/mob/actions/actions_spells.dmi'
 	var/action_icon_state = "spell_default"
 	var/action_background_icon_state = "bg_spell"
+	var/base_action = /datum/action/spell_action
 
 /obj/effect/proc_holder/Initialize()
 	. = ..()
 	if(has_action)
-		action = new(src)
+		action = new base_action(src)
 
 /obj/effect/proc_holder/proc/on_gain(mob/living/user)
 	return
@@ -66,7 +67,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		else
 			return
 	user.ranged_ability = src
-	user.client.click_intercept = user.ranged_ability
+	user.click_intercept = src
 	add_mousepointer(user.client)
 	ranged_ability_user = user
 	if(msg)
@@ -86,7 +87,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	if(!ranged_ability_user || !ranged_ability_user.client || (ranged_ability_user.ranged_ability && ranged_ability_user.ranged_ability != src)) //To avoid removing the wrong ability
 		return
 	ranged_ability_user.ranged_ability = null
-	ranged_ability_user.client.click_intercept = null
+	ranged_ability_user.click_intercept = null
 	remove_mousepointer(ranged_ability_user.client)
 	if(msg)
 		to_chat(ranged_ability_user, msg)
@@ -118,6 +119,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 	var/clothes_req = 1 //see if it requires clothes
 	var/cult_req = 0 //SPECIAL SNOWFLAKE clothes required for cult only spells
+	var/staff_req = 0 // hippie - used to check if a spell requires a staff
 	var/human_req = 0 //spell can only be cast by humans
 	var/nonabstract_req = 0 //spell can only be cast by mobs that are physical entities
 	var/stat_allowed = 0 //see if it requires being conscious/alive, need to set to 1 for ghostpells
@@ -149,7 +151,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	action_icon = 'icons/mob/actions/actions_spells.dmi'
 	action_icon_state = "spell_default"
 	action_background_icon_state = "bg_spell"
-	datum/action/spell_action/spell/action
+	base_action = /datum/action/spell_action/spell
 
 /obj/effect/proc_holder/spell/proc/cast_check(skipcharge = 0,mob/user = usr) //checks if the spell can be cast based on its settings; skipcharge is used when an additional cast_check is called inside the spell
 
@@ -162,7 +164,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			return 0
 
 	var/turf/T = get_turf(user)
-	if(T.z == ZLEVEL_CENTCOM && !centcom_cancast) //Certain spells are not allowed on the centcom zlevel
+	if(is_centcom_level(T.z) && !centcom_cancast) //Certain spells are not allowed on the centcom zlevel
 		to_chat(user, "<span class='notice'>You can't cast this spell here.</span>")
 		return 0
 
@@ -207,6 +209,17 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			if(!is_type_in_typecache(H.head, casting_clothes))
 				to_chat(H, "<span class='notice'>I don't feel strong enough without my hat.</span>")
 				return 0
+		//hippie start - check for if a spell needs a spell catalyst
+		if(staff_req)
+			var/catalyst_found = FALSE
+			for(var/obj/O in H.held_items)
+				if(O.GetComponent(/datum/component/spell_catalyst))
+					catalyst_found = TRUE
+					break
+			if(!catalyst_found)
+				to_chat(H, "<span class='notice'>I don't feel strong enough without my staff.</span>")
+				return 0
+		//hippie end
 		if(cult_req) //CULT_REQ CLOTHES CHECK
 			if(!istype(H.wear_suit, /obj/item/clothing/suit/magusred) && !istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/cult))
 				to_chat(H, "<span class='notice'>I don't feel strong enough without my armor.</span>")
@@ -255,7 +268,6 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 /obj/effect/proc_holder/spell/Initialize()
 	. = ..()
-	action = new(src)
 	START_PROCESSING(SSfastprocess, src)
 
 	still_recharging_msg = "<span class='notice'>[name] is still recharging.</span>"
@@ -478,8 +490,8 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 	perform(targets,user=user)
 
-/obj/effect/proc_holder/spell/proc/updateButtonIcon()
-	action.UpdateButtonIcon()
+/obj/effect/proc_holder/spell/proc/updateButtonIcon(status_only, force)
+	action.UpdateButtonIcon(status_only, force)
 
 /obj/effect/proc_holder/spell/proc/can_be_cast_by(mob/caster)
 	if((human_req || clothes_req) && !ishuman(caster))

@@ -5,7 +5,7 @@
 	icon_state = "water"
 	density = TRUE
 	anchored = FALSE
-	container_type = DRAWABLE_1
+	container_type = DRAINABLE | AMOUNT_VISIBLE
 	pressure_resistance = 2*ONE_ATMOSPHERE
 	max_integrity = 300
 	var/tank_volume = 1000 //In units, how much the dispenser can hold
@@ -18,23 +18,17 @@
 			boom()
 
 /obj/structure/reagent_dispensers/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/reagent_containers))
+	if(W.is_refillable())
 		return 0 //so we can refill them via their afterattack.
 	else
 		return ..()
 
 /obj/structure/reagent_dispensers/Initialize()
 	create_reagents(tank_volume)
-	reagents.add_reagent(reagent_id, tank_volume)
+	if(reagent_id)
+		reagents.add_reagent(reagent_id, tank_volume)
+	generate_reagent_icon()
 	. = ..()
-
-/obj/structure/reagent_dispensers/examine(mob/user)
-	..()
-	if(reagents.total_volume)
-		to_chat(user, "<span class='notice'>It has [reagents.total_volume] unit\s left.</span>")
-	else
-		to_chat(user, "<span class='danger'>It's empty.</span>")
-
 
 /obj/structure/reagent_dispensers/proc/boom()
 	visible_message("<span class='danger'>\The [src] ruptures!</span>")
@@ -154,6 +148,9 @@
 		to_chat(user, "There are no paper cups left.")
 
 /obj/structure/reagent_dispensers/water_cooler/attack_hand(mob/living/user)
+	. = ..()
+	if(.)
+		return
 	if(!paper_cups)
 		to_chat(user, "<span class='warning'>There aren't any cups left!</span>")
 		return
@@ -161,7 +158,6 @@
 	var/obj/item/reagent_containers/food/drinks/sillycup/S = new(get_turf(src))
 	user.put_in_hands(S)
 	paper_cups--
-
 
 /obj/structure/reagent_dispensers/beerkeg
 	name = "beer keg"

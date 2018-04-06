@@ -7,7 +7,7 @@
 	var/smooth_icon = 'icons/turf/smoothrocks.dmi'
 	smooth = SMOOTH_MORE|SMOOTH_BORDER
 	canSmoothWith
-	baseturf = /turf/open/floor/plating/asteroid/airless
+	baseturfs = /turf/open/floor/plating/asteroid/airless
 	initial_gas_mix = "TEMP=2.7"
 	opacity = 1
 	density = TRUE
@@ -46,27 +46,26 @@
 	return ..()
 
 
-/turf/closed/mineral/attackby(obj/item/pickaxe/P, mob/user, params)
+/turf/closed/mineral/attackby(obj/item/I, mob/user, params)
 	if (!user.IsAdvancedToolUser())
 		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 
-	if (istype(P, /obj/item/pickaxe))
+	if(I.tool_behaviour == TOOL_MINING)
 		var/turf/T = user.loc
 		if (!isturf(T))
 			return
 
-		if(last_act+P.digspeed > world.time)//prevents message spam
+		if(last_act + (40 * I.toolspeed) > world.time)//prevents message spam
 			return
 		last_act = world.time
 		to_chat(user, "<span class='notice'>You start picking...</span>")
-		P.playDigSound()
 
-		if(do_after(user,P.digspeed, target = src))
+		if(I.use_tool(src, user, 40, volume=50))
 			if(ismineralturf(src))
 				to_chat(user, "<span class='notice'>You finish cutting into the rock.</span>")
 				gets_drilled(user)
-				SSblackbox.record_feedback("tally", "pick_used_mining", 1, P.type)
+				SSblackbox.record_feedback("tally", "pick_used_mining", 1, I.type)
 	else
 		return attack_hand(user)
 
@@ -76,7 +75,10 @@
 		SSblackbox.record_feedback("tally", "ore_mined", mineralAmt, mineralType)
 	for(var/obj/effect/temp_visual/mining_overlay/M in src)
 		qdel(M)
-	ChangeTurf(turf_type, FALSE, defer_change)
+	var/flags = NONE
+	if(defer_change) // TODO: make the defer change var a var for any changeturf flag
+		flags = CHANGETURF_DEFER_CHANGE
+	ScrapeAway(null, flags)
 	addtimer(CALLBACK(src, .proc/AfterChange), 1, TIMER_UNIQUE)
 	playsound(src, 'sound/effects/break_stone.ogg', 50, 1) //beautiful destruction
 
@@ -88,7 +90,7 @@
 /turf/closed/mineral/attack_alien(mob/living/carbon/alien/M)
 	to_chat(M, "<span class='notice'>You start digging into the rock...</span>")
 	playsound(src, 'sound/effects/break_stone.ogg', 50, 1)
-	if(do_after(M,40, target = src))
+	if(do_after(M, 40, target = src))
 		to_chat(M, "<span class='notice'>You tunnel into the rock.</span>")
 		gets_drilled(M)
 
@@ -96,20 +98,20 @@
 	..()
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		var/obj/item/I = H.is_holding_item_of_type(/obj/item/pickaxe)
+		var/obj/item/I = H.is_holding_tool_quality(TOOL_MINING)
 		if(I)
-			attackby(I,H)
+			attackby(I, H)
 		return
 	else if(iscyborg(AM))
 		var/mob/living/silicon/robot/R = AM
-		if(istype(R.module_active, /obj/item/pickaxe))
-			attackby(R.module_active,R)
+		if(R.module_active && R.module_active.tool_behaviour == TOOL_MINING)
+			attackby(R.module_active, R)
 			return
 	else
 		return
 
 /turf/closed/mineral/acid_melt()
-	ChangeTurf(baseturf)
+	ScrapeAway()
 
 /turf/closed/mineral/ex_act(severity, target)
 	..()
@@ -144,14 +146,14 @@
 	. = ..()
 	if (prob(mineralChance))
 		var/path = pickweight(mineralSpawnChanceList)
-		var/turf/T = ChangeTurf(path,FALSE,FALSE,TRUE)
+		var/turf/T = ChangeTurf(path,null,CHANGETURF_IGNORE_AIR)
 
 		if(T && ismineralturf(T))
 			var/turf/closed/mineral/M = T
 			M.mineralAmt = rand(1, 5)
-			M.environment_type = environment_type
-			M.turf_type = turf_type
-			M.baseturf = baseturf
+			M.environment_type = src.environment_type
+			M.turf_type = src.turf_type
+			M.baseturfs = src.baseturfs
 			src = M
 			M.levelupdate()
 
@@ -166,7 +168,7 @@
 /turf/closed/mineral/random/high_chance/volcanic
 	environment_type = "basalt"
 	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
-	baseturf = /turf/open/lava/smooth/lava_land_surface
+	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = 1
 	mineralSpawnChanceList = list(
@@ -187,7 +189,7 @@
 /turf/closed/mineral/random/volcanic
 	environment_type = "basalt"
 	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
-	baseturf = /turf/open/lava/smooth/lava_land_surface
+	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = 1
 
@@ -209,7 +211,7 @@
 /turf/closed/mineral/random/labormineral/volcanic
 	environment_type = "basalt"
 	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
-	baseturf = /turf/open/lava/smooth/lava_land_surface
+	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = 1
 	mineralSpawnChanceList = list(
@@ -228,9 +230,18 @@
 /turf/closed/mineral/iron/volcanic
 	environment_type = "basalt"
 	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
-	baseturf = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = 1
+
+/turf/closed/mineral/iron/ice
+	environment_type = "snow_cavern"
+	icon_state = "icerock_iron"
+	smooth_icon = 'icons/turf/walls/icerock_wall.dmi'
+	turf_type = /turf/open/floor/plating/asteroid/snow/ice
+	baseturfs = /turf/open/floor/plating/asteroid/snow/ice
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	defer_change = TRUE
 
 
 /turf/closed/mineral/uranium
@@ -242,7 +253,7 @@
 /turf/closed/mineral/uranium/volcanic
 	environment_type = "basalt"
 	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
-	baseturf = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = 1
 
@@ -256,9 +267,18 @@
 /turf/closed/mineral/diamond/volcanic
 	environment_type = "basalt"
 	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
-	baseturf = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = 1
+
+/turf/closed/mineral/diamond/ice
+	environment_type = "snow_cavern"
+	icon_state = "icerock_diamond"
+	smooth_icon = 'icons/turf/walls/icerock_wall.dmi'
+	turf_type = /turf/open/floor/plating/asteroid/snow/ice
+	baseturfs = /turf/open/floor/plating/asteroid/snow/ice
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	defer_change = TRUE
 
 
 /turf/closed/mineral/gold
@@ -270,7 +290,7 @@
 /turf/closed/mineral/gold/volcanic
 	environment_type = "basalt"
 	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
-	baseturf = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = 1
 
@@ -284,7 +304,7 @@
 /turf/closed/mineral/silver/volcanic
 	environment_type = "basalt"
 	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
-	baseturf = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = 1
 
@@ -298,7 +318,7 @@
 /turf/closed/mineral/titanium/volcanic
 	environment_type = "basalt"
 	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
-	baseturf = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = 1
 
@@ -312,17 +332,27 @@
 /turf/closed/mineral/plasma/volcanic
 	environment_type = "basalt"
 	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
-	baseturf = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = 1
 
+/turf/closed/mineral/plasma/ice
+	environment_type = "snow_cavern"
+	icon_state = "icerock_plasma"
+	smooth_icon = 'icons/turf/walls/icerock_wall.dmi'
+	turf_type = /turf/open/floor/plating/asteroid/snow/ice
+	baseturfs = /turf/open/floor/plating/asteroid/snow/ice
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	defer_change = TRUE
 
-/turf/closed/mineral/clown
+
+
+/turf/closed/mineral/bananium
 	mineralType = /obj/item/stack/ore/bananium
 	mineralAmt = 3
 	spreadChance = 0
 	spread = 0
-	scan_state = "rock_Clown"
+	scan_state = "rock_Bananium"
 
 
 /turf/closed/mineral/bscrystal
@@ -335,7 +365,7 @@
 /turf/closed/mineral/bscrystal/volcanic
 	environment_type = "basalt"
 	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
-	baseturf = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = 1
 
@@ -343,13 +373,13 @@
 /turf/closed/mineral/volcanic
 	environment_type = "basalt"
 	turf_type = /turf/open/floor/plating/asteroid/basalt
-	baseturf = /turf/open/floor/plating/asteroid/basalt
+	baseturfs = /turf/open/floor/plating/asteroid/basalt
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 
 /turf/closed/mineral/volcanic/lava_land_surface
 	environment_type = "basalt"
 	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
-	baseturf = /turf/open/lava/smooth/lava_land_surface
+	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	defer_change = 1
 
 /turf/closed/mineral/ash_rock //wall piece
@@ -359,12 +389,35 @@
 	icon_state = "rock2"
 	smooth = SMOOTH_MORE|SMOOTH_BORDER
 	canSmoothWith = list (/turf/closed)
-	baseturf = /turf/open/floor/plating/ashplanet/wateryrock
+	baseturfs = /turf/open/floor/plating/ashplanet/wateryrock
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	environment_type = "waste"
 	turf_type = /turf/open/floor/plating/ashplanet/rocky
 	defer_change = 1
 
+/turf/closed/mineral/snowmountain
+	name = "snowy mountainside"
+	icon = 'icons/turf/mining.dmi'
+	smooth_icon = 'icons/turf/walls/mountain_wall.dmi'
+	icon_state = "mountainrock"
+	smooth = SMOOTH_MORE|SMOOTH_BORDER
+	canSmoothWith = list (/turf/closed)
+	baseturfs = /turf/open/floor/plating/asteroid/snow
+	initial_gas_mix = "o2=22;n2=82;TEMP=180"
+	environment_type = "snow"
+	turf_type = /turf/open/floor/plating/asteroid/snow
+	defer_change = TRUE
+
+/turf/closed/mineral/snowmountain/cavern
+	name = "ice cavern rock"
+	icon = 'icons/turf/mining.dmi'
+	smooth_icon = 'icons/turf/walls/icerock_wall.dmi'
+	icon_state = "icerock"
+	smooth = SMOOTH_MORE|SMOOTH_BORDER
+	canSmoothWith = list (/turf/closed)
+	baseturfs = /turf/open/floor/plating/asteroid/snow/ice
+	environment_type = "snow_cavern"
+	turf_type = /turf/open/floor/plating/asteroid/snow/ice
 
 //GIBTONITE
 
@@ -409,7 +462,7 @@
 				message_admins("An explosion has triggered a gibtonite deposit reaction at [A.name] [ADMIN_JMP(bombturf)].")
 
 		if(!triggered_by_explosion)
-			log_game("[key_name(user)] has triggered a gibtonite deposit reaction at [A.name] [ADMIN_JMP(bombturf)].")
+			log_game("[key_name(user)] has triggered a gibtonite deposit reaction at [A.name] [COORD(bombturf)].")
 		else
 			log_game("An explosion has triggered a gibtonite deposit reaction at [A.name] [COORD(bombturf)]")
 
@@ -457,13 +510,16 @@
 			G.quality = 2
 			G.icon_state = "Gibtonite ore 2"
 
-	ChangeTurf(turf_type, FALSE, defer_change)
+	var/flags = NONE
+	if(defer_change)
+		flags = CHANGETURF_DEFER_CHANGE
+	ScrapeAway(null, flags)
 	addtimer(CALLBACK(src, .proc/AfterChange), 1, TIMER_UNIQUE)
 
 
 /turf/closed/mineral/gibtonite/volcanic
 	environment_type = "basalt"
 	turf_type = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
-	baseturf = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
+	baseturfs = /turf/open/floor/plating/asteroid/basalt/lava_land_surface
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	defer_change = 1

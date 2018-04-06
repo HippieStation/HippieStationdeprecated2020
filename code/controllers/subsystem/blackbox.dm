@@ -6,15 +6,20 @@ SUBSYSTEM_DEF(blackbox)
 	init_order = INIT_ORDER_BLACKBOX
 
 	var/list/feedback = list()	//list of datum/feedback_variable
+	var/list/first_death = list() //the first death of this round, assoc. vars keep track of different things
 	var/triggertime = 0
 	var/sealed = FALSE	//time to stop tracking stats?
-	var/list/research_levels = list() //list of highest tech levels attained that isn't lost lost by destruction of RD computers
-	var/list/versions = list("time_dilation_current" = 2,
-							"science_techweb_unlock" = 2) //associative list of any feedback variables that have had their format changed since creation and their current version, remember to update this
-
+	var/list/versions = list("antagonists" = 3,
+							"admin_secrets_fun_used" = 2,
+							"time_dilation_current" = 3,
+							"science_techweb_unlock" = 2,
+							"round_end_stats" = 2) //associative list of any feedback variables that have had their format changed since creation and their current version, remember to update this
 
 /datum/controller/subsystem/blackbox/Initialize()
 	triggertime = world.time
+	record_feedback("amount", "random_seed", Master.random_seed)
+	record_feedback("amount", "dm_version", DM_VERSION)
+	record_feedback("amount", "byond_version", world.byond_version)
 	. = ..()
 
 //poll population
@@ -26,7 +31,8 @@ SUBSYSTEM_DEF(blackbox)
 		if(M.client)
 			playercount += 1
 	var/admincount = GLOB.admins.len
-	var/datum/DBQuery/query_record_playercount = SSdbcore.NewQuery("INSERT INTO [format_table_name("legacy_population")] (playercount, admincount, time, server_ip, server_port, round_id) VALUES ([playercount], [admincount], '[SQLtime()]', INET_ATON(IF('[world.internet_address]' LIKE '', '0', '[world.internet_address]')), '[world.port]', '[GLOB.round_id]')")
+	var/internet_address_to_use = CONFIG_GET(string/internet_address_to_use)
+	var/datum/DBQuery/query_record_playercount = SSdbcore.NewQuery("INSERT INTO [format_table_name("legacy_population")] (playercount, admincount, time, server_ip, server_port, round_id) VALUES ([playercount], [admincount], '[SQLtime()]', INET_ATON(IF('[internet_address_to_use]' LIKE '', '0', '[internet_address_to_use]')), '[world.port]', '[GLOB.round_id]')")
 	query_record_playercount.Execute()
 
 	if(CONFIG_GET(flag/use_exp_tracking))
@@ -39,24 +45,29 @@ SUBSYSTEM_DEF(blackbox)
 	sealed = SSblackbox.sealed
 
 //no touchie
-/datum/controller/subsystem/blackbox/can_vv_get(var_name)
+/datum/controller/subsystem/blackbox/vv_get_var(var_name)
 	if(var_name == "feedback")
-		return FALSE
+		return debug_variable(var_name, deepCopyList(feedback), 0, src)
 	return ..()
 
 /datum/controller/subsystem/blackbox/vv_edit_var(var_name, var_value)
-	return FALSE
+	switch(var_name)
+		if("feedback")
+			return FALSE
+		if("sealed")
+			if(var_value)
+				return Seal()
+			return FALSE
+	return ..()
 
 /datum/controller/subsystem/blackbox/Shutdown()
 	sealed = FALSE
 	record_feedback("tally", "ahelp_stats", GLOB.ahelp_tickets.active_tickets.len, "unresolved")
-	for (var/obj/machinery/message_server/MS in GLOB.message_servers)
+	for (var/obj/machinery/telecomms/message_server/MS in GLOB.telecomms_list)
 		if (MS.pda_msgs.len)
 			record_feedback("tally", "radio_usage", MS.pda_msgs.len, "PDA")
 		if (MS.rc_msgs.len)
 			record_feedback("tally", "radio_usage", MS.rc_msgs.len, "request console")
-	if(research_levels.len)
-		SSblackbox.record_feedback("associative", "high_research_level", 1, research_levels)
 
 	if (!SSdbcore.Connect())
 		return
@@ -76,45 +87,42 @@ SUBSYSTEM_DEF(blackbox)
 
 /datum/controller/subsystem/blackbox/proc/Seal()
 	if(sealed)
-		return
+		return FALSE
 	if(IsAdminAdvancedProcCall())
 		message_admins("[key_name_admin(usr)] sealed the blackbox!")
 	log_game("Blackbox sealed[IsAdminAdvancedProcCall() ? " by [key_name(usr)]" : ""].")
 	sealed = TRUE
-
-/datum/controller/subsystem/blackbox/proc/log_research(tech, level)
-	if(!(tech in research_levels) || research_levels[tech] < level)
-		research_levels[tech] = level
+	return TRUE
 
 /datum/controller/subsystem/blackbox/proc/LogBroadcast(freq)
 	if(sealed)
 		return
 	switch(freq)
-		if(1459)
+		if(FREQ_COMMON)
 			record_feedback("tally", "radio_usage", 1, "common")
-		if(GLOB.SCI_FREQ)
+		if(FREQ_SCIENCE)
 			record_feedback("tally", "radio_usage", 1, "science")
-		if(GLOB.COMM_FREQ)
+		if(FREQ_COMMAND)
 			record_feedback("tally", "radio_usage", 1, "command")
-		if(GLOB.MED_FREQ)
+		if(FREQ_MEDICAL)
 			record_feedback("tally", "radio_usage", 1, "medical")
-		if(GLOB.ENG_FREQ)
+		if(FREQ_ENGINEERING)
 			record_feedback("tally", "radio_usage", 1, "engineering")
-		if(GLOB.SEC_FREQ)
+		if(FREQ_SECURITY)
 			record_feedback("tally", "radio_usage", 1, "security")
-		if(GLOB.SYND_FREQ)
+		if(FREQ_SYNDICATE)
 			record_feedback("tally", "radio_usage", 1, "syndicate")
-		if(GLOB.SERV_FREQ)
+		if(FREQ_SERVICE)
 			record_feedback("tally", "radio_usage", 1, "service")
-		if(GLOB.SUPP_FREQ)
+		if(FREQ_SUPPLY)
 			record_feedback("tally", "radio_usage", 1, "supply")
-		if(GLOB.CENTCOM_FREQ)
+		if(FREQ_CENTCOM)
 			record_feedback("tally", "radio_usage", 1, "centcom")
-		if(GLOB.AIPRIV_FREQ)
+		if(FREQ_AI_PRIVATE)
 			record_feedback("tally", "radio_usage", 1, "ai private")
-		if(GLOB.REDTEAM_FREQ)
+		if(FREQ_CTF_RED)
 			record_feedback("tally", "radio_usage", 1, "CTF red team")
-		if(GLOB.BLUETEAM_FREQ)
+		if(FREQ_CTF_BLUE)
 			record_feedback("tally", "radio_usage", 1, "CTF blue team")
 		else
 			record_feedback("tally", "radio_usage", 1, "other")
@@ -217,7 +225,12 @@ Versioning
 			var/pos = length(FV.json["data"]) + 1
 			FV.json["data"]["[pos]"] = list() //in 512 "pos" can be replaced with "[FV.json["data"].len+1]"
 			for(var/i in data)
-				FV.json["data"]["[pos]"]["[i]"] = "[data[i]]" //and here with "[FV.json["data"].len]"
+				if(islist(data[i]))
+					FV.json["data"]["[pos]"]["[i]"] = data[i] //and here with "[FV.json["data"].len]"
+				else
+					FV.json["data"]["[pos]"]["[i]"] = "[data[i]]"
+		else
+			CRASH("Invalid feedback key_type: [key_type]")
 
 /datum/controller/subsystem/blackbox/proc/record_feedback_recurse_list(list/L, list/key_list, increment, depth = 1)
 	if(depth == key_list.len)
@@ -270,5 +283,13 @@ Versioning
 	var/last_words = sanitizeSQL(L.last_words)
 	var/suicide = sanitizeSQL(L.suiciding)
 	var/map = sanitizeSQL(SSmapping.config.map_name)
+	if(!L.suiciding && !first_death.len)
+		first_death["name"] = "[(L.real_name == L.name) ? L.real_name : "[L.real_name] as [L.name]"]"
+		first_death["role"] = null
+		if(L.mind.assigned_role)
+			first_death["role"] = L.mind.assigned_role
+		first_death["area"] = "[get_area_name(L, TRUE)] [COORD(L)]"
+		first_death["damage"] = "<font color='#FF5555'>[sqlbrute]</font>/<font color='orange'>[sqlfire]</font>/<font color='lightgreen'>[sqltox]</font>/<font color='lightblue'>[sqloxy]</font>/<font color='pink'>[sqlclone]</font>"
+		first_death["last_words"] = L.last_words
 	var/datum/DBQuery/query_report_death = SSdbcore.NewQuery("INSERT INTO [format_table_name("death")] (pod, x_coord, y_coord, z_coord, mapname, server_ip, server_port, round_id, tod, job, special, name, byondkey, laname, lakey, bruteloss, fireloss, brainloss, oxyloss, toxloss, cloneloss, staminaloss, last_words, suicide) VALUES ('[sqlpod]', '[x_coord]', '[y_coord]', '[z_coord]', '[map]', INET_ATON(IF('[world.internet_address]' LIKE '', '0', '[world.internet_address]')), '[world.port]', [GLOB.round_id], '[SQLtime()]', '[sqljob]', '[sqlspecial]', '[sqlname]', '[sqlkey]', '[laname]', '[lakey]', [sqlbrute], [sqlfire], [sqlbrain], [sqloxy], [sqltox], [sqlclone], [sqlstamina], '[last_words]', [suicide])")
 	query_report_death.Execute()

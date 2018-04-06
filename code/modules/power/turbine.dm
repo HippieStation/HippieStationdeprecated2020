@@ -81,13 +81,7 @@
 
 
 #define COMPFRICTION 5e5
-#define COMPSTARTERLOAD 2800
 
-
-// Crucial to make things work!!!!
-// OLD FIX - explanation given down below.
-// /obj/machinery/power/compressor/CanPass(atom/movable/mover, turf/target)
-// 		return !density
 
 /obj/machinery/power/compressor/locate_machinery()
 	if(turbine)
@@ -169,7 +163,6 @@
 // These are crucial to working of a turbine - the stats modify the power output. TurbGenQ modifies how much raw energy can you get from
 // rpms, TurbGenG modifies the shape of the curve - the lower the value the less straight the curve is.
 
-#define TURBPRES 9000000
 #define TURBGENQ 100000
 #define TURBGENG 0.5
 
@@ -180,6 +173,7 @@
 	locate_machinery()
 	if(!compressor)
 		stat |= BROKEN
+	connect_to_network()
 
 /obj/machinery/power/turbine/RefreshParts()
 	var/P = 0
@@ -233,13 +227,6 @@
 
 	updateDialog()
 
-/obj/machinery/power/turbine/attack_hand(mob/user)
-
-	if(..())
-		return
-
-	interact(user)
-
 /obj/machinery/power/turbine/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, initial(icon_state), initial(icon_state), I))
 		return
@@ -261,7 +248,7 @@
 
 	default_deconstruction_crowbar(I)
 
-/obj/machinery/power/turbine/interact(mob/user)
+/obj/machinery/power/turbine/ui_interact(mob/user)
 
 	if(!Adjacent(user)  || (stat & (NOPOWER|BROKEN)) && !issilicon(user))
 		user.unset_machine(src)
@@ -327,12 +314,6 @@
 	else
 		compressor = locate(/obj/machinery/power/compressor) in range(5, src)
 
-/obj/machinery/computer/turbine_computer/attack_hand(var/mob/user as mob)
-	if(..())
-		return
-
-	ui_interact(user)
-
 /obj/machinery/computer/turbine_computer/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
@@ -343,10 +324,10 @@
 /obj/machinery/computer/turbine_computer/ui_data(mob/user)
 	var/list/data = list()
 
-	data["working"] = (compressor.starter && compressor && compressor.turbine && !compressor.stat && !compressor.turbine.stat)
 	data["connected"] = (compressor && compressor.turbine) ? TRUE : FALSE
-	data["compressor_broke"] = (!compressor || compressor.stat) ? TRUE : FALSE
-	data["turbine_broke"] = (!compressor || compressor.turbine.stat) ? TRUE : FALSE
+	data["compressor_broke"] = (!compressor || (compressor.stat & BROKEN)) ? TRUE : FALSE
+	data["turbine_broke"] = (!compressor || !compressor.turbine || (compressor.turbine.stat & BROKEN)) ? TRUE : FALSE
+	data["broken"] = (data["compressor_broke"] || data["turbine_broke"])
 	data["online"] = compressor.starter
 
 	data["power"] = DisplayPower(compressor.turbine.lastgen)
@@ -359,10 +340,18 @@
 	if(..())
 		return
 	switch(action)
-		if("power")
+		if("power-on")
 			if(compressor && compressor.turbine)
-				compressor.starter = !compressor.starter
+				compressor.starter = TRUE
+				. = TRUE
+		if("power-off")
+			if(compressor && compressor.turbine)
+				compressor.starter = FALSE
 				. = TRUE
 		if("reconnect")
 			locate_machinery()
 			. = TRUE
+
+#undef COMPFRICTION
+#undef TURBGENQ
+#undef TURBGENG
