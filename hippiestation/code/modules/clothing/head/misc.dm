@@ -1,14 +1,11 @@
-#define normalscreams list('hippiestation/sound/misc/cyka1.ogg', 'hippiestation/sound/misc/cheekibreeki.ogg')
-#define specialscreams list('hippiestation/sound/misc/cyka2upgradededition.ogg')
+#DEFINE normalscreams list('hippiestation/sound/misc/cyka1.ogg', 'hippiestation/sound/misc/cheekibreeki.ogg')
+#DEFINE specialscreams list('hippiestation/sound/misc/cyka2upgradededition.ogg')
 
 /obj/item/clothing/head/xenos
 	alternate_screams = list('sound/voice/hiss6.ogg')
 
 /obj/item/clothing/head/cardborg
 	alternate_screams = list('hippiestation/sound/voice/scream_silicon.ogg')
-
-#DEFINE normalscreams list('hippiestation/sound/misc/cyka1.ogg', 'hippiestation/sound/misc/cheekibreeki.ogg')
-#DEFINE specialscreams list('hippiestation/sound/misc/cyka2upgradededition.ogg')
 
 /obj/item/clothing/head/ushanka
 	alternate_screams = list(normalscreams, normalscreams, normalscreams, specialscreams) //Sorry
@@ -121,10 +118,6 @@
 	else
 		return ..()
 
-<<<<<<< HEAD
 #UNDEF normalscreams
 #UNDEF specialscreams
-=======
-#undef normalscreams
-#undef specialscreams
->>>>>>> a15ff363a7462ed68057a0e7d5319d77f521d07c
+
