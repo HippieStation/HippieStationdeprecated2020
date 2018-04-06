@@ -228,59 +228,68 @@ datum/reagent/medicine/virogone/on_mob_life(mob/living/M)//cures viruses very ef
 /datum/reagent/medicine/supermannitol
 	name = "Super Mannitol"
 	id = "supermannitol"
-	description = "A more potent form of mannitol, it has the ability to heal any and all forms of brain damage"
+	description = "A more potent form of mannitol, it has the ability to heal any and all forms of brain damage. It's extremely strong, so make sure you don't drink much in one go."
 	color = "#DCB3F2" //rgb(220, 179, 242)
 	taste_description = "sludge"
 	overdose_threshold = 30
 	var/overdosing = FALSE
 
 /datum/reagent/medicine/supermannitol/on_mob_life(mob/living/M)
-	M.adjustBrainLoss(-4*REM)
-	if(iscarbon(M))
-		if(!overdosing)
-			var/mob/living/carbon/C = M
+	if(iscarbon(M) && !overdosing)
+		var/mob/living/carbon/C = M
+		M.adjustBrainLoss(-4*REM)
+		if(prob(10))
+			C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
+		else
 			if(prob(10))
-				C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
-			else
-				if(prob(10))
-					C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_LOBOTOMY)
-		if(overdosing)
-			var/mob/living/carbon/human/H = M
-			switch(current_cycle)
-				if(4)
-					M.adjustBrainLoss(4)
-					H.drowsyness = max(M.drowsyness, 10)
-				if(20)
-					M.adjustBrainLoss(4)
-					H.drowsyness = max(M.drowsyness, 10)
-					if(prob(20))
-						M.Sleeping(40, 0)
-					M.hallucination = 30
-					H.reagents.add_reagent("rotatium", 1) //uh oh
-				if(40)
-					H.reagents.add_reagent("skewium", 1) //no tox healing because u been a bad boi
-					H.reagents.remove_reagent("rotatium", INFINITY)
-					if(prob(50))
-						H.vomit(20, 1, distance = 3)
-						M.hallucination = 30
-						M.adjustBrainLoss(8)
-						H.drowsyness = max(M.drowsyness, 10)
+				C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_LOBOTOMY)
+
 
 	..()
 
 /datum/reagent/medicine/supermannitol/overdose_process(mob/living/M)
 	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
 		overdosing = TRUE
 		switch(current_cycle)
 			if(4)
-				to_chat(src, "<span class='warning'>You feel like you're getting dumber!</span>")
-			if(20)
-				to_chat(src, "<span class='warning'>You don't feel so good... it's almost like the world is spinning!</span>")
-			if(40)
-				to_chat(src, "<span class='warning'>You feel awful!</span>")
+				to_chat(M, "<span class='warning'>You feel like you're getting dumber!</span>")
+			if(14)
+				to_chat(M, "<span class='warning'>You don't feel so good... it's almost like the world is spinning!</span>")
+			if(30)
+				to_chat(M, "<span class='warning'>You feel awful!</span>")
+		if(4>=current_cycle)
+			H.adjustBrainLoss(4)
+			H.drowsyness = max(M.drowsyness, 10)
+			H.reagents.add_reagent("rotatium", 1) //oh no you dun fucked up now
+		if(5<=current_cycle)
+			H.adjustBrainLoss(4)
+			H.drowsyness = max(M.drowsyness, 10)
+			H.reagents.add_reagent("rotatium", 1)
+			if(prob(20))
+				M.emote("gasp")
+			M.hallucination = 30
+		if(30<=current_cycle)
+			H.reagents.add_reagent("skewium", 1.5) //no tox healing because u been a bad boi
+			if(prob(50))
+				H.vomit(20, 0, distance = 3)
+				M.hallucination = 30
+				H.adjustBrainLoss(8)
+				H.drowsyness = max(M.drowsyness, 10)
+			if(prob(40))
+				H.emote("scream")
+			if(prob(30))
+				H.visible_message("<span class='danger'>[H]'s hands flip out and flail everywhere!</span>")
+				H.Dizzy(20)
 
 
 	..()
+
+/datum/reagent/medicine/supermannitol/on_mob_delete(mob/living/M)
+	if(ishuman(M) && overdosing)
+		overdosing = FALSE
+
+
 
 
 
