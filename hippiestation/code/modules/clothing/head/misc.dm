@@ -4,8 +4,11 @@
 /obj/item/clothing/head/cardborg
 	alternate_screams = list('hippiestation/sound/voice/scream_silicon.ogg')
 
+#DEFINE normalscreams list('hippiestation/sound/misc/cyka1.ogg', 'hippiestation/sound/misc/cheekibreeki.ogg')
+#DEFINE specialscreams list('hippiestation/sound/misc/cyka2upgradededition.ogg')
+
 /obj/item/clothing/head/ushanka
-	alternate_screams = list('hippiestation/sound/misc/cyka1.ogg', 'hippiestation/sound/misc/cheekibreeki.ogg')
+	alternate_screams = list(normalscreams, normalscreams, normalscreams, specialscreams) //Sorry
 
 /obj/item/clothing/head/hippie/zoothat
 	name = "zoot suit hat"
@@ -114,3 +117,6 @@
 				C.update_inv_head()
 	else
 		return ..()
+
+#UNDEF normalscreams
+#UNDEF specialscreams
