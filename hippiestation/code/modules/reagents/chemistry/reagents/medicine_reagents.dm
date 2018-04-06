@@ -225,13 +225,62 @@ datum/reagent/medicine/virogone/on_mob_life(mob/living/M)//cures viruses very ef
 /datum/reagent/medicine/salglu_solution
 	overdose_threshold = 0 //seriously fuck whoever thought this was a good idea.
 
-/datum/reagent/medicine/mannitol/on_mob_life(mob/living/M)
-	M.adjustBrainLoss(-2*REM)
+/datum/reagent/medicine/supermannitol
+	name = "Super Mannitol"
+	id = "supermannitol"
+	description = "A more potent form of mannitol, it has the ability to heal any and all forms of brain damage"
+	color = "#DCB3F2" //rgb(220, 179, 242)
+	taste_description = "sludge"
+	overdose_threshold = 30
+	var/overdosing = FALSE
+
+/datum/reagent/medicine/supermannitol/on_mob_life(mob/living/M)
+	M.adjustBrainLoss(-4*REM)
 	if(iscarbon(M))
-		var/mob/living/carbon/C = M
-		if(prob(10))
-			C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
-		else
-			if(prob(1))
-				C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_LOBOTOMY)
+		if(!overdosing)
+			var/mob/living/carbon/C = M
+			if(prob(10))
+				C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
+			else
+				if(prob(10))
+					C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_LOBOTOMY)
+		if(overdosing)
+			var/mob/living/carbon/human/H = M
+			switch(current_cycle)
+				if(4)
+					M.adjustBrainLoss(4)
+					H.drowsyness = max(M.drowsyness, 10)
+				if(20)
+					M.adjustBrainLoss(4)
+					H.drowsyness = max(M.drowsyness, 10)
+					if(prob(20))
+						M.Sleeping(40, 0)
+					M.hallucination = 30
+					H.reagents.add_reagent("rotatium", 1) //uh oh
+				if(40)
+					H.reagents.add_reagent("skewium", 1) //no tox healing because u been a bad boi
+					H.reagents.remove_reagent("rotatium", INFINITY)
+					if(prob(50))
+						H.vomit(20, 1, distance = 3)
+						M.hallucination = 30
+						M.adjustBrainLoss(8)
+						H.drowsyness = max(M.drowsyness, 10)
+
 	..()
+
+/datum/reagent/medicine/supermannitol/overdose_process(mob/living/M)
+	if(ishuman(M))
+		overdosing = TRUE
+		switch(current_cycle)
+			if(4)
+				to_chat(src, "<span class='warning'>You feel like you're getting dumber!</span>")
+			if(20)
+				to_chat(src, "<span class='warning'>You don't feel so good... it's almost like the world is spinning!</span>")
+			if(40)
+				to_chat(src, "<span class='warning'>You feel awful!</span>")
+
+
+	..()
+
+
+
