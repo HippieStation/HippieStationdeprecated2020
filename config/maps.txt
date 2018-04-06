@@ -38,4 +38,8 @@ map deltastation
 endmap
 
 map runtimestation
+
+
+map asteroidstation
+	minplayers 30
 endmap
