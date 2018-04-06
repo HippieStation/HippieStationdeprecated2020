@@ -361,7 +361,7 @@
 	name = "Arrivals Lounge"
 	})
 "abg" = (
-/obj/structure/sign/pods,
+/obj/structure/sign/warning/pods,
 /turf/closed/wall,
 /area/hallway/secondary/entry{
 	name = "Arrivals Lounge"
@@ -394,7 +394,7 @@
 /turf/closed/wall/r_wall,
 /area/maintenance/port/fore)
 "abl" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
@@ -982,7 +982,7 @@
 	name = "Arrivals Lounge"
 	})
 "acD" = (
-/obj/item/device/radio/beacon,
+/obj/item/device/beacon,
 /turf/open/floor/carpet,
 /area/hallway/secondary/entry{
 	name = "Arrivals Lounge"
@@ -2672,7 +2672,7 @@
 /area/gateway)
 "agU" = (
 /obj/structure/table,
-/obj/structure/sign/biohazard{
+/obj/structure/sign/warning/biohazard{
 	pixel_x = -32
 	},
 /obj/item/storage/firstaid/regular,
@@ -2723,7 +2723,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/table,
 /obj/machinery/recharger,
-/obj/structure/sign/biohazard{
+/obj/structure/sign/warning/biohazard{
 	pixel_x = 32
 	},
 /obj/machinery/light{
@@ -3498,7 +3498,7 @@
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
 "aiJ" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'HIGH VOLTAGE'";
 	icon_state = "shock";
 	name = "HIGH VOLTAGE";
@@ -3998,7 +3998,7 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "ajI" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -4009,7 +4009,7 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "ajJ" = (
 /obj/machinery/power/solar{
 	id = "auxsolareast";
@@ -4264,7 +4264,7 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "akr" = (
 /obj/machinery/camera{
 	c_tag = "Auxillary Mining Base";
@@ -4935,7 +4935,7 @@
 /turf/open/floor/plating,
 /area/storage/eva)
 "alQ" = (
-/obj/machinery/door/airlock/glass_command{
+/obj/machinery/door/airlock/command/glass{
 	desc = "Storage area for the station's general-purpose space suits and other critical materials. Can be opened via bridge controls in an emergency.";
 	name = "Standard E.V.A. Suits";
 	req_access_txt = "18"
@@ -5007,11 +5007,11 @@
 /area/ai_monitored/turret_protected/ai)
 "ama" = (
 /turf/closed/wall/r_wall,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "amb" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "amc" = (
 /obj/machinery/door/airlock/external{
 	cyclelinkeddir = 1;
@@ -5226,7 +5226,7 @@
 	icon_state = "0-2"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "amI" = (
 /obj/machinery/power/terminal{
 	dir = 8
@@ -5235,7 +5235,7 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "amJ" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -5244,9 +5244,9 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "amK" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
@@ -5257,13 +5257,13 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "amL" = (
 /obj/structure/cable,
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "amM" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -5525,7 +5525,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
 "ans" = (
-/obj/structure/sign/kiddieplaque{
+/obj/structure/sign/plaques/kiddie{
 	pixel_x = 32
 	},
 /obj/machinery/porta_turret/ai,
@@ -5540,16 +5540,16 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "anu" = (
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "anv" = (
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "anw" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -5558,7 +5558,7 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "anx" = (
 /obj/machinery/door/airlock/external{
 	name = "Solar Maintenance";
@@ -5569,13 +5569,13 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "any" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "anz" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -5583,7 +5583,7 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "anA" = (
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -5591,12 +5591,12 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "anB" = (
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "anC" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -5604,14 +5604,14 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "anD" = (
 /obj/machinery/power/tracker,
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "anE" = (
 /turf/closed/wall,
 /area/quartermaster/miningdock)
@@ -5895,7 +5895,7 @@
 	dir = 8;
 	id = "QMLoad"
 	},
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
@@ -5927,7 +5927,7 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "aoj" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
@@ -6084,13 +6084,13 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "aoB" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "aoC" = (
 /obj/structure/chair/stool,
 /obj/machinery/camera{
@@ -6098,7 +6098,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "aoD" = (
 /obj/machinery/power/solar_control{
 	dir = 8;
@@ -6107,7 +6107,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "aoE" = (
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -6115,7 +6115,7 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "aoF" = (
 /obj/structure/rack,
 /obj/item/pickaxe{
@@ -6190,7 +6190,7 @@
 	},
 /area/quartermaster/miningdock)
 "aoM" = (
-/obj/machinery/mineral/input,
+/obj/item/integrated_circuit/input,
 /turf/open/floor/plasteel/brown{
 	dir = 1
 	},
@@ -6202,7 +6202,7 @@
 	},
 /area/quartermaster/miningdock)
 "aoO" = (
-/obj/machinery/mineral/output,
+/obj/item/integrated_circuit/output,
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Mining Dock APC";
@@ -6457,7 +6457,7 @@
 /turf/open/floor/plating,
 /area/tcommsat/server)
 "apx" = (
-/obj/machinery/door/airlock/glass_engineering{
+/obj/machinery/door/airlock/engineering/glass{
 	desc = "The main server room. Dangerously cold to protect the sensitive machinery.";
 	name = "Telecommunications Server Room";
 	req_access_txt = "61"
@@ -6509,15 +6509,15 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "apF" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'HIGH VOLTAGE'";
 	icon_state = "shock";
 	name = "HIGH VOLTAGE"
 	},
 /turf/closed/wall/r_wall,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "apG" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -6531,7 +6531,7 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "apH" = (
 /obj/machinery/airalarm{
 	dir = 4;
@@ -6607,7 +6607,7 @@
 /obj/structure/cable/orange{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/glass_mining{
+/obj/machinery/door/airlock/mining/glass{
 	desc = "The base for the station's critical mining efforts.";
 	name = "Auxillary Base Construction";
 	req_access_txt = "48"
@@ -7104,7 +7104,7 @@
 	},
 /area/quartermaster/miningdock)
 "arc" = (
-/obj/machinery/door/airlock/glass_mining{
+/obj/machinery/door/airlock/mining/glass{
 	desc = "Storage of the Company's specialized mining gear.";
 	name = "Mining Equipment Room";
 	req_access_txt = "54"
@@ -7462,7 +7462,7 @@
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
 "arY" = (
-/obj/machinery/door/airlock/glass_engineering{
+/obj/machinery/door/airlock/engineering/glass{
 	desc = "The main server room. Dangerously cold to protect the sensitive machinery.";
 	name = "Telecommunications Server Room";
 	req_access_txt = "61"
@@ -7622,7 +7622,7 @@
 /obj/structure/cable/orange{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/glass_command{
+/obj/machinery/door/airlock/command/glass{
 	desc = "Storage area for the station's general-purpose space suits and other critical materials. Can be opened via bridge controls in an emergency.";
 	name = "E.V.A.";
 	req_access_txt = "18"
@@ -7738,7 +7738,7 @@
 	name = "Fore Hallway"
 	})
 "asH" = (
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	desc = "The guardpost for the Cargo Bay. High turnover rate due to allegations of corruption, bribery, and weapons trafficking.";
 	name = "Security Post";
 	req_access_txt = "63"
@@ -8073,7 +8073,7 @@
 /obj/machinery/atmospherics/pipe/simple/supplymain/hidden{
 	dir = 4
 	},
-/obj/structure/sign/electricshock{
+/obj/structure/sign/warning/electricshock{
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/blue/corner{
@@ -8366,7 +8366,7 @@
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
 "auk" = (
-/obj/machinery/door/airlock/glass_engineering{
+/obj/machinery/door/airlock/engineering/glass{
 	desc = "The control facility for station telecomms, where a variety of functions can be changed.";
 	name = "Telecommunications Control";
 	req_access_txt = "61"
@@ -8381,7 +8381,7 @@
 /turf/open/floor/plasteel,
 /area/tcommsat/computer)
 "aum" = (
-/obj/machinery/door/airlock/glass_engineering{
+/obj/machinery/door/airlock/engineering/glass{
 	desc = "The secured storage area for highly valuable comms equipment.";
 	name = "Telecommunications Storage";
 	req_access_txt = "61"
@@ -8521,7 +8521,7 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "auA" = (
 /obj/machinery/light{
 	dir = 4
@@ -8534,7 +8534,7 @@
 /turf/open/floor/plating,
 /area/quartermaster/miningdock)
 "auC" = (
-/obj/machinery/door/airlock/glass_mining{
+/obj/machinery/door/airlock/mining/glass{
 	desc = "Storage of the Company's specialized mining gear.";
 	name = "Mining Equipment Room";
 	req_access_txt = "54"
@@ -9611,7 +9611,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/glass_mining{
+/obj/machinery/door/airlock/mining/glass{
 	desc = "Storage of the Company's specialized mining gear.";
 	name = "Mining E.V.A.";
 	req_access_txt = "54"
@@ -10233,7 +10233,7 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "ayk" = (
-/obj/machinery/door/airlock/glass_mining{
+/obj/machinery/door/airlock/mining/glass{
 	desc = "The station's cargo bay, where supplies can be ordered and certain items sold for a profit back to CentCom.";
 	name = "Cargo Bay";
 	req_access_txt = "31"
@@ -10677,7 +10677,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/airlock/glass_mining{
+/obj/machinery/door/airlock/mining/glass{
 	desc = "The base for the station's critical mining efforts.";
 	name = "Mining";
 	req_access_txt = "48"
@@ -11325,7 +11325,7 @@
 	dir = 4;
 	id = "Mininginput"
 	},
-/obj/structure/plasticflaps/mining,
+/obj/item/storage/belt/mining,
 /turf/open/floor/plating,
 /area/quartermaster/miningdock)
 "aAl" = (
@@ -12223,7 +12223,7 @@
 	},
 /area/construction/mining)
 "aCe" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
@@ -12612,7 +12612,7 @@
 	},
 /area/construction/mining)
 "aCZ" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'AREA UNDER CONSTRUCTION";
 	name = "AREA UNDER CONSTRUCTION";
 	pixel_x = -32
@@ -14209,7 +14209,7 @@
 /area/hydroponics)
 "aGO" = (
 /obj/structure/disposalpipe/segment,
-/obj/structure/sign/botany{
+/obj/structure/sign/departments/botany{
 	pixel_x = -32
 	},
 /turf/open/floor/plasteel/green/corner{
@@ -14724,7 +14724,7 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "aIj" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
@@ -15801,7 +15801,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
 	icon_state = "radiation";
 	name = "RADIOACTIVE AREA";
@@ -16626,7 +16626,7 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'HIGH VOLTAGE'";
 	icon_state = "shock";
 	name = "HIGH VOLTAGE";
@@ -16650,7 +16650,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/glass_engineering{
+/obj/machinery/door/airlock/engineering/glass{
 	name = "Gravity Generator";
 	req_access_txt = "11";
 	req_one_access_txt = "0"
@@ -16671,7 +16671,7 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
 	icon_state = "radiation";
 	name = "RADIOACTIVE AREA";
@@ -16690,7 +16690,7 @@
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
 "aMS" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	pixel_x = -32
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -17362,14 +17362,14 @@
 /turf/closed/wall,
 /area/security/prison)
 "aOA" = (
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	name = "Prison Medbay";
 	req_access_txt = "2"
 	},
 /turf/open/floor/plasteel/white,
 /area/security/prison)
 "aOB" = (
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	name = "Prison Medbay";
 	req_access_txt = "2"
 	},
@@ -18088,7 +18088,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	name = "Security Office";
 	req_access_txt = "0";
 	req_one_access_txt = "1; 4"
@@ -18511,7 +18511,7 @@
 /turf/open/floor/plasteel/shuttle,
 /area/shuttle/pod_3)
 "aRk" = (
-/obj/structure/sign/securearea,
+/obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
 /area/security/prison)
 "aRl" = (
@@ -18552,7 +18552,7 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aRq" = (
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	name = "Cell 1";
 	req_access_txt = "2"
 	},
@@ -19191,7 +19191,7 @@
 	name = "Port Hallway"
 	})
 "aSL" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
 	icon_state = "radiation";
 	name = "RADIOACTIVE AREA";
@@ -19257,7 +19257,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
@@ -19334,7 +19334,7 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
 "aTd" = (
-/obj/machinery/door/airlock/glass_command{
+/obj/machinery/door/airlock/command/glass{
 	desc = "The office of the Head directly responsible for heat, power, and air pressure concerns aboard SS13.";
 	name = "Chief Engineer's Office";
 	req_access_txt = "56"
@@ -19542,7 +19542,7 @@
 /turf/open/floor/plasteel/red/corner,
 /area/bridge)
 "aTA" = (
-/obj/structure/sign/pods,
+/obj/structure/sign/warning/pods,
 /turf/closed/wall/r_wall,
 /area/bridge)
 "aTB" = (
@@ -19593,7 +19593,7 @@
 	},
 /area/security/prison)
 "aTJ" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'HIGH VOLTAGE'";
 	icon_state = "shock";
 	name = "HIGH VOLTAGE"
@@ -19638,7 +19638,7 @@
 /turf/open/floor/plating,
 /area/security/main)
 "aTP" = (
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	name = "Security Office";
 	req_access_txt = "0";
 	req_one_access_txt = "1; 4"
@@ -19725,7 +19725,7 @@
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
 "aUa" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
@@ -20245,7 +20245,7 @@
 /turf/closed/wall,
 /area/security/brig)
 "aVn" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'HIGH VOLTAGE'";
 	icon_state = "shock";
 	name = "HIGH VOLTAGE";
@@ -20277,7 +20277,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
 	icon_state = "radiation";
 	name = "RADIOACTIVE AREA";
@@ -20572,7 +20572,7 @@
 	name = "Starboard Hallway"
 	})
 "aVZ" = (
-/obj/machinery/door/airlock/glass_command{
+/obj/machinery/door/airlock/command/glass{
 	desc = "The station's command center, where the fate of Nanotrasen's trillion-dollar investment is often decided.";
 	name = "Bridge";
 	req_access_txt = "19"
@@ -20702,7 +20702,7 @@
 	},
 /area/bridge)
 "aWi" = (
-/obj/machinery/door/airlock/glass_command{
+/obj/machinery/door/airlock/command/glass{
 	desc = "The station's command center, where the fate of Nanotrasen's trillion-dollar investment is often decided.";
 	name = "Bridge";
 	req_access_txt = "19"
@@ -20777,7 +20777,7 @@
 /turf/open/floor/plating,
 /area/bridge)
 "aWo" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'HIGH VOLTAGE'";
 	icon_state = "shock";
 	name = "HIGH VOLTAGE"
@@ -20846,7 +20846,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	name = "Cell 2";
 	req_access_txt = "2"
 	},
@@ -20889,7 +20889,7 @@
 	},
 /area/security/prison)
 "aWz" = (
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	layer = 2.8;
 	name = "Prison Wing";
 	req_access_txt = "2"
@@ -20940,7 +20940,7 @@
 	},
 /area/security/prison)
 "aWD" = (
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	desc = "The station's long-term incarceration and labor facility. Remember, only the Captain or HoS can authorize sending people here! (Or the Warden, at a pinch.)";
 	name = "Prison Access";
 	req_access_txt = "2"
@@ -21074,7 +21074,7 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "aWT" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
 	icon_state = "radiation";
 	name = "RADIOACTIVE AREA";
@@ -21309,7 +21309,7 @@
 	name = "Starboard Hallway"
 	})
 "aXs" = (
-/obj/machinery/door/airlock/glass_command{
+/obj/machinery/door/airlock/command/glass{
 	desc = "The station's command center, where the fate of Nanotrasen's trillion-dollar investment is often decided.";
 	name = "Bridge";
 	req_access_txt = "19"
@@ -21397,7 +21397,7 @@
 	},
 /area/bridge)
 "aXC" = (
-/obj/machinery/door/airlock/glass_command{
+/obj/machinery/door/airlock/command/glass{
 	desc = "The station's command center, where the fate of Nanotrasen's trillion-dollar investment is often decided.";
 	name = "Bridge";
 	req_access_txt = "19"
@@ -21628,7 +21628,7 @@
 	},
 /area/maintenance/aft)
 "aYe" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'HIGH VOLTAGE'";
 	icon_state = "shock";
 	name = "HIGH VOLTAGE"
@@ -21993,7 +21993,7 @@
 	},
 /area/security/prison)
 "aYY" = (
-/obj/structure/sign/securearea,
+/obj/structure/sign/warning/securearea,
 /turf/closed/wall,
 /area/security/prison)
 "aYZ" = (
@@ -22212,7 +22212,7 @@
 	},
 /area/engine/engineering)
 "aZC" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
 	icon_state = "radiation";
 	name = "RADIOACTIVE AREA";
@@ -22630,7 +22630,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	id_tag = "innerbrig";
 	name = "Brig";
 	req_access_txt = "63"
@@ -22683,7 +22683,7 @@
 /area/security/brig)
 "baF" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	id_tag = "outerbrig";
 	name = "Brig";
 	req_access_txt = "63"
@@ -22862,7 +22862,7 @@
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
 "baY" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	pixel_x = -32
 	},
 /obj/structure/disposalpipe/segment{
@@ -23205,7 +23205,7 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "bbG" = (
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	name = "Cell 3";
 	req_access_txt = "2"
 	},
@@ -23393,7 +23393,7 @@
 	},
 /area/security/brig)
 "bca" = (
-/obj/structure/sign/securearea,
+/obj/structure/sign/warning/securearea,
 /turf/closed/wall/r_wall,
 /area/security/brig)
 "bcb" = (
@@ -23611,7 +23611,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/glass_engineering{
+/obj/machinery/door/airlock/engineering/glass{
 	name = "Engineering Access";
 	req_access_txt = "32";
 	req_one_access_txt = "0"
@@ -23822,7 +23822,7 @@
 	},
 /area/bridge)
 "bcZ" = (
-/obj/item/device/radio/beacon,
+/obj/item/device/beacon,
 /turf/open/floor/plasteel,
 /area/bridge)
 "bda" = (
@@ -24019,7 +24019,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	id_tag = "innerbrig";
 	name = "Brig";
 	req_access_txt = "63"
@@ -24068,7 +24068,7 @@
 /area/security/brig)
 "bdB" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	id_tag = "outerbrig";
 	name = "Brig";
 	req_access_txt = "63"
@@ -24219,7 +24219,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	pixel_x = -32
 	},
 /obj/structure/disposalpipe/segment{
@@ -24231,7 +24231,7 @@
 /area/engine/engineering)
 "bdP" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
@@ -24679,7 +24679,7 @@
 	},
 /area/engine/engineering)
 "beM" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
 	icon_state = "radiation";
 	name = "RADIOACTIVE AREA";
@@ -24736,7 +24736,7 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "beU" = (
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	name = "Security Post";
 	req_access_txt = "63"
 	},
@@ -24935,7 +24935,7 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'HIGH VOLTAGE'";
 	icon_state = "shock";
 	name = "HIGH VOLTAGE";
@@ -24969,7 +24969,7 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'HIGH VOLTAGE'";
 	icon_state = "shock";
 	name = "HIGH VOLTAGE";
@@ -25073,7 +25073,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	id_tag = "outerbrig";
 	name = "Armory";
 	req_access_txt = "3"
@@ -25165,7 +25165,7 @@
 /turf/open/floor/plasteel,
 /area/security/brig)
 "bfM" = (
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	name = "Brig Desk";
 	req_access_txt = "2"
 	},
@@ -25316,7 +25316,7 @@
 	},
 /area/engine/engineering)
 "bgd" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
@@ -25869,7 +25869,7 @@
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
 "bhe" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
 	icon_state = "radiation";
 	name = "RADIOACTIVE AREA";
@@ -26198,7 +26198,7 @@
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	pixel_y = -32
 	},
 /turf/open/floor/plating,
@@ -26223,7 +26223,7 @@
 /obj/machinery/door/firedoor,
 /obj/structure/window/reinforced/fulltile,
 /obj/structure/cable,
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	pixel_y = -32
 	},
 /turf/open/floor/plating,
@@ -26293,7 +26293,7 @@
 	pixel_y = -26;
 	req_access_txt = "2"
 	},
-/obj/vehicle/secway,
+/obj/vehicle/ridden/secway,
 /obj/item/key/security,
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -26322,7 +26322,7 @@
 /turf/open/floor/plasteel,
 /area/security/warden)
 "bia" = (
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	desc = "The workplace of the HoS' right hand, the station's Warden, responsible for keeping track of the guns and the prisoners and ensuring they don't mix.";
 	name = "Warden's Office";
 	req_access_txt = "3"
@@ -26371,7 +26371,7 @@
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
 "big" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
 	icon_state = "radiation";
 	name = "RADIOACTIVE AREA";
@@ -26708,7 +26708,7 @@
 	},
 /area/bridge)
 "biP" = (
-/obj/machinery/door/airlock/glass_command{
+/obj/machinery/door/airlock/command/glass{
 	desc = "The station's command center, where the fate of Nanotrasen's trillion-dollar investment is often decided.";
 	name = "Bridge";
 	req_access_txt = "19"
@@ -26907,7 +26907,7 @@
 	name = "Port Hallway"
 	})
 "bjj" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
@@ -27320,7 +27320,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
@@ -27374,7 +27374,7 @@
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
 "bkn" = (
-/obj/structure/sign/pods,
+/obj/structure/sign/warning/pods,
 /turf/closed/wall,
 /area/engine/engineering)
 "bko" = (
@@ -27626,7 +27626,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	name = "Brig";
 	req_access_txt = "0";
 	req_one_access_txt = "1; 4; 42; 58"
@@ -27667,7 +27667,7 @@
 /area/engine/engineering)
 "bkT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/door/airlock/glass_engineering{
+/obj/machinery/door/airlock/engineering/glass{
 	desc = "A place for the Engineering staff to slack off (hopefully) after completing the Engine.";
 	name = "Engineering Break Room";
 	req_access_txt = "11";
@@ -27965,7 +27965,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	name = "Brig";
 	req_access_txt = "0";
 	req_one_access_txt = "1; 4; 42; 58"
@@ -28321,7 +28321,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/glass_command{
+/obj/machinery/door/airlock/command/glass{
 	desc = "The workplace of the Company's top enforcer aboard station, and often the only person standing between you, and the threat of the week.";
 	name = "Head of Security's Office";
 	req_access_txt = "58"
@@ -28386,7 +28386,7 @@
 "bmv" = (
 /obj/structure/table,
 /obj/structure/bedsheetbin,
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'HIGH VOLTAGE'";
 	icon_state = "shock";
 	name = "HIGH VOLTAGE";
@@ -28757,7 +28757,7 @@
 /obj/machinery/computer/secure_data{
 	dir = 4
 	},
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	pixel_x = -32
 	},
 /turf/open/floor/wood,
@@ -30298,7 +30298,7 @@
 	},
 /area/security/courtroom)
 "brl" = (
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	id_tag = "outerbrig";
 	name = "Tribunal";
 	req_access_txt = "63"
@@ -30351,7 +30351,7 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "brs" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
@@ -33718,7 +33718,7 @@
 /turf/closed/wall,
 /area/medical/medbay)
 "byS" = (
-/obj/structure/sign/bluecross,
+/obj/structure/sign/departments/medbay,
 /turf/closed/wall,
 /area/medical/medbay)
 "byT" = (
@@ -34969,7 +34969,7 @@
 /area/science/robotics/lab)
 "bCg" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/rnd/circuit_imprinter,
+/obj/machinery/rnd/production/circuit_imprinter,
 /obj/item/reagent_containers/glass/beaker/sulphuric,
 /turf/open/floor/plasteel{
 	dir = 1
@@ -35086,7 +35086,7 @@
 /turf/open/floor/plasteel/dark,
 /area/janitor)
 "bCw" = (
-/obj/vehicle/janicart,
+/obj/vehicle/ridden/janicart,
 /obj/item/key/janitor,
 /turf/open/floor/plasteel/dark,
 /area/janitor)
@@ -35188,7 +35188,7 @@
 /turf/open/floor/plating,
 /area/medical/surgery)
 "bCL" = (
-/obj/machinery/door/airlock/glass_medical{
+/obj/machinery/door/airlock/medical/glass{
 	desc = "A storage area for important medical supplies. Leads to the front desk.";
 	name = "Patient Room";
 	req_access_txt = "5"
@@ -35403,7 +35403,7 @@
 /area/science/misc_lab/range)
 "bDp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/door/airlock/glass_research{
+/obj/machinery/door/airlock/research/glass{
 	name = "Shooting Range";
 	req_access_txt = "47"
 	},
@@ -35440,7 +35440,7 @@
 /turf/open/floor/plating,
 /area/maintenance/department/medical)
 "bDw" = (
-/obj/machinery/door/airlock/glass_medical{
+/obj/machinery/door/airlock/medical/glass{
 	desc = "SS13's Chemistry lab, to be used only by qualified and cautious experts.";
 	name = "Chemistry Testing Lab";
 	req_access_txt = "5; 33"
@@ -36043,8 +36043,8 @@
 /area/medical/surgery)
 "bEY" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/reagent_containers/blood/empty,
-/obj/item/reagent_containers/blood/empty{
+/obj/machinery/syndicatebomb/empty,
+/obj/machinery/syndicatebomb/empty{
 	pixel_x = -3;
 	pixel_y = -3
 	},
@@ -36621,7 +36621,7 @@
 	},
 /area/science/robotics/lab)
 "bGk" = (
-/obj/machinery/door/airlock/glass_research{
+/obj/machinery/door/airlock/research/glass{
 	name = "Testing Lab";
 	req_access_txt = "47";
 	req_one_access = null
@@ -36706,7 +36706,7 @@
 	},
 /area/medical/medbay)
 "bGu" = (
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	name = "Security Post";
 	req_access_txt = "63"
 	},
@@ -37215,7 +37215,7 @@
 	},
 /area/medical/medbay)
 "bHJ" = (
-/obj/machinery/door/airlock/glass_medical{
+/obj/machinery/door/airlock/medical/glass{
 	desc = "The rapid-treatment center for injured spacemen. Can be exited via the door button.";
 	id_tag = "FoyerCryo";
 	name = "Medbay Cryogenics";
@@ -37688,7 +37688,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay)
 "bIQ" = (
-/obj/machinery/door/airlock/glass_medical{
+/obj/machinery/door/airlock/medical/glass{
 	desc = "The rapid-treatment center for injured spacemen. Can be exited via the door button.";
 	id_tag = "FoyerCryo";
 	name = "Medbay Cryogenics";
@@ -37914,7 +37914,7 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hor)
 "bJz" = (
-/obj/machinery/door/airlock/glass_command{
+/obj/machinery/door/airlock/command/glass{
 	name = "Research Director's Office";
 	req_access_txt = "30"
 	},
@@ -37956,7 +37956,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_research{
+/obj/machinery/door/airlock/research/glass{
 	name = "Research and Development Lab";
 	req_access_txt = "7"
 	},
@@ -37968,7 +37968,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_research{
+/obj/machinery/door/airlock/research/glass{
 	name = "Research and Development Lab";
 	req_access_txt = "7"
 	},
@@ -38070,7 +38070,7 @@
 	},
 /area/medical/chemistry)
 "bJR" = (
-/obj/structure/sign/chemistry,
+/obj/item/cartridge/chemistry,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -38534,7 +38534,7 @@
 	},
 /area/medical/chemistry)
 "bKY" = (
-/obj/machinery/door/airlock/glass_medical{
+/obj/machinery/door/airlock/medical/glass{
 	desc = "The front entrance to the medical bay. Can be exited even without ID via the buttons.";
 	id_tag = "FoyerLeft";
 	name = "Medbay";
@@ -38544,7 +38544,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay)
 "bKZ" = (
-/obj/machinery/door/airlock/glass_medical{
+/obj/machinery/door/airlock/medical/glass{
 	desc = "The front entrance to the medical bay. Can be exited even without ID via the buttons.";
 	id_tag = "FoyerLeft";
 	name = "Medbay";
@@ -38602,7 +38602,7 @@
 	},
 /area/medical/medbay)
 "bLg" = (
-/obj/machinery/door/airlock/glass_medical{
+/obj/machinery/door/airlock/medical/glass{
 	desc = "The front entrance to the medical bay. Can be exited even without ID via the buttons.";
 	id_tag = "FoyerRight";
 	name = "Medbay";
@@ -38613,7 +38613,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay)
 "bLh" = (
-/obj/machinery/door/airlock/glass_medical{
+/obj/machinery/door/airlock/medical/glass{
 	desc = "The front entrance to the medical bay. Can be exited even without ID via the buttons.";
 	id_tag = "FoyerRight";
 	name = "Medbay";
@@ -39082,7 +39082,7 @@
 /turf/open/floor/plating,
 /area/medical/medbay)
 "bMs" = (
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	name = "Security Post";
 	req_access_txt = "63"
 	},
@@ -39365,7 +39365,7 @@
 /turf/open/floor/plasteel/neutral,
 /area/science/lab)
 "bNc" = (
-/obj/machinery/rnd/protolathe/department/science,
+/obj/item/clothing/glasses/science,
 /turf/open/floor/plasteel/neutral,
 /area/science/lab)
 "bNd" = (
@@ -39793,7 +39793,7 @@
 /area/crew_quarters/heads/hor)
 "bOd" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_command{
+/obj/machinery/door/airlock/command/glass{
 	name = "Server Room";
 	req_access_txt = "30"
 	},
@@ -39875,7 +39875,7 @@
 /area/science/lab)
 "bOm" = (
 /obj/item/reagent_containers/glass/beaker/sulphuric,
-/obj/machinery/rnd/circuit_imprinter/department/science,
+/obj/item/clothing/glasses/science,
 /turf/open/floor/plasteel/neutral,
 /area/science/lab)
 "bOn" = (
@@ -40030,7 +40030,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "bOA" = (
-/obj/machinery/door/airlock/glass_medical{
+/obj/machinery/door/airlock/medical/glass{
 	desc = "SS13's Chemistry lab, to be used only by qualified and cautious experts.";
 	name = "Chemistry Lab";
 	req_access_txt = "5; 33"
@@ -40439,7 +40439,7 @@
 /turf/open/floor/plating,
 /area/medical/genetics)
 "bPD" = (
-/obj/machinery/door/airlock/glass_medical{
+/obj/machinery/door/airlock/medical/glass{
 	desc = "The part of Genetics where death is robusted and fed down the nearest disposal unit. Can be exited without ID access via the door button from inside.";
 	id_tag = "CloningDoor";
 	name = "Cloning Lab";
@@ -40905,7 +40905,7 @@
 /turf/open/floor/plating,
 /area/medical/medbay)
 "bQG" = (
-/obj/machinery/door/airlock/glass_medical{
+/obj/machinery/door/airlock/medical/glass{
 	desc = "A storage area for important medical supplies, including a medical hardsuit for SAR operations.";
 	name = "Medbay Storage";
 	req_access_txt = "45"
@@ -40922,7 +40922,7 @@
 /area/medical/medbay)
 "bQI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/door/airlock/glass_medical{
+/obj/machinery/door/airlock/medical/glass{
 	desc = "The breakroom for the station's diligent Medical staff, suitably insulated from the screams of the injured.";
 	name = "Medbay Break Room";
 	req_access_txt = "5"
@@ -40972,7 +40972,7 @@
 /turf/open/floor/plasteel/whitegreen/corner,
 /area/medical/medbay)
 "bQN" = (
-/obj/structure/sign/biohazard,
+/obj/structure/sign/warning/biohazard,
 /turf/closed/wall/r_wall,
 /area/medical/virology)
 "bQO" = (
@@ -41011,7 +41011,7 @@
 "bQS" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
-/obj/structure/sign/deathsposal{
+/obj/structure/sign/warning/deathsposal{
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/whitegreen/side{
@@ -41686,7 +41686,7 @@
 	},
 /area/medical/genetics)
 "bSz" = (
-/obj/machinery/door/airlock/glass_medical{
+/obj/machinery/door/airlock/medical/glass{
 	id_tag = "";
 	name = "Genetics Research";
 	req_access_txt = "5; 9"
@@ -42110,7 +42110,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
 "bTt" = (
-/obj/structure/sign/nosmoking_2{
+/obj/structure/sign/warning/nosmoking{
 	pixel_y = 32
 	},
 /obj/structure/closet/bombcloset,
@@ -42322,7 +42322,7 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
 "bTU" = (
-/obj/structure/sign/biohazard,
+/obj/structure/sign/warning/biohazard,
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/cmo)
 "bTV" = (
@@ -42444,7 +42444,7 @@
 	id = "mixingsparker";
 	pixel_x = 25
 	},
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
@@ -42873,7 +42873,7 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "bVk" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -42884,7 +42884,7 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "bVl" = (
 /obj/machinery/power/solar{
 	id = "starboardsolar";
@@ -42894,13 +42894,13 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "bVm" = (
 /obj/structure/bed,
 /turf/open/floor/plating,
 /area/maintenance/department/science)
 "bVn" = (
-/obj/machinery/door/airlock/glass_research{
+/obj/machinery/door/airlock/research/glass{
 	autoclose = 0;
 	frequency = 1449;
 	heat_proof = 1;
@@ -42920,7 +42920,7 @@
 /turf/open/floor/engine,
 /area/science/mixing)
 "bVp" = (
-/obj/machinery/door/airlock/glass_research{
+/obj/machinery/door/airlock/research/glass{
 	autoclose = 0;
 	frequency = 1449;
 	heat_proof = 1;
@@ -43235,7 +43235,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay)
 "bWb" = (
-/obj/machinery/door/airlock/glass_command{
+/obj/machinery/door/airlock/command/glass{
 	desc = "The workplace of the station's foremost doctor of med-TURN ON THOSE FUCKING SUIT SENSORS.";
 	name = "Chief Medical Officer's Office";
 	req_access_txt = "40"
@@ -43308,7 +43308,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/glass_virology{
+/obj/machinery/door/airlock/virology/glass{
 	name = "Isolation Room";
 	req_access_txt = "39"
 	},
@@ -43362,9 +43362,9 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "bWr" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'BOMB RANGE";
 	name = "BOMB RANGE"
 	},
@@ -43387,7 +43387,7 @@
 	dir = 8;
 	on = 1
 	},
-/obj/structure/sign/fire{
+/obj/item/storage/firstaid/fire{
 	pixel_y = -32
 	},
 /obj/machinery/light/small,
@@ -43607,7 +43607,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "bWT" = (
-/obj/machinery/door/airlock/glass_virology{
+/obj/machinery/door/airlock/virology/glass{
 	name = "Monkey Pen";
 	req_access_txt = "39"
 	},
@@ -43649,14 +43649,14 @@
 	},
 /area/science/test_area)
 "bWZ" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'BOMB RANGE";
 	name = "BOMB RANGE"
 	},
 /turf/closed/wall,
 /area/mine/explored)
 "bXa" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'BOMB RANGE";
 	name = "BOMB RANGE"
 	},
@@ -44117,7 +44117,7 @@
 /turf/open/floor/plating,
 /area/science/misc_lab)
 "bYb" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
@@ -44185,7 +44185,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
 "bYj" = (
-/obj/machinery/door/airlock/glass_research{
+/obj/machinery/door/airlock/research/glass{
 	name = "Toxins Lab";
 	req_access_txt = "7"
 	},
@@ -44501,11 +44501,11 @@
 /area/maintenance/department/medical)
 "bYS" = (
 /turf/closed/wall/r_wall,
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "bYT" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "bYU" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -44703,13 +44703,13 @@
 /turf/closed/wall/r_wall,
 /area/space)
 "bZv" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'HIGH VOLTAGE'";
 	icon_state = "shock";
 	name = "HIGH VOLTAGE"
 	},
 /turf/closed/wall/r_wall,
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "bZw" = (
 /obj/machinery/power/smes{
 	charge = 1e+006
@@ -44718,7 +44718,7 @@
 	icon_state = "0-2"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "bZx" = (
 /obj/machinery/power/terminal{
 	dir = 8
@@ -44727,9 +44727,9 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "bZy" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
@@ -44740,13 +44740,13 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "bZz" = (
 /obj/structure/cable,
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "bZA" = (
 /obj/machinery/door/airlock/external{
 	name = "Toxins Test Chamber";
@@ -45117,7 +45117,7 @@
 	req_access_txt = "10"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "cau" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -45126,10 +45126,10 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "cav" = (
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "caw" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -45138,7 +45138,7 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "cax" = (
 /obj/machinery/door/airlock/external{
 	name = "Solar Maintenance";
@@ -45149,13 +45149,13 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "cay" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "caz" = (
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -45163,12 +45163,12 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "caA" = (
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "caB" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -45176,7 +45176,7 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "caC" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -45184,14 +45184,14 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "caD" = (
 /obj/machinery/power/tracker,
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "caE" = (
 /turf/open/floor/plating/airless,
 /area/science/test_area)
@@ -45516,7 +45516,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "cby" = (
 /obj/structure/chair/stool,
 /obj/machinery/camera{
@@ -45524,7 +45524,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "cbz" = (
 /obj/machinery/power/solar_control{
 	dir = 8;
@@ -45533,7 +45533,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "cbA" = (
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -45541,7 +45541,7 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "cbB" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -45612,7 +45612,7 @@
 	},
 /area/science)
 "cbK" = (
-/obj/machinery/door/airlock/glass_research{
+/obj/machinery/door/airlock/research/glass{
 	name = "Research Division Break Room";
 	req_access_txt = "7"
 	},
@@ -45812,7 +45812,7 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "ccm" = (
 /obj/machinery/camera{
 	c_tag = "Toxins Test Chamber Starboard";
@@ -45943,7 +45943,7 @@
 /turf/open/floor/plasteel/white,
 /area/science)
 "ccC" = (
-/obj/structure/sign/nosmoking_2{
+/obj/structure/sign/warning/nosmoking{
 	pixel_y = 32
 	},
 /obj/structure/closet/firecloset,
@@ -46108,7 +46108,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
-/obj/structure/sign/deathsposal{
+/obj/structure/sign/warning/deathsposal{
 	pixel_y = 32
 	},
 /turf/open/floor/plating,
@@ -46138,7 +46138,7 @@
 	pixel_x = -24;
 	pixel_y = -8
 	},
-/obj/structure/sign/fire{
+/obj/item/storage/firstaid/fire{
 	pixel_y = 32
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -46159,7 +46159,7 @@
 /turf/open/floor/engine/vacuum,
 /area/maintenance/disposal/incinerator)
 "cdd" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
@@ -46196,7 +46196,7 @@
 	},
 /area/science/test_area)
 "cdi" = (
-/obj/item/device/radio/beacon,
+/obj/item/device/beacon,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -46557,7 +46557,7 @@
 /turf/open/floor/plating,
 /area/maintenance/department/medical)
 "cee" = (
-/obj/structure/sign/nosmoking_2{
+/obj/structure/sign/warning/nosmoking{
 	pixel_x = -28
 	},
 /obj/machinery/portable_atmospherics/canister/oxygen,
@@ -46897,7 +46897,7 @@
 	pixel_x = 24;
 	pixel_y = 8
 	},
-/obj/structure/sign/fire{
+/obj/item/storage/firstaid/fire{
 	pixel_y = -32
 	},
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -46971,7 +46971,7 @@
 /turf/open/floor/plasteel/white,
 /area/science)
 "cfh" = (
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	name = "Security Post";
 	req_access_txt = "63"
 	},
@@ -47170,7 +47170,7 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/fore)
+/area/hallway/primary/fore)
 "cfF" = (
 /obj/machinery/portable_atmospherics/scrubber/huge,
 /turf/open/floor/plasteel,
@@ -47686,7 +47686,7 @@
 /turf/open/floor/plating,
 /area/maintenance/department/science)
 "cgY" = (
-/obj/structure/sign/biohazard,
+/obj/structure/sign/warning/biohazard,
 /turf/closed/wall/r_wall,
 /area/science/xenobiology)
 "cgZ" = (
@@ -48762,7 +48762,7 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "cjL" = (
-/obj/machinery/door/airlock/glass_atmos{
+/obj/machinery/door/airlock/atmos/glass{
 	desc = "The Atmos storage area, with all the gear you could want.";
 	name = "Atmospherics Storage";
 	req_access_txt = "24"
@@ -48874,7 +48874,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/explab)
 "cka" = (
-/obj/item/device/radio/beacon,
+/obj/item/device/beacon,
 /turf/closed/wall/r_wall,
 /area/science/explab)
 "ckb" = (
@@ -48995,7 +48995,7 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "cks" = (
-/obj/structure/sign/atmosplaque{
+/obj/structure/sign/plaques/atmos{
 	desc = "This plaque commemorates the rise of the LINDA administration at CentCom, and the advent of a new era.";
 	name = "\improper LINDA plaque";
 	pixel_x = 32
@@ -49090,7 +49090,7 @@
 /area/science/xenobiology)
 "ckE" = (
 /obj/machinery/disposal/bin,
-/obj/structure/sign/electricshock{
+/obj/structure/sign/warning/electricshock{
 	pixel_y = 32
 	},
 /obj/structure/disposalpipe/trunk{
@@ -49101,7 +49101,7 @@
 /area/science/xenobiology)
 "ckF" = (
 /obj/structure/table/reinforced,
-/obj/structure/sign/electricshock{
+/obj/structure/sign/warning/electricshock{
 	pixel_y = 32
 	},
 /obj/machinery/button/door{
@@ -50264,7 +50264,7 @@
 /area/science/xenobiology)
 "cnu" = (
 /obj/structure/table/reinforced,
-/obj/structure/sign/electricshock{
+/obj/structure/sign/warning/electricshock{
 	pixel_y = 32
 	},
 /obj/machinery/button/door{
@@ -50377,7 +50377,7 @@
 /turf/closed/wall,
 /area/engine/atmos)
 "cnH" = (
-/obj/machinery/door/airlock/glass_atmos{
+/obj/machinery/door/airlock/atmos/glass{
 	desc = "The control and monitoring station for Atmospherics.";
 	name = "Atmospherics Front Desk";
 	req_access_txt = "24"
@@ -50710,7 +50710,7 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
 	},
-/obj/structure/sign/electricshock{
+/obj/structure/sign/warning/electricshock{
 	pixel_y = 32
 	},
 /turf/open/floor/engine,
@@ -50974,7 +50974,7 @@
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "coZ" = (
-/obj/item/device/radio/beacon,
+/obj/item/device/beacon,
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "cpa" = (
@@ -51582,10 +51582,10 @@
 "cqp" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating/airless,
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "cqq" = (
 /turf/closed/wall/r_wall,
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "cqr" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "Xenolab";
@@ -51844,7 +51844,7 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
 "cqV" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
@@ -51852,7 +51852,7 @@
 	pixel_x = -32
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "cqW" = (
 /obj/machinery/power/terminal{
 	dir = 4
@@ -51864,7 +51864,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "cqX" = (
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -51873,15 +51873,15 @@
 	charge = 1e+006
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "cqY" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'HIGH VOLTAGE'";
 	icon_state = "shock";
 	name = "HIGH VOLTAGE"
 	},
 /turf/closed/wall/r_wall,
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "cqZ" = (
 /obj/machinery/light,
 /turf/open/floor/engine,
@@ -51996,7 +51996,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/item/device/radio/beacon,
+/obj/item/device/beacon,
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
@@ -52052,7 +52052,7 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "crw" = (
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -52060,7 +52060,7 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "crx" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -52071,13 +52071,13 @@
 	req_access_txt = "10; 13"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "cry" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "crz" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -52086,13 +52086,13 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "crA" = (
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "crB" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -52101,7 +52101,7 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "crC" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Aft Port Solar Access";
@@ -52111,7 +52111,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "crD" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -52144,7 +52144,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "crI" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
@@ -52214,11 +52214,11 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "crU" = (
 /obj/structure/chair/stool,
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "crV" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -52232,7 +52232,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "crW" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -52564,7 +52564,7 @@
 	icon_state = "0-2"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "csQ" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/escape)
@@ -52621,7 +52621,7 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "csX" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -52635,7 +52635,7 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "csY" = (
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -52643,7 +52643,7 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "csZ" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -52657,7 +52657,7 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "cta" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -52668,7 +52668,7 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "ctb" = (
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "propulsion";
@@ -52731,7 +52731,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "ctl" = (
 /turf/open/floor/plasteel/yellow/side{
 	dir = 8
@@ -52897,7 +52897,7 @@
 	},
 /area/shuttle/escape)
 "ctK" = (
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/door/airlock/security/glass{
 	name = "Emergency Shuttle Brig";
 	req_access_txt = "2"
 	},
@@ -53056,7 +53056,7 @@
 	},
 /area/shuttle/escape)
 "cuj" = (
-/obj/machinery/door/airlock/glass_command{
+/obj/machinery/door/airlock/command/glass{
 	name = "Emergency Shuttle Cockpit";
 	req_access_txt = "19"
 	},
@@ -53175,7 +53175,7 @@
 	},
 /area/shuttle/escape)
 "cuC" = (
-/obj/machinery/door/airlock/glass_medical{
+/obj/machinery/door/airlock/medical/glass{
 	id_tag = null;
 	name = "Escape Shuttle Infirmary";
 	req_access_txt = "5"
@@ -53196,7 +53196,7 @@
 	},
 /area/shuttle/escape)
 "cuG" = (
-/obj/machinery/door/airlock/glass_medical{
+/obj/machinery/door/airlock/medical/glass{
 	id_tag = null;
 	name = "Escape Shuttle Infirmary";
 	req_access_txt = "0"
@@ -53324,7 +53324,7 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "cuZ" = (
 /obj/item/device/radio/intercom{
 	dir = 8;
@@ -53348,7 +53348,7 @@
 /turf/open/floor/plating/airless{
 	icon_state = "asteroidplating"
 	},
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "cvc" = (
 /obj/structure/toilet{
 	dir = 1
@@ -53384,7 +53384,7 @@
 /obj/machinery/power/tracker,
 /obj/structure/cable,
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/aft)
+/area/hallway/primary/starboard/aft)
 "cvh" = (
 /obj/docking_port/stationary{
 	area_type = /area/space;
@@ -53500,7 +53500,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cvF" = (
 /obj/machinery/power/solar{
 	id = "auxsolareast";
@@ -53510,7 +53510,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cvG" = (
 /obj/machinery/power/solar{
 	id = "auxsolareast";
@@ -53520,7 +53520,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cvH" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -53586,7 +53586,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cvS" = (
 /obj/machinery/power/solar{
 	id = "auxsolareast";
@@ -53596,7 +53596,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cvT" = (
 /obj/machinery/power/solar{
 	id = "auxsolareast";
@@ -53606,7 +53606,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cvU" = (
 /obj/machinery/computer/shuttle/mining{
 	dir = 4
@@ -53709,7 +53709,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cwi" = (
 /obj/machinery/power/solar{
 	id = "auxsolareast";
@@ -53719,7 +53719,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cwj" = (
 /obj/machinery/power/solar{
 	id = "auxsolareast";
@@ -53729,7 +53729,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cwk" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -53789,7 +53789,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cwt" = (
 /obj/machinery/power/solar{
 	id = "auxsolareast";
@@ -53799,7 +53799,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cwu" = (
 /obj/machinery/power/solar{
 	id = "auxsolareast";
@@ -53809,9 +53809,9 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cwv" = (
-/obj/machinery/door/airlock/glass_mining{
+/obj/machinery/door/airlock/mining/glass{
 	cyclelinkeddir = 8;
 	name = "Mining Dock";
 	req_access_txt = "48"
@@ -53869,7 +53869,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cwG" = (
 /obj/machinery/power/solar{
 	id = "auxsolareast";
@@ -53879,9 +53879,9 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cwH" = (
-/obj/structure/sign/securearea{
+/obj/structure/sign/warning/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
@@ -54019,7 +54019,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cxj" = (
 /obj/machinery/power/solar{
 	id = "auxsolareast";
@@ -54029,7 +54029,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cxk" = (
 /obj/machinery/power/solar{
 	id = "auxsolareast";
@@ -54039,7 +54039,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cxl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -54060,7 +54060,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cxn" = (
 /obj/machinery/power/solar{
 	id = "auxsolareast";
@@ -54070,7 +54070,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cxo" = (
 /obj/machinery/power/solar{
 	id = "auxsolareast";
@@ -54080,7 +54080,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cxp" = (
 /obj/machinery/power/solar{
 	id = "auxsolareast";
@@ -54090,7 +54090,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cxq" = (
 /obj/machinery/power/solar{
 	id = "auxsolareast";
@@ -54100,7 +54100,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cxr" = (
 /obj/machinery/power/solar{
 	id = "auxsolareast";
@@ -54110,7 +54110,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cxs" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -54129,7 +54129,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cxu" = (
 /obj/machinery/power/solar{
 	id = "auxsolareast";
@@ -54139,7 +54139,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cxv" = (
 /obj/machinery/power/solar{
 	id = "auxsolareast";
@@ -54149,7 +54149,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cxw" = (
 /obj/machinery/power/solar{
 	id = "auxsolareast";
@@ -54159,7 +54159,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cxx" = (
 /obj/machinery/power/solar{
 	id = "auxsolareast";
@@ -54169,7 +54169,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cxy" = (
 /obj/machinery/power/solar{
 	id = "auxsolareast";
@@ -54179,7 +54179,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
-/area/maintenance/solars/asteroid/command)
+/obj/item/clothing/under/trek/command)
 "cxz" = (
 /obj/structure/cable{
 	icon_state = "1-2"
