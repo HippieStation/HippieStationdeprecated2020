@@ -115,8 +115,8 @@
 	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	icon_state = "hippie_bbat_spiked"
 	item_state = "hippie_bbat_spiked"
-	lefthand_file = 'hippiestation/icons/mobs/inhands/lefthand.dmi'
-	righthand_file = 'hippiestation/icons/mobs/inhands/righthand.dmi'
+	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
 	force = 15
 	throwforce = 15 // its got spikes sticking out of it - pre rebase comment :D
 	armour_penetration = 10
