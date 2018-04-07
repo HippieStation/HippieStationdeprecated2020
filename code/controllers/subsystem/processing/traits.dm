@@ -32,6 +32,4 @@ PROCESSING_SUBSYSTEM_DEF(traits)
 /datum/controller/subsystem/processing/traits/proc/GenerateTraits(client/user)
 	if(user.prefs.character_traits.len)
 		return
-	var/datum/trait/nonviolent/N
-	user.prefs.all_traits +=  N
 	user.prefs.character_traits = user.prefs.all_traits
