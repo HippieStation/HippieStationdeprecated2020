@@ -409,7 +409,6 @@
 #include "code\datums\looping_sounds\weather.dm"
 #include "code\datums\martial\boxing.dm"
 #include "code\datums\martial\krav_maga.dm"
-
 #include "code\datums\martial\mushpunch.dm"
 #include "code\datums\martial\psychotic_brawl.dm"
 #include "code\datums\martial\wrestling.dm"
