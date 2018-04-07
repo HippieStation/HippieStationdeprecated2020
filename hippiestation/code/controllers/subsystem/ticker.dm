@@ -3,7 +3,8 @@
 
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	..()
-	login_music_name = pop(splittext(login_music, "/")) // title name will be last element of the list
+	//login_music_name = pop(splittext(login_music, "/")) // title name will be last element of the list
+	login_music_name = "https://github.com/HippieStation/HippieStation/tree/master/" + login_music
 
 /datum/controller/subsystem/ticker/Shutdown()
 	if(!round_end_sound)
