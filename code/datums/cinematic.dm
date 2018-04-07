@@ -104,7 +104,9 @@ GLOBAL_LIST_EMPTY(cinematics)
 	flick("intro_nuke",screen)
 	sleep(35)
 	flick("station_explode_fade_red",screen)
-	cinematic_sound(sound('sound/effects/explosion_distant.ogg'))
+	if (sound_to_playing_players('sound/effects/explosion_secret.ogg'))
+	else
+		cinematic_sound(sound('sound/effects/explosion_distant.ogg'))
 	special()
 	screen.icon_state = "summary_nukewin"
 
