@@ -409,6 +409,7 @@
 #include "code\datums\looping_sounds\weather.dm"
 #include "code\datums\martial\boxing.dm"
 #include "code\datums\martial\krav_maga.dm"
+
 #include "code\datums\martial\mushpunch.dm"
 #include "code\datums\martial\psychotic_brawl.dm"
 #include "code\datums\martial\wrestling.dm"
@@ -845,6 +846,7 @@
 #include "code\game\objects\items\implants\implant_explosive.dm"
 #include "code\game\objects\items\implants\implant_freedom.dm"
 #include "code\game\objects\items\implants\implant_krav_maga.dm"
+#include "code\game\objects\items\implants\implant_mindshield.dm
 #include "code\game\objects\items\implants\implant_misc.dm"
 #include "code\game\objects\items\implants\implant_storage.dm"
 #include "code\game\objects\items\implants\implant_track.dm"
