@@ -282,6 +282,11 @@ datum/reagent/medicine/virogone/on_mob_life(mob/living/M)//cures viruses very ef
 				H.visible_message("<span class='danger'>[H]'s hands flip out and flail everywhere!</span>")
 				H.Dizzy(20)
 
+	..()
+
 /datum/reagent/medicine/supermannitol/on_mob_delete(mob/living/M)
 	if(ishuman(M) && overdosing)
 		overdosing = FALSE
+
+
+	..()
