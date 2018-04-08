@@ -237,7 +237,7 @@ datum/reagent/medicine/virogone/on_mob_life(mob/living/M)//cures viruses very ef
 /datum/reagent/medicine/supermannitol/on_mob_life(mob/living/M)
 	if(iscarbon(M) && !overdosing)
 		var/mob/living/carbon/C = M
-		M.adjustBrainLoss(-4*REM)
+		C.adjustBrainLoss(-4*REM)
 		if(prob(10))
 			C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
 		else
@@ -253,21 +253,21 @@ datum/reagent/medicine/virogone/on_mob_life(mob/living/M)//cures viruses very ef
 		overdosing = TRUE
 		switch(current_cycle)
 			if(4)
-				to_chat(M, "<span class='warning'>You feel like you're getting dumber!</span>")
+				to_chat(H, "<span class='warning'>You feel like you're getting dumber!</span>")
 			if(14)
-				to_chat(M, "<span class='warning'>You don't feel so good... it's almost like the world is spinning!</span>")
+				to_chat(H, "<span class='warning'>You don't feel so good... it's almost like the world is spinning!</span>")
 			if(30)
-				to_chat(M, "<span class='warning'>You feel awful!</span>")
-		if(4>=current_cycle)
+				to_chat(H, "<span class='warning'>You feel awful!</span>")
+		if(current_cycle <= 4)
 			H.adjustBrainLoss(4)
-			H.drowsyness = max(M.drowsyness, 10)
+			H.drowsyness = max(H.drowsyness, 5)
 			H.reagents.add_reagent("rotatium", 1) //oh no you dun fucked up now
-		if(5<=current_cycle)
+		if(current_cycle >= 5)
 			H.adjustBrainLoss(4)
-			H.drowsyness = max(M.drowsyness, 10)
+			H.drowsyness = max(H.drowsyness, 5)
 			H.reagents.add_reagent("rotatium", 1)
 			if(prob(20))
-				M.emote("gasp")
+				H.emote("gasp")
 			M.hallucination = 30
 		if(30<=current_cycle)
 			H.reagents.add_reagent("skewium", 1.5) //no tox healing because u been a bad boi
@@ -282,14 +282,6 @@ datum/reagent/medicine/virogone/on_mob_life(mob/living/M)//cures viruses very ef
 				H.visible_message("<span class='danger'>[H]'s hands flip out and flail everywhere!</span>")
 				H.Dizzy(20)
 
-
-	..()
-
 /datum/reagent/medicine/supermannitol/on_mob_delete(mob/living/M)
 	if(ishuman(M) && overdosing)
 		overdosing = FALSE
-
-
-
-
-
