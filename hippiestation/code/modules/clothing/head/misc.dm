@@ -1,5 +1,5 @@
-#DEFINE normalscreams list('hippiestation/sound/misc/cyka1.ogg', 'hippiestation/sound/misc/cheekibreeki.ogg')
-#DEFINE specialscreams list('hippiestation/sound/misc/cyka2upgradededition.ogg')
+#define NORMALSCREAMS list('HIPPIESTATION/SOUND/MISC/CYKA1.OGG', 'HIPPIESTATION/SOUND/MISC/CHEEKIBREEKI.OGG')
+#define SPECIALSCREAMS list('HIPPIESTATION/SOUND/MISC/CYKA2UPGRADEDEDITION.OGG')
 
 /obj/item/clothing/head/xenos
 	alternate_screams = list('sound/voice/hiss6.ogg')
@@ -8,7 +8,7 @@
 	alternate_screams = list('hippiestation/sound/voice/scream_silicon.ogg')
 
 /obj/item/clothing/head/ushanka
-	alternate_screams = list(normalscreams, normalscreams, normalscreams, specialscreams) //Sorry
+	alternate_screams = list(NORMALSCREAMS, NORMALSCREAMS, NORMALSCREAMS, SPECIALSCREAMS) //Sorry
 
 /obj/item/clothing/head/hippie/zoothat
 	name = "zoot suit hat"
@@ -118,6 +118,5 @@
 	else
 		return ..()
 
-#UNDEF normalscreams
-#UNDEF specialscreams
-
+#undef NORMALSCREAMS
+#undef SPECIALSCREAMS
