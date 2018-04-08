@@ -232,10 +232,9 @@ datum/reagent/medicine/virogone/on_mob_life(mob/living/M)//cures viruses very ef
 	color = "#DCB3F2" //rgb(220, 179, 242)
 	taste_description = "sludge"
 	overdose_threshold = 30
-	var/overdosing = FALSE
 
 /datum/reagent/medicine/supermannitol/on_mob_life(mob/living/M)
-	if(iscarbon(M) && !overdosing)
+	if(iscarbon(M) && !overdosed)
 		var/mob/living/carbon/C = M
 		C.adjustBrainLoss(-4*REM)
 		if(prob(10))
@@ -250,7 +249,7 @@ datum/reagent/medicine/virogone/on_mob_life(mob/living/M)//cures viruses very ef
 /datum/reagent/medicine/supermannitol/overdose_process(mob/living/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		overdosing = TRUE
+		overdosed = TRUE
 		switch(current_cycle)
 			if(4)
 				to_chat(H, "<span class='warning'>You feel like you're getting dumber!</span>")
@@ -285,8 +284,8 @@ datum/reagent/medicine/virogone/on_mob_life(mob/living/M)//cures viruses very ef
 	..()
 
 /datum/reagent/medicine/supermannitol/on_mob_delete(mob/living/M)
-	if(ishuman(M) && overdosing)
-		overdosing = FALSE
+	if(ishuman(M) && overdosed)
+		overdosed = FALSE
 
 
 	..()
