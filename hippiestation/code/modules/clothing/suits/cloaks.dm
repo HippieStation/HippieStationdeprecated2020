@@ -1,7 +1,7 @@
 /obj/item/clothing/neck/cloak
 	w_class = WEIGHT_CLASS_NORMAL	//Classified as normal instead of small items to prevent infinite storage capabilities!!!
 	slot_flags = SLOT_BACK
-	cold_protection = CHEST | ARMS | HANDS
+	cold_protection = CHEST | ARMS | HANDS | NECK
 	min_cold_protection_temperature = 257
 	//Cloaks keep your chest, arms, and hands toasty, but only slightly. For reference, humans start taking cold damage at 260.15K.
 	pockets = /obj/item/storage/internal/pocket/small/cloak	//Cloaks now have 2 pocket slots! :D
