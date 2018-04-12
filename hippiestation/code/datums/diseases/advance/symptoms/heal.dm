@@ -1,19 +1,3 @@
-/*
-//////////////////////////////////////
-
-Healing
-
-	Little bit hidden.
-	Lowers resistance tremendously.
-	Decreases stage speed tremendously.
-	Decreases transmittablity temrendously.
-	Fatal Level.
-
-Bonus
-	Heals toxins in the affected mob's blood stream.
-
-//////////////////////////////////////
-*/
 
 /datum/symptom/heal
 
@@ -40,21 +24,6 @@ Bonus
 	M.adjustToxLoss(-heal_amt)
 	return 1
 
-/*
-//////////////////////////////////////
-
-Apoptosis
-
-	Lowers resistance.
-	Decreases stage speed.
-	Decreases transmittablity.
-
-Bonus
-	Heals toxins in the affected mob's blood stream faster.
-
-//////////////////////////////////////
-*/
-
 /datum/symptom/heal/plus
 
 	name = "Apoptoxin filter"
@@ -70,23 +39,6 @@ Bonus
 		new /obj/effect/overlay/temp/heal(get_turf(M), "#00FF00")
 	M.adjustToxLoss(-heal_amt)
 	return 1
-
-/*
-//////////////////////////////////////
-
-Regeneration
-
-	Little bit hidden.
-	Lowers resistance tremendously.
-	Decreases stage speed tremendously.
-	Decreases transmittablity temrendously.
-	Fatal Level.
-
-Bonus
-	Heals brute damage slowly over time.
-
-//////////////////////////////////////
-*/
 
 /datum/symptom/heal/brute
 
@@ -113,23 +65,6 @@ Bonus
 		new /obj/effect/overlay/temp/heal(get_turf(M), "#FF3333")
 
 	return 1
-
-
-/*
-//////////////////////////////////////
-
-Flesh Mending
-
-	No resistance change.
-	Decreases stage speed.
-	Decreases transmittablity.
-	Fatal Level.
-
-Bonus
-	Heals brute damage over time. Turns cloneloss into burn damage.
-
-//////////////////////////////////////
-*/
 
 /datum/symptom/heal/brute/plus
 
@@ -162,23 +97,6 @@ Bonus
 
 	return 1
 
-/*
-//////////////////////////////////////
-
-Tissue Regrowth
-
-	Little bit hidden.
-	Lowers resistance tremendously.
-	Decreases stage speed tremendously.
-	Decreases transmittablity temrendously.
-	Fatal Level.
-
-Bonus
-	Heals burn damage slowly over time.
-
-//////////////////////////////////////
-*/
-
 /datum/symptom/heal/burn
 
 	name = "Tissue Regrowth"
@@ -203,23 +121,6 @@ Bonus
 	if(prob(20))
 		new /obj/effect/overlay/temp/heal(get_turf(M), "#FF9933")
 	return 1
-
-
-/*
-//////////////////////////////////////
-
-Heat Resistance //Needs a better name
-
-	No resistance change.
-	Decreases stage speed.
-	Decreases transmittablity.
-	Fatal Level.
-
-Bonus
-	Heals burn damage over time, and helps stabilize body temperature.
-
-//////////////////////////////////////
-*/
 
 /datum/symptom/heal/burn/plus
 
@@ -250,24 +151,6 @@ Bonus
 	if(prob(20))
 		new /obj/effect/overlay/temp/heal(get_turf(M), "#CC6600")
 	return 1
-
-
-/*
-//////////////////////////////////////
-
-	DNA Restoration
-
-	Not well hidden.
-	Lowers resistance minorly.
-	Does not affect stage speed.
-	Decreases transmittablity greatly.
-	Very high level.
-
-Bonus
-	Heals brain damage, treats radiation, cleans SE of non-power mutations.
-
-//////////////////////////////////////
-*/
 
 /datum/symptom/heal/dna
 
