@@ -19,9 +19,9 @@ Bonus
 
 	name = "Toxic Filter"
 	stealth = 1
-	resistance = -4
-	stage_speed = -4
-	transmittable = -4
+	resistance = -2
+	stage_speed = -2
+	transmittable = -2
 	level = 4
 
 /datum/symptom/heal/Activate(datum/disease/advance/A)
