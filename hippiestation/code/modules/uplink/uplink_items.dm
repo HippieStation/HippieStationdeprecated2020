@@ -5,4 +5,3 @@
 	head after three seconds uninterrupted."
 	cost = 3
 	item = /obj/item/device/reverse_bear_trap
-	restricted_roles = list("Clown")
