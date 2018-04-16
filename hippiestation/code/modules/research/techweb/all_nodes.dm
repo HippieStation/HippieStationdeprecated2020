@@ -6,3 +6,6 @@
 	design_ids = list("bluebutt")
 	research_cost = 2500
 	export_price = 10000
+
+/datum/techweb_node/alien_surgery
+	prereq_ids = list("exp_surgery")	//Fuck the idiot who made it require a node that doesn't exist
