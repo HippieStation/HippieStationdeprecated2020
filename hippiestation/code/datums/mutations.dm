@@ -70,3 +70,6 @@
 		var/y_offset = owner.pixel_y + rand(-1,1)
 		animate(owner, pixel_x = x_offset, pixel_y = y_offset, time = 1)
 		animate(owner, pixel_x = x_offset_old, pixel_y = y_offset_old, time = 1)
+
+/datum/mutation/human/hulk
+	species_allowed = list()
