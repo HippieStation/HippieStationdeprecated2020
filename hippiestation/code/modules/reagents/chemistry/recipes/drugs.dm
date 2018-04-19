@@ -17,3 +17,10 @@
     results = list("burpinate" = 3)
     required_reagents = list("carbon" = 2, "ammonia" = 1, "oxygen" = 1, "dr_gibb" = 2)
 
+/datum/chemical_reaction/Xanax
+	name = "Xanax"
+	id = "xanax"
+	results = list("xanax" = 4)
+	required_reagents = list("fentanyl" = 1, "iodine" = 1, "phosphorus" = 1, "lithium" = 1)
+	required_temp = 374
+	centrifuge_recipe = TRUE

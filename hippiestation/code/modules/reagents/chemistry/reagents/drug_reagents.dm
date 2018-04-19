@@ -261,6 +261,28 @@
 	if(istype(O,/obj))
 		O.SpinAnimation(16,40)
 
+/datum/reagent/drug/Xanax
+	name = "Xanax"
+	id = "xanax"
+	description = "A fast acting benzodiazepene which tastes terrible and is sure to steal your memory."
+	reagent_state = LIQUID
+	var/list/XanaxTalk = list("Yuh!", "Aye!", "Yuh Yuh!", ";I'M XANNED!", "GUCCI GANG!", "BRRRRRRPPP", "BRAAAPPPPPP", ";AY YO FUCK SHITSEC")
+	var/high_message = list("You feel drowsy.", "You feel like sleeping.", "You feel like taking more xanax.", "You forget where you are.")
+
+/datum/reagent/drug/Xanax/on_mob_life(mob/living/M)
+	M.adjustStaminaLoss(20,0)
+	M.Jitter(20)
+	M.Dizzy(20)
+	M.adjustBrainLoss(0.25)
+	M.AdjustKnockdown(10, 0)
+	M.adjustToxLoss(0.5)
+	M.hallucination += 20
+	if(prob(50))
+		M.emote(pick("twitch", "drool", "moan"))
+	if(prob(3))
+		var/xanax_feeling = pick(high_message)
+		to_chat(M,"<span class='notice'>[xanax_feeling]</span>")
+
 /datum/reagent/drug/yespowder
 	name = "Yes Powder"
 	id = "yespowder"
