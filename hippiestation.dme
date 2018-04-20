@@ -2751,6 +2751,7 @@
 #include "hippiestation\code\game\objects\items\storage\uplink_kits.dm"
 #include "hippiestation\code\game\objects\items\tanks\tanks.dm"
 #include "hippiestation\code\game\objects\structures\aliens.dm"
+#include "hippiestation\code\game\objects\structures\electricchair.dm"
 #include "hippiestation\code\game\objects\structures\false_walls.dm"
 #include "hippiestation\code\game\objects\structures\flora.dm"
 #include "hippiestation\code\game\objects\structures\ghost_role_spawners.dm"

@@ -21,7 +21,7 @@
 		qdel(src)
 
 /obj/structure/chair/e_chair/proc/shock()
-	if(last_time + 10 > world.time)
+	if(last_time + 50 > world.time)
 		return
 	last_time = world.time
 
