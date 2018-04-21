@@ -1960,10 +1960,6 @@
 /turf/closed/wall,
 /area/crew_quarters/heads/hop)
 "adZ" = (
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "cargounload"
-	},
 /obj/item/device/radio/intercom{
 	name = "Station Intercom";
 	pixel_x = -28
@@ -1973,6 +1969,10 @@
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
+	},
+/obj/machinery/conveyor/inverted{
+	dir = 5;
+	id = "cargounload"
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
@@ -2798,8 +2798,9 @@
 /turf/open/floor/plasteel/neutral,
 /area/quartermaster/storage)
 "afH" = (
-/obj/machinery/conveyor_switch{
-	id = "cargounload"
+/obj/machinery/conveyor_switch/oneway{
+	id = "cargounload";
+	dir = 8
 	},
 /turf/open/floor/plasteel/brown{
 	dir = 4
@@ -3634,15 +3635,15 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "ahn" = (
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "cargoload"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
 /obj/effect/turf_decal/stripes/corner,
+/obj/machinery/conveyor{
+	dir = 5;
+	id = "cargoload"
+	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
 "aho" = (
@@ -4395,11 +4396,11 @@
 	},
 /area/quartermaster/storage)
 "aiL" = (
-/obj/machinery/conveyor_switch{
-	id = "cargoload"
-	},
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/machinery/conveyor_switch/oneway{
+	id = "cargoload"
 	},
 /turf/open/floor/plasteel/brown{
 	dir = 5
@@ -14055,7 +14056,6 @@
 	height = 18;
 	id = "emergency_home";
 	name = "OmegaStation emergency evac bay";
-	turf_type = /turf/open/space;
 	width = 30
 	},
 /turf/open/space/basic,
@@ -18129,7 +18129,7 @@
 /turf/closed/wall/r_wall/rust,
 /area/engine/supermatter)
 "aLR" = (
-/obj/machinery/door/airlock/atmos/glass{
+/obj/machinery/door/airlock/atmos/glass/critical{
 	heat_proof = 1;
 	name = "Supermatter Chamber";
 	req_access_txt = "24"
@@ -18988,8 +18988,9 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "aOa" = (
-/obj/machinery/power/supermatter_shard/crystal/engine{
-	anchored = 1
+/obj/machinery/power/supermatter_crystal/shard/engine{
+	anchored = 1;
+	moveable = 0
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
@@ -20488,7 +20489,7 @@
 /area/medical/morgue)
 "aRd" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/centcom{
+/obj/machinery/door/airlock/grunge{
 	name = "Morgue";
 	req_access_txt = "5"
 	},
@@ -20669,7 +20670,6 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/structure/fans/tiny,
 /turf/open/floor/plasteel/vault/side,
 /area/tcommsat/server)
 "aRE" = (
@@ -22208,7 +22208,7 @@
 /area/medical/morgue)
 "aVf" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/centcom{
+/obj/machinery/door/airlock/grunge{
 	name = "Morgue";
 	req_access_txt = "5"
 	},
@@ -27272,7 +27272,7 @@
 /turf/closed/wall,
 /area/chapel/main)
 "bfz" = (
-/obj/machinery/door/airlock/centcom{
+/obj/machinery/door/airlock/grunge{
 	name = "Crematorium";
 	req_access_txt = "27"
 	},
@@ -28142,7 +28142,7 @@
 /turf/closed/wall,
 /area/chapel/main)
 "bhr" = (
-/obj/machinery/door/airlock/centcom{
+/obj/machinery/door/airlock/grunge{
 	name = "Crematorium";
 	req_access_txt = "27"
 	},
@@ -28214,7 +28214,7 @@
 /area/chapel/main)
 "bhy" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/centcom{
+/obj/machinery/door/airlock/grunge{
 	name = "Chapel Hall"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -28795,7 +28795,7 @@
 /turf/open/floor/plasteel/grimy,
 /area/chapel/main)
 "biH" = (
-/obj/machinery/door/airlock/centcom{
+/obj/machinery/door/airlock/grunge{
 	name = "Chapel Quarters";
 	req_access_txt = "27"
 	},
@@ -28839,7 +28839,7 @@
 /area/chapel/main)
 "biM" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/centcom{
+/obj/machinery/door/airlock/grunge{
 	name = "Chapel Office";
 	req_access_txt = "27"
 	},
@@ -29843,7 +29843,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "blA" = (
-/obj/machinery/door/airlock/centcom{
+/obj/machinery/door/airlock/grunge{
 	name = "Mass Driver Room";
 	req_access_txt = "27"
 	},
@@ -30535,7 +30535,6 @@
 	height = 13;
 	id = "ferry_home";
 	name = "port bay 2";
-	turf_type = /turf/open/space;
 	width = 5
 	},
 /turf/open/space/basic,
@@ -32878,7 +32877,6 @@
 	height = 17;
 	id = "syndicate_sw";
 	name = "southwest of station";
-	turf_type = /turf/open/space;
 	width = 23
 	},
 /turf/open/space,
@@ -35800,7 +35798,7 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "wUF" = (
-/obj/machinery/door/airlock/atmos/glass{
+/obj/machinery/door/airlock/atmos/glass/critical{
 	heat_proof = 1;
 	name = "Supermatter Chamber";
 	req_access_txt = "24"
@@ -72936,8 +72934,6 @@ sJT
 aRb
 aRb
 aRb
-aRb
-aSh
 aSh
 aSh
 aSh
@@ -78508,6 +78504,10 @@ aaa
 aaa
 aaa
 aaa
+aaa
+aaa
+aaa
+aaa
 aac
 aad
 aad
@@ -78518,6 +78518,13 @@ aaa
 aaa
 aaa
 aaa
+aaa
+aaa
+aac
+aad
+aad
+aad
+aac
 aaa
 aaa
 aac
@@ -78727,6 +78734,16 @@ aaa
 aaa
 aaa
 aaa
+"}
+(167,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -78774,6 +78791,16 @@ aaa
 aaa
 aaa
 aaa
+aaa
+aac
+aac
+aad
+aad
+aad
+aad
+aad
+aac
+aac
 aaa
 aac
 aac
@@ -82350,24 +82377,6 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 aad
 aad
 adQ
@@ -83119,22 +83128,22 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aac
+bvI
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+sNh
+aad
+aad
+aad
+aad
+aac
 aaa
 aaa
 aaa
@@ -83403,7 +83412,317 @@ aaa
 aaa
 aac
 aac
+aac
+bvg
 aad
+adn
+aed
+aeT
+afG
+agz
+ahn
+aie
+aiM
+ajK
+akN
+alD
+amz
+ann
+aof
+apf
+aqn
+aRz
+abO
+bfp
+aSD
+sCt
+sCQ
+sDq
+aSD
+sEn
+sEN
+sFo
+sFS
+aSH
+sGY
+aRz
+sIc
+sIv
+sFs
+sIO
+sIU
+sJe
+sIU
+aaa
+bte
+aPB
+aQC
+sOM
+aSI
+aTU
+aUL
+aVH
+aWw
+sOM
+sPi
+aYv
+sPa
+sPo
+sOZ
+bbP
+aUK
+bdz
+sPa
+sOZ
+bfr
+sOY
+bgv
+sPY
+bhU
+aRy
+bvg
+aac
+aaa
+aaa
+aaa
+aaa
+aac
+aad
+aad
+aad
+aad
+aac
+aac
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+"}
+(185,1,1) = {"
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aac
+aac
+aad
+aad
+aad
+aac
+aac
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aac
+aad
+aad
+aad
+adn
+aee
+aeU
+afH
+agA
+aho
+aif
+aiN
+ajL
+akO
+alE
+amA
+ano
+aog
+apg
+aqk
+aRz
+abN
+acy
+aRz
+sJN
+aRz
+aRz
+aRz
+aRz
+aRz
+sFp
+sFT
+sGy
+sHb
+aRz
+bxM
+bsC
+axW
+aae
+sIU
+sJg
+sIU
+aae
+bte
+aPC
+aQD
+aRA
+aSJ
+aTV
+aUM
+aVI
+aWx
+sOM
+sON
+sOM
+sON
+sOM
+sOM
+sON
+sOY
+bdA
+sOM
+sOM
+sOV
+sON
+bgw
+sPY
+bhV
+aRy
+bvg
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aac
 aad
 aad
 aac
@@ -83582,24 +83901,6 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 "}
 (186,1,1) = {"
 aaa
@@ -83617,6 +83918,8 @@ aaa
 aaa
 aaa
 aaa
+"}
+(186,1,1) = {"
 aaa
 aaa
 aaa
@@ -83923,6 +84226,11 @@ aaa
 aaa
 aaa
 aaa
+aad
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -84116,6 +84424,7 @@ aaa
 aaa
 "}
 (188,1,1) = {"
+aaa
 aaa
 aaa
 aaa
@@ -84714,6 +85023,7 @@ aaa
 aaa
 aeZ
 aaa
+aeZ
 aaa
 aaa
 aaa

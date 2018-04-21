@@ -67,14 +67,6 @@
 /obj/machinery/nuclearbomb/syndicate
 	//ui_style = "syndicate" // actually the nuke op bomb is a stole nt bomb
 
-/obj/machinery/nuclearbomb/syndicate/GenerateTag()
-	var/obj/machinery/nuclearbomb/existing = locate("syndienuke") in GLOB.nuke_list
-	if(existing)
-		stack_trace("Attempted to spawn a syndicate nuke while one already exists at [COORD(existing.loc)]")
-		datum_flags &= ~DF_USE_TAG
-		return
-	tag = "syndienuke"
-
 /obj/machinery/nuclearbomb/syndicate/get_cinematic_type(off_station)
 	var/datum/game_mode/nuclear/NM = SSticker.mode
 	switch(off_station)

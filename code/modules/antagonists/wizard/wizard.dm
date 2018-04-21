@@ -170,11 +170,6 @@
 /datum/antagonist/wizard/proc/admin_send_to_lair(mob/admin)
 	owner.current.forceMove(pick(GLOB.wizardstart))
 
-
-/datum/antagonist/wizard/get_admin_commands()
-	. = ..()
-	.["Send to Lair"] = CALLBACK(src,.proc/admin_send_to_lair)
-
 /datum/antagonist/wizard/apprentice
 	name = "Wizard Apprentice"
 	hud_version = "apprentice"

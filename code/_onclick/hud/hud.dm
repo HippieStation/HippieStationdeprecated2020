@@ -104,7 +104,6 @@
 	healths = null
 	healthdoll = null
 	internals = null
-	staminas = null
 	mood = null
 	lingchemdisplay = null
 	devilsouldisplay = null
