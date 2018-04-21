@@ -8,7 +8,7 @@
 	flags_1 = NODROP_1 | DROPDEL_1
 	slowdown = SHOES_SLOWDOWN+1
 	var/footstep = 1
-	pockets = /obj/item/storage/internal/pocket/shoes/clown
+	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes/clown
 
 /obj/item/clothing/shoes/hippie/cluwne/step_action()
 	if(footstep > 1)

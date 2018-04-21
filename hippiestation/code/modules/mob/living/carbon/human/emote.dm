@@ -87,30 +87,33 @@
 			H.electrocution_animation(10)
 		addtimer(CALLBACK(user, /mob/proc/gib), 10)
 	else
-		var/obj/item/storage/internal/pocket/butt/theinv = B.inv
-		if(theinv.contents.len)
-			var/obj/item/O = pick(theinv.contents)
-			if(istype(O, /obj/item/lighter))
-				var/obj/item/lighter/G = O
-				if(G.lit && user.loc)
-					new/obj/effect/hotspot(user.loc)
+		GET_COMPONENT_FROM(STR, /datum/component/storage, B)
+
+		if(STR)
+			var/list/STR_contents = STR.contents()
+			if(STR_contents.len)
+				var/obj/item/O = pick(STR_contents)
+				if(istype(O, /obj/item/lighter))
+					var/obj/item/lighter/G = O
+					if(G.lit && user.loc)
+						new/obj/effect/hotspot(user.loc)
+						playsound(user, fartsound, 100, 1, 5)
+				else if(istype(O, /obj/item/weldingtool))
+					var/obj/item/weldingtool/J = O
+					if(J.welding && user.loc)
+						new/obj/effect/hotspot(user.loc)
+						playsound(user, fartsound, 100, 1, 5)
+				else if(istype(O, /obj/item/bikehorn))
+					for(var/obj/item/bikehorn/Q in STR_contents)
+						playsound(Q, 'sound/items/bikehorn.ogg', 100, 1, 5)
+					message = "<span class='clown'>farts.</span>"
+				else if(istype(O, /obj/item/device/megaphone))
+					message = "<span class='reallybig'>farts.</span>"
+					playsound(user, 'hippiestation/sound/effects/fartmassive.ogg', 100, 1, 5)
+				else
 					playsound(user, fartsound, 100, 1, 5)
-			else if(istype(O, /obj/item/weldingtool))
-				var/obj/item/weldingtool/J = O
-				if(J.welding && user.loc)
-					new/obj/effect/hotspot(user.loc)
-					playsound(user, fartsound, 100, 1, 5)
-			else if(istype(O, /obj/item/bikehorn))
-				for(var/obj/item/bikehorn/Q in theinv.contents)
-					playsound(Q, 'sound/items/bikehorn.ogg', 100, 1, 5)
-				message = "<span class='clown'>farts.</span>"
-			else if(istype(O, /obj/item/device/megaphone))
-				message = "<span class='reallybig'>farts.</span>"
-				playsound(user, 'hippiestation/sound/effects/fartmassive.ogg', 100, 1, 5)
-			else
-				playsound(user, fartsound, 100, 1, 5)
-			if(prob(33))
-				theinv.remove_from_storage(O, user.loc)
+				if(prob(33))
+					STR.remove_from_storage(O, user.loc)
 		else
 			playsound(user, fartsound, 100, 1, 5)
 		sleep(1)
@@ -162,30 +165,33 @@
 			playsound(user, 'hippiestation/sound/effects/fart.ogg', 100, 1, 5)
 			sleep(1)
 		playsound(user, 'hippiestation/sound/effects/fartmassive.ogg', 75, 1, 5)
-		var/obj/item/storage/internal/pocket/butt/theinv = B.inv
-		if(theinv.contents.len)
-			for(var/obj/item/O in theinv.contents)
-				theinv.remove_from_storage(O, user.loc)
-				O.throw_range = 7//will be reset on hit
-				var/turf/target = get_turf(O)
-				var/range = 7
-				var/turf/new_turf
-				var/new_dir
-				switch(user.dir)
-					if(1)
-						new_dir = 2
-					if(2)
-						new_dir = 1
-					if(4)
-						new_dir = 8
-					if(8)
-						new_dir = 4
-				for(var/i = 1; i < range; i++)
-					new_turf = get_step(target, new_dir)
-					target = new_turf
-					if(new_turf.density)
-						break
-				O.throw_at(target,range,O.throw_speed)
+		GET_COMPONENT_FROM(STR, /datum/component/storage, B)
+
+		if(STR)
+			var/list/STR_contents = STR.contents()
+			if(STR_contents.len)
+				for(var/obj/item/O in STR_contents)
+					STR.remove_from_storage(O, user.loc)
+					O.throw_range = 7//will be reset on hit
+					var/turf/target = get_turf(O)
+					var/range = 7
+					var/turf/new_turf
+					var/new_dir
+					switch(user.dir)
+						if(1)
+							new_dir = 2
+						if(2)
+							new_dir = 1
+						if(4)
+							new_dir = 8
+						if(8)
+							new_dir = 4
+					for(var/i = 1; i < range; i++)
+						new_turf = get_step(target, new_dir)
+						target = new_turf
+						if(new_turf.density)
+							break
+					O.throw_at(target,range,O.throw_speed)
 		B.Remove(user)
 		B.forceMove(get_turf(user))
 		if(B.loose)

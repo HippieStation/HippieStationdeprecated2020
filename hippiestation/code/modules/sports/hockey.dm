@@ -187,11 +187,15 @@
 	icon_state = "hockey_belt"
 	item_state = "hockey_belt"
 	actions_types = list(/datum/action/item_action/make_puck)
-	storage_slots = 2
-	can_hold = list(/obj/item/holopuck)
 	var/recharge_time = 100
 	var/charged = TRUE
 	var/obj/item/holopuck/newpuck
+
+/obj/item/storage/belt/hippie/ComponentInitialize()
+	. = ..()
+	GET_COMPONENT(STR, /datum/component/storage)
+	STR.max_items = 2
+	STR.can_hold = typecacheof(list(/obj/item/holopuck))
 
 /obj/item/storage/belt/hippie/hockey/equipped(mob/user, slot)
 	..()
