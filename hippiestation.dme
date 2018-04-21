@@ -2832,6 +2832,7 @@
 #include "hippiestation\code\modules\clothing\suits\cloaks.dm"
 #include "hippiestation\code\modules\clothing\suits\utility.dm"
 #include "hippiestation\code\modules\crafting\recipies.dm"
+#include "hippiestation\code\modules\crafts\mug.dm"
 #include "hippiestation\code\modules\crafts\shield.dm"
 #include "hippiestation\code\modules\crafts\vest.dm"
 #include "hippiestation\code\modules\crafts\weaponry.dm"
