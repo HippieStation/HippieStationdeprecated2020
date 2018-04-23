@@ -69,7 +69,7 @@
 /datum/martial_art/monk/proc/flurry_penalty()
 	if(using_flurry)
 		return flurry_of_blows_penalty
-	return 0
+	return FALSE
 
 /datum/martial_art/monk/on_remove(mob/living/carbon/human/H)
 	to_chat(H, "<span class = 'userdanger'>You forget the ways of a Monk...</span>")
@@ -248,7 +248,7 @@
 		add_logs(A, D, "[was_crit]punched (monk)")
 		D.visible_message("<span class='danger'>[A] [was_crit][picked_hit_type] [D]!</span>", \
 				  "<span class='userdanger'>[A] [was_crit][picked_hit_type] you!</span>")
-		return 1
+		return TRUE
 	else
 		if(D.stat != DEAD && D.ckey && D != A)
 			add_exp(2.5)
@@ -256,11 +256,11 @@
 		playsound(D.loc, A.dna.species.miss_sound, 25, 1, -1)
 		D.visible_message("<span class='danger'>[A] missed [D]!</span>", \
 				  "<span class='userdanger'>[A] misses you!</span>")
-		return 0
+		return FALSE
 
 /datum/martial_art/monk/harm_act(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
 	if(check_streak(A,D))
-		return 1
+		return TRUE
 	var/list/surrounding_mobs
 	if(cleave_level || circle_kick)
 		surrounding_mobs = list()
@@ -271,7 +271,7 @@
 			do_attack(A, D, cleave_level, circle_kick, surrounding_mobs)
 	else
 		do_attack(A, D, cleave_level, circle_kick, surrounding_mobs)
-	return 1
+	return TRUE
 
 /datum/martial_art/monk/proc/check_streak(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
 	switch(streak)
@@ -279,13 +279,13 @@
 			streak = ""
 			stunning_fist(A,D)
 			stunning_fist.uses_left--
-			return 1
+			return TRUE
 		if("quivering_palm")
 			streak = ""
 			quivering_palm(A,D)
 			quivering_palm.uses_left--
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 /datum/martial_art/monk/proc/stunning_fist(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
 	var/atr = attack_roll(D, flurry_penalty())
@@ -305,7 +305,7 @@
 	else
 		D.visible_message("<span class='danger'>[A] missed [D]!</span>", \
 				  "<span class='userdanger'>[A] misses you!</span>")
-	return 1
+	return TRUE
 
 /datum/martial_art/monk/proc/quivering_palm(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
 	var/atr = attack_roll(D, flurry_penalty())
@@ -325,16 +325,16 @@
 	else
 		D.visible_message("<span class='danger'>[A] missed [D]!</span>", \
 				  "<span class='userdanger'>[A] misses you!</span>")
-	return 1
+	return TRUE
 
 /datum/martial_art/monk/grab_act(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
 	if(check_streak(A,D))
-		return 1
+		return TRUE
 	..()
 
 /datum/martial_art/monk/disarm_act(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
 	if(check_streak(A,D))
-		return 1
+		return TRUE
 	..()
 
 /datum/action/monk_rest
