@@ -8,6 +8,7 @@
 	icon_state = "Hedgehog"
 	icon_living = "Hedgehog"
 	icon_dead = "Hedgehog_dead"
+	var/emagged = FALSE
 	ventcrawler = VENTCRAWLER_ALWAYS
 	pass_flags = PASSTABLE
 	mob_size = MOB_SIZE_SMALL
@@ -25,26 +26,30 @@
 /mob/living/simple_animal/pet/hedgehog/Bernie
 	name = "Bernie"
 	desc = "A spiky hog belonging to the captain. Looking at it fills you with a strange feeling of reverence."
-	
+
 /mob/living/simple_animal/pet/hedgehog/Life()
 	..()
 	if(scared && stat != DEAD)
-		if(icon_state != "Hedgehog_ball")
+		if(icon_state != "Hedgehog_ball" && icon_state != "Sonic_ball")
 			visible_message("<span class = 'notice'> [src] curls up into a ball. </span>")
-			icon_state = "Hedgehog_ball"
-			icon_living = "Hedgehog_ball"
+			icon_state = "[icon_state]_ball"
+			icon_living = "[icon_state]_ball"
 			canmove = 0
 		if(world.time > scared_time)
 			scared = FALSE
-			icon_state = "Hedgehog"
-			icon_living = "Hedgehog"
+			if(emagged)
+				icon_state = "Sonic"
+				icon_living = "Sonic"
+			else
+				icon_state = "Hedgehog"
+				icon_living = "Hedgehog"
 			canmove = 1
 
 /mob/living/simple_animal/pet/hedgehog/attacked_by(obj/item/I, mob/living/user)
 	..()
 	scared = TRUE
 	scared_time = world.time + FEAR_DURATION
-	
+
 
 /mob/living/simple_animal/pet/hedgehog/attack_hand(mob/living/user)
 	if(..())
@@ -53,5 +58,15 @@
 			user.adjustBruteLoss(8)
 		scared = TRUE
 		scared_time = world.time + FEAR_DURATION
+
+/mob/living/simple_animal/pet/hedgehog/emag_act(mob/user)
+	if(emagged == FALSE)
+		emagged = TRUE
+		do_sparks(8, FALSE, loc)
+		icon_state = "Sonic"
+		icon_living = "Sonic"
+		icon_dead = "Sonic_dead"
+		turns_per_move = 1
+		visible_message("<span class = 'warning'> [src] starts to go fast! </span>")
 
 #undef FEAR_DURATION
