@@ -50,3 +50,10 @@
 	id = "kelotane"
 	results = list("kelotane" = 3)
 	required_reagents = list("carbon" = 1, "silicon" = 1)
+
+/datum/chemical_reaction/supermannitol
+	name = "Super Mannitol"
+	id = "supermannitol"
+	results = list("supermannitol" = 3)
+	required_reagents = list("mannitol" = 1, "plasma" = 1, "uranium" = 1)
+	mix_message = "The solution bubbles and becomes extremely thick as it turns into a paste-like consistency."
