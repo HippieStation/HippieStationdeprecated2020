@@ -142,13 +142,6 @@
 				else
 					message_admins("[key_name_admin(usr)] tried to create a Centcom response team. Unfortunately, there were not enough candidates available.")
 					log_admin("[key_name(usr)] failed to create a Centcom response team.")
-			if("messiah")
-				if(src.makeJesus())
-					message_admins("[key_name(usr)] created a messiah.")
-					log_admin("[key_name(usr)] created a messiah.")
-				else
-					message_admins("[key_name_admin(usr)] tried to create a messiah. Unfortunately, there were no candidates available.")
-					log_admin("[key_name(usr)] failed to create a messiah.")
 			if("abductors")
 				message_admins("[key_name(usr)] is creating an abductor team...")
 				if(src.makeAbductorTeam())
@@ -1118,14 +1111,18 @@
 	else if(href_list["deletemessage"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/message_id = href_list["deletemessage"]
-		delete_message(message_id)
+		var/safety = alert("Delete message/note?",,"Yes","No");
+		if (safety == "Yes")
+			var/message_id = href_list["deletemessage"]
+			delete_message(message_id)
 
 	else if(href_list["deletemessageempty"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/message_id = href_list["deletemessageempty"]
-		delete_message(message_id, browse = 1)
+		var/safety = alert("Delete message/note?",,"Yes","No");
+		if (safety == "Yes")
+			var/message_id = href_list["deletemessageempty"]
+			delete_message(message_id, browse = TRUE)
 
 	else if(href_list["editmessage"])
 		if(!check_rights(R_ADMIN))
@@ -1388,7 +1385,7 @@
 		to_chat(M, "<span class='adminnotice'>You have been sent to Prison!</span>")
 
 		log_admin("[key_name(usr)] has sent [key_name(M)] to Prison!")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] Prison!")
+		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to Prison!")
 
 	else if(href_list["sendbacktolobby"])
 		if(!check_rights(R_ADMIN))
@@ -1834,7 +1831,6 @@
 			message_admins("[src.owner] decided not to answer [key_name(H)]'s CentCom request.")
 			return
 
-		to_chat(src.owner, "You sent [input] to [H] via a secure channel.")
 		log_admin("[src.owner] replied to [key_name(H)]'s CentCom message with the message [input].")
 		message_admins("[src.owner] replied to [key_name(H)]'s CentCom message with: \"[input]\"")
 		to_chat(H, "You hear something crackle in your ears for a moment before a voice speaks.  \"Please stand by for a message from Central Command.  Message as follows. [input].  Message ends.\"")
@@ -1941,6 +1937,16 @@
 				D.traitor_panel()
 		else
 			show_traitor_panel(M)
+
+	else if(href_list["borgpanel"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/mob/M = locate(href_list["borgpanel"])
+		if(!iscyborg(M))
+			to_chat(usr, "This can only be used on cyborgs")
+		else
+			open_borgopanel(M)
 
 	else if(href_list["initmind"])
 		if(!check_rights(R_ADMIN))

@@ -2,6 +2,9 @@
 	var/nextsoundemote = 1
 
 /datum/emote/living/scream/run_emote(mob/living/user, params)
+	. = ..()
+	if (!.)
+		return FALSE
 	if(user.nextsoundemote >= world.time || user.stat != CONSCIOUS)
 		return
 	var/sound
@@ -21,7 +24,7 @@
 		if(istype(user, /mob/living/simple_animal/hostile/gorilla))
 			sound = 'sound/creatures/gorilla.ogg'
 		if(ishuman(user))
-			user.adjustOxyLoss(5)
+			user.adjustOxyLoss(user.scream_oxyloss)
 			sound = pick('hippiestation/sound/voice/scream_m1.ogg', 'hippiestation/sound/voice/scream_m2.ogg')
 			if(user.gender == FEMALE)
 				sound = pick('hippiestation/sound/voice/scream_f1.ogg', 'hippiestation/sound/voice/scream_f2.ogg')
@@ -42,15 +45,17 @@
 		LAZYINITLIST(user.alternate_screams)
 		if(LAZYLEN(user.alternate_screams))
 			sound = pick(user.alternate_screams)
-		playsound(user.loc, sound, 50, 1, 4, 1.2)
+		playsound(user.loc, sound, user.scream_vol, 1, 4, 1.2)
 		message = "screams!"
 	else if(miming)
 		message = "acts out a scream."
 	else
 		message = "makes a very loud noise."
-	. = ..()
 
 /datum/emote/living/burp/run_emote(mob/living/user, params)
+	. = ..()
+	if (!.)
+		return FALSE
 	if(ishuman(user))
 		if(user.nextsoundemote >= world.time)
 			return
@@ -63,9 +68,10 @@
 			burp_noise = pick(user.burp_sounds)
 			playsound(user, burp_noise, 50, 1, -1)
 
-	. = ..()
-
 /datum/emote/living/cough/run_emote(mob/living/user, params)
+	. = ..()
+	if (!.)
+		return FALSE
 	if(ishuman(user))
 		if(user.nextsoundemote >= world.time)
 			return
@@ -75,7 +81,6 @@
 			coughsound = pick('hippiestation/sound/voice/cough_f1.ogg', 'hippiestation/sound/voice/cough_f2.ogg', 'hippiestation/sound/voice/cough_f3.ogg')
 		playsound(user.loc, coughsound, 50, 1, 5)
 		user.adjustOxyLoss(5)
-	. = ..()
 
 /datum/emote/living/snap
 	key = "snap"
@@ -84,12 +89,14 @@
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/snap/run_emote(mob/living/user, params)
+	. = ..()
+	if (!.)
+		return FALSE
 	if(ishuman(user))
 		if(user.nextsoundemote >= world.time)
 			return
 		user.nextsoundemote = world.time + 7
 		playsound(user, 'hippiestation/sound/voice/snap.ogg', 50, 1, -1)
-	. = ..()
 
 /datum/emote/living/snap2
 	key = "snap2"
@@ -98,12 +105,14 @@
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/snap2/run_emote(mob/living/user, params)
+	. = ..()
+	if (!.)
+		return FALSE
 	if(ishuman(user))
 		if(user.nextsoundemote >= world.time)
 			return
 		user.nextsoundemote = world.time + 7
 		playsound(user, 'hippiestation/sound/voice/snap2.ogg', 50, 1, -1)
-	. = ..()
 
 /datum/emote/living/snap3
 	key = "snap3"
@@ -112,9 +121,11 @@
 	emote_type = EMOTE_AUDIBLE
 
 /datum/emote/living/snap3/run_emote(mob/living/user, params)
+	. = ..()
+	if (!.)
+		return FALSE
 	if(ishuman(user))
 		if(user.nextsoundemote >= world.time)
 			return
 		user.nextsoundemote = world.time + 7
 		playsound(user, 'hippiestation/sound/voice/snap3.ogg', 50, 1, -1)
-	. = ..()

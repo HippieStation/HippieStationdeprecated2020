@@ -6,9 +6,9 @@
 	blacklisted = 0
 	sexes = 0
 	species_traits = list(MUTCOLORS,NOEYES)
+	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	mutant_bodyparts = list("ipc_screen")
 	default_features = list("ipc_screen" = "Sunburst")
-	species_traits = list(MUTCOLORS)
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/ipc
 
 /datum/species/ipc/on_species_gain(mob/living/carbon/human/C)
