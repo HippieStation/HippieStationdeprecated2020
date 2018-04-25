@@ -100,7 +100,6 @@
 #include "code\__DEFINES\~hippie_defines\forge.dm"
 #include "code\__DEFINES\~hippie_defines\machines.dm"
 #include "code\__DEFINES\~hippie_defines\material.dm"
-#include "code\__DEFINES\~hippie_defines\maths.dm"
 #include "code\__DEFINES\~hippie_defines\mentor.dm"
 #include "code\__DEFINES\~hippie_defines\mobs.dm"
 #include "code\__DEFINES\~hippie_defines\sound.dm"
