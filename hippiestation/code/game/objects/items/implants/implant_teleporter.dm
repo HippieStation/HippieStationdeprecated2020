@@ -91,8 +91,7 @@
 
 /obj/item/implant/teleporter/removed(mob/living/source, silent = 0, special = 0)
 	..()
-	say("Implant tampering detected.")
-	source.gib()
+	say("Implant tampering detected. Your contract has been terminated!")
 
 /obj/item/implant/teleporter/ghost_role
 	name = "employee retrieval implant"
