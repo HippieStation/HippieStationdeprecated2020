@@ -9,3 +9,4 @@
 	to_chat(owner,"<B>Remember:</B> do not forget to prepare your spells.")
 	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/projectile/magic_missile(null))
 	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/ethereal_jaunt(null))
+	owner.current.playsound_local(get_turf(owner.current), 'hippiestation/sound/ambience/antag/wizard.ogg',60,0)
