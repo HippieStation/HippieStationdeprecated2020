@@ -2795,6 +2795,7 @@
 #include "hippiestation\code\modules\antagonists\changeling\lesserform.dm"
 #include "hippiestation\code\modules\antagonists\changeling\mutations.dm"
 #include "hippiestation\code\modules\antagonists\changeling\revive.dm"
+#include "hippiestation\code\modules\antagonists\disease\disease_datum.dm"
 #include "hippiestation\code\modules\antagonists\wizard\equipment\spellbook.dm"
 #include "hippiestation\code\modules\antagonists\wizard\equipment\spellbook_darkness.dm"
 #include "hippiestation\code\modules\atmospherics\gasmixtures\reactions.dm"
