@@ -12,4 +12,4 @@
 	to_chat(owner.current, "The Syndicate only accepts those that have proven themself. Prove yourself and prove your [team.member_name]s by completing your objectives together!")
 	owner.announce_objectives()
 	give_meeting_area()
-	owner.current.playsound_local(get_turf(owner.current), 'hippiestation/sound/ambience/antag/brother.ogg',60,0)  
+	owner.current.playsound_local(get_turf(owner.current), 'hippiestation/sound/ambience/antag/brother.ogg',80,0)  
