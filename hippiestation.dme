@@ -2785,6 +2785,7 @@
 #include "hippiestation\code\modules\admin\verbs\spawnhuman.dm"
 #include "hippiestation\code\modules\admin\verbs\testdummy.dm"
 #include "hippiestation\code\modules\antagonists\abductor\abductor.dm"
+#include "hippiestation\code\modules\antagonists\brother\brother.dm"
 #include "hippiestation\code\modules\antagonists\changeling\absorb.dm"
 #include "hippiestation\code\modules\antagonists\changeling\changeling.dm"
 #include "hippiestation\code\modules\antagonists\changeling\fakedeath.dm"
