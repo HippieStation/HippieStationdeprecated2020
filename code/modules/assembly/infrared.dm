@@ -123,7 +123,7 @@
 	listener = newloc.AddComponent(/datum/component/redirect, COMSIG_ATOM_EXITED, CALLBACK(src, .proc/check_exit))
 
 /obj/item/assembly/infra/proc/check_exit(atom/movable/offender)
-	if(offender && ((offender.flags_1 & ABSTRACT) || offender == src))
+	if(offender && ((offender.flags_1 & ABSTRACT_1) || offender == src))
 		return
 	return refreshBeam()
 

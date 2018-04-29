@@ -115,10 +115,11 @@
 /obj/effect/mapping_helpers
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = ""
+	var/late = FALSE
 
 /obj/effect/mapping_helpers/Initialize()
 	..()
-	return INITIALIZE_HINT_QDEL
+	return late ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_QDEL
 
 
 //airlock helpers
