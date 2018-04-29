@@ -2615,6 +2615,7 @@
 #include "hippiestation\code\__HELPERS\_logging.dm"
 #include "hippiestation\code\__HELPERS\markov.dm"
 #include "hippiestation\code\__HELPERS\mobs.dm"
+#include "hippiestation\code\__HELPERS\unsorted.dm"
 #include "hippiestation\code\_globalvars\clockcult.dm"
 #include "hippiestation\code\_globalvars\game_modes.dm"
 #include "hippiestation\code\_globalvars\logging.dm"
