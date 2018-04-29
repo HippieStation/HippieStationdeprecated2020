@@ -58,3 +58,11 @@
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 2)
 	time = 20
 	category = CAT_PRIMAL
+
+/datum/crafting_recipe/wheelchair
+	name = "Wheelchair"
+	result = /obj/vehicle/ridden/wheelchair
+	reqs = list(/obj/item/stack/sheet/metal = 4,
+				/obj/item/stack/rods = 6)
+	time = 100
+	category = CAT_MISC
