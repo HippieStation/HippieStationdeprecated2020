@@ -18,9 +18,9 @@
 
 /obj/item/hockeypack/equipped(mob/user, slot)
 	..()
-	if (slot != slot_back) //The Pack is cursed so this should not happen, but i'm going to play it safe.
+	if (slot != SLOT_BACK) //The Pack is cursed so this should not happen, but i'm going to play it safe.
 		remove_stick()
-	if(slot == slot_back)
+	if(slot == SLOT_BACK)
 		flags_1 |= NODROP_1
 
 /obj/item/hockeypack/ui_action_click()
@@ -96,7 +96,7 @@
 		return TRUE
 
 /mob/proc/getHockeypackSlot()
-	return slot_back
+	return SLOT_BACK
 
 /obj/item/twohanded/hockeystick
 	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
@@ -199,7 +199,7 @@
 
 /obj/item/storage/belt/hippie/hockey/equipped(mob/user, slot)
 	..()
-	if(slot == slot_belt)
+	if(slot == SLOT_BELT)
 		flags_1 |= NODROP_1
 
 /obj/item/storage/belt/hippie/hockey/item_action_slot_check(slot, mob/user)
@@ -236,7 +236,7 @@
 	return new /obj/item/holopuck(src)
 
 /mob/proc/getHockeybeltSlot()
-	return slot_belt
+	return SLOT_BELT
 
 /obj/item/storage/belt/hippie/hockey/proc/reset_puck()
 	charged = TRUE
@@ -273,12 +273,12 @@
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
-	flags_1 = THICKMATERIAL_1 | STOPSPRESSUREDMAGE_1
+	clothing_flags = THICKMATERIAL | STOPSPRESSUREDAMAGE
 	armor = list("melee" = 70, "bullet" = 45, "laser" = 80, "energy" = 45, "bomb" = 75, "bio" = 0, "rad" = 30, "fire" = 80, "acid" = 100)
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/suit/hippie/hockey/equipped(mob/user, slot)
-	if(slot == slot_wear_suit)
+	if(slot == SLOT_WEAR_SUIT)
 		flags_1 |= NODROP_1
 
 /obj/item/clothing/shoes/hippie/hockey
@@ -290,7 +290,7 @@
 	slowdown = -1
 
 /obj/item/clothing/shoes/hippie/hockey/equipped(mob/user, slot)
-	if(slot == slot_shoes)
+	if(slot == SLOT_SHOES)
 		flags_1 |= NODROP_1
 
 /obj/item/clothing/mask/hippie/hockey
@@ -298,11 +298,11 @@
 	desc = "The iconic mask of the Ka-Nada special sports forces, guaranteed to strike terror into the hearts of men and goalies."
 	icon_state = "hockey_mask"
 	item_state = "hockey_mask"
-	flags_1 = BLOCK_GAS_SMOKE_EFFECT_1 | MASKINTERNALS_1 | NODROP_1
+	flags_1 = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS | NODROP_1
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/mask/hippie/hockey/equipped(mob/user, slot)
-	if(slot == slot_wear_mask)
+	if(slot == SLOT_WEAR_MASK)
 		flags_1 |= NODROP_1
 
 /obj/item/clothing/head/hippie/hockey
@@ -313,11 +313,11 @@
 	armor = list("melee" = 80, "bullet" = 40, "laser" = 80,"energy" = 45, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 80, "acid" = 100)
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
-	flags_1 = STOPSPRESSUREDMAGE_1 | NODROP_1
+	clothing_flags = STOPSPRESSUREDAMAGE | NODROP_1
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/mask/head/hockey/equipped(mob/user, slot)
-	if(slot == slot_head)
+	if(slot == SLOT_HEAD)
 		flags_1 |= NODROP_1
 
 /datum/action/item_action/toggle_stick

@@ -1,4 +1,4 @@
-/obj/item/device/multitool/syndicate
+/obj/item/multitool/syndicate
 	name = "Black market multitool"
 	desc = "This multitool is a favourite among saboteurs. Its optimised routine lets it reset circuitry faster but is otherwise a normal multitool."
 	icon = 'hippiestation/icons/obj/tools.dmi'

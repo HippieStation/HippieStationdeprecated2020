@@ -107,7 +107,7 @@
 					for(var/obj/item/bikehorn/Q in STR_contents)
 						playsound(Q, 'sound/items/bikehorn.ogg', 100, 1, 5)
 					message = "<span class='clown'>farts.</span>"
-				else if(istype(O, /obj/item/device/megaphone))
+				else if(istype(O, /obj/item/megaphone))
 					message = "<span class='reallybig'>farts.</span>"
 					playsound(user, 'hippiestation/sound/effects/fartmassive.ogg', 100, 1, 5)
 				else

@@ -184,7 +184,7 @@
 /datum/uplink_item/device_tools/autosurgeon
 	name = "Autosurgeon"
 	desc = "A surgery device that instantly implants you with whatever implant has been inserted in it. Infinite uses. Use a screwdriver to remove an implant from it."
-	item = /obj/item/device/autosurgeon
+	item = /obj/item/autosurgeon
 	cost = 1
 	surplus = 60
 

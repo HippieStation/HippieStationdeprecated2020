@@ -55,9 +55,6 @@
 	if(default_deconstruction_screwdriver(user, "smartfridge_open", "smartfridge", O))
 		return
 
-	if(exchange_parts(user, O))
-		return
-
 	if(default_pry_open(O))
 		return
 
@@ -321,7 +318,7 @@
 	desc = "A refrigerated storage unit for tasty tasty alcohol."
 
 /obj/machinery/smartfridge/drinks/accept_check(obj/item/O)
-	if(!istype(O, /obj/item/reagent_containers) || (O.flags_1 & ABSTRACT_1) || !O.reagents || !O.reagents.reagent_list.len)
+	if(!istype(O, /obj/item/reagent_containers) || (O.flags_1 & ABSTRACT) || !O.reagents || !O.reagents.reagent_list.len)
 		return FALSE
 	if(istype(O, /obj/item/reagent_containers/glass) || istype(O, /obj/item/reagent_containers/food/drinks) || istype(O, /obj/item/reagent_containers/food/condiment))
 		return TRUE
@@ -347,12 +344,12 @@
 /obj/machinery/smartfridge/extract/accept_check(obj/item/O)
 	if(istype(O, /obj/item/slime_extract))
 		return TRUE
-	if(istype(O, /obj/item/device/slime_scanner))
+	if(istype(O, /obj/item/slime_scanner))
 		return TRUE
 	return FALSE
 
 /obj/machinery/smartfridge/extract/preloaded
-	initial_contents = list(/obj/item/device/slime_scanner = 2)
+	initial_contents = list(/obj/item/slime_scanner = 2)
 
 // -----------------------------
 // Chemistry Medical Smartfridge
@@ -369,7 +366,7 @@
 					return FALSE
 			return TRUE
 		return FALSE
-	if(!istype(O, /obj/item/reagent_containers) || (O.flags_1 & ABSTRACT_1))
+	if(!istype(O, /obj/item/reagent_containers) || (O.flags_1 & ABSTRACT))
 		return FALSE
 	if(istype(O, /obj/item/reagent_containers/pill)) // empty pill prank ok
 		return TRUE

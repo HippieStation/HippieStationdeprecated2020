@@ -70,7 +70,7 @@
 	desc = "Magic"
 	icon = 'icons/obj/magic.dmi'//Needs sprites
 	icon_state = "2"
-	flags_1 = NOBLUDGEON_1 | ABSTRACT_1 | DROPDEL_1
+	flags_1 = NOBLUDGEON_1 | ABSTRACT | DROPDEL_1
 	//item_state = null
 	w_class = WEIGHT_CLASS_GIGANTIC
 	layer = ABOVE_HUD_LAYER
@@ -99,7 +99,7 @@
 
 //stops TK grabs being equipped anywhere but into hands
 /obj/item/tk_grab/equipped(mob/user, slot)
-	if(slot == slot_hands)
+	if(slot == SLOT_HANDS)
 		return
 	qdel(src)
 	return

@@ -123,8 +123,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	//How much hallucination should it produce per unit of power?
 	var/config_hallucination_power = 0.1
 
-	var/obj/item/device/radio/radio
-	var/radio_key = /obj/item/device/encryptionkey/headset_eng
+	var/obj/item/radio/radio
+	var/radio_key = /obj/item/encryptionkey/headset_eng
 	var/engineering_channel = "Engineering"
 	var/common_channel = null
 
@@ -234,6 +234,8 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	return integrity
 
 /obj/machinery/power/supermatter_crystal/proc/countdown()
+	set waitfor = FALSE
+
 	if(final_countdown) // We're already doing it go away
 		return
 	final_countdown = TRUE
@@ -566,7 +568,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	Consume(nom)
 
 /obj/machinery/power/supermatter_crystal/attackby(obj/item/W, mob/living/user, params)
-	if(!istype(W) || (W.flags_1 & ABSTRACT_1) || !istype(user))
+	if(!istype(W) || (W.flags_1 & ABSTRACT) || !istype(user))
 		return
 	if (istype(W, /obj/item/melee/roastingstick))
 		return ..()

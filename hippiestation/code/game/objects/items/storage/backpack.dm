@@ -21,7 +21,7 @@
 	new /obj/item/surgical_drapes(src)
 	new /obj/item/clothing/suit/straight_jacket(src)
 	new /obj/item/clothing/mask/muzzle(src)
-	new /obj/item/device/mmi/syndie(src)
+	new /obj/item/mmi/syndie(src)
 
 /obj/item/storage/backpack/duffelbag
 	slowdown = 1

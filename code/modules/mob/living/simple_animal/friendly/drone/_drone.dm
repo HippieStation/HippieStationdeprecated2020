@@ -89,10 +89,10 @@
 
 	if(default_storage)
 		var/obj/item/I = new default_storage(src)
-		equip_to_slot_or_del(I, slot_generic_dextrous_storage)
+		equip_to_slot_or_del(I, SLOT_GENERC_DEXTROUS_STORAGE)
 	if(default_hatmask)
 		var/obj/item/I = new default_hatmask(src)
-		equip_to_slot_or_del(I, slot_head)
+		equip_to_slot_or_del(I, SLOT_HEAD)
 
 	access_card.flags_1 |= NODROP_1
 
@@ -178,15 +178,15 @@
 
 	//Hands
 	for(var/obj/item/I in held_items)
-		if(!(I.flags_1 & ABSTRACT_1))
+		if(!(I.flags_1 & ABSTRACT))
 			msg += "It has [I.get_examine_string(user)] in its [get_held_index_name(get_held_index_of_item(I))].\n"
 
 	//Internal storage
-	if(internal_storage && !(internal_storage.flags_1&ABSTRACT_1))
+	if(internal_storage && !(internal_storage.flags_1&ABSTRACT))
 		msg += "It is holding [internal_storage.get_examine_string(user)] in its internal storage.\n"
 
 	//Cosmetic hat - provides no function other than looks
-	if(head && !(head.flags_1&ABSTRACT_1))
+	if(head && !(head.flags_1&ABSTRACT))
 		msg += "It is wearing [head.get_examine_string(user)] on its head.\n"
 
 	//Braindead
