@@ -1,5 +1,4 @@
 /datum/antagonist/disease/greet()
-	to_chat(owner.current, "<span class='notice'>You are the [owner.special_role]!</span>")
-	to_chat(owner.current, "<span class='notice'>Infect members of the crew to gain adaptation points, and spread your infection further.</span>")
-	owner.announce_objectives()
+	. = ..()
 	owner.current.playsound_local(get_turf(owner.current), 'hippiestation/sound/ambience/antag/disease.ogg',80,0)
+	
