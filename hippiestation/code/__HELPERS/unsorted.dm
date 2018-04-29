@@ -1,8 +1,8 @@
 /atom/GetAllContents(var/T)
 	. = ..()
-	var/mob/living/carbon/human/H = src
 	// Include items in the butt as part of "GetAllContents"
-	if (H)
+	if (istype(src, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = src
 		var/obj/item/organ/butt/B = H.getorgan(/obj/item/organ/butt)
 
 		if (B)
