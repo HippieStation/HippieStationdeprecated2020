@@ -521,7 +521,7 @@
 //This proc return 1 if the item can be picked up and 0 if it can't.
 //Set the stop_messages to stop it from printing messages
 /datum/component/storage/proc/can_be_inserted(obj/item/I, stop_messages = FALSE, mob/M)
-	if(!istype(I) || (I.flags_1 & ABSTRACT))
+	if(!istype(I) || (I.flags_1 & ABSTRACT_1))
 		return FALSE //Not an item
 	var/atom/real_location = real_location()
 	var/atom/parent = src.parent

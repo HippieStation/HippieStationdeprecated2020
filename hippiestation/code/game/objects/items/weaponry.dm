@@ -54,7 +54,7 @@
 	item_state = "mounted_chainsaw"
 	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/chainsaw_righthand.dmi'
-	flags_1 = NODROP_1 | ABSTRACT | DROPDEL_1
+	flags_1 = NODROP_1 | ABSTRACT_1 | DROPDEL_1
 	w_class = WEIGHT_CLASS_HUGE
 	force = 60
 	block_chance = 50

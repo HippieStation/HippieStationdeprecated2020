@@ -410,7 +410,7 @@
 	item_state = "mounted_chainsaw"
 	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/chainsaw_righthand.dmi'
-	flags_1 = NODROP_1 | ABSTRACT | DROPDEL_1
+	flags_1 = NODROP_1 | ABSTRACT_1 | DROPDEL_1
 	w_class = WEIGHT_CLASS_HUGE
 	force = 24
 	throwforce = 0
@@ -590,7 +590,7 @@
 	icon_state = "madeyoulook"
 	force = 0
 	throwforce = 0
-	flags_1 = DROPDEL_1 | ABSTRACT
+	flags_1 = DROPDEL_1 | ABSTRACT_1
 	attack_verb = list("bopped")
 
 /obj/item/slapper
@@ -600,7 +600,7 @@
 	item_state = "nothing"
 	force = 0
 	throwforce = 0
-	flags_1 = DROPDEL_1 | ABSTRACT
+	flags_1 = DROPDEL_1 | ABSTRACT_1
 	attack_verb = list("slapped")
 	hitsound = 'sound/effects/snap.ogg'
 

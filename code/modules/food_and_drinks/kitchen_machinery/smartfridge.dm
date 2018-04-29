@@ -318,7 +318,7 @@
 	desc = "A refrigerated storage unit for tasty tasty alcohol."
 
 /obj/machinery/smartfridge/drinks/accept_check(obj/item/O)
-	if(!istype(O, /obj/item/reagent_containers) || (O.flags_1 & ABSTRACT) || !O.reagents || !O.reagents.reagent_list.len)
+	if(!istype(O, /obj/item/reagent_containers) || (O.flags_1 & ABSTRACT_1) || !O.reagents || !O.reagents.reagent_list.len)
 		return FALSE
 	if(istype(O, /obj/item/reagent_containers/glass) || istype(O, /obj/item/reagent_containers/food/drinks) || istype(O, /obj/item/reagent_containers/food/condiment))
 		return TRUE
@@ -366,7 +366,7 @@
 					return FALSE
 			return TRUE
 		return FALSE
-	if(!istype(O, /obj/item/reagent_containers) || (O.flags_1 & ABSTRACT))
+	if(!istype(O, /obj/item/reagent_containers) || (O.flags_1 & ABSTRACT_1))
 		return FALSE
 	if(istype(O, /obj/item/reagent_containers/pill)) // empty pill prank ok
 		return TRUE

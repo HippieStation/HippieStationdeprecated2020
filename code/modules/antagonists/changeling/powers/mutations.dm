@@ -149,7 +149,7 @@
 	item_state = "arm_blade"
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
-	flags_1 = ABSTRACT | NODROP_1 | DROPDEL_1
+	flags_1 = ABSTRACT_1 | NODROP_1 | DROPDEL_1
 	w_class = WEIGHT_CLASS_HUGE
 	force = 25
 	throwforce = 0 //Just to be on the safe side
@@ -229,7 +229,7 @@
 	item_state = "tentacle"
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
-	flags_1 = ABSTRACT | NODROP_1 | DROPDEL_1 | NOBLUDGEON_1
+	flags_1 = ABSTRACT_1 | NODROP_1 | DROPDEL_1 | NOBLUDGEON_1
 	w_class = WEIGHT_CLASS_HUGE
 	ammo_type = /obj/item/ammo_casing/magic/tentacle
 	fire_sound = 'sound/effects/splat.ogg'
@@ -397,7 +397,7 @@
 /obj/item/shield/changeling
 	name = "shield-like mass"
 	desc = "A mass of tough, boney tissue. You can still see the fingers as a twisted pattern in the shield."
-	flags_1 = ABSTRACT | NODROP_1 | DROPDEL_1
+	flags_1 = ABSTRACT_1 | NODROP_1 | DROPDEL_1
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "ling_shield"
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'

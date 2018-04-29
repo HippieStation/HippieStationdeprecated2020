@@ -23,7 +23,7 @@
 		if(!marked_item) //linking item to the spell
 			message = "<span class='notice'>"
 			for(var/obj/item in hand_items)
-				if(item.flags_1 & ABSTRACT)
+				if(item.flags_1 & ABSTRACT_1)
 					continue
 				if(item.flags_1 & NODROP_1)
 					message += "Though it feels redundant, "

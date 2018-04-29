@@ -85,7 +85,7 @@
 	for(var/V in typesof(chameleon_type))
 		if(ispath(V) && ispath(V, /obj/item))
 			var/obj/item/I = V
-			if(chameleon_blacklist[V] || (initial(I.flags_1) & ABSTRACT))
+			if(chameleon_blacklist[V] || (initial(I.flags_1) & ABSTRACT_1))
 				continue
 			if(!initial(I.icon_state) || !initial(I.item_state))
 				continue

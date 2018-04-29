@@ -187,10 +187,10 @@
 	var/obj/item/assembly/infra/master
 	anchored = TRUE
 	density = FALSE
-	flags_1 = ABSTRACT
+	flags_1 = ABSTRACT_1
 	pass_flags = PASSTABLE|PASSGLASS|PASSGRILLE|LETPASSTHROW
 
 /obj/effect/beam/i_beam/Crossed(atom/movable/AM as mob|obj)
-	if(istype(AM, /obj/effect/beam) || (AM.flags_1 & ABSTRACT))
+	if(istype(AM, /obj/effect/beam) || (AM.flags_1 & ABSTRACT_1))
 		return
 	master.trigger_beam(AM, get_turf(src))

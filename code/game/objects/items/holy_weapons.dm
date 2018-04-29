@@ -60,7 +60,7 @@
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	name = "god hand"
 	desc = "This hand of yours glows with an awesome power!"
-	flags_1 = ABSTRACT | NODROP_1 | DROPDEL_1
+	flags_1 = ABSTRACT_1 | NODROP_1 | DROPDEL_1
 	w_class = WEIGHT_CLASS_HUGE
 	hitsound = 'sound/weapons/sear.ogg'
 	damtype = BURN
@@ -304,7 +304,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/chainsaw_righthand.dmi'
 	w_class = WEIGHT_CLASS_HUGE
-	flags_1 = NODROP_1 | ABSTRACT
+	flags_1 = NODROP_1 | ABSTRACT_1
 	sharpness = IS_SHARP
 	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
 	hitsound = 'sound/weapons/chainsawhit.ogg'
@@ -375,7 +375,7 @@
 	item_state = "arm_blade"
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
-	flags_1 = ABSTRACT | NODROP_1
+	flags_1 = ABSTRACT_1 | NODROP_1
 	w_class = WEIGHT_CLASS_HUGE
 	sharpness = IS_SHARP
 

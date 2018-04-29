@@ -77,7 +77,7 @@
 	item_state = "gun_arm"
 	lefthand_file = 'hippiestation/icons/mob/inhands/changeling_lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/changeling_righthand.dmi'
-	flags_1 = ABSTRACT | NODROP_1 | DROPDEL_1
+	flags_1 = ABSTRACT_1 | NODROP_1 | DROPDEL_1
 	w_class = WEIGHT_CLASS_HUGE
 	ammo_type = /obj/item/ammo_casing/magic/ling_armcannon
 	fire_sound = 'sound/effects/splat.ogg'
@@ -128,7 +128,7 @@
 	item_state = "teslaclaw"
 	lefthand_file = 'hippiestation/icons/mob/inhands/changeling_lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/changeling_righthand.dmi'
-	flags_1 = ABSTRACT | NODROP_1 | DROPDEL_1
+	flags_1 = ABSTRACT_1 | NODROP_1 | DROPDEL_1
 	w_class = WEIGHT_CLASS_HUGE
 	force = 0
 	throwforce = 5

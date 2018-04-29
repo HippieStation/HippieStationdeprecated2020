@@ -67,7 +67,7 @@
 
 	//Left hand items
 	for(var/obj/item/I in held_items)
-		if(!(I.flags_1 & ABSTRACT))
+		if(!(I.flags_1 & ABSTRACT_1))
 			msg += "It is holding [I.get_examine_string(user)] in its [get_held_index_name(get_held_index_of_item(I))].\n"
 
 	//Braindead

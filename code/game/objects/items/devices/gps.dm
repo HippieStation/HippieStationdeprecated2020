@@ -158,7 +158,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 
 /obj/item/gps/internal
 	icon_state = null
-	flags_1 = ABSTRACT
+	flags_1 = ABSTRACT_1
 	gpstag = "Eerie Signal"
 	desc = "Report to a coder immediately."
 	invisibility = INVISIBILITY_MAXIMUM

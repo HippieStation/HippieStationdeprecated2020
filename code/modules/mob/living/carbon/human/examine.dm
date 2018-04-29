@@ -43,7 +43,7 @@
 
 	//Hands
 	for(var/obj/item/I in held_items)
-		if(!(I.flags_1 & ABSTRACT))
+		if(!(I.flags_1 & ABSTRACT_1))
 			msg += "[t_He] [t_is] holding [I.get_examine_string(user)] in [t_his] [get_held_index_name(get_held_index_of_item(I))].\n"
 
 	GET_COMPONENT(FR, /datum/component/forensics)
