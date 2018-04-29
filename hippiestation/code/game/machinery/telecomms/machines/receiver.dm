@@ -25,7 +25,7 @@
 			var/obj/item/integrated_circuit/input/tcomm_interceptor/T = i
 			var/obj/item/O = T.get_object()
 			if(is_station_level(O.z)&& (!istype(get_area(O), /area/space)))
-				if(!istype(signal.source, /obj/item/device/radio/headset/integrated))
+				if(!istype(signal.source, /obj/item/radio/headset/integrated))
 					signal.data["reject"] = TRUE
 					break
 	..()

@@ -18,7 +18,7 @@
 	cooldown_per_use = 0.1
 	var/list/whitelisted_freqs = list() // special freqs can be used by inserting encryption keys
 	var/list/encryption_keys = list()
-	var/obj/item/device/radio/headset/integrated/radio
+	var/obj/item/radio/headset/integrated/radio
 
 /obj/item/integrated_circuit/output/text_to_radio/Initialize()
 	. = ..()
@@ -44,7 +44,7 @@
 		radio.talk_into(A, text, , get_spans())
 
 /obj/item/integrated_circuit/output/text_to_radio/attackby(obj/O, mob/user)
-	if(istype(O, /obj/item/device/encryptionkey))
+	if(istype(O, /obj/item/encryptionkey))
 		user.transferItemToLoc(O,src)
 		encryption_keys += O
 		recalculate_channels()
@@ -58,7 +58,7 @@
 	radio.set_frequency(FREQ_COMMON) //reset it
 	var/list/weakreffd_ekeys = list()
 	for(var/o in encryption_keys)
-		var/obj/item/device/encryptionkey/K = o
+		var/obj/item/encryptionkey/K = o
 		weakreffd_ekeys += WEAKREF(K)
 		for(var/i in K.channels)
 			whitelisted_freqs |= GLOB.radiochannels[i]
@@ -77,4 +77,4 @@
 	else
 		to_chat(user, "<span class='notice'>There are no encryption keys to remove from the mechanism.</span>")
 
-/obj/item/device/radio/headset/integrated
+/obj/item/radio/headset/integrated

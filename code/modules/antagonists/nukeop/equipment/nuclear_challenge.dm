@@ -1,12 +1,13 @@
 #define CHALLENGE_TELECRYSTALS 280
 #define CHALLENGE_TIME_LIMIT 3000
-#define CHALLENGE_MIN_PLAYERS 1  // hippie-code: Changed this som ops may ALWAYS declare war.
+#define CHALLENGE_MIN_PLAYERS 50
 #define CHALLENGE_SHUTTLE_DELAY 15000 // 25 minutes, so the ops have at least 5 minutes before the shuttle is callable.
 
 GLOBAL_LIST_EMPTY(jam_on_wardec)
 
-/obj/item/device/nuclear_challenge
+/obj/item/nuclear_challenge
 	name = "Declaration of War (Challenge Mode)"
+	icon = 'icons/obj/device.dmi'
 	icon_state = "gangtool-red"
 	item_state = "radio"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
@@ -15,9 +16,9 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 			Such a brazen move will attract the attention of powerful benefactors within the Syndicate, who will supply your team with a massive amount of bonus telecrystals.  \
 			Must be used within five minutes, or your benefactors will lose interest."
 	var/declaring_war = FALSE
-	var/uplink_type = /obj/item/device/radio/uplink/nuclear
+	var/uplink_type = /obj/item/radio/uplink/nuclear
 
-/obj/item/device/nuclear_challenge/attack_self(mob/living/user)
+/obj/item/nuclear_challenge/attack_self(mob/living/user)
 	if(!check_allowed(user))
 		return
 
@@ -56,20 +57,17 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 	for(var/V in GLOB.syndicate_shuttle_boards)
 		var/obj/item/circuitboard/computer/syndicate_shuttle/board = V
 		board.challenge = TRUE
-		
-	for(var/obj/machinery/computer/camera_advanced/shuttle_docker/D in GLOB.jam_on_wardec)
-		D.jammed = TRUE
 
 	for(var/obj/machinery/computer/camera_advanced/shuttle_docker/D in GLOB.jam_on_wardec)
 		D.jammed = TRUE
 
-	new uplink_type(get_turf(user), user.key, GLOB.player_list.len * 6) // hippie-code: Changed this to scale better
+	new uplink_type(get_turf(user), user.key, CHALLENGE_TELECRYSTALS)
 	CONFIG_SET(number/shuttle_refuel_delay, max(CONFIG_GET(number/shuttle_refuel_delay), CHALLENGE_SHUTTLE_DELAY))
 	SSblackbox.record_feedback("amount", "nuclear_challenge_mode", 1)
 
 	qdel(src)
 
-/obj/item/device/nuclear_challenge/proc/check_allowed(mob/living/user)
+/obj/item/nuclear_challenge/proc/check_allowed(mob/living/user)
 	if(declaring_war)
 		to_chat(user, "You are already in the process of declaring war! Make your mind up.")
 		return FALSE
@@ -89,8 +87,8 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 			return FALSE
 	return TRUE
 
-/obj/item/device/nuclear_challenge/clownops
-	uplink_type = /obj/item/device/radio/uplink/clownop
+/obj/item/nuclear_challenge/clownops
+	uplink_type = /obj/item/radio/uplink/clownop
 
 #undef CHALLENGE_TELECRYSTALS
 #undef CHALLENGE_TIME_LIMIT

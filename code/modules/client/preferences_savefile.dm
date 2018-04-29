@@ -325,6 +325,11 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	negative_traits = SANITIZE_LIST(negative_traits)
 	neutral_traits = SANITIZE_LIST(neutral_traits)
 
+	all_traits = SANITIZE_LIST(all_traits)
+	positive_traits = SANITIZE_LIST(positive_traits)
+	negative_traits = SANITIZE_LIST(negative_traits)
+	neutral_traits = SANITIZE_LIST(neutral_traits)
+
 	return 1
 
 /datum/preferences/proc/save_character()
@@ -388,6 +393,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["job_engsec_med"]		, job_engsec_med)
 	WRITE_FILE(S["job_engsec_low"]		, job_engsec_low)
 	hippie_character_pref_save(S)
+
+	//Traits
+	WRITE_FILE(S["all_traits"]		, all_traits)
+	WRITE_FILE(S["positive_traits"]		, positive_traits)
+	WRITE_FILE(S["negative_traits"]		, negative_traits)
+	WRITE_FILE(S["neutral_traits"]		, neutral_traits)
 
 	//Traits
 	WRITE_FILE(S["all_traits"]		, all_traits)

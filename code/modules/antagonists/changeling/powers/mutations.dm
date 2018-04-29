@@ -119,8 +119,8 @@
 	user.dropItemToGround(user.head)
 	user.dropItemToGround(user.wear_suit)
 
-	user.equip_to_slot_if_possible(new suit_type(user), slot_wear_suit, 1, 1, 1)
-	user.equip_to_slot_if_possible(new helmet_type(user), slot_head, 1, 1, 1)
+	user.equip_to_slot_if_possible(new suit_type(user), SLOT_WEAR_SUIT, 1, 1, 1)
+	user.equip_to_slot_if_possible(new helmet_type(user), SLOT_HEAD, 1, 1, 1)
 
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	changeling.chem_recharge_slowdown += recharge_slowdown
@@ -136,7 +136,7 @@
 	desc = "We reform one of our arms into a deadly blade."
 	helptext = "We may retract our armblade in the same manner as we form it. Cannot be used while in lesser form."
 	chemical_cost = 20
-	dna_cost = 4 // Hippie edit - changeling proc_holders refuse to modularize properly
+	dna_cost = 2
 	req_human = 1
 	weapon_type = /obj/item/melee/arm_blade
 	weapon_name_simple = "blade"
@@ -149,7 +149,7 @@
 	item_state = "arm_blade"
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
-	flags_1 = ABSTRACT_1 | NODROP_1 | DROPDEL_1
+	flags_1 = ABSTRACT | NODROP_1 | DROPDEL_1
 	w_class = WEIGHT_CLASS_HUGE
 	force = 25
 	throwforce = 0 //Just to be on the safe side
@@ -229,7 +229,7 @@
 	item_state = "tentacle"
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
-	flags_1 = ABSTRACT_1 | NODROP_1 | DROPDEL_1 | NOBLUDGEON_1
+	flags_1 = ABSTRACT | NODROP_1 | DROPDEL_1 | NOBLUDGEON_1
 	w_class = WEIGHT_CLASS_HUGE
 	ammo_type = /obj/item/ammo_casing/magic/tentacle
 	fire_sound = 'sound/effects/splat.ogg'
@@ -397,7 +397,7 @@
 /obj/item/shield/changeling
 	name = "shield-like mass"
 	desc = "A mass of tough, boney tissue. You can still see the fingers as a twisted pattern in the shield."
-	flags_1 = ABSTRACT_1 | NODROP_1 | DROPDEL_1
+	flags_1 = ABSTRACT | NODROP_1 | DROPDEL_1
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "ling_shield"
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
@@ -423,9 +423,9 @@
 		return ..()
 
 
-
-/* HIPPIE EDIT - Commented out. Unfortunately, despite all of my attempts at modularity - these items continue to show up in the Changeling uplink even though I had disabled them on another file.
-No, setting their DNA Cost to -1 did not make them go away. I have no idea why.
+/***************************************\
+|*********SPACE SUIT + HELMET***********|
+\***************************************/
 /obj/effect/proc_holder/changeling/suit/organic_space_suit
 	name = "Organic Space Suit"
 	desc = "We grow an organic suit to protect ourselves from space exposure."
@@ -445,8 +445,9 @@ No, setting their DNA Cost to -1 did not make them go away. I have no idea why.
 	name = "flesh mass"
 	icon_state = "lingspacesuit"
 	desc = "A huge, bulky mass of pressure and temperature-resistant organic tissue, evolved to facilitate space travel."
-	flags_1 = STOPSPRESSUREDMAGE_1 | NODROP_1 | DROPDEL_1 //Not THICKMATERIAL_1 because it's organic tissue, so if somebody tries to inject something into it, it still ends up in your blood. (also balance but muh fluff)
-	allowed = list(/obj/item/device/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/oxygen)
+	flags_1 = NODROP_1 | DROPDEL_1
+	clothing_flags = STOPSPRESSUREDAMAGE //Not THICKMATERIAL because it's organic tissue, so if somebody tries to inject something into it, it still ends up in your blood. (also balance but muh fluff)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/oxygen)
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90) //No armor at all.
 
 /obj/item/clothing/suit/space/changeling/Initialize()
@@ -464,7 +465,8 @@ No, setting their DNA Cost to -1 did not make them go away. I have no idea why.
 	name = "flesh mass"
 	icon_state = "lingspacehelmet"
 	desc = "A covering of pressure and temperature-resistant organic tissue with a glass-like chitin front."
-	flags_1 = STOPSPRESSUREDMAGE_1 | NODROP_1 | DROPDEL_1 //Again, no THICKMATERIAL_1.
+	flags_1 = NODROP_1 | DROPDEL_1
+	clothing_flags = STOPSPRESSUREDAMAGE
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 90, "acid" = 90)
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 
@@ -484,8 +486,6 @@ No, setting their DNA Cost to -1 did not make them go away. I have no idea why.
 	helmet_type = /obj/item/clothing/head/helmet/changeling
 	suit_name_simple = "armor"
 	helmet_name_simple = "helmet"
-
-HIPPIE EDIT END */
 
 /obj/item/clothing/suit/armor/changeling
 	name = "chitinous mass"

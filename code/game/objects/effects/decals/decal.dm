@@ -16,15 +16,6 @@
 /obj/effect/decal/proc/NeverShouldHaveComeHere(turf/T)
 	return isspaceturf(T) || isclosedturf(T) || islava(T) || istype(T, /turf/open/water) || ischasm(T)
 
-/obj/effect/decal/Initialize()
-	. = ..()
-	if(!isturf(loc) || NeverShouldHaveComeHere(loc))
-		return INITIALIZE_HINT_QDEL
-
-/obj/effect/decal/blob_act(obj/structure/blob/B)
-	if(B && B.loc == loc)
-		qdel(src)
-
 /obj/effect/decal/ex_act(severity, target)
 	qdel(src)
 
