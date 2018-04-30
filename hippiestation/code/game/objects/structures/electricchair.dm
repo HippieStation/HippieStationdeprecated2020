@@ -1,26 +1,4 @@
-/obj/structure/chair/e_chair
-	name = "electric chair"
-	desc = "Looks absolutely SHOCKING!"
-	icon_state = "echair0"
-	var/obj/item/assembly/shock_kit/part = null
-	var/last_time = 1
-	item_chair = null
-
-/obj/structure/chair/e_chair/New()
-	..()
-	add_overlay(mutable_appearance('icons/obj/chairs.dmi', "echair_over", MOB_LAYER + 1))
-
-/obj/structure/chair/e_chair/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/wrench))
-		var/obj/structure/chair/C = new /obj/structure/chair(loc)
-		W.play_tool_sound(src)
-		C.setDir(dir)
-		part.forceMove(loc)
-		part.master = null
-		part = null
-		qdel(src)
-
-/obj/structure/chair/e_chair/proc/shock()
+/obj/structure/chair/e_chair/shock()
 	if(last_time + 10 > world.time)
 		return
 	last_time = world.time
