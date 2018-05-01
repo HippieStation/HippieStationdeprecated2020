@@ -92,7 +92,7 @@
 			var/datum/antagonist/abductor/A = user.mind.has_antag_datum(/datum/antagonist/abductor)
 			if(!A || !(H.mind in A.team.members))
 				continue
-			to_chat(H, rendered)
+		to_chat(H, rendered)
 	for(var/mob/M in GLOB.dead_mob_list)
 		var/link = FOLLOW_LINK(M, user)
 		to_chat(M, "[link] [rendered]")
