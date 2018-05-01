@@ -2650,6 +2650,7 @@
 #include "hippiestation\code\datums\traits\neutral.dm"
 #include "hippiestation\code\datums\wires\wires.dm"
 #include "hippiestation\code\game\atoms.dm"
+#include "hippiestation\code\game\sound.dm"
 #include "hippiestation\code\game\area\areas.dm"
 #include "hippiestation\code\game\area\Space_Station_13_areas.dm"
 #include "hippiestation\code\game\gamemodes\objective_items.dm"
