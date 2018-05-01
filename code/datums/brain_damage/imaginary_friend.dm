@@ -13,7 +13,7 @@
 	get_ghost()
 
 /datum/brain_trauma/special/imaginary_friend/on_life()
-	if(friend_initialized)	//Hippie change, added if friend initialised so that we stop getting phantom forceMoves occurring when a ghost is not found for the imaginary friend
+	if(friend_initialized)	//Hippie change, added a second if friend initialised so that we stop getting phantom forceMoves occurring when a ghost is not found for the imaginary friend
 		if(get_dist(owner, friend) > 9)
 			friend.yank()
 	if(!friend)
@@ -144,7 +144,8 @@
 		to_chat(M, "[link] [dead_rendered]")
 
 /mob/camera/imaginary_friend/forceMove(atom/destination)
-	if(!friend_initialized)	//Hippie change, added if/else because this is called even as soon as the trauma is added, causing forceMove to be called on null
+	var/friend_initialized = check_friend_presence()
+	if(!friend_initialized)	//Hippie change, added if/else and the var because this thing is called as soon as the trauma is added, causing forceMove to be called on null. This should stop that happening
 		return
 	else
 		dir = get_dir(get_turf(src), destination)
@@ -153,6 +154,14 @@
 			yank()
 			return
 		Show()
+
+/mob/camera/imaginary_friend/proc/check_friend_presence()	//Hippie proc, this will be used in imaginary friend's forceMove to stop it happening if there's no friend initialised
+	for(var/imaginary_friend in var/mob/living/carbon/owner)
+		var/friend_initialized
+		if(friend_initialized)
+			return TRUE
+		else
+			return FALSE
 
 /mob/camera/imaginary_friend/movement_delay()
 	return 2
