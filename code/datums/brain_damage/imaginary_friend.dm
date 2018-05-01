@@ -14,9 +14,10 @@
 
 /datum/brain_trauma/special/imaginary_friend/on_life()
 	if(get_dist(owner, friend) > 9)
-		friend.yank()
+		if(friend_initialized)
+			friend.yank()	//Hippie change, added if friend initialised so that we stop getting phantom forceMoves occurring when a ghost is not found for the imaginary friend
 	if(!friend)
-		qdel(src)
+		QDEL_NULL(friend)	//Hippie change, changed qdel src to qdel_null friend, otherwise the qdel ends up deleting the trauma instead of the friend
 		return
 	if(!friend.client && friend_initialized)
 		addtimer(CALLBACK(src, .proc/reroll_friend), 600)
@@ -45,7 +46,7 @@
 		friend.key = C.key
 		friend_initialized = TRUE
 	else
-		qdel(src)
+		addtimer(CALLBACK(src, .proc/reroll_friend), 1200)	//Hippie change, removed qdel and put addtimer. This will stop you from losing the trauma if we cannot find a friend, and tries to get a friend after 2 minutes
 
 /mob/camera/imaginary_friend
 	name = "imaginary friend"

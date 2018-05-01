@@ -30,7 +30,7 @@
 		log_game("[key_name(stranger_backseat)] became [key_name(owner)]'s split personality.")
 		message_admins("[key_name_admin(stranger_backseat)] became [key_name_admin(owner)]'s split personality.")
 	else
-		qdel(src)
+		addtimer(CALLBACK(src, .proc/get_ghost), 600)	//Hippie change, removed qdel and replaced with a timer for get_ghost so you don't lose this trauma if we cannot find a ghost
 
 /datum/brain_trauma/severe/split_personality/on_life()
 	if(owner.stat == DEAD)
@@ -186,7 +186,7 @@
 		var/mob/dead/observer/C = pick(candidates)
 		stranger_backseat.key = C.key
 	else
-		qdel(src)
+		addtimer(CALLBACK(src, .proc/get_ghost), 600)	//Hippie change, removed qdel and replaced with a timer for get_ghost so you don't lose brainwashing if we cannot find a ghost
 
 /datum/brain_trauma/severe/split_personality/brainwashing/on_life()
 	return //no random switching
