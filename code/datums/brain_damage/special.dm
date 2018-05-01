@@ -134,3 +134,32 @@
 
 /datum/brain_trauma/special/psychotic_brawling/bath_salts
 	name = "Chemical Violent Psychosis"
+
+/datum/brain_trauma/special/cotard_delusion
+	name = "Cotard Delusion"
+	desc = "Patient thinks they are dead, causing them to aimlessly wander around and think they can speak with the dead."
+	scan_desc = "cotard delusion"
+	gain_text = "<span class='warning'>You feel incredibly cold and pale...</span>"
+	lose_text = "<span class='notice'>You feel life coming back to your body!</span>"
+
+/datum/brain_trauma/special/cotard_delusion/on_gain()
+	..()
+	var/mob/living/carbon/human/H = owner
+	for(H in owner)
+		ghostvision = 1
+		update_sight()
+	owner.set_screwyhud(SCREWYHUD_DEAD)		//You're cactus, m8. Deceased. Not living. Kicked the bucket. Dead.
+	owner.add_client_colour(/datum/client_colour/greyscale)		//You're """dead""" so you're only seeing a discoloured version of the real world
+
+
+/datum/brain_trauma/special/cotard_delusion/on_life()
+	if(prob(1))
+		var/mob/living/carbon/C = owner
+		owner.hallucination(50)	//Will be a ghost hallucination, cost of 50 so the only possible hallucinations that can play are ghost ones
+
+
+/datum/brain_trauma/special/cotard_delusion/on_lose()
+	var/mob/living/carbon/human/H = owner
+	for(H in owner)
+		ghostvision = 0
+		update_sight()

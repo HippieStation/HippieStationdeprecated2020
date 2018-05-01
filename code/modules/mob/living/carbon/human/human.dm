@@ -4,6 +4,8 @@
 	icon = 'icons/mob/human.dmi'
 	icon_state = "caucasian_m"
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
+	see_invisible = 0	//This will give the human the potential ability to see ghosts, while others cannot.
+	ghostvision = 0			//Boolean for the update_sight proc
 
 /mob/living/carbon/human/Initialize()
 	verbs += /mob/living/proc/mob_sleep
@@ -230,7 +232,7 @@
 					return
 				L.embedded_objects -= I
 				L.receive_damage(I.embedding.embedded_unsafe_removal_pain_multiplier*I.w_class)//It hurts to rip it out, get surgery you dingus.
-				
+
 				// Hippie Start - Remove pinned item
 				if (I.pinned)
 					do_pindown(src.pinned_to, 0)
@@ -752,6 +754,14 @@
 /mob/living/carbon/human/proc/end_electrocution_animation(mutable_appearance/MA)
 	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, "#000000")
 	cut_overlay(MA)
+
+/mob/living/carbon/human/proc/update_sight()	//This will allow individual humans to potentially see ghosts
+	if(client)
+		ghost_others = client.prefs.ghost_others //A quick update just in case this setting was changed right before calling the proc
+	if (!ghostvision)
+		see_invisible = NULL
+	else
+		see_invisible = SEE_INVISIBLE_OBSERVER
 
 /mob/living/carbon/human/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE)
 	if(incapacitated() || lying )
