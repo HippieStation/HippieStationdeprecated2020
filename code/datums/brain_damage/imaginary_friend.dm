@@ -156,12 +156,11 @@
 		Show()
 
 /mob/camera/imaginary_friend/proc/check_friend_presence()	//Hippie proc, this will be used in imaginary friend's forceMove to stop it happening if there's no friend initialised
-	for(var/imaginary_friend in var/mob/living/carbon/owner)
-		var/friend_initialized
-		if(friend_initialized)
-			return TRUE
-		else
-			return FALSE
+	var/datum/brain_trauma/special/imaginary_friend
+	if(imaginary_friend.friend_initialized)
+		return TRUE
+	else
+		return FALSE
 
 /mob/camera/imaginary_friend/movement_delay()
 	return 2
