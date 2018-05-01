@@ -13,9 +13,9 @@
 	get_ghost()
 
 /datum/brain_trauma/special/imaginary_friend/on_life()
-	if(get_dist(owner, friend) > 9)
-		if(friend_initialized)
-			friend.yank()	//Hippie change, added if friend initialised so that we stop getting phantom forceMoves occurring when a ghost is not found for the imaginary friend
+	if(friend_initialized)	//Hippie change, added if friend initialised so that we stop getting phantom forceMoves occurring when a ghost is not found for the imaginary friend
+		if(get_dist(owner, friend) > 9)
+			friend.yank()
 	if(!friend)
 		QDEL_NULL(friend)	//Hippie change, changed qdel src to qdel_null friend, otherwise the qdel ends up deleting the trauma instead of the friend
 		return
