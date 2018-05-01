@@ -31,7 +31,6 @@
 	level = 0
 
 /datum/symptom/oldcode/heal/
-
 	name = "Toxic Filter"
 	desc = ""
 	stealth = 1
@@ -56,7 +55,6 @@
 	return 1
 
 /datum/symptom/oldcode/heal/plus
-
 	name = "Apoptoxin filter"
 	desc = ""
 	stealth = 0
@@ -72,7 +70,6 @@
 	return 1
 
 /datum/symptom/oldcode/heal/brute
-
 	name = "Regeneration"
 	desc = ""
 	stealth = 1
@@ -97,7 +94,6 @@
 	return 1
 
 /datum/symptom/oldcode/heal/brute/plus
-
 	name = "Flesh Mending"
 	desc = ""
 	stealth = 0
@@ -126,7 +122,6 @@
 	return 1
 
 /datum/symptom/oldcode/heal/burn
-
 	name = "Tissue Regrowth"
 	desc = ""
 	stealth = 1
@@ -151,7 +146,6 @@
 	return 1
 
 /datum/symptom/oldcode/heal/burn/plus
-
 	name = "Heat Resistance"
 	desc = ""
 	stealth = 0
@@ -181,7 +175,6 @@
 	return 1
 
 /datum/symptom/oldcode/heal/dna
-
 	name = "Deoxyribonucleic Acid Restoration"
 	desc = ""
 	stealth = -1
