@@ -145,21 +145,18 @@
 /datum/brain_trauma/special/cotard_delusion/on_gain()
 	..()
 	var/mob/living/carbon/human/H = owner
-	for(H in owner)
-		ghostvision = 1
-		update_sight()
+	H.toggle_ghostvision()
 	owner.set_screwyhud(SCREWYHUD_DEAD)		//You're cactus, m8. Deceased. Not living. Kicked the bucket. Dead.
 	owner.add_client_colour(/datum/client_colour/greyscale)		//You're """dead""" so you're only seeing a discoloured version of the real world
 
 
 /datum/brain_trauma/special/cotard_delusion/on_life()
+	..()
 	if(prob(1))
-		var/mob/living/carbon/C = owner
-		owner.hallucination(50)	//Will be a ghost hallucination, cost of 50 so the only possible hallucinations that can play are ghost ones
+		new /datum/hallucination/ghosts		//Specifying exactly what hallucination it is so we don't get any other ones coming out
 
 
 /datum/brain_trauma/special/cotard_delusion/on_lose()
+	..()
 	var/mob/living/carbon/human/H = owner
-	for(H in owner)
-		ghostvision = 0
-		update_sight()
+	H.toggle_ghostvision()

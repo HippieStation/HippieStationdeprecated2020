@@ -1196,6 +1196,13 @@ GLOBAL_LIST_INIT(hallucinations_major, list(
 	H.fire()
 	qdel(src)
 
+/datum/hallucination/ghosts
+	cost = 0	//No cost because we don't want this to randomly come up, at least not till we sort out what this will actually do
+
+/datum/hallucination/ghosts/New(mob/living/carbon/C, forced = TRUE)
+	..()
+	//This is empty for now, going to fill it later. This is just a reference point for now
+
 //Reality Dissociation Syndrome hallucinations only trigger in special cases and have no cost
 /datum/hallucination/rds
 	cost = 0
