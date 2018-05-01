@@ -160,3 +160,4 @@
 	..()
 	var/mob/living/carbon/human/H = owner
 	H.toggle_ghostvision()
+	owner.set_screwyhud(SCREWYHUD_NONE)
