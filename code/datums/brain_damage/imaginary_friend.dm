@@ -144,12 +144,15 @@
 		to_chat(M, "[link] [dead_rendered]")
 
 /mob/camera/imaginary_friend/forceMove(atom/destination)
-	dir = get_dir(get_turf(src), destination)
-	loc = destination
-	if(get_dist(src, owner) > 9)
-		yank()
+	if(!friend_initialized)	//Hippie change, added if/else because this is called even as soon as the trauma is added, causing forceMove to be called on null
 		return
-	Show()
+	else
+		dir = get_dir(get_turf(src), destination)
+		loc = destination
+		if(get_dist(src, owner) > 9)
+			yank()
+			return
+		Show()
 
 /mob/camera/imaginary_friend/movement_delay()
 	return 2
