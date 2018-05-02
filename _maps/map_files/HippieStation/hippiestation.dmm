@@ -29594,11 +29594,6 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
-"bwc" = (
-/turf/open/floor/plasteel/brown/corner{
-	dir = 1
-	},
-/area/quartermaster/office)
 "bwd" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -30290,6 +30285,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"bxM" = (
+/obj/machinery/autolathe,
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "bxN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel,
@@ -58268,12 +58267,6 @@
 	name = "floor"
 	},
 /area/engine/port_engineering)
-"dzI" = (
-/obj/structure/table,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/clothing/ears/earmuffs,
-/turf/open/floor/plasteel/vault,
-/area/science/misc_lab)
 "dBI" = (
 /obj/machinery/power/grounding_rod,
 /obj/effect/turf_decal/bot,
@@ -58397,10 +58390,6 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/solar/starboard/fore)
-"dXh" = (
-/obj/machinery/airalarm,
-/turf/closed/wall,
-/area/crew_quarters/theatre)
 "dYn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -59096,12 +59085,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/maintenance/department/medical/morgue)
-"gXe" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/science/misc_lab)
 "gXP" = (
 /obj/machinery/status_display,
 /turf/closed/wall/r_wall,
@@ -59545,6 +59528,12 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/solar/port/aft)
+"itL" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/clothing/ears/earmuffs,
+/turf/open/floor/plasteel/vault,
+/area/science/misc_lab)
 "iug" = (
 /obj/machinery/holopad,
 /obj/effect/turf_decal/stripes/line,
@@ -60463,6 +60452,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"lZb" = (
+/obj/machinery/airalarm,
+/turf/closed/wall,
+/area/crew_quarters/theatre)
 "lZA" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/firedoor,
@@ -60700,6 +60693,12 @@
 /obj/structure/lattice,
 /turf/open/space,
 /area/space/nearstation)
+"mUH" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/science/misc_lab)
 "mXB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -60723,6 +60722,16 @@
 	},
 /turf/open/floor/noslip,
 /area/maintenance/forge)
+"mYp" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Engineering West";
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/science/misc_lab)
 "mYt" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -60871,6 +60880,10 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"nEH" = (
+/mob,
+/turf/closed/wall,
+/area/crew_quarters/theatre)
 "nFo" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -61536,6 +61549,10 @@
 	},
 /turf/open/floor/plating,
 /area/engine/port_engineering)
+"pXM" = (
+/mob/living/simple_animal/pet/hedgehog/Bernie,
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain)
 "pYl" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel,
@@ -61854,10 +61871,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/maintenance/central)
-"rGI" = (
-/mob/living/simple_animal/pet/hedgehog/Bernie,
-/turf/open/floor/wood,
-/area/crew_quarters/heads/captain)
 "rIm" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -62946,16 +62959,6 @@
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/engine/port_engineering)
-"vMg" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/machinery/camera{
-	c_tag = "Engineering West";
-	dir = 4
-	},
-/turf/open/floor/engine,
-/area/science/misc_lab)
 "vOl" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -63320,10 +63323,6 @@
 	},
 /turf/closed/wall,
 /area/storage/tech)
-"wYl" = (
-/mob,
-/turf/closed/wall,
-/area/crew_quarters/theatre)
 "wYv" = (
 /obj/structure/sign/warning/fire,
 /turf/closed/wall/r_wall,
@@ -85437,8 +85436,8 @@ bqj
 brH
 bth
 buJ
-bwc
 bDv
+bxM
 bzj
 bAD
 bCc
@@ -95197,7 +95196,7 @@ bhV
 bjp
 bks
 blU
-rGI
+pXM
 bhX
 bhX
 bfA
@@ -98263,7 +98262,7 @@ aHw
 aHw
 aJU
 aJU
-dXh
+lZb
 aOA
 aOA
 aRM
@@ -98777,7 +98776,7 @@ aHy
 aIF
 aJW
 aLB
-wYl
+nEH
 aOC
 aQt
 aRO
@@ -110901,12 +110900,12 @@ bTY
 bTY
 bTY
 bLX
-gXe
-gXe
-vMg
+mUH
+mUH
+mYp
 ccm
 cdx
-dzI
+itL
 cfB
 cgJ
 chG
