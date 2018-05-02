@@ -242,7 +242,7 @@
 	var/hit_use = 5
 	var/criticalpower = FALSE
 	var/mode = "none"
-	var/recharge_delay = 30
+	var/recharge_delay = 20
 	var/datum/martial_art/nano/style = new
 	var/shutdown = FALSE
 	var/current_charges = 3
@@ -262,19 +262,18 @@
 /obj/item/clothing/suit/space/hardsuit/nano/emp_act(severity)
 	..()
 	cell.use(round(cell.charge / severity))
-	if(prob(10/severity*1.5) && !shutdown)
+	if(prob(5/severity*1.5) && !shutdown)
 		emp_assault()
 	update_icon()
-
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/emp_assault()
 	if(!U.mind)
 		return //Not sure how this could happen.
 	shutdown = TRUE
-	toggle_mode("none", TRUE)
 	U.Knockdown(300)
 	U.AdjustStun(300)
 	U.Jitter(120)
+	toggle_mode("none", TRUE)
 	helmet.display_visor_message("EMP Assault! Systems impaired.")
 	addtimer(CALLBACK(src, .proc/emp_assaulttwo), 25)
 
@@ -341,34 +340,34 @@
 		to_chat(user, "The suit appears to be offline.")
 
 /obj/item/clothing/suit/space/hardsuit/nano/process()
-	if(cell.charge >= 20)
-		criticalpower = FALSE
-	else
-		if(!criticalpower)
-			helmet.display_visor_message("Energy Critical!")
-			criticalpower = !criticalpower
-	if(cell.charge < 1)
-		cell.charge = 0
-		if(mode != "armor" && mode != "strength")
-			toggle_mode("armor", TRUE)
-	if(mode == "cloak")
-		cell.use(1)
-	if(world.time > medical_cooldown && current_charges < max_charges)
-		current_charges = CLAMP((current_charges + 1), 0, max_charges)
-	if(U.bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT)
-		if(!detecting)
-			temp_cooldown = world.time + restore_delay
-			detecting = TRUE
-		if(world.time > temp_cooldown)
-			if(!defrosted)
-				helmet.display_visor_message("Activating suit defrosting protocols.")
-				U.reagents.add_reagent("leporazine", 2)
-				defrosted = TRUE
-				temp_cooldown += 100
-	else
-		defrosted = FALSE
-		detecting = FALSE
-
+	if(U)
+		if(cell.charge >= 20)
+			criticalpower = FALSE
+		else
+			if(!criticalpower)
+				helmet.display_visor_message("Energy Critical!")
+				criticalpower = !criticalpower
+		if(cell.charge < 1 && !shutdown)
+			cell.charge = 0
+			if(mode != "armor" && mode != "strength")
+				toggle_mode("armor", TRUE)
+		if(mode == "cloak")
+			cell.use(1)
+		if(world.time > medical_cooldown && current_charges < max_charges)
+			current_charges = CLAMP((current_charges + 1), 0, max_charges)
+		if(U.bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT)
+			if(!detecting)
+				temp_cooldown = world.time + restore_delay
+				detecting = TRUE
+			if(world.time > temp_cooldown)
+				if(!defrosted)
+					helmet.display_visor_message("Activating suit defrosting protocols.")
+					U.reagents.add_reagent("leporazine", 2)
+					defrosted = TRUE
+					temp_cooldown += 100
+		else
+			defrosted = FALSE
+			detecting = FALSE
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/ntick()
 	spawn while(!shutdown)
@@ -376,7 +375,7 @@
 			if(cell.charge > 0)
 				cell.give(charge_rate) //this will get called after the bottom
 			else
-				sleep(40) //if we lose energy wait 5 seconds then recharge us
+				sleep(40) //if we lose energy wait 4 seconds then recharge us
 				cell.give(charge_rate)
 
 		sleep(recharge_delay)//recharges us at variable rate
@@ -741,7 +740,7 @@ obj/item/clothing/suit/space/hardsuit/nano/dropped()
 /datum/martial_art/nano/disarm_act(var/mob/living/carbon/human/A, var/mob/living/carbon/D)
 	var/obj/item/I = null
 	A.do_attack_animation(D, ATTACK_EFFECT_DISARM)
-	if(prob(60) && D != A)
+	if(prob(70) && D != A)
 		I = D.get_active_held_item()
 		if(I)
 			if(D.temporarilyRemoveItemFromInventory(I))
@@ -810,7 +809,7 @@ obj/item/clothing/suit/space/hardsuit/nano/dropped()
 
 
 /obj/attacked_by(obj/item/I, mob/living/user)
-	if(I.force && I.damtype == BRUTE && user.mind && istype(user.mind.martial_art, /datum/martial_art/nano))
+	if(I.force && I.damtype == BRUTE && istype(user.mind.martial_art, /datum/martial_art/nano))
 		visible_message("<span class='danger'>[user] has hit [src] with a strengthened blow from [I]!</span>", null, null, COMBAT_MESSAGE_RANGE)
 		//only witnesses close by and the victim see a hit message.
 		take_damage(I.force*1.75, I.damtype, "melee", 1)//take 75% more damage with strength on
@@ -818,7 +817,7 @@ obj/item/clothing/suit/space/hardsuit/nano/dropped()
 		return ..()
 
 /obj/item/throw_at(atom/target, range, speed, mob/living/carbon/human/thrower, spin = 1, diagonals_first = 0, datum/callback/callback)
-	if(thrower.mind && istype(thrower.mind.martial_art, /datum/martial_art/nano))
+	if(istype(thrower.mind.martial_art, /datum/martial_art/nano))
 		.=..(target, range*1.5, speed*2, thrower, spin, diagonals_first, callback)
 	else
 		..()
@@ -858,7 +857,7 @@ obj/item/clothing/suit/space/hardsuit/nano/dropped()
 
 /mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
 	var/datum/martial_art/nano/style = new
-	if(istype(src.mind.martial_art, /datum/martial_art/nano))
+	if(istype(mind.martial_art, /datum/martial_art/nano))
 		if(style.on_attack_hand(src, A, proximity))
 			return
 	..()
@@ -890,7 +889,6 @@ obj/item/clothing/suit/space/hardsuit/nano/dropped()
 	var/area/A = get_area(dustturf)
 	message_admins("[ADMIN_LOOKUPFLW(imp_in)] has activated their [name] at [A.name] [ADMIN_JMP(dustturf)], with cause of [cause].")
 	playsound(loc, 'sound/effects/fuse.ogg', 30, 0)
-	sleep(25)
 	imp_in.dust()
 	qdel(src)
 
