@@ -57,6 +57,7 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
 	sight = NONE
 	see_invisible = SEE_INVISIBLE_LIVING
+	mouse_opacity = MOUSE_OPACITY_OPAQUE	//Hippie change, made opaque so it can be examined and their name can be viewed
 	var/icon/human_image
 	var/image/current_image
 	var/mob/living/carbon/owner
