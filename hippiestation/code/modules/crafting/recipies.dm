@@ -52,6 +52,13 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
+/datum/crafting_recipe/woodenmug
+	name = "Wooden Mug"
+	result = /obj/item/reagent_containers/glass/woodmug
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 2)
+	time = 20
+	category = CAT_PRIMAL
+
 /datum/crafting_recipe/wheelchair
 	name = "Wheelchair"
 	result = /obj/vehicle/ridden/wheelchair
