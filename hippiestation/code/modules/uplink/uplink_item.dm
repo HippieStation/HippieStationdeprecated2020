@@ -1,8 +1,32 @@
-/datum/uplink_item/colab
-	category = "Collaborative Gear"
+/datum/uplink_item/badass
+	category = "Badassery"
+
+/datum/uplink_item/collab
+	category = "Collaborative"
 	surplus = 0
 	exclude_modes = list(/datum/game_mode/nuclear)
 	cant_discount = TRUE
+
+/datum/uplink_item/dangerous
+	category = "Conspicuous Weaponry"
+	
+/datum/uplink_item/device_tools
+	category = "Gadgets/Tools"
+	
+/datum/uplink_item/discounts
+	category = "Discounted"
+
+/datum/uplink_item/stealthy_tools
+	category = "Stealth/Camouflage"
+
+/datum/uplink_item/stealthy_weapons
+	category = "Inconspicuous Weaponry"
+
+/datum/uplink_item/suits
+	category = "EVA Suits"
+
+/datum/uplink_item/support
+	category = "Exosuits/Support"
 
 /* Stimpak */
 /datum/uplink_item/stealthy_tools/stimpack
@@ -232,7 +256,7 @@
 	surplus = 5 //Up yours TGbalanceing
 	player_minimum = 0
 
-/datum/uplink_item/colab/romerol_kit
+/datum/uplink_item/collab/romerol_kit
 	name = "Romerol"
 	desc = "A highly experimental bioterror agent which creates dormant nodules to be etched into the grey matter of the brain. On death, these nodules take control of the dead body, causing limited revivification, along with slurred speech, aggression, and the ability to infect others with this agent."
 	item = /obj/item/storage/box/syndie_kit/romerol
@@ -308,7 +332,7 @@
 /datum/uplink_item/role_restricted/reverse_bear_trap
 	cost = 1
 	restricted_roles = list() // tg is gay
-	category = "(Pointless) Badassery"
+	category = "Badassery"
 
 /datum/uplink_item/badass/contender
 	name = "Contender G13"
