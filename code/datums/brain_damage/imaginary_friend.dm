@@ -13,7 +13,7 @@
 	get_ghost()
 
 /datum/brain_trauma/special/imaginary_friend/on_life()
-	..()
+	..()	//Hippie change, added this bit because... idk lol. Just go with it
 	if(friend_initialized)	//Hippie change, added a second if friend initialised so that we stop getting phantom forceMoves occurring when a ghost is not found for the imaginary friend
 		if(get_dist(owner, friend) > 9)
 			friend.yank()
