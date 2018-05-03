@@ -312,6 +312,10 @@
 	if(!I) //If there's nothing to drop, the drop is automatically succesfull. If(unEquip) should generally be used to check for NODROP_1.
 		return TRUE
 
+	if(!newloc)	//Hippie change, added newloc generation so that forceMove no longer acts on null when working with human dummies
+		newloc = loc
+		to_chat(world, "hello")
+
 	if((I.flags_1 & NODROP_1) && !force)
 		return FALSE
 
@@ -326,7 +330,10 @@
 		I.plane = initial(I.plane)
 		I.appearance_flags &= ~NO_CLIENT_COLOR
 		if(!no_move && !(I.flags_1 & DROPDEL_1))	//item may be moved/qdel'd immedietely, don't bother moving it
-			I.forceMove(newloc)
+			if(/obj/item/storage/internal/pocket/butt)	//Hippie change, added snowflake check so we don't forceMove ass blast inventories
+				return TRUE
+			else
+				I.forceMove(newloc)
 		I.dropped(src)
 	return TRUE
 

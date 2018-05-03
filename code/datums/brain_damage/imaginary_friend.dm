@@ -13,12 +13,10 @@
 	get_ghost()
 
 /datum/brain_trauma/special/imaginary_friend/on_life()
+	..()
 	if(friend_initialized)	//Hippie change, added a second if friend initialised so that we stop getting phantom forceMoves occurring when a ghost is not found for the imaginary friend
 		if(get_dist(owner, friend) > 9)
 			friend.yank()
-	if(!friend)
-		QDEL_NULL(friend)	//Hippie change, changed qdel src to qdel_null friend, otherwise the qdel ends up deleting the trauma instead of the friend
-		return
 	if(!friend.client && friend_initialized)
 		addtimer(CALLBACK(src, .proc/reroll_friend), 600)
 
@@ -80,8 +78,7 @@
 	human_image = get_flat_human_icon(null, pick(SSjob.occupations))
 
 /mob/camera/imaginary_friend/proc/Show()
-	if(!client) //nobody home
-		return
+	//Hippie change, removed if client return because the images should be updating even if you're tabbed out or whatever
 
 	//Remove old image from owner and friend
 	if(owner.client)
@@ -110,7 +107,7 @@
 /mob/camera/imaginary_friend/proc/yank()
 	if(!client) //don't bother if the friend is braindead
 		return
-	forceMove(get_turf(owner))
+	forceMove(owner)	//Hippie change, removed get_turf
 	Show()
 
 /mob/camera/imaginary_friend/say(message)
