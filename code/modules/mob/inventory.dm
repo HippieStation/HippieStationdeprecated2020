@@ -314,7 +314,6 @@
 
 	if(!newloc)	//Hippie change, added newloc generation so that forceMove no longer acts on null when working with human dummies
 		newloc = loc
-		to_chat(world, "hello")
 
 	if((I.flags_1 & NODROP_1) && !force)
 		return FALSE
