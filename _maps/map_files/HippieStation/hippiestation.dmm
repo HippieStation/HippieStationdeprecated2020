@@ -59023,9 +59023,6 @@
 /obj/structure/lattice,
 /turf/open/space,
 /area/space/nearstation)
-"ghZ" = (
-/turf/closed/wall,
-/area/space)
 "gib" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -60561,9 +60558,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
-"lRd" = (
-/turf/open/floor/plating,
-/area/space/nearstation)
 "lRe" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/circuit,
@@ -60899,11 +60893,6 @@
 "ncA" = (
 /turf/open/floor/plating,
 /area/engine/port_engineering)
-"ndX" = (
-/obj/structure/table,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/space)
 "nfo" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -61232,9 +61221,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"ogv" = (
-/turf/open/floor/plating,
-/area/space)
 "oht" = (
 /obj/machinery/the_singularitygen,
 /turf/open/floor/plating,
@@ -86978,8 +86964,8 @@ bNE
 bNE
 bRS
 bEX
-ghZ
-ghZ
+bJS
+bJS
 bJS
 bWA
 bJS
@@ -87240,7 +87226,7 @@ fSn
 bQG
 bQG
 bQG
-ndX
+bQF
 bJS
 bQG
 bJS
@@ -87497,7 +87483,7 @@ bQG
 bQG
 bQG
 bQG
-lRd
+bQG
 bJS
 ccB
 bJS
@@ -87754,7 +87740,7 @@ qdJ
 bQG
 bQG
 iZF
-ogv
+bQG
 bJS
 ccC
 bJS
@@ -88005,13 +87991,13 @@ bJS
 bQG
 bQH
 bJS
-ogv
-lRd
 bQG
 bQG
 bQG
-ogv
-ogv
+bQG
+bQG
+bQG
+bQG
 cbx
 ccD
 bRT
