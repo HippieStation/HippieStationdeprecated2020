@@ -29,14 +29,19 @@
 		stranger_backseat.key = C.key
 		log_game("[key_name(stranger_backseat)] became [key_name(owner)]'s split personality.")
 		message_admins("[key_name_admin(stranger_backseat)] became [key_name_admin(owner)]'s split personality.")
+		initialized = TRUE	//Hippie change, added initialized so that make_backseats and get_ghost isn't spammed
 	else
 		addtimer(CALLBACK(src, .proc/get_ghost), 600)	//Hippie change, removed qdel and replaced with a timer for get_ghost so you don't lose this trauma if we cannot find a ghost
 
 /datum/brain_trauma/severe/split_personality/on_life()
-	if(owner.stat == DEAD)
-		if(current_controller != OWNER)
-			switch_personalities()
-		qdel(src)
+	if(!owner.client && initialized)	//Hippie change, changed owner.stat = dead to !owner.client so this runs if the owner ghosts or w/e for some reason
+		initialized = FALSE	//Hippie change, added initialized check and flag change so addtimer doesn't get spammed
+		switch_personalities()
+		stranger_backseat = owner	//Hippie change, ghost in seat becomes the new owner if the other guy ghosts
+		QDEL_NULL(stranger_backseat)
+		QDEL_NULL(owner_backseat)	//The personality keeps the body if the owner decides to ghost for some reason... but look out, you're going to get a new personality soon!!!
+		addtimer(CALLBACK(src, .proc/make_backseats), 580)	//Hippie change, added qdel on backseats and added a timer for make new backseats so the get_ghost's vote can properly be initiated, otherwise it freaks out and doesn't go through if someone ghosts
+		addtimer(CALLBACK(src, .proc/get_ghost), 600)	//Hippie change, removed qdel and replaced with a timer for get_ghost so you don't lose this trauma if we cannot find a ghost
 	else if(prob(3))
 		switch_personalities()
 	..()
@@ -49,7 +54,7 @@
 	..()
 
 /datum/brain_trauma/severe/split_personality/proc/switch_personalities()
-	if(QDELETED(owner) || owner.stat == DEAD || QDELETED(stranger_backseat) || QDELETED(owner_backseat))
+	if(QDELETED(owner) || owner.stat == DEAD || QDELETED(stranger_backseat) || QDELETED(owner_backseat))	//Hippie change, changed owner.stat to !owner.stat so personalities do not swap if the non controlling personality is empty - the one without control shouldn't be cucked if the owner just ghosts bc lol
 		return
 
 	var/mob/living/split_personality/current_backseat
@@ -124,12 +129,12 @@
 
 	if((body.stat == DEAD && trauma.owner_backseat == src))
 		trauma.switch_personalities()
-		qdel(trauma)
+		qdel(src)	//Hippie change, changed qdel trauma to qdel src - we want this mob/living to be destroyed, not the trauma itself
 
 	//if one of the two ghosts, the other one stays permanently
 	if(!body.client && trauma.initialized)
 		trauma.switch_personalities()
-		qdel(trauma)
+		qdel(src)	//Hippie change, changed qdel trauma to qdel src - we want this mob/living to be destroyed, not the trauma itself
 
 	..()
 

@@ -314,11 +314,10 @@
 
 	if(!newloc)	//Hippie change, added newloc generation so that forceMove no longer acts on null when working with human dummies
 		newloc = loc
-		to_chat(world, "hello")
 
 	if((I.flags_1 & NODROP_1) && !force)
 		return FALSE
-
+	to_chat(world, "new: [newloc]")
 	var/hand_index = get_held_index_of_item(I)
 	if(hand_index)
 		held_items[hand_index] = null
@@ -334,7 +333,7 @@
 				return TRUE
 			else
 				I.forceMove(newloc)
-		I.dropped(src)
+		I.dropped(newloc)	//Hippie change, changed src to newloc cause otherwise items get sent to oblivion
 	return TRUE
 
 //Outdated but still in use apparently. This should at least be a human proc.
