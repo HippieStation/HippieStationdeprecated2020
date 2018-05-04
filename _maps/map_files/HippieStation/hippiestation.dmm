@@ -226,9 +226,7 @@
 /turf/open/floor/plasteel/floorgrime,
 /area/security/prison)
 "aaO" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/plasteel/floorgrime,
 /area/security/prison)
 "aaP" = (
@@ -293,9 +291,7 @@
 /turf/open/floor/plasteel/floorgrime,
 /area/security/prison)
 "aaZ" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel/floorgrime,
@@ -800,9 +796,7 @@
 /turf/open/floor/plasteel/floorgrime,
 /area/security/prison)
 "acu" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -838,9 +832,7 @@
 /turf/open/floor/plasteel/floorgrime,
 /area/security/prison)
 "acx" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -879,9 +871,7 @@
 /turf/open/floor/plasteel/floorgrime,
 /area/security/prison)
 "acA" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -3345,8 +3335,7 @@
 /area/security/prison)
 "ahA" = (
 /obj/structure/chair{
-	dir = 4;
-	step_x = -3
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
@@ -5433,9 +5422,7 @@
 	icon_state = "storage"
 	})
 "alZ" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/wood,
 /area/maintenance/fore/secondary{
 	icon_state = "storage"
@@ -6143,9 +6130,7 @@
 	icon_state = "storage"
 	})
 "anS" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -8636,9 +8621,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "aun" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "auo" = (
@@ -9071,10 +9054,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "avt" = (
-/obj/structure/barricade/wooden/crude{
-	step_x = 0;
-	step_y = 0
-	},
+/obj/structure/barricade/wooden/crude,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "avu" = (
@@ -9187,9 +9167,7 @@
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "avQ" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/fore)
@@ -9561,9 +9539,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "awT" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "awU" = (
@@ -10342,9 +10318,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "ayS" = (
@@ -13302,8 +13276,7 @@
 	pixel_y = 25
 	},
 /obj/structure/chair{
-	dir = 4;
-	step_x = -3
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
@@ -14654,9 +14627,7 @@
 /turf/open/floor/plasteel,
 /area/gateway)
 "aJA" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/plasteel,
 /area/gateway)
 "aJB" = (
@@ -14799,9 +14770,7 @@
 /turf/open/floor/plasteel/redblue,
 /area/crew_quarters/theatre)
 "aJU" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/plasteel/redblue,
 /area/crew_quarters/theatre)
 "aJV" = (
@@ -16363,10 +16332,7 @@
 "aNz" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
-/obj/structure/sign/poster/contraband/ambrosia_vulgaris{
-	step_x = 0;
-	step_y = 31
-	},
+/obj/structure/sign/poster/contraband/ambrosia_vulgaris,
 /turf/open/floor/plasteel/hydrofloor,
 /area/hydroponics)
 "aNA" = (
@@ -16530,8 +16496,7 @@
 	dir = 6
 	},
 /obj/structure/chair{
-	dir = 4;
-	step_x = -3
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
@@ -17447,9 +17412,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aQw" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -17911,9 +17874,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aRR" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
 	},
@@ -18489,9 +18450,7 @@
 /area/crew_quarters/theatre)
 "aTg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aTh" = (
@@ -18955,9 +18914,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aUA" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aUB" = (
@@ -19449,9 +19406,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aWi" = (
@@ -19933,8 +19888,7 @@
 /area/crew_quarters/bar)
 "aXB" = (
 /obj/structure/chair{
-	dir = 4;
-	step_x = -3
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
@@ -19956,9 +19910,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aXF" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -19973,9 +19925,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aXH" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
 	},
@@ -20113,23 +20063,17 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "aYc" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/plasteel/chapel{
 	dir = 8
 	},
 /area/chapel/main)
 "aYd" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/plasteel/chapel,
 /area/chapel/main)
 "aYe" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel/chapel{
@@ -20137,9 +20081,7 @@
 	},
 /area/chapel/main)
 "aYf" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/chapel,
 /area/chapel/main)
@@ -20641,35 +20583,27 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "aZM" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/plasteel/chapel{
 	dir = 1
 	},
 /area/chapel/main)
 "aZN" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel/chapel{
 	dir = 4
 	},
 /area/chapel/main)
 "aZO" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel/chapel{
 	dir = 1
 	},
 /area/chapel/main)
 "aZP" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/chapel{
 	dir = 4
@@ -21210,9 +21144,7 @@
 /turf/open/floor/wood,
 /area/library)
 "bbk" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel/chapel{
 	dir = 8
@@ -21279,8 +21211,7 @@
 /area/hallway/secondary/exit)
 "bbs" = (
 /obj/structure/chair{
-	dir = 4;
-	step_x = -3
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
@@ -22527,9 +22458,7 @@
 	},
 /area/hydroponics)
 "bet" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/effect/landmark/start/botanist,
 /turf/open/floor/plasteel,
 /area/hydroponics)
@@ -26727,9 +26656,7 @@
 	},
 /area/science/robotics/lab)
 "bpA" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/plasteel/whitered/side{
 	dir = 1
 	},
@@ -26766,9 +26693,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "bpG" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel/whitepurple/side{
 	dir = 1
@@ -27487,9 +27412,7 @@
 	pixel_x = -26;
 	pixel_y = -6
 	},
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/plating,
 /area/maintenance/disposal)
 "brw" = (
@@ -31713,9 +31636,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel,
 /area/teleporter)
@@ -36839,9 +36760,7 @@
 /turf/open/floor/plasteel,
 /area/janitor)
 "bMz" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/effect/landmark/start/janitor,
 /turf/open/floor/plasteel,
 /area/janitor)
@@ -37932,9 +37851,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "bPd" = (
@@ -38408,9 +38325,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
 "bQi" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
@@ -39983,9 +39898,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "bTN" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -40945,9 +40858,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "bWh" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -41093,9 +41004,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "bWw" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "bWx" = (
@@ -41903,9 +41812,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "bYz" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
 "bYA" = (
@@ -43794,9 +43701,7 @@
 	},
 /area/medical/virology)
 "cdl" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
@@ -44262,8 +44167,7 @@
 /area/science/circuit)
 "ceD" = (
 /obj/structure/chair{
-	dir = 4;
-	step_x = -3
+	dir = 4
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -44689,8 +44593,7 @@
 /area/science/circuit)
 "cfK" = (
 /obj/structure/chair{
-	dir = 4;
-	step_x = -3
+	dir = 4
 	},
 /turf/open/floor/plasteel/floorgrime,
 /area/maintenance/port/aft)
@@ -46184,9 +46087,7 @@
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 8
 	},
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "cjz" = (
@@ -47168,9 +47069,7 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "clV" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/effect/decal/cleanable/cobweb{
 	icon_state = "cobweb2"
 	},
@@ -47335,9 +47234,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "cmo" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "cmp" = (
@@ -49066,9 +48963,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "cra" = (
@@ -50813,9 +50708,7 @@
 /turf/open/floor/plating,
 /area/maintenance/disposal/incinerator)
 "cvf" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/plasteel/floorgrime,
 /area/maintenance/disposal/incinerator)
 "cvg" = (
@@ -51343,9 +51236,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "cwq" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/machinery/camera{
 	c_tag = "Aft Starboard Solar Control";
 	dir = 4
@@ -53770,9 +53661,7 @@
 /turf/closed/wall/r_wall,
 /area/engine/gravity_generator)
 "cCo" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/effect/turf_decal/stripes/end{
 	dir = 8
 	},
@@ -58098,10 +57987,7 @@
 /turf/open/floor/plating,
 /area/engine/port_engineering)
 "cTl" = (
-/obj/structure/chair/stool{
-	step_x = 2;
-	step_y = 3
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/wood,
 /area/maintenance/fore/secondary)
 "cUs" = (
@@ -58322,9 +58208,7 @@
 	},
 /area/engine/port_engineering)
 "dxg" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/plating,
 /area/engine/port_engineering)
 "dxK" = (
@@ -58336,12 +58220,6 @@
 /turf/open/floor/plating,
 /area/engine/port_engineering)
 "dyi" = (
-/obj/structure/sign/poster/contraband/clown{
-	step_x = -29
-	},
-/obj/structure/sign/poster/contraband/busty_backdoor_xeno_babes_6{
-	step_y = 30
-	},
 /obj/item/pipe,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
@@ -58413,6 +58291,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"dHg" = (
+/obj/structure/sign/poster/contraband/communist_state,
+/turf/closed/wall,
+/area/maintenance/fore/secondary)
 "dIF" = (
 /obj/structure/reflector/box/anchored{
 	dir = 1
@@ -58475,6 +58357,10 @@
 	},
 /turf/open/floor/engine/n2o,
 /area/engine/atmos)
+"dQu" = (
+/obj/structure/sign/poster/contraband/random,
+/turf/closed/wall,
+/area/maintenance/port/fore)
 "dSw" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -58508,6 +58394,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"ecU" = (
+/obj/structure/sign/poster/contraband/busty_backdoor_xeno_babes_6,
+/turf/closed/wall,
+/area/maintenance/port/fore)
 "eeb" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -58659,8 +58549,7 @@
 /area/maintenance/port/aft)
 "eNZ" = (
 /obj/structure/chair{
-	dir = 4;
-	step_x = -3
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
@@ -59798,9 +59687,7 @@
 /turf/open/floor/plating,
 /area/engine/port_engineering)
 "iJm" = (
-/obj/structure/urinal{
-	step_y = 28
-	},
+/obj/structure/urinal,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "iKH" = (
@@ -60267,10 +60154,7 @@
 /turf/open/floor/plasteel,
 /area/engine/port_engineering)
 "ksX" = (
-/obj/structure/sign/poster/contraband/punch_shit{
-	step_x = 0;
-	step_y = 0
-	},
+/obj/structure/sign/poster/contraband/punch_shit,
 /turf/closed/wall,
 /area/chapel/main)
 "kvn" = (
@@ -60338,11 +60222,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"kRi" = (
+/obj/structure/sign/poster/random,
+/turf/closed/wall,
+/area/maintenance/port/fore)
 "kSG" = (
-/obj/structure/sign/poster/contraband/syndicate_recruitment{
-	step_x = 3;
-	step_y = 0
-	},
+/obj/structure/sign/poster/contraband/syndicate_recruitment,
 /turf/closed/wall,
 /area/maintenance/port/fore)
 "kTC" = (
@@ -60420,10 +60305,7 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "laT" = (
-/obj/structure/chair/stool{
-	step_x = 5;
-	step_y = 7
-	},
+/obj/structure/chair/stool,
 /obj/item/device/instrument/guitar,
 /turf/open/floor/wood,
 /area/maintenance/fore/secondary)
@@ -60503,9 +60385,7 @@
 /turf/open/floor/plasteel/hydrofloor,
 /area/hallway/secondary/service)
 "lsm" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/effect/landmark/start/station_engineer,
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -60750,18 +60630,6 @@
 	},
 /turf/open/floor/plating,
 /area/security/vacantoffice)
-"mcp" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/structure/sign/poster/random{
-	step_y = 31
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "mee" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -61259,6 +61127,11 @@
 	name = "floor"
 	},
 /area/engine/port_engineering)
+"nKH" = (
+/obj/structure/lattice,
+/obj/item/clothing/head/collectable/petehat,
+/turf/open/space,
+/area/space/nearstation)
 "nLd" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -61496,13 +61369,7 @@
 /turf/open/space,
 /area/solar/port/aft)
 "oDe" = (
-/obj/structure/bonfire{
-	step_x = 1;
-	step_y = 0
-	},
-/obj/structure/sign/poster/contraband/communist_state{
-	step_y = 29
-	},
+/obj/structure/bonfire,
 /turf/open/floor/wood,
 /area/maintenance/fore/secondary)
 "oEI" = (
@@ -61593,6 +61460,10 @@
 	},
 /turf/open/floor/plating,
 /area/space/nearstation)
+"oRQ" = (
+/obj/structure/sign/poster/contraband/borg_fancy_1,
+/turf/closed/wall,
+/area/maintenance/port/aft)
 "oSu" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 10
@@ -61677,6 +61548,7 @@
 /area/maintenance/port/fore)
 "pai" = (
 /obj/item/picket_sign,
+/obj/item/clothing/head/papersack/smiley,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "paC" = (
@@ -61705,9 +61577,7 @@
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
 "peT" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/plasteel/floorgrime,
 /area/maintenance/port/fore)
 "pgL" = (
@@ -61934,8 +61804,7 @@
 	dir = 4
 	},
 /obj/structure/chair{
-	dir = 4;
-	step_x = -3
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
@@ -62096,9 +61965,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/effect/landmark/start/station_engineer,
 /turf/open/floor/plasteel{
 	name = "floor"
@@ -62138,10 +62005,7 @@
 /obj/item/pizzabox/meat{
 	desc = "A box suited for pizzas. Gotta eat big to get big."
 	},
-/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb{
-	step_x = 8;
-	step_y = 8
-	},
+/obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "qKX" = (
@@ -62275,10 +62139,7 @@
 /area/engine/engineering)
 "rwd" = (
 /obj/structure/table,
-/obj/item/clothing/gloves/boxing{
-	step_x = -4;
-	step_y = -2
-	},
+/obj/item/clothing/gloves/boxing,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "rBH" = (
@@ -62467,6 +62328,10 @@
 	},
 /turf/open/floor/plating,
 /area/engine/port_engineering)
+"sjU" = (
+/obj/structure/sign/poster/contraband/clown,
+/turf/closed/wall,
+/area/maintenance/port/fore)
 "skx" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -63471,12 +63336,6 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
-"vLQ" = (
-/obj/structure/sign/poster/contraband/random{
-	step_y = 30
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "vLZ" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -63729,9 +63588,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "wyt" = (
-/obj/structure/sign/poster/contraband/rebels_unite{
-	step_y = 0
-	},
+/obj/structure/sign/poster/contraband/rebels_unite,
 /turf/closed/wall,
 /area/maintenance/port/fore)
 "wyO" = (
@@ -64133,8 +63990,7 @@
 /area/engine/port_engineering)
 "xHs" = (
 /obj/structure/chair{
-	dir = 4;
-	step_x = -3
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
@@ -64224,10 +64080,7 @@
 /turf/open/floor/plasteel/hydrofloor,
 /area/hallway/secondary/service)
 "xWs" = (
-/obj/structure/chair/stool{
-	step_x = 30;
-	step_y = 9
-	},
+/obj/structure/chair/stool,
 /turf/open/floor/wood{
 	icon_state = "wood-broken5"
 	},
@@ -64301,9 +64154,7 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "yee" = (
-/obj/structure/chair/stool{
-	step_y = 1
-	},
+/obj/structure/chair/stool,
 /obj/effect/landmark/start/station_engineer,
 /turf/open/floor/plasteel{
 	name = "floor"
@@ -77805,7 +77656,7 @@ ako
 ako
 ali
 ako
-ako
+sjU
 ako
 ako
 ako
@@ -78061,7 +77912,7 @@ asv
 peT
 ako
 ali
-ako
+ecU
 dyi
 ali
 ali
@@ -78318,8 +78169,8 @@ asw
 atA
 ako
 ali
-ako
-vLQ
+dQu
+ali
 pys
 pys
 ako
@@ -78836,7 +78687,7 @@ fmN
 ali
 pys
 pys
-ako
+kRi
 avH
 awL
 axU
@@ -79094,7 +78945,7 @@ sTT
 uws
 pzp
 aux
-mcp
+avH
 awL
 axV
 ali
@@ -87886,7 +87737,7 @@ bJS
 bPc
 bQG
 bQF
-bJS
+oRQ
 bQG
 uUp
 bQG
@@ -99637,7 +99488,7 @@ aaa
 aaa
 abq
 aaa
-ahx
+dHg
 oDe
 cTl
 tNO
@@ -124893,7 +124744,7 @@ aaa
 aaa
 aaa
 aaa
-aai
+nKH
 aaa
 aaa
 aaa
