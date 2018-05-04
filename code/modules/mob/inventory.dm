@@ -317,7 +317,7 @@
 
 	if((I.flags_1 & NODROP_1) && !force)
 		return FALSE
-	to_chat(world, "new: [newloc]")
+
 	var/hand_index = get_held_index_of_item(I)
 	if(hand_index)
 		held_items[hand_index] = null
@@ -329,11 +329,9 @@
 		I.plane = initial(I.plane)
 		I.appearance_flags &= ~NO_CLIENT_COLOR
 		if(!no_move && !(I.flags_1 & DROPDEL_1))	//item may be moved/qdel'd immedietely, don't bother moving it
-			if(/obj/item/storage/internal/pocket/butt)	//Hippie change, added snowflake check so we don't forceMove ass blast inventories
-				return TRUE
-			else
+			if(newloc != null)	//Hippie change, added newloc check so forceMove doesn't act on null
 				I.forceMove(newloc)
-		I.dropped(newloc)	//Hippie change, changed src to newloc cause otherwise items get sent to oblivion
+		I.dropped(src)	//Hippie change, changed src to newloc because otherwise forceMove still acts on null??
 	return TRUE
 
 //Outdated but still in use apparently. This should at least be a human proc.
