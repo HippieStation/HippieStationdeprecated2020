@@ -29,21 +29,28 @@
 		stranger_backseat.key = C.key
 		log_game("[key_name(stranger_backseat)] became [key_name(owner)]'s split personality.")
 		message_admins("[key_name_admin(stranger_backseat)] became [key_name_admin(owner)]'s split personality.")
-		initialized = TRUE	//Hippie change, added initialized so that make_backseats and get_ghost isn't spammed
+		addtimer(CALLBACK(src, .proc/set_flag), 30)	//Hippie change, added a timer to change initialized so that our new ghost doesn't kick out the other guy immediately
 	else
+		addtimer(CALLBACK(src, .proc/make_backseats), 580)	//Hippie change, added this here as we're deleting the seats to refresh everything again
 		addtimer(CALLBACK(src, .proc/get_ghost), 600)	//Hippie change, removed qdel and replaced with a timer for get_ghost so you don't lose this trauma if we cannot find a ghost
 		QDEL_NULL(stranger_backseat)
 		QDEL_NULL(owner_backseat)
 
+/datum/brain_trauma/severe/split_personality/proc/set_flag()	//Hippie change, this proc has been added so qdel in on_life isn't immediately called as soon as we get a ghost
+	initialized = TRUE
+
 
 /datum/brain_trauma/severe/split_personality/on_life()
-	if(owner_backseat.client && initialized || stranger_backseat.client && initialized)	//Hippie change, changed this whole thing so this runs if the either seat ghosts or w/e for some reason
-		switch_personalities()
-		QDEL_NULL(stranger_backseat)
-		QDEL_NULL(owner_backseat)	//The personality keeps the body if the owner decides to ghost for some reason... but look out, you're going to get a new personality soon!!!
-		initialized = FALSE
-	else if(prob(3))
-		switch_personalities()
+	if(owner_backseat && stranger_backseat)	//Hippie change, added this so we don't get null.client errors occurring
+		if(!owner_backseat.client && initialized || !stranger_backseat.client && initialized)	//Hippie change, changed this whole thing so this runs if the either seat ghosts or w/e for some reason
+			switch_personalities()
+			QDEL_NULL(stranger_backseat)
+			QDEL_NULL(owner_backseat)	//The personality keeps the body if the owner decides to ghost for some reason... but look out, you're going to get a new personality soon!!!
+			addtimer(CALLBACK(src, .proc/make_backseats), 580)	//Hippie change, added qdel on backseats and added a timer for make new backseats so the get_ghost's vote can properly be initiated, otherwise it freaks out and doesn't go through if someone ghosts
+			addtimer(CALLBACK(src, .proc/get_ghost), 600)	//Hippie change, removed qdel and replaced with a timer for get_ghost so you don't lose this trauma if we cannot find a ghost
+			initialized = FALSE
+		else if(prob(3))
+			switch_personalities()
 	..()
 
 /datum/brain_trauma/severe/split_personality/on_lose()
@@ -56,6 +63,8 @@
 /datum/brain_trauma/severe/split_personality/proc/switch_personalities()
 	if(QDELETED(owner) || owner.stat == DEAD || QDELETED(stranger_backseat) || QDELETED(owner_backseat))
 		return
+
+	initialized = FALSE	//Hippie change, changing boolean here so that we stop getting those damned crashes!!!
 
 	var/mob/living/split_personality/current_backseat
 	var/mob/living/split_personality/free_backseat
@@ -108,6 +117,7 @@
 
 	current_controller = !current_controller
 
+	initialized = TRUE	//Hippie change, once we're done, we change initialized back to true so everything continues working as normal, WITHOUT crashing anything or anyone
 
 /mob/living/split_personality
 	name = "split personality"
@@ -134,8 +144,6 @@
 	//if one of the two ghosts, the other one stays permanently
 	if(!body.client && trauma.initialized)
 		trauma.switch_personalities()
-		addtimer(CALLBACK(src, /datum/brain_trauma/severe/split_personality/proc/make_backseats), 580)	//Hippie change, added qdel on backseats and added a timer for make new backseats so the get_ghost's vote can properly be initiated, otherwise it freaks out and doesn't go through if someone ghosts
-		addtimer(CALLBACK(src, /datum/brain_trauma/severe/split_personality/proc/get_ghost), 600)	//Hippie change, removed qdel and replaced with a timer for get_ghost so you don't lose this trauma if we cannot find a ghost
 		qdel(src)	//Hippie change, changed qdel trauma to qdel src - we want this mob/living to be destroyed, not the trauma itself
 
 	..()
