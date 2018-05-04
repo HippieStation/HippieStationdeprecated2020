@@ -144,7 +144,7 @@
 	//if one of the two ghosts, the other one stays permanently
 	if(!body.client && trauma.initialized)
 		trauma.switch_personalities()
-		qdel(src)	//Hippie change, changed qdel trauma to qdel src - we want this mob/living to be destroyed, not the trauma itself
+		//Hippie change, removed qdel src - the qdels are being handled up above and this causes ghosting as the check is different
 
 	..()
 
