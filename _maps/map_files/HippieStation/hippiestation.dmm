@@ -16739,13 +16739,6 @@
 "aOA" = (
 /turf/open/floor/carpet,
 /area/crew_quarters/theatre)
-"aOB" = (
-/obj/machinery/airalarm{
-	dir = 2;
-	pixel_y = 24
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/theatre)
 "aOC" = (
 /obj/item/radio/intercom{
 	pixel_y = 25
@@ -29597,11 +29590,6 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/quartermaster/storage)
-"bwc" = (
-/turf/open/floor/plasteel/brown/corner{
-	dir = 1
-	},
-/area/quartermaster/office)
 "bwd" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -30295,9 +30283,6 @@
 /area/quartermaster/storage)
 "bxM" = (
 /obj/machinery/autolathe,
-/obj/machinery/light_switch{
-	pixel_x = -27
-	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "bxN" = (
@@ -41980,20 +41965,6 @@
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/mask/gas{
 	pixel_x = 1
-	},
-/turf/open/floor/plasteel/vault,
-/area/science/misc_lab)
-"bYL" = (
-/obj/structure/table,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/clothing/ears/earmuffs,
-/obj/machinery/camera{
-	c_tag = "Testing Lab North";
-	dir = 2;
-	network = list("SS13","RD")
-	},
-/obj/machinery/light/small{
-	dir = 8
 	},
 /turf/open/floor/plasteel/vault,
 /area/science/misc_lab)
@@ -58700,12 +58671,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"fcS" = (
-/obj/structure/shuttle/engine/propulsion/burst{
-	dir = 8
-	},
-/turf/closed/wall/mineral/titanium,
-/area/space)
 "ffe" = (
 /obj/machinery/rnd/production/techfab/department/cargo,
 /turf/open/floor/plasteel,
@@ -59558,6 +59523,12 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space,
 /area/solar/port/aft)
+"itL" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/clothing/ears/earmuffs,
+/turf/open/floor/plasteel/vault,
+/area/science/misc_lab)
 "iug" = (
 /obj/machinery/holopad,
 /obj/effect/turf_decal/stripes/line,
@@ -60002,9 +59973,6 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
-"jUQ" = (
-/turf/closed/wall/mineral/titanium,
-/area/space)
 "jYo" = (
 /obj/machinery/computer/atmos_control/tank/oxygen_tank{
 	dir = 1
@@ -60447,10 +60415,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/circuit,
 /area/ai_monitored/nuke_storage)
-"lSk" = (
-/obj/effect/spawner/structure/window/shuttle,
-/turf/open/floor/plating,
-/area/space)
 "lUc" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -60482,6 +60446,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"lZb" = (
+/obj/machinery/airalarm,
+/turf/closed/wall,
+/area/crew_quarters/theatre)
 "lZA" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/firedoor,
@@ -60719,6 +60687,12 @@
 /obj/structure/lattice,
 /turf/open/space,
 /area/space/nearstation)
+"mUH" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/science/misc_lab)
 "mXB" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -60742,6 +60716,16 @@
 	},
 /turf/open/floor/noslip,
 /area/maintenance/forge)
+"mYp" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/camera{
+	c_tag = "Engineering West";
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/science/misc_lab)
 "mYt" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -60890,6 +60874,10 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"nEH" = (
+/mob,
+/turf/closed/wall,
+/area/crew_quarters/theatre)
 "nFo" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -61555,6 +61543,10 @@
 	},
 /turf/open/floor/plating,
 /area/engine/port_engineering)
+"pXM" = (
+/mob/living/simple_animal/pet/hedgehog/Bernie,
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain)
 "pYl" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel,
@@ -62154,20 +62146,6 @@
 	dir = 4
 	},
 /area/construction/mining/aux_base)
-"sBg" = (
-/obj/machinery/computer/shuttle/pod{
-	pixel_y = -32;
-	possible_destinations = "pod_lavaland4";
-	shuttleId = "pod4"
-	},
-/obj/structure/chair{
-	dir = 4
-	},
-/obj/machinery/status_display{
-	pixel_y = 32
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/space)
 "sBj" = (
 /obj/structure/table,
 /obj/item/pipe_dispenser,
@@ -62182,20 +62160,6 @@
 	dir = 5
 	},
 /area/engine/atmos)
-"sDX" = (
-/obj/item/radio/intercom{
-	pixel_y = 25
-	},
-/obj/item/storage/pod{
-	pixel_x = 6;
-	pixel_y = -32
-	},
-/obj/structure/chair{
-	dir = 4
-	},
-/obj/machinery/light/small,
-/turf/open/floor/mineral/titanium/blue,
-/area/space)
 "sEo" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
@@ -63316,20 +63280,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plating,
 /area/engine/port_engineering)
-"wPU" = (
-/obj/machinery/door/airlock/titanium{
-	name = "Escape Pod Airlock"
-	},
-/obj/docking_port/mobile/pod{
-	dir = 4;
-	id = "pod4";
-	name = "escape pod 4";
-	port_direction = 2;
-	preferred_direction = 4;
-	timid = 0
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/space)
 "wUa" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -85480,7 +85430,7 @@ bqj
 brH
 bth
 buJ
-bwc
+bDv
 bxM
 bzj
 bAD
@@ -85742,7 +85692,7 @@ buQ
 buQ
 bAE
 buQ
-bDv
+buQ
 bEX
 bGc
 bHt
@@ -95240,7 +95190,7 @@ bhV
 bjp
 bks
 blU
-bhX
+pXM
 bhX
 bhX
 bfA
@@ -97349,9 +97299,9 @@ cwT
 cxP
 bVM
 csF
-fcS
-wPU
-fcS
+aaa
+afD
+aaa
 oov
 cBP
 cBP
@@ -97606,9 +97556,9 @@ cwS
 cwS
 bVM
 csF
-jUQ
-sDX
-jUQ
+aaa
+aaa
+aaa
 oov
 aaa
 aaa
@@ -97863,9 +97813,9 @@ bVM
 bVM
 bVM
 clH
-jUQ
-sBg
-jUQ
+aaa
+aaa
+aaa
 hyh
 aai
 aaa
@@ -98120,9 +98070,9 @@ cwV
 cxQ
 bVM
 aaa
-jUQ
-lSk
-jUQ
+aaa
+aaa
+aaa
 xZi
 aai
 aaa
@@ -98306,7 +98256,7 @@ aHw
 aHw
 aJU
 aJU
-aFV
+lZb
 aOA
 aOA
 aRM
@@ -98564,7 +98514,7 @@ aHw
 aJV
 aHw
 aNk
-aOB
+aOA
 aOA
 aRN
 aTe
@@ -98820,7 +98770,7 @@ aHy
 aIF
 aJW
 aLB
-aFV
+nEH
 aOC
 aQt
 aRO
@@ -110687,8 +110637,8 @@ aai
 aai
 aai
 bXy
-bYL
-bZZ
+bYM
+bYM
 bXy
 bXy
 cdw
@@ -110944,12 +110894,12 @@ bTY
 bTY
 bTY
 bLX
-bYM
-bYM
-cbi
+mUH
+mUH
+mYp
 ccm
 cdx
-ccj
+itL
 cfB
 cgJ
 chG
@@ -111206,8 +111156,8 @@ caa
 cbj
 cac
 cdx
-ceu
-cfC
+bZZ
+cfB
 cgJ
 chH
 bXy
@@ -111463,8 +111413,8 @@ cab
 cbk
 ccn
 cdy
-ccj
-cfB
+ceu
+cfC
 cgJ
 chI
 bXy
