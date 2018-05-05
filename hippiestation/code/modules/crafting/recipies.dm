@@ -54,6 +54,7 @@ subcategory = CAT_WEAPON
 	tools = list(/obj/item/screwdriver)
 	time = 150
 	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
 
 /datum/crafting_recipe/bbat_spiked
 	name = "Spiked Bat"
