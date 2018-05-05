@@ -19,6 +19,9 @@
 			friend.yank()
 	if(!friend.client && friend_initialized)
 		addtimer(CALLBACK(src, .proc/reroll_friend), 600)
+		friend_initialized = FALSE	//Hippie change, added flag change so addtimer doesn't get spammed
+	if(!owner.client)
+		qdel(src)	//Hippie change, added this so the trauma gets deleted if the owner ghosts
 
 /datum/brain_trauma/special/imaginary_friend/on_lose()
 	..()
@@ -27,11 +30,13 @@
 //If the friend goes afk, make a brand new friend. Plenty of fish in the sea of imagination.
 /datum/brain_trauma/special/imaginary_friend/proc/reroll_friend()
 	if(friend.client) //reconnected
+		friend_initialized = TRUE	//Hippie change, added tag change so this check can happen again
 		return
-	friend_initialized = FALSE
-	QDEL_NULL(friend)
-	make_friend()
-	get_ghost()
+	else	//Hippie change, added else so we stop getting null.client errors
+		friend_initialized = FALSE
+		QDEL_NULL(friend)
+		make_friend()
+		get_ghost()
 
 /datum/brain_trauma/special/imaginary_friend/proc/make_friend()
 	friend = new(get_turf(owner), src)
