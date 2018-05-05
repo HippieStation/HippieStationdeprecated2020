@@ -65,7 +65,7 @@
 
 /datum/trait/split_personality/add()
 	var/mob/living/carbon/human/H = trait_holder
-	if(istype(H)
+	if(istype(H))
 		H.gain_trauma(/datum/brain_trauma/severe/split_personality, TRAUMA_RESILIENCE_SEVERE)
 
 /datum/trait/split_personality/remove()
