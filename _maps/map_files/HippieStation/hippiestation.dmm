@@ -9508,7 +9508,12 @@
 /turf/closed/wall,
 /area/maintenance/port/fore)
 "awO" = (
-/turf/open/floor/grass,
+/obj/structure/rack{
+	dir = 1
+	},
+/obj/item/shield/riot/buckler,
+/obj/item/toy/katana,
+/turf/open/floor/plasteel,
 /area/maintenance/port/fore)
 "awQ" = (
 /obj/structure/closet,
@@ -11322,6 +11327,8 @@
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
 "aBp" = (
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
 	},
@@ -48935,6 +48942,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/item/trash/chips,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "crk" = (
@@ -59665,10 +59673,6 @@
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/engine/port_engineering)
-"iJm" = (
-/obj/structure/urinal,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "iKH" = (
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "engsm";
@@ -60040,6 +60044,10 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible,
 /turf/open/floor/engine,
 /area/engine/engineering)
+"jVc" = (
+/obj/item/trash/chips,
+/turf/open/floor/plasteel,
+/area/maintenance/port/fore)
 "jVU" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -60318,6 +60326,12 @@
 "ldE" = (
 /obj/structure/sign/poster/contraband/random,
 /turf/closed/wall,
+/area/maintenance/port/fore)
+"leL" = (
+/obj/structure/rack{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
 /area/maintenance/port/fore)
 "leU" = (
 /obj/structure/cable/yellow{
@@ -61670,6 +61684,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/port_engineering)
+"pqa" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "pqD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/closet/radiation,
@@ -61945,6 +61963,11 @@
 "qrb" = (
 /obj/structure/sign/poster/contraband/busty_backdoor_xeno_babes_6,
 /turf/closed/wall,
+/area/maintenance/port/fore)
+"qrw" = (
+/obj/structure/bed/pod,
+/obj/effect/decal/cleanable/vomit,
+/turf/open/floor/plating,
 /area/maintenance/port/fore)
 "qrY" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible,
@@ -62777,8 +62800,8 @@
 /turf/open/floor/plasteel,
 /area/engine/port_engineering)
 "tkV" = (
-/mob/living/simple_animal/cow,
-/turf/open/floor/grass,
+/obj/item/trash/raisins,
+/turf/open/floor/plating,
 /area/maintenance/port/fore)
 "tln" = (
 /obj/structure/sink{
@@ -62916,13 +62939,6 @@
 /obj/structure/sign/poster/contraband/clown,
 /turf/closed/wall,
 /area/maintenance/port/fore)
-"tNb" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "tNL" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -62968,6 +62984,9 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"tWc" = (
+/turf/open/floor/plasteel,
+/area/maintenance/port/fore)
 "tWk" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
@@ -63494,6 +63513,10 @@
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/plating,
 /area/engine/port_engineering)
+"vYL" = (
+/obj/structure/inflatable/door,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "wae" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -80090,8 +80113,8 @@ atE
 auB
 ako
 awO
-awO
-awO
+leL
+pqa
 ayT
 uIT
 aCP
@@ -80346,10 +80369,10 @@ urE
 wrq
 auA
 ako
-awO
-awO
-awO
-tNb
+jVc
+ali
+ali
+ayT
 uIT
 aCP
 aEl
@@ -80602,10 +80625,10 @@ aqr
 aqr
 aqr
 auC
-ako
-awO
+vYL
+tWc
 tkV
-awO
+qrw
 ayT
 lOQ
 aCP
@@ -85217,7 +85240,7 @@ aaa
 aaa
 aaa
 ako
-iJm
+ali
 ali
 amY
 ali
@@ -112991,8 +113014,8 @@ aBp
 alO
 alO
 aGu
-aGu
 pji
+aGw
 aGw
 aGw
 aGw
@@ -113244,10 +113267,10 @@ ajz
 atn
 atn
 ajz
-avs
+ajz
+ajz
 alO
-alO
-arm
+ajz
 aGu
 aGx
 aGu
@@ -113501,8 +113524,8 @@ ajz
 alO
 alO
 ajz
-ajz
-ajz
+arm
+alO
 alO
 nWv
 aGu
@@ -114023,7 +114046,7 @@ aGu
 aaa
 aaa
 aaa
-aJa
+aGu
 aGw
 sKJ
 aPo
@@ -115057,7 +115080,7 @@ aMn
 aGw
 iZf
 aSl
-aSl
+spz
 aVa
 spz
 aYq
@@ -115314,7 +115337,7 @@ aJa
 iZf
 iZf
 aaa
-aSl
+spz
 aVb
 spz
 aVb
@@ -115571,7 +115594,7 @@ aFi
 aFi
 aaa
 aaa
-aSl
+spz
 aVc
 spz
 aYr
@@ -115828,7 +115851,7 @@ aaa
 aaa
 aaa
 aaa
-aSl
+spz
 aVd
 aWM
 aYs
