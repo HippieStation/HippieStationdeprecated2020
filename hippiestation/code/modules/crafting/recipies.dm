@@ -43,8 +43,6 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-subcategory = CAT_WEAPON
-
 /datum/crafting_recipe/reverse_bear_trap
 	name = "Reverse Bear trap"
 	result = /obj/item/device/reverse_bear_trap
