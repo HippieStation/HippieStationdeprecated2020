@@ -14317,13 +14317,6 @@
 /obj/structure/falsewall,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
-"aIV" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/chapel/main)
 "aIW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/dark,
@@ -16906,7 +16899,7 @@
 /area/chapel/office)
 "aPk" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/light,
+/obj/machinery/light/small,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "aPl" = (
@@ -61975,10 +61968,6 @@
 	},
 /turf/open/floor/plasteel/hydrofloor,
 /area/hallway/secondary/service)
-"qpZ" = (
-/obj/structure/falsewall,
-/turf/open/space/basic,
-/area/maintenance/port/aft)
 "qrY" = (
 /obj/machinery/atmospherics/pipe/simple/green/visible,
 /turf/closed/wall/r_wall,
@@ -62925,6 +62914,10 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/space,
 /area/space/nearstation)
+"tyH" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/chapel/main)
 "tEM" = (
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel/dark,
@@ -88660,7 +88653,7 @@ bJS
 bJS
 bJS
 bJS
-qpZ
+vXi
 vXi
 bJS
 cby
@@ -111485,7 +111478,7 @@ aDS
 avw
 aGs
 aHQ
-aIV
+aMh
 aKG
 aMh
 aNQ
@@ -113803,7 +113796,7 @@ aGu
 aGu
 aNP
 aPm
-aGw
+tyH
 aSl
 aTL
 aUX
