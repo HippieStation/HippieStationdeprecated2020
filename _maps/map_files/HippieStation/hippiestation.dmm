@@ -58373,12 +58373,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
-"enM" = (
-/obj/structure/sign/poster/random{
-	step_y = 0
-	},
-/turf/closed/wall,
-/area/maintenance/port/fore)
 "eom" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -78319,7 +78313,7 @@ vIK
 lff
 ali
 eow
-enM
+hSw
 avH
 awL
 axS
@@ -78833,7 +78827,7 @@ fmN
 rAV
 ali
 rGV
-enM
+hSw
 xqS
 awL
 axU
