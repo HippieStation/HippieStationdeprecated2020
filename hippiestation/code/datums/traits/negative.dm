@@ -33,8 +33,11 @@
 	if(!B)
 		to_chat(trait_holder, "<span class='warning'>You somehow gained this trait without a butt, contact an admin.</span>")
 		qdel(src)
-	else if(B.storage_slots > 0)
-		B.inv.storage_slots = initial(B.inv.storage_slots) - 1
+		return
+
+	GET_COMPONENT_FROM(STR, /datum/component/storage, B)
+	if(STR.max_items > 0)
+		STR.max_items = STR.max_items - 1
 	else
 		to_chat(trait_holder, "<span class='warning'>Dat booty can't get any smaller!</span>")
 		qdel(src)
@@ -43,5 +46,6 @@
 	var/obj/item/organ/butt/B = trait_holder.getorgan(/obj/item/organ/butt)
 	if(!B)
 		return
-	else
-		B.inv.storage_slots = initial(B.inv.storage_slots)
+
+	GET_COMPONENT_FROM(STR, /datum/component/storage, B)
+	STR.max_items = STR.max_items + 1

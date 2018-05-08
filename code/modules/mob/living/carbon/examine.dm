@@ -105,9 +105,7 @@
 			if(MOOD_LEVEL_HAPPY4 to INFINITY)
 				msg += "[t_He] look[p_s()] ecstatic.\n"
 
-
 	msg += "*---------*</span>"
 
 	to_chat(user, msg)
-
-	return msg // Hippie - To allow for disguises
+	return msg

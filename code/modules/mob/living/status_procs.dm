@@ -156,6 +156,7 @@
 	return TRUE
 
 /mob/living/proc/remove_trait(trait, list/sources, force)
+
 	if(!status_traits[trait])
 		return
 

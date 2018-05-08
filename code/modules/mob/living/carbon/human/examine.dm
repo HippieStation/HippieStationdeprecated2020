@@ -15,13 +15,11 @@
 
 	var/msg = "<span class='info'>*---------*\nThis is <EM>[!obscure_name ? name : "Unknown"]</EM>!\n"
 
-	var/is_ghost = isobserver(user) // hippie: added this var back
-
 	var/list/obscured = check_obscured_slots()
 	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 
 	//uniform
-	if(w_uniform && !(slot_w_uniform in obscured))
+	if(w_uniform && !(SLOT_W_UNIFORM in obscured))
 		//accessory
 		var/accessory_msg
 		if(istype(w_uniform, /obj/item/clothing/under))
@@ -50,7 +48,7 @@
 
 	GET_COMPONENT(FR, /datum/component/forensics)
 	//gloves
-	if(gloves && !(slot_gloves in obscured))
+	if(gloves && !(SLOT_GLOVES in obscured))
 		msg += "[t_He] [t_has] [gloves.get_examine_string(user)] on [t_his] hands.\n"
 	else if(FR && length(FR.blood_DNA))
 		var/hand_number = get_num_arms()
@@ -71,22 +69,22 @@
 		msg += "[t_He] [t_has] [belt.get_examine_string(user)] about [t_his] waist.\n"
 
 	//shoes
-	if(shoes && !(slot_shoes in obscured))
+	if(shoes && !(SLOT_SHOES in obscured))
 		msg += "[t_He] [t_is] wearing [shoes.get_examine_string(user)] on [t_his] feet.\n"
 
 	//mask
-	if(wear_mask && !(slot_wear_mask in obscured))
+	if(wear_mask && !(SLOT_WEAR_MASK in obscured))
 		msg += "[t_He] [t_has] [wear_mask.get_examine_string(user)] on [t_his] face.\n"
 
-	if (wear_neck && !(slot_neck in obscured))
+	if (wear_neck && !(SLOT_NECK in obscured))
 		msg += "[t_He] [t_is] wearing [wear_neck.get_examine_string(user)] around [t_his] neck.\n"
 
 	//eyes
-	if(glasses && !(slot_glasses in obscured))
+	if(glasses && !(SLOT_GLASSES in obscured))
 		msg += "[t_He] [t_has] [glasses.get_examine_string(user)] covering [t_his] eyes.\n"
 
 	//ears
-	if(ears && !(slot_ears in obscured))
+	if(ears && !(SLOT_EARS in obscured))
 		msg += "[t_He] [t_has] [ears.get_examine_string(user)] on [t_his] ears.\n"
 
 	//ID
@@ -267,9 +265,6 @@
 		if(digitalcamo)
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
 
-	if((!skipface || is_ghost) && is_thrall(src) && (in_range(user,src) || is_ghost))
-		msg += "Their features seem unnaturally tight and drawn.\n"
-
 	var/traitstring = get_trait_string()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -323,6 +318,7 @@
 	msg += "*---------*</span>"
 
 	to_chat(user, msg)
+	return msg
 
 	return msg // Hippie - To allow for disguises
 

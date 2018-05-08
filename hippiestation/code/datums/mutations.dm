@@ -17,18 +17,18 @@
 	if(!istype(H.wear_mask, /obj/item/clothing/mask/hippie/cluwne))
 		if(!H.doUnEquip(H.wear_mask))
 			qdel(H.wear_mask)
-		H.equip_to_slot_or_del(new /obj/item/clothing/mask/hippie/cluwne(H), slot_wear_mask)
+		H.equip_to_slot_or_del(new /obj/item/clothing/mask/hippie/cluwne(H), SLOT_WEAR_MASK)
 	if(!istype(H.w_uniform, /obj/item/clothing/under/hippie/cluwne))
 		if(!H.doUnEquip(H.w_uniform))
 			qdel(H.w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/hippie/cluwne(H), slot_w_uniform)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/hippie/cluwne(H), SLOT_W_UNIFORM)
 	if(!istype(H.shoes, /obj/item/clothing/shoes/hippie/cluwne))
 		if(!H.doUnEquip(H.shoes))
 			qdel(H.shoes)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/hippie/cluwne(H), slot_shoes)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/hippie/cluwne(H), SLOT_SHOES)
 
-	owner.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/white(owner), slot_gloves) // this is purely for cosmetic purposes incase they aren't wearing anything in that slot
-	owner.equip_to_slot_or_del(new /obj/item/storage/backpack/clown(owner), slot_back) // ditto
+	owner.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/white(owner), SLOT_GLOVES) // this is purely for cosmetic purposes incase they aren't wearing anything in that slot
+	owner.equip_to_slot_or_del(new /obj/item/storage/backpack/clown(owner), SLOT_BACK) // ditto
 
 /datum/mutation/human/cluwne/on_life(mob/living/carbon/human/owner)
 	if((prob(15) && owner.IsUnconscious()))

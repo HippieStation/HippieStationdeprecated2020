@@ -291,9 +291,6 @@
 		wires.interact(user)
 		return
 
-	else if(exchange_parts(user, I))
-		return
-
 	return ..()
 
 /obj/machinery/power/emitter/emag_act(mob/user)
@@ -398,7 +395,7 @@
 	name = "turret controls"
 	icon_state = "offhand"
 	w_class = WEIGHT_CLASS_HUGE
-	flags_1 = ABSTRACT_1 | NODROP_1
+	flags_1 = ABSTRACT_1|NODROP_1
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF | NOBLUDGEON_1
 	var/delay = 0
 

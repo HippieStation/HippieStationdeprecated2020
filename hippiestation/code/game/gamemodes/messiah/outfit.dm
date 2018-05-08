@@ -3,7 +3,7 @@
 	uniform = /obj/item/clothing/under/rank/chef/spacejesus
 	suit = /obj/item/clothing/suit/hippie/jesus/spacejesus
 	shoes = /obj/item/clothing/shoes/sandal/spacejesus
-	ears = /obj/item/device/radio/headset
+	ears = /obj/item/radio/headset
 	head = /obj/item/clothing/head/hippie/halo/spacejesus
 	suit_store = /obj/item/storage/book/bible
 

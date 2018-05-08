@@ -64,7 +64,7 @@
 /datum/spellbook_entry/item/voice
 	name = "Voice Of God"
 	desc = "Carefully harvested from Lavaland Colossi, these cords allow you to issue commands to those near you. Will not work on deaf people. Will drop upon resurrecting as a lich."
-	item_path = /obj/item/device/autosurgeon/colossus
+	item_path = /obj/item/autosurgeon/colossus
 	category = "Assistance"
 	cost = 1
 
