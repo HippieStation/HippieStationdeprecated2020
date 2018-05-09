@@ -5,6 +5,7 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(/obj/effect/proc_holder/spell/s
 	job_rank = ROLE_SHADOWLING
 	roundend_category = "thralls"
 	antagpanel_category = "Shadowlings"
+	antag_moodlet = /datum/mood_event/thrall
 
 /datum/antagonist/thrall/on_gain()
 	. = ..()

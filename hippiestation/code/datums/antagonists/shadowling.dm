@@ -3,13 +3,14 @@
 	job_rank = ROLE_SHADOWLING
 	roundend_category = "shadowlings"
 	antagpanel_category = "Shadowlings"
+	antag_moodlet = /datum/mood_event/sling
 	var/list/objectives_given = list()
 
 /datum/antagonist/shadowling/on_gain()
 	. = ..()
 	SSticker.mode.update_shadow_icons_added(owner)
 	SSticker.mode.shadows += owner
-	owner.special_role = "thrall"
+	owner.special_role = "Shadowling"
 	message_admins("[key_name_admin(owner.current)] was made into a shadowling!")
 	log_game("[key_name(owner.current)] was made into a shadowling!")
 
