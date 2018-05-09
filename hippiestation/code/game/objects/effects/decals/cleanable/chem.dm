@@ -8,12 +8,18 @@ GLOBAL_LIST_EMPTY(chempiles)
 
 /obj/effect/decal/cleanable/chempile/examine(mob/user)
 	..()
-	if(user.research_scanner || isobserver(user))
-		if(LAZYLEN(reagents.reagent_list)) //find a reagent list if there is and check if it has entries
-			to_chat(user, "<span class='notice'>Chemical contents:</span>")
-			for(var/RE in reagents.reagent_list) //no reagents will be left behind
-				var/datum/reagent/R = RE
-				to_chat(user, "<span class='warning'>[R]: [round(R.volume,0.01)]u</span>")
+	to_chat(user, "It contains:")
+	if(reagents.reagent_list.len)
+		if(user.can_see_reagents()) //Show each individual reagent
+			for(var/datum/reagent/R in reagents.reagent_list)
+				to_chat(user, "[R.volume] units of [R.name]")
+		else //Otherwise, just show the total volume
+			var/total_volume = 0
+			for(var/datum/reagent/R in reagents.reagent_list)
+				total_volume += R.volume
+			to_chat(user, "[total_volume] units of various reagents")
+	else
+		to_chat(user, "Nothing.")
 
 /obj/effect/decal/cleanable/chempile/experience_pressure_difference(pressure_difference)
 	if(reagents)
@@ -21,14 +27,14 @@ GLOBAL_LIST_EMPTY(chempiles)
 
 /obj/effect/decal/cleanable/chempile/Initialize()
 	. = ..()
-	LAZYADD(GLOB.chempiles, src)
+	GLOB.chempiles += src
 	if(reagents && reagents.total_volume)
 		if(reagents.total_volume < 5)
 			reagents.set_reacting(FALSE)
 
 /obj/effect/decal/cleanable/chempile/Destroy()
 	..()
-	LAZYREMOVE(GLOB.chempiles, src)
+	GLOB.chempiles -= src
 
 /obj/effect/decal/cleanable/chempile/ex_act()
 	qdel(src)
@@ -40,9 +46,12 @@ GLOBAL_LIST_EMPTY(chempiles)
 		for(var/obj/item/I in M.get_equipped_items())
 			if(I.body_parts_covered & FEET)
 				protection = I.permeability_coefficient
-		if(reagents)
+		if(reagents && reagents.total_volume >= 1)	//No transfer if there's less than 1u total
 			reagents.trans_to(M, 2, protection)
 			CHECK_TICK
+			for(var/datum/reagent/R in reagents)
+				if(R.volume < 0.2)
+					reagents.remove_reagent(R)	//Should remove most stray cases of microdosages that may get through without compromising chempiles with lots of mixes in them
 
 /obj/effect/decal/cleanable/chempile/fire_act(exposed_temperature, exposed_volume)
 	if(reagents && reagents.chem_temp)

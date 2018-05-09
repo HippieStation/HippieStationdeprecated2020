@@ -34,7 +34,7 @@
 	item_state = "robbie"
 	item_color = "robbie"
 	can_adjust = 0
-	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0) //villains need some protection against super heroes
+	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0) //villains need some protection against super heroes
 	alternate_screams = list('hippiestation/sound/voice/robbie1.ogg','hippiestation/sound/voice/robbie2.ogg','hippiestation/sound/voice/robbie3.ogg','hippiestation/sound/voice/robbie4.ogg','hippiestation/sound/voice/robbie5.ogg','hippiestation/sound/voice/robbie6.ogg','hippiestation/sound/voice/robbie7.ogg','hippiestation/sound/voice/robbie8.ogg','hippiestation/sound/voice/robbie9.ogg','hippiestation/sound/voice/robbie10.ogg','hippiestation/sound/voice/robbie11.ogg','hippiestation/sound/voice/robbie12.ogg','hippiestation/sound/voice/robbie13.ogg','hippiestation/sound/voice/robbie14.ogg','hippiestation/sound/voice/robbie15.ogg')
 
 /obj/item/clothing/under/hippie/zootsuit
@@ -43,4 +43,12 @@
 	icon_state = "zootsuit"
 	item_state = "zootsuit"
 	item_color = "zootsuit"
+	can_adjust = 0
+
+/obj/item/clothing/under/hippie/telvis
+	name = "snazzy jumpsuit"
+	desc = "A swingin' white jumpsuit studded with rhinestones. The name 'Telvis' is stitched on the inside of the collar."
+	icon_state = "telvis"
+	item_state = "telvis"
+	item_color = "telvis"
 	can_adjust = 0

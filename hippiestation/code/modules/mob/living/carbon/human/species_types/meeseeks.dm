@@ -10,7 +10,8 @@
 	brutemod = 0
 	coldmod = 0
 	heatmod = 0
-	species_traits = list(RESISTHOT,RESISTCOLD,RESISTPRESSURE,RADIMMUNE,NOBREATH,NOBLOOD,NOFIRE,VIRUSIMMUNE,PIERCEIMMUNE,NOTRANSSTING,NOHUNGER,NOCRITDAMAGE,NOZOMBIE,NO_UNDERWEAR,EASYDISMEMBER,NO_DNA_COPY)
+	species_traits = list(NOBLOOD,NOTRANSSTING,NOZOMBIE,NO_UNDERWEAR,NO_DNA_COPY)
+	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_NOBREATH,TRAIT_NOFIRE,TRAIT_VIRUSIMMUNE,TRAIT_PIERCEIMMUNE,TRAIT_NOHUNGER,TRAIT_EASYDISMEMBER,TRAIT_NOCRITDAMAGE)
 	teeth_type = /obj/item/stack/teeth/meeseeks
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/meeseeks
 	damage_overlay_type = ""
@@ -38,7 +39,7 @@
 	H.adjustCloneLoss(0.3)
 	H.adjustBrainLoss(0.8)
 	if(stage_ticks == MEESEEKS_TICKS_STAGE_ONE)
-		H.add_disability(DISABILITY_CLUMSY, GENETIC_MUTATION)
+		H.add_trait(TRAIT_CLUMSY, GENETIC_MUTATION)
 		var/datum/mutation/human/HM = GLOB.mutations_list[SMILE]
 		HM.force_give(H)
 	if(stage_ticks == MEESEEKS_TICKS_STAGE_TWO)

@@ -18,10 +18,10 @@
 			targetmob = M
 
 	if(usr.hud_used.inventory_shown && targetmob.hud_used)
-		usr.hud_used.inventory_shown = 0
+		usr.hud_used.inventory_shown = FALSE
 		usr.client.screen -= targetmob.hud_used.toggleable_inventory
 	else
-		usr.hud_used.inventory_shown = 1
+		usr.hud_used.inventory_shown = TRUE
 		usr.client.screen += targetmob.hud_used.toggleable_inventory
 
 	targetmob.hud_used.hidden_inventory_update(usr)
@@ -286,6 +286,10 @@
 	healthdoll = new /obj/screen/healthdoll()
 	infodisplay += healthdoll
 
+	if(!CONFIG_GET(flag/disable_human_mood))
+		mood = new /obj/screen/mood()
+		infodisplay += mood
+
 	pull_icon = new /obj/screen/pull()
 	pull_icon.icon = ui_style
 	pull_icon.update_icon(mymob)
@@ -311,7 +315,7 @@
 			inv.hud = src
 			inv_slots[inv.slot_id] = inv
 			inv.update_icon()
-	
+
 	update_locked_slots()
 
 /datum/hud/human/update_locked_slots()
@@ -435,7 +439,7 @@
 
 	if(hud_used.hotkey_ui_hidden)
 		client.screen += hud_used.hotkeybuttons
-		hud_used.hotkey_ui_hidden = 0
+		hud_used.hotkey_ui_hidden = FALSE
 	else
 		client.screen -= hud_used.hotkeybuttons
-		hud_used.hotkey_ui_hidden = 1
+		hud_used.hotkey_ui_hidden = TRUE

@@ -17,6 +17,9 @@
 	var/volume = 500
 
 /obj/item/hockeypack/equipped(mob/user, slot)
+	..()
+	if (slot != slot_back) //The Pack is cursed so this should not happen, but i'm going to play it safe.
+		remove_stick()
 	if(slot == slot_back)
 		flags_1 |= NODROP_1
 
@@ -27,7 +30,7 @@
 	. = ..()
 	packstick = make_stick()
 
-/obj/item/hockeypack/verb/toggle_stick()
+/obj/item/hockeypack/proc/toggle_stick()
 	set name = "Get Stick"
 	set category = "Object"
 	if (usr.get_item_by_slot(usr.getHockeypackSlot()) != src)
@@ -53,10 +56,6 @@
 
 /obj/item/hockeypack/proc/make_stick()
 	return new /obj/item/twohanded/hockeystick(src)
-
-/obj/item/hockeypack/equipped(mob/user, slot) //The Pack is cursed so this should not happen, but i'm going to play it safe.
-	if (slot != slot_back)
-		remove_stick()
 
 /obj/item/hockeypack/proc/remove_stick()
 	if(ismob(packstick.loc))
@@ -92,6 +91,10 @@
 		return
 	..()
 
+/obj/item/hockeypack/item_action_slot_check(slot, mob/user)
+	if(slot == user.getBackSlot())
+		return TRUE
+
 /mob/proc/getHockeypackSlot()
 	return slot_back
 
@@ -123,11 +126,11 @@
 	icon_state = "hockeystick[wielded]"
 	return
 
-/obj/item/twohanded/hockeystick/Initialize(parent_pack)
-	. = ..()
+/obj/item/twohanded/hockeystick/New(parent_pack)
+	..()
 	if(check_pack_exists(parent_pack, src))
 		pack = parent_pack
-		loc = pack
+		forceMove(pack)
 
 /obj/item/twohanded/hockeystick/attack(mob/living/target, mob/living/user) //Sure it's the powerfist code, right down to the sound effect. Gonna be fun though.
 
@@ -153,13 +156,17 @@
 	return
 
 /obj/item/twohanded/hockeystick/dropped(mob/user) //The Stick is undroppable but just in case they lose an arm better put this here.
-		..()
-		to_chat(user, "<span class='notice'>The stick is drawn back to the backpack 'eh!</span>")
-		pack.on = FALSE
-		loc = pack
+	..()
+	to_chat(user, "<span class='notice'>The stick is drawn back to the backpack 'eh!</span>")
+	snap_back()
 
+/obj/item/twohanded/hockeystick/proc/snap_back()
+	if(!pack)
+		return
+	pack.on = FALSE
+	forceMove(pack)
 
-/proc/check_pack_exists(parent_pack, mob/living/carbon/human/M, obj/O)
+/obj/item/twohanded/hockeystick/proc/check_pack_exists(parent_pack, mob/living/carbon/human/M, obj/O)
 	if(!parent_pack || !istype(parent_pack, /obj/item/hockeypack))
 		qdel(O)
 		return FALSE
@@ -169,7 +176,7 @@
 /obj/item/twohanded/hockeystick/Move()
 	..()
 	if(loc != pack.loc)
-		loc = pack.loc
+		snap_back()
 
 /obj/item/twohanded/hockeystick/IsReflect()
 	return (wielded)
@@ -187,13 +194,18 @@
 	var/obj/item/holopuck/newpuck
 
 /obj/item/storage/belt/hippie/hockey/equipped(mob/user, slot)
+	..()
 	if(slot == slot_belt)
 		flags_1 |= NODROP_1
+
+/obj/item/storage/belt/hippie/hockey/item_action_slot_check(slot, mob/user)
+	if(slot == user.getBeltSlot())
+		return TRUE
 
 /obj/item/storage/belt/hippie/hockey/ui_action_click()
 	make_puck()
 
-/obj/item/storage/belt/hippie/hockey/verb/make_puck()
+/obj/item/storage/belt/hippie/hockey/proc/make_puck()
 	set name = "Produce Puck"
 	set category = "Object"
 	if (usr.get_item_by_slot(usr.getHockeybeltSlot()) != src)
@@ -241,7 +253,7 @@
 	if(..() || !iscarbon(hit_atom))
 		return
 	var/mob/living/carbon/C = hit_atom
-	C.apply_effect(PUCK_STUN_AMT, STUN)
+	C.apply_effect(PUCK_STUN_AMT, EFFECT_STUN)
 	C.apply_damage((throwforce * 2), STAMINA) //This way the stamina damage is ALSO buffed by special throw items, the hockey stick for example.
 	playsound(src, 'sound/effects/snap.ogg', 50, 1)
 	visible_message("<span class='danger'>[C] has been dazed by a holopuck!</span>", \
@@ -258,7 +270,7 @@
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
 	flags_1 = THICKMATERIAL_1 | STOPSPRESSUREDMAGE_1
-	armor = list(melee = 70, bullet = 45, laser = 80, energy = 45, bomb = 75, bio = 0, rad = 30, fire = 80, acid = 100)
+	armor = list("melee" = 70, "bullet" = 45, "laser" = 80, "energy" = 45, "bomb" = 75, "bio" = 0, "rad" = 30, "fire" = 80, "acid" = 100)
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/suit/hippie/hockey/equipped(mob/user, slot)
@@ -294,7 +306,7 @@
 	desc = "A combat helmet used by Ka-Nada extreme environment teams. Protects you from the elements as well as your opponents."
 	icon_state = "hockey_helmet"
 	item_state = "hockey_helmet"
-	armor = list(melee = 80, bullet = 40, laser = 80,energy = 45, bomb = 50, bio = 10, rad = 0, fire = 80, acid = 100)
+	armor = list("melee" = 80, "bullet" = 40, "laser" = 80,"energy" = 45, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 80, "acid" = 100)
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 	flags_1 = STOPSPRESSUREDMAGE_1 | NODROP_1

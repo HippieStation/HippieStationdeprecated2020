@@ -714,7 +714,7 @@ The _flatIcons list is a cache for generated icon files.
 */
 
 // Creates a single icon from a given /atom or /image.  Only the first argument is required.
-/proc/getFlatIcon(image/A, defdir, deficon, defstate, defblend, start = TRUE)
+/proc/getFlatIcon(image/A, defdir, deficon, defstate, defblend, start = TRUE, no_anim = FALSE)
 	// We start with a blank canvas, otherwise some icon procs crash silently
 	var/icon/flat = icon('icons/effects/effects.dmi', "nothing") // Final flattened icon
 	if(!A)
@@ -813,6 +813,9 @@ The _flatIcons list is a cache for generated icon files.
 				curIndex++ //Try the next layer
 				continue
 			var/image/I = current
+			if(I.plane != FLOAT_PLANE && I.plane != A.plane)
+				curIndex++
+				continue
 			currentLayer = I.layer
 			if(currentLayer<0) // Special case for FLY_LAYER
 				if(currentLayer <= -1000)
@@ -864,7 +867,7 @@ The _flatIcons list is a cache for generated icon files.
 			curblend = BLEND_OVERLAY
 			add = icon(I.icon, I.icon_state, base_icon_dir)
 		else // 'I' is an appearance object.
-			add = getFlatIcon(new/image(I), curdir, curicon, curstate, curblend, FALSE)
+			add = getFlatIcon(new/image(I), curdir, curicon, curstate, curblend, FALSE, no_anim)
 
 		// Find the new dimensions of the flat icon to fit the added overlay
 		addX1 = min(flatX1, I.pixel_x+1)
@@ -886,7 +889,13 @@ The _flatIcons list is a cache for generated icon files.
 	if(A.alpha < 255)
 		flat.Blend(rgb(255, 255, 255, A.alpha), ICON_MULTIPLY)
 
-	return icon(flat, "", SOUTH)
+	if(no_anim)
+		//Clean up repeated frames
+		var/icon/cleaned = new /icon()
+		cleaned.Insert(flat, "", SOUTH, 1, 0)
+		return cleaned
+	else
+		return icon(flat, "", SOUTH)
 
 /proc/getIconMask(atom/A)//By yours truly. Creates a dynamic mask for a mob/whatever. /N
 	var/icon/alpha_mask = new(A.icon,A.icon_state)//So we want the default icon and icon state of A.
@@ -1032,7 +1041,7 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 	return 0
 
 //For creating consistent icons for human looking simple animals
-/proc/get_flat_human_icon(icon_id, datum/job/J, datum/preferences/prefs, dummy_key)
+/proc/get_flat_human_icon(icon_id, datum/job/J, datum/preferences/prefs, dummy_key, showDirs = GLOB.cardinals)
 	var/static/list/humanoid_icon_cache = list()
 	if(!icon_id || !humanoid_icon_cache[icon_id])
 		var/mob/living/carbon/human/dummy/body = generate_or_wait_for_human_dummy(dummy_key)
@@ -1044,26 +1053,11 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 
 
 		var/icon/out_icon = icon('icons/effects/effects.dmi', "nothing")
-
-		body.setDir(NORTH)
-		COMPILE_OVERLAYS(body)
-		var/icon/partial = getFlatIcon(body)
-		out_icon.Insert(partial,dir=NORTH)
-
-		body.setDir(SOUTH)
-		COMPILE_OVERLAYS(body)
-		partial = getFlatIcon(body)
-		out_icon.Insert(partial,dir=SOUTH)
-
-		body.setDir(WEST)
-		COMPILE_OVERLAYS(body)
-		partial = getFlatIcon(body)
-		out_icon.Insert(partial,dir=WEST)
-
-		body.setDir(EAST)
-		COMPILE_OVERLAYS(body)
-		partial = getFlatIcon(body)
-		out_icon.Insert(partial,dir=EAST)
+		for(var/D in showDirs)
+			body.setDir(D)
+			COMPILE_OVERLAYS(body)
+			var/icon/partial = getFlatIcon(body)
+			out_icon.Insert(partial,dir=D)
 
 		humanoid_icon_cache[icon_id] = out_icon
 		dummy_key? unset_busy_human_dummy(dummy_key) : qdel(body)

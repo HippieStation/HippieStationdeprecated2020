@@ -111,6 +111,10 @@
 	name = "Cloning (Computer Board)"
 	build_path = /obj/machinery/computer/cloning
 
+/obj/item/circuitboard/computer/prototype_cloning
+	name = "Prototype Cloning (Computer Board)"
+	build_path = /obj/machinery/computer/prototype_cloning
+
 /obj/item/circuitboard/computer/arcade/battle
 	name = "Arcade Battle (Computer Board)"
 	build_path = /obj/machinery/computer/arcade/battle
@@ -189,16 +193,16 @@
 	var/contraband = FALSE
 
 /obj/item/circuitboard/computer/cargo/multitool_act(mob/living/user)
-	if(!emagged)
+	if(!(obj_flags & EMAGGED))
 		contraband = !contraband
 		to_chat(user, "<span class='notice'>Receiver spectrum set to [contraband ? "Broad" : "Standard"].</span>")
 	else
 		to_chat(user, "<span class='notice'>The spectrum chip is unresponsive.</span>")
 
 /obj/item/circuitboard/computer/cargo/emag_act(mob/living/user)
-	if(!emagged)
+	if(!(obj_flags & EMAGGED))
 		contraband = TRUE
-		emagged = TRUE
+		obj_flags |= EMAGGED
 		to_chat(user, "<span class='notice'>You adjust [src]'s routing and receiver spectrum, unlocking special supplies and contraband.</span>")
 
 /obj/item/circuitboard/computer/cargo/express
@@ -206,15 +210,15 @@
 	build_path = /obj/machinery/computer/cargo/express
 
 /obj/item/circuitboard/computer/cargo/express/multitool_act(mob/living/user)
-	if (!emagged) 
+	if (!(obj_flags & EMAGGED))
 		to_chat(user, "<span class='notice'>Routing protocols are already set to: \"factory defaults\".</span>")
-	else 
+	else
 		to_chat(user, "<span class='notice'>You reset the routing protocols to: \"factory defaults\".</span>")
-		emagged = FALSE
+		obj_flags &= ~EMAGGED
 
 /obj/item/circuitboard/computer/cargo/express/emag_act(mob/living/user)
 		to_chat(user, "<span class='notice'>You change the routing protocols, allowing the Drop Pod to land anywhere on the station.</span>")
-		emagged = TRUE
+		obj_flags |= EMAGGED
 
 /obj/item/circuitboard/computer/cargo/request
 	name = "Supply Request Console (Computer Board)"
@@ -231,6 +235,10 @@
 /obj/item/circuitboard/computer/mining
 	name = "Outpost Status Display (Computer Board)"
 	build_path = /obj/machinery/computer/security/mining
+
+/obj/item/circuitboard/computer/research
+	name = "Research Monitor (Computer Board)"
+	build_path = /obj/machinery/computer/security/research
 
 /obj/item/circuitboard/computer/comm_monitor
 	name = "Telecommunications Monitor (Computer Board)"

@@ -4,6 +4,7 @@
 #define MODE_MESON "meson"
 #define MODE_TRAY "t-ray"
 #define MODE_RAD "radiation"
+#define MODE_SHUTTLE "shuttle"
 
 /obj/item/clothing/glasses/meson/engine
 	name = "engineering scanner goggles"
@@ -37,7 +38,7 @@
 		if(MODE_MESON)
 			vision_flags = SEE_TURFS
 			darkness_view = 1
-			lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+			lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 
 		if(MODE_TRAY) //undoes the last mode, meson
 			vision_flags = NONE
@@ -69,27 +70,13 @@
 	var/mob/living/carbon/human/user = loc
 	if(user.glasses != src || !user.client)
 		return
-	if(mode == MODE_TRAY)
-		scan()
-	else if(mode == MODE_RAD)
-		show_rads()
-
-/obj/item/clothing/glasses/meson/engine/proc/scan()
-	for(var/turf/T in range(range, loc))
-		for(var/obj/O in T.contents)
-			if(O.level != 1)
-				continue
-
-			if(O.invisibility == INVISIBILITY_MAXIMUM)
-				flick_sonar(O)
-
-/obj/item/clothing/glasses/meson/engine/proc/flick_sonar(obj/pipe)
-	var/mob/M = loc
-	var/image/I = new(loc = get_turf(pipe))
-	var/mutable_appearance/MA = new(pipe)
-	MA.alpha = 128
-	I.appearance = MA
-	flick_overlay(I, list(M.client), 8)
+	switch(mode)
+		if(MODE_TRAY)
+			t_ray_scan(user, 8, range)
+		if(MODE_RAD)
+			show_rads()
+		if(MODE_SHUTTLE)
+			show_shuttle()
 
 /obj/item/clothing/glasses/meson/engine/proc/show_rads()
 	var/mob/living/carbon/human/user = loc
@@ -116,6 +103,24 @@
 		pic.appearance = MA
 		flick_overlay(pic, list(user.client), 8)
 
+/obj/item/clothing/glasses/meson/engine/proc/show_shuttle()
+	var/mob/living/carbon/human/user = loc
+	var/obj/docking_port/mobile/port = SSshuttle.get_containing_shuttle(user)
+	if(!port)
+		return
+	var/list/shuttle_areas = port.shuttle_areas
+	for(var/r in shuttle_areas)
+		var/area/region = r
+		for(var/turf/place in region.contents)
+			if(get_dist(user, place) > 7)
+				continue
+			var/image/pic
+			if(isshuttleturf(place))
+				pic = new('icons/turf/overlays.dmi', place, "greenOverlay", AREA_LAYER)
+			else
+				pic = new('icons/turf/overlays.dmi', place, "redOverlay", AREA_LAYER)
+			flick_overlay(pic, list(user.client), 8)
+
 /obj/item/clothing/glasses/meson/engine/update_icon()
 	icon_state = "trayson-[mode]"
 	update_mob()
@@ -138,7 +143,16 @@
 
 	modes = list(MODE_NONE = MODE_TRAY, MODE_TRAY = MODE_NONE)
 
+/obj/item/clothing/glasses/meson/engine/shuttle
+	name = "shuttle region scanner"
+	icon_state = "trayson-shuttle"
+	item_state = "trayson-shuttle"
+	desc = "Used to see the boundaries of shuttle regions."
+
+	modes = list(MODE_NONE = MODE_SHUTTLE, MODE_SHUTTLE = MODE_NONE)
+
 #undef MODE_NONE
 #undef MODE_MESON
 #undef MODE_TRAY
 #undef MODE_RAD
+#undef MODE_SHUTTLE

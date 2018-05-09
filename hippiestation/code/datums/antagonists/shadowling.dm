@@ -2,6 +2,7 @@
 	name = "Shadowling"
 	job_rank = ROLE_SHADOWLING
 	roundend_category = "shadowlings"
+	antagpanel_category = "Shadowlings"
 	var/list/objectives_given = list()
 
 /datum/antagonist/shadowling/on_gain()
@@ -61,10 +62,12 @@
 	SEND_SOUND(owner.current, sound('hippiestation/sound/ambience/antag/sling.ogg'))
 
 /datum/antagonist/shadowling/proc/check_shadow_death()
-	for(var/datum/mind/shadow_mind in get_antagonists(/datum/antagonist/shadowling))
-		var/turf/T = get_turf(shadow_mind.current)
-		if((shadow_mind) && (shadow_mind.current) && (shadow_mind.current.stat != DEAD) && T && is_station_level(T.z) && ishuman(shadow_mind.current))
-			return FALSE
+	for(var/SM in get_antag_minds(/datum/antagonist/shadowling))
+		var/datum/mind/shadow_mind = SM
+		if(istype(shadow_mind))
+			var/turf/T = get_turf(shadow_mind.current)
+			if((shadow_mind) && (shadow_mind.current) && (shadow_mind.current.stat != DEAD) && T && is_station_level(T.z) && ishuman(shadow_mind.current))
+				return FALSE
 	return TRUE
 
 /datum/antagonist/shadowling/roundend_report()

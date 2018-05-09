@@ -1,7 +1,6 @@
 /mob/living/carbon/human
 	name = "Unknown"
 	real_name = "Unknown"
-	voice_name = "Unknown"
 	icon = 'icons/mob/human.dmi'
 	icon_state = "caucasian_m"
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
@@ -23,13 +22,24 @@
 
 	//initialise organs
 	create_internal_organs() //most of it is done in set_species now, this is only for parent call
+	physiology = new()
 
 	handcrafting = new()
-	update_teeth()	//hippie - unknown, teeth releated apparently?
-	
+
 	. = ..()
-	
+
 	AddComponent(/datum/component/redirect, list(COMSIG_COMPONENT_CLEAN_ACT), CALLBACK(src, .proc/clean_blood))
+
+
+/mob/living/carbon/human/ComponentInitialize()
+	. = ..()
+	if(!CONFIG_GET(flag/disable_human_mood))
+		AddComponent(/datum/component/mood)
+
+/mob/living/carbon/human/Destroy()
+	QDEL_NULL(physiology)
+	return ..()
+
 
 /mob/living/carbon/human/OpenCraftingMenu()
 	handcrafting.ui_interact(src)
@@ -70,7 +80,7 @@
 		var/obj/item/clothing/suit/space/space_ninja/SN = wear_suit
 		if(statpanel("SpiderOS"))
 			stat("SpiderOS Status:","[SN.s_initialized ? "Initialized" : "Disabled"]")
-			stat("Current Time:", "[worldtime2text()]")
+			stat("Current Time:", "[station_time_timestamp()]")
 			if(SN.s_initialized)
 				//Suit gear
 				stat("Energy Charge:", "[round(SN.cell.charge/100)]%")
@@ -87,10 +97,10 @@
 				stat("Radiation Levels:","[radiation] rad")
 				stat("Body Temperature:","[bodytemperature-T0C] degrees C ([bodytemperature*1.8-459.67] degrees F)")
 
-				//Virsuses
-				if(viruses.len)
+				//Diseases
+				if(diseases.len)
 					stat("Viruses:", null)
-					for(var/thing in viruses)
+					for(var/thing in diseases)
 						var/datum/disease/D = thing
 						stat("*", "[D.name], Type: [D.spread_text], Stage: [D.stage]/[D.max_stages], Possible Cure: [D.cure_text]")
 
@@ -213,13 +223,13 @@
 			var/obj/item/I = locate(href_list["embedded_object"]) in L.embedded_objects
 			if(!I || I.loc != src) //no item, no limb, or item is not in limb or in the person anymore
 				return
-			var/time_taken = I.embedded_unsafe_removal_time*I.w_class
+			var/time_taken = I.embedding.embedded_unsafe_removal_time*I.w_class
 			usr.visible_message("<span class='warning'>[usr] attempts to remove [I] from their [L.name].</span>","<span class='notice'>You attempt to remove [I] from your [L.name]... (It will take [DisplayTimeText(time_taken)].)</span>")
 			if(do_after(usr, time_taken, needhand = 1, target = src))
 				if(!I || !L || I.loc != src || !(I in L.embedded_objects))
 					return
 				L.embedded_objects -= I
-				L.receive_damage(I.embedded_unsafe_removal_pain_multiplier*I.w_class)//It hurts to rip it out, get surgery you dingus.
+				L.receive_damage(I.embedding.embedded_unsafe_removal_pain_multiplier*I.w_class)//It hurts to rip it out, get surgery you dingus.
 				
 				// Hippie Start - Remove pinned item
 				if (I.pinned)
@@ -233,7 +243,7 @@
 				if (!istype(I, /obj/item/stack))
 					I.forceMove(get_turf(src))
 				// Hippie End
-				
+
 				usr.put_in_hands(I)
 				emote("scream")
 
@@ -241,6 +251,7 @@
 								"<span class='notice'>You successfully remove \the [I] from [usr == src ? "your" : name + "'s"] [L.name].</span>")
 				if(!has_embedded_objects())
 					clear_alert("embeddedobject")
+					usr.SendSignal(COMSIG_CLEAR_MOOD_EVENT, "embedded")
 			return
 
 		if(href_list["item"])
@@ -380,7 +391,7 @@
 						// Checks the user has security clearence before allowing them to change arrest status via hud, comment out to enable all access
 						var/allowed_access = null
 						var/obj/item/clothing/glasses/G = H.glasses
-						if (!G.emagged)
+						if (!(G.obj_flags |= EMAGGED))
 							if(H.wear_id)
 								var/list/access = H.wear_id.GetAccess()
 								if(ACCESS_SEC_DOORS in access)
@@ -442,7 +453,7 @@
 														return
 													else if(!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
 														return
-													var/crime = GLOB.data_core.createCrimeEntry(t1, t2, allowed_access, worldtime2text())
+													var/crime = GLOB.data_core.createCrimeEntry(t1, t2, allowed_access, station_time_timestamp())
 													GLOB.data_core.addMinorCrime(R.fields["id"], crime)
 													to_chat(usr, "<span class='notice'>Successfully added a minor crime.</span>")
 													return
@@ -457,7 +468,7 @@
 														return
 													else if (!istype(H.glasses, /obj/item/clothing/glasses/hud/security) && !istype(H.getorganslot(ORGAN_SLOT_HUD), /obj/item/organ/cyberimp/eyes/hud/security))
 														return
-													var/crime = GLOB.data_core.createCrimeEntry(t1, t2, allowed_access, worldtime2text())
+													var/crime = GLOB.data_core.createCrimeEntry(t1, t2, allowed_access, station_time_timestamp())
 													GLOB.data_core.addMajorCrime(R.fields["id"], crime)
 													to_chat(usr, "<span class='notice'>Successfully added a major crime.</span>")
 									return
@@ -489,7 +500,7 @@
 											var/counter = 1
 											while(R.fields[text("com_[]", counter)])
 												counter++
-											R.fields[text("com_[]", counter)] = text("Made by [] on [] [], []<BR>[]", allowed_access, worldtime2text(), time2text(world.realtime, "MMM DD"), GLOB.year_integer+540, t1)
+											R.fields[text("com_[]", counter)] = text("Made by [] on [] [], []<BR>[]", allowed_access, station_time_timestamp(), time2text(world.realtime, "MMM DD"), GLOB.year_integer+540, t1)
 											to_chat(usr, "<span class='notice'>Successfully added comment.</span>")
 											return
 							to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
@@ -501,7 +512,7 @@
 	. = 1 // Default to returning true.
 	if(user && !target_zone)
 		target_zone = user.zone_selected
-	if(dna && (PIERCEIMMUNE in dna.species.species_traits))
+	if(has_trait(TRAIT_PIERCEIMMUNE))
 		. = 0
 	// If targeting the head, see if the head item is thin enough.
 	// If targeting anything else, see if the wear suit is thin enough.
@@ -640,7 +651,7 @@
 /mob/living/carbon/human/proc/do_cpr(mob/living/carbon/C)
 	CHECK_DNA_AND_SPECIES(C)
 
-	if(C.stat == DEAD || (C.status_flags & FAKEDEATH))
+	if(C.stat == DEAD || (C.has_trait(TRAIT_FAKEDEATH)))
 		to_chat(src, "<span class='warning'>[C.name] is dead!</span>")
 		return
 	if(is_mouth_covered())
@@ -657,13 +668,14 @@
 			to_chat(src, "<span class='warning'>You fail to perform CPR on [C]!</span>")
 			return 0
 
-		var/they_breathe = (!(NOBREATH in C.dna.species.species_traits))
+		var/they_breathe = !C.has_trait(TRAIT_NOBREATH)
 		var/they_lung = C.getorganslot(ORGAN_SLOT_LUNGS)
 
 		if(C.health > HEALTH_THRESHOLD_CRIT)
 			return
 
 		src.visible_message("[src] performs CPR on [C.name]!", "<span class='notice'>You perform CPR on [C.name].</span>")
+		SendSignal(COMSIG_ADD_MOOD_EVENT, "perform_cpr", /datum/mood_event/perform_cpr)
 		C.cpr_time = world.time
 		add_logs(src, C, "CPRed")
 
@@ -743,13 +755,15 @@
 
 /mob/living/carbon/human/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE)
 	if(incapacitated() || lying )
-		return
+		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
+		return FALSE
 	if(!Adjacent(M) && (M.loc != src))
 		if((be_close == 0) && (dna.check_mutation(TK)))
 			if(tkMaxRangeCheck(src, M))
-				return 1
-		return
-	return 1
+				return TRUE
+		to_chat(src, "<span class='warning'>You are too far away!</span>")
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/human/resist_restraints()
 	if(wear_suit && wear_suit.breakouttime)
@@ -777,7 +791,7 @@
 		return
 	else
 		if(hud_used.healths)
-			var/health_amount = health
+			var/health_amount = health - getStaminaLoss()
 			if(..(health_amount)) //not dead
 				switch(hal_screwyhud)
 					if(SCREWYHUD_CRIT)
@@ -826,34 +840,6 @@
 			dna.remove_mutation(HM.name)
 	..()
 
-/mob/living/carbon/human/proc/influenceSin()
-	var/datum/objective/sintouched/O
-	switch(rand(1,7))//traditional seven deadly sins... except lust.
-		if(1) // acedia
-			log_game("[src] was influenced by the sin of Acedia.")
-			O = new /datum/objective/sintouched/acedia
-		if(2) // Gluttony
-			log_game("[src] was influenced by the sin of gluttony.")
-			O = new /datum/objective/sintouched/gluttony
-		if(3) // Greed
-			log_game("[src] was influenced by the sin of greed.")
-			O = new /datum/objective/sintouched/greed
-		if(4) // sloth
-			log_game("[src] was influenced by the sin of sloth.")
-			O = new /datum/objective/sintouched/sloth
-		if(5) // Wrath
-			log_game("[src] was influenced by the sin of wrath.")
-			O = new /datum/objective/sintouched/wrath
-		if(6) // Envy
-			log_game("[src] was influenced by the sin of envy.")
-			O = new /datum/objective/sintouched/envy
-		if(7) // Pride
-			log_game("[src] was influenced by the sin of pride.")
-			O = new /datum/objective/sintouched/pride
-	SSticker.mode.sintouched += src.mind
-	src.mind.objectives += O
-	src.mind.announce_objectives()
-
 /mob/living/carbon/human/check_weakness(obj/item/weapon, mob/living/attacker)
 	. = ..()
 	if (dna && dna.species)
@@ -899,11 +885,16 @@
 	.["Make Cluwne"] = "?_src_=vars;[HrefToken()];cluwneing=[REF(src)]"
 
 /mob/living/carbon/human/MouseDrop_T(mob/living/target, mob/living/user)
-	if((target != pulling) || (grab_state < GRAB_AGGRESSIVE) || (user != target) || !isliving(user) || stat || user.stat)//Get consent first :^)
-		. = ..()
-		return
-	buckle_mob(target, TRUE, TRUE)
+	//If they dragged themselves and we're currently aggressively grabbing them try to piggyback
+	if(user == target && can_piggyback(target) && pulling == target && grab_state >= GRAB_AGGRESSIVE && stat == CONSCIOUS)
+		buckle_mob(target,TRUE,TRUE)
 	. = ..()
+
+//Can C try to piggyback at all.
+/mob/living/carbon/human/proc/can_piggyback(mob/living/carbon/C)
+	if(istype(C) && C.stat == CONSCIOUS)
+		return TRUE
+	return FALSE
 
 /mob/living/carbon/human/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)
 	if(!force)//humans are only meant to be ridden through piggybacking and special cases
@@ -913,24 +904,32 @@
 		return
 	var/datum/component/riding/human/riding_datum = LoadComponent(/datum/component/riding/human)
 	riding_datum.ride_check_rider_incapacitated = TRUE
-	riding_datum.ride_check_ridden_incapacitated = TRUE
 	riding_datum.ride_check_rider_restrained = TRUE
 	riding_datum.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 6), TEXT_SOUTH = list(0, 6), TEXT_EAST = list(-6, 4), TEXT_WEST = list( 6, 4)))
 	if(buckled_mobs && ((M in buckled_mobs) || (buckled_mobs.len >= max_buckled_mobs)) || buckled || (M.stat != CONSCIOUS))
 		return
-	visible_message("<span class='notice'>[M] starts to climb onto [src]...</span>")
-	if(do_after(M, 15, target = src))
-		if(iscarbon(M))
-			if(M.incapacitated(FALSE, TRUE) || incapacitated(FALSE, TRUE))
-				M.visible_message("<span class='warning'>[M] can't hang onto [src]!</span>")
-				return
-			if(!riding_datum.equip_buckle_inhands(M, 2))	//MAKE SURE THIS IS LAST!!
-				M.visible_message("<span class='warning'>[M] can't climb onto [src]!</span>")
-				return
-		. = ..(M, force, check_loc)
-		stop_pulling()
+	if(can_piggyback(M))
+		riding_datum.ride_check_ridden_incapacitated = TRUE
+		visible_message("<span class='notice'>[M] starts to climb onto [src]...</span>")
+		if(do_after(M, 15, target = src))
+			if(can_piggyback(M))
+				if(M.incapacitated(FALSE, TRUE) || incapacitated(FALSE, TRUE))
+					M.visible_message("<span class='warning'>[M] can't hang onto [src]!</span>")
+					return
+				if(!riding_datum.equip_buckle_inhands(M, 2))	//MAKE SURE THIS IS LAST!!
+					M.visible_message("<span class='warning'>[M] can't climb onto [src]!</span>")
+					return
+			. = ..(M, force, check_loc)
+			stop_pulling()
+		else
+			visible_message("<span class='warning'>[M] fails to climb onto [src]!</span>")
 	else
-		visible_message("<span class='warning'>[M] fails to climb onto [src]!</span>")
+		. = ..(M,force,check_loc)
+		stop_pulling()
+
+/mob/living/carbon/human/do_after_coefficent()
+	. = ..()
+	. *= physiology.do_after_speed
 
 /mob/living/carbon/human/species
 	var/race = null
@@ -1052,15 +1051,3 @@
 
 /mob/living/carbon/human/species/zombie/krokodil_addict
 	race = /datum/species/krokodil_addict
-
-/mob/living/carbon/human/species/tarajan
-	race = /datum/species/tarajan
-
-/mob/living/carbon/human/species/moth
-	race = /datum/species/moth
-
-/mob/living/carbon/human/species/ipc
-	race = /datum/species/ipc
-
-/mob/living/carbon/human/species/bird
-	race = /datum/species/bird

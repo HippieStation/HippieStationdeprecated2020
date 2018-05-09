@@ -121,10 +121,12 @@ Made by Xhuis
 	return shadowling_ascended
 
 /datum/game_mode/shadowling/proc/check_shadow_death()
-	for(var/datum/mind/shadow_mind in get_antagonists(/datum/antagonist/shadowling))
-		var/turf/T = get_turf(shadow_mind.current)
-		if((shadow_mind) && (shadow_mind.current) && (shadow_mind.current.stat != DEAD) && T && is_station_level(T.z) && ishuman(shadow_mind.current))
-			return FALSE
+	for(var/SM in get_antag_minds(/datum/antagonist/shadowling))
+		var/datum/mind/shadow_mind = SM
+		if(istype(shadow_mind))
+			var/turf/T = get_turf(shadow_mind.current)
+			if((shadow_mind) && (shadow_mind.current) && (shadow_mind.current.stat != DEAD) && T && is_station_level(T.z) && ishuman(shadow_mind.current))
+				return FALSE
 	return TRUE
 
 /datum/game_mode/shadowling/check_finished()
@@ -158,7 +160,8 @@ Made by Xhuis
 	name = "Shadowling"
 	id = "shadowling"
 	say_mod = "chitters"
-	species_traits = list(NOBREATH,RESISTCOLD,RESISTPRESSURE,NOGUNS,NOBLOOD,RADIMMUNE,VIRUSIMMUNE,PIERCEIMMUNE,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING)
+	species_traits = list(NOBLOOD,NO_UNDERWEAR,NO_DNA_COPY,NOTRANSSTING,NOEYES)
+	inherent_traits = list(TRAIT_NOGUNS, TRAIT_RESISTCOLD, TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE, TRAIT_NOBREATH, TRAIT_RADIMMUNE, TRAIT_VIRUSIMMUNE, TRAIT_PIERCEIMMUNE)
 	no_equip = list(slot_wear_mask, slot_glasses, slot_gloves, slot_shoes, slot_w_uniform, slot_s_store)
 	nojumpsuit = 1
 	mutanteyes = /obj/item/organ/eyes/night_vision/alien/sling
@@ -219,7 +222,8 @@ Made by Xhuis
 	name = "Lesser Shadowling"
 	id = "l_shadowling"
 	say_mod = "chitters"
-	species_traits = list(NOBREATH,NOBLOOD,RADIMMUNE,NO_DNA_COPY,NOTRANSSTING)
+	species_traits = list(NOBLOOD,NO_DNA_COPY,NOTRANSSTING,NOEYES)
+	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RADIMMUNE)
 	burnmod = 1.1
 	heatmod = 1.1
 

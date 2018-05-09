@@ -19,9 +19,9 @@
 		if(prefs.muted & MUTE_OOC)
 			to_chat(src, "<span class='danger'>You cannot use OOC (muted).</span>")
 			return
-		if(jobban_isbanned(src.mob, "OOC"))
-			to_chat(src, "<span class='danger'>You have been banned from OOC.</span>")
-			return
+	if(jobban_isbanned(src.mob, "OOC"))
+		to_chat(src, "<span class='danger'>You have been banned from OOC.</span>")
+		return
 
 	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
 	var/raw_msg = msg
@@ -48,6 +48,7 @@
 		to_chat(src, "<span class='danger'>You have OOC muted.</span>")
 		return
 
+
 	log_talk(mob,"[key_name(src)] : [raw_msg]",LOGOOC)
 	mob.log_message("[key]: [raw_msg]", INDIVIDUAL_OOC_LOG)
 
@@ -62,10 +63,10 @@
 				if(!holder.fakekey || C.holder)
 					if(check_rights_for(src, R_ADMIN))
 						to_chat(C, "<span class='adminooc'>[CONFIG_GET(flag/allow_admin_ooccolor) && prefs.ooccolor ? "<font color=[prefs.ooccolor]>" :"" ]<span class='prefix'>OOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message'>[msg]</span></span></font>")
-					else
-						to_chat(C, "<font color='[GLOB.HIPPIE_MENTOR_OOC_COLOUR]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message'>[msg]</span></span>")
 				else
 					to_chat(C, "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message'>[msg]</span></span></font>")
+			else if(is_mentor()) // hippie start
+				to_chat(C, "<font color='[HIPPIE_MENTOR_OOC_COLOUR]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message'>[msg]</span></span>") // hippie end
 			else if(!(key in C.prefs.ignoring))
 				to_chat(C, "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message'>[msg]</span></span></font>")
 
@@ -231,6 +232,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, OOC_COLOR)
 	var/motd = global.config.motd
 	if(motd)
 		to_chat(src, "<div class=\"motd\">[motd]</div>")
+
 	else
 		to_chat(src, "<span class='notice'>The Message of the Day has not been set.</span>")
 
@@ -244,6 +246,22 @@ GLOBAL_VAR_INIT(normal_ooc_colour, OOC_COLOR)
 		return
 
 	browse_messages(null, usr.ckey, null, TRUE)
+
+/client/proc/self_playtime()
+	set name = "View tracked playtime"
+	set category = "OOC"
+	set desc = "View the amount of playtime for roles the server has tracked."
+
+	if(!CONFIG_GET(flag/use_exp_tracking))
+		to_chat(usr, "<span class='notice'>Sorry, tracking is currently disabled.</span>")
+		return
+
+	var/list/body = list()
+	body += "<html><head><title>Playtime for [key]</title></head><BODY><BR>Playtime:"
+	body += get_exp_report()
+	body += "</BODY></HTML>"
+	usr << browse(body.Join(), "window=playerplaytime[ckey];size=550x615")
+
 
 /client/proc/ignore_key(client)
 	var/client/C = client
@@ -259,7 +277,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, OOC_COLOR)
 	set category = "OOC"
 	set desc ="Ignore a player's messages on the OOC channel"
 
-	
+
 	var/see_ghost_names = isobserver(mob)
 	var/list/choices = list()
 	for(var/client/C in GLOB.clients)

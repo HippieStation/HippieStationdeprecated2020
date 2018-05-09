@@ -3,6 +3,7 @@
 	icon = 'icons/mob/aibots.dmi'
 	layer = MOB_LAYER
 	gender = NEUTER
+	mob_biotypes = list(MOB_ROBOTIC)
 	light_range = 3
 	stop_automated_movement = 1
 	wander = 0
@@ -303,12 +304,10 @@
 			if(!open)
 				to_chat(user, "<span class='warning'>Unable to repair with the maintenance panel closed!</span>")
 				return
-			var/obj/item/weldingtool/WT = W
-			if(WT.remove_fuel(0, user))
+
+			if(W.use_tool(src, user, 0, volume=40))
 				adjustHealth(-10)
 				user.visible_message("[user] repairs [src]!","<span class='notice'>You repair [src].</span>")
-			else
-				to_chat(user, "<span class='warning'>The welder must be on for this task!</span>")
 		else
 			if(W.force) //if force is non-zero
 				do_sparks(5, TRUE, src)
@@ -377,6 +376,10 @@
 		var/obj/item/stock_parts/cell/dropped_cell = dropped_item
 		dropped_cell.charge = 0
 		dropped_cell.update_icon()
+
+	else if(istype(dropped_item, /obj/item/storage))
+		var/obj/item/storage/S = dropped_item
+		S.contents = list()
 
 	else if(istype(dropped_item, /obj/item/gun/energy))
 		var/obj/item/gun/energy/dropped_gun = dropped_item
@@ -966,6 +969,8 @@ Pass a positive integer as an argument to override a bot's default speed.
 	if(newpath)
 		for(var/i in 1 to newpath.len)
 			var/turf/T = newpath[i]
+			if(T == loc) //don't bother putting an image if it's where we already exist.
+				continue
 			var/direction = NORTH
 			if(i > 1)
 				var/turf/prevT = path[i - 1]
@@ -1008,5 +1013,5 @@ Pass a positive integer as an argument to override a bot's default speed.
 		return
 	var/image/I = path[path[1]]
 	if(I)
-		I.icon = null
+		I.icon_state = null
 	path.Cut(1, 2)

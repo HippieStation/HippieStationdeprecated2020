@@ -79,19 +79,20 @@
 
 	var/list/upgrades = list()
 
+	var/hasExpanded = FALSE
 	var/obj/item/hat
 	var/hat_offset = -3
 	var/list/equippable_hats = list(/obj/item/clothing/head/caphat,
-	/obj/item/clothing/head/hardhat/cakehat,
+	/obj/item/clothing/head/hardhat,
 	/obj/item/clothing/head/centhat,
 	/obj/item/clothing/head/HoS,
+	/obj/item/clothing/head/beret,
+	/obj/item/clothing/head/kitty,
 	/obj/item/clothing/head/hopcap,
 	/obj/item/clothing/head/wizard,
 	/obj/item/clothing/head/nursehat,
 	/obj/item/clothing/head/sombrero,
 	/obj/item/clothing/head/witchunter_hat)
-
-	var/remote_range = 7 //How far can you interact with machines.
 
 	can_buckle = TRUE
 	buckle_lying = FALSE
@@ -115,7 +116,7 @@
 	ident = rand(1, 999)
 
 	if(!cell)
-		cell = new /obj/item/stock_parts/cell/high(src, 7500)
+		cell = new /obj/item/stock_parts/cell/high(src)
 
 	if(lawupdate)
 		make_laws()
@@ -126,7 +127,7 @@
 	if(!scrambledcodes && !builtInCamera)
 		builtInCamera = new (src)
 		builtInCamera.c_tag = real_name
-		builtInCamera.network = list("SS13")
+		builtInCamera.network = list("ss13")
 		builtInCamera.internal_light = FALSE
 		if(wires.is_cut(WIRE_CAMERA))
 			builtInCamera.status = 0
@@ -191,6 +192,9 @@
 	cell = null
 	return ..()
 
+/mob/living/silicon/robot/can_interact_with(atom/A)
+	. = ..()
+	return . || in_view_range(src, A)
 
 /mob/living/silicon/robot/proc/pick_module()
 	if(module.type != /obj/item/robot_module)
@@ -205,6 +209,7 @@
 	"Medical" = /obj/item/robot_module/medical, \
 	"Miner" = /obj/item/robot_module/miner, \
 	"Janitor" = /obj/item/robot_module/janitor, \
+	"Clown" = /obj/item/robot_module/clown, \
 	"Service" = /obj/item/robot_module/butler)
 	if(!CONFIG_GET(flag/disable_peaceborg))
 		modulelist["Peacekeeper"] = /obj/item/robot_module/peacekeeper
@@ -363,27 +368,27 @@
 		queueAlarm("--- [class] alarm in [A.name] has been cleared.", class, 0)
 	return !cleared
 
+/mob/living/silicon/robot/can_interact_with(atom/A)
+	return !low_power_mode && ISINRANGE(A.x, x - interaction_range, x + interaction_range) && ISINRANGE(A.y, y - interaction_range, y + interaction_range)
+
 /mob/living/silicon/robot/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/weldingtool) && (user.a_intent != INTENT_HARM || user == src))
 		user.changeNext_move(CLICK_CD_MELEE)
-		var/obj/item/weldingtool/WT = W
 		if (!getBruteLoss())
 			to_chat(user, "<span class='warning'>[src] is already in good condition!</span>")
 			return
-		if (WT.remove_fuel(0, user)) //The welder has 1u of fuel consumed by it's afterattack, so we don't need to worry about taking any away.
-			if(src == user)
-				to_chat(user, "<span class='notice'>You start fixing yourself...</span>")
-				if(!do_after(user, 50, target = src))
-					return
+		if (!W.tool_start_check(user, amount=0)) //The welder has 1u of fuel consumed by it's afterattack, so we don't need to worry about taking any away.
+			return
+		if(src == user)
+			to_chat(user, "<span class='notice'>You start fixing yourself...</span>")
+			if(!W.use_tool(src, user, 50))
+				return
 
-			adjustBruteLoss(-30)
-			updatehealth()
-			add_fingerprint(user)
-			visible_message("<span class='notice'>[user] has fixed some of the dents on [src].</span>")
-			return
-		else
-			to_chat(user, "<span class='warning'>The welder must be on for this task!</span>")
-			return
+		adjustBruteLoss(-30)
+		updatehealth()
+		add_fingerprint(user)
+		visible_message("<span class='notice'>[user] has fixed some of the dents on [src].</span>")
+		return
 
 	else if(istype(W, /obj/item/stack/cable_coil) && wiresexposed)
 		user.changeNext_move(CLICK_CD_MELEE)
@@ -455,9 +460,8 @@
 			spark_system.start()
 			return
 		else
-			playsound(src, W.usesound, 50, 1)
 			to_chat(user, "<span class='notice'>You start to unfasten [src]'s securing bolts...</span>")
-			if(do_after(user, 50*W.toolspeed, target = src) && !cell)
+			if(W.use_tool(src, user, 50, volume=50) && !cell)
 				user.visible_message("[user] deconstructs [src]!", "<span class='notice'>You unfasten the securing bolts, and [src] falls to pieces!</span>")
 				deconstruct()
 
@@ -651,18 +655,6 @@
 		// to have to check if every camera is null or not before doing anything, to prevent runtime errors.
 		// I could change the network to null but I don't know what would happen, and it seems too hacky for me.
 
-/mob/living/silicon/robot/proc/ResetSecurityCodes()
-	set category = "Robot Commands"
-	set name = "Reset Identity Codes"
-	set desc = "Scrambles your security and identification codes and resets your current buffers. Unlocks you and permanently severs you from your AI and the robotics console and will deactivate your camera system."
-
-	var/mob/living/silicon/robot/R = src
-
-	if(R)
-		R.UnlinkSelf()
-		to_chat(R, "Buffers flushed and reset. Camera system shutdown.  All systems operational.")
-		src.verbs -= /mob/living/silicon/robot/proc/ResetSecurityCodes
-
 /mob/living/silicon/robot/mode()
 	set name = "Activate Held Object"
 	set category = "IC"
@@ -813,7 +805,7 @@
 
 /mob/living/silicon/robot/modules/syndicate
 	icon_state = "syndie_bloodhound"
-	faction = list("syndicate")
+	faction = list(ROLE_SYNDICATE)
 	bubble_icon = "syndibot"
 	req_access = list(ACCESS_SYNDICATE)
 	lawupdate = FALSE
@@ -866,10 +858,12 @@
 
 /mob/living/silicon/robot/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE)
 	if(stat || lockcharge || low_power_mode)
-		return
+		to_chat(src, "<span class='warning'>You can't do that right now!</span>")
+		return FALSE
 	if(be_close && !in_range(M, src))
-		return
-	return 1
+		to_chat(src, "<span class='warning'>You are too far away!</span>")
+		return FALSE
+	return TRUE
 
 /mob/living/silicon/robot/updatehealth()
 	..()
@@ -977,6 +971,11 @@
 	shown_robot_modules = FALSE
 	if(hud_used)
 		hud_used.update_robot_modules_display()
+
+	if (hasExpanded)
+		resize = 0.5
+		hasExpanded = FALSE
+		update_transform()
 	module.transform_to(/obj/item/robot_module)
 
 	// Remove upgrades.

@@ -110,7 +110,7 @@
 
 /datum/reagent/toxin/radgoop/on_mob_life(mob/living/M)
 	if(prob(30))
-		M.apply_effect(3,IRRADIATE,0)
+		M.apply_effect(3, EFFECT_IRRADIATE, 0)
 	..()
 
 /datum/reagent/toxin/goop
@@ -212,7 +212,7 @@
 
 /datum/reagent/toxin/sarin/on_mob_life(mob/living/M)
 	M.Jitter(50)
-	M.apply_effect(STUTTER, 5)
+	M.apply_effect(EFFECT_STUTTER, 5)
 	if(current_cycle % 10 == 0)
 		if(iscarbon(M))
 			var/mob/living/carbon/C = M
@@ -434,8 +434,14 @@
 	if(prob(1))
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			H.add_disability(DISABILITY_CLUMSY, CHEMISTRY_BULLSHIT)
+			H.add_trait(TRAIT_CLUMSY, id)
 
+	..()
+
+/datum/reagent/impedrezene/on_mob_delete(mob/living/M)
+	if (ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.remove_trait(TRAIT_CLUMSY)
 	..()
 
 /datum/reagent/toxin/vomit

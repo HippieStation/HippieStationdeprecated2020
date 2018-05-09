@@ -111,6 +111,9 @@ GLOBAL_LIST_EMPTY(AdminProcCallSpamPrevention)
 GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 /proc/WrapAdminProcCall(target, procname, list/arguments)
+	if(target && procname == "Del")
+		to_chat(usr, "Calling Del() is not allowed")
+		return
 	var/current_caller = GLOB.AdminProcCaller
 	var/ckey = usr ? usr.client.ckey : GLOB.AdminProcCaller
 	if(!ckey)
@@ -500,6 +503,42 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		qdel(adminmob)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Assume Direct Control") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/proc/cmd_admin_test_atmos_controllers()
+	set category = "Mapping"
+	set name = "Test Atmos Monitoring Consoles"
+
+	var/list/dat = list()
+
+	if(SSticker.current_state == GAME_STATE_STARTUP)
+		to_chat(usr, "Game still loading, please hold!")
+		return
+
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)] used the Test Atmos Monitor debug command.</span>")
+	log_admin("[key_name(usr)] used the Test Atmos Monitor debug command.")
+
+	var/bad_shit = 0
+	for(var/obj/machinery/computer/atmos_control/tank/console in GLOB.atmos_air_controllers)
+		dat += "<h1>[console] at [get_area_name(console, TRUE)] [COORD(console)]:</h1><br>"
+		if(console.input_tag == console.output_tag)
+			dat += "Error: input_tag is the same as the output_tag, \"[console.input_tag]\"!<br>"
+			bad_shit++
+		if(!LAZYLEN(console.input_info))
+			dat += "Failed to find a valid outlet injector as an input with the tag [console.input_tag].<br>"
+			bad_shit++
+		if(!LAZYLEN(console.output_info))
+			dat += "Failed to find a valid siphon pump as an outlet with the tag [console.output_tag].<br>"
+			bad_shit++
+		if(!bad_shit)
+			dat += "<B>STATUS:</B> NORMAL"
+		else
+			bad_shit = 0
+		dat += "<br>"
+		CHECK_TICK
+
+	var/datum/browser/popup = new(usr, "testatmoscontroller", "Test Atmos Monitoring Consoles", 500, 750)
+	popup.set_content(dat.Join())
+	popup.open()
+
 /client/proc/cmd_admin_areatest(on_station)
 	set category = "Mapping"
 	set name = "Test Areas"
@@ -679,28 +718,37 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set name = "Test Areas (ALL)"
 	cmd_admin_areatest(FALSE)
 
-/client/proc/cmd_admin_dress(mob/living/carbon/human/M in GLOB.mob_list)
+/client/proc/cmd_admin_dress(mob/M in GLOB.mob_list)
 	set category = "Fun"
 	set name = "Select equipment"
-	if(!ishuman(M))
+	if(!(ishuman(M) || isobserver(M)))
 		alert("Invalid mob")
 		return
 
 	var/dresscode = robust_dress_shop()
 
+	if(!dresscode)
+		return
+
+	var/mob/living/carbon/human/H
+	if(isobserver(M))
+		H = M.change_mob_type(/mob/living/carbon/human, null, null, TRUE)
+	else
+		H = M
+
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Select Equipment") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	for (var/obj/item/I in M.get_equipped_items())
+	for (var/obj/item/I in H.get_equipped_items())
 		qdel(I)
-	if(dresscode)
-		M.equipOutfit(dresscode)
+	if(dresscode != "Naked")
+		H.equipOutfit(dresscode)
 
-	M.regenerate_icons()
+	H.regenerate_icons()
 
-	log_admin("[key_name(usr)] changed the equipment of [key_name(M)] to [dresscode].")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode].</span>")
+	log_admin("[key_name(usr)] changed the equipment of [key_name(H)] to [dresscode].")
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)] changed the equipment of [key_name_admin(H)] to [dresscode].</span>")
 
 /client/proc/robust_dress_shop()
-	var/list/outfits = list("Naked","Custom","As Job...")
+	var/list/outfits = list("Cancel","Naked","Custom","As Job...")
 	var/list/paths = subtypesof(/datum/outfit) - typesof(/datum/outfit/job)
 	for(var/path in paths)
 		var/datum/outfit/O = path //not much to initalize here but whatever
@@ -714,7 +762,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if (outfits[dresscode])
 		dresscode = outfits[dresscode]
 
-	if(dresscode == "Naked")
+	if(dresscode == "Cancel")
 		return
 
 	if (dresscode == "As Job...")
@@ -920,14 +968,15 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set category = "Debug"
 	set name = "Toggle Medal Disable"
 	set desc = "Toggles the safety lock on trying to contact the medal hub."
-	if(!holder)
+
+	if(!check_rights(R_DEBUG))
 		return
 
-	GLOB.medals_enabled = !GLOB.medals_enabled
+	SSmedals.hub_enabled = !SSmedals.hub_enabled
 
-	message_admins("<span class='adminnotice'>[key_name_admin(src)] [GLOB.medals_enabled ? "disabled" : "enabled"] the medal hub lockout.</span>")
+	message_admins("<span class='adminnotice'>[key_name_admin(src)] [SSmedals.hub_enabled ? "disabled" : "enabled"] the medal hub lockout.</span>")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Toggle Medal Disable") // If...
-	log_admin("[key_name(src)] [GLOB.medals_enabled ? "disabled" : "enabled"] the medal hub lockout.")
+	log_admin("[key_name(src)] [SSmedals.hub_enabled ? "disabled" : "enabled"] the medal hub lockout.")
 
 /client/proc/view_runtimes()
 	set category = "Debug"

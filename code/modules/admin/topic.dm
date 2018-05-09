@@ -22,6 +22,8 @@
 	if(!CheckAdminHref(href, href_list))
 		return
 
+	hippieTopic(href, href_list) // hippie
+
 	if(href_list["ahelp"])
 		if(!check_rights(R_ADMIN, TRUE))
 			return
@@ -43,6 +45,7 @@
 		if(!check_rights(R_ADMIN))
 			return
 		var/mob/M = locate(href_list["getplaytimewindow"]) in GLOB.mob_list
+
 		if(!M)
 			to_chat(usr, "<span class='danger'>ERROR: Mob not found.</span>")
 			return
@@ -139,13 +142,6 @@
 				else
 					message_admins("[key_name_admin(usr)] tried to create a Centcom response team. Unfortunately, there were not enough candidates available.")
 					log_admin("[key_name(usr)] failed to create a Centcom response team.")
-			if("messiah")
-				if(src.makeJesus())
-					message_admins("[key_name(usr)] created a messiah.")
-					log_admin("[key_name(usr)] created a messiah.")
-				else
-					message_admins("[key_name_admin(usr)] tried to create a messiah. Unfortunately, there were no candidates available.")
-					log_admin("[key_name(usr)] failed to create a messiah.")
 			if("abductors")
 				message_admins("[key_name(usr)] is creating an abductor team...")
 				if(src.makeAbductorTeam())
@@ -168,10 +164,6 @@
 				else
 					message_admins("[key_name_admin(usr)] tried to create a revenant. Unfortunately, there were no candidates available.")
 					log_admin("[key_name(usr)] failed to create a revenant.")
-			if("shadowling")
-				hippie_makeShadowling(src)
-			if("vampire")
-				hippie_makeVampire(src)
 
 	else if(href_list["forceevent"])
 		if(!check_rights(R_FUN))
@@ -792,7 +784,7 @@
 		dat += "<tr bgcolor='eeeeee'><th colspan='5'><a href='?src=[REF(src)];[HrefToken()];jobban3=ghostroles;jobban4=[REF(M)]'>Ghost Roles</a></th></tr><tr align='center'>"
 
 		//pAI
-		if(jobban_isbanned(M, "pAI"))
+		if(jobban_isbanned(M, ROLE_PAI))
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=pAI;jobban4=[REF(M)]'><font color=red>pAI</font></a></td>"
 		else
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=pAI;jobban4=[REF(M)]'>pAI</a></td>"
@@ -827,38 +819,38 @@
 		dat += "</tr></table>"
 
 	//Antagonist (Orange)
-		var/isbanned_dept = jobban_isbanned(M, "Syndicate")
+		var/isbanned_dept = jobban_isbanned(M, ROLE_SYNDICATE)
 		dat += "<table cellpadding='1' cellspacing='0' width='100%'>"
 		dat += "<tr bgcolor='ffeeaa'><th colspan='10'><a href='?src=[REF(src)];[HrefToken()];jobban3=Syndicate;jobban4=[REF(M)]'>Antagonist Positions</a> | "
 		dat += "<a href='?src=[REF(src)];[HrefToken()];jobban3=teamantags;jobban4=[REF(M)]'>Team Antagonists</a></th>"
 		dat += "<a href='?src=[REF(src)];[HrefToken()];jobban3=convertantags;jobban4=[REF(M)]'>Conversion Antagonists</a></th></tr><tr align='center'>"
 
 		//Traitor
-		if(jobban_isbanned(M, "traitor") || isbanned_dept)
+		if(jobban_isbanned(M, ROLE_TRAITOR) || isbanned_dept)
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=traitor;jobban4=[REF(M)]'><font color=red>Traitor</font></a></td>"
 		else
 			dat += "<td width='20%'><a href='?src=[REF(src)];jobban3=traitor;jobban4=[REF(M)]'>Traitor</a></td>"
 
 		//Changeling
-		if(jobban_isbanned(M, "changeling") || isbanned_dept)
+		if(jobban_isbanned(M, ROLE_CHANGELING) || isbanned_dept)
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=changeling;jobban4=[REF(M)]'><font color=red>Changeling</font></a></td>"
 		else
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=changeling;jobban4=[REF(M)]'>Changeling</a></td>"
 
 		//Nuke Operative
-		if(jobban_isbanned(M, "operative") || isbanned_dept)
+		if(jobban_isbanned(M, ROLE_OPERATIVE) || isbanned_dept)
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=operative;jobban4=[REF(M)]'><font color=red>Nuke Operative</font></a></td>"
 		else
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=operative;jobban4=[REF(M)]'>Nuke Operative</a></td>"
 
 		//Revolutionary
-		if(jobban_isbanned(M, "revolutionary") || isbanned_dept)
+		if(jobban_isbanned(M, ROLE_REV) || isbanned_dept)
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=revolutionary;jobban4=[REF(M)]'><font color=red>Revolutionary</font></a></td>"
 		else
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=revolutionary;jobban4=[REF(M)]'>Revolutionary</a></td>"
 
 		//Cultist
-		if(jobban_isbanned(M, "cultist") || isbanned_dept)
+		if(jobban_isbanned(M, ROLE_CULTIST) || isbanned_dept)
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=cultist;jobban4=[REF(M)]'><font color=red>Cultist</font></a></td>"
 		else
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=cultist;jobban4=[REF(M)]'>Cultist</a></td>"
@@ -866,28 +858,28 @@
 		dat += "</tr><tr align='center'>" //So things dont get squished.
 
 		//Servant of Ratvar
-		if(jobban_isbanned(M, "servant of Ratvar") || isbanned_dept)
+		if(jobban_isbanned(M, ROLE_SERVANT_OF_RATVAR) || isbanned_dept)
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=servant of Ratvar;jobban4=[REF(M)]'><font color=red>Servant</font></a></td>"
 		else
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=servant of Ratvar;jobban4=[REF(M)]'>Servant</a></td>"
 
 		//Wizard
-		if(jobban_isbanned(M, "wizard") || isbanned_dept)
+		if(jobban_isbanned(M, ROLE_WIZARD) || isbanned_dept)
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=wizard;jobban4=[REF(M)]'><font color=red>Wizard</font></a></td>"
 		else
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=wizard;jobban4=[REF(M)]'>Wizard</a></td>"
 
 		//Abductor
-		if(jobban_isbanned(M, "abductor") || isbanned_dept)
+		if(jobban_isbanned(M, ROLE_ABDUCTOR) || isbanned_dept)
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=abductor;jobban4=[REF(M)]'><font color=red>Abductor</font></a></td>"
 		else
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=abductor;jobban4=[REF(M)]'>Abductor</a></td>"
 
 		//Alien
-		if(jobban_isbanned(M, "alien candidate") || isbanned_dept)
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=alien candidate;jobban4=[REF(M)]'><font color=red>Alien</font></a></td>"
+		if(jobban_isbanned(M, ROLE_ALIEN) || isbanned_dept)
+			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=alien;jobban4=[REF(M)]'><font color=red>Alien</font></a></td>"
 		else
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=alien candidate;jobban4=[REF(M)]'>Alien</a></td>"
+			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=alien;jobban4=[REF(M)]'>Alien</a></td>"
 
 	//Misc (Gray)
 		dat += "<table cellpadding='1' cellspacing='0' width='100%'>"
@@ -964,11 +956,11 @@
 						continue
 					joblist += jobPos
 			if("ghostroles")
-				joblist += list("pAI", "posibrain", "drone", "deathsquad", "lavaland")
+				joblist += list(ROLE_PAI, "posibrain", "drone", "deathsquad", "lavaland")
 			if("teamantags")
-				joblist += list("operative", "revolutionary", "cultist", "servant of Ratvar", "abductor", "alien candidate")
+				joblist += list(ROLE_OPERATIVE, ROLE_REV, ROLE_CULTIST, ROLE_SERVANT_OF_RATVAR, ROLE_ABDUCTOR, ROLE_ALIEN)
 			if("convertantags")
-				joblist += list("revolutionary", "cultist", "servant of Ratvar", "alien candidate")
+				joblist += list(ROLE_REV, ROLE_CULTIST, ROLE_SERVANT_OF_RATVAR, ROLE_ALIEN)
 			else
 				joblist += href_list["jobban3"]
 
@@ -1119,14 +1111,18 @@
 	else if(href_list["deletemessage"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/message_id = href_list["deletemessage"]
-		delete_message(message_id)
+		var/safety = alert("Delete message/note?",,"Yes","No");
+		if (safety == "Yes")
+			var/message_id = href_list["deletemessage"]
+			delete_message(message_id)
 
 	else if(href_list["deletemessageempty"])
 		if(!check_rights(R_ADMIN))
 			return
-		var/message_id = href_list["deletemessageempty"]
-		delete_message(message_id, browse = 1)
+		var/safety = alert("Delete message/note?",,"Yes","No");
+		if (safety == "Yes")
+			var/message_id = href_list["deletemessageempty"]
+			delete_message(message_id, browse = TRUE)
 
 	else if(href_list["editmessage"])
 		if(!check_rights(R_ADMIN))
@@ -1212,7 +1208,7 @@
 		if(!ismob(M))
 			return
 
-		if(M.client && check_rights_for(M.client, R_ADMIN))
+		if(M.client && M.client.holder)
 			return	//admins cannot be banned. Even if they could, the ban doesn't affect them anyway
 
 		switch(alert("Temporary Ban?",,"Yes","No", "Cancel"))
@@ -1389,7 +1385,7 @@
 		to_chat(M, "<span class='adminnotice'>You have been sent to Prison!</span>")
 
 		log_admin("[key_name(usr)] has sent [key_name(M)] to Prison!")
-		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] Prison!")
+		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to Prison!")
 
 	else if(href_list["sendbacktolobby"])
 		if(!check_rights(R_ADMIN))
@@ -1726,6 +1722,25 @@
 
 		src.manage_free_slots()
 
+
+	else if(href_list["customjobslot"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/Add = href_list["customjobslot"]
+
+		for(var/datum/job/job in SSjob.occupations)
+			if(job.title == Add)
+				var/newtime = null
+				newtime = input(usr, "How many jebs do you want?", "Add wanted posters", "[newtime]") as num|null
+				if(!newtime)
+					to_chat(src.owner, "Setting to amount of positions filled for the job")
+					job.total_positions = job.current_positions
+					break
+				job.total_positions = newtime
+
+		src.manage_free_slots()
+
 	else if(href_list["removejobslot"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -1816,7 +1831,6 @@
 			message_admins("[src.owner] decided not to answer [key_name(H)]'s CentCom request.")
 			return
 
-		to_chat(src.owner, "You sent [input] to [H] via a secure channel.")
 		log_admin("[src.owner] replied to [key_name(H)]'s CentCom message with the message [input].")
 		message_admins("[src.owner] replied to [key_name(H)]'s CentCom message with: \"[input]\"")
 		to_chat(H, "You hear something crackle in your ears for a moment before a voice speaks.  \"Please stand by for a message from Central Command.  Message as follows. [input].  Message ends.\"")
@@ -1915,9 +1929,33 @@
 
 		var/mob/M = locate(href_list["traitor"])
 		if(!ismob(M))
-			to_chat(usr, "This can only be used on instances of type /mob.")
+			var/datum/mind/D = M
+			if(!istype(D))
+				to_chat(usr, "This can only be used on instances of type /mob and /mind")
+				return
+			else
+				D.traitor_panel()
+		else
+			show_traitor_panel(M)
+
+	else if(href_list["borgpanel"])
+		if(!check_rights(R_ADMIN))
 			return
-		show_traitor_panel(M)
+
+		var/mob/M = locate(href_list["borgpanel"])
+		if(!iscyborg(M))
+			to_chat(usr, "This can only be used on cyborgs")
+		else
+			open_borgopanel(M)
+
+	else if(href_list["initmind"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/mob/M = locate(href_list["initmind"])
+		if(!ismob(M) || M.mind)
+			to_chat(usr, "This can only be used on instances on mindless mobs")
+			return
+		M.mind_initialize()
 
 	else if(href_list["create_object"])
 		if(!check_rights(R_SPAWN))
@@ -2417,6 +2455,15 @@
 		dat += thing_to_check
 
 		usr << browse(dat.Join("<br>"), "window=related_[C];size=420x300")
+
+	else if(href_list["modantagrep"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/mob/M = locate(href_list["mob"]) in GLOB.mob_list
+		var/client/C = M.client
+		usr.client.cmd_admin_mod_antag_rep(C, href_list["modantagrep"])
+		show_player_panel(M)
 
 /datum/admins/proc/HandleCMode()
 	if(!check_rights(R_ADMIN))

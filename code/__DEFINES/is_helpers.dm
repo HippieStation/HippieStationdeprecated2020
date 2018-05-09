@@ -1,7 +1,5 @@
 // simple is_type and similar inline helpers
 
-#define isdatum(D) (istype(D, /datum))
-
 #define islist(L) (istype(L, /list))
 
 #if DM_VERSION >= 512
@@ -61,13 +59,14 @@
 #define isplasmaman(A) (is_species(A, /datum/species/plasmaman))
 #define ispodperson(A) (is_species(A, /datum/species/podperson))
 #define isflyperson(A) (is_species(A, /datum/species/fly))
+#define isjellyperson(A) (is_species(A, /datum/species/jelly))
 #define isslimeperson(A) (is_species(A, /datum/species/jelly/slime))
-#define isshadowperson(A) (is_species(A, /datum/species/shadow))
+#define isluminescent(A) (is_species(A, /datum/species/jelly/luminescent))
 #define iszombie(A) (is_species(A, /datum/species/zombie))
 #define ishumanbasic(A) (is_species(A, /datum/species/human))
 
 //why arent catpeople a subspecies
-#define iscatperson(A) (ishumanbasic(A) && ( A.dna.features["ears"] == "Cat" || A.dna.features["human_tail"] == "Cat") )
+#define iscatperson(A) (ishumanbasic(A) && ( A.dna.features["ears"] == "Cat" || A.dna.features["tail_human"] == "Cat") )
 
 //more carbon mobs
 #define ismonkey(A) (istype(A, /mob/living/carbon/monkey))
@@ -91,6 +90,8 @@
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
 
+#define issiliconoradminghost(A) (istype(A, /mob/living/silicon) || IsAdminGhost(A))
+
 #define iscyborg(A) (istype(A, /mob/living/silicon/robot))
 
 #define isAI(A) (istype(A, /mob/living/silicon/ai))
@@ -104,8 +105,6 @@
 
 #define isbot(A) (istype(A, /mob/living/simple_animal/bot))
 
-#define iscrab(A) (istype(A, /mob/living/simple_animal/crab))
-
 #define isshade(A) (istype(A, /mob/living/simple_animal/shade))
 
 #define ismouse(A) (istype(A, /mob/living/simple_animal/mouse))
@@ -116,15 +115,9 @@
 
 #define iscat(A) (istype(A, /mob/living/simple_animal/pet/cat))
 
-#define isdog(A) (istype(A, /mob/living/simple_animal/pet/dog))
-
 #define iscorgi(A) (istype(A, /mob/living/simple_animal/pet/dog/corgi))
 
 #define ishostile(A) (istype(A, /mob/living/simple_animal/hostile))
-
-#define isbear(A) (istype(A, /mob/living/simple_animal/hostile/bear))
-
-#define iscarp(A) (istype(A, /mob/living/simple_animal/hostile/carp))
 
 #define isswarmer(A) (istype(A, /mob/living/simple_animal/hostile/swarmer))
 
@@ -181,20 +174,20 @@ GLOBAL_LIST_INIT(pointed_types, typecacheof(list(
 
 #define isigniter(O) (istype(O, /obj/item/device/assembly/igniter))
 
-#define isinfared(O) (istype(O, /obj/item/device/assembly/infra))
-
 #define isprox(O) (istype(O, /obj/item/device/assembly/prox_sensor))
 
 #define issignaler(O) (istype(O, /obj/item/device/assembly/signaler))
-
-#define istimer(O) (istype(O, /obj/item/device/assembly/timer))
 
 GLOBAL_LIST_INIT(glass_sheet_types, typecacheof(list(
 	/obj/item/stack/sheet/glass,
 	/obj/item/stack/sheet/rglass,
 	/obj/item/stack/sheet/plasmaglass,
-	/obj/item/stack/sheet/plasmarglass)))
+	/obj/item/stack/sheet/plasmarglass,
+	/obj/item/stack/sheet/titaniumglass,
+	/obj/item/stack/sheet/plastitaniumglass)))
 
 #define is_glass_sheet(O) (is_type_in_typecache(O, GLOB.glass_sheet_types))
 
 #define isblobmonster(O) (istype(O, /mob/living/simple_animal/hostile/blob))
+
+#define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))

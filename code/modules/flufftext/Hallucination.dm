@@ -239,10 +239,10 @@ GLOBAL_LIST_INIT(hallucinations_major, list(
 		xeno = new(pump.loc,target)
 		sleep(10)
 		xeno.update_icon("alienh_leap",'icons/mob/alienleap.dmi',-32,-32)
-		xeno.throw_at(target,7,1, spin = 0, diagonals_first = 1)
+		xeno.throw_at(target,7,1, xeno, FALSE, TRUE)
 		sleep(10)
 		xeno.update_icon("alienh_leap",'icons/mob/alienleap.dmi',-32,-32)
-		xeno.throw_at(pump,7,1, spin = 0, diagonals_first = 1)
+		xeno.throw_at(pump,7,1, xeno, FALSE, TRUE)
 		sleep(10)
 		var/xeno_name = xeno.name
 		to_chat(target, "<span class='notice'>[xeno_name] begins climbing into the ventilation system...</span>")
@@ -471,10 +471,13 @@ GLOBAL_LIST_INIT(hallucinations_major, list(
 	var/image/A = null
 	var/kind = force_kind ? force_kind : pick("monkey","corgi","carp","skeleton","demon","zombie")
 	feedback_details += "Type: [kind]"
+	var/list/nearby
+	if(skip_nearby)
+		nearby = get_hearers_in_view(7, target)
 	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
 		if(H == target)
 			continue
-		if(skip_nearby && (H in view(target)))
+		if(skip_nearby && (H in nearby))
 			continue
 		switch(kind)
 			if("monkey")//Monkey
@@ -573,7 +576,7 @@ GLOBAL_LIST_INIT(hallucinations_major, list(
 	/obj/item/gun/energy/kinetic_accelerator/crossbow, /obj/item/melee/transforming/energy/sword/saber,\
 	/obj/item/storage/box/syndicate, /obj/item/storage/box/emps,\
 	/obj/item/cartridge/virus/syndicate, /obj/item/clothing/under/chameleon,\
-	/obj/item/clothing/shoes/chameleon, /obj/item/card/id/syndicate,\
+	/obj/item/clothing/shoes/chameleon/noslip, /obj/item/card/id/syndicate,\
 	/obj/item/clothing/mask/chameleon, /obj/item/clothing/glasses/thermal,\
 	/obj/item/device/chameleon, /obj/item/card/emag,	/obj/item/grenade/plastic/x4,\
 	/obj/item/storage/toolbox/syndicate, /obj/item/aiModule,\
@@ -870,12 +873,7 @@ GLOBAL_LIST_INIT(hallucinations_major, list(
 	//Rare audio
 		if("creepy")
 	//These sounds are (mostly) taken from Hidden: Source
-			var/static/list/hallucinations_creepyasssounds = list('sound/effects/ghost.ogg', 'sound/effects/ghost2.ogg', 'sound/effects/heart_beat.ogg', 'sound/effects/screech.ogg',\
-				'sound/hallucinations/behind_you1.ogg', 'sound/hallucinations/behind_you2.ogg', 'sound/hallucinations/far_noise.ogg', 'sound/hallucinations/growl1.ogg', 'sound/hallucinations/growl2.ogg',\
-				'sound/hallucinations/growl3.ogg', 'sound/hallucinations/im_here1.ogg', 'sound/hallucinations/im_here2.ogg', 'sound/hallucinations/i_see_you1.ogg', 'sound/hallucinations/i_see_you2.ogg',\
-				'sound/hallucinations/look_up1.ogg', 'sound/hallucinations/look_up2.ogg', 'sound/hallucinations/over_here1.ogg', 'sound/hallucinations/over_here2.ogg', 'sound/hallucinations/over_here3.ogg',\
-				'sound/hallucinations/turn_around1.ogg', 'sound/hallucinations/turn_around2.ogg', 'sound/hallucinations/veryfar_noise.ogg', 'sound/hallucinations/wail.ogg')
-			target.playsound_local(null, pick(hallucinations_creepyasssounds), 50, 1)
+			target.playsound_local(null, pick(CREEPY_SOUNDS), 50, 1)
 		if("ratvar")
 			target.playsound_local(null, 'sound/effects/ratvar_rises.ogg', 100)
 			sleep(150)
@@ -1114,7 +1112,7 @@ GLOBAL_LIST_INIT(hallucinations_major, list(
 	sleep(rand(70,90))
 	target.set_screwyhud(SCREWYHUD_NONE)
 	target.SetKnockdown(0)
-	target.silent = 0
+	target.silent = FALSE
 	qdel(src)
 
 /datum/hallucination/fire
@@ -1197,3 +1195,28 @@ GLOBAL_LIST_INIT(hallucinations_major, list(
 	H.preparePixelProjectile(target, start)
 	H.fire()
 	qdel(src)
+
+//Reality Dissociation Syndrome hallucinations only trigger in special cases and have no cost
+/datum/hallucination/rds
+	cost = 0
+
+/datum/hallucination/rds/fourth_wall/New(mob/living/carbon/C, forced = TRUE)
+	..()
+	to_chat(C, "<span class='userdanger extremelybig'>[pick("Leave the server" , "Close the game window")] [pick("immediately", "right now")].</span>")
+
+/datum/hallucination/rds/supermatter/New(mob/living/carbon/C, forced = TRUE)
+	..()
+	SEND_SOUND(C, 'sound/magic/charge.ogg')
+	to_chat(C, "<span class='boldannounce'>You feel reality distort for a moment...</span>")
+
+/datum/hallucination/rds/narsie/New(mob/living/carbon/C, forced = TRUE)
+	C.playsound_local(C, 'sound/creatures/narsie_rises.ogg', 50, FALSE, pressure_affected = FALSE)
+	to_chat(C, "<span class='narsie'>NAR-SIE HAS RISEN</span>")
+
+/datum/hallucination/rds/ark/New(mob/living/carbon/C, forced = TRUE)
+	set waitfor = FALSE
+	..()
+	C.playsound_local(C, 'sound/machines/clockcult/ark_deathrattle.ogg', 50, FALSE, pressure_affected = FALSE)
+	C.playsound_local(C, 'sound/effects/clockcult_gateway_disrupted.ogg', 50, FALSE, pressure_affected = FALSE)
+	sleep(27)
+	C.playsound_local(C, 'sound/effects/explosion_distant.ogg', 50, FALSE, pressure_affected = FALSE)

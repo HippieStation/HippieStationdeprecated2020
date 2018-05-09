@@ -36,6 +36,17 @@
 	. = ..()
 	update_icon()
 
+/obj/item/storage/box/suicide_act(mob/living/carbon/user)
+	var/obj/item/bodypart/head/myhead = user.get_bodypart(BODY_ZONE_HEAD)
+	if(myhead)
+		user.visible_message("<span class='suicide'>[user] puts [user.p_their()] head into \the [src], and begins closing it! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+		myhead.dismember()
+		myhead.forceMove(src)//force your enemies to kill themselves with your head collection box!
+		playsound(user,pick('sound/misc/desceration-01.ogg','sound/misc/desceration-02.ogg','sound/misc/desceration-01.ogg') ,50, 1, -1)
+		return BRUTELOSS
+	user.visible_message("<span class='suicide'>[user] beating [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+	return BRUTELOSS
+
 /obj/item/storage/box/update_icon()
 	. = ..()
 	if(illustration)
@@ -182,6 +193,14 @@
 /obj/item/storage/box/beakers/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/glass/beaker( src )
+
+/obj/item/storage/box/medsprays
+	name = "box of medical sprayers"
+	desc = "A box full of medical sprayers, with unscrewable caps and precision spray heads."
+
+/obj/item/storage/box/medsprays/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/reagent_containers/medspray( src )
 
 /obj/item/storage/box/injectors
 	name = "box of DNA injectors"
@@ -341,7 +360,9 @@
 /obj/item/storage/box/donkpockets
 	name = "box of donk-pockets"
 	desc = "<B>Instructions:</B> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
-	illustration = "donk_kit"
+	icon_state = "donkpocketbox"
+	illustration=null
+	can_hold = list(/obj/item/reagent_containers/food/snacks/donkpocket)
 
 /obj/item/storage/box/donkpockets/PopulateContents()
 	for(var/i in 1 to 6)
@@ -923,3 +944,12 @@ obj/item/storage/box/clown
 /obj/item/storage/box/fountainpens/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/pen/fountain(src)
+
+/obj/item/storage/box/holy_grenades
+	name = "box of holy hand grenades"
+	desc = "Contains several grenades used to rapidly purge heresy."
+	illustration = "flashbang"
+
+/obj/item/storage/box/holy_grenades/PopulateContents()
+	for(var/i in 1 to 7)
+		new/obj/item/grenade/chem_grenade/holy(src)
