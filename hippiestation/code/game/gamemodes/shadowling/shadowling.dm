@@ -204,7 +204,7 @@ Made by Xhuis
 			H.SetStun(0)
 	var/charge_time = 400 - ((SSticker.mode.thralls && SSticker.mode.thralls.len) || 0)*10
 	if(world.time >= charge_time+last_charge)
-		shadow_charges = max(shadow_charges + 1, 3)
+		shadow_charges = min(shadow_charges + 1, 3)
 		last_charge = world.time
 
 /datum/species/shadow/ling/bullet_act(obj/item/projectile/P, mob/living/carbon/human/H)
