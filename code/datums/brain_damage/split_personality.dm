@@ -11,6 +11,8 @@
 	var/initialized = FALSE //to prevent personalities deleting themselves while we wait for ghosts
 	var/mob/living/split_personality/stranger_backseat //there's two so they can swap without overwriting
 	var/mob/living/split_personality/owner_backseat
+	var/mutemessage = FALSE	//Hippie add, to stop the personality swap message from being displayed twice
+
 
 /datum/brain_trauma/severe/split_personality/on_gain()
 	..()
@@ -18,7 +20,6 @@
 	get_ghost()
 
 /datum/brain_trauma/severe/split_personality/proc/make_backseats()
-	..()	//Hippie change, added ..() so we still get the addresses when we make new backseats after the one in on_gain
 	stranger_backseat = new(owner, src)
 	owner_backseat = new(owner, src)
 
@@ -31,8 +32,6 @@
 		log_game("[key_name(stranger_backseat)] became [key_name(owner)]'s split personality.")
 		message_admins("[key_name_admin(stranger_backseat)] became [key_name_admin(owner)]'s split personality.")
 		addtimer(CALLBACK(src, .proc/set_flag), 30)	//Hippie change, change initialized to true with a timer so that our new ghost doesn't kick out the other guy immediately, or vice versa
-		stranger_backseat.client = C.client	////Hippie add, this lets the client checks get tracked properly
-		owner_backseat.client = owner.client	//Hippie add, this lets the client checks get tracked properly
 	else
 		addtimer(CALLBACK(src, .proc/make_backseats), 580)	//Hippie change, added this here as we're deleting the seats to refresh everything again
 		addtimer(CALLBACK(src, .proc/get_ghost), 600)	//Hippie change, removed qdel and replaced with a timer for get_ghost so you don't lose this trauma if we cannot find a ghost
@@ -47,25 +46,21 @@
 	QDEL_NULL(owner_backseat)	//The personality keeps the body if the owner decides to ghost for some reason... but look out, you're going to get a new personality soon!!!
 	addtimer(CALLBACK(src, .proc/make_backseats), 580)	//Hippie change, added qdel on backseats and added a timer for make new backseats so the get_ghost's vote can properly be initiated, otherwise it freaks out and doesn't go through if someone ghosts
 	addtimer(CALLBACK(src, .proc/get_ghost), 600)	//Hippie change, removed qdel and replaced with a timer for get_ghost so you don't lose this trauma if we cannot find a ghost
+	mutemessage = FALSE
 
+/datum/brain_trauma/severe/split_personality/proc/check_swap()	//Hippie add, this will be used to check if there is a client after a personality swap, only then will a swap message be sent
+	var/mob/living/split_personality/current_backseat	//Need to re-define current_backseat here so that it's assigned from the other proc correctly
+	if(current_controller == OWNER)
+		current_backseat = stranger_backseat
+	else
+		current_backseat = owner_backseat
+	if(owner.client)
+		to_chat(current_backseat, "<span class='userdanger'>You feel your control being taken away... your other personality is in charge now!</span>")
+		to_chat(owner, "<span class='userdanger'>You manage to take control of your body!</span>")	//Hippie change, the to_chat targets have been swapped as the seats will have swapped at this point
 
 /datum/brain_trauma/severe/split_personality/on_life()
-	..()	//Hippie change, moved ..() up here as we need client checks asap
-	if(owner_backseat && stranger_backseat)	//Hippie change, added this so we don't get null.client errors occurring
-		if(!owner_backseat.client && initialized)	//Hippie change, added this check for when the owner is absent, we delete their seat and swap the stranger to owner
-			if(current_controller == OWNER)
-				switch_personalities()
-			QDEL_NULL(owner_backseat)
-			addtimer(CALLBACK(src, .proc/delete_seats), 30)
-			initialized = FALSE
-		else if(!stranger_backseat.client && initialized)	//Hippie change, added this check for when the stranger is absent, we delete their seat and swap the controller to owner
-			if(current_controller != OWNER)
-				switch_personalities()
-			QDEL_NULL(stranger_backseat)
-			addtimer(CALLBACK(src, .proc/delete_seats), 30)
-			initialized = FALSE
-		else if(prob(3) || !owner.client)	//Hippie add, added owner.client check so someone gets put in control as soon as a ghost comes in, when they come in, both ghosts do not have control
-			switch_personalities()
+	if(prob(3) || !owner.client)	//Hippie add, added owner.client check so someone gets put in control as soon as a ghost comes in, when they come in, both ghosts do not have control
+		switch_personalities()
 
 /datum/brain_trauma/severe/split_personality/on_lose()
 	if(current_controller != OWNER) //it would be funny to cure a guy only to be left with the other personality, but it seems too cruel
@@ -75,8 +70,26 @@
 	..()
 
 /datum/brain_trauma/severe/split_personality/proc/switch_personalities()
-	if(QDELETED(owner) || owner.stat == DEAD || QDELETED(stranger_backseat) || QDELETED(owner_backseat) || !stranger_backseat.client && current_controller == OWNER || !owner_backseat.client && current_controller != OWNER)	//Hippie change, added current_controller checks so we don't get any swaps if the other guy is gone, muh immserhun is now preserved
+	if(QDELETED(owner) || owner.stat == DEAD || QDELETED(stranger_backseat) || QDELETED(owner_backseat))
 		return
+
+	if(initialized)	//Hippie change, added this so we don't get null.client errors occurring
+		if(!owner.client && current_controller == OWNER && initialized)	//Hippie change, added this check for when the owner is absent, we delete their seat and swap the stranger to owner
+			initialized = FALSE
+			mutemessage = TRUE
+			if(current_controller == OWNER)
+				switch_personalities()
+			QDEL_NULL(owner_backseat)
+			addtimer(CALLBACK(src, .proc/delete_seats), 30)
+			return
+		else if(!owner.client && current_controller != OWNER && initialized)	//Hippie change, added this check for when the stranger is absent, we delete their seat and swap the controller to owner
+			initialized = FALSE
+			mutemessage = TRUE
+			if(current_controller != OWNER)
+				switch_personalities()
+			QDEL_NULL(stranger_backseat)
+			addtimer(CALLBACK(src, .proc/delete_seats), 30)
+			return
 
 	var/mob/living/split_personality/current_backseat
 	var/mob/living/split_personality/free_backseat
@@ -88,8 +101,10 @@
 		free_backseat = stranger_backseat
 
 	log_game("[key_name(current_backseat)] assumed control of [key_name(owner)] due to [src]. (Original owner: [current_controller == OWNER ? owner.ckey : current_backseat.ckey])")
-	to_chat(owner, "<span class='userdanger'>You feel your control being taken away... your other personality is in charge now!</span>")
-	to_chat(current_backseat, "<span class='userdanger'>You manage to take control of your body!</span>")
+	if(!mutemessage)	//Hippie change, added so the messages don't get spammed
+		addtimer(CALLBACK(src, .proc/check_swap), 1)	//Hippie change, added this so that we can stop the original swap message occurring if there is no client detected
+	else if (mutemessage && !owner.client)	//Hippie change, added because the personality swap needs to occur for at least a split second for the checks to work correctly. Thanks code
+		to_chat(current_backseat, "<span class='userdanger'>You feel yourself losing control of your body... no! You retain your control!</span>")
 
 	//Body to backseat
 
@@ -128,8 +143,6 @@
 		owner.lastKnownIP = s2h_ip
 
 	current_controller = !current_controller
-	current_backseat.client = !current_backseat.client	//Hippie add, this lets the client checks get tracked properly
-	free_backseat.client = !free_backseat.client	//Hippie add, this lets the client checks get tracked properly
 
 /mob/living/split_personality
 	name = "split personality"
@@ -158,8 +171,9 @@
 
 /mob/living/split_personality/Login()
 	..()
-	to_chat(src, "<span class='notice'>As a split personality, you cannot do anything but observe. However, you will eventually gain control of your body, switching places with the current personality.</span>")
-	to_chat(src, "<span class='warning'><b>Do not commit suicide or put the body in a deadly position. Behave like you care about it as much as the owner.</b></span>")
+	if(body.client)	//Hippie change, added body client check so this does not appear if we're doing a momentary change to delete the correct personality
+		to_chat(src, "<span class='notice'>As a split personality, you cannot do anything but observe. However, you will eventually gain control of your body, switching places with the current personality.</span>")
+		to_chat(src, "<span class='warning'><b>Do not commit suicide or put the body in a deadly position. Behave like you care about it as much as the owner.</b></span>")
 
 /mob/living/split_personality/say(message)
 	to_chat(src, "<span class='warning'>You cannot speak, your other self is controlling your body!</span>")
