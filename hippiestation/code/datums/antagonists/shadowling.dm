@@ -49,13 +49,13 @@
 			if(!M || QDELETED(M))
 				return
 			M.visible_message("<span class='warning'>[M] suddenly bloats and explodes!</span>", \
-							  "<span class='warning'><b>AAAAAAAAA<font size=3>AAAAAAAAAAAAA</font><font size=4>AAAAAAAAAAAA----</font></span>")
+							  "<span class='warning bold'>AAAAAAAAA<font size=3>AAAAAAAAAAAAA</font><font size=4>AAAAAAAAAAAA----</font></span>")
 			playsound(M, 'sound/magic/Disintegrate.ogg', 100, 1)
 			M.gib()
 
 /datum/antagonist/shadowling/greet()
-	to_chat(owner, "<br> <span class='shadowling'><b><font size=3>You are a shadowling!</font></b></span>")
-	to_chat(owner, "<b>Currently, you are disguised as an employee aboard [station_name()]].</b>")
+	to_chat(owner, "<br> <span class='shadowling bold big'>You are a shadowling!</span>")
+	to_chat(owner, "<b>Currently, you are disguised as an employee aboard [station_name()].</b>")
 	to_chat(owner, "<b>In your limited state, you have three abilities: Enthrall, Hatch, and Hivemind Commune.</b>")
 	to_chat(owner, "<b>Any other shadowlings are your allies. You must assist them as they shall assist you.</b>")
 	to_chat(owner, "<b>If you are new to shadowling, or want to read about abilities, check the wiki page at https://wiki.hippiestation.com/index.php?title=Shadowling</b><br>")
