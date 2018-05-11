@@ -35,10 +35,11 @@
 		stranger_backseat.client = C.client	//Hippie add, this will stop ghosts getting removed if this is the second time stranger_backseat is being occupied
 		stranger_active = FALSE	//Hippie add
 		owner_active = FALSE	//Hippie add
-		switch_personalities()				//Hippie add
+		addtimer(CALLBACK(src, .proc/switch_personalities), 20)			//Hippie add
 		log_game("[key_name(stranger_backseat)] became [key_name(owner)]'s split personality.")
 		message_admins("[key_name_admin(stranger_backseat)] became [key_name_admin(owner)]'s split personality.")
-		addtimer(CALLBACK(stranger_backseat, /mob/living/split_personality/proc/refresh_info), 0)	//Hippie add, this will update split personality information so we don't get null errors
+		var/mob/living/split_personality/S = stranger_backseat	//Hippie add, we gotta link the split personality as being stranger_backseat so we can refresh its info
+		S.refresh_info()							//Hippie add, this will update split personality information so we don't get null errors
 		addtimer(CALLBACK(src, .proc/set_flag), 30)	//Hippie change, change initialized to true with a timer so that our new ghost doesn't kick out the other guy immediately, or vice versa
 	else
 		addtimer(CALLBACK(src, .proc/make_backseats), 580)	//Hippie change, added this here as we're deleting the seats to refresh everything again
@@ -177,7 +178,8 @@
 		body = loc
 		name = body.real_name
 		real_name = body.real_name
-		client = client	//Hippie add, so our client gets updated when we get a new guy
+		if(!client)
+			client = body.client
 	return ..()
 
 ///////////////BRAINWASHING////////////////////
