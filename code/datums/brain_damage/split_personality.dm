@@ -108,7 +108,8 @@
 
 	free_backseat.name = owner.name
 
-	free_backseat.client = owner.client	//Hippie add
+	if(owner.client)	//We don't want to end up crashing people with no client
+		free_backseat.client = owner.client	//Hippie add
 
 	if(owner.mind)
 		free_backseat.mind = owner.mind
@@ -128,7 +129,8 @@
 
 	owner.ckey = current_backseat.ckey
 	owner.mind = current_backseat.mind
-	owner.client = current_backseat.client	//Hippie add
+	if(owner.client)	//We don't want to end up crashing people with no client
+		owner.client = current_backseat.client	//Hippie add
 
 	if(!owner.computer_id)
 		owner.computer_id = s2h_id
