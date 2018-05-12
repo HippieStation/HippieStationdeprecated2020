@@ -1,4 +1,5 @@
 /* Hippie Neutral Traits */
+
 /datum/trait/monochromatic
 	name = "Monochromacy"
 	desc = "You suffer from full colorblindness, and perceive nearly the entire world in blacks and whites."

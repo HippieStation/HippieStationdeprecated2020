@@ -187,6 +187,15 @@
 		M.ExtinguishMob()
 	..()
 
+/datum/reagent/water/reaction_mob(mob/living/simple_animal/slime/M, reac_volume)
+	if(reac_volume >= 15)
+		M.apply_water()
+	else if(reac_volume < 16)
+		M.apply_water()
+		sleep(1)
+		M.apply_water()	//Won't put any more apply_waters for now because we probably don't want instadeath slimes either if we throw a beaker at em or something
+						//This is a temporary fix for slimes not taking damage from fire extinguishers - remove this when water code is fixed properly, if necessary
+
 /datum/reagent/water/holywater
 	name = "Holy Water"
 	id = "holywater"

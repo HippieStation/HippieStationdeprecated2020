@@ -50,7 +50,7 @@
 
 		var/turf/open/O = T
 		if(istype(O))
-			var/obj/effect/particle_effect/vapour/foundvape = locate() in T//if there's an existing vapour of the same type it just adds volume otherwise it creates a new instance
+			var/obj/effect/particle_effect/vapour/foundvape = locate() in T//if there's an existing vapour of the same type it just adds volume otherFise it creates a new instance
 			if(foundvape && foundvape.reagent_type == src)
 				foundvape.VM.volume = volume*50
 			else
