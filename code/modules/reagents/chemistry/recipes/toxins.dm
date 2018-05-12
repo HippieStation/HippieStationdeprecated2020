@@ -8,8 +8,8 @@
 
 /datum/chemical_reaction/fentanyl
 	name = "fentanyl"
-	id = "fentanyl"
-	results = list("fentanyl" = 1)
+	id = "abductormutationtoxin"
+	results = list("abductormutationtoxin" = 1)
 	required_reagents = list("space_drugs" = 1)
 	required_temp = 674
 
@@ -113,3 +113,5 @@
 	id = "mimesbane"
 	results = list("mimesbane" = 3)
 	required_reagents = list("radium" = 1, "mutetoxin" = 1, "nothing" = 1)
+
+
