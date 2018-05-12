@@ -34,12 +34,12 @@
 				to_chat(M, "<span class='danger'>You fall down as you slam against the surface!</span>")
 		if (doPull)
 			var/turf/pullloc = get_turf(mob.pulling)
-			if(Is_ShadowWalkable(mobloc) || Is_ShadowWalkable(target) || Is_ShadowWalkable(pullloc))
+			if(is_shadowwalkable(mobloc) || is_shadowwalkable(target) || is_shadowwalkable(pullloc))
 				mob.pulling.dir = get_dir(mob.pulling, mob)
 				A = mob.pulling
 				mob.pulling.forceMove(mob.loc)
 
-	if(Is_ShadowWalkable(target))
+	if(is_shadowwalkable(target))
 		mob.forceMove(target)
 		mob.dir = direct
 		if (doPull)
