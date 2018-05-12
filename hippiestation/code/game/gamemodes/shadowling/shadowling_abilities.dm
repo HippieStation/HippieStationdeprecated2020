@@ -288,7 +288,7 @@
 		target.mind.special_role = "thrall"
 		var/obj/item/organ/internal/shadowtumor/ST = new
 		ST.Insert(target, FALSE, FALSE)
-		add_thrall(target.mind)
+		target.add_thrall()
 		if(target.reagents.has_reagent("frostoil")) //Stabilize body temp incase the sling froze them earlier
 			target.reagents.remove_reagent("frostoil")
 			to_chat(target, "<span class='notice'>You feel warmer... it feels good.</span>")
@@ -834,7 +834,7 @@
 	to_chat(user, "<span class='shadowling'>You instantly rearrange <b>[target]</b>'s memories, hyptonitizing them into a thrall.</span>")
 	to_chat(target, "<span class='userdanger'><font size=3>An agonizing spike of pain drives into your mind, and--</font></span>")
 	target.mind.special_role = "thrall"
-	add_thrall(target.mind)
+	target.add_thrall()
 	user = null
 	target = null
 

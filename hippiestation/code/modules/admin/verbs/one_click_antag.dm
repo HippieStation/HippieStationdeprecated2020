@@ -20,7 +20,7 @@
 
 	if(candidates.len)
 		H = pick(candidates)
-		add_sling(H.mind)
+		H.add_sling()
 		return TRUE
 	return FALSE
 

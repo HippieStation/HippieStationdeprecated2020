@@ -113,7 +113,7 @@ Made by Xhuis
 /datum/game_mode/shadowling/post_setup()
 	for(var/datum/mind/shadow in shadows)
 		log_game("[shadow.key] (ckey) has been selected as a Shadowling.")
-		add_sling(shadow)
+		shadow.current.add_sling()
 	. = ..()
 	return
 
@@ -251,22 +251,22 @@ Made by Xhuis
 	shadow_hud.leave_hud(shadow_mind.current)
 	set_antag_hud(shadow_mind.current, null)
 
-/proc/add_thrall(datum/mind/new_thrall_mind)
-	if(!istype(new_thrall_mind))
+/mob/living/proc/add_thrall()
+	if(!istype(mind))
 		return FALSE
-	return new_thrall_mind.add_antag_datum(ANTAG_DATUM_THRALL)
+	return mind.add_antag_datum(ANTAG_DATUM_THRALL)
 
-/proc/add_sling(datum/mind/new_sling_mind)
-	if(!istype(new_sling_mind))
+/mob/living/proc/add_sling()
+	if(!istype(mind))
 		return FALSE
-	return new_sling_mind.add_antag_datum(ANTAG_DATUM_SLING)
+	return mind.add_antag_datum(ANTAG_DATUM_SLING)
 
-/proc/remove_thrall(datum/mind/thrall_mind)
-	if(!istype(thrall_mind))
+/mob/living/proc/remove_thrall()
+	if(!istype(mind))
 		return FALSE
-	return thrall_mind.remove_antag_datum(ANTAG_DATUM_THRALL)
+	return mind.remove_antag_datum(ANTAG_DATUM_THRALL)
 
-/proc/remove_sling(datum/mind/ling_mind)
-	if(!istype(ling_mind))
+/mob/living/proc/remove_sling()
+	if(!istype(mind))
 		return FALSE
-	return ling_mind.remove_antag_datum(ANTAG_DATUM_SLING)
+	return mind.remove_antag_datum(ANTAG_DATUM_SLING)
