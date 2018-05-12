@@ -270,12 +270,3 @@ Made by Xhuis
 	if(!istype(ling_mind))
 		return FALSE
 	return ling_mind.remove_antag_datum(ANTAG_DATUM_SLING)
-
-/proc/is_thrall(var/mob/living/M)
-	return istype(M) && M.mind && M.mind.has_antag_datum(ANTAG_DATUM_THRALL)
-
-/proc/is_shadow_or_thrall(var/mob/living/M)
-	return M && (is_thrall(M) || is_shadow(M))
-
-/proc/is_shadow(var/mob/living/M)
-	return istype(M) && M.mind && M.mind.has_antag_datum(ANTAG_DATUM_SLING)

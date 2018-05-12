@@ -99,6 +99,7 @@
 #include "code\__DEFINES\~hippie_defines\dna.dm"
 #include "code\__DEFINES\~hippie_defines\flags.dm"
 #include "code\__DEFINES\~hippie_defines\forge.dm"
+#include "code\__DEFINES\~hippie_defines\is_helpers.dm"
 #include "code\__DEFINES\~hippie_defines\machines.dm"
 #include "code\__DEFINES\~hippie_defines\material.dm"
 #include "code\__DEFINES\~hippie_defines\mentor.dm"
