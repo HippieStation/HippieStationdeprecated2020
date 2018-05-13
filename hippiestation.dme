@@ -2643,6 +2643,7 @@
 #include "hippiestation\code\datums\diseases\advance\symptoms\genetics.dm"
 #include "hippiestation\code\datums\diseases\advance\symptoms\heal.dm"
 #include "hippiestation\code\datums\diseases\advance\symptoms\sensory.dm"
+#include "hippiestation\code\datums\diseases\advance\symptoms\viral.dm"
 #include "hippiestation\code\datums\martial\armstrong.dm"
 #include "hippiestation\code\datums\martial\cqc.dm"
 #include "hippiestation\code\datums\martial\krav_maga.dm"
