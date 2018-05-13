@@ -32,7 +32,7 @@
 
 /datum/symptom/heal/toxin
 	name = "Toxic Filter"
-	desc = ""
+	desc = "The virus synthesizes regenerative chemicals in the bloodstream, repairing damage caused by toxins."
 	stealth = 1
 	resistance = -2
 	stage_speed = -2
