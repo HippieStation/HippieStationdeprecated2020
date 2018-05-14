@@ -817,10 +817,13 @@ obj/item/clothing/suit/space/hardsuit/nano/dropped()
 		return ..()
 
 /obj/item/throw_at(atom/target, range, speed, mob/living/carbon/human/thrower, spin = 1, diagonals_first = 0, datum/callback/callback)
-	if(istype(thrower.mind.martial_art, /datum/martial_art/nano))
-		.=..(target, range*1.5, speed*2, thrower, spin, diagonals_first, callback)
+	if(thrower)
+		if(istype(thrower.mind.martial_art, /datum/martial_art/nano))
+			.=..(target, range*1.5, speed*2, thrower, spin, diagonals_first, callback)
+		else
+			.=..()
 	else
-		..()
+		.=..()
 	kill_cloak(thrower)
 
 /obj/item/afterattack(atom/O, mob/living/carbon/human/user, proximity)
