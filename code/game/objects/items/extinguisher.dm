@@ -43,6 +43,8 @@
 /obj/item/extinguisher/New()
 	..()
 	create_reagents(max_water)
+	reagents.add_reagent("water", max_water)
+
 
 /obj/item/extinguisher/suicide_act(mob/living/carbon/user)
 	if (!safety && (reagents.total_volume >= 1))
