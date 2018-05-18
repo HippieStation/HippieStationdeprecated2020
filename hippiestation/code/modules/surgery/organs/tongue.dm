@@ -26,7 +26,6 @@ GLOBAL_LIST_EMPTY(abductortongue_other)
 		GLOB.abductortongue_abductors += H
 	else
 		GLOB.abductortongue_other += H
-		to_chat(world, "added hooman to global list")
 
 /obj/item/organ/tongue/abductor/Remove(mob/living/carbon/M, special = 0)	//Hippie add, we need to remove these guys from the global lists if they lose their tongue
 	..()
