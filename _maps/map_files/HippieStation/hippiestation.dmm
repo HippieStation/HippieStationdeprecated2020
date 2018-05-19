@@ -2483,7 +2483,6 @@
 "afD" = (
 /obj/docking_port/stationary{
 	dir = 4;
-	dwidth = 1;
 	height = 4;
 	name = "escape pod loader";
 	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
@@ -6946,7 +6945,6 @@
 "apJ" = (
 /obj/docking_port/stationary{
 	dir = 8;
-	dwidth = 2;
 	height = 5;
 	id = "laborcamp_home";
 	name = "fore bay 1";
@@ -8289,14 +8287,11 @@
 /area/maintenance/starboard/fore)
 "att" = (
 /obj/docking_port/stationary{
-	area_type = /area/construction/mining/aux_base;
 	dir = 8;
-	dwidth = 4;
 	height = 9;
 	id = "aux_base_zone";
 	name = "aux base zone";
 	roundstart_template = /datum/map_template/shuttle/aux_base/default;
-	turf_type = /turf/open/floor/plating;
 	width = 9
 	},
 /turf/open/floor/plating,
@@ -11364,7 +11359,6 @@
 "aBu" = (
 /obj/docking_port/stationary{
 	dir = 8;
-	dwidth = 1;
 	height = 4;
 	name = "escape pod loader";
 	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
@@ -15211,7 +15205,6 @@
 "aKN" = (
 /obj/docking_port/stationary{
 	dir = 8;
-	dwidth = 3;
 	height = 15;
 	id = "arrivals_stationary";
 	name = "arrivals";
@@ -20234,11 +20227,9 @@
 "aYt" = (
 /obj/docking_port/stationary{
 	dir = 4;
-	dwidth = 12;
 	height = 18;
 	id = "emergency_home";
 	name = "BoxStation emergency evac bay";
-	turf_type = /turf/open/space;
 	width = 32
 	},
 /turf/open/space/basic,
@@ -22017,11 +22008,9 @@
 "bcZ" = (
 /obj/docking_port/stationary{
 	dir = 8;
-	dwidth = 2;
 	height = 13;
 	id = "ferry_home";
 	name = "port bay 2";
-	turf_type = /turf/open/space;
 	width = 5
 	},
 /turf/open/space/basic,
@@ -26785,7 +26774,6 @@
 "bpL" = (
 /obj/docking_port/stationary{
 	dir = 2;
-	dwidth = 11;
 	height = 22;
 	id = "whiteship_home";
 	name = "SS13: Auxiliary Dock, Station-Port";
@@ -28117,7 +28105,6 @@
 /area/maintenance/disposal)
 "bsV" = (
 /obj/machinery/conveyor_switch/oneway{
-	convdir = -1;
 	id = "garbage";
 	name = "disposal conveyor"
 	},
@@ -32094,7 +32081,6 @@
 "bBY" = (
 /obj/docking_port/stationary{
 	dir = 8;
-	dwidth = 5;
 	height = 7;
 	id = "supply_home";
 	name = "Cargo Bay";
@@ -32104,7 +32090,6 @@
 /area/space)
 "bBZ" = (
 /obj/machinery/conveyor_switch/oneway{
-	convdir = -1;
 	id = "QMLoad"
 	},
 /turf/open/floor/plasteel,
@@ -38511,7 +38496,6 @@
 "bQz" = (
 /obj/docking_port/stationary{
 	dir = 8;
-	dwidth = 3;
 	height = 5;
 	id = "mining_home";
 	name = "mining shuttle bay";
@@ -60085,11 +60069,9 @@
 /obj/docking_port/stationary{
 	dheight = 1;
 	dir = 8;
-	dwidth = 12;
 	height = 17;
 	id = "syndicate_ne";
 	name = "northeast of station";
-	turf_type = /turf/open/space;
 	width = 23
 	},
 /turf/open/space,
