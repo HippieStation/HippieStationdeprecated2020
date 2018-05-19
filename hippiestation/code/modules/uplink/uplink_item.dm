@@ -306,9 +306,7 @@
 	cost = 6
 
 /datum/uplink_item/role_restricted/reverse_bear_trap
-	cost = 1
-	restricted_roles = list() // tg is gay
-	category = "(Pointless) Badassery"
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor)
 
 /datum/uplink_item/badass/contender
 	name = "Contender G13"
