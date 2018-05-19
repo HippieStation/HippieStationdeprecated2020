@@ -323,10 +323,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	job_engsec_low = sanitize_integer(job_engsec_low, 0, 65535, initial(job_engsec_low))
 	hippie_character_pref_load(S)
 
-	all_traits = SANITIZE_LIST(all_traits)
-	positive_traits = SANITIZE_LIST(positive_traits)
-	negative_traits = SANITIZE_LIST(negative_traits)
-	neutral_traits = SANITIZE_LIST(neutral_traits)
+	all_quirks = SANITIZE_LIST(all_quirks)
+	positive_quirks = SANITIZE_LIST(positive_quirks)
+	negative_quirks = SANITIZE_LIST(negative_quirks)
+	neutral_quirks = SANITIZE_LIST(neutral_quirks)
 
 	all_quirks = SANITIZE_LIST(all_quirks)
 	positive_quirks = SANITIZE_LIST(positive_quirks)
@@ -398,10 +398,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	hippie_character_pref_save(S)
 
 	//Traits
-	WRITE_FILE(S["all_traits"]		, all_traits)
-	WRITE_FILE(S["positive_traits"]		, positive_traits)
-	WRITE_FILE(S["negative_traits"]		, negative_traits)
-	WRITE_FILE(S["neutral_traits"]		, neutral_traits)
+	WRITE_FILE(S["all_quirks"]		, all_quirks)
+	WRITE_FILE(S["positive_quirks"]		, positive_quirks)
+	WRITE_FILE(S["negative_quirks"]		, negative_quirks)
+	WRITE_FILE(S["neutral_quirks"]		, neutral_quirks)
 
 	//Quirks
 	WRITE_FILE(S["all_quirks"]			, all_quirks)
