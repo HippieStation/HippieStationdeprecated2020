@@ -1,3 +1,8 @@
+/datum/symptom/oxygen	//It makes no sense for this one to be so punishing for viruses
+	resistance = -1
+	stage_speed = -1
+	transmittable = -2
+
 /datum/symptom/heal/starlight
 	level = 0
 
