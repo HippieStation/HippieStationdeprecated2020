@@ -1,4 +1,4 @@
-/obj/item/device/hivebot_crux
+/obj/item/hivebot_crux
 	name = "hivebot crux"
 	desc = "A smooth, metallic metal cylinder with an indigo screen."
 	icon = 'icons/mob/hivebot.dmi'

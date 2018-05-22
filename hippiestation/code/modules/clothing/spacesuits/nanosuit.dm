@@ -11,7 +11,7 @@
 
 /obj/item/clothing/under/syndicate/combat/nano/equipped(mob/user, slot)
 	.=..()
-	if(slot == slot_w_uniform)
+	if(slot == SLOT_W_UNIFORM)
 		flags_1 |= NODROP_1
 
 /obj/item/clothing/under/syndicate/combat/nano/dropped(mob/user)
@@ -30,7 +30,7 @@
 
 /obj/item/clothing/mask/gas/nano_mask/equipped(mob/user, slot)
 	.=..()
-	if(slot == slot_wear_mask)
+	if(slot == SLOT_WEAR_MASK)
 		flags_1 |= NODROP_1
 
 /obj/item/clothing/mask/gas/nano_mask/dropped(mob/user)
@@ -46,7 +46,7 @@
 /obj/item/clothing/shoes/combat/coldres/nanojump
 	name = "nanosuit boots"
 	desc = "Boots part of a nanosuit. Slip resistant. Property of CryNet Systems."
-	flags_1 = NOSLIP_1
+	clothing_flags = NOSLIP
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
@@ -97,7 +97,7 @@
 
 /obj/item/clothing/shoes/combat/coldres/nanojump/equipped(mob/user, slot)
 	.=..()
-	if(slot == slot_shoes)
+	if(slot == SLOT_SHOES)
 		flags_1 |= NODROP_1
 
 /obj/item/clothing/shoes/combat/coldres/nanojump/dropped(mob/user)
@@ -119,20 +119,20 @@
 
 /obj/item/clothing/gloves/combat/nano/equipped(mob/user, slot)
 	.=..()
-	if(slot == slot_gloves)
+	if(slot == SLOT_GLOVES)
 		flags_1 |= NODROP_1
 
 /obj/item/clothing/gloves/combat/nano/dropped(mob/user)
 	..()
 	qdel(src)
 
-/obj/item/device/radio/headset/syndicate/alt/nano
+/obj/item/radio/headset/syndicate/alt/nano
 	name = "\proper the nanosuit's bowman headset"
 	desc = "Operator communication headset. Property of CryNet Systems."
 	icon_state = "syndie_headset"
 	item_state = "syndie_headset"
 	subspace_transmission = FALSE
-	keyslot = new /obj/item/device/encryptionkey/binary
+	keyslot = new /obj/item/encryptionkey/binary
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
 
 /obj/item/device/radio/headset/syndicate/alt/nano/ComponentInitialize()
@@ -141,7 +141,7 @@
 
 /obj/item/device/radio/headset/syndicate/alt/nano/equipped(mob/user, slot)
 	.=..()
-	if(slot == slot_ears)
+	if(slot == SLOT_EARS)
 		flags_1 |= NODROP_1
 
 /obj/item/device/radio/headset/syndicate/alt/nano/dropped(mob/user)
@@ -173,7 +173,7 @@
 
 /obj/item/clothing/glasses/nano_goggles/equipped(mob/user, slot)
 	.=..()
-	if(slot == slot_glasses)
+	if(slot == SLOT_GLASSES)
 		flags_1 |= NODROP_1
 
 /obj/item/clothing/glasses/nano_goggles/dropped(mob/user)
@@ -566,7 +566,7 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/nano/equipped(mob/living/carbon/human/wearer, slot)
 	..()
-	if(slot == slot_head)
+	if(slot == SLOT_HEAD)
 		flags_1 |= NODROP_1
 	for(var/hudtype in datahuds)
 		var/datum/atom_hud/H = GLOB.huds[hudtype]
@@ -615,7 +615,7 @@
 /obj/item/clothing/suit/space/hardsuit/nano/equipped(mob/user, slot)
 	if(ishuman(user))
 		U = user
-	if(slot == slot_wear_suit)
+	if(slot == SLOT_WEAR_SUIT)
 		flags_1 |= NODROP_1
 		U.unequip_everything()
 		equip_nanosuit(user)
@@ -638,7 +638,7 @@
 	gloves = /obj/item/clothing/gloves/combat/nano
 	implants = list(/obj/item/implant/explosive/disintegrate)
 	suit_store = /obj/item/tank/internals/emergency_oxygen/recharge
-	internals_slot = slot_s_store
+	internals_slot = SLOT_S_STORE
 
 
 obj/item/clothing/suit/space/hardsuit/nano/dropped()
@@ -922,7 +922,7 @@ obj/item/clothing/suit/space/hardsuit/nano/dropped()
 
 /obj/item/tank/internals/emergency_oxygen/recharge/equipped(mob/living/carbon/human/wearer, slot)
 	..()
-	if(slot == slot_s_store)
+	if(slot == SLOT_S_STORE)
 		flags_1 |= NODROP_1
 		START_PROCESSING(SSobj, src)
 

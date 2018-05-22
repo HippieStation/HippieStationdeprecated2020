@@ -4,7 +4,7 @@
 #define MEESEEKS_BOX_COOLDOWN		1800
 #define MEESEEKS_BOX_FAILURE_TIME	1600
 
-/obj/item/device/meeseeks_box
+/obj/item/meeseeks_box
 	name = "\improper Mr. Meeseeks Box"
 	desc = "A blue box with a button on top. Press the button to call upon a Mr. Meeseeks."
 	icon = 'hippiestation/icons/obj/device.dmi'
@@ -17,7 +17,7 @@
 	var/mob/living/carbon/human/meeseeks
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | LAVA_PROOF
 
-/obj/item/device/meeseeks_box/attack_self(mob/user)
+/obj/item/meeseeks_box/attack_self(mob/user)
 	if(!iscarbon(user))
 		return
 	if(meeseeks)
@@ -92,7 +92,7 @@
 	else
 		to_chat(user, "<span class='warning'>[src] is silent. Try again in a few minutes.</span>")
 
-/obj/item/device/meeseeks_box/Destroy()
+/obj/item/meeseeks_box/Destroy()
 	if(meeseeks)
 		destroy_meeseeks(meeseeks, meeseeks.dna.species)
 	return ..()
