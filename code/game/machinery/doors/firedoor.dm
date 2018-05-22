@@ -142,6 +142,14 @@
 	if(density)
 		open()
 	else
+		if(iscarbon(user))
+			var/mob/living/carbon/C = user
+			if(C.has_trait(TRAIT_PACIFISM))
+				var/T = get_turf(src)
+				for(var/mob/living/L in T)
+					if((L.stat != DEAD) && !L.has_trait(TRAIT_FAKEDEATH))
+						to_chat(user, "<span class='notice'>Closing [src] would hurt [L]!</span>")
+						return
 		close()
 
 /obj/machinery/door/firedoor/interact(mob/user)
@@ -355,8 +363,7 @@
 					return
 				user.visible_message("<span class='notice'>[user] removes the wires from [src].</span>", \
 									 "<span class='notice'>You remove the wiring from [src], exposing the circuit board.</span>")
-				var/obj/item/stack/cable_coil/B = new(get_turf(src))
-				B.amount = 5
+				new/obj/item/stack/cable_coil(get_turf(src), 5)
 				constructionStep = CONSTRUCTION_GUTTED
 				update_icon()
 				return
@@ -439,8 +446,8 @@
 				constructionStep = CONSTRUCTION_GUTTED
 				update_icon()
 				return
-			if(istype(C, /obj/item/device/electroadaptive_pseudocircuit))
-				var/obj/item/device/electroadaptive_pseudocircuit/P = C
+			if(istype(C, /obj/item/electroadaptive_pseudocircuit))
+				var/obj/item/electroadaptive_pseudocircuit/P = C
 				if(!P.adapt_circuit(user, 30))
 					return
 				user.visible_message("<span class='notice'>[user] fabricates a circuit and places it into [src].</span>", \
