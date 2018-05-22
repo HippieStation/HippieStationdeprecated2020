@@ -339,3 +339,4 @@
 	desc = "Become a posthuman warrior. The items cannot be taken off once you wear them."
 	item = /obj/item/storage/box/syndie_kit/nanosuit
 	cost = 20
+	
