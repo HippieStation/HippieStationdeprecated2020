@@ -2,6 +2,10 @@
 "aaa" = (
 /turf/open/space/basic,
 /area/space)
+"aab" = (
+/obj/machinery/power/supermatter_crystal/engine,
+/turf/open/floor/engine,
+/area/engine/supermatter)
 "aac" = (
 /obj/effect/landmark/carpspawn,
 /turf/open/space,
@@ -54411,10 +54415,6 @@
 /obj/item/tank/internals/plasma,
 /turf/open/floor/plating,
 /area/engine/engineering)
-"cEf" = (
-/obj/machinery/power/supermatter_shard/crystal/engine,
-/turf/open/floor/engine,
-/area/engine/supermatter)
 "cEg" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -92665,7 +92665,7 @@ cBX
 cCD
 cDk
 cDN
-cEf
+aab
 cDN
 cCB
 uet
@@ -129226,4 +129226,3 @@ aaa
 aaa
 aaa
 "}
-
