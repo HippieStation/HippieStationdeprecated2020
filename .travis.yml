@@ -1,6 +1,5 @@
-sudo: required
 language: generic
-sudo: required
+sudo: false
 branches:
   except:
   - ___TGS3TempBranch
