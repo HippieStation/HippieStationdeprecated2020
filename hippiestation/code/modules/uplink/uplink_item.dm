@@ -308,7 +308,6 @@
 /datum/uplink_item/role_restricted/reverse_bear_trap
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor)
 
-
 /datum/uplink_item/badass/contender
 	name = "Contender G13"
 	desc = "A poacher's favorite, ArcWorks' Contender G13 can hold any ammo you put into it. Each shot must be loaded individually. Ammo sold seperately!"
