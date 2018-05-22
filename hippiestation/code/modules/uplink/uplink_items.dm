@@ -184,7 +184,7 @@
 /datum/uplink_item/device_tools/autosurgeon
 	name = "Autosurgeon"
 	desc = "A surgery device that instantly implants you with whatever implant has been inserted in it. Infinite uses. Use a screwdriver to remove an implant from it."
-	item = /obj/item/device/autosurgeon
+	item = /obj/item/autosurgeon
 	cost = 1
 	surplus = 60
 
@@ -307,6 +307,7 @@
 
 /datum/uplink_item/role_restricted/reverse_bear_trap
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor)
+
 
 /datum/uplink_item/badass/contender
 	name = "Contender G13"
