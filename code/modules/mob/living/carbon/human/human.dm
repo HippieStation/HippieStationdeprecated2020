@@ -222,21 +222,7 @@
 				if(!I || !L || I.loc != src || !(I in L.embedded_objects))
 					return
 				L.embedded_objects -= I
-				L.receive_damage(I.embedding.embedded_unsafe_removal_pain_multiplier*I.w_class)//It hurts to rip it out, get surgery you dingus.
-        
-				// Hippie Start - Remove pinned item
-				if (I.pinned)
-					do_pindown(src.pinned_to, 0)
-					src.pinned_to = null
-					src.anchored = FALSE
-					update_canmove()
-					I.pinned = null
-
-				// Don't move stacks because it could merge items still pinned
-				if (!istype(I, /obj/item/stack))
-					I.forceMove(get_turf(src))
-				// Hippie End
-
+				L.receive_damage(I.embedding.embedded_unsafe_removal_pain_multiplier*I.w_class)//It hurts to rip it out, get surgery you dingus
 				I.forceMove(get_turf(src))
 				usr.put_in_hands(I)
 				usr.emote("scream")
