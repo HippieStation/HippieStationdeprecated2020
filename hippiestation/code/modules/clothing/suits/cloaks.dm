@@ -4,6 +4,7 @@
 	cold_protection = CHEST | ARMS | HANDS
 	min_cold_protection_temperature = 257
 	//Cloaks keep your chest, arms, and hands toasty, but only slightly. For reference, humans start taking cold damage at 260.15K.
+	pocket_storage_component_path = /datum/component/storage/concrete/pockets	//Cloaks now have 2 pocket slots! :D
 
 /obj/item/clothing/neck/cloak/black
 	name = "black cloak"
