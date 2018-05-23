@@ -107,20 +107,20 @@
 	range = 5
 	action_icon_state = "veil"
 	action_icon = 'hippiestation/icons/mob/actions.dmi'
-	var/blacklisted_lights = list(/obj/item/device/flashlight/flare, /obj/item/device/flashlight/slime)
+	var/blacklisted_lights = list(/obj/item/flashlight/flare, /obj/item/flashlight/slime)
 	var/admin_override = FALSE //Requested by Shadowlight213. Allows anyone to cast the spell, not just shadowlings.
 
 /obj/effect/proc_holder/spell/aoe_turf/veil/proc/extinguishItem(obj/item/I) //Does not darken items held by mobs due to mobs having separate luminosity, use extinguishMob() or write your own proc.
-	if(istype(I, /obj/item/device/flashlight))
-		var/obj/item/device/flashlight/F = I
+	if(istype(I, /obj/item/flashlight))
+		var/obj/item/flashlight/F = I
 		if(F.on)
 			if(is_type_in_list(I, blacklisted_lights))
 				I.visible_message("<span class='danger'>[I] dims slightly before scattering the shadows around it.</span>")
 				return F.brightness_on //Necessary because flashlights become 0-luminosity when held.  I don't make the rules of lightcode.
 			F.on = 0
 			F.update_brightness()
-	else if(istype(I, /obj/item/device/pda))
-		var/obj/item/device/pda/P = I
+	else if(istype(I, /obj/item/pda))
+		var/obj/item/pda/P = I
 		P.fon = 0
 	I.set_light(0)
 	return I.luminosity
@@ -340,9 +340,9 @@
 	user.visible_message("<span class='warning'>[user]'s skin suddenly bubbles and shifts around their body!</span>", \
 						 "<span class='shadowling'>You regenerate your protective armor and cleanse your form of defects.</span>")
 	user.setCloneLoss(0)
+	user.equip_to_slot_or_del(new /obj/item/clothing/suit/space/shadowling(user), SLOT_WEAR_SUIT)
+	user.equip_to_slot_or_del(new /obj/item/clothing/head/shadowling(user), SLOT_HEAD)
 	user.set_species(/datum/species/shadow/ling)
-	user.equip_to_slot_or_del(new /obj/item/clothing/suit/space/shadowling(user), slot_wear_suit)
-	user.equip_to_slot_or_del(new /obj/item/clothing/head/shadowling(user), slot_head)
 
 
 /obj/effect/proc_holder/spell/self/collective_mind //Lets a shadowling bring together their thralls' strength, granting new abilities and a headcount

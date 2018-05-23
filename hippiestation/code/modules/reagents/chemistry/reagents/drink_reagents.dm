@@ -95,7 +95,7 @@
 		Soylet.facial_hair_style = "Hipster Beard"
 
 	Soylet.dropItemToGround(Soylet.glasses)
-	Soylet.equip_to_slot_or_del(new /obj/item/clothing/glasses/regular/hipster(Soylet), slot_glasses)
+	Soylet.equip_to_slot_or_del(new /obj/item/clothing/glasses/regular/hipster(Soylet), SLOT_GLASSES)
 
 	Soylet.update_hair()
 	to_chat(Soylet, "<span class='notice'>You feel like a new [prefix]male!</span>")
