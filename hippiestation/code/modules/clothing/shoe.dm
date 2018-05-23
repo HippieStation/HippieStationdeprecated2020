@@ -8,7 +8,7 @@
 	flags_1 = NODROP_1 | DROPDEL_1
 	slowdown = SHOES_SLOWDOWN+1
 	var/footstep = 1
-	pockets = /obj/item/storage/internal/pocket/shoes/clown
+	pocket_storage_component_path = /datum/component/storage/concrete/pockets/shoes/clown
 
 /obj/item/clothing/shoes/hippie/cluwne/step_action()
 	if(footstep > 1)
@@ -20,7 +20,7 @@
 /obj/item/clothing/shoes/hippie/cluwne/equipped(mob/user, slot)
 	if(!ishuman(user))
 		return
-	if(slot == slot_shoes)
+	if(slot == SLOT_SHOES)
 		var/mob/living/carbon/human/H = user
 		H.dna.add_mutation(CLUWNEMUT)
 	return

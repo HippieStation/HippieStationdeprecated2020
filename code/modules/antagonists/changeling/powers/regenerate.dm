@@ -6,9 +6,8 @@
 	helptext = "Will alert nearby crew if any external limbs are \
 		regenerated. Can be used while unconscious."
 	chemical_cost = 10
-	dna_cost = 1 // hippie edit - AGAIN it refused to modularize. This time it was so bad that it refused to appear in the uplink entirely.
+	dna_cost = 0
 	req_stat = UNCONSCIOUS
-	always_keep = TRUE
 
 /obj/effect/proc_holder/changeling/regenerate/sting_action(mob/living/user)
 	to_chat(user, "<span class='notice'>You feel an itching, both inside and \

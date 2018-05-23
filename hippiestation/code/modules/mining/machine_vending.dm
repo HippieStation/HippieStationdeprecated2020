@@ -10,7 +10,7 @@
 			new /obj/item/storage/belt/mining/vendor(src.loc)
 		if("Resonator and Advanced Scanner")
 			new /obj/item/resonator(src.loc)
-			new /obj/item/device/t_scanner/adv_mining_scanner(src.loc)
+			new /obj/item/t_scanner/adv_mining_scanner(src.loc)
 		if("Mining Drone")
 			new /mob/living/simple_animal/hostile/mining_drone(src.loc)
 			new /obj/item/weldingtool/hugetank(src.loc)

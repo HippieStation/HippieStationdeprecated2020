@@ -229,7 +229,7 @@
 			state = EM_UNSECURED
 
 /obj/machinery/power/emitter/wrench_act(mob/living/user, obj/item/I)
-	default_unfasten_wrench(user, I, 0)
+	default_unfasten_wrench(user, I)
 	return TRUE
 
 /obj/machinery/power/emitter/welder_act(mob/living/user, obj/item/I)
@@ -289,9 +289,6 @@
 
 	else if(is_wire_tool(I) && panel_open)
 		wires.interact(user)
-		return
-
-	else if(exchange_parts(user, I))
 		return
 
 	return ..()
@@ -398,7 +395,7 @@
 	name = "turret controls"
 	icon_state = "offhand"
 	w_class = WEIGHT_CLASS_HUGE
-	flags_1 = ABSTRACT_1 | NODROP_1
+	flags_1 = ABSTRACT_1|NODROP_1
 	resistance_flags = FIRE_PROOF | UNACIDABLE | ACID_PROOF | NOBLUDGEON_1
 	var/delay = 0
 
