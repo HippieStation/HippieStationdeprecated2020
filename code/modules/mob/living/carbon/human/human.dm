@@ -4,8 +4,6 @@
 	icon = 'icons/mob/human.dmi'
 	icon_state = "caucasian_m"
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
-	see_invisible = SEE_INVISIBLE_LIVING	//This will give the human the potential ability to see ghosts, while others cannot.
-	var/ghostvision = 0			//Boolean for the update_sight proc
 
 /mob/living/carbon/human/Initialize()
 	verbs += /mob/living/proc/mob_sleep
@@ -754,21 +752,6 @@
 /mob/living/carbon/human/proc/end_electrocution_animation(mutable_appearance/MA)
 	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, "#000000")
 	cut_overlay(MA)
-
-/mob/living/carbon/human/proc/toggle_ghostvision()	//This is the proc to run in order to change the variable so they can see/unsee ghosts
-	if(client)
-		if(!ghostvision)
-			ghostvision = 1
-			update_ghost_sight()
-		else
-			ghostvision = 0
-			update_ghost_sight()
-
-/mob/living/carbon/human/proc/update_ghost_sight()	//This will allow individual humans to potentially see ghosts)
-	if(!ghostvision)
-		see_invisible = SEE_INVISIBLE_LIVING
-	else
-		see_invisible = SEE_INVISIBLE_OBSERVER
 
 /mob/living/carbon/human/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE)
 	if(incapacitated() || lying )

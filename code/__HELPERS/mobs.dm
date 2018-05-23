@@ -119,7 +119,7 @@
 /proc/random_unique_moth_name(attempts_to_find_unique_name=10)
 	for(var/i in 1 to attempts_to_find_unique_name)
 		. = capitalize(pick(GLOB.moth_first)) + " " + capitalize(pick(GLOB.moth_last))
-	
+
 		if(!findname(.))
 			break
 
@@ -426,6 +426,8 @@ Proc for attack log creation, because really why not
 			for(var/i in 1 to step_count)
 				step(X, pick(NORTH, SOUTH, EAST, WEST))
 
+/*	//Sorry, this proc needs to go cause our hippie version gets overridden by this one otherwise, for some reason
+
 /proc/deadchat_broadcast(message, mob/follow_target=null, turf/turf_target=null, speaker_key=null, message_type=DEADCHAT_REGULAR)
 	for(var/mob/M in GLOB.player_list)
 		var/datum/preferences/prefs
@@ -469,6 +471,8 @@ Proc for attack log creation, because really why not
 			to_chat(M, rendered_message)
 		else
 			to_chat(M, message)
+
+*/
 
 
 /proc/log_talk(mob/user,message,logtype)
