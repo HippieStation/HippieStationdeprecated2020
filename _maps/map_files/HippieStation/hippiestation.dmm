@@ -2487,6 +2487,7 @@
 "afD" = (
 /obj/docking_port/stationary{
 	dir = 4;
+	dwidth = 1;
 	height = 4;
 	name = "escape pod loader";
 	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
@@ -6949,6 +6950,7 @@
 "apJ" = (
 /obj/docking_port/stationary{
 	dir = 8;
+	dwidth = 2;
 	height = 5;
 	id = "laborcamp_home";
 	name = "fore bay 1";
@@ -8289,17 +8291,6 @@
 /obj/item/coin/iron,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"att" = (
-/obj/docking_port/stationary{
-	dir = 8;
-	height = 9;
-	id = "aux_base_zone";
-	name = "aux base zone";
-	roundstart_template = /datum/map_template/shuttle/aux_base/default;
-	width = 9
-	},
-/turf/open/floor/plating,
-/area/construction/mining/aux_base)
 "atu" = (
 /obj/machinery/door/airlock/external{
 	name = "Construction Zone"
@@ -11363,6 +11354,7 @@
 "aBu" = (
 /obj/docking_port/stationary{
 	dir = 8;
+	dwidth = 1;
 	height = 4;
 	name = "escape pod loader";
 	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
@@ -22013,6 +22005,7 @@
 "bcZ" = (
 /obj/docking_port/stationary{
 	dir = 8;
+	dwidth = 2;
 	height = 13;
 	id = "ferry_home";
 	name = "port bay 2";
@@ -26779,6 +26772,7 @@
 "bpL" = (
 /obj/docking_port/stationary{
 	dir = 2;
+	dwidth = 11;
 	height = 22;
 	id = "whiteship_home";
 	name = "SS13: Auxiliary Dock, Station-Port";
@@ -32086,6 +32080,7 @@
 "bBY" = (
 /obj/docking_port/stationary{
 	dir = 8;
+	dwidth = 5;
 	height = 7;
 	id = "supply_home";
 	name = "Cargo Bay";
@@ -38501,6 +38496,7 @@
 "bQz" = (
 /obj/docking_port/stationary{
 	dir = 8;
+	dwidth = 3;
 	height = 5;
 	id = "mining_home";
 	name = "mining shuttle bay";
@@ -62481,6 +62477,20 @@
 /obj/structure/grille,
 /turf/open/floor/plating,
 /area/engine/port_engineering)
+"tMl" = (
+/obj/docking_port/stationary{
+	area_type = /area/construction/mining/aux_base;
+	dheight = 4;
+	dir = 8;
+	dwidth = 4;
+	height = 9;
+	id = "aux_base_zone";
+	name = "aux base zone";
+	roundstart_template = /datum/map_template/shuttle/aux_base/default;
+	width = 9
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
 "tNL" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -73812,7 +73822,7 @@ apw
 apw
 apw
 apw
-att
+tMl
 apw
 apw
 apw
