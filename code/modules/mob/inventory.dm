@@ -331,7 +331,6 @@
 		if(!no_move && !(I.flags_1 & DROPDEL_1))	//item may be moved/qdel'd immedietely, don't bother moving it
 			if(newloc != null)	//Hippie change, added newloc check so forceMove doesn't act on null
 				I.forceMove(newloc)
-		I.dropped(src)	//Hippie change, changed src to newloc because otherwise forceMove still acts on null??
 		if(isnull(newloc))
 			I.moveToNullspace()
 		else
