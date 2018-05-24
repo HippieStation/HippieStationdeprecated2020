@@ -1,4 +1,4 @@
-/obj/item/device/slime_scanner/afterattack(atom/target, mob/living/user, flag, params)
+/obj/item/slime_scanner/afterattack(atom/target, mob/living/user, flag, params)
 	if(flag)
 		return
 	if(user.stat || user.eye_blind)

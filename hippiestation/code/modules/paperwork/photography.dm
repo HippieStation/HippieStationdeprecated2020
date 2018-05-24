@@ -11,7 +11,7 @@
 	var/datum/photo_disguise/disguise
 	desc = "Just a box. Looks like you could place a photo of someone on it to fool people..."
 
-/obj/item/device/camera/proc/find_disguises(mob/user, list/turfs)
+/obj/item/camera/proc/find_disguises(mob/user, list/turfs)
 	var/list/targets = list()
 
 	for(var/turf/T in turfs)
@@ -32,7 +32,7 @@
 
 	return targets
 
-/obj/item/device/camera/printpicture(mob/user, icon/temp, mobs, flag, list/potential_disguises) //Normal camera proc for creating photos
+/obj/item/camera/printpicture(mob/user, icon/temp, mobs, flag, list/potential_disguises) //Normal camera proc for creating photos
 	var/obj/item/photo/P = new/obj/item/photo(get_turf(src))
 	if(in_range(src, user)) //needed because of TK
 		user.put_in_hands(P)
