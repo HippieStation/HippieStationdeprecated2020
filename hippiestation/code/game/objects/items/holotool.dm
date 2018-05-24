@@ -28,7 +28,7 @@
 	AddTool(/obj/item/wirecutters, "holo-wirecutters")
 	AddTool(/obj/item/weldingtool/largetank, "holo-welder")
 	AddTool(/obj/item/crowbar, "holo-crowbar")
-	AddTool(/obj/item/device/multitool, "holo-multitool")
+	AddTool(/obj/item/multitool, "holo-multitool")
 
 /obj/item/holotool/Initialize()
 	. = ..()
@@ -46,6 +46,7 @@
 		if(!chosen)
 			return
 		current_tool = chosen
+		tool_behaviour = current_tool.tool_behaviour
 		playsound(loc, 'sound/items/rped.ogg', get_clamped_volume(), 1, -1)
 		update_icons()
 	else

@@ -42,3 +42,38 @@
 	time = 150
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/reverse_bear_trap
+	name = "Reverse Bear trap"
+	result = /obj/item/reverse_bear_trap
+	reqs = list(/obj/item/restraints/legcuffs/beartrap = 1,
+				/obj/item/stack/cable_coil = 5,
+				/obj/item/assembly/timer = 1)
+	tools = list(/obj/item/screwdriver)
+	time = 150
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/bbat_spiked
+	name = "Spiked Bat"
+	result = /obj/item/melee/baseball_bat/spiked
+	reqs = list(/obj/item/stack/rods = 5,
+		        /obj/item/melee/baseball_bat) //no need for a hammer, he just whacks the rod with the bat when it's on the floor or smth, like a nail </autism>
+	time = 100
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/woodenmug
+	name = "Wooden Mug"
+	result = /obj/item/reagent_containers/glass/woodmug
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 2)
+	time = 20
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/wheelchair
+	name = "Wheelchair"
+	result = /obj/vehicle/ridden/wheelchair
+	reqs = list(/obj/item/stack/sheet/metal = 4,
+				/obj/item/stack/rods = 6)
+	time = 100
+	category = CAT_MISC
