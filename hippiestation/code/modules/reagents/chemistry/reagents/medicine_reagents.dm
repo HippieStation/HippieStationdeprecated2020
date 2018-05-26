@@ -224,3 +224,19 @@ datum/reagent/medicine/virogone/on_mob_life(mob/living/M)//cures viruses very ef
 
 /datum/reagent/medicine/salglu_solution
 	overdose_threshold = 0 //seriously fuck whoever thought this was a good idea.
+
+/datum/reagent/medicine/iecure
+	name = "Iecure"
+	id = "iecure"
+	description = "A powerful chemical that heals liver damage, purges alcohol and heals toxin damage when the user is suffering from liver failure"
+	color = "#957555"	//rgb: 149, 117, 85
+	metabolization_rate = 0.5 * REAGENTS_METABOLISM
+
+/datum/reagent/medicine/iecure/on_mob_life(mob/living/M)
+	var/mob/living/carbon/human/H = M
+	H.applyLiverDamage(-10)
+	H.reagents.remove_all_type(/datum/reagent/consumable/ethanol, 5)	//Fixing liver damage is useless if they still have a shitton of alcohol in them
+	if(H.undergoing_liver_failure())	//Only heal their toxin damage if their liver is dying, the rest should need charcoal or something
+		H.adjustToxLoss(-16)	//Liver failure applies 8 toxin damage per tick, ouch
+
+	..()	//It turns out this is needed to actually metabolize the chemical... you learn something new every day :)

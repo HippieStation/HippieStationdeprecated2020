@@ -111,6 +111,8 @@ GAS ANALYZER
 	add_fingerprint(user)
 
 
+/*	Disabled for our Hippie version of the medical scanner, otherwise this one overrides our version
+
 // Used by the PDA medical scanner too
 /proc/healthscan(mob/user, mob/living/M, mode = 1, advanced = FALSE)
 	if(isliving(user) && (user.incapacitated() || user.eye_blind))
@@ -240,7 +242,7 @@ GAS ANALYZER
 		var/mob/living/carbon/human/H = M
 		var/ldamage = H.return_liver_damage()
 		if(ldamage > 10)
-			to_chat(user, "\t<span class='alert'>[ldamage > 45 ? "severe" : "minor"] liver damage detected.</span>")
+			to_chat(user, "\t<span class='alert'>[ldamage > 45 ? "Severe" : "Minor"] liver damage detected.</span>")	//Fixed a typo, severe and minor weren't capitalised
 
 	// Body part damage report
 	if(iscarbon(M) && mode == 1)
@@ -300,6 +302,8 @@ GAS ANALYZER
 		if(cyberimp_detect)
 			to_chat(user, "<span class='notice'>Detected cybernetic modifications:</span>")
 			to_chat(user, "<span class='notice'>[cyberimp_detect]</span>")
+
+*/
 
 /proc/chemscan(mob/living/user, mob/living/M)
 	if(istype(M))
