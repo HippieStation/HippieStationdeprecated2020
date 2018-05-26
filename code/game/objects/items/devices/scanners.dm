@@ -242,7 +242,7 @@ GAS ANALYZER
 		var/mob/living/carbon/human/H = M
 		var/ldamage = H.return_liver_damage()
 		if(ldamage > 10)
-			to_chat(user, "\t<span class='alert'>[ldamage > 45 ? "Severe" : "Minor"] liver damage detected.</span>")	//Fixed a typo, severe and minor weren't capitalised
+			to_chat(user, "\t<span class='alert'>[ldamage > 45 ? "severe" : "minor"] liver damage detected.</span>")
 
 	// Body part damage report
 	if(iscarbon(M) && mode == 1)
