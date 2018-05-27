@@ -63057,6 +63057,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/port_engineering)
+"uMX" = (
+/obj/effect/spawner/maintfauna/singlemaintenanceshroom,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "uMY" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -107679,7 +107683,7 @@ alO
 apt
 avu
 amF
-alO
+uMX
 ajz
 ajz
 alO
