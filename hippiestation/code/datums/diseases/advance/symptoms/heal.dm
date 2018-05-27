@@ -40,6 +40,7 @@
 
 	if(M.fire_stacks > 0)	//New hippie add, otherwise you die from plasma fires even if you're doing the suck on the plasma
 		actual_power = actual_power + M.fire_stacks
+		M.adjustFireLoss(-heal_amt)
 	else
 		actual_power = initial(actual_power)
 
