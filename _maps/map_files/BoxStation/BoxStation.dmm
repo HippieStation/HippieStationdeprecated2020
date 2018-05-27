@@ -37927,8 +37927,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/item/stock_parts/cell/super,
-/obj/item/stock_parts/cell/super,
 /obj/item/stack/sheet/metal/fifty,
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
@@ -41400,7 +41398,7 @@
 /turf/closed/wall/r_wall,
 /area/medical/virology)
 "bZQ" = (
-/obj/machinery/atmospherics/components/binary/valve/open{
+/obj/machinery/atmospherics/components/binary/valve/on{
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -52266,10 +52264,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
-/obj/machinery/atmospherics/components/binary/valve/digital{
+/obj/machinery/atmospherics/components/binary/valve/digital/on{
 	dir = 4;
-	name = "Output Release";
-	open = 1
+	name = "Output Release"
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
@@ -53485,15 +53482,6 @@
 "gjl" = (
 /turf/closed/wall,
 /area/quartermaster/warehouse)
-"goZ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/machinery/computer/bounty{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/office)
 "gsz" = (
 /obj/machinery/camera{
 	c_tag = "Fitness Room South";
@@ -53558,6 +53546,18 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+"hRa" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/cell_charger{
+	pixel_y = 5
+	},
+/obj/item/stock_parts/cell/super,
+/obj/item/stock_parts/cell/super,
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
 "ijc" = (
 /obj/structure/table,
 /obj/item/stack/sheet/metal/fifty,
@@ -53776,6 +53776,10 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/science/circuit)
+"mjr" = (
+/obj/machinery/vending/wardrobe/bar_wardrobe,
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
 "mBv" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -53985,6 +53989,15 @@
 /obj/structure/chair/office/light,
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
+"sWR" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/computer/bounty{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "sXy" = (
 /obj/machinery/door/airlock/external{
 	name = "Security External Airlock";
@@ -54138,10 +54151,6 @@
 	},
 /turf/open/floor/plating,
 /area/construction/mining/aux_base)
-"wpP" = (
-/obj/machinery/vending/wardrobe/bar_wardrobe,
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "wrp" = (
 /obj/machinery/light{
 	dir = 8
@@ -76969,7 +76978,7 @@ bnG
 bnz
 bpA
 bbR
-goZ
+sWR
 jlm
 bud
 eyM
@@ -91336,7 +91345,7 @@ aGL
 aHM
 aJm
 aKz
-wpP
+mjr
 aND
 aJC
 aab
@@ -102946,7 +102955,7 @@ bOH
 dvO
 bQY
 vzp
-bTo
+hRa
 bUp
 mNi
 mRe
