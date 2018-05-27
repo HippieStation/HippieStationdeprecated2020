@@ -59355,7 +59355,7 @@
 /obj/machinery/atmospherics/components/binary/valve/digital{
 	dir = 4;
 	name = "Output Release";
-	!INVALID_VAR! = 1
+	
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
