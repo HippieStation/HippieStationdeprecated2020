@@ -43,6 +43,7 @@
 		M.adjustFireLoss(-heal_amt)
 	else
 		actual_power = initial(actual_power)
+		M.adjustFireLoss(-heal_amt)
 
 	if(prob(5))
 		to_chat(M, "<span class='notice'>You feel yourself absorbing plasma inside and around you...</span>")
