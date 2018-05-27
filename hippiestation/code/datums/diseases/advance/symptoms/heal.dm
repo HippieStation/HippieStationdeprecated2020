@@ -63,6 +63,7 @@
 	stage_speed = -2
 	transmittable = -2
 	level = 6
+	threshold_desc = ""
 
 /datum/symptom/heal/supertoxin/Heal(mob/living/M, datum/disease/advance/A)
 	var/heal_amt = 4
@@ -164,20 +165,18 @@
 	stage_speed = -2
 	transmittable = -2
 	level = 4
+	threshold_desc = ""
+	var/temp_rate = 4
 
 /datum/symptom/heal/heatresistance/Heal(mob/living/carbon/M, datum/disease/advance/A)
 	var/heal_amt = 4 * power
 
 	var/list/parts = M.get_damaged_bodyparts(1,1) //1,1 because it needs inputs.
 
-	if(M.bodytemperature > 310)
-		M.bodytemperature = max(310, M.bodytemperature - (10 * heal_amt * TEMPERATURE_DAMAGE_COEFFICIENT))
-	else if(M.bodytemperature < 311)
-		M.bodytemperature = min(310, M.bodytemperature + (10 * heal_amt * TEMPERATURE_DAMAGE_COEFFICIENT))
-
-	if(!parts.len)
-		return
-
+	if(M.bodytemperature > BODYTEMP_NORMAL)	//Shamelessly stolen from plasma fixation, whew lad
+		M.adjust_bodytemperature(-20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT,BODYTEMP_NORMAL)
+	else if(M.bodytemperature < (BODYTEMP_NORMAL + 1))
+		M.adjust_bodytemperature(20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT,0,BODYTEMP_NORMAL)
 	for(var/obj/item/bodypart/L in parts)
 		if(L.heal_damage(0, heal_amt/parts.len))
 			M.update_damage_overlays()
