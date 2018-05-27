@@ -2715,6 +2715,7 @@
 #include "hippiestation\code\game\objects\effects\effect_system\effects_other.dm"
 #include "hippiestation\code\game\objects\effects\effect_system\effects_smoke.dm"
 #include "hippiestation\code\game\objects\effects\effect_system\effects_vapour.dm"
+#include "hippiestation\code\game\objects\effects\spawners\maintfaunaspawner.dm"
 #include "hippiestation\code\game\objects\items\apc_frame.dm"
 #include "hippiestation\code\game\objects\items\butterfly_knives.dm"
 #include "hippiestation\code\game\objects\items\cheapcuisine.dm"
