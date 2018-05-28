@@ -39,7 +39,7 @@
 	var/heal_amt = 4 * actual_power
 
 	if(M.fire_stacks > 0)	//New hippie add, otherwise you die from plasma fires even if you're doing the suck on the plasma
-		actual_power = actual_power + M.fire_stacks
+		actual_power = actual_power + (M.fire_stacks*0.75)
 	else
 		actual_power = initial(actual_power)
 
@@ -206,7 +206,7 @@
 	var/list/parts = M.get_damaged_bodyparts(1,1) //1,1 because it needs inputs.
 
 	if(M.fire_stacks > 0)
-		power = power + M.fire_stacks
+		power = power + (M.fire_stacks*0.75)
 	else
 		power = initial(power)
 
@@ -228,11 +228,11 @@
 	stage_speed = 0
 	transmittable = -1
 	level = 5
-	threshold_desc = "<b>Stage Speed 6:</b> Additionally heals brain damage."
+	threshold_desc = "<b>Resistance 6:</b> Additionally heals brain damage."
 	var/healing_brain = FALSE
 
 /datum/symptom/heal/dna/Start(datum/disease/advance/A)
-	if(A.properties["stage_rate"] >= 6) //stronger healing
+	if(A.properties["resistance"] >= 6) //stronger healing
 		healing_brain = TRUE
 
 
