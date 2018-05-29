@@ -2634,6 +2634,7 @@
 #include "hippiestation\code\_onclick\hud\vampire.dm"
 #include "hippiestation\code\controllers\configuration\entries\general.dm"
 #include "hippiestation\code\controllers\subsystem\job.dm"
+#include "hippiestation\code\controllers\subsystem\mobs.dm"
 #include "hippiestation\code\controllers\subsystem\reagent_states.dm"
 #include "hippiestation\code\controllers\subsystem\throwing.dm"
 #include "hippiestation\code\controllers\subsystem\ticker.dm"
