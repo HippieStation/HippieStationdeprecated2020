@@ -2856,6 +2856,7 @@
 #include "hippiestation\code\modules\crafts\weaponry.dm"
 #include "hippiestation\code\modules\detectivework\scanner.dm"
 #include "hippiestation\code\modules\emoji\emoji_parse.dm"
+#include "hippiestation\code\modules\events\aurora_caelus.dm"
 #include "hippiestation\code\modules\events\blob.dm"
 #include "hippiestation\code\modules\events\floorcluwne.dm"
 #include "hippiestation\code\modules\events\immovable_rod.dm"
