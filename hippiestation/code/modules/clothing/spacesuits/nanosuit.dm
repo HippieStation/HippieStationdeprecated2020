@@ -534,7 +534,7 @@
 	armor = list("melee" = 50, "bullet" = 40, "laser" = 40, "energy" = 45, "bomb" = 70, "bio" = 100, "rad" = 70, "fire" = 100, "acid" = 100)
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_IMMUNITY_HELM_MAX_TEMP_PROTECT
-	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED)
+	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_BASIC)
 	var/zoom_range = 12
 	var/zoom = FALSE
 	var/obj/machinery/doppler_array/integrated/bomb_radar
@@ -752,6 +752,21 @@ obj/item/clothing/suit/space/hardsuit/nano/dropped()
 		add_logs(user, src, "punched", "nanosuit strength mode")
 		user.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 
+/mob/living/carbon/attack_nano(mob/living/carbon/human/user, does_attack_animation = 0)
+	if(user.a_intent == INTENT_HARM)
+		..(user, 1)
+		adjustBruteLoss(15)
+		var/hitverb = "punched"
+		if(mob_size < MOB_SIZE_LARGE)
+			step_away(src,user,15)
+			sleep(1)
+			step_away(src,user,15)
+			hitverb = "slammed"
+		playsound(loc, "punch", 25, 1, -1)
+		visible_message("<span class='danger'>[user] has [hitverb] [src]!</span>", \
+		"<span class='userdanger'>[user] has [hitverb] [src]!</span>", null, COMBAT_MESSAGE_RANGE)
+		return 1
+
 /obj/item/attack_nano(mob/living/carbon/human/user)
 	return FALSE
 
@@ -817,7 +832,8 @@ obj/item/clothing/suit/space/hardsuit/nano/dropped()
 
 /obj/item/gun/afterattack(atom/O, mob/living/carbon/human/user, proximity)
 	..()
-	kill_cloak(user)
+	if(can_shoot())
+		kill_cloak(user,suppressed)
 
 /obj/item/weldingtool/afterattack(atom/O, mob/living/carbon/human/user, proximity)
 	..()
@@ -831,12 +847,20 @@ obj/item/clothing/suit/space/hardsuit/nano/dropped()
 	..()
 	kill_cloak(M)
 
-/proc/kill_cloak(mob/living/carbon/human/user)
+/proc/kill_cloak(mob/living/carbon/human/user, temp)
 	if(istype(user.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
 		var/obj/item/clothing/suit/space/hardsuit/nano/NS = user.wear_suit
 		if(NS.mode == "cloak")
-			NS.cell.charge = 0
-			NS.toggle_mode("armor", TRUE)
+			if(!temp)
+				NS.cell.charge = 0
+				NS.toggle_mode("armor", TRUE)
+			else
+				NS.cell.use(15)
+				user.filters = null
+				animate(user, alpha = 255, time = 5)
+				sleep(4)
+				user.filters = filter(type="blur",size=1)
+				animate(user, alpha = 40, time = 2)
 
 /datum/martial_art/nano/proc/on_attack_hand(mob/living/carbon/human/owner, atom/target, proximity)
 	if(proximity)
