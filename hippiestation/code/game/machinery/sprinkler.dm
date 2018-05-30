@@ -2,7 +2,7 @@
 
 /obj/machinery/sprinkler
 	name = "sprinkler"
-	desc = "Emergency sprinkler that converts water into firefighting foam used for containing fires."
+	desc = "Emergency sprinkler that converts water into non-slip firefighting foam used for containing fires."
 	icon = 'hippiestation/icons/obj/machines/sprinkler.dmi'
 	icon_state = "sprinkler"
 	anchored = TRUE
@@ -13,15 +13,19 @@
 	resistance_flags = FIRE_PROOF
 	var/last_spray = 0
 	var/uses = 10
-	alpha = 128
-	layer = 5.2
+	layer = PROJECTILE_HIT_THRESHHOLD_LAYER
+	plane = FLOOR_PLANE
+
+/obj/machinery/sprinkler/examine(mob/user)
+	..()
+	to_chat(user, "<span class='notice'>It has <b>[uses]</b> uses of foam remaining.</span>")
 
 /obj/machinery/sprinkler/temperature_expose(datum/gas_mixture/air, temperature, volume)
 	if(temperature > T0C + 500 && (last_spray+FIREALARM_COOLDOWN < world.time) && detecting && !stat)
 		spray()
 	..()
 
-/obj/machinery/sprinkler/proc/spray(mob/user)
+/obj/machinery/sprinkler/proc/spray()
 	if(!is_operational() && (last_spray+SPRINKLER_COOLDOWN < world.time))
 		return
 	if(!uses)
@@ -33,8 +37,6 @@
 	playsound(src,'sound/items/syringeproj.ogg',40,1)
 	uses--
 	A.Smoke()
-	user.visible_message("[uses ? "It now has <b>[uses]</b> uses of foam remaining.":""]")
-
 
 /obj/machinery/sprinkler/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
@@ -56,16 +58,16 @@
 				spray()
 		return
 		W.play_tool_sound(src)
-	if(istype(W,/obj/item/reagent_containers/glass/beaker))
-		if(W.reagents.has_reagent("water", 50))
-			uses++
-			W.reagents.remove_reagent("water", 50)
-			user.visible_message("[user] has partly filled [src].", "<span class='notice'>You partly fill [src]. It now has <b>[uses]</b> uses of foam remaining.</span>")
-			if(uses >=10)
-				to_chat(user, "<span class='notice'>The [src] is full!</span>")
-				return
+	if(istype(W,/obj/item/reagent_containers/glass))
+		if(uses<10)
+			if(W.reagents.has_reagent("water", 50))
+				uses++
+				W.reagents.remove_reagent("water", 50)
+				user.visible_message("[user] has partly filled [src].", "<span class='notice'>You partly fill [src]. It now has <b>[uses]</b> uses of foam remaining.</span>")
+			else
+				to_chat(user, "<span class='notice'>This machine only accepts water.</span>")
 		else
-			to_chat(user, "<span class='notice'>This machine only accepts water.</span>")
+			to_chat(user, "<span class='notice'>[src] is full!</span>")
 		return
 	return ..()
 
