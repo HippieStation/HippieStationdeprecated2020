@@ -114,9 +114,8 @@
 					playsound(user, fartsound, 100, 1, 5)
 				if(prob(33))
 					STR.remove_from_storage(O, user.loc)
-		else
-			playsound(user, fartsound, 100, 1, 5)
-		sleep(1)
+			else
+				playsound(user, fartsound, 100, 1, 5)
 		if(prob(user.lose_butt))
 			B.Remove(user)
 			B.forceMove(get_turf(user))
