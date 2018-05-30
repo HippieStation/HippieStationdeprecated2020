@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(lighting)
 	if(!init_tick_checks)
 		MC_SPLIT_TICK
 	var/i = 0
-	if (!i)
+	if (!i)	//Hippie add to stop fire lighting runtimes
 		for (i in 1 to GLOB.lighting_update_lights.len)
 			var/datum/light_source/L = GLOB.lighting_update_lights[i]
 
