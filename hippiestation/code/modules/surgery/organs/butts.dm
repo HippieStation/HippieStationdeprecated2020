@@ -32,6 +32,7 @@
 	. = ..()
 	GET_COMPONENT(STR, /datum/component/storage)
 	STR.max_combined_w_class = WEIGHT_CLASS_HUGE
+	STR.max_w_class = WEIGHT_CLASS_HUGE
 	STR.max_items = 3
 
 /obj/item/organ/butt/bluebutt // bluespace butts, science
