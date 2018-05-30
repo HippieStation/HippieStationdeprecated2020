@@ -2,17 +2,18 @@
 
 /obj/machinery/sprinkler
 	name = "sprinkler"
-	desc = "Emergency water sprinkler used for containing fires."
+	desc = "Emergency sprinkler that converts water into firefighting foam used for containing fires."
 	icon = 'hippiestation/icons/obj/machines/sprinkler.dmi'
 	icon_state = "sprinkler"
 	anchored = TRUE
 	max_integrity = 250
 	integrity_failure = 100
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 30)
+	armor = list("melee" = 20, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 30, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 80)
 	var/detecting = TRUE
 	resistance_flags = FIRE_PROOF
 	var/last_spray = 0
-	alpha = 192
+	var/uses = 10
+	alpha = 128
 	layer = 5.2
 
 /obj/machinery/sprinkler/temperature_expose(datum/gas_mixture/air, temperature, volume)
@@ -20,15 +21,20 @@
 		spray()
 	..()
 
-/obj/machinery/sprinkler/proc/spray()
+/obj/machinery/sprinkler/proc/spray(mob/user)
 	if(!is_operational() && (last_spray+SPRINKLER_COOLDOWN < world.time))
+		return
+	if(!uses)
 		return
 
 	last_spray = world.time
 	detecting = FALSE
 	var/obj/effect/foam_container/A = new (get_turf(src))
 	playsound(src,'sound/items/syringeproj.ogg',40,1)
+	uses--
 	A.Smoke()
+	user.visible_message("[uses ? "It now has <b>[uses]</b> uses of foam remaining.":""]")
+
 
 /obj/machinery/sprinkler/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
@@ -42,7 +48,7 @@
 
 	if(istype(W, /obj/item/wrench))
 		detecting = !detecting
-		if (src.detecting)
+		if(src.detecting)
 			user.visible_message("[user] has reset [src]'s nozzle.", "<span class='notice'>You reset [src]'s nozzle.</span>")
 		else
 			user.visible_message("[user] has opened [src]'s nozzle!", "<span class='notice'>You open [src]'s nozzle!</span>")
@@ -50,7 +56,19 @@
 				spray()
 		return
 		W.play_tool_sound(src)
+	if(istype(W,/obj/item/reagent_containers/glass/beaker))
+		if(W.reagents.has_reagent("water", 50))
+			uses++
+			W.reagents.remove_reagent("water", 50)
+			user.visible_message("[user] has partly filled [src].", "<span class='notice'>You partly fill [src]. It now has <b>[uses]</b> uses of foam remaining.</span>")
+			if(uses >=10)
+				to_chat(user, "<span class='notice'>The [src] is full!</span>")
+				return
+		else
+			to_chat(user, "<span class='notice'>This machine only accepts water.</span>")
+		return
 	return ..()
+
 
 /obj/effect/foam_container
 	name = "resin container"
@@ -65,3 +83,15 @@
 	F.amount = 5
 	playsound(src,'sound/effects/bamf.ogg',100,1)
 	qdel(src)
+
+
+/datum/crafting_recipe/sprinkler
+	name = "Water Sprinkler"
+	result = /obj/machinery/sprinkler
+	time = 50
+	reqs = list(/obj/item/stack/sheet/metal = 1,
+				  /obj/item/stack/sheet/glass = 1,
+				  /obj/item/reagent_containers/glass/beaker = 1)
+	tools = list(/obj/item/weldingtool,
+		         /obj/item/wrench)
+	category = CAT_MISC
