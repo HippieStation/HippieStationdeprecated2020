@@ -239,7 +239,7 @@
 /obj/item/clothing/suit/space/hardsuit/nano/emp_act(severity)
 	..()
 	cell.use(round(cell.charge / severity))
-	if(mode != "armor" && cell.charge > 0)
+	if((mode == armor && cell.charge == 0) || (mode != armor))
 		if(prob(5/severity*1.5) && !shutdown)
 			emp_assault()
 	update_icon()
@@ -816,51 +816,76 @@ obj/item/clothing/suit/space/hardsuit/nano/dropped()
 	else
 		return ..()
 
-/obj/item/throw_at(atom/target, range, speed, mob/living/carbon/human/thrower, spin = 1, diagonals_first = 0, datum/callback/callback)
+/obj/item/throw_at(atom/target, range, speed, mob/thrower, spin = 1, diagonals_first = 0, datum/callback/callback)
 	if(thrower)
-		if(istype(thrower.mind.martial_art, /datum/martial_art/nano))
-			kill_cloak(thrower)
-			.=..(target, range*1.5, speed*2, thrower, spin, diagonals_first, callback)
-		else
-			.=..()
+		if(ishuman(thrower))
+			var/mob/living/carbon/human/H = thrower
+			if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+				var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
+				NS.kill_cloak()
+				.=..(target, range*1.5, speed*2, thrower, spin, diagonals_first, callback)
+			else
+				.=..()
 	else
 		.=..()
 
 /obj/item/afterattack(atom/O, mob/living/carbon/human/user, proximity)
 	..()
-	kill_cloak(user)
+	if(istype(user.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+		var/obj/item/clothing/suit/space/hardsuit/nano/NS = user.wear_suit
+		NS.kill_cloak()
 
 /obj/item/gun/afterattack(atom/O, mob/living/carbon/human/user, proximity)
 	..()
-	if(can_shoot())
-		kill_cloak(user,suppressed)
+	if(istype(user.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+		var/obj/item/clothing/suit/space/hardsuit/nano/NS = user.wear_suit
+		if(can_shoot())
+			NS.kill_cloak(suppressed)
+		if(proximity) //It's adjacent, is the user, or is on the user's person
+			if(!ismob(O) || user.a_intent == INTENT_HARM) //melee attack
+				NS.kill_cloak()
+
+
+/obj/item/gun/attack(mob/M as mob, mob/living/carbon/human/user)
+	..()
+	if(istype(user.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+		var/obj/item/clothing/suit/space/hardsuit/nano/NS = user.wear_suit
+		if(user.a_intent == INTENT_HARM)
+			NS.kill_cloak()
 
 /obj/item/weldingtool/afterattack(atom/O, mob/living/carbon/human/user, proximity)
 	..()
-	kill_cloak(user)
+	if(istype(user.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+		var/obj/item/clothing/suit/space/hardsuit/nano/NS = user.wear_suit
+		NS.kill_cloak()
 
 /obj/item/twohanded/fireaxe/afterattack(atom/A, mob/living/carbon/human/user, proximity)
 	..()
-	kill_cloak(user)
+	if(istype(user.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+		var/obj/item/clothing/suit/space/hardsuit/nano/NS = user.wear_suit
+		NS.kill_cloak()
 
 /datum/species/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style)
 	..()
-	kill_cloak(M)
+	if(istype(M.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+		var/obj/item/clothing/suit/space/hardsuit/nano/NS = M.wear_suit
+		NS.kill_cloak()
 
-/proc/kill_cloak(mob/living/carbon/human/user, temp)
-	if(istype(user.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
-		var/obj/item/clothing/suit/space/hardsuit/nano/NS = user.wear_suit
-		if(NS.mode == "cloak")
-			if(!temp)
-				NS.cell.charge = 0
-				NS.toggle_mode("armor", TRUE)
-			else
-				NS.cell.use(15)
-				user.filters = null
-				animate(user, alpha = 255, time = 5)
-				sleep(4)
-				user.filters = filter(type="blur",size=1)
-				animate(user, alpha = 40, time = 2)
+/obj/item/clothing/suit/space/hardsuit/nano/proc/kill_cloak(temp)
+	if(mode == "cloak")
+		if(!temp)
+			cell.charge = 0
+			toggle_mode("armor", TRUE)
+		else
+			cell.use(15)
+			U.filters = null
+			animate(U, alpha = 255, time = 2)
+			addtimer(CALLBACK(src, .proc/resume_cloak), CLICK_CD_RANGE, TIMER_UNIQUE)
+
+/obj/item/clothing/suit/space/hardsuit/nano/proc/resume_cloak()
+	if(cell.charge > 0)
+		U.filters = filter(type="blur",size=1)
+		animate(U, alpha = 40, time = 2)
 
 /datum/martial_art/nano/proc/on_attack_hand(mob/living/carbon/human/owner, atom/target, proximity)
 	if(proximity)
