@@ -29,11 +29,8 @@
 	item_state = "xenobutt"
 
 /obj/item/organ/butt/xeno/ComponentInitialize()
+	pocket_storage_component_path = /datum/component/storage/concrete/pockets/butt/xeno
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
-	STR.max_combined_w_class = WEIGHT_CLASS_HUGE
-	STR.max_w_class = WEIGHT_CLASS_HUGE
-	STR.max_items = 3
 
 /obj/item/organ/butt/bluebutt // bluespace butts, science
 	name = "butt of holding"
@@ -43,11 +40,8 @@
 	status = ORGAN_ROBOTIC
 
 /obj/item/organ/butt/bluebutt/ComponentInitialize()
+	pocket_storage_component_path = /datum/component/storage/concrete/pockets/butt/bluebutt
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
-	STR.max_combined_w_class = 12
-	STR.max_w_class = WEIGHT_CLASS_NORMAL
-	STR.max_items = 4
 
 /obj/item/organ/butt/Insert(mob/living/carbon/human/H, special = 0, drop_if_replaced = TRUE)
 	. = ..()
