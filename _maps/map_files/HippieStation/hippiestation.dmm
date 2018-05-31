@@ -31563,8 +31563,9 @@
 	},
 /area/hallway/primary/central)
 "bAM" = (
-/obj/structure/table,
-/obj/machinery/recharger,
+/obj/machinery/computer/bounty{
+	dir = 4
+	},
 /turf/open/floor/plasteel/blue/side{
 	dir = 9
 	},
@@ -31579,6 +31580,7 @@
 	pixel_y = 7
 	},
 /obj/item/pen,
+/obj/item/hand_labeler,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "bAP" = (
@@ -32116,6 +32118,7 @@
 	dir = 4;
 	pixel_x = -22
 	},
+/obj/item/storage/firstaid,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "bCd" = (
@@ -32166,6 +32169,7 @@
 /obj/structure/table,
 /obj/item/folder/blue,
 /obj/item/stamp/hop,
+/obj/item/stack/packageWrap,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "bCk" = (
@@ -32637,10 +32641,8 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "bDu" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/regular{
-	pixel_x = 6;
-	pixel_y = -5
+/obj/machinery/computer/bounty{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
@@ -32739,11 +32741,7 @@
 /area/crew_quarters/heads/hop)
 "bDF" = (
 /obj/structure/table,
-/obj/item/hand_labeler,
-/obj/item/stack/packageWrap{
-	pixel_x = -1;
-	pixel_y = -1
-	},
+/obj/machinery/recharger,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "bDG" = (
@@ -45765,7 +45763,7 @@
 /turf/open/floor/plating,
 /area/medical/virology)
 "ciC" = (
-/obj/machinery/atmospherics/components/binary/valve/open{
+/obj/effect/temp_visual/necropolis/open{
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -59357,7 +59355,7 @@
 /obj/machinery/atmospherics/components/binary/valve/digital{
 	dir = 4;
 	name = "Output Release";
-	open = 1
+	on = 1
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
