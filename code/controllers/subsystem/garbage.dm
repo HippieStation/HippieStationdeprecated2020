@@ -179,7 +179,8 @@ SUBSYSTEM_DEF(garbage)
 				var/type = D.type
 				var/datum/qdel_item/I = items[type]
 				testing("GC: -- \ref[src] | [type] was unable to be GC'd --")
-				I.failures++
+				if(I)
+					I.failures++
 			if (GC_QUEUE_HARDDELETE)
 				HardDelete(D)
 				if (MC_TICK_CHECK)
@@ -232,9 +233,9 @@ SUBSYSTEM_DEF(garbage)
 	tick = (TICK_USAGE-tick+((world.time-ticktime)/world.tick_lag*100))
 
 	var/datum/qdel_item/I = items[type]
-
-	I.hard_deletes++
-	I.hard_delete_time += TICK_DELTA_TO_MS(tick)
+	if(I)
+		I.hard_deletes++
+		I.hard_delete_time += TICK_DELTA_TO_MS(tick)
 
 
 	if (tick > highest_del_tickusage)

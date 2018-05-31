@@ -130,7 +130,12 @@ SUBSYSTEM_DEF(vote)
 				active_admins = 1
 				break
 		if(!active_admins)
-			SSticker.Reboot("Restart vote successful.", "restart vote")
+			// Hippie Start - Call shuttle instead of restarting the server
+			//SSticker.Reboot("Restart vote successful.", "restart vote")
+			SSshuttle.emergencyNoRecall = TRUE
+			SSshuttle.emergency.request()
+			log_admin("The emergency shuttle has been force-called due to vote restart.")
+			// Hippie End
 		else
 			to_chat(world, "<span style='boldannounce'>Notice:Restart vote will not restart the server automatically because there are active admins on.</span>")
 			message_admins("A restart vote has passed, but there are active admins on with +server, so it has been canceled. If you wish, you may restart the server.")
