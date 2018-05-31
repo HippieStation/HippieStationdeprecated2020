@@ -4,6 +4,11 @@
 #define PROB_ACTUAL_TRAITOR 20
 #define TRAITOR_AGENT_ROLE "Syndicate External Affairs Agent"
 
+/datum/antagonist/traitor/
+	var/syndicate = FALSE
+	var/last_man_standing = FALSE
+	var/list/datum/mind/targets_stolen
+
 /datum/antagonist/traitor/internal_affairs
 	name = "Internal Affairs Agent"
 	human_datum = /datum/antagonist/traitor/human/internal_affairs
@@ -15,20 +20,12 @@
 	employer = "Nanotrasen"
 	special_role = "internal affairs agent"
 	antagpanel_category = "IAA"
-	var/syndicate = FALSE
-	var/last_man_standing = FALSE
-	var/list/datum/mind/targets_stolen
-
 
 /datum/antagonist/traitor/human/internal_affairs
 	name = "Internal Affairs Agent"
 	employer = "Nanotrasen"
 	special_role = "internal affairs agent"
 	antagpanel_category = "IAA"
-	var/syndicate = FALSE
-	var/last_man_standing = FALSE
-	var/list/datum/mind/targets_stolen
-
 
 /datum/antagonist/traitor/human/internal_affairs/proc/give_pinpointer()
 	if(owner && owner.current)
@@ -155,8 +152,7 @@
 	add_objective(survive_objective)
 
 /datum/antagonist/traitor/proc/steal_targets(datum/mind/victim)
-	var/datum/antagonist/traitor/human/internal_affairs/this = src //Should only use this if IAA
-
+	//var/datum/antagonist/traitor/human/internal_affairs/this = src //Should only use this if IAA
 	if(!owner.current||owner.current.stat==DEAD)
 		return
 	to_chat(owner.current, "<span class='userdanger'> Target eliminated: [victim.name]</span>")
@@ -165,13 +161,13 @@
 			var/datum/objective/assassinate/internal/objective = objective_
 			if(objective.target==owner)
 				continue
-			else if(this.targets_stolen.Find(objective.target) == 0)
+			else if(targets_stolen.Find(objective.target) == 0)
 				var/datum/objective/assassinate/internal/new_objective = new
 				new_objective.owner = owner
 				new_objective.target = objective.target
 				new_objective.update_explanation_text()
 				add_objective(new_objective)
-				this.targets_stolen += objective.target
+				targets_stolen += objective.target
 				var/status_text = objective.check_completion() ? "neutralised" : "active"
 				to_chat(owner.current, "<span class='userdanger'> New target added to database: [objective.target.name] ([status_text]) </span>")
 		else if(istype(objective_, /datum/objective/destroy/internal))
@@ -179,31 +175,30 @@
 			var/datum/objective/destroy/internal/new_objective = new
 			if(objective.target==owner)
 				continue
-			else if(this.targets_stolen.Find(objective.target) == 0)
+			else if(targets_stolen.Find(objective.target) == 0)
 				new_objective.owner = owner
 				new_objective.target = objective.target
 				new_objective.update_explanation_text()
 				add_objective(new_objective)
-				this.targets_stolen += objective.target
+				targets_stolen += objective.target
 				var/status_text = objective.check_completion() ? "neutralised" : "active"
 				to_chat(owner.current, "<span class='userdanger'> New target added to database: [objective.target.name] ([status_text]) </span>")
-	this.last_man_standing = TRUE
+	last_man_standing = TRUE
 	for(var/objective_ in owner.objectives)
 		if(!is_internal_objective(objective_))
 			continue
 		var/datum/objective/assassinate/internal/objective = objective_
 		if(!objective.check_completion())
-			this.last_man_standing = FALSE
+			last_man_standing = FALSE
 			return
-	if(this.last_man_standing)
-		if(this.syndicate)
+	if(last_man_standing)
+		if(syndicate)
 			to_chat(owner.current,"<span class='userdanger'> All the loyalist agents are dead, and no more is required of you. Die a glorious death, agent. </span>")
 		else
 			to_chat(owner.current,"<span class='userdanger'> All the other agents are dead, and you're the last loose end. Stage a Syndicate terrorist attack to cover up for today's events. You no longer have any limits on collateral damage.</span>")
 		replace_escape_objective(owner)
 
 /datum/antagonist/traitor/proc/iaa_process()
-	var/datum/antagonist/traitor/human/internal_affairs/this = src //Should only use this if IAA
 	if(owner&&owner.current&&owner.current.stat!=DEAD)
 		for(var/objective_ in owner.objectives)
 			if(!is_internal_objective(objective_))
@@ -220,18 +215,17 @@
 			else
 				if(objective.stolen)
 					var/fail_msg = "<span class='userdanger'>Your sensors tell you that [objective.target.current.real_name], one of the targets you were meant to have killed, pulled one over on you, and is still alive - do the job properly this time! </span>"
-					if(this.last_man_standing)
-						if(this.syndicate)
+					if(last_man_standing)
+						if(syndicate)
 							fail_msg += "<span class='userdanger'> You no longer have permission to die. </span>"
 						else
 							fail_msg += "<span class='userdanger'> The truth could still slip out!</font><B><font size=5 color=red> Cease any terrorist actions as soon as possible, unneeded property damage or loss of employee life will lead to your contract being terminated.</span>"
 						reinstate_escape_objective(owner)
-						this.last_man_standing = FALSE
+						last_man_standing = FALSE
 					to_chat(owner.current, fail_msg)
 					objective.stolen = FALSE
 
 /datum/antagonist/traitor/proc/forge_iaa_objectives()
-	var/datum/antagonist/traitor/human/internal_affairs/this = src //Should only use this if IAA
 	if(SSticker.mode.target_list.len && SSticker.mode.target_list[owner]) // Is a double agent
 
 		// Assassinate
@@ -253,7 +247,7 @@
 			employer = "The Syndicate"
 			owner.special_role = TRAITOR_AGENT_ROLE
 			special_role = TRAITOR_AGENT_ROLE
-			this.syndicate = TRUE
+			syndicate = TRUE
 			forge_single_objective()
 
 	else
@@ -273,11 +267,10 @@
 	add_objective(survive_objective)
 
 /datum/antagonist/traitor/proc/greet_iaa()
-	var/datum/antagonist/traitor/human/internal_affairs/this = src //Should only use this if IAA
 	var/crime = pick("distribution of contraband" , "unauthorized erotic action on duty", "embezzlement", "piloting under the influence", "dereliction of duty", "syndicate collaboration", "mutiny", "multiple homicides", "corporate espionage", "recieving bribes", "malpractice", "worship of prohbited life forms", "possession of profane texts", "murder", "arson", "insulting their manager", "grand theft", "conspiracy", "attempting to unionize", "vandalism", "gross incompetence")
 
 	to_chat(owner.current, "<span class='userdanger'>You are the [special_role].</span>")
-	if(this.syndicate)
+	if(syndicate)
 		to_chat(owner.current, "<span class='userdanger'>Your target has been framed for [crime], and you have been tasked with eliminating them to prevent them defending themselves in court.</span>")
 		to_chat(owner.current, "<B><font size=5 color=red>Any damage you cause will be a further embarrassment to Nanotrasen, so you have no limits on collateral damage.</font></B>")
 		to_chat(owner.current, "<span class='userdanger'> You have been provided with a standard uplink to accomplish your task. </span>")
