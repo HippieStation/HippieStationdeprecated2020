@@ -77,3 +77,8 @@
 	Hat.update_overlays()
 	Hat.update_name()
 	update_inv_head()
+
+/mob/living/carbon/fall(forced)
+	if(!loc)	//Hippie fix for null loc runtimes
+		loc = get_turf(src)
+	loc.handle_fall(src, forced)//it's loc so it doesn't call the mob's handle_fall which does nothing
