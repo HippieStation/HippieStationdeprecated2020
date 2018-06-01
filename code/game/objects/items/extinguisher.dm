@@ -43,8 +43,8 @@
 /obj/item/extinguisher/New()
 	..()
 	create_reagents(max_water)
-	reagents.add_reagent("water", max_water) // Hippie: finally removed cryogenic fluid because water now cools down people, extinguishes them, works on monkey cubes AND hurts slimes properly. Woo!
-
+	reagents.add_reagent("water", max_water)
+	
 /obj/item/extinguisher/suicide_act(mob/living/carbon/user)
 	if (!safety && (reagents.total_volume >= 1))
 		user.visible_message("<span class='suicide'>[user] puts the nozzle to [user.p_their()] mouth. It looks like [user.p_theyre()] trying to extinguish the spark of life!</span>")
