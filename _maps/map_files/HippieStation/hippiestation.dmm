@@ -54467,7 +54467,6 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "cDI" = (
-/obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 6
 	},
@@ -55157,11 +55156,11 @@
 "cFx" = (
 /obj/structure/transit_tube/diagonal,
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "cFy" = (
 /obj/structure/transit_tube/diagonal/topleft,
 /turf/open/space/basic,
-/area/space)
+/area/space/nearstation)
 "cFz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/camera{
@@ -58817,7 +58816,6 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 5
 	},
-/obj/structure/lattice,
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
@@ -59460,7 +59458,6 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 6
 	},
-/obj/structure/lattice,
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
@@ -60534,7 +60531,6 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 9
 	},
-/obj/structure/lattice,
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space)
@@ -61218,7 +61214,6 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
 	},
-/obj/structure/lattice,
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
@@ -62229,6 +62224,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
 "oTS" = (
@@ -64130,11 +64126,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
-"vag" = (
-/obj/structure/lattice,
-/obj/structure/lattice/catwalk,
-/turf/open/space/basic,
-/area/space/nearstation)
 "vaV" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -64458,7 +64449,6 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 10
 	},
-/obj/structure/lattice,
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
@@ -65066,7 +65056,6 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 9
 	},
-/obj/structure/lattice,
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
@@ -90176,11 +90165,11 @@ cDE
 aFi
 aFi
 aFi
+aaj
 aFi
 aFi
 aFi
-aFi
-aFi
+aaj
 aaa
 aaa
 aaE
@@ -90691,9 +90680,9 @@ qAK
 vsC
 oSu
 lOk
+pYc
 vsC
-vsC
-vsC
+pYc
 jDj
 aaa
 aaa
@@ -91203,11 +91192,11 @@ cDg
 clH
 gCc
 vsC
-vsC
+pYc
 lOk
+pYc
 vsC
-vsC
-vsC
+pYc
 xDw
 aaa
 aaa
@@ -91719,9 +91708,9 @@ gCc
 vsC
 oSu
 lOk
+pYc
 vsC
-vsC
-vsC
+pYc
 xDw
 aaa
 aaa
@@ -91979,7 +91968,7 @@ wcs
 lpx
 cEt
 lpx
-vag
+aaj
 aad
 aai
 aaE
@@ -92235,7 +92224,7 @@ cEK
 cEu
 cEu
 pcA
-aaa
+bqy
 aaa
 aaa
 aaa
@@ -104314,7 +104303,7 @@ cEV
 aaj
 aaa
 cFx
-aaa
+aFi
 aad
 cFU
 cGa
@@ -104828,7 +104817,7 @@ aaa
 aaa
 aaa
 cFy
-aaa
+aFi
 aad
 cFU
 cGc
