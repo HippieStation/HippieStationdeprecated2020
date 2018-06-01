@@ -43,8 +43,7 @@
 /obj/item/extinguisher/New()
 	..()
 	create_reagents(max_water)
-	reagents.add_reagent("water", max_water-10) // Hippie: max_water-10 so we have room for cyrogenic_fluid
-	reagents.add_reagent("cryogenic_fluid", 10) // Hippie: improved turf extinguishing
+	reagents.add_reagent("water", max_water) // Hippie: finally removed cryogenic fluid because water now cools down people, extinguishes them, works on monkey cubes AND hurts slimes properly. Woo!
 
 /obj/item/extinguisher/suicide_act(mob/living/carbon/user)
 	if (!safety && (reagents.total_volume >= 1))
