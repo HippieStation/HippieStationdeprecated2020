@@ -6,7 +6,7 @@
 	item_state = "cluwne"
 	item_color = "cluwne"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	flags_1 = NODROP_1 | DROPDEL_1
+	item_flags = NODROP | DROPDEL
 	can_adjust = 0
 
 /obj/item/clothing/under/hippie/cluwne/equipped(mob/living/carbon/user, slot)
