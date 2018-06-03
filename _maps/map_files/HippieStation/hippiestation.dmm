@@ -59168,6 +59168,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"fGg" = (
+/obj/structure/table,
+/obj/item/switchblade,
+/turf/open/floor/plating,
+/area/maintenance/starboard/aft)
 "fGt" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -116103,7 +116108,7 @@ cnB
 chQ
 bSP
 cqZ
-cml
+fGg
 bSP
 aaa
 aaa
