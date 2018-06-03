@@ -24,8 +24,9 @@ GLOBAL_LIST_EMPTY(abductortongue_other)
 	..()
 	var/mob/living/carbon/human/H = M
 	if(H)
-		if(H.mind.has_antag_datum(/datum/antagonist/abductor))
-			GLOB.abductortongue_abductors += H
+		if(H.mind)
+			if(H.mind.has_antag_datum(/datum/antagonist/abductor))
+				GLOB.abductortongue_abductors += H
 		else
 			GLOB.abductortongue_other += H
 
