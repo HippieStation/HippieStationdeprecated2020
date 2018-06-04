@@ -6,21 +6,15 @@
 	medical_record_text = "Patient is afflicted with almost complete color blindness."
 
 /datum/quirk/monochromatic/add()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(H)
-		H.add_client_colour(/datum/client_colour/monochrome)
+	quirk_holder.add_client_colour(/datum/client_colour/monochrome)
 
 /datum/quirk/monochromatic/post_add()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(H)
-		if(H.mind.assigned_role == "Detective")
-			to_chat(quirk_holder, "<span class='boldannounce'>Mmm. Nothing's ever clear on this station. It's all shades of gray...</span>")
-			quirk_holder.playsound_local(quirk_holder, 'sound/ambience/ambidet1.ogg', 50, FALSE)
+	if(quirk_holder.mind.assigned_role == "Detective")
+		to_chat(quirk_holder, "<span class='boldannounce'>Mmm. Nothing's ever clear on this station. It's all shades of gray...</span>")
+		quirk_holder.playsound_local(quirk_holder, 'sound/ambience/ambidet1.ogg', 50, FALSE)
 
 /datum/quirk/monochromatic/remove()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(H)
-		H.remove_client_colour(/datum/client_colour/monochrome)
+	quirk_holder.remove_client_colour(/datum/client_colour/monochrome)
 
 /datum/quirk/greyscale_vision
 	name = "Old School Vision"
@@ -30,14 +24,10 @@
 	lose_text = "<span class='notice'>You can see colour again!</span>"
 
 /datum/quirk/greyscale_vision/add()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(H)
-		H.add_client_colour(/datum/client_colour/greyscale)
+	quirk_holder.add_client_colour(/datum/client_colour/greyscale)
 
 /datum/quirk/greyscale_vision/remove()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(H)
-		H.remove_client_colour(/datum/client_colour/greyscale)
+	quirk_holder.remove_client_colour(/datum/client_colour/greyscale)
 
 /datum/quirk/inverted_vision
 	name = "Inverted Colour Vision"
@@ -47,14 +37,10 @@
 	lose_text = "<span class='notice'>You feel like you're seeing colours normally again.</span>"
 
 /datum/quirk/inverted_vision/add()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(H)
-		H.add_client_colour(/datum/client_colour/inverted)
+	quirk_holder.add_client_colour(/datum/client_colour/inverted)
 
 /datum/quirk/inverted_vision/remove()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(H)
-		H.remove_client_colour(/datum/client_colour/inverted)
+	quirk_holder.remove_client_colour(/datum/client_colour/inverted)
 
 //I'm going to leave this code in here just in case we figure out how to do it properly, but for now leave this disabled - it doesn't work
 /*
@@ -88,12 +74,10 @@
 
 /datum/quirk/super_lungs/add()
 	var/mob/living/carbon/human/H = quirk_holder
-	if(H)
-		H.scream_vol = 100
-		H.scream_oxyloss = 10
+	H.scream_vol = 100
+	H.scream_oxyloss = 10
 
 /datum/quirk/super_lungs/remove()
 	var/mob/living/carbon/human/H = quirk_holder
-	if(H)
-		H.scream_vol = initial(H.scream_vol)
-		H.scream_oxyloss = initial(H.scream_oxyloss)
+	H.scream_vol = initial(H.scream_vol)
+	H.scream_oxyloss = initial(H.scream_oxyloss)
