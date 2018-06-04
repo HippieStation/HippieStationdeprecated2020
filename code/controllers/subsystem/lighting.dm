@@ -31,7 +31,7 @@ SUBSYSTEM_DEF(lighting)
 	MC_SPLIT_TICK_INIT(3)
 	if(!init_tick_checks)
 		MC_SPLIT_TICK
-	var/i = resumed
+	var/i = resumed	//Hippie start, made i take on the value of resumed & made all of the fire proc check if resumed exists before starting
 	if (i || !i)	//Resumed will always be 1 or 0, we won't update if resumed doesn't exist for some reason
 		for (i in 1 to GLOB.lighting_update_lights.len)
 			var/datum/light_source/L = GLOB.lighting_update_lights[i]
@@ -85,7 +85,7 @@ SUBSYSTEM_DEF(lighting)
 			GLOB.lighting_update_objects.Cut(1, i+1)
 
 		else
-			return
+			return	//Hippie end
 
 
 /datum/controller/subsystem/lighting/Recover()
