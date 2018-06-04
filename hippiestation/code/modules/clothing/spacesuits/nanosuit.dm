@@ -201,8 +201,7 @@
 	item_state = "nanosuit"
 	name = "nanosuit"
 	desc = "Some sort of alien future suit. It looks very robust. Property of CryNet Systems."
-	var/armor_mode = list("melee" = 70, "bullet" = 60, "laser" = 60, "energy" = 65, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
-	armor = list("melee" = 50, "bullet" = 40, "laser" = 40, "energy" = 45, "bomb" = 70, "bio" = 100, "rad" = 70, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 45, "bomb" = 70, "bio" = 100, "rad" = 70, "fire" = 100, "acid" = 100)
 	allowed = list(/obj/item/tank/internals)
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS					//Uncomment to enable firesuit protection
 	max_heat_protection_temperature = FIRE_IMMUNITY_SUIT_MAX_TEMP_PROTECT
@@ -409,8 +408,8 @@
 			if("armor")
 				helmet.display_visor_message("Maximum Armor!")
 				slowdown = 1.0
-				armor = armor_mode
-				helmet.armor = armor_mode
+				armor = armor.setRating(melee = 60, bullet = 60, laser = 60, energy = 65, bomb = 100, rad =100)
+				helmet.armor = helmet.armor.setRating(melee = 60, bullet = 60, laser = 60, energy = 65, bomb = 100, rad =100)
 				U.filters = null
 				animate(U, alpha = 255, time = 5)
 				U.remove_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
@@ -422,8 +421,8 @@
 			if("cloak")
 				helmet.display_visor_message("Cloak Engaged!")
 				slowdown = 0.4 //cloaking makes us go sliightly faster
-				armor = initial(armor)
-				helmet.armor = initial(helmet.armor)
+				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
+				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				U.filters = filter(type="blur",size=1)
 				animate(U, alpha = 40, time = 2)
 				U.remove_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
@@ -435,8 +434,8 @@
 			if("speed")
 				helmet.display_visor_message("Maximum Speed!")
 				slowdown = initial(slowdown)
-				armor = initial(armor)
-				helmet.armor = initial(helmet.armor)
+				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
+				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				U.add_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
 				U.add_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
 				U.adjustOxyLoss(-5, 0)
@@ -451,8 +450,8 @@
 				helmet.display_visor_message("Maximum Strength!")
 				U.add_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
 				style.teach(U,1)
-				slowdown = initial(slowdown)
-				armor = initial(armor)
+				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
+				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				helmet.armor = initial(helmet.armor)
 				U.filters = filter(type="outline", size=0.1, color=rgb(255,0,0))
 				animate(U, alpha = 255, time = 5)
@@ -464,8 +463,8 @@
 				U.remove_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
 				style.remove(U)
 				slowdown = initial(slowdown)
-				armor = initial(armor)
-				helmet.armor = initial(helmet.armor)
+				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
+				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				U.filters = null
 				animate(U, alpha = 255, time = 5)
 				U.remove_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
@@ -531,7 +530,7 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF //No longer shall our kind be foiled by lone chemists with spray bottles!
-	armor = list("melee" = 50, "bullet" = 40, "laser" = 40, "energy" = 45, "bomb" = 70, "bio" = 100, "rad" = 70, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 45, "bomb" = 70, "bio" = 100, "rad" = 70, "fire" = 100, "acid" = 100)
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_IMMUNITY_HELM_MAX_TEMP_PROTECT
 	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_BASIC)
