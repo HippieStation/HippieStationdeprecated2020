@@ -327,12 +327,12 @@
 
 /obj/machinery/porta_turret/take_damage(damage, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
 	. = ..()
-	if(. && src && !QDELETED(src)) //damage received
+	if(. && src && !QDELETED(src)) //damage received. Hippie code
 		if(prob(30))
 			spark_system.start()
 		if(on && !attacked && !(obj_flags & EMAGGED))
 			attacked = TRUE
-			lastdamage_time = world.time + reset_time
+			lastdamage_time = world.time + reset_time //Hippie code
 
 /obj/machinery/porta_turret/deconstruct(disassembled = TRUE)
 	qdel(src)

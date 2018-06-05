@@ -207,7 +207,7 @@
 		return // the device has to be on
 	if(!M || !message)
 		return
-	if(wires)
+	if(wires) //Hippie code because certain things attempt to talk after deletion, aka supermatter
 		if(wires.is_cut(WIRE_TX))  // Permacell and otherwise tampered-with radios
 			return
 	if(!M.IsVocal())

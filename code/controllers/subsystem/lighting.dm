@@ -32,6 +32,7 @@ SUBSYSTEM_DEF(lighting)
 	if(!init_tick_checks)
 		MC_SPLIT_TICK
 	var/i = 0
+	//Hippie code
 	for (i = 1, i <= GLOB.lighting_update_lights.len, i++)
 		var/datum/light_source/L = GLOB.lighting_update_lights[i]
 
@@ -81,7 +82,7 @@ SUBSYSTEM_DEF(lighting)
 			break
 	if (i)
 		GLOB.lighting_update_objects.Cut(1, i)
-
+	//Hippie code end
 
 /datum/controller/subsystem/lighting/Recover()
 	initialized = SSlighting.initialized
