@@ -84,11 +84,12 @@
 					return TRUE
 
 			var/obj/effect/decal/cleanable/chempile/C = new /obj/effect/decal/cleanable/chempile(T)//otherwise makes a new one
-			if(touch_msg)
-				C.add_fingerprint(touch_mob)
-			C.reagents.add_reagent("[src.id]", volume)
-			var/mixcolor = mix_color_from_reagents(C.reagents.reagent_list)
-			C.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
+			if(C.reagents)
+				if(touch_msg)
+					C.add_fingerprint(touch_mob)
+				C.reagents.add_reagent("[src.id]", volume)
+				var/mixcolor = mix_color_from_reagents(C.reagents.reagent_list)
+				C.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
 
 		if(src.reagent_state == SOLID) //SOLID
 			if(atom && istype(atom, /obj/effect/particle_effect))

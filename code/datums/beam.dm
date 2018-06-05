@@ -30,7 +30,7 @@
 	icon_state = beam_icon_state
 	beam_type = btype
 	if(time < INFINITY)
-		addtimer(CALLBACK(src,.proc/End), time)
+		QDEL_IN(src, time)
 
 /datum/beam/proc/Start()
 	Draw()
@@ -83,6 +83,8 @@
 
 /datum/beam/Destroy()
 	Reset()
+	if(!isnull(timing_id))
+		deltimer(timing_id)
 	target = null
 	origin = null
 	return ..()

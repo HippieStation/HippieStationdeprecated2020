@@ -40,7 +40,7 @@
 
 /obj/machinery/portable_atmospherics/pump/process_atmos()
 	..()
-	if(!on)
+	if(!on && pump)
 		pump.airs[1] = null
 		pump.airs[2] = null
 		return

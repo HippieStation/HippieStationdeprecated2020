@@ -29,6 +29,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	var/autocleanup = FALSE //will delete itself after use
 
 /datum/effect_system/Destroy()
+	total_effects--
 	holder = null
 	location = null
 	return ..()
@@ -66,7 +67,8 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	for(var/j in 1 to steps_amt)
 		sleep(5)
 		step(E,direction)
-	addtimer(CALLBACK(src, .proc/decrement_total_effect), 20)
+	if(autocleanup && total_effects <= 0)
+		QDEL_IN(src, 20)
 
 /datum/effect_system/proc/decrement_total_effect()
 	total_effects--

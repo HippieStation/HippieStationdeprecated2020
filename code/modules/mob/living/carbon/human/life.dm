@@ -55,7 +55,8 @@
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()
 
-	dna.species.spec_life(src) // for mutantraces
+	if(dna)
+		dna.species.spec_life(src) // for mutantraces
 
 	if(stat != DEAD)
 		return 1
