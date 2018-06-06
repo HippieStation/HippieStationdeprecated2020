@@ -129,7 +129,7 @@ SUBSYSTEM_DEF(vote)
 						restart = 1
 					else
 						GLOB.master_mode = .
-		if(restart)
+	if(restart)
 		var/active_admins = 0
 		for(var/client/C in GLOB.admins)
 			if(!C.is_afk() && check_rights_for(C, R_SERVER))
