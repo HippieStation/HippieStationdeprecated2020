@@ -135,7 +135,7 @@ SUBSYSTEM_DEF(vote)
 			if(!C.is_afk() && check_rights_for(C, R_SERVER))
 				active_admins = 1
 				break
-		if(!active_admins && SSshuttle.emergencyNoRecall == FALSE)
+		if(!active_admins)
 			SSticker.Reboot("Restart vote successful.", "restart vote")
 		else
 			to_chat(world, "<span style='boldannounce'>Notice:Restart vote will not restart the server automatically because there are active admins on.</span>")
