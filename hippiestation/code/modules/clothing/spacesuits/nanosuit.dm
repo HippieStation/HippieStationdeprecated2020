@@ -435,6 +435,7 @@
 				helmet.display_visor_message("Maximum Strength!")
 				U.add_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
 				style.teach(U,1)
+				slowdown = initial(slowdown)
 				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				U.filters = filter(type="outline", size=0.1, color=rgb(255,0,0))
