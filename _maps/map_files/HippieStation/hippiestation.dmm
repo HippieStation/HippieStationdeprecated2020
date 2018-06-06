@@ -32191,12 +32191,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"bBZ" = (
-/obj/machinery/conveyor_switch/oneway{
-	id = "QMLoad"
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/storage)
 "bCa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -32680,7 +32674,7 @@
 	},
 /obj/machinery/conveyor{
 	dir = 8;
-	id = "garbage"
+	id = "QMLoad"
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
@@ -32688,7 +32682,7 @@
 /obj/structure/plasticflaps,
 /obj/machinery/conveyor{
 	dir = 8;
-	id = "garbage"
+	id = "QMLoad"
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
@@ -32698,7 +32692,7 @@
 	},
 /obj/machinery/conveyor{
 	dir = 8;
-	id = "garbage"
+	id = "QMLoad"
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
@@ -32713,7 +32707,7 @@
 	},
 /obj/machinery/conveyor{
 	dir = 8;
-	id = "garbage"
+	id = "QMLoad"
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
@@ -58775,7 +58769,7 @@
 /obj/structure/fans/tiny,
 /obj/machinery/conveyor{
 	dir = 8;
-	id = "garbage"
+	id = "QMLoad"
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
@@ -64150,16 +64144,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/electrical)
-"vaV" = (
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "garbage"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/quartermaster/storage)
 "vcj" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
@@ -84229,7 +84213,7 @@ bxI
 bqh
 bqh
 brE
-vaV
+bDp
 bsY
 aaa
 aaa
@@ -84486,7 +84470,7 @@ bxJ
 brD
 brD
 bCa
-vaV
+bDp
 bsY
 aaa
 aaa
@@ -84743,7 +84727,7 @@ bxK
 bwa
 brD
 btd
-vaV
+bDp
 bsY
 aaa
 aaa
@@ -85000,7 +84984,7 @@ brD
 bwa
 brD
 brD
-vaV
+bDp
 bEU
 aaa
 aaa
@@ -85256,8 +85240,8 @@ keD
 brD
 bzg
 brD
-bBZ
-vaV
+fNf
+bDp
 bEU
 bEU
 bEW
