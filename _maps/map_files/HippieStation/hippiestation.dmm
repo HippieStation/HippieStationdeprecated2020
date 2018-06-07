@@ -14447,17 +14447,17 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "aIY" = (
-/obj/structure/closet/coffin,
 /obj/machinery/door/window/eastleft{
 	dir = 8;
 	name = "Coffin Storage";
 	req_access_txt = "22"
 	},
+/obj/structure/closet/crate/coffin,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "aIZ" = (
-/obj/structure/closet/coffin,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/closet/crate/coffin,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "aJa" = (
@@ -15229,10 +15229,10 @@
 /turf/open/floor/carpet,
 /area/chapel/main)
 "aKJ" = (
-/obj/structure/closet/coffin,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/structure/closet/crate/coffin,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "aKK" = (
@@ -15894,17 +15894,17 @@
 /turf/open/floor/carpet,
 /area/chapel/main)
 "aMk" = (
-/obj/structure/closet/coffin,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/structure/closet/crate/coffin,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "aMl" = (
-/obj/structure/closet/coffin,
 /obj/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/closet/crate/coffin,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
 "aMm" = (
