@@ -4659,6 +4659,11 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "0-2";
+	pixel_y = 1;
+	d2 = 2
+	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/commiespy)
 "akj" = (
@@ -27767,10 +27772,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/central)
-"brX" = (
-/obj/structure/lattice,
-/turf/open/space,
-/area/space)
 "brZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -35565,9 +35566,9 @@
 /area/security/checkpoint/science/research)
 "bJy" = (
 /obj/machinery/power/apc{
+	areastring = "/area/security/checkpoint/science/research";
 	dir = 2;
 	name = "Science Security APC";
-	areastring = "/area/security/checkpoint/science";
 	pixel_y = -24
 	},
 /obj/structure/cable,
@@ -55292,6 +55293,7 @@
 	name = "MiniSat Access ";
 	req_one_access_txt = "65"
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plasteel/dark,
 /area/aisat)
 "cFZ" = (
@@ -89671,7 +89673,7 @@ aaa
 aaa
 aai
 aaa
-aFi
+aaa
 aFi
 aaa
 aaa
@@ -89929,7 +89931,7 @@ aaa
 aaE
 aaE
 aaE
-aFi
+aaa
 aaa
 aaa
 aaa
@@ -90186,7 +90188,7 @@ aaa
 aaE
 cGm
 aaE
-aFi
+aaa
 aaa
 aaa
 aaa
@@ -90443,9 +90445,9 @@ aai
 aaE
 cGm
 aaE
-aFi
-aFi
-aFi
+aaa
+aaa
+aaa
 aaa
 aaa
 aad
@@ -90700,11 +90702,11 @@ aaa
 aaE
 cGm
 aaE
-aFi
-aFi
-aFi
-aFi
-aFi
+aaa
+aaa
+aaa
+aaa
+aaa
 aaj
 aad
 aaa
@@ -90959,9 +90961,9 @@ cGm
 aaE
 aaa
 aaa
-aFi
-aFi
-aFi
+aaa
+aaa
+aaa
 aaj
 aaa
 aaa
@@ -91218,7 +91220,7 @@ aaa
 aaa
 aaa
 aaa
-aFi
+aaa
 aaj
 aad
 aaa
@@ -91471,11 +91473,11 @@ aai
 aaE
 cGm
 aaE
-aFi
-aFi
 aaa
 aaa
-aFi
+aaa
+aaa
+aaa
 aaj
 aad
 aaa
@@ -91732,7 +91734,7 @@ aaa
 aaa
 aai
 aaa
-aFi
+aaa
 aaj
 aad
 aaa
@@ -91989,7 +91991,7 @@ aad
 aai
 aai
 aai
-aFi
+aaa
 aaj
 aad
 aaa
@@ -92246,7 +92248,7 @@ aaa
 aaa
 aai
 aaa
-aFi
+aaa
 aaj
 aad
 aaa
@@ -92943,12 +92945,12 @@ blM
 bfs
 bfs
 bfs
-brX
-brX
+aai
+aai
 aaa
-brX
+aai
 aaa
-brX
+aai
 aaa
 aaa
 aaa
@@ -93199,8 +93201,8 @@ bkh
 blM
 bnp
 boT
-bqy
-brX
+aad
+aai
 aaa
 aaa
 aaa
@@ -95255,8 +95257,8 @@ bkn
 blM
 bnp
 boT
-bqy
-brX
+aad
+aai
 aaa
 abf
 aaa
@@ -95513,12 +95515,12 @@ blM
 bfA
 bfA
 bfA
-brX
-brX
+aai
+aai
 aaa
-brX
+aai
 aaa
-brX
+aai
 aaa
 aaa
 aaa
