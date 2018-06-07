@@ -18,7 +18,7 @@
 				fauna.Remove(faunaspawn)
 
 			if(faunaspawn)
-				var/atom/movable/spawned_fauna = new fauna(T)
+				var/atom/movable/spawned_fauna = new faunaspawn(T)
 				if (!fan_out_fauna)
 					if (pixel_x != 0)
 						spawned_fauna.pixel_x = pixel_x

@@ -169,11 +169,6 @@ obj/item/kirbyplants_onehanded/equipped(mob/living/user)
 	var/regrowth_time_low = 8 MINUTES
 	var/regrowth_time_high = 16 MINUTES
 
-/obj/structure/flora/maintenanceshroom/Initialize()
-	. = ..()
-	base_icon = "[icon_state][rand(1, 4)]"
-	icon_state = base_icon
-
 /obj/structure/flora/maintenanceshroom/proc/harvest(user)
 	if(harvested)
 		return 0
@@ -204,9 +199,7 @@ obj/item/kirbyplants_onehanded/equipped(mob/living/user)
 	harvested = FALSE
 
 /obj/structure/flora/maintenanceshroom/attack_hand(mob/user)
-	. = ..()
-	if(.)
-		return
+	..()
 	if(!harvested && !needs_sharp_harvest)
 		user.visible_message("<span class='notice'>[user] starts to harvest from [src].</span>","<span class='notice'>You begin to harvest from [src].</span>")
 		if(do_after(user, harvest_time, target = src))
