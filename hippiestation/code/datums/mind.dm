@@ -53,3 +53,7 @@
 					V.total_blood = 1500
 					V.usable_blood = 1500
 					V.check_vampire_upgrade()
+
+/*
+/datum/mind/proc/remove_gang()
+*/
