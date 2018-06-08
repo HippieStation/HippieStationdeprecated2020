@@ -296,7 +296,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 /datum/species/proc/handle_hair(mob/living/carbon/human/H, forced_colour)
 	H.remove_overlay(HAIR_LAYER)
-
 	var/obj/item/bodypart/head/HD = H.get_bodypart(BODY_ZONE_HEAD)
 	if(!HD) //Decapitated
 		return
@@ -834,7 +833,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_L_STORE)
-			if(I.flags_1 & NODROP_1) //Pockets aren't visible, so you can't move NODROP_1 items into them.
+			if(I.item_flags & NODROP) //Pockets aren't visible, so you can't move NODROP_1 items into them.
 				return FALSE
 			if(H.l_store)
 				return FALSE
@@ -850,7 +849,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if( I.w_class <= WEIGHT_CLASS_SMALL || (I.slot_flags & ITEM_SLOT_POCKET) )
 				return TRUE
 		if(SLOT_R_STORE)
-			if(I.flags_1 & NODROP_1)
+			if(I.item_flags & NODROP)
 				return FALSE
 			if(H.r_store)
 				return FALSE
@@ -867,7 +866,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				return TRUE
 			return FALSE
 		if(SLOT_S_STORE)
-			if(I.flags_1 & NODROP_1)
+			if(I.item_flags & NODROP)
 				return FALSE
 			if(H.s_store)
 				return FALSE
@@ -1123,6 +1122,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				. += (health_deficiency / 75)
 			else
 				. += (health_deficiency / 25)
+		if(CONFIG_GET(flag/disable_human_mood))
+			var/hungry = (500 - H.nutrition) / 5 //So overeat would be 100 and default level would be 80
+			if((hungry >= 70) && !flight) //Being hungry will still allow you to use a flightsuit/wings.
+				. += hungry / 50
 
 		GET_COMPONENT_FROM(mood, /datum/component/mood, H)
 		if(mood && !flight) //How can depression slow you down if you can just fly away from your problems?

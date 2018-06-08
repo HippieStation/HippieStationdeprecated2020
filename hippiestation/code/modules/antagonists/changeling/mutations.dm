@@ -25,7 +25,8 @@
 	helmet_name_simple = "helmet"
 
 /obj/item/clothing/suit/armor/changeling
-	clothing_flags = NODROP_1 | DROPDEL_1 | STOPSPRESSUREDAMAGE
+	clothing_flags = STOPSPRESSUREDAMAGE
+	item_flags = NODROP | DROPDEL
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/oxygen)
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 4, "rad" = 0, "fire" = 0, "acid" = 90)
@@ -47,7 +48,8 @@
 /obj/item/clothing/head/helmet/changeling
 	desc = "A tough, hard covering of black chitin with translucent chitin in front."
 	icon_state = "lingarmorhelmet"
-	clothing_flags = NODROP_1 | DROPDEL_1 | STOPSPRESSUREDAMAGE
+	clothing_flags = STOPSPRESSUREDAMAGE
+	item_flags = NODROP | DROPDEL
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 4, "rad" = 0, "fire" = 0, "acid" = 90)
 	flags_inv = HIDEEARS|HIDEHAIR|HIDEEYES|HIDEFACIALHAIR|HIDEFACE
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
@@ -77,7 +79,7 @@
 	item_state = "gun_arm"
 	lefthand_file = 'hippiestation/icons/mob/inhands/changeling_lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/changeling_righthand.dmi'
-	flags_1 = ABSTRACT_1 | NODROP_1 | DROPDEL_1
+	item_flags = ABSTRACT | NODROP | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
 	ammo_type = /obj/item/ammo_casing/magic/ling_armcannon
 	fire_sound = 'sound/effects/splat.ogg'
@@ -128,7 +130,7 @@
 	item_state = "teslaclaw"
 	lefthand_file = 'hippiestation/icons/mob/inhands/changeling_lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/changeling_righthand.dmi'
-	flags_1 = ABSTRACT_1 | NODROP_1 | DROPDEL_1
+	item_flags = ABSTRACT | NODROP | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
 	force = 0
 	throwforce = 5

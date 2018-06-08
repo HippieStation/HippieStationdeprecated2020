@@ -12,7 +12,7 @@
 /obj/item/clothing/under/syndicate/combat/nano/equipped(mob/user, slot)
 	.=..()
 	if(slot == SLOT_W_UNIFORM)
-		flags_1 |= NODROP_1
+		item_flags = NODROP
 
 /obj/item/clothing/under/syndicate/combat/nano/dropped(mob/user)
 	..()
@@ -27,7 +27,7 @@
 /obj/item/clothing/mask/gas/nano_mask/equipped(mob/user, slot)
 	.=..()
 	if(slot == SLOT_WEAR_MASK)
-		flags_1 |= NODROP_1
+		item_flags = NODROP
 
 /obj/item/clothing/mask/gas/nano_mask/dropped(mob/user)
 	..()
@@ -89,7 +89,7 @@
 /obj/item/clothing/shoes/combat/coldres/nanojump/equipped(mob/user, slot)
 	.=..()
 	if(slot == SLOT_SHOES)
-		flags_1 |= NODROP_1
+		item_flags = NODROP
 
 /obj/item/clothing/shoes/combat/coldres/nanojump/dropped(mob/user)
 	..()
@@ -105,7 +105,7 @@
 /obj/item/clothing/gloves/combat/nano/equipped(mob/user, slot)
 	.=..()
 	if(slot == SLOT_GLOVES)
-		flags_1 |= NODROP_1
+		item_flags = NODROP
 
 /obj/item/clothing/gloves/combat/nano/dropped(mob/user)
 	..()
@@ -123,7 +123,7 @@
 /obj/item/radio/headset/syndicate/alt/nano/equipped(mob/user, slot)
 	.=..()
 	if(slot == SLOT_EARS)
-		flags_1 |= NODROP_1
+		item_flags = NODROP
 
 /obj/item/radio/headset/syndicate/alt/nano/dropped(mob/user)
 	..()
@@ -151,7 +151,7 @@
 /obj/item/clothing/glasses/nano_goggles/equipped(mob/user, slot)
 	.=..()
 	if(slot == SLOT_GLASSES)
-		flags_1 |= NODROP_1
+		item_flags = NODROP
 
 /obj/item/clothing/glasses/nano_goggles/dropped(mob/user)
 	..()
@@ -551,7 +551,7 @@
 /obj/item/clothing/head/helmet/space/hardsuit/nano/equipped(mob/living/carbon/human/wearer, slot)
 	..()
 	if(slot == SLOT_HEAD)
-		flags_1 |= NODROP_1
+		item_flags = NODROP
 	for(var/hudtype in datahuds)
 		var/datum/atom_hud/H = GLOB.huds[hudtype]
 		H.add_hud_to(wearer)
@@ -600,7 +600,7 @@
 	if(ishuman(user))
 		U = user
 	if(slot == SLOT_WEAR_SUIT)
-		flags_1 |= NODROP_1
+		item_flags = NODROP
 		U.unequip_everything()
 		equip_nanosuit(user)
 		var/area/A = get_area(src)
@@ -958,7 +958,7 @@ obj/item/clothing/suit/space/hardsuit/nano/dropped()
 /obj/item/tank/internals/emergency_oxygen/recharge/equipped(mob/living/carbon/human/wearer, slot)
 	..()
 	if(slot == SLOT_S_STORE)
-		flags_1 |= NODROP_1
+		item_flags = NODROP
 		START_PROCESSING(SSobj, src)
 
 /obj/item/tank/internals/emergency_oxygen/recharge/dropped(mob/living/carbon/human/wearer)
