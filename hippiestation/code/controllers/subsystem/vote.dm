@@ -68,12 +68,13 @@
 		mode = vote_type
 		initiator = initiator_key
 		started_time = world.time
-		var/text = "[capitalize(mode)] vote started by [initiator]."
+		var/text = "<div style='font-size: 30px'>[capitalize(mode)] vote started by [initiator].</div>"
 		if(mode == "custom")
 			text += "\n[question]"
 		log_vote(text)
 		var/vp = CONFIG_GET(number/vote_period)
-		to_chat(world, "\n<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=[REF(src)]'>here</a> to place your votes.\nYou have [DisplayTimeText(vp)] to vote.</font>")
+		to_chat(world, "\n<font color='purple'><b>[text]</b>\n<div style='font-size: 20px'>Type <b>vote</b> or click <a href='?src=[REF(src)]'>here</a> to place your votes.\nYou have [DisplayTimeText(vp)] to vote. Remember, not voting means you will not be auto-assigned to any option!</font></div>")
+		SEND_SOUND(world, sound('sound/ai/attention.ogg'))
 		time_remaining = round(vp/10)
 		for(var/c in GLOB.clients)
 			var/client/C = c
