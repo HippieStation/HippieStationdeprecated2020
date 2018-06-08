@@ -4,7 +4,7 @@
 	desc = "Foreign body resistant lining built below the nanosuit. Provides internal protection. Property of CryNet Systems."
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
 	armor = list("melee" = 20, "bullet" = 10, "laser" = 0,"energy" = 5, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 80, "acid" = 50)
-	flags_1 = DROPDEL_1
+	flags_1 = DROPDEL
 
 /obj/item/clothing/suit/space/hardsuit/nano/ComponentInitialize()
 	. = ..()
@@ -20,7 +20,7 @@
 	desc = "Operator mask. Property of CryNet Systems." //More accurate
 	icon_state = "syndicate"
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
-	flags_1 = DROPDEL_1
+	flags_1 = DROPDEL
 
 /obj/item/clothing/mask/gas/nano_mask/equipped(mob/user, slot)
 	.=..()
@@ -43,7 +43,7 @@
 	var/jumpdistance = 2 //-1 from to see the actual distance, e.g 3 goes over 2 tiles
 	var/jumpspeed = 1
 	actions_types = list(/datum/action/item_action/nanojump)
-	flags_1 = DROPDEL_1
+	flags_1 = DROPDEL
 
 /obj/item/clothing/shoes/combat/coldres/nanojump/ui_action_click(mob/user, action)
 	if(!isliving(user))
@@ -92,7 +92,7 @@
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
-	flags_1 = DROPDEL_1
+	flags_1 = DROPDEL
 
 /obj/item/clothing/gloves/combat/nano/equipped(mob/user, slot)
 	.=..()
@@ -107,7 +107,7 @@
 	subspace_transmission = FALSE
 	keyslot = new /obj/item/encryptionkey/binary
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
-	flags_1 = DROPDEL_1
+	flags_1 = DROPDEL
 
 /obj/item/radio/headset/syndicate/alt/nano/equipped(mob/user, slot)
 	.=..()
@@ -129,7 +129,7 @@
 	actions_types = list(/datum/action/item_action/nanogoggles/toggle)
 	vision_correction = 1 //We must let our wearer have good eyesight
 	var/on = 0
-	flags_1 = DROPDEL_1
+	flags_1 = DROPDEL
 
 /datum/client_colour/glass_colour/nightvision
 	colour = "#45723f"
@@ -955,7 +955,7 @@ obj/item/clothing/suit/space/hardsuit/nano/dropped()
 	desc = "A magical tank that uses bluespace technology to replenish it's oxygen supply."
 	volume = 2
 	icon_state = "emergency_tst"
-	flags_1 = DROPDEL_1
+	flags_1 = DROPDEL
 
 /obj/item/tank/internals/emergency_oxygen/recharge/New()
 	..()
