@@ -7,6 +7,16 @@
 /obj/item/clothing/head/ushanka
 	alternate_screams = list('hippiestation/sound/misc/cyka1.ogg', 'hippiestation/sound/misc/cheekibreeki.ogg')
 
+#define NORMALUSHANKASCREAMS list('hippiestation/sound/misc/cyka1.ogg', 'hippiestation/sound/misc/cheekibreeki.ogg')
+#define SPECIALUSHANKASCREAMS list('hippiestation/sound/misc/cyka2upgradededition.ogg')
+
+/obj/item/clothing/head/ushanka/Initialize()
+	..()
+	alternate_screams = pickweight(NORMALUSHANKASCREAMS = 4, SPECIALUSHANKASCREAMS = 1)
+
+#undef NORMALUSHANKASCREAMS
+#undef SPECIALUSHANKASCREAMS
+
 /obj/item/clothing/head/hippie/zoothat
 	name = "zoot suit hat"
 	desc = "What's swingin', toots?"
