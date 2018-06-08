@@ -14,6 +14,7 @@
 
 // BEGIN_INCLUDE
 #include "_maps\_basemaphippie.dm"
+#include "_maps\map_files\HippieStation\hippiestation.dmm"
 #include "code\_compile_options.dm"
 #include "code\world.dm"
 #include "code\__DEFINES\_globals.dm"
@@ -2740,6 +2741,7 @@
 #include "hippiestation\code\game\objects\effects\effect_system\effects_other.dm"
 #include "hippiestation\code\game\objects\effects\effect_system\effects_smoke.dm"
 #include "hippiestation\code\game\objects\effects\effect_system\effects_vapour.dm"
+#include "hippiestation\code\game\objects\effects\spawners\maintfaunaspawner.dm"
 #include "hippiestation\code\game\objects\items\apc_frame.dm"
 #include "hippiestation\code\game\objects\items\butterfly_knives.dm"
 #include "hippiestation\code\game\objects\items\cheapcuisine.dm"
