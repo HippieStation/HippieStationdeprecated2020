@@ -262,7 +262,7 @@
 	air_update_turf(1)
 	update_freelook_sight()
 	if(autoclose)
-		spawn(autoclose)
+		spawn(autoclosedoor())
 			close()
 	return 1
 
@@ -275,7 +275,7 @@
 		for(var/atom/movable/M in get_turf(src))
 			if(M.density && M != src) //something is blocking the door
 				if(autoclose)
-					autoclose_in(60)
+					autoclosedoor_in(60)
 				return
 
 	operating = TRUE
@@ -323,12 +323,12 @@
 	for(var/obj/mecha/M in get_turf(src))
 		M.take_damage(DOOR_CRUSH_DAMAGE)
 
-/obj/machinery/door/proc/autoclose()
+/obj/machinery/door/proc/autoclosedoor()
 	if(!QDELETED(src) && !density && !operating && !locked && !welded && autoclose)
 		close()
 
-/obj/machinery/door/proc/autoclose_in(wait)
-	addtimer(CALLBACK(src, .proc/autoclose), wait, TIMER_UNIQUE | TIMER_NO_HASH_WAIT | TIMER_OVERRIDE)
+/obj/machinery/door/proc/autoclosedoor_in(wait)
+	addtimer(CALLBACK(src, .proc/autoclosedoor), wait, TIMER_UNIQUE | TIMER_NO_HASH_WAIT | TIMER_OVERRIDE)
 
 /obj/machinery/door/proc/requiresID()
 	return 1
