@@ -2761,6 +2761,7 @@
 #include "hippiestation\code\game\objects\items\weaponry.dm"
 #include "hippiestation\code\game\objects\items\circuitboards\machine_circuitboards.dm"
 #include "hippiestation\code\game\objects\items\devices\meeseeks_box.dm"
+#include "hippiestation\code\game\objects\items\devices\megaphone.dm"
 #include "hippiestation\code\game\objects\items\devices\multitool.dm"
 #include "hippiestation\code\game\objects\items\devices\powersink.dm"
 #include "hippiestation\code\game\objects\items\devices\scanners.dm"
