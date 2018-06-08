@@ -19,3 +19,12 @@
 	to_chat(user, "<span class='notice'>You take the duct tape off the [src].</span>")
 	qdel(src)
 	user.put_in_hands(new_item)
+
+/obj/item/hatchet/glass
+	desc = "An improvised glass shard hatchet. Go hog wild."
+	icon = 'hippiestation/icons/obj/weapons.dmi'
+	icon_state = "hatchet_glass" //thanks /vg/station!
+	item_state = "hatchet_glass" //thanks /vg/station!
+	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
+	materials = list(MAT_METAL = 400, MAT_GLASS = 2075)

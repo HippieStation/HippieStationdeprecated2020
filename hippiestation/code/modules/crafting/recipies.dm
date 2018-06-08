@@ -77,3 +77,13 @@
 				/obj/item/stack/rods = 6)
 	time = 100
 	category = CAT_MISC
+  
+/datum/crafting_recipe/hatchet_glass
+	name = "Glass Hatchet"
+	result = /obj/item/hatchet/glass
+	reqs = list(/obj/item/wrench = 1,
+		        /obj/item/restraints/handcuffs/cable = 1,
+		        /obj/item/shard = 1)
+	time = 50
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
