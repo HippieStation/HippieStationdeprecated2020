@@ -77,3 +77,11 @@
 				/obj/item/stack/rods = 6)
 	time = 100
 	category = CAT_MISC
+
+/datum/crafting_recipe/bonesword
+	name = "Bone Sword"
+	result = /obj/item/claymore/bone
+	reqs = list(/obj/item/stack/sheet/bone = 15)
+	time = 100
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON

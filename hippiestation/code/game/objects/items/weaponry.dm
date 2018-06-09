@@ -125,3 +125,16 @@
 	force = 15 //for reference, normal bat has 10
 	throwforce = 15 // its got spikes sticking out of it - pre rebase comment :D
 	armour_penetration = 10
+
+/obj/item/claymore/bone
+	name = "bone sword"
+	desc = "When a knife can't scratch that itch properly."
+	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	icon_state = "bonesword"
+	item_state = "bonesword"
+	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	force = 20
+	throwforce = 10
+	block_chance = 10
