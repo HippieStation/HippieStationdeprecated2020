@@ -4,7 +4,7 @@
 	desc = "Foreign body resistant lining built below the nanosuit. Provides internal protection. Property of CryNet Systems."
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
 	armor = list("melee" = 20, "bullet" = 10, "laser" = 0,"energy" = 5, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 80, "acid" = 50)
-	flags_1 = DROPDEL
+	item_flags = DROPDEL
 
 /obj/item/clothing/suit/space/hardsuit/nano/ComponentInitialize()
 	. = ..()
@@ -20,7 +20,7 @@
 	desc = "Operator mask. Property of CryNet Systems." //More accurate
 	icon_state = "syndicate"
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
-	flags_1 = DROPDEL
+	item_flags = DROPDEL
 
 /obj/item/clothing/mask/gas/nano_mask/equipped(mob/user, slot)
 	.=..()
@@ -43,7 +43,7 @@
 	var/jumpdistance = 2 //-1 from to see the actual distance, e.g 3 goes over 2 tiles
 	var/jumpspeed = 1
 	actions_types = list(/datum/action/item_action/nanojump)
-	flags_1 = DROPDEL
+	item_flags = DROPDEL
 
 /obj/item/clothing/shoes/combat/coldres/nanojump/ui_action_click(mob/user, action)
 	if(!isliving(user))
@@ -92,7 +92,7 @@
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
-	flags_1 = DROPDEL
+	item_flags = DROPDEL
 
 /obj/item/clothing/gloves/combat/nano/equipped(mob/user, slot)
 	.=..()
@@ -107,7 +107,7 @@
 	subspace_transmission = FALSE
 	keyslot = new /obj/item/encryptionkey/binary
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
-	flags_1 = DROPDEL
+	item_flags = DROPDEL
 
 /obj/item/radio/headset/syndicate/alt/nano/equipped(mob/user, slot)
 	.=..()
@@ -129,7 +129,7 @@
 	actions_types = list(/datum/action/item_action/nanogoggles/toggle)
 	vision_correction = 1 //We must let our wearer have good eyesight
 	var/on = 0
-	flags_1 = DROPDEL
+	item_flags = DROPDEL
 
 /datum/client_colour/glass_colour/nightvision
 	colour = "#45723f"
@@ -955,7 +955,7 @@ obj/item/clothing/suit/space/hardsuit/nano/dropped()
 	desc = "A magical tank that uses bluespace technology to replenish it's oxygen supply."
 	volume = 2
 	icon_state = "emergency_tst"
-	flags_1 = DROPDEL
+	item_flags = DROPDEL
 
 /obj/item/tank/internals/emergency_oxygen/recharge/New()
 	..()
@@ -995,16 +995,16 @@ obj/item/clothing/suit/space/hardsuit/nano/dropped()
 	to_chat(usr, "<b><i>Welcome to CryNet Systems user manual 1.22 rev. 6618. Today we will learn about what your new piece of hardware has to offer.</i></b>")
 	to_chat(usr, "<b><i>If you are reading this, you've probably alerted the entire sector about the purchase of an illegal syndicate item banned in a radius of 50 megaparsecs!</i></b>")
 	to_chat(usr, "<b><i>Fortunately the syndicate equipped this bad boy with high tech sensing equipment,the downside is the whole crew knows you're here.</i></b>")
-	to_chat(usr, "<b>Sensors: Reagent</b> scanner, bomb radar, medical, security and diagnostic huds, user life signs monitor and bluespace communication relay.")
+	to_chat(usr, "<b>Sensors</b>: Reagent scanner, bomb radar, medical, security and diagnostic huds, user life signs monitor and bluespace communication relay.")
 	to_chat(usr, "<b>Passive equipment</b>: Binoculars, night vision, anti-slips, shock and heat proof gloves, self refilling mini o2 tank, emergency medical systems and body temperature defroster.")
 	to_chat(usr, "<b>Active modes</b>: Armor, strength, speed and cloak.")
 	to_chat(usr, "<span class='notice'>Armor</span>: Resist damage that would normally kill or seriously injure you. Blocks all attacks at a cost of suit energy drain.")
 	to_chat(usr, "<span class='notice'>Cloak</span>: Become a ninja. Cloaking technology alters the outer layers to refract light through and around the suit, making the user appear almost completely invisible.")
 	to_chat(usr, "<span class='notice'>Speed</span>: Run like a madman. Use conservatively as suit energy drains fairly quickly.")
-	to_chat(usr, "<span class='notice'>Strength</span>: Beat the shit out of objects  or people with your fists. Jump across small gabs and structures. You hit and throw harder with brute objects. You can't be grabbed aggressively or pushed and deflect attacks and ranged hits occasionally. ")
+	to_chat(usr, "<span class='notice'>Strength</span>: Beat the shit out of objects  or people with your fists. Jump across small gabs and structures. You hit and throw harder with brute objects. You can't be grabbed aggressively or pushed. Deflect attacks and ranged hits occasionally. ")
 	to_chat(usr, "<span class='notice'>Aggressive Grab</span>: Your grabs start aggressive.")
 	to_chat(usr, "<span class='notice'>Robust push</span>: Your disarms have a 70% chance of knocking an opponent down for 4 seconds.")
-	to_chat(usr, "<span class='notice'>MMA Master</span>: Harm intents deals more damage, you can leg sweep while lying down and occasionally trigger series of fast hits.")
+	to_chat(usr, "<span class='notice'>MMA Master</span>: Harm intents deals more damage, occasionally trigger series of fast hits and you can leg sweep while lying down.")
 	to_chat(usr, "<span class='notice'>Highschool Bully</span>: Grab someone and harm intent them to deliver a deadly knock down punch.")
 	to_chat(usr, "<span class='notice'>Knock out master</span>: Tighten your grip and harm intent to deliver a very deadly knock out punch.")
 
