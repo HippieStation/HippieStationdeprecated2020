@@ -40,7 +40,7 @@
 
 /obj/machinery/portable_atmospherics/pump/process_atmos()
 	..()
-	if(!on)
+	if(!on && pump)//Hippie code. Do we still exist?
 		pump.airs[1] = null
 		pump.airs[2] = null
 		return
@@ -114,9 +114,8 @@
 				var/plasma = air_contents.gases[/datum/gas/plasma]
 				var/n2o = air_contents.gases[/datum/gas/nitrous_oxide]
 				if(n2o || plasma)
-					var/area/A = get_area(src)
-					message_admins("[ADMIN_LOOKUPFLW(usr)] turned on a pump that contains [n2o ? "N2O" : ""][n2o && plasma ? " & " : ""][plasma ? "Plasma" : ""] at [A][ADMIN_JMP(src)]")
-					log_admin("[key_name(usr)] turned on a pump that contains [n2o ? "N2O" : ""][n2o && plasma ? " & " : ""][plasma ? "Plasma" : ""] at [A][COORD(src)]")
+					message_admins("[ADMIN_LOOKUPFLW(usr)] turned on a pump that contains [n2o ? "N2O" : ""][n2o && plasma ? " & " : ""][plasma ? "Plasma" : ""] at [ADMIN_VERBOSEJMP(src)]")
+					log_admin("[key_name(usr)] turned on a pump that contains [n2o ? "N2O" : ""][n2o && plasma ? " & " : ""][plasma ? "Plasma" : ""] at [AREACOORD(src)]")
 			else if(on && direction == PUMP_OUT)
 				investigate_log("[key_name(usr)] started a transfer into [holding].<br>", INVESTIGATE_ATMOS)
 			. = TRUE

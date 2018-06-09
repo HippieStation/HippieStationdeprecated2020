@@ -28,7 +28,7 @@
 	idle_power_usage = 0
 	active_power_usage = 0
 
-	active = 1
+	active = 0 //Hippie code. Start disabled to reduce lag.
 	locked = TRUE
 	state = 2
 

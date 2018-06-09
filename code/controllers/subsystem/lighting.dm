@@ -82,9 +82,6 @@ SUBSYSTEM_DEF(lighting)
 	if (i)
 		GLOB.lighting_update_objects.Cut(1, i+1)
 
-	else
-		return
-
 
 /datum/controller/subsystem/lighting/Recover()
 	initialized = SSlighting.initialized

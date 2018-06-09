@@ -135,7 +135,6 @@
 	desc = "Used for running friendly games of capture the flag."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "syndbeacon"
-	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE
 	var/team = WHITE_TEAM
 	var/team_span = ""
@@ -328,6 +327,11 @@
 	for(var/d in dead_barricades)
 		var/obj/effect/ctf/dead_barricade/D = d
 		D.respawn()
+	//hippie code. Start when ctf starts
+	for(var/obj/machinery/power/emitter/energycannon/C in GLOB.machines)
+		if(!C.active)
+			C.active = TRUE
+	//end hippie code
 
 	dead_barricades.Cut()
 
@@ -357,6 +361,11 @@
 	team_members.Cut()
 	spawned_mobs.Cut()
 	recently_dead_ckeys.Cut()
+	//hippie code. Stop when ctf ends so we don't lag the game.
+	for(var/obj/machinery/power/emitter/energycannon/C in GLOB.machines)
+		if(C.active)
+			C.active = FALSE
+	//end hippie code
 
 /obj/machinery/capture_the_flag/proc/instagib_mode()
 	for(var/obj/machinery/capture_the_flag/CTF in GLOB.machines)
@@ -495,14 +504,14 @@
 	W.registered_name = H.real_name
 	W.update_label(W.registered_name, W.assignment)
 
-	// The shielded hardsuit is already NODROP_1
+	// The shielded hardsuit is already NODROP
 	no_drops += H.get_item_by_slot(SLOT_GLOVES)
 	no_drops += H.get_item_by_slot(SLOT_SHOES)
 	no_drops += H.get_item_by_slot(SLOT_W_UNIFORM)
 	no_drops += H.get_item_by_slot(SLOT_EARS)
 	for(var/i in no_drops)
 		var/obj/item/I = i
-		I.flags_1 |= NODROP_1
+		I.item_flags |= NODROP
 
 /datum/outfit/ctf/instagib
 	r_hand = /obj/item/gun/energy/laser/instakill
@@ -652,7 +661,6 @@
 	desc = "You should capture this."
 	icon = 'icons/obj/machines/dominator.dmi'
 	icon_state = "dominator"
-	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE
 	var/obj/machinery/capture_the_flag/controlling
 	var/team = "none"

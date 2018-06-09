@@ -4,7 +4,7 @@
 	use_power = NO_POWER_USE
 	max_integrity = 250
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 60, "acid" = 30)
-
+	anchored = FALSE
 
 	var/datum/gas_mixture/air_contents
 	var/obj/machinery/atmospherics/components/unary/portables_connector/connected_port
@@ -35,7 +35,8 @@
 
 /obj/machinery/portable_atmospherics/process_atmos()
 	if(!connected_port) // Pipe network handles reactions if connected.
-		air_contents.react(src)
+		if(air_contents)//Hippie code. Do we exist?
+			air_contents.react(src)
 	else
 		update_icon()
 
