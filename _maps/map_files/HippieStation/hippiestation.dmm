@@ -58402,7 +58402,6 @@
 "dnt" = (
 /obj/structure/table,
 /obj/item/flashlight{
-	pixel_x = 0;
 	pixel_y = 5
 	},
 /obj/item/flashlight,
@@ -61300,7 +61299,6 @@
 /obj/machinery/button/door{
 	id = "Singularity";
 	name = "Shutters Control";
-	pixel_x = 0;
 	pixel_y = 24;
 	req_access_txt = "11"
 	},
@@ -61341,7 +61339,6 @@
 /obj/machinery/button/door{
 	id = "Singularity";
 	name = "Shutters Control";
-	pixel_x = 0;
 	pixel_y = -24;
 	req_access_txt = "11"
 	},
@@ -61659,8 +61656,7 @@
 	pixel_y = 5
 	},
 /obj/item/storage/toolbox/mechanical{
-	pixel_x = -5;
-	pixel_y = 0
+	pixel_x = -5
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel{
@@ -63478,7 +63474,6 @@
 /obj/machinery/button/door{
 	id = "Singularity";
 	name = "Shutters Control";
-	pixel_x = 0;
 	pixel_y = -24;
 	req_access_txt = "11"
 	},
@@ -64045,7 +64040,6 @@
 	desc = "A remote control-switch for the engineering security doors.";
 	id = "PortEngineering";
 	name = "Port Engineering External Lockdown";
-	pixel_x = 0;
 	pixel_y = -24;
 	req_access_txt = "10"
 	},
@@ -64617,7 +64611,6 @@
 /obj/machinery/button/door{
 	id = "Singularity";
 	name = "Shutters Control";
-	pixel_x = 0;
 	pixel_y = 24;
 	req_access_txt = "11"
 	},
