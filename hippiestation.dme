@@ -2837,6 +2837,7 @@
 #include "hippiestation\code\modules\antagonists\disease\disease_datum.dm"
 #include "hippiestation\code\modules\antagonists\wizard\equipment\spellbook.dm"
 #include "hippiestation\code\modules\antagonists\wizard\equipment\spellbook_darkness.dm"
+#include "hippiestation\code\modules\assembly\flash.dm"
 #include "hippiestation\code\modules\atmospherics\gasmixtures\reactions.dm"
 #include "hippiestation\code\modules\atmospherics\unary_devices\vent_pump.dm"
 #include "hippiestation\code\modules\atmospherics\unary_devices\vent_scrubber.dm"
