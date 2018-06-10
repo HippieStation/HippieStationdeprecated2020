@@ -68,12 +68,12 @@
 		mode = vote_type
 		initiator = initiator_key
 		started_time = world.time
-		var/text = "<div style='font-size: 30px'>[capitalize(mode)] vote started by [initiator].</div>"
+		var/text = "<div style='font-size: 28px'>[capitalize(mode)] vote started by [initiator].</div>"
 		if(mode == "custom")
-			text += "\n[question]"
+			text += "<div style='font-size: 18px'>\n[question]</div>"
 		log_vote(text)
 		var/vp = CONFIG_GET(number/vote_period)
-		to_chat(world, "\n<font color='purple'><b>[text]</b>\n<div style='font-size: 20px'>Type <b>vote</b> or click <a href='?src=[REF(src)]'>here</a> to place your votes.\nYou have [DisplayTimeText(vp)] to vote. Remember, not voting means you will not be auto-assigned to any option!</font></div>")
+		to_chat(world, "\n<font color='purple'><b>[text]</b>\n<div style='font-size: 18px'>Type <b>vote</b> or click <a href='?src=[REF(src)]'>here</a> to place your votes.\nYou have [DisplayTimeText(vp)] to vote. Remember, not voting means you will not be auto-assigned to any option!</font></div>")
 		SEND_SOUND(world, sound('sound/ai/attention.ogg'))
 		time_remaining = round(vp/10)
 		for(var/c in GLOB.clients)
@@ -130,7 +130,7 @@
 		else
 			. += "<font color='grey'>Call Shuttle (Disallowed)</font>"
 		if(trialmin)
-			. += "\t(<a href='?src=[REF(src)];vote=toggle_shuttlecall'>[avr ? "Allowed" : "Disallowed"]</a>)"
+			. += "\t(<a href='?src=[REF(src)];vote=toggle_shuttlecall'>[avg ? "Allowed" : "Disallowed"]</a>)"
 		. += "</li><li>"
 		//gamemode
 		var/avm = CONFIG_GET(flag/allow_vote_mode)
@@ -172,12 +172,12 @@
 		if("restart")
 			if(CONFIG_GET(flag/allow_vote_restart) || usr.client.holder)
 				initiate_vote("restart",usr.key)
-		if("gamemode")
-			if(CONFIG_GET(flag/allow_vote_mode) || usr.client.holder)
-				initiate_vote("gamemode",usr.key)
 		if("shuttlecall")
 			if(CONFIG_GET(flag/allow_vote_shuttlecall) || usr.client.holder)
 				initiate_vote("shuttlecall",usr.key)
+		if("gamemode")
+			if(CONFIG_GET(flag/allow_vote_mode) || usr.client.holder)
+				initiate_vote("gamemode",usr.key)
 		if("custom")
 			if(usr.client.holder)
 				initiate_vote("custom",usr.key)
