@@ -135,6 +135,6 @@
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	force = 20
+	force = 17
 	throwforce = 10
 	block_chance = 10
