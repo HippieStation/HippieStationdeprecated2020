@@ -11,53 +11,46 @@
 
 /datum/antagonist/traitor/internal_affairs
 	name = "Internal Affairs Agent"
-	human_datum = /datum/antagonist/traitor/human/internal_affairs
-	ai_datum = /datum/antagonist/traitor/AI/internal_affairs
 	antagpanel_category = "IAA"
 
+<<<<<<< HEAD
 /datum/antagonist/traitor/AI/internal_affairs
 	name = "Internal Affairs Agent"
 	employer = "Nanotrasen"
 	special_role = "internal affairs agent"
 	antagpanel_category = "IAA"
+=======
+>>>>>>> 8c606af6cf... Squashes traitors under one path (#38332)
 
-/datum/antagonist/traitor/human/internal_affairs
+/datum/antagonist/traitor/internal_affairs
 	name = "Internal Affairs Agent"
 	employer = "Nanotrasen"
 	special_role = "internal affairs agent"
 	antagpanel_category = "IAA"
 
-/datum/antagonist/traitor/human/internal_affairs/proc/give_pinpointer()
+/datum/antagonist/traitor/internal_affairs/proc/give_pinpointer()
 	if(owner && owner.current)
 		owner.current.apply_status_effect(/datum/status_effect/agent_pinpointer)
 
-/datum/antagonist/traitor/human/internal_affairs/apply_innate_effects()
+/datum/antagonist/traitor/internal_affairs/apply_innate_effects()
 	.=..() //in case the base is used in future
 	if(owner && owner.current)
 		give_pinpointer(owner.current)
 
-/datum/antagonist/traitor/human/internal_affairs/remove_innate_effects()
+/datum/antagonist/traitor/internal_affairs/remove_innate_effects()
 	.=..()
 	if(owner && owner.current)
 		owner.current.remove_status_effect(/datum/status_effect/agent_pinpointer)
 
-/datum/antagonist/traitor/human/internal_affairs/on_gain()
+/datum/antagonist/traitor/internal_affairs/on_gain()
 	START_PROCESSING(SSprocessing, src)
 	.=..()
-/datum/antagonist/traitor/human/internal_affairs/on_removal()
+/datum/antagonist/traitor/internal_affairs/on_removal()
 	STOP_PROCESSING(SSprocessing,src)
 	.=..()
-/datum/antagonist/traitor/human/internal_affairs/process()
+/datum/antagonist/traitor/internal_affairs/process()
 	iaa_process()
 
-/datum/antagonist/traitor/AI/internal_affairs/on_gain()
-	START_PROCESSING(SSprocessing, src)
-	.=..()
-/datum/antagonist/traitor/AI/internal_affairs/on_removal()
-	STOP_PROCESSING(SSprocessing,src)
-	.=..()
-/datum/antagonist/traitor/AI/internal_affairs/process()
-	iaa_process()
 
 /datum/status_effect/agent_pinpointer
 	id = "agent_pinpointer"
@@ -139,12 +132,14 @@
 			continue
 		remove_objective(objective_)
 
-/datum/antagonist/traitor/human/internal_affairs/reinstate_escape_objective()
+/datum/antagonist/traitor/internal_affairs/reinstate_escape_objective()
 	..()
-	var/datum/objective/escape/escape_objective = new
+	var/objtype = traitor_kind == TRAITOR_HUMAN ? /datum/objective/escape : /datum/objective/survive
+	var/datum/objective/escape_objective = new objtype
 	escape_objective.owner = owner
 	add_objective(escape_objective)
 
+<<<<<<< HEAD
 /datum/antagonist/traitor/AI/internal_affairs/reinstate_escape_objective()
 	..()
 	var/datum/objective/survive/survive_objective = new
@@ -153,6 +148,9 @@
 
 /datum/antagonist/traitor/proc/steal_targets(datum/mind/victim)
 	//var/datum/antagonist/traitor/human/internal_affairs/this = src //Should only use this if IAA
+=======
+/datum/antagonist/traitor/internal_affairs/proc/steal_targets(datum/mind/victim)
+>>>>>>> 8c606af6cf... Squashes traitors under one path (#38332)
 	if(!owner.current||owner.current.stat==DEAD)
 		return
 	to_chat(owner.current, "<span class='userdanger'> Target eliminated: [victim.name]</span>")
@@ -198,7 +196,11 @@
 			to_chat(owner.current,"<span class='userdanger'> All the other agents are dead, and you're the last loose end. Stage a Syndicate terrorist attack to cover up for today's events. You no longer have any limits on collateral damage.</span>")
 		replace_escape_objective(owner)
 
+<<<<<<< HEAD
 /datum/antagonist/traitor/proc/iaa_process()
+=======
+/datum/antagonist/traitor/internal_affairs/proc/iaa_process()
+>>>>>>> 8c606af6cf... Squashes traitors under one path (#38332)
 	if(owner&&owner.current&&owner.current.stat!=DEAD)
 		for(var/objective_ in owner.objectives)
 			if(!is_internal_objective(objective_))
@@ -225,9 +227,12 @@
 					to_chat(owner.current, fail_msg)
 					objective.stolen = FALSE
 
+<<<<<<< HEAD
 /datum/antagonist/traitor/proc/forge_iaa_objectives()
+=======
+/datum/antagonist/traitor/internal_affairs/proc/forge_iaa_objectives()
+>>>>>>> 8c606af6cf... Squashes traitors under one path (#38332)
 	if(SSticker.mode.target_list.len && SSticker.mode.target_list[owner]) // Is a double agent
-
 		// Assassinate
 		var/datum/mind/target_mind = SSticker.mode.target_list[owner]
 		if(issilicon(target_mind.current))
@@ -249,17 +254,19 @@
 			special_role = TRAITOR_AGENT_ROLE
 			syndicate = TRUE
 			forge_single_objective()
-
 	else
 		..() // Give them standard objectives.
 	return
 
-/datum/antagonist/traitor/human/internal_affairs/forge_traitor_objectives()
+/datum/antagonist/traitor/internal_affairs/forge_traitor_objectives()
 	forge_iaa_objectives()
-	var/datum/objective/escape/escape_objective = new
+	
+	var/objtype = traitor_kind == TRAITOR_HUMAN ? /datum/objective/escape : /datum/objective/survive
+	var/datum/objective/escape_objective = new objtype
 	escape_objective.owner = owner
 	add_objective(escape_objective)
 
+<<<<<<< HEAD
 /datum/antagonist/traitor/AI/internal_affairs/forge_traitor_objectives()
 	forge_iaa_objectives()
 	var/datum/objective/survive/survive_objective = new
@@ -267,6 +274,9 @@
 	add_objective(survive_objective)
 
 /datum/antagonist/traitor/proc/greet_iaa()
+=======
+/datum/antagonist/traitor/internal_affairs/proc/greet_iaa()
+>>>>>>> 8c606af6cf... Squashes traitors under one path (#38332)
 	var/crime = pick("distribution of contraband" , "unauthorized erotic action on duty", "embezzlement", "piloting under the influence", "dereliction of duty", "syndicate collaboration", "mutiny", "multiple homicides", "corporate espionage", "recieving bribes", "malpractice", "worship of prohbited life forms", "possession of profane texts", "murder", "arson", "insulting their manager", "grand theft", "conspiracy", "attempting to unionize", "vandalism", "gross incompetence")
 
 	to_chat(owner.current, "<span class='userdanger'>You are the [special_role].</span>")
@@ -282,12 +292,8 @@
 	to_chat(owner.current, "<span class='userdanger'>Finally, watch your back. Your target has friends in high places, and intel suggests someone may have taken out a contract of their own to protect them.</span>")
 	owner.announce_objectives()
 
-/datum/antagonist/traitor/AI/internal_affairs/greet()
+/datum/antagonist/traitor/internal_affairs/greet()
 	greet_iaa()
-
-/datum/antagonist/traitor/human/internal_affairs/greet()
-	greet_iaa()
-
 
 #undef PROB_ACTUAL_TRAITOR
 #undef PINPOINTER_EXTRA_RANDOM_RANGE
