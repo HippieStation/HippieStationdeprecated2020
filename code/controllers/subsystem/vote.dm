@@ -329,6 +329,7 @@ SUBSYSTEM_DEF(vote)
 /datum/action/vote/IsAvailable()
 	return 1
 
+/*	Hippie version is being used instead
 /datum/action/vote/proc/remove_from_client()
 	if(owner.client)
 		owner.client.player_details.player_actions -= src
@@ -338,3 +339,4 @@ SUBSYSTEM_DEF(vote)
 			P.player_actions -= src
 	else
 		return
+*/	Hippie end

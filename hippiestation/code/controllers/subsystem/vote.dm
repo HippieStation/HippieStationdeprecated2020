@@ -235,3 +235,16 @@
 
 
 	return .
+
+/datum/action/vote/proc/remove_from_client()
+	if(owner)	//Fixes null.client runtimes
+		if(owner.client)
+			owner.client.player_details.player_actions -= src
+		else if(owner.ckey)
+			var/datum/player_details/P = GLOB.player_details[owner.ckey]
+			if(P)
+				P.player_actions -= src
+		else
+			return
+	else
+		return
