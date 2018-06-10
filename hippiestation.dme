@@ -2659,6 +2659,7 @@
 #include "hippiestation\code\controllers\subsystem\reagent_states.dm"
 #include "hippiestation\code\controllers\subsystem\throwing.dm"
 #include "hippiestation\code\controllers\subsystem\ticker.dm"
+#include "hippiestation\code\controllers\subsystem\vote.dm"
 #include "hippiestation\code\datums\action.dm"
 #include "hippiestation\code\datums\mind.dm"
 #include "hippiestation\code\datums\mutations.dm"

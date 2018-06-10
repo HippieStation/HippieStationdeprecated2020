@@ -44,6 +44,8 @@ SUBSYSTEM_DEF(vote)
 	voting.Cut()
 	remove_action_buttons()
 
+/* Hippie version is being used instead
+
 /datum/controller/subsystem/vote/proc/get_result()
 	//get the highest number of votes
 	var/greatest_votes = 0
@@ -79,6 +81,8 @@ SUBSYSTEM_DEF(vote)
 				. += option
 	return .
 
+*/	//Hippie end
+
 /datum/controller/subsystem/vote/proc/announce_result()
 	var/list/winners = get_result()
 	var/text
@@ -108,6 +112,8 @@ SUBSYSTEM_DEF(vote)
 	to_chat(world, "\n<font color='purple'>[text]</font>")
 	return .
 
+/* Hippie version is being used instead
+
 /datum/controller/subsystem/vote/proc/result()
 	. = announce_result()
 	var/restart = 0
@@ -130,17 +136,14 @@ SUBSYSTEM_DEF(vote)
 				active_admins = 1
 				break
 		if(!active_admins)
-			// Hippie Start - Call shuttle instead of restarting the server
-			//SSticker.Reboot("Restart vote successful.", "restart vote")
-			SSshuttle.emergencyNoRecall = TRUE
-			SSshuttle.emergency.request()
-			log_admin("The emergency shuttle has been force-called due to vote restart.")
-			// Hippie End
+			SSticker.Reboot("Restart vote successful.", "restart vote")
 		else
 			to_chat(world, "<span style='boldannounce'>Notice:Restart vote will not restart the server automatically because there are active admins on.</span>")
 			message_admins("A restart vote has passed, but there are active admins on with +server, so it has been canceled. If you wish, you may restart the server.")
 
 	return .
+
+*/	//Hippie end
 
 /datum/controller/subsystem/vote/proc/submit_vote(vote)
 	if(mode)
@@ -152,6 +155,8 @@ SUBSYSTEM_DEF(vote)
 				choices[choices[vote]]++	//check this
 				return vote
 	return 0
+
+/* Hippie version is being used instead
 
 /datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key)
 	if(!mode)
@@ -291,6 +296,8 @@ SUBSYSTEM_DEF(vote)
 		else
 			submit_vote(round(text2num(href_list["vote"])))
 	usr.vote()
+
+*/	//Hippie end
 
 /datum/controller/subsystem/vote/proc/remove_action_buttons()
 	for(var/v in generated_actions)
