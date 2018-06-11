@@ -244,7 +244,3 @@
 			var/datum/player_details/P = GLOB.player_details[owner.ckey]
 			if(P)
 				P.player_actions -= src
-		else
-			return
-	else
-		return
