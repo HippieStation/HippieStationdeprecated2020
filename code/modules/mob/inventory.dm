@@ -272,7 +272,7 @@
 /mob/proc/canUnEquip(obj/item/I, force)
 	if(!I)
 		return TRUE
-	if((I.flags_1 & NODROP) && !force)
+	if((I.item_flags & NODROP) && !force)
 		return FALSE
 	return TRUE
 
@@ -315,7 +315,7 @@
 	if(!newloc)	//Hippie change, added newloc generation so that forceMove no longer acts on null when working with human dummies
 		newloc = loc
 
-	if((I.flags_1 & NODROP_1) && !force)
+	if((I.item_flags & NODROP) && !force)
 		return FALSE
 
 	var/hand_index = get_held_index_of_item(I)
@@ -329,9 +329,11 @@
 		I.plane = initial(I.plane)
 		I.appearance_flags &= ~NO_CLIENT_COLOR
 		if(!no_move && !(I.item_flags & DROPDEL))	//item may be moved/qdel'd immedietely, don't bother moving it
-			if(newloc != null)	//Hippie change, added newloc check so forceMove doesn't act on null
+			if (isnull(newloc))
+				I.moveToNullspace()
+			else
 				I.forceMove(newloc)
-		I.dropped(src)	//Hippie change, changed src to newloc because otherwise forceMove still acts on null??
+		I.dropped(src)
 	return TRUE
 
 //Outdated but still in use apparently. This should at least be a human proc.
