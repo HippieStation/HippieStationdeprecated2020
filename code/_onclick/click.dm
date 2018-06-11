@@ -188,12 +188,31 @@
 /atom/proc/CanReachStorage(atom/target,user,depth)
 	return FALSE
 
+<<<<<<< HEAD
 /obj/item/storage/CanReachStorage(atom/target,user,depth)
 	while(target && depth > 0)
 		target = target.loc
 		depth--
 		if(target == src)
 			return TRUE
+=======
+			if (!target.loc)
+				continue
+			GET_COMPONENT_FROM(storage, /datum/component/storage, target.loc)
+			if (storage)
+				var/datum/component/storage/concrete/master = storage.master()
+				if (master)
+					next += master.parent
+					for(var/S in master.slaves)
+						var/datum/component/storage/slave = S
+						next += slave.parent
+				else
+					next += target.loc
+			else
+				next += target.loc
+
+		checking = next
+>>>>>>> 009a303651... Merge pull request #38377 from AutomaticFrenzy/patch/splash-runtime
 	return FALSE
 
 /atom/movable/proc/DirectAccess(atom/target)
