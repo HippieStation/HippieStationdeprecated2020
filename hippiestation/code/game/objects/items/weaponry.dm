@@ -128,13 +128,13 @@
 
 /obj/item/claymore/bone
 	name = "bone sword"
-	desc = "When a knife can't scratch that itch properly."
+	desc = "Strike fear into the heart of any enemy with this real goliath bone sword. This gorgeous but deadly weapon comes with a razor sharp battle ready blade that is complemented by a masterfully carved bone hilt."
 	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	icon_state = "bonesword"
 	item_state = "bonesword"
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
-	hitsound = 'sound/weapons/bladeslice.ogg'
-	force = 17
+	slot_flags = null
+	force = 16
 	throwforce = 10
 	block_chance = 10

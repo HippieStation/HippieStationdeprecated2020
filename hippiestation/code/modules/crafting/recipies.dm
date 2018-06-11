@@ -81,7 +81,6 @@
 /datum/crafting_recipe/bonesword
 	name = "Bone Sword"
 	result = /obj/item/claymore/bone
-	reqs = list(/obj/item/stack/sheet/bone = 9)
-	time = 100
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	reqs = list(/obj/item/stack/sheet/bone = 3)
+	time = 75
+	category = CAT_PRIMAL
