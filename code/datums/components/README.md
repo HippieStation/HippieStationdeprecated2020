@@ -26,7 +26,7 @@ Stands have a lot of procs which mimic mob procs. Rather than inserting hooks fo
 
 ### Defines
 
-1. `COMPONENT_INCOMPATIBLE` Return this from `/datum/component/Initialize` or `datum/component/OnTransfer` to have the component be deleted if it's applied to an incorrect type. `parent` must not be modified if this is to be returned.
+1. `COMPONENT_INCOMPATIBLE` Return this from `/datum/component/Initialize` or `datum/component/OnTransfer` to have the component be deleted if it's applied to an incorrect type. `parent` must not be modified if this is to be returned. This will be noted in the runtime logs
 
 ### Vars
 
@@ -50,6 +50,9 @@ Stands have a lot of procs which mimic mob procs. Rather than inserting hooks fo
 1. `/datum/component/var/datum/parent` (protected, read-only)
     * The datum this component belongs to
     * Never `null` in child procs
+1.	`report_signal_origin` (protected, boolean)
+	* If `TRUE`, will invoke the callback when signalled with the signal type as the first argument.
+	* `FALSE` by default.
 
 ### Procs
 

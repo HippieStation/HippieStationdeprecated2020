@@ -1,4 +1,5 @@
 /turf/open
+	plane = FLOOR_PLANE
 	var/slowdown = 0 //negative for faster, positive for slower
 
 	var/mutable_appearance/wet_overlay
@@ -16,6 +17,10 @@
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "floor"
+
+/turf/open/indestructible/Melt()
+	to_be_destroyed = FALSE
+	return src
 
 /turf/open/indestructible/TerraformTurf(path, defer_change = FALSE, ignore_air = FALSE)
 	return
@@ -70,6 +75,17 @@
 	name = "notebook floor"
 	desc = "A floor made of invulnerable notebook paper."
 	icon_state = "paperfloor"
+
+/turf/open/indestructible/binary
+	name = "tear in the fabric of reality"
+	CanAtmosPass = ATMOS_PASS_NO
+	baseturfs = /turf/open/indestructible/binary
+	icon_state = "binary"
+
+/turf/open/indestructible/airblock
+	icon_state = "bluespace"
+	CanAtmosPass = ATMOS_PASS_NO
+	baseturfs = /turf/open/indestructible/airblock
 
 /turf/open/indestructible/clock_spawn_room
 	name = "cogmetal"
@@ -159,7 +175,7 @@
 	for(var/obj/I in contents)
 		if(I.resistance_flags & FREEZE_PROOF)
 			return
-		if(!(I.flags_2 & FROZEN_2)) //let it go
+		if(!(I.obj_flags & FROZEN))
 			I.make_frozen_visual()
 	for(var/mob/living/L in contents)
 		if(L.bodytemperature <= 50)
@@ -195,20 +211,6 @@
 				return 0
 		if(!(lube&SLIDE_ICE))
 			to_chat(C, "<span class='notice'>You slipped[ O ? " on the [O.name]" : ""]!</span>")
-			// Hippie Start - custom sounds for slipping
-			var/slip_sound = 'sound/misc/slip.ogg'
-			if(prob(95))
-				if (O)
-					if (istype(O, /obj))
-						var/obj/Obj = O
-						if (Obj)
-							LAZYINITLIST(Obj.alternate_slip_sounds)
-							if (LAZYLEN(Obj.alternate_slip_sounds))
-								slip_sound = pick(Obj.alternate_slip_sounds)
-			else
-				slip_sound = 'hippiestation/sound/misc/oof.ogg'
-			playsound(C.loc, (slip_sound), 50, 1, -3)
-			// Hippie End
 			playsound(C.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 
 		C.SendSignal(COMSIG_ADD_MOOD_EVENT, "slipped", /datum/mood_event/slipped)

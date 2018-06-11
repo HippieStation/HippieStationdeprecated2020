@@ -9,7 +9,7 @@
 		user.put_in_hands(S)
 		to_chat(user, "<span class='notice'>You fasten the glass shard to the top of the rod with the cable.</span>")
 
-	else if(istype(I, /obj/item/device/assembly/igniter) && !(I.flags_1 & NODROP_1))
+	else if(istype(I, /obj/item/assembly/igniter) && !(I.item_flags & NODROP))
 		var/obj/item/melee/baton/cattleprod/hippie_cattleprod/P = new /obj/item/melee/baton/cattleprod/hippie_cattleprod
 
 		remove_item_from_storage(user)
@@ -54,7 +54,7 @@
 	item_state = "mounted_chainsaw"
 	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/chainsaw_righthand.dmi'
-	flags_1 = NODROP_1 | ABSTRACT_1 | DROPDEL_1
+	item_flags = NODROP | ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
 	force = 60
 	block_chance = 50
@@ -100,3 +100,28 @@
 /obj/item/pimpstick/suicide_act(mob/user)
 		user.visible_message("<span class='suicide'>[user] is hitting [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to discipline [user.p_them()]self for being a mark-ass trick.</span>")
 		return (BRUTELOSS)
+
+/obj/item/melee/baseball_bat
+	icon_hippie = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
+
+/obj/item/melee/baseball_bat/ablative
+	desc = "A smooth metal club used in baseball to hit the ball. Or to purify your adversaries."
+	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	icon_state = "hippie_bbat_metal"
+	item_state = "hippie_bbat_metal"
+	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
+
+/obj/item/melee/baseball_bat/spiked
+	name = "spiked baseball bat"
+	desc = "A wooden baseball bat with metal spikes crudely attached."
+	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	icon_state = "hippie_bbat_spike"
+	item_state = "hippie_bbat_spike"
+	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
+	force = 15 //for reference, normal bat has 10
+	throwforce = 15 // its got spikes sticking out of it - pre rebase comment :D
+	armour_penetration = 10

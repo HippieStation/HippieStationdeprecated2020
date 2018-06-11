@@ -59,6 +59,9 @@
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/stack/sheet/mineral/bananium(location)
 
+/datum/chemical_reaction/plastic_polymers
+	required_reagents = list("oil" = 5, "sodiumchloride" = 2, "ash" = 3)
+	required_temp = 330 //lowered required temp so that we don't get that damn stuff turning to charcoal instead
 
 /datum/chemical_reaction/plastic_polymers/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)

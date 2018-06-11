@@ -3,7 +3,7 @@
 	desc = "A vending machine for costumes."
 	icon_state = "theater"
 	icon_deny = "theater-deny"
-	req_access_txt = "46" //Theatre access needed, unless hacked.
+	req_access = list(ACCESS_THEATRE)
 	product_slogans = "Dress for success!;Suited and booted!;It's show time!;Why leave style up to fate? Use AutoDrobe!"
 	vend_reply = "Thank you for using AutoDrobe!"
 	products = list(/obj/item/clothing/suit/chickensuit = 1,
@@ -114,11 +114,11 @@
 		              /obj/item/clothing/mask/muzzle = 2)
 	premium = list(/obj/item/clothing/suit/pirate/captain = 2,
 		           /obj/item/clothing/head/pirate/captain = 2,
-		           /obj/item/clothing/head/helmet/roman = 1,
-		           /obj/item/clothing/head/helmet/roman/legionaire = 1,
+		           /obj/item/clothing/head/helmet/roman/fake = 1,
+		           /obj/item/clothing/head/helmet/roman/legionaire/fake = 1,
 		           /obj/item/clothing/under/roman = 1,
 		           /obj/item/clothing/shoes/roman = 1,
-		           /obj/item/shield/riot/roman = 1,
+		           /obj/item/shield/riot/roman/fake = 1,
 		           /obj/item/skub = 1)
 	refill_canister = /obj/item/vending_refill/autodrobe
 

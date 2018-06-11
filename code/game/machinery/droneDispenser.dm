@@ -8,7 +8,6 @@
 
 	icon = 'icons/obj/machines/droneDispenser.dmi'
 	icon_state = "on"
-	anchored = TRUE
 	density = TRUE
 
 	max_integrity = 250
@@ -51,7 +50,7 @@
 
 /obj/machinery/droneDispenser/Initialize()
 	. = ..()
-	var/datum/component/material_container/materials = AddComponent(/datum/component/material_container, list(MAT_METAL, MAT_GLASS), MINERAL_MATERIAL_AMOUNT * MAX_STACK_SIZE * 2, TRUE)
+	var/datum/component/material_container/materials = AddComponent(/datum/component/material_container, list(MAT_METAL, MAT_GLASS), MINERAL_MATERIAL_AMOUNT * MAX_STACK_SIZE * 2, TRUE, list(/obj/item/stack))
 	materials.insert_amount(starting_amount)
 	materials.precise_insertion = TRUE
 	using_materials = list(MAT_METAL=metal_cost, MAT_GLASS=glass_cost)
@@ -106,25 +105,6 @@
 	end_create_message = "slams open, revealing a hivebot!"
 	recharge_sound = null
 	recharge_message = null
-	var/static/list/hivebot_dispensable_types = list(/mob/living/simple_animal/hostile/hivebot, /mob/living/simple_animal/hostile/hivebot/range, /mob/living/simple_animal/hostile/hivebot/rapid)
-
-/obj/machinery/droneDispenser/hivebot/invasion
-	name = "invasion fabricator"
-	desc = "A huge machine designed to withstand intense pressures. It whirs with activity as steam hisses from vents in its sides."
-	production_time = 10
-	dispense_type = /mob/living/simple_animal/hostile/hivebot
-	work_sound = 'sound/machines/copier.ogg'
-	begin_create_message = "closes, humming and whirring..."
-	end_create_message = "slams open, revealing a hivebot!"
-	recharge_sound = null
-	recharge_message = null
-
-/obj/machinery/droneDispenser/hivebot/invasion/Dispense()
-	dispense_type = pick(hivebot_dispensable_types)
-	return ..()
-
-/obj/machinery/droneDispenser/hivebot/invasion/ex_act(severity)
-	return //hivebot don give a fuck about bombs
 
 /obj/machinery/droneDispenser/swarmer
 	name = "swarmer fabricator"
@@ -161,10 +141,6 @@
 		stat |= NOPOWER
 	update_icon()
 
-/obj/machinery/droneDispenser/proc/Dispense()
-	var/atom/A = new dispense_type(get_turf(src))
-	A.admin_spawned = admin_spawned
-
 /obj/machinery/droneDispenser/process()
 	..()
 	if((stat & (NOPOWER|BROKEN)) || !anchored)
@@ -195,8 +171,9 @@
 			materials.use_amount(using_materials)
 			if(power_used)
 				use_power(power_used)
-			
-			Dispense()
+
+			var/atom/A = new dispense_type(loc)
+			A.flags_1 |= (flags_1 & ADMIN_SPAWNED_1)
 
 			if(create_sound)
 				playsound(src, create_sound, 50, 1)

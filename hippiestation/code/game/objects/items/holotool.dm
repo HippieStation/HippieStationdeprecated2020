@@ -20,7 +20,7 @@
 	WR.name = namee
 	WR.usesound = usesound //use the same sound as we do
 	WR.toolspeed = 0.55
-	WR.flags_1 = NODROP_1
+	WR.item_flags = NODROP
 
 /obj/item/holotool/proc/AddTools()
 	AddTool(/obj/item/wrench, "holo-wrench")
@@ -28,7 +28,7 @@
 	AddTool(/obj/item/wirecutters, "holo-wirecutters")
 	AddTool(/obj/item/weldingtool/largetank, "holo-welder")
 	AddTool(/obj/item/crowbar, "holo-crowbar")
-	AddTool(/obj/item/device/multitool, "holo-multitool")
+	AddTool(/obj/item/multitool, "holo-multitool")
 
 /obj/item/holotool/Initialize()
 	. = ..()
@@ -46,6 +46,7 @@
 		if(!chosen)
 			return
 		current_tool = chosen
+		tool_behaviour = current_tool.tool_behaviour
 		playsound(loc, 'sound/items/rped.ogg', get_clamped_volume(), 1, -1)
 		update_icons()
 	else
@@ -97,7 +98,7 @@
 /obj/item/holoknife
 	name = "holo-knife"
 	force = 5
-	flags_1 = NODROP_1
+	item_flags = NODROP
 	armour_penetration = 10
 	sharpness = IS_SHARP
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")

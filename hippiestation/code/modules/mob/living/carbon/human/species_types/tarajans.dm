@@ -4,7 +4,8 @@
 	say_mod = "meows"
 	blacklisted = 0
 	sexes = 1
-	species_traits = list(SPECIES_ORGANIC,MUTCOLORS,EYECOLOR,NOTRANSSTING)
+	species_traits = list(MUTCOLORS,EYECOLOR,NOTRANSSTING)
+	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
