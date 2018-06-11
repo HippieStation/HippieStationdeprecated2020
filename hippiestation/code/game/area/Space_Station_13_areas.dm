@@ -28,3 +28,43 @@
 /area/maintenance/forge
 	name = "Forge room"
 	icon_state = "red"
+
+/area/engine/port_engineering
+	name = "Port Engineering"
+	icon_state = "green"
+
+/area/teleporter/asteroidstation/arrivals
+	name = "Arrivals Teleporter Room"
+	icon_state = "teleporter"
+	music = "signal"
+	ambientsounds = ENGINEERING
+
+/area/teleporter/asteroidstation/bridge
+	name = "Bridge & Escape Teleporter Room"
+	icon_state = "teleporter"
+	music = "signal"
+	ambientsounds = ENGINEERING
+
+/area/teleporter/asteroidstation/engineering
+	name = "Engineering Teleporter Room"
+	icon_state = "teleporter"
+	music = "signal"
+	ambientsounds = ENGINEERING
+
+/area/teleporter/asteroidstation/medical
+	name = "Medical Teleporter Room"
+	icon_state = "teleporter"
+	music = "signal"
+	ambientsounds = ENGINEERING
+
+/area/teleporter/asteroidstation/science
+	name = "Science Teleporter Room"
+	icon_state = "teleporter"
+	music = "signal"
+	ambientsounds = ENGINEERING
+
+/area/teleporter/asteroidstation/security
+	name = "Security Teleporter Room"
+	icon_state = "teleporter"
+	music = "signal"
+	ambientsounds = ENGINEERING
