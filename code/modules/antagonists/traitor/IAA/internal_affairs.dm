@@ -13,14 +13,6 @@
 	name = "Internal Affairs Agent"
 	antagpanel_category = "IAA"
 
-<<<<<<< HEAD
-/datum/antagonist/traitor/AI/internal_affairs
-	name = "Internal Affairs Agent"
-	employer = "Nanotrasen"
-	special_role = "internal affairs agent"
-	antagpanel_category = "IAA"
-=======
->>>>>>> 8c606af6cf... Squashes traitors under one path (#38332)
 
 /datum/antagonist/traitor/internal_affairs
 	name = "Internal Affairs Agent"
