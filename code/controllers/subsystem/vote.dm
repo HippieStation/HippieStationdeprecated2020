@@ -339,4 +339,4 @@ SUBSYSTEM_DEF(vote)
 			P.player_actions -= src
 	else
 		return
-*/	Hippie end
+*/	//Hippie end
