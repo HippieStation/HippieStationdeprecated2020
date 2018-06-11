@@ -11,12 +11,15 @@
 
 /datum/antagonist/traitor/internal_affairs
 	name = "Internal Affairs Agent"
+<<<<<<< HEAD
 	human_datum = /datum/antagonist/traitor/human/internal_affairs
 	ai_datum = /datum/antagonist/traitor/AI/internal_affairs
 	antagpanel_category = "IAA"
 
 /datum/antagonist/traitor/AI/internal_affairs
 	name = "Internal Affairs Agent"
+=======
+>>>>>>> 99f2d26b7d... Merge pull request #38424 from AnturK/iaafixup
 	employer = "Nanotrasen"
 	special_role = "internal affairs agent"
 	antagpanel_category = "IAA"
