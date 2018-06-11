@@ -11,6 +11,9 @@
 	var/initialized = FALSE //to prevent personalities deleting themselves while we wait for ghosts
 	var/mob/living/split_personality/stranger_backseat //there's two so they can swap without overwriting
 	var/mob/living/split_personality/owner_backseat
+	var/mutemessage = FALSE	//Hippie add, to stop the personality swap message from being displayed twice
+	var/owner_active = TRUE	//Hippie add, this will stop owner backseat getting deleted when they are controlling the body
+	var/stranger_active = FALSE	//Hippie add, this will stop stranger backseat getting deleted when they are controlling the body
 
 /datum/brain_trauma/severe/split_personality/on_gain()
 	..()
@@ -27,25 +30,45 @@
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
 		stranger_backseat.key = C.key
+		stranger_active = FALSE	//Hippie add
+		owner_active = FALSE	//Hippie add
+		addtimer(CALLBACK(src, .proc/switch_personalities), 20)			//Hippie add
 		log_game("[key_name(stranger_backseat)] became [key_name(owner)]'s split personality.")
-		message_admins("[ADMIN_LOOKUPFLW(stranger_backseat)] became [ADMIN_LOOKUPFLW(owner)]'s split personality.")
+		message_admins("[key_name_admin(stranger_backseat)] became [key_name_admin(owner)]'s split personality.")
+		addtimer(CALLBACK(src, .proc/set_flag), 30)	//Hippie change, change initialized to true with a timer so that our new ghost doesn't kick out the other guy immediately, or vice versa
 	else
-		qdel(src)
+		addtimer(CALLBACK(src, .proc/make_backseats), 580)	//Hippie change, added this here as we're deleting the seats to refresh everything again
+		addtimer(CALLBACK(src, .proc/get_ghost), 600)	//Hippie change, removed qdel and replaced with a timer for get_ghost so you don't lose this trauma if we cannot find a ghost
+		qdel(stranger_backseat)
+		qdel(owner_backseat)
+
+/datum/brain_trauma/severe/split_personality/proc/set_flag()	//Hippie change, this proc has been added so qdel in on_life isn't immediately called as soon as we get a ghost
+	initialized = TRUE
+
+/datum/brain_trauma/severe/split_personality/proc/delete_seats()	//Hippie change, added this proc so we can add delay between our seats being swapped and deleted in on_life
+	qdel(stranger_backseat)
+	qdel(owner_backseat)	//The personality keeps the body if the owner decides to ghost for some reason... but look out, you're going to get a new personality soon!!!
+	addtimer(CALLBACK(src, .proc/make_backseats), 580)	//Hippie change, added qdel on backseats and added a timer for make new backseats so the get_ghost's vote can properly be initiated, otherwise it freaks out and doesn't go through if someone ghosts
+	addtimer(CALLBACK(src, .proc/get_ghost), 600)	//Hippie change, removed qdel and replaced with a timer for get_ghost so you don't lose this trauma if we cannot find a ghost
 
 /datum/brain_trauma/severe/split_personality/on_life()
-	if(owner.stat == DEAD)
-		if(current_controller != OWNER)
+	if(owner_backseat && stranger_backseat)
+		if(!stranger_backseat.client && !stranger_active && initialized)	//Hippie change, added this check for when the stranger is absent, we delete their seat and swap the controller to owner
+			qdel(stranger_backseat)
+			addtimer(CALLBACK(src, .proc/delete_seats), 1)
+			initialized = FALSE
+		if(!owner_backseat.client && !owner_active && initialized)	//Hippie change, added this check for when the owner is absent, we delete their seat and swap the controller to owner
+			qdel(owner_backseat)
+			addtimer(CALLBACK(src, .proc/delete_seats), 1)
+			initialized = FALSE
+		else if(prob(3) && initialized || !owner.client)	//Hippie add, added owner.client check so someone gets put in control as soon as a ghost comes in, when they come in, both ghosts do not have control
 			switch_personalities()
-		qdel(src)
-	else if(prob(3))
-		switch_personalities()
-	..()
 
 /datum/brain_trauma/severe/split_personality/on_lose()
 	if(current_controller != OWNER) //it would be funny to cure a guy only to be left with the other personality, but it seems too cruel
 		switch_personalities()
-	QDEL_NULL(stranger_backseat)
-	QDEL_NULL(owner_backseat)
+	qdel(stranger_backseat)
+	qdel(owner_backseat)
 	..()
 
 /datum/brain_trauma/severe/split_personality/proc/switch_personalities()
@@ -57,9 +80,13 @@
 	if(current_controller == OWNER)
 		current_backseat = stranger_backseat
 		free_backseat = owner_backseat
+		stranger_active = TRUE	//Hippie add
+		owner_active = FALSE	//Hippie add
 	else
 		current_backseat = owner_backseat
 		free_backseat = stranger_backseat
+		stranger_active = FALSE	//Hippie add
+		owner_active = TRUE		//Hippie add
 
 	log_game("[key_name(current_backseat)] assumed control of [key_name(owner)] due to [src]. (Original owner: [current_controller == OWNER ? owner.ckey : current_backseat.ckey])")
 	to_chat(owner, "<span class='userdanger'>You feel your control being taken away... your other personality is in charge now!</span>")
@@ -103,7 +130,6 @@
 
 	current_controller = !current_controller
 
-
 /mob/living/split_personality
 	name = "split personality"
 	real_name = "unknown conscience"
@@ -111,25 +137,22 @@
 	var/datum/brain_trauma/severe/split_personality/trauma
 
 /mob/living/split_personality/Initialize(mapload, _trauma)
+	..()
 	if(iscarbon(loc))
 		body = loc
 		name = body.real_name
 		real_name = body.real_name
 		trauma = _trauma
-	return ..()
 
 /mob/living/split_personality/Life()
 	if(QDELETED(body))
 		qdel(src) //in case trauma deletion doesn't already do it
 
-	if((body.stat == DEAD && trauma.owner_backseat == src))
-		trauma.switch_personalities()
-		qdel(trauma)
+
+	//Hippie change, removed body.stat check qdeleting the split personality because it still glitches otherwise
 
 	//if one of the two ghosts, the other one stays permanently
-	if(!body.client && trauma.initialized)
-		trauma.switch_personalities()
-		qdel(trauma)
+	//Hippie change, removed the !body.client check as we're managing it up above
 
 	..()
 
@@ -186,7 +209,7 @@
 		var/mob/dead/observer/C = pick(candidates)
 		stranger_backseat.key = C.key
 	else
-		qdel(src)
+		addtimer(CALLBACK(src, .proc/get_ghost), 600)	//Hippie change, removed qdel and replaced with a timer for get_ghost so you don't lose brainwashing if we cannot find a ghost
 
 /datum/brain_trauma/severe/split_personality/brainwashing/on_life()
 	return //no random switching
