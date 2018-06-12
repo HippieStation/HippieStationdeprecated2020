@@ -20,7 +20,7 @@
 	WR.name = namee
 	WR.usesound = usesound //use the same sound as we do
 	WR.toolspeed = 0.55
-	WR.flags_1 = NODROP_1
+	WR.item_flags = NODROP
 
 /obj/item/holotool/proc/AddTools()
 	AddTool(/obj/item/wrench, "holo-wrench")
@@ -98,7 +98,7 @@
 /obj/item/holoknife
 	name = "holo-knife"
 	force = 5
-	flags_1 = NODROP_1
+	item_flags = NODROP
 	armour_penetration = 10
 	sharpness = IS_SHARP
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")

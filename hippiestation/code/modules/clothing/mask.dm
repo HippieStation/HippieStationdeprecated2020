@@ -7,7 +7,8 @@
 	icon_state = "cluwne"
 	item_state = "cluwne"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	flags_1 = NODROP_1 | MASKINTERNALS | DROPDEL_1
+	flags_1 = MASKINTERNALS
+	item_flags = ABSTRACT | NODROP | DROPDEL
 	flags_inv = HIDEEARS|HIDEEYES
 
 /obj/item/clothing/mask/hippie/cluwne/equipped(mob/user, slot)

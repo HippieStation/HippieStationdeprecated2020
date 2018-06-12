@@ -46,7 +46,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	. = ..()
 	access_card = new /obj/item/card/id(src)
 	access_card.access = get_all_accesses()//THERE IS NO ESCAPE
-	access_card.flags_1 |= NODROP_1
+	access_card.item_flags |= NODROP
 	invalid_area_typecache = typecacheof(invalid_area_typecache)
 	Manifest()
 	if(!current_victim)

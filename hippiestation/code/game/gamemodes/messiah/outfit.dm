@@ -48,7 +48,7 @@
 
 /obj/item/clothing/head/hippie/halo/spacejesus
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
-	flags_1 = NODROP_1
+	item_flags = NODROP
 
 /obj/item/clothing/suit/hippie/jesus
 	name = "Messiah Robes"
@@ -58,15 +58,15 @@
 
 /obj/item/clothing/suit/hippie/jesus/spacejesus
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
-	flags_1 = NODROP_1
+	item_flags = NODROP
 
 /obj/item/clothing/under/rank/chef/spacejesus
 	name = "Sacred Jumpsuit"
 	desc = "It seems very holy."
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
-	flags_1 = NODROP_1
+	item_flags = NODROP
 
 /obj/item/clothing/shoes/sandal/spacejesus
 	name = "Holy Sandals"
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
-	flags_1 = NODROP_1
+	item_flags = NODROP

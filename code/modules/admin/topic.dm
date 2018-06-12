@@ -896,6 +896,19 @@
 		else
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=alien;jobban4=[REF(M)]'>Alien</a></td>"
 
+		//Hippie Start - Catban
+		if(jobban_isbanned(M, CATBAN) || isbanned_dept)
+			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=catban;jobban4=[REF(M)]'><font color=red>Catbanned</font></a></td>"
+		else
+			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=catban;jobban4=[REF(M)]'>Catban</a></td>"
+
+		//Hippie - Cluwneban
+		if(jobban_isbanned(M, CLUWNEBAN) || isbanned_dept)
+			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=cluwneban;jobban4=[REF(M)]'><font color=red>Cluwnebanned</font></a></td>"
+		else
+			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=cluwneban;jobban4=[REF(M)]'>Cluwneban</a></td>"
+//Hippie end
+
 		dat += "</tr></table>"
 		usr << browse(dat, "window=jobban2;size=800x450")
 		return
@@ -1906,7 +1919,7 @@
 			to_chat(usr, "This can only be used on instances of type /mob.")
 			return
 
-		show_individual_logging_panel(M, href_list["log_type"])
+		show_individual_logging_panel(M, href_list["log_src"], href_list["log_type"])
 	else if(href_list["languagemenu"])
 		if(!check_rights(R_ADMIN))
 			return
@@ -2015,10 +2028,9 @@
 		var/X = offset.len > 0 ? text2num(offset[1]) : 0
 		var/Y = offset.len > 1 ? text2num(offset[2]) : 0
 		var/Z = offset.len > 2 ? text2num(offset[3]) : 0
-		var/tmp_dir = href_list["object_dir"]
-		var/obj_dir = tmp_dir ? text2num(tmp_dir) : 2
-		if(!obj_dir || !(obj_dir in list(1,2,4,8,5,6,9,10)))
-			obj_dir = 2
+		var/obj_dir = text2num(href_list["object_dir"])
+		if(obj_dir && !(obj_dir in list(1,2,4,8,5,6,9,10)))
+			obj_dir = null
 		var/obj_name = sanitize(href_list["object_name"])
 
 
@@ -2061,9 +2073,10 @@
 							N.name = obj_name
 					else
 						var/atom/O = new path(target)
-						if(O)
-							O.admin_spawned = TRUE
-							O.setDir(obj_dir)
+						if(!QDELETED(O))
+							O.flags_1 |= ADMIN_SPAWNED_1
+							if(obj_dir)
+								O.setDir(obj_dir)
 							if(obj_name)
 								O.name = obj_name
 								if(ismob(O))

@@ -8,7 +8,6 @@
 	name = "turret"
 	icon = 'icons/obj/turrets.dmi'
 	icon_state = "turretCover"
-	anchored = TRUE
 	layer = OBJ_LAYER
 	invisibility = INVISIBILITY_OBSERVER	//the turret is invisible if it's inside its cover
 	density = TRUE
@@ -20,9 +19,6 @@
 	power_channel = EQUIP	//drains power from the EQUIPMENT channel
 
 	var/base_icon_state = "standard"
-
-	var/emp_vunerable = TRUE // Can be empd
-
 	var/scan_range = 7
 	var/atom/base = null //for turrets inside other objects
 
@@ -80,6 +76,9 @@
 	var/datum/action/turret_quit/quit_action
 	var/datum/action/turret_toggle/toggle_action
 	var/mob/remote_controller
+
+	var/lastdamage_time //Hippie code to override timer
+	var/reset_time = 60 //Hippie code
 
 /obj/machinery/porta_turret/Initialize()
 	. = ..()
@@ -307,7 +306,10 @@
 
 
 /obj/machinery/porta_turret/emp_act(severity)
-	if(on && emp_vunerable)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
+	if(on)
 		//if the turret is on, the EMP no matter how severe disables the turret for a while
 		//and scrambles its settings, with a slight chance of having an emag effect
 		check_records = pick(0, 1)
@@ -322,19 +324,14 @@
 			if(!on)
 				on = TRUE
 
-	..()
-
 /obj/machinery/porta_turret/take_damage(damage, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
 	. = ..()
-	if(.) //damage received
+	if(. && src && !QDELETED(src)) //damage received. Hippie code
 		if(prob(30))
 			spark_system.start()
 		if(on && !attacked && !(obj_flags & EMAGGED))
 			attacked = TRUE
-			addtimer(CALLBACK(src, .proc/reset_attacked), 60)
-
-/obj/machinery/porta_turret/proc/reset_attacked()
-	attacked = FALSE
+			lastdamage_time = world.time + reset_time //Hippie code
 
 /obj/machinery/porta_turret/deconstruct(disassembled = TRUE)
 	qdel(src)
@@ -414,6 +411,11 @@
 		tryToShootAt(targets)
 	else if(!always_up)
 		popDown() // no valid targets, close the cover
+
+	//Hippie code reset the attack timer after 6 seconds
+	if(attacked && world.time > lastdamage_time)
+		attacked = FALSE
+
 
 /obj/machinery/porta_turret/proc/tryToShootAt(list/atom/movable/targets)
 	while(targets.len > 0)
@@ -646,8 +648,11 @@
 	icon_state = "syndie_off"
 	base_icon_state = "syndie"
 	faction = list(ROLE_SYNDICATE)
-	emp_vunerable = 0
 	desc = "A ballistic machine gun auto-turret."
+
+/obj/machinery/porta_turret/syndicate/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
 
 /obj/machinery/porta_turret/syndicate/energy
 	icon_state = "standard_stun"
@@ -723,8 +728,11 @@
 	icon_state = "syndie_off"
 	base_icon_state = "syndie"
 	faction = list("neutral","silicon","turret")
-	emp_vunerable = 0
 	mode = TURRET_LETHAL
+
+/obj/machinery/porta_turret/centcom_shuttle/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/empprotection, EMP_PROTECT_SELF | EMP_PROTECT_WIRES)
 
 /obj/machinery/porta_turret/centcom_shuttle/assess_perp(mob/living/carbon/human/perp)
 	return 0
@@ -750,7 +758,6 @@
 	desc = "Used to control a room's automated defenses."
 	icon = 'icons/obj/machines/turret_control.dmi'
 	icon_state = "control_standby"
-	anchored = TRUE
 	density = FALSE
 	var/enabled = 1
 	var/lethal = 0
