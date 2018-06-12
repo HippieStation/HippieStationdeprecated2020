@@ -18,6 +18,9 @@
 /obj/item/crowbar
 	toolspeed = 0
 
+/obj/item/crowbar/syndicate
+	toolspeed = 0
+
 /obj/item/crowbar/brass
 	toolspeed = 0
 
@@ -50,6 +53,9 @@
 /obj/item/screwdriver/cyborg
 	toolspeed = 0
 
+/obj/item/screwdriver/nuke
+	toolspeed = 0
+
 //wrench
 
 /obj/item/wrench
@@ -62,6 +68,9 @@
 	toolspeed = 0
 
 /obj/item/wrench/power
+	toolspeed = 0
+
+/obj/item/wrench/syndicate
 	toolspeed = 0
 
 //wirecutter
@@ -79,4 +88,7 @@
 	toolspeed = 0
 
 /obj/item/wirecutters/power
+	toolspeed = 0
+
+/obj/item/wirecutters/syndicate
 	toolspeed = 0
