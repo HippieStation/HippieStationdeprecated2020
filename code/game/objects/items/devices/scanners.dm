@@ -111,7 +111,7 @@ GAS ANALYZER
 	add_fingerprint(user)
 
 
-/*	Disabled for our Hippie version of the medical scanner, otherwise this one overrides our version
+/*	Hippie start, overriding medical scanner to change descriptions & fix a typo
 
 // Used by the PDA medical scanner too
 /proc/healthscan(mob/user, mob/living/M, mode = 1, advanced = FALSE)
@@ -303,7 +303,7 @@ GAS ANALYZER
 			to_chat(user, "<span class='notice'>Detected cybernetic modifications:</span>")
 			to_chat(user, "<span class='notice'>[cyberimp_detect]</span>")
 
-*/
+*/	//Hippie end
 
 /proc/chemscan(mob/living/user, mob/living/M)
 	if(istype(M))
