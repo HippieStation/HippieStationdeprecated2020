@@ -51,7 +51,7 @@
 	icon_state = "tape"
 	item_state = "tape"
 	amount = 15
-	flags_1 = NOBLUDGEON_1
+	item_flags = NOBLUDGEON
 	max_amount = 15
 	throwforce = 0
 	w_class = 2.0

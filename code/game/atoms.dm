@@ -6,7 +6,6 @@
 	var/flags_1 = NONE
 	var/interaction_flags_atom = NONE
 	var/container_type = NONE
-	var/admin_spawned = 0	//was this spawned by an admin? used for stat tracking stuff.
 	var/datum/reagents/reagents = null
 
 	//This atom's HUD (med/sec, etc) images. Associative list.
@@ -19,14 +18,16 @@
 
 	var/list/atom_colours	 //used to store the different colors on an atom
 							//its inherent color, the colored paint applied on it, special color effect etc...
-	var/initialized = FALSE
 
-	var/list/our_overlays	//our local copy of (non-priority) overlays without byond magic. Use procs in SSoverlays to manipulate
 	var/list/priority_overlays	//overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
+	var/list/remove_overlays // a very temporary list of overlays to remove
+	var/list/add_overlays // a very temporary list of overlays to add
 
 	var/datum/proximity_monitor/proximity_monitor
 	var/buckle_message_cooldown = 0
 	var/fingerprintslast
+
+	var/list/filter_data //For handling persistent filters
 
 /atom/New(loc, ...)
 	//atom creation method that preloads variables at creation
@@ -59,9 +60,9 @@
 // /turf/open/space/Initialize
 
 /atom/proc/Initialize(mapload, ...)
-	if(initialized)
+	if(flags_1 & INITIALIZED_1)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
-	initialized = TRUE
+	flags_1 |= INITIALIZED_1
 
 	//atom color stuff
 	if(color)
@@ -221,9 +222,10 @@
 	return
 
 /atom/proc/emp_act(severity)
-	SendSignal(COMSIG_ATOM_EMP_ACT, severity)
-	if(istype(wires) && !(flags_1 & NO_EMP_WIRES_1))
+	var/protection = SendSignal(COMSIG_ATOM_EMP_ACT, severity)
+	if(!(protection & EMP_PROTECT_WIRES) && istype(wires))
 		wires.emp_pulse()
+	return protection // Pass the protection value collected here upwards
 
 /atom/proc/bullet_act(obj/item/projectile/P, def_zone)
 	SendSignal(COMSIG_ATOM_BULLET_ACT, P, def_zone)
@@ -426,23 +428,6 @@
 /atom/proc/update_remote_sight(mob/living/user)
 	return
 
-/atom/proc/add_vomit_floor(mob/living/carbon/M, toxvomit = 0)
-	if(isturf(src))
-		var/obj/effect/decal/cleanable/vomit/V = new /obj/effect/decal/cleanable/vomit(src, M.get_static_viruses())
-		// Make toxins vomit look different
-		if(toxvomit)
-			V.icon_state = "vomittox_[pick(1,4)]"
-		if(M.reagents)
-			clear_reagents_to_vomit_pool(M,V)
-
-/atom/proc/clear_reagents_to_vomit_pool(mob/living/carbon/M, obj/effect/decal/cleanable/vomit/V)
-	M.reagents.trans_to(V, M.reagents.total_volume / 10)
-	for(var/datum/reagent/R in M.reagents.reagent_list)                //clears the stomach of anything that might be digested as food
-		if(istype(R, /datum/reagent/consumable))
-			var/datum/reagent/consumable/nutri_check = R
-			if(nutri_check.nutriment_factor >0)
-				M.reagents.remove_reagent(R.id,R.volume)
-
 
 //Hook for running code when a dir change occurs
 /atom/proc/setDir(newdir)
@@ -517,7 +502,7 @@
 
 /atom/vv_edit_var(var_name, var_value)
 	if(!GLOB.Debug2)
-		admin_spawned = TRUE
+		flags_1 |= ADMIN_SPAWNED_1
 	. = ..()
 	switch(var_name)
 		if("color")
@@ -566,6 +551,8 @@
 			return wirecutter_act(user, I)
 		if(TOOL_WELDER)
 			return welder_act(user, I)
+		if(TOOL_ANALYZER)
+			return analyzer_act(user, I)
 
 // Tool-specific behavior procs. To be overridden in subtypes.
 /atom/proc/crowbar_act(mob/living/user, obj/item/I)
@@ -586,5 +573,30 @@
 /atom/proc/welder_act(mob/living/user, obj/item/I)
 	return
 
+/atom/proc/analyzer_act(mob/living/user, obj/item/I)
+	return
+
 /atom/proc/GenerateTag()
 	return
+
+// Filter stuff
+/atom/movable/proc/add_filter(name,priority,list/params)
+	if(!filter_data)
+		filter_data = list()
+	var/list/p = params.Copy()
+	p["priority"] = priority
+	filter_data[name] = p
+	update_filters()
+
+/atom/movable/proc/update_filters()
+	filters = null
+	sortTim(filter_data,associative = TRUE)
+	for(var/f in filter_data)
+		var/list/data = filter_data[f]
+		var/list/arguments = data.Copy()
+		arguments -= "priority"
+		filters += filter(arglist(arguments))
+
+/atom/movable/proc/get_filter(name)
+	if(filter_data && filter_data[name])
+		return filters[filter_data.Find(name)]

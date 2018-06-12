@@ -484,7 +484,8 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 		to_chat(owner, "<span class = 'notice'><b>You level up! Your new level is [current_level].</b></span>")
 
 /obj/item/clothing/mask/fakemoustache/italian/cursed //for those cheeky aliens who think they can circumvent hair
-	flags_1 = NODROP_1 | DROPDEL_1 | MASKINTERNALS
+	flags_1 = MASKINTERNALS
+	item_flags = NODROP | DROPDEL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	desc = "It's made out of your own hair, now."
 

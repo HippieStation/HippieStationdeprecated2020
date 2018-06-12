@@ -296,7 +296,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 /datum/species/proc/handle_hair(mob/living/carbon/human/H, forced_colour)
 	H.remove_overlay(HAIR_LAYER)
-
 	var/obj/item/bodypart/head/HD = H.get_bodypart(BODY_ZONE_HEAD)
 	if(!HD) //Decapitated
 		return
@@ -834,7 +833,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_L_STORE)
-			if(I.flags_1 & NODROP_1) //Pockets aren't visible, so you can't move NODROP_1 items into them.
+			if(I.item_flags & NODROP) //Pockets aren't visible, so you can't move NODROP_1 items into them.
 				return FALSE
 			if(H.l_store)
 				return FALSE
@@ -850,7 +849,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if( I.w_class <= WEIGHT_CLASS_SMALL || (I.slot_flags & ITEM_SLOT_POCKET) )
 				return TRUE
 		if(SLOT_R_STORE)
-			if(I.flags_1 & NODROP_1)
+			if(I.item_flags & NODROP)
 				return FALSE
 			if(H.r_store)
 				return FALSE
@@ -867,7 +866,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				return TRUE
 			return FALSE
 		if(SLOT_S_STORE)
-			if(I.flags_1 & NODROP_1)
+			if(I.item_flags & NODROP)
 				return FALSE
 			if(H.s_store)
 				return FALSE
@@ -1075,8 +1074,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(H.movement_type & FLYING)
 		flight = 1
 
-	if(H.has_gravity())
-		gravity = TRUE
+	gravity = H.has_gravity()
 
 	if(!flightpack && gravity)	//Check for chemicals and innate speedups and slowdowns if we're moving using our body and not a flying suit
 		if(H.has_trait(TRAIT_GOTTAGOFAST))
@@ -1123,6 +1121,15 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				. += (health_deficiency / 75)
 			else
 				. += (health_deficiency / 25)
+		if(CONFIG_GET(flag/disable_human_mood))
+			var/hungry = (500 - H.nutrition) / 5 //So overeat would be 100 and default level would be 80
+			if((hungry >= 70) && !flight) //Being hungry will still allow you to use a flightsuit/wings.
+				. += hungry / 50
+
+		//Moving in high gravity is very slow (Flying too)
+		if(gravity > STANDARD_GRAVITY)
+			var/grav_force = min(gravity - STANDARD_GRAVITY,3)
+			. += 1 + grav_force
 
 		GET_COMPONENT_FROM(mood, /datum/component/mood, H)
 		if(mood && !flight) //How can depression slow you down if you can just fly away from your problems?
@@ -1256,7 +1263,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				"<span class='userdanger'>[user] has pushed [target]!</span>", null, COMBAT_MESSAGE_RANGE)
 			target.apply_effect(40, EFFECT_KNOCKDOWN, target.run_armor_check(affecting, "melee", "Your armor prevents your fall!", "Your armor softens your fall!"))
 			target.forcesay(GLOB.hit_appends)
-			add_logs(user, target, "disarmed", " pushing them to the ground")
+			add_logs(user, target, "pushed over")
 			return
 
 		if(randn <= 60)
@@ -1279,7 +1286,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		playsound(target, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 		target.visible_message("<span class='danger'>[user] attempted to disarm [target]!</span>", \
 						"<span class='userdanger'>[user] attemped to disarm [target]!</span>", null, COMBAT_MESSAGE_RANGE)
-
+		add_logs(user, target, "attempted to disarm")
 
 
 /datum/species/proc/spec_hitby(atom/movable/AM, mob/living/carbon/human/H)

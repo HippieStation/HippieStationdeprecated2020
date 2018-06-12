@@ -18,6 +18,10 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "floor"
 
+/turf/open/indestructible/Melt()
+	to_be_destroyed = FALSE
+	return src
+
 /turf/open/indestructible/TerraformTurf(path, defer_change = FALSE, ignore_air = FALSE)
 	return
 
@@ -71,6 +75,17 @@
 	name = "notebook floor"
 	desc = "A floor made of invulnerable notebook paper."
 	icon_state = "paperfloor"
+
+/turf/open/indestructible/binary
+	name = "tear in the fabric of reality"
+	CanAtmosPass = ATMOS_PASS_NO
+	baseturfs = /turf/open/indestructible/binary
+	icon_state = "binary"
+
+/turf/open/indestructible/airblock
+	icon_state = "bluespace"
+	CanAtmosPass = ATMOS_PASS_NO
+	baseturfs = /turf/open/indestructible/airblock
 
 /turf/open/indestructible/clock_spawn_room
 	name = "cogmetal"

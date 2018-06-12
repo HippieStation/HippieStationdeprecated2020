@@ -58,17 +58,8 @@ If you create T5+ please take a pass at gene_modder.dm [L40]. Max_values MUST fi
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 
-/obj/item/storage/part_replacer/cyborg
-	name = "rapid part exchange device"
-	desc = "Special mechanical module made to store, sort, and apply standard machine parts."
-	icon_state = "borgrped"
-	item_state = "RPED"
-	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
-
-//Sorts stock parts inside an RPED by their rating.
 /proc/cmp_rped_sort(obj/item/A, obj/item/B)
-	return A.get_part_rating() - B.get_part_rating()
+	return B.get_part_rating() - A.get_part_rating()
 
 /obj/item/stock_parts
 	name = "stock part"

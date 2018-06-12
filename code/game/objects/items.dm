@@ -135,7 +135,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		stack_trace("Invalid type [embedding.type] found in .embedding during /obj/item Initialize()")
 
 /obj/item/Destroy()
-	flags_1 &= ~DROPDEL_1	//prevent reqdels
+	item_flags &= ~DROPDEL	//prevent reqdels
 	if(ismob(loc))
 		var/mob/m = loc
 		m.temporarilyRemoveItemFromInventory(src, TRUE)
@@ -202,11 +202,10 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			research_msg += sep
 			research_msg += node.display_name
 			sep = ", "
-	var/points = techweb_item_point_check(src)
-	if (points)
-		research_msg += sep
-		research_msg += "[points] points"
+	var/list/points = techweb_item_point_check(src)
+	if (length(points))
 		sep = ", "
+		research_msg += techweb_point_display_generic(points)
 
 	if (!sep) // nothing was shown
 		research_msg += "None"
@@ -275,6 +274,15 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 	if(!(interaction_flags_item & INTERACT_ITEM_ATTACK_HAND_PICKUP))		//See if we're supposed to auto pickup.
 		return
+
+	//Heavy gravity makes picking up things very slow.
+	var/grav = user.has_gravity()
+	if(grav > STANDARD_GRAVITY)
+		var/grav_power = min(3,grav - STANDARD_GRAVITY)
+		to_chat(user,"<span class='notice'>You start picking up [src]...</span>")
+		if(!do_mob(user,src,30*grav_power))
+			return
+
 
 	//If the item is in a storage item, take it out
 	loc.SendSignal(COMSIG_TRY_STORAGE_TAKE, src, user.loc, TRUE)
@@ -350,11 +358,11 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.Remove(user)
-	if(DROPDEL_1 & flags_1)
+	if(item_flags & DROPDEL)
 		qdel(src)
 	item_flags &= ~IN_INVENTORY
 	SendSignal(COMSIG_ITEM_DROPPED,user)
-	
+
 	// Hippie Start - Custom screams
 	if (iscarbon(user))
 		var/mob/living/carbon/C = user
@@ -384,6 +392,14 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(item_action_slot_check(slot, user)) //some items only give their actions buttons when in a specific slot.
 			A.Grant(user)
 	item_flags |= IN_INVENTORY
+
+	// Hippie Start - Custom screams
+	if (iscarbon(user))
+		var/mob/living/carbon/C = user
+		if (C)
+			C.reindex_screams()
+	// Hippie End
+
 
 //sometimes we only want to grant the item's action if it's equipped in a specific slot.
 /obj/item/proc/item_action_slot_check(slot, mob/user)
@@ -597,7 +613,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(success)
 			location = get_turf(M)
 	if(isturf(location))
-		location.hotspot_expose(flame_heat, 5)
+		location.hotspot_expose(flame_heat, 1)
 
 /obj/item/proc/ignition_effect(atom/A, mob/user)
 	if(is_hot())
@@ -780,4 +796,9 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			plane = initial(plane)
 			appearance_flags &= ~NO_CLIENT_COLOR
 			dropped(M)
+	return ..()
+
+/obj/item/throw_at(atom/target, range, speed, mob/thrower, spin=TRUE, diagonals_first = FALSE, var/datum/callback/callback)
+	if (item_flags & NODROP)
+		return
 	return ..()

@@ -8,11 +8,13 @@
 
 /datum/quirk/iron_butt/add()
 	var/mob/living/carbon/human/H = quirk_holder
-	H.lose_butt = 6
+	if(H)
+		H.lose_butt = 6
 
 /datum/quirk/iron_butt/remove()
 	var/mob/living/carbon/human/H = quirk_holder
-	H.lose_butt = initial(H.lose_butt)
+	if(H)
+		H.lose_butt = initial(H.lose_butt)
 
 /datum/quirk/volatile_butt
 	name = "Volatile Butt"
@@ -23,12 +25,14 @@
 
 /datum/quirk/volatile_butt/add()
 	var/mob/living/carbon/human/H = quirk_holder
-	H.super_fart = 64
-	H.super_nova_fart = 18
-	H.fart_fly = 18
+	if(H)
+		H.super_fart = 64
+		H.super_nova_fart = 18
+		H.fart_fly = 18
 
 /datum/quirk/volatile_butt/remove()
 	var/mob/living/carbon/human/H = quirk_holder
-	H.super_fart = initial(H.super_fart)
-	H.super_nova_fart = initial(H.super_nova_fart)
-	H.fart_fly = initial(H.fart_fly)
+	if(H)
+		H.super_fart = initial(H.super_fart)
+		H.super_nova_fart = initial(H.super_nova_fart)
+		H.fart_fly = initial(H.fart_fly)
