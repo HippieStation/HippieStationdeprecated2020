@@ -19,7 +19,7 @@
 	icon = 'hippiestation/icons/obj/tools.dmi'
 	icon_state = "welder_nuke"
 	max_fuel = 40
-	toolspeed = 0
+	toolspeed = 0.5
 
 /obj/item/weldingtool/syndicate/flamethrower_screwdriver()
 	return
