@@ -4,21 +4,15 @@
 #define PROB_ACTUAL_TRAITOR 20
 #define TRAITOR_AGENT_ROLE "Syndicate External Affairs Agent"
 
-/datum/antagonist/traitor/
-	var/syndicate = FALSE
-	var/last_man_standing = FALSE
-	var/list/datum/mind/targets_stolen
-
-/datum/antagonist/traitor/internal_affairs
-	name = "Internal Affairs Agent"
-	antagpanel_category = "IAA"
-
-
 /datum/antagonist/traitor/internal_affairs
 	name = "Internal Affairs Agent"
 	employer = "Nanotrasen"
 	special_role = "internal affairs agent"
 	antagpanel_category = "IAA"
+	var/syndicate = FALSE
+	var/last_man_standing = FALSE
+	var/list/datum/mind/targets_stolen
+
 
 /datum/antagonist/traitor/internal_affairs/proc/give_pinpointer()
 	if(owner && owner.current)
