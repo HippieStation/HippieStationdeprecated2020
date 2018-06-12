@@ -5000,10 +5000,6 @@
 	icon_state = "1-2"
 	},
 /obj/item/bedsheet/syndie,
-/obj/machinery/firealarm/partyalarm{
-	name = "\improper Sooka Blyat - Missionk Akkomblished!-buttonk";
-	pixel_x = 28
-	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/commiespy)
 "akZ" = (
