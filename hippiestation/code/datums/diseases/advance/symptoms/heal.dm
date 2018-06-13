@@ -25,6 +25,9 @@
 /datum/symptom/heal/water
 	level = 0
 
+/datum/symptom/heal/radiation
+	level = 0
+
 /datum/symptom/heal/plasma
 	stealth = 0
 	resistance = 3
@@ -32,8 +35,37 @@
 	transmittable = -2
 	level = 6
 
-/datum/symptom/heal/radiation
-	level = 0
+/datum/symptom/heal/plasma/Heal(mob/living/carbon/M, datum/disease/advance/A, actual_power)
+	var/heal_amt = 4 * actual_power
+
+	if(M.fire_stacks > 0)	//New hippie add, otherwise you die from plasma fires even if you're doing the suck on the plasma
+		actual_power = actual_power + (M.fire_stacks*0.75)
+	else
+		actual_power = initial(actual_power)
+
+	if(prob(5))
+		to_chat(M, "<span class='notice'>You feel yourself absorbing plasma inside and around you...</span>")
+
+	if(M.bodytemperature > BODYTEMP_NORMAL)
+		M.adjust_bodytemperature(-20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT,BODYTEMP_NORMAL)
+		if(prob(5))
+			to_chat(M, "<span class='notice'>You feel less hot.</span>")
+	else if(M.bodytemperature < (BODYTEMP_NORMAL + 1))
+		M.adjust_bodytemperature(20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT,0,BODYTEMP_NORMAL)
+		if(prob(5))
+			to_chat(M, "<span class='notice'>You feel warmer.</span>")
+
+	M.adjustToxLoss(-heal_amt)
+
+	var/list/parts = M.get_damaged_bodyparts(1,1)
+	if(!parts.len)
+		return
+	if(prob(5))
+		to_chat(M, "<span class='notice'>The pain from your wounds fades rapidly.</span>")
+	for(var/obj/item/bodypart/L in parts)
+		if(L.heal_damage(heal_amt/parts.len, heal_amt/parts.len))
+			M.update_damage_overlays()
+	return TRUE
 
 /datum/symptom/heal/toxin
 	name = "Toxic Filter"
@@ -63,6 +95,7 @@
 	stage_speed = -2
 	transmittable = -2
 	level = 6
+	threshold_desc = ""
 
 /datum/symptom/heal/supertoxin/Heal(mob/living/M, datum/disease/advance/A)
 	var/heal_amt = 4
@@ -164,20 +197,23 @@
 	stage_speed = -2
 	transmittable = -2
 	level = 4
+	threshold_desc = ""
+	var/temp_rate = 4
 
 /datum/symptom/heal/heatresistance/Heal(mob/living/carbon/M, datum/disease/advance/A)
 	var/heal_amt = 4 * power
 
 	var/list/parts = M.get_damaged_bodyparts(1,1) //1,1 because it needs inputs.
 
-	if(M.bodytemperature > 310)
-		M.bodytemperature = max(310, M.bodytemperature - (10 * heal_amt * TEMPERATURE_DAMAGE_COEFFICIENT))
-	else if(M.bodytemperature < 311)
-		M.bodytemperature = min(310, M.bodytemperature + (10 * heal_amt * TEMPERATURE_DAMAGE_COEFFICIENT))
+	if(M.fire_stacks > 0)
+		power = power + (M.fire_stacks*0.75)
+	else
+		power = initial(power)
 
-	if(!parts.len)
-		return
-
+	if(M.bodytemperature > BODYTEMP_NORMAL)	//Shamelessly stolen from plasma fixation, whew lad
+		M.adjust_bodytemperature(-20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT,BODYTEMP_NORMAL)
+	else if(M.bodytemperature < (BODYTEMP_NORMAL + 1))
+		M.adjust_bodytemperature(20 * temp_rate * TEMPERATURE_DAMAGE_COEFFICIENT,0,BODYTEMP_NORMAL)
 	for(var/obj/item/bodypart/L in parts)
 		if(L.heal_damage(0, heal_amt/parts.len))
 			M.update_damage_overlays()
@@ -192,11 +228,11 @@
 	stage_speed = 0
 	transmittable = -1
 	level = 5
-	threshold_desc = "<b>Stage Speed 6:</b> Additionally heals brain damage."
+	threshold_desc = "<b>Resistance 6:</b> Additionally heals brain damage."
 	var/healing_brain = FALSE
 
 /datum/symptom/heal/dna/Start(datum/disease/advance/A)
-	if(A.properties["stage_rate"] >= 6) //stronger healing
+	if(A.properties["resistance"] >= 6) //stronger healing
 		healing_brain = TRUE
 
 

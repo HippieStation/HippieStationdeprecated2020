@@ -60,4 +60,5 @@
 	return ..()
 
 obj/item/clothing/mask/spurdo/cursed
-	flags_1 = NODROP_1 | MASKINTERNALS
+	flags_1 =  MASKINTERNALS
+	item_flags = NODROP

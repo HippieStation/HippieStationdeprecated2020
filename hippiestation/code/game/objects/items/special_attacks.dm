@@ -77,7 +77,7 @@
 		user.visible_message("<span class='danger'>[user] begins to flail around wildly!</span>")
 		user.confused += 200
 		src.block_chance = 100
-		src.flags_1 |= NODROP_1
+		src.item_flags = NODROP
 		src.SpinAnimation(15, 50)
 		user.SpinAnimation(15, 50)
 		for(var/I in 1 to 60)
@@ -88,7 +88,7 @@
 						if(prob(50))
 							AM.attackby(src, user)
 
-		src.flags_1 &= ~NODROP_1
+		src.item_flags &= ~NODROP
 		user.confused = max(user.confused - 200, 0)
 		src.block_chance = initial(block_chance)
 		src.special_attack = FALSE

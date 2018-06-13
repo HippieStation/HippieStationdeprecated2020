@@ -6,7 +6,7 @@
 	desc = "A basic handheld radio that communicates with local telecommunication networks."
 	dog_fashion = /datum/dog_fashion/back
 
-	flags_1 = CONDUCT_1 | HEAR_1 | NO_EMP_WIRES_1
+	flags_1 = CONDUCT_1 | HEAR_1
 	slot_flags = ITEM_SLOT_BELT
 	throw_speed = 3
 	throw_range = 7
@@ -94,6 +94,10 @@
 
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])
+
+/obj/item/radio/ComponentInitialize()
+	. = ..()
+	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
 
 /obj/item/radio/interact(mob/user)
 	if (..())
@@ -203,8 +207,9 @@
 		return // the device has to be on
 	if(!M || !message)
 		return
-	if(wires.is_cut(WIRE_TX))  // Permacell and otherwise tampered-with radios
-		return
+	if(wires) //Hippie code because certain things attempt to talk after deletion, aka supermatter
+		if(wires.is_cut(WIRE_TX))  // Permacell and otherwise tampered-with radios
+			return
 	if(!M.IsVocal())
 		return
 
@@ -268,14 +273,16 @@
 
 /obj/item/radio/proc/backup_transmission(datum/signal/subspace/vocal/signal)
 	var/turf/T = get_turf(src)
-	if (signal.data["done"] && (T.z in signal.levels))
-		return
+	//hippie code check
+	if(T)
+		if(signal.data["done"] && (T.z in signal.levels))
+			return
 
-	// Okay, the signal was never processed, send a mundane broadcast.
-	signal.data["compression"] = 0
-	signal.transmission_method = TRANSMISSION_RADIO
-	signal.levels = list(T.z)
-	signal.broadcast()
+		// Okay, the signal was never processed, send a mundane broadcast.
+		signal.data["compression"] = 0
+		signal.transmission_method = TRANSMISSION_RADIO
+		signal.levels = list(T.z)
+		signal.broadcast()
 
 /obj/item/radio/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
 	if(radio_freq || !broadcasting || get_dist(src, speaker) > canhear_range)
@@ -339,6 +346,9 @@
 		return ..()
 
 /obj/item/radio/emp_act(severity)
+	. = ..()
+	if (. & EMP_PROTECT_SELF)
+		return
 	emped++ //There's been an EMP; better count it
 	var/curremp = emped //Remember which EMP this was
 	if (listening && ismob(loc))	// if the radio is turned on and on someone's person they notice
@@ -353,7 +363,6 @@
 			emped = 0
 			if (!istype(src, /obj/item/radio/intercom)) // intercoms will turn back on on their own
 				on = TRUE
-	..()
 
 ///////////////////////////////
 //////////Borg Radios//////////

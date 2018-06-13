@@ -468,6 +468,9 @@
 
 
 /mob/living/carbon/human/emp_act(severity)
+	. = ..()
+	if(. & EMP_PROTECT_CONTENTS)
+		return
 	var/informed = FALSE
 	for(var/obj/item/bodypart/L in src.bodyparts)
 		if(L.status == BODYPART_ROBOTIC)
@@ -481,7 +484,6 @@
 				if(2)
 					L.receive_damage(0,5)
 					Stun(100)
-	..()
 
 /mob/living/carbon/human/acid_act(acidpwr, acid_volume, bodyzone_hit)
 	var/list/damaged = list()
@@ -707,7 +709,7 @@
 					if(toxloss > 10)
 						to_chat(src, "<span class='danger'>You feel sick.</span>")
 					else if(toxloss > 20)
-						to_chat(src, "<span class='danger'>You feel nauseous.</span>")
+						to_chat(src, "<span class='danger'>You feel nauseated.</span>")
 					else if(toxloss > 40)
 						to_chat(src, "<span class='danger'>You feel very unwell!</span>")
 				if(oxyloss)
@@ -800,4 +802,5 @@
 			torn_items += leg_clothes
 
 	for(var/obj/item/I in torn_items)
-		I.take_damage(damage_amount, damage_type, damage_flag, 0)
+		if(I && !QDELETED(I))
+			I.take_damage(damage_amount, damage_type, damage_flag, 0)
