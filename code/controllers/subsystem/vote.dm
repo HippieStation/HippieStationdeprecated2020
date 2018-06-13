@@ -331,6 +331,8 @@ SUBSYSTEM_DEF(vote)
 
 /*	Hippie version is being used instead
 /datum/action/vote/proc/remove_from_client()
+	if(!owner)
+		return
 	if(owner.client)
 		owner.client.player_details.player_actions -= src
 	else if(owner.ckey)
