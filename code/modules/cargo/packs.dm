@@ -2157,4 +2157,3 @@
 					/obj/item/toner,
 					/obj/item/toner)
 	crate_name = "toner crate"
->>>>>>> d83bc2c874... Adds exotic and talking corgi crates (#38276)
