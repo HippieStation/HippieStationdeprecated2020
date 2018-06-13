@@ -11,3 +11,75 @@
 				item_heal_robotic(H, user, 15, 0)
 	else
 		return ..()
+
+// TOOLSPEED REMOVAL
+//crowbar
+
+/obj/item/crowbar
+	toolspeed = 0
+
+/obj/item/crowbar/brass
+	toolspeed = 0
+
+/obj/item/crowbar/abductor
+	toolspeed = 0
+
+/obj/item/crowbar/large
+	toolspeed = 0
+
+/obj/item/crowbar/cyborg
+	toolspeed = 0
+
+/obj/item/crowbar/power
+	toolspeed = 0
+
+//screwdriver
+
+/obj/item/screwdriver
+	toolspeed = 0
+
+/obj/item/screwdriver/brass
+	toolspeed = 0
+
+/obj/item/screwdriver/abductor
+	toolspeed = 0
+
+/obj/item/screwdriver/power
+	toolspeed = 0
+
+/obj/item/screwdriver/cyborg
+	toolspeed = 0
+
+/obj/item/screwdriver/nuke
+	toolspeed = 0
+
+//wrench
+
+/obj/item/wrench
+	toolspeed = 0
+
+/obj/item/wrench/cyborg
+	toolspeed = 0
+
+/obj/item/wrench/abductor
+	toolspeed = 0
+
+/obj/item/wrench/power
+	toolspeed = 0
+
+//wirecutter
+
+/obj/item/wirecutters
+	toolspeed = 0
+
+/obj/item/wirecutters/brass
+	toolspeed = 0
+
+/obj/item/wirecutters/abductor
+	toolspeed = 0
+
+/obj/item/wirecutters/cyborg
+	toolspeed = 0
+
+/obj/item/wirecutters/power
+	toolspeed = 0
