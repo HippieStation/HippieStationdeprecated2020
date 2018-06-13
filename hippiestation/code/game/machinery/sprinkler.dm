@@ -6,7 +6,7 @@
 	icon = 'hippiestation/icons/obj/machines/sprinkler.dmi'
 	icon_state = "sprinkler"
 	anchored = TRUE
-	max_integrity = 250
+	max_integrity = 300
 	integrity_failure = 100
 	armor = list("melee" = 20, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 30, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 80)
 	var/detecting = TRUE
@@ -42,13 +42,13 @@
 	. = ..()
 	if(.) //damage received
 		if(obj_integrity > 0 && !(stat & BROKEN) && detecting)
-			if(prob(33))
+			if(prob(40))
 				spray()
 
-/obj/machinery/sprinkler/attackby(obj/item/W, mob/user, params)
+/obj/machinery/sprinkler/wrench_act(mob/user, obj/item/W)
 	add_fingerprint(user)
 
-	if(istype(W, /obj/item/wrench))
+	if(W.use_tool(src, user, 40, volume=50))
 		detecting = !detecting
 		if(src.detecting)
 			user.visible_message("[user] has reset [src]'s nozzle.", "<span class='notice'>You reset [src]'s nozzle.</span>")
@@ -56,9 +56,14 @@
 			user.visible_message("[user] has opened [src]'s nozzle!", "<span class='notice'>You open [src]'s nozzle!</span>")
 			if(last_spray+SPRINKLER_COOLDOWN < world.time)
 				spray()
-		return
-		W.play_tool_sound(src)
-	if(istype(W,/obj/item/reagent_containers/glass))
+		return TRUE
+
+/obj/machinery/sprinkler/attackby(obj/item/W, mob/user, params)
+	add_fingerprint(user)
+
+	if(istype(W, /obj/item/wrench))
+		return	//Should stop the sprinkler getting attacked if unwrenching is interrupted
+	else if(istype(W,/obj/item/reagent_containers/glass))
 		if(uses<10)
 			if(W.reagents.has_reagent("water", 50))
 				uses++
@@ -69,8 +74,8 @@
 		else
 			to_chat(user, "<span class='notice'>[src] is full!</span>")
 		return
-	return ..()
-
+	else
+		. = ..()
 
 /obj/effect/foam_container
 	name = "resin container"
@@ -90,7 +95,7 @@
 /datum/crafting_recipe/sprinkler
 	name = "Water Sprinkler"
 	result = /obj/machinery/sprinkler
-	time = 50
+	time = 40
 	reqs = list(/obj/item/stack/sheet/metal = 1,
 				  /obj/item/stack/sheet/glass = 1,
 				  /obj/item/reagent_containers/glass/beaker = 1)
