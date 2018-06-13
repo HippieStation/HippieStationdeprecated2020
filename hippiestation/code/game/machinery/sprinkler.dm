@@ -13,7 +13,7 @@
 	resistance_flags = FIRE_PROOF
 	var/last_spray = 0
 	var/uses = 10
-	layer = PROJECTILE_HIT_THRESHHOLD_LAYER
+	layer = LOW_OBJ_LAYER
 	plane = FLOOR_PLANE
 
 /obj/machinery/sprinkler/examine(mob/user)
@@ -21,12 +21,14 @@
 	to_chat(user, "<span class='notice'>It has <b>[uses]</b> uses of foam remaining.</span>")
 
 /obj/machinery/sprinkler/temperature_expose(datum/gas_mixture/air, temperature, volume)
-	if(temperature > T0C + 500 && (last_spray+FIREALARM_COOLDOWN < world.time) && detecting && !stat)
+	if(temperature > T0C + 500 && detecting && !stat)
 		spray()
 	..()
 
 /obj/machinery/sprinkler/proc/spray()
-	if(!is_operational() && (last_spray+SPRINKLER_COOLDOWN < world.time))
+	if(!is_operational())
+		return
+	if(world.time < last_spray+SPRINKLER_COOLDOWN)
 		return
 	if(!uses)
 		return
@@ -54,8 +56,7 @@
 			user.visible_message("[user] has reset [src]'s nozzle.", "<span class='notice'>You reset [src]'s nozzle.</span>")
 		else
 			user.visible_message("[user] has opened [src]'s nozzle!", "<span class='notice'>You open [src]'s nozzle!</span>")
-			if(last_spray+SPRINKLER_COOLDOWN < world.time)
-				spray()
+			spray()
 		return TRUE
 
 /obj/machinery/sprinkler/attackby(obj/item/W, mob/user, params)
