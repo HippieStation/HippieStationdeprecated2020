@@ -13,14 +13,13 @@
 	get_ghost()
 
 /datum/brain_trauma/special/imaginary_friend/on_life()
-	if(friend_initialized)	//Hippie change, added a second if friend initialised so that we stop getting phantom forceMoves occurring when a ghost is not found for the imaginary friend
-		if(get_dist(owner, friend) > 9)
-			friend.yank()
+	if(get_dist(owner, friend) > 9)
+		friend.yank()
+	if(!friend)
+		qdel(src)
+		return
 	if(!friend.client && friend_initialized)
 		addtimer(CALLBACK(src, .proc/reroll_friend), 600)
-		friend_initialized = FALSE	//Hippie change, added flag change so addtimer doesn't get spammed
-	if(!owner.client)
-		qdel(src)	//Hippie change, added this so the trauma gets deleted if the owner ghosts
 
 /datum/brain_trauma/special/imaginary_friend/on_lose()
 	..()
@@ -29,13 +28,11 @@
 //If the friend goes afk, make a brand new friend. Plenty of fish in the sea of imagination.
 /datum/brain_trauma/special/imaginary_friend/proc/reroll_friend()
 	if(friend.client) //reconnected
-		friend_initialized = TRUE	//Hippie change, added tag change so this check can happen again
 		return
-	else	//Hippie change, added else so we stop getting null.client errors
-		friend_initialized = FALSE
-		QDEL_NULL(friend)
-		make_friend()
-		get_ghost()
+	friend_initialized = FALSE
+	QDEL_NULL(friend)
+	make_friend()
+	get_ghost()
 
 /datum/brain_trauma/special/imaginary_friend/proc/make_friend()
 	friend = new(get_turf(owner), src)
@@ -48,7 +45,7 @@
 		friend.key = C.key
 		friend_initialized = TRUE
 	else
-		addtimer(CALLBACK(src, .proc/reroll_friend), 1200)	//Hippie change, removed qdel and put addtimer. This will stop you from losing the trauma if we cannot find a friend, and tries to get a friend after 2 minutes
+		qdel(src)
 
 /mob/camera/imaginary_friend
 	name = "imaginary friend"
@@ -59,7 +56,6 @@
 	lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
 	sight = NONE
 	see_invisible = SEE_INVISIBLE_LIVING
-	mouse_opacity = MOUSE_OPACITY_OPAQUE	//Hippie change, made opaque so it can be examined and their name can be viewed
 	var/icon/human_image
 	var/image/current_image
 	var/mob/living/carbon/owner
@@ -82,7 +78,8 @@
 	human_image = get_flat_human_icon(null, pick(SSjob.occupations))
 
 /mob/camera/imaginary_friend/proc/Show()
-	//Hippie change, removed if client return because the images should be updating even if you're tabbed out or whatever
+	if(!client) //nobody home
+		return
 
 	//Remove old image from owner and friend
 	if(owner.client)
@@ -111,7 +108,7 @@
 /mob/camera/imaginary_friend/proc/yank()
 	if(!client) //don't bother if the friend is braindead
 		return
-	forceMove(owner)	//Hippie change, removed get_turf
+	forceMove(get_turf(owner))
 	Show()
 
 /mob/camera/imaginary_friend/say(message)

@@ -2666,6 +2666,8 @@
 #include "hippiestation\code\datums\progressbar.dm"
 #include "hippiestation\code\datums\antagonists\vampire.dm"
 #include "hippiestation\code\datums\antagonists\wizard.dm"
+#include "hippiestation\code\datums\brain_damage\imaginary_friend.dm"
+#include "hippiestation\code\datums\brain_damage\split_personality.dm"
 #include "hippiestation\code\datums\components\material_container.dm"
 #include "hippiestation\code\datums\components\spell_catalyst.dm"
 #include "hippiestation\code\datums\components\storage\concrete\butt.dm"

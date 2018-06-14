@@ -1,6 +1,4 @@
 /mob/Login()
-	if(!client)	//Hippie change, don't make this run if there's no client
-		return
 	GLOB.player_list |= src
 	lastKnownIP	= client.address
 	computer_id	= client.computer_id
