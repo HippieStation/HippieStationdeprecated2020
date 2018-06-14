@@ -58,7 +58,7 @@
 	name = "Spiked Bat"
 	result = /obj/item/melee/baseball_bat/spiked
 	reqs = list(/obj/item/stack/rods = 5,
-		        /obj/item/melee/baseball_bat) //no need for a hammer, he just whacks the rod with the bat when it's on the floor or smth, like a nail </autism>
+		        /obj/item/melee/baseball_bat = 1) //no need for a hammer, he just whacks the rod with the bat when it's on the floor or smth, like a nail </autism>
 	time = 100
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
