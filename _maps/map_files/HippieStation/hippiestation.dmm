@@ -2824,6 +2824,8 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/item/clothing/suit/space/fragile,
+/obj/item/clothing/head/helmet/space/fragile,
 /turf/open/floor/plating,
 /area/security/main)
 "agr" = (
@@ -18138,6 +18140,8 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
+/obj/item/clothing/suit/space/fragile,
+/obj/item/clothing/head/helmet/space/fragile,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aSs" = (
@@ -25468,6 +25472,8 @@
 /area/hallway/secondary/exit)
 "bmB" = (
 /obj/structure/closet/emcloset,
+/obj/item/clothing/suit/space/fragile,
+/obj/item/clothing/head/helmet/space/fragile,
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit)
 "bmC" = (
@@ -49245,6 +49251,8 @@
 	dir = 8
 	},
 /obj/structure/closet/emcloset,
+/obj/item/clothing/suit/space/fragile,
+/obj/item/clothing/head/helmet/space/fragile,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "crh" = (
@@ -53854,6 +53862,8 @@
 "cCe" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/emcloset,
+/obj/item/clothing/head/helmet/space/fragile,
+/obj/item/clothing/suit/space/fragile,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "cCf" = (
@@ -59543,6 +59553,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"gUw" = (
+/obj/structure/closet/emcloset,
+/obj/item/clothing/suit/space/fragile,
+/obj/item/clothing/head/helmet/space/fragile,
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
 "gUA" = (
 /obj/structure/rack,
 /obj/item/clothing/shoes/sneakers/orange,
@@ -60468,6 +60484,12 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"jwq" = (
+/obj/structure/closet/emcloset,
+/obj/item/clothing/suit/space/fragile,
+/obj/item/clothing/head/helmet/space/fragile,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "jxj" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 8
@@ -64198,6 +64220,15 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"vhc" = (
+/obj/structure/closet/emcloset,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/item/clothing/suit/space/fragile,
+/obj/item/clothing/head/helmet/space/fragile,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "vkT" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -64806,6 +64837,13 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"wUn" = (
+/obj/structure/closet/emcloset,
+/obj/effect/turf_decal/stripes/line,
+/obj/item/clothing/head/helmet/space/fragile,
+/obj/item/clothing/suit/space/fragile,
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "wUI" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/cable/yellow{
@@ -75434,7 +75472,7 @@ aoz
 aAh
 aBz
 aCJ
-aDY
+vhc
 aCH
 aaa
 aaa
@@ -75715,7 +75753,7 @@ aCH
 koh
 aCK
 aCK
-aDZ
+wUn
 aCH
 aaa
 aaa
@@ -77505,7 +77543,7 @@ aTS
 aBA
 aWT
 aAd
-aDY
+vhc
 aCH
 wkE
 aCH
@@ -80565,7 +80603,7 @@ aaa
 aai
 aaa
 jbX
-arE
+gUw
 auz
 avL
 awM
@@ -105496,7 +105534,7 @@ aaa
 aaa
 aaa
 wkX
-ati
+jwq
 alO
 ajz
 azJ
