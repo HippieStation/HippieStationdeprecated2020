@@ -510,18 +510,18 @@
 
 /obj/item/storage/pod
 	name = "emergency space suits"
-	desc = "A wall mounted safe containing space suits. Will only open in emergencies."
+	desc = "A wall mounted safe containing space suits. Originally opens only during emergencies; budget cuts caused by various shenanigans have lead to streamlining efforts in Nanotrasen's ruling body."
 	anchored = TRUE
 	density = FALSE
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "safe"
-	var/unlocked = FALSE
+	var/unlocked = TRUE
 
 /obj/item/storage/pod/PopulateContents()
-	new /obj/item/clothing/head/helmet/space/orange(src)
-	new /obj/item/clothing/head/helmet/space/orange(src)
-	new /obj/item/clothing/suit/space/orange(src)
-	new /obj/item/clothing/suit/space/orange(src)
+	new /obj/item/clothing/head/helmet/space/fragile(src)
+	new /obj/item/clothing/head/helmet/space/fragile(src)
+	new /obj/item/clothing/suit/space/fragile(src)
+	new /obj/item/clothing/suit/space/fragile(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/tank/internals/oxygen/red(src)
@@ -546,7 +546,7 @@
 
 /obj/item/storage/pod/can_interact(mob/user)
 	if(!..())
-		return FALSE
+		return TRUE
 	if(GLOB.security_level == SEC_LEVEL_RED || GLOB.security_level == SEC_LEVEL_DELTA || unlocked)
 		return TRUE
 	to_chat(user, "The storage unit will only unlock during a Red or Delta security alert.")
