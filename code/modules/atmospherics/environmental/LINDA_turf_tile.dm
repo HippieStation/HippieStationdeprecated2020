@@ -54,7 +54,8 @@
 /turf/open/assume_air(datum/gas_mixture/giver) //use this for machines to adjust air
 	if(!giver)
 		return FALSE
-	air.merge(giver)
+	if(air)//hippie code
+		air.merge(giver)
 	update_visuals()
 	return TRUE
 
@@ -88,7 +89,8 @@
 	temperature_archived = temperature
 
 /turf/open/archive()
-	air.archive()
+	if(air)//hippie code
+		air.archive()
 	archived_cycle = SSair.times_fired
 	temperature_archived = temperature
 
