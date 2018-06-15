@@ -5,7 +5,7 @@
 	alternate_screams = list('hippiestation/sound/voice/scream_silicon.ogg')
 
 /obj/item/clothing/head/ushanka
-	alternate_screams = list('hippiestation/sound/misc/cyka1.ogg', 'hippiestation/sound/misc/cheekibreeki.ogg')
+	alternate_screams = list('hippiestation/sound/misc/cyka1.ogg' = 4, 'hippiestation/sound/misc/cheekibreeki.ogg' = 4, 'hippiestation/sound/misc/cyka2upgradededition.ogg' = 1)
 
 /obj/item/clothing/head/hippie/zoothat
 	name = "zoot suit hat"
