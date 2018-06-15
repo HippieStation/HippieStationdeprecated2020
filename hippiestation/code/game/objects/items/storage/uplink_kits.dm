@@ -79,3 +79,13 @@
 /obj/item/storage/box/syndie_kit/armstrong/PopulateContents()
 	new /obj/item/armstrong_scroll(src)
 	new /obj/item/paper/armstrong_tutorial(src)
+
+/obj/item/storage/box/syndie_kit/scrake
+	name = "\improper Brad Armstrong Family Style Karate Kit"
+	desc = "A kit with the necessary tools to become the best karate master on the planet!\
+	Contains a paper letting you know how to fight. \
+	The only cost is your right to not suck at parenting."
+
+/obj/item/storage/box/syndie_kit/scrake/PopulateContents()
+	new /obj/item/clothing/suit/apron/chef/scrake(src)
+	new /obj/item/mounted_energy_chainsaw(src)

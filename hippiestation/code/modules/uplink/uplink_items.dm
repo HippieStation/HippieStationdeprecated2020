@@ -333,3 +333,10 @@
 	desc = "Become a posthuman warrior. The items cannot be taken off once you wear them."
 	item = /obj/item/storage/box/syndie_kit/nanosuit
 	cost = 20
+
+//Scrake uplink item, available in all traitor rounds and nuke.
+/datum/uplink_item/dangerous/scrake
+	name = "Scrake Rage Kit"
+	desc = "Become a fucking scrake."
+	item = /obj/item/storage/box/syndie_kit/scrake
+	cost = 20
