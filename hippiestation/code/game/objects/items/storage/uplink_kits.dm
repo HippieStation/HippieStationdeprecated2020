@@ -88,4 +88,5 @@
 
 /obj/item/storage/box/syndie_kit/scrake/PopulateContents()
 	new /obj/item/clothing/suit/apron/chef/scrake(src)
-	new /obj/item/mounted_energy_chainsaw(src)
+	new /obj/item/clothing/mask/surgical/scrake(src)
+	new /obj/item/mounted_energy_chainsaw/scrake(src)
