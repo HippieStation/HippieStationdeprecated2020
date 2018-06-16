@@ -231,21 +231,6 @@
 	desc = "A small bottle. Contains H13N1 flu virion culture in synthblood medium."
 	spawned_disease = /datum/disease/advance/flu
 
-/obj/item/reagent_containers/glass/bottle/epiglottis_virion
-	name = "Epiglottis virion culture bottle"
-	desc = "A small bottle. Contains Epiglottis virion culture in synthblood medium."
-	spawned_disease = /datum/disease/advance/voice_change
-
-/obj/item/reagent_containers/glass/bottle/liver_enhance_virion
-	name = "Liver enhancement virion culture bottle"
-	desc = "A small bottle. Contains liver enhancement virion culture in synthblood medium."
-	spawned_disease = /datum/disease/advance/heal
-
-/obj/item/reagent_containers/glass/bottle/hallucigen_virion
-	name = "Hallucigen virion culture bottle"
-	desc = "A small bottle. Contains hallucigen virion culture in synthblood medium."
-	spawned_disease = /datum/disease/advance/hallucigen
-
 /obj/item/reagent_containers/glass/bottle/pierrot_throat
 	name = "Pierrot's Throat culture bottle"
 	desc = "A small bottle. Contains H0NI<42 virion culture in synthblood medium."
