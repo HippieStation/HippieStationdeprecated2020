@@ -53,3 +53,33 @@
 	name = "bottle of diethylamine"
 	desc = "A precision bottle of diethylamine. Contains a strong fertilizer that heals the plant while also killing pests and in a sufficient amount able to increase plant yield at double the rate of ammonia."
 	list_reagents = list("diethylamine" = 50)
+
+/////////////////////////////////////////////
+/////////	HIPPIE VIRUS BOTTLES	/////////
+/////////////////////////////////////////////
+
+//Custom Hippie virus bottles
+
+//Laying a foundation for this before I forget, will update this with something verysoon(TM)
+
+
+//////////////////////////////////////
+/////////	PORTED FROM TG	 /////////
+//////////////////////////////////////
+
+//Bottles that no longer exist in TG
+
+/obj/item/reagent_containers/glass/bottle/epiglottis_virion
+	name = "Epiglottis virion culture bottle"
+	desc = "A small bottle. Contains Epiglottis virion culture in synthblood medium."
+	spawned_disease = /datum/disease/advance/voice_change
+
+/obj/item/reagent_containers/glass/bottle/liver_enhance_virion
+	name = "Liver enhancement virion culture bottle"
+	desc = "A small bottle. Contains liver enhancement virion culture in synthblood medium."
+	spawned_disease = /datum/disease/advance/heal/toxin
+
+/obj/item/reagent_containers/glass/bottle/hallucigen_virion
+	name = "Hallucigen virion culture bottle"
+	desc = "A small bottle. Contains hallucigen virion culture in synthblood medium."
+	spawned_disease = /datum/disease/advance/hallucigen
