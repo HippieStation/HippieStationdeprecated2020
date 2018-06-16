@@ -1,5 +1,3 @@
-//Ported from TG, they currently
-
 // Voice Changing
 /datum/disease/advance/voice_change
 	copy_type = /datum/disease/advance
