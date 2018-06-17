@@ -9,7 +9,7 @@
     w_class = WEIGHT_CLASS_BULKY
     force = 10
     flags_1 = CONDUCT_1
-    slot_flags = SLOT_BACK
+    slot_flags = ITEM_SLOT_BACK
     fire_sound = "hippiestation/sound/weapons/rodgun_fire.ogg"
     var/charge = 0
     var/max_charge = 3

@@ -13,7 +13,7 @@
 	embedding = list("embed_chance" = 5) // This is a joke
 	hitsound = 'hippiestation/sound/effects/fart.ogg'
 	body_parts_covered = HEAD
-	slot_flags = SLOT_HEAD
+	slot_flags = ITEM_SLOT_HEAD
 	var/loose = 0
 	var/pocket_storage_component_path = /datum/component/storage/concrete/pockets/butt
 

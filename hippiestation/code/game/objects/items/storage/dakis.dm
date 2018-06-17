@@ -11,7 +11,7 @@
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
 	icon_state = "daki_base"
-	slot_flags = SLOT_BACK
+	slot_flags = ITEM_SLOT_BACK
 	w_class = 4
 	var/spam_flag = 0
 	var/cooldowntime = 20

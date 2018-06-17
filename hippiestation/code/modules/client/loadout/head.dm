@@ -1,6 +1,6 @@
 /datum/gear/baseball
 	name = "Ballcap"
-	category = SLOT_HEAD	
+	category = SLOT_HEAD
 	path = /obj/item/clothing/head/soft/mime
 
 /datum/gear/beanie
