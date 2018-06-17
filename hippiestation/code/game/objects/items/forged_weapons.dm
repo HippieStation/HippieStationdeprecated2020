@@ -188,7 +188,7 @@
 	desc = "A custom warhammer forged from solid ingots"
 	icon_state = "forged_hammer0"
 	alternate_worn_icon = 'hippiestation/icons/mob/back.dmi'
-	slot_flags = SLOT_BACK
+	slot_flags = ITEM_SLOT_BACK
 	hitsound = 'hippiestation/sound/misc/crunch.ogg'
 	weapon_type = MELEE_TYPE_WARHAMMER
 	stabby = TRANSFER_BLUNT
