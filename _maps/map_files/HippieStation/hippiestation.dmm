@@ -58709,6 +58709,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"fdf" = (
+/obj/item/radio/intercom{
+	broadcasting = 0;
+	name = "Station Intercom (General)";
+	pixel_y = 20
+	},
+/turf/open/floor/plasteel/white,
+/area/hallway/secondary/entry)
 "ffe" = (
 /obj/machinery/rnd/production/techfab/department/cargo,
 /turf/open/floor/plasteel,
@@ -60543,6 +60551,14 @@
 /turf/open/floor/plasteel/blue/corner{
 	dir = 1
 	},
+/area/hallway/secondary/entry)
+"jnt" = (
+/obj/item/radio/intercom{
+	broadcasting = 0;
+	name = "Station Intercom (General)";
+	pixel_y = 20
+	},
+/turf/open/floor/carpet,
 /area/hallway/secondary/entry)
 "jnM" = (
 /obj/structure/lattice/catwalk,
@@ -77014,7 +77030,7 @@ goo
 aCK
 sGX
 aAd
-aRf
+jnt
 oFR
 hBh
 whp
@@ -81113,7 +81129,7 @@ ali
 ako
 arv
 aAd
-aGE
+fdf
 aHZ
 aJf
 aKR
