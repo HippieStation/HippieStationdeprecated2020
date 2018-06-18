@@ -226,7 +226,7 @@ datum/reagent/medicine/virogone/on_mob_life(mob/living/M)//cures viruses very ef
 	overdose_threshold = 0 //seriously fuck whoever thought this was a good idea.
 
 /datum/reagent/medicine/corazone
-	metabolization_rate = 0.25 * REAGENTS_METABOLISM
+	metabolization_rate = 0.3 * REAGENTS_METABOLISM
 	var/sent_message = FALSE
 
 /datum/reagent/medicine/corazone/on_mob_add(mob/living/M)
