@@ -16,7 +16,6 @@
 /mob/living/carbon/human/handle_heart()
 	var/mob/living/carbon/human/C
 	var/sent_message = FALSE
-	var/noheart
 	if(!can_heartattack())
 		return
 
@@ -26,14 +25,15 @@
 	if(!undergoing_cardiac_arrest())
 		sent_message = FALSE
 		return
-	else
-		if(noheart && !sent_message)
-			sent_message = TRUE
-			C.visible_message("<span class='userdanger'>[C] clutches at [C.p_their()] chest as if [C.p_their()] they have no heart!</span>")
 
 	// Cardiac arrest, unless heart is stabilized
 	if(has_trait(TRAIT_STABLEHEART))
 		return
+
+	if(undergoing_cardiac_arrest())
+		if(NOHEART && !sent_message)
+			sent_message = TRUE
+			C.visible_message("<span class='userdanger'>[C] clutches at [C.p_their()] chest as if [C.p_their()] they lost their heart!</span>")
 
 	if(we_breath)
 		adjustOxyLoss(8)

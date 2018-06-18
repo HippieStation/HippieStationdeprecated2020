@@ -236,7 +236,7 @@ datum/reagent/medicine/virogone/on_mob_life(mob/living/M)//cures viruses very ef
 	var/mob/living/carbon/human/H = M
 	if(H)
 		to_chat(H, "<span_class='warning'>You feel the effects of the corazone is starting to run out!</span>")
-		addtimer(CALLBACK(H, /datum/reagent/medicine/corazone/proc/remove_stableheart), rand(10, 30))
+		addtimer(CALLBACK(src, /datum/reagent/medicine/corazone/proc/remove_stableheart), rand(10, 30))
 
 	..()
 
