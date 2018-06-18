@@ -25,4 +25,5 @@
 		return FALSE
 
 	var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
-	heart.beating = !status
+	if(heart)
+		heart.beating = !status

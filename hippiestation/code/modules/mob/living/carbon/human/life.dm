@@ -14,7 +14,6 @@
 				mind.martial_art.streak = ""
 
 /mob/living/carbon/human/handle_heart()
-	var/mob/living/carbon/human/C
 	var/sent_message = FALSE
 	if(!can_heartattack())
 		return
@@ -33,7 +32,7 @@
 	if(undergoing_cardiac_arrest())
 		if(NOHEART && !sent_message)
 			sent_message = TRUE
-			C.visible_message("<span class='userdanger'>[C] clutches at [C.p_their()] chest as if [C.p_their()] they lost their heart!</span>")
+			visible_message("<span class='userdanger'>[src] clutches at [src.p_their()] chest as if they lost their heart!</span>")
 
 	if(we_breath)
 		adjustOxyLoss(8)
