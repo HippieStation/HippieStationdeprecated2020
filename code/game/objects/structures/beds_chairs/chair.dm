@@ -409,6 +409,8 @@
 		playsound(src, 'sound/machines/clockcult/integration_cog_install.ogg', 50, TRUE)
 
 /obj/structure/chair/shuttle
+//hippie edit start
+//*	
 	name = "shuttle seat"
 	desc = "A comfortable, secure seat. It has a more sturdy looking buckling system, for smoother flights."
 	icon_state = "shuttle_chair"
@@ -420,3 +422,5 @@
 	armrest = mutable_appearance('icons/obj/chairs.dmi', "shuttle_chair_armrest")
 	armrest.layer = ABOVE_MOB_LAYER
 	return ..()
+*//
+//hippie edit end
