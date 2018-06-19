@@ -226,6 +226,11 @@
 	desc = "A small bottle of Romerol. The REAL zombie powder."
 	list_reagents = list("romerol" = 30)
 
+/obj/item/reagent_containers/glass/bottle/random_virus
+ 	name = "Experimental disease culture bottle"
+ 	desc = "A small bottle. Contains an untested viral culture in synthblood medium."
+ 	spawned_disease = /datum/disease/advance/random
+
 /obj/item/reagent_containers/glass/bottle/flu_virion
 	name = "Flu virion culture bottle"
 	desc = "A small bottle. Contains H13N1 flu virion culture in synthblood medium."
