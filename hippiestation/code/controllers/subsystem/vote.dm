@@ -217,7 +217,7 @@
 			to_chat(world, "<span style='boldannounce'>Notice: Restart vote will not restart the server automatically because there are active admins on.</span>")
 			message_admins("A restart vote has passed, but there are active admins on with +server, so it has been cancelled. If you wish, you may restart the server.")
 	if(shuttlecall)
-		to_chat(world, "[shuttle_timer]")
+		var/shuttle_timer = SSshuttle.emergency.timeLeft()
 		if(shuttle_timer >= 300 || SSshuttle.emergency.mode != SHUTTLE_CALL)
 			if(SSshuttle.emergency.mode == SHUTTLE_CALL && shuttle_timer >= 300)	//Apparently doing the emergency request twice cancels the call so these check are just in case
 				SSshuttle.emergency.setTimer(3000)
