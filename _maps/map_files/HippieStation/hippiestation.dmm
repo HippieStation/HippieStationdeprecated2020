@@ -14271,7 +14271,7 @@
 	d2 = 2
 	},
 /obj/machinery/power/apc{
-	areastring = "area/hippie/mime";
+	areastring = "/area/hippie/mime";
 	dir = 8;
 	name = "Mime's Office APC";
 	pixel_x = -24;
@@ -15026,7 +15026,7 @@
 	d2 = 2
 	},
 /obj/machinery/power/apc{
-	areastring = "area/hippie/clown";
+	areastring = "/area/hippie/clown";
 	dir = 8;
 	name = "Clown's Office APC";
 	pixel_x = -24
@@ -58362,6 +58362,7 @@
 /area/space/nearstation)
 "erS" = (
 /obj/structure/table/wood,
+/obj/item/toy/cards/deck,
 /turf/open/floor/wood,
 /area/hallway/secondary/entry)
 "esQ" = (
@@ -64203,6 +64204,11 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"rMi" = (
+/obj/structure/table/wood,
+/obj/item/toy/eightball,
+/turf/open/floor/carpet,
+/area/hallway/secondary/entry)
 "rMv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
@@ -66701,12 +66707,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"xui" = (
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/plasteel/yellow/side{
-	dir = 8
-	},
-/area/hallway/secondary/entry)
 "xur" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -74984,7 +74984,7 @@ aad
 aad
 aad
 aCH
-xui
+mQC
 wAJ
 yhM
 mQC
@@ -76780,7 +76780,7 @@ iAp
 aRf
 aRf
 wkC
-dda
+rMi
 bkV
 aRf
 aAd
