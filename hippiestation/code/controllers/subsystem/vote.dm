@@ -217,22 +217,19 @@
 			to_chat(world, "<span style='boldannounce'>Notice: Restart vote will not restart the server automatically because there are active admins on.</span>")
 			message_admins("A restart vote has passed, but there are active admins on with +server, so it has been cancelled. If you wish, you may restart the server.")
 	if(shuttlecall)
-		var/shuttle_timer = SSshuttle.emergency.timeLeft()
-		if(shuttle_timer >= 3000 || SSshuttle.emergency.mode != SHUTTLE_CALL)
-			if(SSshuttle.emergency.mode == SHUTTLE_CALL && shuttle_timer >= 3000)	//Apparently doing the emergency request twice cancels the call so these check are just in case
+		to_chat(world, "[shuttle_timer]")
+		if(shuttle_timer >= 300 || SSshuttle.emergency.mode != SHUTTLE_CALL)
+			if(SSshuttle.emergency.mode == SHUTTLE_CALL && shuttle_timer >= 300)	//Apparently doing the emergency request twice cancels the call so these check are just in case
 				SSshuttle.emergency.setTimer(3000)
 				priority_announce("The emergency shuttle will arrive in [SSshuttle.emergency.timeLeft()/60] minutes.")
 			else if (SSshuttle.emergency.mode != SHUTTLE_CALL)
 				SSshuttle.emergency.request()
 				SSshuttle.emergency.setTimer(3000)
 				priority_announce("The emergency shuttle will arrive in [SSshuttle.emergency.timeLeft()/60] minutes.")
-			SSshuttle.emergencyNoRecall = TRUE
 
 			message_admins("The emergency shuttle has been force-called due to a successful shuttle call vote.")
 		else
 			to_chat(world, "<span style='boldannounce'>Notice: The shuttle vote has failed because the shuttle has already been called.</span>")
-
-
 
 	return .
 
