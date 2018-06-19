@@ -408,10 +408,10 @@ this has been modified and moved over to the hippie folder to allow for custom r
 			for(var/V in possible_reactions)
 				var/datum/chemical_reaction/competitor = V
 				if(selected_reaction.is_cold_recipe) //if there are no recipe conflicts, everything in possible_reactions will have this same value for is_cold_reaction. warranty void if assumption not met.
-					if(competitor.required_temp < selected_reaction.required_temp)
+					if(competitor.required_temp <= selected_reaction.required_temp)
 						selected_reaction = competitor
 				else
-					if(competitor.required_temp > selected_reaction.required_temp)
+					if(competitor.required_temp >= selected_reaction.required_temp)
 						selected_reaction = competitor
 			var/list/cached_required_reagents = selected_reaction.required_reagents
 			var/list/cached_results = selected_reaction.results
