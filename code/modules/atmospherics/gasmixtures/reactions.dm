@@ -402,7 +402,11 @@
 	var/pressure = air.return_pressure()
 
 	var/old_heat_capacity = air.heat_capacity()
+<<<<<<< HEAD
+	var/reaction_efficency = min(1/((pressure/(0.1*ONE_ATMOSPHERE))*(max((cached_gases[/datum/gas/plasma][MOLES]/cached_gases[/datum/gas/nitrous_oxide][MOLES]),1))),cached_gases[/datum/gas/nitrous_oxide][MOLES],cached_gases[/datum/gas/plasma][MOLES]/2)
+=======
 	var/reaction_efficency = min(1/((pressure/(0.1*ONE_ATMOSPHERE))*(max(cached_gases[/datum/gas/plasma][MOLES]/cached_gases[/datum/gas/nitrous_oxide][MOLES],1))),cached_gases[/datum/gas/nitrous_oxide][MOLES],cached_gases[/datum/gas/plasma][MOLES]/2)
+>>>>>>> 9552a9e9e5850a891ccf6f1fd776a0f841bd9391
 	var/energy_released = 2*reaction_efficency*FIRE_CARBON_ENERGY_RELEASED
 	if ((cached_gases[/datum/gas/nitrous_oxide][MOLES] - reaction_efficency < 0 )|| (cached_gases[/datum/gas/plasma][MOLES] - (2*reaction_efficency) < 0)) //Shouldn't produce gas from nothing.
 		return NO_REACTION
