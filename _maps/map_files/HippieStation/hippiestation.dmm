@@ -2515,10 +2515,6 @@
 /turf/open/floor/plating,
 /area/security/execution/transfer)
 "afK" = (
-/obj/machinery/atmospherics/components/binary/pump{
-	dir = 4;
-	layer = 2.4
-	},
 /obj/machinery/door/window/southleft{
 	base_state = "right";
 	dir = 4;
@@ -2531,6 +2527,10 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 4;
+	layer = 2.4
 	},
 /turf/open/floor/plating,
 /area/security/execution/transfer)
@@ -14271,7 +14271,7 @@
 	d2 = 2
 	},
 /obj/machinery/power/apc{
-	areastring = "area/hippie/mime";
+	areastring = "/area/hippie/mime";
 	dir = 8;
 	name = "Mime's Office APC";
 	pixel_x = -24;
@@ -15026,7 +15026,7 @@
 	d2 = 2
 	},
 /obj/machinery/power/apc{
-	areastring = "area/hippie/clown";
+	areastring = "/area/hippie/clown";
 	dir = 8;
 	name = "Clown's Office APC";
 	pixel_x = -24
@@ -66132,6 +66132,12 @@
 	name = "floor"
 	},
 /area/engine/port_engineering)
+"wno" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/plasteel/red/side{
+	dir = 4
+	},
+/area/hallway/secondary/entry)
 "wnQ" = (
 /turf/open/floor/plasteel/stairs/medium,
 /area/hallway/secondary/entry)
@@ -66701,12 +66707,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"xui" = (
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/plasteel/yellow/side{
-	dir = 8
-	},
-/area/hallway/secondary/entry)
 "xur" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -74984,7 +74984,7 @@ aad
 aad
 aad
 aCH
-xui
+mQC
 wAJ
 yhM
 mQC
@@ -79850,7 +79850,7 @@ aJb
 aAd
 wow
 ndi
-ndi
+wno
 qtH
 oqz
 jzq
