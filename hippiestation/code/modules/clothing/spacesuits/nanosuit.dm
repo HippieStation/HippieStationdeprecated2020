@@ -610,15 +610,6 @@
 	suit_store = /obj/item/tank/internals/emergency_oxygen/recharge
 	internals_slot = SLOT_S_STORE
 
-
-obj/item/clothing/suit/space/hardsuit/nano/dropped()
-	toggle_mode("none", TRUE)
-	if(U)
-		if(help_verb)
-			U.verbs -= help_verb
-		U = null
-	..()
-
 /mob/living/carbon/human/Stat()
 	..()
 	//NANOSUITCODE
@@ -743,7 +734,7 @@ obj/item/clothing/suit/space/hardsuit/nano/dropped()
 	return 25 //just enough to damage an airlock
 
 /atom/proc/attack_nano(mob/living/carbon/human/user, does_attack_animation = 0)
-	SendSignal(COMSIG_ATOM_HULK_ATTACK, user)
+	SEND_SIGNAL(src, COMSIG_ATOM_HULK_ATTACK, user)
 	if(does_attack_animation)
 		user.changeNext_move(CLICK_CD_MELEE)
 		add_logs(user, src, "punched", "nanosuit strength mode")
@@ -935,6 +926,8 @@ obj/item/clothing/suit/space/hardsuit/nano/dropped()
 /obj/item/implant/explosive/disintegrate/activate(cause)
 	if(!cause || !imp_in || active)
 		return FALSE
+	if(!src.loc) //Do we have a host?
+		return FALSE
 	if(cause == "action_button" && !popup)
 		popup = TRUE
 		var/response = alert(imp_in, "Are you sure you want to activate your [name]? This will cause you to vapourize!", "[name] Confirmation", "Yes", "No")
@@ -947,7 +940,7 @@ obj/item/clothing/suit/space/hardsuit/nano/dropped()
 	var/area/A = get_area(dustturf)
 	message_admins("[ADMIN_LOOKUPFLW(imp_in)] has activated their [name] at [A.name] [ADMIN_JMP(dustturf)], with cause of [cause].")
 	playsound(loc, 'sound/effects/fuse.ogg', 30, 0)
-	imp_in.dust()
+	imp_in.dust(TRUE,TRUE)
 	qdel(src)
 
 /obj/item/tank/internals/emergency_oxygen/recharge

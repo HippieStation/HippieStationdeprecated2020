@@ -54,7 +54,8 @@
 /turf/open/assume_air(datum/gas_mixture/giver) //use this for machines to adjust air
 	if(!giver)
 		return FALSE
-	air.merge(giver)
+	if(air)//hippie code
+		air.merge(giver)
 	update_visuals()
 	return TRUE
 
@@ -88,7 +89,8 @@
 	temperature_archived = temperature
 
 /turf/open/archive()
-	air.archive()
+	if(air)//hippie code
+		air.archive()
 	archived_cycle = SSair.times_fired
 	temperature_archived = temperature
 
@@ -102,7 +104,7 @@
 		for(var/overlay in atmos_overlay_types-new_overlay_types) //doesn't remove overlays that would only be added
 			vis_contents -= overlay
 
-	if (new_overlay_types.len)
+	if (length(new_overlay_types))
 		if (atmos_overlay_types)
 			vis_contents += new_overlay_types - atmos_overlay_types //don't add overlays that already exist
 		else
@@ -112,15 +114,25 @@
 	src.atmos_overlay_types = new_overlay_types
 
 /turf/open/proc/tile_graphic()
-	. = new /list
+	var/static/list/nonoverlaying_gases = typecache_of_gases_with_no_overlays()
 	if(air)
+		. = new /list
 		var/list/gases = air.gases
 		for(var/id in gases)
+			if (nonoverlaying_gases[id])
+				continue
 			var/gas = gases[id]
 			var/gas_meta = gas[GAS_META]
 			var/gas_overlay = gas_meta[META_GAS_OVERLAY]
 			if(gas_overlay && gas[MOLES] > gas_meta[META_GAS_MOLES_VISIBLE])
 				. += gas_overlay
+
+/proc/typecache_of_gases_with_no_overlays()
+	. = list()
+	for (var/gastype in subtypesof(/datum/gas))
+		var/datum/gas/gasvar = gastype
+		if (!initial(gasvar.gas_overlay))
+			.[gastype] = TRUE
 
 /////////////////////////////SIMULATION///////////////////////////////////
 
