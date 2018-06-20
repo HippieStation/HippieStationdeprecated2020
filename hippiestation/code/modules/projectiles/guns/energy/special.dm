@@ -10,6 +10,7 @@
 	attack_verb = list("bashed", "stared down", "whacked", "smashed")
 	force = 10
 	can_charge = 0
+	trigger_guard = TRIGGER_GUARD_ALLOW_ALL
 
 /obj/item/gun/energy/watcherprojector/examine(mob/user)
 	..()
