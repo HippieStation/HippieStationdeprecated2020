@@ -2738,6 +2738,8 @@
 #include "hippiestation\code\game\machinery\telecomms\machines\receiver.dm"
 #include "hippiestation\code\game\mecha\mech_fabricator.dm"
 #include "hippiestation\code\game\mecha\clockwork\clockwork_mech.dm"
+#include "hippiestation\code\game\mecha\makeshift\lockermech.dm"
+#include "hippiestation\code\game\mecha\makeshift\makeshift_tools.dm"
 #include "hippiestation\code\game\mecha\working\ripley.dm"
 #include "hippiestation\code\game\objects\inflatables.dm"
 #include "hippiestation\code\game\objects\item.dm"
