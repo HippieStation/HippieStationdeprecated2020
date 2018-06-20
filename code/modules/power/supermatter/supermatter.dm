@@ -139,7 +139,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	var/is_main_engine = FALSE
 
-	//var/datum/looping_sound/supermatter/soundloop
+	//var/datum/looping_sound/supermatter/soundloop hippie code removes soundloop
 
 	var/moveable = FALSE
 
@@ -158,7 +158,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(is_main_engine)
 		GLOB.main_supermatter_engine = src
 
-	//soundloop = new(list(src), TRUE)
+	//soundloop = new(list(src), TRUE) hippie code removes sound loop
 
 /obj/machinery/power/supermatter_crystal/Destroy()
 	investigate_log("has been destroyed.", INVESTIGATE_SUPERMATTER)
@@ -168,7 +168,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	QDEL_NULL(countdown)
 	if(is_main_engine && GLOB.main_supermatter_engine == src)
 		GLOB.main_supermatter_engine = null
-	//QDEL_NULL(soundloop)
+	//QDEL_NULL(soundloop) hippie code removes sound loop
 	return ..()
 
 /obj/machinery/power/supermatter_crystal/examine(mob/user)
@@ -304,6 +304,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(!istype(T)) 	//We are in a crate or somewhere that isn't turf, if we return to turf resume processing but for now.
 		return  //Yeah just stop.
 
+	//hippie code
 	//if(power)
 	//	soundloop.volume = min(40, (round(power/100)/50)+1) // 5 +1 volume per 20 power. 2500 power is max
 
