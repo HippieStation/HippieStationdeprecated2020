@@ -44337,7 +44337,6 @@
 /obj/machinery/requests_console{
 	department = "Security";
 	name = "Security RC";
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plasteel/red/side{
@@ -58640,8 +58639,7 @@
 "eYY" = (
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = 24;
-	pixel_y = 0
+	pixel_x = 24
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -58968,7 +58966,6 @@
 	dir = 1;
 	name = "Auxillary Base Monitor";
 	network = list("auxbase");
-	pixel_x = 0;
 	pixel_y = -28
 	},
 /turf/open/floor/plasteel/yellow/side{
@@ -59924,7 +59921,6 @@
 	areastring = "/area/construction/mining/aux_base";
 	dir = 1;
 	name = "Auxillary Base Construction APC";
-	pixel_x = 0;
 	pixel_y = 24
 	},
 /obj/structure/cable{
@@ -62954,8 +62950,7 @@
 "oHr" = (
 /obj/machinery/firealarm{
 	dir = 4;
-	pixel_x = 24;
-	pixel_y = 0
+	pixel_x = 24
 	},
 /turf/open/floor/plasteel/neutral/side{
 	dir = 4
@@ -64000,7 +63995,6 @@
 "rfx" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/vacuum{
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/open/floor/plating,
