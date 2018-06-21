@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /datum/supply_pack
 	var/name = "Crate"
 	var/group = ""
@@ -4237,4 +4236,3 @@
 					/obj/item/toner,
 					/obj/item/toner)
 	crate_name = "toner crate"
->>>>>>> a4a6d3ec77... Merge pull request #38549 from AutomaticFrenzy/patch/vending-machines
