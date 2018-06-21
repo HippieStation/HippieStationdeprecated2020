@@ -2119,7 +2119,7 @@
 					/obj/item/toner,
 					/obj/item/toner)
 	crate_name = "toner crate"
-=======
+
 /datum/supply_pack
 	var/name = "Crate"
 	var/group = ""
