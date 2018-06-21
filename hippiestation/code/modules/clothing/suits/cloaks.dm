@@ -1,6 +1,6 @@
 /obj/item/clothing/neck/cloak
 	w_class = WEIGHT_CLASS_SMALL // cloaks are no longer able to store items.
-	slot_flags = SLOT_NECK
+	slot_flags = ITEM_SLOT_NECK
 	cold_protection = CHEST | ARMS | HANDS
 	min_cold_protection_temperature = 257
 	//Cloaks keep your chest, arms, and hands toasty, but only slightly. For reference, humans start taking cold damage at 260.15K.
