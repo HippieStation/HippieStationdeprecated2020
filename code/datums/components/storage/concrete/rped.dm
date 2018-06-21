@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /datum/component/storage/concrete/rped
 	collection_mode = COLLECT_EVERYTHING
 	allow_quick_gather = TRUE
@@ -32,7 +31,6 @@
 		if (!stop_messages)
 			to_chat(M, "<span class='warning'>[parent] only accepts machine par	ts!</span>")
 		return FALSE
-=======
 /datum/component/storage/concrete/rped
 	collection_mode = COLLECT_EVERYTHING
 	allow_quick_gather = TRUE
@@ -66,4 +64,3 @@
 		if (!stop_messages)
 			to_chat(M, "<span class='warning'>[parent] only accepts machine parts!</span>")
 		return FALSE
->>>>>>> a4a6d3ec77... Merge pull request #38549 from AutomaticFrenzy/patch/vending-machines
