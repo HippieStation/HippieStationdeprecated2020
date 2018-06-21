@@ -56,18 +56,32 @@
 	if(slot == SLOT_WEAR_MASK)
 		item_flags = NODROP
 
-/obj/item/mounted_energy_chainsaw/scrake
+/obj/item/twohanded/required/scrake_saw
 	name = "mounted industrial chainsaw"
 	desc = "An industrial chainsaw that has replaced your arm."
+	icon_state = "chainsaw_on"
+	item_state = "mounted_chainsaw"
+	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/chainsaw_righthand.dmi'
+	hitsound = 'sound/weapons/chainsawhit.ogg'
+	force = 50
+	armour_penetration = 10
+	item_flags = NODROP | ABSTRACT | DROPDEL
+	w_class = WEIGHT_CLASS_HUGE
+	throwforce = 0
+	throw_range = 0
+	throw_speed = 0
+	sharpness = IS_SHARP
+	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
 
-/obj/item/mounted_energy_chainsaw/scrake/Initialize()
-	hitsound = pick('hippiestation/sound/weapons/echainsawhit1.ogg','hippiestation/sound/weapons/echainsawhit2.ogg')
-	.=..()
+/obj/item/twohanded/required/scrake_saw/Initialize()
+	. = ..()
+	AddComponent(/datum/component/butchering, 30, 100, 0, 'sound/weapons/chainsawhit.ogg', TRUE)
 
-/obj/item/mounted_energy_chainsaw/scrake/attack(mob/living/target, mob/living/user)
+/obj/item/twohanded/required/scrake_saw/attack(mob/living/target, mob/living/user)
 	. = ..()
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
-	if(!target.anchored && prob(60))
+	if(!target.anchored && prob(40))
 		target.throw_at(throw_target, 1, 3, user, FALSE)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
