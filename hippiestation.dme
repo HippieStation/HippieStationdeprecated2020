@@ -3022,6 +3022,7 @@
 #include "hippiestation\code\modules\projectiles\guns\ballistic\pistols.dm"
 #include "hippiestation\code\modules\projectiles\guns\ballistic\revolver.dm"
 #include "hippiestation\code\modules\projectiles\guns\ballistic\shotgun.dm"
+#include "hippiestation\code\modules\projectiles\guns\energy\special.dm"
 #include "hippiestation\code\modules\projectiles\guns\magic\staffofnothing.dm"
 #include "hippiestation\code\modules\projectiles\guns\magic\staffofrevenant.dm"
 #include "hippiestation\code\modules\projectiles\projectile\bullets.dm"
