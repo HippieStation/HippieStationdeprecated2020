@@ -79,7 +79,6 @@
 	mob_size = MOB_SIZE_SMALL
 	collar_type = "kitten"
 
-//RUNTIME IS ALIVE! SQUEEEEEEEE~
 /mob/living/simple_animal/pet/cat/Runtime
 	name = "Runtime"
 	desc = "GCAT"
@@ -157,7 +156,7 @@
 		if(family[cat_type] > 0)
 			for(var/i in 1 to min(family[cat_type],100)) //Limits to about 500 cats, you wouldn't think this would be needed (BUT IT IS)
 				new cat_type(loc)
-
+	
 /mob/living/simple_animal/pet/cat/Proc
 	name = "Proc"
 	gender = MALE

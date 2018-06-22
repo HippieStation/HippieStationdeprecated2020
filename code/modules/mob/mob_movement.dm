@@ -1,3 +1,5 @@
+#define SW_LIGHT_FACTOR 2.75
+
 /mob/CanPass(atom/movable/mover, turf/target)
 	if((mover.pass_flags & PASSMOB))
 		return TRUE
@@ -9,7 +11,6 @@
 		if (mover in buckled_mobs)
 			return TRUE
 	return (!mover.density || !density || lying)
-
 
 /client/verb/drop_item()
 	set hidden = 1

@@ -1,24 +1,34 @@
-## /tg/station codebase
+## HippieStation 13 [![GitHub forks](https://img.shields.io/github/forks/HippieStation/HippieStation.svg?style=social&label=Fork)](https://github.com/HippieStation/HippieStation#fork-destination-box)
 
-[![Build Status](https://travis-ci.org/tgstation/tgstation.png)](https://travis-ci.org/tgstation/tgstation) [![Krihelimeter](https://www.krihelinator.xyz/badge/tgstation/tgstation)](https://www.krihelinator.xyz)  
-[![Percentage of issues still open](https://isitmaintained.com/badge/open/tgstation/tgstation.svg)](https://isitmaintained.com/project/tgstation/tgstation "Percentage of issues still open") [![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/tgstation/tgstation.svg)](https://isitmaintained.com/project/tgstation/tgstation "Average time to resolve an issue") ![Coverage](https://img.shields.io/badge/coverage---2%25-red.svg)  
+**Website:** http://www.hippiestation.com <BR>
+**Code:** https://github.com/hippiestation/hippiestation <BR>
+**Wiki** https://wiki.hippiestation.com/index.php?title=Main_Page <BR>
+**Discord:** [Request access here.](https://hippiestation.com/threads/discord-invites.6055) <BR>
+
+[![Build Status](https://travis-ci.org/HippieStation/HippieStation.png)](https://travis-ci.org/HippieStation/HippieStation/) [![Krihelimeter](http://www.krihelinator.xyz/badge/HippieStation/HippieStation)](http://www.krihelinator.xyz/repositories/HippieStation/HippieStation)
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/HippieStation/HippieStation.svg)](https://isitmaintained.com/project/HippieStation/HippieStation "Percentage of issues still open") [![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/HippieStation/HippieStation.svg)](https://isitmaintained.com/project/HippieStation/HippieStation "Average time to resolve an issue") ![Coverage](https://img.shields.io/badge/coverage---777%25-red.svg)
 [![forthebadge](https://forthebadge.com/images/badges/built-with-resentment.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/contains-technical-debt.svg)](https://forthebadge.com) [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
-**Website:** https://www.tgstation13.org <BR>
-**Code:** https://github.com/tgstation/tgstation <BR>
-**Wiki** https://tgstation13.org/wiki/Main_Page <BR>
-**IRC:** irc://irc.rizon.net/coderbus or if you dont have an IRC client, you can click  [here](https://kiwiirc.com/client/irc.rizon.net:6667/?&theme=cli#coderbus).<BR>
+## ABOUT
 
- 
+This is the Github page for the HippieStation codebase, used on the Space Station 13 server. This codebase is built off the work of many different servers, primarily that of /tg/station 13.
+Because of this, the repository inherits /tg/station's licensing, among other things.
+For a full guide on how to set up your own Space Station 13 server, please see the [/tg/station README.md](https://github.com/tgstation/tgstation/blob/master/README.md).
+If you would like to contribute to this codebase, first take a look at the [CONTRIBUTING.md](.github/CONTRIBUTING.md).
+**Website:** https://www.tgstation13.org
+**Code:** https://github.com/tgstation/tgstation
+**Wiki** https://tgstation13.org/wiki/Main_Page
+**IRC:** irc://irc.rizon.net/coderbus or if you dont have an IRC client, you can click  [here](https://kiwiirc.com/client/irc.rizon.net:6667/?&theme=cli#coderbus)
+
 ## DOWNLOADING
 
-There are a number of ways to download the source code. Some are described here, an alternative all-inclusive guide is also located at https://www.tgstation13.org/wiki/Downloading_the_source_code
+There are a number of ways to download the source code. Some are described here, an alternative all-inclusive guide is also located at https://wiki.hippiestation.com/index.php?title=Downloading_the_source_code
 
 Option 1:
-Follow this: https://www.tgstation13.org/wiki/Setting_up_git
+Follow this: https://wiki.hippiestation.com/index.php?title=Setting_up_git
 
 Option 2: Download the source code as a zip by clicking the ZIP button in the
-code tab of https://github.com/tgstation/tgstation
+code tab of https://github.com/hippiestation/hippiestation
 (note: this will use a lot of bandwidth if you wish to update and is a lot of
 hassle if you want to make any changes at all, so it's not recommended.)
 
@@ -29,14 +39,11 @@ Option 3: Download a pre-compiled nightly at https://tgstation13.download/nightl
 First-time installation should be fairly straightforward. First, you'll need
 BYOND installed. You can get it from https://www.byond.com/download. Once you've done
 that, extract the game files to wherever you want to keep them. This is a
-sourcecode-only release, so the next step is to compile the server files.
-Open tgstation.dme by double-clicking it, open the Build menu, and click
-compile. This'll take a little while, and if everything's done right you'll get
-a message like this:
+sourcecode-only release, so the next step is to compile the server files. Open hippiestation.dme by double-clicking it, open the Build menu, and click compile. This'll take a little while, and if everything's done right you'll get a message like this:
 
 ```
-saving tgstation.dmb (DEBUG mode)
-tgstation.dmb - 0 errors, 0 warnings
+saving hippiestation.dmb (DEBUG mode)
+hippiestation.dmb - 0 errors, 0 warnings
 ```
 
 If you see any errors or warnings, something has gone wrong - possibly a corrupt
@@ -86,16 +93,9 @@ install, overwriting when prompted except if we've specified otherwise, and
 recompile the game.  Once you start the server up again, you should be running
 the new version.
 
-## HOSTING
-
-If you'd like a more robust server hosting option for tgstation and its
-derivatives. Check out our server tools suite at 
-https://github.com/tgstation/tgstation-server
-
 ## MAPS
-
-/tg/station currently comes equipped with five maps.
-
+Hippie Station currently comes equipped with six maps.
+* [Hippie BoxStation (default)](https://tgstation13.org/wiki/Boxstation)
 * [BoxStation (default)](https://tgstation13.org/wiki/Boxstation)
 * [MetaStation](https://tgstation13.org/wiki/MetaStation)
 * [DeltaStation](https://tgstation13.org/wiki/DeltaStation)
@@ -150,7 +150,7 @@ All code after [commit 333c566b88108de218d882840e61928a9b759d8f on 2014/31/12 at
 All code before [commit 333c566b88108de218d882840e61928a9b759d8f on 2014/31/12 at 4:38 PM PST](https://github.com/tgstation/tgstation/commit/333c566b88108de218d882840e61928a9b759d8f) is licensed under [GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.html).
 (Including tools unless their readme specifies otherwise.)
 
-See LICENSE and GPLv3.txt for more details.
+See LICENSE and OLD_LICENSE-GPLv3.txt for more details.
 
 tgui clientside is licensed as a subproject under the MIT license.
 Font Awesome font files, used by tgui, are licensed under the SIL Open Font License v1.1

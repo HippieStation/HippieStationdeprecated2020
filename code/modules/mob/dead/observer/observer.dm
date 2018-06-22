@@ -79,7 +79,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/mob/body = loc
 	if(ismob(body))
 		T = get_turf(body)				//Where is the body located?
-		logging = body.logging			//preserve our logs by copying them to our ghost
 
 		gender = body.gender
 		if(body.mind && body.mind.name)
@@ -272,7 +271,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "OOC"
 	set name = "Ghost"
 	set desc = "Relinquish your life and enter the land of the dead."
-
+	
+	//hippie start
+	if(!canGhost())
+		return
+	//hippie end
 	if(stat != DEAD)
 		succumb()
 	if(stat == DEAD)

@@ -79,6 +79,7 @@
 		a_left.holder_movement()
 	if(a_right)
 		a_right.holder_movement()
+	return
 
 /obj/item/assembly_holder/dropped(mob/user)
 	. = ..()

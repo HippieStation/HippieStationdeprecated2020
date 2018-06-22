@@ -27,7 +27,7 @@
 		if(M.rating > 3)
 			max_potency = 95
 		else
-			max_potency = initial(max_potency) + (M.rating**3) // 53,59,77,95 	 Clamps at 100
+			max_potency = initial(max_potency) + (M.rating**3) // 51,58,77,114 	 Clamps at 100
 
 		max_yield = initial(max_yield) + (M.rating*2) // 4,6,8,10 	Clamps at 10
 
@@ -35,9 +35,9 @@
 		if(SM.rating > 3) //If you create t5 parts I'm a step ahead mwahahaha!
 			min_production = 1
 		else
-			min_production = 12 - (SM.rating * 3) //9,6,3,1. Requires if to avoid going below clamp [1]
+			min_production = 10 - (SM.rating * 3) //7,4,1. Requires if to avoid going below clamp [1]
 
-		max_endurance = initial(max_endurance) + (SM.rating * 25) // 35,60,85,100	Clamps at 10min 100max
+		max_endurance = initial(max_endurance) + (SM.rating * 25) // 35,60,85,110	Clamps at 10min 100max
 
 	for(var/obj/item/stock_parts/micro_laser/ML in component_parts)
 		var/wratemod = ML.rating * 2.5
@@ -427,7 +427,7 @@
 
 /obj/item/disk/plantgene/proc/update_name()
 	if(gene)
-		name = "[gene.get_name()] (Plant Data Disk)"
+		name = "[gene.get_name()] (plant data disk)"
 	else
 		name = "plant data disk"
 
@@ -437,4 +437,6 @@
 
 /obj/item/disk/plantgene/examine(mob/user)
 	..()
+	if(gene && (istype(gene, /datum/plant_gene/core/potency)))
+		to_chat(user,"<span class='notice'>Percent is relative to potency, not maximum volume of the plant.</span>")
 	to_chat(user, "The write-protect tab is set to [src.read_only ? "protected" : "unprotected"].")

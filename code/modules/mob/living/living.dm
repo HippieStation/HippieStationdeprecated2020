@@ -1,7 +1,9 @@
 /mob/living/Initialize()
 	. = ..()
 	if(unique_name)
-		name = "[name] ([rand(1, 1000)])"
+		var/rand_int = rand(1, 1000)
+		name = "[name] ([rand_int])"
+		hippie_equip_mob_with_items(rand_int) /* This equips shit for the mob based on the random int they are given */
 		real_name = name
 	var/datum/atom_hud/data/human/medical/advanced/medhud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	medhud.add_to_hud(src)
@@ -34,14 +36,6 @@
 	GLOB.mob_living_list -= src
 	QDEL_LIST(diseases)
 	return ..()
-
-/mob/living/ghostize(can_reenter_corpse = 1)
-	var/prev_client = client
-	. = ..()
-	if(.)
-		if(ranged_ability && prev_client)
-			ranged_ability.remove_mousepointer(prev_client)
-
 
 /mob/living/proc/OpenCraftingMenu()
 	return
@@ -356,7 +350,7 @@
 	ret |= contents						//add our contents
 	for(var/i in ret.Copy())			//iterate storage objects
 		var/atom/A = i
-		A.SendSignal(COMSIG_TRY_STORAGE_RETURN_INVENTORY, ret)
+		SEND_SIGNAL(A, COMSIG_TRY_STORAGE_RETURN_INVENTORY, ret)
 	for(var/obj/item/folder/F in ret.Copy())		//very snowflakey-ly iterate folders
 		ret |= F.contents
 	return ret
@@ -436,6 +430,7 @@
 	heal_overall_damage(INFINITY, INFINITY, INFINITY, FALSE, FALSE, TRUE) //heal brute and burn dmg on both organic and robotic limbs, and update health right away.
 	ExtinguishMob()
 	fire_stacks = 0
+	confused = 0
 	update_canmove()
 	GET_COMPONENT(mood, /datum/component/mood)
 	if (mood)
@@ -591,6 +586,7 @@
 		return
 	changeNext_move(CLICK_CD_RESIST)
 
+	SEND_SIGNAL(src, COMSIG_LIVING_RESIST, src)
 	//resisting grabs (as if it helps anyone...)
 	if(!restrained(ignore_grab = 1) && pulledby)
 		visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
@@ -606,14 +602,6 @@
 	else if(isobj(loc))
 		var/obj/C = loc
 		C.container_resist(src)
-
-	else if(IsFrozen())
-		to_chat(src, "You start breaking out of the ice cube!")
-		if(do_mob(src, src, 40))
-			if(IsFrozen())
-				to_chat(src, "You break out of the ice cube!")
-				remove_status_effect(/datum/status_effect/freon)
-				update_canmove()
 
 	else if(canmove)
 		if(on_fire)
@@ -655,9 +643,15 @@
 	if(!SSticker.HasRoundStarted())
 		return
 	if(has_gravity)
-		clear_alert("weightless")
+		if(has_gravity == 1)
+			clear_alert("gravity")
+		else
+			if(has_gravity >= GRAVITY_DAMAGE_TRESHOLD)
+				throw_alert("gravity", /obj/screen/alert/veryhighgravity)
+			else
+				throw_alert("gravity", /obj/screen/alert/highgravity)
 	else
-		throw_alert("weightless", /obj/screen/alert/weightless)
+		throw_alert("gravity", /obj/screen/alert/weightless)
 	if(!override && !is_flying())
 		float(!has_gravity)
 
@@ -909,6 +903,7 @@
 		new/obj/effect/dummy/fire(src)
 		throw_alert("fire", /obj/screen/alert/fire)
 		update_fire()
+		SEND_SIGNAL(src, COMSIG_LIVING_IGNITED,src)
 		return TRUE
 	return FALSE
 
@@ -919,7 +914,8 @@
 		for(var/obj/effect/dummy/fire/F in src)
 			qdel(F)
 		clear_alert("fire")
-		SendSignal(COMSIG_CLEAR_MOOD_EVENT, "on_fire")
+		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "on_fire")
+		SEND_SIGNAL(src, COMSIG_LIVING_EXTINGUISHED, src)
 		update_fire()
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
@@ -972,7 +968,7 @@
 /mob/living/proc/update_canmove()
 	var/ko = IsKnockdown() || IsUnconscious() || (stat && (stat != SOFT_CRIT || pulledby)) || (has_trait(TRAIT_FAKEDEATH))
 	var/move_and_fall = stat == SOFT_CRIT && !pulledby
-	var/chokehold = pulledby && pulledby.grab_state >= GRAB_NECK
+	var/chokehold = pulledby && pulledby.grab_state >= GRAB_KILL
 	var/buckle_lying = !(buckled && !buckled.buckle_lying)
 	var/has_legs = get_num_legs()
 	var/has_arms = get_num_arms()
@@ -986,12 +982,16 @@
 		lying = 0
 	if(buckled)
 		lying = 90*buckle_lying
+	// Hippie Start
+	else if (pinned_to)
+		lying = 0
+	// Hippie End
 	else if(!lying)
 		if(resting)
 			fall()
 		else if(ko || move_and_fall || (!has_legs && !ignore_legs) || chokehold)
 			fall(forced = 1)
-	canmove = !(ko || resting || IsStun() || IsFrozen() || chokehold || buckled || (!has_legs && !ignore_legs && !has_arms))
+	canmove = !(ko || resting || IsStun() || IsFrozen() || chokehold || pinned_to || buckled || (!has_legs && !ignore_legs && !has_arms)) // Hippie - Added check for person being pinned
 	density = !lying
 	if(lying)
 		if(layer == initial(layer)) //to avoid special cases like hiding larvas.
@@ -1113,6 +1113,11 @@
 		else
 			clear_fullscreen("remote_view", 0)
 		update_pipe_vision()
+
+/mob/living/update_mouse_pointer()
+	..()
+	if (client && ranged_ability && ranged_ability.ranged_mousepointer)
+		client.mouse_pointer_icon = ranged_ability.ranged_mousepointer
 
 /mob/living/vv_edit_var(var_name, var_value)
 	switch(var_name)

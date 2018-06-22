@@ -232,6 +232,7 @@
 			busy = FALSE
 
 		else
+			tramount = min(tramount, AM.reagents.total_volume)
 			if(!AM.reagents.total_volume)
 				acting_object.visible_message("<span class='notice'>[acting_object] tries to draw from [AM], but it is empty!</span>")
 				activate_pin(3)
@@ -404,7 +405,7 @@
 	activate_pin(3)
 	return FALSE
 
-obj/item/integrated_circuit/reagent/storage/juicer
+/obj/item/integrated_circuit/reagent/storage/juicer
 	name = "reagent juicer"
 	desc = "This is a reagent juicer. It accepts a ref to something and refines it into reagents. It can store up to 100u."
 	icon_state = "blender"

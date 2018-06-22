@@ -296,7 +296,8 @@
 	cut_overlays()
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
-			if(emergency_mode)
+			var/area/A = get_area(src)
+			if(emergency_mode || (A && A.fire))
 				icon_state = "[base_state]_emergency"
 			else
 				icon_state = "[base_state]"
@@ -319,9 +320,16 @@
 			on = FALSE
 	emergency_mode = FALSE
 	if(on)
-		var/BR = nightshift_enabled? nightshift_brightness : brightness
-		var/PO = nightshift_enabled? nightshift_light_power : bulb_power
-		var/CO = nightshift_enabled? nightshift_light_color : bulb_colour
+		var/BR = brightness
+		var/PO = bulb_power
+		var/CO = bulb_colour
+		var/area/A = get_area(src)
+		if (A && A.fire)
+			CO = bulb_emergency_colour
+		else if (nightshift_enabled)
+			BR = nightshift_brightness
+			PO = nightshift_light_power
+			CO = nightshift_light_color
 		var/matching = light && BR == light.light_range && PO == light.light_power && CO == light.light_color
 		if(!matching)
 			switchcount++
@@ -706,6 +714,24 @@
 	grind_results = list("silicon" = 5, "nitrogen" = 10) //Nitrogen is used as a cheaper alternative to argon in incandescent lighbulbs
 	var/rigged = 0		// true if rigged to explode
 	var/brightness = 2 //how much light it gives off
+	
+/obj/item/light/suicide_act(mob/living/carbon/user)
+	if (status == LIGHT_BROKEN)
+		user.visible_message("<span class='suicide'>[user] begins to stab [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+		return BRUTELOSS
+	else
+		user.visible_message("<span class='suicide'>[user] begins to eat \the [src]! It looks like [user.p_theyre()] not very bright!</span>")
+		shatter()
+		return BRUTELOSS
+
+/obj/item/light/suicide_act(mob/living/carbon/user)
+	if (status == LIGHT_BROKEN)
+		user.visible_message("<span class='suicide'>[user] begins to stab [user.p_them()]self with \the [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+		return BRUTELOSS
+	else
+		user.visible_message("<span class='suicide'>[user] begins to eat \the [src]! It looks like [user.p_theyre()] not very bright!</span>")
+		shatter()
+		return BRUTELOSS
 
 /obj/item/light/suicide_act(mob/living/carbon/user)
 	if (status == LIGHT_BROKEN)

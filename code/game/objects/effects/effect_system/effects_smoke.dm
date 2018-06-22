@@ -29,7 +29,7 @@
 		if(alpha < 160)
 			set_opacity(0) //if we were blocking view, we aren't now because we're fading out
 		stoplag()
-
+/*mirrored so smoke processes with reagents subsystem instead
 /obj/effect/particle_effect/smoke/New()
 	..()
 	create_reagents(500)
@@ -44,7 +44,7 @@
 	STOP_PROCESSING(SSobj, src)
 	INVOKE_ASYNC(src, .proc/fade_out)
 	QDEL_IN(src, 10)
-
+*/
 /obj/effect/particle_effect/smoke/process()
 	lifetime--
 	if(lifetime < 1)
@@ -289,7 +289,7 @@
 			if(M)
 				more = "[ADMIN_LOOKUPFLW(M)] "
 			message_admins("Smoke: ([whereLink])[contained]. Key: [more ? more : carry.my_atom.fingerprintslast].")
-			log_game("A chemical smoke reaction has taken place in ([where])[contained]. Last associated key is [carry.my_atom.fingerprintslast].")
+			log_game("A chemical smoke reaction has taken place in ([where])[contained]. Last touched by [carry.my_atom.fingerprintslast].")
 		else
 			message_admins("Smoke: ([whereLink])[contained]. No associated key.")
 			log_game("A chemical smoke reaction has taken place in ([where])[contained]. No associated key.")

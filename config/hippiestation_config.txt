@@ -1,0 +1,19 @@
+#Determines what internet address to use.
+INTERNET_ADDRESS_TO_USE 0.0.0.0.0
+
+## Comment this out if you want to use the SQL based mentor system, the legacy system uses mentors.txt.
+## You need to set up your database to use the SQL based system.
+## This flag is automatically enabled if SQL_ENABLED isn't
+#MENTOR_LEGACY_SYSTEM
+
+#Mentors only see ckeys by default. Uncomment to have them only see mob name
+#MENTORS_MOBNAME_ONLY
+
+#Token provider URL (HTTP only because BYOND is garbage)
+TOKEN_GENERATOR http://127.0.0.1:9000/storeCkey.php
+
+#Token consumer URL
+TOKEN_CONSUMER http://127.0.0.1:9000/byondLinker.php
+
+#Uncomment this with a text to speech API if you wish to use one
+#TTS_API http://www.example.com/index.html?text=

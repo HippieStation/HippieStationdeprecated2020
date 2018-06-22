@@ -68,7 +68,7 @@
 
 /obj/item/pen/fountain
 	name = "fountain pen"
-	desc = "It's a common fountain pen, with a faux wood body."
+	desc = "It's a fountain pen, with a faux wood body."
 	icon_state = "pen-fountain"
 	font = FOUNTAIN_PEN_FONT
 
@@ -143,6 +143,7 @@
 			else
 				O.name = input
 				to_chat(user, "\The [oldname] has been successfully been renamed to \the [input].")
+				O.renamedByPlayer = TRUE
 
 		if(penchoice == "Change description")
 			var/input = stripped_input(user,"Describe \the [O.name] here", ,"", 100)

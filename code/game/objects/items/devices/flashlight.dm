@@ -199,7 +199,7 @@
 	item_state = "seclite"
 	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
-	force = 9 // Not as good as a stun baton.
+	force = 15 // robust
 	brightness_on = 5 // A little better than the standard flashlight.
 	hitsound = 'sound/weapons/genhit1.ogg'
 
@@ -398,6 +398,11 @@
 	else
 		to_chat(user, "<span class='warning'>\The [src] needs time to recharge!</span>")
 	return
+
+/obj/item/flashlight/emp/debug //for testing emp_act()
+	name = "debug EMP flashlight"
+	emp_max_charges = 100
+	emp_cur_charges = 100
 
 // Glowsticks, in the uncomfortable range of similar to flares,
 // but not similar enough to make it worth a refactor

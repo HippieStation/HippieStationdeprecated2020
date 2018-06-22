@@ -303,7 +303,7 @@
 							need_mob_update += R.addiction_act_stage4(C)
 						if(40 to INFINITY)
 							to_chat(C, "<span class='notice'>You feel like you've gotten over your need for [R.name].</span>")
-							C.SendSignal(COMSIG_CLEAR_MOOD_EVENT, "[R.id]_addiction")
+							SEND_SIGNAL(C, COMSIG_CLEAR_MOOD_EVENT, "[R.id]_addiction")
 							cached_addictions.Remove(R)
 		addiction_tick++
 	if(C && need_mob_update) //some of the metabolized reagents had effects on the mob that requires some updates.
@@ -332,6 +332,8 @@
 		var/datum/reagent/R = reagent
 		R.on_update (A)
 	update_total()
+/*
+this has been modified and moved over to the hippie folder to allow for custom reaction conditions
 
 /datum/reagents/proc/handle_reactions()
 	var/list/cached_reagents = reagent_list
@@ -406,10 +408,10 @@
 			for(var/V in possible_reactions)
 				var/datum/chemical_reaction/competitor = V
 				if(selected_reaction.is_cold_recipe) //if there are no recipe conflicts, everything in possible_reactions will have this same value for is_cold_reaction. warranty void if assumption not met.
-					if(competitor.required_temp < selected_reaction.required_temp)
+					if(competitor.required_temp <= selected_reaction.required_temp)
 						selected_reaction = competitor
 				else
-					if(competitor.required_temp > selected_reaction.required_temp)
+					if(competitor.required_temp >= selected_reaction.required_temp)
 						selected_reaction = competitor
 			var/list/cached_required_reagents = selected_reaction.required_reagents
 			var/list/cached_results = selected_reaction.results
@@ -450,7 +452,7 @@
 	while(reaction_occurred)
 	update_total()
 	return 0
-
+*/
 /datum/reagents/proc/isolate_reagent(reagent)
 	var/list/cached_reagents = reagent_list
 	for(var/_reagent in cached_reagents)

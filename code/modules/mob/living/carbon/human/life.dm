@@ -18,10 +18,28 @@
 #define THERMAL_PROTECTION_HAND_LEFT	0.025
 #define THERMAL_PROTECTION_HAND_RIGHT	0.025
 
+// bitflags for the percentual amount of protection a piece of clothing which covers the body part offers.
+// Used with human/proc/get_heat_protection() and human/proc/get_cold_protection()
+// The values here should add up to 1.
+// Hands and feet have 2.5%, arms and legs 7.5%, each of the torso parts has 15% and the head has 30%
+#define THERMAL_PROTECTION_HEAD			0.3
+#define THERMAL_PROTECTION_CHEST		0.15
+#define THERMAL_PROTECTION_GROIN		0.15
+#define THERMAL_PROTECTION_LEG_LEFT		0.075
+#define THERMAL_PROTECTION_LEG_RIGHT	0.075
+#define THERMAL_PROTECTION_FOOT_LEFT	0.025
+#define THERMAL_PROTECTION_FOOT_RIGHT	0.025
+#define THERMAL_PROTECTION_ARM_LEFT		0.075
+#define THERMAL_PROTECTION_ARM_RIGHT	0.075
+#define THERMAL_PROTECTION_HAND_LEFT	0.025
+#define THERMAL_PROTECTION_HAND_RIGHT	0.025
+
 /mob/living/carbon/human/Life()
 	set invisibility = 0
 	if (notransform)
 		return
+
+	OnHippieLifeAfterNoTransform() // hippiestation/code/modules/mob/living/carbon/human/life.dm
 
 	if(..()) //not dead
 		handle_active_genes()
@@ -37,7 +55,8 @@
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()
 
-	dna.species.spec_life(src) // for mutantraces
+	if(dna)//Do we have dna?
+		dna.species.spec_life(src) // for mutantraces
 
 	if(stat != DEAD)
 		return 1
@@ -62,14 +81,14 @@
 		adjust_blurriness(-1)
 
 	if (getBrainLoss() >= 60 && !incapacitated(TRUE))
-		SendSignal(COMSIG_ADD_MOOD_EVENT, "brain_damage", /datum/mood_event/brain_damage)
+		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "brain_damage", /datum/mood_event/brain_damage)
 		if(prob(3))
 			if(prob(25))
 				emote("drool")
 			else
 				say(pick_list_replacements(BRAIN_DAMAGE_FILE, "brain_damage"))
 	else
-		SendSignal(COMSIG_CLEAR_MOOD_EVENT, "brain_damage")
+		SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "brain_damage")
 
 /mob/living/carbon/human/handle_mutations_and_radiation()
 	if(!dna || !dna.species.handle_mutations_and_radiation(src))
@@ -224,9 +243,6 @@
 	return thermal_protection_flags
 
 /mob/living/carbon/human/proc/get_cold_protection(temperature)
-	if(has_trait(TRAIT_RESISTCOLD))
-		return TRUE
-
 	temperature = max(temperature, 2.7) //There is an occasional bug where the temperature is miscalculated in ares with a small amount of gas on them, so this is necessary to ensure that that bug does not affect this calculation. Space's temperature is 2.7K and most suits that are intended to protect against any cold, protect down to 2.0K.
 	var/thermal_protection_flags = get_cold_protection_flags(temperature)
 
@@ -296,7 +312,7 @@
 				visible_message("<span class='danger'>[I] falls out of [name]'s [BP.name]!</span>","<span class='userdanger'>[I] falls out of your [BP.name]!</span>")
 				if(!has_embedded_objects())
 					clear_alert("embeddedobject")
-					SendSignal(COMSIG_CLEAR_MOOD_EVENT, "embedded")
+					SEND_SIGNAL(src, COMSIG_CLEAR_MOOD_EVENT, "embedded")
 
 /mob/living/carbon/human/proc/handle_active_genes()
 	for(var/datum/mutation/human/HM in dna.mutations)
@@ -378,10 +394,10 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 						ballmer_percent = (-abs(drunkenness - 13.35) / 0.9) + 1
 					if(prob(5))
 						say(pick(GLOB.ballmer_good_msg))
-					SSresearch.science_tech.add_points_all(TECHWEB_POINT_TYPE_DEFAULT, (BALLMER_POINTS * ballmer_percent))
+					SSresearch.science_tech.add_point_list(list(TECHWEB_POINT_TYPE_GENERIC = BALLMER_POINTS * ballmer_percent))
 				if(drunkenness > 26) // by this point you're into windows ME territory
 					if(prob(5))
-						SSresearch.science_tech.remove_points_all(TECHWEB_POINT_TYPE_DEFAULT, BALLMER_POINTS)
+						SSresearch.science_tech.remove_point_list(list(TECHWEB_POINT_TYPE_GENERIC = BALLMER_POINTS))
 						say(pick(GLOB.ballmer_windows_me_msg))
 
 		if(drunkenness >= 41)

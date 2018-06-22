@@ -815,7 +815,8 @@ Turf and target are separate in case you want to teleport some distance from a t
 //e.g: rods
 GLOBAL_LIST_INIT(can_embed_types, typecacheof(list(
 	/obj/item/stack/rods,
-	/obj/item/pipe)))
+	/obj/item/pipe,
+	/obj/item/organ/butt))) // Hippie - Because butts aren't sharp or pointy
 
 /proc/can_embed(obj/item/W)
 	if(W.is_sharp())
@@ -1271,10 +1272,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	if(!istype(C))
 		return
 
-	var/animate_color = initial(C.color)
-	var/datum/client_colour/CC = C.mob.client_colours[1]
-	if(CC)
-		animate_color = CC.colour
+	var/animate_color = C.color
 	C.color = flash_color
 	animate(C, color = animate_color, time = flash_time)
 

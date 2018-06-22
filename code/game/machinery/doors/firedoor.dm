@@ -15,7 +15,6 @@
 	resistance_flags = FIRE_PROOF
 	heat_proof = TRUE
 	glass = TRUE
-	var/nextstate = null
 	sub_door = TRUE
 	explosion_block = 1
 	safe = FALSE
@@ -24,6 +23,7 @@
 	assemblytype = /obj/structure/firelock_frame
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 95, "acid" = 70)
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON | INTERACT_MACHINE_REQUIRES_SILICON | INTERACT_MACHINE_OPEN
+	var/nextstate = null
 	var/boltslocked = TRUE
 	var/list/affecting_areas
 
@@ -142,6 +142,14 @@
 	if(density)
 		open()
 	else
+		if(iscarbon(user))
+			var/mob/living/carbon/C = user
+			if(C.has_trait(TRAIT_PACIFISM))
+				var/T = get_turf(src)
+				for(var/mob/living/L in T)
+					if((L.stat != DEAD) && !L.has_trait(TRAIT_FAKEDEATH))
+						to_chat(user, "<span class='notice'>Closing [src] would hurt [L]!</span>")
+						return
 		close()
 
 /obj/machinery/door/firedoor/attack_ai(mob/user)

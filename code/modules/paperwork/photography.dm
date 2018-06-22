@@ -226,6 +226,8 @@
 	for(var/turf/T in turfs)
 		atoms.Add(T)
 		for(var/atom/movable/A in T)
+			if(isliving(A) && is_vampire(A))
+				continue
 			if(A.invisibility)
 				if(see_ghosts && isobserver(A))
 					var/mob/dead/observer/O = A
@@ -328,7 +330,10 @@
 	temp.Blend(camera_get_icon(turfs, target), ICON_OVERLAY)
 
 	if(!issilicon(user))
-		printpicture(user, temp, mobs, flag)
+		// Hippie Start - MSGV style box disguises
+		var/list/disguises = find_disguises(user, turfs)
+		printpicture(user, temp, mobs, flag, disguises)
+		// Hippie End
 	else
 		aipicture(user, temp, mobs, isAi, blueprints)
 
