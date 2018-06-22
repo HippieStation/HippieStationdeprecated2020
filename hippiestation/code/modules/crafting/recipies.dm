@@ -94,7 +94,6 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-
 /datum/crafting_recipe/lockermech
 	name = "Locker Mech"
 	result = /obj/mecha/makeshift
@@ -132,7 +131,7 @@
 	time = 50
 	category = CAT_ROBOT
 
-/datum/crafting_recipe/bonesword
+/datum/crafting_recipe/watcherproj
 	name = "Watcher Projector"
 	result = /obj/item/gun/energy/watcherprojector
 	reqs = list(/obj/item/stack/sheet/bone = 3,
