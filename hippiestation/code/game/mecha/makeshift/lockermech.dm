@@ -12,22 +12,15 @@
 	var/list/cargo = new
 	var/cargo_capacity = 5 // you can fit a few things in this locker but not much.
 
-/obj/mecha/makeshift/Destroy()
-	for(var/atom/movable/A in cargo)
-		A.forceMove(loc)
-		step_rand(A)
-	cargo.Cut()
-	return ..()
-
 /obj/mecha/makeshift/Topic(href, href_list)
 	..()
 	if(href_list["drop_from_cargo"])
 		var/obj/O = locate(href_list["drop_from_cargo"])
-		if(O && O in src.cargo)
-			src.occupant_message("<span class='notice'>You unload [O].</span>")
+		if(O && O in cargo)
+			occupant_message("<span class='notice'>You unload [O].</span>")
 			O.forceMove(loc)
-			src.cargo -= O
-			src.log_message("Unloaded [O]. Cargo compartment capacity: [cargo_capacity - src.cargo.len]")
+			cargo -= O
+			log_message("Unloaded [O]. Cargo compartment capacity: [cargo_capacity - src.cargo.len]")
 	return
 
 /obj/mecha/makeshift/go_out()
@@ -84,6 +77,10 @@
 			AI = M //AIs are loaded into the mech computer itself. When the mech dies, so does the AI. They can be recovered with an AI card from the wreck.
 		else
 			M.forceMove(loc)
+	for(var/atom/movable/A in cargo)
+		A.forceMove(loc)
+		step_rand(A)
+	cargo.Cut()
 	for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
 		E.detach(loc)
 		qdel(E)
