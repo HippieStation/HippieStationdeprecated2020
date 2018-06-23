@@ -29,15 +29,12 @@
 		if(alpha < 160)
 			set_opacity(0) //if we were blocking view, we aren't now because we're fading out
 		stoplag()
-<<<<<<< HEAD
 /*mirrored so smoke processes with reagents subsystem instead
 /obj/effect/particle_effect/smoke/New()
 	..()
-=======
 
 /obj/effect/particle_effect/smoke/Initialize()
 	. = ..()
->>>>>>> 6a603b733d... Ports more things to Initialize (#38653)
 	create_reagents(500)
 	START_PROCESSING(SSobj, src)
 
