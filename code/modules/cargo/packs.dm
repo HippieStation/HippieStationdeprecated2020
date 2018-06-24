@@ -1373,7 +1373,6 @@
 	contains = list(/obj/item/vending_refill/cigarette)
 	desc = "Don't believe the reports - smoke today! Contains cigarette vending machine refills."
 	cost = 1500
-	contains = list(/obj/item/vending_refill/cigarette)
 	crate_name = "cigarette supply crate"
 	crate_type = /obj/structure/closet/crate
 
@@ -1382,7 +1381,6 @@
 	contains = list(/obj/item/vending_refill/games)
 	desc = "Get your game on with these three game vending machine refills."
 	cost = 1000
-	contains = list(/obj/item/vending_refill/games)
 	crate_name = "games supply crate"
 	crate_type = /obj/structure/closet/crate
 
