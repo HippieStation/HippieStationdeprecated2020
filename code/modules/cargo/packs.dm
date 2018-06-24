@@ -1363,7 +1363,7 @@
 	name = "Bartending Supply Crate"
 	desc = "Bring on the booze with six vending machine refills, as well as a free book containing the well-kept secrets to the bartending trade!"
 	cost = 2000
-	contains = list(/obj/item/vending_refill/boozeomat
+	contains = list(/obj/item/vending_refill/boozeomat,
 					/obj/item/vending_refill/coffee,
 					/obj/item/book/granter/action/drink_fling)
 	crate_name = "bartending supply crate"
