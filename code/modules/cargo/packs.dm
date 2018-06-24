@@ -1747,7 +1747,7 @@
 					/obj/item/clothing/under/syndicate/tacticool,
 					/obj/item/storage/fancy/cigarettes/cigpack_syndicate,
 					/obj/item/storage/fancy/cigarettes/cigpack_shadyjims,
-					/obj/item/clothing/mask/gas/syndicate,
+					/obj/item/clothing/mask/gas/syndicate)
 	crate_name = "crate"
 
 /datum/supply_pack/costumes_toys/foamforce
