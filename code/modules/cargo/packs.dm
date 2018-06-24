@@ -1126,8 +1126,6 @@
 	cost = 2000
 	contains = list(/obj/item/vending_refill/medical,
 					/obj/item/vending_refill/wallmed)
-					/obj/item/vending_refill/medical,
-					/obj/item/vending_refill/medical)
 	crate_name = "medical vending crate"
 
 /datum/supply_pack/medical/virus
