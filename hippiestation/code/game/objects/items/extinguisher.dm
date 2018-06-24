@@ -1,3 +1,18 @@
+/obj/item/extinguisher/attack_self(mob/user)
+	..()
+	if(safety)
+		container_type = AMOUNT_VISIBLE
+	else
+		container_type = OPENCONTAINER
+
+/obj/item/extinguisher/attackby(obj/O, mob/user)
+	if(istype(O, /obj/item/reagent_containers))
+		if(safety)
+			to_chat(user, "<span class='warning'>You need to take off the safety before you can refill the [src]!</span>")
+			return
+	else
+		..()
+
 /obj/item/extinguisher/attack_obj(obj/O, mob/living/user)
 	if(attempt_refill_hippie(O, user))
 		refilling = TRUE
