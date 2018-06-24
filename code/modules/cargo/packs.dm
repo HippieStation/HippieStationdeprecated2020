@@ -1361,8 +1361,6 @@
 
 /datum/supply_pack/service/vending/bartending
 	name = "Bartending Supply Crate"
-	desc = "Bring on the booze with vending machine refills, as well as a free book containing the well-kept secrets to the bartending trade!"
-	cost = 2000
 	contains = list(/obj/item/vending_refill/boozeomat,
 	desc = "Bring on the booze with six vending machine refills, as well as a free book containing the well-kept secrets to the bartending trade!"
 	cost = 2000
@@ -1377,8 +1375,6 @@
 
 /datum/supply_pack/service/vending/cigarette
 	name = "Cigarette Supply Crate"
-	desc = "Don't believe the reports - smoke today! Contains a cigarette vending machine refill."
-	cost = 1500
 	contains = list(/obj/item/vending_refill/cigarette)
 	desc = "Don't believe the reports - smoke today! Contains cigarette vending machine refills."
 	cost = 1500
@@ -1390,8 +1386,6 @@
 
 /datum/supply_pack/service/vending/games
 	name = "Games Supply Crate"
-	desc = "Get your game on with this game vending machine refill."
-	cost = 1000
 	contains = list(/obj/item/vending_refill/games)
 	desc = "Get your game on with these three game vending machine refills."
 	cost = 1000
@@ -1403,9 +1397,6 @@
 
 /datum/supply_pack/service/vending/snack
 	name = "Snack Supply Crate"
-	desc = "One vending machine refill of cavity-bringin' goodness! The number one dentist recommended order!"
-	cost = 1500
-	contains = list(/obj/item/vending_refill/snack)
 	desc = "Three vending machine refills of cavity-bringin' goodness! The number one dentist recommended order!"
 	cost = 1500
 	contains = list(/obj/item/vending_refill/snack,
@@ -1415,9 +1406,6 @@
 
 /datum/supply_pack/service/vending/cola
 	name = "Softdrinks Supply Crate"
-	desc = "Got whacked by a toolbox, but you still have those pesky teeth? Get rid of those pearly whites with this soda machine refill, today!"
-	cost = 1500
-	contains = list(/obj/item/vending_refill/cola)
 	desc = "Got whacked by a toolbox, but you still have those pesky teeth? Get rid of those pearly whites with these three soda machine refills, today!"
 	cost = 1500
 	contains = list(/obj/item/vending_refill/cola,
