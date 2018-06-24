@@ -1361,7 +1361,6 @@
 
 /datum/supply_pack/service/vending/bartending
 	name = "Bartending Supply Crate"
-	contains = list(/obj/item/vending_refill/boozeomat,
 	desc = "Bring on the booze with six vending machine refills, as well as a free book containing the well-kept secrets to the bartending trade!"
 	cost = 2000
 	contains = list(/obj/item/vending_refill/boozeomat,
