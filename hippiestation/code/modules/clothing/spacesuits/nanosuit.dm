@@ -222,19 +222,19 @@
 	..()
 	cell.use(round(cell.charge / severity))
 	if((mode == armor && cell.charge == 0) || (mode != armor))
-		if(prob(5/severity*1.5) && !shutdown)
+		if(prob(8/severity*1.5) && !shutdown)
 			emp_assault()
 	update_icon()
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/emp_assault()
 	if(!U.mind)
 		return //Not sure how this could happen.
-	shutdown = TRUE
 	U.Knockdown(300)
 	U.AdjustStun(300)
 	U.Jitter(120)
 	toggle_mode("none", TRUE)
 	helmet.display_visor_message("EMP Assault! Systems impaired.")
+	shutdown = TRUE
 	addtimer(CALLBACK(src, .proc/emp_assaulttwo), 25)
 
 
@@ -339,7 +339,6 @@
 			else
 				sleep(40) //if we lose energy wait 4 seconds then recharge us
 				cell.give(charge_rate)
-
 		sleep(recharge_delay)//recharges us at variable rate
 
 
@@ -347,20 +346,23 @@
 	var/obj/item/projectile/P = hitby
 	if(mode == "armor")
 		if(cell.charge > 0)
-			cell.use(CLAMP(hit_use + damage,1,cell.charge))
-			user.visible_message("<span class='danger'>[user]'s shields deflect [attack_text]!</span>")
+			if(damage)
+				if(P.damage_type != STAMINA)
+					cell.use(CLAMP(hit_use + damage,1,cell.charge))//laser guns, anything lethal drains 5 + the damage dealth
+				else
+					cell.use(CLAMP(hit_use + 10,1,cell.charge))//stamina damage, aka disabler beams
+			if(istype(P, /obj/item/projectile/energy/electrode))//if electrode aka taser
+				cell.use(CLAMP(hit_use + 20,1,cell.charge))
+			user.visible_message("<span class='danger'>[user]'s shields deflect [attack_text] draining their energy!</span>")
 			return TRUE
-		else
-			return FALSE
-		if(cell <= 20) //we instantly go out of armor if we get hit at critical energy
+		if(cell.charge <= 20) //we instantly go out of armor if we get hit at critical energy
 			cell.charge = 0
-			//DisableModes()
 		if(damage && attack_type == PROJECTILE_ATTACK && P.damage_type != STAMINA && prob(50))
 			var/datum/effect_system/spark_spread/s = new
 			s.set_up(1, 1, src)
 			s.start()
 	kill_cloak(user)
-	if(prob(damage*2.5) && user.health < 50 && current_charges > 0)
+	if(prob(damage*2) && user.health < 60 && current_charges > 0)
 		medical_cooldown = world.time + medical_delay
 		current_charges--
 		heal_nano(user)
@@ -369,7 +371,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/heal_nano(mob/living/carbon/human/user)
 	helmet.display_visor_message("Engaging emergency medical protocols")
-	user.reagents.add_reagent("syndicate_nanites", 2)
+	user.reagents.add_reagent("syndicate_nanites", 1)
 
 /obj/item/clothing/suit/space/hardsuit/nano/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/nanosuit/armor))
@@ -387,7 +389,7 @@
 	return FALSE
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/toggle_mode(var/suitmode, var/forced = FALSE)
-	if(forced || (cell.charge > 0 && mode != suitmode))
+	if(!shutdown && (forced || (cell.charge > 0 && mode != suitmode)))
 		mode = suitmode
 		switch(suitmode)
 			if("armor")

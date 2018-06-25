@@ -15,6 +15,10 @@ This is the Github page for the HippieStation codebase, used on the Space Statio
 Because of this, the repository inherits /tg/station's licensing, among other things.
 For a full guide on how to set up your own Space Station 13 server, please see the [/tg/station README.md](https://github.com/tgstation/tgstation/blob/master/README.md).
 If you would like to contribute to this codebase, first take a look at the [CONTRIBUTING.md](.github/CONTRIBUTING.md).
+**Website:** https://www.tgstation13.org
+**Code:** https://github.com/tgstation/tgstation
+**Wiki** https://tgstation13.org/wiki/Main_Page
+**IRC:** irc://irc.rizon.net/coderbus or if you dont have an IRC client, you can click  [here](https://kiwiirc.com/client/irc.rizon.net:6667/?&theme=cli#coderbus)
 
 ## DOWNLOADING
 
