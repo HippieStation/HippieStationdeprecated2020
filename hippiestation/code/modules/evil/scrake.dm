@@ -6,7 +6,7 @@
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
 	clothing_flags = THICKMATERIAL | STOPSPRESSUREDAMAGE
-	armor = list("melee" = 70, "bullet" = 45, "laser" = 80, "energy" = 45, "bomb" = 75, "bio" = 0, "rad" = 30, "fire" = 80, "acid" = 100)
+	armor = list("melee" = 70, "bullet" = 40, "laser" = 40, "energy" = 45, "bomb" = 75, "bio" = 0, "rad" = 30, "fire" = 80, "acid" = 100)
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 	slowdown = 1
 	var/rage_cooldown_duration = 600
@@ -35,6 +35,8 @@
 /obj/item/clothing/suit/apron/chef/scrake/proc/Rage(mob/living/carbon/human/owner)
 	if(world.time < rage_cooldown)
 		return
+	if(!owner)
+		return
 	owner.client.color = pure_red
 	animate(owner.client,color = red_splash, time = 10, easing = SINE_EASING|EASE_OUT)
 	owner.visible_message("<span class='userdanger'>The scrake looks pissed, run!</span>", \
@@ -49,36 +51,25 @@
 	desc = "A mask probably used by a serial killer."
 	clothing_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
 	gas_transfer_coefficient = 0.01
-	armor = list("melee" = 70, "bullet" = 45, "laser" = 80, "energy" = 45, "bomb" = 75, "bio" = 0, "rad" = 30, "fire" = 80, "acid" = 100)
+	armor = list("melee" = 70, "bullet" = 40, "laser" = 40, "energy" = 45, "bomb" = 75, "bio" = 0, "rad" = 30, "fire" = 80, "acid" = 100)
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/mask/surgical/scrake/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_WEAR_MASK)
 		item_flags = NODROP
 
-/obj/item/twohanded/required/scrake_saw
+/obj/item/twohanded/required/chainsaw/scrake_saw
 	name = "mounted industrial chainsaw"
 	desc = "An industrial chainsaw that has replaced your arm."
-	icon_state = "chainsaw_on"
-	item_state = "mounted_chainsaw"
-	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/chainsaw_righthand.dmi'
-	hitsound = 'sound/weapons/chainsawhit.ogg'
-	force = 50
+	force = 15
+	force_on = 40
 	armour_penetration = 10
-	item_flags = NODROP | ABSTRACT | DROPDEL
-	w_class = WEIGHT_CLASS_HUGE
+	item_flags = NODROP | DROPDEL
 	throwforce = 0
 	throw_range = 0
 	throw_speed = 0
-	sharpness = IS_SHARP
-	attack_verb = list("sawed", "torn", "cut", "chopped", "diced")
 
-/obj/item/twohanded/required/scrake_saw/Initialize()
-	. = ..()
-	AddComponent(/datum/component/butchering, 30, 100, 0, 'sound/weapons/chainsawhit.ogg', TRUE)
-
-/obj/item/twohanded/required/scrake_saw/attack(mob/living/target, mob/living/user)
+/obj/item/twohanded/required/chainsaw/scrake_saw/attack(mob/living/target, mob/living/user)
 	. = ..()
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(!target.anchored && prob(40))
@@ -88,4 +79,11 @@
 		if(istype(H.wear_suit, /obj/item/clothing/suit/apron/chef/scrake))
 			var/obj/item/clothing/suit/apron/chef/scrake/sc = H.wear_suit
 			if(sc.raged)
-				H.changeNext_move(CLICK_CD_MELEE * 0.5)//rage
+				H.changeNext_move(CLICK_CD_MELEE * 0.75)//rage attack, hit 25% faster
+
+/obj/item/twohanded/required/chainsaw/scrake_saw/attack_self(mob/user)
+	..()
+	if(on)
+		playsound(src, 'hippiestation/sound/weapons/echainsawon.ogg', 50, 1)
+	else
+		playsound(src, 'hippiestation/sound/weapons/echainsawoff.ogg', 50, 1)

@@ -16,5 +16,5 @@
 /datum/species/scrake/spec_life(mob/living/carbon/C)
 	. = ..()
 	C.a_intent = INTENT_HARM // THE SUFFERING MUST FLOW
-	if(prob(8))
-		playsound(C, pick(spooks), 50, FALSE, 15)
+	if(prob(6))
+		playsound(C, pick(spooks), 50, FALSE, 12)
