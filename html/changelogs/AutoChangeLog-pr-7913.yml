@@ -1,0 +1,4 @@
+author: "Another test"
+delete-after: True
+changes: 
+  - rscadd: "Test changelog"
