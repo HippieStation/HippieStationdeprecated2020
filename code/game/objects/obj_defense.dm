@@ -48,8 +48,12 @@
 
 /obj/hitby(atom/movable/AM)
 	..()
+<<<<<<< HEAD
 	if(src && !QDELETED(src)) // hippie
 		take_damage(AM.throwforce, BRUTE, "melee", 1, get_dir(src, AM))
+=======
+	take_damage(AM.throwforce, BRUTE, "melee", 1, get_dir(src, AM))
+>>>>>>> 89752866aa... Merge branch 'master' into spellcheck
 
 /obj/ex_act(severity, target)
 	if(resistance_flags & INDESTRUCTIBLE)
