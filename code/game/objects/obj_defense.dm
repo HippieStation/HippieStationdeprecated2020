@@ -48,18 +48,8 @@
 
 /obj/hitby(atom/movable/AM)
 	..()
-<<<<<<< HEAD
-	var/tforce = 0
-	if(ismob(AM))
-		tforce = 10
-	else if(isobj(AM))
-		var/obj/O = AM
-		tforce = O.throwforce
-	if(src && !QDELETED(src)) //Hippie code. Do we still exist?
-		take_damage(tforce, BRUTE, "melee", 1, get_dir(src, AM))
-=======
-	take_damage(AM.throwforce, BRUTE, "melee", 1, get_dir(src, AM))
->>>>>>> 47f55b48a7... Move throwforce up to atom/movable (#38689)
+	if(src && !QDELETED(src)) // hippie
+		take_damage(AM.throwforce, BRUTE, "melee", 1, get_dir(src, AM))
 
 /obj/ex_act(severity, target)
 	if(resistance_flags & INDESTRUCTIBLE)
