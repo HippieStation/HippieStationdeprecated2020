@@ -1,3 +1,6 @@
+/datum/mind
+	var/datum/gang/gang_datum //Which gang this mind belongs to, if any
+
 /datum/mind/proc/remove_shadowling()
 	if(src in SSticker.mode.thralls)
 		SSticker.mode.remove_thrall(src)
@@ -53,3 +56,10 @@
 					V.total_blood = 1500
 					V.usable_blood = 1500
 					V.check_vampire_upgrade()
+
+
+/datum/mind/proc/remove_gang()
+		SSticker.mode.remove_gangster(src,0,1,1)
+		remove_objectives()
+
+/datum/mind/remove_all_antag() //For the Lazy amongst us.
