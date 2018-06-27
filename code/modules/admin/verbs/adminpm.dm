@@ -165,7 +165,11 @@
 				var/replymsg = "<font color='red'>Reply PM from-<b>[key_name(src, recipient, 1)]</b>: [keywordparsedmsg]</font>"
 				admin_ticket_log(src, replymsg)
 				to_chat(recipient, replymsg)
+<<<<<<< HEAD
 				to_chat(src, "<font color='blue'>PM to-<b>Admins</b>: [msg]</font>")
+=======
+				to_chat(src, "<font color='blue'>PM to-<b>Admins</b>: <span class='linkify'>[msg]</span></font>")
+>>>>>>> 0b5b187a6f... Merge pull request #38744 from ThatLing/linkify
 
 			//play the recieving admin the adminhelp sound (if they have them enabled)
 			if(recipient.prefs.toggles & SOUND_ADMINHELP)
