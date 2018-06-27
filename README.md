@@ -37,7 +37,7 @@ Option 3: Download a pre-compiled nightly at https://tgstation13.download/nightl
 Option 4: Use our docker image that tracks the master branch (See commits for build status. Again, same caveats as option 2)
 
 ```
-docker run -d -p <your port>:1337 -v /path/to/your/config:/tgstation/config -v /path/to/your/data:/tgstation/data tgstation/tgstation <dream daemon options i.e. -public or -params>
+docker run -d -p <your port>:1337 -v /path/to/your/config:/hippiestation/config -v /path/to/your/data:/hippiestation/data hippiestation/hippiestation <dream daemon options i.e. -public or -params>
 ```
 
 ## INSTALLATION
