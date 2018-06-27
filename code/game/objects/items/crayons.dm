@@ -239,7 +239,7 @@
 		if(a in (letters|numerals))
 			out += a
 	return jointext(out,"")
-
+/* hippie start - Redefined for gang purposes.
 /obj/item/toy/crayon/afterattack(atom/target, mob/user, proximity, params)
 	if(!proximity || !check_allowed_items(target))
 		return
@@ -367,7 +367,7 @@
 		reagents.reaction(t, TOUCH, fraction * volume_multiplier)
 		reagents.trans_to(t, ., volume_multiplier)
 	check_empty(user)
-
+*/ // hippie end
 /obj/item/toy/crayon/attack(mob/M, mob/user)
 	if(edible && (M == user))
 		to_chat(user, "You take a bite of the [src.name]. Delicious!")
