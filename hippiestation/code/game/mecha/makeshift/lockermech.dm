@@ -9,13 +9,13 @@
 	armor = list(melee = 20, bullet = 10, laser = 10, energy = 0, bomb = 10, bio = 0, rad = 0, fire = 70, acid = 60) //Same armour as a locker
 	internal_damage_threshold = 30 //Its got shitty durability
 	max_equip = 2 //You only have two arms and the control system is shitty
-	var/list/cargo = new
+	var/list/cargo = list()
 	var/cargo_capacity = 5 // you can fit a few things in this locker but not much.
 
 /obj/mecha/makeshift/Topic(href, href_list)
 	..()
 	if(href_list["drop_from_cargo"])
-		var/obj/O = locate(href_list["drop_from_cargo"])
+		var/obj/O = locate(sanitize(href_list["drop_from_cargo"]))
 		if(O && O in cargo)
 			occupant_message("<span class='notice'>You unload [O].</span>")
 			O.forceMove(loc)
