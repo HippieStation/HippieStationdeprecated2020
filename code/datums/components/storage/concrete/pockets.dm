@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /datum/component/storage/concrete/pockets
 	max_items = 2
 	max_w_class = WEIGHT_CLASS_SMALL
@@ -64,7 +63,7 @@
 		/obj/item/lipstick,
 		/obj/item/flashlight/pen,
 		/obj/item/clothing/mask/cigarette))
-=======
+
 /datum/component/storage/concrete/pockets
 	max_items = 2
 	max_w_class = WEIGHT_CLASS_SMALL
@@ -136,4 +135,3 @@
 /datum/component/storage/concrete/pockets/pocketprotector/real_location()
 	// if the component is reparented to a jumpsuit, the items still go in the protector
 	return original_parent
->>>>>>> de205b5517... Fix pocket protectors (#38665)
