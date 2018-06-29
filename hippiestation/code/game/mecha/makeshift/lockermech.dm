@@ -9,6 +9,7 @@
 	armor = list(melee = 20, bullet = 10, laser = 10, energy = 0, bomb = 10, bio = 0, rad = 0, fire = 70, acid = 60) //Same armour as a locker
 	internal_damage_threshold = 30 //Its got shitty durability
 	max_equip = 2 //You only have two arms and the control system is shitty
+	wreckage = null
 	var/list/cargo = list()
 	var/cargo_capacity = 5 // you can fit a few things in this locker but not much.
 
@@ -69,42 +70,6 @@
 			to_chat(user, "<span class='warning'>You fail to push [O] out of [src]!</span>")
 
 /obj/mecha/makeshift/Destroy()
-	go_out()
-	var/mob/living/silicon/ai/AI
-	for(var/mob/M in src) //Let's just be ultra sure
-		if(isAI(M))
-			occupant = null
-			AI = M //AIs are loaded into the mech computer itself. When the mech dies, so does the AI. They can be recovered with an AI card from the wreck.
-		else
-			M.forceMove(loc)
-	for(var/atom/movable/A in cargo)
-		A.forceMove(loc)
-		step_rand(A)
-	cargo.Cut()
-	for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
-		E.detach(loc)
-		qdel(E)
-	if(cell)
-		qdel(cell)
-	if(internal_tank)
-		qdel(internal_tank)
-	if(AI)
-		AI.gib() //No wreck, no AI to recover
-	STOP_PROCESSING(SSobj, src)
-	GLOB.poi_list.Remove(src)
-	equipment.Cut()
-	cell = null
-	internal_tank = null
-	if(loc)
-		loc.assume_air(cabin_air)
-		air_update_turf()
-	else
-		qdel(cabin_air)
-	cabin_air = null
-	qdel(spark_system)
-	spark_system = null
-	qdel(smoke_system)
-	smoke_system = null
 	new /obj/structure/closet(loc)
-	GLOB.mechas_list -= src //global mech list
+	..()
 	return ..()
