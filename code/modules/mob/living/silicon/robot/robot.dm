@@ -228,15 +228,23 @@
 	module.transform_to(modulelist[input_module])
 
 
-/mob/living/silicon/robot/proc/updatename()
+/mob/living/silicon/robot/proc/updatename(client/C)
 	if(shell)
 		return
+	if(!C)
+		C = client
 	var/changed_name = ""
 	if(custom_name)
 		changed_name = custom_name
+<<<<<<< HEAD
 	if(changed_name == "" && client)
 		rename_self(src, client)
 		return //built in camera handled in proc
+=======
+	if(changed_name == "" && C && C.prefs.custom_names["cyborg"] != DEFAULT_CYBORG_NAME)
+		if(apply_pref_name("cyborg", C))
+			return //built in camera handled in proc
+>>>>>>> 8ed26b5a20... Merge pull request #38788 from AnturK/borgnamefix
 	if(!changed_name)
 		changed_name = get_standard_name()
 

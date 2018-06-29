@@ -85,4 +85,8 @@ Cyborg
 	return H.Robotize(FALSE, latejoin)
 
 /datum/job/cyborg/after_spawn(mob/living/silicon/robot/R, mob/M)
+<<<<<<< HEAD
 	R.rename_self("cyborg", M.client)
+=======
+	R.updatename(M.client)
+>>>>>>> 8ed26b5a20... Merge pull request #38788 from AnturK/borgnamefix
