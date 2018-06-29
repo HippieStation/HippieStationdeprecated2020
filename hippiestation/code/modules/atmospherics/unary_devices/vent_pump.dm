@@ -1,6 +1,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump
 	icon_hippie = 'hippiestation/icons/obj/atmospherics/components/unary_devices.dmi'
 	var/cover = 0 //For hiding tiny objects in, 1 means cover is up, can hide.
+	var/max_n_of_items = 5
 
 /obj/machinery/atmospherics/components/unary/vent_pump/crowbar_act(mob/living/user, obj/item/I)
 	if(I.use_tool(src, user, 50, volume=50))
@@ -11,10 +12,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/attackby(obj/item/W, mob/user, params)
 	if(cover)
 		if(W.w_class == WEIGHT_CLASS_TINY && istype(W,/obj/item) && user.a_intent != INTENT_HARM)
-			if(!user.transferItemToLoc(W, src))
+			if(!user.transferItemToLoc(W, src) || contents.len>=max_n_of_items)
 				return
-				to_chat(user, "<span class='warning'>You can't seem to fit [W]</span>")
-			to_chat(user, "<span class='warning'>You insert [W] into [src]</span>")
+				to_chat(user, "<span class='warning'>You can't seem to fit [W].</span>")
+			to_chat(user, "<span class='warning'>You insert [W] into [src].</span>")
 			return
 	..()
 
@@ -31,4 +32,4 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/examine(mob/user)
 	..()
 	if(cover)
-		to_chat(user, "It's cover is open.")
+		to_chat(user, "Its cover is open.")
