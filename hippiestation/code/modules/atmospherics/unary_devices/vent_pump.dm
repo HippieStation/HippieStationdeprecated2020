@@ -13,8 +13,8 @@
 	if(cover)
 		if(W.w_class == WEIGHT_CLASS_TINY && istype(W,/obj/item) && user.a_intent != INTENT_HARM)
 			if(!user.transferItemToLoc(W, src) || contents.len>=max_n_of_items)
-				return
 				to_chat(user, "<span class='warning'>You can't seem to fit [W].</span>")
+				return
 			to_chat(user, "<span class='warning'>You insert [W] into [src].</span>")
 			return
 	..()
