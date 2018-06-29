@@ -57,8 +57,8 @@
 			var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
 			if(NS.mode == "strength")
 				if(istype(T) || istype(S))
-					if(NS.cell.charge >= 30)
-						NS.cell.use(30)
+					if(NS.cl_nn_energy >= 30)
+						NS.set_nano_energy(CLAMP(NS.cl_nn_energy-30,0,NS.nn_energy))
 					else
 						to_chat(user, "<span class='warning'>Not enough charge.</span>")
 						return
@@ -193,14 +193,8 @@
 	actions_types = list(/datum/action/item_action/nanosuit/armor, /datum/action/item_action/nanosuit/cloak, /datum/action/item_action/nanosuit/speed, /datum/action/item_action/nanosuit/strength)
 	permeability_coefficient = 0.01
 	var/mob/living/carbon/human/U = null
-	var/obj/item/stock_parts/cell/cell //What type of power cell this uses
-	var/cell_type = /obj/item/stock_parts/cell{charge = 100; maxcharge = 100}
-	var/charge_rate = 15
-	var/move_use = 1
-	var/hit_use = 5
 	var/criticalpower = FALSE
 	var/mode = "none"
-	var/recharge_delay = 20
 	var/datum/martial_art/nano/style = new
 	var/shutdown = FALSE
 	var/current_charges = 3
@@ -213,6 +207,14 @@
 	var/detecting = FALSE
 	var/help_verb = /mob/living/carbon/human/proc/Nanosuit_help
 	jetpack = /obj/item/tank/jetpack/suit
+	var/nn_block_recharge = 0
+	var/cl_energy = 0.65
+	var/sp_energy = 1.8
+	var/cl_nn_energy = 0
+	var/nn_energy = 100
+	var/cr_energy = 20
+	var/nn_regen = 0.75
+	var/multi = 1
 
 /obj/item/clothing/suit/space/hardsuit/nano/ComponentInitialize()
 	. = ..()
@@ -220,8 +222,8 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/emp_act(severity)
 	..()
-	cell.use(round(cell.charge / severity))
-	if((mode == armor && cell.charge == 0) || (mode != armor))
+	set_nano_energy(max(0,cl_nn_energy-(cl_nn_energy/severity)),80)
+	if((mode == armor && cl_nn_energy == 0) || (mode != armor))
 		if(prob(8/severity*1.5) && !shutdown)
 			emp_assault()
 	update_icon()
@@ -277,21 +279,15 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/Initialize()
 	. = ..()
-	if(cell_type)
-		cell = new cell_type(src)
-	else
-		cell = new(src)
-	cell.give(cell.maxcharge)
 	update_icon()
 	START_PROCESSING(SSobj, src)
+	cl_nn_energy = nn_energy
 
 /obj/item/clothing/suit/space/hardsuit/nano/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	QDEL_NULL(cell)
 	if(U)
 		if(help_verb)
 			U.verbs -= help_verb
-		U = null
 	. = ..()
 
 /obj/item/clothing/suit/space/hardsuit/nano/examine(mob/user)
@@ -302,61 +298,77 @@
 		to_chat(user, "The suit appears to be offline.")
 
 /obj/item/clothing/suit/space/hardsuit/nano/process()
-	if(U)
-		if(cell.charge >= 20)
-			criticalpower = FALSE
-		else
-			if(!criticalpower)
-				helmet.display_visor_message("Energy Critical!")
-				criticalpower = !criticalpower
-		if(cell.charge < 1 && !shutdown)
-			cell.charge = 0
-			if(mode != "armor" && mode != "strength")
-				toggle_mode("armor", TRUE)
-		if(mode == "cloak")
-			cell.use(1)
-		if(world.time > medical_cooldown && current_charges < max_charges)
-			current_charges = CLAMP((current_charges + 1), 0, max_charges)
-		if(U.bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT)
-			if(!detecting)
-				temp_cooldown = world.time + restore_delay
-				detecting = TRUE
-			if(world.time > temp_cooldown)
-				if(!defrosted)
-					helmet.display_visor_message("Activating suit defrosting protocols.")
-					U.reagents.add_reagent("leporazine", 2)
-					defrosted = TRUE
-					temp_cooldown += 100
-		else
-			defrosted = FALSE
-			detecting = FALSE
+	if(!U)
+		return
+	if(world.time > medical_cooldown && current_charges < max_charges)
+		current_charges = CLAMP((current_charges + 1), 0, max_charges)
+	if(U.bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT)
+		if(!detecting)
+			temp_cooldown = world.time + restore_delay
+			detecting = TRUE
+		if(world.time > temp_cooldown)
+			if(!defrosted)
+				helmet.display_visor_message("Activating suit defrosting protocols.")
+				U.reagents.add_reagent("leporazine", 2)
+				defrosted = TRUE
+				temp_cooldown += 100
+	else
+		defrosted = FALSE
+		detecting = FALSE
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/ntick()
 	spawn while(!shutdown)
-		if(cell && cell.charge < cell.maxcharge && mode != "cloak" && !U.Move())
-			if(cell.charge > 0)
-				cell.give(charge_rate) //this will get called after the bottom
-			else
-				sleep(40) //if we lose energy wait 4 seconds then recharge us
-				cell.give(charge_rate)
-		sleep(recharge_delay)//recharges us at variable rate
+		var/energy = cl_nn_energy
+		if(energy < cr_energy && !criticalpower)
+			helmet.display_visor_message("Energy Critical!")
+			criticalpower = TRUE
+		if(mode == "cloak")
+			energy -= cl_energy * 0.1
+		if(energy <= 0)
+			if(mode == "cloak")
+				nn_block_recharge = 30
+			energy = 0
+			if(mode != "armor")
+				toggle_mode("armor", TRUE)
+		if((energy < nn_energy) && mode != "cloak" && nn_block_recharge == 0)
+			var/energy2 = nn_regen
+			energy2+=energy
+			energy=min(nn_energy,energy2)
+			if(energy > cr_energy)
+				criticalpower = FALSE
+		if(nn_block_recharge > 0)
+			nn_block_recharge -= 1
+		cl_nn_energy = energy
+		sleep(1)
 
+/obj/item/clothing/suit/space/hardsuit/nano/proc/set_nano_energy(var/amount, var/delay = 0)
+	cl_nn_energy = amount
+	if(delay > nn_block_recharge)
+		nn_block_recharge = delay
+	if(amount == 0 && mode == "cloak")
+		toggle_mode("cloak")
+	return TRUE
+
+/obj/item/clothing/suit/space/hardsuit/nano/proc/onmove(var/multi)
+	if(mode == "cloak")
+		set_nano_energy(CLAMP(cl_nn_energy-(cl_energy*multi),0,cl_nn_energy))
+	if(mode == "speed")
+		set_nano_energy(CLAMP(cl_nn_energy-(sp_energy*multi),0,cl_nn_energy))
+		nn_block_recharge = 40
 
 /obj/item/clothing/suit/space/hardsuit/nano/hit_reaction(mob/living/carbon/human/user, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/obj/item/projectile/P = hitby
 	if(mode == "armor")
-		if(cell.charge > 0)
+		if(cl_nn_energy > 0)
 			if(damage)
-				if(P.damage_type != STAMINA)
-					cell.use(CLAMP(hit_use + damage,1,cell.charge))//laser guns, anything lethal drains 5 + the damage dealth
-				else
-					cell.use(CLAMP(hit_use + 10,1,cell.charge))//stamina damage, aka disabler beams
+				if(attack_type != STAMINA)
+					set_nano_energy(CLAMP(cl_nn_energy-(5 + damage),0,cl_nn_energy),30)//laser guns, anything lethal drains 5 + the damage dealth
+				else if(P.damage_type == STAMINA && attack_type == PROJECTILE_ATTACK)
+					set_nano_energy(CLAMP(cl_nn_energy-15,0,cl_nn_energy),30)//stamina damage, aka disabler beams
 			if(istype(P, /obj/item/projectile/energy/electrode))//if electrode aka taser
-				cell.use(CLAMP(hit_use + 20,1,cell.charge))
+				set_nano_energy(CLAMP(cl_nn_energy-25,0,cl_nn_energy),30)
 			user.visible_message("<span class='danger'>[user]'s shields deflect [attack_text] draining their energy!</span>")
 			return TRUE
-		if(cell.charge <= 20) //we instantly go out of armor if we get hit at critical energy
-			cell.charge = 0
 		if(damage && attack_type == PROJECTILE_ATTACK && P.damage_type != STAMINA && prob(50))
 			var/datum/effect_system/spark_spread/s = new
 			s.set_up(1, 1, src)
@@ -366,7 +378,6 @@
 		medical_cooldown = world.time + medical_delay
 		current_charges--
 		heal_nano(user)
-
 	return FALSE
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/heal_nano(mob/living/carbon/human/user)
@@ -389,7 +400,7 @@
 	return FALSE
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/toggle_mode(var/suitmode, var/forced = FALSE)
-	if(!shutdown && (forced || (cell.charge > 0 && mode != suitmode)))
+	if(!shutdown && (forced || (cl_nn_energy > 0 && mode != suitmode)))
 		mode = suitmode
 		switch(suitmode)
 			if("armor")
@@ -619,7 +630,7 @@
 		var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
 		if(statpanel("Crynet Nanosuit"))
 			stat("Crynet Protocols : Engaged")
-			stat("Energy Charge:", "[NS.cell.charge]%")
+			stat("Energy Charge:", "[NS.cl_nn_energy]%")
 			stat("Mode:", "[NS.mode]")
 			stat("Overall Status:", "[health]% healthy")
 			stat("Nutrition Status:", "[nutrition]")
@@ -632,17 +643,14 @@
 
 /mob/living/carbon/human/Move(NewLoc, direct)
 	. = ..()
-	if(.) //floating is easy
+	if(.)
 		if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
 			var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
-			if(mob_has_gravity())
-				if(stat != DEAD && m_intent == MOVE_INTENT_RUN)
-					if(NS.cell.charge > 0)
-						if(NS.mode == "speed" || NS.mode == "cloak")
-							NS.cell.use(NS.move_use)
-					else
-						if(NS.mode != "armor")//no more infinite loops
-							NS.toggle_mode("armor", TRUE)
+			if(mob_has_gravity() && stat != DEAD)
+				if(m_intent == MOVE_INTENT_RUN)
+					NS.onmove(1)
+				else
+					NS.onmove(0.2)
 
 /datum/martial_art/nano
 	name = "Strength Mode"
@@ -834,11 +842,9 @@
 			if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
 				var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
 				NS.kill_cloak()
-				.=..(target, range*1.5, speed*2, thrower, spin, diagonals_first, callback)
-			else
-				.=..()
-	else
-		.=..()
+				if(NS.mode == "strength")
+					.=..(target, range*1.5, speed*2, thrower, spin, diagonals_first, callback)
+	.=..()
 
 /obj/item/afterattack(atom/O, mob/living/carbon/human/user, proximity)
 	..()
@@ -855,7 +861,6 @@
 		if(proximity) //It's adjacent, is the user, or is on the user's person
 			if(!ismob(O) || user.a_intent == INTENT_HARM) //melee attack
 				NS.kill_cloak()
-
 
 /obj/item/gun/attack(mob/M as mob, mob/living/carbon/user)
 	..()
@@ -888,16 +893,16 @@
 /obj/item/clothing/suit/space/hardsuit/nano/proc/kill_cloak(temp)
 	if(mode == "cloak")
 		if(!temp)
-			cell.charge = 0
+			set_nano_energy(0,30)
 			toggle_mode("armor", TRUE)
 		else
-			cell.use(15)
+			set_nano_energy(CLAMP(cl_nn_energy-15,0,nn_energy))
 			U.filters = null
 			animate(U, alpha = 255, time = 2)
-			addtimer(CALLBACK(src, .proc/resume_cloak), CLICK_CD_RANGE, TIMER_UNIQUE)
+			addtimer(CALLBACK(src, .proc/resume_cloak),CLICK_CD_RANGE,TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/resume_cloak()
-	if(cell.charge > 0)
+	if(cl_nn_energy > 0)
 		U.filters = filter(type="blur",size=1)
 		animate(U, alpha = 40, time = 2)
 
