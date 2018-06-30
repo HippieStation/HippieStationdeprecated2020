@@ -1,14 +1,10 @@
-<<<<<<< HEAD:.github/ISSUE_TEMPLATE.md
-[Round ID]: # (If you discovered this issue from playing HippieStation hosted servers:)
-=======
 ---
 name: Bug report
 about: Create a report to help reproduce and fix the issue
 
 ---
 
-[Round ID]: # (If you discovered this issue from playing tgstation hosted servers:)
->>>>>>> 5b37298688... Update issue templates (#38740):.github/ISSUE_TEMPLATE/bug_report.md
+[Round ID]: # (If you discovered this issue from playing HippieStation hosted servers:)
 [Round ID]: # (**INCLUDE THE ROUND ID**)
 [Round ID]: # (It can be found in the Status panel or retrieved from https://tools.hippiestation.com/stats/round.php ! The round id let's us look up valuable information and logs for the round the bug happened.)
 
