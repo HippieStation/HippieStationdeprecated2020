@@ -597,8 +597,6 @@
 		var/obj/item/pinpointer/crew/PP = locate() in R.module
 		if (PP)
 			R.module.remove_module(PP, TRUE)
-<<<<<<< HEAD
-=======
 
 /obj/item/borg/upgrade/transform
 	name = "borg module picker (Standard)"
@@ -616,4 +614,3 @@
 	desc = "Allows you to to turn a cyborg into a clown, honk."
 	icon_state = "cyborg_upgrade3"
 	new_module = /obj/item/robot_module/clown
->>>>>>> 278f4d7429... anal
