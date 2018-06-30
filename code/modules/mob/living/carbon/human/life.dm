@@ -366,6 +366,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 												"So like, you know how we separate our codebase from the master copy that runs on our consumer boxes? What if we merged the two and undid the separation between codebase and server?",
 												"Dude, radical idea: H.O.N.K mechs but with no bananium required.",
 												"Best idea ever: Disposal pipes instead of hallways."))
+/* Hippie start, handling drunkenness somewhere else so we can change it
 /mob/living/carbon/human/handle_status_effects()
 	..()
 
@@ -440,6 +441,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 
 		if(drunkenness >= 101)
 			adjustToxLoss(4) //Let's be honest you shouldn't be alive by now
+*/	//Hippie end
 
 #undef THERMAL_PROTECTION_HEAD
 #undef THERMAL_PROTECTION_CHEST

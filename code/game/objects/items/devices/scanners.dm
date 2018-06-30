@@ -114,6 +114,8 @@ SLIME SCANNER
 	add_fingerprint(user)
 
 
+/*	Hippie start, overriding medical scanner to change descriptions & fix a typo
+
 // Used by the PDA medical scanner too
 /proc/healthscan(mob/user, mob/living/M, mode = 1, advanced = FALSE)
 	if(isliving(user) && (user.incapacitated() || user.eye_blind))
@@ -328,6 +330,8 @@ SLIME SCANNER
 		if(cyberimp_detect)
 			to_chat(user, "<span class='notice'>Detected cybernetic modifications:</span>")
 			to_chat(user, "<span class='notice'>[cyberimp_detect]</span>")
+
+*/	//Hippie end
 
 /proc/chemscan(mob/living/user, mob/living/M)
 	if(istype(M))

@@ -50,3 +50,9 @@
 	id = "kelotane"
 	results = list("kelotane" = 3)
 	required_reagents = list("carbon" = 1, "silicon" = 1)
+
+/datum/chemical_reaction/iecure
+	name = "Iecure"
+	id = "iecure"
+	results = list("iecure" = 3)
+	required_reagents = list("charcoal" = 1, "hydrogen" = 1, "ethanol" = 1)	//Added ethanol for some dumb irony
