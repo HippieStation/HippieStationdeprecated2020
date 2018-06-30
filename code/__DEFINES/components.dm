@@ -2,11 +2,6 @@
 
 #define SEND_GLOBAL_SIGNAL(sigtype, arguments...) ( !SSdcs.comp_lookup[sigtype] ? NONE : SSdcs._SendGlobalSignal(sigtype, list(##arguments)) )
 
-<<<<<<< HEAD
-#define SEND_SIGNAL(target, sigtype, arguments...) ( !target.datum_components ? NONE : target._SendSignal(sigtype, list(##arguments)) )
-
-=======
->>>>>>> 89752866aa... Merge branch 'master' into spellcheck
 //shorthand
 #define GET_COMPONENT_FROM(varname, path, target) var##path/##varname = ##target.GetComponent(##path)
 #define GET_COMPONENT(varname, path) GET_COMPONENT_FROM(varname, path, src)
