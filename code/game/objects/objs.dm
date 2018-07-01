@@ -2,7 +2,6 @@
 /obj
 	var/crit_fail = FALSE
 	animate_movement = 2
-	var/throwforce = 0
 	var/obj_flags = CAN_BE_HIT
 	var/set_obj_flags // ONLY FOR MAPPING: Sets flags from a string list, handled in Initialize. Usage: set_obj_flags = "EMAGGED;!CAN_BE_HIT" to set EMAGGED and clear CAN_BE_HIT.
 
@@ -27,7 +26,7 @@
 	var/req_access_txt = "0"
 	var/list/req_one_access
 	var/req_one_access_txt = "0"
-	
+
 	var/renamedByPlayer = FALSE //set when a player uses a pen on a renamable object
 
 /obj/vv_edit_var(vname, vval)
@@ -112,16 +111,16 @@
 
 /obj/proc/updateUsrDialog()
 	if((obj_flags & IN_USE) && !(obj_flags & USES_TGUI))
-		var/is_in_use = 0
+		var/is_in_use = FALSE
 		var/list/nearby = viewers(1, src)
 		for(var/mob/M in nearby)
 			if ((M.client && M.machine == src))
-				is_in_use = 1
-				ui_interact(usr)
+				is_in_use = TRUE
+				ui_interact(M)
 		if(isAI(usr) || iscyborg(usr) || IsAdminGhost(usr))
 			if (!(usr in nearby))
 				if (usr.client && usr.machine==src) // && M.machine == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
-					is_in_use = 1
+					is_in_use = TRUE
 					ui_interact(usr)
 
 		// check for TK users
@@ -131,7 +130,7 @@
 			if(!(usr in nearby))
 				if(usr.client && usr.machine==src)
 					if(H.dna.check_mutation(TK))
-						is_in_use = 1
+						is_in_use = TRUE
 						ui_interact(usr)
 		if (is_in_use)
 			obj_flags |= IN_USE
