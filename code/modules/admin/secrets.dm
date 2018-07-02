@@ -7,11 +7,7 @@
 	dat +={"
 			<B>General Secrets</B><BR>
 			<BR>
-<<<<<<< HEAD
 			<A href='?src=[REF(src)];[HrefToken()];secrets=spawnselfdummy'>Spawn yourself as a Test Dummy</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=list_job_debug'>Show Job Debug</A><BR>
-=======
->>>>>>> 2322db30ba... Moves divide occupations debugging information to a file log. (#38721)
 			<A href='?src=[REF(src)];[HrefToken()];secrets=admin_log'>Admin Log</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=mentor_log'>Mentor Log</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=show_admins'>Show Admin List</A><BR>
@@ -114,23 +110,9 @@
 				dat += "No-one has done anything this round!"
 			usr << browse(dat, "window=admin_log")
 
-<<<<<<< HEAD
 		if("mentor_log")
 			HippieMentorLogSecret()
 
-		if("list_job_debug")
-			var/dat = "<B>Job Debug info.</B><HR>"
-			for(var/line in SSjob.job_debug)
-				dat += "[line]<BR>"
-			dat+= "*******<BR><BR>"
-			for(var/datum/job/job in SSjob.occupations)
-				if(!job)
-					continue
-				dat += "job: [job.title], current_positions: [job.current_positions], total_positions: [job.total_positions] <BR>"
-			usr << browse(dat, "window=jobdebug;size=600x500")
-
-=======
->>>>>>> 2322db30ba... Moves divide occupations debugging information to a file log. (#38721)
 		if("show_admins")
 			var/dat = "<B>Current admins:</B><HR>"
 			if(GLOB.admin_datums)
