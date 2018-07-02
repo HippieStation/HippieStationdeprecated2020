@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /obj/effect/proc_holder/changeling/absorbDNA
 	name = "Absorb DNA"
 	desc = "Absorb the DNA of our victim."
@@ -120,7 +119,6 @@
 //datum/changeling/proc/absorb_dna(mob/living/carbon/T, mob/user)
 
 //datum/changeling/proc/store_dna(datum/dna/new_dna, mob/user)
-=======
 /obj/effect/proc_holder/changeling/absorbDNA
 	name = "Absorb DNA"
 	desc = "Absorb the DNA of our victim."
@@ -235,4 +233,3 @@
 	target.death(0)
 	target.Drain()
 	return TRUE
->>>>>>> 5d8bec2fe2... Removes unused mind variables. (#38755)
