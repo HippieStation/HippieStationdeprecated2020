@@ -203,21 +203,20 @@
 	//Print a list of antagonists to the server log
 	var/list/total_antagonists = list()
 	//Look into all mobs in world, dead or alive
-	for(var/datum/mind/Mind in minds)
-		var/temprole = Mind.special_role
-		if(temprole)							//if they are an antagonist of some sort.
-			if(temprole in total_antagonists)	//If the role exists already, add the name to it
-				total_antagonists[temprole] += ", [Mind.name]([Mind.key])"
-			else
-				total_antagonists.Add(temprole) //If the role doesnt exist in the list, create it and add the mob
-				total_antagonists[temprole] += ": [Mind.name]([Mind.key])"
+	for(var/datum/antagonist/A in GLOB.antagonists)
+		if(!A.owner)
+			continue
+		if(!(A.name in total_antagonists))
+			total_antagonists[A.name] = list()
+		total_antagonists[A.name] += "[key_name(A.owner)]"
 
 	CHECK_TICK
 
 	//Now print them all into the log!
 	log_game("Antagonists at round end were...")
-	for(var/i in total_antagonists)
-		log_game("[i]s[total_antagonists[i]].")
+	for(var/antag_name in total_antagonists)
+		var/list/L = total_antagonists[antag_name]
+		log_game("[antag_name]s :[L.Join(", ")].")
 
 	CHECK_TICK
 	SSdbcore.SetRoundEnd()
@@ -290,19 +289,26 @@
 				parts += "[GLOB.TAB]<i>Nobody died this shift!</i>"
 	return parts.Join("<br>")
 
-/datum/controller/subsystem/ticker/proc/show_roundend_report(client/C,common_report, popcount)
-	var/list/report_parts = list()
+/client/proc/roundend_report_file()
+	return "data/roundend_reports/[ckey].html"
 
-	report_parts += personal_report(C, popcount)
-	report_parts += common_report
-
+/datum/controller/subsystem/ticker/proc/show_roundend_report(client/C, previous = FALSE)
 	var/datum/browser/roundend_report = new(C, "roundend")
 	roundend_report.width = 800
 	roundend_report.height = 600
-	roundend_report.set_content(report_parts.Join())
+	var/content
+	var/filename = C.roundend_report_file()
+	if(!previous)
+		var/list/report_parts = list(personal_report(C), GLOB.common_report)
+		content = report_parts.Join()
+		C.verbs -= /client/proc/show_previous_roundend_report
+		fdel(filename)
+		text2file(content, filename)
+	else
+		content = file2text(filename)
+	roundend_report.set_content(content)
 	roundend_report.stylesheets = list()
-	roundend_report.add_stylesheet("roundend",'html/browser/roundend.css')
-
+	roundend_report.add_stylesheet("roundend", 'html/browser/roundend.css')
 	roundend_report.open(0)
 
 /datum/controller/subsystem/ticker/proc/personal_report(client/C, popcount)
@@ -327,8 +333,6 @@
 	else
 		parts += "<div class='panel stationborder'>"
 	parts += "<br>"
-	if(!GLOB.survivor_report)
-		GLOB.survivor_report = survivor_report(popcount)
 	parts += GLOB.survivor_report
 	parts += "</div>"
 
@@ -336,8 +340,9 @@
 
 /datum/controller/subsystem/ticker/proc/display_report(popcount)
 	GLOB.common_report = build_roundend_report()
+	GLOB.survivor_report = survivor_report(popcount)
 	for(var/client/C in GLOB.clients)
-		show_roundend_report(C,GLOB.common_report, popcount)
+		show_roundend_report(C, FALSE)
 		give_show_report_button(C)
 		CHECK_TICK
 
@@ -458,7 +463,7 @@
 
 /datum/action/report/Trigger()
 	if(owner && GLOB.common_report && SSticker.current_state == GAME_STATE_FINISHED)
-		SSticker.show_roundend_report(owner.client,GLOB.common_report)
+		SSticker.show_roundend_report(owner.client, FALSE)
 
 /datum/action/report/IsAvailable()
 	return 1
@@ -519,6 +524,8 @@
 		return
 	var/datum/DBQuery/query_admin_rank_update = SSdbcore.NewQuery("UPDATE [format_table_name("player")] p INNER JOIN [format_table_name("admin")] a ON p.ckey = a.ckey SET p.lastadminrank = a.rank")
 	query_admin_rank_update.Execute()
+	qdel(query_admin_rank_update)
+
 	//json format backup file generation stored per server
 	var/json_file = file("data/admins_backup.json")
 	var/list/file_data = list("ranks" = list(), "admins" = list())

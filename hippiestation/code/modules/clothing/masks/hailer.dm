@@ -75,7 +75,7 @@
 		var/mob/living/carbon/H = user
 		if(H.wear_mask == src)
 			set_obj_flags = "EMAGGED"
-			flags_1 |= NODROP_1 // If I pull that off will you die?
+			item_flags = NODROP  // If I pull that off will you die?
 			to_chat(user, "<span class='warning'>You overload \the [src]'s Big Guy synthesizer.")
 			aggressiveness = 5
 		else

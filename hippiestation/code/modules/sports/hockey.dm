@@ -9,7 +9,7 @@
 	icon_state = "hockey_bag"
 	item_state = "hockey_bag"
 	w_class = WEIGHT_CLASS_BULKY
-	slot_flags = SLOT_BACK
+	slot_flags = ITEM_SLOT_BACK
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 	actions_types = list(/datum/action/item_action/toggle_stick)
 	var/obj/item/twohanded/hockeystick/packstick
@@ -20,8 +20,8 @@
 	..()
 	if (slot != SLOT_BACK) //The Pack is cursed so this should not happen, but i'm going to play it safe.
 		remove_stick()
-	if(slot == SLOT_BACK)
-		flags_1 |= NODROP_1
+	if(slot == ITEM_SLOT_BACK)
+		item_flags = NODROP
 
 /obj/item/hockeypack/ui_action_click()
 	toggle_stick()
@@ -49,7 +49,6 @@
 			on = FALSE
 			to_chat(user, "<span class='warning'>You need a free hand to hold the stick!</span>")
 			return
-		packstick.forceMove(user)
 	else
 		remove_stick()
 	return
@@ -107,14 +106,13 @@
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
 	force = 5
 	w_class = WEIGHT_CLASS_BULKY
-	slot_flags = SLOT_BACK
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 	force_unwielded = 10
 	force_wielded = 25
 	specthrow_sound = 'sound/weapons/resonator_blast.ogg'
 	throwforce = 3
 	throw_speed = 4
-	flags_1 = NODROP_1
+	item_flags = NODROP
 	attack_verb = list("smacked", "thwacked", "bashed", "struck", "battered")
 	specthrow_forcemult = 1.4
 	specthrow_msg = list("chipped", "shot")
@@ -200,7 +198,7 @@
 /obj/item/storage/belt/hippie/hockey/equipped(mob/user, slot)
 	..()
 	if(slot == SLOT_BELT)
-		flags_1 |= NODROP_1
+		item_flags = NODROP
 
 /obj/item/storage/belt/hippie/hockey/item_action_slot_check(slot, mob/user)
 	if(slot == user.getBeltSlot())
@@ -279,7 +277,7 @@
 
 /obj/item/clothing/suit/hippie/hockey/equipped(mob/user, slot)
 	if(slot == SLOT_WEAR_SUIT)
-		flags_1 |= NODROP_1
+		item_flags = NODROP
 
 /obj/item/clothing/shoes/hippie/hockey
 	name = "Ka-Nada Hyperblades"
@@ -291,19 +289,19 @@
 
 /obj/item/clothing/shoes/hippie/hockey/equipped(mob/user, slot)
 	if(slot == SLOT_SHOES)
-		flags_1 |= NODROP_1
+		item_flags = NODROP
 
 /obj/item/clothing/mask/hippie/hockey
 	name = "Ka-Nada Hockey Mask"
 	desc = "The iconic mask of the Ka-Nada special sports forces, guaranteed to strike terror into the hearts of men and goalies."
 	icon_state = "hockey_mask"
 	item_state = "hockey_mask"
-	flags_1 = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS | NODROP_1
+	flags_1 = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/mask/hippie/hockey/equipped(mob/user, slot)
 	if(slot == SLOT_WEAR_MASK)
-		flags_1 |= NODROP_1
+		item_flags = NODROP
 
 /obj/item/clothing/head/hippie/hockey
 	name = "Ka-Nada winter sport combat helmet."
@@ -313,12 +311,12 @@
 	armor = list("melee" = 80, "bullet" = 40, "laser" = 80,"energy" = 45, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 80, "acid" = 100)
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
-	clothing_flags = STOPSPRESSUREDAMAGE | NODROP_1
+	clothing_flags = STOPSPRESSUREDAMAGE
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/mask/head/hockey/equipped(mob/user, slot)
 	if(slot == SLOT_HEAD)
-		flags_1 |= NODROP_1
+		item_flags = NODROP
 
 /datum/action/item_action/toggle_stick
 	name = "Get Stick"

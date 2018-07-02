@@ -4,6 +4,7 @@ $include game_options.txt
 $include dbconfig.txt
 $include comms.txt
 $include hippiestation_config.txt
+$include antag_rep.txt
 
 # You can use the @ character at the beginning of a config option to lock it from being edited in-game
 # Example usage:
@@ -139,9 +140,6 @@ ALLOW_ADMIN_OOCCOLOR
 
 ## Job slot open/close by identification consoles delay in seconds
 ID_CONSOLE_JOBSLOT_DELAY 30
-
-## If metadata is supported
-ALLOW_METADATA
 
 ## allow players to initiate a restart vote
 #ALLOW_VOTE_RESTART

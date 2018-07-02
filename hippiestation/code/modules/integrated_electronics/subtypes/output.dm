@@ -41,7 +41,10 @@
 	text = get_pin_data(IC_INPUT, 1)
 	if(!isnull(text))
 		var/atom/movable/A = get_object()
-		radio.talk_into(A, text, , get_spans())
+		var/sanitized_text = sanitize(text)
+		radio.talk_into(A, sanitized_text, , get_spans())
+		if (assembly)
+			log_say("[assembly] [REF(assembly)] : [sanitized_text]")
 
 /obj/item/integrated_circuit/output/text_to_radio/attackby(obj/O, mob/user)
 	if(istype(O, /obj/item/encryptionkey))

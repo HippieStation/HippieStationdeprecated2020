@@ -58,7 +58,7 @@
 	name = "Spiked Bat"
 	result = /obj/item/melee/baseball_bat/spiked
 	reqs = list(/obj/item/stack/rods = 5,
-		        /obj/item/melee/baseball_bat) //no need for a hammer, he just whacks the rod with the bat when it's on the floor or smth, like a nail </autism>
+		        /obj/item/melee/baseball_bat = 1) //no need for a hammer, he just whacks the rod with the bat when it's on the floor or smth, like a nail </autism>
 	time = 100
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
@@ -77,3 +77,28 @@
 				/obj/item/stack/rods = 6)
 	time = 100
 	category = CAT_MISC
+
+/datum/crafting_recipe/bonesword
+	name = "Bone Sword"
+	result = /obj/item/claymore/bone
+	reqs = list(/obj/item/stack/sheet/bone = 3)
+	time = 75
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/knifeboxing
+	name = "Knife-boxing Gloves"
+	result = /obj/item/clothing/gloves/knifeboxing
+	reqs = list(/obj/item/clothing/gloves/boxing = 1,
+				/obj/item/kitchen/knife = 2)
+	time = 100
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/watcherproj
+	name = "Watcher Projector"
+	result = /obj/item/gun/energy/watcherprojector
+	reqs = list(/obj/item/stack/sheet/bone = 3,
+				/obj/item/stack/ore/diamond = 2,
+				/obj/item/stack/sheet/sinew = 2)
+	time = 150
+	category = CAT_PRIMAL

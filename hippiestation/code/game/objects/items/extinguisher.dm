@@ -1,3 +1,18 @@
+/obj/item/extinguisher/attack_self(mob/user)
+	..()
+	if(safety)
+		container_type = AMOUNT_VISIBLE
+	else
+		container_type = OPENCONTAINER
+
+/obj/item/extinguisher/attackby(obj/O, mob/user)
+	if(istype(O, /obj/item/reagent_containers))
+		if(safety)
+			to_chat(user, "<span class='warning'>You need to take off the safety before you can refill the [src]!</span>")
+			return
+	else
+		..()
+
 /obj/item/extinguisher/attack_obj(obj/O, mob/living/user)
 	if(attempt_refill_hippie(O, user))
 		refilling = TRUE
@@ -26,3 +41,15 @@
 		return 1
 	else
 		return 0
+		
+/obj/item/extinguisher/suicide_act(mob/living/carbon/user)
+	if (!safety && (reagents.total_volume >= 1))
+		user.visible_message("<span class='suicide'>[user] puts the nozzle to [user.p_their()] mouth. It looks like [user.p_theyre()] trying to extinguish the spark of life!</span>")
+		afterattack(user,user)
+		return OXYLOSS
+	else if (safety && (reagents.total_volume >= 1))
+		user.visible_message("<span class='warning'>[user] puts the nozzle to [user.p_their()] mouth... The safety's still on!</span>")
+		return SHAME
+	else
+		user.visible_message("<span class='warning'>[user] puts the nozzle to [user.p_their()] mouth... [src] is empty!</span>")
+		return SHAME

@@ -5,8 +5,6 @@
 	icon_state = "robot"
 	maxHealth = 100
 	health = 100
-	macro_default = "robot-default"
-	macro_hotkeys = "robot-hotkeys"
 	bubble_icon = "robot"
 	designation = "Default" //used for displaying the prefix & getting the current module of cyborg
 	has_limbs = 1
@@ -92,7 +90,16 @@
 	/obj/item/clothing/head/wizard,
 	/obj/item/clothing/head/nursehat,
 	/obj/item/clothing/head/sombrero,
-	/obj/item/clothing/head/witchunter_hat)
+	/obj/item/clothing/head/helmet/chaplain/witchunter_hat,
+	/obj/item/clothing/head/soft/, //All baseball caps
+	/obj/item/clothing/head/that, //top hat
+	/obj/item/clothing/head/collectable/tophat, //Not sure where this one is found, but it looks the same so might as well include
+	/obj/item/clothing/mask/bandana/, //All bandanas (which only work in hat mode)
+	/obj/item/clothing/head/fedora,
+	/obj/item/clothing/head/beanie/, //All beanies
+	/obj/item/clothing/ears/headphones,
+	/obj/item/clothing/head/helmet/skull,
+	/obj/item/clothing/head/crown/fancy)
 
 	can_buckle = TRUE
 	buckle_lying = FALSE
@@ -107,6 +114,7 @@
 	spark_system.attach(src)
 
 	wires = new /datum/wires/robot(src)
+	AddComponent(/datum/component/empprotection, EMP_PROTECT_WIRES)
 
 	robot_modules_background = new()
 	robot_modules_background.icon_state = "block"
@@ -163,8 +171,8 @@
 
 //If there's an MMI in the robot, have it ejected when the mob goes away. --NEO
 /mob/living/silicon/robot/Destroy()
+	var/atom/T = drop_location()//To hopefully prevent run time errors.
 	if(mmi && mind)//Safety for when a cyborg gets dust()ed. Or there is no MMI inside.
-		var/turf/T = get_turf(loc)//To hopefully prevent run time errors.
 		if(T)
 			mmi.forceMove(T)
 		if(mmi.brainmob)
@@ -183,6 +191,10 @@
 		connected_ai.connected_robots -= src
 	if(shell)
 		GLOB.available_ai_shells -= src
+	else
+		if(T && istype(radio) && istype(radio.keyslot))
+			radio.keyslot.forceMove(T)
+			radio.keyslot = null
 	qdel(wires)
 	qdel(module)
 	qdel(eye_lights)
@@ -223,14 +235,17 @@
 	module.transform_to(modulelist[input_module])
 
 
-/mob/living/silicon/robot/proc/updatename()
+/mob/living/silicon/robot/proc/updatename(client/C)
 	if(shell)
 		return
+	if(!C)
+		C = client
 	var/changed_name = ""
 	if(custom_name)
 		changed_name = custom_name
-	if(changed_name == "" && client)
-		changed_name = client.prefs.custom_names["cyborg"]
+	if(changed_name == "" && C && C.prefs.custom_names["cyborg"] != DEFAULT_CYBORG_NAME)
+		if(apply_pref_name("cyborg", C))
+			return //built in camera handled in proc
 	if(!changed_name)
 		changed_name = get_standard_name()
 
@@ -249,17 +264,6 @@
 		to_chat(src, "<span class='userdanger'>Alert: You are dead.</span>")
 		return //won't work if dead
 	robot_alerts()
-
-//for borg hotkeys, here module refers to borg inv slot, not core module
-/mob/living/silicon/robot/verb/cmd_toggle_module(module as num)
-	set name = "Toggle Module"
-	set hidden = 1
-	toggle_module(module)
-
-/mob/living/silicon/robot/verb/cmd_unequip_module()
-	set name = "Unequip Module"
-	set hidden = 1
-	uneq_active()
 
 /mob/living/silicon/robot/proc/robot_alerts()
 	var/dat = ""
@@ -542,7 +546,7 @@
 	else if(istype(W, /obj/item/flashlight))
 		if(!opened)
 			to_chat(user, "<span class='warning'>You need to open the panel to repair the headlamp!</span>")
-		if(lamp_cooldown <= world.time)
+		else if(lamp_cooldown <= world.time)
 			to_chat(user, "<span class='warning'>The headlamp is already functional!</span>")
 		else
 			if(!user.temporarilyRemoveItemFromInventory(W))
@@ -870,14 +874,17 @@
 	if(health < maxHealth*0.5) //Gradual break down of modules as more damage is sustained
 		if(uneq_module(held_items[3]))
 			playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, 1, 1)
-			visible_message("<span class='warning'>[src] sounds an alarm! \"SYSTEM ERROR: Module 3 OFFLINE.\"</span>", "<span class='userdanger'>SYSTEM ERROR: Module 3 OFFLINE.</span>")
+			audible_message("<span class='warning'>[src] sounds an alarm! \"SYSTEM ERROR: Module 3 OFFLINE.\"</span>")
+			to_chat(src, "<span class='userdanger'>SYSTEM ERROR: Module 3 OFFLINE.</span>")
 		if(health < 0)
 			if(uneq_module(held_items[2]))
-				visible_message("<span class='warning'>[src] sounds an alarm! \"SYSTEM ERROR: Module 2 OFFLINE.\"</span>", "<span class='userdanger'>SYSTEM ERROR: Module 2 OFFLINE.</span>")
+				audible_message("<span class='warning'>[src] sounds an alarm! \"SYSTEM ERROR: Module 2 OFFLINE.\"</span>")
+				to_chat(src, "<span class='userdanger'>SYSTEM ERROR: Module 2 OFFLINE.</span>")
 				playsound(loc, 'sound/machines/warning-buzzer.ogg', 60, 1, 1)
 			if(health < -maxHealth*0.5)
 				if(uneq_module(held_items[1]))
-					visible_message("<span class='warning'>[src] sounds an alarm! \"CRITICAL ERROR: All modules OFFLINE.\"</span>", "<span class='userdanger'>CRITICAL ERROR: All modules OFFLINE.</span>")
+					audible_message("<span class='warning'>[src] sounds an alarm! \"CRITICAL ERROR: All modules OFFLINE.\"</span>")
+					to_chat(src, "<span class='userdanger'>CRITICAL ERROR: All modules OFFLINE.</span>")
 					playsound(loc, 'sound/machines/warning-buzzer.ogg', 75, 1, 1)
 
 /mob/living/silicon/robot/update_sight()

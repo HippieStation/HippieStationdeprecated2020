@@ -64,7 +64,8 @@
 /obj/item/melee/cultblade/ghost
 	name = "eldritch sword"
 	force = 19 //can't break normal airlocks
-	flags_1 = NODROP_1|DROPDEL_1
+	item_flags = NEEDS_PERMIT | NODROP | DROPDEL
+	flags_1 = NONE
 
 /obj/item/melee/cultblade/pickup(mob/living/user)
 	..()
@@ -301,7 +302,7 @@
 	item_state = "cult_hoodalt"
 
 /obj/item/clothing/head/culthood/alt/ghost
-	flags_1 = NODROP_1|DROPDEL_1
+	item_flags = NODROP | DROPDEL
 
 /obj/item/clothing/suit/cultrobes/alt
 	name = "cultist robes"
@@ -310,7 +311,7 @@
 	item_state = "cultrobesalt"
 
 /obj/item/clothing/suit/cultrobes/alt/ghost
-	flags_1 = NODROP_1|DROPDEL_1
+	item_flags = NODROP | DROPDEL
 
 
 /obj/item/clothing/head/magus
@@ -520,7 +521,7 @@
 		sleep(20)
 		var/global/list/curses
 		if(!curses)
-			curses = list("A fuel technician just slit his own throat and begged for death. The shuttle will be delayed by three minutes.",
+			curses = list("A fuel technician just slit his own throat and begged for death.",
 			"The shuttle's navigation programming was replaced by a file containing just two words: IT COMES.",
 			"The shuttle's custodian was found washing the windows with their own blood.",
 			"A shuttle engineer began screaming 'DEATH IS NOT THE END' and ripped out wires until an arc flash seared off her flesh.",
@@ -754,7 +755,7 @@
 	guns_left = 24
 	mag_type = /obj/item/ammo_box/magazine/internal/boltaction/enchanted/arcane_barrage/blood
 	fire_sound = 'sound/magic/wand_teleport.ogg'
-	flags_1 = NOBLUDGEON_1 | DROPDEL_1
+	item_flags = NEEDS_PERMIT | NOBLUDGEON | DROPDEL
 
 
 /obj/item/ammo_box/magazine/internal/boltaction/enchanted/arcane_barrage/blood
@@ -792,7 +793,7 @@
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "disintegrate"
 	item_state = null
-	flags_1 = ABSTRACT_1 | NODROP_1 | DROPDEL_1
+	item_flags = ABSTRACT | NODROP | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
 	throwforce = 0
 	throw_range = 0

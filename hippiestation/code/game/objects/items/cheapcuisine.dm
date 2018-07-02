@@ -31,10 +31,13 @@
 /obj/item/cheapcuisine/attack_self(mob/user)
 	if(!used)
 		var/choice = input(user, "What would you like to dispense?", "Carbonhell's Can of Cheap Cuisine") as null|anything in possibleFood
-		addtimer(CALLBACK(src, .proc/spawnFood, possibleFood[choice]), 50)
-		soundloop.start()
-		used = TRUE
-		icon_state = "carboncan-on"
+		if(used)
+			return FALSE
+		else
+			addtimer(CALLBACK(src, .proc/spawnFood, possibleFood[choice]), 50)
+			soundloop.start()
+			used = TRUE
+			icon_state = "carboncan-on"
 	else
 		to_chat(user, "<span class='notice'>It's already been used!</span>")
 
