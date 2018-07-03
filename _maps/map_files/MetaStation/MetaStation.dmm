@@ -76159,18 +76159,10 @@
 /obj/item/stock_parts/cell/super,
 /obj/item/stack/sheet/metal/fifty,
 /obj/structure/table/reinforced,
-<<<<<<< HEAD
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the RD's goons from the safety of your own office.";
-	name = "Research Monitor";
-	network = list("rd");
-	pixel_y = 32
-=======
 /obj/item/stock_parts/cell/high,
 /obj/item/stock_parts/cell/high,
 /obj/machinery/computer/security/telescreen/circuitry{
 	pixel_x = 30
->>>>>>> ca8d9f06a0... there we go (#38730)
 	},
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
