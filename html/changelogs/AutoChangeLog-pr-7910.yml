@@ -1,4 +1,0 @@
-author: "HonkBot"
-delete-after: True
-changes: 
-  - bugfix: "URLs are no longer auto-linkified in character names and IC messages."

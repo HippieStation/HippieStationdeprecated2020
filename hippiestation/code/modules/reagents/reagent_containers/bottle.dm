@@ -57,16 +57,21 @@
 /////////////////////////////////////////////
 /////////	HIPPIE VIRUS BOTTLES	/////////
 /////////////////////////////////////////////
-
 //Custom Hippie virus bottles
 
-//Laying a foundation for this before I forget, will update this with something verysoon(TM)
+/obj/item/reagent_containers/glass/bottle/fluxitus	//Please for the love of god only ever spawn this for mega badminbus
+	name = "Fluxitus bottle"
+	desc = "OOF!"
+	spawned_disease = /datum/disease/fluxitus
 
+/obj/item/reagent_containers/glass/bottle/godblood	//Yeah only spawn this for adminbus as well
+	name = "Godblood bottle"
+	desc = "A mysterious bottle, rumoured to be infused with the blood of fallen gods."
+	spawned_disease = /datum/disease/advance/heal/godblood
 
 //////////////////////////////////////
 /////////	PORTED FROM TG	 /////////
 //////////////////////////////////////
-
 //Bottles that no longer exist in TG
 
 /obj/item/reagent_containers/glass/bottle/epiglottis_virion
