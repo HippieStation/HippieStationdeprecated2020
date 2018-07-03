@@ -2708,7 +2708,6 @@
 #include "hippiestation\code\game\gamemodes\objective_items.dm"
 #include "hippiestation\code\game\gamemodes\clock_cult\clock_scriptures\neovgre.dm"
 #include "hippiestation\code\game\gamemodes\gangs\dominator.dm"
-#include "hippiestation\code\game\gamemodes\gangs\gang_datum.dm"
 #include "hippiestation\code\game\gamemodes\gangs\gang_items.dm"
 #include "hippiestation\code\game\gamemodes\gangs\gang_pen.dm"
 #include "hippiestation\code\game\gamemodes\gangs\gangs.dm"

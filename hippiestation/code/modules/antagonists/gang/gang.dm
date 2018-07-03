@@ -40,10 +40,6 @@
 	remove_objectives()
 	. = ..()
 
-/datum/antagonist/gang/greet()
-	to_chat(owner, "<span class='userdanger'>You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill the heads to win the revolution!</span>")
-	owner.announce_objectives()
-
 /datum/antagonist/gang/create_team(datum/team/gang/new_team)
 	if(!new_team)
 		var/gangteam = pick_n_take(GLOB.possible_gangs)
@@ -51,10 +47,10 @@
 			gang = new gangteam
 	gang = new_team
 
-/datum/antagonist/rev/proc/create_objectives()
+/datum/antagonist/gang/proc/create_objectives()
 	owner.objectives |= gang.objectives
 
-/datum/antagonist/rev/proc/remove_objectives()
+/datum/antagonist/gang/proc/remove_objectives()
 	owner.objectives -= gang.objectives
 
 //Bump up to boss
@@ -65,6 +61,7 @@
 	var/datum/antagonist/gang/leader/new_boss = new()
 	old_owner.add_antag_datum(new_boss,old_gang)
 	to_chat(old_owner, "<span class='userdanger'>Stuff to add!</span>")
+
 /*no clue
 /datum/antagonist/rev/get_admin_commands()
 	. = ..()
@@ -150,11 +147,41 @@
 		return FALSE
 	if(!can_be_owned(candidate.mind))
 		return FALSE
-	var/mob/living/carbon/C = candidate
-	if(!istype(C)) //Can't convert simple animals
+	var/mob/living/carbon/human/H = candidate
+	if(!istype(H)) //Can't nonhumans
 		return FALSE
 	return TRUE
 
+/datum/antagonist/gang/boss/proc/add_gangster(datum/mind/gangster_mind, check = TRUE)
+	var/datum/antagonist/dudegang = gangster_mind.has_antag_datum(/datum/antagonist/gang)
+	if(dudegang)
+		if(dudegang == gang)
+			return 3//dude's already in the same gang
+		return 0//dude's in an enemy gang oh fuck,also check if it's a boss
+	if(check && gangster_mind.current.isloyal()) //Check to see if the potential gangster is implanted
+		return 1
+	G.gangsters[gangster_mind] = GANGSTER_SOLDIER_STARTING_INFLUENCE
+	gangster_mind.gang_datum = G
+	if(check)
+		if(iscarbon(gangster_mind.current))
+			var/mob/living/carbon/carbon_mob = gangster_mind.current
+			carbon_mob.silent = max(carbon_mob.silent, 5)
+			carbon_mob.flash_act(1, 1)
+		gangster_mind.current.Stun(100)
+	if(G.is_deconvertible)
+		to_chat(gangster_mind.current, "<FONT size=3 color=red><B>You are now a member of the [G.name] Gang!</B></FONT>")
+		to_chat(gangster_mind.current, "<font color='red'>Help your bosses take over the station by claiming territory with <b>special spraycans</b> only they can provide. Simply spray on any unclaimed area of the station.</font>")
+		to_chat(gangster_mind.current, "<font color='red'>Their ultimate objective is to take over the station with a Dominator machine.</font>")
+		to_chat(gangster_mind.current, "<font color='red'>You can identify your bosses by their <b>large, bright [G.color] \[G\] icon</b>.</font>")
+		gangster_mind.store_memory("You are a member of the [G.name] Gang!")
+	gangster_mind.current.log_message("<font color='red'>Has been converted to the [G.name] Gang!</font>", INDIVIDUAL_ATTACK_LOG)
+	gangster_mind.special_role = "[G.name] Gangster"
+
+	G.add_gang_hud(gangster_mind)
+	if(jobban_isbanned(gangster_mind.current, ROLE_GANG))
+		INVOKE_ASYNC(src, /datum/game_mode.proc/replace_jobbaned_player, gangster_mind.current, ROLE_GANG, ROLE_GANG)
+	return 2
+/*
 /datum/antagonist/gang/proc/add_revolutionary(datum/mind/rev_mind,stun = TRUE)
 	if(!can_be_converted(rev_mind.current))
 		return FALSE
@@ -178,15 +205,12 @@
 	old_owner.add_antag_datum(new_rev,old_team)
 	new_rev.silent = FALSE
 	to_chat(old_owner, "<span class='userdanger'>Revolution has been disappointed of your leader traits! You are a regular revolutionary now!</span>")
-
-/datum/antagonist/rev/farewell()
+*/
+/datum/antagonist/gang/farewell()
 	if(ishuman(owner.current))
 		owner.current.visible_message("<span class='deconversion_message'>[owner.current] looks like [owner.current.p_theyve()] just remembered [owner.current.p_their()] real allegiance!</span>", null, null, null, owner.current)
-		to_chat(owner, "<span class='userdanger'>You are no longer a brainwashed revolutionary! Your memory is hazy from the time you were a rebel...the only thing you remember is the name of the one who brainwashed you...</span>")
-	else if(issilicon(owner.current))
-		owner.current.visible_message("<span class='deconversion_message'>The frame beeps contentedly, purging the hostile memory engram from the MMI before initalizing it.</span>", null, null, null, owner.current)
-		to_chat(owner, "<span class='userdanger'>The frame's firmware detects and deletes your neural reprogramming! You remember nothing but the name of the one who flashed you.</span>")
-
+		to_chat(owner, "<span class='userdanger'>You are no longer a gangster!</span>")
+/*
 //blunt trauma deconversions call this through species.dm spec_attacked_by()
 /datum/antagonist/rev/proc/remove_revolutionary(borged, deconverter)
 	log_attack("[owner.current] (Key: [key_name(owner.current)]) has been deconverted from the revolution by [deconverter] (Key: [key_name(deconverter)])!")
@@ -202,8 +226,8 @@
 	if(!borged)
 		return
 	. = ..()
-
-/datum/antagonist/rev/head/equip_rev()
+*/
+/datum/antagonist/gang/boss/equip_gang()
 	var/mob/living/carbon/human/H = owner.current
 	if(!istype(H))
 		return
@@ -211,31 +235,44 @@
 	if(remove_clumsy && owner.assigned_role == "Clown")
 		to_chat(owner, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 		H.dna.remove_mutation(CLOWNMUT)
+	var/obj/item/device/gangtool/gangtool = new(mob)
+	var/obj/item/pen/gang/T = new(mob)
+	var/obj/item/toy/crayon/spraycan/gang/SC = new(mob,gang)
+	var/obj/item/clothing/glasses/hud/security/chameleon/C = new(mob,gang)
 
-	if(give_flash)
-		var/obj/item/assembly/flash/T = new(H)
-		var/list/slots = list (
-			"backpack" = SLOT_IN_BACKPACK,
-			"left pocket" = SLOT_L_STORE,
-			"right pocket" = SLOT_R_STORE
-		)
-		var/where = H.equip_in_one_of_slots(T, slots)
-		if (!where)
-			to_chat(H, "The Syndicate were unfortunately unable to get you a flash.")
-		else
-			to_chat(H, "The flash in your [where] will help you to persuade the crew to join your cause.")
+	var/list/slots = list (
+		"backpack" = SLOT_IN_BACKPACK,
+		"left pocket" = SLOT_L_STORE,
+		"right pocket" = SLOT_R_STORE
+	)
+	var/where = H.equip_in_one_of_slots(T, slots)
+	if (!where)
+		to_chat(H, "Your Syndicate benefactors were unfortunately unable to get you a Gangtool.")
+	else
+		gangtool.register_device(H)
+		to_chat(H, "The <b>Gangtool</b> in your [where] will allow you to purchase weapons and equipment, send messages to your gang, and recall the emergency shuttle from anywhere on the station.")
+		to_chat(H, "As the gang boss, you can also promote your gang members to <b>lieutenant</b>. Unlike regular gangsters, Lieutenants cannot be deconverted and are able to use recruitment pens and gangtools.")
 
-	if(give_hud)
-		var/obj/item/organ/cyberimp/eyes/hud/security/syndicate/S = new(H)
-		S.Insert(H, special = FALSE, drop_if_replaced = FALSE)
-		to_chat(H, "Your eyes have been implanted with a cybernetic security HUD which will help you keep track of who is mindshield-implanted, and therefore unable to be recruited.")
+	var/where2 = H.equip_in_one_of_slots(T, slots)
+	if (!where2)
+		to_chat(H, "Your Syndicate benefactors were unfortunately unable to get you a recruitment pen to start.")
+	else
+		to_chat(H, "The <b>recruitment pen</b> in your [where2] will help you get your gang started. Stab unsuspecting crew members with it to recruit them.")
 
+	var/where3 = H.equip_in_one_of_slots(SC, slots)
+	if (!where3)
+		to_chat(H, "Your Syndicate benefactors were unfortunately unable to get you a territory spraycan to start.")
+	else
+		to_chat(H, "The <b>territory spraycan</b> in your [where3] can be used to claim areas of the station for your gang. The more territory your gang controls, the more influence you get. All gangsters can use these, so distribute them to grow your influence faster.")
 
-
-GLOBAL_LIST_INIT(gang_colors_pool, list("red","orange","yellow","green","blue","purple", "white"))
+	var/where4 = H.equip_in_one_of_slots(C, slots)
+	if (!where4)
+		to_chat(H, "Your Syndicate benefactors were unfortunately unable to get you a chameleon security HUD.")
+	else
+		to_chat(H, "The <b>chameleon security HUD</b> in your [where4] will help you keep track of who is mindshield-implanted, and unable to be recruited.")
 
 #define INFLUENCE_INTERVAL 1800
-
+GLOBAL_LIST_EMPTY(gangs)
 /datum/team/gang
 	name = "Gang"
 	member_name = "gangster"
@@ -247,18 +284,38 @@ GLOBAL_LIST_INIT(gang_colors_pool, list("red","orange","yellow","green","blue","
 	var/list/gangtools = list()
 	var/next_point_interval = INFLUENCE_INTERVAL
 	var/next_point_time
-	var/list/buyable_items
+	var/domination_time = -1
+	var/color
+	var/list/buyable_items = list()
+	var/list/gangtools
 
 /datum/team/gang/New(starting_members)
 	. = ..()
+	GLOB.gangs += src
 	if(starting_members)
 		if(islist(starting_members))
-			for(var/datum/mind/M in starting_members)
-				LAZYADD(leaders, M)
+			for(var/datum/mind/groveboss in starting_members)
+				LAZYADD(leaders, groveboss)
+				var/datum/antagonist/gang/boss/gb = new
+				gb.gang = src
+				M.add_antag_datum(gb, src)
+				gb.equip_gang()
+
 		else
-			LAZYADD(leaders, starting_members)
+			var/datum/mind/CJ = starting_members
+			if(istype(CJ))
+				LAZYADD(leaders, CJ)
+				var/datum/antagonist/gang/boss/bossdatum = new
+				bossdatum.gang = src
+				CJ.add_antag_datum(bossdatum, src)
+				bossdatum.equip_gang()
+	color = rgb(rand(0,255),rand(0,255),rand(0,255))
 	next_point_time = world.time + next_point_interval
 	START_PROCESSING(SSobj, src)
+
+/datum/team/gang/Destroy()
+	GLOB.gangs -= src
+	..()
 
 /datum/team/gang/proc/set_gang_item_list()
 	var/list/all_items = subtypesof(/datum/gang_item) // starting list with code-parents to remove
@@ -277,33 +334,21 @@ GLOBAL_LIST_INIT(gang_colors_pool, list("red","orange","yellow","green","blue","
 	buyable_items = final_list
 
 /datum/team/gang/process()
-	var/list/winners = list() //stores the winners if there are any
-
 	if(world.time > next_point_time)
 		handle_territories()
-
-/*to check
-		if(G.is_dominating)
-			if(G.domination_time_remaining() < 0)
-				winners += G
 
 	if(world.time > next_point_time)
 		next_point_time = world.time + next_point_interval
 
-	if(winners.len)
-		if(winners.len > 1) //Edge Case: If more than one dominator complete at the same time
-			for(var/datum/gang/G in winners)
-				G.domination(0.5)
-			priority_announce("Multiple station takeover attempts have made simultaneously. Conflicting takeover attempts appears to have restarted.","Network Alert")
-		else
-			var/datum/gang/G = winners[1]
+	if(domination_time != -1)
+		if(!domination_time)
+			domination()
+			/*
 			G.is_dominating = FALSE
 			SSticker.mode.explosion_in_progress = TRUE
 			SSticker.station_explosion_cinematic(1,"gang war", null)
 			SSticker.mode.explosion_in_progress = FALSE
 			SSticker.force_ending = TRUE*/
-
-
 
 /datum/team/gang/roundend_report()
 	var/list/report = list()
@@ -425,6 +470,17 @@ GLOBAL_LIST_INIT(gang_colors_pool, list("red","orange","yellow","green","blue","
 			if(mob.mind.gang_datum == src)
 				tochat(mob, "<span class='warning'>\icon[tool] [message]</span>")
 				playsound(mob.loc, 'sound/machines/twobeep.ogg', 50, 1)
+
+/datum/team/gang/proc/message_gangtools(message)
+	if(!gangtools.len || !message)
+		return
+	for(var/i in gangtools)
+		var/obj/item/device/gangtool/tool = i
+		var/mob/living/mob = get(tool.loc, /mob/living)
+		if(mob && mob.mind && mob.stat == CONSCIOUS)
+			if(mob.mind.gang_datum == src)
+				to_chat(mob, "<span class='[warning ? "warning" : "notice"]'>[icon2html(tool, mob)] [message]</span>")
+			return
 
 /datum/team/gang/clandestine
 	name = "Clandestine"
