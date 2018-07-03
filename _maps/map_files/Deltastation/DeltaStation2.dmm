@@ -204,6 +204,7 @@
 	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
 	width = 3
 	},
+/obj/structure/fans/tiny/invisible,
 /turf/open/space/basic,
 /area/space)
 "abv" = (
@@ -896,7 +897,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/door/airlock/engineering{
 	name = "Auxiliary Construction Storage";
-	req_access_txt = "10;32;47;48"
+	req_one_access_txt = "10;32;47;48"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
@@ -9052,11 +9053,9 @@
 /turf/open/floor/plasteel/redblue,
 /area/maintenance/port/fore)
 "ayW" = (
-/obj/machinery/vending/autodrobe{
-	req_access_txt = "0"
-	},
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/autodrobe/all_access,
 /turf/open/floor/plasteel/redblue/redside{
 	dir = 8
 	},
@@ -22724,6 +22723,7 @@
 	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
 	width = 3
 	},
+/obj/structure/fans/tiny/invisible,
 /turf/open/space/basic,
 /area/space)
 "bbz" = (
@@ -63599,9 +63599,7 @@
 	},
 /area/crew_quarters/locker)
 "cGO" = (
-/obj/machinery/vending/autodrobe{
-	req_access_txt = "0"
-	},
+/obj/machinery/vending/autodrobe/all_access,
 /turf/open/floor/plasteel/vault{
 	dir = 5
 	},
@@ -85666,14 +85664,12 @@
 /turf/open/floor/wood,
 /area/crew_quarters/abandoned_gambling_den)
 "dBR" = (
-/obj/machinery/vending/boozeomat{
-	req_access_txt = "0"
-	},
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/poster/contraband/random{
 	pixel_y = -32
 	},
+/obj/machinery/vending/boozeomat/all_access,
 /turf/open/floor/plating,
 /area/crew_quarters/abandoned_gambling_den)
 "dBS" = (
@@ -100156,6 +100152,12 @@
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/engine,
 /area/science/mixing)
+"oMw" = (
+/obj/docking_port/stationary/public_mining_dock{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
 "oNd" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 1
@@ -100487,6 +100489,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/atmos/toxins_mixing_output,
 /turf/open/floor/engine/vacuum,
 /area/science/mixing)
+"xZM" = (
+/obj/structure/fans/tiny/invisible,
+/turf/open/space/basic,
+/area/space)
 "yiv" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/vault{
@@ -136782,7 +136788,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+xZM
 abE
 aaO
 aca
@@ -137296,7 +137302,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+xZM
 abG
 aaO
 acc
@@ -141424,7 +141430,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+xZM
 abE
 aaO
 aca
@@ -141938,7 +141944,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+xZM
 abG
 aaO
 acc
@@ -143494,7 +143500,7 @@ aeF
 aeF
 aeF
 aeF
-aeF
+oMw
 aeF
 aeF
 aeF
@@ -158701,9 +158707,9 @@ aaa
 ajr
 aad
 aKV
-aaa
+xZM
 bbv
-aaa
+xZM
 aKV
 aad
 aad

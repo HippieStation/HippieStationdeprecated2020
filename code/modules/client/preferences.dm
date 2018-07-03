@@ -102,9 +102,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// 0 = character settings, 1 = game preferences
 	var/current_tab = 0
 
-		// OOC Metadata:
-	var/metadata = ""
-
 	var/unlock_content = 0
 
 	var/list/ignoring = list()
@@ -114,6 +111,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/parallax
 
 	var/ambientocclusion = TRUE
+	var/auto_fit_viewport = FALSE
 
 	var/uplink_spawn_loc = UPLINK_PDA
 
@@ -126,7 +124,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	parent = C
 	custom_names["human"] = random_unique_name()
 	custom_names["ai"] = pick(GLOB.ai_names)
-	custom_names["cyborg"] = pick(GLOB.ai_names)
+	custom_names["cyborg"] = DEFAULT_CYBORG_NAME
 	custom_names["clown"] = pick(GLOB.clown_names)
 	custom_names["mime"] = pick(GLOB.mime_names)
 	UI_style = GLOB.available_ui_styles[1]
@@ -157,7 +155,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		return
 	update_preview_icon()
 	user << browse_rsc(preview_icon, "previewicon.png")
-	var/dat = "<center>"
+	var/list/dat = list("<center>")
 
 	dat += "<a href='?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character Settings</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Game Preferences</a>"
@@ -514,6 +512,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "</a><br>"
 
 			dat += "<b>Ambient Occlusion:</b> <a href='?_src_=prefs;preference=ambientocclusion'>[ambientocclusion ? "Enabled" : "Disabled"]</a><br>"
+			dat += "<b>Fit Viewport:</b> <a href='?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Auto" : "Manual"]</a><br>"
 
 			if (CONFIG_GET(flag/maprotation))
 				var/p_map = preferred_map
@@ -579,9 +578,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(unlock_content || check_rights_for(user.client, R_ADMIN))
 					dat += "<b>OOC Color:</b> <span style='border: 1px solid #161616; background-color: [ooccolor ? ooccolor : GLOB.normal_ooc_colour];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=ooccolor;task=input'>Change</a><br>"
 
-			if(CONFIG_GET(flag/allow_metadata))
-				dat += "<b>OOC Notes:</b> <a href='?_src_=prefs;preference=metadata;task=input'>Edit </a><br>"
-
 			dat += "</td>"
 
 			if(user.client.holder)
@@ -606,7 +602,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "</center>"
 
 	var/datum/browser/popup = new(user, "preferences", "<div align='center'>Character Setup</div>", 640, 770)
-	popup.set_content(dat)
+	popup.set_content(dat.Join())
 	popup.open(0)
 
 #undef APPEARANCE_CATEGORY_COLUMN
@@ -947,6 +943,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var/sql_ckey = sanitizeSQL(user.ckey)
 		var/datum/DBQuery/query_get_jobban = SSdbcore.NewQuery("SELECT reason, bantime, duration, expiration_time, a_ckey FROM [format_table_name("ban")] WHERE ckey = '[sql_ckey]' AND (bantype = 'JOB_PERMABAN'  OR (bantype = 'JOB_TEMPBAN' AND expiration_time > Now())) AND isnull(unbanned) AND job = '[job]'")
 		if(!query_get_jobban.warn_execute())
+			qdel(query_get_jobban)
 			return
 		if(query_get_jobban.NextRow())
 			var/reason = query_get_jobban.item[1]
@@ -960,6 +957,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				text += ". The ban is for [duration] minutes and expires on [expiration_time] (server time)"
 			text += ".</span>"
 			to_chat(user, text)
+		qdel(query_get_jobban)
 		return
 
 	if(href_list["preference"] == "job")
@@ -1114,16 +1112,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(new_age)
 						age = max(min( round(text2num(new_age)), AGE_MAX),AGE_MIN)
 
-				if("metadata")
-					var/new_metadata = input(user, "Enter any information you'd like others to see, such as Roleplay-preferences:", "Game Preference" , metadata)  as message|null
-					if(new_metadata)
-						metadata = sanitize(copytext(new_metadata,1,MAX_MESSAGE_LEN))
-
 				if("hair")
 					var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference","#"+hair_color) as color|null
 					if(new_hair)
 						hair_color = sanitize_hexcolor(new_hair)
-
 
 				if("hair_style")
 					var/new_hair_style
@@ -1339,7 +1331,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, 0-9, -, ' and .</font>")
 
 				if("cyborg_name")
-					var/new_cyborg_name = reject_bad_name( input(user, "Choose your character's cyborg name:", "Character Preference")  as text|null, 1 )
+					var/raw_name = input(user, "Choose your character's cyborg name (Leave empty to use default naming scheme):", "Character Preference")  as text|null
+					var/new_cyborg_name
+					if(!raw_name)
+						new_cyborg_name = DEFAULT_CYBORG_NAME
+					else
+						new_cyborg_name = reject_bad_name(raw_name,1 )
 					if(new_cyborg_name)
 						custom_names["cyborg"] = new_cyborg_name
 					else
@@ -1455,7 +1452,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("lobby_music")
 					toggles ^= SOUND_LOBBY
-					if((toggles & SOUND_LOBBY) && user.client)
+					if((toggles & SOUND_LOBBY) && user.client && isnewplayer(user))
 						user.client.playtitlemusic()
 					else
 						user.stop_sound_channel(CHANNEL_LOBBYMUSIC)
@@ -1496,6 +1493,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(parent && parent.screen && parent.screen.len)
 						var/obj/screen/plane_master/game_world/PM = locate(/obj/screen/plane_master/game_world) in parent.screen
 						PM.backdrop(parent.mob)
+
+				if("auto_fit_viewport")
+					auto_fit_viewport = !auto_fit_viewport
+					if(auto_fit_viewport && parent)
+						parent.fit_viewport()
 
 				if("save")
 					save_preferences()

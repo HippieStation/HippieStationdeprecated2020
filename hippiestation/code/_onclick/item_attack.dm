@@ -1,5 +1,5 @@
 /obj/item/attack(mob/living/M, mob/living/user)
-	SendSignal(COMSIG_ITEM_ATTACK, M, user)
+	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user)
 	if(item_flags & NOBLUDGEON)
 		return
 	if(special_attack)//handled by afterattack

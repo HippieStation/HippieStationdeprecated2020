@@ -34915,7 +34915,7 @@
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
 "bJP" = (
-/obj/machinery/vending/boozeomat,
+/obj/machinery/vending/boozeomat/all_access,
 /turf/open/floor/plasteel/bar,
 /area/maintenance/port/aft)
 "bJQ" = (
@@ -53692,6 +53692,12 @@
 /obj/structure/sign/nanotrasen,
 /turf/closed/wall,
 /area/science/circuit)
+"lCi" = (
+/obj/docking_port/stationary/public_mining_dock{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/construction/mining/aux_base)
 "lMg" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -65297,7 +65303,7 @@ apN
 apN
 apN
 apN
-apN
+lCi
 apN
 apN
 apN
