@@ -10658,6 +10658,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/structure/sign/poster/random{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "aAk" = (
@@ -57707,6 +57710,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"dKp" = (
+/obj/structure/chair/stool,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/sign/poster/random{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "dLx" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -77132,7 +77148,7 @@ aAd
 skg
 aAd
 aFi
-ghG
+aAd
 aAh
 iLq
 fHK
@@ -78160,8 +78176,8 @@ aaa
 aaa
 aaa
 rEp
-ghG
-icQ
+aAd
+dKp
 iLq
 aCK
 aCK
@@ -79188,7 +79204,7 @@ aAd
 qlb
 aAd
 aFi
-ghG
+aAd
 aAh
 iLq
 hGU
