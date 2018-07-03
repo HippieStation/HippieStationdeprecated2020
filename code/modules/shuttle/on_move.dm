@@ -78,8 +78,6 @@ All ShuttleMove procs go here
 
 	return TRUE
 
-<<<<<<< HEAD
-=======
 /turf/proc/lateShuttleMove(turf/oldT)
 	blocks_air = initial(blocks_air)
 	air_update_turf(TRUE)
@@ -87,7 +85,6 @@ All ShuttleMove procs go here
 	oldT.air_update_turf(TRUE)
 
 
->>>>>>> 12d492210d... Remove trailing return
 /////////////////////////////////////////////////////////////////////////////////////
 
 // Called on every atom in shuttle turf contents before anything has been moved
