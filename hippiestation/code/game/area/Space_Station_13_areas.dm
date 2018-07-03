@@ -68,4 +68,3 @@
 	icon_state = "teleporter"
 	music = "signal"
 	ambientsounds = ENGINEERING
-	icon_state = "green"
