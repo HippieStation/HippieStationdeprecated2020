@@ -224,3 +224,25 @@ datum/reagent/medicine/virogone/on_mob_life(mob/living/M)//cures viruses very ef
 
 /datum/reagent/medicine/salglu_solution
 	overdose_threshold = 0 //seriously fuck whoever thought this was a good idea.
+
+/datum/reagent/medicine/corazone/on_mob_add(mob/living/M)
+	var/mob/living/carbon/human/H = M
+	if(H)
+		H.add_trait(TRAIT_STABLEHEART, id)
+
+	..()
+
+/datum/reagent/medicine/corazone/on_mob_delete(mob/living/M)
+	var/mob/living/carbon/human/H = M
+	if(H)
+		to_chat(H, "<span_class='warning'>You feel the effects of the corazone is starting to run out!</span>")
+		addtimer(CALLBACK(H, /datum/reagent/medicine/corazone/proc/remove_stableheart), rand(10, 30))
+
+	..()
+
+/datum/reagent/medicine/corazone/proc/remove_stableheart(mob/living/M)
+	var/mob/living/carbon/human/H = M
+	if(H)
+		if(!H.reagents.has_reagent("corazone"))
+			H.remove_trait(TRAIT_STABLEHEART, id)
+
