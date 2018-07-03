@@ -551,7 +551,7 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
 "abS" = (
-/obj/machinery/computer/security,
+/obj/machinery/computer/security/hos,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -1856,10 +1856,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching Prison Wing holding areas.";
-	name = "Prison Monitor";
-	network = list("prison");
+/obj/machinery/computer/security/telescreen/prison{
 	pixel_y = 30
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -1904,10 +1901,7 @@
 	},
 /area/security/prison)
 "aes" = (
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching Prison Wing holding areas.";
-	name = "Prison Monitor";
-	network = list("prison");
+/obj/machinery/computer/security/telescreen/prison{
 	pixel_y = 30
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -4323,10 +4317,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
-/obj/machinery/computer/security{
-	name = "Labor Camp Monitoring";
-	network = list("labor")
-	},
+/obj/machinery/computer/security/labor,
 /turf/open/floor/plasteel,
 /area/security/processing)
 "ajE" = (
@@ -9399,11 +9390,8 @@
 	pixel_y = 7
 	},
 /obj/item/pen,
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching Prison Wing holding areas.";
+/obj/machinery/computer/security/telescreen/prison{
 	dir = 1;
-	name = "Prison Monitor";
-	network = list("prison");
 	pixel_y = -27
 	},
 /turf/open/floor/wood,
@@ -19941,9 +19929,7 @@
 	},
 /area/bridge)
 "aZm" = (
-/obj/machinery/computer/security/mining{
-	network = list("mine","auxbase")
-	},
+/obj/machinery/computer/security/mining,
 /turf/open/floor/plasteel/brown{
 	dir = 6
 	},
@@ -28442,10 +28428,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
 "buX" = (
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching Prison Wing holding areas.";
-	name = "Prison Monitor";
-	network = list("prison");
+/obj/machinery/computer/security/telescreen/prison{
 	pixel_y = 30
 	},
 /obj/machinery/disposal/bin,
@@ -32520,12 +32503,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
 "bEE" = (
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the RD's goons and the AI's satellite from the safety of his office.";
-	name = "Research Monitor";
-	network = list("rd","minisat");
-	pixel_y = 2
-	},
+/obj/machinery/computer/security/telescreen/rd,
 /obj/structure/table,
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
@@ -33200,8 +33178,7 @@
 	pixel_x = 27
 	},
 /obj/machinery/computer/security/mining{
-	dir = 8;
-	network = list("mine","auxbase")
+	dir = 8
 	},
 /turf/open/floor/plasteel/red/side{
 	dir = 4
@@ -33551,12 +33528,7 @@
 /area/security/checkpoint/science/research)
 "bGY" = (
 /obj/structure/table,
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the RD's goons from the safety of your own office.";
-	name = "Research Monitor";
-	network = list("rd");
-	pixel_y = 2
-	},
+/obj/machinery/computer/security/telescreen/rd,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel/red/side{
 	dir = 1
@@ -34207,8 +34179,7 @@
 /area/maintenance/starboard)
 "bIt" = (
 /obj/machinery/computer/security/mining{
-	dir = 4;
-	network = list("mine","auxbase")
+	dir = 4
 	},
 /obj/machinery/camera{
 	c_tag = "Quartermaster's Office";
@@ -35913,9 +35884,7 @@
 /turf/closed/wall,
 /area/science/mixing)
 "bMd" = (
-/obj/machinery/computer/security/mining{
-	network = list("mine","auxbase")
-	},
+/obj/machinery/computer/security/mining,
 /obj/machinery/camera{
 	c_tag = "Mining Dock";
 	dir = 4
@@ -37095,12 +37064,8 @@
 /turf/open/floor/plasteel,
 /area/science/mixing)
 "bOV" = (
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the test chamber.";
-	dir = 8;
-	layer = 4;
-	name = "Test Chamber Telescreen";
-	network = list("toxins");
+/obj/machinery/computer/security/telescreen/toxins{
+	dir = 4;
 	pixel_x = 30
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -41218,13 +41183,7 @@
 /area/science/misc_lab)
 "bYQ" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the RD's goons from the safety of his office.";
-	dir = 2;
-	name = "Research Monitor";
-	network = list("rd");
-	pixel_y = 28
-	},
+/obj/machinery/computer/security/telescreen/rd,
 /obj/item/integrated_circuit_printer,
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
@@ -44901,12 +44860,8 @@
 /obj/machinery/computer/secure_data{
 	dir = 8
 	},
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the Engine.";
+/obj/machinery/computer/security/telescreen/engine{
 	dir = 8;
-	layer = 4;
-	name = "Engine Monitor";
-	network = list("Singularity");
 	pixel_x = 30
 	},
 /turf/open/floor/plasteel/red/side{
@@ -46047,12 +46002,9 @@
 /area/science/misc_lab)
 "ckZ" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the RD's goons from the safety of his office.";
+/obj/machinery/computer/security/telescreen/circuitry{
 	dir = 1;
-	name = "Research Monitor";
-	network = list("rd");
-	pixel_y = -28
+	pixel_y = -30
 	},
 /obj/item/integrated_circuit_printer,
 /turf/open/floor/plasteel/white,
@@ -49559,12 +49511,8 @@
 	},
 /area/engine/engineering)
 "ctU" = (
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the Engine.";
+/obj/machinery/computer/security/telescreen/engine{
 	dir = 8;
-	layer = 4;
-	name = "Engine Monitor";
-	network = list("Singularity");
 	pixel_x = 30
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -49974,12 +49922,8 @@
 /obj/machinery/computer/station_alert{
 	dir = 4
 	},
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the Engine.";
+/obj/machinery/computer/security/telescreen/engine{
 	dir = 4;
-	layer = 4;
-	name = "Engine Monitor";
-	network = list("Singularity");
 	pixel_x = -27
 	},
 /turf/open/floor/plasteel/vault,
@@ -50430,11 +50374,8 @@
 /turf/open/floor/plasteel/floorgrime,
 /area/maintenance/disposal/incinerator)
 "cvZ" = (
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the turbine vent.";
+/obj/machinery/computer/security/telescreen/turbine{
 	dir = 1;
-	name = "turbine vent monitor";
-	network = list("turbine");
 	pixel_y = -29
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -58715,11 +58656,8 @@
 /obj/item/wallframe/camera,
 /obj/item/wallframe/camera,
 /obj/item/assault_pod/mining,
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for the Auxillary Mining Base.";
+/obj/machinery/computer/security/telescreen/auxbase{
 	dir = 1;
-	name = "Auxillary Base Monitor";
-	network = list("auxbase");
 	pixel_y = -28
 	},
 /turf/open/floor/plasteel/yellow/side{
@@ -62022,12 +61960,8 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the Engine.";
+/obj/machinery/computer/security/telescreen/engine{
 	dir = 4;
-	layer = 4;
-	name = "Engine Monitor";
-	network = list("Singularity");
 	pixel_x = -27
 	},
 /turf/open/floor/plasteel,
@@ -63768,12 +63702,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the Engine.";
+/obj/machinery/computer/security/telescreen/engine{
 	dir = 4;
-	layer = 4;
-	name = "Engine Monitor";
-	network = list("Singularity");
 	pixel_x = -27
 	},
 /obj/machinery/holopad,
