@@ -17,7 +17,7 @@
 /datum/brain_trauma/special/cotard_delusion/proc/revival()
 	var/mob/living/carbon/human/H = owner
 	to_chat(H, "<div style='font-size: 30px; font-weight: bold; font-style: italic; color: #5c00e6'> You feel yourself coming back, but something isn't right. You haven't been given release from your body, and are cursed to wander with it forever!</div>")
-	H.playsound_local(null, 'sound/hallucinations/far_noise.ogg', 50, 1)
+	playsound(H, 'sound/hallucinations/far_noise.ogg', 50, 1)
 	H.toggle_ghostvision()	//As soon as we can see ghosts, you will be able to see their deadchat as well - UNLESS you don't have the medium trait
 	H.add_trait(TRAIT_MEDIUM, TRAUMA_TRAIT)	//This will stop them from talking to people and instead talk to deadchat
 	H.add_trait(TRAIT_DEAF, TRAUMA_TRAIT)	//Needed to mute the chat
@@ -26,7 +26,7 @@
 	..()
 	var/mob/living/carbon/human/H = owner
 	if(prob(10))
-		H.playsound_local(null, pick(CREEPY_SOUNDS), 50, 1)
+		playsound(H, pick(CREEPY_SOUNDS), 50, 1)
 	if(H.getStaminaLoss() < 1)	//Cursed with being eternally slow hehehe
 		H.adjustStaminaLoss(50)
 	else if(H.getStaminaLoss() < 50)

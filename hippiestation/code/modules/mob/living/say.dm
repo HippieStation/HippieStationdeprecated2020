@@ -7,7 +7,7 @@
 
 	if(sanitize)
 		message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
-	if(!message || message == "")
+	if(!message)
 		return
 
 	var/datum/saymode/saymode = SSradio.saymodes[talk_key]

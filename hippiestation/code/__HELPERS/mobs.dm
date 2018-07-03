@@ -27,7 +27,7 @@
 		if(SLOT_IN_BACKPACK)
 			return "In backpack"
 
-proc/deadchat_broadcast(message, mob/follow_target=null, turf/turf_target=null, speaker_key=null, message_type=DEADCHAT_REGULAR)
+/proc/deadchat_broadcast(message, mob/follow_target=null, turf/turf_target=null, speaker_key=null, message_type=DEADCHAT_REGULAR)
 	for(var/mob/M in GLOB.player_list)	//Stop the message if our dudes are alive and do not have the medium trait, living mobs can now use deadchat!!
 		var/mob/living/carbon/human/H = M
 		var/datum/preferences/prefs
