@@ -214,8 +214,6 @@
 	var/nn_regen = 0.75 //rate at which we regen
 	var/obj/item/stock_parts/cell/cell //What type of power cell this uses
 	var/cell_type = /obj/item/stock_parts/cell{charge = 100; maxcharge = 100}
-	//var/cl_nn_energy = 0 //current energy
-	//var/nn_energy = 100 //maximum energy
 
 /obj/item/clothing/suit/space/hardsuit/nano/ComponentInitialize()
 	. = ..()
