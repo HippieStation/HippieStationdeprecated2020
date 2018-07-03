@@ -120,19 +120,3 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	H.cure_trauma_type(brain_trauma_type = /datum/brain_trauma/mild/dumbness, TRAUMA_RESILIENCE_ABSOLUTE)
 	H.cure_trauma_type(brain_trauma_type = /datum/brain_trauma/special/imaginary_friend, TRAUMA_RESILIENCE_ABSOLUTE)
-
-/datum/quirk/split_personality	//For testing in live, remove this once testing is complete
-	name = "Split Personality"
-	desc = "This trait gives you a split personality, simple as that. *THIS IS A TEMPORARY TRAIT FOR TESTING PURPOSES* bugs and/or crashes may occur from split personalities so pick this at your own risk!!"
-	value = 0
-	gain_text = "<span class='notice'>You now have a split personality via trait.</span>"
-	lose_text = "<span class='notice'>You no longer have a split personality via trait.</span>"
-
-/datum/quirk/split_personality/add()
-	var/mob/living/carbon/human/H = quirk_holder
-	if(istype(H))
-		H.gain_trauma(/datum/brain_trauma/severe/split_personality, TRAUMA_RESILIENCE_SURGERY)
-
-/datum/quirk/split_personality/remove()
-	var/mob/living/carbon/human/H = quirk_holder
-	H.cure_trauma_type(brain_trauma_type = /datum/brain_trauma/severe/split_personality, TRAUMA_RESILIENCE_SURGERY)
