@@ -18,7 +18,7 @@
 	display_name = "Biological Technology"
 	description = "What makes us tick."	//the MC, silly!
 	prereq_ids = list("base")
-	design_ids = list("chem_heater", "chem_master", "chem_dispenser", "sleeper", "vr_sleeper", "pandemic", "defibmount", "operating", "soda_dispenser", "beer_dispenser")
+	design_ids = list("chem_heater", "chem_master", "chem_dispenser", "sleeper", "vr_sleeper", "pandemic", "defibmount", "operating", "soda_dispenser", "beer_dispenser", "healthanalyzer")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -27,7 +27,7 @@
 	display_name = "Advanced Biotechnology"
 	description = "Advanced Biotechnology"
 	prereq_ids = list("biotech")
-	design_ids = list("piercesyringe", "smoke_machine", "plasmarefiller", "limbgrower", "defibrillator", "meta_beaker")
+	design_ids = list("piercesyringe", "smoke_machine", "plasmarefiller", "limbgrower", "defibrillator", "meta_beaker", "healthanalyzer_advanced")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -130,7 +130,7 @@
 	display_name = "Advanced Power Manipulation"
 	description = "How to get more zap."
 	prereq_ids = list("engineering")
-	design_ids = list("smes", "super_cell", "hyper_cell", "super_capacitor", "superpacman", "mrspacman", "power_turbine", "power_turbine_console", "power_compressor")
+	design_ids = list("smes", "super_cell", "hyper_cell", "super_capacitor", "superpacman", "mrspacman", "power_turbine", "power_turbine_console", "power_compressor", "circulator", "teg")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 

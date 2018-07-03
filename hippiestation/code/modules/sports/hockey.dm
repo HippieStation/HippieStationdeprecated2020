@@ -9,7 +9,7 @@
 	icon_state = "hockey_bag"
 	item_state = "hockey_bag"
 	w_class = WEIGHT_CLASS_BULKY
-	slot_flags = SLOT_BACK
+	slot_flags = ITEM_SLOT_BACK
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 	actions_types = list(/datum/action/item_action/toggle_stick)
 	var/obj/item/twohanded/hockeystick/packstick
@@ -20,7 +20,7 @@
 	..()
 	if (slot != SLOT_BACK) //The Pack is cursed so this should not happen, but i'm going to play it safe.
 		remove_stick()
-	if(slot == SLOT_BACK)
+	if(slot == ITEM_SLOT_BACK)
 		item_flags = NODROP
 
 /obj/item/hockeypack/ui_action_click()
@@ -49,7 +49,6 @@
 			on = FALSE
 			to_chat(user, "<span class='warning'>You need a free hand to hold the stick!</span>")
 			return
-		packstick.forceMove(user)
 	else
 		remove_stick()
 	return
@@ -107,7 +106,6 @@
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
 	force = 5
 	w_class = WEIGHT_CLASS_BULKY
-	slot_flags = SLOT_BACK
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 	force_unwielded = 10
 	force_wielded = 25

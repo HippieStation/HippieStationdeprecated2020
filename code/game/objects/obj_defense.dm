@@ -48,14 +48,8 @@
 
 /obj/hitby(atom/movable/AM)
 	..()
-	var/tforce = 0
-	if(ismob(AM))
-		tforce = 10
-	else if(isobj(AM))
-		var/obj/O = AM
-		tforce = O.throwforce
-	if(src && !QDELETED(src)) //Hippie code. Do we still exist?
-		take_damage(tforce, BRUTE, "melee", 1, get_dir(src, AM))
+	if(src && !QDELETED(src)) // hippie
+		take_damage(AM.throwforce, BRUTE, "melee", 1, get_dir(src, AM))
 
 /obj/ex_act(severity, target)
 	if(resistance_flags & INDESTRUCTIBLE)
@@ -246,7 +240,7 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 
 //the obj is deconstructed into pieces, whether through careful disassembly or when destroyed.
 /obj/proc/deconstruct(disassembled = TRUE)
-	SendSignal(COMSIG_OBJ_DECONSTRUCT, disassembled)
+	SEND_SIGNAL(src, COMSIG_OBJ_DECONSTRUCT, disassembled)
 	qdel(src)
 
 //what happens when the obj's health is below integrity_failure level.

@@ -139,7 +139,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	var/is_main_engine = FALSE
 
-	var/datum/looping_sound/supermatter/soundloop
+	//var/datum/looping_sound/supermatter/soundloop hippie code removes soundloop
 
 	var/moveable = FALSE
 
@@ -158,7 +158,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(is_main_engine)
 		GLOB.main_supermatter_engine = src
 
-	soundloop = new(list(src), TRUE)
+	//soundloop = new(list(src), TRUE) hippie code removes sound loop
 
 /obj/machinery/power/supermatter_crystal/Destroy()
 	investigate_log("has been destroyed.", INVESTIGATE_SUPERMATTER)
@@ -168,7 +168,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	QDEL_NULL(countdown)
 	if(is_main_engine && GLOB.main_supermatter_engine == src)
 		GLOB.main_supermatter_engine = null
-	QDEL_NULL(soundloop)
+	//QDEL_NULL(soundloop) hippie code removes sound loop
 	return ..()
 
 /obj/machinery/power/supermatter_crystal/examine(mob/user)
@@ -279,7 +279,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(M.z == z)
 			SEND_SOUND(M, 'sound/magic/charge.ogg')
 			to_chat(M, "<span class='boldannounce'>You feel reality distort for a moment...</span>")
-			M.SendSignal(COMSIG_ADD_MOOD_EVENT, "delam", /datum/mood_event/delam)
+			SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "delam", /datum/mood_event/delam)
 	if(combined_gas > MOLE_PENALTY_THRESHOLD)
 		investigate_log("has collapsed into a singularity.", INVESTIGATE_SUPERMATTER)
 		if(T)
@@ -304,8 +304,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	if(!istype(T)) 	//We are in a crate or somewhere that isn't turf, if we return to turf resume processing but for now.
 		return  //Yeah just stop.
 
-	if(power)
-		soundloop.volume = min(40, (round(power/100)/50)+1) // 5 +1 volume per 20 power. 2500 power is max
+	//hippie code
+	//if(power)
+	//	soundloop.volume = min(40, (round(power/100)/50)+1) // 5 +1 volume per 20 power. 2500 power is max
 
 	//Ok, get the air from the turf
 	var/datum/gas_mixture/env = T.return_air()
@@ -650,14 +651,24 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	moveable = TRUE
 
 /obj/machinery/power/supermatter_crystal/shard/engine
+	name = "anchored supermatter shard"
 	is_main_engine = TRUE
+	anchored = TRUE
+	moveable = FALSE
 
 // When you wanna make a supermatter shard for the dramatic effect, but
 // don't want it exploding suddenly
 /obj/machinery/power/supermatter_crystal/shard/hugbox
+	name = "anchored supermatter shard"
 	takes_damage = FALSE
 	produces_gas = FALSE
 	moveable = FALSE
+	anchored = TRUE
+
+/obj/machinery/power/supermatter_crystal/shard/hugbox/fakecrystal //Hugbox shard with crystal visuals, used in the Supermatter/Hyperfractal shuttle
+	name = "supermatter crystal"
+	base_icon_state = "darkmatter"
+	icon_state = "darkmatter"
 
 /obj/machinery/power/supermatter_crystal/proc/supermatter_pull(turf/center, pull_range = 10)
 	playsound(src.loc, 'sound/weapons/marauder.ogg', 100, 1, extrarange = 7)

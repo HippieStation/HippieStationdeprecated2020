@@ -119,6 +119,9 @@ LOG_LAW
 ## log crew manifest to seperate file
 LOG_MANIFEST
 
+## log job divide debugging information
+#LOG_JOB_DEBUG
+
 ## log all world.Topic() calls
 # LOG_WORLD_TOPIC
 
@@ -140,9 +143,6 @@ ALLOW_ADMIN_OOCCOLOR
 
 ## Job slot open/close by identification consoles delay in seconds
 ID_CONSOLE_JOBSLOT_DELAY 30
-
-## If metadata is supported
-ALLOW_METADATA
 
 ## allow players to initiate a restart vote
 #ALLOW_VOTE_RESTART
