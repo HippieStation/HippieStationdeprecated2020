@@ -466,7 +466,6 @@
 	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
 	width = 3
 	},
-/obj/structure/fans/tiny/invisible,
 /turf/open/space/basic,
 /area/space)
 "abv" = (
@@ -1519,7 +1518,6 @@
 	roundstart_template = /datum/map_template/shuttle/escape_pod/default;
 	width = 3
 	},
-/obj/structure/fans/tiny/invisible,
 /turf/open/space/basic,
 /area/space)
 "adG" = (
@@ -20206,9 +20204,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/computer/camera_advanced/base_construction{
-	dir = 4
-	},
+/obj/machinery/computer/camera_advanced/base_construction,
 /turf/open/floor/plasteel/yellow/side{
 	dir = 9
 	},
@@ -20711,9 +20707,7 @@
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
 "aSJ" = (
-/obj/machinery/computer/shuttle/mining{
-	dir = 4
-	},
+/obj/machinery/computer/shuttle/mining,
 /turf/open/floor/plasteel/yellow/side{
 	dir = 10
 	},
@@ -35262,7 +35256,6 @@
 /obj/machinery/newscaster{
 	pixel_y = 32
 	},
-/obj/machinery/jukebox,
 /turf/open/floor/plasteel/bar,
 /area/crew_quarters/bar)
 "bwO" = (
@@ -41732,7 +41725,9 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bLe" = (
-/obj/machinery/vending/autodrobe/all_access,
+/obj/machinery/vending/autodrobe{
+	req_access_txt = "0"
+	},
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bLf" = (
@@ -46034,6 +46029,9 @@
 	sortType = 20
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -53011,7 +53009,7 @@
 /turf/open/floor/plating/airless,
 /area/engine/atmos)
 "cjp" = (
-/obj/machinery/vending/boozeomat/all_access,
+/obj/machinery/vending/boozeomat,
 /turf/open/floor/wood,
 /area/maintenance/port/aft)
 "cjq" = (
@@ -72645,9 +72643,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /turf/open/floor/engine,
 /area/engine/engineering)
 "dek" = (
@@ -72797,11 +72792,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/machinery/atmospherics/components/unary/portables_connector/visible{
-	dir = 8
-	},
-/obj/machinery/portable_atmospherics/canister/nitrogen,
-/turf/open/floor/plasteel/dark,
+/turf/open/floor/engine,
 /area/engine/engineering)
 "deC" = (
 /obj/effect/turf_decal/bot{
@@ -73017,11 +73008,8 @@
 	dir = 4;
 	network = list("engine")
 	},
-/turf/open/floor/engine,
-/area/engine/supermatter)
-"dfp" = (
-/obj/effect/turf_decal/bot{
-	dir = 1
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
@@ -73082,11 +73070,8 @@
 /area/engine/engineering)
 "dfD" = (
 /obj/structure/cable{
-	icon_state = "1-2"
+	icon_state = "4-8"
 	},
-/turf/open/floor/engine,
-/area/engine/supermatter)
-"dft" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -73947,10 +73932,6 @@
 /obj/structure/sign/poster/official/random{
 	pixel_x = -32
 	},
-/obj/structure/sign/poster/contraband/random{
-	pixel_x = -32
-	},
-/obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
 /area/crew_quarters/toilet/auxiliary)
 "dib" = (
@@ -74550,8 +74531,6 @@
 	id = "engsm";
 	name = "Radiation Chamber Shutters"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
 /area/engine/supermatter)
 "djx" = (
@@ -74857,7 +74836,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
-/obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "dss" = (
@@ -74901,7 +74879,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "dtR" = (
@@ -74977,7 +74954,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "dwc" = (
@@ -74990,17 +74966,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/plasteel/vault,
-/area/chapel/main)
-"dDI" = (
-/obj/effect/landmark/event_spawn,
-/turf/open/floor/plasteel/white,
-/area/science/xenobiology)
-"dDJ" = (
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/plasteel/yellow/side{
-	dir = 1
+/obj/structure/sign/poster/contraband/random{
+	pixel_y = 32
 	},
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
@@ -75022,17 +74989,17 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "dwj" = (
 /obj/structure/cable/yellow{
-	icon_state = "1-8"
+	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 9
+	dir = 4
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -75626,8 +75593,8 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/effect/mapping_helpers/airlock/cyclelink_helper{
-	dir = 1
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel,
@@ -75724,7 +75691,7 @@
 /area/bridge/showroom/corporate)
 "dDg" = (
 /obj/structure/cable/yellow{
-	icon_state = "1-2"
+	icon_state = "4-8"
 	},
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/wood,
@@ -75764,12 +75731,11 @@
 /area/maintenance/starboard/aft)
 "dDr" = (
 /obj/structure/cable/yellow{
-	icon_state = "1-2"
+	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plating,
-/area/maintenance/starboard)
-"uRM" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -75780,8 +75746,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/area/science/research)
-"uTS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -75795,10 +75759,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
-/area/science/misc_lab)
-"vyx" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /obj/effect/landmark/event_spawn,
@@ -76364,10 +76325,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
-"lGS" = (
-/obj/docking_port/stationary/public_mining_dock,
-/turf/open/floor/plating,
-/area/construction/mining/aux_base)
 "lMz" = (
 /obj/structure/falsewall,
 /turf/open/floor/plating,
@@ -76979,10 +76936,6 @@
 "wOE" = (
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"wOY" = (
-/obj/structure/fans/tiny/invisible,
-/turf/open/space/basic,
-/area/space)
 "wPk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -82404,7 +82357,6 @@ aaa
 aaa
 aaa
 aaa
-aac
 aaa
 aaa
 aaa
@@ -82919,8 +82871,6 @@ aaa
 aaa
 aaa
 aaa
-"}
-(24,1,1) = {"
 aaa
 aaa
 aaa
@@ -83059,7 +83009,6 @@ aaa
 aaa
 aaa
 aaa
-aac
 aaa
 aaa
 aaa
@@ -83140,6 +83089,85 @@ aaa
 aaa
 aaa
 aac
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -83260,8 +83288,6 @@ aaa
 aaa
 aaa
 aaa
-"}
-(25,1,1) = {"
 aaa
 aaa
 aaa
@@ -83519,8 +83545,6 @@ aaa
 aaa
 aaa
 aaa
-"}
-(26,1,1) = {"
 aaa
 aaa
 aaa
@@ -83622,7 +83646,6 @@ aaa
 aaa
 aaa
 aaa
-aac
 aaa
 aaa
 aaa
@@ -83779,8 +83802,6 @@ aaa
 aaa
 aaa
 aaa
-"}
-(27,1,1) = {"
 aaa
 aaa
 aaa
@@ -83872,12 +83893,6 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaf
 aaa
 aaa
 aaa
@@ -84061,21 +84076,6 @@ aaa
 aaa
 aaa
 aaf
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -84492,21 +84492,6 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 "}
 (30,1,1) = {"
 aaa
@@ -84605,21 +84590,6 @@ aaa
 aaa
 aaa
 aaf
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -85036,21 +85006,6 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 "}
 (32,1,1) = {"
 aaa
@@ -85149,21 +85104,6 @@ aaf
 aaa
 aaa
 aaf
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -86459,7 +86399,7 @@ aaa
 aaa
 aaa
 aaa
-wOY
+aaa
 aSH
 aUb
 aVt
@@ -86973,7 +86913,7 @@ aaa
 aaa
 aaa
 aaa
-wOY
+aaa
 aSI
 aRA
 aVv
@@ -89027,7 +88967,7 @@ obX
 aDa
 aDa
 aDa
-lGS
+aDa
 cWM
 cXR
 cYG
@@ -102095,7 +102035,7 @@ aaa
 aaa
 aaa
 aaa
-wOY
+aaa
 abL
 acf
 acy
@@ -102609,7 +102549,7 @@ aaa
 aaa
 aaa
 aaa
-wOY
+aaa
 abN
 ach
 aax
@@ -114693,9 +114633,9 @@ aaa
 aaf
 aaa
 acP
-wOY
+aaa
 adF
-wOY
+aaa
 acP
 afB
 agz
@@ -120392,9 +120332,9 @@ dgp
 cXI
 cYj
 atm
-wOY
+aaa
 adF
-wOY
+aaa
 bhT
 bpv
 brL
