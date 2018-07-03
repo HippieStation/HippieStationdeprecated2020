@@ -2,7 +2,7 @@
 	name = "spurdo sparde mask"
 	desc = "Made from a rare Gondola hide. Is said to be cursed by the spirits of Space Finland, which speak through the mask when you scream."
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
-	flags_1 = MASKINTERNALS_1
+	flags_1 = MASKINTERNALS
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state = "spurdo"
 	item_state = "spurdo"
@@ -60,4 +60,5 @@
 	return ..()
 
 obj/item/clothing/mask/spurdo/cursed
-	flags_1 = NODROP_1 | MASKINTERNALS_1
+	flags_1 =  MASKINTERNALS
+	item_flags = NODROP

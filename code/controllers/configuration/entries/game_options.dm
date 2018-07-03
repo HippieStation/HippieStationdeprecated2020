@@ -170,8 +170,6 @@
 	config_entry_value = -1
 	min_val = -1
 
-/datum/config_entry/flag/rename_cyborg
-
 /datum/config_entry/flag/ooc_during_round
 
 /datum/config_entry/flag/emojis
@@ -226,9 +224,12 @@
 /datum/config_entry/keyed_number_list/law_weight
 	splitter = ","
 
-/datum/config_entry/number/assistant_cap
+/datum/config_entry/number/overflow_cap
 	config_entry_value = -1
 	min_val = -1
+
+/datum/config_entry/string/overflow_job
+	config_entry_value = "Assistant"
 
 /datum/config_entry/flag/starlight
 /datum/config_entry/flag/grey_assistants
@@ -284,3 +285,9 @@
 /datum/config_entry/flag/randomize_shift_time
 
 /datum/config_entry/flag/shift_time_realtime
+
+/datum/config_entry/keyed_number_list/antag_rep
+
+/datum/config_entry/number/monkeycap
+	config_entry_value = 64
+	min_val = 0

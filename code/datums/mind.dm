@@ -41,14 +41,10 @@
 	var/special_role
 	var/list/restricted_roles = list()
 
-	var/datum/job/assigned_job
-
 	var/list/datum/objective/objectives = list()
 
 	var/list/spell_list = list() // Wizard mode & "Give Spell" badmin button.
 
-	var/datum/faction/faction 			//associated faction
-	var/datum/changeling/changeling		//changeling holder
 	var/linglink
 	var/datum/martial_art/martial_art
 	var/static/default_martial_art = new/datum/martial_art
@@ -195,9 +191,7 @@
 		special_role = null
 
 /datum/mind/proc/remove_traitor()
-	if(src in SSticker.mode.traitors)
-		remove_antag_datum(/datum/antagonist/traitor)
-	SSticker.mode.update_traitor_icons_removed(src)
+	remove_antag_datum(/datum/antagonist/traitor)
 
 /datum/mind/proc/remove_brother()
 	if(src in SSticker.mode.brothers)
@@ -230,12 +224,12 @@
 /datum/mind/proc/remove_antag_equip()
 	var/list/Mob_Contents = current.get_contents()
 	for(var/obj/item/I in Mob_Contents)
-		if(istype(I, /obj/item/device/pda))
-			var/obj/item/device/pda/P = I
+		if(istype(I, /obj/item/pda))
+			var/obj/item/pda/P = I
 			P.lock_code = ""
 
-		else if(istype(I, /obj/item/device/radio))
-			var/obj/item/device/radio/R = I
+		else if(istype(I, /obj/item/radio))
+			var/obj/item/radio/R = I
 			R.traitor_frequency = 0
 
 /datum/mind/proc/remove_all_antag() //For the Lazy amongst us.
@@ -245,7 +239,6 @@
 	remove_wizard()
 	remove_cultist()
 	remove_rev()
-	SSticker.mode.update_traitor_icons_removed(src)
 	SSticker.mode.update_cult_icons_removed(src)
 
 /datum/mind/proc/equip_traitor(employer = "The Syndicate", silent = FALSE, datum/antagonist/uplink_owner)
@@ -257,8 +250,8 @@
 	. = TRUE
 
 	var/list/all_contents = traitor_mob.GetAllContents()
-	var/obj/item/device/pda/PDA = locate() in all_contents
-	var/obj/item/device/radio/R = locate() in all_contents
+	var/obj/item/pda/PDA = locate() in all_contents
+	var/obj/item/radio/R = locate() in all_contents
 	var/obj/item/pen/P
 
 	if (PDA) // Prioritize PDA pen, otherwise the pocket protector pens will be chosen, which causes numerous ahelps about missing uplink

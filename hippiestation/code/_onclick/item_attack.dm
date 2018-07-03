@@ -1,6 +1,6 @@
 /obj/item/attack(mob/living/M, mob/living/user)
-	SendSignal(COMSIG_ITEM_ATTACK, M, user)
-	if(flags_1 & NOBLUDGEON_1)
+	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user)
+	if(item_flags & NOBLUDGEON)
 		return
 	if(special_attack)//handled by afterattack
 		add_fingerprint(user)

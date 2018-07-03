@@ -54,15 +54,19 @@
 			if(src.client && src.client.holder)
 				isadmin = 1
 			var/datum/DBQuery/query_get_new_polls = SSdbcore.NewQuery("SELECT id FROM [format_table_name("poll_question")] WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime AND id NOT IN (SELECT pollid FROM [format_table_name("poll_vote")] WHERE ckey = \"[ckey]\") AND id NOT IN (SELECT pollid FROM [format_table_name("poll_textreply")] WHERE ckey = \"[ckey]\")")
+			var/rs = REF(src)
 			if(query_get_new_polls.Execute())
 				var/newpoll = 0
 				if(query_get_new_polls.NextRow())
 					newpoll = 1
 
 				if(newpoll)
-					output += "<p><b><a href='byond://?src=[REF(src)];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
+					output += "<p><b><a href='byond://?src=[rs];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
 				else
-					output += "<p><a href='byond://?src=[REF(src)];showpoll=1'>Show Player Polls</A></p>"
+					output += "<p><a href='byond://?src=[rs];showpoll=1'>Show Player Polls</A></p>"
+			qdel(query_get_new_polls)
+			if(QDELETED(src))
+				return
 
 	output += "</center>"
 
@@ -71,8 +75,6 @@
 	popup.set_window_options("can_close=0")
 	popup.set_content(output)
 	popup.open(0)
-	return
-
 
 /mob/dead/new_player/Topic(href, href_list[])
 	if(src != usr)
@@ -234,6 +236,7 @@
 			if(POLLTYPE_IRV)
 				if (!href_list["IRVdata"])
 					to_chat(src, "<span class='danger'>No ordering data found. Please try again or contact an administrator.</span>")
+					return
 				var/list/votelist = splittext(href_list["IRVdata"], ",")
 				if (!vote_on_irv_poll(pollid, votelist))
 					to_chat(src, "<span class='danger'>Vote failed, please try again or contact an administrator.</span>")
@@ -309,6 +312,8 @@
 			return JOB_UNAVAILABLE_SLOTFULL
 	if(jobban_isbanned(src,rank))
 		return JOB_UNAVAILABLE_BANNED
+	if(QDELETED(src))
+		return JOB_UNAVAILABLE_GENERIC
 	if(!job.player_old_enough(client))
 		return JOB_UNAVAILABLE_ACCOUNTAGE
 	if(job.required_playtime_remaining(client))
@@ -318,9 +323,6 @@
 	return JOB_AVAILABLE
 
 /mob/dead/new_player/proc/AttemptLateSpawn(rank)
-	if(jobban_isbanned(src, CATBAN) || jobban_isbanned(src, CLUWNEBAN))
-		rank = "Assistant"
-	
 	var/error = IsJobUnavailable(rank)
 	if(error != JOB_AVAILABLE)
 		alert(src, get_job_unavailable_error_message(error, rank))
@@ -359,7 +361,7 @@
 		if(!arrivals_docked)
 			var/obj/screen/splash/Spl = new(character.client, TRUE)
 			Spl.Fade(TRUE)
-			character.playsound_local(get_turf(character), 'hippiestation/sound/voice/approaching.ogg', 25)
+			character.playsound_local(get_turf(character), 'sound/voice/ApproachingTG.ogg', 25)
 
 		character.update_parallax_teleport()
 
@@ -397,7 +399,7 @@
 						SSticker.mode.make_antag_chance(humanc)
 
 	if(humanc && CONFIG_GET(flag/roundstart_traits))
-		SStraits.AssignTraits(humanc, humanc.client, TRUE)
+		SSquirks.AssignQuirks(humanc, humanc.client, TRUE)
 
 	log_manifest(character.mind.key,character.mind,character,latejoin = TRUE)
 
@@ -476,7 +478,12 @@
 
 	var/mob/living/carbon/human/H = new(loc)
 
-	if(CONFIG_GET(flag/force_random_names) || jobban_isbanned(src, "appearance"))
+	var/frn = CONFIG_GET(flag/force_random_names)
+	if(!frn)
+		frn = jobban_isbanned(src, "appearance")
+		if(QDELETED(src))
+			return
+	if(frn)
 		client.prefs.random_character()
 		client.prefs.real_name = client.prefs.pref_species.random_name(gender,1)
 	client.prefs.copy_to(H)

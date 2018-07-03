@@ -1,7 +1,7 @@
 /turf/open
+	plane = FLOOR_PLANE
 	var/slowdown = 0 //negative for faster, positive for slower
 
-	var/mutable_appearance/wet_overlay
 	var/postdig_icon_change = FALSE
 	var/postdig_icon
 	var/list/archdrops
@@ -11,11 +11,17 @@
 	. = ..()
 	if(wet)
 		AddComponent(/datum/component/wet_floor, wet, INFINITY, 0, INFINITY, TRUE)
+	if(LAZYLEN(archdrops))
+		AddComponent(/datum/component/archaeology, archdrops)
 
 /turf/open/indestructible
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "floor"
+
+/turf/open/indestructible/Melt()
+	to_be_destroyed = FALSE
+	return src
 
 /turf/open/indestructible/TerraformTurf(path, defer_change = FALSE, ignore_air = FALSE)
 	return
@@ -71,8 +77,19 @@
 	desc = "A floor made of invulnerable notebook paper."
 	icon_state = "paperfloor"
 
+/turf/open/indestructible/binary
+	name = "tear in the fabric of reality"
+	CanAtmosPass = ATMOS_PASS_NO
+	baseturfs = /turf/open/indestructible/binary
+	icon_state = "binary"
+
+/turf/open/indestructible/airblock
+	icon_state = "bluespace"
+	CanAtmosPass = ATMOS_PASS_NO
+	baseturfs = /turf/open/indestructible/airblock
+
 /turf/open/indestructible/clock_spawn_room
-	name = "cogmetal"
+	name = "cogmetal floor"
 	desc = "Brass plating that gently radiates heat. For some reason, it reminds you of blood."
 	icon_state = "reebe"
 	baseturfs = /turf/open/indestructible/clock_spawn_room
@@ -159,7 +176,7 @@
 	for(var/obj/I in contents)
 		if(I.resistance_flags & FREEZE_PROOF)
 			return
-		if(!(I.flags_2 & FROZEN_2)) //let it go
+		if(!(I.obj_flags & FROZEN))
 			I.make_frozen_visual()
 	for(var/mob/living/L in contents)
 		if(L.bodytemperature <= 50)
@@ -173,7 +190,7 @@
 	for(var/mob/living/simple_animal/slime/M in src)
 		M.apply_water()
 
-	SendSignal(COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
+	SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
 	for(var/obj/effect/O in src)
 		if(is_cleanable(O))
 			qdel(O)
@@ -195,23 +212,9 @@
 				return 0
 		if(!(lube&SLIDE_ICE))
 			to_chat(C, "<span class='notice'>You slipped[ O ? " on the [O.name]" : ""]!</span>")
-			// Hippie Start - custom sounds for slipping
-			var/slip_sound = 'sound/misc/slip.ogg'
-			if(prob(95))
-				if (O)
-					if (istype(O, /obj))
-						var/obj/Obj = O
-						if (Obj)
-							LAZYINITLIST(Obj.alternate_slip_sounds)
-							if (LAZYLEN(Obj.alternate_slip_sounds))
-								slip_sound = pick(Obj.alternate_slip_sounds)
-			else
-				slip_sound = 'hippiestation/sound/misc/oof.ogg'
-			playsound(C.loc, (slip_sound), 50, 1, -3)
-			// Hippie End
 			playsound(C.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 
-		C.SendSignal(COMSIG_ADD_MOOD_EVENT, "slipped", /datum/mood_event/slipped)
+		SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "slipped", /datum/mood_event/slipped)
 		for(var/obj/item/I in C.held_items)
 			C.accident(I)
 
@@ -251,7 +254,7 @@
 	AddComponent(/datum/component/wet_floor, wet_setting, min_wet_time, wet_time_to_add, max_wet_time, permanent)
 
 /turf/open/proc/MakeDry(wet_setting = TURF_WET_WATER, immediate = FALSE, amount = INFINITY)
-	SendSignal(COMSIG_TURF_MAKE_DRY, wet_setting, immediate, amount)
+	SEND_SIGNAL(src, COMSIG_TURF_MAKE_DRY, wet_setting, immediate, amount)
 
 /turf/open/get_dumping_location()
 	return src
@@ -261,7 +264,7 @@
 
 /turf/open/rad_act(pulse_strength)
 	. = ..()
-	if (air.gases[/datum/gas/carbon_dioxide] && air.gases[/datum/gas/oxygen])
+	if(air && air.gases[/datum/gas/carbon_dioxide] && air.gases[/datum/gas/oxygen])//hippie code
 		pulse_strength = min(pulse_strength,air.gases[/datum/gas/carbon_dioxide][MOLES]*1000,air.gases[/datum/gas/oxygen][MOLES]*2000) //Ensures matter is conserved properly
 		air.gases[/datum/gas/carbon_dioxide][MOLES]=max(air.gases[/datum/gas/carbon_dioxide][MOLES]-(pulse_strength/1000),0)
 		air.gases[/datum/gas/oxygen][MOLES]=max(air.gases[/datum/gas/oxygen][MOLES]-(pulse_strength/2000),0)

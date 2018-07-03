@@ -1,7 +1,7 @@
-#define COOLDOWN_STUN 1200
-#define COOLDOWN_DAMAGE 600
-#define COOLDOWN_MEME 300
-#define COOLDOWN_NONE 100
+#define COOLDOWN_STUN 200	//Hippe edit, changed stun cooldown to 20 seconds, from 120
+#define COOLDOWN_DAMAGE 100	//Hippie edit, changed damage cooldown to 10 seconds, from 60
+#define COOLDOWN_MEME 10	//Hippie edit, changed meme cooldown to 1 second, from 30
+#define COOLDOWN_NONE 10	//Hippie edit, changed cooldown for no command to 1 second, from 10
 
 /obj/item/organ/vocal_cords //organs that are activated through speech with the :x channel
 	name = "vocal cords"
@@ -569,7 +569,7 @@
 		cooldown = COOLDOWN_NONE
 
 	if(message_admins)
-		message_admins("[key_name_admin(user)] has said '[log_message]' with a Voice of God, affecting [english_list(listeners)], with a power multiplier of [power_multiplier].")
+		message_admins("[ADMIN_LOOKUPFLW(user)] has said '[log_message]' with a Voice of God, affecting [english_list(listeners)], with a power multiplier of [power_multiplier].")
 	log_game("[key_name(user)] has said '[log_message]' with a Voice of God, affecting [english_list(listeners)], with a power multiplier of [power_multiplier].")
 	SSblackbox.record_feedback("tally", "voice_of_god", 1, log_message)
 

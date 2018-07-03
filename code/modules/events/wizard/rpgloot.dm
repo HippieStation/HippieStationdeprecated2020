@@ -13,9 +13,10 @@
 
 		if(istype(I, /obj/item/storage))
 			var/obj/item/storage/S = I
-			if(prob(upgrade_scroll_chance) && S.contents.len < S.storage_slots && !S.invisibility)
+			GET_COMPONENT_FROM(STR, /datum/component/storage, S)
+			if(prob(upgrade_scroll_chance) && S.contents.len < STR.max_items && !S.invisibility)
 				var/obj/item/upgradescroll/scroll = new
-				S.handle_item_insertion(scroll,1)
+				SEND_SIGNAL(S, COMSIG_TRY_STORAGE_INSERT, scroll, null, TRUE, TRUE)
 				upgrade_scroll_chance = max(0,upgrade_scroll_chance-100)
 			upgrade_scroll_chance += 25
 
@@ -38,7 +39,7 @@
 
 	var/datum/rpg_loot/rpg_loot_datum = target.rpg_loot
 	if(!istype(rpg_loot_datum))
-		rpg_loot_datum = new /datum/rpg_loot(target)
+		target.rpg_loot = rpg_loot_datum = new /datum/rpg_loot(target)
 
 	var/quality = rpg_loot_datum.quality
 

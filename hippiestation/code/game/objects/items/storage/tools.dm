@@ -3,14 +3,14 @@
 	desc = "A rather dangerous looking pipe wrench with teeth that grip better than a normal wrench."
 	icon = 'hippiestation/icons/obj/tools.dmi'
 	icon_state = "wrench_nuke"
-	toolspeed = 0.5
+	toolspeed = 0
 
 /obj/item/wirecutters/syndicate
 	name = "Bolt cutters"
 	desc = "A sturdy set of bolt cutters that lets the user put more leverage into cutting through grilles, wire and people."
 	icon = 'hippiestation/icons/obj/tools.dmi'
 	icon_state = "cutters_nuke"
-	toolspeed = 0.5
+	toolspeed = 0
 	random_color = FALSE
 
 /obj/item/weldingtool/syndicate
@@ -29,7 +29,7 @@
 	desc = "This crowbar's prying ends are longer and thinner, letting the user really force it into gaps and crevices."
 	icon = 'hippiestation/icons/obj/tools.dmi'
 	icon_state = "crowbar_nuke"
-	toolspeed = 0.5
+	toolspeed = 0
 	var/alien_bonus_damage = 60 //Half life joke, also three shots any non royal alien
 
 /obj/item/crowbar/syndicate/attack(mob/living/carbon/M, mob/living/carbon/user)

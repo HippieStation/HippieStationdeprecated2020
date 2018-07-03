@@ -31,6 +31,8 @@
 		var/turf/place = turfs[i]
 		if(istype(place, /turf/open/space)) // This assumes all shuttles are loaded in a single spot then moved to their real destination.
 			continue
+		if(length(place.baseturfs) < 2) // Some snowflake shuttle shit
+			continue
 		place.baseturfs.Insert(3, /turf/baseturf_skipover/shuttle)
 
 //Whatever special stuff you want
@@ -82,6 +84,18 @@
 
 /datum/map_template/shuttle/assault_pod
 	port_id = "assault_pod"
+	can_be_bought = FALSE
+
+/datum/map_template/shuttle/pirate
+	port_id = "pirate"
+	can_be_bought = FALSE
+
+/datum/map_template/shuttle/ruin //For random shuttles in ruins
+	port_id = "ruin"
+	can_be_bought = FALSE
+
+/datum/map_template/shuttle/snowdin
+	port_id = "snowdin"
 	can_be_bought = FALSE
 
 // Shuttles start here:
@@ -218,7 +232,8 @@
 /datum/map_template/shuttle/emergency/pubby
 	suffix = "pubby"
 	name = "Pubby Station Emergency Shuttle"
-	description = "A small, but feature complete shuttle. It boasts a card table to keep crew members occupied on the long flight home."
+	description = "A train but in space! Complete with a first, second class, brig and storage area."
+	admin_notes = "Choo choo motherfucker!"
 	credit_cost = 1000
 
 /datum/map_template/shuttle/emergency/cere
@@ -378,9 +393,17 @@
 	suffix = "pubby"
 	name = "arrival shuttle (Pubby)"
 
+/datum/map_template/shuttle/arrival/omega
+	suffix = "omega"
+	name = "arrival shuttle (Omega)"
+
 /datum/map_template/shuttle/aux_base/default
 	suffix = "default"
 	name = "auxilliary base (Default)"
+
+/datum/map_template/shuttle/aux_base/small
+	suffix = "small"
+	name = "auxilliary base (Small)"
 
 /datum/map_template/shuttle/escape_pod/default
 	suffix = "default"
@@ -393,3 +416,31 @@
 /datum/map_template/shuttle/assault_pod/default
 	suffix = "default"
 	name = "assault pod (Default)"
+
+/datum/map_template/shuttle/pirate/default
+	suffix = "default"
+	name = "pirate ship (Default)"
+
+/datum/map_template/shuttle/ruin/caravan_victim
+	suffix = "caravan_victim"
+	name = "Small Freighter"
+
+/datum/map_template/shuttle/ruin/pirate_cutter
+	suffix = "pirate_cutter"
+	name = "Pirate Cutter"
+
+/datum/map_template/shuttle/ruin/syndicate_dropship
+	suffix = "syndicate_dropship"
+	name = "Syndicate Dropship"
+
+/datum/map_template/shuttle/ruin/syndicate_fighter
+	suffix = "syndicate_fighter"
+	name = "Syndicate Fighter"
+
+/datum/map_template/shuttle/snowdin/mining
+	suffix = "mining"
+	name = "Snowdin Mining Elevator"
+
+/datum/map_template/shuttle/snowdin/excavation
+	suffix = "excavation"
+	name = "Snowdin Excavation Elevator"

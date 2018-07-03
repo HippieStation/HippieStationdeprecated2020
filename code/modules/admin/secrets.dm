@@ -8,7 +8,6 @@
 			<B>General Secrets</B><BR>
 			<BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=spawnselfdummy'>Spawn yourself as a Test Dummy</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=list_job_debug'>Show Job Debug</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=admin_log'>Admin Log</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=mentor_log'>Mentor Log</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=show_admins'>Show Admin List</A><BR>
@@ -113,17 +112,6 @@
 
 		if("mentor_log")
 			HippieMentorLogSecret()
-
-		if("list_job_debug")
-			var/dat = "<B>Job Debug info.</B><HR>"
-			for(var/line in SSjob.job_debug)
-				dat += "[line]<BR>"
-			dat+= "*******<BR><BR>"
-			for(var/datum/job/job in SSjob.occupations)
-				if(!job)
-					continue
-				dat += "job: [job.title], current_positions: [job.current_positions], total_positions: [job.total_positions] <BR>"
-			usr << browse(dat, "window=jobdebug;size=600x500")
 
 		if("show_admins")
 			var/dat = "<B>Current admins:</B><HR>"
@@ -369,7 +357,7 @@
 					continue
 				if(is_special_character(H))
 					continue
-				var/datum/antagonist/traitor/human/T = new()
+				var/datum/antagonist/traitor/T = new()
 				T.give_objectives = FALSE
 				var/datum/objective/new_objective = new
 				new_objective.owner = H
@@ -432,10 +420,10 @@
 						var/obj/item/clothing/under/schoolgirl/I = new seifuku
 						var/olduniform = H.w_uniform
 						H.temporarilyRemoveItemFromInventory(H.w_uniform, TRUE, FALSE)
-						H.equip_to_slot_or_del(I, slot_w_uniform)
+						H.equip_to_slot_or_del(I, SLOT_W_UNIFORM)
 						qdel(olduniform)
 						if(droptype == "Yes")
-							I.flags_1 |= NODROP_1
+							I.item_flags |= NODROP
 				else
 					to_chat(H, "You're not kawaii enough for this.")
 

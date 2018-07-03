@@ -10,7 +10,7 @@
 	new /obj/item/ammo_box/foambox/riot(src)
 	new /obj/item/grenade/chem_grenade/bioterrorfoam(src)
 	new /obj/item/grenade/chem_grenade/saringas(src)
-	
+
 /obj/item/storage/backpack/duffelbag/syndie/surgery/PopulateContents()
 	new /obj/item/scalpel/syndicate(src)
 	new /obj/item/hemostat/syndicate(src)
@@ -21,15 +21,20 @@
 	new /obj/item/surgical_drapes(src)
 	new /obj/item/clothing/suit/straight_jacket(src)
 	new /obj/item/clothing/mask/muzzle(src)
-	new /obj/item/device/mmi/syndie(src)
-	
+	new /obj/item/mmi/syndie(src)
+
 /obj/item/storage/backpack/duffelbag
 	slowdown = 1
-	max_combined_w_class = 30
 	var/adjusted = FALSE
+	var/normal_max_combined_w_class = 30
 	var/adjusted_max_combined_w_class = 21
 	var/adjusted_slowdown = 0
 	actions_types = list(/datum/action/item_action/adjust_bag)
+
+/obj/item/storage/backpack/duffelbag/ComponentInitialize()
+	. = ..()
+	GET_COMPONENT(STR, /datum/component/storage)
+	STR.max_combined_w_class = normal_max_combined_w_class
 
 /datum/action/item_action/adjust_bag
 	name = "Adjust Duffel Bag"
@@ -67,4 +72,5 @@
 
 		to_chat(usr, "<span class='notice'>You adjust the [src], [adjusted ? "leaving less space, but making it easier to carry around" : "allowing you to carry more stuff, but slowing you down"]</span>")
 		slowdown = adjusted ? adjusted_slowdown : initial(slowdown)
-		max_combined_w_class = adjusted ? adjusted_max_combined_w_class : initial(max_combined_w_class)
+		GET_COMPONENT(STR, /datum/component/storage)
+		STR.max_combined_w_class = adjusted ? adjusted_max_combined_w_class : normal_max_combined_w_class

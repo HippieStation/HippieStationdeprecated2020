@@ -46,7 +46,7 @@
 		/obj/item/scalpel, /obj/item/reagent_containers/syringe, /obj/item/dnainjector,
 		/obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/dropper,
 		/obj/item/implanter, /obj/item/screwdriver, /obj/item/weldingtool/mini,
-		/obj/item/device/firing_pin
+		/obj/item/firing_pin
 		)
 	//can hold both regular pens and energy daggers. made for your every-day tactical curators/murderers.
 	priority = FALSE
@@ -60,7 +60,7 @@
 		/obj/item/scalpel, /obj/item/reagent_containers/syringe, /obj/item/dnainjector,
 		/obj/item/reagent_containers/hypospray/medipen, /obj/item/reagent_containers/dropper,
 		/obj/item/implanter, /obj/item/screwdriver, /obj/item/weldingtool/mini,
-		/obj/item/device/firing_pin, /obj/item/bikehorn)
+		/obj/item/firing_pin, /obj/item/bikehorn)
 
 /obj/item/storage/internal/pocket/small/detective
 	priority = TRUE // so the detectives would discover pockets in their hats
@@ -75,7 +75,7 @@
 		/obj/item/pen,
 		/obj/item/toy/crayon,
 		/obj/item/lipstick,
-		/obj/item/device/flashlight/pen,
+		/obj/item/flashlight/pen,
 		/obj/item/clothing/mask/cigarette)
 
 /obj/item/storage/internal/pocket/pocketprotector/cosmetology/PopulateContents()

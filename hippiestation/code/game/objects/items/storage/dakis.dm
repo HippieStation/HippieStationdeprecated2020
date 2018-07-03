@@ -11,13 +11,17 @@
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
 	icon_state = "daki_base"
-	slot_flags = SLOT_BACK
-	storage_slots = 3
+	slot_flags = ITEM_SLOT_BACK
 	w_class = 4
-	max_w_class = 3
-	max_combined_w_class = 21
 	var/spam_flag = 0
 	var/cooldowntime = 20
+
+/obj/item/storage/daki/ComponentInitialize()
+	. = ..()
+	GET_COMPONENT(STR, /datum/component/storage)
+	STR.max_combined_w_class = 21
+	STR.max_w_class = WEIGHT_CLASS_NORMAL
+	STR.max_items = 3
 
 /obj/item/storage/daki/attack_self(mob/living/user)
 	var/body_choice
