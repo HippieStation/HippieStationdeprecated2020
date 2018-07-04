@@ -1,0 +1,4 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - tweak: "Fixes the table blocking the entrance of the morgue and moved the air air alarm inside it."
