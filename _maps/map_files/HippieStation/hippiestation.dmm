@@ -25398,6 +25398,11 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/structure/table,
+/obj/item/paper/guides/jobs/medical/morgue{
+	pixel_x = 5;
+	pixel_y = 4
+	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
 "bnV" = (
@@ -27881,14 +27886,6 @@
 	dir = 6
 	},
 /area/security/checkpoint/medical)
-"btS" = (
-/obj/structure/table,
-/obj/item/paper/guides/jobs/medical/morgue{
-	pixel_x = 5;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/medical/morgue)
 "btT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -29257,19 +29254,6 @@
 "bwS" = (
 /obj/structure/sign/warning/nosmoking{
 	pixel_y = 30
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
-"bwT" = (
-/obj/machinery/airalarm{
-	frequency = 1439;
-	pixel_y = 23
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -64732,6 +64716,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"sKz" = (
+/obj/machinery/airalarm{
+	frequency = 1439;
+	pixel_y = 23
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
 "sKD" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/stripes/line,
@@ -104612,7 +104603,7 @@ bmf
 bmf
 bmf
 bvo
-bnJ
+sKz
 oaV
 bBs
 bCE
@@ -105894,9 +105885,9 @@ bnP
 bpi
 bpi
 bpi
-btS
+bnQ
 wXv
-bwT
+bLy
 bys
 bzQ
 bnJ
