@@ -1,5 +1,3 @@
-#define FRAC(x) (x - FLOOR(x,1))
-
 /obj/machinery/light/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
 	. = ..()
 	if(. && !QDELETED(src))
@@ -19,8 +17,12 @@
 			on = !on
 			if(prob(18) && !on)//only spark when off so it doesn't occur too much
 				do_sparks(1, FALSE, src)
+			else if(prob(40))
+				bulb_colour = LIGHT_COLOR_BROWN
+				playsound(src, pick('sound/effects/sparks1.ogg', 'sound/effects/sparks2.ogg', 'sound/effects/sparks3.ogg', 'sound/effects/sparks4.ogg', 'sound/effects/light_flicker.ogg'), 100, 1)
 			update(FALSE)
 			sleep(rand(1, 5))
 		on = (status == LIGHT_OK)
+		bulb_colour = initial(bulb_colour)
 		update(FALSE)
 	flickering = FALSE
