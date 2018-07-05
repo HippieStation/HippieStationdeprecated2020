@@ -44,7 +44,7 @@
 	STOP_PROCESSING(SSobj, src)
 	INVOKE_ASYNC(src, .proc/fade_out)
 	QDEL_IN(src, 10)
-*/
+
 /obj/effect/particle_effect/smoke/process()
 	lifetime--
 	if(lifetime < 1)
