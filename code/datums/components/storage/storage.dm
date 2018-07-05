@@ -98,7 +98,7 @@
 
 	RegisterSignal(parent, COMSIG_CLICK_ALT, .proc/on_alt_click)
 	RegisterSignal(parent, COMSIG_MOUSEDROP_ONTO, .proc/mousedrop_onto)
-	RegisterSignal(parent, COMSIG_MOUSEDROPPED_ONTO, .proc/mousedrop_receive)
+	RegisterSignal(parent, COMSIG_MOUSEDROPPED_ONTO, .proc/mousedrop_recieve) //remind me to change this to receive once spellcheck pr is merged - YoYoBatty
 
 	update_actions()
 
