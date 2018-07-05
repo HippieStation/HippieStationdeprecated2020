@@ -221,7 +221,6 @@
 /obj/item/clothing/suit/space/hardsuit/nano/Initialize()
 	. = ..()
 	cell = new(src)
-	update_icon()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/suit/space/hardsuit/nano/Destroy()
