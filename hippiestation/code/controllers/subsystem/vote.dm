@@ -16,6 +16,14 @@
 			if (!C || C.is_afk())
 				non_voters -= non_voter_ckey
 		if(non_voters.len > 0)
+			if(mode == "restart")
+				choices["Continue Playing"] += non_voters.len
+				if(choices["Continue Playing"] >= greatest_votes)
+					greatest_votes = choices["Continue Playing"]
+			if(mode == "shuttlecall")
+				choices["Do not call Shuttle"] += non_voters.len
+				if(choices["Do not call Shuttle"] >= greatest_votes)
+					greatest_votes = choices["Do not call Shuttle"]
 			if(mode == "gamemode")
 				if(GLOB.master_mode in choices)
 					choices[GLOB.master_mode] += non_voters.len
@@ -73,7 +81,7 @@
 			text += "<div style='font-size: 18px'>\n[question]</div>"
 		log_vote(text)
 		var/vp = CONFIG_GET(number/vote_period)
-		to_chat(world, "\n<font color='purple'><b>[text]</b>\n<div style='font-size: 18px'>Type <b>vote</b> or click <a href='?src=[REF(src)]'>here</a> to place your votes.\nYou have [DisplayTimeText(vp)] to vote. Remember, not voting means you will not be auto-assigned to any option!</font></div>")
+		to_chat(world, "\n<font color='purple'><b>[text]</b>\n<div style='font-size: 18px'>Type <b>vote</b> or click <a href='?src=[REF(src)]'>here</a> to place your votes.\nYou have [DisplayTimeText(vp)] to vote.</font></div>")
 		SEND_SOUND(world, sound('sound/ai/attention.ogg'))
 		time_remaining = round(vp/10)
 		for(var/c in GLOB.clients)

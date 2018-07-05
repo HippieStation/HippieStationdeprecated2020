@@ -205,6 +205,143 @@
 				<li class="admin">It is now possible to use the ".p" (Asay) and ".d" (Dsay) prefixes while an admin ghost.</li>
 			</ul>
 
+			<h2 class="date">04 July 2018</h2>
+			<h3 class="author">Frozenguy5 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixes nitryl gas not applying its effects.</li>
+			</ul>
+			<h3 class="author">GuyonBroadway updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Adds the bane of security everywhere, the locker mech is a basic mecha assembled out of a locker and spare electronics. Also available is a drill and clamp for the locker mech.</li>
+				<li class="imageadd">Sprites by SaturonBroadway (actual name unknown)</li>
+			</ul>
+			<h3 class="author">Naksu updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">The ladders in the tear in the fabric of reality no longer spawn their endpoints when the area is loaded, but only when the tear is made accessible via a BoH bomb.</li>
+				<li class="tweak">CentCom is no longer accessible via the space ladder in the tear.</li>
+				<li class="tweak">The lavaland endpoint can no longer spawn completely surrounded by lava, unless it spawns on an island</li>
+				<li class="code_imp">ChangeTurf can now conditionally inherit the air of the turf it is replacing, via the CHANGETURF_INHERIT_AIR flag.</li>
+				<li class="bugfix">when ladder endpoints are created, the binary turfs that are created inherit the air of the turfs they are replacing. This means the lavaland ladder endpoint will have the lavaland airmix, instead of a vacuum.</li>
+				<li class="code_imp">navigation beacons are now properly deregistered from their Z-level list and re-registered on the correct one if moved across Z-levels by an effect such as teleportation or a BoH-induced chasm.</li>
+			</ul>
+			<h3 class="author">YoYoBatty updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Fixes the table blocking the entrance of the morgue and moved the air air alarm inside it.</li>
+			</ul>
+			<h3 class="author">ninjanomnom updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Shuttle throwing also applies to loose objects on shuttles now.</li>
+				<li class="tweak">Closets on shuttles start anchored.</li>
+				<li class="tweak">The throw distance of shuttle throws is marginally random, potentialy 10% further or shorter</li>
+				<li class="rscadd">Tables and racks on shuttles have been installed with inertia dampeners.</li>
+				<li class="bugfix">Some very thin barriers didn't stop mobs from being thrown by the shuttle under certain circumstances, this has been fixed.</li>
+			</ul>
+
+			<h2 class="date">03 July 2018</h2>
+			<h3 class="author">Dax Dupont updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">BoH detonations now gib the user.</li>
+			</ul>
+			<h3 class="author">Denton updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Engine heaters no longer let gases pass through them.</li>
+				<li class="tweak">The Cerestation escape shuttle is now available for purchase!</li>
+			</ul>
+			<h3 class="author">HonkBot updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Printing the TEG and circulator boards no longer prints the completed machinery instead.</li>
+				<li class="bugfix">A single wired glass tile no longer creates unlimited light floor tiles.</li>
+				<li class="bugfix">non-player monkeys won't fight when stunned.</li>
+				<li class="bugfix">Scrambled research console icons have been fixed, and will be prevented in the future.</li>
+				<li class="bugfix">Backpack water tanks now work properly when wielded by drones.</li>
+				<li class="bugfix">Backpack water tank nozzles can no longer be placed inside bags of holding and chem dispensers.</li>
+				<li class="bugfix">Moving items between your hands no longer causes them to cross the floor (squeaking, lava burning).</li>
+			</ul>
+			<h3 class="author">Jujumatic updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added a Fluxitus virus bottle. OOF!</li>
+				<li class="rscadd">Added a Godblood Syndrome bottle. This is rumoured to give near-immortality but can only be obtained via *very* special means.</li>
+			</ul>
+			<h3 class="author">MrDoomBringer updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">SupplyPod smites work properly once again.</li>
+			</ul>
+			<h3 class="author">Naksu updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">Fixed the signatures of several reagent procs, removing useless checks</li>
+				<li class="tweak">drunkenness is now handled at the carbon level, allowing monkeys to experience ethanol</li>
+				<li class="balance">initropidil also works on carbon level, allowing syndicate operatives using the poison kit to achieve the silent assassin rating against monkeys</li>
+			</ul>
+			<h3 class="author">Nirnael updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="refactor">Removed an unnecessary volume_pump check</li>
+			</ul>
+			<h3 class="author">YoYoBatty updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Adds ability to crowbar and hide tiny items in vent pumps</li>
+				<li class="rscadd">Added back in old hippie maint areas in the southwest solar maint. This includes ghetto botany.</li>
+				<li class="rscadd">Added back in old genetics/cloning.</li>
+				<li class="rscadd">A proper security checkpoint to escape.</li>
+				<li class="rscadd">Tons of cosmetic additions.</li>
+				<li class="rscadd">Replaced department clothing wardrobes with their proper vending machines.</li>
+				<li class="rscadd">Added some "grille or trash maint spawners" in certain areas.</li>
+				<li class="rscadd">More catwalks go around the southwest of station to engineering.</li>
+				<li class="rscadd">Adds some cycle linked dir controllers to airlocks in AI sat.</li>
+				<li class="rscadd">Moves vending machines in the chapel to library to make space for escape sec checkpoint.</li>
+				<li class="rscadd">Air vent/scrubbers to some maint areas.</li>
+				<li class="rscadd">Kitchen now has a bar access door.</li>
+				<li class="rscdel">Removed some ugly/old cosmetics.</li>
+				<li class="bugfix">Anchored down the wired airlock assemblies by viro/atmos and russian room maints.</li>
+				<li class="bugfix">Area strings are now to assigned to apcs that didn't have them.</li>
+				<li class="tweak">Vault door icon is now properly assigned in the map editor + uses airlock lock helper</li>
+				<li class="tweak">Adjusted the area for arrivals sec checkpoint to encompass the light tubes around the structure in order to take lighting load off of the arrivals apc.</li>
+				<li class="tweak">Replaced the last couple window + grille combos with window spawners.</li>
+				<li class="tweak">Changed certain airlocks access requirements in science maint to let scientist rummage about.</li>
+			</ul>
+			<h3 class="author">Zxaber updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Empty cyborg shells can now be disassembled with a wrench.</li>
+				<li class="tweak">Using a screwdriver on an empty shell will now remove the cell, or swap it if you're holding a cell in your other hand.</li>
+			</ul>
+
+			<h2 class="date">02 July 2018</h2>
+			<h3 class="author">Dax Dupont updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">You can now build clown borgs with a little bit of bananium and research. Praise be the honkmother.</li>
+				<li class="rscadd">New upgrade module has been added so making loot/tech web borg modules has become easier for admins/mappers/coders.</li>
+			</ul>
+			<h3 class="author">HonkBot updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">The possessed chainsword no longer makes e-swords look pathetic</li>
+				<li class="bugfix">Deconstructable TEG now propertly connects to pipes.</li>
+				<li class="bugfix">Fix of inverted TEG sprite of slow turbine turning. add:Now you can flip circulator and make TEG of your dream. add:Add TEG and circulator to "Advanced Power Manipulation" techweb node.</li>
+				<li class="rscadd">Admin spawnable Death Ripley that comes with a version of the Death Clamp that actually inflicts damage and rips arms off.</li>
+			</ul>
+			<h3 class="author">Kraso updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">You can no longer use a soulstone shard to tell who's a cultist.</li>
+			</ul>
+			<h3 class="author">MacHac updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Changelings can now take the Pheromone Receptors ability to hunt down other changelings.</li>
+			</ul>
+			<h3 class="author">Naksu updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="admin">maxHealth is now guarded against invalid values when varediting</li>
+			</ul>
+			<h3 class="author">Nichlas0010 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Changelings can now greentext the extract more genomes objective.</li>
+			</ul>
+			<h3 class="author">Thunder12345 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Added a colour picker component for use with circuits.</li>
+			</ul>
+			<h3 class="author">XDTM updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Nutriment Pump implants no longer require replacing the stomach.</li>
+			</ul>
+
 			<h2 class="date">30 June 2018</h2>
 			<h3 class="author">Carbonhell updated:</h3>
 			<ul class="changes bgimages16">
@@ -1188,7 +1325,6 @@
 			<ul class="changes bgimages16">
 				<li class="rscdel">After an internal audit and review Nanotrasen has decided that stock financing at the station-level makes no logistical nor managerial sense. Stations, and their cargo departments, may no longer play the stock market.</li>
 			</ul>
-
 			<h2 class="date">01 May 2018</h2>
 			<h3 class="author">BuffEngineering updated:</h3>
 			<ul class="changes bgimages16">
