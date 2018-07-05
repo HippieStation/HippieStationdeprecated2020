@@ -32,13 +32,17 @@
 /*mirrored so smoke processes with reagents subsystem instead
 /obj/effect/particle_effect/smoke/New()
 	..()
+	
 /obj/effect/particle_effect/smoke/Initialize()
 	. = ..()
 	create_reagents(500)
 	START_PROCESSING(SSobj, src)
+	
+	
 /obj/effect/particle_effect/smoke/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
+	
 /obj/effect/particle_effect/smoke/proc/kill_smoke()
 	STOP_PROCESSING(SSobj, src)
 	INVOKE_ASYNC(src, .proc/fade_out)
