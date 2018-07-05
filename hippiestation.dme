@@ -3013,6 +3013,7 @@
 #include "hippiestation\code\modules\pool\pool_wires.dm"
 #include "hippiestation\code\modules\power\apc.dm"
 #include "hippiestation\code\modules\power\cable.dm"
+#include "hippiestation\code\modules\power\lighting.dm"
 #include "hippiestation\code\modules\power\port_gen.dm"
 #include "hippiestation\code\modules\power\solar.dm"
 #include "hippiestation\code\modules\power\tesla_examine.dm"
