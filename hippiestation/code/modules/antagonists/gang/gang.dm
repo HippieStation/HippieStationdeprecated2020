@@ -471,6 +471,9 @@ GLOBAL_LIST_EMPTY(gangs)
 				tochat(mob, "<span class='warning'>\icon[tool] [message]</span>")
 				playsound(mob.loc, 'sound/machines/twobeep.ogg', 50, 1)
 
+/datum/team/gang/proc/adjust_influence(value)
+	influence = max(0, influence + value)
+
 /datum/team/gang/proc/message_gangtools(message)
 	if(!gangtools.len || !message)
 		return

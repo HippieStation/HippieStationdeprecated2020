@@ -8,11 +8,11 @@
 	var/list/gang_blacklist = list()
 	var/id
 
-/datum/gang_item/proc/purchase(mob/living/carbon/user, datum/gang/gang, obj/item/device/gangtool/gangtool, check_canbuy = TRUE)
+/datum/gang_item/proc/purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool, check_canbuy = TRUE)
 	if(check_canbuy && !can_buy(user, gang, gangtool))
 		return FALSE
 	var/real_cost = get_cost(user, gang, gangtool)
-	gang.adjust_influence(user.mind, -real_cost)
+	gang.adjust_influence(-real_cost)
 	spawn_item(user, gang, gangtool)
 	return TRUE
 
