@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 // External storage-related logic:
 // /mob/proc/ClickOn() in /_onclick/click.dm - clicking items in storages
@@ -197,7 +196,6 @@
 	for(var/i in slaves)
 		var/datum/component/storage/slave = i
 		slave.update_icon()
-=======
 
 // External storage-related logic:
 // /mob/proc/ClickOn() in /_onclick/click.dm - clicking items in storages
@@ -396,4 +394,3 @@
 	for(var/i in slaves)
 		var/datum/component/storage/slave = i
 		slave.update_icon()
->>>>>>> 34a3d2da4d... Refactors component signals registration (#38798)
