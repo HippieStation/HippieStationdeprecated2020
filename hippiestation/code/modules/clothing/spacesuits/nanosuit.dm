@@ -218,63 +218,6 @@
 	. = ..()
 	AddComponent(/datum/component/rad_insulation, RAD_NO_INSULATION, TRUE, TRUE)
 
-/obj/item/clothing/suit/space/hardsuit/nano/emp_act(severity)
-	..()
-	set_nano_energy(max(0,cell.charge-(cell.charge/severity)),80)
-	if((mode == armor && cell.charge == 0) || (mode != armor))
-		if(prob(8/severity*1.5) && !shutdown)
-			emp_assault()
-	update_icon()
-
-/obj/item/clothing/suit/space/hardsuit/nano/proc/emp_assault()
-	if(!U.mind)
-		return //Not sure how this could happen.
-	U.Knockdown(300)
-	U.AdjustStun(300)
-	U.Jitter(120)
-	toggle_mode("none", TRUE)
-	helmet.display_visor_message("EMP Assault! Systems impaired.")
-	shutdown = TRUE
-	addtimer(CALLBACK(src, .proc/emp_assaulttwo), 25)
-
-
-/obj/item/clothing/suit/space/hardsuit/nano/proc/emp_assaulttwo()
-	sleep(45)
-	helmet.display_visor_message("Warning. EMP shutdown, all systems impaired.")
-	sleep(25)
-	helmet.display_visor_message("Switching to core function mode.")
-	sleep(25)
-	helmet.display_visor_message("Life support priority. Warning!")
-	addtimer(CALLBACK(src, .proc/emp_assaultthree), 35)
-
-
-/obj/item/clothing/suit/space/hardsuit/nano/proc/emp_assaultthree()
-	helmet.display_visor_message("4672482//-82544111.0//WRXT _YWD")
-	sleep(5)
-	helmet.display_visor_message("KPO- -86801780.768//1228.")
-	sleep(5)
-	helmet.display_visor_message("LMU/894411.-//0113122")
-	sleep(5)
-	helmet.display_visor_message("QRE 8667152...")
-	sleep(5)
-	helmet.display_visor_message("XAS -123455")
-	sleep(5)
-	helmet.display_visor_message("WF // .897")
-	sleep(20)
-	helmet.display_visor_message("DIAG//123")
-	sleep(10)
-	helmet.display_visor_message("MED//8189")
-	sleep(10)
-	helmet.display_visor_message("LOADING//...")
-	sleep(70)
-	U.AdjustStun(-100)
-	U.AdjustKnockdown(-100)
-	U.adjustStaminaLoss(-55)
-	U.adjustOxyLoss(-55)
-	helmet.display_visor_message("Cleared to proceed.")
-	shutdown = FALSE
-	ntick()
-
 /obj/item/clothing/suit/space/hardsuit/nano/Initialize()
 	. = ..()
 	cell = new(src)
@@ -469,6 +412,63 @@
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
+		
+/obj/item/clothing/suit/space/hardsuit/nano/emp_act(severity)
+	..()
+	set_nano_energy(max(0,cell.charge-(cell.charge/severity)),80)
+	if((mode == armor && cell.charge == 0) || (mode != armor))
+		if(prob(8/severity*1.5) && !shutdown)
+			emp_assault()
+	update_icon()
+
+/obj/item/clothing/suit/space/hardsuit/nano/proc/emp_assault()
+	if(!U.mind)
+		return //Not sure how this could happen.
+	U.Knockdown(300)
+	U.AdjustStun(300)
+	U.Jitter(120)
+	toggle_mode("none", TRUE)
+	helmet.display_visor_message("EMP Assault! Systems impaired.")
+	shutdown = TRUE
+	addtimer(CALLBACK(src, .proc/emp_assaulttwo), 25)
+
+
+/obj/item/clothing/suit/space/hardsuit/nano/proc/emp_assaulttwo()
+	sleep(45)
+	helmet.display_visor_message("Warning. EMP shutdown, all systems impaired.")
+	sleep(25)
+	helmet.display_visor_message("Switching to core function mode.")
+	sleep(25)
+	helmet.display_visor_message("Life support priority. Warning!")
+	addtimer(CALLBACK(src, .proc/emp_assaultthree), 35)
+
+
+/obj/item/clothing/suit/space/hardsuit/nano/proc/emp_assaultthree()
+	helmet.display_visor_message("4672482//-82544111.0//WRXT _YWD")
+	sleep(5)
+	helmet.display_visor_message("KPO- -86801780.768//1228.")
+	sleep(5)
+	helmet.display_visor_message("LMU/894411.-//0113122")
+	sleep(5)
+	helmet.display_visor_message("QRE 8667152...")
+	sleep(5)
+	helmet.display_visor_message("XAS -123455")
+	sleep(5)
+	helmet.display_visor_message("WF // .897")
+	sleep(20)
+	helmet.display_visor_message("DIAG//123")
+	sleep(10)
+	helmet.display_visor_message("MED//8189")
+	sleep(10)
+	helmet.display_visor_message("LOADING//...")
+	sleep(70)
+	U.AdjustStun(-100)
+	U.AdjustKnockdown(-100)
+	U.adjustStaminaLoss(-55)
+	U.adjustOxyLoss(-55)
+	helmet.display_visor_message("Cleared to proceed.")
+	shutdown = FALSE
+	ntick()
 
 /datum/action/item_action/nanogoggles/toggle
 	check_flags = AB_CHECK_STUN|AB_CHECK_CONSCIOUS
