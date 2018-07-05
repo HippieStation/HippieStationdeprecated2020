@@ -212,8 +212,7 @@
 	var/sp_energy = 1.8 //speed energy consume rate
 	var/cr_energy = 20 //critical energy level
 	var/nn_regen = 0.75 //rate at which we regen
-	var/obj/item/stock_parts/cell/cell //What type of power cell this uses
-	var/cell_type = /obj/item/stock_parts/cell{charge = 100; maxcharge = 100}
+	var/obj/item/stock_parts/cellnano/cell //What type of power cell this uses
 
 /obj/item/clothing/suit/space/hardsuit/nano/ComponentInitialize()
 	. = ..()
@@ -278,11 +277,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/Initialize()
 	. = ..()
-	if(cell_type)
-		cell = new cell_type(src)
-	else
-		cell = new(src)
-	cell.give(cell.maxcharge)
+	cell = new(src)
 	update_icon()
 	START_PROCESSING(SSobj, src)
 
@@ -1010,3 +1005,7 @@
 	to_chat(usr, "<span class='notice'>Knock out master</span>: Tighten your grip and harm intent to deliver a very deadly knock out punch.")
 
 	to_chat(usr, "<b><i>User warning: The suit is equipped with an implant which vaporizes the suit and user upon request or death.</i></b>")
+
+/obj/item/stock_parts/cellnano
+	name = "nanosuit self charging battery"
+	maxcharge = 100	
