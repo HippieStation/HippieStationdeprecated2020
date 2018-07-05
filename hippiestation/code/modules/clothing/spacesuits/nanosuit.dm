@@ -212,7 +212,7 @@
 	var/sp_energy = 1.8 //speed energy consume rate
 	var/cr_energy = 20 //critical energy level
 	var/nn_regen = 0.75 //rate at which we regen
-	var/obj/item/stock_parts/cellnano/cell //What type of power cell this uses
+	var/obj/item/stock_parts/cell/nano/cell //What type of power cell this uses
 
 /obj/item/clothing/suit/space/hardsuit/nano/ComponentInitialize()
 	. = ..()
@@ -1006,6 +1006,6 @@
 
 	to_chat(usr, "<b><i>User warning: The suit is equipped with an implant which vaporizes the suit and user upon request or death.</i></b>")
 
-/obj/item/stock_parts/cellnano
+/obj/item/stock_parts/cell/nano
 	name = "nanosuit self charging battery"
 	maxcharge = 100	
