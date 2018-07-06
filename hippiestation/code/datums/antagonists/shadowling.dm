@@ -45,13 +45,16 @@
 	else
 		M.visible_message("<span class='big'>[M] screams and contorts!</span>", \
 						  "<span class='userdanger'>THE LIGHT-- YOUR MIND-- <i>BURNS--</i></span>")
-		spawn(30)
-			if(!M || QDELETED(M))
-				return
-			M.visible_message("<span class='warning'>[M] suddenly bloats and explodes!</span>", \
-							  "<span class='warning bold'>AAAAAAAAA<font size=3>AAAAAAAAAAAAA</font><font size=4>AAAAAAAAAAAA----</font></span>")
-			playsound(M, 'sound/magic/Disintegrate.ogg', 100, 1)
-			M.gib()
+		addtimer(CALLBACK(src, .proc/go_boom_boom), 30)
+
+/datum/antagonist/shadowling/proc/go_boom_boom()
+	var/mob/living/M = owner.current
+	if(!M || QDELETED(M))
+		return
+	M.visible_message("<span class='warning'>[M] suddenly bloats and explodes!</span>", \
+					  "<span class='warning bold'>AAAAAAAAA<font size=3>AAAAAAAAAAAAA</font><font size=4>AAAAAAAAAAAA----</font></span>")
+	playsound(M, 'sound/magic/Disintegrate.ogg', 100, 1)
+	M.gib()
 
 /datum/antagonist/shadowling/greet()
 	to_chat(owner, "<br> <span class='shadowling bold big'>You are a shadowling!</span>")
