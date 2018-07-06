@@ -212,6 +212,8 @@
 	var/sp_energy = 1.8 //speed energy consume rate
 	var/cr_energy = 20 //critical energy level
 	var/nn_regen = 0.75 //rate at which we regen
+	var/msg_time_upper = 0
+	var/msg_time_lower = 0
 	var/obj/item/stock_parts/cell/nano/cell //What type of power cell this uses
 
 /obj/item/clothing/suit/space/hardsuit/nano/ComponentInitialize()
@@ -259,9 +261,6 @@
 /obj/item/clothing/suit/space/hardsuit/nano/proc/ntick()
 	spawn while(!shutdown) //Is the suit working? Good, spawn a while loop
 		var/energy = cell.charge //store current energy here
-		if(energy < cr_energy && !criticalpower) //energy is less than critical energy level(20) and not in crit power
-			helmet.display_visor_message("Energy Critical!") //now we are
-			criticalpower = TRUE
 		if(mode == "cloak" && !U.Move()) //are we in cloak, not moving?
 			energy -= cl_energy * 0.1 //take away the cloak discharge rate at 1/10th since we're not moving
 		if(energy <= 0) //did we lose energy?
@@ -274,22 +273,29 @@
 			var/energy2 = nn_regen //store our regen rate here
 			energy2+=energy //add our current energy to it
 			energy=min(cell.maxcharge,energy2) //our energy now equals the energy we had + 0.75 for everytime it iterates through, so it increases by 0.75 every tick until it goes to 100
-			if(energy > cr_energy) //did our energy go higher than the crit level
-				criticalpower = FALSE //turn it off
 		if(nn_block_recharge > 0) //do we have a recharge delay set?
 			nn_block_recharge -= 1 //reduce it
-		cell.charge = energy //now set our current energy to the variable we modified
+		if(msg_time_upper)
+			msg_time_upper -= 1
+		if(msg_time_lower)
+			msg_time_lower -= 1
+		set_nano_energy(energy) //now set our current energy to the variable we modified
 		sleep(1) //wait 1 tick and do it again
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/set_nano_energy(var/amount, var/delay = 0)
 	cell.charge = amount
 	if(delay > nn_block_recharge)
 		nn_block_recharge = delay
+	if(amount < cr_energy && !criticalpower) //energy is less than critical energy level(20) and not in crit power
+		helmet.display_visor_message("Energy Critical!") //now we are
+		criticalpower = TRUE
+	else if(amount > cr_energy) //did our energy go higher than the crit level
+		criticalpower = FALSE //turn it off
 	return TRUE
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/onmove(var/multi)
 	if(mode == "cloak")
-		set_nano_energy(CLAMP(cell.charge-(cl_energy*multi),0,cell.charge))
+		set_nano_energy(CLAMP(cell.charge-(cl_energy*multi),0,cell.charge),30)
 	if(mode == "speed")
 		set_nano_energy(CLAMP(cell.charge-(sp_energy*multi),0,cell.charge),30)
 
@@ -315,6 +321,17 @@
 		medical_cooldown = world.time + medical_delay
 		current_charges--
 		heal_nano(user)
+	for(var/X in U.bodyparts)
+		var/obj/item/bodypart/BP = X
+		if(BP.brute_dam > 30 && BP.body_zone != BODY_ZONE_HEAD && BP.body_zone != BODY_ZONE_CHEST)
+			if(msg_time_lower == 0 && (BP.body_zone == BODY_ZONE_L_LEG || BP.body_zone == BODY_ZONE_R_LEG))
+				helmet.display_visor_message("Femoral fracture detected in [BP.name]! Administering local anesthetic.")
+				user.reagents.add_reagent("morphine", 1)
+				msg_time_lower = 600
+			if(msg_time_upper == 0 && (BP.body_zone == BODY_ZONE_L_ARM || BP.body_zone == BODY_ZONE_R_ARM))
+				helmet.display_visor_message("Humerous fracture detected in [BP.name]! Administering local anesthetic.")
+				user.reagents.add_reagent("morphine", 1)
+				msg_time_upper = 600
 	return FALSE
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/heal_nano(mob/living/carbon/human/user)
@@ -411,7 +428,7 @@
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
-		
+
 /obj/item/clothing/suit/space/hardsuit/nano/emp_act(severity)
 	..()
 	set_nano_energy(max(0,cell.charge-(cell.charge/severity)),80)
@@ -1007,4 +1024,4 @@
 
 /obj/item/stock_parts/cell/nano
 	name = "nanosuit self charging battery"
-	maxcharge = 100	
+	maxcharge = 100
