@@ -211,7 +211,7 @@
 	var/cl_energy = 0.65 //cloaked energy consume rate
 	var/sp_energy = 1.8 //speed energy consume rate
 	var/cr_energy = 20 //critical energy level
-	var/nn_regen = 0.75 //rate at which we regen
+	var/nn_regen = 1.5 //rate at which we regen
 	var/msg_time_upper = 0
 	var/msg_time_lower = 0
 	var/obj/item/stock_parts/cell/nano/cell //What type of power cell this uses
@@ -223,10 +223,10 @@
 /obj/item/clothing/suit/space/hardsuit/nano/Initialize()
 	. = ..()
 	cell = new(src)
-	START_PROCESSING(SSobj, src)
+	START_PROCESSING(SSfastprocess, src)
 
 /obj/item/clothing/suit/space/hardsuit/nano/Destroy()
-	STOP_PROCESSING(SSobj, src)
+	STOP_PROCESSING(SSfastprocess, src)
 	if(U)
 		if(help_verb)
 			U.verbs -= help_verb
@@ -257,18 +257,10 @@
 	else
 		defrosted = FALSE
 		detecting = FALSE
-
-/obj/item/clothing/suit/space/hardsuit/nano/proc/ntick()
-	spawn while(!shutdown) //Is the suit working? Good, spawn a while loop
+	if(!shutdown) //Is the suit working? Good, spawn a while loop
 		var/energy = cell.charge //store current energy here
 		if(mode == "cloak" && !U.Move()) //are we in cloak, not moving?
 			energy -= cl_energy * 0.1 //take away the cloak discharge rate at 1/10th since we're not moving
-		if(energy <= 0) //did we lose energy?
-			energy = 0 //set our energy to 0
-			if(mode == "cloak") //are we in cloak?
-				nn_block_recharge = 30 //then wait 30 ticks to recharge again
-			if(mode != "armor") //we're not in cloak
-				toggle_mode("armor", TRUE) //go into it, forced
 		if((energy < cell.maxcharge) && mode != "cloak" && nn_block_recharge == 0) //if our energy is less than 100, we're not in cloak and don't have a recharge delay timer
 			var/energy2 = nn_regen //store our regen rate here
 			energy2+=energy //add our current energy to it
@@ -279,8 +271,8 @@
 			msg_time_upper -= 1
 		if(msg_time_lower)
 			msg_time_lower -= 1
-		set_nano_energy(energy) //now set our current energy to the variable we modified
-		sleep(1) //wait 1 tick and do it again
+		if(cell.charge != energy)
+			set_nano_energy(energy) //now set our current energy to the variable we modified
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/set_nano_energy(var/amount, var/delay = 0)
 	cell.charge = amount
@@ -291,6 +283,12 @@
 		criticalpower = TRUE
 	else if(amount > cr_energy) //did our energy go higher than the crit level
 		criticalpower = FALSE //turn it off
+	if(amount <= 0) //did we lose energy?
+		amount = 0 //set our energy to 0
+		if(mode == "cloak") //are we in cloak?
+			nn_block_recharge = 30 //then wait 30 ticks to recharge again
+		if(mode != "armor") //we're not in cloak
+			toggle_mode("armor", TRUE) //go into it, forced
 	return TRUE
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/onmove(var/multi)
@@ -484,7 +482,6 @@
 	U.adjustOxyLoss(-55)
 	helmet.display_visor_message("Cleared to proceed.")
 	shutdown = FALSE
-	ntick()
 
 /datum/action/item_action/nanogoggles/toggle
 	check_flags = AB_CHECK_STUN|AB_CHECK_CONSCIOUS
@@ -614,7 +611,6 @@
 		var/area/A = get_area(src)
 		priority_announce("[user] has engaged [src] at [A.map_name]!","Message from The Syndicate!", 'sound/misc/notice1.ogg')
 		U.add_trait(TRAIT_NODISMEMBER, "Nanosuit")
-		ntick()
 		if(help_verb)
 			U.verbs += help_verb
 	..()
@@ -876,13 +872,12 @@
 
 /obj/item/gun/attack(mob/M as mob, mob/living/carbon/user)
 	..()
-	if(user)
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
-				var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
-				if(user.a_intent == INTENT_HARM)
-					NS.kill_cloak()
+	if(user && ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+			var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
+			if(user.a_intent == INTENT_HARM)
+				NS.kill_cloak()
 
 /obj/item/weldingtool/afterattack(atom/O, mob/living/carbon/human/user, proximity)
 	..()
@@ -908,7 +903,7 @@
 			set_nano_energy(0,30)
 			toggle_mode("armor", TRUE)
 		else
-			cell.use(15)
+			set_nano_energy(CLAMP(cell.charge-15,0,cell.charge))
 			U.filters = null
 			animate(U, alpha = 255, time = 2)
 			addtimer(CALLBACK(src, .proc/resume_cloak),CLICK_CD_RANGE,TIMER_UNIQUE|TIMER_OVERRIDE)
