@@ -5299,6 +5299,7 @@
 /obj/machinery/door/airlock/external{
 	cyclelinkeddir = 2
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "alL" = (
@@ -6026,6 +6027,9 @@
 "anH" = (
 /obj/machinery/door/airlock/external{
 	cyclelinkeddir = 1
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
@@ -10253,6 +10257,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "azn" = (
@@ -10285,6 +10292,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
@@ -18664,6 +18674,9 @@
 	name = "Security Escape Airlock";
 	req_access_txt = "2"
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "aVc" = (
@@ -18680,6 +18693,9 @@
 	req_access_txt = "2"
 	},
 /obj/structure/fans/tiny,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "aVk" = (
@@ -19676,6 +19692,9 @@
 	cyclelinkeddir = 4;
 	name = "Escape Airlock"
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "aYs" = (
@@ -19684,6 +19703,9 @@
 	name = "Escape Airlock"
 	},
 /obj/structure/fans/tiny,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "aYt" = (
@@ -23854,6 +23876,9 @@
 	cyclelinkeddir = 4;
 	name = "Cargo Escape Airlock"
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "bjJ" = (
@@ -23867,6 +23892,9 @@
 	name = "Cargo Escape Airlock"
 	},
 /obj/structure/fans/tiny,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "bjM" = (
@@ -24741,6 +24769,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "bmm" = (
@@ -32319,6 +32350,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
@@ -40688,6 +40722,7 @@
 	name = "Testing Lab";
 	req_access_txt = "47"
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
 "bXy" = (
@@ -42128,6 +42163,7 @@
 	name = "Chemical Lab";
 	req_access_txt = "47"
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plasteel/vault,
 /area/science/misc_lab)
 "cbi" = (
@@ -46933,6 +46969,7 @@
 	name = "High-risk Machinery";
 	req_access_txt = "47"
 	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/engine,
 /area/science/misc_lab)
 "cnz" = (
@@ -47747,6 +47784,9 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/science/misc_lab)
 "cpN" = (
@@ -53909,6 +53949,7 @@
 /area/space/nearstation)
 "cEQ" = (
 /obj/structure/transit_tube/crossing/horizontal,
+/obj/structure/lattice,
 /turf/open/space,
 /area/space/nearstation)
 "cER" = (
@@ -53921,11 +53962,13 @@
 /area/space/nearstation)
 "cET" = (
 /obj/structure/transit_tube/crossing/horizontal,
+/obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
 "cEU" = (
 /obj/structure/transit_tube/crossing/horizontal,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible,
+/obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
 "cEV" = (
@@ -57895,6 +57938,9 @@
 /obj/machinery/door/airlock/security/glass{
 	name = "Security Checkpoint";
 	req_access_txt = "63"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary{
@@ -63564,7 +63610,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/engine/port_engineering)
 "qew" = (
@@ -65057,12 +65102,6 @@
 	name = "floor"
 	},
 /area/engine/port_engineering)
-"tmU" = (
-/obj/effect/turf_decal/stripes/end{
-	dir = 8
-	},
-/turf/closed/wall,
-/area/construction/mining/aux_base)
 "tnv" = (
 /obj/machinery/light{
 	dir = 8
@@ -65548,6 +65587,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/maintenance/department/medical/morgue)
 "uDc" = (
@@ -65775,7 +65815,6 @@
 	},
 /area/hallway/secondary/entry)
 "vcj" = (
-/obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/engine/port_engineering)
 "vcY" = (
@@ -66620,6 +66659,9 @@
 /obj/machinery/door/airlock/security/glass{
 	name = "Security Checkpoint";
 	req_access_txt = "63"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/auxiliary{
@@ -75042,11 +75084,11 @@ aad
 aaa
 aaa
 aoz
-tmU
+aoz
 gPK
 uDc
 mOM
-tmU
+aoz
 aoz
 aaa
 aaa
