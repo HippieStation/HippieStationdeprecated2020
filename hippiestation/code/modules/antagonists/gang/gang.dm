@@ -287,7 +287,6 @@ GLOBAL_LIST_EMPTY(gangs)
 	var/domination_time = -1
 	var/color
 	var/list/buyable_items = list()
-	var/list/gangtools
 
 /datum/team/gang/New(starting_members)
 	. = ..()
@@ -297,8 +296,8 @@ GLOBAL_LIST_EMPTY(gangs)
 			for(var/datum/mind/groveboss in starting_members)
 				LAZYADD(leaders, groveboss)
 				var/datum/antagonist/gang/boss/gb = new
+				groveboss.add_antag_datum(gb, src)
 				gb.gang = src
-				M.add_antag_datum(gb, src)
 				gb.equip_gang()
 
 		else
@@ -306,8 +305,8 @@ GLOBAL_LIST_EMPTY(gangs)
 			if(istype(CJ))
 				LAZYADD(leaders, CJ)
 				var/datum/antagonist/gang/boss/bossdatum = new
-				bossdatum.gang = src
 				CJ.add_antag_datum(bossdatum, src)
+				bossdatum.gang = src
 				bossdatum.equip_gang()
 	color = rgb(rand(0,255),rand(0,255),rand(0,255))
 	next_point_time = world.time + next_point_interval
@@ -407,25 +406,25 @@ GLOBAL_LIST_EMPTY(gangs)
 
 	//Report territory changes
 	var/message = "<b>[src] Gang Status Report:</b>.<BR>*---------*<BR>"
-	message += "<b>[territory_new.len] new territories:</b><br><i>[added_names]</i><br>"
-	message += "<b>[territory_lost.len] territories lost:</b><br><i>[lost_names]</i><br>"
+	message += "<b>[new_territories.len] new territories:</b><br><i>[added_names]</i><br>"
+	message += "<b>[lost_territories.len] territories lost:</b><br><i>[lost_names]</i><br>"
 	//Clear the lists
 	new_territories = list()
 	lost_territories = list()
 	var/control = round((territories.len/GLOB.start_state.num_territories)*100, 1)
 	var/uniformed = check_clothing()
 	message += "Your gang now has <b>[control]% control</b> of the station.<BR>*---------*<BR>"
-	if(is_dominating)
+	if(domination_time != -1)
 		var/seconds_remaining = domination_time_remaining()
 		var/new_time = max(180, seconds_remaining - (uniformed * 4) - (territory.len * 2))
 		if(new_time < seconds_remaining)
-			message += "Takeover shortened by [seconds_remaining - new_time] seconds for defending [territory.len] territories.<BR>"
+			message += "Takeover shortened by [seconds_remaining - new_time] seconds for defending [territories.len] territories.<BR>"
 			set_domination_time(new_time)
 		message += "<b>[seconds_remaining] seconds remain</b> in hostile takeover.<BR>"
 	else
 		var/new_influence = check_territory_income()
 		if(new_influence != influence)
-			message += "Gang influence has increased by [new_influence - influence] for defending [territory.len] territories and [uniformed] uniformed gangsters.<BR>"
+			message += "Gang influence has increased by [new_influence - influence] for defending [territories.len] territories and [uniformed] uniformed gangsters.<BR>"
 		influence = new_influence
 		message += "Your gang now has <b>[influence] influence</b>.<BR>"
 	announce_all_influence(message)

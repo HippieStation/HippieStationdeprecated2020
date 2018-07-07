@@ -62,4 +62,4 @@
 		SSticker.mode.remove_gangster(src,0,1,1)
 		remove_objectives()
 
-/datum/mind/remove_all_antag() //For the Lazy amongst us.*/
+/datum/mind/remove_all_antag()*/ //For the Lazy amongst us.
