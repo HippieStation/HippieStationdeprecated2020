@@ -3101,6 +3101,7 @@
 #include "hippiestation\code\modules\surgery\organs\butts.dm"
 #include "hippiestation\code\modules\surgery\organs\ears.dm"
 #include "hippiestation\code\modules\surgery\organs\eyes.dm"
+#include "hippiestation\code\modules\surgery\organs\heart.dm"
 #include "hippiestation\code\modules\surgery\organs\tails.dm"
 #include "hippiestation\code\modules\surgery\organs\tongue.dm"
 #include "hippiestation\code\modules\teeth\misc.dm"
