@@ -1,4 +1,4 @@
-#define ARMOUR "armor"
+#define ARMOR "armor"
 #define CLOAK "cloak"
 #define SPEED "speed"
 #define STRENGTH "strength"
@@ -60,7 +60,7 @@
 		var/mob/living/carbon/human/H = user
 		if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
 			var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
-			if(NS.mode == "strength")
+			if(NS.mode == STRENGTH)
 				if(istype(T) || istype(S))
 					if(NS.cell.charge >= 30)
 						NS.set_nano_energy(CLAMP(NS.cell.charge-30,0,NS.cell.charge),30)
@@ -247,6 +247,8 @@
 /obj/item/clothing/suit/space/hardsuit/nano/process()
 	if(!U)
 		return
+	if(!shutdown)
+		return
 	if(world.time > medical_cooldown && current_charges < max_charges)
 		current_charges = CLAMP((current_charges + 1), 0, max_charges)
 	if(U.bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT)
@@ -260,24 +262,24 @@
 				defrosted = TRUE
 				temp_cooldown += 100
 	else
-		defrosted = FALSE
-		detecting = FALSE
-	if(!shutdown) //Is the suit working? Good, spawn a while loop
-		var/energy = cell.charge //store current energy here
-		if(mode == "cloak" && !U.Move()) //are we in cloak, not moving?
-			energy -= cl_energy * 0.1 //take away the cloak discharge rate at 1/10th since we're not moving
-		if((energy < cell.maxcharge) && mode != "cloak" && nn_block_recharge == 0) //if our energy is less than 100, we're not in cloak and don't have a recharge delay timer
-			var/energy2 = nn_regen //store our regen rate here
-			energy2+=energy //add our current energy to it
-			energy=min(cell.maxcharge,energy2) //our energy now equals the energy we had + 0.75 for everytime it iterates through, so it increases by 0.75 every tick until it goes to 100
-		if(nn_block_recharge > 0) //do we have a recharge delay set?
-			nn_block_recharge -= 1 //reduce it
-		if(msg_time_upper)
-			msg_time_upper -= 1
-		if(msg_time_lower)
-			msg_time_lower -= 1
-		if(cell.charge != energy)
-			set_nano_energy(energy) //now set our current energy to the variable we modified
+		if(defrosted || detecting)
+			defrosted = FALSE
+			detecting = FALSE
+	var/energy = cell.charge //store current energy here
+	if(mode == CLOAK && !U.Move()) //are we in cloak, not moving?
+		energy -= cl_energy * 0.1 //take away the cloak discharge rate at 1/10th since we're not moving
+	if((energy < cell.maxcharge) && mode != CLOAK && !nn_block_recharge) //if our energy is less than 100, we're not in cloak and don't have a recharge delay timer
+		var/energy2 = nn_regen //store our regen rate here
+		energy2+=energy //add our current energy to it
+		energy=min(cell.maxcharge,energy2) //our energy now equals the energy we had + 0.75 for everytime it iterates through, so it increases by 0.75 every tick until it goes to 100
+	if(nn_block_recharge > 0) //do we have a recharge delay set?
+		nn_block_recharge -= 1 //reduce it
+	if(msg_time_upper)
+		msg_time_upper -= 1
+	if(msg_time_lower)
+		msg_time_lower -= 1
+	if(cell.charge != energy)
+		set_nano_energy(energy) //now set our current energy to the variable we modified
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/set_nano_energy(var/amount, var/delay = 0)
 	cell.charge = amount
@@ -290,21 +292,21 @@
 		criticalpower = FALSE //turn it off
 	if(amount <= 0) //did we lose energy?
 		amount = 0 //set our energy to 0
-		if(mode == "cloak") //are we in cloak?
+		if(mode == CLOAK) //are we in cloak?
 			nn_block_recharge = 30 //then wait 30 ticks to recharge again
-		if(mode != "armor") //we're not in cloak
-			toggle_mode("armor", TRUE) //go into it, forced
+		if(mode != ARMOR) //we're not in cloak
+			toggle_mode(ARMOR, TRUE) //go into it, forced
 	return TRUE
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/onmove(var/multi)
-	if(mode == "cloak")
+	if(mode == CLOAK)
 		set_nano_energy(CLAMP(cell.charge-(cl_energy*multi),0,cell.charge),30)
-	if(mode == "speed")
+	if(mode == SPEED)
 		set_nano_energy(CLAMP(cell.charge-(sp_energy*multi),0,cell.charge),30)
 
 /obj/item/clothing/suit/space/hardsuit/nano/hit_reaction(mob/living/carbon/human/user, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/obj/item/projectile/P = hitby
-	if(mode == "armor")
+	if(mode == ARMOR)
 		if(cell.charge > 0)
 			if(damage)
 				if(attack_type != STAMINA)
@@ -343,16 +345,16 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/nanosuit/armor))
-		toggle_mode("armor")
+		toggle_mode(ARMOR)
 		return TRUE
 	if(istype(action, /datum/action/item_action/nanosuit/cloak))
-		toggle_mode("cloak")
+		toggle_mode(CLOAK)
 		return TRUE
 	if(istype(action, /datum/action/item_action/nanosuit/speed))
-		toggle_mode("speed")
+		toggle_mode(SPEED)
 		return TRUE
 	if(istype(action, /datum/action/item_action/nanosuit/strength))
-		toggle_mode("strength")
+		toggle_mode(STRENGTH)
 		return TRUE
 	return FALSE
 
@@ -360,7 +362,7 @@
 	if(!shutdown && (forced || (cell.charge > 0 && mode != suitmode)))
 		mode = suitmode
 		switch(suitmode)
-			if("armor")
+			if(ARMOR)
 				helmet.display_visor_message("Maximum Armor!")
 				slowdown = 1.0
 				armor = armor.setRating(melee = 60, bullet = 60, laser = 60, energy = 65, bomb = 100, rad =100)
@@ -373,7 +375,7 @@
 				style.remove(U)
 				jetpack.full_speed = FALSE
 
-			if("cloak")
+			if(CLOAK)
 				helmet.display_visor_message("Cloak Engaged!")
 				slowdown = 0.4 //cloaking makes us go sliightly faster
 				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
@@ -386,7 +388,7 @@
 				style.remove(U)
 				jetpack.full_speed = FALSE
 
-			if("speed")
+			if(SPEED)
 				helmet.display_visor_message("Maximum Speed!")
 				slowdown = initial(slowdown)
 				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
@@ -401,7 +403,7 @@
 				style.remove(U)
 				jetpack.full_speed = TRUE
 
-			if("strength")
+			if(STRENGTH)
 				helmet.display_visor_message("Maximum Strength!")
 				U.add_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
 				style.teach(U,1)
@@ -434,6 +436,8 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/emp_act(severity)
 	..()
+	if(!severity)
+		return
 	set_nano_energy(max(0,cell.charge-(cell.charge/severity)),80)
 	if((mode == armor && cell.charge == 0) || (mode != armor))
 		if(prob(8/severity*1.5) && !shutdown)
@@ -441,7 +445,7 @@
 	update_icon()
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/emp_assault()
-	if(!U.mind)
+	if(!U)
 		return //Not sure how this could happen.
 	U.Knockdown(300)
 	U.AdjustStun(300)
@@ -642,7 +646,7 @@
 		var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
 		if(statpanel("Crynet Nanosuit"))
 			stat("Crynet Protocols : Engaged")
-			stat("Energy Charge:", "[round(NS.cell.charge)]%")
+			stat("Energy Charge:", "[round(NS.cell.charge*100/NS.cell.maxcharge)]%")
 			stat("Mode:", "[NS.mode]")
 			stat("Overall Status:", "[health]% healthy")
 			stat("Nutrition Status:", "[nutrition]")
@@ -854,7 +858,7 @@
 			if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
 				var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
 				NS.kill_cloak()
-				if(NS.mode == "strength")
+				if(NS.mode == STRENGTH)
 					.=..(target, range*1.5, speed*2, thrower, spin, diagonals_first, callback)
 					return
 	.=..()
@@ -903,10 +907,10 @@
 		NS.kill_cloak()
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/kill_cloak(temp)
-	if(mode == "cloak")
+	if(mode == CLOAK)
 		if(!temp)
 			set_nano_energy(0,30)
-			toggle_mode("armor", TRUE)
+			toggle_mode(ARMOR, TRUE)
 		else
 			set_nano_energy(CLAMP(cell.charge-15,0,cell.charge))
 			U.filters = null
