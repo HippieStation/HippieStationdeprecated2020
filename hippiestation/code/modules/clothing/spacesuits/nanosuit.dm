@@ -247,7 +247,7 @@
 /obj/item/clothing/suit/space/hardsuit/nano/process()
 	if(!U)
 		return
-	if(!shutdown)
+	if(shutdown)
 		return
 	if(world.time > medical_cooldown && current_charges < max_charges)
 		current_charges = CLAMP((current_charges + 1), 0, max_charges)
