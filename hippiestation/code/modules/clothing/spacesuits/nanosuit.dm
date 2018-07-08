@@ -1,3 +1,8 @@
+#define ARMOUR "armor"
+#define CLOAK "cloak"
+#define SPEED "speed"
+#define STRENGTH "strength"
+
 //Crytek Nanosuit made by YoYoBatty
 /obj/item/clothing/under/syndicate/combat/nano
 	name = "nanosuit lining"
