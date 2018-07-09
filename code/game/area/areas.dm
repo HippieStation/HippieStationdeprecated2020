@@ -448,23 +448,6 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	if(!T)
 		return 0
 
-<<<<<<< HEAD
-	//Gravity forced on the atom
-	var/datum/component/forced_gravity/FG = GetComponent(/datum/component/forced_gravity)
-	if(FG)
-		if(!FG.ignore_space && isspaceturf(T))
-			return 0
-		else
-			return FG.gravity
-	
-	//Gravity forced on the turf
-	FG = T.GetComponent(/datum/component/forced_gravity)
-	if(FG)
-		if(!FG.ignore_space && isspaceturf(T))
-			return 0
-		else
-			return FG.gravity
-=======
 	var/list/forced_gravity = list()
 	SEND_SIGNAL(src, COMSIG_ATOM_HAS_GRAVITY, T, forced_gravity)
 	if(!forced_gravity.len)
@@ -475,7 +458,6 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 			max_grav = max(max_grav, i)
 		if(max_grav)
 			return max_grav
->>>>>>> 9631eabbc3... Cleans up the forced gravity component and makes it use signals (#38962)
 
 	if(isspaceturf(T)) // Turf never has gravity
 		return 0
