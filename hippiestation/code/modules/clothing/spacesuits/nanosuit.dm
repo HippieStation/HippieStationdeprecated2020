@@ -205,7 +205,7 @@
 	var/shutdown = FALSE
 	var/current_charges = 3
 	var/max_charges = 3 //How many charges total the shielding has
-	var/medical_cooldown = 200 //How long after we've been shot before we can start recharging. 20 seconds here
+	var/medical_delay = 200 //How long after we've been shot before we can start recharging. 20 seconds here
 	var/temp_cooldown = 0
 	var/restore_delay = 80
 	var/defrosted = FALSE
