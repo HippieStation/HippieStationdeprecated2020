@@ -205,8 +205,7 @@
 	var/shutdown = FALSE
 	var/current_charges = 3
 	var/max_charges = 3 //How many charges total the shielding has
-	var/medical_delay = 200 //How long after we've been shot before we can start recharging. 20 seconds here
-	var/medical_cooldown = 0 //Time since we've last been shot
+	var/medical_cooldown = 200 //How long after we've been shot before we can start recharging. 20 seconds here
 	var/temp_cooldown = 0
 	var/restore_delay = 80
 	var/defrosted = FALSE
@@ -250,8 +249,6 @@
 		return
 	if(shutdown)
 		return
-	if(world.time > medical_cooldown && current_charges < max_charges)
-		current_charges = CLAMP((current_charges + 1), 0, max_charges)
 	if(U.bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT)
 		if(!detecting)
 			temp_cooldown = world.time + restore_delay
@@ -299,6 +296,10 @@
 	cell.charge = amount
 	return TRUE
 
+/obj/item/clothing/suit/space/hardsuit/nano/proc/addmedicalcharge()
+	if(current_charges < max_charges)
+		current_charges = CLAMP((current_charges + 1), 0, max_charges)
+
 /obj/item/clothing/suit/space/hardsuit/nano/proc/onmove(var/multi)
 	if(mode == CLOAK)
 		set_nano_energy(CLAMP(cell.charge-(cl_energy*multi),0,cell.charge),30)
@@ -324,7 +325,7 @@
 			s.start()
 	kill_cloak(user)
 	if(prob(damage*2) && user.health < 60 && current_charges > 0)
-		medical_cooldown = world.time + medical_delay
+		addtimer(CALLBACK(src, .proc/addmedicalcharge), medical_delay,TIMER_UNIQUE|TIMER_OVERRIDE)
 		current_charges--
 		heal_nano(user)
 	for(var/X in U.bodyparts)
