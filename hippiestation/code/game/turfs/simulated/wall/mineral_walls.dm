@@ -73,7 +73,7 @@
 	reagent_act(user)
 	..()
 
-/turf/closed/wall/mineral/reagent/CollidedWith(atom/movable/AM)
+/turf/closed/wall/mineral/reagent/Bumped(atom/movable/AM)
 	reagent_act(AM)
 	..()
 
