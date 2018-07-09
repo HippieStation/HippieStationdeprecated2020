@@ -283,7 +283,6 @@
 		set_nano_energy(energy) //now set our current energy to the variable we modified
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/set_nano_energy(var/amount, var/delay = 0)
-	cell.charge = amount
 	if(delay > nn_block_recharge)
 		nn_block_recharge = delay
 	if(amount < cr_energy && !criticalpower) //energy is less than critical energy level(20) and not in crit power
@@ -297,6 +296,7 @@
 			nn_block_recharge = 30 //then wait 30 ticks to recharge again
 		if(mode != ARMOR) //we're not in cloak
 			toggle_mode(ARMOR, TRUE) //go into it, forced
+	cell.charge = amount
 	return TRUE
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/onmove(var/multi)
