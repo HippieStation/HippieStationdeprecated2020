@@ -2,6 +2,7 @@
 #define CLOAK "cloak"
 #define SPEED "speed"
 #define STRENGTH "strength"
+#define NONE "none"
 
 //Crytek Nanosuit made by YoYoBatty
 /obj/item/clothing/under/syndicate/combat/nano
@@ -199,7 +200,7 @@
 	permeability_coefficient = 0.01
 	var/mob/living/carbon/human/U = null
 	var/criticalpower = FALSE
-	var/mode = "none"
+	var/mode = NONE
 	var/datum/martial_art/nano/style = new
 	var/shutdown = FALSE
 	var/current_charges = 3
@@ -239,7 +240,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/examine(mob/user)
 	..()
-	if(mode != "none")
+	if(mode != NONE)
 		to_chat(user, "The suit appears to be in [mode] mode.")
 	else
 		to_chat(user, "The suit appears to be offline.")
@@ -416,7 +417,7 @@
 				U.remove_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
 				jetpack.full_speed = FALSE
 
-			if("none")
+			if(NONE)
 				U.remove_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
 				style.remove(U)
 				slowdown = initial(slowdown)
@@ -450,7 +451,7 @@
 	U.Knockdown(300)
 	U.AdjustStun(300)
 	U.Jitter(120)
-	toggle_mode("none", TRUE)
+	toggle_mode(NONE, TRUE)
 	helmet.display_visor_message("EMP Assault! Systems impaired.")
 	shutdown = TRUE
 	addtimer(CALLBACK(src, .proc/emp_assaulttwo), 25)
@@ -1015,7 +1016,7 @@
 	to_chat(usr, "<b>Passive equipment</b>: Binoculars, night vision, anti-slips, shock and heat proof gloves, self refilling mini o2 tank, emergency medical systems and body temperature defroster.")
 	to_chat(usr, "<b>Active modes</b>: Armor, strength, speed and cloak.")
 	to_chat(usr, "<span class='notice'>Armor</span>: Resist damage that would normally kill or seriously injure you. Blocks all attacks at a cost of suit energy drain.")
-	to_chat(usr, "<span class='notice'>Cloak</span>: Become a ninja. Cloaking technology alters the outer layers to refract light through and around the suit, making the user appear almost completely invisible.")
+	to_chat(usr, "<span class='notice'>Cloak</span>: Become a ninja. Cloaking technology alters the outer layers to refract light through and around the suit, making the user appear almost completely invisible. Simple tasks such as attacking in any way, being hit or throwing objects cancels cloak.")
 	to_chat(usr, "<span class='notice'>Speed</span>: Run like a madman. Use conservatively as suit energy drains fairly quickly.")
 	to_chat(usr, "<span class='notice'>Strength</span>: Beat the shit out of objects  or people with your fists. Jump across small gabs and structures. You hit and throw harder with brute objects. You can't be grabbed aggressively or pushed. Deflect attacks and ranged hits occasionally. ")
 	to_chat(usr, "<span class='notice'>Aggressive Grab</span>: Your grabs start aggressive.")
