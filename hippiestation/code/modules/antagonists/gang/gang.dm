@@ -284,7 +284,7 @@ GLOBAL_LIST_EMPTY(gangs)
 	var/list/gangtools = list()
 	var/next_point_interval = INFLUENCE_INTERVAL
 	var/next_point_time
-	var/domination_time = -1
+	var/domination_time = NOT_DOMINATING
 	var/color
 	var/list/buyable_items = list()
 
@@ -339,7 +339,7 @@ GLOBAL_LIST_EMPTY(gangs)
 	if(world.time > next_point_time)
 		next_point_time = world.time + next_point_interval
 
-	if(domination_time != -1)
+	if(domination_time != NOT_DOMINATING)
 		if(!domination_time)
 			domination()
 			/*
@@ -414,7 +414,7 @@ GLOBAL_LIST_EMPTY(gangs)
 	var/control = round((territories.len/GLOB.start_state.num_territories)*100, 1)
 	var/uniformed = check_clothing()
 	message += "Your gang now has <b>[control]% control</b> of the station.<BR>*---------*<BR>"
-	if(domination_time != -1)
+	if(domination_time != NOT_DOMINATING)
 		var/seconds_remaining = domination_time_remaining()
 		var/new_time = max(180, seconds_remaining - (uniformed * 4) - (territory.len * 2))
 		if(new_time < seconds_remaining)

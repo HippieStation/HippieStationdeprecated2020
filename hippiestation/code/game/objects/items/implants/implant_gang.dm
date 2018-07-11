@@ -2,10 +2,9 @@
 	name = "gang implant"
 	desc = "Makes you a gangster or such."
 	activated = 0
-	origin_tech = "materials=2;biotech=4;programming=4;syndicate=3"
-	var/datum/gang/gang
+	var/datum/team/gang/gang
 
-/obj/item/implant/gang/New(loc,var/setgang)
+/obj/item/implant/gang/Initialize(setgang)
 	..()
 	gang = setgang
 

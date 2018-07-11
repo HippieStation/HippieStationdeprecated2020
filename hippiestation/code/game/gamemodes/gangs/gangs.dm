@@ -82,8 +82,8 @@ GLOBAL_LIST_INIT(possible_gangs, subtypesof(/datum/team/gang))
 		SSshuttle.emergency.request(null, set_coefficient = 0.4)
 		priority_announce("Catastrophic casualties detected: crisis shuttle protocols activated - jamming recall signals across all frequencies.")
 
-/proc/determine_domination_time(var/datum/gang/G)
-	return max(180,480 - (round((G.territory.len/GLOB.start_state.num_territories)*100, 1) * 9))
+/proc/determine_domination_time(var/datum/team/gang/G)
+	return max(180,480 - (round((G.territories.len/GLOB.start_state.num_territories)*100, 1) * 9))
 
 
 //////////////////////////////////////////////////////////////////////
