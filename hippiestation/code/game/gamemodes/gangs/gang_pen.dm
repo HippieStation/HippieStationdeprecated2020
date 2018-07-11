@@ -3,6 +3,7 @@
  */
 /obj/item/pen/gang
 	var/cooldown
+	var/last_used
 
 /obj/item/pen/gang/New()
 	..()
@@ -13,7 +14,7 @@
 		return
 	if(!ishuman(M) || !ishuman(user) || M.stat == DEAD)
 		return ..()
-	var/datum/antagonist/gang/leader/L = user.mind.has_antag_datum(/datum/antagonist/gang/leader)
+	var/datum/antagonist/gang/boss/L = user.mind.has_antag_datum(/datum/antagonist/gang/boss)
 	if(!L)
 		return ..()
 	if(!..())

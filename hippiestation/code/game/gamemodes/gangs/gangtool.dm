@@ -22,7 +22,7 @@
 	..()
 	if (!can_use(user))
 		return
-	var/datum/antagonist/gang/leader/L = user.mind.has_antag_datum(/datum/antagonist/gang/leader)
+	var/datum/antagonist/gang/boss/L = user.mind.has_antag_datum(/datum/antagonist/gang/boss)
 	var/dat
 	if(!gang)
 		dat += "This device is not registered.<br><br>"
@@ -40,7 +40,7 @@
 		else
 			dat += "This device is not authorized to promote.<br>"
 	else
-		if(gang.is_dominating)
+		if(gang.domination_time != NOT_DOMINATING)
 			dat += "<center><font color='red'>Takeover In Progress:<br><B>[gang.domination_time_remaining()] seconds remain</B></font></center>"
 
 		dat += "Registration: <B>[gang.name] Gang Boss</B><br>"

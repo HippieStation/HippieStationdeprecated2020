@@ -51,7 +51,7 @@
 		return
 
 	var/time
-	if(gang && gang.domination_time != -1)
+	if(gang && gang.domination_time != NOT_DOMINATING)
 		time = gang.domination_time
 		if(time > 0)
 			to_chat(user, "<span class='notice'>Hostile Takeover in progress. Estimated [time] seconds remain.</span>")
@@ -63,7 +63,7 @@
 
 /obj/machinery/dominator/process()
 	..()
-	if(gang && gang.domination_time != -1)
+	if(gang && gang.domination_time != NOT_DOMINATING)
 		var/time_remaining = gang.domination_time
 		if(time_remaining > 0)
 			if(excessive_walls_check(src))
@@ -143,12 +143,12 @@
 
 /obj/machinery/dominator/proc/set_broken()
 	if(gang)
-		gang.domination_time = -1
+		gang.domination_time = NOT_DOMINATING
 
 		var/takeover_in_progress = FALSE
 		for(var/G in GLOB.gangs)
 			var/datum/team/gang/ballas = G
-			if(ballas.domination_time != -1)
+			if(ballas.domination_time != NOT_DOMINATING)
 				takeover_in_progress = TRUE
 				break
 		if(!takeover_in_progress)
@@ -194,7 +194,7 @@
 		examine(user)
 		return
 
-	if(tempgang.domination_time != -1)
+	if(tempgang.domination_time != NOT_DOMINATING)
 		to_chat(user, "<span class='warning'>Error: Hostile Takeover is already in progress.</span>")
 		return
 
