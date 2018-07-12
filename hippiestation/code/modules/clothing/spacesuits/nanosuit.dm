@@ -64,7 +64,7 @@
 			if(NS.mode == STRENGTH)
 				if(istype(T) || istype(S))
 					if(NS.cell.charge >= 30)
-						NS.set_nano_energy(CLAMP(NS.cell.charge-30,0,NS.cell.charge),30)
+						NS.set_nano_energy(CLAMP(NS.cell.charge-30,0,NS.cell.charge),15)
 					else
 						to_chat(user, "<span class='warning'>Not enough charge.</span>")
 						return
@@ -213,10 +213,10 @@
 	var/help_verb = /mob/living/carbon/human/proc/Nanosuit_help
 	jetpack = /obj/item/tank/jetpack/suit
 	var/nn_block_recharge = 0 //if this number is greater than 0, we can't recharge
-	var/cl_energy = 0.65 //cloaked energy consume rate
+	var/cl_energy = 1.3 //cloaked energy consume rate
 	var/sp_energy = 1.8 //speed energy consume rate
 	var/cr_energy = 20 //critical energy level
-	var/nn_regen = 1.5 //rate at which we regen
+	var/nn_regen = 3 //rate at which we regen
 	var/msg_time_upper = 0
 	var/msg_time_lower = 0
 	var/obj/item/stock_parts/cell/nano/cell //What type of power cell this uses
@@ -290,7 +290,7 @@
 	if(amount <= 0) //did we lose energy?
 		amount = 0 //set our energy to 0
 		if(mode == CLOAK) //are we in cloak?
-			nn_block_recharge = 30 //then wait 30 ticks to recharge again
+			nn_block_recharge = 15 //then wait 3 seconds(1 value per 2 ticks = 15*2=30/10 = 3 seconds) to recharge again
 		if(mode != ARMOR) //we're not in cloak
 			toggle_mode(ARMOR, TRUE) //go into it, forced
 	cell.charge = amount
@@ -302,9 +302,9 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/onmove(var/multi)
 	if(mode == CLOAK)
-		set_nano_energy(CLAMP(cell.charge-(cl_energy*multi),0,cell.charge),30)
+		set_nano_energy(CLAMP(cell.charge-(cl_energy*multi),0,cell.charge),15)
 	if(mode == SPEED)
-		set_nano_energy(CLAMP(cell.charge-(sp_energy*multi),0,cell.charge),30)
+		set_nano_energy(CLAMP(cell.charge-(sp_energy*multi),0,cell.charge),15)
 
 /obj/item/clothing/suit/space/hardsuit/nano/hit_reaction(mob/living/carbon/human/user, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/obj/item/projectile/P = hitby
@@ -312,11 +312,11 @@
 		if(cell.charge > 0)
 			if(damage)
 				if(attack_type != STAMINA)
-					set_nano_energy(CLAMP(cell.charge-(5 + damage),0,cell.charge),30)//laser guns, anything lethal drains 5 + the damage dealth
+					set_nano_energy(CLAMP(cell.charge-(5 + damage),0,cell.charge),15)//laser guns, anything lethal drains 5 + the damage dealth
 				else if(P.damage_type == STAMINA && attack_type == PROJECTILE_ATTACK)
-					set_nano_energy(CLAMP(cell.charge-15,0,cell.charge),30)//stamina damage, aka disabler beams
+					set_nano_energy(CLAMP(cell.charge-15,0,cell.charge),15)//stamina damage, aka disabler beams
 			if(istype(P, /obj/item/projectile/energy/electrode))//if electrode aka taser
-				set_nano_energy(CLAMP(cell.charge-25,0,cell.charge),30)
+				set_nano_energy(CLAMP(cell.charge-25,0,cell.charge),15)
 			user.visible_message("<span class='danger'>[user]'s shields deflect [attack_text] draining their energy!</span>")
 			return TRUE
 		if(damage && attack_type == PROJECTILE_ATTACK && P.damage_type != STAMINA && prob(50))
@@ -438,28 +438,32 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/emp_act(severity)
 	..()
-	if(!severity)
+	if(!severity || shutdown)
 		return
-	set_nano_energy(max(0,cell.charge-(cell.charge/severity)),80)
+	set_nano_energy(max(0,cell.charge-(cell.charge/severity)),40)
 	if((mode == armor && cell.charge == 0) || (mode != armor))
-		if(prob(8/severity*1.5) && !shutdown)
+		if(prob(5/severity))
 			emp_assault()
+		else if(prob(10/severity))
+			U.confused += 10
 	update_icon()
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/emp_assault()
 	if(!U)
 		return //Not sure how this could happen.
+	U.confused += 50
+	helmet.display_visor_message("EMP Assault! Systems impaired.")
+	sleep(40)
 	U.Knockdown(300)
 	U.AdjustStun(300)
 	U.Jitter(120)
 	toggle_mode(NONE, TRUE)
-	helmet.display_visor_message("EMP Assault! Systems impaired.")
 	shutdown = TRUE
 	addtimer(CALLBACK(src, .proc/emp_assaulttwo), 25)
 
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/emp_assaulttwo()
-	sleep(45)
+	sleep(35)
 	helmet.display_visor_message("Warning. EMP shutdown, all systems impaired.")
 	sleep(25)
 	helmet.display_visor_message("Switching to core function mode.")
@@ -486,7 +490,7 @@
 	helmet.display_visor_message("MED//8189")
 	sleep(10)
 	helmet.display_visor_message("LOADING//...")
-	sleep(70)
+	sleep(60)
 	U.AdjustStun(-100)
 	U.AdjustKnockdown(-100)
 	U.adjustStaminaLoss(-55)
@@ -911,7 +915,7 @@
 /obj/item/clothing/suit/space/hardsuit/nano/proc/kill_cloak(temp)
 	if(mode == CLOAK)
 		if(!temp)
-			set_nano_energy(0,30)
+			set_nano_energy(0,15)
 			toggle_mode(ARMOR, TRUE)
 		else
 			set_nano_energy(CLAMP(cell.charge-15,0,cell.charge))
