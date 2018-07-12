@@ -338,5 +338,5 @@
 	name = "Cybersun Sponsorship Kit"
 	desc = "Containing an arm mounted laser implant and a device bestowing the mysteries of the synth augmentation upon you, this kit also comes with a free autosurgeon."
 	item = /obj/item/storage/box/syndie_kit/synth
-	cost = 8
+	cost = 6
 	surplus = 40
