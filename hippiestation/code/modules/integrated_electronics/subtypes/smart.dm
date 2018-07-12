@@ -1,4 +1,4 @@
-/obj/item/integrated_circuit/smart/mmi_tank
+/obj/item/integrated_circuit/input/mmi_tank
 	name = "man-machine interface tank"
 	desc = "This circuit is just a jar filled with an artificial liquid mimicking the cerebrospinal fluid."
 	extended_desc = "This jar can hold 1 man-machine interface and let it take control of some basic functions of the assembly."
@@ -22,10 +22,11 @@
 		)
 	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 150
+	can_be_asked_input = 1
 	var/obj/item/mmi/installed_brain = null
 	var/mob/living/brain/brainmob = null
 
-/obj/item/integrated_circuit/smart/mmi_tank/attackby(var/obj/item/mmi/O, var/mob/user)
+/obj/item/integrated_circuit/input/mmi_tank/attackby(var/obj/item/mmi/O, var/mob/user)
 	if(installed_brain)
 		to_chat(user,"<span class='warning'>There's already a brain inside.</span>")
 		to_chat(O,"<span class='warning'>There's already a brain inside.</span>")
@@ -33,12 +34,13 @@
 	user.transferItemToLoc(O,src)
 	installed_brain = O
 	brainmob = O.brainmob
+	can_be_asked_input = 0
 	to_chat(user, "<span class='notice'>You gently place \the man-machine interface inside the tank.</span>")
 	to_chat(O, "<span class='notice'>You are slowly being placed inside the man-machine-interface tank.</span>")
 	brainmob.remote_control=src
 	set_pin_data(IC_OUTPUT, 1, O)
 
-/obj/item/integrated_circuit/smart/mmi_tank/attack_self(var/mob/user)
+/obj/item/integrated_circuit/input/mmi_tank/attack_self(var/mob/user)
 	if(installed_brain)
 		src.RemoveBrain()
 		to_chat(user, "<span class='notice'>You slowly lift [installed_brain] out of the MMI tank.</span>")
@@ -48,7 +50,7 @@
 	else
 		to_chat(user, "<span class='notice'>You don't see any brain swimming in the tank.</span>")
 
-/obj/item/integrated_circuit/smart/mmi_tank/relaymove(var/n,var/dir)
+/obj/item/integrated_circuit/input/mmi_tank/relaymove(var/n,var/dir)
 	set_pin_data(IC_OUTPUT, 2, dir)
 	do_work(1)
 	switch(dir)
@@ -57,24 +59,46 @@
 		if(1)	activate_pin(4)
 		if(2)	activate_pin(5)
 
-/obj/item/integrated_circuit/smart/mmi_tank/do_work(var/n)
+/obj/item/integrated_circuit/input/mmi_tank/do_work(var/n)
 	push_data()
 	activate_pin(n)
 
-/obj/item/integrated_circuit/smart/mmi_tank/proc/RemoveBrain()
+/obj/item/integrated_circuit/input/mmi_tank/proc/RemoveBrain()
 	if(installed_brain)
+		can_be_asked_input = 1
 		installed_brain.forceMove(drop_location())
 		set_pin_data(IC_OUTPUT, 1, WEAKREF(null))
 		if(brainmob)
 			brainmob.remote_control = installed_brain
 	..()
 
+/obj/item/integrated_circuit/input/proc/item_input(mob/user, obj/O)
+	return
+
+/obj/item/integrated_circuit/input/mmi_tank/brainholder/item_input(mob/user, obj/O)
+	if(installed_brain)
+		to_chat(user,"<span class='warning'>There's already a brain inside.</span>")
+		to_chat(O,"<span class='warning'>There's already a brain inside.</span>")
+		return
+	if(!(istype(O,/obj/item/mmi)))
+		to_chat(user,"<span class='warning'>This assembly accepts only a brain.</span>")
+	var/obj/item/mmi/OMMI=O
+	user.transferItemToLoc(OMMI,src)
+	installed_brain = OMMI
+	brainmob = OMMI.brainmob
+	can_be_asked_input = 0
+	to_chat(user, "<span class='notice'>You gently place \the man-machine interface inside the tank.</span>")
+	to_chat(OMMI, "<span class='notice'>You are slowly being placed inside the man-machine-interface tank.</span>")
+	brainmob.remote_control=src
+	set_pin_data(IC_OUTPUT, 1, OMMI)
+
+
 //Brain changes
 /mob/living/brain/ClickOn(atom/A, params)
 	..()
-	if(!istype(remote_control,/obj/item/integrated_circuit/smart/mmi_tank))
+	if(!istype(remote_control,/obj/item/integrated_circuit/input/mmi_tank))
 		return
-	var/obj/item/integrated_circuit/smart/mmi_tank/brainholder=remote_control
+	var/obj/item/integrated_circuit/input/mmi_tank/brainholder=remote_control
 	brainholder.set_pin_data(IC_OUTPUT, 3, A)
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"])
@@ -86,10 +110,23 @@
 	if(modifiers["ctrl"])
 		brainholder.do_work(9)
 		return
-	if(brainholder in A && (A.parent_type in typesof(/obj/item/electronic_assembly)))
-		var/obj/item/electronic_assembly/holdingassembly=A
-		if(holdingassembly.opened)
-			holdingassembly.ui_interact(src)
-		holdingassembly.attack_self(src)
-		return
+	if(A.type in typesof(/obj/item/electronic_assembly))
+		var/obj/item/electronic_assembly/CheckedAssembly = A
+		if(brainholder in CheckedAssembly.assembly_components)
+			var/obj/item/electronic_assembly/holdingassembly=A
+			if(holdingassembly.opened)
+				holdingassembly.ui_interact(src)
+			holdingassembly.attack_self(src)
+			return
+		else
+			to_chat(world,"Got the wrong assembly, apparently")
+	else
+		to_chat(world,"Not the right type, apparently")
 	brainholder.do_work(6)
+
+//Assembly changes
+/obj/item/electronic_assembly/attackby(var/mob/user, var/obj/O)
+	var/obj/item/integrated_circuit/input/mmi_tank/unfilled_tank = locate(/obj/item/integrated_circuit/input/mmi_tank) in assembly_components
+	if(unfilled_tank.can_be_asked_input == 1)
+		unfilled_tank.item_input(user, O)
+	..()
