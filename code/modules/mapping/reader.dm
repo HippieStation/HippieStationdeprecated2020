@@ -69,11 +69,8 @@ GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
 				if(!key_len)
 					key_len = length(key)
 				else
-<<<<<<< HEAD
-					throw EXCEPTION("Inconsistant key length in DMM")
-=======
 					CRASH("Inconsistent key length in DMM")
->>>>>>> 61e70f2333... Seperates map reader parsing from loading (#38764)
+
 			if(!measureOnly)
 				grid_models[key] = dmmRegex.group[2]
 
