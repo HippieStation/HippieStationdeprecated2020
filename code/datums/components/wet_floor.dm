@@ -75,7 +75,7 @@
 			lube_flags = NO_SLIP_WHEN_WALKING
 		if(TURF_WET_LUBE)
 			intensity = 80
-			lube_flags = SLIDE | GALOSHES_DONT_HELP
+			lube_flags = SLIDE //hippie code. Removed this free 8 second stun for users smart enough to obtain magboots or no slips
 		if(TURF_WET_ICE)
 			intensity = 120
 			lube_flags = SLIDE | GALOSHES_DONT_HELP
