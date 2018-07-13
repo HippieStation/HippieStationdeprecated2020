@@ -54,7 +54,7 @@
 	name = "xray beam"
 	icon_state = "xray"
 	damage = 15
-	irradiate = 30
+	irradiate = 300
 	range = 15
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF
 
