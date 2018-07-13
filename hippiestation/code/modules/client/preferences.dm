@@ -59,10 +59,6 @@
 
 /datum/preferences/proc/hippie_dat_replace(current_tab)
 	//This proc is for menus other than game pref and char pref
-	if(!path)
-		. += "<div class='notice'>Please create an account to save your preferences</div>"
-
-	. += "<HR>"
 	if(current_tab == 3)
 		if(!gear_tab)
 			gear_tab = GLOB.loadout_items[1]
