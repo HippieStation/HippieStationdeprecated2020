@@ -118,15 +118,4 @@
 				holdingassembly.ui_interact(src)
 			holdingassembly.attack_self(src)
 			return
-		else
-			to_chat(world,"Got the wrong assembly, apparently")
-	else
-		to_chat(world,"Not the right type, apparently")
 	brainholder.do_work(6)
-
-//Assembly changes
-/obj/item/electronic_assembly/attackby(var/mob/user, var/obj/O)
-	var/obj/item/integrated_circuit/input/mmi_tank/unfilled_tank = locate(/obj/item/integrated_circuit/input/mmi_tank) in assembly_components
-	if(unfilled_tank.can_be_asked_input == 1)
-		unfilled_tank.item_input(user, O)
-	..()
