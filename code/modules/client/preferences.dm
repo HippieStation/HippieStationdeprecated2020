@@ -160,6 +160,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<a href='?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character Settings</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Game Preferences</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>OOC Preferences</a>"
+	dat += "<a href='?_src_=prefs;preference=tab;tab=3' [current_tab == 3 ? "class='linkOn'" : ""]>Loadout</a>" //hippie code
 
 	if(!path)
 		dat += "<div class='notice'>Please create an account to save your preferences</div>"
@@ -402,7 +403,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					mutant_category = 0
 
 			dat = add_hippie_choices(dat)
-			
+
 			if(CONFIG_GET(flag/join_with_mutant_humans))
 
 				if("tail_human" in pref_species.default_features)
@@ -560,6 +561,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			dat += "</td></tr></table>"
 
+
 		if(2) //OOC Preferences
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			dat += "<h2>OOC Settings</h2>"
@@ -591,6 +593,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b>Combo HUD Lighting:</b> <a href = '?_src_=prefs;preference=combohud_lighting'>[(toggles & COMBOHUD_LIGHTING)?"Full-bright":"No Change"]</a><br>"
 				dat += "</td>"
 			dat += "</tr></table>"
+		if(3)
+			dat += hippie_dat_replace(current_tab)
 
 	dat += "<hr><center>"
 
