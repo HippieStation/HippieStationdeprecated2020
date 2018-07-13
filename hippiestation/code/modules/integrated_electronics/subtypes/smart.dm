@@ -27,6 +27,9 @@
 	var/mob/living/brain/brainmob = null
 
 /obj/item/integrated_circuit/input/mmi_tank/attackby(var/obj/item/mmi/O, var/mob/user)
+	if(!istype(O,/obj/item/mmi) && !istype(O,/obj/item/mmi/posibrain))
+		to_chat(user,"<span class='warning'>You can't put that inside.</span>")
+		return
 	if(installed_brain)
 		to_chat(user,"<span class='warning'>There's already a brain inside.</span>")
 		to_chat(O,"<span class='warning'>There's already a brain inside.</span>")
@@ -72,10 +75,7 @@
 			brainmob.remote_control = installed_brain
 	..()
 
-/obj/item/integrated_circuit/input/proc/item_input(mob/user, obj/O)
-	return
-
-/obj/item/integrated_circuit/input/mmi_tank/brainholder/item_input(mob/user, obj/O)
+/obj/item/integrated_circuit/input/mmi_tank/brainholder/proc/item_input(mob/user, obj/O)
 	if(installed_brain)
 		to_chat(user,"<span class='warning'>There's already a brain inside.</span>")
 		to_chat(O,"<span class='warning'>There's already a brain inside.</span>")
@@ -87,13 +87,15 @@
 	installed_brain = OMMI
 	brainmob = OMMI.brainmob
 	can_be_asked_input = 0
-	to_chat(user, "<span class='notice'>You gently place \the man-machine interface inside the tank.</span>")
+	to_chat(user, "<span class='notice'>You gently place [O.name] inside the tank.</span>")
 	to_chat(OMMI, "<span class='notice'>You are slowly being placed inside the man-machine-interface tank.</span>")
 	brainmob.remote_control=src
 	set_pin_data(IC_OUTPUT, 1, OMMI)
 
 
 //Brain changes
+/mob/living/brain/var/check_bot_self = FALSE
+
 /mob/living/brain/ClickOn(atom/A, params)
 	..()
 	if(!istype(remote_control,/obj/item/integrated_circuit/input/mmi_tank))
@@ -101,6 +103,7 @@
 	var/obj/item/integrated_circuit/input/mmi_tank/brainholder=remote_control
 	brainholder.set_pin_data(IC_OUTPUT, 3, A)
 	var/list/modifiers = params2list(params)
+
 	if(modifiers["shift"])
 		brainholder.do_work(7)
 		return
@@ -110,12 +113,21 @@
 	if(modifiers["ctrl"])
 		brainholder.do_work(9)
 		return
+
 	if(A.type in typesof(/obj/item/electronic_assembly))
 		var/obj/item/electronic_assembly/CheckedAssembly = A
+
 		if(brainholder in CheckedAssembly.assembly_components)
 			var/obj/item/electronic_assembly/holdingassembly=A
+			check_bot_self=TRUE
+
 			if(holdingassembly.opened)
 				holdingassembly.ui_interact(src)
 			holdingassembly.attack_self(src)
+			check_bot_self=FALSE
 			return
+
 	brainholder.do_work(6)
+
+mob/living/brain/canUseTopic()
+	return	check_bot_self
