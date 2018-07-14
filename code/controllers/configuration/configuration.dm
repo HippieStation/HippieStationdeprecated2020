@@ -20,7 +20,13 @@
 
 	var/motd
 
+<<<<<<< HEAD
 /datum/controller/configuration/proc/Load()
+=======
+/datum/controller/configuration/proc/Load(_directory)
+	if(_directory)
+		directory = _directory
+>>>>>>> 09860c0169... Fixes config loading (#39126)
 	if(entries)
 		CRASH("[THIS_PROC_TYPE_WEIRD] called more than once!")
 	InitEntries()
