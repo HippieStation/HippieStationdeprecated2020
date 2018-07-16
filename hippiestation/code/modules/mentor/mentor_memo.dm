@@ -34,6 +34,7 @@
 			if(!query_memocheck.Execute())
 				var/err = query_memocheck.ErrorMsg()
 				log_game("SQL ERROR obtaining ckey from memo table. Error : \[[err]\]\n")
+				qdel(query_memocheck)
 				return
 			if(query_memocheck.NextRow())
 				to_chat(src, "You already have set a memo.")
@@ -47,6 +48,7 @@
 			if(!query_memoadd.Execute())
 				var/err = query_memoadd.ErrorMsg()
 				log_game("SQL ERROR adding new memo. Error : \[[err]\]\n")
+				qdel(query_memoadd)
 				return
 			log_admin("[key_name(src)] has set a mentor memo: [memotext]")
 			message_admins("[key_name_admin(src)] has set a mentor memo:<br>[memotext]")
@@ -55,6 +57,7 @@
 			if(!query_memolist.Execute())
 				var/err = query_memolist.ErrorMsg()
 				log_game("SQL ERROR obtaining ckey from memo table. Error : \[[err]\]\n")
+				qdel(query_memolist)
 				return
 			var/list/memolist = list()
 			while(query_memolist.NextRow())
@@ -71,6 +74,7 @@
 			if(!query_memofind.Execute())
 				var/err = query_memofind.ErrorMsg()
 				log_game("SQL ERROR obtaining memotext from memo table. Error : \[[err]\]\n")
+				qdel(query_memofind)
 				return
 			if(query_memofind.NextRow())
 				var/old_memo = query_memofind.item[1]
@@ -84,6 +88,7 @@
 				if(!update_query.Execute())
 					var/err = update_query.ErrorMsg()
 					log_game("SQL ERROR editing memo. Error : \[[err]\]\n")
+					qdel(update_query)
 					return
 				if(target_sql_ckey == sql_ckey)
 					log_admin("[key_name(src)] has edited their mentor memo from [old_memo] to [new_memo]")
@@ -96,6 +101,7 @@
 			if(!query_memoshow.Execute())
 				var/err = query_memoshow.ErrorMsg()
 				log_game("SQL ERROR obtaining ckey, memotext, timestamp, last_editor from memo table. Error : \[[err]\]\n")
+				qdel(query_memoshow)
 				return
 			var/output = null
 			while(query_memoshow.NextRow())
@@ -116,6 +122,7 @@
 			if(!query_memodellist.Execute())
 				var/err = query_memodellist.ErrorMsg()
 				log_game("SQL ERROR obtaining ckey from memo table. Error : \[[err]\]\n")
+				qdel(query_memodellist)
 				return
 			var/list/memolist = list()
 			while(query_memodellist.NextRow())
@@ -132,6 +139,7 @@
 			if(!query_memodel.Execute())
 				var/err = query_memodel.ErrorMsg()
 				log_game("SQL ERROR removing memo. Error : \[[err]\]\n")
+				qdel(quey_memodel)
 				return
 			if(target_sql_ckey == sql_ckey)
 				log_admin("[key_name(src)] has removed their mentor memo.")
