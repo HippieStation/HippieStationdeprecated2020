@@ -79,3 +79,12 @@
 /obj/item/storage/box/syndie_kit/armstrong/PopulateContents()
 	new /obj/item/armstrong_scroll(src)
 	new /obj/item/paper/armstrong_tutorial(src)
+
+/obj/item/storage/box/syndie_kit/scrake
+	name = "\improper Kevin Clamley's twisted killer kit"
+	desc = "Vroom vroom goes the saw."
+
+/obj/item/storage/box/syndie_kit/scrake/PopulateContents()
+	new /obj/item/clothing/suit/apron/chef/scrake(src)
+	new /obj/item/clothing/mask/surgical/scrake(src)
+	new /obj/item/twohanded/required/chainsaw/scrake_saw(src)
