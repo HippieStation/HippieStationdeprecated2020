@@ -20,18 +20,9 @@
 
 	if(candidates.len)
 		H = pick(candidates)
-		SSticker.mode.shadows += H.mind
-		H.mind.special_role = "shadowling"
-		to_chat(H, "<span class='shadowling'><b><i>You are a shadowling!</b></i></span>")
-		to_chat(H, "<span class='shadowling'><b><i>Something stirs in the space between worlds. A red light floods your mind, and suddenly you understand. Your human disguise has served you well, but it \
-		is time you cast it away. You are a shadowling, and you are to ascend at all costs.</b></i></span>")
-		to_chat(H, "<span class='shadowling'>Don't know how to play Shadowling? Read the wiki at https://wiki.hippiestation.com/index.php?title=Shadowling</span>")
-		SSticker.mode.finalize_shadowling(H.mind)
-		H.playsound_local(get_turf(H), 'hippiestation/sound/ambience/antag/sling.ogg', 100, FALSE, pressure_affected = FALSE)
-		message_admins("[H] has been made into a shadowling.")
-		candidates.Remove(H)
-		return 1
-	return 0
+		H.add_sling()
+		return TRUE
+	return FALSE
 
 /datum/admins/proc/makeVampire()
 	var/datum/game_mode/vampire/temp = new

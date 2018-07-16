@@ -72,7 +72,7 @@
 	reagent_act(user)
 	..()
 
-/obj/structure/mineral_door/transparent/reagent/CollidedWith(atom/movable/AM)
+/obj/structure/mineral_door/transparent/reagent/Bumped(atom/movable/AM)
 	reagent_act(AM)
 	..()
 
