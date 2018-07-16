@@ -21,7 +21,7 @@
 
 	priority_announce("Due to [cause], [plural] [name] have [movement] \
 		into the [location].", "Migration Alert",
-		'sound/effects/mousesqueek.ogg')
+		'sound/effects/mousesqueak.ogg')
 
 /datum/round_event/mice_migration/start()
 	SSsqueak.trigger_migration(rand(minimum_mice, maximum_mice))

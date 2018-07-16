@@ -25,7 +25,7 @@
 	var/lightswitch = TRUE
 
 	var/requires_power = TRUE
-	var/always_unpowered = FALSE	// This gets overriden to 1 for space in area/Initialize().
+	var/always_unpowered = FALSE	// This gets overridden to 1 for space in area/Initialize().
 
 	var/outdoors = FALSE //For space, the asteroid, lavaland, etc. Used with blueprints to determine if we are adding a new area (vs editing a station room)
 
@@ -441,7 +441,7 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 /atom/proc/has_gravity(turf/T)
 	if(!T || !isturf(T))
 		T = get_turf(src)
-	
+
 	if(!T)
 		return 0
 

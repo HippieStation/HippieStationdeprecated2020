@@ -45,7 +45,7 @@
 /datum/antagonist/cult/can_be_owned(datum/mind/new_owner)
 	. = ..()
 	if(. && !ignore_implant)
-		. = is_convertable_to_cult(new_owner.current,cult_team)
+		. = is_convertible_to_cult(new_owner.current,cult_team)
 
 /datum/antagonist/cult/greet()
 	to_chat(owner, "<span class='userdanger'>You are a member of the cult!</span>")
@@ -224,11 +224,11 @@
 	sac_objective.team = src
 
 	for(var/mob/living/carbon/human/player in GLOB.player_list)
-		if(player.mind && !player.mind.has_antag_datum(/datum/antagonist/cult) && !is_convertable_to_cult(player) && player.stat != DEAD)
+		if(player.mind && !player.mind.has_antag_datum(/datum/antagonist/cult) && !is_convertible_to_cult(player) && player.stat != DEAD)
 			target_candidates += player.mind
 
 	if(target_candidates.len == 0)
-		message_admins("Cult Sacrifice: Could not find unconvertable target, checking for convertable target.")
+		message_admins("Cult Sacrifice: Could not find unconvertible target, checking for convertible target.")
 		for(var/mob/living/carbon/human/player in GLOB.player_list)
 			if(player.mind && !player.mind.has_antag_datum(/datum/antagonist/cult) && player.stat != DEAD)
 				target_candidates += player.mind
@@ -248,7 +248,7 @@
 
 		objectives += sac_objective
 	else
-		message_admins("Cult Sacrifice: Could not find unconvertable or convertable target. WELP!")
+		message_admins("Cult Sacrifice: Could not find unconvertible or convertible target. WELP!")
 
 
 	//SUMMON OBJECTIVE

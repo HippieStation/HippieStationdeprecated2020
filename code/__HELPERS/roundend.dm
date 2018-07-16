@@ -45,7 +45,7 @@
 				category = "others"
 				mob_data += list("typepath" = m.type)
 		if(!escaped)
-			if(EMERGENCY_ESCAPED_OR_ENDGAMED && (m.onCentCom() || m.onSyndieBase()))
+			if(EMERGENCY_ESCAPED_OR_ENDGAMED && (m.onCentCom() || m.onSyndiebase()))
 				escaped = "escapees"
 				num_escapees++
 				if(shuttle_areas[get_area(m)])
@@ -317,7 +317,7 @@
 	if(M.mind && !isnewplayer(M))
 		if(M.stat != DEAD && !isbrain(M))
 			if(EMERGENCY_ESCAPED_OR_ENDGAMED)
-				if(!M.onCentCom() && !M.onSyndieBase())
+				if(!M.onCentCom() && !M.onSyndiebase())
 					parts += "<div class='panel stationborder'>"
 					parts += "<span class='marooned'>You managed to survive, but were marooned on [station_name()]...</span>"
 				else

@@ -442,7 +442,7 @@ Difficulty: Very Hard
 	activation_method = ACTIVATE_TOUCH
 	cooldown_add = 200
 	var/terrain_theme = "winter"
-	var/NewTerrainFloors
+	var/NewTerrainfloors
 	var/NewTerrainWalls
 	var/NewTerrainChairs
 	var/NewTerrainTables
@@ -456,18 +456,18 @@ Difficulty: Very Hard
 
 	switch(terrain_theme)
 		if("lavaland")//Depressurizes the place... and free cult metal, I guess.
-			NewTerrainFloors = /turf/open/floor/grass/snow/basalt
+			NewTerrainfloors = /turf/open/floor/grass/snow/basalt
 			NewTerrainWalls = /turf/closed/wall/mineral/cult
 			NewFlora = list(/mob/living/simple_animal/hostile/asteroid/goldgrub)
 			florachance = 1
 		if("winter") //Snow terrain is slow to move in and cold! Get the assistants to shovel your driveway.
-			NewTerrainFloors = /turf/open/floor/grass/snow
+			NewTerrainfloors = /turf/open/floor/grass/snow
 			NewTerrainWalls = /turf/closed/wall/mineral/wood
 			NewTerrainChairs = /obj/structure/chair/wood/normal
 			NewTerrainTables = /obj/structure/table/glass
 			NewFlora = list(/obj/structure/flora/grass/green, /obj/structure/flora/grass/brown, /obj/structure/flora/grass/both)
 		if("jungle") //Beneficial due to actually having breathable air. Plus, monkeys and bows and arrows.
-			NewTerrainFloors = /turf/open/floor/grass
+			NewTerrainfloors = /turf/open/floor/grass
 			NewTerrainWalls = /turf/closed/wall/mineral/sandstone
 			NewTerrainChairs = /obj/structure/chair/wood
 			NewTerrainTables = /obj/structure/table/wood
@@ -475,7 +475,7 @@ Difficulty: Very Hard
 							/obj/structure/flora/ausbushes/grassybush, /obj/structure/flora/ausbushes/sunnybush, /obj/structure/flora/tree/palm, /mob/living/carbon/monkey)
 			florachance = 20
 		if("ayy lmao") //Beneficial, turns stuff into alien alloy which is useful to cargo and research. Also repairs atmos.
-			NewTerrainFloors = /turf/open/floor/plating/abductor
+			NewTerrainfloors = /turf/open/floor/plating/abductor
 			NewTerrainWalls = /turf/closed/wall/mineral/abductor
 			NewTerrainChairs = /obj/structure/bed/abductor //ayys apparently don't have chairs. An entire species of people who only recline.
 			NewTerrainTables = /obj/structure/table/abductor
@@ -487,8 +487,8 @@ Difficulty: Very Hard
 			for(var/atom/Stuff in A)
 				if(isturf(Stuff))
 					var/turf/T = Stuff
-					if((isspaceturf(T) || isfloorturf(T)) && NewTerrainFloors)
-						var/turf/open/O = T.ChangeTurf(NewTerrainFloors)
+					if((isspaceturf(T) || isfloorturf(T)) && NewTerrainfloors)
+						var/turf/open/O = T.ChangeTurf(NewTerrainfloors)
 						if(O.air)
 							var/datum/gas_mixture/G = O.air
 							G.copy_from_turf(O)

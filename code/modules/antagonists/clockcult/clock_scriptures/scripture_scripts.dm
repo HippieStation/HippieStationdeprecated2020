@@ -14,7 +14,7 @@
 	whispered = TRUE
 	object_path = /obj/item/clockwork/replica_fabricator
 	creator_message = "<span class='brass'>You form a replica fabricator.</span>"
-	usage_tip = "Clockwork Walls cause nearby Tinkerer's Caches to generate components passively, making this a vital tool. Clockwork Floors heal toxin damage in Servants standing on them."
+	usage_tip = "Clockwork Walls cause nearby Tinkerer's Caches to generate components passively, making this a vital tool. Clockwork floors heal toxin damage in Servants standing on them."
 	tier = SCRIPTURE_SCRIPT
 	space_allowed = TRUE
 	primary_component = HIEROPHANT_ANSIBLE

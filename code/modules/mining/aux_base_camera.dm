@@ -20,7 +20,7 @@
 	dir = direct //This camera eye is visible as a drone, and needs to keep the dir updated
 	..()
 
-/obj/item/construction/rcd/internal //Base console's internal RCD. Roundstart consoles are filled, rebuilt cosoles start empty.
+/obj/item/construction/rcd/internal //base console's internal RCD. Roundstart consoles are filled, rebuilt cosoles start empty.
 	name = "internal RCD"
 	max_matter = 600 //Bigger container and faster speeds due to being specialized and stationary.
 	no_ammo_message = "<span class='warning'>Internal matter exhausted. Please add additional materials.</span>"
@@ -193,8 +193,8 @@
 	if(..())
 		return
 
-	var/list/buildlist = list("Walls and Floors" = 1,"Airlocks" = 2,"Deconstruction" = 3,"Windows and Grilles" = 4)
-	var/buildmode = input("Set construction mode.", "Base Console", null) in buildlist
+	var/list/buildlist = list("Walls and floors" = 1,"Airlocks" = 2,"Deconstruction" = 3,"Windows and Grilles" = 4)
+	var/buildmode = input("Set construction mode.", "base Console", null) in buildlist
 	B.RCD.mode = buildlist[buildmode]
 	to_chat(owner, "Build mode is now [buildmode].")
 

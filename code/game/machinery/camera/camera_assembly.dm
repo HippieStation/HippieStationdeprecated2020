@@ -13,7 +13,7 @@
 	icon = 'icons/obj/machines/camera.dmi'
 	icon_state = "camera1"
 	max_integrity = 150
-	//	Motion, EMP-Proof, X-Ray
+	//	Motion, EMP-Proof, X-ray
 	var/static/list/possible_upgrades = typecacheof(list(/obj/item/assembly/prox_sensor, /obj/item/stack/sheet/mineral/plasma, /obj/item/analyzer))
 	var/list/upgrades
 	var/state = 1

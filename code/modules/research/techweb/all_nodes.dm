@@ -1,7 +1,7 @@
 
 //Current rate: 132500 research points in 90 minutes
 
-//Base Node
+//base Node
 /datum/techweb_node/base
 	id = "base"
 	starting_node = TRUE

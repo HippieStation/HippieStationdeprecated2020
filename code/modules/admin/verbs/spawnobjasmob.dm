@@ -20,12 +20,12 @@
       "name" = list("desc" = "Name", "type" = "string", "value" = "Bob"),
 			"maxhealth" = list("desc" = "Max. health", "type" = "number", "value" = 100),
       "access" = list("desc" = "Access ID", "type" = "datum", "path" = "/obj/item/card/id", "value" = "Default"),
-			"objtype" = list("desc" = "Base obj type", "type" = "datum", "path" = "/obj", "value" = "[chosen]"),
+			"objtype" = list("desc" = "base obj type", "type" = "datum", "path" = "/obj", "value" = "[chosen]"),
 			"googlyeyes" = list("desc" = "Googly eyes", "type" = "boolean", "value" = "No"),
 			"disableai" = list("desc" = "Disable AI", "type" = "boolean", "value" = "Yes"),
 			"idledamage" = list("desc" = "Damaged while idle", "type" = "boolean", "value" = "No"),
 			"dropitem" = list("desc" = "Drop obj on death", "type" = "boolean", "value" = "Yes"),
-			"mobtype" = list("desc" = "Base mob type", "type" = "datum", "path" = "/mob/living/simple_animal/hostile/mimic/copy", "value" = "/mob/living/simple_animal/hostile/mimic/copy"),
+			"mobtype" = list("desc" = "base mob type", "type" = "datum", "path" = "/mob/living/simple_animal/hostile/mimic/copy", "value" = "/mob/living/simple_animal/hostile/mimic/copy"),
 			"ckey" = list("desc" = "ckey", "type" = "ckey", "value" = "none"),
     )
 	)

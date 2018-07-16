@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(disease_ability_singletons, list(
 			stage_speed += initial(S.stage_speed)
 			transmittable += initial(S.transmittable)
 			threshold_block += "<br><br>[initial(S.threshold_desc)]"
-		stat_block = "Resistance: [resistance]<br>Stealth: [stealth]<br>Stage Speed: [stage_speed]<br>Transmittability: [transmittable]<br><br>"
+		stat_block = "Resistance: [resistance]<br>Stealth: [stealth]<br>Stage Speed: [stage_speed]<br>Transmissibility: [transmittable]<br><br>"
 
 /datum/disease_ability/proc/CanBuy(mob/camera/disease/D)
 	if(world.time < D.next_adaptation_time)
@@ -148,7 +148,7 @@ GLOBAL_LIST_INIT(disease_ability_singletons, list(
 	if(!L)
 		return FALSE
 	if(L.stat != CONSCIOUS)
-		to_chat(D, "<span class='warning'>Your host must be concious to cough.</span>")
+		to_chat(D, "<span class='warning'>Your host must be conscious to cough.</span>")
 		return FALSE
 	to_chat(D, "<span class='notice'>You force [L.real_name] to cough.</span>")
 	L.emote("cough")
@@ -181,7 +181,7 @@ GLOBAL_LIST_INIT(disease_ability_singletons, list(
 	if(!L)
 		return FALSE
 	if(L.stat != CONSCIOUS)
-		to_chat(D, "<span class='warning'>Your host must be concious to sneeze.</span>")
+		to_chat(D, "<span class='warning'>Your host must be conscious to sneeze.</span>")
 		return FALSE
 	to_chat(D, "<span class='notice'>You force [L.real_name] to sneeze.</span>")
 	L.emote("sneeze")
@@ -277,7 +277,7 @@ GLOBAL_LIST_INIT(disease_ability_singletons, list(
 	cost = 4
 	required_total_points = 8
 	short_desc = "Cause victims to choke."
-	long_desc = "Cause victims to choke, threatening asphyxiation. Decreases stats, especially transmittability."
+	long_desc = "Cause victims to choke, threatening asphyxiation. Decreases stats, especially Transmissibility."
 
 
 /datum/disease_ability/symptom/confusion
@@ -295,7 +295,7 @@ GLOBAL_LIST_INIT(disease_ability_singletons, list(
 	cost = 4
 	required_total_points = 8
 	short_desc = "Cause victims to become eternally young."
-	long_desc = "Cause victims to become eternally young. Provides boosts to all stats except transmittability."
+	long_desc = "Cause victims to become eternally young. Provides boosts to all stats except Transmissibility."
 
 
 /datum/disease_ability/symptom/vomit
@@ -304,7 +304,7 @@ GLOBAL_LIST_INIT(disease_ability_singletons, list(
 	cost = 4
 	required_total_points = 8
 	short_desc = "Cause victims to vomit."
-	long_desc = "Cause victims to vomit. Slightly increases transmittability. Vomiting also also causes the victims to lose nutrition and removes some toxin damage."
+	long_desc = "Cause victims to vomit. Slightly increases Transmissibility. Vomiting also also causes the victims to lose nutrition and removes some toxin damage."
 
 
 /datum/disease_ability/symptom/voice_change
@@ -367,7 +367,7 @@ GLOBAL_LIST_INIT(disease_ability_singletons, list(
 	cost = 4
 	required_total_points = 8
 	short_desc = "Cause victims to lose weight."
-	long_desc = "Cause victims to lose weight, and make it almost immpossible for them to gain nutrition from food. Reduced nutrition allows your infection to spread more easily from hosts, especially by sneezing."
+	long_desc = "Cause victims to lose weight, and make it almost impossible for them to gain nutrition from food. Reduced nutrition allows your infection to spread more easily from hosts, especially by sneezing."
 
 
 /datum/disease_ability/symptom/metabolism_heal

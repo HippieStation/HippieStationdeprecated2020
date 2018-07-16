@@ -1258,7 +1258,7 @@
 	group = "Service"
 
 /datum/supply_pack/service/noslipfloor
-	name = "High-traction Floor Tiles"
+	name = "High-traction floor Tiles"
 	desc = "Make slipping a thing of the past with thirty industrial-grade anti-slip floortiles!"
 	cost = 2000
 	contains = list(/obj/item/stack/tile/noslip/thirty)
@@ -1739,7 +1739,7 @@
 					/obj/item/storage/pill_bottle/lsd,
 					/obj/item/storage/pill_bottle/aranesp,
 					/obj/item/storage/pill_bottle/stimulant,
-					/obj/item/toy/cards/deck/syndicate,				
+					/obj/item/toy/cards/deck/syndicate,
 					/obj/item/reagent_containers/food/drinks/bottle/absinthe,
 					/obj/item/clothing/under/syndicate/tacticool,
 					/obj/item/storage/fancy/cigarettes/cigpack_syndicate,
