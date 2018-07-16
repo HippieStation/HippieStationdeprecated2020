@@ -166,15 +166,9 @@
 
 		update |= picked.heal_damage(brute, burn, stamina, only_robotic, only_organic, FALSE)
 
-<<<<<<< HEAD
-		brute -= (brute_was - picked.brute_dam)
-		burn -= (burn_was - picked.burn_dam)
-		stamina -= (stamina_was - picked.stamina_dam)
-=======
 		brute = round(brute - (brute_was - picked.brute_dam), DAMAGE_PRECISION)
 		burn = round(burn - (burn_was - picked.burn_dam), DAMAGE_PRECISION)
 		stamina = round(stamina - (stamina_was - picked.stamina_dam), DAMAGE_PRECISION)
->>>>>>> 259dc6f386... Merge pull request #39139 from AnturK/iloveprecision
 
 		parts -= picked
 	if(updating_health)
