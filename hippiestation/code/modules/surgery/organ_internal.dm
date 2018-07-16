@@ -31,7 +31,7 @@
 
 /obj/item/organ/internal/shadowtumor/Insert(mob/living/carbon/M, special, drop_if_replaced)
 	. = ..()
-	SSticker.mode.add_thrall(M.mind)
+	M.add_thrall()
 
 /obj/item/organ/internal/shadowtumor/on_find(mob/living/finder)
 	. = ..()
@@ -61,7 +61,7 @@
 	eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_VISIBLE
 	eyes.sight_flags = initial(eyes.sight_flags)
 	M.update_sight()
-	SSticker.mode.remove_thrall(M.mind, FALSE)
+	M.remove_thrall()
 	M.visible_message("<span class='warning'>A strange black mass falls from [M]'s head!</span>")
 	new /obj/item/organ/internal/shadowtumor(get_turf(M))
 	return ..()

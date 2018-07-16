@@ -601,7 +601,7 @@
 	if(!client)
 		return
 
-	if(health <= HEALTH_THRESHOLD_CRIT)
+	if(health <= crit_modifier())
 		var/severity = 0
 		switch(health)
 			if(-20 to -10)
@@ -730,7 +730,7 @@
 			stat = UNCONSCIOUS
 			blind_eyes(1)
 		else
-			if(health <= HEALTH_THRESHOLD_CRIT && !has_trait(TRAIT_NOSOFTCRIT))
+			if(health <= crit_modifier() && !has_trait(TRAIT_NOSOFTCRIT))
 				stat = SOFT_CRIT
 			else
 				stat = CONSCIOUS
@@ -866,6 +866,7 @@
 	.["Modify bodypart"] = "?_src_=vars;[HrefToken()];editbodypart=[REF(src)]"
 	.["Modify organs"] = "?_src_=vars;[HrefToken()];editorgans=[REF(src)]"
 	.["Hallucinate"] = "?_src_=vars;[HrefToken()];hallucinate=[REF(src)]"
+	.["Give martial arts"] = "?_src_=vars;[HrefToken()];givemartialart=[REF(src)]"
 	.["Give brain trauma"] = "?_src_=vars;[HrefToken()];givetrauma=[REF(src)]"
 	.["Cure brain traumas"] = "?_src_=vars;[HrefToken()];curetraumas=[REF(src)]"
 
