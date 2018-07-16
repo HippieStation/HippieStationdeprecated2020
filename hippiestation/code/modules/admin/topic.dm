@@ -50,6 +50,7 @@
 		var/datum/DBQuery/query_get_mentor = SSdbcore.NewQuery("SELECT id FROM [format_table_name("mentor")] WHERE ckey = '[ckey]'")
 		if(query_get_mentor.NextRow())
 			to_chat(usr, "<span class='danger'>[ckey] is already a mentor.</span>")
+			qdel(query_get_mentor)
 			return
 		var/datum/DBQuery/query_add_mentor = SSdbcore.NewQuery("INSERT INTO `[format_table_name("mentor")]` (`id`, `ckey`) VALUES (null, '[ckey]')")
 		if(!query_add_mentor.warn_execute())
