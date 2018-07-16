@@ -64,7 +64,7 @@
 			while(query_memolist.NextRow())
 				var/lkey = query_memolist.item[1]
 				memolist += "[lkey]"
-			qdel(query_memolist
+			qdel(query_memolist)
 			if(!memolist.len)
 				to_chat(src, "No memos found in database.")
 				return
@@ -144,7 +144,7 @@
 			if(!query_memodel.Execute())
 				var/err = query_memodel.ErrorMsg()
 				log_game("SQL ERROR removing memo. Error : \[[err]\]\n")
-				qdel(quey_memodel)
+				qdel(query_memodel)
 				return
 			if(target_sql_ckey == sql_ckey)
 				log_admin("[key_name(src)] has removed their mentor memo.")
@@ -152,4 +152,4 @@
 			else
 				log_admin("[key_name(src)] has removed [target_sql_ckey]'s mentor memo.")
 				message_admins("[key_name_admin(src)] has removed [target_sql_ckey]'s mentor memo.")
-			qdel(quey_memodel)
+			qdel(query_memodel)
