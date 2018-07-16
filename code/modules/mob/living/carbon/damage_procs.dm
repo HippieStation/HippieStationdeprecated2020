@@ -248,4 +248,3 @@
 	if(B)
 		var/adjusted_amount = amount - B.get_brain_damage()
 		B.adjust_brain_damage(adjusted_amount, null)
-
