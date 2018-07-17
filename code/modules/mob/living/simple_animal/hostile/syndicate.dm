@@ -7,7 +7,7 @@
 */
 
 
-///////////////Base mob////////////
+///////////////base mob////////////
 /obj/effect/light_emitter/red_energy_sword //used so there's a combination of both their head light and light coming off the energy sword
 	set_luminosity = 2
 	set_cap = 2.5
@@ -119,7 +119,7 @@
 	loot = list(/obj/effect/gibspawner/human)
 
 /mob/living/simple_animal/hostile/syndicate/ranged/pilot //caravan ambush ruin
-	name = "Syndicate Salvage Pilot"	
+	name = "Syndicate Salvage Pilot"
 	loot = list(/obj/effect/mob_spawn/human/corpse/syndicatesoldier)
 
 /mob/living/simple_animal/hostile/syndicate/ranged/infiltrator //shuttle loan event

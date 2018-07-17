@@ -94,6 +94,6 @@
 		return FALSE
 	for(var/V in D.hosts)
 		var/mob/living/L = V
-		if(L.onCentCom() || L.onSyndieBase())
+		if(L.onCentCom() || L.onSyndiebase())
 			return TRUE
 	return FALSE

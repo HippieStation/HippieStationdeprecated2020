@@ -1,5 +1,5 @@
 /datum/map_template/shuttle
-	name = "Base Shuttle Template"
+	name = "base Shuttle Template"
 	var/prefix = "_maps/shuttles/"
 	var/suffix
 	var/port_id
@@ -34,7 +34,7 @@
 		if(length(place.baseturfs) < 2) // Some snowflake shuttle shit
 			continue
 		place.baseturfs.Insert(3, /turf/baseturf_skipover/shuttle)
-		
+
 		for(var/obj/structure/closet/closet in place)
 			if(closet.anchorable)
 				closet.anchored = TRUE
@@ -51,15 +51,15 @@
 
 /datum/map_template/shuttle/emergency
 	port_id = "emergency"
-	name = "Base Shuttle Template (Emergency)"
+	name = "base Shuttle Template (Emergency)"
 
 /datum/map_template/shuttle/cargo
 	port_id = "cargo"
-	name = "Base Shuttle Template (Cargo)"
+	name = "base Shuttle Template (Cargo)"
 
 /datum/map_template/shuttle/ferry
 	port_id = "ferry"
-	name = "Base Shuttle Template (Ferry)"
+	name = "base Shuttle Template (Ferry)"
 
 /datum/map_template/shuttle/whiteship
 	port_id = "whiteship"

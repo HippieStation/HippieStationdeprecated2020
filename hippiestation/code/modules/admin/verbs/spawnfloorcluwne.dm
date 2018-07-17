@@ -1,6 +1,6 @@
 /client/proc/spawn_floor_cluwne()
 	set category = "Fun"
-	set name = "Unleash Floor Cluwne"
+	set name = "Unleash floor Cluwne"
 	set desc = "Pick a specific target or just let it select randomly and spawn the floor cluwne mob on the station. Be warned: spawning more than one may cause issues!"
 	var/target
 

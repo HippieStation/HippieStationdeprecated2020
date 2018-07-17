@@ -1,6 +1,6 @@
-//Floorbot
+//floorbot
 /mob/living/simple_animal/bot/floorbot
-	name = "\improper Floorbot"
+	name = "\improper floorbot"
 	desc = "A little floor repairing robot, he looks so excited!"
 	icon = 'icons/mob/aibots.dmi'
 	icon_state = "floorbot0"
@@ -13,13 +13,13 @@
 	radio_key = /obj/item/encryptionkey/headset_eng
 	radio_channel = "Engineering"
 	bot_type = FLOOR_BOT
-	model = "Floorbot"
+	model = "floorbot"
 	bot_core = /obj/machinery/bot_core/floorbot
 	window_id = "autofloor"
-	window_name = "Automatic Station Floor Repairer v1.1"
+	window_name = "Automatic Station floor Repairer v1.1"
 	path_image_color = "#FFA500"
 
-	var/process_type //Determines what to do when process_scan() recieves a target. See process_scan() for details.
+	var/process_type //Determines what to do when process_scan() receives a target. See process_scan() for details.
 	var/targetdirection
 	var/replacetiles = 0
 	var/placetiles = 0
@@ -73,7 +73,7 @@
 	var/dat
 	dat += hack(user)
 	dat += showpai(user)
-	dat += "<TT><B>Floor Repairer Controls v1.1</B></TT><BR><BR>"
+	dat += "<TT><B>floor Repairer Controls v1.1</B></TT><BR><BR>"
 	dat += "Status: <A href='?src=[REF(src)];power=1'>[on ? "On" : "Off"]</A><BR>"
 	dat += "Maintenance panel panel is [open ? "opened" : "closed"]<BR>"
 	dat += "Special tiles: "
@@ -268,7 +268,7 @@
 	else
 		return 1
 
-//Floorbots, having several functions, need sort out special conditions here.
+//floorbots, having several functions, need sort out special conditions here.
 /mob/living/simple_animal/bot/floorbot/process_scan(scan_target)
 	var/result
 	var/turf/open/floor/F
