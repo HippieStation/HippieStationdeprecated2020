@@ -97,3 +97,26 @@
 	if(H)
 		H.scream_vol = initial(H.scream_vol)
 		H.scream_oxyloss = initial(H.scream_oxyloss)
+
+/datum/quirk/chronicbrainrot
+	name = "Chronic Brainrot"
+	desc = "You have a permanent, non-infectious version of brainrot that has rendered you permanently retarded and progressively gives you brain damage. However, the incredible amounts of retardation you have gained allow you to have an imaginary friend."
+	value = 0
+	gain_text = "<span class='danger'>You feel like you're slowly becoming dumber.</span>"
+	lose_text = "<span class='notice'>You no longer feel as if you're getting dumber...</span>"
+
+/datum/quirk/chronicbrainrot/on_process()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(prob(50))
+		H.adjustBrainLoss(rand(0.25, 1))
+
+/datum/quirk/chronicbrainrot/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	if(istype(H))
+		H.gain_trauma(/datum/brain_trauma/mild/dumbness, TRAUMA_RESILIENCE_ABSOLUTE)
+		H.gain_trauma(/datum/brain_trauma/special/imaginary_friend, TRAUMA_RESILIENCE_ABSOLUTE)
+
+/datum/quirk/chronicbrainrot/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	H.cure_trauma_type(brain_trauma_type = /datum/brain_trauma/mild/dumbness, TRAUMA_RESILIENCE_ABSOLUTE)
+	H.cure_trauma_type(brain_trauma_type = /datum/brain_trauma/special/imaginary_friend, TRAUMA_RESILIENCE_ABSOLUTE)

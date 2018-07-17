@@ -312,6 +312,9 @@
 	if(!I) //If there's nothing to drop, the drop is automatically succesfull. If(unEquip) should generally be used to check for NODROP_1.
 		return TRUE
 
+	if(!newloc)	//Hippie change, added newloc generation so that forceMove no longer acts on null when working with human dummies
+		newloc = loc
+
 	if((I.item_flags & NODROP) && !force)
 		return FALSE
 
