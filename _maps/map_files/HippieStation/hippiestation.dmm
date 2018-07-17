@@ -37087,12 +37087,14 @@
 /turf/open/floor/plasteel,
 /area/science/mixing)
 "bOV" = (
-/obj/machinery/computer/security/telescreen/toxins{
-	dir = 4;
-	pixel_x = 30
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
+	},
+/obj/machinery/computer/security/telescreen/toxins{
+	dir = 8;
+	layer = 3.05;
+	network = list("toxins");
+	pixel_x = 30
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
@@ -49958,6 +49960,7 @@
 	},
 /obj/machinery/computer/security/telescreen/engine{
 	dir = 4;
+	network = list("engine","singularity");
 	pixel_x = -27
 	},
 /turf/open/floor/plasteel/vault,
@@ -62012,7 +62015,7 @@
 	},
 /obj/machinery/computer/security/telescreen/engine{
 	dir = 4;
-	network = list("Singularity");
+	network = list("engine","singularity");
 	pixel_x = -27
 	},
 /turf/open/floor/plasteel,
@@ -63766,6 +63769,7 @@
 	},
 /obj/machinery/computer/security/telescreen/engine{
 	dir = 4;
+	network = list("Singularity");
 	pixel_x = -27
 	},
 /obj/machinery/holopad,
