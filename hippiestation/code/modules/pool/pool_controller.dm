@@ -50,10 +50,13 @@
 			message_admins("[key_name_admin(user)] emagged the poolcontroller")
 
 /obj/machinery/poolcontroller/attackby(obj/item/W, mob/user)
+	if(issilicon(user) && get_dist(src,user)>1)
+		return attack_hand(user)
+
 	if(shocked && !(stat & NOPOWER))
 		shock(user,50)
 
-	if(stat & (NOPOWER|BROKEN))
+	if(stat & (BROKEN))
 		return
 
 	if(istype(W,/obj/item/reagent_containers/glass/beaker))
@@ -89,18 +92,19 @@
 					timer = 15
 		else
 			to_chat(user, "<span class='notice'>This machine only accepts full large beakers of one reagent.</span>")
-		return
-
-	if (istype(W,/obj/item/screwdriver))
-		cut_overlays()
-		panel_open = !panel_open
-		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")
-		if(panel_open)
-			add_overlay("wires")
-		return
+			return
+	else if(panel_open && is_wire_tool(W))
+		wires.interact(user)
 	else
-		return attack_hand(user)
+		return ..()
 
+/obj/machinery/poolcontroller/screwdriver_act(mob/living/user, obj/item/W)
+	cut_overlays()
+	panel_open = !panel_open
+	to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")
+	if(panel_open)
+		add_overlay("wires")
+	return TRUE
 
 //procs
 /obj/machinery/poolcontroller/proc/shock(mob/user, prb)
@@ -144,7 +148,7 @@
 	if(reagenttimer > 0)
 		reagenttimer--
 	if(stat & (NOPOWER|BROKEN))
-		return
+		return PROCESS_KILL
 	else if(reagenttimer == 0 && !drained)
 		poolreagent()
 
@@ -307,7 +311,7 @@
 			return "<span class='bad'>Scalding</span>"
 		else
 			return "Outside of possible range."
-	
+
 /obj/machinery/poolcontroller/attack_hand(mob/user)
 	if(shocked && !(stat & NOPOWER))
 		shock(user,50)
@@ -316,6 +320,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 	user.set_machine(src)
+	var/datum/browser/popup = new(user, "Pool Controller", name, 300, 450)
 	var/dat = ""
 	if(timer)
 		dat += "<span class='notice'>[timer] seconds left until pool can operate again.</span><BR>"
@@ -351,7 +356,6 @@
 		<br>[beaker ? "<a href='?src=\ref[src];beaker=1'>Remove Beaker</a>" : "<span class='linkOff'>Remove Beaker</span>"]
 		</div>
 		"})
-	var/datum/browser/popup = new(user, "Pool Controller", name, 300, 450)
 	popup.set_content(dat)
 	popup.open()
 
