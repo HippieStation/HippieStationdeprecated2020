@@ -1,3 +1,7 @@
+datum/controller/subsystem/vote
+	var/min_restart_time = 60 MINUTES
+	var/min_shuttle_time = 30 MINUTES
+
 /datum/controller/subsystem/vote/proc/get_result()
 	//get the highest number of votes
 	var/greatest_votes = 0
@@ -179,10 +183,18 @@
 				CONFIG_SET(flag/allow_vote_mode, !CONFIG_GET(flag/allow_vote_mode))
 		if("restart")
 			if(CONFIG_GET(flag/allow_vote_restart) || usr.client.holder)
-				initiate_vote("restart",usr.key)
+				if(min_restart_time < world.time)
+					initiate_vote("restart",usr.key)
+				else
+					to_chat(world, "<span style='boldannounce'>Restart can only initiate after [DisplayTimeText(min_restart_time)].</span>")
+					message_admins("A restart vote cannot start until [DisplayTimeText(min_restart_time)] into the round.")
 		if("shuttlecall")
 			if(CONFIG_GET(flag/allow_vote_shuttlecall) || usr.client.holder)
-				initiate_vote("shuttlecall",usr.key)
+				if(min_shuttle_time < world.time)
+					initiate_vote("shuttlecall",usr.key)
+				else
+					to_chat(world, "<span style='boldannounce'>Shuttle call can only initiate after [DisplayTimeText(min_shuttle_time)].</span>")
+					message_admins("A shuttle call vote cannot start until [DisplayTimeText(min_shuttle_time)] into the round.")
 		if("gamemode")
 			if(CONFIG_GET(flag/allow_vote_mode) || usr.client.holder)
 				initiate_vote("gamemode",usr.key)
