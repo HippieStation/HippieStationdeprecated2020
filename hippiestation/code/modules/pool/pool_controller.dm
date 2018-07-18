@@ -50,9 +50,6 @@
 			message_admins("[key_name_admin(user)] emagged the poolcontroller")
 
 /obj/machinery/poolcontroller/attackby(obj/item/W, mob/user)
-	if(issilicon(user) && get_dist(src,user)>1)
-		return attack_hand(user)
-
 	if(shocked && !(stat & NOPOWER))
 		shock(user,50)
 
@@ -102,6 +99,7 @@
 	cut_overlays()
 	panel_open = !panel_open
 	to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")
+	W.play_tool_sound(src)
 	if(panel_open)
 		add_overlay("wires")
 	return TRUE
@@ -263,8 +261,7 @@
 	update_icon()
 
 /obj/machinery/poolcontroller/Topic(href, href_list)
-	if(!in_range(src, usr) || !isliving(usr))
-		return
+	..()
 	if(timer > 0)
 		return
 	if(href_list["IncreaseTemp"])
