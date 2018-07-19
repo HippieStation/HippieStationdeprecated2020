@@ -11,9 +11,9 @@
 	var/mob/living/carbon/attached = null
 	var/mode = IV_INJECTING
 	var/obj/item/reagent_containers/beaker = null
-	var/static/list/drip_containers = list(/obj/item/reagent_containers/blood,
-		/obj/item/reagent_containers/food,
-		/obj/item/reagent_containers/glass)
+	var/static/list/drip_containers = typecacheof(list(/obj/item/reagent_containers/blood,
+									/obj/item/reagent_containers/food,
+									/obj/item/reagent_containers/glass))
 
 /obj/machinery/iv_drip/Initialize()
 	. = ..()
@@ -92,7 +92,7 @@
 
 
 /obj/machinery/iv_drip/attackby(obj/item/W, mob/user, params)
-	if(is_type_in_list(W, drip_containers))//hippie code
+	if(is_type_in_typecache(W, drip_containers))
 		if(beaker)
 			to_chat(user, "<span class='warning'>There is already a reagent container loaded!</span>")
 			return
