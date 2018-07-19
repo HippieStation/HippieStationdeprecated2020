@@ -112,7 +112,7 @@
 
 /obj/machinery/iv_drip/process()
 	if(!attached)
-		return
+		return PROCESS_KILL
 
 	if(!(get_dist(src, attached) <= 1 && isturf(attached.loc)))
 		to_chat(attached, "<span class='userdanger'>The IV drip needle is ripped out of you!</span>")
