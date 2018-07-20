@@ -31,7 +31,7 @@
 	poster_structure = null
 	. = ..()
 
-// These icon_states may be overriden, but are for mapper's convinence
+// These icon_states may be overridden, but are for mapper's convinence
 /obj/item/poster/random_contraband
 	name = "random contraband poster"
 	poster_type = /obj/structure/sign/poster/contraband/random

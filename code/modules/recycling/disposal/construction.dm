@@ -30,7 +30,7 @@
 
 	if(flip)
 		GET_COMPONENT(rotcomp,/datum/component/simple_rotation)
-		rotcomp.BaseRot(null,ROTATION_FLIP)
+		rotcomp.baseRot(null,ROTATION_FLIP)
 
 	update_icon()
 
@@ -52,7 +52,7 @@
 			layer = initial(layer)
 
 	else if(ispath(pipe_type, /obj/machinery/disposal/bin))
-		// Disposal bins recieve special icon treating
+		// Disposal bins receive special icon treating
 		if(anchored)
 			icon_state = "disposal"
 		else

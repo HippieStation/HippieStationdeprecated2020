@@ -98,7 +98,7 @@
 
 	RegisterSignal(parent, COMSIG_CLICK_ALT, .proc/on_alt_click)
 	RegisterSignal(parent, COMSIG_MOUSEDROP_ONTO, .proc/mousedrop_onto)
-	RegisterSignal(parent, COMSIG_MOUSEDROPPED_ONTO, .proc/mousedrop_recieve) //remind me to change this to receive once spellcheck pr is merged - YoYoBatty
+	RegisterSignal(parent, COMSIG_MOUSEDROPPED_ONTO, .proc/mousedrop_receive) //remind me to change this to receive once spellcheck pr is merged - YoYoBatty
 
 	update_actions()
 
@@ -519,7 +519,7 @@
 	if(force || M.CanReach(parent, view_only = TRUE))
 		show_to(M)
 
-/datum/component/storage/proc/mousedrop_recieve(atom/movable/O, mob/M)
+/datum/component/storage/proc/mousedrop_receive(atom/movable/O, mob/M)
 	if(isitem(O))
 		var/obj/item/I = O
 		if(iscarbon(M) || isdrone(M))

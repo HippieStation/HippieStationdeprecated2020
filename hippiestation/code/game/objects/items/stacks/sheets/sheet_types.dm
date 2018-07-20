@@ -129,7 +129,7 @@ GLOBAL_LIST_INIT(reagent_recipes, list ( \
 					F.reagent_type = RR
 					F.name ="[reagent_type] floor tiles"
 					F.singular_name = "[reagent_type] floor tile"
-					F.desc = "Floor tiles made of [reagent_type]"
+					F.desc = "floor tiles made of [reagent_type]"
 					F.add_atom_colour(reagent_type.color, FIXED_COLOUR_PRIORITY)
 					break
 				else

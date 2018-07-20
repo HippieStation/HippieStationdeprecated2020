@@ -1,14 +1,14 @@
-/datum/mapGeneratorModule/bottomLayer/repairFloorPlasteel
+/datum/mapGeneratorModule/bottomLayer/repairfloorPlasteel
 	spawnableTurfs = list(/turf/open/floor/plasteel = 100)
 	var/ignore_wall = FALSE
 	allowAtomsOnSpace = TRUE
 
-/datum/mapGeneratorModule/bottomLayer/repairFloorPlasteel/place(turf/T)
+/datum/mapGeneratorModule/bottomLayer/repairfloorPlasteel/place(turf/T)
 	if(isclosedturf(T) && !ignore_wall)
 		return FALSE
 	return ..()
 
-/datum/mapGeneratorModule/bottomLayer/repairFloorPlasteel/flatten
+/datum/mapGeneratorModule/bottomLayer/repairfloorPlasteel/flatten
 	ignore_wall = TRUE
 
 /datum/mapGeneratorModule/border/normalWalls
@@ -56,17 +56,17 @@
 	GLOB.reloading_map = FALSE
 
 /datum/mapGenerator/repair
-	modules = list(/datum/mapGeneratorModule/bottomLayer/repairFloorPlasteel,
+	modules = list(/datum/mapGeneratorModule/bottomLayer/repairfloorPlasteel,
 	/datum/mapGeneratorModule/bottomLayer/repressurize)
-	buildmode_name = "Repair: Floor"
+	buildmode_name = "Repair: floor"
 
 /datum/mapGenerator/repair/delete_walls
-	modules = list(/datum/mapGeneratorModule/bottomLayer/repairFloorPlasteel/flatten,
+	modules = list(/datum/mapGeneratorModule/bottomLayer/repairfloorPlasteel/flatten,
 	/datum/mapGeneratorModule/bottomLayer/repressurize)
-	buildmode_name = "Repair: Floor: Flatten Walls"
+	buildmode_name = "Repair: floor: Flatten Walls"
 
 /datum/mapGenerator/repair/enclose_room
-	modules = list(/datum/mapGeneratorModule/bottomLayer/repairFloorPlasteel/flatten,
+	modules = list(/datum/mapGeneratorModule/bottomLayer/repairfloorPlasteel/flatten,
 	/datum/mapGeneratorModule/border/normalWalls,
 	/datum/mapGeneratorModule/bottomLayer/repressurize)
 	buildmode_name = "Repair: Generate Aired Room"

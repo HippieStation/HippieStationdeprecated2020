@@ -153,7 +153,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 			stage = STAGE_HAUNT
 			return target = current_victim
 
-	message_admins("Floor Cluwne was deleted due to a lack of valid targets, if this was a manually targeted instance please re-evaluate your choice.")
+	message_admins("floor Cluwne was deleted due to a lack of valid targets, if this was a manually targeted instance please re-evaluate your choice.")
 	qdel(src)
 
 

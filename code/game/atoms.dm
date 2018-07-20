@@ -140,7 +140,7 @@
 				if(T in shuttle_area)
 					return TRUE
 
-/atom/proc/onSyndieBase()
+/atom/proc/onSyndiebase()
 	var/turf/T = get_turf(src)
 	if(!T)
 		return FALSE
