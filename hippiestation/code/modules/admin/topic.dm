@@ -54,10 +54,13 @@
 			return
 		var/datum/DBQuery/query_add_mentor = SSdbcore.NewQuery("INSERT INTO `[format_table_name("mentor")]` (`id`, `ckey`) VALUES (null, '[ckey]')")
 		if(!query_add_mentor.warn_execute())
+			qdel(query_get_mentor)
 			qdel(query_add_mentor)
 			return
 		var/datum/DBQuery/query_add_admin_log = SSdbcore.NewQuery("INSERT INTO `[format_table_name("admin_log")]` (`id` ,`datetime` ,`adminckey` ,`adminip` ,`log` ) VALUES (NULL , NOW( ) , '[usr.ckey]', '[usr.client.address]', 'Added new mentor [ckey]');")
 		if(!query_add_admin_log.warn_execute())
+			qdel(query_get_mentor)
+			qdel(query_add_mentor)
 			qdel(query_add_admin_log)
 			return
 		qdel(query_get_mentor)
@@ -90,6 +93,7 @@
 			return
 		var/datum/DBQuery/query_add_admin_log = SSdbcore.NewQuery("INSERT INTO `[format_table_name("admin_log")]` (`id` ,`datetime` ,`adminckey` ,`adminip` ,`log` ) VALUES (NULL , NOW( ) , '[usr.ckey]', '[usr.client.address]', 'Removed mentor [ckey]');")
 		if(!query_add_admin_log.warn_execute())
+			qdel(query_remove_mentor)
 			qdel(query_add_admin_log)
 			return
 		qdel(query_remove_mentor)

@@ -51,10 +51,12 @@
 				var/err = query_memoadd.ErrorMsg()
 				log_game("SQL ERROR adding new memo. Error : \[[err]\]\n")
 				qdel(query_memocheck)
+				qdel(query_memoadd)
 				return
 			log_admin("[key_name(src)] has set a mentor memo: [memotext]")
 			message_admins("[key_name_admin(src)] has set a mentor memo:<br>[memotext]")
 			qdel(query_memocheck)
+			qdel(query_memoadd)
 		if("Edit")
 			var/datum/DBQuery/query_memolist = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("mentor_memo")]")
 			if(!query_memolist.Execute())
@@ -79,12 +81,14 @@
 			if(!query_memofind.Execute())
 				var/err = query_memofind.ErrorMsg()
 				log_game("SQL ERROR obtaining memotext from memo table. Error : \[[err]\]\n")
+				qdel(query_memolist)
 				qdel(query_memofind)
 				return
 			if(query_memofind.NextRow())
 				var/old_memo = query_memofind.item[1]
 				var/new_memo = input("Input new memo", "New Memo", "[old_memo]", null) as message
 				if(!new_memo)
+					qdel(query_memolist)
 					qdel(query_memofind)
 					return
 				new_memo = sanitizeSQL(new_memo)
@@ -94,6 +98,8 @@
 				if(!update_query.Execute())
 					var/err = update_query.ErrorMsg()
 					log_game("SQL ERROR editing memo. Error : \[[err]\]\n")
+					qdel(query_memolist)
+					qdel(query_memofind)
 					qdel(update_query)
 					return
 				if(target_sql_ckey == sql_ckey)
@@ -102,9 +108,9 @@
 				else
 					log_admin("[key_name(src)] has edited [target_sql_ckey]'s mentor memo from [old_memo] to [new_memo]")
 					message_admins("[key_name_admin(src)] has edited [target_sql_ckey]'s mentor memo from<br>[old_memo]<br>to<br>[new_memo]")
+				qdel(update_query)
 			qdel(query_memolist)
 			qdel(query_memofind)
-			qdel(update_query)
 		if("Show")
 			var/datum/DBQuery/query_memoshow = SSdbcore.NewQuery("SELECT ckey, memotext, timestamp, last_editor FROM [format_table_name("mentor_memo")]")
 			if(!query_memoshow.Execute())
@@ -152,6 +158,7 @@
 			if(!query_memodel.Execute())
 				var/err = query_memodel.ErrorMsg()
 				log_game("SQL ERROR removing memo. Error : \[[err]\]\n")
+				qdel(query_memodellist)
 				qdel(query_memodel)
 				return
 			if(target_sql_ckey == sql_ckey)
