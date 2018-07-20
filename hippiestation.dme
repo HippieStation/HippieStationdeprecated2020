@@ -2927,6 +2927,7 @@
 #include "hippiestation\code\modules\hydroponics\buttflower.dm"
 #include "hippiestation\code\modules\hydroponics\limbflower.dm"
 #include "hippiestation\code\modules\hydroponics\seed_extractor.dm"
+#include "hippiestation\code\modules\hydroponics\beekeeping\beekeeper_suit.dm"
 #include "hippiestation\code\modules\integrated_electronics\subtypes\input.dm"
 #include "hippiestation\code\modules\integrated_electronics\subtypes\output.dm"
 #include "hippiestation\code\modules\jobs\job_types\captain.dm"
