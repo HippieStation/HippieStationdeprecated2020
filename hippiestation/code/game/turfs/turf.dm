@@ -2,7 +2,7 @@
 	var/elevation = 10
 	var/pinned = null
 
-/turf/Destroy(force)
+/turf/Destroy()
 	if (pinned)
 		var/mob/living/carbon/human/H = pinned
 
