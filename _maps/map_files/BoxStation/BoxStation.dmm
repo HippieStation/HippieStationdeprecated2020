@@ -23913,10 +23913,7 @@
 "bkb" = (
 /obj/machinery/camera{
 	c_tag = "Medbay Morgue";
-<<<<<<< HEAD
-=======
 	network = list("ss13","medbay");
->>>>>>> c610897397... Puts toasters on tables (#38803)
 	dir = 8
 	},
 /obj/machinery/airalarm{
@@ -24443,10 +24440,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/camera{
 	c_tag = "Medbay Foyer";
-<<<<<<< HEAD
-=======
 	network = list("ss13","medbay");
->>>>>>> c610897397... Puts toasters on tables (#38803)
 	dir = 8
 	},
 /obj/machinery/cell_charger,
@@ -26840,10 +26834,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay West";
-<<<<<<< HEAD
-=======
 	network = list("ss13","medbay");
->>>>>>> c610897397... Puts toasters on tables (#38803)
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -27528,10 +27519,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay East";
-<<<<<<< HEAD
-=======
 	network = list("ss13","medbay");
->>>>>>> c610897397... Puts toasters on tables (#38803)
 	dir = 8;
 	pixel_y = -22
 	},
@@ -28860,11 +28848,7 @@
 /obj/machinery/camera{
 	c_tag = "Genetics Research";
 	dir = 1;
-<<<<<<< HEAD
-	network = list("ss13","rd")
-=======
 	network = list("ss13","medbay")
->>>>>>> c610897397... Puts toasters on tables (#38803)
 	},
 /obj/machinery/firealarm{
 	dir = 1;
@@ -28898,10 +28882,7 @@
 "bvB" = (
 /obj/machinery/camera{
 	c_tag = "Genetics Access";
-<<<<<<< HEAD
-=======
 	network = list("ss13","medbay");
->>>>>>> c610897397... Puts toasters on tables (#38803)
 	dir = 8;
 	pixel_y = -22
 	},
@@ -29259,12 +29240,8 @@
 "bww" = (
 /obj/structure/chair,
 /obj/machinery/camera{
-<<<<<<< HEAD
-	c_tag = "Surgery Observation"
-=======
 	c_tag = "Surgery Observation";
 	network = list("ss13","medbay")
->>>>>>> c610897397... Puts toasters on tables (#38803)
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
@@ -29349,10 +29326,7 @@
 /obj/structure/table/glass,
 /obj/machinery/camera{
 	c_tag = "Medbay Cryogenics";
-<<<<<<< HEAD
-=======
 	network = list("ss13","medbay");
->>>>>>> c610897397... Puts toasters on tables (#38803)
 	dir = 2
 	},
 /obj/item/reagent_containers/glass/beaker/cryoxadone,
@@ -29371,10 +29345,7 @@
 "bwL" = (
 /obj/machinery/camera{
 	c_tag = "Genetics Cloning";
-<<<<<<< HEAD
-=======
 	network = list("ss13","medbay");
->>>>>>> c610897397... Puts toasters on tables (#38803)
 	dir = 4
 	},
 /obj/structure/table,
@@ -30947,10 +30918,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay Treatment Center";
-<<<<<<< HEAD
-=======
 	network = list("ss13","medbay");
->>>>>>> c610897397... Puts toasters on tables (#38803)
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -31984,10 +31952,7 @@
 /obj/structure/closet/secure_closet/medical3,
 /obj/machinery/camera{
 	c_tag = "Medbay Storage";
-<<<<<<< HEAD
-=======
 	network = list("ss13","medbay");
->>>>>>> c610897397... Puts toasters on tables (#38803)
 	dir = 2
 	},
 /turf/open/floor/plasteel/white,
@@ -32070,10 +32035,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay South";
-<<<<<<< HEAD
-=======
 	network = list("ss13","medbay");
->>>>>>> c610897397... Puts toasters on tables (#38803)
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
@@ -32366,10 +32328,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay Recovery Room";
-<<<<<<< HEAD
-=======
 	network = list("ss13","medbay");
->>>>>>> c610897397... Puts toasters on tables (#38803)
 	dir = 8
 	},
 /obj/machinery/iv_drip,
@@ -32611,10 +32570,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Chief Medical Office";
-<<<<<<< HEAD
-=======
 	network = list("ss13","medbay");
->>>>>>> c610897397... Puts toasters on tables (#38803)
 	dir = 8;
 	pixel_y = -22
 	},
@@ -34162,10 +34118,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Surgery Operating";
-<<<<<<< HEAD
-=======
 	network = list("ss13","medbay");
->>>>>>> c610897397... Puts toasters on tables (#38803)
 	dir = 1;
 	pixel_x = 22
 	},
@@ -34487,12 +34440,8 @@
 	pixel_y = 29
 	},
 /obj/machinery/camera{
-<<<<<<< HEAD
-	c_tag = "Virology Break Room"
-=======
 	c_tag = "Virology Break Room";
 	network = list("ss13","medbay")
->>>>>>> c610897397... Puts toasters on tables (#38803)
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -36799,10 +36748,7 @@
 /obj/structure/closet/emcloset,
 /obj/machinery/camera{
 	c_tag = "Virology Airlock";
-<<<<<<< HEAD
-=======
 	network = list("ss13","medbay");
->>>>>>> c610897397... Puts toasters on tables (#38803)
 	dir = 2
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -38759,12 +38705,8 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/camera{
-<<<<<<< HEAD
-	c_tag = "Virology Module"
-=======
 	c_tag = "Virology Module";
 	network = list("ss13","medbay")
->>>>>>> c610897397... Puts toasters on tables (#38803)
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
