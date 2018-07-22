@@ -30,7 +30,7 @@
 		used = TRUE
 	if(killchance == TRUE)
 		if(prob(percentchance))
-			user << "You didn't have enough fighting spirit!"
+			to_chat(user, "You didn't have enough fighting spirit!")
 			user.setToxLoss(100000) //Husks them to stop clone cheeze (not anymore now that it in an event)
 			return
 	used = TRUE
