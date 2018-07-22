@@ -41,7 +41,7 @@
 		var/mob/dead/observer/C = pick(candidates)
 		spawn_guardian(user, C.key)
 		if(playsound == TRUE)
-			user << 'hippiestation/sound/misc/standactivated.ogg'
+			playsound(src.loc, 'hippiestation/sound/misc/standactivated.ogg')
 	else
 		to_chat(user, "[failure_message]")
 		used = FALSE
@@ -51,17 +51,17 @@
 		return
 	if(!M.client)
 		return
-	user << "<span class='notice'>You raise the arrow into the air.</span>"
+	to_chat(user, "<span class='notice'>You raise the arrow into the air.</span>")
 	user.visible_message("<span class='warning'>[user] prepares to stab [M]!</span>")
 	if(do_mob(user,M,50,uninterruptible=0))
 		inUse = TRUE
 		if(useonothers == TRUE)
 			if(isguardian(user) && !allowguardian)
-				user << "<span class='holoparasite'>[mob_name] chains are not allowed.</span>"
+				to_chat(user, "<span class='holoparasite'>[mob_name] chains are not allowed.</span>")
 				return
 			for(var/bad_mob in holo_black)
 				if(istype(M, bad_mob))
-					user << "<span class='warning'>The arrow rejects the [M]!</span>"
+					to_chat(user, "<span class='warning'>The arrow rejects the [M]!</span>")
 					return
 
 			var/mob/living/L = M
@@ -71,13 +71,13 @@
 
 			for(var/mob/living/simple_animal/hostile/guardian/G in GLOB.alive_mob_list)
 				if (G.summoner == L)
-					L << "You already have a [mob_name]!"
+					to_chat(L, "You already have a [mob_name]!")
 					return
 			if(user.mind && user.mind.has_antag_datum(/datum/antagonist/changeling) && !allowling)
 				to_chat(user, "[ling_failure]")
 				return
 			if(used == TRUE)
-				L << "[used_message]"
+				to_chat(L, "[used_message]")
 				return
 			if(limiteduses == TRUE)
 				used = TRUE
@@ -86,7 +86,7 @@
 					L.visible_message("You didn't have enough fighting spirit!")
 					L.setToxLoss(100000) //Husks them to stop clone cheeze (not anymore now that its on mining)
 					return
-			L << "[use_message]"
+			to_chat(L, "[use_message]")
 			var/list/mob/dead/observer/candidates = pollCandidates("Do you want to play as the [mob_name] of [L.real_name]?", "pAI", null, FALSE, 100)
 			inUse = FALSE
 
@@ -94,7 +94,7 @@
 				var/mob/dead/observer/C = pick(candidates)
 				spawn_guardian(user, C.key)
 				if(playsound == TRUE)
-					user << 'hippiestation/sound/misc/standactivated.ogg'
+					playsound(src.loc, 'hippiestation/sound/misc/standactivated.ogg')
 			else
 				to_chat(user, "[failure_message]")
 				used = FALSE
