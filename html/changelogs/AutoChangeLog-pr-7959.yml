@@ -1,8 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - rscadd: "Proper regen system."
-  - balance: "Consumes energy faster, regens a bit slower, +regen delay changes."
-  - bugfix: "Fixed certain projectiles and attacks not draining energy properly."
-  - bugfix: "Throwing fast now only works in strength mode."
-  - refactor: "Completely cleaned up the energy recharge and discharge code."

@@ -1,5 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - rscadd: "Light bulbs randomly flicker when hit."
-  - tweak: "Light flicker proc is rewritten to flicker more like a damaged bulb (Changes to a dark brown colour and plays sparking + flickering noises)."

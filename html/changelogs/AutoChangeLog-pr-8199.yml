@@ -1,5 +1,0 @@
-author: "yoyobatty"
-delete-after: True
-changes: 
-  - bugfix: "Fixed toxins launch site telescreen being inside of window and having wrong camera network list assignment"
-  - bugfix: "Fixed engineering telescreens having incorrect or inappropriate network list assignments"

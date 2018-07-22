@@ -1,4 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - rscadd: "Added a delay for restart and shuttle call votes. 30 minutes for shuttle and 1 hour for restart."
