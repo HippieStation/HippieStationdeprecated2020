@@ -37,6 +37,23 @@
 		to_chat(H, "<span class='danger'>Your precious wings burn to a crisp!</span>")
 		H.dna.features["moth_wings"] = "Burnt Off"
 		handle_mutant_bodyparts(H)
-		
+
 /datum/species/moth/check_roundstart_eligible()
 	return TRUE
+
+/mob/living/carbon/human/attackby(obj/item/W, mob/living/carbon/human/user)
+	if(dna.species.id == "moth") //specifies the species
+		var/static/list/item_types = list(/obj/item/clothing,
+		/obj/item/clothing/neck,
+		/obj/item/clothing/head,
+		/obj/item/clothing/mask,
+		/obj/item/clothing/under,
+		/obj/item/clothing/shoes) //lists the tasty snacks
+		if(is_type_in_list(W, /obj/item/clothing))
+			var/obj/item/clothing/C = W
+			playsound(get_turf(src), 'sound/items/eatfood.ogg', 70,1)
+			visible_message("<span class='alert'>[user] bites into a [C].</span>")
+			nutrition += 20
+			C.take_damage(50, BRUTE, "melee", 1)
+		else
+			return ..()
