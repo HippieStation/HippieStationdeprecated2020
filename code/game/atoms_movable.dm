@@ -776,8 +776,6 @@
 	if(anchored || throwing)
 		return FALSE
 	return TRUE
-<<<<<<< HEAD
-=======
 
 
 /obj/item/proc/do_pickup_animation(turf/target)
@@ -813,4 +811,3 @@
 	animate(I, alpha = 175, pixel_x = to_x, pixel_y = to_y, time = 3, easing = CUBIC_EASING)
 	sleep(1)
 	animate(I, alpha = 0, time = 1)
->>>>>>> 5aa6922c59... Fixes the pickup animation. (#39261)
