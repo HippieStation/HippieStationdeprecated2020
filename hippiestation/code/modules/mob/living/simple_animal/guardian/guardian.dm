@@ -76,7 +76,7 @@
 			if(user.mind && user.mind.has_antag_datum(/datum/antagonist/changeling) && !allowling)
 				to_chat(user, "[ling_failure]")
 				return
-			if(used == TRUE)
+			if(used)
 				to_chat(L, "[used_message]")
 				return
 			if(limiteduses)
