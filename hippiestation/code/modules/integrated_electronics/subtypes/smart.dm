@@ -22,30 +22,27 @@
 		)
 	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 150
-	can_be_asked_input = 1
-	var/obj/item/mmi/installed_brain = null
-	var/mob/living/brain/brainmob = null
+	can_be_asked_input = TRUE
+	var/obj/item/mmi/installed_brain
 
 /obj/item/integrated_circuit/input/mmi_tank/attackby(var/obj/item/mmi/O, var/mob/user)
-	if(!istype(O,/obj/item/mmi) && !istype(O,/obj/item/mmi/posibrain))
+	if(!istype(O,/obj/item/mmi))
 		to_chat(user,"<span class='warning'>You can't put that inside.</span>")
 		return
 	if(installed_brain)
 		to_chat(user,"<span class='warning'>There's already a brain inside.</span>")
-		to_chat(O,"<span class='warning'>There's already a brain inside.</span>")
 		return
 	user.transferItemToLoc(O,src)
 	installed_brain = O
-	brainmob = O.brainmob
-	can_be_asked_input = 0
+	can_be_asked_input = FALSE
 	to_chat(user, "<span class='notice'>You gently place \the man-machine interface inside the tank.</span>")
 	to_chat(O, "<span class='notice'>You are slowly being placed inside the man-machine-interface tank.</span>")
-	brainmob.remote_control=src
+	O.brainmob.remote_control=src
 	set_pin_data(IC_OUTPUT, 1, O)
 
 /obj/item/integrated_circuit/input/mmi_tank/attack_self(var/mob/user)
 	if(installed_brain)
-		src.RemoveBrain()
+		RemoveBrain()
 		to_chat(user, "<span class='notice'>You slowly lift [installed_brain] out of the MMI tank.</span>")
 		playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 		installed_brain = null
@@ -68,29 +65,12 @@
 
 /obj/item/integrated_circuit/input/mmi_tank/proc/RemoveBrain()
 	if(installed_brain)
-		can_be_asked_input = 1
+		can_be_asked_input = TRUE
 		installed_brain.forceMove(drop_location())
 		set_pin_data(IC_OUTPUT, 1, WEAKREF(null))
-		if(brainmob)
-			brainmob.remote_control = installed_brain
+		if(installed_brain.brainmob)
+			installed_brain.brainmob.remote_control = installed_brain
 	..()
-
-/obj/item/integrated_circuit/input/mmi_tank/brainholder/proc/item_input(mob/user, obj/O)
-	if(installed_brain)
-		to_chat(user,"<span class='warning'>There's already a brain inside.</span>")
-		to_chat(O,"<span class='warning'>There's already a brain inside.</span>")
-		return
-	if(!(istype(O,/obj/item/mmi)))
-		to_chat(user,"<span class='warning'>This assembly accepts only a brain.</span>")
-	var/obj/item/mmi/OMMI=O
-	user.transferItemToLoc(OMMI,src)
-	installed_brain = OMMI
-	brainmob = OMMI.brainmob
-	can_be_asked_input = 0
-	to_chat(user, "<span class='notice'>You gently place [O.name] inside the tank.</span>")
-	to_chat(OMMI, "<span class='notice'>You are slowly being placed inside the man-machine-interface tank.</span>")
-	brainmob.remote_control=src
-	set_pin_data(IC_OUTPUT, 1, OMMI)
 
 
 //Brain changes
@@ -114,7 +94,7 @@
 		brainholder.do_work(9)
 		return
 
-	if(A.type in typesof(/obj/item/electronic_assembly))
+	if(istype(A,/obj/item/electronic_assembly))
 		var/obj/item/electronic_assembly/CheckedAssembly = A
 
 		if(brainholder in CheckedAssembly.assembly_components)
