@@ -37,7 +37,7 @@
 				</ol>
 				<p>
 				It really is that easy! Good luck!
-	
+
 				</body>
 				</html>
 				"}
@@ -263,13 +263,13 @@
     			}
 			</script>
 			<p id='loading'>You start skimming through the manual... <span style="text-decoration: underline;">(please wait a few seconds while we fetch info)</span></p>
-			<iframe width='100%' height='97%' onload="pageloaded(this)" src="[wikiurl]/[page_link]?printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
+			<iframe width='100%' height='97%' onload="pageloaded(this)" src="[wikiurl]index.php?title=[page_link]?printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
 			</body>
 
 			</html>
 
 			"}
-				//hippie change - added "<span style="text-decoration: underline;">(please wait a few seconds while we fetch info)</span>"
+				//hippie change - added "<span style="text-decoration: underline;">(please wait a few seconds while we fetch info)</span>" and edited src=""
 
 /obj/item/book/manual/wiki/chemistry
 	name = "Chemistry Textbook"
@@ -345,14 +345,14 @@
 	author = "Sir John Rose"
 	title = "Barman Recipes"
 	page_link = "Guide_to_food_and_drinks"
-	
+
 /obj/item/book/manual/wiki/robotics_cyborgs
 	name = "Robotics for Dummies"
 	icon_state = "borgbook"
 	author = "XISC"
 	title = "Robotics for Dummies"
 	page_link = "Guide_to_robotics"
-	
+
 /obj/item/book/manual/wiki/research_and_development
 	name = "Research and Development 101"
 	icon_state = "rdbook"
