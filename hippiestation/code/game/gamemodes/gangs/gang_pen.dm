@@ -25,7 +25,7 @@
 	if(!M.client)
 		to_chat(user, "<span class='warning'>A braindead gangster is an useless gangster!</span>")
 		return
-	var/datum/team/gang = L.gang
+	var/datum/team/gang/gang = L.gang
 	something_that_makes_this_dude_a_gangster()
 	cooldown = TRUE
 	icon_state = "pen_blink"

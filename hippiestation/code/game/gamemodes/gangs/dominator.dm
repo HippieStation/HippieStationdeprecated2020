@@ -67,7 +67,7 @@
 		var/time_remaining = gang.domination_time
 		if(time_remaining > 0)
 			if(excessive_walls_check(src))
-				gang.domination_timer += 20
+				gang.domination_time += 20
 				playsound(loc, 'sound/machines/buzz-two.ogg', 50, 0)
 				if(spam_prevention < DOM_BLOCKED_SPAM_CAP)
 					spam_prevention++
@@ -203,7 +203,7 @@
 		return
 
 	var/time = round(determine_domination_time(tempgang)/60,0.1)
-	if(alert(user,"With [round((tempgang.territory.len/GLOB.start_state.num_territories)*100, 1)]% station control, a takeover will require [time] minutes.\nYour gang will be unable to gain influence while it is active.\nThe entire station will likely be alerted to it once it starts.\nYou have [tempgang.dom_attempts] attempt(s) remaining. Are you ready?","Confirm","Ready","Later") == "Ready")
+	if(alert(user,"A takeover will require [time] minutes.\nYour gang will be unable to gain influence while it is active.\nThe entire station will likely be alerted to it once it starts.\nYou have [tempgang.dom_attempts] attempt(s) remaining. Are you ready?","Confirm","Ready","Later") == "Ready")
 		if((tempgang.domination_time) || !tempgang.dom_attempts || !in_range(src, user) || !isturf(loc))
 			return 0
 
@@ -219,7 +219,7 @@
 		operating = TRUE
 		update_icon()
 
-		countdown.color = gang.color_hex
+		countdown.color = gang.color
 		countdown.start()
 
 		set_light(3)

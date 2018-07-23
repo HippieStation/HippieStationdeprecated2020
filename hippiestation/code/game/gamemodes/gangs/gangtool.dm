@@ -11,7 +11,7 @@
 	throw_speed = 3
 	throw_range = 7
 	flags_1 = CONDUCT_1
-	var/datum/team/gang //Which gang uses this?
+	var/datum/team/gang/gang //Which gang uses this?
 	var/recalling = 0
 	var/outfits = 2
 	var/free_pen = 0
@@ -41,10 +41,10 @@
 			dat += "This device is not authorized to promote.<br>"
 	else
 		if(gang.domination_time != NOT_DOMINATING)
-			dat += "<center><font color='red'>Takeover In Progress:<br><B>[gang.domination_time_remaining()] seconds remain</B></font></center>"
+			dat += "<center><font color='red'>Takeover In Progress:<br><B>[gang.domination_time] seconds remain</B></font></center>"
 
 		dat += "Registration: <B>[gang.name] Gang Boss</B><br>"
-		dat += "Organization Size: <B>[gang.members.len]</B> | Station Control: <B>[gang.territory.len] territories under control.</B><br>"
+		dat += "Organization Size: <B>[gang.members.len]</B> | Station Control: <B>[gang.territories.len] territories under control.</B><br>"
 		dat += "Time until Influence grows: <B>[time2text(gang.next_point_time - world.time, "mm:ss")]</B><br>"
 		dat += "<a href='?src=[REF(src)];commute=1'>Send message to Gang</a><br>"
 		dat += "<a href='?src=[REF(src)];recall=1'>Recall shuttle</a><br>"
@@ -110,28 +110,13 @@
 	var/message = stripped_input(user,"Discreetly send a gang-wide message.","Send Message") as null|text
 	if(!message || !can_use(user))
 		return
-	if(user.z > 2)
+	if(!is_station_level(user.z))
 		to_chat(user, "<span class='info'>[icon2html(src, user)]Error: Station out of range.</span>")
 		return
-	var/list/members = list()
-	members += gang.gangsters
-	members += gang.bosses
-	if(members.len)
-		var/gang_rank = gang.bosses.Find(user.mind)
-		switch(gang_rank)
-			if(1)
-				gang_rank = "Gang Boss"
-			if(2)
-				gang_rank = "1st Lieutenant"
-			if(3)
-				gang_rank = "2nd Lieutenant"
-			if(4)
-				gang_rank = "3rd Lieutenant"
-			else
-				gang_rank = "[gang_rank - 1]th Lieutenant"
-		var/ping = "<span class='danger'><B><i>[gang.name] [gang_rank]</i>: [message]</B></span>"
-		for(var/datum/mind/ganger in members)
-			if(ganger.current && (ganger.current.z <= 2) && (ganger.current.stat == CONSCIOUS))
+	if(gang.members.len)
+		var/ping = "<span class='danger'><B><i>[gang.name] [user in gang.leaders ? "Leader" : "Gangster"]</i>: [message]</B></span>"
+		for(var/datum/mind/ganger in gang.members)
+			if(ganger.current && is_station_level(ganger.current.z) && (ganger.current.stat == CONSCIOUS))
 				to_chat(ganger.current, ping)
 		for(var/mob/M in GLOB.dead_mob_list)
 			var/link = FOLLOW_LINK(M, user)
@@ -142,17 +127,13 @@
 /obj/item/device/gangtool/proc/register_device(mob/user)
 	if(gang)	//It's already been registered!
 		return
-	if((promotable && (user.mind in SSticker.mode.get_gangsters())) || (user.mind in SSticker.mode.get_gang_bosses()))
-		gang = user.mind.gang_datum
+	var/datum/antagonist/gang/G = user.mind.has_antag_datum(/datum/antagonist/gang, FALSE)
+	if((promotable && G) || (user.mind.has_antag_datum(/datum/antagonist/gang/boss)))
+		gang = G.gang
 		gang.gangtools += src
 		icon_state = "gangtool-[gang.color]"
-		if(!(user.mind in gang.bosses))
-			var/cached_influence = gang.gangsters[user.mind]
-			SSticker.mode.remove_gangster(user.mind, 0, 2)
-			gang.bosses[user.mind] = cached_influence
-			user.mind.gang_datum = gang
-			user.mind.special_role = "[gang.name] Gang Lieutenant"
-			gang.add_gang_hud(user.mind)
+		if(!(user.mind in gang.leaders))// replace gang datum with boss datum! todo
+			G.promote()
 			log_game("[key_name(user)] has been promoted to Lieutenant in the [gang.name] Gang")
 			free_pen = 1
 			gang.message_gangtools("[user] has been promoted to Lieutenant.")
@@ -178,7 +159,7 @@
 	if(!gang.recalls)
 		to_chat(usr, "<span class='warning'>Error: Unable to access communication arrays. Firewall has logged our signature and is blocking all further attempts.</span>")
 
-	gang.message_gangtools("[usr] is attempting to recall the emergency shuttle.")
+	gang.message_gangtools("[user] is attempting to recall the emergency shuttle.")
 	recalling = 1
 	to_chat(loc, "<span class='info'>[icon2html(src, loc)]Generating shuttle recall order with codes retrieved from last call signal...</span>")
 
@@ -198,7 +179,7 @@
 		return 0
 
 	var/turf/userturf = get_turf(user)
-	if(userturf.z != ZLEVEL_STATION_PRIMARY) //Shuttle can only be recalled while on station
+	if(is_station_level(userturf.z)) //Shuttle can only be recalled while on station
 		to_chat(user, "<span class='warning'>[icon2html(src, user)]Error: Device out of range of station communication arrays.</span>")
 		recalling = 0
 		return 0
@@ -215,10 +196,9 @@
 	recalling = 0
 	log_game("[key_name(user)] has tried to recall the shuttle with a gangtool.")
 	message_admins("[key_name_admin(user)] has tried to recall the shuttle with a gangtool.", 1)
-	userturf = get_turf(user)
-	if(userturf.z == ZLEVEL_STATION_PRIMARY) //Check one more time that they are on station.
+	if(is_station_level(user.z)) //Check one more time that they are on station.
 		if(SSshuttle.cancelEvac(user))
-			gang.recalls -= 1
+			gang.recalls--
 			return 1
 
 	to_chat(loc, "<span class='info'>[icon2html(src, loc)]No response recieved. Emergency shuttle cannot be recalled at this time.</span>")
@@ -233,7 +213,7 @@
 		return 0
 	if(!user.mind)
 		return 0
-	if(gang && (user.mind in gang.bosses))	//If it's already registered, only let the gang's bosses use this
+	if(gang && (user.mind in gang.leaders))	//If it's already registered, only let the gang's bosses use this
 		return 1
 	return 0
 
