@@ -1,5 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - bugfix: "Fixes our map from having incorrect network tags assigned to cameras and telescreens pointing the the wrong networks"
-  - tweak: "Removed cycle linked airlocks on doors that had the helper"

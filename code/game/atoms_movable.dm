@@ -151,19 +151,11 @@
 	if(!direct)
 		direct = get_dir(src, newloc)
 	setDir(direct)
-	
-	if(!loc.Exit(src))
-		return
-	for(var/i in loc)
-		if(i == src)
-			continue
-		var/atom/movable/thing = i
-		if(!thing.Uncross(src, newloc))
-			if(thing.flags_1 & ON_BORDER_1)
-				Bump(thing)
-			return
 
-	if(!newloc.Enter(src))
+	if(!loc.Exit(src, newloc))
+		return
+
+	if(!newloc.Enter(src, src.loc))
 		return
 
 	// Past this is the point of no return
@@ -303,16 +295,17 @@
 	return 1
 
 /atom/movable/Destroy(force)
-
 	QDEL_NULL(proximity_monitor)
 	QDEL_NULL(language_holder)
-	
-	unbuckle_all_mobs(force=1)
 
 	unbuckle_all_mobs(force=1)
 
 	. = ..()
 	if(loc)
+		//Restore air flow if we were blocking it (movables with ATMOS_PASS_PROC will need to do this manually if necessary)
+		if(((CanAtmosPass == ATMOS_PASS_DENSITY && density) || CanAtmosPass == ATMOS_PASS_NO) && isturf(loc))
+			CanAtmosPass = ATMOS_PASS_YES
+			air_update_turf(TRUE)
 		loc.handle_atom_del(src)
 	for(var/atom/movable/AM in contents)
 		qdel(AM)
@@ -781,3 +774,38 @@
 	if(anchored || throwing)
 		return FALSE
 	return TRUE
+
+
+/obj/item/proc/do_pickup_animation(turf/target)
+	set waitfor = FALSE
+	var/image/I = image(icon = src, loc = loc, layer = layer + 0.1)
+	I.plane = GAME_PLANE
+	I.transform *= 0.75
+	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	var/direction = get_dir(src, target)
+	var/to_x = 0
+	var/to_y = 0
+	if(direction & NORTH)
+		to_y = 32
+	else if(direction & SOUTH)
+		to_y = -32
+
+	if(direction & EAST)
+		to_x = 32
+	else if(direction & WEST)
+		to_x = -32
+
+	if(!direction)
+		to_y = 16
+
+	flick_overlay(I, GLOB.clients, 6)
+	var/matrix/M = new
+	M.Turn(pick(-30, 30))
+
+	animate(I, transform = M, time = 1)
+	sleep(1)
+	animate(I, transform = matrix(), time = 1)
+	sleep(1)
+	animate(I, alpha = 175, pixel_x = to_x, pixel_y = to_y, time = 3, easing = CUBIC_EASING)
+	sleep(1)
+	animate(I, alpha = 0, time = 1)
