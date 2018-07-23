@@ -1,6 +1,6 @@
 /datum/antagonist/gang
-	var/name = "Gangster"
-	var/roundend_category = "gangsters"
+	name = "Gangster"
+	roundend_category = "gangsters"
 	can_coexist_with_others = FALSE
 	job_rank = ROLE_GANG
 	antagpanel_category = "Gang"
@@ -58,8 +58,10 @@
 	var/old_gang = gang
 	var/datum/mind/old_owner = owner
 	owner.remove_antag_datum(/datum/antagonist/gang)
-	var/datum/antagonist/gang/leader/new_boss = new()
+	var/datum/antagonist/gang/boss/new_boss = new
+	new_boss.silent = TRUE
 	old_owner.add_antag_datum(new_boss,old_gang)
+	new_boss.silent = FALSE
 	to_chat(old_owner, "<span class='userdanger'>Stuff to add!</span>")
 
 /*no clue
@@ -160,8 +162,6 @@
 		return 0//dude's in an enemy gang oh fuck,also check if it's a boss
 	if(check && gangster_mind.current.isloyal()) //Check to see if the potential gangster is implanted
 		return 1
-	G.gangsters[gangster_mind] = GANGSTER_SOLDIER_STARTING_INFLUENCE
-	gangster_mind.gang_datum = G
 	if(check)
 		if(iscarbon(gangster_mind.current))
 			var/mob/living/carbon/carbon_mob = gangster_mind.current
@@ -169,11 +169,7 @@
 			carbon_mob.flash_act(1, 1)
 		gangster_mind.current.Stun(100)
 	if(G.is_deconvertible)
-		to_chat(gangster_mind.current, "<FONT size=3 color=red><B>You are now a member of the [G.name] Gang!</B></FONT>")
-		to_chat(gangster_mind.current, "<font color='red'>Help your bosses take over the station by claiming territory with <b>special spraycans</b> only they can provide. Simply spray on any unclaimed area of the station.</font>")
-		to_chat(gangster_mind.current, "<font color='red'>Their ultimate objective is to take over the station with a Dominator machine.</font>")
-		to_chat(gangster_mind.current, "<font color='red'>You can identify your bosses by their <b>large, bright [G.color] \[G\] icon</b>.</font>")
-		gangster_mind.store_memory("You are a member of the [G.name] Gang!")
+		G.greet_gangster(gangster_mind.current)
 	gangster_mind.current.log_message("<font color='red'>Has been converted to the [G.name] Gang!</font>", INDIVIDUAL_ATTACK_LOG)
 	gangster_mind.special_role = "[G.name] Gangster"
 
@@ -181,6 +177,7 @@
 	if(jobban_isbanned(gangster_mind.current, ROLE_GANG))
 		INVOKE_ASYNC(src, /datum/game_mode.proc/replace_jobbaned_player, gangster_mind.current, ROLE_GANG, ROLE_GANG)
 	return 2
+
 /*
 /datum/antagonist/gang/proc/add_revolutionary(datum/mind/rev_mind,stun = TRUE)
 	if(!can_be_converted(rev_mind.current))
@@ -235,10 +232,10 @@
 	if(remove_clumsy && owner.assigned_role == "Clown")
 		to_chat(owner, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 		H.dna.remove_mutation(CLOWNMUT)
-	var/obj/item/device/gangtool/gangtool = new(mob)
-	var/obj/item/pen/gang/T = new(mob)
-	var/obj/item/toy/crayon/spraycan/gang/SC = new(mob,gang)
-	var/obj/item/clothing/glasses/hud/security/chameleon/C = new(mob,gang)
+	var/obj/item/device/gangtool/gangtool = new()
+	var/obj/item/pen/gang/T = new()
+	var/obj/item/toy/crayon/spraycan/gang/SC = new(null,gang)
+	var/obj/item/clothing/glasses/hud/security/chameleon/C = new(null,gang)
 
 	var/list/slots = list (
 		"backpack" = SLOT_IN_BACKPACK,
@@ -272,11 +269,10 @@
 		to_chat(H, "The <b>chameleon security HUD</b> in your [where4] will help you keep track of who is mindshield-implanted, and unable to be recruited.")
 
 #define INFLUENCE_INTERVAL 1800
-GLOBAL_LIST_EMPTY(gangs)
 /datum/team/gang
 	name = "Gang"
 	member_name = "gangster"
-	var/list/leaders // bosses and lieutenants
+	var/list/leaders = list() // bosses and lieutenants
 	var/influence = 0 // influence of the gang, based on how many territories they own. Can be used to buy weapons and tools from a gang uplink.
 	var/list/territories = list() // territories owned by the gang.
 	var/list/lost_territories = list() // territories lost by the gang.
@@ -285,7 +281,9 @@ GLOBAL_LIST_EMPTY(gangs)
 	var/next_point_interval = INFLUENCE_INTERVAL
 	var/next_point_time
 	var/domination_time = NOT_DOMINATING
+	var/dom_attempts
 	var/color
+	var/recalls = 3 // Once this reaches 0, this gang cannot force recall the shuttle with their gangtool anymore
 	var/list/buyable_items = list()
 
 /datum/team/gang/New(starting_members)
@@ -315,6 +313,13 @@ GLOBAL_LIST_EMPTY(gangs)
 /datum/team/gang/Destroy()
 	GLOB.gangs -= src
 	..()
+
+/datum/team/gang/proc/greet_gangster(mob/gangster)
+	to_chat(gangster, "<FONT size=3 color=red><B>You are now a member of the [name] Gang!</B></FONT>")
+	to_chat(gangster, "<font color='red'>Help your bosses take over the station by claiming territory with <b>special spraycans</b> only they can provide. Simply spray on any unclaimed area of the station.</font>")
+	to_chat(gangster, "<font color='red'>Their ultimate objective is to take over the station with a Dominator machine.</font>")
+	to_chat(gangster, "<font color='red'>You can identify your bosses by their <b>large, bright \[G\] <font color='[color]'>icon</font></b>.</font>")
+	gangster.mind.store_memory("You are a member of the [name] Gang!")
 
 /datum/team/gang/proc/set_gang_item_list()
 	var/list/all_items = subtypesof(/datum/gang_item) // starting list with code-parents to remove
@@ -373,8 +378,6 @@ GLOBAL_LIST_EMPTY(gangs)
 
 	return "<div class='panel redborder'>[report.Join("<br>")]</div>"
 
-
-
 /datum/team/gang/proc/handle_territories()
 
 	if(!leaders.len)
@@ -415,12 +418,11 @@ GLOBAL_LIST_EMPTY(gangs)
 	var/uniformed = check_clothing()
 	message += "Your gang now has <b>[control]% control</b> of the station.<BR>*---------*<BR>"
 	if(domination_time != NOT_DOMINATING)
-		var/seconds_remaining = domination_time_remaining()
-		var/new_time = max(180, seconds_remaining - (uniformed * 4) - (territory.len * 2))
-		if(new_time < seconds_remaining)
-			message += "Takeover shortened by [seconds_remaining - new_time] seconds for defending [territories.len] territories.<BR>"
-			set_domination_time(new_time)
-		message += "<b>[seconds_remaining] seconds remain</b> in hostile takeover.<BR>"
+		var/new_time = max(180, domination_time - (uniformed * 4) - (territories.len * 2))
+		if(new_time < domination_time)
+			message += "Takeover shortened by [domination_time - new_time] seconds for defending [territories.len] territories.<BR>"
+			domination_time = new_time
+		message += "<b>[new_time] seconds remain</b> in hostile takeover.<BR>"
 	else
 		var/new_influence = check_territory_income()
 		if(new_influence != influence)
@@ -430,7 +432,7 @@ GLOBAL_LIST_EMPTY(gangs)
 	announce_all_influence(message)
 
 /datum/team/gang/proc/check_territory_income()
-	var/new_influence = min(999,points + 15 + (check_clothing() * 2) + territory.len)
+	var/new_influence = min(999,influence + 15 + (check_clothing() * 2) + territories.len)
 	return new_influence
 
 /datum/team/gang/proc/check_clothing()
@@ -440,7 +442,7 @@ GLOBAL_LIST_EMPTY(gangs)
 		if(ishuman(gangmind.current))
 			var/mob/living/carbon/human/gangster = gangmind.current
 			//Gangster must be alive and on station
-			if((gangster.stat == DEAD) || (is_station_z_level(gangster.z)))
+			if((gangster.stat == DEAD) || (is_station_level(gangster.z)))
 				continue
 
 			var/obj/item/clothing/outfit
@@ -466,8 +468,8 @@ GLOBAL_LIST_EMPTY(gangs)
 		var/mob/living/mob = tool.loc
 		if(!istype(mob)) continue
 		if(mob && mob.mind && mob.stat == CONSCIOUS)
-			if(mob.mind.gang_datum == src)
-				tochat(mob, "<span class='warning'>\icon[tool] [message]</span>")
+			if(mob.mind.has_antag_datum(/datum/team/gang) == src)
+				to_chat(mob, "<span class='warning'>\icon[tool] [message]</span>")
 				playsound(mob.loc, 'sound/machines/twobeep.ogg', 50, 1)
 
 /datum/team/gang/proc/adjust_influence(value)
@@ -480,9 +482,16 @@ GLOBAL_LIST_EMPTY(gangs)
 		var/obj/item/device/gangtool/tool = i
 		var/mob/living/mob = get(tool.loc, /mob/living)
 		if(mob && mob.mind && mob.stat == CONSCIOUS)
-			if(mob.mind.gang_datum == src)
-				to_chat(mob, "<span class='[warning ? "warning" : "notice"]'>[icon2html(tool, mob)] [message]</span>")
+			if(mob.mind.has_antag_datum(/datum/team/gang) == src)
+				to_chat(mob, "<span class='warning'>[icon2html(tool, mob)] [message]</span>")
 			return
+
+/datum/team/gang/proc/domination()
+	domination_time = determine_domination_time()
+	set_security_level("delta")
+
+/datum/team/gang/proc/determine_domination_time()
+	return max(180,480 - (round((territories.len/GLOB.start_state.num_territories)*100, 1) * 9))
 
 /datum/team/gang/clandestine
 	name = "Clandestine"

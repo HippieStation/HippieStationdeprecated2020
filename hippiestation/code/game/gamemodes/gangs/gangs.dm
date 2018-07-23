@@ -1,6 +1,7 @@
 //gang.dm
 //Gang War Game Mode
 GLOBAL_LIST_INIT(possible_gangs, subtypesof(/datum/team/gang))
+GLOBAL_LIST_EMPTY(gangs)
 /datum/game_mode/gang
 	name = "gang war"
 	config_tag = "gang"
@@ -32,7 +33,7 @@ GLOBAL_LIST_INIT(possible_gangs, subtypesof(/datum/team/gang))
 		gangs_to_create++
 	if(prob(num_players()) && num_players() > 2*required_players)
 		gangs_to_create++
-	gangs_to_create = min(gangs_to_create, possible_gangs.len)
+	gangs_to_create = min(gangs_to_create, GLOB.possible_gangs.len)
 
 	for(var/i in 1 to gangs_to_create)
 		if(!antag_candidates.len)
@@ -55,7 +56,7 @@ GLOBAL_LIST_INIT(possible_gangs, subtypesof(/datum/team/gang))
 	..()
 	for(var/i in gangboss_candidates)
 		var/datum/mind/M = i
-		var/datum/team/gang/grove = pick_n_take(possible_gangs)
+		var/datum/team/gang/grove = pick_n_take(GLOB.possible_gangs)
 		if(grove)
 			grove = new(M) // by passing M, it also makes M a boss and gives him the boss stuff
 			gangs += grove
@@ -90,8 +91,8 @@ GLOBAL_LIST_INIT(possible_gangs, subtypesof(/datum/team/gang))
 //Announces the end of the game with all relavent information stated//
 //////////////////////////////////////////////////////////////////////
 
-/datum/game_mode/proc/auto_declare_completion_gang(datum/gang/winner)
-	if(!gangs.len)
+/datum/game_mode/proc/auto_declare_completion_gang(datum/team/gang/winner)
+	if(!GLOB.gangs.len)
 		return
 	if(!winner)
 		to_chat(world, "<span class='redtext'>The station was [station_was_nuked ? "destroyed!" : "evacuated before a gang could claim it! The station wins!"]</span><br>")
@@ -104,13 +105,13 @@ GLOBAL_LIST_INIT(possible_gangs, subtypesof(/datum/team/gang))
 
 		SSticker.news_report = GANG_TAKEOVER
 
-	for(var/datum/gang/G in gangs)
-		var/text = "<b>The [G.name] Gang was [winner==G ? "<span class='greenannounce'>victorious</span>" : "<span class='boldannounce'>defeated</span>"] with [round((G.territory.len/GLOB.start_state.num_territories)*100, 1)]% control of the station!</b>"
+	for(var/datum/team/gang/G in GLOB.gangs)
+		var/text = "<b>The [G.name] Gang was [winner==G ? "<span class='greenannounce'>victorious</span>" : "<span class='boldannounce'>defeated</span>"]!</b>"
 		text += "<br>The [G.name] Gang Bosses were:"
-		for(var/datum/mind/boss in G.bosses)
+		for(var/datum/mind/boss in G.leaders)
 			text += printplayer(boss, 1)
 		text += "<br>The [G.name] Gangsters were:"
-		for(var/datum/mind/gangster in G.gangsters)
+		for(var/datum/mind/gangster in G.members - G.leaders)
 			text += printplayer(gangster, 1)
 		text += "<br>"
 		to_chat(world, text)
@@ -124,12 +125,12 @@ GLOBAL_LIST_INIT(possible_gangs, subtypesof(/datum/team/gang))
 	var/list/round_credits = list()
 	var/len_before_addition
 
-	for(var/datum/gang/G in gangs)
+	for(var/datum/team/gang/G in gangs)
 		round_credits += "<center><h1>The [G.name] Gang:</h1>"
 		len_before_addition = round_credits.len
-		for(var/datum/mind/boss in G.bosses)
+		for(var/datum/mind/boss in G.leaders)
 			round_credits += "<center><h2>[boss.name] as a [G.name] Gang leader</h2>"
-		for(var/datum/mind/gangster in G.gangsters)
+		for(var/datum/mind/gangster in G.members - G.leaders)
 			round_credits += "<center><h2>[gangster.name] as a [G.name] gangster</h2>"
 		if(len_before_addition == round_credits.len)
 			round_credits += list("<center><h2>The [G.name] Gang was wiped out!</h2>", "<center><h2>The competition was too tough!</h2>")

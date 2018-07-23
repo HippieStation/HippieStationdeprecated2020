@@ -393,7 +393,7 @@
 		to_chat(user, "<span class='warning'>The <b>dominator</b> will not function here! The <b>dominator</b> requires a sizable open space within three standard units so that walls do not interfere with the signal.</span>")
 		return FALSE
 
-	if(!(usrarea.type in gang.territory|gang.territory_new))
+	if(!(usrarea.type in gang.territories|gang.territories_new))
 		to_chat(user, "<span class='warning'>The <b>dominator</b> can be spawned only on territory controlled by your gang!</span>")
 		return FALSE
 	return ..()
