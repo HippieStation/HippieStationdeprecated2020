@@ -1,4 +1,0 @@
-author: "HonkBot"
-delete-after: True
-changes: 
-  - bugfix: "Fixed the \"Remove IV Container\" verb on IV drips from showing every nearby mob"

@@ -11,7 +11,8 @@
 	var/list/mutations = list()   //All mutations are from now on here
 	var/list/temporary_mutations = list() //Timers for temporary mutations
 	var/list/previous = list() //For temporary name/ui/ue/blood_type modifications
-	var/mob/living/carbon/holder
+	var/mob/living/holder
+	var/delete_species = TRUE //Set to FALSE when a body is scanned by a cloner to fix #38875
 
 /datum/dna/New(mob/living/new_holder)
 	if(istype(new_holder))
@@ -23,7 +24,9 @@
 		if(cholder.dna == src)
 			cholder.dna = null
 	holder = null
-	QDEL_NULL(species)
+
+	if(delete_species)
+		QDEL_NULL(species)
 
 	mutations.Cut()					//This only references mutations, just dereference.
 	temporary_mutations.Cut()		//^
@@ -229,7 +232,7 @@
 		update_hair()
 		update_body_parts()
 		update_mutations_overlay()// no lizard with human hulk overlay please.
-	update_teeth()
+	update_teeth() //hippie
 
 
 /mob/proc/has_dna()
