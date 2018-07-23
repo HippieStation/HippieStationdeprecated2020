@@ -6,7 +6,7 @@
 	var/cooldown = FALSE
 	var/playsound = FALSE
 	var/usekey = TRUE
-	var/inUse = FALSE
+	var/inuse = FALSE
 	var/list/holo_black = list(
 		/mob/living/simple_animal/revenant,
 		/mob/living/simple_animal/hostile/guardian
@@ -23,12 +23,12 @@
 	if(user.mind && user.mind.has_antag_datum(/datum/antagonist/changeling) && !allowling)
 		to_chat(user, "[ling_failure]")
 		return
-	if(used == TRUE)
+	if(used)
 		to_chat(user, "[used_message]")
 		return
-	if(limiteduses == TRUE)
+	if(limiteduses)
 		used = TRUE
-	if(killchance == TRUE)
+	if(killchance)
 		if(prob(percentchance))
 			to_chat(user, "You didn't have enough fighting spirit!")
 			user.setToxLoss(100000) //Husks them to stop clone cheeze (not anymore now that it in an event)
@@ -40,14 +40,14 @@
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
 		spawn_guardian(user, C.key)
-		if(playsound == TRUE)
-			playsound(src.loc, 'hippiestation/sound/misc/standactivated.ogg')
+		if(playsound)
+			playsound(loc, 'hippiestation/sound/misc/standactivated.ogg')
 	else
 		to_chat(user, "[failure_message]")
 		used = FALSE
 
 /obj/item/guardiancreator/attack(mob/M, mob/living/carbon/human/user)
-	if(inUse == TRUE)
+	if(inuse)
 		return
 	if(!M.client)
 		return
@@ -55,7 +55,7 @@
 	user.visible_message("<span class='warning'>[user] prepares to stab [M]!</span>")
 	if(do_mob(user,M,50,uninterruptible=0))
 		inUse = TRUE
-		if(useonothers == TRUE)
+		if(useonothers)
 			if(isguardian(user) && !allowguardian)
 				to_chat(user, "<span class='holoparasite'>[mob_name] chains are not allowed.</span>")
 				return
@@ -79,9 +79,9 @@
 			if(used == TRUE)
 				to_chat(L, "[used_message]")
 				return
-			if(limiteduses == TRUE)
+			if(limiteduses)
 				used = TRUE
-			if(killchance == TRUE)
+			if(killchance)
 				if(prob(percentchance))
 					L.visible_message("You didn't have enough fighting spirit!")
 					L.setToxLoss(100000) //Husks them to stop clone cheeze (not anymore now that its on mining)
@@ -93,13 +93,11 @@
 			if(LAZYLEN(candidates))
 				var/mob/dead/observer/C = pick(candidates)
 				spawn_guardian(user, C.key)
-				if(playsound == TRUE)
+				if(playsound)
 					playsound(src.loc, 'hippiestation/sound/misc/standactivated.ogg')
 			else
 				to_chat(user, "[failure_message]")
 				used = FALSE
-	else
-		return
 
 /obj/item/guardiancreator/standarrow
 	name = "Stand Arrow"
