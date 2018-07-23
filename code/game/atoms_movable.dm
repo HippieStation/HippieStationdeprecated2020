@@ -295,19 +295,14 @@
 	return 1
 
 /atom/movable/Destroy(force)
+
 	QDEL_NULL(proximity_monitor)
 	QDEL_NULL(language_holder)
-	
-	unbuckle_all_mobs(force=1)
 
 	unbuckle_all_mobs(force=1)
 
 	. = ..()
 	if(loc)
-		//Restore air flow if we were blocking it (movables with ATMOS_PASS_PROC will need to do this manually if necessary)
-		if(((CanAtmosPass == ATMOS_PASS_DENSITY && density) || CanAtmosPass == ATMOS_PASS_NO) && isturf(loc))
-			CanAtmosPass = ATMOS_PASS_YES
-			air_update_turf(TRUE)
 		loc.handle_atom_del(src)
 	for(var/atom/movable/AM in contents)
 		qdel(AM)
