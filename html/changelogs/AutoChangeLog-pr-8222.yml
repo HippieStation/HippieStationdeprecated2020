@@ -1,0 +1,6 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - bugfix: "Fixes pool controller wires being unable to be interacted with after a certain wire was cut."
+  - refactor: "Refactors pool controller to use screwdriver_act."
+  - tweak: "Pool controller doesn't process endless when broken or off"
