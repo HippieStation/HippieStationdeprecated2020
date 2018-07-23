@@ -310,9 +310,6 @@
 
 	set_pin_data(IC_OUTPUT, 1, result)
 	push_data()
-<<<<<<< HEAD
-	activate_pin(2)
-=======
 	activate_pin(2)
 
 // -Max- //
@@ -344,4 +341,3 @@
 	desc = "This circuit sends out the smallest number."
 	extended_desc = "The smallest number is put out. Null is ignored. In case no number is found, 0 is given out."
 	min_comparision = TRUE
->>>>>>> a97233095c... Added max and min circuit (#39013)
