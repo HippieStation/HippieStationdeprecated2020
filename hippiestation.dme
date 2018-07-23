@@ -3019,7 +3019,6 @@
 #include "hippiestation\code\modules\pool\pool_main.dm"
 #include "hippiestation\code\modules\pool\pool_noodles.dm"
 #include "hippiestation\code\modules\pool\pool_wires.dm"
-#include "hippiestation\code\modules\power\apc.dm"
 #include "hippiestation\code\modules\power\cable.dm"
 #include "hippiestation\code\modules\power\lighting.dm"
 #include "hippiestation\code\modules\power\port_gen.dm"
