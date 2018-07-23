@@ -21292,7 +21292,7 @@
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_x = 32
 	},
-/obj/item/book/manual/barman_recipes,
+/obj/item/book/manual/wiki/barman_recipes,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "bcC" = (
@@ -26114,7 +26114,7 @@
 	req_access_txt = "29"
 	},
 /obj/structure/table,
-/obj/item/book/manual/robotics_cyborgs{
+/obj/item/book/manual/wiki/robotics_cyborgs{
 	pixel_x = 2;
 	pixel_y = 5
 	},
@@ -32590,7 +32590,7 @@
 "bEL" = (
 /obj/structure/table,
 /obj/item/clipboard,
-/obj/item/book/manual/experimentor,
+/obj/item/book/manual/wiki/experimentor,
 /turf/open/floor/plasteel/white/corner{
 	dir = 4
 	},
@@ -58916,7 +58916,7 @@
 /area/engine/port_engineering)
 "gmI" = (
 /obj/structure/table,
-/obj/item/book/manual/engineering_particle_accelerator,
+/obj/item/book/manual/wiki/engineering_singulo_tesla,
 /obj/effect/turf_decal/bot,
 /obj/structure/sign/warning/nosmoking{
 	pixel_y = 32
@@ -62198,7 +62198,7 @@
 /area/maintenance/port/fore)
 "mSU" = (
 /obj/structure/table/glass,
-/obj/item/book/manual/medical_cloning,
+/obj/item/book/manual/wiki/medical_cloning,
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
 "mUH" = (
@@ -65547,7 +65547,7 @@
 /area/engine/engineering)
 "uqR" = (
 /obj/structure/table,
-/obj/item/book/manual/engineering_singularity_safety,
+/obj/item/book/manual/wiki/engineering_singulo_tesla,
 /obj/item/clothing/gloves/color/yellow,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,

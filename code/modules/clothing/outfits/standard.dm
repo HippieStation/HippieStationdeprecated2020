@@ -424,11 +424,6 @@
 	mask = /obj/item/clothing/mask/breath
 	suit_store = /obj/item/tank/internals/oxygen
 
-<<<<<<< HEAD
-
-
-
-=======
 /datum/outfit/debug //Debug objs plus hardsuit
 	name = "Debug outfit"
 	uniform = /obj/item/clothing/under/patriotsuit 
@@ -443,4 +438,3 @@
 	ears = /obj/item/radio/headset/headset_cent/commander
 	back = /obj/item/storage/backpack/holding
 	backpack_contents = list(/obj/item/card/emag=1,	/obj/item/flashlight/emp/debug=1, /obj/item/construction/rcd/combat=1, /obj/item/gun/magic/wand/resurrection/debug=1, /obj/item/melee/transforming/energy/axe=1)
->>>>>>> 17079fb498... Fixes 'debug' outfit (#39256)

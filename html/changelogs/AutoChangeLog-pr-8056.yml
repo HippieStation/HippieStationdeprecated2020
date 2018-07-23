@@ -1,7 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - rscadd: "Adds cycle linked airlock helpers to various doors"
-  - rscdel: "Removed hidden turf decals underneath walls at aux base"
-  - tweak: "Removed caution decals in front of vending machines in port engineering"
-  - bugfix: "Fixed lattices not going under the AI sat transit tube"

@@ -1,8 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - balance: "Nanosuit now uses the values it was intended to use on the previous refactor."
-  - balance: "EMP is less likely to cause shutdown as it was happening waaaay too often."
-  - balance: "2 sleep times in shutdown were reduced by 10 ticks (1 second)."
-  - tweak: "There is now a delay before the nanosuit causes the shutdown, giving you maybe 4 seconds to get away."
-  - rscadd: "EMPing now causes slight confusion to the user."
