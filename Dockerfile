@@ -6,8 +6,6 @@ FROM base as build_base
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     git \
-<<<<<<< HEAD
-=======
     ca-certificates
 
 FROM build_base as rust_g
@@ -15,9 +13,7 @@ FROM build_base as rust_g
 WORKDIR /rust_g
 
 RUN apt-get install -y --no-install-recommends \
->>>>>>> c20be496a8... Adds deploy script. CI artifacts. Dependencies file (#39040)
     libssl-dev \
-    ca-certificates \
     rustc \
     cargo \
     pkg-config \
@@ -31,8 +27,6 @@ RUN /bin/bash -c "source dependencies.sh \
     && git checkout FETCH_HEAD \
     && cargo build --release
 
-<<<<<<< HEAD
-=======
 FROM build_base as bsql
 
 WORKDIR /bsql
@@ -63,7 +57,6 @@ RUN ln -s /usr/include/mariadb /usr/include/mysql \
     && cmake .. \
     && make
 
->>>>>>> c20be496a8... Adds deploy script. CI artifacts. Dependencies file (#39040)
 FROM base as dm_base
 
 WORKDIR /tgstation
@@ -85,13 +78,12 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /root/.byond/bin
 
-<<<<<<< HEAD
-COPY --from=rustg /rust_g/target/release/librust_g.so /root/.byond/bin/rust_g
-=======
 COPY --from=rust_g /rust_g/target/release/librust_g.so /root/.byond/bin/rust_g
 COPY --from=bsql /bsql/artifacts/src/BSQL/libBSQL.so ./
->>>>>>> c20be496a8... Adds deploy script. CI artifacts. Dependencies file (#39040)
 COPY --from=build /deploy ./
+
+#bsql fexists memes
+RUN ln -s /tgstation/libBSQL.so /root/.byond/bin/libBSQL.so
 
 VOLUME [ "/tgstation/config", "/tgstation/data" ]
 
