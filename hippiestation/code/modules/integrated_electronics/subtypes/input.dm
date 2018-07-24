@@ -120,6 +120,8 @@
 		if(istext(I))
 			selection.Add(I)
 	var/selected = input(user,"Choose input.","Selection") in selection
+	if(!selected)
+		return
 	set_pin_data(IC_OUTPUT, 1, selected)
 	push_data()
 	activate_pin(1)
