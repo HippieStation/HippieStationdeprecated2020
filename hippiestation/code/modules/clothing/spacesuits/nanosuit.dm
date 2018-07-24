@@ -869,7 +869,7 @@
 					return
 	.=..()
 
-/obj/item/afterattack(atom/O, mob/living/carbon/human/user, proximity)
+/obj/item/afterattack(atom/O, mob/user, proximity)
 	..()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -877,7 +877,7 @@
 			var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
 			NS.kill_cloak()
 
-/obj/item/gun/afterattack(atom/O, mob/living/carbon/human/user, proximity)
+/obj/item/gun/afterattack(atom/O, mob/user, proximity)
 	..()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -889,7 +889,7 @@
 				if(!ismob(O) || user.a_intent == INTENT_HARM) //melee attack
 					NS.kill_cloak()
 
-/obj/item/gun/attack(mob/M as mob, mob/living/carbon/user)
+/obj/item/gun/attack(mob/M as mob, mob/user)
 	..()
 	if(user && ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -898,7 +898,7 @@
 			if(user.a_intent == INTENT_HARM)
 				NS.kill_cloak()
 
-/obj/item/weldingtool/afterattack(atom/O, mob/living/carbon/human/user, proximity)
+/obj/item/weldingtool/afterattack(atom/O, mob/user, proximity)
 	..()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -906,7 +906,7 @@
 			var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
 			NS.kill_cloak()
 
-/obj/item/twohanded/fireaxe/afterattack(atom/A, mob/living/carbon/human/user, proximity)
+/obj/item/twohanded/fireaxe/afterattack(atom/A, mob/user, proximity)
 	..()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -914,7 +914,7 @@
 			var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
 			NS.kill_cloak()
 
-/datum/species/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style)
+/datum/species/spec_attack_hand(mob/M, mob/H, datum/martial_art/attacker_style)
 	..()
 	if(ishuman(M))
 		var/mob/living/carbon/human/user = M
