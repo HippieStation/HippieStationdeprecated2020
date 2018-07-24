@@ -54,7 +54,7 @@
 	to_chat(user, "<span class='notice'>You raise the arrow into the air.</span>")
 	user.visible_message("<span class='warning'>[user] prepares to stab [M]!</span>")
 	if(do_mob(user,M,50,uninterruptible=0))
-		inUse = TRUE
+		inuse = TRUE
 		if(useonothers)
 			if(isguardian(user) && !allowguardian)
 				to_chat(user, "<span class='holoparasite'>[mob_name] chains are not allowed.</span>")
@@ -88,7 +88,7 @@
 					return
 			to_chat(L, "[use_message]")
 			var/list/mob/dead/observer/candidates = pollCandidates("Do you want to play as the [mob_name] of [L.real_name]?", "pAI", null, FALSE, 100)
-			inUse = FALSE
+			inuse = FALSE
 
 			if(LAZYLEN(candidates))
 				var/mob/dead/observer/C = pick(candidates)
