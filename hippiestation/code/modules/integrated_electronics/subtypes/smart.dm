@@ -109,5 +109,5 @@
 
 	brainholder.do_work(6)
 
-mob/living/brain/canUseTopic()
+/mob/living/brain/canUseTopic()
 	return	check_bot_self
