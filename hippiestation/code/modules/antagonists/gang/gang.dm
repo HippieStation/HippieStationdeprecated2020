@@ -10,8 +10,6 @@
 /datum/antagonist/gang/can_be_owned(datum/mind/new_owner)
 	. = ..()
 	if(.)
-		if(new_owner.assigned_role in GLOB.command_positions)
-			return FALSE
 		if(new_owner.unconvertable)
 			return FALSE
 		if(new_owner.current && new_owner.current.isloyal())
@@ -33,7 +31,6 @@
 /datum/antagonist/gang/on_gain()
 	. = ..()
 	create_objectives()
-	equip_gang()
 	owner.current.log_message("<font color='red'>Has been converted to the gang!</font>", INDIVIDUAL_ATTACK_LOG)
 
 /datum/antagonist/gang/on_removal()
@@ -62,7 +59,8 @@
 	new_boss.silent = TRUE
 	old_owner.add_antag_datum(new_boss,old_gang)
 	new_boss.silent = FALSE
-	to_chat(old_owner, "<span class='userdanger'>Stuff to add!</span>")
+	log_game("[key_name(old_owner)] has been promoted to Lieutenant in the [gang.name] Gang")
+	to_chat(old_owner, "<FONT size=3 color=red><B>You have been promoted to Lieutenant!</B></FONT>")
 
 /*no clue
 /datum/antagonist/rev/get_admin_commands()
@@ -162,20 +160,15 @@
 		return 0//dude's in an enemy gang oh fuck,also check if it's a boss
 	if(check && gangster_mind.current.isloyal()) //Check to see if the potential gangster is implanted
 		return 1
-	if(check)
-		if(iscarbon(gangster_mind.current))
-			var/mob/living/carbon/carbon_mob = gangster_mind.current
-			carbon_mob.silent = max(carbon_mob.silent, 5)
-			carbon_mob.flash_act(1, 1)
+	if(check && iscarbon(gangster_mind.current))
+		var/mob/living/carbon/carbon_mob = gangster_mind.current
+		carbon_mob.silent = max(carbon_mob.silent, 5)
+		carbon_mob.flash_act(1, 1)
 		gangster_mind.current.Stun(100)
-	if(G.is_deconvertible)
-		G.greet_gangster(gangster_mind.current)
-	gangster_mind.current.log_message("<font color='red'>Has been converted to the [G.name] Gang!</font>", INDIVIDUAL_ATTACK_LOG)
-	gangster_mind.special_role = "[G.name] Gangster"
-
-	G.add_gang_hud(gangster_mind)
 	if(jobban_isbanned(gangster_mind.current, ROLE_GANG))
-		INVOKE_ASYNC(src, /datum/game_mode.proc/replace_jobbaned_player, gangster_mind.current, ROLE_GANG, ROLE_GANG)
+		INVOKE_ASYNC(src, /datum/game_mode.proc/replace_jobbaned_player, gangster_mind.current, ROLE_GANG, ROLE_GANG) // will gangster_mind point to the new dude's mind? dunno honestly, i hope it does
+	gangster_mind.add_antag_datum(/datum/antagonist/gang, gang)
+
 	return 2
 
 /*
@@ -229,7 +222,7 @@
 	if(!istype(H))
 		return
 
-	if(remove_clumsy && owner.assigned_role == "Clown")
+	if(owner.assigned_role == "Clown")
 		to_chat(owner, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 		H.dna.remove_mutation(CLOWNMUT)
 	var/obj/item/device/gangtool/gangtool = new()
@@ -269,6 +262,7 @@
 		to_chat(H, "The <b>chameleon security HUD</b> in your [where4] will help you keep track of who is mindshield-implanted, and unable to be recruited.")
 
 #define INFLUENCE_INTERVAL 1800
+#define MAX_LEADERS_GANG 3
 /datum/team/gang
 	name = "Gang"
 	member_name = "gangster"
@@ -283,6 +277,7 @@
 	var/domination_time = NOT_DOMINATING
 	var/dom_attempts
 	var/color
+	var/max_leaders = MAX_LEADERS_GANG
 	var/recalls = 3 // Once this reaches 0, this gang cannot force recall the shuttle with their gangtool anymore
 	var/list/buyable_items = list()
 
@@ -555,3 +550,6 @@
 
 /datum/team/gang/rigatonifamily
 	name = "Rigatony family"
+
+#undef INFLUENCE_INTERVAL
+#undef MAX_LEADERS_GANG

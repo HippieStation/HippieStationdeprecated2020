@@ -27,12 +27,12 @@
 	if(!gang)
 		dat += "This device is not registered.<br><br>"
 		if(L)
-			if(promotable && L.gang.leaders.len < MAX_GANG_LEADERS)
+			if(promotable && L.gang.leaders.len < L.gang.max_leaders)
 				dat += "Give this device to another member of your organization to use to promote them to Lieutenant.<br><br>"
 				dat += "If this is meant as a spare device for yourself:<br>"
 			dat += "<a href='?src=[REF(src)];register=1'>Register Device as Spare</a><br>"
 		else if (promotable)
-			if(L.gang.leaders.len < MAX_GANG_LEADERS)
+			if(L.gang.leaders.len < L.gang.max_leaders)
 				dat += "You have been selected for a promotion!<br>"
 				dat += "<a href='?src=[REF(src)];register=1'>Accept Promotion</a><br>"
 			else
@@ -131,78 +131,74 @@
 	if((promotable && G) || (user.mind.has_antag_datum(/datum/antagonist/gang/boss)))
 		gang = G.gang
 		gang.gangtools += src
-		icon_state = "gangtool-[gang.color]"
+		icon_state = "gangtool-[gang.color]"// todo- replace this with normal gangtool + colored overlay
 		if(!(user.mind in gang.leaders))// replace gang datum with boss datum! todo
 			G.promote()
-			log_game("[key_name(user)] has been promoted to Lieutenant in the [gang.name] Gang")
-			free_pen = 1
+			free_pen = TRUE
 			gang.message_gangtools("[user] has been promoted to Lieutenant.")
-			to_chat(user, "<FONT size=3 color=red><B>You have been promoted to Lieutenant!</B></FONT>")
-			SSticker.mode.forge_gang_objectives(user.mind)
-			SSticker.mode.greet_gang(user.mind,0)
 			to_chat(user, "The <b>Gangtool</b> you registered will allow you to purchase weapons and equipment, and send messages to your gang.")
 			to_chat(user, "Unlike regular gangsters, you may use <b>recruitment pens</b> to add recruits to your gang. Use them on unsuspecting crew members to recruit them. Don't forget to get your one free pen from the gangtool.")
 	else
-		to_chat(usr, "<span class='warning'>ACCESS DENIED: Unauthorized user.</span>")
+		to_chat(user, "<span class='warning'>ACCESS DENIED: Unauthorized user.</span>")
 
 /obj/item/device/gangtool/proc/recall(mob/user)
 	if(!can_use(user))
-		return 0
+		return
 
 	if(SSshuttle.emergencyNoRecall)
-		return 0
+		return
 
 	if(recalling)
-		to_chat(usr, "<span class='warning'>Error: Recall already in progress.</span>")
-		return 0
+		to_chat(user, "<span class='warning'>Error: Recall already in progress.</span>")
+		return
 
 	if(!gang.recalls)
-		to_chat(usr, "<span class='warning'>Error: Unable to access communication arrays. Firewall has logged our signature and is blocking all further attempts.</span>")
+		to_chat(user, "<span class='warning'>Error: Unable to access communication arrays. Firewall has logged our signature and is blocking all further attempts.</span>")
 
 	gang.message_gangtools("[user] is attempting to recall the emergency shuttle.")
-	recalling = 1
+	recalling = TRUE
 	to_chat(loc, "<span class='info'>[icon2html(src, loc)]Generating shuttle recall order with codes retrieved from last call signal...</span>")
 
 	sleep(rand(100,300))
 
 	if(SSshuttle.emergency.mode != SHUTTLE_CALL) //Shuttle can only be recalled when it's moving to the station
 		to_chat(user, "<span class='warning'>[icon2html(src, user)]Emergency shuttle cannot be recalled at this time.</span>")
-		recalling = 0
-		return 0
+		recalling = FALSE
+		return
 	to_chat(loc, "<span class='info'>[icon2html(src, loc)]Shuttle recall order generated. Accessing station long-range communication arrays...</span>")
 
 	sleep(rand(100,300))
 
 	if(!gang.dom_attempts)
 		to_chat(user, "<span class='warning'>[icon2html(src, user)]Error: Unable to access communication arrays. Firewall has logged our signature and is blocking all further attempts.</span>")
-		recalling = 0
-		return 0
+		recalling = FALSE
+		return
 
 	var/turf/userturf = get_turf(user)
 	if(is_station_level(userturf.z)) //Shuttle can only be recalled while on station
 		to_chat(user, "<span class='warning'>[icon2html(src, user)]Error: Device out of range of station communication arrays.</span>")
-		recalling = 0
-		return 0
+		recalling = FALSE
+		return
 	var/datum/station_state/end_state = new /datum/station_state()
 	end_state.count()
 	if((100 * GLOB.start_state.score(end_state)) < 80) //Shuttle cannot be recalled if the station is too damaged
 		to_chat(user, "<span class='warning'>[icon2html(src, user)]Error: Station communication systems compromised. Unable to establish connection.</span>")
-		recalling = 0
-		return 0
+		recalling = FALSE
+		return
 	to_chat(loc, "<span class='info'>[icon2html(src, loc)]Comm arrays accessed. Broadcasting recall signal...</span>")
 
 	sleep(rand(100,300))
 
-	recalling = 0
+	recalling = FALSE
 	log_game("[key_name(user)] has tried to recall the shuttle with a gangtool.")
 	message_admins("[key_name_admin(user)] has tried to recall the shuttle with a gangtool.", 1)
 	if(is_station_level(user.z)) //Check one more time that they are on station.
 		if(SSshuttle.cancelEvac(user))
 			gang.recalls--
-			return 1
+			return TRUE
 
 	to_chat(loc, "<span class='info'>[icon2html(src, loc)]No response recieved. Emergency shuttle cannot be recalled at this time.</span>")
-	return 0
+	return
 
 /obj/item/device/gangtool/proc/can_use(mob/living/carbon/human/user)
 	if(!istype(user))
