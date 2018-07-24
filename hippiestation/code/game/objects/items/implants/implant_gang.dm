@@ -30,11 +30,11 @@
 			return 0
 
 		var/success
-		if(target.mind in SSticker.mode.get_gangsters())
-			if(SSticker.mode.remove_gangster(target.mind,0,1))
-				success = 1	//Was not a gang boss, convert as usual
+		if(target.mind.has_antag_datum(/datum/antagonist/gang))
+			if(target.mind.remove_antag_datum(/datum/antagonist/gang))//may not be the right proc for this,todo
+				success = TRUE	//Was not a gang boss, convert as usual
 		else
-			success = 1
+			success = TRUE
 
 		if(ishuman(target))
 			if(!success)

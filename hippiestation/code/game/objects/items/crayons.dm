@@ -27,8 +27,10 @@
 		return FALSE
 
 	var/spraying_over = FALSE
-	for(var/obj/effect/decal/cleanable/crayon/gang/G in target)
-		spraying_over = TRUE
+	for(var/G in target)
+		if(istype(G, /obj/effect/decal/cleanable/crayon/gang))
+			spraying_over = TRUE
+			break
 
 	for(var/obj/machinery/power/apc in target)
 		to_chat(user, "<span class='warning'>You can't tag an APC.</span>")
