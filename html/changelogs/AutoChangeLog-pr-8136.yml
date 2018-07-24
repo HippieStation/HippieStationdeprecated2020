@@ -1,4 +1,0 @@
-author: "Shdorsh"
-delete-after: True
-changes: 
-  - rscadd: "Added a MMI tank circuit, so that MMIs can be put in control of circuits."
