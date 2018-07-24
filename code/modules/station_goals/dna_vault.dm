@@ -40,7 +40,7 @@
 	 [plant_count] unique non-standard plant data
 	 [human_count] unique sapient humanoid DNA data
 
-	 Base vault parts are available for shipping via cargo."}
+	 base vault parts are available for shipping via cargo."}
 
 
 /datum/station_goal/dna_vault/on_report()
@@ -78,7 +78,7 @@
 	dna = list()
 
 /obj/item/dna_probe/afterattack(atom/target, mob/user, proximity)
-	..()
+	. = ..()
 	if(!proximity || !target)
 		return
 	//tray plants

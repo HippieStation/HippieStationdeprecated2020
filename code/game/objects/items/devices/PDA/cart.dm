@@ -538,7 +538,7 @@ Code:
 					menu +="<font size=1><small>[comment.body]</font><br><font size=1><small><small><small>[comment.author] [comment.time_stamp]</small></small></small></small></font><br>"
 			menu += "<br> <A href='byond://?src=[REF(src)];choice=Newscaster Message'>Post Message</a>"
 
-		if (54) // Beepsky, Medibot, Floorbot, and Cleanbot access
+		if (54) // Beepsky, Medibot, floorbot, and Cleanbot access
 			menu = "<h4>[PDAIMG(medbot)] Bots Interlink</h4>"
 			bot_control()
 		if (99) //Newscaster message permission error

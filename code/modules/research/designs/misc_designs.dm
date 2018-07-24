@@ -267,6 +267,16 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
+/datum/design/locator
+	name = "Bluespace locator"
+	desc = "Used to track portable teleportation beacons and targets with embedded tracking implants."
+	id = "locator"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL=1000, MAT_GLASS=500, MAT_SILVER = 500)
+	build_path = /obj/item/locator
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+
 /////////////////////////////////////////
 ////////////Janitor Designs//////////////
 /////////////////////////////////////////
@@ -292,7 +302,7 @@
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/buffer
-	name = "Floor Buffer Upgrade"
+	name = "floor Buffer Upgrade"
 	desc = "A floor buffer that can be attached to vehicular janicarts."
 	id = "buffer"
 	build_type = PROTOLATHE

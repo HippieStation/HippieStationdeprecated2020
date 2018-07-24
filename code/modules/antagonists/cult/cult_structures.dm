@@ -228,7 +228,7 @@
 				new /obj/effect/temp_visual/cult/turf/floor(F)
 			else
 				// Are we in space or something? No cult turfs or
-				// convertable turfs?
+				// convertible turfs?
 				last_corrupt = world.time + corrupt_delay*2
 
 /obj/structure/destructible/cult/tome

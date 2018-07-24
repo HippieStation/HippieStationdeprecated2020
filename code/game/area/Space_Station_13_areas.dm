@@ -1159,7 +1159,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "yellow"
 
 /area/construction/mining/aux_base
-	name = "Auxiliary Base Construction"
+	name = "Auxiliary base Construction"
 	icon_state = "yellow"
 
 /area/construction/mining/aux_base/closet

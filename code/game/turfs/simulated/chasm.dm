@@ -1,4 +1,4 @@
-// Base chasm, defaults to oblivion but can be overridden
+// base chasm, defaults to oblivion but can be overridden
 /turf/open/chasm
 	name = "chasm"
 	desc = "Watch your step."

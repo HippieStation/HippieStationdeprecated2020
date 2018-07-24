@@ -78,7 +78,7 @@
 	return 0
 
 
-/datum/admins/proc/makeChanglings()
+/datum/admins/proc/makechangelings()
 
 	var/datum/game_mode/changeling/temp = new
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
@@ -97,11 +97,11 @@
 					candidates += applicant
 
 	if(candidates.len)
-		var/numChanglings = min(candidates.len, 3)
+		var/numchangelings = min(candidates.len, 3)
 
-		for(var/i = 0, i<numChanglings, i++)
+		for(var/i = 0, i<numchangelings, i++)
 			H = pick(candidates)
-			H.mind.make_Changling()
+			H.mind.make_changeling()
 			candidates.Remove(H)
 
 		return 1

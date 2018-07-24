@@ -68,3 +68,13 @@
 	icon_state = "teleporter"
 	music = "signal"
 	ambientsounds = ENGINEERING
+
+/area/crew_quarters/bar/maint
+	name = "Speakeasy"
+	icon_state = "storage"
+	ambientsounds = list('sound/ambience/ambimaint1.ogg',
+						 'sound/ambience/ambimaint2.ogg',
+						 'sound/ambience/ambimaint3.ogg',
+						 'sound/ambience/ambimaint4.ogg',
+						 'sound/ambience/ambimaint5.ogg',
+						 'sound/spookoween/ghosty_wind.ogg')

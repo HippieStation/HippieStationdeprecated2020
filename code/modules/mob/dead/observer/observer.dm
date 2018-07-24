@@ -271,7 +271,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "OOC"
 	set name = "Ghost"
 	set desc = "Relinquish your life and enter the land of the dead."
-	
+
 	//hippie start
 	if(!canGhost())
 		return
@@ -381,6 +381,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(!L || !L.len)
 		to_chat(usr, "No area available.")
+		return
 
 	usr.forceMove(pick(L))
 	update_parallax_contents()
@@ -617,7 +618,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 //this is a mob verb instead of atom for performance reasons
 //see /mob/verb/examinate() in mob.dm for more info
-//overriden here and in /mob/living for different point span classes and sanity checks
+//overridden here and in /mob/living for different point span classes and sanity checks
 /mob/dead/observer/pointed(atom/A as mob|obj|turf in view())
 	if(!..())
 		return 0

@@ -33,7 +33,7 @@
 	icon_state = "dk_yellow"
 
 /area/ruin/unpowered/syndicate_lava_base
-	name = "Secret Base"
+	name = "Secret base"
 	icon_state = "dk_yellow"
 	ambientsounds = HIGHSEC
 

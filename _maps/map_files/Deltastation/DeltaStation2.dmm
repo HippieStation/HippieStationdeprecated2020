@@ -11743,7 +11743,7 @@
 	pixel_y = 32;
 	receive_ore_updates = 1
 	},
-/obj/item/book/manual/barman_recipes,
+/obj/item/book/manual/wiki/barman_recipes,
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/item/reagent_containers/glass/rag,
 /turf/open/floor/plasteel/vault{
@@ -19219,9 +19219,6 @@
 /turf/open/floor/plasteel/neutral,
 /area/quartermaster/qm)
 "aUs" = (
-/obj/machinery/computer/security/mining{
-	dir = 8
-	},
 /obj/machinery/status_display{
 	pixel_x = 32
 	},
@@ -19229,6 +19226,9 @@
 	c_tag = "Cargo - Quartermaster's Quarters";
 	dir = 8;
 	name = "cargo camera"
+	},
+/obj/machinery/computer/security/qm{
+	dir = 8
 	},
 /turf/open/floor/plasteel/brown{
 	dir = 4
@@ -28839,14 +28839,11 @@
 	},
 /area/security/execution/transfer)
 "bpg" = (
-/obj/machinery/computer/security{
-	name = "Labor Camp Monitoring";
-	network = list("labor")
-	},
 /obj/item/radio/intercom{
 	name = "Station Intercom";
 	pixel_y = 26
 	},
+/obj/machinery/computer/security/labor,
 /turf/open/floor/plasteel/red,
 /area/security/execution/transfer)
 "bph" = (
@@ -30114,11 +30111,11 @@
 /turf/open/floor/plasteel/grimy,
 /area/crew_quarters/heads/hos)
 "brC" = (
-/obj/machinery/computer/security{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
+	},
+/obj/machinery/computer/security/hos{
+	dir = 1
 	},
 /turf/open/floor/plasteel/grimy,
 /area/crew_quarters/heads/hos)
@@ -32397,7 +32394,7 @@
 /obj/machinery/camera/motion{
 	c_tag = "AI Chamber - Fore";
 	name = "motion-sensitive ai camera";
-	network = list("ai")
+	network = list("aichamber")
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
@@ -32851,7 +32848,8 @@
 "bxe" = (
 /obj/machinery/camera/motion{
 	c_tag = "Vault";
-	dir = 4
+	dir = 4;
+	network = list("vault")
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -40845,7 +40843,7 @@
 	c_tag = "Telecomms - Monitoring";
 	dir = 2;
 	name = "telecomms camera";
-	network = list("ss13","tcomm")
+	network = list("ss13","tcomms")
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
@@ -41329,7 +41327,7 @@
 	c_tag = "AI Chamber - Aft";
 	dir = 1;
 	name = "motion-sensitive ai camera";
-	network = list("ai")
+	network = list("aichamber")
 	},
 /turf/open/floor/plasteel/vault,
 /area/ai_monitored/turret_protected/ai)
@@ -45718,12 +45716,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the AI's satellite.";
-	dir = 4;
-	name = "Research Monitor";
-	network = list("minisat");
-	pixel_y = 2
+/obj/machinery/computer/security/telescreen/minisat{
+	dir = 4
 	},
 /turf/open/floor/plasteel/vault{
 	dir = 8
@@ -45764,12 +45758,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the Engine.";
+/obj/machinery/computer/security/telescreen/ce{
 	dir = 4;
-	layer = 4;
-	name = "Engine Monitor";
-	network = list("engine");
 	pixel_x = -30
 	},
 /mob/living/simple_animal/parrot/Poly,
@@ -49043,6 +49033,10 @@
 /obj/item/stack/packageWrap,
 /obj/item/hand_labeler,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/computer/security/telescreen/vault{
+	dir = 8;
+	pixel_x = 26
+	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "ccD" = (
@@ -49053,7 +49047,7 @@
 	c_tag = "Telecomms - Chamber Port";
 	dir = 4;
 	name = "telecomms camera";
-	network = list("ss13","tcomm")
+	network = list("ss13","tcomms")
 	},
 /turf/open/floor/plasteel/vault/telecomms{
 	dir = 8
@@ -49497,7 +49491,7 @@
 /obj/machinery/camera/motion{
 	c_tag = "AI - Upload";
 	name = "motion-sensitive ai camera";
-	network = list("minisat")
+	network = list("aiupload")
 	},
 /turf/open/floor/plasteel/vault,
 /area/ai_monitored/turret_protected/ai_upload)
@@ -50940,7 +50934,7 @@
 	c_tag = "Telecomms - Chamber Starboard";
 	dir = 8;
 	name = "telecomms camera";
-	network = list("ss13","tcomm")
+	network = list("ss13","tcomms")
 	},
 /turf/open/floor/plasteel/vault/telecomms{
 	dir = 8
@@ -52378,7 +52372,6 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/book/manual/engineering_particle_accelerator,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -52393,7 +52386,7 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/book/manual/engineering_singularity_safety,
+/obj/item/book/manual/wiki/engineering_singulo_tesla,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
@@ -52596,7 +52589,7 @@
 /obj/machinery/camera/motion{
 	c_tag = "Bridge - Captain's Emergency Escape";
 	dir = 4;
-	name = "command camera"
+	name = "motion-sensitive command camera"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -54722,7 +54715,7 @@
 	c_tag = "Telecomms - Cooling Room";
 	dir = 8;
 	name = "telecomms camera";
-	network = list("ss13","tcomm")
+	network = list("ss13","tcomms")
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
@@ -57042,6 +57035,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/machinery/nuclearbomb/beer,
 /turf/open/floor/plating,
 /area/maintenance/starboard)
 "cti" = (
@@ -67889,6 +67883,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay - Storage";
+	network = list("ss13", "medbay");
 	dir = 4;
 	name = "medbay camera"
 	},
@@ -68193,10 +68188,10 @@
 /area/maintenance/port)
 "cQd" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
+/obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel,
 /area/maintenance/port)
 "cQe" = (
@@ -71807,6 +71802,7 @@
 /obj/machinery/light,
 /obj/machinery/camera{
 	c_tag = "Medbay - Waiting Room";
+	network = list("ss13", "medbay");
 	dir = 1;
 	name = "medbay camera"
 	},
@@ -71946,6 +71942,7 @@
 "cYc" = (
 /obj/machinery/camera{
 	c_tag = "Medbay - Break Room";
+	network = list("ss13", "medbay");
 	dir = 2;
 	name = "medbay camera"
 	},
@@ -72623,6 +72620,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/camera{
 	c_tag = "Medbay - Fore Port";
+	network = list("ss13", "medbay");
 	dir = 8;
 	name = "medbay camera"
 	},
@@ -72704,6 +72702,7 @@
 /obj/item/stack/medical/ointment,
 /obj/machinery/camera{
 	c_tag = "Medbay - Sleepers";
+	network = list("ss13", "medbay");
 	dir = 2;
 	name = "medbay camera"
 	},
@@ -75472,9 +75471,9 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay - Chemistry";
+	network = list("ss13", "medbay");
 	dir = 8;
-	name = "medbay camera";
-	network = list("ss13","medbay")
+	name = "medbay camera"
 	},
 /turf/open/floor/plasteel/whiteyellow/corner,
 /area/medical/chemistry)
@@ -76303,6 +76302,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay - Center";
+	network = list("ss13", "medbay");
 	dir = 2;
 	name = "medbay camera"
 	},
@@ -77159,19 +77159,17 @@
 /area/science/research/abandoned)
 "djp" = (
 /obj/structure/table/reinforced,
-/obj/item/stack/sheet/glass/fifty,
+/obj/machinery/cell_charger,
 /turf/open/floor/plasteel/white/side,
 /area/science/circuit)
 "djq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/rnd/production/protolathe/department/science,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plasteel/white/side,
 /area/science/circuit)
 "djr" = (
-/obj/machinery/autolathe,
 /turf/open/floor/plasteel/white/side,
 /area/science/circuit)
 "djs" = (
@@ -77695,6 +77693,7 @@
 /obj/machinery/light,
 /obj/machinery/camera{
 	c_tag = "Medbay - Port";
+	network = list("ss13", "medbay");
 	dir = 1;
 	name = "medbay camera"
 	},
@@ -77793,6 +77792,7 @@
 /obj/machinery/light,
 /obj/machinery/camera{
 	c_tag = "Medbay - Starboard";
+	network = list("ss13", "medbay");
 	dir = 1;
 	name = "medbay camera"
 	},
@@ -78537,12 +78537,11 @@
 /area/crew_quarters/abandoned_gambling_den)
 "dmr" = (
 /obj/structure/table/reinforced,
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stock_parts/cell/super,
-/obj/item/stock_parts/cell/super,
 /obj/structure/sign/departments/science{
 	pixel_x = -32
 	},
+/obj/item/stock_parts/cell/high,
+/obj/item/stock_parts/cell/high,
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
@@ -78971,7 +78970,7 @@
 	pixel_y = 24
 	},
 /obj/item/folder/white,
-/obj/item/book/manual/medical_cloning,
+/obj/item/book/manual/wiki/medical_cloning,
 /turf/open/floor/plasteel/whiteblue/corner{
 	dir = 4
 	},
@@ -79277,7 +79276,8 @@
 	pixel_x = -26
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/item/stack/sheet/metal/fifty,
+/obj/item/stock_parts/cell/high,
+/obj/item/stock_parts/cell/high,
 /turf/open/floor/plasteel/white/side{
 	dir = 4
 	},
@@ -80293,7 +80293,7 @@
 /area/science/explab)
 "dqn" = (
 /obj/structure/table/reinforced,
-/obj/item/book/manual/experimentor,
+/obj/item/book/manual/wiki/experimentor,
 /obj/item/healthanalyzer,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -80844,8 +80844,6 @@
 	pixel_y = -32
 	},
 /obj/machinery/cell_charger,
-/obj/item/stock_parts/cell/super,
-/obj/item/stock_parts/cell/super,
 /turf/open/floor/plasteel/white/side{
 	dir = 1
 	},
@@ -80879,16 +80877,16 @@
 	},
 /area/science/circuit)
 "drD" = (
-/obj/machinery/vending/assist,
 /turf/open/floor/plasteel/white/side{
 	dir = 1
 	},
 /area/science/circuit)
 "drE" = (
-/obj/machinery/bookbinder,
 /obj/structure/sign/poster/official/build{
 	pixel_y = -32
 	},
+/obj/structure/table/reinforced,
+/obj/item/storage/fancy/donut_box,
 /turf/open/floor/plasteel/white/side{
 	dir = 1
 	},
@@ -80897,11 +80895,11 @@
 /obj/machinery/light_switch{
 	pixel_x = 36
 	},
-/obj/machinery/libraryscanner,
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = 24
 	},
+/obj/machinery/vending/assist,
 /turf/open/floor/plasteel/white/corner{
 	dir = 1
 	},
@@ -81245,6 +81243,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay - Cloning Lab";
+	network = list("ss13", "medbay");
 	dir = 1;
 	name = "medbay camera"
 	},
@@ -81304,6 +81303,7 @@
 /obj/item/clothing/neck/stethoscope,
 /obj/machinery/camera{
 	c_tag = "Medbay - Cryogenics";
+	network = list("ss13", "medbay");
 	dir = 1;
 	name = "medbay camera"
 	},
@@ -81770,6 +81770,7 @@
 /obj/machinery/iv_drip,
 /obj/machinery/camera{
 	c_tag = "Medbay - Recovery Room";
+	network = list("ss13", "medbay");
 	dir = 8;
 	name = "medbay camera"
 	},
@@ -82001,7 +82002,7 @@
 /area/science/research/abandoned)
 "duq" = (
 /obj/structure/rack,
-/obj/item/book/manual/robotics_cyborgs,
+/obj/item/book/manual/wiki/robotics_cyborgs,
 /obj/item/storage/belt/utility,
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/effect/decal/cleanable/dirt,
@@ -83166,6 +83167,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay - Genetics Lab";
+	network = list("ss13", "medbay");
 	dir = 4;
 	name = "medbay camera"
 	},
@@ -83797,6 +83799,7 @@
 /obj/item/storage/box/disks,
 /obj/machinery/camera{
 	c_tag = "Medbay - Genetics Desk";
+	network = list("ss13", "medbay");
 	dir = 4;
 	name = "medbay camera"
 	},
@@ -84104,6 +84107,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay - Surgery";
+	network = list("ss13", "medbay");
 	dir = 1;
 	name = "medbay camera"
 	},
@@ -84530,7 +84534,7 @@
 /area/science/robotics/lab)
 "dzI" = (
 /obj/structure/rack,
-/obj/item/book/manual/robotics_cyborgs,
+/obj/item/book/manual/wiki/robotics_cyborgs,
 /obj/item/storage/belt/utility/full,
 /obj/machinery/light{
 	dir = 1
@@ -84698,6 +84702,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/camera{
 	c_tag = "Medbay - Aft Port";
+	network = list("ss13", "medbay");
 	dir = 8;
 	name = "medbay camera"
 	},
@@ -84756,6 +84761,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay - Chief Medical Officer's Office";
+	network = list("ss13", "medbay");
 	dir = 8;
 	name = "medbay camera"
 	},
@@ -85976,8 +85982,9 @@
 /obj/structure/table/glass,
 /obj/item/clipboard,
 /obj/item/toy/figure/cmo,
-/obj/machinery/status_display{
-	pixel_x = -32
+/obj/machinery/computer/security/telescreen/cmo{
+	dir = 4;
+	pixel_x = -30
 	},
 /turf/open/floor/plasteel/neutral/side{
 	dir = 4
@@ -86024,6 +86031,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay - Aft Starboard";
+	network = list("ss13", "medbay");
 	dir = 4;
 	name = "medbay camera"
 	},
@@ -87259,7 +87267,7 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/book/manual/detective,
+/obj/item/book/manual/wiki/detective,
 /obj/item/camera/detective,
 /turf/open/floor/plasteel/vault{
 	dir = 5
@@ -87623,13 +87631,13 @@
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "dGe" = (
-/obj/machinery/rnd/production/circuit_imprinter,
 /obj/item/reagent_containers/glass/beaker/sulphuric,
 /obj/machinery/airalarm{
 	dir = 8;
 	pixel_x = 24
 	},
 /obj/effect/turf_decal/bot,
+/obj/machinery/rnd/production/circuit_imprinter/department/science,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
 "dGf" = (
@@ -88049,15 +88057,11 @@
 /area/science/test_area)
 "dGY" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the testing site.";
-	dir = 4;
-	layer = 4;
-	name = "Testing Site Telescreen";
-	network = list("toxins")
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
+	},
+/obj/machinery/computer/security/telescreen/toxins{
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
@@ -89057,6 +89061,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/camera{
 	c_tag = "Medbay - Morgue";
+	network = list("ss13", "medbay");
 	dir = 1;
 	name = "medbay camera"
 	},
@@ -89168,6 +89173,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay - Chief Medical Officer's Quarters";
+	network = list("ss13", "medbay");
 	dir = 1;
 	name = "medbay camera"
 	},
@@ -90365,17 +90371,8 @@
 /obj/item/target,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/camera{
-	active_power_usage = 0;
-	c_tag = "Bomb Test Site";
-	desc = "A specially-reinforced camera with a long lasting battery, used to monitor the bomb testing site.";
-	dir = 4;
-	invuln = 1;
-	light = null;
-	name = "hardened testing camera";
-	network = list("toxins");
-	start_active = 1;
-	use_power = 0
+/obj/machinery/camera/preset/toxins{
+	dir = 4
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)
@@ -92468,6 +92465,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/camera{
 	c_tag = "Virology - Containment Lock";
+	network = list("ss13", "medbay");
 	dir = 8;
 	name = "virology camera"
 	},
@@ -92980,6 +92978,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Virology - Break Room";
+	network = list("ss13", "medbay");
 	dir = 8;
 	name = "virology camera"
 	},
@@ -93566,7 +93565,7 @@
 /obj/structure/cable/white{
 	icon_state = "1-2"
 	},
-/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel/grimy,
 /area/library/abandoned)
 "dSu" = (
@@ -94686,6 +94685,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Virology - Lab";
+	network = list("ss13", "medbay");
 	name = "virology camera"
 	},
 /obj/effect/turf_decal/bot,
@@ -94705,6 +94705,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/camera{
 	c_tag = "Virology - Hallway";
+	network = list("ss13", "medbay");
 	dir = 8;
 	name = "virology camera"
 	},
@@ -94756,7 +94757,7 @@
 /turf/open/floor/plating,
 /area/library/abandoned)
 "dVJ" = (
-/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/wood{
 	icon_state = "wood-broken6"
 	},
@@ -96408,6 +96409,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Virology - Cells";
+	network = list("ss13", "medbay");
 	dir = 8;
 	name = "virology camera"
 	},
@@ -97953,10 +97955,10 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "edj" = (
-/obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plasteel,
 /area/maintenance/port/aft)
 "edk" = (
@@ -99710,7 +99712,7 @@
 "gUH" = (
 /obj/machinery/light,
 /obj/structure/table/reinforced,
-/obj/machinery/computer/libraryconsole/bookmanagement,
+/obj/item/stack/sheet/metal/ten,
 /turf/open/floor/plasteel/white/side{
 	dir = 1
 	},

@@ -333,3 +333,10 @@
 	desc = "Become a posthuman warrior. The items cannot be taken off once you wear them."
 	item = /obj/item/storage/box/syndie_kit/nanosuit
 	cost = 20
+
+/datum/uplink_item/dangerous/synth
+	name = "Cybersun Sponsorship Kit"
+	desc = "Containing an arm mounted laser implant and a device bestowing the mysteries of the synth augmentation upon you, this kit also comes with a free autosurgeon."
+	item = /obj/item/storage/box/syndie_kit/synth
+	cost = 8
+	surplus = 40

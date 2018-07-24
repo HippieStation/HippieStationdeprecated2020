@@ -104,7 +104,7 @@
 	if(!permanent && !uses)
 		qdel(src)
 
-// Base version - place these on maps/templates.
+// base version - place these on maps/templates.
 /obj/effect/mob_spawn/human
 	mob_type = /mob/living/carbon/human
 	//Human specific stuff.
@@ -336,10 +336,10 @@
 
 /obj/effect/mob_spawn/human/miner
 	name = "Shaft Miner"
-	outfit = /datum/outfit/job/miner/asteroid
+	outfit = /datum/outfit/job/miner
 
 /obj/effect/mob_spawn/human/miner/rig
-	outfit = /datum/outfit/job/miner/equipped/asteroid
+	outfit = /datum/outfit/job/miner/equipped/hardsuit
 
 /obj/effect/mob_spawn/human/miner/explorer
 	outfit = /datum/outfit/job/miner/equipped
@@ -396,7 +396,7 @@
 	name = "lifeguard sleeper"
 	id_job = "Lifeguard"
 	uniform = /obj/item/clothing/under/shorts/red
-	
+
 /datum/outfit/beachbum
 	name = "Beach Bum"
 	glasses = /obj/item/clothing/glasses/sunglasses

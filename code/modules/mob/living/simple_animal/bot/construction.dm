@@ -200,13 +200,13 @@
 				qdel(src)
 
 
-//Floorbot assemblies
+//floorbot assemblies
 /obj/item/bot_assembly/floorbot
 	desc = "It's a toolbox with tiles sticking out the top."
 	name = "tiles and toolbox"
 	icon_state = "toolbox_tiles"
 	throwforce = 10
-	created_name = "Floorbot"
+	created_name = "floorbot"
 	var/toolbox = /obj/item/storage/toolbox/mechanical
 
 /obj/item/bot_assembly/floorbot/Initialize()

@@ -19,7 +19,7 @@
 	build_path = /obj/machinery/computer/camera_advanced/xenobio
 
 /obj/item/circuitboard/computer/base_construction
-	name = "circuit board (Aux Mining Base Construction Console)"
+	name = "circuit board (Aux Mining base Construction Console)"
 	build_path = /obj/machinery/computer/camera_advanced/base_construction
 
 /obj/item/circuitboard/computer/aiupload
@@ -234,7 +234,7 @@
 
 /obj/item/circuitboard/computer/bounty
 	name = "Nanotrasen Bounty Console (Computer Board)"
-	build_path = /obj/machinery/computer/cargo/request
+	build_path = /obj/machinery/computer/bounty
 
 /obj/item/circuitboard/computer/operating
 	name = "Operating Computer (Computer Board)"
@@ -281,7 +281,7 @@
 	build_path = /obj/machinery/computer/shuttle/white_ship
 
 /obj/item/circuitboard/computer/auxillary_base
-	name = "Auxillary Base Management Console (Computer Board)"
+	name = "Auxillary base Management Console (Computer Board)"
 	build_path = /obj/machinery/computer/auxillary_base
 
 /obj/item/circuitboard/computer/holodeck// Not going to let people get this, but it's just here for future

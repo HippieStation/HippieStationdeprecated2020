@@ -1,5 +1,5 @@
 /datum/round_event_control/floor_cluwne
-	name = "Floor Cluwne"
+	name = "floor Cluwne"
 	typepath = /datum/round_event/floor_cluwne
 	max_occurrences = 1
 	min_players = 20
@@ -13,7 +13,7 @@
 	if(!spawn_locs.len)
 		message_admins("No valid spawn locations found, aborting...")
 		return MAP_ERROR
-  
+
 	var/turf/T = get_turf(pick(spawn_locs))
 	var/mob/living/simple_animal/hostile/floor_cluwne/S = new(T)
 	playsound(S, 'hippiestation/sound/misc/bikehorn_creepy.ogg', 50, 1, -1)

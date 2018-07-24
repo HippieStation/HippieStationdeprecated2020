@@ -334,7 +334,7 @@
 
 /mob/living/silicon/ai/verb/toggle_anchor()
 	set category = "AI Commands"
-	set name = "Toggle Floor Bolts"
+	set name = "Toggle floor Bolts"
 	if(!isturf(loc)) // if their location isn't a turf
 		return // stop
 	if(incapacitated())
@@ -627,13 +627,14 @@
 		if(istype(M, /obj/machinery/ai_status_display))
 			var/obj/machinery/ai_status_display/AISD = M
 			AISD.emotion = emote
-		//if Friend Computer, change ALL displays
-		else if(istype(M, /obj/machinery/status_display))
-			var/obj/machinery/status_display/SD = M
-			if(emote=="Friend Computer")
-				SD.friendc = 1
-			else
-				SD.friendc = 0
+	if (emote == "Friend Computer")
+		var/datum/radio_frequency/frequency = SSradio.return_frequency(FREQ_STATUS_DISPLAYS)
+
+		if(!frequency)
+			return
+
+		var/datum/signal/status_signal = new(list("command" = "friendcomputer"))
+		frequency.post_signal(src, status_signal)
 	return
 
 //I am the icon meister. Bow fefore me.	//>fefore
@@ -825,7 +826,7 @@
 		//apc_override is needed here because AIs use their own APC when depowered
 		return (GLOB.cameranet && GLOB.cameranet.checkTurfVis(get_turf_pixel(A))) || apc_override
 	//AI is carded/shunted
-	//view(src) returns nothing for carded/shunted AIs and they have x-ray vision so just use get_dist
+	//view(src) returns nothing for carded/shunted AIs and they have X-ray vision so just use get_dist
 	var/list/viewscale = getviewsize(client.view)
 	return get_dist(src, A) <= max(viewscale[1]*0.5,viewscale[2]*0.5)
 
@@ -1005,7 +1006,7 @@
 		target_ai = src //cheat! just give... ourselves as the spawned AI, because that's technically correct
 
 /mob/living/silicon/ai/proc/camera_visibility(mob/camera/aiEye/moved_eye)
-	GLOB.cameranet.visibility(moved_eye, client, all_eyes)
+	GLOB.cameranet.visibility(moved_eye, client, all_eyes, USE_STATIC_OPAQUE)
 
 /mob/living/silicon/ai/forceMove(atom/destination)
 	. = ..()

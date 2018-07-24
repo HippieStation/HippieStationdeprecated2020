@@ -92,7 +92,7 @@
 #define CAT_BREAD	"Breads"
 #define CAT_BURGER	"Burgers"
 #define CAT_CAKE	"Cakes"
-#define CAT_EGG	"Egg-Based Food"
+#define CAT_EGG	"Egg-based Food"
 #define CAT_MEAT	"Meats"
 #define CAT_MISCFOOD	"Misc. Food"
 #define CAT_PASTRY	"Pastries"

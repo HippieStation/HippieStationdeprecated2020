@@ -211,7 +211,7 @@
 	category = list("initial","Leather and Cloth")
 
 /datum/design/baseball_bat
-	name = "Baseball bat"
+	name = "baseball bat"
 	id = "baseball_bat"
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 100)

@@ -15,7 +15,7 @@
 	var/severity = 0
 	// The hash tag for our diseases, we will add it up with our other symptoms to get a unique id! ID MUST BE UNIQUE!!!
 	var/id = ""
-	//Base chance of sending warning messages, so it can be modified
+	//base chance of sending warning messages, so it can be modified
 	var/base_message_chance = 10
 	//If the early warnings are suppressed or not
 	var/suppress_warning = FALSE

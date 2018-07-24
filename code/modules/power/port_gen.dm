@@ -1,5 +1,5 @@
 
-//Baseline portable generator. Has all the default handling. Not intended to be used on it's own (since it generates unlimited power).
+//baseline portable generator. Has all the default handling. Not intended to be used on it's own (since it generates unlimited power).
 /obj/machinery/power/port_gen
 	name = "portable generator"
 	desc = "A portable generator for emergency backup power."

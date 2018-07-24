@@ -59,19 +59,7 @@
 
 /datum/preferences/proc/hippie_dat_replace(current_tab)
 	//This proc is for menus other than game pref and char pref
-	. = "<center>"
-
-	. += "<a href='?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character Settings</a> "
-	. += "<a href='?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Game Preferences</a>"
-	. += "<a href='?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>Loadout</a>"
-
-	if(!path)
-		. += "<div class='notice'>Please create an account to save your preferences</div>"
-
-	. += "</center>"
-
-	. += "<HR>"
-	if(current_tab == 2)
+	if(current_tab == 3)
 		if(!gear_tab)
 			gear_tab = GLOB.loadout_items[1]
 		. += "<table align='center' width='100%'>"

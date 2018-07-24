@@ -212,8 +212,8 @@ structure_check() searches for nearby cultist structures required for the invoca
 	var/mob/living/F = invokers[1]
 	var/datum/antagonist/cult/C = F.mind.has_antag_datum(/datum/antagonist/cult,TRUE)
 
-	var/is_convertable = is_convertable_to_cult(L,C.cult_team)
-	if(L.stat != DEAD && (is_clock || is_convertable))
+	var/is_convertible = is_convertible_to_cult(L,C.cult_team)
+	if(L.stat != DEAD && (is_clock || is_convertible))
 		invocation = "Mah'weyh pleggh at e'ntrath!"
 		..()
 		if(is_clock)
@@ -221,7 +221,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 			"<span class='cultlarge'>\"Stop resisting. You <i>will</i> be mi-\"</span>\n\
 			<span class='large_brass'>\"Give up and you will feel pain unlike anything you've ever felt!\"</span>")
 			L.Knockdown(80)
-		else if(is_convertable)
+		else if(is_convertible)
 			do_convert(L, invokers)
 	else
 		invocation = "Barhah hra zar'garis!"
@@ -618,9 +618,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 			to_chat(user, "<span class='cultitalic'>The air above this rune has hardened into a barrier that will last [DisplayTimeText(TMR.timeToRun - world.time)].</span>")
 
 /obj/effect/rune/wall/Destroy()
-	density = FALSE
 	GLOB.wall_runes -= src
-	air_update_turf(1)
 	return ..()
 
 /obj/effect/rune/wall/BlockSuperconductivity()
@@ -996,7 +994,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 			to_chat(M, "<span class='cultlarge'>An Apocalypse Rune was invoked in the [place.name], it is no longer available as a summoning site!</span>")
 			SEND_SOUND(M, 'sound/effects/pope_entry.ogg')
 	image_handler(images, duration)
-	if(intensity>=285) // Based on the prior formula, this means the cult makes up <15% of current players
+	if(intensity>=285) // based on the prior formula, this means the cult makes up <15% of current players
 		var/outcome = rand(1,100)
 		switch(outcome)
 			if(1 to 10)

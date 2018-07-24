@@ -53,7 +53,7 @@
 
 
 //Called when we bump onto a mob
-/mob/living/MobCollide(mob/M)
+/mob/living/MobBump(mob/M)
 	// Can't move with pinned people
 	if (pinned_to || M.pinned_to)
 		return TRUE	

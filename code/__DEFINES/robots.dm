@@ -31,7 +31,7 @@
 //Bot types
 #define SEC_BOT				(1<<0)	// Secutritrons (Beepsky) and ED-209s
 #define MULE_BOT			(1<<1)	// MULEbots
-#define FLOOR_BOT			(1<<2)	// Floorbots
+#define FLOOR_BOT			(1<<2)	// floorbots
 #define CLEAN_BOT			(1<<3)	// Cleanbots
 #define MED_BOT				(1<<4)	// Medibots
 #define HONK_BOT			(1<<5)	// Honkbots & ED-Honks

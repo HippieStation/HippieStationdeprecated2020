@@ -66,6 +66,16 @@
 /datum/atom_hud/sentient_disease
 	hud_icons = list(SENTIENT_DISEASE_HUD)
 
+/datum/atom_hud/ai_detector
+	hud_icons = list(AI_DETECT_HUD)
+
+/datum/atom_hud/ai_detector/add_hud_to(mob/M)
+	..()
+	if(M && (hudusers.len == 1))
+		for(var/V in GLOB.aiEyes)
+			var/mob/camera/aiEye/E = V
+			E.update_ai_detect_hud()
+
 /* MED/SEC/DIAG HUD HOOKS */
 
 /*
@@ -175,6 +185,11 @@
 	if(has_trait(TRAIT_XENO_HOST))
 		holder.icon_state = "hudxeno"
 	else if(stat == DEAD || (has_trait(TRAIT_FAKEDEATH)))
+		if(tod)
+			var/tdelta = round(world.time - timeofdeath)
+			if(tdelta < (DEFIB_TIME_LIMIT * 10))
+				holder.icon_state = "huddefib"
+				return
 		holder.icon_state = "huddead"
 	else
 		switch(virus_threat)
@@ -248,7 +263,7 @@
 				if("Incarcerated")
 					holder.icon_state = "hudincarcerated"
 					return
-				if("Parolled")
+				if("Paroled")
 					holder.icon_state = "hudparolled"
 					return
 				if("Discharged")
@@ -407,7 +422,7 @@
 	switch(mode)
 		if(BOT_SUMMON, BOT_RESPONDING) //Responding to PDA or AI summons
 			holder.icon_state = "hudcalled"
-		if(BOT_CLEANING, BOT_REPAIRING, BOT_HEALING) //Cleanbot cleaning, Floorbot fixing, or Medibot Healing
+		if(BOT_CLEANING, BOT_REPAIRING, BOT_HEALING) //Cleanbot cleaning, floorbot fixing, or Medibot Healing
 			holder.icon_state = "hudworking"
 		if(BOT_PATROL, BOT_START_PATROL) //Patrol mode
 			holder.icon_state = "hudpatrol"

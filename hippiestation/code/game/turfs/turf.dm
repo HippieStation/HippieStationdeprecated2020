@@ -2,9 +2,7 @@
 	var/elevation = 10
 	var/pinned = null
 
-/turf/Destroy(force)
-	..()
-
+/turf/Destroy()
 	if (pinned)
 		var/mob/living/carbon/human/H = pinned
 
@@ -17,6 +15,7 @@
 			for (var/obj/item/stack/rods/R in H.contents)
 				if (R.pinned)
 					R.pinned = null
+	. = ..()
 
 /turf/Initialize()
     check_hippie_icon()

@@ -2,7 +2,7 @@ GLOBAL_VAR_INIT(servants_active, FALSE) //This var controls whether or not a lot
 
 /*
 
-CLOCKWORK CULT: Based off of the failed pull requests from /vg/
+CLOCKWORK CULT: based off of the failed pull requests from /vg/
 
 While Nar-Sie is the oldest and most prominent of the elder gods, there are other forces at work in the universe.
 Ratvar, the Clockwork Justiciar, a homage to Nar-Sie granted sentience by its own power, is one such other force.
@@ -55,7 +55,7 @@ Credit where due:
 			return FALSE
 		if(M.mind.enslaved_to && !is_servant_of_ratvar(M.mind.enslaved_to))
 			return FALSE
-		if(M.mind.unconvertable)
+		if(M.mind.unconvertible)
 			return FALSE
 	else
 		return FALSE
@@ -144,11 +144,13 @@ Credit where due:
 
 /datum/game_mode/clockwork_cult/pre_setup()
 	var/list/errorList = list()
-	SSmapping.LoadGroup(errorList, "Reebe", "map_files/generic", "City_of_Cogs.dmm", default_traits = ZTRAITS_REEBE, silent = TRUE)
+	var/list/reebes = SSmapping.LoadGroup(errorList, "Reebe", "map_files/generic", "City_of_Cogs.dmm", default_traits = ZTRAITS_REEBE, silent = TRUE)
 	if(errorList.len)	// reebe failed to load
 		message_admins("Rebee failed to load!")
 		log_game("Rebee failed to load!")
 		return FALSE
+	for(var/datum/parsed_map/PM in reebes)
+		PM.initTemplateBounds()
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 	if(CONFIG_GET(flag/protect_assistant_from_antagonist))

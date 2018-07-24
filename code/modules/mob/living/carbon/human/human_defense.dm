@@ -787,7 +787,7 @@
 		if(wear_suit && ((wear_suit.body_parts_covered & HANDS) || (wear_suit.body_parts_covered & ARMS)))
 			arm_clothes = wear_suit
 		if(arm_clothes)
-			torn_items += arm_clothes
+			torn_items |= arm_clothes
 
 	//LEGS & FEET//
 	if(!def_zone || def_zone == BODY_ZONE_L_LEG || def_zone == BODY_ZONE_R_LEG)
@@ -799,7 +799,7 @@
 		if(wear_suit && ((wear_suit.body_parts_covered & FEET) || (wear_suit.body_parts_covered & LEGS)))
 			leg_clothes = wear_suit
 		if(leg_clothes)
-			torn_items += leg_clothes
+			torn_items |= leg_clothes
 
 	for(var/obj/item/I in torn_items)
 		if(I && !QDELETED(I))

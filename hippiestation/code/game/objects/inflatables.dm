@@ -147,7 +147,7 @@
 	icon_state = "folded_door"
 	structuretype = /obj/structure/inflatable/door
 
-/obj/structure/inflatable/door //Based on mineral door code
+/obj/structure/inflatable/door //based on mineral door code
 	name = "inflatable door"
 	density = 1
 	anchored = 1

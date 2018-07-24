@@ -74,7 +74,7 @@ GLOBAL_LIST_EMPTY(jam_on_wardec)
 	if(GLOB.player_list.len < CHALLENGE_MIN_PLAYERS)
 		to_chat(user, "The enemy crew is too small to be worth declaring war on.")
 		return FALSE
-	if(!user.onSyndieBase())
+	if(!user.onSyndiebase())
 		to_chat(user, "You have to be at your base to use this.")
 		return FALSE
 	if(world.time-SSticker.round_start_time > CHALLENGE_TIME_LIMIT)

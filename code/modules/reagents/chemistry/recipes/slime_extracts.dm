@@ -481,7 +481,7 @@
 
 //Bluespace
 /datum/chemical_reaction/slime/slimefloor2
-	name = "Bluespace Floor"
+	name = "Bluespace floor"
 	id = "m_floor2"
 	required_reagents = list("blood" = 1)
 	required_container = /obj/item/slime_extract/bluespace
@@ -565,7 +565,7 @@
 	..()
 
 /datum/chemical_reaction/slime/slimefloor
-	name = "Sepia Floor"
+	name = "Sepia floor"
 	id = "m_floor"
 	required_reagents = list("blood" = 1)
 	required_container = /obj/item/slime_extract/sepia
