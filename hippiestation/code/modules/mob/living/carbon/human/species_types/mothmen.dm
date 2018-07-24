@@ -49,7 +49,7 @@
 		/obj/item/clothing/mask,
 		/obj/item/clothing/under,
 		/obj/item/clothing/shoes) //lists the tasty snacks
-		if(is_type_in_list(W, /obj/item/clothing))
+		if(is_type_in_list(W, item_types))
 			var/obj/item/clothing/C = W
 			playsound(get_turf(src), 'sound/items/eatfood.ogg', 70,1)
 			visible_message("<span class='alert'>[user] bites into a [C].</span>")
