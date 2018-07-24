@@ -41,7 +41,7 @@
 		var/mob/dead/observer/C = pick(candidates)
 		spawn_guardian(user, C.key)
 		if(playsound)
-			playsound(loc, 'hippiestation/sound/misc/standactivated.ogg')
+			playsound(src, 'hippiestation/sound/misc/standactivated.ogg')
 	else
 		to_chat(user, "[failure_message]")
 		used = FALSE
@@ -94,7 +94,7 @@
 				var/mob/dead/observer/C = pick(candidates)
 				spawn_guardian(user, C.key)
 				if(playsound)
-					playsound(src.loc, 'hippiestation/sound/misc/standactivated.ogg')
+					playsound(src, 'hippiestation/sound/misc/standactivated.ogg')
 			else
 				to_chat(user, "[failure_message]")
 				used = FALSE
