@@ -92,7 +92,7 @@
 /obj/item/integrated_circuit/input/selection
 	name = "selection circuit"
 	desc = "This circuit lets you choose between different values from a list."
-	extended_desc = "This circuit lets you choose between up to 4 different values from a list that you can set. Null values are ignored and the chosen value is put out in selected."
+	extended_desc = "This circuit lets you choose between up to 4 different values from selection of strings that you can set. Null values are ignored and the chosen value is put out in selected."
 	icon_state = "addition"
 	can_be_asked_input = 1
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
