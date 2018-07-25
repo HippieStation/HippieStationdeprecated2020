@@ -1,0 +1,4 @@
+author: "Jujumatic"
+delete-after: True
+changes: 
+  - tweak: "Changed back scream and fart hotkeys to using ctrl instead of shift"
