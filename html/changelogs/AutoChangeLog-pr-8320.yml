@@ -1,0 +1,4 @@
+author: "zamolxius"
+delete-after: True
+changes: 
+  - bugfix: "disables pickup animations"
