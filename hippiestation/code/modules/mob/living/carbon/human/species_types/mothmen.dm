@@ -54,6 +54,6 @@
 			playsound(get_turf(src), 'sound/items/eatfood.ogg', 70,1)
 			visible_message("<span class='alert'>[user] bites into a [C].</span>")
 			nutrition += 10
-			C.take_damage(3, BRUTE, "melee", 1)
+			C.take_damage(50, BRUTE, "melee", 1)
 		else
 			return ..()
