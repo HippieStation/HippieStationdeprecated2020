@@ -652,7 +652,7 @@
 		var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
 		if(statpanel("Crynet Nanosuit"))
 			stat("Crynet Protocols : Engaged")
-			stat("Energy Charge:", "[round(NS.cell.charge*100/NS.cell.maxcharge)]%")
+			stat("Energy Charge:", "[round(NS.cell.percent())]%")
 			stat("Mode:", "[NS.mode]")
 			stat("Overall Status:", "[health]% healthy")
 			stat("Nutrition Status:", "[nutrition]")
@@ -869,23 +869,27 @@
 					return
 	.=..()
 
-/obj/item/afterattack(atom/O, mob/living/carbon/human/user, proximity)
+/obj/item/afterattack(atom/O, mob/user, proximity)
 	..()
-	if(istype(user.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
-		var/obj/item/clothing/suit/space/hardsuit/nano/NS = user.wear_suit
-		NS.kill_cloak()
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+			var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
+			NS.kill_cloak()
 
-/obj/item/gun/afterattack(atom/O, mob/living/carbon/human/user, proximity)
+/obj/item/gun/afterattack(atom/O, mob/user, proximity)
 	..()
-	if(istype(user.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
-		var/obj/item/clothing/suit/space/hardsuit/nano/NS = user.wear_suit
-		if(can_shoot())
-			NS.kill_cloak(suppressed)
-		if(proximity) //It's adjacent, is the user, or is on the user's person
-			if(!ismob(O) || user.a_intent == INTENT_HARM) //melee attack
-				NS.kill_cloak()
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+			var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
+			if(can_shoot())
+				NS.kill_cloak(suppressed)
+			if(proximity) //It's adjacent, is the user, or is on the user's person
+				if(!ismob(O) || user.a_intent == INTENT_HARM) //melee attack
+					NS.kill_cloak()
 
-/obj/item/gun/attack(mob/M as mob, mob/living/carbon/user)
+/obj/item/gun/attack(mob/M as mob, mob/user)
 	..()
 	if(user && ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -894,23 +898,29 @@
 			if(user.a_intent == INTENT_HARM)
 				NS.kill_cloak()
 
-/obj/item/weldingtool/afterattack(atom/O, mob/living/carbon/human/user, proximity)
+/obj/item/weldingtool/afterattack(atom/O, mob/user, proximity)
 	..()
-	if(istype(user.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
-		var/obj/item/clothing/suit/space/hardsuit/nano/NS = user.wear_suit
-		NS.kill_cloak()
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+			var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
+			NS.kill_cloak()
 
-/obj/item/twohanded/fireaxe/afterattack(atom/A, mob/living/carbon/human/user, proximity)
+/obj/item/twohanded/fireaxe/afterattack(atom/A, mob/user, proximity)
 	..()
-	if(istype(user.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
-		var/obj/item/clothing/suit/space/hardsuit/nano/NS = user.wear_suit
-		NS.kill_cloak()
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+			var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
+			NS.kill_cloak()
 
-/datum/species/spec_attack_hand(mob/living/carbon/human/M, mob/living/carbon/human/H, datum/martial_art/attacker_style)
+/datum/species/spec_attack_hand(mob/M, mob/H, datum/martial_art/attacker_style)
 	..()
-	if(istype(M.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
-		var/obj/item/clothing/suit/space/hardsuit/nano/NS = M.wear_suit
-		NS.kill_cloak()
+	if(ishuman(M))
+		var/mob/living/carbon/human/user = M
+		if(istype(user.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+			var/obj/item/clothing/suit/space/hardsuit/nano/NS = user.wear_suit
+			NS.kill_cloak()
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/kill_cloak(temp)
 	if(mode == CLOAK)
@@ -983,7 +993,6 @@
 	..()
 	air_contents.assert_gas(/datum/gas/oxygen)
 	air_contents.gases[/datum/gas/oxygen][MOLES] = (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
-	START_PROCESSING(SSobj, src)
 	return
 
 /obj/item/tank/internals/emergency_oxygen/recharge/process()
