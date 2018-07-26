@@ -1,0 +1,4 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - bugfix: "Runtimes were being thrown by afterattack and possibly other proc overrides in nanosuit.dm when the source was a non-human. This has been corrected."
