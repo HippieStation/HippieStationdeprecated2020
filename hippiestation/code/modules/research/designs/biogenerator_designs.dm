@@ -133,7 +133,6 @@
 	build_path = /obj/item/storage/bag/chemistry
 	category = list("initial","Leather and Cloth")
 
-
 /datum/design/leather_satchel
 	name = "Leather satchel"
 	id = "leather_satchel"
@@ -148,6 +147,14 @@
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 100)
 	build_path = /obj/item/storage/wallet
+	category = list("initial","Leather and Cloth")
+
+/datum/design/s_holster
+	name = "Shoulder Holster"
+	id = "s_holster"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 400)
+	build_path = /obj/item/storage/belt/holster
 	category = list("initial","Leather and Cloth")
 
 
@@ -172,7 +179,6 @@
 	build_path = /obj/item/storage/belt/utility
 	category = list("initial","Leather and Cloth")
 
-
 /datum/design/bandolier
 	name = "Bandolier belt"
 	id = "bandolier"
@@ -180,6 +186,31 @@
 	materials = list(MAT_BIOMASS = 300)
 	build_path = /obj/item/storage/belt/bandolier
 	category = list("initial","Leather and Cloth")
+
+/datum/design/secbelt
+	name = "Security Belt"
+	id = "secbelt"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 300)
+	build_path = /obj/item/storage/belt/security
+	category = list("initial","Leather and Cloth")
+
+/datum/design/medbelt
+	name = "Medical Belt"
+	id = "medbel"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 300)
+	build_path = /obj/item/storage/belt/medical
+	category = list("intial","Leather and Cloth")
+
+ /datum/design/janibelt
+	name = "Janitorial Belt"
+	id = "janibelt"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 300)
+	build_path = /obj/item/storage/belt/janitor
+	category = list("initial","Leather and Cloth")
+
 
 /* Jackets */
 
@@ -217,6 +248,31 @@
 	materials = list(MAT_BIOMASS = 100)
 	build_path = /obj/item/melee/baseball_bat
 	category = list("initial","Leather and Cloth")
+
+/datum/design/cloth
+	name = "Roll of Cloth"
+	id = "cloth"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 50)
+	build_path = /obj/item/stack/sheet/cloth
+	category = list("initial","Leather and Cloth")
+
+/datum/design/cardboard
+	name = "Sheet of Cardboard"
+	id = "cardboard"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 25)
+	build_path = /obj/item/stack/sheet/cardboard
+	category = list("initial","Leather and Cloth")
+
+/datum/design/leather
+	name = "Sheet of Leather"
+	id = "leather"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 150)
+	build_path = /obj/item/stack/sheet/leather
+	category = list("initial","Leather and Cloth")
+
 
 /* Special Stuff*/
 
