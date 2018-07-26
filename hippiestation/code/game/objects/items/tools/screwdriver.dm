@@ -1,6 +1,7 @@
 /obj/item/screwdriver/gold
 	name = "golden screwdriver"
 	desc = "You gotta show your bling somehow!"
+	icon = 'hippiestation/icons/obj/tools.dmi'	
 	icon_state = "goldscrewdriver"
 	item_state = "goldscrewdriver"
 	random_color = FALSE // its fookin gold
