@@ -142,7 +142,6 @@
 /obj/item/hatchet/improvised
 	name = "glass hatchet"
 	desc = "A makeshift hand axe with a crude blade of broken glass."
-	flags_1 = null
 	icon = 'hippiestation/icons/obj/weapons.dmi'
 	icon_state = "glasshatchet"
 	item_state = "glasshatchet"
