@@ -143,7 +143,7 @@
 /datum/crafting_recipe/glasshatchet
 	name = "Makeshift glass hatchet"
 	result = /obj/item/hatchet/improvised
-	reqs = list(/obj/item/restraints/handcuffs/cable = 1,
+	reqs = list(/obj/item/stack/ducttape = 4,
 				/obj/item/shard = 1,
 				/obj/item/wrench = 1)
 	time = 40
