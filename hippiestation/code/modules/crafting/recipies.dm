@@ -140,3 +140,12 @@
 	time = 150
 	category = CAT_PRIMAL
 
+/datum/crafting_recipe/glasshatchet
+	name = "Makeshift glass hatchet"
+	result = /obj/item/hatchet/improvised
+	reqs = list(/obj/item/restraints/handcuffs/cable = 1,
+				/obj/item/shard = 1,
+				/obj/item/wrench = 1)
+	time = 40
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON

@@ -138,3 +138,13 @@
 	force = 16
 	throwforce = 10
 	block_chance = 10
+
+/obj/item/hatchet/improvised
+	name = "glass hatchet"
+	desc = "A makeshift hand axe with a crude blade of broken glass."
+	flags_1 = null
+	icon = 'hippiestation/icons/obj/weapons.dmi'
+	icon_state = "glasshatchet"
+	item_state = "glasshatchet"
+	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
