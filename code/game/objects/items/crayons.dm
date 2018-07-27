@@ -240,7 +240,9 @@
 			out += a
 	return jointext(out,"")
 
+/* hippie - I've tried very hard to get this piece of shit to work without mirroring it, but it's so badly done it gave me an aneurysm
 /obj/item/toy/crayon/afterattack(atom/target, mob/user, proximity, params)
+	. = ..()
 	if(!proximity || !check_allowed_items(target))
 		return
 
@@ -283,7 +285,7 @@
 	else if(drawing in numerals)
 		temp = "number"
 
-	if(hippie_gang_check(user,target)) return // hippie
+
 	var/graf_rot
 	if(drawing in oriented)
 		switch(user.dir)
@@ -316,7 +318,7 @@
 	var/wait_time = 50
 	if(paint_mode == PAINT_LARGE_HORIZONTAL)
 		wait_time *= 3
-	if(gang) takes_time = TRUE // hippie
+
 	if(takes_time)
 		if(!do_after(user, 50, target = target))
 			return
@@ -328,7 +330,6 @@
 	var/list/turf/affected_turfs = list()
 
 	if(actually_paints)
-		if(gang) if(gang_final(user, target)) return // hippie
 		switch(paint_mode)
 			if(PAINT_NORMAL)
 				var/obj/effect/decal/cleanable/crayon/C = new(target, paint_color, drawing, temp, graf_rot)
@@ -368,7 +369,7 @@
 		reagents.reaction(t, TOUCH, fraction * volume_multiplier)
 		reagents.trans_to(t, ., volume_multiplier)
 	check_empty(user)
-
+*/
 /obj/item/toy/crayon/attack(mob/M, mob/user)
 	if(edible && (M == user))
 		to_chat(user, "You take a bite of the [src.name]. Delicious!")

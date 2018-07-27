@@ -12,14 +12,17 @@
 	if(check_canbuy && !can_buy(user, gang, gangtool))
 		return FALSE
 	var/real_cost = get_cost(user, gang, gangtool)
-	gang.adjust_influence(-real_cost)
-	spawn_item(user, gang, gangtool)
-	return TRUE
+	if(!spawn_item(user, gang, gangtool))
+		gang.adjust_influence(-real_cost)
+		to_chat(user, "<span class='notice'>You bought \the [name].</span>")
+		return TRUE
 
-/datum/gang_item/proc/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+/datum/gang_item/proc/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool) // If this returns anything other than null, something fucked up and influence won't lower.
 	if(item_path)
 		var/obj/item/O = new item_path(user.loc)
 		user.put_in_hands(O)
+	else
+		return TRUE
 	if(spawn_msg)
 		to_chat(user, spawn_msg)
 
@@ -54,10 +57,14 @@
 	cost = 1
 
 /datum/gang_item/clothing/under/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
-	if(gang.inner_outfit)
-		var/obj/item/O = new gang.inner_outfit(user.loc)
-		user.put_in_hands(O)
-		to_chat(user, "<span class='notice'> This is your gang's official uniform, wearing it will increase your influence")
+	if(gang.inner_outfits.len)
+		var/outfit = pick(gang.inner_outfits)
+		if(outfit)
+			var/obj/item/O = new outfit(user.loc)
+			user.put_in_hands(O)
+			to_chat(user, "<span class='notice'> This is your gang's official uniform, wearing it will increase your influence")
+			return
+	return TRUE
 
 /datum/gang_item/clothing/suit
 	name = "Gang Armored Outerwear"
@@ -65,12 +72,16 @@
 	cost = 1
 
 /datum/gang_item/clothing/suit/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
-	if(gang.outer_outfit)
-		var/obj/item/O = new gang.outer_outfit(user.loc)
-		O.armor = list(melee = 20, bullet = 35, laser = 10, energy = 10, bomb = 30, bio = 0, rad = 0, fire = 30, acid = 30)
-		O.desc += " Tailored for the [gang.name] Gang to offer the wearer moderate protection against ballistics and physical trauma."
-		user.put_in_hands(O)
-		to_chat(user, "<span class='notice'> This is your gang's official outerwear, wearing it will increase your influence")
+	if(gang.outer_outfits.len)
+		var/outfit = pick(gang.outer_outfits)
+		if(outfit)
+			var/obj/item/O = new outfit(user.loc)
+			O.armor = list(melee = 20, bullet = 35, laser = 10, energy = 10, bomb = 30, bio = 0, rad = 0, fire = 30, acid = 30)
+			O.desc += " Tailored for the [gang.name] Gang to offer the wearer moderate protection against ballistics and physical trauma."
+			user.put_in_hands(O)
+			to_chat(user, "<span class='notice'> This is your gang's official outerwear, wearing it will increase your influence")
+			return
+	return TRUE
 
 
 /datum/gang_item/clothing/hat
@@ -84,9 +95,6 @@
 	name = "pimpin' hat"
 	desc = "The undisputed king of style."
 
-/obj/item/clothing/head/collectable/petehat/gang/gang_contraband_value()
-	return 4
-
 /datum/gang_item/clothing/mask
 	name = "Golden Death Mask"
 	id = "mask"
@@ -97,10 +105,6 @@
 	name = "golden death mask"
 	icon_state = "gskull"
 	desc = "Strike terror, and envy, into the hearts of your enemies."
-	species_restricted = list("exclude","Vox Outcast")
-
-/obj/item/clothing/mask/gskull/gang_contraband_value()
-	return 5
 
 /datum/gang_item/clothing/shoes
 	name = "Bling Boots"
@@ -112,10 +116,6 @@
 	name = "blinged-out boots"
 	desc = "Stand aside peasants."
 	icon_state = "bling"
-	species_restricted = list("exclude","Vox Outcast")
-
-/obj/item/clothing/shoes/gang/gang_contraband_value()
-	return 6
 
 /datum/gang_item/clothing/neck
 	name = "Gold Necklace"
@@ -135,9 +135,6 @@
 	icon_state = "knuckles"
 	w_class = 3
 
-/obj/item/clothing/gloves/gang/gang_contraband_value()
-	return 3
-
 /datum/gang_item/clothing/belt
 	name = "Badass Belt"
 	id = "belt"
@@ -149,10 +146,6 @@
 	icon_state = "gangbelt"
 	item_state = "gang"
 	desc = "The belt buckle simply reads 'BAMF'."
-	storage_slots = 1
-
-/obj/item/storage/belt/military/gang/gang_contraband_value()
-	return 4
 
 ///////////////////
 //WEAPONS
@@ -162,9 +155,6 @@
 	category = "Purchase Weapons:"
 
 /datum/gang_item/weapon/ammo
-
-/datum/gang_item/weapon/ammo/get_cost_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
-	return "&nbsp;&#8627;" + ..() //this is pretty hacky but it looks nice on the popup
 
 /datum/gang_item/weapon/shuriken
 	name = "Shuriken"
@@ -214,8 +204,6 @@
 	cost = 10
 	item_path = /obj/item/ammo_box/magazine/m10mm
 
-
-
 /datum/gang_item/weapon/machinegun
 	name = "Mounted Machine Gun"
 	id = "MG"
@@ -248,6 +236,10 @@
 	id = "spraycan"
 	cost = 5
 	item_path = /obj/item/toy/crayon/spraycan/gang
+
+/datum/gang_item/equipment/spraycan/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+	var/obj/item/O = new item_path(user.loc, gang)
+	user.put_in_hands(O)
 
 /datum/gang_item/equipment/sharpener
 	name = "Sharpener"
@@ -288,11 +280,8 @@
 	spawn_msg = "<span class='notice'>The <b>implant breaker</b> is a single-use device that destroys all implants within the target before trying to recruit them to your gang. Also works on enemy gangsters.</span>"
 
 /datum/gang_item/equipment/implant_breaker/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
-	if(item_path)
-		var/obj/item/O = new item_path(user.loc, gang) //we need to override this whole proc for this one argument
-		user.put_in_hands(O)
-	if(spawn_msg)
-		to_chat(user, spawn_msg)
+	var/obj/item/O = new item_path(user.loc, gang)
+	user.put_in_hands(O)
 
 /datum/gang_item/equipment/wetwork_boots
 	name = "Wetwork boots"
@@ -336,20 +325,19 @@
 
 /datum/gang_item/equipment/gangtool/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	var/item_type
-	if(gang && (user.mind in gang.leaders))
+	if(gang)
 		item_type = /obj/item/device/gangtool/spare/lt
-		if(gang.leaders.len < 3)
-			to_chat(user, "<span class='notice'><b>Gangtools</b> allow you to promote a gangster to be your Lieutenant, enabling them to recruit and purchase items like you. Simply have them register the gangtool. You may promote up to [3-gang.bosses.len] more Lieutenants</span>")
+		if(gang.leaders.len < MAX_LEADERS_GANG)
+			to_chat(user, "<span class='notice'><b>Gangtools</b> allow you to promote a gangster to be your Lieutenant, enabling them to recruit and purchase items like you. Simply have them register the gangtool. You may promote up to [MAX_LEADERS_GANG-gang.leaders.len] more Lieutenants</span>")
 	else
 		item_type = /obj/item/device/gangtool/spare
 	var/obj/item/device/gangtool/spare/tool = new item_type(user.loc)
 	user.put_in_hands(tool)
 
 /datum/gang_item/equipment/gangtool/get_name_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
-	if(gang && isboss(user, gang) && (gang.bosses.len < 3))
+	if(gang && (gang.leaders.len < gang.max_leaders))
 		return "Promote a Gangster"
 	return "Spare Gangtool"
-
 
 /datum/gang_item/equipment/dominator
 	name = "Station Dominator"
@@ -360,6 +348,10 @@
 
 /datum/gang_item/equipment/dominator/can_buy(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	if(!gang || !gang.dom_attempts)
+		return FALSE
+	var/area/userarea = get_area(user)
+	if(userarea.type in gang.territories|gang.new_territories)
+		to_chat(user,"<span class='warning'>The <b>dominator</b> can be spawned only on territory controlled by your gang!</span>")
 		return FALSE
 	return ..()
 
@@ -375,28 +367,17 @@
 
 /datum/gang_item/equipment/dominator/get_extra_info(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	if(gang)
-		return "(Estimated Takeover Time: [round(determine_domination_time(gang)/60,0.1)] minutes)"
+		return "This device requires a 5x5 area clear of walls to work. (Estimated Takeover Time: [round(gang.determine_domination_time()/60,0.1)] minutes)"
 
 /datum/gang_item/equipment/dominator/purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
-	var/area/usrarea = get_area(user.loc)
-	var/usrturf = get_turf(user.loc)
-	if(initial(usrarea.name) == "Space" || isspaceturf(usrturf) || !is_station_level(user.z))
-		to_chat(user, "<span class='warning'>You can only use this on the station!</span>")
-		return FALSE
 
-	for(var/obj/obj in usrturf)
+	for(var/obj/obj in get_turf(user))
 		if(obj.density)
 			to_chat(user, "<span class='warning'>There's not enough room here!</span>")
 			return FALSE
 
-	if(dominator_excessive_walls(user))
-		to_chat(user, "<span class='warning'>The <b>dominator</b> will not function here! The <b>dominator</b> requires a sizable open space within three standard units so that walls do not interfere with the signal.</span>")
-		return FALSE
-
-	if(!(usrarea.type in gang.territories|gang.territories_new))
-		to_chat(user, "<span class='warning'>The <b>dominator</b> can be spawned only on territory controlled by your gang!</span>")
-		return FALSE
 	return ..()
 
 /datum/gang_item/equipment/dominator/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	new item_path(user.loc)
+	to_chat(user, spawn_msg)
