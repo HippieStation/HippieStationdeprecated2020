@@ -7,4 +7,4 @@
 	lefthand_file = 'hippiestation/icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/equipment/tools_righthand.dmi'
 	resistance_flags = FIRE_PROOF | ACID_PROOF
-
+	toolspeed = 0

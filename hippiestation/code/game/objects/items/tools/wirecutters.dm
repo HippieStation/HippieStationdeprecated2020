@@ -8,3 +8,4 @@
 	righthand_file = 'hippiestation/icons/mob/inhands/equipment/tools_righthand.dmi'
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	random_color = FALSE // its fookin gold
+	toolspeed = 0

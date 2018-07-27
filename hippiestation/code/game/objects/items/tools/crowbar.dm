@@ -6,6 +6,7 @@
 	righthand_file = 'hippiestation/icons/mob/inhands/equipment/tools_righthand.dmi'
 	icon_state = "goldcrowbar"
 	resistance_flags = FIRE_PROOF | ACID_PROOF
+	toolspeed = 0
 
 /obj/item/crowbar/large/gold
 	name = "golden crowbar"
@@ -15,3 +16,4 @@
 	lefthand_file = 'hippiestation/icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/equipment/tools_righthand.dmi'
 	resistance_flags = FIRE_PROOF | ACID_PROOF
+	toolspeed = 0
