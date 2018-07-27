@@ -7,7 +7,7 @@
 	var/obj/machinery/dominator/D = attached_to
 	if(!istype(D))
 		return
-	else if(D.gang && D.gang.domination_time != -1)
+	else if(D.gang && D.gang.domination_time != NOT_DOMINATING)
 		return D.gang.domination_time
 	else
 		return "OFFLINE"

@@ -5,7 +5,7 @@
 	var/cooldown
 	var/last_used
 
-/obj/item/pen/gang/New()
+/obj/item/pen/gang/Initialize()
 	..()
 	last_used = world.time
 
@@ -22,11 +22,11 @@
 	if(cooldown)
 		to_chat(user, "<span class='warning'>[src] needs more time to recharge before it can be used.</span>")
 		return
-	if(!M.client)
+	if(!M.client || !M.mind)
 		to_chat(user, "<span class='warning'>A braindead gangster is an useless gangster!</span>")
 		return
 	var/datum/team/gang/gang = L.gang
-	something_that_makes_this_dude_a_gangster()
+	add_gangster(user, gang, M.mind)
 	cooldown = TRUE
 	icon_state = "pen_blink"
 	var/cooldown_time = 600+(600*gang.leaders.len)
@@ -38,3 +38,21 @@
 	var/mob/M = loc
 	if(istype(M))
 		to_chat(M, "<span class='notice'>[icon2html(src, M)] [src][(loc == M)?(""):(" in your [loc]")] vibrates softly. It is ready to be used again.</span>")
+
+/obj/item/pen/gang/proc/add_gangster(mob/user, datum/team/gang/gang, datum/mind/gangster_mind, check = TRUE) // Basically a wrapper to add_antag_datum.
+	var/datum/antagonist/dudegang = gangster_mind.has_antag_datum(/datum/antagonist/gang)
+	if(dudegang)
+		if(dudegang == gang)
+			to_chat(user, "<span class='danger'>This mind is already controlled by your gang!</span>")
+			return
+		to_chat(user, "<span class='danger'>This mind is already controlled by someone else!</span>")
+		return
+	if(check && gangster_mind.current.isloyal()) //Check to see if the potential gangster is implanted
+		to_chat(user, "<span class='danger'>This mind is too strong to control!</span>")
+		return
+	var/mob/living/carbon/human/H = gangster_mind.current // we are sure the dude's human cause it's checked in attack()
+	H.silent = max(H.silent, 5)
+	H.Stun(100)
+	if(jobban_isbanned(gangster_mind.current, ROLE_GANG))
+		INVOKE_ASYNC(src, /datum/game_mode.proc/replace_jobbaned_player, gangster_mind.current, ROLE_GANG, ROLE_GANG) // will gangster_mind point to the new dude's mind? dunno honestly, i hope it does
+	gangster_mind.add_antag_datum(/datum/antagonist/gang, gang)

@@ -7,8 +7,8 @@ GLOBAL_LIST_EMPTY(gangs)
 	config_tag = "gang"
 	antag_flag = ROLE_GANG
 	restricted_jobs = list("Security Officer", "Warden", "Detective", "AI", "Cyborg","Captain", "Head of Personnel", "Head of Security", "Chief Engineer", "Research Director", "Chief Medical Officer")
-	required_players = 15
-	required_enemies = 2
+	required_players = 1 //15
+	required_enemies = 1 // 2
 	recommended_enemies = 2
 	enemy_minimum_age = 14
 
@@ -28,7 +28,7 @@ GLOBAL_LIST_EMPTY(gangs)
 		restricted_jobs += "Assistant"
 
 	//Spawn more bosses depending on server population
-	var/gangs_to_create = 2
+	var/gangs_to_create = 1//2
 	if(prob(num_players()) && num_players() > 1.5*required_players)
 		gangs_to_create++
 	if(prob(num_players()) && num_players() > 2*required_players)
@@ -45,10 +45,10 @@ GLOBAL_LIST_EMPTY(gangs)
 		gangboss_candidates += boss
 		boss.restricted_roles = restricted_jobs
 
-	if(gangboss_candidates.len < 2) //Need at least two gangs
-		return 0
+	if(gangboss_candidates.len < 1) //Need at least two gangs
+		return
 
-	return 1
+	return TRUE
 
 
 /datum/game_mode/gang/post_setup()
@@ -56,11 +56,9 @@ GLOBAL_LIST_EMPTY(gangs)
 	..()
 	for(var/i in gangboss_candidates)
 		var/datum/mind/M = i
-		var/datum/team/gang/grove = pick_n_take(GLOB.possible_gangs)
-		if(grove)
-			grove = new(M) // by passing M, it also makes M a boss and gives him the boss stuff
-			gangs += grove
-		else break
+		var/datum/antagonist/gang/boss/B = new()
+		M.add_antag_datum(B)
+		B.equip_gang()
 
 
 /datum/game_mode/proc/forge_gang_objectives(datum/mind/boss_mind)
@@ -82,10 +80,6 @@ GLOBAL_LIST_EMPTY(gangs)
 		SSshuttle.emergencyNoRecall = TRUE
 		SSshuttle.emergency.request(null, set_coefficient = 0.4)
 		priority_announce("Catastrophic casualties detected: crisis shuttle protocols activated - jamming recall signals across all frequencies.")
-
-/proc/determine_domination_time(var/datum/team/gang/G)
-	return max(180,480 - (round((G.territories.len/GLOB.start_state.num_territories)*100, 1) * 9))
-
 
 //////////////////////////////////////////////////////////////////////
 //Announces the end of the game with all relavent information stated//
@@ -115,26 +109,3 @@ GLOBAL_LIST_EMPTY(gangs)
 			text += printplayer(gangster, 1)
 		text += "<br>"
 		to_chat(world, text)
-
-//////////////////////////////////////////////////////////
-//Handles influence, territories, and the victory checks//
-//////////////////////////////////////////////////////////
-
-
-/datum/game_mode/gang/generate_credit_text()
-	var/list/round_credits = list()
-	var/len_before_addition
-
-	for(var/datum/team/gang/G in gangs)
-		round_credits += "<center><h1>The [G.name] Gang:</h1>"
-		len_before_addition = round_credits.len
-		for(var/datum/mind/boss in G.leaders)
-			round_credits += "<center><h2>[boss.name] as a [G.name] Gang leader</h2>"
-		for(var/datum/mind/gangster in G.members - G.leaders)
-			round_credits += "<center><h2>[gangster.name] as a [G.name] gangster</h2>"
-		if(len_before_addition == round_credits.len)
-			round_credits += list("<center><h2>The [G.name] Gang was wiped out!</h2>", "<center><h2>The competition was too tough!</h2>")
-		round_credits += "<br>"
-
-	round_credits += ..()
-	return round_credits
