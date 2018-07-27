@@ -10,7 +10,7 @@
 /datum/antagonist/gang/can_be_owned(datum/mind/new_owner)
 	. = ..()
 	if(.)
-		if(new_owner.unconvertable)
+		if(new_owner.unconvertible)
 			return FALSE
 		if(new_owner.current && new_owner.current.isloyal())
 			return FALSE
@@ -134,11 +134,11 @@
 
 /datum/antagonist/gang/proc/add_to_gang()
 	gang.add_member(owner)
-	owner.current.log_message("<font color='red'>Has been converted to the [gang ? gang.name : "gang"] gang!</font>", INDIVIDUAL_ATTACK_LOG)
+	owner.current.log_message("<font color='red'>Has been converted to the [gang.name] gang!</font>", INDIVIDUAL_ATTACK_LOG)
 
 /datum/antagonist/gang/proc/remove_from_gang()
 	gang.remove_member(owner)
-	owner.current.log_message("<font color='red'>Has been deconverted from the [gang ? gang.name : "gang"] gang!</font>", INDIVIDUAL_ATTACK_LOG)
+	owner.current.log_message("<font color='red'>Has been deconverted from the [gang.name] gang!</font>", INDIVIDUAL_ATTACK_LOG)
 
 // Boss type. Those can use gang tools to buy items for their gang, in particular the Dominator, used to win the gamemode, along with more gang tools to promote fellow gangsters to boss status.
 /datum/antagonist/gang/boss
@@ -166,7 +166,8 @@
 	var/list/slots = list (
 		"backpack" = SLOT_IN_BACKPACK,
 		"left pocket" = SLOT_L_STORE,
-		"right pocket" = SLOT_R_STORE
+		"right pocket" = SLOT_R_STORE,
+		"hands" = SLOT_HANDS
 	)
 
 	if(gangtool)
@@ -430,7 +431,7 @@
 
 /datum/team/gang/proc/domination_time_remaining() // retrieves the value from world.time based deciseconds to seconds
 	var/diff = domination_time - world.time
-	return diff * 0.1
+	return round(diff * 0.1)
 
 #undef MAXIMUM_RECALLS
 #undef INFLUENCE_INTERVAL

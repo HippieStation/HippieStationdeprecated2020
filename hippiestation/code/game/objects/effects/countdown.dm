@@ -8,6 +8,6 @@
 	if(!istype(D))
 		return
 	else if(D.gang && D.gang.domination_time != NOT_DOMINATING)
-		return D.gang.domination_time
+		return D.gang.domination_time_remaining()
 	else
 		return "OFFLINE"

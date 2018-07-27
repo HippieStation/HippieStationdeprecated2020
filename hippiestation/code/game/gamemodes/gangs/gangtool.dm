@@ -164,41 +164,24 @@
 		to_chat(user, "<span class='warning'>ACCESS DENIED: Unauthorized user.</span>")
 
 /obj/item/device/gangtool/proc/recall(mob/user)
-	if(!can_use(user))
+	if(!recallchecks(user))
 		return
-
-	if(SSshuttle.emergencyNoRecall)
-		return
-
 	if(recalling)
 		to_chat(user, "<span class='warning'>Error: Recall already in progress.</span>")
 		return
-
-	if(!gang.recalls)
-		to_chat(user, "<span class='warning'>Error: Unable to access communication arrays. Firewall has logged our signature and is blocking all further attempts.</span>")
-
 	gang.message_gangtools("[user] is attempting to recall the emergency shuttle.")
 	recalling = TRUE
-	to_chat(loc, "<span class='info'>[icon2html(src, loc)]Generating shuttle recall order with codes retrieved from last call signal...</span>")
+	to_chat(user, "<span class='info'>[icon2html(src, loc)]Generating shuttle recall order with codes retrieved from last call signal...</span>")
+	addtimer(CALLBACK(src, .proc/recall2, user), rand(100,300))
 
-	sleep(rand(100,300))
-
-	if(SSshuttle.emergency.mode != SHUTTLE_CALL) //Shuttle can only be recalled when it's moving to the station
-		to_chat(user, "<span class='warning'>[icon2html(src, user)]Emergency shuttle cannot be recalled at this time.</span>")
-		recalling = FALSE
+/obj/item/device/gangtool/proc/recall2(mob/user)
+	if(!recallchecks(user))
 		return
-	to_chat(loc, "<span class='info'>[icon2html(src, loc)]Shuttle recall order generated. Accessing station long-range communication arrays...</span>")
+	to_chat(user, "<span class='info'>[icon2html(src, loc)]Shuttle recall order generated. Accessing station long-range communication arrays...</span>")
+	addtimer(CALLBACK(src, .proc/recall3, user), rand(100,300))
 
-	sleep(rand(100,300))
-
-	if(!gang.dom_attempts)
-		to_chat(user, "<span class='warning'>[icon2html(src, user)]Error: Unable to access communication arrays. Firewall has logged our signature and is blocking all further attempts.</span>")
-		recalling = FALSE
-		return
-
-	if(!is_station_level(user.z)) //Shuttle can only be recalled while on station
-		to_chat(user, "<span class='warning'>[icon2html(src, user)]Error: Device out of range of station communication arrays.</span>")
-		recalling = FALSE
+/obj/item/device/gangtool/proc/recall3(mob/user)
+	if(!recallchecks(user))
 		return
 	var/list/living_crew = list()//shamelessly copied from mulligan code, there should be a helper for this
 	for(var/mob/Player in GLOB.mob_list)
@@ -209,20 +192,43 @@
 		to_chat(user, "<span class='warning'>[icon2html(src, user)]Error: Station communication systems compromised. Unable to establish connection.</span>")
 		recalling = FALSE
 		return
-	to_chat(loc, "<span class='info'>[icon2html(src, loc)]Comm arrays accessed. Broadcasting recall signal...</span>")
+	to_chat(user, "<span class='info'>[icon2html(src, loc)]Comm arrays accessed. Broadcasting recall signal...</span>")
+	addtimer(CALLBACK(src, .proc/recallfinal, user), rand(100,300))
 
-	sleep(rand(100,300))
-
+/obj/item/device/gangtool/proc/recallfinal(mob/user)
+	if(!recallchecks(user))
+		return
 	recalling = FALSE
 	log_game("[key_name(user)] has tried to recall the shuttle with a gangtool.")
 	message_admins("[key_name_admin(user)] has tried to recall the shuttle with a gangtool.", 1)
-	if(is_station_level(user.z)) //Check one more time that they are on station.
-		if(SSshuttle.cancelEvac(user))
-			gang.recalls--
-			return TRUE
+	if(SSshuttle.cancelEvac(user))
+		gang.recalls--
+		return TRUE
 
-	to_chat(loc, "<span class='info'>[icon2html(src, loc)]No response recieved. Emergency shuttle cannot be recalled at this time.</span>")
+	to_chat(user, "<span class='info'>[icon2html(src, loc)]No response recieved. Emergency shuttle cannot be recalled at this time.</span>")
 	return
+
+/obj/item/device/gangtool/proc/recallchecks(mob/user)
+	if(!can_use(user))
+		return
+	if(SSshuttle.emergencyNoRecall)
+		return
+	if(!gang.recalls)
+		to_chat(user, "<span class='warning'>Error: Unable to access communication arrays. Firewall has logged our signature and is blocking all further attempts.</span>")
+		return
+	if(SSshuttle.emergency.mode != SHUTTLE_CALL) //Shuttle can only be recalled when it's moving to the station
+		to_chat(user, "<span class='warning'>[icon2html(src, user)]Emergency shuttle cannot be recalled at this time.</span>")
+		recalling = FALSE
+		return
+	if(!gang.dom_attempts)
+		to_chat(user, "<span class='warning'>[icon2html(src, user)]Error: Unable to access communication arrays. Firewall has logged our signature and is blocking all further attempts.</span>")
+		recalling = FALSE
+		return
+	if(!is_station_level(user.z)) //Shuttle can only be recalled while on station
+		to_chat(user, "<span class='warning'>[icon2html(src, user)]Error: Device out of range of station communication arrays.</span>")
+		recalling = FALSE
+		return
+	return TRUE
 
 /obj/item/device/gangtool/proc/can_use(mob/living/carbon/human/user)
 	if(!istype(user))
