@@ -72,7 +72,7 @@
 /datum/uplink_item/nukeoffer/blastco
 	name = "Unlock the BlastCo(tm) Armory"
 	desc = "Enough gear to fully equip a team with explosive based weaponry."
-	item = /obj/item/paper
+	item = /obj/effect/gibspawner/generic // non-tangible item because techwebs use this path to determine illegal tech
 	cost = 200
 
 /datum/uplink_item/nukeoffer/blastco/spawn_item(turf/loc, datum/component/uplink/U, mob/user)
