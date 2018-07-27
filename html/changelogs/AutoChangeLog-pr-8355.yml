@@ -1,0 +1,5 @@
+author: "Shdorsh"
+delete-after: True
+changes: 
+  - rscadd: "A few new circuits: list joining and MMI tank circuits"
+  - bugfix: "fixes new files that weren't put into hippiestation.dme"
