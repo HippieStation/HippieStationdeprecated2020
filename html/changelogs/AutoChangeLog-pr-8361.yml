@@ -1,0 +1,4 @@
+author: "EagleEyes"
+delete-after: True
+changes: 
+  - bugfix: "fixed paper giving illegal tech... again"
