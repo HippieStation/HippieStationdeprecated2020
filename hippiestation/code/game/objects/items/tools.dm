@@ -19,19 +19,19 @@
 	toolspeed = 0.2
 
 /obj/item/crowbar/brass
-	toolspeed = 0
+	toolspeed = 0.175
 
 /obj/item/crowbar/abductor
-	toolspeed = 0
+	toolspeed = 0.1
 
 /obj/item/crowbar/large
-	toolspeed = 0
+	toolspeed = 0.1
 
 /obj/item/crowbar/cyborg
-	toolspeed = 0
+	toolspeed = 0.175
 
 /obj/item/crowbar/power
-	toolspeed = 0
+	toolspeed = 0.175
 
 //screwdriver
 
@@ -39,19 +39,19 @@
 	toolspeed = 0.2
 
 /obj/item/screwdriver/brass
-	toolspeed = 0
+	toolspeed = 0.175
 
 /obj/item/screwdriver/abductor
-	toolspeed = 0
+	toolspeed = 0.1
 
 /obj/item/screwdriver/power
-	toolspeed = 0
+	toolspeed = 0.175
 
 /obj/item/screwdriver/cyborg
-	toolspeed = 0
+	toolspeed = 0.175
 
 /obj/item/screwdriver/nuke
-	toolspeed = 0
+	toolspeed = 0.1
 
 //wrench
 
@@ -59,13 +59,13 @@
 	toolspeed = 0.2
 
 /obj/item/wrench/cyborg
-	toolspeed = 0
+	toolspeed = 0.175
 
 /obj/item/wrench/abductor
-	toolspeed = 0
+	toolspeed = 0.1
 
 /obj/item/wrench/power
-	toolspeed = 0
+	toolspeed = 0.175
 
 //wirecutter
 
@@ -73,13 +73,13 @@
 	toolspeed = 0.2
 
 /obj/item/wirecutters/brass
-	toolspeed = 0
+	toolspeed = 0.175
 
 /obj/item/wirecutters/abductor
-	toolspeed = 0
+	toolspeed = 0.1
 
 /obj/item/wirecutters/cyborg
-	toolspeed = 0
+	toolspeed = 0.175
 
 /obj/item/wirecutters/power
-	toolspeed = 0
+	toolspeed = 0.175
