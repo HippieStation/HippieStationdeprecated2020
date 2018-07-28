@@ -1,6 +1,6 @@
 /obj/effect/decal/cleanable/crayon/gang
 	icon = 'hippiestation/icons/effects/crayondecal.dmi'
-	layer = HIGH_OBJ_LAYER //Harder to hide
+	layer = ABOVE_NORMAL_TURF_LAYER //Harder to hide
 	plane = GAME_PLANE
 	do_icon_rotate = FALSE //These are designed to always face south, so no rotation please.
 	var/datum/team/gang/gang

@@ -62,15 +62,19 @@
 	return
 
 /datum/antagonist/gang/proc/update_gang_icons_added(mob/living/M)
-	var/datum/atom_hud/antag/gang/ganghud = GLOB.huds[ANTAG_HUD_GANG]
+	var/datum/atom_hud/antag/gang/ganghud = GLOB.huds[gang.name]
+	if(!ganghud)
+		ganghud = new/datum/atom_hud/antag/gang()
+		GLOB.huds[gang.name] = ganghud
 	ganghud.color = gang.color
 	ganghud.join_hud(M)
 	set_antag_hud(M,hud_type)
 
 /datum/antagonist/gang/proc/update_gang_icons_removed(mob/living/M)
-	var/datum/atom_hud/antag/gang/ganghud = GLOB.huds[ANTAG_HUD_GANG]
-	ganghud.leave_hud(M)
-	set_antag_hud(M, null)
+	var/datum/atom_hud/antag/gang/ganghud = GLOB.huds[gang.name]
+	if(ganghud)
+		ganghud.leave_hud(M)
+		set_antag_hud(M, null)
 
 /datum/antagonist/gang/proc/can_be_converted(mob/living/candidate)
 	if(!candidate.mind)
@@ -99,6 +103,8 @@
 	. = ..()
 	.["Promote"] = CALLBACK(src,.proc/admin_promote)
 	.["Set Influence"] = CALLBACK(src, .proc/admin_adjust_influence)
+	if(gang.domination_time != NOT_DOMINATING)
+		.["Set domination time left"] = CALLBACK(src, .proc/set_dom_time_left)
 
 /datum/antagonist/gang/admin_add(datum/mind/new_owner,mob/admin)
 	var/new_or_existing = input(admin, "Which gang do you want to be assigned to the user?", "Gangs") as null|anything in list("New","Existing")
@@ -147,6 +153,14 @@
 /datum/antagonist/gang/proc/remove_from_gang()
 	gang.remove_member(owner)
 	owner.current.log_message("<font color='red'>Has been deconverted from the [gang.name] gang!</font>", INDIVIDUAL_ATTACK_LOG)
+
+/datum/antagonist/gang/proc/set_dom_time_left(mob/admin)
+	if(gang.domination_time == NOT_DOMINATING)
+		return // an admin shouldn't need this
+	var/seconds = input(admin, "Set the time left for the gang to win, in seconds", "Domination time left") as null|num
+	if(seconds && seconds > 0)
+		gang.domination_time = world.time + seconds*10
+		gang.message_gangtools("Takeover shortened to [gang.domination_time_remaining()] seconds by your Syndicate benefactors.")
 
 // Boss type. Those can use gang tools to buy items for their gang, in particular the Dominator, used to win the gamemode, along with more gang tools to promote fellow gangsters to boss status.
 /datum/antagonist/gang/boss

@@ -50,8 +50,9 @@
 				dat += "Give this device to another member of your organization to use to promote them to Lieutenant.<br><br>"
 				dat += "If this is meant as a spare device for yourself:<br>"
 			dat += "<a href='?src=[REF(src)];register=1'>Register Device as Spare</a><br>"
-		else if (promotable)
-			if(L.gang.leaders.len < L.gang.max_leaders)
+		else if(promotable)
+			var/datum/antagonist/gang/sweet = user.mind.has_antag_datum(/datum/antagonist/gang)
+			if(sweet.gang.leaders.len < sweet.gang.max_leaders)
 				dat += "You have been selected for a promotion!<br>"
 				dat += "<a href='?src=[REF(src)];register=1'>Accept Promotion</a><br>"
 			else
@@ -239,8 +240,12 @@
 		return
 	if(!user.mind)
 		return
-	if(!user.mind.has_antag_datum(/datum/antagonist/gang))
+	var/datum/antagonist/gang/G = user.mind.has_antag_datum(/datum/antagonist/gang)
+	if(!G)
 		to_chat(user, "<span class='notice'>Huh, what's this?</span>")
+		return
+	if(!isnull(gang) && G.gang != gang)
+		to_chat(user, "<span class='danger'>You cannot use gang tools owned by enemy gangs!</span>")
 		return
 	return TRUE
 

@@ -263,7 +263,7 @@
 	name = "Black Market Stimulants"
 	id = "stimpack"
 	cost = 12
-	item_path = /obj/item/reagent_containers/syringe/stimulants
+	item_path = /obj/item/reagent_containers/syringe/nanoboost
 
 /datum/gang_item/equipment/implant_breaker
 	name = "Implant Breaker"
@@ -342,10 +342,6 @@
 /datum/gang_item/equipment/dominator/can_buy(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	if(!gang || !gang.dom_attempts)
 		return FALSE
-	var/area/userarea = get_area(user)
-	if(userarea.type in gang.territories|gang.new_territories)
-		to_chat(user,"<span class='warning'>The <b>dominator</b> can be spawned only on territory controlled by your gang!</span>")
-		return FALSE
 	return ..()
 
 /datum/gang_item/equipment/dominator/get_name_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
@@ -363,7 +359,10 @@
 		return "This device requires a 5x5 area clear of walls to work. (Estimated Takeover Time: [round(gang.determine_domination_time()/60,0.1)] minutes)"
 
 /datum/gang_item/equipment/dominator/purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
-
+	var/area/userarea = get_area(user)
+	if(!(userarea.type in gang.territories|gang.new_territories))
+		to_chat(user,"<span class='warning'>The <b>dominator</b> can be spawned only on territory controlled by your gang!</span>")
+		return FALSE
 	for(var/obj/obj in get_turf(user))
 		if(obj.density)
 			to_chat(user, "<span class='warning'>There's not enough room here!</span>")
