@@ -832,11 +832,8 @@ Turf and target are separate in case you want to teleport some distance from a t
 GLOBAL_LIST_INIT(can_embed_types, typecacheof(list(
 	/obj/item/stack/rods,
 	/obj/item/pipe,
-	/obj/item/organ/butt,
-	/obj/item/dragon,
-	/obj/item/dragon/sea,
-	/obj/item/dragon/canine,
-	/obj/item/dragon/equine))) // Hippie - Because butts aren't sharp or pointy and dildos must embed
+	/obj/item/organ/butt, // hippie start - Because butts aren't sharp or pointy and dildos must embed
+	/obj/item/dragon))) // hippie stop
 
 /proc/can_embed(obj/item/W)
 	if(W.is_sharp())
