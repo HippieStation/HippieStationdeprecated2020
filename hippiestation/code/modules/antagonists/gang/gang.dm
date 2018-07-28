@@ -49,10 +49,14 @@
 	remove_from_gang()
 	..()
 
-/datum/antagonist/gang/create_team()
-	var/datum/team/gang/gangteam = pick_n_take(GLOB.possible_gangs)
-	if(gangteam)
-		gang = new gangteam
+/datum/antagonist/gang/create_team(team)
+	if(!gang) // add_antag_datum calls create_team, so we need to avoid generating two gangs in that case
+		if(team)
+			gang = team
+			return
+		var/datum/team/gang/gangteam = pick_n_take(GLOB.possible_gangs)
+		if(gangteam)
+			gang = new gangteam
 
 /datum/antagonist/gang/proc/equip_gang() // Bosses get equipped with their tools
 	return
@@ -105,10 +109,15 @@
 		if(isnull(newgang))
 			return
 		else if(newgang == "Random")
-			gang = pick_n_take(GLOB.possible_gangs)
+			var/datum/team/gang/G = pick_n_take(GLOB.possible_gangs)
+			gang = new G
 		else
+			GLOB.possible_gangs -= newgang
 			gang = new newgang
 	else
+		if(!GLOB.gangs.len) // no gangs exist
+			to_chat(admin, "<span class='danger'>No gangs exist, please create a new one instead.</span>")
+			return
 		var/existinggang = input(admin, "Select a gang, or select random to pick a random one.", "Existing gang") as null|anything in GLOB.gangs + "Random"
 		if(isnull(existinggang))
 			return
@@ -120,10 +129,9 @@
 	return TRUE
 
 /datum/antagonist/gang/proc/admin_promote(mob/admin)
-	var/datum/mind/O = owner
+	message_admins("[key_name_admin(admin)] has promoted [owner] to gang boss.")
+	log_admin("[key_name(admin)] has promoted [owner] to boss.")
 	promote()
-	message_admins("[key_name_admin(admin)] has promoted [O] to gang boss.")
-	log_admin("[key_name(admin)] has promoted [O] to boss.")
 
 /datum/antagonist/gang/proc/admin_adjust_influence()
 	var/inf = input("Influence for [gang.name]","Gang influence", gang.influence) as null | num
@@ -227,7 +235,7 @@
 	var/datum/mind/old_owner = owner
 	silent = TRUE
 	owner.remove_antag_datum(/datum/antagonist/gang/boss)
-	var/datum/antagonist/rev/new_gangster = new /datum/antagonist/gang()
+	var/datum/antagonist/gang/new_gangster = new /datum/antagonist/gang()
 	new_gangster.silent = TRUE
 	old_owner.add_antag_datum(new_gangster,old_gang)
 	new_gangster.silent = FALSE
@@ -248,8 +256,8 @@
 /datum/antagonist/gang/boss/proc/admin_demote(datum/mind/target,mob/user)
 	message_admins("[key_name_admin(user)] has demoted [owner.current] from gang boss.")
 	log_admin("[key_name(user)] has demoted [owner.current] from gang boss.")
-	demote()
 	admin_take_gangtool(user)
+	demote()
 
 #define MAXIMUM_RECALLS 3
 #define INFLUENCE_INTERVAL 1800
