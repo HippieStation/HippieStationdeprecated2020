@@ -9379,6 +9379,7 @@
 /area/lawoffice)
 "axe" = (
 /obj/structure/table/wood,
+/obj/item/staplegun,
 /obj/item/taperecorder,
 /obj/item/cartridge/lawyer,
 /turf/open/floor/wood,
@@ -23999,6 +24000,7 @@
 "bkf" = (
 /obj/item/folder/blue,
 /obj/structure/table/wood,
+/obj/item/staplegun,
 /turf/open/floor/carpet,
 /area/bridge/meeting_room)
 "bkh" = (
@@ -27216,9 +27218,8 @@
 /area/medical/medbay/central)
 "bsq" = (
 /obj/structure/table/reinforced,
-/obj/item/reagent_containers/food/drinks/britcup{
-	desc = "Kingston's personal cup."
-	},
+/obj/item/staplegun,
+/obj/item/reagent_containers/food/drinks/britcup,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bsr" = (
@@ -30865,6 +30866,7 @@
 	pixel_x = -24
 	},
 /obj/item/folder/yellow,
+/obj/item/staplegun,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "bAE" = (
@@ -63901,6 +63903,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel,
 /area/engine/port_engineering)
+"qFp" = (
+/obj/structure/table/wood,
+/obj/item/staplegun,
+/turf/open/floor/wood,
+/area/library)
 "qGe" = (
 /obj/structure/table,
 /obj/item/stack/sheet/plasteel{
@@ -112633,7 +112640,7 @@ aUO
 aWB
 aQP
 aZJ
-aPa
+qFp
 aTu
 aTu
 bbf
