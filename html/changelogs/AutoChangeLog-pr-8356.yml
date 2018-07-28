@@ -1,0 +1,6 @@
+author: "EagleEyes"
+delete-after: True
+changes: 
+  - rscadd: "Added old sprites to shuttle chairs, chem master, chem dispensers, protolathes, destructive analyzer, circuit imprinter and more."
+  - rscdel: "Removed new shitty sprites from being used."
+  - code_imp: "updated hippie structureobjs icons"
