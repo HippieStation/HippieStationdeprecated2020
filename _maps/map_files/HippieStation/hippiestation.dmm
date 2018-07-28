@@ -11238,6 +11238,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"aBR" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 8
+	},
+/obj/machinery/meter,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
 "aBT" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -53490,13 +53497,14 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/machinery/meter,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "cDL" = (
-/obj/machinery/atmospherics/components/binary/circulator{
-	flipped = 1
+/obj/effect/turf_decal/loading_area/red{
+	dir = 8
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/vault,
 /area/engine/engineering)
 "cDM" = (
 /obj/effect/decal/cleanable/dirt,
@@ -53753,6 +53761,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/machinery/meter,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "cEw" = (
@@ -57372,11 +57381,10 @@
 /turf/open/floor/plasteel,
 /area/engine/port_engineering)
 "dcn" = (
-/obj/machinery/atmospherics/components/binary/circulator/cold{
-	dir = 1;
-	flipped = 1
+/obj/effect/turf_decal/loading_area/white{
+	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/vault,
 /area/engine/engineering)
 "dda" = (
 /obj/structure/table/wood,
@@ -59222,9 +59230,9 @@
 	},
 /area/hallway/secondary/entry)
 "gVK" = (
-/obj/machinery/atmospherics/components/binary/pump{
+/obj/machinery/atmospherics/components/binary/valve{
 	dir = 4;
-	name = "Passive Coolant Pump"
+	name = "Coolant to Loop"
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
@@ -59473,7 +59481,10 @@
 /turf/open/floor/plating/airless,
 /area/engine/port_engineering)
 "hsS" = (
-/obj/machinery/atmospherics/components/binary/valve,
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 4;
+	initialize_directions = 11
+	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "htW" = (
@@ -61752,6 +61763,7 @@
 /area/maintenance/disposal/incinerator)
 "lJP" = (
 /obj/machinery/atmospherics/pipe/manifold4w/general/visible,
+/obj/machinery/meter,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "lKd" = (
@@ -62891,6 +62903,32 @@
 	},
 /turf/open/floor/plating,
 /area/science/robotics/mechbay)
+"nPe" = (
+/obj/structure/closet/crate/engineering{
+	name = "T.E.G. crate"
+	},
+/obj/machinery/power/generator{
+	anchored = 0;
+	dir = 4;
+	panel_open = 1
+	},
+/obj/machinery/atmospherics/components/binary/circulator{
+	anchored = 0;
+	flipped = 1;
+	panel_open = 1
+	},
+/obj/machinery/atmospherics/components/binary/circulator/cold{
+	anchored = 0;
+	dir = 1;
+	flipped = 1;
+	panel_open = 1
+	},
+/obj/item/paper{
+	info = "<h>Order #7751</h><p>This pack contains all components of a Thermoelectric Generator. Unpack crack and install at pre-designated area in the engine room. Use multitool to connect circulators.</p> ";
+	name = "T.E.G. Order"
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
 "nSR" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -64860,11 +64898,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "sfF" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
-	target_temperature = 80;
-	dir = 2;
-	on = 1
-	},
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "sgE" = (
@@ -65793,6 +65827,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"tWQ" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible,
+/obj/machinery/meter,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
 "tXn" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -67186,9 +67225,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
-/obj/machinery/power/generator{
-	dir = 4
-	},
+/obj/effect/turf_decal/bot,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "wOt" = (
@@ -94115,7 +94152,7 @@ eoL
 ctJ
 ctJ
 ctJ
-ctJ
+nPe
 cvz
 clH
 cyX
@@ -96447,11 +96484,11 @@ kvn
 fHU
 fRd
 xYc
-hsS
-dJC
-dJC
-dJC
 gLs
+sXO
+sXO
+sXO
+sXO
 clH
 cGe
 abf
@@ -96704,11 +96741,11 @@ cFj
 cFs
 xxi
 pyl
-sXO
+sKc
 sXO
 lYW
 rKh
-xJZ
+gLs
 clH
 cGe
 abf
@@ -96961,11 +96998,11 @@ cFk
 cFk
 fmU
 dIF
-sXO
+sKc
 dIF
 cGh
 sfF
-xJZ
+tWQ
 clH
 cGe
 aai
@@ -97218,7 +97255,7 @@ cFl
 cFu
 xxi
 sXO
-sXO
+sKc
 sXO
 dYS
 sXO
@@ -97478,7 +97515,7 @@ xYc
 hsS
 dJC
 dJC
-cEi
+aBR
 xJZ
 clH
 cGe
