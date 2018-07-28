@@ -147,4 +147,3 @@
 	item_state = "glasshatchet"
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
-	flags_1 = null
