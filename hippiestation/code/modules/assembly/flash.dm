@@ -35,7 +35,7 @@
 		visible_message("<span class='disarm'>[user] uses the overcharged flash on [M]!</span>")
 		to_chat(user, "<span class='danger'>You use the overcharged flash on [M]!</span>")
 		to_chat(M, "<span class='userdanger'>[user] uses the overcharged flash on you!</span>")
-		return FALSE //wont stun, setting somebody on fire AND stunning them at the same time is cheesy, especially if you also grab a toolbox or something
+		return FALSE //wont stun, setting somebody on fire AND stunning them at the same time is cheesy,  especially if you also grab a toolbox or something
 	if(M.eye_blind)
 		return FALSE
 	..()
