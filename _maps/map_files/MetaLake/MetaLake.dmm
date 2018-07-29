@@ -5194,6 +5194,7 @@
 	brightness = 5;
 	dir = 1
 	},
+/obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/engine,
 /area/maintenance/forge)
 "ale" = (
