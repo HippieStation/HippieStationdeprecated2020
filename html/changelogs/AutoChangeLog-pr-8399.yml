@@ -1,4 +1,0 @@
-author: "EagleEyes"
-delete-after: True
-changes: 
-  - bugfix: "Fixes cult not always working, causing round start failures."
