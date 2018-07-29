@@ -355,6 +355,12 @@
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
 /area/space/nearstation)
+"abj" = (
+/obj/machinery/ore_silo,
+/turf/open/floor/plasteel/vault{
+	dir = 1
+	},
+/area/ai_monitored/nuke_storage)
 "abl" = (
 /obj/machinery/vending/sustenance,
 /obj/structure/cable{
@@ -28481,11 +28487,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel,
 /area/crew_quarters/heads/hop)
-"bva" = (
-/turf/open/floor/plasteel/vault{
-	dir = 1
-	},
-/area/ai_monitored/nuke_storage)
 "bvb" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -95949,7 +95950,7 @@ boV
 bqz
 brZ
 btv
-bva
+abj
 boV
 aaa
 bzs
