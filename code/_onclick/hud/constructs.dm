@@ -11,7 +11,10 @@
 
 	healths = new /obj/screen/healths/construct()
 	infodisplay += healths
+<<<<<<< HEAD
 
 /mob/living/simple_animal/hostile/construct/create_mob_hud()
 	if(client && !hud_used)
 		hud_used = new /datum/hud/constructs(src)
+=======
+>>>>>>> 26c1031661... Refactors create_mob_hud() to add a signal (#39364)
