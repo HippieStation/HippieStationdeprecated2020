@@ -24888,7 +24888,7 @@
 	name = "Transit Tube Lockdown";
 	pixel_x = -24;
 	pixel_y = -5;
-	req_access_txt = "24"
+	req_access_txt = "19"
 	},
 /obj/machinery/button/door{
 	desc = "A remote control-switch for secure storage.";
@@ -26195,9 +26195,7 @@
 	},
 /area/crew_quarters/heads/chief)
 "bek" = (
-/obj/structure/closet/secure_closet/engineering_chief{
-	req_access_txt = "0"
-	},
+/obj/structure/closet/secure_closet/engineering_chief,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -26241,14 +26239,14 @@
 	name = "Engineering Lockdown";
 	pixel_x = -24;
 	pixel_y = -6;
-	req_access_txt = "1"
+	req_one_access_txt = "1;10"
 	},
 /obj/machinery/button/door{
 	id = "atmos";
 	name = "Atmospherics Lockdown";
 	pixel_x = -24;
 	pixel_y = 5;
-	req_access_txt = "1"
+	req_one_access_txt = "1;24"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -26284,8 +26282,20 @@
 	},
 /area/security/checkpoint/engineering)
 "bep" = (
+<<<<<<< HEAD
 /turf/closed/wall,
 /area/engine/break_room)
+=======
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/cable/yellow,
+/obj/machinery/power/apc/auto_name/west{
+	pixel_x = -26
+	},
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 "beq" = (
 /obj/structure/sign/warning/vacuum/external,
 /turf/closed/wall/r_wall,
@@ -27938,8 +27948,6 @@
 	},
 /area/engine/break_room)
 "bhW" = (
-/obj/item/folder/yellow,
-/obj/item/folder/yellow,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -27947,8 +27955,9 @@
 	pixel_y = 32
 	},
 /obj/structure/table/glass,
+/obj/item/folder/yellow,
 /obj/item/storage/firstaid/fire{
-	pixel_y = 8
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel/yellow/side{
 	dir = 1
@@ -29576,6 +29585,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
+<<<<<<< HEAD
+=======
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "bll" = (
@@ -29589,9 +29607,14 @@
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "bln" = (
+<<<<<<< HEAD
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
+=======
+/obj/effect/landmark/event_spawn,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "blo" = (
@@ -29606,10 +29629,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/landmark/event_spawn,
-/turf/open/floor/plasteel,
-/area/engine/break_room)
-"blq" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "blr" = (
@@ -30347,6 +30366,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "bna" = (
@@ -30365,13 +30387,17 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/effect/landmark/event_spawn,
+=======
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "bnc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "bnd" = (
@@ -31375,7 +31401,14 @@
 	},
 /area/hallway/primary/starboard)
 "bpg" = (
+<<<<<<< HEAD
 /obj/effect/turf_decal/stripes/line,
+=======
+/obj/structure/table/reinforced,
+/obj/machinery/microwave{
+	pixel_y = 6
+	},
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "bph" = (
@@ -31383,8 +31416,15 @@
 	dir = 5
 	},
 /obj/effect/turf_decal/stripes/line,
+<<<<<<< HEAD
 /turf/open/floor/plasteel,
 /area/engine/break_room)
+=======
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plating,
+/area/engine/storage_shared)
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 "bpi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
@@ -31392,6 +31432,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "bpj" = (
@@ -31404,6 +31445,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/break_room)
+=======
+/turf/closed/wall,
+/area/engine/storage_shared)
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 "bpk" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
@@ -32660,6 +32705,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
+<<<<<<< HEAD
 /area/engine/break_room)
 "brF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -32672,6 +32718,10 @@
 	pixel_x = -1;
 	pixel_y = -26
 	},
+=======
+/area/engine/storage_shared)
+"brI" = (
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
@@ -34362,6 +34412,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard)
 "bve" = (
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -34369,6 +34420,12 @@
 	icon_state = "platingdmg2"
 	},
 /area/maintenance/starboard)
+=======
+/obj/structure/closet/secure_closet/engineering_electrical,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 "bvf" = (
 /obj/item/radio/intercom{
 	broadcasting = 0;
@@ -34415,9 +34472,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+=======
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 "bvh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
@@ -34425,7 +34487,12 @@
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
+<<<<<<< HEAD
 /area/maintenance/starboard)
+=======
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 "bvi" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -34437,7 +34504,7 @@
 	},
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
-/area/engine/break_room)
+/area/engine/storage_shared)
 "bvk" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "atmos";
@@ -76043,6 +76110,24 @@
 	},
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
+<<<<<<< HEAD
+=======
+"gYu" = (
+/turf/open/floor/plasteel/caution/corner{
+	dir = 8
+	},
+/area/engine/storage_shared)
+"hfn" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/vending/cigarette,
+/turf/open/floor/plasteel,
+/area/engine/break_room)
+"hkq" = (
+/turf/open/floor/plasteel/caution/corner,
+/area/engine/storage_shared)
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 "hvt" = (
 /obj/structure/kitchenspike_frame,
 /obj/effect/decal/cleanable/blood/gibs/old,
@@ -76091,6 +76176,17 @@
 	},
 /turf/open/floor/plasteel/whitepurple,
 /area/science/lab)
+<<<<<<< HEAD
+=======
+"iHl" = (
+/obj/machinery/vending/engivend,
+/obj/effect/turf_decal/bot{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 "iLj" = (
 /obj/structure/table,
 /turf/open/floor/plating,
@@ -76102,6 +76198,18 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+<<<<<<< HEAD
+=======
+"jrE" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/engine/break_room)
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 "jwW" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/crew_quarters/fitness/recreation)
@@ -76296,6 +76404,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"msD" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/engine/storage_shared)
 "mvj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -76312,6 +76424,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
+<<<<<<< HEAD
+=======
+"mzU" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/open/floor/plasteel/caution/corner,
+/area/engine/storage_shared)
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 "mWg" = (
 /obj/structure/girder,
 /obj/structure/grille,
@@ -76425,6 +76546,27 @@
 /obj/structure/sign/poster/official/random,
 /turf/closed/wall,
 /area/hydroponics)
+<<<<<<< HEAD
+=======
+"owR" = (
+/turf/closed/wall,
+/area/engine/storage_shared)
+"oJW" = (
+/obj/structure/sign/poster/random{
+	pixel_y = 32
+	},
+/obj/machinery/camera{
+	c_tag = "Engineering - Foyer - Shared Storage";
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel/caution/corner{
+	dir = 8
+	},
+/area/engine/storage_shared)
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 "oLW" = (
 /obj/structure/table/reinforced,
 /obj/structure/cable/yellow{
@@ -76542,6 +76684,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+<<<<<<< HEAD
+=======
+"qdT" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 "qhe" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -76601,6 +76750,15 @@
 	dir = 1
 	},
 /area/science/lab)
+"rCu" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/break_room)
 "rQK" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -76620,6 +76778,24 @@
 /obj/machinery/vending/snack/random,
 /turf/open/floor/plasteel,
 /area/science/mixing)
+<<<<<<< HEAD
+=======
+"rWg" = (
+/obj/item/twohanded/required/kirbyplants/random,
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
+"sao" = (
+/obj/machinery/vending/tool,
+/obj/effect/turf_decal/bot{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 "sdi" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -76728,10 +76904,30 @@
 "urv" = (
 /turf/closed/wall/mineral/plastitanium,
 /area/security/prison)
+"usN" = (
+/obj/effect/landmark/event_spawn,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/open/floor/plasteel/caution/corner,
+/area/engine/storage_shared)
 "uun" = (
 /obj/machinery/vending/assist,
 /turf/open/floor/plasteel,
 /area/science/mixing)
+<<<<<<< HEAD
+=======
+"uEH" = (
+/obj/machinery/door/airlock/engineering/glass{
+	name = "Shared Engineering Storage";
+	req_one_access_txt = "32;19"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/turf_decal/delivery,
+/obj/machinery/door/firedoor,
+/turf/open/floor/plating,
+/area/engine/storage_shared)
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 "uGW" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -76810,6 +77006,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel/floorgrime,
 /area/maintenance/disposal/incinerator)
+<<<<<<< HEAD
+=======
+"vzO" = (
+/obj/structure/closet/secure_closet/engineering_welding,
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/engine/storage_shared)
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 "vLD" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
@@ -76864,6 +77068,13 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
+"wPB" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/engine/storage_shared)
 "wRy" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -116918,8 +117129,13 @@ bhU
 bjF
 blk
 bmZ
+<<<<<<< HEAD
 bpg
 brA
+=======
+hfn
+wPB
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 bep
 bvd
 bxd
@@ -117175,9 +117391,15 @@ bhV
 bjG
 bll
 bna
+<<<<<<< HEAD
 bpg
 brB
 bep
+=======
+kCw
+msD
+hkq
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 bve
 bxd
 byS
@@ -117429,6 +117651,7 @@ aWw
 aWw
 aWw
 bhW
+<<<<<<< HEAD
 bjG
 blm
 bnb
@@ -117436,6 +117659,15 @@ bpg
 brC
 bep
 bCK
+=======
+rCu
+bjL
+bnb
+owR
+owR
+gYu
+qdT
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 bxd
 byT
 bAD
@@ -117686,12 +117918,21 @@ bcJ
 aBI
 byK
 bhX
+<<<<<<< HEAD
 bjH
 bln
 bnc
 bph
 brD
 bep
+=======
+hKs
+bln
+bnc
+bph
+iHl
+usN
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 bvg
 bxd
 byU
@@ -117944,11 +118185,19 @@ bel
 bfT
 bhY
 bjI
+<<<<<<< HEAD
 bjL
 blo
 bpi
 brE
 btz
+=======
+ecs
+rxn
+bpi
+sao
+gYu
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 bvh
 bxd
 byV
@@ -118460,10 +118709,17 @@ bia
 bjG
 blo
 bne
+<<<<<<< HEAD
 blo
 brG
 bep
 bep
+=======
+owR
+owR
+oJW
+rWg
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 bxc
 byW
 bAG
@@ -118717,10 +118973,17 @@ bib
 bjJ
 blp
 bnf
+<<<<<<< HEAD
 bpj
 brH
 btA
 bvj
+=======
+bpg
+owR
+owR
+owR
+>>>>>>> e04bdb402b... Adds shared storage to Delta engineering, fixes access reqs (#39193)
 bxd
 byX
 bAH
