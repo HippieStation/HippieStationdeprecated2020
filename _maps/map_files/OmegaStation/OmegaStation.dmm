@@ -1683,7 +1683,7 @@
 	},
 /obj/machinery/power/apc{
 	dir = 4;
-	name = "Starboard Bow Maintenace APC";
+	name = "Starboard Bow Maintenance APC";
 	areastring = "/area/maintenance/starboard/fore";
 	pixel_x = 26
 	},
@@ -2113,7 +2113,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/power/apc{
 	dir = 8;
-	name = "Fore Maintenace APC";
+	name = "Fore Maintenance APC";
 	areastring = "/area/maintenance/fore";
 	pixel_x = -26;
 	pixel_y = 3
@@ -3446,7 +3446,10 @@
 /area/bridge)
 "agX" = (
 /obj/structure/table/reinforced,
-/obj/item/aiModule/reset,
+/obj/item/aiModule/reset{
+	pixel_x = 3;
+	pixel_y = 3
+	},
 /obj/item/radio/intercom{
 	name = "Station Intercom";
 	pixel_x = -26
@@ -3454,6 +3457,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/item/aiModule/supplied/freeform,
 /turf/open/floor/plasteel/vault/side{
 	dir = 4
 	},
@@ -3936,11 +3940,10 @@
 	},
 /area/bridge)
 "ahP" = (
-/obj/structure/table/reinforced,
-/obj/item/aiModule/supplied/freeform,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/machinery/ore_silo,
 /turf/open/floor/plasteel/vault/side{
 	dir = 4
 	},
@@ -16219,7 +16222,7 @@
 /area/hydroponics)
 "aHO" = (
 /obj/machinery/door/airlock/maintenance_hatch{
-	name = "Hydroponic's Maintenance";
+	name = "Hydroponics Maintenance";
 	req_access_txt = "35"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -30957,7 +30960,10 @@
 /area/maintenance/disposal/incinerator)
 "coR" = (
 /obj/effect/turf_decal/bot,
-/obj/machinery/smartfridge/disks,
+/obj/machinery/smartfridge/disks{
+	pixel_y = 2
+	},
+/obj/structure/table/glass,
 /turf/open/floor/plasteel/neutral,
 /area/hydroponics)
 "csX" = (
@@ -35409,8 +35415,11 @@
 	},
 /area/hallway/primary/starboard)
 "uuj" = (
-/obj/machinery/plantgenes,
+/obj/machinery/plantgenes{
+	pixel_y = 6
+	},
 /obj/effect/turf_decal/bot,
+/obj/structure/table/glass,
 /turf/open/floor/plasteel/neutral,
 /area/hydroponics)
 "uuJ" = (
@@ -72867,6 +72876,8 @@ sJT
 aRb
 aRb
 aRb
+aRb
+aSh
 aSh
 aSh
 aSh
@@ -78441,23 +78452,12 @@ aaa
 aaa
 aaa
 aaa
-aac
-aad
-aad
-aad
-aac
 aaa
 aaa
 aaa
 aaa
 aaa
 aaa
-aaa
-aac
-aad
-aad
-aad
-aac
 aaa
 aaa
 aac
@@ -78667,8 +78667,6 @@ aaa
 aaa
 aaa
 aaa
-"}
-(167,1,1) = {"
 aaa
 aaa
 aaa
@@ -78711,29 +78709,11 @@ aaa
 aaa
 aaa
 aaa
-aac
-aac
-aad
-aad
-aad
-aad
-aad
-aac
-aac
 aaa
 aaa
 aaa
 aaa
 aaa
-aac
-aac
-aad
-aad
-aad
-aad
-aad
-aac
-aac
 aaa
 aac
 aac
@@ -82310,6 +82290,24 @@ aaa
 aaa
 aaa
 aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aad
 aad
 adQ
@@ -83061,244 +83059,6 @@ aaa
 aaa
 aaa
 aaa
-aac
-bvI
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-sNh
-aad
-aad
-aad
-aad
-aac
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aac
-aac
-aad
-aac
-aad
-aad
-aad
-aad
-aad
-aac
-aac
-aad
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aac
-aac
-aac
-bvg
-aad
-adn
-aed
-aeT
-afG
-agz
-ahn
-aie
-aiM
-ajK
-akN
-alD
-amz
-ann
-aof
-apf
-aqn
-aRz
-abO
-bfp
-aSD
-sCt
-sCQ
-sDq
-aSD
-sEn
-sEN
-sFo
-sFS
-aSH
-sGY
-aRz
-sIc
-sIv
-sFs
-sIO
-sIU
-sJe
-sIU
-aaa
-bte
-aPB
-aQC
-sOM
-aSI
-aTU
-aUL
-aVH
-aWw
-sOM
-sPi
-aYv
-sPa
-sPo
-sOZ
-bbP
-aUK
-bdz
-sPa
-sOZ
-bfr
-sOY
-bgv
-sPY
-bhU
-aRy
-bvg
-aac
-aaa
-aaa
-aaa
-aaa
-aac
-aad
-aad
-aad
-aad
-aac
-aac
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-"}
-(185,1,1) = {"
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -83559,6 +83319,28 @@ aaa
 aaa
 aaa
 aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aac
 aac
 aad
@@ -83673,87 +83455,11 @@ aaa
 aaa
 aaa
 aaa
-aac
-aad
-aad
-aad
-adn
-aee
-aeU
-afH
-agA
-aho
-aif
-aiN
-ajL
-akO
-alE
-amA
-ano
-aog
-apg
-aqk
-aRz
-abN
-acy
-aRz
-sJN
-aRz
-aRz
-aRz
-aRz
-aRz
-sFp
-sFT
-sGy
-sHb
-aRz
-bxM
-bsC
-axW
-aae
-sIU
-sJg
-sIU
-aae
-bte
-aPC
-aQD
-aRA
-aSJ
-aTV
-aUM
-aVI
-aWx
-sOM
-sON
-sOM
-sON
-sOM
-sOM
-sON
-sOY
-bdA
-sOM
-sOM
-sOV
-sON
-bgw
-sPY
-bhV
-aRy
-bvg
 aaa
 aaa
 aaa
 aaa
 aaa
-aaa
-aac
-aad
-aad
-aac
-aac
 aaa
 aaa
 aaa
@@ -83851,8 +83557,6 @@ aaa
 aaa
 aaa
 aaa
-"}
-(186,1,1) = {"
 aaa
 aaa
 aaa
@@ -84141,10 +83845,6 @@ aaa
 aaa
 aaa
 aaa
-aac
-aac
-aad
-aad
 aaa
 aaa
 aaa
@@ -84154,7 +83854,6 @@ aaa
 aaa
 aaa
 aaa
-aad
 aaa
 aaa
 aaa
@@ -84418,7 +84117,6 @@ aaa
 aaa
 aaa
 aaa
-aad
 aaa
 aaa
 aaa
@@ -84956,7 +84654,6 @@ aaa
 aaa
 aeZ
 aaa
-aeZ
 aaa
 aaa
 aaa
@@ -85220,7 +84917,6 @@ aaa
 aaa
 aaa
 aaa
-aae
 aaa
 amC
 amC
