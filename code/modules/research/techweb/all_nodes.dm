@@ -1,11 +1,7 @@
 
 //Current rate: 132500 research points in 90 minutes
 
-<<<<<<< HEAD
-//base Node
-=======
 //Base Nodes
->>>>>>> 61e4381143... Merge pull request #39298 from 81Denton/roundstart-robotics
 /datum/techweb_node/base
 	id = "base"
 	starting_node = TRUE
