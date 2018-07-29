@@ -2706,6 +2706,7 @@
 #include "hippiestation\code\game\area\Space_Station_13_areas.dm"
 #include "hippiestation\code\game\gamemodes\objective_items.dm"
 #include "hippiestation\code\game\gamemodes\clock_cult\clock_scriptures\neovgre.dm"
+#include "hippiestation\code\game\gamemodes\cult\needed_players.dm"
 #include "hippiestation\code\game\gamemodes\messiah\MakeJesus.dm"
 #include "hippiestation\code\game\gamemodes\messiah\miracles.dm"
 #include "hippiestation\code\game\gamemodes\messiah\outfit.dm"
