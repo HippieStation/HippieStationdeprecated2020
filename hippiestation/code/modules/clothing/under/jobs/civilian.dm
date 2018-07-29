@@ -1,7 +1,6 @@
 /obj/item/clothing/under/rank/clown/Initialize()
 	. = ..()
-	// AddComponent(/datum/component/squeak, list('sound/items/bikehorn.wav'=1), 50)
-	// remove any previoous components
+	// remove any previous components
 	var/list/squeaks = GetComponents(/datum/component/squeak)
 	for(var/datum/component/c in squeaks)
 		c.RemoveComponent()
