@@ -75548,6 +75548,9 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"hJe" = (
+/turf/closed/wall/r_wall,
+/area/maintenance/fore)
 "ioI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -75790,7 +75793,7 @@
 /turf/open/floor/engine,
 /area/maintenance/forge)
 "mfm" = (
-/turf/closed/wall,
+/turf/closed/wall/r_wall,
 /area/maintenance/forge)
 "mjJ" = (
 /obj/machinery/nuclearbomb/beer{
@@ -75848,6 +75851,9 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/science/circuit)
+"nxR" = (
+/turf/closed/wall/r_wall,
+/area/crew_quarters/fitness/recreation)
 "nyo" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -109451,14 +109457,14 @@ aaf
 aaa
 aey
 aey
-aey
-aey
-aey
-aey
-aey
-aey
-aey
-aey
+aiJ
+aiJ
+aiJ
+aiJ
+aiJ
+aiJ
+aiJ
+aiJ
 aoN
 ajD
 arx
@@ -109715,7 +109721,7 @@ hxE
 ajO
 sWb
 amt
-agq
+hJe
 dhr
 ajD
 ajD
@@ -109972,7 +109978,7 @@ sWb
 mEo
 alb
 nlD
-agq
+hJe
 aur
 aqb
 aqb
@@ -110229,7 +110235,7 @@ sWb
 sWV
 sWb
 jAF
-agq
+hJe
 dCe
 agq
 agq
@@ -110743,7 +110749,7 @@ sWb
 lZB
 ale
 ahS
-agq
+hJe
 ali
 agq
 arz
@@ -110994,13 +111000,13 @@ aaf
 acQ
 afs
 agr
-acP
+nxR
 ahU
 ahU
-acP
-acP
-acP
-acP
+nxR
+nxR
+nxR
+nxR
 alj
 agq
 arA
@@ -111252,8 +111258,8 @@ acP
 acP
 ags
 acP
-acP
-acP
+nxR
+nxR
 acP
 alf
 amv
