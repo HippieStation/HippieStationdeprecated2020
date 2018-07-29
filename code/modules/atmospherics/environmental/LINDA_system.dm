@@ -121,4 +121,5 @@
 	G.parse_gas_string(text)
 
 	air.merge(G)
+	archive()
 	SSair.add_to_active(src, 0)
