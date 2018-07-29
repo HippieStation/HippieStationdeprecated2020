@@ -77,7 +77,7 @@
 					to_chat(C, "<span class='userdanger'>AGGGGH! THE DIVINE LIGHT! IT BURNS!!!</span>")
 					C.Knockdown(40)
 					C.adjust_fire_stacks(5)
-					C.IgniteMob()
+					C.IgniteMob() //HIPPIE END
 			if(iscultist(C))
 				to_chat(C, "<span class='userdanger'>The divine explosion sears you!</span>")
 				C.Knockdown(40)
