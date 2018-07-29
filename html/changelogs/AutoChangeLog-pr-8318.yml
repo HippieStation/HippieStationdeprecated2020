@@ -1,0 +1,10 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - rscadd: "Added in a TEG engine to the supermatter loop."
+  - rscadd: "Added in a passive coolant loop to remove excess heat for high energy SM operations."
+  - rscadd: "Added in trash bins in various locations around the map."
+  - rscadd: "Added in a shower in the engineering airlock."
+  - bugfix: "Aux base no longer clips white ship when docked."
+  - bugfix: "Fixes infirmary maintenance airlock name and access requirement."
+  - rscadd: "Added warning outline turf decals to EXPERI-mentor machine."
