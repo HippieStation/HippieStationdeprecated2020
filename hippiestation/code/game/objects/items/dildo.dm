@@ -4,7 +4,7 @@
 	icon = 'hippiestation/icons/obj/dicks.dmi'
 	icon_state = null
 	force = 1
-	w_class = WEIGHT_CLASS_TINY
+	w_class = WEIGHT_CLASS_NORMAL
 	throwforce = 2
 	throw_speed = 4
 	embedding = list("embed_chance" = 25, "embedded_pain_multiplier" = 1, "embedded_fall_pain_multiplier" = 1, "embedded_impact_pain_multiplier" = 1, "embedded_unsafe_removal_pain_multiplier" = 1)
@@ -29,7 +29,6 @@
 	name = "Equine Dildo"
 	desc = "Yes, it's the whole horse."
 	icon_state = "equine"
-	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 5
 	embedding = list("embed_chance" = 30)
 
