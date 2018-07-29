@@ -12589,6 +12589,7 @@
 /area/ai_monitored/nuke_storage)
 "aGb" = (
 /obj/effect/turf_decal/bot_white/right,
+/obj/machinery/ore_silo,
 /turf/open/floor/plasteel/vault{
 	dir = 1
 	},
@@ -14504,7 +14505,10 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/machinery/plantgenes,
+/obj/machinery/plantgenes{
+	pixel_y = 6
+	},
+/obj/structure/table,
 /turf/open/floor/plasteel/hydrofloor,
 /area/hydroponics)
 "aKM" = (
@@ -18283,12 +18287,10 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aVA" = (
-/obj/effect/spawner/structure/window,
-/obj/machinery/door/poddoor/preopen{
-	id = "barShutters";
-	name = "privacy shutters"
-	},
-/turf/open/floor/plating,
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor,
+/obj/item/reagent_containers/food/snacks/pie/cream,
+/turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
 "aVB" = (
 /obj/structure/table,
@@ -22690,6 +22692,13 @@
 /area/medical/chemistry)
 "bhd" = (
 /obj/machinery/chem_master,
+/obj/machinery/button/door{
+	id = "chemistry_shutters";
+	name = "Chemistry shutters";
+	pixel_x = 24;
+	pixel_y = -6;
+	req_one_access_txt = "5; 33"
+	},
 /turf/open/floor/plasteel/whiteyellow/side{
 	dir = 5
 	},
@@ -23225,6 +23234,10 @@
 	req_access_txt = "33"
 	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/poddoor/preopen{
+	id = "chemistry_shutters";
+	name = "Chemistry shutters"
+	},
 /turf/open/floor/plating,
 /area/medical/chemistry)
 "bis" = (
@@ -23899,7 +23912,7 @@
 "bkb" = (
 /obj/machinery/camera{
 	c_tag = "Medbay Morgue";
-	network = list("ss13", "medbay");
+	network = list("ss13","medbay");
 	dir = 8
 	},
 /obj/machinery/airalarm{
@@ -24388,6 +24401,10 @@
 	req_access_txt = "33"
 	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/poddoor/preopen{
+	id = "chemistry_shutters";
+	name = "Chemistry shutters"
+	},
 /turf/open/floor/plating,
 /area/medical/chemistry)
 "bli" = (
@@ -24426,7 +24443,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/camera{
 	c_tag = "Medbay Foyer";
-	network = list("ss13", "medbay");
+	network = list("ss13","medbay");
 	dir = 8
 	},
 /obj/machinery/cell_charger,
@@ -24993,8 +25010,38 @@
 	dir = 4;
 	pixel_x = -22
 	},
-/obj/item/stack/cable_coil/random,
-/obj/item/stack/cable_coil/random,
+/obj/item/assembly/igniter{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/assembly/igniter{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/assembly/igniter{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/assembly/igniter{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/assembly/timer{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/assembly/timer{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/assembly/timer{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/assembly/timer{
+	pixel_x = 3;
+	pixel_y = -3
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "bmG" = (
@@ -25109,7 +25156,9 @@
 /area/hallway/primary/central)
 "bmT" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "bmU" = (
@@ -25378,26 +25427,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
-"bnB" = (
-/obj/structure/closet/wardrobe/chemistry_white,
-/obj/machinery/light_switch{
-	pixel_x = -23
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
 "bnC" = (
 /obj/structure/chair,
-/turf/open/floor/plasteel/white,
-/area/medical/chemistry)
-"bnD" = (
-/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/table,
-/obj/item/book/manual/wiki/chemistry,
-/obj/item/book/manual/wiki/chemistry{
-	pixel_x = 3;
-	pixel_y = 3
-	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "bnE" = (
@@ -25605,17 +25637,19 @@
 /area/crew_quarters/heads/captain)
 "bob" = (
 /obj/structure/table/glass,
-/obj/item/grenade/chem_grenade,
-/obj/item/grenade/chem_grenade,
-/obj/item/grenade/chem_grenade,
-/obj/item/grenade/chem_grenade,
 /obj/item/screwdriver{
-	pixel_x = -2;
-	pixel_y = 6
+	pixel_x = 2;
+	pixel_y = 18
 	},
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/stack/cable_coil/random,
+/obj/item/stack/cable_coil/random,
+/obj/item/grenade/chem_grenade,
+/obj/item/grenade/chem_grenade,
+/obj/item/grenade/chem_grenade,
+/obj/item/grenade/chem_grenade,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "boc" = (
@@ -25631,7 +25665,7 @@
 "bod" = (
 /obj/structure/table,
 /obj/item/folder/white,
-/obj/item/radio/headset/headset_med,
+/obj/item/pen,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "boe" = (
@@ -26294,6 +26328,7 @@
 	req_access_txt = "33"
 	},
 /obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/medical/chemistry)
 "bpG" = (
@@ -26349,9 +26384,8 @@
 /area/medical/genetics)
 "bpM" = (
 /obj/structure/disposalpipe/segment,
-/obj/effect/spawner/structure/window/reinforced,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plating,
+/obj/machinery/smartfridge/chemistry,
+/turf/closed/wall,
 /area/medical/chemistry)
 "bpN" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
@@ -26791,9 +26825,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /turf/open/floor/plasteel/whiteyellow/side{
 	dir = 1
 	},
@@ -26803,7 +26835,9 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 1
+	},
 /turf/open/floor/plasteel/whiteyellow/side{
 	dir = 1
 	},
@@ -26817,7 +26851,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay West";
-	network = list("ss13", "medbay");
+	network = list("ss13","medbay");
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -27502,7 +27536,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay East";
-	network = list("ss13", "medbay");
+	network = list("ss13","medbay");
 	dir = 8;
 	pixel_y = -22
 	},
@@ -27867,7 +27901,7 @@
 /area/maintenance/starboard)
 "btr" = (
 /obj/machinery/camera{
-	c_tag = "Cargo Recieving Dock";
+	c_tag = "Cargo Receiving Dock";
 	dir = 4
 	},
 /obj/machinery/button/door{
@@ -28831,8 +28865,7 @@
 /obj/machinery/camera{
 	c_tag = "Genetics Research";
 	dir = 1;
-	network = list("ss13", "medbay");
-	
+	network = list("ss13","medbay")
 	},
 /obj/machinery/firealarm{
 	dir = 1;
@@ -28866,7 +28899,7 @@
 "bvB" = (
 /obj/machinery/camera{
 	c_tag = "Genetics Access";
-	network = list("ss13", "medbay");
+	network = list("ss13","medbay");
 	dir = 8;
 	pixel_y = -22
 	},
@@ -29225,7 +29258,7 @@
 /obj/structure/chair,
 /obj/machinery/camera{
 	c_tag = "Surgery Observation";
-	network = list("ss13", "medbay")
+	network = list("ss13","medbay")
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
@@ -29310,7 +29343,7 @@
 /obj/structure/table/glass,
 /obj/machinery/camera{
 	c_tag = "Medbay Cryogenics";
-	network = list("ss13", "medbay");
+	network = list("ss13","medbay");
 	dir = 2
 	},
 /obj/item/reagent_containers/glass/beaker/cryoxadone,
@@ -29329,7 +29362,7 @@
 "bwL" = (
 /obj/machinery/camera{
 	c_tag = "Genetics Cloning";
-	network = list("ss13", "medbay");
+	network = list("ss13","medbay");
 	dir = 4
 	},
 /obj/structure/table,
@@ -30891,7 +30924,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay Treatment Center";
-	network = list("ss13", "medbay");
+	network = list("ss13","medbay");
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -31924,7 +31957,7 @@
 /obj/structure/closet/secure_closet/medical3,
 /obj/machinery/camera{
 	c_tag = "Medbay Storage";
-	network = list("ss13", "medbay");
+	network = list("ss13","medbay");
 	dir = 2
 	},
 /turf/open/floor/plasteel/white,
@@ -32007,7 +32040,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay South";
-	network = list("ss13", "medbay");
+	network = list("ss13","medbay");
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
@@ -32300,7 +32333,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Medbay Recovery Room";
-	network = list("ss13", "medbay");
+	network = list("ss13","medbay");
 	dir = 8
 	},
 /obj/machinery/iv_drip,
@@ -32542,7 +32575,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Chief Medical Office";
-	network = list("ss13", "medbay");
+	network = list("ss13","medbay");
 	dir = 8;
 	pixel_y = -22
 	},
@@ -34088,7 +34121,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Surgery Operating";
-	network = list("ss13", "medbay");
+	network = list("ss13","medbay");
 	dir = 1;
 	pixel_x = 22
 	},
@@ -34411,7 +34444,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Virology Break Room";
-	network = list("ss13", "medbay")
+	network = list("ss13","medbay")
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -36708,7 +36741,7 @@
 /obj/structure/closet/emcloset,
 /obj/machinery/camera{
 	c_tag = "Virology Airlock";
-	network = list("ss13", "medbay");
+	network = list("ss13","medbay");
 	dir = 2
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -38654,7 +38687,7 @@
 	},
 /obj/machinery/camera{
 	c_tag = "Virology Module";
-	network = list("ss13", "medbay")
+	network = list("ss13","medbay")
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
@@ -41989,9 +42022,7 @@
 /turf/open/floor/plating,
 /area/tcommsat/computer)
 "cbp" = (
-/obj/structure/closet/secure_closet/engineering_chief{
-	req_access_txt = "0"
-	},
+/obj/structure/closet/secure_closet/engineering_chief,
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 4;
 	name = "CE Office APC";
@@ -46232,6 +46263,7 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
+/obj/structure/closet/wardrobe/engineering_yellow,
 /turf/open/floor/plasteel/yellow/side{
 	dir = 9
 	},
@@ -52118,7 +52150,6 @@
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
 "cGt" = (
-/obj/structure/closet/wardrobe/engineering_yellow,
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
@@ -53345,7 +53376,10 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "fGf" = (
-/obj/machinery/smartfridge/disks,
+/obj/machinery/smartfridge/disks{
+	pixel_y = 2
+	},
+/obj/structure/table,
 /turf/open/floor/plasteel/hydrofloor,
 /area/hydroponics)
 "fKl" = (
@@ -53404,10 +53438,6 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space/nearstation)
-"gYO" = (
-/obj/machinery/jukebox,
-/turf/open/floor/plasteel/bar,
-/area/crew_quarters/bar)
 "gZG" = (
 /obj/structure/closet/crate/freezer/surplus_limbs,
 /obj/item/reagent_containers/glass/beaker/synthflesh,
@@ -53668,6 +53698,12 @@
 /obj/machinery/nuclearbomb/beer,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+"miq" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 10
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "mjr" = (
 /obj/machinery/vending/wardrobe/bar_wardrobe,
 /turf/open/floor/wood,
@@ -54019,6 +54055,22 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/circuit)
+"vRy" = (
+/obj/structure/chair/office/light{
+	dir = 4
+	},
+/obj/effect/landmark/start/chemist,
+/obj/machinery/button/door{
+	id = "chemistry_shutters";
+	name = "Chemistry shutters";
+	pixel_x = 24;
+	pixel_y = -28;
+	req_one_access_txt = "5; 33"
+	},
+/turf/open/floor/plasteel/whiteyellow/side{
+	dir = 4
+	},
+/area/medical/chemistry)
 "wkN" = (
 /turf/closed/wall,
 /area/science/circuit)
@@ -54057,6 +54109,14 @@
 	},
 /turf/closed/wall,
 /area/hallway/secondary/service)
+"wCA" = (
+/obj/machinery/light_switch{
+	pixel_x = -23
+	},
+/obj/structure/closet/secure_closet/chemical,
+/obj/item/radio/headset/headset_med,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
 "wHz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -87903,13 +87963,13 @@ bcq
 bcq
 bcq
 bfF
-bha
+wCA
 bio
 bgF
 blf
 bmF
 bob
-bnB
+bha
 bfF
 bqR
 brX
@@ -88423,7 +88483,7 @@ bgP
 bjL
 bkL
 bmT
-bnD
+bjL
 bpM
 bqT
 bFD
@@ -88679,7 +88739,7 @@ bip
 bjO
 bip
 bmG
-bip
+miq
 bnC
 bpF
 bqS
@@ -88934,7 +88994,7 @@ bfF
 bhd
 bis
 bjR
-bis
+vRy
 bmI
 bod
 bpt
@@ -91233,9 +91293,9 @@ aND
 aJC
 aab
 aRg
+aQc
 aac
 aQc
-gYO
 aXk
 aQc
 aQc
@@ -91490,8 +91550,8 @@ aJC
 aJC
 aJI
 aJI
-aJI
 aSI
+aJI
 aVA
 aJI
 aYK
