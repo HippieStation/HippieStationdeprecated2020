@@ -1,4 +1,0 @@
-author: "HonkBot"
-delete-after: True
-changes: 
-  - rscadd: "Added pulse multiplexer circuits, to complete the list of data transfers."
