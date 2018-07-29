@@ -1,4 +1,0 @@
-author: "Shdorsh"
-delete-after: True
-changes: 
-  - rscadd: "A list input circuit with up to 8 possible presets that can be given"
