@@ -119,18 +119,33 @@
 
 /obj/machinery/power/apc/auto_name
 	auto_name = TRUE
+<<<<<<< HEAD
 
 /obj/machinery/power/apc/auto_name/north
 	dir = NORTH
 
+=======
+	
+/obj/machinery/power/apc/auto_name/north //Pixel offsets get overwritten on New()
+	dir = NORTH
+	pixel_y = 23
+	
+>>>>>>> 48f3b9c8a8... Add pixel offsets to directional APC/air alarm subtypes (#39432)
 /obj/machinery/power/apc/auto_name/south
 	dir = SOUTH
+	pixel_y = -23
 
 /obj/machinery/power/apc/auto_name/east
 	dir = EAST
+<<<<<<< HEAD
 
+=======
+	pixel_x = 24
+	
+>>>>>>> 48f3b9c8a8... Add pixel offsets to directional APC/air alarm subtypes (#39432)
 /obj/machinery/power/apc/auto_name/west
 	dir = WEST
+	pixel_x = -25
 
 /obj/machinery/power/apc/get_cell()
 	return cell
