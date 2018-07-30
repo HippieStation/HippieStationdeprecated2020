@@ -4,6 +4,7 @@
 	var/super_fart = 76
 	var/super_nova_fart = 12
 	var/fart_fly = 12
+	var/list/alternate_poo
 
 /datum/emote/living/carbon/fart
 	key = "fart"
@@ -241,7 +242,119 @@
 				user.visible_message("<span class='warning'><b>[user]</b> blows their ass off with such force, they explode!</span>", "<span class='warning'>Holy shit, your butt flies off into the galaxy!</span>")
 				playsound(user, 'hippiestation/sound/effects/superfart.ogg', 75, extrarange = 255, pressure_affected = FALSE)
 				new /obj/effect/immovablerod/butt(user.loc, butt_end)
+				for(var/mob/living/M in range(0))
+					if(M != user)
+						user.visible_message("<span class='warning'><b>[user]</b>'s destroys <b>[M]</b> with a fart powerful enough to shatter a universe!</span>", "<span class='warning'>You ass blast <b>[M]</b>!</span>")
+						explosion(M.loc, 0, 1, 3, adminlog = FALSE, flame_range = 3)
+						M.gib()
 				user.gib() //can you belive I forgot to put this here?? yeah you need to see the message BEFORE you gib
 				priority_announce("What the fuck was that?!", "General Alert")
 				qdel(B)
 
+
+// Poo Code, shamelessly ripped off from fart code
+
+/datum/emote/living/carbon/poo
+	key = "poo"
+	key_third_person = "poos"
+
+/datum/emote/living/carbon/fart/run_emote(mob/living/carbon/user, params)
+	var/bloodkind = /obj/effect/decal/cleanable/poo
+	var/GIGA = FALSE
+	var/poo_type = /obj/item/poo/mystery
+	message = null
+	if(user.stat != CONSCIOUS)
+		return
+	if(user.nutrition == NUTRITION_LEVEL_STARVING)
+		user.visible_message("<span class='warning'><b>[user]</b> rears over and grunts, but nothing comes out! What an idiot!</span>", "<span class='warning'>You can't poo with nothing in you! Go eat!</span>")
+		return
+	else if(user.nutrition >= NUTRITION_LEVEL_FULL) //yanderedev approved code!
+		playsound(user, 'hippiestation/sound/effects/poo_long.ogg', 100, 1, 5)
+		GIGA = TRUE
+		if(ishuman(user))
+			poo_type = /obj/item/poo/giga/mystery
+			if(is_species(user, /datum/species/android) || is_species(user, /datum/species/synth) || is_species(user, /datum/species/ipc))
+				poo_type = /obj/item/poo/giga/refuse
+			if(is_species(user, /datum/species/skeleton))
+				poo_type = /obj/item/poo/giga/skeleturd
+			if (is_species(user, /datum/species/fly) || is_species(user, /datum/species/moth) || is_species(/datum/species/lizard))
+				poo_type = /obj/item/poo/giga/lizturd
+			if (is_species(user, /datum/species/bird) || is_species(user, /datum/species/human))
+				poo_type = /obj/item/poo/giga
+			if (user.has_trait(TRAIT_CLUMSY))
+				poo_type = /obj/item/poo/giga/clownbrownie // Keep jobs after species so they can override.
+
+			if (user.dna.check_mutation(CLUWNEMUT)) // Keep cluwnes last so their poo is always mystery.
+				poo_type = /obj/item/poo/giga/mystery
+
+			new poo_type(user.loc)
+	else // for small poo
+		playsound(user, 'hippiestation/sound/effects/poo.ogg', 100, 1, 5)
+	user.nutrition = NUTRITION_LEVEL_STARVING
+	new bloodkind(user.loc)
+	for(var/mob/living/carbon/human/M in get_turf(user))
+		if(M == user)
+			continue
+		else
+			//lol bugged message, keeps telling me "pick" doesn't exist. maintainers halp
+			if(GIGA)
+				M.adjustToxLoss(20)
+				M.AdjustUnconscious(30)
+			M.adjustToxLoss(10)
+	if(!message)
+		message = pick(
+			"rears up and lets loose a fart of tremendous magnitude!",
+			"poos!",
+			"shits.",
+			"harvests methane from uranus at mach 3!",
+			"assists global warming!",
+			"farts and waves their hand dismissively.",
+			"farts and pretends nothing happened.",
+			"is a <b>farting</b> motherfucker!",
+			"<B><font color='red'>f</font><font color='blue'>a</font><font color='red'>r</font><font color='blue'>t</font><font color='red'>s</font></B>",
+			"unleashes their unholy rectal vapor!",
+			"assblasts gently.",
+			"lets out a wet sounding one!",
+			"exorcises a <b>ferocious</b> colonic demon!",
+			"pledges ass-legience to the flag!",
+			"cracks open a tin of beans!",
+			"tears themselves a new one!",
+			"looses some pure assgas!",
+			"displays the most sophisticated type of humor.",
+			"strains to get the fart out. Is that <font color='red'>blood</font>?",
+			"sighs and farts simultaneously.",
+			"expunges a gnarly butt queef!",
+			"contributes to the erosion of the ozone layer!",
+			"just farts. It's natural, everyone does it.",
+			"had one too many tacos this week!",
+			"has the phantom shits.",
+			"flexes their bunghole.",
+			"'s ass sings the song that ends the earth!",
+			"had to go and ruin the mood!",
+			"unflinchingly farts. True confidence.",
+			"shows everyone what they had for breakfast!",
+			"farts so loud it startles them!",
+			"breaks wind and a nearby wine glass!",
+			"<b>finally achieves the perfect fart. All downhill from here.</b>")
+	var/obj/item/storage/book/bible/Y = locate() in get_turf(user.loc)
+	user.newtonian_move(user.dir)
+	if(istype(Y))
+		user.Stun(100)
+		user.visible_message("<span class='warning'><b>[user] experiences divine wrath for shitting on the bible!</b></span>", "<font size=5><span class='shadowling'><b>\"YOU HAVE BEEN PUNISHED FOR YOUR CRIMES\"</font></span>")
+		playsound(Y,'hippiestation/sound/effects/thunder.ogg', 90, 1)
+		var/turf/T = get_ranged_target_turf(user, NORTH, 8)
+		T.Beam(user, icon_state="lightning[rand(1,12)]", time = 5)
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			H.cluwneify //NOTE: Compile Warning "H. unused label", "cluwneify: unused label" ???
+			H.electrocution_animation(100)
+			var/list/rekt_limbs = list(H.get_bodypart("l_leg"),H.get_bodypart("r_leg"),H.get_bodypart("l_arm"),H.get_bodypart("r_arm"),H.get_bodypart("butt") )
+			if(rekt_limbs.len < 0 || H.stat == DEAD)
+				for(var/obj/item/bodypart/B in rekt_limbs)
+					B.dismember()
+					H.adjustBruteLoss(-100)
+		else
+			addtimer(CALLBACK(user, /mob/proc/gib), 10)
+		..()
+		if(!ishuman(user)) //nonhumans don't have the message appear for some reason
+			user.visible_message("<b>[user]</b> [message]")
