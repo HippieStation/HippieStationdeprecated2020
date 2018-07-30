@@ -21,32 +21,35 @@
 	return dat
 
 /obj/item/implant/gang/implant(mob/living/target, mob/user, silent = 0)
+	if(!target || !target.mind || target.stat == DEAD)
+		return 0
+	var/datum/antagonist/gang/G = target.mind.has_antag_datum(/datum/antagonist/gang)
+	if(G && G.gang == G)
+		return 0 // it's pointless
 	if(..())
 		for(var/obj/item/implant/I in target.implants)
 			if(I != src)
 				qdel(I)
 
-		if(!target.mind || target.stat == DEAD)
-			return 0
-
-		var/success
-		if(target.mind.has_antag_datum(/datum/antagonist/gang))
-			if(target.mind.remove_antag_datum(/datum/antagonist/gang))//may not be the right proc for this,todo
-				success = TRUE	//Was not a gang boss, convert as usual
-		else
-			success = TRUE
-
 		if(ishuman(target))
+			var/success
+			if(G)
+				if(!istype(G, /datum/antagonist/gang/boss))
+					success = TRUE	//Was not a gang boss, convert as usual
+					target.mind.remove_antag_datum(/datum/antagonist/gang)
+			else
+				success = TRUE
 			if(!success)
 				target.visible_message("<span class='warning'>[target] seems to resist the implant!</span>", "<span class='warning'>You feel the influence of your enemies try to invade your mind!</span>")
-
+				return FALSE
+		target.mind.add_antag_datum(/datum/antagonist/gang, gang)
 		qdel(src)
-		return 0
+		return TRUE
 
 /obj/item/implanter/gang
 	name = "implanter (gang)"
 
-/obj/item/implanter/gang/New(loc, gang)
+/obj/item/implanter/gang/Initialize(loc, gang)
 	if(!gang)
 		qdel(src)
 		return
