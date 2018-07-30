@@ -459,8 +459,8 @@
 	set_security_level("delta")
 
 /datum/team/gang/proc/determine_domination_time() // calculates the value in seconds (this is the initial domination time!)
-	GLOB.start_state.count(TRUE) // update the state
-	return max(180,480 - (round((territories.len/GLOB.start_state.num_territories)*100, 1) * 9))
+	var/total_territories = total_claimable_territories()
+	return max(180,480 - (round((territories.len/total_territories)*100, 1) * 9))
 
 /datum/team/gang/proc/domination_time_remaining() // retrieves the value from world.time based deciseconds to seconds
 	var/diff = domination_time - world.time
