@@ -23,7 +23,7 @@
 		"on sprayed" = IC_PINTYPE_PULSE_OUT,
 		"on fail" = IC_PINTYPE_PULSE_OUT
 		)
-	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 15
 	var/busy = FALSE
 
