@@ -18,10 +18,10 @@
 			targetmob = M
 
 	if(usr.hud_used.inventory_shown && targetmob.hud_used)
-		usr.hud_used.inventory_shown = 0
+		usr.hud_used.inventory_shown = FALSE
 		usr.client.screen -= targetmob.hud_used.toggleable_inventory
 	else
-		usr.hud_used.inventory_shown = 1
+		usr.hud_used.inventory_shown = TRUE
 		usr.client.screen += targetmob.hud_used.toggleable_inventory
 
 	targetmob.hud_used.hidden_inventory_update(usr)
@@ -85,10 +85,10 @@
 
 /mob/living/carbon/human/create_mob_hud()
 	if(client && !hud_used)
-		hud_used = new /datum/hud/human(src, ui_style2icon(client.prefs.UI_style))
+		hud_used = new /datum/hud/human(src)
 
 
-/datum/hud/human/New(mob/living/carbon/human/owner, ui_style = 'icons/mob/screen_midnight.dmi')
+/datum/hud/human/New(mob/living/carbon/human/owner)
 	..()
 	owner.overlay_fullscreen("see_through_darkness", /obj/screen/fullscreen/see_through_darkness)
 
@@ -125,7 +125,7 @@
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "i_clothing"
 	inv_box.icon = ui_style
-	inv_box.slot_id = slot_w_uniform
+	inv_box.slot_id = SLOT_W_UNIFORM
 	inv_box.icon_state = "uniform"
 	inv_box.screen_loc = ui_iclothing
 	toggleable_inventory += inv_box
@@ -133,12 +133,12 @@
 	inv_box = new /obj/screen/inventory()
 	inv_box.name = "o_clothing"
 	inv_box.icon = ui_style
-	inv_box.slot_id = slot_wear_suit
+	inv_box.slot_id = SLOT_WEAR_SUIT
 	inv_box.icon_state = "suit"
 	inv_box.screen_loc = ui_oclothing
 	toggleable_inventory += inv_box
 
-	build_hand_slots(ui_style)
+	build_hand_slots()
 
 	using = new /obj/screen/swap_hand()
 	using.icon = ui_style
@@ -157,7 +157,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "id"
 	inv_box.screen_loc = ui_id
-	inv_box.slot_id = slot_wear_id
+	inv_box.slot_id = SLOT_WEAR_ID
 	static_inventory += inv_box
 
 	inv_box = new /obj/screen/inventory()
@@ -165,7 +165,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "mask"
 	inv_box.screen_loc = ui_mask
-	inv_box.slot_id = slot_wear_mask
+	inv_box.slot_id = SLOT_WEAR_MASK
 	toggleable_inventory += inv_box
 
 	inv_box = new /obj/screen/inventory()
@@ -173,7 +173,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "neck"
 	inv_box.screen_loc = ui_neck
-	inv_box.slot_id = slot_neck
+	inv_box.slot_id = SLOT_NECK
 	toggleable_inventory += inv_box
 
 	inv_box = new /obj/screen/inventory()
@@ -181,7 +181,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "back"
 	inv_box.screen_loc = ui_back
-	inv_box.slot_id = slot_back
+	inv_box.slot_id = SLOT_BACK
 	static_inventory += inv_box
 
 	inv_box = new /obj/screen/inventory()
@@ -189,7 +189,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "pocket"
 	inv_box.screen_loc = ui_storage1
-	inv_box.slot_id = slot_l_store
+	inv_box.slot_id = SLOT_L_STORE
 	static_inventory += inv_box
 
 	inv_box = new /obj/screen/inventory()
@@ -197,7 +197,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "pocket"
 	inv_box.screen_loc = ui_storage2
-	inv_box.slot_id = slot_r_store
+	inv_box.slot_id = SLOT_R_STORE
 	static_inventory += inv_box
 
 	inv_box = new /obj/screen/inventory()
@@ -205,12 +205,12 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "suit_storage"
 	inv_box.screen_loc = ui_sstore1
-	inv_box.slot_id = slot_s_store
+	inv_box.slot_id = SLOT_S_STORE
 	static_inventory += inv_box
 
 	using = new /obj/screen/resist()
 	using.icon = ui_style
-	using.screen_loc = ui_pull_resist
+	using.screen_loc = ui_above_intent
 	hotkeybuttons += using
 
 	using = new /obj/screen/human/toggle()
@@ -228,7 +228,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "gloves"
 	inv_box.screen_loc = ui_gloves
-	inv_box.slot_id = slot_gloves
+	inv_box.slot_id = SLOT_GLOVES
 	toggleable_inventory += inv_box
 
 	inv_box = new /obj/screen/inventory()
@@ -236,7 +236,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "glasses"
 	inv_box.screen_loc = ui_glasses
-	inv_box.slot_id = slot_glasses
+	inv_box.slot_id = SLOT_GLASSES
 	toggleable_inventory += inv_box
 
 	inv_box = new /obj/screen/inventory()
@@ -244,7 +244,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "ears"
 	inv_box.screen_loc = ui_ears
-	inv_box.slot_id = slot_ears
+	inv_box.slot_id = SLOT_EARS
 	toggleable_inventory += inv_box
 
 	inv_box = new /obj/screen/inventory()
@@ -252,7 +252,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "head"
 	inv_box.screen_loc = ui_head
-	inv_box.slot_id = slot_head
+	inv_box.slot_id = SLOT_HEAD
 	toggleable_inventory += inv_box
 
 	inv_box = new /obj/screen/inventory()
@@ -260,7 +260,7 @@
 	inv_box.icon = ui_style
 	inv_box.icon_state = "shoes"
 	inv_box.screen_loc = ui_shoes
-	inv_box.slot_id = slot_shoes
+	inv_box.slot_id = SLOT_SHOES
 	toggleable_inventory += inv_box
 
 	inv_box = new /obj/screen/inventory()
@@ -269,13 +269,18 @@
 	inv_box.icon_state = "belt"
 //	inv_box.icon_full = "template_small"
 	inv_box.screen_loc = ui_belt
-	inv_box.slot_id = slot_belt
+	inv_box.slot_id = SLOT_BELT
 	static_inventory += inv_box
 
 	throw_icon = new /obj/screen/throw_catch()
 	throw_icon.icon = ui_style
 	throw_icon.screen_loc = ui_drop_throw
 	hotkeybuttons += throw_icon
+
+	rest_icon = new /obj/screen/rest()
+	rest_icon.icon = ui_style
+	rest_icon.screen_loc = ui_above_movement
+	static_inventory += rest_icon
 
 	internals = new /obj/screen/internals()
 	infodisplay += internals
@@ -286,10 +291,14 @@
 	healthdoll = new /obj/screen/healthdoll()
 	infodisplay += healthdoll
 
+	if(!CONFIG_GET(flag/disable_human_mood))
+		mood = new /obj/screen/mood()
+		infodisplay += mood
+
 	pull_icon = new /obj/screen/pull()
 	pull_icon.icon = ui_style
 	pull_icon.update_icon(mymob)
-	pull_icon.screen_loc = ui_pull_resist
+	pull_icon.screen_loc = ui_above_intent
 	static_inventory += pull_icon
 
 	lingchemdisplay = new /obj/screen/ling/chems()
@@ -311,7 +320,7 @@
 			inv.hud = src
 			inv_slots[inv.slot_id] = inv
 			inv.update_icon()
-	
+
 	update_locked_slots()
 
 /datum/hud/human/update_locked_slots()
@@ -435,7 +444,7 @@
 
 	if(hud_used.hotkey_ui_hidden)
 		client.screen += hud_used.hotkeybuttons
-		hud_used.hotkey_ui_hidden = 0
+		hud_used.hotkey_ui_hidden = FALSE
 	else
 		client.screen -= hud_used.hotkeybuttons
-		hud_used.hotkey_ui_hidden = 1
+		hud_used.hotkey_ui_hidden = TRUE

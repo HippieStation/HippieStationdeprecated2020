@@ -51,7 +51,7 @@
 	icon_state = "tape"
 	item_state = "tape"
 	amount = 15
-	flags_1 = NOBLUDGEON_1
+	item_flags = NOBLUDGEON
 	max_amount = 15
 	throwforce = 0
 	w_class = 2.0
@@ -98,7 +98,7 @@
 		to_chat(user, "<span class='notice'>You start tape [H]'s mouth shut.</span>")
 		if(do_mob(user, H, 20))
 			// H.wear_mask = new/obj/item/clothing/mask/hippie/tape(H)
-			H.equip_to_slot_or_del(new /obj/item/clothing/mask/hippie/tape(H), slot_wear_mask)
+			H.equip_to_slot_or_del(new /obj/item/clothing/mask/hippie/tape(H), SLOT_WEAR_MASK)
 			to_chat(user, "<span class='notice'>You tape [H]'s mouth shut.</span>")
 			playsound(loc, 'hippiestation/sound/misc/ducttape1.ogg', 50, 1)
 			if(src.use(2) == 0)

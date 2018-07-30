@@ -1,5 +1,5 @@
 /obj/item/storage/box
-	icon = 'hippiestation/icons/obj/storage.dmi'
+	icon_hippie = 'hippiestation/icons/obj/storage.dmi'
 
 /obj/item/storage/box/monkeycubes
 	icon = 'icons/obj/storage.dmi'
@@ -20,4 +20,13 @@
 	icon = 'icons/obj/storage.dmi'
 
 /obj/item/storage/box/lights
-	icon = 'hippiestation/icons/obj/storage.dmi'
+	icon_hippie = 'hippiestation/icons/obj/storage.dmi'
+
+/obj/item/storage/box/seclarp
+	name = "\improper Medieval Officer Kit"
+	desc = "You've commited crimes against Nanotrasen and her people. What say you in your defense?"
+
+/obj/item/storage/box/seclarp/PopulateContents()
+	new /obj/item/clothing/head/helmet/larp(src)
+	new /obj/item/clothing/suit/armor/larp(src)
+	new /obj/item/clothing/shoes/jackboots/larp(src)

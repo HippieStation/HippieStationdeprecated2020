@@ -25,14 +25,14 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 	var/minGallop = MIN_GALLOP
 
 	//Stores information regarding runs yet to be merged.
-	//Run i starts at runBase[i] and extends for runLen[i] elements.
-	//runBase[i] + runLen[i] == runBase[i+1]
-	var/list/runBases = list()
+	//Run i starts at runbase[i] and extends for runLen[i] elements.
+	//runbase[i] + runLen[i] == runbase[i+1]
+	var/list/runbases = list()
 	var/list/runLens = list()
 
 
 	proc/timSort(start, end)
-		runBases.Cut()
+		runbases.Cut()
 		runLens.Cut()
 
 		var/remaining = end - start
@@ -59,7 +59,7 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 				runLen = force
 
 				//add data about run to queue
-			runBases.Add(start)
+			runbases.Add(start)
 			runLens.Add(runLen)
 
 				//maybe merge
@@ -75,7 +75,7 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 			//Merge all remaining runs to complete sort
 		//ASSERT(start == end)
 		mergeForceCollapse();
-		//ASSERT(runBases.len == 1)
+		//ASSERT(runbases.len == 1)
 
 			//reset minGallop, for successive calls
 		minGallop = MIN_GALLOP
@@ -177,8 +177,8 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 	//This method is called each time a new run is pushed onto the stack.
 	//So the invariants are guaranteed to hold for i<stackSize upon entry to the method
 	proc/mergeCollapse()
-		while(runBases.len >= 2)
-			var/n = runBases.len - 1
+		while(runbases.len >= 2)
+			var/n = runbases.len - 1
 			if(n > 1 && runLens[n-1] <= runLens[n] + runLens[n+1])
 				if(runLens[n-1] < runLens[n+1])
 					--n
@@ -192,8 +192,8 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 	//Merges all runs on the stack until only one remains.
 	//Called only once, to finalise the sort
 	proc/mergeForceCollapse()
-		while(runBases.len >= 2)
-			var/n = runBases.len - 1
+		while(runbases.len >= 2)
+			var/n = runbases.len - 1
 			if(n > 1 && runLens[n-1] < runLens[n+1])
 				--n
 			mergeAt(n)
@@ -203,12 +203,12 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 	//Run i must be the penultimate or antepenultimate run on the stack
 	//In other words, i must be equal to stackSize-2 or stackSize-3
 	proc/mergeAt(i)
-		//ASSERT(runBases.len >= 2)
+		//ASSERT(runbases.len >= 2)
 		//ASSERT(i >= 1)
-		//ASSERT(i == runBases.len - 1 || i == runBases.len - 2)
+		//ASSERT(i == runbases.len - 1 || i == runbases.len - 2)
 
-		var/base1 = runBases[i]
-		var/base2 = runBases[i+1]
+		var/base1 = runbases[i]
+		var/base2 = runbases[i+1]
 		var/len1 = runLens[i]
 		var/len2 = runLens[i+1]
 
@@ -219,7 +219,7 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 		//(which isn't involved in this merge). The current run (i+1) goes away in any case.
 		runLens[i] += runLens[i+1]
 		runLens.Cut(i+1, i+2)
-		runBases.Cut(i+1, i+2)
+		runbases.Cut(i+1, i+2)
 
 
 		//Find where the first element of run2 goes in run1.
@@ -581,7 +581,7 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 			binarySort(start, start+runLen, start)
 
 			//add data about run to queue
-			runBases.Add(start)
+			runbases.Add(start)
 			runLens.Add(runLen)
 
 			//Advance to find next run
@@ -590,8 +590,8 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 
 		while(remaining > 0)
 
-		while(runBases.len >= 2)
-			var/n = runBases.len - 1
+		while(runbases.len >= 2)
+			var/n = runbases.len - 1
 			if(n > 1 && runLens[n-1] <= runLens[n] + runLens[n+1])
 				if(runLens[n-1] < runLens[n+1])
 					--n
@@ -601,8 +601,8 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 			else
 				break	//Invariant is established
 
-		while(runBases.len >= 2)
-			var/n = runBases.len - 1
+		while(runbases.len >= 2)
+			var/n = runbases.len - 1
 			if(n > 1 && runLens[n-1] < runLens[n+1])
 				--n
 			mergeAt2(n)
@@ -610,8 +610,8 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 		return L
 
 	proc/mergeAt2(i)
-		var/cursor1 = runBases[i]
-		var/cursor2 = runBases[i+1]
+		var/cursor1 = runbases[i]
+		var/cursor2 = runbases[i+1]
 
 		var/end1 = cursor1+runLens[i]
 		var/end2 = cursor2+runLens[i+1]
@@ -639,7 +639,7 @@ GLOBAL_DATUM_INIT(sortInstance, /datum/sortInstance, new())
 		//(which isn't involved in this merge). The current run (i+1) goes away in any case.
 		runLens[i] += runLens[i+1]
 		runLens.Cut(i+1, i+2)
-		runBases.Cut(i+1, i+2)
+		runbases.Cut(i+1, i+2)
 
 #undef MIN_GALLOP
 #undef MIN_MERGE

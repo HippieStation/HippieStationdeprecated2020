@@ -18,7 +18,7 @@
 	var/pets = pick("animals/bots", "bots/animals", "pets", "simple animals", "lesser lifeforms", "\[REDACTED\]")
 	var/strength = pick("human", "moderate", "lizard", "security", "command", "clown", "low", "very low", "\[REDACTED\]")
 
-	sentience_report += "Based on [data], we believe that [one] of the station's [pets] has developed [strength] level intelligence, and the ability to communicate."
+	sentience_report += "based on [data], we believe that [one] of the station's [pets] has developed [strength] level intelligence, and the ability to communicate."
 
 	priority_announce(sentience_report,"[command_name()] Medium-Priority Update")
 
@@ -31,7 +31,7 @@
 	var/list/potential = list()
 	for(var/mob/living/simple_animal/L in GLOB.alive_mob_list)
 		var/turf/T = get_turf(L)
-		if(!is_station_level(T.z))
+		if(!T || !is_station_level(T.z))
 			continue
 		if(!(L in GLOB.player_list) && !L.mind)
 			potential += L
@@ -50,8 +50,7 @@
 
 		SA.key = SG.key
 
-		SA.grant_language(/datum/language/common)
-		SA.flags_2 |= OMNITONGUE_2
+		SA.grant_all_languages(TRUE)
 
 		SA.sentience_act()
 

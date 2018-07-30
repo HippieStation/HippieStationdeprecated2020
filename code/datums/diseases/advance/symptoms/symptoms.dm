@@ -15,7 +15,7 @@
 	var/severity = 0
 	// The hash tag for our diseases, we will add it up with our other symptoms to get a unique id! ID MUST BE UNIQUE!!!
 	var/id = ""
-	//Base chance of sending warning messages, so it can be modified
+	//base chance of sending warning messages, so it can be modified
 	var/base_message_chance = 10
 	//If the early warnings are suppressed or not
 	var/suppress_warning = FALSE
@@ -28,6 +28,7 @@
 	//A neutered symptom has no effect, and only affects statistics.
 	var/neutered = FALSE
 	var/list/thresholds
+	var/naturally_occuring = TRUE //if this symptom can appear from /datum/disease/advance/GenerateSymptoms()
 
 /datum/symptom/New()
 	var/list/S = SSdisease.list_symptoms

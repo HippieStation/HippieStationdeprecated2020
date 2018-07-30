@@ -3,14 +3,14 @@
 
 /obj/item/clothing/mask/gas/sechailer
 	name = "security gas mask"
-	desc = "A standard issue Security gas mask with integrated 'Compli-o-nator 3000' device. Plays over a dozen pre-recorded compliance phrases designed to get scumbags to stand still whilst you taze them. Do not tamper with the device."
+	desc = "A standard issue Security gas mask with integrated 'Compli-o-nator 3000' device. Plays over a dozen pre-recorded compliance phrases designed to get scumbags to stand still whilst you tase them. Do not tamper with the device."
 	actions_types = list(/datum/action/item_action/halt, /datum/action/item_action/adjust)
 	icon_state = "sechailer"
 	item_state = "sechailer"
-	flags_1 = BLOCK_GAS_SMOKE_EFFECT_1 | MASKINTERNALS_1
+	flags_1 = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
 	flags_inv = HIDEFACIALHAIR|HIDEFACE
 	w_class = WEIGHT_CLASS_SMALL
-	visor_flags = BLOCK_GAS_SMOKE_EFFECT_1 | MASKINTERNALS_1
+	visor_flags = BLOCK_GAS_SMOKE_EFFECT | MASKINTERNALS
 	visor_flags_inv = HIDEFACE
 	flags_cover = MASKCOVERSMOUTH
 	visor_flags_cover = MASKCOVERSMOUTH
@@ -54,7 +54,7 @@
 			if(5)
 				to_chat(user, "<span class='danger'>\The [src]'s Big Guy synthesizer cannot be modified!</span>")
 	else if(istype(W, /obj/item/wirecutters))
-		if(emagged)
+		if(obj_flags & EMAGGED)
 			to_chat(user, "<span class='danger'>\The [src]'s Big Guy synthesizer cannot be broken!</span>")
 		else if(aggressiveness != 4)
 			to_chat(user, "<span class='danger'>You broke the restrictor!</span>")
@@ -71,11 +71,11 @@
 /obj/item/clothing/mask/gas/sechailer/attack_self()
 	halt()
 /obj/item/clothing/mask/gas/sechailer/emag_act(mob/user as mob)
-	if(!emagged && aggressiveness != 4)
+	if(!(obj_flags & EMAGGED) && aggressiveness != 4)
 		var/mob/living/carbon/H = user
 		if(H.wear_mask == src)
-			emagged = TRUE
-			flags_1 |= NODROP_1 // If I pull that off will you die?
+			set_obj_flags = "EMAGGED"
+			item_flags = NODROP  // If I pull that off will you die?
 			to_chat(user, "<span class='warning'>You overload \the [src]'s Big Guy synthesizer.")
 			aggressiveness = 5
 		else

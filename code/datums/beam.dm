@@ -30,7 +30,7 @@
 	icon_state = beam_icon_state
 	beam_type = btype
 	if(time < INFINITY)
-		addtimer(CALLBACK(src,.proc/End), time)
+		QDEL_IN(src, time) //Hippie code
 
 /datum/beam/proc/Start()
 	Draw()
@@ -83,6 +83,8 @@
 
 /datum/beam/Destroy()
 	Reset()
+	if(!isnull(timing_id)) //Hippie code
+		deltimer(timing_id) // End
 	target = null
 	origin = null
 	return ..()
@@ -99,6 +101,8 @@
 	var/length = round(sqrt((DX)**2+(DY)**2)) //hypotenuse of the triangle formed by target and origin's displacement
 
 	for(N in 0 to length-1 step 32)//-1 as we want < not <=, but we want the speed of X in Y to Z and step X
+		if(QDELETED(src) || finished)
+			break
 		var/obj/effect/ebeam/X = new beam_type(origin_oldloc)
 		X.owner = src
 		elements += X

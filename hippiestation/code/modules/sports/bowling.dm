@@ -3,11 +3,11 @@
 	icon_state = "bowlingshoes"
 	desc = "Made for use in only the finest bowling alleys."
 	permeability_coefficient = 0.01
-	flags_1 = NOSLIP_1
+	flags_1 = NOSLIP
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 	body_parts_covered = FEET
 	permeability_coefficient = 0.01
-	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0, fire = 100, acid = 100)
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
 	slowdown = -1
 
 /obj/item/clothing/under/hippie/bowling
@@ -16,8 +16,8 @@
 	icon_state = "bowlinguniform"
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 	body_parts_covered = CHEST|GROIN|LEGS
-	flags_1 = THICKMATERIAL_1 | STOPSPRESSUREDMAGE_1
-	armor = list(melee = 70, bullet = 60, laser = 80, energy = 60, bomb = 75, bio = 30, rad = 50, fire = 100, acid = 100)
+	clothing_flags = THICKMATERIAL | STOPSPRESSUREDAMAGE
+	armor = list("melee" = 70, "bullet" = 60, "laser" = 80, "energy" = 60, "bomb" = 75, "bio" = 30, "rad" = 50, "fire" = 100, "acid" = 100)
 	can_adjust = FALSE
 	var/next_bowl = 1
 

@@ -1,9 +1,9 @@
 /datum/round_event_control/wizard/lava //THE LEGEND NEVER DIES
-	name = "The Floor Is LAVA!"
+	name = "The floor Is LAVA!"
 	weight = 2
 	typepath = /datum/round_event/wizard/lava
 	max_occurrences = 3
-	earliest_start = 0
+	earliest_start = 0 MINUTES
 
 /datum/round_event/wizard/lava
 	endWhen = 0
@@ -12,4 +12,4 @@
 /datum/round_event/wizard/lava/start()
 	if(!started)
 		started = TRUE
-		SSweather.run_weather("the floor is lava", ZLEVEL_STATION_PRIMARY)
+		SSweather.run_weather(/datum/weather/floor_is_lava)

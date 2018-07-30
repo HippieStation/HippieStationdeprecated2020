@@ -9,10 +9,17 @@
 	fire_delay = 0
 	actions_types = list()
 
+/obj/item/gun/ballistic/automatic/pistol/no_mag
+	spawnwithmagazine = FALSE
+
 /obj/item/gun/ballistic/automatic/pistol/update_icon()
 	..()
 	icon_state = "[initial(icon_state)][chambered ? "" : "-e"][suppressed ? "-suppressed" : ""]"
-	return
+
+/obj/item/gun/ballistic/automatic/pistol/suppressed/Initialize(mapload)
+	. = ..()
+	var/obj/item/suppressor/S = new(src)
+	install_suppressor(S)
 
 /obj/item/gun/ballistic/automatic/pistol/m1911
 	name = "\improper M1911"
@@ -21,6 +28,9 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	mag_type = /obj/item/ammo_box/magazine/m45
 	can_suppress = FALSE
+
+/obj/item/gun/ballistic/automatic/pistol/m1911/no_mag
+	spawnwithmagazine = FALSE
 
 /obj/item/gun/ballistic/automatic/pistol/deagle
 	name = "desert eagle"

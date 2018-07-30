@@ -133,7 +133,6 @@
 	build_path = /obj/item/storage/bag/chemistry
 	category = list("initial","Leather and Cloth")
 
-
 /datum/design/leather_satchel
 	name = "Leather satchel"
 	id = "leather_satchel"
@@ -148,6 +147,9 @@
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 100)
 	build_path = /obj/item/storage/wallet
+	category = list("initial","Leather and Cloth")
+
+/datum/design/s_holster
 	category = list("initial","Leather and Cloth")
 
 
@@ -172,7 +174,6 @@
 	build_path = /obj/item/storage/belt/utility
 	category = list("initial","Leather and Cloth")
 
-
 /datum/design/bandolier
 	name = "Bandolier belt"
 	id = "bandolier"
@@ -180,6 +181,16 @@
 	materials = list(MAT_BIOMASS = 300)
 	build_path = /obj/item/storage/belt/bandolier
 	category = list("initial","Leather and Cloth")
+
+/datum/design/secbelt
+	category = list("initial","Leather and Cloth")
+
+/datum/design/medbelt
+	category = list("intial","Leather and Cloth")
+
+ /datum/design/janibelt
+	category = list("initial","Leather and Cloth")
+
 
 /* Jackets */
 
@@ -211,9 +222,31 @@
 	category = list("initial","Leather and Cloth")
 
 /datum/design/baseball_bat
-	name = "Baseball bat"
+	name = "baseball bat"
 	id = "baseball_bat"
 	build_type = BIOGENERATOR
 	materials = list(MAT_BIOMASS = 100)
 	build_path = /obj/item/melee/baseball_bat
 	category = list("initial","Leather and Cloth")
+
+/datum/design/cloth
+
+	category = list("initial","Leather and Cloth")
+
+/datum/design/cardboard
+	category = list("initial","Leather and Cloth")
+
+/datum/design/leather
+	category = list("initial","Leather and Cloth")
+
+
+/* Special Stuff*/
+
+/datum/design/strange_seed
+	name = "Pack of strange seeds"
+	id = "strange_seed"
+	build_type = BIOGENERATOR
+	materials = list(MAT_BIOMASS = 1500)
+	build_path = /obj/item/seeds/random
+	make_reagents = list()
+	category = list("initial","Special")

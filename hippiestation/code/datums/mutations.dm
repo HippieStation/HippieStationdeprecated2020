@@ -17,18 +17,18 @@
 	if(!istype(H.wear_mask, /obj/item/clothing/mask/hippie/cluwne))
 		if(!H.doUnEquip(H.wear_mask))
 			qdel(H.wear_mask)
-		H.equip_to_slot_or_del(new /obj/item/clothing/mask/hippie/cluwne(H), slot_wear_mask)
+		H.equip_to_slot_or_del(new /obj/item/clothing/mask/hippie/cluwne(H), SLOT_WEAR_MASK)
 	if(!istype(H.w_uniform, /obj/item/clothing/under/hippie/cluwne))
 		if(!H.doUnEquip(H.w_uniform))
 			qdel(H.w_uniform)
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/hippie/cluwne(H), slot_w_uniform)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/hippie/cluwne(H), SLOT_W_UNIFORM)
 	if(!istype(H.shoes, /obj/item/clothing/shoes/hippie/cluwne))
 		if(!H.doUnEquip(H.shoes))
 			qdel(H.shoes)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/hippie/cluwne(H), slot_shoes)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/hippie/cluwne(H), SLOT_SHOES)
 
-	owner.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/white(owner), slot_gloves) // this is purely for cosmetic purposes incase they aren't wearing anything in that slot
-	owner.equip_to_slot_or_del(new /obj/item/storage/backpack/clown(owner), slot_back) // ditto
+	owner.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/white(owner), SLOT_GLOVES) // this is purely for cosmetic purposes incase they aren't wearing anything in that slot
+	owner.equip_to_slot_or_del(new /obj/item/storage/backpack/clown(owner), SLOT_BACK) // ditto
 
 /datum/mutation/human/cluwne/on_life(mob/living/carbon/human/owner)
 	if((prob(15) && owner.IsUnconscious()))
@@ -58,7 +58,7 @@
 
 /datum/mutation/human/tourettes/on_life(mob/living/carbon/human/owner)
 	if(prob(10) && owner.stat == CONSCIOUS)
-		owner.Stun(100)
+		owner.Stun(20)
 		switch(rand(1, 3))
 			if(1)
 				owner.emote("twitch")
@@ -70,3 +70,6 @@
 		var/y_offset = owner.pixel_y + rand(-1,1)
 		animate(owner, pixel_x = x_offset, pixel_y = y_offset, time = 1)
 		animate(owner, pixel_x = x_offset_old, pixel_y = y_offset_old, time = 1)
+
+/datum/mutation/human/hulk
+	species_allowed = list()

@@ -4,7 +4,7 @@ All shuttleRotate procs go here
 If ever any of these procs are useful for non-shuttles, rename it to proc/rotate and move it to be a generic atom proc
 */
 
-/************************************Base proc************************************/
+/************************************base proc************************************/
 
 /atom/proc/shuttleRotate(rotation, params=ROTATE_DIR|ROTATE_SMOOTH|ROTATE_OFFSET)
 	if(params & ROTATE_DIR)
@@ -24,8 +24,6 @@ If ever any of these procs are useful for non-shuttles, rename it to proc/rotate
 			var/oldPY = pixel_y
 			pixel_x = oldPY
 			pixel_y = (oldPX*(-1))
-
-	SendSignal(COMSIG_ATOM_ROTATE, rotation, params)
 
 /************************************Turf rotate procs************************************/
 
@@ -111,3 +109,8 @@ If ever any of these procs are useful for non-shuttles, rename it to proc/rotate
 	if(cyclelinkeddir)
 		cyclelinkeddir = angle2dir(rotation+dir2angle(cyclelinkeddir))
 		cyclelinkairlock()
+
+/obj/machinery/porta_turret/shuttleRotate(rotation, params)
+	. = ..()
+	if(wall_turret_direction && (params & ROTATE_DIR))
+		wall_turret_direction = turn(wall_turret_direction,rotation)

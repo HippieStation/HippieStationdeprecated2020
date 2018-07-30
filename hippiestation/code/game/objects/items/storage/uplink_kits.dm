@@ -69,3 +69,21 @@
 /obj/item/storage/box/syndie_kit/firesuit/PopulateContents()
 	new /obj/item/clothing/suit/fire/atmos/syndicate(src)
 	new /obj/item/clothing/head/hardhat/atmos/syndicate(src)
+
+/obj/item/storage/box/syndie_kit/armstrong
+	name = "\improper Brad Armstrong Family Style Karate Kit"
+	desc = "A kit with the necessary tools to become the best karate master on the planet!\
+	Contains a paper letting you know how to fight. \
+	The only cost is your right to not suck at parenting."
+
+/obj/item/storage/box/syndie_kit/armstrong/PopulateContents()
+	new /obj/item/armstrong_scroll(src)
+	new /obj/item/paper/armstrong_tutorial(src)
+
+/obj/item/storage/box/syndie_kit/synth
+	name = "\improper Cybersun Sponsorship Kit"
+	desc = "A kit with various cybernetic upgrades available to you thanks to Cybersun Industries."
+
+/obj/item/storage/box/syndie_kit/synth/PopulateContents()
+	new /obj/item/synthmorpher(src)
+	new /obj/item/autosurgeon/armlaser(src)

@@ -1,3 +1,5 @@
+#define READY 3
+
 /obj/item/grenade/chem_grenade/saringas
 	name = "Sarin gas grenade"
 	desc = "Tiger Cooperative military grade nerve gas. WARNING: Ensure internals are active before use, nerve agents are exceptionally lethal regardless of dosage"
@@ -14,3 +16,5 @@
 	B2.reagents.chem_temp = 1000
 	beakers += B1
 	beakers += B2
+
+#undef READY

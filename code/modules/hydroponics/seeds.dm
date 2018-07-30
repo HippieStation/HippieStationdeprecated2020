@@ -9,7 +9,7 @@
 	resistance_flags = FLAMMABLE
 	var/plantname = "Plants"		// Name of plant when planted.
 	var/product						// A type path. The thing that is created when the plant is harvested.
-	var/species = ""				// Used to update icons. Should match the name in the sprites unless all icon_* are overriden.
+	var/species = ""				// Used to update icons. Should match the name in the sprites unless all icon_* are overridden.
 
 	var/growing_icon = 'icons/obj/hydroponics/growing.dmi' //the file that stores the sprites of the growing plant from this seed.
 	var/icon_grow					// Used to override grow icon (default is "[species]-grow"). You can use one grow icon for multiple closely related plants with it.
@@ -136,7 +136,7 @@
 	return return_yield
 
 
-/obj/item/seeds/proc/harvest(mob/user = usr)
+/obj/item/seeds/proc/harvest(mob/user)
 	var/obj/machinery/hydroponics/parent = loc //for ease of access
 	var/t_amount = 0
 	var/list/result = list()
@@ -151,20 +151,26 @@
 		product_name = t_prod.name
 	if(getYield() >= 1)
 		SSblackbox.record_feedback("tally", "food_harvested", getYield(), product_name)
-	parent.update_tray()
+	parent.update_tray(user)
 
 	return result
 
 
 /obj/item/seeds/proc/prepare_result(var/obj/item/reagent_containers/food/snacks/grown/T)
-	if(T.reagents)
-		for(var/reagent_id in reagents_add)
-			if(reagent_id == "blood") // Hack to make blood in plants always O-
-				T.reagents.add_reagent(reagent_id, 1 + round(potency * reagents_add[reagent_id], 1), list("blood_type"="O-"))
-				continue
+	if(!T.reagents)
+		CRASH("[T] has no reagents.")
 
-			T.reagents.add_reagent(reagent_id, 1 + round(potency * reagents_add[reagent_id],1))
-		return 1
+	for(var/rid in reagents_add)
+		var/amount = 1 + round(potency * reagents_add[rid], 1)
+
+		var/list/data = null
+		if(rid == "blood") // Hack to make blood in plants always O-
+			data = list("blood_type" = "O-")
+		if(rid == "nutriment" || rid == "vitamin")
+			// apple tastes of apple.
+			data = T.tastes
+
+		T.reagents.add_reagent(rid, amount, data)
 
 
 /// Setters procs ///
@@ -290,12 +296,12 @@
 	text += "- Weed Vulnerability: [weed_chance]\n"
 	if(rarity)
 		text += "- Species Discovery Value: [rarity]\n"
-	var/all_traits = ""
+	var/all_quirks = ""
 	for(var/datum/plant_gene/trait/traits in genes)
 		if(istype(traits, /datum/plant_gene/trait/plant_type))
 			continue
-		all_traits += " [traits.get_name()]"
-	text += "- Plant Traits:[all_traits]\n"
+		all_quirks += " [traits.get_name()]"
+	text += "- Plant Traits:[all_quirks]\n"
 
 	text += "*---------*"
 
@@ -305,7 +311,7 @@
 	return
 
 /obj/item/seeds/attackby(obj/item/O, mob/user, params)
-	if (istype(O, /obj/item/device/plant_analyzer))
+	if (istype(O, /obj/item/plant_analyzer))
 		to_chat(user, "<span class='info'>*---------*\n This is \a <span class='name'>[src]</span>.</span>")
 		var/text = get_analyzer_text()
 		if(text)

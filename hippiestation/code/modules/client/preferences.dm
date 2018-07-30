@@ -3,7 +3,7 @@
 #define BACKPACK_SLOT_AMT	3
 
 /datum/preferences
-	features = list("mcolor" = "FFF", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain")
+	features = list("mcolor" = "FFF", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "ipc_screen" = "Sunburst")
 	var/gear_points = 5
 	var/list/gear_categories
 	var/list/chosen_gear
@@ -15,23 +15,23 @@
 	LAZYINITLIST(chosen_gear)
 
 /datum/preferences/proc/add_hippie_choices(dat)
-	if("moth_wings" in pref_species.mutant_bodyparts)
+	if("ipc_screen" in pref_species.mutant_bodyparts)
 		dat += "<td valign='top' width='7%'>"
 
-		dat += "<h3>Moth wings</h3>"
+		dat += "<h3>Screen</h3>"
 
-		dat += "<a href='?_src_=prefs;preference=moth_wings;task=input'>[features["moth_wings"]]</a><BR>"
+		dat += "<a href='?_src_=prefs;preference=ipc_screen;task=input'>[features["ipc_screen"]]</a><BR>"
 
 		dat += "</td>"
 	return dat
 
 /datum/preferences/proc/process_hippie_link(mob/user, list/href_list)
 	if(href_list["task"] == "input")
-		if(href_list["preference"] == "moth_wings")
-			var/new_moth_wings
-			new_moth_wings = input(user, "Choose your character's wings:", "Character Preference") as null|anything in GLOB.moth_wings_list
-			if(new_moth_wings)
-				features["moth_wings"] = new_moth_wings
+		if(href_list["preference"] == "ipc_screen")
+			var/new_ipc_screen
+			new_ipc_screen = input(user, "Choose your character's screen:", "Character Preference") as null|anything in GLOB.ipc_screens_list
+			if(new_ipc_screen)
+				features["ipc_screen"] = new_ipc_screen
 	if(href_list["preference"] == "gear")
 		if(href_list["clear_loadout"])
 			LAZYCLEARLIST(chosen_gear)
@@ -59,19 +59,7 @@
 
 /datum/preferences/proc/hippie_dat_replace(current_tab)
 	//This proc is for menus other than game pref and char pref
-	. = "<center>"
-
-	. += "<a href='?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character Settings</a> "
-	. += "<a href='?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Game Preferences</a>"
-	. += "<a href='?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>Loadout</a>"
-
-	if(!path)
-		. += "<div class='notice'>Please create an account to save your preferences</div>"
-
-	. += "</center>"
-
-	. += "<HR>"
-	if(current_tab == 2)
+	if(current_tab == 3)
 		if(!gear_tab)
 			gear_tab = GLOB.loadout_items[1]
 		. += "<table align='center' width='100%'>"
@@ -123,11 +111,11 @@
 		var/occupied_slots = L[slot_to_string(initial(G.category))] ? L[slot_to_string(initial(G.category))] + 1 : 1
 		LAZYSET(L, slot_to_string(initial(G.category)), occupied_slots)
 	switch(slot)
-		if(slot_in_backpack)
-			if(L[slot_to_string(slot_in_backpack)] < BACKPACK_SLOT_AMT)
+		if(SLOT_IN_BACKPACK)
+			if(L[slot_to_string(SLOT_IN_BACKPACK)] < BACKPACK_SLOT_AMT)
 				return TRUE
-		if(slot_hands)
-			if(L[slot_to_string(slot_hands)] < HANDS_SLOT_AMT)
+		if(SLOT_HANDS)
+			if(L[slot_to_string(SLOT_HANDS)] < HANDS_SLOT_AMT)
 				return TRUE
 		else
 			if(L[slot_to_string(slot)] < DEFAULT_SLOT_AMT)

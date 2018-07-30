@@ -147,7 +147,7 @@
 	icon_state = "folded_door"
 	structuretype = /obj/structure/inflatable/door
 
-/obj/structure/inflatable/door //Based on mineral door code
+/obj/structure/inflatable/door //based on mineral door code
 	name = "inflatable door"
 	density = 1
 	anchored = 1
@@ -262,8 +262,12 @@
 	desc = "Contains inflatable walls and doors."
 	icon_state = "inf"
 	item_state = "syringe_kit"
-	max_combined_w_class = 21
 	w_class = 3
+
+/obj/item/storage/inflatable/ComponentInitialize()
+	. = ..()
+	GET_COMPONENT(STR, /datum/component/storage)
+	STR.max_combined_w_class = 21
 
 /obj/item/storage/inflatable/Initialize()
 	..()

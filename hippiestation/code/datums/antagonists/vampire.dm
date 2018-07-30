@@ -67,6 +67,7 @@
 	to_chat(owner, "<span class='notice bold'>Coffins will heal you.</span>")
 	if(LAZYLEN(objectives_given))
 		owner.announce_objectives()
+	owner.current.playsound_local(get_turf(owner.current), 'hippiestation/sound/ambience/antag/vampire.ogg',80,0)
 
 /datum/antagonist/vampire/proc/give_objectives()
 	var/datum/objective/blood/blood_objective = new

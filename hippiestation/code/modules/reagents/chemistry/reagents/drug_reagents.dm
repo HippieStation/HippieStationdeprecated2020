@@ -151,7 +151,7 @@
 	var/high_message = pick("You feel amped up.", "You feel ready.", "You feel like you can push it to the limit.")
 	if(prob(5))
 		to_chat(M, "<span class='notice'>[high_message]</span>")
-	M.status_flags |= GOTTAGOREALLYFAST
+	M.add_trait(TRAIT_GOTTAGOREALLYFAST, id)
 	M.AdjustUnconscious(-100, 0)
 	M.AdjustStun(-100, 0)
 	M.AdjustKnockdown(-100, 0)
@@ -167,6 +167,11 @@
 		if(I)
 			M.dropItemToGround(M.get_active_held_item())
 	return FINISHONMOBLIFE(M)
+
+/datum/reagent/drug/bath_salts/on_mob_delete(mob/living/M)
+	if (istype(M))
+		M.remove_trait(TRAIT_GOTTAGOREALLYFAST)
+	..()
 
 /datum/reagent/drug/flipout
 	name = "Flipout"
@@ -269,4 +274,30 @@
 		to_chat(M, "<span class='notice'>[high_message]</span>")
 	if(prob(20))
 		M.say("Yes.")
+	..()
+
+/datum/reagent/drug/pupupipi
+	name = "Sweet Brown"
+	id = "sweetbrown"
+	description = "A fetid concoction often huffed or drank by vagrants and bums. High dosages have... interesting effects."
+	color = "#602101" // rgb: 96, 33, 1
+	reagent_state = LIQUID
+	overdose_threshold = 100
+	addiction_threshold = 50 // doesn't do shit though
+
+/datum/reagent/drug/pupupipi/on_mob_life(mob/living/M)
+	if(prob(5))
+		var/high_message = pick("You need mo' o' dat sweet brown juice...", "Your guts tingle...", "You feel lightheaded...")
+		to_chat(M, "<span class='notice'>[high_message]</span>")
+	M.Jitter(30)
+	if(prob(15)) //once every six-ish ticks. is that ok?
+		M.emote("burp")
+	..()
+
+/datum/reagent/drug/pupupipi/overdose_process(mob/living/carbon/human/H)
+	CHECK_DNA_AND_SPECIES(H)
+	H.setBrainLoss(30)
+	if(ishuman(H))
+		to_chat(H, "<span class= 'userdanger'>Oh shit!</span>")
+		H.set_species(/datum/species/krokodil_addict)
 	..()

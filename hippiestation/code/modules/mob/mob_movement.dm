@@ -1,9 +1,6 @@
 #define MAX_SW_LUMS 0.2
 #define ALLOW_PULL_THROUGH_WALLS 0
 
-/proc/Is_ShadowWalkable(var/turf/loc)
-	return (loc.get_lumcount()==null || loc.get_lumcount() <= MAX_SW_LUMS)
-
 /proc/Can_ShadowWalk(var/mob/mob)
 	if(mob.shadow_walk)
 		return TRUE
@@ -37,12 +34,12 @@
 				to_chat(M, "<span class='danger'>You fall down as you slam against the surface!</span>")
 		if (doPull)
 			var/turf/pullloc = get_turf(mob.pulling)
-			if(Is_ShadowWalkable(mobloc) || Is_ShadowWalkable(target) || Is_ShadowWalkable(pullloc))
+			if(is_shadowwalkable(mobloc) || is_shadowwalkable(target) || is_shadowwalkable(pullloc))
 				mob.pulling.dir = get_dir(mob.pulling, mob)
 				A = mob.pulling
 				mob.pulling.forceMove(mob.loc)
 
-	if(Is_ShadowWalkable(target))
+	if(is_shadowwalkable(target))
 		mob.forceMove(target)
 		mob.dir = direct
 		if (doPull)

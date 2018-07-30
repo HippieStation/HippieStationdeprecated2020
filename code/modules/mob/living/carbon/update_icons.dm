@@ -115,11 +115,11 @@
 /mob/living/carbon/update_inv_wear_mask()
 	remove_overlay(FACEMASK_LAYER)
 
-	if(!get_bodypart("head")) //Decapitated
+	if(!get_bodypart(BODY_ZONE_HEAD)) //Decapitated
 		return
 
-	if(client && hud_used && hud_used.inv_slots[slot_wear_mask])
-		var/obj/screen/inventory/inv = hud_used.inv_slots[slot_wear_mask]
+	if(client && hud_used && hud_used.inv_slots[SLOT_WEAR_MASK])
+		var/obj/screen/inventory/inv = hud_used.inv_slots[SLOT_WEAR_MASK]
 		inv.update_icon()
 
 	if(wear_mask)
@@ -132,8 +132,8 @@
 /mob/living/carbon/update_inv_neck()
 	remove_overlay(NECK_LAYER)
 
-	if(client && hud_used && hud_used.inv_slots[slot_neck])
-		var/obj/screen/inventory/inv = hud_used.inv_slots[slot_neck]
+	if(client && hud_used && hud_used.inv_slots[SLOT_NECK])
+		var/obj/screen/inventory/inv = hud_used.inv_slots[SLOT_NECK]
 		inv.update_icon()
 
 	if(wear_neck)
@@ -146,8 +146,8 @@
 /mob/living/carbon/update_inv_back()
 	remove_overlay(BACK_LAYER)
 
-	if(client && hud_used && hud_used.inv_slots[slot_back])
-		var/obj/screen/inventory/inv = hud_used.inv_slots[slot_back]
+	if(client && hud_used && hud_used.inv_slots[SLOT_BACK])
+		var/obj/screen/inventory/inv = hud_used.inv_slots[SLOT_BACK]
 		inv.update_icon()
 
 	if(back)
@@ -159,15 +159,31 @@
 /mob/living/carbon/update_inv_head()
 	remove_overlay(HEAD_LAYER)
 
-	if(!get_bodypart("head")) //Decapitated
+	if(!get_bodypart(BODY_ZONE_HEAD)) //Decapitated
 		return
 
-	if(client && hud_used && hud_used.inv_slots[slot_back])
-		var/obj/screen/inventory/inv = hud_used.inv_slots[slot_head]
+	if(client && hud_used && hud_used.inv_slots[SLOT_BACK])
+		var/obj/screen/inventory/inv = hud_used.inv_slots[SLOT_HEAD]
 		inv.update_icon()
 
 	if(head)
-		overlays_standing[HEAD_LAYER] = head.build_worn_icon(state = head.icon_state, default_layer = HEAD_LAYER, default_icon_file = 'icons/mob/head.dmi')
+		// Hippie Start - Stackable hats
+		var/mutable_appearance/hm = head.build_worn_icon(state = head.icon_state, default_layer = HEAD_LAYER, default_icon_file = 'icons/mob/head.dmi')
+		
+		if (istype(head, /obj/item/clothing/head))
+			var/obj/item/clothing/head/H = head
+			if (LAZYLEN(H.stacked_hats) > 0)
+				var/I = 1
+				for (var/obj/item/clothing/head/J in H.stacked_hats)
+					if (istype(J))
+						var/mutable_appearance/new_hat = J.build_worn_icon(state = J.icon_state, default_layer = HEAD_LAYER, default_icon_file = 'icons/mob/head.dmi')
+						new_hat.pixel_y += 3 * I
+						hm.add_overlay(new_hat)
+					I += 1
+
+		overlays_standing[HEAD_LAYER] = hm
+		// Hippie End
+
 		update_hud_head(head)
 
 	apply_overlay(HEAD_LAYER)
@@ -279,7 +295,7 @@
 		else
 			. += "-robotic"
 
-	if(has_disability(DISABILITY_HUSK))
+	if(has_trait(TRAIT_HUSK))
 		. += "-husk"
 
 

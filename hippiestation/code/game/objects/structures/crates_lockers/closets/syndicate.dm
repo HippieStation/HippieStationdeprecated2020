@@ -8,7 +8,7 @@
 	new /obj/item/storage/box/syndie_kit/imp_macrobomb(src)
 	new /obj/item/ammo_box/a40mm(src)
 	new /obj/item/clothing/shoes/blastco(src)
-	new /obj/item/device/sbeacondrop/bomb(src)
+	new /obj/item/sbeacondrop/bomb(src)
 	new /obj/item/grenade/syndieminibomb(src)
 	new /obj/item/grenade/syndieminibomb(src)
 	new /obj/item/grenade/plastic/c4(src)

@@ -62,3 +62,20 @@ obj/item/projectile/rod/proc/Impale(mob/living/carbon/human/H)
         new /obj/item/stack/rods(get_turf(src))
 
     qdel(src)
+
+/obj/item/projectile/plasma/watcher
+	name = "freezing blast"
+	icon_state = "ice_2"
+	damage = 10
+	flag = "energy"
+	damage_type = BURN
+	range = 4
+	mine_range = 0
+	var/temperature = -100
+	dismemberment = FALSE
+
+/obj/item/projectile/plasma/watcher/on_hit(atom/target, blocked = 0)
+	. = ..()
+	if(isliving(target))
+		var/mob/living/L = target
+		L.adjust_bodytemperature(((100-blocked)/100)*(temperature - L.bodytemperature)) // the new body temperature is adjusted by 100-blocked % of the delta between body temperature and the bullet's effect temperature

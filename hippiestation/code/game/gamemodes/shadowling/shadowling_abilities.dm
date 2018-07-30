@@ -85,7 +85,7 @@
 		target.Stun(100)
 		M.silent += 10
 	else //Distant glare
-		var/loss = 100 - ((distance - 1) * 15)
+		var/loss = 100 - ((distance - 1) * 18)
 		target.adjustStaminaLoss(loss)
 		target.stuttering = loss
 		to_chat(target, "<span class='userdanger'>A purple light flashes across your vision, and exhaustion floods your body...</span>")
@@ -107,20 +107,20 @@
 	range = 5
 	action_icon_state = "veil"
 	action_icon = 'hippiestation/icons/mob/actions.dmi'
-	var/blacklisted_lights = list(/obj/item/device/flashlight/flare, /obj/item/device/flashlight/slime)
-	var/admin_override = 0 //Requested by Shadowlight213. Allows anyone to cast the spell, not just shadowlings.
+	var/blacklisted_lights = list(/obj/item/flashlight/flare, /obj/item/flashlight/slime)
+	var/admin_override = FALSE //Requested by Shadowlight213. Allows anyone to cast the spell, not just shadowlings.
 
 /obj/effect/proc_holder/spell/aoe_turf/veil/proc/extinguishItem(obj/item/I) //Does not darken items held by mobs due to mobs having separate luminosity, use extinguishMob() or write your own proc.
-	if(istype(I, /obj/item/device/flashlight))
-		var/obj/item/device/flashlight/F = I
+	if(istype(I, /obj/item/flashlight))
+		var/obj/item/flashlight/F = I
 		if(F.on)
 			if(is_type_in_list(I, blacklisted_lights))
 				I.visible_message("<span class='danger'>[I] dims slightly before scattering the shadows around it.</span>")
 				return F.brightness_on //Necessary because flashlights become 0-luminosity when held.  I don't make the rules of lightcode.
 			F.on = 0
 			F.update_brightness()
-	else if(istype(I, /obj/item/device/pda))
-		var/obj/item/device/pda/P = I
+	else if(istype(I, /obj/item/pda))
+		var/obj/item/pda/P = I
 		P.fon = 0
 	I.set_light(0)
 	return I.luminosity
@@ -152,9 +152,10 @@
 			qdel(G)
 		for(var/mob/living/H in T.contents)
 			extinguishMob(H)
-		for(var/mob/living/silicon/robot/borgie in T.contents)
-			borgie.update_headlamp(TRUE, 150)
-			borgie.lamp_intensity = 0
+		for(var/mob/living/silicon/robot/borg in T.contents)
+			if(!borg.lamp_cooldown)
+				borg.update_headlamp(TRUE, INFINITY)
+				to_chat(borg, "<span class='danger'>Your headlamp is fried! You'll need a human to help replace it.</span>")
 		for(var/obj/machinery/camera/cam in T.contents)
 			cam.set_light(0)
 			if(prob(10))
@@ -287,7 +288,7 @@
 		target.mind.special_role = "thrall"
 		var/obj/item/organ/internal/shadowtumor/ST = new
 		ST.Insert(target, FALSE, FALSE)
-		SSticker.mode.add_thrall(target.mind)
+		target.add_thrall()
 		if(target.reagents.has_reagent("frostoil")) //Stabilize body temp incase the sling froze them earlier
 			target.reagents.remove_reagent("frostoil")
 			to_chat(target, "<span class='notice'>You feel warmer... it feels good.</span>")
@@ -311,7 +312,7 @@
 	var/text = stripped_input(user, "What do you want to say your thralls and fellow shadowlings?.", "Hive Chat", "")
 	if(!text)
 		return
-	var/my_message = "<span class='shadowling'><b>\[Shadowling\]</b><i> [user.real_name]</i>: [text]</span>"
+	var/my_message = "<font size=2><span class='shadowling'><b>\[Shadowling\]</b><i> [user.real_name]</i>: [text]</span></font>"
 	for(var/mob/M in GLOB.mob_list)
 		if(is_shadow_or_thrall(M))
 			to_chat(M, my_message)
@@ -338,9 +339,9 @@
 		return
 	user.visible_message("<span class='warning'>[user]'s skin suddenly bubbles and shifts around their body!</span>", \
 						 "<span class='shadowling'>You regenerate your protective armor and cleanse your form of defects.</span>")
-	user.adjustCloneLoss(user.getCloneLoss())
-	user.equip_to_slot_or_del(new /obj/item/clothing/suit/space/shadowling(user), slot_wear_suit)
-	user.equip_to_slot_or_del(new /obj/item/clothing/head/shadowling(user), slot_head)
+	user.setCloneLoss(0)
+	user.equip_to_slot_or_del(new /obj/item/clothing/suit/space/shadowling(user), SLOT_WEAR_SUIT)
+	user.equip_to_slot_or_del(new /obj/item/clothing/head/shadowling(user), SLOT_HEAD)
 	user.set_species(/datum/species/shadow/ling)
 
 
@@ -376,18 +377,18 @@
 		to_chat(user, "<span class='warning'>Your concentration has been broken. The mental hooks you have sent out now retract into your mind.</span>")
 		return
 
-	if(thralls >= 3 && !screech_acquired)
+	if(thralls >= CEILING(3 * SSticker.mode.thrall_ratio, 1) && !screech_acquired)
 		screech_acquired = 1
 		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Sonic Screech</b> ability. This ability will shatter nearby windows and deafen enemies, plus stunning silicon lifeforms.</span>")
 		user.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/unearthly_screech(null))
 
-	if(thralls >= 5 && !blind_smoke_acquired)
+	if(thralls >= CEILING(5 * SSticker.mode.thrall_ratio, 1) && !blind_smoke_acquired)
 		blind_smoke_acquired = 1
 		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Blinding Smoke</b> ability. It will create a choking cloud that will blind any non-thralls who enter. \
 			</i></span>")
 		user.mind.AddSpell(new /obj/effect/proc_holder/spell/self/blindness_smoke(null))
 
-	if(thralls >= 9 && !reviveThrallAcquired)
+	if(thralls >= CEILING(9 * SSticker.mode.thrall_ratio, 1) && !reviveThrallAcquired)
 		reviveThrallAcquired = 1
 		to_chat(user, "<span class='shadowling'><i>The power of your thralls has granted you the <b>Black Recuperation</b> ability. This will, after a short time, bring a dead thrall completely back to life \
 		with no bodily defects.</i></span>")
@@ -833,7 +834,7 @@
 	to_chat(user, "<span class='shadowling'>You instantly rearrange <b>[target]</b>'s memories, hyptonitizing them into a thrall.</span>")
 	to_chat(target, "<span class='userdanger'><font size=3>An agonizing spike of pain drives into your mind, and--</font></span>")
 	target.mind.special_role = "thrall"
-	SSticker.mode.add_thrall(target.mind)
+	target.add_thrall()
 	user = null
 	target = null
 

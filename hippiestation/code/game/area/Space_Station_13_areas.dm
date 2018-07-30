@@ -24,3 +24,21 @@
 						 'sound/voice/lowHiss3.ogg',
 						 'sound/voice/lowHiss4.ogg',
 						 'hippiestation/sound/misc/honk_echo_distant.ogg')
+
+/area/maintenance/forge
+	name = "Forge room"
+	icon_state = "red"
+
+/area/engine/port_engineering
+	name = "Port Engineering"
+	icon_state = "green"
+
+/area/crew_quarters/bar/maint
+	name = "Speakeasy"
+	icon_state = "storage"
+	ambientsounds = list('sound/ambience/ambimaint1.ogg',
+						 'sound/ambience/ambimaint2.ogg',
+						 'sound/ambience/ambimaint3.ogg',
+						 'sound/ambience/ambimaint4.ogg',
+						 'sound/ambience/ambimaint5.ogg',
+						 'sound/spookoween/ghosty_wind.ogg')

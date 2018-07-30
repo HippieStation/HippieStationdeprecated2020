@@ -44,6 +44,8 @@ SUBSYSTEM_DEF(vote)
 	voting.Cut()
 	remove_action_buttons()
 
+/* Hippie version is being used instead
+
 /datum/controller/subsystem/vote/proc/get_result()
 	//get the highest number of votes
 	var/greatest_votes = 0
@@ -79,6 +81,8 @@ SUBSYSTEM_DEF(vote)
 				. += option
 	return .
 
+*/	//Hippie end
+
 /datum/controller/subsystem/vote/proc/announce_result()
 	var/list/winners = get_result()
 	var/text
@@ -107,6 +111,8 @@ SUBSYSTEM_DEF(vote)
 	remove_action_buttons()
 	to_chat(world, "\n<font color='purple'>[text]</font>")
 	return .
+
+/* Hippie version is being used instead
 
 /datum/controller/subsystem/vote/proc/result()
 	. = announce_result()
@@ -137,9 +143,11 @@ SUBSYSTEM_DEF(vote)
 
 	return .
 
+*/	//Hippie end
+
 /datum/controller/subsystem/vote/proc/submit_vote(vote)
 	if(mode)
-		if(CONFIG_GET(flag/no_dead_vote) && usr.stat == DEAD && !check_rights_for(usr.client, R_ADMIN))
+		if(CONFIG_GET(flag/no_dead_vote) && usr.stat == DEAD && !usr.client.holder)
 			return 0
 		if(!(usr.ckey in voted))
 			if(vote && 1<=vote && vote<=choices.len)
@@ -147,6 +155,8 @@ SUBSYSTEM_DEF(vote)
 				choices[choices[vote]]++	//check this
 				return vote
 	return 0
+
+/* Hippie version is being used instead
 
 /datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key)
 	if(!mode)
@@ -206,8 +216,10 @@ SUBSYSTEM_DEF(vote)
 /datum/controller/subsystem/vote/proc/interface(client/C)
 	if(!C)
 		return
+	var/admin = 0
 	var/trialmin = 0
 	if(C.holder)
+		admin = 1
 		if(check_rights_for(C, R_ADMIN))
 			trialmin = 1
 	voting |= C
@@ -224,7 +236,7 @@ SUBSYSTEM_DEF(vote)
 				votes = 0
 			. += "<li><a href='?src=[REF(src)];vote=[i]'>[choices[i]]</a> ([votes] votes)</li>"
 		. += "</ul><hr>"
-		if(trialmin)
+		if(admin)
 			. += "(<a href='?src=[REF(src)];vote=cancel'>Cancel Vote</a>) "
 	else
 		. += "<h2>Start a vote:</h2><hr><ul><li>"
@@ -264,26 +276,28 @@ SUBSYSTEM_DEF(vote)
 			usr << browse(null, "window=vote")
 			return
 		if("cancel")
-			if(check_rights_for(usr.client, R_ADMIN))
+			if(usr.client.holder)
 				reset()
 		if("toggle_restart")
-			if(check_rights_for(usr.client, R_ADMIN))
+			if(usr.client.holder)
 				CONFIG_SET(flag/allow_vote_restart, !CONFIG_GET(flag/allow_vote_restart))
 		if("toggle_gamemode")
-			if(check_rights_for(usr.client, R_ADMIN))
+			if(usr.client.holder)
 				CONFIG_SET(flag/allow_vote_mode, !CONFIG_GET(flag/allow_vote_mode))
 		if("restart")
-			if(CONFIG_GET(flag/allow_vote_restart) || check_rights_for(usr.client, R_ADMIN))
+			if(CONFIG_GET(flag/allow_vote_restart) || usr.client.holder)
 				initiate_vote("restart",usr.key)
 		if("gamemode")
-			if(CONFIG_GET(flag/allow_vote_mode) || check_rights_for(usr.client, R_ADMIN))
+			if(CONFIG_GET(flag/allow_vote_mode) || usr.client.holder)
 				initiate_vote("gamemode",usr.key)
 		if("custom")
-			if(check_rights_for(usr.client, R_ADMIN))
+			if(usr.client.holder)
 				initiate_vote("custom",usr.key)
 		else
 			submit_vote(round(text2num(href_list["vote"])))
 	usr.vote()
+
+*/	//Hippie end
 
 /datum/controller/subsystem/vote/proc/remove_action_buttons()
 	for(var/v in generated_actions)
@@ -315,10 +329,16 @@ SUBSYSTEM_DEF(vote)
 /datum/action/vote/IsAvailable()
 	return 1
 
+/*	Hippie version is being used instead
 /datum/action/vote/proc/remove_from_client()
+	if(!owner)
+		return
 	if(owner.client)
 		owner.client.player_details.player_actions -= src
 	else if(owner.ckey)
 		var/datum/player_details/P = GLOB.player_details[owner.ckey]
 		if(P)
 			P.player_actions -= src
+	else
+		return
+*/	//Hippie end

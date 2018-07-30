@@ -57,20 +57,20 @@
 	set name = "report-issue"
 	set desc = "Report an issue"
 	set hidden = 1
-	
-	var/message = "This will open the issue reporter. Are you sure?"
 	var/githuburl = CONFIG_GET(string/githuburl)
 	if(githuburl)
+		var/message = "This will open the Github issue reporter in your browser. Are you sure?"
 		if(GLOB.revdata.testmerge.len)
 			message += "<br>The following experimental changes are active and are probably the cause of any new or sudden issues you may experience. If possible, please try to find a specific thread for your issue instead of posting to the general issue tracker:<br>"
 			message += GLOB.revdata.GetTestMergeInfo(FALSE)
 		if(tgalert(src, message, "Report Issue","Yes","No")!="Yes")
 			return
+		var/static/issue_template = file2text(".github/ISSUE_TEMPLATE.md")
 		var/servername = CONFIG_GET(string/servername)
-		var/compileinfo = "[GLOB.round_id][servername ? " ([servername])" : ""]"
-		var/dat = {"	<title>Hippie Station 13 Github Ingame Reporting</title>
- 			<iframe src='https://tools.hippiestation.com/githubreport/?ckey=[ckey(key)]&sinfo=[compileinfo]' style='border:none' width='850' height='660' scroll=no></iframe>"}
-		src << browse(dat, "window=github;size=900x700")
+		var/url_params = "Reporting client version: [byond_version]\n\n[issue_template]"
+		if(GLOB.round_id || servername)
+			url_params = "Issue reported from [GLOB.round_id ? " Round ID: [GLOB.round_id][servername ? " ([servername])" : ""]" : servername]\n\n[url_params]"
+		DIRECT_OUTPUT(src, link("[githuburl]/issues/new?body=[url_encode(url_params)]"))
 	else
 		to_chat(src, "<span class='danger'>The Github URL is not set in the server configuration.</span>")
 	return
@@ -81,10 +81,12 @@
 
 	var/adminhotkeys = {"<font color='purple'>
 Admin:
+\tF3 = asay
 \tF5 = Aghost (admin-ghost)
 \tF6 = player-panel
-\tF7 = admin-pm
+\tF7 = Buildmode
 \tF8 = Invisimin
+\tCtrl+F8 = Stealthmin
 </font>"}
 
 	mob.hotkey_help()
@@ -219,10 +221,3 @@ Any-Mode: (hotkey doesn't need to be on)
 
 	to_chat(src, hotkey_mode)
 	to_chat(src, other)
-
-// Needed to circumvent a bug where .winset does not work when used on the window.on-size event in skins.
-// Used by /datum/html_interface/nanotrasen (code/modules/html_interface/nanotrasen/nanotrasen.dm)
-/client/verb/_swinset(var/x as text)
-	set name = ".swinset"
-	set hidden = 1
-	winset(src, null, x)

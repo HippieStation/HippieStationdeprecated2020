@@ -1,5 +1,9 @@
 /mob/living
 	var/list/alternate_farts
+	var/lose_butt = 12
+	var/super_fart = 76
+	var/super_nova_fart = 12
+	var/fart_fly = 12
 
 /datum/emote/living/carbon/fart
 	key = "fart"
@@ -15,11 +19,10 @@
 	if(!B)
 		to_chat(user, "<span class='warning'>You don't have a butt!</span>")
 		return
-	var/lose_butt = prob(12)
 	for(var/mob/living/M in get_turf(user))
 		if(M == user)
 			continue
-		if(lose_butt)
+		if(prob(user.lose_butt))
 			message = "hits <b>[M]</b> in the face with [B]!"
 			M.apply_damage(15,"brute","head")
 		else
@@ -73,6 +76,7 @@
 	if(istype(user,/mob/living/carbon/alien))
 		bloodkind = /obj/effect/decal/cleanable/xenoblood
 	var/obj/item/storage/book/bible/Y = locate() in get_turf(user.loc)
+	user.newtonian_move(user.dir)
 	if(istype(Y))
 		user.Stun(20)
 		playsound(Y,'hippiestation/sound/effects/thunder.ogg', 90, 1)
@@ -83,34 +87,36 @@
 			H.electrocution_animation(10)
 		addtimer(CALLBACK(user, /mob/proc/gib), 10)
 	else
-		var/obj/item/storage/internal/pocket/butt/theinv = B.inv
-		if(theinv.contents.len)
-			var/obj/item/O = pick(theinv.contents)
-			if(istype(O, /obj/item/lighter))
-				var/obj/item/lighter/G = O
-				if(G.lit && user.loc)
-					new/obj/effect/hotspot(user.loc)
+		GET_COMPONENT_FROM(STR, /datum/component/storage, B)
+
+		if(STR)
+			var/list/STR_contents = STR.contents()
+			if(STR_contents.len)
+				var/obj/item/O = pick(STR_contents)
+				if(istype(O, /obj/item/lighter))
+					var/obj/item/lighter/G = O
+					if(G.lit && user.loc)
+						new/obj/effect/hotspot(user.loc)
+						playsound(user, fartsound, 100, 1, 5)
+				else if(istype(O, /obj/item/weldingtool))
+					var/obj/item/weldingtool/J = O
+					if(J.welding && user.loc)
+						new/obj/effect/hotspot(user.loc)
+						playsound(user, fartsound, 100, 1, 5)
+				else if(istype(O, /obj/item/bikehorn))
+					for(var/obj/item/bikehorn/Q in STR_contents)
+						playsound(Q, 'sound/items/bikehorn.ogg', 100, 1, 5)
+					message = "<span class='clown'>farts.</span>"
+				else if(istype(O, /obj/item/megaphone))
+					message = "<span class='reallybig'>farts.</span>"
+					playsound(user, 'hippiestation/sound/effects/fartmassive.ogg', 100, 1, 5)
+				else
 					playsound(user, fartsound, 100, 1, 5)
-			else if(istype(O, /obj/item/weldingtool))
-				var/obj/item/weldingtool/J = O
-				if(J.welding && user.loc)
-					new/obj/effect/hotspot(user.loc)
-					playsound(user, fartsound, 100, 1, 5)
-			else if(istype(O, /obj/item/bikehorn))
-				for(var/obj/item/bikehorn/Q in theinv.contents)
-					playsound(Q, 'sound/items/bikehorn.ogg', 100, 1, 5)
-				message = "<span class='clown'>farts.</span>"
-			else if(istype(O, /obj/item/device/megaphone))
-				message = "<span class='reallybig'>farts.</span>"
-				playsound(user, 'hippiestation/sound/effects/fartmassive.ogg', 100, 1, 5)
+				if(prob(33))
+					STR.remove_from_storage(O, user.loc)
 			else
 				playsound(user, fartsound, 100, 1, 5)
-			if(prob(33))
-				theinv.remove_from_storage(O, user.loc)
-		else
-			playsound(user, fartsound, 100, 1, 5)
-		sleep(1)
-		if(lose_butt)
+		if(prob(user.lose_butt))
 			B.Remove(user)
 			B.forceMove(get_turf(user))
 			new bloodkind(user.loc)
@@ -139,15 +145,12 @@
 		return
 	B.loose = TRUE // to avoid spamsuperfart
 	var/fart_type = 1 //Put this outside probability check just in case. There were cases where superfart did a normal fart.
-	if(prob(76)) // 76%     1: ASSBLAST  2:SUPERNOVA  3: FARTFLY
+	if(prob(user.super_fart)) // 76% by default    1: ASSBLAST  2:SUPERNOVA  3: FARTFLY
 		fart_type = 1
-	else if(prob(12)) // 2.89%
+	else if(prob(user.super_nova_fart)) // 2.89% by default
 		fart_type = 2
-	else if(prob(12)) // 0.35%
-		if(user.loc && user.loc.z == 1)
-			fart_type = 3
-		else
-			fart_type = 2
+	else if(prob(user.fart_fly)) // 0.35% by default
+		fart_type = 3
 	var/obj/item/storage/book/bible/Y = locate() in get_turf(user.loc)
 	if(istype(Y))
 		user.Stun(20)
@@ -161,30 +164,33 @@
 			playsound(user, 'hippiestation/sound/effects/fart.ogg', 100, 1, 5)
 			sleep(1)
 		playsound(user, 'hippiestation/sound/effects/fartmassive.ogg', 75, 1, 5)
-		var/obj/item/storage/internal/pocket/butt/theinv = B.inv
-		if(theinv.contents.len)
-			for(var/obj/item/O in theinv.contents)
-				theinv.remove_from_storage(O, user.loc)
-				O.throw_range = 7//will be reset on hit
-				var/turf/target = get_turf(O)
-				var/range = 7
-				var/turf/new_turf
-				var/new_dir
-				switch(user.dir)
-					if(1)
-						new_dir = 2
-					if(2)
-						new_dir = 1
-					if(4)
-						new_dir = 8
-					if(8)
-						new_dir = 4
-				for(var/i = 1; i < range; i++)
-					new_turf = get_step(target, new_dir)
-					target = new_turf
-					if(new_turf.density)
-						break
-				O.throw_at(target,range,O.throw_speed)
+		GET_COMPONENT_FROM(STR, /datum/component/storage, B)
+
+		if(STR)
+			var/list/STR_contents = STR.contents()
+			if(STR_contents.len)
+				for(var/obj/item/O in STR_contents)
+					STR.remove_from_storage(O, user.loc)
+					O.throw_range = 7//will be reset on hit
+					var/turf/target = get_turf(O)
+					var/range = 7
+					var/turf/new_turf
+					var/new_dir
+					switch(user.dir)
+						if(1)
+							new_dir = 2
+						if(2)
+							new_dir = 1
+						if(4)
+							new_dir = 8
+						if(8)
+							new_dir = 4
+					for(var/i = 1; i < range; i++)
+						new_turf = get_step(target, new_dir)
+						target = new_turf
+						if(new_turf.density)
+							break
+					O.throw_at(target,range,O.throw_speed)
 		B.Remove(user)
 		B.forceMove(get_turf(user))
 		if(B.loose)
@@ -199,6 +205,10 @@
 						M.apply_damage(50,"brute","head")
 
 				user.visible_message("<span class='warning'><b>[user]</b> blows their ass off!</span>", "<span class='warning'>Holy shit, your butt flies off in an arc!</span>")
+				if(!user.has_gravity())
+					var/atom/target = get_edge_target_turf(user, user.dir)
+					user.throw_at(target, 1000, 20)
+					user.visible_message("<span class='warning'>[user] goes flying off into the distance!</span>", "<span class='warning'>You fly off into the distance!</span>")
 
 			if(2)
 				user.visible_message("<span class='warning'><b>[user]</b> rips their ass apart in a massive explosion!</span>", "<span class='warning'>Holy shit, your butt goes supernova!</span>")
@@ -207,27 +217,31 @@
 				user.gib()
 
 			if(3)
-				var/endy = 0
-				var/endx = 0
-
+				var/butt_end
+				var/butt_x
+				var/butt_y
+				var/turf/T = get_turf(user.loc)
+				//butt_end = spaceDebrisFinishLoc(user.dir, T.z)
 				switch(user.dir)
-					if(NORTH)
-						endy = 8
-						endx = user.loc.x
-					if(EAST)
-						endy = user.loc.y
-						endx = 8
 					if(SOUTH)
-						endy = 247
-						endx = user.loc.x
+						butt_y = world.maxy-(TRANSITIONEDGE+1)
+						butt_x = user.x
+					if(WEST)
+						butt_x = world.maxx-(TRANSITIONEDGE+1)
+						butt_y = user.y
+					if(NORTH)
+						butt_y = (TRANSITIONEDGE+1)
+						butt_x = user.x
 					else
-						endy = user.loc.y
-						endx = 247
+						butt_x = (TRANSITIONEDGE+1)
+						butt_y = user.y
+				butt_end =locate(butt_x, butt_y, T.z)
 
 				//ASS BLAST USA
 				user.visible_message("<span class='warning'><b>[user]</b> blows their ass off with such force, they explode!</span>", "<span class='warning'>Holy shit, your butt flies off into the galaxy!</span>")
 				playsound(user, 'hippiestation/sound/effects/superfart.ogg', 75, extrarange = 255, pressure_affected = FALSE)
+				new /obj/effect/immovablerod/butt(user.loc, butt_end)
 				user.gib() //can you belive I forgot to put this here?? yeah you need to see the message BEFORE you gib
-				new /obj/effect/immovablerod/butt(B.loc, locate(endx, endy, 1))
 				priority_announce("What the fuck was that?!", "General Alert")
 				qdel(B)
+

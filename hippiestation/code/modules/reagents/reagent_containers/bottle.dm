@@ -53,3 +53,38 @@
 	name = "bottle of diethylamine"
 	desc = "A precision bottle of diethylamine. Contains a strong fertilizer that heals the plant while also killing pests and in a sufficient amount able to increase plant yield at double the rate of ammonia."
 	list_reagents = list("diethylamine" = 50)
+
+/////////////////////////////////////////////
+/////////	HIPPIE VIRUS BOTTLES	/////////
+/////////////////////////////////////////////
+//Custom Hippie virus bottles
+
+/obj/item/reagent_containers/glass/bottle/fluxitus	//Please for the love of god only ever spawn this for mega badminbus
+	name = "Fluxitus bottle"
+	desc = "OOF!"
+	spawned_disease = /datum/disease/fluxitus
+
+/obj/item/reagent_containers/glass/bottle/godblood	//Yeah only spawn this for adminbus as well
+	name = "Godblood bottle"
+	desc = "A mysterious bottle, rumoured to be infused with the blood of fallen gods."
+	spawned_disease = /datum/disease/advance/heal/godblood
+
+//////////////////////////////////////
+/////////	PORTED FROM TG	 /////////
+//////////////////////////////////////
+//Bottles that no longer exist in TG
+
+/obj/item/reagent_containers/glass/bottle/epiglottis_virion
+	name = "Epiglottis virion culture bottle"
+	desc = "A small bottle. Contains Epiglottis virion culture in synthblood medium."
+	spawned_disease = /datum/disease/advance/voice_change
+
+/obj/item/reagent_containers/glass/bottle/liver_enhance_virion
+	name = "Liver enhancement virion culture bottle"
+	desc = "A small bottle. Contains liver enhancement virion culture in synthblood medium."
+	spawned_disease = /datum/disease/advance/heal/toxin
+
+/obj/item/reagent_containers/glass/bottle/hallucigen_virion
+	name = "Hallucigen virion culture bottle"
+	desc = "A small bottle. Contains hallucigen virion culture in synthblood medium."
+	spawned_disease = /datum/disease/advance/hallucigen

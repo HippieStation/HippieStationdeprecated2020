@@ -37,7 +37,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	force = 0
 	throwforce = 5
-	stunforce = 100
+	stunforce = 70
 	hitcost = 100
 	throw_hit_chance = 20
 	attack_verb = list("poked")
@@ -127,7 +127,7 @@
 
 	L.Stun(stunforce)
 	L.staminaloss += stamforce //Not reduced by armour to give it an edge over a taser.
-	L.apply_effect(STUTTER, 7) //Duration of sec baton
+	L.apply_effect(EFFECT_STUTTER, 7) //Duration of sec baton
 	user.changeNext_move(CLICK_CD_MELEE * MAKESHIFT_BATON_CD)
 	if(user)
 		L.lastattacker = user.real_name
@@ -145,7 +145,7 @@
 	return 1
 
 /obj/item/melee/baton/attack(mob/M, mob/living/carbon/human/user)
-	if(status && user.has_disability(DISABILITY_CLUMSY) && prob(50))
+	if(status && user.has_trait(TRAIT_CLUMSY) && prob(50))
 		user.visible_message("<span class='danger'>[user] accidentally hits themself with [src]!</span>", \
 							"<span class='userdanger'>You accidentally hit yourself with [src]!</span>")
 		user.Knockdown(stamforce)

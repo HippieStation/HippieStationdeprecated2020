@@ -67,28 +67,20 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		else
 			return
 	user.ranged_ability = src
-	user.client.click_intercept = user.ranged_ability
-	add_mousepointer(user.client)
+	user.click_intercept = src
+	user.update_mouse_pointer()
 	ranged_ability_user = user
 	if(msg)
 		to_chat(ranged_ability_user, msg)
 	active = TRUE
 	update_icon()
 
-/obj/effect/proc_holder/proc/add_mousepointer(client/C)
-	if(C && ranged_mousepointer && C.mouse_pointer_icon == initial(C.mouse_pointer_icon))
-		C.mouse_pointer_icon = ranged_mousepointer
-
-/obj/effect/proc_holder/proc/remove_mousepointer(client/C)
-	if(C && ranged_mousepointer && C.mouse_pointer_icon == ranged_mousepointer)
-		C.mouse_pointer_icon = initial(C.mouse_pointer_icon)
-
 /obj/effect/proc_holder/proc/remove_ranged_ability(msg)
 	if(!ranged_ability_user || !ranged_ability_user.client || (ranged_ability_user.ranged_ability && ranged_ability_user.ranged_ability != src)) //To avoid removing the wrong ability
 		return
 	ranged_ability_user.ranged_ability = null
-	ranged_ability_user.client.click_intercept = null
-	remove_mousepointer(ranged_ability_user.client)
+	ranged_ability_user.click_intercept = null
+	ranged_ability_user.update_mouse_pointer()
 	if(msg)
 		to_chat(ranged_ability_user, msg)
 	ranged_ability_user = null
@@ -104,7 +96,6 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	pass_flags = PASSTABLE
 	density = FALSE
 	opacity = 0
-	base_action = /datum/action/spell_action/spell
 
 	var/school = "evocation" //not relevant at now, but may be important later if there are changes to how spells work. the ones I used for now will probably be changed... maybe spell presets? lacking flexibility but with some other benefit?
 
@@ -120,6 +111,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 	var/clothes_req = 1 //see if it requires clothes
 	var/cult_req = 0 //SPECIAL SNOWFLAKE clothes required for cult only spells
+	var/staff_req = 0 // hippie - used to check if a spell requires a staff
 	var/human_req = 0 //spell can only be cast by humans
 	var/nonabstract_req = 0 //spell can only be cast by mobs that are physical entities
 	var/stat_allowed = 0 //see if it requires being conscious/alive, need to set to 1 for ghostpells
@@ -145,15 +137,14 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	var/smoke_spread = 0 //1 - harmless, 2 - harmful
 	var/smoke_amt = 0 //cropped at 10
 
-	var/critfailchance = 0
 	var/centcom_cancast = 1 //Whether or not the spell should be allowed on z2
 
 	action_icon = 'icons/mob/actions/actions_spells.dmi'
 	action_icon_state = "spell_default"
 	action_background_icon_state = "bg_spell"
+	base_action = /datum/action/spell_action/spell
 
 /obj/effect/proc_holder/spell/proc/cast_check(skipcharge = 0,mob/user = usr) //checks if the spell can be cast based on its settings; skipcharge is used when an additional cast_check is called inside the spell
-
 	if(player_lock)
 		if(!user.mind || !(src in user.mind.spell_list) && !(src in user.mob_spell_list))
 			to_chat(user, "<span class='warning'>You shouldn't have this spell! Something's wrong.</span>")
@@ -168,15 +159,8 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		return 0
 
 	if(!skipcharge)
-		switch(charge_type)
-			if("recharge")
-				if(charge_counter < charge_max)
-					to_chat(user, still_recharging_msg)
-					return 0
-			if("charges")
-				if(!charge_counter)
-					to_chat(user, "<span class='notice'>[name] has no charges left.</span>")
-					return 0
+		if(!charge_check(user))
+			return 0
 
 	if(user.stat && !stat_allowed)
 		to_chat(user, "<span class='notice'>Not when you're incapacitated.</span>")
@@ -208,6 +192,17 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			if(!is_type_in_typecache(H.head, casting_clothes))
 				to_chat(H, "<span class='notice'>I don't feel strong enough without my hat.</span>")
 				return 0
+		//hippie start - check for if a spell needs a spell catalyst
+		if(staff_req)
+			var/catalyst_found = FALSE
+			for(var/obj/O in H.held_items)
+				if(O.GetComponent(/datum/component/spell_catalyst))
+					catalyst_found = TRUE
+					break
+			if(!catalyst_found)
+				to_chat(H, "<span class='notice'>I don't feel strong enough without my staff.</span>")
+				return 0
+		//hippie end
 		if(cult_req) //CULT_REQ CLOTHES CHECK
 			if(!istype(H.wear_suit, /obj/item/clothing/suit/magusred) && !istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/cult))
 				to_chat(H, "<span class='notice'>I don't feel strong enough without my armor.</span>")
@@ -235,6 +230,20 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	if(action)
 		action.UpdateButtonIcon()
 	return 1
+
+/obj/effect/proc_holder/spell/proc/charge_check(mob/user, silent = FALSE)
+	switch(charge_type)
+		if("recharge")
+			if(charge_counter < charge_max)
+				if(!silent)
+					to_chat(user, still_recharging_msg)
+				return FALSE
+		if("charges")
+			if(!charge_counter)
+				if(!silent)
+					to_chat(user, "<span class='notice'>[name] has no charges left.</span>")
+				return FALSE
+	return TRUE
 
 /obj/effect/proc_holder/spell/proc/invocation(mob/user = usr) //spelling the spell out and setting it on recharge/reducing charges amount
 	switch(invocation_type)
@@ -297,10 +306,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		recharging = TRUE
 	if(sound)
 		playMagSound()
-	if(prob(critfailchance))
-		critfail(targets)
-	else
-		cast(targets,user=user)
+	cast(targets,user=user)
 	after_cast(targets)
 	if(action)
 		action.UpdateButtonIcon()
@@ -347,9 +353,6 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 
 /obj/effect/proc_holder/spell/proc/cast(list/targets,mob/user = usr)
-	return
-
-/obj/effect/proc_holder/spell/proc/critfail(list/targets)
 	return
 
 /obj/effect/proc_holder/spell/proc/revert_cast(mob/user = usr) //resets recharge or readds a charge
@@ -478,8 +481,8 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 	perform(targets,user=user)
 
-/obj/effect/proc_holder/spell/proc/updateButtonIcon()
-	action.UpdateButtonIcon()
+/obj/effect/proc_holder/spell/proc/updateButtonIcon(status_only, force)
+	action.UpdateButtonIcon(status_only, force)
 
 /obj/effect/proc_holder/spell/proc/can_be_cast_by(mob/caster)
 	if((human_req || clothes_req) && !ishuman(caster))
@@ -500,25 +503,20 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 /obj/effect/proc_holder/spell/proc/can_cast(mob/user = usr)
 	if(((!user.mind) || !(src in user.mind.spell_list)) && !(src in user.mob_spell_list))
-		return 0
+		return FALSE
 
-	switch(charge_type)
-		if("recharge")
-			if(charge_counter < charge_max)
-				return 0
-		if("charges")
-			if(!charge_counter)
-				return 0
+	if(!charge_check(user,TRUE))
+		return FALSE
 
 	if(user.stat && !stat_allowed)
-		return 0
+		return FALSE
 
 	if(!ishuman(user))
 		if(clothes_req || human_req)
-			return 0
+			return FALSE
 		if(nonabstract_req && (isbrain(user) || ispAI(user)))
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 /obj/effect/proc_holder/spell/self //Targets only the caster. Good for buffs and heals, but probably not wise for fireballs (although they usually fireball themselves anyway, honke)
 	range = -1 //Duh

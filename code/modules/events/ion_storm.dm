@@ -1,6 +1,5 @@
 #define ION_RANDOM 0
 #define ION_ANNOUNCE 1
-#define ION_FILE "ion_laws.json"
 /datum/round_event_control/ion_storm
 	name = "Ion Storm"
 	typepath = /datum/round_event/ion_storm
@@ -41,7 +40,7 @@
 			if(prob(removeRandomLawChance))
 				M.remove_law(rand(1, M.laws.get_law_amount(list(LAW_INHERENT, LAW_SUPPLIED))))
 
-			var/message = generate_ion_law(ionMessage)
+			var/message = ionMessage || generate_ion_law()
 			if(message)
 				if(prob(removeDontImproveChance))
 					M.replace_random_law(message, list(LAW_INHERENT, LAW_SUPPLIED, LAW_ION))
@@ -59,10 +58,7 @@
 			if(prob(botEmagChance))
 				bot.emag_act()
 
-/proc/generate_ion_law(ionMessage)
-	if(ionMessage)
-		return ionMessage
-
+/proc/generate_ion_law()
 	//Threats are generally bad things, silly or otherwise. Plural.
 	var/ionthreats = pick_list(ION_FILE, "ionthreats")
 	//Objects are anything that can be found on the station or elsewhere, plural.
@@ -78,7 +74,7 @@
 	var/ionadjectiveshalf = pick("", 400;(pick_list(ION_FILE, "ionadjectives") + " "))
 	//Verbs are verbs
 	var/ionverb = pick_list(ION_FILE, "ionverb")
-	//Number base and number modifier are combined. Basehalf and mod are unused currently.
+	//Number base and number modifier are combined. basehalf and mod are unused currently.
 	//Half should only appear sometimes. Make sure both lists are identical! Also, half
 	//needs a space at the end to make it look nice and neat when it calls a blank.
 	var/ionnumberbase = pick_list(ION_FILE, "ionnumberbase")
