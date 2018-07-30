@@ -7,4 +7,7 @@
 			if("S")
 				emote("scream")
 				return
+			if("P")
+				emote("poo")
+				return
 	return ..()
