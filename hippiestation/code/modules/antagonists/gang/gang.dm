@@ -62,16 +62,17 @@
 	return
 
 /datum/antagonist/gang/proc/update_gang_icons_added(mob/living/M)
-	var/datum/atom_hud/antag/gang/ganghud = GLOB.huds[gang.name]
+	var/datum/atom_hud/antag/gang/ganghud = GLOB.huds[gang.hud_entry_num]
 	if(!ganghud)
 		ganghud = new/datum/atom_hud/antag/gang()
-		GLOB.huds[gang.name] = ganghud
+		gang.hud_entry_num = GLOB.huds.len+1 // this is the index the gang hud will be added at
+		GLOB.huds += ganghud
 	ganghud.color = gang.color
 	ganghud.join_hud(M)
 	set_antag_hud(M,hud_type)
 
 /datum/antagonist/gang/proc/update_gang_icons_removed(mob/living/M)
-	var/datum/atom_hud/antag/gang/ganghud = GLOB.huds[gang.name]
+	var/datum/atom_hud/antag/gang/ganghud = GLOB.huds[gang.hud_entry_num]
 	if(ganghud)
 		ganghud.leave_hud(M)
 		set_antag_hud(M, null)
@@ -279,6 +280,7 @@
 /datum/team/gang
 	name = "Gang"
 	member_name = "gangster"
+	var/hud_entry_num // because if you put something other than a number in GLOB.huds, god have mercy on your fucking soul friend
 	var/list/leaders = list() // bosses
 	var/max_leaders = MAX_LEADERS_GANG
 	var/list/territories = list() // territories owned by the gang.
@@ -378,8 +380,8 @@
 	//Clear the lists
 	new_territories = list()
 	lost_territories = list()
-	GLOB.start_state.count(TRUE) // update the state
-	var/control = round((territories.len/GLOB.start_state.num_territories)*100, 1)
+	var/total_territories = total_claimable_territories()
+	var/control = round((territories.len/total_territories)*100, 1)
 	var/uniformed = check_clothing()
 	message += "Your gang now has <b>[control]% control</b> of the station.<BR>*---------*<BR>"
 	if(domination_time != NOT_DOMINATING)
@@ -396,6 +398,15 @@
 		message += "Your gang now has <b>[influence] influence</b>.<BR>"
 	message_gangtools(message)
 	addtimer(CALLBACK(src, .proc/handle_territories), INFLUENCE_INTERVAL)
+
+/datum/team/gang/proc/total_claimable_territories()
+	var/list/valid_territories = list()
+	for(var/z in SSmapping.levels_by_trait(ZTRAIT_STATION)) //First, collect all area types on the station zlevel
+		for(var/ar in SSmapping.areas_in_z["[z]"])
+			var/area/A = ar
+			if(!(A.type in valid_territories) && A.valid_territory)
+				valid_territories |= A.type
+	return valid_territories.len
 
 /datum/team/gang/proc/check_territory_income()
 	var/new_influence = min(999,influence + 15 + (check_clothing() * 2) + territories.len)

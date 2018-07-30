@@ -145,13 +145,14 @@
 	var/gang_mode = FALSE
 	if(gang && user.mind)
 		var/datum/antagonist/gang/G = user.mind.has_antag_datum(/datum/antagonist/gang)
-		if(G.gang != gang)
-			to_chat(user, "<span class='danger'>This spraycan's color isn't your gang's one! You cannot use it.</span>")
-			return FALSE
-		gang_mode = TRUE
-		instant = FALSE
-		. = "graffiti"
-	// discontinue if the area isn't valid for tagging because gang "honour"
+		if(G)
+			if(G.gang != gang)
+				to_chat(user, "<span class='danger'>This spraycan's color isn't your gang's one! You cannot use it.</span>")
+				return FALSE
+			gang_mode = TRUE
+			instant = FALSE
+			. = "graffiti"
+	// discontinue if we're not in gang modethe area isn't valid for tagging because gang "honour"
 	if(gang_mode && (!can_claim_for_gang(user, target)))
 		return FALSE
 
