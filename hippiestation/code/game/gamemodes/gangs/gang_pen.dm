@@ -26,10 +26,11 @@
 		to_chat(user, "<span class='warning'>A braindead gangster is an useless gangster!</span>")
 		return
 	var/datum/team/gang/gang = L.gang
-	add_gangster(user, gang, M.mind)
+	if(!add_gangster(user, gang, M.mind))
+		return
 	cooldown = TRUE
 	icon_state = "pen_blink"
-	var/cooldown_time = 600+(600*gang.leaders.len)
+	var/cooldown_time = 600/gang.leaders.len
 	addtimer(CALLBACK(src, .proc/cooldown), cooldown_time)
 
 /obj/item/pen/gang/proc/cooldown()
@@ -56,3 +57,4 @@
 	if(jobban_isbanned(gangster_mind.current, ROLE_GANG))
 		INVOKE_ASYNC(src, /datum/game_mode.proc/replace_jobbaned_player, gangster_mind.current, ROLE_GANG, ROLE_GANG) // will gangster_mind point to the new dude's mind? dunno honestly, i hope it does
 	gangster_mind.add_antag_datum(/datum/antagonist/gang, gang)
+	return TRUE
