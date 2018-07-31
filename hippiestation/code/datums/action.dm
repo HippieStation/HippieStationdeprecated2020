@@ -31,3 +31,6 @@
 
 /datum/action/item_action/make_puck
 	name = "Fabricate Holopack"
+
+/datum/action/item_action/hands_free/exbracelet
+	name = "Activate Explosive Bracelet"
