@@ -8,7 +8,7 @@
 	container_type = OPENCONTAINER
 	volume = 30
 
-	complexity = 30
+	complexity = 20
 	cooldown_per_use = 6 SECONDS
 	inputs = list(
 		"target X rel" = IC_PINTYPE_NUMBER,
@@ -23,7 +23,7 @@
 		"on sprayed" = IC_PINTYPE_PULSE_OUT,
 		"on fail" = IC_PINTYPE_PULSE_OUT
 		)
-	spawn_flags = IC_SPAWN_RESEARCH
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 15
 	var/busy = FALSE
 
@@ -64,33 +64,36 @@
 	var/list/the_targets = list(T,T1,T2)
 	busy = TRUE
 
+	// Create list with particles and their targets
+	var/list/water_particles=list()
 	for(var/a=0, a<5, a++)
-		spawn(0)
-			var/obj/effect/particle_effect/water/W = new /obj/effect/particle_effect/water(get_turf(src))
-			if(!src)
-				break
+		var/obj/effect/particle_effect/water/W = new /obj/effect/particle_effect/water(get_turf(src))
+		water_particles[W] = pick(the_targets)
+		var/datum/reagents/R = new/datum/reagents(5)
+		W.reagents = R
+		R.my_atom = W
+		reagents.trans_to(W,1)
+
+	// First loop: Make them move 5 times
+	for(var/b=0, b<5, b++)
+		// Second loop: Get all the water particles and make them move to their target
+		for(var/obj/effect/particle_effect/water/W in water_particles)
+			var/turf/my_target = water_particles[W]
 			if(!W)
 				continue
-			var/turf/my_target = pick(the_targets)
-			var/datum/reagents/R = new/datum/reagents(5)
-			W.reagents = R
-			R.my_atom = W
-			reagents.trans_to(W,1)
-			for(var/b=0, b<5, b++)
-				step_towards(W,my_target)
-				if(!W || !W.reagents)
-					break
-				W.reagents.reaction(get_turf(W))
-				for(var/A in get_turf(W))
-					if(!W)
-						break
-					W.reagents.reaction(A)
-				if(W.loc == my_target)
-					break
-				sleep(2)
+			step_towards(W,my_target)
+			if(!W.reagents)
+				continue
+			W.reagents.reaction(get_turf(W))
+			for(var/A in get_turf(W))
+				W.reagents.reaction(A)
+			if(W.loc == my_target)
+				break
+		sleep(2)
 	push_data()
 	activate_pin(2)
 	busy = FALSE
+
 
 // - Drain circuit - //
 /obj/item/integrated_circuit/reagent/drain
