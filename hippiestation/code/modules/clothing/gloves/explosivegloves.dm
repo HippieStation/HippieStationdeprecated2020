@@ -23,7 +23,7 @@
 		addtimer(CALLBACK(src, .proc/activate, user), 50)
 
 /obj/item/clothing/gloves/exbracelet/proc/activate(mob/user)
-	item_flags = NODROP
+	item_flags |= NODROP
 	to_chat(user, "<span class='boldwarning'>You feel your [wrist] wrist tighten as [src] locks in!</span>")
 	playsound(user.loc, 'sound/machines/triple_beep.ogg', 50, 1)
 	icon_state = "exbracelet_armed"
