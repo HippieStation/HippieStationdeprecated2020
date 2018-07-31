@@ -43,7 +43,7 @@
 /mob/living/simple_animal/pet/cat/clown/attack_hand(mob/living/user)
 	..()
 	if(user.a_intent == "help")
-		if(cooldown > world.time)
+		if(clowndown > world.time)
 			visible_message("[name] purss a bit...")
 			return
 		visible_message("[name] is so happy it let's out a honk!")
