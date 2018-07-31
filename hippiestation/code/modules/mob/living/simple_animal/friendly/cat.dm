@@ -40,8 +40,9 @@
 	
 /mob/living/simple_animal/pet/cat/clown/attack_hand(mob/living/user)
 	..()
-	visible_message("[name] Seems so happy it let's out a honk!")
-	playsound(src, pick(meows), 100)
+	if(user.a_intent == "help")
+		visible_message("[name] is so happy it let's out a honk!")
+		playsound(src, pick(meows), 100)
 
 /mob/living/simple_animal/pet/cat/clown/handle_automated_speech(override)
 	..()
