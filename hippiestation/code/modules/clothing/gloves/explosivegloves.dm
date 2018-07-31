@@ -8,6 +8,7 @@
 	item_state = "exbracelet_right"
 	var/armed = FALSE
 	var/wrist = "right"
+	var/activating = FALSE
 
 /obj/item/clothing/gloves/exbracelet/Initialize()
 	. = ..() //i still dont know what the . = is for lmao
@@ -22,7 +23,15 @@
 		to_chat(user, "<span class='warning'>5 seconds until [src] is armed!</span>")
 		addtimer(CALLBACK(src, .proc/activate, user), 50)
 
+/obj/item/clothing/gloves/exbracelet/dropped()
+	..()
+	icon_state = "exbracelet_unequipped"
+	armed = FALSE
+	item_flags -= NODROP
+
 /obj/item/clothing/gloves/exbracelet/proc/activate(mob/user)
+	if(!istype(user.get_item_by_slot(SLOT_GLOVES), /obj/item/clothing/gloves/exbracelet))
+		return
 	item_flags |= NODROP
 	to_chat(user, "<span class='boldwarning'>You feel your [wrist] wrist tighten as [src] locks in!</span>")
 	playsound(user.loc, 'sound/machines/triple_beep.ogg', 50, 1)
@@ -39,6 +48,9 @@
 	if(!armed)
 		to_chat(user, "<span class='warning'>[src] is still not armed!</span>")
 		return
+	if(activating)
+		return
+	activating = TRUE
 	user.visible_message("<span class='warning'>[user]'s [wrist] wrist begins to beep loudly!</span>") // gotta give sec SOME warning
 	playsound(user.loc, 'sound/items/timer.ogg', 40, 0)
 	sleep(15)
