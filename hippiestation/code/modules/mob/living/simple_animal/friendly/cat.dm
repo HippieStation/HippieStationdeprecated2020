@@ -37,8 +37,8 @@
 	speak = list("Meow!", "Honk!", "Haaaa....", "Hink!")
 	speak_chance = 15
 	emote_see = list("shakes its head.", "shivers.", "does a gag.", "clowns around.")
-	var clowndown = 0
-	var clowndown_time = 100
+	var/clowndown = 0
+	var/clowndown_time = 100
 	
 /mob/living/simple_animal/pet/cat/clown/attack_hand(mob/living/user)
 	..()
@@ -47,7 +47,7 @@
 			visible_message("[name] purss a bit...")
 			return
 		visible_message("[name] is so happy it let's out a honk!")
-		playsound(src, pick(meows), 100)
+		playsound(src, pick(meows), 10)
 		clowndown = world.time + clowndown_time
 
 /mob/living/simple_animal/pet/cat/clown/handle_automated_speech(override)
