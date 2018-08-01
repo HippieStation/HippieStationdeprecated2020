@@ -44,7 +44,7 @@
 	..()
 	if(user.a_intent == "help")
 		if(clowndown > world.time)
-			visible_message("[name] purss a bit...")
+			visible_message("[name] purss a bit while you pet it...")
 			return
 		visible_message("[name] is so happy it let's out a honk!")
 		playsound(src, pick(meows), 10)
