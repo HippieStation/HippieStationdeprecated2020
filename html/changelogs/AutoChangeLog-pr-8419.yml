@@ -1,5 +1,0 @@
-author: "Lcass123"
-delete-after: True
-changes: 
-  - tweak: "Makes security and command harder to break into."
-  - rscdel: "Removes a spare ID."
