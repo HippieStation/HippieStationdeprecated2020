@@ -13,8 +13,24 @@
 /area/shuttle/abandoned)
 "ad" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
+<<<<<<< HEAD
 /obj/machinery/door/airlock/titanium{
 	name = "External Airlock"
+=======
+/obj/docking_port/mobile{
+	callTime = 250;
+	dheight = 0;
+	dir = 2;
+	dwidth = 11;
+	height = 17;
+	id = "whiteship";
+	launch_status = 0;
+	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0);
+	name = "NT Frigate";
+	port_direction = 8;
+	preferred_direction = 4;
+	width = 27
+>>>>>>> b49221bb7c... Tweak the delta white ship a bit more (#39486)
 	},
 /obj/effect/decal/cleanable/dirt{
 	desc = "A thin layer of dust coating the floor.";
@@ -86,16 +102,29 @@
 	desc = "A thin layer of dust coating the floor.";
 	name = "dust"
 	},
+<<<<<<< HEAD
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plasteel/greenblue/side{
 	dir = 1
 	},
 /area/shuttle/abandoned)
+=======
+/obj/structure/bed,
+/obj/item/bedsheet/centcom,
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
+/obj/machinery/airalarm/all_access{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/wood,
+/area/shuttle/abandoned/crew)
+>>>>>>> b49221bb7c... Tweak the delta white ship a bit more (#39486)
 "am" = (
 /obj/effect/decal/cleanable/dirt{
 	desc = "A thin layer of dust coating the floor.";
 	name = "dust"
 	},
+<<<<<<< HEAD
 /obj/item/circuitboard/machine/hydroponics,
 /turf/open/floor/plasteel/greenblue/side{
 	dir = 5
@@ -109,6 +138,22 @@
 	glass = 1;
 	name = "Internal Airlock"
 	},
+=======
+/obj/structure/bed,
+/obj/item/bedsheet/centcom,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
+/obj/machinery/airalarm/all_access{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/wood,
+/area/shuttle/abandoned/crew)
+"an" = (
+/obj/structure/closet/emcloset/anchored,
+>>>>>>> b49221bb7c... Tweak the delta white ship a bit more (#39486)
 /obj/effect/decal/cleanable/dirt{
 	desc = "A thin layer of dust coating the floor.";
 	name = "dust"
@@ -184,7 +229,18 @@
 	desc = "A thin layer of dust coating the floor.";
 	name = "dust"
 	},
+<<<<<<< HEAD
 /obj/structure/light_construct/small{
+=======
+/obj/machinery/firealarm{
+	pixel_y = 24
+	},
+/obj/structure/closet/crate/bin,
+/turf/open/floor/plasteel/bar,
+/area/shuttle/abandoned/bar)
+"at" = (
+/obj/machinery/light/small/built{
+>>>>>>> b49221bb7c... Tweak the delta white ship a bit more (#39486)
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -394,8 +450,17 @@
 	desc = "A thin layer of dust coating the floor.";
 	name = "dust"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/greenblue/side{
 	dir = 8
+=======
+/obj/structure/spider/stickyweb,
+/turf/open/floor/plasteel/bar,
+/area/shuttle/abandoned/bar)
+"aL" = (
+/obj/machinery/light/small/built{
+	dir = 4
+>>>>>>> b49221bb7c... Tweak the delta white ship a bit more (#39486)
 	},
 /area/shuttle/abandoned)
 "aL" = (
@@ -596,9 +661,17 @@
 	desc = "A thin layer of dust coating the floor.";
 	name = "dust"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/neutral/side{
 	dir = 8;
 	heat_capacity = 1e+006
+=======
+/turf/open/floor/plasteel/bar,
+/area/shuttle/abandoned/bar)
+"bf" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+>>>>>>> b49221bb7c... Tweak the delta white ship a bit more (#39486)
 	},
 /area/shuttle/abandoned)
 "bf" = (
@@ -750,6 +823,7 @@
 	desc = "A thin layer of dust coating the floor.";
 	name = "dust"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/whiteblue/side{
 	dir = 9
 	},
@@ -766,6 +840,11 @@
 	dir = 1
 	},
 /area/shuttle/abandoned)
+=======
+/obj/structure/chair,
+/turf/open/floor/plasteel/bar,
+/area/shuttle/abandoned/bar)
+>>>>>>> b49221bb7c... Tweak the delta white ship a bit more (#39486)
 "bw" = (
 /obj/structure/closet/crate/freezer/blood,
 /obj/effect/decal/cleanable/dirt{
@@ -927,7 +1006,15 @@
 /turf/open/floor/plasteel/whiteblue/corner{
 	dir = 4
 	},
+<<<<<<< HEAD
 /area/shuttle/abandoned)
+=======
+/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/reagent_containers/food/snacks/sandwich,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/plasteel/bar,
+/area/shuttle/abandoned/bar)
+>>>>>>> b49221bb7c... Tweak the delta white ship a bit more (#39486)
 "bM" = (
 /obj/effect/decal/cleanable/dirt{
 	desc = "A thin layer of dust coating the floor.";
@@ -999,13 +1086,38 @@
 	},
 /area/shuttle/abandoned)
 "bS" = (
+<<<<<<< HEAD
+=======
+/obj/structure/table,
+/obj/item/folder/blue{
+	pixel_x = 6;
+	pixel_y = 5
+	},
+/obj/item/pen{
+	pixel_x = 5;
+	pixel_y = 3
+	},
 /obj/effect/decal/cleanable/dirt{
 	desc = "A thin layer of dust coating the floor.";
 	name = "dust"
 	},
+>>>>>>> b49221bb7c... Tweak the delta white ship a bit more (#39486)
+/obj/effect/decal/cleanable/dirt{
+	desc = "A thin layer of dust coating the floor.";
+	name = "dust"
+	},
+<<<<<<< HEAD
 /obj/item/stack/cable_coil/random,
 /turf/open/floor/plasteel/white,
 /area/shuttle/abandoned)
+=======
+/obj/machinery/recharger,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/plasteel/darkblue/side{
+	dir = 4
+	},
+/area/shuttle/abandoned/bridge)
+>>>>>>> b49221bb7c... Tweak the delta white ship a bit more (#39486)
 "bT" = (
 /obj/effect/decal/cleanable/dirt{
 	desc = "A thin layer of dust coating the floor.";
@@ -1195,6 +1307,25 @@
 /obj/structure/light_construct{
 	dir = 8
 	},
+<<<<<<< HEAD
+=======
+/obj/item/gun/energy/laser/retro,
+/mob/living/simple_animal/hostile/poison/giant_spider/tarantula{
+	desc = "Furry and black, it makes you shudder to look at it. This one has abyssal red eyes, and looks abnormally thin and frail.";
+	environment_smash = 0;
+	health = 150;
+	maxHealth = 150;
+	melee_damage_lower = 20;
+	melee_damage_upper = 25;
+	name = "scrawny tarantula"
+	},
+/turf/open/floor/plasteel/dark,
+/area/shuttle/abandoned/bridge)
+"cg" = (
+/obj/structure/chair/comfy/shuttle{
+	dir = 4
+	},
+>>>>>>> b49221bb7c... Tweak the delta white ship a bit more (#39486)
 /obj/effect/decal/cleanable/dirt{
 	desc = "A thin layer of dust coating the floor.";
 	name = "dust"
@@ -1309,8 +1440,17 @@
 	desc = "A thin layer of dust coating the floor.";
 	name = "dust"
 	},
+<<<<<<< HEAD
 /obj/item/clothing/head/welding,
 /turf/open/floor/plasteel/neutral/side{
+=======
+/obj/effect/decal/cleanable/blood/old,
+/obj/structure/spider/stickyweb,
+/turf/open/floor/plasteel/darkblue/corner,
+/area/shuttle/abandoned/bridge)
+"cp" = (
+/obj/machinery/computer/camera_advanced/shuttle_docker/whiteship{
+>>>>>>> b49221bb7c... Tweak the delta white ship a bit more (#39486)
 	dir = 8;
 	heat_capacity = 1e+006
 	},
@@ -2613,6 +2753,7 @@ aa
 aa
 aa
 "}
+<<<<<<< HEAD
 (25,1,1) = {"
 aa
 aa
@@ -2644,6 +2785,140 @@ aa
 aa
 aa
 aa
+=======
+(7,1,1) = {"
+ac
+ac
+ac
+aQ
+bn
+bC
+bR
+bX
+cf
+cn
+ct
+bC
+cP
+df
+dD
+vm
+iM
+"}
+(8,1,1) = {"
+ac
+aj
+aC
+aR
+bo
+bD
+bS
+bY
+cg
+co
+cu
+bD
+cQ
+dg
+dE
+dN
+vm
+"}
+(9,1,1) = {"
+ac
+ak
+aD
+aS
+ac
+bB
+bT
+bZ
+ch
+cp
+bT
+bB
+vm
+dh
+vm
+vm
+vm
+"}
+(10,1,1) = {"
+ac
+ac
+ac
+aT
+ac
+bE
+bT
+bT
+bT
+bT
+bT
+cE
+vm
+dj
+dF
+dO
+vm
+"}
+(11,1,1) = {"
+bI
+al
+aE
+oo
+bp
+bF
+bF
+ca
+bM
+cq
+cq
+cq
+cS
+dk
+dH
+di
+SY
+"}
+(12,1,1) = {"
+ac
+ac
+ac
+aU
+bq
+bG
+bU
+cb
+cj
+cr
+cv
+cr
+cT
+dl
+dG
+dQ
+vm
+"}
+(13,1,1) = {"
+bI
+am
+aF
+aV
+ac
+bH
+ac
+bI
+ac
+bI
+ac
+cF
+cR
+dm
+dP
+dR
+SY
+>>>>>>> b49221bb7c... Tweak the delta white ship a bit more (#39486)
 "}
 (26,1,1) = {"
 aa
@@ -2699,6 +2974,25 @@ aa
 aa
 aa
 aa
+<<<<<<< HEAD
+=======
+cy
+cI
+cZ
+du
+cZ
+dX
+cy
+"}
+(22,1,1) = {"
+ae
+as
+aK
+be
+be
+bL
+ae
+>>>>>>> b49221bb7c... Tweak the delta white ship a bit more (#39486)
 aa
 aa
 aa
