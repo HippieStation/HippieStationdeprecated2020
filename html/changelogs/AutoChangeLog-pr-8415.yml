@@ -1,0 +1,4 @@
+author: "Satou/Navi.OS"
+delete-after: True
+changes: 
+  - imageadd: "Added new arc forge sprites with animations!"

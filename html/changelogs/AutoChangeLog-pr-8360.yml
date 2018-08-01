@@ -1,0 +1,5 @@
+author: "zamolxius"
+delete-after: True
+changes: 
+  - rscadd: "Added improvised glass hatchets and it's recipe"
+  - imageadd: "added it's sprites"

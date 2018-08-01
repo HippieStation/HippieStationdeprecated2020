@@ -595,3 +595,13 @@
 	build_path = /obj/item/disk/surgery/necrotic_revival
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
+
+/datum/design/holobarrier_med
+	name = "PENLITE holobarrier projector"
+	desc = "PENLITE holobarriers, a device that halts individuals with malicious diseases."
+	build_type = PROTOLATHE
+	build_path = /obj/item/holosign_creator/medical
+	materials = list(MAT_METAL = 500, MAT_GLASS = 500, MAT_SILVER = 100) //a hint of silver since it can troll 2 antags (bad viros and sentient disease)
+	id = "holobarrier_med"
+	category = list("Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL

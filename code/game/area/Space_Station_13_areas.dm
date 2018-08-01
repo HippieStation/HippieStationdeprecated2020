@@ -589,6 +589,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Engineering Storage"
 	icon_state = "engi_storage"
 
+/area/engine/storage_shared
+	name = "Shared Engineering Storage"
+	icon_state = "engi_storage"
+
 /area/engine/transit_tube
 	name = "Transit Tube"
 	icon_state = "transit_tube"
@@ -1159,7 +1163,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "yellow"
 
 /area/construction/mining/aux_base
-	name = "Auxiliary base Construction"
+	name = "Auxiliary Base Construction"
 	icon_state = "yellow"
 
 /area/construction/mining/aux_base/closet
