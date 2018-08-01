@@ -163,7 +163,7 @@
 	..()
 	if(prob(0.5))
 		name = "brown brick"
-		desc = "<font color = #835C3B>I understand why all the kids are playing this game these days. It's because they like to build brown bricks with Minecrap. I also like to build brown bricks with Minecrap. It's the most fun you can possibly have.</font color>"
+		desc = "<font color = #835C3B>I understand why all the kids are playing this game these days. It's because they like to build brown bricks with Minecrap. I also like to build brown bricks with Minecrap. It's the most fun you can possibly have.</font>"
 		icon_state = "brownbrick"
 		item_state = "brownbrick"
 		force = 15
