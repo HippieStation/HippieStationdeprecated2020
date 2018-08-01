@@ -2661,6 +2661,7 @@
 #include "hippiestation\code\_onclick\hud\human.dm"
 #include "hippiestation\code\_onclick\hud\stamina.dm"
 #include "hippiestation\code\_onclick\hud\vampire.dm"
+#include "hippiestation\code\components\squeak.dm"
 #include "hippiestation\code\controllers\configuration\entries\general.dm"
 #include "hippiestation\code\controllers\subsystem\job.dm"
 #include "hippiestation\code\controllers\subsystem\reagent_states.dm"
