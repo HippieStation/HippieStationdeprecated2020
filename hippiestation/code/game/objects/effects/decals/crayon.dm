@@ -1,3 +1,11 @@
+/obj/effect/decal/cleanable/crayon/Initialize(mapload, main, type, e_name, graf_rot, alt_icon = null)
+	. = ..()
+	if(type == "poseur tag")
+		var/datum/team/gang/gang = pick(subtypesof(/datum/team/gang))
+		var/gangname = initial(gang.name)
+		icon = 'hippiestation/icons/effects/crayondecal.dmi'
+		icon_state = "[gangname]"
+
 /obj/effect/decal/cleanable/crayon/gang
 	icon = 'hippiestation/icons/effects/crayondecal.dmi'
 	layer = ABOVE_NORMAL_TURF_LAYER //Harder to hide

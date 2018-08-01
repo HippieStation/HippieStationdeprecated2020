@@ -9,6 +9,7 @@
 	var/datum/team/gang/gang //For marking territory, spraycans are gang-locked to their initial gang due to colors
 
 /obj/item/toy/crayon/afterattack(atom/target, mob/user, proximity, params)
+	. = ..()
 	if(!proximity || !check_allowed_items(target))
 		return
 
@@ -47,8 +48,8 @@
 	else if(drawing in numerals)
 		temp = "number"
 
-	temp = hippie_gang_check(user,target)
-	if(!temp) return // hippie
+	var/gangcheck = hippie_gang_check(user,target)
+	if(!gangcheck) return // hippie
 	var/graf_rot
 	if(drawing in oriented)
 		switch(user.dir)
@@ -155,6 +156,7 @@
 	// discontinue if we're not in gang modethe area isn't valid for tagging because gang "honour"
 	if(gang_mode && (!can_claim_for_gang(user, target)))
 		return FALSE
+	return TRUE
 
 /obj/item/toy/crayon/proc/gang_final(mob/user, atom/target, list/affected_turfs) // hooked into afterattack
 	// Double check it wasn't tagged in the meanwhile
