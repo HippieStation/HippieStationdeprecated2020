@@ -30416,9 +30416,7 @@
 	},
 /obj/item/folder/white,
 /obj/item/radio/headset/headset_med,
-/turf/open/floor/plasteel/whiteyellow/corner{
-	dir = 4
-	},
+/turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "bzI" = (
 /obj/structure/cable{
@@ -30438,9 +30436,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
-/turf/open/floor/plasteel/whiteyellow/side{
-	dir = 1
-	},
+/turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "bzK" = (
 /obj/structure/cable{
@@ -30454,18 +30450,7 @@
 	id = "chemistry_shutters";
 	name = "chemistry shutters"
 	},
-/turf/open/floor/plating,
-/area/medical/medbay/central)
-"bzL" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/turf/open/floor/plasteel/whiteyellow/corner{
-	dir = 1
-	},
+/turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bzM" = (
 /obj/structure/cable{
@@ -31097,7 +31082,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plasteel/whiteblue/side{
+	dir = 4
+	},
 /area/medical/chemistry)
 "bBm" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -32102,7 +32089,7 @@
 	req_access_txt = "5; 33"
 	},
 /obj/machinery/door/firedoor,
-/turf/open/floor/engine,
+/turf/open/floor/plasteel/vault,
 /area/medical/chemistry)
 "bDZ" = (
 /obj/machinery/computer/med_data{
@@ -32719,15 +32706,15 @@
 /area/hallway/primary/central)
 "bFl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/engine,
+/turf/open/floor/plasteel/darkpurple,
 /area/medical/chemistry)
 "bFm" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/camera{
-	c_tag = "Surgery Observation"
+	c_tag = "Chemistry"
 	},
-/turf/open/floor/engine,
+/turf/open/floor/plasteel/darkpurple,
 /area/medical/chemistry)
 "bFn" = (
 /obj/structure/sink{
@@ -33234,21 +33221,13 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/engine,
+/turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "bGv" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/engine,
-/area/medical/chemistry)
-"bGw" = (
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/engine,
-/area/medical/chemistry)
-"bGx" = (
-/turf/open/floor/engine,
+/turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "bGy" = (
 /obj/machinery/light{
@@ -33256,7 +33235,7 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/stack/ore/bluespace_crystal/refined,
-/turf/open/floor/engine,
+/turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "bGz" = (
 /obj/machinery/airalarm{
@@ -33815,25 +33794,25 @@
 /area/hallway/primary/central)
 "bHI" = (
 /obj/machinery/chem/radioactive,
-/turf/open/floor/engine,
+/turf/open/floor/plasteel/darkpurple,
 /area/medical/chemistry)
 "bHJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/chem/bluespace,
-/turf/open/floor/engine,
+/turf/open/floor/plasteel/darkpurple,
 /area/medical/chemistry)
 "bHK" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
 	},
-/turf/open/floor/engine,
+/turf/open/floor/plasteel/darkpurple,
 /area/medical/chemistry)
 "bHL" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
 	},
-/turf/open/floor/engine,
+/turf/open/floor/plasteel/darkpurple,
 /area/medical/chemistry)
 "bHM" = (
 /obj/structure/closet/secure_closet/medical1,
@@ -59075,7 +59054,7 @@
 	dir = 2;
 	pixel_y = 24
 	},
-/turf/open/floor/engine,
+/turf/open/floor/plasteel/darkpurple,
 /area/medical/chemistry)
 "gLs" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -60267,7 +60246,7 @@
 /obj/structure/plasticflaps{
 	opacity = 1
 	},
-/turf/open/space/basic,
+/turf/open/floor/plasteel/white,
 /area/medical/chemistry)
 "iXa" = (
 /obj/structure/cable{
@@ -62188,7 +62167,7 @@
 /obj/machinery/airalarm{
 	pixel_y = 23
 	},
-/turf/open/floor/engine,
+/turf/open/floor/plasteel/darkpurple,
 /area/medical/chemistry)
 "mGh" = (
 /obj/structure/disposalpipe/segment{
@@ -64441,7 +64420,7 @@
 /area/security/prison)
 "riz" = (
 /obj/structure/closet/radiation,
-/turf/open/floor/engine,
+/turf/open/floor/plasteel/darkpurple,
 /area/medical/chemistry)
 "riN" = (
 /obj/structure/cable{
@@ -67448,7 +67427,7 @@
 /obj/item/stack/sheet/mineral/uranium,
 /obj/item/stack/sheet/mineral/uranium,
 /obj/item/stack/sheet/mineral/uranium,
-/turf/open/floor/engine,
+/turf/open/floor/plasteel/darkpurple,
 /area/medical/chemistry)
 "xoE" = (
 /obj/effect/turf_decal/stripes/line{
@@ -102318,7 +102297,7 @@ bBl
 bwJ
 lLp
 bFm
-bGw
+bwJ
 bHK
 bJg
 bKd
@@ -102575,7 +102554,7 @@ bBm
 bRh
 bDV
 mFO
-bGx
+bnD
 bHL
 bDV
 bKe
@@ -102827,7 +102806,7 @@ btK
 bnD
 bwL
 blX
-bzL
+bzN
 bys
 bRh
 bDV
