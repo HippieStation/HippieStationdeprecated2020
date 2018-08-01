@@ -1,0 +1,5 @@
+author: "Garen+Carbonhell"
+delete-after: True
+changes: 
+  - balance: "Flashlight circuits are now the same strength as a normal flashlight"
+  - balance: "Grabber circuits are now combat circuits"
