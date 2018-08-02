@@ -1,0 +1,4 @@
+author: "Carbonhell"
+delete-after: True
+changes: 
+  - admin: "mentor memos can now be removed, and they will show in an ascending order"
