@@ -1,4 +1,0 @@
-author: "zamolxius"
-delete-after: True
-changes: 
-  - balance: "rebalanced toolspeed to 0.2 from 0, due to many people being able to almost instantly break into places, even while being actively chased"

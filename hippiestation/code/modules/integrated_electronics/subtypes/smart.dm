@@ -111,3 +111,11 @@
 
 /mob/living/brain/canUseTopic()
 	return	check_bot_self
+
+/obj/item/integrated_circuit/smart/advanced_pathfinder/proc/hippie_xor_decrypt()
+	var/Ps = get_pin_data(IC_INPUT, 4)
+	if(!Ps)
+		return
+	var/list/Pl = json_decode(XorEncrypt(hextostr(Ps, TRUE), SScircuit.cipherkey))
+	if(Pl&&islist(Pl))
+		idc.access = Pl
