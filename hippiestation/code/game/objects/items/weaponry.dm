@@ -184,7 +184,8 @@
 	..()
 
 /obj/item/brick/throw_impact(atom/hit_atom)
-	if(!..())
+	. = ..()
+	if(!.)
 		if(istype(hit_atom, /obj/structure/window) && durability)
 			var/obj/structure/window/W = hit_atom
 			W.take_damage(throwforce*10, BRUTE, "melee", 0)
