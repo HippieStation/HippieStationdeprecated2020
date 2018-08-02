@@ -1,4 +1,4 @@
-#define AUTOCLONING_MINIMAL_LEVEL 3
+sc#define AUTOCLONING_MINIMAL_LEVEL 3
 
 /obj/machinery/computer/cloning
 	name = "cloning console"
@@ -62,9 +62,7 @@
 		return
 
 	if(scanner.occupant && scanner.scan_level > 2)
-		if (pod.occupant)//HIPPIE CODE -start- (PREVENTS SOUND WHILE THE POD IS IN USE)
-		else  //HIPPIE CODE
-			scan_occupant(scanner.occupant) //HIPPIE CODE -end
+		scan_occupant(scanner.occupant)
 
 	for(var/datum/data/record/R in records)
 		var/obj/machinery/clonepod/pod = GetAvailableEfficientPod(R.fields["mind"])
@@ -458,7 +456,9 @@
 		return
 	if ((!mob_occupant.ckey) || (!mob_occupant.client))
 		scantemp = "<font class='bad'>Mental interface failure.</font>"
-		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
+		if (!clonepod.occupant) //HIPPIE CODE -start- (PREVENTS SOUND WHILE THE POD IS IN USE)
+			playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0) 
+			return //HIPPIE CODE -end-
 		return
 	if (find_record("ckey", mob_occupant.ckey, records))
 		scantemp = "<font class='average'>Subject already in database.</font>"
