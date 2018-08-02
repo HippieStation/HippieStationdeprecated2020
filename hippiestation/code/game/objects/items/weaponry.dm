@@ -157,6 +157,7 @@
 	force = 12 // decent weapon
 	throwforce = 15 // good throw
 	attack_verb = list("bricked")
+	hitsound = 'hippiestation/sound/effects/brick.ogg'
 	var/durability = 5
 
 /obj/item/brick/Initialize()
@@ -197,4 +198,5 @@
 								"<span class='userdanger'>You suddenly black out as you're hit by [src]!</span>")
 				H.SetSleeping(80)
 				H.adjustBrainLoss(10)
+				playsound(src, 'hippiestation/sound/effects/ZUBALAWA.ogg', 50, 0)
 				durability -= 1
