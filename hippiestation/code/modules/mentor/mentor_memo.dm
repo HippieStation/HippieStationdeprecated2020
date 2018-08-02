@@ -112,7 +112,7 @@
 			qdel(query_memolist)
 			qdel(query_memofind)
 		if("Show")
-			var/datum/DBQuery/query_memoshow = SSdbcore.NewQuery("SELECT ckey, memotext, timestamp, last_editor FROM [format_table_name("mentor_memo")]")
+			var/datum/DBQuery/query_memoshow = SSdbcore.NewQuery("SELECT ckey, memotext, timestamp, last_editor FROM [format_table_name("mentor_memo")] ORDER BY timestamp ASC")
 			if(!query_memoshow.Execute())
 				var/err = query_memoshow.ErrorMsg()
 				log_game("SQL ERROR obtaining ckey, memotext, timestamp, last_editor from memo table. Error : \[[err]\]\n")
@@ -154,7 +154,7 @@
 				qdel(query_memodellist)
 				return
 			var/target_sql_ckey = sanitizeSQL(target_ckey)
-			var/datum/DBQuery/query_memodel = SSdbcore.NewQuery("DELETE FROM [format_table_name("memo")] WHERE ckey = '[target_sql_ckey]'")
+			var/datum/DBQuery/query_memodel = SSdbcore.NewQuery("DELETE FROM [format_table_name("mentor_memo")] WHERE ckey = '[target_sql_ckey]'")
 			if(!query_memodel.Execute())
 				var/err = query_memodel.ErrorMsg()
 				log_game("SQL ERROR removing memo. Error : \[[err]\]\n")
