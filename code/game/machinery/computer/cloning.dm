@@ -62,7 +62,9 @@
 		return
 
 	if(scanner.occupant && scanner.scan_level > 2)
-		scan_occupant(scanner.occupant)
+		if (pod.occupant)//HIPPIE CODE -start- (PREVENTS SOUND WHILE THE POD IS IN USE)
+		else  //HIPPIE CODE
+			scan_occupant(scanner.occupant) //HIPPIE CODE -end
 
 	for(var/datum/data/record/R in records)
 		var/obj/machinery/clonepod/pod = GetAvailableEfficientPod(R.fields["mind"])
