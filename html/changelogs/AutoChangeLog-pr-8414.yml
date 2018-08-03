@@ -1,6 +1,0 @@
-author: "Kawaii-Big-Boss"
-delete-after: True
-changes: 
-  - tweak: "Relocated the Medieval Sec Armor to the SecDrobe"
-  - bugfix: "Fixed a bug where malformed security uniforms were displayed on the SecDrobe, sometimes for sale too."
-  - bugfix: "That means I removed Jumpskirts. They're dead now."
