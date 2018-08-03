@@ -179,7 +179,7 @@
 				M.emote("scream")
 				M.visible_message("<span class='danger'>[user] knocks out [M] with [src]!</span>", \
 								"<span class='userdanger'>[user] knocks out [M] with [src]!</span>")
-				M.SetSleeping(60)
+				M.AdjustUnconscious(60)
 				M.adjustBrainLoss(5)
 	..()
 
@@ -197,7 +197,7 @@
 				H.apply_damage(throwforce, BRUTE, BODY_ZONE_HEAD) // double damage
 				H.visible_message("<span class='danger'>[H] falls unconscious as [H.p_theyre()] hit by [src]!</span>", \
 								"<span class='userdanger'>You suddenly black out as you're hit by [src]!</span>")
-				H.SetSleeping(80)
+				H.AdjustUnconscious(80)
 				H.adjustBrainLoss(10)
 				playsound(src, 'hippiestation/sound/effects/ZUBALAWA.ogg', 50, 0)
 				durability -= 1
