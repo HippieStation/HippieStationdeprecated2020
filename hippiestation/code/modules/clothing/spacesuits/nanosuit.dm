@@ -304,10 +304,6 @@
 	if(mode == ARMOR && cell.charge > 0)
 		if(prob(final_block_chance))
 			user.visible_message("<span class='danger'>[user]'s shields deflect [attack_text] draining their energy!</span>")
-			if(attack_type == THROWN_PROJECTILE_ATTACK)
-				final_block_chance += 15
-			if(attack_type == LEAP_ATTACK)
-				final_block_chance = 75
 			if(damage)
 				if(attack_type != STAMINA)
 					set_nano_energy(CLAMP(cell.charge-(5 + damage),0,cell.charge),15)//laser guns, anything lethal drains 5 + the damage dealth
@@ -317,7 +313,7 @@
 				set_nano_energy(CLAMP(cell.charge-25,0,cell.charge),15)
 			return TRUE
 		else
-			user.visible_message("<span class='notice'>[user]'s shields fail to deflect [attack_text].</span>")
+			user.visible_message("<span class='warning'>[user]'s shields fail to deflect [attack_text].</span>")
 			return FALSE
 		if(damage && attack_type == PROJECTILE_ATTACK && P.damage_type != STAMINA && prob(50))
 			var/datum/effect_system/spark_spread/s = new
@@ -339,6 +335,10 @@
 				helmet.display_visor_message("Humerous fracture detected in [BP.name]! Administering local anesthetic.")
 				user.reagents.add_reagent("morphine", 0.5)
 				msg_time_upper = 600
+	if(attack_type == THROWN_PROJECTILE_ATTACK)
+		final_block_chance += 15
+	if(attack_type == LEAP_ATTACK)
+		final_block_chance = 75
 	SEND_SIGNAL(src, COMSIG_ITEM_HIT_REACT, args)
 	return FALSE
 
@@ -399,32 +399,31 @@
 				slowdown = initial(slowdown)
 				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
-				U.add_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
-				U.add_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
 				U.adjustOxyLoss(-5, 0)
 				U.adjustStaminaLoss(-20)
 				U.filters = filter(type="outline", size=0.1, color=rgb(255,255,224))
 				animate(U, alpha = 255, time = 5)
 				U.remove_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
+				U.add_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
+				U.add_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
 				style.remove(U)
 				jetpack.full_speed = TRUE
 
 			if(STRENGTH)
 				helmet.display_visor_message("Maximum Strength!")
 				block_chance = 0
-				U.add_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
 				style.teach(U,1)
 				slowdown = initial(slowdown)
 				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				U.filters = filter(type="outline", size=0.1, color=rgb(255,0,0))
 				animate(U, alpha = 255, time = 5)
+				U.add_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
 				U.remove_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
 				U.remove_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
 				jetpack.full_speed = FALSE
 
 			if(NONE)
-				U.remove_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
 				block_chance = 0
 				style.remove(U)
 				slowdown = initial(slowdown)
@@ -432,6 +431,7 @@
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				U.filters = null
 				animate(U, alpha = 255, time = 5)
+				U.remove_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
 				U.remove_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
 				U.remove_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
 				jetpack.full_speed = FALSE
@@ -848,12 +848,11 @@
 		return TRUE
 	return FALSE
 
-
-/mob/living/carbon/human/check_weakness(obj/item/weapon, mob/living/attacker)
-	if(istype(attacker.mind.martial_art, /datum/martial_art/nano) && weapon && weapon.damtype == BRUTE)
-		return 1.25 //deal 25% more damage in strength
+/mob/living/carbon/human/check_weakness(obj/item/weapon, mob/living/carbon/attacker)
+	if(attacker && ishuman(attacker))
+		if(istype(attacker.mind.martial_art, /datum/martial_art/nano) && weapon && weapon.damtype == BRUTE)
+			return 1.25 //deal 25% more damage in strength
 	. = ..()
-
 
 /obj/attacked_by(obj/item/I, mob/living/user)
 	if(I.force && I.damtype == BRUTE && istype(user.mind.martial_art, /datum/martial_art/nano))
