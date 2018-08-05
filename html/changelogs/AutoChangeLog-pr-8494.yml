@@ -1,7 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - balance: "Nanosuit no longer has 100% blocking with armor and energy left, it has been reduced to 50%."
-  - balance: "Nanosuit jumpsuit armor stats removed."
-  - balance: "Reduced limb damage morphine injection to 0.5u from 1u"
-  - rscdel: "Night vision goggles no longer force green vision."
