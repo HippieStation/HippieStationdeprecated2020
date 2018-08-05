@@ -172,6 +172,7 @@
 		durability = INFINITY
 
 /obj/item/brick/attack(mob/living/target, mob/living/user)
+	..()
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		if(!istype(M.head, /obj/item/clothing/head/helmet) && user.zone_selected == BODY_ZONE_HEAD)
@@ -181,7 +182,6 @@
 								"<span class='userdanger'>[user] knocks out [M] with [src]!</span>")
 				M.AdjustUnconscious(60)
 				M.adjustBrainLoss(5)
-	..()
 
 /obj/item/brick/throw_impact(atom/hit_atom)
 	. = ..()
