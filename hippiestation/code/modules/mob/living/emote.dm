@@ -40,6 +40,10 @@
 				sound = 'hippiestation/sound/voice/caw.ogg'
 			if (is_species(user, /datum/species/tarajan))
 				sound = 'hippiestation/sound/voice/cat.ogg'
+			if(user.ckey == "EagleEyes1" || user.ckey == "Pyko" || user.ckey == "FrozenGuy5" || user.ckey == "Kawaii Big Boss")
+				sound = 'hippiestation/sound/misc/LIFE_IS_PAIN.ogg'
+				sleep(1)
+				user.gib()
 		if(isalien(user))
 			sound = 'sound/voice/hiss6.ogg'
 		LAZYINITLIST(user.alternate_screams)

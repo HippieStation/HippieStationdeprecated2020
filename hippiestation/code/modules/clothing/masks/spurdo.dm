@@ -59,6 +59,6 @@
 		C.say("SUOMI PERKELE!") // bawb made me do this
 	return ..()
 
-obj/item/clothing/mask/spurdo/cursed
+/obj/item/clothing/mask/spurdo/cursed
 	flags_1 =  MASKINTERNALS
 	item_flags = NODROP
