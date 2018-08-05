@@ -94,7 +94,7 @@
 		activate_pin(3)
 		return
 
-	playsound(src.loc, 'sound/effects/extinguish.ogg', 75, 1, -3)
+	playsound(loc, 'sound/effects/extinguish.ogg', 75, 1, -3)
 	//Get the tile on which the water particle spawns
 	var/turf/Spawnpoint = get_turf(src)
 	if(!Spawnpoint)
