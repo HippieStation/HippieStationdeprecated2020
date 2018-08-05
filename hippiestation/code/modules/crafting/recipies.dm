@@ -94,6 +94,18 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
+/datum/crafting_recipe/explosive_bracelet
+	name = "explosive bracelet"
+	result = /obj/item/clothing/gloves/exbracelet
+	reqs = list(/obj/item/grenade/iedcasing = 1,
+				/obj/item/assembly/igniter = 1,
+				/obj/item/stack/cable_coil = 5,
+				/obj/item/stack/sheet/metal = 2,
+				/obj/item/stock_parts/micro_laser = 1)
+	tools = list(TOOL_SCREWDRIVER)
+	time = 50
+	category = CAT_CLOTHING
+
 /datum/crafting_recipe/lockermech
 	name = "Locker Mech"
 	result = /obj/mecha/makeshift
