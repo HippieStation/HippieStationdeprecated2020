@@ -25,6 +25,7 @@
 		)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 15
+	var/steps = 0
 	var/busy = FALSE
 
 /obj/item/integrated_circuit/reagent/extinguisher/Initialize()
@@ -43,14 +44,12 @@
 		return
 
 	playsound(src.loc, 'sound/effects/extinguish.ogg', 75, 1, -3)
-
 	//Get the tile on which the water particle spawns
 	var/turf/Spawnpoint = get_turf(src)
 	if(!Spawnpoint)
 		push_data()
 		activate_pin(3)
 		return
-
 
 	//Get direction and target turf for each water particle
 	var/turf/T = locate(Spawnpoint.x + get_pin_data(IC_INPUT, 1),Spawnpoint.y + get_pin_data(IC_INPUT, 2),Spawnpoint.z)
@@ -74,25 +73,35 @@
 		R.my_atom = W
 		reagents.trans_to(W,1)
 
-	// First loop: Make them move 5 times
-	for(var/b=0, b<5, b++)
-		// Second loop: Get all the water particles and make them move to their target
-		for(var/obj/effect/particle_effect/water/W in water_particles)
-			var/turf/my_target = water_particles[W]
-			if(!W)
-				continue
-			step_towards(W,my_target)
-			if(!W.reagents)
-				continue
-			W.reagents.reaction(get_turf(W))
-			for(var/A in get_turf(W))
-				W.reagents.reaction(A)
-			if(W.loc == my_target)
-				break
-		sleep(2)
-	push_data()
-	activate_pin(2)
-	busy = FALSE
+	//Make em move dat ass, hun
+	addtimer(CALLBACK(src, /obj/item/integrated_circuit/reagent/extinguisher/.proc/move_particles, water_particles), 2)
+
+//This whole proc is a loop
+/obj/item/integrated_circuit/reagent/extinguisher/proc/move_particles(var/list/particles)
+	//Check if there's anything in here first
+	if(!particles || particles.len == 0)
+		return
+	// Second loop: Get all the water particles and make them move to their target
+	for(var/obj/effect/particle_effect/water/W in particles)
+		var/turf/my_target = particles[W]
+		if(!W)
+			continue
+		step_towards(W,my_target)
+		if(!W.reagents)
+			continue
+		W.reagents.reaction(get_turf(W))
+		for(var/A in get_turf(W))
+			W.reagents.reaction(A)
+		if(W.loc == my_target)
+			break
+	if(steps < 4)
+		steps++
+		addtimer(CALLBACK(src, /obj/item/integrated_circuit/reagent/extinguisher/.proc/move_particles, particles), 2)
+	else
+		steps=0
+		push_data()
+		activate_pin(2)
+		busy = FALSE
 
 
 // - Drain circuit - //
