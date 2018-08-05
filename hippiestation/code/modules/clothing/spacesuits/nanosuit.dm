@@ -9,7 +9,6 @@
 	name = "nanosuit lining"
 	desc = "Foreign body resistant lining built below the nanosuit. Provides internal protection. Property of CryNet Systems."
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
-	armor = list("melee" = 20, "bullet" = 10, "laser" = 0,"energy" = 5, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 80, "acid" = 50)
 	item_flags = DROPDEL
 
 /obj/item/clothing/suit/space/hardsuit/nano/ComponentInitialize()
@@ -151,8 +150,6 @@
 		return TRUE
 	return FALSE
 
-/obj/item/clothing/glasses/nano_goggles/AltClick(mob/user)
-	return
 
 /obj/item/clothing/glasses/nano_goggles/proc/nvgmode(mob/user, var/forced = FALSE)
 	on = !on
@@ -162,15 +159,10 @@
 		if(H.glasses == src)
 			if(on)
 				darkness_view = 8
-				vision_flags = SEE_BLACKNESS
 				lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-				H.add_client_colour(glass_colour_type)
 			else
-				vision_flags = NONE
 				darkness_view = 2
 				lighting_alpha = null
-				H.remove_client_colour(glass_colour_type)
-			H.update_client_colour()
 			H.update_sight()
 
 	for(var/X in actions)
@@ -220,6 +212,7 @@
 	var/msg_time_upper = 0
 	var/msg_time_lower = 0
 	var/obj/item/stock_parts/cell/nano/cell //What type of power cell this uses
+	block_chance = 0
 
 /obj/item/clothing/suit/space/hardsuit/nano/ComponentInitialize()
 	. = ..()
@@ -308,8 +301,9 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/hit_reaction(mob/living/carbon/human/user, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/obj/item/projectile/P = hitby
-	if(mode == ARMOR)
-		if(cell.charge > 0)
+	if(mode == ARMOR && cell.charge > 0)
+		if(prob(final_block_chance))
+			user.visible_message("<span class='danger'>[user]'s shields deflect [attack_text] draining their energy!</span>")
 			if(damage)
 				if(attack_type != STAMINA)
 					set_nano_energy(CLAMP(cell.charge-(5 + damage),0,cell.charge),15)//laser guns, anything lethal drains 5 + the damage dealth
@@ -317,8 +311,10 @@
 					set_nano_energy(CLAMP(cell.charge-15,0,cell.charge),15)//stamina damage, aka disabler beams
 			if(istype(P, /obj/item/projectile/energy/electrode))//if electrode aka taser
 				set_nano_energy(CLAMP(cell.charge-25,0,cell.charge),15)
-			user.visible_message("<span class='danger'>[user]'s shields deflect [attack_text] draining their energy!</span>")
 			return TRUE
+		else
+			user.visible_message("<span class='warning'>[user]'s shields fail to deflect [attack_text].</span>")
+			return FALSE
 		if(damage && attack_type == PROJECTILE_ATTACK && P.damage_type != STAMINA && prob(50))
 			var/datum/effect_system/spark_spread/s = new
 			s.set_up(1, 1, src)
@@ -333,12 +329,17 @@
 		if(BP.brute_dam > 30 && BP.body_zone != BODY_ZONE_HEAD && BP.body_zone != BODY_ZONE_CHEST)
 			if(msg_time_lower == 0 && (BP.body_zone == BODY_ZONE_L_LEG || BP.body_zone == BODY_ZONE_R_LEG))
 				helmet.display_visor_message("Femoral fracture detected in [BP.name]! Administering local anesthetic.")
-				user.reagents.add_reagent("morphine", 1)
+				user.reagents.add_reagent("morphine", 0.5)
 				msg_time_lower = 600
 			if(msg_time_upper == 0 && (BP.body_zone == BODY_ZONE_L_ARM || BP.body_zone == BODY_ZONE_R_ARM))
 				helmet.display_visor_message("Humerous fracture detected in [BP.name]! Administering local anesthetic.")
-				user.reagents.add_reagent("morphine", 1)
+				user.reagents.add_reagent("morphine", 0.5)
 				msg_time_upper = 600
+	if(attack_type == THROWN_PROJECTILE_ATTACK)
+		final_block_chance += 15
+	if(attack_type == LEAP_ATTACK)
+		final_block_chance = 75
+	SEND_SIGNAL(src, COMSIG_ITEM_HIT_REACT, args)
 	return FALSE
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/heal_nano(mob/living/carbon/human/user)
@@ -366,6 +367,7 @@
 		switch(suitmode)
 			if(ARMOR)
 				helmet.display_visor_message("Maximum Armor!")
+				block_chance = 50
 				slowdown = 1.0
 				armor = armor.setRating(melee = 60, bullet = 60, laser = 60, energy = 65, bomb = 100, rad =100)
 				helmet.armor = helmet.armor.setRating(melee = 60, bullet = 60, laser = 60, energy = 65, bomb = 100, rad =100)
@@ -379,6 +381,7 @@
 
 			if(CLOAK)
 				helmet.display_visor_message("Cloak Engaged!")
+				block_chance = 0
 				slowdown = 0.4 //cloaking makes us go sliightly faster
 				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
@@ -392,40 +395,43 @@
 
 			if(SPEED)
 				helmet.display_visor_message("Maximum Speed!")
+				block_chance = 0
 				slowdown = initial(slowdown)
 				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
-				U.add_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
-				U.add_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
 				U.adjustOxyLoss(-5, 0)
 				U.adjustStaminaLoss(-20)
 				U.filters = filter(type="outline", size=0.1, color=rgb(255,255,224))
 				animate(U, alpha = 255, time = 5)
 				U.remove_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
+				U.add_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
+				U.add_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
 				style.remove(U)
 				jetpack.full_speed = TRUE
 
 			if(STRENGTH)
 				helmet.display_visor_message("Maximum Strength!")
-				U.add_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
+				block_chance = 0
 				style.teach(U,1)
 				slowdown = initial(slowdown)
 				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				U.filters = filter(type="outline", size=0.1, color=rgb(255,0,0))
 				animate(U, alpha = 255, time = 5)
+				U.add_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
 				U.remove_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
 				U.remove_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
 				jetpack.full_speed = FALSE
 
 			if(NONE)
-				U.remove_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
+				block_chance = 0
 				style.remove(U)
 				slowdown = initial(slowdown)
 				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				U.filters = null
 				animate(U, alpha = 255, time = 5)
+				U.remove_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
 				U.remove_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
 				U.remove_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
 				jetpack.full_speed = FALSE
@@ -842,12 +848,11 @@
 		return TRUE
 	return FALSE
 
-
-/mob/living/carbon/human/check_weakness(obj/item/weapon, mob/living/attacker)
-	if(istype(attacker.mind.martial_art, /datum/martial_art/nano) && weapon && weapon.damtype == BRUTE)
-		return 1.25 //deal 25% more damage in strength
+/mob/living/carbon/human/check_weakness(obj/item/weapon, mob/living/carbon/attacker)
+	if(attacker && ishuman(attacker))
+		if(istype(attacker.mind.martial_art, /datum/martial_art/nano) && weapon && weapon.damtype == BRUTE)
+			return 1.25 //deal 25% more damage in strength
 	. = ..()
-
 
 /obj/attacked_by(obj/item/I, mob/living/user)
 	if(I.force && I.damtype == BRUTE && istype(user.mind.martial_art, /datum/martial_art/nano))
