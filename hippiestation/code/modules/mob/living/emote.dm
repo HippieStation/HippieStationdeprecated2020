@@ -40,6 +40,15 @@
 				sound = 'hippiestation/sound/voice/caw.ogg'
 			if (is_species(user, /datum/species/tarajan))
 				sound = 'hippiestation/sound/voice/cat.ogg'
+			if(user.ckey == "EagleEyes1" || user.ckey == "Pyko" || user.ckey == "FrozenGuy5")
+				sound = 'hippiestation/sound/misc/LIFE_IS_PAIN.ogg'
+				user.set_species(/datum/species/tarajan, icon_update=1)
+				if(user.stat != CONSCIOUS)
+					var/list/LOSER_limbs = list(user.get_bodypart("l_leg"),user.get_bodypart("r_leg"),user.get_bodypart("l_arm"),user.get_bodypart("r_arm") )
+					user.adjustOxyLoss(-200)
+					for(var/obj/item/bodypart/B in LOSER_limbs)
+						B.dismember()
+						user.adjustBruteLoss(-100)
 		if(isalien(user))
 			sound = 'sound/voice/hiss6.ogg'
 		LAZYINITLIST(user.alternate_screams)
