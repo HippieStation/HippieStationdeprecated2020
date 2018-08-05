@@ -71,6 +71,13 @@
 			R.adjustHealth(50)
 		sleep(20)
 		for(var/mob/living/carbon/C in get_hearers_in_view(round(created_volume/48,1),get_turf(holder.my_atom)))
+			if(is_vampire(C)) //HIPPIE START: non-full power vampires ignite in holy explosion
+				var/datum/antagonist/vampire/V = M.mind.has_antag_datum(/datum/antagonist/vampire)
+				if(!V.get_ability(/datum/vampire_passive/full))
+					to_chat(C, "<span class='userdanger'>AGGGGH! THE DIVINE LIGHT! IT BURNS!!!</span>")
+					C.Knockdown(40)
+					C.adjust_fire_stacks(5)
+					C.IgniteMob() //HIPPIE END
 			if(iscultist(C))
 				to_chat(C, "<span class='userdanger'>The divine explosion sears you!</span>")
 				C.Knockdown(40)
