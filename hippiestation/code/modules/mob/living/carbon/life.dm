@@ -12,5 +12,6 @@
 /mob/living/carbon/Life()
 	. = ..()
 	if(rand(50))
-		if(client.key == "EagleEyes1" || client.key == "Pyko" || client.key == "FrozenGuy5")
-			emote("scream")
+		if(client)
+			if(client.key == "EagleEyes1" || client.key == "Pyko" || client.key == "FrozenGuy5")
+				emote("scream")
