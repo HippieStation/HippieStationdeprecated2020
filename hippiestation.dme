@@ -2699,6 +2699,7 @@
 #include "hippiestation\code\datums\diseases\advance\symptoms\heal.dm"
 #include "hippiestation\code\datums\diseases\advance\symptoms\sensory.dm"
 #include "hippiestation\code\datums\diseases\advance\symptoms\viral.dm"
+#include "hippiestation\code\datums\looping_sounds\Fryer.dm"
 #include "hippiestation\code\datums\martial\armstrong.dm"
 #include "hippiestation\code\datums\martial\cqc.dm"
 #include "hippiestation\code\datums\martial\knifeboxing.dm"
