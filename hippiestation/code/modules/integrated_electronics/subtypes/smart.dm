@@ -202,7 +202,7 @@
 		can_be_asked_input = TRUE
 		installed_pai.forceMove(drop_location())
 		set_pin_data(IC_OUTPUT, 1, WEAKREF(null))
-		installed_pai.pai.remote_control = installed_pai
+		installed_pai.pai.remote_control = installed_pai.pai
 	..()
 
 
