@@ -1,5 +1,0 @@
-author: "JohnGinnane"
-delete-after: True
-changes: 
-  - rscadd: "Added new sounds for when the clown is hit"
-  - tweak: "Clown's shoes now squeak 33% faster when moving"
