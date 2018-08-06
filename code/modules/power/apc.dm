@@ -62,7 +62,7 @@
 	var/areastring = null
 	var/obj/item/stock_parts/cell/cell
 	var/start_charge = 90				// initial cell charge %
-	var/cell_type = /obj/item/stock_parts/cell/upgraded		//base cell has 2500 capacity. Enter the path of a different cell you want to use. cell determines charge rates, max capacity, ect. These can also be changed with other APC vars, but isn't recommended to minimize the risk of accidental usage of dirty editted APCs
+	var/cell_type = /obj/item/stock_parts/cell/upgraded		//Base cell has 2500 capacity. Enter the path of a different cell you want to use. cell determines charge rates, max capacity, ect. These can also be changed with other APC vars, but isn't recommended to minimize the risk of accidental usage of dirty editted APCs
 	var/opened = APC_COVER_CLOSED
 	var/shorted = 0
 	var/lighting = 3
@@ -104,7 +104,7 @@
 
 /obj/machinery/power/apc/unlocked
 	locked = FALSE
-
+	
 /obj/machinery/power/apc/syndicate //general syndicate access
 	req_access = list(ACCESS_SYNDICATE)
 
@@ -116,21 +116,25 @@
 
 /obj/machinery/power/apc/highcap/fifteen_k
 	cell_type = /obj/item/stock_parts/cell/high/plus
-
+	
 /obj/machinery/power/apc/auto_name
 	auto_name = TRUE
-
-/obj/machinery/power/apc/auto_name/north
+	
+/obj/machinery/power/apc/auto_name/north //Pixel offsets get overwritten on New()
 	dir = NORTH
-
+	pixel_y = 23
+	
 /obj/machinery/power/apc/auto_name/south
 	dir = SOUTH
+	pixel_y = -23
 
 /obj/machinery/power/apc/auto_name/east
 	dir = EAST
-
+	pixel_x = 24
+	
 /obj/machinery/power/apc/auto_name/west
 	dir = WEST
+	pixel_x = -25
 
 /obj/machinery/power/apc/get_cell()
 	return cell

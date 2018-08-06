@@ -340,3 +340,10 @@
 	item = /obj/item/storage/box/syndie_kit/synth
 	cost = 8
 	surplus = 40
+
+/datum/uplink_item/badass/brick
+	name = "A brick"
+	desc = "A literal brick, able to break a common windows like nothing. Serves well as a melee and thrown weapon aswell. Keep an eye out for the fabled brown brick."
+	item = /obj/item/brick
+	cost = 2
+	surplus = 30
