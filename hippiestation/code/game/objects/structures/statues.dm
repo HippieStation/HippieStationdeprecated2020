@@ -1,9 +1,10 @@
 /obj/structure/statue/sandstone/asstue
 	name = "Giant stone ass."
-	desc = "On Saturday, August 4th, 2018 the toolbox was thrown down by the people of tgstation, three randomly selected hippies took up the challenge\
-			and stood poised to fight the tg menace. They failed miserably and bought shame upon our once proud station. We have made this\
-			giant ass statue to commemorate their failure and the giant ass they made of us. Pyko, Praisenarsie, EagleEyes: their names etched upon\
-			this stone butt for all eternity."
+	desc = "On Saturday, August 4th, 2018 the toolbox was thrown down by the people of tgstation,\
+	 three randomly selected hippies took up the challengeand stood poised to fight the tg menace. \
+	 They failed miserably and bought shame upon our once proud station. We have made thisgiant ass \
+	 statue to commemorate their failure and the giant ass they made of us. \
+	 Pyko, Praisenarsie, EagleEyes: their names etched upon this stone butt for all eternity."
 	icon = 'hippiestation/icons/obj/statue.dmi'
 	icon_state = "asstue"
 
