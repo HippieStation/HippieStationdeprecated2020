@@ -9,7 +9,7 @@
 	icon_state = "asstue"
 
 /obj/structure/statue/sandstone/asstue/proc/toot()
-	playsound(src.loc, 'hippiestation/sound/effects/fart.ogg', 100, 1)
+	playsound(src, 'hippiestation/sound/effects/fart.ogg', 100, 1)
 
 /obj/structure/statue/sandstone/asstue/Bumped(atom/movable/AM)
 	toot()
