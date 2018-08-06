@@ -2921,6 +2921,7 @@
 #include "hippiestation\code\modules\clothing\spacesuits\nanosuit.dm"
 #include "hippiestation\code\modules\clothing\suits\cloaks.dm"
 #include "hippiestation\code\modules\clothing\suits\utility.dm"
+#include "hippiestation\code\modules\clothing\under\jobs\civilian.dm"
 #include "hippiestation\code\modules\crafting\recipies.dm"
 #include "hippiestation\code\modules\crafts\mug.dm"
 #include "hippiestation\code\modules\crafts\shield.dm"
