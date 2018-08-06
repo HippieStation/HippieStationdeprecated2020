@@ -62000,10 +62000,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat/hallway)
-"mcb" = (
-/obj/structure/statue/sandstone/asstue,
-/turf/open/floor/carpet/black,
-/area/hallway/secondary/entry)
 "mck" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Vacant Office Maintenance";
@@ -63133,6 +63129,12 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"omY" = (
+/obj/structure/statue/sandstone/asstue{
+	anchored = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "oov" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
@@ -78740,7 +78742,7 @@ gtz
 kJB
 aCK
 aCK
-mcb
+omY
 hDs
 aBA
 sKD
