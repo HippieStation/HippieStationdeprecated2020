@@ -62000,6 +62000,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat/hallway)
+"mcb" = (
+/obj/structure/statue/sandstone/asstue,
+/turf/open/floor/carpet/black,
+/area/hallway/secondary/entry)
 "mck" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Vacant Office Maintenance";
@@ -78736,7 +78740,7 @@ gtz
 kJB
 aCK
 aCK
-aCK
+mcb
 hDs
 aBA
 sKD
