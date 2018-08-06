@@ -1,62 +1,49 @@
 /datum/photo_disguise
 	var/name = ""
 	var/examine_override = ""
-	var/icon/disguise_icon
+	var/special_appearance
 
-/obj/item/photo
-	desc = ""
+/datum/picture
 	var/list/potential_disguises = list()
+
+/obj/effect/appearance_clone
+	var/based_on
+
+/obj/effect/appearance_clone/New(loc, atom/A)
+	. = ..()
+	if(istype(A))
+		based_on = A
 
 /obj/structure/closet/cardboard
 	var/datum/photo_disguise/disguise
 	desc = "Just a box. Looks like you could place a photo of someone on it to fool people..."
 
-/obj/item/camera/proc/find_disguises(mob/user, list/turfs)
-	var/list/targets = list()
+/obj/item/camera
+	var/list/atomslist = list()
 
-	for(var/turf/T in turfs)
-		for(var/mob/living/carbon/C in T)
-			if (!istype(C))
+/obj/item/camera/after_picture(mob/user, datum/picture/picture, proximity_flag)
+	for(var/A in atomslist)
+		var/obj/effect/appearance_clone/clone = A
+		if(ismob(clone.based_on))
+			var/mob/C = clone.based_on
+			if(!istype(C))
 				continue
 			if(is_vampire(C))
 				continue
 			if(C.invisibility)
 				continue
-
 			var/datum/photo_disguise/D = new()
 			D.name = C.name
 			D.examine_override = C.examine(null) // Don't actually print anything please
-			D.disguise_icon = getFlatIcon(C, no_anim = TRUE)
+			D.special_appearance = C.appearance
+			picture.potential_disguises[C.name] = D
+	..()
 
-			LAZYSET(targets, C.name, D)
-
-	return targets
-
-/obj/item/camera/printpicture(mob/user, icon/temp, mobs, flag, list/potential_disguises) //Normal camera proc for creating photos
-	var/obj/item/photo/P = new/obj/item/photo(get_turf(src))
-	if(in_range(src, user)) //needed because of TK
-		user.put_in_hands(P)
-	var/icon/small_img = icon(temp)
-	var/icon/ic = icon('icons/obj/items_and_weapons.dmi',"photo")
-	small_img.Scale(8, 8)
-	ic.Blend(small_img,ICON_OVERLAY, 13, 13)
-	P.icon = ic
-	P.img = temp
-	P.desc = mobs
-	P.pixel_x = rand(-10, 10)
-	P.pixel_y = rand(-10, 10)
-
-	if(blueprints)
-		P.blueprints = 1
-		blueprints = 0
-
-	if (potential_disguises)
-		P.potential_disguises = potential_disguises
-	
 /obj/structure/closet/cardboard/attackby(obj/item/W, mob/user, params)
 	// Apply the thing
 	if (istype(W, /obj/item/photo))
-		var/obj/item/photo/P = W
+		var/obj/item/photo/photo = W
+		var/datum/picture/P = photo.picture
 		if (LAZYLEN(P.potential_disguises) > 0)
 			var/chosen = input("Select a target to disguise as", "Pick target") as null|anything in P.potential_disguises
 
@@ -66,11 +53,11 @@
 				if (D)
 					to_chat(user, "<span class='notice'>You gently place the cut-out of [chosen] onto the box, careful to make sure it looks genuine.</span>")
 					disguise = D
-					qdel(P)
+					qdel(W)
 
 					if (!opened)
 						icon = null
-						add_overlay(D.disguise_icon)
+						appearance = D.special_appearance
 	else
 		. = ..()
 
@@ -102,12 +89,9 @@
 	. = ..()
 
 	if (disguise)
-		icon = null
-		add_overlay(disguise.disguise_icon)
+		appearance = disguise.special_appearance
 
 /obj/structure/closet/cardboard/open(mob/living/user)
-	if (!icon)
-		cut_overlays()
-		icon = initial(icon)
+	appearance = initial(appearance)
 
 	. = ..()
