@@ -8,42 +8,6 @@
 	category_text = "Atmospherics"
 	cooldown_per_use = 2 SECONDS
 
-/obj/item/integrated_circuit/atmospherics/atmospheric_analyzer
-	name = "atmospheric analyzer"
-	desc = "A miniaturized analyzer which can scan anything that contains gases."
-	extended_desc = "The nth element of gas amounts is the number of moles of the \
-					nth gas in gas list. \
-					Pressure is in kPa, temperature is in Kelvin. \
-					Due to programming limitations, scanning an object that does \
-					not contain a gas will return the air around it instead."
-	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
-	inputs = list(
-			"target" = IC_PINTYPE_REF
-			)
-	outputs = list(
-			"gas list" = IC_PINTYPE_LIST,
-			"gas amounts" = IC_PINTYPE_LIST,
-			"total moles" = IC_PINTYPE_NUMBER,
-			"pressure" = IC_PINTYPE_NUMBER,
-			"temperature" = IC_PINTYPE_NUMBER,
-			"volume" = IC_PINTYPE_NUMBER
-			)
-	activators = list(
-			"scan" = IC_PINTYPE_PULSE_IN,
-			"on success" = IC_PINTYPE_PULSE_OUT,
-			"on failure" = IC_PINTYPE_PULSE_OUT
-			)
-	power_draw_per_use = 5
-
-/obj/item/integrated_circuit/atmospherics/atmospheric_analyzer/do_work()
-	for(var/i=1 to 6)
-		set_pin_data(IC_OUTPUT, i, null)
-	var/atom/target = get_pin_data_as_type(IC_INPUT, 1, /atom)
-	var/atom/movable/acting_object = get_object()
-	if(!target || !target.Adjacent(acting_object))
-		activate_pin(3)
-		return
-
 	var/datum/gas_mixture/air_contents = target.return_air()
 	if(!air_contents)
 		activate_pin(3)
