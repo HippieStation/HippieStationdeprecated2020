@@ -17,7 +17,7 @@
 
 /obj/structure/statue/sandstone/asstue/attackby(obj/item/W, mob/user, params)
 	toot()
-	return..()
+	return ..()
 
 /obj/structure/statue/sandstone/asstue/attack_hand(mob/user)
 	toot()
