@@ -40,17 +40,32 @@
 	..()
 
 /datum/reagent/consumable/lean
-    name = "Lean"
-    id = "lean"
-    description = "A bubbly, neon purple antitussive syrup"
-    color = "#de72f9" //rgb: rgb(222, 103, 252)
-    taste_description = "purple"
-    glass_icon_state = "lean"
-    glass_desc = "A huge cup full of drank."
-    glass_name = "lean cup"
-    var/list/leanTalk = list("Sipping on some sizzurp, sip, sipping on some, sip..", "I'M LEANIN!!", "Drop some syrup in it, get on my waffle house!", "Dat purple stuff..", "We wuz.. sippin...", "Bup-bup-bup-bup...", "ME AND MY DRANK, ME AND MY DRANK!!!", "Pour you a glass, mane..", "...purple...", "Can't nobody sip mo' than me!")
-    var/list/syrup_message = list("You feel relaxed.", "You feel calmed.","You feel like melting into the floor.","The world moves slowly..")
+	name = "Lean"
+	id = "lean"
+	description = "A bubbly, neon purple antitussive syrup"
+	color = "#de72f9" //rgb: rgb(222, 103, 252)
+	taste_description = "purple"
+	glass_icon_state = "lean"
+	glass_desc = "A huge cup full of drank."
+	glass_name = "lean cup"
+	var/list/leanTalk = list("Sipping on some sizzurp, sip, sipping on some, sip..", "I'M LEANIN!!", "Drop some syrup in it, get on my waffle house!", "Dat purple stuff..", "We wuz.. sippin...", "Bup-bup-bup-bup...", "ME AND MY DRANK, ME AND MY DRANK!!!", "Pour you a glass, mane..", "...purple...", "Can't nobody sip mo' than me!")
+	var/list/syrup_message = list("You feel relaxed.", "You feel calmed.","You feel like melting into the floor.","The world moves slowly..")
+	var/old_skin_tone
+	var/old_hair_style
 
+/datum/reagent/consumable/lean/on_mob_add(mob/living/L)
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		old_skin_tone = H.skin_tone
+		old_hair_style = H.hair_style
+
+/datum/reagent/consumable/lean/on_mob_delete(mob/living/L)
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		H.skin_tone = old_skin_tone
+		H.hair_style = old_hair_style
+		H.update_body()
+		H.update_hair()
 
 /datum/reagent/consumable/lean/on_mob_life(mob/living/M)
 	if(ishuman(M))
