@@ -1,0 +1,4 @@
+author: "Carbonhell"
+delete-after: True
+changes: 
+  - bugfix: "Ipc screens now appear again, and will properly hide with helmets or such."
