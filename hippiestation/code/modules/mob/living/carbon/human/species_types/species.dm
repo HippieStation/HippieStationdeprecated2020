@@ -19,3 +19,8 @@
 	switch(bodypart)
 		if("ipc_screen")
 			return GLOB.ipc_screens_list[H.dna.features["ipc_screen"]]
+
+/datum/species/proc/hippie_handle_hiding_bodyparts(list/bodyparts_adding, obj/item/bodypart/head/head, mob/living/carbon/human/human)
+	if("ipc_screen" in mutant_bodyparts) //Take a closer look at that snout!
+		if((human.wear_mask && (human.wear_mask.flags_inv & HIDEFACE)) || (human.head && (human.head.flags_inv & HIDEFACE)) || !head || head.status == BODYPART_ROBOTIC)
+			bodyparts_adding -= "ipc_screen"
