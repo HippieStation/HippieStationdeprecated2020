@@ -4,6 +4,7 @@
 
 #ifndef LOWMEMORYMODE
 	#ifdef ALL_MAPS
+		#include "map_files\AsteroidStation\AsteroidStation.dmm"
 		#include "map_files\Mining\Lavaland.dmm"
 		#include "map_files\generic\City_of_Cogs.dmm"
 		#include "map_files\debug\runtimestation.dmm"

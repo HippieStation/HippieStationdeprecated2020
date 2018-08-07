@@ -1,0 +1,12 @@
+{
+    "map_name": "Asteroid Station",
+    "map_path": "map_files/AsteroidStation",
+    "map_file": "AsteroidStation.dmm",
+    "minetype": "lavaland",
+    "transition_config": "default",
+    "allow_custom_shuttles": "yes",
+    "shuttles": {
+        "ferry": "ferry_fancy",
+        "whiteship": "whiteship_meta"
+    }
+}

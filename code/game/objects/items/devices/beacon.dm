@@ -6,6 +6,7 @@
 	item_state = "beacon"
 	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
+	var/channel = ""
 	var/enabled = TRUE
 	var/renamed = FALSE
 

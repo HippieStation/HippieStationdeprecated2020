@@ -5,6 +5,7 @@
 	icon_keyboard = "teleport_key"
 	light_color = LIGHT_COLOR_BLUE
 	circuit = /obj/item/circuitboard/computer/teleporter
+	var/channel = ""
 	var/regime_set = "Teleporter"
 	var/id
 	var/obj/machinery/teleport/station/power_station
@@ -119,7 +120,7 @@
 	var/list/areaindex = list()
 	if(regime_set == "Teleporter")
 		for(var/obj/item/beacon/R in GLOB.teleportbeacons)
-			if(is_eligible(R))
+			if(is_eligible(R) && R.channel == channel)
 				var/area/A = get_area(R)
 				L[avoid_assoc_duplicate_keys(A.name, areaindex)] = R
 
