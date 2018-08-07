@@ -30450,7 +30450,7 @@
 	id = "chemistry_shutters";
 	name = "chemistry shutters"
 	},
-/turf/open/floor/plasteel/white,
+/turf/open/floor/plating,
 /area/medical/medbay/central)
 "bzM" = (
 /obj/structure/cable{
@@ -36630,8 +36630,6 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bOi" = (
-/obj/structure/bed,
-/obj/item/bedsheet/medical,
 /turf/open/floor/plasteel/whiteblue/corner{
 	dir = 1
 	},
@@ -66580,6 +66578,13 @@
 	name = "floor"
 	},
 /area/engine/port_engineering)
+"vTu" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/effect/spawner/structure/window,
+/turf/open/floor/plating,
+/area/medical/sleeper)
 "vUb" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
@@ -103072,7 +103077,7 @@ exh
 exh
 exh
 bCD
-bLo
+vTu
 bMR
 bCE
 bCD
