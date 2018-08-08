@@ -4,7 +4,7 @@
 	 three randomly selected hippies took up the challenge and stood poised to fight the tg menace. \
 	 They failed miserably and bought shame upon our once proud station. We have made this giant ass \
 	 statue to commemorate their failure and the giant ass they made of us. \
-	 Pyko, Praisenarsie, EagleEyes: their names etched upon this stone butt for all eternity."
+	 Pyko, Frozenguy5, EagleEyes: their names etched upon this stone butt for all eternity."
 	icon = 'hippiestation/icons/obj/statue.dmi'
 	icon_state = "asstue"
 
@@ -21,7 +21,7 @@
 
 /obj/structure/statue/sandstone/asstue/attack_hand(mob/user)
 	toot()
-	.=..()
+	. = ..()
 
 /obj/structure/statue/sandstone/asstue/attack_paw(mob/user)
 	toot()
