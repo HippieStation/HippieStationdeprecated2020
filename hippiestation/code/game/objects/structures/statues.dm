@@ -28,5 +28,5 @@
 	..()
 
 /obj/structure/statue/sandstone/asstue/deconstruct(disassembled = TRUE)
-	playsound(src.loc, 'hippiestation/sound/effects/superfart.ogg', 200, 1)
+	playsound(src, 'hippiestation/sound/effects/superfart.ogg', 200, 1)
 	..()
