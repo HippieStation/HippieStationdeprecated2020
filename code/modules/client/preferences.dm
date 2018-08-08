@@ -125,7 +125,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	for(var/custom_name_id in GLOB.preferences_custom_names)
 		custom_names[custom_name_id] = get_default_name(custom_name_id)
-	
+
 	UI_style = GLOB.available_ui_styles[1]
 	if(istype(C))
 		if(!IsGuestKey(C.key))
@@ -400,35 +400,39 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
+<<<<<<< HEAD
 			dat = add_hippie_choices(dat)
 
 			if(CONFIG_GET(flag/join_with_mutant_humans))
+=======
+			if("tail_human" in pref_species.default_features)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+>>>>>>> 48ece11504... Felinid/catpeople are now their own human subspecies (#39513)
 
-				if("tail_human" in pref_species.default_features)
-					if(!mutant_category)
-						dat += APPEARANCE_CATEGORY_COLUMN
+				dat += "<h3>Tail</h3>"
 
-					dat += "<h3>Tail</h3>"
+				dat += "<a href='?_src_=prefs;preference=tail_human;task=input'>[features["tail_human"]]</a><BR>"
 
-					dat += "<a href='?_src_=prefs;preference=tail_human;task=input'>[features["tail_human"]]</a><BR>"
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
 
-					mutant_category++
-					if(mutant_category >= MAX_MUTANT_ROWS)
-						dat += "</td>"
-						mutant_category = 0
+			if("ears" in pref_species.default_features)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
 
-				if("ears" in pref_species.default_features)
-					if(!mutant_category)
-						dat += APPEARANCE_CATEGORY_COLUMN
+				dat += "<h3>Ears</h3>"
 
-					dat += "<h3>Ears</h3>"
+				dat += "<a href='?_src_=prefs;preference=ears;task=input'>[features["ears"]]</a><BR>"
 
-					dat += "<a href='?_src_=prefs;preference=ears;task=input'>[features["ears"]]</a><BR>"
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
 
-					mutant_category++
-					if(mutant_category >= MAX_MUTANT_ROWS)
-						dat += "</td>"
-						mutant_category = 0
+			if(CONFIG_GET(flag/join_with_mutant_humans))
 
 				if("wings" in pref_species.default_features && GLOB.r_wings_list.len >1)
 					if(!mutant_category)
@@ -1522,7 +1526,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		chosen_species = /datum/species/human
 		pref_species = new /datum/species/human
 		save_character()
-	character.set_species(chosen_species, icon_update=0)
+	character.set_species(chosen_species, icon_update = FALSE, pref_load = TRUE)
 
 	if(icon_updates)
 		character.update_body()
@@ -1547,7 +1551,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/namedata = GLOB.preferences_custom_names[name_id]
 	if(!namedata)
 		return
-	
+
 	var/raw_name = input(user, "Choose your character's [namedata["qdesc"]]:","Character Preference") as text|null
 	if(!raw_name)
 		if(namedata["allow_null"])
