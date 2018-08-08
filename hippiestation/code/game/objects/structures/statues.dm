@@ -1,5 +1,5 @@
 /obj/structure/statue/sandstone/asstue
-	name = "Giant stone ass."
+	name = "giant stone ass"
 	desc = "On Saturday, August 4th, 2018 the toolbox was thrown down by the people of tgstation,\
 	 three randomly selected hippies took up the challenge and stood poised to fight the tg menace. \
 	 They failed miserably and bought shame upon our once proud station. We have made this giant ass \
