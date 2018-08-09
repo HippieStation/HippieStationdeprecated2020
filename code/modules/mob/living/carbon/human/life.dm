@@ -39,9 +39,18 @@
 	if (notransform)
 		return
 
+<<<<<<< HEAD
 	OnHippieLifeAfterNoTransform() // hippiestation/code/modules/mob/living/carbon/human/life.dm
 
 	if(..()) //not dead
+=======
+	. = ..()
+
+	if (QDELETED(src))
+		return 0
+
+	if(.) //not dead
+>>>>>>> 54275ee6a3... Fix bunch of runtimes involving transformation diseases, and also a way to avoid job bans (#39600)
 		handle_active_genes()
 
 	if(stat != DEAD)
