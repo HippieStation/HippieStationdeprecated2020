@@ -33,6 +33,19 @@
 		makeMentor(href_list["makementor"])
 	else if(href_list["removementor"])
 		removeMentor(href_list["removementor"])
+	else if(href_list["mentormemoeditlist"])
+		checkMentorEditList(href_list["mentormemoeditlist"])
+
+/datum/admins/proc/checkMentorEditList(ckey)
+	var/sql_key = sanitizeSQL("[ckey]")
+	var/datum/DBQuery/query_memoedits = SSdbcore.NewQuery("SELECT edits FROM [format_table_name("mentor_memo")] WHERE (ckey = '[sql_key]')")
+	if(!query_memoedits.warn_execute())
+		qdel(query_memoedits)
+		return
+	if(query_memoedits.NextRow())
+		var/edit_log = query_memoedits.item[1]
+		usr << browse(edit_log,"window=mentormemoeditlist")
+	qdel(query_memoedits)
 
 /datum/admins/proc/makeMentor(ckey)
 	if(!usr.client)

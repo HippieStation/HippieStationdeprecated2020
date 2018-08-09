@@ -21,7 +21,7 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/blastco
 	armor = list("melee" = 70, "bullet" = 30, "laser" = 50, "energy" = 25, "bomb" = 100, "bio" = 100, "rad" = 70)
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	max_heat_protection_temperature = FIRE_IMMUNITY_SUIT_MAX_TEMP_PROTECT
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 
 /obj/item/clothing/suit/fire/atmos/syndicate
 	name = "warm firesuit"
