@@ -41,7 +41,12 @@
 
 	OnHippieLifeAfterNoTransform() // hippiestation/code/modules/mob/living/carbon/human/life.dm
 
-	if(..()) //not dead
+	. = ..()
+
+	if (QDELETED(src))
+		return 0
+
+	if(.) //not dead
 		handle_active_genes()
 
 	if(stat != DEAD)
