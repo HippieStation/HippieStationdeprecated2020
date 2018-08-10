@@ -39,7 +39,12 @@
 	if (notransform)
 		return
 
-	if(..()) //not dead
+	. = ..()
+
+	if (QDELETED(src))
+		return 0
+
+	if(.) //not dead
 		handle_active_genes()
 
 	if(stat != DEAD)
