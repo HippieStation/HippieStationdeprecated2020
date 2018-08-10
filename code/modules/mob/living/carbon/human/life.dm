@@ -39,8 +39,6 @@
 	if (notransform)
 		return
 
-	OnHippieLifeAfterNoTransform() // hippiestation/code/modules/mob/living/carbon/human/life.dm
-
 	if(..()) //not dead
 		handle_active_genes()
 

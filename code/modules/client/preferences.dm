@@ -125,7 +125,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	for(var/custom_name_id in GLOB.preferences_custom_names)
 		custom_names[custom_name_id] = get_default_name(custom_name_id)
-	
+
 	UI_style = GLOB.available_ui_styles[1]
 	if(istype(C))
 		if(!IsGuestKey(C.key))
@@ -541,7 +541,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 
 			for (var/i in GLOB.special_roles)
-				if(jobban_isbanned(user, i) || jobban_isbanned(user, CATBAN) || jobban_isbanned(user, CLUWNEBAN))
+				if(jobban_isbanned(user, i) || jobban_isbanned(user, CATBAN) || jobban_isbanned(user, CLUWNEBAN)) // hippie - adds our jobban checks
 					dat += "<b>Be [capitalize(i)]:</b> <a href='?_src_=prefs;jobbancheck=[i]'>BANNED</a><br>"
 				else
 					var/days_remaining = null
@@ -656,7 +656,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			HTML += "<tr bgcolor='[job.selection_color]'><td width='60%' align='right'>"
 			var/rank = job.title
 			lastJob = job
-			if(jobban_isbanned(user, rank) || jobban_isbanned(user, CLUWNEBAN) || jobban_isbanned(user, CATBAN))
+			if(jobban_isbanned(user, rank) || jobban_isbanned(user, CLUWNEBAN) || jobban_isbanned(user, CATBAN)) // hippie - adds our jobban checks
 				HTML += "<font color=red>[rank]</font></td><td><a href='?_src_=prefs;jobbancheck=[rank]'> BANNED</a></td></tr>"
 				continue
 			var/required_playtime_remaining = job.required_playtime_remaining(user.client)
@@ -1547,7 +1547,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/namedata = GLOB.preferences_custom_names[name_id]
 	if(!namedata)
 		return
-	
+
 	var/raw_name = input(user, "Choose your character's [namedata["qdesc"]]:","Character Preference") as text|null
 	if(!raw_name)
 		if(namedata["allow_null"])

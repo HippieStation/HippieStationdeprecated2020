@@ -232,7 +232,6 @@
 		update_hair()
 		update_body_parts()
 		update_mutations_overlay()// no lizard with human hulk overlay please.
-	update_teeth() //hippie
 
 
 /mob/proc/has_dna()
