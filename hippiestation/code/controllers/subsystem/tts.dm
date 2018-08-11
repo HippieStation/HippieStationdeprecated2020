@@ -1,11 +1,12 @@
 SUBSYSTEM_DEF(tts)
 	name = "Text-to-Speech"
 	wait = 2
+	runlevels = (RUNLEVEL_INIT | RUNLEVEL_LOBBY | RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME )
 	var/list/queue           // List of items to process
 	var/datum/tts/processing // The item we're currentl processing
 
 /datum/tts
-	var/mob/owner
+	var/client/owner
 	var/text = ""
 	var/voice = ""
 	var/filename = ""
@@ -15,12 +16,12 @@ SUBSYSTEM_DEF(tts)
 /datum/tts/proc/Initialize()
 	. = ..()
 
-/datum/tts/proc/say(mob/M, msg, voice = "", is_global = FALSE)
-	if (!M)
+/datum/tts/proc/say(client/C, msg, voice = "", is_global = FALSE)
+	if (!C)
 		return
 	if (!msg)
 		return
-	owner = M
+	owner = C
 	text = msg
 	src.voice = voice
 	src.is_global = is_global
@@ -34,16 +35,29 @@ SUBSYSTEM_DEF(tts)
 		can_fire = FALSE
 	return ..()
 
+/datum/controller/subsystem/tts/proc/check_queue(client/C)
+	if (!C)
+		return FALSE
+
+	for (var/datum/tts/T in queue)
+		if (T)
+			if (T.owner == C)
+				return TRUE
+
+	return FALSE
+
 /datum/controller/subsystem/tts/fire(resumed = FALSE)
 	if (processing)
+		if (!processing.owner)
+			message_admins("TTS request has no owner (on check)")
+			processing = null
+			return
+
 		// file not ready
 		if (!fexists(processing.filename))
 			if (world.time > processing.timeout)
+				message_admins("[processing.owner]'s TTS request timed out!")
 				processing = null
-			return
-
-		if (!processing.owner)
-			processing = null
 			return
 
 		for (var/P in GLOB.player_list)
@@ -59,7 +73,7 @@ SUBSYSTEM_DEF(tts)
 				if (processing.is_global)
 					origin = M.loc
 				else
-					origin = processing.owner.loc
+					origin = processing.owner.mob.loc
 
 				M.playsound_local(origin, processing.filename, 100, 0)
 
@@ -75,7 +89,15 @@ SUBSYSTEM_DEF(tts)
 			return // nothing to process and nothing queued
 
 		if (!processing)
+			message_admins("Error picked TTS request")
 			return
+
+		if (!processing.owner)
+			message_admins("TTS request has no owner (on pick)")
+			processing = null
+			return
+		else
+			processing.owner.tts_cooldown = world.time + length(processing.text)
 
 		processing.timeout = processing.timeout + world.time
 		var/cmd = "tts_generator/tts_generator.exe"
@@ -85,6 +107,51 @@ SUBSYSTEM_DEF(tts)
 			cmd = cmd + " --voice \"[processing.voice]\""
 		shell(cmd)
 		processing.filename = "tts_generator/speech.ogg"
+
+/client
+	var/tts_cooldown = 0
+
+/datum/dna
+	var/tts_voice = ""
+
+/datum/dna/initialize_dna()
+	. = ..()
+	var/mob/living/carbon/human/H = holder
+	if (istype(H))
+		if (H.gender == FEMALE)
+			tts_voice = pick("betty", "rita", "ursula", "wendy")
+		else
+			tts_voice = pick("dennis", "frank", "harry", "kit", "paul")
+
+/datum/dna/transfer_identity(mob/living/carbon/destination)
+	..()
+	if (!istype(destination))
+		return
+	destination.dna.tts_voice = tts_voice
+
+/datum/dna/copy_dna(datum/dna/new_dna)
+	..()
+	new_dna.tts_voice = tts_voice
+
+/mob/living/carbon/human/say(message, datum/language/language = null)
+	. = ..()
+
+	if (.)
+		var/msg = message
+		var/first_char = copytext(message, 1, 2)
+		if (first_char == "*" && first_char == ";" && first_char == "." && first_char == ":")
+			msg = copytext(msg, 2, length(msg) - 1)
+
+		if (CONFIG_GET(flag/enable_tts) && client)
+			var/tts_voice = ""
+
+			if (dna)
+				if (dna.tts_voice)
+					tts_voice = dna.tts_voice
+
+			if (world.time > client.tts_cooldown && !SStts.check_queue(src))
+				var/datum/tts/T = new /datum/tts()
+				T.say(client, msg, voice = tts_voice)
 
 /client/proc/play_tts()
 	set category = "Fun"
@@ -98,28 +165,22 @@ SUBSYSTEM_DEF(tts)
 	var/input = input(usr, "Please enter a message to send to the server", "Text to Speech", "")
 	if(input)
 		var/datum/tts/T = new /datum/tts()
-		T.say(mob, input, is_global=TRUE)
+		T.say(src, input, is_global=TRUE)
+		
+		to_chat(world, "<span class='boldannounce'>An admin used Text-to-Speech: [input]</span>")
+		log_admin("[key_name(src)] used Text-to-Speech: [input]")
+		message_admins("[key_name_admin(src)] used Text-to-Speech: [input]")
 
-/mob/living/carbon/human
-	var/tts_cooldown = 0
-	var/tts_voice = ""
+		SSblackbox.record_feedback("tally", "admin_verb", 1, "Play TTS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/mob/living/carbon/human/Initialize()
+/client/add_admin_verbs()
 	. = ..()
-	if (gender == FEMALE)
-		tts_voice = pick("betty", "rita", "ursula", "wendy")
-	else
-		tts_voice = pick("dennis", "frank", "harry", "kit", "paul")
+	if (holder)
+		var/rights = holder.rank.rights
+		if(rights & R_SOUNDS)
+			if(CONFIG_GET(flag/enable_tts))
+				verbs += /client/proc/play_tts
 
-/mob/living/carbon/human/say(message, datum/language/language = null)
+/client/remove_admin_verbs()
 	. = ..()
-
-	// only use TTS for those who want it
-	if (CONFIG_GET(flag/enable_tts))
-		var/client/C = src.client
-		if (C)
-			if (C.prefs.toggles & SOUND_MIDI)
-				if (world.time > tts_cooldown)
-					var/datum/tts/T = new /datum/tts()
-					T.say(src, message, voice = tts_voice)
-					tts_cooldown = world.time + length(message)
+	verbs.Remove(/client/proc/play_tts)
