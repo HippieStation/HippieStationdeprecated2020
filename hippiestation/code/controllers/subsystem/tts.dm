@@ -60,8 +60,7 @@ SUBSYSTEM_DEF(tts)
 				processing = null
 			return
 
-		for (var/P in GLOB.player_list)
-			var/mob/M = P
+		for (var/mob/M in GLOB.player_list)
 			if (!M)
 				continue
 			var/client/C = M.client
@@ -117,41 +116,31 @@ SUBSYSTEM_DEF(tts)
 /datum/dna/initialize_dna()
 	. = ..()
 	var/mob/living/carbon/human/H = holder
-	if (istype(H))
+	if (H)
 		if (H.gender == FEMALE)
 			tts_voice = pick("betty", "rita", "ursula", "wendy")
 		else
 			tts_voice = pick("dennis", "frank", "harry", "kit", "paul")
 
 /datum/dna/transfer_identity(mob/living/carbon/destination)
-	..()
+	. = ..()
 	if (!istype(destination))
 		return
 	destination.dna.tts_voice = tts_voice
 
 /datum/dna/copy_dna(datum/dna/new_dna)
-	..()
-	new_dna.tts_voice = tts_voice
-
-/mob/living/carbon/human/say(message, datum/language/language = null)
 	. = ..()
+	if (new_dna)
+		new_dna.tts_voice = tts_voice
 
-	if (.)
-		var/msg = message
-		var/first_char = copytext(message, 1, 2)
-		if (first_char == "*" && first_char == ";" && first_char == "." && first_char == ":")
-			msg = copytext(msg, 2, length(msg) - 1)
-
-		if (CONFIG_GET(flag/enable_tts) && client)
-			var/tts_voice = ""
-
-			if (dna)
-				if (dna.tts_voice)
-					tts_voice = dna.tts_voice
-
-			if (world.time > client.tts_cooldown && !SStts.check_queue(src))
-				var/datum/tts/T = new /datum/tts()
-				T.say(client, msg, voice = tts_voice)
+/datum/dna/update_dna_identity()
+	. = ..()
+	var/mob/living/carbon/human/H = holder
+	if (H)
+		if (H.gender == FEMALE)
+			tts_voice = pick("betty", "rita", "ursula", "wendy")
+		else
+			tts_voice = pick("dennis", "frank", "harry", "kit", "paul")
 
 /client/proc/play_tts()
 	set category = "Fun"
