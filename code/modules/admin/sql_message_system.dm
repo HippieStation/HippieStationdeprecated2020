@@ -4,9 +4,10 @@
 		return
 	if(!type)
 		return
-	if(!target_ckey && (type == "note" || type == "message" || type == "watchlist entry"))
-		var/new_ckey = ckey(input(usr,"Who would you like to create a [type] for?","Enter a ckey",null) as null|text)
-		if(!new_ckey)
+	var/target_ckey = ckey(target_key)
+	if(!target_key && (type == "note" || type == "message" || type == "watchlist entry"))
+		var/new_key = input(usr,"Who would you like to create a [type] for?","Enter a key or ckey",null) as null|text
+		if(!new_key)
 			return
 		new_ckey = sanitizeSQL(new_ckey)
 		var/datum/DBQuery/query_find_ckey = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("player")] WHERE ckey = '[new_ckey]'")
