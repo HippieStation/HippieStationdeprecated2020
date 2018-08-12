@@ -1549,8 +1549,13 @@
 	if(wires.is_cut(WIRE_SHOCK))
 		to_chat(user, "The electrification wire has been cut")
 	else
+<<<<<<< HEAD
 		LAZYADD(shockedby, "\[[time_stamp()]\][user](ckey:[user.ckey])")
 		add_logs(user, src, "electrified")
+=======
+		LAZYADD(shockedby, "\[[time_stamp()]\] [key_name(user)]")
+		log_combat(user, src, "electrified")
+>>>>>>> 2c8248575a... Logging system refactor and improvement (#39521)
 		set_electrified(AI_ELECTRIFY_DOOR_TIME)
 
 /obj/machinery/door/airlock/proc/shock_perm(mob/user)
@@ -1559,8 +1564,13 @@
 	if(wires.is_cut(WIRE_SHOCK))
 		to_chat(user, "The electrification wire has been cut")
 	else
+<<<<<<< HEAD
 		LAZYADD(shockedby, text("\[[time_stamp()]\][user](ckey:[user.ckey])"))
 		add_logs(user, src, "electrified")
+=======
+		LAZYADD(shockedby, text("\[[time_stamp()]\] [key_name(user)]"))
+		log_combat(user, src, "electrified")
+>>>>>>> 2c8248575a... Logging system refactor and improvement (#39521)
 		set_electrified(ELECTRIFIED_PERMANENT)
 
 /obj/machinery/door/airlock/proc/emergency_on(mob/user)

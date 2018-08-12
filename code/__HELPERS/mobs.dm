@@ -166,6 +166,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		else
 			return "unknown"
 
+<<<<<<< HEAD
 /*
 Proc for attack log creation, because really why not
 1 argument is the actor
@@ -225,6 +226,8 @@ Proc for attack log creation, because really why not
 	log_attack("[ssource] [what_done] [starget][(sobject||addition) ? " with ":""][sobject][addition][hp][sattackloc]")
 
 
+=======
+>>>>>>> 2c8248575a... Logging system refactor and improvement (#39521)
 /proc/do_mob(mob/user , mob/target, time = 30, uninterruptible = 0, progress = 1, datum/callback/extra_checks = null)
 	if(!user || !target)
 		return 0
@@ -472,41 +475,6 @@ Proc for attack log creation, because really why not
 			to_chat(M, rendered_message)
 		else
 			to_chat(M, message)
-
-
-/proc/log_talk(mob/user,message,logtype)
-	var/turf/say_turf = get_turf(user)
-
-	var/sayloc = ""
-	if(say_turf)
-		sayloc = "([say_turf.x],[say_turf.y],[say_turf.z])"
-
-
-	var/logmessage = "[message] [sayloc]"
-
-	switch(logtype)
-
-		if(LOGDSAY)
-			log_dsay(logmessage)
-		if(LOGSAY)
-			log_say(logmessage)
-		if(LOGWHISPER)
-			log_whisper(logmessage)
-		if(LOGEMOTE)
-			log_emote(logmessage)
-		if(LOGPDA)
-			log_pda(logmessage)
-		if(LOGCHAT)
-			log_chat(logmessage)
-		if(LOGCOMMENT)
-			log_comment(logmessage)
-		if(LOGASAY)
-			log_adminsay(logmessage)
-		if(LOGOOC)
-			log_ooc(logmessage)
-		else
-			warning("Invalid speech logging type detected. [logtype]. Defaulting to say")
-			log_say(logmessage)
 
 //Used in chemical_mob_spawn. Generates a random mob based on a given gold_core_spawnable value.
 /proc/create_random_mob(spawn_location, mob_class = HOSTILE_SPAWN)
