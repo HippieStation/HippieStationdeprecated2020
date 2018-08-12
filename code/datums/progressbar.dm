@@ -59,9 +59,9 @@
 	if(!bars.len)
 		LAZYREMOVE(user.progressbars, bar.loc)
 
-	if (client)
-		client.images -= bar
-	qdel(bar)
+	animate(bar, alpha = 0, time = 5) // hippie start - animate instead of just disappearing
+	addtimer(CALLBACK(src, .proc/remove_from_client), 5)
+	QDEL_IN(bar, 5) // hippie end - give time for the fading animation to play
 	. = ..()
 
 #undef PROGRESSBAR_HEIGHT
