@@ -55,13 +55,8 @@
 			if(specialfunctions & SHOCK)
 				if(D.secondsElectrified)
 					D.secondsElectrified = -1
-<<<<<<< HEAD
-					LAZYADD(D.shockedby, "\[[time_stamp()]\][usr](ckey:[usr.ckey])")
-					add_logs(usr, D, "electrified")
-=======
 					LAZYADD(D.shockedby, "\[[time_stamp()]\] [key_name(usr)]")
 					log_combat(usr, D, "electrified")
->>>>>>> 2c8248575a... Logging system refactor and improvement (#39521)
 				else
 					D.secondsElectrified = 0
 			if(specialfunctions & SAFE)

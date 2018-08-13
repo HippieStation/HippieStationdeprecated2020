@@ -143,13 +143,7 @@
 				if(L != user)
 					log_combat(user, L, "injected", src, addition="which had [contained]")
 				else
-<<<<<<< HEAD
-					log_attack("<font color='red'>[user.name] ([user.ckey]) injected [L.name] ([L.ckey]) with [src.name], which had [contained] (INTENT: [uppertext(user.a_intent)])</font>")
-					L.log_message("<font color='orange'>Injected themselves ([contained]) with [src.name].</font>", INDIVIDUAL_ATTACK_LOG)
-
-=======
 					L.log_message("injected themselves ([contained]) with [src.name]", LOG_ATTACK, color="orange")
->>>>>>> 2c8248575a... Logging system refactor and improvement (#39521)
 			var/fraction = min(amount_per_transfer_from_this/reagents.total_volume, 1)
 			reagents.reaction(L, INJECT, fraction)
 			reagents.trans_to(target, amount_per_transfer_from_this)

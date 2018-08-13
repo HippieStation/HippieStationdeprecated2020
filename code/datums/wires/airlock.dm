@@ -80,13 +80,8 @@
 			if(!A.secondsElectrified)
 				A.set_electrified(30)
 				if(usr)
-<<<<<<< HEAD
-					LAZYADD(A.shockedby, text("\[[time_stamp()]\][usr](ckey:[usr.ckey])"))
-				add_logs(usr, A, "electrified")
-=======
 					LAZYADD(A.shockedby, text("\[[time_stamp()]\] [key_name(usr)]"))
 					log_combat(usr, A, "electrified")
->>>>>>> 2c8248575a... Logging system refactor and improvement (#39521)
 		if(WIRE_SAFETY)
 			A.safe = !A.safe
 			if(!A.density)
@@ -140,13 +135,8 @@
 				if(A.secondsElectrified != -1)
 					A.set_electrified(-1)
 					if(usr)
-<<<<<<< HEAD
-						LAZYADD(A.shockedby, text("\[[time_stamp()]\][usr](ckey:[usr.ckey])"))
-					add_logs(usr, A, "electrified")
-=======
 						LAZYADD(A.shockedby, text("\[[time_stamp()]\] [key_name(usr)]"))
 						log_combat(usr, A, "electrified")
->>>>>>> 2c8248575a... Logging system refactor and improvement (#39521)
 		if(WIRE_SAFETY) // Cut to disable safeties, mend to re-enable.
 			A.safe = mend
 		if(WIRE_TIMING) // Cut to disable auto-close, mend to re-enable.

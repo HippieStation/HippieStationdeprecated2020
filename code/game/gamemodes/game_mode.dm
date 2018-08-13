@@ -152,7 +152,7 @@
 
 	for(var/mob/living/carbon/human/H in living_crew)
 		if(H.client && H.client.prefs.allow_midround_antag)
-			if(!jobban_isbanned(H, CATBAN) && !jobban_isbanned(H, CLUWNEBAN))
+			if(!jobban_isbanned(H, CATBAN) && !jobban_isbanned(H, CLUWNEBAN)) // hippie - adds our jobban checks
 				antag_candidates += H
 
 	if(!antag_candidates)
@@ -350,7 +350,7 @@
 	// Ultimate randomizing code right here
 	for(var/mob/dead/new_player/player in GLOB.player_list)
 		if(player.client && player.ready == PLAYER_READY_TO_PLAY)
-			if(!jobban_isbanned(player, CATBAN) && !jobban_isbanned(player, CLUWNEBAN))
+			if(!jobban_isbanned(player, CATBAN) && !jobban_isbanned(player, CLUWNEBAN)) // hippie - adds our jobban checks
 				players += player
 
 	// Shuffling, the players list is now ping-independent!!!
@@ -437,23 +437,23 @@
 			continue  // never had a client
 
 		if(L.ckey && !GLOB.directory[L.ckey])
-			msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='#ffcc00'><b>Disconnected</b></font>)\n"
+			msg += "<b>[L.name]</b> ([L.key]), the [L.job] (<font color='#ffcc00'><b>Disconnected</b></font>)\n"
 
 
 		if(L.ckey && L.client)
 			var/failed = FALSE
 			if(L.client.inactivity >= (ROUNDSTART_LOGOUT_REPORT_TIME / 2))	//Connected, but inactive (alt+tabbed or something)
-				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
+				msg += "<b>[L.name]</b> ([L.key]), the [L.job] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
 				failed = TRUE //AFK client
 			if(!failed && L.stat)
 				if(L.suiciding)	//Suicider
-					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<span class='boldannounce'>Suicide</span>)\n"
+					msg += "<b>[L.name]</b> ([L.key]), the [L.job] (<span class='boldannounce'>Suicide</span>)\n"
 					failed = TRUE //Disconnected client
 				if(!failed && L.stat == UNCONSCIOUS)
-					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (Dying)\n"
+					msg += "<b>[L.name]</b> ([L.key]), the [L.job] (Dying)\n"
 					failed = TRUE //Unconscious
 				if(!failed && L.stat == DEAD)
-					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (Dead)\n"
+					msg += "<b>[L.name]</b> ([L.key]), the [L.job] (Dead)\n"
 					failed = TRUE //Dead
 
 			var/p_ckey = L.client.ckey
