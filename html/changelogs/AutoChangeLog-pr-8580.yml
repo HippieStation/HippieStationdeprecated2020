@@ -1,0 +1,5 @@
+author: "Carbonhell"
+delete-after: True
+changes: 
+  - bugfix: "stamina HUD should update instantly now."
+  - bugfix: "Removed some useless code in an expensive proc, mobs should lag less"

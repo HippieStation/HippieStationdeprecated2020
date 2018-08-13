@@ -81,6 +81,43 @@
 	make_disciple.Remove(H)
 	STOP_PROCESSING(SSfastprocess, src)
 
+/datum/martial_art/monk/basic_hit(mob/living/carbon/human/A,mob/living/carbon/human/D) // this is how you to it properly you fucks
+	var/defense_roll = defense_roll(0)
+	var/damage = rand(A.dna.species.punchdamagelow, A.dna.species.punchdamagehigh)
+	var/atk_verb = A.dna.species.attack_verb
+	if(D.lying)
+		atk_verb = "kick"
+
+	switch(atk_verb)
+		if("kick")
+			A.do_attack_animation(D, ATTACK_EFFECT_KICK)
+		if("slash")
+			A.do_attack_animation(D, ATTACK_EFFECT_CLAW)
+		if("smash")
+			A.do_attack_animation(D, ATTACK_EFFECT_SMASH)
+		else
+			A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
+
+	if(defense_roll)
+		playsound(D.loc, A.dna.species.attack_sound, 25, 1, -1)
+		if(defense_roll == 2)
+			damage *= 2
+			D.visible_message("<span class='danger'>[A] has critically [atk_verb]ed [D]!</span>", \
+			"<span class='userdanger'>[A] has critically [atk_verb]ed [D]!</span>", null, COMBAT_MESSAGE_RANGE)
+			add_logs(A, D, "critically punched")
+		else
+			D.visible_message("<span class='danger'>[A] has [atk_verb]ed [D]!</span>", \
+			"<span class='userdanger'>[A] has [atk_verb]ed [D]!</span>", null, COMBAT_MESSAGE_RANGE)
+			add_logs(A, D, "punched")
+		D.apply_damage(damage, BRUTE)
+		return TRUE
+	else
+		playsound(D.loc, A.dna.species.miss_sound, 25, 1, -1)
+		D.visible_message("<span class='warning'>[A] has attempted to [atk_verb] [D]!</span>", \
+			"<span class='userdanger'>[A] has attempted to [atk_verb] [D]!</span>", null, COMBAT_MESSAGE_RANGE)
+		add_logs(A, D, "attempted to [atk_verb]")
+		return FALSE
+
 /datum/martial_art/monk/process()
 	..()
 	if(diamond_body)
