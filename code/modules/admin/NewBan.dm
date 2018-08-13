@@ -123,9 +123,15 @@ GLOBAL_PROTECT(Banlist)
 		if (temp)
 			WRITE_FILE(GLOB.Banlist["minutes"], bantimestamp)
 		if(!temp)
+<<<<<<< HEAD
 			create_message("note", ckey, bannedby, "Permanently banned - [reason]", null, null, 0, 0)
 		else
 			create_message("note", ckey, bannedby, "Banned for [minutes] minutes - [reason]", null, null, 0, 0)
+=======
+			create_message("note", key, bannedby, "Permanently banned - [reason]", null, null, 0, 0, null, 0)
+		else
+			create_message("note", key, bannedby, "Banned for [minutes] minutes - [reason]", null, null, 0, 0, null, 0)
+>>>>>>> 31f020f3cc... Add expiration time for admin messages (#39502)
 	return 1
 
 /proc/RemoveBan(foldername)
