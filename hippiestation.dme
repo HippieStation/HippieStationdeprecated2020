@@ -2719,6 +2719,7 @@
 #include "hippiestation\code\datums\martial\krav_maga.dm"
 #include "hippiestation\code\datums\martial\monk.dm"
 #include "hippiestation\code\datums\martial\plasma_fist.dm"
+#include "hippiestation\code\datums\martial\security_arts.dm"
 #include "hippiestation\code\datums\martial\sleeping_carp.dm"
 #include "hippiestation\code\datums\mood_events\generic_positive_events.dm"
 #include "hippiestation\code\datums\status_effects\buffs.dm"

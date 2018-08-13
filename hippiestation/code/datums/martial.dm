@@ -1,4 +1,5 @@
 /datum/martial_art
+	var/constant_block = 0 // rather than a block chance while being on throw mode, this is constant
 	var/mob/living/carbon/human/owner // was it this fucking hard to add a simple link to the human?
 
 /datum/martial_art/teach(mob/living/carbon/human/H,make_temporary=0)
