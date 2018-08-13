@@ -290,9 +290,6 @@
 				if("note")
 					notedata += data
 		qdel(query_get_messages)
-<<<<<<< HEAD
-		output += "<h2><center>[target_ckey]</center></h2><center>"
-=======
 		if(!target_key)
 			var/datum/DBQuery/query_get_message_key = SSdbcore.NewQuery("SELECT byond_key FROM [format_table_name("player")] WHERE ckey = '[target_ckey]'")
 			if(!query_get_message_key.warn_execute())
@@ -302,7 +299,6 @@
 				target_key = query_get_message_key.item[1]
 			qdel(query_get_message_key)
 		output += "<h2><center>[target_key]</center></h2><center>"
->>>>>>> b675aa03db... fix adding notes for ckeys without any (#39677)
 		if(!linkless)
 			output += "<a href='?_src_=holder;[HrefToken()];addnote=[target_ckey]'>\[Add note\]</a>"
 			output += " <a href='?_src_=holder;[HrefToken()];addmessage=[target_ckey]'>\[Add message\]</a>"
