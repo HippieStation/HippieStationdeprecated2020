@@ -16,15 +16,6 @@
 #define INVESTIGATE_EXONET			"exonet"
 #define INVESTIGATE_CIRCUIT			"circuit"
 
-<<<<<<< HEAD
-//Individual logging defines
-#define INDIVIDUAL_ATTACK_LOG		"Attack log"
-#define INDIVIDUAL_SAY_LOG			"Say log"
-#define INDIVIDUAL_EMOTE_LOG		"Emote log"
-#define INDIVIDUAL_OOC_LOG			"OOC log"
-#define INDIVIDUAL_OWNERSHIP_LOG	"Ownership log"
-#define INDIVIDUAL_SHOW_ALL_LOG		"All logs"
-=======
 // Logging types for log_message()
 #define LOG_ATTACK		(1 << 0)
 #define LOG_SAY			(1 << 1)
@@ -50,6 +41,5 @@
 #define INDIVIDUAL_OWNERSHIP_LOG	(LOG_OWNERSHIP)
 #define INDIVIDUAL_SHOW_ALL_LOG		(LOG_ATTACK | LOG_SAY | LOG_WHISPER | LOG_EMOTE | LOG_DSAY | LOG_PDA | LOG_CHAT | LOG_COMMENT | LOG_TELECOMMS | LOG_OOC | LOG_ADMIN | LOG_OWNERSHIP | LOG_GAME)
 
->>>>>>> 9aaed104b7... Merge pull request #39668 from AnturK/asayfix
 #define LOGSRC_CLIENT "Client"
 #define LOGSRC_MOB "Mob"
