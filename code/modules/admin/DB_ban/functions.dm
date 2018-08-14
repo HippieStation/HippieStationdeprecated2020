@@ -143,12 +143,13 @@
 		computerid = "0"
 	if(!ip)
 		ip = "0.0.0.0"
+	var/internet_address_to_use = CONFIG_GET(string/internet_address_to_use)
 	var/sql_job = sanitizeSQL(job)
 	var/sql_computerid = sanitizeSQL(computerid)
 	var/sql_ip = sanitizeSQL(ip)
 	var/sql_a_computerid = sanitizeSQL(a_computerid)
 	var/sql_a_ip = sanitizeSQL(a_ip)
-	var/sql = "INSERT INTO [format_table_name("ban")] (`bantime`,`server_ip`,`server_port`,`round_id`,`bantype`,`reason`,`job`,`duration`,`expiration_time`,`ckey`,`computerid`,`ip`,`a_ckey`,`a_computerid`,`a_ip`,`who`,`adminwho`) VALUES (Now(), INET_ATON(IF('[world.internet_address]' LIKE '', '0', '[world.internet_address]')), '[world.port]', '[GLOB.round_id]', '[bantype_str]', '[reason]', '[sql_job]', [(duration)?"[duration]":"0"], Now() + INTERVAL [(duration>0) ? duration : 0] MINUTE, '[sql_ckey]', '[sql_computerid]', INET_ATON('[sql_ip]'), '[sql_a_ckey]', '[sql_a_computerid]', INET_ATON('[sql_a_ip]'), '[who]', '[adminwho]')"
+	var/sql = "INSERT INTO [format_table_name("ban")] (`bantime`,`server_ip`,`server_port`,`round_id`,`bantype`,`reason`,`job`,`duration`,`expiration_time`,`ckey`,`computerid`,`ip`,`a_ckey`,`a_computerid`,`a_ip`,`who`,`adminwho`) VALUES (Now(), INET_ATON(IF('[internet_address_to_use]' LIKE '', '0', '[internet_address_to_use]')), '[world.port]', '[GLOB.round_id]', '[bantype_str]', '[reason]', '[sql_job]', [(duration)?"[duration]":"0"], Now() + INTERVAL [(duration>0) ? duration : 0] MINUTE, '[sql_ckey]', '[sql_computerid]', INET_ATON('[sql_ip]'), '[sql_a_ckey]', '[sql_a_computerid]', INET_ATON('[sql_a_ip]'), '[who]', '[adminwho]')"
 	var/datum/DBQuery/query_add_ban = SSdbcore.NewQuery(sql)
 	if(!query_add_ban.warn_execute())
 		qdel(query_add_ban)
