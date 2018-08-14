@@ -104,18 +104,18 @@
 			damage *= 2
 			D.visible_message("<span class='danger'>[A] has critically [atk_verb]ed [D]!</span>", \
 			"<span class='userdanger'>[A] has critically [atk_verb]ed [D]!</span>", null, COMBAT_MESSAGE_RANGE)
-			add_logs(A, D, "critically punched")
+			log_combat(A, D, "critically punched")
 		else
 			D.visible_message("<span class='danger'>[A] has [atk_verb]ed [D]!</span>", \
 			"<span class='userdanger'>[A] has [atk_verb]ed [D]!</span>", null, COMBAT_MESSAGE_RANGE)
-			add_logs(A, D, "punched")
+			log_combat(A, D, "punched")
 		D.apply_damage(damage, BRUTE)
 		return TRUE
 	else
 		playsound(D.loc, A.dna.species.miss_sound, 25, 1, -1)
 		D.visible_message("<span class='warning'>[A] has attempted to [atk_verb] [D]!</span>", \
 			"<span class='userdanger'>[A] has attempted to [atk_verb] [D]!</span>", null, COMBAT_MESSAGE_RANGE)
-		add_logs(A, D, "attempted to [atk_verb]")
+		log_combat(A, D, "attempted to [atk_verb]")
 		return FALSE
 
 /datum/martial_art/monk/process()
@@ -282,14 +282,14 @@
 						for(var/H in surrounding_mobs)
 							do_attack(A, H, FALSE, FALSE, null)
 		playsound(D.loc, A.dna.species.attack_sound, 25, 1, -1)
-		add_logs(A, D, "[was_crit]punched (monk)")
+		log_combat(A, D, "[was_crit]punched (monk)")
 		D.visible_message("<span class='danger'>[A] [was_crit][picked_hit_type] [D]!</span>", \
 				  "<span class='userdanger'>[A] [was_crit][picked_hit_type] you!</span>")
 		return TRUE
 	else
 		if(D.stat != DEAD && D.ckey && D != A)
 			add_exp(2.5)
-		add_logs(A, D, "missed a punch (monk)")
+		log_combat(A, D, "missed a punch (monk)")
 		playsound(D.loc, A.dna.species.miss_sound, 25, 1, -1)
 		D.visible_message("<span class='danger'>[A] missed [D]!</span>", \
 				  "<span class='userdanger'>[A] misses you!</span>")
@@ -338,7 +338,7 @@
 			D.Stun(30)
 			D.visible_message("<span class='danger'>[A] punches [D], stunning them!</span>", \
 					  "<span class='userdanger'>[A] punches you, and you're stunned!</span>")
-			add_logs(A, D, "stunning fist (monk)")
+			log_combat(A, D, "stunning fist (monk)")
 	else
 		D.visible_message("<span class='danger'>[A] missed [D]!</span>", \
 				  "<span class='userdanger'>[A] misses you!</span>")
@@ -358,7 +358,7 @@
 			D.set_heartattack(TRUE)
 			D.visible_message("<span class='danger'>[A] punches [D], and they start to quiver!</span>", \
 					  "<span class='userdanger'>[A] punches you, and you feel your heart stop!</span>")
-			add_logs(A, D, "quivering palm (monk)")
+			log_combat(A, D, "quivering palm (monk)")
 	else
 		D.visible_message("<span class='danger'>[A] missed [D]!</span>", \
 				  "<span class='userdanger'>[A] misses you!</span>")

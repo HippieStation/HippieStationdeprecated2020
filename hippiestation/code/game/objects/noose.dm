@@ -102,7 +102,7 @@
 			"<span class='suicide'>[M] ties \the [src] over their neck!</span>",\
 			"<span class='suicide'>You tie \the [src] over your neck!</span>")
 		playsound(user.loc, 'hippiestation/sound/effects/noosed.ogg', 50, 1, -1)
-		add_logs(user, null, "hanged themselves", src)
+		log_combat(user, null, "hanged themselves", src)
 		M.noosed = TRUE
 		return TRUE
 	else
@@ -116,7 +116,7 @@
 					"<span class='danger'>[user] ties \the [src] over [M]'s neck!</span>",\
 					"<span class='userdanger'>[user] ties \the [src] over your neck!</span>")
 				playsound(user.loc, 'hippiestation/sound/effects/noosed.ogg', 50, 1, -1)
-				add_logs(user, M, "hanged", src)
+				log_combat(user, M, "hanged", src)
 				M.noosed = TRUE
 				return TRUE
 			else
