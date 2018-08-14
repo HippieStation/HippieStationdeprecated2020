@@ -55,7 +55,7 @@
 		playsound(get_turf(A), 'sound/weapons/slam.ogg', 50, 1, -1)
 		D.apply_damage(10, BRUTE)
 		D.Knockdown(120)
-		add_logs(A, D, "cqc slammed")
+		log_combat(A, D, "cqc slammed")
 	return 1
 
 /datum/martial_art/cqc/proc/Kick(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -66,7 +66,7 @@
 		var/atom/throw_target = get_edge_target_turf(D, A.dir)
 		D.throw_at(throw_target, 1, 14, A)
 		D.apply_damage(10, BRUTE)
-		add_logs(A, D, "cqc kicked")
+		log_combat(A, D, "cqc kicked")
 	if(D.IsKnockdown() && !D.stat)
 		D.visible_message("<span class='warning'>[A] kicks [D]'s head, knocking them out!</span>", \
 					  		"<span class='userdanger'>[A] kicks your head, knocking you out!</span>")
@@ -118,7 +118,7 @@
 		A.start_pulling(D, 1)
 		if(A.pulling)
 			D.stop_pulling()
-			add_logs(A, D, "grabbed", addition="aggressively")
+			log_combat(A, D, "grabbed", addition="aggressively")
 			A.grab_state = GRAB_AGGRESSIVE //Instant aggressive grab
 
 	return 1
@@ -130,7 +130,7 @@
 	add_to_streak("H",D)
 	if(check_streak(A,D))
 		return 1
-	add_logs(A, D, "CQC'd")
+	log_combat(A, D, "CQC'd")
 	A.do_attack_animation(D)
 	var/picked_hit_type = pick("CQC'd", "Big Bossed")
 	var/bonus_damage = 13
@@ -144,14 +144,14 @@
 		playsound(get_turf(D), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
 	D.visible_message("<span class='danger'>[A] [picked_hit_type] [D]!</span>", \
 					  "<span class='userdanger'>[A] [picked_hit_type] you!</span>")
-	add_logs(A, D, "[picked_hit_type] with CQC")
+	log_combat(A, D, "[picked_hit_type] with CQC")
 	if(A.resting && !D.stat && !D.IsKnockdown())
 		D.visible_message("<span class='warning'>[A] leg sweeps [D]!", \
 							"<span class='userdanger'>[A] leg sweeps you!</span>")
 		playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
 		D.apply_damage(10, BRUTE)
 		D.Knockdown(60)
-		add_logs(A, D, "cqc sweeped")
+		log_combat(A, D, "cqc sweeped")
 	return 1
 
 /datum/martial_art/cqc/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -176,7 +176,7 @@
 		D.visible_message("<span class='danger'>[A] attempted to disarm [D]!</span>", \
 							"<span class='userdanger'>[A] attempted to disarm [D]!</span>")
 		playsound(D, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-	add_logs(A, D, "disarmed with CQC", "[I ? " grabbing \the [I]" : ""]")
+	log_combat(A, D, "disarmed with CQC", "[I ? " grabbing \the [I]" : ""]")
 	if(restraining && A.pulling == D)
 		D.visible_message("<span class='danger'>[A] puts [D] into a chokehold!</span>", \
 							"<span class='userdanger'>[A] puts you into a chokehold!</span>")

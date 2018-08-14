@@ -692,13 +692,13 @@
 		A.start_pulling(D, 1)
 		if(A.pulling)
 			D.stop_pulling()
-			add_logs(A, D, "grabbed", addition="aggressively")
+			log_combat(A, D, "grabbed", addition="aggressively")
 			A.grab_state = GRAB_AGGRESSIVE //Instant aggressive grab
 
 	return TRUE
 
 /datum/martial_art/nano/harm_act(var/mob/living/carbon/human/A, var/mob/living/carbon/D)
-	add_logs(A, D, "punched")
+	log_combat(A, D, "punched")
 	var/picked_hit_type = pick("punches", "kicks")
 	var/bonus_damage = 10
 
@@ -711,7 +711,7 @@
 		playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
 		bonus_damage += 5
 		D.Knockdown(60)
-		add_logs(A, D, "nanosuit leg sweeped")
+		log_combat(A, D, "nanosuit leg sweeped")
 	if(D != A && !D.stat || !D.IsKnockdown()) //and we can't knock ourselves the fuck out/down!
 		if(A.grab_state == GRAB_AGGRESSIVE)
 			A.stop_pulling() //So we don't spam the combo
@@ -744,7 +744,7 @@
 	else
 		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 		playsound(get_turf(D), 'sound/effects/hit_punch.ogg', 50, 1, -1)
-	add_logs(A, D, "[picked_hit_type] with [name]")
+	log_combat(A, D, "[picked_hit_type] with [name]")
 	D.apply_damage(bonus_damage, BRUTE)
 	return TRUE
 
@@ -764,7 +764,7 @@
 		D.visible_message("<span class='danger'>[A] attempted to disarm [D]!</span>", \
 							"<span class='userdanger'>[A] attempted to disarm [D]!</span>")
 		playsound(D, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-	add_logs(A, D, "disarmed with krav maga", "[I ? " removing \the [I]" : ""]")
+	log_combat(A, D, "disarmed with krav maga", "[I ? " removing \the [I]" : ""]")
 	return TRUE
 
 
@@ -775,7 +775,7 @@
 	SEND_SIGNAL(src, COMSIG_ATOM_HULK_ATTACK, user)
 	if(does_attack_animation)
 		user.changeNext_move(CLICK_CD_MELEE)
-		add_logs(user, src, "punched", "nanosuit strength mode")
+		log_combat(user, src, "punched", "nanosuit strength mode")
 		user.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 
 /mob/living/carbon/monkey/attack_nano(mob/living/carbon/human/user, does_attack_animation = 0)

@@ -91,7 +91,7 @@
 				H.try_to_embed(S,O)
 			user.visible_message("<span class='danger'>[user] has stapled [target] in the [O]!</span>", "<span class='userdanger'>You staple [target]!</span>")
 			H.update_damage_overlays()
-			add_logs(user, H, "stapled", src)
+			log_combat(user, H, "stapled", src)
 		else
 			visible_message("<span class='danger'>[user] has attempted to staple [target] in the [O]!</span>")
 	else
