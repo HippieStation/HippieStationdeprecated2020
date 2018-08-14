@@ -586,8 +586,6 @@
 /atom/proc/GenerateTag()
 	return
 
-<<<<<<< HEAD
-=======
 // Generic logging helper
 /atom/proc/log_message(message, message_type, color=null, log_globally=TRUE)
 	if(!log_globally)
@@ -674,7 +672,6 @@ Proc for attack log creation, because really why not
 		var/reverse_message = "has been [what_done] by [ssource][postfix]"
 		target.log_message(reverse_message, LOG_ATTACK, color="orange", log_globally=FALSE)
 
->>>>>>> 9aaed104b7... Merge pull request #39668 from AnturK/asayfix
 // Filter stuff
 /atom/movable/proc/add_filter(name,priority,list/params)
 	if(!filter_data)
