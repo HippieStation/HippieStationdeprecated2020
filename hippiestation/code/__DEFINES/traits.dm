@@ -1,2 +1,3 @@
 /* Defines for Hippie specific Traits */
-/* Currently, there are none */
+
+#define TRAIT_MEDIUM				"medium"
