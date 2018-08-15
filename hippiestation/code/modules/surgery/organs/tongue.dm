@@ -7,7 +7,7 @@ GLOBAL_LIST_EMPTY(abductortongue_other)
 	var/mob/living/carbon/human/user = usr
 	var/mob/living/carbon/human/H
 	var/rendered = "<span class='abductor'><b>[user.name]:</b> [message]</span>"
-	log_talk(user,"ABDUCTOR:[key_name(user)] : [rendered]",LOGSAY)
+	user.log_talk(message, LOG_SAY, tag="Abductor")
 	if(user)
 		if(user.mind)
 			if(user.mind.has_antag_datum(/datum/antagonist/abductor))

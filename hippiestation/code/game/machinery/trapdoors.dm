@@ -131,7 +131,7 @@
 			target.forceMove(src)
 			target.visible_message("<span class='danger'>[user] has pushed [target] in \the [name].</span>", \
 				"<span class='userdanger'>[user] has pushedd [target] in \the [name].</span>")
-			add_logs(user, target, "pushed", addition="into [name]")
+			log_combat(user, target, "pushed", addition="into [name]")
 			sleep(5)
 			trap_flush()
 

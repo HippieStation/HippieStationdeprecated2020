@@ -78,7 +78,7 @@
 		H.sec_hud_set_implants()
 
 	if(user)
-		add_logs(user, target, "implanted", object="[name]")
+		log_combat(user, target, "implanted", object="[name]")
 
 	if(useblacklist && !blacklist.len)
 		blacklist += imp_in.z

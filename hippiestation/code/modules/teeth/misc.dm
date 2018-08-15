@@ -95,7 +95,7 @@
 				T.copy_evidences(E)
 				E.use(1)
 				E.zero_amount() //Try to delete the teeth
-				add_logs(user, H, "torn out the tooth from", src)
+				log_combat(user, H, "torn out the tooth from", src)
 				H.visible_message("<span class='danger'>[user] tears off [H]'s tooth with [src]!</span>",
 								"<span class='userdanger'>[user] tears off your tooth with [src]!</span>")
 				var/armor = H.run_armor_check(O, "melee")
