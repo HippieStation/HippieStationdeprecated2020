@@ -1,0 +1,5 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - bugfix: "Fixed changeling tesla claw from going into your belt slot and staying there."
+  - bugfix: "Added permit flags for consistency"
