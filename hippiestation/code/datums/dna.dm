@@ -1,4 +1,4 @@
-/mob/living/carbon/human/set_species(datum/species/mrace, icon_update = 1)
+/mob/living/carbon/human/set_species(datum/species/mrace, icon_update = TRUE, pref_load = FALSE)
 	..()
 	update_teeth()
 	if(jobban_isbanned(src, CATBAN) && dna.species.name != "Catbeast")

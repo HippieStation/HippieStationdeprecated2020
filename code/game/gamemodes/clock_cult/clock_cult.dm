@@ -146,8 +146,8 @@ Credit where due:
 	var/list/errorList = list()
 	var/list/reebes = SSmapping.LoadGroup(errorList, "Reebe", "map_files/generic", "City_of_Cogs.dmm", default_traits = ZTRAITS_REEBE, silent = TRUE)
 	if(errorList.len)	// reebe failed to load
-		message_admins("Rebee failed to load!")
-		log_game("Rebee failed to load!")
+		message_admins("Reebe failed to load!")
+		log_game("Reebe failed to load!")
 		return FALSE
 	for(var/datum/parsed_map/PM in reebes)
 		PM.initTemplateBounds()

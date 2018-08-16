@@ -19,13 +19,13 @@
 	var/datum/objective/objective
 	var/stage_ticks = 1
 
-/datum/species/meeseeks/on_species_gain(mob/living/carbon/human/C)
+/datum/species/meeseeks/on_species_gain(mob/living/carbon/human/C, datum/species/old_species, pref_load)
 	C.draw_hippie_parts()
 	C.maxHealth = INFINITY
 	C.health = C.maxHealth
 	. = ..()
 
-/datum/species/meeseeks/on_species_loss(mob/living/carbon/human/C)
+/datum/species/meeseeks/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	C.draw_hippie_parts(TRUE)
 	C.maxHealth = initial(C.maxHealth)
 	C.health = C.maxHealth

@@ -309,7 +309,7 @@ Versioning
 
 	if(!SSdbcore.Connect())
 		return
-
+	
 	sqlname = sanitizeSQL(sqlname)
 	sqlkey = sanitizeSQL(sqlkey)
 	sqljob = sanitizeSQL(sqljob)

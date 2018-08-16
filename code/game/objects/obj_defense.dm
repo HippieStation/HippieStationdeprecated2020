@@ -48,8 +48,7 @@
 
 /obj/hitby(atom/movable/AM)
 	..()
-	if(src && !QDELETED(src)) // hippie
-		take_damage(AM.throwforce, BRUTE, "melee", 1, get_dir(src, AM))
+	take_damage(AM.throwforce, BRUTE, "melee", 1, get_dir(src, AM))
 
 /obj/ex_act(severity, target)
 	if(resistance_flags & INDESTRUCTIBLE)

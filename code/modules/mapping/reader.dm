@@ -77,7 +77,6 @@ GLOBAL_DATUM_INIT(_preloader, /datum/map_preloader, new)
 					key_len = length(key)
 				else
 					CRASH("Inconsistent key length in DMM")
-
 			if(!measureOnly)
 				grid_models[key] = dmmRegex.group[2]
 
