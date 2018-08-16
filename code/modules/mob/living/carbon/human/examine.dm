@@ -140,17 +140,7 @@
 			disabled += BP
 		missing -= BP.body_zone
 		for(var/obj/item/I in BP.embedded_objects)
-			msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] embedded in [t_his] [BP.name]! [I.pinned ? "It [t_has] pinned [t_him] down to \the [I.pinned]!" : ""]</B>\n" // Hippie - Show what embedded part has them pinned
-
-	for(var/X in disabled)
-		var/obj/item/bodypart/BP = X
-		var/damage_text
-		if(!(BP.get_damage(include_stamina = FALSE) >= BP.max_damage)) //Stamina is disabling the limb
-			damage_text = "limp and lifeless"
-		else
-			var/more_brute = BP.brute_dam >= BP.burn_dam
-			damage_text = more_brute ? "broken and mangled" : "burnt and blistered"
-		msg += "<B>[capitalize(t_his)] [BP.name] is [damage_text]!</B>\n"
+			msg += "<B>[t_He] [t_has] \a [icon2html(I, user)] [I] embedded in [t_his] [BP.name]!</B>\n"
 
 	for(var/X in disabled)
 		var/obj/item/bodypart/BP = X
@@ -342,8 +332,6 @@
 
 	to_chat(user, msg)
 	return msg
-
-	return msg // Hippie - To allow for disguises
 
 /mob/living/proc/status_effect_examines(pronoun_replacement) //You can include this in any mob's examine() to show the examine texts of status effects!
 	var/list/dat = list()

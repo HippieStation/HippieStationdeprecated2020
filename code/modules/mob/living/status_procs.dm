@@ -214,7 +214,7 @@
 /mob/living/proc/has_quirk(quirk)
 	return roundstart_quirks[quirk]
 
-/mob/living/proc/remove_all_quirks(remove_species_traits = FALSE, remove_organ_traits = FALSE, remove_quirks = FALSE)
+/mob/living/proc/remove_all_traits(remove_species_traits = FALSE, remove_organ_traits = FALSE, remove_quirks = FALSE)
 
 	var/list/blacklisted_sources = list()
 	if(!remove_species_traits)

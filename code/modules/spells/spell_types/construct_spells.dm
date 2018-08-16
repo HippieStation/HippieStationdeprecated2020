@@ -32,7 +32,7 @@
 
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/floor
-	name = "Summon Cult floor"
+	name = "Summon Cult Floor"
 	desc = "This spell constructs a cult floor."
 
 	school = "conjuration"

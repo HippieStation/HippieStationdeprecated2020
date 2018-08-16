@@ -22,8 +22,6 @@
 	if(!CheckAdminHref(href, href_list))
 		return
 
-	hippieTopic(href, href_list) // hippie
-
 	if(href_list["ahelp"])
 		if(!check_rights(R_ADMIN, TRUE))
 			return
@@ -45,7 +43,6 @@
 		if(!check_rights(R_ADMIN))
 			return
 		var/mob/M = locate(href_list["getplaytimewindow"]) in GLOB.mob_list
-
 		if(!M)
 			to_chat(usr, "<span class='danger'>ERROR: Mob not found.</span>")
 			return
@@ -140,8 +137,8 @@
 					message_admins("[key_name(usr)] created a CentCom response team.")
 					log_admin("[key_name(usr)] created a CentCom response team.")
 				else
-					message_admins("[key_name_admin(usr)] tried to create a Centcom response team. Unfortunately, there were not enough candidates available.")
-					log_admin("[key_name(usr)] failed to create a Centcom response team.")
+					message_admins("[key_name_admin(usr)] tried to create a CentCom response team. Unfortunately, there were not enough candidates available.")
+					log_admin("[key_name(usr)] failed to create a CentCom response team.")
 			if("abductors")
 				message_admins("[key_name(usr)] is creating an abductor team...")
 				if(src.makeAbductorTeam())
@@ -399,7 +396,7 @@
 		check_antagonists()
 
 	else if(href_list["delay_round_end"])
-		if(!check_rights(R_ADMIN))
+		if(!check_rights(R_SERVER))
 			return
 		if(!SSticker.delay_end)
 			SSticker.admin_delay_notice = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
@@ -894,19 +891,6 @@
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=alien;jobban4=[REF(M)]'><font color=red>Alien</font></a></td>"
 		else
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=alien;jobban4=[REF(M)]'>Alien</a></td>"
-
-		//Hippie Start - Catban
-		if(jobban_isbanned(M, CATBAN) || isbanned_dept)
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=catban;jobban4=[REF(M)]'><font color=red>Catbanned</font></a></td>"
-		else
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=catban;jobban4=[REF(M)]'>Catban</a></td>"
-
-		//Hippie - Cluwneban
-		if(jobban_isbanned(M, CLUWNEBAN) || isbanned_dept)
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=cluwneban;jobban4=[REF(M)]'><font color=red>Cluwnebanned</font></a></td>"
-		else
-			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=cluwneban;jobban4=[REF(M)]'>Cluwneban</a></td>"
-//Hippie end
 
 		dat += "</tr></table>"
 		usr << browse(dat, "window=jobban2;size=800x450")

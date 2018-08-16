@@ -98,7 +98,7 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 
 //SWARMER AI
 //AI versions of the swarmer mini-antag
-//This is an Abstract base, it re-enables AI, but does not give the swarmer any goals/targets
+//This is an Abstract Base, it re-enables AI, but does not give the swarmer any goals/targets
 /mob/living/simple_animal/hostile/swarmer/ai
 	wander = 1
 	faction = list("swarmer", "mining")

@@ -57,7 +57,7 @@
 	return 1
 
 
-//base energy weapon type
+//Base energy weapon type
 /obj/item/mecha_parts/mecha_equipment/weapon/energy
 	name = "general energy weapon"
 	firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect/energy
@@ -191,7 +191,7 @@
 	return 1
 
 
-//base ballistic weapon type
+//Base ballistic weapon type
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic
 	name = "general ballistic weapon"
 	fire_sound = 'sound/weapons/gunshot.ogg'

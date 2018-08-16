@@ -332,8 +332,6 @@
 		var/datum/reagent/R = reagent
 		R.on_update (A)
 	update_total()
-/*
-this has been modified and moved over to the hippie folder to allow for custom reaction conditions
 
 /datum/reagents/proc/handle_reactions()
 	var/list/cached_reagents = reagent_list
@@ -452,7 +450,7 @@ this has been modified and moved over to the hippie folder to allow for custom r
 	while(reaction_occurred)
 	update_total()
 	return 0
-*/
+
 /datum/reagents/proc/isolate_reagent(reagent)
 	var/list/cached_reagents = reagent_list
 	for(var/_reagent in cached_reagents)

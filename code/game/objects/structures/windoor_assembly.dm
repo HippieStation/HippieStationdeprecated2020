@@ -43,7 +43,7 @@
 
 /obj/structure/windoor_assembly/Move()
 	var/turf/T = loc
-	..()
+	. = ..()
 	setDir(ini_dir)
 	move_update_air(T)
 

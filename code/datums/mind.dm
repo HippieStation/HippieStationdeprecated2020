@@ -59,7 +59,7 @@
 
 	var/mob/living/enslaved_to //If this mind's master is another mob (i.e. adamantine golems)
 	var/datum/language_holder/language_holder
-	var/unconvertible = FALSE
+	var/unconvertable = FALSE
 	var/late_joiner = FALSE
 
 /datum/mind/New(var/key)

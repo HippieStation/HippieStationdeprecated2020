@@ -562,7 +562,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			bodyparts_to_add -= "wings_open"
 		else if ("wings" in mutant_bodyparts)
 			bodyparts_to_add -= "wings_open"
-	hippie_handle_hiding_bodyparts(bodyparts_to_add, HD, H) // hippie
 
 	//Digitigrade legs are stuck in the phantom zone between true limbs and mutant bodyparts. Mainly it just needs more agressive updating than most limbs.
 	var/update_needed = FALSE
@@ -631,8 +630,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					S = GLOB.moth_wings_list[H.dna.features["moth_wings"]]
 				if("caps")
 					S = GLOB.caps_list[H.dna.features["caps"]]
-				else // hippie start - our species mutant bodyparts such as ipc screen
-					S = hippie_mutant_bodyparts(bodypart, H) // hippie end
 			if(!S || S.icon_state == "none")
 				continue
 
@@ -1148,10 +1145,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 //////////////////
 
 /datum/species/proc/help(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
-//hippie edit - martial arts check because this was never implemented. sorry not sorry
-	if(attacker_style && attacker_style.help_act(user,target)) // 29/07/18, somehow this was removed but now we added it back in :)
-		return 1
-//hippie edit end
 	if(target.health >= 0 && !(target.has_trait(TRAIT_FAKEDEATH)))
 		target.help_shake_act(user)
 		if(target != user)
@@ -1217,7 +1210,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			"<span class='userdanger'>[user] has attempted to [atk_verb] [target]!</span>", null, COMBAT_MESSAGE_RANGE)
 			return FALSE
 
-		punchouttooth(target,user,affecting,rand(0,9))
 
 		var/armor_block = target.run_armor_check(affecting, "melee")
 
@@ -1350,13 +1342,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			I.add_mob_blood(H)
 			playsound(get_turf(H), I.get_dismember_sound(), 80, 1)
 
-	// Hippie Start - If we're hit then throw off some hats
-	if (prob(25))
-		var/list/L = list()
-		LAZYADD(L, get_dir(user, H))
-		H.throw_hats(1 + rand(0, FLOOR(I.force / 5, 1)), L)
-	// Hippie End
-
 	var/bloody = 0
 	if(((I.damtype == BRUTE) && I.force && prob(25 + (I.force * 2))))
 		if(affecting.status == BODYPART_ORGANIC)
@@ -1399,7 +1384,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					if(H.glasses && prob(33))
 						H.glasses.add_mob_blood(H)
 						H.update_inv_glasses()
-				punchouttooth(H,user,I.force,affecting)
 
 			if(BODY_ZONE_CHEST)
 				if(H.stat == CONSCIOUS && !I.is_sharp() && armor_block < 50)

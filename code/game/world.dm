@@ -30,7 +30,6 @@ GLOBAL_PROTECT(security_mode)
 	SetupLogs()
 
 	load_admins()
-	hippie_initialize() // hippie - loads mentor and other stuff. Due to mentors, it has to be after load_admins().
 	LoadVerbs(/datum/verbs/menu)
 	if(CONFIG_GET(flag/usewhitelist))
 		load_whitelist()
@@ -241,23 +240,50 @@ GLOBAL_PROTECT(security_mode)
 	..()
 
 /world/proc/update_status()
+
+	var/list/features = list()
+
+	if(GLOB.master_mode)
+		features += GLOB.master_mode
+
+	if (!GLOB.enter_allowed)
+		features += "closed"
+
 	var/s = ""
 	var/hostedby
-	var/forumurl
 	if(config)
 		var/server_name = CONFIG_GET(string/servername)
-		hostedby = CONFIG_GET(string/hostedby)
-		forumurl = CONFIG_GET(string/forumurl)
 		if (server_name)
-			s += "<a href=\"[forumurl]\"><big><b>[server_name]</b> &#8212; [station_name()]</big></a>"
-	if(SSticker)
-		if(GLOB.master_mode)
-			s += "<br>Mode: <b>[GLOB.master_mode]</b>"
-	else
-		s += "<br>Mode: <b>STARTING</b>"
-	if (hostedby)
-		s += "<br>Hosted by <b>[hostedby]</b>."
-	s += "<img src=\"https://i.imgur.com/xfWVypg.png\">" //Banner image
+			s += "<b>[server_name]</b> &#8212; "
+		features += "[CONFIG_GET(flag/norespawn) ? "no " : ""]respawn"
+		if(CONFIG_GET(flag/allow_vote_mode))
+			features += "vote"
+		if(CONFIG_GET(flag/allow_ai))
+			features += "AI allowed"
+		hostedby = CONFIG_GET(string/hostedby)
+
+	s += "<b>[station_name()]</b>";
+	s += " ("
+	s += "<a href=\"http://\">" //Change this to wherever you want the hub to link to.
+	s += "Default"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
+	s += "</a>"
+	s += ")"
+
+	var/n = 0
+	for (var/mob/M in GLOB.player_list)
+		if (M.client)
+			n++
+
+	if (n > 1)
+		features += "~[n] players"
+	else if (n > 0)
+		features += "~[n] player"
+
+	if (!host && hostedby)
+		features += "hosted by <b>[hostedby]</b>"
+
+	if (features)
+		s += ": [jointext(features, ", ")]"
 
 	status = s
 

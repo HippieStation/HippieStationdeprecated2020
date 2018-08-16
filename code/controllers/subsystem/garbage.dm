@@ -234,6 +234,7 @@ SUBSYSTEM_DEF(garbage)
 	tick = (TICK_USAGE-tick+((world.time-ticktime)/world.tick_lag*100))
 
 	var/datum/qdel_item/I = items[type]
+
 	I.hard_deletes++
 	I.hard_delete_time += TICK_DELTA_TO_MS(tick)
 

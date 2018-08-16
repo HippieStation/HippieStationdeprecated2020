@@ -344,7 +344,7 @@
 
 /mob/living/silicon/ai/verb/toggle_anchor()
 	set category = "AI Commands"
-	set name = "Toggle floor Bolts"
+	set name = "Toggle Floor Bolts"
 	if(!isturf(loc)) // if their location isn't a turf
 		return // stop
 	if(incapacitated())
@@ -396,8 +396,6 @@
 			H.attack_ai(src) //may as well recycle
 		else
 			to_chat(src, "<span class='notice'>Unable to locate the holopad.</span>")
-	if(href_list["remotedoor"])
-		handle_remotedoor(href_list)
 	if(href_list["track"])
 		var/string = href_list["track"]
 		trackable_mobs()

@@ -113,7 +113,7 @@
 
 
 /area/awaymission/snowdin/base
-	name = "Snowdin Main base"
+	name = "Snowdin Main Base"
 	icon_state = "awaycontent16"
 	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	requires_power = TRUE

@@ -64,8 +64,8 @@
 	wanted_types = list(/obj/item/reagent_containers/food/snacks/cheesiehonkers)
 
 /datum/bounty/item/assistant/baseball_bat
-	name = "baseball Bat"
-	description = "baseball fever is going on at CentCom! Be a dear and ship them some baseball bats, so that management can live out their childhood dream."
+	name = "Baseball Bat"
+	description = "Baseball fever is going on at CentCom! Be a dear and ship them some baseball bats, so that management can live out their childhood dream."
 	reward = 2000
 	required_count = 5
 	wanted_types = list(/obj/item/melee/baseball_bat)

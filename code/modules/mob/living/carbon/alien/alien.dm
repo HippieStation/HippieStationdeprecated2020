@@ -40,7 +40,6 @@
 	internal_organs += new /obj/item/organ/alien/hivenode
 	internal_organs += new /obj/item/organ/tongue/alien
 	internal_organs += new /obj/item/organ/eyes/night_vision/alien
-	internal_organs += new /obj/item/organ/butt/xeno
 	internal_organs += new /obj/item/organ/ears
 	..()
 

@@ -7,9 +7,7 @@
 	dat +={"
 			<B>General Secrets</B><BR>
 			<BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=spawnselfdummy'>Spawn yourself as a Test Dummy</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=admin_log'>Admin Log</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=mentor_log'>Mentor Log</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=show_admins'>Show Admin List</A><BR>
 			<BR>
 			"}
@@ -100,8 +98,6 @@
 	var/datum/round_event/E
 	var/ok = 0
 	switch(item)
-		if("spawnselfdummy")
-			spawntestdummy(usr)
 		if("admin_log")
 			var/dat = "<B>Admin Log<HR></B>"
 			for(var/l in GLOB.admin_log)
@@ -109,9 +105,6 @@
 			if(!GLOB.admin_log.len)
 				dat += "No-one has done anything this round!"
 			usr << browse(dat, "window=admin_log")
-
-		if("mentor_log")
-			HippieMentorLogSecret()
 
 		if("show_admins")
 			var/dat = "<B>Current admins:</B><HR>"
