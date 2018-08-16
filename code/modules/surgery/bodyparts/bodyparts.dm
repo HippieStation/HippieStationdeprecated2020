@@ -195,6 +195,13 @@
 		total += stamina_dam
 	return total
 
+/obj/item/bodypart/proc/set_disabled(new_disabled = TRUE)
+	if(disabled == new_disabled)
+		return
+	disabled = new_disabled
+	owner.update_health_hud() //update the healthdoll
+	owner.update_body()
+	owner.update_canmove()
 
 //Checks disabled status thresholds
 /obj/item/bodypart/proc/check_disabled()

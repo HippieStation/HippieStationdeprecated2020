@@ -9,12 +9,6 @@
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/HippieStation/HippieStation.svg)](https://isitmaintained.com/project/HippieStation/HippieStation "Percentage of issues still open") [![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/HippieStation/HippieStation.svg)](https://isitmaintained.com/project/HippieStation/HippieStation "Average time to resolve an issue") ![Coverage](https://img.shields.io/badge/coverage---777%25-red.svg)
 [![forthebadge](https://forthebadge.com/images/badges/built-with-resentment.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/contains-technical-debt.svg)](https://forthebadge.com) [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
-## ABOUT
-
-This is the Github page for the HippieStation codebase, used on the Space Station 13 server. This codebase is built off the work of many different servers, primarily that of /tg/station 13.
-Because of this, the repository inherits /tg/station's licensing, among other things.
-For a full guide on how to set up your own Space Station 13 server, please see the [/tg/station README.md](https://github.com/tgstation/tgstation/blob/master/README.md).
-If you would like to contribute to this codebase, first take a look at the [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 **Website:** https://www.tgstation13.org
 **Code:** https://github.com/tgstation/tgstation
 **Wiki** https://tgstation13.org/wiki/Main_Page
@@ -37,7 +31,7 @@ Option 3: Download a pre-compiled nightly at https://tgstation13.download/nightl
 Option 4: Use our docker image that tracks the master branch (See commits for build status. Again, same caveats as option 2)
 
 ```
-docker run -d -p <your port>:1337 -v /path/to/your/config:/hippiestation/config -v /path/to/your/data:/hippiestation/data hippiestation/hippiestation <dream daemon options i.e. -public or -params>
+docker run -d -p <your port>:1337 -v /path/to/your/config:/tgstation/config -v /path/to/your/data:/tgstation/data tgstation/tgstation <dream daemon options i.e. -public or -params>
 ```
 
 ## INSTALLATION

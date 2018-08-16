@@ -167,7 +167,7 @@
 	new /obj/item/encryptionkey/headset_med(src)
 
 /obj/structure/closet/secure_closet/detective
-	name = "\proper detective's cabinet"
+	name = "\improper detective's cabinet"
 	req_access = list(ACCESS_FORENSICS_LOCKERS)
 	icon_state = "cabinet"
 	resistance_flags = FLAMMABLE
@@ -193,6 +193,7 @@
 	new /obj/item/clothing/suit/armor/vest/det_suit(src)
 	new /obj/item/storage/belt/holster/full(src)
 	new /obj/item/pinpointer/crew(src)
+	new /obj/item/twohanded/binoculars(src)
 
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections"

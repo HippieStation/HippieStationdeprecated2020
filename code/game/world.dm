@@ -20,7 +20,7 @@ GLOBAL_PROTECT(security_mode)
 	TgsNew()
 
 	GLOB.revdata = new
-	
+
 	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
 	//SetupLogs depends on the RoundID, so lets check

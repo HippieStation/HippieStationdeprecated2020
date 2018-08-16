@@ -364,14 +364,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	item_flags &= ~IN_INVENTORY
 	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED,user)
 
-	// Hippie Start - Custom screams
-	if (iscarbon(user))
-		var/mob/living/carbon/C = user
-		if (C)
-			C.reindex_screams()
-	// Hippie End
-
-
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_PICKUP, user)
