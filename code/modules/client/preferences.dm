@@ -403,7 +403,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat = add_hippie_choices(dat)
 
 			if(CONFIG_GET(flag/join_with_mutant_humans))
-
 				if("tail_human" in pref_species.default_features)
 					if(!mutant_category)
 						dat += APPEARANCE_CATEGORY_COLUMN
@@ -429,6 +428,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(mutant_category >= MAX_MUTANT_ROWS)
 						dat += "</td>"
 						mutant_category = 0
+
+			if(CONFIG_GET(flag/join_with_mutant_humans))
 
 				if("wings" in pref_species.default_features && GLOB.r_wings_list.len >1)
 					if(!mutant_category)
@@ -1523,7 +1524,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		chosen_species = /datum/species/human
 		pref_species = new /datum/species/human
 		save_character()
-	character.set_species(chosen_species, icon_update=0)
+	character.set_species(chosen_species, icon_update = FALSE, pref_load = TRUE)
 
 	if(icon_updates)
 		character.update_body()
