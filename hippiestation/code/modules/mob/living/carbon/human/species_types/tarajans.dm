@@ -33,11 +33,11 @@
 		return 0
 	return 1
 
-/datum/species/tarajan/on_species_gain(mob/living/carbon/human/C)
+/datum/species/tarajan/on_species_gain(mob/living/carbon/human/C, datum/species/old_species, pref_load)
 	C.draw_hippie_parts()
 	. = ..()
 
-/datum/species/tarajan/on_species_loss(mob/living/carbon/human/C)
+/datum/species/tarajan/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	C.draw_hippie_parts(TRUE)
 	. = ..()
 
