@@ -55,7 +55,7 @@
 		var/obj/screen/inventory/hand/H = over_object
 		if(M.putItemFromInventoryInHandIfPossible(src, H.held_index))
 			add_fingerprint(usr)
-
+/* hippie start - removed.
 /obj/item/reagent_containers/food/snacks/clothing
 	name = "oops"
 	desc = "If you're reading this it means I messed up. This is related to moths eating clothes and I didn't know a better way to do it than making a new food object."
@@ -71,7 +71,7 @@
 		qdel(clothing_as_food)
 	else
 		return ..()
-
+hippie end */
 /obj/item/clothing/attackby(obj/item/W, mob/user, params)
 	if(damaged_clothes && istype(W, /obj/item/stack/sheet/cloth))
 		var/obj/item/stack/sheet/cloth/C = W

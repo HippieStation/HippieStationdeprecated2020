@@ -12,7 +12,7 @@
 			return TRUE
 	return FALSE
 
-/proc/is_convertible_to_cult(mob/living/M,datum/team/cult/specific_cult)
+/proc/is_convertable_to_cult(mob/living/M,datum/team/cult/specific_cult)
 	if(!istype(M))
 		return FALSE
 	if(M.mind)
@@ -22,8 +22,10 @@
 			return FALSE
 		if(M.mind.enslaved_to && !iscultist(M.mind.enslaved_to))
 			return FALSE
-		if(M.mind.unconvertible)
-			return FALSE
+		// hippie start -- this var just doesn't exist and i have no clue why
+		/* if(M.mind.unconvertable)
+			return FALSE */
+		// hippie end
 	else
 		return FALSE
 	if(M.isloyal() || issilicon(M) || isbot(M) || isdrone(M) || is_servant_of_ratvar(M) || !M.client)
@@ -147,7 +149,7 @@
 	var/acolytes_survived = 0
 	for(var/datum/mind/cult_mind in cult)
 		if (cult_mind.current && cult_mind.current.stat != DEAD)
-			if(cult_mind.current.onCentCom() || cult_mind.current.onSyndiebase())
+			if(cult_mind.current.onCentCom() || cult_mind.current.onSyndieBase())
 				acolytes_survived++
 	if(acolytes_survived>=acolytes_needed)
 		return 0

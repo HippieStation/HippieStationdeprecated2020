@@ -195,13 +195,6 @@
 		total += stamina_dam
 	return total
 
-/obj/item/bodypart/proc/set_disabled(new_disabled = TRUE)
-	if(disabled == new_disabled)
-		return
-	disabled = new_disabled
-	owner.update_health_hud() //update the healthdoll
-	owner.update_body()
-	owner.update_canmove()
 
 //Checks disabled status thresholds
 /obj/item/bodypart/proc/check_disabled()
@@ -385,12 +378,6 @@
 				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
 			else
 				limb.icon_state = "[species_id]_[body_zone]"
-		if(should_draw_hippie) //hippie start
-			limb.icon = 'hippiestation/icons/mob/mutant_bodyparts.dmi'
-			if(should_draw_gender)
-				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
-			else
-				limb.icon_state = "[species_id]_[body_zone]" //hippie end
 		if(aux_zone)
 			aux = image(limb.icon, "[species_id]_[aux_zone]", -aux_layer, image_dir)
 			. += aux

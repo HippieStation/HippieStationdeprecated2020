@@ -27,7 +27,7 @@
 	var/turf/location = get_turf(M.current)
 	if(!location || istype(location, /turf/open/floor/plasteel/shuttle/red) || istype(location, /turf/open/floor/mineral/plastitanium/brig)) // Fails if they are in the shuttle brig
 		return FALSE
-	return location.onCentCom() || location.onSyndiebase()
+	return location.onCentCom() || location.onSyndieBase()
 
 /datum/objective/proc/check_completion()
 	return completed
@@ -174,7 +174,7 @@
 	return target
 
 /datum/objective/maroon/check_completion()
-	return !target || !considered_alive(target) || (!target.current.onCentCom() && !target.current.onSyndiebase())
+	return !target || !considered_alive(target) || (!target.current.onCentCom() && !target.current.onSyndieBase())
 
 /datum/objective/maroon/update_explanation_text()
 	if(target && target.current)

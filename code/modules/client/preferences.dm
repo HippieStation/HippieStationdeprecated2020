@@ -425,7 +425,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(mutant_category >= MAX_MUTANT_ROWS)
 					dat += "</td>"
 					mutant_category = 0
-
+			dat = add_hippie_choices(dat)
 			if(CONFIG_GET(flag/join_with_mutant_humans))
 
 				if("wings" in pref_species.default_features && GLOB.r_wings_list.len >1)

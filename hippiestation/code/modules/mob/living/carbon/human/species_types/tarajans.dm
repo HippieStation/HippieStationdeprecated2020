@@ -42,5 +42,5 @@
 	. = ..()
 
 /datum/species/tarajan/spec_death(gibbed, mob/living/carbon/human/H)
-	if(H)
-		H.endTailWag()
+	if(H && H.dna && H.dna.species)
+		H.dna.species.stop_wagging_tail(H)
