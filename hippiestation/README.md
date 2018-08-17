@@ -2,7 +2,7 @@
 
 ## Why do we use it?
 
-Recently, HippieStation has tried to keep /tg/station as an upstream and to stay up-to-date with it. Previous attempts failed due to the number of conflicts, so the coders have decided to keep everything modularized. The more code in the "hippiestation" folder, the fewer conflicts will exist in future updates.
+HippieStation has tried to keep /tg/station as an upstream and to stay up-to-date with it. Previous attempts failed due to the number of conflicts, so the coders have decided to keep everything modularized. The less code in any folder that isn't this hippiestation one, the fewer conflicts will exist in future updates.
 
 ## What does it mean to modularize something?
 
@@ -12,21 +12,24 @@ Something is modular when it exists independent from the rest of the code. This 
 
 All modifications to non-hippie files should be marked.
 
-- Multi line changes start with `// hippie start` and end with `// hippie end`
-- You can put a messages with a change if it isn't obvious, like this: `// hippie start - reason`
-  - Should generally be about the reason the change was made, what it was before, or what the change is
-  - Multi-line messages should start with `// hippie start` and use `/* Multi line message here */` for the message itself
-- Single line changes should have `// hippie` or `// hippie - reason`
-
-If you need to mirror a file, or function into a hippie-specific file, please leave behind a comment stating where it went.
-
+- Single line changes should have `// hippie -- reason` at the end of the exact line that was edited
+- Multi line changes start with `// hippie start -- reason` and end with `// hippie end`. The reason MUST be included in the change in all cases, so that future coders looking at the line will know why it is needed.
+- The reason should generally be about what it was before, or what the change is.
+- Commenting out some /tg/ code must be done by putting `/* hippie start -- reason` one line before the commented out code, with said line having only the comment itself, and `hippie end */` one line after the commented out code, always in an empty line.
+- Some examples:
 ```
-// hippie start - Mirrored this function in <file> for <reason>
-bunch of shitcode here
-// hippie stop
+var/obj/O = new(hippie) // hippie -- added hippie argument to new
+```
+```
+/* hippie start -- mirrored in our file
+/proc/del_everything
+	del(world)
+	del(O)
+	del(everything)
+hippie end */
 ```
 
-Once you mirror a file, please follow the above for marking your changes, this way we know what needs to be updated when a file has been mirrored.
+Once marking your changes to the /tg/ files with the proper comment standards, be sure to include the file path of the tg file in our changes.md in this folder. Keep the alphabetical order.
 
 
 ### tgstation.dme versus hippiestation.dme
@@ -35,13 +38,15 @@ Do not alter the tgstation.dme file. All additions and removals should be to the
 
 ### Icons, code, and sounds
 
-Icons are notorious for conflicts. Because of this, **ALL NEW ICONS** must go in the "hippiestation/icons" folder. There are to be no exceptions to this rule. Sounds don't cause conflicts, but for the sake of organization they are to go in the "hippiestation/sounds" folder. No exceptions, either. Unless absolutely necessary, code should go in the "hippiestation/code" folder. Small changes outside of the folder should be done with hook-procs. Larger changes should simply mirror the file in the "hippiestation/code" folder.
+Icons are notorious for conflicts. Because of this, **ALL NEW ICONS** must go in the "hippiestation/icons" folder. There are to be no exceptions to this rule. Sounds don't cause conflicts, but for the sake of organization they are to go in the "hippiestation/sounds" folder. No exceptions, either. Unless absolutely necessary, code should go in the "hippiestation/code" folder. Small changes outside of the folder should be done with "hook" procs. Larger changes should simply mirror the file in the "hippiestation/code" folder.
+
+If a multiline addition needs to be made outside of the "hippiestation" folder, then it should be done by adding a proc called "hook" proc. This proc will be defined inside of the "hippiestation" folder. By doing this, a large number of things can be done by adding just one line of code outside of the folder! If possible, also add a comment in the hippie file pointing at the file and proc where the "hook" proc is called, it can be helpful during upstream merges and such.
+
+If a file must be completely changed, re-create it with the changes inside of the "hippiestation/code" folder. **Make sure to follow the file's path correctly** (i.e. code/modules/clothing/clothing.dm.) Then, remove the original file from the hippiestation.dme and add the new one.
 
 ### Defines
 
 Defines only work if they come before the code in which they are used. Because of this, please put all defines in the `code/__DEFINES/~hippie_defines' path. Use an existing file, or create a new one if necessary.
-
-If a small addition needs to be made outside of the "hippiestation" folder, then it should be done by adding a proc. This proc will be defined inside of the "hippiestation" folder. By doing this, a large number of things can be done by adding just one line of code outside of the folder! If a file must be changed a lot, re-create it with the changes inside of the "hippiestation/code" folder. **Make sure to follow the file's path correctly** (i.e. code/modules/clothing/clothing.dm.) Then, remove the original file from the hippiestation.dme and add the new one.
 
 ## Specific cases and examples
 
@@ -55,7 +60,7 @@ New actions and spells should use the "hippiestation/icons/mob/actions.dmi" file
 
 ### Reagents
 
-New reagents should go inside "hippiestation/code/modules/reagents/drug_reagents.dm." In this case, "drug_reagents" is an example, so please use or create a "toxins.dm" if you are adding a new toxin. Recipes should go inside "hippiestation/code/modules/reagents/recipes/drug_reagents.dm." Once again, "drug_reagents" has been used as an example.
+New reagents should go inside "hippiestation/code/modules/reagents/drug_reagents.dm." In this case, "drug_reagents" is an example, so please use or create a "toxins.dm" if you are adding a new toxin, etc. Recipes should go inside "hippiestation/code/modules/reagents/recipes/drug_reagents.dm." Once again, "drug_reagents" has been used as an example.
 
 ### Vending machine
 
@@ -65,7 +70,7 @@ You can manipulate the products, contraband, and premium items of vending machin
 `hippie_contraband`
 `hippie_premium`
 
-Like their counterparts, these are associative lists. The index is a reference to the object and the value is how many of that object. If you want to add 3 items to the products list, you do `hippie_products = list(/path/to/that/object/ = 3)`. This also works with lowering the count of items. 
+Like their counterparts, these are associative lists. The index is a reference to the object and the value is how many of that object. If you want to add 3 items to the products list, you do `hippie_products = list(/path/to/that/object = 3)`. This also works with lowering the count of items. 
 
 If you take away more items then there is then the entry is removed. 
 
