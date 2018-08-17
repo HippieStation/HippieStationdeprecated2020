@@ -1,0 +1,4 @@
+author: "HonkBot"
+delete-after: True
+changes: 
+  - rscadd: "Ore silos circuit boards are now constructable"
