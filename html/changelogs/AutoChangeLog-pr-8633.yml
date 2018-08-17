@@ -1,0 +1,5 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - bugfix: "Vampires are no longer blind at full power"
+  - tweak: "Vampires can now revive without a brain."
