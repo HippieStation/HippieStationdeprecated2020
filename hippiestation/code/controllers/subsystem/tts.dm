@@ -1,9 +1,11 @@
+#define GENERATOR_PATH "tools/tts_generator/"
+
 SUBSYSTEM_DEF(tts)
 	name = "Text-to-Speech"
 	wait = 2
-	runlevels = (RUNLEVEL_INIT | RUNLEVEL_LOBBY | RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME )
+	runlevels = (RUNLEVEL_LOBBY | RUNLEVEL_GAME | RUNLEVEL_POSTGAME)
 	var/list/queue           // List of items to process
-	var/datum/tts/processing // The item we're currentl processing
+	var/datum/tts/processing // The item we're currently processing
 
 /datum/tts
 	var/client/owner
@@ -12,9 +14,6 @@ SUBSYSTEM_DEF(tts)
 	var/filename = ""
 	var/is_global = FALSE
 	var/timeout = 10 // file shouldn't take longer than 1 second to process, delete after this much time has passed
-
-/datum/tts/proc/Initialize()
-	. = ..()
 
 /datum/tts/proc/say(client/C, msg, voice = "", is_global = FALSE)
 	if (!C)
@@ -40,9 +39,8 @@ SUBSYSTEM_DEF(tts)
 		return FALSE
 
 	for (var/datum/tts/T in queue)
-		if (T)
-			if (T.owner == C)
-				return TRUE
+		if (T.owner == C)
+			return TRUE
 
 	return FALSE
 
@@ -61,8 +59,6 @@ SUBSYSTEM_DEF(tts)
 			return
 
 		for (var/mob/M in GLOB.player_list)
-			if (!M)
-				continue
 			var/client/C = M.client
 			if (!C)
 				continue
@@ -99,13 +95,13 @@ SUBSYSTEM_DEF(tts)
 			processing.owner.tts_cooldown = world.time + length(processing.text)
 
 		processing.timeout = processing.timeout + world.time
-		var/cmd = "tts_generator/tts_generator.exe"
+		var/cmd = GENERATOR_PATH + "tts_generator.exe"
 		cmd = cmd + " --text \"[processing.text]\""
 
 		if (processing.voice)
 			cmd = cmd + " --voice \"[processing.voice]\""
 		shell(cmd)
-		processing.filename = "tts_generator/speech.ogg"
+		processing.filename = GENERATOR_PATH + "speech.ogg"
 
 /client
 	var/tts_cooldown = 0
@@ -113,14 +109,17 @@ SUBSYSTEM_DEF(tts)
 /datum/dna
 	var/tts_voice = ""
 
-/datum/dna/initialize_dna()
-	. = ..()
+/datum/dna/proc/create_random_voice()
 	var/mob/living/carbon/human/H = holder
 	if (H)
 		if (H.gender == FEMALE)
 			tts_voice = pick("betty", "rita", "ursula", "wendy")
 		else
 			tts_voice = pick("dennis", "frank", "harry", "kit", "paul")
+
+/datum/dna/initialize_dna()
+	. = ..()
+	create_random_voice()
 
 /datum/dna/transfer_identity(mob/living/carbon/destination)
 	. = ..()
@@ -135,12 +134,7 @@ SUBSYSTEM_DEF(tts)
 
 /datum/dna/update_dna_identity()
 	. = ..()
-	var/mob/living/carbon/human/H = holder
-	if (H)
-		if (H.gender == FEMALE)
-			tts_voice = pick("betty", "rita", "ursula", "wendy")
-		else
-			tts_voice = pick("dennis", "frank", "harry", "kit", "paul")
+	create_random_voice()
 
 /client/proc/play_tts()
 	set category = "Fun"
@@ -173,3 +167,5 @@ SUBSYSTEM_DEF(tts)
 /client/remove_admin_verbs()
 	. = ..()
 	verbs.Remove(/client/proc/play_tts)
+
+#undef GENERATOR_PATH
