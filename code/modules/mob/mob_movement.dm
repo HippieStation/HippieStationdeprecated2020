@@ -1,3 +1,5 @@
+#define SW_LIGHT_FACTOR 2.75 // hippie -- shadowlings
+
 /mob/CanPass(atom/movable/mover, turf/target)
 	if((mover.pass_flags & PASSMOB))
 		return TRUE
@@ -84,6 +86,16 @@
 
 	if(!mob.Process_Spacemove(direct))
 		return FALSE
+
+	var/delay = mob.movement_delay() // hippie start -- shadowling shit. Needless to say, this is horrible
+
+	if(Can_ShadowWalk(mob))
+		if(Process_ShadowWalk(direct))
+			return
+		else
+			delay = delay*SW_LIGHT_FACTOR // hippie end
+
+
 	//We are now going to move
 	var/add_delay = mob.movement_delay()
 	if(old_move_delay + (add_delay*MOVEMENT_DELAY_BUFFER_DELTA) + MOVEMENT_DELAY_BUFFER > world.time)

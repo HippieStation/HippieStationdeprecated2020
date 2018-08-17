@@ -85,8 +85,8 @@
 #define COLD_GAS_DAMAGE_LEVEL_3 3 //Amount of damage applied when the current breath's temperature passes the 120K point
 
 //Brain Damage defines
-#define BRAIN_DAMAGE_MILD 20
-#define BRAIN_DAMAGE_SEVERE 100
+#define BRAIN_DAMAGE_MILD 50 // hippie -- changed this to the original value
+#define BRAIN_DAMAGE_SEVERE 120 // hippie -- changed this to the original value
 #define BRAIN_DAMAGE_DEATH 200
 
 #define BRAIN_TRAUMA_MILD /datum/brain_trauma/mild

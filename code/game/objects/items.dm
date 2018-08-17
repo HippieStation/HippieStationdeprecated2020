@@ -364,6 +364,14 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	item_flags &= ~IN_INVENTORY
 	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED,user)
 
+	// hippie start -- Custom screams
+	if (iscarbon(user))
+		var/mob/living/carbon/C = user
+		if (C)
+			C.reindex_screams()
+	// hippie end
+
+
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_PICKUP, user)
@@ -385,6 +393,14 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(item_action_slot_check(slot, user)) //some items only give their actions buttons when in a specific slot.
 			A.Grant(user)
 	item_flags |= IN_INVENTORY
+
+	// hippie start -- Custom screams
+	if (iscarbon(user))
+		var/mob/living/carbon/C = user
+		if (C)
+			C.reindex_screams()
+	// hippie end
+
 
 //sometimes we only want to grant the item's action if it's equipped in a specific slot.
 /obj/item/proc/item_action_slot_check(slot, mob/user)

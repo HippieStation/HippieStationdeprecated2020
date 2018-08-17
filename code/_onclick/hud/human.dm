@@ -6,7 +6,10 @@
 	icon_state = "toggle"
 
 /obj/screen/human/toggle/Click()
-
+	var/mob/living/carbon/human/H = usr // hippie start -- adds hotswap
+	if(H.quick_equip_and_return_success())
+		return //Successful hotswap.
+	// hippie end
 	var/mob/targetmob = usr
 
 	if(isobserver(usr))

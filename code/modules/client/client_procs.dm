@@ -88,12 +88,17 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(href_list["priv_msg"])
 		cmd_admin_pm(href_list["priv_msg"],null)
 		return
-
+	// hippie start -- Mentor PM
+	if (hippie_client_procs(href_list))
+		return
+	// hippie end
 	switch(href_list["_src_"])
 		if("holder")
 			hsrc = holder
 		if("usr")
 			hsrc = mob
+		if("mentor") // hippie start -- Mentor
+			hsrc = mentor_datum // hippie end
 		if("prefs")
 			if (inprefs)
 				return

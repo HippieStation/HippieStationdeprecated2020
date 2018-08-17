@@ -1,7 +1,9 @@
 /mob/living/Initialize()
 	. = ..()
 	if(unique_name)
-		name = "[name] ([rand(1, 1000)])"
+		var/rand_int = rand(1, 1000) // hippie start -- custom monkey items
+		name = "[name] ([rand_int])"
+		hippie_equip_mob_with_items(rand_int) // hippie end -- This equips shit for the mob based on the random int they are given
 		real_name = name
 	var/datum/atom_hud/data/human/medical/advanced/medhud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	medhud.add_to_hud(src)
@@ -976,12 +978,16 @@
 		lying = 0
 	if(buckled)
 		lying = 90*buckle_lying
+	// hippie start -- pinning
+	else if (pinned_to)
+		lying = 0
+	// hippie end
 	else if(!lying)
 		if(resting)
 			fall()
 		else if(ko || move_and_fall || (!has_legs && !ignore_legs) || chokehold)
 			fall(forced = 1)
-	canmove = !(ko || resting || IsStun() || IsFrozen() || chokehold || buckled || (!has_legs && !ignore_legs && !has_arms))
+	canmove = !(ko || resting || IsStun() || IsFrozen() || chokehold || pinned_to || buckled || (!has_legs && !ignore_legs && !has_arms))
 	density = !lying
 	if(lying)
 		if(layer == initial(layer)) //to avoid special cases like hiding larvas.

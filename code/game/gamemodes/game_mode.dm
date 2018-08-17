@@ -152,7 +152,8 @@
 
 	for(var/mob/living/carbon/human/H in living_crew)
 		if(H.client && H.client.prefs.allow_midround_antag)
-			antag_candidates += H
+			if(!jobban_isbanned(H, CATBAN) && !jobban_isbanned(H, CLUWNEBAN)) // hippie -- adds our jobban checks
+				antag_candidates += H
 
 	if(!antag_candidates)
 		message_admins("Convert_roundtype failed due to no antag candidates.")
@@ -349,7 +350,8 @@
 	// Ultimate randomizing code right here
 	for(var/mob/dead/new_player/player in GLOB.player_list)
 		if(player.client && player.ready == PLAYER_READY_TO_PLAY)
-			players += player
+			if(!jobban_isbanned(player, CATBAN) && !jobban_isbanned(player, CLUWNEBAN)) // hippie -- adds our jobban checks
+				players += player
 
 	// Shuffling, the players list is now ping-independent!!!
 	// Goodbye antag dante

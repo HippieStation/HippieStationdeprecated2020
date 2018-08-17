@@ -57,6 +57,9 @@
 		for(var/obj/structure/closet/secure_closet/brig/C in urange(20, src))
 			if(C.id == id)
 				targets += C
+		for(var/obj/machinery/disposal/trapdoor/T in urange(20, src)) // hippie start -- trapdoors
+			if(T.id == src.id)
+				targets += T // hippie end
 
 	if(!targets.len)
 		stat |= BROKEN
@@ -102,6 +105,8 @@
 			continue
 		C.locked = TRUE
 		C.update_icon()
+	for(var/obj/machinery/disposal/trapdoor/T in targets) // hippie start -- trapdoors
+		T.close() // hippie end
 	return 1
 
 
@@ -131,6 +136,8 @@
 			continue
 		C.locked = FALSE
 		C.update_icon()
+	for(var/obj/machinery/disposal/trapdoor/T in targets) // hippie start -- trapdoors
+		T.open() // hippie end
 
 	return 1
 

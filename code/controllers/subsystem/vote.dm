@@ -44,6 +44,8 @@ SUBSYSTEM_DEF(vote)
 	voting.Cut()
 	remove_action_buttons()
 
+/* hippie start -- shuttlecall votes
+
 /datum/controller/subsystem/vote/proc/get_result()
 	//get the highest number of votes
 	var/greatest_votes = 0
@@ -79,6 +81,8 @@ SUBSYSTEM_DEF(vote)
 				. += option
 	return .
 
+hippie end */
+
 /datum/controller/subsystem/vote/proc/announce_result()
 	var/list/winners = get_result()
 	var/text
@@ -107,6 +111,8 @@ SUBSYSTEM_DEF(vote)
 	remove_action_buttons()
 	to_chat(world, "\n<font color='purple'>[text]</font>")
 	return .
+
+/* hippie start -- shuttlecall votes
 
 /datum/controller/subsystem/vote/proc/result()
 	. = announce_result()
@@ -137,6 +143,8 @@ SUBSYSTEM_DEF(vote)
 
 	return .
 
+hippie end */
+
 /datum/controller/subsystem/vote/proc/submit_vote(vote)
 	if(mode)
 		if(CONFIG_GET(flag/no_dead_vote) && usr.stat == DEAD && !usr.client.holder)
@@ -147,6 +155,8 @@ SUBSYSTEM_DEF(vote)
 				choices[choices[vote]]++	//check this
 				return vote
 	return 0
+
+/* hippie start -- shuttlecall votes
 
 /datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key)
 	if(!mode)
@@ -287,6 +297,8 @@ SUBSYSTEM_DEF(vote)
 			submit_vote(round(text2num(href_list["vote"])))
 	usr.vote()
 
+hippie end */
+
 /datum/controller/subsystem/vote/proc/remove_action_buttons()
 	for(var/v in generated_actions)
 		var/datum/action/vote/V = v
@@ -317,6 +329,7 @@ SUBSYSTEM_DEF(vote)
 /datum/action/vote/IsAvailable()
 	return 1
 
+/* hippie start -- shuttlecall votes
 /datum/action/vote/proc/remove_from_client()
 	if(!owner)
 		return
@@ -326,3 +339,6 @@ SUBSYSTEM_DEF(vote)
 		var/datum/player_details/P = GLOB.player_details[owner.ckey]
 		if(P)
 			P.player_actions -= src
+	else
+		return
+hippie end */

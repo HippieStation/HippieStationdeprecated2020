@@ -510,7 +510,7 @@
 			visible_message("[src] retracts its syringe.")
 		update_icon()
 		soft_reset()
-		return
+		return !failed // hippie -- Return whether we medicated the patient or not
 
 	reagent_id = null
 	return
