@@ -364,12 +364,12 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	item_flags &= ~IN_INVENTORY
 	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED,user)
 
-	// Hippie Start - Custom screams
+	// hippie start -- Custom screams
 	if (iscarbon(user))
 		var/mob/living/carbon/C = user
 		if (C)
 			C.reindex_screams()
-	// Hippie End
+	// hippie end
 
 
 // called just as an item is picked up (loc is not yet changed)
@@ -394,12 +394,12 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			A.Grant(user)
 	item_flags |= IN_INVENTORY
 
-	// Hippie Start - Custom screams
+	// hippie start -- Custom screams
 	if (iscarbon(user))
 		var/mob/living/carbon/C = user
 		if (C)
 			C.reindex_screams()
-	// Hippie End
+	// hippie end
 
 
 //sometimes we only want to grant the item's action if it's equipped in a specific slot.

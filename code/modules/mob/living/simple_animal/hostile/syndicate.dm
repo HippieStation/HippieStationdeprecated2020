@@ -7,7 +7,7 @@
 */
 
 
-///////////////base mob////////////
+///////////////Base mob////////////
 /obj/effect/light_emitter/red_energy_sword //used so there's a combination of both their head light and light coming off the energy sword
 	set_luminosity = 2
 	set_cap = 2.5

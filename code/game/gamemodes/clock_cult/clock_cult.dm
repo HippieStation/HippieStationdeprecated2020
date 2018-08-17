@@ -2,7 +2,7 @@ GLOBAL_VAR_INIT(servants_active, FALSE) //This var controls whether or not a lot
 
 /*
 
-CLOCKWORK CULT: based off of the failed pull requests from /vg/
+CLOCKWORK CULT: Based off of the failed pull requests from /vg/
 
 While Nar-Sie is the oldest and most prominent of the elder gods, there are other forces at work in the universe.
 Ratvar, the Clockwork Justiciar, a homage to Nar-Sie granted sentience by its own power, is one such other force.
@@ -55,7 +55,7 @@ Credit where due:
 			return FALSE
 		if(M.mind.enslaved_to && !is_servant_of_ratvar(M.mind.enslaved_to))
 			return FALSE
-		if(M.mind.unconvertible)
+		if(M.mind.unconvertable)
 			return FALSE
 	else
 		return FALSE

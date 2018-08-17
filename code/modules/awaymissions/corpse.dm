@@ -35,7 +35,7 @@
 	if(!uses)
 		to_chat(user, "<span class='warning'>This spawner is out of charges!</span>")
 		return
-	if(jobban_isbanned(user, banType) || jobban_isbanned(user, CATBAN) || jobban_isbanned(user, CLUWNEBAN))
+	if(jobban_isbanned(user, banType) || jobban_isbanned(user, CATBAN) || jobban_isbanned(user, CLUWNEBAN)) // hippie -- adds our jobbans
 		to_chat(user, "<span class='warning'>You are jobanned!</span>")
 		return
 	if(QDELETED(src) || QDELETED(user))
@@ -105,7 +105,7 @@
 	if(!permanent && !uses)
 		qdel(src)
 
-// base version - place these on maps/templates.
+// Base version - place these on maps/templates.
 /obj/effect/mob_spawn/human
 	mob_type = /mob/living/carbon/human
 	//Human specific stuff.

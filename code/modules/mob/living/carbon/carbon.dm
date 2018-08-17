@@ -90,7 +90,7 @@
 					return 1
 	return ..()
 
-/mob/living/carbon/throw_impact(atom/hit_atom, throwingdatum) //This proc mirrored in the hippie folder to take into account explosive throwing.
+/mob/living/carbon/throw_impact(atom/hit_atom, throwingdatum)
 	. = ..()
 	var/hurt = TRUE
 	if(istype(throwingdatum, /datum/thrownthing))
@@ -565,8 +565,6 @@
 
 	if(see_override)
 		see_invisible = see_override
-
-	vampsight() //HIPPIE PROC!!!! handles vampire sight
 	. = ..()
 
 

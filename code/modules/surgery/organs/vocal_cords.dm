@@ -1,7 +1,7 @@
-#define COOLDOWN_STUN 200	//Hippe edit, changed stun cooldown to 20 seconds, from 120
-#define COOLDOWN_DAMAGE 100	//Hippie edit, changed damage cooldown to 10 seconds, from 60
-#define COOLDOWN_MEME 10	//Hippie edit, changed meme cooldown to 1 second, from 30
-#define COOLDOWN_NONE 10	//Hippie edit, changed cooldown for no command to 1 second, from 10
+#define COOLDOWN_STUN 200	// hippie -- changed stun cooldown to 20 seconds, from 120
+#define COOLDOWN_DAMAGE 100	// hippie -- changed damage cooldown to 10 seconds, from 60
+#define COOLDOWN_MEME 10	// hippie -- changed meme cooldown to 1 second, from 30
+#define COOLDOWN_NONE 10	// hippie -- changed cooldown for no command to 1 second, from 10
 
 /obj/item/organ/vocal_cords //organs that are activated through speech with the :x channel
 	name = "vocal cords"

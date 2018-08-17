@@ -1,4 +1,4 @@
-///Mining base////
+///Mining Base////
 
 #define ZONE_SET	0
 #define BAD_ZLEVEL	1
@@ -7,7 +7,7 @@
 #define BAD_TURF	4
 
 /area/shuttle/auxillary_base
-	name = "Auxillary base"
+	name = "Auxillary Base"
 	luminosity = 0 //Lighting gets lost when it lands anyway
 
 
@@ -254,7 +254,7 @@ interface with the mining shuttle at the landing site if a mobile beacon is also
 
 /obj/docking_port/stationary/public_mining_dock
 	name = "public mining base dock"
-	id = "disabled" //The Aux base has to leave before this can be used as a dock.
+	id = "disabled" //The Aux Base has to leave before this can be used as a dock.
 	//Should be checked on the map to ensure it matchs the mining shuttle dimensions.
 	dwidth = 3
 	width = 7

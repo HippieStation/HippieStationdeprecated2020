@@ -140,13 +140,6 @@
 		default_deconstruction_screwdriver(user, icon_state, icon_state, I)
 	return TRUE
 
-/obj/machinery/power/rad_collector/screwdriver_act(mob/living/user, obj/item/I)
-	if(loaded_tank)
-		to_chat(user, "<span class='warning'>Remove the plasma tank first!</span>")
-	else
-		default_deconstruction_screwdriver(user, icon_state, icon_state, I)
-	return TRUE
-
 /obj/machinery/power/rad_collector/crowbar_act(mob/living/user, obj/item/I)
 	if(loaded_tank)
 		if(locked)

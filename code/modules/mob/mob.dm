@@ -528,7 +528,7 @@
 			if(ETA)
 				stat(null, "[ETA] [SSshuttle.emergency.getTimerStr()]")
 
-	if(client && check_rights_for(client, R_ADMIN))
+	if(client && client.holder)
 		if(statpanel("MC"))
 			var/turf/T = get_turf(client.eye)
 			stat("Location:", COORD(T))

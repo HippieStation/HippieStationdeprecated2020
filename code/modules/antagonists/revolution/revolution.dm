@@ -15,7 +15,7 @@
 	if(.)
 		if(new_owner.assigned_role in GLOB.command_positions)
 			return FALSE
-		if(new_owner.unconvertible)
+		if(new_owner.unconvertable)
 			return FALSE
 		if(new_owner.current && new_owner.current.isloyal())
 			return FALSE

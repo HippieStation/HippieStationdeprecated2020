@@ -22,7 +22,7 @@
 	if(!CheckAdminHref(href, href_list))
 		return
 
-	hippieTopic(href, href_list) // hippie
+	hippieTopic(href, href_list) // hippie -- hippie topic options
 
 	if(href_list["ahelp"])
 		if(!check_rights(R_ADMIN, TRUE))
@@ -140,8 +140,8 @@
 					message_admins("[key_name(usr)] created a CentCom response team.")
 					log_admin("[key_name(usr)] created a CentCom response team.")
 				else
-					message_admins("[key_name_admin(usr)] tried to create a Centcom response team. Unfortunately, there were not enough candidates available.")
-					log_admin("[key_name(usr)] failed to create a Centcom response team.")
+					message_admins("[key_name_admin(usr)] tried to create a CentCom response team. Unfortunately, there were not enough candidates available.")
+					log_admin("[key_name(usr)] failed to create a CentCom response team.")
 			if("abductors")
 				message_admins("[key_name(usr)] is creating an abductor team...")
 				if(src.makeAbductorTeam())
@@ -417,7 +417,7 @@
 			SSticker.standard_reboot()
 
 	else if(href_list["end_round"])
-		if(!check_rights(R_ADMIN))
+		if(!check_rights(R_ADMIN)) // hippie -- let trials delay round too
 			return
 
 		message_admins("<span class='adminnotice'>[key_name_admin(usr)] is considering ending the round.</span>")
@@ -895,18 +895,17 @@
 		else
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=alien;jobban4=[REF(M)]'>Alien</a></td>"
 
-		//Hippie Start - Catban
+		// hippie start -- Catban
 		if(jobban_isbanned(M, CATBAN) || isbanned_dept)
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=catban;jobban4=[REF(M)]'><font color=red>Catbanned</font></a></td>"
 		else
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=catban;jobban4=[REF(M)]'>Catban</a></td>"
 
-		//Hippie - Cluwneban
 		if(jobban_isbanned(M, CLUWNEBAN) || isbanned_dept)
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=cluwneban;jobban4=[REF(M)]'><font color=red>Cluwnebanned</font></a></td>"
 		else
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=cluwneban;jobban4=[REF(M)]'>Cluwneban</a></td>"
-//Hippie end
+// hippie end
 
 		dat += "</tr></table>"
 		usr << browse(dat, "window=jobban2;size=800x450")

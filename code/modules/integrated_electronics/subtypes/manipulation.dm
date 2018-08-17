@@ -529,9 +529,9 @@
 	var/x_abs = CLAMP(T.x + target_x_rel, 0, world.maxx)
 	var/y_abs = CLAMP(T.y + target_y_rel, 0, world.maxy)
 	var/range = round(CLAMP(sqrt(target_x_rel*target_x_rel+target_y_rel*target_y_rel),0,8),1)
-	/* hippie start - removes nodamage from this circuit //remove damage
+	/* hippie start -- removes nodamage from this circuit //remove damage
 	A.throwforce = 0
-	A.embedding = list("embed_chance" = 0) */ // hippie end
+	A.embedding = list("embed_chance" = 0) hippie end */
 	//throw it
 	assembly.visible_message("<span class='danger'>[assembly] has thrown [A]!</span>")
 	log_attack("[assembly] [REF(assembly)] has thrown [A].")

@@ -179,7 +179,6 @@
 			busy = FALSE
 
 		else
-			tramount = min(tramount, AM.reagents.total_volume)
 			if(!AM.reagents.total_volume)
 				acting_object.visible_message("<span class='notice'>[acting_object] tries to draw from [AM], but it is empty!</span>")
 				activate_pin(3)

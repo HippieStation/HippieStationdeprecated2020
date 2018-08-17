@@ -69,9 +69,9 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 	/client/proc/toggleadminhelpsound,
 	/client/proc/respawn_character,
 	/datum/admins/proc/open_borgopanel,
-	/client/proc/reset_atmos, /* hippie */
-	/client/proc/aooc, /* hippie - sends a message to all antags on the server*/
-	/client/proc/fill_breach /* hippie - cleans the bombs that the mob has touched*/
+	/client/proc/reset_atmos, /* hippie -- reset atmos if some griefer spams plasma */
+	/client/proc/aooc, /* hippie -- sends a message to all antags on the server*/
+	/client/proc/fill_breach /* hippie -- fills breaches in a radius defined by the admin*/
 	)
 GLOBAL_PROTECT(admin_verbs_ban)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/DB_ban_panel, /client/proc/stickybanpanel))
@@ -94,7 +94,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/forceEvent,
 	/client/proc/admin_change_sec_level,
 	/client/proc/toggle_nuke,
-	/client/proc/spawn_human,
+	/client/proc/spawn_human, /* hippie -- spawn yourself as dummy */
 	/client/proc/run_weather,
 	/client/proc/mass_zombie_infection,
 	/client/proc/mass_zombie_cure,
@@ -123,7 +123,7 @@ GLOBAL_LIST_INIT(admin_verbs_server, world.AVerbsServer())
 	/client/proc/adminchangemap,
 	/client/proc/panicbunker,
 	/client/proc/toggle_hub,
-	/client/proc/mentor_memo			/* hippie */
+	/client/proc/mentor_memo /* hippie -- handle mentor memos */
 	)
 GLOBAL_PROTECT(admin_verbs_debug)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVerbsDebug())
@@ -269,8 +269,6 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 			verbs += GLOB.admin_verbs_sounds
 			if(CONFIG_GET(string/invoke_youtubedl))
 				verbs += /client/proc/play_web_sound
-			if(CONFIG_GET(string/tts_api))
-				verbs += /client/proc/play_tts
 		if(rights & R_SPAWN)
 			verbs += GLOB.admin_verbs_spawn
 
@@ -289,7 +287,6 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 		GLOB.admin_verbs_poll,
 		GLOB.admin_verbs_sounds,
 		/client/proc/play_web_sound,
-		/client/proc/play_tts,
 		GLOB.admin_verbs_spawn,
 		/*Debug verbs added by "show debug verbs"*/
 		GLOB.admin_verbs_debug_mapping,

@@ -88,18 +88,16 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	if(href_list["priv_msg"])
 		cmd_admin_pm(href_list["priv_msg"],null)
 		return
-
-	// Hippie Start - Mentor PM
+	// hippie start -- Mentor PM
 	if (hippie_client_procs(href_list))
 		return
-	// Hippie End
-	
+	// hippie end
 	switch(href_list["_src_"])
 		if("holder")
 			hsrc = holder
 		if("usr")
 			hsrc = mob
-		if("mentor") // hippie start
+		if("mentor") // hippie start -- Mentor
 			hsrc = mentor_datum // hippie end
 		if("prefs")
 			if (inprefs)
@@ -247,13 +245,6 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 
 
 	. = ..()	//calls mob.Login()
-	#if DM_VERSION >= 512
-	if (byond_version >= 512)
-		if (!byond_build || byond_build < 1386)
-			message_admins("<span class='adminnotice'>[key_name(src)] has been detected as spoofing their byond version. Connection rejected.</span>")
-			add_system_note("Spoofed-Byond-Version", "Detected as using a spoofed byond version.")
-			log_access("Failed Login: [key] - Spoofed byond version")
-			qdel(src)
 
 	if (byond_version >= 512)
 		if (!byond_build || byond_build < 1386)

@@ -1,9 +1,9 @@
 /mob/living/Initialize()
 	. = ..()
 	if(unique_name)
-		var/rand_int = rand(1, 1000)
+		var/rand_int = rand(1, 1000) // hippie start -- custom monkey items
 		name = "[name] ([rand_int])"
-		hippie_equip_mob_with_items(rand_int) /* This equips shit for the mob based on the random int they are given */
+		hippie_equip_mob_with_items(rand_int) // hippie end -- This equips shit for the mob based on the random int they are given
 		real_name = name
 	var/datum/atom_hud/data/human/medical/advanced/medhud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	medhud.add_to_hud(src)
@@ -964,7 +964,7 @@
 /mob/living/proc/update_canmove()
 	var/ko = IsKnockdown() || IsUnconscious() || (stat && (stat != SOFT_CRIT || pulledby)) || (has_trait(TRAIT_DEATHCOMA))
 	var/move_and_fall = stat == SOFT_CRIT && !pulledby
-	var/chokehold = pulledby && pulledby.grab_state >= GRAB_KILL
+	var/chokehold = pulledby && pulledby.grab_state >= GRAB_NECK
 	var/buckle_lying = !(buckled && !buckled.buckle_lying)
 	var/has_legs = get_num_legs()
 	var/has_arms = get_num_arms()
@@ -978,16 +978,16 @@
 		lying = 0
 	if(buckled)
 		lying = 90*buckle_lying
-	// Hippie Start
+	// hippie start -- pinning
 	else if (pinned_to)
 		lying = 0
-	// Hippie End
+	// hippie end
 	else if(!lying)
 		if(resting)
 			fall()
 		else if(ko || move_and_fall || (!has_legs && !ignore_legs) || chokehold)
 			fall(forced = 1)
-	canmove = !(ko || resting || IsStun() || IsFrozen() || chokehold || pinned_to || buckled || (!has_legs && !ignore_legs && !has_arms)) // Hippie - Added check for person being pinned
+	canmove = !(ko || resting || IsStun() || IsFrozen() || chokehold || pinned_to || buckled || (!has_legs && !ignore_legs && !has_arms))
 	density = !lying
 	if(lying)
 		if(layer == initial(layer)) //to avoid special cases like hiding larvas.

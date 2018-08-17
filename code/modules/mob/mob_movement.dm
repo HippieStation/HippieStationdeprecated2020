@@ -1,4 +1,4 @@
-#define SW_LIGHT_FACTOR 2.75
+#define SW_LIGHT_FACTOR 2.75 // hippie -- shadowlings
 
 /mob/CanPass(atom/movable/mover, turf/target)
 	if((mover.pass_flags & PASSMOB))
@@ -87,7 +87,7 @@
 	if(!mob.Process_Spacemove(direct))
 		return FALSE
 
-	var/delay = mob.movement_delay() // hippie start
+	var/delay = mob.movement_delay() // hippie start -- shadowling shit. Needless to say, this is horrible
 
 	if(Can_ShadowWalk(mob))
 		if(Process_ShadowWalk(direct))
