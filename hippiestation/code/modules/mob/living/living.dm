@@ -82,6 +82,7 @@
 			if (H.dna.tts_voice)
 				tts_voice = H.dna.tts_voice
 
-		if (world.time > client.tts_cooldown && !SStts.check_queue(src))
+		if (world.time > client.tts_cooldown && !SStts.check_processing(src))
 			var/datum/tts/TTS = new /datum/tts()
 			TTS.say(client, msg, voice = tts_voice)
+			client.tts_cooldown = world.time + length(msg)

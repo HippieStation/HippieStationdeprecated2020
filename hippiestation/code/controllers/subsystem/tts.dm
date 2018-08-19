@@ -1,86 +1,87 @@
 #define GENERATOR_PATH "tools/tts_generator/"
+#define STATUS_NEW		0
+#define STATUS_GENERATING 1
+#define STATUS_PLAYING	2
 
 SUBSYSTEM_DEF(tts)
 	name = "Text-to-Speech"
 	wait = 2
 	runlevels = (RUNLEVEL_LOBBY | RUNLEVEL_GAME | RUNLEVEL_POSTGAME)
-	var/list/queue           // List of items to process
-	var/datum/tts/processing // The item we're currently processing
+	var/list/processing // List of items to process
 
 /datum/controller/subsystem/tts/Initialize()
-	LAZYINITLIST(queue)
+	LAZYINITLIST(processing)
 
 	if (!CONFIG_GET(flag/enable_tts))
 		can_fire = FALSE
 	return ..()
 
-/datum/controller/subsystem/tts/proc/check_queue(client/C)
+/datum/controller/subsystem/tts/proc/check_processing(client/C)
 	if (!C)
 		return FALSE
 
-	for (var/datum/tts/T in queue)
+	for (var/datum/tts/T in processing)
 		if (T.owner == C)
 			return TRUE
 
 	return FALSE
 
 /datum/controller/subsystem/tts/fire(resumed = FALSE)
-	if (processing)
-		if (!processing.owner)
-			message_admins("TTS request has no owner (on check)")
-			processing = null
-			return
+	if (!LAZYLEN(processing))
+		return
 
-		// file not ready
-		if (!fexists(processing.filename))
-			if (world.time > processing.timeout)
-				message_admins("[processing.owner]'s TTS request timed out!")
-				processing = null
-			return
+	for (var/datum/tts/T in processing)
+		switch(T.status)
+			if (STATUS_NEW)
+				/* Start generating the sound */
+				T.status = STATUS_GENERATING
+				var/uid = "[world.time]" + T.owner.ckey
+				var/cmd = GENERATOR_PATH + "tts_generator.exe"
+				cmd = cmd + " --output \"" + uid + "_speech.wav\""
+				cmd = cmd + " --text \"[T.text]\""
 
-		for (var/mob/M in GLOB.player_list)
-			var/client/C = M.client
-			if (!C)
+				if (T.voice)
+					cmd = cmd + " --voice \"[T.voice]\""
+				shell(cmd)
+				T.filename = GENERATOR_PATH + uid + "_speech.ogg"
 				continue
-			if (C.prefs.toggles & SOUND_TTS)
-				var/turf/origin
+			if (STATUS_GENERATING)
+				/* Check if this file is ready */
+				if (fexists(T.filename))
+					play_tts(T)
+				continue
+			if (STATUS_PLAYING)
+				/* Delete the file when it's finished */
+				if (world.time > T.life)
+					if (T.filename)
+						fdel(T.filename)
+					LAZYREMOVE(processing, T)
+				continue
 
-				if (processing.is_global)
-					origin = M.loc
-				else
-					origin = processing.owner.mob.loc
+/datum/controller/subsystem/tts/proc/play_tts(datum/tts/T)
+	if (!T.owner)
+		message_admins("TTS request has no owner")
+		return
+	if (!T.owner.mob)
+		message_admins("TTS request has no mob")
+		return
 
-				M.playsound_local(origin, processing.filename, 100, 0, channel = CHANNEL_TTS)
+	T.status = STATUS_PLAYING
 
-		// delete the file once we play it
-		fdel(processing.filename)
-		processing = null
-	else
-		// nothing is currently being processed, take first item from the queue
-		if (LAZYLEN(queue) > 0)
-			processing = popleft(queue)
+	for (var/mob/M in GLOB.player_list)
+		var/client/C = M.client
+		if (!C)
+			continue
+		if (!(C.prefs.toggles & SOUND_TTS))
+			continue
+		var/turf/origin
+
+		if (T.is_global)
+			origin = M.loc
 		else
-			return // nothing to process and nothing queued
+			origin = T.owner.mob.loc
 
-		if (!processing)
-			message_admins("Error picked TTS request")
-			return
-
-		if (!processing.owner)
-			message_admins("TTS request has no owner (on pick)")
-			processing = null
-			return
-		else
-			processing.owner.tts_cooldown = world.time + length(processing.text)
-
-		processing.timeout = processing.timeout + world.time
-		var/cmd = GENERATOR_PATH + "tts_generator.exe"
-		cmd = cmd + " --text \"[processing.text]\""
-
-		if (processing.voice)
-			cmd = cmd + " --voice \"[processing.voice]\""
-		shell(cmd)
-		processing.filename = GENERATOR_PATH + "speech.ogg"
+		M.playsound_local(origin, T.filename, 100, 0, channel = CHANNEL_TTS)
 
 /datum/tts
 	var/client/owner
@@ -88,7 +89,8 @@ SUBSYSTEM_DEF(tts)
 	var/voice = ""
 	var/filename = ""
 	var/is_global = FALSE
-	var/timeout = 10 // file shouldn't take longer than 1 second to process, delete after this much time has passed
+	var/status = STATUS_NEW
+	var/life = 0
 
 /datum/tts/proc/say(client/C, msg, voice = "", is_global = FALSE)
 	if (!C)
@@ -99,7 +101,12 @@ SUBSYSTEM_DEF(tts)
 	text = msg
 	src.voice = voice
 	src.is_global = is_global
+	life = world.time + length(msg)
 
-	LAZYADD(SStts.queue, src)
+	LAZYADD(SStts.processing, src)
 
 #undef GENERATOR_PATH
+#undef STATUS_NEW
+#undef STATUS_GENERATING
+#undef STATUS_READY
+#undef STATUS_PLAYING
