@@ -63,7 +63,7 @@ The best practice to have while coding is to keep everything modularized, or the
 ## code/modules/mob/living/living.dm 
 ## code/modules/mob/living/say.dm
 ## code/modules/mob/living/silicon/ai/ai.dm
-code/modules/mob/living/silicon/pai/pai_shell.dm
+## code/modules/mob/living/silicon/pai/pai_shell.dm
 ## code/modules/mob/living/silicon/robot/robot.dm
 ## code/modules/mob/living/simple_animal/bot/medbot.dm
 ## code/modules/mob/living/simple_animal/friendly/dog.dm
