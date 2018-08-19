@@ -40,6 +40,12 @@
 	owner.special_role = "vampire"
 	owner.current.faction += "vampire"
 	SSticker.mode.update_vampire_icons_added(owner)
+	var/mob/living/carbon/human/C = owner.current
+	if(istype(C))
+		var/obj/item/organ/brain/B = C.getorganslot(ORGAN_SLOT_BRAIN)
+		if(B)
+			B.vital = FALSE
+			B.decoy_override = TRUE
 	..()
 
 /datum/antagonist/vampire/on_removal()
@@ -58,6 +64,12 @@
 	if(owner.current)
 		to_chat(owner.current,"<span class='userdanger'>Your powers have been quenched! You are no longer a vampire</span>")
 	owner.special_role = null
+	var/mob/living/carbon/human/C = owner.current
+	if(istype(C))
+		var/obj/item/organ/brain/B = C.getorganslot(ORGAN_SLOT_BRAIN)
+		if(B && (B.decoy_override != initial(B.decoy_override)))
+			B.vital = TRUE
+			B.decoy_override = FALSE
 	..()
 
 /datum/antagonist/vampire/greet()

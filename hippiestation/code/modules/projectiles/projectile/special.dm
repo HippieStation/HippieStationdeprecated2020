@@ -43,7 +43,7 @@ obj/item/projectile/rod/proc/Impale(mob/living/carbon/human/H)
                 H.do_pindown(T, 1)
                 R.pinned = T
 
-            add_logs(firer, H, "shot", src, addition="[H.pinned_to ? " PINNED" : ""]")
+            log_combat(firer, H, "shot", src, addition="[H.pinned_to ? " PINNED" : ""]")
 
 /obj/item/projectile/rod/on_hit(atom/target, blocked = FALSE)
     ..()

@@ -12,7 +12,7 @@
 			<A href='?src=[REF(src)];[HrefToken()];secrets=mentor_log'>Mentor Log</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=show_admins'>Show Admin List</A><BR>
 			<BR>
-			"}
+			"} // hippie -- adds spawnselfdummy and mentor_log
 
 	if(check_rights(R_ADMIN,0))
 		dat += {"
@@ -100,8 +100,8 @@
 	var/datum/round_event/E
 	var/ok = 0
 	switch(item)
-		if("spawnselfdummy")
-			spawntestdummy(usr)
+		if("spawnselfdummy") // hippie start -- adds spawn as dummy command
+			spawntestdummy(usr) // hippie end
 		if("admin_log")
 			var/dat = "<B>Admin Log<HR></B>"
 			for(var/l in GLOB.admin_log)
@@ -110,8 +110,8 @@
 				dat += "No-one has done anything this round!"
 			usr << browse(dat, "window=admin_log")
 
-		if("mentor_log")
-			HippieMentorLogSecret()
+		if("mentor_log") // hippie start -- access mentor log
+			HippieMentorLogSecret() // hippie end
 
 		if("show_admins")
 			var/dat = "<B>Current admins:</B><HR>"

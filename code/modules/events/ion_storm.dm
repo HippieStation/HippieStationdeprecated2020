@@ -74,7 +74,7 @@
 	var/ionadjectiveshalf = pick("", 400;(pick_list(ION_FILE, "ionadjectives") + " "))
 	//Verbs are verbs
 	var/ionverb = pick_list(ION_FILE, "ionverb")
-	//Number base and number modifier are combined. basehalf and mod are unused currently.
+	//Number base and number modifier are combined. Basehalf and mod are unused currently.
 	//Half should only appear sometimes. Make sure both lists are identical! Also, half
 	//needs a space at the end to make it look nice and neat when it calls a blank.
 	var/ionnumberbase = pick_list(ION_FILE, "ionnumberbase")

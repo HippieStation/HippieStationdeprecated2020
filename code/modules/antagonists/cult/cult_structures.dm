@@ -221,14 +221,17 @@
 
 		var/turf/T = safepick(validturfs)
 		if(T)
-			T.ChangeTurf(/turf/open/floor/engine/cult)
+			if(istype(T, /turf/open/floor/plating))
+				T.PlaceOnTop(/turf/open/floor/engine/cult)
+			else
+				T.ChangeTurf(/turf/open/floor/engine/cult)
 		else
 			var/turf/open/floor/engine/cult/F = safepick(cultturfs)
 			if(F)
 				new /obj/effect/temp_visual/cult/turf/floor(F)
 			else
 				// Are we in space or something? No cult turfs or
-				// convertible turfs?
+				// convertable turfs?
 				last_corrupt = world.time + corrupt_delay*2
 
 /obj/structure/destructible/cult/tome

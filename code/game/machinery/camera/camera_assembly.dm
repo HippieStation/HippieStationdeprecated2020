@@ -80,7 +80,7 @@
 		return FALSE
 	var/obj/U = locate(/obj) in upgrades
 	if(U)
-		to_chat(user, "<span class='notice'>You unattach an upgrade from the assembly.</span>")
+		to_chat(user, "<span class='notice'>You detach an upgrade from the assembly.</span>")
 		tool.play_tool_sound(src)
 		U.forceMove(drop_location())
 		upgrades -= U
@@ -126,7 +126,7 @@
 	if(state != 1)
 		return FALSE
 	I.play_tool_sound(src)
-	to_chat(user, "<span class='notice'>You unattach the assembly from its place.</span>")
+	to_chat(user, "<span class='notice'>You detach the assembly from its place.</span>")
 	new /obj/item/wallframe/camera(drop_location())
 	qdel(src)
 	return TRUE

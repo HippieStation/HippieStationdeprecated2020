@@ -24,7 +24,7 @@
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=revenant'>Make Revenant (Requires Ghost)</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=shadowling'>Make Shadowling</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=messiah'>Make Space Jesus</a><br>
-		"}
+		"} // hippie -- adds shadowling and jesus maker
 
 	var/datum/browser/popup = new(usr, "oneclickantag", "Quick-Create Antagonist", 400, 400)
 	popup.set_content(dat)
@@ -78,7 +78,7 @@
 	return 0
 
 
-/datum/admins/proc/makechangelings()
+/datum/admins/proc/makeChangelings()
 
 	var/datum/game_mode/changeling/temp = new
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
@@ -97,11 +97,11 @@
 					candidates += applicant
 
 	if(candidates.len)
-		var/numchangelings = min(candidates.len, 3)
+		var/numChangelings = min(candidates.len, 3)
 
-		for(var/i = 0, i<numchangelings, i++)
+		for(var/i = 0, i<numChangelings, i++)
 			H = pick(candidates)
-			H.mind.make_changeling()
+			H.mind.make_Changeling()
 			candidates.Remove(H)
 
 		return 1

@@ -362,7 +362,7 @@ SUBSYSTEM_DEF(job)
 		var/allowed_to_be_a_loser = !jobban_isbanned(player, SSjob.overflow_role)
 		if(QDELETED(player) || !allowed_to_be_a_loser)
 			RejectPlayer(player)
-		else 
+		else
 			if(!AssignRole(player, SSjob.overflow_role))
 				RejectPlayer(player)
 	else if(player.client.prefs.joblessrole == BERANDOMJOB)
@@ -413,7 +413,7 @@ SUBSYSTEM_DEF(job)
 
 	if(H.mind)
 		H.mind.assigned_role = rank
-	equip_loadout(N, H)
+	equip_loadout(N, H) // hippie -- part of the loadout system, gives you loadout items on spawning
 	if(job)
 		var/new_mob = job.equip(H, null, null, joined_late)
 		if(ismob(new_mob))

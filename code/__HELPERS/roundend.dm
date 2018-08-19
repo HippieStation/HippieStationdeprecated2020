@@ -45,7 +45,7 @@
 				category = "others"
 				mob_data += list("typepath" = m.type)
 		if(!escaped)
-			if(EMERGENCY_ESCAPED_OR_ENDGAMED && (m.onCentCom() || m.onSyndiebase()))
+			if(EMERGENCY_ESCAPED_OR_ENDGAMED && (m.onCentCom() || m.onSyndieBase()))
 				escaped = "escapees"
 				num_escapees++
 				if(shuttle_areas[get_area(m)])
@@ -194,7 +194,7 @@
 
 	send2irc("Server", "Round just ended.")
 
-	if(length(CONFIG_GET(keyed_string_list/cross_server)))
+	if(length(CONFIG_GET(keyed_list/cross_server)))
 		send_news_report()
 
 	CHECK_TICK
@@ -321,7 +321,7 @@
 	if(M.mind && !isnewplayer(M))
 		if(M.stat != DEAD && !isbrain(M))
 			if(EMERGENCY_ESCAPED_OR_ENDGAMED)
-				if(!M.onCentCom() && !M.onSyndiebase())
+				if(!M.onCentCom() && !M.onSyndieBase())
 					parts += "<div class='panel stationborder'>"
 					parts += "<span class='marooned'>You managed to survive, but were marooned on [station_name()]...</span>"
 				else

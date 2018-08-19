@@ -41,7 +41,7 @@ This file contains the arcane tome files.
 			var/holy2unholy = M.reagents.get_reagent_amount("holywater")
 			M.reagents.del_reagent("holywater")
 			M.reagents.add_reagent("unholywater",holy2unholy)
-			add_logs(user, M, "smacked", src, " removing the holy water from them")
+			log_combat(user, M, "smacked", src, " removing the holy water from them")
 		return
 	M.take_bodypart_damage(0, 15) //Used to be a random between 5 and 20
 	playsound(M, 'sound/weapons/sear.ogg', 50, 1)
@@ -49,7 +49,7 @@ This file contains the arcane tome files.
 					  "<span class='userdanger'>[user] strikes you with the tome, searing your flesh!</span>")
 	flick("tome_attack", src)
 	user.do_attack_animation(M)
-	add_logs(user, M, "smacked", src)
+	log_combat(user, M, "smacked", src)
 
 /obj/item/tome/attack_self(mob/user)
 	if(!iscultist(user))
@@ -269,11 +269,11 @@ This file contains the arcane tome files.
 	if(!is_station_level(T.z) && !is_mining_level(T.z))
 		to_chat(user, "<span class='warning'>The veil is not weak enough here.</span>")
 		return FALSE
-		
+
 	var/area/A = get_area(T)
 	if(A && !A.blob_allowed)
 		to_chat(user, "<span class='warning'>There's a passage in [src] specifically forbidding oyster consumption, triple-frying, and building outside of designated cult zones.</span>")
 		return FALSE
-		
+
 
 	return TRUE

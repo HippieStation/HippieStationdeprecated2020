@@ -69,7 +69,7 @@
 	U.apply_damage(damage, BRUTE, affecting, U.getarmor(affecting, "melee"))
 	U.dropItemToGround(U.get_active_held_item())
 
-	add_logs(user, U, "backstabbed", "[src.name]", "(INTENT: [uppertext(user.a_intent)])")
+	log_combat(user, U, "backstabbed", "[src.name]", "(INTENT: [uppertext(user.a_intent)])")
 
 /obj/item/melee/transforming/butterfly/energy
 	name = "energy balisong"

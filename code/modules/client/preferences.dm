@@ -125,7 +125,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	for(var/custom_name_id in GLOB.preferences_custom_names)
 		custom_names[custom_name_id] = get_default_name(custom_name_id)
-	
+
 	UI_style = GLOB.available_ui_styles[1]
 	if(istype(C))
 		if(!IsGuestKey(C.key))
@@ -159,7 +159,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<a href='?_src_=prefs;preference=tab;tab=0' [current_tab == 0 ? "class='linkOn'" : ""]>Character Settings</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=1' [current_tab == 1 ? "class='linkOn'" : ""]>Game Preferences</a>"
 	dat += "<a href='?_src_=prefs;preference=tab;tab=2' [current_tab == 2 ? "class='linkOn'" : ""]>OOC Preferences</a>"
-	dat += "<a href='?_src_=prefs;preference=tab;tab=3' [current_tab == 3 ? "class='linkOn'" : ""]>Loadout</a>" //hippie code
+	dat += "<a href='?_src_=prefs;preference=tab;tab=3' [current_tab == 3 ? "class='linkOn'" : ""]>Loadout</a>" // hippie -- Loadout system
 
 	if(!path)
 		dat += "<div class='notice'>Please create an account to save your preferences</div>"
@@ -400,35 +400,34 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					dat += "</td>"
 					mutant_category = 0
 
+			if("tail_human" in pref_species.default_features)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Tail</h3>"
+
+				dat += "<a href='?_src_=prefs;preference=tail_human;task=input'>[features["tail_human"]]</a><BR>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+
+			if("ears" in pref_species.default_features)
+				if(!mutant_category)
+					dat += APPEARANCE_CATEGORY_COLUMN
+
+				dat += "<h3>Ears</h3>"
+
+				dat += "<a href='?_src_=prefs;preference=ears;task=input'>[features["ears"]]</a><BR>"
+
+				mutant_category++
+				if(mutant_category >= MAX_MUTANT_ROWS)
+					dat += "</td>"
+					mutant_category = 0
+
 			dat = add_hippie_choices(dat)
-
 			if(CONFIG_GET(flag/join_with_mutant_humans))
-
-				if("tail_human" in pref_species.default_features)
-					if(!mutant_category)
-						dat += APPEARANCE_CATEGORY_COLUMN
-
-					dat += "<h3>Tail</h3>"
-
-					dat += "<a href='?_src_=prefs;preference=tail_human;task=input'>[features["tail_human"]]</a><BR>"
-
-					mutant_category++
-					if(mutant_category >= MAX_MUTANT_ROWS)
-						dat += "</td>"
-						mutant_category = 0
-
-				if("ears" in pref_species.default_features)
-					if(!mutant_category)
-						dat += APPEARANCE_CATEGORY_COLUMN
-
-					dat += "<h3>Ears</h3>"
-
-					dat += "<a href='?_src_=prefs;preference=ears;task=input'>[features["ears"]]</a><BR>"
-
-					mutant_category++
-					if(mutant_category >= MAX_MUTANT_ROWS)
-						dat += "</td>"
-						mutant_category = 0
 
 				if("wings" in pref_species.default_features && GLOB.r_wings_list.len >1)
 					if(!mutant_category)
@@ -541,7 +540,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 
 			for (var/i in GLOB.special_roles)
-				if(jobban_isbanned(user, i) || jobban_isbanned(user, CATBAN) || jobban_isbanned(user, CLUWNEBAN))
+				if(jobban_isbanned(user, i) || jobban_isbanned(user, CATBAN) || jobban_isbanned(user, CLUWNEBAN)) // hippie -- adds our jobban checks
 					dat += "<b>Be [capitalize(i)]:</b> <a href='?_src_=prefs;jobbancheck=[i]'>BANNED</a><br>"
 				else
 					var/days_remaining = null
@@ -558,7 +557,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Midround Antagonist:</b> <a href='?_src_=prefs;preference=allow_midround_antag'>[(toggles & MIDROUND_ANTAG) ? "Enabled" : "Disabled"]</a><br>"
 
 			dat += "</td></tr></table>"
-
 
 		if(2) //OOC Preferences
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
@@ -592,8 +590,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b>Combo HUD Lighting:</b> <a href = '?_src_=prefs;preference=combohud_lighting'>[(toggles & COMBOHUD_LIGHTING)?"Full-bright":"No Change"]</a><br>"
 				dat += "</td>"
 			dat += "</tr></table>"
-		if(3)
-			dat += hippie_dat_replace(current_tab)
+		if(3) // hippie start -- loadout system
+			dat += hippie_dat_replace(current_tab) // hippie end
 
 	dat += "<hr><center>"
 
@@ -657,7 +655,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			HTML += "<tr bgcolor='[job.selection_color]'><td width='60%' align='right'>"
 			var/rank = job.title
 			lastJob = job
-			if(jobban_isbanned(user, rank) || jobban_isbanned(user, CLUWNEBAN) || jobban_isbanned(user, CATBAN))
+			if(jobban_isbanned(user, rank) || jobban_isbanned(user, CLUWNEBAN) || jobban_isbanned(user, CATBAN)) // hippie -- adds our jobban checks
 				HTML += "<font color=red>[rank]</font></td><td><a href='?_src_=prefs;jobbancheck=[rank]'> BANNED</a></td></tr>"
 				continue
 			var/required_playtime_remaining = job.required_playtime_remaining(user.client)
@@ -944,7 +942,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(href_list["jobbancheck"])
 		var/job = sanitizeSQL(href_list["jobbancheck"])
 		var/sql_ckey = sanitizeSQL(user.ckey)
-		var/datum/DBQuery/query_get_jobban = SSdbcore.NewQuery("SELECT reason, bantime, duration, expiration_time, a_ckey FROM [format_table_name("ban")] WHERE ckey = '[sql_ckey]' AND (bantype = 'JOB_PERMABAN'  OR (bantype = 'JOB_TEMPBAN' AND expiration_time > Now())) AND isnull(unbanned) AND job = '[job]'")
+		var/datum/DBQuery/query_get_jobban = SSdbcore.NewQuery("SELECT reason, bantime, duration, expiration_time, (SELECT byond_key FROM [format_table_name("player")] WHERE [format_table_name("player")].ckey = [format_table_name("ban")].a_ckey) FROM [format_table_name("ban")] WHERE ckey = '[sql_ckey]' AND (bantype = 'JOB_PERMABAN'  OR (bantype = 'JOB_TEMPBAN' AND expiration_time > Now())) AND isnull(unbanned) AND job = '[job]'")
 		if(!query_get_jobban.warn_execute())
 			qdel(query_get_jobban)
 			return
@@ -953,9 +951,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/bantime = query_get_jobban.item[2]
 			var/duration = query_get_jobban.item[3]
 			var/expiration_time = query_get_jobban.item[4]
-			var/a_ckey = query_get_jobban.item[5]
+			var/admin_key = query_get_jobban.item[5]
 			var/text
-			text = "<span class='redtext'>You, or another user of this computer, ([user.ckey]) is banned from playing [job]. The ban reason is:<br>[reason]<br>This ban was applied by [a_ckey] on [bantime]"
+			text = "<span class='redtext'>You, or another user of this computer, ([user.key]) is banned from playing [job]. The ban reason is:<br>[reason]<br>This ban was applied by [admin_key] on [bantime]"
 			if(text2num(duration) > 0)
 				text += ". The ban is for [duration] minutes and expires on [expiration_time] (server time)"
 			text += ".</span>"
@@ -1474,24 +1472,25 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if (href_list["tab"])
 						current_tab = text2num(href_list["tab"])
 
-	process_hippie_link(user, href_list)
+	process_hippie_link(user, href_list) // hippie -- process loadout stuff
 	ShowChoices(user)
 	return 1
 
-/datum/preferences/proc/copy_to(mob/living/carbon/human/character, icon_updates = 1)
+/datum/preferences/proc/copy_to(mob/living/carbon/human/character, icon_updates = 1, roundstart_checks = TRUE)
 	if(be_random_name)
 		real_name = pref_species.random_name(gender)
 
 	if(be_random_body)
 		random_character(gender)
 
-	if(CONFIG_GET(flag/humans_need_surnames) && (pref_species.id == "human"))
-		var/firstspace = findtext(real_name, " ")
-		var/name_length = length(real_name)
-		if(!firstspace)	//we need a surname
-			real_name += " [pick(GLOB.last_names)]"
-		else if(firstspace == name_length)
-			real_name += "[pick(GLOB.last_names)]"
+	if(roundstart_checks)
+		if(CONFIG_GET(flag/humans_need_surnames) && (pref_species.id == "human"))
+			var/firstspace = findtext(real_name, " ")
+			var/name_length = length(real_name)
+			if(!firstspace)	//we need a surname
+				real_name += " [pick(GLOB.last_names)]"
+			else if(firstspace == name_length)
+				real_name += "[pick(GLOB.last_names)]"
 
 	character.real_name = real_name
 	character.name = character.real_name
@@ -1520,13 +1519,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character.dna.features = features.Copy()
 	character.dna.real_name = character.real_name
 	var/datum/species/chosen_species
-	if(pref_species.id in GLOB.roundstart_races)
+	if(!roundstart_checks || (pref_species.id in GLOB.roundstart_races))
 		chosen_species = pref_species.type
 	else
 		chosen_species = /datum/species/human
 		pref_species = new /datum/species/human
 		save_character()
-	character.set_species(chosen_species, icon_update=0)
+	character.set_species(chosen_species, icon_update = FALSE, pref_load = TRUE)
 
 	if(icon_updates)
 		character.update_body()
@@ -1551,7 +1550,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/namedata = GLOB.preferences_custom_names[name_id]
 	if(!namedata)
 		return
-	
+
 	var/raw_name = input(user, "Choose your character's [namedata["qdesc"]]:","Character Preference") as text|null
 	if(!raw_name)
 		if(namedata["allow_null"])

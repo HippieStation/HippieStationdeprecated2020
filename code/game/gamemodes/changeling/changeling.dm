@@ -11,7 +11,7 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 	antag_flag = ROLE_CHANGELING
 	false_report_weight = 10
 	restricted_jobs = list("AI", "Cyborg")
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel")
+	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel") // hippie -- adds HoP
 	required_players = 15
 	required_enemies = 1
 	recommended_enemies = 4
@@ -86,7 +86,7 @@ GLOBAL_VAR(changeling_team_objective_type) //If this is not null, we hand our th
 			if(!jobban_isbanned(character, ROLE_CHANGELING) && !QDELETED(character) && !jobban_isbanned(character, ROLE_SYNDICATE) && !QDELETED(character))
 				if(age_check(character.client))
 					if(!(character.job in restricted_jobs))
-						character.mind.make_changeling()
+						character.mind.make_Changeling()
 						changelings += character.mind
 
 /datum/game_mode/changeling/generate_report()

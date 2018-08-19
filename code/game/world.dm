@@ -20,7 +20,7 @@ GLOBAL_PROTECT(security_mode)
 	TgsNew()
 
 	GLOB.revdata = new
-	
+
 	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
 	//SetupLogs depends on the RoundID, so lets check
@@ -30,7 +30,7 @@ GLOBAL_PROTECT(security_mode)
 	SetupLogs()
 
 	load_admins()
-	hippie_initialize() // hippie - loads mentor and other stuff. Due to mentors, it has to be after load_admins().
+	hippie_initialize() // hippie -- loads mentor and other stuff. Due to mentors, it has to be after load_admins().
 	LoadVerbs(/datum/verbs/menu)
 	if(CONFIG_GET(flag/usewhitelist))
 		load_whitelist()
@@ -240,7 +240,7 @@ GLOBAL_PROTECT(security_mode)
 	shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
 	..()
 
-/world/proc/update_status()
+/world/proc/update_status() // hippie -- heavily edited. Needs modularization.
 	var/s = ""
 	var/hostedby
 	var/forumurl

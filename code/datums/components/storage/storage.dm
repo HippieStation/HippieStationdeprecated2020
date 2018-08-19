@@ -99,7 +99,7 @@
 
 	RegisterSignal(parent, COMSIG_CLICK_ALT, .proc/on_alt_click)
 	RegisterSignal(parent, COMSIG_MOUSEDROP_ONTO, .proc/mousedrop_onto)
-	RegisterSignal(parent, COMSIG_MOUSEDROPPED_ONTO, .proc/mousedrop_receive) //remind me to change this to receive once spellcheck pr is merged - YoYoBatty
+	RegisterSignal(parent, COMSIG_MOUSEDROPPED_ONTO, .proc/mousedrop_receive)
 
 	update_actions()
 
@@ -552,7 +552,7 @@
 	if(real_location == I.loc)
 		return FALSE //Means the item is already in the storage item
 	if(locked)
-		if(M)
+		if(M && !stop_messages)
 			host.add_fingerprint(M)
 			to_chat(M, "<span class='warning'>[host] seems to be locked!</span>")
 		return FALSE

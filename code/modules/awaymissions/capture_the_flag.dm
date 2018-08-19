@@ -327,11 +327,11 @@
 	for(var/d in dead_barricades)
 		var/obj/effect/ctf/dead_barricade/D = d
 		D.respawn()
-	//hippie code. Start when ctf starts
+	// hippie start -- Start when ctf starts
 	for(var/obj/machinery/power/emitter/energycannon/C in GLOB.machines)
 		if(!C.active)
 			C.active = TRUE
-	//end hippie code
+	// hippie end
 
 	dead_barricades.Cut()
 
@@ -361,11 +361,11 @@
 	team_members.Cut()
 	spawned_mobs.Cut()
 	recently_dead_ckeys.Cut()
-	//hippie code. Stop when ctf ends so we don't lag the game.
+	// hippie start -- Stop when ctf ends so we don't lag the game.
 	for(var/obj/machinery/power/emitter/energycannon/C in GLOB.machines)
 		if(C.active)
 			C.active = FALSE
-	//end hippie code
+	// hippie end
 
 /obj/machinery/capture_the_flag/proc/instagib_mode()
 	for(var/obj/machinery/capture_the_flag/CTF in GLOB.machines)

@@ -364,8 +364,7 @@
 	holder.chem_temp = 20 // cools the fuck down
 	return
 
-/*
-Hippie: Commented because we added our own reagent processing system.
+/* hippie start -- Commented because we added our own reagent processing system.
 /datum/chemical_reaction/cryostylane_oxygen
 	name = "ephemeral cryostylane reaction"
 	id = "cryostylane_oxygen"
@@ -385,7 +384,7 @@ Hippie: Commented because we added our own reagent processing system.
 
 /datum/chemical_reaction/pyrosium_oxygen/on_reaction(datum/reagents/holder, created_volume)
 	holder.chem_temp += 10*created_volume
-*/
+hippie end */
 
 /datum/chemical_reaction/pyrosium
 	name = "pyrosium"

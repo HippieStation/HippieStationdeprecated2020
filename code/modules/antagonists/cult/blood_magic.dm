@@ -378,7 +378,7 @@
 		uses = 0
 		qdel(src)
 		return
-	add_logs(user, M, "used a cult spell on", source.name, "")
+	log_combat(user, M, "used a cult spell on", source.name, "")
 	M.lastattacker = user.real_name
 	M.lastattackerckey = user.ckey
 
@@ -507,7 +507,7 @@
 				C.update_handcuffed()
 				C.silent += 5
 				to_chat(user, "<span class='notice'>You shackle [C].</span>")
-				add_logs(user, C, "shackled")
+				log_combat(user, C, "shackled")
 				uses--
 			else
 				to_chat(user, "<span class='warning'>[C] is already bound.</span>")
@@ -543,7 +543,7 @@
 			var/obj/item/stack/sheet/candidate = target
 			if(candidate.use(50))
 				uses--
-				to_chat(user, "<span class='warning'>A dark cloud eminates from your hand and swirls around the metal, twisting it into a construct shell!</span>")
+				to_chat(user, "<span class='warning'>A dark cloud emanates from your hand and swirls around the metal, twisting it into a construct shell!</span>")
 				new /obj/structure/constructshell(T)
 				SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
 			else
@@ -554,12 +554,12 @@
 			if(candidate.use(quantity))
 				uses --
 				new /obj/item/stack/sheet/runed_metal(T,quantity)
-				to_chat(user, "<span class='warning'>A dark cloud eminates from you hand and swirls around the plasteel, transforming it into runed metal!</span>")
+				to_chat(user, "<span class='warning'>A dark cloud emanates from you hand and swirls around the plasteel, transforming it into runed metal!</span>")
 				SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
 		else if(istype(target,/mob/living/silicon/robot))
 			var/mob/living/silicon/robot/candidate = target
 			if(candidate.mmi)
-				user.visible_message("<span class='danger'>A dark cloud eminates from [user]'s hand and swirls around [candidate]!</span>")
+				user.visible_message("<span class='danger'>A dark cloud emanates from [user]'s hand and swirls around [candidate]!</span>")
 				playsound(T, 'sound/machines/airlock_alien_prying.ogg', 80, 1)
 				var/prev_color = candidate.color
 				candidate.color = "black"
@@ -582,7 +582,7 @@
 					candidate.color = prev_color
 			else
 				uses--
-				to_chat(user, "<span class='warning'>A dark cloud eminates from you hand and swirls around [candidate] - twisting it into a construct shell!</span>")
+				to_chat(user, "<span class='warning'>A dark cloud emanates from you hand and swirls around [candidate] - twisting it into a construct shell!</span>")
 				new /obj/structure/constructshell(T)
 				SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
 		else if(istype(target,/obj/machinery/door/airlock))

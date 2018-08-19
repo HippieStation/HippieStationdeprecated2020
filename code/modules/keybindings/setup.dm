@@ -28,7 +28,6 @@
 			erase_output = "[erase_output];[macro_name].parent=null"
 	winset(src, null, erase_output)
 
-//Mirrored by hippie so we can use our own macro set
 /client/proc/set_macros()
 	set waitfor = FALSE
 

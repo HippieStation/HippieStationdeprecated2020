@@ -25,7 +25,7 @@
 		M.forceMove(Tsec)
 		visible_message("<span class='danger'>[M] bursts out of [src]!</span>")
 	
-	throw_hats(500, GLOB.alldirs) // Hippie - Throw our hats all over the place
+	throw_hats(500, GLOB.alldirs) // hippie -- Throw our hats all over the place
 		
 	..()
 

@@ -1,5 +1,5 @@
 /datum/map_template/shuttle
-	name = "base Shuttle Template"
+	name = "Base Shuttle Template"
 	var/prefix = "_maps/shuttles/"
 	var/suffix
 	var/port_id
@@ -51,15 +51,15 @@
 
 /datum/map_template/shuttle/emergency
 	port_id = "emergency"
-	name = "base Shuttle Template (Emergency)"
+	name = "Base Shuttle Template (Emergency)"
 
 /datum/map_template/shuttle/cargo
 	port_id = "cargo"
-	name = "base Shuttle Template (Cargo)"
+	name = "Base Shuttle Template (Cargo)"
 
 /datum/map_template/shuttle/ferry
 	port_id = "ferry"
-	name = "base Shuttle Template (Ferry)"
+	name = "Base Shuttle Template (Ferry)"
 
 /datum/map_template/shuttle/whiteship
 	port_id = "whiteship"
@@ -346,7 +346,7 @@
 
 /datum/map_template/shuttle/whiteship/delta
 	suffix = "delta"
-	name = "NT Luxury Frigate"
+	name = "NT Frigate"
 
 /datum/map_template/shuttle/whiteship/pod
 	suffix = "whiteship_pod"

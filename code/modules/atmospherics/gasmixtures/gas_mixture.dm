@@ -382,32 +382,30 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 	//thermal energy of the system (self and sharer) is unchanged
 
 /datum/gas_mixture/compare(datum/gas_mixture/sample)
-	if(sample)//Hippie code fix
-		var/list/sample_gases = sample.gases //accessing datum vars is slower than proc vars
-		var/list/cached_gases = gases
+	var/list/sample_gases = sample.gases //accessing datum vars is slower than proc vars
+	var/list/cached_gases = gases
 
-		for(var/id in cached_gases | sample_gases) // compare gases from either mixture
-			var/gas_moles = cached_gases[id]
-			gas_moles = gas_moles ? gas_moles[MOLES] : 0
-			var/sample_moles = sample_gases[id]
-			sample_moles = sample_moles ? sample_moles[MOLES] : 0
-			var/delta = abs(gas_moles - sample_moles)
-			if(delta > MINIMUM_MOLES_DELTA_TO_MOVE && \
-				delta > gas_moles * MINIMUM_AIR_RATIO_TO_MOVE)
-				return id
+	for(var/id in cached_gases | sample_gases) // compare gases from either mixture
+		var/gas_moles = cached_gases[id]
+		gas_moles = gas_moles ? gas_moles[MOLES] : 0
+		var/sample_moles = sample_gases[id]
+		sample_moles = sample_moles ? sample_moles[MOLES] : 0
+		var/delta = abs(gas_moles - sample_moles)
+		if(delta > MINIMUM_MOLES_DELTA_TO_MOVE && \
+			delta > gas_moles * MINIMUM_AIR_RATIO_TO_MOVE)
+			return id
 
-		var/our_moles
-		TOTAL_MOLES(cached_gases, our_moles)
-		if(our_moles > MINIMUM_MOLES_DELTA_TO_MOVE)
-			var/temp = temperature
-			var/sample_temp = sample.temperature
+	var/our_moles
+	TOTAL_MOLES(cached_gases, our_moles)
+	if(our_moles > MINIMUM_MOLES_DELTA_TO_MOVE)
+		var/temp = temperature
+		var/sample_temp = sample.temperature
 
-			var/temperature_delta = abs(temp - sample_temp)
-			if(temperature_delta > MINIMUM_TEMPERATURE_DELTA_TO_SUSPEND)
-				return "temp"
+		var/temperature_delta = abs(temp - sample_temp)
+		if(temperature_delta > MINIMUM_TEMPERATURE_DELTA_TO_SUSPEND)
+			return "temp"
 
-		return ""
-	//hippie code ned
+	return ""
 
 /datum/gas_mixture/react(datum/holder)
 	. = NO_REACTION
