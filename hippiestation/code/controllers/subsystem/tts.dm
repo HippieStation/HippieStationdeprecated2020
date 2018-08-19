@@ -7,26 +7,6 @@ SUBSYSTEM_DEF(tts)
 	var/list/queue           // List of items to process
 	var/datum/tts/processing // The item we're currently processing
 
-/datum/tts
-	var/client/owner
-	var/text = ""
-	var/voice = ""
-	var/filename = ""
-	var/is_global = FALSE
-	var/timeout = 10 // file shouldn't take longer than 1 second to process, delete after this much time has passed
-
-/datum/tts/proc/say(client/C, msg, voice = "", is_global = FALSE)
-	if (!C)
-		return
-	if (!msg)
-		return
-	owner = C
-	text = msg
-	src.voice = voice
-	src.is_global = is_global
-
-	LAZYADD(SStts.queue, src)
-
 /datum/controller/subsystem/tts/Initialize()
 	LAZYINITLIST(queue)
 
@@ -62,7 +42,7 @@ SUBSYSTEM_DEF(tts)
 			var/client/C = M.client
 			if (!C)
 				continue
-			if (C.prefs.toggles & SOUND_MIDI)
+			if (C.prefs.toggles & SOUND_TTS)
 				var/turf/origin
 
 				if (processing.is_global)
@@ -70,11 +50,10 @@ SUBSYSTEM_DEF(tts)
 				else
 					origin = processing.owner.mob.loc
 
-				M.playsound_local(origin, processing.filename, 100, 0)
+				M.playsound_local(origin, processing.filename, 100, 0, channel = CHANNEL_TTS)
 
 		// delete the file once we play it
-		if (fexists(processing.filename))
-			fdel(processing.filename)
+		fdel(processing.filename)
 		processing = null
 	else
 		// nothing is currently being processed, take first item from the queue
@@ -103,69 +82,24 @@ SUBSYSTEM_DEF(tts)
 		shell(cmd)
 		processing.filename = GENERATOR_PATH + "speech.ogg"
 
-/client
-	var/tts_cooldown = 0
+/datum/tts
+	var/client/owner
+	var/text = ""
+	var/voice = ""
+	var/filename = ""
+	var/is_global = FALSE
+	var/timeout = 10 // file shouldn't take longer than 1 second to process, delete after this much time has passed
 
-/datum/dna
-	var/tts_voice = ""
-
-/datum/dna/proc/create_random_voice()
-	var/mob/living/carbon/human/H = holder
-	if (H)
-		if (H.gender == FEMALE)
-			tts_voice = pick("betty", "rita", "ursula", "wendy")
-		else
-			tts_voice = pick("dennis", "frank", "harry", "kit", "paul")
-
-/datum/dna/initialize_dna()
-	. = ..()
-	create_random_voice()
-
-/datum/dna/transfer_identity(mob/living/carbon/destination)
-	. = ..()
-	if (!istype(destination))
+/datum/tts/proc/say(client/C, msg, voice = "", is_global = FALSE)
+	if (!C)
 		return
-	destination.dna.tts_voice = tts_voice
-
-/datum/dna/copy_dna(datum/dna/new_dna)
-	. = ..()
-	if (new_dna)
-		new_dna.tts_voice = tts_voice
-
-/datum/dna/update_dna_identity()
-	. = ..()
-	create_random_voice()
-
-/client/proc/play_tts()
-	set category = "Fun"
-	set name = "Play TTS"
-	if(!check_rights(R_SOUNDS))
+	if (!msg)
 		return
-	if (!CONFIG_GET(flag/enable_tts))
-		to_chat(usr, "<span='warning'>Text-to-Speech is not enabled!</span>")
-		return
+	owner = C
+	text = msg
+	src.voice = voice
+	src.is_global = is_global
 
-	var/input = input(usr, "Please enter a message to send to the server", "Text to Speech", "")
-	if(input)
-		var/datum/tts/T = new /datum/tts()
-		T.say(src, input, is_global=TRUE)
-		
-		to_chat(world, "<span class='boldannounce'>An admin used Text-to-Speech: [input]</span>")
-		log_admin("[key_name(src)] used Text-to-Speech: [input]")
-		message_admins("[key_name_admin(src)] used Text-to-Speech: [input]")
-
-		SSblackbox.record_feedback("tally", "admin_verb", 1, "Play TTS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/client/add_admin_verbs()
-	. = ..()
-	if (holder)
-		var/rights = holder.rank.rights
-		if(rights & R_SOUNDS)
-			if(CONFIG_GET(flag/enable_tts))
-				verbs += /client/proc/play_tts
-
-/client/remove_admin_verbs()
-	. = ..()
-	verbs.Remove(/client/proc/play_tts)
+	LAZYADD(SStts.queue, src)
 
 #undef GENERATOR_PATH

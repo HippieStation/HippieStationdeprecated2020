@@ -210,27 +210,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 	send_speech(message, message_range, src, bubble_type, spans, language, message_mode)
 
-	// Hippie Start - TTS
-	// This has to be here because this proc handles the message (language, speech mods, etc.)
-	var/msg = message
-	var/first_char = copytext(message, 1, 2)
-	if (first_char == "*" || first_char == ";" || first_char == "." || first_char == ":")
-		msg = copytext(msg, 2)
-
-	if (CONFIG_GET(flag/enable_tts) && client)
-		var/mob/living/carbon/human/H = src
-
-		if (H)
-			var/tts_voice = ""
-
-			if (H.dna)
-				if (H.dna.tts_voice)
-					tts_voice = H.dna.tts_voice
-
-			if (world.time > client.tts_cooldown && !SStts.check_queue(src))
-				var/datum/tts/TTS = new /datum/tts()
-				TTS.say(client, msg, voice = tts_voice)
-	// Hippie End
+	do_tts(message) // hippie -- Add message to tts. This proc checks if it's enabled
 
 	if(succumbed)
 		succumb(1)
