@@ -1,10 +1,12 @@
 
 /mob/living/silicon/pai/proc/fold_out(force = FALSE)
-	//HippieStation START
+	//hippie start -- reason: Making pAI circuit-compatible
+
 	if(istype(remote_control,/obj/item/integrated_circuit/input/pAI_connector))
 		to_chat(src,"<span class='notice'>The connector is too small to allow you to change form in it.</span>")
 		return FALSE
-	//Hippiestation END
+
+	//hippie end
 	if(emitterhealth < 0)
 		to_chat(src, "<span class='warning'>Your holochassis emitters are still too unstable! Please wait for automatic repair.</span>")
 		return FALSE
