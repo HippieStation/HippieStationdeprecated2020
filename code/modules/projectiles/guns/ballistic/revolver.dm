@@ -26,15 +26,11 @@
 		return
 	var/num_loaded = magazine.attackby(A, user, params, 1)
 	if(num_loaded)
+		to_chat(user, "<span class='notice'>You load [num_loaded] shell\s into \the [src].</span>")
+		playsound(user, 'sound/weapons/bulletinsert.ogg', 60, 1)
 		A.update_icon()
 		update_icon()
 		chamber_round(0)
-		if(istype(A, /obj/item/ammo_casing))
-			to_chat(user, "<span class='notice'>You load [num_loaded] shell\s into \the [src].</span>")
-			playsound(user, 'hippiestation/sound/weapons/loadbullet.ogg', 60, 1)
-		else if(istype(A, /obj/item/ammo_box))
-			to_chat(user, "<span class='notice'>You slam [num_loaded] shell\s into \the [src]. Badass.</span>")
-			playsound(user, 'hippiestation/sound/weapons/speedload.ogg', 60, 1)
 
 /obj/item/gun/ballistic/revolver/attack_self(mob/living/user)
 	var/num_unloaded = 0
@@ -155,7 +151,7 @@
 	pin = /obj/item/firing_pin
 
 /obj/item/gun/ballistic/revolver/nagant
-	name = "nagant revolver"
+	name = "\improper Nagant revolver"
 	desc = "An old model of revolver that originated in Russia. Able to be suppressed. Uses 7.62x38mmR ammo."
 	icon_state = "nagant"
 	can_suppress = TRUE
@@ -167,7 +163,7 @@
 // You can spin the chamber to randomize the position of the bullet.
 
 /obj/item/gun/ballistic/revolver/russian
-	name = "\improper russian revolver"
+	name = "\improper Russian revolver"
 	desc = "A Russian-made revolver for drinking games. Uses .357 ammo, and has a mechanism requiring you to spin the chamber before each trigger pull."
 	mag_type = /obj/item/ammo_box/magazine/internal/cylinder/rus357
 	var/spun = FALSE
@@ -239,7 +235,7 @@
 	user.visible_message("<span class='danger'>[user.name] fires [src] at [user.p_their()] head!</span>", "<span class='userdanger'>You fire [src] at your head!</span>", "<span class='italics'>You hear a gunshot!</span>")
 
 /obj/item/gun/ballistic/revolver/russian/soul
-	name = "cursed russian revolver"
+	name = "cursed Russian revolver"
 	desc = "To play with this revolver requires wagering your very soul."
 
 /obj/item/gun/ballistic/revolver/russian/soul/shoot_self(mob/living/user)

@@ -48,6 +48,18 @@
 /obj/item/reagent_containers/proc/canconsume(mob/eater, mob/user)
 	if(!iscarbon(eater))
 		return 0
+	/* hippie start -- removes boring mouth check
+	var/mob/living/carbon/C = eater
+	var/covered = ""
+	if(C.is_mouth_covered(head_only = 1))
+		covered = "headgear"
+	else if(C.is_mouth_covered(mask_only = 1))
+		covered = "mask"
+	if(covered)
+		var/who = (isnull(user) || eater == user) ? "your" : "[eater.p_their()]"
+		to_chat(user, "<span class='warning'>You have to remove [who] [covered] first!</span>")
+		return 0
+	hippie end */
 	return 1
 
 /obj/item/reagent_containers/ex_act()
@@ -88,7 +100,7 @@
 			R += num2text(A.volume) + "),"
 
 		if(thrownby)
-			add_logs(thrownby, M, "splashed", R)
+			log_combat(thrownby, M, "splashed", R)
 		reagents.reaction(target, TOUCH)
 
 	else if(bartender_check(target) && thrown)
@@ -97,7 +109,7 @@
 
 	else
 		if(isturf(target) && reagents.reagent_list.len && thrownby)
-			add_logs(thrownby, target, "splashed (thrown) [english_list(reagents.reagent_list)]", "in [AREACOORD(target)]")
+			log_combat(thrownby, target, "splashed (thrown) [english_list(reagents.reagent_list)]", "in [AREACOORD(target)]")
 			log_game("[key_name(thrownby)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [AREACOORD(target)].")
 			message_admins("[ADMIN_LOOKUPFLW(thrownby)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [ADMIN_VERBOSEJMP(target)].")
 		visible_message("<span class='notice'>[src] spills its contents all over [target].</span>")

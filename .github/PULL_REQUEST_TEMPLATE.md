@@ -1,4 +1,6 @@
-[Changelogs]: # (Your PR should contain a detailed changelog of notable changes, titled and categorized appropriately. This includes, new features, sprites, sounds, balance changes, admin tools, map edits, removals, big refactors, config changes, hosting changes and important fixes. An example changelog has been provided below for you to edit. If you need additional help, read https://github.com/tgstation/tgstation/wiki/Changelogs)
+[Guidelines]: # (Be sure that your PR follows our guidelines, such as modularization and comment standards. You can read more about the subject here: https://github.com/HippieStation/HippieStation/blob/master/hippiestation/README.md )
+
+[Changelogs]: # (Your PR should contain a detailed changelog of notable changes, titled and categorized appropriately. An example changelog has been provided below for you to edit. If you need additional help, read https://github.com/tgstation/tgstation/wiki/Changelogs )
 
 :cl: optional name here
 add: Added new things
@@ -19,4 +21,4 @@ admin: messed with admin stuff
 server: something server ops should know
 /:cl:
 
-[why]: # (Please add a short description [two lines down] of why you think these changes would benefit the game. If you can't justify it in words, it might not be worth adding.)
+[why]: 

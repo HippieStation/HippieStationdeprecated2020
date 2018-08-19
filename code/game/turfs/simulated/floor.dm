@@ -1,5 +1,5 @@
 /turf/open/floor
-	//NOTE: floor code has been refactored, many procs were removed and refactored
+	//NOTE: Floor code has been refactored, many procs were removed and refactored
 	//- you should use istype() if you want to find out whether a floor has a certain type
 	//- floor_tile is now a path, and not a tile obj
 	name = "floor"
@@ -16,6 +16,8 @@
 	var/floor_tile = null //tile that this floor drops
 	var/list/broken_states
 	var/list/burnt_states
+
+	tiled_dirt = TRUE
 
 /turf/open/floor/Initialize(mapload)
 	if (!broken_states)

@@ -95,7 +95,6 @@
 				new/mob/living/simple_animal/hostile/hivebot(T)
 			for(var/i in 1 to 2)
 				new/mob/living/simple_animal/hostile/hivebot/range(T)
-			new/mob/living/simple_animal/hostile/hivebot/engineer(T)
 			recharge_period = 5 //Give some time to mop up the adds
 		if("saw")
 			var/turf/target_turf = get_turf(threat_to_swarm)

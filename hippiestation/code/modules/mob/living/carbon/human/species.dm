@@ -140,18 +140,18 @@
 				damage *= 2
 				target.visible_message("<span class='danger'>[user] has critically punched [target]!</span>", \
 				"<span class='userdanger'>[user] has critically punched [target]!</span>", null, COMBAT_MESSAGE_RANGE)
-				add_logs(user, target, "critically punched")
+				log_combat(user, target, "critically punched")
 			else
 				target.visible_message("<span class='danger'>[user] has punched [target]!</span>", \
 				"<span class='userdanger'>[user] has punched [target]!</span>", null, COMBAT_MESSAGE_RANGE)
-				add_logs(user, target, "punched")
+				log_combat(user, target, "punched")
 			target.apply_damage(damage, BRUTE)
 			return TRUE
 		else
 			playsound(target.loc, user.dna.species.miss_sound, 25, 1, -1)
 			target.visible_message("<span class='warning'>[user] has attempted to punch [target], but they dodged it!</span>", \
 				"<span class='userdanger'>[user] has attempted to punch [target], but they dodged it!</span>", null, COMBAT_MESSAGE_RANGE)
-			add_logs(user, target, "attempted to punch")
+			log_combat(user, target, "attempted to punch")
 		return FALSE
 	else
 
@@ -190,7 +190,7 @@
 		if(user.limb_destroyer)
 			target.dismembering_strike(user, affecting.body_zone)
 		target.apply_damage(damage, BRUTE, affecting, armor_block)
-		add_logs(user, target, "punched")
+		log_combat(user, target, "punched")
 		if((target.stat != DEAD) && damage >= user.dna.species.punchstunthreshold)
 			target.visible_message("<span class='danger'>[user] has knocked  [target] down!</span>", \
 							"<span class='userdanger'>[user] has knocked [target] down!</span>", null, COMBAT_MESSAGE_RANGE)

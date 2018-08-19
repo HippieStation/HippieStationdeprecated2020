@@ -140,7 +140,7 @@
 	icon_state = initial(icon_state)
 	cut_overlays()
 
-	//baseline stats
+	//Baseline stats
 	melee_damage_lower = initial(melee_damage_lower)
 	melee_damage_upper = initial(melee_damage_upper)
 	speed = initial(speed)

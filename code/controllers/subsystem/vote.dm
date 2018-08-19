@@ -44,7 +44,7 @@ SUBSYSTEM_DEF(vote)
 	voting.Cut()
 	remove_action_buttons()
 
-/* Hippie version is being used instead
+/* hippie start -- shuttlecall votes
 
 /datum/controller/subsystem/vote/proc/get_result()
 	//get the highest number of votes
@@ -81,7 +81,7 @@ SUBSYSTEM_DEF(vote)
 				. += option
 	return .
 
-*/	//Hippie end
+hippie end */
 
 /datum/controller/subsystem/vote/proc/announce_result()
 	var/list/winners = get_result()
@@ -112,7 +112,7 @@ SUBSYSTEM_DEF(vote)
 	to_chat(world, "\n<font color='purple'>[text]</font>")
 	return .
 
-/* Hippie version is being used instead
+/* hippie start -- shuttlecall votes
 
 /datum/controller/subsystem/vote/proc/result()
 	. = announce_result()
@@ -143,7 +143,7 @@ SUBSYSTEM_DEF(vote)
 
 	return .
 
-*/	//Hippie end
+hippie end */
 
 /datum/controller/subsystem/vote/proc/submit_vote(vote)
 	if(mode)
@@ -156,7 +156,7 @@ SUBSYSTEM_DEF(vote)
 				return vote
 	return 0
 
-/* Hippie version is being used instead
+/* hippie start -- shuttlecall votes
 
 /datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key)
 	if(!mode)
@@ -297,7 +297,7 @@ SUBSYSTEM_DEF(vote)
 			submit_vote(round(text2num(href_list["vote"])))
 	usr.vote()
 
-*/	//Hippie end
+hippie end */
 
 /datum/controller/subsystem/vote/proc/remove_action_buttons()
 	for(var/v in generated_actions)
@@ -329,7 +329,7 @@ SUBSYSTEM_DEF(vote)
 /datum/action/vote/IsAvailable()
 	return 1
 
-/*	Hippie version is being used instead
+/* hippie start -- shuttlecall votes
 /datum/action/vote/proc/remove_from_client()
 	if(!owner)
 		return
@@ -341,4 +341,4 @@ SUBSYSTEM_DEF(vote)
 			P.player_actions -= src
 	else
 		return
-*/	//Hippie end
+hippie end */

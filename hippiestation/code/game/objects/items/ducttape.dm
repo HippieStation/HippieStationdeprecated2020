@@ -104,6 +104,6 @@
 			if(src.use(2) == 0)
 				user.dropItemToGround(src)
 				qdel(src)
-			add_logs(user, H, "mouth-taped")
+			log_combat(user, H, "mouth-taped")
 		else
 			to_chat(user, "<span class='warning'>You fail to tape [H]'s mouth shut.</span>")

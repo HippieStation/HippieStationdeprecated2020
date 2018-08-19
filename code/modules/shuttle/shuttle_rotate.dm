@@ -4,7 +4,7 @@ All shuttleRotate procs go here
 If ever any of these procs are useful for non-shuttles, rename it to proc/rotate and move it to be a generic atom proc
 */
 
-/************************************base proc************************************/
+/************************************Base proc************************************/
 
 /atom/proc/shuttleRotate(rotation, params=ROTATE_DIR|ROTATE_SMOOTH|ROTATE_OFFSET)
 	if(params & ROTATE_DIR)

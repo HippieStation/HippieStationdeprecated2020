@@ -191,11 +191,6 @@
 	..()
 	. = 1
 
-/datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/carbon/M)
-	M.adjustOxyLoss(0.5*REM, 0)
-	..()
-	. = 1
-
 /datum/reagent/toxin/mindbreaker
 	name = "Mindbreaker Toxin"
 	id = "mindbreaker"
@@ -632,7 +627,7 @@
 
 /datum/reagent/toxin/amanitin/on_mob_delete(mob/living/M)
 	var/toxdamage = current_cycle*3*REM
-	M.log_message("has taken [toxdamage] toxin damage from amanitin toxin", INDIVIDUAL_ATTACK_LOG)
+	M.log_message("has taken [toxdamage] toxin damage from amanitin toxin", LOG_ATTACK)
 	M.adjustToxLoss(toxdamage)
 	..()
 
@@ -708,7 +703,7 @@
 	. = 1
 	..()
 
-/datum/reagent/toxin/heparin //based on a real-life anticoagulant. I'm not a doctor, so this won't be realistic.
+/datum/reagent/toxin/heparin //Based on a real-life anticoagulant. I'm not a doctor, so this won't be realistic.
 	name = "Heparin"
 	id = "heparin"
 	description = "A powerful anticoagulant. Victims will bleed uncontrollably and suffer scaling bruising."

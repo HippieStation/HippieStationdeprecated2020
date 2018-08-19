@@ -84,16 +84,16 @@
 /datum/component/simple_rotation/proc/HandRot(mob/user, rotation = default_rotation_direction)
 	if(!can_be_rotated.Invoke(user, rotation) || !can_user_rotate.Invoke(user, rotation))
 		return
-	baseRot(user, rotation)
+	BaseRot(user, rotation)
 
 /datum/component/simple_rotation/proc/WrenchRot(obj/item/I, mob/living/user)
 	if(!can_be_rotated.Invoke(user,default_rotation_direction) || !can_user_rotate.Invoke(user,default_rotation_direction))
 		return
 	if(istype(I,/obj/item/wrench))
-		baseRot(user,default_rotation_direction)
+		BaseRot(user,default_rotation_direction)
 		return COMPONENT_NO_AFTERATTACK
 
-/datum/component/simple_rotation/proc/baseRot(mob/user,rotation_type)
+/datum/component/simple_rotation/proc/BaseRot(mob/user,rotation_type)
 	var/atom/movable/AM = parent
 	var/rot_degree
 	switch(rotation_type)

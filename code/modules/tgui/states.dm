@@ -1,7 +1,7 @@
  /**
   * tgui states
   *
-  * base state and helpers for states. Just does some sanity checks, implement a state for in-depth checks.
+  * Base state and helpers for states. Just does some sanity checks, implement a state for in-depth checks.
  **/
 
  /**

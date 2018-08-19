@@ -51,9 +51,7 @@
 	. = ..()
 	if(illustration)
 		cut_overlays()
-		var/image/I = image(icon = 'icons/obj/storage.dmi', icon_state = illustration)
-		I.pixel_y = 5
-		add_overlay(I)
+		add_overlay(illustration)
 
 /obj/item/storage/box/attack_self(mob/user)
 	..()

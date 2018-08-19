@@ -1,5 +1,3 @@
-
-
 /mob/living/brain
 	var/obj/item/mmi/container = null
 	var/timeofhostdeath = 0

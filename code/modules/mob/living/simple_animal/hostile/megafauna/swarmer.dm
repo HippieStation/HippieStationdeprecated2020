@@ -93,12 +93,12 @@ GLOBAL_LIST_INIT(AISwarmerCapsByType, list(/mob/living/simple_animal/hostile/swa
 /obj/item/gps/internal/swarmer_beacon
 	icon_state = null
 	gpstag = "Hungry Signal"
-	desc = "Transmited over the signal is a strange message repeated in every language you know of, and some you don't too..." //the message is "nom nom nom"
+	desc = "Transmitted over the signal is a strange message repeated in every language you know of, and some you don't too..." //the message is "nom nom nom"
 	invisibility = 100
 
 //SWARMER AI
 //AI versions of the swarmer mini-antag
-//This is an Abstract base, it re-enables AI, but does not give the swarmer any goals/targets
+//This is an Abstract Base, it re-enables AI, but does not give the swarmer any goals/targets
 /mob/living/simple_animal/hostile/swarmer/ai
 	wander = 1
 	faction = list("swarmer", "mining")

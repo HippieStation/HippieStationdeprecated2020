@@ -1,5 +1,5 @@
 GLOBAL_LIST_EMPTY(smoke)
-/obj/effect/particle_effect/smoke/New()
+/obj/effect/particle_effect/smoke/Initialize()
 	..()
 	LAZYADD(GLOB.smoke, src)
 	create_reagents(500)

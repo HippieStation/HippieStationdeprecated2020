@@ -86,7 +86,7 @@ GLOBAL_LIST_EMPTY(explosions)
 
 	if(adminlog)
 		message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [ADMIN_VERBOSEJMP(epicenter)]")
-		log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [AREACOORD(epicenter)]")
+		log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [loc_name(epicenter)]")
 
 	var/x0 = epicenter.x
 	var/y0 = epicenter.y
@@ -358,7 +358,7 @@ GLOBAL_LIST_EMPTY(explosions)
 			heavy = 5
 			light = 7
 		if("Custom Bomb")
-			dev = input("Devestation range (Tiles):") as num
+			dev = input("Devastation range (Tiles):") as num
 			heavy = input("Heavy impact range (Tiles):") as num
 			light = input("Light impact range (Tiles):") as num
 

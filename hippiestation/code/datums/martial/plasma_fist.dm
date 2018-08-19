@@ -49,11 +49,11 @@
 	for(var/turf/T in range(1,A))
 		turfs.Add(T)
 	R.cast(turfs)
-	add_logs(A, D, "tornado sweeped (Plasma Fist)")
+	log_combat(A, D, "tornado sweeped (Plasma Fist)")
 	return
 
 /datum/martial_art/plasma_fist/proc/Knockout(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
-	add_logs(A, D, "knockouted (Plasma Fist)")
+	log_combat(A, D, "knockouted (Plasma Fist)")
 	D.visible_message("<span class='danger'>[A] has knocked down [D] with a kick!</span>", \
 								"<span class='userdanger'>[A] has knocked down [D] with a kick!</span>")
 	playsound(D.loc, 'sound/weapons/punch1.ogg', 50, 1)
@@ -72,7 +72,7 @@
 	playsound(get_turf(A), 'sound/magic/blink.ogg', 50, 1)
 	D.throw_at(throw_target, 200, 4,A)
 	A.say("THROWBACK PUNCH!")
-	add_logs(A, D, "threw back (Plasma Fist)")
+	log_combat(A, D, "threw back (Plasma Fist)")
 	return
 
 /datum/martial_art/plasma_fist/proc/Plasma(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -82,7 +82,7 @@
 	D.visible_message("<span class='danger'>[A] has hit [D] with THE PLASMA FIST TECHNIQUE!</span>", \
 								"<span class='userdanger'>[A] has hit [D] with THE PLASMA FIST TECHNIQUE!</span>")
 	D.gib()
-	add_logs(A, D, "gibbed (Plasma Fist)")
+	log_combat(A, D, "gibbed (Plasma Fist)")
 	return
 
 /datum/martial_art/plasma_fist/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)

@@ -19,7 +19,7 @@
 	build_path = /obj/machinery/computer/camera_advanced/xenobio
 
 /obj/item/circuitboard/computer/base_construction
-	name = "circuit board (Aux Mining base Construction Console)"
+	name = "circuit board (Aux Mining Base Construction Console)"
 	build_path = /obj/machinery/computer/camera_advanced/base_construction
 
 /obj/item/circuitboard/computer/aiupload
@@ -289,7 +289,7 @@
 	build_path = /obj/machinery/computer/shuttle/white_ship/pod/recall
 
 /obj/item/circuitboard/computer/auxillary_base
-	name = "Auxillary base Management Console (Computer Board)"
+	name = "Auxillary Base Management Console (Computer Board)"
 	build_path = /obj/machinery/computer/auxillary_base
 
 /obj/item/circuitboard/computer/holodeck// Not going to let people get this, but it's just here for future

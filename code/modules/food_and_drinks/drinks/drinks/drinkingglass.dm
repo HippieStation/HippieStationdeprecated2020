@@ -20,7 +20,7 @@
 			name = R.glass_name
 			desc = R.glass_desc
 		if(R.glass_icon_state)
-			check_full_icon_state(R) //Hippie check for icon states.
+			check_full_icon_state(R) // hippie -- check for icon states.
 		else
 			var/mutable_appearance/reagent_overlay = mutable_appearance(icon, "glassoverlay")
 			reagent_overlay.color = mix_color_from_reagents(reagents.reagent_list)
@@ -108,7 +108,7 @@
 	if(user.a_intent == INTENT_HARM && ismob(target) && target.reagents && reagents.total_volume)
 		target.visible_message("<span class='danger'>[user] splashes the contents of [src] onto [target]!</span>", \
 						"<span class='userdanger'>[user] splashes the contents of [src] onto [target]!</span>")
-		add_logs(user, target, "splashed", src)
+		log_combat(user, target, "splashed", src)
 		reagents.reaction(target, TOUCH)
 		reagents.clear_reagents()
 		return

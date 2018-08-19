@@ -6,7 +6,7 @@
 	if(pulledby.grab_state)
 		if(prob(30) && pulledby.grab_state != GRAB_KILL)
 			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>")
-			add_logs(pulledby, src, "broke grab")
+			log_combat(pulledby, src, "broke grab")
 			pulledby.stop_pulling()
 			return FALSE
 		if(moving_resist && client) //we resisted by trying to move
@@ -56,7 +56,7 @@
 /mob/living/MobBump(mob/M)
 	// Can't move with pinned people
 	if (pinned_to || M.pinned_to)
-		return TRUE	
+		return TRUE
 
 	return ..()
 

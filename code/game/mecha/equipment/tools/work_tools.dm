@@ -64,7 +64,7 @@
 			target.visible_message("<span class='danger'>[chassis] squeezes [target].</span>", \
 								"<span class='userdanger'>[chassis] squeezes [target].</span>",\
 								"<span class='italics'>You hear something crack.</span>")
-			add_logs(chassis.occupant, M, "attacked", "[name]", "(INTENT: [uppertext(chassis.occupant.a_intent)]) (DAMTYE: [uppertext(damtype)])")
+			log_combat(chassis.occupant, M, "attacked", "[name]", "(INTENT: [uppertext(chassis.occupant.a_intent)]) (DAMTYE: [uppertext(damtype)])")
 		else
 			step_away(M,chassis)
 			occupant_message("You push [target] out of the way.")
@@ -124,7 +124,7 @@
 				M.updatehealth()
 				target.visible_message("<span class='danger'>[chassis] destroys [target] in an unholy fury.</span>", \
 									"<span class='userdanger'>[chassis] destroys [target] in an unholy fury.</span>")
-				add_logs(chassis.occupant, M, "attacked", "[name]", "(INTENT: [uppertext(chassis.occupant.a_intent)]) (DAMTYE: [uppertext(damtype)])")
+				log_combat(chassis.occupant, M, "attacked", "[name]", "(INTENT: [uppertext(chassis.occupant.a_intent)]) (DAMTYE: [uppertext(damtype)])")
 			else
 				target.visible_message("<span class='danger'>[chassis] destroys [target] in an unholy fury.</span>", \
 									"<span class='userdanger'>[chassis] destroys [target] in an unholy fury.</span>")
@@ -147,7 +147,7 @@
 					playsound(src, get_dismember_sound(), 80, TRUE)
 					target.visible_message("<span class='danger'>[chassis] rips [target]'s arms off.</span>", \
 								   "<span class='userdanger'>[chassis] rips [target]'s arms off.</span>")
-					add_logs(chassis.occupant, M, "dismembered of[limbs_gone],", "[name]", "(INTENT: [uppertext(chassis.occupant.a_intent)]) (DAMTYE: [uppertext(damtype)])")
+					log_combat(chassis.occupant, M, "dismembered of[limbs_gone],", "[name]", "(INTENT: [uppertext(chassis.occupant.a_intent)]) (DAMTYE: [uppertext(damtype)])")
 			else
 				target.visible_message("<span class='danger'>[chassis] rips [target]'s arms off.</span>", \
 								   "<span class='userdanger'>[chassis] rips [target]'s arms off.</span>")
@@ -278,7 +278,7 @@
 		if(1)
 			if(isspaceturf(target))
 				var/turf/open/space/S = target
-				occupant_message("Building floor...")
+				occupant_message("Building Floor...")
 				if(do_after_cooldown(S))
 					S.PlaceOnTop(/turf/open/floor/plating)
 					playsound(S, 'sound/items/deconstruct.ogg', 50, 1)
@@ -421,7 +421,7 @@
 /obj/item/mecha_parts/mecha_equipment/cable_layer/proc/reset()
 	last_piece = null
 
-/obj/item/mecha_parts/mecha_equipment/cable_layer/proc/dismantlefloor(var/turf/new_turf)
+/obj/item/mecha_parts/mecha_equipment/cable_layer/proc/dismantleFloor(var/turf/new_turf)
 	if(isfloorturf(new_turf))
 		var/turf/open/floor/T = new_turf
 		if(!isplatingturf(T))
@@ -431,7 +431,7 @@
 	return !new_turf.intact
 
 /obj/item/mecha_parts/mecha_equipment/cable_layer/proc/layCable(var/turf/new_turf)
-	if(equip_ready || !istype(new_turf) || !dismantlefloor(new_turf))
+	if(equip_ready || !istype(new_turf) || !dismantleFloor(new_turf))
 		return reset()
 	var/fdirn = turn(chassis.dir,180)
 	for(var/obj/structure/cable/LC in new_turf)		// check to make sure there's not a cable there already

@@ -160,7 +160,7 @@
 	category = CAT_ROBOT
 
 /datum/crafting_recipe/floorbot
-	name = "floorbot"
+	name = "Floorbot"
 	result = /mob/living/simple_animal/bot/floorbot
 	reqs = list(/obj/item/storage/toolbox/mechanical = 1,
 				/obj/item/stack/tile/plasteel = 1,
