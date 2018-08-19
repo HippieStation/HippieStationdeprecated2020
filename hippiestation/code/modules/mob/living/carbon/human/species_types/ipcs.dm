@@ -21,3 +21,6 @@
 
 /datum/species/ipc/get_spans()
 	return SPAN_ROBOT
+
+/datum/species/ipc/check_roundstart_eligible()
+	return TRUE

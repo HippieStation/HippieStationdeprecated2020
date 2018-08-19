@@ -19,3 +19,6 @@
 /datum/species/bird/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	C.draw_hippie_parts(TRUE)
 	. = ..()
+
+/datum/species/bird/check_roundstart_eligible()
+	return TRUE
