@@ -1,1 +1,0 @@
-#define SOUND_TTS (1<<20) // using 20 to allow tg to use 15 and on
