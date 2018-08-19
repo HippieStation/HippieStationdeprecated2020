@@ -74,7 +74,7 @@
 		installed_brain.forceMove(drop_location())
 		set_pin_data(IC_OUTPUT, 1, WEAKREF(null))
 		if(installed_brain.brainmob)
-			installed_brain.brainmob.remote_control = installed_brain
+			installed_brain.brainmob.remote_control = null
 	..()
 
 
