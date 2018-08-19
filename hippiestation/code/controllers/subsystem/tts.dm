@@ -43,18 +43,19 @@ SUBSYSTEM_DEF(tts)
 				if (T.voice)
 					cmd = cmd + " --voice \"[T.voice]\""
 				shell(cmd)
-				T.filename = GENERATOR_PATH + uid + "_speech.ogg"
+				T.filename = GENERATOR_PATH + uid + "_speech"
 				continue
 			if (STATUS_GENERATING)
 				/* Check if this file is ready */
-				if (fexists(T.filename))
+				if (fexists(T.filename + ".ogg"))
 					play_tts(T)
 				continue
 			if (STATUS_PLAYING)
 				/* Delete the file when it's finished */
 				if (world.time > T.life)
 					if (T.filename)
-						fdel(T.filename)
+						fdel(T.filename + ".ogg")
+						fdel(T.filename + ".wav")
 					LAZYREMOVE(processing, T)
 				continue
 
@@ -81,7 +82,7 @@ SUBSYSTEM_DEF(tts)
 		else
 			origin = T.owner.mob.loc
 
-		M.playsound_local(origin, T.filename, 100, 0, channel = CHANNEL_TTS)
+		M.playsound_local(origin, T.filename + ".ogg", 100, 0, channel = CHANNEL_TTS)
 
 /datum/tts
 	var/client/owner
