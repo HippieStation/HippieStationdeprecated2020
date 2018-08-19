@@ -565,6 +565,15 @@
 
 	if(see_override)
 		see_invisible = see_override
+
+	if(mind) //HIPPIE START
+		var/datum/antagonist/vampire/V = mind.has_antag_datum(/datum/antagonist/vampire)
+		if(V)
+			if(V.get_ability(/datum/vampire_passive/full))
+				sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
+				see_in_dark = max(see_in_dark, 8)
+			else if(V.get_ability(/datum/vampire_passive/vision))
+				sight |= (SEE_MOBS) //HIPPIE END
 	. = ..()
 
 
