@@ -1,9 +1,10 @@
 /datum/antagonist/vampire
 
 	name = "Vampire"
+	antagpanel_category = "Vampire"
 	roundend_category = "vampires"
 	job_rank = ROLE_VAMPIRE
-	
+
 	var/usable_blood = 0
 	var/total_blood = 0
 	var/fullpower = FALSE
@@ -32,6 +33,25 @@
 		/obj/effect/proc_holder/spell/self/summon_coat = 666,
 		/obj/effect/proc_holder/spell/targeted/vampirize = 700,
 		/obj/effect/proc_holder/spell/self/revive = 800)
+
+/datum/antagonist/vampire/get_admin_commands()
+	. = ..()
+	.["Full Power"] = CALLBACK(src,.proc/admin_set_full_power)
+	.["Set Blood Amount"] = CALLBACK(src,.proc/admin_set_blood)
+
+/datum/antagonist/vampire/proc/admin_set_full_power(mob/admin)
+	usable_blood = 850
+	total_blood = 850
+	check_vampire_upgrade()
+	message_admins("[key_name_admin(admin)] made [owner.current] a full power vampire..")
+	log_admin("[key_name(admin)] made [owner.current] a full power vampire..")
+
+/datum/antagonist/vampire/proc/admin_set_blood(mob/admin)
+	total_blood = input(admin, "Set Vampire Total Blood", "Total Blood", total_blood) as null|num
+	usable_blood = min((input(admin, "Set Vampire Usable Blood", "Usable Blood", usable_blood) as null|num), total_blood)
+	check_vampire_upgrade()
+	message_admins("[key_name_admin(admin)] set [owner.current]'s total blood to [total_blood], and usable blood to [usable_blood].")
+	log_admin("[key_name(admin)] set [owner.current]'s total blood to [total_blood], and usable blood to [usable_blood].")
 
 /datum/antagonist/vampire/on_gain()
 	SSticker.mode.vampires += owner
