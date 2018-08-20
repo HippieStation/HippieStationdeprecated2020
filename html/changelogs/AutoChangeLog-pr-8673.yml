@@ -1,0 +1,5 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - bugfix: "Fixed a shadowling runtime"
+  - tweak: "Shadowling's red glowing armor now disappears when they die."
