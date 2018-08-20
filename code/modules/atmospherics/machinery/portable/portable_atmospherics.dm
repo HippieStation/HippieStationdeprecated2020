@@ -35,8 +35,7 @@
 
 /obj/machinery/portable_atmospherics/process_atmos()
 	if(!connected_port) // Pipe network handles reactions if connected.
-		if(air_contents)//Hippie code. Do we exist?
-			air_contents.react(src)
+		air_contents.react(src)
 	else
 		update_icon()
 

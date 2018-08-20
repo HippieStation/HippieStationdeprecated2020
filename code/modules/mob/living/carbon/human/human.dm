@@ -28,7 +28,7 @@
 
 	. = ..()
 
-	AddComponent(/datum/component/redirect, list(COMSIG_COMPONENT_CLEAN_ACT), CALLBACK(src, .proc/clean_blood))
+	AddComponent(/datum/component/redirect, list(COMSIG_COMPONENT_CLEAN_ACT = CALLBACK(src, .proc/clean_blood)))
 
 
 /mob/living/carbon/human/ComponentInitialize()
@@ -656,13 +656,13 @@
 		var/they_breathe = !C.has_trait(TRAIT_NOBREATH)
 		var/they_lung = C.getorganslot(ORGAN_SLOT_LUNGS)
 
-		if(C.health > C.crit_modifier())
+		if(C.health > C.crit_threshold)
 			return
 
 		src.visible_message("[src] performs CPR on [C.name]!", "<span class='notice'>You perform CPR on [C.name].</span>")
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "perform_cpr", /datum/mood_event/perform_cpr)
 		C.cpr_time = world.time
-		add_logs(src, C, "CPRed")
+		log_combat(src, C, "CPRed")
 
 		if(they_breathe && they_lung)
 			var/suff = min(C.getOxyLoss(), 7)
@@ -834,13 +834,6 @@
 		return 1
 	..()
 
-/mob/living/carbon/human/Bump(atom/A)
-	..()
-	var/crashdir = get_dir(src, A)
-	var/obj/item/flightpack/FP = get_flightpack()
-	if(FP)
-		FP.flight_impact(A, crashdir)
-
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
 	. += "---"
@@ -850,7 +843,7 @@
 	.["Make alien"] = "?_src_=vars;[HrefToken()];makealien=[REF(src)]"
 	.["Make slime"] = "?_src_=vars;[HrefToken()];makeslime=[REF(src)]"
 	.["Toggle Purrbation"] = "?_src_=vars;[HrefToken()];purrbation=[REF(src)]"
-	.["Make Cluwne"] = "?_src_=vars;[HrefToken()];cluwneing=[REF(src)]"
+	.["Make Cluwne"] = "?_src_=vars;[HrefToken()];cluwneing=[REF(src)]" // hippie -- make cluwne
 
 /mob/living/carbon/human/MouseDrop_T(mob/living/target, mob/living/user)
 	//If they dragged themselves and we're currently aggressively grabbing them try to piggyback

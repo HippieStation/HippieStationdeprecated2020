@@ -6,7 +6,7 @@
 	playsound(A, 'sound/effects/hit_kick.ogg', 50, 1, -1)
 	D.apply_damage(5, BRUTE)
 	D.Knockdown(20)
-	add_logs(A, D, "leg sweeped")
+	log_combat(A, D, "leg sweeped")
 	return TRUE
 
 /datum/martial_art/krav_maga/quick_choke(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)//is actually lung punch
@@ -15,5 +15,5 @@
 	playsound(A, 'sound/effects/hit_punch.ogg', 50, 1, -1)
 	D.losebreath = CLAMP(D.losebreath + 2, 0, 10)
 	D.adjustOxyLoss(5)
-	add_logs(A, D, "quickchoked")
+	log_combat(A, D, "quickchoked")
 	return TRUE

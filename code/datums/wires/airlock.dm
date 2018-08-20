@@ -46,12 +46,12 @@
 		if(WIRE_OPEN) // Pulse to open door (only works not emagged and ID wire is cut or no access is required).
 			if(A.obj_flags & EMAGGED)
 				return
-			//hippie start -removes the need to cut ID wire
+			// hippie start -- removes the need to cut ID wire
 			if(A.density)
 				INVOKE_ASYNC(A, /obj/machinery/door/airlock.proc/open)
 			else
 				INVOKE_ASYNC(A, /obj/machinery/door/airlock.proc/close)
-			//hippie end -removes the need to cut ID wire
+			// hippie end
 		if(WIRE_BOLTS) // Pulse to toggle bolts (but only raise if power is on).
 			if(!A.locked)
 				A.bolt()
@@ -80,8 +80,8 @@
 			if(!A.secondsElectrified)
 				A.set_electrified(30)
 				if(usr)
-					LAZYADD(A.shockedby, text("\[[time_stamp()]\][usr](ckey:[usr.ckey])"))
-				add_logs(usr, A, "electrified")
+					LAZYADD(A.shockedby, text("\[[time_stamp()]\] [key_name(usr)]"))
+					log_combat(usr, A, "electrified")
 		if(WIRE_SAFETY)
 			A.safe = !A.safe
 			if(!A.density)
@@ -135,8 +135,8 @@
 				if(A.secondsElectrified != -1)
 					A.set_electrified(-1)
 					if(usr)
-						LAZYADD(A.shockedby, text("\[[time_stamp()]\][usr](ckey:[usr.ckey])"))
-					add_logs(usr, A, "electrified")
+						LAZYADD(A.shockedby, text("\[[time_stamp()]\] [key_name(usr)]"))
+						log_combat(usr, A, "electrified")
 		if(WIRE_SAFETY) // Cut to disable safeties, mend to re-enable.
 			A.safe = mend
 		if(WIRE_TIMING) // Cut to disable auto-close, mend to re-enable.

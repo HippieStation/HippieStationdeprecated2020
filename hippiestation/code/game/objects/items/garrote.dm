@@ -128,7 +128,7 @@
 				to_chat(user, "<span class='notice'>You must target head for garroting to work!</span>")
 				return
 			if(!garroting)
-				add_logs(user, C, "garroted")
+				log_combat(user, C, "garroted")
 				user.grab_state = GRAB_PASSIVE
 				//Autograb. The trick is to switch to grab intent and reinforce it for quick chokehold.
 				// N E V E R  autograb into Aggressive. Passive autograb is good enough.

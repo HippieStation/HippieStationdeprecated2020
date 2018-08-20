@@ -51,8 +51,6 @@
 	chambered = new ammo_type(src)
 	if(can_charge)
 		START_PROCESSING(SSobj, src)
-	else
-		return
 
 
 /obj/item/gun/magic/Destroy()

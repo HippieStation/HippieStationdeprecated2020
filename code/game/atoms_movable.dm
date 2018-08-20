@@ -1,6 +1,7 @@
 /atom/movable
 	layer = OBJ_LAYER
 	var/last_move = null
+	var/last_move_time = 0
 	var/anchored = FALSE
 	var/datum/thrownthing/throwing = null
 	var/throw_speed = 2 //How many tiles to move per ds when being thrown. Float values are fully supported
@@ -58,8 +59,11 @@
 				return TRUE
 			return FALSE
 		if("loc")
-			if(var_value == null || istype(var_value, /atom))
+			if(istype(var_value, /atom))
 				forceMove(var_value)
+				return TRUE
+			else if(isnull(var_value))
+				moveToNullspace()
 				return TRUE
 			return FALSE
 	return ..()
@@ -84,14 +88,14 @@
 			return TRUE
 		stop_pulling()
 	if(AM.pulledby)
-		add_logs(AM, AM.pulledby, "pulled from", src)
+		log_combat(AM, AM.pulledby, "pulled from", src)
 		AM.pulledby.stop_pulling() //an object can't be pulled by two mobs at once.
 	pulling = AM
 	AM.pulledby = src
 	grab_state = gs
 	if(ismob(AM))
 		var/mob/M = AM
-		add_logs(src, M, "grabbed", addition="passive grab")
+		log_combat(src, M, "grabbed", addition="passive grab")
 		visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
 	return TRUE
 
@@ -160,17 +164,23 @@
 
 	// Past this is the point of no return
 	var/atom/oldloc = loc
+	var/area/oldarea = get_area(oldloc)
+	var/area/newarea = get_area(newloc)
 	loc = newloc
 	. = TRUE
 	oldloc.Exited(src, newloc)
+	if(oldarea != newarea)
+		oldarea.Exited(src, newloc)
 
-	for(var/i in loc)
+	for(var/i in oldloc)
 		if(i == src) // Multi tile objects
 			continue
 		var/atom/movable/thing = i
 		thing.Uncrossed(src)
 
 	newloc.Entered(src, oldloc)
+	if(oldarea != newarea)
+		newarea.Entered(src, oldloc)
 
 	for(var/i in loc)
 		if(i == src) // Multi tile objects
@@ -297,8 +307,6 @@
 /atom/movable/Destroy(force)
 	QDEL_NULL(proximity_monitor)
 	QDEL_NULL(language_holder)
-	
-	unbuckle_all_mobs(force=1)
 
 	unbuckle_all_mobs(force=1)
 
@@ -375,8 +383,10 @@
 		if(!same_loc)
 			if(oldloc)
 				oldloc.Exited(src, destination)
-				if(old_area)
+				if(old_area && old_area != destarea)
 					old_area.Exited(src, destination)
+			for(var/atom/movable/AM in oldloc)
+				AM.Uncrossed(src)
 			var/turf/oldturf = get_turf(oldloc)
 			var/turf/destturf = get_turf(destination)
 			var/old_z = (oldturf ? oldturf.z : null)
@@ -776,3 +786,36 @@
 	if(anchored || throwing)
 		return FALSE
 	return TRUE
+
+
+/obj/item/proc/do_pickup_animation(atom/target)
+	set waitfor = FALSE
+	if(!istype(loc, /turf))
+		return
+	var/image/I = image(icon = src, loc = loc, layer = layer + 0.1)
+	I.plane = GAME_PLANE
+	I.transform *= 0.75
+	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	var/turf/T = get_turf(src)
+	var/direction
+	var/to_x = 0
+	var/to_y = 0
+
+	if(!QDELETED(T) && !QDELETED(target))
+		direction = get_dir(T, target)
+	if(direction & NORTH)
+		to_y = 32
+	else if(direction & SOUTH)
+		to_y = -32
+	if(direction & EAST)
+		to_x = 32
+	else if(direction & WEST)
+		to_x = -32
+	if(!direction)
+		to_y = 16
+	flick_overlay(I, GLOB.clients, 6)
+	var/matrix/M = new
+	M.Turn(pick(-30, 30))
+	animate(I, alpha = 175, pixel_x = to_x, pixel_y = to_y, time = 3, transform = M, easing = CUBIC_EASING)
+	sleep(1)
+	animate(I, alpha = 0, transform = matrix(), time = 1)

@@ -168,9 +168,26 @@
 	M.adjustOxyLoss(0.5*REM, 0)
 	..()
 	. = 1
+	
+/datum/reagent/toxin/ghoulpowder
+	name = "Ghoul Powder"
+	id = "ghoulpowder"
+	description = "A strong neurotoxin that slows metabolism to a death-like state, while keeping the patient fully active. Causes toxin buildup if used too long."
+	reagent_state = SOLID
+	color = "#664700" // rgb: 102, 71, 0
+	toxpwr = 0.8
+	taste_description = "death"
 
-/datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/carbon/M)
-	M.adjustOxyLoss(0.5*REM, 0)
+/datum/reagent/toxin/ghoulpowder/on_mob_add(mob/living/L)
+	..()
+	L.add_trait(TRAIT_FAKEDEATH, id)
+
+/datum/reagent/toxin/ghoulpowder/on_mob_delete(mob/living/L)
+	L.remove_trait(TRAIT_FAKEDEATH, id)
+	..()
+
+/datum/reagent/toxin/ghoulpowder/on_mob_life(mob/living/carbon/M)
+	M.adjustOxyLoss(1*REM, 0)
 	..()
 	. = 1
 
@@ -610,7 +627,7 @@
 
 /datum/reagent/toxin/amanitin/on_mob_delete(mob/living/M)
 	var/toxdamage = current_cycle*3*REM
-	M.log_message("has taken [toxdamage] toxin damage from amanitin toxin", INDIVIDUAL_ATTACK_LOG)
+	M.log_message("has taken [toxdamage] toxin damage from amanitin toxin", LOG_ATTACK)
 	M.adjustToxLoss(toxdamage)
 	..()
 
@@ -686,7 +703,7 @@
 	. = 1
 	..()
 
-/datum/reagent/toxin/heparin //based on a real-life anticoagulant. I'm not a doctor, so this won't be realistic.
+/datum/reagent/toxin/heparin //Based on a real-life anticoagulant. I'm not a doctor, so this won't be realistic.
 	name = "Heparin"
 	id = "heparin"
 	description = "A powerful anticoagulant. Victims will bleed uncontrollably and suffer scaling bruising."

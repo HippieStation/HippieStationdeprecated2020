@@ -74,7 +74,7 @@
 	if(!has_space(material_amount))
 		to_chat(user, "<span class='warning'>[parent] is full. Please remove metal or glass from [parent] in order to insert more.</span>")
 		return
-	INVOKE_ASYNC(src, .proc/user_insert, I, user)		//It wasn't returning COMPONENT_NO_AFTERATTACK properly without this being specifically asynced.
+	user_insert(I, user)
 
 /datum/component/material_container/proc/user_insert(obj/item/I, mob/living/user)
 	set waitfor = FALSE
@@ -242,24 +242,25 @@
 //For spawning mineral sheets; internal use only
 /datum/component/material_container/proc/retrieve(sheet_amt, datum/material/M, target = null)
 	if(!M.sheet_type)
-		return FALSE
-	if(sheet_amt > 0)
-		if(M.amount < (sheet_amt * MINERAL_MATERIAL_AMOUNT))
-			sheet_amt = round(M.amount / MINERAL_MATERIAL_AMOUNT)
-		var/count = 0
-		while(sheet_amt > MAX_STACK_SIZE)
-			new M.sheet_type(get_turf(parent), MAX_STACK_SIZE)
-			count += MAX_STACK_SIZE
-			use_amount_type(sheet_amt * MINERAL_MATERIAL_AMOUNT, M.id)
-			sheet_amt -= MAX_STACK_SIZE
-		if(round((sheet_amt * MINERAL_MATERIAL_AMOUNT) / MINERAL_MATERIAL_AMOUNT))
-			var/obj/item/stack/sheet/s = new M.sheet_type(get_turf(parent), sheet_amt)
-			if(target)
-				s.forceMove(target)
-			count += sheet_amt
-			use_amount_type(sheet_amt * MINERAL_MATERIAL_AMOUNT, M.id)
-		return count
-	return FALSE
+		return 0
+	if(sheet_amt <= 0)
+		return 0
+
+	if(!target)
+		target = get_turf(parent)
+	if(M.amount < (sheet_amt * MINERAL_MATERIAL_AMOUNT))
+		sheet_amt = round(M.amount / MINERAL_MATERIAL_AMOUNT)
+	var/count = 0
+	while(sheet_amt > MAX_STACK_SIZE)
+		new M.sheet_type(target, MAX_STACK_SIZE)
+		count += MAX_STACK_SIZE
+		use_amount_type(sheet_amt * MINERAL_MATERIAL_AMOUNT, M.id)
+		sheet_amt -= MAX_STACK_SIZE
+	if(sheet_amt >= 1)
+		new M.sheet_type(target, sheet_amt)
+		count += sheet_amt
+		use_amount_type(sheet_amt * MINERAL_MATERIAL_AMOUNT, M.id)
+	return count
 
 /datum/component/material_container/proc/retrieve_sheets(sheet_amt, id, target = null)
 	if(materials[id])

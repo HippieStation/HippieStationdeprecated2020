@@ -54,7 +54,7 @@
 	allow_duplicates = FALSE
 
 /datum/map_template/ruin/lavaland/syndicate_base
-	name = "Syndicate Lava base"
+	name = "Syndicate Lava Base"
 	id = "lava-base"
 	description = "A secret base researching illegal bioweapons, it is closely guarded by an elite team of syndicate agents."
 	suffix = "lavaland_surface_syndicate_base1.dmm"
@@ -214,4 +214,11 @@
 	description = "A heavily-damaged mining ripley, property of a very unfortunate miner. You might have to do a bit of work to fix this thing up."
 	suffix = "lavaland_surface_random_ripley.dmm"
 	allow_duplicates = FALSE
+	cost = 5
+
+/datum/map_template/ruin/lavaland/puzzle
+	name = "Ancient Puzzle"
+	id = "puzzle"
+	description = "Mystery to be solved."
+	suffix = "lavaland_surface_puzzle.dmm"
 	cost = 5

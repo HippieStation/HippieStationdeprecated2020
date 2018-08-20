@@ -29,11 +29,10 @@
 					R += A.id + " ("
 					R += num2text(A.volume) + "),"
 			if(isturf(target) && reagents.reagent_list.len && thrownby)
-				add_logs(thrownby, target, "splashed (thrown) [english_list(reagents.reagent_list)]", "in [AREACOORD(target)]")
-				log_game("[key_name(thrownby)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] in [AREACOORD(target)].")
+				log_combat(thrownby, target, "splashed (thrown) [english_list(reagents.reagent_list)]")
 				message_admins("[ADMIN_LOOKUPFLW(thrownby)] splashed (thrown) [english_list(reagents.reagent_list)] on [target] at [ADMIN_VERBOSEJMP(target)].")
 			reagents.reaction(M, TOUCH)
-			add_logs(user, M, "splashed", R)
+			log_combat(user, M, "splashed", R)
 			reagents.clear_reagents()
 		else
 			if(M != user)
@@ -44,7 +43,7 @@
 				if(!reagents || !reagents.total_volume)
 					return // The drink might be empty after the delay, such as by spam-feeding
 				M.visible_message("<span class='danger'>[user] feeds something to [M].</span>", "<span class='userdanger'>[user] feeds something to you.</span>")
-				add_logs(user, M, "fed", reagents.log_list())
+				log_combat(user, M, "fed", reagents.log_list())
 			else
 				to_chat(user, "<span class='notice'>You swallow a gulp of [src].</span>")
 			var/fraction = min(5/reagents.total_volume, 1)
@@ -331,103 +330,3 @@
 
 /obj/item/reagent_containers/glass/beaker/waterbottle/large/empty
 	list_reagents = list()
-
-/obj/item/reagent_containers/glass/beaker/large/hydrogen
-	name = "hydrogen beaker"
-	list_reagents = list("hydrogen" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/lithium
-	name = "lithium beaker"
-	list_reagents = list("lithium" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/carbon
-	name = "carbon beaker"
-	list_reagents = list("carbon" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/nitrogen
-	name = "nitrogen beaker"
-	list_reagents = list("nitrogen" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/oxygen
-	name = "oxygen beaker"
-	list_reagents = list("oxygen" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/fluorine
-	name = "fluorine beaker"
-	list_reagents = list("fluorine" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/sodium
-	name = "sodium beaker"
-	list_reagents = list("sodium" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/aluminium
-	name = "aluminium beaker"
-	list_reagents = list("aluminium" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/silicon
-	name = "silicon beaker"
-	list_reagents = list("silicon" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/phosphorus
-	name = "phosphorus beaker"
-	list_reagents = list("phosphorus" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/sulfur
-	name = "sulfur beaker"
-	list_reagents = list("sulfur" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/chlorine
-	name = "chlorine beaker"
-	list_reagents = list("chlorine" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/potassium
-	name = "potassium beaker"
-	list_reagents = list("potassium" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/iron
-	name = "iron beaker"
-	list_reagents = list("iron" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/copper
-	name = "copper beaker"
-	list_reagents = list("copper" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/mercury
-	name = "mercury beaker"
-	list_reagents = list("mercury" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/radium
-	name = "radium beaker"
-	list_reagents = list("radium" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/water
-	name = "water beaker"
-	list_reagents = list("water" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/ethanol
-	name = "ethanol beaker"
-	list_reagents = list("ethanol" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/sugar
-	name = "sugar beaker"
-	list_reagents = list("sugar" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/sacid
-	name = "sulphuric acid beaker"
-	list_reagents = list("sacid" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/welding_fuel
-	name = "welding fuel beaker"
-	list_reagents = list("welding_fuel" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/silver
-	name = "silver beaker"
-	list_reagents = list("silver" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/iodine
-	name = "iodine beaker"
-	list_reagents = list("iodine" = 50)
-
-/obj/item/reagent_containers/glass/beaker/large/bromine
-	name = "bromine beaker"
-	list_reagents = list("bromine" = 50)

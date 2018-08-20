@@ -161,7 +161,7 @@
 	if(going_backwards)
 		make_tunnel(backward_cave_dir)
 	// Kill ourselves by replacing ourselves with a normal floor.
-	Spawnfloor(src)
+	SpawnFloor(src)
 
 /turf/open/floor/plating/asteroid/airless/cave/proc/make_tunnel(dir)
 	var/turf/closed/mineral/tunnel = src
@@ -179,7 +179,7 @@
 		for(var/edge_angle in L)
 			var/turf/closed/mineral/edge = get_step(tunnel, angle2dir(dir2angle(dir) + edge_angle))
 			if(istype(edge))
-				Spawnfloor(edge)
+				SpawnFloor(edge)
 
 		if(!sanity)
 			break
@@ -197,7 +197,7 @@
 				C.going_backwards = FALSE
 				C.produce_tunnel_from_data(rand(10, 15), dir)
 			else
-				Spawnfloor(tunnel)
+				SpawnFloor(tunnel)
 		else //if(!istype(tunnel, parent)) // We hit space/normal/wall, stop our tunnel.
 			break
 
@@ -208,7 +208,7 @@
 			setDir(angle2dir(dir2angle(dir) )+ next_angle)
 
 
-/turf/open/floor/plating/asteroid/airless/cave/proc/Spawnfloor(turf/T)
+/turf/open/floor/plating/asteroid/airless/cave/proc/SpawnFloor(turf/T)
 	for(var/S in RANGE_TURFS(1, src))
 		var/turf/NT = S
 		if(!NT || isspaceturf(NT) || istype(NT.loc, /area/mine/explored) || (istype(NT.loc, /area/lavaland/surface/outdoors) && !istype(NT.loc, /area/lavaland/surface/outdoors/unexplored)))

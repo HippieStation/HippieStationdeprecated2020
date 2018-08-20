@@ -60,27 +60,26 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 ))
 
 /mob/living/proc/Ellipsis(original_msg, chance = 50, keep_words)
-    if(chance <= 0)
-        return "..."
-    if(chance >= 100)
-        return original_msg
+	if(chance <= 0)
+		return "..."
+	if(chance >= 100)
+		return original_msg
 
-    var/list
-        words = splittext(original_msg," ")
-        new_words = list()
+	var/list/words = splittext(original_msg," ")
+	var/list/new_words = list()
 
-    var/new_msg = ""
+	var/new_msg = ""
 
-    for(var/w in words)
-        if(prob(chance))
-            new_words += "..."
-            if(!keep_words)
-                continue
-        new_words += w
+	for(var/w in words)
+		if(prob(chance))
+			new_words += "..."
+			if(!keep_words)
+				continue
+		new_words += w
 
-    new_msg = jointext(new_words," ")
+	new_msg = jointext(new_words," ")
 
-    return new_msg
+	return new_msg
 
 /mob/living/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE)
 	var/static/list/crit_allowed_modes = list(MODE_WHISPER = TRUE, MODE_CHANGELING = TRUE, MODE_ALIEN = TRUE)
@@ -117,8 +116,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		return
 
 	if(stat == DEAD)
-		if(message == "*fart" || message == "*scream") //Avoid deachat spam via the hotkeys
-			return
+		if(message == "*fart" || message == "*scream") // hippie start -- Avoid deachat spam via the hotkeys
+			return // hippie end
 		say_dead(original_message)
 		return
 
@@ -166,7 +165,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	if((InCritical() && !fullcrit) || message_mode == MODE_WHISPER)
 		message_range = 1
 		message_mode = MODE_WHISPER
-		log_talk(src,"[key_name(src)] : [message]",LOGWHISPER)
+		src.log_talk(message, LOG_WHISPER)
 		if(fullcrit)
 			var/health_diff = round(-HEALTH_THRESHOLD_DEAD + health)
 			// If we cut our message short, abruptly end it with a-..
@@ -175,8 +174,9 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			message = Ellipsis(message, 10, 1)
 			last_words = message
 			message_mode = MODE_WHISPER_CRIT
+			succumbed = TRUE
 	else
-		log_talk(src,"[name]/[key] : [message]",LOGSAY)
+		src.log_talk(message, LOG_SAY)
 
 	message = treat_message(message)
 	if(!message)
@@ -187,9 +187,6 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	if(language)
 		var/datum/language/L = GLOB.language_datum_instances[language]
 		spans |= L.spans
-
-	//Log what we've said with an associated timestamp, using the list's len for safety/to prevent overwriting messages
-	log_message(message, INDIVIDUAL_SAY_LOG)
 
 	var/radio_return = radio(message, message_mode, spans, language)
 	if(radio_return & ITALICS)
@@ -377,8 +374,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	if(message_mode == MODE_WHISPER)
 		. = verb_whisper
 	else if(message_mode == MODE_WHISPER_CRIT)
-		. = "painfully [verb_whisper]"
-		apply_damage(1, OXY)
+		. = "[verb_whisper] in [p_their()] last breath"
 	else if(stuttering)
 		. = "stammers"
 	else if(derpspeech)

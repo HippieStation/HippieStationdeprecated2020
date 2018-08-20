@@ -40,7 +40,7 @@
 	 [plant_count] unique non-standard plant data
 	 [human_count] unique sapient humanoid DNA data
 
-	 base vault parts are available for shipping via cargo."}
+	 Base vault parts are available for shipping via cargo."}
 
 
 /datum/station_goal/dna_vault/on_report()

@@ -11,8 +11,19 @@
 	if(stat != DEAD) //Reagent processing needs to come before breathing, to prevent edge cases.
 		handle_organs()
 
-	if(..()) //not dead
+	. = ..()
+
+	if (QDELETED(src))
+		return
+
+	if(.) //not dead
 		handle_blood()
+
+	if(stat != DEAD)
+		var/bprv = handle_bodyparts()
+		if(bprv & BODYPART_LIFE_UPDATE_HEALTH)
+			updatehealth()
+			update_stamina()
 
 	if(stat != DEAD)
 		handle_brain_damage()
@@ -59,7 +70,7 @@
 		if(health <= HEALTH_THRESHOLD_FULLCRIT || (pulledby && pulledby.grab_state >= GRAB_KILL))
 			losebreath++  //You can't breath at all when in critical or when being choked, so you're going to miss a breath
 
-		else if(health <= crit_modifier())
+		else if(health <= crit_threshold)
 			losebreath += 0.25 //You're having trouble breathing in soft crit, so you'll miss a breath one in four times
 
 	//Suffocate
@@ -154,7 +165,7 @@
 
 	else //Enough oxygen
 		failed_last_breath = 0
-		if(health >= crit_modifier())
+		if(health >= crit_threshold)
 			adjustOxyLoss(-5)
 		oxygen_used = breath_gases[/datum/gas/oxygen][MOLES]
 		clear_alert("not_enough_oxy")
@@ -242,6 +253,12 @@
 
 /mob/living/carbon/proc/handle_blood()
 	return
+
+/mob/living/carbon/proc/handle_bodyparts()
+	for(var/I in bodyparts)
+		var/obj/item/bodypart/BP = I
+		if(BP.needs_processing)
+			. |= BP.on_life()
 
 /mob/living/carbon/proc/handle_organs()
 	for(var/V in internal_organs)
@@ -352,8 +369,6 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 //this updates all special effects: stun, sleeping, knockdown, druggy, stuttering, etc..
 /mob/living/carbon/handle_status_effects()
 	..()
-	if(getStaminaLoss())
-		adjustStaminaLoss(-3)
 
 	var/restingpwr = 1 + 4 * resting
 
@@ -424,6 +439,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 	if(drunkenness)
 		drunkenness = max(drunkenness - (drunkenness * 0.04), 0)
 		if(drunkenness >= 6)
+			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "drunk", /datum/mood_event/drunk)
 			if(prob(25))
 				slurring += 2
 			jitteriness = max(jitteriness - 3, 0)

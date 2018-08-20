@@ -26,8 +26,9 @@
 #define ROLE_SERVANT_OF_RATVAR	"servant of Ratvar"
 #define ROLE_BROTHER			"blood brother"
 #define ROLE_BRAINWASHED		"brainwashed victim"
-#define ROLE_VAMPIRE            "vampire" // Hippie
-#define ROLE_SHADOWLING         "shadowling" // Hippie
+#define ROLE_VAMPIRE			"vampire" // hippie -- adds vampire role
+#define ROLE_SHADOWLING			"shadowling" // hippie -- adds shadowling role
+#define ROLE_GANG				"gangster" // hippie -- adds gang related role
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
 //The gamemode specific ones are just so the gamemodes can query whether a player is old enough
@@ -50,8 +51,9 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_ABDUCTOR,
 	ROLE_DEVIL = /datum/game_mode/devil,
 	ROLE_SERVANT_OF_RATVAR = /datum/game_mode/clockwork_cult,
-	ROLE_SHADOWLING = /datum/game_mode/shadowling,
-	ROLE_VAMPIRE = /datum/game_mode/vampire
+	ROLE_SHADOWLING = /datum/game_mode/shadowling, // hippie -- adds shadowling role=gamemode
+	ROLE_VAMPIRE = /datum/game_mode/vampire, // hippie -- adds vampire role=gamemode
+	ROLE_GANG = /datum/game_mode/gang // hippie -- adds gang role=gamemode
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection

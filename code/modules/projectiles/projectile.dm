@@ -191,7 +191,7 @@
 			reagent_note += R.id + " ("
 			reagent_note += num2text(R.volume) + ") "
 
-	add_logs(firer, L, "shot", src, reagent_note)
+	log_combat(firer, L, "shot", src, reagent_note)
 	return L.apply_effects(stun, knockdown, unconscious, irradiate, slur, stutter, eyeblur, drowsy, blocked, stamina, jitter)
 
 /obj/item/projectile/proc/vol_by_damage()
@@ -335,7 +335,7 @@
 /obj/item/projectile/proc/fire(angle, atom/direct_target)
 	//If no angle needs to resolve it from xo/yo!
 	if(!log_override && firer && original)
-		add_logs(firer, original, "fired at", src, "from [get_area_name(src, TRUE)]")
+		log_combat(firer, original, "fired at", src, "from [get_area_name(src, TRUE)]")
 	if(direct_target)
 		if(prehit(direct_target))
 			direct_target.bullet_act(src, def_zone)
@@ -590,8 +590,9 @@
 	if(!length(beam_segments))
 		return
 	if(tracer_type)
+		var/tempref = REF(src)
 		for(var/datum/point/p in beam_segments)
-			generate_tracer_between_points(p, beam_segments[p], tracer_type, color, duration, hitscan_light_range, hitscan_light_color_override, hitscan_light_intensity)
+			generate_tracer_between_points(p, beam_segments[p], tracer_type, color, duration, hitscan_light_range, hitscan_light_color_override, hitscan_light_intensity, tempref)
 	if(muzzle_type && duration > 0)
 		var/datum/point/p = beam_segments[1]
 		var/atom/movable/thing = new muzzle_type

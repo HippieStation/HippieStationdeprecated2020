@@ -77,9 +77,6 @@
 	var/datum/action/turret_toggle/toggle_action
 	var/mob/remote_controller
 
-	var/lastdamage_time //Hippie code to override timer
-	var/reset_time = 60 //Hippie code
-
 /obj/machinery/porta_turret/Initialize()
 	. = ..()
 	if(!base)
@@ -326,12 +323,15 @@
 
 /obj/machinery/porta_turret/take_damage(damage, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
 	. = ..()
-	if(. && src && !QDELETED(src)) //damage received. Hippie code
+	if(.) //damage received
 		if(prob(30))
 			spark_system.start()
 		if(on && !attacked && !(obj_flags & EMAGGED))
 			attacked = TRUE
-			lastdamage_time = world.time + reset_time //Hippie code
+			addtimer(CALLBACK(src, .proc/reset_attacked), 60)
+
+/obj/machinery/porta_turret/proc/reset_attacked()
+	attacked = FALSE
 
 /obj/machinery/porta_turret/deconstruct(disassembled = TRUE)
 	qdel(src)
@@ -411,11 +411,6 @@
 		tryToShootAt(targets)
 	else if(!always_up)
 		popDown() // no valid targets, close the cover
-
-	//Hippie code reset the attack timer after 6 seconds
-	if(attacked && world.time > lastdamage_time)
-		attacked = FALSE
-
 
 /obj/machinery/porta_turret/proc/tryToShootAt(list/atom/movable/targets)
 	while(targets.len > 0)
@@ -626,7 +621,7 @@
 	if(!can_interact(caller))
 		remove_control()
 		return FALSE
-	add_logs(caller,A,"fired with manual turret control at")
+	log_combat(caller,A,"fired with manual turret control at")
 	target(A)
 	return TRUE
 

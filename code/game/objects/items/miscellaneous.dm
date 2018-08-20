@@ -1,5 +1,5 @@
 /obj/item/caution
-	desc = "Caution! Wet floor!"
+	desc = "Caution! Wet Floor!"
 	name = "wet floor sign"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "caution"

@@ -138,3 +138,66 @@
 	force = 16
 	throwforce = 10
 	block_chance = 10
+
+/obj/item/hatchet/improvised
+	name = "glass hatchet"
+	desc = "A makeshift hand axe with a crude blade of broken glass."
+	icon = 'hippiestation/icons/obj/weapons.dmi'
+	icon_state = "glasshatchet"
+	item_state = "glasshatchet"
+	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
+
+/obj/item/brick
+	name = "brick"
+	desc = "A brick, prefered break-in tool in many planets."
+	icon = 'hippiestation/icons/obj/weapons.dmi'
+	icon_state = "brick"
+	item_state = "brick"
+	force = 12 // decent weapon
+	throwforce = 15 // good throw
+	attack_verb = list("bricked")
+	hitsound = 'hippiestation/sound/effects/brick.ogg'
+	var/durability = 5
+
+/obj/item/brick/Initialize()
+	..()
+	if(prob(0.5))
+		name = "brown brick"
+		desc = "<font color = #835C3B>I understand why all the kids are playing this game these days. It's because they like to build brown bricks with Minecrap. I also like to build brown bricks with Minecrap. It's the most fun you can possibly have.</font>"
+		icon_state = "brownbrick"
+		item_state = "brownbrick"
+		force = 15
+		throwforce = 20
+		durability = INFINITY
+
+/obj/item/brick/attack(mob/living/target, mob/living/user)
+	..()
+	if(ishuman(target))
+		var/mob/living/carbon/human/M = target
+		if(!istype(M.head, /obj/item/clothing/head/helmet) && user.zone_selected == BODY_ZONE_HEAD)
+			if(prob(1) && M.stat != DEAD)
+				M.emote("scream")
+				M.visible_message("<span class='danger'>[user] knocks out [M] with [src]!</span>", \
+								"<span class='userdanger'>[user] knocks out [M] with [src]!</span>")
+				M.AdjustUnconscious(60)
+				M.adjustBrainLoss(5)
+
+/obj/item/brick/throw_impact(atom/hit_atom)
+	. = ..()
+	if(!.)
+		if(istype(hit_atom, /obj/structure/window) && durability)
+			var/obj/structure/window/W = hit_atom
+			W.take_damage(throwforce*10, BRUTE, "melee", 0)
+			durability -= 1
+
+		if(ishuman(hit_atom))
+			var/mob/living/carbon/human/H = hit_atom
+			if(prob(10) && !istype(H.head, /obj/item/clothing/head/helmet) && durability) // I couldnt figure out how to make it check if it's hitting the head so I just made it check for helmet, sry bby
+				H.apply_damage(throwforce, BRUTE, BODY_ZONE_HEAD) // double damage
+				H.visible_message("<span class='danger'>[H] falls unconscious as [H.p_theyre()] hit by [src]!</span>", \
+								"<span class='userdanger'>You suddenly black out as you're hit by [src]!</span>")
+				H.AdjustUnconscious(80)
+				H.adjustBrainLoss(10)
+				playsound(src, 'hippiestation/sound/effects/ZUBALAWA.ogg', 50, 0)
+				durability -= 1

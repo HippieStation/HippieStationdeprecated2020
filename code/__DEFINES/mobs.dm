@@ -85,8 +85,8 @@
 #define COLD_GAS_DAMAGE_LEVEL_3 3 //Amount of damage applied when the current breath's temperature passes the 120K point
 
 //Brain Damage defines
-#define BRAIN_DAMAGE_MILD 50 //hippie - changed this to the original value
-#define BRAIN_DAMAGE_SEVERE 120 //hippie - changed this to the original value
+#define BRAIN_DAMAGE_MILD 50 // hippie -- changed this to the original value
+#define BRAIN_DAMAGE_SEVERE 120 // hippie -- changed this to the original value
 #define BRAIN_DAMAGE_DEATH 200
 
 #define BRAIN_TRAUMA_MILD /datum/brain_trauma/mild
@@ -255,3 +255,6 @@
 // AI Toggles
 #define AI_CAMERA_LUMINOSITY	5
 #define AI_VOX // Comment out if you don't want VOX to be enabled and have players download the voice sounds.
+
+// /obj/item/bodypart on_mob_life() retval flag
+#define BODYPART_LIFE_UPDATE_HEALTH (1<<0)

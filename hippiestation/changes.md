@@ -1,76 +1,82 @@
 # Differences with /tg/
 
 The best practice to have while coding is to keep everything modularized, or the most possible. Sometimes, through,
- it's not possible and you're required to put an "hookup" proc call in a tg file. This file is intended to have a list
-of those hookups, to not forget their locations and such.
+ it's not possible and you're required to edit some files inside the code folder, which is /tg/'s code. This file is intended to have a list of the files changed.
 
-As for now,updated from first pr to https://github.com/HippieStation/HippieStation/pull/600
+# Sorted alphabetically filepath-wise.
 
-## Edits list
-### Gamemode changes
-#### Added HoP as protected role in changeling.dm, clock_cult.dm, traitor.dm, and gave him a mindshield at roundstart in captain.dm
-
-### Butts
-#### Added butts as internal organs to aliens(alien.dm), humans(human.dm), monkeys(monkey.dm)
-#### Gave organs a location instead of null in organ_internal.dm Insert(mob/living/carbon/M, special = 0)
-
-### Teeth
-#### Added lisp check in say.dm treat_message(message)
-
-### Walls
-#### Changed wall and reinf wall icon in reinf_walls.dm and walls.dm
-
-### Admin verbs
-#### Added aooc, fill_breach and reset_atmos in admin_verbs.dm admin_verbs_admin list
-#### Added spawn as self dummy in secrets.dm
-
-### Cluwnes
-#### Added cluwne code to datumvars.dm line 1117
-#### Added make cluwne button in human.dm vv_get_dropdown()
-
-### Boxes, cabinets
-#### Changed icons in boxes.dm, filingcabinet.dm, paperbin.dm, pen.dm
-
-### Staple, wooden teeth, noose
-#### Added said recipes in rods.dm, sheet_types.dm, cable.dm
-
-### Vendings, dispensers
-#### Changed said icons in reagent_dispenser.dm, vending.dm, vending_types.dm(in the latter, resetted wallmed and cart icons to tg)
-
-### Species
-#### Added code for hippie mutant bodyparts in bodyparts.dm (should_draw_hippie var)
-
-### Glock 17
-#### Added glock 17 in gang_datum.dm and rightandwrong.dm
-
-### Throwing
-#### Added throwing code in carbon.dm, throwing.dm subsystem, changed something in sensitive.dm(i can't understand what was changed?) and renamed cleanable folder to Cleanable
-### CONTRIBUTING.md and README.md changed
-
-### Cluwneban and catban
-#### defines file in __DEFINES/hippie.dm(should be moved to hippiestation folder)
-#### Edits in job.dm, datum_clockcult.dm, datum_cult.dm, game_mode.dm, gang.dm, revolution.dm, topic.dm, corpse.dm, preferences.dm, new_player.dm and human life.dm
-
-### Machinary
-#### Edits scan_occupant(occupant) in HippieStation/code/game/machinery/computer/cloning.dm
-
-## Hooks list
-### Butts
-#### checkbuttuniform(mob) in clothing.dm /obj/item/clothing/equipped(mob/user, slot)
-#### checkbuttinspect(mob) in human_defense.dm /mob/living/carbon/human/grabbedby(mob/living/carbon/user, supress_message = 0)
-#### checkbuttinsert(obj, mob) in species.dm /datum/species/proc/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
-#### regeneratebutt() in organ_internal.dm Insert(mob/living/carbon/M, special = 0)
-
-### Teeth
-#### update_teeth() in dna.dm set_species(datum/species/mrace, icon_update = 1) and human.dm New()
-#### tearoutteeth(carbon/C, mob/user) in tools.dm attack(mob/living/carbon/C, mob/user)
-#### checklisp() in human life.dm handle_status_effects()
-#### punchouttooth() in species.dm harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style) and spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
-
-### Noose
-#### checknoosedrop() in head.dm update_limb(dropping_limb, mob/living/carbon/source)
-
-### Moths
-#### add_hippie_choices(dat) tg location: code/modules/client/preferences.dm in ShowChoices proc, in mutant races bodypart preference entry.
-#### hippie_pref_load(savefile/S) tg location: code/modules/client/preferences_savefile.dm in load_character proc, at the very end before the return.
-#### hippie_pref_save(savefile/S) tg location: code/modules/client/preferences_savefile.dm in save_character proc, at the very end before the return.
+## code/__DEFINES/diseases.dm
+## code/__DEFINES/misc.dm
+## code/__DEFINES/mobs.dm
+## code/__DEFINES/role_preferences.dm
+## code/__HELPERS/unsorted.dm
+## code/controllers/subsystem/job.dm
+## code/controllers/subsystem/throwing.dm
+## code/controllers/subsystem/ticker.dm
+## code/controllers/subsystem/vote.dm
+## code/datums/datumvars.dm
+## code/datums/hud.dm
+## code/datums/progressbar.dm
+## code/datums/wires/airlock.dm
+## code/game/gamemodes/changeling/changeling.dm !Should be modularized. Can be done easily.
+## code/game/gamemodes/game_mode.dm
+## code/game/gamemodes/traitor/traitor.dm !Should be modularized. Can be done easily.
+## code/game/machinery/computer/cloning.dm
+## code/game/machinery/doors/airlock_types.dm !Should be modularized. Can be done easily.
+## code/game/machinery/doors/brigdoors.dm
+## code/game/objects/effects/effect_system/effects_smoke.dm
+## code/game/objects/empulse.dm !Should be modularized. Can be done easily.
+## code/game/objects/items.dm
+## code/game/objects/items/crayons.dm
+## code/game/objects/items/devices/flashlight.dm !Should be modularized. Can be done easily.
+## code/game/objects/items/stacks/rods.dm
+## code/game/objects/items/tools/wirecutters.dm !Should be modularized. Can be done easily.
+## code/game/turfs/open.dm
+## code/game/world.dm !Needs modularization! This stuff is crap.
+## code/modules/admin/admin.dm
+## code/modules/admin/admin_verbs.dm
+## code/modules/admin/secrets.dm
+## code/modules/admin/topic.dm
+## code/modules/admin/verbs/one_click_antag.dm
+## code/modules/awaymissions/capture_the_flag.dm
+## code/modules/awaymissions/corpse.dm
+## code/modules/client/client_procs.dm
+## code/modules/client/preferences.dm
+## code/modules/client/preferences_savefile.dm
+## code/modules/client/verbs/ooc.dm
+## code/modules/clothing/clothing.dm
+## code/modules/food_and_drinks/drinks/drinks.dm !Should be modularized. Can be done easily.
+## code/modules/food_and_drinks/drinks/drinks/drinkingglass.dm
+## code/modules/hydroponics/grown/banana.dm !Should be modularized. Can be done easily.
+## code/modules/integrated_electronics/subtypes/input.dm
+## code/modules/integrated_electronics/subtypes/manipulation.dm
+## code/modules/integrated_electronics/subtypes/smart.dm
+## code/modules/mining/equipment/survival_pod.dm !Should be modularized. Can be done easily.
+## code/modules/mob/living/carbon/alien/alien.dm !Should be modularized. Can be done easily.
+## code/modules/mob/living/carbon/carbon_defense.dm
+## code/modules/mob/living/carbon/death.dm !Should be modularized. Can be done easily.
+## code/modules/mob/living/carbon/human/examine.dm
+## code/modules/mob/living/carbon/human/human.dm !Should be modularized. Can be done easily.
+## code/modules/mob/living/carbon/human/human_defense.dm
+## code/modules/mob/living/carbon/human/species.dm
+## code/modules/mob/living/carbon/monkey/monkey.dm !Should be modularized. Can be done easily.
+## code/modules/mob/living/carbon/update_icons.dm
+## code/modules/mob/living/living.dm 
+## code/modules/mob/living/say.dm
+## code/modules/mob/living/silicon/ai/ai.dm
+## code/modules/mob/living/silicon/pai/pai_shell.dm
+## code/modules/mob/living/silicon/robot/robot.dm
+## code/modules/mob/living/simple_animal/bot/medbot.dm
+## code/modules/mob/living/simple_animal/friendly/dog.dm
+## code/modules/mob/living/simple_animal/hostile/headcrab.dm
+## code/modules/mob/living/simple_animal/slime/slime.dm
+## code/modules/mob/mob_movement.dm !Horrible code alert, how did this even get merged?
+## code/modules/photography/camera/camera_image_capturing.dm
+## code/modules/reagents/chem_splash.dm !Could probably be improved to avoid cutting out the whole tg proc
+## code/modules/reagents/chemistry/holder.dm !Same as above.
+## code/modules/reagents/chemistry/recipes/pyrotechnics.dm !Same as above.
+## code/modules/reagents/reagent_containers.dm !Could be modularized.
+## code/modules/spells/spell.dm
+## code/modules/surgery/bodyparts/head.dm
+## code/modules/surgery/helpers.dm
+## code/modules/surgery/organs/vocal_cords.dm

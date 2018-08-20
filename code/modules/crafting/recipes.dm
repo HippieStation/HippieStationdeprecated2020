@@ -160,7 +160,7 @@
 	category = CAT_ROBOT
 
 /datum/crafting_recipe/floorbot
-	name = "floorbot"
+	name = "Floorbot"
 	result = /mob/living/simple_animal/bot/floorbot
 	reqs = list(/obj/item/storage/toolbox/mechanical = 1,
 				/obj/item/stack/tile/plasteel = 1,
@@ -368,6 +368,14 @@
 	time = 65
 	reqs = list(/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/rods = 12)
+	category = CAT_MISC
+
+/datum/crafting_recipe/mousetrap
+	name = "Mouse Trap"
+	result = /obj/item/assembly/mousetrap
+	time = 10
+	reqs = list(/obj/item/stack/sheet/cardboard = 1,
+				/obj/item/stack/rods = 1)
 	category = CAT_MISC
 
 /datum/crafting_recipe/papersack

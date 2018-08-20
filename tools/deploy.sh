@@ -4,6 +4,11 @@
 #First arg is path to where you want to deploy
 #creates a work tree free of everything except what's necessary to run the game
 
+#second arg is working directory if necessary
+if [[ $# -eq 2 ]] ; then
+  cd $2
+fi
+
 mkdir -p \
     $1/_maps \
     $1/icons/minimaps \
@@ -13,12 +18,11 @@ mkdir -p \
     $1/strings
 
 if [ -d ".git" ]; then
-  # Control will enter here if $DIRECTORY exists.
   mkdir -p $1/.git/logs
   cp -r .git/logs/* $1/.git/logs/
 fi
 
-cp tgstation.dmb tgstation.rsc $1/
+cp hippiestation.dmb hippiestation.rsc $1/
 cp -r _maps/* $1/_maps/
 cp icons/default_title.dmi $1/icons/
 cp -r icons/minimaps/* $1/icons/minimaps/

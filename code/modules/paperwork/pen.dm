@@ -44,7 +44,7 @@
 	colour = "red"
 
 /obj/item/pen/invisible
-	desc = "It's an invisble pen marker."
+	desc = "It's an invisible pen marker."
 	icon_state = "pen"
 	colour = "white"
 
@@ -68,7 +68,7 @@
 
 /obj/item/pen/fountain
 	name = "fountain pen"
-	desc = "It's a fountain pen, with a faux wood body."
+	desc = "It's a common fountain pen, with a faux wood body."
 	icon_state = "pen-fountain"
 	font = FOUNTAIN_PEN_FONT
 
@@ -117,7 +117,7 @@
 				to_chat(M, "<span class='danger'>You feel a tiny prick!</span>")
 			. = 1
 
-		add_logs(user, M, "stabbed", src)
+		log_combat(user, M, "stabbed", src)
 
 	else
 		. = ..()

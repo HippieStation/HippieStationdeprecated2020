@@ -348,7 +348,7 @@
 
 /datum/design/board/processor
 	name = "Machine Design (Food/Slime Processor Board)"
-	desc = "The circuit board for a processing unit. Screwdrive the circuit to switch between food (default) or slime processing."
+	desc = "The circuit board for a processing unit. Screwdriver the circuit to switch between food (default) or slime processing."
 	id = "processor"
 	build_path = /obj/item/circuitboard/machine/processor
 	category = list ("Misc. Machinery")
@@ -398,7 +398,7 @@
 	name = "Machine Design (Weapon Recharger Board)"
 	desc = "The circuit board for a Weapon Recharger."
 	id = "recharger"
-	materials = list(MAT_GLASS = 1000, MAT_GOLD = 100)
+	materials = list(MAT_GLASS = 1000, MAT_GOLD = 2000)
 	build_path = /obj/item/circuitboard/machine/recharger
 	category = list("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_ALL
@@ -475,6 +475,14 @@
 	category = list("Medical Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
+/datum/design/board/harvester
+	name = "Machine Design (Organ Harvester Board)"
+	desc = "The circuit board for an organ harvester."
+	id = "harvester"
+	build_path = /obj/item/circuitboard/machine/harvester
+	category = list("Medical Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
 /datum/design/board/deepfryer
 	name = "Machine Design (Deep Fryer)"
 	desc = "The circuit board for a Deep Fryer."
@@ -522,3 +530,11 @@
 	build_path = /obj/item/circuitboard/machine/stacking_machine
 	category = list ("Misc. Machinery")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_CARGO | DEPARTMENTAL_FLAG_ENGINEERING
+
+/datum/design/board/ore_silo
+	name = "Machine Design (Ore Silo)"
+	desc = "The circuit board for an ore silo."
+	id = "ore_silo"
+	build_path = /obj/item/circuitboard/machine/ore_silo
+	category = list ("Research Machinery")
+	departmental_flags = DEPARTMENTAL_FLAG_CARGO

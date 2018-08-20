@@ -235,8 +235,6 @@ Difficulty: Very Hard
 	desc = "A completely indestructible chunk of crystal, rumoured to predate the start of this universe. It looks like you could store things inside it."
 	icon = 'icons/obj/lavaland/artefacts.dmi'
 	icon_state = "blackbox"
-	icon_on = "blackbox"
-	icon_off = "blackbox"
 	light_range = 8
 	max_n_of_items = INFINITY
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
@@ -442,7 +440,7 @@ Difficulty: Very Hard
 	activation_method = ACTIVATE_TOUCH
 	cooldown_add = 200
 	var/terrain_theme = "winter"
-	var/NewTerrainfloors
+	var/NewTerrainFloors
 	var/NewTerrainWalls
 	var/NewTerrainChairs
 	var/NewTerrainTables
@@ -456,18 +454,18 @@ Difficulty: Very Hard
 
 	switch(terrain_theme)
 		if("lavaland")//Depressurizes the place... and free cult metal, I guess.
-			NewTerrainfloors = /turf/open/floor/grass/snow/basalt
+			NewTerrainFloors = /turf/open/floor/grass/snow/basalt
 			NewTerrainWalls = /turf/closed/wall/mineral/cult
 			NewFlora = list(/mob/living/simple_animal/hostile/asteroid/goldgrub)
 			florachance = 1
 		if("winter") //Snow terrain is slow to move in and cold! Get the assistants to shovel your driveway.
-			NewTerrainfloors = /turf/open/floor/grass/snow
+			NewTerrainFloors = /turf/open/floor/grass/snow
 			NewTerrainWalls = /turf/closed/wall/mineral/wood
 			NewTerrainChairs = /obj/structure/chair/wood/normal
 			NewTerrainTables = /obj/structure/table/glass
 			NewFlora = list(/obj/structure/flora/grass/green, /obj/structure/flora/grass/brown, /obj/structure/flora/grass/both)
 		if("jungle") //Beneficial due to actually having breathable air. Plus, monkeys and bows and arrows.
-			NewTerrainfloors = /turf/open/floor/grass
+			NewTerrainFloors = /turf/open/floor/grass
 			NewTerrainWalls = /turf/closed/wall/mineral/sandstone
 			NewTerrainChairs = /obj/structure/chair/wood
 			NewTerrainTables = /obj/structure/table/wood
@@ -475,7 +473,7 @@ Difficulty: Very Hard
 							/obj/structure/flora/ausbushes/grassybush, /obj/structure/flora/ausbushes/sunnybush, /obj/structure/flora/tree/palm, /mob/living/carbon/monkey)
 			florachance = 20
 		if("ayy lmao") //Beneficial, turns stuff into alien alloy which is useful to cargo and research. Also repairs atmos.
-			NewTerrainfloors = /turf/open/floor/plating/abductor
+			NewTerrainFloors = /turf/open/floor/plating/abductor
 			NewTerrainWalls = /turf/closed/wall/mineral/abductor
 			NewTerrainChairs = /obj/structure/bed/abductor //ayys apparently don't have chairs. An entire species of people who only recline.
 			NewTerrainTables = /obj/structure/table/abductor
@@ -487,8 +485,8 @@ Difficulty: Very Hard
 			for(var/atom/Stuff in A)
 				if(isturf(Stuff))
 					var/turf/T = Stuff
-					if((isspaceturf(T) || isfloorturf(T)) && NewTerrainfloors)
-						var/turf/open/O = T.ChangeTurf(NewTerrainfloors)
+					if((isspaceturf(T) || isfloorturf(T)) && NewTerrainFloors)
+						var/turf/open/O = T.ChangeTurf(NewTerrainFloors)
 						if(O.air)
 							var/datum/gas_mixture/G = O.air
 							G.copy_from_turf(O)

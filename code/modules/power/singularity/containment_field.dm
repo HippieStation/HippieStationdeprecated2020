@@ -78,6 +78,7 @@
 
 /obj/machinery/field/containment/Move()
 	qdel(src)
+	return FALSE
 
 
 // Abstract Field Class

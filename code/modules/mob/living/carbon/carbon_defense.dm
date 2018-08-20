@@ -94,14 +94,14 @@
 						head.add_mob_blood(src)
 						update_inv_head()
 
-		// Hippie Start - If we're hit then throw off some hats
+		// hippie start -- If we're hit then throw off some hats
 		var/mob/living/carbon/C = src
 		
 		if (prob(25))
 			var/list/L = list()
 			LAZYADD(L, get_dir(user, C))
 			C.throw_hats(1 + rand(0, FLOOR(I.force / 5, 1)), L)
-		// Hippie End
+		// hippie end
 
 		//dismemberment
 		var/probability = I.get_dismemberment_chance(affecting)
@@ -381,12 +381,3 @@
 	var/obj/item/organ/ears/ears = getorganslot(ORGAN_SLOT_EARS)
 	if(istype(ears) && !ears.deaf)
 		. = TRUE
-
-/mob/living/carbon/crit_modifier()
-	. = ..()
-	GET_COMPONENT(mood, /datum/component/mood)
-	if(mood)
-		if(mood.sanity >= SANITY_UNSTABLE)
-			. += 5
-		else if(mood.sanity >= SANITY_CRAZY)
-			. += 10

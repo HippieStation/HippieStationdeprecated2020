@@ -113,7 +113,7 @@
 
 
 /area/awaymission/snowdin/base
-	name = "Snowdin Main base"
+	name = "Snowdin Main Base"
 	icon_state = "awaycontent16"
 	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
 	requires_power = TRUE
@@ -264,7 +264,7 @@
 
 /obj/item/paper/crumpled/ruins/snowdin/foreshadowing
 	name = "scribbled note"
-	info = {"Somnething's gone VERY wrong here. Jouslen has been mumbling about some weird shit in his cabin during the night and he seems always tired when we're working. I tried to confront him about it and he blew up on me,
+	info = {"Something's gone VERY wrong here. Jouslen has been mumbling about some weird shit in his cabin during the night and he seems always tired when we're working. I tried to confront him about it and he blew up on me,
 	 telling me to mind my own business. I reported him to the officer, said he'd look into it. We only got another 2 months here before we're pulled for another assignment, so this shit can't go any quicker.."}
 
 /obj/item/paper/crumpled/ruins/snowdin/misc1
@@ -324,13 +324,13 @@
 
 /obj/item/paper/fluff/awaymissions/snowdin/secnotice
 	name = "Security Notice"
-	info = {"YOu have been assigned to this Arctic Post with intention of protecting Nanotrasen assets and ensuring vital Information is kept secure while the stationed crew obeys protocal. The picked
+	info = {"YOu have been assigned to this Arctic Post with intention of protecting Nanotrasen assets and ensuring vital information is kept secure while the stationed crew obeys protocol. The picked
 		staff for this post have been pre-screened with no prior incidients on record, but incase of an issue you have been given a single holding cell and instructions to contact Central to terminate the
 		offending crewmember."}
 
 /obj/item/paper/fluff/awaymissions/snowdin/mining
 	name = "Assignment Notice"
-	info = {"This cold-ass planet is the new-age equivalentof striking gold. Huge deposits of plasma and literal streams of plasma run through the caverns under all this ice and we're here to mine it all.\
+	info = {"This cold-ass planet is the new-age equivalent of striking gold. Huge deposits of plasma and literal streams of plasma run through the caverns under all this ice and we're here to mine it all.\
 	 Nanotrasen pays by the pound, so get minin' boys!"}
 
 /obj/item/paper/crumpled/ruins/snowdin/lootstructures
@@ -389,7 +389,7 @@
 	DELAY 30
 	SAY Nanotrasen is pleased to have you working in one of the many top-of-the-line research posts within the $%@!! sector!
 	DELAY 30
-	SAY Further job assignment Information can be found at your local security post! Have a secure day!
+	SAY Further job assignment information can be found at your local security post! Have a secure day!
 	DELAY 20;"}
 
 /obj/item/disk/holodisk/snowdin/overrun
@@ -563,6 +563,7 @@
 	armor = list("melee" = 20, "bullet" = 10, "laser" = 0,"energy" = 5, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 25, "acid" = 25)
 	cold_protection = CHEST|GROIN|ARMS|LEGS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
+
 /obj/item/clothing/shoes/combat/coldres
 	name = "insulated combat boots"
 	desc = "High speed, low drag combat boots, now with an added layer of insulation."
@@ -595,8 +596,8 @@
 	death = FALSE
 	faction = ROLE_SYNDICATE
 	outfit = /datum/outfit/snowsyndie
-	flavour_text = {"You are a syndicate operative recently awoken from cyrostatis in an underground outpost. Monitor Nanotrasen communications and record information. All intruders should be
-	disposed of swirfly to assure no gathered information is stolen or lost. Try not to wander too far from the outpost as the caves can be a deadly place even for a trained operative such as yourself."}
+	flavour_text = "<span class='big bold'>You are a syndicate operative recently awoken from cryostasis in an underground outpost. Monitor Nanotrasen communications and record information. All intruders should be \
+	disposed of swiftly to assure no gathered information is stolen or lost. Try not to wander too far from the outpost as the caves can be a deadly place even for a trained operative such as yourself.</span>"
 
 /datum/outfit/snowsyndie
 	name = "Syndicate Snow Operative"

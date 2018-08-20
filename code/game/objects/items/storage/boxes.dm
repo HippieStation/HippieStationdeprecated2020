@@ -51,9 +51,7 @@
 	. = ..()
 	if(illustration)
 		cut_overlays()
-		var/image/I = image(icon = 'icons/obj/storage.dmi', icon_state = illustration)
-		I.pixel_y = 5
-		add_overlay(I)
+		add_overlay(illustration)
 
 /obj/item/storage/box/attack_self(mob/user)
 	..()
@@ -190,6 +188,14 @@
 /obj/item/storage/box/beakers/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/glass/beaker( src )
+
+/obj/item/storage/box/beakers/bluespace
+	name = "box of bluespace beakers"
+	illustration = "beaker"
+
+/obj/item/storage/box/beakers/bluespace/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/reagent_containers/glass/beaker/bluespace(src)
 
 /obj/item/storage/box/medsprays
 	name = "box of medical sprayers"
@@ -993,6 +999,7 @@
 /obj/item/storage/box/stockparts/deluxe
 	name = "box of deluxe stock parts"
 	desc = "Contains a variety of deluxe stock parts."
+	icon_state = "syndiebox"
 
 /obj/item/storage/box/stockparts/deluxe/PopulateContents()
 	new /obj/item/stock_parts/capacitor/quadratic(src)

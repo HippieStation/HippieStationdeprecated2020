@@ -17,7 +17,7 @@
 	var/template_id = "shelter_alpha"
 	var/datum/map_template/shelter/template
 	var/used = FALSE
-	var/can_use_on_station = FALSE //hippie - to prevent station capsule grief
+	var/can_use_on_station = FALSE //hippie -- to prevent station capsule grief
 
 /obj/item/survivalcapsule/proc/get_template()
 	if(template)
@@ -37,7 +37,7 @@
 	to_chat(user, "This capsule has the [template.name] stored.")
 	to_chat(user, template.description)
 
-//hippie start - to prevent station capsule grief
+//hippie start -- to prevent station capsule grief
 /obj/item/survivalcapsule/emag_act(mob/user)
 	can_use_on_station = TRUE
 	playsound(src.loc, "sparks", 100, 1)
@@ -64,17 +64,17 @@
 			used = FALSE
 			return
 
-		playsound(get_turf(src), 'sound/effects/phasein.ogg', 100, 1)
+		playsound(src, 'sound/effects/phasein.ogg', 100, 1)
 
 		var/turf/T = deploy_location
 		if(!is_mining_level(T.z)) //only report capsules away from the mining/lavaland level
-			//hippie start - to prevent station capsule grief
+			//hippie start -- to prevent station capsule grief
 			if(!can_use_on_station)
 				playsound(get_turf(src), 'sound/misc/sadtrombone.ogg', 100, 1)
 				new /obj/effect/particle_effect/smoke(get_turf(src))
 				used = FALSE
 				return
-			//hippie end - to prevent station capsule grief
+			//hippie end
 			message_admins("[ADMIN_LOOKUPFLW(usr)] activated a bluespace capsule away from the mining level! [ADMIN_VERBOSEJMP(T)]")
 			log_admin("[key_name(usr)] activated a bluespace capsule away from the mining level at [AREACOORD(T)]")
 		template.load(deploy_location, centered = TRUE)
@@ -189,8 +189,6 @@
 	desc = "A heated storage unit."
 	icon_state = "donkvendor"
 	icon = 'icons/obj/lavaland/donkvendor.dmi'
-	icon_on = "donkvendor"
-	icon_off = "donkvendor"
 	light_range = 5
 	light_power = 1.2
 	light_color = "#DDFFD3"
@@ -198,6 +196,9 @@
 	pixel_y = -4
 	flags_1 = NODECONSTRUCT_1
 	var/empty = FALSE
+
+/obj/machinery/smartfridge/survival_pod/update_icon()
+	return
 
 /obj/machinery/smartfridge/survival_pod/Initialize(mapload)
 	. = ..()

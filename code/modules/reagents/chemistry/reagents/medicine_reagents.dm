@@ -44,7 +44,7 @@
 	M.adjustToxLoss(-5, 0, TRUE)
 	M.hallucination = 0
 	M.setBrainLoss(0)
-	M.remove_all_quirks()
+	M.remove_all_traits()
 	M.set_blurriness(0)
 	M.set_blindness(0)
 	M.SetKnockdown(0, 0)
@@ -803,7 +803,7 @@
 				M.updatehealth()
 				if(M.revive())
 					M.emote("gasp")
-					add_logs(M, M, "revived", src)
+					log_combat(M, M, "revived", src)
 	..()
 
 /datum/reagent/medicine/strange_reagent/on_mob_life(mob/living/carbon/M)

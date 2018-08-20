@@ -210,7 +210,7 @@
 
 /obj/item/gun/ballistic/automatic/tommygun
 	name = "\improper Thompson SMG"
-	desc = "based on the classic 'Chicago Typewriter'."
+	desc = "Based on the classic 'Chicago Typewriter'."
 	icon_state = "tommygun"
 	item_state = "shotgun"
 	w_class = WEIGHT_CLASS_HUGE

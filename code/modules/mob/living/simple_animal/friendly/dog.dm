@@ -45,6 +45,16 @@
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/meat/slab/pug = 3)
 	gold_core_spawnable = FRIENDLY_SPAWN
 	collar_type = "pug"
+	
+/mob/living/simple_animal/pet/dog/corgi/exoticcorgi
+	name = "Exotic Corgi"
+	desc = "As cute as it is colorful!"
+	icon = 'icons/mob/pets.dmi'
+	icon_state = "corgigrey"
+	icon_living = "corgigrey"
+	icon_dead = "corgigrey_dead"
+	animal_species = /mob/living/simple_animal/pet/dog/corgi/exoticcorgi
+	nofur = TRUE
 
 /mob/living/simple_animal/pet/dog/Initialize()
 	. = ..()
@@ -58,6 +68,10 @@
 	. = ..()
 	regenerate_icons()
 
+/mob/living/simple_animal/pet/dog/corgi/exoticcorgi/Initialize()
+		. = ..()
+		var/newcolor = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
+		add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
 
 /mob/living/simple_animal/pet/dog/corgi/death(gibbed)
 	..(gibbed)
@@ -235,14 +249,14 @@
 		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "pet_corgi", /datum/mood_event/pet_corgi)
 		return
 
-	// Hippie Start - Ian is unable to wear so many hats
+	// hippie start -- Ian is unable to wear so many hats
 	if (istype(item_to_add, /obj/item/clothing/head) && item_to_add)
 		var/obj/item/clothing/head/H = item_to_add
 
 		if (LAZYLEN(H.stacked_hats) > 0)
 			to_chat(user, "<span class='warning'>It doesn't look like poor little Ian can handle such a burden!</span>")
 			return 0
-	// Hippie End
+	// hippie end
 
 	if(user && !user.temporarilyRemoveItemFromInventory(item_to_add))
 		to_chat(user, "<span class='warning'>\The [item_to_add] is stuck to your hand, you cannot put it on [src]'s head!</span>")

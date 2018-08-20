@@ -18,10 +18,14 @@
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "floor"
+	tiled_dirt = TRUE
 
 /turf/open/indestructible/Melt()
 	to_be_destroyed = FALSE
 	return src
+
+/turf/open/indestructible/singularity_act()
+	return
 
 /turf/open/indestructible/TerraformTurf(path, defer_change = FALSE, ignore_air = FALSE)
 	return
@@ -42,6 +46,7 @@
 	icon_state = "necro1"
 	baseturfs = /turf/open/indestructible/necropolis
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
+	tiled_dirt = FALSE
 
 /turf/open/indestructible/necropolis/Initialize()
 	. = ..()
@@ -66,6 +71,7 @@
 	initial_gas_mix = LAVALAND_DEFAULT_ATMOS
 	baseturfs = /turf/open/indestructible/hierophant
 	smooth = SMOOTH_TRUE
+	tiled_dirt = FALSE
 
 /turf/open/indestructible/hierophant/two
 
@@ -76,6 +82,7 @@
 	name = "notebook floor"
 	desc = "A floor made of invulnerable notebook paper."
 	icon_state = "paperfloor"
+	tiled_dirt = FALSE
 
 /turf/open/indestructible/binary
 	name = "tear in the fabric of reality"
@@ -218,12 +225,12 @@
 		for(var/obj/item/I in C.held_items)
 			C.accident(I)
 
-		// Hippie Start - Throw some hats if we slipped
+		// hippie start -- Throw some hats if we slipped
 		if (prob(33))
 			var/list/L = list()
 			LAZYADD(L, C.dir)
 			C.throw_hats(1 + rand(1, 3), L)
-		// Hippie End
+		// hippie end
 
 		var/olddir = C.dir
 		if(!(lube & SLIDE_ICE))
@@ -256,7 +263,7 @@
 
 /turf/open/rad_act(pulse_strength)
 	. = ..()
-	if(air && air.gases[/datum/gas/carbon_dioxide] && air.gases[/datum/gas/oxygen])//hippie code
+	if(air.gases[/datum/gas/carbon_dioxide] && air.gases[/datum/gas/oxygen]) 
 		pulse_strength = min(pulse_strength,air.gases[/datum/gas/carbon_dioxide][MOLES]*1000,air.gases[/datum/gas/oxygen][MOLES]*2000) //Ensures matter is conserved properly
 		air.gases[/datum/gas/carbon_dioxide][MOLES]=max(air.gases[/datum/gas/carbon_dioxide][MOLES]-(pulse_strength/1000),0)
 		air.gases[/datum/gas/oxygen][MOLES]=max(air.gases[/datum/gas/oxygen][MOLES]-(pulse_strength/2000),0)

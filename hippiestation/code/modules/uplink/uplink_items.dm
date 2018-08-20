@@ -72,7 +72,7 @@
 /datum/uplink_item/nukeoffer/blastco
 	name = "Unlock the BlastCo(tm) Armory"
 	desc = "Enough gear to fully equip a team with explosive based weaponry."
-	item = /obj/item/paper
+	item = /obj/effect/gibspawner/generic // non-tangible item because techwebs use this path to determine illegal tech
 	cost = 200
 
 /datum/uplink_item/nukeoffer/blastco/spawn_item(turf/loc, datum/component/uplink/U, mob/user)
@@ -333,3 +333,17 @@
 	desc = "Become a posthuman warrior. The items cannot be taken off once you wear them."
 	item = /obj/item/storage/box/syndie_kit/nanosuit
 	cost = 20
+
+/datum/uplink_item/dangerous/synth
+	name = "Cybersun Sponsorship Kit"
+	desc = "Containing an arm mounted laser implant and a device bestowing the mysteries of the synth augmentation upon you, this kit also comes with a free autosurgeon."
+	item = /obj/item/storage/box/syndie_kit/synth
+	cost = 8
+	surplus = 40
+
+/datum/uplink_item/badass/brick
+	name = "A brick"
+	desc = "A literal brick, able to break a common windows like nothing. Serves well as a melee and thrown weapon aswell. Keep an eye out for the fabled brown brick."
+	item = /obj/item/brick
+	cost = 2
+	surplus = 30

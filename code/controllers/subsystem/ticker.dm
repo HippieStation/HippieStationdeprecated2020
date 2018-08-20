@@ -589,7 +589,7 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/proc/Reboot(reason, end_string, delay)
 	set waitfor = FALSE
-	if(usr && !check_rights(R_ADMIN, TRUE))
+	if(usr && !check_rights(R_ADMIN, TRUE)) // hippie -- lets trialmins restart the server aswell
 		return
 
 	if(!delay)
@@ -626,6 +626,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/Shutdown()
 	gather_newscaster() //called here so we ensure the log is created even upon admin reboot
 	save_admin_data()
+	update_everything_flag_in_db()
 	if(!round_end_sound)
 		round_end_sound = pick(\
 		'sound/roundend/newroundsexy.ogg',
@@ -634,7 +635,8 @@ SUBSYSTEM_DEF(ticker)
 		'sound/roundend/leavingtg.ogg',
 		'sound/roundend/its_only_game.ogg',
 		'sound/roundend/yeehaw.ogg',
-		'sound/roundend/disappointed.ogg'\
+		'sound/roundend/disappointed.ogg',
+		'sound/roundend/gondolabridge.ogg'\
 		)
 
 	SEND_SOUND(world, sound(round_end_sound))

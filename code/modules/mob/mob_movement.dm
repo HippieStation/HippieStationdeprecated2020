@@ -1,4 +1,4 @@
-#define SW_LIGHT_FACTOR 2.75
+#define SW_LIGHT_FACTOR 2.75 // hippie -- shadowlings
 
 /mob/CanPass(atom/movable/mover, turf/target)
 	if((mover.pass_flags & PASSMOB))
@@ -11,6 +11,11 @@
 		if (mover in buckled_mobs)
 			return TRUE
 	return (!mover.density || !density || lying)
+
+//DO NOT USE THIS UNLESS YOU ABSOLUTELY HAVE TO. THIS IS BEING PHASED OUT FOR THE MOVESPEED MODIFICATION SYSTEM.
+//See mob_movespeed.dm
+/mob/proc/movement_delay()	//update /living/movement_delay() if you change this
+	return cached_multiplicative_slowdown
 
 /client/verb/drop_item()
 	set hidden = 1
@@ -27,7 +32,6 @@
 			mob.control_object.setDir(direct)
 		else
 			mob.control_object.forceMove(get_step(mob.control_object,direct))
-	return
 
 #define MOVEMENT_DELAY_BUFFER 0.75
 #define MOVEMENT_DELAY_BUFFER_DELTA 1.25
@@ -39,7 +43,7 @@
 		next_move_dir_add = 0
 		next_move_dir_sub = 0
 	var/old_move_delay = move_delay
-	move_delay = world.time+world.tick_lag //this is here because Move() can now be called mutiple times per tick
+	move_delay = world.time + world.tick_lag //this is here because Move() can now be called mutiple times per tick
 	if(!mob || !mob.loc)
 		return FALSE
 	if(!n || !direct)
@@ -83,7 +87,7 @@
 	if(!mob.Process_Spacemove(direct))
 		return FALSE
 
-	var/delay = mob.movement_delay() // hippie start
+	var/delay = mob.movement_delay() // hippie start -- shadowling shit. Needless to say, this is horrible
 
 	if(Can_ShadowWalk(mob))
 		if(Process_ShadowWalk(direct))
@@ -368,9 +372,13 @@
 	set hidden = TRUE
 	set instant = TRUE
 	if(mob)
-		mob.toggle_move_intent()
+		mob.toggle_move_intent(usr)
 
-/mob/proc/toggle_move_intent()
+/mob/proc/toggle_move_intent(mob/user)
+	if(m_intent == MOVE_INTENT_RUN)
+		m_intent = MOVE_INTENT_WALK
+	else
+		m_intent = MOVE_INTENT_RUN
 	if(hud_used && hud_used.static_inventory)
 		for(var/obj/screen/mov_intent/selector in hud_used.static_inventory)
-			selector.toggle(src)
+			selector.update_icon(src)

@@ -186,6 +186,9 @@
 										/obj/structure/particle_accelerator/end_cap,
 										/obj/machinery/field/containment,
 										/obj/structure/disposalpipe,
+										/obj/structure/disposaloutlet,
+										/obj/machinery/disposal/deliveryChute,
+										/obj/machinery/camera,
 										/obj/structure/sign,
 										/obj/machinery/gateway,
 										/obj/structure/lattice,
@@ -266,7 +269,7 @@
 	//Alright, we've done our loop, now lets see if was anything interesting in range
 	if(closest_atom)
 		//common stuff
-		source.Beam(closest_atom, icon_state="lightning[rand(1,12)]", time=6, maxdistance = INFINITY) //Hippie code
+		source.Beam(closest_atom, icon_state="lightning[rand(1,12)]", time=5, maxdistance = INFINITY)
 		if(!(tesla_flags & TESLA_ALLOW_DUPLICATES))
 			LAZYSET(shocked_targets, closest_atom, TRUE)
 		var/zapdir = get_dir(source, closest_atom)

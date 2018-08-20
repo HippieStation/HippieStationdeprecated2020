@@ -86,3 +86,42 @@
 	set_pin_data(IC_INPUT, 1, 0)
 	set_pin_data(IC_INPUT, 2, 0)
 	..()
+
+
+// -Inputlist- //
+/obj/item/integrated_circuit/input/selection
+	name = "selection circuit"
+	desc = "This circuit lets you choose between different strings from a selection."
+	extended_desc = "This circuit lets you choose between up to 4 different values from selection of up to 8 strings that you can set. Null values are ignored and the chosen value is put out in selected."
+	icon_state = "addition"
+	can_be_asked_input = 1
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+	inputs = list(
+		"A" = IC_PINTYPE_STRING,
+		"B" = IC_PINTYPE_STRING,
+		"C" = IC_PINTYPE_STRING,
+		"D" = IC_PINTYPE_STRING,
+		"E" = IC_PINTYPE_STRING,
+		"F" = IC_PINTYPE_STRING,
+		"G" = IC_PINTYPE_STRING,
+		"H" = IC_PINTYPE_STRING
+	)
+	activators = list(
+		"on selected" = IC_PINTYPE_PULSE_OUT
+	)
+	outputs = list(
+		"selected" = IC_PINTYPE_STRING
+	)
+
+/obj/item/integrated_circuit/input/selection/ask_for_input(mob/user)
+	var/list/selection = list()
+	for(var/k in 1 to inputs.len)
+		var/I = get_pin_data(IC_INPUT, k)
+		if(istext(I))
+			selection.Add(I)
+	var/selected = input(user,"Choose input.","Selection") in selection
+	if(!selected)
+		return
+	set_pin_data(IC_OUTPUT, 1, selected)
+	push_data()
+	activate_pin(1)
