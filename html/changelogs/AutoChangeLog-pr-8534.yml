@@ -1,5 +1,0 @@
-author: "Shdorsh"
-delete-after: True
-changes: 
-  - rscadd: "pai connector circuit"
-  - balance: "mmis and brains don't die on bot destruction."
