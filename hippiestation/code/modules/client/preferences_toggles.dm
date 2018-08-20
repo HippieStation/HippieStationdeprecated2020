@@ -8,7 +8,6 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings/Sound, toggletts)()
 		to_chat(usr, "You will now hear any text-to-speech sounds.")
 	else
 		to_chat(usr, "You will no longer hear text-to-speech sounds.")
-		usr.stop_sound_channel(CHANNEL_TTS)
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Hearing Text-to-Speech", "[usr.client.prefs.toggles & SOUND_TTS ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 /datum/verbs/menu/Settings/Sound/togglemidis/Get_checked(client/C)
 	return C.prefs.toggles & SOUND_TTS
