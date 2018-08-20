@@ -45,6 +45,9 @@
 	if(!shadowling_check(user))
 		revert_cast()
 		return
+	if(!istype(target))
+		revert_cast()
+		return
 
 /obj/effect/proc_holder/spell/targeted/sling/revert_cast()
 	. = ..()
