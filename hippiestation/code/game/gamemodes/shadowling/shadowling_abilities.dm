@@ -39,15 +39,15 @@
 	if(!isliving(t))
 		to_chat(caller, "<span class='warning'>You may only use this ability on living things!</span>")
 		revert_cast()
-		return
+		return FALSE
 	user = caller
 	target = t
 	if(!shadowling_check(user))
 		revert_cast()
-		return
+		return FALSE
 	if(!istype(target))
 		revert_cast()
-		return
+		return FALSE
 
 /obj/effect/proc_holder/spell/targeted/sling/revert_cast()
 	. = ..()
