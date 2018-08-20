@@ -41,22 +41,24 @@
 	else
 		num_vamp = max(1, min(num_players(), vampire_amt/2))
 
+	var/list/old_antag_candidates = antag_candidates.Copy()
 	if(possible_vamps.len>0)
 		for(var/j = 0, j < num_vamp, j++)
 			if(!possible_vamps.len) break
 			var/datum/mind/vamp = pick(possible_vamps)
 			pre_vamps += vamp
-			antag_candidates -= vamp
 			possible_vamps -= vamp
+			antag_candidates -= vamp
 			vamp.special_role = "Vampire"
 			vamp.restricted_roles = restricted_jobs
+		antag_candidates = old_antag_candidates // So we still have a chance for a traitor vampire.
 		return ..()
 	else
-		return 0
+		return FALSE
 
 /datum/game_mode/traitor/vampire/post_setup()
 	for(var/datum/mind/vamp in pre_vamps)
-		addtimer(CALLBACK(vamp, /datum/mind.proc/add_antag_datum, /datum/antagonist/vampire), rand(10,50))
+		vamp.add_antag_datum(/datum/antagonist/vampire)
 	..()
 	return
 

@@ -1,3 +1,5 @@
+#define ALL_POWERS_UNLOCKED 800
+
 /datum/antagonist/vampire
 
 	name = "Vampire"
@@ -40,8 +42,8 @@
 	.["Set Blood Amount"] = CALLBACK(src,.proc/admin_set_blood)
 
 /datum/antagonist/vampire/proc/admin_set_full_power(mob/admin)
-	usable_blood = 850
-	total_blood = 850
+	usable_blood = ALL_POWERS_UNLOCKED
+	total_blood = ALL_POWERS_UNLOCKED
 	check_vampire_upgrade()
 	message_admins("[key_name_admin(admin)] made [owner.current] a full power vampire..")
 	log_admin("[key_name(admin)] made [owner.current] a full power vampire..")
@@ -344,3 +346,5 @@
 		SEND_SOUND(owner.current, 'sound/ambience/ambifailure.ogg')
 
 	return result.Join("<br>")
+
+#undef ALL_POWERS_UNLOCKED
