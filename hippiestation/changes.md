@@ -51,6 +51,9 @@ As for now,updated from first pr to https://github.com/HippieStation/HippieStati
 #### defines file in __DEFINES/hippie.dm(should be moved to hippiestation folder)
 #### Edits in job.dm, datum_clockcult.dm, datum_cult.dm, game_mode.dm, gang.dm, revolution.dm, topic.dm, corpse.dm, preferences.dm, new_player.dm and human life.dm
 
+### Machinary
+#### Edits scan_occupant(occupant) in HippieStation/code/game/machinery/computer/cloning.dm
+
 ## Hooks list
 ### Butts
 #### checkbuttuniform(mob) in clothing.dm /obj/item/clothing/equipped(mob/user, slot)
