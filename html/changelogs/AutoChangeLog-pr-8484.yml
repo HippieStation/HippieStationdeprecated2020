@@ -1,0 +1,4 @@
+author: "xTrainx"
+delete-after: True
+changes: 
+  - bugfix: "Clone scanners will not sound off if the clonepod is cloning"
