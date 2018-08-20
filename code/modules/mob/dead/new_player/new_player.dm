@@ -361,7 +361,7 @@
 		if(!arrivals_docked)
 			var/obj/screen/splash/Spl = new(character.client, TRUE)
 			Spl.Fade(TRUE)
-			character.playsound_local(get_turf(character), 'hippiestation/sound/voice/approaching.ogg', 25)//hippie edit
+			character.playsound_local(get_turf(character), 'hippiestation/sound/voice/approaching.ogg', 25)//hippie edit for custom shuttle approach sound
 
 		character.update_parallax_teleport()
 
