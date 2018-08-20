@@ -12465,7 +12465,8 @@
 "aFh" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Chapel Maintenance";
-	req_access_txt = "12"
+	req_access_txt = "0";
+	req_one_access_txt = "12;27"
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
