@@ -67,22 +67,35 @@ SUBSYSTEM_DEF(tts)
 		message_admins("TTS request has no mob")
 		return
 
+	var/channel = open_sound_channel()
+
 	T.status = STATUS_PLAYING
 
-	for (var/mob/M in GLOB.player_list)
-		var/client/C = M.client
-		if (!C)
-			continue
-		if (!(C.prefs.toggles & SOUND_TTS))
-			continue
-		var/turf/origin
+	if (T.is_global)
+		for (var/mob/M in GLOB.player_list)
+			if (!M.client)
+				continue
+			if (!(M.client.prefs.toggles & SOUND_TTS))
+				continue
 
-		if (T.is_global)
-			origin = M.loc
-		else
-			origin = T.owner.mob.loc
+			M.playsound_local(M.loc, T.filename + ".ogg", 100, 0, channel=channel)
+	else
+		var/turf/origin = T.owner.mob.loc
 
-		M.playsound_local(origin, T.filename + ".ogg", 100, 0, channel = CHANNEL_TTS)
+		var/list/listeners = GLOB.player_list
+		listeners = listeners & hearers(world.view, origin)
+
+		for (var/mob/P in listeners)
+			if (!P.client)
+				continue
+			if (!(P.client.prefs.toggles & SOUND_TTS))
+				continue
+
+			if (get_dist(P, origin) <= world.view)
+				var/turf/Turf = get_turf(P)
+
+				if (Turf && Turf.z == origin.z)
+					P.playsound_local(origin, T.filename + ".ogg", 100, 0, channel=channel)
 
 /datum/tts
 	var/client/owner
