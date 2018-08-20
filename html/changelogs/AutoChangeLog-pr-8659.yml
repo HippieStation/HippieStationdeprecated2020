@@ -1,0 +1,6 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - bugfix: "Vampires should now actually become vampires in traitor+vamp"
+  - bugfix: "Actually actually fixes vamp thermals/xray"
+  - tweak: "You no longer need to wait 20 seconds to turn back into a human while in batform"
