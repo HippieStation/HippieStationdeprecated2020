@@ -175,6 +175,7 @@ Made by Xhuis
 	. = ..()
 	QDEL_NULL(H.wear_suit)
 	QDEL_NULL(H.head)
+	H.regenerate_icons()
 
 /datum/species/shadow/ling/on_species_gain(mob/living/carbon/human/C)
 	C.draw_hippie_parts()
