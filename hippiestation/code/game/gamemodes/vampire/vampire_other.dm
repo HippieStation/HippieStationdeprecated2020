@@ -29,14 +29,3 @@
 		user.fire_stacks += 5
 		user.IgniteMob()
 		user.emote("scream", 1)
-
-/mob/living/carbon/proc/vampsight()
-	if(mind)
-		var/datum/antagonist/vampire/V = mind.has_antag_datum(/datum/antagonist/vampire)
-		if(V)
-			if(V.get_ability(/datum/vampire_passive/full))
-				sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
-				see_in_dark = 8
-				see_invisible = SEE_INVISIBLE_MINIMUM
-			else if(V.get_ability(/datum/vampire_passive/vision))
-				sight |= (SEE_MOBS)

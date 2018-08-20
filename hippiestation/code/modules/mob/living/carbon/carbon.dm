@@ -39,6 +39,18 @@
 			var/turf/T = get_turf(src)
 			explosion(T, -1, 3, 5, 0, 0, 0) //The reward for lining the spell up to hit another person is a bigger boom!
 
+
+/mob/living/carbon/update_sight()
+	. = ..()
+	if(mind)
+		var/datum/antagonist/vampire/V = mind.has_antag_datum(/datum/antagonist/vampire)
+		if(V)
+			if(V.get_ability(/datum/vampire_passive/full))
+				sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
+				see_in_dark = max(see_in_dark, 8)
+			else if(V.get_ability(/datum/vampire_passive/vision))
+				sight |= (SEE_MOBS)
+
 /mob/living/carbon/proc/throw_hats(var/how_many, var/list/throw_directions)
 	// Using a list so random directions are possible for all the hats we're trying to throw
 	if (how_many <= 0 || LAZYLEN(throw_directions) <= 0 || !head)
