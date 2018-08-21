@@ -12,7 +12,7 @@
 	if(.)
 		if(new_owner.unconvertable)
 			return FALSE
-		if(new_owner.current && new_owner.current.isloyal())
+		if(new_owner.current && new_owner.current.has_trait(TRAIT_MINDSHIELD))
 			return FALSE
 
 /datum/antagonist/gang/apply_innate_effects(mob/living/mob_override)
