@@ -598,7 +598,7 @@
 
 /obj/effect/proc_holder/spell/targeted/shadowling_extend_shuttle
 	name = "Destroy Engines"
-	desc = "Extends the time of the emergency shuttle's arrival by fifteen minutes. This can only be used once."
+	desc = "Extends the time of the emergency shuttle's arrival by fifteen minutes, by sacrificing a thrall. This can only be used once."
 	panel = "Shadowling Abilities"
 	range = 1
 	human_req = 1
