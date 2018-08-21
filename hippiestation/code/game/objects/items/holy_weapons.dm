@@ -234,7 +234,7 @@
 	attack_verb = list("enlightened", "redpilled")
 
 /obj/item/nullrod/hippie/fedora/attack_self(mob/user)
-	visible_message("<span class='danger'>[user] tips [user.p_their()] the [name]!</span>")
+	user.visible_message("<span class='danger'>[user] tips [user.p_their()] the [name]!</span>")
 	..() //incase an admin allows you to reset the rod
 
 /obj/item/nullrod/hippie/armblade
