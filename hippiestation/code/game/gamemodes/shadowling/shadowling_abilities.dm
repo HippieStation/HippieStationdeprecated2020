@@ -1,14 +1,14 @@
 #define EMPOWERED_THRALL_LIMIT 5
 
-/obj/effect/proc_holder/spell/proc/shadowling_check(var/A)
-	if(ishuman(A))
-		var/mob/living/carbon/human/H = A
+/obj/effect/proc_holder/spell/proc/shadowling_check(var/mob/living/L)
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
 		if(H.dna.species.id == "shadowling" && is_shadow(H)) return TRUE
 		if(H.dna.species.id == "l_shadowling" && is_thrall(H)) return TRUE
 		if(!is_shadow_or_thrall(usr)) to_chat(usr, "<span class='warning'>You can't wrap your head around how to do this.</span>")
 		else if(is_thrall(usr)) to_chat(usr, "<span class='warning'>You aren't powerful enough to do this.</span>")
 		else if(is_shadow(usr)) to_chat(usr, "<span class='warning'>Your telepathic ability is suppressed. Hatch or use Rapid Re-Hatch first.</span>")
-	if(istype(A, /mob/living/simple_animal/ascendant_shadowling)) return TRUE
+	if(istype(L, /mob/living/simple_animal/ascendant_shadowling)) return TRUE
 	return FALSE
 
 
