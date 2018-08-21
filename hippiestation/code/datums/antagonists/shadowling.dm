@@ -42,19 +42,6 @@
 	if(issilicon(M))
 		M.audible_message("<span class='notice'>[M] lets out a short blip.</span>", \
 						  "<span class='userdanger'>You have been turned into a robot! You are no longer a shadowling! Though you try, you cannot remember anything about your time as one...</span>")
-	else
-		M.visible_message("<span class='big'>[M] screams and contorts!</span>", \
-						  "<span class='userdanger'>THE LIGHT-- YOUR MIND-- <i>BURNS--</i></span>")
-		addtimer(CALLBACK(src, .proc/go_boom_boom), 30)
-
-/datum/antagonist/shadowling/proc/go_boom_boom()
-	var/mob/living/M = owner.current
-	if(!M || QDELETED(M))
-		return
-	M.visible_message("<span class='warning'>[M] suddenly bloats and explodes!</span>", \
-					  "<span class='warning bold'>AAAAAAAAA<font size=3>AAAAAAAAAAAAA</font><font size=4>AAAAAAAAAAAA----</font></span>")
-	playsound(M, 'sound/magic/Disintegrate.ogg', 100, 1)
-	M.gib()
 
 /datum/antagonist/shadowling/greet()
 	to_chat(owner, "<br> <span class='shadowling bold big'>You are a shadowling!</span>")
