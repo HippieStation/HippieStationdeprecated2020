@@ -48,6 +48,7 @@
 	if(!istype(target))
 		revert_cast()
 		return FALSE
+	return TRUE
 
 /obj/effect/proc_holder/spell/targeted/sling/revert_cast()
 	. = ..()
@@ -71,6 +72,8 @@
 
 /obj/effect/proc_holder/spell/targeted/sling/glare/InterceptClickOn(mob/living/caller, params, atom/t)
 	. = ..()
+	if(!.)
+		return FALSE
 	if(target.stat)
 		to_chat(user, "<span class='warning'>[target] must be conscious!</span>")
 		revert_cast()
@@ -595,7 +598,7 @@
 
 /obj/effect/proc_holder/spell/targeted/shadowling_extend_shuttle
 	name = "Destroy Engines"
-	desc = "Extends the time of the emergency shuttle's arrival by fifteen minutes. This can only be used once."
+	desc = "Extends the time of the emergency shuttle's arrival by fifteen minutes, by sacrificing a thrall. This can only be used once."
 	panel = "Shadowling Abilities"
 	range = 1
 	human_req = 1
@@ -777,6 +780,8 @@
 
 /obj/effect/proc_holder/spell/targeted/sling/annihilate/InterceptClickOn(mob/living/caller, params, atom/t)
 	. = ..()
+	if(!.)
+		return FALSE
 	var/mob/living/boom = target
 	if(user.incorporeal_move)
 		to_chat(user, "<span class='warning'>You are not in the same plane of existence. Unphase first.</span>")
@@ -813,6 +818,8 @@
 
 /obj/effect/proc_holder/spell/targeted/sling/hypnosis/InterceptClickOn(mob/living/caller, params, atom/t)
 	. = ..()
+	if(!.)
+		return FALSE
 	if(user.incorporeal_move)
 		revert_cast()
 		to_chat(user, "<span class='warning'>You are not in the same plane of existence. Unphase first.</span>")
@@ -927,6 +934,8 @@
 
 /obj/effect/proc_holder/spell/targeted/sling/gore/InterceptClickOn(mob/living/caller, params, atom/t)
 	. = ..()
+	if(!.)
+		return FALSE
 	if(user.incorporeal_move)
 		revert_cast()
 		to_chat(user, "<span class='warning'>You are not in the same plane of existence. Unphase first.</span>")
