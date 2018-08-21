@@ -89,16 +89,14 @@
 		user.visible_message("<span class='warning'><b>[user]'s eyes flash a purpleish-red!</b></span>")
 		var/distance = get_dist(target, user)
 		if (distance <= 1) //Melee
-			target.visible_message("<span class='danger'>[target] suddendly collapses...</span>")
-			to_chat(target, "<span class='userdanger'>A purple light flashes across your vision, and you lose control of your movements!</span>")
-			target.Stun(100)
+			target.visible_message("<span class='danger'>[target] suddendly collapses!</span>", "<span class='userdanger'>A purple light flashes across your vision, and you lose control of your movements!</span>")
+			target.Knockdown(100)
 			M.silent += 10
 		else //Distant glare
 			var/loss = 100 - ((distance - 1) * 18)
 			target.adjustStaminaLoss(loss)
 			target.stuttering = loss
-			to_chat(target, "<span class='userdanger'>A purple light flashes across your vision, and exhaustion floods your body...</span>")
-			target.visible_message("<span class='danger'>[target] looks very tired...</span>")
+			target.visible_message("<span class='danger'>[target] looks very tired...</span>", "<span class='userdanger'>A purple light flashes across your vision, and exhaustion floods your body...</span>")
 		charge_counter = 0
 		start_recharge()
 		remove_ranged_ability()

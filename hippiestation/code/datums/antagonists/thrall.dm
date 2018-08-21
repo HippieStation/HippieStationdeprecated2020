@@ -6,6 +6,30 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(/obj/effect/proc_holder/spell/s
 	roundend_category = "thralls"
 	antagpanel_category = "Shadowlings"
 	antag_moodlet = /datum/mood_event/thrall
+	var/datum/team/shadowling/sling_team
+
+/datum/antagonist/thrall/create_team(datum/team/shadowling/new_team)
+	if(!new_team)
+		for(var/datum/antagonist/shadowling/H in GLOB.antagonists)
+			if(!H.owner)
+				continue
+			if(H.sling_team)
+				sling_team = H.sling_team
+				return
+		for(var/datum/antagonist/thrall/H in GLOB.antagonists)
+			if(!H.owner)
+				continue
+			if(H.sling_team)
+				sling_team = H.sling_team
+				return
+		sling_team = new /datum/team/shadowling
+		return
+	if(!istype(new_team))
+		stack_trace("Wrong team type passed to [type] initialization.")
+	sling_team = new_team
+
+/datum/antagonist/thrall/get_team()
+	return sling_team
 
 /datum/antagonist/thrall/on_gain()
 	. = ..()
@@ -47,6 +71,3 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(/obj/effect/proc_holder/spell/s
 	to_chat(owner, "<span class='shadowling'>Though not nearly as powerful as your masters, you possess some weak powers. These can be found in the Thrall Abilities tab.</span>")
 	to_chat(owner, "<span class='shadowling'>You may communicate with your allies by using the Lesser Commune ability.</span>")
 	SEND_SOUND(owner.current, sound('hippiestation/sound/ambience/antag/thrall.ogg'))
-
-/datum/antagonist/thrall/roundend_report()
-	return "<div class='panel redborder'>[printplayerlist(SSticker.mode.thralls)]</div>"
