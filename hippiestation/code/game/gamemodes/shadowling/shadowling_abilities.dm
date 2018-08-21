@@ -55,6 +55,8 @@
 /obj/effect/proc_holder/spell/targeted/sling/revert_cast()
 	. = ..()
 	remove_ranged_ability()
+	user = null
+	target = null
 
 /obj/effect/proc_holder/spell/targeted/sling/start_recharge()
 	. = ..()
@@ -100,6 +102,10 @@
 		charge_counter = 0
 		start_recharge()
 		remove_ranged_ability()
+	else
+		to_chat(user, "<span class='warning'>You can't glare at [target]!</span>")
+		revert_cast()
+		return
 	user = null
 	target = null
 
