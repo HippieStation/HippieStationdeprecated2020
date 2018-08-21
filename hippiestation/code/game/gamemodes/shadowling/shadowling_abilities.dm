@@ -1,13 +1,15 @@
 #define EMPOWERED_THRALL_LIMIT 5
 
-/obj/effect/proc_holder/spell/proc/shadowling_check(var/mob/living/carbon/human/H)
-	if(!H || !istype(H)) return
-	if(H.dna.species.id == "shadowling" && is_shadow(H)) return TRUE
-	if(H.dna.species.id == "l_shadowling" && is_thrall(H)) return TRUE
-	if(!is_shadow_or_thrall(usr)) to_chat(usr, "<span class='warning'>You can't wrap your head around how to do this.</span>")
-	else if(is_thrall(usr)) to_chat(usr, "<span class='warning'>You aren't powerful enough to do this.</span>")
-	else if(is_shadow(usr)) to_chat(usr, "<span class='warning'>Your telepathic ability is suppressed. Hatch or use Rapid Re-Hatch first.</span>")
-	return 0
+/obj/effect/proc_holder/spell/proc/shadowling_check(var/A)
+	if(ishuman(A))
+		var/mob/living/carbon/human/H = A
+		if(H.dna.species.id == "shadowling" && is_shadow(H)) return TRUE
+		if(H.dna.species.id == "l_shadowling" && is_thrall(H)) return TRUE
+		if(!is_shadow_or_thrall(usr)) to_chat(usr, "<span class='warning'>You can't wrap your head around how to do this.</span>")
+		else if(is_thrall(usr)) to_chat(usr, "<span class='warning'>You aren't powerful enough to do this.</span>")
+		else if(is_shadow(usr)) to_chat(usr, "<span class='warning'>Your telepathic ability is suppressed. Hatch or use Rapid Re-Hatch first.</span>")
+	if(istype(A, /mob/living/simple_animal/ascendant_shadowling)) return TRUE
+	return FALSE
 
 
 
@@ -82,23 +84,24 @@
 		to_chat(user, "<span class='warning'>You cannot glare at allies!</span>")
 		revert_cast()
 		return
-	var/mob/living/carbon/human/M = target
-	user.visible_message("<span class='warning'><b>[user]'s eyes flash a purpleish-red!</b></span>")
-	var/distance = get_dist(target, user)
-	if (distance <= 1) //Melee
-		target.visible_message("<span class='danger'>[target] suddendly collapses...</span>")
-		to_chat(target, "<span class='userdanger'>A purple light flashes across your vision, and you lose control of your movements!</span>")
-		target.Stun(100)
-		M.silent += 10
-	else //Distant glare
-		var/loss = 100 - ((distance - 1) * 18)
-		target.adjustStaminaLoss(loss)
-		target.stuttering = loss
-		to_chat(target, "<span class='userdanger'>A purple light flashes across your vision, and exhaustion floods your body...</span>")
-		target.visible_message("<span class='danger'>[target] looks very tired...</span>")
-	charge_counter = 0
-	start_recharge()
-	remove_ranged_ability()
+	if(ishuman(target))
+		var/mob/living/carbon/human/M = target
+		user.visible_message("<span class='warning'><b>[user]'s eyes flash a purpleish-red!</b></span>")
+		var/distance = get_dist(target, user)
+		if (distance <= 1) //Melee
+			target.visible_message("<span class='danger'>[target] suddendly collapses...</span>")
+			to_chat(target, "<span class='userdanger'>A purple light flashes across your vision, and you lose control of your movements!</span>")
+			target.Stun(100)
+			M.silent += 10
+		else //Distant glare
+			var/loss = 100 - ((distance - 1) * 18)
+			target.adjustStaminaLoss(loss)
+			target.stuttering = loss
+			to_chat(target, "<span class='userdanger'>A purple light flashes across your vision, and exhaustion floods your body...</span>")
+			target.visible_message("<span class='danger'>[target] looks very tired...</span>")
+		charge_counter = 0
+		start_recharge()
+		remove_ranged_ability()
 	user = null
 	target = null
 
