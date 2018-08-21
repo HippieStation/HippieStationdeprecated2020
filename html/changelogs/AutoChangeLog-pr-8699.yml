@@ -1,0 +1,4 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - tweak: "Shadowlings no longer violently explode when de-shadowlinged"
