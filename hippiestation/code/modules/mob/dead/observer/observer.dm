@@ -2,8 +2,11 @@
 	var/antag_hud = FALSE
 
 /mob/dead/observer/verb/antag_hud()
+	set category = "Ghost"
+	set name = "Toggle Antag HUD"
+
 	if(!antag_hud)
-		if(alert("Are you sure you want to enable Antag HUD? This will prevent you from being cloned!", "Are you sure?", "No", "Yes") != "Yes")
+		if(alert("Are you sure you want to enable Antag HUD? This will prevent you from being revived!", "Are you sure?", "No", "Yes") != "Yes")
 			return
 	antag_hud = TRUE
 	can_reenter_corpse = FALSE
