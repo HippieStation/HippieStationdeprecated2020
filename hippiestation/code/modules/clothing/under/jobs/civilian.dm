@@ -1,9 +1,5 @@
 /obj/item/clothing/under/rank/clown/Initialize()
 	. = ..()
-	// remove any previous squeak components from tg so we can use our own
-	var/list/squeaks = GetComponents(/datum/component/squeak)
-	for(var/datum/component/c in squeaks)
-		c.RemoveComponent()
 	var/list/hit_sounds = list('hippiestation/sound/misc/hitsounds/cartoon_badoing.ogg'=1,
 							   'hippiestation/sound/misc/hitsounds/cartoon_bird_whistle_down.ogg'=1,
 							   'hippiestation/sound/misc/hitsounds/cartoon_boing.ogg'=1,
@@ -34,7 +30,8 @@
 
 /obj/item/clothing/shoes/clown_shoes/Initialize()
 	. = ..()
-	// probably only going to have one squeak...
-	var/list/squeaks = GetComponents(/datum/component/squeak)
-	for(var/datum/component/squeak/c in squeaks)
-		c.step_delay = 0
+	/* Even though squeak components are completely unique, you can't actually supply a step_delay of 0 since 0 is null */
+	/* Thanks BYOND */
+	var/datum/component/squeak/s = GetComponent(/datum/component/squeak)
+	if(s)
+		s.step_delay = 0
