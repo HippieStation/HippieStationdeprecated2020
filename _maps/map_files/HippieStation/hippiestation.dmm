@@ -17995,6 +17995,7 @@
 /obj/structure/window/reinforced,
 /obj/structure/table/wood,
 /obj/item/instrument/violin,
+/obj/item/saxophone,
 /turf/open/floor/carpet,
 /area/crew_quarters/theatre)
 "aTe" = (
