@@ -38,6 +38,11 @@
 	if(jobban_isbanned(user, banType) || jobban_isbanned(user, CATBAN) || jobban_isbanned(user, CLUWNEBAN)) // hippie -- adds our jobbans
 		to_chat(user, "<span class='warning'>You are jobanned!</span>")
 		return
+	if(isobserver(user)) //hippie start -- antag hud stuff
+		var/mob/dead/observer/O = user
+		if(O.antag_hud)
+			to_chat(user, "<span class='warning'>You cannot re-join the round!</span>")
+			return //hippie end
 	if(QDELETED(src) || QDELETED(user))
 		return
 	var/ghost_role = alert("Become [mob_name]? (Warning, You can no longer be cloned!)",,"Yes","No")
@@ -400,7 +405,7 @@
 	name = "lifeguard sleeper"
 	id_job = "Lifeguard"
 	uniform = /obj/item/clothing/under/shorts/red
-	
+
 /datum/outfit/beachbum
 	name = "Beach Bum"
 	glasses = /obj/item/clothing/glasses/sunglasses
