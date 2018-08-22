@@ -91,7 +91,6 @@
 			if (!hud_used.tts)
 				return
 			hud_used.tts.icon_state = "tts_cooldown"
-			addtimer(CALLBACK(src, /mob/living.proc/update_tts_hud), length(msg))
 
 /mob/living/proc/update_tts_hud()
 	if (!hud_used)

@@ -47,7 +47,7 @@ SUBSYSTEM_DEF(tts)
 				continue
 			if (STATUS_GENERATING)
 				/* Check if this file is ready */
-				if (fexists(T.filename + ".ogg"))
+				if (fexists(T.filename + ".ogg") && fexists(T.filename + ".meta") && !fexists(T.filename + ".lock"))
 					play_tts(T)
 				continue
 			if (STATUS_PLAYING)
@@ -56,6 +56,7 @@ SUBSYSTEM_DEF(tts)
 					if (T.filename)
 						fdel(T.filename + ".ogg")
 						fdel(T.filename + ".wav")
+						fdel(T.filename + ".meta")
 					LAZYREMOVE(processing, T)
 				continue
 
@@ -84,6 +85,17 @@ SUBSYSTEM_DEF(tts)
 
 		var/list/listeners = GLOB.player_list
 		listeners = listeners & hearers(world.view, origin)
+
+		// get length of audio file
+		var/audio_length = text2num(file2text(T.filename + ".meta"))
+		audio_length = audio_length / 100
+		if (!audio_length)
+			audio_length = length(T.text)
+
+		T.life = world.time + audio_length
+		T.owner.tts_cooldown = world.time + audio_length
+
+		addtimer(CALLBACK(T.owner.mob, /mob/living.proc/update_tts_hud), audio_length)
 
 		for (var/mob/P in listeners)
 			if (!P.client)
