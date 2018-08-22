@@ -1,4 +1,5 @@
 #define DELICIA_SPAM_COOLDOWN 300
+#define GONDOLA		(1<<13)
 
 /obj/item/reagent_containers/food/snacks/soup/monkey
 	name = "Sopa de Macaco"
@@ -14,5 +15,25 @@
 		if(world.time > next_uma)
 			M.say("Uma delicia!")
 			next_uma = world.time + DELICIA_SPAM_COOLDOWN
+
+/obj/item/reagent_containers/food/snacks/soup/gondola
+	name = "Sopa de Gondola"
+	desc = "Gondola soup. A delicacy from CentComm."
+	icon = 'hippiestation/icons/obj/food/soupsalad.dmi'
+	icon_state = "sopadegondola"
+	list_reagents = list("nutriment" = 6, "blood" = 3)
+	tastes = list("tahdikkuus" = 1)
+	foodtype = GONDOLA
+
+/obj/item/reagent_containers/food/snacks/soup/gondola/attack(mob/M, mob/user, def_zone)
+	// Nobody escapes the taste of Sopa de Gondola. Uma delicia!
+	if(ishuman(M))
+		var/mob/living/carbon/human/h = M
+		h.dna.species.liked_food |= GONDOLA
+		h.dna.species.disliked_food &= ~GONDOLA
+
+	// Gondola feels gud in belly :::::DDDDDD
+	if(..())
+		M.adjust_disgust(-2)
 
 #undef DELICIA_SPAM_COOLDOWN
