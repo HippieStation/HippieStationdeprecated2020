@@ -71,7 +71,7 @@
 				meeseeks = null
 				masters = null
 				return
-			playsound(loc, 'hippiestation/sound/voice/cando.ogg', 40)
+			playsound(loc, 'hippiestation/sound/voice/cando.ogg', 40, type = "voice")
 			message_admins("[key_name_admin(user)] has summoned a Mr. Meeseeks([key_name_admin(meeseeks)]) with the request: [request]")
 			log_game("[key_name(user)] has summoned a Mr. Meeseeks([key_name(meeseeks)]) with the request: [request]")
 			if(meeseeks.mind)

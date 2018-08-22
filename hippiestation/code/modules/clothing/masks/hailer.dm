@@ -208,6 +208,6 @@
 				phrase_sound = 'hippiestation/sound/voice/complionator/bane8.ogg'
 
 		usr.audible_message("[usr]'s Compli-o-Nator: <font color='red' size='4'><b>[phrase_text]</b></font>")
-		playsound(src.loc, phrase_sound, 100, 0, 4)
+		playsound(src.loc, phrase_sound, 100, 0, 4, type = "voice")
 		cooldown = world.time
 		cooldown_special = world.time

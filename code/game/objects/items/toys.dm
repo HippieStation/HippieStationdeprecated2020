@@ -1119,7 +1119,7 @@
 		audible_message("<span class='danger'>[icon2html(src, viewers(src))] Hiss!</span>")
 		var/list/possible_sounds = list('sound/voice/hiss1.ogg', 'sound/voice/hiss2.ogg', 'sound/voice/hiss3.ogg', 'sound/voice/hiss4.ogg')
 		var/chosen_sound = pick(possible_sounds)
-		playsound(get_turf(src), chosen_sound, 50, 1)
+		playsound(get_turf(src), chosen_sound, 50, 1, type = "voice")
 		spawn(45)
 			if(src)
 				icon_state = "[initial(icon_state)]"

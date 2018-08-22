@@ -71,7 +71,7 @@
 
 	else if(trapped == SPOOKY_SKELETON)
 		visible_message("<span class='userdanger'><font size='5'>BOO!</font></span>")
-		playsound(loc, 'sound/spookoween/girlscream.ogg', 300, 1)
+		playsound(loc, 'sound/spookoween/girlscream.ogg', 300, 1, type = "scream")
 		trapped = 0
 		QDEL_IN(trapped_mob, 90)
 

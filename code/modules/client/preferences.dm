@@ -588,7 +588,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<br>"
 				dat += "<b>Combo HUD Lighting:</b> <a href = '?_src_=prefs;preference=combohud_lighting'>[(toggles & COMBOHUD_LIGHTING)?"Full-bright":"No Change"]</a><br>"
 				dat += "</td>"
+
+			dat +="<td width='300px' height='300px' valign='top'>"
+			dat += hippie_dat_replace(current_tab)
+			dat += "</td>"
 			dat += "</tr></table>"
+
 		if(3) // hippie start -- loadout system
 			dat += hippie_dat_replace(current_tab) // hippie end
 

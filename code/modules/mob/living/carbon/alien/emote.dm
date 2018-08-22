@@ -27,4 +27,4 @@
 /datum/emote/living/alien/roar/run_emote(mob/user, params)
 	. = ..()
 	if(. && isalienadult(user))
-		playsound(user.loc, 'sound/voice/hiss5.ogg', 40, 1, 1)
+		playsound(user.loc, 'sound/voice/hiss5.ogg', 40, 1, 1, type="voice")

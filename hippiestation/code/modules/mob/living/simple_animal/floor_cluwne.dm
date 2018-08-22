@@ -196,7 +196,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				H.blur_eyes(1)
 
 			if(prob(5))
-				H.playsound_local(src,'hippiestation/sound/voice/cluwnelaugh2_reversed.ogg', 1)
+				H.playsound_local(src,'hippiestation/sound/voice/cluwnelaugh2_reversed.ogg', 1, type="voice")
 
 			if(prob(5))
 				H.playsound_local(src,'hippiestation/sound/misc/bikehorn_creepy.ogg', 5)
@@ -215,10 +215,10 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				to_chat(H, "<span class='warning'>The floor shifts underneath you!</span>")
 
 			if(prob(5))
-				H.playsound_local(src,'hippiestation/sound/voice/cluwnelaugh2.ogg', 2)
+				H.playsound_local(src,'hippiestation/sound/voice/cluwnelaugh2.ogg', 2, type="voice")
 
 			if(prob(5))
-				H.playsound_local(src,'hippiestation/sound/voice/cluwnelaugh2_reversed.ogg', 2)
+				H.playsound_local(src,'hippiestation/sound/voice/cluwnelaugh2_reversed.ogg', 2, type="voice")
 
 			if(prob(5))
 				H.playsound_local(src,'hippiestation/sound/misc/bikehorn_creepy.ogg', 10)
@@ -259,10 +259,10 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				playsound(src,pick('sound/spookoween/scary_horn.ogg', 'sound/spookoween/scary_horn2.ogg', 'sound/spookoween/scary_horn3.ogg'), 30, 1)
 
 			if(prob(3))
-				playsound(src,'hippiestation/sound/voice/cluwnelaugh1.ogg', 30, 1)
+				playsound(src,'hippiestation/sound/voice/cluwnelaugh1.ogg', 30, 1, type="voice")
 
 			if(prob(3))
-				playsound(src,'hippiestation/sound/voice/cluwnelaugh2_reversed.ogg', 30, 1)
+				playsound(src,'hippiestation/sound/voice/cluwnelaugh2_reversed.ogg', 30, 1, type="voice")
 
 			if(prob(5))
 				playsound(src,'hippiestation/sound/misc/bikehorn_creepy.ogg', 30, 1)
@@ -339,10 +339,10 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 		if(do_after(src, 10, target = H))
 			step_towards(H, src)
-			playsound(H, pick('hippiestation/sound/effects/bodyscrape-01.ogg', 'hippiestation/sound/effects/bodyscrape-02.ogg'), 20, 1, -4)
+			playsound(H, pick('hippiestation/sound/effects/bodyscrape-01.ogg', 'hippiestation/sound/effects/bodyscrape-02.ogg'), 20, 1, -4, type = "voice")
 			H.emote("scream")
 			if(prob(25))
-				playsound(src, pick('hippiestation/sound/voice/cluwnelaugh1.ogg', 'hippiestation/sound/voice/cluwnelaugh2.ogg', 'hippiestation/sound/voice/cluwnelaugh3.ogg'), 50, 1)
+				playsound(src, pick('hippiestation/sound/voice/cluwnelaugh1.ogg', 'hippiestation/sound/voice/cluwnelaugh2.ogg', 'hippiestation/sound/voice/cluwnelaugh3.ogg'), 50, 1, type="voice")
 
 	if(get_dist(src,H) <= 1)
 		visible_message("<span class='danger'>[src] begins dragging [H] under the floor!</span>")
