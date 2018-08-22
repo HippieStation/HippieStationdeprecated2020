@@ -23,7 +23,7 @@
 	icon = 'hippiestation/icons/obj/food/soupsalad.dmi'
 	icon_state = "sopadegondola"
 	list_reagents = list("nutriment" = 6, "blood" = 3)
-	tastes = list("tahdikkuus" = 1)
+	tastes = list("hoitoa" = 1)
 	foodtype = GONDOLA
 
 /obj/item/reagent_containers/food/snacks/soup/gondola/attack(mob/M, mob/user, def_zone)
