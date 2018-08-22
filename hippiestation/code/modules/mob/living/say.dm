@@ -69,14 +69,15 @@
 
 	tts_message = treat_message(tts_message)
 
-	var/mob/living/carbon/human/H = src
-
 	var/tts_voice = ""
 
-	if (H)
-		if (H.dna)
-			if (H.dna.tts_voice)
-				tts_voice = H.dna.tts_voice
+	if (istype(src, /mob/living/carbon/human/))
+		var/mob/living/carbon/human/H = src
+
+		if (H)
+			if (H.dna)
+				if (H.dna.tts_voice)
+					tts_voice = H.dna.tts_voice
 
 	if (world.time > client.tts_cooldown && !SStts.check_processing(src))
 		var/tts_volume_mod = 1
