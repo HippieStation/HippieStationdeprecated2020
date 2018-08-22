@@ -18,7 +18,7 @@
 	icon_state = "gondola"
 	icon_living = "gondola"
 	// hippie start -- reason: needed for sopa de gondola
-	loot = list(/obj/effect/decal/cleanable/blood/gibs, /obj/item/stack/sheet/animalhide/gondola = 1, /obj/item/reagent_containers/food/snacks/gondoface, /obj/item/reagent_containers/food/snacks/gondoface, /obj/item/reagent_containers/food/snacks/gondoface)
+	loot = list(/obj/effect/decal/cleanable/blood/gibs, /obj/item/stack/sheet/animalhide/gondola = 1, /obj/item/reagent_containers/food/snacks/gondoface, /obj/item/reagent_containers/food/snacks/gondoleg, /obj/item/reagent_containers/food/snacks/gondoleg)
 	// hippie end
 	//Gondolas aren't affected by cold.
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
