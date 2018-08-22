@@ -67,7 +67,7 @@ SUBSYSTEM_DEF(tts)
 		message_admins("TTS request has no mob")
 		return
 
-	var/channel = open_sound_channel()
+	var/next_channel = open_sound_channel()
 
 	T.status = STATUS_PLAYING
 
@@ -78,7 +78,7 @@ SUBSYSTEM_DEF(tts)
 			if (!(M.client.prefs.toggles & SOUND_TTS))
 				continue
 
-			M.playsound_local(M.loc, T.filename + ".ogg", 100, 0, channel=channel)
+			M.playsound_local(M.loc, T.filename + ".ogg", 100, 0, channel=next_channel)
 	else
 		var/turf/origin = T.owner.mob.loc
 
@@ -95,7 +95,7 @@ SUBSYSTEM_DEF(tts)
 				var/turf/Turf = get_turf(P)
 
 				if (Turf && Turf.z == origin.z)
-					P.playsound_local(origin, T.filename + ".ogg", 100, 0, channel=channel)
+					P.playsound_local(origin, T.filename + ".ogg", 100, 0, channel=next_channel)
 
 /datum/tts
 	var/client/owner
