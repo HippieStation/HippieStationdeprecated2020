@@ -148,7 +148,6 @@
 		repetitions++	//Can't have math operations in addtimer(CALLBACK())
 		addtimer(CALLBACK(src, /obj/item/integrated_circuit/reagent/extinguisher/proc/move_particles, particles, repetitions), 2)
 	else
-		steps=0
 		push_data()
 		activate_pin(2)
 		busy = FALSE
