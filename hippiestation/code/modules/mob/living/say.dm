@@ -71,7 +71,7 @@
 
 	var/tts_voice = ""
 
-	if (istype(src, /mob/living/carbon/human/))
+	if (istype(src, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = src
 
 		if (H)
