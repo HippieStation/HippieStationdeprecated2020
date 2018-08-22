@@ -344,7 +344,7 @@
 
 /mob/living/silicon/ai/verb/toggle_anchor()
 	set category = "AI Commands"
-	set name = "Toggle floor Bolts"
+	set name = "Toggle Floor Bolts"
 	if(!isturf(loc)) // if their location isn't a turf
 		return // stop
 	if(incapacitated())

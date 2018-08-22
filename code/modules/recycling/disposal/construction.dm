@@ -30,7 +30,7 @@
 
 	if(flip)
 		GET_COMPONENT(rotcomp,/datum/component/simple_rotation)
-		rotcomp.baseRot(null,ROTATION_FLIP)
+		rotcomp.BaseRot(null,ROTATION_FLIP)
 
 	update_icon()
 

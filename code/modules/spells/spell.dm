@@ -111,7 +111,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 	var/clothes_req = 1 //see if it requires clothes
 	var/cult_req = 0 //SPECIAL SNOWFLAKE clothes required for cult only spells
-	var/staff_req = 0 // hippie - used to check if a spell requires a staff
+	var/staff_req = 0 // hippie -- used to check if a spell requires a staff
 	var/human_req = 0 //spell can only be cast by humans
 	var/nonabstract_req = 0 //spell can only be cast by mobs that are physical entities
 	var/stat_allowed = 0 //see if it requires being conscious/alive, need to set to 1 for ghostpells
@@ -192,7 +192,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			if(!is_type_in_typecache(H.head, casting_clothes))
 				to_chat(H, "<span class='notice'>I don't feel strong enough without my hat.</span>")
 				return 0
-		//hippie start - check for if a spell needs a spell catalyst
+		// hippie start -- check for if a spell needs a spell catalyst
 		if(staff_req)
 			var/catalyst_found = FALSE
 			for(var/obj/O in H.held_items)
@@ -202,7 +202,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			if(!catalyst_found)
 				to_chat(H, "<span class='notice'>I don't feel strong enough without my staff.</span>")
 				return 0
-		//hippie end
+		// hippie end
 		if(cult_req) //CULT_REQ CLOTHES CHECK
 			if(!istype(H.wear_suit, /obj/item/clothing/suit/magusred) && !istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/cult))
 				to_chat(H, "<span class='notice'>I don't feel strong enough without my armor.</span>")
@@ -301,7 +301,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	before_cast(targets)
 	invocation(user)
 	if(user && user.ckey)
-		user.log_message("<span class='danger'>cast the spell [name].</span>", INDIVIDUAL_ATTACK_LOG)
+		user.log_message("<span class='danger'>cast the spell [name].</span>", LOG_ATTACK)
 	if(recharge)
 		recharging = TRUE
 	if(sound)
@@ -385,7 +385,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		if("unconscious")
 			target.AdjustUnconscious(amount)
 		else
-			target.vars[type] += amount //I bear no responsibility for the runtimes that'll happen if you try to adjust non-numeric or even non-existant vars
+			target.vars[type] += amount //I bear no responsibility for the runtimes that'll happen if you try to adjust non-numeric or even non-existent vars
 
 /obj/effect/proc_holder/spell/targeted //can mean aoe for mobs (limited/unlimited number) or one target mob
 	var/max_targets = 1 //leave 0 for unlimited targets in range, 1 for one selectable target in range, more for limited number of casts (can all target one guy, depends on target_ignore_prev) in range

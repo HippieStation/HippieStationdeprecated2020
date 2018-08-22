@@ -98,7 +98,7 @@
 				M.adjustToxLoss(95)//you get revived near crit
 				M.updatehealth()
 				M.emote("gasp")
-				add_logs(M, M, "revived", src)
+				log_combat(M, M, "revived", src)
 
 /datum/reagent/medicine/sodiumf
 	name = "Sodium fluoride"

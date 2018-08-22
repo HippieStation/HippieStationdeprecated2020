@@ -167,7 +167,7 @@
 		inv.update_icon()
 
 	if(head)
-		// Hippie Start - Stackable hats
+		// hippie start -- Stackable hats
 		var/mutable_appearance/hm = head.build_worn_icon(state = head.icon_state, default_layer = HEAD_LAYER, default_icon_file = 'icons/mob/head.dmi')
 		
 		if (istype(head, /obj/item/clothing/head))
@@ -182,7 +182,7 @@
 					I += 1
 
 		overlays_standing[HEAD_LAYER] = hm
-		// Hippie End
+		// hippie end
 
 		update_hud_head(head)
 

@@ -12465,7 +12465,8 @@
 "aFh" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Chapel Maintenance";
-	req_access_txt = "12"
+	req_access_txt = "0";
+	req_one_access_txt = "12;27"
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
@@ -63047,6 +63048,12 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"omY" = (
+/obj/structure/statue/sandstone/asstue{
+	anchored = 1
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
 "oov" = (
 /obj/machinery/atmospherics/pipe/simple/orange/visible{
 	dir = 4
@@ -78690,7 +78697,7 @@ gtz
 kJB
 aCK
 aCK
-aCK
+omY
 hDs
 aBA
 sKD

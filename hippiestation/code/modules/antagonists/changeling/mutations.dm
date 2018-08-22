@@ -130,8 +130,9 @@
 	item_state = "teslaclaw"
 	lefthand_file = 'hippiestation/icons/mob/inhands/changeling_lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/changeling_righthand.dmi'
-	item_flags = ABSTRACT | NODROP | DROPDEL
+	item_flags = NEEDS_PERMIT | ABSTRACT | NODROP | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
+	slot_flags = null
 	force = 0
 	throwforce = 5
 	stunforce = 50

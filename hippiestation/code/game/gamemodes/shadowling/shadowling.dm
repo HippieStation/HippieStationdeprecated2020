@@ -171,6 +171,12 @@ Made by Xhuis
 	var/shadow_charges = 3
 	var/last_charge = 0
 
+/datum/species/shadow/ling/spec_death(gibbed, mob/living/carbon/human/H)
+	. = ..()
+	QDEL_NULL(H.wear_suit)
+	QDEL_NULL(H.head)
+	H.regenerate_icons()
+
 /datum/species/shadow/ling/on_species_gain(mob/living/carbon/human/C)
 	C.draw_hippie_parts()
 	eyes_overlay = mutable_appearance('hippiestation/icons/mob/sling.dmi', "eyes", 25)

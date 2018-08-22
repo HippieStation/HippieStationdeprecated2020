@@ -1,13 +1,13 @@
 /*
 	CONTENTS
 	LINE 10  - BASE MOB
-	LINE 50  - SWORD AND SHIELD
-	LINE 95  - GUNS
-	LINE 136 - MISC
+	LINE 52  - SWORD AND SHIELD
+	LINE 164 - GUNS
+	LINE 267 - MISC
 */
 
 
-///////////////base mob////////////
+///////////////Base mob////////////
 /obj/effect/light_emitter/red_energy_sword //used so there's a combination of both their head light and light coming off the energy sword
 	set_luminosity = 2
 	set_cap = 2.5
@@ -46,6 +46,8 @@
 	check_friendly_fire = 1
 	status_flags = CANPUSH
 	del_on_death = 1
+	dodging = TRUE
+	rapid_melee = 2
 
 ///////////////Melee////////////
 
@@ -170,6 +172,8 @@
 	casingtype = /obj/item/ammo_casing/c10mm
 	projectilesound = 'sound/weapons/gunshot.ogg'
 	loot = list(/obj/effect/gibspawner/human)
+	dodging = FALSE
+	rapid_melee = 1
 
 /mob/living/simple_animal/hostile/syndicate/ranged/infiltrator //shuttle loan event
 	projectilesound = 'sound/weapons/gunshot_silenced.ogg'

@@ -26,15 +26,16 @@
 	var/assignedrole
 	var/show_flavour = TRUE
 	var/banType = "lavaland"
+	var/ghost_usable = TRUE
 
 //ATTACK GHOST IGNORING PARENT RETURN VALUE
 /obj/effect/mob_spawn/attack_ghost(mob/user)
-	if(!SSticker.HasRoundStarted() || !loc)
+	if(!SSticker.HasRoundStarted() || !loc || !ghost_usable)
 		return
 	if(!uses)
 		to_chat(user, "<span class='warning'>This spawner is out of charges!</span>")
 		return
-	if(jobban_isbanned(user, banType) || jobban_isbanned(user, CATBAN) || jobban_isbanned(user, CLUWNEBAN))
+	if(jobban_isbanned(user, banType) || jobban_isbanned(user, CATBAN) || jobban_isbanned(user, CLUWNEBAN)) // hippie -- adds our jobbans
 		to_chat(user, "<span class='warning'>You are jobanned!</span>")
 		return
 	if(QDELETED(src) || QDELETED(user))
@@ -49,7 +50,7 @@
 	. = ..()
 	if(instant || (roundstart && (mapload || (SSticker && SSticker.current_state > GAME_STATE_SETTING_UP))))
 		create()
-	else
+	else if(ghost_usable)
 		GLOB.poi_list |= src
 		LAZYADD(GLOB.mob_spawners[name], src)
 
@@ -104,7 +105,7 @@
 	if(!permanent && !uses)
 		qdel(src)
 
-// base version - place these on maps/templates.
+// Base version - place these on maps/templates.
 /obj/effect/mob_spawn/human
 	mob_type = /mob/living/carbon/human
 	//Human specific stuff.
@@ -224,6 +225,9 @@
 	death = FALSE
 	roundstart = FALSE //you could use these for alive fake humans on roundstart but this is more common scenario
 
+/obj/effect/mob_spawn/human/corpse/delayed
+	ghost_usable = FALSE //These are just not-yet-set corpses.
+	instant = FALSE
 
 //Non-human spawners
 
@@ -396,7 +400,7 @@
 	name = "lifeguard sleeper"
 	id_job = "Lifeguard"
 	uniform = /obj/item/clothing/under/shorts/red
-
+	
 /datum/outfit/beachbum
 	name = "Beach Bum"
 	glasses = /obj/item/clothing/glasses/sunglasses

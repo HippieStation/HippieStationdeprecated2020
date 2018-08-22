@@ -29,25 +29,23 @@
 		if(alpha < 160)
 			set_opacity(0) //if we were blocking view, we aren't now because we're fading out
 		stoplag()
-/*mirrored so smoke processes with reagents subsystem instead
-/obj/effect/particle_effect/smoke/New()
-	..()
-	
+
+/* hippie start -- mirrored so smoke processes with reagents subsystem instead
 /obj/effect/particle_effect/smoke/Initialize()
 	. = ..()
 	create_reagents(500)
 	START_PROCESSING(SSobj, src)
-	
-	
+
+
 /obj/effect/particle_effect/smoke/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
-	
+
 /obj/effect/particle_effect/smoke/proc/kill_smoke()
 	STOP_PROCESSING(SSobj, src)
 	INVOKE_ASYNC(src, .proc/fade_out)
 	QDEL_IN(src, 10)
-*/
+hippie end */
 /obj/effect/particle_effect/smoke/process()
 	lifetime--
 	if(lifetime < 1)

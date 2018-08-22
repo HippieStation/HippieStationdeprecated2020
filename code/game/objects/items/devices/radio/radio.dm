@@ -201,9 +201,8 @@
 		return // the device has to be on
 	if(!M || !message)
 		return
-	if(wires) //Hippie code because certain things attempt to talk after deletion, aka supermatter
-		if(wires.is_cut(WIRE_TX))  // Permacell and otherwise tampered-with radios
-			return
+	if(wires.is_cut(WIRE_TX))  // Permacell and otherwise tampered-with radios
+		return
 	if(!M.IsVocal())
 		return
 
@@ -267,18 +266,17 @@
 
 /obj/item/radio/proc/backup_transmission(datum/signal/subspace/vocal/signal)
 	var/turf/T = get_turf(src)
-	//hippie code check
-	if(T)
-		if(signal.data["done"] && (T.z in signal.levels))
-			return
+	if (signal.data["done"] && (T.z in signal.levels))
+		return
 
-		// Okay, the signal was never processed, send a mundane broadcast.
-		signal.data["compression"] = 0
-		signal.transmission_method = TRANSMISSION_RADIO
-		signal.levels = list(T.z)
-		signal.broadcast()
+	// Okay, the signal was never processed, send a mundane broadcast.
+	signal.data["compression"] = 0
+	signal.transmission_method = TRANSMISSION_RADIO
+	signal.levels = list(T.z)
+	signal.broadcast()
 
 /obj/item/radio/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
+	. = ..()
 	if(radio_freq || !broadcasting || get_dist(src, speaker) > canhear_range)
 		return
 

@@ -1,4 +1,4 @@
-//Research base Areas//--
+//Research Base Areas//--
 
 /area/awaymission/research
 	name = "Research Outpost"

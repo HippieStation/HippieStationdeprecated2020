@@ -23,3 +23,6 @@
 				var/spacing = 16
 				img.pixel_x = -16 - spacing * length(streak) / 2 + spacing * i
 				add_overlay(img)
+
+/obj/screen/combo/proc/reset_streak()
+	update_icon()

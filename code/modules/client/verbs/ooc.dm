@@ -50,9 +50,7 @@
 		to_chat(src, "<span class='danger'>You have OOC muted.</span>")
 		return
 
-
-	log_talk(mob,"[key_name(src)] : [raw_msg]",LOGOOC)
-	mob.log_message("[key]: [raw_msg]", INDIVIDUAL_OOC_LOG)
+	mob.log_talk(raw_msg, LOG_OOC)
 
 	var/keyname = key
 	if(prefs.unlock_content)
@@ -69,11 +67,10 @@
 						to_chat(C, "<span class='adminobserverooc'><span class='prefix'>OOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span></span>")
 				else
 					to_chat(C, "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></span></font>")
-			else if(is_mentor()) // hippie start
+			else if(is_mentor()) // hippie start -- ooc colored mentors
 				to_chat(C, "<font color='[HIPPIE_MENTOR_OOC_COLOUR]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span>") // hippie end
 			else if(!(key in C.prefs.ignoring))
 				to_chat(C, "<font color='[GLOB.normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span></font>")
-
 
 /proc/toggle_ooc(toggle = null)
 	if(toggle != null) //if we're specifically en/disabling ooc

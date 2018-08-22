@@ -51,9 +51,7 @@
 	. = ..()
 	if(illustration)
 		cut_overlays()
-		var/image/I = image(icon = 'icons/obj/storage.dmi', icon_state = illustration)
-		I.pixel_y = 5
-		add_overlay(I)
+		add_overlay(illustration)
 
 /obj/item/storage/box/attack_self(mob/user)
 	..()
@@ -94,6 +92,14 @@
 /obj/item/storage/box/disks_plantgene/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/disk/plantgene(src)
+
+/obj/item/storage/box/disks_nanite
+	name = "nanite program disks box"
+	illustration = "disk_kit"
+
+/obj/item/storage/box/disks_nanite/PopulateContents()
+	for(var/i in 1 to 7)
+		new /obj/item/disk/nanite_program(src)
 
 // Ordinary survival box
 /obj/item/storage/box/survival/PopulateContents()

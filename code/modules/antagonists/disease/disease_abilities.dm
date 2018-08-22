@@ -130,14 +130,14 @@ GLOBAL_LIST_INIT(disease_ability_singletons, list(
 	required_total_points = 0
 	start_with = TRUE
 	short_desc = "Force the host you are following to cough, spreading your infection to those nearby."
-	long_desc = "Force the host you are following to cough with extra force, spreading your infection to those within two meters of your host even if your transmitability is low.<br>Cooldown: 10 seconds"
+	long_desc = "Force the host you are following to cough with extra force, spreading your infection to those within two meters of your host even if your transmissibility is low.<br>Cooldown: 10 seconds"
 
 
 /datum/action/cooldown/disease_cough
 	name = "Cough"
 	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "cough"
-	desc = "Force the host you are following to cough with extra force, spreading your infection to those within two meters of your host even if your transmitability is low.<br>Cooldown: 10 seconds"
+	desc = "Force the host you are following to cough with extra force, spreading your infection to those within two meters of your host even if your transmissibility is low.<br>Cooldown: 10 seconds"
 	cooldown_time = 100
 
 /datum/action/cooldown/disease_cough/Trigger()
@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(disease_ability_singletons, list(
 	name = "Sneeze"
 	icon_icon = 'icons/mob/actions/actions_minor_antag.dmi'
 	button_icon_state = "sneeze"
-	desc = "Force the host you are following to sneeze with extra force, spreading your infection to any victims in a 4 meter cone in front of your host even if your transmitability is low.<br>Cooldown: 20 seconds"
+	desc = "Force the host you are following to sneeze with extra force, spreading your infection to any victims in a 4 meter cone in front of your host even if your transmissibility is low.<br>Cooldown: 20 seconds"
 	cooldown_time = 200
 
 /datum/action/cooldown/disease_sneeze/Trigger()
@@ -243,7 +243,7 @@ GLOBAL_LIST_INIT(disease_ability_singletons, list(
 	cost = 2
 	required_total_points = 4
 	short_desc = "Cause victims to cough intermittently."
-	long_desc = "Cause victims to cough intermittently, spreading your infection if your transmitability is high."
+	long_desc = "Cause victims to cough intermittently, spreading your infection if your transmissibility is high."
 
 /datum/disease_ability/symptom/sneeze
 	name = "Involuntary Sneezing"
@@ -251,7 +251,7 @@ GLOBAL_LIST_INIT(disease_ability_singletons, list(
 	cost = 2
 	required_total_points = 4
 	short_desc = "Cause victims to sneeze intermittently."
-	long_desc = "Cause victims to sneeze intermittently, spreading your infection and also increasing transmitability and resistance, at the cost of stealth."
+	long_desc = "Cause victims to sneeze intermittently, spreading your infection and also increasing transmissibility and resistance, at the cost of stealth."
 
 /datum/disease_ability/symptom/beard
 	//I don't think I need to justify the fact that this is the best symptom
@@ -277,7 +277,7 @@ GLOBAL_LIST_INIT(disease_ability_singletons, list(
 	cost = 4
 	required_total_points = 8
 	short_desc = "Cause victims to choke."
-	long_desc = "Cause victims to choke, threatening asphyxiation. Decreases stats, especially Transmissibility."
+	long_desc = "Cause victims to choke, threatening asphyxiation. Decreases stats, especially transmissibility."
 
 
 /datum/disease_ability/symptom/confusion
@@ -295,7 +295,7 @@ GLOBAL_LIST_INIT(disease_ability_singletons, list(
 	cost = 4
 	required_total_points = 8
 	short_desc = "Cause victims to become eternally young."
-	long_desc = "Cause victims to become eternally young. Provides boosts to all stats except Transmissibility."
+	long_desc = "Cause victims to become eternally young. Provides boosts to all stats except transmissibility."
 
 
 /datum/disease_ability/symptom/vomit
@@ -304,7 +304,7 @@ GLOBAL_LIST_INIT(disease_ability_singletons, list(
 	cost = 4
 	required_total_points = 8
 	short_desc = "Cause victims to vomit."
-	long_desc = "Cause victims to vomit. Slightly increases Transmissibility. Vomiting also also causes the victims to lose nutrition and removes some toxin damage."
+	long_desc = "Cause victims to vomit. Slightly increases transmissibility. Vomiting also also causes the victims to lose nutrition and removes some toxin damage."
 
 
 /datum/disease_ability/symptom/voice_change

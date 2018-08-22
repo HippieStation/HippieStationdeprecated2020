@@ -146,7 +146,7 @@
 
 	playsound(loc, 'sound/weapons/resonator_blast.ogg', 50, 1)
 
-	add_logs(user, target, "used a hockey stick on", src) //Very unlikeley non-antags are going to get their hands on this but just in case...
+	log_combat(user, target, "used a hockey stick on", src) //Very unlikeley non-antags are going to get their hands on this but just in case...
 
 	user.changeNext_move(CLICK_CD_MELEE * HOCKEYSTICK_CD)
 

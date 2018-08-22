@@ -48,8 +48,7 @@
 
 /obj/hitby(atom/movable/AM)
 	..()
-	if(src && !QDELETED(src)) // hippie
-		take_damage(AM.throwforce, BRUTE, "melee", 1, get_dir(src, AM))
+	take_damage(AM.throwforce, BRUTE, "melee", 1, get_dir(src, AM))
 
 /obj/ex_act(severity, target)
 	if(resistance_flags & INDESTRUCTIBLE)
@@ -64,11 +63,9 @@
 			obj_integrity = 0
 			qdel(src)
 		if(2)
-			if(src && !QDELETED(src))//Hippie code. Do we still exist?
-				take_damage(rand(100, 250), BRUTE, "bomb", 0)
+			take_damage(rand(100, 250), BRUTE, "bomb", 0)
 		if(3)
-			if(src && !QDELETED(src))//Hippie code. Do we still exist?
-				take_damage(rand(10, 90), BRUTE, "bomb", 0)
+			take_damage(rand(10, 90), BRUTE, "bomb", 0)
 
 /obj/bullet_act(obj/item/projectile/P)
 	. = ..()
@@ -103,8 +100,7 @@
 /obj/proc/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, armor_penetration = 0) //used by attack_alien, attack_animal, and attack_slime
 	user.do_attack_animation(src)
 	user.changeNext_move(CLICK_CD_MELEE)
-	if(src && !QDELETED(src))//Hippie code. Do we still exist?
-		return take_damage(damage_amount, damage_type, damage_flag, sound_effect, get_dir(src, user), armor_penetration)
+	return take_damage(damage_amount, damage_type, damage_flag, sound_effect, get_dir(src, user), armor_penetration)
 
 /obj/attack_alien(mob/living/carbon/alien/humanoid/user)
 	if(attack_generic(user, 60, BRUTE, "melee", 0))

@@ -31,7 +31,7 @@
 
 /obj/item/melee/synthetic_arm_blade
 	name = "synthetic arm blade"
-	desc = "A grotesque blade that on closer inspection seems made of synthentic flesh, it still feels like it would hurt very badly as a weapon."
+	desc = "A grotesque blade that on closer inspection seems made of synthetic flesh, it still feels like it would hurt very badly as a weapon."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "arm_blade"
 	item_state = "arm_blade"
@@ -181,7 +181,7 @@
 					return
 			playsound(get_turf(src), 'sound/effects/woodhit.ogg', 75, 1, -1)
 			target.Knockdown(60)
-			add_logs(user, target, "stunned", src)
+			log_combat(user, target, "stunned", src)
 			src.add_fingerprint(user)
 			target.visible_message("<span class ='danger'>[user] has knocked down [target] with [src]!</span>", \
 				"<span class ='userdanger'>[user] has knocked down [target] with [src]!</span>")

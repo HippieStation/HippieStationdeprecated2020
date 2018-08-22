@@ -30,7 +30,7 @@
 
 	playsound(loc, 'sound/weapons/egloves.ogg', 50, 1, -1)
 
-	add_logs(user, M, "stunned", src, "(INTENT: [uppertext(user.a_intent)])")
+	log_combat(user, M, "stunned", src, "(INTENT: [uppertext(user.a_intent)])")
 
 /obj/item/borg/cyborghug
 	name = "hugging module"
@@ -195,7 +195,7 @@
 
 				M.use_power(200)
 
-			to_chat(user, "<span class='notice'>You stop charging youself.</span>")
+			to_chat(user, "<span class='notice'>You stop charging yourself.</span>")
 
 		else if(is_type_in_list(target, charge_items))
 			var/obj/item/stock_parts/cell/cell = target
@@ -234,7 +234,7 @@
 					break
 				target.update_icon()
 
-			to_chat(user, "<span class='notice'>You stop charging youself.</span>")
+			to_chat(user, "<span class='notice'>You stop charging yourself.</span>")
 
 	else if(is_type_in_list(target, charge_items))
 		var/obj/item/stock_parts/cell/cell = target

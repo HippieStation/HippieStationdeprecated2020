@@ -89,7 +89,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 			turfs.Add(T)
 		R.cast(turfs)
 		add_exp(4, A)
-		add_logs(A, D, "sloppily flailed around (Armstrong)")
+		log_combat(A, D, "sloppily flailed around (Armstrong)")
 		A.playsound_local(get_turf(A), 'hippiestation/sound/effects/fart.ogg', 100, FALSE, pressure_affected = FALSE)
 		return
 	else
@@ -100,14 +100,14 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 		A.throw_at(throw_target, 1, 1)
 		D.visible_message("<span class='danger'>[A] sloppily punts [D] away, and trips!</span>", \
 									"<span class='userdanger'>[A] punts [D] away with a rushed combo!</span>")
-		add_logs(A, D, "sloppily flailed around (Armstrong)")
+		log_combat(A, D, "sloppily flailed around (Armstrong)")
 		A.playsound_local(get_turf(A), 'hippiestation/sound/misc/oof.ogg', 100, FALSE, pressure_affected = FALSE)
 		return
 
 // Actual combos
 
 /datum/martial_art/armstrong/proc/Buster(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
-	add_logs(A, D, "buster punched (Armstrong)")
+	log_combat(A, D, "buster punched (Armstrong)")
 	D.visible_message("<span class='danger'>[A] buster punches [D]!</span>", \
 								"<span class='userdanger'>[A] knocks down [D] with two strong punches!</span>")
 	playsound(D.loc, 'hippiestation/sound/weapons/armstrong_zipper.ogg', 100, 1)
@@ -131,7 +131,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 	D.adjust_fire_stacks(1)
 	D.IgniteMob()
 	add_exp(8, A)
-	add_logs(A, D, "fireball-one (Armstrong)")
+	log_combat(A, D, "fireball-one (Armstrong)")
 	return
 
 /datum/martial_art/armstrong/proc/Dropkick(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -146,7 +146,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 	A.throw_at(throw_target, 1, 1)
 	D.visible_message("<span class='danger'>[A] dropkicks [D]!</span>", \
 								"<span class='userdanger'>[A] dropkicked [D]!</span>")
-	add_logs(A, D, "dropkicked (Armstrong)")
+	log_combat(A, D, "dropkicked (Armstrong)")
 	return
 
 /datum/martial_art/armstrong/proc/Surprise(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -165,11 +165,11 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 			A.do_attack_animation(D, ATTACK_EFFECT_KICK)
 			D.visible_message("<span class='danger'><b>[A] kicks [D] in the dick!<b></span>", \
 											"<span class='userdanger'>[A] 'surprised' [D]!</span>") // how the attack actually worked in LISA
-			add_logs(A, D, "surprised (Armstrong)")
+			log_combat(A, D, "surprised (Armstrong)")
 			return
 
 /datum/martial_art/armstrong/proc/MachineGun(var/mob/living/carbon/human/A, var/mob/living/carbon/human/D)
-	add_logs(A, D, "Machine Gun Fisted (Armstrong)")
+	log_combat(A, D, "Machine Gun Fisted (Armstrong)")
 	D.visible_message("<span class='danger'>[A] unleashes a flurry of punches on [D]!</span>", \
 								"<span class='userdanger'>[A] punches [D] at the speed of a machine gun!</span>")
 	A.playsound_local(get_turf(A), 'hippiestation/sound/weapons/armstrong_success.ogg', 50, FALSE, pressure_affected = FALSE)
@@ -194,7 +194,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 	E.set_up(get_turf(D))
 	E.start()
 	add_exp(8, A)
-	add_logs(A, D, "fireball-two (Armstrong)")
+	log_combat(A, D, "fireball-two (Armstrong)")
 	return
 
 /datum/martial_art/armstrong/proc/Headbutt(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -210,7 +210,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 	var/datum/effect_system/explosion/E = new
 	E.set_up(get_turf(D))
 	E.start()
-	add_logs(A, D, "headbutted (Armstrong)")
+	log_combat(A, D, "headbutted (Armstrong)")
 	return
 
 /datum/martial_art/armstrong/proc/Headslide(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -226,7 +226,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 		A.throw_at(throw_target, 3, 3)
 		D.visible_message("<span class='danger'>[A] headslides underneath [D], tripping them!</span>", \
 									"<span class='userdanger'>[A] headslid into [D]!</span>")
-		add_logs(A, D, "headslide (Armstrong)")
+		log_combat(A, D, "headslide (Armstrong)")
 		return
 
 /datum/martial_art/armstrong/proc/Cannonball(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -242,7 +242,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 	A.Knockdown(3)
 	D.adjustBruteLoss(10)
 	add_exp(8, A)
-	add_logs(A, D, "cannonballed (Armstrong)")
+	log_combat(A, D, "cannonballed (Armstrong)")
 	A.playsound_local(get_turf(A), 'hippiestation/sound/weapons/armstrong_success.ogg', 50, FALSE, pressure_affected = FALSE)
 	return
 
@@ -269,7 +269,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 		if(current_level >= 10)
 			A.changeNext_move(CLICK_CD_RAPID) //O fortuna
 			.= FALSE
-		add_logs(A, D, "[atk_verb_help] (Armstrong)")
+		log_combat(A, D, "[atk_verb_help] (Armstrong)")
 		return 1
 	else // Prevents you from comboing dead lads, returns the default behavior.
 		return
@@ -295,7 +295,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 		if(current_level >= 10)
 			A.changeNext_move(CLICK_CD_RAPID)
 			.= FALSE
-		add_logs(A, D, "[atk_verb_harm] (Armstrong)")
+		log_combat(A, D, "[atk_verb_harm] (Armstrong)")
 		return 1
 	else // Prevents you from comboing dead lads, returns the default behavior.
 		return
@@ -322,7 +322,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 		if(current_level >= 10)
 			A.changeNext_move(CLICK_CD_RAPID)
 			.= FALSE
-		add_logs(A, D, "[atk_verb_grab] (Armstrong)")
+		log_combat(A, D, "[atk_verb_grab] (Armstrong)")
 		return 1
 	else // Prevents you from comboing dead lads, returns the default behavior.
 		return
@@ -348,7 +348,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 		if(current_level >= 10)
 			A.changeNext_move(CLICK_CD_RAPID)
 			.= FALSE
-		add_logs(A, D, "[atk_verb_disarm] (Armstrong)")
+		log_combat(A, D, "[atk_verb_disarm] (Armstrong)")
 		return 1
 	else // Prevents you from comboing dead lads, returns the default behavior.
 		return

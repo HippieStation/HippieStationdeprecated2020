@@ -1,5 +1,5 @@
 /proc/attempt_initiate_surgery(obj/item/I, mob/living/M, mob/user)
-	if(!istype(M) && M != user)
+	if(!istype(M) && M != user) // hippie -- something related to self surgery
 		return
 
 	var/mob/living/carbon/C
@@ -10,7 +10,7 @@
 		C = M
 		affecting = C.get_bodypart(check_zone(selected_zone))
 
-	if(!M.lying && !isslime(M) && M != user)	//if they're prone or a slime
+	if(!M.lying && !isslime(M) && M != user) // hippie -- something related to self surgery;;if they're prone or a slime
 		return
 
 	var/datum/surgery/current_surgery
@@ -68,7 +68,7 @@
 				user.visible_message("[user] drapes [I] over [M]'s [parse_zone(selected_zone)] to prepare for \an [procedure.name].", \
 					"<span class='notice'>You drape [I] over [M]'s [parse_zone(selected_zone)] to prepare for \an [procedure.name].</span>")
 
-				add_logs(user, M, "operated on", null, "(OPERATION TYPE: [procedure.name]) (TARGET AREA: [selected_zone])")
+				log_combat(user, M, "operated on", null, "(OPERATION TYPE: [procedure.name]) (TARGET AREA: [selected_zone])")
 			else
 				to_chat(user, "<span class='warning'>You need to expose [M]'s [parse_zone(selected_zone)] first!</span>")
 
