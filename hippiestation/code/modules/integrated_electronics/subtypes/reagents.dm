@@ -76,7 +76,6 @@
 		)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 15
-	var/steps = 0
 	var/busy = FALSE
 
 /obj/item/integrated_circuit/reagent/extinguisher/Initialize()
@@ -125,10 +124,10 @@
 		reagents.trans_to(W,1)
 
 	//Make em move dat ass, hun
-	addtimer(CALLBACK(src, /obj/item/integrated_circuit/reagent/extinguisher/.proc/move_particles, water_particles), 2)
+	addtimer(CALLBACK(src, /obj/item/integrated_circuit/reagent/extinguisher/proc/move_particles, water_particles, 0), 2)
 
 //This whole proc is a loop
-/obj/item/integrated_circuit/reagent/extinguisher/proc/move_particles(var/list/particles)
+/obj/item/integrated_circuit/reagent/extinguisher/proc/move_particles(var/list/particles, var/repetitions as num)
 	//Check if there's anything in here first
 	if(!particles || particles.len == 0)
 		return
@@ -145,9 +144,9 @@
 			W.reagents.reaction(A)
 		if(W.loc == my_target)
 			break
-	if(steps < 4)
-		steps++
-		addtimer(CALLBACK(src, /obj/item/integrated_circuit/reagent/extinguisher/.proc/move_particles, particles), 2)
+	if(repetitions < 4)
+		repetitions++	//Can't have math operations in addtimer(CALLBACK())
+		addtimer(CALLBACK(src, /obj/item/integrated_circuit/reagent/extinguisher/proc/move_particles, particles, repetitions), 2)
 	else
 		steps=0
 		push_data()
