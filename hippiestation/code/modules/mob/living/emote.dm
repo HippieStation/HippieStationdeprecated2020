@@ -45,7 +45,7 @@
 		LAZYINITLIST(user.alternate_screams)
 		if(LAZYLEN(user.alternate_screams))
 			sound = pick(user.alternate_screams)
-		playsound(user.loc, sound, user.scream_vol, 1, 4, 1.2, type = "scream")
+		playsound(user.loc, sound, user.scream_vol, 1, 4, 1.2, type = "scream") // hippie -- additional argument added for sound control options)
 		message = "screams!"
 	else if(miming)
 		message = "acts out a scream."
@@ -79,7 +79,7 @@
 		var/coughsound = pick('hippiestation/sound/voice/cough1.ogg', 'hippiestation/sound/voice/cough2.ogg', 'hippiestation/sound/voice/cough3.ogg', 'hippiestation/sound/voice/cough4.ogg')
 		if(user.gender == FEMALE)
 			coughsound = pick('hippiestation/sound/voice/cough_f1.ogg', 'hippiestation/sound/voice/cough_f2.ogg', 'hippiestation/sound/voice/cough_f3.ogg')
-		playsound(user.loc, coughsound, 50, 1, 5, type="voice")
+		playsound(user.loc, coughsound, 50, 1, 5, type="voice") // hippie -- additional argument added for sound control options
 		user.adjustOxyLoss(5)
 
 /datum/emote/living/snap
@@ -96,7 +96,7 @@
 		if(user.nextsoundemote >= world.time)
 			return
 		user.nextsoundemote = world.time + 7
-		playsound(user, 'hippiestation/sound/voice/snap.ogg', 50, 1, -1, type="voice")
+		playsound(user, 'hippiestation/sound/voice/snap.ogg', 50, 1, -1, type="voice") // hippie -- additional argument added for sound control options
 
 /datum/emote/living/snap2
 	key = "snap2"
@@ -112,7 +112,7 @@
 		if(user.nextsoundemote >= world.time)
 			return
 		user.nextsoundemote = world.time + 7
-		playsound(user, 'hippiestation/sound/voice/snap2.ogg', 50, 1, -1, type="voice")
+		playsound(user, 'hippiestation/sound/voice/snap2.ogg', 50, 1, -1, type="voice") // hippie -- additional argument added for sound control options
 
 /datum/emote/living/snap3
 	key = "snap3"
@@ -128,4 +128,4 @@
 		if(user.nextsoundemote >= world.time)
 			return
 		user.nextsoundemote = world.time + 7
-		playsound(user, 'hippiestation/sound/voice/snap3.ogg', 50, 1, -1, type="voice")
+		playsound(user, 'hippiestation/sound/voice/snap3.ogg', 50, 1, -1, type="voice") // hippie -- additional argument added for sound control options

@@ -89,7 +89,7 @@
 	src.log_talk(message, LOG_SAY, tag="clockwork eminence")
 	if(GLOB.ratvar_awakens)
 		visible_message("<span class='brass'><b>You feel light slam into your mind and form words:</b> \"[capitalize(message)]\"</span>")
-		playsound(src, 'sound/machines/clockcult/ark_scream.ogg', 50, FALSE, type = "scream")
+		playsound(src, 'sound/machines/clockcult/ark_scream.ogg', 50, FALSE, type = "scream") // hippie -- additional argument added for sound control options)
 	message = "<span class='big brass'><b>The [GLOB.ratvar_awakens ? "Radiance" : "Eminence"]:</b> \"[message]\"</span>"
 	for(var/mob/M in servants_and_ghosts())
 		if(isobserver(M))

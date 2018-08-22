@@ -109,7 +109,7 @@
 		update_icons()
 		new /obj/effect/temp_visual/mook_dust(get_turf(src))
 		playsound(src, 'sound/weapons/thudswoosh.ogg', 25, 1)
-		playsound(src, 'sound/voice/mook_leap_yell.ogg', 100, 1, type = "voice")
+		playsound(src, 'sound/voice/mook_leap_yell.ogg', 100, 1, type = "voice") // hippie -- additional argument added for sound control options)
 		var/target_turf = get_turf(target)
 		throw_at(target_turf, 7, 1, src, FALSE, callback = CALLBACK(src, .proc/AttackRecovery))
 		return
