@@ -12,6 +12,7 @@
 	name = "gondola leg"
 	desc = "A leg of a gondola. Who would just resort to such cruelty?!"
 	icon_state = "gondoleg"
+	icon = 'hippiestation/icons/obj/food/food.dmi'
 	list_reagents = list("nutriment" = 4)
 	filling_color = "#000000"
 	tastes = list("meat" = 1)
@@ -21,6 +22,7 @@
 	name = "gondola face"
 	desc = "The face of a dead gondola with an expression as calm and composed as it was during its lifetime. Good night, sweet prince."
 	icon_state = "gondoface"
+	icon = 'hippiestation/icons/obj/food/food.dmi'
 	list_reagents = list("nutriment" = 4)
 	filling_color = "#000000"
 	tastes = list("meat" = 1)
