@@ -110,7 +110,7 @@ SUBSYSTEM_DEF(tts)
 				var/turf/Turf = get_turf(P)
 
 				if (Turf && Turf.z == origin.z)
-					P.playsound_local(origin, T.filename + ".ogg", 100, 0, channel=next_channel)
+					P.playsound_local(origin, T.filename + ".ogg", 100 * T.volume_mod, 0, channel=next_channel)
 
 /datum/tts
 	var/client/owner
@@ -121,8 +121,9 @@ SUBSYSTEM_DEF(tts)
 	var/status = STATUS_NEW
 	var/life = 0
 	var/datum/language/language
+	var/volume_mod = 1
 
-/datum/tts/proc/say(client/C, msg, voice = "", is_global = FALSE)
+/datum/tts/proc/say(client/C, msg, voice = "", is_global = FALSE, volume_mod = 1, datum/language/language)
 	if (!C)
 		return
 	if (!msg)
@@ -131,7 +132,8 @@ SUBSYSTEM_DEF(tts)
 	text = msg
 	src.voice = voice
 	src.is_global = is_global
-	life = world.time + length(msg)
+	src.volume_mod = volume_mod
+	src.language = language
 
 	LAZYADD(SStts.processing, src)
 

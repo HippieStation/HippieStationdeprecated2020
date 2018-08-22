@@ -28,13 +28,13 @@
 
 	say_tts(message, language)
 
-/mob/living/proc/say_tts(tts_message, datum/language/language = null)
+/mob/living/proc/say_tts(tts_message, datum/language/tts_language = null)
 	if (!CONFIG_GET(flag/enable_tts))
 		return
 	if (!client)
 		return
 
-	tts_message = trim(copytext(sanitize_simple(tts_message, list("\""="", "'"="", "\n"=" ", "\t"=" ")), 1, MAX_MESSAGE_LEN * 10))
+	tts_message = trim(copytext(sanitize_simple(tts_message, list("\""="", "\n"=" ", "\t"=" ")), 1, MAX_MESSAGE_LEN * 10))
 	if (!tts_message)
 		return
 
@@ -57,18 +57,18 @@
 	if(message_language)
 		// No, you cannot speak in xenocommon just because you know the key
 		if(can_speak_in_language(message_language))
-			language = message_language
+			tts_language = message_language
 		tts_message = copytext(tts_message, 3)
 
 		// Trim the space if they said ",0 I LOVE LANGUAGES"
 		if(findtext(tts_message, " ", 1, 2))
 			tts_message = copytext(tts_message, 2)
 
-	if(!language)
-		language = get_default_language()
+	if(!tts_language)
+		tts_language = get_default_language()
 
 	tts_message = treat_message(tts_message)
-	
+
 	var/mob/living/carbon/human/H = src
 
 	var/tts_voice = ""
@@ -79,9 +79,13 @@
 				tts_voice = H.dna.tts_voice
 
 	if (world.time > client.tts_cooldown && !SStts.check_processing(src))
+		var/tts_volume_mod = 1
+		if (message_mode == MODE_WHISPER)
+			tts_volume_mod /= 2
+
 		var/datum/tts/TTS = new /datum/tts()
-		TTS.language = language
-		TTS.say(client, tts_message, voice = tts_voice)
+		TTS.say(client, tts_message, voice = tts_voice, volume_mod = tts_volume_mod, language = tts_language)
+
 		if (!hud_used)
 			return
 		if (!hud_used.tts)
