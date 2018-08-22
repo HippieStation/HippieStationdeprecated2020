@@ -67,6 +67,8 @@
 	if(!language)
 		language = get_default_language()
 
+	tts_message = treat_message(tts_message)
+	
 	var/mob/living/carbon/human/H = src
 
 	var/tts_voice = ""
