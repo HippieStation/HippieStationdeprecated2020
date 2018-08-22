@@ -4,7 +4,8 @@
 /obj/item/reagent_containers/food/snacks/soup/monkey
 	name = "Sopa de Macaco"
 	desc = "Monkey soup. A delicacy in Space Brazil."
-	icon_state = "monkeysdelight"
+	icon = 'hippiestation/icons/obj/food/soupsalad.dmi'
+	icon_state = "sopademacaco"
 	list_reagents = list("nutriment" = 6, "vitamin" = 3)
 	tastes = list("delicia" = 1)
 	foodtype = MEAT | GROSS
