@@ -124,10 +124,10 @@
 		reagents.trans_to(W,1)
 
 	//Make em move dat ass, hun
-	addtimer(CALLBACK(src, /obj/item/integrated_circuit/reagent/extinguisher/proc/move_particles, water_particles, 0), 2)
+	addtimer(CALLBACK(src, /obj/item/integrated_circuit/reagent/extinguisher/proc/move_particles, water_particles), 2)
 
 //This whole proc is a loop
-/obj/item/integrated_circuit/reagent/extinguisher/proc/move_particles(var/list/particles, var/repetitions as num)
+/obj/item/integrated_circuit/reagent/extinguisher/proc/move_particles(var/list/particles, var/repetitions=0)
 	//Check if there's anything in here first
 	if(!particles || particles.len == 0)
 		return
