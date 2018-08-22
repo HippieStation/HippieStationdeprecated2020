@@ -30,8 +30,4 @@
 
 /obj/item/clothing/shoes/clown_shoes/Initialize()
 	. = ..()
-	/* Even though squeak components are completely unique, you can't actually supply a step_delay of 0 since 0 is null */
-	/* Thanks BYOND */
-	var/datum/component/squeak/s = GetComponent(/datum/component/squeak)
-	if(s)
-		s.step_delay = 0
+	AddComponent(/datum/component/squeak, list('sound/effects/clownstep1.ogg'=1,'sound/effects/clownstep2.ogg'=1), 50, ,0)
