@@ -22,3 +22,67 @@
 			message = "#" + message
 
 	. = ..()
+
+	if (!.)
+		return
+
+	say_tts(message, language)
+
+/mob/living/proc/say_tts(tts_message, datum/language/language = null)
+	if (!CONFIG_GET(flag/enable_tts))
+		return
+	if (!client)
+		return
+
+	tts_message = trim(copytext(sanitize_simple(tts_message, list("\""="", "'"="", "\n"=" ", "\t"=" ")), 1, MAX_MESSAGE_LEN * 10))
+	if (!tts_message)
+		return
+
+	var/talk_key = get_key(tts_message)
+
+	var/static/list/one_character_prefix = list(MODE_HEADSET = TRUE, MODE_ROBOT = TRUE, MODE_WHISPER = TRUE)
+
+	var/datum/saymode/saymode = SSradio.saymodes[talk_key]
+	var/message_mode = get_message_mode(tts_message)
+
+	if(one_character_prefix[message_mode])
+		tts_message = copytext(tts_message, 2)
+	else if(message_mode || saymode)
+		tts_message = copytext(tts_message, 3)
+	if(findtext(tts_message, " ", 1, 2))
+		tts_message = copytext(tts_message, 2)
+
+	// language comma detection.
+	var/datum/language/message_language = get_message_language(tts_message)
+	if(message_language)
+		// No, you cannot speak in xenocommon just because you know the key
+		if(can_speak_in_language(message_language))
+			language = message_language
+		tts_message = copytext(tts_message, 3)
+
+		// Trim the space if they said ",0 I LOVE LANGUAGES"
+		if(findtext(tts_message, " ", 1, 2))
+			tts_message = copytext(tts_message, 2)
+
+	if(!language)
+		language = get_default_language()
+
+	var/mob/living/carbon/human/H = src
+
+	var/tts_voice = ""
+
+	if (H)
+		if (H.dna)
+			if (H.dna.tts_voice)
+				tts_voice = H.dna.tts_voice
+
+	if (world.time > client.tts_cooldown && !SStts.check_processing(src))
+		var/datum/tts/TTS = new /datum/tts()
+		TTS.language = language
+		TTS.say(client, tts_message, voice = tts_voice)
+		if (!hud_used)
+			return
+		if (!hud_used.tts)
+			return
+		hud_used.tts.icon_state = "tts_cooldown"
+

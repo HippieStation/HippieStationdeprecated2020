@@ -102,6 +102,9 @@ SUBSYSTEM_DEF(tts)
 				continue
 			if (!(P.client.prefs.toggles & SOUND_TTS))
 				continue
+			if (T.language)
+				if (!P.can_speak_in_language(T.language))
+					continue
 
 			if (get_dist(P, origin) <= world.view)
 				var/turf/Turf = get_turf(P)
@@ -117,6 +120,7 @@ SUBSYSTEM_DEF(tts)
 	var/is_global = FALSE
 	var/status = STATUS_NEW
 	var/life = 0
+	var/datum/language/language
 
 /datum/tts/proc/say(client/C, msg, voice = "", is_global = FALSE)
 	if (!C)

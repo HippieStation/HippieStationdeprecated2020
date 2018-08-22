@@ -60,38 +60,6 @@
 
 	return ..()
 
-/mob/living/proc/do_tts(message)
-	if (!message)
-		return
-	if (!CONFIG_GET(flag/enable_tts))
-		return
-	if (!client)
-		return
-
-	var/msg = message
-	var/first_char = copytext(message, 1, 2)
-	if (first_char == "*" || first_char == ";" || first_char == "." || first_char == ":")
-		msg = copytext(msg, 2)
-
-	var/mob/living/carbon/human/H = src
-
-	if (H)
-		var/tts_voice = ""
-
-		if (H.dna)
-			if (H.dna.tts_voice)
-				tts_voice = H.dna.tts_voice
-
-		if (world.time > client.tts_cooldown && !SStts.check_processing(src))
-			var/datum/tts/TTS = new /datum/tts()
-			TTS.say(client, msg, voice = tts_voice)
-			client.tts_cooldown = world.time + length(msg)
-			if (!hud_used)
-				return
-			if (!hud_used.tts)
-				return
-			hud_used.tts.icon_state = "tts_cooldown"
-
 /mob/living/proc/update_tts_hud()
 	if (!hud_used)
 		return
