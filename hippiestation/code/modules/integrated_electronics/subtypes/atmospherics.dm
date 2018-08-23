@@ -351,7 +351,7 @@
 	spawn_flags = IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/atmospherics/tank/freezer
-	name = "large integrated tank"
+	name = "freezer tank"
 	desc = "Cools the gas it contains to a preset temperature."
 	volume = 6
 	size = 8
@@ -379,7 +379,7 @@
 
 
 /obj/item/integrated_circuit/atmospherics/tank/freezer/heater
-	name = "large integrated tank"
+	name = "heater tank"
 	desc = "Heats the gas it contains to a preset temperature."
 	volume = 6
 	size = 8
