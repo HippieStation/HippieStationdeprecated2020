@@ -230,6 +230,7 @@
 	target_pressure = CLAMP(amt, 0, MAX_TARGET_PRESSURE)
 
 /obj/item/integrated_circuit/atmospherics/pump/filter/do_work()
+	activate_pin(2)
 	var/obj/source = get_pin_data_as_type(IC_INPUT, 1, /obj)
 	var/obj/filtered = get_pin_data_as_type(IC_INPUT, 2, /obj)
 	var/obj/contaminants = get_pin_data_as_type(IC_INPUT, 3, /obj)
@@ -299,7 +300,6 @@
 	var/datum/gas_mixture/target = (filtered_air.return_pressure() < target_pressure ? filtered_air : source_air)
 	target.merge(filtered_out)
 	contaminated_air.merge(removed)
-	activate_pin(2)
 
 /obj/item/integrated_circuit/atmospherics/pump/filter/Initialize()
 	. = ..()
@@ -307,6 +307,57 @@
 					Note that only part of the gas is moved on each transfer, \
 					so multiple activations will be necessary to achieve target pressure. \
 					The pressure limit for circuit pumps is [round(MAX_TARGET_PRESSURE)] kPa."
+
+//CHECKED AND **UNTESTED**
+/obj/item/integrated_circuit/atmospherics/pump/mixer
+	name = "gas mixer"
+	desc = "Mixes 2 different types of gases."
+	complexity = 20
+	size = 5
+	spawn_flags = IC_SPAWN_RESEARCH
+	inputs = list(
+			"first source" = IC_PINTYPE_REF,
+			"second source" = IC_PINTYPE_REF,
+			"output" = IC_PINTYPE_REF,
+			"first source percentage" = IC_PINTYPE_NUMBER,
+			"target pressure" = IC_PINTYPE_NUMBER
+			)
+	power_draw_per_use = 30
+
+/obj/item/integrated_circuit/atmospherics/pump/mixer/do_work()
+	activate_pin(2)
+	var/obj/source_1 = get_pin_data(IC_INPUT, 1)
+	var/obj/source_2 = get_pin_data(IC_INPUT, 2)
+	var/obj/gas_output = get_pin_data(IC_INPUT, 3)
+	if(!check_gassource(source_1))
+		source_1 = src
+
+	if(!check_gassource(source_2))
+		source_2 = src
+
+	if(!check_gassource(gas_output))
+		gas_output = src
+
+	if(source_1 == gas_output || source_2 == gas_output)
+		return
+
+	var/datum/gas_mixture/source_1_gases = source_1.return_air()
+	var/datum/gas_mixture/source_2_gases = source_2.return_air()
+	var/datum/gas_mixture/output_gases = gas_output.return_air()
+
+	if(!source_1_gases || source_2_gases || output_gases)
+		return
+
+	var/transfer_moles = ((get_pin_data(IC_INPUT, 4) - output_gases.return_pressure())*output_gases.volume/((source_1_gases.temperature + source_2_gases.temperature) * 0.5 * R_IDEAL_GAS_EQUATION))*PUMP_EFFICIENCY
+	if(transfer_moles <=0)
+		return
+
+	var/gas_percentage = round(max(min(get_pin_data(IC_INPUT, 4),100),0) / 100)
+
+	var/datum/gas_mixture/mix = source_1_gases.remove(transfer_moles * gas_percentage)
+	output_gases.merge(mix)
+	mix = source_2_gases.remove(transfer_moles * (1-gas_percentage))
+	output_gases.merge(mix)
 
 /obj/item/integrated_circuit/atmospherics/tank
 	name = "integrated tank"
