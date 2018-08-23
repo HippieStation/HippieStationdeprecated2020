@@ -167,6 +167,7 @@
 
 	target_air.merge(removed)
 
+
 //CHECKED AND **UNTESTED**
 /obj/item/integrated_circuit/atmospherics/pump/vent
 	name = "gas vent"
@@ -182,7 +183,7 @@
 
 /obj/item/integrated_circuit/atmospherics/pump/vent/do_work()
 	var/obj/source = get_pin_data_as_type(IC_INPUT, 1, /obj)
-	var/turf/target = get_turf(get_object())
+	var/turf/target = get_turf(src)
 	perform_magic(source, target)
 	activate_pin(2)
 
@@ -231,7 +232,6 @@
 		return return_air()
 
 /obj/item/integrated_circuit/atmospherics/connector/do_work()
-	var/atom/movable/acting_object = get_object()
 	// If there is a connection, disconnect
 	if(connector)
 		connector.connected_device = null
@@ -239,7 +239,7 @@
 		activate_pin(4)
 		return
 
-	var/obj/machinery/atmospherics/components/unary/portables_connector/PC = locate() in get_turf(acting_object)
+	var/obj/machinery/atmospherics/components/unary/portables_connector/PC = locate() in get_turf(src)
 	// If no connector can't connect
 	if(!PC)
 		activate_pin(3)
@@ -451,7 +451,7 @@
 		)
 	inputs_default = list("1" = 300)
 	spawn_flags = IC_SPAWN_RESEARCH
-	var/temperature
+	var/temperature = 293.15
 	var/heater_coefficient = 0.1
 
 /obj/item/integrated_circuit/atmospherics/tank/freezer/on_data_written()
@@ -473,6 +473,10 @@
 	desc = "Heats the gas it contains to a preset temperature."
 	volume = 6
 	size = 8
+	inputs = list(
+		"target temperature" = IC_PINTYPE_NUMBER,
+		"on" = IC_PINTYPE_BOOLEAN
+		)
 	spawn_flags = IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/atmospherics/tank/freezer/heater/on_data_written()
@@ -488,6 +492,55 @@
 
 	air_contents.temperature += (air_contents.temperature - temperature) * heater_coefficient
 
+
+/obj/item/integrated_circuit/atmospherics/cooler
+	name = "atmospheric cooler circuit"
+	desc = "Cools the air around it."
+	volume = 6
+	size = 8
+	spawn_flags = IC_SPAWN_RESEARCH
+	var/temperature = 293.15
+	var/heater_coefficient = 0.1
+
+/obj/item/integrated_circuit/atmospherics/cooler/on_data_written()
+	temperature = max(73.15,min(293.15,get_pin_data(IC_INPUT, 1)))
+	if(get_pin_data(IC_INPUT, 2))
+		power_draw_idle = 30
+	else
+		power_draw_idle = 0
+
+/obj/item/integrated_circuit/atmospherics/cooler/process()
+	var/turf/current_turf = get_turf(src)
+	var/datum/gas_mixture/turf_air = current_turf.return_air()
+	if(!power_draw_idle || turf_air.temperature > temperature)
+		return
+
+	turf_air.temperature -= (air_contents.temperature - temperature) * heater_coefficient
+
+
+/obj/item/integrated_circuit/atmospherics/heater
+	name = "atmospheric heater circuit"
+	desc = "Heats the air around it."
+	volume = 6
+	size = 8
+	spawn_flags = IC_SPAWN_RESEARCH
+	var/temperature = 293.15
+	var/heater_coefficient = 0.1
+
+/obj/item/integrated_circuit/atmospherics/cooler/on_data_written()
+	temperature = max(293.15,min(573.15,get_pin_data(IC_INPUT, 1)))
+	if(get_pin_data(IC_INPUT, 2))
+		power_draw_idle = 30
+	else
+		power_draw_idle = 0
+
+/obj/item/integrated_circuit/atmospherics/cooler/process()
+	var/turf/current_turf = get_turf(src)
+	var/datum/gas_mixture/turf_air = current_turf.return_air()
+	if(!power_draw_idle || turf_air.temperature < temperature)
+		return
+
+	turf_air.temperature += (air_contents.temperature - temperature) * heater_coefficient
 
 #undef SOURCE_TO_TARGET
 #undef TARGET_TO_SOURCE
