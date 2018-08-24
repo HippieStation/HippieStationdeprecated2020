@@ -33,7 +33,7 @@
 /datum/antagonist/shadowling/on_gain()
 	. = ..()
 	SSticker.mode.update_shadow_icons_added(owner)
-	SSticker.mode.shadows += owner
+	SSticker.mode.shadows |= owner
 	owner.special_role = "Shadowling"
 	message_admins("[key_name_admin(owner.current)] was made into a shadowling!")
 	log_game("[key_name(owner.current)] was made into a shadowling!")
