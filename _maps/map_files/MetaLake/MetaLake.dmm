@@ -17864,10 +17864,6 @@
 /obj/item/stack/sheet/mineral/uranium,
 /turf/open/floor/engine,
 /area/hippie/scichem)
-"aKK" = (
-/obj/item/paper/fluff/stations/hippie/dontletcarbonseethis,
-/turf/open/floor/engine/vacuum,
-/area/engine/atmos)
 "aKL" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -122794,7 +122790,7 @@ chX
 cjn
 ckL
 bCC
-aKK
+bCC
 bxc
 aaf
 aai

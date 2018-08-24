@@ -19,6 +19,7 @@ endmap
 
 map metalake
 	minplayers 20
+	#voteweight 1.5
 endmap
 
 map boxstation
