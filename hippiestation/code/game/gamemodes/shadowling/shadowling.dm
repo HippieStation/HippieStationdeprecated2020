@@ -208,6 +208,7 @@ Made by Xhuis
 			H.adjustCloneLoss(-1)
 			H.SetKnockdown(0)
 			H.SetStun(0)
+			H.setOxyLoss(0, TRUE, TRUE)
 	var/charge_time = 400 - ((SSticker.mode.thralls && SSticker.mode.thralls.len) || 0)*10
 	if(world.time >= charge_time+last_charge)
 		shadow_charges = min(shadow_charges + 1, 3)
