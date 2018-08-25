@@ -1,7 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - rscadd: "Added nanite lab in eastern science maint."
-  - rscadd: "Updated science from box station but re-added hippie style changes"
-  - rscdel: "Bluespace recomb and radioactive lcass chem machinery removed from science to make space."
-  - tweak: "Added a shower in the lcass chem lab in science."

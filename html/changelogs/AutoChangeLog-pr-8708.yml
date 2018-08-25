@@ -1,8 +1,0 @@
-author: "steamp0rt"
-delete-after: True
-changes: 
-  - bugfix: "Ascendants should now be able to use hypnosis/gore/gib"
-  - bugfix: "Thrall roundend report won't repeat 50 times anymore"
-  - tweak: "Combined shadowling and thrall roundend report"
-  - tweak: "Melee-range glare now knocks the target down like a normal stun, instead of paralyzing them."
-  - bugfix: "You can't glare borgs anymore. This wasn't supposed to be possible, but it could apparently be done, and it barfed up runtimes when doing so."
