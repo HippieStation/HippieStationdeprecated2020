@@ -25299,7 +25299,7 @@
 /area/medical/chemistry)
 "bnC" = (
 /obj/machinery/camera{
-	c_tag = "Chemistry";
+	c_tag = "Chemistry - Lab 1";
 	dir = 2;
 	network = list("SS13")
 	},
@@ -29952,12 +29952,6 @@
 	dir = 5
 	},
 /area/science/research)
-"byS" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plasteel/white/side{
-	dir = 9
-	},
-/area/science/research)
 "byT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -30044,9 +30038,14 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
@@ -30628,13 +30627,11 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
 /obj/structure/disposalpipe/junction/flip{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -31058,6 +31055,7 @@
 "bBL" = (
 /obj/machinery/power/apc{
 	areastring = "/area/science/circuit";
+	dir = 4;
 	name = "Circuitry Lab APC";
 	pixel_x = 24
 	},
@@ -32407,7 +32405,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/camera{
-	c_tag = "Chemistry"
+	c_tag = "Chemistry - Lab 2"
 	},
 /turf/open/floor/plasteel/darkpurple,
 /area/medical/chemistry)
@@ -32586,7 +32584,6 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "bFQ" = (
@@ -33096,14 +33093,6 @@
 	dir = 5
 	},
 /area/security/checkpoint/science/research)
-"bHa" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 5
-	},
-/turf/open/floor/plasteel/white/side{
-	dir = 9
-	},
-/area/science/research)
 "bHd" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -33583,28 +33572,16 @@
 /area/security/checkpoint/science/research)
 "bIh" = (
 /obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 5
-	},
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "bIi" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /turf/open/floor/plasteel/white/side{
@@ -42903,6 +42880,9 @@
 /obj/machinery/chem/centrifuge{
 	pixel_y = 5
 	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/plasteel/vault{
 	dir = 6
 	},
@@ -43328,6 +43308,9 @@
 /obj/machinery/chem/pressure{
 	pixel_y = 5
 	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/plasteel/vault{
 	dir = 6
 	},
@@ -43645,6 +43628,9 @@
 	pixel_y = 5
 	},
 /obj/structure/table,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/plasteel/vault{
 	dir = 6
 	},
@@ -44952,6 +44938,9 @@
 /obj/item/reagent_containers/glass/beaker/large{
 	pixel_x = -3;
 	pixel_y = 3
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
 	},
 /turf/open/floor/plasteel/vault{
 	dir = 6
@@ -60623,6 +60612,12 @@
 	dir = 1
 	},
 /area/hallway/secondary/entry)
+"kQv" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 4
+	},
+/turf/closed/wall,
+/area/maintenance/starboard)
 "kTm" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -61150,6 +61145,9 @@
 	pixel_x = -23
 	},
 /obj/machinery/chem_dispenser,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/plasteel/vault{
 	dir = 6
 	},
@@ -61314,7 +61312,12 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/port_engineering)
 "lUP" = (
-/obj/machinery/chem_master,
+/obj/machinery/chem_master{
+	pixel_x = -3
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
 /turf/open/floor/plasteel/vault{
 	dir = 6
 	},
@@ -114400,8 +114403,8 @@ bAl
 bBG
 bDa
 bEC
-byS
-bHa
+bLL
+bLL
 bIi
 bJD
 bKz
@@ -119022,7 +119025,7 @@ buC
 boq
 boq
 boq
-boq
+kQv
 bBW
 bDj
 mcD
