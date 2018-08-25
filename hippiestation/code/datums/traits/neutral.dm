@@ -97,3 +97,22 @@
 	if(H)
 		H.scream_vol = initial(H.scream_vol)
 		H.scream_oxyloss = initial(H.scream_oxyloss)
+
+/datum/quirk/waddle
+	name = "Waddle"
+	desc = "You have an extra bounce in your step"
+	value = 0
+	gain_text = "<span class='notice'>The world starts to bob as you move.</span>"
+	lose_text = "<span class='notice'>The world no longer bobs as you move.</span>"
+
+/datum/quirk/waddle/add()
+	var/mob/living/carbon/human/H = quirk_holder
+	if (H)
+		H.AddComponent(/datum/component/waddling)
+
+/datum/quirk/waddle/remove()
+	var/mob/living/carbon/human/H = quirk_holder
+	if (H)
+		var/datum/component/waddling/W = H.GetComponent(/datum/component/waddling)
+		if (W)
+			W.RemoveComponent()
