@@ -181,6 +181,7 @@ Made by Xhuis
 	C.draw_hippie_parts()
 	eyes_overlay = mutable_appearance('hippiestation/icons/mob/sling.dmi', "eyes", 25)
 	C.add_overlay(eyes_overlay)
+	C.setOxyLoss(0)
 	C.physiology.oxy_mod = 0
 	. = ..()
 
@@ -189,7 +190,6 @@ Made by Xhuis
 	if(eyes_overlay)
 		C.cut_overlay(eyes_overlay)
 		QDEL_NULL(eyes_overlay)
-	C.setOxyLoss(0)
 	C.physiology.oxy_mod = initial(C.physiology.oxy_mod)
 	. = ..()
 
