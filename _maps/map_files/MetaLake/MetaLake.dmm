@@ -58471,43 +58471,21 @@
 /turf/closed/wall,
 /area/medical/genetics/cloning)
 "cvu" = (
-/obj/machinery/shower{
-	dir = 4
-	},
-/obj/machinery/door/window/southleft{
-	dir = 2;
-	name = "Cloning Shower"
-	},
-/obj/structure/mirror{
-	pixel_x = -28
-	},
+/obj/machinery/clonepod,
 /turf/open/floor/plasteel/vault,
 /area/medical/genetics/cloning)
 "cvv" = (
-/obj/machinery/door/window/southleft{
-	base_state = "right";
-	dir = 2;
-	icon_state = "right";
-	name = "Cloning Shower"
-	},
-/obj/structure/sink/kitchen{
-	desc = "A sink used for washing one's hands and face. It looks rusty and home-made";
-	name = "sink";
-	pixel_y = 28
-	},
+/obj/machinery/computer/cloning,
 /turf/open/floor/plasteel/vault,
 /area/medical/genetics/cloning)
 "cvw" = (
-/obj/machinery/clonepod{
-	pixel_y = 2
-	},
 /obj/item/radio/intercom{
 	freerange = 0;
 	frequency = 1459;
 	name = "Station Intercom (General)";
 	pixel_x = 29
 	},
-/obj/structure/window/reinforced,
+/obj/machinery/dna_scannernew,
 /turf/open/floor/plasteel/vault,
 /area/medical/genetics/cloning)
 "cvx" = (
@@ -58994,9 +58972,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
-/obj/machinery/computer/cloning{
-	dir = 8
-	},
 /obj/machinery/light{
 	dir = 4
 	},
@@ -59414,7 +59389,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 2
 	},
-/obj/machinery/dna_scannernew,
 /turf/open/floor/plasteel/whiteblue/side{
 	dir = 4
 	},
@@ -60152,14 +60126,6 @@
 	},
 /area/medical/medbay/aft)
 "cyV" = (
-/obj/machinery/button/door{
-	desc = "A remote control switch for the cloning door.";
-	id = "CloningDoor";
-	name = "Cloning Exit Button";
-	normaldoorcontrol = 1;
-	pixel_x = -23;
-	pixel_y = 8
-	},
 /turf/open/floor/plasteel/whiteblue/side{
 	dir = 10
 	},
@@ -60640,34 +60606,10 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/aft)
-"czX" = (
-/obj/item/book/manual/wiki/medical_cloning{
-	pixel_y = 6
-	},
-/obj/item/paper,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
-	},
-/obj/structure/table/glass,
-/turf/open/floor/plasteel/vault,
-/area/medical/genetics/cloning)
 "czY" = (
-/obj/item/storage/box/rxglasses{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/box/bodybags,
-/obj/item/pen,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/table/glass,
-/turf/open/floor/plasteel/vault,
-/area/medical/genetics/cloning)
-"czZ" = (
-/obj/structure/closet/secure_closet/personal/patient,
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
+/obj/machinery/computer/cloning{
+	icon_state = "computer";
+	dir = 1
 	},
 /turf/open/floor/plasteel/vault,
 /area/medical/genetics/cloning)
@@ -75252,6 +75194,14 @@
 	},
 /turf/open/floor/plasteel/caution/corner,
 /area/engine/storage_shared)
+"enA" = (
+/mob/living/simple_animal/pet/penguin/emperor{
+	name = "Hawking"
+	},
+/turf/open/floor/plasteel/whitepurple/side{
+	dir = 1
+	},
+/area/science/lab)
 "eoK" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -100187,7 +100137,7 @@ cwv
 cxm
 cxZ
 cyV
-czX
+cvu
 cvt
 cCb
 cCR
@@ -100701,7 +100651,7 @@ cwx
 cxo
 cyb
 cyX
-czZ
+cvw
 cvt
 cCd
 cCT
@@ -105310,7 +105260,7 @@ ccf
 dDp
 ceO
 cgd
-chk
+enA
 ciD
 cjZ
 clB
