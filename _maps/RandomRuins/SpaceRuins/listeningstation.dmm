@@ -361,7 +361,12 @@
 	},
 /area/ruin/space/has_grav/listeningstation)
 "aI" = (
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/ruin/space/has_grav/listeningstation)
 "aJ" = (
 /obj/machinery/washing_machine{
@@ -651,11 +656,21 @@
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/emcloset/anchored,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
 /area/ruin/space/has_grav/listeningstation)
 "bd" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/ruin/space/has_grav/listeningstation)
+"bd" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/ruin/space/has_grav/listeningstation)
 "be" = (
 /obj/effect/decal/cleanable/dirt,

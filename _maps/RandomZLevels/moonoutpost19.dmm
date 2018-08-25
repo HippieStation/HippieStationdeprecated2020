@@ -590,8 +590,13 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/syndicate)
@@ -610,8 +615,13 @@
 	req_access = null;
 	req_access_txt = "150"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/syndicate)
@@ -824,7 +834,12 @@
 	},
 /area/awaymission/moonoutpost19/syndicate)
 "ca" = (
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	initial_gas_mix = "co2=48.7;n2=13.2;o2=32.4;TEMP=251";
 	dir = 8;
 	heat_capacity = 1e+006;
@@ -1053,7 +1068,12 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	initial_gas_mix = "co2=48.7;n2=13.2;o2=32.4;TEMP=251";
 	dir = 8;
 	heat_capacity = 1e+006;
@@ -1951,8 +1971,13 @@
 /turf/open/floor/plasteel/dark,
 /area/awaymission/moonoutpost19/research)
 "ee" = (
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/research)
@@ -2094,8 +2119,13 @@
 	icon_state = "bulb-broken";
 	status = 2
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/research)
@@ -2397,8 +2427,13 @@
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
 /obj/structure/alien/weeds,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/research)
@@ -2441,8 +2476,13 @@
 /obj/structure/alien/weeds,
 /obj/item/clothing/mask/facehugger/impregnated,
 /obj/item/xenos_claw,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/research)
@@ -2593,8 +2633,13 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/research)
@@ -2853,12 +2898,6 @@
 /obj/structure/alien/weeds,
 /turf/open/floor/plasteel/whitepurple/corner{
 	dir = 2;
-	heat_capacity = 1e+006
-	},
-/area/awaymission/moonoutpost19/research)
-"fY" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel{
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/research)
@@ -4447,16 +4486,26 @@
 /obj/structure/chair/comfy/black{
 	dir = 4
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/arrivals)
 "jc" = (
 /obj/structure/table,
 /obj/item/book/manual/wiki/detective,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/arrivals)
@@ -4575,8 +4624,13 @@
 /area/awaymission/moonoutpost19/arrivals)
 "jr" = (
 /obj/structure/chair,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/arrivals)
@@ -4590,8 +4644,13 @@
 "jt" = (
 /obj/structure/table,
 /obj/item/newspaper,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/arrivals)
@@ -4676,15 +4735,14 @@
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/arrivals)
-"jE" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel{
-	heat_capacity = 1e+006
-	},
-/area/awaymission/moonoutpost19/arrivals)
 "jF" = (
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/arrivals)
@@ -4722,8 +4780,13 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/arrivals)
@@ -4731,8 +4794,13 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/arrivals)
@@ -4812,8 +4880,13 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/arrivals)
@@ -4829,6 +4902,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
 	heat_capacity = 1e+006
@@ -4838,6 +4912,8 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+=======
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel{
 	heat_capacity = 1e+006
@@ -4848,8 +4924,13 @@
 	icon_state = "4-8"
 	},
 /obj/item/cigbutt,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/arrivals)
@@ -4928,7 +5009,12 @@
 	icon_state = "4-8"
 	},
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	initial_gas_mix = "co2=48.7;n2=13.2;o2=32.4;TEMP=251";
 	dir = 8;
 	heat_capacity = 1e+006;
@@ -4942,7 +5028,12 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	initial_gas_mix = "co2=48.7;n2=13.2;o2=32.4;TEMP=251";
 	dir = 8;
 	heat_capacity = 1e+006;
@@ -4992,8 +5083,13 @@
 /obj/machinery/door/firedoor/closed{
 	opacity = 0
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/arrivals)
@@ -5002,8 +5098,13 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/arrivals)
@@ -5138,8 +5239,13 @@
 /area/awaymission/moonoutpost19/arrivals)
 "kz" = (
 /obj/machinery/light/small,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/arrivals)
@@ -5181,7 +5287,12 @@
 	},
 /area/awaymission/moonoutpost19/arrivals)
 "kE" = (
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	initial_gas_mix = "co2=48.7;n2=13.2;o2=32.4;TEMP=251";
 	dir = 8;
 	heat_capacity = 1e+006;
@@ -5199,7 +5310,12 @@
 /area/awaymission/moonoutpost19/arrivals)
 "kG" = (
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	initial_gas_mix = "co2=48.7;n2=13.2;o2=32.4;TEMP=251";
 	dir = 8;
 	heat_capacity = 1e+006;
@@ -5216,8 +5332,13 @@
 /area/awaymission/moonoutpost19/arrivals)
 "kI" = (
 /obj/effect/decal/cleanable/generic,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/arrivals)
@@ -5266,8 +5387,13 @@
 	dir = 4;
 	pixel_x = 24
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/arrivals)
@@ -5411,8 +5537,13 @@
 /area/awaymission/moonoutpost19/arrivals)
 "lg" = (
 /obj/item/cigbutt,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
 	dir = 8;
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	heat_capacity = 1e+006
 	},
 /area/awaymission/moonoutpost19/arrivals)
@@ -6466,7 +6597,12 @@
 	dir = 8;
 	icon_state = "ltrails_1"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	initial_gas_mix = "co2=48.7;n2=13.2;o2=32.4;TEMP=251";
 	dir = 8;
 	heat_capacity = 1e+006;
@@ -6479,7 +6615,12 @@
 	dir = 6;
 	icon_state = "ltrails_1"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime{
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel{
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	initial_gas_mix = "co2=48.7;n2=13.2;o2=32.4;TEMP=251";
 	dir = 8;
 	heat_capacity = 1e+006;
@@ -35204,7 +35345,7 @@ ir
 iK
 dZ
 jr
-jW
+jV
 kv
 io
 lc
@@ -36490,7 +36631,7 @@ hj
 Mm
 jy
 jU
-jE
+jF
 jG
 lg
 lG
@@ -37503,7 +37644,7 @@ ba
 dZ
 fh
 fz
-fY
+ee
 gp
 fk
 gU
@@ -39829,7 +39970,7 @@ ba
 ba
 io
 jc
-jE
+jF
 jV
 jG
 kR

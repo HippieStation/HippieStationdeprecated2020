@@ -778,7 +778,12 @@
 	pixel_x = 32
 	},
 /obj/structure/closet/wardrobe/black,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/abandoned/crew)
 "bg" = (
 /obj/effect/decal/cleanable/dirt{
@@ -1718,7 +1723,12 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/abandoned/bar)
 "cr" = (
 /obj/machinery/door/firedoor,
@@ -1887,7 +1897,12 @@
 	dir = 4;
 	pixel_x = 24
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/abandoned/bar)
 "cD" = (
 /obj/structure/table,
@@ -2221,7 +2236,12 @@
 	name = "dust"
 	},
 /obj/machinery/processor,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/abandoned/bar)
 "cV" = (
 /obj/effect/decal/cleanable/dirt{
@@ -2229,7 +2249,12 @@
 	name = "dust"
 	},
 /obj/machinery/deepfryer,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/abandoned/bar)
 "cW" = (
 /turf/closed/wall/mineral/titanium,
@@ -2945,7 +2970,12 @@
 	pixel_x = -12;
 	pixel_y = 2
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/abandoned/bar)
 "dU" = (
 /obj/effect/decal/cleanable/dirt{
@@ -3099,7 +3129,12 @@
 	pixel_x = -5;
 	pixel_y = 6
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/abandoned/bar)
 "ee" = (
 /obj/effect/decal/cleanable/dirt{

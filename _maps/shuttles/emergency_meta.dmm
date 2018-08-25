@@ -335,7 +335,12 @@
 	name = "Emergency Recovery Airlock";
 	req_access_txt = "19"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/escape)
 "aY" = (
 /obj/machinery/door/airlock/security/glass{
@@ -365,16 +370,30 @@
 /obj/structure/chair/comfy/shuttle{
 	dir = 4
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
 /area/shuttle/escape)
 "be" = (
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"be" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/escape)
 "bf" = (
 /obj/machinery/door/airlock/external{
 	name = "Emergency Recovery Airlock"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/escape)
 "bh" = (
 /obj/structure/chair/comfy/shuttle{
@@ -499,11 +518,21 @@
 /area/shuttle/escape)
 "bw" = (
 /obj/item/cigbutt,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
 /area/shuttle/escape)
 "by" = (
 /obj/machinery/suit_storage_unit/standard_unit,
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"by" = (
+/obj/machinery/suit_storage_unit/standard_unit,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/escape)
 "bz" = (
 /obj/structure/table/optable,
@@ -521,7 +550,12 @@
 /area/shuttle/escape)
 "bC" = (
 /obj/structure/reagent_dispensers/watertank,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/escape)
 "bD" = (
 /obj/structure/table,
@@ -826,13 +860,23 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/escape)
 "cc" = (
 /obj/machinery/light{
 	dir = 4
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/escape)
 "cd" = (
 /obj/structure/chair/comfy/shuttle{

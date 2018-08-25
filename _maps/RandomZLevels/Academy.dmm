@@ -536,7 +536,12 @@
 /turf/open/floor/plasteel,
 /area/awaymission/academy/classrooms)
 "bV" = (
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/awaymission/academy/classrooms)
 "bX" = (
 /obj/effect/decal/cleanable/ash,
@@ -598,7 +603,12 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/awaymission/academy/classrooms)
 "cj" = (
 /obj/effect/decal/cleanable/oil,
@@ -818,7 +828,12 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/awaymission/academy/classrooms)
 "da" = (
 /obj/structure/cable{
@@ -914,7 +929,12 @@
 /obj/machinery/light{
 	dir = 4
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/awaymission/academy/classrooms)
 "ds" = (
 /obj/structure/chair/wood/normal{
