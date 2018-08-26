@@ -9,7 +9,7 @@
 	subcategory = CAT_SOUP
 
 
-	/datum/crafting_recipe/food/gondolasoup
+/datum/crafting_recipe/food/gondolasoup
 	name = "Sopa de Gondola"
 	reqs = list(
 		/datum/reagent/blood = 10,
