@@ -68,7 +68,6 @@ The best practice to have while coding is to keep everything modularized, or the
 ## code/modules/mob/living/silicon/robot/robot.dm
 ## code/modules/mob/living/simple_animal/bot/medbot.dm
 ## code/modules/mob/living/simple_animal/friendly/dog.dm
-## code/modules/mob/living/simple_animal/friendly/gondola.dm 
 ## code/modules/mob/living/simple_animal/hostile/headcrab.dm
 ## code/modules/mob/living/simple_animal/slime/slime.dm
 ## code/modules/mob/mob_movement.dm !Horrible code alert, how did this even get merged?
