@@ -70,10 +70,10 @@
 /obj/item/integrated_circuit/atmospherics/pump/proc/update_target(new_amount)
 	// See in which direction the gas moves
 	if(new_amount < 0)
-		new_amount = abs(new_amount)
 		direction = TARGET_TO_SOURCE
 	else
 		direction = SOURCE_TO_TARGET
+	target_pressure = abs(new_amount)
 
 /obj/item/integrated_circuit/atmospherics/pump/do_work()
 	var/obj/source = get_pin_data_as_type(IC_INPUT, 1, /obj)
