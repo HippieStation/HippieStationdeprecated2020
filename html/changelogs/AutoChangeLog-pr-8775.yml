@@ -1,0 +1,5 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - rscadd: "Medbay now has two cloners in MetaLake"
+  - rscadd: "RnD on MetaLake has a new pet - Hawking the penguin!"
