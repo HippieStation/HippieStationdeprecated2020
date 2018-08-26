@@ -154,9 +154,10 @@
 		for(var/obj/item/F in T.contents)
 			extinguishItem(F)
 		for(var/obj/machinery/light/L in T.contents)
-			L.on = 0
+			L.flickering = TRUE
+			addtimer(VARSET_CALLBACK(L, flickering, FALSE), 14)
+			addtimer(CALLBACK(L, /obj/machinery/light.proc/seton, FALSE), 15)
 			L.visible_message("<span class='warning'>[L] flickers and falls dark.</span>")
-			L.update(0)
 		for(var/obj/machinery/computer/C in T.contents)
 			C.set_light(0)
 			C.visible_message("<span class='warning'>[C] grows dim, its screen barely readable.</span>")
