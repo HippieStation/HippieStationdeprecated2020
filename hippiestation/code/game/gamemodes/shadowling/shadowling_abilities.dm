@@ -154,9 +154,8 @@
 		for(var/obj/item/F in T.contents)
 			extinguishItem(F)
 		for(var/obj/machinery/light/L in T.contents)
-			L.flickering = TRUE
-			addtimer(VARSET_CALLBACK(L, flickering, FALSE), 14)
-			addtimer(CALLBACK(L, /obj/machinery/light.proc/seton, FALSE), 15)
+			L.seton(FALSE)
+			L.flickering = TRUE // this is just to prevent emergency light from coming on. it won't actually flicker without running flicker()
 			L.visible_message("<span class='warning'>[L] flickers and falls dark.</span>")
 		for(var/obj/machinery/computer/C in T.contents)
 			C.set_light(0)
