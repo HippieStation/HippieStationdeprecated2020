@@ -1,4 +1,0 @@
-author: "HonkBot"
-delete-after: True
-changes: 
-  - bugfix: "Ordering the Build Your Own Shuttle kit no longer crashes the server."

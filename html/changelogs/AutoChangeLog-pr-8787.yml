@@ -1,4 +1,0 @@
-author: "HonkBot"
-delete-after: True
-changes: 
-  - refactor: "Refactored nettles to be reagent_containers"
