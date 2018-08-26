@@ -1,0 +1,7 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - tweak: "Added chevrons in front of the tables in the testing science lab"
+  - bugfix: "Fixed pipes and wires in RnD"
+  - bugfix: "Fixed apc terminal in circuit lab having a wrong init direction"
+  - bugfix: "Fixed chemistry lab cameras having the same c-tag"
