@@ -24,7 +24,7 @@
 				W = H.GetComponent(/datum/component/waddling)
 
 			// minimum of 1, max of 4
-			var/waddle_multi = min(max(1, drunkenness / 25), 4)
+			var/waddle_multi = clamp(drunkenness / 25, 1, 4)
 
 			W.waddle_min = -12 * waddle_multi
 			W.waddle_max = 12 * waddle_multi
@@ -44,4 +44,4 @@
 
 				if (W)
 					W.RemoveComponent()
-					to_chat(src, "<span class='warning'>Walking doesn't seen so hard as you sober up</span>")
+					to_chat(src, "<span class='warning'>Walking doesn't seen so hard as you sober up.</span>")

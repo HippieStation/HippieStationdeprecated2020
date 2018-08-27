@@ -100,7 +100,7 @@
 
 /datum/quirk/waddle
 	name = "Waddle"
-	desc = "You have an extra bounce in your step"
+	desc = "You have an extra bounce in your step."
 	value = 0
 	gain_text = "<span class='notice'>The world starts to bob as you move.</span>"
 	lose_text = "<span class='notice'>The world no longer bobs as you move.</span>"
