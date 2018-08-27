@@ -61,7 +61,7 @@ GLOBAL_LIST_INIT(thrall_spell_types, typecacheof(/obj/effect/proc_holder/spell/s
 		M.visible_message("<span class='big'>[M] looks like their mind is their own again!</span>", \
 						  "<span class='userdanger'>A piercing white light floods your eyes. Your mind is your own again! Though you try, you cannot remember anything about the shadowlings or your time \
 						  under their command...</span>")
-	return TRUE
+	return ..()
 
 /datum/antagonist/thrall/greet()
 	to_chat(owner, "<span class='shadowling'><b>You see the truth. Reality has been torn away and you realize what a fool you've been.</b></span>")
