@@ -1,0 +1,4 @@
+author: "Carbonhell"
+delete-after: True
+changes: 
+  - rscadd: "Adds discord emojis ingame. Their names are the same of the discord ones."
