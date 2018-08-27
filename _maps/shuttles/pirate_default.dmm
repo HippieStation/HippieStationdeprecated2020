@@ -867,16 +867,12 @@
 	dir = 6
 	},
 /obj/effect/decal/cleanable/dirt,
-<<<<<<< HEAD
-/turf/open/floor/plasteel/floorgrime,
-=======
 /turf/open/floor/plasteel,
 /area/shuttle/pirate)
 "fV" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
->>>>>>> bd72eb3371... Refactors exports and pirate loot gathering. (#39749)
 /area/shuttle/pirate)
 "fW" = (
 /turf/closed/wall/mineral/plastitanium,
