@@ -9,6 +9,7 @@
 	density = TRUE
 	idle_power_usage = 50
 	active_power_usage = 300
+	occupant_typecache = list(/mob/living)
 
 	var/obj/machinery/computer/nanite_chamber_control/console
 	var/locked = FALSE
@@ -18,10 +19,6 @@
 	var/busy_icon_state
 	var/busy_message
 	var/message_cooldown = 0
-
-/obj/machinery/nanite_chamber/Initialize()
-	. = ..()
-	occupant_typecache = GLOB.typecache_living
 
 /obj/machinery/nanite_chamber/RefreshParts()
 	scan_level = 0

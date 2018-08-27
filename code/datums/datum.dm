@@ -2,9 +2,7 @@
 	var/gc_destroyed //Time when this object was destroyed.
 	var/list/active_timers  //for SStimer
 	var/list/datum_components //for /datum/components
-	var/list/comp_lookup //it used to be for looking up components which had registered a signal but now anything can register
-	var/list/signal_procs
-	var/signal_enabled = FALSE
+	var/list/comp_lookup //for /datum/components
 	var/datum_flags = NONE
 	var/datum/weakref/weak_reference
 
@@ -33,9 +31,6 @@
 			continue
 		qdel(timer)
 
-	//BEGIN: ECS SHIT
-	signal_enabled = FALSE
-
 	var/list/dc = datum_components
 	if(dc)
 		var/all_components = dc[/datum/component]
@@ -60,10 +55,6 @@
 				var/datum/component/comp = comps
 				comp.UnregisterSignal(src, sig)
 		comp_lookup = lookup = null
-
-	for(var/target in signal_procs)
-		UnregisterSignal(target, signal_procs[target])
-	//END: ECS SHIT
 
 	return QDEL_HINT_QUEUE
 

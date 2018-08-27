@@ -86,4 +86,3 @@ Cyborg
 
 /datum/job/cyborg/after_spawn(mob/living/silicon/robot/R, mob/M)
 	R.updatename(M.client)
-	R.gender = NEUTER

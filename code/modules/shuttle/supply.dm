@@ -23,8 +23,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/obj/item/projectile/beam/wormhole,
 		/obj/effect/portal,
 		/obj/item/shared_storage,
-		/obj/structure/extraction_point,
-		/obj/machinery/syndicatebomb
+		/obj/structure/extraction_point
 	)))
 
 /obj/docking_port/mobile/supply
@@ -62,7 +61,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 					return FALSE
 	return TRUE
 
-/obj/docking_port/mobile/supply/request(obj/docking_port/stationary/S)
+/obj/docking_port/mobile/supply/request()
 	if(mode != SHUTTLE_IDLE)
 		return 2
 	return ..()

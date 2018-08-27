@@ -1,5 +1,9 @@
 /obj/item/clothing/under/rank/clown/Initialize()
 	. = ..()
+	// remove any previous squeak components from tg so we can use our own
+	var/list/squeaks = GetComponents(/datum/component/squeak)
+	for(var/datum/component/c in squeaks)
+		c.RemoveComponent()
 	var/list/hit_sounds = list('hippiestation/sound/misc/hitsounds/cartoon_badoing.ogg'=1,
 							   'hippiestation/sound/misc/hitsounds/cartoon_bird_whistle_down.ogg'=1,
 							   'hippiestation/sound/misc/hitsounds/cartoon_boing.ogg'=1,
@@ -30,4 +34,7 @@
 
 /obj/item/clothing/shoes/clown_shoes/Initialize()
 	. = ..()
-	AddComponent(/datum/component/squeak, list('sound/effects/clownstep1.ogg'=1,'sound/effects/clownstep2.ogg'=1), 50, ,0)
+	// probably only going to have one squeak...
+	var/list/squeaks = GetComponents(/datum/component/squeak)
+	for(var/datum/component/squeak/c in squeaks)
+		c.step_delay = 0
