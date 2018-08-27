@@ -1058,7 +1058,12 @@
 /obj/effect/turf_decal/loading_area{
 	dir = 4
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/awaymission/BMPship/Midship)
 "dP" = (
 /obj/machinery/conveyor{

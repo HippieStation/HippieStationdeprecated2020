@@ -3475,7 +3475,12 @@
 /turf/open/floor/plasteel/airless,
 /area/ruin/space/derelict/hallway/primary/port)
 "lF" = (
+<<<<<<< HEAD
 /turf/open/floor/plasteel/airless/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/airless,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/ruin/space/derelict/hallway/primary)
 "lG" = (
 /turf/open/floor/plasteel/airless{

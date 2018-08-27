@@ -161,7 +161,12 @@
 /area/shuttle/caravan/freighter3)
 "aN" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/airless/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/airless,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/caravan/freighter3)
 "aO" = (
 /obj/machinery/airalarm/all_access{
@@ -179,7 +184,12 @@
 /mob/living/simple_animal/hostile/pirate/ranged/space{
 	environment_smash = 0
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/airless/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/airless,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/caravan/freighter2)
 "aQ" = (
 /obj/structure/rack,
@@ -474,7 +484,12 @@
 /area/shuttle/caravan/freighter3)
 "gT" = (
 /mob/living/simple_animal/hostile/syndicate/ranged/smg/space,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/airless/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/airless,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/caravan/freighter3)
 "gU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -754,7 +769,12 @@
 	pixel_x = 24
 	},
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/airless/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/airless,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/caravan/freighter3)
 "if" = (
 /obj/machinery/firealarm{
@@ -887,7 +907,12 @@
 	dir = 4
 	},
 /mob/living/simple_animal/hostile/syndicate/ranged/smg/space,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/airless/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/airless,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/caravan/freighter3)
 "iF" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1001,7 +1026,12 @@
 /area/shuttle/caravan/freighter2)
 "jq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/airless/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/airless,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/caravan/freighter2)
 "jr" = (
 /obj/effect/turf_decal/box/white/corners{
@@ -1075,7 +1105,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/airless/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/airless,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/caravan/freighter2)
 "jK" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
@@ -1090,7 +1125,12 @@
 /mob/living/simple_animal/hostile/pirate/ranged/space{
 	environment_smash = 0
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/airless/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/airless,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/caravan/freighter2)
 "jN" = (
 /turf/open/floor/plasteel/airless{

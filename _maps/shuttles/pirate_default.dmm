@@ -988,7 +988,29 @@
 /turf/open/floor/pod/dark,
 /area/shuttle/pirate)
 "eE" = (
+<<<<<<< HEAD
 /obj/structure/closet/secure_closet/personal,
+=======
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/shuttle/pirate)
+"fW" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/shuttle/pirate)
+"fY" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 1
+	},
+/turf/open/floor/pod/dark,
+/area/shuttle/pirate)
+"gY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel/floorgrime,
@@ -1060,9 +1082,21 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+<<<<<<< HEAD
 /obj/structure/closet/secure_closet/freezer{
 	locked = 0;
 	name = "fridge"
+=======
+/turf/open/floor/pod/light,
+/area/shuttle/pirate)
+"Oe" = (
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
+/turf/open/floor/plasteel/bar,
+/area/shuttle/pirate)
+"OD" = (
+/obj/machinery/airalarm/all_access{
+	pixel_y = 24
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 	},
 /obj/item/storage/box/donkpockets{
 	pixel_x = 2;
@@ -1200,7 +1234,13 @@ aj
 fw
 eS
 aj
+<<<<<<< HEAD
 fV
+=======
+aj
+Gk
+aS
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 aF
 aI
 aJ
@@ -1308,6 +1348,13 @@ bl
 ft
 fB
 aj
+<<<<<<< HEAD
+=======
+yi
+aj
+aj
+Gk
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 aS
 bZ
 bo

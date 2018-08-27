@@ -467,10 +467,19 @@
 /area/shuttle/escape)
 "bA" = (
 /obj/structure/closet/emcloset,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
 /area/shuttle/escape)
 "bB" = (
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+/area/shuttle/escape)
+"bB" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/escape)
 "bC" = (
 /obj/structure/extinguisher_cabinet{
@@ -481,19 +490,34 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/escape)
 "bD" = (
 /obj/machinery/sleeper{
 	dir = 8
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/escape)
 "bE" = (
 /obj/machinery/sleeper{
 	dir = 4
 	},
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/escape)
 "bF" = (
 /obj/structure/table,
@@ -503,7 +527,12 @@
 	pixel_y = 3
 	},
 /obj/item/crowbar,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/escape)
 "bG" = (
 /obj/structure/closet,
@@ -525,7 +554,12 @@
 /area/shuttle/escape)
 "bJ" = (
 /obj/effect/decal/cleanable/blood/old,
+<<<<<<< HEAD
 /turf/open/floor/plasteel/floorgrime,
+=======
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel,
+>>>>>>> 141f558102... Fix atom ordering problem in map files (#39889)
 /area/shuttle/escape)
 "bK" = (
 /obj/structure/window/reinforced{
