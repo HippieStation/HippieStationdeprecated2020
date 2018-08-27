@@ -154,9 +154,9 @@
 		for(var/obj/item/F in T.contents)
 			extinguishItem(F)
 		for(var/obj/machinery/light/L in T.contents)
-			L.on = 0
+			L.flickering = TRUE // this is just to prevent emergency light from coming on. it won't actually flicker without running flicker()
+			L.seton(FALSE)
 			L.visible_message("<span class='warning'>[L] flickers and falls dark.</span>")
-			L.update(0)
 		for(var/obj/machinery/computer/C in T.contents)
 			C.set_light(0)
 			C.visible_message("<span class='warning'>[C] grows dim, its screen barely readable.</span>")

@@ -1,0 +1,4 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - bugfix: "Fixed thralls not being able to be deconverted."

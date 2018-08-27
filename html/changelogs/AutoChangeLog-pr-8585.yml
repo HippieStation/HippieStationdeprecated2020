@@ -1,6 +1,0 @@
-author: "McBawbaggings"
-delete-after: True
-changes: 
-  - tweak: "Null rods reskins are now purely cosmetic."
-  - rscadd: "Chain sword is now a selectable null rod."
-  - rscdel: "Monk Manual is no longer a selectable null rod."
