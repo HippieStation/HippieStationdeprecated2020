@@ -525,12 +525,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-<<<<<<< HEAD
-/obj/machinery/atmospherics/components/unary/vent_pump/on,
-/turf/open/floor/plasteel/floorgrime,
-=======
 /turf/open/floor/plasteel,
->>>>>>> bd72eb3371... Refactors exports and pirate loot gathering. (#39749)
 /area/shuttle/pirate)
 "bv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
