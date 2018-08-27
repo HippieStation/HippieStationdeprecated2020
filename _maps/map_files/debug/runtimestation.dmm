@@ -2580,9 +2580,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/atmos)
-"vf" = (
-/turf/open/floor/plasteel,
-/area/space)
 "vm" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/aft)
@@ -6551,7 +6548,7 @@ co
 bA
 wS
 bE
-vf
+bE
 cN
 dW
 dn
