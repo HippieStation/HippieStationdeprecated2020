@@ -5,35 +5,11 @@
 	antagpanel_category = "Shadowlings"
 	antag_moodlet = /datum/mood_event/sling
 	var/list/objectives_given = list()
-	var/datum/team/shadowling/sling_team
-
-/datum/antagonist/shadowling/create_team(datum/team/shadowling/new_team)
-	if(!new_team)
-		for(var/datum/antagonist/shadowling/H in GLOB.antagonists)
-			if(!H.owner)
-				continue
-			if(H.sling_team)
-				sling_team = H.sling_team
-				return
-		for(var/datum/antagonist/thrall/H in GLOB.antagonists)
-			if(!H.owner)
-				continue
-			if(H.sling_team)
-				sling_team = H.sling_team
-				return
-		sling_team = new /datum/team/shadowling
-		return
-	if(!istype(new_team))
-		stack_trace("Wrong team type passed to [type] initialization.")
-	sling_team = new_team
-
-/datum/antagonist/shadowling/get_team()
-	return sling_team
 
 /datum/antagonist/shadowling/on_gain()
 	. = ..()
 	SSticker.mode.update_shadow_icons_added(owner)
-	SSticker.mode.shadows |= owner
+	SSticker.mode.shadows += owner
 	owner.special_role = "Shadowling"
 	message_admins("[key_name_admin(owner.current)] was made into a shadowling!")
 	log_game("[key_name(owner.current)] was made into a shadowling!")
@@ -76,6 +52,42 @@
 	to_chat(owner, "<b>You require [SSticker.mode.required_thralls || 15] thralls to ascend.</b><br>")
 	SEND_SOUND(owner.current, sound('hippiestation/sound/ambience/antag/sling.ogg'))
 
+/datum/antagonist/shadowling/proc/check_shadow_death()
+	for(var/SM in get_antag_minds(/datum/antagonist/shadowling))
+		var/datum/mind/shadow_mind = SM
+		if(istype(shadow_mind))
+			var/turf/T = get_turf(shadow_mind.current)
+			if((shadow_mind) && (shadow_mind.current) && (shadow_mind.current.stat != DEAD) && T && is_station_level(T.z) && ishuman(shadow_mind.current))
+				return FALSE
+	return TRUE
+
+/datum/antagonist/shadowling/roundend_report()
+	var/list/parts = list()
+
+	if(SSticker.mode.shadowling_ascended) //Doesn't end instantly - this is hacky and I don't know of a better way ~X
+		parts += "<span class='greentext big'>The shadowlings have ascended and taken over the station!</span>"
+	else if(!SSticker.mode.shadowling_ascended && check_shadow_death()) //If the shadowlings have ascended, they can not lose the round
+		parts += "<span class='redtext big'>The shadowlings have been killed by the crew!</span>"
+	else if(!SSticker.mode.shadowling_ascended && SSshuttle.emergency.mode >= SHUTTLE_ESCAPE)
+		parts += "<span class='redtext big'>The crew escaped the station before the shadowlings could ascend!</span>"
+	else
+		parts += "<span class='redtext big'>The shadowlings have failed!</span>"
+
+	if(objectives.len)
+		parts += "<b>The shadowlings' objectives were:</b>"
+		var/count = 1
+		for(var/datum/objective/objective in objectives)
+			if(objective.check_completion())
+				parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='greentext'>Success!</span>"
+			else
+				parts += "<b>Objective #[count]</b>: [objective.explanation_text] <span class='redtext'>Fail.</span>"
+			count++
+
+	if(LAZYLEN(SSticker.mode.shadows))
+		parts += printplayerlist(SSticker.mode.shadows)
+
+	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
+
 
 /datum/objective/ascend
 	explanation_text = "Ascend to your true form by use of the Ascendance ability. This may only be used with 15 or more collective thralls, while hatched, and is unlocked with the Collective Mind ability."
@@ -93,38 +105,3 @@
 	if(statpanel("Status") && (dna && dna.species) && istype(dna.species, /datum/species/shadow/ling))
 		var/datum/species/shadow/ling/SL = dna.species
 		stat("Shadowy Shield Charges", SL.shadow_charges)
-
-// Just for the roundend report
-/datum/team/shadowling
-	name = "Shadowlings"
-
-/datum/team/shadowling/proc/check_shadow_death()
-	for(var/SM in get_antag_minds(/datum/antagonist/shadowling))
-		var/datum/mind/shadow_mind = SM
-		if(istype(shadow_mind))
-			var/turf/T = get_turf(shadow_mind.current)
-			if((shadow_mind) && (shadow_mind.current) && (shadow_mind.current.stat != DEAD) && T && is_station_level(T.z) && ishuman(shadow_mind.current))
-				return FALSE
-	return TRUE
-
-/datum/team/shadowling/roundend_report()
-	var/list/parts = list()
-
-	if(SSticker.mode.shadowling_ascended) //Doesn't end instantly - this is hacky and I don't know of a better way ~X
-		parts += "<span class='greentext big'>The shadowlings have ascended and taken over the station!</span>"
-	else if(!SSticker.mode.shadowling_ascended && check_shadow_death()) //If the shadowlings have ascended, they can not lose the round
-		parts += "<span class='redtext big'>The shadowlings have been killed by the crew!</span>"
-	else if(!SSticker.mode.shadowling_ascended && SSshuttle.emergency.mode >= SHUTTLE_ESCAPE)
-		parts += "<span class='redtext big'>The crew escaped the station before the shadowlings could ascend!</span>"
-	else
-		parts += "<span class='redtext big'>The shadowlings have failed!</span>"
-
-	if(LAZYLEN(SSticker.mode.shadows))
-		parts += "<span class='header'>The shadowlings were:</span>"
-		parts += printplayerlist(SSticker.mode.shadows)
-
-	if(LAZYLEN(SSticker.mode.thralls))
-		parts += "<span class='header'>The thralls were:</span>"
-		parts += printplayerlist(SSticker.mode.thralls)
-
-	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"

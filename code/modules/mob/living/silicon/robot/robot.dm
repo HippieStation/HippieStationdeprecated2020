@@ -286,12 +286,12 @@
 	if(!ionpulse_on)
 		return
 
-	if(cell.charge <= 10)
+	if(cell.charge <= 50)
 		toggle_ionpulse()
 		return
 
-	cell.charge -= 10
-	return TRUE
+	cell.charge -= 50 // 500 steps on a default cell.
+	return 1
 
 /mob/living/silicon/robot/proc/toggle_ionpulse()
 	if(!ionpulse)

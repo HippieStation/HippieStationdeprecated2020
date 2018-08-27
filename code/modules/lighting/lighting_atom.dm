@@ -92,17 +92,14 @@
 	switch (var_name)
 		if ("light_range")
 			set_light(l_range=var_value)
-			datum_flags |= DF_VAR_EDITED
-			return TRUE
+			return
 
 		if ("light_power")
 			set_light(l_power=var_value)
-			datum_flags |= DF_VAR_EDITED
-			return TRUE
+			return
 
 		if ("light_color")
 			set_light(l_color=var_value)
-			datum_flags |= DF_VAR_EDITED
-			return TRUE
+			return
 
 	return ..()
