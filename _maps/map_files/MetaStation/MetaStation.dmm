@@ -18285,6 +18285,13 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
+<<<<<<< HEAD
+=======
+/obj/structure/disposalpipe/sorting/mail{
+	dir = 4;
+	sortType = 29
+	},
+>>>>>>> 2ec9da6833... Merge pull request #39837 from 81Denton/god-dangit-bobby
 /turf/open/floor/plasteel/neutral/corner{
 	dir = 1
 	},
