@@ -1,4 +1,0 @@
-author: "HonkBot"
-delete-after: True
-changes: 
-  - bugfix: "Roundstart cyborgs will now be properly referred to as \"it.\""
