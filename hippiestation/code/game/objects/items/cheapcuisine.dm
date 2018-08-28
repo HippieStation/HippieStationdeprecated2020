@@ -97,7 +97,7 @@
 
 /obj/item/reagent_containers/food/snacks/butterdog/carbon/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/slippery, 40)
+	AddComponent(/datum/component/slippery, 0)
 
 /obj/item/reagent_containers/food/snacks/hamdisc
 	name = "ham disc"
