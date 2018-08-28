@@ -651,6 +651,11 @@
 /mob/living/carbon/human/Stat()
 	..()
 	//NANOSUITCODE
+	var/turf/location = loc
+	if(!istype(location))
+		return
+	var/datum/gas_mixture/environment = location.return_air()
+	var/pressure = environment.return_pressure()
 	if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit/nano)) //Only display if actually wearing the suit.
 		var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
 		if(statpanel("Crynet Nanosuit"))
@@ -665,6 +670,9 @@
 			stat("Brute Trauma:", "[getBruteLoss()]")
 			stat("Radiation Levels:","[radiation] rad")
 			stat("Body Temperature:","[bodytemperature-T0C] degrees C ([bodytemperature*1.8-459.67] degrees F)")
+			stat("Atmospheric Pressure:","[pressure] kPa")
+			stat("Atmoshperic Temperature:","<span class='[environment.temperature > FIRE_IMMUNITY_MAX_TEMP_PROTECT?"alert":"info"]'>[round(environment.temperature-T0C, 0.01)] &deg;C ([round(environment.temperature, 0.01)] K)</span>")
+			stat("Atmospheric Thermal Energy:","[THERMAL_ENERGY(environment)/1000] kJ")
 
 /mob/living/carbon/human/Move(NewLoc, direct)
 	. = ..()
