@@ -16,7 +16,7 @@
 	AddComponent(/datum/component/rad_insulation, RAD_NO_INSULATION, TRUE, TRUE)
 
 /obj/item/clothing/under/syndicate/combat/nano/equipped(mob/user, slot)
-	.=..()
+	. = ..()
 	if(slot == SLOT_W_UNIFORM)
 		item_flags = NODROP
 
@@ -204,11 +204,11 @@
 	var/detecting = FALSE
 	var/help_verb = /mob/living/carbon/human/proc/Nanosuit_help
 	jetpack = /obj/item/tank/jetpack/suit
-	var/nn_block_recharge = 0 //if this number is greater than 0, we can't recharge
-	var/cl_energy = 1.3 //cloaked energy consume rate
-	var/sp_energy = 1.8 //speed energy consume rate
-	var/cr_energy = 20 //critical energy level
-	var/nn_regen = 3 //rate at which we regen
+	var/recharge_cooldown = 0 //if this number is greater than 0, we can't recharge
+	var/cloak_use_rate = 1.3 //cloaked energy consume rate
+	var/speed_use_rate = 1.8 //speed energy consume rate
+	var/crit_energy = 20 //critical energy level
+	var/regen_rate = 3 //rate at which we regen
 	var/msg_time_upper = 0
 	var/msg_time_lower = 0
 	var/obj/item/stock_parts/cell/nano/cell //What type of power cell this uses
@@ -228,7 +228,7 @@
 	if(U)
 		if(help_verb)
 			U.verbs -= help_verb
-	. = ..()
+	return ..()
 
 /obj/item/clothing/suit/space/hardsuit/nano/examine(mob/user)
 	..()
@@ -258,13 +258,13 @@
 			detecting = FALSE
 	var/energy = cell.charge //store current energy here
 	if(mode == CLOAK && !U.Move()) //are we in cloak, not moving?
-		energy -= cl_energy * 0.1 //take away the cloak discharge rate at 1/10th since we're not moving
-	if((energy < cell.maxcharge) && mode != CLOAK && !nn_block_recharge) //if our energy is less than 100, we're not in cloak and don't have a recharge delay timer
-		var/energy2 = nn_regen //store our regen rate here
+		energy -= cloak_use_rate * 0.1 //take away the cloak discharge rate at 1/10th since we're not moving
+	if((energy < cell.maxcharge) && mode != CLOAK && !recharge_cooldown) //if our energy is less than 100, we're not in cloak and don't have a recharge delay timer
+		var/energy2 = regen_rate //store our regen rate here
 		energy2+=energy //add our current energy to it
 		energy=min(cell.maxcharge,energy2) //our energy now equals the energy we had + 0.75 for everytime it iterates through, so it increases by 0.75 every tick until it goes to 100
-	if(nn_block_recharge > 0) //do we have a recharge delay set?
-		nn_block_recharge -= 1 //reduce it
+	if(recharge_cooldown > 0) //do we have a recharge delay set?
+		recharge_cooldown -= 1 //reduce it
 	if(msg_time_upper)
 		msg_time_upper -= 1
 	if(msg_time_lower)
@@ -273,17 +273,17 @@
 		set_nano_energy(energy) //now set our current energy to the variable we modified
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/set_nano_energy(var/amount, var/delay = 0)
-	if(delay > nn_block_recharge)
-		nn_block_recharge = delay
-	if(amount < cr_energy && !criticalpower) //energy is less than critical energy level(20) and not in crit power
+	if(delay > recharge_cooldown)
+		recharge_cooldown = delay
+	if(amount < crit_energy && !criticalpower) //energy is less than critical energy level(20) and not in crit power
 		helmet.display_visor_message("Energy Critical!") //now we are
 		criticalpower = TRUE
-	else if(amount > cr_energy) //did our energy go higher than the crit level
+	else if(amount > crit_energy) //did our energy go higher than the crit level
 		criticalpower = FALSE //turn it off
 	if(amount <= 0) //did we lose energy?
 		amount = 0 //set our energy to 0
 		if(mode == CLOAK) //are we in cloak?
-			nn_block_recharge = 15 //then wait 3 seconds(1 value per 2 ticks = 15*2=30/10 = 3 seconds) to recharge again
+			recharge_cooldown = 15 //then wait 3 seconds(1 value per 2 ticks = 15*2=30/10 = 3 seconds) to recharge again
 		if(mode != ARMOR) //we're not in cloak
 			toggle_mode(ARMOR, TRUE) //go into it, forced
 	cell.charge = amount
@@ -295,9 +295,9 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/onmove(var/multi)
 	if(mode == CLOAK)
-		set_nano_energy(CLAMP(cell.charge-(cl_energy*multi),0,cell.charge),15)
+		set_nano_energy(CLAMP(cell.charge-(cloak_use_rate*multi),0,cell.charge),15)
 	if(mode == SPEED)
-		set_nano_energy(CLAMP(cell.charge-(sp_energy*multi),0,cell.charge),15)
+		set_nano_energy(CLAMP(cell.charge-(speed_use_rate*multi),0,cell.charge),15)
 
 /obj/item/clothing/suit/space/hardsuit/nano/hit_reaction(mob/living/carbon/human/user, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/obj/item/projectile/P = hitby
@@ -512,8 +512,10 @@
 	icon_icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi'
 	button_icon_state = "toggle_goggle"
 
-/datum/action/item_action/nanosuit/armor
+/datum/action/item_action/nanosuit
 	check_flags = AB_CHECK_STUN|AB_CHECK_CONSCIOUS
+
+/datum/action/item_action/nanosuit/armor
 	name = "Armor Mode"
 	icon_icon = 'icons/mob/actions.dmi'
 	background_icon_state = "bg_tech_blue"
@@ -521,7 +523,6 @@
 	button_icon_state = "armor_mode"
 
 /datum/action/item_action/nanosuit/cloak
-	check_flags = AB_CHECK_STUN|AB_CHECK_CONSCIOUS
 	name = "Cloak Mode"
 	icon_icon = 'icons/mob/actions.dmi'
 	background_icon_state = "bg_tech_blue"
@@ -529,7 +530,6 @@
 	button_icon_state = "cloak_mode"
 
 /datum/action/item_action/nanosuit/speed
-	check_flags = AB_CHECK_STUN|AB_CHECK_CONSCIOUS
 	name = "Speed Mode"
 	icon_icon = 'icons/mob/actions.dmi'
 	background_icon_state = "bg_tech_blue"
@@ -537,7 +537,6 @@
 	button_icon_state = "speed_mode"
 
 /datum/action/item_action/nanosuit/strength
-	check_flags = AB_CHECK_STUN|AB_CHECK_CONSCIOUS
 	name = "Strength Mode"
 	icon_icon = 'icons/mob/actions.dmi'
 	background_icon_state = "bg_tech_blue"
@@ -626,18 +625,16 @@
 	if(ishuman(user))
 		U = user
 	if(slot == SLOT_WEAR_SUIT)
-		item_flags = NODROP
-		U.unequip_everything()
-		equip_nanosuit(user)
 		var/area/A = get_area(src)
 		priority_announce("[user] has engaged [src] at [A.map_name]!","Message from The Syndicate!", 'sound/misc/notice1.ogg')
+		log_game("[user] has engaged [src]")
+		item_flags = NODROP
+		U.unequip_everything()
+		U.equipOutfit(/datum/outfit/nanosuit)
 		U.add_trait(TRAIT_NODISMEMBER, "Nanosuit")
 		if(help_verb)
 			U.verbs += help_verb
 	..()
-
-/obj/item/clothing/suit/space/hardsuit/nano/proc/equip_nanosuit(mob/living/carbon/human/user)
-	return user.equipOutfit(/datum/outfit/nanosuit)
 
 /datum/outfit/nanosuit
 	name = "Nanosuit"
@@ -657,7 +654,7 @@
 	if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit/nano)) //Only display if actually wearing the suit.
 		var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
 		if(statpanel("Crynet Nanosuit"))
-			stat("Crynet Protocols : Engaged")
+			stat("Crynet Protocols : [NS.mode != NONE?"Engaged":"Disengaged"]")
 			stat("Energy Charge:", "[round(NS.cell.percent())]%")
 			stat("Mode:", "[NS.mode]")
 			stat("Overall Status:", "[health]% healthy")
@@ -738,13 +735,19 @@
 	else
 		D.visible_message("<span class='danger'>[A] [picked_hit_type] [D]!</span>", \
 					  "<span class='userdanger'>[A] [picked_hit_type] you!</span>")
+	if(check_target_facings(D, A) == FACING_SAME_DIR && prob(30))
+		D.Knockdown(70)
+		bonus_damage += 5
+		D.visible_message("<span class='danger'>[A] back hit [D]!</span>", \
+					  "<span class='userdanger'>[A] back hits you!</span>")
+
 	if(picked_hit_type == "kicks" || picked_hit_type == "stomps on")
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
 		playsound(get_turf(D), 'sound/effects/hit_kick.ogg', 50, 1, -1)
 	else
 		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 		playsound(get_turf(D), 'sound/effects/hit_punch.ogg', 50, 1, -1)
-	log_combat(A, D, "[picked_hit_type] with [name]")
+	log_combat(A, D, "[picked_hit_type] ([name])")
 	D.apply_damage(bonus_damage, BRUTE)
 	return TRUE
 
