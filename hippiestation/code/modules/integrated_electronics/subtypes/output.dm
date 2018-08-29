@@ -86,13 +86,16 @@
 	name = "small screen"
 
 /obj/item/integrated_circuit/output/screen/large
+	name = "medium screen"
+
+/obj/item/integrated_circuit/output/screen/extralarge // the subtype is called "extralarge" because tg brought back medium screens and they named the subtype /screen/large
 	name = "large screen"
 	desc = "Takes any data type as an input and displays it to the user upon examining, and to all nearby beings when pulsed."
 	icon_state = "screen_large"
 	power_draw_per_use = 40
 	cooldown_per_use = 10
 
-/obj/item/integrated_circuit/output/screen/large/do_work()
+/obj/item/integrated_circuit/output/screen/extralarge/do_work()
 	..()
 	var/obj/O = assembly ? get_turf(assembly) : loc
 	O.visible_message("<span class='notice'>[icon2html(O.icon, world, O.icon_state)]  [stuff_to_display]</span>")
