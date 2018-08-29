@@ -12,8 +12,6 @@
 	if(.)
 		if(new_owner.unconvertable)
 			return FALSE
-		if(new_owner.current && new_owner.current.isloyal())
-			return FALSE
 
 /datum/antagonist/gang/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/M = mob_override || owner.current

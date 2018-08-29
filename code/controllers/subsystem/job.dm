@@ -436,6 +436,7 @@ SUBSYSTEM_DEF(job)
 
 	if(job && H)
 		job.after_spawn(H, M, joined_late) // note: this happens before the mob has a key! M will always have a client, H might not.
+		job.hippie_after_spawn(H, M) // hippie -- this fucker up here is completely ignored by his childs, how sad
 
 	return H
 
@@ -559,7 +560,7 @@ SUBSYSTEM_DEF(job)
 		SendToAtom(M, pick(latejoin_trackers), buckle)
 	else
 		//bad mojo
-		var/area/shuttle/arrival/A = locate() in GLOB.sortedAreas
+		var/area/shuttle/arrival/A = GLOB.areas_by_type[/area/shuttle/arrival]
 		if(A)
 			//first check if we can find a chair
 			var/obj/structure/chair/C = locate() in A

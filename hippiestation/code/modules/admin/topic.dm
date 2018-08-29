@@ -114,3 +114,8 @@
 	else
 		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>")
 	to_chat(usr, "<span class='adminnotice'>Mentor removed.</span>")
+
+/datum/admins/proc/hippie_on_jobban(mob/M, list/joblist)
+	if(joblist.len && (CATBAN in joblist) && ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.set_species(/datum/species/tarajan, icon_update=1) // can't escape hell

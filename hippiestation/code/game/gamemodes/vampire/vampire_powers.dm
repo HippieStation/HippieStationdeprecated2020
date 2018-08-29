@@ -363,6 +363,7 @@
 		V.coat = new /obj/item/clothing/suit/draculacoat(user.loc)
 	else if(get_dist(V.coat, user) > 1 || !(V.coat in user.GetAllContents()))
 		V.coat.forceMove(user.loc)
+	user.put_in_hands(V.coat)
 	to_chat(user, "<span class='notice'>You summon your dracula coat.</span>")
 
 
@@ -391,6 +392,9 @@
 		bat.controller = user
 		user.status_flags |= GODMODE
 		user.mind.transfer_to(bat)
+		charge_counter = charge_max //so you don't need to wait 20 seconds to turn BACK.
+		recharging = FALSE
+		action.UpdateButtonIcon()
 	else
 		bat.controller.forceMove(bat.loc)
 		bat.controller.status_flags &= ~GODMODE

@@ -96,6 +96,9 @@
 		return ..()
 
 /obj/machinery/poolcontroller/screwdriver_act(mob/living/user, obj/item/W)
+	. = ..()
+	if(.)
+		return TRUE
 	cut_overlays()
 	panel_open = !panel_open
 	to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")

@@ -11,6 +11,7 @@
 
 	var/list/possible_vampires = list()
 	var/const/vampire_amt = 2 //hard limit on vampires if scaling is turned off
+	var/list/pre_vamps = list()
 
 /datum/game_mode/traitor/vampire/announce()
 	to_chat(world, "<B>The current game mode is - Traitor+Vampire!</B>")
@@ -40,21 +41,24 @@
 	else
 		num_vamp = max(1, min(num_players(), vampire_amt/2))
 
+	var/list/old_antag_candidates = antag_candidates.Copy()
 	if(possible_vamps.len>0)
 		for(var/j = 0, j < num_vamp, j++)
 			if(!possible_vamps.len) break
 			var/datum/mind/vamp = pick(possible_vamps)
-			antag_candidates -= vamp
+			pre_vamps += vamp
 			possible_vamps -= vamp
+			antag_candidates -= vamp
 			vamp.special_role = "Vampire"
 			vamp.restricted_roles = restricted_jobs
+		antag_candidates = old_antag_candidates // So we still have a chance for a traitor vampire.
 		return ..()
 	else
-		return 0
+		return FALSE
 
 /datum/game_mode/traitor/vampire/post_setup()
-	for(var/datum/mind/vamp in vampires)
-		add_vampire(vamp.current)
+	for(var/datum/mind/vamp in pre_vamps)
+		vamp.add_antag_datum(/datum/antagonist/vampire)
 	..()
 	return
 
