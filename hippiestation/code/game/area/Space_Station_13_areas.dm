@@ -42,3 +42,7 @@
 						 'sound/ambience/ambimaint4.ogg',
 						 'sound/ambience/ambimaint5.ogg',
 						 'sound/spookoween/ghosty_wind.ogg')
+
+/area/hippie/scichem
+	name = "Sci-Chem"
+	icon_state = "scichem"

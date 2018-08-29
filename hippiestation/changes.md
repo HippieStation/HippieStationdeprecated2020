@@ -21,6 +21,7 @@ The best practice to have while coding is to keep everything modularized, or the
 ## code/game/gamemodes/changeling/changeling.dm !Should be modularized. Can be done easily.
 ## code/game/gamemodes/game_mode.dm
 ## code/game/gamemodes/traitor/traitor.dm !Should be modularized. Can be done easily.
+## code/game/machinery/computer/cloning.dm
 ## code/game/machinery/doors/airlock_types.dm !Should be modularized. Can be done easily.
 ## code/game/machinery/doors/brigdoors.dm
 ## code/game/objects/effects/effect_system/effects_smoke.dm
@@ -63,6 +64,7 @@ The best practice to have while coding is to keep everything modularized, or the
 ## code/modules/mob/living/living.dm 
 ## code/modules/mob/living/say.dm
 ## code/modules/mob/living/silicon/ai/ai.dm
+## code/modules/mob/living/silicon/pai/pai_shell.dm
 ## code/modules/mob/living/silicon/robot/robot.dm
 ## code/modules/mob/living/simple_animal/bot/medbot.dm
 ## code/modules/mob/living/simple_animal/friendly/dog.dm
@@ -78,4 +80,3 @@ The best practice to have while coding is to keep everything modularized, or the
 ## code/modules/surgery/bodyparts/head.dm
 ## code/modules/surgery/helpers.dm
 ## code/modules/surgery/organs/vocal_cords.dm
-

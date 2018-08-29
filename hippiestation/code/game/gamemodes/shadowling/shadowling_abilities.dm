@@ -1,13 +1,15 @@
 #define EMPOWERED_THRALL_LIMIT 5
 
-/obj/effect/proc_holder/spell/proc/shadowling_check(var/mob/living/carbon/human/H)
-	if(!H || !istype(H)) return
-	if(H.dna.species.id == "shadowling" && is_shadow(H)) return TRUE
-	if(H.dna.species.id == "l_shadowling" && is_thrall(H)) return TRUE
-	if(!is_shadow_or_thrall(usr)) to_chat(usr, "<span class='warning'>You can't wrap your head around how to do this.</span>")
-	else if(is_thrall(usr)) to_chat(usr, "<span class='warning'>You aren't powerful enough to do this.</span>")
-	else if(is_shadow(usr)) to_chat(usr, "<span class='warning'>Your telepathic ability is suppressed. Hatch or use Rapid Re-Hatch first.</span>")
-	return 0
+/obj/effect/proc_holder/spell/proc/shadowling_check(var/mob/living/L)
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		if(H.dna.species.id == "shadowling" && is_shadow(H)) return TRUE
+		if(H.dna.species.id == "l_shadowling" && is_thrall(H)) return TRUE
+		if(!is_shadow_or_thrall(usr)) to_chat(usr, "<span class='warning'>You can't wrap your head around how to do this.</span>")
+		else if(is_thrall(usr)) to_chat(usr, "<span class='warning'>You aren't powerful enough to do this.</span>")
+		else if(is_shadow(usr)) to_chat(usr, "<span class='warning'>Your telepathic ability is suppressed. Hatch or use Rapid Re-Hatch first.</span>")
+	if(istype(L, /mob/living/simple_animal/ascendant_shadowling)) return TRUE
+	return FALSE
 
 
 
@@ -39,16 +41,22 @@
 	if(!isliving(t))
 		to_chat(caller, "<span class='warning'>You may only use this ability on living things!</span>")
 		revert_cast()
-		return
+		return FALSE
 	user = caller
 	target = t
 	if(!shadowling_check(user))
 		revert_cast()
-		return
+		return FALSE
+	if(!istype(target))
+		revert_cast()
+		return FALSE
+	return TRUE
 
 /obj/effect/proc_holder/spell/targeted/sling/revert_cast()
 	. = ..()
 	remove_ranged_ability()
+	user = null
+	target = null
 
 /obj/effect/proc_holder/spell/targeted/sling/start_recharge()
 	. = ..()
@@ -68,6 +76,8 @@
 
 /obj/effect/proc_holder/spell/targeted/sling/glare/InterceptClickOn(mob/living/caller, params, atom/t)
 	. = ..()
+	if(!.)
+		return FALSE
 	if(target.stat)
 		to_chat(user, "<span class='warning'>[target] must be conscious!</span>")
 		revert_cast()
@@ -76,23 +86,26 @@
 		to_chat(user, "<span class='warning'>You cannot glare at allies!</span>")
 		revert_cast()
 		return
-	var/mob/living/carbon/human/M = target
-	user.visible_message("<span class='warning'><b>[user]'s eyes flash a purpleish-red!</b></span>")
-	var/distance = get_dist(target, user)
-	if (distance <= 1) //Melee
-		target.visible_message("<span class='danger'>[target] suddendly collapses...</span>")
-		to_chat(target, "<span class='userdanger'>A purple light flashes across your vision, and you lose control of your movements!</span>")
-		target.Stun(100)
-		M.silent += 10
-	else //Distant glare
-		var/loss = 100 - ((distance - 1) * 18)
-		target.adjustStaminaLoss(loss)
-		target.stuttering = loss
-		to_chat(target, "<span class='userdanger'>A purple light flashes across your vision, and exhaustion floods your body...</span>")
-		target.visible_message("<span class='danger'>[target] looks very tired...</span>")
-	charge_counter = 0
-	start_recharge()
-	remove_ranged_ability()
+	if(ishuman(target))
+		var/mob/living/carbon/human/M = target
+		user.visible_message("<span class='warning'><b>[user]'s eyes flash a purpleish-red!</b></span>")
+		var/distance = get_dist(target, user)
+		if (distance <= 1) //Melee
+			target.visible_message("<span class='danger'>[target] suddendly collapses!</span>", "<span class='userdanger'>A purple light flashes across your vision, and you lose control of your movements!</span>")
+			target.Knockdown(100)
+			M.silent += 10
+		else //Distant glare
+			var/loss = 100 - ((distance - 1) * 18)
+			target.adjustStaminaLoss(loss)
+			target.stuttering = loss
+			target.visible_message("<span class='danger'>[target] looks very tired...</span>", "<span class='userdanger'>A purple light flashes across your vision, and exhaustion floods your body...</span>")
+		charge_counter = 0
+		start_recharge()
+		remove_ranged_ability()
+	else
+		to_chat(user, "<span class='warning'>You can't glare at [target]!</span>")
+		revert_cast()
+		return
 	user = null
 	target = null
 
@@ -141,9 +154,9 @@
 		for(var/obj/item/F in T.contents)
 			extinguishItem(F)
 		for(var/obj/machinery/light/L in T.contents)
-			L.on = 0
+			L.flickering = TRUE // this is just to prevent emergency light from coming on. it won't actually flicker without running flicker()
+			L.seton(FALSE)
 			L.visible_message("<span class='warning'>[L] flickers and falls dark.</span>")
-			L.update(0)
 		for(var/obj/machinery/computer/C in T.contents)
 			C.set_light(0)
 			C.visible_message("<span class='warning'>[C] grows dim, its screen barely readable.</span>")
@@ -255,7 +268,7 @@
 					user.visible_message("<span class='warning'>[user]'s palms flare a bright red against [target]'s temples!</span>")
 					to_chat(target, "<span class='danger'>A terrible red light floods your mind. You collapse as conscious thought is wiped away.</span>")
 					target.Knockdown(120)
-					if(target.isloyal())
+					if(target.has_trait(TRAIT_MINDSHIELD))
 						to_chat(user, "<span class='notice'>They are protected by an implant. You begin to shut down the nanobots in their brain - this will take some time..</span>")
 						user.visible_message("<span class='warning'>[user] pauses, then dips their head in concentration!</span>")
 						to_chat(target, "<span class='boldannounce'>You feel your mental protection faltering</span>")
@@ -592,7 +605,7 @@
 
 /obj/effect/proc_holder/spell/targeted/shadowling_extend_shuttle
 	name = "Destroy Engines"
-	desc = "Extends the time of the emergency shuttle's arrival by fifteen minutes. This can only be used once."
+	desc = "Extends the time of the emergency shuttle's arrival by fifteen minutes, by sacrificing a thrall. This can only be used once."
 	panel = "Shadowling Abilities"
 	range = 1
 	human_req = 1
@@ -774,6 +787,8 @@
 
 /obj/effect/proc_holder/spell/targeted/sling/annihilate/InterceptClickOn(mob/living/caller, params, atom/t)
 	. = ..()
+	if(!.)
+		return FALSE
 	var/mob/living/boom = target
 	if(user.incorporeal_move)
 		to_chat(user, "<span class='warning'>You are not in the same plane of existence. Unphase first.</span>")
@@ -810,6 +825,8 @@
 
 /obj/effect/proc_holder/spell/targeted/sling/hypnosis/InterceptClickOn(mob/living/caller, params, atom/t)
 	. = ..()
+	if(!.)
+		return FALSE
 	if(user.incorporeal_move)
 		revert_cast()
 		to_chat(user, "<span class='warning'>You are not in the same plane of existence. Unphase first.</span>")
@@ -924,6 +941,8 @@
 
 /obj/effect/proc_holder/spell/targeted/sling/gore/InterceptClickOn(mob/living/caller, params, atom/t)
 	. = ..()
+	if(!.)
+		return FALSE
 	if(user.incorporeal_move)
 		revert_cast()
 		to_chat(user, "<span class='warning'>You are not in the same plane of existence. Unphase first.</span>")
