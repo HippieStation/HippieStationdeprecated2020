@@ -1,7 +1,8 @@
-#define GENERATOR_PATH "tools/tts_generator/"
-#define STATUS_NEW		0
+#define GENERATOR_PATH    "hippiestation\\tools\\tts_generator\\"
+#define DATA_PATH         GENERATOR_PATH + "data\\"
+#define STATUS_NEW        0
 #define STATUS_GENERATING 1
-#define STATUS_PLAYING	2
+#define STATUS_PLAYING    2
 
 SUBSYSTEM_DEF(tts)
 	name = "Text-to-Speech"
@@ -14,6 +15,13 @@ SUBSYSTEM_DEF(tts)
 
 	if (!CONFIG_GET(flag/enable_tts))
 		can_fire = FALSE
+	else
+		/* kill any other ones just to be safe */
+		var/cmd = "taskkill /IM tts_generator.exe /F"
+		shell(cmd)
+		cmd = "cmd /c start \"tts_generator\" [GENERATOR_PATH]tts_generator.exe"
+		shell(cmd)
+
 	return ..()
 
 /datum/controller/subsystem/tts/proc/check_processing(client/C)
@@ -33,17 +41,18 @@ SUBSYSTEM_DEF(tts)
 	for (var/datum/tts/T in processing)
 		switch(T.status)
 			if (STATUS_NEW)
-				/* Start generating the sound */
-				T.status = STATUS_GENERATING
 				var/uid = "[world.time]" + T.owner.ckey
-				var/cmd = GENERATOR_PATH + "tts_generator.exe"
-				cmd = cmd + " --output \"" + uid + "_speech.wav\""
-				cmd = cmd + " --text \"[T.text]\""
+				fdel(DATA_PATH + "[uid].request")
+				fdel(DATA_PATH + "[uid].rlock")
 
-				if (T.voice)
-					cmd = cmd + " --voice \"[T.voice]\""
-				shell(cmd)
-				T.filename = GENERATOR_PATH + uid + "_speech"
+				text2file("", DATA_PATH + "[uid].rlock")
+				text2file("name=[uid]", DATA_PATH + "[uid].request")
+				text2file("voice=[T.voice]", DATA_PATH + "[uid].request")
+				text2file("text=[T.text]", DATA_PATH + "[uid].request")
+				fdel(DATA_PATH + "[uid].rlock")
+
+				T.filename = DATA_PATH + "[uid]"
+				T.status = STATUS_GENERATING
 				continue
 			if (STATUS_GENERATING)
 				/* Check if this file is ready */
