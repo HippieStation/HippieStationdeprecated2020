@@ -97,7 +97,8 @@
 
 /obj/item/reagent_containers/food/snacks/butterdog/carbon/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/slippery, 0)
+	var/component/todel = GetComponent(/datum/component/slippery, 80)
+	qdel(todel)
 
 /obj/item/reagent_containers/food/snacks/hamdisc
 	name = "ham disc"
