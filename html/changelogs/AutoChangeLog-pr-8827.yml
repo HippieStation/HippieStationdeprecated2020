@@ -1,4 +1,0 @@
-author: "Carbonhell"
-delete-after: True
-changes: 
-  - bugfix: "Lings are able to absorb again without some weird error stopping them."
