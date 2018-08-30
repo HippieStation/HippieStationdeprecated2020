@@ -26918,11 +26918,9 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/obj/item/radio/intercom{
-	freerange = 0;
-	frequency = 1459;
-	name = "Station Intercom (General)";
-	pixel_x = 29
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
@@ -27553,8 +27551,8 @@
 	pixel_y = 2
 	},
 /obj/item/reagent_containers/dropper,
-/obj/machinery/airalarm{
-	dir = 8;
+/obj/machinery/firealarm{
+	dir = 4;
 	pixel_x = 24
 	},
 /turf/open/floor/plasteel/white,
@@ -28354,9 +28352,16 @@
 	pixel_y = 3
 	},
 /obj/item/stack/cable_coil,
-/obj/machinery/firealarm{
+/obj/structure/cable{
+	icon_state = "0-2";
+	pixel_y = 1;
+	d2 = 2
+	},
+/obj/machinery/power/apc{
 	dir = 4;
-	pixel_x = 24
+	name = "Research Lab APC";
+	areastring = "/area/science/lab";
+	pixel_x = 26
 	},
 /turf/open/floor/plasteel/white,
 /area/science/lab)
@@ -29567,20 +29572,20 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 10
 	},
-/area/science/lab)
+/area/science/research)
 "bxx" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel/white/side{
 	dir = 10
 	},
-/area/science/lab)
+/area/science/research)
 "bxz" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/white/side{
 	dir = 10
 	},
-/area/science/lab)
+/area/science/research)
 "bxA" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -29588,7 +29593,7 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 8
 	},
-/area/science/lab)
+/area/science/research)
 "bxD" = (
 /turf/closed/wall/r_wall,
 /area/science/explab)
@@ -30061,7 +30066,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel/white,
-/area/science/lab)
+/area/science/research)
 "byU" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -30070,14 +30075,14 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/science/lab)
+/area/science/research)
 "byV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /turf/open/floor/plasteel/white,
-/area/science/lab)
+/area/science/research)
 "byW" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -30639,7 +30644,7 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 9
 	},
-/area/science/lab)
+/area/science/research)
 "bAn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -30648,13 +30653,13 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 9
 	},
-/area/science/lab)
+/area/science/research)
 "bAo" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/open/floor/plasteel/white/side{
 	dir = 9
 	},
-/area/science/lab)
+/area/science/research)
 "bAs" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
@@ -30665,7 +30670,7 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 8
 	},
-/area/science/lab)
+/area/science/research)
 "bAt" = (
 /obj/machinery/door/firedoor/heavy,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -31162,7 +31167,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel/white,
-/area/science/lab)
+/area/science/circuit)
 "bBN" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/white,
@@ -31586,7 +31591,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/white,
-/area/science/lab)
+/area/science/circuit)
 "bDc" = (
 /turf/closed/wall,
 /area/crew_quarters/heads/hor)
@@ -32275,19 +32280,19 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/white,
-/area/science/lab)
+/area/science/circuit)
 "bEE" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/science/lab)
+/area/science/circuit)
 "bEH" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/science/lab)
+/area/science/circuit)
 "bEI" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -32295,7 +32300,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel/white,
-/area/science/lab)
+/area/science/circuit)
 "bEK" = (
 /turf/closed/wall,
 /area/science/explab)
@@ -32695,7 +32700,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/white,
-/area/science/lab)
+/area/science/circuit)
 "bFR" = (
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/hor)
@@ -33199,17 +33204,17 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel,
-/area/science/lab)
+/area/science/circuit)
 "bHe" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
-/area/science/lab)
+/area/science/circuit)
 "bHg" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
 /turf/open/floor/plasteel,
-/area/science/lab)
+/area/science/circuit)
 "bHh" = (
 /obj/machinery/requests_console{
 	department = "Science";
@@ -33225,7 +33230,7 @@
 /obj/item/multitool,
 /obj/item/screwdriver,
 /turf/open/floor/plasteel/white,
-/area/science/lab)
+/area/science/circuit)
 "bHi" = (
 /turf/open/floor/engine,
 /area/science/explab)
@@ -33693,18 +33698,18 @@
 /obj/structure/chair/office/light,
 /obj/effect/landmark/start/scientist,
 /turf/open/floor/plasteel/white,
-/area/science/lab)
+/area/science/circuit)
 "bIn" = (
 /obj/structure/chair/office/light{
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/science/lab)
+/area/science/circuit)
 "bIo" = (
 /obj/structure/table/reinforced,
 /obj/item/book/manual/wiki/circuitry,
 /turf/open/floor/plasteel/white,
-/area/science/lab)
+/area/science/circuit)
 "bIp" = (
 /obj/machinery/rnd/experimentor,
 /turf/open/floor/plating,
@@ -34311,30 +34316,30 @@
 /obj/item/integrated_electronics/wirer,
 /obj/item/integrated_electronics/debugger,
 /turf/open/floor/plasteel/white,
-/area/science/lab)
+/area/science/circuit)
 "bJF" = (
 /obj/structure/table/reinforced,
 /obj/item/integrated_circuit_printer,
 /turf/open/floor/plasteel/white,
-/area/science/lab)
+/area/science/circuit)
 "bJG" = (
 /obj/machinery/light,
 /obj/structure/table/reinforced,
 /obj/item/screwdriver,
 /obj/item/multitool,
 /turf/open/floor/plasteel/white,
-/area/science/lab)
+/area/science/circuit)
 "bJH" = (
 /obj/machinery/vending/assist,
 /turf/open/floor/plasteel/white,
-/area/science/lab)
+/area/science/circuit)
 "bJI" = (
 /obj/structure/table/reinforced,
 /obj/item/integrated_electronics/analyzer,
 /obj/item/integrated_electronics/debugger,
 /obj/item/integrated_electronics/wirer,
 /turf/open/floor/plasteel/white,
-/area/science/lab)
+/area/science/circuit)
 "bJK" = (
 /obj/machinery/camera{
 	c_tag = "Experimentor Lab Chamber";
@@ -38697,13 +38702,13 @@
 "bTY" = (
 /obj/machinery/door/poddoor/incinerator_toxmix,
 /turf/open/floor/engine/vacuum,
-/area/science/mixing)
+/area/science/mixing/chamber)
 "bTZ" = (
 /obj/structure/sign/warning/vacuum/external{
 	pixel_y = 32
 	},
 /turf/open/floor/engine/vacuum,
-/area/science/mixing)
+/area/science/mixing/chamber)
 "bUa" = (
 /obj/machinery/sparker/toxmix{
 	dir = 2;
@@ -38713,13 +38718,13 @@
 	dir = 4
 	},
 /turf/open/floor/engine/vacuum,
-/area/science/mixing)
+/area/science/mixing/chamber)
 "bUb" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
 	},
 /turf/closed/wall/r_wall,
-/area/science/mixing)
+/area/science/mixing/chamber)
 "bUc" = (
 /obj/machinery/airlock_sensor/incinerator_toxmix{
 	pixel_y = 24
@@ -38729,7 +38734,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/engine,
-/area/science/mixing)
+/area/science/mixing/chamber)
 "bUd" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -38742,7 +38747,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/white,
-/area/science/mixing)
+/area/science/mixing/chamber)
 "bUe" = (
 /obj/machinery/atmospherics/components/binary/valve{
 	dir = 4;
@@ -39132,34 +39137,34 @@
 /area/science/research)
 "bUX" = (
 /turf/open/floor/engine/vacuum,
-/area/science/mixing)
+/area/science/mixing/chamber)
 "bUY" = (
 /obj/effect/landmark/event_spawn,
 /obj/machinery/air_sensor/atmos/toxins_mixing_tank,
 /turf/open/floor/engine/vacuum,
-/area/science/mixing)
+/area/science/mixing/chamber)
 "bUZ" = (
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/research/glass/incinerator/toxmix_exterior,
 /turf/open/floor/engine,
-/area/science/mixing)
+/area/science/mixing/chamber)
 "bVa" = (
 /obj/machinery/atmospherics/components/binary/dp_vent_pump/high_volume/incinerator_toxmix{
 	dir = 2
 	},
 /turf/open/floor/engine,
-/area/science/mixing)
+/area/science/mixing/chamber)
 "bVb" = (
 /obj/effect/mapping_helpers/airlock/locked,
 /obj/machinery/door/airlock/research/glass/incinerator/toxmix_interior,
 /turf/open/floor/engine,
-/area/science/mixing)
+/area/science/mixing/chamber)
 "bVc" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
-/area/science/mixing)
+/area/science/mixing/chamber)
 "bVd" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -39587,7 +39592,7 @@
 	dir = 4
 	},
 /turf/open/floor/engine/vacuum,
-/area/science/mixing)
+/area/science/mixing/chamber)
 "bWn" = (
 /obj/structure/sign/warning/fire{
 	pixel_y = -32
@@ -39597,7 +39602,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/engine,
-/area/science/mixing)
+/area/science/mixing/chamber)
 "bWo" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 4
@@ -39615,7 +39620,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/science/mixing)
+/area/science/mixing/chamber)
 "bWp" = (
 /obj/machinery/atmospherics/components/binary/valve{
 	dir = 4;
@@ -40163,7 +40168,7 @@
 	dir = 5
 	},
 /turf/closed/wall/r_wall,
-/area/science/mixing)
+/area/science/mixing/chamber)
 "bXC" = (
 /obj/structure/tank_dispenser,
 /turf/open/floor/plasteel/white,
@@ -43476,6 +43481,9 @@
 /obj/item/target/clown,
 /obj/item/target/syndicate,
 /obj/item/target/syndicate,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel,
 /area/science/misc_lab)
 "cgJ" = (
@@ -43498,9 +43506,6 @@
 	name = "Testing Lab APC";
 	areastring = "/area/science/misc_lab";
 	pixel_x = 26
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -45059,14 +45064,10 @@
 /turf/open/floor/engine,
 /area/science/xenobiology)
 "ckR" = (
-/obj/structure/table/glass,
-/obj/item/reagent_containers/glass/beaker/large{
-	pixel_x = -3;
-	pixel_y = 3
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/machinery/chem_heater,
 /turf/open/floor/plasteel/vault{
 	dir = 6
 	},
@@ -57177,14 +57178,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"ezD" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white/side{
-	dir = 9
-	},
-/area/science/lab)
 "eAI" = (
 /obj/machinery/firealarm{
 	dir = 2;
@@ -57675,7 +57668,7 @@
 	dir = 5
 	},
 /turf/open/floor/plasteel,
-/area/science/lab)
+/area/science/circuit)
 "fxk" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -58437,6 +58430,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"gPb" = (
+/turf/open/floor/plasteel/white,
+/area/science/circuit)
 "gPK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -58848,7 +58844,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/science/lab)
+/area/science/circuit)
 "hBh" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
@@ -58984,7 +58980,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/white,
-/area/science/lab)
+/area/science/circuit)
 "hNn" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -59261,6 +59257,12 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
+"ihY" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/science/circuit)
 "iix" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
@@ -60298,7 +60300,7 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 8
 	},
-/area/science/lab)
+/area/science/research)
 "jPT" = (
 /obj/effect/turf_decal/loading_area,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -60666,7 +60668,7 @@
 	name = "research lab shutters"
 	},
 /turf/open/floor/plating,
-/area/science/lab)
+/area/science/circuit)
 "kHC" = (
 /obj/machinery/door/airlock/research{
 	name = "Testing Lab";
@@ -61583,6 +61585,9 @@
 	dir = 10
 	},
 /area/hallway/secondary/entry)
+"meu" = (
+/turf/closed/wall/r_wall,
+/area/science/mixing/chamber)
 "meC" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -62309,7 +62314,7 @@
 	dir = 4
 	},
 /turf/closed/wall/r_wall,
-/area/science/mixing)
+/area/science/mixing/chamber)
 "nvr" = (
 /obj/structure/rack,
 /obj/item/taperecorder{
@@ -63010,7 +63015,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/science/lab)
+/area/science/research)
 "oLC" = (
 /turf/open/floor/plasteel,
 /area/security/prison)
@@ -63717,7 +63722,7 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/white,
-/area/science/lab)
+/area/science/research)
 "qeo" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -64479,7 +64484,7 @@
 /turf/open/floor/plasteel/white/side{
 	dir = 10
 	},
-/area/science/lab)
+/area/science/research)
 "rFD" = (
 /obj/machinery/seed_extractor,
 /turf/open/floor/plating,
@@ -64504,7 +64509,7 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/white,
-/area/science/mixing)
+/area/science/mixing/chamber)
 "rIp" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -65378,6 +65383,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+"tdZ" = (
+/turf/closed/wall,
+/area/science/circuit)
 "tes" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -65845,7 +65853,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/white,
-/area/science/lab)
+/area/science/research)
 "udn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -66262,6 +66270,15 @@
 	dir = 8
 	},
 /area/security/prison)
+"uUZ" = (
+/obj/item/radio/intercom{
+	freerange = 0;
+	frequency = 1459;
+	name = "Station Intercom (General)";
+	pixel_x = 29
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
 "uVL" = (
 /obj/machinery/computer/rdconsole/experiment{
 	dir = 1
@@ -67115,7 +67132,7 @@
 	dir = 9
 	},
 /turf/open/floor/plasteel,
-/area/science/lab)
+/area/science/circuit)
 "wyO" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command/glass{
@@ -67515,7 +67532,7 @@
 "xgo" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel/white,
-/area/science/lab)
+/area/science/circuit)
 "xgB" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /obj/machinery/camera{
@@ -67575,6 +67592,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+"xkv" = (
+/turf/open/floor/plasteel,
+/area/science/circuit)
 "xlF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -67604,6 +67624,16 @@
 /obj/item/stack/sheet/mineral/uranium,
 /turf/open/floor/plasteel/darkpurple,
 /area/medical/chemistry)
+"xox" = (
+/obj/structure/table/glass,
+/obj/item/reagent_containers/glass/beaker/large{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/turf/open/floor/plasteel/vault{
+	dir = 6
+	},
+/area/science/misc_lab)
 "xoE" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -114597,7 +114627,7 @@ bLL
 bLL
 ccj
 cdx
-fXj
+xox
 cgG
 chD
 ciJ
@@ -114830,14 +114860,14 @@ bvM
 rFi
 oLf
 bAm
-bvM
-bvM
-bvM
+tdZ
+tdZ
+tdZ
 kEw
 kEw
 kEw
-bvM
-bvM
+tdZ
+bDc
 bLM
 bLM
 bOJ
@@ -115090,11 +115120,11 @@ bAn
 hMi
 bDb
 bED
-bpJ
-bpJ
-bpJ
+gPb
+gPb
+gPb
 bJE
-bvM
+bDc
 hge
 oFI
 bOK
@@ -115344,14 +115374,14 @@ bvO
 bxx
 byT
 bAo
-bpJ
+gPb
 wyL
 bEE
 bEE
 bHd
 bIl
 bJF
-bvM
+bDc
 bLO
 bNo
 rBH
@@ -115361,7 +115391,7 @@ bFR
 bTY
 bTY
 bTY
-bLX
+meu
 mUH
 cah
 cah
@@ -115600,15 +115630,15 @@ buv
 bvN
 bxw
 byU
-ezD
-bpJ
+xJc
+gPb
 hAJ
-buu
-buu
+xkv
+xkv
 bHe
-bpJ
+gPb
 bJG
-bvM
+bDc
 bLP
 xOm
 nyG
@@ -115618,7 +115648,7 @@ bFR
 bTZ
 bUX
 bUX
-bLX
+meu
 bYN
 cah
 cah
@@ -115857,15 +115887,15 @@ buw
 bvQ
 bxz
 byV
-ezD
-bpJ
-bsK
-buu
-buu
+xJc
+gPb
+ihY
+xkv
+xkv
 bHe
-bpJ
+gPb
 bJH
-bvM
+bDc
 bLQ
 jCN
 nvr
@@ -115875,7 +115905,7 @@ bFR
 bUa
 bUY
 bWm
-bLX
+meu
 bYN
 cah
 cah
@@ -116114,15 +116144,15 @@ bpJ
 bpJ
 bxw
 qdG
-ezD
-bpJ
+xJc
+gPb
 fvl
 bEH
 bEH
 bHg
 bIn
 bJI
-bvM
+bDc
 bLR
 kCn
 kow
@@ -116132,7 +116162,7 @@ bFR
 bUb
 bUZ
 bUb
-bLX
+meu
 cCR
 cah
 cah
@@ -116364,7 +116394,7 @@ bjE
 bkO
 bmx
 boo
-bpJ
+uUZ
 brq
 bsO
 bux
@@ -116379,7 +116409,7 @@ bFQ
 bHh
 bIo
 bJF
-bvM
+bDc
 bLS
 trV
 bOL
@@ -116629,14 +116659,14 @@ sRk
 bmx
 fyF
 bAt
-bvM
-bmx
-bmx
-bmx
-bmx
-bmx
-bmx
-bmx
+bEK
+bxD
+bxD
+bxD
+bxD
+bxD
+bxD
+bFR
 bDc
 bDc
 bDc
