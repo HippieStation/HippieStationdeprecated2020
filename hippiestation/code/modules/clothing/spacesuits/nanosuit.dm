@@ -733,8 +733,8 @@
 			D.Knockdown(60)
 			D.visible_message("<span class='warning'>[A] knocks [D] the fuck out!!", \
 							"<span class='userdanger'>[A] knocks you the fuck out!!</span>")
-	if(check_target_facings(D, A) == FACING_SAME_DIR && !D.stat && !D.IsKnockdown() && D != A && prob(70))
-		D.AdjustStamina(60)
+	if(check_target_facings(D, A) == FACING_SAME_DIR && !D.stat && !D.IsKnockdown() && D != A && prob(30))
+		D.Knockdown(50)
 		bonus_damage += 10
 		D.visible_message("<span class='danger'>[A] back hit [D]!</span>", \
 					  "<span class='userdanger'>[A] back hits you!</span>")
