@@ -152,21 +152,12 @@
 
 	if(owner.has_trait(TRAIT_DEPRESSION))
 		if(prob(0.05))
-<<<<<<< HEAD
-			add_event("depression", /datum/mood_event/depression)
-			clear_event("jolly")
-	if(owner.has_trait(TRAIT_JOLLY))
-		if(prob(0.05))
-			add_event("jolly", /datum/mood_event/jolly)
-			clear_event("depression")
-=======
 			add_event(null, "depression", /datum/mood_event/depression)
 			clear_event(null, "jolly")
 	if(owner.has_trait(TRAIT_JOLLY))
 		if(prob(0.05))
 			add_event(null, "jolly", /datum/mood_event/jolly)
 			clear_event(null, "depression")
->>>>>>> 94449d931f... Merge pull request #39990 from ninjanomnom/origin-signal
 
 	holdmyinsanityeffect = insanity_effect
 	
