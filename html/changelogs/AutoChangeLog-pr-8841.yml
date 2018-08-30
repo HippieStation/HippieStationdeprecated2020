@@ -1,0 +1,4 @@
+author: "Carbonhell"
+delete-after: True
+changes: 
+  - bugfix: "Humans won't crawl while moving in space due to inertia anymore."
