@@ -686,15 +686,15 @@
 					NS.onmove(0.2)
 
 /datum/martial_art/nano
-	name = "Strength Mode"
+	name = "Nanosuit strength mode"
 	block_chance = 75
 	deflection_chance = 25
 
 /datum/martial_art/nano/grab_act(mob/living/carbon/human/A, mob/living/carbon/D)
 	if(A.grab_state >= GRAB_AGGRESSIVE)
-		D.grabbedby(A, 1)
+		D.grabbedby(A, TRUE)
 	else
-		A.start_pulling(D, 1)
+		A.start_pulling(D, TRUE)
 		if(A.pulling)
 			D.stop_pulling()
 			log_combat(A, D, "grabbed", addition="aggressively")
@@ -703,7 +703,6 @@
 	return TRUE
 
 /datum/martial_art/nano/harm_act(var/mob/living/carbon/human/A, var/mob/living/carbon/D)
-	log_combat(A, D, "punched")
 	var/picked_hit_type = pick("punches", "kicks")
 	var/bonus_damage = 10
 
@@ -716,11 +715,10 @@
 		playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
 		bonus_damage += 5
 		D.Knockdown(60)
-		log_combat(A, D, "nanosuit leg sweeped")
+		log_combat(A, D, "nanosuit leg swept")
 	if(D != A && !D.stat || !D.IsKnockdown()) //and we can't knock ourselves the fuck out/down!
 		if(A.grab_state == GRAB_AGGRESSIVE)
 			A.stop_pulling() //So we don't spam the combo
-
 			bonus_damage += 5
 			D.Knockdown(15)
 			D.visible_message("<span class='warning'>[A] knocks [D] the fuck down!", \
@@ -735,7 +733,12 @@
 			D.Knockdown(60)
 			D.visible_message("<span class='warning'>[A] knocks [D] the fuck out!!", \
 							"<span class='userdanger'>[A] knocks you the fuck out!!</span>")
-	if(prob(30))
+	if(check_target_facings(D, A) == FACING_SAME_DIR && !D.stat && !D.IsKnockdown() && D != A && prob(70))
+		D.AdjustStamina(60)
+		bonus_damage += 10
+		D.visible_message("<span class='danger'>[A] back hit [D]!</span>", \
+					  "<span class='userdanger'>[A] back hits you!</span>")
+	else if(prob(30))
 		D.visible_message("<span class='warning'>[A] quick [picked_hit_type] [D]!", \
 							"<span class='userdanger'>[A] quick [picked_hit_type] you!</span>")
 		A.changeNext_move(CLICK_CD_RAPID)
@@ -743,11 +746,6 @@
 	else
 		D.visible_message("<span class='danger'>[A] [picked_hit_type] [D]!</span>", \
 					  "<span class='userdanger'>[A] [picked_hit_type] you!</span>")
-	if(check_target_facings(D, A) == FACING_SAME_DIR && prob(30))
-		D.Knockdown(70)
-		bonus_damage += 5
-		D.visible_message("<span class='danger'>[A] back hit [D]!</span>", \
-					  "<span class='userdanger'>[A] back hits you!</span>")
 
 	if(picked_hit_type == "kicks" || picked_hit_type == "stomps on")
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
@@ -755,7 +753,7 @@
 	else
 		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 		playsound(get_turf(D), 'sound/effects/hit_punch.ogg', 50, 1, -1)
-	log_combat(A, D, "[picked_hit_type] ([name])")
+	log_combat(A, D, "attacked ([name])")
 	D.apply_damage(bonus_damage, BRUTE)
 	return TRUE
 
@@ -775,7 +773,7 @@
 		D.visible_message("<span class='danger'>[A] attempted to disarm [D]!</span>", \
 							"<span class='userdanger'>[A] attempted to disarm [D]!</span>")
 		playsound(D, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-	log_combat(A, D, "disarmed with krav maga", "[I ? " removing \the [I]" : ""]")
+	log_combat(A, D, "disarmed with nanosuit", "[I ? " removing \the [I]" : ""]")
 	return TRUE
 
 
