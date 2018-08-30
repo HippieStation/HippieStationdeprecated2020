@@ -205,8 +205,8 @@
 	var/help_verb = /mob/living/carbon/human/proc/Nanosuit_help
 	jetpack = /obj/item/tank/jetpack/suit
 	var/recharge_cooldown = 0 //if this number is greater than 0, we can't recharge
-	var/cloak_use_rate = 1.3 //cloaked energy consume rate
-	var/speed_use_rate = 1.8 //speed energy consume rate
+	var/cloak_use_rate = 1.2 //cloaked energy consume rate
+	var/speed_use_rate = 1.6 //speed energy consume rate
 	var/crit_energy = 20 //critical energy level
 	var/regen_rate = 3 //rate at which we regen
 	var/msg_time_upper = 0
