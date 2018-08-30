@@ -3,6 +3,10 @@
 	var/mutable_appearance/reagent_icon
 	var/use_reagent_icon = FALSE
 
+/obj/structure/reagent_dispensers/Initialize()
+	generate_reagent_icon()
+	. = ..()
+
 /obj/structure/reagent_dispensers/water_cooler
 	icon_hippie = 'hippiestation/icons/obj/vending.dmi'
 
