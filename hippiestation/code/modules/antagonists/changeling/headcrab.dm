@@ -4,9 +4,13 @@
 	chemical_cost = 35
 	dna_cost = 2
 	req_human = 1
+	var/used = FALSE // to avoid multiple sting_action calls due to alert()
 
 /obj/effect/proc_holder/changeling/headcrab/sting_action(mob/user)
 	set waitfor = FALSE
+	if(used)
+		return
+	used = TRUE
 	if(alert("Are we sure we wish to kill ourself and create a headslug?",,"Yes", "No") == "No")
 		return
 	var/datum/mind/M = user.mind
@@ -33,6 +37,7 @@
 		crab.origin.active = 1
 		crab.origin.transfer_to(crab)
 		to_chat(crab, "<span class='warning'>You burst out of the remains of your former body in a shower of gore!</span>")
+	used = FALSE
 
 /mob/living/simple_animal/hostile/headcrab
 	health = 25
