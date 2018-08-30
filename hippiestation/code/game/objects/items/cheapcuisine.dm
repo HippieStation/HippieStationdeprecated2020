@@ -97,7 +97,7 @@
 
 /obj/item/reagent_containers/food/snacks/butterdog/carbon/ComponentInitialize()
 	. = ..()
-	var/component/todel = GetComponent(/datum/component/slippery, 80)
+	var/component/todel = GetComponent(/datum/component/slippery)
 	qdel(todel)
 
 /obj/item/reagent_containers/food/snacks/hamdisc
