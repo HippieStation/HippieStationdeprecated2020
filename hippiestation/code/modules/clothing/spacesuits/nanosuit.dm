@@ -209,8 +209,8 @@
 	var/speed_use_rate = 1.6 //speed energy consume rate
 	var/crit_energy = 20 //critical energy level
 	var/regen_rate = 3 //rate at which we regen
-	var/msg_time_upper = 0
-	var/msg_time_lower = 0
+	var/msg_time_react = 0
+	var/trauma_threshold = 30
 	var/obj/item/stock_parts/cell/nano/cell //What type of power cell this uses
 	block_chance = 0
 
@@ -265,10 +265,8 @@
 		energy=min(cell.maxcharge,energy2) //our energy now equals the energy we had + 0.75 for everytime it iterates through, so it increases by 0.75 every tick until it goes to 100
 	if(recharge_cooldown > 0) //do we have a recharge delay set?
 		recharge_cooldown -= 1 //reduce it
-	if(msg_time_upper)
-		msg_time_upper -= 1
-	if(msg_time_lower)
-		msg_time_lower -= 1
+	if(msg_time_react)
+		msg_time_react -= 1
 	if(cell.charge != energy)
 		set_nano_energy(energy) //now set our current energy to the variable we modified
 
@@ -326,15 +324,30 @@
 		heal_nano(user)
 	for(var/X in U.bodyparts)
 		var/obj/item/bodypart/BP = X
-		if(BP.brute_dam > 30 && BP.body_zone != BODY_ZONE_HEAD && BP.body_zone != BODY_ZONE_CHEST)
-			if(msg_time_lower == 0 && (BP.body_zone == BODY_ZONE_L_LEG || BP.body_zone == BODY_ZONE_R_LEG))
-				helmet.display_visor_message("Femoral fracture detected in [BP.name]! Administering local anesthetic.")
+		if(msg_time_react == 0)
+			if(BP.body_zone == BODY_ZONE_L_LEG || BP.body_zone == BODY_ZONE_R_LEG || BP.body_zone == BODY_ZONE_L_ARM || BP.body_zone == BODY_ZONE_R_ARM)
+				if(BP.brute_dam > trauma_threshold)
+					helmet.display_visor_message("Extensive blunt force detected in [BP.name]! Administering local anesthetic.")
+					msg_time_react = 200
+				if(BP.burn_dam > trauma_threshold)
+					helmet.display_visor_message("Heat shield failure detected in [BP.name]! Administering local anesthetic.")
+					msg_time_react = 200
 				user.reagents.add_reagent("morphine", 0.5)
-				msg_time_lower = 600
-			if(msg_time_upper == 0 && (BP.body_zone == BODY_ZONE_L_ARM || BP.body_zone == BODY_ZONE_R_ARM))
-				helmet.display_visor_message("Humerous fracture detected in [BP.name]! Administering local anesthetic.")
-				user.reagents.add_reagent("morphine", 0.5)
-				msg_time_upper = 600
+			if(BP.body_zone == BODY_ZONE_HEAD)
+				if(BP.brute_dam > trauma_threshold)
+					helmet.display_visor_message("Cranial trauma detected!")
+					msg_time_react = 300
+				if(BP.burn_dam > trauma_threshold)
+					helmet.display_visor_message("Facial burns detected!")
+					msg_time_react = 300
+			if(BP.body_zone == BODY_ZONE_CHEST)
+				if(BP.brute_dam > trauma_threshold)
+					helmet.display_visor_message("Thoracic trauma detected!")
+					msg_time_react = 300
+				if(BP.burn_dam > trauma_threshold)
+					helmet.display_visor_message("Thoracic burns detected!")
+					msg_time_react = 300
+
 	if(attack_type == THROWN_PROJECTILE_ATTACK)
 		final_block_chance += 15
 	if(attack_type == LEAP_ATTACK)
