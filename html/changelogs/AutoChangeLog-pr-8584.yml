@@ -1,5 +1,0 @@
-author: "JohnGinnane"
-delete-after: True
-changes: 
-  - rscadd: "Humans now have text-to-speech"
-  - rscadd: "Admins can play global text-to-speech. Fun > Play TTS"
