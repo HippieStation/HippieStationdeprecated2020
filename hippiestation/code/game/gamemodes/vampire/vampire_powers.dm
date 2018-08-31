@@ -331,7 +331,7 @@
 		new /obj/effect/decal/remains/human(L.loc)
 		L.dust()
 	to_chat(L, "<span class='notice'>We begin to reanimate... this will take a minute.</span>")
-	addtimer(CALLBACK(src, .proc/revive, L), rand(600))
+	addtimer(CALLBACK(src, .proc/revive, L), 600)
 
 /obj/effect/proc_holder/spell/self/revive/proc/revive(mob/living/user)
 	if(user.reagents.has_reagent("holywater"))
