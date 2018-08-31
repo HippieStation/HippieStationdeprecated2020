@@ -16,10 +16,7 @@ SUBSYSTEM_DEF(tts)
 	if (!CONFIG_GET(flag/enable_tts))
 		can_fire = FALSE
 	else
-		/* kill any other ones just to be safe */
-		var/cmd = "taskkill /IM tts_generator.exe /F"
-		shell(cmd)
-		cmd = "cmd /c start \"tts_generator\" [GENERATOR_PATH]tts_generator.exe"
+		var/cmd = "cmd /c start \"tts_generator\" [GENERATOR_PATH]tts_generator.exe"
 		shell(cmd)
 
 	return ..()
@@ -56,18 +53,23 @@ SUBSYSTEM_DEF(tts)
 				continue
 			if (STATUS_GENERATING)
 				/* Check if this file is ready */
-				if (fexists(T.filename + ".ogg") && fexists(T.filename + ".meta") && !fexists(T.filename + ".lock"))
+				if (fexists(T.filename + ".ogg") && fexists(T.filename + ".meta"))
 					play_tts(T)
 				continue
 			if (STATUS_PLAYING)
 				/* Delete the file when it's finished */
 				if (world.time > T.life)
-					if (T.filename)
-						fdel(T.filename + ".ogg")
-						fdel(T.filename + ".wav")
-						fdel(T.filename + ".meta")
+					delete_files(T)
 					LAZYREMOVE(processing, T)
 				continue
+
+/datum/controller/subsystem/tts/proc/delete_files(datum/tts/T)
+	if (!T)
+		return
+	if (!T.filename)
+		return
+	fdel(T.filename + ".ogg")
+	fdel(T.filename + ".meta")
 
 /datum/controller/subsystem/tts/proc/play_tts(datum/tts/T)
 	if (!T.owner)
