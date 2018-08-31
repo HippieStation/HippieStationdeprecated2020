@@ -203,3 +203,6 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 #extra map stuff
 /_maps/**/backup/
 /_maps/templates.dm
+
+#Text to speech
+/hippiestation/tools/tts_generator/data/*

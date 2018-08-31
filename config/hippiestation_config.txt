@@ -17,3 +17,6 @@ TOKEN_CONSUMER http://127.0.0.1:9000/byondLinker.php
 
 #Uncomment this with a text to speech API if you wish to use one
 #TTS_API http://www.example.com/index.html?text=
+
+## Enables the text-to-speech subsystem, allowing humans to use it
+ENABLE_TTS

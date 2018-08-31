@@ -59,3 +59,10 @@
 		return TRUE
 
 	return ..()
+
+/mob/living/proc/update_tts_hud()
+	if (!hud_used)
+		return
+	if (!hud_used.tts)
+		return
+	hud_used.tts.icon_state = "tts_ready"

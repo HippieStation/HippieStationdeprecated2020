@@ -1,5 +1,3 @@
-/datum/hud/var/obj/screen/staminas/staminas
-
 /obj/screen/staminas
 	icon = 'hippiestation/icons/mob/screen_gen.dmi'
 	name = "stamina"
