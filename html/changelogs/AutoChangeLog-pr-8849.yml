@@ -1,0 +1,5 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - rscadd: "Locker lights now appear visible in the dark"
+  - bugfix: "Fuel and watertanks have been fixed and properly show their reagent icons"
