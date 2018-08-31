@@ -16,10 +16,15 @@ SUBSYSTEM_DEF(tts)
 	if (!CONFIG_GET(flag/enable_tts))
 		can_fire = FALSE
 	else
-		var/cmd = "cmd /c start \"tts_generator\" [GENERATOR_PATH]tts_generator.exe"
-		shell(cmd)
+		start_engine()
 
 	return ..()
+
+/datum/controller/subsystem/tts/proc/start_engine()
+	if (!CONFIG_GET(flag/enable_tts))
+		return
+	var/cmd = "cmd /c start \"tts_generator\" [GENERATOR_PATH]tts_generator.exe"
+	shell(cmd)
 
 /datum/controller/subsystem/tts/proc/check_processing(client/C)
 	if (!C)
