@@ -733,12 +733,7 @@
 			D.Knockdown(60)
 			D.visible_message("<span class='warning'>[A] knocks [D] the fuck out!!", \
 							"<span class='userdanger'>[A] knocks you the fuck out!!</span>")
-	if(check_target_facings(D, A) == FACING_SAME_DIR && !D.stat && !D.IsKnockdown() && D != A && prob(30))
-		D.Knockdown(50)
-		bonus_damage += 10
-		D.visible_message("<span class='danger'>[A] back hit [D]!</span>", \
-					  "<span class='userdanger'>[A] back hits you!</span>")
-	else if(prob(30))
+	if(prob(30))
 		D.visible_message("<span class='warning'>[A] quick [picked_hit_type] [D]!", \
 							"<span class='userdanger'>[A] quick [picked_hit_type] you!</span>")
 		A.changeNext_move(CLICK_CD_RAPID)
@@ -872,15 +867,14 @@
 		return ..()
 
 /obj/item/throw_at(atom/target, range, speed, mob/thrower, spin = 1, diagonals_first = 0, datum/callback/callback)
-	if(thrower)
-		if(ishuman(thrower))
-			var/mob/living/carbon/human/H = thrower
-			if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
-				var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
-				NS.kill_cloak()
-				if(NS.mode == STRENGTH)
-					.=..(target, range*1.5, speed*2, thrower, spin, diagonals_first, callback)
-					return
+	if(thrower && ishuman(thrower))
+		var/mob/living/carbon/human/H = thrower
+		if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+			var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
+			NS.kill_cloak()
+			if(NS.mode == STRENGTH)
+				.=..(target, range*1.5, speed*2, thrower, spin, diagonals_first, callback)
+				return
 	.=..()
 
 /obj/item/afterattack(atom/O, mob/user, proximity)
