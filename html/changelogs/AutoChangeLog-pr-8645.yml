@@ -1,0 +1,6 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - tweak: "Carbonhell cheap cuisine vendor is now available only as contraband in vending machines"
+  - tweak: "The amount of cheap cusines per vendor has been reduced from 6 to 4"
+  - balance: "Reduced carbon's butterdog slip time to 4 from 8"
