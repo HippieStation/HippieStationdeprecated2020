@@ -8738,7 +8738,7 @@
 /turf/open/floor/wood,
 /area/lawoffice)
 "auT" = (
-/obj/machinery/status_display{
+/obj/machinery/status_display/evac{
 	pixel_x = 32
 	},
 /turf/open/floor/plasteel/red/corner{
@@ -17551,7 +17551,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/machinery/status_display{
+/obj/machinery/status_display/evac{
 	pixel_x = 32
 	},
 /turf/open/floor/wood,
@@ -18389,7 +18389,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "aUd" = (
-/obj/machinery/status_display,
+/obj/machinery/status_display/evac,
 /turf/closed/wall,
 /area/crew_quarters/locker)
 "aUe" = (
@@ -19734,7 +19734,7 @@
 /area/chapel/main)
 "aYh" = (
 /obj/machinery/vending/cola/random,
-/obj/machinery/status_display{
+/obj/machinery/status_display/evac{
 	layer = 4;
 	pixel_y = 32
 	},
@@ -22956,7 +22956,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
 "bgV" = (
-/obj/machinery/ai_status_display{
+/obj/machinery/status_display/ai{
 	pixel_y = 32
 	},
 /obj/structure/cable{
@@ -22980,7 +22980,7 @@
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain)
 "bgX" = (
-/obj/machinery/status_display{
+/obj/machinery/status_display/evac{
 	pixel_y = 32
 	},
 /obj/structure/cable{
@@ -23395,7 +23395,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "bih" = (
-/obj/machinery/status_display{
+/obj/machinery/status_display/evac{
 	layer = 4;
 	pixel_y = 32
 	},
@@ -23829,7 +23829,7 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
-/obj/machinery/status_display{
+/obj/machinery/status_display/evac{
 	pixel_x = -32
 	},
 /turf/open/floor/plasteel/blue/corner{
@@ -24716,14 +24716,14 @@
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
 "blL" = (
-/obj/machinery/ai_status_display,
+/obj/machinery/status_display/ai,
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai_upload)
 "blM" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai_upload)
 "blN" = (
-/obj/machinery/status_display{
+/obj/machinery/status_display/evac{
 	density = 0;
 	layer = 4
 	},
@@ -26859,7 +26859,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/status_display{
+/obj/machinery/status_display/evac{
 	pixel_x = 32
 	},
 /obj/machinery/aug_manipulator,
@@ -27721,9 +27721,8 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "btk" = (
-/obj/machinery/status_display{
-	pixel_y = 2;
-	supply_display = 1
+/obj/machinery/status_display/supply{
+	pixel_y = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -27758,7 +27757,7 @@
 	dir = 8
 	},
 /obj/machinery/door/firedoor,
-/obj/machinery/status_display{
+/obj/machinery/status_display/evac{
 	pixel_x = -32
 	},
 /obj/effect/turf_decal/stripes/line{
@@ -29299,7 +29298,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
 "bwN" = (
-/obj/machinery/status_display,
+/obj/machinery/status_display/evac,
 /turf/closed/wall,
 /area/medical/medbay/central)
 "bwO" = (
@@ -31124,7 +31123,7 @@
 /turf/open/floor/plasteel/white,
 /area/science/robotics/lab)
 "bBE" = (
-/obj/machinery/status_display{
+/obj/machinery/status_display/evac{
 	pixel_x = -32
 	},
 /turf/open/floor/plasteel/white/side{
@@ -31670,9 +31669,8 @@
 /area/quartermaster/storage)
 "bDq" = (
 /obj/machinery/light,
-/obj/machinery/status_display{
-	pixel_y = -30;
-	supply_display = 1
+/obj/machinery/status_display/supply{
+	pixel_y = -30
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -33737,9 +33735,8 @@
 	name = "Station Intercom (General)";
 	pixel_y = -35
 	},
-/obj/machinery/status_display{
-	pixel_x = -32;
-	supply_display = 1
+/obj/machinery/status_display/supply{
+	pixel_x = -32
 	},
 /turf/open/floor/plasteel/brown{
 	dir = 10
@@ -34017,7 +34014,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/status_display{
+/obj/machinery/status_display/evac{
 	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
@@ -34816,7 +34813,7 @@
 	},
 /obj/item/assembly/flash/handheld,
 /obj/item/assembly/flash/handheld,
-/obj/machinery/ai_status_display{
+/obj/machinery/status_display/ai{
 	pixel_x = -32
 	},
 /turf/open/floor/plating,
@@ -35268,7 +35265,7 @@
 /turf/open/floor/plasteel/white,
 /area/crew_quarters/heads/hor)
 "bLR" = (
-/obj/machinery/ai_status_display{
+/obj/machinery/status_display/ai{
 	pixel_y = 32
 	},
 /obj/effect/landmark/event_spawn,
@@ -38804,7 +38801,7 @@
 /area/science/test_area)
 "bUl" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/status_display{
+/obj/machinery/status_display/evac{
 	pixel_x = -32
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -43923,7 +43920,7 @@
 /turf/closed/wall,
 /area/tcommsat/computer)
 "cib" = (
-/obj/machinery/status_display,
+/obj/machinery/status_display/evac,
 /turf/closed/wall,
 /area/tcommsat/computer)
 "cic" = (
@@ -54115,7 +54112,7 @@
 /obj/structure/rack{
 	dir = 1
 	},
-/obj/machinery/status_display{
+/obj/machinery/status_display/evac{
 	pixel_y = -32
 	},
 /obj/item/storage/box/donkpockets,
@@ -54163,7 +54160,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "cHZ" = (
-/obj/machinery/ai_status_display{
+/obj/machinery/status_display/ai{
 	pixel_y = -32
 	},
 /obj/structure/table,
@@ -55320,7 +55317,7 @@
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
 "cKk" = (
-/obj/machinery/status_display,
+/obj/machinery/status_display/evac,
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
 "cKl" = (
@@ -55348,7 +55345,7 @@
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
 "cKn" = (
-/obj/machinery/ai_status_display,
+/obj/machinery/status_display/ai,
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai)
 "cKo" = (
@@ -55520,7 +55517,7 @@
 	icon_state = "tube1";
 	dir = 8
 	},
-/obj/machinery/status_display{
+/obj/machinery/status_display/evac{
 	pixel_x = -32
 	},
 /turf/open/floor/circuit,
@@ -55603,7 +55600,7 @@
 	icon_state = "tube1";
 	dir = 4
 	},
-/obj/machinery/ai_status_display{
+/obj/machinery/status_display/ai{
 	pixel_x = 32
 	},
 /turf/open/floor/circuit,
@@ -58519,7 +58516,7 @@
 /turf/open/floor/plating,
 /area/maintenance/department/medical/morgue)
 "gXP" = (
-/obj/machinery/status_display,
+/obj/machinery/status_display/evac,
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
 "gZj" = (
@@ -62418,7 +62415,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/machinery/status_display{
+/obj/machinery/status_display/evac{
 	layer = 4;
 	pixel_y = -32
 	},
@@ -62699,7 +62696,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/status_display{
+/obj/machinery/status_display/evac{
 	layer = 4;
 	pixel_y = -32
 	},
