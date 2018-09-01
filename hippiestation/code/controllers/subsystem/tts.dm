@@ -92,7 +92,7 @@ SUBSYSTEM_DEF(tts)
 		for (var/mob/M in GLOB.player_list)
 			if (!M.client)
 				continue
-			if (!(M.client.prefs.toggles & SOUND_TTS))
+			if (!(M.client.prefs.hippie_toggles & SOUND_TTS))
 				continue
 
 			M.playsound_local(M.loc, T.filename + ".ogg", 100, 0, channel=next_channel)
@@ -116,7 +116,7 @@ SUBSYSTEM_DEF(tts)
 		for (var/mob/P in listeners)
 			if (!P.client)
 				continue
-			if (!(P.client.prefs.toggles & SOUND_TTS))
+			if (!(P.client.prefs.hippie_toggles & SOUND_TTS))
 				continue
 			if (T.language)
 				if (!P.can_speak_in_language(T.language))

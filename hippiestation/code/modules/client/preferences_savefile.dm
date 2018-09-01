@@ -1,5 +1,15 @@
-var/B_shadowling = 8192
+// Preferences load
+/datum/preferences/proc/hippie_pref_load(savefile/S)
+	//toggles
+	S["hippie_toggles"] >> hippie_toggles
+	hippie_toggles = sanitize_integer(hippie_toggles, 0, 65535, initial(hippie_toggles))
 
+// Preferences save
+/datum/preferences/proc/hippie_pref_save(savefile/S)
+	//toggles
+	WRITE_FILE(S["hippie_toggles"], hippie_toggles)
+
+// Character load
 /datum/preferences/proc/hippie_character_pref_load(savefile/S)
 	//ipcs
 	S["feature_ipc_screen"] >> features["ipc_screen"]
@@ -16,6 +26,7 @@ var/B_shadowling = 8192
 			LAZYADD(chosen_gear, path)
 			gear_points -= initial(path.cost)
 
+// Character save
 /datum/preferences/proc/hippie_character_pref_save(savefile/S)
 	//ipcs
 	S["feature_ipc_screen"] << features["ipc_screen"]

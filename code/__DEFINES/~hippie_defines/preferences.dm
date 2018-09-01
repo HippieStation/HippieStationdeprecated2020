@@ -1,0 +1,3 @@
+#define SOUND_TTS				(1<<0)
+
+#define HIPPIE_TOGGLES_DEFAULT	(SOUND_TTS)
