@@ -904,7 +904,6 @@
 		else
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=alien;jobban4=[REF(M)]'>Alien</a></td>"
 
-<<<<<<< HEAD
 		// hippie start -- Catban
 		if(jobban_isbanned(M, CATBAN) || isbanned_dept)
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=catban;jobban4=[REF(M)]'><font color=red>Catbanned</font></a></td>"
@@ -915,8 +914,7 @@
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=cluwneban;jobban4=[REF(M)]'><font color=red>Cluwnebanned</font></a></td>"
 		else
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=cluwneban;jobban4=[REF(M)]'>Cluwneban</a></td>"
-// hippie end
-=======
+		// hippie end
 	//Other Roles (black)
 		dat += "<table cellpadding='1' cellspacing='0' width='100%'>"
 		dat += "<tr bgcolor='000000'><th colspan='5'><a href='?src=[REF(src)];[HrefToken()];jobban3=otherroles;jobban4=[REF(M)]' style='color: white;'>Other Roles</a></th></tr><tr align='center'>"
@@ -926,7 +924,6 @@
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=[ROLE_MIND_TRANSFER];jobban4=[REF(M)]'><font color=red>Mind Transfer Potion</font></a></td>"
 		else
 			dat += "<td width='20%'><a href='?src=[REF(src)];[HrefToken()];jobban3=[ROLE_MIND_TRANSFER];jobban4=[REF(M)]'>Mind Transfer Potion</a></td>"
->>>>>>> bb2f1334d4... [READY] Fixes Sentience Potion notifications and role management (#39994)
 
 		dat += "</tr></table>"
 		usr << browse(dat, "window=jobban2;size=800x450")
