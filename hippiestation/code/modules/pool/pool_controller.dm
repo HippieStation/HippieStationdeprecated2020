@@ -30,12 +30,13 @@
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
 
 /obj/machinery/poolcontroller/Initialize()
-	. = ..()
+	START_PROCESSING(SSprocessing, src)
 	wires = new /datum/wires/poolcontroller(src)
 	for(var/turf/open/pool/W in range(srange,src)) //Search for /turf/open/beach/water in the range of var/srange
 		LAZYADD(linkedturfs, W)
 	for(var/obj/machinery/drain/pooldrain in range(srange,src))
 		linkeddrain = pooldrain
+	. = ..()
 
 /obj/machinery/poolcontroller/emag_act(user as mob) //Emag_act, this is called when it is hit with a cryptographic sequencer.
 	if(!(obj_flags & EMAGGED)) //If it is not already emagged, emag it.
@@ -312,7 +313,7 @@
 		else
 			return "Outside of possible range."
 
-/obj/machinery/poolcontroller/attack_hand(mob/user)
+/obj/machinery/poolcontroller/ui_interact(mob/user)
 	if(shocked && !(stat & NOPOWER))
 		shock(user,50)
 	if(panel_open && !isAI(user))
@@ -358,15 +359,6 @@
 		"})
 	popup.set_content(dat)
 	popup.open()
-
-/obj/machinery/poolcontroller/attack_paw(mob/user)
-	return attack_hand(user)
-
-/obj/machinery/poolcontroller/attack_alien(mob/user)
-	return attack_hand(user)
-
-/obj/machinery/poolcontroller/attack_hulk(mob/user)
-	return attack_hand(user)
 
 /obj/machinery/poolcontroller/proc/reset(wire)
 	switch(wire)
