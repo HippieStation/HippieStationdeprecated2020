@@ -16,7 +16,7 @@
 #define DISABLE_ARRIVALRATTLE	(1<<13)
 #define COMBOHUD_LIGHTING		(1<<14)
 
-#define SOUND_TTS               (1<<20) // hippie -- using 20 to allow tg to use 15 and on
+#define SOUND_TTS               (1<<15) // hippie -- using 20 to allow tg to use 15 and on
 
 #define TOGGLES_DEFAULT (SOUND_ADMINHELP|SOUND_MIDI|SOUND_AMBIENCE|SOUND_LOBBY|MEMBER_PUBLIC|INTENT_STYLE|MIDROUND_ANTAG|SOUND_INSTRUMENTS|SOUND_SHIP_AMBIENCE|SOUND_PRAYERS|SOUND_ANNOUNCEMENTS|SOUND_TTS) // hippie -- added tts
 
