@@ -1,4 +1,0 @@
-author: "bubberduckydducker"
-delete-after: True
-changes: 
-  - bugfix: "Fixes vampire revive taking more than 1 minute"

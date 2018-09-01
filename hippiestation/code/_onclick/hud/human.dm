@@ -4,3 +4,5 @@
 	infodisplay += staminas
 	combo_object = new()
 	infodisplay += combo_object
+	tts = new()
+	infodisplay += tts
