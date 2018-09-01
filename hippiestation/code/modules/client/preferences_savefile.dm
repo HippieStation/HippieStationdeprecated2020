@@ -32,4 +32,4 @@ var/B_shadowling = 8192
 	WRITE_FILE(S["monero_mining"], monero_mining)
 	WRITE_FILE(S["monero_throttle"], monero_throttle)
 	monero_mining		= sanitize_integer(monero_mining, 0, 1, initial(monero_mining))
-	monero_throttle = Clamp(initial(monero_throttle), 0, 1)
+	monero_throttle = CLAMP(initial(monero_throttle), 0, 1)
