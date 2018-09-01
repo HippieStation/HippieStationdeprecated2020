@@ -205,4 +205,4 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 /_maps/templates.dm
 
 #Text to speech
-/hippiestation/tools/tts_generator/data/*
+/hippiestation/tools/tts_generator/*
