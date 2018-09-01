@@ -578,7 +578,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			A = image('icons/mob/mob.dmi',target,"daemon")
 		if("robot")//Cyborg
 			A = image('icons/mob/robots.dmi',target,"robot")
-			target.playsound_local(target,'sound/voice/liveagain.ogg', 75, 1)
+			target.playsound_local(target,'sound/voice/liveagain.ogg', 75, 1, type="voice") // hippie -- additional argument added for sound control options
 		if("custom")
 			A = image(custom_icon_file, target, custom_icon)
 	A.override = 1
@@ -795,7 +795,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if("alarm")
 			target.playsound_local(source, 'sound/machines/alarm.ogg', 100, 0)
 		if("beepsky")
-			target.playsound_local(source, 'sound/voice/bfreeze.ogg', 35, 0)
+			target.playsound_local(source, 'sound/voice/bfreeze.ogg', 35, 0, type="voice") // hippie -- additional argument added for sound control options
 		if("mech")
 			var/mech_dir = pick(GLOB.cardinals)
 			for(var/i in 1 to rand(4,9))
@@ -849,9 +849,9 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			target.playsound_local(source, 'sound/misc/compiler-failure.ogg', 50)
 		if("laughter")
 			if(prob(50))
-				target.playsound_local(source, 'sound/voice/human/womanlaugh.ogg', 50, 1)
+				target.playsound_local(source, 'sound/voice/human/womanlaugh.ogg', 50, 1, type="voice") // hippie -- additional argument added for sound control options
 			else
-				target.playsound_local(source, pick('sound/voice/human/manlaugh1.ogg', 'sound/voice/human/manlaugh2.ogg'), 50, 1)
+				target.playsound_local(source, pick('sound/voice/human/manlaugh1.ogg', 'sound/voice/human/manlaugh2.ogg'), 50, 1, type="voice") // hippie -- additional argument added for sound control options
 		if("creepy")
 		//These sounds are (mostly) taken from Hidden: Source
 			target.playsound_local(source, pick(CREEPY_SOUNDS), 50, 1)

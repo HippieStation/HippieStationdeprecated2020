@@ -390,7 +390,7 @@ Auto Patrol: []"},
 			target = C
 			oldtarget_name = C.name
 			speak("Level [threatlevel] infraction alert!")
-			playsound(src, pick('sound/voice/bcriminal.ogg', 'sound/voice/bjustice.ogg', 'sound/voice/bfreeze.ogg'), 50, FALSE)
+			playsound(src, pick('sound/voice/bcriminal.ogg', 'sound/voice/bjustice.ogg', 'sound/voice/bfreeze.ogg'), 50, FALSE, type = "voice") // hippie -- additional argument added for sound control options)
 			visible_message("<b>[src]</b> points at [C.name]!")
 			mode = BOT_HUNT
 			INVOKE_ASYNC(src, .proc/handle_automated_action)

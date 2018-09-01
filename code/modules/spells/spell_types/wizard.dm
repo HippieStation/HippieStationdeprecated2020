@@ -315,7 +315,7 @@
 /obj/effect/proc_holder/spell/aoe_turf/repulse/xeno/cast(list/targets,mob/user = usr)
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
-		playsound(C.loc, 'sound/voice/hiss5.ogg', 80, 1, 1)
+		playsound(C.loc, 'sound/voice/hiss5.ogg', 80, 1, 1, type = "voice") // hippie -- additional argument added for sound control options)
 		C.spin(6,1)
 	..(targets, user, 60)
 

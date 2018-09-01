@@ -12,7 +12,7 @@
 	addtimer(CALLBACK(src, .proc/catscreech), 95)
 
 /mob/living/simple_animal/pet/cat/Runtime/proc/catscreech()
-	playsound(src, 'hippiestation/sound/voice/scream_cat.ogg', 75, 1) //REE
+	playsound(src, 'hippiestation/sound/voice/scream_cat.ogg', 75, 1, type = "voice") // hippie -- additional argument added for sound control options) //REE
 	SpinAnimation(500,1)
 	animate(src, transform = matrix()*1.5, time = 5)
 	addtimer(CALLBACK(src, .proc/catsplode), 5) //comedic timing

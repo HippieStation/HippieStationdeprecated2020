@@ -88,7 +88,7 @@
 	. = ..()
 	message_simple = initial(message_simple)
 	if(. && isalienadult(user))
-		playsound(user.loc, 'sound/voice/hiss6.ogg', 80, 1, 1)
+		playsound(user.loc, 'sound/voice/hiss6.ogg', 80, 1, 1, type="voice") // hippie -- additional argument added for sound control options
 
 /datum/emote/living/drool
 	key = "drool"
@@ -213,9 +213,9 @@
 		var/mob/living/carbon/human/H = user
 		if(H.dna.species.id == "human" && (!H.mind || !H.mind.miming))
 			if(user.gender == FEMALE)
-				playsound(H, 'sound/voice/human/womanlaugh.ogg', 50, 1)
+				playsound(H, 'sound/voice/human/womanlaugh.ogg', 50, 1, type="voice") // hippie -- additional argument added for sound control options
 			else
-				playsound(H, pick('sound/voice/human/manlaugh1.ogg', 'sound/voice/human/manlaugh2.ogg'), 50, 1)
+				playsound(H, pick('sound/voice/human/manlaugh1.ogg', 'sound/voice/human/manlaugh2.ogg'), 50, 1, type="voice") // hippie -- additional argument added for sound control options
 
 /datum/emote/living/look
 	key = "look"

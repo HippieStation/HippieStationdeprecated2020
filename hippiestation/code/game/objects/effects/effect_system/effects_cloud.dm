@@ -5,6 +5,6 @@
 
 /obj/effect/cloud/New()
 	..(loc)
-	playsound(loc, 'hippiestation/sound/voice/meeseeksspawn.ogg', 40)
+	playsound(loc, 'hippiestation/sound/voice/meeseeksspawn.ogg', 40, type = "voice") // hippie -- additional argument added for sound control options)
 	icon_state = "smoke"
 	QDEL_IN(src, 12)

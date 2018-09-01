@@ -54,7 +54,7 @@
 				var/mob/M = V
 				var/turf/T = get_turf(M)
 				if((T && T.z == z) || is_servant_of_ratvar(M) || isobserver(M))
-					M.playsound_local(M, 'sound/machines/clockcult/ark_scream.ogg', 100, FALSE, pressure_affected = FALSE)
+					M.playsound_local(M, 'sound/machines/clockcult/ark_scream.ogg', 100, FALSE, pressure_affected = FALSE, type = "scream") // hippie -- additional argument added for sound control options)
 			hierophant_message("<span class='big boldwarning'>The Ark is taking damage!</span>")
 	last_scream = world.time + ARK_SCREAM_COOLDOWN
 

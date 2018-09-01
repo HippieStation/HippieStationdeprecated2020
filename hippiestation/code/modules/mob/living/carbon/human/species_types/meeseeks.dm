@@ -46,7 +46,7 @@
 		message_admins("[key_name_admin(H)] has become a stage-two Mr. Meeseeks.")
 		log_game("[key_name(H)] has become a stage-two Mr. Meeseeks.")
 		to_chat(H, "<span class='userdanger'>You're starting to feel desperate. Help your master quickly! Meeseeks aren't meant to exist this long!</span>")
-		playsound(H.loc, 'hippiestation/sound/voice/meeseeks2.ogg', 40, 0, 1)
+		playsound(H.loc, 'hippiestation/sound/voice/meeseeks2.ogg', 40, 0, 1, type="voice") // hippie -- additional argument added for sound control options
 		to_chat(master, "<span class='danger'>Your Mr. Meeseeks is getting sick of existing!</span>")
 	if(stage_ticks == MEESEEKS_TICKS_STAGE_THREE)
 		message_admins("[key_name_admin(H)] has become a stage-three Mr. Meeseeks.")
@@ -61,7 +61,7 @@
 		H.mind.objectives += killmaster
 		killmaster.owner = H.mind
 		objective = killmaster
-		playsound(H.loc, 'hippiestation/sound/voice/meeseeks3.ogg', 40, 0, 1)
+		playsound(H.loc, 'hippiestation/sound/voice/meeseeks3.ogg', 40, 0, 1, type="voice") // hippie -- additional argument added for sound control options
 	stage_ticks++
 
 /proc/destroy_meeseeks(mob/living/carbon/human/H, datum/species/meeseeks/SM)

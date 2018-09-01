@@ -1,4 +1,4 @@
-/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE)
+/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, type = "default") // Hippie - added "type" argument
 	if(isarea(source))
 		throw EXCEPTION("playsound(): source is an area")
 		return
@@ -20,11 +20,20 @@
 			continue
 		var/distance = get_dist(M, turf_source)
 
+		//Hippie start -- sound prefs
+		var/pref_vol = M.client.prefs.other_volume  / 100 * vol
+		if(type != "default")
+			switch(type)
+				if("scream")
+					pref_vol = M.client.prefs.scream_volume / 100 * vol
+				if("voice")
+					pref_vol = M.client.prefs.voice_volume / 100 * vol
+		//Hippie end
+
 		if(distance <= maxdistance)
 			var/turf/T = get_turf(M)
-
 			if(T && T.z == turf_source.z)
-				M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, channel, pressure_affected, S)
+				M.playsound_local(turf_source, soundin, pref_vol, vary, frequency, falloff, channel, pressure_affected, S) //Hippie -- passes above pref_vol rather than just vol
 
 /mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff, channel = 0, pressure_affected = TRUE, sound/S)
 	if(!client || !can_hear())

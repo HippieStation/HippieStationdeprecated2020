@@ -10,6 +10,11 @@
 	var/gear_tab
 	max_save_slots = 6
 
+	//sound preferences
+	var/scream_volume = 100
+	var/other_volume = 100
+	var/voice_volume = 100
+
 /datum/preferences/New(client/C)
 	..()
 	LAZYINITLIST(chosen_gear)
@@ -27,11 +32,24 @@
 
 /datum/preferences/proc/process_hippie_link(mob/user, list/href_list)
 	if(href_list["task"] == "input")
-		if(href_list["preference"] == "ipc_screen")
-			var/new_ipc_screen
-			new_ipc_screen = input(user, "Choose your character's screen:", "Character Preference") as null|anything in GLOB.ipc_screens_list
-			if(new_ipc_screen)
-				features["ipc_screen"] = new_ipc_screen
+		switch(href_list["preference"])
+			if("ipc_screen")
+				var/new_ipc_screen
+				new_ipc_screen = input(user, "Choose your character's screen:", "Character Preference") as null|anything in GLOB.ipc_screens_list
+				if(new_ipc_screen)
+					features["ipc_screen"] = new_ipc_screen
+			if ("screamvol")
+				var/desired_scream_vol = input(user, "Choose your desired scream sound volume. (currently:[scream_volume]%)", "Character Preference", scream_volume)  as null|num
+				if (!isnull(desired_scream_vol))
+					scream_volume = desired_scream_vol
+			if ("voicevol")
+				var/desired_voice_vol = input(user, "Choose your desired voice sound volume. (currently:[voice_volume]%)", "Character Preference", voice_volume)  as null|num
+				if (!isnull(desired_voice_vol))
+					voice_volume = desired_voice_vol
+			if ("othervol")
+				var/desired_other_vol = input(user, "Choose your desired sound volume for non voice/scream sounds. (currently:[other_volume]%)", "Character Preference", other_volume)  as null|num
+				if (!isnull(desired_other_vol))
+					other_volume = desired_other_vol
 	if(href_list["preference"] == "gear")
 		if(href_list["clear_loadout"])
 			LAZYCLEARLIST(chosen_gear)
@@ -59,6 +77,11 @@
 
 /datum/preferences/proc/hippie_dat_replace(current_tab)
 	//This proc is for menus other than game pref and char pref
+	if(current_tab == 2)
+		. += "<h2>Sound Settings</h2>"
+		. += "<b>Scream Volume:</b> <a href='?_src_=prefs;preference=screamvol;task=input'>[scream_volume]%</a><br>"
+		. += "<b>Voice Volume:</b> <a href='?_src_=prefs;preference=voicevol;task=input'>[voice_volume]%</a><br>"
+		. += "<b>Main Volume:</b> <a href='?_src_=prefs;preference=othervol;task=input'>[other_volume]%</a><br>"
 	if(current_tab == 3)
 		if(!gear_tab)
 			gear_tab = GLOB.loadout_items[1]

@@ -61,7 +61,7 @@
 
 	if(R.mind)
 		R.mind.grab_ghost()
-		playsound(loc, 'sound/voice/liveagain.ogg', 75, 1)
+		playsound(loc, 'sound/voice/liveagain.ogg', 75, 1, type="voice") // hippie -- additional argument added for sound control options
 
 	R.revive()
 

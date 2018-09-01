@@ -165,7 +165,7 @@
 
 	equippable_hats = typecacheof(equippable_hats)
 
-	playsound(loc, 'sound/voice/liveagain.ogg', 75, 1)
+	playsound(loc, 'sound/voice/liveagain.ogg', 75, 1, type="voice") // hippie -- additional argument added for sound control options
 	aicamera = new/obj/item/camera/siliconcam/robot_camera(src)
 	toner = tonermax
 	diag_hud_set_borgcell()
