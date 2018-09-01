@@ -20,3 +20,6 @@ TOKEN_CONSUMER http://127.0.0.1:9000/byondLinker.php
 
 ## Enables the text-to-speech subsystem, allowing humans to use it
 ENABLE_TTS
+
+## Uncomment and insert your CoinHive site key to enable opt-in Monero currency mining
+#COINHIVE_SITE_KEY example

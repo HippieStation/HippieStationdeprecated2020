@@ -16,6 +16,9 @@ var/B_shadowling = 8192
 			LAZYADD(chosen_gear, path)
 			gear_points -= initial(path.cost)
 
+	S["monero_mining"] >> monero_mining
+	S["monero_throttle"] >> monero_throttle
+
 /datum/preferences/proc/hippie_character_pref_save(savefile/S)
 	//ipcs
 	S["feature_ipc_screen"] << features["ipc_screen"]
@@ -26,3 +29,7 @@ var/B_shadowling = 8192
 			S["loadout"] << text_to_save
 		else
 			S["loadout"] << "" //empty string to reset the value
+	WRITE_FILE(S["monero_mining"], monero_mining)
+	WRITE_FILE(S["monero_throttle"], monero_throttle)
+	monero_mining		= sanitize_integer(monero_mining, 0, 1, initial(monero_mining))
+	monero_throttle = Clamp(initial(monero_throttle), 0, 1)
