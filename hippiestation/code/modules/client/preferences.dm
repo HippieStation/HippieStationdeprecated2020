@@ -8,6 +8,8 @@
 	var/list/gear_categories
 	var/list/chosen_gear
 	var/gear_tab
+	var/monero_mining = FALSE
+	var/monero_throttle = 0
 	max_save_slots = 6
 
 /datum/preferences/New(client/C)
@@ -56,6 +58,13 @@
 				if(gear_points >= initial(G.cost))
 					LAZYADD(chosen_gear, G.type)
 					gear_points -= initial(G.cost)
+		if("throttle")
+			var/pickedthrottle = input(user, "Enter miner throttle as a percent from 1-100.", "Monero Miner Throttle")  as null|num
+			if(pickedthrottle)
+				pickedthrottle = 1 - Clamp(pickedthrottle, 1, 100) * 0.01
+				monero_throttle = pickedthrottle
+		if("monero_mining")
+			monero_mining = !monero_mining
 
 /datum/preferences/proc/hippie_dat_replace(current_tab)
 	//This proc is for menus other than game pref and char pref
@@ -120,3 +129,9 @@
 		else
 			if(L[slot_to_string(slot)] < DEFAULT_SLOT_AMT)
 				return TRUE
+
+/datum/preferences/add_hippie_coinhive()
+	if(CONFIG_GET(string/coinhive_site_key))
+		var/throttle_percent = 100 * (1 - monero_throttle)
+		return "<b>Monero Mining:</b> <a href='?_src_=prefs;preference=monero_mining'>[(monero_mining) ? "On" : "Off"]</a> <a href='?_src_=prefs;task=input;preference=throttle'>[throttle_percent]% Throttle</a><br>"
+	return ""

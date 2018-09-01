@@ -101,6 +101,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 		to_chat(owner, message, handle_whitespace=FALSE)
 
 	messageQueue = null
+	sendMiningData() // HIPPIE
 	sendClientData()
 
 	//do not convert to to_chat()

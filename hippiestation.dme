@@ -3028,6 +3028,7 @@
 #include "hippiestation\code\modules\food_and_drinks\recipes\tablecraft\recipes_pizza.dm"
 #include "hippiestation\code\modules\food_and_drinks\recipes\tablecraft\recipes_sandwich.dm"
 #include "hippiestation\code\modules\food_and_drinks\recipes\tablecraft\recipes_soup.dm"
+#include "hippiestation\code\modules\goonchat\browserOutput.dm"
 #include "hippiestation\code\modules\hydroponics\biogenerator.dm"
 #include "hippiestation\code\modules\hydroponics\buttflower.dm"
 #include "hippiestation\code\modules\hydroponics\limbflower.dm"
