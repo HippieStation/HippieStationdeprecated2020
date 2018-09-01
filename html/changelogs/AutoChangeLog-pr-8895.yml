@@ -1,4 +1,0 @@
-author: "JohnGinnane"
-delete-after: True
-changes: 
-  - bugfix: "Fixed preferences not saving/loading properly, my bad!"
