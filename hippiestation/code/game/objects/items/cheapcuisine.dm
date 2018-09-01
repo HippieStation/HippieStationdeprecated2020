@@ -95,6 +95,11 @@
 	bitesize = 2
 	foodtype = GROSS | TOXIC
 
+/obj/item/reagent_containers/food/snacks/butterdog/carbon/ComponentInitialize()
+	. = ..()
+	var/datum/component/comp = GetComponent(/datum/component/slippery)
+	qdel(comp)
+
 /obj/item/reagent_containers/food/snacks/hamdisc
 	name = "ham disc"
 	desc = "The laziest food someone could possibly make, alongside some corn."
