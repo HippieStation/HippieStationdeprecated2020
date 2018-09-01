@@ -1,0 +1,6 @@
+author: "Shdorsh, Basilman"
+delete-after: True
+changes: 
+  - rscadd: "Sopa de gondola"
+  - rscadd: "Gondola parts for cooking"
+  - imageadd: "Sopa de gondola and sopa de macaco icons"
