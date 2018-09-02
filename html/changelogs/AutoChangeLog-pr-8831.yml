@@ -1,0 +1,8 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - rscadd: "Added atmospheric sensors to nanosuit stat tracks"
+  - rscadd: "Added more damage voice feedback to nanosuit"
+  - tweak: "Improved nanosuit logging"
+  - code_imp: "Improved nanosuit variable names and made code a little more readable."
+  - balance: "Nanosuit cloak use reduced to 1.2 from 1.3 and speed use reduced to 1.6 from 1.8"
