@@ -96,7 +96,7 @@
 	foodtype = GROSS | TOXIC
 
 /obj/item/reagent_containers/food/snacks/butterdog/carbon/ComponentInitialize()
-	. = ..()
+	..()
 	var/datum/component/comp = GetComponent(/datum/component/slippery)
 	qdel(comp)
 

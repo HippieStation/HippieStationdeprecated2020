@@ -1,9 +1,9 @@
 GLOBAL_LIST_EMPTY(smoke)
 /obj/effect/particle_effect/smoke/Initialize()
-	..()
 	LAZYADD(GLOB.smoke, src)
 	create_reagents(500)
 	START_PROCESSING(SSreagent_states, src)
+	.=..()
 
 
 /obj/effect/particle_effect/smoke/Destroy()

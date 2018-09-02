@@ -4,6 +4,6 @@
 var/list/global/blastco_doors
 
 /obj/machinery/door/poddoor/shutters/blastco/Initialize()
-	. = ..()
 	LAZYINITLIST(blastco_doors)
 	LAZYADD(blastco_doors, src)
+	.=..()

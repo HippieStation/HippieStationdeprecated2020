@@ -23,9 +23,9 @@
 
 
 /obj/machinery/reagent_forge/Initialize()
-	. = ..()
 	AddComponent(/datum/component/material_container, list(MAT_REAGENT), 200000)
 	stored_research = new /datum/techweb/specialized/autounlocking/reagent_forge
+	.=..()
 
 
 /obj/machinery/reagent_forge/attackby(obj/item/I, mob/user)

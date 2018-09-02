@@ -42,10 +42,10 @@
 		return TRUE
 
 /obj/machinery/disposal/trapdoor/Initialize(loc,var/obj/structure/disposalconstruct/make_from)
-	. = ..()
 	trunk = locate() in loc
 	if(trunk)
 		trunk.linked = src
+	.=..()
 
 /obj/machinery/disposal/trapdoor/Crossed(AM as mob|obj)
 	if(open)

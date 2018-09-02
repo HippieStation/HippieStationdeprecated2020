@@ -5,7 +5,7 @@
 	var/datum/team/gang/gang
 
 /obj/item/implant/gang/Initialize(loc, setgang)
-	..()
+	.=..()
 	gang = setgang
 
 /obj/item/implant/gang/get_data()
@@ -54,4 +54,4 @@
 		qdel(src)
 		return
 	imp = new /obj/item/implant/gang(src,gang)
-	..()
+	.=..()

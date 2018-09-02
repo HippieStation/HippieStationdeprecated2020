@@ -10,8 +10,8 @@
 			tts_voice = pick("dennis", "frank", "harry", "kit", "paul")
 
 /datum/dna/initialize_dna()
-	. = ..()
 	create_random_voice()
+	.=..()
 
 /datum/dna/transfer_identity(mob/living/carbon/destination)
 	. = ..()

@@ -50,7 +50,7 @@
 	var/pressure = 0
 
 /obj/machinery/chem/pressure/Initialize()
-	..()
+	.=..()
 	var/obj/item/circuitboard/machine/B = new /obj/item/circuitboard/machine/pressure(null)
 	B.apply_default_parts(src)
 
@@ -111,7 +111,7 @@
 	var/target_radioactivity = 0
 
 /obj/machinery/chem/radioactive/Initialize()
-	..()
+	.=..()
 	var/obj/item/circuitboard/machine/B = new /obj/item/circuitboard/machine/radioactive(null)
 	B.apply_default_parts(src)
 
@@ -217,7 +217,7 @@
 	var/intensity = 0
 
 /obj/machinery/chem/bluespace/Initialize()
-	..()
+	.=..()
 	var/obj/item/circuitboard/machine/B = new /obj/item/circuitboard/machine/bluespace(null)
 	B.apply_default_parts(src)
 
@@ -320,7 +320,7 @@
 	var/time = 0
 
 /obj/machinery/chem/centrifuge/Initialize()
-	..()
+	.=..()
 	var/obj/item/circuitboard/machine/B = new /obj/item/circuitboard/machine/centrifuge(null)
 	B.apply_default_parts(src)
 
