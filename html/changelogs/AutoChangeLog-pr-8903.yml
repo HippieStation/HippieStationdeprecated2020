@@ -1,0 +1,5 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - code_imp: "Pool code now uses SSprocessing, initialization returns properly and uses ui_interact"
+  - code_imp: "Makes more hippie items return initialize hints"
