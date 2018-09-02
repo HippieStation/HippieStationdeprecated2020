@@ -9,6 +9,7 @@
 
 /obj/item/implant/teleporter/Initialize()
 	START_PROCESSING(SSobj, src)
+	.=..()
 
 /obj/item/implant/teleporter/process()
 

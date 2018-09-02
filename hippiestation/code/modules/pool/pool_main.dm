@@ -11,8 +11,8 @@
 
 
 /turf/open/pool/Initialize()
-	. =..()
 	create_reagents(100)
+	. = ..()
 
 
 /turf/open/pool/proc/update_icon()
@@ -86,9 +86,9 @@
 	return ..()
 
 /turf/open/pool/Initialize()
-	. = ..()
 	watereffect = new /obj/effect/overlay/water(src)
 	watertop = new /obj/effect/overlay/water/top(src)
+	. = ..()
 
 /turf/open/pool/ex_act(severity, target)
 	return

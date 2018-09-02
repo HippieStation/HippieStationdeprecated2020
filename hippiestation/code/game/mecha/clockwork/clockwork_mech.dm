@@ -72,10 +72,10 @@
 			CHECK_TICK
 
 /obj/mecha/neovgre/Initialize()
-	.=..()
 	GLOB.neovgre_exists ++
 	var/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy/neovgre/N = new
 	N.attach(src)
+	.=..()
 
 /obj/structure/mecha_wreckage/durand/neovgre
 	name = "\improper Neovgre wreckage?"

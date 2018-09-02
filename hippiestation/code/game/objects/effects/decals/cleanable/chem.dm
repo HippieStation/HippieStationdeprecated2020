@@ -26,14 +26,14 @@ GLOBAL_LIST_EMPTY(chempiles)
 		reagents.chem_pressure = pressure_difference / 100
 
 /obj/effect/decal/cleanable/chempile/Initialize()
-	. = ..()
 	GLOB.chempiles += src
 	if(reagents && reagents.total_volume)
 		if(reagents.total_volume < 5)
 			reagents.set_reacting(FALSE)
+	.=..()
 
 /obj/effect/decal/cleanable/chempile/Destroy()
-	..()
+	.=..()
 	GLOB.chempiles -= src
 
 /obj/effect/decal/cleanable/chempile/ex_act()

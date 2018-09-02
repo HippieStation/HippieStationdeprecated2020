@@ -16,11 +16,11 @@
 			return FALSE
 
 /obj/effect/proc_holder/spell/Initialize()
-	. = ..()
 	if(vamp_req)
 		clothes_req = FALSE
 		range = 1
 		human_req = FALSE //so we can cast stuff while a bat, too
+	.=..()
 
 
 /obj/effect/proc_holder/spell/before_cast(list/targets)
@@ -152,8 +152,8 @@
 	vamp_req = TRUE
 
 /obj/effect/proc_holder/spell/self/cloak/Initialize()
-	. = ..()
 	update_name()
+	.=..()
 
 /obj/effect/proc_holder/spell/self/cloak/proc/update_name()
 	var/mob/living/user = loc
@@ -255,8 +255,8 @@
 	vamp_req = TRUE
 
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/mistform/Initialize()
-	. = ..()
 	range = -1
+	.=..()
 
 /obj/effect/proc_holder/spell/targeted/vampirize
 	name = "Lilith's Pact (500)"
