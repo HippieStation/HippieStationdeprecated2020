@@ -27526,7 +27526,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/obj/machinery/rnd/production/protolathe/department/science,
+/obj/machinery/rnd/production/protolathe,
 /turf/open/floor/plasteel,
 /area/science/lab)
 "bsM" = (
