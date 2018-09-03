@@ -347,3 +347,14 @@
 	item = /obj/item/brick
 	cost = 2
 	surplus = 30
+
+/datum/uplink_item/device_tools/arm
+	name = "Additional Arm"
+	desc = "An additional arm, automatically added to your body upon purchase, allows you to use more items at once"
+	item = /obj/item/flashlight //doesn't actually spawn a flashlight, but it needs an object to show up in the menu :^)
+	cost = 8
+
+/datum/uplink_item/device_tools/arm/spawn_item(spawn_item, mob/user)
+	var/limbs = user.held_items.len
+	user.change_number_of_hands(limbs+1)
+	to_chat(user, "You feel more dexterous")
