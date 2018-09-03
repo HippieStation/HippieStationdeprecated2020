@@ -1,7 +1,7 @@
 /datum/uplink_item/colab
 	category = "Collaborative Gear"
 	surplus = 0
-	exclude_modes = list(/datum/game_mode/nuclear)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
 	cant_discount = TRUE
 
 /* Stimpak */
@@ -26,7 +26,7 @@
 /datum/uplink_item/implants/mindslave
 	name = "Mindslave Implant"
 	desc = "An implant injected into another body, forcing the victim to obey any command by the user for around 15 to 20 mintues."
-	exclude_modes = list(/datum/game_mode/nuclear)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
 	item = /obj/item/storage/box/syndie_kit/imp_mindslave
 	cost = 6
 	surplus = 20
@@ -35,6 +35,7 @@
 	name = "Greater Mindslave Implant"
 	desc = "An implant injected into another body, forcing the victim to obey any command by the user, it does not expire like a regular mindslave implant."
 	item = /obj/item/storage/box/syndie_kit/imp_gmindslave
+	exclude_modes = list(/datum/game_mode/infiltration)
 	cost = 10
 
 /* Botany */
@@ -49,6 +50,7 @@
 	name = "Energy Chainsaw"
 	desc = "An incredibly deadly modified chainsaw with plasma-based energy blades instead of metal and a slick black-and-red finish. While it rips apart matter with extreme efficiency, it is heavy, large, and monstrously loud."
 	item = /obj/item/twohanded/required/chainsaw/energy
+	exclude_modes = list(/datum/game_mode/infiltration)
 	cost = 14
 
 /* Glock */
@@ -136,6 +138,7 @@
 	desc = "This grenade is filled with several random posionous bees. Fun for the whole family!"
 	cost = 2
 	item = /obj/item/grenade/spawnergrenade/beenade
+	exclude_modes = list(/datum/game_mode/infiltration)
 	surplus = 30
 
 /datum/uplink_item/dangerous/gremlin
@@ -150,11 +153,12 @@
 	desc = "This grenade is filled with 5 feral cats in stasis. Upon activation, the feral cats are awoken and unleashed unto unlucky bystanders."
 	cost = 3
 	item = /obj/item/grenade/spawnergrenade/cat
+	exclude_modes = list(/datum/game_mode/infiltration)
 	surplus = 30
 
 /datum/uplink_item/stealthy_tools/chameleon
 	cost = 4
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor, /datum/game_mode/infiltration)
 	player_minimum = 0
 
 /datum/uplink_item/stealthy_tools/syndigaloshes
@@ -199,21 +203,21 @@
 	desc = "Become one of the legends of the most brutal game in space. The items cannot be taken off once you wear them."
 	item = /obj/item/storage/box/syndie_kit/hockey
 	cost = 20
-	exclude_modes = list(/datum/game_mode/nuclear)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
 
 /datum/uplink_item/dangerous/bowling
 	name = "Bowling Set"
 	desc = "Niko, it's me, your cousin! Let's go bowling."
 	item = /obj/item/storage/box/syndie_kit/bowling
 	cost = 12
-	exclude_modes = list(/datum/game_mode/nuclear)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
 
 /datum/uplink_item/dangerous/wrestling
 	name = "Wrestling Set"
 	desc = "OH YEAH BROTHERRRR!"
 	item = /obj/item/storage/box/syndie_kit/wrestling
 	cost = 8 //The wrestling set is not as powerful as it once was
-	exclude_modes = list(/datum/game_mode/nuclear)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
 
 /datum/uplink_item/badass/execution_sword
 	name = "Executioners Sword"
@@ -227,6 +231,7 @@
 	item = /obj/item/melee/execution_sword
 	cost = 1 //Its weaker than an energy dagger and cannot be concealed.
 	surplus = 30 //Theres a good chance this will end up in surplus crates, so its a great way to add a little spice to any meme round.
+	exclude_modes = list(/datum/game_mode/infiltration)
 
 /datum/uplink_item/dangerous/guardian
 	surplus = 5 //Up yours TGbalanceing
@@ -240,7 +245,7 @@
 	surplus = 5
 
 /datum/uplink_item/stealthy_weapons/romerol_kit
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor, /datum/game_mode/infiltration)
 
 /datum/uplink_item/badass/banhammer
 	name = "Banhammer"
@@ -333,6 +338,7 @@
 	desc = "Become a posthuman warrior. The items cannot be taken off once you wear them."
 	item = /obj/item/storage/box/syndie_kit/nanosuit
 	cost = 20
+	exclude_modes = list(/datum/game_mode/infiltration)
 
 /datum/uplink_item/dangerous/synth
 	name = "Cybersun Sponsorship Kit"
@@ -340,6 +346,7 @@
 	item = /obj/item/storage/box/syndie_kit/synth
 	cost = 8
 	surplus = 40
+	exclude_modes = list(/datum/game_mode/infiltration)
 
 /datum/uplink_item/badass/brick
 	name = "A brick"
@@ -347,3 +354,72 @@
 	item = /obj/item/brick
 	cost = 2
 	surplus = 30
+
+/datum/uplink_item/dangerous/crossbow
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
+
+/datum/uplink_item/dangerous/sword
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration)
+
+/datum/uplink_item/dangerous/doublesword
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration)
+
+/datum/uplink_item/dangerous/syndicate_minibomb
+	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration)
+
+/datum/uplink_item/dangerous/guardian
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration)
+
+/datum/uplink_item/stealthy_weapons/martialarts
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration)
+
+/datum/uplink_item/stealthy_weapons/romerol_kit
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
+
+/datum/uplink_item/stealthy_weapons/detomatix
+	exclude_modes = list(/datum/game_mode/infiltration) //stealthhhh!
+
+/datum/uplink_item/device_tools/c4bag
+	exclude_modes = list(/datum/game_mode/infiltration) //you don't need to be blowing that much shit up!
+
+/datum/uplink_item/device_tools/x4bag
+	exclude_modes = list(/datum/game_mode/infiltration) //you don't need to be blowing that much shit up!
+
+/datum/uplink_item/device_tools/powersink
+	exclude_modes = list(/datum/game_mode/infiltration) //if they have this objective, they get a special one
+
+/datum/uplink_item/device_tools/singularity_beacon
+	exclude_modes = list(/datum/game_mode/infiltration) //no.
+
+/datum/uplink_item/device_tools/syndicate_bomb
+	exclude_modes = list(/datum/game_mode/infiltration) //no blowing shit up
+
+/datum/uplink_item/cyber_implants/thermals
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
+
+/datum/uplink_item/badass/balloon
+	exclude_modes = list(/datum/game_mode/infiltration) //no.
+
+/datum/uplink_item/badass/bundle
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
+
+/datum/uplink_item/badass/surplus
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration)
+
+//Infiltrator shit
+/datum/uplink_item/infiltration
+	category = "Infiltration Gear"
+	include_modes = list(/datum/game_mode/infiltration)
+	surplus = 0
+
+/datum/uplink_item/infiltration/pinpointer_upgrade
+	name = "Pinpointer Upgrade"
+	desc = "An infiltration pinpointer upgrade that allows pinpointers to track objective targets."
+	item = /obj/item/infiltrator_pinpointer_upgrade
+	cost = 8
+
+/datum/uplink_item/infiltration/extra_stealthsuit
+	name = "Chameleon Hardsuit"
+	desc = "An infiltration hardsuit, capable of changing it's appearance instantly."
+	item = /obj/item/clothing/suit/space/hardsuit/infiltration
+	cost = 10

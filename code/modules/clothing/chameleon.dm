@@ -212,7 +212,7 @@
 		thing.update_slot_icon()
 	UpdateButtonIcon()
 
-/datum/action/item_action/chameleon/change/proc/update_item(obj/item/picked_item)
+/datum/action/item_action/chameleon/change/proc/update_item(obj/item/picked_item, obj/item/target = src.target) //hippie -- add support for cham hardsuits
 	target.name = initial(picked_item.name)
 	target.desc = initial(picked_item.desc)
 	target.icon_state = initial(picked_item.icon_state)
@@ -224,6 +224,12 @@
 			var/obj/item/clothing/CL = I
 			var/obj/item/clothing/PCL = picked_item
 			CL.flags_cover = initial(PCL.flags_cover)
+	if(istype(target, /obj/item/clothing/suit/space/hardsuit/infiltration) && istype(target, /obj/item/clothing/suit/space/hardsuit)) //HIPPIE START
+		var/obj/item/clothing/suit/space/hardsuit/infiltration/I = target
+		var/obj/item/clothing/suit/space/hardsuit/HS = new picked_item
+		update_item(HS.helmettype, I.head_piece)
+		I.head_piece.update_icon()
+		QDEL_NULL(HS) //HIPPIE END
 	target.icon = initial(picked_item.icon)
 
 /datum/action/item_action/chameleon/change/Trigger()
