@@ -53,12 +53,6 @@ PROCESSING_SUBSYSTEM_DEF(tts)
 		return
 
 	var/next_channel = open_sound_channel()
-	var/turf/origin = get_turf(T.owner.mob)
-
-	if(!origin)
-		message_admins("TTS mob has no loc")
-		delete_files(T)
-		return
 
 	// get length of audio file
 	var/audio_length = text2num(file2text(T.filename + ".meta"))
@@ -67,7 +61,7 @@ PROCESSING_SUBSYSTEM_DEF(tts)
 		audio_length = length(T.text)
 
 	if (T.is_global)
-		for (var/mob/M in SSmobs.clients_by_zlevel[origin.z])
+		for (var/mob/M in GLOB.player_list)
 			if (!(M.client.prefs.toggles & SOUND_TTS))
 				continue
 
@@ -75,6 +69,11 @@ PROCESSING_SUBSYSTEM_DEF(tts)
 		addtimer(CALLBACK(src, .proc/delete_files, T), audio_length)
 		return
 	else
+		var/turf/origin = get_turf(T.owner.mob)
+		if(!origin)
+			message_admins("TTS mob has no loc")
+			delete_files(T)
+			return
 		var/list/listeners = SSmobs.clients_by_zlevel[origin.z]
 		listeners = listeners & hearers(world.view, origin)
 
