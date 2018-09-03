@@ -1,0 +1,4 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - bugfix: "Ghosts can no longer interact with the pool controller and change it's temperature"
