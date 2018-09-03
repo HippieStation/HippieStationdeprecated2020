@@ -352,7 +352,7 @@
 	name = "Additional Arm"
 	desc = "An additional arm, automatically added to your body upon purchase, allows you to use more items at once"
 	item = /obj/item/flashlight //doesn't actually spawn a flashlight, but it needs an object to show up in the menu :^)
-	cost = 8
+	cost = 4
 	limited_stock = 2
 
 /datum/uplink_item/device_tools/arm/spawn_item(spawn_item, mob/user)
