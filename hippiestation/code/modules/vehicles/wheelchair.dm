@@ -14,6 +14,7 @@
 	var/list/drive_sounds = list('sound/effects/roll.ogg')
 	var/mob/living/carbon/human/H
 	var/mob/living/user
+	movedelay = 10
 
 /obj/vehicle/ridden/wheelchair/Initialize()
 	. = ..()
