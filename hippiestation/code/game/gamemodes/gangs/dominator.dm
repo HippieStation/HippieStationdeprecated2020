@@ -21,13 +21,13 @@
 	var/obj/effect/countdown/dominator/countdown
 
 /obj/machinery/dominator/Initialize()
-	. = ..()
 	set_light(2)
 	GLOB.poi_list |= src
 	spark_system = new
 	spark_system.set_up(5, TRUE, src)
 	countdown = new(src)
 	update_icon()
+	.=..()
 
 /obj/machinery/dominator/Destroy()
 	if(!(stat & BROKEN))

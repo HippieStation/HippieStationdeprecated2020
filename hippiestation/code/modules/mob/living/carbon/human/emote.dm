@@ -203,6 +203,7 @@
 					if(M != user)
 						user.visible_message("<span class='warning'><b>[user]</b>'s ass blasts <b>[M]</b> in the face!</span>", "<span class='warning'>You ass blast <b>[M]</b>!</span>")
 						M.apply_damage(50,"brute","head")
+						user.log_message("dealt superfart damage to [key_name(M)]", LOG_ATTACK)
 
 				user.visible_message("<span class='warning'><b>[user]</b> blows their ass off!</span>", "<span class='warning'>Holy shit, your butt flies off in an arc!</span>")
 				if(!user.has_gravity())

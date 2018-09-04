@@ -13,9 +13,9 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/drain/Initialize()
-	. = ..()
 	for(var/obj/machinery/poolcontroller/control in range(srange,src))
 		src.poolcontrol += control
+	. = ..()
 
 /obj/machinery/drain/process()
 	if(!status) //don't drain an empty pool.
