@@ -1,4 +1,4 @@
-#define GENERATOR_PATH    "hippiestation\\tools\\tts_generator\\"
+#define GENERATOR_PATH    "tts_generator\\"
 #define DATA_PATH         GENERATOR_PATH + "data\\"
 #define STATUS_NEW        0
 #define STATUS_GENERATING 1
