@@ -3032,6 +3032,8 @@
 #include "hippiestation\code\modules\hydroponics\buttflower.dm"
 #include "hippiestation\code\modules\hydroponics\limbflower.dm"
 #include "hippiestation\code\modules\hydroponics\seed_extractor.dm"
+#include "hippiestation\code\modules\integrated_electronics\core\assemblies.dm"
+#include "hippiestation\code\modules\integrated_electronics\core\integrated_circuit.dm"
 #include "hippiestation\code\modules\integrated_electronics\subtypes\input.dm"
 #include "hippiestation\code\modules\integrated_electronics\subtypes\lists.dm"
 #include "hippiestation\code\modules\integrated_electronics\subtypes\manipulation.dm"

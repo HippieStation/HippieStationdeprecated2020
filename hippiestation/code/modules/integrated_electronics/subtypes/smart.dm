@@ -25,6 +25,7 @@
 	power_draw_per_use = 150
 	can_be_asked_input = TRUE
 	var/obj/item/mmi/installed_brain
+	demands_object_input = TRUE
 
 /obj/item/integrated_circuit/input/mmi_tank/attackby(var/obj/item/mmi/O, var/mob/user)
 	if(!istype(O,/obj/item/mmi))
@@ -153,6 +154,7 @@
 	power_draw_per_use = 150
 	can_be_asked_input = TRUE
 	var/obj/item/paicard/installed_pai
+	demands_object_input = TRUE
 
 /obj/item/integrated_circuit/input/pAI_connector/attackby(var/obj/item/paicard/O, var/mob/user)
 	if(!istype(O,/obj/item/paicard))
