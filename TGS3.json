@@ -14,7 +14,8 @@
     ],
     "static_directories": [
       "config",
-      "data"
+      "data",
+	  "hippiestation/tools/tts_generator"
     ],
     "dlls": [
       "libmariadb.dll"
