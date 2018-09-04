@@ -1,0 +1,4 @@
+author: "HonkBot"
+delete-after: True
+changes: 
+  - admin: "Supermatter more likely to log fingerprintslast when it consumes any object."
