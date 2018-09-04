@@ -1,5 +1,0 @@
-author: "Carbonhell"
-delete-after: True
-changes: 
-  - rscadd: "Hippie toggle preferences. Now it'll be easier for us to add new toggle options. First example is SOUND_TTS, next one will be footsteps."
-  - bugfix: "Fixes some people having tts off by default. It has been toggled on for everyone, you can toggle it off in OOC preferences if you do not like it."
