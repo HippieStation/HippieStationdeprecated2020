@@ -67,7 +67,12 @@
 	//This proc is for menus other than game pref and char pref
 	switch(current_tab)
 		if(2)
+			. += "<table><tr><td width='340px' height='300px' valign='top'>"
+			. += "<h2>Hippie OOC Settings</h2>"
+
 			. += "<b>Play Text-to-Speech:</b> <a href='?_src_=prefs;preference=hear_tts'>[(hippie_toggles & SOUND_TTS) ? "Enabled":"Disabled"]</a><br>" // let user toggle TTS sounds
+
+			. += "</tr></table>"
 		if(3)
 			if(!gear_tab)
 				gear_tab = GLOB.loadout_items[1]
