@@ -12010,12 +12010,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
-"aDK" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 10
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
 "aDL" = (
 /obj/structure/closet,
 /obj/effect/decal/cleanable/cobweb,
@@ -12524,12 +12518,11 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "aFe" = (
-/obj/item/clothing/under/rank/mailman,
-/obj/item/clothing/head/mailman,
-/obj/structure/closet,
-/obj/effect/landmark/blobstart,
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/grass,
+/area/hallway/secondary/service)
 "aFf" = (
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
@@ -13477,14 +13470,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "aHB" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 5
-	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
-"aHC" = (
-/obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/structure/reagent_dispensers/fueltank,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "aHD" = (
@@ -14616,16 +14602,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 1
 	},
-/turf/open/floor/plating,
-/area/maintenance/starboard/fore)
-"aKh" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "aKi" = (
@@ -56687,6 +56663,10 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"dDq" = (
+/mob/living/simple_animal/cow,
+/turf/open/floor/grass,
+/area/hallway/secondary/service)
 "dEi" = (
 /obj/machinery/door/airlock/engineering/glass{
 	name = "Laser Room";
@@ -57771,6 +57751,16 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/port_engineering)
+"fGS" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "fHK" = (
 /turf/open/floor/plasteel/green/side,
 /area/hallway/secondary/entry)
@@ -57851,6 +57841,14 @@
 	dir = 10
 	},
 /area/construction/mining/aux_base)
+"fPr" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -23
+	},
+/obj/machinery/door/window,
+/turf/open/floor/grass,
+/area/hallway/secondary/service)
 "fPz" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/public/glass{
@@ -58083,7 +58081,7 @@
 	name = "Service Hall APC";
 	pixel_y = 25
 	},
-/turf/open/floor/plasteel/hydrofloor,
+/turf/open/floor/grass,
 /area/hallway/secondary/service)
 "ghc" = (
 /obj/machinery/door/airlock/external{
@@ -58312,7 +58310,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/table,
 /obj/item/shovel/spade,
-/turf/open/floor/plasteel/hydrofloor,
+/turf/open/floor/grass,
 /area/hallway/secondary/service)
 "gBy" = (
 /obj/structure/closet/secure_closet/security/sec,
@@ -58556,6 +58554,14 @@
 /obj/machinery/atmospherics/pipe/simple,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+"hcf" = (
+/obj/structure/window{
+	icon_state = "window";
+	dir = 4
+	},
+/mob/living/simple_animal/chicken,
+/turf/open/floor/grass,
+/area/hallway/secondary/service)
 "hdv" = (
 /obj/effect/landmark/blobstart,
 /turf/open/floor/plating,
@@ -60017,7 +60023,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plasteel/hydrofloor,
+/turf/open/floor/grass,
 /area/hallway/secondary/service)
 "jyt" = (
 /obj/machinery/power/apc/auto_name/east,
@@ -61071,13 +61077,10 @@
 /turf/open/floor/plating,
 /area/engine/engineering)
 "lrb" = (
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plasteel/hydrofloor,
+/turf/open/floor/grass,
 /area/hallway/secondary/service)
 "lrt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -63773,6 +63776,14 @@
 /obj/machinery/vending/cola/random,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"qjU" = (
+/obj/structure/window,
+/obj/structure/window{
+	icon_state = "window";
+	dir = 4
+	},
+/turf/open/floor/grass,
+/area/hallway/secondary/service)
 "qlb" = (
 /obj/machinery/door/airlock/external{
 	name = "Port Docking Bay 1"
@@ -64433,14 +64444,10 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
-/obj/machinery/airalarm{
-	dir = 4;
-	pixel_x = -23
-	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/open/floor/plasteel/hydrofloor,
+/turf/open/floor/grass,
 /area/hallway/secondary/service)
 "rDH" = (
 /obj/structure/cable{
@@ -65113,6 +65120,9 @@
 /obj/machinery/seed_extractor,
 /turf/open/floor/plasteel,
 /area/security/prison)
+"sMP" = (
+/turf/open/floor/grass,
+/area/hallway/secondary/service)
 "sNr" = (
 /obj/structure/rack,
 /obj/item/flashlight/flare,
@@ -66077,6 +66087,10 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"uHm" = (
+/obj/effect/landmark/blobstart,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
 "uHI" = (
 /obj/effect/turf_decal/loading_area,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -67107,7 +67121,7 @@
 "wvw" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bucket,
-/turf/open/floor/plasteel/hydrofloor,
+/turf/open/floor/grass,
 /area/hallway/secondary/service)
 "wxm" = (
 /obj/structure/window/reinforced{
@@ -68011,7 +68025,7 @@
 	},
 /obj/structure/table,
 /obj/item/kitchen/rollingpin,
-/turf/open/floor/plasteel/hydrofloor,
+/turf/open/floor/grass,
 /area/hallway/secondary/service)
 "xWu" = (
 /obj/structure/cable{
@@ -107117,8 +107131,8 @@ tQS
 aFd
 aGb
 aHB
-ajz
-aKe
+aIH
+fGS
 aBi
 aNw
 aOO
@@ -107370,12 +107384,12 @@ aud
 aud
 aud
 aud
-ajz
-ajz
-ajz
-aDK
-aIH
-aKh
+mpy
+mpy
+mpy
+mpy
+mpy
+aKi
 aBi
 aNt
 aNt
@@ -107626,12 +107640,12 @@ alO
 alO
 azI
 alO
-avs
-ajz
+mpy
+dDq
 aFe
-ajz
-aHC
-ajz
+fPr
+sMP
+mpy
 aKi
 aBi
 aNx
@@ -107884,10 +107898,10 @@ alO
 asl
 alO
 mpy
-mpy
-mpy
-mpy
-mpy
+hcf
+hcf
+qjU
+sMP
 mpy
 aKj
 aLM
@@ -110455,7 +110469,7 @@ axw
 apq
 ajz
 aDM
-alO
+uHm
 ajz
 aHE
 aIN
