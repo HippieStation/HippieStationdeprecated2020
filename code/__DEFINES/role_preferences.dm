@@ -34,9 +34,13 @@
 #define ROLE_DRONE                  "drone"
 #define ROLE_DEATHSQUAD             "deathsquad"
 #define ROLE_LAVALAND               "lavaland"
+<<<<<<< HEAD
 #define ROLE_VAMPIRE			"vampire" // hippie -- adds vampire role
 #define ROLE_SHADOWLING			"shadowling" // hippie -- adds shadowling role
 #define ROLE_GANG				"gangster" // hippie -- adds gang related role
+=======
+#define ROLE_INTERNAL_AFFAIRS	"internal affairs agent"
+>>>>>>> 2947b558a7... Gives IAA its own preference (#40019)
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
 //The gamemode specific ones are just so the gamemodes can query whether a player is old enough
@@ -60,9 +64,13 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_DEVIL = /datum/game_mode/devil,
 	ROLE_SERVANT_OF_RATVAR = /datum/game_mode/clockwork_cult,
 	ROLE_OVERTHROW = /datum/game_mode/overthrow,
+<<<<<<< HEAD
 	ROLE_SHADOWLING = /datum/game_mode/shadowling, // hippie -- adds shadowling role=gamemode
 	ROLE_VAMPIRE = /datum/game_mode/vampire, // hippie -- adds vampire role=gamemode
 	ROLE_GANG = /datum/game_mode/gang, // hippie -- adds gang role=gamemode
+=======
+	ROLE_INTERNAL_AFFAIRS = /datum/game_mode/traitor/internal_affairs,
+>>>>>>> 2947b558a7... Gives IAA its own preference (#40019)
 	ROLE_SENTIENCE
 ))
 
