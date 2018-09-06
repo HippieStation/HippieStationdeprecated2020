@@ -73,7 +73,7 @@
 		direction = TARGET_TO_SOURCE
 	else
 		direction = SOURCE_TO_TARGET
-	target_pressure = abs(min(2533,new_amount))
+	target_pressure = min(2533,abs(new_amount))
 
 /obj/item/integrated_circuit/atmospherics/pump/do_work()
 	var/obj/source = get_pin_data_as_type(IC_INPUT, 1, /obj)
@@ -156,7 +156,7 @@
 		direction = TARGET_TO_SOURCE
 	else
 		direction = SOURCE_TO_TARGET
-	target_pressure = abs(min(200,new_amount))
+	target_pressure = min(200,abs(new_amount))
 
 /obj/item/integrated_circuit/atmospherics/pump/volume/move_gas(datum/gas_mixture/source_air, datum/gas_mixture/target_air)
 	// No moles = nothing to pump
@@ -178,6 +178,7 @@
 
 
 //CHECKED AND **UNTESTED**
+// - gas vent - //
 /obj/item/integrated_circuit/atmospherics/pump/vent
 	name = "gas vent"
 	desc = "Moves gases between the environment and adjacent gas containers."
@@ -203,7 +204,9 @@
 		return FALSE
 	return TRUE
 
+
 //CHECKED AND **UNTESTED**
+// - integrated connector - //
 /obj/item/integrated_circuit/atmospherics/connector
 	name = "integrated connector"
 	desc = "Creates an airtight seal with standard connectors found on the floor, \
@@ -257,7 +260,9 @@
 	connector.connected_device = src
 	activate_pin(2)
 
+
 //CHECKED AND **UNTESTED**
+// - gas filter - //
 /obj/item/integrated_circuit/atmospherics/pump/filter
 	name = "gas filter"
 	desc = "Filters one gas out of a mixture."
@@ -356,7 +361,9 @@
 					so multiple activations will be necessary to achieve target pressure. \
 					The pressure limit for circuit pumps is [round(MAX_TARGET_PRESSURE)] kPa."
 
+
 //CHECKED AND **UNTESTED**
+// - gas mixer - //
 /obj/item/integrated_circuit/atmospherics/pump/mixer
 	name = "gas mixer"
 	desc = "Mixes 2 different types of gases."
@@ -407,6 +414,8 @@
 	mix = source_2_gases.remove(transfer_moles * (1-gas_percentage))
 	output_gases.merge(mix)
 
+
+// - integrated tank - //
 /obj/item/integrated_circuit/atmospherics/tank
 	name = "integrated tank"
 	desc = "A small tank for the storage of gases."
@@ -442,6 +451,8 @@
 		var/datum/gas_mixture/expelled_gas = air_contents.remove(air_contents.total_moles())
 		loc.assume_air(expelled_gas)
 
+
+// - large integrated tank - //
 /obj/item/integrated_circuit/atmospherics/tank/large
 	name = "large integrated tank"
 	desc = "A less small tank for the storage of gases."
@@ -449,6 +460,8 @@
 	size = 8
 	spawn_flags = IC_SPAWN_RESEARCH
 
+
+// - freezer tank - //
 /obj/item/integrated_circuit/atmospherics/tank/freezer
 	name = "freezer tank"
 	desc = "Cools the gas it contains to a preset temperature."
@@ -474,9 +487,10 @@
 	if(!power_draw_idle || air_contents.temperature < temperature)
 		return
 
-	air_contents.temperature -= (air_contents.temperature - temperature) * heater_coefficient
+	air_contents.temperature -= (temperature - air_contents.temperature) * heater_coefficient
 
 
+// - heater tank - //
 /obj/item/integrated_circuit/atmospherics/tank/freezer/heater
 	name = "heater tank"
 	desc = "Heats the gas it contains to a preset temperature."
@@ -499,9 +513,10 @@
 	if(!power_draw_idle || air_contents.temperature > temperature)
 		return
 
-	air_contents.temperature += (air_contents.temperature - temperature) * heater_coefficient
+	air_contents.temperature += (temperature - air_contents.temperature) * heater_coefficient
 
 
+// - atmospheric cooler - //
 /obj/item/integrated_circuit/atmospherics/cooler
 	name = "atmospheric cooler circuit"
 	desc = "Cools the air around it."
@@ -512,7 +527,7 @@
 	var/heater_coefficient = 0.1
 
 /obj/item/integrated_circuit/atmospherics/cooler/on_data_written()
-	temperature = max(73.15,min(293.15,get_pin_data(IC_INPUT, 1)))
+	temperature = max(243.15,min(293.15,get_pin_data(IC_INPUT, 1)))
 	if(get_pin_data(IC_INPUT, 2))
 		power_draw_idle = 30
 	else
@@ -527,6 +542,7 @@
 	turf_air.temperature -= (air_contents.temperature - temperature) * heater_coefficient
 
 
+// - Atmospheric heater - //
 /obj/item/integrated_circuit/atmospherics/heater
 	name = "atmospheric heater circuit"
 	desc = "Heats the air around it."
@@ -536,20 +552,20 @@
 	var/temperature = 293.15
 	var/heater_coefficient = 0.1
 
-/obj/item/integrated_circuit/atmospherics/cooler/on_data_written()
-	temperature = max(293.15,min(573.15,get_pin_data(IC_INPUT, 1)))
+/obj/item/integrated_circuit/atmospherics/heater/on_data_written()
+	temperature = max(293.15,min(323.15,get_pin_data(IC_INPUT, 1)))
 	if(get_pin_data(IC_INPUT, 2))
 		power_draw_idle = 30
 	else
 		power_draw_idle = 0
 
-/obj/item/integrated_circuit/atmospherics/cooler/process()
+/obj/item/integrated_circuit/atmospherics/heater/process()
 	var/turf/current_turf = get_turf(src)
 	var/datum/gas_mixture/turf_air = current_turf.return_air()
 	if(!power_draw_idle || turf_air.temperature < temperature)
 		return
 
-	turf_air.temperature += (air_contents.temperature - temperature) * heater_coefficient
+	turf_air.temperature += (temperature - air_contents.temperature) * heater_coefficient
 
 #undef SOURCE_TO_TARGET
 #undef TARGET_TO_SOURCE
