@@ -30,7 +30,7 @@
 
 /obj/machinery/door/airlock/bumpopen(mob/living/user)
 	var/mob/living/carbon/human/H = user
-	if (H)
+	if (istype(H) && H)
 		if(H.wear_id)
 			var/list/access = H.wear_id.GetAccess()
 			if(ACCESS_SEC_DOORS in access)
