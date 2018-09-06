@@ -379,10 +379,12 @@
 	var/datum/antagonist/vampire/V = user.mind.has_antag_datum(/datum/antagonist/vampire)
 	if(!V)
 		return FALSE
-	if(!bat)
+	if(!bat || bat.stat == DEAD)
 		if(V.usable_blood < 15)
 			to_chat(user, "<span class='warning'>You do not have enough blood to cast this!</span>")
 			return FALSE
+		if(bat.stat == DEAD)
+			QDEL_NULL(bat)
 		bat = new /mob/living/simple_animal/hostile/vampire_bat(user.loc)
 		user.forceMove(bat)
 		bat.controller = user
