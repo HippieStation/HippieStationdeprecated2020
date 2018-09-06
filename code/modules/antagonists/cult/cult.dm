@@ -123,7 +123,16 @@
 	communion.Remove(current)
 	magic.Remove(current)
 	current.clear_alert("bloodsense")
+<<<<<<< HEAD
 
+=======
+	if(ishuman(current))
+		var/mob/living/carbon/human/H = current
+		H.eye_color = initial(H.eye_color)
+		H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
+		H.remove_trait(CULT_EYES)
+		H.update_body()
+>>>>>>> 7fd806a0ce... Quick cult fixes (#40133)
 /datum/antagonist/cult/on_removal()
 	SSticker.mode.cult -= owner
 	SSticker.mode.update_cult_icons_removed(owner)
