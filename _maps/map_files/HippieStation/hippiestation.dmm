@@ -28922,6 +28922,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+/obj/machinery/light/small,
 /turf/open/floor/plasteel/white,
 /area/science/lab)
 "bvO" = (
@@ -33644,6 +33645,9 @@
 	dir = 8
 	},
 /obj/item/integrated_circuit_printer,
+/obj/machinery/computer/security/telescreen{
+	pixel_x = -32
+	},
 /turf/open/floor/plasteel,
 /area/science/circuit)
 "bIn" = (
@@ -58782,9 +58786,6 @@
 /turf/open/space,
 /area/solar/starboard/fore)
 "hAJ" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
@@ -114822,7 +114823,7 @@ bvM
 bvM
 oLf
 bAm
-boj
+tdZ
 plw
 bLL
 bLL
@@ -115854,8 +115855,8 @@ xWK
 ihY
 xkv
 xkv
-xkv
 eHC
+xkv
 bJH
 bDc
 bLQ
