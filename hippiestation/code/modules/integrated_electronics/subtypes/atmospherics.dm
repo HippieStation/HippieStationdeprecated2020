@@ -464,7 +464,7 @@
 	spawn_flags = IC_SPAWN_RESEARCH
 
 
-// - freezer tank - //
+// - freezer tank - // **working**
 /obj/item/integrated_circuit/atmospherics/tank/freezer
 	name = "freezer tank"
 	desc = "Cools the gas it contains to a preset temperature."
@@ -490,10 +490,10 @@
 	if(!power_draw_idle || air_contents.temperature < temperature)
 		return
 
-	air_contents.temperature -= (temperature - air_contents.temperature) * heater_coefficient
+	air_contents.temperature -= (air_contents.temperature - temperature) * heater_coefficient
 
 
-// - heater tank - //
+// - heater tank - // **working**
 /obj/item/integrated_circuit/atmospherics/tank/freezer/heater
 	name = "heater tank"
 	desc = "Heats the gas it contains to a preset temperature."
@@ -526,6 +526,10 @@
 	volume = 6
 	size = 8
 	spawn_flags = IC_SPAWN_RESEARCH
+	inputs = list(
+		"target temperature" = IC_PINTYPE_NUMBER,
+		"on" = IC_PINTYPE_BOOLEAN
+		)
 	var/temperature = 293.15
 	var/heater_coefficient = 0.1
 
@@ -539,23 +543,18 @@
 /obj/item/integrated_circuit/atmospherics/cooler/process()
 	var/turf/current_turf = get_turf(src)
 	var/datum/gas_mixture/turf_air = current_turf.return_air()
-	if(!power_draw_idle || turf_air.temperature > temperature)
+	if(!power_draw_idle || turf_air.temperature < temperature)
 		return
 
 	turf_air.temperature -= (air_contents.temperature - temperature) * heater_coefficient
 
 
 // - Atmospheric heater - // 
-/obj/item/integrated_circuit/atmospherics/heater
+/obj/item/integrated_circuit/atmospherics/cooler/heater
 	name = "atmospheric heater circuit"
 	desc = "Heats the air around it."
-	volume = 6
-	size = 8
-	spawn_flags = IC_SPAWN_RESEARCH
-	var/temperature = 293.15
-	var/heater_coefficient = 0.1
 
-/obj/item/integrated_circuit/atmospherics/heater/on_data_written()
+/obj/item/integrated_circuit/atmospherics/cooler/heater/on_data_written()
 	temperature = max(293.15,min(323.15,get_pin_data(IC_INPUT, 1)))
 	if(get_pin_data(IC_INPUT, 2))
 		power_draw_idle = 30
@@ -565,7 +564,7 @@
 /obj/item/integrated_circuit/atmospherics/heater/process()
 	var/turf/current_turf = get_turf(src)
 	var/datum/gas_mixture/turf_air = current_turf.return_air()
-	if(!power_draw_idle || turf_air.temperature < temperature)
+	if(!power_draw_idle || turf_air.temperature > temperature)
 		return
 
 	turf_air.temperature += (temperature - air_contents.temperature) * heater_coefficient
