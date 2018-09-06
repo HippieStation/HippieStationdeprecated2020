@@ -35,7 +35,7 @@
 	return check_gassource(gasholder)
 
 
-//CHECKED AND **UNTESTED**
+// - gas pump - // **Works**
 /obj/item/integrated_circuit/atmospherics/pump
 	name = "gas pump"
 	desc = "Somehow moves gases between two tanks, canisters, and other gas containers."
@@ -73,7 +73,7 @@
 		direction = TARGET_TO_SOURCE
 	else
 		direction = SOURCE_TO_TARGET
-	target_pressure = abs(new_amount)
+	target_pressure = abs(min(2533,new_amount))
 
 /obj/item/integrated_circuit/atmospherics/pump/do_work()
 	var/obj/source = get_pin_data_as_type(IC_INPUT, 1, /obj)
@@ -128,10 +128,11 @@
 		var/datum/gas_mixture/removed = source_air.remove(transfer_moles)
 		target_air.merge(removed)
 
+// - volume pump - // **Works**
 /obj/item/integrated_circuit/atmospherics/pump/volume
 	name = "volume pump"
-	desc = "Moves gases between two tanks, canisters, and other gas containers by using their volume."
-	extended_desc = " Use negative pressure to move air from target to source. Note that only part of the gas is moved on each transfer. Unlike the gas pump, this one keeps pumping even further to pressures of 9000 pKa and it is not advised to use it on tank circuits."
+	desc = "Moves gases between two tanks, canisters, and other gas containers by using their volume, up to 200 L/s."
+	extended_desc = " Use negative volume to move air from target to source. Note that only part of the gas is moved on each transfer. Unlike the gas pump, this one keeps pumping even further to pressures of 9000 pKa and it is not advised to use it on tank circuits."
 
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	complexity = 5
@@ -139,7 +140,7 @@
 	inputs = list(
 			"source" = IC_PINTYPE_REF,
 			"target" = IC_PINTYPE_REF,
-			"target pressure" = IC_PINTYPE_NUMBER
+			"transfer volume" = IC_PINTYPE_NUMBER
 			)
 	activators = list(
 			"transfer" = IC_PINTYPE_PULSE_IN,
@@ -148,6 +149,14 @@
 	direction = SOURCE_TO_TARGET
 	var/transfer_rate = MAX_TRANSFER_RATE
 	power_draw_per_use = 20
+
+/obj/item/integrated_circuit/atmospherics/pump/volume/update_target(new_amount)
+	// See in which direction the gas moves
+	if(new_amount < 0)
+		direction = TARGET_TO_SOURCE
+	else
+		direction = SOURCE_TO_TARGET
+	target_pressure = abs(min(200,new_amount))
 
 /obj/item/integrated_circuit/atmospherics/pump/volume/move_gas(datum/gas_mixture/source_air, datum/gas_mixture/target_air)
 	// No moles = nothing to pump
