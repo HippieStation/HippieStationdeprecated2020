@@ -1,4 +1,4 @@
-hippiestation/sound/lobby/#9 Dream - Play Garden.ogg
+﻿hippiestation/sound/lobby/#9 Dream - Play Garden.ogg
 hippiestation/sound/lobby/01 - Alan Braxe & Fred Falke - Most wanted.ogg
 hippiestation/sound/lobby/01 68 State.ogg
 hippiestation/sound/lobby/01-james_hannigan_-_red_alert_3_theme_soviet_march-umt.ogg
@@ -104,3 +104,4 @@ hippiestation/sound/lobby/Widdly 2 Diddly - LISA Soundtrack - 36 Garbage Day.ogg
 hippiestation/sound/lobby/Widdly 2 Diddly - LISA Soundtrack - 49 Ode to the Oblivious.ogg
 hippiestation/sound/lobby/Widdly 2 Diddly - LISA Soundtrack - 51 Pebble Man.ogg
 hippiestation/sound/lobby/Young MC - Bust A Move.ogg
+hippiestation/sound/lobby/Bomberman Hero - Redail.ogg
