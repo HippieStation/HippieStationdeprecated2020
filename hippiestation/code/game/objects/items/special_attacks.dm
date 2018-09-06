@@ -133,7 +133,7 @@
 		var/armor_block = C.run_armor_check("head", "melee")
 		C.apply_damage(force, BRUTE, C.get_bodypart("head"), armor_block)
 		C.visible_message("<span class='danger'>[user] smashes [C]'s head hard with [src]!</span>", "<span class='userdanger'>[user] smashes your skull in with [src]!</span>")
-		user.say("Ey, is somebody keepin' track of my heads batted in?")
+		user.say("Ey, is somebody keepin' track of my heads batted in?", forced = "baseball bat")
 		playsound(C, src.hitsound, 100, 1, -1)
 		user.do_attack_animation(target)
 		src.special_attack = FALSE

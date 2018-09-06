@@ -265,7 +265,11 @@
 	update_icon()
 
 /obj/machinery/poolcontroller/Topic(href, href_list)
-	..()
+	if(..())
+		return
+	if(!allowed(usr))
+		to_chat(usr, "<span class='warning'>Access denied.</span>")
+		return
 	if(timer > 0)
 		return
 	if(href_list["IncreaseTemp"])
@@ -314,6 +318,9 @@
 			return "Outside of possible range."
 
 /obj/machinery/poolcontroller/ui_interact(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(shocked && !(stat & NOPOWER))
 		shock(user,50)
 	if(panel_open && !isAI(user))

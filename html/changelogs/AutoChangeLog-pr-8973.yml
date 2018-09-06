@@ -1,0 +1,4 @@
+author: "HonkBot"
+delete-after: True
+changes: 
+  - bugfix: "Chemicals should no longer vanish for some reactions."
