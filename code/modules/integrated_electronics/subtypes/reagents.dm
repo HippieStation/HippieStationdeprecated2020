@@ -593,7 +593,8 @@
 	push_vol()
 	set_pin_data(IC_OUTPUT, 2, WEAKREF(current_beaker))
 	push_data()
-	do_work(1)
+	activate_pin(1)
+	activate_pin(3)
 
 
 
@@ -617,7 +618,8 @@
 	push_vol()
 	set_pin_data(IC_OUTPUT, 2, null)
 	push_data()
-	do_work(2)
+	activate_pin(2)
+	activate_pin(3)
 
 
 
