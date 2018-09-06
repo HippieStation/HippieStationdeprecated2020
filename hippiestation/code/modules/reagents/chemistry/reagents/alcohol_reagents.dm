@@ -116,7 +116,7 @@
 /datum/reagent/consumable/ethanol/booger/on_mob_life(mob/living/M)
 	if(prob(30))
 		M.emote("sneeze")
-		M.say(pick("ACHOO!!","ACHNK!!","ASNRK!!","CHU!","ACHOOEY!!","ACHSK!!"))
+		M.say(pick("ACHOO!!","ACHNK!!","ASNRK!!","CHU!","ACHOOEY!!","ACHSK!!"), forced = "booger")
 		. = 1
 	..()
 
@@ -133,7 +133,7 @@
 
 /datum/reagent/consumable/ethanol/moonshine/on_mob_life(mob/living/M)
 	if(prob(20))
-		M.say(pick("YEE HAW!!","YEEE HAAW!!","YEEEE HAAAW!!","YEEEEE HAAAAW!!","YEEEEEE HAAAAAW!!","YEEEEEEE HAAAAAAW!!","YEEEEEEEE HAAAAAAAW!!"))
+		M.say(pick("YEE HAW!!","YEEE HAAW!!","YEEEE HAAAW!!","YEEEEE HAAAAW!!","YEEEEEE HAAAAAW!!","YEEEEEEE HAAAAAAW!!","YEEEEEEEE HAAAAAAAW!!"), forced = "moonshine")
 	..()
 	
 /datum/reagent/consumable/ethanol/black_russian/on_mob_life(mob/living/M)
@@ -149,7 +149,7 @@
 		
 /datum/reagent/consumable/ethanol/manhattan/on_mob_life(mob/living/M)
 	if(prob(20)) //may cause involuntary brawls
-		M.say(pick("FUCKIN' SHIT!!","JESUS CHRIST!!","AAASSSSSS!!","FUCKER!!","SHITBIRD!!","FUCK YOURSELF!!","GET OFF THE FUCKIN' ROAD!!","EAT SHIT!!","EAT A DICK, PAL!!","GET FUCKED!!","TRY ME, COCKSUCKER!!","JUMP UP YOUR OWN ASS!!","BADA BING!!","YOU TALKIN' TO ME?!!","FUCK OUTTA HERE!!","EY, I'M WALKIN' HERE!!"))
+		M.say(pick("FUCKIN' SHIT!!","JESUS CHRIST!!","AAASSSSSS!!","FUCKER!!","SHITBIRD!!","FUCK YOURSELF!!","GET OFF THE FUCKIN' ROAD!!","EAT SHIT!!","EAT A DICK, PAL!!","GET FUCKED!!","TRY ME, COCKSUCKER!!","JUMP UP YOUR OWN ASS!!","BADA BING!!","YOU TALKIN' TO ME?!!","FUCK OUTTA HERE!!","EY, I'M WALKIN' HERE!!"), forced = "manhattan")
 	..()
 	
 /datum/reagent/consumable/ethanol/whiskeysoda/on_mob_life(mob/living/M)
