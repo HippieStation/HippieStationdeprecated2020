@@ -10,7 +10,7 @@
 	var/easteregg_doorClose = 'hippiestation/sound/machines/airlockclose_doom.ogg'
 
 /obj/machinery/door/airlock/open(forced = 0)
-	if (prob(EASTEREGG_CHANCE))
+	if (prob(EASTEREGG_CHANCE) && !easteregg_triggered)
 		easteregg_triggered = TRUE
 		doorOpen = easteregg_doorOpen
 		doorClose = easteregg_doorClose
@@ -27,6 +27,28 @@
 		doorClose = initial(doorClose)
 
 	return .
+
+/obj/machinery/door/airlock/bumpopen(mob/living/user)
+	var/mob/living/carbon/human/H = user
+	if (H)
+		if(H.wear_id)
+			var/list/access = H.wear_id.GetAccess()
+			if(ACCESS_SEC_DOORS in access)
+				if (prob(EASTEREGG_CHANCE) && !easteregg_triggered)
+					doorOpen = 'hippiestation/sound/machines/airlockopen_sec.ogg'
+					easteregg_triggered = TRUE
+	. = ..()
+
+/obj/machinery/door/airlock/attack_hand(mob/user)
+	var/mob/living/carbon/human/H = user
+	if (H)
+		if(H.wear_id)
+			var/list/access = H.wear_id.GetAccess()
+			if(ACCESS_SEC_DOORS in access)
+				if (prob(EASTEREGG_CHANCE) && !easteregg_triggered)
+					doorOpen = 'hippiestation/sound/machines/airlockopen_sec.ogg'
+					easteregg_triggered = TRUE
+	. = ..()
 
 /obj/machinery/door/airlock/bananium
 	doorClose = 'sound/items/bikehorn.ogg'
