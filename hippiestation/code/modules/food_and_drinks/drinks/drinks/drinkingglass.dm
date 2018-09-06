@@ -2,7 +2,7 @@
 	var/mob/living/carbon/human/H = user
 	if(reagents && reagents.has_reagent("lean"))
 		H.visible_message("<span class='suicide'>[H] is overdosing on that purple stuff!</span>")
-		H.say("Aww hol up mane.. dat too much drank..")
+		H.say("Aww hol up mane.. dat too much drank..", forced = "drinking glass suicide")
 		H.vomit(80)
 		return(TOXLOSS)
 	else 

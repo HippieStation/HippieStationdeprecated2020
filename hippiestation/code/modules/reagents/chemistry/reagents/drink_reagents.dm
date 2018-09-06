@@ -75,7 +75,7 @@
 		if(prob(2))
 			playsound(get_turf(H), 'hippiestation/sound/misc/syrupSippin.ogg', 50, 1)
 		if(prob(8))
-			H.say(pick(leanTalk))
+			H.say(pick(leanTalk), forced = "lean")
 		if(prob(1))
 			var/syrup_feeling = pick(syrup_message)
 			to_chat(H,"<span class='notice'>[syrup_feeling]</span>")
@@ -114,4 +114,4 @@
 
 	Soylet.update_hair()
 	to_chat(Soylet, "<span class='notice'>You feel like a new [prefix]male!</span>")
-	Soylet.say("Wow!")
+	Soylet.say("Wow!", forced = "soy")
