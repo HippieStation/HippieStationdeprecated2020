@@ -56,6 +56,7 @@
 	power_draw_per_use = 20
 
 /obj/item/integrated_circuit/atmospherics/pump/Initialize()
+	air_contents = new(volume)
 	extended_desc += " Use negative pressure to move air from target to source. \
 					Note that only part of the gas is moved on each transfer, \
 					so multiple activations will be necessary to achieve target pressure. \
@@ -355,6 +356,7 @@
 	contaminated_air.merge(removed)
 
 /obj/item/integrated_circuit/atmospherics/pump/filter/Initialize()
+	air_contents = new(volume)
 	. = ..()
 	extended_desc = "Remember to properly spell and capitalize the filtered gas name. \
 					Note that only part of the gas is moved on each transfer, \
@@ -415,7 +417,7 @@
 	output_gases.merge(mix)
 
 
-// - integrated tank - //
+// - integrated tank - // **working**
 /obj/item/integrated_circuit/atmospherics/tank
 	name = "integrated tank"
 	desc = "A small tank for the storage of gases."
@@ -428,6 +430,7 @@
 	var/broken = FALSE
 
 /obj/item/integrated_circuit/atmospherics/tank/Initialize()
+	air_contents = new(volume)
 	START_PROCESSING(SSobj, src)
 	extended_desc = "Take care not to pressurize it above [round(TANK_FAILURE_PRESSURE)] kPa, or else it will break."
 	. = ..()
@@ -452,7 +455,7 @@
 		loc.assume_air(expelled_gas)
 
 
-// - large integrated tank - //
+// - large integrated tank - // **working**
 /obj/item/integrated_circuit/atmospherics/tank/large
 	name = "large integrated tank"
 	desc = "A less small tank for the storage of gases."
@@ -516,7 +519,7 @@
 	air_contents.temperature += (temperature - air_contents.temperature) * heater_coefficient
 
 
-// - atmospheric cooler - //
+// - atmospheric cooler - // 
 /obj/item/integrated_circuit/atmospherics/cooler
 	name = "atmospheric cooler circuit"
 	desc = "Cools the air around it."
@@ -542,7 +545,7 @@
 	turf_air.temperature -= (air_contents.temperature - temperature) * heater_coefficient
 
 
-// - Atmospheric heater - //
+// - Atmospheric heater - // 
 /obj/item/integrated_circuit/atmospherics/heater
 	name = "atmospheric heater circuit"
 	desc = "Heats the air around it."
