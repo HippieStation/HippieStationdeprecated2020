@@ -632,7 +632,6 @@
 
 /obj/item/reagent_containers/glass/beaker/on_reagent_change()
 	..()
-	to_chat(world,"calling reagent change")
 	if(istype(src.loc,/obj/item/integrated_circuit/input/beaker_connector))
 		var/obj/item/integrated_circuit/input/beaker_connector/current_circuit = src.loc
 		current_circuit.push_vol()
