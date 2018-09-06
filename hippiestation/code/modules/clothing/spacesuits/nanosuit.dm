@@ -131,7 +131,7 @@
 	item_state = "nvgmesonnano"
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
 	glass_colour_type = /datum/client_colour/glass_colour/nightvision
-	actions_types = list(/datum/action/item_action/nanogoggles/toggle)
+	actions_types = list(/datum/action/item_action/nanosuit/goggletoggle)
 	vision_correction = 1 //We must let our wearer have good eyesight
 	var/on = 0
 	item_flags = DROPDEL
@@ -145,7 +145,7 @@
 		item_flags = NODROP
 
 /obj/item/clothing/glasses/nano_goggles/ui_action_click(mob/user, action)
-	if(istype(action, /datum/action/item_action/nanogoggles/toggle))
+	if(istype(action, /datum/action/item_action/nanosuit/goggletoggle))
 		nvgmode(user)
 		return TRUE
 	return FALSE
@@ -398,7 +398,7 @@
 				slowdown = 0.4 //cloaking makes us go sliightly faster
 				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
-				U.filters = filter(type="blur",size=1)
+				filters = filter(type="blur",size=1)
 				animate(U, alpha = 40, time = 2)
 				U.remove_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
 				U.remove_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
@@ -517,42 +517,33 @@
 	helmet.display_visor_message("Cleared to proceed.")
 	shutdown = FALSE
 
-/datum/action/item_action/nanogoggles/toggle
+/datum/action/item_action/nanosuit
 	check_flags = AB_CHECK_STUN|AB_CHECK_CONSCIOUS
-	name = "Night Vision"
 	icon_icon = 'icons/mob/actions.dmi'
 	background_icon_state = "bg_tech_blue"
+
+/datum/action/item_action/nanosuit/goggletoggle
+	name = "Night Vision"
 	icon_icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi'
 	button_icon_state = "toggle_goggle"
 
-/datum/action/item_action/nanosuit
-	check_flags = AB_CHECK_STUN|AB_CHECK_CONSCIOUS
-
 /datum/action/item_action/nanosuit/armor
 	name = "Armor Mode"
-	icon_icon = 'icons/mob/actions.dmi'
-	background_icon_state = "bg_tech_blue"
 	icon_icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi'
 	button_icon_state = "armor_mode"
 
 /datum/action/item_action/nanosuit/cloak
 	name = "Cloak Mode"
-	icon_icon = 'icons/mob/actions.dmi'
-	background_icon_state = "bg_tech_blue"
 	icon_icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi'
 	button_icon_state = "cloak_mode"
 
 /datum/action/item_action/nanosuit/speed
 	name = "Speed Mode"
-	icon_icon = 'icons/mob/actions.dmi'
-	background_icon_state = "bg_tech_blue"
 	icon_icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi'
 	button_icon_state = "speed_mode"
 
 /datum/action/item_action/nanosuit/strength
 	name = "Strength Mode"
-	icon_icon = 'icons/mob/actions.dmi'
-	background_icon_state = "bg_tech_blue"
 	icon_icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi'
 	button_icon_state = "strength_mode"
 
@@ -1050,7 +1041,7 @@
 	to_chat(usr, "<b>Sensors</b>: Reagent scanner, bomb radar, medical, security and diagnostic huds, user life signs monitor and bluespace communication relay.")
 	to_chat(usr, "<b>Passive equipment</b>: Binoculars, night vision, anti-slips, shock and heat proof gloves, self refilling mini o2 tank, emergency medical systems and body temperature defroster.")
 	to_chat(usr, "<b>Active modes</b>: Armor, strength, speed and cloak.")
-	to_chat(usr, "<span class='notice'>Armor</span>: Resist damage that would normally kill or seriously injure you. Blocks all attacks at a cost of suit energy drain.")
+	to_chat(usr, "<span class='notice'>Armor</span>: Resist damage that would normally kill or seriously injure you. Blocks 50% of attacks at a cost of suit energy drain.")
 	to_chat(usr, "<span class='notice'>Cloak</span>: Become a ninja. Cloaking technology alters the outer layers to refract light through and around the suit, making the user appear almost completely invisible. Simple tasks such as attacking in any way, being hit or throwing objects cancels cloak.")
 	to_chat(usr, "<span class='notice'>Speed</span>: Run like a madman. Use conservatively as suit energy drains fairly quickly.")
 	to_chat(usr, "<span class='notice'>Strength</span>: Beat the shit out of objects  or people with your fists. Jump across small gabs and structures. You hit and throw harder with brute objects. You can't be grabbed aggressively or pushed. Deflect attacks and ranged hits occasionally. ")
@@ -1065,3 +1056,49 @@
 /obj/item/stock_parts/cell/nano
 	name = "nanosuit self charging battery"
 	maxcharge = 100
+
+/mob
+	var/menus_open = 0
+
+/mob/living/carbon/human/key_down(_key, client/user)
+	switch(_key)
+		if("C")
+			if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+				var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
+				var/list/choices = list(
+				"armor" = image(icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi', icon_state = "armor_mode"),
+				"speed" = image(icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi', icon_state = "speed_mode"),
+				"cloak" = image(icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi', icon_state = "cloak_mode"),
+				"strength" = image(icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi', icon_state = "strength_mode")
+				)
+				if(!menus_open)
+					menus_open++
+					var/choice = show_radial_menu_nano(src,src,choices)
+					switch(choice)
+						if("armor")
+							NS.toggle_mode(ARMOR)
+							return
+						if("speed")
+							NS.toggle_mode(SPEED)
+							return
+						if("cloak")
+							NS.toggle_mode(CLOAK)
+							return
+						if("strength")
+							NS.toggle_mode(STRENGTH)
+							return
+	return ..()
+
+/proc/show_radial_menu_nano(mob/user,atom/anchor,list/choices)
+	var/datum/radial_menu/menu = new
+	if(!user)
+		user = usr
+	menu.anchor = anchor
+	menu.check_screen_border(user) //Do what's needed to make it look good near borders or on hud
+	menu.set_choices(choices)
+	menu.show_to(user)
+	menu.wait()
+	var/answer = menu.selected_choice
+	qdel(menu)
+	user.menus_open--
+	return answer
