@@ -14,7 +14,7 @@
 /obj/item/reagent_containers/food/snacks/soup/monkey/attack(mob/M, mob/user, def_zone)
 	if(..())
 		if(world.time > next_uma)
-			M.say("Uma delicia!")
+			M.say("Uma delicia!", forced = "monkey soup")
 			next_uma = world.time + DELICIA_SPAM_COOLDOWN
 
 /obj/item/reagent_containers/food/snacks/soup/gondola
