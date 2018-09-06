@@ -2748,6 +2748,7 @@
 #include "hippiestation\code\datums\antagonists\thrall.dm"
 #include "hippiestation\code\datums\antagonists\vampire.dm"
 #include "hippiestation\code\datums\antagonists\wizard.dm"
+#include "hippiestation\code\datums\components\footstep.dm"
 #include "hippiestation\code\datums\components\material_container.dm"
 #include "hippiestation\code\datums\components\spell_catalyst.dm"
 #include "hippiestation\code\datums\components\storage\concrete\butt.dm"

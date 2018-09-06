@@ -9,5 +9,20 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings/Sound, toggletts)()
 	else
 		to_chat(usr, "You will no longer hear text-to-speech sounds.")
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Hearing Text-to-Speech", "[usr.client.prefs.toggles & SOUND_TTS ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 /datum/verbs/menu/Settings/Sound/toggletts/Get_checked(client/C)
 	return C.prefs.hippie_toggles & SOUND_TTS
+
+TOGGLE_CHECKBOX(/datum/verbs/menu/Settings/Sound, toggle_footsteps)()
+	set name = "Hear/Silence Footsteps"
+	set category = "Preferences"
+	set desc = "Hear In-game Footsteps"
+	usr.client.prefs.hippie_toggles ^= SOUND_FOOTSTEPS
+	usr.client.prefs.save_preferences()
+	if(usr.client.prefs.hippie_toggles & SOUND_FOOTSTEPS)
+		to_chat(usr, "You will now hear people's footsteps.")
+	else
+		to_chat(usr, "You will no longer hear people's footsteps.")
+	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Footsteps", "[usr.client.prefs.toggles & SOUND_FOOTSTEPS ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+/datum/verbs/menu/Settings/Sound/toggle_footsteps/Get_checked(client/C)
+	return C.prefs.hippie_toggles & SOUND_FOOTSTEPS
