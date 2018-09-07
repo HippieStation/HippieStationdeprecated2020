@@ -36,7 +36,7 @@
 	return check_gassource(gasholder)
 
 
-// - gas pump - // **Works**
+// - gas pump - // **works**
 /obj/item/integrated_circuit/atmospherics/pump
 	name = "gas pump"
 	desc = "Somehow moves gases between two tanks, canisters, and other gas containers."
@@ -222,8 +222,7 @@
 	return TRUE
 
 
-//CHECKED AND **UNTESTED**
-// - integrated connector - //
+// - integrated connector - // Can connect and disconnect properly
 /obj/item/integrated_circuit/atmospherics/connector
 	name = "integrated connector"
 	desc = "Creates an airtight seal with standard connectors found on the floor, \
@@ -252,14 +251,6 @@
 			connector = null
 			activate_pin(4)
 
-//If the target is a gas tank/atmos circuit/canister and next to it, returns its air contents, else returns its own
-/obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
-	var/obj/target = get_pin_data_as_type(IC_INPUT, 1, /obj)
-	if(check_gassource(target))
-		return target.return_air()
-	else
-		return return_air()
-
 /obj/item/integrated_circuit/atmospherics/connector/do_work()
 	// If there is a connection, disconnect
 	if(connector)
@@ -276,6 +267,18 @@
 	connector = PC
 	connector.connected_device = src
 	activate_pin(2)
+
+/obj/item/integrated_circuit/atmospherics/connector/Initialize()
+	air_contents = new(volume)
+	START_PROCESSING(SSobj, src)
+	. = ..()
+
+//Sucks up the gas from the connector
+/obj/item/integrated_circuit/atmospherics/connector/process()
+	var/obj/target = get_pin_data_as_type(IC_INPUT, 1, /obj)
+	if(!check_gassource(target))
+		return
+	//Needs to be finished to work correctly: should work like another pipe
 
 
 // - gas filter - // **works**
@@ -379,7 +382,7 @@
 					The pressure limit for circuit pumps is [round(MAX_TARGET_PRESSURE)] kPa."
 
 
-// - gas mixer - // **working**
+// - gas mixer - // **works**
 /obj/item/integrated_circuit/atmospherics/pump/mixer
 	name = "gas mixer"
 	desc = "Mixes 2 different types of gases."
@@ -396,6 +399,7 @@
 	power_draw_per_use = 30
 
 /obj/item/integrated_circuit/atmospherics/pump/mixer/do_work()
+	to_chat(world,"Start do_work()")
 	activate_pin(2)
 	var/obj/source_1 = get_pin_data(IC_INPUT, 1)
 	var/obj/source_2 = get_pin_data(IC_INPUT, 2)
@@ -425,7 +429,7 @@
 	//This calculates how much should be sent
 	var/gas_percentage = round(max(min(get_pin_data(IC_INPUT, 4),100),0) / 100)
 
-	var/transfer_moles = get_pin_data(IC_INPUT, 5) * (source_1_gases.return_pressure() * gas_percentage +  source_2_gases.return_pressure() * (1 - gas_percentage)) / (output_gases.return_pressure()) * output_gases.volume/ (R_IDEAL_GAS_EQUATION * max(output_gases.temperature,TCMB)) * PUMP_EFFICIENCY
+	var/transfer_moles = PUMP_EFFICIENCY * get_pin_data(IC_INPUT, 5) * (source_1_gases.return_pressure() * gas_percentage +  source_2_gases.return_pressure() * (1 - gas_percentage)) / (output_gases.return_pressure()) * output_gases.volume/ (R_IDEAL_GAS_EQUATION * max(output_gases.temperature,TCMB))
 
 	if(transfer_moles <= 0)
 		return
@@ -434,9 +438,10 @@
 	output_gases.merge(mix)
 	mix = source_2_gases.remove(transfer_moles * (1-gas_percentage))
 	output_gases.merge(mix)
+	to_chat(world,"mix successful")
 
 
-// - integrated tank - // **working**
+// - integrated tank - // **works**
 /obj/item/integrated_circuit/atmospherics/tank
 	name = "integrated tank"
 	desc = "A small tank for the storage of gases."
@@ -487,7 +492,7 @@
 		exterior_gas.merge(expelled_gas)
 
 
-// - large integrated tank - // **working**
+// - large integrated tank - // **works**
 /obj/item/integrated_circuit/atmospherics/tank/large
 	name = "large integrated tank"
 	desc = "A less small tank for the storage of gases."
@@ -496,7 +501,7 @@
 	spawn_flags = IC_SPAWN_RESEARCH
 
 
-// - freezer tank - // **working**
+// - freezer tank - // **works**
 /obj/item/integrated_circuit/atmospherics/tank/freezer
 	name = "freezer tank"
 	desc = "Cools the gas it contains to a preset temperature."
@@ -530,7 +535,7 @@
 	air_contents.temperature = max(73.15,air_contents.temperature - (air_contents.temperature - temperature) * heater_coefficient)
 
 
-// - heater tank - // **working**
+// - heater tank - // **works**
 /obj/item/integrated_circuit/atmospherics/tank/freezer/heater
 	name = "heater tank"
 	desc = "Heats the gas it contains to a preset temperature."
@@ -561,7 +566,7 @@
 	air_contents.temperature = min(573.15,air_contents.temperature + (temperature - air_contents.temperature) * heater_coefficient)
 
 
-// - atmospheric cooler - // **working**
+// - atmospheric cooler - // **works**
 /obj/item/integrated_circuit/atmospherics/cooler
 	name = "atmospheric cooler circuit"
 	desc = "Cools the air around it."
@@ -609,7 +614,7 @@
 	turf_air.temperature = max(243.15,turf_air.temperature - (turf_air.temperature - temperature) * heater_coefficient)
 
 
-// - atmospheric heater - // **working**
+// - atmospheric heater - // **works**
 /obj/item/integrated_circuit/atmospherics/cooler/heater
 	name = "atmospheric heater circuit"
 	desc = "Heats the air around it."
@@ -638,7 +643,7 @@
 	turf_air.temperature = min(323.15,turf_air.temperature + (temperature - turf_air.temperature) * heater_coefficient)
 
 
-// - tank slot - //
+// - tank slot - // **works**
 /obj/item/integrated_circuit/input/tank_slot
 	category_text = "Atmospherics"
 	cooldown_per_use = 1
@@ -675,12 +680,12 @@
 	push_pressure()
 
 /obj/item/integrated_circuit/input/tank_slot/attackby(var/obj/item/tank/internals/I, var/mob/living/user)
-	//Check if it truly is an internals tank
+	//Check if it truly is a tank
 	if(!istype(I,/obj/item/tank/internals))
 		to_chat(user,"<span class='warning'>The [I.name] doesn't seem to fit in here.</span>")
 		return
 
-	//Check if there is no other beaker already inside
+	//Check if there is no other tank already inside
 	if(current_tank)
 		to_chat(user,"<span class='warning'>There is already a gas tank inside.</span>")
 		return
@@ -719,6 +724,9 @@
 
 /obj/item/integrated_circuit/input/tank_slot/proc/push_pressure()
 	if(!current_tank)
+		set_pin_data(IC_OUTPUT, 1, 0)
+
+	if(!current_tank.air_contents)
 		set_pin_data(IC_OUTPUT, 1, 0)
 
 	set_pin_data(IC_OUTPUT, 1, current_tank.air_contents.return_pressure())
