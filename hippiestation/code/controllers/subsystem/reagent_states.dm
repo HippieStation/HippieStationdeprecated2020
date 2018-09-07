@@ -5,7 +5,8 @@ PROCESSING_SUBSYSTEM_DEF(reagent_states)
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 	var/deleting = FALSE
 
-/datum/controller/subsystem/processing/reagent_states/process()
+/datum/controller/subsystem/processing/reagent_states/fire(resumed = FALSE)
+	. = ..()
 	if(!deleting && cost > 2000)
 		deleting = TRUE
 		for(var/I in GLOB.smoke)
