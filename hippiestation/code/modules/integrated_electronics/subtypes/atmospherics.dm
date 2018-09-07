@@ -674,9 +674,9 @@
 /obj/item/integrated_circuit/input/tank_slot/process()
 	push_pressure()
 
-/obj/item/integrated_circuit/input/tank_slot/attackby(var/obj/item/reagent_containers/I, var/mob/living/user)
-	//Check if it truly is a reagent container
-	if(!istype(I,/obj/item/reagent_containers/glass/beaker))
+/obj/item/integrated_circuit/input/tank_slot/attackby(var/obj/item/tank/internals/I, var/mob/living/user)
+	//Check if it truly is an internals tank
+	if(!istype(I,/obj/item/tank/internals))
 		to_chat(user,"<span class='warning'>The [I.name] doesn't seem to fit in here.</span>")
 		return
 
