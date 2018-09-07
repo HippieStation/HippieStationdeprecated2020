@@ -419,11 +419,16 @@
 	if(!source_1_gases || !source_2_gases || !output_gases)
 		return
 
-	var/transfer_moles = ((get_pin_data(IC_INPUT, 4) - output_gases.return_pressure())*output_gases.volume/((max(TCMB,(source_1_gases.temperature + source_2_gases.temperature))) * 0.5 * R_IDEAL_GAS_EQUATION))*PUMP_EFFICIENCY
-	if(transfer_moles <=0)
+	if(source_1_gases.return_pressure() <=0 || source_2_gases.return_pressure() <=0)
 		return
 
+	//This calculates how much should be sent
 	var/gas_percentage = round(max(min(get_pin_data(IC_INPUT, 4),100),0) / 100)
+
+	var/transfer_moles = get_pin_data(IC_INPUT, 5) * (source_1_gases.return_pressure() * gas_percentage +  source_2_gases.return_pressure() * (1 - gas_percentage)) / (output_gases.return_pressure()) * output_gases.volume/ (R_IDEAL_GAS_EQUATION * max(output_gases.temperature,TCMB)) * PUMP_EFFICIENCY
+
+	if(transfer_moles <= 0)
+		return
 
 	var/datum/gas_mixture/mix = source_1_gases.remove(transfer_moles * gas_percentage)
 	output_gases.merge(mix)
