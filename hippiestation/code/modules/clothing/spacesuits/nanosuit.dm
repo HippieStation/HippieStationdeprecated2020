@@ -223,7 +223,6 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/Initialize()
 	. = ..()
-	qdel(menu.close_button)
 	cell = new(src)
 	START_PROCESSING(SSfastprocess, src)
 
@@ -1070,9 +1069,8 @@ mob/living/carbon/human/key_down(_key, client/user)
 	return ..()
 
 /obj/item/clothing/suit/space/hardsuit/nano/key_down(_key)
-//	if(item_flags & ~IN_INVENTORY)
-//		return
 	menu = new
+	qdel(menu.close_button)
 	var/list/choices = list(
 	"armor" = image(icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi', icon_state = "armor_menu"),
 	"speed" = image(icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi', icon_state = "speed_menu"),
@@ -1105,13 +1103,15 @@ mob/living/carbon/human/key_up(_key, client/user)
 	return ..()
 
 /obj/item/clothing/suit/space/hardsuit/nano/key_up(_key, client/user)
-	//menu.Reset()
-	//menu.hide()
 	qdel(menu)
 	menu_open = FALSE
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/show_radial_menu_nano(mob/user,atom/anchor,list/choices)
-	//menu = new
+	var/answer
+	if(QDELETED(user) || user.stat || user.IsKnockdown() || user.IsStun())
+		return
+	if(!menu)
+		return
 	if(!user)
 		user = usr
 	menu.anchor = anchor
@@ -1119,8 +1119,13 @@ mob/living/carbon/human/key_up(_key, client/user)
 	menu.set_choices(choices)
 	menu.show_to(user)
 	menu.wait()
-	var/answer = menu.selected_choice
-	//menu.hide()
 	qdel(menu)
 	menu_open = FALSE
 	return answer
+
+/datum/radial_menu/extract_image(E)
+	var/mutable_appearance/MA = new /mutable_appearance(E)
+	if(MA)
+		MA.layer = ABOVE_HUD_LAYER
+		MA.appearance_flags |= RESET_TRANSFORM | RESET_ALPHA
+	return MA
