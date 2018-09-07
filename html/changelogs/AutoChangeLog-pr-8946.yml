@@ -1,0 +1,5 @@
+author: "zamolxius"
+delete-after: True
+changes: 
+  - rscadd: "readds an autolathe in the circuits lab and adds a telescreen in the circuits lab"
+  - tweak: "separated the RnD+circuits large ugly room into two rooms"
