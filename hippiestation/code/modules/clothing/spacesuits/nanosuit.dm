@@ -213,6 +213,9 @@
 	var/trauma_threshold = 30
 	var/obj/item/stock_parts/cell/nano/cell //What type of power cell this uses
 	block_chance = 0
+	var/menu_open = FALSE
+	var/datum/radial_menu/menu = new
+
 
 /obj/item/clothing/suit/space/hardsuit/nano/ComponentInitialize()
 	. = ..()
@@ -220,6 +223,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/Initialize()
 	. = ..()
+	qdel(menu.close_button)
 	cell = new(src)
 	START_PROCESSING(SSfastprocess, src)
 
@@ -398,7 +402,7 @@
 				slowdown = 0.4 //cloaking makes us go sliightly faster
 				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
-				filters = filter(type="blur",size=1)
+				U.filters = filter(type="blur",size=1)
 				animate(U, alpha = 40, time = 2)
 				U.remove_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
 				U.remove_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
@@ -989,7 +993,7 @@
 	active = TRUE
 	var/turf/dustturf = get_turf(imp_in)
 	var/area/A = get_area(dustturf)
-	message_admins("[ADMIN_LOOKUPFLW(imp_in)] has activated their [name] at [A.name] [ADMIN_JMP(dustturf)], with cause of [cause].")
+	message_admins("[name] in [ADMIN_LOOKUPFLW(imp_in)] was activated at [A.name] [ADMIN_JMP(dustturf)], by cause of [cause].")
 	playsound(loc, 'sound/effects/fuse.ogg', 30, 0)
 	imp_in.dust(TRUE,TRUE)
 	qdel(src)
@@ -1057,40 +1061,57 @@
 	name = "nanosuit self charging battery"
 	maxcharge = 100
 
-/mob
-	var/menus_open = 0
-
-/mob/living/carbon/human/key_down(_key, client/user)
-	switch(_key)
-		if("C")
-			if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
-				var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
-				var/list/choices = list(
-				"armor" = image(icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi', icon_state = "armor_mode"),
-				"speed" = image(icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi', icon_state = "speed_mode"),
-				"cloak" = image(icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi', icon_state = "cloak_mode"),
-				"strength" = image(icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi', icon_state = "strength_mode")
-				)
-				if(!menus_open)
-					menus_open++
-					var/choice = show_radial_menu_nano(src,src,choices)
-					switch(choice)
-						if("armor")
-							NS.toggle_mode(ARMOR)
-							return
-						if("speed")
-							NS.toggle_mode(SPEED)
-							return
-						if("cloak")
-							NS.toggle_mode(CLOAK)
-							return
-						if("strength")
-							NS.toggle_mode(STRENGTH)
-							return
+mob/living/carbon/human/key_down(_key, client/user)
+	if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+		var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
+		switch(_key)
+			if("C")
+				NS.key_down(_key, user)
 	return ..()
 
-/proc/show_radial_menu_nano(mob/user,atom/anchor,list/choices)
-	var/datum/radial_menu/menu = new
+/obj/item/clothing/suit/space/hardsuit/nano/key_down(_key)
+//	if(item_flags & ~IN_INVENTORY)
+//		return
+	menu = new
+	var/list/choices = list(
+	"armor" = image(icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi', icon_state = "armor_menu"),
+	"speed" = image(icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi', icon_state = "speed_menu"),
+	"cloak" = image(icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi', icon_state = "cloak_menu"),
+	"strength" = image(icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi', icon_state = "strength_menu")
+	)
+	if(!menu_open)
+		menu_open = TRUE
+		var/choice = show_radial_menu_nano(U,U,choices)
+		switch(choice)
+			if("armor")
+				toggle_mode(ARMOR)
+				return
+			if("speed")
+				toggle_mode(SPEED)
+				return
+			if("cloak")
+				toggle_mode(CLOAK)
+				return
+			if("strength")
+				toggle_mode(STRENGTH)
+				return
+
+mob/living/carbon/human/key_up(_key, client/user)
+	if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+		var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
+		switch(_key)
+			if("C")
+				NS.key_up(_key, user)
+	return ..()
+
+/obj/item/clothing/suit/space/hardsuit/nano/key_up(_key, client/user)
+	//menu.Reset()
+	//menu.hide()
+	qdel(menu)
+	menu_open = FALSE
+
+/obj/item/clothing/suit/space/hardsuit/nano/proc/show_radial_menu_nano(mob/user,atom/anchor,list/choices)
+	//menu = new
 	if(!user)
 		user = usr
 	menu.anchor = anchor
@@ -1099,6 +1120,7 @@
 	menu.show_to(user)
 	menu.wait()
 	var/answer = menu.selected_choice
+	//menu.hide()
 	qdel(menu)
-	user.menus_open--
+	menu_open = FALSE
 	return answer
