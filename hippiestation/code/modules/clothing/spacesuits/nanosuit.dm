@@ -1066,7 +1066,7 @@ mob/living/carbon/human/key_down(_key, client/user)
 		switch(_key)
 			if("C")
 				NS.key_down(_key, user)
-	return ..()
+	..()
 
 /obj/item/clothing/suit/space/hardsuit/nano/key_down(_key)
 	menu = new
@@ -1100,7 +1100,7 @@ mob/living/carbon/human/key_up(_key, client/user)
 		switch(_key)
 			if("C")
 				NS.key_up(_key, user)
-	return ..()
+	..()
 
 /obj/item/clothing/suit/space/hardsuit/nano/key_up(_key, client/user)
 	qdel(menu)
@@ -1110,7 +1110,7 @@ mob/living/carbon/human/key_up(_key, client/user)
 	var/answer
 	if(QDELETED(user) || user.stat || user.IsKnockdown() || user.IsStun())
 		return
-	if(!menu)
+	if(QDELETED(menu))
 		return
 	if(!user)
 		user = usr
