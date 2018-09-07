@@ -8,7 +8,7 @@
 	category_text = "Atmospherics"
 	cooldown_per_use = 2 SECONDS
 	outputs = list(
-		"self reference" = IC_PINTYPE_SELFREF,
+		"self reference" = IC_PINTYPE_REF,
 		"pressure" = IC_PINTYPE_NUMBER
 			) 
 	var/datum/gas_mixture/air_contents
@@ -75,7 +75,7 @@
 		direction = TARGET_TO_SOURCE
 	else
 		direction = SOURCE_TO_TARGET
-	target_pressure = min(2533,abs(new_amount))
+	target_pressure = min(round(MAX_TARGET_PRESSURE),abs(new_amount))
 
 /obj/item/integrated_circuit/atmospherics/pump/do_work()
 	var/obj/source = get_pin_data_as_type(IC_INPUT, 1, /obj)
@@ -130,6 +130,7 @@
 		var/datum/gas_mixture/removed = source_air.remove(transfer_moles)
 		target_air.merge(removed)
 
+
 // - volume pump - // **Works**
 /obj/item/integrated_circuit/atmospherics/pump/volume
 	name = "volume pump"
@@ -179,9 +180,10 @@
 	target_air.merge(removed)
 
 
-// - gas vent - // **BUGGED**
+// - gas vent - // **works**
 /obj/item/integrated_circuit/atmospherics/pump/vent
 	name = "gas vent"
+	extended_desc = "Use negative volume to move air from target to environment. Note that only part of the gas is moved on each transfer. Unlike the gas pump, this one keeps pumping even further to pressures of 9000 pKa and it is not advised to use it on tank circuits."
 	desc = "Moves gases between the environment and adjacent gas containers."
 	inputs = list(
 			"container" = IC_PINTYPE_REF,
@@ -193,12 +195,22 @@
 	update_target(amt)
 
 /obj/item/integrated_circuit/atmospherics/pump/vent/do_work()
-	var/obj/source = get_pin_data_as_type(IC_INPUT, 1, /obj)
-	var/turf/target = get_turf(src)
+	var/turf/source = get_turf(src)
+	var/obj/target = get_pin_data_as_type(IC_INPUT, 1, /obj)
 	perform_magic(source, target)
 	activate_pin(2)
 
-/obj/item/integrated_circuit/atmospherics/pump/vent/check_gastarget(atom/target)
+/obj/item/integrated_circuit/atmospherics/pump/vent/check_gastarget(atom/gasholder)
+	if(!gasholder)
+		return FALSE
+	if(!gasholder.Adjacent(get_object()))
+		return FALSE
+	if(!istype(gasholder, /obj/item/tank) && !istype(gasholder, /obj/machinery/portable_atmospherics) && !istype(gasholder, /obj/item/integrated_circuit/atmospherics))
+		return FALSE
+	return TRUE
+
+
+/obj/item/integrated_circuit/atmospherics/pump/vent/check_gassource(atom/target)
 	if(!target)
 		return FALSE
 	if(!istype(target, /turf))
@@ -440,11 +452,14 @@
 
 /obj/item/integrated_circuit/atmospherics/tank/do_work()
 	set_pin_data(IC_OUTPUT, 1, WEAKREF(src))
+	push_data()
 
 /obj/item/integrated_circuit/atmospherics/tank/process()
 	var/tank_pressure = air_contents.return_pressure()
-
 	set_pin_data(IC_OUTPUT, 2, tank_pressure)
+	push_data()
+
+	//Check if tank broken
 	if(!broken && tank_pressure > TANK_FAILURE_PRESSURE)
 		broken = TRUE
 	if(broken)
@@ -490,8 +505,8 @@
 
 /obj/item/integrated_circuit/atmospherics/tank/freezer/process()
 	var/tank_pressure = air_contents.return_pressure()
-
 	set_pin_data(IC_OUTPUT, 2, tank_pressure)
+	push_data()
 
 	//Cool the tank if the power is on and the temp is above
 	if(!power_draw_idle || air_contents.temperature < temperature)
@@ -521,8 +536,8 @@
 
 /obj/item/integrated_circuit/atmospherics/tank/freezer/heater/process()
 	var/tank_pressure = air_contents.return_pressure()
-
 	set_pin_data(IC_OUTPUT, 2, tank_pressure)
+	push_data()
 
 	//Heat the tank if the power is on or its temperature is below what is set
 	if(!power_draw_idle || air_contents.temperature > temperature)
