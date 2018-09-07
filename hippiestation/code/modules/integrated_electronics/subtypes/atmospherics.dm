@@ -638,6 +638,93 @@
 	turf_air.temperature = min(323.15,turf_air.temperature + (temperature - turf_air.temperature) * heater_coefficient)
 
 
+// - tank slot - //
+/obj/item/integrated_circuit/input/tank_slot
+	category_text = "Atmospherics"
+	cooldown_per_use = 1
+	name = "tank slot"
+	desc = "Lets you add a tank to your assembly and remove it even when the assembly is closed."
+	extended_desc = "It can help you extract gases easier."
+
+	container_type = OPENCONTAINER
+
+	complexity = 4
+	inputs = list()
+	outputs = list(
+		"pressure used" = IC_PINTYPE_NUMBER,
+		"current tank" = IC_PINTYPE_REF
+		)
+	activators = list(
+		"on insert" = IC_PINTYPE_PULSE_OUT,
+		"on remove" = IC_PINTYPE_PULSE_OUT,
+		"push ref" = IC_PINTYPE_PULSE_OUT
+		)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+	can_be_asked_input = TRUE
+	demands_object_input = TRUE
+	can_input_object_when_closed = TRUE
+
+	var/obj/item/tank/internals/current_tank
+
+/obj/item/integrated_circuit/input/tank_slot/Initialize()
+	START_PROCESSING(SSobj, src)
+	. = ..()
+
+/obj/item/integrated_circuit/input/tank_slot/process()
+	push_pressure()
+
+/obj/item/integrated_circuit/input/tank_slot/attackby(var/obj/item/reagent_containers/I, var/mob/living/user)
+	//Check if it truly is a reagent container
+	if(!istype(I,/obj/item/reagent_containers/glass/beaker))
+		to_chat(user,"<span class='warning'>The [I.name] doesn't seem to fit in here.</span>")
+		return
+
+	//Check if there is no other beaker already inside
+	if(current_tank)
+		to_chat(user,"<span class='warning'>There is already a gas tank inside.</span>")
+		return
+
+	//The current beaker is the one we just attached, its location is inside the circuit
+	current_tank = I
+	user.transferItemToLoc(I,src)
+	to_chat(user,"<span class='warning'>You put the [I.name] inside the tank slot.</span>")
+
+	//Set the pin to a weak reference of the current beaker
+	push_pressure()
+	set_pin_data(IC_OUTPUT, 2, WEAKREF(current_tank))
+	push_data()
+	do_work(1)
+
+
+/obj/item/integrated_circuit/input/tank_slot/ask_for_input(mob/user)
+	attack_self(user)
+
+/obj/item/integrated_circuit/input/tank_slot/attack_self(mob/user)
+	//Check if no beaker attached
+	if(!current_tank)
+		to_chat(user, "<span class='notice'>There is currently no tank attached.</span>")
+		return
+
+	//Remove beaker and put in user's hands/location
+	to_chat(user, "<span class='notice'>You take [current_tank] out of the tank slot.</span>")
+	user.put_in_hands(current_tank)
+	current_tank = null
+
+	//Remove beaker reference
+	push_pressure()
+	set_pin_data(IC_OUTPUT, 2, null)
+	push_data()
+	do_work(2)
+
+/obj/item/integrated_circuit/input/tank_slot/proc/push_pressure()
+	if(!current_tank)
+		set_pin_data(IC_OUTPUT, 1, 0)
+
+	set_pin_data(IC_OUTPUT, 1, current_tank.air_contents.return_pressure())
+	push_data()
+
+
 #undef SOURCE_TO_TARGET
 #undef TARGET_TO_SOURCE
 #undef MAX_TARGET_PRESSURE
