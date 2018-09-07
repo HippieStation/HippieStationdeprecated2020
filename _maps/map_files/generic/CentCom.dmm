@@ -13916,6 +13916,10 @@
 /obj/structure/chair/stool/bar,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"UG" = (
+/obj/effect/spawner/template/infiltrator,
+/turf/open/space/basic,
+/area/space)
 "UJ" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 32
@@ -48251,7 +48255,7 @@ aa
 aa
 aa
 aa
-aa
+UG
 aa
 aa
 aa
