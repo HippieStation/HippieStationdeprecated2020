@@ -89,7 +89,7 @@
 		if(digitalcamo)
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly unsimian manner.\n"
 	
-	msg += handleThrallMsg(src) // HIPPIE -- add thrall examine message
+	msg += hippie_examine(src) // hippie -- add thrall examine message
 
 	GET_COMPONENT_FROM(mood, /datum/component/mood, src)
 	if(mood)
