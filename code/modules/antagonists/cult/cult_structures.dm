@@ -131,7 +131,7 @@
 		return
 	var/choice
 	if(user.mind.has_antag_datum(/datum/antagonist/cult/master))
-		choice = alert(user,"You study the schematics etched into the forge...",,"Shielded Robe","Flagellant's Robe","Mirror Shield")
+		choice = alert(user,"You study the schematics etched into the forge...",,"Shielded Robe","Flagellant's Robe","Bastard Sword") // hippie -- readds the bastard sword
 	else
 		choice = alert(user,"You study the schematics etched into the forge...",,"Shielded Robe","Flagellant's Robe","Mirror Shield")
 	var/list/pickedtype = list()
@@ -140,6 +140,14 @@
 			pickedtype += /obj/item/clothing/suit/hooded/cultrobes/cult_shield
 		if("Flagellant's Robe")
 			pickedtype += /obj/item/clothing/suit/hooded/cultrobes/berserker
+		if("Bastard Sword") // hippie start -- readds the bastard sword
+			if((world.time - SSticker.round_start_time) >= 12000)
+				pickedtype += /obj/item/twohanded/required/cult_bastard
+			else
+				cooldowntime = 12000 - (world.time - SSticker.round_start_time)
+				to_chat(user, "<span class='cult italic'>The forge fires are not yet hot enough for this weapon, give it another [DisplayTimeText(cooldowntime)].</span>")
+				cooldowntime = 0
+				return // hippie end
 		if("Mirror Shield")
 			pickedtype += /obj/item/shield/mirror
 	if(src && !QDELETED(src) && anchored && pickedtype && Adjacent(user) && !user.incapacitated() && iscultist(user) && cooldowntime <= world.time)
