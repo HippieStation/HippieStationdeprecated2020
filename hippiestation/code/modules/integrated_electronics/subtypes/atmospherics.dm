@@ -490,7 +490,7 @@
 	if(!power_draw_idle || air_contents.temperature < temperature)
 		return
 
-	air_contents.temperature -= (air_contents.temperature - temperature) * heater_coefficient
+	air_contents.temperature = max(73.15,air_contents.temperature - (air_contents.temperature - temperature) * heater_coefficient)
 
 
 // - heater tank - // **working**
@@ -516,15 +516,15 @@
 	if(!power_draw_idle || air_contents.temperature > temperature)
 		return
 
-	air_contents.temperature += (temperature - air_contents.temperature) * heater_coefficient
+	air_contents.temperature = min(573.15,air_contents.temperature + (temperature - air_contents.temperature) * heater_coefficient)
 
 
 // - atmospheric cooler - // 
 /obj/item/integrated_circuit/atmospherics/cooler
 	name = "atmospheric cooler circuit"
 	desc = "Cools the air around it."
-	volume = 6
-	size = 8
+	volume = 10
+	size = 12
 	spawn_flags = IC_SPAWN_RESEARCH
 	inputs = list(
 		"target temperature" = IC_PINTYPE_NUMBER,
@@ -551,14 +551,17 @@
 
 /obj/item/integrated_circuit/atmospherics/cooler/process()
 	var/turf/current_turf = get_turf(src)
+	if(!current_turf)
+		return
+
 	var/datum/gas_mixture/turf_air = current_turf.return_air()
 	if(!power_draw_idle || turf_air.temperature < temperature)
 		return
 
-	turf_air.temperature -= (air_contents.temperature - temperature) * heater_coefficient
+	turf_air.temperature = max(243.15,turf_air.temperature - (turf_air.temperature - temperature) * heater_coefficient)
 
 
-// - Atmospheric heater - // 
+// - atmospheric heater - // 
 /obj/item/integrated_circuit/atmospherics/cooler/heater
 	name = "atmospheric heater circuit"
 	desc = "Heats the air around it."
@@ -572,11 +575,15 @@
 
 /obj/item/integrated_circuit/atmospherics/cooler/heater/process()
 	var/turf/current_turf = get_turf(src)
+	if(!current_turf)
+		return
+
 	var/datum/gas_mixture/turf_air = current_turf.return_air()
 	if(!power_draw_idle || turf_air.temperature > temperature)
 		return
 
-	turf_air.temperature += (temperature - air_contents.temperature) * heater_coefficient
+	turf_air.temperature = min(323.15,turf_air.temperature + (temperature - turf_air.temperature) * heater_coefficient)
+
 
 #undef SOURCE_TO_TARGET
 #undef TARGET_TO_SOURCE
