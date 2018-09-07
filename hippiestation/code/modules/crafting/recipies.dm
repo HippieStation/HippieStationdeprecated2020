@@ -149,3 +149,15 @@
 	time = 40
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/bombvest
+	name = "Suicide bomb vest"
+	result = /obj/item/clothing/suit/armor/vest
+	reqs = list(/obj/item/assembly/health = 1,
+				/obj/item/assembly/igniter = 1,
+				/obj/item/clothing/suit/armor/vest = 1,
+				/obj/item/grenade = 1)
+	tools = list(/obj/item/screwdriver)
+	time = 100
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
