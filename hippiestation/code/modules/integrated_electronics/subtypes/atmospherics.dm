@@ -8,7 +8,8 @@
 	category_text = "Atmospherics"
 	cooldown_per_use = 2 SECONDS
 	outputs = list(
-		"self reference" = IC_PINTYPE_REF
+		"self reference" = IC_PINTYPE_SELFREF,
+		"pressure" = IC_PINTYPE_NUMBER
 			) 
 	var/datum/gas_mixture/air_contents
 	var/volume = 2 //Pretty small, I know
@@ -178,8 +179,7 @@
 	target_air.merge(removed)
 
 
-//CHECKED AND **UNTESTED**
-// - gas vent - //
+// - gas vent - // **BUGGED**
 /obj/item/integrated_circuit/atmospherics/pump/vent
 	name = "gas vent"
 	desc = "Moves gases between the environment and adjacent gas containers."
@@ -262,8 +262,7 @@
 	activate_pin(2)
 
 
-//CHECKED AND **UNTESTED**
-// - gas filter - //
+// - gas filter - // **works**
 /obj/item/integrated_circuit/atmospherics/pump/filter
 	name = "gas filter"
 	desc = "Filters one gas out of a mixture."
@@ -443,7 +442,10 @@
 	set_pin_data(IC_OUTPUT, 1, WEAKREF(src))
 
 /obj/item/integrated_circuit/atmospherics/tank/process()
-	if(!broken && air_contents.return_pressure() > TANK_FAILURE_PRESSURE)
+	var/tank_pressure = air_contents.return_pressure()
+
+	set_pin_data(IC_OUTPUT, 2, tank_pressure)
+	if(!broken && tank_pressure > TANK_FAILURE_PRESSURE)
 		broken = TRUE
 	if(broken)
 		release()
@@ -487,6 +489,11 @@
 		power_draw_idle = 0
 
 /obj/item/integrated_circuit/atmospherics/tank/freezer/process()
+	var/tank_pressure = air_contents.return_pressure()
+
+	set_pin_data(IC_OUTPUT, 2, tank_pressure)
+
+	//Cool the tank if the power is on and the temp is above
 	if(!power_draw_idle || air_contents.temperature < temperature)
 		return
 
@@ -513,6 +520,11 @@
 		power_draw_idle = 0
 
 /obj/item/integrated_circuit/atmospherics/tank/freezer/heater/process()
+	var/tank_pressure = air_contents.return_pressure()
+
+	set_pin_data(IC_OUTPUT, 2, tank_pressure)
+
+	//Heat the tank if the power is on or its temperature is below what is set
 	if(!power_draw_idle || air_contents.temperature > temperature)
 		return
 
@@ -550,6 +562,11 @@
 		power_draw_idle = 0
 
 /obj/item/integrated_circuit/atmospherics/cooler/process()
+	set_pin_data(IC_OUTPUT, 2, air_contents.return_pressure())
+	push_data()
+
+
+	//Get the turf you're on and its gas mixture
 	var/turf/current_turf = get_turf(src)
 	if(!current_turf)
 		return
@@ -558,6 +575,7 @@
 	if(!power_draw_idle || turf_air.temperature < temperature)
 		return
 
+	//Cool the gas
 	turf_air.temperature = max(243.15,turf_air.temperature - (turf_air.temperature - temperature) * heater_coefficient)
 
 
@@ -574,6 +592,10 @@
 		power_draw_idle = 0
 
 /obj/item/integrated_circuit/atmospherics/cooler/heater/process()
+	set_pin_data(IC_OUTPUT, 2, air_contents.return_pressure())
+	push_data()
+
+	//Get the turf and its air mixture
 	var/turf/current_turf = get_turf(src)
 	if(!current_turf)
 		return
@@ -582,6 +604,7 @@
 	if(!power_draw_idle || turf_air.temperature > temperature)
 		return
 
+	//Heat the gas
 	turf_air.temperature = min(323.15,turf_air.temperature + (temperature - turf_air.temperature) * heater_coefficient)
 
 
