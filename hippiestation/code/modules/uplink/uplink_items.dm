@@ -350,15 +350,7 @@
 
 /datum/uplink_item/device_tools/arm
 	name = "Additional Arm"
-	desc = "An additional arm, automatically added to your body upon purchase, allows you to use more items at once"
-<<<<<<< HEAD
-=======
-	item = /obj/item/flashlight //doesn't actually spawn a flashlight, but it needs an object to show up in the menu :^)
+	desc = "An additional arm harvested from slaves captured by the Syndicate. Comes with an implanter."
+	item = /obj/item/extra_arm
 	cost = 4
 	limited_stock = 2
-
-/datum/uplink_item/device_tools/arm/spawn_item(spawn_item, mob/user)
-	var/limbs = user.held_items.len
-	user.change_number_of_hands(limbs+1)
-	to_chat(user, "You feel more dexterous")
->>>>>>> 24ef8c4cc4f3dc40bd8c96c0684649f20fb542cb
