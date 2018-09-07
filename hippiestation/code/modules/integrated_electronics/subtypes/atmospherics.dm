@@ -736,7 +736,7 @@
 	if(!current_tank)
 		set_pin_data(IC_OUTPUT, 1, 0)
 
-	var/datum/gas_mixture/tank_air = current_tank.retun_air()
+	var/datum/gas_mixture/tank_air = current_tank.return_air()
 	if(!tank_air)
 		set_pin_data(IC_OUTPUT, 1, 0)
 
