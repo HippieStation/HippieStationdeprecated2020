@@ -241,6 +241,7 @@
 			"on connection failed" = IC_PINTYPE_PULSE_OUT,
 			"on disconnected" = IC_PINTYPE_PULSE_OUT
 			)
+
 	var/obj/machinery/atmospherics/components/unary/portables_connector/connector
 
 /obj/item/integrated_circuit/atmospherics/connector/Initialize()
@@ -250,20 +251,7 @@
 
 //Sucks up the gas from the connector
 /obj/item/integrated_circuit/atmospherics/connector/process()
-	var/obj/target = get_pin_data_as_type(IC_INPUT, 1, /obj)
-	if(!check_gassource(target))
-		return
-
-	//Get the 2 pipes' gas mixtures and get the differential in pressure
-	var/datum/gas_mixture/pipegas = target.return_air()
-	var/datum/gas_mixture/circuitgas = return_air()
-
-	//If there are no gases, return
-	if(!pipegas || ! circuitgas)
-		return
-
-	//Share it
-	pipegas.share(circuitgas,0)
+	set_pin_data(IC_OUTPUT, 2, air_contents.return_pressure())
 
 /obj/item/integrated_circuit/atmospherics/connector/check_gassource(atom/gasholder)
 	if(!gasholder)
@@ -276,6 +264,7 @@
 /obj/item/integrated_circuit/atmospherics/connector/ext_moved()
 	if(connector)
 		if(get_dist(get_object(), connector) > 0)
+			// The assembly is set as connected device and the connector handles the rest
 			connector.connected_device = null
 			connector = null
 			activate_pin(4)
@@ -296,6 +285,10 @@
 	connector = PC
 	connector.connected_device = src
 	activate_pin(2)
+
+// Required for making the connector port script work
+obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
+	return air_contents
 
 
 // - gas filter - // **works**
@@ -707,12 +700,12 @@
 		to_chat(user,"<span class='warning'>There is already a gas tank inside.</span>")
 		return
 
-	//The current beaker is the one we just attached, its location is inside the circuit
+	//The current tank is the one we just attached, its location is inside the circuit
 	current_tank = I
 	user.transferItemToLoc(I,src)
 	to_chat(user,"<span class='warning'>You put the [I.name] inside the tank slot.</span>")
 
-	//Set the pin to a weak reference of the current beaker
+	//Set the pin to a weak reference of the current tank
 	push_pressure()
 	set_pin_data(IC_OUTPUT, 2, WEAKREF(current_tank))
 	push_data()
@@ -723,17 +716,17 @@
 	attack_self(user)
 
 /obj/item/integrated_circuit/input/tank_slot/attack_self(mob/user)
-	//Check if no beaker attached
+	//Check if no tank attached
 	if(!current_tank)
 		to_chat(user, "<span class='notice'>There is currently no tank attached.</span>")
 		return
 
-	//Remove beaker and put in user's hands/location
+	//Remove tank and put in user's hands/location
 	to_chat(user, "<span class='notice'>You take [current_tank] out of the tank slot.</span>")
 	user.put_in_hands(current_tank)
 	current_tank = null
 
-	//Remove beaker reference
+	//Remove tank reference
 	push_pressure()
 	set_pin_data(IC_OUTPUT, 2, null)
 	push_data()
