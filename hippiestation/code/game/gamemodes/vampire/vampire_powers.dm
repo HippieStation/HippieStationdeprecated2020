@@ -383,8 +383,6 @@
 		if(V.usable_blood < 15)
 			to_chat(user, "<span class='warning'>You do not have enough blood to cast this!</span>")
 			return FALSE
-		if(bat.stat == DEAD)
-			QDEL_NULL(bat)
 		bat = new /mob/living/simple_animal/hostile/vampire_bat(user.loc)
 		user.forceMove(bat)
 		bat.controller = user
