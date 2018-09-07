@@ -222,7 +222,7 @@
 	return TRUE
 
 
-// - integrated connector - // Can connect and disconnect properly, process() needs to be tested
+// - integrated connector - // Can connect and disconnect properly
 /obj/item/integrated_circuit/atmospherics/connector
 	name = "integrated connector"
 	desc = "Creates an airtight seal with standard connectors found on the floor, \
@@ -242,6 +242,35 @@
 			"on disconnected" = IC_PINTYPE_PULSE_OUT
 			)
 	var/obj/machinery/atmospherics/components/unary/portables_connector/connector
+
+/obj/item/integrated_circuit/atmospherics/connector/Initialize()
+	air_contents = new(volume)
+	START_PROCESSING(SSobj, src)
+	. = ..()
+
+//Sucks up the gas from the connector
+/obj/item/integrated_circuit/atmospherics/connector/process()
+	var/obj/target = get_pin_data_as_type(IC_INPUT, 1, /obj)
+	if(!check_gassource(target))
+		return
+
+	//Get the 2 pipes' gas mixtures and get the differential in pressure
+	var/datum/gas_mixture/pipegas = target.return_air()
+	var/datum/gas_mixture/circuitgas = return_air()
+
+	//If there are no gases, return
+	if(!pipegas || ! circuitgas)
+		return
+
+	//Share it
+	pipegas.share(circuitgas,0)
+
+/obj/item/integrated_circuit/atmospherics/connector/check_gassource(atom/gasholder)
+	if(!gasholder)
+		return FALSE
+	if(!istype(gasholder,/obj/machinery/atmospherics/components/unary/portables_connector))
+		return FALSE
+	return TRUE
 
 //If the assembly containing this is moved from the tile the connector pipe is in, the connection breaks
 /obj/item/integrated_circuit/atmospherics/connector/ext_moved()
@@ -267,28 +296,6 @@
 	connector = PC
 	connector.connected_device = src
 	activate_pin(2)
-
-/obj/item/integrated_circuit/atmospherics/connector/Initialize()
-	air_contents = new(volume)
-	START_PROCESSING(SSobj, src)
-	. = ..()
-
-//Sucks up the gas from the connector
-/obj/item/integrated_circuit/atmospherics/connector/process()
-	var/obj/target = get_pin_data_as_type(IC_INPUT, 1, /obj)
-	if(!check_gassource(target))
-		return
-
-	//Get the 2 pipes' gas mixtures and get the differential in pressure
-	var/datum/gas_mixture/pipegas = target.return_air()
-	var/datum/gas_mixture/circuitgas = return_air()
-
-	//If there are no gases, return
-	if(!pipegas || ! circuitgas)
-		return
-
-	//Share it
-	pipegas.share(circuitgas)
 
 
 // - gas filter - // **works**
@@ -735,10 +742,12 @@
 /obj/item/integrated_circuit/input/tank_slot/proc/push_pressure()
 	if(!current_tank)
 		set_pin_data(IC_OUTPUT, 1, 0)
+		return
 
 	var/datum/gas_mixture/tank_air = current_tank.return_air()
 	if(!tank_air)
 		set_pin_data(IC_OUTPUT, 1, 0)
+		return
 
 	set_pin_data(IC_OUTPUT, 1, tank_air.return_pressure())
 	push_data()
