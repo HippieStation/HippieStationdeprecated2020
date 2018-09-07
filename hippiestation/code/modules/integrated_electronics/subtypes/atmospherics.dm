@@ -70,6 +70,8 @@
 	update_target(amt)
 
 /obj/item/integrated_circuit/atmospherics/pump/proc/update_target(new_amount)
+	if(!isnum(new_amount))
+		new_amount = 0
 	// See in which direction the gas moves
 	if(new_amount < 0)
 		direction = TARGET_TO_SOURCE
@@ -154,6 +156,8 @@
 	power_draw_per_use = 20
 
 /obj/item/integrated_circuit/atmospherics/pump/volume/update_target(new_amount)
+	if(!isnum(new_amount))
+		new_amount = 0
 	// See in which direction the gas moves
 	if(new_amount < 0)
 		direction = TARGET_TO_SOURCE
@@ -375,8 +379,7 @@
 					The pressure limit for circuit pumps is [round(MAX_TARGET_PRESSURE)] kPa."
 
 
-//CHECKED AND **UNTESTED**
-// - gas mixer - //
+// - gas mixer - // **BUGGED** Somewhere, the do_work proc suddenly ends, possibly runtime error
 /obj/item/integrated_circuit/atmospherics/pump/mixer
 	name = "gas mixer"
 	desc = "Mixes 2 different types of gases."
@@ -413,7 +416,7 @@
 	var/datum/gas_mixture/source_2_gases = source_2.return_air()
 	var/datum/gas_mixture/output_gases = gas_output.return_air()
 
-	if(!source_1_gases || source_2_gases || output_gases)
+	if(!source_1_gases || !source_2_gases || !output_gases)
 		return
 
 	var/transfer_moles = ((get_pin_data(IC_INPUT, 4) - output_gases.return_pressure())*output_gases.volume/((source_1_gases.temperature + source_2_gases.temperature) * 0.5 * R_IDEAL_GAS_EQUATION))*PUMP_EFFICIENCY
@@ -462,6 +465,7 @@
 	//Check if tank broken
 	if(!broken && tank_pressure > TANK_FAILURE_PRESSURE)
 		broken = TRUE
+		to_chat(view(0),"<span class='notice'>The [src.name] ruptures, releasing its gases!</span>")
 	if(broken)
 		release()
 
@@ -469,15 +473,21 @@
 	if(air_contents.total_moles() > 0)
 		playsound(src.loc, 'sound/effects/spray.ogg', 10, 1, -3)
 		var/datum/gas_mixture/expelled_gas = air_contents.remove(air_contents.total_moles())
-		loc.assume_air(expelled_gas)
+		var/turf/current_turf = get_turf(src)
+		var/datum/gas_mixture/exterior_gas
+		if(!current_turf)
+			return
+
+		exterior_gas = current_turf.return_air()
+		exterior_gas.merge(expelled_gas)
 
 
 // - large integrated tank - // **working**
 /obj/item/integrated_circuit/atmospherics/tank/large
 	name = "large integrated tank"
 	desc = "A less small tank for the storage of gases."
-	volume = 6
-	size = 8
+	volume = 9
+	size = 12
 	spawn_flags = IC_SPAWN_RESEARCH
 
 
@@ -546,12 +556,12 @@
 	air_contents.temperature = min(573.15,air_contents.temperature + (temperature - air_contents.temperature) * heater_coefficient)
 
 
-// - atmospheric cooler - // 
+// - atmospheric cooler - // **working**
 /obj/item/integrated_circuit/atmospherics/cooler
 	name = "atmospheric cooler circuit"
 	desc = "Cools the air around it."
-	volume = 10
-	size = 12
+	volume = 6
+	size = 13
 	spawn_flags = IC_SPAWN_RESEARCH
 	inputs = list(
 		"target temperature" = IC_PINTYPE_NUMBER,
@@ -594,7 +604,7 @@
 	turf_air.temperature = max(243.15,turf_air.temperature - (turf_air.temperature - temperature) * heater_coefficient)
 
 
-// - atmospheric heater - // 
+// - atmospheric heater - // **working**
 /obj/item/integrated_circuit/atmospherics/cooler/heater
 	name = "atmospheric heater circuit"
 	desc = "Heats the air around it."
