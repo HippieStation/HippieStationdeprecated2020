@@ -533,6 +533,15 @@
 	var/temperature = 293.15
 	var/heater_coefficient = 0.1
 
+/obj/item/integrated_circuit/atmospherics/cooler/Initialize()
+	air_contents = new(volume)
+	START_PROCESSING(SSobj, src)
+	. = ..()
+
+/obj/item/integrated_circuit/atmospherics/cooler/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	. = ..()
+
 /obj/item/integrated_circuit/atmospherics/cooler/on_data_written()
 	temperature = max(243.15,min(293.15,get_pin_data(IC_INPUT, 1)))
 	if(get_pin_data(IC_INPUT, 2))
@@ -561,7 +570,7 @@
 	else
 		power_draw_idle = 0
 
-/obj/item/integrated_circuit/atmospherics/heater/process()
+/obj/item/integrated_circuit/atmospherics/cooler/heater/process()
 	var/turf/current_turf = get_turf(src)
 	var/datum/gas_mixture/turf_air = current_turf.return_air()
 	if(!power_draw_idle || turf_air.temperature > temperature)
