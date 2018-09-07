@@ -379,7 +379,7 @@
 					The pressure limit for circuit pumps is [round(MAX_TARGET_PRESSURE)] kPa."
 
 
-// - gas mixer - // **BUGGED** Somewhere, the do_work proc suddenly ends, possibly runtime error
+// - gas mixer - // **working**
 /obj/item/integrated_circuit/atmospherics/pump/mixer
 	name = "gas mixer"
 	desc = "Mixes 2 different types of gases."
@@ -419,7 +419,7 @@
 	if(!source_1_gases || !source_2_gases || !output_gases)
 		return
 
-	var/transfer_moles = ((get_pin_data(IC_INPUT, 4) - output_gases.return_pressure())*output_gases.volume/((source_1_gases.temperature + source_2_gases.temperature) * 0.5 * R_IDEAL_GAS_EQUATION))*PUMP_EFFICIENCY
+	var/transfer_moles = ((get_pin_data(IC_INPUT, 4) - output_gases.return_pressure())*output_gases.volume/((max(TCMB,(source_1_gases.temperature + source_2_gases.temperature))) * 0.5 * R_IDEAL_GAS_EQUATION))*PUMP_EFFICIENCY
 	if(transfer_moles <=0)
 		return
 
