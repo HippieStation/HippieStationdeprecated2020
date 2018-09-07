@@ -222,7 +222,7 @@
 	return TRUE
 
 
-// - integrated connector - // Can connect and disconnect properly
+// - integrated connector - // Can connect and disconnect properly, process() needs to be tested
 /obj/item/integrated_circuit/atmospherics/connector
 	name = "integrated connector"
 	desc = "Creates an airtight seal with standard connectors found on the floor, \
@@ -278,7 +278,17 @@
 	var/obj/target = get_pin_data_as_type(IC_INPUT, 1, /obj)
 	if(!check_gassource(target))
 		return
-	//Needs to be finished to work correctly: should work like another pipe
+
+	//Get the 2 pipes' gas mixtures and get the differential in pressure
+	var/datum/gas_mixture/pipegas = target.return_air()
+	var/datum/gas_mixture/circuitgas = return_air()
+
+	//If there are no gases, return
+	if(!pipegas || ! circuitgas)
+		return
+
+	//Share it
+	pipegas.share(circuitgas)
 
 
 // - gas filter - // **works**
@@ -726,10 +736,11 @@
 	if(!current_tank)
 		set_pin_data(IC_OUTPUT, 1, 0)
 
-	if(!current_tank.air_contents)
+	var/datum/gas_mixture/tank_air = current_tank.retun_air()
+	if(!tank_air)
 		set_pin_data(IC_OUTPUT, 1, 0)
 
-	set_pin_data(IC_OUTPUT, 1, current_tank.air_contents.return_pressure())
+	set_pin_data(IC_OUTPUT, 1, tank_air.return_pressure())
 	push_data()
 
 
