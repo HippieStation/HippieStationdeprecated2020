@@ -1119,6 +1119,7 @@ mob/living/carbon/human/key_up(_key, client/user)
 	menu.set_choices(choices)
 	menu.show_to(user)
 	menu.wait()
+	answer = menu.selected_choice
 	qdel(menu)
 	menu_open = FALSE
 	return answer
