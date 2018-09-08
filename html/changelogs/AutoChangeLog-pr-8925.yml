@@ -1,5 +1,0 @@
-author: "zamolxius"
-delete-after: True
-changes: 
-  - rscadd: "Added an omnilathe to RnD"
-  - balance: "the RnD lathe can now fabricate items from any department"
