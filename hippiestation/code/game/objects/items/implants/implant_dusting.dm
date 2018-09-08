@@ -29,6 +29,8 @@
 	active = TRUE //to avoid it triggering multiple times due to dying
 	to_chat(imp_in, "<span class='notice'>Your dusting implant activates!</span>")
 	imp_in.visible_message("<span class='warning'>[imp_in] burns up in a flash!</span>")
+	var/turf/T = get_turf(imp_in)
+	message_admins("[ADMIN_LOOKUPFLW(imp_in)] has activated their [name] at [ADMIN_VERBOSEJMP(T)], with cause of [cause].")
 	for(var/obj/item/I in imp_in.contents)
 		if(I == src || I == imp_in)
 			continue
