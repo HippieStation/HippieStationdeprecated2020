@@ -214,6 +214,12 @@
 		if(drainedchems.reagents.total_volume == 0)
 			qdel(drainedchems)
 	push_data()
+	activate_pin(2)
+
+
+/obj/item/integrated_circuit/reagent/drain/on_reagent_change(changetype)
+	push_vol()
+
 
 // - Beaker Connector - //
 /obj/item/integrated_circuit/input/beaker_connector
@@ -303,8 +309,3 @@ var/obj/item/reagent_containers/glass/beaker/current_beaker
 	if(istype(src.loc,/obj/item/integrated_circuit/input/beaker_connector))
 		var/obj/item/integrated_circuit/input/beaker_connector/current_circuit = src.loc
 		current_circuit.push_vol()
-	activate_pin(2)
-
-
-/obj/item/integrated_circuit/reagent/drain/on_reagent_change(changetype)
-	push_vol()
