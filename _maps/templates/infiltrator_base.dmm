@@ -303,9 +303,11 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "aH" = (
 /obj/structure/chair/stool,
@@ -314,9 +316,11 @@
 	req_access = list(150)
 	},
 /obj/effect/landmark/start/infiltrator,
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "aI" = (
 /obj/structure/table/wood,
@@ -327,9 +331,11 @@
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_y = 32
 	},
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "aJ" = (
 /obj/structure/chair/stool,
@@ -341,9 +347,11 @@
 	pixel_y = 32
 	},
 /obj/effect/landmark/start/infiltrator,
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "aK" = (
 /obj/effect/turf_decal/stripes/white/line{
@@ -400,31 +408,39 @@
 "aS" = (
 /obj/machinery/vending/coffee,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "aT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "aU" = (
 /obj/structure/chair/stool,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/start/infiltrator,
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "aV" = (
 /obj/structure/table/wood,
 /obj/item/pizzabox/vegetable,
 /obj/item/paicard,
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "aW" = (
 /obj/structure/chair/stool,
@@ -433,9 +449,11 @@
 	pixel_x = 26
 	},
 /obj/effect/landmark/start/infiltrator,
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "aX" = (
 /obj/effect/turf_decal/stripes/white/line{
@@ -506,24 +524,30 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "bf" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "bg" = (
 /obj/structure/chair/stool,
 /obj/effect/landmark/start/infiltrator,
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "bh" = (
 /obj/structure/table/wood,
@@ -536,17 +560,21 @@
 	pixel_x = -6;
 	pixel_y = 6
 	},
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "bi" = (
 /obj/structure/closet/crate/bin,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "bj" = (
 /obj/effect/turf_decal/bot_white,
@@ -607,27 +635,35 @@
 	products = list(/obj/item/storage/fancy/cigarettes/cigpack_syndicate = 7, /obj/item/storage/fancy/cigarettes/cigpack_uplift = 3, /obj/item/storage/fancy/cigarettes/cigpack_robust = 2, /obj/item/storage/fancy/cigarettes/cigpack_carp = 3, /obj/item/storage/fancy/cigarettes/cigpack_midori = 1, /obj/item/storage/box/matches = 10, /obj/item/lighter/greyscale = 4, /obj/item/storage/fancy/rollingpapers = 5)
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "bs" = (
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "bt" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/effect/landmark/start/infiltrator,
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "bu" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "bv" = (
 /obj/effect/turf_decal/stripes/white/corner{
@@ -773,9 +809,11 @@
 /obj/structure/table/glass,
 /obj/effect/landmark/start/infiltrator_objective,
 /obj/machinery/light/small,
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "bK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -783,33 +821,41 @@
 	},
 /obj/structure/table/glass,
 /obj/effect/landmark/start/infiltrator_objective,
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "bL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "bM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "bN" = (
 /obj/machinery/light/small,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/bar{
-	dir = 2
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "bO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -850,9 +896,16 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/red/side{
-	dir = 9
+/obj/effect/turf_decal/tile/red{
+	dir = 1
 	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "bU" = (
 /obj/machinery/light/small{
@@ -861,9 +914,14 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/red/side{
-	dir = 5
+/obj/effect/turf_decal/tile/red{
+	dir = 1
 	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "bV" = (
 /obj/structure/sign/warning/securearea{
@@ -909,23 +967,39 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
 	},
-/turf/open/floor/plasteel/red/side{
-	dir = 9
-	},
-/area/hippie/infiltrator_base/jail)
-"ca" = (
-/turf/open/floor/plasteel/red/side{
+/obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/hippie/infiltrator_base/jail)
+"ca" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base/jail)
 "cb" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/red/side{
-	dir = 5
+/obj/effect/turf_decal/tile/red{
+	dir = 1
 	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base/jail)
 "cc" = (
 /obj/machinery/porta_turret/syndicate/energy{
@@ -973,15 +1047,21 @@
 	dir = 8;
 	pixel_x = -26
 	},
-/turf/open/floor/plasteel/red/side{
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "ci" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plasteel/red/side{
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "cj" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
@@ -998,9 +1078,13 @@
 	pixel_y = 6
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/red/side{
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base/jail)
 "ck" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -1024,9 +1108,11 @@
 	req_access = 150
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/red/side{
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base/jail)
 "cm" = (
 /obj/effect/turf_decal/stripes/line,
@@ -1107,15 +1193,21 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
-/turf/open/floor/plasteel/red/side{
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "ct" = (
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
-/turf/open/floor/plasteel/red/side{
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "cu" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1169,17 +1261,23 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/red/side{
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base/jail)
 "cz" = (
 /turf/open/floor/plasteel,
 /area/hippie/infiltrator_base/jail)
 "cA" = (
-/turf/open/floor/plasteel/red/side{
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base/jail)
 "cB" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
@@ -1248,9 +1346,13 @@
 /area/hippie/infiltrator_base)
 "cI" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/red/side{
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "cJ" = (
 /obj/structure/bed,
@@ -1274,9 +1376,14 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/red/side{
-	dir = 10
+/obj/effect/turf_decal/tile/red{
+	dir = 1
 	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base/jail)
 "cL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -1288,16 +1395,25 @@
 	},
 /obj/machinery/light/small,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/red/side,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base/jail)
 "cM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/red/side{
-	dir = 6
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
 	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base/jail)
 "cN" = (
 /obj/machinery/door/airlock/external/glass{
@@ -1374,18 +1490,24 @@
 /turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "cW" = (
-/turf/open/floor/plasteel/red/side{
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "cX" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plasteel/red/side{
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "cY" = (
 /obj/effect/turf_decal/bot,
@@ -1411,18 +1533,28 @@
 /area/hippie/infiltrator_base)
 "db" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/red/side{
-	dir = 10
+/obj/effect/turf_decal/tile/red{
+	dir = 1
 	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "dc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 5
 	},
-/turf/open/floor/plasteel/red/side{
-	dir = 6
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
 	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
 /area/hippie/infiltrator_base)
 "dd" = (
 /obj/machinery/door/airlock{

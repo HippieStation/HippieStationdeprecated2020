@@ -230,17 +230,33 @@
 	},
 /area/shuttle/hippie/stealthcruiser)
 "aD" = (
-/turf/open/floor/plasteel/vault{
-	dir = 5
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
 	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "aE" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
-/turf/open/floor/plasteel/vault{
-	dir = 5
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
 	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "aF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -271,9 +287,17 @@
 	dir = 10
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/vault{
-	dir = 5
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
 	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "aJ" = (
 /obj/structure/table/reinforced,
@@ -368,9 +392,17 @@
 /area/shuttle/hippie/stealthcruiser)
 "aT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plasteel/vault{
-	dir = 5
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
 	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "aU" = (
 /obj/structure/table/reinforced,
@@ -407,18 +439,23 @@
 /obj/structure/rack,
 /obj/item/storage/toolbox/emergency,
 /obj/item/weldingtool,
-/turf/open/floor/plasteel/darkred/corner{
+/obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "aZ" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/syndicate/cutter{
 	x_offset = 3;
 	y_offset = -6
 	},
-/turf/open/floor/plasteel/darkred/side{
+/obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "ba" = (
 /obj/structure/cable/yellow{
@@ -464,15 +501,24 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/vault{
-	dir = 5
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
 	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "be" = (
 /obj/structure/rack,
 /obj/item/aicard,
 /obj/item/multitool,
-/turf/open/floor/plasteel/darkred/corner,
+/obj/effect/turf_decal/tile/red,
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "bf" = (
 /obj/machinery/light/small{
@@ -489,15 +535,31 @@
 /obj/structure/chair/office/dark{
 	dir = 8
 	},
-/turf/open/floor/plasteel/vault{
-	dir = 5
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
 	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "bh" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
-/turf/open/floor/plasteel/vault{
-	dir = 5
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
 	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "bi" = (
 /obj/structure/chair/office/dark{
@@ -510,18 +572,30 @@
 	pixel_y = -30;
 	req_access = 150
 	},
-/turf/open/floor/plasteel/vault{
-	dir = 5
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
 	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "bj" = (
 /obj/machinery/computer/shuttle/syndicate/cutter{
 	icon_state = "computer";
 	dir = 8
 	},
-/turf/open/floor/plasteel/darkred/side{
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "bk" = (
 /obj/machinery/power/smes{
@@ -625,25 +699,36 @@
 	pixel_x = -24;
 	req_access = list(150)
 	},
-/turf/open/floor/plasteel/darkred/corner{
+/obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "bs" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
 	},
-/turf/open/floor/plasteel/vault{
-	dir = 5
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
 	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "bt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/darkred/side{
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "bu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -676,7 +761,8 @@
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/darkred/corner,
+/obj/effect/turf_decal/tile/red,
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "by" = (
 /obj/structure/table/reinforced,
@@ -686,7 +772,11 @@
 	pixel_x = -16;
 	req_access_txt = "150"
 	},
-/turf/open/floor/plasteel/darkred/side,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "bz" = (
 /obj/machinery/power/terminal{
@@ -724,9 +814,13 @@
 	pixel_y = 3
 	},
 /obj/item/melee/baton/loaded,
-/turf/open/floor/plasteel/darkred/side{
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "bB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -749,24 +843,37 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/darkred/side{
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
 	dir = 8
 	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "bE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
 	},
-/turf/open/floor/plasteel/vault{
-	dir = 5
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
 	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "bF" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/darkred/corner{
+/obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "bG" = (
 /obj/structure/cable,
@@ -790,22 +897,35 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/darkred/side{
-	dir = 10
+/obj/effect/turf_decal/tile/red{
+	dir = 1
 	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "bJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/turf/open/floor/plasteel/darkred/side,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "bK" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /obj/effect/turf_decal/caution/stand_clear/white{
 	dir = 1
 	},
-/turf/open/floor/plasteel/darkred/side,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "bL" = (
 /obj/machinery/button/door{
@@ -821,7 +941,11 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel/darkred/side,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "bM" = (
 /obj/machinery/light/small{
@@ -830,7 +954,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
 	},
-/turf/open/floor/plasteel/darkred/side,
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "bN" = (
 /obj/structure/sign/warning/securearea,
@@ -841,9 +969,10 @@
 /obj/machinery/computer/med_data/syndie{
 	dir = 1
 	},
-/turf/open/floor/plasteel/darkred/corner{
+/obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
+/turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "bP" = (
 /obj/machinery/light/small,
