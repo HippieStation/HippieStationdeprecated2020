@@ -190,8 +190,6 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "bible",  
 			user.visible_message("<span class='notice'>[user] has purified the [sword]!</span>")
 			qdel(sword)
 
-<<<<<<< HEAD
-=======
 	else if(istype(A, /obj/item/soulstone) && !iscultist(user))
 		var/obj/item/soulstone/SS = A
 		to_chat(user, "<span class='notice'>You begin to exorcise [SS].</span>")
@@ -206,7 +204,6 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "bible",  
 				SS.release_shades(user)
 			user.visible_message("<span class='notice'>[user] has purified the [SS]!</span>")
 			qdel(SS)
->>>>>>> 7fd806a0ce... Quick cult fixes (#40133)
 
 /obj/item/storage/book/bible/booze
 	desc = "To be applied to the head repeatedly."
