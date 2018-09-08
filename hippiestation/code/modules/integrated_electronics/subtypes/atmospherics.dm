@@ -8,7 +8,7 @@
 	category_text = "Atmospherics"
 	cooldown_per_use = 2 SECONDS
 	outputs = list(
-		"self reference" = IC_PINTYPE_REF,
+		"self reference" = IC_PINTYPE_SELFREF,
 		"pressure" = IC_PINTYPE_NUMBER
 			) 
 	var/datum/gas_mixture/air_contents
