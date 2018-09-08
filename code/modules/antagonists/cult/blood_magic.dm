@@ -183,7 +183,7 @@
 
 /datum/action/innate/cult/blood_spell/equipment
 	name = "Summon Equipment"
-	desc = "A crucial spell that enables you to summon either a ritual dagger or combat gear including armored robes, the nar'sien bola, and an eldritch longsword."
+	desc = "A crucial spell that enables you to summon either a ritual dagger or combat gear including armored robes, the Nar'Sien bola, and an eldritch longsword."
 	button_icon_state = "equip"
 	magic_path = "/obj/item/melee/blood_magic/armor"
 
@@ -586,10 +586,20 @@
 				new /obj/structure/constructshell(T)
 				SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
 		else if(istype(target,/obj/machinery/door/airlock))
+<<<<<<< HEAD
 			target.narsie_act()
 			uses--
 			user.visible_message("<span class='warning'>Black ribbons suddenly eminate from [user]'s hand and cling to the airlock - twisting and corrupting it!</span>")
 			SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
+=======
+			playsound(T, 'sound/machines/airlockforced.ogg', 50, 1)
+			do_sparks(5, TRUE, target)
+			if(do_after(user, 50, target = user))
+				target.narsie_act()
+				uses--
+				user.visible_message("<span class='warning'>Black ribbons suddenly emanate from [user]'s hand and cling to the airlock - twisting and corrupting it!</span>")
+				SEND_SOUND(user, sound('sound/effects/magic.ogg',0,1,25))
+>>>>>>> 8a7df8ba45... Makes usage of Nar-Sie consistent (#40029)
 		else
 			to_chat(user, "<span class='warning'>The spell will not work on [target]!</span>")
 			return
