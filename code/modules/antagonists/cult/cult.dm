@@ -133,7 +133,6 @@
 		H.dna.update_ui_block(DNA_EYE_COLOR_BLOCK)
 		H.remove_trait(CULT_EYES)
 		H.update_body()
-
 /datum/antagonist/cult/on_removal()
 	SSticker.mode.cult -= owner
 	SSticker.mode.update_cult_icons_removed(owner)
