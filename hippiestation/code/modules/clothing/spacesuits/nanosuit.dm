@@ -704,25 +704,18 @@
 		A.start_pulling(D, TRUE)
 		if(A.pulling)
 			D.stop_pulling()
-			log_combat(A, D, "grabbed", addition="aggressively")
+			D.visible_message("<span class='danger'>[A] grapples [D]!</span>", \
+								"<span class='userdanger'>[A] grapples you!</span>")
 			A.grab_state = GRAB_AGGRESSIVE //Instant aggressive grab
-
+			log_combat(A, D, "grabbed", addition="aggressively")
 	return TRUE
 
 /datum/martial_art/nano/harm_act(var/mob/living/carbon/human/A, var/mob/living/carbon/D)
 	var/picked_hit_type = pick("punches", "kicks")
 	var/bonus_damage = 10
-
 	if(D.IsKnockdown() || D.resting || D.lying)//we can hit ourselves
 		bonus_damage += 5
 		picked_hit_type = "stomps on"
-	if(A.resting && !D.stat && !D.IsKnockdown() && D != A) //but we can't legsweep ourselves!
-		D.visible_message("<span class='warning'>[A] leg sweeps [D]!", \
-							"<span class='userdanger'>[A] leg sweeps you!</span>")
-		playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
-		bonus_damage += 5
-		D.Knockdown(60)
-		log_combat(A, D, "nanosuit leg swept")
 	if(D != A && !D.stat || !D.IsKnockdown()) //and we can't knock ourselves the fuck out/down!
 		if(A.grab_state == GRAB_AGGRESSIVE)
 			A.stop_pulling() //So we don't spam the combo
@@ -740,7 +733,14 @@
 			D.Knockdown(60)
 			D.visible_message("<span class='warning'>[A] knocks [D] the fuck out!!", \
 							"<span class='userdanger'>[A] knocks you the fuck out!!</span>")
-	if(prob(30))
+		else if(A.resting && !D.lying) //but we can't legsweep ourselves!
+			D.visible_message("<span class='warning'>[A] leg sweeps [D]!", \
+								"<span class='userdanger'>[A] leg sweeps you!</span>")
+			playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
+			bonus_damage += 5
+			D.Knockdown(60)
+			log_combat(A, D, "nanosuit leg swept")
+	if(prob(30) && !A.resting || !A.lying)
 		D.visible_message("<span class='warning'>[A] quick [picked_hit_type] [D]!", \
 							"<span class='userdanger'>[A] quick [picked_hit_type] you!</span>")
 		A.changeNext_move(CLICK_CD_RAPID)
@@ -777,7 +777,6 @@
 		playsound(D, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 	log_combat(A, D, "disarmed with nanosuit", "[I ? " removing \the [I]" : ""]")
 	return TRUE
-
 
 /obj/proc/nano_damage() //the damage nanosuits do on punches to this object, is affected by melee armor
 	return 25 //just enough to damage an airlock
@@ -1043,6 +1042,7 @@
 	to_chat(usr, "<b><i>Fortunately the syndicate equipped this bad boy with high tech sensing equipment,the downside is the whole crew knows you're here.</i></b>")
 	to_chat(usr, "<b>Sensors</b>: Reagent scanner, bomb radar, medical, security and diagnostic huds, user life signs monitor and bluespace communication relay.")
 	to_chat(usr, "<b>Passive equipment</b>: Binoculars, night vision, anti-slips, shock and heat proof gloves, self refilling mini o2 tank, emergency medical systems and body temperature defroster.")
+	to_chat(usr, "<b>Press C to toggle quick mode selection.</b>")
 	to_chat(usr, "<b>Active modes</b>: Armor, strength, speed and cloak.")
 	to_chat(usr, "<span class='notice'>Armor</span>: Resist damage that would normally kill or seriously injure you. Blocks 50% of attacks at a cost of suit energy drain.")
 	to_chat(usr, "<span class='notice'>Cloak</span>: Become a ninja. Cloaking technology alters the outer layers to refract light through and around the suit, making the user appear almost completely invisible. Simple tasks such as attacking in any way, being hit or throwing objects cancels cloak.")
