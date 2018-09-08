@@ -12,7 +12,7 @@
 	inputs = list()
 	outputs = list(
 		"volume used" = IC_PINTYPE_NUMBER,
-		"self reference" = IC_PINTYPE_REF
+		"self reference" = IC_PINTYPE_SELFREF
 		)
 	activators = list(
 		"create smoke" = IC_PINTYPE_PULSE_IN,
@@ -67,7 +67,7 @@
 		)
 	outputs = list(
 		"volume" = IC_PINTYPE_NUMBER,
-		"self reference" = IC_PINTYPE_REF
+		"self reference" = IC_PINTYPE_SELFREF
 		)
 	activators = list(
 		"spray" = IC_PINTYPE_PULSE_IN,
@@ -169,7 +169,7 @@
 		)
 	outputs = list(
 		"volume" = IC_PINTYPE_NUMBER,
-		"self reference" = IC_PINTYPE_REF
+		"self reference" = IC_PINTYPE_SELFREF
 		)
 	activators = list(
 		"drain" = IC_PINTYPE_PULSE_IN,
@@ -214,6 +214,95 @@
 		if(drainedchems.reagents.total_volume == 0)
 			qdel(drainedchems)
 	push_data()
+
+// - Beaker Connector - //
+/obj/item/integrated_circuit/input/beaker_connector
+	category_text = "Reagent"
+	cooldown_per_use = 1
+	name = "beaker slot"
+	desc = "Lets you add a beaker to your assembly and remove it even when the assembly is closed."
+	icon_state = "reagent_storage"
+	extended_desc = "It can help you extract reagents easier."
+	container_type = OPENCONTAINER
+	complexity = 4
+
+	inputs = list()
+	outputs = list(
+		"volume used" = IC_PINTYPE_NUMBER,
+		"current beaker" = IC_PINTYPE_REF
+		)
+	activators = list(
+		"on insert" = IC_PINTYPE_PULSE_OUT,
+		"on remove" = IC_PINTYPE_PULSE_OUT,
+		"push ref" = IC_PINTYPE_PULSE_OUT
+		)
+
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+	can_be_asked_input = TRUE
+	demands_object_input = TRUE
+	can_input_object_when_closed = TRUE
+
+var/obj/item/reagent_containers/glass/beaker/current_beaker
+
+
+/obj/item/integrated_circuit/input/beaker_connector/attackby(var/obj/item/reagent_containers/I, var/mob/living/user)
+	//Check if it truly is a reagent container
+	if(!istype(I,/obj/item/reagent_containers/glass/beaker))
+		to_chat(user,"<span class='warning'>The [I.name] doesn't seem to fit in here.</span>")
+		return
+
+	//Check if there is no other beaker already inside
+	if(current_beaker)
+		to_chat(user,"<span class='warning'>There is already a reagent container inside.</span>")
+		return
+
+	//The current beaker is the one we just attached, its location is inside the circuit
+	current_beaker = I
+	user.transferItemToLoc(I,src)
+	to_chat(user,"<span class='warning'>You put the [I.name] inside the beaker connector.</span>")
+
+	//Set the pin to a weak reference of the current beaker
+	push_vol()
+	set_pin_data(IC_OUTPUT, 2, WEAKREF(current_beaker))
+	push_data()
+	activate_pin(1)
+	activate_pin(3)
+
+
+/obj/item/integrated_circuit/input/beaker_connector/ask_for_input(mob/user)
+	attack_self(user)
+
+
+/obj/item/integrated_circuit/input/beaker_connector/attack_self(mob/user)
+	//Check if no beaker attached
+	if(!current_beaker)
+		to_chat(user, "<span class='notice'>There is currently no beaker attached.</span>")
+		return
+
+	//Remove beaker and put in user's hands/location
+	to_chat(user, "<span class='notice'>You take [current_beaker] out of the beaker connector.</span>")
+	user.put_in_hands(current_beaker)
+	current_beaker = null
+	//Remove beaker reference
+	push_vol()
+	set_pin_data(IC_OUTPUT, 2, null)
+	push_data()
+	activate_pin(2)
+	activate_pin(3)
+
+
+/obj/item/integrated_circuit/input/beaker_connector/proc/push_vol()
+	if(!current_beaker)
+		set_pin_data(IC_OUTPUT, 1, 0)
+	set_pin_data(IC_OUTPUT, 1, current_beaker.reagents.total_volume)
+	push_data()
+
+
+/obj/item/reagent_containers/glass/beaker/on_reagent_change()
+	..()
+	if(istype(src.loc,/obj/item/integrated_circuit/input/beaker_connector))
+		var/obj/item/integrated_circuit/input/beaker_connector/current_circuit = src.loc
+		current_circuit.push_vol()
 	activate_pin(2)
 
 
