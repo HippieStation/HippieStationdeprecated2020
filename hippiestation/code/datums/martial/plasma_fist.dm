@@ -42,7 +42,7 @@
 		sleep(1)
 
 /datum/martial_art/plasma_fist/proc/Tornado(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	A.say("TORNADO SWEEP!")
+	A.say("TORNADO SWEEP!", forced = "plasma fist")
 	TornadoAnimate(A)
 	var/obj/effect/proc_holder/spell/aoe_turf/repulse/R = new(null)
 	var/list/turfs = list()
@@ -61,7 +61,7 @@
 	D.Knockdown(40)
 	var/atom/throw_target = get_edge_target_turf(D, get_dir(D, get_step_away(D, A)))
 	D.throw_at(throw_target, 2, 2)
-	A.say("KNOCKOUT KICK!")
+	A.say("KNOCKOUT KICK!", forced = "plasma fist")
 	return
 
 /datum/martial_art/plasma_fist/proc/Throwback(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -71,14 +71,14 @@
 	var/atom/throw_target = get_edge_target_turf(D, get_dir(D, get_step_away(D, A)))
 	playsound(get_turf(A), 'sound/magic/blink.ogg', 50, 1)
 	D.throw_at(throw_target, 200, 4,A)
-	A.say("THROWBACK PUNCH!")
+	A.say("THROWBACK PUNCH!", forced = "plasma fist")
 	log_combat(A, D, "threw back (Plasma Fist)")
 	return
 
 /datum/martial_art/plasma_fist/proc/Plasma(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 	playsound(D.loc, 'sound/weapons/punch1.ogg', 50, 1, -1)
-	A.say("PLASMA FIST!")
+	A.say("PLASMA FIST!", forced = "plasma fist")
 	D.visible_message("<span class='danger'>[A] has hit [D] with THE PLASMA FIST TECHNIQUE!</span>", \
 								"<span class='userdanger'>[A] has hit [D] with THE PLASMA FIST TECHNIQUE!</span>")
 	D.gib()

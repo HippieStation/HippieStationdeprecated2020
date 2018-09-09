@@ -565,7 +565,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<br>"
 			dat += "<b>Play Admin MIDIs:</b> <a href='?_src_=prefs;preference=hear_midis'>[(toggles & SOUND_MIDI) ? "Enabled":"Disabled"]</a><br>"
 			dat += "<b>Play Lobby Music:</b> <a href='?_src_=prefs;preference=lobby_music'>[(toggles & SOUND_LOBBY) ? "Enabled":"Disabled"]</a><br>"
-			dat += "<b>Play Text-to-Speech:</b> <a href='?_src_=prefs;preference=hear_tts'>[(toggles & SOUND_TTS) ? "Enabled":"Disabled"]</a><br>" // hippie -- let user toggle TTS sounds
 			dat += "<b>See Pull Requests:</b> <a href='?_src_=prefs;preference=pull_requests'>[(chat_toggles & CHAT_PULLR) ? "Enabled":"Disabled"]</a><br>"
 			dat += "<br>"
 
@@ -590,8 +589,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<b>Combo HUD Lighting:</b> <a href = '?_src_=prefs;preference=combohud_lighting'>[(toggles & COMBOHUD_LIGHTING)?"Full-bright":"No Change"]</a><br>"
 				dat += "</td>"
 			dat += "</tr></table>"
-		if(3) // hippie start -- loadout system
-			dat += hippie_dat_replace(current_tab) // hippie end
+	dat += hippie_dat_replace(current_tab) // hippie -- our own dat stuff
 
 	dat += "<hr><center>"
 
@@ -1404,11 +1402,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("hear_midis")
 					toggles ^= SOUND_MIDI
 
-				// hippie start -- let user toggle TTS sounds
-				if("hear_tts")
-					toggles ^= SOUND_TTS
-				// hippie end
-				
 				if("lobby_music")
 					toggles ^= SOUND_LOBBY
 					if((toggles & SOUND_LOBBY) && user.client && isnewplayer(user))

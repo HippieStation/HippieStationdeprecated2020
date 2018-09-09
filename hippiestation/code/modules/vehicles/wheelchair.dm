@@ -14,6 +14,7 @@
 	var/list/drive_sounds = list('sound/effects/roll.ogg')
 	var/mob/living/carbon/human/H
 	var/mob/living/user
+	movedelay = 10
 
 /obj/vehicle/ridden/wheelchair/Initialize()
 	. = ..()
@@ -48,7 +49,7 @@
 			return FALSE
 		else
 			var/datum/component/riding/D = LoadComponent(/datum/component/riding)
-			D.vehicle_move_delay = 10/H.get_num_arms()
+			D.vehicle_move_delay = movedelay/H.get_num_arms()
 	. = ..()
 
 /obj/vehicle/ridden/wheelchair/Move(mob/user)

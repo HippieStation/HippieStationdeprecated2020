@@ -14,7 +14,6 @@
 	create_reagents(100)
 	. = ..()
 
-
 /turf/open/pool/proc/update_icon()
 	if(!filled)
 		name = "drained pool"
