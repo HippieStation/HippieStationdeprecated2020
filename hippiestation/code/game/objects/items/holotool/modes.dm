@@ -62,8 +62,10 @@
 	..()
 	H.sharpness = IS_SHARP
 	H.force = 9
-	H.attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
+	H.attack_verb = list("sliced", "torn", "cut")
 	H.armour_penetration = 45
+	H.embedding = list("embed_chance" = 40, "embedded_fall_chance" = 0, "embedded_pain_multiplier" = 5)
+	H.hitsound = 'sound/weapons/blade1.ogg'
 
 /datum/holotool_mode/knife/on_unset(var/obj/item/holotool/H)
 	..()
@@ -71,3 +73,5 @@
 	H.force = initial(H.force)
 	H.attack_verb = initial(H.attack_verb)
 	H.armour_penetration = initial(H.armour_penetration)
+	H.embedding = initial(H.embedding)
+	H.hitsound = initial(H.hitsound)
