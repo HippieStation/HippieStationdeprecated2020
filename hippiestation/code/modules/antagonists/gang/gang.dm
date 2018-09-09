@@ -275,6 +275,7 @@
 	demote()
 
 /datum/antagonist/gang/boss/lieutenant
+	name = "Gang Lieutenant"
 	message_name = "Lieutenant"
 
 #define MAXIMUM_RECALLS 3
