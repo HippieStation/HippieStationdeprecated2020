@@ -5,6 +5,7 @@
 	job_rank = ROLE_GANG
 	antagpanel_category = "Gang"
 	var/hud_type = "gangster"
+	var/message_name = "Gangster"
 	var/datum/team/gang/gang
 
 /datum/antagonist/gang/can_be_owned(datum/mind/new_owner)
@@ -89,7 +90,7 @@
 	var/datum/team/gang/old_gang = gang
 	var/datum/mind/old_owner = owner
 	owner.remove_antag_datum(/datum/antagonist/gang)
-	var/datum/antagonist/gang/boss/new_boss = new
+	var/datum/antagonist/gang/boss/lieutenant/new_boss = new
 	new_boss.silent = TRUE
 	old_owner.add_antag_datum(new_boss,old_gang)
 	new_boss.silent = FALSE
@@ -165,6 +166,7 @@
 /datum/antagonist/gang/boss
 	name = "Gang boss"
 	hud_type = "gang_boss"
+	message_name = "Leader"
 
 /datum/antagonist/gang/boss/on_gain()
 	..()
@@ -271,6 +273,9 @@
 	log_admin("[key_name(user)] has demoted [owner.current] from gang boss.")
 	admin_take_gangtool(user)
 	demote()
+
+/datum/antagonist/gang/boss/lieutenant
+	message_name = "Lieutenant"
 
 #define MAXIMUM_RECALLS 3
 #define INFLUENCE_INTERVAL 1800
@@ -463,6 +468,7 @@
 /datum/team/gang/proc/domination_time_remaining() // retrieves the value from world.time based deciseconds to seconds
 	var/diff = domination_time - world.time
 	return round(diff * 0.1)
+
 
 #undef MAXIMUM_RECALLS
 #undef INFLUENCE_INTERVAL
