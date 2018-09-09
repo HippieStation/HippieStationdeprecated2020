@@ -61,9 +61,9 @@
 /datum/holotool_mode/knife/on_set(var/obj/item/holotool/H)
 	..()
 	H.sharpness = IS_SHARP
-	H.force = 8
+	H.force = 9
 	H.attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
-	H.armour_penetration = 10
+	H.armour_penetration = 45
 
 /datum/holotool_mode/knife/on_unset(var/obj/item/holotool/H)
 	..()
