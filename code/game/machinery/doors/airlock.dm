@@ -837,7 +837,7 @@
 						update_icon()
 					return
 			if(AIRLOCK_SECURITY_METAL)
-				if(istype(C, /obj/item/weldingtool))
+				if(C.tool_behaviour == TOOL_WELDER) // hippie -- make holotool work via tool behavior
 					if(!C.tool_start_check(user, amount=2))
 						return
 					to_chat(user, "<span class='notice'>You begin cutting the panel's shielding...</span>")
@@ -852,7 +852,7 @@
 						update_icon()
 					return
 			if(AIRLOCK_SECURITY_PLASTEEL_I_S)
-				if(istype(C, /obj/item/crowbar))
+				if(C.tool_behaviour == TOOL_CROWBAR) // hippie -- make holotool work via tool behavior
 					var/obj/item/crowbar/W = C
 					to_chat(user, "<span class='notice'>You start removing the inner layer of shielding...</span>")
 					if(W.use_tool(src, user, 40, volume=100))
@@ -869,7 +869,7 @@
 						update_icon()
 					return
 			if(AIRLOCK_SECURITY_PLASTEEL_I)
-				if(istype(C, /obj/item/weldingtool))
+				if(C.tool_behaviour == TOOL_WELDER) // hippie -- make holotool work via tool behavior
 					if(!C.tool_start_check(user, amount=2))
 						return
 					to_chat(user, "<span class='notice'>You begin cutting the inner layer of shielding...</span>")
@@ -882,7 +882,7 @@
 						security_level = AIRLOCK_SECURITY_PLASTEEL_I_S
 					return
 			if(AIRLOCK_SECURITY_PLASTEEL_O_S)
-				if(istype(C, /obj/item/crowbar))
+				if(C.tool_behaviour == TOOL_CROWBAR) // hippie -- make holotool work via tool behavior
 					to_chat(user, "<span class='notice'>You start removing outer layer of shielding...</span>")
 					if(C.use_tool(src, user, 40, volume=100))
 						if(!panel_open)
@@ -895,7 +895,7 @@
 						spawn_atom_to_turf(/obj/item/stack/sheet/plasteel, user.loc, 1)
 					return
 			if(AIRLOCK_SECURITY_PLASTEEL_O)
-				if(istype(C, /obj/item/weldingtool))
+				if(C.tool_behaviour == TOOL_WELDER) // hippie -- make holotool work via tool behavior
 					if(!C.tool_start_check(user, amount=2))
 						return
 					to_chat(user, "<span class='notice'>You begin cutting the outer layer of shielding...</span>")
@@ -908,7 +908,7 @@
 						security_level = AIRLOCK_SECURITY_PLASTEEL_O_S
 					return
 			if(AIRLOCK_SECURITY_PLASTEEL)
-				if(istype(C, /obj/item/wirecutters))
+				if(C.tool_behaviour == TOOL_WIRECUTTER) // hippie -- make holotool work via tool behavior
 					if(src.hasPower() && src.shock(user, 60)) // Protective grille of wiring is electrified
 						return
 					to_chat(user, "<span class='notice'>You start cutting through the outer grille.</span>")
@@ -919,7 +919,7 @@
 											"<span class='notice'>You cut through \the [src]'s outer grille.</span>")
 						security_level = AIRLOCK_SECURITY_PLASTEEL_O
 					return
-	if(istype(C, /obj/item/screwdriver))
+	if(C.tool_behaviour == TOOL_SCREWDRIVER) // hippie -- make holotool work via tool behavior
 		if(panel_open && detonated)
 			to_chat(user, "<span class='warning'>[src] has no maintenance panel!</span>")
 			return
@@ -927,7 +927,7 @@
 		to_chat(user, "<span class='notice'>You [panel_open ? "open":"close"] the maintenance panel of the airlock.</span>")
 		C.play_tool_sound(src)
 		src.update_icon()
-	else if(istype(C, /obj/item/wirecutters) && note)
+	else if(C.tool_behaviour == TOOL_WIRECUTTER && note) // hippie -- make holotool work via tool behavior
 		user.visible_message("<span class='notice'>[user] cuts down [note] from [src].</span>", "<span class='notice'>You remove [note] from [src].</span>")
 		C.play_tool_sound(src)
 		note.forceMove(get_turf(user))
