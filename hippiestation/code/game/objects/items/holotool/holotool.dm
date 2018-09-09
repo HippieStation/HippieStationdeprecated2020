@@ -30,7 +30,7 @@
 	if(istype(action, /datum/action/item_action/change_tool))
 		update_listing()
 		var/datum/holotool_mode/chosen = input("Choose tool settings", "Tool", null, null) as null|anything in available_modes
-		switch_tool(chosen)
+		switch_tool(user, chosen)
 	else
 		var/C = input(user, "Select Color", "Select color", "#48D1CC") as null|color
 		if(!C || QDELETED(src))
@@ -40,7 +40,7 @@
 	action.UpdateButtonIcon()
 	user.regenerate_icons()
 
-/obj/item/holotool/proc/switch_tool(var/datum/holotool_mode/mode)
+/obj/item/holotool/proc/switch_tool(mob/user, datum/holotool_mode/mode)
 	if(!mode || !istype(mode))
 		return
 	if(current_tool)
@@ -49,7 +49,6 @@
 	current_tool.on_set(src)
 	playsound(loc, 'sound/items/rped.ogg', get_clamped_volume(), 1, -1)
 	update_icon()
-	action.UpdateButtonIcon()
 	user.regenerate_icons()
 
 /obj/item/holotool/proc/update_listing()
@@ -61,9 +60,11 @@
 		if(M.can_be_used(src))
 			LAZYADD(available_modes, M)
 			LAZYSET(mode_names, M.name, M)
-			LAZYSET(radial_modes, M.name, image(icon = icon, icon_state = M.name))
-			var/image/I = radial_modes[M.name]
-			I.color = current_color
+			var/image/holotool_img = image(icon = icon, icon_state = icon_state)
+			var/image/tool_img = image(icon = icon, icon_state = M.name)
+			tool_img.color = current_color
+			holotool_img.overlays += tool_img
+			LAZYSET(radial_modes, M.name, holotool_img)
 		else
 			qdel(M)
 
@@ -97,7 +98,7 @@
 		if(menu)
 			var/new_tool = LAZYACCESS(mode_names, menu.selected_choice)
 			if(new_tool)
-				switch_tool(new_tool)
+				switch_tool(user, new_tool)
 		QDEL_NULL(menu)
 		menu_open = FALSE
 
