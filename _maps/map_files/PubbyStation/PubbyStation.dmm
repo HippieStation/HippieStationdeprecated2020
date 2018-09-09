@@ -497,14 +497,14 @@
 	name = "AI Core";
 	req_access_txt = "65"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -1828,14 +1828,14 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -1857,14 +1857,14 @@
 	name = "Cell 1"
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -4240,14 +4240,14 @@
 /area/security/brig)
 "alA" = (
 /obj/machinery/flasher/portable,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -4520,14 +4520,14 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -4557,14 +4557,14 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -4817,14 +4817,14 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 9
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -5132,14 +5132,14 @@
 /area/security/processing/cremation)
 "anw" = (
 /obj/structure/plasticflaps/opaque,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -5645,14 +5645,14 @@
 	dir = 9
 	},
 /obj/effect/turf_decal/bot_white/right,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -5665,14 +5665,14 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/bot_white,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -5682,14 +5682,14 @@
 	dir = 5
 	},
 /obj/effect/turf_decal/bot_white/left,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -6019,14 +6019,14 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/bot_white,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -6040,14 +6040,14 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/bot_white,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -6237,14 +6237,14 @@
 	dir = 10
 	},
 /obj/effect/turf_decal/bot_white/left,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -6252,14 +6252,14 @@
 "apV" = (
 /obj/machinery/gateway,
 /obj/effect/turf_decal/bot_white,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -6269,14 +6269,14 @@
 	dir = 6
 	},
 /obj/effect/turf_decal/bot_white/right,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -6579,14 +6579,14 @@
 /area/bridge)
 "aqL" = (
 /obj/machinery/computer/bank_machine,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -6626,14 +6626,14 @@
 "aqP" = (
 /obj/structure/filingcabinet,
 /obj/item/folder/documents,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -7094,14 +7094,14 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -7116,14 +7116,14 @@
 /area/ai_monitored/nuke_storage)
 "arU" = (
 /obj/machinery/nuclearbomb/selfdestruct,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -7144,14 +7144,14 @@
 	dir = 8
 	},
 /obj/machinery/ore_silo,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -7631,14 +7631,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -7673,14 +7673,14 @@
 /area/ai_monitored/nuke_storage)
 "asZ" = (
 /obj/structure/closet/crate/silvercrate,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -8150,14 +8150,14 @@
 /obj/item/clothing/head/bearpelt,
 /obj/item/skub,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -8198,14 +8198,14 @@
 /obj/item/disk/nuclear/fake,
 /obj/item/stack/ore/diamond,
 /obj/item/gun/energy/disabler,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -8599,14 +8599,14 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -8989,14 +8989,14 @@
 /area/maintenance/fore)
 "avN" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -9009,14 +9009,14 @@
 	dir = 1
 	},
 /obj/machinery/light/small,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -9028,14 +9028,14 @@
 /obj/item/radio/intercom{
 	pixel_y = -28
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -9050,14 +9050,14 @@
 	dir = 8
 	},
 /obj/machinery/door/firedoor,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -9286,14 +9286,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -10073,14 +10073,14 @@
 	name = "bridge external shutters"
 	},
 /obj/effect/turf_decal/delivery,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -10655,14 +10655,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -11808,13 +11808,13 @@
 /obj/structure/sign/poster/official/pda_ad{
 	pixel_y = 32
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -11824,10 +11824,10 @@
 	pixel_y = 30
 	},
 /obj/item/twohanded/required/kirbyplants/random,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -11841,10 +11841,10 @@
 	departmentType = 0;
 	pixel_y = 30
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -11859,10 +11859,10 @@
 /obj/item/screwdriver{
 	pixel_y = 16
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -11881,10 +11881,10 @@
 /obj/structure/noticeboard{
 	pixel_y = 32
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -11900,10 +11900,10 @@
 	},
 /obj/item/flashlight,
 /obj/item/electronics/airlock,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -11927,10 +11927,10 @@
 	},
 /obj/effect/turf_decal/delivery,
 /obj/structure/disposalpipe/trunk,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -12250,14 +12250,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -12383,10 +12383,10 @@
 	name = "Tool Storage APC";
 	pixel_x = -24
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel{
@@ -12415,8 +12415,8 @@
 	dir = 4;
 	pixel_x = 28
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -12840,10 +12840,10 @@
 	dir = 9;
 	pixel_x = -22
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel{
@@ -12873,8 +12873,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -13294,10 +13294,10 @@
 	},
 /obj/item/electronics/apc,
 /obj/item/t_scanner,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel{
@@ -13321,8 +13321,8 @@
 /obj/item/crowbar,
 /obj/item/stack/packageWrap,
 /obj/item/stack/packageWrap,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -13622,19 +13622,19 @@
 /obj/item/wirecutters,
 /obj/item/flashlight,
 /obj/item/gps,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aGf" = (
 /obj/structure/reagent_dispensers/watertank,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -13650,8 +13650,8 @@
 /obj/item/clothing/gloves/color/fyellow,
 /obj/item/assembly/timer,
 /obj/item/radio,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -13661,38 +13661,38 @@
 /obj/item/storage/belt/utility,
 /obj/item/storage/belt/utility,
 /obj/item/storage/belt/utility,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aGi" = (
 /obj/structure/reagent_dispensers/fueltank,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aGj" = (
 /obj/structure/disposalpipe/junction/flip,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
 "aGk" = (
 /obj/machinery/vending/boozeomat/pubby_captain,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -13702,28 +13702,28 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/heads/captain)
 "aGm" = (
 /obj/machinery/computer/arcade,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -13958,14 +13958,14 @@
 /area/storage/primary)
 "aHb" = (
 /obj/machinery/computer/arcade,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -13973,14 +13973,14 @@
 "aHc" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -14004,14 +14004,14 @@
 	req_access_txt = "19"
 	},
 /obj/effect/turf_decal/delivery,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -14031,14 +14031,14 @@
 	req_access_txt = "19"
 	},
 /obj/effect/turf_decal/delivery,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -14066,14 +14066,14 @@
 	req_access_txt = "19"
 	},
 /obj/effect/turf_decal/delivery,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -14239,7 +14239,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -14252,7 +14252,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -14264,7 +14264,7 @@
 /obj/machinery/airalarm/unlocked{
 	pixel_y = 23
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -14280,7 +14280,7 @@
 	icon_state = "map-pubby";
 	pixel_y = 32
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -14292,14 +14292,14 @@
 /obj/machinery/status_display/evac{
 	pixel_y = 32
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aHM" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -14988,14 +14988,14 @@
 	c_tag = "Departure Lounge Fore";
 	dir = 2
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -15016,14 +15016,14 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -15404,21 +15404,21 @@
 /area/hallway/secondary/exit/departure_lounge)
 "aKH" = (
 /obj/structure/closet/firecloset,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/central)
 "aKI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aKJ" = (
@@ -15599,14 +15599,14 @@
 /area/maintenance/disposal)
 "aLu" = (
 /obj/structure/closet/emcloset,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -15615,7 +15615,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aLw" = (
@@ -16263,7 +16263,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aMU" = (
@@ -16762,10 +16762,10 @@
 /area/maintenance/disposal)
 "aOf" = (
 /obj/structure/chair,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel{
@@ -16775,10 +16775,10 @@
 "aOg" = (
 /obj/structure/chair,
 /obj/effect/landmark/start/assistant,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel{
@@ -16791,10 +16791,10 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/assistant,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel{
@@ -16802,7 +16802,7 @@
 	},
 /area/hallway/secondary/exit/departure_lounge)
 "aOk" = (
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -17290,7 +17290,7 @@
 	c_tag = "Departure Lounge Starboard";
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "aPt" = (
@@ -17706,7 +17706,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aQD" = (
@@ -17714,14 +17714,14 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -18173,28 +18173,28 @@
 /area/maintenance/disposal)
 "aRB" = (
 /obj/structure/closet/emcloset,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit/departure_lounge)
 "aRC" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -18277,14 +18277,14 @@
 	dir = 4
 	},
 /obj/machinery/vending/coffee,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -18697,27 +18697,27 @@
 	name = "Kitchen Delivery";
 	req_access_txt = "28"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/kitchen)
 "aSM" = (
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -19121,7 +19121,7 @@
 /area/space)
 "aTJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -19174,7 +19174,7 @@
 	dir = 4;
 	pixel_x = 28
 	},
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aTQ" = (
@@ -19275,14 +19275,14 @@
 /area/crew_quarters/kitchen)
 "aUb" = (
 /obj/structure/plasticflaps/opaque,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -19581,7 +19581,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aUN" = (
@@ -19617,14 +19617,14 @@
 /area/maintenance/department/crew_quarters/bar)
 "aUQ" = (
 /obj/structure/plasticflaps/opaque,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -20052,14 +20052,14 @@
 /area/hallway/secondary/exit/departure_lounge)
 "aVN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -20108,7 +20108,7 @@
 	dir = 1;
 	pixel_x = 32
 	},
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aVS" = (
@@ -20130,14 +20130,14 @@
 	freq = 1400;
 	location = "Janitor"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -20462,7 +20462,7 @@
 /turf/open/floor/plating,
 /area/quartermaster/storage)
 "aWE" = (
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -20514,14 +20514,14 @@
 	name = "Mr. Deempisi portrait";
 	pixel_y = 28
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -20542,14 +20542,14 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -20561,14 +20561,14 @@
 /obj/machinery/light_switch{
 	pixel_x = 24
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -20931,14 +20931,14 @@
 	dir = 4;
 	pixel_x = -28
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -20948,14 +20948,14 @@
 /obj/effect/holodeck_effect/cards{
 	pixel_y = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -20999,7 +20999,7 @@
 /obj/structure/sign/poster/official/random{
 	pixel_x = 32
 	},
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aXM" = (
@@ -21013,14 +21013,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -21030,14 +21030,14 @@
 	dir = 8
 	},
 /obj/effect/landmark/event_spawn,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -21049,14 +21049,14 @@
 /obj/item/grenade/clusterbuster/cleaner,
 /obj/item/grenade/chem_grenade/cleaner,
 /obj/item/grenade/chem_grenade/cleaner,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -21077,13 +21077,13 @@
 /area/hydroponics)
 "aXR" = (
 /obj/item/reagent_containers/glass/bucket,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -21092,10 +21092,10 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aXT" = (
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel{
@@ -21108,11 +21108,11 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aXV" = (
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -21262,14 +21262,14 @@
 	req_access_txt = "46"
 	},
 /obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -21279,14 +21279,14 @@
 	dir = 1
 	},
 /obj/machinery/disposal/bin,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -21297,14 +21297,14 @@
 /obj/structure/table/wood,
 /obj/item/bikehorn,
 /obj/item/toy/cattoy,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -21313,14 +21313,14 @@
 /obj/structure/closet/crate/wooden/toy,
 /obj/item/lipstick/random,
 /obj/item/clothing/gloves/color/rainbow/clown,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -21572,7 +21572,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aYM" = (
@@ -21581,14 +21581,14 @@
 	name = "Custodial Quarters";
 	req_access_txt = "26"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -21704,14 +21704,14 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -21733,14 +21733,14 @@
 	dir = 4
 	},
 /obj/structure/chair/stool/bar,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -21754,14 +21754,14 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/assistant,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -21770,14 +21770,14 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -21789,14 +21789,14 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -22127,7 +22127,7 @@
 	dir = 8;
 	pixel_x = 23
 	},
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aZO" = (
@@ -22174,10 +22174,10 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aZS" = (
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel{
@@ -22193,14 +22193,14 @@
 /area/hydroponics)
 "aZU" = (
 /obj/machinery/vending/hydronutrients,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -22268,27 +22268,27 @@
 /area/crew_quarters/kitchen)
 "bae" = (
 /obj/structure/chair/stool/bar,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/bar)
 "bag" = (
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -22303,14 +22303,14 @@
 	pixel_y = 1
 	},
 /obj/structure/chair/wood/normal,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -22539,7 +22539,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -22641,7 +22641,7 @@
 	pixel_x = 25;
 	req_access_txt = "26"
 	},
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "baX" = (
@@ -22697,14 +22697,14 @@
 /obj/machinery/vending/hydroseeds{
 	slogan_delay = 700
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -22791,14 +22791,14 @@
 /area/crew_quarters/bar)
 "bbq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -23017,7 +23017,7 @@
 /area/hallway/secondary/entry)
 "bbU" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -23068,14 +23068,14 @@
 /area/janitor)
 "bbZ" = (
 /obj/machinery/seed_extractor,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -23088,8 +23088,8 @@
 	c_tag = "Hydroponics South";
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -23186,14 +23186,14 @@
 /obj/structure/chair/wood/normal{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -23206,14 +23206,14 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -23228,14 +23228,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -23595,7 +23595,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bdo" = (
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -23627,14 +23627,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -23643,14 +23643,14 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -23873,7 +23873,7 @@
 /obj/structure/sign/departments/custodian{
 	pixel_x = 32
 	},
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bec" = (
@@ -23908,11 +23908,11 @@
 /turf/open/floor/plasteel,
 /area/janitor)
 "bef" = (
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -23927,8 +23927,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -23998,7 +23998,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -24088,14 +24088,14 @@
 "bez" = (
 /obj/structure/table/wood,
 /obj/item/instrument/trombone,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -24138,14 +24138,14 @@
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/chocolatebar,
 /obj/item/kitchen/fork,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -24160,14 +24160,14 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -24190,14 +24190,14 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -24435,7 +24435,7 @@
 /area/hydroponics)
 "bfo" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -24472,14 +24472,14 @@
 	name = "bar shutters"
 	},
 /obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -24693,7 +24693,7 @@
 /area/maintenance/department/cargo)
 "bfY" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bfZ" = (
@@ -24819,7 +24819,7 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -27
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -24828,7 +24828,7 @@
 /obj/structure/table,
 /obj/item/trash/plate,
 /obj/item/storage/fancy/rollingpapers,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -24837,7 +24837,7 @@
 /obj/structure/chair{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -24846,7 +24846,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -24855,7 +24855,7 @@
 /obj/structure/chair{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -24863,7 +24863,7 @@
 "bgs" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/donut,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -24887,7 +24887,7 @@
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-14"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -24895,7 +24895,7 @@
 "bgw" = (
 /obj/structure/chair,
 /obj/item/clothing/head/bowler,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -24907,7 +24907,7 @@
 	},
 /obj/structure/chair,
 /obj/item/clothing/mask/cigarette,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -24919,7 +24919,7 @@
 /obj/machinery/airalarm{
 	pixel_y = 24
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -24928,7 +24928,7 @@
 /obj/structure/sign/poster/official/cohiba_robusto_ad{
 	pixel_y = 32
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -25398,7 +25398,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bhF" = (
@@ -25781,7 +25781,7 @@
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "biJ" = (
@@ -26352,14 +26352,14 @@
 "bkp" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -26516,7 +26516,7 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
 	},
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bkW" = (
@@ -26843,14 +26843,14 @@
 /area/hallway/primary/aft)
 "blE" = (
 /obj/structure/filingcabinet/chestdrawer,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -26956,14 +26956,14 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -27017,14 +27017,14 @@
 /obj/structure/sign/warning/securearea{
 	pixel_y = 32
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -27039,14 +27039,14 @@
 	},
 /obj/item/book/manual/wiki/circuitry,
 /obj/item/integrated_electronics/debugger,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -27056,14 +27056,14 @@
 /obj/item/clothing/glasses/science,
 /obj/item/clothing/glasses/science,
 /obj/item/stack/sheet/metal/ten,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -27077,14 +27077,14 @@
 /obj/machinery/computer/security/telescreen/circuitry{
 	pixel_y = 30
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -27380,14 +27380,14 @@
 	pixel_y = 5
 	},
 /obj/item/clothing/glasses/welding,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -27491,14 +27491,14 @@
 	pixel_x = -28;
 	pixel_y = 3
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -27508,14 +27508,14 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/box/red,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -27529,14 +27529,14 @@
 /obj/item/stock_parts/cell/high,
 /obj/item/stock_parts/cell/high,
 /obj/item/stock_parts/cell/high,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -27609,7 +27609,7 @@
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bnt" = (
@@ -27819,14 +27819,14 @@
 	pixel_x = -28
 	},
 /obj/machinery/rnd/production/circuit_imprinter/department/science,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -27922,14 +27922,14 @@
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-10"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -28284,14 +28284,14 @@
 "boS" = (
 /obj/structure/chair,
 /obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -28301,14 +28301,14 @@
 	icon_state = "plant-22"
 	},
 /obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -28327,14 +28327,14 @@
 /obj/item/twohanded/required/kirbyplants{
 	icon_state = "plant-10"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -28416,14 +28416,14 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/general/visible,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -28434,14 +28434,14 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -28457,14 +28457,14 @@
 	},
 /obj/item/paper_bin,
 /obj/item/pen,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -28491,14 +28491,14 @@
 	dir = 2;
 	network = list("ss13","rd")
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -28515,14 +28515,14 @@
 /obj/item/gun/energy/laser/practice,
 /obj/item/clothing/ears/earmuffs,
 /obj/item/clothing/ears/earmuffs,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -28943,14 +28943,14 @@
 /obj/item/radio/headset/headset_sci{
 	pixel_x = -3
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -28984,14 +28984,14 @@
 /area/science/robotics/lab)
 "bqk" = (
 /obj/machinery/aug_manipulator,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -29289,7 +29289,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bqT" = (
@@ -29661,14 +29661,14 @@
 /area/hallway/primary/aft)
 "brw" = (
 /obj/machinery/vending/wardrobe/robo_wardrobe,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -29997,7 +29997,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bsn" = (
@@ -30327,14 +30327,14 @@
 /area/hallway/primary/aft)
 "bsW" = (
 /obj/item/twohanded/required/kirbyplants,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -30668,7 +30668,7 @@
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "btO" = (
@@ -31634,14 +31634,14 @@
 "bvU" = (
 /obj/machinery/recharger,
 /obj/structure/table,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -31654,14 +31654,14 @@
 /obj/effect/landmark/blobstart,
 /obj/structure/target_stake,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -31759,7 +31759,7 @@
 	name = "Monastery Transit"
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "bws" = (
@@ -32375,14 +32375,14 @@
 /area/science/explab)
 "bxD" = (
 /obj/structure/reagent_dispensers/watertank,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -32399,14 +32399,14 @@
 /area/science/explab)
 "bxH" = (
 /obj/effect/turf_decal/box/corners,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -33117,14 +33117,14 @@
 /area/science/explab)
 "bzc" = (
 /obj/structure/reagent_dispensers/fueltank,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -34317,14 +34317,14 @@
 	icon_state = "plant-20";
 	pixel_y = 3
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -34466,14 +34466,14 @@
 /obj/structure/sign/poster/official/random{
 	pixel_y = 32
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -34488,14 +34488,14 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -34511,14 +34511,14 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -35049,14 +35049,14 @@
 /area/security/checkpoint/science)
 "bCN" = (
 /obj/structure/chair/comfy,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -35138,14 +35138,14 @@
 /obj/machinery/atmospherics/components/trinary/mixer/flipped{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -35154,14 +35154,14 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 9
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -35179,14 +35179,14 @@
 	dir = 4
 	},
 /obj/item/wrench,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -35481,14 +35481,14 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -35606,14 +35606,14 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -35668,14 +35668,14 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -35684,14 +35684,14 @@
 /obj/machinery/atmospherics/components/binary/valve{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -35710,14 +35710,14 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -35730,14 +35730,14 @@
 /obj/item/pickaxe,
 /obj/structure/closet/crate,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -36288,14 +36288,14 @@
 /obj/structure/chair/comfy{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -36391,14 +36391,14 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -36408,14 +36408,14 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -36755,14 +36755,14 @@
 	dir = 4;
 	pixel_x = 28
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -36964,27 +36964,27 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
 "bGu" = (
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -36997,14 +36997,14 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -37464,14 +37464,14 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -37505,14 +37505,14 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -37534,14 +37534,14 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -38030,14 +38030,14 @@
 /area/hallway/primary/aft)
 "bIE" = (
 /obj/machinery/vending/assist,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -38161,14 +38161,14 @@
 /area/chapel/dock)
 "bIW" = (
 /obj/machinery/computer/shuttle/monastery_shuttle,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -38177,14 +38177,14 @@
 /obj/machinery/atmospherics/components/unary/tank/air{
 	dir = 2
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -38206,14 +38206,14 @@
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/engine)
 "bJb" = (
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -38221,14 +38221,14 @@
 "bJc" = (
 /obj/structure/chair/comfy/black,
 /obj/item/trash/pistachios,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -38236,28 +38236,28 @@
 "bJd" = (
 /obj/structure/chair/comfy/black,
 /obj/item/stack/spacecash/c100,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/engine)
 "bJe" = (
 /obj/structure/chair/comfy/black,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -38265,28 +38265,28 @@
 "bJf" = (
 /obj/structure/chair/comfy/black,
 /obj/item/cigbutt,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/engine)
 "bJg" = (
 /obj/item/trash/popcorn,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -38800,14 +38800,14 @@
 /area/maintenance/department/engine)
 "bKl" = (
 /obj/item/stack/medical/gauze,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -39237,14 +39237,14 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -39263,14 +39263,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -39740,14 +39740,14 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -39756,14 +39756,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -39816,14 +39816,14 @@
 /area/maintenance/department/engine)
 "bMC" = (
 /obj/item/stack/spacecash/c10,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -40220,14 +40220,14 @@
 	dir = 1;
 	network = list("ss13","monastery")
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -40249,14 +40249,14 @@
 	pixel_x = 27
 	},
 /obj/machinery/light/small,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -40646,14 +40646,14 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -40662,14 +40662,14 @@
 /obj/structure/chair/comfy/black{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -40985,14 +40985,14 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -41002,14 +41002,14 @@
 	name = "Chapel";
 	opacity = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -47301,14 +47301,14 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -47390,14 +47390,14 @@
 /area/chapel/office)
 "ceF" = (
 /obj/structure/filingcabinet,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -47585,28 +47585,28 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main/monastery)
 "cfo" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -47674,14 +47674,14 @@
 /area/chapel/main/monastery)
 "cfE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -47698,14 +47698,14 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -47714,14 +47714,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -47878,14 +47878,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -48130,14 +48130,14 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -48436,14 +48436,14 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -48929,14 +48929,14 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -49575,14 +49575,14 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -49630,14 +49630,14 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -50032,8 +50032,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -50125,19 +50125,19 @@
 /turf/open/floor/plating,
 /area/quartermaster/warehouse)
 "coN" = (
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "coV" = (
 /obj/machinery/vending/cigarette,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -50202,14 +50202,14 @@
 	pixel_y = 26;
 	req_access_txt = "28"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -50242,14 +50242,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -50304,14 +50304,14 @@
 /area/crew_quarters/kitchen)
 "cpt" = (
 /obj/item/beacon,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -50726,14 +50726,14 @@
 /turf/open/floor/plasteel/dark,
 /area/chapel/dock)
 "cqI" = (
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -51045,14 +51045,14 @@
 /obj/item/clothing/head/nun_hood,
 /obj/item/clothing/suit/nun,
 /obj/item/clothing/suit/holidaypriest,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -51259,14 +51259,14 @@
 /obj/machinery/newscaster{
 	pixel_x = -32
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -51377,14 +51377,14 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -51396,14 +51396,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -51420,14 +51420,14 @@
 	dir = 2;
 	network = list("ss13","monastery")
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -51439,14 +51439,14 @@
 /obj/machinery/airalarm{
 	pixel_y = 22
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -51482,14 +51482,14 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -51714,14 +51714,14 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -51782,14 +51782,14 @@
 /obj/machinery/door/airlock{
 	name = "Garden"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -51798,14 +51798,14 @@
 /obj/machinery/door/airlock{
 	name = "Garden"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -51824,14 +51824,14 @@
 /area/hydroponics/garden/monastery)
 "cvc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -51944,14 +51944,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -51960,14 +51960,14 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -51976,14 +51976,14 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -52029,14 +52029,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -52051,14 +52051,14 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -52077,14 +52077,14 @@
 	dir = 1;
 	network = list("ss13","monastery")
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -52097,14 +52097,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -52117,14 +52117,14 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -52458,14 +52458,14 @@
 /obj/effect/turf_decal/box/corners{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -52495,14 +52495,14 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -52517,14 +52517,14 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -52547,14 +52547,14 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -52566,14 +52566,14 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -52592,14 +52592,14 @@
 	dir = 4;
 	network = list("ss13","monastery")
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -52614,14 +52614,14 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -52630,14 +52630,14 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -52650,14 +52650,14 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -52675,14 +52675,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -52697,14 +52697,14 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -52941,42 +52941,42 @@
 /turf/open/floor/plasteel/dark,
 /area/library)
 "cAg" = (
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/library)
 "cAi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/library)
 "cAj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -53004,14 +53004,14 @@
 	icon_state = "plant-05";
 	pixel_y = 10
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -53021,14 +53021,14 @@
 /obj/item/flashlight/lantern{
 	pixel_y = 8
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -53037,14 +53037,14 @@
 /obj/structure/table/wood,
 /obj/item/clothing/head/pharaoh,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -53053,14 +53053,14 @@
 /obj/structure/table/wood,
 /obj/item/camera,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -53439,7 +53439,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
@@ -53641,14 +53641,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -54085,14 +54085,14 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -54147,14 +54147,14 @@
 /area/science/xenobiology)
 "eLt" = (
 /obj/structure/closet/firecloset,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -54215,14 +54215,14 @@
 "eSL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/item/beacon,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -54301,14 +54301,14 @@
 	},
 /obj/effect/turf_decal/delivery,
 /obj/structure/window/reinforced,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -54419,7 +54419,7 @@
 	},
 /area/maintenance/department/engine)
 "ftW" = (
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -54453,7 +54453,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "fwl" = (
@@ -54526,14 +54526,14 @@
 /obj/effect/turf_decal/loading_area{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -54721,11 +54721,11 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -54751,14 +54751,14 @@
 /obj/structure/sign/poster/official/random{
 	pixel_y = 32
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -54777,8 +54777,8 @@
 	dir = 1
 	},
 /obj/machinery/light,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -54815,7 +54815,7 @@
 	pixel_x = 32;
 	pixel_y = 8
 	},
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "gpC" = (
@@ -54823,10 +54823,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel{
@@ -54855,7 +54855,7 @@
 /turf/open/floor/plating,
 /area/maintenance/department/security/brig)
 "gvf" = (
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel{
@@ -54887,14 +54887,14 @@
 /obj/structure/chair{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -54921,14 +54921,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -55035,14 +55035,14 @@
 /area/maintenance/department/security/brig)
 "gLF" = (
 /obj/machinery/vending/snack/random,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -55171,7 +55171,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -55199,7 +55199,7 @@
 	pixel_y = 24;
 	req_access_txt = "10"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -55223,10 +55223,10 @@
 	c_tag = "Departure Lounge Port";
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -55461,14 +55461,14 @@
 "iab" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -56240,8 +56240,8 @@
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "klB" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -56287,14 +56287,14 @@
 /turf/open/floor/plating,
 /area/maintenance/department/engine)
 "kvj" = (
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -56347,14 +56347,14 @@
 /obj/structure/chair{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -56644,8 +56644,8 @@
 /area/maintenance/department/engine)
 "lnn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -56818,14 +56818,14 @@
 	name = "bridge external shutters"
 	},
 /obj/effect/turf_decal/delivery,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -57091,14 +57091,14 @@
 	pixel_x = 32;
 	pixel_y = 8
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -57277,14 +57277,14 @@
 /obj/machinery/airalarm{
 	pixel_y = 22
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -57451,14 +57451,14 @@
 /area/maintenance/department/engine)
 "nDx" = (
 /obj/machinery/vending/coffee,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -57760,14 +57760,14 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -58263,14 +58263,14 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -58303,14 +58303,14 @@
 /area/maintenance/department/engine)
 "pDP" = (
 /obj/machinery/vending/assist,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -58348,8 +58348,8 @@
 /obj/structure/chair{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -58392,14 +58392,14 @@
 /obj/structure/sign/poster/official/random{
 	pixel_y = 32
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -58677,14 +58677,14 @@
 /obj/structure/sign/warning/securearea{
 	pixel_y = 32
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -58821,14 +58821,14 @@
 /area/hallway/primary/central)
 "qUw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -58876,7 +58876,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -58950,14 +58950,14 @@
 "rgs" = (
 /obj/structure/table,
 /obj/item/instrument/eguitar,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -58972,14 +58972,14 @@
 /area/maintenance/department/engine)
 "riF" = (
 /obj/machinery/computer/arcade,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -59340,14 +59340,14 @@
 /area/space/nearstation)
 "sgc" = (
 /obj/machinery/vending/cigarette,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -60003,11 +60003,11 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -60318,14 +60318,14 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -60374,14 +60374,14 @@
 "vmG" = (
 /obj/structure/table/reinforced,
 /obj/item/integrated_electronics/analyzer,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -60413,7 +60413,7 @@
 /area/maintenance/department/cargo)
 "vsJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -60599,10 +60599,10 @@
 /area/engine/engineering)
 "vTL" = (
 /obj/machinery/vending/tool,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -60614,14 +60614,14 @@
 	req_access_txt = "8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -60798,10 +60798,10 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "wwr" = (
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -60960,7 +60960,7 @@
 /area/maintenance/department/engine)
 "wOa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/plasteel/neutral,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "wOf" = (
@@ -61101,14 +61101,14 @@
 	dir = 1;
 	pixel_y = 29
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 1
 	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral,
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -61441,7 +61441,7 @@
 /area/chapel/office)
 "xSZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/turf_decal/tile/neutral{
+/turf/open/floor/plasteel/neutral{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
