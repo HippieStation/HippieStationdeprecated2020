@@ -61,7 +61,7 @@
 			dat += "This device is not authorized to promote.<br>"
 	else
 		if(gang.domination_time != NOT_DOMINATING)
-			dat += "<center><font color='red'>Takeover In Progress:<br><B>[gang.domination_time] seconds remain</B></font></center>"
+			dat += "<center><font color='red'>Takeover In Progress:<br><B>[DisplayTimeText(gang.domination_time_remaining() * 10)) remain</B></font></center>"
 
 		dat += "Registration: <B>[gang.name] Gang Boss</B><br>"
 		dat += "Organization Size: <B>[gang.members.len]</B> | Station Control: <B>[gang.territories.len] territories under control.</B> | Influence: <B>[gang.influence]</B><br>"
