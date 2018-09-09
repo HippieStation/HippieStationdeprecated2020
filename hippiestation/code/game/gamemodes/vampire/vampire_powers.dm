@@ -254,6 +254,11 @@
 	action_background_icon_state = "bg_demon"
 	vamp_req = TRUE
 
+/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/mistform/Initialize()
+	. = ..()
+	range = -1
+	addtimer(VARSET_CALLBACK(src, range, -1), 10) //Avoid fuckery
+
 /obj/effect/proc_holder/spell/targeted/vampirize
 	name = "Lilith's Pact (500)"
 	desc = "You drain a victim's blood, and fill them with new blood, blessed by Lilith, turning them into a new vampire."
