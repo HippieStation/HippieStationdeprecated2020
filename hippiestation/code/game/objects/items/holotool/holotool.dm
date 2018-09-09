@@ -51,6 +51,7 @@
 	update_icon()
 	user.regenerate_icons()
 
+
 /obj/item/holotool/proc/update_listing()
 	LAZYCLEARLIST(available_modes)
 	LAZYCLEARLIST(radial_modes)

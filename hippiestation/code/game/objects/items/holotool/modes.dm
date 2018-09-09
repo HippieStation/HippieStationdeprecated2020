@@ -61,7 +61,7 @@
 /datum/holotool_mode/knife/on_set(var/obj/item/holotool/H)
 	..()
 	H.sharpness = IS_SHARP
-	H.force = 9
+	H.force = 17
 	H.attack_verb = list("sliced", "torn", "cut")
 	H.armour_penetration = 45
 	H.embedding = list("embed_chance" = 40, "embedded_fall_chance" = 0, "embedded_pain_multiplier" = 5)
