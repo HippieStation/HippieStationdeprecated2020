@@ -1,0 +1,7 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - bugfix: "Fixed vampires being able to teleport to dead bats"
+  - bugfix: "Mistform now actually works."
+  - bugfix: "Fixed a visible message during vampire transformation showing to the victim"
+  - bugfix: "Fixed vampires being godmode if they are forcefully knocked out of batform"
