@@ -1,0 +1,5 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - bugfix: "Vampire revive should be able to work again"
+  - tweak: "Vampire revive now regenerates limbs and organs."

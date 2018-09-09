@@ -5,6 +5,7 @@ GLOBAL_VAR(restart_counter)
 //This happens after the Master subsystem new(s) (it's a global datum)
 //So subsystems globals exist, but are not initialised
 /world/New()
+
 	log_world("World loaded at [time_stamp()]!")
 
 	SetupExternalRSC()
@@ -24,6 +25,10 @@ GLOBAL_VAR(restart_counter)
 	SSdbcore.CheckSchemaVersion()
 	SSdbcore.SetRoundID()
 	SetupLogs()
+
+#ifndef USE_CUSTOM_ERROR_HANDLER
+	world.log = file("[GLOB.log_directory]/dd.log")
+#endif
 
 	load_admins()
 	hippie_initialize() // hippie -- loads mentor and other stuff. Due to mentors, it has to be after load_admins().
