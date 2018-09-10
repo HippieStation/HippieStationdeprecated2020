@@ -248,7 +248,7 @@
 	demands_object_input = TRUE
 	can_input_object_when_closed = TRUE
 
-var/obj/item/reagent_containers/glass/beaker/current_beaker
+	var/obj/item/reagent_containers/glass/beaker/current_beaker
 
 
 /obj/item/integrated_circuit/input/beaker_connector/attackby(var/obj/item/reagent_containers/I, var/mob/living/user)
@@ -259,7 +259,7 @@ var/obj/item/reagent_containers/glass/beaker/current_beaker
 
 	//Check if there is no other beaker already inside
 	if(current_beaker)
-		to_chat(user,"<span class='warning'>There is already a reagent container inside.</span>")
+		to_chat(user,"<span class='notice'>There is already a reagent container inside.</span>")
 		return
 
 	//The current beaker is the one we just attached, its location is inside the circuit
@@ -306,6 +306,6 @@ var/obj/item/reagent_containers/glass/beaker/current_beaker
 
 /obj/item/reagent_containers/glass/beaker/on_reagent_change()
 	..()
-	if(istype(src.loc,/obj/item/integrated_circuit/input/beaker_connector))
-		var/obj/item/integrated_circuit/input/beaker_connector/current_circuit = src.loc
+	if(istype(loc,/obj/item/integrated_circuit/input/beaker_connector))
+		var/obj/item/integrated_circuit/input/beaker_connector/current_circuit = loc
 		current_circuit.push_vol()
