@@ -1,5 +1,0 @@
-author: "steamp0rt"
-delete-after: True
-changes: 
-  - tweak: "Gang-wide messages now show the name of who sends them"
-  - tweak: "Lieutenants can now be distinguished from the leader when sending gang messages"

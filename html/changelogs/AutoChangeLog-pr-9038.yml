@@ -1,4 +1,0 @@
-author: "steamp0rt"
-delete-after: True
-changes: 
-  - bugfix: "Fixes the gangtool displaying an absurd amount of time remaining"

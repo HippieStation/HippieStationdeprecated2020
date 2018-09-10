@@ -1,4 +1,0 @@
-author: "Bartels"
-delete-after: True
-changes: 
-  - admin: "Added a warning in the player panel when a player has related accounts"
