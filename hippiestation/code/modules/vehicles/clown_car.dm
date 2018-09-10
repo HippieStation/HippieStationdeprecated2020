@@ -11,3 +11,17 @@
 		to_chat(user, "<span class='notice'>You get out of [src].</span>")
 		mob_exit(M, silent)
 		return TRUE
+
+/obj/vehicle/sealed/car/clowncar/roundstart/DumpMobs(randomstep = TRUE)//So people are not stunned on exiting the clowncar
+	for(var/i in occupants)
+		if(iscarbon(i))
+			var/mob/living/carbon/Carbon = i
+			mob_exit(Carbon, null, randomstep)
+
+/obj/vehicle/sealed/car/clowncar/roundstart/DumpSpecificMobs(flag, randomstep = TRUE)
+	for(var/i in occupants)
+		if((occupants[i] & flag) && iscarbon(i))
+			var/mob/living/carbon/C = i
+			if (C & VEHICLE_CONTROL_DRIVE)
+				C.Knockdown(40)
+			mob_exit(C, null, randomstep)
