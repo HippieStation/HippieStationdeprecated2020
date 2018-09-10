@@ -458,6 +458,7 @@
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
 
+
 /obj/item/clothing/suit/space/hardsuit/nano/emp_act(severity)
 	..()
 	if(!severity || shutdown)
@@ -936,9 +937,10 @@
 			var/obj/item/clothing/suit/space/hardsuit/nano/NS = user.wear_suit
 			NS.kill_cloak()
 
-/obj/item/clothing/suit/space/hardsuit/nano/proc/kill_cloak(temp)
+
+/obj/item/clothing/suit/space/hardsuit/nano/proc/kill_cloak(temp = FALSE)
 	if(mode == CLOAK)
-		if(!temp)
+		if(temp == FALSE)
 			set_nano_energy(0,15)
 			toggle_mode(ARMOR, TRUE)
 		else
@@ -1061,14 +1063,14 @@
 	maxcharge = 100
 
 mob/living/carbon/human/key_down(_key, client/user)
-	if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
-		var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
-		switch(_key)
-			if("C")
-				NS.key_down(_key, user)
+	switch(_key)
+		if("C")
+			if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+				var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
+				NS.open_mode_menu()
 	..()
 
-/obj/item/clothing/suit/space/hardsuit/nano/key_down(_key)
+/obj/item/clothing/suit/space/hardsuit/nano/proc/open_mode_menu()
 	menu = new
 	qdel(menu.close_button)
 	var/list/choices = list(
@@ -1095,14 +1097,14 @@ mob/living/carbon/human/key_down(_key, client/user)
 				return
 
 mob/living/carbon/human/key_up(_key, client/user)
-	if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
-		var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
-		switch(_key)
-			if("C")
-				NS.key_up(_key, user)
+	switch(_key)
+		if("C")
+			if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+				var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
+				NS.close_mode_menu()
 	..()
 
-/obj/item/clothing/suit/space/hardsuit/nano/key_up(_key, client/user)
+/obj/item/clothing/suit/space/hardsuit/nano/proc/close_mode_menu()
 	qdel(menu)
 	menu_open = FALSE
 
