@@ -1,5 +1,3 @@
-
-
 /obj/item/holotool
 	name = "experimental holotool"
 	desc = "A highly experimental holographic tool projector."
