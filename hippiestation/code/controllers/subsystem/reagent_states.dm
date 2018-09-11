@@ -7,10 +7,11 @@ PROCESSING_SUBSYSTEM_DEF(reagent_states)
 
 /datum/controller/subsystem/processing/reagent_states/fire(resumed = FALSE)
 	. = ..()
-	if(!deleting && cost > 2000)
-		deleting = TRUE
-		for(var/I in GLOB.smoke)
-			qdel(I)
-		for(var/I in GLOB.vapour)
-			qdel(I)
-		deleting = FALSE
+	if(MC_CHECK_TICK)
+		if(!deleting && cost > 2000)
+			deleting = TRUE
+			for(var/I in GLOB.smoke)
+				qdel(I)
+			for(var/I in GLOB.vapour)
+				qdel(I)
+			deleting = FALSE
