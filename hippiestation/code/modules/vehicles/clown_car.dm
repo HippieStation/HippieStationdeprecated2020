@@ -22,6 +22,6 @@
 
 /obj/vehicle/sealed/car/clowncar/roundstart/DumpSpecificMobs(flag, randomstep = FALSE)
 	for(var/i in occupants)
-		if((occupants[i] & flag) && iscarbon(i))
+		if((occupants[i] & flag))
 			var/mob/living/carbon/C = i
 			mob_exit(C)
