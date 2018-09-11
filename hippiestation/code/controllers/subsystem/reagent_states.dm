@@ -15,3 +15,4 @@ PROCESSING_SUBSYSTEM_DEF(reagent_states)
 			for(var/I in GLOB.vapour)
 				qdel(I)
 			deleting = FALSE
+		return
