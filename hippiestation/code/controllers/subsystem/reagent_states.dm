@@ -7,8 +7,8 @@ PROCESSING_SUBSYSTEM_DEF(reagent_states)
 
 /datum/controller/subsystem/processing/reagent_states/fire(resumed = FALSE)
 	. = ..()
-	if(MC_CHECK_TICK)
-		if(!deleting && cost > 2000)
+	if(MC_CHECK_TICK)//if subsystems pause
+		if(!deleting && cost > 1000)
 			deleting = TRUE
 			for(var/I in GLOB.smoke)
 				qdel(I)
