@@ -265,6 +265,7 @@
 	//The current beaker is the one we just attached, its location is inside the circuit
 	current_beaker = I
 	user.transferItemToLoc(I,src)
+
 	to_chat(user,"<span class='warning'>You put the [I.name] inside the beaker connector.</span>")
 
 	//Set the pin to a weak reference of the current beaker
