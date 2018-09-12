@@ -88,6 +88,8 @@
 
 		if(digitalcamo)
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly unsimian manner.\n"
+	
+	msg += hippie_carbon_examine() // hippie -- add our specific examine stuff
 
 	GET_COMPONENT_FROM(mood, /datum/component/mood, src)
 	if(mood)

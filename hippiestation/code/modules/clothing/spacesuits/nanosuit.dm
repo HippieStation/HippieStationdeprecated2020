@@ -131,7 +131,7 @@
 	item_state = "nvgmesonnano"
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
 	glass_colour_type = /datum/client_colour/glass_colour/nightvision
-	actions_types = list(/datum/action/item_action/nanogoggles/toggle)
+	actions_types = list(/datum/action/item_action/nanosuit/goggletoggle)
 	vision_correction = 1 //We must let our wearer have good eyesight
 	var/on = 0
 	item_flags = DROPDEL
@@ -145,7 +145,7 @@
 		item_flags = NODROP
 
 /obj/item/clothing/glasses/nano_goggles/ui_action_click(mob/user, action)
-	if(istype(action, /datum/action/item_action/nanogoggles/toggle))
+	if(istype(action, /datum/action/item_action/nanosuit/goggletoggle))
 		nvgmode(user)
 		return TRUE
 	return FALSE
@@ -213,6 +213,9 @@
 	var/trauma_threshold = 30
 	var/obj/item/stock_parts/cell/nano/cell //What type of power cell this uses
 	block_chance = 0
+	var/menu_open = FALSE
+	var/datum/radial_menu/menu = new
+
 
 /obj/item/clothing/suit/space/hardsuit/nano/ComponentInitialize()
 	. = ..()
@@ -455,6 +458,7 @@
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
 
+
 /obj/item/clothing/suit/space/hardsuit/nano/emp_act(severity)
 	..()
 	if(!severity || shutdown)
@@ -517,42 +521,33 @@
 	helmet.display_visor_message("Cleared to proceed.")
 	shutdown = FALSE
 
-/datum/action/item_action/nanogoggles/toggle
+/datum/action/item_action/nanosuit
 	check_flags = AB_CHECK_STUN|AB_CHECK_CONSCIOUS
-	name = "Night Vision"
 	icon_icon = 'icons/mob/actions.dmi'
 	background_icon_state = "bg_tech_blue"
+
+/datum/action/item_action/nanosuit/goggletoggle
+	name = "Night Vision"
 	icon_icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi'
 	button_icon_state = "toggle_goggle"
 
-/datum/action/item_action/nanosuit
-	check_flags = AB_CHECK_STUN|AB_CHECK_CONSCIOUS
-
 /datum/action/item_action/nanosuit/armor
 	name = "Armor Mode"
-	icon_icon = 'icons/mob/actions.dmi'
-	background_icon_state = "bg_tech_blue"
 	icon_icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi'
 	button_icon_state = "armor_mode"
 
 /datum/action/item_action/nanosuit/cloak
 	name = "Cloak Mode"
-	icon_icon = 'icons/mob/actions.dmi'
-	background_icon_state = "bg_tech_blue"
 	icon_icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi'
 	button_icon_state = "cloak_mode"
 
 /datum/action/item_action/nanosuit/speed
 	name = "Speed Mode"
-	icon_icon = 'icons/mob/actions.dmi'
-	background_icon_state = "bg_tech_blue"
 	icon_icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi'
 	button_icon_state = "speed_mode"
 
 /datum/action/item_action/nanosuit/strength
 	name = "Strength Mode"
-	icon_icon = 'icons/mob/actions.dmi'
-	background_icon_state = "bg_tech_blue"
 	icon_icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi'
 	button_icon_state = "strength_mode"
 
@@ -710,25 +705,18 @@
 		A.start_pulling(D, TRUE)
 		if(A.pulling)
 			D.stop_pulling()
-			log_combat(A, D, "grabbed", addition="aggressively")
+			D.visible_message("<span class='danger'>[A] grapples [D]!</span>", \
+								"<span class='userdanger'>[A] grapples you!</span>")
 			A.grab_state = GRAB_AGGRESSIVE //Instant aggressive grab
-
+			log_combat(A, D, "grabbed", addition="aggressively")
 	return TRUE
 
 /datum/martial_art/nano/harm_act(var/mob/living/carbon/human/A, var/mob/living/carbon/D)
 	var/picked_hit_type = pick("punches", "kicks")
 	var/bonus_damage = 10
-
 	if(D.IsKnockdown() || D.resting || D.lying)//we can hit ourselves
 		bonus_damage += 5
 		picked_hit_type = "stomps on"
-	if(A.resting && !D.stat && !D.IsKnockdown() && D != A) //but we can't legsweep ourselves!
-		D.visible_message("<span class='warning'>[A] leg sweeps [D]!", \
-							"<span class='userdanger'>[A] leg sweeps you!</span>")
-		playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
-		bonus_damage += 5
-		D.Knockdown(60)
-		log_combat(A, D, "nanosuit leg swept")
 	if(D != A && !D.stat || !D.IsKnockdown()) //and we can't knock ourselves the fuck out/down!
 		if(A.grab_state == GRAB_AGGRESSIVE)
 			A.stop_pulling() //So we don't spam the combo
@@ -746,7 +734,14 @@
 			D.Knockdown(60)
 			D.visible_message("<span class='warning'>[A] knocks [D] the fuck out!!", \
 							"<span class='userdanger'>[A] knocks you the fuck out!!</span>")
-	if(prob(30))
+		else if(A.resting && !D.lying) //but we can't legsweep ourselves!
+			D.visible_message("<span class='warning'>[A] leg sweeps [D]!", \
+								"<span class='userdanger'>[A] leg sweeps you!</span>")
+			playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
+			bonus_damage += 5
+			D.Knockdown(60)
+			log_combat(A, D, "nanosuit leg swept")
+	if(prob(30) && !A.resting || !A.lying)
 		D.visible_message("<span class='warning'>[A] quick [picked_hit_type] [D]!", \
 							"<span class='userdanger'>[A] quick [picked_hit_type] you!</span>")
 		A.changeNext_move(CLICK_CD_RAPID)
@@ -783,7 +778,6 @@
 		playsound(D, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 	log_combat(A, D, "disarmed with nanosuit", "[I ? " removing \the [I]" : ""]")
 	return TRUE
-
 
 /obj/proc/nano_damage() //the damage nanosuits do on punches to this object, is affected by melee armor
 	return 25 //just enough to damage an airlock
@@ -943,9 +937,10 @@
 			var/obj/item/clothing/suit/space/hardsuit/nano/NS = user.wear_suit
 			NS.kill_cloak()
 
-/obj/item/clothing/suit/space/hardsuit/nano/proc/kill_cloak(temp)
+
+/obj/item/clothing/suit/space/hardsuit/nano/proc/kill_cloak(temp = FALSE)
 	if(mode == CLOAK)
-		if(!temp)
+		if(temp == FALSE)
 			set_nano_energy(0,15)
 			toggle_mode(ARMOR, TRUE)
 		else
@@ -998,7 +993,7 @@
 	active = TRUE
 	var/turf/dustturf = get_turf(imp_in)
 	var/area/A = get_area(dustturf)
-	message_admins("[ADMIN_LOOKUPFLW(imp_in)] has activated their [name] at [A.name] [ADMIN_JMP(dustturf)], with cause of [cause].")
+	message_admins("[name] in [ADMIN_LOOKUPFLW(imp_in)] was activated at [A.name] [ADMIN_JMP(dustturf)], by cause of [cause].")
 	playsound(loc, 'sound/effects/fuse.ogg', 30, 0)
 	imp_in.dust(TRUE,TRUE)
 	qdel(src)
@@ -1049,8 +1044,9 @@
 	to_chat(usr, "<b><i>Fortunately the syndicate equipped this bad boy with high tech sensing equipment,the downside is the whole crew knows you're here.</i></b>")
 	to_chat(usr, "<b>Sensors</b>: Reagent scanner, bomb radar, medical, security and diagnostic huds, user life signs monitor and bluespace communication relay.")
 	to_chat(usr, "<b>Passive equipment</b>: Binoculars, night vision, anti-slips, shock and heat proof gloves, self refilling mini o2 tank, emergency medical systems and body temperature defroster.")
+	to_chat(usr, "<b>Press C to toggle quick mode selection.</b>")
 	to_chat(usr, "<b>Active modes</b>: Armor, strength, speed and cloak.")
-	to_chat(usr, "<span class='notice'>Armor</span>: Resist damage that would normally kill or seriously injure you. Blocks all attacks at a cost of suit energy drain.")
+	to_chat(usr, "<span class='notice'>Armor</span>: Resist damage that would normally kill or seriously injure you. Blocks 50% of attacks at a cost of suit energy drain.")
 	to_chat(usr, "<span class='notice'>Cloak</span>: Become a ninja. Cloaking technology alters the outer layers to refract light through and around the suit, making the user appear almost completely invisible. Simple tasks such as attacking in any way, being hit or throwing objects cancels cloak.")
 	to_chat(usr, "<span class='notice'>Speed</span>: Run like a madman. Use conservatively as suit energy drains fairly quickly.")
 	to_chat(usr, "<span class='notice'>Strength</span>: Beat the shit out of objects  or people with your fists. Jump across small gabs and structures. You hit and throw harder with brute objects. You can't be grabbed aggressively or pushed. Deflect attacks and ranged hits occasionally. ")
@@ -1065,3 +1061,73 @@
 /obj/item/stock_parts/cell/nano
 	name = "nanosuit self charging battery"
 	maxcharge = 100
+
+mob/living/carbon/human/key_down(_key, client/user)
+	switch(_key)
+		if("C")
+			if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+				var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
+				NS.open_mode_menu()
+	..()
+
+/obj/item/clothing/suit/space/hardsuit/nano/proc/open_mode_menu()
+	menu = new
+	qdel(menu.close_button)
+	var/list/choices = list(
+	"armor" = image(icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi', icon_state = "armor_menu"),
+	"speed" = image(icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi', icon_state = "speed_menu"),
+	"cloak" = image(icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi', icon_state = "cloak_menu"),
+	"strength" = image(icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi', icon_state = "strength_menu")
+	)
+	if(!menu_open)
+		menu_open = TRUE
+		var/choice = show_radial_menu_nano(U,U,choices)
+		switch(choice)
+			if("armor")
+				toggle_mode(ARMOR)
+				return
+			if("speed")
+				toggle_mode(SPEED)
+				return
+			if("cloak")
+				toggle_mode(CLOAK)
+				return
+			if("strength")
+				toggle_mode(STRENGTH)
+				return
+
+mob/living/carbon/human/key_up(_key, client/user)
+	switch(_key)
+		if("C")
+			if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+				var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
+				NS.close_mode_menu()
+	..()
+
+/obj/item/clothing/suit/space/hardsuit/nano/proc/close_mode_menu()
+	qdel(menu)
+	menu_open = FALSE
+
+/obj/item/clothing/suit/space/hardsuit/nano/proc/show_radial_menu_nano(mob/user,atom/anchor,list/choices)
+	var/answer
+	if(QDELETED(user) || user.stat || user.IsKnockdown() || user.IsStun())
+		return
+	if(!user)
+		user = usr
+	menu.anchor = anchor
+	menu.check_screen_border(user) //Do what's needed to make it look good near borders or on hud
+	menu.set_choices(choices)
+	menu.show_to(user)
+	menu.wait()
+	if(menu)
+		answer = menu.selected_choice
+	qdel(menu)
+	menu_open = FALSE
+	return answer
+
+/datum/radial_menu/extract_image(E)
+	var/mutable_appearance/MA = new /mutable_appearance(E)
+	if(MA)
+		MA.layer = ABOVE_HUD_LAYER
+		MA.appearance_flags |= RESET_TRANSFORM | RESET_ALPHA
+	return MA

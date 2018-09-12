@@ -4,6 +4,7 @@
 /obj/item/projectile/bullet/c38 // Detectives .38 revolver
 	knockdown = 0
 	stun = 0
+	damage = 15
 	stamina = 45 //Plus the 15 base damage means two shots will down a perp
 
 /obj/item/projectile/bullet/weakbullet2/on_hit(atom/target, blocked = 0)
