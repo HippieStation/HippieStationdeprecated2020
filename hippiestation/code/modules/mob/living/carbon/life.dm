@@ -22,20 +22,15 @@
 				W = H.AddComponent(/datum/component/waddling)
 				to_chat(src, "<span class='warning'>Walking straight feels very hard...</span>")
 			
-			if (W)
-				// minimum of 1, max of 4
-				var/waddle_multi = CLAMP(drunkenness / 25, 1, 4)
+			// minimum of 1, max of 4
+			var/waddle_multi = CLAMP(drunkenness / 25, 1, 4)
 
-				W.waddle_min = -12 * waddle_multi
-				W.waddle_max = 12 * waddle_multi
-				W.z_change = 4 * waddle_multi / 2
+			W.waddle_min = -12 * waddle_multi
+			W.waddle_max = 12 * waddle_multi
+			W.z_change = 4 * waddle_multi / 2
 	else
-		var/has_waddle = FALSE
-		for(var/datum/quirk/Q in roundstart_quirks)
-			if (istype(Q, /datum/quirk/waddle))
-				has_waddle = TRUE
-				break
-
+		var/has_waddle = locate(/datum/quirk/waddle) in roundstart_quirks
+		
 		if (!has_waddle)
 			var/mob/living/carbon/human/H = src
 
