@@ -1,5 +1,0 @@
-author: "Shdorsh"
-delete-after: True
-changes: 
-  - rscadd: "Added beaker slot circuit"
-  - tweak: "extended the new selfref pins to hippie circuits"

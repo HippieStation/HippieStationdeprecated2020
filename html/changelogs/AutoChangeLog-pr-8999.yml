@@ -1,7 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - rscadd: "The nanosuit now has a radial mode selection menu which you can activate by holding C.
-
-Suicide implant has better logging and actions have been condensed.
-Also upgraded nanosuit helper description to say damage is blocked at 50%"
