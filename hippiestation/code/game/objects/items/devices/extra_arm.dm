@@ -14,4 +14,4 @@
 		M.visible_message("<span class='notice'>[M] presses a button on [src], and you hear a disgusting noise.</span>", "<span class='notice'>You feel a sharp sting as [src] plunges into your body.</span>")
 		to_chat(M, "You feel more dexterous")
 		playsound(get_turf(M), 'sound/misc/splort.ogg', 50, 1)
-		desc = "[initial(desc)] Looks like it's been used up."
+		desc += "Looks like it's been used up." 
