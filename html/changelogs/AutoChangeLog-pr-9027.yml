@@ -1,0 +1,9 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - refactor: "Refactored holotool"
+  - bugfix: "Holotool should no longer get stuck in your hand"
+  - tweak: "Holo-knife now does slightly more damage (17, up from 5)"
+  - tweak: "Holo-knife now can penetrate armor well"
+  - tweak: "Holo-knife has a chance to embed when thrown."
+  - rscadd: "Holotools now have radial menus, Ctrl+Click on them to open it!"
