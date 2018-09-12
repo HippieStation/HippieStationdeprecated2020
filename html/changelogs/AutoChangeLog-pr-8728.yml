@@ -1,0 +1,11 @@
+author: "Shdorsh, Hate9, McDonald072"
+delete-after: True
+changes: 
+  - rscadd: "Small and normal gas tank circuits"
+  - rscadd: "Heater and freezer tank circuits"
+  - rscadd: "Gas filter and mixer circuits"
+  - rscadd: "Gas volume and pressure pump circuit"
+  - rscadd: "Connector circuits to connect to connector pipes"
+  - rscadd: "Gas vent circuits"
+  - rscadd: "Atmospheric cooler and heater circuits"
+  - rscadd: "Tank slot circuit"
