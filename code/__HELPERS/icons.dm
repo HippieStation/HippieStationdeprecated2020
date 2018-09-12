@@ -836,6 +836,8 @@ world
 				add = icon(I.icon, I.icon_state, base_icon_dir)
 			else // 'I' is an appearance object.
 				add = getFlatIcon(image(I), curdir, curicon, curstate, curblend, FALSE, no_anim)
+				TGS_INFO_LOG("getFlatIcon(image(I), curdir, curicon, curstate, curblend, FALSE, no_anim) code/__HELPERS/icons.dm line 838")
+
 			if(!add)
 				continue
 			// Find the new dimensions of the flat icon to fit the added overlay
@@ -1045,6 +1047,7 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 			body.setDir(D)
 			COMPILE_OVERLAYS(body)
 			var/icon/partial = getFlatIcon(body)
+			TGS_INFO_LOG("getFlatIcon(body) code/__HELPERS/icons.dm line 1049")
 			out_icon.Insert(partial,dir=D)
 
 		humanoid_icon_cache[icon_id] = out_icon
@@ -1184,4 +1187,5 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 		return icon2html(thing, target)
 
 	var/icon/I = getFlatIcon(thing)
+	TGS_INFO_LOG("getFlatIcon(thing) code/__HELPERS/icons.dm line 1189")
 	return icon2html(I, target)

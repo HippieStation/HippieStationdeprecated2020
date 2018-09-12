@@ -68,16 +68,19 @@
 	mannequin.setDir(NORTH)
 
 	var/icon/stamp = getFlatIcon(mannequin)
+	TGS_INFO_LOG("getFlatIcon(mannequin) Called in code/modules/mob/dead/new_player/preferences_setup.dm line 70")
 	CHECK_TICK
 	preview_icon.Blend(stamp, ICON_OVERLAY, 25, 17)
 	CHECK_TICK
 	mannequin.setDir(WEST)
 	stamp = getFlatIcon(mannequin)
+	TGS_INFO_LOG("getFlatIcon(mannequin) Called in code/modules/mob/dead/new_player/preferences_setup.dm line 76")
 	CHECK_TICK
 	preview_icon.Blend(stamp, ICON_OVERLAY, 1, 9)
 	CHECK_TICK
 	mannequin.setDir(SOUTH)
 	stamp = getFlatIcon(mannequin)
+	TGS_INFO_LOG("getFlatIcon(mannequin) Called in code/modules/mob/dead/new_player/preferences_setup.dm line 82")
 	CHECK_TICK
 	preview_icon.Blend(stamp, ICON_OVERLAY, 49, 1)
 	CHECK_TICK

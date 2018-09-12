@@ -290,6 +290,7 @@ GLOBAL_VAR_INIT(say_disabled, FALSE)
 				JB.equip(D, TRUE, FALSE)
 				COMPILE_OVERLAYS(D)
 				var/icon/I = icon(getFlatIcon(D), frame = 1)
+				TGS_INFO_LOG("getFlatIcon(D) code/modules/admin/verbs/mapping.dm line 292")
 				final.Insert(I, JB.title)
 	qdel(D)
 	//Also add the x

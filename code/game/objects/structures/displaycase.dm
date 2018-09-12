@@ -94,6 +94,7 @@
 		I = icon('icons/obj/stationobjs.dmi',"glassboxb0")
 	if(showpiece)
 		var/icon/S = getFlatIcon(showpiece)
+		TGS_INFO_LOG("getFlatIcon(showpiece) code/game/objects/structures/displaycase.dm line 96")
 		S.Scale(17,17)
 		I.Blend(S,ICON_UNDERLAY,8,8)
 	src.icon = I

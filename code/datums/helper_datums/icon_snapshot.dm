@@ -12,4 +12,5 @@
 	temp.icon_state = icon_state
 	temp.overlays = overlays.Copy()
 	var/icon/tempicon = getFlatIcon(temp) // TODO Actually write something less heavy-handed for this
+	TGS_INFO_LOG("getFlatIcon(temp) code/datums/helper_datums/icon_snapshot.dm line 14")
 	return tempicon

@@ -323,16 +323,19 @@
 	CHECK_TICK
 	mannequin.setDir(NORTH)
 	var/icon/stamp = getFlatIcon(mannequin)
+	TGS_INFO_LOG("getFlatIcon(mannequin) code/modules/admin/verbs/one_click_antag.dm line 325")
 	CHECK_TICK
 	preview_icon.Blend(stamp, ICON_OVERLAY, 25, 17)
 	CHECK_TICK
 	mannequin.setDir(WEST)
 	stamp = getFlatIcon(mannequin)
+	TGS_INFO_LOG("getFlatIcon(mannequin) code/modules/admin/verbs/one_click_antag.dm line 331")
 	CHECK_TICK
 	preview_icon.Blend(stamp, ICON_OVERLAY, 1, 9)
 	CHECK_TICK
 	mannequin.setDir(SOUTH)
 	stamp = getFlatIcon(mannequin)
+	TGS_INFO_LOG("getFlatIcon(mannequin) code/modules/admin/verbs/one_click_antag.dm line 337")
 	CHECK_TICK
 	preview_icon.Blend(stamp, ICON_OVERLAY, 49, 1)
 	CHECK_TICK
