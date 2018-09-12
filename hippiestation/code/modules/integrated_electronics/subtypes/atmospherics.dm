@@ -483,7 +483,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	//Check if tank broken
 	if(!broken && tank_pressure > TANK_FAILURE_PRESSURE)
 		broken = TRUE
-		to_chat(view(0),"<span class='notice'>The [name] ruptures, releasing its gases!</span>")
+		to_chat(view(2),"<span class='notice'>The [name] ruptures, releasing its gases!</span>")
 	if(broken)
 		release()
 
