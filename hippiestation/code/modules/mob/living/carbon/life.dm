@@ -19,16 +19,16 @@
 			var/datum/component/waddling/W = H.GetComponent(/datum/component/waddling)
 
 			if (!W)
-				H.AddComponent(/datum/component/waddling)
+				W = H.AddComponent(/datum/component/waddling)
 				to_chat(src, "<span class='warning'>Walking straight feels very hard...</span>")
-				W = H.GetComponent(/datum/component/waddling)
+			
+			if (W)
+				// minimum of 1, max of 4
+				var/waddle_multi = CLAMP(drunkenness / 25, 1, 4)
 
-			// minimum of 1, max of 4
-			var/waddle_multi = CLAMP(drunkenness / 25, 1, 4)
-
-			W.waddle_min = -12 * waddle_multi
-			W.waddle_max = 12 * waddle_multi
-			W.z_change = 4 * waddle_multi / 2
+				W.waddle_min = -12 * waddle_multi
+				W.waddle_max = 12 * waddle_multi
+				W.z_change = 4 * waddle_multi / 2
 	else
 		var/has_waddle = FALSE
 		for(var/datum/quirk/Q in roundstart_quirks)
@@ -44,4 +44,4 @@
 
 				if (W)
 					W.RemoveComponent()
-					to_chat(src, "<span class='warning'>Walking doesn't seen so hard as you sober up.</span>")
+					to_chat(src, "<span class='warning'>Walking doesn't seem so hard as you sober up.</span>")
