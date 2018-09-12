@@ -1,6 +1,6 @@
 /obj/item/extra_arm
 	name = "extra arm installer"
-	desc = "Distantly related to the technology of the Man-Machine Interface, this state-of-the-art syndicate device adapts your nervous and circulatory system to the presence of an extra limb.."
+	desc = "Distantly related to the technology of the Man-Machine Interface, this state-of-the-art syndicate device adapts your nervous and circulatory system to the presence of an extra limb..."
 	icon = 'hippiestation/icons/obj/device.dmi'
 	icon_state = "extra_arm"
 	var/used = FALSE
