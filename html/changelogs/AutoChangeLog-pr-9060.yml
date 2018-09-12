@@ -1,0 +1,4 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - balance: "Captain's sabre hit delay reduced from 8 to 6 ticks."
