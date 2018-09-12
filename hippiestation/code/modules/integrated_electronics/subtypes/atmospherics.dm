@@ -409,7 +409,6 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	power_draw_per_use = 30
 
 /obj/item/integrated_circuit/atmospherics/pump/mixer/do_work()
-	to_chat(world,"Start do_work()")
 	activate_pin(2)
 	var/obj/source_1 = get_pin_data(IC_INPUT, 1)
 	var/obj/source_2 = get_pin_data(IC_INPUT, 2)
@@ -448,7 +447,6 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	output_gases.merge(mix)
 	mix = source_2_gases.remove(transfer_moles * (1-gas_percentage))
 	output_gases.merge(mix)
-	to_chat(world,"mix successful")
 
 
 // - integrated tank - // **works**
@@ -485,13 +483,13 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	//Check if tank broken
 	if(!broken && tank_pressure > TANK_FAILURE_PRESSURE)
 		broken = TRUE
-		to_chat(view(0),"<span class='notice'>The [src.name] ruptures, releasing its gases!</span>")
+		to_chat(view(0),"<span class='notice'>The [name] ruptures, releasing its gases!</span>")
 	if(broken)
 		release()
 
 /obj/item/integrated_circuit/atmospherics/tank/proc/release()
 	if(air_contents.total_moles() > 0)
-		playsound(src.loc, 'sound/effects/spray.ogg', 10, 1, -3)
+		playsound(loc, 'sound/effects/spray.ogg', 10, 1, -3)
 		var/datum/gas_mixture/expelled_gas = air_contents.remove(air_contents.total_moles())
 		var/turf/current_turf = get_turf(src)
 		var/datum/gas_mixture/exterior_gas
