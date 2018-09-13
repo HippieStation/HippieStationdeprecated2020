@@ -119,7 +119,7 @@
 
 /obj/item/integrated_circuit/atmospherics/pump/proc/move_gas(datum/gas_mixture/source_air, datum/gas_mixture/target_air)
 	// No moles = nothing to pump
-	if(source_air.total_moles() <= 0 || target_air.return_pressure() <=750)
+	if(source_air.total_moles() <= 0 || target_air.return_pressure() >=750)
 		return
 
 	// Negative Kelvin temperatures should never happen and if they do, normalize them 
