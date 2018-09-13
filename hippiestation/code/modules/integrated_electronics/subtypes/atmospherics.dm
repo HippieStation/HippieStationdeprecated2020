@@ -1,8 +1,10 @@
 #define SOURCE_TO_TARGET 0
 #define TARGET_TO_SOURCE 1
-#define MAX_TARGET_PRESSURE (ONE_ATMOSPHERE*25)
-#define PUMP_EFFICIENCY 0.6
-#define TANK_FAILURE_PRESSURE (ONE_ATMOSPHERE*25)
+#define MAX_TARGET_PRESSURE (ONE_ATMOSPHERE)
+#define PUMP_EFFICIENCY 0.3
+#define TANK_FAILURE_PRESSURE (ONE_ATMOSPHERE+50)
+#define PUMP_MAX_PRESSURE 750
+#define PUMP_MAX_VOLUME 100
 
 /obj/item/integrated_circuit/atmospherics
 	category_text = "Atmospherics"
@@ -53,7 +55,7 @@
 			"on transfer" = IC_PINTYPE_PULSE_OUT
 			)
 	var/direction = SOURCE_TO_TARGET
-	var/target_pressure = ONE_ATMOSPHERE
+	var/target_pressure = PUMP_MAX_PRESSURE
 	power_draw_per_use = 20
 
 /obj/item/integrated_circuit/atmospherics/pump/Initialize()
@@ -77,7 +79,7 @@
 		direction = TARGET_TO_SOURCE
 	else
 		direction = SOURCE_TO_TARGET
-	target_pressure = min(round(MAX_TARGET_PRESSURE),abs(new_amount))
+	target_pressure = min(round(PUMP_MAX_PRESSURE),abs(new_amount))
 
 /obj/item/integrated_circuit/atmospherics/pump/do_work()
 	var/obj/source = get_pin_data_as_type(IC_INPUT, 1, /obj)
@@ -150,7 +152,7 @@
 			"on transfer" = IC_PINTYPE_PULSE_OUT
 			)
 	direction = SOURCE_TO_TARGET
-	var/transfer_rate = MAX_TRANSFER_RATE
+	var/transfer_rate = PUMP_MAX_VOLUME
 	power_draw_per_use = 20
 
 /obj/item/integrated_circuit/atmospherics/pump/volume/update_target(new_amount)
@@ -161,7 +163,7 @@
 		direction = TARGET_TO_SOURCE
 	else
 		direction = SOURCE_TO_TARGET
-	target_pressure = min(200,abs(new_amount))
+	target_pressure = min(PUMP_MAX_VOLUME,abs(new_amount))
 
 /obj/item/integrated_circuit/atmospherics/pump/volume/move_gas(datum/gas_mixture/source_air, datum/gas_mixture/target_air)
 	// No moles = nothing to pump
@@ -172,12 +174,12 @@
 	if(source_air.temperature < TCMB)
 		source_air.temperature = TCMB
 
-	if((source_air.return_pressure() < 0.01) || (target_air.return_pressure() > 1000))
+	if((source_air.return_pressure() < 0.01) || (target_air.return_pressure() > PUMP_MAX_VOLUME))
 		return
 
 	var/transfer_ratio = transfer_rate/source_air.volume
 
-	var/datum/gas_mixture/removed = source_air.remove_ratio(transfer_ratio)
+	var/datum/gas_mixture/removed = source_air.remove_ratio(transfer_ratio * PUMP_EFFICIENCY)
 
 	target_air.merge(removed)
 
@@ -305,7 +307,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 
 /obj/item/integrated_circuit/atmospherics/pump/filter/on_data_written()
 	var/amt = get_pin_data(IC_INPUT, 5)
-	target_pressure = CLAMP(amt, 0, MAX_TARGET_PRESSURE)
+	target_pressure = CLAMP(amt, 0, MAX_PUMP_PRESSURE)
 
 /obj/item/integrated_circuit/atmospherics/pump/filter/do_work()
 	activate_pin(2)
@@ -342,7 +344,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 		contaminated_air = air_contents
 
 	//Courtesy of atmos circuit bomb nerf. You brought it upon yourselves.
-	if(contaminated_air.return_pressure() >=750 || filtered_air.return_pressure() >= 750)
+	if(contaminated_air.return_pressure() >= PUMP_MAX_PRESSURE || filtered_air.return_pressure() >= PUMP_MAX_PRESSURE)
 		return
 
 	var/pressure_delta = target_pressure - contaminated_air.return_pressure()
@@ -432,7 +434,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	if(!source_1_gases || !source_2_gases || !output_gases)
 		return
 
-	if(output_gases.return_pressure() >= 750)
+	if(output_gases.return_pressure() >= PUMP_MAX_PRESSURE)
 		return
 
 	if(source_1_gases.return_pressure() <=0 || source_2_gases.return_pressure() <=0)
@@ -457,7 +459,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	name = "integrated tank"
 	desc = "A small tank for the storage of gases."
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
-	size = 4
+	size = 15
 	activators = list(
 			"push ref" = IC_PINTYPE_PULSE_IN
 			)
@@ -508,7 +510,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	name = "large integrated tank"
 	desc = "A less small tank for the storage of gases."
 	volume = 9
-	size = 12
+	size = 21
 	spawn_flags = IC_SPAWN_RESEARCH
 
 
@@ -517,7 +519,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	name = "freezer tank"
 	desc = "Cools the gas it contains to a preset temperature."
 	volume = 6
-	size = 8
+	size = 21
 	inputs = list(
 		"target temperature" = IC_PINTYPE_NUMBER,
 		"on" = IC_PINTYPE_BOOLEAN
@@ -551,7 +553,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	name = "heater tank"
 	desc = "Heats the gas it contains to a preset temperature."
 	volume = 6
-	size = 8
+	size = 21
 	inputs = list(
 		"target temperature" = IC_PINTYPE_NUMBER,
 		"on" = IC_PINTYPE_BOOLEAN
@@ -664,8 +666,8 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 
 	container_type = OPENCONTAINER
 
-	complexity = 20
-	size = 25
+	complexity = 25
+	size = 37
 	inputs = list()
 	outputs = list(
 		"pressure used" = IC_PINTYPE_NUMBER,
