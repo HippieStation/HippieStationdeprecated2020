@@ -751,6 +751,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 
 #undef SOURCE_TO_TARGET
 #undef TARGET_TO_SOURCE
-#undef MAX_TARGET_PRESSURE
 #undef PUMP_EFFICIENCY
 #undef TANK_FAILURE_PRESSURE
+#undef PUMP_MAX_PRESSURE
+#undef PUMP_MAX_VOLUME
