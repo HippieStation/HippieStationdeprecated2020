@@ -62,7 +62,7 @@
 	extended_desc += " Use negative pressure to move air from target to source. \
 					Note that only part of the gas is moved on each transfer, \
 					so multiple activations will be necessary to achieve target pressure. \
-					The pressure limit for circuit pumps is [round(MAX_TARGET_PRESSURE)] kPa."
+					The pressure limit for circuit pumps is [round(PUMP_MAX_PRESSURE)] kPa."
 	. = ..()
 
 // This proc gets the direction of the gas flow depending on its value, by calling update target 
@@ -306,7 +306,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 
 /obj/item/integrated_circuit/atmospherics/pump/filter/on_data_written()
 	var/amt = get_pin_data(IC_INPUT, 5)
-	target_pressure = CLAMP(amt, 0, MAX_PUMP_PRESSURE)
+	target_pressure = CLAMP(amt, 0, PUMP_MAX_PRESSURE)
 
 /obj/item/integrated_circuit/atmospherics/pump/filter/do_work()
 	activate_pin(2)
@@ -390,7 +390,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	extended_desc = "Remember to properly spell and capitalize the filtered gas name. \
 					Note that only part of the gas is moved on each transfer, \
 					so multiple activations will be necessary to achieve target pressure. \
-					The pressure limit for circuit pumps is [round(MAX_TARGET_PRESSURE)] kPa."
+					The pressure limit for circuit pumps is [round(PUMP_MAX_PRESSURE)] kPa."
 
 
 // - gas mixer - // **works**
