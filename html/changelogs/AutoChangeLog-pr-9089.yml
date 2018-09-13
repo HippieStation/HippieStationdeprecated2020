@@ -1,0 +1,4 @@
+author: "Carbonhell"
+delete-after: True
+changes: 
+  - bugfix: "Cat/cluwn banned people cannot join as a role different from Assistant anymore."
