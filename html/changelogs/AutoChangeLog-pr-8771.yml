@@ -1,0 +1,5 @@
+author: "JohnGinnane"
+delete-after: True
+changes: 
+  - rscadd: "Added a waddle quirk for no cost"
+  - rscadd: "Getting drunk adds the waddle effect, scaled based on how drunk you are"
