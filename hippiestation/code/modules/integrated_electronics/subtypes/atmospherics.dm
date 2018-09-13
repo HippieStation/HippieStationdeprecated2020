@@ -7,6 +7,8 @@
 /obj/item/integrated_circuit/atmospherics
 	category_text = "Atmospherics"
 	cooldown_per_use = 2 SECONDS
+	complexity = 10
+	size = 7
 	outputs = list(
 		"self reference" = IC_PINTYPE_SELFREF,
 		"pressure" = IC_PINTYPE_NUMBER
@@ -41,8 +43,6 @@
 	name = "gas pump"
 	desc = "Somehow moves gases between two tanks, canisters, and other gas containers."
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
-	complexity = 5
-	size = 3
 	inputs = list(
 			"source" = IC_PINTYPE_REF,
 			"target" = IC_PINTYPE_REF,
@@ -140,8 +140,6 @@
 	extended_desc = " Use negative volume to move air from target to source. Note that only part of the gas is moved on each transfer. Its maximum pumping volume is capped at 1000kPa."
 
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
-	complexity = 5
-	size = 3
 	inputs = list(
 			"source" = IC_PINTYPE_REF,
 			"target" = IC_PINTYPE_REF,
@@ -230,8 +228,6 @@
 	extended_desc = "This circuit will automatically attempt to locate and connect to ports on the floor beneath it when activated. \
 					You <b>must</b> set a target before connecting."
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
-	complexity = 2
-	size = 6
 	inputs = list(
 			"target" = IC_PINTYPE_REF
 			)
@@ -296,7 +292,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	name = "gas filter"
 	desc = "Filters one gas out of a mixture."
 	complexity = 20
-	size = 5
+	size = 8
 	spawn_flags = IC_SPAWN_RESEARCH
 	inputs = list(
 			"source" = IC_PINTYPE_REF,
@@ -401,7 +397,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	name = "gas mixer"
 	desc = "Mixes 2 different types of gases."
 	complexity = 20
-	size = 5
+	size = 8
 	spawn_flags = IC_SPAWN_RESEARCH
 	inputs = list(
 			"first source" = IC_PINTYPE_REF,
@@ -668,7 +664,8 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 
 	container_type = OPENCONTAINER
 
-	complexity = 4
+	complexity = 20
+	size = 25
 	inputs = list()
 	outputs = list(
 		"pressure used" = IC_PINTYPE_NUMBER,
