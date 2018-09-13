@@ -345,6 +345,10 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	if(!contaminated_air)
 		contaminated_air = air_contents
 
+	//Courtesy of atmos circuit bomb nerf. You brought it upon yourselves.
+	if(contaminated_air.return_pressure() >=750 || filtered_air.return_pressure() >= 750)
+		return
+
 	var/pressure_delta = target_pressure - contaminated_air.return_pressure()
 	var/transfer_moles
 
@@ -430,6 +434,9 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	var/datum/gas_mixture/output_gases = gas_output.return_air()
 
 	if(!source_1_gases || !source_2_gases || !output_gases)
+		return
+
+	if(output_gases.return_pressure() >= 750)
 		return
 
 	if(source_1_gases.return_pressure() <=0 || source_2_gases.return_pressure() <=0)
