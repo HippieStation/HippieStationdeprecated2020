@@ -119,7 +119,7 @@
 
 /obj/item/integrated_circuit/atmospherics/pump/proc/move_gas(datum/gas_mixture/source_air, datum/gas_mixture/target_air)
 	// No moles = nothing to pump
-	if(source_air.total_moles() <= 0)
+	if(source_air.total_moles() <= 0 || target_air.return_pressure() <=750)
 		return
 
 	// Negative Kelvin temperatures should never happen and if they do, normalize them 
@@ -137,7 +137,7 @@
 /obj/item/integrated_circuit/atmospherics/pump/volume
 	name = "volume pump"
 	desc = "Moves gases between two tanks, canisters, and other gas containers by using their volume, up to 200 L/s."
-	extended_desc = " Use negative volume to move air from target to source. Note that only part of the gas is moved on each transfer. Unlike the gas pump, this one keeps pumping even further to pressures of 9000 pKa and it is not advised to use it on tank circuits."
+	extended_desc = " Use negative volume to move air from target to source. Note that only part of the gas is moved on each transfer. Its maximum pumping volume is capped at 1000kPa."
 
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	complexity = 5
@@ -174,7 +174,7 @@
 	if(source_air.temperature < TCMB)
 		source_air.temperature = TCMB
 
-	if((source_air.return_pressure() < 0.01) || (target_air.return_pressure() > 9000))
+	if((source_air.return_pressure() < 0.01) || (target_air.return_pressure() > 1000))
 		return
 
 	var/transfer_ratio = transfer_rate/source_air.volume
