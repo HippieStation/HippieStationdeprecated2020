@@ -71,4 +71,4 @@
 
 /obj/mecha/makeshift/Destroy()
 	new /obj/structure/closet(loc)
-	..()
+	return ..()

@@ -17,6 +17,10 @@
 		src.poolcontrol += control
 	. = ..()
 
+/obj/machinery/drain/Destroy()
+	poolcontrol = null
+	return ..()
+
 /obj/machinery/drain/process()
 	if(!status) //don't drain an empty pool.
 		for(var/obj/item/absorbo in orange(1,src))

@@ -63,7 +63,10 @@
 	if(force && user.has_trait(TRAIT_PACIFISM))
 		to_chat(user, "<span class='warning'>You don't want to harm other living beings!</span>")
 		return
-
+	if(special_attack)// hippie start -- special attacks, handled by afterattack
+		add_fingerprint(user)
+		log_combat(user, M, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: SPECIAL ATTACK)")
+		return // hippie end
 	if(!force)
 		playsound(loc, 'sound/weapons/tap.ogg', get_clamped_volume(), 1, -1)
 	else if(hitsound)

@@ -25,26 +25,22 @@
 /mob/living/simple_animal/pet/hedgehog/Bernie
 	name = "Bernie"
 	desc = "A spiky hog belonging to the captain. Looking at it fills you with a strange feeling of reverence."
-	
-/mob/living/simple_animal/pet/hedgehog/Life()
-	..()
-	if(scared && stat != DEAD)
-		if(icon_state != "Hedgehog_ball")
-			visible_message("<span class = 'notice'> [src] curls up into a ball. </span>")
-			icon_state = "Hedgehog_ball"
-			icon_living = "Hedgehog_ball"
-			canmove = 0
-		if(world.time > scared_time)
-			scared = FALSE
-			icon_state = "Hedgehog"
-			icon_living = "Hedgehog"
-			canmove = 1
+
+/mob/living/simple_animal/pet/hedgehog/proc/stop_being_scared_lil_boi()
+	scared = FALSE
+	icon_state = "Hedgehog"
+	icon_living = "Hedgehog"
+	canmove = TRUE
 
 /mob/living/simple_animal/pet/hedgehog/attacked_by(obj/item/I, mob/living/user)
 	..()
-	scared = TRUE
-	scared_time = world.time + FEAR_DURATION
-	
+	if(stat != DEAD)
+		scared = TRUE
+		visible_message("<span class = 'notice'> [src] curls up into a ball. </span>")
+		icon_state = "Hedgehog_ball"
+		icon_living = "Hedgehog_ball"
+		canmove = FALSE
+	addtimer(CALLBACK(src, .proc/stop_being_scared_lil_boi), FEAR_DURATION, TIMER_OVERRIDE|TIMER_UNIQUE)
 
 /mob/living/simple_animal/pet/hedgehog/attack_hand(mob/living/user)
 	if(..())
@@ -52,6 +48,7 @@
 			user.visible_message("<span class = 'warning'> [user] pricks their finger on [src]'s quills!</span>")
 			user.adjustBruteLoss(8)
 		scared = TRUE
-		scared_time = world.time + FEAR_DURATION
+		canmove = FALSE
+		addtimer(CALLBACK(src, .proc/stop_being_scared_lil_boi), FEAR_DURATION, TIMER_OVERRIDE|TIMER_UNIQUE)
 
 #undef FEAR_DURATION
