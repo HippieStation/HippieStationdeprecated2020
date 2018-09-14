@@ -129,7 +129,7 @@
 		pack = loc
 
 /obj/item/twohanded/hockeystick/Destroy()
-	QDEL_NULL(pack)
+	pack = null
 	return ..()
 
 /obj/item/twohanded/hockeystick/attack(mob/living/target, mob/living/user) //Sure it's the powerfist code, right down to the sound effect. Gonna be fun though.
