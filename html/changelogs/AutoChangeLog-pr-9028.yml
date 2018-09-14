@@ -1,5 +1,0 @@
-author: "GuyonBroadway"
-delete-after: True
-changes: 
-  - rscadd: "Added a weaker clown car that spawns on Hippiestation and Metalake in the theatre It has much less armour, moves slower and mobs abducted can get out instantly. If the car hits a wall or the clown dumps everyone inside they are not stunned by default."
-  - imageadd: "Sprites lovingly stoles from /vg/station (I think)"
