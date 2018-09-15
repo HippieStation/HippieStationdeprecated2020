@@ -635,6 +635,7 @@
 	if(slot == SLOT_WEAR_SUIT)
 		var/area/A = get_area(src)
 		RegisterSignal(U, list(COMSIG_MOB_ITEM_ATTACK,COMSIG_MOB_ITEM_AFTERATTACK,COMSIG_MOB_THROW,COMSIG_MOB_ATTACK_HAND,COMSIG_MOB_ATTACK_RANGED), CALLBACK(src, .proc/kill_cloak, FALSE), TRUE)
+		RegisterSignal(U, COMSIG_MOB_GUN_SUPPRESS, CALLBACK(src, .proc/kill_cloak, TRUE), TRUE)
 		priority_announce("[user] has engaged [src] at [A.map_name]!","Message from The Syndicate!", 'sound/misc/notice1.ogg')
 		log_game("[user] has engaged [src]")
 		item_flags = NODROP
@@ -749,8 +750,8 @@
 			quick = TRUE
 			A.changeNext_move(CLICK_CD_RAPID)
 			.= FALSE
-	D.visible_message("<span class='danger'>[A] [quick?:"quick":""] [picked_hit_type] [D]!</span>", \
-					  "<span class='userdanger'>[A] [quick?:"quick":""] [picked_hit_type] you!</span>")
+	D.visible_message("<span class='danger'>[A] [quick?"quick":""] [picked_hit_type] [D]!</span>", \
+					  "<span class='userdanger'>[A] [quick?"quick":""] [picked_hit_type] you!</span>")
 
 	if(picked_hit_type == "kicks" || picked_hit_type == "stomps on")
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
