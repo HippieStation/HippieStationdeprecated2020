@@ -28,6 +28,10 @@
 	. = ..()
 	soundloop = new(list(src), FALSE)
 
+/obj/item/cheapcuisine/Destroy()
+	QDEL_NULL(soundloop)
+	return ..()
+
 /obj/item/cheapcuisine/attack_self(mob/user)
 	if(!used)
 		var/choice = input(user, "What would you like to dispense?", "Carbonhell's Can of Cheap Cuisine") as null|anything in possibleFood

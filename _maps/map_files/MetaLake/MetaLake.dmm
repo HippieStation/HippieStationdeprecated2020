@@ -29291,11 +29291,11 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/portable_atmospherics/canister/water_vapor,
+/obj/effect/decal/cleanable/dirt,
 /mob/living/simple_animal/hostile/lizard{
 	name = "Wags-His-Tail";
 	real_name = "Wags-His-Tail"
 	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
 /area/janitor)
 "bhc" = (
@@ -75945,6 +75945,7 @@
 /obj/structure/sign/poster/random{
 	pixel_y = 32
 	},
+/obj/vehicle/sealed/car/clowncar/roundstart,
 /turf/open/floor/carpet,
 /area/crew_quarters/theatre)
 "dhW" = (

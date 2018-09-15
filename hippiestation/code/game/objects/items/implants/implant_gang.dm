@@ -8,6 +8,10 @@
 	.=..()
 	gang = setgang
 
+/obj/item/implant/gang/Destroy()
+	gang = null
+	return ..()
+
 /obj/item/implant/gang/get_data()
 	var/dat = {"<b>Implant Specifications:</b><BR>
 				<b>Name:</b> Criminal brainwash implant<BR>

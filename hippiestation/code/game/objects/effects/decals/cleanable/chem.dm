@@ -33,8 +33,8 @@ GLOBAL_LIST_EMPTY(chempiles)
 	.=..()
 
 /obj/effect/decal/cleanable/chempile/Destroy()
-	.=..()
 	GLOB.chempiles -= src
+	.=..()
 
 /obj/effect/decal/cleanable/chempile/ex_act()
 	qdel(src)
