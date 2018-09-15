@@ -6,14 +6,17 @@
 #define PUMP_MAX_VOLUME 100
 
 //===============================================================================THIS PART HERE MANAGES NUMBER OF ACTIVE PUMPS
-/*Its goal is mainly to not be able to pump gas from one air_contents to another multiple times by spamming volume pumps etc
-while penalizing functionality to A MINIMUM*/
+/*Its goal is mainly to not be able to copy-stack pumps while penalizing functionality to A MINIMUM*/
+
+/obj/item/electronic_assembly/var/list/used_pumps = list()
+
+/obj/item/electronic_assembly/process()
+	..()
+	used_pumps = list()
 
 datum/pumpholder
 	var/datum/gas_mixture/source
 	var/list/targets = list()
-
-/obj/item/electronic_assembly/var/list/used_pumps = list()
 
 /obj/item/electronic_assembly/proc/Pulse_Pump(var/gas_source, var/gas_target)
 	//If this gas mix was never used before: create a new pumpholder for it
@@ -156,6 +159,9 @@ datum/pumpholder
 	air_update_turf()
 
 /obj/item/integrated_circuit/atmospherics/pump/proc/move_gas(datum/gas_mixture/source_air, datum/gas_mixture/target_air)
+	if(assembly)
+		assembly.Check_Used_Pump(source_air,target_air)
+
 	// No moles = nothing to pump
 	if(source_air.total_moles() <= 0 || target_air.return_pressure() >= 750)
 		return
@@ -169,6 +175,8 @@ datum/pumpholder
 		var/transfer_moles = (pressure_delta*target_air.volume/(source_air.temperature * R_IDEAL_GAS_EQUATION))*PUMP_EFFICIENCY
 		var/datum/gas_mixture/removed = source_air.remove(transfer_moles)
 		target_air.merge(removed)
+
+	assembly.Pulse_Pump(source_air, target_air)
 
 
 // - volume pump - // **Works**
@@ -202,6 +210,9 @@ datum/pumpholder
 	target_pressure = min(PUMP_MAX_VOLUME,abs(new_amount))
 
 /obj/item/integrated_circuit/atmospherics/pump/volume/move_gas(datum/gas_mixture/source_air, datum/gas_mixture/target_air)
+	if(assembly)
+		assembly.Check_Used_Pump(source_air,target_air)
+
 	// No moles = nothing to pump
 	if(source_air.total_moles() <= 0)
 		return
@@ -218,6 +229,8 @@ datum/pumpholder
 	var/datum/gas_mixture/removed = source_air.remove_ratio(transfer_ratio * PUMP_EFFICIENCY)
 
 	target_air.merge(removed)
+
+	assembly.Pulse_Pump(source_air, target_air)
 
 
 // - gas vent - // **works**
@@ -380,6 +393,10 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 		contaminated_air = air_contents
 
 	//Courtesy of atmos circuit bomb nerf. You brought it upon yourselves.
+	if(assembly)
+		assembly.Check_Used_Pump(source_air,contaminated_air)
+	if(assembly)
+		assembly.Check_Used_Pump(source_air,filtered_air)
 	if(contaminated_air.return_pressure() >= PUMP_MAX_PRESSURE || filtered_air.return_pressure() >= PUMP_MAX_PRESSURE)
 		return
 
@@ -420,6 +437,9 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	var/datum/gas_mixture/target = (filtered_air.return_pressure() < target_pressure ? filtered_air : source_air)
 	target.merge(filtered_out)
 	contaminated_air.merge(removed)
+	
+	assembly.Pulse_Pump(source_air, contaminated_air)
+	assembly.Pulse_Pump(source_air, target)
 
 /obj/item/integrated_circuit/atmospherics/pump/filter/Initialize()
 	air_contents = new(volume)
@@ -476,6 +496,11 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	if(source_1_gases.return_pressure() <= 0 || source_2_gases.return_pressure() <= 0)
 		return
 
+	if(assembly)
+		assembly.Check_Used_Pump(source_1_gases,output_gases)
+	if(assembly)
+		assembly.Check_Used_Pump(source_2_gases,output_gases)
+
 	//This calculates how much should be sent
 	var/gas_percentage = round(max(min(get_pin_data(IC_INPUT, 4),100),0) / 100)
 
@@ -490,6 +515,9 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	output_gases.merge(mix)
 	mix = source_2_gases.remove(transfer_moles * (1-gas_percentage))
 	output_gases.merge(mix)
+
+	assembly.Pulse_Pump(source_1_gases, output_gases)
+	assembly.Pulse_Pump(source_2_gases, output_gases)
 
 
 // - integrated tank - // **works**
