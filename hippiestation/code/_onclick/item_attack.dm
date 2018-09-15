@@ -1,5 +1,6 @@
 /obj/item/attack(mob/living/M, mob/living/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user)
+	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, user)
 	if(item_flags & NOBLUDGEON)
 		return
 	if(special_attack)//handled by afterattack
@@ -23,6 +24,7 @@
 
 
 /obj/item/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
 	if(special_attack && iscarbon(user))
 		var/mob/living/carbon/C = user
 

@@ -320,7 +320,7 @@
 			var/datum/effect_system/spark_spread/s = new
 			s.set_up(1, 1, src)
 			s.start()
-	kill_cloak(user)
+	kill_cloak()
 	if(prob(damage*2) && user.health < 60 && current_charges > 0)
 		addtimer(CALLBACK(src, .proc/addmedicalcharge), medical_delay,TIMER_UNIQUE|TIMER_OVERRIDE)
 		current_charges--
@@ -634,6 +634,7 @@
 		U = user
 	if(slot == SLOT_WEAR_SUIT)
 		var/area/A = get_area(src)
+		RegisterSignal(U, list(COMSIG_MOB_ITEM_ATTACK,COMSIG_MOB_ITEM_AFTERATTACK,COMSIG_MOB_THROW,COMSIG_MOB_ATTACK_HAND,COMSIG_MOB_ATTACK_RANGED), CALLBACK(src, .proc/kill_cloak, FALSE), TRUE)
 		priority_announce("[user] has engaged [src] at [A.map_name]!","Message from The Syndicate!", 'sound/misc/notice1.ogg')
 		log_game("[user] has engaged [src]")
 		item_flags = NODROP
@@ -643,6 +644,7 @@
 		if(help_verb)
 			U.verbs += help_verb
 	..()
+
 
 /datum/outfit/nanosuit
 	name = "Nanosuit"
@@ -714,6 +716,7 @@
 /datum/martial_art/nano/harm_act(var/mob/living/carbon/human/A, var/mob/living/carbon/D)
 	var/picked_hit_type = pick("punches", "kicks")
 	var/bonus_damage = 10
+	var/quick = FALSE
 	if(D.IsKnockdown() || D.resting || D.lying)//we can hit ourselves
 		bonus_damage += 5
 		picked_hit_type = "stomps on"
@@ -741,14 +744,13 @@
 			bonus_damage += 5
 			D.Knockdown(60)
 			log_combat(A, D, "nanosuit leg swept")
-	if(prob(30) && !A.resting || !A.lying)
-		D.visible_message("<span class='warning'>[A] quick [picked_hit_type] [D]!", \
-							"<span class='userdanger'>[A] quick [picked_hit_type] you!</span>")
-		A.changeNext_move(CLICK_CD_RAPID)
-		.= FALSE
-	else
-		D.visible_message("<span class='danger'>[A] [picked_hit_type] [D]!</span>", \
-					  "<span class='userdanger'>[A] [picked_hit_type] you!</span>")
+	if(!A.resting || !A.lying)
+		if(prob(30))
+			quick = TRUE
+			A.changeNext_move(CLICK_CD_RAPID)
+			.= FALSE
+	D.visible_message("<span class='danger'>[A] [quick?:"quick":""] [picked_hit_type] [D]!</span>", \
+					  "<span class='userdanger'>[A] [quick?:"quick":""] [picked_hit_type] you!</span>")
 
 	if(picked_hit_type == "kicks" || picked_hit_type == "stomps on")
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
@@ -878,71 +880,15 @@
 		var/mob/living/carbon/human/H = thrower
 		if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
 			var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
-			NS.kill_cloak()
 			if(NS.mode == STRENGTH)
 				.=..(target, range*1.5, speed*2, thrower, spin, diagonals_first, callback)
 				return
 	.=..()
 
-/obj/item/afterattack(atom/O, mob/user, proximity)
-	..()
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
-			var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
-			NS.kill_cloak()
-
-/obj/item/gun/afterattack(atom/O, mob/user, proximity)
-	..()
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
-			var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
-			if(can_shoot())
-				NS.kill_cloak(suppressed)
-			if(proximity) //It's adjacent, is the user, or is on the user's person
-				if(!ismob(O) || user.a_intent == INTENT_HARM) //melee attack
-					NS.kill_cloak()
-
-/obj/item/gun/attack(mob/M as mob, mob/user)
-	..()
-	if(user && ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
-			var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
-			if(user.a_intent == INTENT_HARM)
-				NS.kill_cloak()
-
-/obj/item/weldingtool/afterattack(atom/O, mob/user, proximity)
-	..()
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
-			var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
-			NS.kill_cloak()
-
-/obj/item/twohanded/fireaxe/afterattack(atom/A, mob/user, proximity)
-	..()
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
-			var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
-			NS.kill_cloak()
-
-/datum/species/spec_attack_hand(mob/M, mob/H, datum/martial_art/attacker_style)
-	..()
-	if(ishuman(M))
-		var/mob/living/carbon/human/user = M
-		if(istype(user.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
-			var/obj/item/clothing/suit/space/hardsuit/nano/NS = user.wear_suit
-			NS.kill_cloak()
-
-
 /obj/item/clothing/suit/space/hardsuit/nano/proc/kill_cloak(temp = FALSE)
 	if(mode == CLOAK)
-		if(temp == FALSE)
+		if(!temp)
 			set_nano_energy(0,15)
-			toggle_mode(ARMOR, TRUE)
 		else
 			set_nano_energy(CLAMP(cell.charge-15,0,cell.charge))
 			U.filters = null
