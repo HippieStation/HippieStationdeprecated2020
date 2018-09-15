@@ -498,7 +498,6 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 
 	if(assembly)
 		assembly.Check_Used_Pump(source_1_gases,output_gases)
-	if(assembly)
 		assembly.Check_Used_Pump(source_2_gases,output_gases)
 
 	//This calculates how much should be sent
