@@ -652,7 +652,6 @@
 			U.verbs += help_verb
 	..()
 
-
 /datum/outfit/nanosuit
 	name = "Nanosuit"
 	uniform = /obj/item/clothing/under/syndicate/combat/nano
