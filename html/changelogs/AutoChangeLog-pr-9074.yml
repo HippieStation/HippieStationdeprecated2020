@@ -1,4 +1,0 @@
-author: "HonkBot"
-delete-after: True
-changes: 
-  - bugfix: "The Clown Car can no longer move unrestricted in zero gravity environments."
