@@ -347,3 +347,6 @@
 	item = /obj/item/brick
 	cost = 2
 	surplus = 30
+
+/datum/uplink_item/role_restricted/clowncar
+	cost = 15
