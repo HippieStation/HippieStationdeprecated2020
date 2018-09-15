@@ -215,6 +215,9 @@
 	block_chance = 0
 	var/menu_open = FALSE
 	var/datum/radial_menu/menu = new
+	//variables for cloak pausing when shooting a suppressed gun
+	var/stealth_cloak_out = 1 //transition time out of cloak
+	var/stealth_cloak_in = 2 //transition time back into cloak
 
 
 /obj/item/clothing/suit/space/hardsuit/nano/ComponentInitialize()
@@ -888,18 +891,20 @@
 /obj/item/clothing/suit/space/hardsuit/nano/proc/kill_cloak()
 	var/obj/item/gun/G = U.get_active_held_item()
 	if(mode == CLOAK)
-		if(G.suppressed && G.can_shoot())
-			set_nano_energy(CLAMP(cell.charge-15,0,cell.charge))
-			U.filters = null
-			animate(U, alpha = 255, time = 2)
-			addtimer(CALLBACK(src, .proc/resume_cloak),CLICK_CD_RANGE,TIMER_UNIQUE|TIMER_OVERRIDE)
-		else
-			set_nano_energy(0,15)
+		if(istype(G, /obj/item/gun))
+			if(G.suppressed && G.can_shoot())
+				set_nano_energy(CLAMP(cell.charge-15,0,cell.charge))
+				U.filters = null
+				animate(U, alpha = 255, time = stealth_cloak_out)
+				addtimer(CALLBACK(src, .proc/resume_cloak),CLICK_CD_RANGE,TIMER_UNIQUE|TIMER_OVERRIDE)
+				return
+		set_nano_energy(0,15)
+		return
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/resume_cloak()
 	if(cell.charge > 0 && mode == CLOAK)
 		U.filters = filter(type="blur",size=1)
-		animate(U, alpha = 40, time = 1)
+		animate(U, alpha = 40, time = stealth_cloak_in)
 
 /datum/martial_art/nano/proc/on_attack_hand(mob/living/carbon/human/owner, atom/target, proximity)
 	if(proximity)
