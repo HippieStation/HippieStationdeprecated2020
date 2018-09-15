@@ -5,6 +5,43 @@
 #define PUMP_MAX_PRESSURE 750
 #define PUMP_MAX_VOLUME 100
 
+//===============================================================================THIS PART HERE MANAGES NUMBER OF ACTIVE PUMPS
+/*Its goal is mainly to not be able to pump gas from one air_contents to another multiple times by spamming volume pumps etc
+while penalizing functionality to A MINIMUM*/
+
+datum/pumpholder
+	var/datum/gas_mixture/source
+	var/list/targets = list()
+
+/obj/item/electronic_assembly/var/list/used_pumps = list()
+
+/obj/item/electronic_assembly/proc/Pulse_Pump(var/gas_source, var/gas_target)
+	//If this gas mix was never used before: create a new pumpholder for it
+	if(!used_pumps[gas_source])
+		var/datum/pumpholder/new_gas = new
+		used_pumps[gas_source] = new_gas
+		new_gas.targets.Add(gas_target)
+
+	//If the current source gas is already in the list containing the pipes that were used during this tick
+	else
+		//Find the pumpholder and add the new target
+		var/datum/pumpholder/old_gas = used_pumps[gas_source]
+		old_gas.targets.Add(gas_target)
+
+/obj/item/electronic_assembly/proc/Check_Used_Pump(var/gas_source, var/gas_target)
+	//Has the gas not been pumped from this tick?
+	if(!used_pumps[gas_source])
+		return TRUE
+	else
+		//Has the gas been pumped to exactly the same pump before?
+		var/datum/pumpholder/old_gas = used_pumps[gas_source]
+		if(old_gas.targets.Find(gas_target))
+			return FALSE
+		//If no: it's all good
+		return TRUE
+
+//=====================================================================================================NOW ONTO THE CIRCUITING
+
 /obj/item/integrated_circuit/atmospherics
 	category_text = "Atmospherics"
 	cooldown_per_use = 2 SECONDS
@@ -120,7 +157,7 @@
 
 /obj/item/integrated_circuit/atmospherics/pump/proc/move_gas(datum/gas_mixture/source_air, datum/gas_mixture/target_air)
 	// No moles = nothing to pump
-	if(source_air.total_moles() <= 0 || target_air.return_pressure() >=750)
+	if(source_air.total_moles() <= 0 || target_air.return_pressure() >= 750)
 		return
 
 	// Negative Kelvin temperatures should never happen and if they do, normalize them 
@@ -436,13 +473,15 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	if(output_gases.return_pressure() >= PUMP_MAX_PRESSURE)
 		return
 
-	if(source_1_gases.return_pressure() <=0 || source_2_gases.return_pressure() <=0)
+	if(source_1_gases.return_pressure() <= 0 || source_2_gases.return_pressure() <= 0)
 		return
 
 	//This calculates how much should be sent
 	var/gas_percentage = round(max(min(get_pin_data(IC_INPUT, 4),100),0) / 100)
 
-	var/transfer_moles = PUMP_EFFICIENCY * get_pin_data(IC_INPUT, 5) * (source_1_gases.return_pressure() * gas_percentage +  source_2_gases.return_pressure() * (1 - gas_percentage)) / (output_gases.return_pressure()) * output_gases.volume/ (R_IDEAL_GAS_EQUATION * max(output_gases.temperature,TCMB))
+	//Basically: number of moles = percentage of pressure filled up * efficiency coefficient * (pressure from both gases * volume of output) / (R * Temperature)
+	var/transfer_moles = (get_pin_data(IC_INPUT, 5) / (output_gases.return_pressure()) * PUMP_EFFICIENCY * (source_1_gases.return_pressure() * gas_percentage +  source_2_gases.return_pressure() * (1 - gas_percentage)) * output_gases.volume/ (R_IDEAL_GAS_EQUATION * max(output_gases.temperature,TCMB))
+
 
 	if(transfer_moles <= 0)
 		return
