@@ -1,5 +1,0 @@
-/obj/item/gun/afterattack(atom/target, mob/living/user, flag, params)
-	. = ..()
-	if(!..())
-		if(can_shoot() && suppressed)
-			SEND_SIGNAL(user, COMSIG_MOB_GUN_SUPPRESS, target, user, flag, params)

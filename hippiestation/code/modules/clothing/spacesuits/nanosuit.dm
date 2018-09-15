@@ -634,8 +634,7 @@
 		U = user
 	if(slot == SLOT_WEAR_SUIT)
 		var/area/A = get_area(src)
-		RegisterSignal(U, list(COMSIG_MOB_ITEM_ATTACK,COMSIG_MOB_ITEM_AFTERATTACK,COMSIG_MOB_THROW,COMSIG_MOB_ATTACK_HAND,COMSIG_MOB_ATTACK_RANGED), CALLBACK(src, .proc/kill_cloak, FALSE), TRUE)
-		RegisterSignal(U, COMSIG_MOB_GUN_SUPPRESS, CALLBACK(src, .proc/kill_cloak, TRUE), TRUE)
+		RegisterSignal(U, list(COMSIG_MOB_ITEM_ATTACK,COMSIG_MOB_ITEM_AFTERATTACK,COMSIG_MOB_THROW,COMSIG_MOB_ATTACK_HAND,COMSIG_MOB_ATTACK_RANGED), CALLBACK(src, .proc/kill_cloak), TRUE)
 		priority_announce("[user] has engaged [src] at [A.map_name]!","Message from The Syndicate!", 'sound/misc/notice1.ogg')
 		log_game("[user] has engaged [src]")
 		item_flags = NODROP
@@ -886,15 +885,17 @@
 				return
 	.=..()
 
-/obj/item/clothing/suit/space/hardsuit/nano/proc/kill_cloak(temp = FALSE)
+/obj/item/clothing/suit/space/hardsuit/nano/proc/kill_cloak()
+	var/obj/item/W = U.get_active_held_item()
 	if(mode == CLOAK)
-		if(!temp)
-			set_nano_energy(0,15)
+		if(istype(W, /obj/item/gun))
+			if(W.suppressed && W.can_shoot())
+				set_nano_energy(CLAMP(cell.charge-15,0,cell.charge))
+				U.filters = null
+				animate(U, alpha = 255, time = 2)
+				addtimer(CALLBACK(src, .proc/resume_cloak),CLICK_CD_RANGE,TIMER_UNIQUE|TIMER_OVERRIDE)
 		else
-			set_nano_energy(CLAMP(cell.charge-15,0,cell.charge))
-			U.filters = null
-			animate(U, alpha = 255, time = 2)
-			addtimer(CALLBACK(src, .proc/resume_cloak),CLICK_CD_RANGE,TIMER_UNIQUE|TIMER_OVERRIDE)
+			set_nano_energy(0,15)
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/resume_cloak()
 	if(cell.charge > 0)
