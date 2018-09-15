@@ -1,8 +1,8 @@
-#define ARMOR "armor"
-#define CLOAK "cloak"
-#define SPEED "speed"
-#define STRENGTH "strength"
-#define NONE "none"
+#define NANO_ARMOR "armor"
+#define NANO_CLOAK "cloak"
+#define NANO_SPEED "speed"
+#define NANO_STRENGTH "strength"
+#define NANO_NONE "none"
 
 //Crytek Nanosuit made by YoYoBatty
 /obj/item/clothing/under/syndicate/combat/nano
@@ -60,7 +60,7 @@
 		var/mob/living/carbon/human/H = user
 		if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
 			var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
-			if(NS.mode == STRENGTH)
+			if(NS.mode == NANO_STRENGTH)
 				if(istype(T) || istype(S))
 					if(NS.cell.charge >= 30)
 						NS.set_nano_energy(CLAMP(NS.cell.charge-30,0,NS.cell.charge),15)
@@ -264,9 +264,9 @@
 			defrosted = FALSE
 			detecting = FALSE
 	var/energy = cell.charge //store current energy here
-	if(mode == CLOAK && !U.Move()) //are we in cloak, not moving?
+	if(mode == NANO_CLOAK && !U.Move()) //are we in cloak, not moving?
 		energy -= cloak_use_rate * 0.1 //take away the cloak discharge rate at 1/10th since we're not moving
-	if((energy < cell.maxcharge) && mode != CLOAK && !recharge_cooldown) //if our energy is less than 100, we're not in cloak and don't have a recharge delay timer
+	if((energy < cell.maxcharge) && mode != NANO_CLOAK && !recharge_cooldown) //if our energy is less than 100, we're not in cloak and don't have a recharge delay timer
 		var/energy2 = regen_rate //store our regen rate here
 		energy2+=energy //add our current energy to it
 		energy=min(cell.maxcharge,energy2) //our energy now equals the energy we had + 0.75 for everytime it iterates through, so it increases by 0.75 every tick until it goes to 100
@@ -287,10 +287,10 @@
 		criticalpower = FALSE //turn it off
 	if(amount <= 0) //did we lose energy?
 		amount = 0 //set our energy to 0
-		if(mode == CLOAK) //are we in cloak?
+		if(mode == NANO_CLOAK) //are we in cloak?
 			recharge_cooldown = 15 //then wait 3 seconds(1 value per 2 ticks = 15*2=30/10 = 3 seconds) to recharge again
-		if(mode != ARMOR) //we're not in cloak
-			toggle_mode(ARMOR, TRUE) //go into it, forced
+		if(mode != NANO_ARMOR) //we're not in cloak
+			toggle_mode(NANO_ARMOR, TRUE) //go into it, forced
 	cell.charge = amount
 	return TRUE
 
@@ -299,14 +299,14 @@
 		current_charges = CLAMP((current_charges + 1), 0, max_charges)
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/onmove(var/multi)
-	if(mode == CLOAK)
+	if(mode == NANO_CLOAK)
 		set_nano_energy(CLAMP(cell.charge-(cloak_use_rate*multi),0,cell.charge),15)
-	if(mode == SPEED)
+	if(mode == NANO_SPEED)
 		set_nano_energy(CLAMP(cell.charge-(speed_use_rate*multi),0,cell.charge),15)
 
 /obj/item/clothing/suit/space/hardsuit/nano/hit_reaction(mob/living/carbon/human/user, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/obj/item/projectile/P = hitby
-	if(mode == ARMOR && cell.charge > 0)
+	if(mode == NANO_ARMOR && cell.charge > 0)
 		if(prob(final_block_chance))
 			user.visible_message("<span class='danger'>[user]'s shields deflect [attack_text] draining their energy!</span>")
 			if(damage)
@@ -368,16 +368,16 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/nanosuit/armor))
-		toggle_mode(ARMOR)
+		toggle_mode(NANO_ARMOR)
 		return TRUE
 	if(istype(action, /datum/action/item_action/nanosuit/cloak))
-		toggle_mode(CLOAK)
+		toggle_mode(NANO_CLOAK)
 		return TRUE
 	if(istype(action, /datum/action/item_action/nanosuit/speed))
-		toggle_mode(SPEED)
+		toggle_mode(NANO_SPEED)
 		return TRUE
 	if(istype(action, /datum/action/item_action/nanosuit/strength))
-		toggle_mode(STRENGTH)
+		toggle_mode(NANO_STRENGTH)
 		return TRUE
 	return FALSE
 
@@ -385,7 +385,7 @@
 	if(!shutdown && (forced || (cell.charge > 0 && mode != suitmode)))
 		mode = suitmode
 		switch(suitmode)
-			if(ARMOR)
+			if(NANO_ARMOR)
 				helmet.display_visor_message("Maximum Armor!")
 				block_chance = 50
 				slowdown = 1.0
@@ -399,7 +399,7 @@
 				style.remove(U)
 				jetpack.full_speed = FALSE
 
-			if(CLOAK)
+			if(NANO_CLOAK)
 				helmet.display_visor_message("Cloak Engaged!")
 				block_chance = 0
 				slowdown = 0.4 //cloaking makes us go sliightly faster
@@ -413,7 +413,7 @@
 				style.remove(U)
 				jetpack.full_speed = FALSE
 
-			if(SPEED)
+			if(NANO_SPEED)
 				helmet.display_visor_message("Maximum Speed!")
 				block_chance = 0
 				slowdown = initial(slowdown)
@@ -429,7 +429,7 @@
 				style.remove(U)
 				jetpack.full_speed = TRUE
 
-			if(STRENGTH)
+			if(NANO_STRENGTH)
 				helmet.display_visor_message("Maximum Strength!")
 				block_chance = 0
 				style.teach(U,1)
@@ -443,7 +443,7 @@
 				U.remove_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
 				jetpack.full_speed = FALSE
 
-			if(NONE)
+			if(NANO_NONE)
 				block_chance = 0
 				style.remove(U)
 				slowdown = initial(slowdown)
@@ -883,7 +883,7 @@
 		if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
 			var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
 			NS.kill_cloak()
-			if(NS.mode == STRENGTH)
+			if(NS.mode == NANO_STRENGTH)
 				.=..(target, range*1.5, speed*2, thrower, spin, diagonals_first, callback)
 				return
 	.=..()
@@ -943,10 +943,10 @@
 
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/kill_cloak(temp = FALSE)
-	if(mode == CLOAK)
+	if(mode == NANO_CLOAK)
 		if(temp == FALSE)
 			set_nano_energy(0,15)
-			toggle_mode(ARMOR, TRUE)
+			toggle_mode(NANO_ARMOR, TRUE)
 		else
 			set_nano_energy(CLAMP(cell.charge-15,0,cell.charge))
 			U.filters = null
@@ -1088,16 +1088,16 @@ mob/living/carbon/human/key_down(_key, client/user)
 		var/choice = show_radial_menu_nano(U,U,choices)
 		switch(choice)
 			if("armor")
-				toggle_mode(ARMOR)
+				toggle_mode(NANO_ARMOR)
 				return
 			if("speed")
-				toggle_mode(SPEED)
+				toggle_mode(NANO_SPEED)
 				return
 			if("cloak")
-				toggle_mode(CLOAK)
+				toggle_mode(NANO_CLOAK)
 				return
 			if("strength")
-				toggle_mode(STRENGTH)
+				toggle_mode(NANO_STRENGTH)
 				return
 
 mob/living/carbon/human/key_up(_key, client/user)
