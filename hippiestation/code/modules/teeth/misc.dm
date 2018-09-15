@@ -63,7 +63,7 @@
 	message = prob(intensity) ? replacetext(message, "k", "gh") : message
 	return message
 
-/mob
+/mob/living/carbon/human // as far as i know,only humans have teeth
 	var/lisp = 0
 
 /mob/living/carbon/human/proc/checklisp()

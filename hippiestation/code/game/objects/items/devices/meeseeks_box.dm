@@ -95,4 +95,6 @@
 /obj/item/meeseeks_box/Destroy()
 	if(meeseeks)
 		destroy_meeseeks(meeseeks, meeseeks.dna.species)
+	meeseeks = null
+	masters = null
 	return ..()

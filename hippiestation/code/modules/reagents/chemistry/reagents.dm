@@ -10,10 +10,10 @@
 		START_PROCESSING(SSreagent_states, src)
 
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
-	. = ..()
 	if(processes)
 		STOP_PROCESSING(SSreagent_states, src)
 	holder = null
+	. = ..()
 
 /datum/reagent/proc/FINISHONMOBLIFE(mob/living/M)
 	current_cycle++

@@ -1,3 +1,4 @@
+// This shit needs to be refactored. Why the hell is it even here...
 /atom/movable/var/unlimitedthrow = FALSE
 
 /obj/var/prev_throwforce
