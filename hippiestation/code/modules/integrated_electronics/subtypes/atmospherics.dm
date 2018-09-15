@@ -504,7 +504,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	var/gas_percentage = round(max(min(get_pin_data(IC_INPUT, 4),100),0) / 100)
 
 	//Basically: number of moles = percentage of pressure filled up * efficiency coefficient * (pressure from both gases * volume of output) / (R * Temperature)
-	var/transfer_moles = (get_pin_data(IC_INPUT, 5) / (output_gases.return_pressure()) * PUMP_EFFICIENCY * (source_1_gases.return_pressure() * gas_percentage +  source_2_gases.return_pressure() * (1 - gas_percentage)) * output_gases.volume/ (R_IDEAL_GAS_EQUATION * max(output_gases.temperature,TCMB))
+	var/transfer_moles = (get_pin_data(IC_INPUT, 5) / output_gases.return_pressure()) * PUMP_EFFICIENCY * (source_1_gases.return_pressure() * gas_percentage +  source_2_gases.return_pressure() * (1 - gas_percentage)) * output_gases.volume/ (R_IDEAL_GAS_EQUATION * max(output_gases.temperature,TCMB))
 
 
 	if(transfer_moles <= 0)
