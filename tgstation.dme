@@ -2673,10 +2673,6 @@
 #include "code\modules\vehicles\_vehicle.dm"
 #include "code\modules\vehicles\atv.dm"
 #include "code\modules\vehicles\bicycle.dm"
-<<<<<<< HEAD
-#include "code\modules\vehicles\entered.dm"
-=======
->>>>>>> 9eec1f8db2... Adds move force and move resist, movement/pushing/pulling tweaks (#39556)
 #include "code\modules\vehicles\lavaboat.dm"
 #include "code\modules\vehicles\pimpin_ride.dm"
 #include "code\modules\vehicles\ridden.dm"
