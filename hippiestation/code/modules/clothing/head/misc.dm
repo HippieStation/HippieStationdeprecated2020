@@ -99,8 +99,7 @@
 		I += 1
 
 /obj/item/clothing/head/Destroy()
-	for (. in stacked_hats)
-		qdel(.)
+	QDEL_LIST(stacked_hats)
 	return ..()
 
 /obj/item/clothing/head/AltClick(mob/living/user)

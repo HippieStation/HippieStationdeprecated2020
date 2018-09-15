@@ -17,6 +17,7 @@
 	START_PROCESSING(SSobj, src)
 	bomb_radar = new /obj/machinery/doppler_array/integrated(src)
 
-/obj/item/clothing/head/helmet/space/hardsuit/Destroy()
-	. = ..()
+/obj/item/clothing/head/bomb_hood/Destroy()
 	STOP_PROCESSING(SSobj, src)
+	QDEL_NULL(bomb_radar)
+	. = ..()

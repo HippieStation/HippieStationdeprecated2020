@@ -57,7 +57,7 @@
 						if(!toggle && (G.type in chosen_gear))//toggling off and the item effectively is in chosen gear)
 							LAZYREMOVE(chosen_gear, G.type)
 							gear_points += initial(G.cost)
-						else if(toggle && (!(is_type_in_ref_list(G, chosen_gear))))
+						else if(toggle && (!locate(G, chosen_gear)))
 							if(!is_loadout_slot_available(G.category))
 								to_chat(user, "<span class='danger'>You cannot take this loadout, as you've already chosen too many of the same category!</span>")
 								return
@@ -121,8 +121,7 @@
 			. += "</table>"
 
 /datum/preferences/proc/is_loadout_slot_available(slot)
-	var/list/L
-	LAZYINITLIST(L)
+	var/list/L = list()
 	for(var/i in chosen_gear)
 		var/datum/gear/G = i
 		var/occupied_slots = L[slot_to_string(initial(G.category))] ? L[slot_to_string(initial(G.category))] + 1 : 1

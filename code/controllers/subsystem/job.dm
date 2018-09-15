@@ -15,6 +15,7 @@ SUBSYSTEM_DEF(job)
 	var/overflow_role = "Assistant"
 
 /datum/controller/subsystem/job/Initialize(timeofday)
+	SSmapping.HACK_LoadMapConfig()
 	if(!occupations.len)
 		SetupOccupations()
 	if(CONFIG_GET(flag/load_jobs_from_txt))
@@ -80,6 +81,8 @@ SUBSYSTEM_DEF(job)
 			return FALSE
 		if(jobban_isbanned(player, rank) || QDELETED(player))
 			return FALSE
+		if((jobban_isbanned(player, CLUWNEBAN) || jobban_isbanned(player, CATBAN)) && !istype(job, GetJob(SSjob.overflow_role))) // hippie start -- fixes catbans
+			return FALSE // hippie end
 		if(!job.player_old_enough(player.client))
 			return FALSE
 		if(job.required_playtime_remaining(player.client))
@@ -103,6 +106,9 @@ SUBSYSTEM_DEF(job)
 		if(jobban_isbanned(player, job.title) || QDELETED(player))
 			JobDebug("FOC isbanned failed, Player: [player]")
 			continue
+		if((jobban_isbanned(player, CLUWNEBAN) || jobban_isbanned(player, CATBAN)) && job.title != SSjob.overflow_role) // hippie start -- fixes catbans
+			JobDebug("FOC isbanned failed (cat/clown ban), Player: [player]")
+			continue // hippie end
 		if(!job.player_old_enough(player.client))
 			JobDebug("FOC player not old enough, Player: [player]")
 			continue
@@ -123,6 +129,11 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/GiveRandomJob(mob/dead/new_player/player)
 	JobDebug("GRJ Giving random job, Player: [player]")
 	. = FALSE
+	if(jobban_isbanned(player, CLUWNEBAN) || jobban_isbanned(player, CATBAN)) // hippie start -- fixes catbans
+		JobDebug("GRJ player is cat/clown banned")
+		if(AssignRole(player, SSjob.overflow_role))
+			return TRUE
+		return FALSE // hippie end
 	for(var/datum/job/job in shuffle(occupations))
 		if(!job)
 			continue
@@ -275,6 +286,8 @@ SUBSYSTEM_DEF(job)
 		AssignRole(player, SSjob.overflow_role)
 		overflow_candidates -= player
 	JobDebug("DO, AC1 end")
+
+	HippieFillBannedPosition() // hippie -- cat/clowns can only play as the overflow role, assistant by default.
 
 	//Select one head
 	JobDebug("DO, Running Head Check")

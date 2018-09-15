@@ -131,7 +131,7 @@
 
 /turf/closed/wall/mineral/reagent/Destroy()
 	if(fakeholder)
-		qdel(fakeholder)
+		QDEL_NULL(fakeholder)
 	return ..()
 
 /turf/closed/wall/mineral/reagent/bullet_act(obj/item/projectile/Proj)

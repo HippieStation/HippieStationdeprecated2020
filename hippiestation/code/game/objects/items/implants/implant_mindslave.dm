@@ -82,7 +82,7 @@
 		to_chat(imp_in,"<span class='userdanger'>You feel your free will come back to you! You no longer have to obey your master!</span>")
 		to_chat(imp_in,"<span class='userdanger'>If you were not an antagonist BEFORE being mindslave, then you no longer are one.</span>")
 		protect_objective.owner.objectives -= protect_objective
-		qdel(protect_objective)
+		QDEL_NULL(protect_objective)
 		message_admins("[imp_in]/([imp_in.ckey]) is no longer a mindslave.")
 
 /obj/item/implanter/mindslave

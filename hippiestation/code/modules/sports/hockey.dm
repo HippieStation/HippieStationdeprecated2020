@@ -66,8 +66,7 @@
 	if (on)
 		packstick.unwield()
 		remove_stick()
-		qdel(packstick)
-		packstick = null
+		QDEL_NULL(packstick)
 	return ..()
 
 /obj/item/hockeypack/attack_hand(mob/user)
@@ -124,11 +123,14 @@
 	icon_state = "hockeystick[wielded]"
 	return
 
-/obj/item/twohanded/hockeystick/New(parent_pack)
-	..()
-	if(check_pack_exists(parent_pack, src))
-		pack = parent_pack
-		forceMove(pack)
+/obj/item/twohanded/hockeystick/Initialize(mapload)
+	. = ..()
+	if(istype(loc, /obj/item/hockeypack))
+		pack = loc
+
+/obj/item/twohanded/hockeystick/Destroy()
+	pack = null
+	return ..()
 
 /obj/item/twohanded/hockeystick/attack(mob/living/target, mob/living/user) //Sure it's the powerfist code, right down to the sound effect. Gonna be fun though.
 
@@ -164,13 +166,6 @@
 	pack.on = FALSE
 	forceMove(pack)
 
-/obj/item/twohanded/hockeystick/proc/check_pack_exists(parent_pack, mob/living/carbon/human/M, obj/O)
-	if(!parent_pack || !istype(parent_pack, /obj/item/hockeypack))
-		qdel(O)
-		return FALSE
-	else
-		return TRUE
-
 /obj/item/twohanded/hockeystick/Move()
 	..()
 	if(loc != pack.loc)
@@ -189,11 +184,15 @@
 	var/charged = TRUE
 	var/obj/item/holopuck/newpuck
 
-/obj/item/storage/belt/hippie/ComponentInitialize()
+/obj/item/storage/belt/hippie/hockey/ComponentInitialize()
 	. = ..()
 	GET_COMPONENT(STR, /datum/component/storage)
 	STR.max_items = 2
 	STR.can_hold = typecacheof(list(/obj/item/holopuck))
+
+/obj/item/storage/belt/hippie/hockey/Destroy()
+	QDEL_NULL(newpuck)
+	return ..()
 
 /obj/item/storage/belt/hippie/hockey/equipped(mob/user, slot)
 	..()
