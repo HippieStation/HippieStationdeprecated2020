@@ -6,7 +6,7 @@
 #define PUMP_MAX_VOLUME 100
 
 //===============================================================================THIS PART HERE MANAGES NUMBER OF ACTIVE PUMPS
-/*Its goal is mainly to not be able to copy-stack pumps while penalizing functionality to A MINIMUM*/
+//Its goal is mainly to not be able to copy-stack pumps while penalizing functionality to A MINIMUM
 
 /obj/item/electronic_assembly/var/list/used_pumps = list()
 
@@ -14,7 +14,7 @@
 	..()
 	used_pumps = list()
 
-datum/pumpholder
+/datum/pumpholder
 	var/datum/gas_mixture/source
 	var/list/targets = list()
 
