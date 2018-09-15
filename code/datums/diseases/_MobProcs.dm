@@ -17,7 +17,7 @@
 	if(HasDisease(D))
 		return FALSE
 
-	var/can_infect = FALSE
+	var/can_infect = TRUE // hippie -- ignore biotypes
 	for(var/host_type in D.infectable_biotypes)
 		if(host_type in mob_biotypes)
 			can_infect = TRUE
