@@ -155,6 +155,7 @@
 			handle_suicide(user, target, params)
 			return
 
+
 	//Exclude lasertag guns from the TRAIT_CLUMSY check.
 	if(clumsy_check)
 		if(istype(user))
