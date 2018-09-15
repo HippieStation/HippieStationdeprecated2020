@@ -27,6 +27,7 @@
 	var/tempunlocked = FALSE
 	var/canplus = TRUE
 	var/canminus = TRUE
+	var/old_rcolor
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
 
 /obj/machinery/poolcontroller/Initialize()
@@ -37,6 +38,14 @@
 	for(var/obj/machinery/drain/pooldrain in range(srange,src))
 		linkeddrain = pooldrain
 	. = ..()
+
+/obj/machinery/poolcontroller/Destroy()
+	if(beaker)
+		beaker.forceMove(get_turf(src))
+		beaker = null
+	linkeddrain = null
+	linkedturfs.Cut()
+	return ..()
 
 /obj/machinery/poolcontroller/emag_act(user as mob) //Emag_act, this is called when it is hit with a cryptographic sequencer.
 	if(!(obj_flags & EMAGGED)) //If it is not already emagged, emag it.
@@ -202,6 +211,9 @@
 	var/rcolor
 	if(beaker && beaker.reagents.reagent_list.len)
 		rcolor = mix_color_from_reagents(beaker.reagents.reagent_list)
+	if(rcolor == old_rcolor)
+		return // small performance upgrade hopefully?
+	old_rcolor = rcolor
 	for(var/X in linkedturfs)
 		var/turf/open/pool/color1 = X
 		if(bloody)

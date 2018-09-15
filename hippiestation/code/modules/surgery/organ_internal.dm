@@ -7,7 +7,7 @@
 	slot = "brain_tumor"
 	var/health = 3
 
-/obj/item/organ/internal/shadowtumor/New()
+/obj/item/organ/internal/shadowtumor/Initialize()
 	..()
 	SSobj.processing |= src
 

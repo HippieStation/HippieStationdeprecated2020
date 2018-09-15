@@ -7,6 +7,10 @@
 	generate_reagent_icon()
 	. = ..()
 
+/obj/structure/reagent_dispensers/Destroy()
+	QDEL_NULL(reagent_icon)
+	return ..()
+
 /obj/structure/reagent_dispensers/water_cooler
 	icon_hippie = 'hippiestation/icons/obj/vending.dmi'
 

@@ -23,9 +23,6 @@
 	gold_core_spawnable = HOSTILE_SPAWN
 	var/attack_inject = "lean"
 
-/mob/living/simple_animal/hostile/retaliate/pottedlean/Initialize()
-	. = ..()
-
 /mob/living/simple_animal/hostile/retaliate/pottedlean/AttackingTarget()
 	if(prob(50))
 		if(isliving(target))
