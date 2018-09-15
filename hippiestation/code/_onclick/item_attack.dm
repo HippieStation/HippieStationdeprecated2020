@@ -1,30 +1,4 @@
-/obj/item/attack(mob/living/M, mob/living/user)
-	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user)
-	SEND_SIGNAL(user, COMSIG_MOB_ITEM_ATTACK, M, user)
-	if(item_flags & NOBLUDGEON)
-		return
-	if(special_attack)//handled by afterattack
-		add_fingerprint(user)
-		log_combat(user, M, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: SPECIAL ATTACK)")
-		return
-	if(!force)
-		playsound(loc, 'sound/weapons/tap.ogg', get_clamped_volume(), 1, -1)
-	else if(hitsound)
-		playsound(loc, hitsound, get_clamped_volume(), 1, -1)
-
-	M.lastattacker = user.real_name
-	M.lastattackerckey = user.ckey
-
-	user.do_attack_animation(M)
-
-	M.attacked_by(src, user)
-
-	log_combat(user, M, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
-	add_fingerprint(user)
-
-
 /obj/item/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
 	if(special_attack && iscarbon(user))
 		var/mob/living/carbon/C = user
 
@@ -35,4 +9,5 @@
 		if(do_special_attack(target, user, proximity_flag))
 			C.adjustStaminaLoss(src.special_cost)
 			playsound(user, 'hippiestation/sound/weapons/special.ogg',40, 1, 1)
-	return
+			return
+	return ..()
