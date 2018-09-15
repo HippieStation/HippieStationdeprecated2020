@@ -10,11 +10,13 @@ The best practice to have while coding is to keep everything modularized, or the
 ## code/__DEFINES/mobs.dm
 ## code/__DEFINES/role_preferences.dm
 ## code/__HELPERS/unsorted.dm
+## code/\_onclick/item_attack.dm
 ## code/controllers/subsystem/job.dm
 ## code/controllers/subsystem/throwing.dm
 ## code/controllers/subsystem/ticker.dm
 ## code/controllers/subsystem/vote.dm
 ## code/datums/datumvars.dm
+## code/datums/diseases/\_MobProcs.dm
 ## code/datums/hud.dm
 ## code/datums/progressbar.dm
 ## code/datums/wires/airlock.dm

@@ -124,5 +124,5 @@
 
 /turf/open/floor/mineral/reagent/Destroy()
 	if(fakeholder)
-		qdel(fakeholder)
+		QDEL_NULL(fakeholder)
 	return ..()

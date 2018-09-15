@@ -81,7 +81,7 @@
 
 /obj/item/garrote/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
+	return ..()
 
 
 /obj/item/garrote/proc/start_garroting(mob/user)

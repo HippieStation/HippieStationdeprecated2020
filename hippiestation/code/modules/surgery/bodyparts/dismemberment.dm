@@ -1,3 +1,5 @@
 /obj/item/bodypart/head/drop_limb(special)
 	. = ..()
-	H.checknoosedrop()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/H = owner
+		H.checknoosedrop()

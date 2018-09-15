@@ -231,6 +231,10 @@
 	if(U)
 		if(help_verb)
 			U.verbs -= help_verb
+	U = null
+	QDEL_NULL(style)
+	QDEL_NULL(cell)
+	QDEL_NULL(menu)
 	return ..()
 
 /obj/item/clothing/suit/space/hardsuit/nano/examine(mob/user)
