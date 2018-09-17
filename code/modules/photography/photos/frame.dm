@@ -47,6 +47,7 @@
 	cut_overlays()
 	if(displayed)
 		add_overlay(getFlatIcon(displayed))
+		TGS_INFO_LOG("getFlatIcon(displayed) code/modules/photography/photos/frame.dm line 49")
 
 /obj/item/wallframe/picture/after_attach(obj/O)
 	..()
@@ -149,6 +150,7 @@
 	cut_overlays()
 	if(framed)
 		add_overlay(getFlatIcon(framed))
+		TGS_INFO_LOG("getFlatIcon(framed) code/modules/photography/photos/frame.dm line 152")
 
 /obj/structure/sign/picture_frame/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))

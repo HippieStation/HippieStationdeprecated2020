@@ -74,6 +74,7 @@
 			xo += AM.step_x
 			yo += AM.step_y
 		var/icon/img = getFlatIcon(A)
+		TGS_INFO_LOG("getFlatIcon(A) code/modules/photography/camera/camera_image_capturing.dm line 76")
 		if(img)
 			res.Blend(img, blendMode2iconMode(A.blend_mode), xo, yo)
 		CHECK_TICK

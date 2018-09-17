@@ -322,6 +322,7 @@
 /obj/screen/chronos_target/New(loc, var/mob/living/carbon/human/user)
 	if(user)
 		var/icon/user_icon = getFlatIcon(user)
+		TGS_INFO_LOG("getFlatIcon(user) code/modules/clothing/spacesuits/chronosuit.dm line 324")
 		icon = user_icon
 		transform = user.transform
 	else

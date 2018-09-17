@@ -150,8 +150,8 @@
 		gun = loc
 	. = ..()
 
-	
-	
+
+
 
 
 /obj/effect/chrono_field
@@ -174,6 +174,7 @@
 		target.forceMove(src)
 		src.captured = target
 		var/icon/mob_snapshot = getFlatIcon(target)
+		TGS_INFO_LOG("getFlatIcon(target) code/game/objects/items/chrono_eraser.dm line 176")
 		var/icon/cached_icon = new()
 
 		for(var/i=1, i<=CHRONO_FRAME_COUNT, i++)
