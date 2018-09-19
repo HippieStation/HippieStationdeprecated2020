@@ -31734,6 +31734,10 @@
 	dir = 4;
 	pixel_x = 24
 	},
+/obj/machinery/camera{
+	c_tag = "Research Division North";
+	dir = 8
+	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "bBH" = (
@@ -32874,10 +32878,6 @@
 /area/science/research)
 "bEC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 8
-	},
-/obj/machinery/camera{
-	c_tag = "Research Division North";
 	dir = 8
 	},
 /turf/open/floor/plasteel/white,
@@ -65685,6 +65685,10 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/camera{
+	c_tag = "Circuitry Lab";
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/science/circuit)
 "rRd" = (
