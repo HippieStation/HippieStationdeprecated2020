@@ -14,22 +14,17 @@
 	..()
 	used_pumps = list()
 
-/datum/pumpholder
-	var/datum/gas_mixture/source
-	var/list/targets = list()
-
 /obj/item/electronic_assembly/proc/Pulse_Pump(var/gas_source, var/gas_target)
 	//If this gas mix was never used before: create a new pumpholder for it
 	if(!used_pumps[gas_source])
-		var/datum/pumpholder/new_gas = new
-		used_pumps[gas_source] = new_gas
-		new_gas.targets.Add(gas_target)
+		var/list/new_gas_targets = list(gas_target)
+		used_pumps[gas_source] = new_gas_targets
 
 	//If the current source gas is already in the list containing the pipes that were used during this tick
 	else
 		//Find the pumpholder and add the new target
-		var/datum/pumpholder/old_gas = used_pumps[gas_source]
-		old_gas.targets.Add(gas_target)
+		var/list/old_gas_targets = used_pumps[gas_source]
+		old_gas_targets.Add(gas_target)
 
 /obj/item/electronic_assembly/proc/Check_Used_Pump(var/gas_source, var/gas_target)
 	//Has the gas not been pumped from this tick?
@@ -37,8 +32,8 @@
 		return TRUE
 	else
 		//Has the gas been pumped to exactly the same pump before?
-		var/datum/pumpholder/old_gas = used_pumps[gas_source]
-		if(old_gas.targets.Find(gas_target))
+		var/list/old_gas = used_pumps[gas_source]
+		if(old_gas_targets.Find(gas_target))
 			return FALSE
 		//If no: it's all good
 		return TRUE
