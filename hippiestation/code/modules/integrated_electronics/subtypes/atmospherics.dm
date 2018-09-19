@@ -32,8 +32,8 @@
 		return TRUE
 	else
 		//Has the gas been pumped to exactly the same pump before?
-		var/list/old_gas = used_pumps[gas_source]
-		if(old_gas_targets.Find(gas_target))
+		var/list/old_gas_targets = used_pumps[gas_source]
+		if(old_gas_targets[gas_target])
 			return FALSE
 		//If no: it's all good
 		return TRUE
