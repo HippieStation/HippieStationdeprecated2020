@@ -79,7 +79,7 @@
 				var/datum/objective/objective = new
 				objective.explanation_text = "Your master [masters] has asked that you complete the following task: [request]."
 				objective.completed = FALSE
-				meeseeks.mind.objectives += objective
+				meeseeks.mind.all_objectives += objective
 				meeseeks.mind.announce_objectives()
 				SM.objective = objective
 			summoning = FALSE
