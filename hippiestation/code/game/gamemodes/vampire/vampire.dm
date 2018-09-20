@@ -89,9 +89,9 @@
 			text += "<br><b>Usable Blood:</b> [V.usable_blood]."
 			text += "<br><b>Total Blood:</b> [V.total_blood]"
 
-			if(vamp.objectives.len)
+			if(vamp.all_objectives.len)
 				var/count = 1
-				for(var/datum/objective/objective in vamp.objectives)
+				for(var/datum/objective/objective in vamp.all_objectives)
 					if(objective.check_completion())
 						text += "<br><b>Objective #[count]</b>: [objective.explanation_text] <font color='green'><b>Success!</b></font>"
 						SSblackbox.record_feedback("tally", "vampire_objective", 1, "[objective.type]|SUCCESS")
