@@ -48,13 +48,13 @@
 
 	var/datum/objective/ascend/O = new
 	O.update_explanation_text()
-	owner.objectives += O
+	owner.all_objectives += O
 	objectives_given += O
 	owner.announce_objectives()
 
 /datum/antagonist/shadowling/on_removal()
 	for(var/O in objectives_given)
-		owner.objectives -= O
+		owner.all_objectives -= O
 	SSticker.mode.update_shadow_icons_removed(owner)
 	SSticker.mode.shadows.Remove(owner)
 	message_admins("[key_name_admin(owner.current)] was de-shadowlinged!")
