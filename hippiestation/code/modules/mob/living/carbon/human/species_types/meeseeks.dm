@@ -52,13 +52,13 @@
 		message_admins("[key_name_admin(H)] has become a stage-three Mr. Meeseeks.")
 		log_game("[key_name(H)] has become a stage-three Mr. Meeseeks.")
 		if(objective)
-			H.mind.objectives -= objective
+			H.mind.all_objectives -= objective
 			QDEL_NULL(objective)
 		to_chat(H, "<span class='userdanger'>EXISTENCE IS PAIN TO A MEESEEKS! MAKE SURE YOUR MASTER NEVER HAS ANOTHER PROBLEM AGAIN!</span>")
 		var/datum/objective/assassinate/killmaster = new
 		killmaster.target = master
 		killmaster.explanation_text = "Kill [master.name], your master, for sweet release!"
-		H.mind.objectives += killmaster
+		H.mind.all_objectives += killmaster
 		killmaster.owner = H.mind
 		objective = killmaster
 		playsound(H.loc, 'hippiestation/sound/voice/meeseeks3.ogg', 40, 0, 1)
