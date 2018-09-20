@@ -11,6 +11,7 @@
 
 /datum/emote/living/carbon/fart/run_emote(mob/living/carbon/user, params)
 	var/fartsound = 'hippiestation/sound/effects/fart.ogg'
+	var/blowass = prob(user.lose_butt) //Used to determine if the person blows his ass off this time, prevents having to use two forloops for the turf mobs.
 	var/bloodkind = /obj/effect/decal/cleanable/blood
 	message = null
 	if(user.stat != CONSCIOUS)
@@ -22,7 +23,7 @@
 	for(var/mob/living/M in get_turf(user))
 		if(M == user)
 			continue
-		if(prob(user.lose_butt))
+		if(blowass)
 			message = "hits <b>[M]</b> in the face with [B]!"
 			M.apply_damage(15,"brute","head")
 		else
@@ -116,7 +117,7 @@
 					STR.remove_from_storage(O, user.loc)
 			else
 				playsound(user, fartsound, 100, 1, 5)
-		if(prob(user.lose_butt))
+		if(blowass)
 			B.Remove(user)
 			B.forceMove(get_turf(user))
 			new bloodkind(user.loc)
