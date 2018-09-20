@@ -146,7 +146,7 @@
 		target_air = temp
 
 	// If what you are pumping is empty, use the circuit's storage
-	if(source_air.total_moles() <= 0)
+	if(!source_air.total_moles())
 		source_air = air_contents
 
 	// Move gas from one place to another
@@ -158,7 +158,7 @@
 		assembly.Check_Used_Pump(source_air,target_air)
 
 	// No moles = nothing to pump
-	if(source_air.total_moles() <= 0 || target_air.return_pressure() >= 750)
+	if(!source_air.total_moles() || target_air.return_pressure() >= 750)
 		return
 
 	// Negative Kelvin temperatures should never happen and if they do, normalize them 
@@ -209,7 +209,7 @@
 		assembly.Check_Used_Pump(source_air,target_air)
 
 	// No moles = nothing to pump
-	if(source_air.total_moles() <= 0)
+	if(!source_air.total_moles())
 		return
 
 	// Negative Kelvin temperatures should never happen and if they do, normalize them 
