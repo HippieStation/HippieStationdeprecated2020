@@ -12,10 +12,10 @@
 /obj/item/electronic_assembly/var/last_time_pumped = 0
 
 /obj/item/electronic_assembly/proc/Pulse_Pump(var/gas_source, var/gas_target)
-	//First check if we're still in the same time, if not, renew the list
-	if(last_time_pumped != time)
+	//First check if we're still in the same server tick, if not, renew the list
+	if(last_time_pumped != world.time)
 		used_pumps.Cut()
-		last_time_pumped = time
+		last_time_pumped = world.time
 
 	//If this gas mix was never used before: create a new pumpholder for it
 	if(!used_pumps[gas_source])
@@ -38,7 +38,7 @@
 		var/list/old_gas_targets = used_pumps[gas_source]
 		if(old_gas_targets[gas_target])
 			//Was it truly this tick when it was pumped from?
-			if(last_time_pumped == time)
+			if(last_time_pumped == world.time)
 				return FALSE
 			else
 				return TRUE
