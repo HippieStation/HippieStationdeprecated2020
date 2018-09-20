@@ -46,8 +46,8 @@
 			var/datum/objective/martyr/normiesgetout = new
 			normiesgetout.owner = L.mind
 			L.mind.special_role = "heartbreaker"
-			L.mind.objectives += normiesgetout
-			L.mind.add_antag_datum(/datum/antagonist/auto_custom)
+			L.mind.all_objectives += normiesgetout
+			L.mind.add_antag_datum(/datum/antagonist/custom)
 
 
 /proc/forge_valentines_objective(mob/living/lover,mob/living/date)
@@ -61,8 +61,8 @@
 		protect_objective.owner = lover.mind
 		protect_objective.target = date.mind
 		protect_objective.explanation_text = "Protect [date.real_name], your date."
-		lover.mind.objectives += protect_objective
-		lover.mind.add_antag_datum(/datum/antagonist/auto_custom)
+		lover.mind.all_objectives += protect_objective
+		lover.mind.add_antag_datum(/datum/antagonist/custom)
 
 	to_chat(lover, "<span class='warning'><B>[msg]</B></span>")
 
