@@ -33,6 +33,7 @@
 
 //Does wire things
 /obj/item/integrated_circuit/power/transmitter/wire_connector/process()
+	..()
 	update_cable()
 	push_data()
 
