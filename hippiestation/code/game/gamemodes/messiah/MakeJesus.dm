@@ -22,7 +22,7 @@
 		missionobj.owner = Jesus.mind
 		missionobj.explanation_text = objective
 		missionobj.completed = 1
-		Jesus.mind.objectives += missionobj
+		Jesus.mind.all_objectives += missionobj
 
 		to_chat(Jesus, "<B><font size=3 color=red>You are the Messiah, [Jesus.real_name]!</font></B>")
 		to_chat(Jesus, "You have many miracles at your disposal. These may either be used to aid the crew or protect yourself from harm:")
