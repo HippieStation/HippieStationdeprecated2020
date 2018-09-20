@@ -93,6 +93,3 @@
 /mob/living/carbon/fall(forced)
 	if(loc)
 		..()
-
-/mob/living/carbon/throw_item(atom/target)
-	. = ..()
