@@ -9,12 +9,14 @@
 //Its goal is mainly to not be able to copy-stack pumps while penalizing functionality to A MINIMUM
 
 /obj/item/electronic_assembly/var/list/used_pumps = list()
-
-/obj/item/electronic_assembly/process()
-	..()
-	used_pumps = list()
+/obj/item/electronic_assembly/var/last_time_pumped = 0
 
 /obj/item/electronic_assembly/proc/Pulse_Pump(var/gas_source, var/gas_target)
+	//First check if we're still in the same time, if not, renew the list
+	if(last_time_pumped != time)
+		used_pumps.Cut()
+		last_time_pumped = time
+
 	//If this gas mix was never used before: create a new pumpholder for it
 	if(!used_pumps[gas_source])
 		var/list/new_gas_targets = list(gas_target)
@@ -27,14 +29,20 @@
 		old_gas_targets.Add(gas_target)
 
 /obj/item/electronic_assembly/proc/Check_Used_Pump(var/gas_source, var/gas_target)
-	//Has the gas not been pumped from this tick?
+	//Has the gas not been pumped from?
 	if(!used_pumps[gas_source])
 		return TRUE
+
 	else
 		//Has the gas been pumped to exactly the same pump before?
 		var/list/old_gas_targets = used_pumps[gas_source]
 		if(old_gas_targets[gas_target])
-			return FALSE
+			//Was it truly this tick when it was pumped from?
+			if(last_time_pumped == time)
+				return FALSE
+			else
+				return TRUE
+
 		//If no: it's all good
 		return TRUE
 
