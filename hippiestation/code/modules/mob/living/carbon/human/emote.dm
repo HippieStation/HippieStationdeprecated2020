@@ -26,6 +26,7 @@
 		if(blowass)
 			message = "hits <b>[M]</b> in the face with [B]!"
 			M.apply_damage(15,"brute","head")
+			user.log_message("had his ass deal damage to [key_name(M)]", LOG_ATTACK)
 		else
 			message = pick(
 				"farts in <b>[M]</b>'s face!",
