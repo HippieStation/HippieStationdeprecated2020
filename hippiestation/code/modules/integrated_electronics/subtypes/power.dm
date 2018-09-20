@@ -91,7 +91,7 @@
 		return
 
 	//Second clamp: set the number between what the battery and powernet allows
-	var//obj/item/stock_parts/cell/battery = assembly.battery
+	var/obj/item/stock_parts/cell/battery = assembly.battery
 	amount_to_move = CLAMP(amount_to_move, -min(connected_cable.powernet.avail,battery.maxcharge - battery.charge), battery.charge)
 
 	connected_cable.powernet.avail += amount_to_move
