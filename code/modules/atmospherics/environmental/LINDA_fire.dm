@@ -250,7 +250,11 @@
 /obj/effect/hotspot/singularity_pull()
 	return
 
+<<<<<<< HEAD
 /obj/effect/dummy/fire
+=======
+/obj/effect/dummy/lighting_obj/moblight/fire
+>>>>>>> 324f4e0b6f... Makes flashes, & flashbangs flash (#40357)
 	name = "fire"
 	desc = "OWWWWWW. IT BURNS. Tell a coder if you're seeing this."
 	icon_state = "nothing"
