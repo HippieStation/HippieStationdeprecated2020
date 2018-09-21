@@ -70,8 +70,6 @@
 /obj/effect/abstract/marker/at
 	name = "active turf marker"
 
-<<<<<<< HEAD
-=======
 
 /obj/effect/dummy/lighting_obj
 	name = "lighting fx obj"
@@ -94,4 +92,3 @@
 	. = ..()
 	if(!ismob(loc))
 		return INITIALIZE_HINT_QDEL
->>>>>>> 324f4e0b6f... Makes flashes, & flashbangs flash (#40357)
