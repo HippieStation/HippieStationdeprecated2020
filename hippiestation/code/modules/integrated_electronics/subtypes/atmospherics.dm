@@ -12,7 +12,7 @@
 /obj/item/electronic_assembly/var/last_time_pumped = 0
 
 /obj/item/electronic_assembly/proc/Pulse_Pump(var/gas_source, var/gas_target)
-	//First check if we're still in the same server tick, if not, renew the list
+	//First check if we're still in the same time, if not, renew the list
 	if(last_time_pumped != world.time)
 		used_pumps.Cut()
 		last_time_pumped = world.time
@@ -56,7 +56,7 @@
 	outputs = list(
 		"self reference" = IC_PINTYPE_SELFREF,
 		"pressure" = IC_PINTYPE_NUMBER
-			) 
+			)
 	var/datum/gas_mixture/air_contents
 	var/volume = 2 //Pretty small, I know
 
@@ -108,7 +108,7 @@
 					The pressure limit for circuit pumps is [round(PUMP_MAX_PRESSURE)] kPa."
 	. = ..()
 
-// This proc gets the direction of the gas flow depending on its value, by calling update target 
+// This proc gets the direction of the gas flow depending on its value, by calling update target
 /obj/item/integrated_circuit/atmospherics/pump/on_data_written()
 	var/amt = get_pin_data(IC_INPUT, 3)
 	update_target(amt)
@@ -163,16 +163,17 @@
 
 /obj/item/integrated_circuit/atmospherics/pump/proc/move_gas(datum/gas_mixture/source_air, datum/gas_mixture/target_air)
 	if(assembly)
-		assembly.Check_Used_Pump(source_air,target_air)
+		if(!assembly.Check_Used_Pump(source_air,target_air))
+			return
 
 	// No moles = nothing to pump
 	if(!source_air.total_moles() || target_air.return_pressure() >= 750)
 		return
 
-	// Negative Kelvin temperatures should never happen and if they do, normalize them 
+	// Negative Kelvin temperatures should never happen and if they do, normalize them
 	if(source_air.temperature < TCMB)
 		source_air.temperature = TCMB
-	
+
 	var/pressure_delta = target_pressure - target_air.return_pressure()
 	if(pressure_delta > 0.1)
 		var/transfer_moles = (pressure_delta*target_air.volume/(source_air.temperature * R_IDEAL_GAS_EQUATION))*PUMP_EFFICIENCY
@@ -214,13 +215,14 @@
 
 /obj/item/integrated_circuit/atmospherics/pump/volume/move_gas(datum/gas_mixture/source_air, datum/gas_mixture/target_air)
 	if(assembly)
-		assembly.Check_Used_Pump(source_air,target_air)
+		if(!assembly.Check_Used_Pump(source_air,target_air))
+			return
 
 	// No moles = nothing to pump
 	if(!source_air.total_moles())
 		return
 
-	// Negative Kelvin temperatures should never happen and if they do, normalize them 
+	// Negative Kelvin temperatures should never happen and if they do, normalize them
 	if(source_air.temperature < TCMB)
 		source_air.temperature = TCMB
 
@@ -397,9 +399,9 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 
 	//Courtesy of atmos circuit bomb nerf. You brought it upon yourselves.
 	if(assembly)
-		assembly.Check_Used_Pump(source_air,contaminated_air)
-	if(assembly)
-		assembly.Check_Used_Pump(source_air,filtered_air)
+		if(!assembly.Check_Used_Pump(source_air,contaminated_air) || !assembly.Check_Used_Pump(source_air,filtered_air))
+			return
+
 	if(contaminated_air.return_pressure() >= PUMP_MAX_PRESSURE || filtered_air.return_pressure() >= PUMP_MAX_PRESSURE)
 		return
 
@@ -440,7 +442,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	var/datum/gas_mixture/target = (filtered_air.return_pressure() < target_pressure ? filtered_air : source_air)
 	target.merge(filtered_out)
 	contaminated_air.merge(removed)
-	
+
 	assembly.Pulse_Pump(source_air, contaminated_air)
 	assembly.Pulse_Pump(source_air, target)
 
@@ -500,8 +502,8 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 		return
 
 	if(assembly)
-		assembly.Check_Used_Pump(source_1_gases,output_gases)
-		assembly.Check_Used_Pump(source_2_gases,output_gases)
+		if(!assembly.Check_Used_Pump(source_1_gases,output_gases) || !assembly.Check_Used_Pump(source_2_gases,output_gases))
+			return
 
 	//This calculates how much should be sent
 	var/gas_percentage = round(max(min(get_pin_data(IC_INPUT, 4),100),0) / 100)
