@@ -81,10 +81,10 @@
 		return
 
 
-	if(!connected_cable)
+	if(!connected_cable || !assembly)
 		return
 
-	if(!assembly)
+	if(!assembly.battery)
 		return
 
 	//No charge transfer, no need to syphon tickrates with scripts
@@ -93,10 +93,12 @@
 
 	//Second clamp: set the number between what the battery and powernet allows
 	var/obj/item/stock_parts/cell/battery = assembly.battery
-	amount_to_move = CLAMP(amount_to_move, -min(connected_cable.powernet.avail,battery.maxcharge - battery.charge), battery.charge)
+	amount_to_move = CLAMP(amount_to_move, -connected_cable.powernet.avail, battery.charge)
 
-	connected_cable.powernet.avail += amount_to_move
-	battery.charge -= amount_to_move
+	if(amount_to_move > 0)
+		connected_cable.powernet.avail += battery.use(amount_to_move)
+		return
+	connected_cable.powernet.avail -= battery.give(-amount_to_move)
 
 /obj/item/integrated_circuit/power/transmitter/wire_connector/proc/update_cable()
 	if(get_dist(get_object(), connected_cable) > 0)
