@@ -48,7 +48,7 @@
 	var/datum/objective/O = new type
 	O.find_target()
 	O.team = src
-	objectives += O
+	objectives |= O
 
 /datum/team/infiltrator/proc/update_objectives()
 	if(LAZYLEN(objectives))
@@ -63,6 +63,9 @@
 		add_objective(pick(minor_objectives))
 	for(var/datum/mind/M in members)
 		M.objectives |= objectives
+		var/datum/antagonist/infiltrator/I = M.has_antag_datum(/datum/antagonist/infiltrator)
+		if(I)
+			I.objectives |= objectives
 		M.announce_objectives()
 
 /datum/team/infiltrator/proc/get_result()
