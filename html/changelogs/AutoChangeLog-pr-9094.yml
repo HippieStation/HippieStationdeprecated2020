@@ -1,0 +1,11 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - rscadd: "Add Engineering access requirements to Engineering SMES'"
+  - rscadd: "Added wire nodes to the vault glass windows"
+  - rscadd: "Added more fire alarms around the station"
+  - rscadd: "Added latex gloves to chemistry"
+  - bugfix: "Fixed an unconnected pipe in science maint"
+  - bugfix: "Removed an unconnected air vent in armory"
+  - bugfix: "Fixed camera in research division and re-added a cam to circuitry lab"
+  - tweak: "Robust doors now have same security levels (6) as sec and command doors."
