@@ -1,0 +1,5 @@
+author: "Fixes farts from doing damage unless they actually fall off, adds a combat log for it."
+delete-after: True
+changes: 
+  - bugfix: "Farts no longer randomly cause damage unless the ass actually falls off."
+  - admin: "If your ass slaps someone when it falls off, it's now logged in the combat log."

@@ -78,9 +78,8 @@
 	cost = 200
 
 /datum/uplink_item/nukeoffer/blastco/spawn_item(turf/loc, datum/component/uplink/U, mob/user)
-	LAZYINITLIST(blastco_doors)
-	if(LAZYLEN(blastco_doors))
-		for(var/V in blastco_doors)
+	if(LAZYLEN(GLOB.blastco_doors))
+		for(var/V in GLOB.blastco_doors)
 			var/obj/machinery/door/poddoor/shutters/blastco/X = V
 			X.open()
 		loc.visible_message("<span class='notice'>The Armory has been unlocked successfully!</span>")
@@ -354,6 +353,9 @@
 	item = /obj/item/brick
 	cost = 2
 	surplus = 30
+
+/datum/uplink_item/role_restricted/clowncar
+	cost = 15
 
 /datum/uplink_item/dangerous/crossbow
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)

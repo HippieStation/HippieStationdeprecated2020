@@ -12,7 +12,14 @@
 
 /turf/open/pool/Initialize()
 	create_reagents(100)
+	watereffect = new /obj/effect/overlay/water(src)
+	watertop = new /obj/effect/overlay/water/top(src)
 	. = ..()
+
+/turf/open/pool/Destroy()
+	QDEL_NULL(watereffect)
+	QDEL_NULL(watertop)
+	return ..()
 
 /turf/open/pool/proc/update_icon()
 	if(!filled)
@@ -83,11 +90,6 @@
 		if(istype(get_turf(A), /turf/open/pool) && !istype(T, /turf/open/pool)) //!(locate(/obj/structure/pool/ladder) in get_turf(A).loc)
 			return 0
 	return ..()
-
-/turf/open/pool/Initialize()
-	watereffect = new /obj/effect/overlay/water(src)
-	watertop = new /obj/effect/overlay/water/top(src)
-	. = ..()
 
 /turf/open/pool/ex_act(severity, target)
 	return

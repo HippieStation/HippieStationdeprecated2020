@@ -15,6 +15,7 @@
 			for (var/obj/item/stack/rods/R in H.contents)
 				if (R.pinned)
 					R.pinned = null
+		pinned = null
 	. = ..()
 
 /turf/Initialize()

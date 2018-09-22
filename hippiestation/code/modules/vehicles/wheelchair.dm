@@ -36,7 +36,8 @@
 	if(has_buckled_mobs())
 		var/mob/living/carbon/H = buckled_mobs[1]
 		unbuckle_mob(H)
-
+	H = null
+	user = null
 	. = ..()
 
 /obj/vehicle/ridden/wheelchair/driver_move(mob/user, direction)

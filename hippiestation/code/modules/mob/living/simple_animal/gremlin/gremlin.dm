@@ -5,7 +5,7 @@
 
 //List of objects that gremlins can't tamper with (because nobody coded an interaction for it)
 //List starts out empty. Whenever a gremlin finds a machine that it couldn't tamper with, the machine's type is added here, and all machines of such type are ignored from then on (NOT SUBTYPES)
-var/list/bad_gremlin_items = list()
+GLOBAL_LIST(bad_gremlin_items)
 
 /mob/living/simple_animal/hostile/gremlin
 	name = "gremlin"
@@ -105,7 +105,7 @@ var/list/bad_gremlin_items = list()
 			"<span class='notice'>\The [src] tries to think of some more ways to screw \the [M] up, but fails miserably.</span>",
 			"<span class='notice'>\The [src] decides to ignore \the [M], and starts looking for something more fun.</span>"))
 
-			bad_gremlin_items.Add(M.type)
+			LAZYADD(GLOB.bad_gremlin_items,M.type)
 			return FALSE
 		if(NPC_TAMPER_ACT_NOMSG)
 			//Don't create a visible message
@@ -123,7 +123,7 @@ var/list/bad_gremlin_items = list()
 	return TRUE
 
 /mob/living/simple_animal/hostile/gremlin/CanAttack(atom/new_target)
-	if(bad_gremlin_items.Find(new_target.type))
+	if(LAZYFIND(GLOB.bad_gremlin_items,new_target.type))
 		return FALSE
 	if(is_type_in_list(new_target, unwanted_objects))
 		return FALSE
