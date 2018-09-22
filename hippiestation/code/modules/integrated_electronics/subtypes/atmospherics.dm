@@ -1,8 +1,8 @@
 #define SOURCE_TO_TARGET 0
 #define TARGET_TO_SOURCE 1
 #define PUMP_EFFICIENCY 0.6
-#define TANK_FAILURE_PRESSURE (ONE_ATMOSPHERE*2.5)
-#define PUMP_MAX_PRESSURE 1000
+#define TANK_FAILURE_PRESSURE (ONE_ATMOSPHERE*25)
+#define PUMP_MAX_PRESSURE (ONE_ATMOSPHERE*24)
 #define PUMP_MAX_VOLUME 100
 
 
@@ -178,7 +178,8 @@
 	if((source_air.return_pressure() < 0.01) || (target_air.return_pressure() > PUMP_MAX_VOLUME))
 		return
 
-	var/transfer_ratio = min(transfer_rate/source_air.volume,(PUMP_MAX_PRESSURE*source_air.volume*target_air.volume)/(R_IDEAL_GAS_EQUATION*source_air.temperature*source_air.total_moles()))
+	//The second part of the min caps the pressure built by the volume pumps to the max pump pressure
+	var/transfer_ratio = min(transfer_rate,target_air.volume*PUMP_MAX_PRESSURE/source_air.return_pressure())/source_air.volume
 
 	var/datum/gas_mixture/removed = source_air.remove_ratio(transfer_ratio * PUMP_EFFICIENCY)
 
