@@ -96,7 +96,7 @@
 	amount_to_move = CLAMP(amount_to_move, -connected_cable.powernet.avail, battery.charge)
 
 	if(amount_to_move > 0)
-		connected_cable.powernet.avail += battery.use(amount_to_move)
+		connected_cable.powernet.newavail += battery.use(amount_to_move)
 		return
 	connected_cable.powernet.avail -= battery.give(-amount_to_move)
 
