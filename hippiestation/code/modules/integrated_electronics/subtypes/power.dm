@@ -67,7 +67,7 @@
 			activate_pin(5)
 			return
 	
-		var/obj/structure/cable/foundcable = locate(/obj/structure/cable) in get_turf(src)
+		var/obj/structure/cable/foundcable = locate() in get_turf(src)
 		// If no connector can't connect
 		if(!foundcable || foundcable.invisibility != 0)
 			set_pin_data(IC_OUTPUT, 1, null)
