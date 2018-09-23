@@ -1,0 +1,5 @@
+author: "Kawaii-Big-Boss"
+delete-after: True
+changes: 
+  - bugfix: "You can now actually reload your shotgun."
+  - bugfix: "Contender still works too I guess"
