@@ -109,22 +109,13 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	var/holder_var_type = "bruteloss" //only used if charge_type equals to "holder_var"
 	var/holder_var_amount = 20 //same. The amount adjusted with the mob's var when the spell is used
 
-<<<<<<< HEAD
-	var/clothes_req = 1 //see if it requires clothes
-	var/cult_req = 0 //SPECIAL SNOWFLAKE clothes required for cult only spells
-	var/staff_req = 0 // hippie -- used to check if a spell requires a staff
-	var/human_req = 0 //spell can only be cast by humans
-	var/nonabstract_req = 0 //spell can only be cast by mobs that are physical entities
-	var/stat_allowed = 0 //see if it requires being conscious/alive, need to set to 1 for ghostpells
-	var/phase_allowed = 0 // If true, the spell can be cast while phased, eg. blood crawling, ethereal jaunting
-=======
+	var/staff_req = FALSE // hippie -- used to check if a spell requires a staff
 	var/clothes_req = TRUE //see if it requires clothes
 	var/cult_req = FALSE //SPECIAL SNOWFLAKE clothes required for cult only spells
 	var/human_req = FALSE //spell can only be cast by humans
 	var/nonabstract_req = FALSE //spell can only be cast by mobs that are physical entities
 	var/stat_allowed = FALSE //see if it requires being conscious/alive, need to set to 1 for ghostpells
 	var/phase_allowed = FALSE // If true, the spell can be cast while phased, eg. blood crawling, ethereal jaunting
->>>>>>> 387bfcd1f1... Improves wizard spell descs, booleans (#40321)
 	var/invocation = "HURP DURP" //what is uttered when the wizard casts the spell
 	var/invocation_emote_self = null
 	var/invocation_type = "none" //can be none, whisper, emote and shout
