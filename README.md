@@ -100,14 +100,8 @@ recompile the game.  Once you start the server up again, you should be running
 the new version.
 
 ## MAPS
-<<<<<<< HEAD
-Hippie Station currently comes equipped with six maps.
+Hippie Station currently comes equipped with five maps.
 * [Hippie BoxStation (default)](https://tgstation13.org/wiki/Boxstation)
-=======
-
-/tg/station currently comes equipped with four maps.
-
->>>>>>> 0ef2572108... Merge pull request #40352 from 81Denton/remove-omega
 * [BoxStation (default)](https://tgstation13.org/wiki/Boxstation)
 * [MetaStation](https://tgstation13.org/wiki/MetaStation)
 * [DeltaStation](https://tgstation13.org/wiki/DeltaStation)
