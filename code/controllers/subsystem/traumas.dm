@@ -132,19 +132,19 @@ SUBSYSTEM_DEF(traumas)
 						/obj/structure/table/abductor, /obj/structure/table/optable/abductor, /obj/structure/closet/abductor, /obj/item/organ/heart/gland,
 						/obj/machinery/abductor, /obj/item/crowbar/abductor, /obj/item/screwdriver/abductor, /obj/item/weldingtool/abductor,
 						/obj/item/wirecutters/abductor, /obj/item/wrench/abductor, /obj/item/stack/sheet/mineral/abductor)),
-						
+
 						"birds" = typecacheof(list(/obj/item/clothing/mask/gas/plaguedoctor, /obj/item/reagent_containers/food/snacks/cracker,
 						/obj/item/clothing/suit/chickensuit, /obj/item/clothing/head/chicken,
 						/obj/item/clothing/suit/toggle/owlwings, /obj/item/clothing/under/owl, /obj/item/clothing/mask/gas/owl_mask,
 						/obj/item/clothing/under/griffin, /obj/item/clothing/shoes/griffin, /obj/item/clothing/head/griffin,
 						/obj/item/clothing/head/helmet/space/freedom, /obj/item/clothing/suit/space/freedom)),
-						
+
 					   "anime" = typecacheof(list(/obj/item/clothing/under/schoolgirl, /obj/item/katana, /obj/item/reagent_containers/food/snacks/sashimi, /obj/item/reagent_containers/food/snacks/chawanmushi,
 					   /obj/item/reagent_containers/food/drinks/bottle/sake, /obj/item/throwing_star, /obj/item/clothing/head/kitty/genuine, /obj/item/clothing/suit/space/space_ninja,
 					   /obj/item/clothing/mask/gas/space_ninja, /obj/item/clothing/shoes/space_ninja, /obj/item/clothing/gloves/space_ninja, /obj/item/twohanded/vibro_weapon,
 					   /obj/item/nullrod/scythe/vibro, /obj/item/energy_katana, /obj/item/toy/katana, /obj/item/nullrod/claymore/katana, /obj/structure/window/paperframe, /obj/structure/mineral_door/paperframe))
 						)
-						
+
 	phobia_turfs = list("space" = typecacheof(list(/turf/open/space, /turf/open/floor/holofloor/space, /turf/open/floor/fakespace)),
 						"the supernatural" = typecacheof(list(/turf/open/floor/clockwork, /turf/closed/wall/clockwork,
 						/turf/open/floor/plasteel/cult, /turf/closed/wall/mineral/cult)),
@@ -159,9 +159,9 @@ SUBSYSTEM_DEF(traumas)
 						  "robots" = typecacheof(list(/datum/species/android)),
 						  "the supernatural" = typecacheof(list(/datum/species/golem/clockwork, /datum/species/golem/runic)),
 						  "aliens" = typecacheof(list(/datum/species/abductor, /datum/species/jelly, /datum/species/pod,
-						  /datum/species/shadow)),
-						  "anime" = typecacheof(list(/datum/species/human/felinid))
-						 )				 
+						  /datum/species/shadow))/*, Hippie Start - Yeah, I know you think you're funny /tg/, but no. Removes mention of felinid in the game (this also does nothing since we already disabled them!)
+						  "anime" = typecacheof(list(/datum/species/human/felinid)) Hippie End */
+						 )
 
 	return ..()
 

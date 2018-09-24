@@ -80,6 +80,7 @@
 	mood_change = -2
 	timeout = 1200
 
+/* Hippie Start - Can you fuck off? (removes HORRENDOUS felinid code)
 /datum/mood_event/table/add_effects()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
@@ -88,6 +89,7 @@
 			addtimer(CALLBACK(H.dna.species, /datum/species.proc/stop_wagging_tail, H), 30)
 			description =  "<span class='nicegreen'>They want to play on the table!</span>\n"
 			mood_change = 2
+Hippie End */
 
 /datum/mood_event/brain_damage
   mood_change = -3

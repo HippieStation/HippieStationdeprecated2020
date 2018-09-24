@@ -128,7 +128,7 @@
 			log_combat(user, C, "EMPed", src)
 		else
 			outmsg = "<span class='warning'>You miss the lens of [C] with [src]!</span>"
-
+	/* Hippie Start: Purges felinid code
 	//catpeople
 	for(var/mob/living/carbon/human/H in view(1,targloc))
 		if(!iscatperson(H) || H.incapacitated() || H.eye_blind )
@@ -143,6 +143,7 @@
 				H.visible_message("<span class='notice'>[H] looks briefly distracted by the light.</span>","<span class = 'warning'> You're briefly tempted by the shiny light... </span>")
 		else
 			H.visible_message("<span class='notice'>[H] stares at the light</span>","<span class = 'warning'> You stare at the light... </span>")
+	Hippie End */
 
 	//cats!
 	for(var/mob/living/simple_animal/pet/cat/C in view(1,targloc))

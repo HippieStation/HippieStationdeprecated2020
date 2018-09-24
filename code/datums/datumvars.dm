@@ -1270,7 +1270,7 @@
 							to_chat(usr, "Only humans can be augmented.")
 			admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [C]")
 
-
+/* Hippie Start: Removes purrbation.
 		else if(href_list["purrbation"])
 			if(!check_rights(R_SPAWN))
 				return
@@ -1301,6 +1301,7 @@
 				var/msg = "<span class='notice'>[key_name_admin(usr)] has removed [key_name(H)] from purrbation.</span>"
 				message_admins(msg)
 				admin_ticket_log(H, msg)
+	Hippie End */
 
 		else if(href_list["cluwneing"]) // hippie start -- adds cluwneify verb in VV
 			if(!check_rights(R_SPAWN))	return
