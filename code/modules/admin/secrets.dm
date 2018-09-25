@@ -42,7 +42,10 @@
 			<A href='?src=[REF(src)];[HrefToken()];secrets=movelaborshuttle'>Move Labor Shuttle</A><BR>
 			<BR>
 			"}
-
+/* Hippie Start: Removes "mass purrbation". Here's the code if you want to reenable it for whatever reason:
+			<A href='?src=[REF(src)];[HrefToken()];secrets=masspurrbation'>Mass Purrbation</A><BR>
+			<A href='?src=[REF(src)];[HrefToken()];secrets=massremovepurrbation'>Mass Remove Purrbation</A><BR>
+	Just insert it again towards the bottom. I can't comment that part out so whatever. Hippie End */
 	if(check_rights(R_FUN,0))
 		dat += {"
 			<B>Fun Secrets</B><BR>
@@ -74,8 +77,6 @@
 			<A href='?src=[REF(src)];[HrefToken()];secrets=resetmovement'>Reset movement directions to default</A><BR>
 			<BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=changebombcap'>Change bomb cap</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=masspurrbation'>Mass Purrbation</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=massremovepurrbation'>Mass Remove Purrbation</A><BR>
 			"}
 
 	dat += "<BR>"
@@ -571,6 +572,7 @@
 			if(!check_rights(R_ADMIN))
 				return
 			toggle_all_ctf(usr)
+/* Hippie Start: Removes Mass Purbation
 		if("masspurrbation")
 			if(!check_rights(R_FUN))
 				return
@@ -585,7 +587,7 @@
 			message_admins("[key_name_admin(usr)] has removed everyone from \
 				purrbation.")
 			log_admin("[key_name(usr)] has removed everyone from purrbation.")
-
+Hippie End */
 		if("flipmovement")
 			if(!check_rights(R_FUN))
 				return

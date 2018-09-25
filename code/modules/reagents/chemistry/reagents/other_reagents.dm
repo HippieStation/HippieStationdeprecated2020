@@ -457,12 +457,14 @@
 	race = /datum/species/jelly/slime
 	mutationtext = "<span class='danger'>The pain subsides. Your whole body feels like slime.</span>"
 
+/* Hippie Start - Removes the felinid mutation toxin as part of a mass removal of them from the game.
 /datum/reagent/mutationtoxin/felinid
 	name = "Felinid Mutation Toxin"
 	id = "felinidmutationtoxin"
 	color = "#5EFF3B" //RGB: 94, 255, 59
 	race = /datum/species/human/felinid
 	mutationtext = "<span class='danger'>The pain subsides. You feel... like a degenerate.</span>"
+Hippie End */
 
 /datum/reagent/mutationtoxin/lizard
 	name = "Lizard Mutation Toxin"

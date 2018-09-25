@@ -160,7 +160,9 @@
 	if(!istype(H))
 		return 0
 	H.set_species(/datum/species/human, 1)//lizards go home
+	/* Hippie Edit: I agree, we should! (removes felinid)
 	purrbation_remove(H)//remove cats
+	Hippie End */
 	H.dna.remove_all_mutations()//hulks out
 	return 1
 
