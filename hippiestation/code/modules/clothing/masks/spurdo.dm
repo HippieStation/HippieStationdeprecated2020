@@ -56,7 +56,7 @@
 	var/mob/living/carbon/C = user
 	if(C.wear_mask == src)
 		C.emote("scream")
-		C.say("SUOMI PERKELE!") // bawb made me do this
+		C.say("SUOMI PERKELE!", forced = "spurdo mask") // bawb made me do this
 	return ..()
 
 obj/item/clothing/mask/spurdo/cursed

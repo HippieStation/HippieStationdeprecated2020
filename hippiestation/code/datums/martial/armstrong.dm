@@ -79,7 +79,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 
 /datum/martial_art/armstrong/proc/Sloppy(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(current_level <= 9) // level check due to differences once you reach level 10
-		A.say("ATATATATATATAT!!")
+		A.say("ATATATATATATAT!!", forced = "armstrong")
 		SloppyAnimate(A)
 		D.visible_message("<span class='danger'>[A] sloppily flails around, striking [D]!</span>", \
 									"<span class='userdanger'>[A] sends [D] flying with a rushed combo!</span>")
@@ -160,7 +160,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 		if(D.gender == FEMALE)
 			D.visible_message("<span class='notice'>[A] scares [D] and they sheepishly fall over.</span>", \
 									"<span class='userdanger'>[A] 'surprised' [D]!</span>") // we're not citadel
-			A.say("BOO!")
+			A.say("BOO!", forced = "armstrong")
 		else
 			A.do_attack_animation(D, ATTACK_EFFECT_KICK)
 			D.visible_message("<span class='danger'><b>[A] kicks [D] in the dick!<b></span>", \

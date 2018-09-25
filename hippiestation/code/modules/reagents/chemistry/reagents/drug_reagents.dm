@@ -273,7 +273,7 @@
 	if(prob(5))
 		to_chat(M, "<span class='notice'>[high_message]</span>")
 	if(prob(20))
-		M.say("Yes.")
+		M.say("Yes.", forced = "yes powder")
 	..()
 
 /datum/reagent/drug/pupupipi

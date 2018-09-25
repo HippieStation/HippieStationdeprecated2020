@@ -4,8 +4,8 @@
 	desc = "This circuit is a huge fan of shipping. It joins 2 lists together."
 	extended_desc = "Elements found in both lists will not be removed and can be found twice in the list."
 	inputs = list(
-		"list to join" = IC_PINTYPE_LIST,
-		"list to join" = IC_PINTYPE_LIST
+		"first list" = IC_PINTYPE_LIST,
+		"second list" = IC_PINTYPE_LIST
 		)
 	outputs = list(
 		"joined list" = IC_PINTYPE_LIST

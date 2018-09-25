@@ -8,6 +8,10 @@
 	var/obj/item/reagent_containers/beaker = null
 	var/on = FALSE
 
+/obj/machinery/chem/Destroy()
+	eject_beaker()
+	return ..()
+
 /obj/machinery/chem/on_deconstruction()
 	eject_beaker()
 

@@ -14,6 +14,7 @@
 	var/list/drive_sounds = list('sound/effects/roll.ogg')
 	var/mob/living/carbon/human/H
 	var/mob/living/user
+	movedelay = 10
 
 /obj/vehicle/ridden/wheelchair/Initialize()
 	. = ..()
@@ -35,7 +36,8 @@
 	if(has_buckled_mobs())
 		var/mob/living/carbon/H = buckled_mobs[1]
 		unbuckle_mob(H)
-
+	H = null
+	user = null
 	. = ..()
 
 /obj/vehicle/ridden/wheelchair/driver_move(mob/user, direction)
@@ -48,7 +50,7 @@
 			return FALSE
 		else
 			var/datum/component/riding/D = LoadComponent(/datum/component/riding)
-			D.vehicle_move_delay = 10/H.get_num_arms()
+			D.vehicle_move_delay = movedelay/H.get_num_arms()
 	. = ..()
 
 /obj/vehicle/ridden/wheelchair/Move(mob/user)

@@ -24,6 +24,8 @@
 	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 150
 	can_be_asked_input = TRUE
+	demands_object_input = TRUE
+
 	var/obj/item/mmi/installed_brain
 
 /obj/item/integrated_circuit/input/mmi_tank/attackby(var/obj/item/mmi/O, var/mob/user)
@@ -152,6 +154,8 @@
 	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 150
 	can_be_asked_input = TRUE
+	demands_object_input = TRUE
+
 	var/obj/item/paicard/installed_pai
 
 /obj/item/integrated_circuit/input/pAI_connector/attackby(var/obj/item/paicard/O, var/mob/user)

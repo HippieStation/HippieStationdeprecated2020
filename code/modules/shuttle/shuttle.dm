@@ -305,14 +305,12 @@
 			id = "[id][idnum]"
 		if(name == initial(name))
 			name = "[name] [idnum]"
-	for(var/i in shuttle_areas)
-		var/area/place = i
-		for(var/obj/machinery/computer/shuttle/comp in place)
-			comp.connect_to_shuttle(src, dock, idnum)
-		for(var/obj/machinery/computer/camera_advanced/shuttle_docker/comp in place)
-			comp.connect_to_shuttle(src, dock, idnum)
-		for(var/obj/machinery/status_display/shuttle/sd in place)
-			sd.connect_to_shuttle(src, dock, idnum)
+	for(var/place in shuttle_areas)
+		var/area/area = place
+		area.connect_to_shuttle(src, dock, idnum, FALSE)
+		for(var/each in place)
+			var/atom/atom = each
+			atom.connect_to_shuttle(src, dock, idnum, FALSE)
 
 
 //this is a hook for custom behaviour. Maybe at some point we could add checks to see if engines are intact
@@ -664,14 +662,19 @@
 
 /obj/docking_port/mobile/proc/getStatusText()
 	var/obj/docking_port/stationary/dockedAt = get_docked()
-	. = (dockedAt && dockedAt.name) ? dockedAt.name : "unknown"
+
 	if(istype(dockedAt, /obj/docking_port/stationary/transit))
-		var/obj/docking_port/stationary/dst
-		if(mode == SHUTTLE_RECALL)
-			dst = previous
+		if (timeLeft() > 1 HOURS)
+			return "hyperspace"
 		else
-			dst = destination
-		. += " towards [dst ? dst.name : "unknown location"] ([timeLeft(600)] minutes)"
+			var/obj/docking_port/stationary/dst
+			if(mode == SHUTTLE_RECALL)
+				dst = previous
+			else
+				dst = destination
+			. = "transit towards [dst?.name || "unknown location"] ([getTimerStr()])"
+	else
+		return dockedAt?.name || "unknown"
 
 
 /obj/docking_port/mobile/proc/getDbgStatusText()

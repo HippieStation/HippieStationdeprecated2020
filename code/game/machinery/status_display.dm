@@ -290,7 +290,7 @@
 		if("shuttle_id")
 			update()
 
-/obj/machinery/status_display/shuttle/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override)
+/obj/machinery/status_display/shuttle/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override)
 	if (port && (shuttle_id == initial(shuttle_id) || override))
 		shuttle_id = port.id
 	update()
@@ -345,6 +345,8 @@
 				set_picture("ai_awesome")
 			if("Dorfy")
 				set_picture("ai_urist")
+			if("Thinking")
+				set_picture("ai_thinking")
 			if("Facepalm")
 				set_picture("ai_facepalm")
 			if("Friend Computer")

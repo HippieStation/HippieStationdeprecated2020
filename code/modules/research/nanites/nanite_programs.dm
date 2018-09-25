@@ -115,6 +115,7 @@
 
 /datum/nanite_program/proc/activate()
 	activated = TRUE
+	timer_counter = activation_delay
 
 /datum/nanite_program/proc/deactivate()
 	if(passive_enabled)
@@ -224,7 +225,7 @@
 		if(5) //Program is scrambled and does something different
 			var/rogue_type = pick(rogue_types)
 			var/datum/nanite_program/rogue = new rogue_type
-			nanites.add_program(rogue, src)
+			nanites.add_program(null, rogue, src)
 			qdel(src)
 
 /datum/nanite_program/proc/receive_signal(code, source)

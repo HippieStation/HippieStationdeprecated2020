@@ -7,7 +7,7 @@
 			return FALSE
 	..()
 
-/obj/item/assembly/flash/flash_carbon/(mob/living/carbon/M, mob/user, power = 15, targeted = TRUE, generic_message = FALSE)
+/obj/item/assembly/flash/flash_carbon(mob/living/carbon/M, mob/user, power = 15, targeted = TRUE, generic_message = FALSE)
 	if(M.eye_blind)
 		return FALSE
 	..()

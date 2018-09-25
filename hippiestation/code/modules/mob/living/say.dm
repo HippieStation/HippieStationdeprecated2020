@@ -13,7 +13,7 @@
 
 	return TRUE
 
-/mob/living/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE)
+/mob/living/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	// If we're in soft crit and tried to talk, automatically make us whisper
 	if (length(message) > 2)
 		var/first_char = copytext(message, 1, 2)
