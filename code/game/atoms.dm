@@ -32,6 +32,13 @@
 
 	var/list/filter_data //For handling persistent filters
 
+<<<<<<< HEAD
+=======
+	var/custom_price
+
+	var/datum/component/orbiter/orbiters
+
+>>>>>>> 31914a594e... Componentizes orbiting (#40433)
 /atom/New(loc, ...)
 	//atom creation method that preloads variables at creation
 	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
@@ -97,6 +104,8 @@
 
 	if(reagents)
 		qdel(reagents)
+
+	orbiters = null // The component is attached to us normaly and will be deleted elsewhere
 
 	LAZYCLEARLIST(overlays)
 	LAZYCLEARLIST(priority_overlays)
