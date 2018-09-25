@@ -12,6 +12,6 @@
 		used = TRUE
 		icon_state = "extra_arm_none"
 		M.visible_message("<span class='notice'>[M] presses a button on [src], and you hear a disgusting noise.</span>", "<span class='notice'>You feel a sharp sting as [src] plunges into your body.</span>")
-		M.visible_message("<span class='notice'>You feel more dexterous.</span>")
+		to_chat(M, "<span class='notice'>You feel more dexterous.</span>")
 		playsound(get_turf(M), 'sound/misc/splort.ogg', 50, 1)
 		desc += "Looks like it's been used up." 
