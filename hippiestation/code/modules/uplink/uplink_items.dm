@@ -347,5 +347,12 @@
 	cost = 2
 	surplus = 30
 
+/datum/uplink_item/device_tools/arm
+	name = "Additional Arm"
+	desc = "An additional arm harvested from slaves captured by the Syndicate. Comes with an implanter."
+	item = /obj/item/extra_arm
+	cost = 4
+	limited_stock = 2
+
 /datum/uplink_item/role_restricted/clowncar
 	cost = 15
