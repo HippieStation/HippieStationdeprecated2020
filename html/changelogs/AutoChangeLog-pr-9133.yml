@@ -1,6 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - tweak: "Nanosuit equipment announcement only comes on on station z level"
-  - code_imp: "Nanosuit now uses new mob component signals"
-  - bugfix: "Fixes nanosuit strength mode from always using infinite quick punches"
