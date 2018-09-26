@@ -225,7 +225,6 @@
 
 
 #define LUXURY_MESSAGE_COOLDOWN 100
-#define LUXURY_MESSAGE_COOLDOWN 100
 /obj/effect/forcefield/luxury_shuttle/Bumped(atom/movable/AM)
 	if(!isliving(AM))
 		return ..()
