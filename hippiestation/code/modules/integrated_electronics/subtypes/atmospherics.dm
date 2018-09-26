@@ -678,9 +678,9 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 		"current tank" = IC_PINTYPE_REF
 		)
 	activators = list(
+		"push ref" = IC_PINTYPE_PULSE_IN,
 		"on insert" = IC_PINTYPE_PULSE_OUT,
-		"on remove" = IC_PINTYPE_PULSE_OUT,
-		"push ref" = IC_PINTYPE_PULSE_OUT
+		"on remove" = IC_PINTYPE_PULSE_OUT
 		)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
@@ -753,6 +753,9 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	set_pin_data(IC_OUTPUT, 1, tank_air.return_pressure())
 	push_data()
 
+/obj/item/integrated_circuit/input/tank_slot/proc/do_work()
+	set_pin_data(IC_OUTPUT, 2, WEAKREF(src))
+	push_data()
 
 #undef SOURCE_TO_TARGET
 #undef TARGET_TO_SOURCE
