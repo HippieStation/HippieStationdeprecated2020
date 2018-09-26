@@ -206,11 +206,13 @@
 //Luxury Shuttle Blockers
 
 /obj/effect/forcefield/luxury_shuttle
+	name = "Luxury shuttle ticket booth"
+	desc = "A forceful money collector."
 	timeleft = 0
 	var/threshold = 500
 	var/static/list/approved_passengers = list()
 	var/static/list/check_times = list()
-
+	var/list/payees = list()
 
 /obj/effect/forcefield/luxury_shuttle/CanPass(atom/movable/mover, turf/target)
 	if(mover in approved_passengers)
@@ -223,6 +225,7 @@
 
 
 #define LUXURY_MESSAGE_COOLDOWN 100
+#define LUXURY_MESSAGE_COOLDOWN 100
 /obj/effect/forcefield/luxury_shuttle/Bumped(atom/movable/AM)
 	if(!isliving(AM))
 		return ..()
@@ -233,7 +236,7 @@
 		if(payees[AM] >= threshold)
 			break
 		payees[AM] += C.value
-		counted_money += C
+		counted_money += C		
 	for(var/obj/item/stack/spacecash/S in AM.GetAllContents())
 		if(payees[AM] >= threshold)
 			break
@@ -254,7 +257,7 @@
 		var/obj/item/stack/spacecash/S = AM.pulling
 		payees[AM] += S.value * S.amount
 		counted_money += S
-
+			
 	else if(payees[AM] < threshold && istype(AM.pulling, /obj/item/holochip))
 		var/obj/item/holochip/H = AM.pulling
 		payees[AM] += H.credits
