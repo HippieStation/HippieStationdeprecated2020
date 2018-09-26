@@ -740,6 +740,10 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	push_data()
 	do_work(2)
 
+/obj/item/integrated_circuit/input/tank_slot/do_work()
+	set_pin_data(IC_OUTPUT, 2, WEAKREF(src))
+	push_data()
+
 /obj/item/integrated_circuit/input/tank_slot/proc/push_pressure()
 	if(!current_tank)
 		set_pin_data(IC_OUTPUT, 1, 0)
@@ -753,9 +757,6 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	set_pin_data(IC_OUTPUT, 1, tank_air.return_pressure())
 	push_data()
 
-/obj/item/integrated_circuit/input/tank_slot/proc/do_work()
-	set_pin_data(IC_OUTPUT, 2, WEAKREF(src))
-	push_data()
 
 #undef SOURCE_TO_TARGET
 #undef TARGET_TO_SOURCE
