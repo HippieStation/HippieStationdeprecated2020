@@ -175,6 +175,7 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
+<<<<<<< HEAD
 /datum/techweb_node/adv_bluespace
 	id = "adv_bluespace"
 	display_name = "Advanced Bluespace Research"
@@ -183,6 +184,24 @@
 	design_ids = list("bluespace_matter_bin", "femto_mani", "triphasic_scanning", "tele_station", "tele_hub", "quantumpad", "launchpad", "launchpad_console",
 	"teleconsole", "bag_holding", "bluespace_crystal", "wormholeprojector", "bluespace_pod")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 15000)
+=======
+/datum/techweb_node/bluespace_travel
+	id = "bluespace_travel"
+	display_name = "Bluespace Travel"
+	description = "Application of Bluespace for static teleportation technology."
+	prereq_ids = list("practical_bluespace")
+	design_ids = list("tele_station", "tele_hub", "teleconsole", "quantumpad", "launchpad", "launchpad_console", "bluespace_pod")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+	export_price = 5000
+	
+/datum/techweb_node/micro_bluespace
+	id = "micro_bluespace"
+	display_name = "Miniaturized Bluespace Research"
+	description = "Extreme reduction in space required for bluespace engines, leading to portable bluespace technology."
+	prereq_ids = list("bluespace_travel", "practical_bluespace", "high_efficiency")
+	design_ids = list("bluespace_matter_bin", "femto_mani", "triphasic_scanning", "bag_holding", "quantum_keycard", "wormholeprojector")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
+>>>>>>> b4ad5b259f... Merge pull request #40488 from Dennok/patch-1
 	export_price = 5000
 
 /datum/techweb_node/practical_bluespace
