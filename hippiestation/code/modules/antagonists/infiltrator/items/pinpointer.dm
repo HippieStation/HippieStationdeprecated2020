@@ -3,7 +3,7 @@
 
 /obj/item/pinpointer/infiltrator
 	name = "infiltration pinpointer"
-	icon = 'hippiestation/icons/obj/device.dmi'
+	icon = 'icons/obj/device.dmi'
 	var/upgraded = FALSE
 	var/datum/team/team
 	var/mode = MODE_CUTTER
