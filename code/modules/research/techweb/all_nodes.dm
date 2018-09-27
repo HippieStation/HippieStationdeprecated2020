@@ -171,11 +171,10 @@
 	display_name = "Basic Bluespace Theory"
 	description = "Basic studies into the mysterious alternate dimension known as bluespace."
 	prereq_ids = list("base")
-	design_ids = list("beacon", "xenobioconsole", "telesci_gps")
+	design_ids = list("beacon", "xenobioconsole", "telesci_gps", "bluespace_crystal")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
-<<<<<<< HEAD
 /datum/techweb_node/adv_bluespace
 	id = "adv_bluespace"
 	display_name = "Advanced Bluespace Research"
@@ -184,7 +183,7 @@
 	design_ids = list("bluespace_matter_bin", "femto_mani", "triphasic_scanning", "tele_station", "tele_hub", "quantumpad", "launchpad", "launchpad_console",
 	"teleconsole", "bag_holding", "bluespace_crystal", "wormholeprojector", "bluespace_pod")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 15000)
-=======
+
 /datum/techweb_node/bluespace_travel
 	id = "bluespace_travel"
 	display_name = "Bluespace Travel"
@@ -201,7 +200,6 @@
 	prereq_ids = list("bluespace_travel", "practical_bluespace", "high_efficiency")
 	design_ids = list("bluespace_matter_bin", "femto_mani", "triphasic_scanning", "bag_holding", "quantum_keycard", "wormholeprojector")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
->>>>>>> b4ad5b259f... Merge pull request #40488 from Dennok/patch-1
 	export_price = 5000
 
 /datum/techweb_node/practical_bluespace
@@ -217,7 +215,7 @@
 	id = "bluespace_power"
 	display_name = "Bluespace Power Technology"
 	description = "Even more powerful.. power!"
-	prereq_ids = list("adv_power", "adv_bluespace")
+	prereq_ids = list("adv_power", "practical_bluespace")
 	design_ids = list("bluespace_cell", "quadratic_capacitor")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
