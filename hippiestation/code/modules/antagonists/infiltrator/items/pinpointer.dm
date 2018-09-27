@@ -54,7 +54,7 @@
 		if(!DAI || !DAI.infiltrator_team)
 			return ..()
 		team = DAI.infiltrator_team
-		icon_state = "pinpointer_upgraded"
+		icon = icon('hippiestation/icons/obj/device.dmi', "pinpointer_upgraded")
 		upgraded = TRUE
 		to_chat(user, "<span class='notice'>You attach the new antenna to [src].</span>")
 		qdel(I)
