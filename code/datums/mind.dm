@@ -442,8 +442,21 @@
 						else
 							target_antag = target
 
+<<<<<<< HEAD
 		var/new_obj_type = input("Select objective type:", "Objective type", def_value) as null|anything in list("assassinate", "maroon", "debrain", "protect", "destroy", "prevent", "hijack", "escape", "survive", "martyr", "steal", "download", "nuclear", "capture", "absorb", "custom")
 		if (!new_obj_type)
+=======
+		if(!GLOB.admin_objective_list)
+			generate_admin_objective_list()
+		
+		if(old_objective)
+			if(old_objective.name in GLOB.admin_objective_list)
+				def_value = old_objective.name
+
+		var/selected_type = input("Select objective type:", "Objective type", def_value) as null|anything in GLOB.admin_objective_list
+		selected_type = GLOB.admin_objective_list[selected_type]
+		if (!selected_type)
+>>>>>>> a94a9c8efa... Merge pull request #40365 from AnturK/team-panel
 			return
 
 		var/datum/objective/new_objective = null
