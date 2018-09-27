@@ -51,3 +51,11 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 50, "fire" = 80, "acid" = 70)
 	slowdown = 0
 	strip_delay = 130
+
+/obj/item/clothing/head/helmet/space/hardsuit/syndi/elite
+	icon = 'hippiestation/icons/obj/clothing/hats.dmi'
+	alternate_worn_icon = 'hippiestation/icons/mob/head.dmi'
+
+/obj/item/clothing/suit/space/hardsuit/syndi/elite
+	icon = 'hippiestation/icons/obj/clothing/suits.dmi'
+	alternate_worn_icon = 'hippiestation/icons/mob/suit.dmi'
