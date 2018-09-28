@@ -11,18 +11,16 @@
 	var/list/parts = list()
 	parts += "<span class='header'>Syndicate Infiltrators</span>"
 
+	LAZYINITLIST(GLOB.uplink_purchase_logs_by_key)
 	var/text = "<br><span class='header'>The syndicate infiltrators were:</span>"
 	var/purchases = ""
 	var/TC_uses = 0
-	if(LAZYLEN(GLOB.uplink_purchase_logs_by_key))
-		for(var/I in members)
-			var/datum/mind/syndicate = I
-			if(!istype(syndicate) || !GLOB.uplink_purchase_logs_by_key[syndicate.key])
-				continue
-			var/datum/uplink_purchase_log/H = GLOB.uplink_purchase_logs_by_key[syndicate.key]
-			if(H)
-				TC_uses += H.total_spent
-				purchases += H.generate_render(show_key = FALSE)
+	for(var/I in members)
+		var/datum/mind/syndicate = I
+		var/datum/uplink_purchase_log/H = GLOB.uplink_purchase_logs_by_key[syndicate.key]
+		if(H)
+			TC_uses += H.total_spent
+			purchases += H.generate_render(show_key = FALSE)
 	text += printplayerlist(members)
 	text += "<br>"
 	text += "(Syndicates used [TC_uses] TC) [purchases]"
@@ -44,6 +42,18 @@
 /datum/team/infiltrator/is_gamemode_hero()
 	return SSticker.mode.name == "infiltration"
 
+/datum/team/infiltrator/proc/forge_single_objective() // Complete traitor copypasta!
+	if(prob(50))
+		if(prob(30))
+			add_objective(/datum/objective/maroon)
+		else
+			add_objective(/datum/objective/assassinate)
+	else
+		if(prob(15) && !(locate(/datum/objective/download) in objectives))
+			add_objective(/datum/objective/download)
+		else
+			add_objective(/datum/objective/steal)
+
 /datum/team/infiltrator/proc/add_objective(type)
 	var/datum/objective/O = new type
 	O.find_target()
@@ -54,13 +64,12 @@
 	if(LAZYLEN(objectives))
 		return
 	var/list/major_objectives = subtypesof(/datum/objective/infiltrator)
-	var/list/minor_objectives = GLOB.minor_infiltrator_objectives.Copy()
 	var/major = rand(MIN_MAJOR_OBJECTIVES, MAX_MAJOR_OBJECTIVES)
 	var/minor = rand(MIN_MINOR_OBJECTIVES, MAX_MINOR_OBJECTIVES)
 	for(var/i in 1 to major)
 		add_objective(pick_n_take(major_objectives))
 	for(var/i in 1 to minor)
-		add_objective(pick(minor_objectives))
+		forge_single_objective()
 	for(var/datum/mind/M in members)
 		var/datum/antagonist/infiltrator/I = M.has_antag_datum(/datum/antagonist/infiltrator)
 		if(I)
