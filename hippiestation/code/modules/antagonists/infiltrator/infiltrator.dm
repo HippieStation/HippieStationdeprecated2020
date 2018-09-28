@@ -46,15 +46,10 @@
 			owner.name = H.real_name
 		purrbation_remove(H, silent=TRUE)
 	owner.store_memory("Do <B>NOT</B> kill or destroy needlessly, as this defeats the purpose of an 'infiltration'!")
-	owner.objectives |= infiltrator_team.objectives
 	objectives |= infiltrator_team.objectives
 	. = ..()
 	if(send_to_spawnpoint)
 		move_to_spawnpoint()
-
-/datum/antagonist/infiltrator/on_removal()
-	owner.objectives -= infiltrator_team.objectives
-	. = ..()
 
 /datum/antagonist/infiltrator/get_team()
 	return infiltrator_team
