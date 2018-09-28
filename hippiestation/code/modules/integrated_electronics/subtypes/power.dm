@@ -27,6 +27,10 @@
 
 	var/obj/structure/cable/connected_cable
 
+/obj/item/integrated_circuit/power/transmitter/wire_connector/Destroy()
+	connected_cable = null
+	..()
+
 /obj/item/integrated_circuit/power/transmitter/wire_connector/Initialize()
 	START_PROCESSING(SSobj, src)
 	. = ..()
