@@ -62,7 +62,6 @@
 	for(var/i in 1 to minor)
 		add_objective(pick(minor_objectives))
 	for(var/datum/mind/M in members)
-		M.objectives |= objectives
 		var/datum/antagonist/infiltrator/I = M.has_antag_datum(/datum/antagonist/infiltrator)
 		if(I)
 			I.objectives |= objectives
