@@ -463,7 +463,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	name = "integrated tank"
 	desc = "A small tank for the storage of gases."
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
-	size = 15
+	size = 4
 	activators = list(
 			"push ref" = IC_PINTYPE_PULSE_IN
 			)
@@ -514,7 +514,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	name = "large integrated tank"
 	desc = "A less small tank for the storage of gases."
 	volume = 9
-	size = 21
+	size = 12
 	spawn_flags = IC_SPAWN_RESEARCH
 
 
@@ -523,7 +523,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	name = "freezer tank"
 	desc = "Cools the gas it contains to a preset temperature."
 	volume = 6
-	size = 21
+	size = 8
 	inputs = list(
 		"target temperature" = IC_PINTYPE_NUMBER,
 		"on" = IC_PINTYPE_BOOLEAN
@@ -557,7 +557,6 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	name = "heater tank"
 	desc = "Heats the gas it contains to a preset temperature."
 	volume = 6
-	size = 21
 	inputs = list(
 		"target temperature" = IC_PINTYPE_NUMBER,
 		"on" = IC_PINTYPE_BOOLEAN
@@ -671,7 +670,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	container_type = OPENCONTAINER
 
 	complexity = 25
-	size = 37
+	size = 30
 	inputs = list()
 	outputs = list(
 		"pressure used" = IC_PINTYPE_NUMBER,
