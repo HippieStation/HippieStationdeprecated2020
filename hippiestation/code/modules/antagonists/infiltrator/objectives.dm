@@ -1,7 +1,6 @@
 #define MIN_POWER_DRAIN 25000000
 #define MAX_POWER_DRAIN 100000000
 
-GLOBAL_LIST_INIT(minor_infiltrator_objectives, list(/datum/objective/assassinate, /datum/objective/steal, /datum/objective/download))
 GLOBAL_LIST_INIT(infiltrator_kidnap_areas, typecacheof(list(/area/shuttle/hippie/stealthcruiser, /area/hippie/infiltrator_base)))
 
 /datum/objective/infiltrator
