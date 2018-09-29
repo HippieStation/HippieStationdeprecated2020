@@ -4,7 +4,6 @@
 	roundend_category = "shadowlings"
 	antagpanel_category = "Shadowlings"
 	antag_moodlet = /datum/mood_event/sling
-	var/list/objectives_given = list()
 	var/datum/team/shadowling/sling_team
 
 /datum/antagonist/shadowling/create_team(datum/team/shadowling/new_team)
@@ -48,13 +47,10 @@
 
 	var/datum/objective/ascend/O = new
 	O.update_explanation_text()
-	owner.objectives += O
-	objectives_given += O
+	objectives |= O
 	owner.announce_objectives()
 
 /datum/antagonist/shadowling/on_removal()
-	for(var/O in objectives_given)
-		owner.objectives -= O
 	SSticker.mode.update_shadow_icons_removed(owner)
 	SSticker.mode.shadows.Remove(owner)
 	message_admins("[key_name_admin(owner.current)] was de-shadowlinged!")

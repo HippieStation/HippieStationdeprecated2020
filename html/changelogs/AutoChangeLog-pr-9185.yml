@@ -1,4 +1,0 @@
-author: "Shdorsh"
-delete-after: True
-changes: 
-  - bugfix: "Join list circuits now have 2 inputs, as they should"
