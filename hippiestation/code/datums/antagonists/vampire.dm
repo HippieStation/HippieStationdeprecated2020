@@ -11,7 +11,6 @@
 	var/total_blood = 0
 	var/fullpower = FALSE
 	var/draining
-	var/list/objectives_given = list()
 
 	var/iscloaking = FALSE
 
@@ -80,9 +79,6 @@
 		if(owner && H.hud_used && H.hud_used.vamp_blood_display)
 			H.hud_used.vamp_blood_display.invisibility = INVISIBILITY_ABSTRACT
 	SSticker.mode.update_vampire_icons_removed(owner)
-	for(var/O in objectives_given)
-		owner.objectives -= O
-	LAZYCLEARLIST(objectives_given)
 	if(owner.current)
 		to_chat(owner.current,"<span class='userdanger'>Your powers have been quenched! You are no longer a vampire</span>")
 	owner.special_role = null
@@ -99,7 +95,7 @@
 	to_chat(owner, "<span class='danger bold'>You are a creature of the night -- holy water, the chapel, and space will cause you to burn.</span>")
 	to_chat(owner, "<span class='notice bold'>Hit someone in the head with harm intent to start sucking their blood. However, only blood from living creatures is usable!</span>")
 	to_chat(owner, "<span class='notice bold'>Coffins will heal you.</span>")
-	if(LAZYLEN(objectives_given))
+	if(LAZYLEN(objectives))
 		owner.announce_objectives()
 	owner.current.playsound_local(get_turf(owner.current), 'hippiestation/sound/ambience/antag/vampire.ogg',80,0)
 
@@ -112,15 +108,14 @@
 	for(var/i = 1, i < CONFIG_GET(number/traitor_objectives_amount), i++)
 		forge_single_objective()
 
-	if(!(locate(/datum/objective/escape) in owner.objectives))
+	if(!(locate(/datum/objective/escape) in objectives))
 		var/datum/objective/escape/escape_objective = new
 		escape_objective.owner = owner
 		add_objective(escape_objective)
 		return
 
 /datum/antagonist/vampire/proc/add_objective(var/datum/objective/O)
-	owner.objectives += O
-	objectives_given += O
+	objectives |= O
 
 /datum/antagonist/vampire/proc/forge_single_objective() //Returns how many objectives are added
 	.=1
@@ -327,9 +322,9 @@
 	result += printplayer(owner)
 
 	var/objectives_text = ""
-	if(objectives_given.len)//If the vampire had no objectives, don't need to process this.
+	if(LAZYLEN(objectives))//If the vampire had no objectives, don't need to process this.
 		var/count = 1
-		for(var/datum/objective/objective in objectives_given)
+		for(var/datum/objective/objective in objectives)
 			if(objective.check_completion())
 				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <span class='greentext'>Success!</span>"
 			else

@@ -1,5 +1,0 @@
-author: "Shdorsh"
-delete-after: True
-changes: 
-  - rscadd: "text replacer circuit"
-  - bugfix: "Integrated a tg file correctly"

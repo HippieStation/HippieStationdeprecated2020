@@ -1,0 +1,7 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - rscadd: "Infiltration gamemode"
+  - rscadd: "Basically some syndie agents have to activate _maximum stealth_ and sneak into the station to complete some objectives. They don't get access to certain weapons capable of causing mass harm/destruction and easily undoing any stealth."
+  - rscadd: "They get 1 or 2 \"unique\" objectives, and 3-4 normal traitor objectives"
+  - rscadd: "The current unique objects are: steal X amount of power, kidnap a head of staff or security member, or hijack the AI"

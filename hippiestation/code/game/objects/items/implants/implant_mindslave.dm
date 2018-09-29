@@ -41,7 +41,10 @@
 			protect_objective.owner = target.mind
 			protect_objective.target = user.mind
 			protect_objective.explanation_text = "Protect [user], your mindslave master. Obey any command given by them."
-			target.mind.objectives += protect_objective
+			var/datum/antagonist/mindslave/M = target.mind.add_antag_datum(/datum/antagonist/mindslave)
+			M.master_name = user.real_name
+			M.master_ckey = user.ckey
+			M.objectives |= protect_objective
 			message_admins("[user]/([user.ckey]) made a mindslave out of [target]/([target.ckey]).")
 			return 1
 	to_chat(user,"<span class='notice'>[target] has no mind!</span>")
@@ -81,7 +84,7 @@
 			SSticker.mode.traitors -= imp_in.mind
 		to_chat(imp_in,"<span class='userdanger'>You feel your free will come back to you! You no longer have to obey your master!</span>")
 		to_chat(imp_in,"<span class='userdanger'>If you were not an antagonist BEFORE being mindslave, then you no longer are one.</span>")
-		protect_objective.owner.objectives -= protect_objective
+		imp_in.mind.remove_antag_datum(/datum/antagonist/mindslave)
 		QDEL_NULL(protect_objective)
 		message_admins("[imp_in]/([imp_in.ckey]) is no longer a mindslave.")
 

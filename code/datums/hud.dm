@@ -27,11 +27,9 @@ GLOBAL_LIST_INIT(huds, list(
 	ANTAG_HUD_SOULLESS = new/datum/atom_hud/antag/hidden(),
 	ANTAG_HUD_CLOCKWORK = new/datum/atom_hud/antag(),
 	ANTAG_HUD_BROTHER = new/datum/atom_hud/antag/hidden(),
-<<<<<<< HEAD
-	ANTAG_HUD_VAMPIRE = new/datum/atom_hud/antag/hidden(), // hippie -- adds vampire hud
-=======
 	ANTAG_HUD_HIVE = new/datum/atom_hud/antag/hidden(),
->>>>>>> 9e8d7509b6... [READY] [Gamemode Bounty] Assimilation (#40296)
+	ANTAG_HUD_VAMPIRE = new/datum/atom_hud/antag/hidden(),		// hippie -- adds vampire hud
+	ANTAG_HUD_INFILTRATOR = new/datum/atom_hud/antag(),			// hippie -- adds infiltrator hud
 	))
 
 /datum/atom_hud

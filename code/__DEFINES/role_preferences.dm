@@ -6,30 +6,6 @@
 
 //These are synced with the Database, if you change the values of the defines
 //then you MUST update the database!
-<<<<<<< HEAD
-
-#define ROLE_SYNDICATE			"Syndicate"
-#define ROLE_TRAITOR			"traitor"
-#define ROLE_OPERATIVE			"operative"
-#define ROLE_CHANGELING			"changeling"
-#define ROLE_WIZARD				"wizard"
-#define ROLE_MALF				"malf AI"
-#define ROLE_REV				"revolutionary"
-#define ROLE_REV_HEAD			"Head Revolutionary"
-#define ROLE_ALIEN				"xenomorph"
-#define ROLE_PAI				"pAI"
-#define ROLE_CULTIST			"cultist"
-#define ROLE_BLOB				"blob"
-#define ROLE_NINJA				"space ninja"
-#define ROLE_MONKEY				"monkey"
-#define ROLE_ABDUCTOR			"abductor"
-#define ROLE_REVENANT			"revenant"
-#define ROLE_DEVIL				"devil"
-#define ROLE_SERVANT_OF_RATVAR	"servant of Ratvar"
-#define ROLE_BROTHER			"blood brother"
-#define ROLE_BRAINWASHED		"brainwashed victim"
-#define ROLE_OVERTHROW			"syndicate mutineer"
-=======
 #define ROLE_SYNDICATE				"Syndicate"
 #define ROLE_TRAITOR				"traitor"
 #define ROLE_OPERATIVE				"operative"
@@ -52,17 +28,17 @@
 #define ROLE_BRAINWASHED			"brainwashed victim"
 #define ROLE_OVERTHROW				"syndicate mutineer"
 #define ROLE_HIVE					"hivemind host"
->>>>>>> 9e8d7509b6... [READY] [Gamemode Bounty] Assimilation (#40296)
 #define ROLE_SENTIENCE          	"sentience potion spawn"
 #define ROLE_MIND_TRANSFER          "mind transfer potion"
 #define ROLE_POSIBRAIN              "posibrain"
 #define ROLE_DRONE                  "drone"
 #define ROLE_DEATHSQUAD             "deathsquad"
 #define ROLE_LAVALAND               "lavaland"
+#define ROLE_INTERNAL_AFFAIRS	"internal affairs agent"
 #define ROLE_VAMPIRE			"vampire" // hippie -- adds vampire role
 #define ROLE_SHADOWLING			"shadowling" // hippie -- adds shadowling role
 #define ROLE_GANG				"gangster" // hippie -- adds gang related role
-#define ROLE_INTERNAL_AFFAIRS	"internal affairs agent"
+#define ROLE_INFILTRATOR		"syndicate infiltrator" // hippie -- adds infiltrator role
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
 //The gamemode specific ones are just so the gamemodes can query whether a player is old enough
@@ -86,15 +62,13 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_DEVIL = /datum/game_mode/devil,
 	ROLE_SERVANT_OF_RATVAR = /datum/game_mode/clockwork_cult,
 	ROLE_OVERTHROW = /datum/game_mode/overthrow,
-<<<<<<< HEAD
+	ROLE_HIVE = /datum/game_mode/hivemind,
+	ROLE_SENTIENCE,
+	ROLE_INTERNAL_AFFAIRS = /datum/game_mode/traitor/internal_affairs,
 	ROLE_SHADOWLING = /datum/game_mode/shadowling, // hippie -- adds shadowling role=gamemode
 	ROLE_VAMPIRE = /datum/game_mode/vampire, // hippie -- adds vampire role=gamemode
 	ROLE_GANG = /datum/game_mode/gang, // hippie -- adds gang role=gamemode
-=======
-	ROLE_HIVE = /datum/game_mode/hivemind,
->>>>>>> 9e8d7509b6... [READY] [Gamemode Bounty] Assimilation (#40296)
-	ROLE_INTERNAL_AFFAIRS = /datum/game_mode/traitor/internal_affairs,
-	ROLE_SENTIENCE
+	ROLE_INFILTRATOR = /datum/game_mode/infiltration // hippie -- adds infiltrator role=gamemode
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection
