@@ -3,7 +3,7 @@
 
 /obj/item/pinpointer/infiltrator
 	name = "infiltration pinpointer"
-	icon = 'hippiestation/icons/obj/device.dmi'
+	icon = 'icons/obj/device.dmi'
 	var/upgraded = FALSE
 	var/datum/team/team
 	var/mode = MODE_CUTTER
@@ -54,6 +54,7 @@
 		if(!DAI || !DAI.infiltrator_team)
 			return ..()
 		team = DAI.infiltrator_team
+		icon = 'hippiestation/icons/obj/device.dmi'
 		icon_state = "pinpointer_upgraded"
 		upgraded = TRUE
 		to_chat(user, "<span class='notice'>You attach the new antenna to [src].</span>")
