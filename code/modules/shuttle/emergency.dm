@@ -10,6 +10,7 @@
 	icon_keyboard = "tech_key"
 	var/auth_need = 3
 	var/list/authorized = list()
+	var/list/last_action = list() // hippie -- kill shuttle auth spam
 
 /obj/machinery/computer/emergency_shuttle/attackby(obj/item/I, mob/user,params)
 	if(istype(I, /obj/item/card/id))
@@ -68,7 +69,11 @@
 		return
 
 	var/old_len = authorized.len
-
+	
+	if(LAZYLEN(last_action) && last_action[user] && last_action[user] >= world.time + 10) // hippie start -- stop shuttle auth spam
+		return
+	LAZYSET(last_action, user, world.time) // hippie end
+	
 	switch(action)
 		if("authorize")
 			. = authorize(user)
