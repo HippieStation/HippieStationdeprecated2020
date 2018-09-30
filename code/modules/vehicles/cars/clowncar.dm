@@ -52,7 +52,8 @@
 		var/mob/living/L = M
 		if(iscarbon(L))
 			var/mob/living/carbon/C = L
-			C.Knockdown(40) //I play to make sprites go horizontal
+			if(car_traits & CAN_KIDNAP) // hippie -- make non-kidnapping clown cars not stun
+				C.Knockdown(40) //I play to make sprites go horizontal
 		L.visible_message("<span class='warning'>[src] rams into [L] and sucks him up!</span>") //fuck off shezza this isn't ERP.
 		mob_forced_enter(L)
 		playsound(src, pick('sound/vehicles/clowncar_ram1.ogg', 'sound/vehicles/clowncar_ram2.ogg', 'sound/vehicles/clowncar_ram3.ogg'), 75)
