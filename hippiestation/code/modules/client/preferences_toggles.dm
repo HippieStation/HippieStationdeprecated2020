@@ -26,3 +26,18 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/Settings/Sound, toggle_footsteps)()
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Footsteps", "[usr.client.prefs.toggles & SOUND_FOOTSTEPS ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 /datum/verbs/menu/Settings/Sound/toggle_footsteps/Get_checked(client/C)
 	return C.prefs.hippie_toggles & SOUND_FOOTSTEPS
+
+TOGGLE_CHECKBOX(/datum/verbs/menu/Settings/Sound, toggle_vox)()
+	set name = "Hear/Silence AI VOX"
+	set category = "Preferences"
+	set desc = "Hear AI VOX"
+	usr.client.prefs.hippie_toggles ^= SOUND_VOX
+	usr.client.prefs.save_preferences()
+	if(usr.client.prefs.hippie_toggles & SOUND_VOX)
+		to_chat(usr, "You will now hear AI VOX.")
+	else
+		to_chat(usr, "You will no longer hear AI VOX.")
+	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle AI VOX", "[usr.client.prefs.toggles & SOUND_VOX ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/datum/verbs/menu/Settings/Sound/toggle_vox/Get_checked(client/C)
+	return C.prefs.hippie_toggles & SOUND_VOX

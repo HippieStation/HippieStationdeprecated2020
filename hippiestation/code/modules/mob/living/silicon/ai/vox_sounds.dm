@@ -5,7 +5,6 @@
 GLOBAL_LIST_INIT(vox_sounds, list("," = 'hippiestation/sound/vox/_comma.ogg',
 "." = 'hippiestation/sound/vox/_period.ogg',
 "a" = 'hippiestation/sound/vox/a.ogg',
-"accelerating" = 'hippiestation/sound/vox/accelerating.ogg',
 "accelerator" = 'hippiestation/sound/vox/accelerator.ogg',
 "accepted" = 'hippiestation/sound/vox/accepted.ogg',
 "access" = 'hippiestation/sound/vox/access.ogg',
