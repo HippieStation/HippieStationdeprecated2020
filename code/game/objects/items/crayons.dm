@@ -1,6 +1,9 @@
 #define RANDOM_GRAFFITI "Random Graffiti"
 #define RANDOM_LETTER "Random Letter"
+#define RANDOM_PUNCTUATION "Random Punctuation"
 #define RANDOM_NUMBER "Random Number"
+#define RANDOM_SYMBOL "Random Symbol"
+#define RANDOM_DRAWING "Random Drawing"
 #define RANDOM_ORIENTED "Random Oriented"
 #define RANDOM_RUNE "Random Rune"
 #define RANDOM_ANY "Random Anything"
@@ -32,6 +35,7 @@
 	var/drawtype
 	var/text_buffer = ""
 
+<<<<<<< HEAD
 	var/list/graffiti = list("amyjon","face","matt","revolution","engie","guy","end","dwarf","uboa","body","cyka","arrow","star","poseur tag","prolizard","antilizard")
 	var/list/letters = list("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z")
 	var/list/numerals = list("0","1","2","3","4","5","6","7","8","9")
@@ -42,6 +46,21 @@
 	var/list/graffiti_large_h = list("yiffhell", "secborg", "paint")
 
 	var/list/all_drawables
+=======
+	var/static/list/graffiti = list("amyjon","face","matt","revolution","engie","guy","end","dwarf","uboa","body","cyka","star","poseur tag","prolizard","antilizard")
+	var/static/list/letters = list("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z")
+	var/static/list/punctuation = list("!","?",".",",","/","+","-","=","%","#","&")
+	var/static/list/numerals = list("0","1","2","3","4","5","6","7","8","9")
+	var/static/list/symbols = list("danger","firedanger","electricdanger","biohazard","radiation","safe","evac","space","med","trade","shop","food","peace","like","skull","nay","heart","credit")
+	var/static/list/drawings = list("smallbrush","brush","largebrush","splatter","snake","stickman","carp","ghost","clown","taser","disk","fireaxe","toolbox","corgi","cat","toilet","blueprint","beepsky","scroll","bottle","shotgun")
+	var/static/list/oriented = list("arrow","line","thinline","shortline","body","chevron","footprint","clawprint","pawprint") // These turn to face the same way as the drawer
+	var/static/list/runes = list("rune1","rune2","rune3","rune4","rune5","rune6")
+	var/static/list/randoms = list(RANDOM_ANY, RANDOM_RUNE, RANDOM_ORIENTED,
+		RANDOM_NUMBER, RANDOM_GRAFFITI, RANDOM_LETTER, RANDOM_SYMBOL, RANDOM_PUNCTUATION, RANDOM_DRAWING)
+	var/static/list/graffiti_large_h = list("yiffhell", "secborg", "paint")
+
+	var/static/list/all_drawables = graffiti + letters + punctuation + numerals + symbols + drawings + oriented + runes + graffiti_large_h
+>>>>>>> c6803492ab... Add new graffiti (#40559)
 
 	var/paint_mode = PAINT_NORMAL
 
@@ -171,10 +190,25 @@
 	for(var/L in letters)
 		L_items += list(list("item" = L))
 
+	var/list/P_items = list()
+	. += list(list("name" = "Punctuation", "items" = P_items))
+	for(var/P in punctuation)
+		P_items += list(list("item" = P))
+
 	var/list/N_items = list()
 	D += list(list(name = "Numerals", "items" = N_items))
 	for(var/N in numerals)
 		N_items += list(list("item" = N))
+
+	var/list/S_items = list()
+	. += list(list("name" = "Symbols", "items" = S_items))
+	for(var/S in symbols)
+		S_items += list(list("item" = S))
+
+	var/list/D_items = list()
+	. += list(list("name" = "Drawings", "items" = D_items))
+	for(var/D in drawings)
+		D_items += list(list("item" = D))
 
 	var/list/O_items = list()
 	D += list(list(name = "Oriented", "items" = O_items))
@@ -236,7 +270,7 @@
 	var/list/base = string2charlist(lowertext(text))
 	var/list/out = list()
 	for(var/a in base)
-		if(a in (letters|numerals))
+		if(a in (letters|numerals|punctuation))
 			out += a
 	return jointext(out,"")
 
@@ -270,6 +304,12 @@
 	switch(drawtype)
 		if(RANDOM_LETTER)
 			drawing = pick(letters)
+		if(RANDOM_PUNCTUATION)
+			drawing = pick(punctuation)
+		if(RANDOM_SYMBOL)
+			drawing = pick(symbols)
+		if(RANDOM_DRAWING)
+			drawing = pick(drawings)
 		if(RANDOM_GRAFFITI)
 			drawing = pick(graffiti)
 		if(RANDOM_RUNE)
@@ -284,7 +324,13 @@
 	var/temp = "rune"
 	if(drawing in letters)
 		temp = "letter"
-	else if(drawing in graffiti)
+	else if(drawing in punctuation)
+		temp = "punctuation mark"
+	else if(drawing in symbols)
+		temp = "symbol"
+	else if(drawing in drawings)
+		temp = "drawing"
+	else if(drawing in graffiti|oriented)
 		temp = "graffiti"
 	else if(drawing in numerals)
 		temp = "number"
@@ -706,6 +752,9 @@ hippie end */
 
 #undef RANDOM_GRAFFITI
 #undef RANDOM_LETTER
+#undef RANDOM_PUNCTUATION
+#undef RANDOM_SYMBOL
+#undef RANDOM_DRAWING
 #undef RANDOM_NUMBER
 #undef RANDOM_ORIENTED
 #undef RANDOM_RUNE
