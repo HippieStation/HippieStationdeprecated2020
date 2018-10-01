@@ -1,0 +1,4 @@
+author: "Shdorsh"
+delete-after: True
+changes: 
+  - rscadd: "Added a circuit which lets you connect to an exposed wire, read its powernet load and availability as well as either insert a certain amount of energy up to the assembly's batter charge or charge your assembly up to the wire's available power."
