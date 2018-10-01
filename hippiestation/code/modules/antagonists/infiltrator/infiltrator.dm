@@ -35,6 +35,7 @@
 	to_chat(owner, "<span class='notice'>You also have an internal radio, for communicating with your team-mates at all times.</span>")
 	to_chat(owner, "<span class='notice'>You have a dusting implant, to ensure that Nanotrasen does not get their hands on Syndicate gear. Only activate it, if you are compromised.</span>")
 	to_chat(owner, "<span class='notice bold'>Do NOT kill or destroy needlessly, as this defeats the purpose of an 'infiltration'!</span>")
+	to_chat(owner, "<span class='notice italics bold'>Once your objectives are complete, return to base, with all living infiltrators, to end the round.</span>")
 
 /datum/antagonist/infiltrator/on_gain()
 	var/mob/living/carbon/human/H = owner.current
