@@ -15,8 +15,7 @@
 
 /obj/effect/decal/cleanable/crayon/gang/Initialize(mapload, datum/team/gang/G, e_name = "gang tag", rotation = 0,  mob/user)
 	if(!G)
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 	gang = G
 	var/newcolor = G.color
 	var/area/territory = get_area(src)
@@ -31,4 +30,8 @@
 		gang.territories -= territory.type
 		gang.new_territories -= territory.type
 		gang.lost_territories |= list(territory.type = territory.name)
+		gang = null
 	return ..()
+
+/obj/effect/decal/cleanable/crayon/NeverShouldHaveComeHere(turf/T)
+	return isspaceturf(T) || islava(T) || istype(T, /turf/open/water) || ischasm(T)

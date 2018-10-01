@@ -41,9 +41,9 @@
 	if(istype(H))
 		if(dress_up)
 			H.set_species(/datum/species/human)
+			var/new_name = H.dna.species.random_name(H.gender, TRUE)
+			H.fully_replace_character_name(H.real_name, new_name)
 			H.equipOutfit(/datum/outfit/infiltrator)
-			H.real_name = H.dna.species.random_name(H.gender, TRUE)
-			owner.name = H.real_name
 		purrbation_remove(H, silent=TRUE)
 	owner.store_memory("Do <B>NOT</B> kill or destroy needlessly, as this defeats the purpose of an 'infiltration'!")
 	objectives |= infiltrator_team.objectives

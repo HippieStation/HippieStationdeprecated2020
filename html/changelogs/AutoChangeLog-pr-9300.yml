@@ -1,0 +1,7 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - bugfix: "Upgraded infiltrator pinpointers now actually show the arrow"
+  - bugfix: "Infiltrators show now properly get a random name"
+  - bugfix: "Infiltrator uplink purchases should now show properly at roundend"
+  - bugfix: "Infiltrators should no longer get weird objectives, like duplicates of download."

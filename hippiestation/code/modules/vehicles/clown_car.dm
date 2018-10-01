@@ -11,6 +11,8 @@
 		to_chat(user, "<span class='notice'>You get out of [src].</span>")
 		mob_exit(M, silent)
 		return TRUE
+	else
+		..()
 
 /obj/vehicle/sealed/car/clowncar/roundstart/DumpMobs(randomstep = FALSE)//So people are not stunned on exiting the clowncar
 	for(var/i in occupants)
