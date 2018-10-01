@@ -35,7 +35,6 @@
 	var/drawtype
 	var/text_buffer = ""
 
-	var/list/all_drawables
 	var/static/list/graffiti = list("amyjon","face","matt","revolution","engie","guy","end","dwarf","uboa","body","cyka","star","poseur tag","prolizard","antilizard")
 	var/static/list/letters = list("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z")
 	var/static/list/punctuation = list("!","?",".",",","/","+","-","=","%","#","&")
