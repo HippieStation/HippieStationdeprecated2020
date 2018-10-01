@@ -934,11 +934,7 @@
 						security_level = AIRLOCK_SECURITY_PLASTEEL_O_S
 					return
 			if(AIRLOCK_SECURITY_PLASTEEL)
-<<<<<<< HEAD
-				if(C.tool_behaviour == TOOL_WIRECUTTER) // hippie -- make holotool work via tool behavior
-=======
 				if(C.tool_behaviour == TOOL_WIRECUTTER)
->>>>>>> 2fa1ac1349... Replaces istypes with the proper tool_behaviour checks. (#40414)
 					if(src.hasPower() && src.shock(user, 60)) // Protective grille of wiring is electrified
 						return
 					to_chat(user, "<span class='notice'>You start cutting through the outer grille.</span>")
@@ -949,11 +945,7 @@
 											"<span class='notice'>You cut through \the [src]'s outer grille.</span>")
 						security_level = AIRLOCK_SECURITY_PLASTEEL_O
 					return
-<<<<<<< HEAD
-	if(C.tool_behaviour == TOOL_SCREWDRIVER) // hippie -- make holotool work via tool behavior
-=======
 	if(C.tool_behaviour == TOOL_SCREWDRIVER)
->>>>>>> 2fa1ac1349... Replaces istypes with the proper tool_behaviour checks. (#40414)
 		if(panel_open && detonated)
 			to_chat(user, "<span class='warning'>[src] has no maintenance panel!</span>")
 			return
@@ -961,11 +953,7 @@
 		to_chat(user, "<span class='notice'>You [panel_open ? "open":"close"] the maintenance panel of the airlock.</span>")
 		C.play_tool_sound(src)
 		src.update_icon()
-<<<<<<< HEAD
-	else if(C.tool_behaviour == TOOL_WIRECUTTER && note) // hippie -- make holotool work via tool behavior
-=======
 	else if((C.tool_behaviour == TOOL_WIRECUTTER) && note)
->>>>>>> 2fa1ac1349... Replaces istypes with the proper tool_behaviour checks. (#40414)
 		user.visible_message("<span class='notice'>[user] cuts down [note] from [src].</span>", "<span class='notice'>You remove [note] from [src].</span>")
 		C.play_tool_sound(src)
 		note.forceMove(get_turf(user))
