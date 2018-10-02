@@ -843,11 +843,7 @@
 						update_icon()
 					return
 			if(AIRLOCK_SECURITY_METAL)
-<<<<<<< HEAD
-				if(C.tool_behaviour == TOOL_WELDER) // hippie -- make holotool work via tool behavior
-=======
 				if(C.tool_behaviour == TOOL_WELDER)
->>>>>>> 2fa1ac1349... Replaces istypes with the proper tool_behaviour checks. (#40414)
 					if(!C.tool_start_check(user, amount=2))
 						return
 					to_chat(user, "<span class='notice'>You begin cutting the panel's shielding...</span>")
@@ -862,11 +858,7 @@
 						update_icon()
 					return
 			if(AIRLOCK_SECURITY_PLASTEEL_I_S)
-<<<<<<< HEAD
-				if(C.tool_behaviour == TOOL_CROWBAR) // hippie -- make holotool work via tool behavior
-=======
 				if(C.tool_behaviour == TOOL_CROWBAR)
->>>>>>> 2fa1ac1349... Replaces istypes with the proper tool_behaviour checks. (#40414)
 					var/obj/item/crowbar/W = C
 					to_chat(user, "<span class='notice'>You start removing the inner layer of shielding...</span>")
 					if(W.use_tool(src, user, 40, volume=100))
@@ -883,11 +875,7 @@
 						update_icon()
 					return
 			if(AIRLOCK_SECURITY_PLASTEEL_I)
-<<<<<<< HEAD
-				if(C.tool_behaviour == TOOL_WELDER) // hippie -- make holotool work via tool behavior
-=======
 				if(C.tool_behaviour == TOOL_WELDER)
->>>>>>> 2fa1ac1349... Replaces istypes with the proper tool_behaviour checks. (#40414)
 					if(!C.tool_start_check(user, amount=2))
 						return
 					to_chat(user, "<span class='notice'>You begin cutting the inner layer of shielding...</span>")
@@ -900,11 +888,7 @@
 						security_level = AIRLOCK_SECURITY_PLASTEEL_I_S
 					return
 			if(AIRLOCK_SECURITY_PLASTEEL_O_S)
-<<<<<<< HEAD
-				if(C.tool_behaviour == TOOL_CROWBAR) // hippie -- make holotool work via tool behavior
-=======
 				if(C.tool_behaviour == TOOL_CROWBAR)
->>>>>>> 2fa1ac1349... Replaces istypes with the proper tool_behaviour checks. (#40414)
 					to_chat(user, "<span class='notice'>You start removing outer layer of shielding...</span>")
 					if(C.use_tool(src, user, 40, volume=100))
 						if(!panel_open)
@@ -917,11 +901,7 @@
 						spawn_atom_to_turf(/obj/item/stack/sheet/plasteel, user.loc, 1)
 					return
 			if(AIRLOCK_SECURITY_PLASTEEL_O)
-<<<<<<< HEAD
-				if(C.tool_behaviour == TOOL_WELDER) // hippie -- make holotool work via tool behavior
-=======
 				if(C.tool_behaviour == TOOL_WELDER)
->>>>>>> 2fa1ac1349... Replaces istypes with the proper tool_behaviour checks. (#40414)
 					if(!C.tool_start_check(user, amount=2))
 						return
 					to_chat(user, "<span class='notice'>You begin cutting the outer layer of shielding...</span>")
