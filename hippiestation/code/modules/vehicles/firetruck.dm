@@ -1,32 +1,34 @@
 #define MOVE 1
 #define REAGENTS_PER_EFFECT 5
 
-/obj/vehicle/sealed/firetruck // spray those motherfuckers, boy
+/obj/vehicle/ridden/firetruck // spray those motherfuckers, boy
 	name = "firetruck"
-	icon_state = "engineering_pod"
+	icon = 'hippiestation/icons/obj/vehicles.dmi'
+	icon_state = "firetruck"
 	desc = "Atmos techs primary backup, this truck is loaded with a reagent pump, normally loaded with firefighting foam, to handle big fires and such. It can also accept water."
 	movedelay = 3 // You have a LOT of water, can't be too fast too
 	container_type = OPENCONTAINER
 	var/obj/item/water_cannon_controls/controls
-	var/is_spraying = FALSE
 	var/num_of_effects = 3
 	var/datum/effect_system/water_cannon/water_cannon
 	var/list/whitelist = list("water", "firefighting_foam")
 
-/obj/vehicle/sealed/firetruck/Initialize()
+/obj/vehicle/ridden/firetruck/Initialize()
 	. = ..()
 	create_reagents(REAGENTS_PER_EFFECT*1000)
 	reagents.add_reagent("firefighting_foam", REAGENTS_PER_EFFECT*1000)
 	controls = new(src,src)
 	water_cannon = new
 	water_cannon.attach(src)
+	var/datum/component/riding/D = LoadComponent(/datum/component/riding)
+	D.set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 4), TEXT_SOUTH = list(0, 4), TEXT_EAST = list(0, 4), TEXT_WEST = list( 0, 4)))
 
-/obj/vehicle/sealed/firetruck/Destroy()
+/obj/vehicle/ridden/firetruck/Destroy()
 	qdel(controls)
 	qdel(water_cannon)
 	..()
 
-/obj/vehicle/sealed/firetruck/on_reagent_change(changetype)
+/obj/vehicle/ridden/firetruck/on_reagent_change(changetype)
 	..()
 	if(changetype != ADD_REAGENT)
 		return
@@ -41,18 +43,18 @@
 	if(bad_reagent)
 		visible_message("<span class='danger'>An illegal reagent has been detected in the internal tank and successfully purged.</span>")
 
-/obj/vehicle/sealed/firetruck/emag_act(mob/user)
+/obj/vehicle/ridden/firetruck/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
 	obj_flags |= EMAGGED
 	to_chat(user, "<span class='danger'>You critically damage the dangerous reagents purge module's valve!</span>")
 
-/obj/vehicle/sealed/firetruck/proc/shoot_reagents(mob/user, atom/target)
+/obj/vehicle/ridden/firetruck/proc/shoot_reagents(mob/user, atom/target)
 	if(reagents.total_volume)
 		water_cannon.set_up(n = num_of_effects, loca = src, reagent_datum = reagents, the_target = target)
 		water_cannon.start()
 
-/obj/vehicle/sealed/firetruck/proc/spawn_water_cannon(mob/user)
+/obj/vehicle/ridden/firetruck/proc/spawn_water_cannon(mob/user)
 	if(!user.is_holding(controls)) // I didn't expect this to be so nicely readable
 		if(!user.put_in_hands(controls))
 			to_chat(user, "<span class='danger'>Your hands are full!</span>")
@@ -62,31 +64,32 @@
 		return
 	to_chat(user, "<span class='danger'>You already have the controls in your hands!</span>")
 
-/obj/vehicle/sealed/firetruck/proc/reset_controls_loc()
+/obj/vehicle/ridden/firetruck/proc/reset_controls_loc()
 	if(controls.loc != src)
 		controls.forceMove(src)
 
-/obj/vehicle/sealed/firetruck/after_remove_occupant(mob/M)
+/obj/vehicle/ridden/firetruck/after_remove_occupant(mob/M)
 	..()
 	reset_controls_loc()
 
-/obj/vehicle/sealed/firetruck/generate_actions()
+/obj/vehicle/ridden/firetruck/generate_actions()
 	. = ..()
-	initialize_controller_action_type(/datum/action/vehicle/sealed/firetruck, VEHICLE_CONTROL_DRIVE)
+	initialize_controller_action_type(/datum/action/vehicle/ridden/firetruck, VEHICLE_CONTROL_DRIVE)
 
-/obj/vehicle/sealed/firetruck/AllowClick()
+/obj/vehicle/ridden/firetruck/AllowClick()
 	return TRUE
 
 // Actions
 
-/datum/action/vehicle/sealed/firetruck
+/datum/action/vehicle/ridden/firetruck
 	name = "Start Water Cannon"
 	desc = "Pick the water cannon controls"
-	button_icon_state = "tobemade"
+	icon_icon = 'hippiestation/icons/mob/actions/actions_vehicle.dmi'
+	button_icon_state = "firetruck_controls"
 
-/datum/action/vehicle/sealed/firetruck/Trigger()
-	if(..() && istype(vehicle_entered_target, /obj/vehicle/sealed/firetruck))
-		var/obj/vehicle/sealed/firetruck/F = vehicle_entered_target
+/datum/action/vehicle/ridden/firetruck/Trigger()
+	if(..() && istype(vehicle_ridden_target, /obj/vehicle/ridden/firetruck))
+		var/obj/vehicle/ridden/firetruck/F = vehicle_ridden_target
 		F.spawn_water_cannon(owner)
 
 // Water cannon objects
@@ -97,9 +100,9 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "hand_tele"
 	item_flags = NODROP | ABSTRACT
-	var/obj/vehicle/sealed/firetruck/firetruck
+	var/obj/vehicle/ridden/firetruck/firetruck
 
-/obj/item/water_cannon_controls/Initialize(mapload, obj/vehicle/sealed/the_firetruck)
+/obj/item/water_cannon_controls/Initialize(mapload, obj/vehicle/ridden/the_firetruck)
 	. = ..()
 	firetruck = the_firetruck
 
