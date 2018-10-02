@@ -415,11 +415,7 @@
 		else
 			to_chat(user, "The wires seem fine, there's no need to fix them.")
 
-<<<<<<< HEAD
-	else if(W.tool_behaviour == TOOL_CROWBAR)	// crowbar means open or close the cover // hippie -- make holotool work
-=======
 	else if(W.tool_behaviour == TOOL_CROWBAR)	// crowbar means open or close the cover
->>>>>>> 2fa1ac1349... Replaces istypes with the proper tool_behaviour checks. (#40414)
 		if(opened)
 			to_chat(user, "<span class='notice'>You close the cover.</span>")
 			opened = 0
@@ -451,11 +447,7 @@
 		else
 			to_chat(user, "<span class='warning'>You can't reach the wiring!</span>")
 
-<<<<<<< HEAD
-	else if(W.tool_behaviour == TOOL_SCREWDRIVER && opened && !cell)	// haxing // hippie -- make holotool work
-=======
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER && opened && !cell)	// haxing
->>>>>>> 2fa1ac1349... Replaces istypes with the proper tool_behaviour checks. (#40414)
 		wiresexposed = !wiresexposed
 		to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"]")
 		update_icons()
@@ -469,11 +461,7 @@
 			to_chat(user, "<span class='warning'>Unable to locate a radio!</span>")
 		update_icons()
 
-<<<<<<< HEAD
-	else if(W.tool_behaviour == TOOL_WRENCH && opened && !cell) //Deconstruction. The flashes break from the fall, to prevent this from being a ghetto reset module. // hippie -- make holotool work
-=======
 	else if(W.tool_behaviour == TOOL_WRENCH && opened && !cell) //Deconstruction. The flashes break from the fall, to prevent this from being a ghetto reset module.
->>>>>>> 2fa1ac1349... Replaces istypes with the proper tool_behaviour checks. (#40414)
 		if(!lockcharge)
 			to_chat(user, "<span class='boldannounce'>[src]'s bolts spark! Maybe you should lock them down first!</span>")
 			spark_system.start()
