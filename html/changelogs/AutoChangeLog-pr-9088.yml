@@ -1,5 +1,0 @@
-author: "Shdorsh"
-delete-after: True
-changes: 
-  - balance: "rebalanced atmos circuits, anti-abuse measures"
-  - bugfix: "filter runtime error prevention and push ref pin fix for beaker slots"
