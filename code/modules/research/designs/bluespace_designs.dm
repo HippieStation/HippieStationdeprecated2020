@@ -53,3 +53,25 @@
 	build_path = /obj/item/storage/bag/ore/holding
 	category = list("Bluespace Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_CARGO
+
+/*
+/datum/design/rcs
+	name = "Rapid Crate Sender"
+	desc = "Teleports closets and crates to cargo telepads."
+	id = "rcs"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 5000, MAT_GLASS = 4000, MAT_BLUESPACE = 1000, MAT_SILVER = 2000)
+	build_path = /obj/item/weapon/rcs
+	category = list("Bluespace Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_CARGO
+
+/datum/design/cargo_telepad_beacon
+	name = "Cargo Telepad Beacon"
+	desc = "Creates a cargo telepad when used"
+	id = "cargo_beacon"
+	build_type = PROTOLATHE
+	materials = list(MAT_GOLD = 250, MAT_METAL = 150, MAT_GLASS = 100, MAT_BLUESPACE = 1000)
+	build_path = /obj/item/device/telepad_beacon
+	category = list("Bluespace Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_CARGO
+*/
