@@ -271,7 +271,7 @@
 		telefail()
 		temp_msg = "ERROR!<BR>Elevation is less than 1 or greater than 90."
 		return
-	if(z_co == 1 /*Centcomm*/ || z_co == 6 /*City of Cogs*/ || z_co < 1 || z_co > 13 /*Space max*/)
+	if(z_co == 1 /*Centcom*/ || z_co == 6 /*City of Cogs*/ || z_co < 1 || z_co > 13 /*Space max*/)
 		telefail()
 		temp_msg = "ERROR! Sector is outside known time and space!"
 		return
