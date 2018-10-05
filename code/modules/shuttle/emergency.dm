@@ -69,6 +69,8 @@
 
 	var/old_len = authorized.len
 
+	HIPPIE_HOOK_SHUTTLE_AUTH // hippie -- a define hook for us to avoid shuttle auth spam
+
 	switch(action)
 		if("authorize")
 			. = authorize(user)
