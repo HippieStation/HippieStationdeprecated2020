@@ -4,7 +4,11 @@
 	mood_change = -4
 
 /datum/mood_event/wellfed
+<<<<<<< HEAD
 	description = "<span class='nicegreen'>My belly feels round and full.</span>\n"
+=======
+	description = "<span class='nicegreen'>I'm stuffed!</span>\n"
+>>>>>>> 319793a56f... Merge pull request #40738 from Qustinnus/onlyicoulddothis
 	mood_change = 6
 
 /datum/mood_event/fed
