@@ -63,5 +63,10 @@
 		//there is at least one unique catalyst for the short reaction, so there is no conflict
 		return FALSE
 
+	// hippie start -- centrifuge recipes don't conflict with non centrifuge recipes regardless
+	if(r1.centrifuge_recipe != r2.centrifuge_recipe)
+		return FALSE
+	// hippie end
+
 	//if we got this far, the longer reaction will be impossible to create if the shorter one is earlier in GLOB.chemical_reactions_list, and will require the reagents to be added in a particular order otherwise
 	return TRUE
