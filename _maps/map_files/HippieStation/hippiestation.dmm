@@ -58038,6 +58038,10 @@
 	},
 /turf/open/floor/plating,
 /area/quartermaster/storage)
+"eoz" = (
+/obj/structure/sign/poster/official/dont_panic,
+/turf/closed/wall,
+/area/engine/atmos)
 "eoL" = (
 /obj/machinery/portable_atmospherics/canister/toxins,
 /turf/open/floor/plating,
@@ -65611,6 +65615,10 @@
 /obj/structure/closet/crate/bin,
 /turf/open/floor/wood,
 /area/crew_quarters/bar/maint)
+"rIL" = (
+/obj/structure/sign/poster/official/dont_panic,
+/turf/closed/wall/r_wall,
+/area/engine/engineering)
 "rKh" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /obj/machinery/portable_atmospherics/canister/nitrogen,
@@ -98814,7 +98822,7 @@ clH
 wUa
 cAB
 cBy
-clH
+rIL
 wYv
 lQA
 rZX
@@ -102136,7 +102144,7 @@ bUo
 bUo
 chq
 bUo
-bUo
+eoz
 ckx
 cdQ
 cbK
