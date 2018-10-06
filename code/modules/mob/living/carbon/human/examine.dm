@@ -241,6 +241,8 @@
 
 	if(reagents.has_reagent("teslium"))
 		msg += "[t_He] [t_is] emitting a gentle blue glow!\n"
+	
+	msg += hippie_carbon_examine() // hippie -- add our specific examine stuff
 
 	if(islist(stun_absorption))
 		for(var/i in stun_absorption)
