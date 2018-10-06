@@ -6,6 +6,6 @@
 
 /datum/action/item_action/cult_dagger/Grant(mob/M)
 	if(iscultist(M))
-		return ..()
+		return ...()
 	else
 		Remove(owner)
