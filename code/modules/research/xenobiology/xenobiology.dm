@@ -895,6 +895,21 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "potlightpink"
 
+//Can use the potion to neuter/deneuter alien facehuggers
+/obj/item/slimepotion/genderchange/attack(/obj/item/clothing/mask/facehugger/F, mob/user)
+	if(F.stat == DEAD)
+		to_chat(user, "<span class='warning'>The potion can only be used if the creature is alive!</span>")
+		return
+	
+	if(F.sterile)
+		F.visible_message("<span class='boldnotice'>[L] grows a proboscis!</span>", "<span class='boldwarning'>You feel yourself grow a proboscis!</span>")
+		sterile = 0
+	else
+		F.visible_message("<span class='boldnotice'>[L] loses its proboscis!</span>", "<span class='boldwarning'>You feel your proboscis disappear!</span>")
+		sterile = 1
+		
+	qdel(src)
+
 /obj/item/slimepotion/genderchange/attack(mob/living/L, mob/user)
 	if(!istype(L) || L.stat == DEAD)
 		to_chat(user, "<span class='warning'>The potion can only be used on living things!</span>")
