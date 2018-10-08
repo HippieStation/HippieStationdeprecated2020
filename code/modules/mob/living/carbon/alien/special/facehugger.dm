@@ -50,6 +50,10 @@
 		Die()
 
 /obj/item/clothing/mask/facehugger/attackby(obj/item/O, mob/user, params)
+	/* hippie start -- moved into type check
+	return O.attack_obj(src, user)
+	hippie end*/
+	// hippie start -- special effects when hit by genderchange potion
 	if(!istype(O, /obj/item/slimepotion/genderchange))
 		return O.attack_obj(src, user)
 
@@ -65,7 +69,8 @@
 		sterile = 1
 
 	qdel(O)
-
+	// hippie end
+	
 	return
 
 
@@ -178,7 +183,10 @@
 			if(H.is_mouth_covered(head_only = 1))
 				H.visible_message("<span class='danger'>[src] smashes against [H]'s [H.head]!</span>", \
 									"<span class='userdanger'>[src] smashes against [H]'s [H.head]!</span>")
-				GoIdle()		//Allows helmeted humans to take them back for studying
+				/* hippie start -- dying on helmet leap makes them impossible to grab
+				Die()
+				hippie end */
+				GoIdle()		//hippie -- Allows helmeted humans to take them back for studying
 				return FALSE
 
 		if(target.wear_mask)
