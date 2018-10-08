@@ -3004,7 +3004,6 @@
 #include "hippiestation\code\modules\antagonists\brother\brother.dm"
 #include "hippiestation\code\modules\antagonists\changeling\absorb.dm"
 #include "hippiestation\code\modules\antagonists\changeling\changeling.dm"
-#include "hippiestation\code\modules\antagonists\changeling\fakedeath.dm"
 #include "hippiestation\code\modules\antagonists\changeling\glands.dm"
 #include "hippiestation\code\modules\antagonists\changeling\headcrab.dm"
 #include "hippiestation\code\modules\antagonists\changeling\horrorform.dm"
