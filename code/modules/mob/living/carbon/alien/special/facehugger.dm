@@ -50,7 +50,24 @@
 		Die()
 
 /obj/item/clothing/mask/facehugger/attackby(obj/item/O, mob/user, params)
-	return O.attack_obj(src, user)
+	if(!istype(O, /obj/item/slimepotion/genderchange))
+		return O.attack_obj(src, user)
+
+	if(stat == DEAD)
+		to_chat(user, "<span class='warning'>The potion can only be used if the creature is alive!</span>")
+		return
+
+	if(sterile)
+		visible_message("<span class='danger'>[src] grows a proboscis!</span>")
+		sterile = 0
+	else
+		visible_message("<span class='danger'>[src]'s proboscis shrivels up and drops off!</span>")
+		sterile = 1
+
+	qdel(O)
+
+	return
+
 
 /obj/item/clothing/mask/facehugger/attack_alien(mob/user) //can be picked up by aliens
 	return attack_hand(user)
@@ -161,7 +178,7 @@
 			if(H.is_mouth_covered(head_only = 1))
 				H.visible_message("<span class='danger'>[src] smashes against [H]'s [H.head]!</span>", \
 									"<span class='userdanger'>[src] smashes against [H]'s [H.head]!</span>")
-				Die()
+				GoIdle()		//Allows helmeted humans to take them back for studying
 				return FALSE
 
 		if(target.wear_mask)
