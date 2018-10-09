@@ -58,6 +58,8 @@
 			to_chat(M, "<span class='big bold'><font color = red>[html_encode(title)]</font color><BR>[html_encode(message)]</span><BR>")
 			if(M.client.prefs.toggles & SOUND_ANNOUNCEMENTS)
 				if(alert)
-					SEND_SOUND(M, sound('sound/misc/notice1.ogg'))
+			//Hippie Start: Adds hippiestation/ to the start of the next sound effects. Had no idea how to modularize this, and I'm editing a HELPERS file, send help.
+					SEND_SOUND(M, sound('hippiestation/sound/misc/notice1.ogg'))
 				else
-					SEND_SOUND(M, sound('sound/misc/notice2.ogg'))
+					SEND_SOUND(M, sound('hippiestation/sound/misc/notice2.ogg'))
+			//Hippie End

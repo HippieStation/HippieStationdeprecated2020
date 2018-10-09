@@ -141,7 +141,9 @@
 	if(!src.operating) //in case of emag
 		operating = TRUE
 	do_animate("opening")
-	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
+	//Hippie Start - Changes the sounds below to the Hippiestation Version.
+	playsound(src.loc, 'hippiestation/sound/machines/windowdoor.ogg', 100, 1)
+	// Hippie End
 	src.icon_state ="[src.base_state]open"
 	sleep(10)
 
@@ -165,7 +167,9 @@
 			return 0
 	operating = TRUE
 	do_animate("closing")
-	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
+	//Hippie Start - See above
+	playsound(src.loc, 'hippiestation/sound/machines/windowdoor.ogg', 100, 1)
+	//Hippie End
 	src.icon_state = src.base_state
 
 	density = TRUE

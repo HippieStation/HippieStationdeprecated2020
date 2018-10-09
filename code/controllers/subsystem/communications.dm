@@ -23,7 +23,9 @@ SUBSYSTEM_DEF(communications)
 		minor_announce(html_decode(input),"[user.name] Announces:")
 		silicon_message_cooldown = world.time + COMMUNICATION_COOLDOWN_AI
 	else
-		priority_announce(html_decode(user.treat_message(input)), null, 'sound/misc/announce.ogg', "Captain")
+	//Hippie Start - CHANGING SOUND BELOW, BAD IDEA TO TOUCH CONTROLLERS I KNOW
+		priority_announce(html_decode(user.treat_message(input)), null, 'hippiestation/sound/misc/announce.ogg', "Captain")
+	//Hippie End
 		nonsilicon_message_cooldown = world.time + COMMUNICATION_COOLDOWN
 	user.log_talk(input, LOG_SAY, tag="priority announcement")
 	message_admins("[ADMIN_LOOKUPFLW(user)] has made a priority announcement.")

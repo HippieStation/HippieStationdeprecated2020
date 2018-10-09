@@ -47,7 +47,9 @@
 
 	spray(A)
 
-	playsound(src.loc, 'sound/effects/spray2.ogg', 50, 1, -6)
+	// Hippie Start: adds hippiestation/ to the start of the sound file.
+	playsound(src.loc, 'hippiestation/sound/effects/spray2.ogg', 50, 1, -6)
+	// Hippie End
 	user.changeNext_move(CLICK_CD_RANGE*2)
 	user.newtonian_move(get_dir(A, user))
 	var/turf/T = get_turf(src)

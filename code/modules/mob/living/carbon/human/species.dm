@@ -52,8 +52,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/list/inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 
 	var/attack_verb = "punch"	// punch-specific attack verb
-	var/sound/attack_sound = 'sound/weapons/punch1.ogg'
-	var/sound/miss_sound = 'sound/weapons/punchmiss.ogg'
+	// Hippie Start - Applies our punch sound effects from ye olde days.
+	var/sound/attack_sound = 'hippiestation/sound/weapons/punch1.ogg'
+	var/sound/miss_sound = 'hippiestation/sound/weapons/punchmiss.ogg'
+	// Hippie End
 
 	var/mob/living/list/ignored_by = list()	// list of mobs that will ignore this species
 	//Breathing!
@@ -284,7 +286,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(TRAIT_VIRUSIMMUNE in inherent_traits)
 		for(var/datum/disease/A in C.diseases)
 			A.cure(FALSE)
-			
+
 	SEND_SIGNAL(C, COMSIG_SPECIES_GAIN, src, old_species)
 
 
@@ -295,7 +297,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		C.Digitigrade_Leg_Swap(TRUE)
 	for(var/X in inherent_traits)
 		C.remove_trait(X, SPECIES_TRAIT)
-	
+
 	SEND_SIGNAL(C, COMSIG_SPECIES_LOSS, src)
 
 /datum/species/proc/handle_hair(mob/living/carbon/human/H, forced_colour)
