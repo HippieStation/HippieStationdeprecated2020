@@ -63600,12 +63600,14 @@
 /obj/machinery/atmospherics/components/binary/circulator{
 	anchored = 0;
 	flipped = 1;
+	move_resist = 1000;
 	panel_open = 1
 	},
 /obj/machinery/atmospherics/components/binary/circulator/cold{
 	anchored = 0;
 	dir = 1;
 	flipped = 1;
+	move_resist = 1000;
 	panel_open = 1
 	},
 /obj/item/paper{
