@@ -39,6 +39,8 @@
 
 /datum/antagonist/infiltrator/on_gain()
 	var/mob/living/carbon/human/H = owner.current
+	owner.assigned_role = "Syndicate Infiltrator"
+	owner.special_role = "Syndicate Infiltrator"
 	if(istype(H))
 		if(dress_up)
 			H.set_species(/datum/species/human)
