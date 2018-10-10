@@ -10,7 +10,11 @@
 		C = M
 		affecting = C.get_bodypart(check_zone(selected_zone))
 
+<<<<<<< HEAD
 	if(!M.lying && !isslime(M) && M != user) // hippie -- something related to self surgery;;if they're prone or a slime
+=======
+	if((M.mobility_flags & MOBILITY_STAND) && !isslime(M))	//if they're prone or a slime
+>>>>>>> 3e7184c975... Combat/Stun (slip) overhaul staging, mobility flags, adds crawling (#39967)
 		return
 
 	var/datum/surgery/current_surgery
