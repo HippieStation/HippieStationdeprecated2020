@@ -82,7 +82,7 @@
 		user.SpinAnimation(15, 50)
 		for(var/I in 1 to 60)
 			if(do_after(user, 3, target = target))
-				if(user.canmove && !isspaceturf(user.loc))
+				if((user.mobility_flags & MOBILITY_MOVE) && !isspaceturf(user.loc))
 					step(user, pick(GLOB.cardinals))
 					for(var/atom/movable/AM in orange(1, user))
 						if(prob(50))
