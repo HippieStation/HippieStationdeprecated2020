@@ -1012,25 +1012,8 @@
 	if(!(mobility_flags & MOBILITY_PULL))
 		if(pulling)
 			stop_pulling()
-<<<<<<< HEAD
-	else if(has_legs || ignore_legs)
-		lying = 0
-	if(buckled)
-		lying = 90*buckle_lying
-	// hippie start -- pinning
-	else if (pinned_to)
-		lying = 0
-	// hippie end
-	else if(!lying)
-		if(resting)
-			fall()
-		else if(ko || move_and_fall || (!has_legs && !ignore_legs) || chokehold)
-			fall(forced = 1)
-	canmove = !(ko || resting || IsStun() || IsFrozen() || chokehold || pinned_to || buckled || (!has_legs && !ignore_legs && !has_arms))
-=======
 	if(!(mobility_flags & MOBILITY_UI))
 		unset_machine()
->>>>>>> 3e7184c975... Combat/Stun (slip) overhaul staging, mobility flags, adds crawling (#39967)
 	density = !lying
 	var/changed = lying == lying_prev
 	if(lying)
