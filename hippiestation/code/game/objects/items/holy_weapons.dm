@@ -1,4 +1,4 @@
-/obj/item/nullrod/reskin_holy_weapon(mob/M)
+/obj/item/nullrod/reskin_holy_weapon(mob/living/M)
 	if(SSreligion.holy_weapon_type)
 		return
 	var/obj/item/nullrod/holy_weapon
@@ -10,7 +10,7 @@
 			display_names[initial(rodtype.name)] = rodtype
 
 	var/choice = input(M,"What theme would you like for your holy weapon?","Holy Weapon Theme") as null|anything in display_names
-	if(QDELETED(src) || !choice || M.stat || !in_range(M, src) || M.restrained() || !(mobility_flags & MOBILITY_MOVE) || reskinned)
+	if(QDELETED(src) || !choice || M.stat || !in_range(M, src) || M.restrained() || !(M.mobility_flags & MOBILITY_MOVE) || reskinned)
 		return
 
 	var/A = display_names[choice] // This needs to be on a separate var as list member access is not allowed for new
