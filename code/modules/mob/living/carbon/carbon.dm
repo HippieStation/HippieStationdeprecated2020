@@ -540,12 +540,7 @@
 		if(total_health <= crit_threshold && !stat)
 			if(!IsParalyzed())
 				to_chat(src, "<span class='notice'>You're too exhausted to keep going...</span>")
-<<<<<<< HEAD
-			Knockdown(70) // hippie -- undid the tg stamina buff
-=======
-			Paralyze(100)
->>>>>>> 3e7184c975... Combat/Stun (slip) overhaul staging, mobility flags, adds crawling (#39967)
-			update_health_hud()
+			Paralyze(70) // hippie edit - undid the tg stamina buff from upstream-merge-39967
 
 /mob/living/carbon/update_sight()
 	if(!client)
