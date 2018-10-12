@@ -174,8 +174,18 @@
 	eyeobj.ai = src
 	eyeobj.setLoc(loc)
 	eyeobj.name = "[name] (AI Eye)"
+<<<<<<< HEAD
 	eyeobj.mouse_opacity = MOUSE_OPACITY_OPAQUE
 	eyeobj.invisibility = INVISIBILITY_OBSERVER
+=======
+	set_eyeobj_visible(TRUE)
+
+/mob/living/silicon/ai/proc/set_eyeobj_visible(state = TRUE)
+	if(!eyeobj)
+		return
+	eyeobj.mouse_opacity = state ? MOUSE_OPACITY_ICON : initial(eyeobj.mouse_opacity)
+	eyeobj.invisibility = state ? INVISIBILITY_OBSERVER : initial(eyeobj.invisibility)
+>>>>>>> 8871e255f9... which niga copy pasted code (#40888)
 
 /mob/living/silicon/ai/verb/toggle_acceleration()
 	set category = "AI Commands"
