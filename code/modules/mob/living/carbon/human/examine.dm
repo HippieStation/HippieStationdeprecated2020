@@ -242,6 +242,7 @@
 	if(reagents.has_reagent("teslium"))
 		msg += "[t_He] [t_is] emitting a gentle blue glow!\n"
 
+
 	if(islist(stun_absorption))
 		for(var/i in stun_absorption)
 			if(stun_absorption[i]["end_time"] > world.time && stun_absorption[i]["examine_message"])
@@ -280,6 +281,10 @@
 
 		if(digitalcamo)
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
+		
+	msg += hippie_carbon_examine() // hippie -- add our specific examine stuff
+
+	msg += common_trait_examine()
 
 	var/traitstring = get_trait_string()
 	if(ishuman(user))

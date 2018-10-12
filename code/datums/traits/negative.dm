@@ -36,23 +36,6 @@
 /datum/quirk/family_heirloom/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/heirloom_type
-<<<<<<< HEAD
-	switch(quirk_holder.mind.assigned_role)
-		if("Clown")
-			heirloom_type = /obj/item/bikehorn/golden
-		if("Mime")
-			heirloom_type = /obj/item/reagent_containers/food/snacks/baguette
-		if("Lawyer")
-			heirloom_type = /obj/item/gavelhammer
-		if("Janitor")
-			heirloom_type = /obj/item/mop
-		if("Security Officer")
-			heirloom_type = /obj/item/book/manual/wiki/security_space_law
-		if("Scientist")
-			heirloom_type = /obj/item/toy/plush/slimeplushie
-		if("Assistant")
-			heirloom_type = /obj/item/storage/toolbox/mechanical/old/heirloom
-=======
 
 	if(is_species(H, /datum/species/moth) && prob(50))
 		heirloom_type = /obj/item/flashlight/lantern/heirloom_moth
@@ -119,7 +102,6 @@
 			if("Shaft Miner")
 				heirloom_type = pick(/obj/item/pickaxe/mini, /obj/item/shovel)
 
->>>>>>> 992d3207a4... Make moths spawn with lamp heirloom only half the time (#40810)
 	if(!heirloom_type)
 		heirloom_type = pick(
 		/obj/item/toy/cards/deck,

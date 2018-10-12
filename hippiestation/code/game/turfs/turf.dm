@@ -10,7 +10,7 @@
 			H.anchored = FALSE
 			H.pinned_to = null
 			H.do_pindown(src, 0)
-			H.update_canmove()
+			H.update_mobility()
 
 			for (var/obj/item/stack/rods/R in H.contents)
 				if (R.pinned)

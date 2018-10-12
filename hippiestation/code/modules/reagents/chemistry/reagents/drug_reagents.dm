@@ -159,7 +159,7 @@
 	M.adjustBrainLoss(5)
 	M.adjustToxLoss(4)
 	M.hallucination += 20
-	if(M.canmove && !istype(M.loc, /atom/movable))
+	if((M.mobility_flags & MOBILITY_MOVE) && !istype(M.loc, /atom/movable))
 		step(M, pick(GLOB.cardinals))
 		step(M, pick(GLOB.cardinals))
 	if(prob(40))
@@ -201,7 +201,7 @@
 		H.SpinAnimation(16,100)
 		if(prob(70))
 			H.Dizzy(20)
-			if(M.canmove && !istype(M.loc, /atom/movable))
+			if((M.mobility_flags & MOBILITY_MOVE) && !istype(M.loc, /atom/movable))
 				for(var/i = 0, i < 4, i++)
 				step(M, pick(GLOB.cardinals))
 		if(prob(15))

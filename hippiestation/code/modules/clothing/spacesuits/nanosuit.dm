@@ -1060,9 +1060,9 @@ mob/living/carbon/human/key_up(_key, client/user)
 	qdel(menu)
 	menu_open = FALSE
 
-/obj/item/clothing/suit/space/hardsuit/nano/proc/show_radial_menu_nano(mob/user,atom/anchor,list/choices)
+/obj/item/clothing/suit/space/hardsuit/nano/proc/show_radial_menu_nano(mob/living/user,atom/anchor,list/choices)
 	var/answer
-	if(QDELETED(user) || user.stat || user.IsKnockdown() || user.IsStun())
+	if(QDELETED(user) || user.stat || user.IsParalyzed() || user.IsStun())
 		return
 	if(!user)
 		user = usr
