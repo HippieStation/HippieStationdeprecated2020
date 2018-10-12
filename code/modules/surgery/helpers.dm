@@ -10,12 +10,9 @@
 		C = M
 		affecting = C.get_bodypart(check_zone(selected_zone))
 
-<<<<<<< HEAD
-	if((M.mobility_flags & MOBILITY_STAND) && !isslime(M) && M != user) // hippie -- something related to self surgery;;if they're prone or a slime
+	if(M != user) // hippie -- something related to self surgery
 		return
 
-=======
->>>>>>> 199339d994... Surgery cleanup (#40788)
 	var/datum/surgery/current_surgery
 
 	for(var/datum/surgery/S in M.surgeries)
