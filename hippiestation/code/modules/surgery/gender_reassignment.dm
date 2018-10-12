@@ -3,7 +3,7 @@
 /datum/surgery/gender_reassignment
 	name = "gender reassignment"
 	steps = list(/datum/surgery_step/incise, /datum/surgery_step/clamp_bleeders, /datum/surgery_step/reshape_genitals, /datum/surgery_step/close)
-	species = list(/mob/living/carbon/human)
+	target_mobtypes = list(/mob/living/carbon/human)
 	possible_locs = list("groin")
 
 
