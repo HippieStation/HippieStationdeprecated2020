@@ -27,10 +27,10 @@
 		user.visible_message("[user] has made a woman of [target]!", "<span class='notice'>You made [target] a woman.</span>")
 		target.gender = FEMALE
 	target.regenerate_icons()
-	return 1
+	return TRUE
 
 /datum/surgery_step/reshape_genitals/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	target.gender = NEUTER
 	user.visible_message("<span class='warning'>[user] accidentally mutilates [target]'s genitals beyond the point of recognition!</span>", "<span class='warning'>You accidentally mutilate [target]'s genitals beyond the point of recognition!</span>")
 	target.regenerate_icons()
-	return 1
+	return TRUE
