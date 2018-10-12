@@ -284,6 +284,8 @@
 		
 	msg += hippie_carbon_examine() // hippie -- add our specific examine stuff
 
+	msg += common_trait_examine()
+
 	var/traitstring = get_trait_string()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
