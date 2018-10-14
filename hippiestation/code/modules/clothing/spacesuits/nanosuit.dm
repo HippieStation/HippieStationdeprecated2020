@@ -12,9 +12,9 @@
 	item_flags = DROPDEL
 
 /obj/item/clothing/under/syndicate/combat/nano/equipped(mob/user, slot)
-	. = ..()
+	..()
 	if(slot == SLOT_W_UNIFORM)
-		item_flags = NODROP
+		item_flags |= NODROP
 
 /obj/item/clothing/mask/gas/nano_mask
 	name = "nanosuit gas mask"
@@ -24,9 +24,9 @@
 	item_flags = DROPDEL
 
 /obj/item/clothing/mask/gas/nano_mask/equipped(mob/user, slot)
-	.=..()
+	..()
 	if(slot == SLOT_WEAR_MASK)
-		item_flags = NODROP
+		item_flags |= NODROP
 
 /datum/action/item_action/nanojump
 	name = "Activate Strength Jump"
@@ -83,9 +83,9 @@
 
 
 /obj/item/clothing/shoes/combat/coldres/nanojump/equipped(mob/user, slot)
-	.=..()
+	..()
 	if(slot == SLOT_SHOES)
-		item_flags = NODROP
+		item_flags |= NODROP
 
 /obj/item/clothing/gloves/combat/nano
 	name = "nano gloves"
@@ -96,9 +96,9 @@
 	item_flags = DROPDEL
 
 /obj/item/clothing/gloves/combat/nano/equipped(mob/user, slot)
-	.=..()
+	..()
 	if(slot == SLOT_GLOVES)
-		item_flags = NODROP
+		item_flags |= NODROP
 
 /obj/item/radio/headset/syndicate/alt/nano
 	name = "\proper the nanosuit's bowman headset"
@@ -111,9 +111,9 @@
 	item_flags = DROPDEL
 
 /obj/item/radio/headset/syndicate/alt/nano/equipped(mob/user, slot)
-	.=..()
+	..()
 	if(slot == SLOT_EARS)
-		item_flags = NODROP
+		item_flags |= NODROP
 
 /obj/item/radio/headset/syndicate/alt/nano/emp_act()
 	return
@@ -136,9 +136,9 @@
 	colour = "#45723f"
 
 /obj/item/clothing/glasses/nano_goggles/equipped(mob/user, slot)
-	.=..()
+	..()
 	if(slot == SLOT_GLASSES)
-		item_flags = NODROP
+		item_flags |= NODROP
 
 /obj/item/clothing/glasses/nano_goggles/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/nanosuit/goggletoggle))
@@ -214,7 +214,7 @@
 	//variables for cloak pausing when shooting a suppressed gun
 	var/stealth_cloak_out = 1 //transition time out of cloak
 	var/stealth_cloak_in = 2 //transition time back into cloak
-	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
+	rad_flags = RAD_PROTECT_CONTENTS|RAD_NO_CONTAMINATE
 	rad_insulation = RAD_NO_INSULATION
 
 /obj/item/clothing/suit/space/hardsuit/nano/Initialize()
@@ -586,7 +586,7 @@
 /obj/item/clothing/head/helmet/space/hardsuit/nano/equipped(mob/living/carbon/human/wearer, slot)
 	..()
 	if(slot == SLOT_HEAD)
-		item_flags = NODROP
+		item_flags |= NODROP
 	for(var/hudtype in datahuds)
 		var/datum/atom_hud/H = GLOB.huds[hudtype]
 		H.add_hud_to(wearer)
@@ -641,7 +641,7 @@
 		if(is_station_level(T.z))
 			priority_announce("[user] has engaged [src] at [A.map_name]!","Message from The Syndicate!", 'sound/misc/notice1.ogg')
 		log_game("[user] has engaged [src]")
-		item_flags = NODROP
+		item_flags |= NODROP
 		U.unequip_everything()
 		U.equipOutfit(/datum/outfit/nanosuit)
 		U.add_trait(TRAIT_NODISMEMBER, "Nanosuit")
@@ -979,7 +979,7 @@
 /obj/item/tank/internals/emergency_oxygen/recharge/equipped(mob/living/carbon/human/wearer, slot)
 	..()
 	if(slot == SLOT_S_STORE)
-		item_flags = NODROP
+		item_flags |= NODROP
 		START_PROCESSING(SSobj, src)
 
 /obj/item/tank/internals/emergency_oxygen/recharge/dropped(mob/living/carbon/human/wearer)
