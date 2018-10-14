@@ -91,6 +91,8 @@
 	
 	msg += hippie_carbon_examine() // hippie -- add our specific examine stuff
 
+	msg += common_trait_examine()
+
 	GET_COMPONENT_FROM(mood, /datum/component/mood, src)
 	if(mood)
 		switch(mood.shown_mood)

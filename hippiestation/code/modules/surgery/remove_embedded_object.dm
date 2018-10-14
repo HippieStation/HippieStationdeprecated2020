@@ -11,7 +11,7 @@
 					target.do_pindown(target.pinned_to, 0)
 					target.pinned_to = null
 					target.anchored = 0
-					target.update_canmove()
+					target.update_mobility()
 					I.pinned = null
 			if(!H.has_embedded_objects())
 				H.clear_alert("embeddedobject")

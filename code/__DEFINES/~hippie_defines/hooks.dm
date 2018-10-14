@@ -1,0 +1,1 @@
+#define HIPPIE_HOOK_SHUTTLE_AUTH if(LAZYLEN(last_action) && last_action[user] && last_action[user] >= world.time + 10) return; LAZYSET(last_action, user, world.time)

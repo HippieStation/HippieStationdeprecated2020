@@ -41,7 +41,7 @@ LINEN BINS
 	return
 
 /obj/item/bedsheet/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/wirecutters) || I.is_sharp())
+	if(I.tool_behaviour == TOOL_WIRECUTTER || I.is_sharp())
 		var/obj/item/stack/sheet/cloth/C = new (get_turf(src), 3)
 		transfer_fingerprints_to(C)
 		C.add_fingerprint(user)
@@ -307,8 +307,10 @@ LINEN BINS
 	. = ..()
 	if(.)
 		return
-	if(user.lying)
-		return
+	if(isliving(user))
+		var/mob/living/L = user
+		if(!(L.mobility_flags & MOBILITY_PICKUP))
+			return
 	if(amount >= 1)
 		amount--
 

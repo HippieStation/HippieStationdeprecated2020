@@ -11,10 +11,6 @@
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
 	item_flags = DROPDEL
 
-/obj/item/clothing/suit/space/hardsuit/nano/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/rad_insulation, RAD_NO_INSULATION, TRUE, TRUE)
-
 /obj/item/clothing/under/syndicate/combat/nano/equipped(mob/user, slot)
 	. = ..()
 	if(slot == SLOT_W_UNIFORM)
@@ -218,11 +214,8 @@
 	//variables for cloak pausing when shooting a suppressed gun
 	var/stealth_cloak_out = 1 //transition time out of cloak
 	var/stealth_cloak_in = 2 //transition time back into cloak
-
-
-/obj/item/clothing/suit/space/hardsuit/nano/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/rad_insulation, RAD_NO_INSULATION, TRUE, TRUE)
+	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
+	rad_insulation = RAD_NO_INSULATION
 
 /obj/item/clothing/suit/space/hardsuit/nano/Initialize()
 	. = ..()
@@ -580,6 +573,8 @@
 	var/obj/machinery/doppler_array/integrated/bomb_radar
 	scan_reagents = 1
 	actions_types = list(/datum/action/item_action/nanosuit/zoom)
+	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
+	rad_insulation = RAD_NO_INSULATION
 
 /obj/item/clothing/head/helmet/space/hardsuit/nano/Initialize()
 	. = ..()
@@ -1065,9 +1060,9 @@ mob/living/carbon/human/key_up(_key, client/user)
 	qdel(menu)
 	menu_open = FALSE
 
-/obj/item/clothing/suit/space/hardsuit/nano/proc/show_radial_menu_nano(mob/user,atom/anchor,list/choices)
+/obj/item/clothing/suit/space/hardsuit/nano/proc/show_radial_menu_nano(mob/living/user,atom/anchor,list/choices)
 	var/answer
-	if(QDELETED(user) || user.stat || user.IsKnockdown() || user.IsStun())
+	if(QDELETED(user) || user.stat || user.IsParalyzed() || user.IsStun())
 		return
 	if(!user)
 		user = usr
