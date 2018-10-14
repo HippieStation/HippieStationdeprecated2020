@@ -2998,6 +2998,7 @@
 #include "hippiestation\code\modules\admin\verbs\fillbreach.dm"
 #include "hippiestation\code\modules\admin\verbs\killturfchems.dm"
 #include "hippiestation\code\modules\admin\verbs\one_click_antag.dm"
+#include "hippiestation\code\modules\admin\verbs\randomverbs.dm"
 #include "hippiestation\code\modules\admin\verbs\spawnfloorcluwne.dm"
 #include "hippiestation\code\modules\admin\verbs\spawnhuman.dm"
 #include "hippiestation\code\modules\admin\verbs\testdummy.dm"
