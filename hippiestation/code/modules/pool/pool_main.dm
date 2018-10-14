@@ -334,7 +334,7 @@
 			if(Adjacent(jumper))
 				jumper.visible_message("<span class='notice'>[user] climbs up \the [src]!</span>", \
 									 "<span class='notice'>You climb up \the [src] and prepares to jump!</span>")
-				jumper.canmove = FALSE
+				jumper.mobility_flags &= ~MOBILITY_MOVE
 				jumper.Stun(40)
 				jumping = TRUE
 				jumper.layer = 5.1
@@ -409,7 +409,7 @@
 					 "<span class='userdanger'>No one can stop you now!</span>")
 				var/atom/throw_target = get_edge_target_turf(src, dir)
 				jumper.throw_at(throw_target, 6, 1)
-	jumper.update_canmove()
+	jumper.update_mobility()
 	addtimer(CALLBACK(src, .proc/togglejumping), 35)
 
 /obj/structure/pool/Lboard/proc/togglejumping()

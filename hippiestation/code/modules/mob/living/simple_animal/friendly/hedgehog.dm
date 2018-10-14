@@ -30,7 +30,8 @@
 	scared = FALSE
 	icon_state = "Hedgehog"
 	icon_living = "Hedgehog"
-	canmove = TRUE
+	mobility_flags |= MOBILITY_MOVE
+	update_mobility()
 
 /mob/living/simple_animal/pet/hedgehog/attacked_by(obj/item/I, mob/living/user)
 	..()
@@ -39,7 +40,7 @@
 		visible_message("<span class = 'notice'> [src] curls up into a ball. </span>")
 		icon_state = "Hedgehog_ball"
 		icon_living = "Hedgehog_ball"
-		canmove = FALSE
+		mobility_flags &= ~MOBILITY_MOVE
 	addtimer(CALLBACK(src, .proc/stop_being_scared_lil_boi), FEAR_DURATION, TIMER_OVERRIDE|TIMER_UNIQUE)
 
 /mob/living/simple_animal/pet/hedgehog/attack_hand(mob/living/user)
@@ -48,7 +49,7 @@
 			user.visible_message("<span class = 'warning'> [user] pricks their finger on [src]'s quills!</span>")
 			user.adjustBruteLoss(8)
 		scared = TRUE
-		canmove = FALSE
+		mobility_flags &= ~MOBILITY_MOVE
 		addtimer(CALLBACK(src, .proc/stop_being_scared_lil_boi), FEAR_DURATION, TIMER_OVERRIDE|TIMER_UNIQUE)
 
 #undef FEAR_DURATION
