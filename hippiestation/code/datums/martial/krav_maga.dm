@@ -5,7 +5,7 @@
 					  	"<span class='userdanger'>[A] leg sweeps you!</span>")
 	playsound(A, 'sound/effects/hit_kick.ogg', 50, 1, -1)
 	D.apply_damage(5, BRUTE)
-	D.Knockdown(20)
+	D.Paralyze(20)
 	log_combat(A, D, "leg sweeped")
 	return TRUE
 
