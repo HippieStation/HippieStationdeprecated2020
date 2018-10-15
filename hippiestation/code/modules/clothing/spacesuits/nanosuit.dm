@@ -477,7 +477,7 @@
 	U.confused += 50
 	helmet.display_visor_message("EMP Assault! Systems impaired.")
 	sleep(40)
-	U.Knockdown(300)
+	U.Paralyze(300)
 	U.AdjustStun(300)
 	U.Jitter(120)
 	toggle_mode(NONE, TRUE)
@@ -515,7 +515,7 @@
 	helmet.display_visor_message("LOADING//...")
 	sleep(60)
 	U.AdjustStun(-100)
-	U.AdjustKnockdown(-100)
+	U.AdjustParalyzed(-100)
 	U.adjustStaminaLoss(-55)
 	U.adjustOxyLoss(-55)
 	helmet.display_visor_message("Cleared to proceed.")
@@ -720,14 +720,14 @@
 	var/picked_hit_type = pick("punches", "kicks")
 	var/bonus_damage = 10
 	var/quick = FALSE
-	if(D.IsKnockdown() || D.resting || D.lying)//we can hit ourselves
+	if(D.IsParalyzed() || D.resting || D.lying)//we can hit ourselves
 		bonus_damage += 5
 		picked_hit_type = "stomps on"
-	if(D != A && !D.stat || !D.IsKnockdown()) //and we can't knock ourselves the fuck out/down!
+	if(D != A && !D.stat || !D.IsParalyzed()) //and we can't knock ourselves the fuck out/down!
 		if(A.grab_state == GRAB_AGGRESSIVE)
 			A.stop_pulling() //So we don't spam the combo
 			bonus_damage += 5
-			D.Knockdown(15)
+			D.Paralyze(15)
 			D.visible_message("<span class='warning'>[A] knocks [D] the fuck down!", \
 							"<span class='userdanger'>[A] knocks you the fuck down!</span>")
 			if(prob(40))
@@ -737,7 +737,7 @@
 			if(!D.anchored)
 				D.throw_at(throw_target, rand(1,2), 7, A)
 			bonus_damage += 10
-			D.Knockdown(60)
+			D.Paralyze(60)
 			D.visible_message("<span class='warning'>[A] knocks [D] the fuck out!!", \
 							"<span class='userdanger'>[A] knocks you the fuck out!!</span>")
 		else if(A.resting && !D.lying) //but we can't legsweep ourselves!
@@ -745,7 +745,7 @@
 								"<span class='userdanger'>[A] leg sweeps you!</span>")
 			playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
 			bonus_damage += 5
-			D.Knockdown(60)
+			D.Paralyze(60)
 			log_combat(A, D, "nanosuit leg swept")
 	if(!A.resting || !A.lying)
 		if(prob(30))
@@ -776,7 +776,7 @@
 		D.visible_message("<span class='danger'>[A] has disarmed [D]!</span>", \
 							"<span class='userdanger'>[A] has disarmed [D]!</span>")
 		playsound(D, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-		D.Knockdown(40)
+		D.Paralyze(40)
 	else
 		D.visible_message("<span class='danger'>[A] attempted to disarm [D]!</span>", \
 							"<span class='userdanger'>[A] attempted to disarm [D]!</span>")
@@ -805,7 +805,7 @@
 		playsound(loc, "punch", 25, 1, -1)
 		visible_message("<span class='danger'>[user] has [hitverb] [src]!</span>", \
 		"<span class='userdanger'>[user] has [hitverb] [src]!</span>", null, COMBAT_MESSAGE_RANGE)
-		return 1
+		return TRUE
 
 /mob/living/simple_animal/attack_nano(mob/living/carbon/human/user, does_attack_animation = 0)
 	if(user.a_intent == INTENT_HARM)
@@ -818,7 +818,7 @@
 		playsound(loc, "punch", 25, 1, -1)
 		visible_message("<span class='danger'>[user] has [hitverb] [src]!</span>", \
 		"<span class='userdanger'>[user] has [hitverb] [src]!</span>", null, COMBAT_MESSAGE_RANGE)
-		return 1
+		return TRUE
 
 /mob/living/carbon/alien/humanoid/attack_nano(mob/living/carbon/human/user, does_attack_animation = 0)
 	if(user.a_intent == INTENT_HARM)
@@ -828,7 +828,7 @@
 		playsound(loc, "punch", 25, 1, -1)
 		visible_message("<span class='danger'>[user] has [hitverb] [src]!</span>", \
 		"<span class='userdanger'>[user] has [hitverb] [src]!</span>", null, COMBAT_MESSAGE_RANGE)
-		return 1
+		return TRUE
 
 /obj/item/attack_nano(mob/living/carbon/human/user)
 	return FALSE
