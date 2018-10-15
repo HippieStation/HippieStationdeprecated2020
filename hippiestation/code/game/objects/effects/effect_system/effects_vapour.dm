@@ -64,8 +64,8 @@
 GLOBAL_LIST_EMPTY(vapour)
 /obj/effect/particle_effect/vapour
 	name = "vapour"
-	icon = 'icons/effects/tile_effects.dmi'
-	icon_state = "chem_gas"
+	icon = 'icons/effects/atmospherics.dmi'
+	icon_state = "chem_gas_old"
 	opacity = 0
 	layer = FLY_LAYER
 	anchored = TRUE
