@@ -17942,12 +17942,6 @@
 /obj/structure/chair/stool/bar,
 /turf/open/floor/wood,
 /area/centcom/holding)
-<<<<<<< HEAD
-"UG" = (
-/obj/effect/spawner/template/infiltrator,
-/turf/open/space/basic,
-/area/space)
-=======
 "UH" = (
 /obj/machinery/light{
 	dir = 8
@@ -17955,7 +17949,6 @@
 /obj/structure/closet/secure_closet/personal,
 /turf/open/floor/plasteel/dark,
 /area/centcom/supplypod)
->>>>>>> a1083557f8... Fixes shuttle overlapping with centcom supplypod bays (#40506)
 "UJ" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 32
