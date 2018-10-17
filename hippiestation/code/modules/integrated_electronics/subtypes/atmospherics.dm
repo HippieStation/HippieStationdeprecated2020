@@ -740,7 +740,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	do_work(2)
 
 /obj/item/integrated_circuit/input/tank_slot/do_work()
-	set_pin_data(IC_OUTPUT, 2, WEAKREF(src))
+	set_pin_data(IC_OUTPUT, 2, WEAKREF(current_tank))
 	push_data()
 
 /obj/item/integrated_circuit/input/tank_slot/proc/push_pressure()
