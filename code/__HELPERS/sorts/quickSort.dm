@@ -1,24 +1,24 @@
-/proc/quickSort(arr[], left, right) 
+/proc/quickSort(list/L, left, right) 
       var/i = left
       var/j = right
       var/tmp = 0
-      var/pivot = arr[((left + right) / 2)]
+      var/pivot = L[((left + right) / 2)]
  
       /* partition */
       while (i <= j) 
-            while (arr[i] < pivot)
+            while (L[i] < pivot)
                   i++
-            while (arr[j] > pivot)
+            while (L[j] > pivot)
                   j--
             if (i <= j) 
-                  tmp = arr[i]
-                  arr[i] = arr[j]
-                  arr[j] = tmp
+                  tmp = L[i]
+                  L[i] = L[j]
+                  L[j] = tmp
                   i++
                   j--
 
       /* recursion */
       if (left < j)
-            quickSort(arr, left, j)
+            quickSort(L, left, j)
       if (i < right)
-            quickSort(arr, i, right)
+            quickSort(L, i, right)
