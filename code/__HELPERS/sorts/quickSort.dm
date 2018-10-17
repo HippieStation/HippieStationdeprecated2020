@@ -2,7 +2,7 @@
 	var/i = left
 	var/j = right
 	var/tmp = 0
-	var/pivot = L[((left + right) / 2)
+	var/pivot = L[((left + right) / 2)]
 	
 	/* partition */
 	while(i <= j) 
