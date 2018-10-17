@@ -3,7 +3,7 @@
 	for (var/obj/machinery/camera/C in GLOB.cameranet.cameras)
 		L.Add(C)
 
-	camera_sort(L)
+	quickSort(L,0,(L.len-1))
 
 	var/list/T = list()
 
