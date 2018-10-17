@@ -1,4 +1,4 @@
-/proc/quickSort(list/L, left, right) 
+/proc/quickSort(L[], left, right) 
       var/i = left
       var/j = right
       var/tmp = 0
