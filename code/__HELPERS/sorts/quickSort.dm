@@ -5,12 +5,12 @@
 	var/pivot = L[((left + right) / 2)
 	
 	/* partition */
-	while (i <= j) 
-		while (L[i] < pivot)
+	while(i <= j) 
+		while(L[i] < pivot)
 			i++
-		while (L[j] > pivot)
+		while(L[j] > pivot)
 			j--
-		if (i <= j) 
+		if(i <= j) 
 			tmp = L[i]
 			L[i] = L[j]
 			L[j] = tmp
@@ -18,8 +18,8 @@
 			j--
 
 	/* recursion */
-		if (left < j)
+		if(left < j)
 			quickSort(L, left, j)
-		if (i < right)
+		if(i < right)
 			quickSort(L, i, right)
 	return L
