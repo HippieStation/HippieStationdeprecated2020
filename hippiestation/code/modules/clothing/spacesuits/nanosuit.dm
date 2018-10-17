@@ -11,14 +11,10 @@
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
 	item_flags = DROPDEL
 
-/obj/item/clothing/suit/space/hardsuit/nano/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/rad_insulation, RAD_NO_INSULATION, TRUE, TRUE)
-
 /obj/item/clothing/under/syndicate/combat/nano/equipped(mob/user, slot)
-	. = ..()
+	..()
 	if(slot == SLOT_W_UNIFORM)
-		item_flags = NODROP
+		item_flags |= NODROP
 
 /obj/item/clothing/mask/gas/nano_mask
 	name = "nanosuit gas mask"
@@ -28,9 +24,9 @@
 	item_flags = DROPDEL
 
 /obj/item/clothing/mask/gas/nano_mask/equipped(mob/user, slot)
-	.=..()
+	..()
 	if(slot == SLOT_WEAR_MASK)
-		item_flags = NODROP
+		item_flags |= NODROP
 
 /datum/action/item_action/nanojump
 	name = "Activate Strength Jump"
@@ -87,9 +83,9 @@
 
 
 /obj/item/clothing/shoes/combat/coldres/nanojump/equipped(mob/user, slot)
-	.=..()
+	..()
 	if(slot == SLOT_SHOES)
-		item_flags = NODROP
+		item_flags |= NODROP
 
 /obj/item/clothing/gloves/combat/nano
 	name = "nano gloves"
@@ -100,9 +96,9 @@
 	item_flags = DROPDEL
 
 /obj/item/clothing/gloves/combat/nano/equipped(mob/user, slot)
-	.=..()
+	..()
 	if(slot == SLOT_GLOVES)
-		item_flags = NODROP
+		item_flags |= NODROP
 
 /obj/item/radio/headset/syndicate/alt/nano
 	name = "\proper the nanosuit's bowman headset"
@@ -115,9 +111,9 @@
 	item_flags = DROPDEL
 
 /obj/item/radio/headset/syndicate/alt/nano/equipped(mob/user, slot)
-	.=..()
+	..()
 	if(slot == SLOT_EARS)
-		item_flags = NODROP
+		item_flags |= NODROP
 
 /obj/item/radio/headset/syndicate/alt/nano/emp_act()
 	return
@@ -140,9 +136,9 @@
 	colour = "#45723f"
 
 /obj/item/clothing/glasses/nano_goggles/equipped(mob/user, slot)
-	.=..()
+	..()
 	if(slot == SLOT_GLASSES)
-		item_flags = NODROP
+		item_flags |= NODROP
 
 /obj/item/clothing/glasses/nano_goggles/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/nanosuit/goggletoggle))
@@ -218,11 +214,8 @@
 	//variables for cloak pausing when shooting a suppressed gun
 	var/stealth_cloak_out = 1 //transition time out of cloak
 	var/stealth_cloak_in = 2 //transition time back into cloak
-
-
-/obj/item/clothing/suit/space/hardsuit/nano/ComponentInitialize()
-	. = ..()
-	AddComponent(/datum/component/rad_insulation, RAD_NO_INSULATION, TRUE, TRUE)
+	rad_flags = RAD_PROTECT_CONTENTS|RAD_NO_CONTAMINATE
+	rad_insulation = RAD_NO_INSULATION
 
 /obj/item/clothing/suit/space/hardsuit/nano/Initialize()
 	. = ..()
@@ -484,7 +477,7 @@
 	U.confused += 50
 	helmet.display_visor_message("EMP Assault! Systems impaired.")
 	sleep(40)
-	U.Knockdown(300)
+	U.Paralyze(300)
 	U.AdjustStun(300)
 	U.Jitter(120)
 	toggle_mode(NONE, TRUE)
@@ -522,7 +515,7 @@
 	helmet.display_visor_message("LOADING//...")
 	sleep(60)
 	U.AdjustStun(-100)
-	U.AdjustKnockdown(-100)
+	U.AdjustParalyzed(-100)
 	U.adjustStaminaLoss(-55)
 	U.adjustOxyLoss(-55)
 	helmet.display_visor_message("Cleared to proceed.")
@@ -580,6 +573,8 @@
 	var/obj/machinery/doppler_array/integrated/bomb_radar
 	scan_reagents = 1
 	actions_types = list(/datum/action/item_action/nanosuit/zoom)
+	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
+	rad_insulation = RAD_NO_INSULATION
 
 /obj/item/clothing/head/helmet/space/hardsuit/nano/Initialize()
 	. = ..()
@@ -591,7 +586,7 @@
 /obj/item/clothing/head/helmet/space/hardsuit/nano/equipped(mob/living/carbon/human/wearer, slot)
 	..()
 	if(slot == SLOT_HEAD)
-		item_flags = NODROP
+		item_flags |= NODROP
 	for(var/hudtype in datahuds)
 		var/datum/atom_hud/H = GLOB.huds[hudtype]
 		H.add_hud_to(wearer)
@@ -646,7 +641,7 @@
 		if(is_station_level(T.z))
 			priority_announce("[user] has engaged [src] at [A.map_name]!","Message from The Syndicate!", 'sound/misc/notice1.ogg')
 		log_game("[user] has engaged [src]")
-		item_flags = NODROP
+		item_flags |= NODROP
 		U.unequip_everything()
 		U.equipOutfit(/datum/outfit/nanosuit)
 		U.add_trait(TRAIT_NODISMEMBER, "Nanosuit")
@@ -725,14 +720,14 @@
 	var/picked_hit_type = pick("punches", "kicks")
 	var/bonus_damage = 10
 	var/quick = FALSE
-	if(D.IsKnockdown() || D.resting || D.lying)//we can hit ourselves
+	if(D.IsParalyzed() || D.resting || D.lying)//we can hit ourselves
 		bonus_damage += 5
 		picked_hit_type = "stomps on"
-	if(D != A && !D.stat || !D.IsKnockdown()) //and we can't knock ourselves the fuck out/down!
+	if(D != A && !D.stat || !D.IsParalyzed()) //and we can't knock ourselves the fuck out/down!
 		if(A.grab_state == GRAB_AGGRESSIVE)
 			A.stop_pulling() //So we don't spam the combo
 			bonus_damage += 5
-			D.Knockdown(15)
+			D.Paralyze(15)
 			D.visible_message("<span class='warning'>[A] knocks [D] the fuck down!", \
 							"<span class='userdanger'>[A] knocks you the fuck down!</span>")
 			if(prob(40))
@@ -742,7 +737,7 @@
 			if(!D.anchored)
 				D.throw_at(throw_target, rand(1,2), 7, A)
 			bonus_damage += 10
-			D.Knockdown(60)
+			D.Paralyze(60)
 			D.visible_message("<span class='warning'>[A] knocks [D] the fuck out!!", \
 							"<span class='userdanger'>[A] knocks you the fuck out!!</span>")
 		else if(A.resting && !D.lying) //but we can't legsweep ourselves!
@@ -750,7 +745,7 @@
 								"<span class='userdanger'>[A] leg sweeps you!</span>")
 			playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
 			bonus_damage += 5
-			D.Knockdown(60)
+			D.Paralyze(60)
 			log_combat(A, D, "nanosuit leg swept")
 	if(!A.resting || !A.lying)
 		if(prob(30))
@@ -781,7 +776,7 @@
 		D.visible_message("<span class='danger'>[A] has disarmed [D]!</span>", \
 							"<span class='userdanger'>[A] has disarmed [D]!</span>")
 		playsound(D, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-		D.Knockdown(40)
+		D.Paralyze(40)
 	else
 		D.visible_message("<span class='danger'>[A] attempted to disarm [D]!</span>", \
 							"<span class='userdanger'>[A] attempted to disarm [D]!</span>")
@@ -810,7 +805,7 @@
 		playsound(loc, "punch", 25, 1, -1)
 		visible_message("<span class='danger'>[user] has [hitverb] [src]!</span>", \
 		"<span class='userdanger'>[user] has [hitverb] [src]!</span>", null, COMBAT_MESSAGE_RANGE)
-		return 1
+		return TRUE
 
 /mob/living/simple_animal/attack_nano(mob/living/carbon/human/user, does_attack_animation = 0)
 	if(user.a_intent == INTENT_HARM)
@@ -823,7 +818,7 @@
 		playsound(loc, "punch", 25, 1, -1)
 		visible_message("<span class='danger'>[user] has [hitverb] [src]!</span>", \
 		"<span class='userdanger'>[user] has [hitverb] [src]!</span>", null, COMBAT_MESSAGE_RANGE)
-		return 1
+		return TRUE
 
 /mob/living/carbon/alien/humanoid/attack_nano(mob/living/carbon/human/user, does_attack_animation = 0)
 	if(user.a_intent == INTENT_HARM)
@@ -833,7 +828,7 @@
 		playsound(loc, "punch", 25, 1, -1)
 		visible_message("<span class='danger'>[user] has [hitverb] [src]!</span>", \
 		"<span class='userdanger'>[user] has [hitverb] [src]!</span>", null, COMBAT_MESSAGE_RANGE)
-		return 1
+		return TRUE
 
 /obj/item/attack_nano(mob/living/carbon/human/user)
 	return FALSE
@@ -984,7 +979,7 @@
 /obj/item/tank/internals/emergency_oxygen/recharge/equipped(mob/living/carbon/human/wearer, slot)
 	..()
 	if(slot == SLOT_S_STORE)
-		item_flags = NODROP
+		item_flags |= NODROP
 		START_PROCESSING(SSobj, src)
 
 /obj/item/tank/internals/emergency_oxygen/recharge/dropped(mob/living/carbon/human/wearer)
@@ -1065,9 +1060,9 @@ mob/living/carbon/human/key_up(_key, client/user)
 	qdel(menu)
 	menu_open = FALSE
 
-/obj/item/clothing/suit/space/hardsuit/nano/proc/show_radial_menu_nano(mob/user,atom/anchor,list/choices)
+/obj/item/clothing/suit/space/hardsuit/nano/proc/show_radial_menu_nano(mob/living/user,atom/anchor,list/choices)
 	var/answer
-	if(QDELETED(user) || user.stat || user.IsKnockdown() || user.IsStun())
+	if(QDELETED(user) || user.stat || user.IsParalyzed() || user.IsStun())
 		return
 	if(!user)
 		user = usr

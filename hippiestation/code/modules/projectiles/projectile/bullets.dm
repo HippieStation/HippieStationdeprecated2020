@@ -2,7 +2,7 @@
 	damage = 60
 
 /obj/item/projectile/bullet/c38 // Detectives .38 revolver
-	knockdown = 0
+	paralyze = 0
 	stun = 0
 	damage = 15
 	stamina = 45 //Plus the 15 base damage means two shots will down a perp
@@ -17,9 +17,9 @@
 
 /obj/item/projectile/bullet/shotgun_stunslug // Syndie bulldog shotgun stunslugs
 	stun = 0
-	knockdown = 0
+	paralyze = 0
 	stamina = 80 //Stunshot can stay potent to give nukies an edge.
 
 /obj/item/projectile/bullet/p50 // Sniper rifles
 	stun = 10
-	knockdown = 10
+	paralyze = 10

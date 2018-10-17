@@ -1,6 +1,6 @@
 /obj/item/projectile/energy/electrode
 	stun = 0
-	knockdown = 0
+	paralyze = 0
 	stamina = 60
 
 /obj/item/projectile/energy/electrode/on_hit(atom/target, blocked = 0)
