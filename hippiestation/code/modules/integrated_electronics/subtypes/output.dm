@@ -103,3 +103,60 @@
 		assembly.investigate_log("displayed \"[html_encode(stuff_to_display)]\" with [type].", INVESTIGATE_CIRCUIT)
 	else
 		investigate_log("displayed \"[html_encode(stuff_to_display)]\" as [type].", INVESTIGATE_CIRCUIT)
+
+
+// - renaming circuit - //
+/obj/item/integrated_circuit/output/rename
+	name = "renaming circuit"
+	desc = "Takes any string as an input and will set it as the assembly's name."
+	extended_desc = "Strings should be up to 25 characters long."
+	icon_state = "speaker"
+	cooldown_per_use = 10
+	complexity = 3
+	inputs = list("text" = IC_PINTYPE_STRING)
+	outputs = list()
+	activators = list("to rename" = IC_PINTYPE_PULSE_IN)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/integrated_circuit/output/rename/do_work()
+	var/newname = get_pin_data(IC_INPUT, 1)
+	if(assembly && newname)
+		assembly.name = copytext(newname,1,25)
+
+
+// - redescribing circuit - //
+/obj/item/integrated_circuit/output/redescribe
+	name = "redescribing circuit"
+	desc = "Takes any string as an input and will set it as the assembly's description."
+	extended_desc = "Strings should can be of any length."
+	icon_state = "speaker"
+	cooldown_per_use = 10
+	complexity = 3
+	inputs = list("text" = IC_PINTYPE_STRING)
+	outputs = list()
+	activators = list("to redescribe" = IC_PINTYPE_PULSE_IN)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/integrated_circuit/output/redescribe/do_work()
+	var/newname = get_pin_data(IC_INPUT, 1)
+	if(assembly)
+		assembly.desc = newname
+
+
+// - repainting circuit - //
+/obj/item/integrated_circuit/output/repaint
+	name = "self-repainting circuit"
+	desc = "There's an oddly high amount of spraying cans fitted right inside this circuit."
+	extended_desc = "Takes a value in hexadecimal and uses it to repaint the assembly it is in."
+	cooldown_per_use = 10
+	complexity = 3
+	inputs = list("color" = IC_PINTYPE_COLOR)
+	outputs = list()
+	activators = list("to repaint" = IC_PINTYPE_PULSE_IN)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/integrated_circuit/output/repaint/do_work()
+	if(!assembly)
+		return
+	assembly.detail_color = get_pin_data(IC_INPUT, 1)
+	assembly.update_icon()
