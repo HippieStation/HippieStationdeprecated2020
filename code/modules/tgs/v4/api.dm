@@ -168,9 +168,13 @@
 			//I honestly didn't believe byond could do it
 			if(event_handler != null)
 				event_handler.HandleEvent(TGS_EVENT_PORT_SWAP, new_port)
-			if(!world.OpenPort(new_port))
-				return "Port change failed!"
-			return
+			//try for three seconds because the other server (or windows) might be being a fuccboi
+			for(var/I in 1 to 30)
+				if(world.OpenPort(new_port))
+					return
+				if(I != 30)
+					sleep(1)
+			return "Port change failed!"
 		if(TGS4_TOPIC_CHANGE_REBOOT_MODE)
 			var/new_reboot_mode = text2num(params[TGS4_PARAMETER_DATA])
 			if(event_handler != null)
