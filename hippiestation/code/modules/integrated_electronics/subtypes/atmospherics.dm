@@ -122,7 +122,7 @@
 /obj/item/integrated_circuit/atmospherics/pump/proc/move_gas(datum/gas_mixture/source_air, datum/gas_mixture/target_air)
 
 	// No moles = nothing to pump
-	if(source_air.total_moles() <= 0  || target_air.return_pressure() >= 750)
+	if(source_air.total_moles() <= 0  || target_air.return_pressure() >= PUMP_MAX_PRESSURE)
 		return
 
 	// Negative Kelvin temperatures should never happen and if they do, normalize them
@@ -175,7 +175,7 @@
 	if(source_air.temperature < TCMB)
 		source_air.temperature = TCMB
 
-	if((source_air.return_pressure() < 0.01) || (target_air.return_pressure() > PUMP_MAX_VOLUME))
+	if((source_air.return_pressure() < 0.01) || (target_air.return_pressure() >= PUMP_MAX_PRESSURE))
 		return
 
 	//The second part of the min caps the pressure built by the volume pumps to the max pump pressure
