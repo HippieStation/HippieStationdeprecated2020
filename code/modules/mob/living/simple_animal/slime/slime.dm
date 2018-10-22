@@ -161,8 +161,8 @@
 	var/mod = 0
 	if(bodytemperature >= 330.23) // 135 F or 57.08 C
 		mod = -1	// slimes become supercharged at high temperatures
-	else if(bodytemperature < 183.222)
-		mod = (283.222 - bodytemperature) / 10 * 1.75
+	else if(bodytemperature < 283.222)
+		mod = ((283.222 - bodytemperature) / 10) * 1.75
 	if(mod)
 		add_movespeed_modifier(MOVESPEED_ID_SLIME_TEMPMOD, TRUE, 100, override = TRUE, multiplicative_slowdown = mod)
 
@@ -259,10 +259,10 @@
 			return
 		attacked += 5
 		if(nutrition >= 100) //steal some nutrition. negval handled in life()
-			nutrition -= (100 + (80 * M.is_adult)) // hippie -- changed from `nutrition -= (50 + (40 * M.is_adult))`
-			M.add_nutrition(100 + (80 * M.is_adult)) // hippie -- changed from `M.add_nutrition(50 + (40 * M.is_adult))`
+			nutrition -= (50 + (40 * M.is_adult))
+			M.add_nutrition(50 + (40 * M.is_adult))
 		if(health > 0)
-			M.adjustBruteLoss(-20 + (-20 * M.is_adult)) // hippie -- changed from `M.adjustBruteLoss(-10 + (-10 * M.is_adult))`
+			M.adjustBruteLoss(-10 + (-10 * M.is_adult))
 			M.updatehealth()
 
 /mob/living/simple_animal/slime/attack_animal(mob/living/simple_animal/M)

@@ -38,7 +38,7 @@
 		return FALSE
 	return ..()
 
-/obj/item/bodypart/head/drop_organs(mob/user)
+/obj/item/bodypart/head/drop_organs(mob/user, violent_removal)
 	var/turf/T = get_turf(src)
 	if(status != BODYPART_ROBOTIC)
 		playsound(T, 'sound/misc/splort.ogg', 50, 1, -1)
@@ -51,6 +51,9 @@
 				brainmob.forceMove(brain)
 				brain.brainmob = brainmob
 				brainmob = null
+			if(violent_removal && prob(rand(80, 100))) //ghetto surgery can damage the brain.
+				to_chat(user, "<span class='warning'>[brain] was damaged in the process!</span>")
+				brain.damaged_brain = TRUE
 			brain.forceMove(T)
 			brain = null
 			update_icon_dropped()
@@ -77,7 +80,6 @@
 	else if(!animal_origin)
 		var/mob/living/carbon/human/H = C
 		var/datum/species/S = H.dna.species
-		H.checknoosedrop() // hippie -- noose
 
 		//Facial hair
 		if(H.facial_hair_style && (FACEHAIR in S.species_traits))

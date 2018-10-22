@@ -155,6 +155,16 @@
 			damage_text = more_brute ? "broken and mangled" : "burnt and blistered"
 		msg += "<B>[capitalize(t_his)] [BP.name] is [damage_text]!</B>\n"
 
+	for(var/X in disabled)
+		var/obj/item/bodypart/BP = X
+		var/damage_text
+		if(!(BP.get_damage(include_stamina = FALSE) >= BP.max_damage)) //Stamina is disabling the limb
+			damage_text = "limp and lifeless"
+		else
+			var/more_brute = BP.brute_dam >= BP.burn_dam
+			damage_text = more_brute ? "broken and mangled" : "burnt and blistered"
+		msg += "<B>[capitalize(t_his)] [BP.name] is [damage_text]!</B>\n"
+
 	//stores missing limbs
 	var/l_limbs_missing = 0
 	var/r_limbs_missing = 0
@@ -283,6 +293,8 @@
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
 		
 	msg += hippie_carbon_examine() // hippie -- add our specific examine stuff
+
+	msg += common_trait_examine()
 
 	msg += common_trait_examine()
 

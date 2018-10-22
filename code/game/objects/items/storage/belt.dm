@@ -27,12 +27,18 @@
 	. = ..()
 	update_icon()
 
+/obj/item/storage/belt/examine(mob/user)
+	..()
+	clothing_resistance_flag_examine_message(user)
+
+
 /obj/item/storage/belt/utility
 	name = "toolbelt" //Carn: utility belt is nicer, but it bamboozles the text parsing.
 	desc = "Holds tools."
 	icon_state = "utilitybelt"
 	item_state = "utility"
 	content_overlays = TRUE
+	custom_price = 50
 
 /obj/item/storage/belt/utility/ComponentInitialize()
 	. = ..()
@@ -53,6 +59,7 @@
 		/obj/item/radio,
 		/obj/item/clothing/gloves,
 		/obj/item/holosign_creator,
+		/obj/item/forcefield_projector,
 		/obj/item/assembly/signaler
 		))
 	STR.can_hold = can_hold
@@ -344,7 +351,7 @@
 		/obj/item/reagent_containers/food/snacks,
 		/obj/item/reagent_containers/food/drinks
 		))
-	
+
 	var/amount = 5
 	var/rig_snacks
 	while(contents.len <= amount)
@@ -503,6 +510,7 @@
 		/obj/item/reagent_containers/spray,
 		/obj/item/soap,
 		/obj/item/holosign_creator,
+		/obj/item/forcefield_projector,
 		/obj/item/key/janitor,
 		/obj/item/clothing/gloves,
 		/obj/item/melee/flyswatter,
@@ -553,6 +561,7 @@
 	icon_state = "fannypack_leather"
 	item_state = "fannypack_leather"
 	item_color = "fannypackleather"
+	custom_price = 15
 
 /obj/item/storage/belt/fannypack/ComponentInitialize()
 	. = ..()

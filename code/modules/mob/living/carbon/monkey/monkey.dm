@@ -52,7 +52,6 @@
 	internal_organs += new /obj/item/organ/brain
 	internal_organs += new /obj/item/organ/tongue
 	internal_organs += new /obj/item/organ/eyes
-	internal_organs += new /obj/item/organ/butt // hippie -- butt
 	internal_organs += new /obj/item/organ/ears
 	internal_organs += new /obj/item/organ/liver
 	internal_organs += new /obj/item/organ/stomach
@@ -81,8 +80,8 @@
 	. = ..()
 	var/slow = 0
 	if (bodytemperature < 283.222)
-		slow += (283.222 - bodytemperature) / 10 * 1.75
-	add_movespeed_modifier(MOVESPEED_ID_MONKEY_TEMPERATURE_SPEEDMOD, TRUE, 100, override = TRUE, multiplicative_slowdown = amount)
+		slow += ((283.222 - bodytemperature) / 10) * 1.75
+	add_movespeed_modifier(MOVESPEED_ID_MONKEY_TEMPERATURE_SPEEDMOD, TRUE, 100, override = TRUE, multiplicative_slowdown = slow)
 
 /mob/living/carbon/monkey/Stat()
 	..()
