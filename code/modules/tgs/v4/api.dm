@@ -161,7 +161,7 @@
 			return
 		if(TGS4_TOPIC_CHANGE_PORT)
 			var/new_port = text2num(params[TGS4_PARAMETER_DATA])
-			if (!(new_port > 0))
+			if (!(new_port > 0 && new_port <= 65535))
 				return "Invalid port: [new_port]"
 
 			//the topic still completes, miraculously
@@ -169,10 +169,10 @@
 			if(event_handler != null)
 				event_handler.HandleEvent(TGS_EVENT_PORT_SWAP, new_port)
 			//try for three seconds because the other server (or windows) might be being a fuccboi
-			for(var/I in 1 to 30)
+			for(var/I in 1 to 100)
 				if(world.OpenPort(new_port))
 					return
-				if(I != 30)
+				if(I != 100)
 					sleep(1)
 			return "Port change failed!"
 		if(TGS4_TOPIC_CHANGE_REBOOT_MODE)
