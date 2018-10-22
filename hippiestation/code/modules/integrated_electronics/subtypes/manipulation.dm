@@ -181,7 +181,7 @@
 	complexity = 30
 	cooldown_per_use = 10
 	inputs = list("detonation time" = IC_PINTYPE_NUMBER)
-	outputs = list()
+	outputs = list("reference to grenade" = IC_PINTYPE_REF)
 	activators = list("prime grenade" = IC_PINTYPE_PULSE_IN)
 	spawn_flags = IC_SPAWN_RESEARCH
 	action_flags = IC_ACTION_COMBAT
@@ -237,11 +237,13 @@
 	attached_grenade = G
 	G.forceMove(src)
 	desc += " \An [attached_grenade] is attached to it!"
+	set_pin_data(IC_OUTPUT, 1, WEAKREF(G))
 
 /obj/item/integrated_circuit/manipulation/grenade/proc/detach_grenade()
 	if(!attached_grenade)
 		return
 	attached_grenade.forceMove(drop_location())
+	set_pin_data(IC_OUTPUT, 1, WEAKREF(null))
 	attached_grenade = null
 	desc = initial(desc)
 
