@@ -1293,7 +1293,7 @@
 			activate_pin(2)
 	else
 		return FALSE
-return TRUE
+	return TRUE
 
 
 //Interceptor
