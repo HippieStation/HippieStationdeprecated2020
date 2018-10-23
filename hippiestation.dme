@@ -3282,6 +3282,7 @@
 #include "hippiestation\code\modules\sports\hockey.dm"
 #include "hippiestation\code\modules\sports\wrestling.dm"
 #include "hippiestation\code\modules\stock_market\computer.dm"
+#include "hippiestation\code\modules\surgery\cavity_implants.dm"
 #include "hippiestation\code\modules\surgery\gender_reassignment.dm"
 #include "hippiestation\code\modules\surgery\organ_internal.dm"
 #include "hippiestation\code\modules\surgery\remove_embedded_object.dm"
