@@ -64,6 +64,12 @@
 		io1.holder.interact(user) // This is to update the UI.
 		update_icon()
 
+/obj/item/multitool/ai_detect/update_icon()
+	if(selected_io)
+		icon_state = "multitool_red"
+	else
+		icon_state = "[initial(icon_state)][detect_state]"
+
 /obj/item/multitool/syndicate
 	name = "Black market multitool"
 	desc = "This multitool is a favourite among saboteurs. Its optimised routine lets it reset circuitry faster but is otherwise a normal multitool."
