@@ -1295,6 +1295,14 @@
 		return FALSE
 	return TRUE
 
+//Adding some color to cards aswell, because why not
+/obj/item/card/data/attackby(obj/item/I, mob/living/user)
+	if(istype(I, /obj/item/integrated_electronics/detailer))
+		var/obj/item/integrated_electronics/detailer/D = I
+		detail_color = D.detail_color
+		update_icon()
+	return ..()
+
 
 //Interceptor
 //Intercepts a telecomms signal, aka a radio message (;halp getting griff)
