@@ -3259,6 +3259,7 @@
 #include "hippiestation\code\modules\research\designs\autolathe_designs.dm"
 #include "hippiestation\code\modules\research\designs\biogenerator_designs.dm"
 #include "hippiestation\code\modules\research\designs\bluespace.dm"
+#include "hippiestation\code\modules\research\designs\electronics_designs.dm"
 #include "hippiestation\code\modules\research\designs\medical_designs.dm"
 #include "hippiestation\code\modules\research\designs\power_designs.dm"
 #include "hippiestation\code\modules\research\designs\reagent_forge_designs.dm"
