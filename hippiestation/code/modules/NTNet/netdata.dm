@@ -14,3 +14,8 @@
 	// If there is no sender ID, set the default one.
 	if(!sender_id && interface)
 		sender_id = interface.hardware_id
+
+/datum/component/ntnet_interface/__network_send(datum/netdata/data, netid)
+	// Process data before sending it
+	data.pre_send(src)
+	return(..(data,netid))
