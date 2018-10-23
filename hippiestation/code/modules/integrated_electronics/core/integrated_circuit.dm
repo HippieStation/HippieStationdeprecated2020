@@ -139,7 +139,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	var/table_middle_width = "40%"
 
 	var/HTML = ""
-	HTML += "<html><head><title>[src.displayed_name]</title></head><body>"
+	HTML += "<html><head><title>[displayed_name]</title></head><body>"
 	HTML += "<div align='center'>"
 	HTML += "<table border='1' style='undefined;table-layout: fixed; width: 80%'>"
 
@@ -184,7 +184,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 							height = 1
 				if(2)
 					if(i == 1)
-						words += "[src.displayed_name]<br>[src.name != src.displayed_name ? "([src.name])":""]<hr>[src.desc]"
+						words += "[displayed_name]<br>[name != displayed_name ? "([name])":""]<hr>[desc]"
 						height = row_height
 					else
 						continue
@@ -239,7 +239,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	else
 		user << browse(HTML, "window=circuit-[REF(src)];size=[window_width]x[window_height];border=1;can_resize=1;can_close=1;can_minimize=1")
 
-	onclose(user, "assembly-[REF(src.assembly)]")
+	onclose(user, "assembly-[REF(assembly)]")
 
 /obj/item/integrated_circuit/Topic(href, href_list)
 	if(!check_interactivity(usr))
