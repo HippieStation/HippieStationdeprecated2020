@@ -36,7 +36,7 @@
 			else if(C && S.requires_bodypart) //mob with no limb in surgery zone when we need a limb
 				continue
 			if(S.lying_required && (M.mobility_flags & MOBILITY_STAND))
-				continue
+				// continue hippie -- hopefully fix surgery lol
 			if(!S.can_start(user, M))
 				continue
 			for(var/path in S.target_mobtypes)
