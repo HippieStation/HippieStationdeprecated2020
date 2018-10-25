@@ -66,7 +66,7 @@
 			else if(C && S.requires_bodypart)
 				return
 			if(S.lying_required && (M.mobility_flags & MOBILITY_STAND))
-				return
+				// return hippie -- hopefully fix self surgery i guess
 			if(!S.can_start(user, M))
 				return
 
