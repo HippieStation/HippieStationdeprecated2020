@@ -35,8 +35,10 @@
 					continue
 			else if(C && S.requires_bodypart) //mob with no limb in surgery zone when we need a limb
 				continue
+			/*
 			if(S.lying_required && (M.mobility_flags & MOBILITY_STAND))
-				// continue hippie -- hopefully fix surgery lol
+				continue // hippie -- hopefully fix surgery lol
+			*/
 			if(!S.can_start(user, M))
 				continue
 			for(var/path in S.target_mobtypes)
@@ -65,8 +67,10 @@
 					return
 			else if(C && S.requires_bodypart)
 				return
+			/*
 			if(S.lying_required && (M.mobility_flags & MOBILITY_STAND))
-				// return hippie -- hopefully fix self surgery i guess
+				return // hippie -- hopefully fix self surgery i guess
+			*/
 			if(!S.can_start(user, M))
 				return
 
@@ -176,4 +180,3 @@
 				return 0
 
 	return 1
-
