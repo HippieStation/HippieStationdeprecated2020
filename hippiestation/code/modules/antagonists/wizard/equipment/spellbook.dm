@@ -31,7 +31,7 @@
 	name = "Sticky Staff"
 	desc = "Some clown must have put superglue on this staff, we can't pick it up without dropping it."
 	item_path = /obj/item/staff/nodrop
-	cost = 3
+	cost = 5
 
 /datum/spellbook_entry/cluwnecurse
 	name = "Cluwne Curse"
