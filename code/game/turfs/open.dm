@@ -242,6 +242,11 @@
 		if(!(lube & SLIDE_ICE))
 			C.Paralyze(knockdown_amount)
 			C.stop_pulling()
+		//hippie start - remove stun from lube
+		else if(lube == GALOSHES_DONT_HELP|SLIDE)
+			to_chat(C, "<span class='notice'>uifadfiudasfdsfdsh</span>")
+			C.stop_pulling()
+		//hippie end
 		else
 			C.Stun(20)
 
