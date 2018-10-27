@@ -239,15 +239,15 @@
 
 		var/olddir = C.dir
 		C.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
-		//hippie start - remove stun from lube
-		if(!(lube & SLIDE_ICE)&(lube != (GALOSHES_DONT_HELP | SLIDE))) //hippie edit - remove stun from lube
-			C.Paralyze(knockdown_amount)
+		if(!(lube & SLIDE_ICE))
+			if (lube == (GALOSHES_DONT_HELP|SLIDE))/*hippie start - nerfs lube so you only crawl instead of fullstun.*/
+				C.Knockdown(knockdown_amount)
+			else
+				C.Paralyze(knockdown_amount) /*hippie end*/
 			C.stop_pulling()
-		else if(lube == (GALOSHES_DONT_HELP|SLIDE))
-			C.stop_pulling()
-		//hippie end
 		else
 			C.Stun(20)
+
 		if(buckled_obj)
 			buckled_obj.unbuckle_mob(C)
 			lube |= SLIDE_ICE
