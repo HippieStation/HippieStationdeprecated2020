@@ -239,17 +239,15 @@
 
 		var/olddir = C.dir
 		C.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
-		if(!(lube & SLIDE_ICE))
+		//hippie start - remove stun from lube
+		if(!(lube & SLIDE_ICE)&(lube != (GALOSHES_DONT_HELP | SLIDE))) //hippie edit - remove stun from lube
 			C.Paralyze(knockdown_amount)
 			C.stop_pulling()
-		//hippie start - remove stun from lube
-		else if(lube == GALOSHES_DONT_HELP|SLIDE)
-			to_chat(C, "<span class='notice'>uifadfiudasfdsfdsh</span>")
+		else if(lube == (GALOSHES_DONT_HELP|SLIDE))
 			C.stop_pulling()
 		//hippie end
 		else
 			C.Stun(20)
-
 		if(buckled_obj)
 			buckled_obj.unbuckle_mob(C)
 			lube |= SLIDE_ICE
