@@ -240,10 +240,7 @@
 		var/olddir = C.dir
 		C.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
 		if(!(lube & SLIDE_ICE))
-			if (CHECK_MULTIPLE_BITFIELDS(lube, GALOSHES_DONT_HELP|SLIDE))/*hippie start - nerfs lube so you only crawl instead of fullstun.*/
-				C.Knockdown(knockdown_amount)
-			else
-				C.Paralyze(knockdown_amount) /*hippie end*/
+			C.Paralyze(knockdown_amount) 
 			C.stop_pulling()
 		else
 			C.Stun(20)
