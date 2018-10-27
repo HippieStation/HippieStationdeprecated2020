@@ -78,6 +78,10 @@
 	. = ..()
 	AddComponent(/datum/component/spell_catalyst)
 
+/obj/item/staff/nodrop 
+	desc = "Apparently a staff used by the wizard. Looks sticky."
+	item_flags = NODROP
+
 /obj/item/melee/flyswatter
 	force = 2
 	throwforce = 2

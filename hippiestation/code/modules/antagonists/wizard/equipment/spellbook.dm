@@ -27,6 +27,12 @@
 	desc = "A hammer that creates an intensely powerful field of gravity where it strikes, pulling everything nearby to the point of impact. Counts as a staff."
 	cost = 1
 
+/datum/spellbook_entry/item/mjolnir
+	name = "Sticky Staff"
+	desc = "Some clown must have put superglue on this staff, we can't pick it up without dropping it."
+	item_path = /obj/item/staff/nodrop
+	cost = 3
+
 /datum/spellbook_entry/cluwnecurse
 	name = "Cluwne Curse"
 	spell_type = /obj/effect/proc_holder/spell/targeted/cluwnecurse
