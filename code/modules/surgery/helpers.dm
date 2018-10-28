@@ -32,7 +32,7 @@
 					continue
 			else if(C && S.requires_bodypart) //mob with no limb in surgery zone when we need a limb
 				continue
-			if(S.lying_required && (M.mobility_flags & MOBILITY_STAND))
+			if(M != user && S.lying_required && (M.mobility_flags & MOBILITY_STAND)) // hippie -- fix self surgery
 				continue
 			if(!S.can_start(user, M))
 				continue
@@ -62,7 +62,7 @@
 					return
 			else if(C && S.requires_bodypart)
 				return
-			if(S.lying_required && (M.mobility_flags & MOBILITY_STAND))
+			if(M != user && S.lying_required && (M.mobility_flags & MOBILITY_STAND)) // hippie -- fix self surgery
 				return
 			if(!S.can_start(user, M))
 				return
@@ -173,4 +173,3 @@
 				return 0
 
 	return 1
-
