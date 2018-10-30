@@ -190,7 +190,7 @@
 	var/criticalpower = FALSE
 	var/mode = NONE
 	var/datum/martial_art/nano/style = new
-	var/shutdown = FALSE
+	var/shutdown = TRUE
 	var/current_charges = 3
 	var/max_charges = 3 //How many charges total the shielding has
 	var/medical_delay = 200 //How long after we've been shot before we can start recharging. 20 seconds here
@@ -216,6 +216,10 @@
 	var/stealth_cloak_in = 2 //transition time back into cloak
 	rad_flags = RAD_PROTECT_CONTENTS|RAD_NO_CONTAMINATE
 	rad_insulation = RAD_NO_INSULATION
+	var/healthon = FALSE
+	var/atmoson = FALSE
+	var/radon = FALSE
+	var/cellon = FALSE
 
 /obj/item/clothing/suit/space/hardsuit/nano/Initialize()
 	. = ..()
@@ -330,12 +334,11 @@
 		if(msg_time_react == 0)
 			if(BP.body_zone == BODY_ZONE_L_LEG || BP.body_zone == BODY_ZONE_R_LEG || BP.body_zone == BODY_ZONE_L_ARM || BP.body_zone == BODY_ZONE_R_ARM)
 				if(BP.brute_dam > trauma_threshold)
-					helmet.display_visor_message("Extensive blunt force detected in [BP.name]! Administering local anesthetic.")
+					helmet.display_visor_message("Extensive blunt force detected in [BP.name]!")
 					msg_time_react = 200
 				if(BP.burn_dam > trauma_threshold)
-					helmet.display_visor_message("Heat shield failure detected in [BP.name]! Administering local anesthetic.")
+					helmet.display_visor_message("Heat shield failure detected in [BP.name]!")
 					msg_time_react = 200
-				user.reagents.add_reagent("morphine", 0.5)
 			if(BP.body_zone == BODY_ZONE_HEAD)
 				if(BP.brute_dam > trauma_threshold)
 					helmet.display_visor_message("Cranial trauma detected!")
@@ -647,7 +650,40 @@
 		U.add_trait(TRAIT_NODISMEMBER, "Nanosuit")
 		if(help_verb)
 			U.verbs += help_verb
+		bootSequence()
 	..()
+
+/obj/item/clothing/suit/space/hardsuit/nano/proc/bootSequence()
+	helmet.display_visor_message("Crynet - BIOS v1.32 Syndicate Systems")
+	sleep(10)
+	helmet.display_visor_message("P.O.S.T. Commencing...")
+	sleep(30)
+	playsound(src, 'sound/machines/beep.ogg', 50, FALSE)
+	helmet.display_visor_message("Memory test: 6144PB OK(Installed Memory: 6144PB)")
+	sleep(10)
+	helmet.display_visor_message("Onboard equipment test: OK")
+	sleep(10)
+	helmet.display_visor_message("Telecommunications systems: OK")
+	sleep(10)
+	helmet.display_visor_message("Checking environment sensors, standby...")
+	sleep(20)
+	healthon = TRUE
+	helmet.display_visor_message("Life signs systems: OK")
+	sleep(5)
+	atmoson = TRUE
+	helmet.display_visor_message("Atmospheric sensors: OK")
+	sleep(5)
+	cellon = TRUE
+	helmet.display_visor_message("Power sensor: OK")
+	sleep(5)
+	radon = TRUE
+	helmet.display_visor_message("Geiger counter: OK")
+	sleep(5)
+	helmet.display_visor_message("Loading default configuration, standby...")
+	sleep(25)
+	helmet.display_visor_message("Successful. Have a safe and secure day.")
+	shutdown = FALSE
+
 
 /datum/outfit/nanosuit
 	name = "Nanosuit"
@@ -672,20 +708,20 @@
 	if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit/nano)) //Only display if actually wearing the suit.
 		var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
 		if(statpanel("Crynet Nanosuit"))
-			stat("Crynet Protocols : [NS.mode != NONE?"Engaged":"Disengaged"]")
-			stat("Energy Charge:", "[round(NS.cell.percent())]%")
+			stat("Crynet Protocols : [!NS.shutdown?"Engaged":"Disengaged"]")
+			stat("Energy Charge:", "[NS.cellon?"[round(NS.cell.percent())]%":"offline"]")
 			stat("Mode:", "[NS.mode]")
-			stat("Overall Status:", "[health]% healthy")
-			stat("Nutrition Status:", "[nutrition]")
-			stat("Oxygen Loss:", "[getOxyLoss()]")
-			stat("Toxin Levels:", "[getToxLoss()]")
-			stat("Burn Severity:", "[getFireLoss()]")
-			stat("Brute Trauma:", "[getBruteLoss()]")
-			stat("Radiation Levels:","[radiation] rad")
-			stat("Body Temperature:","[bodytemperature-T0C] degrees C ([bodytemperature*1.8-459.67] degrees F)")
-			stat("Atmospheric Pressure:","[pressure] kPa")
-			stat("Atmoshperic Temperature:","<span class='[environment.temperature > FIRE_IMMUNITY_MAX_TEMP_PROTECT?"alert":"info"]'>[round(environment.temperature-T0C, 0.01)] &deg;C ([round(environment.temperature, 0.01)] K)</span>")
-			stat("Atmospheric Thermal Energy:","[THERMAL_ENERGY(environment)/1000] kJ")
+			stat("Overall Status:", "[NS.healthon?"[health]% healthy":"offline"]")
+			stat("Nutrition Status:", "[NS.healthon?"[nutrition]":"offline"]")
+			stat("Oxygen Loss:", "[NS.healthon?"[getOxyLoss()]":"offline"]")
+			stat("Toxin Levels:", "[NS.healthon?"[getToxLoss()]":"offline"]")
+			stat("Burn Severity:", "[NS.healthon?"[getFireLoss()]":"offline"]")
+			stat("Brute Trauma:", "[NS.healthon?"[getBruteLoss()]":"offline"]")
+			stat("Radiation Levels:","[NS.radon?"[radiation] rads":"offline"]")
+			stat("Body Temperature:","[NS.healthon?"["[bodytemperature-T0C] degrees C ([bodytemperature*1.8-459.67] degrees F)"]":"offline"]")
+			stat("Atmospheric Pressure:","[NS.atmoson?"[pressure] kPa":"offline"]")
+			stat("Atmoshperic Temperature:","[NS.atmoson?"<span class='[environment.temperature > FIRE_IMMUNITY_MAX_TEMP_PROTECT?"alert":"info"]'>[round(environment.temperature-T0C, 0.01)] &deg;C ([round(environment.temperature, 0.01)] K)</span>":"offline"]")
+			stat("Atmospheric Thermal Energy:","[NS.atmoson?"[THERMAL_ENERGY(environment)/1000] kJ":"offline"]")
 
 /mob/living/carbon/human/Move(NewLoc, direct)
 	. = ..()
