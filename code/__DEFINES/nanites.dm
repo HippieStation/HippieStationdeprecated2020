@@ -8,4 +8,4 @@
 #define NANITE_SHOCK_IMMUNE 1
 #define NANITE_EMP_IMMUNE 2
 
-#define NANITE_PROGRAM_LIMIT 20
+#define NANITE_PROGRAM_LIMIT INFINITY // hippie -- remove nanite limit
