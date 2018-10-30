@@ -24,8 +24,7 @@
 	return (OXYLOSS)
 
 /obj/item/reagent_containers/glass/rag/afterattack(atom/A as obj|turf|area, mob/user,proximity)
-	. = ..()
-	if(!proximity)
+	if(!proximity || !check_allowed_items(target,target_self=1)
 		return
 	if(iscarbon(A) && A.reagents && reagents.total_volume)
 		var/mob/living/carbon/C = A
@@ -41,7 +40,36 @@
 			reagents.clear_reagents()
 			C.visible_message("<span class='notice'>[user] has touched \the [C] with \the [src].</span>")
 			log_combat(user, C, "touched", log_object)
-
+	else if(istype(target, /obj/structure/reagent_dispensers)) //A dispenser. Transfer FROM it TO us.
+		if(target.is_open_container())
+			if(!reagents.total_volume)
+				to_chat(user, "<span class='warning'>[src] is empty!</span>")
+				return
+			if(target.reagents.total_volume >= target.reagents.maximum_volume)
+				to_chat(user, "<span class='notice'>[target] is full.</span>")
+				return
+			var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
+			to_chat(user, "<span class='notice'>You transfer [trans] unit\s of the solution to [target].</span>")
+		else
+			if(reagents.total_volume >= reagents.maximum_volume)
+				to_chat(user, "<span class='notice'>[src] is full.</span>")
+				return
+			if(!target.reagents.total_volume)
+				to_chat(user, "<span class='warning'>[target] is empty!</span>")
+				return
+			else
+				var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this)
+				to_chat(user, "<span class='notice'>You fill [src] with [trans] unit\s of the contents of [target].</span>")
+				return
+	else if(target.is_open_container() && target.reagents) //Something like a glass. Player probably wants to transfer TO it.
+		if(!reagents.total_volume)
+			to_chat(user, "<span class='warning'>[src] is empty!</span>")
+			return
+		if(target.reagents.total_volume >= target.reagents.maximum_volume)
+			to_chat(user, "<span class='notice'>[target] is full.</span>")
+			return
+		var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
+		to_chat(user, "<span class='notice'>You transfer [trans] unit\s of the solution to [target].</span>")
 	else if(istype(A) && src in user)
 		user.visible_message("[user] starts to wipe down [A] with [src]!", "<span class='notice'>You start to wipe down [A] with [src]...</span>")
 		if(do_after(user,30, target = A))
