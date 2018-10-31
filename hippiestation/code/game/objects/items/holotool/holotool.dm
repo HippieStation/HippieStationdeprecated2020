@@ -83,24 +83,18 @@
 	for(var/datum/action/A in actions)
 		A.UpdateButtonIcon()
 
+/obj/item/holotool/proc/check_menu(mob/living/user)
+	if(!istype(user))
+		return FALSE
+	if(user.incapacitated() || !user.Adjacent(src))
+		return FALSE
+	return TRUE
+
 /obj/item/holotool/CtrlClick(mob/user)
 	update_listing()
-	menu = new
-	qdel(menu.close_button)
-	if(!menu_open)
-		menu_open = TRUE
-		menu.anchor = user
-		menu.check_screen_border(user)
-		menu.set_choices(radial_modes)
-		menu.show_to(user)
-		menu.wait()
-		if(menu)
-			var/new_tool = LAZYACCESS(mode_names, menu.selected_choice)
-			if(new_tool)
-				switch_tool(user, new_tool)
-		QDEL_NULL(menu)
-		menu_open = FALSE
-
+	var/new_tool = show_radial_menu(user, src, radial_modes, custom_check = CALLBACK(src, .proc/check_menu,user))
+	if(new_tool)
+		switch_tool(user, new_tool)		
 
 /obj/item/holotool/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
