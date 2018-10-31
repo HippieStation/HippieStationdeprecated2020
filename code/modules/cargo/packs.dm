@@ -1333,6 +1333,27 @@
 	group = "Science"
 	crate_type = /obj/structure/closet/crate/science
 
+/datum/supply_pack/science/robotics/mecha_odysseus
+	name = "Circuit Crate (Odysseus)"
+	desc = "Ever wanted to build your own giant medical robot? Well, now you can! Contains the Odysseus main control board and Odysseus peripherals board. Requires Robotics access to open."
+	cost = 2500
+	access = ACCESS_ROBOTICS
+	contains = list(/obj/item/circuitboard/mecha/odysseus/peripherals,
+					/obj/item/circuitboard/mecha/odysseus/main)
+	crate_name = "\improper Odysseus circuit crate"
+	crate_type = /obj/structure/closet/crate/secure/science
+
+/datum/supply_pack/science/robotics/mecha_ripley
+	name = "Circuit Crate (Ripley APLU)"
+	desc = "Rip apart rocks and xenomorphs alike with the Ripley APLU. Contains the Main Ripley control board, as well as the Ripley Peripherals board. Requires Robotics access to open."
+	cost = 3000
+	access = ACCESS_ROBOTICS
+	contains = list(/obj/item/book/manual/ripley_build_and_repair,
+					/obj/item/circuitboard/mecha/ripley/main,
+					/obj/item/circuitboard/mecha/ripley/peripherals)
+	crate_name = "\improper APLU Ripley circuit crate"
+	crate_type = /obj/structure/closet/crate/secure/science
+
 /datum/supply_pack/science/plasma
 	name = "Plasma Assembly Crate"
 	desc = "Everything you need to burn something to the ground, this contains three plasma assembly sets. Each set contains a plasma tank, igniter, proximity sensor, and timer! Warranty void if exposed to high temperatures. Requires Toxins access to open."

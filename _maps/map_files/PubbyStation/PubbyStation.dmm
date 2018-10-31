@@ -49877,7 +49877,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/corner{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
@@ -54358,7 +54358,7 @@
 	light_color = "#e8eaff"
 	},
 /turf/open/floor/plating,
-/area/engine/engineering)
+/area/maintenance/department/engine)
 "pEL" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
@@ -56579,15 +56579,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"vjH" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor/plasteel,
-/area/engine/engineering)
 "vll" = (
 /obj/structure/sign/warning,
 /turf/closed/wall/r_wall,
@@ -56602,13 +56593,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/maintenance/department/crew_quarters/dorms)
-"vmA" = (
-/obj/machinery/atmospherics/pipe/simple/orange/visible{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/engine,
-/area/engine/engineering)
 "vmG" = (
 /obj/machinery/atmospherics/components/trinary/filter,
 /turf/open/floor/engine,
@@ -99323,7 +99307,7 @@ bdI
 bbI
 bbI
 aGP
-aTx
+bjx
 vll
 bky
 boh
