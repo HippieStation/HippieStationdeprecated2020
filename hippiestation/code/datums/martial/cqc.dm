@@ -26,40 +26,40 @@
 		streak = ""
 		A.hud_used.combo_object.update_icon(streak)
 		Slam(A,D)
-		return 1
+		return TRUE
 	if(findtext(streak,KICK_COMBO))
 		streak = ""
 		A.hud_used.combo_object.update_icon(streak)
 		Kick(A,D)
-		return 1
+		return TRUE
 	if(findtext(streak,RESTRAIN_COMBO))
 		streak = ""
 		A.hud_used.combo_object.update_icon(streak)
 		Restrain(A,D)
-		return 1
+		return TRUE
 	if(findtext(streak,PRESSURE_COMBO))
 		streak = ""
 		A.hud_used.combo_object.update_icon(streak)
 		Pressure(A,D)
-		return 1
+		return TRUE
 	if(findtext(streak,CONSECUTIVE_COMBO))
 		streak = ""
 		A.hud_used.combo_object.update_icon(streak)
 		Consecutive(A,D)
-	return 0
+	return FALSE
 
 /datum/martial_art/cqc/proc/Slam(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!D.stat || !D.IsKnockdown())
+	if(!D.stat || !D.IsParalyzed())
 		D.visible_message("<span class='warning'>[A] slams [D] into the ground!</span>", \
 						  	"<span class='userdanger'>[A] slams you into the ground!</span>")
 		playsound(get_turf(A), 'sound/weapons/slam.ogg', 50, 1, -1)
 		D.apply_damage(10, BRUTE)
-		D.Knockdown(120)
+		D.Paralyze(120)
 		log_combat(A, D, "cqc slammed")
-	return 1
+	return TRUE
 
 /datum/martial_art/cqc/proc/Kick(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!D.stat || !D.IsKnockdown())
+	if(!D.stat || !D.IsParalyzed())
 		D.visible_message("<span class='warning'>[A] kicks [D] back!</span>", \
 							"<span class='userdanger'>[A] kicks you back!</span>")
 		playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
@@ -67,19 +67,19 @@
 		D.throw_at(throw_target, 1, 14, A)
 		D.apply_damage(10, BRUTE)
 		log_combat(A, D, "cqc kicked")
-	if(D.IsKnockdown() && !D.stat)
+	if(D.IsParalyzed() && !D.stat)
 		D.visible_message("<span class='warning'>[A] kicks [D]'s head, knocking them out!</span>", \
 					  		"<span class='userdanger'>[A] kicks your head, knocking you out!</span>")
 		playsound(get_turf(A), 'sound/weapons/genhit1.ogg', 50, 1, -1)
 		D.SetSleeping(300)
 		D.adjustBrainLoss(25)
-	return 1
+	return TRUE
 
 /datum/martial_art/cqc/proc/Pressure(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	D.visible_message("<span class='warning'>[A] forces their arm on [D]'s neck!</span>")
 	D.adjustStaminaLoss(60)
 	playsound(get_turf(A), 'sound/weapons/cqchit1.ogg', 50, 1, -1)
-	return 1
+	return TRUE
 
 /datum/martial_art/cqc/proc/Restrain(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(restraining)
@@ -89,9 +89,9 @@
 							"<span class='userdanger'>[A] locks you into a restraining position!</span>")
 		D.adjustStaminaLoss(20)
 		D.Stun(100)
-		restraining = 1
+		restraining = TRUE
 		addtimer(CALLBACK(src, .proc/drop_restraining), 50, TIMER_UNIQUE)
-	return 1
+	return TRUE
 
 /datum/martial_art/cqc/proc/Consecutive(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!D.stat)
@@ -103,38 +103,38 @@
 			A.put_in_hands(I)
 		D.adjustStaminaLoss(50)
 		D.apply_damage(25, BRUTE)
-	return 1
+	return TRUE
 
 /datum/martial_art/cqc/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if (just_a_cook)
 		if (!is_type_in_typecache(get_area(A), areas_under_siege))
-			return 0
+			return FALSE
 	add_to_streak("G",D)
 	if(check_streak(A,D))
-		return 1
+		return TRUE
 	if(A.grab_state >= GRAB_AGGRESSIVE)
-		D.grabbedby(A, 1)
+		D.grabbedby(A, TRUE)
 	else
-		A.start_pulling(D, 1)
+		A.start_pulling(D, TRUE)
 		if(A.pulling)
 			D.stop_pulling()
 			log_combat(A, D, "grabbed", addition="aggressively")
 			A.grab_state = GRAB_AGGRESSIVE //Instant aggressive grab
 
-	return 1
+	return TRUE
 
 /datum/martial_art/cqc/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if (just_a_cook)
 		if (!is_type_in_typecache(get_area(A), areas_under_siege))
-			return 0
+			return FALSE
 	add_to_streak("H",D)
 	if(check_streak(A,D))
-		return 1
+		return TRUE
 	log_combat(A, D, "CQC'd")
 	A.do_attack_animation(D)
 	var/picked_hit_type = pick("CQC'd", "Big Bossed")
 	var/bonus_damage = 13
-	if(D.IsKnockdown() || D.resting || D.lying)
+	if(D.IsParalyzed() || D.resting || D.lying)
 		bonus_damage += 5
 		picked_hit_type = "stomps on"
 	D.apply_damage(bonus_damage, BRUTE)
@@ -145,25 +145,25 @@
 	D.visible_message("<span class='danger'>[A] [picked_hit_type] [D]!</span>", \
 					  "<span class='userdanger'>[A] [picked_hit_type] you!</span>")
 	log_combat(A, D, "[picked_hit_type] with CQC")
-	if(A.resting && !D.stat && !D.IsKnockdown())
+	if(A.resting && !D.stat && !D.IsParalyzed())
 		D.visible_message("<span class='warning'>[A] leg sweeps [D]!", \
 							"<span class='userdanger'>[A] leg sweeps you!</span>")
 		playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
 		D.apply_damage(10, BRUTE)
-		D.Knockdown(60)
+		D.Paralyze(60)
 		log_combat(A, D, "cqc sweeped")
-	return 1
+	return TRUE
 
 /datum/martial_art/cqc/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if (just_a_cook)
 		if (!is_type_in_typecache(get_area(A), areas_under_siege))
-			return 0
+			return FALSE
 	add_to_streak("D",D)
 	var/obj/item/I = null
 	if(check_streak(A,D))
-		return 1
+		return TRUE
 	if(prob(65))
-		if(!D.stat || !D.IsKnockdown() || !restraining)
+		if(!D.stat || !D.IsParalyzed() || !restraining)
 			I = D.get_active_held_item()
 			D.visible_message("<span class='warning'>[A] strikes [D]'s jaw with their hand!</span>", \
 								"<span class='userdanger'>[A] strikes your jaw, disorienting you!</span>")
@@ -186,8 +186,8 @@
 			A.grab_state = GRAB_NECK
 	else
 		restraining = 0
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/human/proc/CQC_help()
 	set name = "Remember The Basics"

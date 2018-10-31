@@ -3,7 +3,7 @@
 	config_tag = "nuclear"
 	false_report_weight = 10
 	required_players = 30 // 30 players - 3 players to be the nuke ops = 27 players remaining
-	required_enemies = 2
+	required_enemies = 1
 	recommended_enemies = 5
 	antag_flag = ROLE_OPERATIVE
 	enemy_minimum_age = 14
@@ -115,7 +115,7 @@
 	uniform = /obj/item/clothing/under/syndicate
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/combat
-	back = /obj/item/storage/backpack
+	back = /obj/item/storage/backpack/fireproof
 	ears = /obj/item/radio/headset/syndicate/alt
 	l_pocket = /obj/item/pinpointer/nuke/syndicate
 	id = /obj/item/card/id/syndicate

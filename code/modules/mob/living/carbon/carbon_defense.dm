@@ -51,7 +51,7 @@
 /mob/living/carbon/hitby(atom/movable/AM, skipcatch, hitpush = TRUE, blocked = FALSE)
 	if(!skipcatch)	//ugly, but easy
 		if(in_throw_mode && !get_active_held_item())	//empty active hand and we're in throw mode
-			if(canmove && !restrained())
+			if((mobility_flags & MOBILITY_MOVE) && !restrained())
 				if(istype(AM, /obj/item))
 					var/obj/item/I = AM
 					if(isturf(I.loc))
@@ -127,7 +127,7 @@
 		if(D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
 			ContactContractDisease(D)
 
-	if(lying && surgeries.len)
+	if(!(mobility_flags & MOBILITY_STAND) && surgeries.len)
 		if(user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM)
 			for(var/datum/surgery/S in surgeries)
 				if(S.next_step(user, user.a_intent))
@@ -173,7 +173,7 @@
 
 				do_sparks(5, TRUE, src)
 				var/power = M.powerlevel + rand(0,3)
-				Knockdown(power*20)
+				Paralyze(power*20)
 				if(stuttering < power)
 					stuttering = power
 				if (prob(stunprob) && M.powerlevel >= 8)
@@ -244,11 +244,11 @@
 	do_jitter_animation(jitteriness)
 	stuttering += 2
 	if((!tesla_shock || (tesla_shock && siemens_coeff > 0.5)) && stun)
-		Stun(40)
+		Paralyze(40)
 	spawn(20)
 		jitteriness = max(jitteriness - 990, 10) //Still jittery, but vastly less
 		if((!tesla_shock || (tesla_shock && siemens_coeff > 0.5)) && stun)
-			Knockdown(60)
+			Paralyze(60)
 	if(override)
 		return override
 	else
@@ -261,7 +261,7 @@
 
 	if(health >= 0 && !(has_trait(TRAIT_FAKEDEATH)))
 
-		if(lying)
+		if(!(mobility_flags & MOBILITY_STAND))
 			if(buckled)
 				to_chat(M, "<span class='warning'>You need to unbuckle [src] first to do that!")
 				return
@@ -275,9 +275,9 @@
 		AdjustKnockdown(-60)
 		AdjustUnconscious(-60)
 		AdjustSleeping(-100)
-		if(resting)
-			resting = 0
-			update_canmove()
+		AdjustParalyzed(-60)
+		AdjustImmobilized(-60)
+		set_resting(FALSE)
 
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
@@ -342,7 +342,7 @@
 	var/effect_amount = intensity - ear_safety
 	if(effect_amount > 0)
 		if(stun_pwr)
-			Knockdown(stun_pwr*effect_amount)
+			Paralyze(stun_pwr*effect_amount)
 
 		if(istype(ears) && (deafen_pwr || damage_pwr))
 			var/ear_damage = damage_pwr * effect_amount

@@ -37,7 +37,7 @@ obj/item/projectile/rod/proc/Impale(mob/living/carbon/human/H)
 				H.pinned_to = T
 				T.pinned = H
 				H.anchored = TRUE
-				H.update_canmove()
+				H.update_mobility()
 				H.do_pindown(T, 1)
 				R.pinned = T
 

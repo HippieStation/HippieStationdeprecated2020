@@ -82,3 +82,4 @@ The best practice to have while coding is to keep everything modularized, or the
 ## code/modules/surgery/bodyparts/head.dm
 ## code/modules/surgery/helpers.dm
 ## code/modules/surgery/organs/vocal_cords.dm
+## code/modules/unit_tests/reagent_recipe_collisions.dm
