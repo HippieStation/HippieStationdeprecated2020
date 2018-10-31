@@ -16,9 +16,6 @@
 	var/list/radial_modes
 	var/current_color = "#48D1CC" //mediumturquoise
 
-	var/menu_open = FALSE
-	var/datum/radial_menu/menu = new
-
 /obj/item/holotool/examine(mob/user)
 	..()
 	to_chat(user, "<span class='notice'>It is currently set to [current_tool ? current_tool.name : "'off'"] mode.</span>")
