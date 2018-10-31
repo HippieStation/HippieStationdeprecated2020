@@ -89,9 +89,13 @@
 
 /obj/item/holotool/CtrlClick(mob/user)
 	update_listing()
-	var/new_tool = show_radial_menu(user, src, radial_modes, custom_check = CALLBACK(src, .proc/check_menu,user))
-	if(new_tool)
-		switch_tool(user, new_tool)		
+	var/chosen = show_radial_menu(user, src, radial_modes, custom_check = CALLBACK(src, .proc/check_menu,user))
+	if(!check_menu(user))
+		return
+	if(chosen)
+		var/new_tool = LAZYACCESS(mode_names, chosen)
+		if(new_tool)
+			switch_tool(user, new_tool)		
 
 /obj/item/holotool/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
