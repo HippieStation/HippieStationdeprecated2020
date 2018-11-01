@@ -1,5 +1,5 @@
-/obj/item/reagent_containers/glass/rag/afterattack(atom/A as obj|turf|area, mob/user, proximity)
-	if(!proximity || !check_allowed_items(target, target_self=1))
+/obj/item/reagent_containers/glass/rag/afterattack(obj/target, mob/user, proximity)
+	if(!istype(target) || !proximity || !check_allowed_items(target, target_self=1))
 		return
 	if(iscarbon(A) && A.reagents && reagents.total_volume)
 		var/mob/living/carbon/C = A
