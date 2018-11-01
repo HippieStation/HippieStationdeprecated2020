@@ -1,5 +1,5 @@
-/obj/item/reagent_containers/glass/rag/afterattack(obj/target, mob/user, proximity)
-	if(!istype(target) || !proximity || !check_allowed_items(target, target_self=1))
+/obj/item/reagent_containers/glass/rag/afterattack(obj/A, mob/user,proximity)
+	if(!istype(A) || !proximity || !check_allowed_items(A, target_self=1))
 		return
 	if(iscarbon(A) && A.reagents && reagents.total_volume)
 		var/mob/living/carbon/C = A
@@ -15,36 +15,36 @@
 			reagents.clear_reagents()
 			C.visible_message("<span class='notice'>[user] has touched \the [C] with \the [src].</span>")
 			log_combat(user, C, "touched", log_object)
-	else if(istype(target, /obj/structure/reagent_dispensers)) //A dispenser. Transfer FROM it TO us.
-		if(target.is_open_container())
+	else if(istype(A, /obj/structure/reagent_dispensers)) //A dispenser. Transfer FROM it TO us.
+		if(A.is_open_container())
 			if(!reagents.total_volume)
 				to_chat(user, "<span class='warning'>[src] is empty!</span>")
 				return
-			if(target.reagents.total_volume >= target.reagents.maximum_volume)
-				to_chat(user, "<span class='notice'>[target] is full.</span>")
+			if(A.reagents.total_volume >= A.reagents.maximum_volume)
+				to_chat(user, "<span class='notice'>[A] is full.</span>")
 				return
-			var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
-			to_chat(user, "<span class='notice'>You transfer [trans] unit\s of the solution to [target].</span>")
+			var/trans = reagents.trans_to(A, amount_per_transfer_from_this)
+			to_chat(user, "<span class='notice'>You transfer [trans] unit\s of the solution to [A].</span>")
 		else
 			if(reagents.total_volume >= reagents.maximum_volume)
 				to_chat(user, "<span class='notice'>[src] is full.</span>")
 				return
-			if(!target.reagents.total_volume)
-				to_chat(user, "<span class='warning'>[target] is empty!</span>")
+			if(!A.reagents.total_volume)
+				to_chat(user, "<span class='warning'>[A] is empty!</span>")
 				return
 			else
-				var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this)
-				to_chat(user, "<span class='notice'>You fill [src] with [trans] unit\s of the contents of [target].</span>")
+				var/trans = A.reagents.trans_to(src, amount_per_transfer_from_this)
+				to_chat(user, "<span class='notice'>You fill [src] with [trans] unit\s of the contents of [A].</span>")
 				return
-	else if(target.is_open_container() && target.reagents) //Something like a glass. Player probably wants to transfer TO it.
+	else if(A.is_open_container() && A.reagents) //Something like a glass. Player probably wants to transfer TO it.
 		if(!reagents.total_volume)
 			to_chat(user, "<span class='warning'>[src] is empty!</span>")
 			return
-		if(target.reagents.total_volume >= target.reagents.maximum_volume)
-			to_chat(user, "<span class='notice'>[target] is full.</span>")
+		if(A.reagents.total_volume >= A.reagents.maximum_volume)
+			to_chat(user, "<span class='notice'>[A] is full.</span>")
 			return
-		var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
-		to_chat(user, "<span class='notice'>You transfer [trans] unit\s of the solution to [target].</span>")
+		var/trans = reagents.trans_to(A, amount_per_transfer_from_this)
+		to_chat(user, "<span class='notice'>You transfer [trans] unit\s of the solution to [A].</span>")
 	else if(istype(A) && src in user)
 		user.visible_message("[user] starts to wipe down [A] with [src]!", "<span class='notice'>You start to wipe down [A] with [src]...</span>")
 		if(do_after(user,30, target = A))
