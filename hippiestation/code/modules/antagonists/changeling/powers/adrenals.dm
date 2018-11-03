@@ -8,15 +8,15 @@
 	dna_cost = 2
 	req_human = 1
 	req_stat = UNCONSCIOUS
-	var/last_run = 0
+	var/last_run = null
 
 //Recover from stuns.
 /obj/effect/proc_holder/changeling/adrenaline/sting_action(mob/living/user)
 	if(user.on_fire)
-		to_chat(user, "<span class='Hey stupid, you're on fire.</span>")
+		to_chat(user, "<span class='warning'>Hey stupid, you're on fire.</span>")
 		return FALSE
-	if(world.time >= last_run + ADRENAL_COOLDOWN)
-		to_chat(user, "<span class='Hey stupid, you can only use adrenals every 5 minutes.</span>")
+	if(isnull(last_run) || world.time >= last_run + ADRENAL_COOLDOWN)
+		to_chat(user, "<span class='warning'>Hey stupid, you can only use adrenals every 5 minutes.</span>")
 		return FALSE
 	last_run = world.time
 	to_chat(user, "<span class='notice'>Energy rushes through us.[(!(user.mobility_flags & MOBILITY_STAND)) ? " We arise." : ""]</span>")
