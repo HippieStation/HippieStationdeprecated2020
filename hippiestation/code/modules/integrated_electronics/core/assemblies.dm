@@ -849,4 +849,4 @@
 		if(EAST)
 			pixel_x = -31
 		if(WEST)
-      pixel_x = 31
+			pixel_x = 31
