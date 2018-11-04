@@ -13,3 +13,10 @@
 			to_chat(target, "<span class='notice'>You feel a sense of peace and security. You are now protected from brainwashing.</span>")
 		return TRUE
 	return FALSE
+
+/datum/nanite_program/mindshield/enable_passive_effect()
+	if(target.mind.has_antag_datum(/datum/antagonist/gang/boss))
+		return FALSE
+	. = ..()
+	target.mind.remove_antag_datum(/datum/antagonist/gang)
+	to_chat(target, "<span class='notice'>You feel a sense of peace and security. You are now protected from brainwashing.</span>"
