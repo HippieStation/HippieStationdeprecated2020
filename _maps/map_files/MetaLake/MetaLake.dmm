@@ -38200,11 +38200,11 @@
 /area/maintenance/port)
 "bzx" = (
 /turf/closed/wall,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bzy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/closed/wall,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bzz" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/grunge/abandoned{
@@ -38217,7 +38217,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bzA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable/yellow{
@@ -38841,22 +38841,22 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/item/folder,
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bBg" = (
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bBh" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bBi" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp,
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bBj" = (
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating{
@@ -38873,7 +38873,7 @@
 	pixel_y = 5
 	},
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bBl" = (
 /obj/structure/urinal{
 	pixel_y = 29
@@ -39549,17 +39549,17 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bCM" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bCN" = (
 /obj/structure/chair/office/dark{
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bCP" = (
 /obj/machinery/light/small,
 /obj/machinery/camera{
@@ -40195,7 +40195,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bEs" = (
 /obj/item/paper_bin{
 	pixel_x = -2;
@@ -40203,7 +40203,7 @@
 	},
 /obj/structure/table/wood,
 /turf/open/floor/carpet,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bEt" = (
 /obj/machinery/door/airlock{
 	id_tag = "AuxShower";
@@ -41171,7 +41171,7 @@
 	dir = 6
 	},
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bGk" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -41180,7 +41180,7 @@
 	dir = 9
 	},
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bGl" = (
 /obj/machinery/shower{
 	dir = 4
@@ -41765,13 +41765,13 @@
 	},
 /obj/structure/table/wood,
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bHL" = (
 /obj/structure/chair/comfy/black{
 	dir = 4
 	},
 /turf/open/floor/carpet,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bHM" = (
 /obj/item/folder/white{
 	pixel_x = 4;
@@ -41779,7 +41779,7 @@
 	},
 /obj/structure/table/wood,
 /turf/open/floor/carpet,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bHN" = (
 /obj/machinery/shower{
 	dir = 4
@@ -42499,7 +42499,7 @@
 	pixel_x = -29
 	},
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bJu" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -42508,25 +42508,25 @@
 	dir = 9
 	},
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bJv" = (
 /obj/item/folder/blue,
 /obj/structure/table/wood,
 /turf/open/floor/carpet,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bJw" = (
 /obj/structure/chair/office/dark{
 	dir = 8
 	},
 /turf/open/floor/carpet,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bJx" = (
 /obj/machinery/firealarm{
 	dir = 4;
 	pixel_x = 24
 	},
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bJy" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -43240,26 +43240,26 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Vacant Office APC";
-	areastring = "/area/vacant_room";
+	areastring = "/area/security/vacantoffice";
 	pixel_x = -25
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bKZ" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bLa" = (
 /obj/structure/light_construct{
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bLb" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance,
@@ -44005,7 +44005,7 @@
 "bMC" = (
 /obj/structure/chair/office/dark,
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bMD" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin{
@@ -44013,7 +44013,7 @@
 	pixel_y = 9
 	},
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bME" = (
 /obj/structure/mirror{
 	pixel_x = -28
@@ -44307,7 +44307,7 @@
 	pixel_y = 2
 	},
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bNi" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -44570,7 +44570,7 @@
 	pixel_x = 24
 	},
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bNL" = (
 /obj/structure/table,
 /obj/item/stock_parts/subspace/transmitter,
@@ -44758,12 +44758,12 @@
 	pixel_y = -3
 	},
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bOh" = (
 /obj/item/toy/cards/deck,
 /obj/structure/table/wood,
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "bOi" = (
 /obj/structure/table,
 /obj/item/clothing/mask/cigarette/pipe,
@@ -75649,7 +75649,7 @@
 	pixel_x = -32
 	},
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "dif" = (
 /obj/item/soap/nanotrasen,
 /obj/machinery/light/small{
@@ -75666,7 +75666,7 @@
 	pixel_x = 32
 	},
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "dih" = (
 /obj/machinery/light/small,
 /obj/structure/sign/poster/official/random{
@@ -75735,7 +75735,7 @@
 	pixel_y = -32
 	},
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/security/vacantoffice)
 "dio" = (
 /obj/structure/closet/crate,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -76269,7 +76269,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/wood,
-/area/space)
+/area/security/vacantoffice)
 "djX" = (
 /obj/structure/closet/crate/coffin,
 /obj/machinery/door/window/eastleft{
@@ -77859,6 +77859,10 @@
 "hJe" = (
 /turf/closed/wall/r_wall,
 /area/maintenance/fore)
+"hMF" = (
+/obj/structure/sign/poster/official/dont_panic,
+/turf/closed/wall/r_wall,
+/area/engine/engineering)
 "hUk" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /obj/effect/turf_decal/delivery,
@@ -78696,6 +78700,10 @@
 /obj/structure/fans/tiny/invisible,
 /turf/open/space/basic,
 /area/space)
+"uhw" = (
+/obj/structure/sign/poster/official/dont_panic,
+/turf/closed/wall/r_wall,
+/area/engine/supermatter)
 "upN" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -118964,7 +118972,7 @@ aEl
 aFt
 aGU
 axY
-axY
+hMF
 aKz
 aKz
 axY
@@ -121281,7 +121289,7 @@ dlI
 aKG
 aMj
 dBy
-dlI
+uhw
 aQe
 aRv
 dfD
