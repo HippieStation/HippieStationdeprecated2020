@@ -29,6 +29,7 @@
 	user.loc = new_mob
 	user.status_flags |= GODMODE
 	user.mind.transfer_to(new_mob)
+	user.transfer_observers_to(new_mob)
 	return 1
 
 /mob/living/simple_animal/hostile/true_changeling
@@ -151,6 +152,7 @@
 						"<span class='userdanger'>We lack the power to maintain this form! We helplessly turn back into a human...</span>")
 		stored_changeling.loc = get_turf(src)
 		mind.transfer_to(stored_changeling)
+		transfer_observers_to(stored_changeling)
 		stored_changeling.AdjustUnconscious(250)
 		stored_changeling.status_flags &= ~GODMODE
 		qdel(src)
