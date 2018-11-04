@@ -151,4 +151,4 @@
 			edit_in_list(usr)
 
 	holder.interact(usr) // Refresh the main UI,
-  interact(usr) // and the list UI.
+	interact(usr) // and the list UI.
