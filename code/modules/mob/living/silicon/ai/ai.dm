@@ -91,6 +91,7 @@
 	var/list/multicam_screens = list()
 	var/list/all_eyes = list()
 	var/max_multicams = 6
+	var/display_icon_override
 
 /mob/living/silicon/ai/Initialize(mapload, datum/ai_laws/L, mob/target_ai)
 	. = ..()
@@ -187,6 +188,21 @@
 	set name = "Set AI Core Display"
 	if(incapacitated())
 		return
+	var/list/iconstates = GLOB.ai_core_display_screens
+	for(var/option in iconstates)
+		if(option == "Random")
+			iconstates[option] = image(icon = src.icon, icon_state = "ai-random")
+			continue
+		iconstates[option] = image(icon = src.icon, icon_state = resolve_ai_icon(option))
+
+	view_core()
+	var/ai_core_icon = show_radial_menu(src, src , iconstates, radius = 42)
+
+	if(!ai_core_icon || incapacitated())
+		return
+
+	display_icon_override = ai_core_icon
+	set_core_display_icon(ai_core_icon)
 
 /mob/living/silicon/ai/Stat()
 	..()
@@ -348,8 +364,6 @@
 			H.attack_ai(src) //may as well recycle
 		else
 			to_chat(src, "<span class='notice'>Unable to locate the holopad.</span>")
-	if(href_list["remotedoor"])
-		handle_remotedoor(href_list)
 	if(href_list["track"])
 		var/string = href_list["track"]
 		trackable_mobs()
@@ -865,10 +879,10 @@
 			clear_fullscreen("remote_view", 0)
 
 /mob/living/silicon/ai/revive(full_heal = 0, admin_revive = 0)
-	if(..()) //successfully ressuscitated from death
-		icon_state = "ai"
+	. = ..()
+	if(.) //successfully ressuscitated from death
+		set_core_display_icon(display_icon_override)
 		set_eyeobj_visible(TRUE)
-		. = 1
 
 /mob/living/silicon/ai/proc/malfhacked(obj/machinery/power/apc/apc)
 	malfhack = null
