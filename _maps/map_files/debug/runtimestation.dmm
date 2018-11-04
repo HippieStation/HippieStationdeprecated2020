@@ -403,7 +403,6 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/machinery/announcement_system,
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
 "bh" = (
@@ -1456,11 +1455,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/structure/fans/tiny,
-/turf/open/floor/plating,
-/area/quartermaster/miningoffice)
-"ef" = (
-/obj/machinery/door/airlock,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "el" = (
@@ -1494,7 +1488,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "eq" = (
@@ -9770,9 +9763,6 @@ aa
 aa
 aa
 aa
-aa
-"}
-(75,1,1) = {"
 aa
 "}
 (75,1,1) = {"
