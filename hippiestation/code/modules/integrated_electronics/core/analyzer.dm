@@ -14,4 +14,4 @@
 			to_chat(user, "<span class='notice'>You scan [A].</span>")
 			user << browse(saved, "window=circuit_scan;size=500x600;border=1;can_resize=1;can_close=1;can_minimize=1")
 		else
-      to_chat(user, "<span class='warning'>[A] is not complete enough to be encoded!</span>")
+			to_chat(user, "<span class='warning'>[A] is not complete enough to be encoded!</span>")
