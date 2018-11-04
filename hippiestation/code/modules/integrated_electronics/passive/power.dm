@@ -137,4 +137,4 @@
 
 /obj/item/integrated_circuit/passive/power/chemical_cell/do_work()
 	set_pin_data(IC_OUTPUT, 2, WEAKREF(src))
-  push_data()
+	push_data()
