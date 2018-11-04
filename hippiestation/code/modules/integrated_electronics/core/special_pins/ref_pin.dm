@@ -21,4 +21,4 @@
 /datum/integrated_io/ref/disconnect_pin(datum/integrated_io/pin)
 	..(pin)
 	if(istype(pin,/datum/integrated_io/selfref))
-    write_data_to_pin(null)
+		write_data_to_pin(null)
