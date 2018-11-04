@@ -242,4 +242,4 @@
 /obj/item/integrated_circuit/text/text_replacer/do_work()
 	set_pin_data(IC_OUTPUT, 1,replacetext(get_pin_data(IC_INPUT, 1), get_pin_data(IC_INPUT, 2), get_pin_data(IC_INPUT, 3)))
 	push_data()
-  activate_pin(2)
+	activate_pin(2)
