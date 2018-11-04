@@ -360,4 +360,4 @@
 			IO.connect_pin(IO2)
 
 	assembly.forceMove(loc)
-  return assembly
+	return assembly
