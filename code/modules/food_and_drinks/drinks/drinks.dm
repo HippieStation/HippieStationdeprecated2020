@@ -51,7 +51,7 @@
 	var/fraction = min(gulp_size/reagents.total_volume, 1)
 	checkLiked(fraction, M)
 	reagents.reaction(M, INGEST, fraction)
-	reagents.trans_to(M, gulp_size, transfered_by = user)
+	reagents.trans_to(M, gulp_size)
 	playsound(M.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	return 1
 
@@ -70,7 +70,7 @@
 			return
 
 		var/refill = reagents.get_master_reagent_id()
-		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
+		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
 		to_chat(user, "<span class='notice'>You transfer [trans] units of the solution to [target].</span>")
 
 		if(iscyborg(user)) //Cyborg modules that include drinks automatically refill themselves, but drain the borg's cell
@@ -91,7 +91,7 @@
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
 			return
 
-		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transfered_by = user)
+		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this)
 		to_chat(user, "<span class='notice'>You fill [src] with [trans] units of the contents of [target].</span>")
 
 /obj/item/reagent_containers/food/drinks/attackby(obj/item/I, mob/user, params)
@@ -412,14 +412,14 @@
 		sleep(10)
 	H.visible_message("<span class='suicide'>[H] takes a big sip from [src]! It looks like [H.p_theyre()] trying to commit suicide!</span>")
 	playsound(H,'sound/items/drink.ogg', 80, 1)
-	reagents.trans_to(H, src.reagents.total_volume, transfered_by = H) //a big sip
+	reagents.trans_to(H, src.reagents.total_volume) //a big sip
 	sleep(5)
 	H.say(pick("Now, Outbomb Cuban Pete, THAT was a game.", "All these new fangled arcade games are too slow. I prefer the classics.", "They don't make 'em like Orion Trail anymore.", "You know what they say. Worst day of spess carp fishing is better than the best day at work.", "They don't make 'em like good old fashioned singularity engines anymore."))
 	if(H.age >= 30)
 		H.Stun(50)
 		sleep(50)
 		playsound(H,'sound/items/drink.ogg', 80, 1)
-		H.say(pick("Another day, another dollar.", "I wonder if I should hold?", "Diversifying is for young'ns.", "Yeap, times were good back then."))
+		H.say(pick("Another day, another dollar.", "I wonder if I should hold?", "Diversifying is for young'ns.", "Yeap, times were good back then."))		
 		return MANUAL_SUICIDE
 	sleep(20) //dramatic pause
 	return TOXLOSS
@@ -448,31 +448,28 @@
 /obj/item/reagent_containers/food/drinks/soda_cans/cola
 	name = "Space Cola"
 	desc = "Cola. in space."
-	custom_price = 10
 	icon_state = "cola"
-	list_reagents = list("cola" = 30, "burpinate" = 5) // hippie -- burp after drinking this
+	list_reagents = list("cola" = 30)
 	foodtype = SUGAR
 
 /obj/item/reagent_containers/food/drinks/soda_cans/tonic
 	name = "T-Borg's tonic water"
 	desc = "Quinine tastes funny, but at least it'll keep that Space Malaria away."
-	custom_price = 10
 	icon_state = "tonic"
-	list_reagents = list("tonic" = 45, "burpinate" = 5) // hippie -- burp after drinking this
+	list_reagents = list("tonic" = 50)
 	foodtype = ALCOHOL
 
 /obj/item/reagent_containers/food/drinks/soda_cans/sodawater
 	name = "soda water"
 	desc = "A can of soda water. Why not make a scotch and soda?"
-	custom_price = 10
 	icon_state = "sodawater"
-	list_reagents = list("sodawater" = 45, "burpinate" = 5) // hippie -- burp after drinking this
+	list_reagents = list("sodawater" = 50)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime
 	name = "orange soda"
 	desc = "You wanted ORANGE. It gave you Lemon Lime."
 	icon_state = "lemon-lime"
-	list_reagents = list("lemon_lime" = 30, "burpinate" = 5) // hippie -- burp after drinking this
+	list_reagents = list("lemon_lime" = 30)
 	foodtype = FRUIT
 
 /obj/item/reagent_containers/food/drinks/soda_cans/lemon_lime/Initialize()
@@ -483,55 +480,48 @@
 	name = "Space-Up!"
 	desc = "Tastes like a hull breach in your mouth."
 	icon_state = "space-up"
-	list_reagents = list("space_up" = 30, "burpinate" = 5) // hippie -- burp after drinking this
+	list_reagents = list("space_up" = 30)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/starkist
 	name = "Star-kist"
 	desc = "The taste of a star in liquid form. And, a bit of tuna...?"
 	icon_state = "starkist"
-	list_reagents = list("cola" = 15, "orangejuice" = 15, "burpinate" = 5) // hippie -- burp after drinking this
+	list_reagents = list("cola" = 15, "orangejuice" = 15)
 	foodtype = SUGAR | FRUIT | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/space_mountain_wind
 	name = "Space Mountain Wind"
 	desc = "Blows right through you like a space wind."
 	icon_state = "space_mountain_wind"
-	list_reagents = list("spacemountainwind" = 30, "burpinate" = 5) // hippie -- burp after drinking this
+	list_reagents = list("spacemountainwind" = 30)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/thirteenloko
 	name = "Thirteen Loko"
 	desc = "The CMO has advised crew members that consumption of Thirteen Loko may result in seizures, blindness, drunkenness, or even death. Please Drink Responsibly."
 	icon_state = "thirteen_loko"
-	list_reagents = list("thirteenloko" = 30, "burpinate" = 5) // hippie -- burp after drinking this
+	list_reagents = list("thirteenloko" = 30)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/dr_gibb
 	name = "Dr. Gibb"
 	desc = "A delicious mixture of 42 different flavors."
 	icon_state = "dr_gibb"
-	list_reagents = list("dr_gibb" = 30, "burpinate" = 5) // hippie -- burp after drinking this
+	list_reagents = list("dr_gibb" = 30)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/pwr_game
 	name = "Pwr Game"
 	desc = "The only drink with the PWR that true gamers crave."
 	icon_state = "purple_can"
-	list_reagents = list("pwr_game" = 30, "burpinate" = 5) // hippie -- burp after drinking this
+	list_reagents = list("pwr_game" = 30)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/shamblers
 	name = "Shambler's juice"
 	desc = "~Shake me up some of that Shambler's Juice!~"
 	icon_state = "shamblers"
-	list_reagents = list("shamblers" = 30, "burpinate" = 5) // hippie -- burp after drinking this
-	foodtype = SUGAR | JUNKFOOD
-
-/obj/item/reagent_containers/food/drinks/soda_cans/grey_bull
-	name = "Grey Bull"
-	desc = "Grey Bull, it gives you gloves!"
-	icon_state = "energy_drink"
-	list_reagents = list("grey_bull" = 20)
+	list_reagents = list("shamblers" = 30)
 	foodtype = SUGAR | JUNKFOOD
 
 /obj/item/reagent_containers/food/drinks/soda_cans/air
