@@ -317,4 +317,4 @@
 /obj/item/disk/integrated_circuit/upgrade/clone
 	name = "integrated circuit printer upgrade disk - instant cloner"
 	desc = "Install this into your integrated circuit printer to enhance it.  This one allows the printer to duplicate assemblies instantaneously."
-  icon_state = "upgrade_disk_clone"
+	icon_state = "upgrade_disk_clone"
