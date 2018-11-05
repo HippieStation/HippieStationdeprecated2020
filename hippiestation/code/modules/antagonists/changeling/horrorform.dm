@@ -22,12 +22,14 @@
 						"<span class='userdanger'>We cast off our petty shell and enter our true form!<br>This form will not last forever, so devour as many people as possible!</span>")
 	var/mob/living/simple_animal/hostile/true_changeling/new_mob = new(get_turf(user))
 	new_mob.real_name = pick("True Form Changeling", "panic stinger", "chaos bringer", "Revelations 11:15-19", "Space Satan", \
-	 "teegee coder", "fun destroyer", "lean sipper", "guy who put pineapple on cornpotato pizza", "oversized ham disc", "greyshirt's bane")
+	 "teegee coder", "fun destroyer", "lean sipper", "guy who put pineapple on cornpotato pizza", "oversized ham disc", "greyshirt's bane", \
+	 "OP's mom")
 	new_mob.name = new_mob.real_name
 	new_mob.stored_changeling = user
 	user.loc = new_mob
 	user.status_flags |= GODMODE
 	user.mind.transfer_to(new_mob)
+	user.transfer_observers_to(new_mob)
 	return 1
 
 /mob/living/simple_animal/hostile/true_changeling
@@ -150,6 +152,7 @@
 						"<span class='userdanger'>We lack the power to maintain this form! We helplessly turn back into a human...</span>")
 		stored_changeling.loc = get_turf(src)
 		mind.transfer_to(stored_changeling)
+		transfer_observers_to(stored_changeling)
 		stored_changeling.AdjustUnconscious(250)
 		stored_changeling.status_flags &= ~GODMODE
 		qdel(src)
