@@ -4,4 +4,4 @@
 	outputs = list()
 	activators = list()
 	power_draw_idle = 0
-  power_draw_per_use = 0
+	power_draw_per_use = 0
