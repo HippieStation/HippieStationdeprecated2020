@@ -341,4 +341,4 @@
 	name = "min circuit"
 	desc = "This circuit sends out the smallest number."
 	extended_desc = "The smallest number is put out. Null is ignored. In case no number is found, 0 is given out."
-  min_comparision = TRUE
+	min_comparision = TRUE
