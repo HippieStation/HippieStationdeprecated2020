@@ -188,7 +188,7 @@
 	permeability_coefficient = 0.01
 	var/mob/living/carbon/human/U = null
 	var/criticalpower = FALSE
-	var/mode = NONE
+	var/mode = NANO_NONE
 	var/datum/martial_art/nano/style = new
 	var/shutdown = TRUE
 	var/current_charges = 3
@@ -467,7 +467,7 @@
 	if(!severity || shutdown)
 		return
 	set_nano_energy(max(0,cell.charge-(cell.charge/severity)),40)
-	if((mode == armor && cell.charge == 0) || (mode != armor))
+	if((mode == NANO_ARMOR && !cell.charge) || (mode != NANO_ARMOR))
 		if(prob(5/severity))
 			emp_assault()
 		else if(prob(10/severity))
@@ -1043,7 +1043,6 @@
 	to_chat(usr, "<span class='notice'>MMA Master</span>: Harm intents deals more damage, occasionally trigger series of fast hits and you can leg sweep while lying down.")
 	to_chat(usr, "<span class='notice'>Highschool Bully</span>: Grab someone and harm intent them to deliver a deadly knock down punch.")
 	to_chat(usr, "<span class='notice'>Knock out master</span>: Tighten your grip and harm intent to deliver a very deadly knock out punch.")
-
 	to_chat(usr, "<b><i>User warning: The suit is equipped with an implant which vaporizes the suit and user upon request or death.</i></b>")
 
 /obj/item/stock_parts/cell/nano
