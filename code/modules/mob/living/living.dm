@@ -1,9 +1,7 @@
 /mob/living/Initialize()
 	. = ..()
 	if(unique_name)
-		var/rand_int = rand(1, 1000) // hippie start -- custom monkey items
-		name = "[name] ([rand_int])"
-		hippie_equip_mob_with_items(rand_int) // hippie end -- This equips shit for the mob based on the random int they are given
+		name = "[name] ([rand(1, 1000)])"
 		real_name = name
 	var/datum/atom_hud/data/human/medical/advanced/medhud = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	medhud.add_to_hud(src)
@@ -443,7 +441,7 @@
 	if(stat == DEAD && can_be_revived()) //in some cases you can't revive (e.g. no brain)
 		GLOB.dead_mob_list -= src
 		GLOB.alive_mob_list += src
-		suiciding = 0
+		set_suicide(FALSE)
 		stat = UNCONSCIOUS //the mob starts unconscious,
 		blind_eyes(1)
 		updatehealth() //then we check if the mob should wake up.
@@ -489,10 +487,7 @@
 	update_mobility()
 	GET_COMPONENT(mood, /datum/component/mood)
 	if (mood)
-		QDEL_LIST_ASSOC_VAL(mood.mood_events)
-		mood.sanity = SANITY_GREAT
-		mood.update_mood()
-
+		mood.remove_temp_moods(admin_revive)
 
 //proc called by revive(), to check if we can actually ressuscitate the mob (we don't want to revive him and have him instantly die again)
 /mob/living/proc/can_be_revived()
@@ -986,14 +981,13 @@
 	var/stat_conscious = (stat == CONSCIOUS) || stat_softcrit
 	var/conscious = !IsUnconscious() && stat_conscious && !has_trait(TRAIT_DEATHCOMA)
 	var/chokehold = pulledby && pulledby.grab_state >= GRAB_NECK
-	var/restrained = restrained()
 	var/has_legs = get_num_legs()
 	var/has_arms = get_num_arms()
 	var/paralyzed = IsParalyzed()
 	var/stun = IsStun()
 	var/knockdown = IsKnockdown()
 	var/ignore_legs = get_leg_ignore()
-	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && (has_arms || ignore_legs || has_legs) && !pinned_to //hippie edit - support for pinning
+	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && (has_arms || ignore_legs || has_legs)
 	if(canmove)
 		mobility_flags |= MOBILITY_MOVE
 	else
@@ -1002,27 +996,13 @@
 	var/canstand = canstand_involuntary && !resting
 
 	if(canstand)
-		mobility_flags |= MOBILITY_STAND
+		mobility_flags |= (MOBILITY_STAND | MOBILITY_UI | MOBILITY_PULL)
 		lying = 0
-		if(!restrained)
-			mobility_flags |= (MOBILITY_UI | MOBILITY_PULL)
-		else
-			mobility_flags &= ~(MOBILITY_UI | MOBILITY_PULL)
 	else
-		mobility_flags &= ~(MOBILITY_UI | MOBILITY_PULL)
-
-		var/should_be_lying = (buckled && (buckled.buckle_lying != -1)) ? buckled.buckle_lying : TRUE //make lying match buckle_lying if it's not -1, else lay down
-
-		if(should_be_lying)
-			mobility_flags &= ~MOBILITY_STAND
-			if(!lying) //force them on the ground
-				lying = pick(90, 270)
-		else
-			mobility_flags |= MOBILITY_STAND //important to add this back, otherwise projectiles will pass through the mob while they're upright.
-			if(lying) //stand them back up
-				lying = 0
-
-	var/canitem = !paralyzed && !stun && conscious && !chokehold && !restrained && has_arms
+		mobility_flags &= ~(MOBILITY_STAND | MOBILITY_UI | MOBILITY_PULL)
+		if(!lying)
+			lying = pick(90, 270)
+	var/canitem = !paralyzed && !stun && conscious && !chokehold && has_arms
 	if(canitem)
 		mobility_flags |= (MOBILITY_USE | MOBILITY_PICKUP | MOBILITY_STORAGE)
 	else
