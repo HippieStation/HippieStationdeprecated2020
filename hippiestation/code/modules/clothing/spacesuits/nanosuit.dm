@@ -239,7 +239,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/examine(mob/user)
 	..()
-	if(mode != NONE)
+	if(mode != NANO_NONE)
 		to_chat(user, "The suit appears to be in [mode] mode.")
 	else
 		to_chat(user, "The suit appears to be offline.")
@@ -483,7 +483,7 @@
 	U.Paralyze(300)
 	U.AdjustStun(300)
 	U.Jitter(120)
-	toggle_mode(NONE, TRUE)
+	toggle_mode(NANO_NONE, TRUE)
 	shutdown = TRUE
 	addtimer(CALLBACK(src, .proc/emp_assaulttwo), 25)
 
@@ -492,13 +492,16 @@
 	sleep(35)
 	helmet.display_visor_message("Warning. EMP shutdown, all systems impaired.")
 	sleep(25)
-	helmet.display_visor_message("Switching to core function mode.")
+	helmet.display_visor_message("Switching to: core function mode.")
 	sleep(25)
 	helmet.display_visor_message("Life support priority. Warning!")
 	addtimer(CALLBACK(src, .proc/emp_assaultthree), 35)
 
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/emp_assaultthree()
+	helmet.display_visor_message("CMOS reset sequence begin, standby...")
+	sleep(20)
+	playsound(src, 'sound/machines/beep.ogg', 50, FALSE)
 	helmet.display_visor_message("4672482//-82544111.0//WRXT _YWD")
 	sleep(5)
 	helmet.display_visor_message("KPO- -86801780.768//1228.")
@@ -516,12 +519,18 @@
 	helmet.display_visor_message("MED//8189")
 	sleep(10)
 	helmet.display_visor_message("LOADING//...")
-	sleep(60)
+	sleep(30)
+	helmet.display_visor_message("Cardiac dysrhythmias treatment in progress, standby...")
+	playsound(src, 'sound/machines/defib_charge.ogg', 75, 0)
+	sleep(30)
+	playsound(src, 'sound/machines/defib_zap.ogg', 50, 0)
 	U.AdjustStun(-100)
 	U.AdjustParalyzed(-100)
 	U.adjustStaminaLoss(-55)
 	U.adjustOxyLoss(-55)
 	helmet.display_visor_message("Cleared to proceed.")
+	sleep(10)
+	playsound(src, 'sound/machines/defib_success.ogg', 75, 0)
 	shutdown = FALSE
 
 /datum/action/item_action/nanosuit
