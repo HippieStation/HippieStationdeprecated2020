@@ -289,7 +289,7 @@
 		amount = 0 //set our energy to 0
 		if(mode == NANO_CLOAK) //are we in cloak?
 			recharge_cooldown = 15 //then wait 3 seconds(1 value per 2 ticks = 15*2=30/10 = 3 seconds) to recharge again
-		if(mode != NANO_ARMOR) //we're not in cloak
+		if(mode != NANO_ARMOR && mode != NANO_NONE) //we're not in cloak
 			toggle_mode(NANO_ARMOR, TRUE) //go into it, forced
 	cell.charge = amount
 	return TRUE
@@ -522,16 +522,17 @@
 	sleep(30)
 	helmet.display_visor_message("Cardiac dysrhythmias treatment in progress, standby...")
 	playsound(src, 'sound/machines/defib_charge.ogg', 75, 0)
-	sleep(30)
+	sleep(25)
 	playsound(src, 'sound/machines/defib_zap.ogg', 50, 0)
 	U.AdjustStun(-100)
 	U.AdjustParalyzed(-100)
 	U.adjustStaminaLoss(-55)
 	U.adjustOxyLoss(-55)
 	helmet.display_visor_message("Cleared to proceed.")
-	sleep(10)
+	sleep(3)
 	playsound(src, 'sound/machines/defib_success.ogg', 75, 0)
 	shutdown = FALSE
+	toggle_mode(NANO_ARMOR)
 
 /datum/action/item_action/nanosuit
 	check_flags = AB_CHECK_STUN|AB_CHECK_CONSCIOUS
@@ -692,6 +693,7 @@
 	sleep(25)
 	helmet.display_visor_message("Successful. Have a safe and secure day.")
 	shutdown = FALSE
+	toggle_mode(NANO_ARMOR)
 
 
 /datum/outfit/nanosuit
