@@ -17988,6 +17988,10 @@
 /obj/machinery/computer/arcade,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"UY" = (
+/obj/effect/spawner/template/infiltrator,
+/turf/open/space/basic,
+/area/space)
 "Vk" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -52644,6 +52648,7 @@ aa
 aa
 aa
 aa
+aa
 "}
 (134,1,1) = {"
 aa
@@ -52686,7 +52691,7 @@ aa
 aa
 aa
 aa
-aa
+UY
 aa
 aa
 aa

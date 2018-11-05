@@ -51,6 +51,8 @@ GLOBAL_VAR_INIT(powersink_transmitted, 0)
 	. = ..()
 	alert_radio = new(src)
 	alert_radio.make_syndie()
+	alert_radio.listening = FALSE
+	alert_radio.canhear_range = 0
 
 /obj/item/powersink/infiltrator/on_drain(drained)
 	GLOB.powersink_transmitted += drained

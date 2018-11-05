@@ -94,15 +94,6 @@
 						head.add_mob_blood(src)
 						update_inv_head()
 
-		// hippie start -- If we're hit then throw off some hats
-		var/mob/living/carbon/C = src
-		
-		if (prob(25))
-			var/list/L = list()
-			LAZYADD(L, get_dir(user, C))
-			C.throw_hats(1 + rand(0, FLOOR(I.force / 5, 1)), L)
-		// hippie end
-
 		//dismemberment
 		var/probability = I.get_dismemberment_chance(affecting)
 		if(prob(probability))
@@ -259,27 +250,25 @@
 		to_chat(M, "<span class='warning'>You can't put [p_them()] out with just your bare hands!</span>")
 		return
 
-	if(health >= 0 && !(has_trait(TRAIT_FAKEDEATH)))
+	if(!(mobility_flags & MOBILITY_STAND))
+		if(buckled)
+			to_chat(M, "<span class='warning'>You need to unbuckle [src] first to do that!")
+			return
+		M.visible_message("<span class='notice'>[M] shakes [src] trying to get [p_them()] up!</span>", \
+						"<span class='notice'>You shake [src] trying to get [p_them()] up!</span>")
+	else
+		M.visible_message("<span class='notice'>[M] hugs [src] to make [p_them()] feel better!</span>", \
+					"<span class='notice'>You hug [src] to make [p_them()] feel better!</span>")
+		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "hug", /datum/mood_event/hug)
+	AdjustStun(-60)
+	AdjustKnockdown(-60)
+	AdjustUnconscious(-60)
+	AdjustSleeping(-100)
+	AdjustParalyzed(-60)
+	AdjustImmobilized(-60)
+	set_resting(FALSE)
 
-		if(!(mobility_flags & MOBILITY_STAND))
-			if(buckled)
-				to_chat(M, "<span class='warning'>You need to unbuckle [src] first to do that!")
-				return
-			M.visible_message("<span class='notice'>[M] shakes [src] trying to get [p_them()] up!</span>", \
-							"<span class='notice'>You shake [src] trying to get [p_them()] up!</span>")
-		else
-			M.visible_message("<span class='notice'>[M] hugs [src] to make [p_them()] feel better!</span>", \
-						"<span class='notice'>You hug [src] to make [p_them()] feel better!</span>")
-			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "hug", /datum/mood_event/hug)
-		AdjustStun(-60)
-		AdjustKnockdown(-60)
-		AdjustUnconscious(-60)
-		AdjustSleeping(-100)
-		AdjustParalyzed(-60)
-		AdjustImmobilized(-60)
-		set_resting(FALSE)
-
-		playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+	playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 
 /mob/living/carbon/flash_act(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0)
