@@ -1431,3 +1431,42 @@
 	set_pin_data(IC_OUTPUT, 1, selected)
 	push_data()
 	activate_pin(1)
+
+
+// -storage examiner- // **works**
+/obj/item/integrated_circuit/input/storage_examiner
+	name = "storage examiner circuit"
+	desc = "This circuit lets you scan a storage's content. (backpacks, toolboxes etc.)"
+	extended_desc = "The items are put out as reference, which makes it possible to interact with them. Additionally also gives the amount of items."
+	icon_state = "grabber"
+	can_be_asked_input = 1
+	complexity = 6
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+	inputs = list(
+		"storage" = IC_PINTYPE_REF
+	)
+	activators = list(
+		"examine" = IC_PINTYPE_PULSE_IN,
+		"on examined" = IC_PINTYPE_PULSE_OUT
+	)
+	outputs = list(
+		"item amount" = IC_PINTYPE_NUMBER,
+		"item list" = IC_PINTYPE_LIST
+	)
+	power_draw_per_use = 85
+
+/obj/item/integrated_circuit/input/storage_examiner/do_work()
+	var/obj/item/storage = get_pin_data_as_type(IC_INPUT, 1, /obj/item)
+	if(!istype(storage,/obj/item/storage))
+		return
+
+	set_pin_data(IC_OUTPUT, 1, storage.contents.len)
+
+	var/list/regurgitated_contents = list()
+	for(var/obj/o in storage.contents)
+		regurgitated_contents.Add(WEAKREF(o))
+
+
+	set_pin_data(IC_OUTPUT, 2, regurgitated_contents)
+	push_data()
+	activate_pin(2)
