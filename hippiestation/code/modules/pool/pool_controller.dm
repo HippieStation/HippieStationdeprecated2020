@@ -54,7 +54,7 @@
 		obj_flags |= EMAGGED
 		tempunlocked = TRUE
 		drainable = TRUE
-		do_sparks(1, 1)
+		do_sparks(1, TRUE, src)
 		if(GLOB.adminlog)
 			log_game("[key_name(user)] emagged [src]")
 			message_admins("[key_name_admin(user)] emagged [src]")
