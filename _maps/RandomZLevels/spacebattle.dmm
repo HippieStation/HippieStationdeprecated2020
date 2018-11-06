@@ -845,8 +845,6 @@
 /area/awaymission/spacebattle/cruiser)
 "dL" = (
 /obj/mecha/working/ripley/firefighter,
-/turf/open/floor/plating,
-/area/awaymission/spacebattle/cruiser)
 "dM" = (
 /obj/structure/closet/crate{
 	name = "Gold Crate"

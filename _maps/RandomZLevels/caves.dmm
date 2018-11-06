@@ -2128,8 +2128,6 @@
 /area/awaymission/caves/BMP_asteroid)
 "gC" = (
 /obj/mecha/working/ripley/mining,
-/turf/open/floor/plasteel/recharge_floor,
-/area/awaymission/caves/BMP_asteroid)
 "gD" = (
 /mob/living/simple_animal/hostile/spawner/mining/hivelord,
 /turf/open/floor/plating/asteroid/basalt{

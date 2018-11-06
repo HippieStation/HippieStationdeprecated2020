@@ -10,8 +10,6 @@
 /area/lavaland/surface/outdoors)
 "d" = (
 /obj/mecha/working/ripley/mining,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
 "e" = (
 /obj/item/clothing/shoes/workboots/mining,
 /obj/item/clothing/under/rank/miner/lavaland,
