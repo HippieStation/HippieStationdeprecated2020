@@ -132,32 +132,38 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	if(!check_interactivity(user))
 		return
 
+	if(assembly)
+		assembly.ui_interact(src)
+		return
+
 	var/window_height = 350
 	var/window_width = 655
 
 	var/table_edge_width = "30%"
 	var/table_middle_width = "40%"
 
-	var/HTML = ""
-	HTML += "<html><head><title>[displayed_name]</title></head><body>"
-	HTML += "<div align='center'>"
-	HTML += "<table border='1' style='undefined;table-layout: fixed; width: 80%'>"
+	var/datum/browser/popup = new(user, "scannernew", name, 800, 630) // Set up the popup browser window
+	popup.add_stylesheet("scannernew", 'html/browser/assembly_ui.css')
+
+	var/HTML = "<html><head><title>[src.displayed_name]</title></head><body> \
+		<div align='center'> \
+		<table border='1' style='undefined;table-layout: fixed; width: 80%'>"
 
 	if(assembly)
-		HTML += "<a href='?src=[REF(src)];return=1'>\[Return to Assembly\]</a><br>"
+		HTML += "<a href='?src=[REF(src)];return=1'>Return to Assembly</a><br>"
 
-	HTML += "<a href='?src=[REF(src)]'>\[Refresh\]</a>  |  "
-	HTML += "<a href='?src=[REF(src)];rename=1'>\[Rename\]</a>  |  "
-	HTML += "<a href='?src=[REF(src)];scan=1'>\[Copy Ref\]</a>"
+	HTML += "<a href='?src=[REF(src)]'>Refresh</a>  |  \
+		<a href='?src=[REF(src)];rename=1'>Rename</a>  |  \
+		<a href='?src=[REF(src)];scan=1'>Copy Ref</a>"
+
 	if(assembly && removable)
-		HTML += "  |  <a href='?src=[REF(assembly)];component=[REF(src)];remove=1'>\[Remove\]</a>"
-	HTML += "<br>"
+		HTML += "  |  <a href='?src=[REF(assembly)];component=[REF(src)];remove=1'>Remove</a>"
 
-	HTML += "<colgroup>"
-	HTML += "<col style='width: [table_edge_width]'>"
-	HTML += "<col style='width: [table_middle_width]'>"
-	HTML += "<col style='width: [table_edge_width]'>"
-	HTML += "</colgroup>"
+	HTML += "<br><colgroup> \
+		<col style='width: [table_edge_width]'> \
+		<col style='width: [table_middle_width]'> \
+		<col style='width: [table_edge_width]'> \
+		</colgroup>"
 
 	var/column_width = 3
 	var/row_height = max(inputs.len, outputs.len, 1)
@@ -166,19 +172,21 @@ a creative player the means to solve many problems.  Circuits are held inside an
 		HTML += "<tr>"
 		for(var/j = 1 to column_width)
 			var/datum/integrated_io/io = null
-			var/words = list()
+			var/words
 			var/height = 1
 			switch(j)
 				if(1)
 					io = get_pin_ref(IC_INPUT, i)
 					if(io)
 						words += "<b><a href='?src=[REF(src)];act=wire;pin=[REF(io)]'>[io.display_pin_type()] [io.name]</a> \
-						<a href='?src=[REF(src)];act=data;pin=[REF(io)]'>[io.display_data(io.data)]</a></b><br>"
+							[io.display_data(io.data)]</b><br>"
 						if(io.linked.len)
+							words += "<ul>"
 							for(var/k in 1 to io.linked.len)
 								var/datum/integrated_io/linked = io.linked[k]
-								words += "<a href='?src=[REF(src)];act=unwire;pin=[REF(io)];link=[REF(linked)]'>[linked]</a> \
-								@ <a href='?src=[REF(linked.holder)]'>[linked.holder.displayed_name]</a><br>"
+								words += "<li><a href='?src=[REF(src)];act=unwire;pin=[REF(io)];link=[REF(linked)]'>[linked]</a> \
+									@ <a href='?src=[REF(linked.holder)]'>[linked.holder.displayed_name]</a></li>"
+							words += "</ul>"
 
 						if(outputs.len > inputs.len)
 							height = 1
@@ -192,54 +200,54 @@ a creative player the means to solve many problems.  Circuits are held inside an
 					io = get_pin_ref(IC_OUTPUT, i)
 					if(io)
 						words += "<b><a href='?src=[REF(src)];act=wire;pin=[REF(io)]'>[io.display_pin_type()] [io.name]</a> \
-						<a href='?src=[REF(src)];act=data;pin=[REF(io)]'>[io.display_data(io.data)]</a></b><br>"
+							[io.display_data(io.data)]</b><br>"
 						if(io.linked.len)
+							words += "<ul>"
 							for(var/k in 1 to io.linked.len)
 								var/datum/integrated_io/linked = io.linked[k]
-								words += "<a href='?src=[REF(src)];act=unwire;pin=[REF(io)];link=[REF(linked)]'>[linked]</a> \
-								@ <a href='?src=[REF(linked.holder)]'>[linked.holder.displayed_name]</a><br>"
+								words += "<li><a href='?src=[REF(src)];act=unwire;pin=[REF(io)];link=[REF(linked)]'>[linked]</a> \
+									@ <a href='?src=[REF(linked.holder)]'>[linked.holder.displayed_name]</a></li>"
+							words += "</ul>"
 
 						if(inputs.len > outputs.len)
 							height = 1
-			HTML += "<td align='center' rowspan='[height]'>[jointext(words, null)]</td>"
+			HTML += "<td align='center' rowspan='[height]'>[words]</td>"
 		HTML += "</tr>"
 
 	for(var/activator in activators)
 		var/datum/integrated_io/io = activator
-		var/words = list()
+		var/words
 
-		words += "<b><a href='?src=[REF(src)];act=wire;pin=[REF(io)]'><font color='FF0000'>[io]</font></a> "
-		words += "<a href='?src=[REF(src)];act=data;pin=[REF(io)]'><font color='FF0000'>[io.data?"\<PULSE OUT\>":"\<PULSE IN\>"]</font></a></b><br>"
+		words += "<b><a href='?src=[REF(src)];act=wire;pin=[REF(io)]'>[io]</a> \
+			<a href='?src=[REF(src)];act=data;pin=[REF(io)]'>[io.data?"\<PULSE OUT\>":"\<PULSE IN\>"]</a></b><br>"
+
 		if(io.linked.len)
+			words += "<ul>"
 			for(var/k in 1 to io.linked.len)
 				var/datum/integrated_io/linked = io.linked[k]
-				words += "<a href='?src=[REF(src)];act=unwire;pin=[REF(io)];link=[REF(linked)]'><font color='FF0000'>[linked]</font></a> \
-				@ <a href='?src=[REF(linked.holder)]'><font color='FF0000'>[linked.holder.displayed_name]</font></a><br>"
+				words += "<li><a href='?src=[REF(src)];act=unwire;pin=[REF(io)];link=[REF(linked)]'>[linked]</a> \
+					@ <a href='?src=[REF(linked.holder)]'>[linked.holder.displayed_name]</a></li>"
+			words += "<ul>"
 
-		HTML += "<tr>"
-		HTML += "<td colspan='3' align='center'>[jointext(words, null)]</td>"
-		HTML += "</tr>"
+		HTML += "<tr><td colspan='3' align='center'>[words]</td></tr>"
 
-	HTML += "</table>"
-	HTML += "</div>"
+	HTML += "</table></div> \
+		<br>Complexity: [complexity] \
+		<br>Cooldown per use: [cooldown_per_use/10] sec"
 
-	HTML += "<br><font color='0000AA'>Complexity: [complexity]</font>"
-	HTML += "<br><font color='0000AA'>Cooldown per use: [cooldown_per_use/10] sec</font>"
 	if(ext_cooldown)
-		HTML += "<br><font color='0000AA'>External manipulation cooldown: [ext_cooldown/10] sec</font>"
+		HTML += "<br>External manipulation cooldown: [ext_cooldown/10] sec"
 	if(power_draw_idle)
-		HTML += "<br><font color='0000AA'>Power Draw: [power_draw_idle] W (Idle)</font>"
+		HTML += "<br>Power Draw: [power_draw_idle] W (Idle)"
 	if(power_draw_per_use)
-		HTML += "<br><font color='0000AA'>Power Draw: [power_draw_per_use] W (Active)</font>" // Borgcode says that powercells' checked_use() takes joules as input.
-	HTML += "<br><font color='0000AA'>[extended_desc]</font>"
+		HTML += "<br>Power Draw: [power_draw_per_use] W (Active)" // Borgcode says that powercells' checked_use() takes joules as input.
 
-	HTML += "</body></html>"
-	if(assembly)
-		user << browse(HTML, "window=assembly-[REF(assembly)];size=[window_width]x[window_height];border=1;can_resize=1;can_close=1;can_minimize=1")
-	else
-		user << browse(HTML, "window=circuit-[REF(src)];size=[window_width]x[window_height];border=1;can_resize=1;can_close=1;can_minimize=1")
+	HTML += "<br>[extended_desc]</body></html>"
 
-	onclose(user, "assembly-[REF(assembly)]")
+	popup.set_content(HTML)
+	popup.open()
+
+	onclose(user, "assembly-[REF(src.assembly)]")
 
 /obj/item/integrated_circuit/Topic(href, href_list)
 	if(!check_interactivity(usr))
