@@ -152,7 +152,7 @@
 	var/total_part_size = return_total_size()
 	var/total_complexity = return_total_complexity()
 	var/datum/browser/popup = new(user, "scannernew", name, 800, 630) // Set up the popup browser window
-	popup.add_stylesheet("scannernew", 'html/browser/circuits.css')
+	popup.add_stylesheet("scannernew", 'html/browser/assembly_ui.css')
 
 	var/HTML = "<html><head><title>[name]</title></head>\
 		<body><table><thead><tr> \
