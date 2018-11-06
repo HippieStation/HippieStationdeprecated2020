@@ -1,5 +1,5 @@
 /proc/attempt_initiate_surgery(obj/item/I, mob/living/M, mob/user)
-	if(!istype(M) && M != user) // hippie -- something related to self surgery
+	if(!istype(M))
 		return
 
 	var/mob/living/carbon/C

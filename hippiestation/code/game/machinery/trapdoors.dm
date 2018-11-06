@@ -22,7 +22,7 @@
 	icon_state = "open"
 	spawn(5)
 		for(var/mob/living/M in loc)
-			if(!M.floating)
+			if(!(M.movement_type & FLOATING))
 				M.forceMove(src)
 				trap_flush()
 				addtimer(CALLBACK(src, .proc/close), TIME_AUTO_CLOSE_MOB)
@@ -51,7 +51,7 @@
 	if(open)
 		if(istype(AM, /mob/living))
 			var/mob/living/M = AM
-			if(M.floating)
+			if((M.movement_type & FLOATING))
 				return
 			M.forceMove(src)
 			trap_flush()
@@ -78,7 +78,7 @@
 		return
 	add_fingerprint(user)
 	if(user == target)
-		if(target.floating)
+		if((target.movement_type & FLOATING))
 			user.visible_message("[user] is attempting to dive into [name].", \
 				"<span class='notice'>You start diving into [name]...</span>")
 			if(!do_mob(target, user, 10))
