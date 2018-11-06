@@ -253,7 +253,7 @@
 			canminus = FALSE
 			canplus = TRUE
 		if(2)
-			if(issilicon(user) || IsAdminGhost(user) || tempunlocked)
+			if(tempunlocked)
 				canminus = TRUE
 				canplus = TRUE
 			else
@@ -263,7 +263,7 @@
 			canminus = TRUE
 			canplus = TRUE
 		if(4)
-			if(issilicon(user) || IsAdminGhost(user) || tempunlocked)
+			if(tempunlocked)
 				canminus = TRUE
 				canplus = TRUE
 			else
@@ -348,8 +348,8 @@
 		<h3>Temperature</h3>
 		<div class='statusDisplay'>
 		<B>Current temperature:</B> [temp2text()]<BR>
-		[(canplus && !timer && !drained) ? "<a href='?src=\ref[src];IncreaseTemp=1'>Increase Temperature</a><br>" : "<span class='linkOff'>Increase Temperature</span><br>"]
-		[(canminus && !timer && !drained) ? "<a href='?src=\ref[src];DecreaseTemp=1'>Decrease Temperature</a><br>" : "<span class='linkOff'>Decrease Temperature</span><br>"]
+		[((issilicon(user) || IsAdminGhost(user) || canplus) && !timer && !drained) ? "<a href='?src=\ref[src];IncreaseTemp=1'>Increase Temperature</a><br>" : "<span class='linkOff'>Increase Temperature</span><br>"]
+		[((issilicon(user) || IsAdminGhost(user) || canminus) && !timer && !drained) ? "<a href='?src=\ref[src];DecreaseTemp=1'>Decrease Temperature</a><br>" : "<span class='linkOff'>Decrease Temperature</span><br>"]
 		</div>
 		<h3>Drain</h3>
 		<div class='statusDisplay'>
