@@ -85,8 +85,7 @@
 
 /obj/item/electronic_assembly/proc/check_interactivity(mob/user)
 	if(!istype(user, /mob))
-		to_chat(world,"[user] interacts with [src]")
-		//return
+		return
 	return user.canUseTopic(src, BE_CLOSE)
 
 /obj/item/electronic_assembly/Bump(atom/AM)
@@ -171,7 +170,6 @@
 	if(!circuit_pins || !istype(circuit_pins,/obj/item/integrated_circuit) || !(circuit_pins in assembly_components))
 		if(assembly_components.len > 0)
 			circuit_pins = assembly_components[1]
-			to_chat(world, "Called")
 
 
 	HTML += "<tr><td width=200px><div class=scrollleft>Components:<br><nobr>"
@@ -542,9 +540,6 @@
 	component.disconnect_all()
 	component.forceMove(drop_location())
 	component.assembly = null
-	if(component in assembly_components)
-		to_chat(world, "found:")
-		to_chat(world, "[component.name]")
 	assembly_components -= component
 
 	//decrement numbers for diagnostic hud
@@ -556,8 +551,6 @@
 	//diagnostic hud update
 	diag_hud_set_circuitstat()
 	diag_hud_set_circuittracking()
-	if(component in assembly_components)
-		to_chat(world, "still found")
 
 
 /obj/item/electronic_assembly/afterattack(atom/target, mob/user, proximity)
