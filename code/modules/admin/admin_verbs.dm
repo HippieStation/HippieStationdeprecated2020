@@ -554,7 +554,7 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	for(var/A in GLOB.spells)
 		spell_list[copytext("[A]", type_length)] = A
 	var/obj/effect/proc_holder/spell/S = input("Choose the spell to give to that guy", "ABRAKADABRA") as null|anything in spell_list
-	if(!S)
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)] gave [key_name_admin(T)] the spell [S].</span>")
 		return
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Give Spell") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -573,7 +573,7 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	set name = "Remove Spell"
 	set desc = "Remove a spell from the selected mob."
 
-	if(T && T.mind)
+			message_admins("<span class='adminnotice'>[key_name_admin(usr)] removed the spell [S] from [key_name_admin(T)].</span>")
 		var/obj/effect/proc_holder/spell/S = input("Choose the spell to remove", "NO ABRAKADABRA") as null|anything in T.mind.spell_list
 		if(S)
 			T.mind.RemoveSpell(S)
@@ -589,7 +589,7 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 		to_chat(src, "<span class='notice'>You can only give a disease to a mob of type /mob/living.</span>")
 		return
 	var/datum/disease/D = input("Choose the disease to give to that guy", "ACHOO") as null|anything in SSdisease.diseases
-	if(!D)
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)] gave [key_name_admin(T)] the disease [D].</span>")
 		return
 	T.ForceContractDisease(new D, FALSE, TRUE)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Give Disease") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
