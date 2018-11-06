@@ -26,8 +26,8 @@
 	var/displayed_name = ""
 	var/demands_object_input = FALSE
 	var/can_input_object_when_closed = FALSE
-	
-	
+
+
 /*
 	Integrated circuits are essentially modular machines.  Each circuit has a specific function, and combining them inside Electronic Assemblies allows
 a creative player the means to solve many problems.  Circuits are held inside an electronic assembly, and are wired using special tools.
@@ -140,7 +140,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	var/table_middle_width = "40%"
 
 	var/datum/browser/popup = new(user, "scannernew", name, 800, 630) // Set up the popup browser window
-	popup.add_stylesheet("scannernew", 'html/browser/assembly_ui.css')
+	popup.add_stylesheet("scannernew", 'html/browser/circuits.css')
 
 	var/HTML = "<html><head><title>[src.displayed_name]</title></head><body> \
 		<div align='center'> \
@@ -244,8 +244,6 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	popup.set_content(HTML)
 	popup.open()
 
-	onclose(user, "assembly-[REF(src.assembly)]")
-
 /obj/item/integrated_circuit/Topic(href, href_list)
 	if(!check_interactivity(usr))
 		return
@@ -271,7 +269,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 				linked = locate(href_list["link"]) in pin.linked
 
 			if(istype(held_item, /obj/item/integrated_electronics) || istype(held_item, /obj/item/multitool))
-				pin.handle_wire(linked, held_item, href_list["act"], usr)
+				update_to_assembly = pin.handle_wire(linked, held_item, href_list["act"], usr)
 			else
 				to_chat(usr, "<span class='warning'>You can't do a whole lot without the proper tools.</span>")
 				success = FALSE
@@ -294,7 +292,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 
 	if(update)
 		if(assembly && update_to_assembly)
-			assembly.interact(usr)
+			assembly.interact(usr, src)
 		else
 			interact(usr) // To refresh the UI.
 
@@ -406,4 +404,4 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	if(target in acting_object.loc)
 		return TRUE
 
-  return FALSE
+	return FALSE
