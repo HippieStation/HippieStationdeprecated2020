@@ -208,7 +208,7 @@
 /turf/open/proc/freon_gas_act()
 	for(var/obj/I in contents)
 		if(I.resistance_flags & FREEZE_PROOF)
-/turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, paralyze_amount, force_drop)
+			return
 		if(!(I.obj_flags & FROZEN))
 			I.make_frozen_visual()
 	for(var/mob/living/L in contents)
@@ -227,18 +227,16 @@
 	for(var/obj/effect/O in src)
 		if(is_cleanable(O))
 			qdel(O)
-		if(force_drop)
-			for(var/obj/item/I in C.held_items)
-				C.accident(I)
-/turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube)
+	return TRUE
+
+/turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, paralyze_amount, force_drop)
 	if(C.movement_type & FLYING)
 		return 0
 	if(has_gravity(src))
-			C.Knockdown(knockdown_amount)
-			C.Paralyze(paralyze_amount)
+		var/obj/buckled_obj
 		if(C.buckled)
 			buckled_obj = C.buckled
-			C.Knockdown(20)
+			if(!(lube&GALOSHES_DONT_HELP)) //can't slip while buckled unless it's lube.
 				return 0
 		else
 			if(!(C.mobility_flags & MOBILITY_STAND) || !(C.status_flags & CANKNOCKDOWN)) // can't slip unbuckled mob if they're lying or can't fall.
@@ -250,23 +248,18 @@
 			playsound(C.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 
 		SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "slipped", /datum/mood_event/slipped)
-		for(var/obj/item/I in C.held_items)
-			C.accident(I)
-
-		// hippie start -- Throw some hats if we slipped
-		if (prob(33))
-			var/list/L = list()
-			LAZYADD(L, C.dir)
-			C.throw_hats(1 + rand(1, 3), L)
-		// hippie end
+		if(force_drop)
+			for(var/obj/item/I in C.held_items)
+				C.accident(I)
 
 		var/olddir = C.dir
 		C.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
 		if(!(lube & SLIDE_ICE))
-			C.Paralyze(knockdown_amount)
+			C.Knockdown(knockdown_amount)
+			C.Paralyze(paralyze_amount)
 			C.stop_pulling()
 		else
-			C.Stun(20)
+			C.Knockdown(20)
 
 		if(buckled_obj)
 			buckled_obj.unbuckle_mob(C)
@@ -294,7 +287,7 @@
 
 /turf/open/rad_act(pulse_strength)
 	. = ..()
-	if(air.gases[/datum/gas/carbon_dioxide] && air.gases[/datum/gas/oxygen]) 
+	if (air.gases[/datum/gas/carbon_dioxide] && air.gases[/datum/gas/oxygen])
 		pulse_strength = min(pulse_strength,air.gases[/datum/gas/carbon_dioxide][MOLES]*1000,air.gases[/datum/gas/oxygen][MOLES]*2000) //Ensures matter is conserved properly
 		air.gases[/datum/gas/carbon_dioxide][MOLES]=max(air.gases[/datum/gas/carbon_dioxide][MOLES]-(pulse_strength/1000),0)
 		air.gases[/datum/gas/oxygen][MOLES]=max(air.gases[/datum/gas/oxygen][MOLES]-(pulse_strength/2000),0)
