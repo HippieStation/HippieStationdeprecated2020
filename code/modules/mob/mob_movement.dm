@@ -260,7 +260,7 @@
 					continue
 			if(!AM.CanPass(src) || AM.density)
 				if(AM.anchored)
-					return AM
+/mob/proc/slip(knockdown, paralyze, forcedrop, w_amount, obj/O, lube)
 				if(pulling == AM)
 					continue
 				. = AM

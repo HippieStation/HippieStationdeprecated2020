@@ -208,7 +208,7 @@
 /turf/open/proc/freon_gas_act()
 	for(var/obj/I in contents)
 		if(I.resistance_flags & FREEZE_PROOF)
-			return
+/turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, paralyze_amount, force_drop)
 		if(!(I.obj_flags & FROZEN))
 			I.make_frozen_visual()
 	for(var/mob/living/L in contents)
@@ -227,16 +227,18 @@
 	for(var/obj/effect/O in src)
 		if(is_cleanable(O))
 			qdel(O)
-	return TRUE
-
+		if(force_drop)
+			for(var/obj/item/I in C.held_items)
+				C.accident(I)
 /turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube)
 	if(C.movement_type & FLYING)
 		return 0
 	if(has_gravity(src))
-		var/obj/buckled_obj
+			C.Knockdown(knockdown_amount)
+			C.Paralyze(paralyze_amount)
 		if(C.buckled)
 			buckled_obj = C.buckled
-			if(!(lube&GALOSHES_DONT_HELP)) //can't slip while buckled unless it's lube.
+			C.Knockdown(20)
 				return 0
 		else
 			if(!(C.mobility_flags & MOBILITY_STAND) || !(C.status_flags & CANKNOCKDOWN)) // can't slip unbuckled mob if they're lying or can't fall.
