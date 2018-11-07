@@ -252,6 +252,13 @@
 			for(var/obj/item/I in C.held_items)
 				C.accident(I)
 
+		// hippie start -- Throw some hats if we slipped	
+		if (prob(33))	
+			var/list/L = list()	
+			LAZYADD(L, C.dir)	
+			C.throw_hats(1 + rand(1, 3), L)	
+		// hippie end
+
 		var/olddir = C.dir
 		C.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
 		if(!(lube & SLIDE_ICE))
