@@ -993,7 +993,7 @@
 	var/stun = IsStun()
 	var/knockdown = IsKnockdown()
 	var/ignore_legs = get_leg_ignore()
-	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && (has_arms || ignore_legs || has_legs) && !pinned_to //hippie edit - support for pinning
+	var/canstand_involuntary = conscious && !stat_softcrit && !knockdown && !chokehold && !paralyzed && (ignore_legs || has_legs) && !(buckled && buckled.buckle_lying)
 	if(canmove)
 		mobility_flags |= MOBILITY_MOVE
 	else
