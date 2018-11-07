@@ -8,9 +8,9 @@
 	var/list/located = list()
 	var/screen = 0
 	var/stored_data
-	var/screen = 0
-	var/stored_data
 
+/obj/machinery/computer/mecha/ui_interact(mob/user)
+	. = ..()
 	var/dat = "<html><head><title>[src.name]</title><style>h3 {margin: 0px; padding: 0px;}</style></head><body>"
 	if(screen == 0)
 		dat += "<h3>Tracking beacons data</h3>"
@@ -22,14 +22,6 @@
 			if(answer)
 				dat += {"<hr>[answer]<br/>
 						  <a href='?src=[REF(src)];send_message=[REF(TR)]'>Send message</a><br/>
-
-	if(screen==1)
-		dat += {"<h3>Log contents</h3>"
-		<a href='?src=[REF(src)];return=1'>Return</a><hr>"
-		[stored_data]"}
-
-						  <a href='?src=[REF(src)];send_message=[REF(TR)]'>Send message</a><br/>
-
 	if(screen==1)
 		dat += {"<h3>Log contents</h3>"
 		<a href='?src=[REF(src)];return=1'>Return</a><hr>"
@@ -48,8 +40,7 @@
 	if(href_list["send_message"])
 		var/obj/item/mecha_parts/mecha_tracking/MT = afilter.getObj("send_message")
 		var/message = stripped_input(usr,"Input message","Transmit message")
-	if(href_list["return"])
-		screen = 0
+		var/obj/mecha/M = MT.in_mecha()
 		if(trim(message) && M)
 			M.occupant_message(message)
 		return
@@ -66,16 +57,16 @@
 	desc = "Device used to transmit exosuit data."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "motion2"
-	var/answer = {"<b>Name:</b> [M.name]
-<b>Integrity:</b> [M.obj_integrity/M.max_integrity*100]%
-<b>Cell charge:</b> [isnull(cell_charge)?"Not found":"[M.cell.percent()]%"]
-<b>Airtank:</b> [M.return_pressure()]kPa
-<b>Pilot:</b> [M.occupant||"None"]
-<b>Location:</b> [get_area(M)||"Unknown"]
-<b>Active equipment:</b> [M.selected||"None"] "}
+	w_class = WEIGHT_CLASS_SMALL
+	var/ai_beacon = FALSE //If this beacon allows for AI control. Exists to avoid using istype() on checking.
+
+/obj/item/mecha_parts/mecha_tracking/proc/get_mecha_info()
+	if(!in_mecha())
+		return 0
+	var/obj/mecha/M = src.loc
 	var/cell_charge = M.get_charge()
 	var/answer = {"<b>Name:</b> [M.name]
-		answer += "<b>Used cargo space:</b> [RM.cargo.len/RM.cargo_capacity*100]%<br>"
+<b>Integrity:</b> [M.obj_integrity/M.max_integrity*100]%
 <b>Cell charge:</b> [isnull(cell_charge)?"Not found":"[M.cell.percent()]%"]
 <b>Airtank:</b> [M.return_pressure()]kPa
 <b>Pilot:</b> [M.occupant||"None"]
