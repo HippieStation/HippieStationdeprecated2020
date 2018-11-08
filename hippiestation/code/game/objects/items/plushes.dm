@@ -28,6 +28,7 @@
 		sleep(2000)
 	target = null
 	src.visible_message("<span class='notice'>[src] looks disinterested.</span>")
+	
 /obj/item/toy/plush/goatplushie/proc/super_ram()
 	src.visible_message("<span class='danger'>[src] looks pissed..</span>")
 	if(prob(98) && isturf(src.loc) && considered_alive(target.mind))
