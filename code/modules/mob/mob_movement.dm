@@ -92,10 +92,10 @@
 		
 	var/delay = mob.movement_delay() // hippie start -- shadowling shit. Needless to say, this is horrible	
 	if(Can_ShadowWalk(mob))	
-	if(Process_ShadowWalk(direct))	
-		return	
-	else	
-		delay = delay*SW_LIGHT_FACTOR // hippie end	
+		if(Process_ShadowWalk(direct))	
+			return	
+		else	
+			delay = delay*SW_LIGHT_FACTOR // hippie end	
 		
 		
 	//We are now going to move
