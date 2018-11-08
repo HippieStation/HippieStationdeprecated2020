@@ -71,7 +71,7 @@
 	cost = 13
 	surplus = 45
 
-/datum/uplink_item/nukeoffer/blastco
+/*/datum/uplink_item/nukeoffer/blastco
 	name = "Unlock the BlastCo(tm) Armory"
 	desc = "Enough gear to fully equip a team with explosive based weaponry."
 	item = /obj/effect/gibspawner/generic // non-tangible item because techwebs use this path to determine illegal tech
@@ -86,7 +86,7 @@
 	else
 		loc.visible_message("<span class='warning'>The purchase was unsuccessful, and spent telecrystals have been refunded.</span>")
 		U.telecrystals += cost //So the admins don't have to refund you
-	return
+	return*/
 
 /datum/uplink_item/role_restricted/firesuit_syndie
 	name = "Syndicate Firesuit"
