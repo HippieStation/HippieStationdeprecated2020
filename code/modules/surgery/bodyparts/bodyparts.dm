@@ -234,6 +234,7 @@
 	owner.update_health_hud() //update the healthdoll
 	owner.update_body()
 	owner.update_mobility()
+	return TRUE //if there was a change.
 
 //Updates an organ's brute/burn states for use by update_damage_overlays()
 //Returns 1 if we need to update overlays. 0 otherwise.
@@ -493,10 +494,12 @@
 	body_zone = BODY_ZONE_L_ARM
 	body_part = ARM_LEFT
 	aux_zone = BODY_ZONE_PRECISE_L_HAND
-	aux_layer = HANDS_PART_LAYER
+	. = ..()
 	body_damage_coeff = 0.75
-	held_index = 1
-	px_x = -6
+		if(owner.stat > UNCONSCIOUS)
+			owner.emote("scream")
+		if(. && (owner.stat > DEAD))
+			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
 	px_y = 0
 	stam_heal_tick = 2
 
@@ -544,10 +547,12 @@
 	body_part = ARM_RIGHT
 	aux_zone = BODY_ZONE_PRECISE_R_HAND
 	aux_layer = HANDS_PART_LAYER
-	body_damage_coeff = 0.75
+	. = ..()
 	held_index = 2
-	px_x = 6
-	px_y = 0
+		if(owner.stat > UNCONSCIOUS)
+			owner.emote("scream")
+		if(. && (owner.stat > DEAD))
+			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
 	stam_heal_tick = 2
 	max_stamina_damage = 50
 
@@ -592,10 +597,12 @@
 	attack_verb = list("kicked", "stomped")
 	max_damage = 50
 	body_zone = BODY_ZONE_L_LEG
-	body_part = LEG_LEFT
+	. = ..()
 	body_damage_coeff = 0.75
-	px_x = -2
-	px_y = 12
+		if(owner.stat > UNCONSCIOUS)
+			owner.emote("scream")
+		if(. && (owner.stat > DEAD))
+			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
 	stam_heal_tick = 2
 	max_stamina_damage = 50
 
@@ -639,10 +646,12 @@
 	attack_verb = list("kicked", "stomped")
 	max_damage = 50
 	body_zone = BODY_ZONE_R_LEG
-	body_part = LEG_RIGHT
+	. = ..()
 	body_damage_coeff = 0.75
-	px_x = 2
-	px_y = 12
+		if(owner.stat > UNCONSCIOUS)
+			owner.emote("scream")
+		if(. && (owner.stat > DEAD))
+			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
 	max_stamina_damage = 50
 	stam_heal_tick = 2
 
@@ -667,6 +676,8 @@
 	icon_state = "alien_r_leg"
 	px_x = 0
 	px_y = 0
+
+#undef WARN_AND_SCREAM
 	dismemberable = 0
 	max_damage = 100
 	animal_origin = ALIEN_BODYPART
