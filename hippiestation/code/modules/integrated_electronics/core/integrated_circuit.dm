@@ -133,14 +133,14 @@ a creative player the means to solve many problems.  Circuits are held inside an
 		return
 
 	if(assembly)
-		assembly.ui_interact(src)
+		assembly.ui_interact(user, src)
 		return
 
 	var/table_edge_width = "30%"
 	var/table_middle_width = "40%"
 
 	var/datum/browser/popup = new(user, "scannernew", name, 800, 630) // Set up the popup browser window
-	popup.add_stylesheet("scannernew", 'html/browser/circuits.css')
+	popup.add_stylesheet("scannernew", 'html/browser/assembly_ui.css')
 
 	var/HTML = "<html><head><title>[src.displayed_name]</title></head><body> \
 		<div align='center'> \
