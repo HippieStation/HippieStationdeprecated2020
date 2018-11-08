@@ -40,25 +40,6 @@
 	anchored = FALSE
 	var/can_anchor = TRUE
 	var/detail_color = COLOR_ASSEMBLY_BLACK
-	var/list/color_whitelist = list( //This is just for checking that hacked colors aren't in the save data.
-		COLOR_ASSEMBLY_BLACK,
-		COLOR_FLOORTILE_GRAY,
-		COLOR_ASSEMBLY_BGRAY,
-		COLOR_ASSEMBLY_WHITE,
-		COLOR_ASSEMBLY_RED,
-		COLOR_ASSEMBLY_ORANGE,
-		COLOR_ASSEMBLY_BEIGE,
-		COLOR_ASSEMBLY_BROWN,
-		COLOR_ASSEMBLY_GOLD,
-		COLOR_ASSEMBLY_YELLOW,
-		COLOR_ASSEMBLY_GURKHA,
-		COLOR_ASSEMBLY_LGREEN,
-		COLOR_ASSEMBLY_GREEN,
-		COLOR_ASSEMBLY_LBLUE,
-		COLOR_ASSEMBLY_BLUE,
-		COLOR_ASSEMBLY_PURPLE
-		)
-
 /obj/item/electronic_assembly/New()
 	..()
 	src.max_components = round(max_components)
@@ -77,9 +58,8 @@
 	if((isobserver(user) && ckeys_allowed_to_scan[user.ckey]) || IsAdminGhost(user))
 		to_chat(user, "You can <a href='?src=[REF(src)];ghostscan=1'>scan</a> this circuit.")
 
-	for(var/I in assembly_components)
-		var/obj/item/integrated_circuit/IC = I
-		IC.external_examine(user)
+	for(var/obj/item/integrated_circuit/I in assembly_components)
+		I.external_examine(user)
 	if(opened)
 		interact(user)
 
@@ -135,24 +115,23 @@
 		P.make_energy()
 
 	// Now spend it.
-	for(var/I in assembly_components)
-		var/obj/item/integrated_circuit/IC = I
-		if(IC.power_draw_idle)
-			if(!draw_power(IC.power_draw_idle))
-				IC.power_fail()
+	for(var/obj/item/integrated_circuit/I in assembly_components)
+		if(I.power_draw_idle)
+			if(!draw_power(I.power_draw_idle))
+				I.power_fail()
 
 /obj/item/electronic_assembly/interact(mob/user, circuit)
 	ui_interact(user, circuit)
 
 /obj/item/electronic_assembly/ui_interact(mob/user, obj/item/integrated_circuit/circuit_pins)
 	. = ..()
-	//if(!check_interactivity(user))
-	//	return
+	if(!check_interactivity(user))
+		return
 
 	var/total_part_size = return_total_size()
 	var/total_complexity = return_total_complexity()
 	var/datum/browser/popup = new(user, "scannernew", name, 800, 630) // Set up the popup browser window
-	popup.add_stylesheet("scannernew", 'html/browser/assembly_ui.css')
+	popup.add_stylesheet("scannernew", 'html/browser/circuits.css')
 
 	var/HTML = "<html><head><title>[name]</title></head>\
 		<body><table><thead><tr> \
@@ -178,10 +157,9 @@
 	var/removables = ""
 	var/remove_num = 1
 
-	for(var/c in assembly_components)
-		var/obj/item/integrated_circuit/circuit = c
+	for(var/obj/item/integrated_circuit/circuit in assembly_components)
 		if(!circuit.removable)
-			if(c == circuit_pins)
+			if(circuit == circuit_pins)
 				builtin_components += "[circuit.displayed_name]<br>"
 			else
 				builtin_components += "<a href='?src=[REF(src)]'>[circuit.displayed_name]</a><br>"
@@ -189,7 +167,7 @@
 		// Non-inbuilt circuits come after inbuilt circuits
 		else
 			removables += "<a href='?src=[REF(src)];component=[REF(circuit)];change_pos=1' style='text-decoration:none;'>[remove_num].</a> | "
-			if(c == circuit_pins)
+			if(circuit == circuit_pins)
 				removables += "[circuit.displayed_name]<br>"
 			else
 				removables += "<a href='?src=[REF(src)];component=[REF(circuit)]'>[circuit.displayed_name]</a><br>"
@@ -306,7 +284,6 @@
 
 
 	HTML += "</div></td></tr></table></body></html>"
-	//user << browse(HTML, "window=assembly-[REF(src)];size=655x350;border=1;can_resize=1;can_close=1;can_minimize=1")
 
 	popup.set_content(HTML)
 	popup.open()
@@ -377,9 +354,8 @@
 				break
 
 		if(href_list["remove"])
-			try_remove_component(component, usr, TRUE)
-				//assembly_components.Remove(component)
-				//component = null
+			if(try_remove_component(component, usr))
+				component = null
 
 		if(href_list["rename_component"])
 			component.rename_component(usr)
@@ -399,8 +375,8 @@
 
 				current_pos = new_pos
 
-			assembly_components.Remove(component)
-			assembly_components.Insert(current_pos, component)
+				assembly_components.Remove(component)
+				assembly_components.Insert(current_pos, component)
 
 	interact(usr, component) // To refresh the UI.
 
@@ -540,6 +516,7 @@
 	component.disconnect_all()
 	component.forceMove(drop_location())
 	component.assembly = null
+
 	assembly_components -= component
 
 	//decrement numbers for diagnostic hud
