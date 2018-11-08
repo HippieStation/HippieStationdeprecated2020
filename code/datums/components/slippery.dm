@@ -1,11 +1,11 @@
 /datum/component/slippery
-	var/force_drop_items = FALSE
+	var/force_drop_items = TRUE //Hippie edit - Force item drop
 	var/knockdown_time = 0
 	var/paralyze_time = 0
 	var/lube_flags
 	var/datum/callback/callback
 
-/datum/component/slippery/Initialize(_knockdown, _lube_flags = NONE, datum/callback/_callback, _paralyze, _force_drop = FALSE)
+/datum/component/slippery/Initialize(_knockdown, _lube_flags = NONE, datum/callback/_callback, _paralyze, _force_drop = TRUE) //Hippie edit - Force item drop
 	knockdown_time = max(_knockdown, 0)
 	paralyze_time = max(_paralyze, 0)
 	force_drop_items = _force_drop
