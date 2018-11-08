@@ -4,7 +4,6 @@
 	icon_state = "goat"
 	desc = "Despite its cuddly appearance and plush nature, it will beat you up all the same. Goats never change."
 	var/mob/living/carbon/target
-	force = 5
 /obj/item/toy/plush/goatplushie/Initialize()
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
@@ -17,17 +16,17 @@
 		if (targets_to_pick_from.len == 0)
 			return
 		target = pick(targets_to_pick_from)
-
-		if (target)
-			src.visible_message("<span class='notice'>[src] stares at [target].</span>")
+		src.visible_message("<span class='notice'>[src] stares at [target].</span>")
 	if (target)
 		ram()
 /obj/item/toy/plush/goatplushie/proc/ram()
-	while(prob(90) || isturf(src.loc))
-		sleep(2000)
+	if(prob(90) && isturf(src.loc))
 		src.throw_at(target, 10, 10)
-		src.visible_message("<span class='warning'>[src] rams [target]!</span>")	
+		src.visible_message("<span class='danger'>[src] rams [target]!</span>")	
+		target.apply_damage(1)
+		sleep(2000)
 	target = null
+	src.visible_message("<span class='notice'>[src] looks disinterested.</span>")
 /obj/item/toy/plush/goatplushie/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
