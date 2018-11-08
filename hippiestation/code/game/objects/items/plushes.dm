@@ -8,7 +8,6 @@
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 /obj/item/toy/plush/goatplushie/process()
-	. = ..()
 	if (prob(25) && !target)
 		var/list/targets_to_pick_from = list()
 		for(var/mob/living/carbon/C in orange(2))
