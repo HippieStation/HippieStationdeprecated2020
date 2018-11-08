@@ -49,7 +49,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 		var/datum/integrated_io/I = k
 		if(I.linked.len)
 			to_chat(user, "The '[I]' is connected to [I.get_linked_to_desc()].")
-	for(var/k in 1 outputs)
+	for(var/k in outputs)
 		var/datum/integrated_io/O = k
 		if(O.linked.len)
 			to_chat(user, "The '[O]' is connected to [O.get_linked_to_desc()].")
