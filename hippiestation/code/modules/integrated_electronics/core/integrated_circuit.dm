@@ -45,16 +45,16 @@ a creative player the means to solve many problems.  Circuits are held inside an
 // This should be used when someone is examining while the case is opened.
 /obj/item/integrated_circuit/proc/internal_examine(mob/user)
 	to_chat(user, "This board has [inputs.len] input pin\s, [outputs.len] output pin\s and [activators.len] activation pin\s.")
-	for(var/k in 1 to inputs.len)
-		var/datum/integrated_io/I = inputs[k]
+	for(var/k in inputs)
+		var/datum/integrated_io/I = k
 		if(I.linked.len)
 			to_chat(user, "The '[I]' is connected to [I.get_linked_to_desc()].")
-	for(var/k in 1 to outputs.len)
-		var/datum/integrated_io/O = outputs[k]
+	for(var/k in 1 outputs)
+		var/datum/integrated_io/O = k
 		if(O.linked.len)
 			to_chat(user, "The '[O]' is connected to [O.get_linked_to_desc()].")
-	for(var/k in 1 to activators.len)
-		var/datum/integrated_io/activate/A = activators[k]
+	for(var/k in 1 activators)
+		var/datum/integrated_io/activate/A = k
 		if(A.linked.len)
 			to_chat(user, "The '[A]' is connected to [A.get_linked_to_desc()].")
 	any_examine(user)
@@ -97,14 +97,14 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	. = ..()
 
 /obj/item/integrated_circuit/emp_act(severity)
-	for(var/k in 1 to inputs.len)
-		var/datum/integrated_io/I = inputs[k]
+	for(var/k in inputs)
+		var/datum/integrated_io/I = k
 		I.scramble()
-	for(var/k in 1 to outputs.len)
-		var/datum/integrated_io/O = outputs[k]
+	for(var/k in outputs)
+		var/datum/integrated_io/O = k
 		O.scramble()
-	for(var/k in 1 to activators.len)
-		var/datum/integrated_io/activate/A = activators[k]
+	for(var/k in activators)
+		var/datum/integrated_io/activate/A = k
 		A.scramble()
 
 
@@ -140,7 +140,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	var/table_middle_width = "40%"
 
 	var/datum/browser/popup = new(user, "scannernew", name, 800, 630) // Set up the popup browser window
-	popup.add_stylesheet("scannernew", 'html/browser/assembly_ui.css')
+	popup.add_stylesheet("scannernew", 'html/browser/circuits.css')
 
 	var/HTML = "<html><head><title>[src.displayed_name]</title></head><body> \
 		<div align='center'> \
@@ -179,8 +179,8 @@ a creative player the means to solve many problems.  Circuits are held inside an
 							[io.display_data(io.data)]</b><br>"
 						if(io.linked.len)
 							words += "<ul>"
-							for(var/k in 1 to io.linked.len)
-								var/datum/integrated_io/linked = io.linked[k]
+							for(var/k in io.linked)
+								var/datum/integrated_io/linked = k
 								words += "<li><a href='?src=[REF(src)];act=unwire;pin=[REF(io)];link=[REF(linked)]'>[linked]</a> \
 									@ <a href='?src=[REF(linked.holder)]'>[linked.holder.displayed_name]</a></li>"
 							words += "</ul>"
@@ -200,8 +200,8 @@ a creative player the means to solve many problems.  Circuits are held inside an
 							[io.display_data(io.data)]</b><br>"
 						if(io.linked.len)
 							words += "<ul>"
-							for(var/k in 1 to io.linked.len)
-								var/datum/integrated_io/linked = io.linked[k]
+							for(var/k in io.linked)
+								var/datum/integrated_io/linked = k
 								words += "<li><a href='?src=[REF(src)];act=unwire;pin=[REF(io)];link=[REF(linked)]'>[linked]</a> \
 									@ <a href='?src=[REF(linked.holder)]'>[linked.holder.displayed_name]</a></li>"
 							words += "</ul>"
@@ -220,8 +220,8 @@ a creative player the means to solve many problems.  Circuits are held inside an
 
 		if(io.linked.len)
 			words += "<ul>"
-			for(var/k in 1 to io.linked.len)
-				var/datum/integrated_io/linked = io.linked[k]
+			for(var/k in io.linked)
+				var/datum/integrated_io/linked = k
 				words += "<li><a href='?src=[REF(src)];act=unwire;pin=[REF(io)];link=[REF(linked)]'>[linked]</a> \
 					@ <a href='?src=[REF(linked.holder)]'>[linked.holder.displayed_name]</a></li>"
 			words += "<ul>"
@@ -297,13 +297,13 @@ a creative player the means to solve many problems.  Circuits are held inside an
 			interact(usr) // To refresh the UI.
 
 /obj/item/integrated_circuit/proc/push_data()
-	for(var/k in 1 to outputs.len)
-		var/datum/integrated_io/O = outputs[k]
+	for(var/k in outputs)
+		var/datum/integrated_io/O = k
 		O.push_data()
 
 /obj/item/integrated_circuit/proc/pull_data()
-	for(var/k in 1 to inputs.len)
-		var/datum/integrated_io/I = inputs[k]
+	for(var/k in inputs)
+		var/datum/integrated_io/I = k
 		I.push_data()
 
 /obj/item/integrated_circuit/proc/draw_idle_power()
