@@ -223,8 +223,8 @@
 							[io.display_data(io.data)]</b><br>"
 							if(io.linked.len)
 								words += "<ul>"
-								for(var/k in 1 to io.linked.len)
-									var/datum/integrated_io/linked = io.linked[k]
+								for(var/k in io.linked)
+									var/datum/integrated_io/linked = k
 									words += "<li><a href='?src=[REF(circuit_pins)];act=unwire;pin=[REF(io)];link=[REF(linked)]'>[linked]</a> \
 									@ <a href='?src=[REF(linked.holder)]'>[linked.holder.displayed_name]</a></li>"
 								words += "</ul>"
@@ -244,8 +244,8 @@
 							[io.display_data(io.data)]</b><br>"
 							if(io.linked.len)
 								words += "<ul>"
-								for(var/k in 1 to io.linked.len)
-									var/datum/integrated_io/linked = io.linked[k]
+								for(var/k in io.linked)
+									var/datum/integrated_io/linked = k
 									words += "<li><a href='?src=[REF(circuit_pins)];act=unwire;pin=[REF(io)];link=[REF(linked)]'>[linked]</a> \
 									@ <a href='?src=[REF(linked.holder)]'>[linked.holder.displayed_name]</a></li>"
 								words += "</ul>"
@@ -263,8 +263,8 @@
 				<a href='?src=[REF(circuit_pins)];act=data;pin=[REF(io)]'>[io.data?"\<PULSE OUT\>":"\<PULSE IN\>"]</a></b><br>"
 			if(io.linked.len)
 				words += "<ul>"
-				for(var/k in 1 to io.linked.len)
-					var/datum/integrated_io/linked = io.linked[k]
+				for(var/k in io.linked)
+					var/datum/integrated_io/linked = k
 					words += "<li><a href='?src=[REF(circuit_pins)];act=unwire;pin=[REF(io)];link=[REF(linked)]'>[linked]</a> \
 					@ <a href='?src=[REF(linked.holder)]'>[linked.holder.displayed_name]</a></li>"
 				words += "</ul>"
@@ -347,8 +347,8 @@
 
 		// Find the position of a first removable component
 		var/first_removable_pos
-		for(var/i in 1 to assembly_components.len)
-			var/obj/item/integrated_circuit/temp_component = assembly_components[i]
+		for(var/i in assembly_components)
+			var/obj/item/integrated_circuit/temp_component = i
 			if(temp_component.removable)
 				first_removable_pos = i
 				break
@@ -598,7 +598,7 @@
 				var/i = 0
 				//Check if there is another component with the same name and append a number for identification
 				for(var/s in input_selection)
-					var/obj/item/integrated_circuit/s_circuit = input_selection[s]
+					var/obj/item/integrated_circuit/s_circuit = s
 					if(s_circuit.name == input.name && s_circuit.displayed_name == input.displayed_name && s_circuit != input)
 						i++
 				var/disp_name= "[input.displayed_name] \[[input]\]"
@@ -637,7 +637,7 @@
 			var/i = 0
 			//Check if there is another component with the same name and append a number for identification
 			for(var/s in input_selection)
-				var/obj/item/integrated_circuit/s_circuit = input_selection[s]
+				var/obj/item/integrated_circuit/s_circuit = s
 				if(s_circuit.name == input.name && s_circuit.displayed_name == input.displayed_name && s_circuit != input)
 					i++
 			var/disp_name= "[input.displayed_name] \[[input]\]"
