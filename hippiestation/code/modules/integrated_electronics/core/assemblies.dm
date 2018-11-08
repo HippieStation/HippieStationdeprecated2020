@@ -343,14 +343,13 @@
 
 		add_allowed_scanner(usr.ckey)
 
-		var/current_pos = assembly_components.Find(component)
-
 		// Find the position of a first removable component
-		var/first_removable_pos
+		var/first_removable_pos = 0
 		for(var/i in assembly_components)
+			first_removable_pos++
 			var/obj/item/integrated_circuit/temp_component = i
 			if(temp_component.removable)
-				first_removable_pos = i
+				to_chat(world,"[temp_component.name] removability: [temp_component.removable]")
 				break
 
 		if(href_list["remove"])
@@ -362,21 +361,18 @@
 			if(component.assembly)
 				component.assembly.add_allowed_scanner(usr.ckey)
 
-		else
-			// Adjust the position
-			if(href_list["change_pos"])
-				var/new_pos = input(usr,"Write the new number","New position") as num
+		// Adjust the position
+		if(href_list["change_pos"])
+			var/new_pos = max(input(usr,"Write the new number","New position") as num,1)
 
-				if(new_pos > assembly_components.len)
-					new_pos = assembly_components.len
+			if(new_pos > assembly_components.len)
+				new_pos = assembly_components.len
 
-				if(new_pos < first_removable_pos)
-					new_pos = first_removable_pos
+			if(new_pos < first_removable_pos)
+				new_pos = first_removable_pos
 
-				current_pos = new_pos
-
-				assembly_components.Remove(component)
-				assembly_components.Insert(current_pos, component)
+			assembly_components.Remove(component)
+			assembly_components.Insert(new_pos, component)
 
 	interact(usr, component) // To refresh the UI.
 
