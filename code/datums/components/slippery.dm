@@ -6,8 +6,8 @@
 	var/datum/callback/callback
 
 /datum/component/slippery/Initialize(_knockdown, _lube_flags = NONE, datum/callback/_callback, _paralyze, _force_drop = TRUE) //Hippie edit - Force item drop
-	knockdown_time = max(_knockdown, 0)
-	paralyze_time = max(_paralyze, 0)
+	//knockdown_time = max(_knockdown, 0) //hippie edit - we're not using knockdown for slips
+	paralyze_time = max(_knockdown, 0) //hippie edit - paralyze instead of knockdown
 	force_drop_items = _force_drop
 	lube_flags = _lube_flags
 	callback = _callback
