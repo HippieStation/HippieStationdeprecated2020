@@ -59,7 +59,7 @@
 	var/list/speech_buffer = list() // Last phrase said near it and person who said it
 
 	var/mood = "" // To show its face
-	var/mutator_used = FALSE //So you can't shove a dozen mutators into a single slime
+	var/mutator_used = 0 //So you can't shove a dozen mutators into a single slime //but now you can shove in up to 3
 	var/force_stasis = FALSE
 	
 	do_footstep = TRUE
