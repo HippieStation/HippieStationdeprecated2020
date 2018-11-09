@@ -815,8 +815,8 @@
 	if(M.stat)
 		to_chat(user, "<span class='warning'>The slime is dead!</span>")
 		return
-	if(M.mutator_used)
-		to_chat(user, "<span class='warning'>This slime has already consumed a mutator, any more would be far too unstable!</span>")
+	if(M.mutator_used >= 3)
+		to_chat(user, "<span class='warning'>This slime has already consumed 3 mutators, any more would be far too unstable!</span>")
 		return
 	if(M.mutation_chance == 100)
 		to_chat(user, "<span class='warning'>The slime is already guaranteed to mutate!</span>")
@@ -824,7 +824,7 @@
 
 	to_chat(user, "<span class='notice'>You feed the slime the mutator. It is now more likely to mutate.</span>")
 	M.mutation_chance = CLAMP(M.mutation_chance+12,0,100)
-	M.mutator_used = TRUE
+	M.mutator_used += 1
 	qdel(src)
 
 /obj/item/slimepotion/speed
