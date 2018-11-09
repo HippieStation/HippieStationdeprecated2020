@@ -255,7 +255,9 @@
 		amount_grown++
 		update_action_buttons_icon()
 
-	if(amount_grown >= SLIME_EVOLUTION_THRESHOLD && !buckled && !Target && !ckey)
+	if(amount_grown >= SLIME_EVOLUTION_THRESHOLD && !ckey)
+		Feedstop(1,1)
+		Target = null
 		if(is_adult)
 			Reproduce()
 		else
