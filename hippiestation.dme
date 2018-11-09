@@ -3102,6 +3102,7 @@
 #include "hippiestation\code\modules\integrated_electronics\passive\power.dm"
 #include "hippiestation\code\modules\integrated_electronics\subtypes\access.dm"
 #include "hippiestation\code\modules\integrated_electronics\subtypes\arithmetic.dm"
+#include "hippiestation\code\modules\integrated_electronics\subtypes\atmospherics.dm"
 #include "hippiestation\code\modules\integrated_electronics\subtypes\converters.dm"
 #include "hippiestation\code\modules\integrated_electronics\subtypes\data_transfer.dm"
 #include "hippiestation\code\modules\integrated_electronics\subtypes\input.dm"
