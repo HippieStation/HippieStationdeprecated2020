@@ -124,6 +124,7 @@
 /mob/living/carbon/wear_mask_update(obj/item/I, toggle_off = 1)
 	var/obj/item/clothing/C = I
 	if(istype(C) && (C.tint || initial(C.tint)))
+	if(istype(C) && (C.tint || initial(C.tint)))
 		update_tint()
 	update_inv_wear_mask()
 
