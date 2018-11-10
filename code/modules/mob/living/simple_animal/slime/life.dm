@@ -255,9 +255,15 @@
 		amount_grown++
 		update_action_buttons_icon()
 
+	/* hippie start
+	if(amount_grown >= SLIME_EVOLUTION_THRESHOLD && !buckled && !Target && !ckey)
+	hippie end*/
+	
+	//hippie start -- removes waiting period (sorta)
 	if(amount_grown >= SLIME_EVOLUTION_THRESHOLD && !ckey)
 		Feedstop(1,1)
 		Target = null
+	//hippie end
 		if(is_adult)
 			Reproduce()
 		else
