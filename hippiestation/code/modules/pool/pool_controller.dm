@@ -51,13 +51,13 @@
 	if(!(obj_flags & EMAGGED)) //If it is not already emagged, emag it.
 		to_chat(user, "<span class='warning'>You disable the [src]'s safety features.</span>")
 		do_sparks(5, TRUE, src)
-		set_obj_flags = "EMAGGED"
+		obj_flags |= EMAGGED
 		tempunlocked = TRUE
 		drainable = TRUE
-		do_sparks(1, 1)
+		do_sparks(1, TRUE, src)
 		if(GLOB.adminlog)
-			log_say("[key_name(user)] emagged the poolcontroller")
-			message_admins("[key_name_admin(user)] emagged the poolcontroller")
+			log_game("[key_name(user)] emagged [src]")
+			message_admins("[key_name_admin(user)] emagged [src]")
 
 /obj/machinery/poolcontroller/attackby(obj/item/W, mob/user)
 	if(shocked && !(stat & NOPOWER))
@@ -120,16 +120,16 @@
 //procs
 /obj/machinery/poolcontroller/proc/shock(mob/user, prb)
 	if(stat & (BROKEN|NOPOWER))		// unpowered, no shock
-		return 0
+		return FALSE
 	if(!prob(prb))
-		return 0
+		return FALSE
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(5, 1, src)
 	s.start()
 	if(electrocute_mob(user, get_area(src), src, 0.7))
-		return 1
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 /obj/machinery/poolcontroller/proc/poolreagent()
 	for(var/X in linkedturfs)
@@ -160,7 +160,7 @@
 		reagenttimer--
 	if(stat & (NOPOWER|BROKEN))
 		return PROCESS_KILL
-	else if(reagenttimer == 0 && !drained)
+	else if(!reagenttimer && !drained)
 		poolreagent()
 
 /obj/machinery/poolcontroller/proc/updatePool()
@@ -286,12 +286,12 @@
 		return
 	if(href_list["IncreaseTemp"])
 		if(canplus)
-			temperature += 1
+			temperature++
 			. = TRUE
 		handle_temp()
 	if(href_list["DecreaseTemp"])
 		if(canminus)
-			temperature -= 1
+			temperature--
 		handle_temp()
 	if(href_list["beaker"])
 		var/obj/item/reagent_containers/glass/B = beaker
@@ -348,12 +348,12 @@
 		<h3>Temperature</h3>
 		<div class='statusDisplay'>
 		<B>Current temperature:</B> [temp2text()]<BR>
-		[(canplus && timer == 0 && !drained) ? "<a href='?src=\ref[src];IncreaseTemp=1'>Increase Temperature</a><br>" : "<span class='linkOff'>Increase Temperature</span><br>"]
-		[(canminus && timer == 0 && !drained) ? "<a href='?src=\ref[src];DecreaseTemp=1'>Decrease Temperature</a><br>" : "<span class='linkOff'>Decrease Temperature</span><br>"]
+		[((issilicon(user) || IsAdminGhost(user) || canplus) && !timer && !drained) ? "<a href='?src=\ref[src];IncreaseTemp=1'>Increase Temperature</a><br>" : "<span class='linkOff'>Increase Temperature</span><br>"]
+		[((issilicon(user) || IsAdminGhost(user) || canminus) && !timer && !drained) ? "<a href='?src=\ref[src];DecreaseTemp=1'>Decrease Temperature</a><br>" : "<span class='linkOff'>Decrease Temperature</span><br>"]
 		</div>
 		<h3>Drain</h3>
 		<div class='statusDisplay'>
-		<B>Drain status:</B> [drainable ? "<span class='bad'>Enabled</span>" : "<span class='good'>Disabled</span>"]
+		<B>Drain status:</B> [(issilicon(user) || IsAdminGhost(user) || drainable) ? "<span class='bad'>Enabled</span>" : "<span class='good'>Disabled</span>"]
 		<br><b>Pool status:</b> "})
 	if(timer < 45)
 		if(!drained)
@@ -362,7 +362,7 @@
 			dat += "<span class='bad'>Drained</span><BR>"
 	else
 		dat += "<span class='bad'>[drained ? "Filling" : "Draining"]<BR></span>"
-	if(drainable && !timer)
+	if( (issilicon(user) || IsAdminGhost(user) || drainable) && !timer)
 		if(drained)
 			dat += "<a href='?src=\ref[src];Activate Drain=1'>Fill Pool</a><br>"
 		else
