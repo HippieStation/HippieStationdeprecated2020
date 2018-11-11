@@ -1452,8 +1452,7 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		D.vv_edit_var(var_name, var_value)	//same result generally, unless badmemes
 	else
 		D.vars[var_name] = var_value
-
-/proc/get_random_food()
+	var/list/blocked = list(/obj/item/reagent_containers/food/snacks/store/bread,
 	var/list/blocked = list(/obj/item/reagent_containers/food/snacks,
 		/obj/item/reagent_containers/food/snacks/store/bread,
 		/obj/item/reagent_containers/food/snacks/breadslice,
@@ -1469,11 +1468,12 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 		/obj/item/reagent_containers/food/snacks/meat/slab,
 		/obj/item/reagent_containers/food/snacks/soup,
 		/obj/item/reagent_containers/food/snacks/grown,
-		/obj/item/reagent_containers/food/snacks/grown/mushroom,
+		/obj/item/reagent_containers/food/snacks/deepfryholder,
+		/obj/item/reagent_containers/food/snacks/clothing
 		/obj/item/reagent_containers/food/snacks/grown/nettle, // base type
 		/obj/item/reagent_containers/food/snacks/deepfryholder
 		)
-	blocked |= typesof(/obj/item/reagent_containers/food/snacks/customizable)
+	return pick(subtypesof(/obj/item/reagent_containers/food/snacks) - blocked)
 
 	return pick(typesof(/obj/item/reagent_containers/food/snacks) - blocked)
 
