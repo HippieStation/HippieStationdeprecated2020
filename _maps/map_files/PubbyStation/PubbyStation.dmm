@@ -42111,6 +42111,14 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/machinery/door/window/westleft{
+	name = "Atmospherics Delivery";
+	req_access_txt = "24"
+	},
+/obj/machinery/door/window/westleft{
+	name = "Atmospherics Delivery";
+	req_access_txt = "24"
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bSc" = (
@@ -55161,10 +55169,44 @@
 /area/hallway/primary/central)
 "hHr" = (
 /obj/structure/chair/comfy/black{
+"hKm" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/machinery/door/window/westright{
+	name = "Cargo Delivery";
+	req_access_txt = "24"
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/security/brig)
+"hKm" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/machinery/door/window/westright{
+	name = "Cargo Delivery";
+	req_access_txt = "24"
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "hOx" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -99476,7 +99518,7 @@ atf
 awq
 apX
 atf
-azu
+hKm
 apX
 atf
 aDe
@@ -99497,7 +99539,7 @@ dMB
 iKb
 aTf
 aUp
-aVt
+hKm
 aVt
 aVt
 aVt
