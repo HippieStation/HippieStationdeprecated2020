@@ -409,12 +409,12 @@
 		if((get_dist(A, base) < scan_range) && can_see(base, A, scan_range))
 			var/obj/mecha/Mech = A
 			if(Mech.occupant && !in_faction(Mech.occupant)) //If there is a user and they're not in our faction
+				if(assess_perp(Mech.occupant) >= 4)
+					targets += Mech
+
 	if(check_anomalies && GLOB.blobs.len && (mode == TURRET_LETHAL))
 		for(var/obj/structure/blob/B in view(scan_range, base))
 			targets += B
-
-				if(assess_perp(Mech.occupant) >= 4)
-					targets += Mech
 
 	if(targets.len)
 		tryToShootAt(targets)
