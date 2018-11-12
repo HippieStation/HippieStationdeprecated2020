@@ -126,11 +126,11 @@
 					A.aiControlDisabled = 2
 		if(WIRE_SHOCK) // Cut to shock the door, mend to unshock.
 			if(mend)
+				if(A.secondsElectrified)
 					A.set_electrified(MACHINE_NOT_ELECTRIFIED, usr)
-					A.set_electrified(0)
+			else
 				if(A.secondsElectrified != MACHINE_ELECTRIFIED_PERMANENT)
 					A.set_electrified(MACHINE_ELECTRIFIED_PERMANENT, usr)
-						log_combat(usr, A, "electrified")
 		if(WIRE_SAFETY) // Cut to disable safeties, mend to re-enable.
 			A.safe = mend
 		if(WIRE_TIMING) // Cut to disable auto-close, mend to re-enable.
