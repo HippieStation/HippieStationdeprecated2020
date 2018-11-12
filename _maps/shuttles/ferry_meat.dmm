@@ -52,9 +52,6 @@
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/plant{
 	name = "podperson meat"
 	},
-/obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/shadow{
-	name = "shadowling meat"
-	},
 /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/slime{
 	name = "slimeperson meat"
 	},

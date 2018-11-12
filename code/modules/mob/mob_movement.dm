@@ -1,5 +1,3 @@
-#define SW_LIGHT_FACTOR 2.75 // hippie -- shadowlings
-
 /mob/CanPass(atom/movable/mover, turf/target)
 	return TRUE				//There's almost no cases where non /living mobs should be used in game as actual mobs, other than ghosts.
 
@@ -90,13 +88,6 @@
 	if(!mob.Process_Spacemove(direct))
 		return FALSE
 
-	var/delay = mob.movement_delay() // hippie start -- shadowling shit. Needless to say, this is horrible
-
-	if(Can_ShadowWalk(mob))
-		if(Process_ShadowWalk(direct))
-			return
-		else
-			delay = delay*SW_LIGHT_FACTOR // hippie end
 
 
 	//We are now going to move

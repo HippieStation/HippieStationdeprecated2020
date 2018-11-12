@@ -36,7 +36,6 @@
 #define ROLE_LAVALAND               "lavaland"
 #define ROLE_INTERNAL_AFFAIRS	"internal affairs agent"
 #define ROLE_VAMPIRE			"vampire" // hippie -- adds vampire role
-#define ROLE_SHADOWLING			"shadowling" // hippie -- adds shadowling role
 #define ROLE_GANG				"gangster" // hippie -- adds gang related role
 #define ROLE_INFILTRATOR		"syndicate infiltrator" // hippie -- adds infiltrator role
 
@@ -65,7 +64,6 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_HIVE = /datum/game_mode/hivemind,
 	ROLE_SENTIENCE,
 	ROLE_INTERNAL_AFFAIRS = /datum/game_mode/traitor/internal_affairs,
-	ROLE_SHADOWLING = /datum/game_mode/shadowling, // hippie -- adds shadowling role=gamemode
 	ROLE_VAMPIRE = /datum/game_mode/vampire, // hippie -- adds vampire role=gamemode
 	ROLE_GANG = /datum/game_mode/gang, // hippie -- adds gang role=gamemode
 	ROLE_INFILTRATOR = /datum/game_mode/infiltration // hippie -- adds infiltrator role=gamemode
