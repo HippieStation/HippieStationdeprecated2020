@@ -77,8 +77,8 @@
 				else if(A.aiControlDisabled == 2)
 					A.aiControlDisabled = -1
 		if(WIRE_SHOCK) // Pulse to shock the door for 10 ticks.
+			if(!A.secondsElectrified)
 				A.set_electrified(MACHINE_DEFAULT_ELECTRIFY_TIME, usr)
-					log_combat(usr, A, "electrified")
 		if(WIRE_SAFETY)
 			A.safe = !A.safe
 			if(!A.density)
