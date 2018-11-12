@@ -100,12 +100,13 @@ recompile the game.  Once you start the server up again, you should be running
 the new version.
 
 ## MAPS
-Hippie Station currently comes equipped with five maps.
+/tg/station currently comes equipped with five maps.
 * [Hippie BoxStation (default)](https://tgstation13.org/wiki/Boxstation)
 * [BoxStation (default)](https://tgstation13.org/wiki/Boxstation)
 * [MetaStation](https://tgstation13.org/wiki/MetaStation)
 * [DeltaStation](https://tgstation13.org/wiki/DeltaStation)
 * [PubbyStation](https://tgstation13.org/wiki/PubbyStation)
+* [BirdboatStation](https://tgstation13.org/wiki/BirdboatStation)
 
 
 All maps have their own code file that is in the base of the _maps directory. Maps are loaded dynamically when the game starts. Follow this guideline when adding your own map, to your fork, for easy compatibility.

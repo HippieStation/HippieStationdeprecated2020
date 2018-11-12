@@ -29,6 +29,10 @@ map metastation
 	minplayers 25
 	#voteweight 0.5
 endmap
+map birdstation
+	maxplayers 50
+endmap
+
 
 map pubbystation
 endmap

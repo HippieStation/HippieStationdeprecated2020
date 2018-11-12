@@ -2,22 +2,6 @@
 "b" = (
 /turf/closed/wall/mineral/titanium,
 /area/shuttle/supply)
-"e" = (
-/obj/machinery/conveyor{
-	dir = 2;
-	id = "cargoshuttle";
-	name = "cargo shuttle conveyor belt"
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/supply)
-"f" = (
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "cargoshuttle";
-	name = "cargo shuttle conveyor belt"
-	},
-/turf/open/floor/mineral/titanium/blue,
-/area/shuttle/supply)
 "g" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -26,33 +10,9 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/supply)
-"h" = (
-/obj/machinery/conveyor{
-	dir = 9;
-	id = "cargoshuttle";
-	name = "cargo shuttle conveyor belt"
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/supply)
-"i" = (
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "cargoshuttle";
-	name = "cargo shuttle conveyor belt"
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/supply)
 "j" = (
 /obj/machinery/conveyor{
-	dir = 10;
-	id = "cargoshuttle";
-	name = "cargo shuttle conveyor belt"
-	},
-/turf/open/floor/mineral/titanium,
-/area/shuttle/supply)
-"k" = (
-/obj/machinery/conveyor{
-	dir = 6;
+	dir = 1;
 	id = "cargoshuttle";
 	name = "cargo shuttle conveyor belt"
 	},
@@ -148,13 +108,13 @@
 /turf/open/floor/plating/airless,
 /area/shuttle/supply)
 "A" = (
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "cargoshuttle";
-	name = "cargo shuttle conveyor belt"
-	},
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "cargo";
+	name = "cargo conveyor belt"
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/supply)
@@ -180,13 +140,13 @@
 	},
 /turf/open/floor/mineral/titanium,
 /area/shuttle/supply)
-"R" = (
+"Z" = (
 /obj/machinery/conveyor{
-	dir = 2;
-	id = "cargoshuttle";
-	name = "cargo shuttle conveyor belt"
+	dir = 8;
+	id = "cargo";
+	name = "cargo conveyor belt"
 	},
-/turf/open/floor/mineral/titanium,
+/turf/open/floor/mineral/titanium/blue,
 /area/shuttle/supply)
 
 (1,1,1) = {"
@@ -203,9 +163,9 @@ w
 "}
 (2,1,1) = {"
 b
-e
+Z
 P
-R
+j
 n
 B
 n
@@ -215,7 +175,7 @@ x
 "}
 (3,1,1) = {"
 b
-f
+Z
 P
 G
 n
@@ -239,9 +199,9 @@ y
 "}
 (5,1,1) = {"
 b
-f
-h
-j
+Z
+P
+G
 n
 n
 n
@@ -251,9 +211,9 @@ y
 "}
 (6,1,1) = {"
 b
-f
-i
-k
+Z
+j
+G
 n
 p
 n
