@@ -229,7 +229,7 @@
 			qdel(O)
 	return TRUE
 
-/turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube)
+/turf/open/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, paralyze_amount, force_drop)
 	if(C.movement_type & FLYING)
 		return 0
 	if(has_gravity(src))
@@ -248,23 +248,25 @@
 			playsound(C.loc, 'sound/misc/slip.ogg', 50, 1, -3)
 
 		SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "slipped", /datum/mood_event/slipped)
-		for(var/obj/item/I in C.held_items)
-			C.accident(I)
+		if(force_drop)
+			for(var/obj/item/I in C.held_items)
+				C.accident(I)
 
-		// hippie start -- Throw some hats if we slipped
-		if (prob(33))
-			var/list/L = list()
-			LAZYADD(L, C.dir)
-			C.throw_hats(1 + rand(1, 3), L)
+		// hippie start -- Throw some hats if we slipped	
+		if (prob(33))	
+			var/list/L = list()	
+			LAZYADD(L, C.dir)	
+			C.throw_hats(1 + rand(1, 3), L)	
 		// hippie end
 
 		var/olddir = C.dir
 		C.moving_diagonally = 0 //If this was part of diagonal move slipping will stop it.
 		if(!(lube & SLIDE_ICE))
-			C.Paralyze(knockdown_amount)
+			C.Knockdown(knockdown_amount)
+			C.Paralyze(paralyze_amount)
 			C.stop_pulling()
 		else
-			C.Stun(20)
+			C.Stun(20) //Hippie edit - reverts knockdown to stun
 
 		if(buckled_obj)
 			buckled_obj.unbuckle_mob(C)
@@ -292,7 +294,7 @@
 
 /turf/open/rad_act(pulse_strength)
 	. = ..()
-	if(air.gases[/datum/gas/carbon_dioxide] && air.gases[/datum/gas/oxygen]) 
+	if (air.gases[/datum/gas/carbon_dioxide] && air.gases[/datum/gas/oxygen])
 		pulse_strength = min(pulse_strength,air.gases[/datum/gas/carbon_dioxide][MOLES]*1000,air.gases[/datum/gas/oxygen][MOLES]*2000) //Ensures matter is conserved properly
 		air.gases[/datum/gas/carbon_dioxide][MOLES]=max(air.gases[/datum/gas/carbon_dioxide][MOLES]-(pulse_strength/1000),0)
 		air.gases[/datum/gas/oxygen][MOLES]=max(air.gases[/datum/gas/oxygen][MOLES]-(pulse_strength/2000),0)
