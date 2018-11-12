@@ -399,14 +399,6 @@
 				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
 			else
 				limb.icon_state = "[species_id]_[body_zone]"
-		// hippie start -- Hippie races (e.g. Avians)
-		if(should_draw_hippie)
-			limb.icon = 'hippiestation/icons/mob/mutant_bodyparts.dmi'
-			if(should_draw_gender)
-				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
-			else
-				limb.icon_state = "[species_id]_[body_zone]"
-		// hippie end
 		if(aux_zone)
 			aux = image(limb.icon, "[species_id]_[aux_zone]", -aux_layer, image_dir)
 			. += aux
@@ -494,20 +486,20 @@
 	body_zone = BODY_ZONE_L_ARM
 	body_part = ARM_LEFT
 	aux_zone = BODY_ZONE_PRECISE_L_HAND
-	. = ..()
+	aux_layer = HANDS_PART_LAYER
 	body_damage_coeff = 0.75
-		if(owner.stat > UNCONSCIOUS)
-			owner.emote("scream")
-		if(. && (owner.stat > DEAD))
-			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
+	held_index = 1
+	px_x = -6
 	px_y = 0
 	stam_heal_tick = 2
 
 /obj/item/bodypart/l_arm/set_disabled(new_disabled = TRUE)
-	..()
+	. = ..()
 	if(disabled)
-		to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
-		owner.emote("scream")
+		if(owner.stat > UNCONSCIOUS)
+			owner.emote("scream")
+		if(. && (owner.stat > DEAD))
+			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
 		if(held_index)
 			owner.dropItemToGround(owner.get_item_for_held_index(held_index))
 	if(owner.hud_used)
@@ -547,20 +539,20 @@
 	body_part = ARM_RIGHT
 	aux_zone = BODY_ZONE_PRECISE_R_HAND
 	aux_layer = HANDS_PART_LAYER
-	. = ..()
+	body_damage_coeff = 0.75
 	held_index = 2
-		if(owner.stat > UNCONSCIOUS)
-			owner.emote("scream")
-		if(. && (owner.stat > DEAD))
-			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
+	px_x = 6
+	px_y = 0
 	stam_heal_tick = 2
 	max_stamina_damage = 50
 
 /obj/item/bodypart/r_arm/set_disabled(new_disabled = TRUE)
-	..()
+	. = ..()
 	if(disabled)
-		to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
-		owner.emote("scream")
+		if(owner.stat > UNCONSCIOUS)
+			owner.emote("scream")
+		if(. && (owner.stat > DEAD))
+			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
 		if(held_index)
 			owner.dropItemToGround(owner.get_item_for_held_index(held_index))
 	if(owner.hud_used)
@@ -597,20 +589,20 @@
 	attack_verb = list("kicked", "stomped")
 	max_damage = 50
 	body_zone = BODY_ZONE_L_LEG
-	. = ..()
+	body_part = LEG_LEFT
 	body_damage_coeff = 0.75
-		if(owner.stat > UNCONSCIOUS)
-			owner.emote("scream")
-		if(. && (owner.stat > DEAD))
-			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
+	px_x = -2
+	px_y = 12
 	stam_heal_tick = 2
 	max_stamina_damage = 50
 
 /obj/item/bodypart/l_leg/set_disabled(new_disabled = TRUE)
-	..()
+	. = ..()
 	if(disabled)
-		to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
-		owner.emote("scream")
+		if(owner.stat > UNCONSCIOUS)
+			owner.emote("scream")
+		if(. && (owner.stat > DEAD))
+			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
 
 /obj/item/bodypart/l_leg/digitigrade
 	name = "left digitigrade leg"
@@ -646,20 +638,20 @@
 	attack_verb = list("kicked", "stomped")
 	max_damage = 50
 	body_zone = BODY_ZONE_R_LEG
-	. = ..()
+	body_part = LEG_RIGHT
 	body_damage_coeff = 0.75
-		if(owner.stat > UNCONSCIOUS)
-			owner.emote("scream")
-		if(. && (owner.stat > DEAD))
-			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
+	px_x = 2
+	px_y = 12
 	max_stamina_damage = 50
 	stam_heal_tick = 2
 
 /obj/item/bodypart/r_leg/set_disabled(new_disabled = TRUE)
-	..()
+	. = ..()
 	if(disabled)
-		to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
-		owner.emote("scream")
+		if(owner.stat > UNCONSCIOUS)
+			owner.emote("scream")
+		if(. && (owner.stat > DEAD))
+			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
 
 /obj/item/bodypart/r_leg/digitigrade
 	name = "right digitigrade leg"
@@ -676,8 +668,6 @@
 	icon_state = "alien_r_leg"
 	px_x = 0
 	px_y = 0
-
-#undef WARN_AND_SCREAM
 	dismemberable = 0
 	max_damage = 100
 	animal_origin = ALIEN_BODYPART
@@ -686,3 +676,5 @@
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
+
+#undef WARN_AND_SCREAM
