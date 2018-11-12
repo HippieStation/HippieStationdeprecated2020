@@ -87,7 +87,8 @@
 
 	if(!mob.Process_Spacemove(direct))
 		return FALSE
-	//We are now going to move
+	//We are now going to move 
+	
 	var/add_delay = mob.movement_delay()
 	if(old_move_delay + (add_delay*MOVEMENT_DELAY_BUFFER_DELTA) + MOVEMENT_DELAY_BUFFER > world.time)
 		move_delay = old_move_delay
