@@ -879,24 +879,24 @@
 		return
 	if (locked)
 		if(!(issilicon(usr) || IsAdminGhost(usr)))
-		toggle_on(usr)
+			to_chat(usr, "Control panel is locked!")
 			return
-		toggle_lethal(usr)
-		toggle_on()
+	if (href_list["toggleOn"])
+		toggle_on(usr)
 	else if (href_list["toggleLethal"])
-/obj/machinery/turretid/proc/toggle_lethal(mob/user)
+		toggle_lethal(usr)
 	attack_hand(usr)
+
+/obj/machinery/turretid/proc/toggle_lethal(mob/user)
+	lethal = !lethal
 	add_hiddenprint(user)
 	log_combat(user, src, "[lethal ? "enabled" : "disabled"] lethals on")
-
-/obj/machinery/turretid/proc/toggle_lethal()
-/obj/machinery/turretid/proc/toggle_on(mob/user)
 	updateTurrets()
+
+/obj/machinery/turretid/proc/toggle_on(mob/user)
+	enabled = !enabled
 	add_hiddenprint(user)
 	log_combat(user, src, "[enabled ? "enabled" : "disabled"]")
-
-/obj/machinery/turretid/proc/toggle_on()
-	enabled = !enabled
 	updateTurrets()
 
 /obj/machinery/turretid/proc/updateTurrets()
