@@ -1959,30 +1959,21 @@
 	                /obj/item/toy/sword,
 	                /obj/item/toy/foamblade,
 	                /obj/item/toy/talking/AI,
-	                /obj/item/toy/talking/owl,
 	                /obj/item/toy/talking/griffin,
-	                /obj/item/toy/nuke,
-	                /obj/item/toy/minimeteor,
-	                /obj/item/toy/plush/carpplushie,
-	                /obj/item/toy/plush/lizardplushie,
-	                /obj/item/toy/plush/snakeplushie,
-	                /obj/item/toy/plush/nukeplushie,
-	                /obj/item/toy/plush/slimeplushie,
-	                /obj/item/coin/antagtoken,
-	                /obj/item/stack/tile/fakespace/loaded,
-	                /obj/item/gun/ballistic/shotgun/toy/crossbow,
-	                /obj/item/toy/redbutton,
-					/obj/item/toy/eightball,
-					/obj/item/vending_refill/donksoft)
-	crate_name = "toy crate"
-	crate_type = /obj/structure/closet/crate/wooden
-
-/datum/supply_pack/costumes_toys/wizard
-	name = "Wizard Costume Crate"
-	desc = "Pretend to join the Wizard Federation with this full wizard outfit! Nanotrasen would like to remind its employees that actually joining the Wizard Federation is subject to termination of job and life."
+	contains = list()
 	cost = 2000
 	contains = list(/obj/item/staff,
 					/obj/item/clothing/suit/wizrobe/fake,
+/datum/supply_pack/costumes_toys/randomised/toys/generate()
+	. = ..()
+	var/the_toy
+	for(var/i in 1 to num_contained)
+		if(prob(50))
+			the_toy = pickweight(GLOB.arcade_prize_pool)
+		else
+			the_toy = pick(subtypesof(/obj/item/toy/plush))
+		new the_toy(.)
+
 					/obj/item/clothing/shoes/sandal,
 					/obj/item/clothing/head/wizard/fake)
 	crate_name = "wizard costume crate"
