@@ -4,6 +4,7 @@
 
 /datum/wires/poolcontroller
 	holder_type = /obj/machinery/poolcontroller
+	proper_name = "Pool"
 
 /datum/wires/poolcontroller/New(atom/holder)
 	wires = list(
