@@ -47,6 +47,9 @@
         <div class='content'>
           <ui-button icon='minus' action='remove' params='{"id": "{{id}}"}'/>
         </div>
+        {{#if paid}}
+    			<div class='content'><b>(Paid privately)</b></div>
+    		{{/if}}
       </ui-section>
     {{else}}
       <span>Nothing in Cart</span>
