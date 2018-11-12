@@ -4,7 +4,7 @@
 			var/obj/item/electronic_assembly/O = the_target
 			if(O.combat_circuits)
 				return TRUE
-	return(..(target))
+	return ..()
  
 /mob/living/simple_animal/hostile/ListTargets()//Step 1, find out what we can see
 	if(!search_objects)
