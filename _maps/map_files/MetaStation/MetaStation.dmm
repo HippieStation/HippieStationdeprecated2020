@@ -573,8 +573,6 @@
 /obj/machinery/requests_console{
 	department = "Janitorial";
 	departmentType = 1;
-	pixel_x = 0;
-	pixel_y = 29
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
@@ -16247,8 +16245,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
-/area/construction/storage/wing)
-"aEG" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -16264,15 +16262,15 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/construction/storage/wing)
-"aEH" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
 /turf/open/floor/plating,
-/area/construction/storage/wing)
-"aEI" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/machinery/airalarm{
 	dir = 4;
 	pixel_x = -22
@@ -16857,8 +16855,8 @@
 /area/maintenance/port/fore)
 "aFN" = (
 /turf/closed/wall,
-/area/construction/storage/wing)
-"aFO" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -16867,8 +16865,8 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
-/area/construction/storage/wing)
-"aFP" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -16877,8 +16875,8 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
-/area/construction/storage/wing)
-"aFQ" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -16886,8 +16884,8 @@
 /obj/structure/cable/yellow,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
-/area/construction/storage/wing)
-"aFR" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -16910,16 +16908,16 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/construction/storage/wing)
-"aFS" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
-/area/construction/storage/wing)
-"aFT" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -16931,15 +16929,15 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
-/area/construction/storage/wing)
-"aFU" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
 /turf/open/floor/plating,
-/area/construction/storage/wing)
-"aFV" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
@@ -17642,8 +17640,8 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"aHk" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 8
 	},
@@ -17655,8 +17653,8 @@
 	dir = 9
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"aHl" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -17670,8 +17668,8 @@
 	dir = 5
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"aHm" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mining{
 	name = "Cargo Bay";
@@ -17685,8 +17683,8 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"aHn" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -17694,8 +17692,8 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"aHo" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -17703,8 +17701,8 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"aHp" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 2
 	},
@@ -17712,8 +17710,8 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"aHq" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -17725,8 +17723,8 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"aHr" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
@@ -17737,8 +17735,8 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"aHs" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
 	},
@@ -17746,8 +17744,8 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"aHt" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/machinery/vending/cigarette,
 /obj/machinery/newscaster{
 	pixel_y = 32
@@ -17757,8 +17755,8 @@
 	pixel_x = 24
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"aHu" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -18200,8 +18198,8 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"aIs" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
 	},
@@ -18215,8 +18213,8 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"aIt" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/machinery/camera{
 	c_tag = "Cargo Bay - Storage Wing Entrance";
 	dir = 1
@@ -18225,16 +18223,16 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"aIu" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
 /obj/machinery/power/apc{
 	dir = 2;
 	name = "Storage Wing APC";
-	areastring = "/area/construction/storage/wing";
-	pixel_y = -27
+	areastring = "/area/construction/storage_wing";
+	areastring = "/area/construction/storage_wing";
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -18246,8 +18244,8 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"aIv" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -18270,8 +18268,8 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"aIx" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
@@ -18294,8 +18292,8 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"aIy" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -18306,8 +18304,8 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"aIz" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -18325,8 +18323,8 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"aIA" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
 	},
@@ -18334,8 +18332,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"aIB" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -18343,8 +18341,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"aIC" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -19378,6 +19376,10 @@
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/delivery,
+/obj/machinery/door/window/eastright{
+	name = "MULEbot Access";
+	req_one_access_txt = "48;50"
+	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "aKZ" = (
@@ -27217,6 +27219,13 @@
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
+	},
+/obj/machinery/door/window/southleft{
+	name = "Cargo Disposal";
+	req_one_access_txt = "48;50"
+	},
+/obj/structure/window/reinforced{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
@@ -43603,6 +43612,13 @@
 /obj/effect/turf_decal/loading_area{
 	dir = 4
 	},
+/obj/machinery/door/window/westright{
+	name = "Atmospherics Access";
+	req_access_txt = "24"
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bFH" = (
@@ -53450,6 +53466,11 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/door/window/westleft{
+	name = "Medical Delivery";
+	req_access_txt = "5"
+	},
+/obj/structure/window/reinforced,
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
 "bZZ" = (
@@ -80625,8 +80646,8 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"dhH" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -83681,8 +83702,8 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/construction/storage/wing)
-"nLv" = (
+/area/construction/storage_wing)
+/area/construction/storage_wing)
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
