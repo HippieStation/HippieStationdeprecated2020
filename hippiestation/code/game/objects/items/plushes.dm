@@ -21,30 +21,15 @@
 		target = pick(targets_to_pick_from)
 		visible_message("<span class='notice'>[src] stares at [target].</span>")
 	if (world.time > cooldown)
-		if (target && !(obj_flags & EMAGGED))
-			ram()
-		if (target && (obj_flags & EMAGGED))
-			super_ram()
-	
+		ram()
 /obj/item/toy/plush/goatplushie/proc/ram()
-	if(prob(90) && isturf(src.loc) && considered_alive(target.mind))
+	if(prob((obj_flags & EMAGGED) ? 98:90) && isturf(src.loc) && considered_alive(target.mind))
 		throw_at(target, 10, 10)
 		visible_message("<span class='danger'>[src] rams [target]!</span>")	
-		target.apply_damage(1)
+		target.apply_damage((obj_flags & EMAGGED) ? 20:5)
 		cooldown = world.time + cooldown_modifier
 	target = null
 	visible_message("<span class='notice'>[src] looks disinterested.</span>")
-	
-/obj/item/toy/plush/goatplushie/proc/super_ram()
-	visible_message("<span class='danger'>[src] looks pissed..</span>")
-	if(prob(98) && isturf(src.loc) && considered_alive(target.mind))
-		throw_at(target, 10, 10)
-		visible_message("<span class='danger'>[src] rams [target]!</span>")	
-		target.apply_damage(20)
-		cooldown = world.time + cooldown_modifier
-	target = null
-	visible_message("<span class='notice'>[src] looks disinterested.</span>")
-
 /obj/item/toy/plush/goatplushie/emag_act(mob/user)
 	if (obj_flags&EMAGGED)
 		cooldown_modifier = 5
