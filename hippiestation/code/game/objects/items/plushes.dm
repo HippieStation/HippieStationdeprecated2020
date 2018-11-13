@@ -5,7 +5,7 @@
 	desc = "Despite its cuddly appearance and plush nature, it will beat you up all the same. Goats never change."
 	var/mob/living/carbon/target
 	var/cooldown = 0
-	var/cooldown_modifier = 2000
+	var/cooldown_modifier = 20
 /obj/item/toy/plush/goatplushie/Initialize()
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
@@ -46,7 +46,7 @@
 
 /obj/item/toy/plush/goatplushie/emag_act(mob/user)
 	if (obj_flags&EMAGGED)
-		cooldown_modifier = 500
+		cooldown_modifier = 5
 		visible_message("<span class='notice'>[src] already looks angry enough, you shouldn't anger it more.</span>")
 		return
 	obj_flags |= EMAGGED
