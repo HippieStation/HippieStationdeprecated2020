@@ -6,6 +6,7 @@
 	var/mob/living/carbon/target
 	var/cooldown = 0
 	var/cooldown_modifier = 20
+	
 /obj/item/toy/plush/goatplushie/Initialize()
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
