@@ -516,6 +516,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/lighter/Initialize()
 	. = ..()
+/obj/item/lighter/cyborg_unequip(mob/user)
+	if(!lit)
+		return
+	set_lit(FALSE)
+
 	if(!overlay_state)
 		overlay_state = pick(overlay_list)
 	update_icon()
