@@ -1953,17 +1953,11 @@
 	name = "Toy Crate"
 	desc = "Who cares about pride and accomplishment? Skip the gaming and get straight to the sweet rewards with this product! Contains five random toys. Warranty void if used to prank research directors."
 	cost = 5000 // or play the arcade machines ya lazy bum
-	// TODO make this actually just use the arcade machine loot list
 	num_contained = 5
-	contains = list(/obj/item/toy/spinningtoy,
-	                /obj/item/toy/sword,
-	                /obj/item/toy/foamblade,
-	                /obj/item/toy/talking/AI,
-	                /obj/item/toy/talking/griffin,
 	contains = list()
-	cost = 2000
-	contains = list(/obj/item/staff,
-					/obj/item/clothing/suit/wizrobe/fake,
+	crate_name = "toy crate"
+	crate_type = /obj/structure/closet/crate/wooden
+
 /datum/supply_pack/costumes_toys/randomised/toys/generate()
 	. = ..()
 	var/the_toy
@@ -1974,6 +1968,12 @@
 			the_toy = pick(subtypesof(/obj/item/toy/plush))
 		new the_toy(.)
 
+/datum/supply_pack/costumes_toys/wizard
+	name = "Wizard Costume Crate"
+	desc = "Pretend to join the Wizard Federation with this full wizard outfit! Nanotrasen would like to remind its employees that actually joining the Wizard Federation is subject to termination of job and life."
+	cost = 2000
+	contains = list(/obj/item/staff,
+					/obj/item/clothing/suit/wizrobe/fake,
 					/obj/item/clothing/shoes/sandal,
 					/obj/item/clothing/head/wizard/fake)
 	crate_name = "wizard costume crate"
