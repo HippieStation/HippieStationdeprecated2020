@@ -22,6 +22,7 @@
 		visible_message("<span class='notice'>[src] stares at [target].</span>")
 	if (world.time > cooldown)
 		ram()
+		
 /obj/item/toy/plush/goatplushie/proc/ram()
 	if(prob((obj_flags & EMAGGED) ? 98:90) && isturf(loc) && considered_alive(target.mind))
 		throw_at(target, 10, 10)
@@ -30,6 +31,7 @@
 		cooldown = world.time + cooldown_modifier
 	target = null
 	visible_message("<span class='notice'>[src] looks disinterested.</span>")
+	
 /obj/item/toy/plush/goatplushie/emag_act(mob/user)
 	if (obj_flags&EMAGGED)
 		cooldown_modifier = 5
