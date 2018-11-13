@@ -56,5 +56,4 @@
 		if(WIRE_IDSCAN)
 			V.scan_id = mend
 		if(WIRE_SPEAKER)
-
-			V.shut_up = mend
+			V.shut_up = mend
