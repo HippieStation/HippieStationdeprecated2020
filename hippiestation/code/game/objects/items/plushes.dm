@@ -33,7 +33,7 @@
 	src.visible_message("<span class='notice'>[src] looks disinterested.</span>")
 	
 /obj/item/toy/plush/goatplushie/proc/super_ram()
-	src.visible_message("<span class='danger'>[src] looks pissed..</span>")
+	visible_message("<span class='danger'>[src] looks pissed..</span>")
 	if(prob(98) && isturf(src.loc) && considered_alive(target.mind))
 		src.throw_at(target, 10, 10)
 		src.visible_message("<span class='danger'>[src] rams [target]!</span>")	
