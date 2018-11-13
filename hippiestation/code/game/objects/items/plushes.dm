@@ -12,7 +12,7 @@
 		var/list/targets_to_pick_from = list()
 		for(var/mob/living/carbon/C in view(7, src))
 			targets_to_pick_from += C
-		if (targets_to_pick_from.len == 0)
+		if (!targets_to_pick_from.len)
 			return
 		target = pick(targets_to_pick_from)
 		src.visible_message("<span class='notice'>[src] stares at [target].</span>")
