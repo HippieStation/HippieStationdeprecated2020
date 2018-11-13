@@ -8222,7 +8222,7 @@
 	name = "Gateway Access Shutter Control";
 	pixel_x = -1;
 	pixel_y = -24;
-	req_access_txt = "31"
+	req_access_txt = "62"
 	},
 /obj/effect/turf_decal/stripes/corner,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
@@ -17155,19 +17155,29 @@
 	dir = 4
 	},
 /obj/machinery/light/small,
-/turf/open/floor/plating,
+/obj/effect/turf_decal/bot_red,
+/obj/effect/turf_decal/caution/red{
+	icon_state = "caution_red";
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/obj/effect/turf_decal/caution/red{
+	icon_state = "caution_red";
+	dir = 8
+	},
+/turf/open/floor/plasteel,
 /area/quartermaster/sorting)
 "aOX" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
 /obj/structure/disposaloutlet{
-	dir = 8
+/turf/open/floor/plasteel,
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel,
 /area/quartermaster/sorting)
 "aOY" = (
 /obj/effect/spawner/lootdrop/maintenance,
@@ -18466,13 +18476,11 @@
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
-/area/quartermaster/sorting)
-"aSg" = (
+	req_access_txt = "50"
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/mining/glass{
 	name = "Mailroom";
-	req_access_txt = "0";
-	req_one_access_txt = "48;50"
+	req_access_txt = "50"
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel,
@@ -19364,11 +19372,9 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel,
-/area/quartermaster/office)
 "aUo" = (
 /obj/machinery/door/airlock/mining/glass{
 	name = "Cargo Bay";
-	req_access_txt = "0";
 	req_one_access_txt = "31;48"
 	},
 /obj/structure/disposalpipe/segment{
@@ -19980,17 +19986,21 @@
 	id = "QMLoad"
 	},
 /obj/machinery/button/door{
+	req_access_txt = "31";
 	id = "QMLoaddoor2";
 	layer = 4;
 	name = "Loading Doors";
+	req_access_txt = "31";
 	pixel_x = 24;
 	pixel_y = -8
 	},
 /obj/machinery/button/door{
+	req_access_txt = "31";
 	dir = 2;
 	id = "QMLoaddoor";
 	layer = 4;
 	name = "Loading Doors";
+	req_access_txt = "31";
 	pixel_x = 24;
 	pixel_y = 8
 	},
@@ -21842,12 +21852,12 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel,
-/area/quartermaster/office)
+	req_access_txt = "31"
 "aZl" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mining/glass{
 	name = "Cargo Office";
-	req_access_txt = "50"
+	req_access_txt = "31"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -42111,6 +42121,10 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
+/obj/machinery/door/window/westleft{
+	name = "Atmospherics Delivery";
+	req_access_txt = "24"
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bSc" = (
@@ -54102,12 +54116,12 @@
 /area/science/explab)
 "eYM" = (
 /obj/machinery/disposal/deliveryChute{
-	dir = 4
+/area/engine/engineering)
 	},
 /obj/structure/disposalpipe/trunk,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plating,
-/area/maintenance/department/engine)
+/area/engine/engineering)
 "eZA" = (
 /obj/item/stack/cable_coil/cut/random,
 /turf/open/floor/plating,
@@ -54145,12 +54159,12 @@
 /obj/effect/turf_decal/tile/neutral,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
-	},
+/area/engine/engineering)
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/maintenance/department/engine)
+/area/engine/engineering)
 "fef" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Menagerie";
@@ -54893,12 +54907,12 @@
 	dir = 9
 	},
 /turf/closed/wall,
-/area/science/mixing)
+/area/engine/engineering)
 "gMO" = (
 /obj/structure/plasticflaps/opaque,
 /obj/structure/window/reinforced,
 /turf/open/floor/plating,
-/area/maintenance/department/engine)
+/area/engine/engineering)
 "gNv" = (
 /obj/structure/sign/poster/contraband/random{
 	pixel_x = 32
@@ -55165,6 +55179,23 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/security/brig)
+"hKm" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+	req_one_access_txt = "31;48"
+	dir = 8
+	},
+/obj/machinery/door/window/westright{
+	name = "Cargo Delivery";
+	req_one_access_txt = "31;48"
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
 "hOx" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -55237,12 +55268,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/science)
-"hTr" = (
+/area/engine/engineering)
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/space/basic,
-/area/maintenance/department/engine)
+/area/engine/engineering)
 "hUt" = (
 /obj/structure/closet/crate{
 	icon_state = "crateopen"
@@ -56090,11 +56121,21 @@
 "klV" = (
 /obj/item/clothing/under/rank/clown/sexy,
 /turf/open/floor/plasteel/dark,
+"kmp" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating,
+/area/engine/engineering)
 /area/maintenance/department/crew_quarters/dorms)
 "kmn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
+"kmp" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "knw" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -56197,7 +56238,7 @@
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
-	},
+/area/engine/engineering)
 /turf/open/floor/plasteel/dark,
 /area/hallway/secondary/exit/departure_lounge)
 "kCc" = (
@@ -56207,7 +56248,7 @@
 	id = "EngLoad"
 	},
 /turf/open/floor/plating,
-/area/maintenance/department/engine)
+/area/engine/engineering)
 "kDf" = (
 /obj/machinery/light/small{
 	dir = 2
@@ -57005,7 +57046,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 5
-	},
+/area/engine/engineering)
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
 	},
@@ -57015,7 +57056,7 @@
 	dir = 5
 	},
 /turf/open/space/basic,
-/area/maintenance/department/engine)
+/area/engine/engineering)
 "mMz" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/cable,
@@ -87212,9 +87253,9 @@ bPC
 bUc
 bva
 bva
+kmp
 bva
-bva
-nNJ
+aaa
 bDi
 bOB
 bSw
@@ -87222,9 +87263,9 @@ bDi
 bDi
 cad
 eYM
-bQl
+kmp
 mMc
-mZE
+aaa
 aaa
 aaa
 eNF
@@ -87469,9 +87510,9 @@ bTk
 bUd
 bva
 bDi
-bDi
+bTE
 wIv
-qOH
+aaa
 fpT
 fpT
 fpT
@@ -87479,9 +87520,9 @@ wNq
 bva
 gMO
 kCc
-bva
+bTE
 hTr
-mZE
+aaa
 aaa
 aaa
 eNF
@@ -99497,7 +99538,7 @@ dMB
 iKb
 aTf
 aUp
-aVt
+hKm
 aVt
 aVt
 aVt
