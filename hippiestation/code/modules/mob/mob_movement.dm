@@ -1,6 +1,3 @@
-#define MAX_SW_LUMS 0.2
-#define ALLOW_PULL_THROUGH_WALLS 0
-
 /mob/living/carbon/Move(atom/newloc, direct)
 	. = ..(newloc, direct)
 	if(lying && !pulledby && !buckled && (stat == SOFT_CRIT || get_num_legs() == 0) && !inertia_moving)
