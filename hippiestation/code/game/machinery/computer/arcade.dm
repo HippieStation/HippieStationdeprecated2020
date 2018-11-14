@@ -47,5 +47,5 @@
 		/obj/item/clothing/shoes/wheelys				= 2,
 		/obj/item/clothing/shoes/kindleKicks				= 2,
 		/obj/item/storage/belt/military/snack					= 2,
-		/obj/item/toy/plush/goatplushie = 2
+		/obj/item/toy/plush/goatplushie/angry = 2
 		)
