@@ -1,5 +1,5 @@
 /obj/machinery/computer/arcade
-	prizes = list(
+	prize_override = list(
 		/obj/item/storage/box/snappops					= 2,
 		/obj/item/toy/talking/AI								= 2,
 		/obj/item/toy/talking/codex_gigas						= 2,
