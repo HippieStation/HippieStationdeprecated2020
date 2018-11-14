@@ -5,6 +5,9 @@ is currently following.
 */
 
 GLOBAL_LIST_INIT(disease_ability_singletons, list(
+new /datum/disease_ability/action/cough,
+new /datum/disease_ability/action/sneeze,
+new /datum/disease_ability/action/infect,
 new /datum/disease_ability/symptom/mild/cough,
 new /datum/disease_ability/symptom/mild/sneeze,
 new /datum/disease_ability/symptom/medium/shedding,
@@ -179,8 +182,9 @@ new /datum/disease_ability/symptom/powerful/heal/youth
 		return FALSE
 	to_chat(D, "<span class='notice'>You force [L.real_name] to cough.</span>")
 	L.emote("cough")
-	var/datum/disease/advance/sentient_disease/SD = D.hosts[L]
-	SD.spread(2)
+	if(L.CanSpreadAirborneDisease()) //don't spread germs if they covered their mouth
+		var/datum/disease/advance/sentient_disease/SD = D.hosts[L]
+		SD.spread(2)
 	StartCooldown()
 	return TRUE
 
@@ -212,11 +216,12 @@ new /datum/disease_ability/symptom/powerful/heal/youth
 		return FALSE
 	to_chat(D, "<span class='notice'>You force [L.real_name] to sneeze.</span>")
 	L.emote("sneeze")
-	var/datum/disease/advance/sentient_disease/SD = D.hosts[L]
+	if(L.CanSpreadAirborneDisease()) //don't spread germs if they covered their mouth
+		var/datum/disease/advance/sentient_disease/SD = D.hosts[L]
 
-	for(var/mob/living/M in oview(4, SD.affected_mob))
-		if(is_A_facing_B(SD.affected_mob, M) && disease_air_spread_walk(get_turf(SD.affected_mob), get_turf(M)))
-			M.AirborneContractDisease(SD, TRUE)
+		for(var/mob/living/M in oview(4, SD.affected_mob))
+			if(is_A_facing_B(SD.affected_mob, M) && disease_air_spread_walk(get_turf(SD.affected_mob), get_turf(M)))
+				M.AirborneContractDisease(SD, TRUE)
 
 	StartCooldown()
 	return TRUE
