@@ -48,6 +48,7 @@ new /datum/disease_ability/symptom/powerful/heal/plasma,
 new /datum/disease_ability/symptom/powerful/heal/radiation,
 new /datum/disease_ability/symptom/powerful/heal/coma,
 new /datum/disease_ability/symptom/powerful/heal/youth
+))
 
 /datum/disease_ability
 	var/name
