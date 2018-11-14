@@ -31,7 +31,6 @@
 	if(prob((obj_flags & EMAGGED) ? 98:90) && isturf(loc) && considered_alive(target.mind))
 		throw_at(target, 10, 10)
 		visible_message("<span class='danger'>[src] rams [target]!</span>")	
-		target.apply_damage((obj_flags & EMAGGED) ? 20:5)
 		cooldown = world.time + cooldown_modifier
 	target = null
 	visible_message("<span class='notice'>[src] looks disinterested.</span>")
