@@ -7,7 +7,7 @@
 	desc = "A strange, bulky, bendable toy that can annoy people."
 	force = 0
 	color = "#000000"
-	w_class = 2.0
+	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 1
 	throw_speed = 10 //weeee
 	hitsound = 'sound/weapons/tap.ogg'

@@ -19,7 +19,7 @@
 	var/cur_reagent = "water"
 	var/drainable = FALSE
 	var/drained = FALSE
-	var/bloody = 0
+	var/bloody = FALSE
 	var/obj/machinery/drain/linkeddrain = null
 	var/timer = 0 //we need a cooldown on that shit.
 	var/reagenttimer = 0 //We need 2.
@@ -245,7 +245,7 @@
 		qdel(M)
 	misted = FALSE //no mist left, turn off the tracking var
 
-/obj/machinery/poolcontroller/proc/handle_temp()
+/obj/machinery/poolcontroller/proc/handle_temp(mob/user)
 	timer = 10
 	mistoff()
 	switch(temperature)
@@ -253,7 +253,7 @@
 			canminus = FALSE
 			canplus = TRUE
 		if(2)
-			if(tempunlocked)
+			if(issilicon(user) || IsAdminGhost(user) || tempunlocked)
 				canminus = TRUE
 				canplus = TRUE
 			else
@@ -263,7 +263,7 @@
 			canminus = TRUE
 			canplus = TRUE
 		if(4)
-			if(tempunlocked)
+			if(issilicon(user) || IsAdminGhost(user) || tempunlocked)
 				canminus = TRUE
 				canplus = TRUE
 			else
@@ -279,8 +279,7 @@
 /obj/machinery/poolcontroller/Topic(href, href_list)
 	if(..())
 		return
-	if(!allowed(usr))
-		to_chat(usr, "<span class='warning'>Access denied.</span>")
+	if(!usr.canUseTopic(src))
 		return
 	if(timer > 0)
 		return
@@ -288,29 +287,30 @@
 		if(canplus)
 			temperature++
 			. = TRUE
-		handle_temp()
+		handle_temp(usr)
 	if(href_list["DecreaseTemp"])
 		if(canminus)
 			temperature--
-		handle_temp()
+			. = TRUE
+		handle_temp(usr)
 	if(href_list["beaker"])
 		var/obj/item/reagent_containers/glass/B = beaker
 		B.forceMove(loc)
 		beaker = null
 		changecolor()
 	if(href_list["Activate Drain"])
-		if(drainable)
+		if((drainable || issilicon(usr) || IsAdminGhost(usr)) && !timer && !linkeddrain.active)
 			mistoff()
 			timer = 60
-			linkeddrain.active = 1
+			linkeddrain.active = TRUE
 			linkeddrain.timer = 15
-			if(linkeddrain.status == 0)
+			if(!linkeddrain.status)
 				new /obj/effect/whirlpool(linkeddrain.loc)
 				temperature = 3
-			if(linkeddrain.status == 1)
+			else
 				new /obj/effect/effect/waterspout(linkeddrain.loc)
 				temperature = 3
-			handle_temp()
+			handle_temp(usr)
 			bloody = FALSE
 	updateUsrDialog()
 
@@ -343,13 +343,13 @@
 	var/datum/browser/popup = new(user, "Pool Controller", name, 300, 450)
 	var/dat = ""
 	if(timer)
-		dat += "<span class='notice'>[timer] seconds left until pool can operate again.</span><BR>"
+		dat += "<span class='notice'>[timer] seconds left until [src] can operate again.</span><BR>"
 	dat += text({"
 		<h3>Temperature</h3>
 		<div class='statusDisplay'>
 		<B>Current temperature:</B> [temp2text()]<BR>
-		[((issilicon(user) || IsAdminGhost(user) || canplus) && !timer && !drained) ? "<a href='?src=\ref[src];IncreaseTemp=1'>Increase Temperature</a><br>" : "<span class='linkOff'>Increase Temperature</span><br>"]
-		[((issilicon(user) || IsAdminGhost(user) || canminus) && !timer && !drained) ? "<a href='?src=\ref[src];DecreaseTemp=1'>Decrease Temperature</a><br>" : "<span class='linkOff'>Decrease Temperature</span><br>"]
+		[((canplus) && !timer && !drained) ? "<a href='?src=\ref[src];IncreaseTemp=1'>Increase Temperature</a><br>" : "<span class='linkOff'>Increase Temperature</span><br>"]
+		[((canminus) && !timer && !drained) ? "<a href='?src=\ref[src];DecreaseTemp=1'>Decrease Temperature</a><br>" : "<span class='linkOff'>Decrease Temperature</span><br>"]
 		</div>
 		<h3>Drain</h3>
 		<div class='statusDisplay'>
@@ -362,13 +362,8 @@
 			dat += "<span class='bad'>Drained</span><BR>"
 	else
 		dat += "<span class='bad'>[drained ? "Filling" : "Draining"]<BR></span>"
-	if( (issilicon(user) || IsAdminGhost(user) || drainable) && !timer)
-		if(drained)
-			dat += "<a href='?src=\ref[src];Activate Drain=1'>Fill Pool</a><br>"
-		else
-			dat += "<a href='?src=\ref[src];Activate Drain=1'>Drain Pool</a><br>"
-	else
-		dat += text({"<span class='linkOff'>[drained ? "Fill" : "Drain"] Pool</span>"})
+	if((issilicon(user) || IsAdminGhost(user) || drainable) && !timer && !linkeddrain.active)
+		dat += "<a href='?src=\ref[src];Activate Drain=1'>[drained ? "Fill" : "Drain"] Pool</a><br>"
 	dat += text({"</div>
 		<h3>Chemistry</h3>
 		<div class='statusDisplay'>
