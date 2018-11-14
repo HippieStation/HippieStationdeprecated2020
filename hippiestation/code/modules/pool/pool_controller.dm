@@ -94,8 +94,8 @@
 							P.reagents.add_reagent(R.id, 100)
 
 					if(GLOB.adminlog)
-						log_say("[key_name(user)] has changed the pool's chems to [R.name]")
-						message_admins("[key_name_admin(user)] has changed the pool's chems to [R.name].")
+						log_say("[key_name(user)] has changed the [src] chems to [R.name]")
+						message_admins("[key_name_admin(user)] has changed the [src] chems to [R.name].")
 					timer = 15
 		else
 			to_chat(user, "<span class='notice'>This machine only accepts full large beakers of one reagent.</span>")
