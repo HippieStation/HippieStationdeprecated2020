@@ -114,7 +114,7 @@
 		H.adjust_blurriness(6)
 		H.adjust_eye_damage(rand(6,8))
 		H.Paralyze(40)
-		H.emote("scream")
+/obj/item/paperplane/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 
 /obj/item/paper/examine(mob/user)
 	..()

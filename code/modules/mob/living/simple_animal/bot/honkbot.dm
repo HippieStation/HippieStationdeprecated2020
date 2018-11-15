@@ -157,7 +157,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 		bike_horn(A)
 
 
-/mob/living/simple_animal/bot/honkbot/hitby(atom/movable/AM, skipcatch = 0, hitpush = 1, blocked = 0)
+/mob/living/simple_animal/bot/honkbot/hitby(atom/movable/AM, skipcatch = FALSE, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
 	if(istype(AM, /obj/item))
 		playsound(src, honksound, 50, TRUE, -1)
 		var/obj/item/I = AM
@@ -368,4 +368,5 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 	..()
 
 /obj/machinery/bot_core/honkbot
+
 	req_one_access = list(ACCESS_THEATRE, ACCESS_ROBOTICS)
