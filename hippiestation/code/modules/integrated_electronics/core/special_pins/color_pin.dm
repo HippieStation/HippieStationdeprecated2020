@@ -46,4 +46,4 @@
 /datum/integrated_io/color/display_data(var/input)
 	if(!isnull(data))
 		return "(<font color='[data]'>[data]</font>)"
-  return ..()
+	return ..()
