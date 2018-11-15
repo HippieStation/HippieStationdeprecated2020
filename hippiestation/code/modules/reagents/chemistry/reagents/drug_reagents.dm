@@ -151,7 +151,7 @@
 	var/high_message = pick("You feel amped up.", "You feel ready.", "You feel like you can push it to the limit.")
 	if(prob(5))
 		to_chat(M, "<span class='notice'>[high_message]</span>")
-	M.add_trait(TRAIT_GOTTAGOREALLYFAST, id)
+	M.add_movespeed_modifier(id, update=TRUE, priority=100, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
 	M.AdjustUnconscious(-100, 0)
 	M.AdjustStun(-100, 0)
 	M.AdjustParalyzed(-100, 0)
@@ -170,7 +170,7 @@
 
 /datum/reagent/drug/bath_salts/on_mob_delete(mob/living/M)
 	if (istype(M))
-		M.remove_trait(TRAIT_GOTTAGOREALLYFAST)
+		M.remove_movespeed_modifier(id)
 	..()
 
 /datum/reagent/drug/flipout
