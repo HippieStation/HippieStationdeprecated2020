@@ -576,5 +576,4 @@
 	list_reagents = list("nutriment" = 1, "sugar" = 1, "cocoa" = 1)
 	filling_color = "#A0522D"
 	tastes = list("chocolate" = 1)
-
 	foodtype = JUNKFOOD | SUGAR
