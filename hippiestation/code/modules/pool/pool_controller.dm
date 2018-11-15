@@ -57,7 +57,6 @@
 		obj_flags |= EMAGGED
 		tempunlocked = TRUE
 		drainable = TRUE
-		do_sparks(1, TRUE, src)
 		if(GLOB.adminlog)
 			log_game("[key_name(user)] emagged [src]")
 			message_admins("[key_name_admin(user)] emagged [src]")
@@ -72,7 +71,7 @@
 		if(beaker)
 			to_chat(user, "A beaker is already loaded into the machine.")
 			return
-		if(W.reagents.total_volume >= 100 && W.reagents.reagent_list.len == 1) //check if full and allow one reageant only.
+		if(W.reagents.total_volume >= 100 && W.reagents.reagent_list.len ==1) //check if full and allow one reageant only.
 			for(var/X in W.reagents.reagent_list)
 				var/datum/reagent/R = X
 				if(R.reagent_state == SOLID)
@@ -167,20 +166,20 @@
 			for(var/mob/living/M in W) //Check for mobs in the linked pool-turfs.
 				switch(temperature) //Apply different effects based on what the temperature is set to.
 					if(SCALDING) //Scalding
-						M.bodytemperature = min(500, M.bodytemperature + 50) //heat mob at 35k(elvin) per cycle
+						M.adjust_bodytemperature(M.bodytemperature + 50,0,500)
 
 					if(FRIGID) //Freezing
-						M.bodytemperature = max(0, M.bodytemperature - 60) //cool mob at -35k per cycle, less would not affect the mob enough.
+						M.adjust_bodytemperature(M.bodytemperature - 60) //cool mob at -35k per cycle, less would not affect the mob enough.
 						if(M.bodytemperature <= 50 && !M.stat)
 							M.apply_status_effect(/datum/status_effect/freon)
 
 					if(NORMAL) //Normal temp does nothing, because it's just room temperature water.
 
 					if(WARM) //Warm
-						M.bodytemperature = min(360, M.bodytemperature + 20) //Heats up mobs till the termometer shows up
+						M.adjust_bodytemperature(M.bodytemperature + 20,0,360) //Heats up mobs till the termometer shows up
 
 					else //Cool
-						M.bodytemperature = max(250, M.bodytemperature - 20) //Cools mobs till the termometer shows up
+						M.adjust_bodytemperature(M.bodytemperature - 20,250) //Cools mobs till the termometer shows up
 				var/mob/living/carbon/human/drownee = M
 				if(drownee.stat == DEAD)
 					continue
@@ -269,12 +268,12 @@
 		if(CanUpTemp(usr))
 			temperature++
 			. = TRUE
-		handle_temp()
+			handle_temp()
 	if(href_list["DecreaseTemp"])
 		if(CanDownTemp(usr))
 			temperature--
 			. = TRUE
-		handle_temp()
+			handle_temp()
 	if(href_list["beaker"])
 		var/obj/item/reagent_containers/glass/B = beaker
 		B.forceMove(loc)
