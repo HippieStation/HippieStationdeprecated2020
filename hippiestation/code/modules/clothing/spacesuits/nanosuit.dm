@@ -389,9 +389,9 @@
 				helmet.armor = helmet.armor.setRating(melee = 60, bullet = 60, laser = 60, energy = 65, bomb = 100, rad =100)
 				U.filters = null
 				animate(U, alpha = 255, time = 5)
-				U.remove_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
-				U.remove_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
-				U.remove_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
+				U.remove_movespeed_modifier(NANO_SPEED)
+				U.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
+				U.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
 				style.remove(U)
 				jetpack.full_speed = FALSE
 
@@ -403,9 +403,9 @@
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				U.filters = filter(type="blur",size=1)
 				animate(U, alpha = 40, time = 2)
-				U.remove_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
-				U.remove_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
-				U.remove_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
+				U.remove_movespeed_modifier(NANO_SPEED)
+				U.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
+				U.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
 				style.remove(U)
 				jetpack.full_speed = FALSE
 
@@ -419,9 +419,9 @@
 				U.adjustStaminaLoss(-20)
 				U.filters = filter(type="outline", size=0.1, color=rgb(255,255,224))
 				animate(U, alpha = 255, time = 5)
-				U.remove_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
-				U.add_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
-				U.add_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
+				U.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
+				U.add_movespeed_modifier(NANO_SPEED, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
+				U.add_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
 				style.remove(U)
 				jetpack.full_speed = TRUE
 
@@ -434,9 +434,9 @@
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				U.filters = filter(type="outline", size=0.1, color=rgb(255,0,0))
 				animate(U, alpha = 255, time = 5)
-				U.add_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
-				U.remove_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
-				U.remove_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
+				U.add_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
+				U.remove_movespeed_modifier(NANO_SPEED)
+				U.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
 				jetpack.full_speed = FALSE
 
 			if(NANO_NONE)
@@ -447,9 +447,9 @@
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				U.filters = null
 				animate(U, alpha = 255, time = 5)
-				U.remove_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
-				U.remove_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
-				U.remove_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
+				U.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
+				U.remove_movespeed_modifier(NANO_SPEED)
+				U.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
 				jetpack.full_speed = FALSE
 
 	U.update_inv_wear_suit()
