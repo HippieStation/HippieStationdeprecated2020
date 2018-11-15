@@ -8,7 +8,7 @@
 	return FINISHONMOBLIFE(M)
 
 /datum/reagent/medicine/ephedrine/on_mob_life(mob/living/M)
-	M.add_trait(TRAIT_GOTTAGOFAST, id)
+	M.add_movespeed_modifier(id, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
 	M.reagents.remove_reagent("nutriment", rand(0,3))
 	M.reagents.remove_reagent("vitamin", rand(0,3))
 	if(prob(34))
@@ -17,7 +17,7 @@
 
 /datum/reagent/medicine/ephedrine/on_mob_delete(mob/living/M)
 	if (istype(M))
-		M.remove_trait(TRAIT_GOTTAGOFAST, id)
+		M.remove_movespeed_modifier(id)
 	..()
 
 /datum/reagent/medicine/atropine/on_mob_life(mob/living/M)
@@ -49,7 +49,7 @@
 /datum/reagent/medicine/superzine/on_mob_life(mob/living/M as mob)
 	if(prob(15))
 		M.emote(pick("twitch","blink_r","shiver"))
-	M.add_trait(TRAIT_GOTTAGOFAST, id)
+	M.add_movespeed_modifier(id, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
 	M.adjustStaminaLoss(-5)
 	if(prob(2))
 		M<<"<span class='danger'>You collapse suddenly!"
@@ -59,7 +59,7 @@
 
 /datum/reagent/medicine/superzine/on_mob_delete(mob/living/M)
 	if (istype(M))
-		M.remove_trait(TRAIT_GOTTAGOFAST, id)
+		M.remove_movespeed_modifier(id)
 	..()
 
 /datum/reagent/medicine/superzine/overdose_process(mob/living/M)
