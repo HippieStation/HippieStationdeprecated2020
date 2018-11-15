@@ -11,6 +11,7 @@
 	icon_state = "lowercase"
 	inputs = list("input" = IC_PINTYPE_STRING)
 	outputs = list("output" = IC_PINTYPE_STRING)
+	activators = list("to lowercase" = IC_PINTYPE_PULSE_IN, "on converted" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/text/lowercase/do_work()
@@ -30,9 +31,10 @@
 	icon_state = "uppercase"
 	inputs = list("input" = IC_PINTYPE_STRING)
 	outputs = list("output" = IC_PINTYPE_STRING)
+	activators = list("to uppercase" = IC_PINTYPE_PULSE_IN, "on converted" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/converter/text/do_work()
+/obj/item/integrated_circuit/text/uppercase/do_work()
 	var/result = null
 	pull_data()
 	var/incoming = get_pin_data(IC_INPUT, 1)

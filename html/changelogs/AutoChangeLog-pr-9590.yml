@@ -1,0 +1,4 @@
+author: "xTrainx"
+delete-after: True
+changes: 
+  - balance: "stock parts can be made by any department fabricator/protolathe"

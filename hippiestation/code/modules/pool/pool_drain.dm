@@ -4,8 +4,8 @@
 	icon_state = "drain"
 	desc = "This removes things that clog the pool."
 	anchored = TRUE
-	var/active = 0
-	var/status = 0 //1 is drained, 0 is full.
+	var/active = FALSE
+	var/status = FALSE //1 is drained, 0 is full.
 	var/srange = 6
 	var/timer = 0
 	var/cooldown
@@ -13,8 +13,9 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/drain/Initialize()
+	START_PROCESSING(SSprocessing, src)
 	for(var/obj/machinery/poolcontroller/control in range(srange,src))
-		src.poolcontrol += control
+		poolcontrol += control
 	. = ..()
 
 /obj/machinery/drain/Destroy()
@@ -24,11 +25,11 @@
 /obj/machinery/drain/process()
 	if(!status) //don't drain an empty pool.
 		for(var/obj/item/absorbo in orange(1,src))
-			if(absorbo.w_class == 1)
+			if(absorbo.w_class == WEIGHT_CLASS_TINY)
 				step_towards(absorbo, src)
 		spawn(7) //Gives them just the time to pick their items up.
 			for(var/obj/item/absorb in range(0,src))
-				if(absorb.w_class == 1)
+				if(absorb.w_class == WEIGHT_CLASS_TINY)
 					for(var/obj/machinery/poolfilter/filter in range(srange,src))
 						absorb.forceMove(filter)
 	if(active)
@@ -41,25 +42,25 @@
 						step_away(whirlo,src)
 				for(var/mob/living/carbon/human/whirlm in orange(2,src))
 					step_away(whirlm,src)
-			else if(timer == 0)
+			else if(!timer)
 				for(var/turf/open/pool/undrained in range(5,src))
 					undrained.filled = TRUE
 					undrained.update_icon()
 				for(var/obj/effect/effect/waterspout/undrained3 in range(1,src))
 					qdel(undrained3)
-				poolcontrol.drained = 0
+				poolcontrol.drained = FALSE
 				if(poolcontrol.bloody < 1000)
 					poolcontrol.bloody /= 2
 				if(poolcontrol.bloody > 1000)
 					poolcontrol.bloody /= 4
 				poolcontrol.changecolor()
-				status = 0
-				active = 0
+				status = FALSE
+				active = FALSE
 			return
 		if(!status) //if draining, change everything.
 			if(timer > 0)
-				playsound(src, 'hippiestation/sound/effects/pooldrain.ogg', 100, 1)
-				playsound(src, pick('hippiestation/sound/effects/water_wade1.ogg','hippiestation/sound/effects/water_wade2.ogg','hippiestation/sound/effects/water_wade3.ogg','hippiestation/sound/effects/water_wade4.ogg'), 60, 1)
+				playsound(src, 'hippiestation/sound/effects/pooldrain.ogg', 100, TRUE)
+				playsound(src, pick('hippiestation/sound/effects/water_wade1.ogg','hippiestation/sound/effects/water_wade2.ogg','hippiestation/sound/effects/water_wade3.ogg','hippiestation/sound/effects/water_wade4.ogg'), 60, TRUE)
 				timer--
 				for(var/obj/whirlo in orange(2,src))
 					if(!whirlo.anchored )
@@ -71,31 +72,31 @@
 					for(var/i in list(1,2,4,8,4,2,1)) //swirl!
 						whirlm.dir = i
 						sleep(1)
-					if(whirlm.forceMove(src.loc))
+					if(whirlm.forceMove(loc))
 						if(whirlm.health <= -50) //If very damaged, gib.
 							whirlm.gib()
 						if(whirlm.stat != CONSCIOUS || whirlm.lying) // If
 							whirlm.adjustBruteLoss(5)
-							playsound(src, pick('hippiestation/sound/misc/crack.ogg','hippiestation/sound/misc/crunch.ogg'), 50, 1)
+							playsound(src, pick('hippiestation/sound/misc/crack.ogg','hippiestation/sound/misc/crunch.ogg'), 50, TRUE)
 							to_chat(whirlm, "<span class='danger'>You're caught in the drain!</span>")
 							continue
 						else
-							playsound(src, pick('hippiestation/sound/misc/crack.ogg','hippiestation/sound/misc/crunch.ogg'), 50, 1)
+							playsound(src, pick('hippiestation/sound/misc/crack.ogg','hippiestation/sound/misc/crunch.ogg'), 50, TRUE)
 							whirlm.apply_damage(4, BRUTE, pick("l_leg", "r_leg")) //drain should only target the legs
 							to_chat(whirlm, "<span class='danger'>Your legs are caught in the drain!</span>")
 							continue
 
-			else if(timer == 0)
+			else if(!timer)
 				for(var/turf/open/pool/drained in range(5,src))
 					drained.filled = FALSE
 					drained.update_icon()
 				for(var/obj/effect/whirlpool/drained3 in range(1,src))
 					qdel(drained3)
 				for(var/obj/machinery/poolcontroller/drained4 in range(5,src))
-					drained4.drained = 1
+					drained4.drained = TRUE
 					drained4.mistoff()
-				status = 1
-				active = 0
+				status = TRUE
+				active = FALSE
 
 /obj/effect/whirlpool
 	name = "Whirlpool"
@@ -131,23 +132,23 @@
 /obj/machinery/poolfilter/emag_act(user as mob)
 	if(!(obj_flags & EMAGGED))
 		to_chat(user, "<span class='warning'>You disable the [src]'s shark filter! Run!</span>")
-		set_obj_flags = "EMAGGED"
+		obj_flags |= EMAGGED
 		do_sparks(5, TRUE, src)
-		src.icon_state = "filter_b"
+		icon_state = "filter_b"
 		spawn(50)
 			if(prob(50))
-				new /mob/living/simple_animal/hostile/shark(src.loc)
+				new /mob/living/simple_animal/hostile/shark(loc)
 			else
 				if(prob(50))
-					new /mob/living/simple_animal/hostile/shark/kawaii(src.loc)
+					new /mob/living/simple_animal/hostile/shark/kawaii(loc)
 				else
-					new /mob/living/simple_animal/hostile/shark/laser(src.loc)
+					new /mob/living/simple_animal/hostile/shark/laser(loc)
 		if(GLOB.adminlog)
-			log_say("[key_name(user)] emagged the pool filter and probably spawned sharks")
+			log_game("[key_name(user)] emagged the pool filter and probably spawned sharks")
 			message_admins("[key_name_admin(user)] emagged the pool filter and probably spawned sharks")
 
 
 /obj/machinery/poolfilter/attack_hand(mob/user)
 	to_chat(user, "You search the filter.")
 	for(var/obj/O in contents)
-		O.forceMove(src.loc)
+		O.forceMove(loc)

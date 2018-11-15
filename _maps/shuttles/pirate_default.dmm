@@ -714,11 +714,7 @@
 /turf/open/floor/plasteel,
 /area/shuttle/pirate)
 "bH" = (
-/obj/machinery/vending/boozeomat/all_access,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
+/obj/machinery/vending/boozeomat/pirate,
 /turf/open/floor/plasteel,
 /area/shuttle/pirate)
 "bI" = (
