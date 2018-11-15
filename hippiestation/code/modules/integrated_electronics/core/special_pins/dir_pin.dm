@@ -28,4 +28,4 @@
 /datum/integrated_io/dir/display_data(var/input)
 	if(!isnull(data))
 		return "([dir2text(data)])"
-  return ..()
+	return ..()
