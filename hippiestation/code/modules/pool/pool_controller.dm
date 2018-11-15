@@ -1,3 +1,8 @@
+#define FRIGID 1
+#define COOL 2
+#define NORMAL 3
+#define WARM 4
+#define SCALDING 5
 
 //Originally stolen from paradise. Credits to tigercat2000.
 //Modified a lot by Kokojo and Tortellini Tony.
@@ -11,7 +16,7 @@
 	use_power = TRUE
 	idle_power_usage = 75
 	var/list/linkedturfs //List contains all of the linked pool turfs to this controller, assignment happens on initialize
-	var/temperature = 3 //1-5 Frigid Cool Normal Warm Scalding
+	var/temperature = NORMAL //1-5 Frigid Cool Normal Warm Scalding
 	var/srange = 6 //The range of the search for pool turfs, change this for bigger or smaller pools.
 	var/linkedmist = list() //Used to keep track of created mist
 	var/misted = FALSE //Used to check for mist.
@@ -25,19 +30,17 @@
 	var/reagenttimer = 0 //We need 2.
 	var/shocked = FALSE//Shocks morons, like an airlock.
 	var/tempunlocked = FALSE
-	var/canplus = TRUE
-	var/canminus = TRUE
 	var/old_rcolor
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
 
 /obj/machinery/poolcontroller/Initialize()
+	. = ..()
 	START_PROCESSING(SSprocessing, src)
 	wires = new /datum/wires/poolcontroller(src)
 	for(var/turf/open/pool/W in range(srange,src)) //Search for /turf/open/beach/water in the range of var/srange
 		LAZYADD(linkedturfs, W)
 	for(var/obj/machinery/drain/pooldrain in range(srange,src))
 		linkeddrain = pooldrain
-	. = ..()
 
 /obj/machinery/poolcontroller/Destroy()
 	if(beaker)
@@ -62,7 +65,6 @@
 /obj/machinery/poolcontroller/attackby(obj/item/W, mob/user)
 	if(shocked && !(stat & NOPOWER))
 		shock(user,50)
-
 	if(stat & (BROKEN))
 		return
 
@@ -70,15 +72,12 @@
 		if(beaker)
 			to_chat(user, "A beaker is already loaded into the machine.")
 			return
-
-		if(W.reagents.total_volume >= 100 && W.reagents.reagent_list.len == 1) //check if full and allow one reageant only.
-
+		if(W.reagents.total_volume >= 100 && W.reagents.reagent_list.len) //check if full and allow one reageant only.
 			for(var/X in W.reagents.reagent_list)
 				var/datum/reagent/R = X
 				if(R.reagent_state == SOLID)
 					to_chat(user, "The pool cannot accept reagents in solid form!.")
 					return
-
 				else
 					beaker =  W
 					user.dropItemToGround(W)
@@ -86,13 +85,11 @@
 					to_chat(user, "You add the beaker to the machine!")
 					updateUsrDialog()
 					cur_reagent = "[R.name]"
-
 					for(var/I in linkedturfs)
 						var/turf/open/pool/P = I
 						if(P.reagents)
 							P.reagents.clear_reagents()
 							P.reagents.add_reagent(R.id, 100)
-
 					if(GLOB.adminlog)
 						log_game("[key_name(user)] has changed the [src] chems to [R.name]")
 						message_admins("[key_name_admin(user)] has changed the [src] chems to [R.name].")
@@ -169,17 +166,17 @@
 			var/turf/open/pool/W = X
 			for(var/mob/living/M in W) //Check for mobs in the linked pool-turfs.
 				switch(temperature) //Apply different effects based on what the temperature is set to.
-					if(5) //Scalding
+					if(SCALDING) //Scalding
 						M.bodytemperature = min(500, M.bodytemperature + 50) //heat mob at 35k(elvin) per cycle
 
-					if(1) //Freezing
+					if(FRIGID) //Freezing
 						M.bodytemperature = max(0, M.bodytemperature - 60) //cool mob at -35k per cycle, less would not affect the mob enough.
 						if(M.bodytemperature <= 50 && !M.stat)
 							M.apply_status_effect(/datum/status_effect/freon)
 
-					if(3) //Normal temp does nothing, because it's just room temperature water.
+					if(NORMAL) //Normal temp does nothing, because it's just room temperature water.
 
-					if(4) //Warm
+					if(WARM) //Warm
 						M.bodytemperature = min(360, M.bodytemperature + 20) //Heats up mobs till the termometer shows up
 
 					else //Cool
@@ -245,36 +242,21 @@
 		qdel(M)
 	misted = FALSE //no mist left, turn off the tracking var
 
-/obj/machinery/poolcontroller/proc/handle_temp(mob/user)
+/obj/machinery/poolcontroller/proc/handle_temp()
 	timer = 10
 	mistoff()
-	switch(temperature)
-		if(1)
-			canminus = FALSE
-			canplus = TRUE
-		if(2)
-			if(issilicon(user) || IsAdminGhost(user) || tempunlocked)
-				canminus = TRUE
-				canplus = TRUE
-			else
-				canminus = FALSE
-				canplus = TRUE
-		if(3)
-			canminus = TRUE
-			canplus = TRUE
-		if(4)
-			if(issilicon(user) || IsAdminGhost(user) || tempunlocked)
-				canminus = TRUE
-				canplus = TRUE
-			else
-				canminus = TRUE
-				canplus = FALSE
-		if(5)
-			miston()
-			canminus = TRUE
-			canplus = FALSE
 	icon_state = "poolc_[temperature]"
 	update_icon()
+
+/obj/machinery/poolcontroller/proc/CanUpTemp(mob/user)
+	if(!timer && ((temperature == WARM && (tempunlocked || issilicon(user) || IsAdminGhost(user)) || temperature < WARM)))
+		return TRUE
+	return FALSE
+
+/obj/machinery/poolcontroller/proc/CanDownTemp(mob/user)
+	if(!timer && ((temperature == COOL && (tempunlocked || issilicon(user) || IsAdminGhost(user)) || temperature > COOL)))
+		return TRUE
+	return FALSE
 
 /obj/machinery/poolcontroller/Topic(href, href_list)
 	if(..())
@@ -284,15 +266,15 @@
 	if(timer > 0)
 		return
 	if(href_list["IncreaseTemp"])
-		if(canplus)
+		if(CanUpTemp(usr))
 			temperature++
 			. = TRUE
-		handle_temp(usr)
+		handle_temp()
 	if(href_list["DecreaseTemp"])
-		if(canminus)
+		if(CanDownTemp(usr))
 			temperature--
 			. = TRUE
-		handle_temp(usr)
+		handle_temp()
 	if(href_list["beaker"])
 		var/obj/item/reagent_containers/glass/B = beaker
 		B.forceMove(loc)
@@ -306,25 +288,25 @@
 			linkeddrain.timer = 15
 			if(!linkeddrain.status)
 				new /obj/effect/whirlpool(linkeddrain.loc)
-				temperature = 3
+				temperature = NORMAL
 			else
 				new /obj/effect/effect/waterspout(linkeddrain.loc)
-				temperature = 3
-			handle_temp(usr)
+				temperature = NORMAL
+			handle_temp()
 			bloody = FALSE
 	updateUsrDialog()
 
 /obj/machinery/poolcontroller/proc/temp2text()
 	switch(temperature)
-		if(1)
+		if(FRIGID)
 			return "<span class='bad'>Frigid</span>"
-		if(2)
+		if(COOL)
 			return "<span class='good'>Cool</span>"
-		if(3)
+		if(NORMAL)
 			return "<span class='good'>Normal</span>"
-		if(4)
+		if(WARM)
 			return "<span class='good'>Warm</span>"
-		if(5)
+		if(SCALDING)
 			return "<span class='bad'>Scalding</span>"
 		else
 			return "Outside of possible range."
@@ -348,8 +330,8 @@
 		<h3>Temperature</h3>
 		<div class='statusDisplay'>
 		<B>Current temperature:</B> [temp2text()]<BR>
-		[((canplus) && !timer && !drained) ? "<a href='?src=\ref[src];IncreaseTemp=1'>Increase Temperature</a><br>" : "<span class='linkOff'>Increase Temperature</span><br>"]
-		[((canminus) && !timer && !drained) ? "<a href='?src=\ref[src];DecreaseTemp=1'>Decrease Temperature</a><br>" : "<span class='linkOff'>Decrease Temperature</span><br>"]
+		[CanUpTemp(user) ? "<a href='?src=\ref[src];IncreaseTemp=1'>Increase Temperature</a><br>" : "<span class='linkOff'>Increase Temperature</span><br>"]
+		[CanDownTemp(user) ? "<a href='?src=\ref[src];DecreaseTemp=1'>Decrease Temperature</a><br>" : "<span class='linkOff'>Decrease Temperature</span><br>"]
 		</div>
 		<h3>Drain</h3>
 		<div class='statusDisplay'>
