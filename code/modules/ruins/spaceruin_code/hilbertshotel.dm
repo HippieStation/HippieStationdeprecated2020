@@ -213,13 +213,13 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     footstep = FOOTSTEP_FLOOR
     tiled_dirt = FALSE
 
-/*turf/open/space/bluespace
+/*/turf/open/space/bluespace
     name = "\proper bluespace hyperzone"
     icon_state = "bluespace"
     baseturfs = /turf/open/space/bluespace
     flags_1 = NOJAUNT_1
     explosion_block = INFINITY
-    /var/obj/item/hilbertshotel/parentSphere
+    var/obj/item/hilbertshotel/parentSphere
 
 /turf/open/space/bluespace/Entered(atom/movable/A)
     . = ..()
