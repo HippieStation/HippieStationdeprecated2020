@@ -72,7 +72,7 @@
 		if(beaker)
 			to_chat(user, "A beaker is already loaded into the machine.")
 			return
-		if(W.reagents.total_volume >= 100 && W.reagents.reagent_list.len) //check if full and allow one reageant only.
+		if(W.reagents.total_volume >= 100 && W.reagents.reagent_list.len == 1) //check if full and allow one reageant only.
 			for(var/X in W.reagents.reagent_list)
 				var/datum/reagent/R = X
 				if(R.reagent_state == SOLID)
