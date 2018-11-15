@@ -60,7 +60,7 @@
 							visible_message("<span class='warning'>[src] catches [I]!</span>") //catch that sucker!
 							throw_mode_off()
 							return 1
-	..()
+/mob/living/carbon/hitby(atom/movable/AM, skipcatch, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
 
 
 /mob/living/carbon/attacked_by(obj/item/I, mob/living/user)

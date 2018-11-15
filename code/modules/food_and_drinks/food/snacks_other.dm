@@ -467,8 +467,8 @@
 	head.color = C
 	add_overlay(head)
 
-/obj/item/reagent_containers/food/snacks/lollipop/throw_impact(atom/A)
-	..(A)
+/obj/item/reagent_containers/food/snacks/lollipop/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	..(hit_atom)
 	throw_speed = 1
 	throwforce = 0
 
@@ -576,4 +576,5 @@
 	list_reagents = list("nutriment" = 1, "sugar" = 1, "cocoa" = 1)
 	filling_color = "#A0522D"
 	tastes = list("chocolate" = 1)
+
 	foodtype = JUNKFOOD | SUGAR
