@@ -676,11 +676,11 @@
 	icon_state = "alien_r_leg"
 	px_x = 0
 	px_y = 0
+	dismemberable = 0	
+	max_damage = 100
 	animal_origin = ALIEN_BODYPART
 
 /obj/item/bodypart/r_leg/devil
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
-
-#undef WARN_AND_SCREAM
