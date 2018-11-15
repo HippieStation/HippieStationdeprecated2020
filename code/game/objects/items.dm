@@ -373,14 +373,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	item_flags &= ~IN_INVENTORY
 	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED,user)
 
-	// hippie start -- Custom screams
-	if (iscarbon(user))
-		var/mob/living/carbon/C = user
-		if (C)
-			C.reindex_screams()
-	// hippie end
-
-
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_PICKUP, user)
@@ -402,14 +394,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(item_action_slot_check(slot, user)) //some items only give their actions buttons when in a specific slot.
 			A.Grant(user)
 	item_flags |= IN_INVENTORY
-
-	// hippie start -- Custom screams
-	if (iscarbon(user))
-		var/mob/living/carbon/C = user
-		if (C)
-			C.reindex_screams()
-	// hippie end
-
 
 //sometimes we only want to grant the item's action if it's equipped in a specific slot.
 /obj/item/proc/item_action_slot_check(slot, mob/user)
@@ -513,32 +497,32 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		M.become_nearsighted(EYE_DAMAGE)
 		if(prob(50))
 			if(M.stat != DEAD)
-/obj/item/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	if(hit_atom && !QDELETED(hit_atom))
-		SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom, throwingdatum)
-		if(is_hot() && isliving(hit_atom))
-			var/mob/living/L = hit_atom
+				if(M.drop_all_held_items())
+					to_chat(M, "<span class='danger'>You drop what you're holding and clutch at your eyes!</span>")
+			M.adjust_blurriness(10)
+			M.Unconscious(20)
+			M.Paralyze(40)
 		if (prob(eyes.eye_damage - 10 + 1))
 			M.become_blind(EYE_DAMAGE)
 			to_chat(M, "<span class='danger'>You go blind!</span>")
 
-		return hit_atom.hitby(src, 0, itempush, throwingdatum=throwingdatum)
+/obj/item/singularity_pull(S, current_size)
 	..()
 	if(current_size >= STAGE_FOUR)
 		throw_at(S,14,3, spin=0)
 	else
 		return
 
-/obj/item/throw_impact(atom/A, datum/thrownthing/throwingdatum)
-	if(A && !QDELETED(A))
-		SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, A, throwingdatum)
-		if(is_hot() && isliving(A))
-			var/mob/living/L = A
+/obj/item/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	if(hit_atom && !QDELETED(hit_atom))
+		SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom, throwingdatum)
+		if(is_hot() && isliving(hit_atom))
+			var/mob/living/L = hit_atom
 			L.IgniteMob()
 		var/itempush = 1
 		if(w_class < 4)
 			itempush = 0 //too light to push anything
-		return A.hitby(src, 0, itempush)
+		return hit_atom.hitby(src, 0, itempush, throwingdatum=throwingdatum)
 
 /obj/item/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force)
 	thrownby = thrower
@@ -616,7 +600,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		var/success = FALSE
 		if(src == M.get_item_by_slot(SLOT_WEAR_MASK))
 			success = TRUE
-/obj/item/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
+		if(success)
 			location = get_turf(M)
 	if(isturf(location))
 		location.hotspot_expose(flame_heat, 1)
@@ -632,7 +616,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item/proc/get_held_item_speechspans(mob/living/carbon/user)
 	return
 
-/obj/item/hitby(atom/movable/AM)
+/obj/item/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	return
 
 /obj/item/attack_hulk(mob/living/carbon/human/user)
