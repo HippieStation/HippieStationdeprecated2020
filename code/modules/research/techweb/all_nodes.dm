@@ -435,7 +435,7 @@
 	display_name = "Subdermal Implants"
 	description = "Electronic implants buried beneath the skin."
 	prereq_ids = list("biotech")
-	design_ids = list("implanter", "implantcase", "implant_chem", "implant_tracking", "locator")
+	design_ids = list("implanter", "implantcase", "implant_chem", "implant_tracking", "locator", "c38_trac")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -631,12 +631,12 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
-/datum/techweb_node/gravity_gun
-	id = "gravity_gun"
-	display_name = "One-point Bluespace-gravitational Manipulator"
-	description = "Fancy wording for gravity gun."
+/datum/techweb_node/exotic_ammo
+	id = "exotic_ammo"
+	display_name = "Exotic Ammunition"
+	description = "They won't know what hit em."
 	prereq_ids = list("adv_weaponry", "bluespace_travel")
-	design_ids = list("gravitygun", "mech_gravcatapult")
+	design_ids = list("techshotshell", "c38_hotshot", "c38_iceblox")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 

@@ -23,4 +23,4 @@
 /datum/integrated_io/boolean/display_data(var/input)
 	if(data)
 		return "(TRUE)"
-  return "(FALSE)"
+	return "(FALSE)"

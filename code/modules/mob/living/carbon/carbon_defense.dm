@@ -48,6 +48,18 @@
 	if(affecting && affecting.dismemberable && affecting.get_damage() >= (affecting.max_damage - P.dismemberment))
 		affecting.dismember(P.damtype)
 
+/mob/living/carbon/proc/can_catch_item(skip_throw_mode_check)
+	. = FALSE
+	if(!skip_throw_mode_check && !in_throw_mode)
+		return
+	if(get_active_held_item())
+		return
+	if(!(mobility_flags & MOBILITY_MOVE))
+		return
+	if(restrained())
+		return
+	return TRUE
+
 /mob/living/carbon/hitby(atom/movable/AM, skipcatch, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
 	if(!skipcatch)	//ugly, but easy
 		if(can_catch_item())
