@@ -1291,5 +1291,4 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	H.hal_target = target
 	H.preparePixelProjectile(target, start)
 	H.fire()
-
 	qdel(src)
