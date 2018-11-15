@@ -71,11 +71,11 @@
 
 /obj/item/reagent_containers/fire_act(exposed_temperature, exposed_volume)
 	reagents.expose_temperature(exposed_temperature)
-/obj/item/reagent_containers/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	..()
 
-	SplashReagents(hit_atom, TRUE)
+/obj/item/reagent_containers/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
-	SplashReagents(target, TRUE)
+	SplashReagents(hit_atom, TRUE)
 
 /obj/item/reagent_containers/proc/bartender_check(atom/target)
 	. = FALSE
@@ -83,6 +83,7 @@
 		for(var/datum/action/innate/drink_fling/D in thrownby.actions)
 			if(D.active)
 				return TRUE
+
 
 /obj/item/reagent_containers/proc/SplashReagents(atom/target, thrown = FALSE)
 	if(!reagents || !reagents.total_volume || !spillable)
