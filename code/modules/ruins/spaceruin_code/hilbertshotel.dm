@@ -127,7 +127,8 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     for(var/turf/closed/indestructible/hoteldoor/door in currentArea)
         door.parentSphere = src
         door.desc = "The door to this hotel room. The placard reads 'Room [currentRoomnumber]'. Strange, this door doesnt even seem openable. The doorknob, however, seems to buzz with unusual energy...<br /><span class='info'>Alt-Click to look through the peephole.</span>"
-    //for(var/turf/open/space/bluespace/BSturf in currentArea)
+    // A Hippie GM complained about it, so rippie broken tile
+	//for(var/turf/open/space/bluespace/BSturf in currentArea)
         //BSturf.parentSphere = src
 
 /obj/item/hilbertshotel/proc/ejectRooms()
@@ -212,17 +213,17 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     footstep = FOOTSTEP_FLOOR
     tiled_dirt = FALSE
 
-//turf/open/space/bluespace
-    //name = "\proper bluespace hyperzone"
-    //icon_state = "bluespace"
-    //baseturfs = /turf/open/space/bluespace
-    //flags_1 = NOJAUNT_1
-    //explosion_block = INFINITY
-    //var/obj/item/hilbertshotel/parentSphere
+/*turf/open/space/bluespace
+    name = "\proper bluespace hyperzone"
+    icon_state = "bluespace"
+    baseturfs = /turf/open/space/bluespace
+    flags_1 = NOJAUNT_1
+    explosion_block = INFINITY
+    /var/obj/item/hilbertshotel/parentSphere
 
-///turf/open/space/bluespace/Entered(atom/movable/A)
-    //. = ..()
-    //A.forceMove(get_turf(parentSphere))
+/turf/open/space/bluespace/Entered(atom/movable/A)
+    . = ..()
+    A.forceMove(get_turf(parentSphere))*/
 
 /turf/closed/indestructible/hoteldoor
     name = "Hotel Door"
