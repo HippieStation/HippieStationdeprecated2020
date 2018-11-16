@@ -245,6 +245,8 @@
 	timer = 10
 	mistoff()
 	icon_state = "poolc_[temperature]"
+	if(temperature == SCALDING)
+		miston()
 	update_icon()
 
 /obj/machinery/poolcontroller/proc/CanUpTemp(mob/user)
@@ -260,19 +262,15 @@
 /obj/machinery/poolcontroller/Topic(href, href_list)
 	if(..())
 		return
-	if(!usr.canUseTopic(src))
-		return
 	if(timer > 0)
 		return
 	if(href_list["IncreaseTemp"])
 		if(CanUpTemp(usr))
 			temperature++
-			. = TRUE
 			handle_temp()
 	if(href_list["DecreaseTemp"])
 		if(CanDownTemp(usr))
 			temperature--
-			. = TRUE
 			handle_temp()
 	if(href_list["beaker"])
 		var/obj/item/reagent_containers/glass/B = beaker
@@ -320,7 +318,6 @@
 		return wires.interact(user)
 	if(stat & (NOPOWER|BROKEN))
 		return
-	user.set_machine(src)
 	var/datum/browser/popup = new(user, "Pool Controller", name, 300, 450)
 	var/dat = ""
 	if(timer)
