@@ -60,6 +60,9 @@
 		if(GLOB.adminlog)
 			log_game("[key_name(user)] emagged [src]")
 			message_admins("[key_name_admin(user)] emagged [src]")
+	else
+		to_chat(user, "<span class='warning'>The interface on [src] has been damaged.</span>")
+		return
 
 /obj/machinery/poolcontroller/attackby(obj/item/W, mob/user)
 	if(shocked && !(stat & NOPOWER))
@@ -167,19 +170,15 @@
 				switch(temperature) //Apply different effects based on what the temperature is set to.
 					if(SCALDING) //Scalding
 						M.adjust_bodytemperature(M.bodytemperature + 50,0,500)
-
+					if(WARM) //Warm
+						M.adjust_bodytemperature(M.bodytemperature + 20,0,360) //Heats up mobs till the termometer shows up
+					if(NORMAL) //Normal temp does nothing, because it's just room temperature water.
+					if(COOL)
+						M.adjust_bodytemperature(M.bodytemperature - 20,250) //Cools mobs till the termometer shows up
 					if(FRIGID) //Freezing
 						M.adjust_bodytemperature(M.bodytemperature - 60) //cool mob at -35k per cycle, less would not affect the mob enough.
 						if(M.bodytemperature <= 50 && !M.stat)
-							M.apply_status_effect(/datum/status_effect/freon)
-
-					if(NORMAL) //Normal temp does nothing, because it's just room temperature water.
-
-					if(WARM) //Warm
-						M.adjust_bodytemperature(M.bodytemperature + 20,0,360) //Heats up mobs till the termometer shows up
-
-					else //Cool
-						M.adjust_bodytemperature(M.bodytemperature - 20,250) //Cools mobs till the termometer shows up
+							M.apply_status_effect(/datum/status_effect/freon)		
 				var/mob/living/carbon/human/drownee = M
 				if(drownee.stat == DEAD)
 					continue
