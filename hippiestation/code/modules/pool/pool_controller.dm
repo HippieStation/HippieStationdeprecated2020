@@ -19,7 +19,7 @@
 	var/cur_reagent = "water"
 	var/drainable = FALSE
 	var/drained = FALSE
-	var/bloody = 0
+	var/bloody = FALSE
 	var/obj/machinery/drain/linkeddrain = null
 	var/timer = 0 //we need a cooldown on that shit.
 	var/reagenttimer = 0 //We need 2.
@@ -51,13 +51,13 @@
 	if(!(obj_flags & EMAGGED)) //If it is not already emagged, emag it.
 		to_chat(user, "<span class='warning'>You disable the [src]'s safety features.</span>")
 		do_sparks(5, TRUE, src)
-		set_obj_flags = "EMAGGED"
+		obj_flags |= EMAGGED
 		tempunlocked = TRUE
 		drainable = TRUE
-		do_sparks(1, 1)
+		do_sparks(1, TRUE, src)
 		if(GLOB.adminlog)
-			log_say("[key_name(user)] emagged the poolcontroller")
-			message_admins("[key_name_admin(user)] emagged the poolcontroller")
+			log_game("[key_name(user)] emagged [src]")
+			message_admins("[key_name_admin(user)] emagged [src]")
 
 /obj/machinery/poolcontroller/attackby(obj/item/W, mob/user)
 	if(shocked && !(stat & NOPOWER))
@@ -94,8 +94,8 @@
 							P.reagents.add_reagent(R.id, 100)
 
 					if(GLOB.adminlog)
-						log_say("[key_name(user)] has changed the pool's chems to [R.name]")
-						message_admins("[key_name_admin(user)] has changed the pool's chems to [R.name].")
+						log_game("[key_name(user)] has changed the [src] chems to [R.name]")
+						message_admins("[key_name_admin(user)] has changed the [src] chems to [R.name].")
 					timer = 15
 		else
 			to_chat(user, "<span class='notice'>This machine only accepts full large beakers of one reagent.</span>")
@@ -120,16 +120,16 @@
 //procs
 /obj/machinery/poolcontroller/proc/shock(mob/user, prb)
 	if(stat & (BROKEN|NOPOWER))		// unpowered, no shock
-		return 0
+		return FALSE
 	if(!prob(prb))
-		return 0
+		return FALSE
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(5, 1, src)
 	s.start()
 	if(electrocute_mob(user, get_area(src), src, 0.7))
-		return 1
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 /obj/machinery/poolcontroller/proc/poolreagent()
 	for(var/X in linkedturfs)
@@ -160,7 +160,7 @@
 		reagenttimer--
 	if(stat & (NOPOWER|BROKEN))
 		return PROCESS_KILL
-	else if(reagenttimer == 0 && !drained)
+	else if(!reagenttimer && !drained)
 		poolreagent()
 
 /obj/machinery/poolcontroller/proc/updatePool()
@@ -245,7 +245,7 @@
 		qdel(M)
 	misted = FALSE //no mist left, turn off the tracking var
 
-/obj/machinery/poolcontroller/proc/handle_temp()
+/obj/machinery/poolcontroller/proc/handle_temp(mob/user)
 	timer = 10
 	mistoff()
 	switch(temperature)
@@ -253,7 +253,7 @@
 			canminus = FALSE
 			canplus = TRUE
 		if(2)
-			if(tempunlocked)
+			if(issilicon(user) || IsAdminGhost(user) || tempunlocked)
 				canminus = TRUE
 				canplus = TRUE
 			else
@@ -263,7 +263,7 @@
 			canminus = TRUE
 			canplus = TRUE
 		if(4)
-			if(tempunlocked)
+			if(issilicon(user) || IsAdminGhost(user) || tempunlocked)
 				canminus = TRUE
 				canplus = TRUE
 			else
@@ -279,38 +279,38 @@
 /obj/machinery/poolcontroller/Topic(href, href_list)
 	if(..())
 		return
-	if(!allowed(usr))
-		to_chat(usr, "<span class='warning'>Access denied.</span>")
+	if(!usr.canUseTopic(src))
 		return
 	if(timer > 0)
 		return
 	if(href_list["IncreaseTemp"])
 		if(canplus)
-			temperature += 1
+			temperature++
 			. = TRUE
-		handle_temp()
+		handle_temp(usr)
 	if(href_list["DecreaseTemp"])
 		if(canminus)
-			temperature -= 1
-		handle_temp()
+			temperature--
+			. = TRUE
+		handle_temp(usr)
 	if(href_list["beaker"])
 		var/obj/item/reagent_containers/glass/B = beaker
 		B.forceMove(loc)
 		beaker = null
 		changecolor()
 	if(href_list["Activate Drain"])
-		if(drainable)
+		if((drainable || issilicon(usr) || IsAdminGhost(usr)) && !timer && !linkeddrain.active)
 			mistoff()
 			timer = 60
-			linkeddrain.active = 1
+			linkeddrain.active = TRUE
 			linkeddrain.timer = 15
-			if(linkeddrain.status == 0)
+			if(!linkeddrain.status)
 				new /obj/effect/whirlpool(linkeddrain.loc)
 				temperature = 3
-			if(linkeddrain.status == 1)
+			else
 				new /obj/effect/effect/waterspout(linkeddrain.loc)
 				temperature = 3
-			handle_temp()
+			handle_temp(usr)
 			bloody = FALSE
 	updateUsrDialog()
 
@@ -343,17 +343,17 @@
 	var/datum/browser/popup = new(user, "Pool Controller", name, 300, 450)
 	var/dat = ""
 	if(timer)
-		dat += "<span class='notice'>[timer] seconds left until pool can operate again.</span><BR>"
+		dat += "<span class='notice'>[timer] seconds left until [src] can operate again.</span><BR>"
 	dat += text({"
 		<h3>Temperature</h3>
 		<div class='statusDisplay'>
 		<B>Current temperature:</B> [temp2text()]<BR>
-		[(canplus && timer == 0 && !drained) ? "<a href='?src=\ref[src];IncreaseTemp=1'>Increase Temperature</a><br>" : "<span class='linkOff'>Increase Temperature</span><br>"]
-		[(canminus && timer == 0 && !drained) ? "<a href='?src=\ref[src];DecreaseTemp=1'>Decrease Temperature</a><br>" : "<span class='linkOff'>Decrease Temperature</span><br>"]
+		[((canplus) && !timer && !drained) ? "<a href='?src=\ref[src];IncreaseTemp=1'>Increase Temperature</a><br>" : "<span class='linkOff'>Increase Temperature</span><br>"]
+		[((canminus) && !timer && !drained) ? "<a href='?src=\ref[src];DecreaseTemp=1'>Decrease Temperature</a><br>" : "<span class='linkOff'>Decrease Temperature</span><br>"]
 		</div>
 		<h3>Drain</h3>
 		<div class='statusDisplay'>
-		<B>Drain status:</B> [drainable ? "<span class='bad'>Enabled</span>" : "<span class='good'>Disabled</span>"]
+		<B>Drain status:</B> [(issilicon(user) || IsAdminGhost(user) || drainable) ? "<span class='bad'>Enabled</span>" : "<span class='good'>Disabled</span>"]
 		<br><b>Pool status:</b> "})
 	if(timer < 45)
 		if(!drained)
@@ -362,13 +362,8 @@
 			dat += "<span class='bad'>Drained</span><BR>"
 	else
 		dat += "<span class='bad'>[drained ? "Filling" : "Draining"]<BR></span>"
-	if(drainable && !timer)
-		if(drained)
-			dat += "<a href='?src=\ref[src];Activate Drain=1'>Fill Pool</a><br>"
-		else
-			dat += "<a href='?src=\ref[src];Activate Drain=1'>Drain Pool</a><br>"
-	else
-		dat += text({"<span class='linkOff'>[drained ? "Fill" : "Drain"] Pool</span>"})
+	if((issilicon(user) || IsAdminGhost(user) || drainable) && !timer && !linkeddrain.active)
+		dat += "<a href='?src=\ref[src];Activate Drain=1'>[drained ? "Fill" : "Drain"] Pool</a><br>"
 	dat += text({"</div>
 		<h3>Chemistry</h3>
 		<div class='statusDisplay'>

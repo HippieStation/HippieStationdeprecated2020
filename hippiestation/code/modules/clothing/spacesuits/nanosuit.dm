@@ -4,6 +4,9 @@
 #define NANO_STRENGTH "strength"
 #define NANO_NONE "none"
 
+#define POWER_PUNCH "QQQ"
+#define HEAD_EXPLOSION "SSSS"
+
 //Crytek Nanosuit made by YoYoBatty
 /obj/item/clothing/under/syndicate/combat/nano
 	name = "nanosuit lining"
@@ -76,7 +79,7 @@
 	var/atom/target = get_edge_target_turf(user, user.dir) //gets the user's direction
 
 	if(user.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE))
-		playsound(src, 'sound/effects/stealthoff.ogg', 50, 0.75, 1)
+		playsound(src, 'sound/effects/stealthoff.ogg', 50, 0.75, TRUE)
 		user.visible_message("<span class='warning'>[usr] jumps forward into the air!</span>")
 	else
 		to_chat(user, "<span class='warning'>Something prevents you from dashing forward!</span>")
@@ -128,8 +131,8 @@
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
 	glass_colour_type = /datum/client_colour/glass_colour/nightvision
 	actions_types = list(/datum/action/item_action/nanosuit/goggletoggle)
-	vision_correction = 1 //We must let our wearer have good eyesight
-	var/on = 0
+	vision_correction = TRUE //We must let our wearer have good eyesight
+	var/on = FALSE
 	item_flags = DROPDEL
 
 /datum/client_colour/glass_colour/nightvision
@@ -188,9 +191,9 @@
 	permeability_coefficient = 0.01
 	var/mob/living/carbon/human/U = null
 	var/criticalpower = FALSE
-	var/mode = NONE
+	var/mode = NANO_NONE
 	var/datum/martial_art/nano/style = new
-	var/shutdown = FALSE
+	var/shutdown = TRUE
 	var/current_charges = 3
 	var/max_charges = 3 //How many charges total the shielding has
 	var/medical_delay = 200 //How long after we've been shot before we can start recharging. 20 seconds here
@@ -216,6 +219,10 @@
 	var/stealth_cloak_in = 2 //transition time back into cloak
 	rad_flags = RAD_PROTECT_CONTENTS|RAD_NO_CONTAMINATE
 	rad_insulation = RAD_NO_INSULATION
+	var/healthon = FALSE
+	var/atmoson = FALSE
+	var/radon = FALSE
+	var/cellon = FALSE
 
 /obj/item/clothing/suit/space/hardsuit/nano/Initialize()
 	. = ..()
@@ -235,7 +242,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/examine(mob/user)
 	..()
-	if(mode != NONE)
+	if(mode != NANO_NONE)
 		to_chat(user, "The suit appears to be in [mode] mode.")
 	else
 		to_chat(user, "The suit appears to be offline.")
@@ -285,7 +292,7 @@
 		amount = 0 //set our energy to 0
 		if(mode == NANO_CLOAK) //are we in cloak?
 			recharge_cooldown = 15 //then wait 3 seconds(1 value per 2 ticks = 15*2=30/10 = 3 seconds) to recharge again
-		if(mode != NANO_ARMOR) //we're not in cloak
+		if(mode != NANO_ARMOR && mode != NANO_NONE) //we're not in cloak
 			toggle_mode(NANO_ARMOR, TRUE) //go into it, forced
 	cell.charge = amount
 	return TRUE
@@ -327,15 +334,14 @@
 		heal_nano(user)
 	for(var/X in U.bodyparts)
 		var/obj/item/bodypart/BP = X
-		if(msg_time_react == 0)
+		if(!msg_time_react)
 			if(BP.body_zone == BODY_ZONE_L_LEG || BP.body_zone == BODY_ZONE_R_LEG || BP.body_zone == BODY_ZONE_L_ARM || BP.body_zone == BODY_ZONE_R_ARM)
 				if(BP.brute_dam > trauma_threshold)
-					helmet.display_visor_message("Extensive blunt force detected in [BP.name]! Administering local anesthetic.")
+					helmet.display_visor_message("Extensive blunt force detected in [BP.name]!")
 					msg_time_react = 200
 				if(BP.burn_dam > trauma_threshold)
-					helmet.display_visor_message("Heat shield failure detected in [BP.name]! Administering local anesthetic.")
+					helmet.display_visor_message("Heat shield failure detected in [BP.name]!")
 					msg_time_react = 200
-				user.reagents.add_reagent("morphine", 0.5)
 			if(BP.body_zone == BODY_ZONE_HEAD)
 				if(BP.brute_dam > trauma_threshold)
 					helmet.display_visor_message("Cranial trauma detected!")
@@ -389,9 +395,9 @@
 				helmet.armor = helmet.armor.setRating(melee = 60, bullet = 60, laser = 60, energy = 65, bomb = 100, rad =100)
 				U.filters = null
 				animate(U, alpha = 255, time = 5)
-				U.remove_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
-				U.remove_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
-				U.remove_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
+				U.remove_movespeed_modifier(NANO_SPEED)
+				U.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
+				U.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
 				style.remove(U)
 				jetpack.full_speed = FALSE
 
@@ -403,9 +409,9 @@
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				U.filters = filter(type="blur",size=1)
 				animate(U, alpha = 40, time = 2)
-				U.remove_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
-				U.remove_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
-				U.remove_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
+				U.remove_movespeed_modifier(NANO_SPEED)
+				U.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
+				U.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
 				style.remove(U)
 				jetpack.full_speed = FALSE
 
@@ -419,9 +425,9 @@
 				U.adjustStaminaLoss(-20)
 				U.filters = filter(type="outline", size=0.1, color=rgb(255,255,224))
 				animate(U, alpha = 255, time = 5)
-				U.remove_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
-				U.add_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
-				U.add_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
+				U.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
+				U.add_movespeed_modifier(NANO_SPEED, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
+				U.add_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
 				style.remove(U)
 				jetpack.full_speed = TRUE
 
@@ -434,9 +440,9 @@
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				U.filters = filter(type="outline", size=0.1, color=rgb(255,0,0))
 				animate(U, alpha = 255, time = 5)
-				U.add_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
-				U.remove_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
-				U.remove_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
+				U.add_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
+				U.remove_movespeed_modifier(NANO_SPEED)
+				U.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
 				jetpack.full_speed = FALSE
 
 			if(NANO_NONE)
@@ -447,9 +453,9 @@
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				U.filters = null
 				animate(U, alpha = 255, time = 5)
-				U.remove_trait(TRAIT_PUSHIMMUNE, "Strength Mode")
-				U.remove_trait(TRAIT_GOTTAGOFAST, "Speed Mode")
-				U.remove_trait(TRAIT_IGNORESLOWDOWN, "Speed Mode")
+				U.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
+				U.remove_movespeed_modifier(NANO_SPEED)
+				U.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
 				jetpack.full_speed = FALSE
 
 	U.update_inv_wear_suit()
@@ -464,7 +470,7 @@
 	if(!severity || shutdown)
 		return
 	set_nano_energy(max(0,cell.charge-(cell.charge/severity)),40)
-	if((mode == armor && cell.charge == 0) || (mode != armor))
+	if((mode == NANO_ARMOR && !cell.charge) || (mode != NANO_ARMOR))
 		if(prob(5/severity))
 			emp_assault()
 		else if(prob(10/severity))
@@ -480,7 +486,7 @@
 	U.Paralyze(300)
 	U.AdjustStun(300)
 	U.Jitter(120)
-	toggle_mode(NONE, TRUE)
+	toggle_mode(NANO_NONE, TRUE)
 	shutdown = TRUE
 	addtimer(CALLBACK(src, .proc/emp_assaulttwo), 25)
 
@@ -489,13 +495,16 @@
 	sleep(35)
 	helmet.display_visor_message("Warning. EMP shutdown, all systems impaired.")
 	sleep(25)
-	helmet.display_visor_message("Switching to core function mode.")
+	helmet.display_visor_message("Switching to: core function mode.")
 	sleep(25)
 	helmet.display_visor_message("Life support priority. Warning!")
 	addtimer(CALLBACK(src, .proc/emp_assaultthree), 35)
 
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/emp_assaultthree()
+	helmet.display_visor_message("CMOS reset sequence begin, standby...")
+	sleep(20)
+	playsound(src, 'sound/machines/beep.ogg', 50, FALSE)
 	helmet.display_visor_message("4672482//-82544111.0//WRXT _YWD")
 	sleep(5)
 	helmet.display_visor_message("KPO- -86801780.768//1228.")
@@ -513,13 +522,20 @@
 	helmet.display_visor_message("MED//8189")
 	sleep(10)
 	helmet.display_visor_message("LOADING//...")
-	sleep(60)
+	sleep(30)
+	helmet.display_visor_message("Cardiac dysrhythmias treatment in progress, standby...")
+	playsound(src, 'sound/machines/defib_charge.ogg', 75, FALSE)
+	sleep(25)
+	playsound(src, 'sound/machines/defib_zap.ogg', 50, FALSE)
 	U.AdjustStun(-100)
 	U.AdjustParalyzed(-100)
 	U.adjustStaminaLoss(-55)
 	U.adjustOxyLoss(-55)
 	helmet.display_visor_message("Cleared to proceed.")
+	sleep(3)
+	playsound(src, 'sound/machines/defib_success.ogg', 75, FALSE)
 	shutdown = FALSE
+	toggle_mode(NANO_ARMOR)
 
 /datum/action/item_action/nanosuit
 	check_flags = AB_CHECK_STUN|AB_CHECK_CONSCIOUS
@@ -571,7 +587,7 @@
 	var/zoom_range = 12
 	var/zoom = FALSE
 	var/obj/machinery/doppler_array/integrated/bomb_radar
-	scan_reagents = 1
+	scan_reagents = TRUE
 	actions_types = list(/datum/action/item_action/nanosuit/zoom)
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	rad_insulation = RAD_NO_INSULATION
@@ -647,7 +663,41 @@
 		U.add_trait(TRAIT_NODISMEMBER, "Nanosuit")
 		if(help_verb)
 			U.verbs += help_verb
+		bootSequence()
 	..()
+
+/obj/item/clothing/suit/space/hardsuit/nano/proc/bootSequence()
+	helmet.display_visor_message("Crynet - BIOS v1.32 Syndicate Systems")
+	sleep(10)
+	helmet.display_visor_message("P.O.S.T. Commencing...")
+	sleep(30)
+	playsound(src, 'sound/machines/beep.ogg', 50, FALSE)
+	helmet.display_visor_message("Memory test: 6144PB OK(Installed Memory: 6144PB)")
+	sleep(10)
+	helmet.display_visor_message("Onboard equipment test: OK")
+	sleep(10)
+	helmet.display_visor_message("Telecommunications systems: OK")
+	sleep(10)
+	helmet.display_visor_message("Checking environment sensors, standby...")
+	sleep(20)
+	healthon = TRUE
+	helmet.display_visor_message("Life signs systems: OK")
+	sleep(5)
+	atmoson = TRUE
+	helmet.display_visor_message("Atmospheric sensors: OK")
+	sleep(5)
+	cellon = TRUE
+	helmet.display_visor_message("Power sensor: OK")
+	sleep(5)
+	radon = TRUE
+	helmet.display_visor_message("Geiger counter: OK")
+	sleep(5)
+	helmet.display_visor_message("Loading default configuration, standby...")
+	sleep(25)
+	helmet.display_visor_message("Successful. Have a safe and secure day.")
+	shutdown = FALSE
+	toggle_mode(NANO_ARMOR)
+
 
 /datum/outfit/nanosuit
 	name = "Nanosuit"
@@ -672,20 +722,20 @@
 	if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit/nano)) //Only display if actually wearing the suit.
 		var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
 		if(statpanel("Crynet Nanosuit"))
-			stat("Crynet Protocols : [NS.mode != NONE?"Engaged":"Disengaged"]")
-			stat("Energy Charge:", "[round(NS.cell.percent())]%")
+			stat("Crynet Protocols : [!NS.shutdown?"Engaged":"Disengaged"]")
+			stat("Energy Charge:", "[NS.cellon?"[round(NS.cell.percent())]%":"offline"]")
 			stat("Mode:", "[NS.mode]")
-			stat("Overall Status:", "[health]% healthy")
-			stat("Nutrition Status:", "[nutrition]")
-			stat("Oxygen Loss:", "[getOxyLoss()]")
-			stat("Toxin Levels:", "[getToxLoss()]")
-			stat("Burn Severity:", "[getFireLoss()]")
-			stat("Brute Trauma:", "[getBruteLoss()]")
-			stat("Radiation Levels:","[radiation] rad")
-			stat("Body Temperature:","[bodytemperature-T0C] degrees C ([bodytemperature*1.8-459.67] degrees F)")
-			stat("Atmospheric Pressure:","[pressure] kPa")
-			stat("Atmoshperic Temperature:","<span class='[environment.temperature > FIRE_IMMUNITY_MAX_TEMP_PROTECT?"alert":"info"]'>[round(environment.temperature-T0C, 0.01)] &deg;C ([round(environment.temperature, 0.01)] K)</span>")
-			stat("Atmospheric Thermal Energy:","[THERMAL_ENERGY(environment)/1000] kJ")
+			stat("Overall Status:", "[NS.healthon?"[health]% healthy":"offline"]")
+			stat("Nutrition Status:", "[NS.healthon?"[nutrition]":"offline"]")
+			stat("Oxygen Loss:", "[NS.healthon?"[getOxyLoss()]":"offline"]")
+			stat("Toxin Levels:", "[NS.healthon?"[getToxLoss()]":"offline"]")
+			stat("Burn Severity:", "[NS.healthon?"[getFireLoss()]":"offline"]")
+			stat("Brute Trauma:", "[NS.healthon?"[getBruteLoss()]":"offline"]")
+			stat("Radiation Levels:","[NS.radon?"[radiation] rads":"offline"]")
+			stat("Body Temperature:","[NS.healthon?"["[bodytemperature-T0C] degrees C ([bodytemperature*1.8-459.67] degrees F)"]":"offline"]")
+			stat("Atmospheric Pressure:","[NS.atmoson?"[pressure] kPa":"offline"]")
+			stat("Atmoshperic Temperature:","[NS.atmoson?"<span class='[environment.temperature > FIRE_IMMUNITY_MAX_TEMP_PROTECT?"alert":"info"]'>[round(environment.temperature-T0C, 0.01)] &deg;C ([round(environment.temperature, 0.01)] K)</span>":"offline"]")
+			stat("Atmospheric Thermal Energy:","[NS.atmoson?"[THERMAL_ENERGY(environment)/1000] kJ":"offline"]")
 
 /mob/living/carbon/human/Move(NewLoc, direct)
 	. = ..()
@@ -702,6 +752,48 @@
 	name = "Nanosuit strength mode"
 	block_chance = 75
 	deflection_chance = 25
+
+/datum/martial_art/nano/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
+	A.hud_used.combo_object.update_icon(streak, 60)
+	if(findtext(streak,POWER_PUNCH))
+		streak = ""
+		A.hud_used.combo_object.update_icon(streak)
+		PowerPunch(A,D)
+		return TRUE
+	if(findtext(streak,HEAD_EXPLOSION))
+		streak = ""
+		A.hud_used.combo_object.update_icon(streak)
+		HeadStomp(A,D)
+		return TRUE
+	return FALSE
+
+/datum/martial_art/nano/proc/PowerPunch(mob/living/carbon/human/A, mob/living/carbon/human/D)
+	if(!D.stat || !D.IsParalyzed())
+		D.visible_message("<span class='warning'>[A] power punches [D]!</span>", \
+						  	"<span class='userdanger'>[A] hits you with the force of a bus!</span>")
+		playsound(get_turf(A), 'sound/effects/hit_punch.ogg', 75, TRUE, -1)
+		D.apply_damage(20, BRUTE)
+		var/atom/throw_target = get_edge_target_turf(D, A.dir)
+		if(!D.anchored)
+			D.throw_at(throw_target, rand(1,2), 7, A)
+		log_combat(A, D, "nanosuit slammed")
+	return TRUE
+
+/datum/martial_art/nano/proc/HeadStomp(mob/living/carbon/human/A, mob/living/carbon/human/D)
+	D.visible_message("<span class='warning'>[A] smashes [D] in the head, splattering their brains!</span>", \
+						"<span class='userdanger'>OH SHI-</span>")
+	playsound(get_turf(A), 'hippiestation/sound/misc/squishy.ogg', 75, TRUE, -1)
+	playsound(get_turf(A), 'sound/magic/disintegrate.ogg', 50, TRUE, -1)
+	step_to(A,D)
+	var/obj/item/bodypart/head/head = D.get_bodypart(BODY_ZONE_HEAD)
+	if(head)
+		head.drop_limb()
+		head.drop_organs()
+	D.bleed_rate = 10
+	D.adjustBruteLoss(40)
+	D.death(FALSE)
+	log_combat(A, D, "head stomped")
+	return TRUE
 
 /datum/martial_art/nano/grab_act(mob/living/carbon/human/A, mob/living/carbon/D)
 	if(A.grab_state >= GRAB_AGGRESSIVE)
@@ -720,17 +812,27 @@
 	var/picked_hit_type = pick("punches", "kicks")
 	var/bonus_damage = 10
 	var/quick = FALSE
+	var/obj/item/bodypart/affecting
+	if(check_streak(A,D))
+		return TRUE
 	if(D.IsParalyzed() || D.resting || D.lying)//we can hit ourselves
 		bonus_damage += 5
 		picked_hit_type = "stomps on"
-	if(D != A && !D.stat || !D.IsParalyzed()) //and we can't knock ourselves the fuck out/down!
+		affecting = D.get_bodypart(ran_zone(A.zone_selected))
+		if(affecting.body_zone == BODY_ZONE_HEAD)
+			D.add_splatter_floor(D.loc)
+			D.adjustBrainLoss(15)
+			bonus_damage += 5
+			if(D.health <= 40)
+				add_to_streak("S",D)
+	if(D != A && !D.stat || !D.IsParalyzed() || !D.IsStun()) //and we can't knock ourselves the fuck out/down!
 		if(A.grab_state == GRAB_AGGRESSIVE)
 			A.stop_pulling() //So we don't spam the combo
 			bonus_damage += 5
 			D.Paralyze(15)
 			D.visible_message("<span class='warning'>[A] knocks [D] the fuck down!", \
 							"<span class='userdanger'>[A] knocks you the fuck down!</span>")
-			if(prob(40))
+			if(prob(80))
 				step_away(D,A,15)
 		else if(A.grab_state > GRAB_AGGRESSIVE)
 			var/atom/throw_target = get_edge_target_turf(D, A.dir)
@@ -743,7 +845,7 @@
 		else if(A.resting && !D.lying) //but we can't legsweep ourselves!
 			D.visible_message("<span class='warning'>[A] leg sweeps [D]!", \
 								"<span class='userdanger'>[A] leg sweeps you!</span>")
-			playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, 1, -1)
+			playsound(get_turf(A), 'sound/effects/hit_kick.ogg', 50, TRUE, -1)
 			bonus_damage += 5
 			D.Paralyze(60)
 			log_combat(A, D, "nanosuit leg swept")
@@ -752,15 +854,16 @@
 			quick = TRUE
 			A.changeNext_move(CLICK_CD_RAPID)
 			.= FALSE
+			add_to_streak("Q",D)
 	D.visible_message("<span class='danger'>[A] [quick?"quick":""] [picked_hit_type] [D]!</span>", \
 					  "<span class='userdanger'>[A] [quick?"quick":""] [picked_hit_type] you!</span>")
 
 	if(picked_hit_type == "kicks" || picked_hit_type == "stomps on")
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
-		playsound(get_turf(D), 'sound/effects/hit_kick.ogg', 50, 1, -1)
+		playsound(get_turf(D), 'sound/effects/hit_kick.ogg', 50, TRUE, -1)
 	else
 		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
-		playsound(get_turf(D), 'sound/effects/hit_punch.ogg', 50, 1, -1)
+		playsound(get_turf(D), 'sound/effects/hit_punch.ogg', 50, TRUE, -1)
 	log_combat(A, D, "attacked ([name])")
 	D.apply_damage(bonus_damage, BRUTE)
 	return TRUE
@@ -775,57 +878,57 @@
 				A.put_in_hands(I)
 		D.visible_message("<span class='danger'>[A] has disarmed [D]!</span>", \
 							"<span class='userdanger'>[A] has disarmed [D]!</span>")
-		playsound(D, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+		playsound(D, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 		D.Paralyze(40)
 	else
 		D.visible_message("<span class='danger'>[A] attempted to disarm [D]!</span>", \
 							"<span class='userdanger'>[A] attempted to disarm [D]!</span>")
-		playsound(D, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+		playsound(D, 'sound/weapons/punchmiss.ogg', 25, TRUE, -1)
 	log_combat(A, D, "disarmed with nanosuit", "[I ? " removing \the [I]" : ""]")
 	return TRUE
 
 /obj/proc/nano_damage() //the damage nanosuits do on punches to this object, is affected by melee armor
 	return 25 //just enough to damage an airlock
 
-/atom/proc/attack_nano(mob/living/carbon/human/user, does_attack_animation = 0)
+/atom/proc/attack_nano(mob/living/carbon/human/user, does_attack_animation = FALSE)
 	SEND_SIGNAL(src, COMSIG_ATOM_HULK_ATTACK, user)
 	if(does_attack_animation)
 		user.changeNext_move(CLICK_CD_MELEE)
 		log_combat(user, src, "punched", "nanosuit strength mode")
 		user.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 
-/mob/living/carbon/monkey/attack_nano(mob/living/carbon/human/user, does_attack_animation = 0)
+/mob/living/carbon/monkey/attack_nano(mob/living/carbon/human/user, does_attack_animation = FALSE)
 	if(user.a_intent == INTENT_HARM)
-		..(user, 1)
+		..(user, TRUE)
 		adjustBruteLoss(15)
 		var/hitverb = "punched"
 		if(mob_size < MOB_SIZE_LARGE)
 			step_away(src,user,15)
 			hitverb = "slammed"
-		playsound(loc, "punch", 25, 1, -1)
+		playsound(loc, "punch", 25, TRUE, -1)
 		visible_message("<span class='danger'>[user] has [hitverb] [src]!</span>", \
 		"<span class='userdanger'>[user] has [hitverb] [src]!</span>", null, COMBAT_MESSAGE_RANGE)
 		return TRUE
 
-/mob/living/simple_animal/attack_nano(mob/living/carbon/human/user, does_attack_animation = 0)
+/mob/living/simple_animal/attack_nano(mob/living/carbon/human/user, does_attack_animation = FALSE)
 	if(user.a_intent == INTENT_HARM)
-		..(user, 1)
+		..(user, TRUE)
 		adjustBruteLoss(15)
 		var/hitverb = "punched"
 		if(mob_size < MOB_SIZE_LARGE)
 			step_away(src,user,15)
 			hitverb = "slammed"
-		playsound(loc, "punch", 25, 1, -1)
+		playsound(loc, "punch", 25, TRUE, -1)
 		visible_message("<span class='danger'>[user] has [hitverb] [src]!</span>", \
 		"<span class='userdanger'>[user] has [hitverb] [src]!</span>", null, COMBAT_MESSAGE_RANGE)
 		return TRUE
 
-/mob/living/carbon/alien/humanoid/attack_nano(mob/living/carbon/human/user, does_attack_animation = 0)
+/mob/living/carbon/alien/humanoid/attack_nano(mob/living/carbon/human/user, does_attack_animation = FALSE)
 	if(user.a_intent == INTENT_HARM)
-		..(user, 1)
+		..(user, TRUE)
 		adjustBruteLoss(15)
 		var/hitverb = "punched"
-		playsound(loc, "punch", 25, 1, -1)
+		playsound(loc, "punch", 25, TRUE, -1)
 		visible_message("<span class='danger'>[user] has [hitverb] [src]!</span>", \
 		"<span class='userdanger'>[user] has [hitverb] [src]!</span>", null, COMBAT_MESSAGE_RANGE)
 		return TRUE
@@ -833,34 +936,34 @@
 /obj/item/attack_nano(mob/living/carbon/human/user)
 	return FALSE
 
-/obj/effect/attack_nano(mob/living/carbon/human/user, does_attack_animation = 0)
+/obj/effect/attack_nano(mob/living/carbon/human/user, does_attack_animation = FALSE)
 	return FALSE
 
-/obj/structure/window/attack_nano(mob/living/carbon/human/user, does_attack_animation = 0)
+/obj/structure/window/attack_nano(mob/living/carbon/human/user, does_attack_animation = FALSE)
 	if(!can_be_reached(user))
 		return TRUE
 	. = ..()
 
-/obj/structure/grille/attack_nano(mob/living/carbon/human/user, does_attack_animation = 0)
+/obj/structure/grille/attack_nano(mob/living/carbon/human/user, does_attack_animation = FALSE)
 	if(user.a_intent == INTENT_HARM)
 		if(!shock(user, 70))
-			..(user, 1)
+			..(user, TRUE)
 		return TRUE
 
-/obj/structure/destructible/clockwork/attack_nano(mob/living/carbon/human/user, does_attack_animation = 0)
+/obj/structure/destructible/clockwork/attack_nano(mob/living/carbon/human/user, does_attack_animation = FALSE)
 	if(is_servant_of_ratvar(user) && immune_to_servant_attacks)
 		return FALSE
 	return ..()
 
-/obj/attack_nano(mob/living/carbon/human/user, does_attack_animation = 0)//attacking objects barehand
+/obj/attack_nano(mob/living/carbon/human/user, does_attack_animation = FALSE)//attacking objects barehand
 	if(user.a_intent == INTENT_HARM)
-		..(user, 1)
+		..(user, TRUE)
 		visible_message("<span class='danger'>[user] smashes [src]!</span>", null, null, COMBAT_MESSAGE_RANGE)
 		if(density)
-			playsound(src, 'sound/effects/bang.ogg', 100, 0.5)//less ear rape
+			playsound(src, 'sound/effects/bang.ogg', 100, TRUE)//less ear rape
 		else
-			playsound(src, 'sound/effects/bang.ogg', 50, 0.5)//less ear rape
-		take_damage(nano_damage(), BRUTE, "melee", 0, get_dir(src, user))
+			playsound(src, 'sound/effects/bang.ogg', 50, TRUE)//less ear rape
+		take_damage(nano_damage(), BRUTE, "melee", FALSE, get_dir(src, user))
 		return TRUE
 	return FALSE
 
@@ -874,11 +977,11 @@
 	if(I.force && I.damtype == BRUTE && istype(user.mind.martial_art, /datum/martial_art/nano))
 		visible_message("<span class='danger'>[user] has hit [src] with a strengthened blow from [I]!</span>", null, null, COMBAT_MESSAGE_RANGE)
 		//only witnesses close by and the victim see a hit message.
-		take_damage(I.force*1.75, I.damtype, "melee", 1)//take 75% more damage with strength on
+		take_damage(I.force*1.75, I.damtype, "melee", TRUE)//take 75% more damage with strength on
 	else
 		return ..()
 
-/obj/item/throw_at(atom/target, range, speed, mob/thrower, spin = 1, diagonals_first = 0, datum/callback/callback)
+/obj/item/throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, diagonals_first = FALSE, datum/callback/callback)
 	if(thrower && ishuman(thrower))
 		var/mob/living/carbon/human/H = thrower
 		if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
@@ -946,7 +1049,7 @@
 	var/turf/dustturf = get_turf(imp_in)
 	var/area/A = get_area(dustturf)
 	message_admins("[name] in [ADMIN_LOOKUPFLW(imp_in)] was activated at [A.name] [ADMIN_JMP(dustturf)], by cause of [cause].")
-	playsound(loc, 'sound/effects/fuse.ogg', 30, 0)
+	playsound(loc, 'sound/effects/fuse.ogg', 30, FALSE)
 	imp_in.dust(TRUE,TRUE)
 	qdel(src)
 
@@ -1007,7 +1110,6 @@
 	to_chat(usr, "<span class='notice'>MMA Master</span>: Harm intents deals more damage, occasionally trigger series of fast hits and you can leg sweep while lying down.")
 	to_chat(usr, "<span class='notice'>Highschool Bully</span>: Grab someone and harm intent them to deliver a deadly knock down punch.")
 	to_chat(usr, "<span class='notice'>Knock out master</span>: Tighten your grip and harm intent to deliver a very deadly knock out punch.")
-
 	to_chat(usr, "<b><i>User warning: The suit is equipped with an implant which vaporizes the suit and user upon request or death.</i></b>")
 
 /obj/item/stock_parts/cell/nano

@@ -95,6 +95,9 @@ The use of the : operator to override type safety checks is not allowed. You mus
 ### Type paths must began with a /
 eg: `/datum/thing` not `datum/thing`
 
+### Type paths must be lowercase
+eg: `/datum/thing/blue`, not `datum/thing/BLUE` or `datum/thing/Blue`
+
 ### Datum type paths must began with "datum"
 In byond this is optional, but omitting it makes finding definitions harder.
 

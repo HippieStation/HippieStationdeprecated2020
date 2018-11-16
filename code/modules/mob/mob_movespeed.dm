@@ -1,23 +1,27 @@
 
 /*Current movespeed modification list format: list(id = list(
 	priority,
+	flags,
 	legacy slowdown/speedup amount,
+	movetype_flags
 	))
 */
 
 //ANY ADD/REMOVE DONE IN UPDATE_MOVESPEED MUST HAVE THE UPDATE ARGUMENT SET AS FALSE!
-/mob/proc/add_movespeed_modifier(id, update = TRUE, priority = 0, flags = NONE, override = FALSE, multiplicative_slowdown = 0)
-	var/list/temp = list(priority, flags, multiplicative_slowdown)			//build the modification list
+/mob/proc/add_movespeed_modifier(id, update = TRUE, priority = 0, flags = NONE, override = FALSE, multiplicative_slowdown = 0, movetypes = ALL, blacklisted_movetypes = NONE)
+	var/list/temp = list(priority, flags, multiplicative_slowdown, movetypes, blacklisted_movetypes) //build the modification list
+	var/resort = TRUE
 	if(LAZYACCESS(movespeed_modification, id))
-		if(movespeed_modifier_identical_check(movespeed_modification[id], temp))
+		var/list/existing_data = movespeed_modification[id]
+		if(movespeed_modifier_identical_check(existing_data, temp))
 			return FALSE
 		if(!override)
 			return FALSE
-		else
-			remove_movespeed_modifier(id, update)
-	LAZYSET(movespeed_modification, id, list(priority, flags, multiplicative_slowdown))
+		if(priority == existing_data[MOVESPEED_DATA_INDEX_PRIORITY])
+			resort = FALSE // We don't need to re-sort if we're replacing something already there and it's the same priority
+	LAZYSET(movespeed_modification, id, temp)
 	if(update)
-		update_movespeed(TRUE)
+		update_movespeed(resort)
 	return TRUE
 
 /mob/proc/remove_movespeed_modifier(id, update = TRUE)
@@ -57,6 +61,10 @@
 	. = 0
 	for(var/id in get_movespeed_modifiers())
 		var/list/data = movespeed_modification[id]
+		if(!(data[MOVESPEED_DATA_INDEX_MOVETYPE] & movement_type)) // We don't affect any of these move types, skip
+			continue
+		if(data[MOVESPEED_DATA_INDEX_BL_MOVETYPE] & movement_type) // There's a movetype here that disables this modifier, skip
+			continue
 		. += data[MOVESPEED_DATA_INDEX_MULTIPLICATIVE_SLOWDOWN]
 	cached_multiplicative_slowdown = .
 
