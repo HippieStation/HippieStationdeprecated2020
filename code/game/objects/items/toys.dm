@@ -36,8 +36,6 @@
  * Balloons
  */
 
- GLOBAL_VAR_INIT(doll_name, "Dummy")
-
 /obj/item/toy/balloon
 	name = "water balloon"
 	desc = "A translucent balloon. There's nothing in it."
@@ -1382,15 +1380,16 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "assistant"
 	item_state = "doll"
+	var/doll_name = "Dummy"
 
 //Add changing looks when i feel suicidal about making 20 inhands for these.
 /obj/item/toy/dummy/attack_self(mob/user)
-	var/new_name = stripped_input(usr,"What would you like to name the dummy?","Input a name",GLOB.doll_name,MAX_NAME_LEN)
+	var/new_name = stripped_input(usr,"What would you like to name the dummy?","Input a name",doll_name,MAX_NAME_LEN)
 	if(!new_name)
 		return
-	GLOB.doll_name = new_name
-	to_chat(user, "You name the dummy as \"[GLOB.doll_name]\"")
-	name = "[initial(name)] - [GLOB.doll_name]"
+	doll_name = new_name
+	to_chat(user, "You name the dummy as \"[doll_name]\"")
+	name = "[initial(name)] - [doll_name]"
 
 /obj/item/toy/dummy/talk_into(atom/movable/A, message, channel, list/spans, datum/language/language)
 	var/mob/M = A
@@ -1401,4 +1400,4 @@
 	return NOPASS
 
 /obj/item/toy/dummy/GetVoice()
-	return GLOB.doll_name
+	return doll_name
