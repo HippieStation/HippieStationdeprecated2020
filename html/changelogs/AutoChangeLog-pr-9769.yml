@@ -1,7 +1,0 @@
-author: "IHadMyUsernameTaken"
-delete-after: True
-changes: 
-  - bugfix: "Fixes the reference encoder and decoder circuits and the passkey shown for the id card reader."
-  - bugfix: "Fixes the displayed data for the dir, color and boolean pins so that they show a value in each case."
-  - bugfix: "Fixes lowercase and uppercase text circuits."
-  - bugfix: "Fixes the relative to absolute coordinates circuits."

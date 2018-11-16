@@ -1,4 +1,0 @@
-author: "HonkBot"
-delete-after: True
-changes: 
-  - bugfix: "The \"floor is lava\" weather will no longer cover everything"

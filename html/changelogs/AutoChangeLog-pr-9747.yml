@@ -1,6 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - bugfix: "Fixed AI/silicon and admin ghost not being able to adjust pool temp and drain."
-  - code_imp: "Cleaned up pool code a bit."
-  - code_imp: "Ported pool drain to SSprocessing"

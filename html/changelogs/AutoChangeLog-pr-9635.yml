@@ -1,5 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - rscadd: "Pool drain and temp can now be adjusted by badmins and silicons without need to be hacked"
-  - admin: "Pool log is now under game instead of say"

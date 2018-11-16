@@ -1,4 +1,0 @@
-author: "steamp0rt"
-delete-after: True
-changes: 
-  - bugfix: "Thrall examining actually actually works again"

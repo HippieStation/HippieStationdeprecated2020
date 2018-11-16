@@ -1,4 +1,0 @@
-author: "karma and AnturK"
-delete-after: True
-changes: 
-  - bugfix: "fixes cult causing secret to fail sometimes"

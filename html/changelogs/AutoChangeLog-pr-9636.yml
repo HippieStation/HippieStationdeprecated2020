@@ -1,4 +1,0 @@
-author: "steamp0rt"
-delete-after: True
-changes: 
-  - rscadd: "Emote sensor nanites. They can detect whenever you do a certain emote, and send a code when you do."
