@@ -2775,6 +2775,7 @@
 #include "hippiestation\code\datums\components\nanites.dm"
 #include "hippiestation\code\datums\components\spell_catalyst.dm"
 #include "hippiestation\code\datums\components\waddling.dm"
+#include "hippiestation\code\datums\components\wet_floor.dm"
 #include "hippiestation\code\datums\components\storage\concrete\butt.dm"
 #include "hippiestation\code\datums\diseases\_MobProcs.dm"
 #include "hippiestation\code\datums\diseases\cluwnification.dm"
