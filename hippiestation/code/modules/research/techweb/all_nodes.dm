@@ -7,6 +7,9 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 10000
 
+/datum/techweb_node/nanite_harmonic
+	design_ids = list("fakedeath_nanites","aggressive_nanites","defib_nanites","regenerative_plus_nanites","brainheal_plus_nanites","purging_plus_nanites")
+
 /datum/techweb_node/adv_datatheory
 	id = "adv_datatheory"
 	display_name = "Advanced Data Theory"

@@ -3,7 +3,7 @@
 	desc = "A highly experimental holographic tool projector."
 	icon = 'hippiestation/icons/obj/holotool.dmi'
 	icon_state = "holotool"
-	slot_flags = SLOT_BELT
+	slot_flags = ITEM_SLOT_BELT
 	usesound = 'sound/items/pshoom.ogg'
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'

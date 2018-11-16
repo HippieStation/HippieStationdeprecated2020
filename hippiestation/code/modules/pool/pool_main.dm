@@ -40,7 +40,7 @@
 	density = 0
 	mouse_opacity = 0
 	layer = ABOVE_MOB_LAYER
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/overlay/water/top
 	icon_state = "top"
@@ -88,7 +88,7 @@
 		if (istype(A, /obj/structure) && istype(A.pulledby, /mob/living/carbon/human))
 			return ..()
 		if(istype(get_turf(A), /turf/open/pool) && !istype(T, /turf/open/pool)) //!(locate(/obj/structure/pool/ladder) in get_turf(A).loc)
-			return 0
+			return FALSE
 	return ..()
 
 /turf/open/pool/ex_act(severity, target)
@@ -100,7 +100,7 @@
 	L.adjust_fire_stacks(-20) //Douse ourselves with water to avoid fire more easily
 	if(iscarbon(L))
 		var/mob/living/carbon/M = L
-		. = 1
+		. = TRUE
 		for(var/obj/item/I in M.held_items)
 			SEND_SIGNAL(I, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
 		if(M.back)
@@ -108,11 +108,11 @@
 				M.update_inv_back(0)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			var/washgloves = 1
-			var/washshoes = 1
-			var/washmask = 1
-			var/washears = 1
-			var/washglasses = 1
+			var/washgloves = TRUE
+			var/washshoes = TRUE
+			var/washmask = TRUE
+			var/washears = TRUE
+			var/washglasses = TRUE
 
 			if(H.wear_suit)
 				washgloves = !(H.wear_suit.flags_inv & HIDEGLOVES)
@@ -175,21 +175,21 @@
 		return
 	if(!iscarbon(user)) // no silicons or drones in mechas.
 		return
-	if(M.swimming == 1) //can't lower yourself again
+	if(M.swimming) //can't lower yourself again
 		return
 	else
 		if(user == M)
 			M.visible_message("<span class='notice'>[user] is descending in the pool", \
 							"<span class='notice'>You start lowering yourself in the pool.</span>")
 			if(do_mob(user, M, 20))
-				M.swimming = 1
+				M.swimming = TRUE
 				M.forceMove(src)
 				to_chat(user, "<span class='notice'>You lower yourself in the pool.</span>")
 		else
 			user.visible_message("<span class='notice'>[M] is being put in the pool by [user].</span>", \
 							"<span class='notice'>You start lowering [M] in the pool.")
 			if(do_mob(user, M, 20))
-				M.swimming = 1
+				M.swimming = TRUE
 				M.forceMove(src)
 				to_chat(user, "<span class='notice'>You lower [M] in the pool.</span>")
 				return
@@ -220,7 +220,7 @@
 											"<span class='userdanger'>You fall in the water!</span>")
 						playsound(src, 'hippiestation/sound/effects/splash.ogg', 60, 1, 1)
 						H.Knockdown(20)
-						H.swimming = 1
+						H.swimming = TRUE
 						return
 					else
 						H.dropItemToGround(H.get_active_held_item())
@@ -230,7 +230,7 @@
 											"<span class='userdanger'>You fall in and swallow some water!</span>")
 						playsound(src, 'hippiestation/sound/effects/splash.ogg', 60, 1, 1)
 						H.Knockdown(60)
-						H.swimming = 1
+						H.swimming = TRUE
 				else if(!istype(H.head, /obj/item/clothing/head/helmet))
 					if(prob(75))
 						H.visible_message("<span class='danger'>[H] falls in the drained pool!</span>",
@@ -328,7 +328,7 @@
 				if(pc.timer > 44) //if it's draining/filling, don't allow.
 					to_chat(user,"<span class='notice'>This is not a good idea.</span>")
 					return
-				if(pc.drained == 1)
+				if(pc.drained)
 					to_chat(user, "<span class='notice'>That would be suicide</span>")
 					return
 			if(Adjacent(jumper))
@@ -435,7 +435,7 @@
 	if(istype(W, /obj/item/mop) && filled)
 		W.reagents.add_reagent("water", 5)
 		to_chat(user, "<span class='notice'>You wet [W] in [src].</span>")
-		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+		playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
 
 /obj/effect/splash
 	name = "splash"

@@ -1,0 +1,4 @@
+author: "karma"
+delete-after: True
+changes: 
+  - balance: "hulk has no antistun anymore"
