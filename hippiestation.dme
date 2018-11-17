@@ -2897,6 +2897,7 @@
 #include "hippiestation\code\game\objects\items\staples.dm"
 #include "hippiestation\code\game\objects\items\stunbaton.dm"
 #include "hippiestation\code\game\objects\items\tools.dm"
+#include "hippiestation\code\game\objects\items\toy.dm"
 #include "hippiestation\code\game\objects\items\twohanded.dm"
 #include "hippiestation\code\game\objects\items\vending_items.dm"
 #include "hippiestation\code\game\objects\items\weaponry.dm"
