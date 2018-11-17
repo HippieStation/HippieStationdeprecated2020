@@ -272,9 +272,12 @@
 		if(25 to 45)
 			to_chat(user, "It's heavily damaged.")
 		else
-			to_chat(user, "It's falling apart.")
+	var/hide_weapon = locate(/obj/item/mecha_parts/concealed_weapon_bay) in contents
+	var/hidden_weapon = hide_weapon ? (locate(/obj/item/mecha_parts/mecha_equipment/weapon) in equipment) : null
+	var/list/visible_equipment = equipment - hidden_weapon
+	if(visible_equipment.len)
 	if(equipment && equipment.len)
-		to_chat(user, "It's equipped with:")
+		for(var/obj/item/mecha_parts/mecha_equipment/ME in visible_equipment)
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
 			to_chat(user, "[icon2html(ME, user)] \A [ME].")
 

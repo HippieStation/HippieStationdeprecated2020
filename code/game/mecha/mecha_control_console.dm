@@ -91,6 +91,12 @@
 /obj/item/mecha_parts/mecha_tracking/proc/shock()
 	var/obj/mecha/M = in_mecha()
 	if(M)
+/obj/item/mecha_parts/mecha_tracking/try_attach_part(mob/user, obj/mecha/M)
+	if(!..())
+		return
+	M.trackers += src
+	M.diag_hud_set_mechtracking()
+
 		M.emp_act(EMP_LIGHT)
 	qdel(src)
 
