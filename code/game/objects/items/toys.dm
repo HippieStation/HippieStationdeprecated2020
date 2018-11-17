@@ -1382,7 +1382,7 @@
 	var/doll_name = "Dummy"
 
 //Add changing looks when i feel suicidal about making 20 inhands for these.
-/obj/item/toy/dummy/attack_self(mob/user)
+/obj/item/toy/dummy/AltClick(mob/user)
 	var/new_name = stripped_input(usr,"What would you like to name the dummy?","Input a name",doll_name,MAX_NAME_LEN)
 	if(!new_name)
 		return
@@ -1397,6 +1397,10 @@
 
 	say(message, language)
 	return NOPASS
-
+/obj/item/toy/dummy/attack_self(mob/user)
+	var/msg = stripped_input("What is [src.doll_name] saying", "Doll ass play")
+	if(user.is_holding_item_of_type(src))
+		src.talk_into(user, msg)
+	else to_chat(user,"You lost your dummy dummy")
 /obj/item/toy/dummy/GetVoice()
 	return doll_name
