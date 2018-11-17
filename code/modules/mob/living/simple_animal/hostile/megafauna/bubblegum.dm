@@ -235,5 +235,4 @@ Difficulty: Hard
 		return 1
 	return 0
 
-
 #undef MEDAL_PREFIX

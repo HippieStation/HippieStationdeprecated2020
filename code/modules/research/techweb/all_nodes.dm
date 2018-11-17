@@ -622,21 +622,21 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
-/datum/techweb_node/tech_shell
-	id = "tech_shell"
-	display_name = "Technological Shells"
-	description = "They're more technological than regular shot."
-	prereq_ids = list("adv_weaponry")
-	design_ids = list("techshotshell")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
-	export_price = 5000
-
 /datum/techweb_node/exotic_ammo
 	id = "exotic_ammo"
 	display_name = "Exotic Ammunition"
 	description = "They won't know what hit em."
-	prereq_ids = list("adv_weaponry", "bluespace_travel")
+	prereq_ids = list("adv_weaponry")
 	design_ids = list("techshotshell", "c38_hotshot", "c38_iceblox")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	export_price = 5000
+
+/datum/techweb_node/gravity_gun
+	id = "gravity_gun"
+	display_name = "One-point Bluespace-gravitational Manipulator"
+	description = "Fancy wording for gravity gun."
+	prereq_ids = list("adv_weaponry", "bluespace_travel")
+	design_ids = list("gravitygun", "mech_gravcatapult")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -879,7 +879,7 @@
 	description = "Nanite programs that require complex biological interaction."
 	prereq_ids = list("nanite_base","biotech")
 	design_ids = list("regenerative_nanites", "bloodheal_nanites", "coagulating_nanites","poison_nanites","flesheating_nanites",\
-					"sensor_crit_nanites","sensor_death_nanites", "sensor_health_nanites", "sensor_damage_nanites", "sensor_emote_nanites") // hippie -- add emote nanites
+					"sensor_crit_nanites","sensor_death_nanites", "sensor_health_nanites", "sensor_damage_nanites", "sensor_emote_nanites") //hippie edit -- add emote nanites
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
