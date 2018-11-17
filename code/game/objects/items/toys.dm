@@ -1375,14 +1375,14 @@
 
 /obj/item/toy/dummy
 	name = "ventriloquist dummy"
-	desc = "It's a dummy, dummy. Altclick to change the dummy's name"  //hippie -- clarifying changing the dummy's name
+	desc = "It's a dummy, dummy."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "assistant"
 	item_state = "doll"
 	var/doll_name = "Dummy"
 
 //Add changing looks when i feel suicidal about making 20 inhands for these.
-/obj/item/toy/dummy/AltClick(mob/user) //hippie -- freeing up attack_self for speaking into the dummy
+/obj/item/toy/dummy/attack_self(mob/user)
 	var/new_name = stripped_input(usr,"What would you like to name the dummy?","Input a name",doll_name,MAX_NAME_LEN)
 	if(!new_name)
 		return
@@ -1397,11 +1397,6 @@
 
 	say(message, language)
 	return NOPASS
-//hippie start -- Allows mobs like the mime (and possibly xenos i guess) to use the dummy despite being muted (inb4 changelings cry)
-/obj/item/toy/dummy/attack_self(mob/user)
-	var/msg = stripped_input("What is [src.doll_name] saying", "Doll ass play")
-	if(user.is_holding_item_of_type(src))
-		src.talk_into(user, msg)
-	else to_chat(user,"You lost your dummy dummy") //hippie end
+
 /obj/item/toy/dummy/GetVoice()
 	return doll_name
