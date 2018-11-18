@@ -268,6 +268,7 @@
 		else
 			C.Stun(20) //Hippie edit - reverts knockdown to stun
 
+
 		if(buckled_obj)
 			buckled_obj.unbuckle_mob(C)
 			lube |= SLIDE_ICE
