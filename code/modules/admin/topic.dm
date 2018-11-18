@@ -1879,14 +1879,14 @@
 	else if(href_list["adminsmite"])
 		if(!check_rights(R_ADMIN|R_FUN))
 			return
-
+		usr.client.admin_headset_message(M, RADIO_CHANNEL_CENTCOM)
 		var/mob/living/carbon/human/H = locate(href_list["adminsmite"]) in GLOB.mob_list
 		if(!H || !istype(H))
 			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
 			return
 
 		usr.client.smite(H)
-
+		usr.client.admin_headset_message(M, RADIO_CHANNEL_SYNDICATE)
 	else if(href_list["CentComReply"])
 		if(!check_rights(R_ADMIN))
 			return

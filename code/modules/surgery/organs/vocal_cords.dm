@@ -3,7 +3,7 @@
 #define COOLDOWN_MEME 10	// hippie -- changed meme cooldown to 1 second, from 30
 #define COOLDOWN_NONE 10	// hippie -- changed cooldown for no command to 1 second, from 10
 
-/obj/item/organ/vocal_cords //organs that are activated through speech with the :x channel
+/obj/item/organ/vocal_cords //organs that are activated through speech with the :x/MODE_KEY_VOCALCORDS channel
 	name = "vocal cords"
 	icon_state = "appendix"
 	zone = BODY_ZONE_PRECISE_MOUTH
