@@ -112,7 +112,6 @@
 	if(iscarbon(L))
 		var/mob/living/carbon/M = L
 		. = TRUE
-		check_heat(M)
 		for(var/obj/item/I in M.held_items)
 			wash_obj(I)
 
