@@ -295,6 +295,6 @@ GLOBAL_LIST_EMPTY(uplinks)
 		return
 	var/turf/T = get_turf(parent)
 	if(!T)
+		return
 	explosion(T,1,2,3)
-	qdel(parent) //Alternatively could brick the uplink.
 	qdel(parent) //Alternatively could brick the uplink.
