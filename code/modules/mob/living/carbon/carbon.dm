@@ -903,12 +903,12 @@
 		var/obj/item/organ/I = X
 		I.Insert(src)
 
-/mob/living/carbon/vv_get_dropdown()
-
 /mob/living/carbon/proc/update_disabled_bodyparts()
 	for(var/B in bodyparts)
 		var/obj/item/bodypart/BP = B
 		BP.update_disabled()
+
+/mob/living/carbon/vv_get_dropdown()
 	. = ..()
 	. += "---"
 	.["Make AI"] = "?_src_=vars;[HrefToken()];makeai=[REF(src)]"

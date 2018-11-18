@@ -49,5 +49,4 @@
 	if(T)
 		newAnomaly = new anomaly_path(T)
 	if (newAnomaly)
-
 		announce_to_ghosts(newAnomaly)
