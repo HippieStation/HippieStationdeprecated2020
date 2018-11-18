@@ -122,6 +122,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/maintenance/department/crew_quarters/dorms
 	name = "Dormitory Maintenance"
 	icon_state = "maint_dorms"
+/area/maintenance/department/medical/central
+	name = "Central Medbay Maintenance"
+	icon_state = "medbay_maint_central"
+
 
 /area/maintenance/department/crew_quarters/locker
 	name = "Locker Room Maintenance"
@@ -130,6 +134,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/maintenance/department/eva
 	name = "EVA Maintenance"
 	icon_state = "maint_eva"
+/area/maintenance/department/science/central
+	name = "Central Science Maintenance"
+	icon_state = "maint_sci_central"
+
 
 /area/maintenance/department/electrical
 	name = "Electrical Maintenance"
@@ -182,10 +190,18 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/maintenance/arrivals/north
 	name = "Arrivals North Maintenance"
 	icon_state = "fpmaint"
+/area/maintenance/starboard/secondary
+	name = "Secondary Starboard Maintenance"
+	icon_state = "smaint_2"
+
 
 /area/maintenance/arrivals/north_2
 	name = "Arrivals North Maintenance"
 	icon_state = "fpmaint"
+/area/maintenance/starboard/aft/secondary
+	name = "Secondary Starboard Quarter Maintenance"
+	icon_state = "asmaint_2"
+
 
 /area/maintenance/aft
 	name = "Aft Maintenance"
