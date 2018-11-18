@@ -93,6 +93,14 @@
 
 /turf/open/pool/ex_act(severity, target)
 	return
+	
+/turf/open/pool/proc/wash_obj(obj/O)
+	. = SEND_SIGNAL(O, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
+	O.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
+	if(isitem(O))
+		var/obj/item/I = O
+		I.acid_level = 0
+		I.extinguish()
 
 /turf/open/pool/proc/wash_mob(mob/living/L)
 	SEND_SIGNAL(L, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
