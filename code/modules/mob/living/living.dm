@@ -939,6 +939,11 @@
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
 
+//Share fire evenly between the two mobs
+//Called in MobBump() and Crossed()
+/mob/living/proc/spreadFire(mob/living/L)
+	if(!istype(L))
+		return
 		
 	if(on_fire)
 		if(L.on_fire) // If they were also on fire
@@ -952,16 +957,12 @@
 				log_game("[key_name(src)] bumped into [key_name(L)] and set them on fire")
 
 	else if(L.on_fire) // If they were on fire and we were not
-		L.fire_stacks += fire_stacks
-		if(L.IgniteMob())
-		IgniteMob() // Ignite us
-
-	if(L_old_on_fire) //Only ignite us and gain their stacks if they were onfire before we bumped them
 		L.fire_stacks /= 2
 		fire_stacks += L.fire_stacks
-		IgniteMob()
+		IgniteMob() // Ignite us
 
 //Mobs on Fire end
+
 
 // used by secbot and monkeys Crossed
 /mob/living/proc/knockOver(var/mob/living/carbon/C)
