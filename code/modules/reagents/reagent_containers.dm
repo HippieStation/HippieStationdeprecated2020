@@ -48,7 +48,6 @@
 /obj/item/reagent_containers/proc/canconsume(mob/eater, mob/user)
 	if(!iscarbon(eater))
 		return 0
-	/* hippie start -- removes boring mouth check
 	var/mob/living/carbon/C = eater
 	var/covered = ""
 	if(C.is_mouth_covered(head_only = 1))
@@ -59,7 +58,6 @@
 		var/who = (isnull(user) || eater == user) ? "your" : "[eater.p_their()]"
 		to_chat(user, "<span class='warning'>You have to remove [who] [covered] first!</span>")
 		return 0
-	hippie end */
 	return 1
 
 /obj/item/reagent_containers/ex_act()
@@ -83,7 +81,6 @@
 		for(var/datum/action/innate/drink_fling/D in thrownby.actions)
 			if(D.active)
 				return TRUE
-
 
 /obj/item/reagent_containers/proc/SplashReagents(atom/target, thrown = FALSE)
 	if(!reagents || !reagents.total_volume || !spillable)
@@ -123,6 +120,6 @@
 /obj/item/reagent_containers/microwave_act(obj/machinery/microwave/M)
 	reagents.expose_temperature(1000)
 	..()
+
 /obj/item/reagent_containers/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	reagents.expose_temperature(exposed_temperature)
 	reagents.expose_temperature(exposed_temperature)

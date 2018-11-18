@@ -368,5 +368,4 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 	..()
 
 /obj/machinery/bot_core/honkbot
-
 	req_one_access = list(ACCESS_THEATRE, ACCESS_ROBOTICS)
