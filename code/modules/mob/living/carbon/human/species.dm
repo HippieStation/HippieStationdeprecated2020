@@ -1546,50 +1546,45 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				H.apply_damage(COLD_DAMAGE_LEVEL_2*coldmod*H.physiology.cold_mod, BURN)
 			else
 				H.throw_alert("temp", /obj/screen/alert/cold, 3)
+		var/list/obscured = H.check_obscured_slots()
 				H.apply_damage(COLD_DAMAGE_LEVEL_3*coldmod*H.physiology.cold_mod, BURN)
 
-	else
-		H.clear_alert("temp")
-		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "cold")
-		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "hot")
-
-	var/pressure = environment.return_pressure()
-	var/adjusted_pressure = H.calculate_affecting_pressure(pressure) //Returns how much pressure actually affects the mob.
-	switch(adjusted_pressure)
-		if(HAZARD_HIGH_PRESSURE to INFINITY)
-			if(!H.has_trait(TRAIT_RESISTHIGHPRESSURE))
-				H.adjustBruteLoss(min(((adjusted_pressure / HAZARD_HIGH_PRESSURE) -1 ) * PRESSURE_DAMAGE_COEFFICIENT, MAX_HIGH_PRESSURE_DAMAGE) * H.physiology.pressure_mod)
+		if(H.glasses && !(SLOT_GLASSES in obscured))
+			burning_items += H.glasses
+		if(H.wear_mask && !(SLOT_WEAR_MASK in obscured))
+			burning_items += H.wear_mask
+		if(H.wear_neck && !(SLOT_NECK in obscured))
+			burning_items += H.wear_neck
+		if(H.ears && !(SLOT_EARS in obscured))
 				H.throw_alert("pressure", /obj/screen/alert/highpressure, 2)
+		if(H.head)
+			burning_items += H.head
 			else
 				H.clear_alert("pressure")
-		if(WARNING_HIGH_PRESSURE to HAZARD_HIGH_PRESSURE)
-			H.throw_alert("pressure", /obj/screen/alert/highpressure, 1)
-		if(WARNING_LOW_PRESSURE to WARNING_HIGH_PRESSURE)
+		if(H.w_uniform && !(SLOT_W_UNIFORM in obscured))
+			burning_items += H.w_uniform
 			H.clear_alert("pressure")
-		if(HAZARD_LOW_PRESSURE to WARNING_LOW_PRESSURE)
-			H.throw_alert("pressure", /obj/screen/alert/lowpressure, 1)
-		else
-			if(H.has_trait(TRAIT_RESISTLOWPRESSURE))
+			burning_items += H.wear_suit
 				H.clear_alert("pressure")
 			else
 				H.adjustBruteLoss(LOW_PRESSURE_DAMAGE * H.physiology.pressure_mod)
-				H.throw_alert("pressure", /obj/screen/alert/lowpressure, 2)
+		if(H.gloves && !(SLOT_GLOVES in obscured))
 
-//////////
-// FIRE //
-//////////
+		else if(H.wear_suit && ((H.wear_suit.body_parts_covered & HANDS) || (H.wear_suit.body_parts_covered & ARMS)))
 
+		else if(H.w_uniform && ((H.w_uniform.body_parts_covered & HANDS) || (H.w_uniform.body_parts_covered & ARMS)))
+			arm_clothes = H.w_uniform
 /datum/species/proc/handle_fire(mob/living/carbon/human/H, no_protection = FALSE)
 	if(!CanIgniteMob(H))
 		return TRUE
 	if(H.on_fire)
 		//the fire tries to damage the exposed clothes and items
-		var/list/burning_items = list()
+		if(H.shoes && !(SLOT_SHOES in obscured))
 		//HEAD//
-		var/obj/item/clothing/head_clothes = null
-		if(H.glasses)
-			head_clothes = H.glasses
+		else if(H.wear_suit && ((H.wear_suit.body_parts_covered & FEET) || (H.wear_suit.body_parts_covered & LEGS)))
 		if(H.wear_mask)
+		else if(H.w_uniform && ((H.w_uniform.body_parts_covered & FEET) || (H.w_uniform.body_parts_covered & LEGS)))
+			leg_clothes = H.w_uniform
 			head_clothes = H.wear_mask
 		if(H.wear_neck)
 			head_clothes = H.wear_neck
