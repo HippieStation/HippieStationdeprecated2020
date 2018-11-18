@@ -486,7 +486,7 @@
 					Paralyze(200)
 				if(2)
 					L.receive_damage(0,5)
-					Paralyze(100)
+/mob/living/carbon/human/acid_act(acidpwr, acid_volume, bodyzone_hit) //todo: update this to utilize check_obscured_slots()
 
 /mob/living/carbon/human/acid_act(acidpwr, acid_volume, bodyzone_hit)
 	var/list/damaged = list()
