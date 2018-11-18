@@ -704,6 +704,11 @@
 				var/list/L = where
 				if(what == who.get_item_for_held_index(L[2]))
 					if(who.dropItemToGround(what))
+	if(Adjacent(who)) //update inventory window
+		who.show_inv(src)
+	else
+		src << browse(null,"window=mob[REF(who)]")
+
 						log_combat(src, who, "stripped [what] off")
 			if(what == who.get_item_by_slot(where))
 				if(who.dropItemToGround(what))
@@ -735,6 +740,11 @@
 			if(what && Adjacent(who) && what.mob_can_equip(who, src, final_where, TRUE, TRUE))
 				if(temporarilyRemoveItemFromInventory(what))
 					if(where_list)
+		if(Adjacent(who)) //update inventory window
+			who.show_inv(src)
+		else
+			src << browse(null,"window=mob[REF(who)]")
+
 						if(!who.put_in_hand(what, where_list[2]))
 							what.forceMove(get_turf(who))
 					else
