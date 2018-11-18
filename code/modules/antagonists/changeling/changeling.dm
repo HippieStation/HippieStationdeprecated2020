@@ -340,7 +340,7 @@
 		if(B)
 			B.vital = FALSE
 			B.decoy_override = TRUE
-	update_changeling_icons_added()
+	to_chat(owner.current, "<span class='boldannounce'>Use say \"[MODE_TOKEN_CHANGELING] message\" to communicate with your fellow changelings.</span>")
 	return
 
 /datum/antagonist/changeling/remove_innate_effects()
