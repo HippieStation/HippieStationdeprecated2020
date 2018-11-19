@@ -1394,20 +1394,6 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "X-ray Vision Implant"
 	desc = "These cybernetic eyes will give you X-ray vision. Comes with an autosurgeon."
 	item = /obj/item/autosurgeon/xray_eyes
-//Race-specific items
-/datum/uplink_item/race_restricted
-	category = "Species-Restricted"
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
-	surplus = 0
-
-/datum/uplink_item/race_restricted/syndilamp
-	name = "Extra-Bright Lantern"
-	desc = "We heard that moths such as yourself really like lamps, so we decided to grant you early access to a prototype \
-	Syndicate brand \"Extra-Bright Lantern™\". Enjoy."
-	cost = 2
-	item = /obj/item/flashlight/lantern/syndicate
-	restricted_species = list("moth")
-
 	cost = 10
 
 /datum/uplink_item/cyber_implants/antistun
@@ -1428,6 +1414,20 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/cyber_implants
 	cost = 40
 	cant_discount = TRUE
+
+//Race-specific items
+/datum/uplink_item/race_restricted
+	category = "Species-Restricted"
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops)
+	surplus = 0
+
+/datum/uplink_item/race_restricted/syndilamp
+	name = "Extra-Bright Lantern"
+	desc = "We heard that moths such as yourself really like lamps, so we decided to grant you early access to a prototype \
+	Syndicate brand \"Extra-Bright Lantern™\". Enjoy."
+	cost = 2
+	item = /obj/item/flashlight/lantern/syndicate
+	restricted_species = list("moth")
 
 // Role-specific items
 /datum/uplink_item/role_restricted
