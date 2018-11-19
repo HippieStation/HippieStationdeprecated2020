@@ -18,7 +18,7 @@
 	if (prob(25) && !target)
 		var/list/targets_to_pick_from = list()
 		for(var/mob/living/carbon/C in view(7, src))
-			if(considered_alive(C))
+			if(considered_alive(C.mind))
 				targets_to_pick_from += C
 		if (!targets_to_pick_from.len)
 			return
