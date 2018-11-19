@@ -169,14 +169,14 @@
 			for(var/mob/living/M in W) //Check for mobs in the linked pool-turfs.
 				switch(temperature) //Apply different effects based on what the temperature is set to.
 					if(SCALDING) //Scalding
-						M.adjust_bodytemperature(M.bodytemperature + 50,0,500)
+						M.adjust_bodytemperature(50,0,500)
 					if(WARM) //Warm
-						M.adjust_bodytemperature(M.bodytemperature + 20,0,360) //Heats up mobs till the termometer shows up
+						M.adjust_bodytemperature(20,0,360) //Heats up mobs till the termometer shows up
 					if(NORMAL) //Normal temp does nothing, because it's just room temperature water.
 					if(COOL)
-						M.adjust_bodytemperature(M.bodytemperature - 20,250) //Cools mobs till the termometer shows up
+						M.adjust_bodytemperature(-20,250) //Cools mobs till the termometer shows up
 					if(FRIGID) //Freezing
-						M.adjust_bodytemperature(M.bodytemperature - 60) //cool mob at -35k per cycle, less would not affect the mob enough.
+						M.adjust_bodytemperature(-60) //cool mob at -35k per cycle, less would not affect the mob enough.
 						if(M.bodytemperature <= 50 && !M.stat)
 							M.apply_status_effect(/datum/status_effect/freon)		
 				var/mob/living/carbon/human/drownee = M
