@@ -1394,6 +1394,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	name = "X-ray Vision Implant"
 	desc = "These cybernetic eyes will give you X-ray vision. Comes with an autosurgeon."
 	item = /obj/item/autosurgeon/xray_eyes
+	cost = 10
+	
 //Race-specific items
 /datum/uplink_item/race_restricted
 	category = "Species-Restricted"
@@ -1408,7 +1410,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/flashlight/lantern/syndicate
 	restricted_species = list("moth")
 
-	cost = 10
+	
 
 /datum/uplink_item/cyber_implants/antistun
 	name = "CNS Rebooter Implant"
