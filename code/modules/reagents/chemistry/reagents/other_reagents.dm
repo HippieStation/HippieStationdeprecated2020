@@ -317,7 +317,7 @@
 /datum/reagent/lube/reaction_turf(turf/open/T, reac_volume)
 	if (!istype(T))
 		return
-	if(reac_volume >= 1)
+	if(reac_volume >= 10) //hippie edit - 1 -> 10
 		T.MakeSlippery(TURF_WET_LUBE, 15 SECONDS, min(reac_volume * 2 SECONDS, 120))
 
 /datum/reagent/spraytan
