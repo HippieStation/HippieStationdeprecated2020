@@ -158,7 +158,7 @@
 	if(reagenttimer > 0)
 		reagenttimer--
 	if(stat & (NOPOWER|BROKEN))
-		return PROCESS_KILL
+		return
 	else if(!reagenttimer && !drained)
 		poolreagent()
 
