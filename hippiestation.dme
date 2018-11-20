@@ -116,6 +116,7 @@
 #include "code\__DEFINES\~hippie_defines\hooks.dm"
 #include "code\__DEFINES\~hippie_defines\integrated_electronics.dm"
 #include "code\__DEFINES\~hippie_defines\is_helpers.dm"
+#include "code\__DEFINES\~hippie_defines\layers.dm"
 #include "code\__DEFINES\~hippie_defines\machines.dm"
 #include "code\__DEFINES\~hippie_defines\material.dm"
 #include "code\__DEFINES\~hippie_defines\mentor.dm"
