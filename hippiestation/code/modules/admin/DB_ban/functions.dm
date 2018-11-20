@@ -5,5 +5,5 @@
                 banned_mob.overlay_fullscreen("ban_message", /obj/screen/fullscreen/ban_message)
             if (BANTYPE_PERMA)
                 banned_mob.overlay_fullscreen("ban_message", /obj/screen/fullscreen/ban_message)
-    sleep(1000)//make sure it gets on the users screen
+    sleep(100)//make sure it gets on the users screen (10s)
     . = ..()
