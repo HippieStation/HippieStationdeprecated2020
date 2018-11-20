@@ -21240,6 +21240,14 @@
 /turf/open/floor/plating,
 /area/vacant_room/commissary)
 "aYj" = (
+/obj/structure/rack,
+/obj/item/wrench,
+/obj/item/screwdriver,
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/machinery/camera{
@@ -35988,7 +35996,7 @@
 	dir = 5
 	},
 /obj/machinery/computer/security/telescreen/toxins{
-	dir = 4;
+	dir = 8;
 	pixel_x = 30
 	},
 /turf/open/floor/plasteel,
@@ -39267,6 +39275,9 @@
 	dir = 4
 	},
 /mob/living/carbon/monkey,
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
+"bPu" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
@@ -55552,10 +55563,6 @@
 /obj/machinery/light_switch{
 	pixel_x = -20
 	},
-"dfx" = (
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating,
-/area/maintenance/port)
 /turf/open/floor/plasteel/white,
 /area/science/lab)
 "dqu" = (
@@ -55663,13 +55670,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/nanite)
-"elq" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port)
 "elq" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -57213,20 +57213,6 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/maintenance/department/medical/morgue)
-"soQ" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/power/apc{
-	areastring = "/area/vacant_room/commissary";
-	dir = 4;
-	name = "Vacant Commissary APC";
-	pixel_x = 27;
-	pixel_y = 2
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plating,
-/area/maintenance/port)
 "soQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/power/apc{
@@ -79912,8 +79898,8 @@ aaf
 aaa
 aaf
 aaa
-elq
-dfx
+aaf
+aaa
 aaa
 aKx
 aLN
@@ -80169,7 +80155,7 @@ ayE
 ayE
 ayE
 ayE
-soQ
+ayE
 ayE
 ayE
 ayE
