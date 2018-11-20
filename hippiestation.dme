@@ -3005,6 +3005,7 @@
 #include "hippiestation\code\modules\antagonists\traitor\equipment\Malf_Modules.dm"
 #include "hippiestation\code\modules\antagonists\wizard\equipment\spellbook.dm"
 #include "hippiestation\code\modules\antagonists\wizard\equipment\spellbook_darkness.dm"
+#include "hippiestation\code\modules\assembly\bomb.dm"
 #include "hippiestation\code\modules\assembly\flash.dm"
 #include "hippiestation\code\modules\atmospherics\gasmixtures\reactions.dm"
 #include "hippiestation\code\modules\atmospherics\unary_devices\vent_pump.dm"
