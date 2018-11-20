@@ -292,7 +292,33 @@
 				to_chat(target, "<span class='userdanger'>You wrest yourself away from [user]'s hands and compose yourself</span>")
 				enthralling = 0
 				return
-
+		if(!in_range(user, target))
+			to_chat(user, "<span class='warning'>You need to be closer to enthrall [target]!</span>")
+			revert_cast()
+			return
+		if(!target.key || !target.mind)
+			to_chat(user, "<span class='warning'>The target has no mind!</span>")
+			revert_cast()
+			return
+		if(target.stat)
+			to_chat(user, "<span class='warning'>The target must be conscious!</span>")
+			revert_cast()
+			return
+		if(is_shadow_or_thrall(target))
+			to_chat(user, "<span class='warning'>You can not enthrall allies!</span>")
+			revert_cast()
+			return
+		if(!ishuman(target))
+			to_chat(user, "<span class='warning'>You can only enthrall humans!</span>")
+			revert_cast()
+			return
+		if(enthralling)
+			to_chat(user, "<span class='warning'>You are already enthralling!</span>")
+			revert_cast()
+			return
+		if(!target.client)
+			to_chat(user, "<span class='warning'>[target]'s mind is vacant of activity.</span>")
+			return
 		enthralling = 0
 		to_chat(user, "<span class='shadowling'>You have enthralled <b>[target.real_name]</b>!</span>")
 		target.visible_message("<span class='big'>[target] looks to have experienced a revelation!</span>", \
