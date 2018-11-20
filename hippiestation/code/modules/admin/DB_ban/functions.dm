@@ -2,8 +2,8 @@
     if(ismob(banned_mob)
         switch(bantype)
             if(BANTYPE_TEMP)
-                overlay_fullscreen("ban_message", /obj/screen/fullscreen/ban_message)
+                banned_mob.overlay_fullscreen("ban_message", /obj/screen/fullscreen/ban_message)
             if (BANTYPE_PERMA)
-                overlay_fullscreen("ban_message", /obj/screen/fullscreen/ban_message)
+                banned_mob.overlay_fullscreen("ban_message", /obj/screen/fullscreen/ban_message)
     sleep(1000)//make sure it gets on the users screen
     . = ..()
