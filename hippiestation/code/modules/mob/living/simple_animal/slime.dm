@@ -1,1 +1,1 @@
-/mob/living/simple_animal/slime mutator_used = 0
+/mob/living/simple_animal/slime mutator_amount = 0
