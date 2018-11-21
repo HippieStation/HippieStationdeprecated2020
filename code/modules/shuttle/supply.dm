@@ -25,7 +25,9 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/obj/item/shared_storage,
 		/obj/structure/extraction_point,
 		/obj/machinery/syndicatebomb,
-		/obj/item/hilbertshotel
+		/obj/item/hilbertshotel,
+		/obj/machinery/telepad, //Hippie - Shouldn't be exportable, could be used to retrieve someone from the station if it was on the Centcom Z-level.
+        /obj/machinery/computer/telescience //Hippie - Used to control the telepad.
 	)))
 
 /obj/docking_port/mobile/supply
