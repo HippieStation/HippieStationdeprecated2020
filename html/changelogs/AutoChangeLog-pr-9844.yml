@@ -1,0 +1,4 @@
+author: "karma"
+delete-after: True
+changes: 
+  - rscadd: "Adds ban message so users know they got banned more clearly"
