@@ -823,7 +823,7 @@
 	hippie end */ 	
 	
 	//hippie start
-	if(M.mutator_used >= 3)
+	if(M.mutator_amount >= 3)
 		to_chat(user, "<span class='warning'>This slime has already consumed 3 mutators, any more would be far too unstable!</span>")
 		return
 	//hippie end
@@ -839,7 +839,7 @@
 	M.mutator_used = TRUE
 	hippie end */
 	
-	M.mutator_used += 1		// hippie -- adds to the mutator count
+	M.mutator_amount += 1		// hippie -- adds to the mutator count
 	qdel(src)
 
 /obj/item/slimepotion/speed
