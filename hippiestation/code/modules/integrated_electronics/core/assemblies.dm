@@ -349,7 +349,6 @@
 			first_removable_pos++
 			var/obj/item/integrated_circuit/temp_component = i
 			if(temp_component.removable)
-				to_chat(world,"[temp_component.name] removability: [temp_component.removable]")
 				break
 
 		if(href_list["remove"])
