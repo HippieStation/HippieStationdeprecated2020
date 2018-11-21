@@ -59,10 +59,7 @@
 	var/list/speech_buffer = list() // Last phrase said near it and person who said it
 
 	var/mood = "" // To show its face
-	/* hippie start
-	var/mutator_used = FALSE //So you can't shove a dozen mutators into a single slime
-	hippie end */
-	var/mutator_used = 0 //So you can't shove a dozen mutators into a single slime //hippie -- but now you can shove in up to 3
+	var/mutator_used = FALSE //So you can't shove a dozen mutators into a single slime //Unused on Hippie, see xenobiology.dm
 	var/force_stasis = FALSE
 	
 	do_footstep = TRUE
