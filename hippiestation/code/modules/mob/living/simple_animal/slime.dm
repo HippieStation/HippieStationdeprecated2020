@@ -1,2 +1,2 @@
-obj/mob/living/simple_animal/slime
+mob/living/simple_animal/slime
 	var/mutator_amount = 0
