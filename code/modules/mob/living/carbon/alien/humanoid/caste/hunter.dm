@@ -47,7 +47,9 @@
 		leaping = 1
 		weather_immunities += "lava"
 		update_icons()
+		add_trait(TRAIT_STUNIMMUNE, "hippie-alium") // hippie -- make it so you can't stun aliums midair
 		throw_at(A, MAX_ALIEN_LEAP_DIST, 1, src, FALSE, TRUE, callback = CALLBACK(src, .proc/leap_end))
+		remove_trait(TRAIT_STUNIMMUNE, "hippie-alium") // hippie -- make it so you can't stun aliums midair
 
 /mob/living/carbon/alien/humanoid/hunter/proc/leap_end()
 	leaping = 0
