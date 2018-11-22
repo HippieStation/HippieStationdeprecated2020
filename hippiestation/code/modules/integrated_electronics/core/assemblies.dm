@@ -632,7 +632,7 @@
 			var/i = 0
 			//Check if there is another component with the same name and append a number for identification
 			for(var/s in input_selection)
-				var/obj/item/integrated_circuit/s_circuit = s
+				var/obj/item/integrated_circuit/s_circuit = input_selection[s] //The for-loop iterates the keys of an associative list.
 				if(s_circuit.name == input.name && s_circuit.displayed_name == input.displayed_name && s_circuit != input)
 					i++
 			var/disp_name= "[input.displayed_name] \[[input]\]"
