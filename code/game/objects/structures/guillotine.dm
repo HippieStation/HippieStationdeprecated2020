@@ -117,6 +117,12 @@
 
 		playsound(src, 'sound/weapons/bladeslice.ogg', 100, 1)
 		if (blade_sharpness >= GUILLOTINE_DECAP_MIN_SHARP || head.brute_dam >= 100)
+			if(head.brute_dam < 100 && user.has_trait(TRAIT_FAT) && prob(50))
+				user.emote("scream")
+				H.apply_damage(15 * blade_sharpness, BRUTE, head)
+				log_combat(user, H, "dropped the blade on", src, " non-fatally")
+				visible_message("<span class='warning'>[src] fails to chop [user]'s fat neck off!</span>")
+				return
 			head.dismember()
 			log_combat(user, H, "beheaded", src)
 			H.regenerate_icons()
