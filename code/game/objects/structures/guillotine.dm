@@ -122,6 +122,7 @@
 				H.apply_damage(15 * blade_sharpness, BRUTE, head)
 				log_combat(user, H, "dropped the blade on", src, " non-fatally")
 				visible_message("<span class='warning'>[src] fails to chop [H]'s fat neck off!</span>")
+				blade_sharpness--
 				return
 			head.dismember()
 			log_combat(user, H, "beheaded", src)
