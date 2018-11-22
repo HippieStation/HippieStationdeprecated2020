@@ -737,9 +737,9 @@
 
 		visible_message("<span class='notice'>[src] tries to put [what] on [who].</span>")
 		if(do_mob(src, who, what.equip_delay_other))
-			if(what && Adjacent(who) && what.mob_can_equip(who, src, final_where, TRUE, TRUE))
+	if(current_size >= STAGE_SIX) //your puny magboots/wings/whatever will not save you against supermatter singularity
 				if(temporarilyRemoveItemFromInventory(what))
-					if(where_list)
+	else if(!src.mob_negates_gravity())
 						if(!who.put_in_hand(what, where_list[2]))
 							what.forceMove(get_turf(who))
 					else
