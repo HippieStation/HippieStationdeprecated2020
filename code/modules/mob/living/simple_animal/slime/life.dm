@@ -261,7 +261,7 @@
 	
 	//hippie start -- removes waiting period (sorta)
 	if(amount_grown >= SLIME_EVOLUTION_THRESHOLD && !ckey)
-		Feedstop(1,1)
+		Feedstop(TRUE,TRUE)
 		Target = null
 	//hippie end
 		if(is_adult)
