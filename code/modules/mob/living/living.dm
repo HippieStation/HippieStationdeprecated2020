@@ -737,9 +737,9 @@
 
 		visible_message("<span class='notice'>[src] tries to put [what] on [who].</span>")
 		if(do_mob(src, who, what.equip_delay_other))
-	if(current_size >= STAGE_SIX) //your puny magboots/wings/whatever will not save you against supermatter singularity
+			if(what && Adjacent(who) && what.mob_can_equip(who, src, final_where, TRUE, TRUE))
 				if(temporarilyRemoveItemFromInventory(what))
-	else if(!src.mob_negates_gravity())
+					if(where_list)
 						if(!who.put_in_hand(what, where_list[2]))
 							what.forceMove(get_turf(who))
 					else
@@ -752,10 +752,11 @@
 
 /mob/living/singularity_pull(S, current_size)
 	..()
-	if(current_size >= STAGE_SIX)
+	if(current_size >= STAGE_SIX) //your puny magboots/wings/whatever will not save you against supermatter singularity
 		throw_at(S, 14, 3, src, TRUE)
-	else
+	else if(!src.mob_negates_gravity())
 		step_towards(src,S)
+
 
 /mob/living/proc/do_jitter_animation(jitteriness)
 	var/amplitude = min(4, (jitteriness/100) + 1)
