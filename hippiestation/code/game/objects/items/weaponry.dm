@@ -134,7 +134,7 @@
 	item_state = "bonesword"
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
-	slot_flags = null
+//	slot_flags = null commented due to making the swords absolutely useless in practice as you cant even transport them around and for fuckin 16 force its weak af considering it's made from goliath bones
 	force = 16
 	throwforce = 10
 	block_chance = 10
@@ -202,7 +202,10 @@
 				playsound(src, 'hippiestation/sound/effects/ZUBALAWA.ogg', 50, 0)
 				durability -= 1
 
-/obj/item/switchblade/attack_self(mob/user)
+/obj/item/switchblade/civilian
+	desc = "A cheap spring-loaded knife. A small tag on the side of the blade spells out 'Made in Space China'."
+
+/obj/item/switchblade/civilian/attack_self(mob/user)
 	extended = !extended
 	playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)
 	if(extended)
@@ -222,6 +225,6 @@
 		hitsound = 'sound/weapons/genhit.ogg'
 		sharpness = IS_BLUNT
 
-/obj/item/switchblade/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/switchblade/civilian/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	..()
 	user.changeNext_move(CLICK_CD_CLICK_ABILITY)
