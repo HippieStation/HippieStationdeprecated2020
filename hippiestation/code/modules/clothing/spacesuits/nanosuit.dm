@@ -820,7 +820,7 @@
 		bonus_damage += 5
 		picked_hit_type = "stomps on"
 		affecting = D.get_bodypart(ran_zone(A.zone_selected))
-		if(affecting.body_zone == BODY_ZONE_HEAD)
+		if(affecting.body_zone == BODY_ZONE_HEAD && !A.resting || !A.lying)
 			D.add_splatter_floor(D.loc)
 			D.adjustBrainLoss(15)
 			bonus_damage += 5
@@ -901,7 +901,7 @@
 /mob/living/carbon/monkey/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)
 	if(user.a_intent == INTENT_HARM)
 		..(user, TRUE)
-		adjustBruteLoss(15)
+		adjustBruteLoss(20)
 		var/hitverb = "punched"
 		if(mob_size < MOB_SIZE_LARGE)
 			step_away(src,user,15)
@@ -914,7 +914,7 @@
 /mob/living/simple_animal/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)
 	if(user.a_intent == INTENT_HARM)
 		..(user, TRUE)
-		adjustBruteLoss(15)
+		adjustBruteLoss(20)
 		var/hitverb = "punched"
 		if(mob_size < MOB_SIZE_LARGE)
 			step_away(src,user,15)
@@ -927,7 +927,8 @@
 /mob/living/carbon/alien/humanoid/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)
 	if(user.a_intent == INTENT_HARM)
 		..(user, TRUE)
-		adjustBruteLoss(15)
+		adjustBruteLoss(25)
+		adjustStaminaLoss(35)
 		var/hitverb = "punched"
 		playsound(loc, "punch", 25, TRUE, -1)
 		visible_message("<span class='danger'>[user] has [hitverb] [src]!</span>", \
@@ -1129,20 +1130,20 @@ mob/living/carbon/human/key_up(_key, client/user)
 		if("C")
 			if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
 				var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
-				NS.check_menu(TRUE)
+				NS.open_mode_menu(src, TRUE)
 				return
 	..()
 
-/obj/item/clothing/suit/space/hardsuit/nano/proc/check_menu(mob/living/user, forced = FALSE)
+/obj/item/clothing/suit/space/hardsuit/nano/proc/check_menu(mob/living/user, forced)
 	if(!istype(user))
 		return FALSE
 	if(user.incapacitated() || !user.Adjacent(src))
 		return FALSE
-	if(forced)
-		return FALSE
 	return TRUE
 
-/obj/item/clothing/suit/space/hardsuit/nano/proc/open_mode_menu(mob/living/user)
+/obj/item/clothing/suit/space/hardsuit/nano/proc/open_mode_menu(mob/living/user, close = FALSE)
+	if(close)
+		return
 	var/list/choices = list(
 	"armor" = image(icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi', icon_state = "armor_menu"),
 	"speed" = image(icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi', icon_state = "speed_menu"),
