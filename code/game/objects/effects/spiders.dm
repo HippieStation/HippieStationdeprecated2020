@@ -71,8 +71,6 @@
 		var/num = rand(3,12)
 		for(var/i=0, i<num, i++)
 			var/obj/structure/spider/spiderling/S = new /obj/structure/spider/spiderling(src.loc)
-			S.faction = faction.Copy()
-			S.directive = directive
 			if(player_spiders)
 				S.player_spiders = 1
 		qdel(src)
@@ -92,8 +90,6 @@
 	var/directive = "" //Message from the mother
 	var/list/faction = list("spiders")
 
-/obj/structure/spider/spiderling/Destroy()
-	new/obj/item/reagent_containers/food/snacks/spiderling(get_turf(src))
 	. = ..()
 
 /obj/structure/spider/spiderling/Initialize()
@@ -195,8 +191,6 @@
 			S.directive = directive
 			if(player_spiders)
 				S.playable_spider = TRUE
-				notify_ghosts("Spider [S.name] can be controlled", null, enter_link="<a href=?src=[REF(S)];activate=1>(Click to play)</a>", source=S, action=NOTIFY_ATTACK, ignore_key = POLL_IGNORE_SPIDER)
-			qdel(src)
 
 
 
