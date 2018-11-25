@@ -199,3 +199,10 @@
 	multiplier = 2
 	foodtype = "batch of oatmeal"
 	bonus_desc = "Squats and oats. We're all out of oats."
+
+/datum/bounty/item/botany/oatz
+	name = "Oats"
+	wanted_types = list(/obj/item/reagent_containers/food/snacks/grown/tomato/blue/bluespace)
+	multiplier = 2
+	foodtype = "batch of oatmeal"
+	bonus_desc = "Squats and oats. We're all out of oats."

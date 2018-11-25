@@ -210,11 +210,25 @@
 	required_count = 12
 	wanted_types = list(/obj/item/stack/sheet/animalhide/corgi)
 
+/datum/bounty/item/assistant/corgifarming
+	name = "Corgi Hides"
+	description = "Admiral Weinstein's space yacht needs new upholstery. A dozen Corgi furs should do just fine."
+	reward = 30000 //that's a lot of dead dogs
+	required_count = 12
+	wanted_types = list(/obj/item/stack/sheet/animalhide/corgi)
+
 /datum/bounty/item/assistant/action_figures
 	name = "Action Figures"
 	description = "The vice president's son saw an ad for action figures on the telescreen and now he won't shut up about them. Ship some to ease his complaints."
 	reward = 4000
 	required_count = 5
+
+/datum/bounty/item/assistant/dead_mice
+	name = "Dead Mice"
+	description = "Station 14 ran out of freeze-dried mice. Ship some fresh ones so their janitor doesn't go on strike."
+	reward = 5000
+	required_count = 5
+	wanted_types = list(/obj/item/reagent_containers/food/snacks/deadmouse)
 	wanted_types = list(/obj/item/toy/figure)
 
 /datum/bounty/item/assistant/tail_whip
