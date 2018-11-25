@@ -6,7 +6,7 @@
 	var/static/mutable_appearance/permafrost_overlay = mutable_appearance('icons/effects/water.dmi', "ice_floor")
 	var/static/mutable_appearance/ice_overlay = mutable_appearance('icons/turf/overlays.dmi', "snowfloor")
 	var/static/mutable_appearance/water_overlay = mutable_appearance('icons/effects/water.dmi', "wet_floor_static")
-	var/static/mutable_appearance/generic_turf_overlay = mutable_appearance('icons/effects/water.dmi', "wet_static")
+	var/static/mutable_appearance/generic_turf_overlay = mutable_appearance('icons/effects/water.dmi', "wet_static") 
 	var/current_overlay
 	var/permanent = FALSE
 	var/last_process = 0
@@ -54,6 +54,8 @@
 				intended = permafrost_overlay
 			if(TURF_WET_ICE)
 				intended = ice_overlay
+			if(TURF_WET_LUBE) //hippie edit
+				intended = lube_overlay //hippie edit
 			else
 				intended = water_overlay
 	if(current_overlay != intended)
@@ -75,7 +77,7 @@
 			lube_flags = NO_SLIP_WHEN_WALKING
 		if(TURF_WET_LUBE)
 			intensity = 80
-			lube_flags = SLIDE | GALOSHES_DONT_HELP
+			lube_flags = SLIDE | NO_SLIP_WHEN_WALKING //hippie edit - GALOSHES_DONT_HELP -> NO_SLIP_WHEN_WALKING
 		if(TURF_WET_ICE)
 			intensity = 120
 			lube_flags = SLIDE | GALOSHES_DONT_HELP
@@ -86,9 +88,7 @@
 			qdel(parent.GetComponent(/datum/component/slippery))
 			return
 
-	var/datum/component/slippery/S = parent.LoadComponent(/datum/component/slippery, NONE, CALLBACK(src, .proc/AfterSlip))
-	S.intensity = intensity
-	S.lube_flags = lube_flags
+	parent.LoadComponent(/datum/component/slippery, intensity, lube_flags, CALLBACK(src, .proc/AfterSlip))
 
 /datum/component/wet_floor/proc/dry(datum/source, strength = TURF_WET_WATER, immediate = FALSE, duration_decrease = INFINITY)
 	for(var/i in time_left_list)

@@ -2,7 +2,7 @@
 	var/obj/item/ai_hijack_device/hijacking
 	var/mutable_appearance/hijack_overlay
 	var/hijack_start = 0
-
+	deathsound = 'hippiestation/sound/voice/ai_death_hippie.ogg'
 
 /mob/living/silicon/ai/attack_hand(mob/user)
 	if(hijacking)

@@ -21,7 +21,8 @@
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	changeling.chosen_sting = src
 
-	user.hud_used.lingstingdisplay.icon_state = sting_icon
+	user.hud_used.lingstingdisplay.icon = sting_icon_hippie ? 'hippiestation/icons/mob/screen_gen.dmi' : 'icons/mob/screen_gen.dmi' // hippie -- allow use of our icons
+	user.hud_used.lingstingdisplay.icon_state = sting_icon_hippie ? sting_icon_hippie : sting_icon // hippie -- allow use of our icons
 	user.hud_used.lingstingdisplay.invisibility = 0
 
 /obj/effect/proc_holder/changeling/sting/proc/unset_sting(mob/user)
@@ -48,7 +49,7 @@
 		return
 	if(!isturf(user.loc))
 		return
-	if(!AStar(user, target.loc, /turf/proc/Distance, changeling.sting_range, simulated_only = 0))
+	if(!AStar(user, target.loc, /turf/proc/Distance, changeling.sting_range, simulated_only = FALSE))
 		return
 	return 1
 

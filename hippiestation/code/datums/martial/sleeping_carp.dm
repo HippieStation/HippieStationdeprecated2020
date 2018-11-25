@@ -17,31 +17,31 @@
 		streak = ""
 		A.hud_used.combo_object.update_icon(streak)
 		wristWrench(A,D)
-		return 1
+		return TRUE
 	if(findtext(streak,BACK_KICK_COMBO))
 		streak = ""
 		A.hud_used.combo_object.update_icon(streak)
 		backKick(A,D)
-		return 1
+		return TRUE
 	if(findtext(streak,STOMACH_KNEE_COMBO))
 		streak = ""
 		A.hud_used.combo_object.update_icon(streak)
 		kneeStomach(A,D)
-		return 1
+		return TRUE
 	if(findtext(streak,HEAD_KICK_COMBO))
 		streak = ""
 		A.hud_used.combo_object.update_icon(streak)
 		headKick(A,D)
-		return 1
+		return TRUE
 	if(findtext(streak,ELBOW_DROP_COMBO))
 		streak = ""
 		A.hud_used.combo_object.update_icon(streak)
 		elbowDrop(A,D)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /datum/martial_art/the_sleeping_carp/proc/wristWrench(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!D.stat && !D.IsStun() && D.IsKnockdown())
+	if(!D.stat && !D.IsStun() && D.IsParalyzed())
 		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 		D.visible_message("<span class='warning'>[A] grabs [D]'s wrist and wrenches it sideways!</span>", \
 						  "<span class='userdanger'>[A] grabs your wrist and violently wrenches it to the side!</span>")
@@ -50,24 +50,24 @@
 		D.dropItemToGround(D.get_active_held_item())
 		D.apply_damage(5, BRUTE, pick("l_arm", "r_arm"))
 		D.Stun(60)
-		return 1
+		return TRUE
 	log_combat(A, D, "wrist wrenched (Sleeping Carp)")
 	return basic_hit(A,D)
 
 /datum/martial_art/the_sleeping_carp/proc/backKick(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(A.dir == D.dir && !D.stat && !D.IsKnockdown())
+	if(A.dir == D.dir && !D.stat && !D.IsParalyzed())
 		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 		D.visible_message("<span class='warning'>[A] kicks [D] in the back!</span>", \
 						  "<span class='userdanger'>[A] kicks you in the back, making you stumble and fall!</span>")
 		step_to(D,get_step(D,D.dir),1)
-		D.Knockdown(80)
+		D.Paralyze(80)
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
-		return 1
+		return TRUE
 	log_combat(A, D, "back-kicked (Sleeping Carp)")
 	return basic_hit(A,D)
 
 /datum/martial_art/the_sleeping_carp/proc/kneeStomach(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!D.stat && !D.IsKnockdown())
+	if(!D.stat && !D.IsParalyzed())
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
 		D.visible_message("<span class='warning'>[A] knees [D] in the stomach!</span>", \
 						  "<span class='userdanger'>[A] winds you with a knee in the stomach!</span>")
@@ -75,12 +75,12 @@
 		D.losebreath += 3
 		D.Stun(40)
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
-		return 1
+		return TRUE
 	log_combat(A, D, "stomach kneed (Sleeping Carp)")
 	return basic_hit(A,D)
 
 /datum/martial_art/the_sleeping_carp/proc/headKick(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!D.stat && !D.IsKnockdown())
+	if(!D.stat && !D.IsParalyzed())
 		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
 		D.visible_message("<span class='warning'>[A] kicks [D] in the head!</span>", \
 						  "<span class='userdanger'>[A] kicks you in the jaw!</span>")
@@ -88,12 +88,12 @@
 		D.dropItemToGround(D.get_active_held_item())
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
 		D.Stun(80)
-		return 1
+		return TRUE
 	log_combat(A, D, "head kicked (Sleeping Carp)")
 	return basic_hit(A,D)
 
 /datum/martial_art/the_sleeping_carp/proc/elbowDrop(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(D.IsKnockdown() || D.resting || D.stat)
+	if(D.IsParalyzed() || D.resting || D.stat)
 		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 		D.visible_message("<span class='warning'>[A] elbow drops [D]!</span>", \
 						  "<span class='userdanger'>[A] piledrives you with their elbow!</span>")
@@ -101,14 +101,14 @@
 			D.death() //FINISH HIM!
 		D.apply_damage(50, BRUTE, "chest")
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 75, 1, -1)
-		return 1
+		return TRUE
 	log_combat(A, D, "elbow dropped (Sleeping Carp)")
 	return basic_hit(A,D)
 
 /datum/martial_art/the_sleeping_carp/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("G",D)
 	if(check_streak(A,D))
-		return 1
+		return TRUE
 	if(A.grab_state >= GRAB_AGGRESSIVE)
 		D.grabbedby(A, 1)
 	else
@@ -122,12 +122,12 @@
 			else
 				log_combat(A, D, "grabbed", addition="passively")
 				A.grab_state = GRAB_PASSIVE
-	return 1
+	return TRUE
 
 /datum/martial_art/the_sleeping_carp/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("H",D)
 	if(check_streak(A,D))
-		return 1
+		return TRUE
 	A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
 	var/atk_verb = pick("punches", "kicks", "chops", "hits", "slams")
 	D.visible_message("<span class='danger'>[A] [atk_verb] [D]!</span>", \
@@ -136,15 +136,15 @@
 	playsound(get_turf(D), 'sound/weapons/punch1.ogg', 25, 1, -1)
 	if(prob(D.getBruteLoss()) && !D.lying)
 		D.visible_message("<span class='warning'>[D] stumbles and falls!</span>", "<span class='userdanger'>The blow sends you to the ground!</span>")
-		D.Knockdown(80)
+		D.Paralyze(80)
 	log_combat(A, D, "[atk_verb] (Sleeping Carp)")
-	return 1
+	return TRUE
 
 
 /datum/martial_art/the_sleeping_carp/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("D",D)
 	if(check_streak(A,D))
-		return 1
+		return TRUE
 	return ..()
 
 /mob/living/carbon/human/proc/sleeping_carp_help()
@@ -202,7 +202,7 @@
 	add_fingerprint(user)
 	if(user.has_trait(TRAIT_CLUMSY) && prob(50))
 		to_chat(user, "<span class ='warning'>You club yourself over the head with [src].</span>")
-		user.Knockdown(60)
+		user.Paralyze(60)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			H.apply_damage(2*force, BRUTE, "head")
@@ -236,7 +236,7 @@
 		if(prob(10))
 			H.visible_message("<span class='warning'>[H] collapses!</span>", \
 								   "<span class='userdanger'>Your legs give out!</span>")
-			H.Knockdown(80)
+			H.Paralyze(80)
 		if(H.staminaloss && !H.IsUnconscious())
 			var/total_health = (H.health - H.staminaloss)
 			if(total_health <= HEALTH_THRESHOLD_CRIT && !H.stat)
@@ -250,4 +250,4 @@
 /obj/item/twohanded/bostaff/hit_reaction(mob/living/carbon/human/owner, attack_text, final_block_chance)
 	if(wielded)
 		return ..()
-	return 0
+	return FALSE

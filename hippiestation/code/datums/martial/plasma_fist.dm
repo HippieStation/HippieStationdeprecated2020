@@ -14,23 +14,23 @@
 		streak = ""
 		A.hud_used.combo_object.update_icon(streak)
 		Knockout(A,D)
-		return 1
+		return TRUE
 	if(findtext(streak,TORNADO_COMBO))
 		streak = ""
 		A.hud_used.combo_object.update_icon(streak)
 		Tornado(A,D)
-		return 1
+		return TRUE
 	if(findtext(streak,THROWBACK_COMBO))
 		streak = ""
 		A.hud_used.combo_object.update_icon(streak)
 		Throwback(A,D)
-		return 1
+		return TRUE
 	if(findtext(streak,PLASMA_COMBO))
 		streak = ""
 		A.hud_used.combo_object.update_icon(streak)
 		Plasma(A,D)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /datum/martial_art/plasma_fist/proc/TornadoAnimate(mob/living/carbon/human/A)
 	set waitfor = FALSE
@@ -58,7 +58,7 @@
 								"<span class='userdanger'>[A] has knocked down [D] with a kick!</span>")
 	playsound(D.loc, 'sound/weapons/punch1.ogg', 50, 1)
 	D.adjustBruteLoss(6) //Decentish damage. It racks up to 16 if the victim hits a wall.
-	D.Knockdown(40)
+	D.Paralyze(40)
 	var/atom/throw_target = get_edge_target_turf(D, get_dir(D, get_step_away(D, A)))
 	D.throw_at(throw_target, 2, 2)
 	A.say("KNOCKOUT KICK!", forced = "plasma fist")
@@ -88,21 +88,21 @@
 /datum/martial_art/plasma_fist/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("H",D)
 	if(check_streak(A,D))
-		return 1
+		return TRUE
 	basic_hit(A,D)
-	return 1
+	return TRUE
 
 /datum/martial_art/plasma_fist/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("D",D)
 	if(check_streak(A,D))
-		return 1
+		return TRUE
 	basic_hit(A,D)
-	return 1
+	return TRUE
 
 /datum/martial_art/plasma_fist/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("G",D)
 	if(check_streak(A,D))
-		return 1
+		return TRUE
 	basic_hit(A,D)
 	return 1
 

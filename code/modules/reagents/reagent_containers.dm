@@ -48,7 +48,6 @@
 /obj/item/reagent_containers/proc/canconsume(mob/eater, mob/user)
 	if(!iscarbon(eater))
 		return 0
-	/* hippie start -- removes boring mouth check
 	var/mob/living/carbon/C = eater
 	var/covered = ""
 	if(C.is_mouth_covered(head_only = 1))
@@ -59,7 +58,6 @@
 		var/who = (isnull(user) || eater == user) ? "your" : "[eater.p_their()]"
 		to_chat(user, "<span class='warning'>You have to remove [who] [covered] first!</span>")
 		return 0
-	hippie end */
 	return 1
 
 /obj/item/reagent_containers/ex_act()
@@ -73,9 +71,9 @@
 	reagents.expose_temperature(exposed_temperature)
 	..()
 
-/obj/item/reagent_containers/throw_impact(atom/target)
+/obj/item/reagent_containers/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
-	SplashReagents(target, TRUE)
+	SplashReagents(hit_atom, TRUE)
 
 /obj/item/reagent_containers/proc/bartender_check(atom/target)
 	. = FALSE

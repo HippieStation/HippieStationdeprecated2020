@@ -58,7 +58,7 @@
 		to_chat(user, "<span class='warning'>The slime is dead!</span>")
 		return
 	if(!M.is_adult)
-		to_chat(user, "<span class='warning'>The slime must be an adult to cross it's core!</span>")
+		to_chat(user, "<span class='warning'>The slime must be an adult to cross its core!</span>")
 		return
 	if(M.effectmod && M.effectmod != effectmod)
 		to_chat(user, "<span class='warning'>The slime is already being crossed with a different extract!</span>")
@@ -840,7 +840,7 @@
 		return
 	if(isitem(C))
 		var/obj/item/I = C
-		if(I.slowdown <= 0)
+		if(I.slowdown <= 0 || I.obj_flags & IMMUTABLE_SLOW)
 			to_chat(user, "<span class='warning'>The [C] can't be made any faster!</span>")
 			return ..()
 		I.slowdown = 0

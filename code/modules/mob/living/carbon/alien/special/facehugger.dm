@@ -50,7 +50,29 @@
 		Die()
 
 /obj/item/clothing/mask/facehugger/attackby(obj/item/O, mob/user, params)
+	/* hippie start -- moved into type check
 	return O.attack_obj(src, user)
+	hippie end*/
+	// hippie start -- special effects when hit by genderchange potion
+	if(!istype(O, /obj/item/slimepotion/genderchange))
+		return O.attack_obj(src, user)
+
+	if(stat == DEAD)
+		to_chat(user, "<span class='warning'>The potion can only be used if the creature is alive!</span>")
+		return
+
+	if(sterile)
+		visible_message("<span class='danger'>[src] grows a proboscis!</span>")
+		sterile = 0
+	else
+		visible_message("<span class='danger'>[src]'s proboscis shrivels up and drops off!</span>")
+		sterile = 1
+
+	qdel(O)
+	// hippie end
+	
+	return
+
 
 /obj/item/clothing/mask/facehugger/attack_alien(mob/user) //can be picked up by aliens
 	return attack_hand(user)
@@ -112,7 +134,7 @@
 	if(icon_state == "[initial(icon_state)]_thrown")
 		icon_state = "[initial(icon_state)]"
 
-/obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom)
+/obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	..()
 	if(stat == CONSCIOUS)
 		icon_state = "[initial(icon_state)]"
@@ -161,7 +183,10 @@
 			if(H.is_mouth_covered(head_only = 1))
 				H.visible_message("<span class='danger'>[src] smashes against [H]'s [H.head]!</span>", \
 									"<span class='userdanger'>[src] smashes against [H]'s [H.head]!</span>")
+				/* hippie start -- dying on helmet leap makes them impossible to grab
 				Die()
+				hippie end */
+				GoIdle()		//hippie -- Allows helmeted humans to take them back for studying
 				return FALSE
 
 		if(target.wear_mask)

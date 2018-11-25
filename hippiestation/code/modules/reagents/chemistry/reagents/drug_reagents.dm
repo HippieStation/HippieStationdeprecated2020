@@ -118,7 +118,7 @@
 	if(prob(5))
 		to_chat(M, "<span class='notice'>[high_message]</span>")
 	M.AdjustStun(-20, 0)
-	M.AdjustKnockdown(-20, 0)
+	M.AdjustParalyzed(-20, 0)
 	M.AdjustUnconscious(-20, 0)
 	M.adjustToxLoss(2)
 	M.adjustBrainLoss(1*REM)
@@ -132,9 +132,9 @@
 	if(prob(5))
 		to_chat(M, "<span class='notice'>[high_message]</span>")
 	M.reagents.remove_reagent("diphenhydramine",2) //Greatly increases rate of decay
-	if(M.IsStun() || M.IsKnockdown() || M.IsUnconscious())
+	if(M.IsStun() || M.IsParalyzed() || M.IsUnconscious())
 		M.AdjustStun(-40, 0)
-		M.AdjustKnockdown(-40, 0)
+		M.AdjustParalyzed(-40, 0)
 		M.AdjustUnconscious(-40, 0)
 		var/amount2replace = rand(2,6)
 		M.reagents.add_reagent("histamine",amount2replace)
@@ -151,10 +151,10 @@
 	var/high_message = pick("You feel amped up.", "You feel ready.", "You feel like you can push it to the limit.")
 	if(prob(5))
 		to_chat(M, "<span class='notice'>[high_message]</span>")
-	M.add_trait(TRAIT_GOTTAGOREALLYFAST, id)
+	M.add_movespeed_modifier(id, update=TRUE, priority=100, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
 	M.AdjustUnconscious(-100, 0)
 	M.AdjustStun(-100, 0)
-	M.AdjustKnockdown(-100, 0)
+	M.AdjustParalyzed(-100, 0)
 	M.adjustStaminaLoss(-100, 0)
 	M.adjustBrainLoss(5)
 	M.adjustToxLoss(4)
@@ -170,7 +170,7 @@
 
 /datum/reagent/drug/bath_salts/on_mob_delete(mob/living/M)
 	if (istype(M))
-		M.remove_trait(TRAIT_GOTTAGOREALLYFAST)
+		M.remove_movespeed_modifier(id)
 	..()
 
 /datum/reagent/drug/flipout

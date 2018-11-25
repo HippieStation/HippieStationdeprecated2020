@@ -13,6 +13,9 @@
 	bullet_bounce_sound = 'sound/items/welder2.ogg'
 
 	footstep = FOOTSTEP_LAVA
+	barefootstep = FOOTSTEP_LAVA
+	clawfootstep = FOOTSTEP_LAVA
+	heavyfootstep = FOOTSTEP_LAVA
 
 /turf/open/lava/ex_act(severity, target)
 	contents_explosion(severity, target)
@@ -40,7 +43,7 @@
 		if(!islava(newloc) && !L.on_fire)
 			L.update_fire()
 
-/turf/open/lava/hitby(atom/movable/AM)
+/turf/open/lava/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	if(burn_stuff(AM))
 		START_PROCESSING(SSobj, src)
 

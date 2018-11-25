@@ -1,3 +1,8 @@
+#define FRIGID 1
+#define COOL 2
+#define NORMAL 3
+#define WARM 4
+#define SCALDING 5
 
 //Originally stolen from paradise. Credits to tigercat2000.
 //Modified a lot by Kokojo and Tortellini Tony.
@@ -11,7 +16,7 @@
 	use_power = TRUE
 	idle_power_usage = 75
 	var/list/linkedturfs //List contains all of the linked pool turfs to this controller, assignment happens on initialize
-	var/temperature = 3 //1-5 Frigid Cool Normal Warm Scalding
+	var/temperature = NORMAL //1-5 Frigid Cool Normal Warm Scalding
 	var/srange = 6 //The range of the search for pool turfs, change this for bigger or smaller pools.
 	var/linkedmist = list() //Used to keep track of created mist
 	var/misted = FALSE //Used to check for mist.
@@ -19,25 +24,23 @@
 	var/cur_reagent = "water"
 	var/drainable = FALSE
 	var/drained = FALSE
-	var/bloody = 0
+	var/bloody = FALSE
 	var/obj/machinery/drain/linkeddrain = null
 	var/timer = 0 //we need a cooldown on that shit.
 	var/reagenttimer = 0 //We need 2.
 	var/shocked = FALSE//Shocks morons, like an airlock.
 	var/tempunlocked = FALSE
-	var/canplus = TRUE
-	var/canminus = TRUE
 	var/old_rcolor
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
 
 /obj/machinery/poolcontroller/Initialize()
+	. = ..()
 	START_PROCESSING(SSprocessing, src)
 	wires = new /datum/wires/poolcontroller(src)
 	for(var/turf/open/pool/W in range(srange,src)) //Search for /turf/open/beach/water in the range of var/srange
 		LAZYADD(linkedturfs, W)
 	for(var/obj/machinery/drain/pooldrain in range(srange,src))
 		linkeddrain = pooldrain
-	. = ..()
 
 /obj/machinery/poolcontroller/Destroy()
 	if(beaker)
@@ -51,18 +54,19 @@
 	if(!(obj_flags & EMAGGED)) //If it is not already emagged, emag it.
 		to_chat(user, "<span class='warning'>You disable the [src]'s safety features.</span>")
 		do_sparks(5, TRUE, src)
-		set_obj_flags = "EMAGGED"
+		obj_flags |= EMAGGED
 		tempunlocked = TRUE
 		drainable = TRUE
-		do_sparks(1, 1)
 		if(GLOB.adminlog)
-			log_say("[key_name(user)] emagged the poolcontroller")
-			message_admins("[key_name_admin(user)] emagged the poolcontroller")
+			log_game("[key_name(user)] emagged [src]")
+			message_admins("[key_name_admin(user)] emagged [src]")
+	else
+		to_chat(user, "<span class='warning'>The interface on [src] has been damaged.</span>")
+		return
 
 /obj/machinery/poolcontroller/attackby(obj/item/W, mob/user)
 	if(shocked && !(stat & NOPOWER))
 		shock(user,50)
-
 	if(stat & (BROKEN))
 		return
 
@@ -70,15 +74,12 @@
 		if(beaker)
 			to_chat(user, "A beaker is already loaded into the machine.")
 			return
-
-		if(W.reagents.total_volume >= 100 && W.reagents.reagent_list.len == 1) //check if full and allow one reageant only.
-
+		if(W.reagents.total_volume >= 100 && W.reagents.reagent_list.len ==1) //check if full and allow one reageant only.
 			for(var/X in W.reagents.reagent_list)
 				var/datum/reagent/R = X
 				if(R.reagent_state == SOLID)
 					to_chat(user, "The pool cannot accept reagents in solid form!.")
 					return
-
 				else
 					beaker =  W
 					user.dropItemToGround(W)
@@ -86,16 +87,14 @@
 					to_chat(user, "You add the beaker to the machine!")
 					updateUsrDialog()
 					cur_reagent = "[R.name]"
-
 					for(var/I in linkedturfs)
 						var/turf/open/pool/P = I
 						if(P.reagents)
 							P.reagents.clear_reagents()
 							P.reagents.add_reagent(R.id, 100)
-
 					if(GLOB.adminlog)
-						log_say("[key_name(user)] has changed the pool's chems to [R.name]")
-						message_admins("[key_name_admin(user)] has changed the pool's chems to [R.name].")
+						log_game("[key_name(user)] has changed the [src] chems to [R.name]")
+						message_admins("[key_name_admin(user)] has changed the [src] chems to [R.name].")
 					timer = 15
 		else
 			to_chat(user, "<span class='notice'>This machine only accepts full large beakers of one reagent.</span>")
@@ -120,16 +119,16 @@
 //procs
 /obj/machinery/poolcontroller/proc/shock(mob/user, prb)
 	if(stat & (BROKEN|NOPOWER))		// unpowered, no shock
-		return 0
+		return FALSE
 	if(!prob(prb))
-		return 0
+		return FALSE
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(5, 1, src)
 	s.start()
 	if(electrocute_mob(user, get_area(src), src, 0.7))
-		return 1
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 /obj/machinery/poolcontroller/proc/poolreagent()
 	for(var/X in linkedturfs)
@@ -159,8 +158,8 @@
 	if(reagenttimer > 0)
 		reagenttimer--
 	if(stat & (NOPOWER|BROKEN))
-		return PROCESS_KILL
-	else if(reagenttimer == 0 && !drained)
+		return
+	else if(!reagenttimer && !drained)
 		poolreagent()
 
 /obj/machinery/poolcontroller/proc/updatePool()
@@ -169,21 +168,17 @@
 			var/turf/open/pool/W = X
 			for(var/mob/living/M in W) //Check for mobs in the linked pool-turfs.
 				switch(temperature) //Apply different effects based on what the temperature is set to.
-					if(5) //Scalding
-						M.bodytemperature = min(500, M.bodytemperature + 50) //heat mob at 35k(elvin) per cycle
-
-					if(1) //Freezing
-						M.bodytemperature = max(0, M.bodytemperature - 60) //cool mob at -35k per cycle, less would not affect the mob enough.
+					if(SCALDING) //Scalding
+						M.adjust_bodytemperature(50,0,500)
+					if(WARM) //Warm
+						M.adjust_bodytemperature(20,0,360) //Heats up mobs till the termometer shows up
+					if(NORMAL) //Normal temp does nothing, because it's just room temperature water.
+					if(COOL)
+						M.adjust_bodytemperature(-20,250) //Cools mobs till the termometer shows up
+					if(FRIGID) //Freezing
+						M.adjust_bodytemperature(-60) //cool mob at -35k per cycle, less would not affect the mob enough.
 						if(M.bodytemperature <= 50 && !M.stat)
-							M.apply_status_effect(/datum/status_effect/freon)
-
-					if(3) //Normal temp does nothing, because it's just room temperature water.
-
-					if(4) //Warm
-						M.bodytemperature = min(360, M.bodytemperature + 20) //Heats up mobs till the termometer shows up
-
-					else //Cool
-						M.bodytemperature = max(250, M.bodytemperature - 20) //Cools mobs till the termometer shows up
+							M.apply_status_effect(/datum/status_effect/freon)		
 				var/mob/living/carbon/human/drownee = M
 				if(drownee.stat == DEAD)
 					continue
@@ -248,83 +243,66 @@
 /obj/machinery/poolcontroller/proc/handle_temp()
 	timer = 10
 	mistoff()
-	switch(temperature)
-		if(1)
-			canminus = FALSE
-			canplus = TRUE
-		if(2)
-			if(tempunlocked)
-				canminus = TRUE
-				canplus = TRUE
-			else
-				canminus = FALSE
-				canplus = TRUE
-		if(3)
-			canminus = TRUE
-			canplus = TRUE
-		if(4)
-			if(tempunlocked)
-				canminus = TRUE
-				canplus = TRUE
-			else
-				canminus = TRUE
-				canplus = FALSE
-		if(5)
-			miston()
-			canminus = TRUE
-			canplus = FALSE
 	icon_state = "poolc_[temperature]"
+	if(temperature == SCALDING)
+		miston()
 	update_icon()
+
+/obj/machinery/poolcontroller/proc/CanUpTemp(mob/user)
+	if(!timer && ((temperature == WARM && (tempunlocked || issilicon(user) || IsAdminGhost(user)) || temperature < WARM)))
+		return TRUE
+	return FALSE
+
+/obj/machinery/poolcontroller/proc/CanDownTemp(mob/user)
+	if(!timer && ((temperature == COOL && (tempunlocked || issilicon(user) || IsAdminGhost(user)) || temperature > COOL)))
+		return TRUE
+	return FALSE
 
 /obj/machinery/poolcontroller/Topic(href, href_list)
 	if(..())
 		return
-	if(!allowed(usr))
-		to_chat(usr, "<span class='warning'>Access denied.</span>")
-		return
 	if(timer > 0)
 		return
 	if(href_list["IncreaseTemp"])
-		if(canplus)
-			temperature += 1
-			. = TRUE
-		handle_temp()
+		if(CanUpTemp(usr))
+			temperature++
+			handle_temp()
 	if(href_list["DecreaseTemp"])
-		if(canminus)
-			temperature -= 1
-		handle_temp()
+		if(CanDownTemp(usr))
+			temperature--
+			handle_temp()
 	if(href_list["beaker"])
 		var/obj/item/reagent_containers/glass/B = beaker
 		B.forceMove(loc)
 		beaker = null
 		changecolor()
 	if(href_list["Activate Drain"])
-		if(drainable)
+		if((drainable || issilicon(usr) || IsAdminGhost(usr)) && !timer && !linkeddrain.active)
 			mistoff()
 			timer = 60
-			linkeddrain.active = 1
+			linkeddrain.active = TRUE
 			linkeddrain.timer = 15
-			if(linkeddrain.status == 0)
+			if(!linkeddrain.status)
 				new /obj/effect/whirlpool(linkeddrain.loc)
-				temperature = 3
-			if(linkeddrain.status == 1)
+				temperature = NORMAL
+			else
 				new /obj/effect/effect/waterspout(linkeddrain.loc)
-				temperature = 3
+				temperature = NORMAL
 			handle_temp()
 			bloody = FALSE
 	updateUsrDialog()
 
 /obj/machinery/poolcontroller/proc/temp2text()
 	switch(temperature)
-		if(1)
+		if(FRIGID)
 			return "<span class='bad'>Frigid</span>"
-		if(2)
+		if(COOL)
 			return "<span class='good'>Cool</span>"
-		if(3)
+		if(NORMAL)
 			return "<span class='good'>Normal</span>"
-		if(4)
+		if(WARM)
 			return "<span class='good'>Warm</span>"
-		if(5)
+		if(SCALDING)
 			return "<span class='bad'>Scalding</span>"
 		else
 			return "Outside of possible range."
@@ -339,21 +317,20 @@
 		return wires.interact(user)
 	if(stat & (NOPOWER|BROKEN))
 		return
-	user.set_machine(src)
 	var/datum/browser/popup = new(user, "Pool Controller", name, 300, 450)
 	var/dat = ""
 	if(timer)
-		dat += "<span class='notice'>[timer] seconds left until pool can operate again.</span><BR>"
+		dat += "<span class='notice'>[timer] seconds left until [src] can operate again.</span><BR>"
 	dat += text({"
 		<h3>Temperature</h3>
 		<div class='statusDisplay'>
 		<B>Current temperature:</B> [temp2text()]<BR>
-		[(canplus && timer == 0 && !drained) ? "<a href='?src=\ref[src];IncreaseTemp=1'>Increase Temperature</a><br>" : "<span class='linkOff'>Increase Temperature</span><br>"]
-		[(canminus && timer == 0 && !drained) ? "<a href='?src=\ref[src];DecreaseTemp=1'>Decrease Temperature</a><br>" : "<span class='linkOff'>Decrease Temperature</span><br>"]
+		[CanUpTemp(user) ? "<a href='?src=\ref[src];IncreaseTemp=1'>Increase Temperature</a><br>" : "<span class='linkOff'>Increase Temperature</span><br>"]
+		[CanDownTemp(user) ? "<a href='?src=\ref[src];DecreaseTemp=1'>Decrease Temperature</a><br>" : "<span class='linkOff'>Decrease Temperature</span><br>"]
 		</div>
 		<h3>Drain</h3>
 		<div class='statusDisplay'>
-		<B>Drain status:</B> [drainable ? "<span class='bad'>Enabled</span>" : "<span class='good'>Disabled</span>"]
+		<B>Drain status:</B> [(issilicon(user) || IsAdminGhost(user) || drainable) ? "<span class='bad'>Enabled</span>" : "<span class='good'>Disabled</span>"]
 		<br><b>Pool status:</b> "})
 	if(timer < 45)
 		if(!drained)
@@ -362,13 +339,8 @@
 			dat += "<span class='bad'>Drained</span><BR>"
 	else
 		dat += "<span class='bad'>[drained ? "Filling" : "Draining"]<BR></span>"
-	if(drainable && !timer)
-		if(drained)
-			dat += "<a href='?src=\ref[src];Activate Drain=1'>Fill Pool</a><br>"
-		else
-			dat += "<a href='?src=\ref[src];Activate Drain=1'>Drain Pool</a><br>"
-	else
-		dat += text({"<span class='linkOff'>[drained ? "Fill" : "Drain"] Pool</span>"})
+	if((issilicon(user) || IsAdminGhost(user) || drainable) && !timer && !linkeddrain.active)
+		dat += "<a href='?src=\ref[src];Activate Drain=1'>[drained ? "Fill" : "Drain"] Pool</a><br>"
 	dat += text({"</div>
 		<h3>Chemistry</h3>
 		<div class='statusDisplay'>

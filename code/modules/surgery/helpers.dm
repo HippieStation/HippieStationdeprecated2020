@@ -1,5 +1,5 @@
 /proc/attempt_initiate_surgery(obj/item/I, mob/living/M, mob/user)
-	if(!istype(M) && M != user) // hippie -- something related to self surgery
+	if(!istype(M))
 		return
 
 	var/mob/living/carbon/C
@@ -9,9 +9,6 @@
 	if(iscarbon(M))
 		C = M
 		affecting = C.get_bodypart(check_zone(selected_zone))
-
-	if(M != user) // hippie -- something related to self surgery
-		return
 
 	var/datum/surgery/current_surgery
 
@@ -35,7 +32,7 @@
 					continue
 			else if(C && S.requires_bodypart) //mob with no limb in surgery zone when we need a limb
 				continue
-			if(S.lying_required && (M.mobility_flags & MOBILITY_STAND))
+			if(M != user && S.lying_required && (M.mobility_flags & MOBILITY_STAND)) // hippie -- fix self surgery
 				continue
 			if(!S.can_start(user, M))
 				continue
@@ -65,7 +62,7 @@
 					return
 			else if(C && S.requires_bodypart)
 				return
-			if(S.lying_required && (M.mobility_flags & MOBILITY_STAND))
+			if(M != user && S.lying_required && (M.mobility_flags & MOBILITY_STAND)) // hippie -- fix self surgery
 				return
 			if(!S.can_start(user, M))
 				return
@@ -176,4 +173,3 @@
 				return 0
 
 	return 1
-

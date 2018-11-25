@@ -41,3 +41,7 @@
 	item_state = "guardarmor"
 	icon = 'hippiestation/icons/obj/clothing/suits.dmi'
 	alternate_worn_icon = 'hippiestation/icons/mob/suit.dmi'
+/obj/item/clothing/suit/space/hardsuit/syndi
+	armor = list("melee" = 40, "bullet" = 50, "laser" = 30, "energy" = 15, "bomb" = 40, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 90)
+/obj/item/clothing/head/helmet/space/hardsuit/syndi
+	armor = list("melee" = 40, "bullet" = 50, "laser" = 30, "energy" = 15, "bomb" = 40, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 90)

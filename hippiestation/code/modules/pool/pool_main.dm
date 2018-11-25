@@ -40,7 +40,7 @@
 	density = 0
 	mouse_opacity = 0
 	layer = ABOVE_MOB_LAYER
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/overlay/water/top
 	icon_state = "top"
@@ -88,81 +88,78 @@
 		if (istype(A, /obj/structure) && istype(A.pulledby, /mob/living/carbon/human))
 			return ..()
 		if(istype(get_turf(A), /turf/open/pool) && !istype(T, /turf/open/pool)) //!(locate(/obj/structure/pool/ladder) in get_turf(A).loc)
-			return 0
+			return FALSE
 	return ..()
 
 /turf/open/pool/ex_act(severity, target)
 	return
+	
+/turf/open/pool/proc/wash_obj(obj/O)
+	. = SEND_SIGNAL(O, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
+	O.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
+	if(isitem(O))
+		var/obj/item/I = O
+		I.acid_level = 0
+		I.extinguish()
 
 /turf/open/pool/proc/wash_mob(mob/living/L)
+	SEND_SIGNAL(L, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
 	L.wash_cream()
 	L.ExtinguishMob()
 	L.adjust_fire_stacks(-20) //Douse ourselves with water to avoid fire more easily
+	L.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
+	SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "shower", /datum/mood_event/nice_shower)
 	if(iscarbon(L))
 		var/mob/living/carbon/M = L
-		. = 1
+		. = TRUE
 		for(var/obj/item/I in M.held_items)
-			SEND_SIGNAL(I, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
-		if(M.back)
-			if(SEND_SIGNAL(M.back, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD))
-				M.update_inv_back(0)
+			wash_obj(I)
+
+		if(M.back && wash_obj(M.back))
+			M.update_inv_back(0)
+
+		var/list/obscured = M.check_obscured_slots()
+
+		if(M.head && wash_obj(M.head))
+			M.update_inv_head()
+
+		if(M.glasses && !(SLOT_GLASSES in obscured) && wash_obj(M.glasses))
+			M.update_inv_glasses()
+
+		if(M.wear_mask && !(SLOT_WEAR_MASK in obscured) && wash_obj(M.wear_mask))
+			M.update_inv_wear_mask()
+
+		if(M.ears && !(HIDEEARS in obscured) && wash_obj(M.ears))
+			M.update_inv_ears()
+
+		if(M.wear_neck && !(SLOT_NECK in obscured) && wash_obj(M.wear_neck))
+			M.update_inv_neck()
+
+		if(M.shoes && !(HIDESHOES in obscured) && wash_obj(M.shoes))
+			M.update_inv_shoes()
+
+		var/washgloves = FALSE
+		if(M.gloves && !(HIDEGLOVES in obscured))
+			washgloves = TRUE
+
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			var/washgloves = 1
-			var/washshoes = 1
-			var/washmask = 1
-			var/washears = 1
-			var/washglasses = 1
 
-			if(H.wear_suit)
-				washgloves = !(H.wear_suit.flags_inv & HIDEGLOVES)
-				washshoes = !(H.wear_suit.flags_inv & HIDESHOES)
+			if(H.wear_suit && wash_obj(H.wear_suit))
+				H.update_inv_wear_suit()
+			else if(H.w_uniform && wash_obj(H.w_uniform))
+				H.update_inv_w_uniform()
 
-			if(H.head)
-				washmask = !(H.head.flags_inv & HIDEMASK)
-				washglasses = !(H.head.flags_inv & HIDEEYES)
-				washears = !(H.head.flags_inv & HIDEEARS)
-
-			if(H.wear_mask)
-				if (washears)
-					washears = !(H.wear_mask.flags_inv & HIDEEARS)
-				if (washglasses)
-					washglasses = !(H.wear_mask.flags_inv & HIDEEYES)
-
-			if(H.head)
-				if(SEND_SIGNAL(H.head, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD))
-					H.update_inv_head()
-			if(H.wear_suit)
-				if(SEND_SIGNAL(H.wear_suit, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD))
-					H.update_inv_wear_suit()
-			else if(H.w_uniform)
-				if(SEND_SIGNAL(H.w_uniform, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD))
-					H.update_inv_w_uniform()
 			if(washgloves)
 				SEND_SIGNAL(H, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
-			if(H.shoes && washshoes)
-				if(SEND_SIGNAL(H.shoes, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD))
-					H.update_inv_shoes()
-			if(H.wear_mask)
-				if(washmask)
-					if(SEND_SIGNAL(H.wear_mask, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD))
-						H.update_inv_wear_mask()
-			else
+
+			if(!H.is_mouth_covered())
 				H.lip_style = null
 				H.update_body()
-			if(H.glasses && washglasses)
-				if(SEND_SIGNAL(H.glasses, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD))
-					H.update_inv_glasses()
-			if(H.ears && washears)
-				if(SEND_SIGNAL(H.ears, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD))
-					H.update_inv_ears()
-			if(H.belt)
-				if(SEND_SIGNAL(H.belt, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD))
-					H.update_inv_belt()
+
+			if(H.belt && wash_obj(H.belt))
+				H.update_inv_belt()
 		else
-			if(M.wear_mask)						//if the mob is not human, it cleans the mask without asking for bitflags
-				if(SEND_SIGNAL(M.wear_mask, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD))
-					M.update_inv_wear_mask(0)
 			SEND_SIGNAL(M, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
 	else
 		SEND_SIGNAL(L, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_STRENGTH_BLOOD)
@@ -175,21 +172,21 @@
 		return
 	if(!iscarbon(user)) // no silicons or drones in mechas.
 		return
-	if(M.swimming == 1) //can't lower yourself again
+	if(M.swimming) //can't lower yourself again
 		return
 	else
 		if(user == M)
 			M.visible_message("<span class='notice'>[user] is descending in the pool", \
 							"<span class='notice'>You start lowering yourself in the pool.</span>")
 			if(do_mob(user, M, 20))
-				M.swimming = 1
+				M.swimming = TRUE
 				M.forceMove(src)
 				to_chat(user, "<span class='notice'>You lower yourself in the pool.</span>")
 		else
 			user.visible_message("<span class='notice'>[M] is being put in the pool by [user].</span>", \
 							"<span class='notice'>You start lowering [M] in the pool.")
 			if(do_mob(user, M, 20))
-				M.swimming = 1
+				M.swimming = TRUE
 				M.forceMove(src)
 				to_chat(user, "<span class='notice'>You lower [M] in the pool.</span>")
 				return
@@ -220,7 +217,7 @@
 											"<span class='userdanger'>You fall in the water!</span>")
 						playsound(src, 'hippiestation/sound/effects/splash.ogg', 60, 1, 1)
 						H.Knockdown(20)
-						H.swimming = 1
+						H.swimming = TRUE
 						return
 					else
 						H.dropItemToGround(H.get_active_held_item())
@@ -230,7 +227,7 @@
 											"<span class='userdanger'>You fall in and swallow some water!</span>")
 						playsound(src, 'hippiestation/sound/effects/splash.ogg', 60, 1, 1)
 						H.Knockdown(60)
-						H.swimming = 1
+						H.swimming = TRUE
 				else if(!istype(H.head, /obj/item/clothing/head/helmet))
 					if(prob(75))
 						H.visible_message("<span class='danger'>[H] falls in the drained pool!</span>",
@@ -328,7 +325,7 @@
 				if(pc.timer > 44) //if it's draining/filling, don't allow.
 					to_chat(user,"<span class='notice'>This is not a good idea.</span>")
 					return
-				if(pc.drained == 1)
+				if(pc.drained)
 					to_chat(user, "<span class='notice'>That would be suicide</span>")
 					return
 			if(Adjacent(jumper))
@@ -435,7 +432,7 @@
 	if(istype(W, /obj/item/mop) && filled)
 		W.reagents.add_reagent("water", 5)
 		to_chat(user, "<span class='notice'>You wet [W] in [src].</span>")
-		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+		playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
 
 /obj/effect/splash
 	name = "splash"

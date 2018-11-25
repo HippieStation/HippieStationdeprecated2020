@@ -313,6 +313,11 @@
 	if(stat || IsUnconscious() || IsStun() || IsParalyzed() || (check_immobilized && IsImmobilized()) || (!ignore_restraints && restrained(ignore_grab)))
 		return TRUE
 
+/mob/living/canUseStorage()
+	if (get_num_arms() <= 0)
+		return FALSE
+	return TRUE
+
 /mob/living/proc/InCritical()
 	return (health <= crit_threshold && (stat == SOFT_CRIT || stat == UNCONSCIOUS))
 
@@ -407,11 +412,11 @@
 /mob/living/proc/can_inject()
 	return TRUE
 
-/mob/living/is_injectable(allowmobs = TRUE)
-	return (allowmobs && reagents && can_inject())
+/mob/living/is_injectable(mob/user, allowmobs = TRUE)
+	return (allowmobs && reagents && can_inject(user))
 
-/mob/living/is_drawable(allowmobs = TRUE)
-	return (allowmobs && reagents && can_inject())
+/mob/living/is_drawable(mob/user, allowmobs = TRUE)
+	return (allowmobs && reagents && can_inject(user))
 
 /mob/living/proc/get_organ_target()
 	var/mob/shooter = src
@@ -675,14 +680,14 @@
 	var/fixed = 0
 	if(anchored || (buckled && buckled.anchored))
 		fixed = 1
-	if(on && !floating && !fixed)
+	if(on && !(movement_type & FLOATING) && !fixed)
 		animate(src, pixel_y = pixel_y + 2, time = 10, loop = -1)
 		sleep(10)
 		animate(src, pixel_y = pixel_y - 2, time = 10, loop = -1)
-		floating = TRUE
-	else if(((!on || fixed) && floating))
+		setMovetype(movement_type | FLOATING)
+	else if(((!on || fixed) && (movement_type & FLOATING)))
 		animate(src, pixel_y = get_standard_pixel_y_offset(lying), time = 10)
-		floating = FALSE
+		setMovetype(movement_type & ~FLOATING)
 
 // The src mob is trying to strip an item from someone
 // Override if a certain type of mob should be behave differently when stripping items (can't, for example)
@@ -703,6 +708,11 @@
 			if(what == who.get_item_by_slot(where))
 				if(who.dropItemToGround(what))
 					log_combat(src, who, "stripped [what] off")
+
+	if(Adjacent(who)) //update inventory window
+		who.show_inv(src)
+	else
+		src << browse(null,"window=mob[REF(who)]")
 
 // The src mob is trying to place an item on someone
 // Override if a certain mob should be behave differently when placing items (can't, for example)
@@ -735,6 +745,11 @@
 					else
 						who.equip_to_slot(what, where, TRUE)
 
+		if(Adjacent(who)) //update inventory window
+			who.show_inv(src)
+		else
+			src << browse(null,"window=mob[REF(who)]")
+
 /mob/living/singularity_pull(S, current_size)
 	..()
 	if(current_size >= STAGE_SIX)
@@ -750,7 +765,7 @@
 	var/final_pixel_y = get_standard_pixel_y_offset(lying)
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff , time = 2, loop = 6)
 	animate(pixel_x = final_pixel_x , pixel_y = final_pixel_y , time = 2)
-	floating = 0 // If we were without gravity, the bouncing animation got stopped, so we make sure to restart it in next life().
+	setMovetype(movement_type & ~FLOATING) // If we were without gravity, the bouncing animation got stopped, so we make sure to restart it in next life().
 
 /mob/living/proc/get_temperature(datum/gas_mixture/environment)
 	var/loc_temp = environment ? environment.temperature : T0C
@@ -939,20 +954,25 @@
 /mob/living/proc/spreadFire(mob/living/L)
 	if(!istype(L))
 		return
-	var/L_old_on_fire = L.on_fire
+		
+	if(on_fire)
+		if(L.on_fire) // If they were also on fire
+			var/firesplit = (fire_stacks + L.fire_stacks)/2
+			fire_stacks = firesplit
+			L.fire_stacks = firesplit
+		else // If they were not
+			fire_stacks /= 2
+			L.fire_stacks += fire_stacks
+			if(L.IgniteMob()) // Ignite them
+				log_game("[key_name(src)] bumped into [key_name(L)] and set them on fire")
 
-	if(on_fire) //Only spread fire stacks if we're on fire
-		fire_stacks /= 2
-		L.fire_stacks += fire_stacks
-		if(L.IgniteMob())
-			log_game("[key_name(src)] bumped into [key_name(L)] and set them on fire")
-
-	if(L_old_on_fire) //Only ignite us and gain their stacks if they were onfire before we bumped them
+	else if(L.on_fire) // If they were on fire and we were not
 		L.fire_stacks /= 2
 		fire_stacks += L.fire_stacks
-		IgniteMob()
+		IgniteMob() // Ignite us
 
 //Mobs on Fire end
+
 
 // used by secbot and monkeys Crossed
 /mob/living/proc/knockOver(var/mob/living/carbon/C)
@@ -981,6 +1001,7 @@
 	var/stat_conscious = (stat == CONSCIOUS) || stat_softcrit
 	var/conscious = !IsUnconscious() && stat_conscious && !has_trait(TRAIT_DEATHCOMA)
 	var/chokehold = pulledby && pulledby.grab_state >= GRAB_NECK
+	var/restrained = restrained()
 	var/has_legs = get_num_legs()
 	var/has_arms = get_num_arms()
 	var/paralyzed = IsParalyzed()
@@ -992,17 +1013,31 @@
 		mobility_flags |= MOBILITY_MOVE
 	else
 		mobility_flags &= ~MOBILITY_MOVE
-	var/canstand_involuntary = conscious && !stat_softcrit && !knockdown && !chokehold && !paralyzed && has_legs && !(buckled && buckled.buckle_lying)
+	var/canstand_involuntary = conscious && !stat_softcrit && !knockdown && !chokehold && !paralyzed && (ignore_legs || has_legs) && !(buckled && buckled.buckle_lying)
 	var/canstand = canstand_involuntary && !resting
 
 	if(canstand)
-		mobility_flags |= (MOBILITY_STAND | MOBILITY_UI | MOBILITY_PULL)
+		mobility_flags |= MOBILITY_STAND
 		lying = 0
+		if(!restrained)
+			mobility_flags |= (MOBILITY_UI | MOBILITY_PULL)
+		else
+			mobility_flags &= ~(MOBILITY_UI | MOBILITY_PULL)
 	else
-		mobility_flags &= ~(MOBILITY_STAND | MOBILITY_UI | MOBILITY_PULL)
-		if(!lying)
-			lying = pick(90, 270)
-	var/canitem = !paralyzed && !stun && conscious && !chokehold && has_arms
+		mobility_flags &= ~(MOBILITY_UI | MOBILITY_PULL)
+
+		var/should_be_lying = (buckled && (buckled.buckle_lying != -1)) ? buckled.buckle_lying : TRUE //make lying match buckle_lying if it's not -1, else lay down
+
+		if(should_be_lying)
+			mobility_flags &= ~MOBILITY_STAND
+			if(!lying) //force them on the ground
+				lying = pick(90, 270)
+		else
+			mobility_flags |= MOBILITY_STAND //important to add this back, otherwise projectiles will pass through the mob while they're upright.
+			if(lying) //stand them back up
+				lying = 0
+
+	var/canitem = !paralyzed && !stun && conscious && !chokehold && !restrained && has_arms
 	if(canitem)
 		mobility_flags |= (MOBILITY_USE | MOBILITY_PICKUP | MOBILITY_STORAGE)
 	else

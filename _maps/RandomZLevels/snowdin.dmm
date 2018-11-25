@@ -3,10 +3,6 @@
 /obj/effect/baseturf_helper/asteroid/snow,
 /turf/closed/indestructible/rock/snow,
 /area/awaymission/snowdin/cave/mountain)
-"ab" = (
-/obj/effect/mapping_helpers/planet_z,
-/turf/closed/indestructible/rock/snow,
-/area/awaymission/snowdin/cave/mountain)
 "ac" = (
 /turf/closed/indestructible/rock/snow,
 /area/awaymission/snowdin/cave/mountain)
@@ -8173,9 +8169,9 @@
 "rI" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos{
 	dir = 1;
-	id = "syndie_lavaland_inc_in";
 	pixel_x = 5;
-	pixel_y = 5
+	pixel_y = 5;
+	piping_layer = 3
 	},
 /obj/effect/light_emitter{
 	name = "cave light";
@@ -14568,7 +14564,8 @@
 /area/awaymission/snowdin/post/mining_main/mechbay)
 "In" = (
 /obj/mecha/working/ripley/mining{
-	dir = 1
+	dir = 1;
+	ruin_mecha = 1
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/mech_bay_recharge_floor,
@@ -16130,7 +16127,7 @@ ac
 ac
 "}
 (2,1,1) = {"
-ab
+ac
 ac
 ac
 ac

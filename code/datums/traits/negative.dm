@@ -15,6 +15,15 @@
 	else
 		quirk_holder.blood_volume -= 0.275
 
+/datum/quirk/deafness
+	name = "Deaf"
+	desc = "You are incurably deaf."
+	value = -2
+	mob_trait = TRAIT_DEAF
+	gain_text = "<span class='danger'>You can't hear anything.</span>"
+	lose_text = "<span class='notice'>You're able to hear again!</span>"
+	medical_record_text = "Subject's cochlear nerve is incurably damaged."
+
 /datum/quirk/depression
 	name = "Depression"
 	desc = "You sometimes just hate life."
@@ -140,7 +149,7 @@
 
 /datum/quirk/heavy_sleeper
 	name = "Heavy Sleeper"
-	desc = "You sleep like a rock! Whenever you're put to sleep, you sleep for a little bit longer."
+	desc = "You sleep like a rock! Whenever you're put to sleep or knocked unconscious, you take a little bit longer to wake up."
 	value = -1
 	mob_trait = TRAIT_HEAVY_SLEEPER
 	gain_text = "<span class='danger'>You feel sleepy.</span>"
@@ -304,4 +313,22 @@
 		to_chat(H, "<span class='userdanger'>You think of a dumb thing you said a long time ago and scream internally.</span>")
 		dumb_thing = FALSE //only once per life
 		if(prob(1))
-			new/obj/item/reagent_containers/food/snacks/pastatomato(get_turf(H)) //now that's what I call spaghetti code
+			new/obj/item/reagent_containers/food/snacks/spaghetti/pastatomato(get_turf(H)) //now that's what I call spaghetti code
+
+/datum/quirk/blindness
+	name = "Blind"
+	desc = "You are completely blind, nothing can counteract this."
+	value = -4
+	gain_text = "<span class='danger'>You can't see anything.</span>"
+	lose_text = "<span class='notice'>You miraculously gain back your vision.</span>"
+	medical_record_text = "Subject has permanent blindness."
+
+/datum/quirk/blindness/add()
+	quirk_holder.become_blind(ROUNDSTART_TRAIT)
+
+/datum/quirk/blindness/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/obj/item/clothing/glasses/sunglasses/blindfold/white/glasses = new(get_turf(H))
+	if(!H.equip_to_slot_if_possible(glasses, SLOT_GLASSES, bypass_equip_delay_self = TRUE)) //if you can't put it on the user's eyes, put it in their hands, otherwise put it on their eyes
+		H.put_in_hands(glasses)
+	H.regenerate_icons()

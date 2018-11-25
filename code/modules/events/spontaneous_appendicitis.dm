@@ -26,4 +26,5 @@
 
 		var/datum/disease/D = new /datum/disease/appendicitis()
 		H.ForceContractDisease(D, FALSE, TRUE)
+		announce_to_ghosts(H)
 		break

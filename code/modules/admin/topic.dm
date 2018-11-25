@@ -1615,7 +1615,7 @@
 
 		message_admins("<span class='danger'>Admin [key_name_admin(usr)] AIized [key_name_admin(H)]!</span>")
 		log_admin("[key_name(usr)] AIized [key_name(H)].")
-		H.AIize()
+		H.AIize(H.client)
 
 	else if(href_list["makealien"])
 		if(!check_rights(R_SPAWN))
@@ -1892,14 +1892,14 @@
 			return
 
 		var/mob/M = locate(href_list["CentComReply"])
-		usr.client.admin_headset_message(M, "CentCom")
+		usr.client.admin_headset_message(M, RADIO_CHANNEL_CENTCOM)
 
 	else if(href_list["SyndicateReply"])
 		if(!check_rights(R_ADMIN))
 			return
 
 		var/mob/M = locate(href_list["SyndicateReply"])
-		usr.client.admin_headset_message(M, "Syndicate")
+		usr.client.admin_headset_message(M, RADIO_CHANNEL_SYNDICATE)
 
 	else if(href_list["HeadsetMessage"])
 		if(!check_rights(R_ADMIN))
@@ -2535,7 +2535,7 @@
 		if(!check_rights(R_ADMIN))
 			return
 		check_teams()
-	
+
 	else if(href_list["team_command"])
 		if(!check_rights(R_ADMIN))
 			return

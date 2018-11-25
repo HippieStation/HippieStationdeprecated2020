@@ -39,3 +39,7 @@
 
 /obj/item/implant/dusting/on_mob_death(mob/living/L, gibbed)
 	activate("death")
+	
+/obj/item/implant/dusting/emp_act()
+	return
+	

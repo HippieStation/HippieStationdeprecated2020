@@ -90,7 +90,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 		mind = body.mind	//we don't transfer the mind but we keep a reference to it.
 
-		suiciding = body.suiciding // Transfer whether they committed suicide.
+		set_suicide(body.suiciding) // Transfer whether they committed suicide.
 
 		if(ishuman(body))
 			var/mob/living/carbon/human/body_human = body
@@ -734,7 +734,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return IsAdminGhost(usr)
 
 /mob/dead/observer/is_literate()
-	return 1
+	return TRUE
 
 /mob/dead/observer/vv_edit_var(var_name, var_value)
 	. = ..()

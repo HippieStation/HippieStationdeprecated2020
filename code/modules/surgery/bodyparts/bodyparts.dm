@@ -21,7 +21,7 @@
 	var/held_index = 0 //are we a hand? if so, which one!
 	var/is_pseudopart = FALSE //For limbs that don't really exist, eg chainsaws
 
-	var/disabled = FALSE //If TRUE, limb is as good as missing
+	var/disabled = BODYPART_NOT_DISABLED //If disabled, limb is as good as missing
 	var/body_damage_coeff = 1 //Multiplier of the limb's damage that gets applied to the mob
 	var/stam_damage_coeff = 0.5
 	var/brutestate = 0
@@ -106,11 +106,11 @@
 		user.visible_message("<span class='warning'>[user] begins to cut open [src].</span>",\
 			"<span class='notice'>You begin to cut open [src]...</span>")
 		if(do_after(user, 54, target = src))
-			drop_organs(user)
+			drop_organs(user, TRUE)
 	else
 		return ..()
 
-/obj/item/bodypart/throw_impact(atom/hit_atom)
+/obj/item/bodypart/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	..()
 	if(status != BODYPART_ROBOTIC)
 		playsound(get_turf(src), 'sound/misc/splort.ogg', 50, 1, -1)
@@ -118,7 +118,7 @@
 	pixel_y = rand(-3, 3)
 
 //empties the bodypart from its organs and other things inside it
-/obj/item/bodypart/proc/drop_organs(mob/user)
+/obj/item/bodypart/proc/drop_organs(mob/user, violent_removal)
 	var/turf/T = get_turf(src)
 	if(status != BODYPART_ROBOTIC)
 		playsound(T, 'sound/misc/splort.ogg', 50, 1, -1)
@@ -142,9 +142,13 @@
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
 //Cannot apply negative damage
-/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE)
+/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status = null)
 	if(owner && (owner.status_flags & GODMODE))
 		return FALSE	//godmode
+
+	if(required_status && status != required_status)
+		return FALSE
+
 	var/dmg_mlt = CONFIG_GET(number/damage_multiplier)
 	brute = round(max(brute * dmg_mlt, 0),DAMAGE_PRECISION)
 	burn = round(max(burn * dmg_mlt, 0),DAMAGE_PRECISION)
@@ -184,7 +188,7 @@
 		if(stamina > DAMAGE_PRECISION)
 			owner.update_stamina()
 	consider_processing()
-	check_disabled()
+	update_disabled()
 	return update_bodypart_damage_state()
 
 //Heals brute and burn damage for the organ. Returns 1 if the damage-icon states changed at all.
@@ -204,7 +208,7 @@
 	if(owner && updating_health)
 		owner.updatehealth()
 	consider_processing()
-	check_disabled()
+	update_disabled()
 	return update_bodypart_damage_state()
 
 //Returns total damage.
@@ -215,21 +219,29 @@
 	return total
 
 //Checks disabled status thresholds
-/obj/item/bodypart/proc/check_disabled()
-	if(!can_dismember() || owner.has_trait(TRAIT_NODISMEMBER))
-		return
-	if(!disabled && (get_damage(TRUE) >= max_damage))
-		set_disabled(TRUE)
-	else if(disabled && (get_damage(TRUE) <= (max_damage * 0.5)))
-		set_disabled(FALSE)
+/obj/item/bodypart/proc/update_disabled()
+	set_disabled(is_disabled())
+		
+/obj/item/bodypart/proc/is_disabled()
+	if(has_trait(TRAIT_PARALYSIS))
+		return BODYPART_DISABLED_PARALYSIS
+	if(can_dismember() && !owner.has_trait(TRAIT_NODISMEMBER))
+		. = disabled //inertia, to avoid limbs healing 0.1 damage and being re-enabled
+		if((get_damage(TRUE) >= max_damage))
+			return BODYPART_DISABLED_DAMAGE
+		if(disabled && (get_damage(TRUE) <= (max_damage * 0.5)))
+			return BODYPART_NOT_DISABLED
+	else
+		return BODYPART_NOT_DISABLED
 
-/obj/item/bodypart/proc/set_disabled(new_disabled = TRUE)
+/obj/item/bodypart/proc/set_disabled(new_disabled)
 	if(disabled == new_disabled)
 		return
 	disabled = new_disabled
 	owner.update_health_hud() //update the healthdoll
 	owner.update_body()
 	owner.update_mobility()
+	return TRUE //if there was a change.
 
 //Updates an organ's brute/burn states for use by update_damage_overlays()
 //Returns 1 if we need to update overlays. 0 otherwise.
@@ -394,13 +406,13 @@
 				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
 			else
 				limb.icon_state = "[species_id]_[body_zone]"
-		// hippie start -- Hippie races (e.g. Avians)
-		if(should_draw_hippie)
-			limb.icon = 'hippiestation/icons/mob/mutant_bodyparts.dmi'
-			if(should_draw_gender)
-				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
-			else
-				limb.icon_state = "[species_id]_[body_zone]"
+		// hippie start -- Hippie races (e.g. Avians)	
+		if(should_draw_hippie)	
+			limb.icon = 'hippiestation/icons/mob/mutant_bodyparts.dmi'	
+			if(should_draw_gender)	
+				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"	
+			else	
+				limb.icon_state = "[species_id]_[body_zone]"	
 		// hippie end
 		if(aux_zone)
 			aux = image(limb.icon, "[species_id]_[aux_zone]", -aux_layer, image_dir)
@@ -443,13 +455,12 @@
 	var/obj/item/cavity_item
 
 /obj/item/bodypart/chest/Destroy()
-	if(cavity_item)
-		qdel(cavity_item)
+	QDEL_NULL(cavity_item)
 	return ..()
 
-/obj/item/bodypart/chest/drop_organs(mob/user)
+/obj/item/bodypart/chest/drop_organs(mob/user, violent_removal)
 	if(cavity_item)
-		cavity_item.forceMove(user.loc)
+		cavity_item.forceMove(drop_location())
 		cavity_item = null
 	..()
 
@@ -497,13 +508,27 @@
 	px_y = 0
 	stam_heal_tick = 2
 
-/obj/item/bodypart/l_arm/set_disabled(new_disabled = TRUE)
-	..()
-	if(disabled)
-		to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
-		owner.emote("scream")
+/obj/item/bodypart/l_arm/is_disabled()
+	if(owner.has_trait(TRAIT_PARALYSIS_L_ARM))
+		return BODYPART_DISABLED_PARALYSIS
+	return ..()
+	
+/obj/item/bodypart/l_arm/set_disabled(new_disabled)
+	. = ..()
+	if(disabled == new_disabled)
+		return
+	if(disabled == BODYPART_DISABLED_DAMAGE)
+		if(owner.stat > UNCONSCIOUS)
+			owner.emote("scream")
+		if(. && (owner.stat > DEAD))
+			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
 		if(held_index)
 			owner.dropItemToGround(owner.get_item_for_held_index(held_index))
+	else if(disabled == BODYPART_DISABLED_PARALYSIS)
+		if(. && (owner.stat > DEAD))
+			to_chat(owner, "<span class='userdanger'>You can't feel your [name]!</span>")
+			if(held_index)
+				owner.dropItemToGround(owner.get_item_for_held_index(held_index))
 	if(owner.hud_used)
 		var/obj/screen/inventory/hand/L = owner.hud_used.hand_slots["[held_index]"]
 		if(L)
@@ -547,14 +572,28 @@
 	px_y = 0
 	stam_heal_tick = 2
 	max_stamina_damage = 50
+	
+/obj/item/bodypart/r_arm/is_disabled()
+	if(owner.has_trait(TRAIT_PARALYSIS_R_ARM))
+		return BODYPART_DISABLED_PARALYSIS
+	return ..()
 
-/obj/item/bodypart/r_arm/set_disabled(new_disabled = TRUE)
-	..()
-	if(disabled)
-		to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
-		owner.emote("scream")
+/obj/item/bodypart/r_arm/set_disabled(new_disabled)
+	. = ..()
+	if(disabled == new_disabled)
+		return
+	if(disabled == BODYPART_DISABLED_DAMAGE)
+		if(owner.stat > UNCONSCIOUS)
+			owner.emote("scream")
+		if(. && (owner.stat > DEAD))
+			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
 		if(held_index)
 			owner.dropItemToGround(owner.get_item_for_held_index(held_index))
+	else if(disabled == BODYPART_DISABLED_PARALYSIS)
+		if(. && (owner.stat > DEAD))
+			to_chat(owner, "<span class='userdanger'>You can't feel your [name]!</span>")
+			if(held_index)
+				owner.dropItemToGround(owner.get_item_for_held_index(held_index))
 	if(owner.hud_used)
 		var/obj/screen/inventory/hand/R = owner.hud_used.hand_slots["[held_index]"]
 		if(R)
@@ -595,12 +634,24 @@
 	px_y = 12
 	stam_heal_tick = 2
 	max_stamina_damage = 50
+	
+/obj/item/bodypart/l_leg/is_disabled()
+	if(owner.has_trait(TRAIT_PARALYSIS_L_LEG))
+		return BODYPART_DISABLED_PARALYSIS
+	return ..()
 
-/obj/item/bodypart/l_leg/set_disabled(new_disabled = TRUE)
-	..()
-	if(disabled)
-		to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
-		owner.emote("scream")
+/obj/item/bodypart/l_leg/set_disabled(new_disabled)
+	. = ..()
+	if(disabled == new_disabled)
+		return
+	if(disabled == BODYPART_DISABLED_DAMAGE)
+		if(owner.stat > UNCONSCIOUS)
+			owner.emote("scream")
+		if(. && (owner.stat > DEAD))
+			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
+	else if(disabled == BODYPART_DISABLED_PARALYSIS)
+		if(. && (owner.stat > DEAD))
+			to_chat(owner, "<span class='userdanger'>You can't feel your [name]!</span>")
 
 /obj/item/bodypart/l_leg/digitigrade
 	name = "left digitigrade leg"
@@ -642,12 +693,24 @@
 	px_y = 12
 	max_stamina_damage = 50
 	stam_heal_tick = 2
+	
+/obj/item/bodypart/r_leg/is_disabled()
+	if(owner.has_trait(TRAIT_PARALYSIS_R_LEG))
+		return BODYPART_DISABLED_PARALYSIS
+	return ..()
 
-/obj/item/bodypart/r_leg/set_disabled(new_disabled = TRUE)
-	..()
-	if(disabled)
-		to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
-		owner.emote("scream")
+/obj/item/bodypart/r_leg/set_disabled(new_disabled)
+	. = ..()
+	if(disabled == new_disabled)
+		return
+	if(disabled == BODYPART_DISABLED_DAMAGE)
+		if(owner.stat > UNCONSCIOUS)
+			owner.emote("scream")
+		if(. && (owner.stat > DEAD))
+			to_chat(owner, "<span class='userdanger'>Your [name] is too damaged to function!</span>")
+	else if(disabled == BODYPART_DISABLED_PARALYSIS)
+		if(. && (owner.stat > DEAD))
+			to_chat(owner, "<span class='userdanger'>You can't feel your [name]!</span>")
 
 /obj/item/bodypart/r_leg/digitigrade
 	name = "right digitigrade leg"
@@ -664,7 +727,7 @@
 	icon_state = "alien_r_leg"
 	px_x = 0
 	px_y = 0
-	dismemberable = 0
+	dismemberable = 0	
 	max_damage = 100
 	animal_origin = ALIEN_BODYPART
 

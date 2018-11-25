@@ -40,6 +40,8 @@
 					hippie_toggles ^= SOUND_TTS
 				if("hear_footsteps")
 					hippie_toggles ^= SOUND_FOOTSTEPS
+				if("hear_vox")
+					hippie_toggles ^= SOUND_VOX
 				if("gear")
 					if(href_list["clear_loadout"])
 						LAZYCLEARLIST(chosen_gear)
@@ -74,6 +76,7 @@
 
 			. += "<b>Play Text-to-Speech:</b> <a href='?_src_=prefs;preference=hear_tts'>[(hippie_toggles & SOUND_TTS) ? "Enabled":"Disabled"]</a><br>" // let user toggle TTS sounds
 			. += "<b>Play Footsteps:</b> <a href='?_src_=prefs;preference=hear_footsteps'>[(hippie_toggles & SOUND_FOOTSTEPS) ? "Enabled":"Disabled"]</a><br>" // let user toggle footsteps
+			. += "<b>Play AI Vox:</b> <a href='?_src_=prefs;preference=hear_vox'>[(hippie_toggles & SOUND_VOX) ? "Enabled":"Disabled"]</a><br>" // let user toggle AI vox
 
 			. += "</tr></table>"
 		if(3)
