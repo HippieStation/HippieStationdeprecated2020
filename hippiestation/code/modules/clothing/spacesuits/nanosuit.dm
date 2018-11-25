@@ -299,11 +299,11 @@
 	if(current_charges < max_charges)
 		current_charges = min(max_charges, current_charges + 1)
 
-/obj/item/clothing/suit/space/hardsuit/nano/proc/onmove(var/multi)
+/obj/item/clothing/suit/space/hardsuit/nano/proc/onmove()
 	if(mode == NANO_CLOAK)
-		set_nano_energy(CLAMP(cell.charge-(cloak_use_rate*multi),0,cell.charge),15)
+		set_nano_energy(CLAMP(cell.charge-(cloak_use_rate),0,cell.charge),15)
 	else if(mode == NANO_SPEED)
-		set_nano_energy(CLAMP(cell.charge-(speed_use_rate*multi),0,cell.charge),15)
+		set_nano_energy(CLAMP(cell.charge-(speed_use_rate),0,cell.charge),15)
 
 /obj/item/clothing/suit/space/hardsuit/nano/hit_reaction(mob/living/carbon/human/user, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/obj/item/projectile/P = hitby
@@ -388,7 +388,7 @@
 			if(NANO_ARMOR)
 				helmet.display_visor_message("Maximum Armor!")
 				block_chance = 50
-				slowdown = 1.0
+				slowdown = initial(slowdown)
 				armor = armor.setRating(melee = 60, bullet = 60, laser = 60, energy = 65, bomb = 100, rad =100)
 				helmet.armor = helmet.armor.setRating(melee = 60, bullet = 60, laser = 60, energy = 65, bomb = 100, rad =100)
 				U.filters = null
@@ -624,7 +624,7 @@
 		return FALSE
 	else
 		user.client.change_view(zoom_range)
-		to_chat(user, "<span class='boldnotice'>Toggled helmet zoom!</span>")
+		to_chat(user, "<span class='boldnotice'>Enabled helmet zoom!</span>")
 		zoom = TRUE
 		return TRUE
 
@@ -745,7 +745,7 @@
 		if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
 			var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
 			if(mob_has_gravity() && !stat)
-				NS.onmove(1)
+				return NS.onmove()
 
 /datum/martial_art/nanosuit
 	name = "Nanosuit strength mode"
@@ -1002,10 +1002,16 @@
 			return
 	..()
 
+/mob/living/simple_animal/attack_hand(mob/living/carbon/human/M)
+	if(istype(M.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+		var/obj/item/clothing/suit/space/hardsuit/nano/NS = M.wear_suit
+		NS.kill_cloak()
+	..()
+
 /obj/item/clothing/suit/space/hardsuit/nano/proc/kill_cloak()
 	if(mode == NANO_CLOAK)
-		var/obj/item/gun/G = U.get_active_held_item()
-		if(G)
+		var/obj/item/gun/G
+		if(G && G == U.get_active_held_item())
 			if(G.suppressed && G.can_shoot())
 				set_nano_energy(CLAMP(cell.charge-15,0,cell.charge))
 				U.filters = null
@@ -1123,25 +1129,14 @@ mob/living/carbon/human/key_down(_key, client/user)
 				return
 	..()
 
-mob/living/carbon/human/key_up(_key, client/user)
-	switch(_key)
-		if("C")
-			if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
-				var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
-				NS.open_mode_menu(src, TRUE)
-				return
-	..()
-
-/obj/item/clothing/suit/space/hardsuit/nano/proc/check_menu(mob/living/user, forced)
+/obj/item/clothing/suit/space/hardsuit/nano/proc/check_menu(mob/living/user)
 	if(!istype(user))
 		return FALSE
 	if(user.incapacitated() || !user.Adjacent(src))
 		return FALSE
 	return TRUE
 
-/obj/item/clothing/suit/space/hardsuit/nano/proc/open_mode_menu(mob/living/user, close)
-	if(close)
-		return
+/obj/item/clothing/suit/space/hardsuit/nano/proc/open_mode_menu(mob/living/user)
 	var/list/choices = list(
 	"armor" = image(icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi', icon_state = "armor_menu"),
 	"speed" = image(icon = 'hippiestation/icons/mob/actions/actions_nanosuit.dmi', icon_state = "speed_menu"),
