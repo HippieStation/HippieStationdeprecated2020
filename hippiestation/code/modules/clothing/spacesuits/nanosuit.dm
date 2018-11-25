@@ -213,7 +213,6 @@
 	var/obj/item/stock_parts/cell/nano/cell //What type of power cell this uses
 	block_chance = 0
 	var/menu_open = FALSE
-	var/datum/radial_menu/menu = null
 	//variables for cloak pausing when shooting a suppressed gun
 	var/stealth_cloak_out = 1 //transition time out of cloak
 	var/stealth_cloak_in = 2 //transition time back into cloak
@@ -237,7 +236,6 @@
 	U = null
 	QDEL_NULL(style)
 	QDEL_NULL(cell)
-	QDEL_NULL(menu)
 	return ..()
 
 /obj/item/clothing/suit/space/hardsuit/nano/examine(mob/user)
@@ -1141,7 +1139,7 @@ mob/living/carbon/human/key_up(_key, client/user)
 		return FALSE
 	return TRUE
 
-/obj/item/clothing/suit/space/hardsuit/nano/proc/open_mode_menu(mob/living/user, close = FALSE)
+/obj/item/clothing/suit/space/hardsuit/nano/proc/open_mode_menu(mob/living/user, close)
 	if(close)
 		return
 	var/list/choices = list(
