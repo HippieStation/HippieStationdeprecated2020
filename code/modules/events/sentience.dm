@@ -14,6 +14,22 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 	/mob/living/simple_animal/bot/secbot/beepsky
 )))
 
+GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
+	/mob/living/simple_animal/pet,
+	/mob/living/simple_animal/parrot,
+	/mob/living/simple_animal/hostile/lizard,
+	/mob/living/simple_animal/sloth,
+	/mob/living/simple_animal/mouse/brown/Tom,
+	/mob/living/simple_animal/hostile/retaliate/goat,
+	/mob/living/simple_animal/chicken,
+	/mob/living/simple_animal/cow,
+	/mob/living/simple_animal/hostile/retaliate/bat,
+	/mob/living/simple_animal/hostile/carp/cayenne,
+	/mob/living/simple_animal/butterfly,
+	/mob/living/simple_animal/hostile/retaliate/poison/snake,
+	/mob/living/simple_animal/bot/secbot/beepsky
+)))
+
 /datum/round_event_control/sentience
 	name = "Random Human-level Intelligence"
 	typepath = /datum/round_event/ghost_role/sentience
@@ -28,13 +44,29 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 	fakeable = TRUE
 
 /datum/round_event/ghost_role/sentience/announce(fake)
+	// prioritize starter animals that people will recognise
+
+
 	var/sentience_report = ""
+
+	var/list/hi_pri = list()
+	var/list/low_pri = list()
+
 
 	var/data = pick("scans from our long-range sensors", "our sophisticated probabilistic models", "our omnipotence", "the communications traffic on your station", "energy emissions we detected", "\[REDACTED\]")
 	var/pets = pick("animals/bots", "bots/animals", "pets", "simple animals", "lesser lifeforms", "\[REDACTED\]")
 	var/strength = pick("human", "moderate", "lizard", "security", "command", "clown", "low", "very low", "\[REDACTED\]")
+		if((L in GLOB.player_list) || L.mind)
+			continue
+		if(is_type_in_typecache(L, GLOB.high_priority_sentience))
+			hi_pri += L
+		else
+			low_pri += L
 
-	sentience_report += "Based on [data], we believe that [one] of the station's [pets] has developed [strength] level intelligence, and the ability to communicate."
+	shuffle_inplace(hi_pri)
+	shuffle_inplace(low_pri)
+
+	potential = hi_pri + low_pri
 
 	priority_announce(sentience_report,"[command_name()] Medium-Priority Update")
 
@@ -43,7 +75,7 @@ GLOBAL_LIST_INIT(high_priority_sentience, typecacheof(list(
 	candidates = get_candidates(ROLE_ALIEN, null, ROLE_ALIEN)
 
 	// find our chosen mob to breathe life into
-	// Mobs have to be simple animals, mindless and on station
+		var/mob/living/simple_animal/SA = popleft(potential)
 	// prioritize starter animals that people will recognise
 
 
