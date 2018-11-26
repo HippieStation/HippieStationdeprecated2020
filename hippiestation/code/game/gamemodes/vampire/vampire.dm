@@ -34,7 +34,11 @@
 	var/vampires_possible = 4 //hard limit on vampires if scaling is turned off
 	var/num_modifier = 0
 	var/list/datum/mind/pre_vamps = list()
-
+	
+/datum/game_mode/vampire/generate_report()
+	return "We have received some fuzzy reports about the Syndicate cooperating with a bluespace demon.\
+			Keep a watch out for syndicate agents, and have your Chaplain on standby."
+			
 /datum/game_mode/vampire/pre_setup()
 
 	if(CONFIG_GET(flag/protect_roles_from_antagonist))
