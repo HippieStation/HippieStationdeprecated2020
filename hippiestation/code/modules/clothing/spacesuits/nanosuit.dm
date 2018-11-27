@@ -1038,26 +1038,28 @@
 	name = "disintegration implant"
 	desc = "Ashes to ashes."
 	icon_state = "explosive"
+	actions_types = list(/datum/action/item_action/dusting_implant)
 
 /obj/item/implant/explosive/disintegrate/activate(cause)
-	if(!cause || !imp_in || active)
-		return FALSE
-	if(!src.loc) //Do we have a host?
+	if(!cause || !imp_in || cause == "emp" || active)
 		return FALSE
 	if(cause == "action_button" && !popup)
 		popup = TRUE
-		var/response = alert(imp_in, "Are you sure you want to activate your [name]? This will cause you to vapourize!", "[name] Confirmation", "Yes", "No")
+		var/response = alert(imp_in, "Are you sure you want to activate your [name]? This will cause you to disintergrate!", "[name] Confirmation", "Yes", "No")
 		popup = FALSE
 		if(response == "No")
 			return FALSE
-	to_chat(imp_in, "<span class='notice'>You activate your [name].</span>")
-	active = TRUE
-	var/turf/dustturf = get_turf(imp_in)
-	var/area/A = get_area(dustturf)
-	message_admins("[name] in [ADMIN_LOOKUPFLW(imp_in)] was activated at [A.name] [ADMIN_JMP(dustturf)], by cause of [cause].")
+	active = TRUE //to avoid it triggering multiple times due to dying
+	to_chat(imp_in, "<span class='notice'>Your dusting implant activates!</span>")
+	imp_in.visible_message("<span class='warning'>[imp_in] burns up in a flash!</span>")
+	var/turf/T = get_turf(imp_in)
+	message_admins("[ADMIN_LOOKUPFLW(imp_in)] has activated their [name] at [ADMIN_VERBOSEJMP(T)], with cause of [cause].")
+	for(var/obj/item/I in imp_in.contents)
+		if(I == src || I == imp_in)
+			continue
+		 qdel(I)
 	playsound(loc, 'sound/effects/fuse.ogg', 30, FALSE)
 	imp_in.dust(TRUE,TRUE)
-	qdel(src)
 
 /obj/item/tank/internals/emergency_oxygen/recharge
 	name = "self-filling miniature oxygen tank"
@@ -1076,7 +1078,9 @@
 		var/mob/living/carbon/human/H = loc
 		var/moles_val = (ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
 		var/In_Use = H.Move()
-		if(!In_Use)
+		if(In_Use)
+			return
+		else
 			sleep(10)
 			if(air_contents.gases[/datum/gas/oxygen][MOLES] < (10*moles_val))
 				air_contents.assert_gas(/datum/gas/oxygen)
