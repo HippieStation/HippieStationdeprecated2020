@@ -204,9 +204,9 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	else
 		to_chat(world, "<span class='boldannounce'>Rebooting world...</span>")
 		Master.Shutdown()	//run SS shutdowns
+	
 	if(!GLOB.bypass_tgs_reboot)
 		TgsReboot()
-	TgsReboot()
 
 	if(TEST_RUN_PARAMETER in params)
 		FinishTestRun()
