@@ -1056,7 +1056,7 @@
 	message_admins("[ADMIN_LOOKUPFLW(imp_in)] has activated their [name] at [ADMIN_VERBOSEJMP(T)], with cause of [cause].")
 	playsound(loc, 'sound/effects/fuse.ogg', 30, FALSE)
 	imp_in.dust(TRUE,TRUE)
-	qdel()
+	qdel(src)
 
 /obj/item/tank/internals/emergency_oxygen/recharge
 	name = "self-filling miniature oxygen tank"
