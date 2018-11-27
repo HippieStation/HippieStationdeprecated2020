@@ -1054,12 +1054,9 @@
 	imp_in.visible_message("<span class='warning'>[imp_in] burns up in a flash!</span>")
 	var/turf/T = get_turf(imp_in)
 	message_admins("[ADMIN_LOOKUPFLW(imp_in)] has activated their [name] at [ADMIN_VERBOSEJMP(T)], with cause of [cause].")
-	for(var/obj/item/I in imp_in.contents)
-		if(I == src || I == imp_in)
-			continue
-		 qdel(I)
 	playsound(loc, 'sound/effects/fuse.ogg', 30, FALSE)
 	imp_in.dust(TRUE,TRUE)
+	qdel()
 
 /obj/item/tank/internals/emergency_oxygen/recharge
 	name = "self-filling miniature oxygen tank"
