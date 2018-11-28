@@ -17,26 +17,26 @@
 	var/datum/plant_gene/target
 	var/operation = ""
 	var/max_potency = 50 // See RefreshParts() for how these work
-	var/max_yield = 10
-	var/min_production = 1
-	var/max_endurance = 40 // IMPT: ALSO AFFECTS LIFESPAN
+	var/max_yield = 2
+	var/min_production = 12
+	var/max_endurance = 10 // IMPT: ALSO AFFECTS LIFESPAN
 	var/min_wchance = 67
 	var/min_wrate = 10
 
 /obj/machinery/plantgenes/RefreshParts() // Comments represent the max you can set per tier, respectively. seeds.dm [219] clamps these for us but we don't want to mislead the viewer.
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		if(M.rating > 3)
-			max_potency = 100
+			max_potency = 95
 		else
-			max_potency = initial(max_potency) + (M.rating+12) // 62,74,86,98 	 Clamps at 100
+			max_potency = initial(max_potency) + (M.rating**3) // 53,59,77,95 	 Clamps at 100
 
-		max_yield = initial(max_yield)
+		max_yield = initial(max_yield) + (M.rating*2) // 4,6,8,10 	Clamps at 10
 
 	for(var/obj/item/stock_parts/scanning_module/SM in component_parts)
 		if(SM.rating > 3) //If you create t5 parts I'm a step ahead mwahahaha!
 			min_production = 1
 		else
-			min_production = 1
+			min_production = 12 - (SM.rating * 3) //9,6,3,1. Requires if to avoid going below clamp [1]
 
 		max_endurance = initial(max_endurance) + (SM.rating * 25) // 35,60,85,100	Clamps at 10min 100max
 
