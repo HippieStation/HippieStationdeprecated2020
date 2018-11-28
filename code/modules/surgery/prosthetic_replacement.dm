@@ -82,7 +82,7 @@
 				var/obj/item/mounted_energy_chainsaw/new_arm = new(target) //HIPPIECODE
 				target_zone == "r_arm" ? target.put_in_r_hand(new_arm) : target.put_in_l_hand(new_arm) //HIPPIECODE
 				return 1 //HIPPIECODE
-				else //HIPPIECODE -END-
+			else //HIPPIECODE -END-
 					var/obj/item/mounted_chainsaw/new_arm = new(target)
 					target_zone == BODY_ZONE_R_ARM ? target.put_in_r_hand(new_arm) : target.put_in_l_hand(new_arm)
 					return 1
