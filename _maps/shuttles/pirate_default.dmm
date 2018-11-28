@@ -714,7 +714,9 @@
 /turf/open/floor/plasteel,
 /area/shuttle/pirate)
 "bH" = (
-/obj/machinery/vending/boozeomat/pirate,
+/obj/machinery/vending/boozeomat/all_access{
+	onstation = 0
+	},
 /turf/open/floor/plasteel,
 /area/shuttle/pirate)
 "bI" = (
