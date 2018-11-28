@@ -27,7 +27,6 @@
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		if(M.rating > 3)
 			max_potency = 100
-
 		else
 			max_potency = initial(max_potency) + (M.rating+12) // 62,74,86,98 	 Clamps at 100
 
