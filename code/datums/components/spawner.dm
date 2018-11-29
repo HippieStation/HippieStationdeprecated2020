@@ -49,11 +49,3 @@
 	L.nest = src
 	L.faction = src.faction
 	P.visible_message("<span class='danger'>[L] [spawn_text] [P].</span>")
-/datum/component/spawner
-	var/mob_types = list(/mob/living/simple_animal/hostile/carp)
-	var/spawn_time = 300 //30 seconds default
-	var/list/spawned_mobs = list()
-	var/spawn_delay = 0
-	var/max_mobs = 5
-	var/spawn_text = "emerges from"
-	var/list/faction = list("mining")
