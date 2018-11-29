@@ -8,6 +8,7 @@
 	icon_dead = "ash_walker_nest"
 	faction = list("ashwalker")
 	health = 200
+	density = TRUE
 	maxHealth = 200
 	loot = list(/obj/effect/collapse)
 	var/meat_counter = 6
