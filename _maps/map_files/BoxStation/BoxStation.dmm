@@ -6497,7 +6497,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "anK" = (
-/obj/effect/decal/cleanable/egg_smudge,
+/obj/effect/decal/cleanable/food/egg_smudge,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "anL" = (
@@ -8774,8 +8774,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/effect/landmark/start/detective,
-/obj/effect/landmark/start/detective,
 /turf/open/floor/carpet,
 /area/security/detectives_office)
 "auh" = (
@@ -44538,11 +44536,7 @@
 /area/maintenance/aft)
 "ccG" = (
 /obj/structure/chair/stool,
-/obj/effect/decal/cleanable/cobweb{
-	icon_state = "cobweb2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plating,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
 /area/maintenance/aft)
 "ccI" = (
 /obj/structure/disposalpipe/segment{
@@ -45760,13 +45754,9 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
-/obj/effect/decal/cleanable/cobweb{
-	icon_state = "cobweb2"
-	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/maintenance/disposal/incinerator)
-"cgb" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/structure/sign/warning/deathsposal{
 	pixel_y = 32
 	},
