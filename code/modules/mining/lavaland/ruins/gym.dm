@@ -20,7 +20,7 @@
 		L.apply_status_effect(STATUS_EFFECT_EXERCISED)
 
 /obj/structure/weightmachine
-	name = "Weight Machine"
+	name = "weight machine"
 	desc = "Just looking at this thing makes you feel tired."
 	density = TRUE
 	anchored = TRUE
@@ -92,4 +92,5 @@
 	sleep(3)
 	animate(user, pixel_y = 2, time = 3)
 	sleep(3)
+
 	cut_overlay(swole_overlay)
