@@ -54,7 +54,8 @@
 		return FALSE
 
 	var/area/A = get_area(curturf)
-	if(A.noteleport)
+	var/area/B = get_area(destturf)
+	if(A.noteleport || B.noteleport)
 		return FALSE
 		
 	if(SEND_SIGNAL(destturf, COMSIG_ATOM_INTERCEPT_TELEPORT, channel, curturf, destturf))
