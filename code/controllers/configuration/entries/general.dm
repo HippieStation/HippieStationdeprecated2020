@@ -376,6 +376,13 @@
 /datum/config_entry/number/error_cooldown	// The "cooldown" time for each occurrence of a unique error
 	config_entry_value = 600
 	integer = FALSE
+	deprecated_by = /datum/config_entry/string/chat_announce_new_game
+
+/datum/config_entry/flag/irc_announce_new_game/DeprecationUpdate(value)
+	return ""	//default broadcast
+
+/datum/config_entry/string/chat_announce_new_game
+	config_entry_value = null
 	min_val = 0
 
 /datum/config_entry/number/error_limit	// How many occurrences before the next will silence them
