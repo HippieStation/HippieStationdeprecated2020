@@ -538,7 +538,7 @@
 	.["Trigger EM pulse"] = "?_src_=vars;[HrefToken()];emp=[REF(src)]"
 	.["Trigger explosion"] = "?_src_=vars;[HrefToken()];explode=[REF(src)]"
 
-/atom/proc/drop_location()
+	return L.AllowDrop() ? L : L.drop_location()
 	var/atom/L = loc
 	if(!L)
 		return null
