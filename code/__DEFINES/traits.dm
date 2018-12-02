@@ -55,6 +55,7 @@
 #define TRAIT_PARALYSIS_R_LEG	"para-r-leg"
 
 //non-mob traits
+#define TRAIT_XRAY_VISION       "xray_vision"
 #define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it
 
 #define TRAIT_SIXTHSENSE		"sixth_sense" //I can hear dead people
@@ -98,8 +99,9 @@
 
 // unique trait sources, still defines
 #define STATUE_MUTE "statue"
-#define CHANGELING_DRAIN "drain"
 #define CHANGELING_HIVEMIND_MUTE "ling_mute"
+#define CULT_EYES "cult_eyes"
+#define SCRYING_ORB "scrying-orb"
 #define ABYSSAL_GAZE_BLIND "abyssal_gaze"
 #define HIGHLANDER "highlander"
 #define TRAIT_HULK "hulk"
