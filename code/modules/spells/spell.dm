@@ -148,22 +148,23 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 /obj/effect/proc_holder/spell/proc/cast_check(skipcharge = 0,mob/user = usr) //checks if the spell can be cast based on its settings; skipcharge is used when an additional cast_check is called inside the spell
 	if(player_lock)
 		if(!user.mind || !(src in user.mind.spell_list) && !(src in user.mob_spell_list))
+			to_chat(user, "<span class='warning'>You shouldn't have this spell! Something's wrong.</span>")
 			return FALSE
-			return 0
 	else
+		if(!(src in user.mob_spell_list))
 			return FALSE
-			return 0
 
 	var/turf/T = get_turf(user)
 	if(is_centcom_level(T.z) && !centcom_cancast) //Certain spells are not allowed on the centcom zlevel
+		to_chat(user, "<span class='notice'>You can't cast this spell here.</span>")
 		return FALSE
-		return 0
-
+		
 	if(!skipcharge)
-			return FALSE
-			return 0
+			if(!charge_check(user))
+				return FALSE
 
 	if(user.stat && !stat_allowed)
+		to_chat(user, "<span class='notice'>Not when you're incapacitated.</span>")
 		return FALSE
 	
 	if(!antimagic_allowed)
@@ -177,16 +178,16 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 				
 
 	if(!phase_allowed && istype(user.loc, /obj/effect/dummy))
+		to_chat(user, "<span class='notice'>[name] cannot be cast unless you are completely manifested in the material plane.</span>")
 		return FALSE
-		return 0
 
 	if(ishuman(user))
 
 		var/mob/living/carbon/human/H = user
 
 		if((invocation_type == "whisper" || invocation_type == "shout") && !H.can_speak_vocal())
+			to_chat(user, "<span class='notice'>You can't get the words out!</span>")
 			return FALSE
-			return 0
 
 		var/list/casting_clothes = typecacheof(list(/obj/item/clothing/suit/wizrobe,
 		/obj/item/clothing/suit/space/hardsuit/wizard,
@@ -197,17 +198,17 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 		if(clothes_req) //clothes check
 			if(!is_type_in_typecache(H.wear_suit, casting_clothes))
+				to_chat(H, "<span class='notice'>I don't feel strong enough without my robe.</span>")
 				return FALSE
-				return 0
 			if(!is_type_in_typecache(H.head, casting_clothes))
+				to_chat(H, "<span class='notice'>I don't feel strong enough without my hat.</span>")
 				return FALSE
-				return 0
 		// hippie start -- check for if a spell needs a spell catalyst
 		if(staff_req)
-				return FALSE
+				var/catalyst_found = FALSE
 			for(var/obj/O in H.held_items)
 				if(O.GetComponent(/datum/component/spell_catalyst))
-				return FALSE
+					catalyst_found = TRUE
 					break
 			if(!catalyst_found)
 				to_chat(H, "<span class='notice'>I don't feel strong enough without my staff.</span>")
