@@ -49,20 +49,13 @@
 #define TRAIT_NOSOFTCRIT		"nosoftcrit"
 #define TRAIT_MINDSHIELD		"mindshield"
 #define TRAIT_DISSECTED			"dissected"
-#define TRAIT_PARALYSIS_L_ARM	"para-l-arm" //These are used for brain-based paralysis, where replacing the limb won't fix it
-#define TRAIT_PARALYSIS_R_ARM	"para-r-arm"
-#define TRAIT_PARALYSIS_L_LEG	"para-l-leg"
-#define TRAIT_PARALYSIS_R_LEG	"para-r-leg"
-
-//non-mob traits
-#define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it
-
 #define TRAIT_SIXTHSENSE		"sixth_sense" //I can hear dead people
 #define TRAIT_FEARLESS			"fearless"
 #define TRAIT_PARALYSIS_L_ARM	"para-l-arm" //These are used for brain-based paralysis, where replacing the limb won't fix it
 #define TRAIT_PARALYSIS_R_ARM	"para-r-arm"
 #define TRAIT_PARALYSIS_L_LEG	"para-l-leg"
 #define TRAIT_PARALYSIS_R_LEG	"para-r-leg"
+#define TRAIT_XRAY_VISION       "xray_vision"
 
 //non-mob traits
 #define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it
@@ -107,3 +100,4 @@
 #define GENETICS_SPELL "genetics_spell"
 #define EYES_COVERED "eyes_covered"
 #define CULT_EYES "cult_eyes"
+#define SCRYING_ORB "scrying-orb"
