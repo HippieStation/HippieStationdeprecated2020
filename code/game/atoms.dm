@@ -33,7 +33,6 @@
 	var/list/filter_data //For handling persistent filters
 
 	var/custom_price
-	var/custom_premium_price
 
 	var/datum/component/orbiter/orbiters
 
@@ -322,7 +321,7 @@
 	if(AM && isturf(AM.loc))
 		step(AM, turn(AM.dir, 180))
 
-/atom/proc/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube, paralyze, force_drop)
+/atom/proc/handle_slip(mob/living/carbon/C, knockdown_amount, obj/O, lube)
 	return
 
 //returns the mob's dna info as a list, to be inserted in an object's blood_DNA list
@@ -343,9 +342,6 @@
 
 /mob/living/carbon/alien/get_blood_dna_list()
 	return list("UNKNOWN DNA" = "X*")
-
-/mob/living/silicon/get_blood_dna_list()
-	return list("MOTOR OIL" = "SAE 5W-30") //just a little flavor text.
 
 //to add a mob's dna info into an object's blood_DNA list.
 /atom/proc/transfer_mob_blood_dna(mob/living/L)
@@ -538,11 +534,11 @@
 	.["Trigger EM pulse"] = "?_src_=vars;[HrefToken()];emp=[REF(src)]"
 	.["Trigger explosion"] = "?_src_=vars;[HrefToken()];explode=[REF(src)]"
 
-	return L.AllowDrop() ? L : L.drop_location()
+/atom/proc/drop_location()
 	var/atom/L = loc
 	if(!L)
 		return null
-	return L.AllowDrop() ? L : get_turf(L)
+	return L.AllowDrop() ? L : L.drop_location()
 
 /atom/Entered(atom/movable/AM, atom/oldLoc)
 	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM, oldLoc)
