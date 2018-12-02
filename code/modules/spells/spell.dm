@@ -214,21 +214,20 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			return FALSE
 		// hippie end
 		if(cult_req) //CULT_REQ CLOTHES CHECK
-			return FALSE
+			if(!istype(H.wear_suit, /obj/item/clothing/suit/magusred) && !istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/cult))
 				to_chat(H, "<span class='notice'>I don't feel strong enough without my armor.</span>")
-				return 0
+				return FALSE
 			if(!istype(H.head, /obj/item/clothing/head/magus) && !istype(H.head, /obj/item/clothing/head/helmet/space/hardsuit/cult))
 				to_chat(H, "<span class='notice'>I don't feel strong enough without my helmet.</span>")
-				return 0
+				return FALSE
 	else
 		if(clothes_req || human_req)
 			to_chat(user, "<span class='notice'>This spell can only be cast by humans!</span>")
-			return 0
+			return FALSE
 		if(nonabstract_req && (isbrain(user) || ispAI(user)))
 			to_chat(user, "<span class='notice'>This spell can only be cast by physical beings!</span>")
-			return 0
-	return TRUE
-
+			return FALSE
+	
 	if(!skipcharge)
 		switch(charge_type)
 			if("recharge")
@@ -239,7 +238,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 				adjust_var(user, holder_var_type, holder_var_amount)
 	if(action)
 		action.UpdateButtonIcon()
-	return 1
+	return TRUE
 
 /obj/effect/proc_holder/spell/proc/charge_check(mob/user, silent = FALSE)
 	switch(charge_type)
@@ -499,6 +498,8 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	action.UpdateButtonIcon(status_only, force)
 
 /obj/effect/proc_holder/spell/proc/can_be_cast_by(mob/caster)
+	if(!antimagic_allowed && user.anti_magic_check(TRUE, FALSE))
+		return FALSE
 	if((human_req || clothes_req) && !ishuman(caster))
 		return 0
 	return 1
@@ -512,9 +513,6 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			if(!AM.CanPass(dummy,turf,1))
 				qdel(dummy)
 				return 0
-		
-	if(!antimagic_allowed && user.anti_magic_check(TRUE, FALSE))
-		return FALSE
 	qdel(dummy)
 	return 1
 
