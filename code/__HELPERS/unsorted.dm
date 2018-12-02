@@ -1535,6 +1535,8 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 			. |= i
 /proc/generate_items_inside(list/items_list,var/where_to)
 	for(var/each_item in items_list)
+		for(var/i in 1 to items_list[each_item])
+			new each_item(where_to)
 
 //sends a message to chat
 //config_setting should be one of the following
@@ -1558,5 +1560,3 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 
 	if(channels_to_use.len)
 		world.TgsChatBroadcast()
-		for(var/i in 1 to items_list[each_item])
-			new each_item(where_to)
