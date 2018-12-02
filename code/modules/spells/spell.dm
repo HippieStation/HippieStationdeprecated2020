@@ -205,7 +205,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 				return FALSE
 		// hippie start -- check for if a spell needs a spell catalyst
 		if(staff_req)
-				var/catalyst_found = FALSE
+			var/catalyst_found = FALSE
 			for(var/obj/O in H.held_items)
 				if(O.GetComponent(/datum/component/spell_catalyst))
 					catalyst_found = TRUE
