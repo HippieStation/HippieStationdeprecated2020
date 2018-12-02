@@ -160,8 +160,8 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		return FALSE
 		
 	if(!skipcharge)
-			if(!charge_check(user))
-				return FALSE
+		if(!charge_check(user))
+			return FALSE
 
 	if(user.stat && !stat_allowed)
 		to_chat(user, "<span class='notice'>Not when you're incapacitated.</span>")
