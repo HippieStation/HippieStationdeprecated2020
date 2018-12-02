@@ -8,6 +8,7 @@ batreflect sounds are by shadoWisp on freesound.org:
 https://www.freesound.org/people/shadoWisp/sounds/252044/
 
 Small parts of the sound are cut out and used.
+shotgunshot sound is cut and mixed from a recording captured by the BBC.
 
 "Claybird shooting - several shotgun shots preceded by noise of claybird (aka
 clay pigeon) firing mechanism, with comments from instructor just audible.
@@ -15,4 +16,5 @@ Rec. at Agrodome, Rotorua, New Zealand.": http://bbcsfx.acropolis.org.uk/assets/
 revolverspin1, revolverspin2, and revolverspin3 are cut from a recording
 captured by the BBC
 "Gunfire & Guns: Revolver, Chambers spinning.": http://bbcsfx.acropolis.org.uk/assets/07027165.wav
-shotgunshot sound is cut and mixed from a recording captured by the BBC.
+
+bbc.co.uk - (c) copyright 2018 BBC
