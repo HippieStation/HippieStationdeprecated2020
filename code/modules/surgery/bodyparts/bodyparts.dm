@@ -136,7 +136,7 @@
 //Return TRUE to get whatever mob this is in to update health.
 /obj/item/bodypart/proc/on_life()
 	if(stamina_dam > DAMAGE_PRECISION)					//DO NOT update health here, it'll be done in the carbon's life.
-		if(heal_damage(brute = 0, burn = 0, stamina = stam_heal_tick, only_robotic = FALSE, only_organic = FALSE, updating_health = FALSE))
+		if(heal_damage(brute = 0, burn = 0, stamina = stam_heal_tick, null, updating_health = FALSE))
 			. |= BODYPART_LIFE_UPDATE_HEALTH
 
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
@@ -146,7 +146,7 @@
 	if(owner && (owner.status_flags & GODMODE))
 		return FALSE	//godmode
 
-	if(required_status && status != required_status)
+	if(required_status && (status != required_status))
 		return FALSE
 
 	var/dmg_mlt = CONFIG_GET(number/damage_multiplier)
@@ -194,12 +194,9 @@
 //Heals brute and burn damage for the organ. Returns 1 if the damage-icon states changed at all.
 //Damage cannot go below zero.
 //Cannot remove negative damage (i.e. apply damage)
-/obj/item/bodypart/proc/heal_damage(brute, burn, stamina, only_robotic = FALSE, only_organic = TRUE, updating_health = TRUE)
+/obj/item/bodypart/proc/heal_damage(brute, burn, stamina, required_status, updating_health = TRUE)
 
-	if(only_robotic && status != BODYPART_ROBOTIC) //This makes organic limbs not heal when the proc is in Robotic mode.
-		return
-
-	if(only_organic && status != BODYPART_ORGANIC) //This makes robolimbs not healable by chems.
+	if(required_status && (status != required_status)) //So we can only heal certain kinds of limbs, ie robotic vs organic.
 		return
 
 	brute_dam	= round(max(brute_dam - brute, 0), DAMAGE_PRECISION)
@@ -221,7 +218,7 @@
 //Checks disabled status thresholds
 /obj/item/bodypart/proc/update_disabled()
 	set_disabled(is_disabled())
-		
+
 /obj/item/bodypart/proc/is_disabled()
 	if(has_trait(TRAIT_PARALYSIS))
 		return BODYPART_DISABLED_PARALYSIS
@@ -504,7 +501,7 @@
 	aux_layer = HANDS_PART_LAYER
 	body_damage_coeff = 0.75
 	held_index = 1
-	px_x = -6
+
 	px_y = 0
 	stam_heal_tick = 2
 
@@ -564,7 +561,7 @@
 	max_damage = 50
 	body_zone = BODY_ZONE_R_ARM
 	body_part = ARM_RIGHT
-	aux_zone = BODY_ZONE_PRECISE_R_HAND
+
 	aux_layer = HANDS_PART_LAYER
 	body_damage_coeff = 0.75
 	held_index = 2
@@ -626,7 +623,7 @@
 		luck. In this instance, it probably would not have helped."
 	icon_state = "default_human_l_leg"
 	attack_verb = list("kicked", "stomped")
-	max_damage = 50
+
 	body_zone = BODY_ZONE_L_LEG
 	body_part = LEG_LEFT
 	body_damage_coeff = 0.75
@@ -685,7 +682,7 @@
 	// alternative spellings of 'pokey' are availible
 	icon_state = "default_human_r_leg"
 	attack_verb = list("kicked", "stomped")
-	max_damage = 50
+
 	body_zone = BODY_ZONE_R_LEG
 	body_part = LEG_RIGHT
 	body_damage_coeff = 0.75
