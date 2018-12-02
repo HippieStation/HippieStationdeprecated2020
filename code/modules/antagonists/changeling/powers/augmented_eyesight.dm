@@ -20,6 +20,7 @@
 /obj/effect/proc_holder/changeling/augmented_eyesight/sting_action(mob/living/carbon/human/user)
 	if(!istype(user))
 		return
+	..()
 	var/obj/item/organ/eyes/E = user.getorganslot(ORGAN_SLOT_EYES)
 	if(E)
 		if(!active)
@@ -35,9 +36,6 @@
 		user.update_sight()
 	else
 		to_chat(user, "We can't adjust our eyes if we don't have any!")
-
-
-
 	return 1
 
 
@@ -48,4 +46,5 @@
 			E.sight_flags ^= SEE_MOBS | SEE_OBJS | SEE_TURFS
 		else
 			E.flash_protect = 0
+
 		user.update_sight()
