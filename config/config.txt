@@ -430,7 +430,6 @@ MINUTE_CLICK_LIMIT 400
 ## Send a message with the station name starting a new game
 #CHAT_ANNOUNCE_NEW_GAME
 
-#IRC_ANNOUNCE_NEW_GAME
 
 ## Allow admin hrefs that don't use the new token system, will eventually be removed
 DEBUG_ADMIN_HREFS
