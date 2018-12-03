@@ -508,9 +508,9 @@
 			if(allowed(usr))
 				locked = !locked
 				to_chat(user, "<span class='notice'>You [ locked ? "lock" : "unlock"] [src]'s cover.</span>")
+				update_icons()
 				if(emagged)
 					to_chat(user, "<span class='notice'>The cover interface glitches out for a split second.</span>")
-				update_icons()
 			else
 				to_chat(user, "<span class='danger'>Access denied.</span>")
 
