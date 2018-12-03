@@ -234,22 +234,22 @@
 		return
 	if ((!mob_occupant.ckey) || (!mob_occupant.client))
 		scantemp = "<font class='bad'>Mental interface failure.</font>"
-		var/obj/machinery/clonepod/pod = GetAvailablePod() // hippie start -- (PREVENTS SOUND WHILE THE POD IS IN USE)
-		if (!pod.occupant)
 		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 		return
 	if(SSeconomy.full_ancap)
 		if(!has_bank_account)
 			scantemp = "<font class='average'>Subject is either missing an ID card with a bank account on it, or does not have an account to begin with. Please ensure the ID card is on the body before attempting to scan.</font>"
-	var/mrace
+			playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 			return
-	var/datum/data/record/R = new()
+	var/mrace
 	if(dna.species)
 		// We store the instance rather than the path, because some
 		// species (abductors, slimepeople) store state in their
-		mrace = dna.species
+		// species datums
 		dna.delete_species = FALSE
-		R.fields["mrace"] = dna.species
+		mrace = dna.species
+	else
+		var/datum/species/rando_race = pick(GLOB.roundstart_races)
 		mrace = rando_race.type
 
 	var/mind
@@ -257,8 +257,8 @@
 		mind = "[REF(mob_occupant.mind)]"	
 
 	var/quirks = list()
-	R.fields["quirks"] = list()
-	R.fields["bank_account"] = has_bank_account
+	for(var/V in mob_occupant.roundstart_quirks)
+		var/datum/quirk/T = V
 		quirks[T.type] = T.clone_data()
 
 	var/obj/machinery/clonepod/pod = GetAvailablePod()
@@ -281,5 +281,3 @@
 	else
 		temp = "[mob_occupant.real_name] => <font class='bad'>Initialisation failure.</font>"
 		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-	scantemp = "Subject successfully scanned."
-	playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
