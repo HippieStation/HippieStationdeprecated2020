@@ -212,7 +212,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 					break
 			if(!catalyst_found)
 				to_chat(H, "<span class='notice'>I don't feel strong enough without my staff.</span>")
-			return FALSE
+				return FALSE
 		// hippie end
 		if(cult_req) //CULT_REQ CLOTHES CHECK
 			if(!istype(H.wear_suit, /obj/item/clothing/suit/magusred) && !istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/cult))
