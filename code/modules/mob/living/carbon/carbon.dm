@@ -551,7 +551,8 @@
 		if(total_health <= crit_threshold && !stat)
 			if(!IsParalyzed())
 				to_chat(src, "<span class='notice'>You're too exhausted to keep going...</span>")
-			Paralyze(70) // hippie edit - undid the tg stamina buff from upstream-merge-39967
+			Paralyze(70)
+			update_health_hud()
 
 /mob/living/carbon/update_sight()
 	if(!client)
@@ -593,6 +594,7 @@
 	if(has_trait(TRAIT_XRAY_VISION))
 		sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
 		see_in_dark = max(see_in_dark, 8)
+
 	if(see_override)
 		see_invisible = see_override
 	. = ..()
@@ -800,6 +802,7 @@
 		L.damage = 0
 	var/obj/item/organ/brain/B = getorgan(/obj/item/organ/brain)
 	if(B)
+		B.brain_death = FALSE
 		B.damaged_brain = FALSE
 	for(var/thing in diseases)
 		var/datum/disease/D = thing
@@ -918,3 +921,4 @@
 
 /mob/living/carbon/can_resist()
 	return bodyparts.len > 2 && ..()
+

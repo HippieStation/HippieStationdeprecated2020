@@ -136,7 +136,7 @@
 //Return TRUE to get whatever mob this is in to update health.
 /obj/item/bodypart/proc/on_life()
 	if(stamina_dam > DAMAGE_PRECISION)					//DO NOT update health here, it'll be done in the carbon's life.
-		if(heal_damage(brute = 0, burn = 0, stamina = stam_heal_tick, null, updating_health = FALSE))
+		if(heal_damage(brute = 0, burn = 0, stamina = stam_heal_tick, updating_health = FALSE))
 			. |= BODYPART_LIFE_UPDATE_HEALTH
 
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
@@ -403,13 +403,13 @@
 				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
 			else
 				limb.icon_state = "[species_id]_[body_zone]"
-		// hippie start -- Hippie races (e.g. Avians)	
-		if(should_draw_hippie)	
-			limb.icon = 'hippiestation/icons/mob/mutant_bodyparts.dmi'	
-			if(should_draw_gender)	
-				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"	
-			else	
-				limb.icon_state = "[species_id]_[body_zone]"	
+		// hippie start -- Hippie races (e.g. Avians)
+		if(should_draw_hippie)
+			limb.icon = 'hippiestation/icons/mob/mutant_bodyparts.dmi'
+			if(should_draw_gender)
+				limb.icon_state = "[species_id]_[body_zone]_[icon_gender]"
+			else
+				limb.icon_state = "[species_id]_[body_zone]"
 		// hippie end
 		if(aux_zone)
 			aux = image(limb.icon, "[species_id]_[aux_zone]", -aux_layer, image_dir)
@@ -501,7 +501,7 @@
 	aux_layer = HANDS_PART_LAYER
 	body_damage_coeff = 0.75
 	held_index = 1
-
+	px_x = -6
 	px_y = 0
 	stam_heal_tick = 2
 
@@ -509,7 +509,7 @@
 	if(owner.has_trait(TRAIT_PARALYSIS_L_ARM))
 		return BODYPART_DISABLED_PARALYSIS
 	return ..()
-	
+
 /obj/item/bodypart/l_arm/set_disabled(new_disabled)
 	. = ..()
 	if(disabled == new_disabled)
@@ -561,7 +561,7 @@
 	max_damage = 50
 	body_zone = BODY_ZONE_R_ARM
 	body_part = ARM_RIGHT
-
+	aux_zone = BODY_ZONE_PRECISE_R_HAND
 	aux_layer = HANDS_PART_LAYER
 	body_damage_coeff = 0.75
 	held_index = 2
@@ -569,7 +569,7 @@
 	px_y = 0
 	stam_heal_tick = 2
 	max_stamina_damage = 50
-	
+
 /obj/item/bodypart/r_arm/is_disabled()
 	if(owner.has_trait(TRAIT_PARALYSIS_R_ARM))
 		return BODYPART_DISABLED_PARALYSIS
@@ -631,7 +631,7 @@
 	px_y = 12
 	stam_heal_tick = 2
 	max_stamina_damage = 50
-	
+
 /obj/item/bodypart/l_leg/is_disabled()
 	if(owner.has_trait(TRAIT_PARALYSIS_L_LEG))
 		return BODYPART_DISABLED_PARALYSIS
@@ -673,7 +673,7 @@
 	dismemberable = 0
 	max_damage = 5000
 	animal_origin = DEVIL_BODYPART
-	
+
 /obj/item/bodypart/r_leg
 	name = "right leg"
 	desc = "You put your right leg in, your right leg out. In, out, in, out, \
@@ -690,7 +690,7 @@
 	px_y = 12
 	max_stamina_damage = 50
 	stam_heal_tick = 2
-	
+
 /obj/item/bodypart/r_leg/is_disabled()
 	if(owner.has_trait(TRAIT_PARALYSIS_R_LEG))
 		return BODYPART_DISABLED_PARALYSIS
@@ -724,7 +724,7 @@
 	icon_state = "alien_r_leg"
 	px_x = 0
 	px_y = 0
-	dismemberable = 0	
+	dismemberable = 0
 	max_damage = 100
 	animal_origin = ALIEN_BODYPART
 
