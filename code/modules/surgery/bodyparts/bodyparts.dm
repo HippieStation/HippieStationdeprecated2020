@@ -501,7 +501,7 @@
 	aux_layer = HANDS_PART_LAYER
 	body_damage_coeff = 0.75
 	held_index = 1
-
+	px_x = -6
 	px_y = 0
 	stam_heal_tick = 2
 
@@ -561,7 +561,7 @@
 	max_damage = 50
 	body_zone = BODY_ZONE_R_ARM
 	body_part = ARM_RIGHT
-
+	aux_zone = BODY_ZONE_PRECISE_R_HAND
 	aux_layer = HANDS_PART_LAYER
 	body_damage_coeff = 0.75
 	held_index = 2
