@@ -551,7 +551,7 @@
 		if(total_health <= crit_threshold && !stat)
 			if(!IsParalyzed())
 				to_chat(src, "<span class='notice'>You're too exhausted to keep going...</span>")
-			Paralyze(100)
+			Paralyze(70)
 			update_health_hud()
 
 /mob/living/carbon/update_sight()
