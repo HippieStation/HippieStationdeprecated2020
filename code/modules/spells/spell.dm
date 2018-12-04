@@ -108,7 +108,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 	var/holder_var_type = "bruteloss" //only used if charge_type equals to "holder_var"
 	var/holder_var_amount = 20 //same. The amount adjusted with the mob's var when the spell is used
-
+	var/staff_req = FALSE // hippie -- used to check if a spell requires a staff
 	var/clothes_req = TRUE //see if it requires clothes
 	var/cult_req = FALSE //SPECIAL SNOWFLAKE clothes required for cult only spells
 	var/human_req = FALSE //spell can only be cast by humans
@@ -201,6 +201,17 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			if(!is_type_in_typecache(H.head, casting_clothes))
 				to_chat(H, "<span class='notice'>I don't feel strong enough without my hat.</span>")
 				return FALSE
+				// hippie start -- check for if a spell needs a spell catalyst	
+		if(staff_req)	
+			var/catalyst_found = FALSE	
+			for(var/obj/O in H.held_items)	
+				if(O.GetComponent(/datum/component/spell_catalyst))	
+					catalyst_found = TRUE	
+					break	
+			if(!catalyst_found)	
+				to_chat(H, "<span class='notice'>I don't feel strong enough without my staff.</span>")	
+				return 0	
+		// hippie end
 		if(cult_req) //CULT_REQ CLOTHES CHECK
 			if(!istype(H.wear_suit, /obj/item/clothing/suit/magusred) && !istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/cult))
 				to_chat(H, "<span class='notice'>I don't feel strong enough without my armor.</span>")
