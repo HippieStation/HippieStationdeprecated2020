@@ -15,6 +15,7 @@
 	mutatelist = list()
 	reagents_add = list("tirizene" = 0.2, "tiresolution" = 0.2, "pax" = 0.05, "kelotane" = 0.05)
 	rarity = 20
+	
 /obj/item/reagent_containers/food/snacks/grown/nettle/stun
 	seed = /obj/item/seeds/nettle/stun
 	name = "stunnettle"
