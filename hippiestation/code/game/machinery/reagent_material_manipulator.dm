@@ -15,9 +15,8 @@
 
 
 /obj/machinery/reagent_material_manipulator/Initialize()
+	. = ..()
 	create_reagents(100)
-	.=..()
-
 
 /obj/machinery/reagent_material_manipulator/attackby(obj/item/I, mob/user)
 	if(user.a_intent == INTENT_HARM)
