@@ -157,8 +157,8 @@
 			if(amount <= 0)
 				return FALSE
 
-			for(var/V in stored_research.researched_designs)
-				var/datum/design/forge/D = stored_research.researched_designs[V]
+			for(var/v in stored_research.researched_designs)
+				var/datum/design/forge/D = SSresearch.techweb_design_by_id(v)
 				if(D.name == params["name"])
 					create_product(D, amount, usr)
 					return TRUE
