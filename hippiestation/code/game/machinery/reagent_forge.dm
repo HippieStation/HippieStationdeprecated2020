@@ -128,8 +128,8 @@
 	var/list/data = list()
 	var/lowest_cost = 1
 
-	for(var/V in stored_research.researched_designs)
-		var/datum/design/forge/D = stored_research.researched_designs[V]
+	for(var/v in stored_research.researched_designs)
+		var/datum/design/forge/D = SSresearch.techweb_design_by_id(v)
 		var/md5name = md5(D.name)
 		var/cost = D.materials[MAT_REAGENT]*efficiency
 		if(!listofrecipes[md5name])
