@@ -1,5 +1,6 @@
 /obj/item/seeds/nettle
 	mutatelist = list(/obj/item/seeds/nettle/death, /obj/item/seeds/nettle/stun)
+	
 /obj/item/seeds/nettle/stun
 	name = "pack of stun nettle seeds"
 	desc = "These seeds grow into stun nettles."
