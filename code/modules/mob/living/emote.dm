@@ -409,7 +409,7 @@
 		to_chat(user, "<span class='danger'>Invalid emote.</span>")
 	else if(copytext(input,1,5) == "asks")
 		to_chat(user, "<span class='danger'>Invalid emote.</span>")
-	else
+	if(is_banned_from(user.ckey, "Emote"))
 		. = FALSE
 
 /datum/emote/living/custom/run_emote(mob/user, params, type_override = null)

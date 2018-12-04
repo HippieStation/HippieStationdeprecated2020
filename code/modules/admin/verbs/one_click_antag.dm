@@ -41,7 +41,7 @@
 		if(!is_station_level(T.z))
 			return FALSE
 	if(conscious && applicant.stat) //incase you don't care about a certain antag being unconcious when made, ie if they have selfhealing abilities.
-		return FALSE
+	return !is_banned_from(applicant.ckey, list(targetrole, ROLE_SYNDICATE))
 	if(!considered_alive(applicant.mind) || considered_afk(applicant.mind)) //makes sure the player isn't a zombie, brain, or just afk all together
 		return FALSE
 	return (!jobban_isbanned(applicant, targetrole) && !jobban_isbanned(applicant, ROLE_SYNDICATE))
