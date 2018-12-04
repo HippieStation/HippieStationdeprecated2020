@@ -115,3 +115,14 @@
 	Soylet.update_hair()
 	to_chat(Soylet, "<span class='notice'>You feel like a new [prefix]male!</span>")
 	Soylet.say("Wow!", forced = "soy")
+
+/datum/reagent/consumable/grey_bull
+	name = "Reuben Blast"
+	id = "grey_bull"
+	description = "Formerly Grey Bull, now rebranded as Reuben Blast due to a very controversial murder case. It gives you gloves!"
+	color = "#EEFF00" // rgb: 238, 255, 0
+	quality = DRINK_VERYGOOD
+	taste_description = "carbonated oil"
+	glass_icon_state = "grey_bull_glass"
+	glass_name = "glass of Reuben Blast"
+	glass_desc = "Surprisingly it isnt grey."
