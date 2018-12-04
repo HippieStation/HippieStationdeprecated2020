@@ -220,7 +220,7 @@
 						io = circuit_pins.get_pin_ref(IC_INPUT, i)
 						if(io)
 							words += "<b><a href='?src=[REF(circuit_pins)];act=wire;pin=[REF(io)]'>[io.display_pin_type()] [io.name]</a> \
-							[io.display_data(io.data)]</b><br>"
+							<a href='?src=[REF(circuit_pins)];act=data;pin=[REF(io)]'>[io.display_data(io.data)]</a></b><br>"
 							if(io.linked.len)
 								words += "<ul>"
 								for(var/k in io.linked)
@@ -241,7 +241,7 @@
 						io = circuit_pins.get_pin_ref(IC_OUTPUT, i)
 						if(io)
 							words += "<b><a href='?src=[REF(circuit_pins)];act=wire;pin=[REF(io)]'>[io.display_pin_type()] [io.name]</a> \
-							[io.display_data(io.data)]</b><br>"
+							<a href='?src=[REF(circuit_pins)];act=data;pin=[REF(io)]'>[io.display_data(io.data)]</a></b><br>"
 							if(io.linked.len)
 								words += "<ul>"
 								for(var/k in io.linked)
