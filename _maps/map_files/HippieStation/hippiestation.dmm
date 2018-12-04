@@ -7137,7 +7137,6 @@
 /area/maintenance/fore/secondary)
 "aqa" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -7145,6 +7144,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
 	dir = 5
+	},
+/obj/machinery/meter{
+	name = "gas flow meter air supply";
+	pixel_x = -6;
+	target_layer = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
@@ -7848,7 +7852,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
-/obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
@@ -7890,6 +7893,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
 	dir = 8
+	},
+/obj/machinery/meter{
+	name = "gas flow meter air supply";
+	pixel_x = -6;
+	target_layer = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore/secondary)
@@ -12453,10 +12461,14 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "aFd" = (
-/obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	icon_state = "manifold-1";
 	dir = 4
+	},
+/obj/machinery/meter{
+	name = "gas flow meter air supply";
+	pixel_x = -6;
+	target_layer = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
@@ -13834,10 +13846,14 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "aIH" = (
-/obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
 	dir = 1
+	},
+/obj/machinery/meter{
+	name = "gas flow meter air supply";
+	pixel_x = -6;
+	target_layer = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
@@ -22135,7 +22151,6 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "beS" = (
-/obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
 	dir = 10
@@ -43880,6 +43895,11 @@
 	icon_state = "pipe11-1";
 	dir = 8
 	},
+/obj/machinery/meter{
+	name = "gas flow meter air supply";
+	pixel_x = -6;
+	target_layer = 1
+	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "ciD" = (
@@ -46088,7 +46108,6 @@
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "coJ" = (
-/obj/machinery/meter,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -46100,6 +46119,11 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	icon_state = "manifold-1";
 	dir = 8
+	},
+/obj/machinery/meter{
+	name = "gas flow meter air supply";
+	pixel_x = -6;
+	target_layer = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
@@ -55945,6 +55969,11 @@
 /area/maintenance/disposal)
 "dsK" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/obj/machinery/meter{
+	name = "gas flow meter air supply";
+	pixel_x = -6;
+	target_layer = 1
+	},
 /turf/open/floor/plating,
 /area/maintenance/port)
 "dsM" = (
@@ -56400,6 +56429,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+"ecv" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/meter,
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "edB" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -57833,6 +57867,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
+"gfF" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 1
+	},
+/obj/machinery/meter,
+/turf/open/floor/plating,
+/area/maintenance/fore/secondary)
 "gfP" = (
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -59779,6 +59823,19 @@
 /obj/machinery/hydroponics/constructable,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"jee" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/meter{
+	name = "gas flow meter air supply";
+	pixel_x = -6;
+	target_layer = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/aft)
 "jgL" = (
 /obj/machinery/light{
 	dir = 4
@@ -103939,7 +103996,7 @@ nTF
 nTF
 nTF
 nTF
-nTF
+gfF
 aoq
 nTF
 aqa
@@ -110940,7 +110997,7 @@ bJl
 bOy
 bJl
 bJl
-bSk
+bHT
 bTG
 bUH
 bVW
@@ -111197,7 +111254,7 @@ bKu
 bOz
 bKu
 bKu
-bKu
+ecv
 bTJ
 bUH
 bUH
@@ -111453,7 +111510,7 @@ iof
 iof
 bOA
 iof
-iof
+jee
 iof
 bTK
 bUL
