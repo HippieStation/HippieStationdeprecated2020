@@ -603,7 +603,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if((sharpness || damtype == BURN) && w_class >= WEIGHT_CLASS_NORMAL && force >= 10)
 			. = force * (affecting.get_damage() / affecting.max_damage)
 
-/obj/item/proc/get_dismember_sound()
+		location.hotspot_expose(flame_heat, 5)
 	if(damtype == BURN)
 		. = 'sound/weapons/sear.ogg'
 	else
