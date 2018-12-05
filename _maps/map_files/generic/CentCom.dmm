@@ -7032,14 +7032,6 @@
 /obj/effect/landmark/ai_multicam_room,
 /turf/open/ai_visible,
 /area/ai_multicam_room)
-"pX" = (
-/obj/item/storage/crayons,
-/obj/structure/table,
-/obj/item/storage/crayons,
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
-/area/syndicate_mothership/control)
 "pY" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/plasteel/freezer{
@@ -7445,9 +7437,7 @@
 /obj/structure/urinal{
 	pixel_y = 28
 	},
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/syndicate_mothership/control)
 "qO" = (
 /obj/item/soap/syndie,
@@ -8131,6 +8121,14 @@
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
+	},
+/obj/item/storage/crayons{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/obj/item/storage/crayons{
+	pixel_x = 2;
+	pixel_y = 5
 	},
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
@@ -17319,6 +17317,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
+"OA" = (
+/turf/open/floor/plasteel/freezer,
+/area/syndicate_mothership/control)
 "OD" = (
 /obj/machinery/microwave{
 	desc = "Cooks and boils stuff, somehow.";
@@ -17655,6 +17656,14 @@
 /obj/machinery/door/window/westleft,
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
+"RA" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/spawner/xmastree,
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
 "RM" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -18087,6 +18096,15 @@
 	dir = 8
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
+"Wj" = (
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer{
+	dir = 2
+	},
+/area/syndicate_mothership/control)
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -36103,8 +36121,8 @@ kt
 hl
 hl
 hl
-hl
-hl
+nz
+pZ
 hl
 kt
 ku
@@ -36362,7 +36380,7 @@ kt
 kt
 kt
 kt
-kt
+RA
 kt
 nz
 pY
@@ -37901,7 +37919,7 @@ ku
 kt
 hl
 hl
-mz
+kt
 hl
 mz
 hl
@@ -38158,12 +38176,12 @@ ku
 kt
 hl
 mz
-hl
-mA
+pG
+ku
 hl
 hl
 mz
-kt
+Wj
 ku
 qN
 ri
@@ -38415,10 +38433,10 @@ ku
 ma
 hl
 hl
+pG
 hl
-mz
 hl
-hl
+OA
 mz
 ma
 ku
@@ -38672,9 +38690,9 @@ ku
 kt
 hl
 mz
-mA
+kt
 hl
-hl
+pY
 mA
 hl
 pG
@@ -38929,8 +38947,8 @@ kt
 kt
 hl
 hl
-hl
-mA
+ma
+ku
 mz
 hl
 mA
@@ -39186,7 +39204,7 @@ hl
 hl
 hl
 hl
-mz
+pG
 hl
 hl
 hl
