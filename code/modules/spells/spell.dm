@@ -201,16 +201,16 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			if(!is_type_in_typecache(H.head, casting_clothes))
 				to_chat(H, "<span class='notice'>I don't feel strong enough without my hat.</span>")
 				return FALSE
-				// hippie start -- check for if a spell needs a spell catalyst	
-		if(staff_req)	
-			var/catalyst_found = FALSE	
-			for(var/obj/O in H.held_items)	
-				if(O.GetComponent(/datum/component/spell_catalyst))	
-					catalyst_found = TRUE	
-					break	
-			if(!catalyst_found)	
-				to_chat(H, "<span class='notice'>I don't feel strong enough without my staff.</span>")	
-				return 0	
+		// hippie start -- check for if a spell needs a spell catalyst	
+		if(staff_req)
+			var/catalyst_found = FALSE
+			for(var/obj/O in H.held_items)
+				if(O.GetComponent(/datum/component/spell_catalyst))
+					catalyst_found = TRUE
+					break
+			if(!catalyst_found)
+				to_chat(H, "<span class='notice'>I don't feel strong enough without my staff.</span>")
+				return FALSE
 		// hippie end
 		if(cult_req) //CULT_REQ CLOTHES CHECK
 			if(!istype(H.wear_suit, /obj/item/clothing/suit/magusred) && !istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/cult))
