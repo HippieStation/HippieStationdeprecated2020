@@ -85,19 +85,19 @@
 /turf/open/floor/plating,
 /area/security/prison)
 "aaq" = (
-/obj/machinery/hydroponics/soil,
 /obj/item/seeds/ambrosia,
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
+/obj/machinery/hydroponics,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aar" = (
-/obj/machinery/hydroponics/soil,
 /obj/item/seeds/carrot,
 /obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
+/obj/machinery/hydroponics,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aas" = (
@@ -107,18 +107,17 @@
 /turf/open/floor/plating,
 /area/security/prison)
 "aat" = (
-/obj/machinery/hydroponics/soil,
 /obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
 /obj/item/seeds/tower,
+/obj/machinery/hydroponics,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aau" = (
 /obj/structure/sign/warning/electricshock{
 	pixel_y = 32
 	},
-/obj/machinery/hydroponics/soil,
 /obj/item/plant_analyzer,
 /obj/machinery/camera{
 	c_tag = "Prison Common Room";
@@ -127,6 +126,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 4
 	},
+/obj/machinery/hydroponics,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aav" = (
@@ -187,20 +187,20 @@
 /area/space/nearstation)
 "aaG" = (
 /obj/structure/window/reinforced,
-/obj/machinery/hydroponics/soil,
 /obj/item/seeds/potato,
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
+/obj/machinery/hydroponics,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aaH" = (
 /obj/structure/window/reinforced,
-/obj/machinery/hydroponics/soil,
 /obj/item/seeds/grass,
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
+/obj/machinery/hydroponics,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aaI" = (
@@ -210,11 +210,11 @@
 /area/security/prison)
 "aaJ" = (
 /obj/structure/window/reinforced,
-/obj/machinery/hydroponics/soil,
 /obj/item/cultivator,
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
+/obj/machinery/hydroponics,
 /turf/open/floor/plasteel,
 /area/security/prison)
 "aaL" = (
@@ -59178,6 +59178,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/research)
+"ito" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/weightmachine/stacklifter,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "iug" = (
 /obj/machinery/holopad,
 /obj/effect/turf_decal/stripes/line,
@@ -61125,6 +61130,11 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"luD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/weightmachine/weightlifter,
+/turf/open/floor/plasteel,
+/area/security/prison)
 "luJ" = (
 /obj/docking_port/stationary/random{
 	id = "pod_lavaland2";
@@ -95070,7 +95080,7 @@ aaA
 aaH
 aaY
 aav
-aav
+luD
 aav
 abE
 aal
@@ -95584,7 +95594,7 @@ aaA
 aaJ
 xya
 aav
-lRh
+ito
 abm
 abG
 acc
@@ -96099,7 +96109,7 @@ aav
 lRh
 uTz
 xFR
-aav
+lRh
 abH
 aca
 aca
