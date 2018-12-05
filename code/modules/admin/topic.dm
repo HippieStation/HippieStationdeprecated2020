@@ -21,6 +21,8 @@
 
 	if(!CheckAdminHref(href, href_list))
 		return
+		
+	hippieTopic(href, href_list) // hippie -- hippie topic options
 
 	if(href_list["ahelp"])
 		if(!check_rights(R_ADMIN, TRUE))
@@ -309,7 +311,7 @@
 		check_antagonists()
 
 	else if(href_list["delay_round_end"])
-		if(!check_rights(R_SERVER))
+		if(!check_rights(R_ADMIN)) // hippie -- let trials delay round too
 			return
 		if(!SSticker.delay_end)
 			SSticker.admin_delay_notice = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
