@@ -75,10 +75,10 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 	/datum/admins/proc/open_borgopanel,
 	/client/proc/reset_atmos, /* hippie -- reset atmos if some griefer spams plasma */
 	/client/proc/aooc, /* hippie -- sends a message to all antags on the server*/
-GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
+	/client/proc/fill_breach /* hippie -- fills breaches in a radius defined by the admin*/
 	)
 GLOBAL_PROTECT(admin_verbs_ban)
-GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/DB_ban_panel, /client/proc/stickybanpanel))
+GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
 GLOBAL_PROTECT(admin_verbs_sounds)
 GLOBAL_LIST_INIT(admin_verbs_sounds, list(/client/proc/play_local_sound, /client/proc/play_sound, /client/proc/set_round_end_sound))
 GLOBAL_PROTECT(admin_verbs_fun)
@@ -98,7 +98,6 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/forceEvent,
 	/client/proc/admin_change_sec_level,
 	/client/proc/toggle_nuke,
-	/client/proc/spawn_human, /* hippie -- spawn yourself as dummy */
 	/client/proc/run_weather,
 	/client/proc/mass_zombie_infection,
 	/client/proc/mass_zombie_cure,
@@ -126,8 +125,7 @@ GLOBAL_LIST_INIT(admin_verbs_server, world.AVerbsServer())
 	/client/proc/forcerandomrotate,
 	/client/proc/adminchangemap,
 	/client/proc/panicbunker,
-	/client/proc/toggle_hub,
-	/client/proc/mentor_memo /* hippie -- handle mentor memos */
+	/client/proc/toggle_hub
 	)
 GLOBAL_PROTECT(admin_verbs_debug)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVerbsDebug())
@@ -378,6 +376,11 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	set category = "Admin"
 	if(holder)
 		holder.check_antagonists()
+		log_admin("[key_name(usr)] checked antagonists.")	//for tsar~
+		if(!isobserver(usr) && SSticker.HasRoundStarted())
+			message_admins("[key_name_admin(usr)] checked antagonists.")
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Check Antagonists") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 /client/proc/ban_panel()
 	set name = "Banning Panel"
 	set category = "Admin"
@@ -386,18 +389,13 @@ GLOBAL_LIST_INIT(admin_verbs_hideable, list(
 	holder.ban_panel()
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Banning Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-		log_admin("[key_name(usr)] checked antagonists.")	//for tsar~
+/client/proc/unban_panel()
 	set name = "Unbanning Panel"
-			message_admins("[key_name_admin(usr)] checked antagonists.")
+	set category = "Admin"
 	if(!check_rights(R_BAN))
 		return
 	holder.unban_panel()
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Unbanning Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		if(CONFIG_GET(flag/ban_legacy_system))
-			holder.unbanpanel()
-		else
-			holder.DB_ban_panel()
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Unban Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/game_panel()
 	set name = "Game Panel"
