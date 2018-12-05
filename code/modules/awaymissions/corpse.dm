@@ -36,7 +36,7 @@
 	if(!uses)
 		to_chat(user, "<span class='warning'>This spawner is out of charges!</span>")
 		return
-	if(is_banned_from(user.key, banType))
+	if(is_banned_from(user.key, banType) || is_banned_from(O.ckey, CATBAN) || is_banned_from(O.ckey, CLUWNEBAN)) // hippie -- adds our jobbans
 		to_chat(user, "<span class='warning'>You are jobanned!</span>")
 		return
 	if(QDELETED(src) || QDELETED(user))
