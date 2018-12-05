@@ -311,7 +311,7 @@ SUBSYSTEM_DEF(job)
 	var/list/shuffledoccupations = shuffle(occupations)
 	for(var/level = 1 to 3)
 		//Check the head jobs first each level
-				if(is_banned_from(player.ckey, job.title))
+		CheckHeadPositions(level)
 
 		// Loop through all unassigned players
 		for(var/mob/dead/new_player/player in unassigned)
@@ -489,8 +489,8 @@ SUBSYSTEM_DEF(job)
 		var/regex/jobs = new("[J.title]=(-1|\\d+),(-1|\\d+)")
 		jobs.Find(jobstext)
 		J.total_positions = text2num(jobs.group[1])
-			if(is_banned_from(player.ckey, job.title) || QDELETED(player))
-
+		J.spawn_positions = text2num(jobs.group[2])
+		
 /datum/controller/subsystem/job/proc/HandleFeedbackGathering()
 	for(var/datum/job/job in occupations)
 		var/high = 0 //high
@@ -502,7 +502,7 @@ SUBSYSTEM_DEF(job)
 		for(var/mob/dead/new_player/player in GLOB.player_list)
 			if(!(player.ready == PLAYER_READY_TO_PLAY && player.mind && !player.mind.assigned_role))
 				continue //This player is not ready
-			if(jobban_isbanned(player, job.title) || QDELETED(player))
+			if(is_banned_from(player.ckey, job.title) || QDELETED(player))
 				banned++
 				continue
 			if(!job.player_old_enough(player.client))
