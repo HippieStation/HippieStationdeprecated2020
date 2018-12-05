@@ -323,7 +323,7 @@ SUBSYSTEM_DEF(job)
 				if(!job)
 					continue
 
-				if(jobban_isbanned(player, job.title))
+				if(is_banned_from(player.ckey, job.title))
 					JobDebug("DO isbanned failed, Player: [player], Job:[job.title]")
 					continue
 
