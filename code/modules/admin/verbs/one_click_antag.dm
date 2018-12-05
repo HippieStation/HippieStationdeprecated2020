@@ -22,10 +22,7 @@
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=centcom'>Make CentCom Response Team (Requires Ghosts)</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=abductors'>Make Abductor Team (Requires Ghosts)</a><br>
 		<a href='?src=[REF(src)];[HrefToken()];makeAntag=revenant'>Make Revenant (Requires Ghost)</a><br>
-		<a href='?src=[REF(src)];[HrefToken()];makeAntag=shadowling'>Make Shadowling</a><br>
-		<a href='?src=[REF(src)];[HrefToken()];makeAntag=messiah'>Make Space Jesus</a><br>
-		<a href='?src=[REF(src)];[HrefToken()];makeAntag=infiltrator'>Make Infiltration Team (Requires Ghosts)
-		"} // hippie -- adds shadowling, infiltrator, and jesus maker
+		"}
 
 	var/datum/browser/popup = new(usr, "oneclickantag", "Quick-Create Antagonist", 400, 400)
 	popup.set_content(dat)
@@ -41,10 +38,10 @@
 		if(!is_station_level(T.z))
 			return FALSE
 	if(conscious && applicant.stat) //incase you don't care about a certain antag being unconcious when made, ie if they have selfhealing abilities.
-	return !is_banned_from(applicant.ckey, list(targetrole, ROLE_SYNDICATE))
+		return FALSE
 	if(!considered_alive(applicant.mind) || considered_afk(applicant.mind)) //makes sure the player isn't a zombie, brain, or just afk all together
 		return FALSE
-	return (!jobban_isbanned(applicant, targetrole) && !jobban_isbanned(applicant, ROLE_SYNDICATE))
+	return !is_banned_from(applicant.ckey, list(targetrole, ROLE_SYNDICATE))
 
 
 /datum/admins/proc/makeTraitors()
