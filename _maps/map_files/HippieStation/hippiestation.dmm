@@ -9933,9 +9933,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/power/apc{
+	areastring = "/area/vacant_room/office";
 	dir = 8;
 	name = "Vacant Office B APC";
-	areastring = "/area/vacant_room/b";
 	pixel_x = -24
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -22130,7 +22130,9 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/vacant_room)
+/area/vacant_room{
+	name = "Vacant Office A"
+	})
 "beQ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -45205,6 +45207,10 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 24
+	},
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
 "cmf" = (
@@ -57573,9 +57579,6 @@
 	icon_state = "manifold-1";
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 9
-	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
 	},
@@ -58268,6 +58271,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
+"gKo" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel/white/side{
+	dir = 5
+	},
+/area/science/research)
 "gLr" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
@@ -68010,6 +68022,10 @@
 /area/engine/port_engineering)
 "vPW" = (
 /obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "rdoffice";
+	name = "RD office shutters"
+	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/hor)
 "vRQ" = (
@@ -94546,16 +94562,16 @@ bIJ
 bJS
 bJS
 bJS
-bQG
-bQG
-bQG
+ctD
+ctD
+ctD
 bJS
-bQG
-bQG
-bQG
-bQG
-bQG
-bQG
+ctD
+ctD
+ctD
+ctD
+ctD
+ctD
 bJS
 bJS
 eif
@@ -115629,7 +115645,7 @@ bUV
 bCY
 bXw
 byR
-byR
+gKo
 bAj
 byR
 cdu
