@@ -101,9 +101,9 @@ SUBSYSTEM_DEF(job)
 
 /datum/controller/subsystem/job/proc/FindOccupationCandidates(datum/job/job, level, flag)
 	JobDebug("Running FOC, Job: [job], Level: [level], Flag: [flag]")
-		if(is_banned_from(player.ckey, job.title) || QDELETED(player))
+	var/list/candidates = list()
 	for(var/mob/dead/new_player/player in unassigned)
-		if(jobban_isbanned(player, job.title) || QDELETED(player))
+		if(is_banned_from(player.ckey, job.title) || QDELETED(player))
 			JobDebug("FOC isbanned failed, Player: [player]")
 			continue
 		if((jobban_isbanned(player, CLUWNEBAN) || jobban_isbanned(player, CATBAN)) && job.title != SSjob.overflow_role) // hippie start -- fixes catbans
@@ -134,7 +134,7 @@ SUBSYSTEM_DEF(job)
 		if(AssignRole(player, SSjob.overflow_role))
 			return TRUE
 		return FALSE // hippie end
-		if(is_banned_from(player.ckey, job.title) || QDELETED(player))
+	for(var/datum/job/job in shuffle(occupations))
 		if(!job)
 			continue
 
@@ -144,7 +144,7 @@ SUBSYSTEM_DEF(job)
 		if(job.title in GLOB.command_positions) //If you want a command position, select it!
 			continue
 
-		if(jobban_isbanned(player, job.title) || QDELETED(player))
+		if(is_banned_from(player.ckey, job.title) || QDELETED(player))
 			if(QDELETED(player))
 				JobDebug("GRJ isbanned failed, Player deleted")
 				break
