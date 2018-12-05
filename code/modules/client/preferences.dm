@@ -542,7 +542,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 
 			for (var/i in GLOB.special_roles)
-				if(is_banned_from(user.ckey, i))
+				if(is_banned_from(user.ckey, i) || is_banned_from(O.ckey, CATBAN) || is_banned_from(O.ckey, CLUWNEBAN))
 					dat += "<b>Be [capitalize(i)]:</b> <a href='?_src_=prefs;bancheck=[i]'>BANNED</a><br>"
 				else
 					var/days_remaining = null
@@ -666,18 +666,18 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				HTML += "<font color=red>[rank]</font></td><td><a href='?_src_=prefs;bancheck=[rank]'> BANNED</a></td></tr>"
 				HTML += "<font color=red>[rank]</font></td><td><a href='?_src_=prefs;jobbancheck=[rank]'> BANNED</a></td></tr>"
 				continue
-			if((jobban_isbanned(user, CLUWNEBAN) || jobban_isbanned(user, CATBAN)) && rank != SSjob.overflow_role) // hippie start -- adds our jobban checks
+			if((is_banned_from(O.ckey, CATBAN) || is_banned_from(O.ckey, CLUWNEBAN)) && rank != SSjob.overflow_role) // hippie start -- adds our jobban checks
 				HTML += "<font color=red>[rank]</font></td><td><a href='?_src_=prefs;jobbancheck=[rank]'> BANNED</a></td></tr>"
 				continue // hippie end
 			var/required_playtime_remaining = job.required_playtime_remaining(user.client)
 			if(required_playtime_remaining)
 				HTML += "<font color=red>[rank]</font></td><td><font color=red> \[ [get_exp_format(required_playtime_remaining)] as [job.get_exp_req_type()] \] </font></td></tr>"
 				continue
-			if((job_civilian_low & overflow.flag) && (rank != SSjob.overflow_role) && !is_banned_from(user.ckey, SSjob.overflow_role))
+			if(!job.player_old_enough(user.client))
 				var/available_in_days = job.available_in_days(user.client)
 				HTML += "<font color=red>[rank]</font></td><td><font color=red> \[IN [(available_in_days)] DAYS\]</font></td></tr>"
 				continue
-			if((job_civilian_low & overflow.flag) && (rank != SSjob.overflow_role) && !jobban_isbanned(user, SSjob.overflow_role))
+			if((job_civilian_low & overflow.flag) && (rank != SSjob.overflow_role) && !is_banned_from(user.ckey, SSjob.overflow_role))
 				HTML += "<font color=orange>[rank]</font></td><td></td></tr>"
 				continue
 			if((rank in GLOB.command_positions) || (rank == "AI"))//Bold head jobs
