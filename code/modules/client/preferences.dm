@@ -949,6 +949,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/bal = 0
 	for(var/V in all_quirks)
 		var/datum/quirk/T = SSquirks.quirks[V]
+		bal -= initial(T.value)
+	return bal
+
+/datum/preferences/proc/process_link(mob/user, list/href_list)
 	if(href_list["bancheck"])
 		var/list/ban_details = is_banned_from_with_details(user.ckey, user.client.address, user.client.computer_id, href_list["bancheck"])
 		var/admin = FALSE
@@ -964,11 +968,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(ban_details["expiration_time"])
 				expires = " The ban is for [DisplayTimeText(text2num(ban_details["duration"]) MINUTES)] and expires on [ban_details["expiration_time"]] (server time)."
 			to_chat(user, "<span class='danger'>You, or another user of this computer or connection ([ban_details["key"]]) is banned from playing [href_list["bancheck"]].<br>The ban reason is: [ban_details["reason"]]<br>This ban (BanID #[ban_details["id"]]) was applied by [ban_details["admin_key"]] on [ban_details["bantime"]] during round ID [ban_details["round_id"]].<br>[expires]</span>")
-		var/sql_ckey = sanitizeSQL(user.ckey)
-			to_chat(user, text)
-		qdel(query_get_jobban)
-		return
-
+			return
 	if(href_list["preference"] == "job")
 		switch(href_list["task"])
 			if("close")
@@ -976,11 +976,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				ShowChoices(user)
 			if("reset")
 				ResetJobs()
-						if(is_banned_from(user.ckey, SSjob.overflow_role))
+				SetChoices(user)
 			if("random")
 				switch(joblessrole)
 					if(RETURNTOLOBBY)
-						if(jobban_isbanned(user, SSjob.overflow_role))
+						if(is_banned_from(user.ckey, SSjob.overflow_role))
 							joblessrole = BERANDOMJOB
 						else
 							joblessrole = BEOVERFLOW
