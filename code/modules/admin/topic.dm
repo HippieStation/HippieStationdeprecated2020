@@ -22,8 +22,6 @@
 	if(!CheckAdminHref(href, href_list))
 		return
 
-	hippieTopic(href, href_list) // hippie -- hippie topic options
-
 	if(href_list["ahelp"])
 		if(!check_rights(R_ADMIN, TRUE))
 			return
@@ -45,7 +43,6 @@
 		if(!check_rights(R_ADMIN))
 			return
 		var/mob/M = locate(href_list["getplaytimewindow"]) in GLOB.mob_list
-
 		if(!M)
 			to_chat(usr, "<span class='danger'>ERROR: Mob not found.</span>")
 			return
@@ -183,8 +180,8 @@
 						event.announceWhen = -1
 				event.processing = TRUE
 			message_admins("[key_name_admin(usr)] has triggered an event. ([E.name])")
-			return
-		create_message("note", bankey, null, banreason, null, null, 0, 0, null, 0, banseverity)
+			log_admin("[key_name(usr)] has triggered an event. ([E.name])")
+		return
 
 	else if(href_list["editrightsbrowser"])
 		edit_admin_permissions(0)
@@ -312,7 +309,7 @@
 		check_antagonists()
 
 	else if(href_list["delay_round_end"])
-		if(!check_rights(R_ADMIN))
+		if(!check_rights(R_SERVER))
 			return
 		if(!SSticker.delay_end)
 			SSticker.admin_delay_notice = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
@@ -330,7 +327,7 @@
 			SSticker.standard_reboot()
 
 	else if(href_list["end_round"])
-		if(!check_rights(R_ADMIN)) // hippie -- let trials delay round too
+		if(!check_rights(R_ADMIN))
 			return
 
 		message_admins("<span class='adminnotice'>[key_name_admin(usr)] is considering ending the round.</span>")
@@ -414,19 +411,8 @@
 				M.change_mob_type( /mob/living/simple_animal/hostile/construct/builder , null, null, delmob )
 			if("constructwraith")
 				M.change_mob_type( /mob/living/simple_animal/hostile/construct/wraith , null, null, delmob )
-							jobban_buildcache(M.client)
-						if(!msg)
-							msg = job
-						else
-							msg += ", [job]"
-					else
-						continue
-			if(msg)
-				message_admins("<span class='adminnotice'>[key_name_admin(usr)] unbanned [key_name_admin(M)] from [msg].</span>")
-				to_chat(M, "<span class='boldannounce'><BIG>You have been un-jobbanned by [usr.client.key] from [msg].</BIG></span>")
-				href_list["jobban2"] = 1 // lets it fall through and refresh
-			return 1
-		return 0 //we didn't do anything!
+			if("shade")
+				M.change_mob_type( /mob/living/simple_animal/shade , null, null, delmob )
 
 	else if(href_list["boot2"])
 		if(!check_rights(R_ADMIN))
@@ -588,18 +574,19 @@
 
 	else if(href_list["messageedits"])
 		if(!check_rights(R_ADMIN))
-					to_chat(usr, "<span class='danger'>Failed to apply ban.</span>")
-					return
-				ban_unban_log_save("[key_name(usr)] has permabanned [key_name(M)]. - Reason: [reason] - This is a permanent ban.")
-				log_admin_private("[key_name(usr)] has banned [key_name(M)]. - Reason: [reason] - This is a permanent ban.")
-				var/msg = "<span class='adminnotice'>[key_name_admin(usr)] has banned [key_name_admin(M)]. - Reason: [reason] - This is a permanent ban.</span>"
-				message_admins(msg)
-				var/datum/admin_help/AH = M.client ? M.client.current_ticket : null
-				if(AH)
-					AH.Resolve()
-				qdel(M.client)
-			if("Cancel")
-				return
+			return
+		var/message_id = sanitizeSQL("[href_list["messageedits"]]")
+		var/datum/DBQuery/query_get_message_edits = SSdbcore.NewQuery("SELECT edits FROM [format_table_name("messages")] WHERE id = '[message_id]'")
+		if(!query_get_message_edits.warn_execute())
+			qdel(query_get_message_edits)
+			return
+		if(query_get_message_edits.NextRow())
+			var/edit_log = query_get_message_edits.item[1]
+			if(!QDELETED(usr))
+				var/datum/browser/browser = new(usr, "Note edits", "Note edits")
+				browser.set_content(jointext(edit_log, ""))
+				browser.open()
+		qdel(query_get_message_edits)
 
 	else if(href_list["mute"])
 		if(!check_rights(R_ADMIN))
@@ -1151,14 +1138,14 @@
 			return
 
 		var/mob/M = locate(href_list["CentComReply"])
-		usr.client.admin_headset_message(M, RADIO_CHANNEL_CENTCOM)
+		usr.client.admin_headset_message(M, "CentCom")
 
 	else if(href_list["SyndicateReply"])
 		if(!check_rights(R_ADMIN))
 			return
 
 		var/mob/M = locate(href_list["SyndicateReply"])
-		usr.client.admin_headset_message(M, RADIO_CHANNEL_SYNDICATE)
+		usr.client.admin_headset_message(M, "Syndicate")
 
 	else if(href_list["HeadsetMessage"])
 		if(!check_rights(R_ADMIN))
@@ -1824,6 +1811,19 @@
 				var/datum/objective/O = locate(href_list["tobjective"]) in T.objectives
 				if(O)
 					T.admin_remove_objective(usr,O)
+			if("add_member")
+				var/datum/team/T = locate(href_list["team"]) in GLOB.antagonist_teams
+				if(T)
+					T.admin_add_member(usr)
+			if("remove_member")
+				var/datum/team/T = locate(href_list["team"]) in GLOB.antagonist_teams
+				if(!T)
+					return
+				var/datum/mind/M = locate(href_list["tmember"]) in T.members
+				if(M)
+					T.admin_remove_member(usr,M)
+		check_teams()
+
 	else if(href_list["newbankey"])
 		var/player_key = href_list["newbankey"]
 		var/player_ip = href_list["newbanip"]
@@ -1877,19 +1877,6 @@
 	else if(href_list["unbanlog"])
 		var/ban_id = href_list["unbanlog"]
 		ban_log(ban_id)
-			if("add_member")
-				var/datum/team/T = locate(href_list["team"]) in GLOB.antagonist_teams
-				if(T)
-					T.admin_add_member(usr)
-			if("remove_member")
-				var/datum/team/T = locate(href_list["team"]) in GLOB.antagonist_teams
-				if(!T)
-					return
-				var/datum/mind/M = locate(href_list["tmember"]) in T.members
-				if(M)
-					T.admin_remove_member(usr,M)
-		check_teams()
-
 
 /datum/admins/proc/HandleCMode()
 	if(!check_rights(R_ADMIN))
