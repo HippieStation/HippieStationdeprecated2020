@@ -64,25 +64,6 @@
 		if(PushAM(AM, move_force))
 			return
 
-//Generic Bump(). Override MobBump() and ObjBump() instead of this.
-/mob/living/Bump(atom/A)
-	if(..()) //we are thrown onto something
-		return
-	if (buckled || now_pushing)
-		return
-	if(ismob(A))
-		var/mob/M = A
-		if(MobBump(M))
-			return
-	if(isobj(A))
-		var/obj/O = A
-		if(ObjBump(O))
-			return
-	if(ismovableatom(A))
-		var/atom/movable/AM = A
-		if(PushAM(AM, move_force))
-			return
-
 /mob/living/Bumped(atom/movable/AM)
 	..()
 	last_bumped = world.time
