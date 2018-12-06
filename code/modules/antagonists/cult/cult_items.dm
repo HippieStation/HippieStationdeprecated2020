@@ -923,7 +923,7 @@
 			if(P.is_reflectable)
 				return FALSE //To avoid reflection chance double-dipping with block chance
 		. = ..()
-		if(.)
+			if(P.reflectable & REFLECT_NORMAL)
 			playsound(src, 'sound/weapons/parry.ogg', 100, 1)
 			if(illusions > 0)
 				illusions--

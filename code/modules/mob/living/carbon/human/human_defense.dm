@@ -55,7 +55,7 @@
 					return 0
 
 	if(!(P.original == src && P.firer == src)) //can't block or reflect when shooting yourself
-		if(P.is_reflectable)
+		if(P.reflectable & REFLECT_NORMAL)
 			if(check_reflect(def_zone)) // Checks if you've passed a reflection% check
 				visible_message("<span class='danger'>The [P.name] gets reflected by [src]!</span>", \
 								"<span class='userdanger'>The [P.name] gets reflected by [src]!</span>")
@@ -725,7 +725,7 @@
 
 			switch(nutrition)
 				if(NUTRITION_LEVEL_FULL to INFINITY)
-					to_chat(src, "<span class='info'>You're completely stuffed!</span>")
+
 				if(NUTRITION_LEVEL_WELL_FED to NUTRITION_LEVEL_FULL)
 					to_chat(src, "<span class='info'>You're well fed!</span>")
 				if(NUTRITION_LEVEL_FED to NUTRITION_LEVEL_WELL_FED)
