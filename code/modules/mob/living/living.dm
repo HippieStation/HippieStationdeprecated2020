@@ -105,13 +105,15 @@
 
 	if(moving_diagonally)//no mob swap during diagonal moves.
 		return 1
-
+		var/mob_swap = FALSE
 	if(!M.buckled && !M.has_buckled_mobs())
 		var/mob_swap
-		//the puller can always swap with its victim if on grab intent
+			mob_swap = TRUE
+		else if(M.has_trait(TRAIT_NOMOBSWAP) || has_trait(TRAIT_NOMOBSWAP))
+			mob_swap = FALSE
 		if(M.pulledby == src && a_intent == INTENT_GRAB)
 			mob_swap = 1
-		//restrained people act if they were on 'help' intent to prevent a person being pulled from being separated from their puller
+			mob_swap = TRUE
 		else if((M.restrained() || M.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP))
 			mob_swap = 1
 		if(mob_swap)
@@ -1209,8 +1211,8 @@
 			set_blindness(var_value)
 		if("eye_damage")
 			set_eye_damage(var_value)
-		if("eye_blurry")
 			set_blurriness(var_value)
+			sync_lighting_plane_alpha()
 		if("maxHealth")
 			updatehealth()
 		if("resize")
