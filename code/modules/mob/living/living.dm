@@ -64,6 +64,25 @@
 		if(PushAM(AM, move_force))
 			return
 
+//Generic Bump(). Override MobBump() and ObjBump() instead of this.
+/mob/living/Bump(atom/A)
+	if(..()) //we are thrown onto something
+		return
+	if (buckled || now_pushing)
+		return
+	if(ismob(A))
+		var/mob/M = A
+		if(MobBump(M))
+			return
+	if(isobj(A))
+		var/obj/O = A
+		if(ObjBump(O))
+			return
+	if(ismovableatom(A))
+		var/atom/movable/AM = A
+		if(PushAM(AM, move_force))
+			return
+
 /mob/living/Bumped(atom/movable/AM)
 	..()
 	last_bumped = world.time
@@ -105,17 +124,17 @@
 
 	if(moving_diagonally)//no mob swap during diagonal moves.
 		return 1
-		var/mob_swap = FALSE
+
 	if(!M.buckled && !M.has_buckled_mobs())
-		var/mob_swap
+		var/mob_swap = FALSE
+		//the puller can always swap with its victim if on grab intent
+		if(M.pulledby == src && a_intent == INTENT_GRAB)
 			mob_swap = TRUE
 		else if(M.has_trait(TRAIT_NOMOBSWAP) || has_trait(TRAIT_NOMOBSWAP))
 			mob_swap = FALSE
-		if(M.pulledby == src && a_intent == INTENT_GRAB)
-			mob_swap = 1
-			mob_swap = TRUE
+		//restrained people act if they were on 'help' intent to prevent a person being pulled from being separated from their puller
 		else if((M.restrained() || M.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP))
-			mob_swap = 1
+			mob_swap = TRUE
 		if(mob_swap)
 			//switch our position with M
 			if(loc && !loc.Adjacent(M.loc))
