@@ -54,7 +54,7 @@
 	var/mob/living/carbon/human/H = gangster_mind.current // we are sure the dude's human cause it's checked in attack()
 	H.silent = max(H.silent, 5)
 	H.Knockdown(100)
-	if(jobban_isbanned(gangster_mind.current, ROLE_GANG))
+	if(is_banned_from(gangster_mind.current.ckey, ROLE_GANG))
 		INVOKE_ASYNC(src, /datum/game_mode.proc/replace_jobbaned_player, gangster_mind.current, ROLE_GANG, ROLE_GANG) // will gangster_mind point to the new dude's mind? dunno honestly, i hope it does
 	gangster_mind.add_antag_datum(/datum/antagonist/gang, gang)
 	return TRUE
