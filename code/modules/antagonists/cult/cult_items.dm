@@ -920,10 +920,10 @@
 				owner.Paralyze(25)
 				qdel(src)
 				return FALSE
-			if(P.is_reflectable)
+			if(P.reflectable & REFLECT_NORMAL)
 				return FALSE //To avoid reflection chance double-dipping with block chance
 		. = ..()
-			if(P.reflectable & REFLECT_NORMAL)
+		if(.)
 			playsound(src, 'sound/weapons/parry.ogg', 100, 1)
 			if(illusions > 0)
 				illusions--
