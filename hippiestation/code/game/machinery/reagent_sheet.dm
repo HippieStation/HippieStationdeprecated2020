@@ -20,7 +20,7 @@
 	for(var/obj/item/stock_parts/matter_bin/MB in component_parts)
 		end_volume = initial(end_volume) * MB.rating
 		
-/obj/machinery/gibber/examine(mob/user)
+/obj/machinery/reagent_sheet/examine(mob/user)
 	..()
 	if(in_range(user, src) || isobserver(user))
 		to_chat(user, "<span class='notice'>The status display reads: Outputting <b>[end_volume/20]</b> ingot(s) after <b>[work_time*0.1]</b> seconds of processing.<span>")
