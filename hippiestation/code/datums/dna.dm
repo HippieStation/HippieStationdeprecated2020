@@ -31,10 +31,10 @@
 /mob/living/carbon/human/set_species(datum/species/mrace, icon_update = TRUE, pref_load = FALSE)
 	..()
 	update_teeth()
-	if(!is_banned_from(src.ckey, CATBAN) && dna.species.name != "Catbeast")
+	if(is_banned_from(src.ckey, CATBAN) && dna.species.name != "Catbeast")
 		set_species(/datum/species/tarajan, icon_update=1) // can't escape hell
 
 /datum/dna/remove_mutation(mutation_name)
 	..()
-	if(!is_banned_from(holder.ckey, CLUWNEBAN) && !check_mutation(CLUWNEMUT))
+	if(is_banned_from(holder.ckey, CLUWNEBAN) && !check_mutation(CLUWNEMUT))
 		add_mutation(CLUWNEMUT) // you can't escape hell
