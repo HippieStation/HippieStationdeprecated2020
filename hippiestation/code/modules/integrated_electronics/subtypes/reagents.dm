@@ -842,9 +842,11 @@
 
 
 /obj/item/integrated_circuit/input/beaker_connector/proc/push_vol()
-	if(!current_beaker)
-		set_pin_data(IC_OUTPUT, 1, 0)
-	set_pin_data(IC_OUTPUT, 1, current_beaker.reagents.total_volume)
+	var/beakerVolume = 0
+	if(current_beaker)
+		beakerVolume = current_beaker.reagents.total_volume
+
+	set_pin_data(IC_OUTPUT, 1, beakerVolume)
 	push_data()
 
 
