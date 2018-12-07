@@ -10,9 +10,17 @@
 	light_range = 2
 	light_color = LIGHT_COLOR_FLARE
 	var/working = FALSE
+	var/work_time = 300
+	var/end_volume = 100
+	circuit = /obj/item/circuitboard/machine/reagent_sheet
+
+/obj/machinery/reagent_sheet/RefreshParts()
+	for(var/obj/item/stock_parts/micro_laser/ML in component_parts)
+		work_time = (initial(work_time)/ML.rating)
+	for(var/obj/item/stock_parts/matter_bin/MB in component_parts)
+		end_volume = initial(end_volume) * MB.rating
 
 /obj/machinery/reagent_sheet/attackby(obj/item/I, mob/user)
-
 	if(istype(I, /obj/item/reagent_containers/food/snacks/solid_reagent))
 		var/obj/item/reagent_containers/food/snacks/solid_reagent/S = I
 
@@ -28,10 +36,10 @@
 			return
 
 		if(S.reagents)
-			var/chem_material = S.reagents.total_volume * 100
+			var/chem_material = S.reagents.total_volume * end_volume
 			use_power = S.reagents.total_volume
 			updateUsrDialog()
-			addtimer(CALLBACK(src, /obj/machinery/reagent_sheet/proc/create_sheets, chem_material, S.reagent_type), 300)
+			addtimer(CALLBACK(src, /obj/machinery/reagent_sheet/proc/create_sheets, chem_material, S.reagent_type), work_time)
 			working = TRUE
 			to_chat(user, "<span class='notice'>You add [S] to [src]</span>")
 			visible_message("<span class='notice'>[src] activates!</span>")
@@ -61,3 +69,11 @@
 			qdel(RR)
 
 	return
+
+/obj/item/circuitboard/machine/reagent_sheet
+	name = "Reagent Refinery (Machine Board)"
+	build_path = /obj/machinery/reagent_sheet
+	req_components = list(
+		/obj/item/stock_parts/micro_laser = 1,
+		/obj/item/stock_parts/matter_bin = 1,
+		/obj/item/stack/cable_coil = 3)
