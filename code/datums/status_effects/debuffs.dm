@@ -88,6 +88,7 @@
 	duration = -1
 	tick_interval = 4
 	alert_type = /obj/screen/alert/status_effect/his_wrath
+	alert_type = null
 
 /obj/screen/alert/status_effect/his_wrath
 	name = "His Wrath"
@@ -553,6 +554,12 @@
 	return TRUE
 
 /datum/status_effect/trance/on_creation(mob/living/new_owner, _duration, _stun = TRUE)
+	alert_type = /obj/screen/alert/status_effect/trance
+	
+/obj/screen/alert/status_effect/trance
+	name = "Trance"
+	desc = "Everything feels so distant, and you can feel your thoughts forming loops inside your head..."
+	icon_state = "high"
 	duration = _duration
 	stun = _stun
 	. = ..()
