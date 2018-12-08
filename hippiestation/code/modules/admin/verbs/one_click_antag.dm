@@ -12,7 +12,7 @@
 			if(!applicant.stat)
 				if(applicant.mind)
 					if(!applicant.mind.special_role)
-						if(!jobban_isbanned(applicant, "shadowling") && !jobban_isbanned(applicant, "Syndicate") && !jobban_isbanned(applicant, CLUWNEBAN) && !jobban_isbanned(applicant, CATBAN))
+						if(!is_banned_from(applicant.ckey, ROLE_SHADOWLING) && !is_banned_from(applicant.ckey, ROLE_SYNDICATE) && !is_banned_from(applicant.ckey, CLUWNEBAN) && !is_banned_from(applicant.ckey, CATBAN))
 							if(temp.age_check(applicant.client))
 								if(!(applicant.job in temp.restricted_jobs))
 									if(!(is_shadow_or_thrall(applicant)))
@@ -34,7 +34,7 @@
 	var/mob/living/carbon/human/H
 	for(var/mob/living/carbon/human/applicant in GLOB.player_list)
 		if((ROLE_VAMPIRE in applicant.client.prefs.be_special) && !applicant.stat && applicant.mind && !applicant.mind.special_role)
-			if(!jobban_isbanned(applicant, "vampire") && !jobban_isbanned(applicant, "Syndicate") && !jobban_isbanned(applicant, CLUWNEBAN) && !jobban_isbanned(applicant, CATBAN))
+			if(!is_banned_from(applicant.ckey, ROLE_VAMPIRE) && !is_banned_from(applicant.ckey, ROLE_SYNDICATE) && !is_banned_from(applicant.ckey, CLUWNEBAN) && !is_banned_from(applicant.ckey, CATBAN))
 				if(temp.age_check(applicant.client) && !(applicant.job in temp.restricted_jobs) && !is_vampire(applicant))
 					candidates += applicant
 
