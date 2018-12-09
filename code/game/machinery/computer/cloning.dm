@@ -52,6 +52,7 @@
 	if(pods)
 		for(var/P in pods)
 			var/obj/machinery/clonepod/pod = P
+			if(pod.occupant && pod.clonemind == mind)
 				return pod
 			else if(!. && pod.is_operational() && !(pod.occupant || pod.mess) && pod.efficiency > 5)
 				. = pod
@@ -124,6 +125,7 @@
 		if (!src.diskette)
 			if (!user.transferItemToLoc(W,src))
 				return
+			src.diskette = W
 			to_chat(user, "<span class='notice'>You insert [W].</span>")
 			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
 			src.updateUsrDialog()
@@ -156,7 +158,7 @@
 
 	var/dat = ""
 	dat += "<a href='byond://?src=[REF(src)];refresh=1'>Refresh</a>"
-
+	if(scanner && HasEfficientPod() && scanner.scan_level >= AUTOCLONING_MINIMAL_LEVEL)
 		if(!autoprocess)
 			dat += "<a href='byond://?src=[REF(src)];task=autoprocess'>Autoprocess</a>"
 		else
@@ -249,8 +251,7 @@
 						L += "Structural Enzymes"
 					dat += english_list(L, "Empty", " + ", " + ")
 					dat += "<br /><a href='byond://?src=[REF(src)];disk=load'>Load from Disk</a>"
-
-		mind = "[REF(mob_occupant.mind)]"
+					dat += "<br /><a href='byond://?src=[REF(src)];disk=save'>Save to Disk</a>"
 					dat += "</div>"
 
 				dat += "<font size=1><a href='byond://?src=[REF(src)];del_rec=1'>Delete Record</a></font>"
@@ -271,7 +272,7 @@
 	popup.open()
 
 /obj/machinery/computer/cloning/Topic(href, href_list)
-	else if(pod.growclone(mob_occupant.ckey, mob_occupant.real_name, dna.uni_identity, dna.mutation_index, mind, mrace, dna.features, mob_occupant.faction, quirks, has_bank_account))
+	if(..())
 		return
 
 	if(loading)
@@ -407,7 +408,7 @@
 			else if(pod.occupant)
 				temp = "<font class='bad'>Cloning cycle already in progress.</font>"
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-			else if(pod.growclone(C.fields["ckey"], C.fields["name"], C.fields["UI"], C.fields["SE"], C.fields["mind"], C.fields["mrace"], C.fields["features"], C.fields["factions"], C.fields["quirks"], C.fields["bank_account"]))
+			else if(pod.growclone(mob_occupant.ckey, mob_occupant.real_name, dna.uni_identity, dna.mutation_index, mind, mrace, dna.features, mob_occupant.faction, quirks, has_bank_account))
 				temp = "[C.fields["name"]] => <font class='good'>Cloning cycle in progress...</font>"
 				playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
 				records.Remove(C)
