@@ -536,6 +536,12 @@
 	tick_interval = 10
 	examine_text = "<span class='warning'>SUBJECTPRONOUN seems slow and unfocused.</span>"
 	var/stun = TRUE
+	alert_type = /obj/screen/alert/status_effect/trance
+	
+/obj/screen/alert/status_effect/trance
+	name = "Trance"
+	desc = "Everything feels so distant, and you can feel your thoughts forming loops inside your head..."
+	icon_state = "high"
 
 /datum/status_effect/trance/tick()
 	if(stun)
@@ -553,13 +559,7 @@
 	"<span class='warning'>[pick("You feel your thoughts slow down...", "You suddenly feel extremely dizzy...", "You feel like you're in the middle of a dream...","You feel incredibly relaxed...")]</span>")
 	return TRUE
 
-/datum/status_effect/trance/on_creation(mob/living/new_owner, _duration, _stun = TRUE)
-	alert_type = /obj/screen/alert/status_effect/trance
-	
-/obj/screen/alert/status_effect/trance
-	name = "Trance"
-	desc = "Everything feels so distant, and you can feel your thoughts forming loops inside your head..."
-	icon_state = "high"
+/datum/status_effect/trance/on_creation(mob/living/new_owner, _duration, _stun = TRUE)	
 	duration = _duration
 	stun = _stun
 	. = ..()
