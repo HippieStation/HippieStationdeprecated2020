@@ -13471,7 +13471,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/structure/reagent_dispensers/fueltank,
 /obj/machinery/power/apc{
-	areastring = "/area/chapel/office";
+	areastring = "/area/chapel/main";
 	dir = 2;
 	name = "Chapel APC";
 	pixel_y = -24
