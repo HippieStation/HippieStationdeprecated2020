@@ -48,3 +48,8 @@
 	input = /mob/living/simple_animal/slime
 	output = null
 	required_machine = /obj/machinery/processor/slime
+
+/datum/food_processor_process/mob/living/carbon/monkey
+	input = /mob/living/carbon/monkey
+	output = null
+	required_machine = /obj/machinery/processor/slime
