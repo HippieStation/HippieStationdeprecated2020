@@ -23,4 +23,3 @@
 	if(user.has_dna())
 		var/mob/living/carbon/C = user
 		C.dna.remove_mutation(CHAMELEON)
-			HM.force_lose(C)
