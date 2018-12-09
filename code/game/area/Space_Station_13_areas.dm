@@ -379,6 +379,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Abandoned Gambling Den"
 	icon_state = "abandoned_g_den"
 
+/area/crew_quarters/kitchen/coldroom
+	name = "Kitchen Cold Room"
+	icon_state = "kitchen_cold"
+
 /area/crew_quarters/abandoned_gambling_den/secondary
 	icon_state = "abandoned_g_den_2"
 
