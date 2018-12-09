@@ -19,9 +19,8 @@
 			deltimer(malfhacking)
 			// This proc handles cleanup of screen notifications and
 			// messenging the client
+			malfhacked(malfhack)
 		if(isturf(loc) && (QDELETED(eyeobj) || !eyeobj.loc))
-
-		if(!eyeobj || QDELETED(eyeobj) || !eyeobj.loc)
 			view_core()
 
 		if(machine)
