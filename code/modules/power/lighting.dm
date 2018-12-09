@@ -608,6 +608,7 @@
 	// make it burn hands unless you're wearing heat insulated gloves or have the RESISTHEAT/RESISTHEATHANDS traits
 	if(on)
 		var/prot = 0
+				return
 		var/mob/living/carbon/human/H = user
 
 		if(istype(H))
