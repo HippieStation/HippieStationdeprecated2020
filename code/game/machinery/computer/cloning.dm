@@ -52,7 +52,6 @@
 	if(pods)
 		for(var/P in pods)
 			var/obj/machinery/clonepod/pod = P
-			if(pod.occupant && pod.clonemind == mind)
 				return pod
 			else if(!. && pod.is_operational() && !(pod.occupant || pod.mess) && pod.efficiency > 5)
 				. = pod
@@ -125,7 +124,6 @@
 		if (!src.diskette)
 			if (!user.transferItemToLoc(W,src))
 				return
-			src.diskette = W
 			to_chat(user, "<span class='notice'>You insert [W].</span>")
 			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
 			src.updateUsrDialog()
@@ -159,7 +157,6 @@
 	var/dat = ""
 	dat += "<a href='byond://?src=[REF(src)];refresh=1'>Refresh</a>"
 
-	if(scanner && HasEfficientPod() && scanner.scan_level >= AUTOCLONING_MINIMAL_LEVEL)
 		if(!autoprocess)
 			dat += "<a href='byond://?src=[REF(src)];task=autoprocess'>Autoprocess</a>"
 		else
@@ -201,7 +198,6 @@
 				if(scanner_occupant)
 					dat += "<a href='byond://?src=[REF(src)];scan=1'>Start Scan</a>"
 					dat += "<br><a href='byond://?src=[REF(src)];lock=1'>[src.scanner.locked ? "Unlock Scanner" : "Lock Scanner"]</a>"
-				else
 					dat += "<span class='linkOff'>Start Scan</span>"
 
 			// Database
@@ -254,7 +250,7 @@
 					dat += english_list(L, "Empty", " + ", " + ")
 					dat += "<br /><a href='byond://?src=[REF(src)];disk=load'>Load from Disk</a>"
 
-					dat += "<br /><a href='byond://?src=[REF(src)];disk=save'>Save to Disk</a>"
+		mind = "[REF(mob_occupant.mind)]"
 					dat += "</div>"
 
 				dat += "<font size=1><a href='byond://?src=[REF(src)];del_rec=1'>Delete Record</a></font>"
@@ -275,7 +271,7 @@
 	popup.open()
 
 /obj/machinery/computer/cloning/Topic(href, href_list)
-	if(..())
+	else if(pod.growclone(mob_occupant.ckey, mob_occupant.real_name, dna.uni_identity, dna.mutation_index, mind, mrace, dna.features, mob_occupant.faction, quirks, has_bank_account))
 		return
 
 	if(loading)

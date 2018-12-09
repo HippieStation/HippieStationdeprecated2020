@@ -45,6 +45,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/damage_overlay_type = "human" //what kind of damage overlays (if any) appear on our species when wounded?
 	var/fixed_mut_color = "" //to use MUTCOLOR with a fixed color that's independent of dna.feature["mcolor"]
 	var/deathsound //used to set the mobs deathsound on species change
+	var/inert_mutation 	= DWARFISM //special mutation that can be found in the genepool. Dont leave empty or changing species will be a headache
 
 	// species-only traits. Can be found in DNA.dm
 	var/list/species_traits = list()
@@ -301,6 +302,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	C.remove_movespeed_modifier(MOVESPEED_ID_SPECIES)
 
 	SEND_SIGNAL(C, COMSIG_SPECIES_LOSS, src)
+	if((inert_mutation != new_species.inert_mutation) && LAZYLEN(C.dna.mutation_index))
+		C.dna.remove_mutation(inert_mutation)
+		C.dna.mutation_index[C.dna.mutation_index.Find(inert_mutation)] = new_species.inert_mutation
+		C.dna.mutation_index[new_species.inert_mutation] = create_sequence(new_species.inert_mutation)
 
 /datum/species/proc/handle_hair(mob/living/carbon/human/H, forced_colour)
 	H.remove_overlay(HAIR_LAYER)
@@ -1045,7 +1050,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			to_chat(H, "<span class='danger'>You mutate!</span>")
 			H.randmutb()
 			H.emote("gasp")
-			H.domutcheck()
+			H.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
 
 	if(radiation > RAD_MOB_HAIRLOSS)
 		if(prob(15) && !(H.hair_style == "Bald") && (HAIR in species_traits))
