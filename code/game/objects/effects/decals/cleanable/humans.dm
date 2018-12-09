@@ -54,9 +54,20 @@
 /obj/effect/decal/cleanable/blood/gibs/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
 	reagents.add_reagent("liquidgibs", 5)
+	var/already_rotting = FALSE
+
 
 /obj/effect/decal/cleanable/blood/gibs/ex_act(severity, target)
 	return
+	if(already_rotting)
+		start_rotting(rename=FALSE)
+	else
+		addtimer(CALLBACK(src, .proc/start_rotting), 2 MINUTES)
+
+/obj/effect/decal/cleanable/blood/gibs/proc/start_rotting(rename=TRUE)
+	name = "rotting [initial(name)]"
+	desc += " It smells terrible."
+	AddComponent(/datum/component/rot/gibs)
 
 /obj/effect/decal/cleanable/blood/gibs/Crossed(mob/living/L)
 	if(istype(L) && has_gravity(loc))
@@ -108,6 +119,7 @@
 
 /obj/effect/decal/cleanable/blood/drip
 	name = "drips of blood"
+	already_rotting = TRUE
 	desc = "It's red."
 	icon_state = "1"
 	random_icon_states = list("drip1","drip2","drip3","drip4","drip5")
