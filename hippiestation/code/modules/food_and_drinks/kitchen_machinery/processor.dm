@@ -12,6 +12,7 @@
 			adjust_item_drop_location(item)
 			SSblackbox.record_feedback("tally", "slime_core_harvested", 1, S.colour)
 	else if (istype(M))
+		var/C = M
 		if(M.stat != DEAD)
 			M.forceMove(drop_location())
 			M.visible_message("<span class='notice'>[C] crawls free of the processor!</span>")
