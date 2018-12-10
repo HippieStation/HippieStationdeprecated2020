@@ -88,7 +88,6 @@
 	duration = -1
 	tick_interval = 4
 	alert_type = /obj/screen/alert/status_effect/his_wrath
-	alert_type = null
 
 /obj/screen/alert/status_effect/his_wrath
 	name = "His Wrath"
