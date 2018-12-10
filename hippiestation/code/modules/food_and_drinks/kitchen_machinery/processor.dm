@@ -17,7 +17,7 @@
 			M.forceMove(drop_location())
 			M.visible_message("<span class='notice'>[C] crawls free of the processor!</span>")
 			return
-		var/obj/bucket = new /obj/item/weapon/reagent_containers/glass/bucket(loc)
+		var/obj/bucket = new /obj/item/reagent_containers/glass/bucket(loc)
 		var/datum/reagent/blood/B = new()
 		B.holder = bucket
 		B.volume = 70
