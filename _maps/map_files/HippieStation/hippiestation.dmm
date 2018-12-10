@@ -66639,8 +66639,8 @@
 /area/engine/engineering)
 "twF" = (
 /obj/structure/table,
-/obj/item/switchblade,
 /obj/effect/spawner/lootdrop/maintenance,
+/obj/item/switchblade/civilian,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "txC" = (
