@@ -1,5 +1,5 @@
 /obj/machinery/processor/slime/process_food(datum/food_processor_process/recipe, atom/movable/what)
-	var/mob/simple_animal/slime/S = what
+	var/mob/living/simple_animal/slime/S = what
 	var/mob/living/carbon/monkey/M = what
 	if (istype(S))
 		var/C = S.cores
