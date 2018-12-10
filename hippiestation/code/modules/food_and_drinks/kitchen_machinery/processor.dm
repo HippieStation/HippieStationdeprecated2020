@@ -1,6 +1,6 @@
-/obj/machinery/processor/slime/process_food(datum/food_processor_process/recipe, atom/movable/what, atom/movable/wut)
+/obj/machinery/processor/slime/process_food(datum/food_processor_process/recipe, atom/movable/what)
+	var/mob/simple_animal/slime/S = what
 	var/mob/living/carbon/monkey/M = what
-	var/mob/simple_animal/slime/S = wut
 	if (istype(S))
 		var/C = S.cores
 		if(S.stat != DEAD)
