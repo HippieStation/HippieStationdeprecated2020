@@ -28,7 +28,7 @@
 				B.data["viruses"] += D.Copy()
 		if(M.has_dna())
 			B.data["blood_DNA"] = M.dna.unique_enzymes
-		if(O.resistances&&M.resistances.len)
+		if(M.resistances&&M.resistances.len)
 			B.data["resistances"] = M.resistances.Copy()
 		bucket.reagents.reagent_list += B
 		bucket.reagents.update_total()
