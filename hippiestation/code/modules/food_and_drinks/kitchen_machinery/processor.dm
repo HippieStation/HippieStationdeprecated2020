@@ -22,14 +22,14 @@
 		B.holder = bucket
 		B.volume = 70
 		//set reagent data
-		B.data["donor"] = O
-		for(var/datum/disease/D in O.viruses)
+		B.data["donor"] = M
+		for(var/datum/disease/D in M.viruses)
 			if(!(D.spread_flags & SPECIAL))
 				B.data["viruses"] += D.Copy()
-		if(O.has_dna())
-			B.data["blood_DNA"] = O.dna.unique_enzymes
-		if(O.resistances&&O.resistances.len)
-			B.data["resistances"] = O.resistances.Copy()
+		if(M.has_dna())
+			B.data["blood_DNA"] = M.dna.unique_enzymes
+		if(O.resistances&&M.resistances.len)
+			B.data["resistances"] = M.resistances.Copy()
 		bucket.reagents.reagent_list += B
 		bucket.reagents.update_total()
 		bucket.on_reagent_change()
