@@ -31,6 +31,9 @@ map metastation
 endmap
 
 map pubbystation
+
+map multiz_debug
+endmap
 endmap
 
 map deltastation
