@@ -1,3 +1,4 @@
+#define GUILLOTINE_DECAP_MIN_SHARP 7
 // karma can suck a big fat schlong
 
 /obj/structure/guillotine/drop_blade(mob/user)
