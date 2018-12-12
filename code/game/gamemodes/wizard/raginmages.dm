@@ -80,14 +80,14 @@
 		message_admins("SWF is still pissed, sending another wizard - [max_mages - mages_made] left.")
 		for(var/mob/dead/observer/G in GLOB.player_list)
 			if(G.client && !G.client.holder && !G.client.is_afk() && (ROLE_WIZARD in G.client.prefs.be_special))
-				if(!jobban_isbanned(G, ROLE_WIZARD) && !jobban_isbanned(G, "Syndicate"))
+				if(!is_banned_from(G.ckey, list(ROLE_WIZARD, ROLE_SYNDICATE)))
 					if(age_check(G.client))
 						candidates += G
 		if(!candidates.len)
 			message_admins("No applicable ghosts for the next ragin' mage, asking ghosts instead.")
 			var/time_passed = world.time
 			for(var/mob/dead/observer/G in GLOB.player_list)
-				if(!jobban_isbanned(G, "wizard") && !jobban_isbanned(G, "Syndicate"))
+				if(!is_banned_from(G.ckey, list(ROLE_WIZARD, ROLE_SYNDICATE)))
 					if(age_check(G.client))
 						spawn(0)
 							switch(alert(G, "Do you wish to be considered for the position of Space Wizard Foundation 'diplomat'?","Please answer in 30 seconds!","Yes","No"))

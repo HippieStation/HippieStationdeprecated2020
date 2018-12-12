@@ -97,7 +97,7 @@
 	activators = list("push ref" = IC_PINTYPE_PULSE_IN)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	var/volume = 60
-	var/list/fuel = list("plasma" = 50000, "welding_fuel" = 15000, "carbon" = 10000, "ethanol" = 10000, "nutriment" = 8000)
+	var/list/fuel = list("plasma" = 50000, "slimejelly" = 22500, "welding_fuel" = 15000, "carbon" = 10000, "ethanol" = 10000, "nutriment" = 8000)
 	var/multi = 1
 	var/lfwb =TRUE
 

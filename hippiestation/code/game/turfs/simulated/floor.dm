@@ -1,7 +1,7 @@
 /turf/open/floor/plating/attackby(obj/item/C, mob/user, params)
 	if(istype(C, /obj/item/stack/tile/mineral/reagent))
 		var/obj/item/stack/tile/mineral/reagent/F = C
-		var/turf/open/floor/mineral/reagent/FT = ChangeTurf(F.turf_type)
+		var/turf/open/floor/mineral/reagent/FT = PlaceOnTop(F.turf_type)
 		var/paths = subtypesof(/datum/reagent)
 		for(var/path in paths)
 			var/datum/reagent/RR = new path
