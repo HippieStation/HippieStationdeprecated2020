@@ -368,6 +368,8 @@
 	set name = "toggle-walk-run"
 	set hidden = TRUE
 	set instant = TRUE
+	if(mob)
+		mob.toggle_move_intent(usr)
 
 /mob/verb/up()
 	set name = "Move Upwards"
@@ -400,8 +402,6 @@
 
 /mob/proc/canZMove(direction, turf/target)
 	return FALSE
-	if(mob)
-		mob.toggle_move_intent(usr)
 
 /mob/proc/toggle_move_intent(mob/user)
 	if(m_intent == MOVE_INTENT_RUN)
