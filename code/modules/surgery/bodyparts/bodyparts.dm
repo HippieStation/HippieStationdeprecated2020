@@ -623,7 +623,7 @@
 		luck. In this instance, it probably would not have helped."
 	icon_state = "default_human_l_leg"
 	attack_verb = list("kicked", "stomped")
-
+	max_damage = 50
 	body_zone = BODY_ZONE_L_LEG
 	body_part = LEG_LEFT
 	body_damage_coeff = 0.75
@@ -682,7 +682,7 @@
 	// alternative spellings of 'pokey' are availible
 	icon_state = "default_human_r_leg"
 	attack_verb = list("kicked", "stomped")
-
+	max_damage = 50
 	body_zone = BODY_ZONE_R_LEG
 	body_part = LEG_RIGHT
 	body_damage_coeff = 0.75
