@@ -451,50 +451,66 @@
 	name = "Upgraded Cybernetic Lungs"
 	desc = "A pair of upgraded cybernetic lungs."
 	id = "cybernetic_lungs_u"
-	build_type = PROTOLATHE
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 40
 	materials = list(MAT_METAL = 500, MAT_GLASS = 500, MAT_SILVER = 500)
 	build_path = /obj/item/organ/lungs/cybernetic/upgraded
-	category = list("Medical Designs")
+	category = list("Misc", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+
+/datum/design/cybernetic_liver_u
+	name = "Upgraded Cybernetic Liver"
+	desc = "An upgraded cybernetic liver"
+	id = "cybernetic_liver_u"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 50
+	materials = list(MAT_METAL = 500, MAT_GLASS = 500)
+	build_path = /obj/item/organ/liver/cybernetic/upgraded
+	category = list("Misc", "Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /////////////////////
 ///Surgery Designs///
 /////////////////////
 /datum/design/surgery
-	name = "Surgery Design"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 40
 	desc = "what"
 	id = "surgery_parent"
-	research_icon = 'icons/obj/surgery.dmi'
+	category = list("Misc", "Medical Designs")
 	research_icon_state = "surgery_any"
 	var/surgery
-
-/datum/design/surgery/experimental_dissection
-	name = "Experimental Dissection"
-	desc = "A surgical procedure which deeply analyzes the biology of a corpse, and automatically adds new findings to the research database."
-	id = "surgery_exp_dissection"
-	surgery = /datum/surgery/advanced/experimental_dissection
-	research_icon_state = "surgery_chest"
-
+/datum/design/cybernetic_heart_u
+	name = "Upgraded Cybernetic Heart"
+	desc = "An upgraded cybernetic heart"
+	id = "cybernetic_heart_u"
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 50
+	materials = list(MAT_METAL = 500, MAT_GLASS = 500, MAT_SILVER=500)
+	build_path = /obj/item/organ/heart/cybernetic/upgraded
+	category = list("Misc", "Medical Designs")
 /datum/design/surgery/lobotomy
 	name = "Lobotomy"
 	desc = "An invasive surgical procedure which guarantees removal of almost all brain traumas, but might cause another permanent trauma in return."
 	id = "surgery_lobotomy"
 	surgery = /datum/surgery/advanced/lobotomy
 	research_icon_state = "surgery_head"
-
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 40
 /datum/design/surgery/pacify
 	name = "Pacification"
-	desc = "A surgical procedure which permanently inhibits the aggression center of the brain, making the patient unwilling to cause direct harm."
+	category = list("Misc", "Medical Designs")
 	id = "surgery_pacify"
 	surgery = /datum/surgery/advanced/pacify
 	research_icon_state = "surgery_head"
 
 /datum/design/surgery/viral_bonding
 	name = "Viral Bonding"
-	desc = "A surgical procedure that forces a symbiotic relationship between a virus and its host. The patient must be dosed with spaceacillin, virus food, and formaldehyde."
+	build_type = PROTOLATHE | MECHFAB
+	construction_time = 50
 	id = "surgery_viral_bond"
 	surgery = /datum/surgery/advanced/viral_bonding
-	research_icon_state = "surgery_chest"
+	category = list("Misc", "Medical Designs")
 
 /datum/design/surgery/reconstruction
 	name = "Reconstruction"
