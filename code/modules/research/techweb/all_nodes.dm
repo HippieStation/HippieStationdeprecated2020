@@ -525,8 +525,8 @@
 /datum/techweb_node/botany
 	id = "botany"
 	display_name = "Botanical Engineering"
-	description = "Botanical tools"
-	prereq_ids = list("adv_engi", "biotech")
+	description = "Highly advanced tools."
+	design_ids = list("exwelder", "jawsoflife", "handdrill", "laserscalpel", "mechanicalpinches", "searingtool")
 	design_ids = list("diskplantgene", "portaseeder", "plantgenes", "flora_gun", "hydro_tray", "biogenerator", "seed_extractor")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
