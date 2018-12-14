@@ -22,6 +22,11 @@
 	appearance_flags = PLANE_MASTER
 	blend_mode = BLEND_MULTIPLY
 	alpha = 255
+/obj/screen/plane_master/floor/backdrop(mob/mymob)
+	filters = list()
+	if(istype(mymob) && mymob.eye_blurry)
+		filters += GAUSSIAN_BLUR(CLAMP(mymob.eye_blurry*0.1,0.6,3))
+
 
 /obj/screen/plane_master/openspace/backdrop(mob/mymob)
 	filters = list()
@@ -32,6 +37,8 @@
 /obj/screen/plane_master/proc/outline(_size, _color)
 	filters += filter(type = "outline", size = _size, color = _color)
 
+	if(istype(mymob) && mymob.eye_blurry)
+		filters += GAUSSIAN_BLUR(CLAMP(mymob.eye_blurry*0.1,0.6,3))
 /obj/screen/plane_master/proc/shadow(_size, _border, _offset = 0, _x = 0, _y = 0, _color = "#04080FAA")
 	filters += filter(type = "drop_shadow", x = _x, y = _y, color = _color, size = _size, offset = _offset, border = _border)
 
