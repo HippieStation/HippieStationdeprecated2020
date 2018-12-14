@@ -10,7 +10,6 @@
 	light_range = 2
 	light_color = LIGHT_COLOR_FLARE
 	var/obj/item/reagent_containers/food/snacks/solid_reagent/working = null
-	var/obj/item/stock_parts/cell/charging = null
 	var/work_time = 300
 	var/end_volume = 100
 	circuit = /obj/item/circuitboard/machine/reagent_sheet
