@@ -152,6 +152,13 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	if(brain && (replace_current || !should_have_brain))
 		if(!brain.decoy_override)//Just keep it if it's fake
+			brain.Remove(C,TRUE,TRUE)
+			QDEL_NULL(brain)
+	if(should_have_brain && !brain)
+		brain = new mutant_brain()
+		brain.Insert(C, TRUE, TRUE)
+ 	if(heart && (!should_have_heart || replace_current))
+		heart.Remove(C,1)
 		QDEL_NULL(heart)
 	if(should_have_heart && !heart)
 		heart = new mutant_heart()
@@ -202,8 +209,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		tail.Insert(C)
 
 	if(C.get_bodypart(BODY_ZONE_HEAD))
-		if(eyes && (replace_current || !should_have_eyes))
-			eyes.Remove(C,1)
 		if(brain && (replace_current || !should_have_brain))
 			if(!brain.decoy_override)//Just keep it if it's fake
 				brain.Remove(C,TRUE,TRUE)
@@ -211,12 +216,14 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(should_have_brain && !brain)
 			brain = new mutant_brain()
 			brain.Insert(C, TRUE, TRUE)
-
+			
+		if(eyes && (replace_current || !should_have_eyes))
+			eyes.Remove(C,1)
 			QDEL_NULL(eyes)
 		if(should_have_eyes && !eyes)
 			eyes = new mutanteyes
 			eyes.Insert(C)
-
+		
 		if(ears && (replace_current || !should_have_ears))
 			ears.Remove(C,1)
 			QDEL_NULL(ears)
