@@ -149,8 +149,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/should_have_liver = !(NOLIVER in species_traits)
 	var/should_have_stomach = !(NOSTOMACH in species_traits)
 	var/should_have_tail = mutanttail
-		
- 	if(heart && (!should_have_heart || replace_current))
+
+	if(heart && (!should_have_heart || replace_current))
 		heart.Remove(C,1)
 		QDEL_NULL(heart)
 	if(should_have_heart && !heart)
