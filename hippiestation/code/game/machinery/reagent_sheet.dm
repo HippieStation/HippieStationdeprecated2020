@@ -28,18 +28,14 @@
 /obj/machinery/reagent_sheet/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/reagent_containers/food/snacks/solid_reagent))
 		var/obj/item/reagent_containers/food/snacks/solid_reagent/S = I
-
 		if(working)
 			to_chat(user, "<span class='warning'>[src] is busy!</span>")
 			return
-
 		if(panel_open)
 			to_chat(user, "<span class='warning'>You can't load the [I] while it's opened!</span>")
 			return
-
 		if(!in_range(src, S) || !user.Adjacent(src))
 			return
-
 		if(S.reagents)
 			var/chem_material = S.reagents.total_volume * end_volume
 			use_power = S.reagents.total_volume
@@ -52,7 +48,11 @@
 		else
 			to_chat(user, "<span class='alert'>[src] rejects the [S]</span>")
 	else
-		..()
+		if(!working && default_deconstruction_screwdriver(user, icon_state, icon_state, W))
+			return
+		if(default_deconstruction_crowbar(W))
+			return
+		return ..()
 
 /obj/machinery/reagent_sheet/proc/create_sheets(amount, R)
 	visible_message("<span class='notice'>[src] finishes processing</span>")
@@ -72,7 +72,6 @@
 			break
 		else
 			qdel(RR)
-
 	return
 
 /obj/item/circuitboard/machine/reagent_sheet
