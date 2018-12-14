@@ -209,14 +209,14 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(should_have_brain && !brain)
 			brain = new mutant_brain()
 			brain.Insert(C, TRUE, TRUE)
-			
+
 		if(eyes && (replace_current || !should_have_eyes))
 			eyes.Remove(C,1)
 			QDEL_NULL(eyes)
 		if(should_have_eyes && !eyes)
 			eyes = new mutanteyes
 			eyes.Insert(C)
-		
+
 		if(ears && (replace_current || !should_have_ears))
 			ears.Remove(C,1)
 			QDEL_NULL(ears)
