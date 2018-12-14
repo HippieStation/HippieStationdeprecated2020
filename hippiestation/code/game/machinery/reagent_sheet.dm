@@ -50,7 +50,7 @@
 			addtimer(CALLBACK(src, /obj/machinery/reagent_sheet/proc/create_sheets, chem_material), work_time)
 			to_chat(user, "<span class='notice'>You add [working] to [src]</span>")
 			visible_message("<span class='notice'>[src] activates!</span>")
-		if(!in_range(src, S) || !user.Adjacent(src))
+		if(!in_range(src, working) || !user.Adjacent(src))
 			return
 	else
 		if(!working && default_deconstruction_screwdriver(user, icon_state, icon_state, I))
