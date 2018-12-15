@@ -55942,6 +55942,7 @@
 /area/chapel/main)
 "dmH" = (
 /obj/machinery/power/smes/engineering{
+	charge = 2.5e+006;
 	req_access_txt = "32"
 	},
 /obj/structure/cable,
