@@ -812,8 +812,6 @@
 	var/bonus_damage = 10
 	var/quick = FALSE
 	var/obj/item/bodypart/affecting
-	if(check_streak(A,D))
-		return TRUE
 	if(D.IsParalyzed() || D.resting || D.lying)//we can hit ourselves
 		bonus_damage += 5
 		picked_hit_type = "stomps on"
@@ -824,6 +822,8 @@
 			bonus_damage += 5
 			if(D.health <= 40)
 				add_to_streak("S",D)
+				if(check_streak(A,D))
+					return TRUE
 	if(D != A && !D.stat || !D.IsParalyzed() || !D.IsStun()) //and we can't knock ourselves the fuck out/down!
 		if(A.grab_state == GRAB_AGGRESSIVE)
 			A.stop_pulling() //So we don't spam the combo
@@ -854,6 +854,8 @@
 			A.changeNext_move(CLICK_CD_RAPID)
 			.= FALSE
 			add_to_streak("Q",D)
+			if(check_streak(A,D))
+				return TRUE
 	D.visible_message("<span class='danger'>[A] [quick?"quick":""] [picked_hit_type] [D]!</span>", \
 					  "<span class='userdanger'>[A] [quick?"quick":""] [picked_hit_type] you!</span>")
 
