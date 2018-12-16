@@ -76,4 +76,4 @@
 	crate_name = "circuitry starter pack crate"
 	
 /datum/supply_pack/emergency/syndicate 	
-cost = 20000	
+cost = 10000	
