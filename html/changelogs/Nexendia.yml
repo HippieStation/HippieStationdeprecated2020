@@ -1,0 +1,6 @@
+author: "Nexendia"
+
+delete-after: True
+
+changes: 
+  - bugfix: "Heads of Staff now have their Departmental Cards."
