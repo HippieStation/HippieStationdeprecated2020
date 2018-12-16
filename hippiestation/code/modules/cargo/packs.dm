@@ -74,3 +74,6 @@
 					/obj/item/integrated_electronics/debugger,
 					/obj/item/integrated_electronics/wirer)
 	crate_name = "circuitry starter pack crate"
+	
+/datum/supply_pack/emergency/syndicate 	
+cost = 20000	
