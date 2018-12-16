@@ -91,7 +91,7 @@
 	icon_state = "jaws_cutter"
 	item_state = "jawsoflife"
 
-	materials = list(MAT_METAL=150,MAT_SILVER=50,MAT_TITANIUM=25)
+	toolspeed = 0.7
 	usesound = 'sound/items/jaws_cut.ogg'
 	toolspeed = 0.25
 	random_color = FALSE
