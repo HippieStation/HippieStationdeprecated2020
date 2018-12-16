@@ -171,6 +171,7 @@
 	random_icon_states = list("smashed_pie")
 
 /obj/effect/decal/cleanable/chem_pile
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	name = "chemical pile"
 	desc = "A pile of chemicals. You can't quite tell what's inside it."
 	gender = NEUTER
