@@ -84,15 +84,14 @@
 		if(grow_clone_from_record(pod, R))
 			temp = "[R.fields["name"]] => <font class='good'>Cloning cycle in progress...</font>"
 
-
+/obj/machinery/computer/cloning/proc/updatemodules(findfirstcloner)
 	scanner = findscanner()
-	src.scanner = findscanner()
 	if(findfirstcloner && !LAZYLEN(pods))
+		findcloner()
 	if(!autoprocess)
 		STOP_PROCESSING(SSmachines, src)
 	else
 		START_PROCESSING(SSmachines, src)
-		findcloner()
 
 /obj/machinery/computer/cloning/proc/findscanner()
 	var/obj/machinery/dna_scannernew/scannerf = null
@@ -128,6 +127,7 @@
 	pod.connected = null
 	LAZYREMOVE(pods, pod)
 
+/obj/machinery/computer/cloning/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/disk/data)) //INSERT SOME DISKETTES
 		if (!diskette)
 			if (!user.transferItemToLoc(W,src))
@@ -137,7 +137,6 @@
 			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, 0)
 			updateUsrDialog()
 	else if(W.tool_behaviour == TOOL_MULTITOOL)
-	if(W.tool_behaviour == TOOL_MULTITOOL)
 		if(!multitool_check_buffer(user, W))
 			return
 		var/obj/item/multitool/P = W
@@ -166,6 +165,7 @@
 
 	var/dat = ""
 	dat += "<a href='byond://?src=[REF(src)];refresh=1'>Refresh</a>"
+
 	if(scanner && HasEfficientPod() && scanner.scan_level >= AUTOCLONING_MINIMAL_LEVEL)
 		if(!autoprocess)
 			dat += "<a href='byond://?src=[REF(src)];task=autoprocess'>Autoprocess</a>"
@@ -173,8 +173,8 @@
 			dat += "<a href='byond://?src=[REF(src)];task=stopautoprocess'>Stop autoprocess</a>"
 	else
 		dat += "<span class='linkOff'>Autoprocess</span>"
-
 	dat += "<h3>Cloning Pod Status</h3>"
+	dat += "<div class='statusDisplay'>[temp]&nbsp;</div>"
 	switch(menu)
 		if(1)
 			// Modules
@@ -307,17 +307,17 @@
 				else
 					src.temp = "<font class='bad'>Access Denied.</font>"
 					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-		else
-			dat += "<span class='linkOff'>Start Scan</span>"
 
-	popup.set_title_image(user.browse_rsc_icon(icon, icon_state))
 	var/datum/browser/popup = new(user, "cloning", "Cloning System Control")
 	popup.set_content(dat)
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
+	popup.set_title_image(user.browse_rsc_icon(icon, icon_state))
 	popup.open()
 
 /obj/machinery/computer/cloning/Topic(href, href_list)
 	if(..())
+		return
+
+	if(loading)
 		return
 
 	if(href_list["task"])
@@ -345,21 +345,18 @@
 				include_ue = FALSE
 
 	else if ((href_list["scan"]) && !isnull(scanner) && scanner.is_operational())
-		return
+		scantemp = ""
 
 		loading = TRUE
 		updateUsrDialog()
-
-		loading = 1
-		src.updateUsrDialog()
 		playsound(src, 'sound/machines/terminal_prompt.ogg', 50, 0)
+		say("Initiating scan...")
+
+		spawn(20)
 			scan_occupant(scanner.occupant)
 
 			loading = FALSE
 			updateUsrDialog()
-
-			loading = 0
-			src.updateUsrDialog()
 			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
 
 
@@ -369,6 +366,9 @@
 			scanner.locked = TRUE
 			playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 		else
+			scanner.locked = FALSE
+			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
+
 	else if(href_list["view_rec"])
 		playsound(src, "terminal_type", 25, 0)
 		active_record = find_record("id", href_list["view_rec"], records)
@@ -438,7 +438,7 @@
 				temp = "Save successful."
 				playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
 
-			scanner.locked = FALSE
+	else if (href_list["refresh"])
 		updateUsrDialog()
 		playsound(src, "terminal_type", 25, 0)
 
@@ -476,14 +476,10 @@
 
 	else if (href_list["menu"])
 		menu = text2num(href_list["menu"])
+		playsound(src, "terminal_type", 25, 0)
 
-	else if (href_list["refresh"])
 	add_fingerprint(usr)
 	updateUsrDialog()
-
-
-	src.add_fingerprint(usr)
-	src.updateUsrDialog()
 	return
 
 /obj/machinery/computer/cloning/proc/scan_occupant(occupant)
@@ -504,28 +500,32 @@
 		scantemp = "<font class='bad'>Unable to locate valid genetic data.</font>"
 		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 		return
-	if((mob_occupant.has_trait(TRAIT_NOCLONE)) && (scanner.scan_level < 2))
+	if(mob_occupant.suiciding || mob_occupant.hellbound)
 		scantemp = "<font class='bad'>Subject's brain is not responding to scanning stimuli.</font>"
 		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 		return
-	if (isnull(mob_occupant.mind))
+	if((mob_occupant.has_trait(TRAIT_NOCLONE)) && (scanner.scan_level < 2))
 		scantemp = "<font class='bad'>Subject no longer contains the fundamental materials required to create a living clone.</font>"
 		playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
 		return
-	if ((!mob_occupant.ckey) || (!mob_occupant.client))
+	if (isnull(mob_occupant.mind))
 		scantemp = "<font class='bad'>Mental interface failure.</font>"
-		var/obj/machinery/clonepod/pod = GetAvailablePod() // hippie start -- (PREVENTS SOUND WHILE THE POD IS IN USE)	
-		if (!pod.occupant)
-			playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0) // hippie end
-	var/datum/data/record/R = new()
+		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
+		return
 	if(SSeconomy.full_ancap)
 		if(!has_bank_account)
 			scantemp = "<font class='average'>Subject is either missing an ID card with a bank account on it, or does not have an account to begin with. Please ensure the ID card is on the body before attempting to scan.</font>"
 			playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 			return
-		R.fields["mrace"] = dna.species
+	var/datum/data/record/R = new()
 	if(dna.species)
 		// We store the instance rather than the path, because some
+		// species (abductors, slimepeople) store state in their
+		// species datums
+		dna.delete_species = FALSE
+		R.fields["mrace"] = dna.species
+	else
+		var/datum/species/rando_race = pick(GLOB.roundstart_races)
 		R.fields["mrace"] = rando_race.type
 
 	R.fields["name"] = mob_occupant.real_name
@@ -538,8 +538,8 @@
 	R.fields["factions"] = mob_occupant.faction
 	R.fields["quirks"] = list()
 	R.fields["bank_account"] = has_bank_account
-
-	var/mind
+	for(var/V in mob_occupant.roundstart_quirks)
+		var/datum/quirk/T = V
 		R.fields["quirks"][T.type] = T.clone_data()
 
 	R.fields["mind"] = "[REF(mob_occupant.mind)]"
@@ -558,13 +558,7 @@
 	if(old_record)
 		records -= old_record
 		scantemp = "Record updated."
-	else if(pod.occupant)
+	else
 		scantemp = "Subject successfully scanned."
 	records += R
 	playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
-	else if(pod.growclone(mob_occupant.ckey, mob_occupant.real_name, dna.uni_identity, dna.struc_enzymes, mind, mrace, dna.features, mob_occupant.faction, quirks, has_bank_account))
-		temp = "[mob_occupant.real_name] => <font class='good'>Cloning cycle in progress...</font>"
-		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
-	else
-		temp = "[mob_occupant.real_name] => <font class='bad'>Initialisation failure.</font>"
-		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
