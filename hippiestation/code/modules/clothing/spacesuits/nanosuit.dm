@@ -267,8 +267,8 @@
 			defrosted = FALSE
 			detecting = FALSE
 	var/energy = cell.charge //store current energy here
-	if(mode == NANO_CLOAK && !U.Move()) //are we in cloak, not moving?
-		energy -= cloak_use_rate * 0.1 //take away the cloak discharge rate at 1/10th since we're not moving
+	if(mode == NANO_CLOAK) //are we in cloak, not moving?
+		energy -= cloak_use_rate //take away the cloak discharge rate at 1/10th since we're not moving
 	if((energy < cell.maxcharge) && mode != NANO_CLOAK && !recharge_cooldown) //if our energy is less than 100, we're not in cloak and don't have a recharge delay timer
 		var/energy2 = regen_rate //store our regen rate here
 		energy2+=energy //add our current energy to it
@@ -293,7 +293,7 @@
 			recharge_cooldown = 15 //then wait 3 seconds(1 value per 2 ticks = 15*2=30/10 = 3 seconds) to recharge again
 		if(mode != NANO_ARMOR && mode != NANO_NONE) //we're not in cloak
 			toggle_mode(NANO_ARMOR, TRUE) //go into it, forced
-	cell.use(amount)
+	cell.use(round(amount))
 	return TRUE
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/addmedicalcharge()
