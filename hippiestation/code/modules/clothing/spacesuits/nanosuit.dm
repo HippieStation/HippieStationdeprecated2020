@@ -278,7 +278,7 @@
 	if(msg_time_react)
 		msg_time_react -= 1
 	if(cell.charge != energy)
-		set_nano_energy(energy) //now set our current energy to the variable we modified
+		set_nano_energy(cell.charge - energy) //now set our current energy to the variable we modified
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/set_nano_energy(var/amount, var/delay = 0)
 	if(delay > recharge_cooldown)
@@ -288,8 +288,7 @@
 		criticalpower = TRUE
 	else if(amount > crit_energy) //did our energy go higher than the crit level
 		criticalpower = FALSE //turn it off
-	if(amount <= 0) //did we lose energy?
-		amount = 0 //set our energy to 0
+	if(!cell.charge) //did we lose energy?
 		if(mode == NANO_CLOAK) //are we in cloak?
 			recharge_cooldown = 15 //then wait 3 seconds(1 value per 2 ticks = 15*2=30/10 = 3 seconds) to recharge again
 		if(mode != NANO_ARMOR && mode != NANO_NONE) //we're not in cloak
