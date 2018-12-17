@@ -4,6 +4,8 @@
 #define NANO_STRENGTH "strength"
 #define NANO_NONE "none"
 #define NANO_JUMP_USE 30
+#define NANO_CHARGE_DELAY 15
+#define NANO_EMP_CHARGE_DELAY 40
 
 #define POWER_PUNCH "QQQ"
 #define HEAD_EXPLOSION "SSSS"
@@ -62,7 +64,7 @@
 		if(NS.mode == NANO_STRENGTH)
 			if(istype(T) || istype(S))
 				if(NS.cell.charge >= NANO_JUMP_USE)
-					NS.set_nano_energy(CLAMP(NS.cell.charge-NANO_JUMP_USE,0,NS.cell.charge),15)
+					NS.set_nano_energy(NANO_JUMP_USE,NANO_CHARGE_DELAY)
 				else
 					to_chat(user, "<span class='warning'>Not enough charge.</span>")
 					return
@@ -292,7 +294,7 @@
 			recharge_cooldown = 15 //then wait 3 seconds(1 value per 2 ticks = 15*2=30/10 = 3 seconds) to recharge again
 		if(mode != NANO_ARMOR && mode != NANO_NONE) //we're not in cloak
 			toggle_mode(NANO_ARMOR, TRUE) //go into it, forced
-	cell.charge = amount
+	cell.use(amount)
 	return TRUE
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/addmedicalcharge()
@@ -301,22 +303,22 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/onmove()
 	if(mode == NANO_CLOAK)
-		set_nano_energy(CLAMP(cell.charge-(cloak_use_rate),0,cell.charge),15)
+		set_nano_energy(cloak_use_rate,NANO_CHARGE_DELAY)
 	else if(mode == NANO_SPEED)
-		set_nano_energy(CLAMP(cell.charge-(speed_use_rate),0,cell.charge),15)
+		set_nano_energy(speed_use_rate,NANO_CHARGE_DELAY)
 
 /obj/item/clothing/suit/space/hardsuit/nano/hit_reaction(mob/living/carbon/human/user, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/obj/item/projectile/P = hitby
-	if(mode == NANO_ARMOR && cell.charge > 0)
+	if(mode == NANO_ARMOR && cell.charge)
 		if(prob(final_block_chance))
 			user.visible_message("<span class='danger'>[user]'s shields deflect [attack_text] draining their energy!</span>")
 			if(damage)
 				if(attack_type != STAMINA)
-					set_nano_energy(CLAMP(cell.charge-(5 + damage),0,cell.charge),15)//laser guns, anything lethal drains 5 + the damage dealth
+					set_nano_energy(5 + damage,NANO_CHARGE_DELAY)//laser guns, anything lethal drains 5 + the damage dealth
 				else if(P.damage_type == STAMINA && attack_type == PROJECTILE_ATTACK)
-					set_nano_energy(CLAMP(cell.charge-15,0,cell.charge),15)//stamina damage, aka disabler beams
+					set_nano_energy(15,NANO_CHARGE_DELAY)//stamina damage, aka disabler beams
 			if(istype(P, /obj/item/projectile/energy/electrode))//if electrode aka taser
-				set_nano_energy(CLAMP(cell.charge-25,0,cell.charge),15)
+				set_nano_energy(25,NANO_CHARGE_DELAY)
 			return TRUE
 		else
 			user.visible_message("<span class='warning'>[user]'s shields fail to deflect [attack_text].</span>")
@@ -382,7 +384,7 @@
 	return FALSE
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/toggle_mode(var/suitmode, var/forced = FALSE)
-	if(!shutdown && (forced || (cell.charge > 0 && mode != suitmode)))
+	if(!shutdown && (forced || (cell.charge && mode != suitmode)))
 		mode = suitmode
 		switch(suitmode)
 			if(NANO_ARMOR)
@@ -467,7 +469,7 @@
 	..()
 	if(!severity || shutdown)
 		return
-	set_nano_energy(max(0,cell.charge-(cell.charge/severity)),40)
+	set_nano_energy(cell.charge/severity,NANO_EMP_CHARGE_DELAY)
 	if((mode == NANO_ARMOR && !cell.charge) || (mode != NANO_ARMOR))
 		if(prob(5/severity))
 			emp_assault()
@@ -1016,16 +1018,16 @@
 		if(istype(W, /obj/item/gun))
 			var/obj/item/gun/G = W
 			if(G.suppressed && G.can_shoot())
-				set_nano_energy(CLAMP(cell.charge-15,0,cell.charge))
+				set_nano_energy(15)
 				U.filters = null
 				animate(U, alpha = 255, time = stealth_cloak_out)
 				addtimer(CALLBACK(src, .proc/resume_cloak),CLICK_CD_RANGE,TIMER_UNIQUE|TIMER_OVERRIDE)
 				return
-		set_nano_energy(0,15)
+		set_nano_energy(0,NANO_CHARGE_DELAY)
 		return
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/resume_cloak()
-	if(cell.charge > 0 && mode == NANO_CLOAK)
+	if(cell.charge && mode == NANO_CLOAK)
 		U.filters = filter(type="blur",size=1)
 		animate(U, alpha = 40, time = stealth_cloak_in)
 
