@@ -83,8 +83,7 @@
 	var/flag = "bullet" //Defines what armor to use when it hits things.  Must be set to bullet, laser, energy,or bomb
 	var/projectile_type = /obj/item/projectile
 	var/range = 50 //This will de-increment every step. When 0, it will deletze the projectile.
-	var/decayedRange			//stores original range
-	var/reflect_range_decrease = 5			//amount of original range that falls off when reflecting, so it doesn't go forever
+	var/decayedRange
 	var/reflectable = NONE // Can it be reflected or not?
 		//Effects
 	var/stun = 0
@@ -102,8 +101,8 @@
 	var/dismemberment = 0 //The higher the number, the greater the bonus to dismembering. 0 will not dismember at all.
 	var/impact_effect_type //what type of impact effect to show when hitting something
 	var/log_override = FALSE //is this type spammed enough to not log? (KAs)
-	var/temporary_unstoppable_movement = FALSE
 
+	var/temporary_unstoppable_movement = FALSE
 
 /obj/item/projectile/Initialize()
 	. = ..()
@@ -224,8 +223,7 @@
 		if(A.handle_ricochet(src))
 			on_ricochet(A)
 			ignore_source_check = TRUE
-			decayedRange = max(0, decayedRange - reflect_range_decrease)
-			range = decayedRange
+			range = initial(range)
 			if(hitscan)
 				store_hitscan_collision(pcache)
 			return TRUE
@@ -243,16 +241,16 @@
 		var/volume = CLAMP(vol_by_damage() + 20, 0, 100)
 		if(suppressed)
 			volume = 5
-	var/turf/target_turf = get_turf(A)
-			forceMove(target_turf)
-			trajectory_ignore_forcemove = FALSE
+		playsound(loc, hitsound_wall, volume, 1, -1)
+
+	if(!prehit(A))
 		return FALSE
+
+	var/permutation = A.bullet_act(src, def_zone) // searches for return value, could be deleted after run so check A isn't null
 	if(permutation == -1)	// the bullet passes through a dense object!
 		if(!CHECK_BITFIELD(movement_type, UNSTOPPABLE))
 			temporary_unstoppable_movement = TRUE
 			ENABLE_BITFIELD(movement_type, UNSTOPPABLE)
-		forceMove(target_turf)
-		trajectory_ignore_forcemove = FALSE
 		if(A)
 			permutated.Add(A)
 		return FALSE
@@ -260,16 +258,16 @@
 		var/atom/alt = select_target(A)
 		if(alt)
 			if(!prehit(alt))
+				return FALSE
+			alt.bullet_act(src, def_zone)
 	if(!CHECK_BITFIELD(movement_type, UNSTOPPABLE))
 		qdel(src)
-			alt.bullet_act(src, def_zone)
-	qdel(src)
+	return TRUE
+
 /obj/item/projectile/Move()
 	. = ..()
 	if(temporary_unstoppable_movement)
 		DISABLE_BITFIELD(movement_type, UNSTOPPABLE)
-
-	return TRUE
 
 /obj/item/projectile/proc/select_target(atom/A)				//Selects another target from a wall if we hit a wall.
 	if(!A || !A.density || (A.flags_1 & ON_BORDER_1) || ismob(A) || A == original)	//if we hit a dense non-border obj or dense turf then we also hit one of the mobs or machines/structures on that tile.
@@ -313,9 +311,9 @@
 /obj/item/projectile/proc/return_pathing_turfs_in_moves(moves, forced_angle)
 	var/turf/current = get_turf(src)
 	var/turf/ending = return_predicted_turf_after_moves(moves, forced_angle)
-/obj/item/projectile/Process_Spacemove(movement_dir = 0)
+	return getline(current, ending)
 
-/obj/item/projectile/Process_Spacemove(var/movement_dir = 0)
+/obj/item/projectile/Process_Spacemove(movement_dir = 0)
 	return TRUE	//Bullets don't drift in space
 
 /obj/item/projectile/process()
