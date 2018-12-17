@@ -650,7 +650,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	if(!QDELETED(src))
 		var/turf/T = get_turf(src)
 		var/ash_type = /obj/effect/decal/cleanable/ash
-	if(istype(M) && M.dirty < 100)
+		if(w_class == WEIGHT_CLASS_HUGE || w_class == WEIGHT_CLASS_GIGANTIC)
 			ash_type = /obj/effect/decal/cleanable/ash/large
 		var/obj/effect/decal/cleanable/ash/A = new ash_type(T)
 		A.desc += "\nLooks like this used to be \an [name] some time ago."
@@ -666,7 +666,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		..()
 
 /obj/item/proc/microwave_act(obj/machinery/microwave/M)
-	if(M && M.dirty < 100)
+	if(istype(M) && M.dirty < 100)
 		M.dirty++
 
 /obj/item/proc/on_mob_death(mob/living/L, gibbed)
