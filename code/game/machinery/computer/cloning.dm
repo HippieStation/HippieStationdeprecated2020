@@ -245,13 +245,6 @@
 
 				dat += "<b>Unique Identifier:</b><br /><span class='highlight'>[active_record.fields["UI"]]</span><br>"
 				dat += "<b>Structural Enzymes:</b><br /><span class='highlight'>"
-				for(var/key in active_record.fields["SE"])
-					if(key != RACEMUT)
-						var/val = active_record.fields["SE"][key]
-						var/alias = GLOB.all_mutations[key].alias
-						dat +="[alias]: [val]<br />"
-
-				dat += "</span><br />"
 
 				if(diskette && diskette.fields)
 					dat += "<div class='block'>"
