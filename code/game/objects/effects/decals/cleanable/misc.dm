@@ -205,6 +205,7 @@
 	desc = "The herpes of arts and crafts."
 	icon = 'icons/effects/atmospherics.dmi'
 	gender = NEUTER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/decal/cleanable/glitter/pink
 	name = "pink glitter"
