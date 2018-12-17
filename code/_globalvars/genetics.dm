@@ -25,7 +25,6 @@ GLOBAL_LIST_EMPTY(all_mutations)
 GLOBAL_LIST_EMPTY(full_sequences)
 GLOBAL_LIST_EMPTY(bad_mutations)
 GLOBAL_LIST_EMPTY(good_mutations)
-
 GLOBAL_LIST_EMPTY(not_good_mutations)
 
 GLOBAL_LIST_EMPTY(mutation_recipes)
