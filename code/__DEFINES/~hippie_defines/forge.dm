@@ -134,7 +134,7 @@
 			if(FORGED_BULLET_CASING)
 				var/obj/item/projectile/bullet/forged/F = I
 				if(F.damage >= 20)
-					F.forcedodge = TRUE
+					F.movement_type |= UNSTOPPABLE
 					F.range = F.range * 0.5//oof
 
 
