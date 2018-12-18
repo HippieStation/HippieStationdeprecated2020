@@ -40569,6 +40569,7 @@
 	pixel_x = 27
 	},
 /obj/effect/turf_decal/loading_area,
+/obj/structure/chair/stool,
 /turf/open/floor/plasteel,
 /area/construction)
 "bZm" = (
@@ -42442,6 +42443,9 @@
 	name = "3maintenance loot spawner"
 	},
 /obj/structure/kitchenspike,
+/obj/structure/sign/poster/random{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel{
 	icon_state = "gcircuitoff"
 	},
@@ -42453,6 +42457,9 @@
 /obj/effect/decal/cleanable/robot_debris,
 /obj/effect/spawner/lootdrop/maintenance,
 /obj/structure/kitchenspike,
+/obj/structure/sign/poster/random{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel{
 	icon_state = "gcircuitoff"
 	},
@@ -47650,6 +47657,9 @@
 /obj/item/tank/internals/emergency_oxygen/engi,
 /obj/item/tank/internals/emergency_oxygen/engi,
 /obj/item/tank/internals/emergency_oxygen/engi,
+/obj/structure/sign/poster/contraband/missing_gloves{
+	pixel_y = 32
+	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "csL" = (
@@ -60029,6 +60039,12 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"jhO" = (
+/obj/structure/sign/poster/contraband/missing_gloves{
+	pixel_y = 32
+	},
+/turf/open/floor/plating,
+/area/engine/port_engineering)
 "jig" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -60992,6 +61008,10 @@
 /obj/structure/cable{
 	icon_state = "0-2";
 	pixel_y = 1
+	},
+/obj/machinery/suit_storage_unit/open{
+	name = "old suit storage unit";
+	stat = 1
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
@@ -62282,6 +62302,9 @@
 /area/engine/port_engineering)
 "mqu" = (
 /obj/structure/bed,
+/obj/structure/sign/poster/ripped{
+	pixel_x = -32
+	},
 /turf/open/floor/plasteel{
 	icon_state = "damaged2"
 	},
@@ -65258,6 +65281,14 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"qTp" = (
+/obj/structure/sign/warning/securearea{
+	name = "\improper CONDEMNED ROOM";
+	pixel_x = -32;
+	pixel_y = 0
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "qVB" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -66704,7 +66735,8 @@
 /area/maintenance/port)
 "tal" = (
 /obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
+	req_access_txt = "12";
+	welded = 1
 	},
 /obj/structure/barricade/wooden{
 	name = "wooden barricade (CLOSED)"
@@ -69494,6 +69526,12 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"xke" = (
+/obj/structure/sign/warning/nosmoking/circle{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/construction)
 "xkm" = (
 /obj/structure/sign/poster/official/safety_internals{
 	pixel_x = -32
@@ -89153,7 +89191,7 @@ dfP
 iug
 iEz
 oUK
-ncA
+jhO
 nTb
 iBi
 nTb
@@ -93234,8 +93272,8 @@ bJS
 bJS
 bJS
 ccB
-bQG
-bQG
+qTp
+cap
 tal
 ceK
 cfP
@@ -97853,7 +97891,7 @@ bQN
 xPQ
 bTi
 bJT
-bVt
+xke
 bVt
 bXY
 bVr
