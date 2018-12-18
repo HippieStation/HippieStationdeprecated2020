@@ -64401,9 +64401,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"pAr" = (
-/turf/closed/wall,
-/area/space)
 "pAF" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -92220,7 +92217,7 @@ jra
 jra
 jra
 aaa
-pAr
+bJS
 bJS
 csA
 bJS
@@ -92477,7 +92474,7 @@ mqu
 lAK
 jra
 aaa
-pAr
+bJS
 sct
 csA
 bJS
@@ -92734,7 +92731,7 @@ wsN
 pdo
 jra
 aaa
-pAr
+bJS
 sEM
 csA
 bJS
@@ -92991,7 +92988,7 @@ ciS
 vWr
 jra
 aaa
-pAr
+bJS
 tYn
 csA
 bJS
@@ -93248,7 +93245,7 @@ fOh
 sRB
 jra
 aaa
-pAr
+bJS
 qQU
 csA
 bJS
@@ -93505,7 +93502,7 @@ ycr
 ezL
 jra
 aaa
-pAr
+bJS
 nNl
 csA
 bJS
@@ -93762,7 +93759,7 @@ jra
 jra
 jra
 aaa
-pAr
+bJS
 bJS
 csA
 bJS
