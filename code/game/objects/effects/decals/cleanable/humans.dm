@@ -110,6 +110,7 @@
 	name = "old rotting gibs"
 	desc = "Space Jesus, why didn't anyone clean this up?  It smells terrible."
 	bloodiness = 0
+	already_rotting = TRUE
 
 /obj/effect/decal/cleanable/blood/gibs/old/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
@@ -119,7 +120,6 @@
 
 /obj/effect/decal/cleanable/blood/drip
 	name = "drips of blood"
-	already_rotting = TRUE
 	desc = "It's red."
 	icon_state = "1"
 	random_icon_states = list("drip1","drip2","drip3","drip4","drip5")
