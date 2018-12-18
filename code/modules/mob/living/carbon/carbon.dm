@@ -922,8 +922,11 @@
 /mob/living/carbon/can_resist()
 	return bodyparts.len > 2 && ..()
 
+<<<<<<< HEAD
 
 	
+=======
+>>>>>>> 29ecfa4... [READY] Goon Genetics (#41258)
 /mob/living/carbon/proc/hypnosis_vulnerable()
 	if(has_trait(TRAIT_MINDSHIELD))
 		return FALSE
