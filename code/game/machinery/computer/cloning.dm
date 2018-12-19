@@ -62,7 +62,6 @@
 			else if(!. && pod.is_operational() && !(pod.occupant || pod.mess) && pod.efficiency > 5)
 				. = pod
 
-<<<<<<< HEAD
 /proc/grow_clone_from_record(obj/machinery/clonepod/pod, datum/data/record/R)
 	return pod.growclone(R.fields["name"], R.fields["UI"], R.fields["SE"], R.fields["mind"], R.fields["last_death"], R.fields["mrace"], R.fields["features"], R.fields["factions"], R.fields["quirks"], R.fields["bank_account"]) 	
 
@@ -85,8 +84,6 @@
 		if(grow_clone_from_record(pod, R))
 			temp = "[R.fields["name"]] => <font class='good'>Cloning cycle in progress...</font>"
 
-=======
->>>>>>> 29ecfa4... [READY] Goon Genetics (#41258)
 /obj/machinery/computer/cloning/proc/updatemodules(findfirstcloner)
 	scanner = findscanner()
 	if(findfirstcloner && !LAZYLEN(pods))
@@ -178,7 +175,6 @@
 		dat += "<span class='linkOff'>Autoprocess</span>"
 	dat += "<h3>Cloning Pod Status</h3>"
 	dat += "<div class='statusDisplay'>[temp]&nbsp;</div>"
-<<<<<<< HEAD
 	switch(menu)
 		if(1)
 			// Modules
@@ -249,6 +245,13 @@
 
 				dat += "<b>Unique Identifier:</b><br /><span class='highlight'>[active_record.fields["UI"]]</span><br>"
 				dat += "<b>Structural Enzymes:</b><br /><span class='highlight'>"
+				for(var/key in active_record.fields["SE"])
+					if(key != RACEMUT)
+						var/val = active_record.fields["SE"][key]
+						var/alias = GLOB.all_mutations[key].alias
+						dat +="[alias]: [val]<br />"
+
+				dat += "</span><br />"
 
 				if(diskette && diskette.fields)
 					dat += "<div class='block'>"
@@ -304,40 +307,6 @@
 				else
 					src.temp = "<font class='bad'>Access Denied.</font>"
 					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-=======
-	// Modules
-	if (isnull(src.scanner) || !LAZYLEN(pods))
-		dat += "<h3>Modules</h3>"
-		//dat += "<a href='byond://?src=[REF(src)];relmodules=1'>Reload Modules</a>"
-		if (isnull(src.scanner))
-			dat += "<font class='bad'>ERROR: No Scanner detected!</font><br>"
-		if (!LAZYLEN(pods))
-			dat += "<font class='bad'>ERROR: No Pod detected</font><br>"
-
-	// Scanner
-	if (!isnull(src.scanner))
-		var/mob/living/scanner_occupant = get_mob_or_brainmob(scanner.occupant)
-
-		dat += "<h3>Scanner Functions</h3>"
-
-		dat += "<div class='statusDisplay'>"
-		if(!scanner_occupant)
-			dat += "Scanner Unoccupied"
-		else if(loading)
-			dat += "[scanner_occupant] => Scanning..."
-		else
-			if(scanner_occupant.ckey != scantemp_ckey)
-				scantemp = "Ready to Scan"
-				scantemp_ckey = scanner_occupant.ckey
-			dat += "[scanner_occupant] => [scantemp]"
-		dat += "</div>"
-
-		if(scanner_occupant)
-			dat += "<a href='byond://?src=[REF(src)];scan=1'>Start Scan</a>"
-			dat += "<br><a href='byond://?src=[REF(src)];lock=1'>[src.scanner.locked ? "Unlock Scanner" : "Lock Scanner"]</a>"
-		else
-			dat += "<span class='linkOff'>Start Scan</span>"
->>>>>>> 29ecfa4... [READY] Goon Genetics (#41258)
 
 	var/datum/browser/popup = new(user, "cloning", "Cloning System Control")
 	popup.set_content(dat)
@@ -473,7 +442,6 @@
 		updateUsrDialog()
 		playsound(src, "terminal_type", 25, 0)
 
-<<<<<<< HEAD
 	else if (href_list["clone"])
 		var/datum/data/record/C = find_record("id", href_list["clone"], records)
 		//Look for that player! They better be dead!
@@ -512,10 +480,6 @@
 
 	add_fingerprint(usr)
 	updateUsrDialog()
-=======
-	src.add_fingerprint(usr)
-	src.updateUsrDialog()
->>>>>>> 29ecfa4... [READY] Goon Genetics (#41258)
 	return
 
 /obj/machinery/computer/cloning/proc/scan_occupant(occupant)
@@ -540,8 +504,12 @@
 		scantemp = "<font class='bad'>Subject's brain is not responding to scanning stimuli.</font>"
 		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 		return
-	if((mob_occupant.has_trait(TRAIT_NOCLONE)) && (scanner.scan_level < 2))
-		scantemp = "<font class='bad'>Subject no longer contains the fundamental materials required to create a living clone.</font>"
+	if((mob_occupant.has_trait(TRAIT_HUSK)) && (src.scanner.scan_level < 2))
+		scantemp = "<font class='bad'>Subject's body is too damaged to scan properly.</font>"
+		playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
+		return
+	if(mob_occupant.has_trait(TRAIT_BADDNA))
+		scantemp = "<font class='bad'>Subject's DNA is damaged beyond any hope of recovery.</font>"
 		playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
 		return
 	if (isnull(mob_occupant.mind))
@@ -562,14 +530,13 @@
 		R.fields["mrace"] = dna.species
 	else
 		var/datum/species/rando_race = pick(GLOB.roundstart_races)
-<<<<<<< HEAD
 		R.fields["mrace"] = rando_race.type
 
 	R.fields["name"] = mob_occupant.real_name
 	R.fields["id"] = copytext(md5(mob_occupant.real_name), 2, 6)
 	R.fields["UE"] = dna.unique_enzymes
 	R.fields["UI"] = dna.uni_identity
-	R.fields["SE"] = dna.struc_enzymes
+	R.fields["SE"] = dna.mutation_index
 	R.fields["blood_type"] = dna.blood_type
 	R.fields["features"] = dna.features
 	R.fields["factions"] = mob_occupant.faction
@@ -595,36 +562,6 @@
 	if(old_record)
 		records -= old_record
 		scantemp = "Record updated."
-=======
-		mrace = rando_race.type
-
-	var/mind
-	if(mob_occupant.mind)
-		mind = "[REF(mob_occupant.mind)]"
-
-	var/quirks = list()
-	for(var/V in mob_occupant.roundstart_quirks)
-		var/datum/quirk/T = V
-		quirks[T.type] = T.clone_data()
-
-	var/obj/machinery/clonepod/pod = GetAvailablePod()
-	//Can't clone without someone to clone.  Or a pod.  Or if the pod is busy. Or full of gibs.
-	if(!LAZYLEN(pods))
-		temp = "<font class='bad'>No Clonepods detected.</font>"
-		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-	else if(!pod)
-		temp = "<font class='bad'>No Clonepods available.</font>"
-		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-	else if(!CONFIG_GET(flag/revival_cloning))
-		temp = "<font class='bad'>Unable to initiate cloning cycle.</font>"
-		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-	else if(pod.occupant)
-		temp = "<font class='bad'>Cloning cycle already in progress.</font>"
-		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-	else if(pod.growclone(mob_occupant.ckey, mob_occupant.real_name, dna.uni_identity, dna.mutation_index, mind, mrace, dna.features, mob_occupant.faction, quirks, has_bank_account))
-		temp = "[mob_occupant.real_name] => <font class='good'>Cloning cycle in progress...</font>"
-		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
->>>>>>> 29ecfa4... [READY] Goon Genetics (#41258)
 	else
 		scantemp = "Subject successfully scanned."
 	records += R
