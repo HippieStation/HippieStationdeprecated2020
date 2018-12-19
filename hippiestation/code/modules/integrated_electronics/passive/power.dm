@@ -120,14 +120,6 @@
 	if(assembly)
 		if(assembly.battery)
 			var/bp = 5000
-			/*
-				This value is rounded, because for the greater than or equal check, the equal case won't necessarily
-				be true for all of the fuels if the compared value isn't rounded due to the division,
-				since it can introduce a small difference, which is in the interval (-0.05; 0.05) with the current fuel values and cell rate of 0.002,
-				in the calculated value, so that the value from the division we were expecting to be equal with one of the fuel values on the list won't
-				necessarily be equal without rounding.
-			*/
-			var/comparedValue = round((assembly.battery.maxcharge-assembly.battery.charge) / GLOB.CELLRATE, 0.1)
 			if(reagents.get_reagent_amount("blood")) //only blood is powerful enough to power the station(c)
 				var/datum/reagent/blood/B = locate() in reagents.reagent_list
 				if(lfwb)
@@ -135,11 +127,11 @@
 						var/mob/M = B.data["donor"]
 						if(M && (M.stat != DEAD) && (M.client))
 							bp = 500000
-				if(comparedValue >= bp)
+				if(round((assembly.battery.maxcharge-assembly.battery.charge) / GLOB.CELLRATE, 0.1) >= bp)
 					if(reagents.remove_reagent("blood", 1))
 						assembly.give_power(bp)
 			for(var/I in fuel)
-				if(comparedValue >= fuel[I])
+				if(round((assembly.battery.maxcharge-assembly.battery.charge) / GLOB.CELLRATE, 0.1) >= fuel[I])
 					if(reagents.remove_reagent(I, 1))
 						assembly.give_power(fuel[I]*multi)
 
