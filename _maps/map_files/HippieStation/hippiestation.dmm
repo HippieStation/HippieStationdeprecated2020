@@ -39560,7 +39560,7 @@
 /obj/structure/light_construct{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
+/turf/open/floor/plating,
 /area/construction)
 "bWE" = (
 /obj/structure/disposalpipe/segment,
@@ -40179,12 +40179,12 @@
 "bYa" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Construction Area";
-	req_access_txt = "32"
+	req_access_txt = "32";
+	security_level = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/airlock/abandoned,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
 	dir = 8
@@ -40562,7 +40562,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel,
 /area/construction)
 "bZi" = (
 /obj/machinery/light_switch{
@@ -40989,6 +40989,9 @@
 "cat" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -42465,6 +42468,9 @@
 	},
 /area/maintenance/strangeroom)
 "ceK" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
 /turf/open/floor/plating,
 /area/maintenance/strangeroom)
 "ceL" = (
@@ -44609,9 +44615,6 @@
 /obj/item/pen,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
-"ckf" = (
-/turf/closed/wall/r_wall,
-/area/maintenance/forge)
 "ckh" = (
 /obj/machinery/camera{
 	c_tag = "Telecomms Server Room";
@@ -44940,35 +44943,6 @@
 /obj/effect/spawner/lootdrop/maintenance,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"clh" = (
-/obj/machinery/reagent_sheet,
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cli" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"clj" = (
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"clk" = (
-/obj/machinery/power/apc{
-	areastring = "/area/maintenance/forge";
-	dir = 1;
-	name = "Forge Room APC";
-	pixel_y = 25
-	},
-/obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 1
-	},
-/obj/item/wrench,
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cll" = (
-/obj/machinery/reagent_material_manipulator,
-/turf/open/floor/engine,
-/area/maintenance/forge)
 "clm" = (
 /obj/machinery/telecomms/message_server,
 /turf/open/floor/plasteel/dark/telecomms,
@@ -45304,24 +45278,6 @@
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"cms" = (
-/obj/effect/decal/cleanable/oil,
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cmt" = (
-/obj/effect/decal/cleanable/shreds,
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cmu" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cmv" = (
-/obj/structure/reagent_dispensers/chemical,
-/turf/open/floor/engine,
-/area/maintenance/forge)
 "cmw" = (
 /obj/machinery/telecomms/server/presets/supply,
 /turf/open/floor/plasteel/dark/telecomms,
@@ -45795,31 +45751,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"cnG" = (
-/obj/structure/closet/crate,
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cnH" = (
-/obj/machinery/reagent_forge,
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cnI" = (
-/obj/effect/decal/cleanable/ash/large,
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cnJ" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cnK" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/item/reagent_containers/glass/bucket,
-/turf/open/floor/engine,
-/area/maintenance/forge)
 "cnL" = (
 /obj/machinery/telecomms/server/presets/service,
 /turf/open/floor/plasteel/dark/telecomms,
@@ -46264,64 +46195,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"cpe" = (
-/obj/machinery/door/airlock/engineering{
-	cyclelinkeddir = 0;
-	name = "Forge Room";
-	req_access_txt = "32";
-	security_level = 6
-	},
-/obj/machinery/door/firedoor/heavy,
-/obj/effect/turf_decal/stripes/line,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cpf" = (
-/turf/closed/wall,
-/area/maintenance/forge)
-"cpg" = (
-/obj/structure/sign/warning/nosmoking/circle,
-/turf/closed/wall,
-/area/maintenance/forge)
-"cph" = (
-/obj/machinery/door/firedoor/heavy,
-/obj/effect/decal/cleanable/ash/large,
-/obj/effect/turf_decal/stripes/end{
-	dir = 8
-	},
-/turf/open/floor/noslip,
-/area/maintenance/forge)
-"cpi" = (
-/obj/machinery/door/firedoor/heavy,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/noslip,
-/area/maintenance/forge)
-"cpj" = (
-/obj/structure/sign/warning/fire,
-/turf/closed/wall,
-/area/maintenance/forge)
-"cpk" = (
-/obj/machinery/door/airlock/engineering{
-	cyclelinkeddir = 0;
-	name = "Forge Room";
-	req_access_txt = "32";
-	security_level = 6
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/firedoor/heavy,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/engine,
-/area/maintenance/forge)
 "cpl" = (
 /obj/machinery/door/airlock/maintenance{
 	req_access_txt = "12"
@@ -46529,63 +46402,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"cpU" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -24
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cpV" = (
-/obj/item/flashlight/flare{
-	on = 1
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "Forge";
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cpW" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cpX" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/stripes/corner{
-	dir = 8
-	},
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cpY" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/spawner/lootdrop/maintenance,
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/maintenance/forge)
-"cpZ" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/maintenance/forge)
 "cqc" = (
 /obj/structure/closet/wardrobe/black,
 /obj/effect/decal/cleanable/cobweb,
@@ -47501,19 +47317,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"csy" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/firedoor/heavy,
-/obj/machinery/door/airlock/engineering{
-	cyclelinkeddir = 0;
-	name = "Forge Room";
-	req_access_txt = "32";
-	security_level = 6
-	},
-/turf/open/floor/plating,
-/area/maintenance/forge)
 "csz" = (
 /obj/structure/disposalpipe/junction/yjunction{
 	dir = 1
@@ -59067,7 +58870,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel,
 /area/construction)
 "hLG" = (
 /obj/machinery/door/firedoor,
@@ -59085,12 +58888,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
-"hLV" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/maintenance/forge)
 "hNn" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -60056,7 +59853,11 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/components/unary/tank/air{
+	desc = "A large vessel containing pressurized gas. The description reads: `for server airlock only.`";
 	dir = 2
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
 	},
 /turf/open/floor/plating,
 /area/construction)
@@ -60568,10 +60369,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"jPA" = (
-/obj/structure/sign/warning/electricshock,
-/turf/closed/wall/r_wall,
-/area/maintenance/forge)
 "jPG" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -61005,13 +60802,12 @@
 	name = "Worn Out APC";
 	pixel_y = 26
 	},
-/obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 1
-	},
 /obj/machinery/suit_storage_unit/open{
 	name = "old suit storage unit";
 	stat = 1
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
@@ -61345,9 +61141,6 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	icon_state = "tracks";
 	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
 	},
 /turf/open/floor/plasteel{
 	icon_state = "gcircuitoff"
@@ -62690,13 +62483,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"mYi" = (
-/obj/machinery/door/firedoor/heavy,
-/obj/effect/turf_decal/stripes/end{
-	dir = 4
-	},
-/turf/open/floor/noslip,
-/area/maintenance/forge)
 "mYt" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -63085,7 +62871,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/turf/open/floor/plating,
+/turf/open/floor/plasteel,
 /area/construction)
 "nDT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -63185,10 +62971,9 @@
 /turf/open/space,
 /area/solar/port/aft)
 "nNl" = (
-/obj/effect/turf_decal/stripes/white/line,
 /obj/structure/closet/crate,
 /obj/item/clothing/gloves/color/black,
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/maintenance/port/aft)
 "nNq" = (
 /obj/structure/cable{
@@ -63901,15 +63686,6 @@
 /obj/effect/mapping_helpers/airlock/abandoned,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"oPL" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/engine,
-/area/maintenance/forge)
 "oQZ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
@@ -64024,7 +63800,6 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/construction)
 "oZQ" = (
@@ -64094,11 +63869,11 @@
 /turf/open/floor/plasteel/checker,
 /area/hallway/primary/aft)
 "pdo" = (
-/obj/structure/closet/crate/secure,
 /obj/item/paper{
 	info = "I can't believe that NanoTrasen's loyalty implants work so well. They've almost entirely stopped either of these two officialls from giving my any information on the Fenrir Incident. Almost.  One of them actually gave me the location of an abandoned station where I may find some new information regarding it. If this is true, that'll bring me one step closer to exposing NanoTrasen as the true cause for the flashpoint between New-Russian forces and Fenririan settlers on Fenrir. All I've got to do is get hack an escape pod so that it may bring me as close as possible to the station, although it's unlikely it'll get me too close with the amount of fuel they have. I must be going soon, security is going to be looking everywhere for these two soon enough."
 	},
 /obj/item/restraints/handcuffs,
+/obj/structure/closet/crate/secure/loot,
 /turf/open/floor/plasteel{
 	icon_state = "damaged4"
 	},
@@ -64483,11 +64258,8 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
+/obj/item/flashlight/flare{
+	on = 1
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg1"
@@ -64507,8 +64279,9 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
 "pGs" = (
-/obj/machinery/reagent_sheet,
 /obj/effect/turf_decal/stripes/box,
+/obj/structure/frame/machine,
+/obj/item/circuitboard/machine/reagent_sheet,
 /turf/open/floor/engine,
 /area/construction)
 "pGX" = (
@@ -65258,11 +65031,8 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "qQU" = (
-/obj/effect/turf_decal/stripes/white/line,
 /obj/structure/mopbucket,
-/turf/open/floor/plating{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plasteel/dark,
 /area/maintenance/port/aft)
 "qRi" = (
 /obj/structure/chair/stool,
@@ -65283,6 +65053,7 @@
 /area/engine/engineering)
 "qTp" = (
 /obj/structure/sign/warning/securearea{
+	desc = "A warning sign which reads 'CONDEMNED AREA KEEP OUT'.";
 	name = "\improper CONDEMNED ROOM";
 	pixel_x = -32;
 	pixel_y = 0
@@ -65817,10 +65588,6 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
-"rOb" = (
-/obj/structure/sign/warning/securearea,
-/turf/closed/wall/r_wall,
-/area/maintenance/forge)
 "rOt" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -66010,8 +65777,7 @@
 	name = "4maintenance loot spawner"
 	},
 /obj/effect/decal/cleanable/cobweb,
-/obj/effect/turf_decal/stripes/white/line,
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/maintenance/port/aft)
 "sdf" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -66341,8 +66107,7 @@
 	lootcount = 2;
 	name = "2maintenance loot spawner"
 	},
-/obj/effect/turf_decal/stripes/white/line,
-/turf/open/floor/plating,
+/turf/open/floor/plasteel/dark,
 /area/maintenance/port/aft)
 "sFQ" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
@@ -67387,11 +67152,8 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "tYn" = (
-/obj/effect/turf_decal/stripes/white/line,
 /obj/structure/closet/secure_closet/engineering_personal,
-/turf/open/floor/plating{
-	icon_state = "platingdmg2"
-	},
+/turf/open/floor/plasteel/dark,
 /area/maintenance/port/aft)
 "tZB" = (
 /obj/effect/turf_decal/bot,
@@ -70206,6 +69968,16 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plating/airless,
 /area/engine/port_engineering)
+"ykg" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/construction)
 "yku" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	icon_state = "vent_map_on-1";
@@ -88956,13 +88728,13 @@ aaa
 aaa
 aaa
 aaa
-ckf
-ckf
-ckf
-ckf
-ckf
-ckf
-ckf
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -89213,13 +88985,13 @@ aaa
 aaa
 aaa
 aaa
-ckf
-clh
-cms
-clj
-cpe
-hLV
-ckf
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -89470,13 +89242,13 @@ aaa
 aaa
 aaa
 aaa
-ckf
-clh
-cmt
-cnG
-cpf
-hLV
-ckf
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -89727,13 +89499,13 @@ aaa
 aaa
 aaa
 aaa
-ckf
-cli
-cli
-cli
-cpg
-cpU
-ckf
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -89984,13 +89756,13 @@ aaa
 aaa
 aaa
 aaa
-ckf
-clj
-clj
-cnH
-cph
-cpV
-rOb
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -90241,13 +90013,13 @@ aaa
 aaa
 aaa
 aaa
-ckf
-clj
-clj
-clj
-cpi
-cpW
-csy
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -90498,13 +90270,13 @@ aaa
 aaa
 aaa
 aaa
-ckf
-clj
-clj
-cnI
-mYi
-cpX
-jPA
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -90755,13 +90527,13 @@ aaa
 aaa
 aaa
 aaa
-ckf
-cli
-cli
-cli
-cpj
-cpY
-ckf
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -91012,13 +90784,13 @@ aaa
 aaa
 aaa
 aaa
-ckf
-clk
-cmu
-cnJ
-cpf
-oPL
-ckf
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -91269,13 +91041,13 @@ aaa
 aaa
 aaa
 aaa
-ckf
-cll
-cmv
-cnK
-cpk
-cpZ
-ckf
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -91526,13 +91298,13 @@ aaa
 aaa
 aaa
 aaa
-ckf
-ckf
-ckf
-ckf
-ckf
-ckf
-ckf
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -98407,7 +98179,7 @@ bTk
 bJT
 bVu
 bWD
-bXZ
+ykg
 bZi
 cay
 bVp
