@@ -149,8 +149,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/should_have_liver = !(NOLIVER in species_traits)
 	var/should_have_stomach = !(NOSTOMACH in species_traits)
 	var/should_have_tail = mutanttail
-
-	if(heart && (!should_have_heart || replace_current))
+		
+ 	if(heart && (!should_have_heart || replace_current))
 		heart.Remove(C,1)
 		QDEL_NULL(heart)
 	if(should_have_heart && !heart)
@@ -209,14 +209,14 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(should_have_brain && !brain)
 			brain = new mutant_brain()
 			brain.Insert(C, TRUE, TRUE)
-
+			
 		if(eyes && (replace_current || !should_have_eyes))
 			eyes.Remove(C,1)
 			QDEL_NULL(eyes)
 		if(should_have_eyes && !eyes)
 			eyes = new mutanteyes
 			eyes.Insert(C)
-
+		
 		if(ears && (replace_current || !should_have_ears))
 			ears.Remove(C,1)
 			QDEL_NULL(ears)
