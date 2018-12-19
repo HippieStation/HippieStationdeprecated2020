@@ -22,11 +22,4 @@
 /obj/effect/proc_holder/changeling/chameleon_skin/on_refund(mob/user)
 	if(user.has_dna())
 		var/mob/living/carbon/C = user
-<<<<<<< HEAD
-		var/datum/mutation/human/HM = GLOB.mutations_list[CHAMELEON]
-		if(HM in C.dna.mutations)
-
-			HM.force_lose(C)
-=======
 		C.dna.remove_mutation(CHAMELEON)
->>>>>>> 29ecfa4... [READY] Goon Genetics (#41258)
