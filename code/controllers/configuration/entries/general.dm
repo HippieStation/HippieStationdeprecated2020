@@ -148,9 +148,6 @@
 /datum/config_entry/string/hostedby
 
 /datum/config_entry/flag/norespawn
-
-/datum/config_entry/flag/guest_jobban
-
 /datum/config_entry/flag/usewhitelist
 
 /datum/config_entry/flag/ban_legacy_system	//Defines whether the server uses the legacy banning system with the files in /data or the SQL system.

@@ -115,3 +115,7 @@
 	Soylet.update_hair()
 	to_chat(Soylet, "<span class='notice'>You feel like a new [prefix]male!</span>")
 	Soylet.say("Wow!", forced = "soy")
+
+/datum/reagent/consumable/grey_bull
+	name = "Reuben Blast"
+	description = "Formerly Grey Bull, now rebranded as Reuben Blast due to a very controversial murder case. It gives you gloves!"

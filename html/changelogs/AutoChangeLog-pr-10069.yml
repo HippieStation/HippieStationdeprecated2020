@@ -1,0 +1,4 @@
+author: "xTrainx"
+delete-after: True
+changes: 
+  - bugfix: "readds blood bucket back to the slime processor"

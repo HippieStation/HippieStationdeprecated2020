@@ -108,7 +108,6 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 	var/holder_var_type = "bruteloss" //only used if charge_type equals to "holder_var"
 	var/holder_var_amount = 20 //same. The amount adjusted with the mob's var when the spell is used
-
 	var/staff_req = FALSE // hippie -- used to check if a spell requires a staff
 	var/clothes_req = TRUE //see if it requires clothes
 	var/cult_req = FALSE //SPECIAL SNOWFLAKE clothes required for cult only spells
@@ -116,6 +115,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	var/nonabstract_req = FALSE //spell can only be cast by mobs that are physical entities
 	var/stat_allowed = FALSE //see if it requires being conscious/alive, need to set to 1 for ghostpells
 	var/phase_allowed = FALSE // If true, the spell can be cast while phased, eg. blood crawling, ethereal jaunting
+	var/antimagic_allowed = FALSE // If false, the spell cannot be cast while under the effect of antimagic
 	var/invocation = "HURP DURP" //what is uttered when the wizard casts the spell
 	var/invocation_emote_self = null
 	var/invocation_type = "none" //can be none, whisper, emote and shout
@@ -148,27 +148,36 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	if(player_lock)
 		if(!user.mind || !(src in user.mind.spell_list) && !(src in user.mob_spell_list))
 			to_chat(user, "<span class='warning'>You shouldn't have this spell! Something's wrong.</span>")
-			return 0
+			return FALSE
 	else
 		if(!(src in user.mob_spell_list))
-			return 0
+			return FALSE
 
 	var/turf/T = get_turf(user)
 	if(is_centcom_level(T.z) && !centcom_cancast) //Certain spells are not allowed on the centcom zlevel
 		to_chat(user, "<span class='notice'>You can't cast this spell here.</span>")
-		return 0
+		return FALSE
 
 	if(!skipcharge)
 		if(!charge_check(user))
-			return 0
+			return FALSE
 
 	if(user.stat && !stat_allowed)
 		to_chat(user, "<span class='notice'>Not when you're incapacitated.</span>")
-		return 0
-
+		return FALSE
+	
+	if(!antimagic_allowed)
+		var/antimagic = user.anti_magic_check(TRUE, FALSE)
+		if(antimagic)
+			if(isitem(antimagic))
+				to_chat(user, "<span class='notice'>[antimagic] is interfering with your magic.</span>")
+			else 
+				to_chat(user, "<span class='notice'>Magic seems to flee from you, you can't gather enough power to cast this spell.</span>")
+			return FALSE
+				
 	if(!phase_allowed && istype(user.loc, /obj/effect/dummy))
 		to_chat(user, "<span class='notice'>[name] cannot be cast unless you are completely manifested in the material plane.</span>")
-		return 0
+		return FALSE
 
 	if(ishuman(user))
 
@@ -176,7 +185,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 		if((invocation_type == "whisper" || invocation_type == "shout") && !H.can_speak_vocal())
 			to_chat(user, "<span class='notice'>You can't get the words out!</span>")
-			return 0
+			return FALSE
 
 		var/list/casting_clothes = typecacheof(list(/obj/item/clothing/suit/wizrobe,
 		/obj/item/clothing/suit/space/hardsuit/wizard,
@@ -188,11 +197,11 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		if(clothes_req) //clothes check
 			if(!is_type_in_typecache(H.wear_suit, casting_clothes))
 				to_chat(H, "<span class='notice'>I don't feel strong enough without my robe.</span>")
-				return 0
+				return FALSE
 			if(!is_type_in_typecache(H.head, casting_clothes))
 				to_chat(H, "<span class='notice'>I don't feel strong enough without my hat.</span>")
-				return 0
-		// hippie start -- check for if a spell needs a spell catalyst
+				return FALSE
+		// hippie start -- check for if a spell needs a spell catalyst	
 		if(staff_req)
 			var/catalyst_found = FALSE
 			for(var/obj/O in H.held_items)
@@ -201,22 +210,22 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 					break
 			if(!catalyst_found)
 				to_chat(H, "<span class='notice'>I don't feel strong enough without my staff.</span>")
-				return 0
+				return FALSE
 		// hippie end
 		if(cult_req) //CULT_REQ CLOTHES CHECK
 			if(!istype(H.wear_suit, /obj/item/clothing/suit/magusred) && !istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/cult))
 				to_chat(H, "<span class='notice'>I don't feel strong enough without my armor.</span>")
-				return 0
+				return FALSE
 			if(!istype(H.head, /obj/item/clothing/head/magus) && !istype(H.head, /obj/item/clothing/head/helmet/space/hardsuit/cult))
 				to_chat(H, "<span class='notice'>I don't feel strong enough without my helmet.</span>")
-				return 0
+				return FALSE
 	else
 		if(clothes_req || human_req)
 			to_chat(user, "<span class='notice'>This spell can only be cast by humans!</span>")
-			return 0
+			return FALSE
 		if(nonabstract_req && (isbrain(user) || ispAI(user)))
 			to_chat(user, "<span class='notice'>This spell can only be cast by physical beings!</span>")
-			return 0
+			return FALSE
 
 
 	if(!skipcharge)
@@ -229,7 +238,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 				adjust_var(user, holder_var_type, holder_var_amount)
 	if(action)
 		action.UpdateButtonIcon()
-	return 1
+	return TRUE
 
 /obj/effect/proc_holder/spell/proc/charge_check(mob/user, silent = FALSE)
 	switch(charge_type)
@@ -513,6 +522,9 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		return FALSE
 
 	if(user.stat && !stat_allowed)
+		return FALSE
+		
+	if(!antimagic_allowed && user.anti_magic_check(TRUE, FALSE))
 		return FALSE
 
 	if(!ishuman(user))

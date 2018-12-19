@@ -13536,7 +13536,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/structure/reagent_dispensers/fueltank,
 /obj/machinery/power/apc{
-	areastring = "/area/chapel/office";
+	areastring = "/area/chapel/main";
 	dir = 2;
 	name = "Chapel APC";
 	pixel_y = -24
@@ -16900,42 +16900,54 @@
 "aQa" = (
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
+	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L1"
 	},
 /area/hallway/primary/central)
 "aQb" = (
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
+	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L3"
 	},
 /area/hallway/primary/central)
 "aQc" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 1
+	},
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
+	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L5"
 	},
 /area/hallway/primary/central)
 "aQd" = (
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
+	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L7"
 	},
 /area/hallway/primary/central)
 "aQe" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
+	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L9"
 	},
 /area/hallway/primary/central)
 "aQf" = (
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
+	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L11"
 	},
 /area/hallway/primary/central)
 "aQg" = (
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
+	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L13";
 	name = "floor"
 	},
@@ -17416,7 +17428,10 @@
 /area/hallway/primary/central)
 "aRA" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	icon_state = "manifold-1";
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aRB" = (
@@ -17428,12 +17443,14 @@
 "aRC" = (
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
+	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L2"
 	},
 /area/hallway/primary/central)
 "aRD" = (
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
+	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L4"
 	},
 /area/hallway/primary/central)
@@ -17442,9 +17459,13 @@
 	codes_txt = "patrol;next_patrol=Lockers";
 	location = "EVA"
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 1
+	},
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
+	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L6"
 	},
 /area/hallway/primary/central)
@@ -17452,6 +17473,7 @@
 /obj/effect/landmark/observer_start,
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
+	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L8"
 	},
 /area/hallway/primary/central)
@@ -17460,21 +17482,24 @@
 	codes_txt = "patrol;next_patrol=Security";
 	location = "EVA2"
 	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
+	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L10"
 	},
 /area/hallway/primary/central)
 "aRH" = (
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
+	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L12"
 	},
 /area/hallway/primary/central)
 "aRI" = (
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
+	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L14"
 	},
 /area/hallway/primary/central)
@@ -37812,10 +37837,6 @@
 /obj/structure/closet,
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"bSk" = (
-/obj/machinery/meter,
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "bSm" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -40432,6 +40453,10 @@
 	},
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/door/firedoor/heavy,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 1
+	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "bYM" = (
@@ -42087,6 +42112,10 @@
 /obj/structure/sink{
 	dir = 4;
 	pixel_x = 11
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 1
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
@@ -51823,6 +51852,14 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/machinery/button/door{
+	desc = "A remote control-switch for the engineering security doors.";
+	id = "Engineeringwindow";
+	name = "Engineering External Lockdown";
+	pixel_x = 0;
+	pixel_y = -24;
+	req_access_txt = "10"
+	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "cDc" = (
@@ -52038,11 +52075,11 @@
 /area/engine/gravity_generator)
 "cDC" = (
 /obj/effect/spawner/structure/window/reinforced,
+/obj/structure/cable,
 /obj/machinery/door/poddoor/preopen{
-	id = "Engineering";
+	id = "Engineeringwindow";
 	name = "engineering security door"
 	},
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "cDD" = (
@@ -52054,11 +52091,11 @@
 /area/engine/engineering)
 "cDE" = (
 /obj/structure/cable,
+/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
-	id = "Engineering";
+	id = "Engineeringwindow";
 	name = "engineering security door"
 	},
-/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "cDI" = (
@@ -56803,6 +56840,16 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"eyM" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "eyY" = (
 /obj/machinery/door/firedoor/heavy,
 /obj/machinery/door/airlock/research{
@@ -58823,6 +58870,13 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
+"hEi" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 1
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
 "hEo" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
@@ -64084,7 +64138,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
 "pDg" = (
@@ -65940,6 +65994,11 @@
 	icon_state = "pipe11-1";
 	dir = 5
 	},
+/obj/machinery/meter{
+	name = "gas flow meter air supply";
+	pixel_x = -6;
+	target_layer = 1
+	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "sIg" = (
@@ -66516,8 +66575,8 @@
 /area/engine/engineering)
 "twF" = (
 /obj/structure/table,
-/obj/item/switchblade,
 /obj/effect/spawner/lootdrop/maintenance,
+/obj/item/switchblade/civilian,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
 "txC" = (
@@ -90079,7 +90138,7 @@ aVN
 aYK
 aUe
 bbL
-bfj
+bdy
 bfj
 bfj
 bfj
@@ -90336,7 +90395,7 @@ aVN
 aYL
 aUe
 mWu
-bfj
+bdy
 bfg
 bgw
 bfg
@@ -98293,7 +98352,7 @@ aDq
 aJL
 aLq
 aMZ
-aNa
+btF
 aQc
 aRE
 cjg
@@ -98807,7 +98866,7 @@ aDr
 aJM
 aLs
 aNb
-aNa
+nmg
 aQe
 aRG
 aSZ
@@ -101673,7 +101732,7 @@ bMF
 bNZ
 bPu
 bQZ
-bSk
+bHT
 bTp
 bUr
 bVB
@@ -113756,13 +113815,13 @@ bRq
 bTP
 bUT
 pDe
-bTM
+hEi
 bYH
-bZU
-bTM
-bTM
+eyM
+hEi
+hEi
 cdt
-bZU
+eyM
 nTN
 bTM
 chA
