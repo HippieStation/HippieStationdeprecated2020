@@ -169,8 +169,6 @@
 		if((ai_user && GLOB.cameranet.checkTurfVis(T)) || (T in seen))
 			turfs += T
 			for(var/mob/M in T)
-				if(istype(M, /mob/living/simple_animal/pet/cat/mime)) //hippie start -- black lists mime's cat
-					continue //hippie end -- black lists mime's cat
 				mobs += M
 			if(locate(/obj/item/areaeditor/blueprints) in T)
 				blueprints = TRUE
