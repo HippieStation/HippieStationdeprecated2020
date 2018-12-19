@@ -127,11 +127,11 @@
 						var/mob/M = B.data["donor"]
 						if(M && (M.stat != DEAD) && (M.client))
 							bp = 500000
-				if(round((assembly.battery.maxcharge-assembly.battery.charge) / GLOB.CELLRATE, 0.1) >= bp)
+				if((assembly.battery.maxcharge-assembly.battery.charge) / GLOB.CELLRATE > bp)
 					if(reagents.remove_reagent("blood", 1))
 						assembly.give_power(bp)
 			for(var/I in fuel)
-				if(round((assembly.battery.maxcharge-assembly.battery.charge) / GLOB.CELLRATE, 0.1) >= fuel[I])
+				if((assembly.battery.maxcharge-assembly.battery.charge) / GLOB.CELLRATE > fuel[I])
 					if(reagents.remove_reagent(I, 1))
 						assembly.give_power(fuel[I]*multi)
 
