@@ -24484,6 +24484,7 @@
 	req_access_txt = "31"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/rnd/production/techfab/department/cargo,
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
 "bgv" = (
@@ -28737,6 +28738,10 @@
 /obj/machinery/light_switch{
 	pixel_x = -27
 	},
+<<<<<<< HEAD
+=======
+/obj/machinery/autolathe,
+>>>>>>> 18da79f... Merge pull request #41937 from Bawhoppen/autolathesgone
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
 "bqp" = (
@@ -30498,6 +30503,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
+<<<<<<< HEAD
 "buJ" = (
 /obj/structure/chair{
 	dir = 8
@@ -30505,6 +30511,8 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/quartermaster/office)
+=======
+>>>>>>> 18da79f... Merge pull request #41937 from Bawhoppen/autolathesgone
 "buK" = (
 /obj/machinery/light{
 	dir = 4
@@ -56932,6 +56940,18 @@
 	dir = 1
 	},
 /area/engine/break_room)
+<<<<<<< HEAD
+=======
+"pqP" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/chair{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/office)
+>>>>>>> 18da79f... Merge pull request #41937 from Bawhoppen/autolathesgone
 "psy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -80942,8 +80962,13 @@ boS
 bfm
 bNK
 bkN
+<<<<<<< HEAD
 bml
 bwe
+=======
+bfm
+bfm
+>>>>>>> 18da79f... Merge pull request #41937 from Bawhoppen/autolathesgone
 bwe
 bwd
 bwY
@@ -81200,6 +81225,10 @@ bqs
 bbR
 bkM
 bbR
+<<<<<<< HEAD
+=======
+bbR
+>>>>>>> 18da79f... Merge pull request #41937 from Bawhoppen/autolathesgone
 bwd
 bxB
 bvL
@@ -81457,6 +81486,10 @@ bbR
 bbR
 buI
 bbR
+<<<<<<< HEAD
+=======
+bbR
+>>>>>>> 18da79f... Merge pull request #41937 from Bawhoppen/autolathesgone
 bwd
 bxD
 byL
@@ -81714,6 +81747,10 @@ bqt
 cBq
 bbR
 bbR
+<<<<<<< HEAD
+=======
+bbR
+>>>>>>> 18da79f... Merge pull request #41937 from Bawhoppen/autolathesgone
 bwd
 bxC
 byK
@@ -81968,11 +82005,18 @@ aZK
 bnJ
 bbR
 bbR
+<<<<<<< HEAD
 bbR
 bty
 buJ
 bwe
 bxE
+=======
+bty
+bty
+pqP
+bwd
+>>>>>>> 18da79f... Merge pull request #41937 from Bawhoppen/autolathesgone
 byM
 bAd
 bBf
