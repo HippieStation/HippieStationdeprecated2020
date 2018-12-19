@@ -42,7 +42,8 @@
 
 /obj/item/twohanded/fireaxe/fireyaxe
 	desc = "This axe has become touched by the very flames it was built to destroy..."
-	force_wielded = 5
+	force_wielded = 30
+	block_chance = 30
 	damtype = "fire" //do do doooo, I'll take you to buurn.
 	heat = 1000
 	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
@@ -67,6 +68,13 @@
 /obj/item/twohanded/fireaxe/fireyaxe/attack(mob/living/carbon/M, mob/user)
 	if(!wielded)
 		return ..()
+	if(wielded) //destroys windows and grilles in one hit
+		if(istype(A, /obj/structure/window))
+			var/obj/structure/window/W = A
+			W.take_damage(2000, BRUTE, "melee", 0)
+		else if(istype(A, /obj/structure/grille))
+			var/obj/structure/grille/G = A
+			G.take_damage(40, BRUTE, "melee", 0)	
 	if(isliving(M))
 		var/def_check = M.getarmor(type = "fire")
 		to_chat(M, "<span class='danger'>The fires of the [name] burn you!</span>")
@@ -98,7 +106,7 @@
 			J.take_damage(75, BRUTE, "melee", 0)
 	if(iswallturf(target))
 		var/turf/closed/wall/Wall = target
-		if(Wall.hardness <= 10)// Rwalls have hardness 10, this can be adjusted to make certain walls resistant to burning
+		if(Wall.hardness > 10)// Rwalls have hardness 10, this can be adjusted to make certain walls resistant to burning
 			to_chat(user, "<span class='danger'>This wall is to strong to be burned by the flames!</span>")
 		else if(burnwall)
 			Wall.AddComponent(/datum/component/thermite, 50)
