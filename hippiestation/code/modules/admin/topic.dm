@@ -81,7 +81,7 @@
 			qdel(query_get_mentor)
 			qdel(query_add_mentor)
 			return
-		var/datum/DBQuery/query_add_admin_log = SSdbcore.NewQuery("INSERT INTO `[format_table_name("admin_log")]` (`id` ,`datetime` ,`adminckey` ,`adminip` ,`log` ) VALUES (NULL , NOW( ) , '[usr.ckey]', '[usr.client.address]', 'Added new mentor [ckey]');")
+		var/datum/DBQuery/query_add_admin_log = SSdbcore.NewQuery("INSERT INTO [format_table_name("admin_log")] (datetime, round_id, adminckey, adminip, operation, target, log) VALUES ('[SQLtime()]', '[GLOB.round_id]', '[sanitizeSQL(usr.ckey)]', INET_ATON('[sanitizeSQL(usr.client.address)]'), 'add rank', '[sanitizeSQL(ckey)]', 'New mentor added: [sanitizeSQL(ckey)]');")
 		if(!query_add_admin_log.warn_execute())
 			qdel(query_get_mentor)
 			qdel(query_add_mentor)
@@ -115,7 +115,7 @@
 		if(!query_remove_mentor.warn_execute())
 			qdel(query_remove_mentor)
 			return
-		var/datum/DBQuery/query_add_admin_log = SSdbcore.NewQuery("INSERT INTO `[format_table_name("admin_log")]` (`id` ,`datetime` ,`adminckey` ,`adminip` ,`log` ) VALUES (NULL , NOW( ) , '[usr.ckey]', '[usr.client.address]', 'Removed mentor [ckey]');")
+		var/datum/DBQuery/query_add_admin_log = SSdbcore.NewQuery("INSERT INTO [format_table_name("admin_log")] (datetime, round_id, adminckey, adminip, operation, target, log) VALUES ('[SQLtime()]', '[GLOB.round_id]', '[sanitizeSQL(usr.ckey)]', INET_ATON('[sanitizeSQL(usr.client.address)]'), 'remove rank', '[sanitizeSQL(ckey)]', 'Mentor removed: [sanitizeSQL(ckey)]');")
 		if(!query_add_admin_log.warn_execute())
 			qdel(query_remove_mentor)
 			qdel(query_add_admin_log)
