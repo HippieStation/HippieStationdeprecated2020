@@ -26,6 +26,7 @@
 #define IC_FORMAT_REF			"\<REF\>"
 #define IC_FORMAT_LIST			"\<LIST\>"
 #define IC_FORMAT_INDEX			"\<INDEX\>"
+#define IC_FORMAT_PATHTYPE		"\<TYPE\>"
 
 #define IC_FORMAT_PULSE			"\<PULSE\>"
 
@@ -41,6 +42,7 @@
 #define IC_PINTYPE_LIST				/datum/integrated_io/lists
 #define IC_PINTYPE_INDEX			/datum/integrated_io/index
 #define IC_PINTYPE_SELFREF			/datum/integrated_io/selfref
+#define IC_PINTYPE_PATHTYPE			/datum/integrated_io/pathtype
 
 #define IC_PINTYPE_PULSE_IN			/datum/integrated_io/activate
 #define IC_PINTYPE_PULSE_OUT		/datum/integrated_io/activate/out
