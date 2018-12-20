@@ -3365,6 +3365,7 @@
 	base_state = "left";
 	dir = 8;
 	icon_state = "left";
+	max_integrity = 250;
 	name = "Security Delivery";
 	req_access_txt = "1"
 	},
@@ -7064,7 +7065,8 @@
 /obj/machinery/door/airlock/security{
 	id_tag = "laborexit";
 	name = "Labor Shuttle";
-	req_access_txt = "63"
+	req_access_txt = "63";
+	security_level = 6
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
@@ -7750,7 +7752,8 @@
 "arG" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Security Maintenance";
-	req_access_txt = "2"
+	req_access_txt = "2";
+	security_level = 1
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -32329,7 +32332,8 @@
 "bFh" = (
 /obj/machinery/door/airlock/security{
 	name = "Security Checkpoint";
-	req_access_txt = "1"
+	req_access_txt = "1";
+	security_level = 1
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -60462,9 +60466,11 @@
 /obj/machinery/atmospherics/components/binary/pump/layer1{
 	dir = 1;
 	icon_state = "pump_map-1";
-	name = "Air Out"
+	name = "Air supply pump"
 	},
-/obj/machinery/atmospherics/components/binary/pump,
+/obj/machinery/atmospherics/components/binary/pump{
+	name = "Scrubbers to waste pump"
+	},
 /turf/open/floor/plating,
 /area/maintenance/port)
 "kbS" = (
