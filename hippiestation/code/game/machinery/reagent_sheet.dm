@@ -73,7 +73,7 @@
 	var/obj/item/stack/sheet/mineral/reagent/RS = new(get_turf(src))
 	visible_message("<span class='notice'>[src] finishes processing</span>")
 	playsound(src, 'sound/machines/ping.ogg', 50, 0)
-	qdel(working)
+	QDEL_NULL(working)
 	RS.amount = sheet_amount
 	for(var/path in subtypesof(/datum/reagent))
 		var/datum/reagent/RR = new path
