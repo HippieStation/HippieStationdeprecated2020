@@ -6,3 +6,9 @@
 
 /obj/item/projectile/magic/special
 	speed = 0.8 //as before
+
+/obj/item/projectile/energy
+	speed = 0.2
+
+/obj/item/projectile/beam
+	speed = 0.2
