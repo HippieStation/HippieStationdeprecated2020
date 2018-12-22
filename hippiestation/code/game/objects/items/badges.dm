@@ -7,7 +7,7 @@
  * Can be expanded in the future to give everyone badges, or to even give some kind of function/verbs to the badges.
  * Could also be turned into a steal objective? ""steal a command badge, steal three security badges, etc.
  */
-/obj/item/badge
+/obj/item/clothing/accessory/badge //I've moved this under accessories so they can be placed on jumpsuits or on the belt slot.
 	name = "badge"
 	desc = "Does badge things."
 	icon = 'hippiestation/icons/obj/badge.dmi'
@@ -16,28 +16,30 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF //IDs are immune to fire and acid, badges should be also.
 	force = 3 //weaker than a toy, but it doesn't make sense for it to do no damage.
 	throwforce = 3
-	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced")
 
-/obj/item/badge/suicide_act(mob/living/carbon/user)
+/obj/item/clothing/accessory/badge/suicide_act(mob/living/carbon/user) //somewhat unique suicide message for fun.
 	user.visible_message("<span class='suicide'>[user] begins to stab [user.p_their()] eyes with \the [src]! The responsibility was too much for them! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	return BRUTELOSS
 
-/obj/item/badge/attack_self(mob/user) //All badges will flash/shine the same way.
+/obj/item/clothing/accessory/badge/attack_self(mob/user) //All badges will flash/shine the same way.
 	user.visible_message("[user] flashes their shiny badge.", "<span class='notice'>You briefly flash your badge.</span>")
 
 
-/obj/item/badge/attorney
+/obj/item/clothing/accessory/badge/attorney
 	name = "attorney badge"
 	desc = "An attorney badge, showing the authority of space prosecution and defence."
 	icon_state = "attorney"
+	materials = list(MAT_METAL=1000) // No reason as to why you can't reclaim this for materials.
 
-/obj/item/badge/security
+/obj/item/clothing/accessory/badge/security
 	name = "security badge"
 	desc = "A security badge, showing the authority of space law."
 	icon_state = "security"
+	materials = list(MAT_METAL=1000)
 
-/obj/item/badge/command
+/obj/item/clothing/accessory/badge/command
 	name = "command badge"
 	desc = "One of the elites."
 	icon_state = "command"
+	materials = list(MAT_GOLD=1000) //Command badges are golden, and obviously worth more.
