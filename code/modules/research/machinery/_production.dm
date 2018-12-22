@@ -70,9 +70,17 @@
 		materials.set_local_size(total_storage)
 	var/total_rating = 0
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
+<<<<<<< HEAD
 		total_rating += M.rating
 	total_rating = max(1, total_rating)
 	efficiency_coeff = total_rating
+=======
+		total_rating = CLAMP(total_rating - (M.rating * 0.1), 0, 1)
+	if(total_rating == 0)
+		efficiency_coeff = INFINITY
+	else
+		efficiency_coeff = 1/total_rating
+>>>>>>> 6e6a5f9... Fix division by 0 in R&D efficiency calculations (#42036)
 
 //we eject the materials upon deconstruction.
 /obj/machinery/rnd/production/on_deconstruction()
