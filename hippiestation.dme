@@ -2901,6 +2901,7 @@
 #include "hippiestation\code\game\objects\effects\spawners\mapping.dm"
 #include "hippiestation\code\game\objects\items\Ai_modules.dm"
 #include "hippiestation\code\game\objects\items\apc_frame.dm"
+#include "hippiestation\code\game\objects\items\badges.dm"
 #include "hippiestation\code\game\objects\items\butterfly_knives.dm"
 #include "hippiestation\code\game\objects\items\cheapcuisine.dm"
 #include "hippiestation\code\game\objects\items\cigs_lighters.dm"
