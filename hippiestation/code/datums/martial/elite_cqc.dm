@@ -11,7 +11,7 @@
 		streak = ""
 		Knockout(A,D)
 		return TRUE
-	if(findtext(streak,EXHAUSTION_COMBO))
+	if(findtext(streak,EXHAUSTION_COMBO))	
 		streak = ""
 		Exhaustion(A,D)
 		return TRUE

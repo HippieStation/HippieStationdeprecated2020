@@ -22,6 +22,6 @@
 	macrobomb.medium = 20
 	macrobomb.weak = 30
 	macrobomb.implant(H, null, 1)
-	var/datum/martial_art/elite_cqc/cqc = new/datum/martial_art/elite_cqc(NULL)
+	var/datum/martial_art/elite_cqc/cqc = new/datum/martial_art/elite_cqc()
 	cqc.teach(H)
 	to_chat(H, "<span class='boldannounce'>You know Elite CQC. Make sure you use it.</span>")
