@@ -3,8 +3,8 @@
 #define GIB_COMBO "DHHHH"
 
 /datum/martial_art/elite_cqc
-    name = "Elite CQC"
-    help_verb = /mob/living/carbon/human/proc/elite_cqc_help
+	name = "Elite CQC"
+	help_verb = /mob/living/carbon/human/proc/elite_cqc_help
 
 /datum/martial_art/cqc/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(findtext(streak,KNOCKOUT_COMBO))
@@ -23,34 +23,34 @@
 
 
 /datum/martial_art/elite_cqc/proc/Gib(mob/living/carbon/human/A, mob/living/carbon/human/D)
-    if (D.stat)
-        D.visible_message("<span class='danger'>[A] stomps and slams [D]!</span>", \
-        "<span class='userdanger'>[A] stomps and slams you!</span>")
-        D.adjustBruteLoss(90)
-        log_combat(A, D, "stomped (Elite CQC)")
-        return FALSE
-    D.visible_message("<span class='danger'>[A] tears [D] in half and stomps on them, gibbing them!</span>", \
-    "<span class='userdanger'>[A] tears you in half and stomps on you, gibbing you!</span>")
-    D.gib()
-    log_combat(A, D, "gibbed (Elite CQC)")
-    return TRUE
+	if (D.stat)
+		D.visible_message("<span class='danger'>[A] stomps and slams [D]!</span>", \
+		"<span class='userdanger'>[A] stomps and slams you!</span>")
+		D.adjustBruteLoss(90)
+		log_combat(A, D, "stomped (Elite CQC)")
+		return FALSE
+	D.visible_message("<span class='danger'>[A] tears [D] in half and stomps on them, gibbing them!</span>", \
+	"<span class='userdanger'>[A] tears you in half and stomps on you, gibbing you!</span>")
+	D.gib()
+	log_combat(A, D, "gibbed (Elite CQC)")
+	return TRUE
 
 /datum/martial_art/elite_cqc/proc/Knockout(mob/living/carbon/human/A, mob/living/carbon/human/D)
-    if (!D.stat)
-        return FALSE
-    D.visible_message("<span class='danger'>[A] grabs [D] and slams them on the neck, knocking them out!</span>", \
-    "<span class='userdanger'>[A] grabs you and slams you on the neck, knocking you out!</span>")
-    D.SetSleeping(2000)
-    log_combat(A, D, "knocked out (Elite CQC)")
-    return TRUE
+	if (!D.stat)
+		return FALSE
+	D.visible_message("<span class='danger'>[A] grabs [D] and slams them on the neck, knocking them out!</span>", \
+	"<span class='userdanger'>[A] grabs you and slams you on the neck, knocking you out!</span>")
+	D.SetSleeping(2000)
+	log_combat(A, D, "knocked out (Elite CQC)")
+	return TRUE
 
 /datum/martial_art/elite_cqc/proc/Exhaustion(mob/living/carbon/human/A, mob/living/carbon/human/D)
-    if (!D.stat)
-        return FALSE
-    D.visible_message("<span class='danger'>[A] subdues [D] and squeezes pressure points on their neck, exhausting them!</span>", \
-    "<span class='userdanger'>[A] grabs you and spressure points on your neck, exhausting you!</span>")
-    D.adjustStaminaLoss(100)
-    return TRUE
+	if (!D.stat)
+		return FALSE
+	D.visible_message("<span class='danger'>[A] subdues [D] and squeezes pressure points on their neck, exhausting them!</span>", \
+	"<span class='userdanger'>[A] grabs you and spressure points on your neck, exhausting you!</span>")
+	D.adjustStaminaLoss(100)
+	return TRUE
 
 /datum/martial_art/cqc/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("G",D)
@@ -67,16 +67,16 @@
 	return TRUE
 
 /datum/martial_art/cqc/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-    add_to_streak("H",D)
+	add_to_streak("H",D)
 	if(check_streak(A,D))
 		return TRUE
-    if (!D.IsParalyzed())
-        D.visible_message("<span class='danger'>[A] slams their hands into [D], knocking them down!</span>", \
+	if (!D.IsParalyzed())
+		D.visible_message("<span class='danger'>[A] slams their hands into [D], knocking them down!</span>", \
 		"<span class='userdanger'>[A] slams their hands into you, knocking you down!</span>")
-        D.Paralyze(60)
+		D.Paralyze(60)
 	else
 		basic_hit(A,D)
-    return TRUE
+	return TRUE
 
 /datum/martial_art/cqc/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("D",D)
