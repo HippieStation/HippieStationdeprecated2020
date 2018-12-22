@@ -631,7 +631,7 @@
 /obj/item/integrated_circuit/reagent/extinguisher/do_work()
 	//Check if enough volume
 	set_pin_data(IC_OUTPUT, 1, reagents.total_volume)
-	if(!reagents || (reagents.total_volume < IC_SMOKE_REAGENTS_MINIMUM_UNITS) || busy)
+	if(!reagents || reagents.total_volume < 5 || busy)
 		push_data()
 		activate_pin(3)
 		return
@@ -842,9 +842,11 @@
 
 
 /obj/item/integrated_circuit/input/beaker_connector/proc/push_vol()
-	if(!current_beaker)
-		set_pin_data(IC_OUTPUT, 1, 0)
-	set_pin_data(IC_OUTPUT, 1, current_beaker.reagents.total_volume)
+	var/beakerVolume = 0
+	if(current_beaker)
+		beakerVolume = current_beaker.reagents.total_volume
+
+	set_pin_data(IC_OUTPUT, 1, beakerVolume)
 	push_data()
 
 

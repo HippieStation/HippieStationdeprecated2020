@@ -22,7 +22,7 @@ D [1]/  ||
 
 /datum/integrated_io/New(loc, _name, _data, _pin_type,_ord)
 	name = _name
-	if(_data)
+	if(!isnull(_data))
 		data = _data
 	if(_pin_type)
 		pin_type = _pin_type

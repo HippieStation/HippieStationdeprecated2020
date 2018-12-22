@@ -96,6 +96,7 @@
 	RegisterSignal(parent, COMSIG_ITEM_PICKUP, .proc/signal_on_pickup)
 
 	RegisterSignal(parent, COMSIG_MOVABLE_POST_THROW, .proc/close_all)
+	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/on_move)
 
 	RegisterSignal(parent, COMSIG_CLICK_ALT, .proc/on_alt_click)
 	RegisterSignal(parent, COMSIG_MOUSEDROP_ONTO, .proc/mousedrop_onto)
@@ -154,6 +155,12 @@
 	for(var/i in master.slaves)
 		var/datum/component/storage/slave = i
 		next += slave.parent
+
+/datum/component/storage/proc/on_move()
+	var/atom/A = parent
+	for(var/mob/living/L in can_see_contents())
+		if(!L.CanReach(A))
+			hide_from(L)
 
 /datum/component/storage/proc/attack_self(datum/source, mob/M)
 	if(locked)
@@ -732,16 +739,30 @@
 	return hide_from(target)
 
 /datum/component/storage/proc/on_alt_click(datum/source, mob/user)
-	if(!isliving(user) || user.incapacitated() || !quickdraw || locked || !user.CanReach(parent))
+	if(!isliving(user) || !user.CanReach(parent))
 		return
-	var/obj/item/I = locate() in real_location()
-	if(!I)
+	if(locked)
+		to_chat(user, "<span class='warning'>[parent] seems to be locked!</span>")
 		return
-	remove_from_storage(I, get_turf(user))
-	if(!user.put_in_hands(I))
-		to_chat(user, "<span class='notice'>You fumble for [I] and it falls on the floor.</span>")
+
+	var/atom/A = parent
+	if(!quickdraw)
+		A.add_fingerprint(user)
+		user_show_to_mob(user)
+		playsound(A, "rustle", 50, 1, -5)
 		return
-	user.visible_message("<span class='warning'>[user] draws [I] from [parent]!</span>", "<span class='notice'>You draw [I] from [parent].</span>")
+
+	if(!user.incapacitated())
+		var/obj/item/I = locate() in real_location()
+		if(!I)
+			return
+		A.add_fingerprint(user)
+		remove_from_storage(I, get_turf(user))
+		if(!user.put_in_hands(I))
+			to_chat(user, "<span class='notice'>You fumble for [I] and it falls on the floor.</span>")
+			return
+		user.visible_message("<span class='warning'>[user] draws [I] from [parent]!</span>", "<span class='notice'>You draw [I] from [parent].</span>")
+		return
 
 /datum/component/storage/proc/action_trigger(datum/signal_source, datum/action/source)
 	gather_mode_switch(source.owner)

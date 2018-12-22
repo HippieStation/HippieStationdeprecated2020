@@ -108,8 +108,7 @@
 	diag_hud_set_circuitcell()
 
 /obj/item/electronic_assembly/proc/handle_idle_power()
-	if(!battery)
-		return
+
 	// First we generate power.
 	for(var/obj/item/integrated_circuit/passive/power/P in assembly_components)
 		P.make_energy()
@@ -220,7 +219,7 @@
 						io = circuit_pins.get_pin_ref(IC_INPUT, i)
 						if(io)
 							words += "<b><a href='?src=[REF(circuit_pins)];act=wire;pin=[REF(io)]'>[io.display_pin_type()] [io.name]</a> \
-							[io.display_data(io.data)]</b><br>"
+							<a href='?src=[REF(circuit_pins)];act=data;pin=[REF(io)]'>[io.display_data(io.data)]</a></b><br>"
 							if(io.linked.len)
 								words += "<ul>"
 								for(var/k in io.linked)
@@ -241,7 +240,7 @@
 						io = circuit_pins.get_pin_ref(IC_OUTPUT, i)
 						if(io)
 							words += "<b><a href='?src=[REF(circuit_pins)];act=wire;pin=[REF(io)]'>[io.display_pin_type()] [io.name]</a> \
-							[io.display_data(io.data)]</b><br>"
+							<a href='?src=[REF(circuit_pins)];act=data;pin=[REF(io)]'>[io.display_data(io.data)]</a></b><br>"
 							if(io.linked.len)
 								words += "<ul>"
 								for(var/k in io.linked)

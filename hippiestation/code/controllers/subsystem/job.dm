@@ -23,5 +23,5 @@
 /datum/controller/subsystem/job/proc/HippieFillBannedPosition()
 	for(var/p in unassigned)
 		var/mob/dead/new_player/player = p
-		if(jobban_isbanned(player, CLUWNEBAN) || jobban_isbanned(player, CATBAN))
-			AssignRole(player, overflow_role)
+		if(is_banned_from(player.ckey, CLUWNEBAN) || is_banned_from(player.ckey, CATBAN))
+			AssignRole(player, SSjob.overflow_role)

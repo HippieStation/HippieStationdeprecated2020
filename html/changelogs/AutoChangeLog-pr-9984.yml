@@ -1,0 +1,4 @@
+author: "HonkBot"
+delete-after: True
+changes: 
+  - rscdel: "You can no longer pre-scan in the cloner"

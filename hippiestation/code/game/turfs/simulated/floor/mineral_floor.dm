@@ -1,8 +1,8 @@
 /turf/open/floor/mineral/reagent
 	name = "reagent floor"
-	icon_state = "shuttlefloor3"
+	icon_state = "titanium_white"
 	floor_tile = /obj/item/stack/tile/mineral/reagent
-	icons = list("silver","silver_dam")
+	icons = list("titanium_white","titanium_dam1")
 	var/datum/reagent/reagent_type
 	var/obj/effect/particle_effect/fakeholder
 
@@ -31,6 +31,7 @@
 			foundvape.VM.volume += 20000
 		else
 			var/obj/effect/particle_effect/vapour/master/V = new(get_turf(src))
+			log_game("[src] of [reagent_type] was vaporized in [AREACOORD(src)]")
 			V.volume = 20000
 			var/paths = subtypesof(/datum/reagent)
 			for(var/path in paths)
@@ -81,6 +82,8 @@
 	if(hotness)
 		temperature_expose(exposed_temperature = hotness)
 		to_chat(user, "<span class='warning'>You heat [src] with [I]!</span>")
+		message_admins("[src] of [reagent_type] was heated by [ADMIN_LOOKUPFLW(user)] with [I] in [ADMIN_VERBOSEJMP(src)]")
+		log_game("[src] of [reagent_type] was heated by [ADMIN_LOOKUPFLW(user)] with [I] in [AREACOORD(src)]")
 	..()
 
 /turf/open/floor/mineral/reagent/ex_act()
@@ -107,7 +110,7 @@
 		if(user && !silent)
 			to_chat(user, "<span class='notice'>You remove the floor tile.</span>")
 		if(floor_tile && make_tile)
-			var/obj/item/stack/tile/mineral/reagent/F = new(src)
+			var/obj/item/stack/tile/mineral/reagent/F = new floor_tile(src)
 			var/paths = subtypesof(/datum/reagent)
 			for(var/path in paths)
 				var/datum/reagent/RR = new path

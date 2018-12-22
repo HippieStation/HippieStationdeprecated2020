@@ -454,7 +454,7 @@
 
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER && opened && cell)	// radio
 		if(shell)
-			to_chat(user, "You cannot seem to open the radio compartment")	//Prevent AI radio key theft // hippie -- make holotool work
+			to_chat(user, "You cannot seem to open the radio compartment")	//Prevent AI radio key theft
 		else if(radio)
 			radio.attackby(W,user)//Push it to the radio to let it handle everything
 		else
@@ -501,16 +501,16 @@
 		else
 			to_chat(user, "<span class='warning'>Unable to locate a radio!</span>")
 
-			to_chat(user, "<span class='notice'>The interface seems slightly damaged.</span>")
+	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))			// trying to unlock the interface with an ID card
 		if(opened)
 			to_chat(user, "<span class='warning'>You must close the cover to swipe an ID card!</span>")
 		else
 			if(allowed(usr))
 				locked = !locked
 				to_chat(user, "<span class='notice'>You [ locked ? "lock" : "unlock"] [src]'s cover.</span>")
+				update_icons()
 				if(emagged)
 					to_chat(user, "<span class='notice'>The cover interface glitches out for a split second.</span>")
-				update_icons()
 			else
 				to_chat(user, "<span class='danger'>Access denied.</span>")
 
@@ -1003,7 +1003,6 @@
 	for(var/obj/item/borg/upgrade/I in upgrades)
 		I.deactivate(src)
 		I.forceMove(get_turf(src))
-		I.dropped()
 
 	upgrades.Cut()
 
