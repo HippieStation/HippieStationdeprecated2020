@@ -10,6 +10,9 @@
 /obj/item/projectile/energy
 	speed = 0.2
 
+/obj/item/projectile/energy/electrode
+	speed = 0.8
+
 /obj/item/projectile/beam
 	speed = 0.2
 
