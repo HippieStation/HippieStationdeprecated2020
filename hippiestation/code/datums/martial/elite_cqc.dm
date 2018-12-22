@@ -71,9 +71,11 @@
 	if(check_streak(A,D))
 		return TRUE
     if (!D.IsParalyzed())
-        	D.visible_message("<span class='danger'>[A] slams their hands into [D], knocking them down!</span>", \
-			"<span class='userdanger'>[A] slams their hands into you, knocking you down!</span>")
-            D.Paralyze(60)
+        D.visible_message("<span class='danger'>[A] slams their hands into [D], knocking them down!</span>", \
+		"<span class='userdanger'>[A] slams their hands into you, knocking you down!</span>")
+        D.Paralyze(60)
+	else
+		basic_hit(A,D)
     return TRUE
 
 /datum/martial_art/cqc/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
