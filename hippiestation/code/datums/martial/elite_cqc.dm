@@ -6,7 +6,7 @@
 	name = "Elite CQC"
 	help_verb = /mob/living/carbon/human/proc/elite_cqc_help
 
-/datum/martial_art/cqc/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/elite_cqc/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(findtext(streak,KNOCKOUT_COMBO))
 		streak = ""
 		Knockout(A,D)
@@ -83,7 +83,7 @@
 	if(check_streak(A,D))
 		return TRUE
 	if(!D.stat || !D.IsParalyzed() || !restraining)
-		I = D.get_active_held_item()
+		var/obj/item/I = D.get_active_held_item()
 		D.visible_message("<span class='warning'>[A] disarms [D]!</span>", \
 							"<span class='userdanger'>[A] disarms you!</span>")
 		if(I && D.temporarilyRemoveItemFromInventory(I))
