@@ -68,7 +68,7 @@
 		for(var/obj/item/stock_parts/matter_bin/M in component_parts)
 			total_storage += M.rating * 75000
 		materials.set_local_size(total_storage)
-	var/total_rating = 0
+	var/total_rating = 1.2
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		total_rating = CLAMP(total_rating - (M.rating * 0.1), 0, 1)
 	if(total_rating == 0)
