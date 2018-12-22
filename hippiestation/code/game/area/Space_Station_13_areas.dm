@@ -46,3 +46,14 @@
 /area/hippie/scichem
 	name = "Sci-Chem"
 	icon_state = "scichem"
+
+
+/area/maintenance/strangeroom
+	name = "Strange room"
+	icon_state = "storage"
+	ambientsounds = list('sound/ambience/ambimaint1.ogg',
+						 'sound/ambience/ambimaint2.ogg',
+						 'sound/ambience/ambimaint3.ogg',
+						 'sound/ambience/ambimaint4.ogg',
+						 'sound/ambience/ambimaint5.ogg',
+						 'sound/spookoween/ghosty_wind.ogg')
