@@ -57,6 +57,12 @@
 #define TRAIT_PARALYSIS_R_ARM	"para-r-arm"
 #define TRAIT_PARALYSIS_L_LEG	"para-l-leg"
 #define TRAIT_PARALYSIS_R_LEG	"para-r-leg"
+<<<<<<< HEAD
+=======
+#define TRAIT_CANNOT_OPEN_PRESENTS "cannot-open-presents"
+#define TRAIT_PRESENT_VISION    "present-vision"
+#define TRAIT_DISK_VERIFIER     "disk-verifier"
+>>>>>>> d27c64c... Christmas code changes (#41763)
 #define TRAIT_NOMOBSWAP            "no-mob-swap"
 #define TRAIT_XRAY_VISION       "xray_vision"
 
@@ -103,4 +109,5 @@
 #define GENETICS_SPELL "genetics_spell"
 #define EYES_COVERED "eyes_covered"
 #define CULT_EYES "cult_eyes"
+#define TRAIT_SANTA "santa"
 #define SCRYING_ORB "scrying-orb"
