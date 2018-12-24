@@ -1413,6 +1413,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					H.update_damage_overlays()
 			else//no bodypart, we deal damage with a more general method.
 				H.adjustBruteLoss(damage * hit_percent * brutemod * H.physiology.brute_mod)
+			/* hippie start -- play hurt sound */
+			queue_hurt_sound(H)
+			/* hippie end */
 		if(BURN)
 			H.damageoverlaytemp = 20
 			if(BP)
@@ -1420,6 +1423,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					H.update_damage_overlays()
 			else
 				H.adjustFireLoss(damage * hit_percent * burnmod * H.physiology.burn_mod)
+			/* hippie start -- play hurt sound */
+			queue_hurt_sound(H)
+			/* hippie end */
 		if(TOX)
 			H.adjustToxLoss(damage * hit_percent * H.physiology.tox_mod)
 		if(OXY)
