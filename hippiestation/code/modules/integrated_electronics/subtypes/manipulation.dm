@@ -759,7 +759,7 @@ obj/item/integrated_circuit/manipulation/renamer/do_work(var/n)
 
 
 // - redescribing circuit - //
-/obj/item/integrated_circuit/output/redescribe
+/obj/item/integrated_circuit/manipulation/redescribe
 	name = "redescriber"
 	desc = "Takes any string as an input and will set it as the assembly's description."
 	extended_desc = "Strings should can be of any length."
@@ -771,7 +771,7 @@ obj/item/integrated_circuit/manipulation/renamer/do_work(var/n)
 	activators = list("redescribe" = IC_PINTYPE_PULSE_IN,"get description" = IC_PINTYPE_PULSE_IN,"pulse out" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/output/redescribe/do_work(var/n)
+/obj/item/integrated_circuit/manipulation/redescribe/do_work(var/n)
 	if(!assembly)
 		return
 
@@ -786,8 +786,8 @@ obj/item/integrated_circuit/manipulation/renamer/do_work(var/n)
 	activate_pin(3)
 
 // - repainting circuit - //
-/obj/item/integrated_circuit/output/repaint
-	name = "self-repainting circuit"
+/obj/item/integrated_circuit/manipulation/repaint
+	name = "auto-repainter"
 	desc = "There's an oddly high amount of spraying cans fitted right inside this circuit."
 	extended_desc = "Takes a value in hexadecimal and uses it to repaint the assembly it is in."
 	cooldown_per_use = 10
@@ -797,7 +797,7 @@ obj/item/integrated_circuit/manipulation/renamer/do_work(var/n)
 	activators = list("repaint" = IC_PINTYPE_PULSE_IN,"get color" = IC_PINTYPE_PULSE_IN,"pulse out" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/output/repaint/do_work(var/n)
+/obj/item/integrated_circuit/manipulation/repaint/do_work(var/n)
 	if(!assembly)
 		return
 
