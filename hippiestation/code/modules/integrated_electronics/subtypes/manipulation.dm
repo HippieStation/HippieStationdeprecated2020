@@ -801,7 +801,7 @@ obj/item/integrated_circuit/manipulation/renamer/do_work(var/n)
 	if(!assembly)
 		return
 
-	switch(var/n)
+	switch(n)
 		if(1)
 			assembly.detail_color = get_pin_data(IC_INPUT, 1)
 			assembly.update_icon()
