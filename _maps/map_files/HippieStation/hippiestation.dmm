@@ -17119,14 +17119,12 @@
 "aQa" = (
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L1"
 	},
 /area/hallway/primary/central)
 "aQb" = (
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L3"
 	},
 /area/hallway/primary/central)
@@ -17137,14 +17135,12 @@
 	},
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L5"
 	},
 /area/hallway/primary/central)
 "aQd" = (
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L7"
 	},
 /area/hallway/primary/central)
@@ -17152,21 +17148,18 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L9"
 	},
 /area/hallway/primary/central)
 "aQf" = (
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L11"
 	},
 /area/hallway/primary/central)
 "aQg" = (
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L13";
 	name = "floor"
 	},
@@ -17662,14 +17655,12 @@
 "aRC" = (
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L2"
 	},
 /area/hallway/primary/central)
 "aRD" = (
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L4"
 	},
 /area/hallway/primary/central)
@@ -17684,7 +17675,6 @@
 	},
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L6"
 	},
 /area/hallway/primary/central)
@@ -17692,7 +17682,6 @@
 /obj/effect/landmark/observer_start,
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L8"
 	},
 /area/hallway/primary/central)
@@ -17704,21 +17693,18 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L10"
 	},
 /area/hallway/primary/central)
 "aRH" = (
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L12"
 	},
 /area/hallway/primary/central)
 "aRI" = (
 /turf/open/floor/plasteel{
 	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_hippie = 'hippiestation/icons/turf/floors.dmi';
 	icon_state = "L14"
 	},
 /area/hallway/primary/central)
