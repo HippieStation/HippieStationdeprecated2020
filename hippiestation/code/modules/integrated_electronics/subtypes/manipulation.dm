@@ -780,7 +780,7 @@ obj/item/integrated_circuit/manipulation/renamer/do_work(var/n)
 			assembly.desc = get_pin_data(IC_INPUT, 1)
 
 		else
-			set_pin_data(IC_OUTPUT, assembly.desc)
+			set_pin_data(IC_OUTPUT, 1, assembly.desc)
 			push_data()
 
 	activate_pin(3)
