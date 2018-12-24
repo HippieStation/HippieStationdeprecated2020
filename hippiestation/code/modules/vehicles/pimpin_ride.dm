@@ -35,6 +35,7 @@
 /obj/vehicle/ridden/lawnmower/Move()
 	..()
 	var/gibbed = FALSE
+	var/gib_scream = FALSE
 	var/mob/living/carbon/H
 
 	if(has_buckled_mobs())
@@ -46,12 +47,17 @@
 				continue
 			if(M.lying)
 				visible_message("<span class='danger'>\the [src] grinds [M.name] into a fine paste!</span>")
+				if (M.stat != DEAD)
+					gib_scream = TRUE
 				M.gib()
 				shake_camera(M, 20, 1)
 				gibbed = TRUE
 
 	if(gibbed)
 		shake_camera(H, 10, 1)
-		playsound(loc, pick(gib_sounds), 75, 1)
+		if (gib_scream)
+			playsound(loc, 'hippiestation/sound/voice/gib_scream.ogg', 100, 1, frequency = rand(11025*0.75, 11025*1.25))
+		else
+			playsound(loc, pick(gib_sounds), 75, 1)
 	else
 		playsound(loc, pick(drive_sounds), 75, 1)
