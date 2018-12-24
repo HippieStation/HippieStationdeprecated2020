@@ -179,8 +179,4 @@
 /obj/item/reagent_containers/hypospray/medipen/atropine
 	name = "atropine autoinjector"
 	desc = "A rapid way to save a person from a critical injury state!"
-<<<<<<< HEAD
 	list_reagents = list("atropine" = 10)
-=======
-	list_reagents = list("atropine" = 10)
->>>>>>> c192ece... Merge pull request #41997 from coiax/removes-container-type
