@@ -736,12 +736,18 @@
 	icon_state = "internalbm"
 	extended_desc = "This circuit accepts a string as input, and can be pulsed to rewrite the current assembly's name with said string. On success, it pulses the default pulse-out wire."
 	inputs = list("name" = IC_PINTYPE_STRING)
-	activators = list("pulse in" = IC_PINTYPE_PULSE_IN,"pulse out" = IC_PINTYPE_PULSE_OUT)
+	outputs = list("current name" = IC_PINTYPE_STRING)
+	activators = list("rename" = IC_PINTYPE_PULSE_IN,"get name" = IC_PINTYPE_PULSE_IN,"pulse out" = IC_PINTYPE_PULSE_OUT)
 	power_draw_per_use = 1
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-obj/item/integrated_circuit/manipulation/renamer/do_work()
-	var/new_name = get_pin_data(IC_INPUT, 1)
-	if(assembly && new_name)
-		assembly.name = new_name
-		activate_pin(2)
+obj/item/integrated_circuit/manipulation/renamer/do_work(var/n)
+	switch(n)
+		if(1)
+			var/new_name = get_pin_data(IC_INPUT, 1)
+			if(assembly && new_name)
+				assembly.name = new_name
+				activate_pin(2)
+		else
+			set_pin_data(IC_OUTPUT, 1, assembly.name)
+
