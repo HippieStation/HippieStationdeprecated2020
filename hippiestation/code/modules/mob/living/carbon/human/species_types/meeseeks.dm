@@ -40,8 +40,8 @@
 	H.adjustBrainLoss(0.8)
 	if(stage_ticks == MEESEEKS_TICKS_STAGE_ONE)
 		H.add_trait(TRAIT_CLUMSY, GENETIC_MUTATION)
-		var/datum/mutation/human/HM = GLOB.mutations_list[SMILE]
-		HM.force_give(H)
+		var/datum/mutation/human/HM = check_mutation[SMILE]
+		HM.dna.add_mutation(SMILE)
 	if(stage_ticks == MEESEEKS_TICKS_STAGE_TWO)
 		message_admins("[key_name_admin(H)] has become a stage-two Mr. Meeseeks.")
 		log_game("[key_name(H)] has become a stage-two Mr. Meeseeks.")
