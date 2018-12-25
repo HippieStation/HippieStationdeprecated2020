@@ -91,7 +91,6 @@
 	var/read_only = FALSE //Well,it's still a floppy disk
 	var/list/mutations = list()
 	var/max_mutations = 6
-	var/read_only = 0 //Well,it's still a floppy disk
 
 //Disk stuff.
 /obj/item/disk/data/Initialize()
@@ -145,8 +144,6 @@
 		return FALSE
 	clonemind = locate(mindref) in SSticker.minds
 	if(!istype(clonemind))	//not a mind
-		return FALSE
-	if(clonemind.last_death != last_death) //The soul has advanced, the record has not.
 		return FALSE
 	if(!QDELETED(clonemind.current))
 		if(clonemind.current.stat != DEAD)	//mind is associated with a non-dead body
