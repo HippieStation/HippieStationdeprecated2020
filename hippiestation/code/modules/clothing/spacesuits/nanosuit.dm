@@ -283,10 +283,10 @@
 /obj/item/clothing/suit/space/hardsuit/nano/proc/set_nano_energy(var/amount, var/delay = 0)
 	if(delay > recharge_cooldown)
 		recharge_cooldown = delay
-	if(amount < crit_energy && !criticalpower) //energy is less than critical energy level(20) and not in crit power
+	if(cell.charge < crit_energy && !criticalpower) //energy is less than critical energy level(20) and not in crit power
 		helmet.display_visor_message("Energy Critical!") //now we are
 		criticalpower = TRUE
-	else if(amount > crit_energy) //did our energy go higher than the crit level
+	else if(cell.charge > crit_energy) //did our energy go higher than the crit level
 		criticalpower = FALSE //turn it off
 	if(!cell.charge) //did we lose energy?
 		if(mode == NANO_CLOAK) //are we in cloak?
@@ -722,7 +722,7 @@
 	..()
 	if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit/nano)) //Only display if actually wearing the suit.
 		var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
-		var/datum/gas_mixture/environment = loc.return_air()
+		var/datum/gas_mixture/environment = loc?.return_air()
 		var/pressure = environment.return_pressure()
 		if(statpanel("Crynet Nanosuit"))
 			stat("Crynet Protocols : [!NS.shutdown?"Engaged":"Disengaged"]")
