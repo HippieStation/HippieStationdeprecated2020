@@ -547,7 +547,7 @@
 	update_icon()
 	return TRUE
 
-/obj/item/electronic_assembly/welder_act(obj/item/I, mob/living/user)
+/obj/item/electronic_assembly/welder_act(mob/living/user, obj/item/I)
 	var/type_to_use
 
 	if(!sealed)
