@@ -43,6 +43,8 @@
 	visible_message("<span class='notice'>[src] has finished printing its assembly!</span>")
 	playsound(src, 'sound/items/poster_being_created.ogg', 50, TRUE)
 	var/obj/item/electronic_assembly/assembly = SScircuit.load_electronic_assembly(get_turf(src), program)
+	if(idlock)
+		assembly.idlock = idlock
 	assembly.creator = key_name(user)
 	assembly.investigate_log("was printed by [assembly.creator].", INVESTIGATE_CIRCUIT)
 	cloning = FALSE
@@ -151,7 +153,7 @@
 	if((can_clone && CONFIG_GET(flag/ic_printing)) || debug)
 		HTML += "Here you can load script for your assembly.<br>"
 		if(!cloning)
-			HTML += " <A href='?src=[REF(src)];print=load'>{Load Program}</a> "
+			HTML += " <A href='?src=[REF(src)];print=load'>Load Program</a> "
 		else
 			HTML += " Load Program"
 		if(!program)
@@ -165,9 +167,9 @@
 	HTML += "Categories:"
 	for(var/category in SScircuit.circuit_fabricator_recipe_list)
 		if(category != current_category)
-			HTML += " <a href='?src=[REF(src)];category=[category]'>\[[category]\]</a> "
+			HTML += " <a href='?src=[REF(src)];category=[category]'>[category]</a> "
 		else // Bold the button if it's already selected.
-			HTML += " <b>\[[category]\]</b> "
+			HTML += " <b>[category]</b> "
 	HTML += "<hr>"
 	HTML += "<center><h4>[current_category]</h4></center>"
 
