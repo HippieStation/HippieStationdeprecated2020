@@ -65,7 +65,6 @@
 			"had one too many tacos this week!",
 			"has the phantom shits.",
 			"flexes their bunghole.",
-			"'s ass sings the song that ends the earth!",
 			"had to go and ruin the mood!",
 			"unflinchingly farts. True confidence.",
 			"shows everyone what they had for breakfast!",
@@ -114,8 +113,6 @@
 					playsound(user, 'hippiestation/sound/effects/fartmassive.ogg', 100, 1, 5)
 				else
 					playsound(user, fartsound, 100, 1, 5)
-				if(prob(33))
-					STR.remove_from_storage(O, user.loc)
 			else
 				playsound(user, fartsound, 100, 1, 5)
 		if(blowass)
