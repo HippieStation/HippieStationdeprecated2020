@@ -741,7 +741,7 @@
 	power_draw_per_use = 1
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-obj/item/integrated_circuit/manipulation/renamer/do_work(var/n)
+/obj/item/integrated_circuit/manipulation/renamer/do_work(var/n)
 	if(!assembly)
 		return
 	switch(n)
