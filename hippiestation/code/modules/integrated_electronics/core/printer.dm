@@ -14,6 +14,7 @@
 	var/cloning = FALSE			// If the printer is currently creating a circuit
 	var/recycling = FALSE		// If an assembly is being emptied into this printer
 	var/list/program			// Currently loaded save, in form of list
+	var/obj/item/card/id/idlock = null
 
 /obj/item/integrated_circuit_printer/proc/check_interactivity(mob/user)
 	return user.canUseTopic(src, BE_CLOSE)
@@ -101,6 +102,19 @@
 			recycling = FALSE
 			return TRUE
 
+	if(istype(O, /obj/item/integrated_electronics/debugger))
+		var/obj/item/integrated_electronics/debugger/debugger = O
+		if(debugger.idlock == idlock || !debugger.idlock)
+			idlock = null
+			debugger.idlock = null
+			to_chat(user, "<span class='notice'>You reset \the [src]'s protection settings.</span>")
+			return
+
+		idlock = debugger.idlock
+		debugger.idlock = null
+		to_chat(user, "<span class='notice'>You set \the [src] to print out id-locked assemblies only.</span>")
+		return
+
 	return ..()
 
 /obj/item/integrated_circuit_printer/attack_self(mob/user)
@@ -123,6 +137,8 @@
 		HTML += "<center><h3>DEBUG PRINTER -- Infinite materials. Cloning available.</h3></center>"
 	else
 		HTML += "Metal: [materials.total_amount]/[materials.max_amount].<br><br>"
+
+	HTML += "Identity-lock: [idlock ? "[idlock.name] | <A href='?src=[REF(src)];id-lock=TRUE'>Reset</a>" : "None | Reset"]<br>"
 
 	if(CONFIG_GET(flag/ic_printing) || debug)
 		HTML += "Assembly cloning: [can_clone ? (fast_clone ? "Instant" : "Available") : "Unavailable"].<br>"
@@ -177,6 +193,9 @@
 	if(..())
 		return TRUE
 	add_fingerprint(usr)
+
+	if(href_list["id-lock"])
+		idlock = null
 
 	if(href_list["category"])
 		current_category = href_list["category"]
