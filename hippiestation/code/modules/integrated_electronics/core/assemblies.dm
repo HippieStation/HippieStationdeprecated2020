@@ -33,6 +33,9 @@
 	var/prefered_hud_icon = "hudstat"		// Used by the AR circuit to change the hud icon.
 	var/creator // circuit creator if any
 	var/static/next_assembly_id = 0
+	var/sealed = FALSE
+	var/obj/item/card/id/idlock = null
+
 	hud_possible = list(DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_TRACK_HUD, DIAG_CIRCUIT_HUD) //diagnostic hud overlays
 	max_integrity = 50
 	pass_flags = 0
@@ -40,6 +43,7 @@
 	anchored = FALSE
 	var/can_anchor = TRUE
 	var/detail_color = COLOR_ASSEMBLY_BLACK
+
 /obj/item/electronic_assembly/New()
 	..()
 	src.max_components = round(max_components)
@@ -532,6 +536,9 @@
 
 
 /obj/item/electronic_assembly/screwdriver_act(mob/living/user, obj/item/I)
+	if(sealed)
+		to_chat(user,"<span class='notice'>The assembly is sealed. Any attempt to force it open would break it.</span>")
+		return FALSE
 	if(..())
 		return TRUE
 	I.play_tool_sound(src)
@@ -539,6 +546,35 @@
 	to_chat(user, "<span class='notice'>You [opened ? "open" : "close"] the maintenance hatch of [src].</span>")
 	update_icon()
 	return TRUE
+
+/obj/item/electronic_assembly/welder_act(obj/item/I, mob/living/user)
+	var/type_to_use
+
+	if(!sealed)
+		type_to_use = input("What would you like to do?","[src] type setting") as null|anything in list("repair", "seal")
+	else
+		type_to_use = "repair"
+
+	switch(type_to_use)
+		if("repair")
+			if(obj_integrity < max_integrity)
+				obj_integrity = min(obj_integrity + 20,max_integrity)
+				to_chat(user,"<span class='notice'>You fix the dents and scratches of the assembly.</span>")
+				return TRUE
+
+			else
+				to_chat(user,"<span class='notice'>The assembly is already in impeccable condition.</span>")
+				return FALSE
+
+		if("seal")
+			if(!opened)
+				sealed = TRUE
+				to_chat(user,"<span class='notice'>You seal the assembly, making it impossible to be opened.</span>")
+				return TRUE
+
+			else
+				to_chat(user,"<span class='notice'>You need to close the assembly first before sealing it indefinitely!</span>")
+				return FALSE
 
 /obj/item/electronic_assembly/attackby(obj/item/I, mob/living/user)
 	if(can_anchor && default_unfasten_wrench(user, I, 20))
