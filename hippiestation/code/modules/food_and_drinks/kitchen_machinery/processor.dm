@@ -44,11 +44,11 @@
 			"You put [pushed_mob] into [src].")
 		pushed_mob.forceMove(src)
 		user.stop_pulling()
-		return 1
+		return TRUE
 	else if (ismob(user.pulling))
 		if(user.a_intent != INTENT_HARM)
 			to_chat(user, "<span class='warning'>That probably won't blend!</span>")
-			return 1
+			return TRUE
 		else
 			return ..()
 	if(contents.len == 0)
