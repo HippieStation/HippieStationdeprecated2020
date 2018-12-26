@@ -29,9 +29,13 @@
 		remove_mutations.Add(GLOB.mutations_list[mut_key])
 
 /obj/item/dnainjector/proc/inject(mob/living/carbon/M, mob/user)
+<<<<<<< HEAD
 	prepare()
 
 	if(M.has_dna() && !M.has_trait(TRAIT_RADIMMUNE) && !M.has_trait(TRAIT_NOCLONE))
+=======
+	if(M.has_dna() && !M.has_trait(TRAIT_RADIMMUNE) && !M.has_trait(TRAIT_BADDNA))
+>>>>>>> c05b0ea... Turns TRAIT_NOCLONE into TRAIT_BADDNA for consistency (#41819)
 		M.radiation += rand(20/(damage_coeff  ** 2),50/(damage_coeff  ** 2))
 		var/log_msg = "[key_name(user)] injected [key_name(M)] with the [name]"
 		for(var/datum/mutation/human/HM in remove_mutations)
@@ -313,7 +317,7 @@
 		to_chat(user, "<span class='notice'>You can't modify [M]'s DNA while [M.p_theyre()] dead.</span>")
 		return FALSE
 
-	if(M.has_dna() && !(M.has_trait(TRAIT_NOCLONE)))
+	if(M.has_dna() && !(M.has_trait(TRAIT_BADDNA)))
 		M.radiation += rand(20/(damage_coeff  ** 2),50/(damage_coeff  ** 2))
 		var/log_msg = "[key_name(user)] injected [key_name(M)] with the [name]"
 		var/endtime = world.time+duration
@@ -366,4 +370,29 @@
 /obj/item/dnainjector/timed/h2m
 	name = "\improper DNA injector (Human > Monkey)"
 	desc = "Will make you a flea bag."
+<<<<<<< HEAD
 	add_mutations_static = list(RACEMUT)
+=======
+	add_mutations = list(RACEMUT)
+
+/obj/item/dnainjector/activator
+	name = "\improper DNA activator"
+	desc = "Activates the current mutation on injection, if the subject has it."
+	var/doitanyway = FALSE
+
+/obj/item/dnainjector/activator/inject(mob/living/carbon/M, mob/user)
+	if(M.has_dna() && !M.has_trait(TRAIT_RADIMMUNE) && !M.has_trait(TRAIT_BADDNA))
+		M.radiation += rand(20/(damage_coeff  ** 2),50/(damage_coeff  ** 2))
+		var/log_msg = "[key_name(user)] injected [key_name(M)] with the [name]"
+		for(var/mutation in add_mutations)
+			if(!M.dna.activate_mutation(mutation) && !doitanyway)
+				log_msg += "(FAILED)"
+			else if(doitanyway)
+				M.dna.add_mutation(mutation, MUT_EXTRA)
+			log_msg += "([mutation])"
+		log_attack("[log_msg] [loc_name(user)]")
+		M.dna.update_instability()
+		return TRUE
+	return FALSE
+
+>>>>>>> c05b0ea... Turns TRAIT_NOCLONE into TRAIT_BADDNA for consistency (#41819)
