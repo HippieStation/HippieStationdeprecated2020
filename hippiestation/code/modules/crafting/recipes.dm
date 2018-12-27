@@ -152,3 +152,15 @@
 
 /datum/crafting_recipe/mummy
 	tools = list(/obj/item/nullrod/hippie/egyptian)
+
+/datum/crafting_recipe/box_gun
+	name = "Box gun"
+	result = /obj/item/gun/ballistic/revolver/doublebarrel/contender/box_gun
+	reqs = list(/obj/item/stack/rods = 2,
+				/obj/item/stack/cable_coil = 5,
+				/obj/item/storage/box = 1,
+				/obj/item/weaponcrafting/receiver = 1)
+	tools = list(/obj/item/screwdriver)
+	time = 150
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
