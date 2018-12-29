@@ -72,5 +72,11 @@
 
 	var/list/credits //lazy list of all credit object bound to this client
 
+<<<<<<< HEAD
 
 	var/datum/player_details/player_details //these persist between logins/logouts during the same round.
+=======
+	var/datum/player_details/player_details //these persist between logins/logouts during the same round.
+
+	var/list/char_render_holders			//Should only be a key-value list of north/south/east/west = obj/screen.
+>>>>>>> 620db42... Refactors the Preferences window to use appearances  (#41978)
