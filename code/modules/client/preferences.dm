@@ -600,12 +600,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	winshow(user, "preferences_window", TRUE)
 	var/datum/browser/popup = new(user, "preferences_browser", "<div align='center'>Character Setup</div>", 640, 770)
 	popup.set_content(dat.Join())
-<<<<<<< HEAD
-	popup.open(0)
-=======
 	popup.open(FALSE)
 	onclose(user, "preferences_window", src)
->>>>>>> 620db42... Refactors the Preferences window to use appearances  (#41978)
 
 #undef APPEARANCE_CATEGORY_COLUMN
 #undef MAX_MUTANT_ROWS
@@ -737,12 +733,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/datum/browser/popup = new(user, "mob_occupation", "<div align='center'>Occupation Preferences</div>", width, height)
 	popup.set_window_options("can_close=0")
 	popup.set_content(HTML)
-<<<<<<< HEAD
-	popup.open(0)
-	return
-=======
 	popup.open(FALSE)
->>>>>>> 620db42... Refactors the Preferences window to use appearances  (#41978)
 
 /datum/preferences/proc/SetJobPreferenceLevel(datum/job/job, level)
 	if (!job)
