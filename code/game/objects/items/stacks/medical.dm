@@ -74,7 +74,7 @@
 			else if(user.gender == FEMALE)
 				t_himself = "herself"
 			user.visible_message("<span class='notice'>[user] starts to apply [src] on [t_himself]...</span>", "<span class='notice'>You begin applying [src] on yourself...</span>")
-				if(!do_mob(user, M, self_delay, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE, null, FALSE))) // hippie -- no longer need to take off hardsuit/whatever to heal
+				if(!do_mob(user, M, self_delay, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE, null, TRUE))) // hippie -- no longer need to take off hardsuit/whatever to heal
 					return
 			user.visible_message("<span class='green'>[user] applies [src] on [t_himself].</span>", "<span class='green'>You apply [src] on yourself.</span>")
 
