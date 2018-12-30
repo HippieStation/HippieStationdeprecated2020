@@ -50,7 +50,7 @@
 
 
 	if(isliving(M))
-		if(!M.can_inject(user, 1))
+		if(!M.can_inject(user, 1, penetrate_thick = TRUE)) // hippie -- no longer need to take off hardsuit/whatever to heal
 			return
 
 	if(user)
@@ -74,8 +74,8 @@
 			else if(user.gender == FEMALE)
 				t_himself = "herself"
 			user.visible_message("<span class='notice'>[user] starts to apply [src] on [t_himself]...</span>", "<span class='notice'>You begin applying [src] on yourself...</span>")
-			if(!do_mob(user, M, self_delay, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE)))
-				return
+				if(!do_mob(user, M, self_delay, extra_checks=CALLBACK(M, /mob/living/proc/can_inject, user, TRUE, null, FALSE))) // hippie -- no longer need to take off hardsuit/whatever to heal
+					return
 			user.visible_message("<span class='green'>[user] applies [src] on [t_himself].</span>", "<span class='green'>You apply [src] on yourself.</span>")
 
 
