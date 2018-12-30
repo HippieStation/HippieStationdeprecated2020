@@ -1001,7 +1001,8 @@
 		return target.attack_nanosuit(owner)
 
 /mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
-	if(var/datum/martial_art/nanosuit/style == mind.has_martialart(MARTIALART_NANOSUIT))
+	var/datum/martial_art/nanosuit/style
+	if(mind && mind.has_martialart(MARTIALART_NANOSUIT))
 		if(style.on_attack_hand(src, A, proximity))
 			return
 	..()
