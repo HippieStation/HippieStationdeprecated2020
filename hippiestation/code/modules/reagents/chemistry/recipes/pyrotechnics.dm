@@ -282,7 +282,7 @@
 	var/chem_to_remove
 	modifier = 1
 
-/datum/chemical_reaction/reagent_explosion/remove_all/on_reaction(datum/reagents/holder, created_volume, var/log=TRUE)//added much needed sanity check
+/datum/chemical_reaction/reagent_explosion/remove_all/on_reaction(datum/reagents/holder, created_volume, var/log=TRUE)
 	. = ..()
 	holder.remove_reagent(chem_to_remove)
 
@@ -315,7 +315,7 @@
 /datum/chemical_reaction/reagent_explosion/remove_all/superboom_b
 	name = "N-amino azidotetrazole Collapse"
 	chem_to_remove = "superboom"
-	required_catalysts = list("superboom" = 1, "potassium" = 1, "sugar" = 1, "phosphorus" = 1
+	required_catalysts = list("superboom" = 1, "potassium" = 1, "sugar" = 1, "phosphorus" = 1)
 	modifier = 4
 	
 	
