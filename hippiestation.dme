@@ -3154,7 +3154,6 @@
 #include "hippiestation\code\modules\integrated_electronics\subtypes\memory.dm"
 #include "hippiestation\code\modules\integrated_electronics\subtypes\output.dm"
 #include "hippiestation\code\modules\integrated_electronics\subtypes\power.dm"
-#include "hippiestation\code\modules\integrated_electronics\subtypes\reagents.dm"
 #include "hippiestation\code\modules\integrated_electronics\subtypes\smart.dm"
 #include "hippiestation\code\modules\integrated_electronics\subtypes\text.dm"
 #include "hippiestation\code\modules\integrated_electronics\subtypes\time.dm"
