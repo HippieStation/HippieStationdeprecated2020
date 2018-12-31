@@ -1230,15 +1230,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 							features["mcolor"] = sanitize_hexcolor(new_mutantcolor)
 						else
 							to_chat(user, "<span class='danger'>Invalid color. Your color is not bright enough.</span>")
-<<<<<<< HEAD
-=======
-
-				if("color_ethereal")
-					var/new_etherealcolor = input(user, "Choose your ethereal color", "Character Preference") as null|anything in GLOB.color_list_ethereal
-					if(new_etherealcolor)
-						features["ethcolor"] = GLOB.color_list_ethereal[new_etherealcolor]
-
->>>>>>> 6907ac6... Merge pull request #41993 from Carbonhell/catshills
 
 				if("tail_lizard")
 					var/new_tail
