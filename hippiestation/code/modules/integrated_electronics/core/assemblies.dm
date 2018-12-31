@@ -361,7 +361,11 @@
 				component.assembly.add_allowed_scanner(usr.ckey)
 		
 		if(href_list["interact"])
-			component.attackby(usr.get_active_held_item(), usr)
+			var/obj/item/I = usr.get_active_held_item()
+			if(istype(I))
+				I.melee_attack_chain(usr, component)
+			else
+				I.attack_hand(usr)
 
 		// Adjust the position
 		if(href_list["change_pos"])
