@@ -310,10 +310,12 @@
 	name = "N-amino azidotetrazole Collapse"
 	chem_to_remove = "superboom"
 	required_catalysts = list("superboom" = 1, "smoke_powder" = 1)
+	modifier = 4
 	
 /datum/chemical_reaction/reagent_explosion/remove_all/superboom_b
 	name = "N-amino azidotetrazole Collapse"
 	chem_to_remove = "superboom"
 	required_catalysts = list("superboom" = 1, "potassium" = 1, "sugar" = 1, "phosphorus" = 1
+	modifier = 4
 	
 	
