@@ -9,6 +9,7 @@
 
 #define POWER_PUNCH "QQQ"
 #define HEAD_EXPLOSION "SSSS"
+#define MARTIALART_NANOSUIT "nanosuit strength"
 
 //Crytek Nanosuit made by YoYoBatty
 /obj/item/clothing/under/syndicate/combat/nano
@@ -752,6 +753,7 @@
 	name = "Nanosuit strength mode"
 	block_chance = 75
 	deflection_chance = 25
+	id = MARTIALART_NANOSUIT
 
 /datum/martial_art/nanosuit/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	A.hud_used.combo_object.update_icon(streak, 60)
@@ -972,12 +974,12 @@
 
 /mob/living/carbon/human/check_weakness(obj/item/weapon, mob/living/carbon/attacker)
 	if(attacker && ishuman(attacker))
-		if(istype(attacker.mind.martial_art, /datum/martial_art/nanosuit) && weapon && weapon.damtype == BRUTE)
+		if(attacker.mind.has_martialart(MARTIALART_NANOSUIT) && weapon && weapon.damtype == BRUTE)
 			return 1.25 //deal 25% more damage in strength
 	. = ..()
 
 /obj/attacked_by(obj/item/I, mob/living/user)
-	if(I.force && I.damtype == BRUTE && istype(user.mind.martial_art, /datum/martial_art/nanosuit))
+	if(I.force && I.damtype == BRUTE && user.mind.has_martialart(MARTIALART_NANOSUIT))
 		visible_message("<span class='danger'>[user] has hit [src] with a strengthened blow from [I]!</span>", null, null, COMBAT_MESSAGE_RANGE)
 		//only witnesses close by and the victim see a hit message.
 		take_damage(I.force*1.75, I.damtype, "melee", TRUE)//take 75% more damage with strength on
@@ -999,8 +1001,8 @@
 		return target.attack_nanosuit(owner)
 
 /mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
-	var/datum/martial_art/nanosuit/style = new
-	if(istype(mind.martial_art, /datum/martial_art/nanosuit))
+	var/datum/martial_art/nanosuit/style
+	if(mind && mind.has_martialart(MARTIALART_NANOSUIT))
 		if(style.on_attack_hand(src, A, proximity))
 			return
 	..()
