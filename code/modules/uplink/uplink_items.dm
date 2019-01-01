@@ -691,7 +691,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 /datum/uplink_item/support/gygax
 	name = "Dark Gygax Exosuit"
 	desc = "A lightweight exosuit, painted in a dark scheme. Its speed and equipment selection make it excellent \
-			for hit-and-run style attacks. Features an incendiary carbine, flash bang launcher, teleporter, ion thrusters and a Tesla energy array." 
+			for hit-and-run style attacks. Features an incendiary carbine, flash bang launcher, teleporter, ion thrusters and a Tesla energy array."
 	item = /obj/mecha/combat/gygax/dark/loaded
 	cost = 80
 
@@ -1102,6 +1102,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	surplus = 75
 	restricted = TRUE
 
+<<<<<<< HEAD
 /datum/uplink_item/device_tools/encryptionkey
 	name = "Syndicate Encryption Key"
 	desc = "A key that, when inserted into a radio headset, allows you to listen to all station department channels \
@@ -1110,6 +1111,17 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 2
 	surplus = 75
 	restricted = TRUE
+=======
+/datum/uplink_item/device_tools/failsafe/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
+	if(!U)
+		return
+	U.failsafe_code = U.generate_code()
+	var/code = "[islist(U.failsafe_code) ? english_list(U.failsafe_code) : U.failsafe_code]"
+	to_chat(user, "<span class='warning'>The new failsafe code for this uplink is now : [code].</span>")
+	if(user.mind)
+		user.mind.store_memory("Failsafe code for [U.parent] : [code]")
+	return U.parent //For log icon
+>>>>>>> 755a9e4... Uplink pens now need two separate rotations to unlock (#41843)
 
 /datum/uplink_item/device_tools/ai_detector
 	name = "Artificial Intelligence Detector"
@@ -1127,6 +1139,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/aiModule/syndicate
 	cost = 9
 
+<<<<<<< HEAD
 /datum/uplink_item/device_tools/briefcase_launchpad
 	name = "Briefcase Launchpad"
 	desc = "A briefcase containing a launchpad, a device able to teleport items and people to and from targets up to eight tiles away from the briefcase. \
@@ -1135,6 +1148,8 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/briefcase/launchpad
 	cost = 6
 	
+=======
+>>>>>>> 755a9e4... Uplink pens now need two separate rotations to unlock (#41843)
 /datum/uplink_item/device_tools/hypnotic_flash
 	name = "Hypnotic Flash"
 	desc = "A modified flash able to hypnotize targets. If the target is not in a mentally vulnerable state, it will only confuse and pacify them temporarily."
