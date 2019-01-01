@@ -16,7 +16,12 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 /datum/controller/subsystem/processing/quirks/Initialize(timeofday)
 	if(!quirks.len)
 		SetupQuirks()
+<<<<<<< HEAD
 	quirk_blacklist = list(list("Blind","Nearsighted"),list("Jolly","Depression","Apathetic"),list("Ageusia","Vegetarian","Deviant Tastes"),list("Ananas Affinity","Ananas Aversion"))
+=======
+
+	quirk_blacklist = list(list("Blind","Nearsighted"),list("Jolly","Depression","Apathetic","Hypersensitive"),list("Ageusia","Vegetarian","Deviant Tastes"),list("Ananas Affinity","Ananas Aversion"),list("Alcohol Tolerance","Light Drinker"),list(list("Neat","NEET")))
+>>>>>>> 0de28b7... [READY]Humans now have hygiene (DOES NOT AFFECT MOOD GO AWAY MOODPOSTERS) (#41986)
 	return ..()
 
 /datum/controller/subsystem/processing/quirks/proc/SetupQuirks()

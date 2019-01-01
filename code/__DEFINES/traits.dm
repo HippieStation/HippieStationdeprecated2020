@@ -79,10 +79,20 @@
 #define TRAIT_SKITTISH			"skittish"
 #define TRAIT_POOR_AIM			"poor_aim"
 #define TRAIT_PROSOPAGNOSIA		"prosopagnosia"
+<<<<<<< HEAD
 #define	TRAIT_DRUNK_HEALING		"drunk_healing"
 #define	TRAIT_TAGGER			"tagger"
 #define	TRAIT_PHOTOGRAPHER		"photographer"
 #define	TRAIT_MUSICIAN			"musician"
+=======
+#define	TRAIT_NEET				"NEET"
+#define	TRAIT_NEAT				"neat"
+#define TRAIT_DRUNK_HEALING		"drunk_healing"
+#define TRAIT_TAGGER			"tagger"
+#define TRAIT_PHOTOGRAPHER		"photographer"
+#define TRAIT_MUSICIAN			"musician"
+#define TRAIT_LIGHT_DRINKER		"light_drinker"
+>>>>>>> 0de28b7... [READY]Humans now have hygiene (DOES NOT AFFECT MOOD GO AWAY MOODPOSTERS) (#41986)
 
 // common trait sources
 #define TRAIT_GENERIC "generic"
