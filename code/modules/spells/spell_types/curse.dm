@@ -22,22 +22,6 @@ GLOBAL_VAR_INIT(curse_of_madness_triggered, FALSE)
 		if(istype(H.get_item_by_slot(SLOT_HEAD), /obj/item/clothing/head/foilhat))
 			to_chat(H, "<span class='warning'>Your protective headgear successfully deflects mind controlling brainwaves!</span>")
 			continue
-<<<<<<< HEAD
-		H.playsound_local(H,'sound/hallucinations/veryfar_noise.ogg',40,1)
-		to_chat(H, "<span class='reallybig hypnophrase'>[message]</span>")
-		to_chat(H, "<span class='warning'>Your mind shatters!</span>")
-		switch(rand(1,10))
-			if(1 to 3)
-				H.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_LOBOTOMY)
-				H.gain_trauma_type(BRAIN_TRAUMA_MILD, TRAUMA_RESILIENCE_LOBOTOMY)
-			if(4 to 6)
-				H.gain_trauma_type(BRAIN_TRAUMA_SEVERE, TRAUMA_RESILIENCE_LOBOTOMY)
-			if(7 to 8)
-				H.gain_trauma_type(BRAIN_TRAUMA_MAGIC, TRAUMA_RESILIENCE_LOBOTOMY)
-			if(9 to 10)
-
-				H.gain_trauma_type(BRAIN_TRAUMA_SPECIAL, TRAUMA_RESILIENCE_LOBOTOMY)
-=======
 		give_madness(H, message)
 
 /proc/give_madness(mob/living/carbon/human/H, message)
@@ -54,4 +38,3 @@ GLOBAL_VAR_INIT(curse_of_madness_triggered, FALSE)
 			H.gain_trauma_type(BRAIN_TRAUMA_MAGIC, TRAUMA_RESILIENCE_LOBOTOMY)
 		if(9 to 10)
 			H.gain_trauma_type(BRAIN_TRAUMA_SPECIAL, TRAUMA_RESILIENCE_LOBOTOMY)
->>>>>>> 4aad053... Merge pull request #42183 from coiax/latejoin-madness
