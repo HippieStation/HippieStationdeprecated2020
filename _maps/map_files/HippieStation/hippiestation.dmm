@@ -5803,7 +5803,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar/maint)
 "alY" = (
-/obj/effect/decal/cleanable/flour,
+/obj/effect/decal/cleanable/food/flour,
 /turf/open/floor/wood,
 /area/crew_quarters/bar/maint)
 "alZ" = (
@@ -7263,7 +7263,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar/maint)
 "apD" = (
-/obj/effect/decal/cleanable/egg_smudge,
+/obj/effect/decal/cleanable/food/egg_smudge,
 /turf/open/floor/wood,
 /area/crew_quarters/bar/maint)
 "apE" = (
@@ -62256,7 +62256,7 @@
 /area/engine/engineering)
 "mDV" = (
 /obj/structure/spirit_board,
-/obj/effect/decal/cleanable/salt,
+/obj/effect/decal/cleanable/food/salt,
 /turf/open/floor/plating,
 /area/maintenance/strangeroom)
 "mEa" = (
