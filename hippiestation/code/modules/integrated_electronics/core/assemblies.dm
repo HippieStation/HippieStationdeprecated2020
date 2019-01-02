@@ -34,7 +34,7 @@
 	var/creator // circuit creator if any
 	var/static/next_assembly_id = 0
 	var/sealed = FALSE
-	var/obj/item/card/id/idlock = null
+	var/datum/weakref/idlock = null
 
 	hud_possible = list(DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_TRACK_HUD, DIAG_CIRCUIT_HUD) //diagnostic hud overlays
 	max_integrity = 50
@@ -606,7 +606,7 @@
 
 			//if locked, unlock if ids match
 			else
-				if(idlock == debugger.idlock)
+				if(idlock.resolve() == debugger.idlock.resolve())
 					idlock = null
 					to_chat(user,"<span class='notice'>You unlock \the [src].</span>")
 
