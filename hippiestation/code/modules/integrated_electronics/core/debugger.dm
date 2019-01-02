@@ -11,7 +11,7 @@
 	var/accepting_refs = FALSE
 	var/copy_values = FALSE
 	var/copy_id = FALSE
-	var/obj/item/card/id/idlock = null
+	var/datum/weakref/idlock = null
 
 /obj/item/integrated_electronics/debugger/attack_self(mob/user)
 	var/type_to_use = input("Please choose a type to use.","[src] type setting") as null|anything in list("string","number","ref","copy","null")
@@ -70,7 +70,7 @@
 
 	else if(copy_id && proximity)
 		if(istype(target,/obj/item/card/id))
-			idlock = target
+			idlock = WEAKREF(target)
 			to_chat(user, "<span class='notice'>You set \the [src]'s card memory to [target.name].  The id card scanner is \
 			now off.</span>")
 
