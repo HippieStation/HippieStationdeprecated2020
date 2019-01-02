@@ -35,7 +35,8 @@ GLOBAL_LIST_INIT(statechange_reagent_blacklist, typecacheof(list(
 	/datum/reagent/oxygen,
 	/datum/reagent/nitrogen,
 	/datum/reagent/nitrous_oxide,
-	/datum/reagent/cryostylane)
+	/datum/reagent/cryostylane,
+	/datum/reagent/consumable/ethanol/neurotoxin)
 ))
 
 GLOBAL_LIST_INIT(statechange_turf_blacklist, typecacheof(list(

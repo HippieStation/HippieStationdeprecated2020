@@ -797,8 +797,8 @@
 	inputs = list(
 		"target NTNet addresses"= IC_PINTYPE_STRING,
 		"data to send"			= IC_PINTYPE_STRING,
-		"passkey"				= IC_PINTYPE_STRING, /* hippie -- adds hackable passkey back in */
-		"secondary text"		= IC_PINTYPE_STRING
+		"secondary text"		= IC_PINTYPE_STRING,
+		"passkey"				= IC_PINTYPE_STRING
 		)
 	outputs = list(
 		"address received"			= IC_PINTYPE_STRING,

@@ -31,12 +31,16 @@ map metastation
 endmap
 
 map pubbystation
+endmap
 
 map multiz_debug
 endmap
-endmap
 
 map deltastation
+	minplayers 50
+endmap
+
+map donutstation
 	minplayers 50
 endmap
 

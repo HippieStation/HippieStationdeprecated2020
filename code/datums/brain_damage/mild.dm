@@ -73,7 +73,7 @@
 
 //no fiddling with genetics to get out of this one
 /datum/brain_trauma/mild/speech_impediment/on_life()
-	if(!(GLOB.mutations_list[UNINTELLIGIBLE] in owner.dna.mutations))
+	if(!(owner.dna.check_mutation(UNINTELLIGIBLE)))
 		on_gain()
 	..()
 
@@ -84,7 +84,7 @@
 /datum/brain_trauma/mild/concussion
 	name = "Concussion"
 	desc = "Patient's brain is concussed."
-	scan_desc = "a concussion"
+	scan_desc = "concussion"
 	gain_text = "<span class='warning'>Your head hurts!</span>"
 	lose_text = "<span class='notice'>The pressure inside your head starts fading.</span>"
 
@@ -214,7 +214,7 @@
 					owner.log_message("threw [I] due to a Muscle Spasm", LOG_ATTACK)
 					owner.throw_item(pick(targets))
 	..()
-	
+
 /datum/brain_trauma/mild/nervous_cough
 	name = "Nervous Cough"
 	desc = "Patient feels a constant need to cough."

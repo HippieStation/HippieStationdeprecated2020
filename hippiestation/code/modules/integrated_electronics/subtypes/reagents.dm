@@ -631,7 +631,7 @@
 /obj/item/integrated_circuit/reagent/extinguisher/do_work()
 	//Check if enough volume
 	set_pin_data(IC_OUTPUT, 1, reagents.total_volume)
-	if(!reagents || (reagents.total_volume < IC_SMOKE_REAGENTS_MINIMUM_UNITS) || busy)
+	if(!reagents || reagents.total_volume < 5 || busy)
 		push_data()
 		activate_pin(3)
 		return
