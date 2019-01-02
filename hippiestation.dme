@@ -3201,6 +3201,7 @@
 #include "hippiestation\code\modules\mob\living\carbon\life.dm"
 #include "hippiestation\code\modules\mob\living\carbon\reindex_screams.dm"
 #include "hippiestation\code\modules\mob\living\carbon\alien\alien.dm"
+#include "hippiestation\code\modules\mob\living\carbon\alien\facehugger.dm"
 #include "hippiestation\code\modules\mob\living\carbon\human\damage_procs.dm"
 #include "hippiestation\code\modules\mob\living\carbon\human\emote.dm"
 #include "hippiestation\code\modules\mob\living\carbon\human\human.dm"
