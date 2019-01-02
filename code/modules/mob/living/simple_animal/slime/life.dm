@@ -46,8 +46,10 @@
 
 		if(!Target || client)
 			break
-
+		/* hippie start
 		if(Target.health <= -70 || Target.stat == DEAD)
+		hippie end*/
+		if(Target.health <= -70 || Target.stat != CONSCIOUS) //hippie -- nerf slimes a bit and make xenobio faster
 			Target = null
 			AIproc = 0
 			break
