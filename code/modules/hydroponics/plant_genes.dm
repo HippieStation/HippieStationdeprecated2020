@@ -310,10 +310,17 @@
 
 /datum/plant_gene/trait/noreact/on_new(obj/item/reagent_containers/food/snacks/grown/G, newloc)
 	..()
+<<<<<<< HEAD
 	G.reagents.set_reacting(FALSE)
 
 /datum/plant_gene/trait/noreact/on_squash(obj/item/reagent_containers/food/snacks/grown/G, atom/target)
 	G.reagents.set_reacting(TRUE)
+=======
+	ENABLE_BITFIELD(G.reagents.flags, NO_REACT)
+
+/datum/plant_gene/trait/noreact/on_squash(obj/item/reagent_containers/food/snacks/grown/G, atom/target)
+	DISABLE_BITFIELD(G.reagents.flags, NO_REACT)
+>>>>>>> c7f6605... Merge pull request #42131 from 4dplanner/boom
 	G.reagents.handle_reactions()
 
 
