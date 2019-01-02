@@ -553,13 +553,16 @@
 	if(!sealed)
 		type_to_use = input("What would you like to do?","[src] type setting") as null|anything in list("repair", "seal")
 	else
-		type_to_use = "repair"
+		type_to_use = input("What would you like to do?","[src] type setting") as null|anything in list("repair", "unseal")
 
 	switch(type_to_use)
 		if("repair")
+			to_chat(world,"Integrity: [obj_integrity] / [max_integrity]")
 			if(obj_integrity < max_integrity)
 				obj_integrity = min(obj_integrity + 20,max_integrity)
+				to_chat(world,"Integrity: [obj_integrity] / [max_integrity]")
 				to_chat(user,"<span class='notice'>You fix the dents and scratches of the assembly.</span>")
+				to_chat(world,user)
 				return TRUE
 
 			else
@@ -569,12 +572,24 @@
 		if("seal")
 			if(!opened)
 				sealed = TRUE
-				to_chat(user,"<span class='notice'>You seal the assembly, making it impossible to be opened.</span>")
-				return TRUE
+				if(I.use_tool(src, user, 50, volume=100, amount=3))
+					to_chat(user,"<span class='notice'>You seal the assembly, making it impossible to be opened.</span>")
+					return TRUE
 
 			else
 				to_chat(user,"<span class='notice'>You need to close the assembly first before sealing it indefinitely!</span>")
 				return FALSE
+
+		if("unseal")
+			to_chat(user,"<span class='notice'>You start unsealing the assembly carefully...</span>")
+			if(I.use_tool(src, user, 50, volume=250, amount=3))
+				for(var/obj/item/integrated_circuit/IC in assembly_components)
+					if(prob(50))
+						IC.disconnect_all()
+
+				to_chat(user,"<span class='notice'>You unsealed the assembly.</span>")
+				sealed = FALSE
+				return TRUE
 
 /obj/item/electronic_assembly/attackby(obj/item/I, mob/living/user)
 	if(can_anchor && default_unfasten_wrench(user, I, 20))
