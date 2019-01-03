@@ -3118,7 +3118,6 @@
 #include "hippiestation\code\modules\hydroponics\buttflower.dm"
 #include "hippiestation\code\modules\hydroponics\gene_modder.dm"
 #include "hippiestation\code\modules\hydroponics\limbflower.dm"
-#include "hippiestation\code\modules\hydroponics\plant_genes.dm"
 #include "hippiestation\code\modules\hydroponics\seed_extractor.dm"
 #include "hippiestation\code\modules\hydroponics\grown\nettle.dm"
 #include "hippiestation\code\modules\integrated_electronics\core\analyzer.dm"
