@@ -17117,52 +17117,30 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aQa" = (
-/turf/open/floor/plasteel{
-	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_state = "L1"
-	},
+/turf/open/floor/plasteel/logo/l1,
 /area/hallway/primary/central)
 "aQb" = (
-/turf/open/floor/plasteel{
-	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_state = "L3"
-	},
+/turf/open/floor/plasteel/logo/l3,
 /area/hallway/primary/central)
 "aQc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
 	dir = 1
 	},
-/turf/open/floor/plasteel{
-	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_state = "L5"
-	},
+/turf/open/floor/plasteel/logo/l5,
 /area/hallway/primary/central)
 "aQd" = (
-/turf/open/floor/plasteel{
-	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_state = "L7"
-	},
+/turf/open/floor/plasteel/logo/l7,
 /area/hallway/primary/central)
 "aQe" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plasteel{
-	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_state = "L9"
-	},
+/turf/open/floor/plasteel/logo/l9,
 /area/hallway/primary/central)
 "aQf" = (
-/turf/open/floor/plasteel{
-	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_state = "L11"
-	},
+/turf/open/floor/plasteel/logo/l11,
 /area/hallway/primary/central)
 "aQg" = (
-/turf/open/floor/plasteel{
-	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_state = "L13";
-	name = "floor"
-	},
+/turf/open/floor/plasteel/logo/l13,
 /area/hallway/primary/central)
 "aQh" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
@@ -17653,16 +17631,10 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "aRC" = (
-/turf/open/floor/plasteel{
-	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_state = "L2"
-	},
+/turf/open/floor/plasteel/logo/l2,
 /area/hallway/primary/central)
 "aRD" = (
-/turf/open/floor/plasteel{
-	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_state = "L4"
-	},
+/turf/open/floor/plasteel/logo/l4,
 /area/hallway/primary/central)
 "aRE" = (
 /obj/machinery/navbeacon{
@@ -17673,17 +17645,11 @@
 	icon_state = "pipe11-1";
 	dir = 1
 	},
-/turf/open/floor/plasteel{
-	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_state = "L6"
-	},
+/turf/open/floor/plasteel/logo/l6,
 /area/hallway/primary/central)
 "aRF" = (
 /obj/effect/landmark/observer_start,
-/turf/open/floor/plasteel{
-	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_state = "L8"
-	},
+/turf/open/floor/plasteel/logo/l8,
 /area/hallway/primary/central)
 "aRG" = (
 /obj/machinery/navbeacon{
@@ -17691,22 +17657,13 @@
 	location = "EVA2"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plasteel{
-	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_state = "L10"
-	},
+/turf/open/floor/plasteel/logo/l10,
 /area/hallway/primary/central)
 "aRH" = (
-/turf/open/floor/plasteel{
-	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_state = "L12"
-	},
+/turf/open/floor/plasteel/logo/l12,
 /area/hallway/primary/central)
 "aRI" = (
-/turf/open/floor/plasteel{
-	icon = 'hippiestation/icons/turf/floors.dmi';
-	icon_state = "L14"
-	},
+/turf/open/floor/plasteel/logo/l14,
 /area/hallway/primary/central)
 "aRJ" = (
 /obj/effect/landmark/event_spawn,
@@ -50489,7 +50446,6 @@
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "czA" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
