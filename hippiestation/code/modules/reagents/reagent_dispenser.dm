@@ -50,13 +50,13 @@
 
 /obj/structure/reagent_dispensers/chemical/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/screwdriver))
-		if(container_type & DRAWABLE)
-			container_type |= OPENCONTAINER
-			container_type &= ~DRAWABLE
+		if(reagents.flags & DRAWABLE)
+			ENABLE_BITFIELD(reagents.flags, OPENCONTAINER)
+			DISABLE_BITFIELD(reagents.flags, DRAWABLE)
 			to_chat(user, "<span class='notice'>You unfasten the tank's cap.</span>")
-		else if(container_type & OPENCONTAINER)
-			container_type |= DRAWABLE
-			container_type &= ~OPENCONTAINER
+		else if(reagents.flags & OPENCONTAINER)
+			DISABLE_BITFIELD(reagents.flags, OPENCONTAINER)
+			ENABLE_BITFIELD(reagents.flags, DRAWABLE)
 			to_chat(user, "<span class='notice'>You fasten the tank's cap.</span>")
 		update_icon()
 		playsound(src.loc, 'sound/machines/click.ogg', 20, 1)
@@ -75,7 +75,7 @@
 
 /obj/structure/reagent_dispensers/chemical/update_icon()
 	..()
-	if(container_type & DRAWABLE)
+	if(reagents.flags & DRAWABLE)
 		add_overlay("chemlid")
 
 /obj/structure/reagent_dispensers/watertank

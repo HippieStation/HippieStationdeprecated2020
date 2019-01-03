@@ -192,7 +192,7 @@
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
 	actions_types = list(/datum/action/item_action/nanosuit/armor, /datum/action/item_action/nanosuit/cloak, /datum/action/item_action/nanosuit/speed, /datum/action/item_action/nanosuit/strength)
 	permeability_coefficient = 0.01
-	var/mob/living/carbon/human/U = null
+	var/mob/living/carbon/human/Wearer = null
 	var/criticalpower = FALSE
 	var/mode = NANO_NONE
 	var/datum/martial_art/nanosuit/style = new
@@ -233,10 +233,10 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
-	if(U)
+	if(Wearer)
 		if(help_verb)
-			U.verbs -= help_verb
-	U = null
+			Wearer.verbs -= help_verb
+	Wearer = null
 	QDEL_NULL(style)
 	QDEL_NULL(cell)
 	return ..()
@@ -249,18 +249,18 @@
 		to_chat(user, "The suit appears to be offline.")
 
 /obj/item/clothing/suit/space/hardsuit/nano/process()
-	if(!U)
+	if(!Wearer)
 		return
 	if(shutdown)
 		return
-	if(U.bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT)
+	if(Wearer.bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT)
 		if(!detecting)
 			temp_cooldown = world.time + restore_delay
 			detecting = TRUE
 		if(world.time > temp_cooldown)
 			if(!defrosted)
 				helmet.display_visor_message("Activating suit defrosting protocols.")
-				U.reagents.add_reagent("leporazine", 2)
+				Wearer.reagents.add_reagent("leporazine", 2)
 				defrosted = TRUE
 				temp_cooldown += 100
 	else
@@ -332,7 +332,7 @@
 		addtimer(CALLBACK(src, .proc/addmedicalcharge), medical_delay,TIMER_UNIQUE|TIMER_OVERRIDE)
 		current_charges--
 		heal_nano(user)
-	for(var/X in U.bodyparts)
+	for(var/X in Wearer.bodyparts)
 		var/obj/item/bodypart/BP = X
 		if(!msg_time_react)
 			if(BP.body_zone == BODY_ZONE_L_LEG || BP.body_zone == BODY_ZONE_R_LEG || BP.body_zone == BODY_ZONE_L_ARM || BP.body_zone == BODY_ZONE_R_ARM)
@@ -393,12 +393,12 @@
 				slowdown = initial(slowdown)
 				armor = armor.setRating(melee = 60, bullet = 60, laser = 60, energy = 65, bomb = 100, rad =100)
 				helmet.armor = helmet.armor.setRating(melee = 60, bullet = 60, laser = 60, energy = 65, bomb = 100, rad =100)
-				U.filters = null
-				animate(U, alpha = 255, time = 5)
-				U.remove_movespeed_modifier(NANO_SPEED)
-				U.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
-				U.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
-				style.remove(U)
+				Wearer.filters = null
+				animate(Wearer, alpha = 255, time = 5)
+				Wearer.remove_movespeed_modifier(NANO_SPEED)
+				Wearer.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
+				Wearer.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
+				style.remove(Wearer)
 				jetpack.full_speed = FALSE
 
 			if(NANO_CLOAK)
@@ -407,12 +407,12 @@
 				slowdown = 0.4 //cloaking makes us go sliightly faster
 				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
-				U.filters = filter(type="blur",size=1)
-				animate(U, alpha = 40, time = 2)
-				U.remove_movespeed_modifier(NANO_SPEED)
-				U.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
-				U.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
-				style.remove(U)
+				Wearer.filters = filter(type="blur",size=1)
+				animate(Wearer, alpha = 40, time = 2)
+				Wearer.remove_movespeed_modifier(NANO_SPEED)
+				Wearer.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
+				Wearer.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
+				style.remove(Wearer)
 				jetpack.full_speed = FALSE
 
 			if(NANO_SPEED)
@@ -421,44 +421,44 @@
 				slowdown = initial(slowdown)
 				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
-				U.adjustOxyLoss(-5, 0)
-				U.adjustStaminaLoss(-20)
-				U.filters = filter(type="outline", size=0.1, color=rgb(255,255,224))
-				animate(U, alpha = 255, time = 5)
-				U.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
-				U.add_movespeed_modifier(NANO_SPEED, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
-				U.add_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
-				style.remove(U)
+				Wearer.adjustOxyLoss(-5, 0)
+				Wearer.adjustStaminaLoss(-20)
+				Wearer.filters = filter(type="outline", size=0.1, color=rgb(255,255,224))
+				animate(Wearer, alpha = 255, time = 5)
+				Wearer.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
+				Wearer.add_movespeed_modifier(NANO_SPEED, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
+				Wearer.add_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
+				style.remove(Wearer)
 				jetpack.full_speed = TRUE
 
 			if(NANO_STRENGTH)
 				helmet.display_visor_message("Maximum Strength!")
 				block_chance = 0
-				style.teach(U,1)
+				style.teach(Wearer,1)
 				slowdown = initial(slowdown)
 				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
-				U.filters = filter(type="outline", size=0.1, color=rgb(255,0,0))
-				animate(U, alpha = 255, time = 5)
-				U.add_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
-				U.remove_movespeed_modifier(NANO_SPEED)
-				U.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
+				Wearer.filters = filter(type="outline", size=0.1, color=rgb(255,0,0))
+				animate(Wearer, alpha = 255, time = 5)
+				Wearer.add_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
+				Wearer.remove_movespeed_modifier(NANO_SPEED)
+				Wearer.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
 				jetpack.full_speed = FALSE
 
 			if(NANO_NONE)
 				block_chance = 0
-				style.remove(U)
+				style.remove(Wearer)
 				slowdown = initial(slowdown)
 				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
-				U.filters = null
-				animate(U, alpha = 255, time = 5)
-				U.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
-				U.remove_movespeed_modifier(NANO_SPEED)
-				U.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
+				Wearer.filters = null
+				animate(Wearer, alpha = 255, time = 5)
+				Wearer.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
+				Wearer.remove_movespeed_modifier(NANO_SPEED)
+				Wearer.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
 				jetpack.full_speed = FALSE
 
-	U.update_inv_wear_suit()
+	Wearer.update_inv_wear_suit()
 	update_icon()
 	for(var/X in actions)
 		var/datum/action/A = X
@@ -474,18 +474,18 @@
 		if(prob(5/severity))
 			emp_assault()
 		else if(prob(10/severity))
-			U.confused += 10
+			Wearer.confused += 10
 	update_icon()
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/emp_assault()
-	if(!U)
+	if(!Wearer)
 		return //Not sure how this could happen.
-	U.confused += 50
+	Wearer.confused += 50
 	helmet.display_visor_message("EMP Assault! Systems impaired.")
 	sleep(40)
-	U.Paralyze(300)
-	U.AdjustStun(300)
-	U.Jitter(120)
+	Wearer.Paralyze(300)
+	Wearer.AdjustStun(300)
+	Wearer.Jitter(120)
 	toggle_mode(NANO_NONE, TRUE)
 	shutdown = TRUE
 	addtimer(CALLBACK(src, .proc/emp_assaulttwo), 25)
@@ -527,10 +527,10 @@
 	playsound(src, 'sound/machines/defib_charge.ogg', 75, FALSE)
 	sleep(25)
 	playsound(src, 'sound/machines/defib_zap.ogg', 50, FALSE)
-	U.AdjustStun(-100)
-	U.AdjustParalyzed(-100)
-	U.adjustStaminaLoss(-55)
-	U.adjustOxyLoss(-55)
+	Wearer.AdjustStun(-100)
+	Wearer.AdjustParalyzed(-100)
+	Wearer.adjustStaminaLoss(-55)
+	Wearer.adjustOxyLoss(-55)
 	helmet.display_visor_message("Cleared to proceed.")
 	sleep(3)
 	playsound(src, 'sound/machines/defib_success.ogg', 75, FALSE)
@@ -651,20 +651,20 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/equipped(mob/user, slot)
 	if(ishuman(user))
-		U = user
+		Wearer = user
 	if(slot == SLOT_WEAR_SUIT)
 		var/turf/T = get_turf(src)
 		var/area/A = get_area(src)
-		RegisterSignal(U, list(COMSIG_MOB_ITEM_ATTACK,COMSIG_MOB_ITEM_AFTERATTACK,COMSIG_MOB_THROW,COMSIG_MOB_ATTACK_HAND,COMSIG_MOB_ATTACK_RANGED), CALLBACK(src, .proc/kill_cloak), TRUE)
+		RegisterSignal(Wearer, list(COMSIG_MOB_ITEM_ATTACK,COMSIG_MOB_ITEM_AFTERATTACK,COMSIG_MOB_THROW,COMSIG_MOB_ATTACK_HAND,COMSIG_MOB_ATTACK_RANGED), CALLBACK(src, .proc/kill_cloak), TRUE)
 		if(is_station_level(T.z))
 			priority_announce("[user] has engaged [src] at [A.map_name]!","Message from The Syndicate!", 'sound/misc/notice1.ogg')
 		log_game("[user] has engaged [src]")
 		item_flags |= NODROP
-		U.unequip_everything()
-		U.equipOutfit(/datum/outfit/nanosuit)
-		U.add_trait(TRAIT_NODISMEMBER, "Nanosuit")
+		Wearer.unequip_everything()
+		Wearer.equipOutfit(/datum/outfit/nanosuit)
+		Wearer.add_trait(TRAIT_NODISMEMBER, "Nanosuit")
 		if(help_verb)
-			U.verbs += help_verb
+			Wearer.verbs += help_verb
 		bootSequence()
 	..()
 
@@ -1001,10 +1001,9 @@
 		return target.attack_nanosuit(owner)
 
 /mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
-	var/datum/martial_art/nanosuit/style
-	if(mind && mind.has_martialart(MARTIALART_NANOSUIT))
-		if(style.on_attack_hand(src, A, proximity))
-			return
+	var/datum/martial_art/nanosuit/style = mind.has_martialart(MARTIALART_NANOSUIT)
+	if(style && style.on_attack_hand(src, A, proximity))
+		return
 	..()
 
 /mob/living/simple_animal/attack_hand(mob/living/carbon/human/M)
@@ -1015,13 +1014,13 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/kill_cloak()
 	if(mode == NANO_CLOAK)
-		var/obj/item/W = U.get_active_held_item()
+		var/obj/item/W = Wearer.get_active_held_item()
 		if(istype(W, /obj/item/gun))
 			var/obj/item/gun/G = W
 			if(G.suppressed && G.can_shoot())
 				set_nano_energy(15)
-				U.filters = null
-				animate(U, alpha = 255, time = stealth_cloak_out)
+				Wearer.filters = null
+				animate(Wearer, alpha = 255, time = stealth_cloak_out)
 				addtimer(CALLBACK(src, .proc/resume_cloak),CLICK_CD_RANGE,TIMER_UNIQUE|TIMER_OVERRIDE)
 				return
 		set_nano_energy(0,NANO_CHARGE_DELAY)
@@ -1029,8 +1028,8 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/resume_cloak()
 	if(cell.charge && mode == NANO_CLOAK)
-		U.filters = filter(type="blur",size=1)
-		animate(U, alpha = 40, time = stealth_cloak_in)
+		Wearer.filters = filter(type="blur",size=1)
+		animate(Wearer, alpha = 40, time = stealth_cloak_in)
 
 /obj/item/storage/box/syndie_kit/nanosuit
 	name = "\improper Crynet Systems kit"

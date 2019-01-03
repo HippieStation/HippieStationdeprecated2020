@@ -101,7 +101,10 @@ GLOBAL_LIST_INIT(bitfields, list(
 		),
 	"movement_type" = list(
 		"GROUND" = GROUND,
-		"FLYING" = FLYING
+		"FLYING" = FLYING,
+		"VENTCRAWLING" = VENTCRAWLING,
+		"FLOATING" = FLOATING,
+		"UNSTOPPABLE" = UNSTOPPABLE
 		),
 	"resistance_flags" = list(
 		"LAVA_PROOF" = LAVA_PROOF,
@@ -112,9 +115,6 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"ACID_PROOF" = ACID_PROOF,
 		"INDESTRUCTIBLE" = INDESTRUCTIBLE,
 		"FREEZE_PROOF" = FREEZE_PROOF
-		),
-	"reagents_holder_flags" = list(
-		"REAGENT_NOREACT" = REAGENT_NOREACT
 		),
 	"flags_1" = list(
 		"NOJAUNT_1" = NOJAUNT_1,
@@ -155,14 +155,6 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"SMOOTH_DIAGONAL" = SMOOTH_DIAGONAL,
 		"SMOOTH_BORDER" = SMOOTH_BORDER,
 		"SMOOTH_QUEUED" = SMOOTH_QUEUED,
-		),
-	"container_type" = list(
-		"INJECTABLE" = INJECTABLE,
-		"DRAWABLE" = DRAWABLE,
-		"REFILLABLE" = REFILLABLE,
-		"DRAINABLE" = DRAINABLE,
-		"TRANSPARENT" = TRANSPARENT,
-		"AMOUNT_VISIBLE" = AMOUNT_VISIBLE,
 		),
 	"car_traits" = list(
 		"CAN_KIDNAP" = CAN_KIDNAP,

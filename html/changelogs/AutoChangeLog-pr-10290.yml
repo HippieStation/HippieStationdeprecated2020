@@ -1,0 +1,5 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - bugfix: "Fixed nanosuit runtiming causing attacks to fail"
+  - code_imp: "Nanosuit mob reference U renamed to Wearer"
