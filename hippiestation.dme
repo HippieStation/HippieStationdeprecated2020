@@ -3262,6 +3262,7 @@
 #include "hippiestation\code\modules\power\port_gen.dm"
 #include "hippiestation\code\modules\power\solar.dm"
 #include "hippiestation\code\modules\power\tesla_examine.dm"
+#include "hippiestation\code\modules\power\supermatter\supermatter.dm"
 #include "hippiestation\code\modules\projectiles\projectile.dm"
 #include "hippiestation\code\modules\projectiles\ammunition\ammo_casings.dm"
 #include "hippiestation\code\modules\projectiles\ammunition\energy.dm"
