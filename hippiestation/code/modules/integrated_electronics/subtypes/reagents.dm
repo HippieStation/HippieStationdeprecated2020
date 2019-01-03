@@ -51,7 +51,7 @@
 	extended_desc = "This autoinjector can push up to 30 units of reagents into another container or someone else outside of the machine. The target \
 	must be adjacent to the machine, and if it is a person, they cannot be wearing thick clothing. Negative given amounts makes the injector suck out reagents instead."
 
-	reagent_flags = OPENCONTAINER
+	reagents.flags = OPENCONTAINER
 	volume = 30
 
 	complexity = 20
@@ -260,7 +260,7 @@
 	icon_state = "reagent_storage"
 	extended_desc = "This is effectively an internal beaker."
 
-	reagent_flags = OPENCONTAINER
+	reagents.flags = OPENCONTAINER
 	volume = 60
 
 	complexity = 4
@@ -501,7 +501,7 @@
 	desc = "Stores liquid inside the device away from electrical components. It can store up to 60u. It will heat or cool the reagents \
 	to the target temperature when turned on."
 	icon_state = "heater"
-	reagent_flags = OPENCONTAINER
+	reagents.flags = OPENCONTAINER
 	complexity = 8
 	inputs = list(
 		"target temperature" = IC_PINTYPE_NUMBER,
@@ -548,7 +548,7 @@
 	extended_desc = "This smoke generator creates clouds of smoke on command. It can also hold liquids inside, which will go \
 	into the smoke clouds when activated. The reagents are consumed when the smoke is made."
 	ext_cooldown = 1
-	reagent_flags = OPENCONTAINER
+	reagents.flags = OPENCONTAINER
 	volume = 100
 	complexity = 20
 	cooldown_per_use = 1 SECONDS
@@ -599,7 +599,7 @@
 	icon_state = "injector"
 	extended_desc = "This circuit can hold up to 30 units of any given chemicals. On each use, it sprays these reagents like a fire extinguisher."
 
-	reagent_flags = OPENCONTAINER
+	reagents.flags = OPENCONTAINER
 	volume = 30
 
 	complexity = 20
@@ -703,7 +703,7 @@
 	icon_state = "injector"
 	extended_desc = "Set mode to FALSE to eliminate reagents and TRUE to drain."
 
-	reagent_flags = OPENCONTAINER
+	reagents.flags = OPENCONTAINER
 	volume = 20
 
 	complexity = 10
@@ -772,7 +772,7 @@
 	desc = "Lets you add a beaker to your assembly and remove it even when the assembly is closed."
 	icon_state = "reagent_storage"
 	extended_desc = "It can help you extract reagents easier."
-	reagent_flags = OPENCONTAINER
+	reagents.flags = OPENCONTAINER
 	complexity = 4
 
 	inputs = list()
