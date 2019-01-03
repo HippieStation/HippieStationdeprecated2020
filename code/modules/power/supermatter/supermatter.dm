@@ -617,8 +617,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 			return
 		message_admins("[src] has consumed [key_name_admin(user)] [ADMIN_JMP(src)].")
 		investigate_log("has consumed [key_name(user)].", INVESTIGATE_SUPERMATTER)
+		var/A = hippie_sm_virgin_sacrifice(AM) // hippie
 		user.dust(force = TRUE)
-		matter_power += 200
+		if(!A) // hippie -- don't increase power if we toss a cat in
+			matter_power += 200
 	else if(istype(AM, /obj/singularity))
 		return
 	else if(isobj(AM))

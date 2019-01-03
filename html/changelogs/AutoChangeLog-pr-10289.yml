@@ -1,0 +1,4 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - bugfix: "Fixed a roundstart runtime in the map and the hippiestation 13 logo"
