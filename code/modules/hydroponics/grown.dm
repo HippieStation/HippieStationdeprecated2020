@@ -101,12 +101,8 @@
 
 /obj/item/reagent_containers/food/snacks/grown/proc/squash(atom/target)
 	var/turf/T = get_turf(target)
-<<<<<<< HEAD
-	if(ispath(splat_type, /obj/effect/decal/cleanable/plant_smudge))
-=======
 	forceMove(T)
 	if(ispath(splat_type, /obj/effect/decal/cleanable/food/plant_smudge))
->>>>>>> b872c97... Fix squashing (#42135)
 		if(filling_color)
 			var/obj/O = new splat_type(T)
 			O.color = filling_color
