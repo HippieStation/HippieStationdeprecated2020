@@ -7,7 +7,7 @@
 	icon_state = "firetruck"
 	desc = "Atmos techs primary backup, this truck is loaded with a reagent pump, normally loaded with firefighting foam, to handle big fires and such. It can also accept water."
 	movedelay = 3 // You have a LOT of water, can't be too fast too
-	container_type = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	var/obj/item/water_cannon_controls/controls
 	var/num_of_effects = 3
 	var/datum/effect_system/water_cannon/water_cannon
