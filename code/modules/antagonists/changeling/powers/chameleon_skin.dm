@@ -22,7 +22,4 @@
 	if(user.has_dna())
 		var/mob/living/carbon/C = user
 		C.dna.remove_mutation(CHAMELEON)
-<<<<<<< HEAD
-=======
 	..()
->>>>>>> 00762e4... [I GUESS THIS MIGHT BE TESTMERGED? I DUNNO] return of the ling action buttons (#41928)
