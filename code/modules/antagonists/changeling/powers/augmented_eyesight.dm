@@ -48,10 +48,5 @@
 			E.sight_flags ^= SEE_MOBS | SEE_OBJS | SEE_TURFS
 		else
 			E.flash_protect = 0
-<<<<<<< HEAD
-
-		user.update_sight()
-=======
 		user.update_sight()
 	..()
->>>>>>> 00762e4... [I GUESS THIS MIGHT BE TESTMERGED? I DUNNO] return of the ling action buttons (#41928)
