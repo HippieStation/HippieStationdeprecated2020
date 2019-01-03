@@ -667,7 +667,7 @@ obj/item/integrated_circuit/atmospherics/connector/portableConnectorReturnAir()
 	desc = "Lets you add a tank to your assembly and remove it even when the assembly is closed."
 	extended_desc = "It can help you extract gases easier."
 
-	container_type = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 
 	complexity = 25
 	size = 30
