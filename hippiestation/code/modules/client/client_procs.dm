@@ -37,7 +37,7 @@
 /client/proc/play_tts()
 	set category = "Fun"
 	set name = "Play TTS"
-	if(!check_rights(R_SOUNDS))
+	if(!check_rights(R_SOUND))
 		return
 	if (!CONFIG_GET(flag/enable_tts))
 		to_chat(usr, "<span='warning'>Text-to-Speech is not enabled!</span>")
