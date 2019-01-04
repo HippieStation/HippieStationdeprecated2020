@@ -287,7 +287,7 @@
 				for(var/i in 1 to length(harvest_output))
 					harvest_output[i] = WEAKREF(harvest_output[i])
 
-				if(harvest_output.len)
+				if(length(harvest_output))
 					set_pin_data(IC_OUTPUT, 1, harvest_output)
 					push_data()
 			if(1)
@@ -728,3 +728,20 @@
 				STR.remove_from_storage(target_obj,drop_location())
 			else
 				STR.remove_from_storage(target_obj,container)
+
+// Renamer circuit. Renames the assembly it is in. Useful in cooperation with telecomms-based circuits.
+/obj/item/integrated_circuit/manipulation/renamer
+	name = "renamer"
+	desc = "A small circuit that renames the assembly it is in. Useful paired with speech-based circuits."
+	icon_state = "internalbm"
+	extended_desc = "This circuit accepts a string as input, and can be pulsed to rewrite the current assembly's name with said string. On success, it pulses the default pulse-out wire."
+	inputs = list("name" = IC_PINTYPE_STRING)
+	activators = list("pulse in" = IC_PINTYPE_PULSE_IN,"pulse out" = IC_PINTYPE_PULSE_OUT)
+	power_draw_per_use = 1
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+obj/item/integrated_circuit/manipulation/renamer/do_work()
+	var/new_name = get_pin_data(IC_INPUT, 1)
+	if(assembly && new_name)
+		assembly.name = new_name
+		activate_pin(2)

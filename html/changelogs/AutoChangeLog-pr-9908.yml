@@ -1,0 +1,4 @@
+author: "xTrainx"
+delete-after: True
+changes: 
+  - bugfix: "if you use an energy saw as a prospetic replacement, it will once again be a mounted energy saw"

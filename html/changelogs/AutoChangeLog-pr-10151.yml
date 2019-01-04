@@ -1,0 +1,4 @@
+author: "Carbonhell"
+delete-after: True
+changes: 
+  - rscadd: "Adds the renamer circuit, feed it a string, pulse it and it'll rename the assembly it is in."

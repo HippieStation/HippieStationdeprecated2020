@@ -7,7 +7,6 @@
 	icon_state = "firetruck"
 	desc = "Atmos techs primary backup, this truck is loaded with a reagent pump, normally loaded with firefighting foam, to handle big fires and such. It can also accept water."
 	movedelay = 3 // You have a LOT of water, can't be too fast too
-	container_type = OPENCONTAINER
 	var/obj/item/water_cannon_controls/controls
 	var/num_of_effects = 3
 	var/datum/effect_system/water_cannon/water_cannon
@@ -15,7 +14,7 @@
 
 /obj/vehicle/ridden/firetruck/Initialize()
 	. = ..()
-	create_reagents(REAGENTS_PER_EFFECT*1000)
+	create_reagents(REAGENTS_PER_EFFECT*1000, OPENCONTAINER)
 	reagents.add_reagent("firefighting_foam", REAGENTS_PER_EFFECT*1000)
 	controls = new(src,src)
 	water_cannon = new

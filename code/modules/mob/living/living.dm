@@ -40,6 +40,8 @@
 	remove_from_all_data_huds()
 	GLOB.mob_living_list -= src
 	QDEL_LIST(diseases)
+	return ..()
+
 /mob/living/onZImpact(turf/T, levels)
 	ZImpactDamage(T, levels)
 	return ..()
@@ -48,8 +50,6 @@
 	visible_message("<span class='danger'>[src] crashes into [T] with a sickening noise!</span>")
 	adjustBruteLoss((levels * 5) ** 1.5)
 	Knockdown(levels * 50)
-
-	return ..()
 
 /mob/living/proc/OpenCraftingMenu()
 	return
@@ -966,7 +966,7 @@
 /mob/living/proc/spreadFire(mob/living/L)
 	if(!istype(L))
 		return
-		
+
 	if(on_fire)
 		if(L.on_fire) // If they were also on fire
 			var/firesplit = (fire_stacks + L.fire_stacks)/2

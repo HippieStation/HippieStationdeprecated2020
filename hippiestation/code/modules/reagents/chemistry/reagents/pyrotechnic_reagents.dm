@@ -288,9 +288,9 @@
 			if(3)
 				M.randmuti()
 				if(prob(75))
-					M.randmutb()
+					M.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
 				if(prob(1))
-					M.randmutg()
+					M.easy_randmut(POSITIVE)
 				M.updateappearance()
 				M.domutcheck()
 

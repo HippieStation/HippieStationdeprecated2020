@@ -340,6 +340,9 @@
 	paiholder.set_pin_data(IC_OUTPUT, 3, A)
 	var/list/modifiers = params2list(params)
 
+	if(modifiers["shift"] && modifiers["ctrl"])
+		paiholder.do_work(10)
+		return
 	if(modifiers["shift"])
 		paiholder.do_work(7)
 		return
@@ -349,10 +352,6 @@
 	if(modifiers["ctrl"])
 		paiholder.do_work(9)
 		return
-	if(modifiers["shift"] && modifiers["ctrl"])
-		paiholder.do_work(10)
-		return
-
 
 	if(istype(A,/obj/item/electronic_assembly))
 		var/obj/item/electronic_assembly/CheckedAssembly = A

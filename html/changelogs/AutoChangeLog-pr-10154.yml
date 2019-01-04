@@ -1,0 +1,4 @@
+author: "Carbonhell"
+delete-after: True
+changes: 
+  - admin: "Make mentor and remove mentor button work properly again."

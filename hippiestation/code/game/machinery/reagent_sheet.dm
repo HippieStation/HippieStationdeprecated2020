@@ -19,7 +19,7 @@
 		work_time = (initial(work_time)/ML.rating)
 	for(var/obj/item/stock_parts/matter_bin/MB in component_parts)
 		end_volume = initial(end_volume) * MB.rating
-		
+
 /obj/machinery/reagent_sheet/examine(mob/user)
 	..()
 	if(in_range(user, src) || isobserver(user))
@@ -58,12 +58,12 @@
 		if(default_deconstruction_crowbar(I))
 			return
 		return ..()
-		
+
 /obj/machinery/reagent_sheet/deconstruct()
 	if(working)
 		working.forceMove(drop_location())
 	return ..()
-	
+
 /obj/machinery/reagent_sheet/Destroy()
 	QDEL_NULL(working)
 	return ..()
@@ -84,6 +84,7 @@
 			break
 		else
 			qdel(RR)
+	QDEL_NULL(working)
 	return
 
 /obj/item/circuitboard/machine/reagent_sheet
