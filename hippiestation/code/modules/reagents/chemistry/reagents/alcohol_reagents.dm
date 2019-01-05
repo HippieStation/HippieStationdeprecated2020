@@ -40,68 +40,100 @@
 	id = "isopropyl"
 	description = "Can make you sick and drunk at the same time. Amazing!"
 	color = "#C8A5DC"
+	can_synth = FALSE
 
 /datum/reagent/consumable/ethanol/isoproyl/on_mob_life(mob/living/M)
 	M.adjustToxLoss(1)
 	..()
-	
+
 /datum/reagent/consumable/ethanol/ale
 	nutriment_factor = 1 * REAGENTS_METABOLISM
-	
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/beerD
+	can_synth = FALSE
+
 /datum/reagent/consumable/ethanol/beer/on_mob_life(mob/living/M)
 	M.jitteriness = max(0,M.jitteriness-5)
 	..()
 	. = 1
-	
+
+/datum/reagent/consumable/ethanol/whiskey
+	can_synth = FALSE
+
 /datum/reagent/consumable/ethanol/whiskey/on_mob_life(mob/living/M)
 	if(ishuman(M) && M.job in list("Detective"))
 		M.adjustBruteLoss(-0.5, 0)
 		. = 1
 	..()
-	
+
+/datum/reagent/consumable/ethanol/threemileisland
+	can_synth = FALSE
+
 /datum/reagent/consumable/ethanol/threemileisland/on_mob_life(mob/living/M)
 	M.radiation = max(M.radiation-4,0)
 	M.set_drugginess(50)
 	return ..()
-	
+
+/datum/reagent/consumable/ethanol/gin
+	can_synth = FALSE
+
 /datum/reagent/consumable/ethanol/gin/on_mob_life(mob/living/M)
 	M.hallucination = max(0, M.hallucination - 4)
 	. = 1
 	..()
-	
+
+/datum/reagent/consumable/ethanol/vermouth
+	can_synth = FALSE
+
 /datum/reagent/consumable/ethanol/vermouth/on_mob_life(mob/living/M)
 	M.metabolism_efficiency = 1.30
 	. = 1
 	..()
-	
+
+/datum/reagent/consumable/ethanol/wine
+	can_synth = FALSE
+
 /datum/reagent/consumable/ethanol/wine/on_mob_life(mob/living/M)
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 		if(C.blood_volume < BLOOD_VOLUME_NORMAL)
 			C.blood_volume += 0.5
 	..()
-	
+
+/datum/reagent/consumable/ethanol/grappa
+	can_synth = FALSE
+
 /datum/reagent/consumable/ethanol/grappa/on_mob_life(mob/living/M)
 	M.metabolism_efficiency = 1.30
 	..()
-	
+
+/datum/reagent/consumable/ethanol/cognac
+	can_synth = FALSE
+
 /datum/reagent/consumable/ethanol/cognac/on_mob_life(mob/living/M)
 	if(ishuman(M) && M.job in list("Mime"))
 		M.heal_bodypart_damage(0.5,0.5, 0)
 		. = 1
 	..()
-	
+
 /datum/reagent/consumable/ethanol/hooch/on_mob_life(mob/living/M)
 	if(prob(10))
 		M.emote("scream")
 	..()
-	
+
+/datum/reagent/consumable/ethanol/whiskey_cola
+	can_synth = FALSE
+
 /datum/reagent/consumable/ethanol/whiskey_cola/on_mob_life(mob/living/M)
 	if(ishuman(M) && M.job in list("Detective"))
 		M.adjustFireLoss(-0.5, 0)
 		. = 1
 	..()
-	
+
+/datum/reagent/consumable/ethanol/white_russian
+	can_synth = FALSE
+
 /datum/reagent/consumable/ethanol/white_russian/on_mob_life(mob/living/M)
 	var/light_amount = 0
 	if(isturf(M.loc))
@@ -112,7 +144,7 @@
 			M.adjustOxyLoss(-1)
 			M.adjustStaminaLoss(-1*REM, 0)
 		..()
-		
+
 /datum/reagent/consumable/ethanol/booger/on_mob_life(mob/living/M)
 	if(prob(30))
 		M.emote("sneeze")
@@ -130,12 +162,17 @@
 			boozepwr = 5 //We've had worse in the mines
 			dorf_mode = TRUE
 		..()
+/datum/reagent/consumable/ethanol/moonshine
+	can_synth = FALSE
 
 /datum/reagent/consumable/ethanol/moonshine/on_mob_life(mob/living/M)
 	if(prob(20))
 		M.say(pick("YEE HAW!!","YEEE HAAW!!","YEEEE HAAAW!!","YEEEEE HAAAAW!!","YEEEEEE HAAAAAW!!","YEEEEEEE HAAAAAAW!!","YEEEEEEEE HAAAAAAAW!!"), forced = "moonshine")
 	..()
-	
+
+/datum/reagent/consumable/ethanol/black_russian
+	can_synth = FALSE
+
 /datum/reagent/consumable/ethanol/black_russian/on_mob_life(mob/living/M)
 	var/light_amount = 0
 	if(isturf(M.loc))
@@ -146,59 +183,87 @@
 			M.adjustOxyLoss(-1)
 			M.adjustStaminaLoss(-1*REM, 0)
 		..()
-		
+
+
+/datum/reagent/consumable/ethanol/manhattan
+	can_synth = FALSE
+
 /datum/reagent/consumable/ethanol/manhattan/on_mob_life(mob/living/M)
 	if(prob(20)) //may cause involuntary brawls
 		M.say(pick("FUCKIN' SHIT!!","JESUS CHRIST!!","AAASSSSSS!!","FUCKER!!","SHITBIRD!!","FUCK YOURSELF!!","GET OFF THE FUCKIN' ROAD!!","EAT SHIT!!","EAT A DICK, PAL!!","GET FUCKED!!","TRY ME, COCKSUCKER!!","JUMP UP YOUR OWN ASS!!","BADA BING!!","YOU TALKIN' TO ME?!!","FUCK OUTTA HERE!!","EY, I'M WALKIN' HERE!!"), forced = "manhattan")
 	..()
-	
+
+/datum/reagent/consumable/ethanol/whiskeysoda
+	can_synth = FALSE
+
 /datum/reagent/consumable/ethanol/whiskeysoda/on_mob_life(mob/living/M)
 	if(ishuman(M) && M.job in list("Detective"))
 		M.adjustToxLoss(-0.5, 0)
 		. = 1
 	..()
-	
+
+/datum/reagent/consumable/ethanol/bahama_mama
+	can_synth = FALSE
+
 /datum/reagent/consumable/ethanol/bahama_mama/on_mob_life(mob/living/M)
 	M.stuttering = 0
 	M.slurring = 0
 	..()
-	
+
+/datum/reagent/consumable/ethanol/singulo
+	can_synth = FALSE
+
 /datum/reagent/consumable/ethanol/singulo/on_mob_life(mob/living/M)
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
 			M.reagents.remove_reagent(R.id,2)
 		. = 1
 		..()
+/datum/reagent/consumable/ethanol/mead
+	can_synth = FALSE
 
 /datum/reagent/consumable/ethanol/mead/on_mob_life(mob/living/M)
 	if(prob(10))
 		M.reagents.add_reagent("honey",2)
 	..()
-	
+
+/datum/reagent/consumable/ethanol/grog
+	can_synth = FALSE
+
 /datum/reagent/consumable/ethanol/grog/on_mob_life(mob/living/M)
 	if (M.bodytemperature < 330)
 		M.bodytemperature = min(330, M.bodytemperature + (20 * TEMPERATURE_DAMAGE_COEFFICIENT))
 	return ..()
-	
+
+/datum/reagent/consumable/ethanol/aloe
+	can_synth = FALSE
+
 /datum/reagent/consumable/ethanol/aloe/on_mob_life(mob/living/M)
 	M.adjustFireLoss(-1*REM, 0)
 	..()
 	. = 1
-	
+
+/datum/reagent/consumable/ethanol/acid_spit
+	can_synth = FALSE
+
 /datum/reagent/consumable/ethanol/acid_spit/on_mob_life(mob/living/M)
 	M.nutrition = max(M.nutrition - 1.5, 0)
 	M.overeatduration = 0
 	return ..()
-	
+
 /datum/reagent/consumable/ethanol/irishcarbomb/on_mob_life(mob/living/M) //sorry, irish
 	if(prob(5))
 		playsound(get_turf(M), 'sound/effects/explosionfar.ogg', 100, 1)
 	return ..()
-	
+
+/datum/reagent/consumable/ethanol/driestmartini
+	can_synth = FALSE
+
 /datum/reagent/consumable/ethanol/driestmartini/reaction_turf(turf/open/T, reac_volume)
 	if (istype(T))
 		T.MakeDry(ALL, TRUE, reac_volume * 5 SECONDS)
-
+/datum/reagent/consumable/ethanol/martini
+	can_synth = FALSE
 /datum/reagent/consumable/ethanol/martini/on_mob_life(mob/living/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -209,3 +274,216 @@
 			M.adjustOxyLoss(-0.25, 0)
 			. = 1
 		..()
+
+/datum/reagent/consumable/ethanol/fanciulli
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/branca_menta
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/fernet_cola
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/fernet
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/mojito
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/kamikaze
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/between_the_sheets
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/sidecar
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/alexander
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/peppermint_patty
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/sake
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/crevice_spike
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/sugar_rush
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/fringe_weaver
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/squirt_cider
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/bastion_bourbon
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/stinger
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/grasshopper
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/quintuple_sec
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/quadruple_sec
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/creme_de_cacao
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/creme_de_menthe
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/triple_sec
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/eggnog
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/fetching_fizz
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/hcider
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/whiskey_sour
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/drunkenblumpkin
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/silencer
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/bananahonk
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/erikasurprise
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/amasec
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/alliescocktail
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/andalusia
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/iced_beer
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/red_mead
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/sbite
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/ginfizz
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/vodkatonic
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/devilskiss
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/demonsblood
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/snowwhite
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/barefoot
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/antifreeze
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/manhattan_proj
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/margarita
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/irishcoffee
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/b52
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/irish_cream
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/beepsky_smash
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/toxins_special
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/tequila_sunrise
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/brave_bull
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/bloody_mary
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/screwdrivercocktail
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/vodkamartini
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/cuba_libre
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/rum_coke
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/gintonic
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/patron
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/goldschlager
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/absinthe
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/lizardwine
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/tequila
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/rum
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/bilk
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/vodka
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/thirteenloko
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/kahlua
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/beer/green
+	can_synth = FALSE
+
+/datum/reagent/consumable/ethanol/beer/light
+	can_synth = FALSE

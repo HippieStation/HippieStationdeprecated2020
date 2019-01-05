@@ -119,3 +119,78 @@
 /datum/reagent/consumable/grey_bull
 	name = "Reuben Blast"
 	description = "Formerly Grey Bull, now rebranded as Reuben Blast due to a very controversial murder case. It gives you gloves!"
+
+/datum/reagent/consumable/cream
+	can_synth = FALSE
+
+/datum/reagent/consumable/tea/arnold_palmer
+	can_synth = FALSE
+
+/datum/reagent/consumable/space_cola
+	can_synth = FALSE
+
+/datum/reagent/consumable/nuka_cola
+	can_synth = FALSE
+
+/datum/reagent/consumable/spacemountainwind
+	can_synth = FALSE
+
+/datum/reagent/consumable/dr_gibb
+	can_synth = FALSE
+
+/datum/reagent/consumable/space_up
+	can_synth = FALSE
+
+/datum/reagent/consumable/pwr_game
+	can_synth = FALSE
+
+/datum/reagent/consumable/shamblers
+	can_synth = FALSE
+
+/datum/reagent/consumable/sodawater
+	can_synth = FALSE
+
+/datum/reagent/consumable/tonic
+	can_synth = FALSE
+
+/datum/reagent/consumable/ice
+	can_synth = FALSE
+
+/datum/reagent/consumable/cafe_latte
+	can_synth = FALSE
+
+/datum/reagent/consumable/doctor_delight
+	can_synth = FALSE
+
+/datum/reagent/consumable/chocolatepudding
+	can_synth = FALSE
+
+/datum/reagent/consumable/vanillapudding
+	can_synth = FALSE
+
+/datum/reagent/consumable/cherryshake
+	can_synth = FALSE
+
+/datum/reagent/consumable/bluecherryshake
+	can_synth = FALSE
+
+/datum/reagent/consumable/pumpkin_latte
+	can_synth = FALSE
+
+/datum/reagent/consumable/gibbfloats
+	can_synth = FALSE
+
+/datum/reagent/consumable/triple_citrus
+	can_synth = FALSE
+
+/datum/reagent/consumable/grape_soda
+	can_synth = FALSE
+
+/datum/reagent/consumable/milk/chocolate_milk
+	can_synth = FALSE
+
+/datum/reagent/consumable/menthol
+	can_synth = FALSE
+
+/datum/reagent/consumable/grenadine
+	can_synth = FALSE
