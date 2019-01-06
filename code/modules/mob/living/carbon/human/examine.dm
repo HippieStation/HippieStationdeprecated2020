@@ -286,8 +286,6 @@
 
 	msg += common_trait_examine()
 
-	msg += common_trait_examine()
-
 	var/traitstring = get_trait_string()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
