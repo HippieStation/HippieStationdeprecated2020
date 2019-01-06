@@ -407,7 +407,7 @@
 	taste_description = "childhood whimsy"
 
 /datum/reagent/consumable/sprinkles/on_mob_life(mob/living/carbon/M)
-	if(ishuman(M) && M.job in list("Security Officer", "Head of Security", "Detective", "Warden"))
+	if(M.has_trait(TRAIT_LAW_ENFORCEMENT_METABOLISM))
 		M.heal_bodypart_damage(1,1, 0)
 		. = 1
 	..()
@@ -687,3 +687,25 @@
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#eef442" // rgb: 238, 244, 66
 	taste_description = "mournful honking"
+<<<<<<< HEAD
+=======
+
+
+/datum/reagent/consumable/liquidelectricity
+	name = "Liquid Electricity"
+	id = "liquidelectricity"
+	description = "The blood of Ethereals, and the stuff that keeps them going. Great for them, horrid for anyone else."
+	nutriment_factor = 5 * REAGENTS_METABOLISM
+	color = "#97ee63"
+	taste_description = "pure electrictiy"
+
+/datum/reagent/consumable/liquidelectricity/on_mob_life(mob/living/carbon/M)
+	if(isethereal(M))
+		var/mob/living/carbon/human/H = M
+		var/datum/species/ethereal/E = H.dna?.species
+		E.adjust_charge(5*REM)
+	else if(prob(25)) //scp13 optimization
+		M.electrocute_act(rand(10,15), "Liquid Electricity in their body", 1) //lmao at the newbs who eat energy bars
+		playsound(M, "sparks", 50, 1)
+	return ..()
+>>>>>>> 9e5795f... Less special-casing for loving sprinkles and fancy security drinks (#42238)
