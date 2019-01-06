@@ -145,3 +145,21 @@
 	mob_trait = TRAIT_VORACIOUS
 	gain_text = "<span class='notice'>You feel HONGRY.</span>"
 	lose_text = "<span class='danger'>You no longer feel HONGRY.</span>"
+<<<<<<< HEAD
+=======
+
+/datum/quirk/neet
+	name = "NEET"
+	desc = "For some reason you qualified for social welfare and you don't really care about your own personal hygiene."
+	value = 1
+	mob_trait = TRAIT_NEET
+	gain_text = "<span class='notice'>You feel useless to society.</span>"
+	lose_text = "<span class='danger'>You no longer feel useless to society.</span>"
+	mood_quirk = TRUE
+
+/datum/quirk/neet/on_spawn()
+	var/mob/living/carbon/human/H = quirk_holder
+	var/datum/bank_account/D = H.get_bank_account()
+	D.welfare = TRUE
+	D.add_neetbux()
+>>>>>>> c2262fc... Merge pull request #42226 from nichlas0010/mood_quirk
