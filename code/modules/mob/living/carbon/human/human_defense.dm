@@ -671,66 +671,7 @@
 					if(prob(30))
 						burndamage += rand(30,40)
 
-				if(has_trait(TRAIT_SELF_AWARE))
-					status = "[brutedamage] brute damage and [burndamage] burn damage"
-					if(!brutedamage && !burndamage)
-						status = "no damage"
-
-				else
-					if(brutedamage > 0)
-						status = LB.light_brute_msg
-					if(brutedamage > (limb_max_damage*0.4))
-						status = LB.medium_brute_msg
-					if(brutedamage > (limb_max_damage*0.8))
-						status = LB.heavy_brute_msg
-					if(brutedamage > 0 && burndamage > 0)
-						status += " and "
-
-					if(burndamage > (limb_max_damage*0.8))
-						status += LB.heavy_burn_msg
-					else if(burndamage > (limb_max_damage*0.2))
-						status += LB.medium_burn_msg
-					else if(burndamage > 0)
-						status += LB.light_burn_msg
-
-					if(status == "")
-						status = "OK"
-				var/no_damage
-				if(status == "OK" || status == "no damage")
-					no_damage = TRUE
-				to_chat(src, "\t <span class='[no_damage ? "notice" : "warning"]'>Your [LB.name] [has_trait(TRAIT_SELF_AWARE) ? "has" : "is"] [status].</span>")
-
-				for(var/obj/item/I in LB.embedded_objects)
-					to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] embedded in your [LB.name]!</a> [I.pinned ? "It has also pinned you down!" : ""]") // hippie - Show what object has them pinned
-
-			for(var/t in missing)
-				to_chat(src, "<span class='boldannounce'>Your [parse_zone(t)] is missing!</span>")
-
-			if(bleed_rate)
-				to_chat(src, "<span class='danger'>You are bleeding!</span>")
-			if(getStaminaLoss())
-				if(getStaminaLoss() > 30)
-					to_chat(src, "<span class='info'>You're completely exhausted.</span>")
-				else
-					to_chat(src, "<span class='info'>You feel fatigued.</span>")
 			if(has_trait(TRAIT_SELF_AWARE))
-<<<<<<< HEAD
-				if(toxloss)
-					if(toxloss > 10)
-						to_chat(src, "<span class='danger'>You feel sick.</span>")
-					else if(toxloss > 20)
-						to_chat(src, "<span class='danger'>You feel nauseated.</span>")
-					else if(toxloss > 40)
-						to_chat(src, "<span class='danger'>You feel very unwell!</span>")
-				if(oxyloss)
-					if(oxyloss > 10)
-						to_chat(src, "<span class='danger'>You feel lightheaded.</span>")
-					else if(oxyloss > 20)
-						to_chat(src, "<span class='danger'>Your thinking is clouded and distant.</span>")
-					else if(oxyloss > 30)
-						to_chat(src, "<span class='danger'>You're choking!</span>")
-
-=======
 				status = "[brutedamage] brute damage and [burndamage] burn damage"
 				if(!brutedamage && !burndamage)
 					status = "no damage"
@@ -789,7 +730,6 @@
 					to_chat(src, "<span class='danger'>You're choking!</span>")
 		
 		if(!has_trait(TRAIT_NOHUNGER))
->>>>>>> b9f5dba... Adds a new race: Ethereal (also adds wrappers for nutrition adjustment) (#40995)
 			switch(nutrition)
 				if(NUTRITION_LEVEL_FULL to INFINITY)
 					to_chat(src, "<span class='info'>You're completely stuffed!</span>")
@@ -804,24 +744,13 @@
 				if(0 to NUTRITION_LEVEL_STARVING)
 					to_chat(src, "<span class='danger'>You're starving!</span>")
 
-<<<<<<< HEAD
 			if(roundstart_quirks.len)
 				to_chat(src, "<span class='notice'>You have these quirks: [get_trait_string()].</span>")
-		else
-			if(wear_suit)
-				wear_suit.add_fingerprint(M)
-			else if(w_uniform)
-				w_uniform.add_fingerprint(M)
-=======
-		if(roundstart_quirks.len)
-			to_chat(src, "<span class='notice'>You have these quirks: [get_trait_string()].</span>")
-	else
-		if(wear_suit)
-			wear_suit.add_fingerprint(M)
-		else if(w_uniform)
-			w_uniform.add_fingerprint(M)
->>>>>>> b9f5dba... Adds a new race: Ethereal (also adds wrappers for nutrition adjustment) (#40995)
-
+			else
+				if(wear_suit)
+					wear_suit.add_fingerprint(M)
+				else if(w_uniform)
+					w_uniform.add_fingerprint(M)
 			..()
 
 
