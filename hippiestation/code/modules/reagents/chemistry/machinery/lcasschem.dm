@@ -8,6 +8,10 @@
 	var/obj/item/reagent_containers/beaker = null
 	var/on = FALSE
 
+/obj/machinery/chem/Initialize()
+	. = ..()
+	START_PROCESSING(SSfastprocess, src)
+
 /obj/machinery/chem/Destroy()
 	replace_beaker()
 	return ..()
@@ -27,11 +31,14 @@
 	update_icon()
 	return TRUE
 
+/obj/machinery/chem/AltClick(mob/living/user)
+	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+		return
+	replace_beaker(user)
+	return
+
 /obj/machinery/chem/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, I))
-		return
-
-	if(exchange_parts(user, I))
 		return
 
 	if(default_deconstruction_crowbar(I))
