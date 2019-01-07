@@ -13,7 +13,7 @@
 	create_random_voice()
 	.=..()
 
-/datum/dna/transfer_identity(mob/living/carbon/destination)
+/datum/dna/transfer_identity(mob/living/carbon/destination, transfer_SE = 0)
 	. = ..()
 	if (!istype(destination))
 		return
