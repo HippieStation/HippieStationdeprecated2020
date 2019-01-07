@@ -56072,7 +56072,6 @@
 "dkU" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/closet/crate/bin,
-/turf/open/floor/plating,
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
 	},
@@ -63888,7 +63887,6 @@
 "oPO" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/cleanable/chempile,
-/turf/open/floor/plating,
 /turf/open/floor/plating{
 	icon_state = "platingdmg2"
 	},
