@@ -55,3 +55,14 @@
 
 		GET_COMPONENT_FROM(STR, /datum/component/storage, B)
 		STR.max_items = STR.max_items + 1
+
+
+/datum/quirk/depression
+	name = "Depression"
+	desc = "You sometimes just hate life."
+	mob_trait = TRAIT_DEPRESSION
+	value = -1
+	gain_text = "<span class='danger'>You start feeling depressed.</span>"
+	lose_text = "<span class='notice'>You no longer feel depressed.</span>" //if only it were that easy!
+	medical_record_text = "Patient has a severe mood disorder causing them to experience sudden moments of sadness."
+	mood_quirk = TRUE
