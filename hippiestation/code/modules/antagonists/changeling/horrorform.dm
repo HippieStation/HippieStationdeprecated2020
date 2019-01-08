@@ -1,7 +1,7 @@
 //#define TRUE_CHANGELING_PASSIVE_HEAL 3 //Amount of brute damage restored per tick
 #define SCREAM_DELAY 50
 
-/obj/effect/proc_holder/changeling/horror_form //Horror Form: turns the changeling into a terrifying abomination
+/datum/action/changeling/horror_form //Horror Form: turns the changeling into a terrifying abomination
 	name = "Horror Form"
 	desc = "We tear apart our human disguise, revealing our true form."
 	helptext = "We will become an unstoppable force of destruction. Its use will burn through our chemical supply."
@@ -9,7 +9,7 @@
 	dna_cost = 0 // IT'S FREEEEEEEEEEEEEE except not really
 	req_human = 1
 
-/obj/effect/proc_holder/changeling/horror_form/sting_action(mob/living/carbon/human/user)
+/datum/action/changeling/horror_form/sting_action(mob/living/carbon/human/user)
 	if(!user || user.notransform)
 		return 0
 	user.visible_message("<span class='warning'>[user] writhes and contorts, their body expanding to inhuman proportions!</span>", \

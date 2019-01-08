@@ -50,7 +50,7 @@
 	speed = 1
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		speed = M.rating
-		
+
 /obj/machinery/reagentgrinder/examine(mob/user)
 	..()
 	if(!in_range(user, src) && !issilicon(user) && !isobserver(user))

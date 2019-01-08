@@ -43,6 +43,10 @@
 		body += "<br><br><b>Show related accounts by:</b> "
 		body += "\[ <a href='?_src_=holder;[HrefToken()];showrelatedacc=cid;client=[REF(M.client)]'>CID</a> | "
 		body += "<a href='?_src_=holder;[HrefToken()];showrelatedacc=ip;client=[REF(M.client)]'>IP</a> \]"
+		// hippie start -- warning when player has related accounts
+		if (M.client.related_accounts_cid || M.client.related_accounts_ip)
+			body += "<br><b><font color=red>Player has related accounts</font></b>"
+		// hippie end	
 		var/rep = 0
 		rep += SSpersistence.antag_rep[M.ckey]
 		body += "<br><br>Antagonist reputation: [rep]"
@@ -182,6 +186,8 @@
 		body += "<A href='?_src_=holder;[HrefToken()];tdome2=[REF(M)]'>Thunderdome 2</A> | "
 		body += "<A href='?_src_=holder;[HrefToken()];tdomeadmin=[REF(M)]'>Thunderdome Admin</A> | "
 		body += "<A href='?_src_=holder;[HrefToken()];tdomeobserve=[REF(M)]'>Thunderdome Observer</A> | "
+
+	body += usr.client.HippiePPoptions(M) // hippie -- Hippie player panel custom options
 
 	body += "<br>"
 	body += "</body></html>"

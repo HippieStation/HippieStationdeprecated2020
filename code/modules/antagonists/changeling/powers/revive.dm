@@ -1,4 +1,4 @@
-/obj/effect/proc_holder/changeling/revive
+/datum/action/changeling/revive
 	name = "Revive"
 	desc = "We regenerate, healing all damage from our form."
 	helptext = "Does not regrow lost organs or a missing head."
@@ -7,7 +7,7 @@
 	ignores_fakedeath = TRUE
 
 //Revive from revival stasis
-/obj/effect/proc_holder/changeling/revive/sting_action(mob/living/carbon/user)
+/datum/action/changeling/sting_action(mob/living/carbon/user)
 	..()
 	user.cure_fakedeath("changeling")
 	user.revive(full_heal = 1)
@@ -29,7 +29,7 @@
 	changeling.purchasedpowers -= src
 	return TRUE
 
-/obj/effect/proc_holder/changeling/revive/can_be_used_by(mob/living/user)
+/datum/action/changeling/revive/can_be_used_by(mob/living/user)
 	. = ..()
 	if(!.)
 		return

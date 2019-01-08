@@ -755,7 +755,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 			continue
 		var/total_genetic_points = changeling.geneticpoints
 
-		for(var/obj/effect/proc_holder/changeling/p in changeling.purchasedpowers)
+		for(var/datum/action/changeling/p in changeling.purchasedpowers)
 			total_genetic_points += p.dna_cost
 
 		if(total_genetic_points > initial(changeling.geneticpoints))
@@ -1053,5 +1053,4 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 	for(var/T in allowed_types)
 		var/datum/objective/X = T
-
 		GLOB.admin_objective_list[initial(X.name)] = T

@@ -983,5 +983,4 @@
 /obj/item/circuitboard/machine/paystand
 	name = "Pay Stand (Machine Board)"
 	build_path = /obj/machinery/paystand
-
 	req_components = list()
