@@ -55,13 +55,10 @@
 	mergeable_decal = FALSE
 
 	var/already_rotting = FALSE
-	
+
 /obj/effect/decal/cleanable/blood/gibs/Initialize(mapload, list/datum/disease/diseases)
 	. = ..()
 	reagents.add_reagent("liquidgibs", 5)
-
-/obj/effect/decal/cleanable/blood/gibs/ex_act(severity, target)
-	return
 	if(already_rotting)
 		start_rotting(rename=FALSE)
 	else
@@ -72,6 +69,9 @@
 		name = "rotting [initial(name)]"
 		desc += " They smell terrible."
 	AddComponent(/datum/component/rot/gibs)
+
+/obj/effect/decal/cleanable/blood/gibs/ex_act(severity, target)
+	return
 
 /obj/effect/decal/cleanable/blood/gibs/Crossed(mob/living/L)
 	if(istype(L) && has_gravity(loc))
