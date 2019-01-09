@@ -55,3 +55,22 @@
 
 		GET_COMPONENT_FROM(STR, /datum/component/storage, B)
 		STR.max_items = STR.max_items + 1
+
+/datum/quirk/insanity
+	name = "Reality Dissociation Syndrome"
+	desc = "You suffer from a severe disorder that causes very vivid hallucinations. Mindbreaker toxin can suppress its effects, and you are immune to mindbreaker's hallucinogenic properties. <b>This is not a license to grief.</b>"
+	value = -2
+	//no mob trait because it's handled uniquely
+	gain_text = "<span class='userdanger'>...</span>"
+	lose_text = "<span class='notice'>You feel in tune with the world again.</span>"
+	medical_record_text = "Patient suffers from acute Reality Dissociation Syndrome and experiences vivid hallucinations."
+
+/datum/quirk/insanity/on_process()
+	if(quirk_holder.reagents.has_reagent("mindbreaker"))
+		quirk_holder.hallucination = 0
+		return
+	if(prob(2)) //we'll all be mad soon enough
+		madness()
+
+/datum/quirk/insanity/proc/madness()
+	quirk_holder.hallucination += rand(10, 25)
