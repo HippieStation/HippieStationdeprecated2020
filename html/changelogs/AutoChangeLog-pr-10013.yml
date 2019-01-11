@@ -1,9 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - rscadd: "Adds reagent refinery circuit board"
-  - rscadd: "Allows reagent refinery to be upgraded to decrease processing time and increase ingot output"
-  - bugfix: "Fixed reagent floor tiles opening space when crowbared"
-  - bugfix: "Fixed null icons on reagent floor tiles"
-  - admin: "Adds logging for heating and vaporizing reagent floor tiles"
-  - tweak: "Reagent refinery has an examine description showing processing stats"

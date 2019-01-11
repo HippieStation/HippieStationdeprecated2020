@@ -1,4 +1,0 @@
-author: "zamolxius"
-delete-after: True
-changes: 
-  - balance: "rebalanced projectiles, except magic and special ones, to be four times faster"

@@ -1,4 +1,0 @@
-author: "Carbonhell"
-delete-after: True
-changes: 
-  - bugfix: "Custom emotes can be used again, without displaying the banned message."

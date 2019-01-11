@@ -1,4 +1,0 @@
-author: "Denton"
-delete-after: True
-changes: 
-  - code_imp: "Pubbystation's atmos machinery (tank control computers, vents etc.) have been replaced with the proper subtypes."
