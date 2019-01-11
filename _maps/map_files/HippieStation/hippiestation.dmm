@@ -39933,16 +39933,16 @@
 /area/engine/atmos)
 "bWQ" = (
 /obj/machinery/pipedispenser/disposal/transit_tube,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bWR" = (
+/obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/engine/atmos)
 "bWS" = (
@@ -60810,8 +60810,7 @@
 "kii" = (
 /obj/machinery/conveyor{
 	dir = 10;
-	id = "garbage";
-	verted = -1
+	id = "garbage"
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
