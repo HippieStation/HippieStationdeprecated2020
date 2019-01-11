@@ -1,4 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - bugfix: "Msay should now work for mentors with F4"

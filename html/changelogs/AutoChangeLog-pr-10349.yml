@@ -1,5 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - bugfix: "Fixed a broken roundstart airtank, broken turf corner decals and disposals conveyor belt."
-  - code_imp: "Did some sanity checking for pool"

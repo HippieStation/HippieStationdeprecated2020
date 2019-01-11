@@ -1,4 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - bugfix: "Fixed nanosuit's critical energy message not behaving properly"
