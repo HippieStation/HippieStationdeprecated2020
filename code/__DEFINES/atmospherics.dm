@@ -303,4 +303,8 @@ GLOBAL_LIST_INIT(pipe_paint_colors, list(
 
 #define MIASMA_CORPSE_MOLES 0.02
 #define MIASMA_GIBS_MOLES 0.005
+<<<<<<< HEAD
 #define MIASMA_HYGIENE_MOLES 0.01
+=======
+#define MIASMA_HYGIENE_MOLES 0.002
+>>>>>>> 8aa9a2a... Merge pull request #42312 from Qustinnus/quickfix
