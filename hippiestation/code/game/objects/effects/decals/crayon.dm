@@ -4,6 +4,7 @@
 		var/gangname = initial(gang.name)
 		icon = 'hippiestation/icons/effects/crayondecal.dmi'
 		icon_state = "[gangname]"
+		type = null
 	.=..()
 
 /obj/effect/decal/cleanable/crayon/gang
