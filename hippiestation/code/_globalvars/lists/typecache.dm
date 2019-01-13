@@ -8,7 +8,7 @@
 GLOBAL_LIST_INIT(no_reagent_message_typecache, typecacheof(list(
   /obj/effect/particle_effect,
   /obj/effect/decal/cleanable,
-  /mob/living,
+  /mob,
   /obj/item/reagent_containers/food,
   /turf/open/pool)
 ))
@@ -36,7 +36,8 @@ GLOBAL_LIST_INIT(statechange_reagent_blacklist, typecacheof(list(
 	/datum/reagent/nitrogen,
 	/datum/reagent/nitrous_oxide,
 	/datum/reagent/cryostylane,
-	/datum/reagent/consumable/ethanol/neurotoxin)
+	/datum/reagent/consumable/ethanol/neurotoxin,
+	/datum/reagent/clf3)
 ))
 
 GLOBAL_LIST_INIT(statechange_turf_blacklist, typecacheof(list(
