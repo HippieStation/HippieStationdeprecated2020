@@ -393,7 +393,7 @@
 				slowdown = initial(slowdown)
 				armor = armor.setRating(melee = 60, bullet = 60, laser = 60, energy = 65, bomb = 100, rad =100)
 				helmet.armor = helmet.armor.setRating(melee = 60, bullet = 60, laser = 60, energy = 65, bomb = 100, rad =100)
-				Wearer.filters = null
+				Wearer.filters = list()
 				animate(Wearer, alpha = 255, time = 5)
 				Wearer.remove_movespeed_modifier(NANO_SPEED)
 				Wearer.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
@@ -403,7 +403,7 @@
 
 			if(NANO_CLOAK)
 				helmet.display_visor_message("Cloak Engaged!")
-				block_chance = 0
+				block_chance = initial(block_chance)
 				slowdown = 0.4 //cloaking makes us go sliightly faster
 				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
@@ -417,7 +417,7 @@
 
 			if(NANO_SPEED)
 				helmet.display_visor_message("Maximum Speed!")
-				block_chance = 0
+				block_chance = initial(block_chance)
 				slowdown = initial(slowdown)
 				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
@@ -433,7 +433,7 @@
 
 			if(NANO_STRENGTH)
 				helmet.display_visor_message("Maximum Strength!")
-				block_chance = 0
+				block_chance = initial(block_chance)
 				style.teach(Wearer,1)
 				slowdown = initial(slowdown)
 				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
@@ -446,23 +446,25 @@
 				jetpack.full_speed = FALSE
 
 			if(NANO_NONE)
-				block_chance = 0
+				block_chance = initial(block_chance)
 				style.remove(Wearer)
 				slowdown = initial(slowdown)
 				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
-				Wearer.filters = null
+				Wearer.filters = list()
 				animate(Wearer, alpha = 255, time = 5)
 				Wearer.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
 				Wearer.remove_movespeed_modifier(NANO_SPEED)
 				Wearer.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
 				jetpack.full_speed = FALSE
 
-	Wearer.update_inv_wear_suit()
-	update_icon()
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
+
+	Wearer.update_inv_wear_suit()
+	Wearer.update_action_buttons_icon()
+	update_icon()
 
 
 /obj/item/clothing/suit/space/hardsuit/nano/emp_act(severity)
@@ -599,25 +601,25 @@
 /obj/item/clothing/head/helmet/space/hardsuit/nano/ui_action_click()
 	return FALSE
 
-/obj/item/clothing/head/helmet/space/hardsuit/nano/equipped(mob/living/carbon/human/wearer, slot)
+/obj/item/clothing/head/helmet/space/hardsuit/nano/equipped(mob/living/carbon/human/user, slot)
 	..()
 	if(slot == SLOT_HEAD)
 		item_flags |= NODROP
-	for(var/hudtype in datahuds)
-		var/datum/atom_hud/H = GLOB.huds[hudtype]
-		H.add_hud_to(wearer)
+		for(var/hud_type in datahuds)
+			var/datum/atom_hud/DHUD = GLOB.huds[hud_type]
+			DHUD.add_hud_to(user)
 
-/obj/item/clothing/head/helmet/space/hardsuit/nano/dropped(mob/living/carbon/human/wearer)
+/obj/item/clothing/head/helmet/space/hardsuit/nano/dropped(mob/living/carbon/human/user)
 	..()
-	if(wearer)
-		for(var/hudtype in datahuds)
-			var/datum/atom_hud/H = GLOB.huds[hudtype]
-			H.remove_hud_from(wearer)
-		if(zoom)
-			toggle_zoom(wearer, TRUE)
+	if(user.head == src)
+		for(var/hud_type in datahuds)
+			var/datum/atom_hud/DHUD = GLOB.huds[hud_type]
+			DHUD.remove_hud_from(user)
+			if(zoom)
+				toggle_zoom(user, TRUE)
 
 /obj/item/clothing/head/helmet/space/hardsuit/nano/proc/toggle_zoom(mob/living/user, force_off = FALSE)
-	if(!user)
+	if(!user || !user.client)
 		return
 	if(zoom || force_off)
 		user.client.change_view(CONFIG_GET(string/default_view))
@@ -644,7 +646,6 @@
 		NS.toggle_zoom(owner)
 	return ..()
 
-
 /obj/item/clothing/head/helmet/space/hardsuit/nano/ComponentInitialize()
 	. = ..()
 	AddComponent(/datum/component/rad_insulation, RAD_NO_INSULATION, TRUE, TRUE)
@@ -655,24 +656,24 @@
 	if(slot == SLOT_WEAR_SUIT)
 		var/turf/T = get_turf(src)
 		var/area/A = get_area(src)
-		RegisterSignal(Wearer, list(COMSIG_MOB_ITEM_ATTACK,COMSIG_MOB_ITEM_AFTERATTACK,COMSIG_MOB_THROW,COMSIG_MOB_ATTACK_HAND,COMSIG_MOB_ATTACK_RANGED), CALLBACK(src, .proc/kill_cloak), TRUE)
-		if(is_station_level(T.z))
-			priority_announce("[user] has engaged [src] at [A.map_name]!","Message from The Syndicate!", 'sound/misc/notice1.ogg')
-		log_game("[user] has engaged [src]")
 		item_flags |= NODROP
 		Wearer.unequip_everything()
 		Wearer.equipOutfit(/datum/outfit/nanosuit)
 		Wearer.add_trait(TRAIT_NODISMEMBER, "Nanosuit")
+		RegisterSignal(Wearer, list(COMSIG_MOB_ITEM_ATTACK,COMSIG_MOB_ITEM_AFTERATTACK,COMSIG_MOB_THROW,COMSIG_MOB_ATTACK_HAND,COMSIG_MOB_ATTACK_RANGED), CALLBACK(src, .proc/kill_cloak), TRUE)
+		if(is_station_level(T.z))
+			priority_announce("[user] has engaged [src] at [A.map_name]!","Message from The Syndicate!", 'sound/misc/notice1.ogg')
+		log_game("[user] has engaged [src]")
 		if(help_verb)
 			Wearer.verbs += help_verb
 		bootSequence()
 	..()
 
-/obj/item/clothing/suit/space/hardsuit/nano/dropped(mob/living/carbon/human/wearer)
-	if(!wearer)
+/obj/item/clothing/suit/space/hardsuit/nano/dropped()
+	if(!Wearer)
 		return
 	if(help_verb)
-		wearer.verbs -= help_verb
+		Wearer.verbs -= help_verb
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/bootSequence()
 	helmet.display_visor_message("Crynet - UEFI v1.32 Syndicate Systems")
@@ -721,7 +722,7 @@
 
 /mob/living/carbon/human/Stat()
 	..()
-	if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit/nano)) //Only display if actually wearing the suit.
+	if(istype(wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
 		var/obj/item/clothing/suit/space/hardsuit/nano/NS = wear_suit
 		var/datum/gas_mixture/environment = loc?.return_air()
 		var/pressure = environment.return_pressure()
@@ -815,7 +816,10 @@
 	var/bonus_damage = 10
 	var/quick = FALSE
 	var/obj/item/bodypart/affecting
-	if(D.IsParalyzed() || D.resting || D.lying)//we can hit ourselves
+	var/list/surrounding_mobs = list()
+	for(var/mob/living/L in orange(1, A))
+		surrounding_mobs += L
+	if(D.resting || D.lying)//we can hit ourselves
 		bonus_damage += 5
 		picked_hit_type = "stomps on"
 		affecting = D.get_bodypart(ran_zone(A.zone_selected))
@@ -827,14 +831,14 @@
 				add_to_streak("S",D)
 				if(check_streak(A,D))
 					return TRUE
-	if(D != A && !D.stat || !D.IsParalyzed() || !D.IsStun()) //and we can't knock ourselves the fuck out/down!
+	if(D != A && !D.stat && !D.IsParalyzed() || !D.IsStun()) //and we can't knock ourselves the fuck out/down!
 		if(A.grab_state == GRAB_AGGRESSIVE)
 			A.stop_pulling() //So we don't spam the combo
 			bonus_damage += 5
 			D.Paralyze(15)
 			D.visible_message("<span class='warning'>[A] knocks [D] the fuck down!", \
 							"<span class='userdanger'>[A] knocks you the fuck down!</span>")
-			if(prob(80))
+			if(prob(75))
 				step_away(D,A,15)
 		else if(A.grab_state > GRAB_AGGRESSIVE)
 			var/atom/throw_target = get_edge_target_turf(D, A.dir)
@@ -859,17 +863,18 @@
 			add_to_streak("Q",D)
 			if(check_streak(A,D))
 				return TRUE
-	D.visible_message("<span class='danger'>[A] [quick?"quick":""] [picked_hit_type] [D]!</span>", \
+	for(D in surrounding_mobs)
+		if(prob(100/surrounding_mobs.len))
+			D.visible_message("<span class='danger'>[A] [quick?"quick":""] [picked_hit_type] [D]!</span>", \
 					  "<span class='userdanger'>[A] [quick?"quick":""] [picked_hit_type] you!</span>")
-
-	if(picked_hit_type == "kicks" || picked_hit_type == "stomps on")
-		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
-		playsound(get_turf(D), 'sound/effects/hit_kick.ogg', 50, TRUE, -1)
-	else
-		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
-		playsound(get_turf(D), 'sound/effects/hit_punch.ogg', 50, TRUE, -1)
-	log_combat(A, D, "attacked ([name])")
-	D.apply_damage(bonus_damage, BRUTE)
+			if(picked_hit_type == "kicks" || picked_hit_type == "stomps on")
+				A.do_attack_animation(D, ATTACK_EFFECT_KICK)
+				playsound(get_turf(D), 'sound/effects/hit_kick.ogg', 50, TRUE, -1)
+			else
+				A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
+				playsound(get_turf(D), 'sound/effects/hit_punch.ogg', 50, TRUE, -1)
+			log_combat(A, D, "attacked ([name])")
+			D.apply_damage(bonus_damage, BRUTE)
 	return TRUE
 
 /datum/martial_art/nanosuit/disarm_act(var/mob/living/carbon/human/A, var/mob/living/carbon/D)
@@ -1064,8 +1069,8 @@
 
 /obj/item/tank/internals/emergency_oxygen/recharge
 	name = "self-filling miniature oxygen tank"
-	desc = "A magical tank that uses bluespace technology to replenish it's oxygen supply."
-	volume = 2
+	desc = "An oxygen tank that uses bluespace technology to replenish it's oxygen supply."
+	volume = 3
 	icon_state = "emergency_tst"
 	item_flags = DROPDEL
 
@@ -1077,7 +1082,7 @@
 /obj/item/tank/internals/emergency_oxygen/recharge/process()
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
-		var/moles_val = (ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
+		var/moles_val = (ONE_ATMOSPHERE*volume/R_IDEAL_GAS_EQUATION*T20C)
 		var/In_Use = H.Move()
 		if(In_Use)
 			return
@@ -1086,8 +1091,8 @@
 			if(air_contents.gases[/datum/gas/oxygen][MOLES] < (10*moles_val))
 				air_contents.assert_gas(/datum/gas/oxygen)
 				air_contents.gases[/datum/gas/oxygen][MOLES] = CLAMP(air_contents.total_moles()+moles_val,0,(10*moles_val))
-		if(air_contents.return_pressure() >= 16 && distribute_pressure < 16)
-			distribute_pressure = 16
+		if(air_contents.return_pressure() != initial(distribute_pressure))
+			distribute_pressure = initial(distribute_pressure)
 
 /obj/item/tank/internals/emergency_oxygen/recharge/equipped(mob/living/carbon/human/wearer, slot)
 	..()
@@ -1114,13 +1119,13 @@
 	to_chat(src, "<span class='notice'>Armor</span>: Resist damage that would normally kill or seriously injure you. Blocks 50% of attacks at a cost of suit energy drain.")
 	to_chat(src, "<span class='notice'>Cloak</span>: Become a ninja. Cloaking technology alters the outer layers to refract light through and around the suit, making the user appear almost completely invisible. Simple tasks such as attacking in any way, being hit or throwing objects cancels cloak.")
 	to_chat(src, "<span class='notice'>Speed</span>: Run like a madman. Use conservatively as suit energy drains fairly quickly.")
-	to_chat(src, "<span class='notice'>Strength</span>: Beat the shit out of objects  or people with your fists. Jump across small gabs and structures. You hit and throw harder with brute objects. You can't be grabbed aggressively or pushed. Deflect attacks and ranged hits occasionally. ")
+	to_chat(src, "<span class='notice'>Strength</span>: Beat the shit out of objects  or people with your fists. Jump across small gaps and structures. You hit and throw harder with brute objects. You can't be grabbed aggressively or pushed. 25% ranged hits deflection. Toggling throw mode gives you a 75% block chance.")
 	to_chat(src, "<span class='notice'>Aggressive grab</span>: Your grabs start aggressive.")
 	to_chat(src, "<span class='notice'>Robust push</span>: Your disarms have a 70% chance of knocking an opponent down for 4 seconds.")
 	to_chat(src, "<span class='notice'>MMA master</span>: Harm intents deals more damage, occasionally trigger series of fast hits and you can leg sweep while lying down.")
 	to_chat(src, "<span class='notice'>Highschool bully</span>: Grab someone and harm intent them to deliver a deadly knock down punch.")
 	to_chat(src, "<span class='notice'>Knockout master</span>: Tighten your grip and harm intent to deliver a very deadly knock out punch.")
-	to_chat(src, "<span class='notice'>Mike Tyson</span>: 2 quick punches to build confidence then land a hard right hook, sending your victim flying back.")
+	to_chat(src, "<span class='notice'>Mike Tyson</span>: Getting 2 successful quick punches and a regular punch sends your victim flying back.")
 	to_chat(src, "<span class='notice'>Head stomp special</span>: Target victims head while they're knocked down, stomp until their brain explodes.")
 	to_chat(src, "<b><i>User warning: The suit is equipped with an implant which vaporizes the suit and user upon request or death.</i></b>")
 
