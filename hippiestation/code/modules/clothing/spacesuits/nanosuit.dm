@@ -339,21 +339,21 @@
 				if(BP.brute_dam > trauma_threshold)
 					helmet.display_visor_message("Extensive blunt force detected in [BP.name]!")
 					msg_time_react = 200
-				if(BP.burn_dam > trauma_threshold)
+				else if(BP.burn_dam > trauma_threshold)
 					helmet.display_visor_message("Heat shield failure detected in [BP.name]!")
 					msg_time_react = 200
 			if(BP.body_zone == BODY_ZONE_HEAD)
 				if(BP.brute_dam > trauma_threshold)
 					helmet.display_visor_message("Cranial trauma detected!")
 					msg_time_react = 300
-				if(BP.burn_dam > trauma_threshold)
+				else if(BP.burn_dam > trauma_threshold)
 					helmet.display_visor_message("Facial burns detected!")
 					msg_time_react = 300
 			if(BP.body_zone == BODY_ZONE_CHEST)
 				if(BP.brute_dam > trauma_threshold)
 					helmet.display_visor_message("Thoracic trauma detected!")
 					msg_time_react = 300
-				if(BP.burn_dam > trauma_threshold)
+				else if(BP.burn_dam > trauma_threshold)
 					helmet.display_visor_message("Thoracic burns detected!")
 					msg_time_react = 300
 
@@ -461,7 +461,6 @@
 	for(var/X in actions)
 		var/datum/action/A = X
 		A.UpdateButtonIcon()
-
 	Wearer.update_inv_wear_suit()
 	Wearer.update_action_buttons_icon()
 	update_icon()
@@ -485,9 +484,7 @@
 	Wearer.confused += 50
 	helmet.display_visor_message("EMP Assault! Systems impaired.")
 	sleep(40)
-	Wearer.Paralyze(300)
-	Wearer.AdjustStun(300)
-	Wearer.Jitter(120)
+	Wearer.apply_effects(paralyze = 300, stun = 300, jitter = 120)
 	toggle_mode(NANO_NONE, TRUE)
 	shutdown = TRUE
 	addtimer(CALLBACK(src, .proc/emp_assaulttwo), 25)
@@ -529,9 +526,7 @@
 	playsound(src, 'sound/machines/defib_charge.ogg', 75, FALSE)
 	sleep(25)
 	playsound(src, 'sound/machines/defib_zap.ogg', 50, FALSE)
-	Wearer.AdjustStun(-100)
-	Wearer.AdjustParalyzed(-100)
-	Wearer.adjustStaminaLoss(-55)
+	Wearer.apply_effects(stun = -100, paralyze = -100, stamina = -55)
 	Wearer.adjustOxyLoss(-55)
 	helmet.display_visor_message("Cleared to proceed.")
 	sleep(3)
@@ -596,7 +591,7 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/nano/Initialize()
 	. = ..()
-	bomb_radar = new /obj/machinery/doppler_array/integrated(src)
+	bomb_radar = new
 
 /obj/item/clothing/head/helmet/space/hardsuit/nano/ui_action_click()
 	return FALSE
@@ -783,19 +778,20 @@
 	return TRUE
 
 /datum/martial_art/nanosuit/proc/HeadStomp(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	D.visible_message("<span class='warning'>[A] smashes [D] in the head, splattering their brains!</span>", \
-						"<span class='userdanger'>OH SHI-</span>")
-	playsound(get_turf(A), 'hippiestation/sound/misc/squishy.ogg', 75, TRUE, -1)
-	playsound(get_turf(A), 'sound/magic/disintegrate.ogg', 50, TRUE, -1)
-	step_to(A,D)
 	var/obj/item/bodypart/head/head = D.get_bodypart(BODY_ZONE_HEAD)
 	if(head)
 		head.drop_limb()
 		head.drop_organs()
-	D.bleed_rate = 10
-	D.adjustBruteLoss(40)
-	D.death(FALSE)
-	log_combat(A, D, "head stomped")
+		D.visible_message("<span class='warning'>[A] smashes [D] in the head, splattering their brains!</span>", \
+					"<span class='userdanger'>OH SHI-</span>")
+		playsound(get_turf(A), 'hippiestation/sound/misc/squishy.ogg', 75, TRUE, -1)
+		playsound(get_turf(A), 'sound/magic/disintegrate.ogg', 50, TRUE, -1)
+		D.death(FALSE)
+		log_combat(A, D, "head stomped")
+	if(ishuman(D))
+		D.bleed_rate += 10
+	D.apply_damage(40, BRUTE)
+	A.do_attack_animation(D, ATTACK_EFFECT_KICK)
 	return TRUE
 
 /datum/martial_art/nanosuit/grab_act(mob/living/carbon/human/A, mob/living/carbon/D)
@@ -815,23 +811,18 @@
 	var/picked_hit_type = pick("punches", "kicks")
 	var/bonus_damage = 10
 	var/quick = FALSE
-	var/obj/item/bodypart/affecting
-	var/list/surrounding_mobs = list()
-	for(var/mob/living/L in orange(1, A))
-		surrounding_mobs += L
 	if(D.resting || D.lying)//we can hit ourselves
 		bonus_damage += 5
 		picked_hit_type = "stomps on"
-		affecting = D.get_bodypart(ran_zone(A.zone_selected))
-		if(affecting.body_zone == BODY_ZONE_HEAD && !A.resting || !A.lying)
+		if(A.zone_selected == BODY_ZONE_HEAD && D.get_bodypart(BODY_ZONE_HEAD) && (!A.resting || !A.lying))
 			D.add_splatter_floor(D.loc)
-			D.adjustBrainLoss(15)
+			D.apply_damage(10, BRAIN)
 			bonus_damage += 5
 			if(D.health <= 40)
 				add_to_streak("S",D)
 				if(check_streak(A,D))
 					return TRUE
-	if(D != A && !D.stat && !D.IsParalyzed() || !D.IsStun()) //and we can't knock ourselves the fuck out/down!
+	if(D != A && !D.stat && (!D.IsParalyzed() || !D.IsStun())) //and we can't knock ourselves the fuck out/down!
 		if(A.grab_state == GRAB_AGGRESSIVE)
 			A.stop_pulling() //So we don't spam the combo
 			bonus_damage += 5
@@ -863,18 +854,19 @@
 			add_to_streak("Q",D)
 			if(check_streak(A,D))
 				return TRUE
-	for(D in surrounding_mobs)
-		if(prob(100/surrounding_mobs.len))
-			D.visible_message("<span class='danger'>[A] [quick?"quick":""] [picked_hit_type] [D]!</span>", \
-					  "<span class='userdanger'>[A] [quick?"quick":""] [picked_hit_type] you!</span>")
-			if(picked_hit_type == "kicks" || picked_hit_type == "stomps on")
-				A.do_attack_animation(D, ATTACK_EFFECT_KICK)
-				playsound(get_turf(D), 'sound/effects/hit_kick.ogg', 50, TRUE, -1)
-			else
-				A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
-				playsound(get_turf(D), 'sound/effects/hit_punch.ogg', 50, TRUE, -1)
-			log_combat(A, D, "attacked ([name])")
-			D.apply_damage(bonus_damage, BRUTE)
+		else if(prob(35))
+			cleeve_attack(A,D)
+			return FALSE
+	D.visible_message("<span class='danger'>[A] [quick?"quick":""] [picked_hit_type] [D]!</span>", \
+					"<span class='userdanger'>[A] [quick?"quick":""] [picked_hit_type] you!</span>")
+	if(picked_hit_type == "kicks" || picked_hit_type == "stomps on")
+		A.do_attack_animation(D, ATTACK_EFFECT_KICK)
+		playsound(get_turf(D), 'sound/effects/hit_kick.ogg', 50, TRUE, -1)
+	else
+		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
+		playsound(get_turf(D), 'sound/effects/hit_punch.ogg', 50, TRUE, -1)
+	log_combat(A, D, "attacked ([name])")
+	D.apply_damage(bonus_damage, BRUTE)
 	return TRUE
 
 /datum/martial_art/nanosuit/disarm_act(var/mob/living/carbon/human/A, var/mob/living/carbon/D)
@@ -896,33 +888,25 @@
 	log_combat(A, D, "disarmed with nanosuit", "[I ? " removing \the [I]" : ""]")
 	return TRUE
 
+/datum/martial_art/nanosuit/proc/cleeve_attack(mob/living/carbon/human/A, mob/living/carbon/D)
+	for(D in orange(1, A))
+		if(D != A && is_A_facing_B(A,D) && (!D.stat || !D.IsParalyzed()))
+			basic_hit(A,D)
+
 /obj/proc/nanosuit_damage() //the damage nanosuits do on punches to this object, is affected by melee armor
 	return 25 //just enough to damage an airlock
 
 /atom/proc/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)
-	SEND_SIGNAL(src, COMSIG_ATOM_HULK_ATTACK, user)
+	SEND_SIGNAL(src, COMSIG_MOB_ATTACK_HAND, user)
 	if(does_attack_animation)
 		user.changeNext_move(CLICK_CD_MELEE)
 		log_combat(user, src, "punched", "nanosuit strength mode")
 		user.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 
-/mob/living/carbon/monkey/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)
-	if(user.a_intent == INTENT_HARM)
-		..(user, TRUE)
-		adjustBruteLoss(20)
-		var/hitverb = "punched"
-		if(mob_size < MOB_SIZE_LARGE)
-			step_away(src,user,15)
-			hitverb = "slammed"
-		playsound(loc, "punch", 25, TRUE, -1)
-		visible_message("<span class='danger'>[user] has [hitverb] [src]!</span>", \
-		"<span class='userdanger'>[user] has [hitverb] [src]!</span>", null, COMBAT_MESSAGE_RANGE)
-		return TRUE
-
 /mob/living/simple_animal/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)
 	if(user.a_intent == INTENT_HARM)
 		..(user, TRUE)
-		adjustBruteLoss(20)
+		apply_damage(20, BRUTE)
 		var/hitverb = "punched"
 		if(mob_size < MOB_SIZE_LARGE)
 			step_away(src,user,15)
@@ -931,17 +915,29 @@
 		visible_message("<span class='danger'>[user] has [hitverb] [src]!</span>", \
 		"<span class='userdanger'>[user] has [hitverb] [src]!</span>", null, COMBAT_MESSAGE_RANGE)
 		return TRUE
-
+/*
 /mob/living/carbon/alien/humanoid/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)
 	if(user.a_intent == INTENT_HARM)
 		..(user, TRUE)
-		adjustBruteLoss(25)
-		adjustStaminaLoss(35)
+		apply_damages(brute = 25, stamina = 35)
 		var/hitverb = "punched"
 		playsound(loc, "punch", 25, TRUE, -1)
 		visible_message("<span class='danger'>[user] has [hitverb] [src]!</span>", \
 		"<span class='userdanger'>[user] has [hitverb] [src]!</span>", null, COMBAT_MESSAGE_RANGE)
 		return TRUE
+
+/mob/living/carbon/monkey/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)
+	if(user.a_intent == INTENT_HARM)
+		..(user, TRUE)
+		apply_damage(20, BRUTE)
+		var/hitverb = "punched"
+		if(mob_size < MOB_SIZE_LARGE)
+			step_away(src,user,15)
+			hitverb = "slammed"
+		playsound(loc, "punch", 25, TRUE, -1)
+		visible_message("<span class='danger'>[user] has [hitverb] [src]!</span>", \
+		"<span class='userdanger'>[user] has [hitverb] [src]!</span>", null, COMBAT_MESSAGE_RANGE)
+		return TRUE*/
 
 /obj/item/attack_nanosuit(mob/living/carbon/human/user)
 	return FALSE
@@ -1007,8 +1003,11 @@
 
 /mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
 	var/datum/martial_art/nanosuit/style = mind.has_martialart(MARTIALART_NANOSUIT)
-	if(style && style.on_attack_hand(src, A, proximity))
-		return
+	if(style)
+		if(style.on_attack_hand(src, A, proximity))
+			return
+		else if(iscarbon(A) && style.harm_act(src, A))
+			return
 	..()
 
 /mob/living/simple_animal/attack_hand(mob/living/carbon/human/M)
@@ -1082,7 +1081,7 @@
 /obj/item/tank/internals/emergency_oxygen/recharge/process()
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
-		var/moles_val = (ONE_ATMOSPHERE*volume/R_IDEAL_GAS_EQUATION*T20C)
+		var/moles_val = (ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)
 		var/In_Use = H.Move()
 		if(In_Use)
 			return
