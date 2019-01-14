@@ -75,7 +75,8 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVerbsAdmin())
 	/datum/admins/proc/open_borgopanel,
 	/client/proc/reset_atmos, /* hippie -- reset atmos if some griefer spams plasma */
 	/client/proc/aooc, /* hippie -- sends a message to all antags on the server*/
-	/client/proc/fill_breach /* hippie -- fills breaches in a radius defined by the admin*/
+	/client/proc/fill_breach, /* hippie -- fills breaches in a radius defined by the admin*/
+	/client/proc/blow_fueltanks /* hippie -- blows up all fuel tanks in the map*/
 	)
 GLOBAL_PROTECT(admin_verbs_ban)
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))

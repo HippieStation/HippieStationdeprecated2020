@@ -87,6 +87,14 @@
 /obj/structure/reagent_dispensers/fueltank
 	use_reagent_icon = TRUE
 
+/obj/structure/reagent_dispensers/fueltank/Initialize()
+	GLOB.fuel_tanks |= src
+	. = ..()
+
+/obj/structure/reagent_dispensers/fueltank/Destroy()
+	GLOB.fuel_tanks -= src
+	return ..()
+
 /obj/structure/reagent_dispensers/water_cooler/honk
 	name = "honk-cooler"
 	desc = "A machine that dispenses the clown's thick juice. HONK!"
