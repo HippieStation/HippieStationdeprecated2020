@@ -915,29 +915,6 @@
 		visible_message("<span class='danger'>[user] has [hitverb] [src]!</span>", \
 		"<span class='userdanger'>[user] has [hitverb] [src]!</span>", null, COMBAT_MESSAGE_RANGE)
 		return TRUE
-/*
-/mob/living/carbon/alien/humanoid/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)
-	if(user.a_intent == INTENT_HARM)
-		..(user, TRUE)
-		apply_damages(brute = 25, stamina = 35)
-		var/hitverb = "punched"
-		playsound(loc, "punch", 25, TRUE, -1)
-		visible_message("<span class='danger'>[user] has [hitverb] [src]!</span>", \
-		"<span class='userdanger'>[user] has [hitverb] [src]!</span>", null, COMBAT_MESSAGE_RANGE)
-		return TRUE
-
-/mob/living/carbon/monkey/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)
-	if(user.a_intent == INTENT_HARM)
-		..(user, TRUE)
-		apply_damage(20, BRUTE)
-		var/hitverb = "punched"
-		if(mob_size < MOB_SIZE_LARGE)
-			step_away(src,user,15)
-			hitverb = "slammed"
-		playsound(loc, "punch", 25, TRUE, -1)
-		visible_message("<span class='danger'>[user] has [hitverb] [src]!</span>", \
-		"<span class='userdanger'>[user] has [hitverb] [src]!</span>", null, COMBAT_MESSAGE_RANGE)
-		return TRUE*/
 
 /obj/item/attack_nanosuit(mob/living/carbon/human/user)
 	return FALSE
@@ -1006,7 +983,7 @@
 	if(style)
 		if(style.on_attack_hand(src, A, proximity))
 			return
-		else if(iscarbon(A) && style.harm_act(src, A))
+		else if(iscarbon(A) && !ishuman(A) && style.harm_act(src, A))
 			return
 	..()
 
