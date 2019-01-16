@@ -5,7 +5,6 @@ GLOBAL_LIST_EMPTY(chempiles)
 	icon = 'hippiestation/icons/effects/32x32.dmi'
 	icon_state = "chempile"
 	mergeable_decal = FALSE
-	resistance_flags = ACID_PROOF | FIRE_PROOF
 
 /obj/effect/decal/cleanable/chempile/examine(mob/user)
 	..()
