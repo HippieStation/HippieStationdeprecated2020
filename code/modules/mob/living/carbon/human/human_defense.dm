@@ -651,6 +651,7 @@
 		return
 
 	if(src == M)
+<<<<<<< HEAD
 		visible_message("[src] examines [p_them()]self.", \
 			"<span class='notice'>You check yourself for injuries.</span>")
 
@@ -745,6 +746,19 @@
 
 		if(roundstart_quirks.len)
 			to_chat(src, "<span class='notice'>You have these quirks: [get_trait_string()].</span>")
+=======
+		if(has_status_effect(STATUS_EFFECT_CHOKINGSTRAND))
+			to_chat(src, "<span class='notice'>You attempt to remove the durathread strand from around your neck.</span>")
+			if(do_after(src, 35, null, src))
+				to_chat(src, "<span class='notice'>You succesfuly remove the durathread strand.</span>")
+				remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
+			return
+		visible_message("[src] examines [p_them()]self.", \
+			"<span class='notice'>You check yourself for injuries.</span>")
+		check_self_for_injuries()
+
+
+>>>>>>> e1d360f... [ready] Golem DLC pass 2018 (Adds new golem types) (#41951)
 	else
 		if(wear_suit)
 			wear_suit.add_fingerprint(M)
