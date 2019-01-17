@@ -25,8 +25,8 @@
 
 	if (!.)
 		return
-
-	say_tts(message, language)
+/*
+	say_tts(message, language) TTS removed, leaving handlers here for replacement
 
 /mob/living/proc/say_tts(tts_message, datum/language/tts_language = null)
 	if (!CONFIG_GET(flag/enable_tts))
@@ -92,4 +92,4 @@
 		if (!hud_used.tts)
 			return
 		hud_used.tts.icon_state = "tts_cooldown"
-
+*/
