@@ -304,6 +304,7 @@
 		qdel(G)
 
 
+<<<<<<< HEAD
 /datum/plant_gene/trait/noreact
 	// Makes plant reagents not react until squashed.
 	name = "Separated Chemicals"
@@ -317,6 +318,8 @@
 	G.reagents.handle_reactions()
 	
 
+=======
+>>>>>>> cf94e52... Removes separated chemicals trait (#42386)
 /datum/plant_gene/trait/maxchem
 	// 2x to max reagents volume.
 	name = "Densified Chemicals"
