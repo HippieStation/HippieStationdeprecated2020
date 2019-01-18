@@ -8,7 +8,7 @@
 GLOBAL_LIST_INIT(no_reagent_message_typecache, typecacheof(list(
   /obj/effect/particle_effect,
   /obj/effect/decal/cleanable,
-  /mob,
+  /mob/living,
   /obj/item/reagent_containers/food,
   /turf/open/pool)
 ))
