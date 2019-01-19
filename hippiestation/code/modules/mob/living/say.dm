@@ -1,7 +1,7 @@
 /mob/living/carbon/human/treat_message(message)
 	if(lisp)
-		. += lisp(message, lisp)
-	. = ..()
+		message = lisp(message, lisp)
+	return ..()
 
 /mob/living/can_speak_vocal(message)
 	if(pulledby && pulledby.grab_state == GRAB_KILL)
