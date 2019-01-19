@@ -651,7 +651,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					S = GLOB.moth_wings_list[H.dna.features["moth_wings"]]
 				if("caps")
 					S = GLOB.caps_list[H.dna.features["caps"]]
-				else // hippie start -- our species mutant bodyparts such as ipc screen	
+				else // hippie start -- our species mutant bodyparts such as ipc screen
 					S = hippie_mutant_bodyparts(bodypart, H) // hippie end
 			if(!S || S.icon_state == "none")
 				continue
@@ -1148,7 +1148,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 /datum/species/proc/help(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 // hippie start -- martial arts check because this was never implemented. sorry not sorry
-	if(attacker_style && attacker_style.help_act(user,target))	
+	if(attacker_style && attacker_style.help_act(user,target))
 		return 1
 // hippie end
 	if(!((target.health < 0 || target.has_trait(TRAIT_FAKEDEATH)) && !(target.mobility_flags & MOBILITY_STAND)))
@@ -1177,10 +1177,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		target.grabbedby(user)
 		return 1
 
-
-
-
-
 /datum/species/proc/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 	if(user.has_trait(TRAIT_PACIFISM))
 		to_chat(user, "<span class='warning'>You don't want to harm [target]!</span>")
@@ -1188,6 +1184,31 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(target.check_block())
 		target.visible_message("<span class='warning'>[target] blocks [user]'s attack!</span>")
 		return FALSE
+	/* hippie edit -- adds monk martial stuff */
+	if(target.mind && istype(target.mind.martial_art, /datum/martial_art/monk))
+		var/datum/martial_art/monk/M = target.mind.martial_art
+		var/defense_roll = M.defense_roll(0)
+		if(defense_roll)
+			var/damage = rand(user.dna.species.punchdamagelow, user.dna.species.punchdamagehigh)
+			playsound(target.loc, user.dna.species.attack_sound, 25, 1, -1)
+			if(defense_roll == 2)
+				damage *= 2
+				target.visible_message("<span class='danger'>[user] has critically punched [target]!</span>", \
+				"<span class='userdanger'>[user] has critically punched [target]!</span>", null, COMBAT_MESSAGE_RANGE)
+				log_combat(user, target, "critically punched")
+			else
+				target.visible_message("<span class='danger'>[user] has punched [target]!</span>", \
+				"<span class='userdanger'>[user] has punched [target]!</span>", null, COMBAT_MESSAGE_RANGE)
+				log_combat(user, target, "punched")
+			target.apply_damage(damage, BRUTE)
+			return TRUE
+		else
+			playsound(target.loc, user.dna.species.miss_sound, 25, 1, -1)
+			target.visible_message("<span class='warning'>[user] has attempted to punch [target], but they dodged it!</span>", \
+				"<span class='userdanger'>[user] has attempted to punch [target], but they dodged it!</span>", null, COMBAT_MESSAGE_RANGE)
+			log_combat(user, target, "attempted to punch")
+		return FALSE
+	/* hippie end -- adds monk martial stuff */
 	if(attacker_style && attacker_style.harm_act(user,target))
 		return TRUE
 	else
@@ -1215,8 +1236,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			target.visible_message("<span class='danger'>[user] has attempted to [atk_verb] [target]!</span>",\
 			"<span class='userdanger'>[user] has attempted to [atk_verb] [target]!</span>", null, COMBAT_MESSAGE_RANGE)
 			return FALSE
-			
-		punchouttooth(target,user,affecting,rand(0,9)) // hippie -- teethcode
+
+		punchouttooth(target,user,rand(0,9),affecting) // hippie -- teethcode
 
 		var/armor_block = target.run_armor_check(affecting, "melee")
 
@@ -1320,6 +1341,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 /datum/species/proc/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
 	// Allows you to put in item-specific reactions based on species
+	if(H.checkbuttinsert(I, user)) //hippie edit -- adds butt check
+		return FALSE //hippie edit -- adds butt check
 	if(user != H)
 		if(H.check_shields(I, I.force, "the [I.name]", MELEE_ATTACK, I.armour_penetration))
 			return 0
@@ -1338,6 +1361,31 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	armor_block = min(90,armor_block) //cap damage reduction at 90%
 	var/Iforce = I.force //to avoid runtimes on the forcesay checks at the bottom. Some items might delete themselves if you drop them. (stunning yourself, ninja swords)
 
+	/* hippie edit -- adds monk stuff */
+	if(H.mind && H.mind.martial_art && istype(H.mind.martial_art, /datum/martial_art/monk))
+		var/datum/martial_art/monk/M = H.mind.martial_art
+		var/defense_roll = M.defense_roll(0)
+		if(defense_roll)
+			var/dmg_to_deal = I.force
+			if(defense_roll == 2)
+				dmg_to_deal *= 2
+				H.send_item_attack_message(I, user, critical = TRUE)
+			else
+				H.send_item_attack_message(I, user)
+			apply_damage(dmg_to_deal, I.damtype, blocked = armor_block)
+			if(I.damtype == BRUTE)
+				if(prob(33))
+					I.add_mob_blood(src)
+					var/turf/location = get_turf(src)
+					H.add_splatter_floor(location)
+					if(get_dist(user, src) <= 1)
+						user.add_mob_blood(src)
+			return TRUE
+		else
+			H.visible_message("<span class='danger'>[H] dodges the [I]!</span>",\
+			"<span class='userdanger'>[H] dodges the [I]!</span>", null, COMBAT_MESSAGE_RANGE)
+			return FALSE
+	/* hippie end -- adds monk stuff */
 	var/weakness = H.check_weakness(I, user)
 	apply_damage(I.force * weakness, I.damtype, def_zone, armor_block, H)
 
@@ -1352,12 +1400,12 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(affecting.dismember(I.damtype))
 			I.add_mob_blood(H)
 			playsound(get_turf(H), I.get_dismember_sound(), 80, 1)
-			
-	// hippie start -- If we're hit then throw off some hats	
-	if (prob(25))	
-		var/list/L = list()	
-		LAZYADD(L, get_dir(user, H))	
-		H.throw_hats(1 + rand(0, FLOOR(I.force / 5, 1)), L)	
+
+	// hippie start -- If we're hit then throw off some hats
+	if (prob(25))
+		var/list/L = list()
+		LAZYADD(L, get_dir(user, H))
+		H.throw_hats(1 + rand(0, FLOOR(I.force / 5, 1)), L)
 	// hippie end
 
 	var/bloody = 0
