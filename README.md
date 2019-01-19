@@ -168,4 +168,4 @@ See the footers of code/\_\_DEFINES/server\_tools.dm, code/modules/server\_tools
 
 All assets including icons and sound are under a [Creative Commons 3.0 BY-SA license](https://creativecommons.org/licenses/by-sa/3.0/) unless otherwise indicated.
 
-In addition, under Additional Terms 7.f, all work derived from this project, for use in other projects, which is not present in upstream projects, must attribute the original author(s) of the work that is being derived.
+In addition, under Additional Terms 7.f, all work derived from this project, which is not present in upstream projects, intended for other projects, must attribute the original author(s) of the work that is being derived.
