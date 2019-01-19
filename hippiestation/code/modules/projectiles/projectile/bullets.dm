@@ -23,3 +23,10 @@
 /obj/item/projectile/bullet/p50 // Sniper rifles
 	stun = 10
 	paralyze = 10
+	
+/obj/item/projectile/bullet/pellet/shotgun_buckshot
+	damage = 6.25
+
+/obj/item/projectile/bullet/pellet/shotgun_rubbershot
+	damage = 1.5
+	stamina = 12.5
