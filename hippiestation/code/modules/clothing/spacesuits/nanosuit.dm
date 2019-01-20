@@ -648,7 +648,6 @@
 	AddComponent(/datum/component/rad_insulation, RAD_NO_INSULATION, TRUE, TRUE)
 
 /obj/item/clothing/suit/space/hardsuit/nano/equipped(mob/user, slot)
-	..()
 	if(ishuman(user))
 		Wearer = user
 	if(slot == SLOT_WEAR_SUIT)
@@ -665,6 +664,7 @@
 		if(help_verb)
 			Wearer.verbs += help_verb
 		bootSequence()
+	..()
 
 /obj/item/clothing/suit/space/hardsuit/nano/dropped()
 	..()
