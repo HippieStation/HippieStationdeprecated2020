@@ -1,7 +1,0 @@
-author: "IHadMyUsernameTaken"
-delete-after: True
-changes: 
-  - bugfix: "Lets idle power using circuits handle power failure again after a battery is removed from the assembly."
-  - bugfix: "Makes starters work again after one has been initially triggered with a charged power cell and then is tried to be triggered again with another charged power cell."
-  - bugfix: "Adds slime jelly as a fuel for fuel cells, as it was stated to be one."
-  - bugfix: "Makes beaker slot circuits stop trying to get volume from a beaker that doesn't exist after a beaker is removed."

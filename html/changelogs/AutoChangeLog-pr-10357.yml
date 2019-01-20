@@ -1,0 +1,6 @@
+author: "IHadMyUsernameTaken"
+delete-after: True
+changes: 
+  - bugfix: "Makes staples be craftable while also making it possible to craft 10 staples if you have at least 2 rods."
+  - bugfix: "Poseur tags now show a randomly chosen gang tag instead of being invisible when sprayed."
+  - bugfix: "Elite syndicate hardsuits will now not be shown oddly on the round end screen and they aren't invisible as items anymore."

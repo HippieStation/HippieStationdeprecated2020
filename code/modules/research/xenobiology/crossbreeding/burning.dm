@@ -7,12 +7,11 @@ Burning extracts:
 	name = "burning extract"
 	desc = "It's boiling over with barely-contained energy."
 	effect = "burning"
-	container_type = INJECTABLE | DRAWABLE
 	icon_state = "burning"
 
 /obj/item/slimecross/burning/Initialize()
 	. = ..()
-	create_reagents(10)
+	create_reagents(10, INJECTABLE | DRAWABLE)
 
 /obj/item/slimecross/burning/attack_self(mob/user)
 	if(!reagents.has_reagent("plasma",10))
@@ -36,7 +35,7 @@ Burning extracts:
 	S.visible_message("<span class='danger'>A baby slime emerges from [src], and it nuzzles [user] before burbling hungrily!</span>")
 	S.Friends[user] = 20 //Gas, gas, gas
 	S.bodytemperature = T0C + 400 //We gonna step on the gas.
-	S.nutrition = S.get_hunger_nutrition() //Tonight, we fight!
+	S.set_nutrition(S.get_hunger_nutrition()) //Tonight, we fight!
 	..()
 
 /obj/item/slimecross/burning/orange

@@ -1,5 +1,0 @@
-author: "HonkBot"
-delete-after: True
-changes: 
-  - rscadd: "Wizard has a new spell: Soul tap!"
-  - tweak: "lichdom requires a soul now, and it takes your soul."

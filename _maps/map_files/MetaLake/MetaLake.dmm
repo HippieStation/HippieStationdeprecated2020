@@ -778,7 +778,7 @@
 "abW" = (
 /obj/structure/bed,
 /obj/item/clothing/suit/straight_jacket,
-/obj/item/clothing/glasses/sunglasses/blindfold,
+/obj/item/clothing/glasses/blindfold,
 /obj/item/clothing/mask/muzzle,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/item/electropack,
@@ -1446,7 +1446,7 @@
 "adg" = (
 /obj/structure/bed,
 /obj/item/clothing/suit/straight_jacket,
-/obj/item/clothing/glasses/sunglasses/blindfold,
+/obj/item/clothing/glasses/blindfold,
 /obj/item/clothing/mask/muzzle,
 /turf/open/floor/plasteel/white,
 /area/security/prison)
@@ -1459,7 +1459,7 @@
 "adi" = (
 /obj/structure/bed,
 /obj/item/clothing/suit/straight_jacket,
-/obj/item/clothing/glasses/sunglasses/blindfold,
+/obj/item/clothing/glasses/blindfold,
 /obj/item/clothing/mask/muzzle,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -56582,7 +56582,7 @@
 /obj/item/clothing/mask/muzzle,
 /obj/item/gun/syringe,
 /obj/item/clothing/glasses/eyepatch,
-/obj/item/clothing/glasses/sunglasses/blindfold,
+/obj/item/clothing/glasses/blindfold,
 /obj/item/clothing/ears/earmuffs,
 /obj/item/storage/belt/medical{
 	pixel_y = 2
@@ -59363,7 +59363,7 @@
 /obj/machinery/status_display/evac{
 	pixel_y = 32
 	},
-/obj/effect/landmark/xmastree/rdrod,
+/obj/effect/spawner/xmastree/rdrod,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -69926,7 +69926,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
-/obj/effect/landmark/xmastree,
+/obj/effect/spawner/xmastree,
 /turf/open/floor/carpet,
 /area/chapel/main)
 "cOl" = (
@@ -72339,7 +72339,7 @@
 /turf/open/floor/plating,
 /area/science/xenobiology)
 "cTR" = (
-/obj/effect/landmark/xmastree,
+/obj/effect/spawner/xmastree,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "cTT" = (
@@ -78714,7 +78714,7 @@
 /turf/open/floor/plating,
 /area/security/prison)
 "wmt" = (
-/obj/effect/decal/cleanable/flour,
+/obj/effect/decal/cleanable/food/flour,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "wxc" = (

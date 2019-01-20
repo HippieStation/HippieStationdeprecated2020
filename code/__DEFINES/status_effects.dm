@@ -36,6 +36,8 @@
 
 #define STATUS_EFFECT_GOOD_MUSIC /datum/status_effect/good_music
 
+#define STATUS_EFFECT_CREEP /datum/status_effect/creep //you feel fuckin great around your obsession
+
 /////////////
 // DEBUFFS //
 /////////////
@@ -53,6 +55,8 @@
 #define STATUS_EFFECT_UNCONSCIOUS /datum/status_effect/incapacitating/unconscious //the affected is unconscious
 
 #define STATUS_EFFECT_SLEEPING /datum/status_effect/incapacitating/sleeping //the affected is asleep
+
+#define STATUS_EFFECT_PACIFY /datum/status_effect/pacify //the affected is pacified, preventing direct hostile actions
 
 #define STATUS_EFFECT_BELLIGERENT /datum/status_effect/belligerent //forces the affected to walk, doing damage if they try to run
 

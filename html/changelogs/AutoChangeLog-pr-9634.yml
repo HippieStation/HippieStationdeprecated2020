@@ -1,5 +1,0 @@
-author: "Shdorsh"
-delete-after: True
-changes: 
-  - tweak: "Making circuits look not eye-cancery and easier to navigate."
-  - tweak: "Also removes the color check, so you can color your assembly all kinds of colors"

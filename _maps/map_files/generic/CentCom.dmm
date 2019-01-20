@@ -2246,6 +2246,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/arena_source)
+"fR" = (
+/obj/item/reagent_containers/food/snacks/egg/rainbow{
+	desc = "I bet you think you're pretty clever... well you are.";
+	name = "easter egg"
+	},
+/turf/open/space/basic,
+/area/space)
 "fS" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -2933,6 +2940,9 @@
 /obj/machinery/capture_the_flag/red,
 /turf/open/floor/circuit/green/anim,
 /area/ctf)
+"hH" = (
+/turf/open/floor/holofloor/hyperspace,
+/area/space)
 "hI" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -3707,6 +3717,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/control)
+"jA" = (
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/holofloor/hyperspace,
+/area/space)
 "jB" = (
 /obj/structure/noticeboard{
 	dir = 8;
@@ -4811,6 +4825,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
+"lS" = (
+/obj/structure/fans/tiny/invisible,
+/turf/open/floor/holofloor/hyperspace,
+/area/centcom/supplypod/flyMeToTheMoon)
 "lT" = (
 /obj/machinery/door/airlock/centcom{
 	name = "CentCom Security";
@@ -7032,14 +7050,6 @@
 /obj/effect/landmark/ai_multicam_room,
 /turf/open/ai_visible,
 /area/ai_multicam_room)
-"pX" = (
-/obj/item/storage/crayons,
-/obj/structure/table,
-/obj/item/storage/crayons,
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
-/area/syndicate_mothership/control)
 "pY" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/plasteel/freezer{
@@ -7445,9 +7455,7 @@
 /obj/structure/urinal{
 	pixel_y = 28
 	},
-/turf/open/floor/plasteel/freezer{
-	dir = 2
-	},
+/turf/open/floor/plasteel/freezer,
 /area/syndicate_mothership/control)
 "qO" = (
 /obj/item/soap/syndie,
@@ -8131,6 +8139,14 @@
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
+	},
+/obj/item/storage/crayons{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/obj/item/storage/crayons{
+	pixel_x = 2;
+	pixel_y = 5
 	},
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
@@ -10578,7 +10594,7 @@
 "xL" = (
 /obj/structure/closet/cardboard/metal,
 /obj/effect/turf_decal/stripes/corner{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plating/airless,
 /area/syndicate_mothership/control)
@@ -15886,11 +15902,8 @@
 /turf/open/floor/plasteel,
 /area/tdome/tdomeadmin)
 "Jq" = (
-/obj/machinery/camera{
-	c_tag = "Arena";
-	network = list("thunder");
-	pixel_x = 10;
-	resistance_flags = 64
+/obj/machinery/camera/motion/thunderdome{
+	pixel_x = 10
 	},
 /turf/open/floor/circuit/green,
 /area/tdome/arena)
@@ -17319,6 +17332,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
+"OA" = (
+/turf/open/floor/plasteel/freezer,
+/area/syndicate_mothership/control)
 "OD" = (
 /obj/machinery/microwave{
 	desc = "Cooks and boils stuff, somehow.";
@@ -17655,6 +17671,14 @@
 /obj/machinery/door/window/westleft,
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
+"RA" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/spawner/xmastree,
+/turf/open/floor/plasteel,
+/area/syndicate_mothership/control)
 "RM" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -18091,6 +18115,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/evac)
+"Wj" = (
+/obj/machinery/light/small{
+	brightness = 3;
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer{
+	dir = 2
+	},
+/area/syndicate_mothership/control)
 "Wm" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -18327,7 +18360,6 @@
 /obj/item/reagent_containers/food/condiment/enzyme,
 /obj/item/reagent_containers/food/drinks/shaker,
 /obj/item/book/manual/wiki/barman_recipes,
-/obj/item/book/granter/action/drink_fling,
 /obj/structure/closet/crate,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
@@ -22826,7 +22858,7 @@ aa
 aa
 aa
 aa
-aa
+fR
 aa
 aa
 aa
@@ -23333,21 +23365,21 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
 aa
 "}
 (20,1,1) = {"
@@ -23590,21 +23622,21 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
 aa
 "}
 (21,1,1) = {"
@@ -23847,21 +23879,21 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
 aa
 "}
 (22,1,1) = {"
@@ -24104,21 +24136,21 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
 aa
 "}
 (23,1,1) = {"
@@ -24361,21 +24393,21 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
 aa
 "}
 (24,1,1) = {"
@@ -24618,21 +24650,21 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
 aa
 "}
 (25,1,1) = {"
@@ -24875,21 +24907,21 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hH
+hH
+hH
+hH
+hH
+jA
+jA
+jA
+jA
+jA
+hH
+hH
+hH
+hH
+hH
 aa
 "}
 (26,1,1) = {"
@@ -25132,21 +25164,21 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hH
+hH
+hH
+hH
+hH
+jA
+lS
+lS
+lS
+jA
+hH
+hH
+hH
+hH
+hH
 aa
 "}
 (27,1,1) = {"
@@ -25389,21 +25421,21 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hH
+hH
+hH
+hH
+hH
+jA
+lS
+lS
+lS
+jA
+hH
+hH
+hH
+hH
+hH
 aa
 "}
 (28,1,1) = {"
@@ -25646,21 +25678,21 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hH
+hH
+hH
+hH
+hH
+jA
+lS
+lS
+lS
+jA
+hH
+hH
+hH
+hH
+hH
 aa
 "}
 (29,1,1) = {"
@@ -25903,21 +25935,21 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hH
+hH
+hH
+hH
+hH
+jA
+jA
+jA
+jA
+jA
+hH
+hH
+hH
+hH
+hH
 aa
 "}
 (30,1,1) = {"
@@ -26160,21 +26192,21 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
 aa
 "}
 (31,1,1) = {"
@@ -26417,21 +26449,21 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
 aa
 "}
 (32,1,1) = {"
@@ -26674,21 +26706,21 @@ lI
 lI
 lI
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
 aa
 "}
 (33,1,1) = {"
@@ -26931,21 +26963,21 @@ lI
 lI
 lI
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
 aa
 "}
 (34,1,1) = {"
@@ -27188,21 +27220,21 @@ lI
 lI
 lI
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
 aa
 "}
 (35,1,1) = {"
@@ -27445,21 +27477,21 @@ lI
 lI
 lI
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
+hH
 aa
 "}
 (36,1,1) = {"
@@ -36107,8 +36139,8 @@ hl
 hl
 hl
 kt
-ku
-pX
+nz
+pZ
 pZ
 pZ
 rf
@@ -36365,8 +36397,8 @@ kt
 kt
 kt
 nz
-pY
 pZ
+RA
 rf
 sf
 te
@@ -37905,7 +37937,7 @@ mz
 hl
 mz
 hl
-hl
+kt
 pG
 ku
 ku
@@ -38162,12 +38194,12 @@ hl
 mA
 hl
 hl
-mz
-kt
+pG
+ku
 ku
 qN
 ri
-ri
+Wj
 ku
 ku
 nz
@@ -38419,10 +38451,10 @@ hl
 mz
 hl
 hl
-mz
-ma
+pG
 ku
 qO
+OA
 ri
 sj
 ku
@@ -38676,9 +38708,9 @@ mA
 hl
 hl
 mA
-hl
-pG
+kt
 nz
+pY
 qP
 rj
 ku
@@ -38933,8 +38965,8 @@ hl
 mA
 mz
 hl
-mA
-kt
+ma
+ku
 ku
 ku
 ku
@@ -39190,7 +39222,7 @@ mz
 hl
 hl
 hl
-mz
+pG
 ma
 hh
 aa
@@ -39717,7 +39749,7 @@ sk
 sk
 sk
 xM
-yk
+xP
 ku
 aa
 aa
@@ -41251,7 +41283,7 @@ hl
 hh
 aa
 ku
-sp
+yk
 tn
 sk
 sk
@@ -41259,7 +41291,7 @@ sk
 sk
 sk
 xO
-xP
+sp
 ku
 aa
 aa
@@ -41509,13 +41541,13 @@ hh
 aa
 ku
 sk
+yk
+ui
+ui
+ui
+ui
+ui
 sp
-ui
-ui
-ui
-ui
-ui
-xP
 sk
 ku
 aa
@@ -63845,7 +63877,7 @@ iU
 iU
 iU
 iU
-jv
+jx
 iC
 jF
 iU
@@ -63861,7 +63893,7 @@ iC
 iK
 iU
 iU
-jv
+jx
 jG
 iu
 qv
@@ -65387,9 +65419,9 @@ iT
 iT
 iT
 iT
-jx
-iC
 jH
+iC
+jv
 iT
 iT
 iT
@@ -65403,7 +65435,7 @@ iC
 iL
 iT
 iT
-jx
+jH
 jG
 iu
 qw
