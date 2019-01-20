@@ -394,7 +394,7 @@
 
 /datum/reagent/consumable/nuka_cola/on_mob_add(mob/living/L)
 	..()
-	L.add_movespeed_modifier(id, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
+	L.add_movespeed_modifier(id, update=TRUE, priority=100, multiplicative_slowdown=-0.75, blacklisted_movetypes=(FLYING|FLOATING))
 
 /datum/reagent/consumable/nuka_cola/on_mob_delete(mob/living/L)
 	L.remove_movespeed_modifier(id)
@@ -638,7 +638,7 @@
 	M.adjustOxyLoss(-0.5, 0)
 	if(M.nutrition && (M.nutrition - 2 > 0))
 		if(!(M.mind && M.mind.assigned_role == "Medical Doctor")) //Drains the nutrition of the holder. Not medical doctors though, since it's the Doctor's Delight!
-			M.nutrition -= 2
+			M.adjust_nutrition(-2)
 	..()
 	. = 1
 
@@ -765,6 +765,10 @@
 	glass_icon_state = "glass_green"
 	glass_name = "glass of menthol"
 	glass_desc = "Tastes naturally minty, and imparts a very mild numbing sensation."
+
+/datum/reagent/consumable/menthol/on_mob_life(mob/living/L)
+	L.apply_status_effect(/datum/status_effect/throat_soothed)
+	..()
 
 /datum/reagent/consumable/grenadine
 	name = "Grenadine"

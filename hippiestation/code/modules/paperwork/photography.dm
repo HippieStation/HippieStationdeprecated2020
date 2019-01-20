@@ -30,6 +30,8 @@
 				continue
 			if(is_vampire(C))
 				continue
+			if(istype(C, /mob/living/simple_animal/pet/cat/mime))
+				continue
 			if(C.invisibility)
 				continue
 			var/datum/photo_disguise/D = new()

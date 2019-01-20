@@ -18,7 +18,6 @@
 
 /obj/item/bodypart/head/proc/knock_out_teeth(throw_dir, num=32) //Won't support knocking teeth out of a dismembered head or anything like that yet.
 	num = CLAMP(num, 1, 32)
-	var/done = 0
 	if(teeth_list && teeth_list.len) //We still have teeth
 		var/stacks = rand(1,3)
 		for(var/curr = 1 to stacks) //Random amount of teeth stacks
@@ -37,8 +36,8 @@
 					break
 			T.throw_at(target,T.throw_range,T.throw_speed)
 			teeth.zero_amount() //Try to delete the teeth
-			done = 1
-	return done
+			return TRUE
+	return FALSE
 
 /obj/item/bodypart/head/proc/get_teeth() //returns collective amount of teeth
 	var/amt = 0
@@ -82,15 +81,15 @@
 		var/obj/item/bodypart/head/O = locate() in H.bodyparts
 		if(!O || !O.get_teeth())
 			to_chat(user, "<span class='notice'>[H] doesn't have any teeth left!</span>")
-			return 1
+			return TRUE
 		if(user.next_move > world.time)
 			user.changeNext_move(50)
 			H.visible_message("<span class='danger'>[user] tries to tear off [H]'s tooth with [src]!</span>",
 								"<span class='userdanger'>[user] tries to tear off your tooth with [src]!</span>")
 			if(do_after(user, 50, target = H))
-				if(!O || !O.get_teeth()) return 1
+				if(!O || !O.get_teeth()) return TRUE
 				var/obj/item/stack/teeth/E = pick(O.teeth_list)
-				if(!E || E.zero_amount()) return 1
+				if(!E || E.zero_amount()) return TRUE
 				var/obj/item/stack/teeth/T = new E.type(H.loc, 1)
 				T.copy_evidences(E)
 				E.use(1)
@@ -105,7 +104,7 @@
 			else
 				to_chat(user, "<span class='notice'>Your attempt to pull out a teeth fails...</span>")
 				user.changeNext_move(0)
-			return 1
+			return TRUE
 		else
 			to_chat(user, "<span class='notice'>You are already trying to pull out a teeth!</span>")
-		return 1
+		return TRUE

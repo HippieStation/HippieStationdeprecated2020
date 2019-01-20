@@ -1,7 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - rscadd: "Nanosuit has a headstomp and powerpunch combo."
-  - rscadd: "Nanosuit has a boot sequence and revised EMP reboot sequence."
-  - rscdel: "Removed morphine injection from Nanosuit."
-  - code_imp: "Nanosuit code is a bit cleaner and has been given a vip treatment for maintainability."

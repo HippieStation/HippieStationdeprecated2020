@@ -1,0 +1,4 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - tweak: "Chem piles are now immune to fire and acid"

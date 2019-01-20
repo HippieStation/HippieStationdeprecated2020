@@ -252,6 +252,11 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     user.forceMove(get_turf(parentSphere))
 
 
+/turf/closed/indestructible/hoteldoor/attack_ghost(mob/dead/observer/user)
+    if(!isobserver(user) || !parentSphere)
+        return ..()
+    user.forceMove(get_turf(parentSphere))
+
 //If only this could be simplified...
 /turf/closed/indestructible/hoteldoor/attack_tk(mob/user)
     return //need to be close.

@@ -6,7 +6,7 @@
 #define TRAIT_NEARSIGHT			"nearsighted"
 #define TRAIT_FAT				"fat"
 #define TRAIT_HUSK				"husk"
-#define TRAIT_NOCLONE			"noclone"
+#define TRAIT_BADDNA			"baddna"
 #define TRAIT_CLUMSY			"clumsy"
 #define TRAIT_DUMB				"dumb"
 #define TRAIT_MONKEYLIKE		"monkeylike" //sets IsAdvancedToolUser to FALSE
@@ -57,13 +57,23 @@
 #define TRAIT_PARALYSIS_R_ARM	"para-r-arm"
 #define TRAIT_PARALYSIS_L_LEG	"para-l-leg"
 #define TRAIT_PARALYSIS_R_LEG	"para-r-leg"
+#define TRAIT_CANNOT_OPEN_PRESENTS "cannot-open-presents"
+#define TRAIT_PRESENT_VISION    "present-vision"
 #define TRAIT_DISK_VERIFIER     "disk-verifier"
-#define TRAIT_NOMOBSWAP            "no-mob-swap"
+#define TRAIT_NOMOBSWAP         "no-mob-swap"
 #define TRAIT_XRAY_VISION       "xray_vision"
+#define TRAIT_ABDUCTOR_TRAINING "abductor-training"
+#define TRAIT_ABDUCTOR_SCIENTIST_TRAINING "abductor-scientist-training"
+#define TRAIT_SURGEON           "surgeon"
+#define TRAIT_SOOTHED_THROAT    "soothed-throat"
+#define TRAIT_LAW_ENFORCEMENT_METABOLISM "law-enforcement-metabolism"
+#define TRAIT_ALWAYS_CLEAN      "always-clean"
+#define TRAIT_BOOZE_SLIDER      "booze-slider"
+#define TRAIT_UNINTELLIGIBLE_SPEECH "unintelligible-speech"
 
 //non-mob traits
 #define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it
-
+#define TRAIT_T_RAY_VISIBLE     "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
 
 #define TRAIT_ALCOHOL_TOLERANCE	"alcohol_tolerance"
 #define TRAIT_AGEUSIA			"ageusia"
@@ -77,10 +87,13 @@
 #define TRAIT_SKITTISH			"skittish"
 #define TRAIT_POOR_AIM			"poor_aim"
 #define TRAIT_PROSOPAGNOSIA		"prosopagnosia"
-#define	TRAIT_DRUNK_HEALING		"drunk_healing"
-#define	TRAIT_TAGGER			"tagger"
-#define	TRAIT_PHOTOGRAPHER		"photographer"
-#define	TRAIT_MUSICIAN			"musician"
+#define	TRAIT_NEET				"NEET"
+#define	TRAIT_NEAT				"neat"
+#define TRAIT_DRUNK_HEALING		"drunk_healing"
+#define TRAIT_TAGGER			"tagger"
+#define TRAIT_PHOTOGRAPHER		"photographer"
+#define TRAIT_MUSICIAN			"musician"
+#define TRAIT_LIGHT_DRINKER		"light_drinker"
 
 // common trait sources
 #define TRAIT_GENERIC "generic"
@@ -93,8 +106,11 @@
 #define ORGAN_TRAIT "organ"
 #define ROUNDSTART_TRAIT "roundstart" //cannot be removed without admin intervention
 #define JOB_TRAIT "job"
+#define STATUS_EFFECT_TRAIT "status-effect"
+#define CLOTHING_TRAIT "clothing"
 
 // unique trait sources, still defines
+#define CLONING_POD_TRAIT "cloning-pod"
 #define STATUE_MUTE "statue"
 #define CHANGELING_DRAIN "drain"
 #define CHANGELING_HIVEMIND_MUTE "ling_mute"
@@ -105,6 +121,8 @@
 #define GENETICS_SPELL "genetics_spell"
 #define EYES_COVERED "eyes_covered"
 #define CULT_EYES "cult_eyes"
+#define TRAIT_SANTA "santa"
 #define SCRYING_ORB "scrying-orb"
+#define ABDUCTOR_ANTAGONIST "abductor-antagonist"
 #define NUKEOP_TRAIT "nuke-op"
 #define DEATHSQUAD_TRAIT "deathsquad"
