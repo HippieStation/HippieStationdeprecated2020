@@ -1,5 +1,5 @@
 /datum/species/
-	var/hurt_sound_cd = FALSE
+	var/hurt_sound_cd = 0
 
 /datum/species/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
 	if(H.checkbuttinsert(I, user))
@@ -203,7 +203,7 @@
 			target.forcesay(GLOB.hit_appends)
 
 /datum/species/proc/queue_hurt_sound(mob/living/carbon/human/H)
-	if (hurt_sound_cd)
+	if (hurt_sound_cd > world.time)
 		return
 
 	if (H.stat)
@@ -216,10 +216,9 @@
 		if (H.mind.miming)
 			return
 
-	hurt_sound_cd = TRUE
+	hurt_sound_cd = world.time + 30
 	addtimer(CALLBACK(src, .proc/play_hurt_sound, H), 5)
 
 /datum/species/proc/play_hurt_sound(mob/living/carbon/human/H)
 	// The sound frequency is set to 11,025 and I want to vary it by 25% both ways
 	playsound(H, "male_hurt", 75, 1, frequency = rand(11025*0.75, 11025*1.25))
-	hurt_sound_cd = FALSE
