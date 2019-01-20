@@ -249,6 +249,7 @@
 		to_chat(user, "The suit appears to be offline.")
 
 /obj/item/clothing/suit/space/hardsuit/nano/process()
+	..()
 	if(!Wearer)
 		return
 	if(shutdown)
@@ -260,7 +261,7 @@
 		if(world.time > temp_cooldown)
 			if(!defrosted)
 				helmet.display_visor_message("Activating suit defrosting protocols.")
-				Wearer.reagents.add_reagent("leporazine", 2)
+				Wearer.reagents.add_reagent("leporazine", 3)
 				defrosted = TRUE
 				temp_cooldown += 100
 	else
@@ -404,7 +405,7 @@
 			if(NANO_CLOAK)
 				helmet.display_visor_message("Cloak Engaged!")
 				block_chance = initial(block_chance)
-				slowdown = 0.4 //cloaking makes us go sliightly faster
+				slowdown = 0.4 //cloaking makes us move slightly faster
 				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				Wearer.filters = filter(type="blur",size=1)
@@ -481,6 +482,7 @@
 /obj/item/clothing/suit/space/hardsuit/nano/proc/emp_assault()
 	if(!Wearer)
 		return //Not sure how this could happen.
+	SSblackbox.record_feedback("tally", "nanosuit_emp_shutdown", 1, type)
 	Wearer.confused += 50
 	helmet.display_visor_message("EMP Assault! Systems impaired.")
 	sleep(40)
@@ -492,7 +494,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/emp_assaulttwo()
 	sleep(35)
-	helmet.display_visor_message("Warning. EMP shutdown, all systems impaired.")
+	helmet.display_visor_message("Warning, EMP shutdown, all systems impaired!")
 	sleep(25)
 	helmet.display_visor_message("Switching to: core function mode.")
 	sleep(25)
@@ -522,15 +524,15 @@
 	sleep(10)
 	helmet.display_visor_message("LOADING//...")
 	sleep(30)
-	helmet.display_visor_message("Cardiac dysrhythmias treatment in progress, standby...")
+	helmet.display_visor_message("Cardiac dysrhythmia treatment in progress, standby...")
 	playsound(src, 'sound/machines/defib_charge.ogg', 75, FALSE)
 	sleep(25)
 	playsound(src, 'sound/machines/defib_zap.ogg', 50, FALSE)
 	Wearer.apply_effects(stun = -100, paralyze = -100, stamina = -55)
 	Wearer.adjustOxyLoss(-55)
-	helmet.display_visor_message("Cleared to proceed.")
 	sleep(3)
 	playsound(src, 'sound/machines/defib_success.ogg', 75, FALSE)
+	helmet.display_visor_message("Cleared to proceed.")
 	shutdown = FALSE
 	toggle_mode(NANO_ARMOR)
 
@@ -646,6 +648,7 @@
 	AddComponent(/datum/component/rad_insulation, RAD_NO_INSULATION, TRUE, TRUE)
 
 /obj/item/clothing/suit/space/hardsuit/nano/equipped(mob/user, slot)
+	..()
 	if(ishuman(user))
 		Wearer = user
 	if(slot == SLOT_WEAR_SUIT)
@@ -662,9 +665,9 @@
 		if(help_verb)
 			Wearer.verbs += help_verb
 		bootSequence()
-	..()
 
 /obj/item/clothing/suit/space/hardsuit/nano/dropped()
+	..()
 	if(!Wearer)
 		return
 	if(help_verb)
@@ -951,10 +954,11 @@
 	return FALSE
 
 /mob/living/carbon/human/check_weakness(obj/item/weapon, mob/living/carbon/attacker)
+	. = ..()
 	if(attacker && ishuman(attacker))
 		if(attacker.mind.has_martialart(MARTIALART_NANOSUIT) && weapon && weapon.damtype == BRUTE)
-			return 1.25 //deal 25% more damage in strength
-	. = ..()
+			. += 1.25 //deal 25% more damage in strength
+
 
 /obj/attacked_by(obj/item/I, mob/living/user)
 	if(I.force && I.damtype == BRUTE && user.mind.has_martialart(MARTIALART_NANOSUIT))
@@ -1119,7 +1123,7 @@ mob/living/carbon/human/key_down(_key, client/user)
 	..()
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/check_menu(mob/living/user)
-	if(!istype(user))
+	if(!user)
 		return FALSE
 	if(user.incapacitated() || !user.Adjacent(src))
 		return FALSE
