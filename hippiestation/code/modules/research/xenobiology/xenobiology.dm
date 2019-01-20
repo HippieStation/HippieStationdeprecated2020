@@ -29,12 +29,12 @@
 		return ..()
 	if(!target.mind) // in case the alien doesn't have minds
 		to_chat(user, "<span class='notice'>This xeno seems dumb as balls.</span>")
-		return ..()
+		return
 	var/datum/objective/protect/protect_objective
-	to_chat(user, "<span class='notice'>hold still while you feed the potion.</span>") //warns about the taming process starting
+	to_chat(user, "<span class='notice'>Hold still while you feed the potion.</span>") //warns about the taming process starting
 	if(do_after(user,50, target)) //5 second timer, both would have to stay still, meaning unless the xeno is willing or stunned this shit wont fly
 		to_chat(target,"<span class='notice'>You feel a surge of loyalty towards [user].</span>")
-		to_chat(target,"<span class='userdanger'> You MUST obey any command given to you by your master (that doesn't violate any rules). Unless your master specifically tells you so, You are not to act like an antag while bonded.</span>")
+		to_chat(target,"<span class='userdanger'>You MUST obey any command given to you by your master (that doesn't violate any rules). Unless your master specifically tells you so, You are not to act like an antag while bonded.</span>")
 		to_chat(target,"<span class='danger'>You CANNOT harm your master. Check your memory (with the notes verb) if you forget who your master is.</span>")
 		if(!target.mind.special_role) //adds the mindslave antag, since it's basically mindslaved
 			target.mind.special_role = "Mindslave"
