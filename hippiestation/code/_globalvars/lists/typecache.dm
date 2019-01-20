@@ -9,6 +9,7 @@ GLOBAL_LIST_INIT(no_reagent_message_typecache, typecacheof(list(
   /obj/effect/particle_effect,
   /obj/effect/decal/cleanable,
   /mob/living,
+  /obj/effect/liquid,
   /obj/item/reagent_containers/food,
   /turf/open/pool)
 ))
@@ -18,13 +19,11 @@ GLOBAL_LIST_INIT(no_reagent_statechange_typecache, typecacheof(list(
   /obj/effect/particle_effect/water,
   /obj/effect/decal/cleanable,
   /obj/effect/particle_effect/smoke/chem/smoke_machine,
+  /obj/effect/liquid,
   /mob/living)
 ))
 
 GLOBAL_LIST_INIT(statechange_reagent_blacklist, typecacheof(list(
-	/datum/reagent/water,
-	/datum/reagent/toxin/bleach,
-	/datum/reagent/lube,
 	/datum/reagent/consumable/condensedcapsaicin,
 	/datum/reagent/space_cleaner,
 	/datum/reagent/smoke_powder,

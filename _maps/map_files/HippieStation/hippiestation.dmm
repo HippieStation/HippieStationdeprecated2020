@@ -35037,6 +35037,7 @@
 "bLb" = (
 /obj/item/storage/box/lights/mixed,
 /obj/item/storage/box/lights/mixed,
+/obj/machinery/fluid_pump,
 /turf/open/floor/plasteel,
 /area/janitor)
 "bLc" = (
@@ -48609,6 +48610,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/fluid_pump,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "cuU" = (
