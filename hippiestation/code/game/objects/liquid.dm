@@ -313,12 +313,6 @@
 
 		playsound(src, pick('hippiestation/sound/effects/water_wade1.ogg','hippiestation/sound/effects/water_wade2.ogg','hippiestation/sound/effects/water_wade3.ogg','hippiestation/sound/effects/water_wade4.ogg'), 25, 1)
 
-		if(C.getStaminaLoss() < 85)
-			if(depth < 7)
-				C.adjustStaminaLoss(0.2 * viscosity)
-			else
-				C.adjustStaminaLoss(0.4 * viscosity)
-
 		if(prob(25))
 			var/obj/effect/splash/S = new /obj/effect/splash(T)
 			animate(S, alpha = 0,  time = 8)

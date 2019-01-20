@@ -2934,6 +2934,7 @@
 #include "hippiestation\code\game\objects\items\manuals.dm"
 #include "hippiestation\code\game\objects\items\meat.dm"
 #include "hippiestation\code\game\objects\items\plushes.dm"
+#include "hippiestation\code\game\objects\items\RPD.dm"
 #include "hippiestation\code\game\objects\items\special_attacks.dm"
 #include "hippiestation\code\game\objects\items\staples.dm"
 #include "hippiestation\code\game\objects\items\stunbaton.dm"

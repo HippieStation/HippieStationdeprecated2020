@@ -104,7 +104,7 @@
 	if(!isturf(loc))
 		to_chat(user, "<span class='warning'>Put \the [src] on the floor first!</span>")
 		return
-	var/obj/structure/drain_assembly/DA = new(get_turf(src))
+	var/obj/structure/DA = new /obj/structure/drain(get_turf(src))
 	user.visible_message("<span class='notice'>[user] wrenches \the [src] down</span>", "<span class='notice'>You wrench \the [src] down</span>")
 	DA.anchored = TRUE
 	DA.add_fingerprint(user)

@@ -6,6 +6,7 @@ RPD
 #define ATMOS_CATEGORY 0
 #define DISPOSALS_CATEGORY 1
 #define TRANSIT_CATEGORY 2
+#define PLUMBING_CATEGORY 3 // hippie -- plumbing
 
 #define BUILD_MODE 1
 #define WRENCH_MODE 2
@@ -40,7 +41,7 @@ GLOBAL_LIST_INIT(atmos_pipe_recipes, list(
 		new /datum/pipe_info/pipe("4-Way Manifold",		/obj/machinery/atmospherics/pipe/heat_exchanging/manifold4w),
 		new /datum/pipe_info/pipe("Junction",			/obj/machinery/atmospherics/pipe/heat_exchanging/junction),
 		new /datum/pipe_info/pipe("Heat Exchanger",		/obj/machinery/atmospherics/components/unary/heat_exchanger),
-	)
+	),
 ))
 
 GLOBAL_LIST_INIT(disposal_pipe_recipes, list(
@@ -261,6 +262,10 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 			recipes = GLOB.disposal_pipe_recipes
 		if(TRANSIT_CATEGORY)
 			recipes = GLOB.transit_tube_recipes
+		// hippie start -- plumbing
+		if(PLUMBING_CATEGORY)
+			recipes = GLOB.plumbing_recipes
+		// hippie end
 	for(var/c in recipes)
 		var/list/cat = recipes[c]
 		var/list/r = list()
@@ -289,6 +294,10 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 					recipe = first_atmos
 				if(TRANSIT_CATEGORY)
 					recipe = first_transit
+				// hippie start -- plumbing
+				if(PLUMBING_CATEGORY)
+					recipe = first_plumbing
+				// hippie end
 			p_dir = NORTH
 			playeffect = FALSE
 		if("piping_layer")
@@ -448,7 +457,26 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 						if(mode&WRENCH_MODE)
 							tube.wrench_act(user, src)
 					return
+			// hippie start -- plumbing
+			if(PLUMBING_CATEGORY)
+				if(!can_make_pipe)
+					return ..()
+				A = get_turf(A)
+				if(isclosedturf(A))
+					to_chat(user, "<span class='warning'>[src]'s error light flickers; there's something in the way!</span>")
+					return
+				to_chat(user, "<span class='notice'>You start building a plumbing pipe...</span>")
+				playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
+				if(do_after(user, disposal_build_speed, target = A))
+					var/obj/structure/C = new queued_p_type(A)
+					activate()
 
+					C.add_fingerprint(usr)
+					C.update_icon()
+					if(mode&WRENCH_MODE)
+						C.wrench_act(user, src)
+					return
+			// hippie end
 			else
 				return ..()
 
@@ -458,6 +486,7 @@ GLOBAL_LIST_INIT(transit_tube_recipes, list(
 #undef ATMOS_CATEGORY
 #undef DISPOSALS_CATEGORY
 #undef TRANSIT_CATEGORY
+#undef PLUMBING_CATEGORY
 
 #undef BUILD_MODE
 #undef DESTROY_MODE
