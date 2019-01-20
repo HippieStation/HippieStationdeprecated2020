@@ -628,7 +628,7 @@
 
 /obj/item/slimepotion/slime/docility/attack(mob/living/simple_animal/slime/M, mob/user)
 	if(!isslime(M))
-		to_chat(user, "<span class='warning'>The potion only works on slimes!</span>")
+		to_chat(user, "<span class='warning'>The potion only works on slimes!... and Xenos...</span>") //HIPPIE CODE- docility potions can be used on xenos, modularized
 		return ..()
 	if(M.stat)
 		to_chat(user, "<span class='warning'>The slime is dead!</span>")
