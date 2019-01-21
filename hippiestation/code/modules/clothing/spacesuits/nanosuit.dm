@@ -56,7 +56,6 @@
 /obj/item/clothing/shoes/combat/coldres/nanojump/ui_action_click(mob/user, action)
 	if(!isliving(user))
 		return
-
 	var/turf/open/floor/T = get_turf(src)
 	var/obj/structure/S = locate() in get_turf(user.loc)
 	var/mob/living/carbon/human/H = user
@@ -107,11 +106,11 @@
 
 /obj/item/radio/headset/syndicate/alt/nano
 	name = "\proper the nanosuit's bowman headset"
-	desc = "Operator communication headset. Property of CryNet Systems."
+	desc = "Operator communication headset. Property of CryNet Systems. Alt-click to toggle interface."
 	icon_state = "syndie_headset"
 	item_state = "syndie_headset"
 	subspace_transmission = FALSE
-	keyslot = new /obj/item/encryptionkey/binary
+	subspace_switchable = TRUE
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
 	item_flags = DROPDEL
 
@@ -119,6 +118,18 @@
 	..()
 	if(slot == SLOT_EARS)
 		item_flags |= NODROP
+
+/obj/item/radio/headset/syndicate/alt/nano/AltClick()
+	var/mob/M = usr
+	if(usr.canUseTopic(src))
+		attack_self(M)
+	..()
+
+/obj/item/radio/headset/syndicate/alt/nano/MouseDrop(obj/over_object, src_location, over_location)
+	var/mob/M = usr
+	if((!istype(over_object, /obj/screen)) && usr.canUseTopic(src))
+		return attack_self(M)
+	return ..()
 
 /obj/item/radio/headset/syndicate/alt/nano/emp_act()
 	return
