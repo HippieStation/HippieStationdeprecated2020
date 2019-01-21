@@ -105,9 +105,11 @@
 		return TRUE
 
 /mob/living/simple_animal/bullet_act(obj/item/projectile/Proj)
+	if(!Proj)
+		return
 	apply_damage(Proj.damage, Proj.damage_type)
 	Proj.on_hit(src)
-	return BULLET_ACT_HIT
+	return 0
 
 /mob/living/simple_animal/ex_act(severity, target, origin)
 	if(origin && istype(origin, /datum/spacevine_mutation) && isvineimmune(src))

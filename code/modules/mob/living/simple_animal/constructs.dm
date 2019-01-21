@@ -173,7 +173,9 @@
 
 			return -1 // complete projectile permutation
 
-	return ..()
+	return (..(P))
+
+
 
 ////////////////////////Wraith/////////////////////////////////////////////
 /mob/living/simple_animal/hostile/construct/wraith

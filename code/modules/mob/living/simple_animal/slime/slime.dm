@@ -219,13 +219,15 @@
 	return ..() //Heals them
 
 /mob/living/simple_animal/slime/bullet_act(obj/item/projectile/Proj)
+	if(!Proj)
+		return
 	attacked += 10
 	if((Proj.damage_type == BURN))
 		adjustBruteLoss(-abs(Proj.damage)) //fire projectiles heals slimes.
 		Proj.on_hit(src)
 	else
-		. = ..(Proj)
-	. = . || BULLET_ACT_BLOCK
+		..(Proj)
+	return 0
 
 /mob/living/simple_animal/slime/emp_act(severity)
 	. = ..()

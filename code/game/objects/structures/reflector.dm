@@ -67,13 +67,13 @@
 		return ..()
 	if(auto_reflect(P, pdir, ploc, pangle) != -1)
 		return ..()
-	return BULLET_ACT_FORCE_PIERCE
+	return -1
 
 /obj/structure/reflector/proc/auto_reflect(obj/item/projectile/P, pdir, turf/ploc, pangle)
 	P.ignore_source_check = TRUE
 	P.range = P.decayedRange
 	P.decayedRange = max(P.decayedRange--, 0)
-	return BULLET_ACT_FORCE_PIERCE
+	return -1
 
 /obj/structure/reflector/attackby(obj/item/W, mob/user, params)
 	if(admin)

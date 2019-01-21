@@ -48,7 +48,7 @@
 		apply_damage(P.damage, P.damage_type, def_zone, armor)
 		if(P.dismemberment)
 			check_projectile_dismemberment(P, def_zone)
-	return P.on_hit(src, armor)? BULLET_ACT_HIT : BULLET_ACT_BLOCK
+	return P.on_hit(src, armor)
 
 /mob/living/proc/check_projectile_dismemberment(obj/item/projectile/P, def_zone)
 	return 0
