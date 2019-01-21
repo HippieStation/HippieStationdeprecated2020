@@ -93,10 +93,6 @@
 					return 1
 	return ..()
 
-/mob/living/carbon/proc/reset_fist_casted()//hippie edit -- adds fist
-	if(fist_casted)
-		fist_casted = FALSE //hippie end -- adds fist
-
 /mob/living/carbon/throw_impact(atom/hit_atom, throwingdatum)
 	. = ..()
 	var/hurt = TRUE
