@@ -26,7 +26,7 @@
 		'hippiestation/sound/roundend/henderson.ogg',
 		'hippiestation/sound/roundend/gameoverinsertfourcoinstoplayagain.ogg',
 		'hippiestation/sound/roundend/reasonsunknown.ogg',
-		'hippiestation/sound/roundend/themoon.ogg',
+		'hippiestation/sound/roundend/moon.ogg',
 		'hippiestation/sound/roundend/welcomehomejosh.ogg'\
 		)
 
