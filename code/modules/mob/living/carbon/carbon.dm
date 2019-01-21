@@ -108,7 +108,7 @@
 				hurt = FALSE
 	if(hit_atom.density && isturf(hit_atom))
 		if(hurt)
-			Knockdown(20)
+			Paralyze(20)
 			take_bodypart_damage(10)
 		if(fist_casted)//hippie edit -- adds plasma fist
 			var/turf/T = get_turf(src)
@@ -122,8 +122,8 @@
 		if(hurt)
 			victim.take_bodypart_damage(10)
 			take_bodypart_damage(10)
-			victim.Knockdown(20)
-			Knockdown(20)
+			victim.Paralyze(20)
+			Paralyze(20)
 			visible_message("<span class='danger'>[src] crashes into [victim], knocking them both over!</span>", "<span class='userdanger'>You violently crash into [victim]!</span>")
 			playsound(src,'sound/weapons/punch1.ogg',50,1)
 		if(fist_casted) //hippie edit -- adds plasma fist
