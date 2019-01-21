@@ -17,10 +17,9 @@
 		if(splattering)
 			return
 		prev_loc = loc
-		step_towards(src,T)
+		step_towards(src,T,16)
 		if(!src)
 			return
-		addtimer(CALLBACK(src, .proc/continue), 2, TIMER_UNIQUE|TIMER_OVERRIDE)
 	if(T.contents.len)
 		for(var/obj/item/I in T.contents)
 			I.add_mob_blood(blood_source)
@@ -41,9 +40,9 @@
 			loc = A
 			splattering = TRUE //So "Bump()" and "Crossed()" procs aren't called at the same time
 			skip = TRUE
-			if(do_after(src, 3, target = H))
+			if(do_after(src, 3))
 				var/mob/living/carbon/human/H = blood_source
-					if(istype(H))
+				if(istype(H))
 					var/obj/effect/decal/cleanable/blood/splatter/B = new(prev_loc)
 					//Adjust pixel offset to make splatters appear on the wall
 					if(istype(B))
@@ -78,7 +77,7 @@
 			loc = A
 			splattering = TRUE //So "Bump()" and "Crossed()" procs aren't called at the same time
 			skip = TRUE
-			if(do_after(src, 3, target = H))
+			if(do_after(src, 3))
 				var/mob/living/carbon/human/H = blood_source
 				if(istype(H))
 					var/obj/effect/decal/cleanable/blood/splatter/B = new(prev_loc)
