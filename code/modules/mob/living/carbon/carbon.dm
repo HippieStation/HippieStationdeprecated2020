@@ -93,9 +93,9 @@
 					return 1
 	return ..()
 
-/mob/living/carbon/proc/reset_fist_casted()//hippie edit -- adds plasma fist
+/mob/living/carbon/proc/reset_fist_casted()//hippie edit -- adds fist
 	if(fist_casted)
-		fist_casted = FALSE //hippie end -- adds plasma fist
+		fist_casted = FALSE //hippie end -- adds fist
 
 /mob/living/carbon/throw_impact(atom/hit_atom, throwingdatum)
 	. = ..()
@@ -110,11 +110,11 @@
 		if(hurt)
 			Paralyze(20)
 			take_bodypart_damage(10)
-		if(fist_casted)//hippie edit -- adds plasma fist
+		if(fist_casted)//hippie edit -- adds fist
 			var/turf/T = get_turf(src)
 			visible_message("<span class='danger'>[src] slams into [T] with explosive force!</span>", "<span class='userdanger'>You slam into [T] so hard everything nearby feels it!</span>")
 			explosion(T, -1, 1, 4, 0, 0, 0) //No fire and no flash, this is less an explosion and more a shockwave from beign punched THAT hard.
-			fist_casted = FALSE //hippie end -- plasma fist
+			fist_casted = FALSE //hippie end -- fist
 	if(iscarbon(hit_atom) && hit_atom != src)
 		var/mob/living/carbon/victim = hit_atom
 		if(victim.movement_type & FLYING)
