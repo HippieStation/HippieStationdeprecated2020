@@ -1,0 +1,5 @@
+author: "JohnGinnane"
+delete-after: True
+changes: 
+  - rscadd: "Added hurt sounds for brute and burn damage (cooldown 3 seconds long)"
+  - rscadd: "Added new sound for gibbing living people with lawnmower"
