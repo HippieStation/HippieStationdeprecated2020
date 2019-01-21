@@ -1,0 +1,4 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - bugfix: "Impacting a wall no longer does 20 damage"
