@@ -1,6 +1,6 @@
 #define LIQUID_TICKS_UNTIL_THROTTLE 50
 #define LIQUID_TICKS_UNTIL_WAKE_UP 200 //failsafe to make sure sleeping liquids aren't failing to distribute depth
-#define REAGENT_TO_DEPTH 7
+#define REAGENT_TO_DEPTH 3
 #define LIQUID_TICKS_UNTIL_EVAPORATION 800
 #define MAXIMUM_ACTIVITY 1000//if activity goes above max stop this pool
 #define MAX_INITIAL_DEPTH 25
