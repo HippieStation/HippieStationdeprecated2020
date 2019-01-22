@@ -297,7 +297,7 @@
 		if(C.movement_type & FLYING)
 			return FALSE
 		var/turf/T = get_turf(src)
-		if(old.elevation > T.elevation && C.mob_has_gravity())
+		if(old.elevation+5 > T.elevation && C.mob_has_gravity())
 			var/elevation_difference = old.elevation - T.elevation
 			C.Knockdown(elevation_difference * 5)
 			to_chat(C, "<span class='userdanger'>You slip off the edge of [old] and plunge straight into the liquid!</span>")
