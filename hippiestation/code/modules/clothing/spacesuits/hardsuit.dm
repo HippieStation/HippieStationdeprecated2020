@@ -34,7 +34,9 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 50, "fire" = 80, "acid" = 70)
 	strip_delay = 130
 	actions_types = list()
-	item_flags = NODROP
+	
+/obj/item/clothing/head/helmet/space/hardsuit/spurdosuit/Initialize()
+	add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/clothing/head/helmet/space/hardsuit/spurdosuit/attack_self(mob/user)
 	return
