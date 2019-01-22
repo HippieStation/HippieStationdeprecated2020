@@ -364,7 +364,7 @@
 			tr = H.reagents.total_volume
 		set_pin_data(IC_OUTPUT, 6, mr)
 		set_pin_data(IC_OUTPUT, 7, tr)
-		set_pin_data(IC_OUTPUT, 8, H.density)
+		set_pin_data(IC_OUTPUT, 8, H.CanPass(assembly ? assembly : src, get_turf(H)))
 		set_pin_data(IC_OUTPUT, 9, H.opacity)
 		set_pin_data(IC_OUTPUT, 10, get_turf(H))
 		push_data()

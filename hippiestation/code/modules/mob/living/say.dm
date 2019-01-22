@@ -1,17 +1,13 @@
+/mob/living/carbon/human/treat_message(message)
+	if(lisp)
+		message = lisp(message, lisp)
+	return ..()
+
 /mob/living/can_speak_vocal(message)
-	if(has_trait(TRAIT_MUTE))
-		return FALSE
-
-	if(is_muzzled())
-		return FALSE
-
-	if(!IsVocal())
-		return FALSE
-
 	if(pulledby && pulledby.grab_state == GRAB_KILL)
 		return FALSE
 
-	return TRUE
+	return ..()
 
 /mob/living/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	// If we're in soft crit and tried to talk, automatically make us whisper
