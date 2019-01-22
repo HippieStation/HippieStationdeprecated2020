@@ -1,6 +1,6 @@
 #define LIQUID_TICKS_UNTIL_THROTTLE 50
 #define LIQUID_TICKS_UNTIL_WAKE_UP 200 //failsafe to make sure sleeping liquids aren't failing to distribute depth
-#define REAGENT_TO_DEPTH 3
+#define REAGENT_TO_DEPTH 5
 #define LIQUID_TICKS_UNTIL_EVAPORATION 800
 #define MAXIMUM_ACTIVITY 1000//if activity goes above max stop this pool
 #define MAX_INITIAL_DEPTH 25
@@ -259,8 +259,6 @@
 
 
 /obj/effect/liquid/proc/immerse_obj(obj/O)
-	if(istype(O, /obj/structure/drain))
-		START_PROCESSING(SSobj, O)
 	if(istype(O, /obj/effect/decal/cleanable/chempile))
 		depth = CLAMP(depth + (O.reagents.total_volume / REAGENT_TO_DEPTH), 0, MAX_INITIAL_DEPTH)
 		O.reagents.trans_to(src, O.reagents.total_volume)
@@ -331,7 +329,7 @@
 			var/mixcolor = mix_color_from_reagents(c.reagents.reagent_list)
 			c.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
 			if(c.reagents && c.reagents.total_volume < 5)
-				DISABLE_BITFIELD(c.reagents.flags, NO_REACT) 
+				DISABLE_BITFIELD(c.reagents.flags, NO_REACT)
 		else
 			var/obj/effect/decal/cleanable/chempile/C = new /obj/effect/decal/cleanable/chempile(T)//otherwise makes a new one
 			reagents.trans_to(C, max(reagents.total_volume * 0.25, 0.1))
