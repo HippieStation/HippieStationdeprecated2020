@@ -58,6 +58,10 @@
 		var/obj/item/stack/sheet/metal/M = new(loc)
 		M.amount = 3
 
+/obj/structure/drain/examine(mob/user)
+	. = ..()
+	to_chat(user, "<span class='notice'>It is [welded ? "welded shut" : "unwelded"].</span>")
+
 /obj/structure/drain/Destroy()
 	STOP_PROCESSING(SSliquids, src)
 	soundloop.stop()

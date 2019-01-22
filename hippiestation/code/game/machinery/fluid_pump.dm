@@ -5,6 +5,7 @@
 	icon = 'hippiestation/icons/obj/power.dmi'
 	icon_state = "fluid_pump"
 	light_color = LIGHT_COLOR_RED
+	anchored = FALSE
 	var/datum/looping_sound/pump/soundloop
 	var/active = FALSE
 

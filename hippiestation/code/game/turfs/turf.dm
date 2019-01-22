@@ -1,5 +1,11 @@
+#define ELEVATION_HIGH		11
+#define ELEVATION_NORMAL	10
+#define ELEVATION_KINDALOW	7
+#define ELEVATION_LOW		6
+#define ELEVATION_SEALEVEL	0
+
 /turf
-	var/elevation = 10
+	var/elevation = ELEVATION_NORMAL
 	var/pinned = null
 
 /turf/Destroy()
@@ -36,13 +42,13 @@
 
 
 /turf/open/floor
-	elevation = 11
+	elevation = ELEVATION_HIGH
 
 /turf/open/floor/engine
-	elevation = 7
+	elevation = ELEVATION_KINDALOW
 
 /turf/open/floor/plating
-	elevation = 6
+	elevation = ELEVATION_LOW
 
 /turf/open/pool
-	elevation = 0
+	elevation = ELEVATION_SEALEVEL

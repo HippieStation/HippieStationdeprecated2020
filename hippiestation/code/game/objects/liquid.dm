@@ -139,7 +139,7 @@
 	var/turf/OT = get_turf(src)
 	if(!OT)
 		return//this is stuck here to HUGELY reduce the amount of unneeded immersed calls
-	if(isspaceturf(OT))//drain to space?
+	if(!GLOB.space_reagent && isspaceturf(OT))//drain to space?
 		for(var/obj/effect/liquid/LD in view(3, OT))
 			if(LD.viscosity)
 				var/chance = CLAMP(50 / LD.viscosity, 20, 100)
@@ -162,6 +162,8 @@
 	for(var/I in 1 to cached_turfs_len)
 		var/turf/T = pick(cached_turfs)
 		LAZYREMOVE(cached_turfs, T)
+		if(GLOB.space_reagent && isspaceturf(T)) // don't drain to space if space is liquid
+			continue
 		if(!T)
 			return
 		var/obj/effect/liquid/LT = locate() in T
@@ -331,10 +333,10 @@
 			if(c.reagents && c.reagents.total_volume < 5)
 				DISABLE_BITFIELD(c.reagents.flags, NO_REACT)
 		else
-			var/obj/effect/decal/cleanable/chempile/C = new /obj/effect/decal/cleanable/chempile(T)//otherwise makes a new one
-			reagents.trans_to(C, max(reagents.total_volume * 0.25, 0.1))
-			var/mixcolor = mix_color_from_reagents(C.reagents.reagent_list)
-			C.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
+			var/obj/effect/decal/cleanable/chempile/P = new /obj/effect/decal/cleanable/chempile(T)//otherwise makes a new one
+			reagents.trans_to(P, max(reagents.total_volume * 0.25, 0.1))
+			var/mixcolor = mix_color_from_reagents(P.reagents.reagent_list)
+			P.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
 
 	return ..()
 
