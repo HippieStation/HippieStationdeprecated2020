@@ -36,6 +36,7 @@
 	actions_types = list()
 	
 /obj/item/clothing/head/helmet/space/hardsuit/spurdosuit/Initialize()
+	. = ..()
 	add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/clothing/head/helmet/space/hardsuit/spurdosuit/attack_self(mob/user)
