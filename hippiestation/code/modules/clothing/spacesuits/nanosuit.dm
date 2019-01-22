@@ -244,9 +244,8 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
-	if(Wearer)
-		if(help_verb)
-			Wearer.verbs -= help_verb
+	if(Wearer && help_verb)
+		Wearer.verbs -= help_verb
 	Wearer = null
 	QDEL_NULL(style)
 	QDEL_NULL(cell)
