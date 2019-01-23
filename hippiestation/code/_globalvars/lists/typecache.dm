@@ -26,7 +26,6 @@ GLOBAL_LIST_INIT(no_reagent_statechange_typecache, typecacheof(list(
 GLOBAL_LIST_INIT(statechange_reagent_blacklist, typecacheof(list(
 	/datum/reagent/consumable/condensedcapsaicin,
 	/datum/reagent/space_cleaner,
-	/datum/reagent/lube,
 	/datum/reagent/potassium,
 	/datum/reagent/smoke_powder,
 	/datum/reagent/consumable/sugar,
@@ -39,6 +38,10 @@ GLOBAL_LIST_INIT(statechange_reagent_blacklist, typecacheof(list(
 	/datum/reagent/cryostylane,
 	/datum/reagent/consumable/ethanol/neurotoxin,
 	/datum/reagent/clf3)
+))
+
+GLOBAL_LIST_INIT(chempile_reagent_blacklist, typecacheof(list(
+	/datum/reagent/lube)
 ))
 
 GLOBAL_LIST_INIT(statechange_turf_blacklist, typecacheof(list(
