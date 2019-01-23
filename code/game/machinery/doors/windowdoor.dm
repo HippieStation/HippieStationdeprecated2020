@@ -141,8 +141,7 @@
 	if(!operating) //in case of emag
 		operating = TRUE
 	do_animate("opening")
-	// hippie -- changes the sound to our hippiestation/ variant
-	playsound(src, 'hippiestation/sound/machines/windowdoor.ogg', 100, 1)
+	/* hippie -- changes the sound to our hippiestation/ variant. also not going to mirror this because then carbon will ask me to fix the sleep */ playsound(src, 'hippiestation/sound/machines/windowdoor.ogg', 100, 1)
 	icon_state ="[base_state]open"
 	sleep(10)
 
@@ -165,8 +164,7 @@
 			return 0
 	operating = TRUE
 	do_animate("closing")
-	// hippie -- changes the sound to our hippiestation/ variat
-	playsound(src, 'hippiestation/sound/machines/windowdoor.ogg', 100, 1)
+	/* hippie -- changes the sound to our hippiestation variant */ playsound(src, 'hippiestation/sound/machines/windowdoor.ogg', 100, 1)
 	icon_state = base_state
 
 	density = TRUE
