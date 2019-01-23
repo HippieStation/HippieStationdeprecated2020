@@ -9,6 +9,7 @@
 	var/mob/living/blood_source
 	var/skip = FALSE //Skip creation of blood when destroyed?
 	var/amount = 3
+	plane = -1
 
 /obj/effect/decal/cleanable/blood/hitsplatter/proc/GoTo(turf/T, var/n=rand(1, 3))
 	for(var/i in 1 to n)
@@ -17,9 +18,10 @@
 		if(splattering)
 			return
 		prev_loc = loc
-		step_towards(src,T,16)
+		step_towards(src,T)
 		if(!src)
 			return
+		sleep(1)
 	if(T.contents.len)
 		for(var/obj/item/I in T.contents)
 			I.add_mob_blood(blood_source)
@@ -40,19 +42,11 @@
 			loc = A
 			splattering = TRUE //So "Bump()" and "Crossed()" procs aren't called at the same time
 			skip = TRUE
-			if(do_after(src, 3))
-				var/mob/living/carbon/human/H = blood_source
-				if(istype(H))
-					var/obj/effect/decal/cleanable/blood/splatter/B = new(prev_loc)
-					//Adjust pixel offset to make splatters appear on the wall
-					if(istype(B))
-						B.pixel_x = dir & EAST ? 32 : (dir & WEST ? -32 : 0)
-						B.pixel_y = dir & NORTH ? 32 : (dir & SOUTH ? -32 : 0)
-				qdel(src)
+			addtimer(CALLBACK(src, .proc/MakeSplatter), 3)
 		else //This will only happen if prev_loc is not even a turf, which is highly unlikely.
 			loc = A //Either way we got this.
 			splattering = TRUE //So "Bump()" and "Crossed()" procs aren't called at the same time
-			addtimer(CALLBACK(src, .proc/qdel, src), 3, TIMER_UNIQUE|TIMER_OVERRIDE)
+			addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 3)
 		return
 	qdel(src)
 
@@ -65,11 +59,11 @@
 	if(ishuman(A))
 		var/mob/living/carbon/human/H = A
 		if(H.wear_suit)
-			H.wear_suit.add_mob_blood(H)
-			H.update_inv_wear_suit(0)    //updates mob overlays to show the new blood (no refresh)
+			H.wear_suit.add_mob_blood(blood_source)
+			H.update_inv_wear_suit()    //updates mob overlays to show the new blood (no refresh)
 		else if(H.w_uniform)
-			H.w_uniform.add_mob_blood(H)
-			H.update_inv_w_uniform(0)    //updates mob overlays to show the new blood (no refresh)
+			H.w_uniform.add_mob_blood(blood_source)
+			H.update_inv_w_uniform()    //updates mob overlays to show the new blood (no refresh)
 		amount--
 
 	if(istype(A, /turf/closed/wall))
@@ -77,22 +71,24 @@
 			loc = A
 			splattering = TRUE //So "Bump()" and "Crossed()" procs aren't called at the same time
 			skip = TRUE
-			if(do_after(src, 3))
-				var/mob/living/carbon/human/H = blood_source
-				if(istype(H))
-					var/obj/effect/decal/cleanable/blood/splatter/B = new(prev_loc)
-					//Adjust pixel offset to make splatters appear on the wall
-					if(istype(B))
-						B.pixel_x = dir & EAST ? 32 : (dir & WEST ? -32 : 0)
-						B.pixel_y = dir & NORTH ? 32 : (dir & SOUTH ? -32 : 0)
-				qdel(src)
+			addtimer(CALLBACK(src, .proc/MakeSplatter), 3)
 		else //This will only happen if prev_loc is not even a turf, which is highly unlikely.
 			loc = A //Either way we got this.
 			splattering = TRUE //So "Bump()" and "Crossed()" procs aren't called at the same time
-			addtimer(CALLBACK(src, .proc/qdel, src), 3, TIMER_UNIQUE|TIMER_OVERRIDE)
+			addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 3)
 		return
 
 	if(amount <= 0)
+		qdel(src)
+
+/obj/effect/decal/cleanable/blood/hitsplatter/proc/MakeSplatter()
+	var/mob/living/carbon/human/H = blood_source
+	if(istype(H))
+		var/obj/effect/decal/cleanable/blood/splatter/B = new(prev_loc)
+		//Adjust pixel offset to make splatters appear on the wall
+		if(istype(B))
+			B.pixel_x = (dir == EAST ? 32 : (dir == WEST ? -32 : 0))
+			B.pixel_y = (dir == NORTH ? 32 : (dir == SOUTH ? -32 : 0))
 		qdel(src)
 
 /obj/effect/decal/cleanable/blood/hitsplatter/Destroy()
