@@ -19,6 +19,8 @@ GLOBAL_LIST_INIT(space_reagents_blacklist_areas, typecacheof(list(/area/hippie/s
 		to_chat(user, "<span class='notice'>It appears to be made of [R.name].</span>")
 
 /turf/open/space/process()
+	if(!is_actually_next_to_something())
+		return
 	if(GLOB.space_reagent)
 		for(var/turf/open/T in range(1, src))
 			if(isspaceturf(T) || is_type_in_typecache(get_area(T), GLOB.space_reagents_blacklist_areas))

@@ -37,8 +37,8 @@
 	if(R && R.color)
 		change_parallax_colors(R.color)
 	for(var/turf/open/space/S in world)
-		if(S.is_actually_next_to_something())
-			START_PROCESSING(SSprocessing, S)
+		//if(S.is_actually_next_to_something())
+		START_PROCESSING(SSprocessing, S)
 
 /proc/change_parallax_colors(color)
 	for(var/client/C in GLOB.clients)
