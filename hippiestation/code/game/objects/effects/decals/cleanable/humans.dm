@@ -13,18 +13,32 @@
 	var/skip = FALSE //Skip creation of blood when destroyed?
 	var/amount = 3
 
-/obj/effect/decal/cleanable/blood/hitsplatter/proc/GoTo(turf/T, var/n=rand(1, 3))
-	for(var/i in 1 to n)
-		if(!src)
-			return
+/obj/effect/decal/cleanable/blood/hitsplatter/proc/GoTo(turf/T, var/range)
+	for(var/i in 1 to range)
+		step_towards(src,T)
+		sleep(2)
 		if(splattering)
 			return
 		prev_loc = loc
-		walk_towards(src,T)
-		sleep(2)
-	if(T.contents.len)
-		for(var/obj/item/I in T.contents)
-			I.add_mob_blood(blood_source)
+		for(var/atom/A in get_turf(src))
+			if(amount <= 0)
+				break
+			if(istype(A,/obj/item))
+				var/obj/item/I = A
+				I.add_mob_blood(blood_source)
+				amount--
+			if(istype(A, /mob/living/carbon/human))
+				var/mob/living/carbon/human/H = A
+				if(H.wear_suit)
+					H.wear_suit.add_mob_blood(blood_source)
+					H.update_inv_wear_suit()    //updates mob overlays to show the new blood (no refresh)
+				if(H.w_uniform)
+					H.w_uniform.add_mob_blood(blood_source)
+					H.update_inv_w_uniform()    //updates mob overlays to show the new blood (no refresh)
+				amount--
+		if(amount <= 0) // we used all the puff so we delete it.
+			qdel(src)
+			return
 	qdel(src)
 
 /obj/effect/decal/cleanable/blood/hitsplatter/Initialize()
@@ -32,45 +46,8 @@
 	prev_loc = loc //Just so we are sure prev_loc exists
 
 /obj/effect/decal/cleanable/blood/hitsplatter/Bump(atom/A)
-	..()
 	if(splattering)
 		return
-	if(istype(A, /obj/item))
-		var/obj/item/I = A
-		I.add_mob_blood(blood_source)
-	if(istype(A, /turf/closed/wall))
-		if(istype(prev_loc)) //var definition already checks for type
-			loc = A
-			splattering = TRUE //So "Bump()" and "Crossed()" procs aren't called at the same time
-			skip = TRUE
-			addtimer(CALLBACK(src, .proc/MakeSplatter), 3)
-		else //This will only happen if prev_loc is not even a turf, which is highly unlikely.
-			loc = A //Either way we got this.
-			splattering = TRUE //So "Bump()" and "Crossed()" procs aren't called at the same time
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 3)
-		return
-	qdel(src)
-
-/obj/effect/decal/cleanable/blood/hitsplatter/Crossed(atom/A)
-	..()
-	if(splattering)
-		return
-	if(istype(A, /obj/item))
-		var/obj/item/I = A
-		I.add_mob_blood(blood_source)
-		amount--
-	if(istype(A, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = A
-		message_admins("[src] crossed [H] with a blood source of [blood_source].")
-		if(H.wear_suit)
-			H.wear_suit.add_mob_blood(blood_source)
-			H.update_inv_wear_suit()    //updates mob overlays to show the new blood (no refresh)
-			message_admins("[src] crossed [H] with a blood source of [blood_source].")
-		if(H.w_uniform)
-			H.w_uniform.add_mob_blood(blood_source)
-			H.update_inv_w_uniform()    //updates mob overlays to show the new blood (no refresh)
-			message_admins("[src] crossed [H] with a blood source of [blood_source].")
-		amount--
 	if(istype(A, /turf/closed/wall))
 		if(istype(prev_loc)) //var definition already checks for type
 			loc = A
@@ -93,7 +70,6 @@
 		if(istype(B))
 			B.pixel_x = (dir == EAST ? 32 : (dir == WEST ? -32 : 0))
 			B.pixel_y = (dir == NORTH ? 32 : (dir == SOUTH ? -32 : 0))
-		qdel(src)
 
 /obj/effect/decal/cleanable/blood/hitsplatter/Destroy()
 	if(istype(loc, /turf) && !skip)
