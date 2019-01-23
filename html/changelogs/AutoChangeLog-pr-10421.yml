@@ -1,0 +1,6 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - bugfix: "Teeth are back and work properly!"
+  - bugfix: "Lisps now work"
+  - code_imp: "Removed and cleaned up some old cancerous code in our repo"
