@@ -12,6 +12,11 @@ GLOBAL_LIST_INIT(space_reagents_blacklist_areas, typecacheof(list(/area/hippie/s
 			return TRUE
 	return FALSE
 
+/turf/open/space/Initialize()
+	. = ..()
+	if(is_station_level(z))
+		START_PROCESSING(SSprocessing, src)
+
 /turf/open/space/examine(mob/user)
 	. = ..()
 	if(is_station_level(z) && GLOB.space_reagent)

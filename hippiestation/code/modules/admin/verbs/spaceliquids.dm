@@ -25,10 +25,9 @@
 			GLOB.space_reagent = null
 			message_admins("[key_name(src)] has un-liquified space.")
 			log_game("[key_name(src)] has un-liquified space.")
+			change_parallax_colors(null)
 			for(var/turf/open/space/S in world)
-				change_parallax_colors(null)
-				if(S.is_actually_next_to_something())
-					STOP_PROCESSING(SSprocessing, S)
+				STOP_PROCESSING(SSprocessing, S)
 			return
 	message_admins("[key_name(src)] has turned space into '[chosen_id]' liquid.")
 	log_game("[key_name(src)] has turned space into '[chosen_id]' liquid.")
@@ -38,7 +37,8 @@
 		change_parallax_colors(R.color)
 	for(var/turf/open/space/S in world)
 		//if(S.is_actually_next_to_something())
-		START_PROCESSING(SSprocessing, S)
+		if(is_station_level(S.z))
+			START_PROCESSING(SSprocessing, S)
 
 /proc/change_parallax_colors(color)
 	for(var/client/C in GLOB.clients)
