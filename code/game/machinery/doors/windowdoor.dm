@@ -164,7 +164,7 @@
 			return 0
 	operating = TRUE
 	do_animate("closing")
-	/* hippie -- changes the sound to our hippiestation variant */ playsound(src, 'hippiestation/sound/machines/windowdoor.ogg', 100, 1)
+	playsound(src, 'hippiestation/sound/machines/windowdoor.ogg', 100, 1) // hippie -- changes the sound to our hippiestation variant
 	icon_state = base_state
 
 	density = TRUE
