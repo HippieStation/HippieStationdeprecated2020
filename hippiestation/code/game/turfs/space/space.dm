@@ -1,7 +1,8 @@
-#define SPACE_REAGENTS_PER_TICK 14.75 // SSprocessing only does one tick per second.
+#define SPACE_REAGENTS_PER_TICK 20.75 // SSprocessing only does one tick per second.
 GLOBAL_VAR_INIT(space_reagent, null)
-GLOBAL_LIST_INIT(space_reagents_no_touch, typecacheof(list(/turf/open/floor/plasteel/airless/solarpanel)))
+GLOBAL_LIST_INIT(space_reagents_blacklist, typecacheof(list(/turf/open/floor/plasteel/airless/solarpanel)))
 GLOBAL_LIST_INIT(space_reagents_can_pass_anyways, typecacheof(list(/obj/structure/grille, /obj/structure/barricade/security)))
+GLOBAL_LIST_INIT(space_reagents_blacklist_areas, typecacheof(list(/area/hippie/singularity_gen)))
 
 /turf/open/space/proc/is_actually_next_to_something()
 	if(!is_station_level(z))
@@ -20,18 +21,18 @@ GLOBAL_LIST_INIT(space_reagents_can_pass_anyways, typecacheof(list(/obj/structur
 /turf/open/space/process()
 	if(GLOB.space_reagent)
 		for(var/turf/open/T in range(1, src))
-			if(isspaceturf(T))
+			if(isspaceturf(T) || is_type_in_typecache(get_area(T), GLOB.space_reagents_blacklist_areas))
 				continue
 			var/moist = FALSE
 			var/can_spawn_liquid = TRUE
 			T.elevation = ELEVATION_HIGH+3 // you cannot escape the SPACE FLOOD that easily! (a hack to ensure space floods don't get stuck on plating)
 			for(var/A in T.contents)
-				if(is_type_in_typecache(A, GLOB.space_reagents_no_touch))
+				if(is_type_in_typecache(A, GLOB.space_reagents_blacklist))
 					can_spawn_liquid = FALSE
 					break
 				if(istype(A, /obj))
 					var/obj/O = A
-					if(O.density && !is_type_in_typecache(O, GLOB.space_reagents_can_pass_anyways))
+					if(!O.CanPass() && !is_type_in_typecache(O, GLOB.space_reagents_can_pass_anyways))
 						can_spawn_liquid = FALSE
 						break
 				if(istype(A, /obj/effect/liquid) && can_spawn_liquid)

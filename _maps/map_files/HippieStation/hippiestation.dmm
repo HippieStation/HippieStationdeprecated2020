@@ -22435,7 +22435,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "beR" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -56358,7 +56358,7 @@
 	network = list("Singularity","SS13")
 	},
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "dyt" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -56465,7 +56465,7 @@
 /obj/machinery/power/grounding_rod,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "dCC" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -56577,7 +56577,7 @@
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "dMo" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
@@ -56770,7 +56770,7 @@
 /obj/structure/grille,
 /obj/machinery/light,
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "eeO" = (
 /obj/machinery/camera/emp_proof{
 	c_tag = "Singularity North-East";
@@ -56780,7 +56780,7 @@
 /obj/machinery/power/grounding_rod,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "efu" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -56993,6 +56993,10 @@
 	},
 /turf/closed/wall/r_wall,
 /area/ai_monitored/turret_protected/ai_upload)
+"evi" = (
+/obj/structure/grille,
+/turf/open/floor/plating/airless,
+/area/hippie/singularity_gen)
 "eww" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
@@ -57156,7 +57160,7 @@
 /obj/structure/cable/yellow,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "eHF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/circuit,
@@ -57370,7 +57374,7 @@
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "eXs" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -57599,7 +57603,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "flA" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -57858,7 +57862,7 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "fHb" = (
 /obj/structure/drain,
 /turf/open/floor/plasteel,
@@ -58030,7 +58034,7 @@
 "fTz" = (
 /obj/structure/lattice/catwalk,
 /turf/open/space/basic,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "fUH" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/cable/yellow{
@@ -58042,7 +58046,7 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/item/wrench,
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/hippie/singularity_gen)
 "fUR" = (
 /obj/structure/table,
 /turf/open/floor/plasteel,
@@ -58262,7 +58266,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/hippie/singularity_gen)
 "giH" = (
 /obj/structure/particle_accelerator/particle_emitter/center{
 	dir = 8
@@ -58413,7 +58417,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/hippie/singularity_gen)
 "gsF" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -59034,7 +59038,7 @@
 	},
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "hsS" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 4;
@@ -59353,7 +59357,7 @@
 /obj/machinery/power/grounding_rod,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "hQD" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -59500,7 +59504,7 @@
 /obj/machinery/power/grounding_rod,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "icQ" = (
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/stripes/line{
@@ -60123,7 +60127,7 @@
 /obj/structure/cable/yellow,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "iZv" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -60704,7 +60708,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "jJX" = (
 /obj/machinery/camera{
 	c_tag = "Arrivals Central - Port";
@@ -60765,7 +60769,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/hippie/singularity_gen)
 "jOl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -61018,7 +61022,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "kmr" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -61410,7 +61414,7 @@
 	network = list("Singularity","SS13")
 	},
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "kUx" = (
 /obj/structure/table,
 /obj/item/assembly/flash/handheld,
@@ -61430,7 +61434,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "kVU" = (
 /obj/structure/drain,
 /turf/open/floor/plasteel,
@@ -61644,7 +61648,7 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "lkP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
@@ -61920,12 +61924,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"lGi" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plating/airless,
-/area/engine/port_engineering)
 "lGt" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -62151,7 +62149,7 @@
 	dir = 5
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/hippie/singularity_gen)
 "lUA" = (
 /obj/machinery/light{
 	dir = 1
@@ -62479,7 +62477,7 @@
 /area/maintenance/starboard/aft)
 "mqf" = (
 /turf/open/space/basic,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "mqW" = (
 /obj/structure/drain,
 /turf/open/floor/plasteel,
@@ -62530,7 +62528,7 @@
 "mzq" = (
 /obj/item/wirecutters,
 /turf/open/space/basic,
-/area/space)
+/area/hippie/singularity_gen)
 "mzH" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -62910,7 +62908,7 @@
 	},
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "mYA" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -62975,7 +62973,7 @@
 	},
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "nfy" = (
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical{
@@ -62998,7 +62996,7 @@
 	dir = 10
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/hippie/singularity_gen)
 "nhZ" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -63642,7 +63640,7 @@
 	state = 2
 	},
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "olo" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -63652,7 +63650,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "olz" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -63779,7 +63777,7 @@
 "ouE" = (
 /obj/item/weldingtool,
 /turf/open/space/basic,
-/area/space)
+/area/hippie/singularity_gen)
 "ouX" = (
 /obj/machinery/droneDispenser,
 /turf/open/floor/plating,
@@ -64064,7 +64062,7 @@
 	dir = 9
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/hippie/singularity_gen)
 "oSu" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple{
 	dir = 4
@@ -64180,7 +64178,7 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "paC" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -64798,7 +64796,7 @@
 "pXs" = (
 /obj/structure/lattice,
 /turf/open/space/basic,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "pXM" = (
 /mob/living/simple_animal/pet/hedgehog/Bernie,
 /turf/open/floor/wood,
@@ -64919,7 +64917,7 @@
 "qhG" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "qhL" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -65216,7 +65214,7 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "qFj" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -65955,7 +65953,7 @@
 "rQg" = (
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "rQr" = (
 /obj/effect/spawner/structure/window,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -66519,7 +66517,7 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "sHO" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -66554,7 +66552,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "sJt" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plasteel/dark,
@@ -66643,7 +66641,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "sRk" = (
 /obj/machinery/door/window/eastright{
 	base_state = "left";
@@ -66666,7 +66664,7 @@
 	state = 2
 	},
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "sRT" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -66932,6 +66930,9 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/science/nanite)
+"teo" = (
+/turf/open/space,
+/area/hippie/singularity_gen)
 "tes" = (
 /obj/structure/chair/office/dark{
 	dir = 1
@@ -67333,7 +67334,7 @@
 	},
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "tKd" = (
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
@@ -67625,7 +67626,7 @@
 "ufc" = (
 /obj/item/crowbar,
 /turf/open/space/basic,
-/area/space)
+/area/hippie/singularity_gen)
 "uft" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -67819,7 +67820,7 @@
 	},
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "uxt" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/structure/cable{
@@ -67835,7 +67836,7 @@
 "uyE" = (
 /obj/item/radio,
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "uzJ" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/airless,
@@ -68161,7 +68162,7 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "uXM" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "13"
@@ -68658,7 +68659,7 @@
 	},
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "vMH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/stripes/line,
@@ -68690,7 +68691,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "vPW" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -68971,7 +68972,7 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "wmy" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -69235,7 +69236,7 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "wAS" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -69355,7 +69356,7 @@
 /area/engine/port_engineering)
 "wHh" = (
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "wHA" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -69476,7 +69477,7 @@
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "wPK" = (
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel,
@@ -69543,7 +69544,7 @@
 "wWs" = (
 /obj/machinery/the_singularitygen,
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/hippie/singularity_gen)
 "wWR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -70110,7 +70111,7 @@
 	},
 /obj/structure/grille,
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "xHF" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 4
@@ -70468,7 +70469,7 @@
 	dir = 6
 	},
 /turf/open/floor/plating/airless,
-/area/space/nearstation)
+/area/hippie/singularity_gen)
 "yiC" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/carpet,
@@ -70483,7 +70484,7 @@
 	},
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plating/airless,
-/area/engine/port_engineering)
+/area/hippie/singularity_gen)
 "yku" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	icon_state = "vent_map_on-1";
@@ -84836,7 +84837,7 @@ aaa
 aaj
 aaa
 oUK
-iFO
+evi
 uyE
 kTC
 wHh
@@ -84854,7 +84855,7 @@ wHh
 wHh
 dxK
 wHh
-iFO
+evi
 oUK
 aaa
 aaj
@@ -85093,7 +85094,7 @@ aaX
 aak
 aaa
 oUK
-iFO
+evi
 wHh
 mqf
 wHh
@@ -85111,7 +85112,7 @@ sJq
 wHh
 pXs
 wHh
-iFO
+evi
 oUK
 aaa
 aaj
@@ -85364,7 +85365,7 @@ eVs
 fTz
 fTz
 eVs
-lGi
+jNH
 wHh
 pXs
 sRu
@@ -85613,13 +85614,13 @@ pXs
 qEQ
 iZb
 fTz
-abf
+teo
 ufc
-aaa
-aaa
-aad
-aaa
-aaa
+mqf
+mqf
+pXs
+mqf
+mqf
 fTz
 yjb
 wld
@@ -85870,13 +85871,13 @@ pXs
 vOl
 eGr
 fTz
-aaa
-aaa
-aaa
-aaa
-aad
-aaa
-aaa
+mqf
+mqf
+mqf
+mqf
+pXs
+mqf
+mqf
 fTz
 dLx
 jIH
@@ -86127,13 +86128,13 @@ dBI
 flz
 qhG
 eVs
-aad
-aad
+pXs
+pXs
 oQZ
 gib
 nhj
-aaa
-aaa
+mqf
+mqf
 fTz
 wPz
 jIH
@@ -86384,13 +86385,13 @@ pXs
 vOl
 eGr
 fTz
-aaa
-aaa
+mqf
+mqf
 jNH
 wWs
 fUK
-aaa
-aaa
+mqf
+mqf
 fTz
 dLx
 jIH
@@ -86641,15 +86642,15 @@ dBI
 vOl
 iZb
 fTz
-aaa
-aaa
+mqf
+mqf
 lUc
 grx
 yig
-aad
-aad
+pXs
+pXs
 eVs
-lGi
+jNH
 flz
 icl
 mYt
@@ -86899,12 +86900,12 @@ vOl
 eGr
 fTz
 mzq
-aaa
-aad
-aaa
-aaa
-aaa
-aaa
+mqf
+pXs
+mqf
+mqf
+mqf
+mqf
 fTz
 dLx
 jIH
@@ -87155,12 +87156,12 @@ mqf
 vOl
 iZb
 fTz
-aaa
-aaa
-aad
-aaa
-aaa
-aaa
+mqf
+mqf
+pXs
+mqf
+mqf
+mqf
 ouE
 fTz
 yjb
@@ -87420,7 +87421,7 @@ fTz
 fTz
 fTz
 eVs
-lGi
+jNH
 flz
 pXs
 sRu
