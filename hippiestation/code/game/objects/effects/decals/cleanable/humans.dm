@@ -1,3 +1,6 @@
+/obj/effect/decal/cleanable/blood
+	plane = -1
+
 /obj/effect/decal/cleanable/blood/hitsplatter
 	name = "blood splatter"
 	pass_flags = PASSTABLE | PASSGRILLE
@@ -9,7 +12,6 @@
 	var/mob/living/blood_source
 	var/skip = FALSE //Skip creation of blood when destroyed?
 	var/amount = 3
-	plane = -1
 
 /obj/effect/decal/cleanable/blood/hitsplatter/proc/GoTo(turf/T, var/n=rand(1, 3))
 	for(var/i in 1 to n)
@@ -18,10 +20,8 @@
 		if(splattering)
 			return
 		prev_loc = loc
-		step_towards(src,T)
-		if(!src)
-			return
-		sleep(1)
+		walk_towards(src,T)
+		sleep(2)
 	if(T.contents.len)
 		for(var/obj/item/I in T.contents)
 			I.add_mob_blood(blood_source)
@@ -31,9 +31,10 @@
 	. = ..()
 	prev_loc = loc //Just so we are sure prev_loc exists
 
-
 /obj/effect/decal/cleanable/blood/hitsplatter/Bump(atom/A)
-	if(splattering) return
+	..()
+	if(splattering)
+		return
 	if(istype(A, /obj/item))
 		var/obj/item/I = A
 		I.add_mob_blood(blood_source)
@@ -51,21 +52,25 @@
 	qdel(src)
 
 /obj/effect/decal/cleanable/blood/hitsplatter/Crossed(atom/A)
-	if(splattering) return
+	..()
+	if(splattering)
+		return
 	if(istype(A, /obj/item))
 		var/obj/item/I = A
 		I.add_mob_blood(blood_source)
 		amount--
-	if(ishuman(A))
+	if(istype(A, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = A
+		message_admins("[src] crossed [H] with a blood source of [blood_source].")
 		if(H.wear_suit)
 			H.wear_suit.add_mob_blood(blood_source)
 			H.update_inv_wear_suit()    //updates mob overlays to show the new blood (no refresh)
-		else if(H.w_uniform)
+			message_admins("[src] crossed [H] with a blood source of [blood_source].")
+		if(H.w_uniform)
 			H.w_uniform.add_mob_blood(blood_source)
 			H.update_inv_w_uniform()    //updates mob overlays to show the new blood (no refresh)
+			message_admins("[src] crossed [H] with a blood source of [blood_source].")
 		amount--
-
 	if(istype(A, /turf/closed/wall))
 		if(istype(prev_loc)) //var definition already checks for type
 			loc = A
@@ -77,7 +82,6 @@
 			splattering = TRUE //So "Bump()" and "Crossed()" procs aren't called at the same time
 			addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 3)
 		return
-
 	if(amount <= 0)
 		qdel(src)
 
