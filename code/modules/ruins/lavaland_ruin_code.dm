@@ -70,9 +70,6 @@
 		/obj/item/stack/sheet/cloth	                = /datum/species/golem/cloth,
 		/obj/item/stack/sheet/mineral/adamantine	= /datum/species/golem/adamantine,
 		/obj/item/stack/sheet/plastic	            = /datum/species/golem/plastic,
-<<<<<<< HEAD
-		/obj/item/stack/tile/brass					= /datum/species/golem/clockwork)
-=======
 		/obj/item/stack/tile/brass					= /datum/species/golem/clockwork,
 		/obj/item/stack/tile/bronze					= /datum/species/golem/bronze,
 		/obj/item/stack/sheet/cardboard				= /datum/species/golem/cardboard,
@@ -81,7 +78,6 @@
 		/obj/item/stack/sheet/cotton/durathread		= /datum/species/golem/durathread,
 		/obj/item/stack/sheet/stalinium				= /datum/species/golem/soviet
 		)
->>>>>>> b245f1e... Adds the golem Qustinnus was REALLY too afraid to add (#42402)
 
 	if(istype(I, /obj/item/stack))
 		var/obj/item/stack/O = I

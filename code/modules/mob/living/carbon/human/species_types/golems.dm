@@ -1,3 +1,20 @@
+Skip to content
+ 
+Pull requests
+Issues
+Marketplace
+Explore
+ @yoyobatty Sign out
+1
+0 2,026 Time-Green/tgstation
+forked from tgstation/tgstation
+ Code  Pull requests 0  Projects 0  Wiki  Insights
+tgstation/code/modules/mob/living/carbon/human/species_types/golems.dm
+ca22af8  6 days ago
+@Time-Green Time-Green Removes unnecesary typecast
+@XDTM @Cyberboss @ShizCalev @81Denton @ninjanomnom @coiax @AnturK @MrStonedOne @Xhuis @Time-Green @PJB3005 @lzimann @Armhulen @Qustinnus @ChangelingRain @Potato-Masher @YPOQ @kevinz000 @Really-Good-Soda-Flavor @Garen7 @MrPerson @vuonojenmustaturska @kingofkosmos @imtakingabreakdontatme @Cruix @Carbonhell
+      
+1050 lines (919 sloc)  41.6 KB
 /datum/species/golem
 	// Animated beings of stone. They have increased defenses, and do not need to breathe. They're also slow as fuuuck.
 	name = "Golem"
@@ -30,6 +47,7 @@
 	var/list/special_names = list("Tarkus")
 	var/human_surname_chance = 3
 	var/special_name_chance = 5
+	var/owner //dobby is a free golem
 
 /datum/species/golem/random_name(gender,unique,lastname)
 	var/golem_surname = pick(GLOB.golem_names)
@@ -807,8 +825,6 @@
 /datum/species/golem/plastic/on_species_loss(mob/living/carbon/C)
 	. = ..()
 	C.ventcrawler = initial(C.ventcrawler)
-<<<<<<< HEAD
-=======
 
 /datum/species/golem/bronze
 	name = "Bronze Golem"
@@ -953,7 +969,6 @@
 /datum/species/golem/bone
 	name = "Bone Golem"
 	id = "bone golem"
-	say_mod = "rattles"
 	prefix = "Bone"
 	limbs_id = "b_golem"
 	special_names = list("Head", "Broth", "Fracture")
@@ -961,7 +976,6 @@
 	toxic_food = null
 	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYES)
 	inherent_biotypes = list(MOB_UNDEAD, MOB_HUMANOID)
-	mutanttongue = /obj/item/organ/tongue/bone
 	sexes = FALSE
 	fixed_mut_color = null
 	inherent_traits = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER,TRAIT_FAKEDEATH,TRAIT_CALCIUM_HEALER)
@@ -1050,4 +1064,16 @@
 /datum/species/golem/soviet/handle_speech(message, mob/living/carbon/human/H)
 	playsound(H, 'sound/misc/Cyka Blyat.ogg', 25, 0)
 	return "Cyka Blyat"
->>>>>>> b245f1e... Adds the golem Qustinnus was REALLY too afraid to add (#42402)
+© 2019 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Press h to open a hovercard with more details.
