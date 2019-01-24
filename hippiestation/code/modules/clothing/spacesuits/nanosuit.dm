@@ -603,7 +603,7 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/nano/Initialize()
 	. = ..()
-	bomb_radar = new
+	bomb_radar = new(src)
 
 /obj/item/clothing/head/helmet/space/hardsuit/nano/ui_action_click()
 	return FALSE
