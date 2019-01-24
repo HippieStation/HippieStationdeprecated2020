@@ -7,18 +7,19 @@
 	icon = 'hippiestation/icons/effects/blood.dmi'
 	icon_state = "hitsplatter1"
 	random_icon_states = list("hitsplatter1", "hitsplatter2", "hitsplatter3")
-	var/splattering = FALSE
 	var/turf/prev_loc
 	var/mob/living/blood_source
 	var/skip = FALSE //Skip creation of blood when destroyed?
 	var/amount = 3
 
+/obj/effect/decal/cleanable/blood/hitsplatter/Initialize()
+	. = ..()
+	prev_loc = loc //Just so we are sure prev_loc exists
+
 /obj/effect/decal/cleanable/blood/hitsplatter/proc/GoTo(turf/T, var/range)
 	for(var/i in 1 to range)
 		step_towards(src,T)
 		sleep(2)
-		if(splattering)
-			return
 		prev_loc = loc
 		for(var/atom/A in get_turf(src))
 			if(amount <= 0)
@@ -41,35 +42,23 @@
 			return
 	qdel(src)
 
-/obj/effect/decal/cleanable/blood/hitsplatter/Initialize()
-	. = ..()
-	prev_loc = loc //Just so we are sure prev_loc exists
-
 /obj/effect/decal/cleanable/blood/hitsplatter/Bump(atom/A)
-	if(splattering)
-		return
 	if(istype(A, /turf/closed/wall))
 		if(istype(prev_loc)) //var definition already checks for type
 			loc = A
-			splattering = TRUE //So "Bump()" and "Crossed()" procs aren't called at the same time
 			skip = TRUE
-			addtimer(CALLBACK(src, .proc/MakeSplatter), 3)
+			var/mob/living/carbon/human/H = blood_source
+			if(istype(H))
+				var/obj/effect/decal/cleanable/blood/splatter/B = new(prev_loc)
+				//Adjust pixel offset to make splatters appear on the wall
+				if(istype(B))
+					B.pixel_x = (dir == EAST ? 32 : (dir == WEST ? -32 : 0))
+					B.pixel_y = (dir == NORTH ? 32 : (dir == SOUTH ? -32 : 0))
 		else //This will only happen if prev_loc is not even a turf, which is highly unlikely.
 			loc = A //Either way we got this.
-			splattering = TRUE //So "Bump()" and "Crossed()" procs aren't called at the same time
 			addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 3)
 		return
-	if(amount <= 0)
-		qdel(src)
-
-/obj/effect/decal/cleanable/blood/hitsplatter/proc/MakeSplatter()
-	var/mob/living/carbon/human/H = blood_source
-	if(istype(H))
-		var/obj/effect/decal/cleanable/blood/splatter/B = new(prev_loc)
-		//Adjust pixel offset to make splatters appear on the wall
-		if(istype(B))
-			B.pixel_x = (dir == EAST ? 32 : (dir == WEST ? -32 : 0))
-			B.pixel_y = (dir == NORTH ? 32 : (dir == SOUTH ? -32 : 0))
+	qdel(src)
 
 /obj/effect/decal/cleanable/blood/hitsplatter/Destroy()
 	if(istype(loc, /turf) && !skip)
