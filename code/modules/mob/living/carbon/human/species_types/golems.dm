@@ -1,20 +1,3 @@
-Skip to content
- 
-Pull requests
-Issues
-Marketplace
-Explore
- @yoyobatty Sign out
-1
-0 2,026 Time-Green/tgstation
-forked from tgstation/tgstation
- Code  Pull requests 0  Projects 0  Wiki  Insights
-tgstation/code/modules/mob/living/carbon/human/species_types/golems.dm
-ca22af8  6 days ago
-@Time-Green Time-Green Removes unnecesary typecast
-@XDTM @Cyberboss @ShizCalev @81Denton @ninjanomnom @coiax @AnturK @MrStonedOne @Xhuis @Time-Green @PJB3005 @lzimann @Armhulen @Qustinnus @ChangelingRain @Potato-Masher @YPOQ @kevinz000 @Really-Good-Soda-Flavor @Garen7 @MrPerson @vuonojenmustaturska @kingofkosmos @imtakingabreakdontatme @Cruix @Carbonhell
-      
-1050 lines (919 sloc)  41.6 KB
 /datum/species/golem
 	// Animated beings of stone. They have increased defenses, and do not need to breathe. They're also slow as fuuuck.
 	name = "Golem"
@@ -875,7 +858,7 @@ ca22af8  6 days ago
 			H.playsound_local(H, 'sound/effects/gong.ogg', 100, TRUE)
 			H.soundbang_act(2, 0, 100, 1)
 			H.jitteriness += 7
-		var/distance = max(0,get_dist(get_turf(H),get_turf(M)))
+		var/distance = max(0,get_dist(get_turf(H),get_turf(M)))	
 		switch(distance)
 			if(0 to 1)
 				M.show_message("<span class='narsiesmall'>GONG!</span>", 2)
@@ -896,7 +879,7 @@ ca22af8  6 days ago
 
 
 /datum/species/golem/cardboard //Faster but weaker, can also make new shells on its own
-	name = "Cardboard Golem"
+	name = "Cardboard Golem" 
 	id = "cardboard golem"
 	prefix = "Cardboard"
 	special_names = list("Box")
@@ -1025,55 +1008,3 @@ ca22af8  6 days ago
 		to_chat(L, "<span class='cultlarge'>A spine-chilling sound chills you to the bone!</span>")
 		L.apply_status_effect(/datum/status_effect/bonechill)
 		SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "spooked", /datum/mood_event/spooked)
-
-/datum/species/golem/soviet
-	name = "Soviet Golem"
-	id = "soviet golem"
-	prefix = "Comrade"
-	attack_verb = "nationalis"
-	limbs_id = "s_golem"
-	blacklisted = 1
-	special_names = list("Stalin","Lenin","Trotsky","Marx","Comrade") //comrade comrade
-	species_traits = list(NOBLOOD,NO_UNDERWEAR,NOEYES)
-	fixed_mut_color = null
-	inherent_traits = list(TRAIT_NOBREATH, TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOGUNS,TRAIT_RADIMMUNE,TRAIT_PIERCEIMMUNE,TRAIT_NODISMEMBER)
-	info_text = "As a <span class='danger'>Soviet Golem</span>, your fist spreads the bright soviet light of communism."
-
-/datum/species/golem/soviet/on_species_gain(mob/living/carbon/C, datum/species/old_species)
-	. = ..()
-	C.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka (), SLOT_HEAD)
-	C.revive(full_heal = 1)
-
-	SEND_SOUND(C, sound('sound/misc/Russian_Anthem_chorus.ogg'))
-	C.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock ())
-
-/datum/species/golem/soviet/on_species_loss(mob/living/carbon/C)
-	. = ..()
-	for(var/obj/effect/proc_holder/spell/aoe_turf/knock/spell in C.mob_spell_list)
-		C.RemoveSpell(spell)
-
-/datum/species/golem/soviet/spec_unarmedattacked(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	..()
-	if(isgolem(target))
-		return
-	if(target.nutrition <= NUTRITION_LEVEL_STARVING)
-		target.set_species(/datum/species/golem/soviet)
-		return
-	target.adjust_nutrition(-40)
-
-/datum/species/golem/soviet/handle_speech(message, mob/living/carbon/human/H)
-	playsound(H, 'sound/misc/Cyka Blyat.ogg', 25, 0)
-	return "Cyka Blyat"
-© 2019 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Press h to open a hovercard with more details.
