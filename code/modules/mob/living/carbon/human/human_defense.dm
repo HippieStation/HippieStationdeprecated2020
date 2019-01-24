@@ -76,7 +76,7 @@
 						new_angle_s -= 360
 					P.setAngle(new_angle_s)
 
-				return -1 // complete projectile permutation
+				return BULLET_ACT_FORCE_PIERCE // complete projectile permutation
 
 		if(check_shields(P, P.damage, "the [P.name]", PROJECTILE_ATTACK, P.armour_penetration))
 			P.on_hit(src, 100, def_zone)
@@ -200,10 +200,10 @@
 		return
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.a_intent == INTENT_HARM && handle_vamp_biting(H)) // hippie start -- vampire biting	
+		if(H.a_intent == INTENT_HARM && handle_vamp_biting(H)) // hippie start -- vampire biting		
 			return // hippie end
 		dna.species.spec_attack_hand(H, src)
-		
+
 /mob/living/carbon/human/attack_paw(mob/living/carbon/monkey/M)
 	var/dam_zone = pick(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
 	var/obj/item/bodypart/affecting = get_bodypart(ran_zone(dam_zone))
