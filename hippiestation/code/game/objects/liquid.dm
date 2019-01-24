@@ -1,3 +1,7 @@
+/*
+	Originally coded by Banthebantz, now coded by steamport.
+*/
+
 #define LIQUID_TICKS_UNTIL_THROTTLE 50
 #define LIQUID_TICKS_UNTIL_WAKE_UP 200 //failsafe to make sure sleeping liquids aren't failing to distribute depth
 #define REAGENT_TO_DEPTH 10 //fucking cucks too scared of fun
