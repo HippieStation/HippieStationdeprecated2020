@@ -2,7 +2,7 @@
 	Originally coded by Banthebantz, now coded by steamport.
 
 
-	Copyright (C) 2018 HippieStation
+	Copyright (C) 2019 HippieStation
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU Affero General Public License as published by
