@@ -2907,6 +2907,7 @@
 #include "hippiestation\code\game\objects\effects\landmarks.dm"
 #include "hippiestation\code\game\objects\effects\decals\crayon.dm"
 #include "hippiestation\code\game\objects\effects\decals\cleanable\chem.dm"
+#include "hippiestation\code\game\objects\effects\decals\cleanable\humans.dm"
 #include "hippiestation\code\game\objects\effects\effect_system\effects_cloud.dm"
 #include "hippiestation\code\game\objects\effects\effect_system\effects_foam.dm"
 #include "hippiestation\code\game\objects\effects\effect_system\effects_other.dm"
