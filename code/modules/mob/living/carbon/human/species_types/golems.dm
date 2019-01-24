@@ -30,6 +30,7 @@
 	var/list/special_names = list("Tarkus")
 	var/human_surname_chance = 3
 	var/special_name_chance = 5
+	var/owner //dobby is a free golem
 
 /datum/species/golem/random_name(gender,unique,lastname)
 	var/golem_surname = pick(GLOB.golem_names)
@@ -807,8 +808,6 @@
 /datum/species/golem/plastic/on_species_loss(mob/living/carbon/C)
 	. = ..()
 	C.ventcrawler = initial(C.ventcrawler)
-<<<<<<< HEAD
-=======
 
 /datum/species/golem/bronze
 	name = "Bronze Golem"
@@ -1012,4 +1011,3 @@
 		L.apply_status_effect(/datum/status_effect/bonechill)
 		SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "spooked", /datum/mood_event/spooked)
 
->>>>>>> dd383a0... Bone golems rattle and speak like skeletons do (#42436)
