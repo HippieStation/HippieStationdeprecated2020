@@ -35,6 +35,12 @@
 #define VOID		/datum/mutation/human/void
 #define STRONG    	/datum/mutation/human/strong
 #define FIRESWEAT	/datum/mutation/human/fire
+<<<<<<< HEAD
+=======
+#define INSULATED	/datum/mutation/human/insulated
+#define SHOCKTOUCH	/datum/mutation/human/shock
+#define OLFACTION	/datum/mutation/human/olfaction
+>>>>>>> 1ab0c12... [Ready] Adds a new power, Transcendent Olfaction, to genetics (#42414)
 
 #define UI_CHANGED "ui changed"
 #define UE_CHANGED "ue changed"
