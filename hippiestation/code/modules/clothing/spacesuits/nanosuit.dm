@@ -264,6 +264,8 @@
 		return
 	if(shutdown)
 		return
+	if(!cell)
+		return
 	if(Wearer.bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT)
 		if(!detecting)
 			temp_cooldown = world.time + restore_delay
@@ -320,7 +322,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/hit_reaction(mob/living/carbon/human/user, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/obj/item/projectile/P = hitby
-	if(mode == NANO_ARMOR && cell.charge)
+	if(mode == NANO_ARMOR && cell && cell.charge)
 		if(prob(final_block_chance))
 			user.visible_message("<span class='danger'>[user]'s shields deflect [attack_text] draining their energy!</span>")
 			if(damage)
@@ -1038,6 +1040,7 @@
 	desc = "Ashes to ashes."
 	icon_state = "explosive"
 	actions_types = list(/datum/action/item_action/dusting_implant)
+	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
 
 /obj/item/implant/explosive/disintegrate/activate(cause)
 	if(!cause || !imp_in || cause == "emp" || active)
@@ -1063,6 +1066,7 @@
 	volume = 3
 	icon_state = "emergency_tst"
 	item_flags = DROPDEL
+	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
 
 /obj/item/tank/internals/emergency_oxygen/recharge/New()
 	..()
@@ -1122,6 +1126,7 @@
 /obj/item/stock_parts/cell/nano
 	name = "nanosuit self charging battery"
 	maxcharge = 100
+	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
 
 mob/living/carbon/human/key_down(_key, client/user)
 	switch(_key)
