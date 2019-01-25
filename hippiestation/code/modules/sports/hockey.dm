@@ -288,7 +288,7 @@
 
 /obj/item/clothing/shoes/hippie/hockey/equipped(mob/user, slot)
 	if(slot == SLOT_SHOES)
-		item_flags = NODROP
+		add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
 
 /obj/item/clothing/mask/hippie/hockey
 	name = "Ka-Nada Hockey Mask"
