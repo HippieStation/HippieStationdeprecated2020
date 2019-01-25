@@ -276,7 +276,7 @@
 
 /obj/item/clothing/suit/hippie/hockey/equipped(mob/user, slot)
 	if(slot == SLOT_WEAR_SUIT)
-		add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+		add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
 
 /obj/item/clothing/shoes/hippie/hockey
 	name = "Ka-Nada Hyperblades"
