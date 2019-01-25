@@ -77,6 +77,7 @@
 //non-mob traits
 #define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it
 #define TRAIT_T_RAY_VISIBLE     "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
+#define TRAIT_NO_TELEPORT		"no-teleport" //you just can't
 
 #define TRAIT_ALCOHOL_TOLERANCE	"alcohol_tolerance"
 #define TRAIT_AGEUSIA			"ageusia"
@@ -130,3 +131,25 @@
 #define ABDUCTOR_ANTAGONIST "abductor-antagonist"
 #define NUKEOP_TRAIT "nuke-op"
 #define DEATHSQUAD_TRAIT "deathsquad"
+<<<<<<< HEAD
+=======
+#define MEGAFAUNA_TRAIT "megafauna"
+#define CLOWN_NUKE_TRAIT "clown-nuke"
+#define STICKY_MOUSTACHE_TRAIT "sticky-moustache"
+#define CHAINSAW_FRENZY_TRAIT "chainsaw-frenzy"
+#define CHRONO_GUN_TRAIT "chrono-gun"
+#define REVERSE_BEAR_TRAP_TRAIT "reverse-bear-trap"
+#define CURSED_MASK_TRAIT "cursed-mask"
+#define HIS_GRACE_TRAIT "his-grace"
+#define HAND_REPLACEMENT_TRAIT "magic-hand"
+#define HOT_POTATO_TRAIT "hot-potato"
+#define SABRE_SUICIDE_TRAIT "sabre-suicide"
+#define ABDUCTOR_VEST_TRAIT "abductor-vest"
+#define CAPTURE_THE_FLAG_TRAIT "capture-the-flag"
+#define EYE_OF_GOD_TRAIT "eye-of-god"
+#define SHAMEBRERO_TRAIT "shamebrero"
+#define CHRONOSUIT_TRAIT "chronosuit"
+#define LOCKED_HELMET_TRAIT "locked-helmet"
+#define NINJA_SUIT_TRAIT "ninja-suit"
+#define ANTI_DROP_IMPLANT_TRAIT "anti-drop-implant"
+>>>>>>> 87ba210... Megafauna cannot teleport (#42479)
