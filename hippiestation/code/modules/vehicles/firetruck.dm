@@ -98,12 +98,13 @@
 	desc = "Control the firetruck water cannon with this. Be careful."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "hand_tele"
-	item_flags = NODROP | ABSTRACT
+	item_flags = ABSTRACT
 	var/obj/vehicle/ridden/firetruck/firetruck
 
 /obj/item/water_cannon_controls/Initialize(mapload, obj/vehicle/ridden/the_firetruck)
 	. = ..()
 	firetruck = the_firetruck
+	add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/water_cannon_controls/CanItemAutoclick()
 	return TRUE
