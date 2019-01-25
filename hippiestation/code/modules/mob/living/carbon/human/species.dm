@@ -1,5 +1,7 @@
 /datum/species/
 	var/hurt_sound_cd = 0
+	sound/attack_sound = 'hippiestation/sound/weapons/punch1.ogg'
+	sound/miss_sound = 'hippiestation/sound/weapons/punchmiss.ogg'
 
 /datum/species/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
 	if(H.checkbuttinsert(I, user))
