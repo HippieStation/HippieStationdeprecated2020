@@ -50,6 +50,7 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/head/hippie/halo/spacejesus/Initialize()
+	. = ..()
 	add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
 
 /obj/item/clothing/suit/hippie/jesus
@@ -62,6 +63,7 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/suit/hippie/jesus/spacejesus/Initialize()
+	. = ..()
 	add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
 
 /obj/item/clothing/under/rank/chef/spacejesus
@@ -70,6 +72,7 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/under/rank/chef/spacejesus/Initialize()
+	. = ..()
 	add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
 
 /obj/item/clothing/shoes/sandal/spacejesus
@@ -77,4 +80,5 @@
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/shoes/sandal/spacejesus/Initialize()
+	. = ..()
 	add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
