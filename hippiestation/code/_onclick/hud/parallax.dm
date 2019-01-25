@@ -1,6 +1,4 @@
 /*
-Copyright (C) 2019 HippieStation
-
 Authors: steamport <steamport@protonmail.com F3F5C121EA1AADCA> 
 
 This program is free software: you can redistribute it and/or modify
