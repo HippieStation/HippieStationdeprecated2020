@@ -28,7 +28,7 @@
 /datum/antagonist/traitor/kotd/greet()
 	..()
 	to_chat(owner.current, "<span class='bold'>The Syndicate have sent a batch of recruits on a mission to prove your worth. You have been provided with an uplink with less telecrystals than a \
-		proper agent, but by holding onto the nuclear authorization disk, you will be granted one per minute. Escape alive and free with the most telecrystals or end the shift \
+		proper agent, but by holding onto the Nuclear Authentication Disk, you will be granted one per minute. Escape alive and free with the most telecrystals or end the shift \
 		with the nuke disk in your possession to be accepted into the ranks of the Syndicate!</span>")
 
 /datum/antagonist/traitor/kotd/apply_innate_effects()
