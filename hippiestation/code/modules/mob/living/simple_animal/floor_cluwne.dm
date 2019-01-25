@@ -365,12 +365,13 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Kill(mob/living/carbon/human/H)
 	playsound(H, 'hippiestation/sound/effects/cluwne_feast.ogg', 100, 0, -4)
+	var/old_color
 	var/red_splash = list(1,0,0,0.8,0.2,0, 0.8,0,0.2,0.1,0,0)
 	var/pure_red = list(0,0,0,0,0,0,0,0,0,1,0,0)
 	if(!H)
 		return
 	if(H.client)
-		var/old_color = H.client.color
+		old_color = H.client.color
 		H.client.color = pure_red
 		animate(H.client,color = red_splash, time = 10, easing = SINE_EASING|EASE_OUT)
 	for(var/turf/T in orange(H, 4))
