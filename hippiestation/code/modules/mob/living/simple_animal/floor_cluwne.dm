@@ -144,7 +144,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 		if(current_victim.loc == hiding_spot)
 			hiding_spot.bust_open()
 			current_victim.Paralyze(40)
-			to_chat(current_victim, "<span class='warning'>You can't hide...</span>")
+			to_chat(current_victim, "<span class='warning'>...edih t'nac uoY...</span>")
 			return TRUE
 	return FALSE
 
@@ -352,7 +352,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 			if(prob(50))
 				H.emote("scream")
 			if(prob(25))
-				H.forcesay("HELP ME!!")
+				H.forcesay(pick("HELP ME!!","IT'S GOT ME!!","DON'T LET IT TAKE ME!!",";SOMETHING'S KILLING ME!!","HOLY FUCK!!"))
 				playsound(src, pick('hippiestation/sound/voice/cluwnelaugh1.ogg', 'hippiestation/sound/voice/cluwnelaugh2.ogg', 'hippiestation/sound/voice/cluwnelaugh3.ogg'), 50, 1)
 
 	if(get_dist(src,H) <= 1)
