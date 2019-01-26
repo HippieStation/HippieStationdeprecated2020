@@ -2853,6 +2853,7 @@
 #include "hippiestation\code\game\gamemodes\gangs\gangs.dm"
 #include "hippiestation\code\game\gamemodes\gangs\gangtool.dm"
 #include "hippiestation\code\game\gamemodes\infiltration\infiltration.dm"
+#include "hippiestation\code\game\gamemodes\kotd\kotd.dm"
 #include "hippiestation\code\game\gamemodes\messiah\MakeJesus.dm"
 #include "hippiestation\code\game\gamemodes\messiah\miracles.dm"
 #include "hippiestation\code\game\gamemodes\messiah\outfit.dm"
