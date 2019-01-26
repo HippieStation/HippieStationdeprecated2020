@@ -92,6 +92,11 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	var/turf/T = get_turf(current_victim)
 	if(prob(5))//checks roughly every 20 ticks
 		if(current_victim.stat == DEAD || current_victim.dna.check_mutation(CLUWNEMUT) || is_type_in_typecache(get_area(T), invalid_area_typecache) || !is_station_level(current_victim.z))
+			for(var/obj/structure/closet/hiding_spot in orange(7,src))
+				hiding_spot.bust_open()
+				current_victim.Paralyze(40)
+				to_chat(current_victim, "<span class='warning'>You can't hide...</span>")
+				return
 			Acquire_Victim()
 
 	if(get_dist(src, current_victim) > 9 && !manifested &&  !is_type_in_typecache(get_area(T), invalid_area_typecache))//if cluwne gets stuck he just teleports
@@ -154,7 +159,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 			stage = STAGE_HAUNT
 			return target = current_victim
 
-	message_admins("floor Cluwne was deleted due to a lack of valid targets, if this was a manually targeted instance please re-evaluate your choice.")
+	message_admins("Floor Cluwne was deleted due to a lack of valid targets, if this was a manually targeted instance please re-evaluate your choice.")
 	qdel(src)
 
 
@@ -328,7 +333,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				if(!eating)
 					addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Grab, H), 50, TIMER_OVERRIDE|TIMER_UNIQUE)
 					for(var/turf/open/O in range(src, 6))
-						O.MakeSlippery(TURF_WET_LUBE, 40)
+						O.MakeSlippery(TURF_WET_LUBE, 20)
 						playsound(src, 'sound/effects/meteorimpact.ogg', 30, 1)
 				eating = TRUE
 
