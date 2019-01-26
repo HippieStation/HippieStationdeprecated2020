@@ -42,7 +42,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	var/obj/effect/dummy/floorcluwne_orbit/poi
 	var/obj/effect/temp_visual/fcluwne_manifest/cluwnehole
 	move_resist = INFINITY
-	hud_possible = list()
+	hud_type = /datum/hud/ghost
 
 
 /mob/living/simple_animal/hostile/floor_cluwne/Initialize()
