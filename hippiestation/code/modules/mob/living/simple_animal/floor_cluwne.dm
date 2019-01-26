@@ -95,7 +95,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 			for(var/obj/structure/closet/hiding_spot in orange(7,src))
 				hiding_spot.bust_open()
 				current_victim.Paralyze(40)
-				to_chat(current_victim, "<span class='warning'>You can't hide...</span>")
+				to_chat(current_victim, "<span class='warning'>...edih tnac uoY</span>")
 				return
 			Acquire_Victim()
 
