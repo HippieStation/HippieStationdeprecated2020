@@ -41,6 +41,8 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	var/eating = FALSE
 	var/obj/effect/dummy/floorcluwne_orbit/poi
 	var/obj/effect/temp_visual/fcluwne_manifest/cluwnehole
+	move_resist = INFINITY
+	hud_possible = list()
 
 
 /mob/living/simple_animal/hostile/floor_cluwne/Initialize()
@@ -175,8 +177,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 	else
 		layer = GAME_PLANE
-		invisibility = INVISIBILITY_MAXIMUM
-		mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+		invisibility = INVISIBILITY_OBSERVER
 		density = FALSE
 		movement_type = FLYING
 		if(cluwnehole)
@@ -186,7 +187,6 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Appear()//handled in a seperate proc so floor cluwne doesn't appear before the animation finishes
 	layer = LYING_MOB_LAYER
 	invisibility = FALSE
-	mouse_opacity = MOUSE_OPACITY_OPAQUE
 	density = TRUE
 
 
@@ -360,8 +360,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 		if(do_after(src, 50, target = H) && eating)
 			H.become_blind()
 			H.layer = GAME_PLANE
-			H.invisibility = INVISIBILITY_MAXIMUM
-			H.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+			H.invisibility = INVISIBILITY_OBSERVER
 			H.density = FALSE
 			H.anchored = TRUE
 			addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Kill, H), 100, TIMER_OVERRIDE|TIMER_UNIQUE)
@@ -406,7 +405,6 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	H.cure_blind()
 	H.layer = initial(H.layer)
 	H.invisibility = initial(H.invisibility)
-	H.mouse_opacity = initial(H.mouse_opacity)
 	H.density = initial(H.density)
 	H.anchored = initial(H.anchored)
 	Reset_View(FALSE, old_color, H)
