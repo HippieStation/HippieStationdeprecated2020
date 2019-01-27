@@ -111,3 +111,16 @@
 
 /obj/item/spellbook
 	persistence_replacement = /obj/item/book/granter/spell/random
+
+/datum/spellbook_entry/GetInfo() // hippiestation variant
+	if(!S)
+		S = new spell_type()
+	var/dat =""
+	dat += "<b>[initial(S.name)]</b>"
+	if(S.charge_type == "recharge")
+		dat += " Cooldown:[S.charge_max/10]"
+	dat += " Cost:[cost]<br>"
+	dat += "<i>[S.desc][desc]</i><br>"
+	dat += "[S.clothes_req?"Requires wizard garb.":"Can be cast without wizard garb."]<br>"
+	dat += "[S.staff_req?"Requires a Wizard Staff in-hand to cast.":"Can be cast without a staff in-hand."]<br>"
+	return dat
