@@ -57,6 +57,12 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 		Acquire_Victim()
 	poi = new(src)
 
+/mob/living/simple_animal/hostile/floor_cluwne/med_hud_set_health()
+	return //we use a different hud
+
+/mob/living/simple_animal/hostile/floor_cluwne/med_hud_set_status()
+	return //we use a different hud
+
 /mob/living/simple_animal/hostile/floor_cluwne/Destroy()
 	QDEL_NULL(poi)
 	return ..()
@@ -330,12 +336,12 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 					for(var/obj/structure/O in T)
 						if(O.density || istype(O, /obj/machinery/door/airlock))
 							forceMove(H.loc)
-				manifested = TRUE
-				Manifest()
 				to_chat(H, "<span class='userdanger'>You feel the floor closing in on your feet!</span>")
 				H.Paralyze(300)
 				H.emote("scream")
 				H.adjustBruteLoss(10)
+				manifested = TRUE
+				Manifest()
 				if(!eating)
 					addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Grab, H), 50, TIMER_OVERRIDE|TIMER_UNIQUE)
 					for(var/turf/open/O in range(src, 6))
@@ -350,7 +356,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 		if(do_after(src, 5, target = H))
 			step_towards(H, src)
 			playsound(H, pick('hippiestation/sound/effects/bodyscrape-01.ogg', 'hippiestation/sound/effects/bodyscrape-02.ogg'), 20, 1, -4)
-			if(prob(50))
+			if(prob(40))
 				H.emote("scream")
 			else if(prob(25))
 				H.say(pick("HELP ME!!","IT'S GOT ME!!","DON'T LET IT TAKE ME!!",";SOMETHING'S KILLING ME!!","HOLY FUCK!!"))
@@ -376,13 +382,13 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Kill(mob/living/carbon/human/H)
+	if(!istype(H) || !H.client)
+		Acquire_Victim()
+		return
 	playsound(H, 'hippiestation/sound/effects/cluwne_feast.ogg', 100, 0, -4)
 	var/old_color = H.client.color
 	var/red_splash = list(1,0,0,0.8,0.2,0, 0.8,0,0.2,0.1,0,0)
 	var/pure_red = list(0,0,0,0,0,0,0,0,0,1,0,0)
-	if(!H && !H.client)
-		Acquire_Victim()
-		return
 	H.client.color = pure_red
 	animate(H.client,color = red_splash, time = 10, easing = SINE_EASING|EASE_OUT)
 	for(var/turf/T in orange(H, 4))
@@ -390,24 +396,18 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	if(do_after(src, 50, target = H))
 		H.unequip_everything()//more runtime prevention
 		if(prob(75))
-			for(var/I in H.bodyparts)
-				var/obj/item/bodypart/O = I
-				if(O.name == "head")//irksome runtimes
-					O.dismember()
-					continue
-				O.drop_organs()
-				O.dismember()
+			H.gib(FALSE)
 		else
 			H.cluwneify()
 			H.adjustBruteLoss(30)
 			H.adjustBrainLoss(100)
-
-	H.cure_blind()
-	H.layer = initial(H.layer)
-	H.invisibility = initial(H.invisibility)
-	H.density = initial(H.density)
-	H.anchored = initial(H.anchored)
-	Reset_View(FALSE, old_color, H)
+			H.cure_blind()
+			H.layer = initial(H.layer)
+			H.invisibility = initial(H.invisibility)
+			H.density = initial(H.density)
+			H.anchored = initial(H.anchored)
+			H.blur_eyes(10)
+			animate(H.client,color = old_color, time = 20)
 
 	eating = FALSE
 	switch_stage = switch_stage * 0.75 //he gets faster after each feast
