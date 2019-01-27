@@ -352,8 +352,8 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 			playsound(H, pick('hippiestation/sound/effects/bodyscrape-01.ogg', 'hippiestation/sound/effects/bodyscrape-02.ogg'), 20, 1, -4)
 			if(prob(50))
 				H.emote("scream")
-			if(prob(25))
-				H.forcesay(pick("HELP ME!!","IT'S GOT ME!!","DON'T LET IT TAKE ME!!",";SOMETHING'S KILLING ME!!","HOLY FUCK!!"))
+			else if(prob(25))
+				H.say(pick("HELP ME!!","IT'S GOT ME!!","DON'T LET IT TAKE ME!!",";SOMETHING'S KILLING ME!!","HOLY FUCK!!"))
 				playsound(src, pick('hippiestation/sound/voice/cluwnelaugh1.ogg', 'hippiestation/sound/voice/cluwnelaugh2.ogg', 'hippiestation/sound/voice/cluwnelaugh3.ogg'), 50, 1)
 
 	if(get_dist(src,H) <= 1)
@@ -377,15 +377,14 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Kill(mob/living/carbon/human/H)
 	playsound(H, 'hippiestation/sound/effects/cluwne_feast.ogg', 100, 0, -4)
-	var/old_color
+	var/old_color = H.client.color
 	var/red_splash = list(1,0,0,0.8,0.2,0, 0.8,0,0.2,0.1,0,0)
 	var/pure_red = list(0,0,0,0,0,0,0,0,0,1,0,0)
-	if(!H)
+	if(!H && !H.client)
+		Acquire_Victim()
 		return
-	if(H.client)
-		old_color = H.client.color
-		H.client.color = pure_red
-		animate(H.client,color = red_splash, time = 10, easing = SINE_EASING|EASE_OUT)
+	H.client.color = pure_red
+	animate(H.client,color = red_splash, time = 10, easing = SINE_EASING|EASE_OUT)
 	for(var/turf/T in orange(H, 4))
 		H.add_splatter_floor(T)
 	if(do_after(src, 50, target = H))
