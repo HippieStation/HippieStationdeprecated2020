@@ -122,5 +122,5 @@
 	dat += " Cost:[cost]<br>"
 	dat += "<i>[S.desc][desc]</i><br>"
 	dat += "[S.clothes_req?"Requires wizard garb.":"Can be cast without wizard garb."]<br>"
-	dat += "[S.staff_req?"Requires a Wizard Staff in-hand to cast.":"Can be cast without a staff in-hand."]<br>"
+	dat += "[S.staff_req?"Requires a staff in-hand to cast.":"Can be cast without a staff in-hand."]<br>"
 	return dat
