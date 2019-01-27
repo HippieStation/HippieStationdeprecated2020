@@ -178,15 +178,16 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Manifest()//handles disappearing and appearance anim
 	if(manifested)
-		movement_type = IMMOBILE
+		mobility_flags &= ~MOBILITY_MOVE
+		update_mobility()
 		cluwnehole = new(src.loc)
 		addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Appear), MANIFEST_DELAY)
-
 	else
 		layer = GAME_PLANE
 		invisibility = INVISIBILITY_OBSERVER
 		density = FALSE
-		movement_type = FLYING
+		mobility_flags |= MOBILITY_MOVE
+		update_mobility()
 		if(cluwnehole)
 			qdel(cluwnehole)
 
@@ -195,7 +196,6 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	layer = LYING_MOB_LAYER
 	invisibility = FALSE
 	density = TRUE
-
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Reset_View(screens, colour, mob/living/carbon/human/H)
 	if(screens)
@@ -437,7 +437,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 /obj/effect/dummy/floorcluwne_orbit/Initialize()
 	. = ..()
-	GLOB.floor_cluwnes += 1
+	GLOB.floor_cluwnes++
 	name += " ([GLOB.floor_cluwnes])"
 	GLOB.poi_list += src
 
