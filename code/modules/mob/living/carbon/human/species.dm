@@ -1429,7 +1429,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					var/dist = rand(1,3)
 					var/turf/targ = get_ranged_target_turf(H, get_dir(user, H), dist)
 					B.GoTo(targ, dist)
-					message_admins("[B] spawned on [H] with a blood source of [B.blood_source].")
 				else
 					if(istype(location))
 						H.add_splatter_floor(location) //hippie end -- blood splattering
