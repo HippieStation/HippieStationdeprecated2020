@@ -11,19 +11,22 @@
 /obj/machinery/power/port_gen/update_icon()
 	icon_state = "[base_icon]"
 
+/obj/machinery/power/port_gen/process()
+	..()
+	if(active)
+		updateUsrDialog()
+
 /obj/machinery/power/port_gen/pacman/ui_interact(mob/user)
 	. = ..()
-	if (get_dist(src, user) > 1 )
-		if(!isAI(user))
-			user.unset_machine()
-			user << browse(null, "window=port_gen")
-			return
+	if(.)
+		return
+	if(!Adjacent(user)  || (stat & (NOPOWER|BROKEN)) && !issilicon(user))
+		user.unset_machine(src)
+		user << browse(null, "window=port_gen")
+		return
 
 	var/dat = text("<b>[name]</b><br>")
-	if (active)
-		dat += text("Generator: <A href='?src=[REF(src)];action=disable'>On</A><br>")
-	else
-		dat += text("Generator: <A href='?src=[REF(src)];action=enable'>Off</A><br>")
+	dat += text("Generator: <A href='?src=[REF(src)];action=toggle'>[active?"On":"Off"]</A><br>")
 	dat += text("[capitalize(sheet_name)]: [sheets] - <A href='?src=[REF(src)];action=eject'>Eject</A><br>")
 	var/stack_percent = round(sheet_left * 100, 1)
 	dat += text("Current stack: [stack_percent]% <br>")
@@ -38,18 +41,11 @@
 	if(..())
 		return
 
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	if(href_list["action"])
-		if(href_list["action"] == "enable")
-			if(!active && HasFuel() && !crit_fail)
-				active = TRUE
-				update_icon()
-				. = TRUE
-		if(href_list["action"] == "disable")
-			if (active)
-				active = FALSE
-				update_icon()
-				. = TRUE
+		if(href_list["action"] == "toggle")
+			TogglePower()
+			. = TRUE
 		if(href_list["action"] == "eject")
 			if(!active)
 				DropFuel()
@@ -65,3 +61,5 @@
 		if (href_list["action"] == "close")
 			usr << browse(null, "window=port_gen")
 			usr.unset_machine()
+
+	updateDialog()
