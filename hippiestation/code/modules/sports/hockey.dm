@@ -111,7 +111,6 @@
 	specthrow_sound = 'sound/weapons/resonator_blast.ogg'
 	throwforce = 3
 	throw_speed = 4
-	item_flags = NODROP
 	attack_verb = list("smacked", "thwacked", "bashed", "struck", "battered")
 	specthrow_forcemult = 1.4
 	specthrow_msg = list("chipped", "shot")
@@ -127,6 +126,7 @@
 	. = ..()
 	if(istype(loc, /obj/item/hockeypack))
 		pack = loc
+	add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/twohanded/hockeystick/Destroy()
 	pack = null
