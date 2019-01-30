@@ -397,7 +397,7 @@
 	return FALSE
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/toggle_mode(var/suitmode, var/forced = FALSE)
-	if(!shutdown && (forced || (cell && cell.charge && mode != suitmode)))
+	if(!shutdown && (forced || (cell?.charge && mode != suitmode)))
 		mode = suitmode
 		switch(suitmode)
 			if(NANO_ARMOR)
