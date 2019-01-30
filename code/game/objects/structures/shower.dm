@@ -131,7 +131,8 @@
 	if(iscarbon(L))
 		var/mob/living/carbon/M = L
 		. = TRUE
-		for(var/I in M.held_items)
+
+		for(var/obj/item/I in M.held_items)
 			wash_obj(I)
 
 		if(M.back && wash_obj(M.back))
@@ -237,12 +238,6 @@
 	if(H.wear_suit && !(H.wear_suit.clothing_flags & SHOWEROKAY))
 		. = TRUE
 	else if(H.w_uniform && !(H.w_uniform.clothing_flags & SHOWEROKAY))
-		. = TRUE
-	else if(H.shoes && !(H.shoes.clothing_flags & SHOWEROKAY))
-		. = TRUE
-	else if(H.ears && !(H.ears.clothing_flags & SHOWEROKAY))
-		. = TRUE
-	else if(H.gloves && !(H.gloves.clothing_flags & SHOWEROKAY))
 		. = TRUE
 	else if(H.wear_mask && !(H.wear_mask.clothing_flags & SHOWEROKAY))
 		. = TRUE

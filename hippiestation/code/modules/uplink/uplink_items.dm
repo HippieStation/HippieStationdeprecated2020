@@ -279,6 +279,7 @@
 	cost = 3
 
 /datum/uplink_item/stealthy_weapons/martialarts
+	item = /obj/item/sleeping_carp_scroll
 	cost = 12
 
 /datum/uplink_item/stealthy_weapons/throwingweapons

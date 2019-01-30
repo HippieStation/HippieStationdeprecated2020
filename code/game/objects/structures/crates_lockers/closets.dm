@@ -174,17 +174,12 @@
 	else if(istype(AM, /obj/structure/closet))
 		return FALSE
 	else if(isobj(AM))
-<<<<<<< HEAD
-		if (istype(AM, /obj/item))
-			var/obj/item/I = AM
-			if (I.item_flags & NODROP)
-				return
-=======
 		if((!allow_dense && AM.density) || AM.anchored || AM.has_buckled_mobs())
 			return FALSE
 		else if(isitem(AM) && !AM.has_trait(TRAIT_NODROP))
 			return TRUE
->>>>>>> c3e9484... Fixes not being able to insert objects into closets, and being unable to throw (#42407)
+		if(AM.has_trait(TRAIT_NODROP))
+			return
 		else if(!allow_objects && !istype(AM, /obj/effect/dummy/chameleon))
 			return FALSE
 	else

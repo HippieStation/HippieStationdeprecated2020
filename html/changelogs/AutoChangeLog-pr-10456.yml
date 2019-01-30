@@ -1,0 +1,11 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - rscadd: "Nanosuit strength mode can be used on carbon mobs like monkies."
+  - rscadd: "Strength mode in nanosuit now has a 35% cleaving attack which hits all enemies you face within 1 range."
+  - bugfix: "Head splatter ability on the nanosuit has been given a bug cleanup."
+  - tweak: "Nanosuit headset ui now can be toggle and has subspace switching."
+  - bugfix: "Fixed nanosuit not having a geiger counter."
+  - balance: "Leporazine injection on nanosuit defrosting sequence increased from 2 to 3."
+  - balance: "Increased nanosuit's refilling tank volume to 3 from 2."
+  - spellcheck: "Fixed typos in nanosuit help and reboot sequence."

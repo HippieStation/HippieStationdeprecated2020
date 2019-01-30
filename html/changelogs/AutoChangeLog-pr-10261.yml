@@ -1,0 +1,4 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - tweak: "Examiner circuit's \"density\" pin is now based on CanPass()"

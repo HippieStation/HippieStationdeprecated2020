@@ -1,0 +1,4 @@
+author: "Manly-Dwarf"
+delete-after: True
+changes: 
+  - bugfix: "Sleeping Carp Scroll now actually works."
