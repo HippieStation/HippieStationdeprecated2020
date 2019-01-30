@@ -397,7 +397,7 @@
 	return FALSE
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/toggle_mode(var/suitmode, var/forced = FALSE)
-	if(!shutdown && (forced || (cell.charge && mode != suitmode)))
+	if(!shutdown && (forced || (cell?.charge && mode != suitmode)))
 		mode = suitmode
 		switch(suitmode)
 			if(NANO_ARMOR)
@@ -668,7 +668,7 @@
 		Wearer.unequip_everything()
 		Wearer.equipOutfit(/datum/outfit/nanosuit)
 		Wearer.add_trait(TRAIT_NODISMEMBER, "Nanosuit")
-		RegisterSignal(Wearer, list(COMSIG_MOB_ITEM_ATTACK,COMSIG_MOB_ITEM_AFTERATTACK,COMSIG_MOB_THROW,COMSIG_MOB_ATTACK_HAND,COMSIG_MOB_ATTACK_RANGED), CALLBACK(src, .proc/kill_cloak), TRUE)
+		RegisterSignal(Wearer, list(COMSIG_MOB_ITEM_ATTACK,COMSIG_MOB_ITEM_AFTERATTACK,COMSIG_MOB_THROW,COMSIG_MOB_ATTACK_HAND), .proc/kill_cloak,TRUE)
 		if(is_station_level(T.z))
 			priority_announce("[user] has engaged [src] at [A.map_name]!","Message from The Syndicate!", 'sound/misc/notice1.ogg')
 		log_game("[user] has engaged [src]")
@@ -679,8 +679,6 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/dropped()
 	..()
-	if(!Wearer)
-		return
 	if(help_verb)
 		Wearer.verbs -= help_verb
 
@@ -972,12 +970,11 @@
 
 
 /obj/attacked_by(obj/item/I, mob/living/user)
-	if(I.force && I.damtype == BRUTE && user.mind.has_martialart(MARTIALART_NANOSUIT))
+	if(I.force && I.damtype == BRUTE && ishuman(user) && user.mind.has_martialart(MARTIALART_NANOSUIT))
 		visible_message("<span class='danger'>[user] has hit [src] with a strengthened blow from [I]!</span>", null, null, COMBAT_MESSAGE_RANGE)
-		//only witnesses close by and the victim see a hit message.
 		take_damage(I.force*1.75, I.damtype, "melee", TRUE)//take 75% more damage with strength on
-	else
-		return ..()
+		return
+	return ..()
 
 /obj/item/throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, diagonals_first = FALSE, datum/callback/callback)
 	if(thrower && ishuman(thrower))
@@ -1019,8 +1016,7 @@
 				animate(Wearer, alpha = 255, time = stealth_cloak_out)
 				addtimer(CALLBACK(src, .proc/resume_cloak),CLICK_CD_RANGE,TIMER_UNIQUE|TIMER_OVERRIDE)
 				return
-		set_nano_energy(0,NANO_CHARGE_DELAY)
-		return
+		set_nano_energy(cell.charge,NANO_CHARGE_DELAY)
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/resume_cloak()
 	if(cell.charge && mode == NANO_CLOAK)
