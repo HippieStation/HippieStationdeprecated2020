@@ -482,7 +482,6 @@
 #include "code\datums\mutations\actions.dm"
 #include "code\datums\mutations\body.dm"
 #include "code\datums\mutations\chameleon.dm"
-#include "code\datums\mutations\cold_resistance.dm"
 #include "code\datums\mutations\combined.dm"
 #include "code\datums\mutations\hulk.dm"
 #include "code\datums\mutations\radioactive.dm"
