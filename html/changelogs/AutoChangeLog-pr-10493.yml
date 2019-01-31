@@ -1,0 +1,9 @@
+author: "yoyobatty"
+delete-after: True
+changes: 
+  - bugfix: "Floor cluwne now properly checks the locker you're in in it's Life proc and attack stage."
+  - bugfix: "Floor cluwne event now works properly."
+  - bugfix: "Floor cluwnes can no longer be seen on HUDs."
+  - tweak: "Floor cluwnes can be seen by ghosts for easy observing."
+  - tweak: "You no longer scream all the time when being dragged by a floor cluwne."
+  - tweak: "You will now have an instinctive chance of calling for help when a floor cluwne pulls you under..."
