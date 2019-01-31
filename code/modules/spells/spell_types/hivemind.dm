@@ -666,9 +666,6 @@
 /obj/effect/forcefield/wizard/hive/CanPass(atom/movable/mover, turf/target)
 	if(mover == wizard)
 		return TRUE
-<<<<<<< HEAD
-	return  FALSE
-=======
 	return  FALSE
 
 /obj/effect/forcefield/wizard/hive/invis
@@ -677,4 +674,3 @@
 	pixel_x = 0
 	pixel_y = 0
 	invisibility = INVISIBILITY_MAXIMUM
->>>>>>> 9c0e8b1... [Screams internally at people who don't make issue reports] (#42403)
