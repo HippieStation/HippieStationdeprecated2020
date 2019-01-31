@@ -77,9 +77,6 @@
 	icon_state = "tile_darkshuttle"
 	turf_type = /turf/open/floor/mineral/plastitanium
 	mineralType = "plastitanium"
-<<<<<<< HEAD
-	materials = list(MAT_TITANIUM=250, MAT_PLASMA=250)
-=======
 	materials = list(MAT_TITANIUM=250, MAT_PLASMA=250)
 
 /obj/item/stack/tile/mineral/snow
@@ -89,4 +86,3 @@
 	icon_state = "tile_snow"
 	turf_type = /turf/open/floor/grass/snow/safe
 	mineralType = "snow"
->>>>>>> 5f88740... Merge pull request #42563 from Time-Green/oopsie-woopsie
