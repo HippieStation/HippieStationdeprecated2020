@@ -530,15 +530,8 @@
 	confused = 0
 	GET_COMPONENT(mood, /datum/component/mood)
 	if (mood)
-<<<<<<< HEAD
-		QDEL_LIST_ASSOC_VAL(mood.mood_events)
-		mood.sanity = SANITY_GREAT
-		mood.update_mood()
-
-=======
 		mood.remove_temp_moods(admin_revive)
 	update_mobility()
->>>>>>> ea4234c... legion cores remove CC instead of adminhealing [READY] (#42378)
 
 //proc called by revive(), to check if we can actually ressuscitate the mob (we don't want to revive him and have him instantly die again)
 /mob/living/proc/can_be_revived()
