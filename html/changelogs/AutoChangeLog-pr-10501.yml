@@ -1,0 +1,4 @@
+author: "HonkBot"
+delete-after: True
+changes: 
+  - tweak: "increased drop chance of crusher trophies on mining mobs from 1 in 20 to 1 in 4"

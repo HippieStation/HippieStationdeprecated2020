@@ -1,0 +1,11 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - tweak: "Fixed floor cluwne disappearing when you're in a closet, it now busts open said closet and stuns you."
+  - balance: "Floor cluwne drags it's victim at twice the previous rate."
+  - bugfix: "Fixed floor cluwnes breaking when you dragged their victims away"
+  - bugfix: "Fixed floor cluwnes not paralyzing you when attacking."
+  - bugfix: "Fixed floor cluwnes having the hole in floor animation loop forever."
+  - bugfix: "Fixed cluwning not working."
+  - bugfix: "Fixed clientless floor cluwne victims not properly being eaten when dragged underneath the floor."
+  - bugfix: "Fixed floor cluwne making your HUD red permanently."
