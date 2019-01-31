@@ -304,8 +304,6 @@
 	name = "\improper DNA injector (Anti-Void)"
 	remove_mutations = list(VOID)
 
-<<<<<<< HEAD
-=======
 /obj/item/dnainjector/olfaction
 	name = "\improper DNA injector (Olfaction)"
 	add_mutations = list(OLFACTION)
@@ -330,8 +328,6 @@
 	name = "\improper DNA injector (Anti-Shock Touch)"
 	remove_mutations = list(SHOCKTOUCH)
 
-
->>>>>>> 1ab0c12... [Ready] Adds a new power, Transcendent Olfaction, to genetics (#42414)
 /obj/item/dnainjector/timed
 	var/duration = 600
 
