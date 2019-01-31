@@ -129,8 +129,4 @@
 		else
 			return ..()
 	else
-<<<<<<< HEAD
 		return ..()
-=======
-		return ..()
->>>>>>> ad19c17... Merge pull request #42490 from tgstation/Cyberboss-patch-1
