@@ -1,0 +1,4 @@
+author: "HonkBot"
+delete-after: True
+changes: 
+  - bugfix: "Updates the malf fire alarm hack to be more up to date"
