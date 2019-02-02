@@ -29,5 +29,5 @@
 </ui-display>
 <ui-display title='Internal Reactor'>
   <span class='highlight'> Uranium amount: </span>
-  <ui-bar min='0' max='50000' value='{{data.materialAmount}}'>{{Math.round(data.materialAmount)}}</ui-bar>
+  <ui-bar min='0' max='{{data.materialStorage}}' value='{{data.materialAmount}}'>{{Math.round(data.materialAmount)}}</ui-bar>
 </ui-display>

@@ -33,5 +33,5 @@
 </ui-display>
 <ui-display title='Internal Bluespace Engine'>
   <span class='highlight'> Bluespace potential: </span>
-  <ui-bar min='0' max='10' value='{{data.crystalAmount}}'>{{data.crystalAmount}}</ui-bar>
+  <ui-bar min='0' max='{{data.maxMaterial}}' value='{{data.crystalAmount}}'>{{data.crystalAmount}}</ui-bar>
 </ui-display>

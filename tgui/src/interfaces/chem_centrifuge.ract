@@ -5,7 +5,7 @@
 		action='power'>{{data.isActive ? "On" : "Off"}}</ui-button>
   </ui-section>
   <ui-section label='Time remaining'>
-    <ui-bar min='0' max='30' value='{{data.timeRemaining}}'>{{Math.round(data.timeRemaining)}}</ui-bar>
+    <ui-bar min='0' max='{{timeRequired}}' value='{{data.timeRemaining}}'>{{Math.round(data.timeRemaining)}}</ui-bar>
   </ui-section>
 </ui-display>
 <ui-display title='Beaker' button>

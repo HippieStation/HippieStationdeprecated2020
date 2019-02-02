@@ -5,7 +5,7 @@
 		action='power'>{{data.isActive ? "On" : "Off"}}</ui-button>
   </ui-section>
   <ui-section label='Chamber Pressure'>
-    <ui-bar min='0' max='100' value='{{data.internalPressure}}'>{{Math.round(data.internalPressure)}}</ui-bar>
+    <ui-bar min='0' max='{{data.maxPressure}}' value='{{data.internalPressure}}'>{{Math.round(data.internalPressure)}}</ui-bar>
   </ui-section>
 </ui-display>
 <ui-display title='Beaker' button>
