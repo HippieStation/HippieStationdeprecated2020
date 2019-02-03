@@ -679,7 +679,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/dropped()
 	..()
-	if(help_verb)
+	if(help_verb && Wearer)
 		Wearer.verbs -= help_verb
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/bootSequence()
