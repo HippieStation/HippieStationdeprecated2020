@@ -16,6 +16,11 @@
 	replace_beaker()
 	return ..()
 
+/obj/machinery/chem/examine(mob/user)
+	..()
+	if(panel_open)
+		to_chat(user, "<span class='notice'>[src]'s maintenance hatch is open!</span>")
+
 /obj/machinery/chem/on_deconstruction()
 	replace_beaker()
 
@@ -69,6 +74,11 @@
 	pressure_rate = initial(pressure_rate)
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		pressure_rate *= M.rating
+
+/obj/machinery/chem/pressure/examine(mob/user)
+	..()
+	if(in_range(user, src) || isobserver(user))
+		to_chat(user, "<span class='notice'>The status display reads: <br>Pressure rate at <b>[pressure_rate] psi</b> per interval.<span>")
 
 /obj/machinery/chem/pressure/process()
 	..()
@@ -126,21 +136,33 @@
 	icon_state = "radio"
 	var/material_amt = 0 //requires uranium in order to function
 	var/target_radioactivity = 0
+	var/max_rads = 1
 	var/material_rate = 50
 	var/pulse_prob = 50
 	var/material_storage = 50000
+	var/rad_pulse = 4000
 	circuit = /obj/item/circuitboard/machine/radioactive
 
 /obj/machinery/chem/radioactive/RefreshParts()
 	material_rate = initial(material_rate)
 	pulse_prob = initial(pulse_prob)
 	material_storage = initial(material_storage)
-	for(var/obj/item/stock_parts/micro_laser/M in component_parts)
-		material_rate /= M.rating
+	max_rads = initial(max_rads)
+	rad_pulse = initial(rad_pulse)
+	for(var/obj/item/stock_parts/micro_laser/ML in component_parts)
+		material_rate /= ML.rating
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		pulse_prob += C.rating
+		pulse_prob /= C.rating
 	for(var/obj/item/stock_parts/matter_bin/MB in component_parts)
 		material_storage *= MB.rating
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
+		max_rads *= M.rating
+		rad_pulse /= M.rating
+
+/obj/machinery/chem/radioactive/examine(mob/user)
+	..()
+	if(in_range(user, src) || isobserver(user))
+		to_chat(user, "<span class='notice'>The status display reads: <br>Material consumption at <b>[material_rate] units</b> per interval.<br>Radioactive contamination chance at <b>[pulse_prob]</b>% with <b>[rad_pulse] rads</b> per pulse.<br>Material storage size of <b>[material_storage/1000] sheets</b>.<br>Radioactive rate of <b>[max_rads] rads</b> per interval.<span>")
 
 /obj/machinery/chem/radioactive/process()
 	..()
@@ -159,15 +181,15 @@
 			on = FALSE
 		if(material_amt >= material_rate)
 			if(beaker.reagents.chem_radioactivity > target_radioactivity)
-				beaker.reagents.chem_radioactivity += 1
+				beaker.reagents.chem_radioactivity += max_rads
 			if(beaker.reagents.chem_radioactivity < target_radioactivity)
-				beaker.reagents.chem_radioactivity += 1
+				beaker.reagents.chem_radioactivity += max_rads
 
 			beaker.reagents.chem_radioactivity = round(beaker.reagents.chem_radioactivity)
 			beaker.reagents.handle_reactions()
 			material_amt = max(material_amt -= material_rate, 0)
 			if(prob(pulse_prob))
-				radiation_pulse(src.loc, 1, 4, min(10, target_radioactivity * 2))
+				radiation_pulse(src, min(rad_pulse, target_radioactivity * 200), 4, TRUE)
 	if(!on)
 		icon_state = "radio"
 
@@ -258,6 +280,11 @@
 		glitch_prob /= C.rating
 	for(var/obj/item/stock_parts/matter_bin/MB in component_parts)
 		material_storage *= MB.rating
+
+/obj/machinery/chem/bluespace/examine(mob/user)
+	..()
+	if(in_range(user, src) || isobserver(user))
+		to_chat(user, "<span class='notice'>The status display reads: <br>Max intensity of <b>[max_intensity] B units</b>.<br>Malfunction probably at <b>[glitch_prob]</b>%.<br>Max material storage size of <b>[material_storage] crystals</b>.<span>")
 
 /obj/machinery/chem/bluespace/process()
 	..()
@@ -363,6 +390,11 @@
 	time_required = initial(time_required)
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		time_required /= M.rating
+
+/obj/machinery/chem/centrifuge/examine(mob/user)
+	..()
+	if(in_range(user, src) || isobserver(user))
+		to_chat(user, "<span class='notice'>The status display reads: <br>Processing time of <b>[time_required] seconds</b>.<span>")
 
 /obj/machinery/chem/centrifuge/process()
 	..()
