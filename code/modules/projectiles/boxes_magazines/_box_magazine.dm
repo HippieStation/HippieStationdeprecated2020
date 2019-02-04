@@ -50,12 +50,8 @@
 
 /obj/item/ammo_box/proc/give_round(obj/item/ammo_casing/R, replace_spent = 0)
 	// Boxes don't have a caliber type, magazines do. Not sure if it's intended or not, but if we fail to find a caliber, then we fall back to ammo_type.
-<<<<<<< HEAD
 	// Hippie Start - Makes the Contender and guns with universal ammo work by adding && caliber != all. Stop reverting this!
 	if ((!R || (caliber && R.caliber != caliber) || (!caliber && R.type != ammo_type)) && (caliber != "all")) /* hippie end */
-=======
-	if(!R || (caliber && R.caliber != caliber) || (!caliber && R.type != ammo_type))
->>>>>>> 69e217d... [READY] I got guns (#41804)
 		return FALSE
 
 /* hippie start - Check for caliber == "all" */
@@ -63,10 +59,7 @@
 		stored_ammo += R
 		R.forceMove(src)
 		return TRUE
-<<<<<<< HEAD
 /*hippie end*/
-=======
->>>>>>> 69e217d... [READY] I got guns (#41804)
 
 	//for accessibles magazines (e.g internal ones) when full, start replacing spent ammo
 	else if(replace_spent)
