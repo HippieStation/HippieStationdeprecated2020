@@ -123,7 +123,7 @@
 		chambered = magazine.get_round((bolt_type == BOLT_TYPE_NO_BOLT))
 		if (bolt_type != BOLT_TYPE_OPEN)
 			chambered.forceMove(src)
-	
+
 /obj/item/gun/ballistic/proc/rack(mob/user = null)
 	if (bolt_type == BOLT_TYPE_NO_BOLT) //If there's no bolt, nothing to rack
 		return
@@ -155,7 +155,8 @@
 		if (display_message)
 			to_chat(user, "<span class='notice'>You load a new [magazine_wording] into \the [src].</span>")
 		playsound(src, load_empty_sound, load_sound_volume, load_sound_vary)
-		update_icon()
+		drop_bolt(user)//hippie edit -- rack by default so you don't have to manually fucking do it
+		//update_icon()//hippie edit -- redundant call
 		return TRUE
 	else
 		to_chat(user, "<span class='warning'>You cannot seem to get \the [src] out of your hands!</span>")
@@ -197,7 +198,7 @@
 				eject_magazine(user, FALSE, AM)
 			else
 				to_chat(user, "<span class='notice'>There's already a [magazine_wording] in \the [src].</span>")
-		return	
+		return
 	if (istype(A, /obj/item/ammo_casing) || istype(A, /obj/item/ammo_box))
 		if (bolt_type == BOLT_TYPE_NO_BOLT || internal_magazine)
 			var/num_loaded = magazine.attackby(A, user, params, TRUE)
@@ -276,9 +277,9 @@
 
 /obj/item/gun/ballistic/attack_self(mob/living/user)
 	if(!internal_magazine && magazine)
-		if(!magazine.ammo_count())
-			eject_magazine(user)
-			return
+		//if(!magazine.ammo_count()) hippie edit -- removes this garbahe
+		eject_magazine(user)
+		return
 	if(bolt_type == BOLT_TYPE_NO_BOLT)
 		var/num_unloaded = 0
 		while (get_ammo() > 0)
@@ -300,7 +301,7 @@
 	if (recent_rack > world.time)
 		return
 	recent_rack = world.time + rack_delay
-	rack(user)	
+	rack(user)
 	return
 
 

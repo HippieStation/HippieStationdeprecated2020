@@ -249,7 +249,7 @@
 	update_icon()
 
 
-/obj/item/gun/ballistic/automatic/l6_saw/update_icon() 
+/obj/item/gun/ballistic/automatic/l6_saw/update_icon()
 	. = ..()
 	add_overlay("l6_door_[cover_open ? "open" : "closed"]")
 
