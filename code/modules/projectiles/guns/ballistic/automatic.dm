@@ -30,7 +30,7 @@
 		add_overlay("[initial(icon_state)]semi")
 	if(select == 1)
 		add_overlay("[initial(icon_state)]burst")
-	icon_state = "[initial(icon_state)][magazine ? "-[magazine.max_ammo]" : ""][chambered ? "" : "-e"][suppressed ? "-suppressed" : ""]"//hippie end -- bring back old gun icons
+	icon_state = "[initial(icon_state)][magazine ? "-[magazine.max_ammo]" : ""][chambered||!bolt_locked ? "" : "-e"][suppressed ? "-suppressed" : ""]"//hippie end -- bring back old gun icons
 
 /obj/item/gun/ballistic/automatic/ui_action_click(mob/user, actiontype)
 	if(istype(actiontype, /datum/action/item_action/toggle_firemode))
@@ -82,7 +82,7 @@
 
 /obj/item/gun/ballistic/automatic/c20r/update_icon()//hippie edit -- bring back old gun icons
 	..()
-	icon_state = "c20r[magazine ? "-[CEILING(get_ammo(0)/4, 1)*4]" : ""][chambered ? "" : "-e"][suppressed ? "-suppressed" : ""]"//hippie end -- bring back old gun icons
+	icon_state = "[initial(icon_state)][magazine ? "-[CEILING(get_ammo(0)/4, 1)*4]" : ""][chambered ? "" : "-e"][suppressed ? "-suppressed" : ""]"//hippie end -- bring back old gun icons
 
 /obj/item/gun/ballistic/automatic/wt550
 	name = "security auto rifle"
@@ -103,7 +103,7 @@
 
 /obj/item/gun/ballistic/automatic/wt550/update_icon()//hippie edit -- bring back old gun icons
 	..()
-	icon_state = "wt550[magazine ? "-[CEILING(get_ammo(0)/4, 1)*4]" : ""]"//hippie end -- bring back old gun icons
+	icon_state = "[initial(icon_state)][magazine ? "-[CEILING(get_ammo(0)/4, 1)*4]" : ""]"//hippie end -- bring back old gun icons
 
 /obj/item/gun/ballistic/automatic/mini_uzi
 	name = "\improper Type U3 Uzi"
@@ -113,6 +113,10 @@
 	burst_size = 2
 	bolt_type = BOLT_TYPE_OPEN
 	mag_display = TRUE
+
+/obj/item/gun/ballistic/automatic/mini_uzi/update_icon()//hippie edit -- bring back old gun icons
+	..()
+	icon_state = "[initial(icon_state)][magazine ? "-[magazine.max_ammo]" : ""][chambered ? "" : "-e"][suppressed ? "-suppressed" : ""]"//hippie end -- bring back old gun icons
 
 /obj/item/gun/ballistic/automatic/m90
 	name = "\improper M-90gl Carbine"
@@ -261,8 +265,8 @@
 
 
 /obj/item/gun/ballistic/automatic/l6_saw/update_icon()//hippie edit -- bring back old gun icons
-	icon_state = "l6[cover_open ? "open" : "closed"][magazine ? CEILING(get_ammo(0)/12.5, 1)*25 : "-empty"][suppressed ? "-suppressed" : ""]"
-	item_state = "l6[cover_open ? "openmag" : "closedmag"]"//hippie end -- bring back old gun icons
+	icon_state = "[initial(icon_state)][cover_open ? "open" : "closed"][magazine ? CEILING(get_ammo(0)/12.5, 1)*25 : "-empty"][suppressed ? "-suppressed" : ""]"
+	item_state = "[initial(icon_state)][cover_open ? "openmag" : "closedmag"]"//hippie end -- bring back old gun icons
 
 
 /obj/item/gun/ballistic/automatic/l6_saw/afterattack(atom/target as mob|obj|turf, mob/living/user as mob|obj, flag, params)
@@ -370,5 +374,5 @@
 
 /obj/item/gun/ballistic/automatic/laser/update_icon()//hippie edit -- bring back old gun icons
 	..()
-	icon_state = "oldrifle[magazine ? "-[CEILING(get_ammo(0)/4, 1)*4]" : ""]"
+	icon_state = "[initial(icon_state)][magazine ? "-[CEILING(get_ammo(0)/4, 1)*4]" : ""]"
 	return//hippie end -- bring back old gun icons

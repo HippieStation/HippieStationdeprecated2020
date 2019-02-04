@@ -137,7 +137,7 @@
 	cut_overlays()
 	if(magazine)
 		add_overlay("[magazine.icon_state]")
-	icon_state = "bulldog[chambered ? "" : "-e"]"//hippie end -- bring back old gun icons
+	icon_state = "[initial(icon_state)][chambered||!bolt_locked ? "" : "-e"]"//hippie end -- bring back old gun icons
 
 /obj/item/gun/ballistic/shotgun/bulldog/unrestricted
 	pin = /obj/item/firing_pin
