@@ -21,7 +21,7 @@
 
 /obj/item/gun/ballistic/automatic/pistol/update_icon()//hippie edit -- bring back old gun icons
 	..()
-	icon_state = "[initial(icon_state)][chambered ? "" : "-e"][suppressed ? "-suppressed" : ""]"//hippie end -- bring back old gun icons
+	icon_state = "[initial(icon_state)][chambered||!bolt_locked ? "" : "-e"][suppressed ? "-suppressed" : ""]"//hippie end -- bring back old gun icons
 
 /obj/item/gun/ballistic/automatic/pistol/suppressed/Initialize(mapload)
 	. = ..()

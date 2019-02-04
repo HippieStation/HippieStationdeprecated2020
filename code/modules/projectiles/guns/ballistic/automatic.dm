@@ -108,7 +108,7 @@
 /obj/item/gun/ballistic/automatic/mini_uzi
 	name = "\improper Type U3 Uzi"
 	desc = "A lightweight, burst-fire submachine gun, for when you really want someone dead. Uses 9mm rounds."
-	icon_state = "miniuzi"
+	icon_state = "mini-uzi"//hippie edit -- fixes uzi sprite
 	mag_type = /obj/item/ammo_box/magazine/uzim9mm
 	burst_size = 2
 	bolt_type = BOLT_TYPE_OPEN
