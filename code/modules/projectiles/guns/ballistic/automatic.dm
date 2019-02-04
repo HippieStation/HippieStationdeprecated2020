@@ -24,12 +24,13 @@
 /obj/item/gun/ballistic/automatic/proto/unrestricted
 	pin = /obj/item/firing_pin
 
-/obj/item/gun/ballistic/automatic/update_icon()
+/obj/item/gun/ballistic/automatic/update_icon()//hippie edit -- bring back old gun icons
 	..()
 	if(!select)
-		add_overlay("[initial(icon_state)]_semi")
+		add_overlay("[initial(icon_state)]semi")
 	if(select == 1)
-		add_overlay("[initial(icon_state)]_burst")
+		add_overlay("[initial(icon_state)]burst")
+	icon_state = "[initial(icon_state)][magazine ? "-[magazine.max_ammo]" : ""][chambered ? "" : "-e"][suppressed ? "-suppressed" : ""]"//hippie end -- bring back old gun icons
 
 /obj/item/gun/ballistic/automatic/ui_action_click(mob/user, actiontype)
 	if(istype(actiontype, /datum/action/item_action/toggle_firemode))
@@ -79,6 +80,10 @@
 	. = ..()
 	update_icon()
 
+/obj/item/gun/ballistic/automatic/c20r/update_icon()//hippie edit -- bring back old gun icons
+	..()
+	icon_state = "c20r[magazine ? "-[CEILING(get_ammo(0)/4, 1)*4]" : ""][chambered ? "" : "-e"][suppressed ? "-suppressed" : ""]"//hippie end -- bring back old gun icons
+
 /obj/item/gun/ballistic/automatic/wt550
 	name = "security auto rifle"
 	desc = "An outdated personal defence weapon. Uses 4.6x30mm rounds and is designated the WT-550 Automatic Rifle."
@@ -95,6 +100,10 @@
 	mag_display = TRUE
 	mag_display_ammo = TRUE
 	empty_indicator = TRUE
+
+/obj/item/gun/ballistic/automatic/wt550/update_icon()//hippie edit -- bring back old gun icons
+	..()
+	icon_state = "wt550[magazine ? "-[CEILING(get_ammo(0)/4, 1)*4]" : ""]"//hippie end -- bring back old gun icons
 
 /obj/item/gun/ballistic/automatic/mini_uzi
 	name = "\improper Type U3 Uzi"
@@ -147,16 +156,18 @@
 	else
 		..()
 
-/obj/item/gun/ballistic/automatic/m90/update_icon()
+/obj/item/gun/ballistic/automatic/m90/update_icon()//hippie edit -- bring back old gun icons
 	..()
+	cut_overlays()
 	switch(select)
 		if(0)
-			add_overlay("[initial(icon_state)]_semi")
+			add_overlay("[initial(icon_state)]semi")
 		if(1)
-			add_overlay("[initial(icon_state)]_burst")
+			add_overlay("[initial(icon_state)]burst")
 		if(2)
-			add_overlay("[initial(icon_state)]_gren")
-	return
+			add_overlay("[initial(icon_state)]gren")
+	icon_state = "[initial(icon_state)][magazine ? "" : "-e"]"
+	return//hippie end -- bring back old gun icons
 
 /obj/item/gun/ballistic/automatic/m90/burst_select()
 	var/mob/living/carbon/human/user = usr
@@ -234,7 +245,7 @@
 
 /obj/item/gun/ballistic/automatic/l6_saw/examine(mob/user)
 	..()
-	to_chat(user, "<b>ctrl + click</b> to [cover_open ? "close" : "open"] the dust cover.")
+	to_chat(user, "<b>alt + click</b> to [cover_open ? "close" : "open"] the dust cover.")
 	if(cover_open && magazine)
 		to_chat(user, "<span class='notice'>It seems like you could use an <b>empty hand</b> to remove the magazine.</span>")
 
@@ -249,9 +260,9 @@
 	update_icon()
 
 
-/obj/item/gun/ballistic/automatic/l6_saw/update_icon()
-	. = ..()
-	add_overlay("l6_door_[cover_open ? "open" : "closed"]")
+/obj/item/gun/ballistic/automatic/l6_saw/update_icon()//hippie edit -- bring back old gun icons
+	icon_state = "l6[cover_open ? "open" : "closed"][magazine ? CEILING(get_ammo(0)/12.5, 1)*25 : "-empty"][suppressed ? "-suppressed" : ""]"
+	item_state = "l6[cover_open ? "openmag" : "closedmag"]"//hippie end -- bring back old gun icons
 
 
 /obj/item/gun/ballistic/automatic/l6_saw/afterattack(atom/target as mob|obj|turf, mob/living/user as mob|obj, flag, params)
@@ -268,7 +279,7 @@
 		..()
 		return
 	if (!cover_open)
-		to_chat("<span class='warning'>[src]'s cover is closed! Open it before trying to remove the magazine!</span>")
+		to_chat(user, "<span class='warning'>[src]'s cover is closed! Open it before trying to remove the magazine!</span>")
 		return
 	..()
 
@@ -305,6 +316,12 @@
 	actions_types = list()
 	mag_display = TRUE
 
+/obj/item/gun/ballistic/automatic/sniper_rifle/update_icon()//hippie edit -- bring back old gun icons
+	if(magazine)
+		icon_state = "sniper-mag"
+	else
+		icon_state = "sniper"	//hippie end -- bring back old gun icons
+
 /obj/item/gun/ballistic/automatic/sniper_rifle/syndicate
 	name = "syndicate sniper rifle"
 	desc = "An illegally modified .50 cal sniper rifle with suppression compatibility. Quickscoping still doesn't work."
@@ -330,6 +347,12 @@
 	actions_types = list()
 	mag_display = TRUE
 
+/obj/item/gun/ballistic/automatic/surplus/update_icon()//hippie edit -- bring back old gun icons
+	if(magazine)
+		icon_state = "surplus"
+	else
+		icon_state = "surplus-e"//hippie end -- bring back old gun icons
+
 // Laser rifle (rechargeable magazine) //
 
 /obj/item/gun/ballistic/automatic/laser
@@ -344,3 +367,8 @@
 	actions_types = list()
 	fire_sound = 'sound/weapons/laser.ogg'
 	casing_ejector = FALSE
+
+/obj/item/gun/ballistic/automatic/laser/update_icon()//hippie edit -- bring back old gun icons
+	..()
+	icon_state = "oldrifle[magazine ? "-[CEILING(get_ammo(0)/4, 1)*4]" : ""]"
+	return//hippie end -- bring back old gun icons

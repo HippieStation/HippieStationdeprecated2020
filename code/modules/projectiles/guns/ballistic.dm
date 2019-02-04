@@ -277,7 +277,7 @@
 
 /obj/item/gun/ballistic/attack_self(mob/living/user)
 	if(!internal_magazine && magazine)
-		//if(!magazine.ammo_count()) hippie edit -- removes this garbahe
+		//if(!magazine.ammo_count()) hippie edit -- removes this garbage
 		eject_magazine(user)
 		return
 	if(bolt_type == BOLT_TYPE_NO_BOLT)

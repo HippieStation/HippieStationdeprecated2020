@@ -3283,6 +3283,8 @@
 #include "hippiestation\code\modules\projectiles\boxes_magazines\ammo_boxes.dm"
 #include "hippiestation\code\modules\projectiles\boxes_magazines\external_mag.dm"
 #include "hippiestation\code\modules\projectiles\guns\grenade_launcher.dm"
+#include "hippiestation\code\modules\projectiles\guns\ballistic\automatic.dm"
+#include "hippiestation\code\modules\projectiles\guns\ballistic\ballistic.dm"
 #include "hippiestation\code\modules\projectiles\guns\ballistic\launchers.dm"
 #include "hippiestation\code\modules\projectiles\guns\ballistic\pistols.dm"
 #include "hippiestation\code\modules\projectiles\guns\ballistic\revolver.dm"
