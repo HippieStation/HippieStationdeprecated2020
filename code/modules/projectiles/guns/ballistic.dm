@@ -154,7 +154,7 @@
 	update_icon()
 
 /obj/item/gun/ballistic/can_shoot()
-	return (chambered || magazine || magazine.ammo_count(FALSE))
+	return chambered
 
 /obj/item/gun/ballistic/attackby(obj/item/A, mob/user, params)
 	..()
