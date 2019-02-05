@@ -98,7 +98,7 @@
 	name = "\improper DNA injector (Anti-X-ray)"
 	desc = "It will make you see harder."
 	remove_mutations = list(XRAY)
-
+	
 /////////////////////////////////////
 /obj/item/dnainjector/antiglasses
 	name = "\improper DNA injector (Anti-Glasses)"
@@ -304,6 +304,49 @@
 	name = "\improper DNA injector (Anti-Void)"
 	remove_mutations = list(VOID)
 
+<<<<<<< HEAD
+=======
+/obj/item/dnainjector/olfaction
+	name = "\improper DNA injector (Olfaction)"
+	add_mutations = list(OLFACTION)
+
+/obj/item/dnainjector/antiolfaction
+	name = "\improper DNA injector (Anti-Olfaction)"
+	remove_mutations = list(OLFACTION)
+
+/obj/item/dnainjector/insulated
+	name = "\improper DNA injector (Insulated)"
+	add_mutations = list(INSULATED)
+
+/obj/item/dnainjector/antiinsulated
+	name = "\improper DNA injector (Anti-Insulated)"
+	remove_mutations = list(INSULATED)
+
+/obj/item/dnainjector/shock
+	name = "\improper DNA injector (Shock Touch)"
+	add_mutations = list(SHOCKTOUCH)
+
+/obj/item/dnainjector/antishock
+	name = "\improper DNA injector (Anti-Shock Touch)"
+	remove_mutations = list(SHOCKTOUCH)
+
+/obj/item/dnainjector/geladikinesis
+	name = "\improper DNA injector (Geladikinesis)"
+	add_mutations = list(GELADIKINESIS)
+	
+/obj/item/dnainjector/antigeladikinesis
+	name = "\improper DNA injector (Anti-Geladikinesis)"
+	remove_mutations = list(GELADIKINESIS)
+
+/obj/item/dnainjector/cryokinesis
+	name = "\improper DNA injector (Cryokinesis)"
+	add_mutations = list(CRYOKINESIS)
+
+/obj/item/dnainjector/anticryokinesis
+	name = "\improper DNA injector (Anti-Cryokinesis)"
+	remove_mutations = list(CRYOKINESIS)
+
+>>>>>>> 1cadfc9... Branches Syndicate Bundle into A and B Categories, adds Mr Freeze Bundle (#42662)
 /obj/item/dnainjector/timed
 	var/duration = 600
 
