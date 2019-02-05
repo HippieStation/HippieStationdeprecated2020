@@ -162,7 +162,8 @@
 	for(var/mob/living/carbon/human/H in living_crew)
 		if(H.client && H.client.prefs.allow_midround_antag && !is_centcom_level(H.z))
 			if(!is_banned_from(H.ckey, CATBAN) && !is_banned_from(H.ckey, CLUWNEBAN)) // hippie -- adds our jobban checks
-				antag_candidates += H
+				if(!H.has_trait(TRAIT_MINDSHIELD)) // hippie -- for obvious reasons
+					antag_candidates += H
 
 	if(!antag_candidates)
 		message_admins("Convert_roundtype failed due to no antag candidates.")
