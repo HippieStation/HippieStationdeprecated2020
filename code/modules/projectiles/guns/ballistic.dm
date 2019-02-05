@@ -12,7 +12,7 @@
 	var/rack_sound = "gun_slide_lock"
 	var/rack_sound_volume = 60
 	var/rack_sound_vary = TRUE
-	var/lock_back_sound = "sound/weapons/pistollock.ogg"
+	var/lock_back_sound = 'sound/weapons/pistollock.ogg'
 	var/lock_back_sound_volume = 60
 	var/lock_back_sound_vary = TRUE
 	var/eject_sound = "gun_remove_empty_magazine"
