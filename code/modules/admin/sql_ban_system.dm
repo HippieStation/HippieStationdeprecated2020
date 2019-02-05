@@ -481,13 +481,9 @@
 	message_admins("[kna] [msg][roles_to_ban[1] == "Server" ? "" : " Roles: [roles_to_ban.Join("\n")]"]\nReason: [reason]")
 	if(applies_to_admins)
 		send2irc("BAN ALERT","[kn] [msg]")
-<<<<<<< HEAD
-	create_message("note", player_ckey, admin_ckey, note_reason, null, null, 0, 0, null, 0, severity)
-	hippie_on_jobban(get_mob_by_key(player_ckey), roles_to_ban) // hippie -- apply stuff like catify on jobban
-=======
 	if(player_ckey)
 		create_message("note", player_ckey, admin_ckey, note_reason, null, null, 0, 0, null, 0, severity)
->>>>>>> 2b9c04c... Merge pull request #42562 from Jordie0608/idontrememberwhythecidcolumnisavarcharsoimnotsureifthatshouldbechangedornot
+		hippie_on_jobban(get_mob_by_key(player_ckey), roles_to_ban) // hippie -- apply stuff like catify on jobban
 	var/client/C = GLOB.directory[player_ckey]
 	var/datum/admin_help/AH = admin_ticket_log(player_ckey, msg)
 	var/appeal_url = "No ban appeal url set!"
