@@ -2799,6 +2799,7 @@
 #include "hippiestation\code\datums\dna.dm"
 #include "hippiestation\code\datums\martial.dm"
 #include "hippiestation\code\datums\mutations.dm"
+#include "hippiestation\code\datums\outputs.dm"
 #include "hippiestation\code\datums\progressbar.dm"
 #include "hippiestation\code\datums\shuttles.dm"
 #include "hippiestation\code\datums\antagonists\jesus.dm"
