@@ -3,3 +3,4 @@
 
 /obj/machinery/computer/pod
 	icon_hippie = null
+	icon = 'icons/obj/airlock_machines.dmi'
