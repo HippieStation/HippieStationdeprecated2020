@@ -170,7 +170,7 @@
 	to_chat(user, "<span class='notice'>You will now be [V.iscloaking ? "hidden" : "seen"] in darkness.</span>")
 
 /obj/effect/proc_holder/spell/targeted/disease
-	name = "Diseased Touch (100)"
+	name = "Diseased Touch (45)"
 	desc = "Touches your victim with infected blood giving them Grave Fever, which will, left untreated, causes toxic building and frequent collapsing."
 	gain_desc = "You have gained the Diseased Touch ability which causes those you touch to become weak unless treated medically."
 	action_icon_state = "disease"
@@ -190,7 +190,7 @@
 		target.ForceContractDisease(D)
 
 /obj/effect/proc_holder/spell/self/screech
-	name = "Chiropteran Screech (30)"
+	name = "Chiropteran Screech (25)"
 	desc = "An extremely loud shriek that stuns nearby humans and breaks windows as well."
 	gain_desc = "You have gained the Chiropteran Screech ability which stuns anything with ears in a large radius and shatters glass in the process."
 	action_icon_state = "reeee"
@@ -215,7 +215,7 @@
 	playsound(user.loc, 'sound/effects/screech.ogg', 100, 1)
 
 /obj/effect/proc_holder/spell/bats
-	name = "Summon Bats (75)"
+	name = "Summon Bats (55)"
 	desc = "You summon a pair of space bats who attack nearby targets until they or their target is dead."
 	gain_desc = "You have gained the Summon Bats ability."
 	action_icon_state = "bats"
@@ -247,7 +247,7 @@
 
 
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/mistform
-	name = "Mist Form (30)"
+	name = "Mist Form (20)"
 	gain_desc = "You have gained the Mist Form ability which allows you to take on the form of mist for a short period and pass over any obstacle in your path."
 	blood_used = 20
 	action_background_icon_state = "bg_demon"
