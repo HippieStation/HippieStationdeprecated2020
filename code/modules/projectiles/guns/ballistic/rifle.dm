@@ -26,7 +26,11 @@ obj/item/gun/ballistic/rifle/rack(mob/user = null)
         bolt_locked = TRUE
         update_icon()
         return
+<<<<<<< HEAD
     drop_bolt(user)//hippie edit -- fixes bolt sound
+=======
+    drop_bolt(user)
+>>>>>>> 8d817ad... More General Gun Fixes (#42693)
 
 obj/item/gun/ballistic/rifle/can_shoot()
     if (bolt_locked)
