@@ -130,14 +130,10 @@
 		if (display_message)
 			to_chat(user, "<span class='notice'>You load a new [magazine_wording] into \the [src].</span>")
 		playsound(src, load_empty_sound, load_sound_volume, load_sound_vary)
-<<<<<<< HEAD
 		drop_bolt(user)//hippie edit -- rack by default so you don't have to manually fucking do it
-		//update_icon()//hippie edit -- redundant call
-=======
 		if (bolt_type == BOLT_TYPE_OPEN && !bolt_locked)
 			chamber_round()
 		update_icon()
->>>>>>> a39b5d3... Yet more gun fixes (#42722)
 		return TRUE
 	else
 		to_chat(user, "<span class='warning'>You cannot seem to get \the [src] out of your hands!</span>")
