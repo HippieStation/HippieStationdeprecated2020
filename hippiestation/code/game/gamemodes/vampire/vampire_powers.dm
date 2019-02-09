@@ -176,7 +176,7 @@
 	action_icon_state = "disease"
 	action_icon = 'hippiestation/icons/mob/vampire.dmi'
 	action_background_icon_state = "bg_demon"
-	blood_used = 100
+	blood_used = 45
 	vamp_req = TRUE
 
 /obj/effect/proc_holder/spell/targeted/disease/cast(list/targets, mob/user = usr)
@@ -196,7 +196,7 @@
 	action_icon_state = "reeee"
 	action_icon = 'hippiestation/icons/mob/vampire.dmi'
 	action_background_icon_state = "bg_demon"
-	blood_used = 30
+	blood_used = 25
 	vamp_req = TRUE
 
 /obj/effect/proc_holder/spell/self/screech/cast(list/targets, mob/user = usr)
@@ -223,7 +223,7 @@
 	action_background_icon_state = "bg_demon"
 	charge_max = 1200
 	vamp_req = TRUE
-	blood_used = 75
+	blood_used = 55
 	var/num_bats = 2
 
 /obj/effect/proc_holder/spell/bats/choose_targets(mob/user = usr)
@@ -249,7 +249,7 @@
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/mistform
 	name = "Mist Form (30)"
 	gain_desc = "You have gained the Mist Form ability which allows you to take on the form of mist for a short period and pass over any obstacle in your path."
-	blood_used = 30
+	blood_used = 20
 	action_background_icon_state = "bg_demon"
 	vamp_req = TRUE
 
