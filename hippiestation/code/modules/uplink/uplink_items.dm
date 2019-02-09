@@ -279,6 +279,7 @@
 	cost = 3
 
 /datum/uplink_item/stealthy_weapons/martialarts
+	item = /obj/item/sleeping_carp_scroll
 	cost = 12
 
 /datum/uplink_item/stealthy_weapons/throwingweapons
@@ -310,7 +311,7 @@
 /datum/uplink_item/badass/contender
 	name = "Contender G13"
 	desc = "A poacher's favorite, ArcWorks' Contender G13 can hold any ammo you put into it. Each shot must be loaded individually. Ammo sold seperately!"
-	item = /obj/item/gun/ballistic/revolver/doublebarrel/contender
+	item = /obj/item/gun/ballistic/shotgun/doublebarrel/contender
 	cost = 7 // You have to buy ammo for it, and there's only two shots. If you really want to get any use out of it, it'll be more around 10 TC.
 	surplus = 45 // Why not? You get a boatload of ammo in Surplus Crates anyhow.
 

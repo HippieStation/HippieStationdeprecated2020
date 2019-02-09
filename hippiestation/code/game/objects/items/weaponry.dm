@@ -9,7 +9,7 @@
 		user.put_in_hands(S)
 		to_chat(user, "<span class='notice'>You fasten the glass shard to the top of the rod with the cable.</span>")
 
-	else if(istype(I, /obj/item/assembly/igniter) && !(I.item_flags & NODROP))
+	else if(istype(I, /obj/item/assembly/igniter) && !has_trait(TRAIT_NODROP))
 		var/obj/item/melee/baton/cattleprod/hippie_cattleprod/P = new /obj/item/melee/baton/cattleprod/hippie_cattleprod
 
 		remove_item_from_storage(user)
@@ -54,7 +54,7 @@
 	item_state = "mounted_chainsaw"
 	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/chainsaw_righthand.dmi'
-	item_flags = NODROP | ABSTRACT | DROPDEL
+	item_flags = ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
 	force = 60
 	block_chance = 50
@@ -68,11 +68,14 @@
 /obj/item/mounted_energy_chainsaw/attack(mob/living/M, mob/living/user)
 	playsound(src, pick('hippiestation/sound/weapons/echainsawhit1.ogg','hippiestation/sound/weapons/echainsawhit2.ogg'))
 	..()
+	
+/obj/item/mounted_energy_chainsaw/Initialize()
+	. = ..()
+	add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/staff // to make sure people don't get confused
 	desc = "Apparently a staff used by the wizard. Doesn't shoot anything."
 	w_class = WEIGHT_CLASS_NORMAL
-
 
 /obj/item/staff/Initialize()
 	. = ..()

@@ -9,8 +9,8 @@
 #define LIGHT_BROKEN 2
 #define LIGHT_BURNED 3
 
-#define BROKEN_SPARKS_MIN 15 SECONDS
-#define BROKEN_SPARKS_MAX 30 SECONDS
+#define BROKEN_SPARKS_MIN (30 SECONDS)
+#define BROKEN_SPARKS_MAX (90 SECONDS)
 
 /obj/item/wallframe/light_fixture
 	name = "light fixture frame"
@@ -90,7 +90,7 @@
 		if(!cell_connectors)
 			to_chat(user, "<span class='warning'>This [name] can't support a power cell!</span>")
 			return
-		if(W.item_flags & NODROP)
+		if(W.has_trait(TRAIT_NODROP))
 			to_chat(user, "<span class='warning'>[W] is stuck to your hand!</span>")
 			return
 		user.dropItemToGround(W)
