@@ -113,6 +113,7 @@
 	burst_size = 2
 	bolt_type = BOLT_TYPE_OPEN
 	mag_display = TRUE
+	rack_sound = 'sound/weapons/pistollock.ogg'
 
 /obj/item/gun/ballistic/automatic/mini_uzi/update_icon()//hippie edit -- bring back old gun icons
 	..()

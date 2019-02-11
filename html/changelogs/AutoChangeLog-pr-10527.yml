@@ -1,6 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - bugfix: "Pod doors in science are no longer invisible!"
-  - bugfix: "Overlapping pipes and some miner cosmetic details have been fixed."
-  - bugfix: "Fixxed the old machine in the strange room having the incorrect icon."
