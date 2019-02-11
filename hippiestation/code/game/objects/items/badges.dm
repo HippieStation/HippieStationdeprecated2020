@@ -23,7 +23,9 @@
 	return BRUTELOSS
 
 /obj/item/clothing/accessory/badge/attack_self(mob/user) //All badges will flash/shine the same way.
-	user.visible_message("[user] flashes their shiny badge.", "<span class='notice'>You briefly flash your badge.</span>")
+	user.visible_message("[user] flashes their shiny [name].", "<span class='notice'>You briefly flash your [name].</span>")
+	user.changeNext_move(CLICK_CD_MELEE)
+	return ..()
 
 
 /obj/item/clothing/accessory/badge/attorney
