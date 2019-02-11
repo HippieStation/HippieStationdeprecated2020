@@ -305,7 +305,7 @@
 	remove_mutations = list(VOID)
 
 <<<<<<< HEAD
-=======
+
 /obj/item/dnainjector/olfaction
 	name = "\improper DNA injector (Olfaction)"
 	add_mutations = list(OLFACTION)
@@ -346,7 +346,7 @@
 	name = "\improper DNA injector (Anti-Cryokinesis)"
 	remove_mutations = list(CRYOKINESIS)
 
->>>>>>> 1cadfc9... Branches Syndicate Bundle into A and B Categories, adds Mr Freeze Bundle (#42662)
+
 /obj/item/dnainjector/timed
 	var/duration = 600
 
