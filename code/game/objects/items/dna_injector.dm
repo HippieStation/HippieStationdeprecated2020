@@ -304,8 +304,6 @@
 	name = "\improper DNA injector (Anti-Void)"
 	remove_mutations = list(VOID)
 
-<<<<<<< HEAD
-=======
 /obj/item/dnainjector/olfaction
 	name = "\improper DNA injector (Olfaction)"
 	add_mutations = list(OLFACTION)
@@ -386,7 +384,6 @@
 	name = "\improper DNA injector (Anti-Cryokinesis)"
 	remove_mutations = list(CRYOKINESIS)
 
->>>>>>> cefe4a6... [Ready] Adds 5 new negative/minor negative mutations, mutation conflict system (#42524)
 /obj/item/dnainjector/timed
 	var/duration = 600
 
