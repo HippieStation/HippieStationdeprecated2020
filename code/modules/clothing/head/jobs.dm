@@ -150,8 +150,6 @@
 	strip_delay = 60
 	dog_fashion = /datum/dog_fashion/head/warden
 
-<<<<<<< HEAD
-=======
 /obj/item/clothing/head/warden/drill
 	name = "warden's campaign hat"
 	desc = "A special armored campaign hat with the security insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection."
@@ -211,7 +209,6 @@
 				M += pick(", eh?", ", EH?")
 		return trim(M)
 
->>>>>>> 313db3a... Tweaks the drill hat to be a bit less annoying (#42655)
 /obj/item/clothing/head/beret/sec
 	name = "security beret"
 	desc = "A robust beret with the security insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection."
