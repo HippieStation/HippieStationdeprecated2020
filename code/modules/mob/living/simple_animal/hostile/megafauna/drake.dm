@@ -492,8 +492,8 @@ Difficulty: Medium
 
 /mob/living/simple_animal/hostile/megafauna/dragon/lesser/grant_achievement(medaltype,scoretype)
 	return
-<<<<<<< HEAD
-=======
+
+
 	
 /mob/living/simple_animal/hostile/megafauna/dragon/space_dragon
 	name = "space dragon"
@@ -565,4 +565,4 @@ Difficulty: Medium
 		playsound(C.loc,'sound/effects/hit_punch.ogg', 80, 1, 1)
 		C.spin(6,1)
 	..(targets, user, 60)
->>>>>>> 0937264... [READY]New Side Antagonist: Space Dragon (#42551)
+>>>>>>> 0937264... [READY]New Side Antagonist: Space Dragon 
