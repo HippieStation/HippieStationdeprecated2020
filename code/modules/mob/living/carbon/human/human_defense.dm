@@ -52,7 +52,12 @@
 					else
 						visible_message("<span class='danger'>[src] deflects the projectile!</span>", "<span class='userdanger'>You deflect the projectile!</span>")
 					playsound(src, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 75, 1)
-					return 0
+					if(!mind.martial_art.reroute_deflection)
+						return BULLET_ACT_BLOCK
+					else
+						P.firer = src
+						P.setAngle(rand(0, 360))//SHING
+						return BULLET_ACT_FORCE_PIERCE
 
 	if(!(P.original == src && P.firer == src)) //can't block or reflect when shooting yourself
 		if(P.reflectable & REFLECT_NORMAL)
@@ -200,7 +205,7 @@
 		return
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.a_intent == INTENT_HARM && handle_vamp_biting(H)) // hippie start -- vampire biting		
+		if(H.a_intent == INTENT_HARM && handle_vamp_biting(H)) // hippie start -- vampire biting				
 			return // hippie end
 		dna.species.spec_attack_hand(H, src)
 

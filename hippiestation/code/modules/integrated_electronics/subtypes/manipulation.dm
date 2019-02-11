@@ -736,12 +736,78 @@
 	icon_state = "internalbm"
 	extended_desc = "This circuit accepts a string as input, and can be pulsed to rewrite the current assembly's name with said string. On success, it pulses the default pulse-out wire."
 	inputs = list("name" = IC_PINTYPE_STRING)
-	activators = list("pulse in" = IC_PINTYPE_PULSE_IN,"pulse out" = IC_PINTYPE_PULSE_OUT)
+	outputs = list("current name" = IC_PINTYPE_STRING)
+	activators = list("rename" = IC_PINTYPE_PULSE_IN,"get name" = IC_PINTYPE_PULSE_IN,"pulse out" = IC_PINTYPE_PULSE_OUT)
 	power_draw_per_use = 1
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-obj/item/integrated_circuit/manipulation/renamer/do_work()
-	var/new_name = get_pin_data(IC_INPUT, 1)
-	if(assembly && new_name)
-		assembly.name = new_name
-		activate_pin(2)
+/obj/item/integrated_circuit/manipulation/renamer/do_work(var/n)
+	if(!assembly)
+		return
+	switch(n)
+		if(1)
+			var/new_name = get_pin_data(IC_INPUT, 1)
+			if(new_name)
+				assembly.name = new_name
+
+		else
+			set_pin_data(IC_OUTPUT, 1, assembly.name)
+			push_data()
+
+	activate_pin(3)
+
+
+
+// - redescribing circuit - //
+/obj/item/integrated_circuit/manipulation/redescribe
+	name = "redescriber"
+	desc = "Takes any string as an input and will set it as the assembly's description."
+	extended_desc = "Strings should can be of any length."
+	icon_state = "speaker"
+	cooldown_per_use = 10
+	complexity = 3
+	inputs = list("text" = IC_PINTYPE_STRING)
+	outputs = list("description" = IC_PINTYPE_STRING)
+	activators = list("redescribe" = IC_PINTYPE_PULSE_IN,"get description" = IC_PINTYPE_PULSE_IN,"pulse out" = IC_PINTYPE_PULSE_OUT)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/integrated_circuit/manipulation/redescribe/do_work(var/n)
+	if(!assembly)
+		return
+
+	switch(n)
+		if(1)
+			assembly.desc = get_pin_data(IC_INPUT, 1)
+
+		else
+			set_pin_data(IC_OUTPUT, 1, assembly.desc)
+			push_data()
+
+	activate_pin(3)
+
+// - repainting circuit - //
+/obj/item/integrated_circuit/manipulation/repaint
+	name = "auto-repainter"
+	desc = "There's an oddly high amount of spraying cans fitted right inside this circuit."
+	extended_desc = "Takes a value in hexadecimal and uses it to repaint the assembly it is in."
+	cooldown_per_use = 10
+	complexity = 3
+	inputs = list("color" = IC_PINTYPE_COLOR)
+	outputs = list("current color" = IC_PINTYPE_COLOR)
+	activators = list("repaint" = IC_PINTYPE_PULSE_IN,"get color" = IC_PINTYPE_PULSE_IN,"pulse out" = IC_PINTYPE_PULSE_OUT)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/integrated_circuit/manipulation/repaint/do_work(var/n)
+	if(!assembly)
+		return
+
+	switch(n)
+		if(1)
+			assembly.detail_color = get_pin_data(IC_INPUT, 1)
+			assembly.update_icon()
+
+		else
+			set_pin_data(IC_OUTPUT, 1, assembly.detail_color)
+			push_data()
+
+	activate_pin(3)

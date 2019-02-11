@@ -1,4 +1,0 @@
-author: "HonkBot"
-delete-after: True
-changes: 
-  - bugfix: "Alt-Clicking open the Escape Pods safes will no longer ignore the alert level."

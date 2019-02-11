@@ -1,7 +1,0 @@
-author: "HideAndSeekLOGIC"
-delete-after: True
-changes: 
-  - balance: "NPC slimes can't eat anything that isn't conscious anymore"
-  - bugfix: "fixed slimes eating half-eaten monkeys instead of healthy monkeys"
-  - code_imp: "modularised the most intense form of xenobiology"
-  - admin: "added logs for the most intense form of xenobiology to show when and where a facehugger was genderchanged and by whom"
