@@ -35,8 +35,8 @@
 #define VOID		/datum/mutation/human/void
 #define STRONG    	/datum/mutation/human/strong
 #define FIRESWEAT	/datum/mutation/human/fire
-<<<<<<< HEAD
-=======
+
+
 #define INSULATED	/datum/mutation/human/insulated
 #define SHOCKTOUCH	/datum/mutation/human/shock
 #define OLFACTION	/datum/mutation/human/olfaction
@@ -44,7 +44,7 @@
 #define GELADIKINESIS		/datum/mutation/human/geladikinesis
 #define CRYOKINESIS /datum/mutation/human/cryokinesis
 
->>>>>>> 1cadfc9... Branches Syndicate Bundle into A and B Categories, adds Mr Freeze Bundle (#42662)
+
 
 #define UI_CHANGED "ui changed"
 #define UE_CHANGED "ue changed"
