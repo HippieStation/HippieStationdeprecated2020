@@ -64,8 +64,8 @@
 		if(light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD)
 			H.visible_message("<span class='danger'>[H] dances in the shadows, evading [P]!</span>")
 			playsound(T, "bullet_miss", 75, 1)
-			return -1
-	return 0
+			return BULLET_ACT_FORCE_PIERCE
+	return BULLET_ACT_HIT
 
 /datum/species/shadow/nightmare/check_roundstart_eligible()
 	return FALSE
@@ -143,6 +143,7 @@
 		respawn_progress = 0
 		return
 	var/turf/T = get_turf(owner)
+
 	if(istype(T))
 		var/light_amount = T.get_lumcount()
 		if(light_amount < SHADOW_SPECIES_LIGHT_THRESHOLD)
@@ -171,12 +172,13 @@
 	armour_penetration = 35
 	lefthand_file = 'icons/mob/inhands/antag/changeling_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/antag/changeling_righthand.dmi'
-	item_flags = ABSTRACT | NODROP | DROPDEL
+	item_flags = ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
 	sharpness = IS_SHARP
 
 /obj/item/light_eater/Initialize()
 	. = ..()
+	add_trait(TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	AddComponent(/datum/component/butchering, 80, 70)
 
 /obj/item/light_eater/afterattack(atom/movable/AM, mob/user, proximity)
@@ -187,6 +189,9 @@
 		return
 	if(isliving(AM))
 		var/mob/living/L = AM
+		if(isethereal(AM))
+			AM.emp_act(EMP_LIGHT)
+
 		if(iscyborg(AM))
 			var/mob/living/silicon/robot/borg = AM
 			if(!borg.lamp_cooldown)

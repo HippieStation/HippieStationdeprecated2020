@@ -60,7 +60,7 @@
 
 /datum/emote/living/cough/can_run_emote(mob/user, status_check = TRUE)
 	. = ..()
-	if(user.reagents && (user.reagents.get_reagent("menthol") || user.reagents.get_reagent("peppermint_patty")))
+	if(user.has_trait(TRAIT_SOOTHED_THROAT))
 		return FALSE
 
 /datum/emote/living/dance
@@ -92,7 +92,7 @@
 			var/mob/living/L = user
 			if(!L.can_speak_vocal() || L.oxyloss >= 50)
 				return //stop the sound if oxyloss too high/cant speak
-		playsound(user, user.deathsound, 80, 1, 1)
+		playsound(user, user.deathsound, 200, TRUE, TRUE)
 
 /datum/emote/living/drool
 	key = "drool"
@@ -413,7 +413,7 @@
 		. = FALSE
 
 /datum/emote/living/custom/run_emote(mob/user, params, type_override = null)
-	if(!is_banned_from(user.ckey, "emote"))
+	if(is_banned_from(user.ckey, "Emote"))
 		to_chat(user, "You cannot send custom emotes (banned).")
 		return FALSE
 	else if(QDELETED(user))

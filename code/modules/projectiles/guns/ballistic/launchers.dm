@@ -10,6 +10,7 @@
 	fire_sound = 'sound/weapons/grenadelaunch.ogg'
 	w_class = WEIGHT_CLASS_NORMAL
 	pin = /obj/item/firing_pin/implant/pindicate
+	bolt_type = BOLT_TYPE_NO_BOLT
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/unrestricted
 	pin = /obj/item/firing_pin
@@ -45,35 +46,6 @@
 	..()
 	icon_state = "[initial(icon_state)][magazine ? "loaded" : ""]"
 
-/obj/item/gun/ballistic/automatic/speargun
-	name = "kinetic speargun"
-	desc = "A weapon favored by carp hunters. Fires specialized spears using kinetic energy."
-	icon_state = "speargun"
-	item_state = "speargun"
-	w_class = WEIGHT_CLASS_BULKY
-	force = 10
-	can_suppress = FALSE
-	mag_type = /obj/item/ammo_box/magazine/internal/speargun
-	fire_sound = 'sound/weapons/grenadelaunch.ogg'
-	burst_size = 1
-	fire_delay = 0
-	select = 0
-	actions_types = list()
-	casing_ejector = FALSE
-
-/obj/item/gun/ballistic/automatic/speargun/update_icon()
-	return
-
-/obj/item/gun/ballistic/automatic/speargun/attack_self()
-	return
-
-/obj/item/gun/ballistic/automatic/speargun/attackby(obj/item/A, mob/user, params)
-	var/num_loaded = magazine.attackby(A, user, params, 1)
-	if(num_loaded)
-		to_chat(user, "<span class='notice'>You load [num_loaded] spear\s into \the [src].</span>")
-		update_icon()
-		chamber_round()
-
 /obj/item/gun/ballistic/rocketlauncher
 	name = "rocket propelled grenade launcher"
 	desc = "A reusable rocket propelled grenade launcher."
@@ -88,7 +60,9 @@
 	fire_delay = 0
 	casing_ejector = FALSE
 	weapon_weight = WEAPON_HEAVY
+	bolt_type = BOLT_TYPE_NO_BOLT
 	magazine_wording = "rocket"
+	empty_indicator = TRUE
 
 /obj/item/gun/ballistic/rocketlauncher/handle_atom_del(atom/A)
 	if(A == chambered)
@@ -167,4 +141,3 @@
 
 
 
-	

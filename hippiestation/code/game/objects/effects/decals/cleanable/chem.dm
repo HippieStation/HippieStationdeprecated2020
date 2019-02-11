@@ -5,6 +5,7 @@ GLOBAL_LIST_EMPTY(chempiles)
 	icon = 'hippiestation/icons/effects/32x32.dmi'
 	icon_state = "chempile"
 	mergeable_decal = FALSE
+	resistance_flags = ACID_PROOF | FIRE_PROOF
 
 /obj/effect/decal/cleanable/chempile/examine(mob/user)
 	..()
@@ -29,7 +30,7 @@ GLOBAL_LIST_EMPTY(chempiles)
 	GLOB.chempiles += src
 	if(reagents && reagents.total_volume)
 		if(reagents.total_volume < 5)
-			reagents.set_reacting(FALSE)
+			ENABLE_BITFIELD(reagents, NO_REACT)
 	.=..()
 
 /obj/effect/decal/cleanable/chempile/Destroy()

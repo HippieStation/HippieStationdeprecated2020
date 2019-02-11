@@ -13,17 +13,17 @@
 		if(prob(min(33, reac_volume)))
 			M.randmuti()
 			if(prob(98))
-				M.randmutb()
+				M.easy_randmut(NEGATIVE + MINOR_NEGATIVE)
 			else
-				M.randmutvg()
+				M.easy_randmut(POSITIVE)
 			M.updateappearance()
 			M.domutcheck()
 	else
 		M.randmuti()
 		if(prob(98))
-			M.randmutb()
+			M.easy_randmut(NEGATIVE + MINOR_NEGATIVE)
 		else
-			M.randmutvg()
+			M.easy_randmut(POSITIVE)
 		M.updateappearance()
 		M.domutcheck()
 	return TRUE

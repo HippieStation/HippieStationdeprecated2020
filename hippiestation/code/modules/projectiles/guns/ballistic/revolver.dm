@@ -7,7 +7,7 @@
 	pickup_sound = 'hippiestation/sound/weapons/mysterious_out.ogg'
 	dropped_sound = 'hippiestation/sound/weapons/mysterious_in.ogg'
 
-/obj/item/gun/ballistic/revolver/doublebarrel
+/obj/item/gun/ballistic/shotgun/doublebarrel
 	fire_sound = 'hippiestation/sound/weapons/shotgun_shoot.ogg'
 
 /obj/item/gun/ballistic/revolver/detective/try_play_interact_sound(mob/user)

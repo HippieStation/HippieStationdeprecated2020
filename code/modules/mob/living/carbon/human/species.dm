@@ -38,13 +38,17 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/coldmod = 1		// multiplier for cold damage
 	var/heatmod = 1		// multiplier for heat damage
 	var/stunmod = 1		// multiplier for stun duration
+	var/attack_type = BRUTE //Type of damage attack does
 	var/punchdamagelow = 0       //lowest possible punch damage
 	var/punchdamagehigh = 9      //highest possible punch damage
 	var/punchstunthreshold = 9//damage at which punches from this race will stun //yes it should be to the attacked race but it's not useful that way even if it's logical
 	var/siemens_coeff = 1 //base electrocution coefficient
 	var/damage_overlay_type = "human" //what kind of damage overlays (if any) appear on our species when wounded?
 	var/fixed_mut_color = "" //to use MUTCOLOR with a fixed color that's independent of dna.feature["mcolor"]
+	var/inert_mutation 	= DWARFISM //special mutation that can be found in the genepool. Dont leave empty or changing species will be a headache
 	var/deathsound //used to set the mobs deathsound on species change
+	var/list/special_step_sounds //Sounds to override barefeet walkng
+	var/grab_sound //Special sound for grabbing
 
 	// species-only traits. Can be found in DNA.dm
 	var/list/species_traits = list()
@@ -72,7 +76,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/obj/item/organ/liver/mutantliver
 	var/obj/item/organ/stomach/mutantstomach
 	var/override_float = FALSE
-
 ///////////
 // PROCS //
 ///////////
@@ -244,6 +247,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 /datum/species/proc/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	// Drop the items the new species can't wear
+	if((AGENDER in species_traits))
+		C.gender = PLURAL
 	for(var/slot_id in no_equip)
 		var/obj/item/thing = C.get_item_by_slot(slot_id)
 		if(thing && (!thing.species_exception || !is_type_in_list(src,thing.species_exception)))
@@ -271,7 +276,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 	if(mutanthands)
 		// Drop items in hands
-		// If you're lucky enough to have a NODROP_1 item, then it stays.
+		// If you're lucky enough to have a TRAIT_NODROP item, then it stays.
 		for(var/V in C.held_items)
 			var/obj/item/I = V
 			if(istype(I))
@@ -298,6 +303,15 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		C.Digitigrade_Leg_Swap(TRUE)
 	for(var/X in inherent_traits)
 		C.remove_trait(X, SPECIES_TRAIT)
+
+	//If their inert mutation is not the same, swap it out
+	if((inert_mutation != new_species.inert_mutation) && LAZYLEN(C.dna.mutation_index) && (inert_mutation in C.dna.mutation_index))
+		C.dna.remove_mutation(inert_mutation)
+		//keep it at the right spot, so we can't have people taking shortcuts
+		var/location = C.dna.mutation_index.Find(inert_mutation)
+		C.dna.mutation_index[location] = new_species.inert_mutation
+		C.dna.mutation_index[new_species.inert_mutation] = create_sequence(new_species.inert_mutation)
+
 	C.remove_movespeed_modifier(MOVESPEED_ID_SPECIES)
 
 	SEND_SIGNAL(C, COMSIG_SPECIES_LOSS, src)
@@ -639,7 +653,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					S = GLOB.moth_wings_list[H.dna.features["moth_wings"]]
 				if("caps")
 					S = GLOB.caps_list[H.dna.features["caps"]]
-				else // hippie start -- our species mutant bodyparts such as ipc screen	
+				else // hippie start -- our species mutant bodyparts such as ipc screen
 					S = hippie_mutant_bodyparts(bodypart, H) // hippie end
 			if(!S || S.icon_state == "none")
 				continue
@@ -844,7 +858,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				return FALSE
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_L_STORE)
-			if(I.item_flags & NODROP) //Pockets aren't visible, so you can't move NODROP_1 items into them.
+			if(I.has_trait(TRAIT_NODROP)) //Pockets aren't visible, so you can't move TRAIT_NODROP items into them.
 				return FALSE
 			if(H.l_store)
 				return FALSE
@@ -860,7 +874,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if( I.w_class <= WEIGHT_CLASS_SMALL || (I.slot_flags & ITEM_SLOT_POCKET) )
 				return TRUE
 		if(SLOT_R_STORE)
-			if(I.item_flags & NODROP)
+			if(I.has_trait(TRAIT_NODROP))
 				return FALSE
 			if(H.r_store)
 				return FALSE
@@ -877,7 +891,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				return TRUE
 			return FALSE
 		if(SLOT_S_STORE)
-			if(I.item_flags & NODROP)
+			if(I.has_trait(TRAIT_NODROP))
 				return FALSE
 			if(H.s_store)
 				return FALSE
@@ -953,6 +967,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	////////
 
 /datum/species/proc/handle_digestion(mob/living/carbon/human/H)
+	if(has_trait(TRAIT_NOHUNGER))
+		return //hunger is for BABIES
 
 	//The fucking TRAIT_FAT mutation is the dumbest shit ever. It makes the code so difficult to work with
 	if(H.has_trait(TRAIT_FAT))//I share your pain, past coder.
@@ -984,7 +1000,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				H.Jitter(5)
 			hunger_rate = 3 * HUNGER_FACTOR
 		hunger_rate *= H.physiology.hunger_mod
-		H.nutrition = max(0, H.nutrition - hunger_rate)
+		H.adjust_nutrition(-hunger_rate)
 
 
 	if (H.nutrition > NUTRITION_LEVEL_FULL)
@@ -1043,7 +1059,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(radiation > RAD_MOB_MUTATE)
 		if(prob(1))
 			to_chat(H, "<span class='danger'>You mutate!</span>")
-			H.randmutb()
+			H.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
 			H.emote("gasp")
 			H.domutcheck()
 
@@ -1089,9 +1105,14 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			else
 				. += (health_deficiency / 25)
 		if(CONFIG_GET(flag/disable_human_mood))
-			var/hungry = (500 - H.nutrition) / 5 //So overeat would be 100 and default level would be 80
-			if((hungry >= 70) && !flight) //Being hungry will still allow you to use a flightsuit/wings.
-				. += hungry / 50
+			if(!H.has_trait(TRAIT_NOHUNGER))
+				var/hungry = (500 - H.nutrition) / 5 //So overeat would be 100 and default level would be 80
+				if((hungry >= 70) && !flight) //Being hungry will still allow you to use a flightsuit/wings.
+					. += hungry / 50
+			else if(isethereal(H))
+				var/datum/species/ethereal/E = H.dna.species
+				if(E.ethereal_charge <= ETHEREAL_CHARGE_NORMAL)
+					. += 1.5 * (1 - E.ethereal_charge / 100)
 
 		//Moving in high gravity is very slow (Flying too)
 		if(gravity > STANDARD_GRAVITY)
@@ -1112,9 +1133,24 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 // ATTACK PROCS //
 //////////////////
 
+/datum/species/proc/spec_updatehealth(mob/living/carbon/human/H)
+	return
+
+/datum/species/proc/spec_fully_heal(mob/living/carbon/human/H)
+	return
+
+/datum/species/proc/spec_emp_act(mob/living/carbon/human/H, severity)
+	return
+
+/datum/species/proc/spec_emag_act(mob/living/carbon/human/H, mob/user)
+	return
+
+/datum/species/proc/spec_electrocute_act(mob/living/carbon/human/H, shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
+	return
+
 /datum/species/proc/help(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 // hippie start -- martial arts check because this was never implemented. sorry not sorry
-	if(attacker_style && attacker_style.help_act(user,target))	
+	if(attacker_style && attacker_style.help_act(user,target))
 		return 1
 // hippie end
 	if(!((target.health < 0 || target.has_trait(TRAIT_FAKEDEATH)) && !(target.mobility_flags & MOBILITY_STAND)))
@@ -1143,10 +1179,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		target.grabbedby(user)
 		return 1
 
-
-
-
-
 /datum/species/proc/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 	if(user.has_trait(TRAIT_PACIFISM))
 		to_chat(user, "<span class='warning'>You don't want to harm [target]!</span>")
@@ -1154,6 +1186,31 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(target.check_block())
 		target.visible_message("<span class='warning'>[target] blocks [user]'s attack!</span>")
 		return FALSE
+	/* hippie edit -- adds monk martial stuff */
+	if(target.mind && istype(target.mind.martial_art, /datum/martial_art/monk))
+		var/datum/martial_art/monk/M = target.mind.martial_art
+		var/defense_roll = M.defense_roll(0)
+		if(defense_roll)
+			var/damage = rand(user.dna.species.punchdamagelow, user.dna.species.punchdamagehigh)
+			playsound(target.loc, user.dna.species.attack_sound, 25, 1, -1)
+			if(defense_roll == 2)
+				damage *= 2
+				target.visible_message("<span class='danger'>[user] has critically punched [target]!</span>", \
+				"<span class='userdanger'>[user] has critically punched [target]!</span>", null, COMBAT_MESSAGE_RANGE)
+				log_combat(user, target, "critically punched")
+			else
+				target.visible_message("<span class='danger'>[user] has punched [target]!</span>", \
+				"<span class='userdanger'>[user] has punched [target]!</span>", null, COMBAT_MESSAGE_RANGE)
+				log_combat(user, target, "punched")
+			target.apply_damage(damage, BRUTE)
+			return TRUE
+		else
+			playsound(target.loc, user.dna.species.miss_sound, 25, 1, -1)
+			target.visible_message("<span class='warning'>[user] has attempted to punch [target], but they dodged it!</span>", \
+				"<span class='userdanger'>[user] has attempted to punch [target], but they dodged it!</span>", null, COMBAT_MESSAGE_RANGE)
+			log_combat(user, target, "attempted to punch")
+		return FALSE
+	/* hippie end -- adds monk martial stuff */
 	if(attacker_style && attacker_style.harm_act(user,target))
 		return TRUE
 	else
@@ -1181,8 +1238,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			target.visible_message("<span class='danger'>[user] has attempted to [atk_verb] [target]!</span>",\
 			"<span class='userdanger'>[user] has attempted to [atk_verb] [target]!</span>", null, COMBAT_MESSAGE_RANGE)
 			return FALSE
-			
-		punchouttooth(target,user,affecting,rand(0,9)) // hippie -- teethcode
+
+		punchouttooth(target,user,rand(0,9),affecting) // hippie -- teethcode
 
 		var/armor_block = target.run_armor_check(affecting, "melee")
 
@@ -1193,10 +1250,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 		target.lastattacker = user.real_name
 		target.lastattackerckey = user.ckey
+		user.dna.species.spec_unarmedattacked(user, target)
 
 		if(user.limb_destroyer)
 			target.dismembering_strike(user, affecting.body_zone)
-		target.apply_damage(damage, BRUTE, affecting, armor_block)
+		target.apply_damage(damage, attack_type, affecting, armor_block)
 		log_combat(user, target, "punched")
 		if((target.stat != DEAD) && damage >= user.dna.species.punchstunthreshold)
 			target.visible_message("<span class='danger'>[user] has knocked  [target] down!</span>", \
@@ -1205,6 +1263,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			target.forcesay(GLOB.hit_appends)
 		else if(!(target.mobility_flags & MOBILITY_STAND))
 			target.forcesay(GLOB.hit_appends)
+
+/datum/species/proc/spec_unarmedattacked(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	return
 
 /datum/species/proc/disarm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 	if(target.check_block())
@@ -1286,6 +1347,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 /datum/species/proc/spec_attacked_by(obj/item/I, mob/living/user, obj/item/bodypart/affecting, intent, mob/living/carbon/human/H)
 	// Allows you to put in item-specific reactions based on species
+	if(H.checkbuttinsert(I, user)) //hippie edit -- adds butt check
+		return FALSE //hippie edit -- adds butt check
 	if(user != H)
 		if(H.check_shields(I, I.force, "the [I.name]", MELEE_ATTACK, I.armour_penetration))
 			return 0
@@ -1304,6 +1367,31 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	armor_block = min(90,armor_block) //cap damage reduction at 90%
 	var/Iforce = I.force //to avoid runtimes on the forcesay checks at the bottom. Some items might delete themselves if you drop them. (stunning yourself, ninja swords)
 
+	/* hippie edit -- adds monk stuff */
+	if(H.mind && H.mind.martial_art && istype(H.mind.martial_art, /datum/martial_art/monk))
+		var/datum/martial_art/monk/M = H.mind.martial_art
+		var/defense_roll = M.defense_roll(0)
+		if(defense_roll)
+			var/dmg_to_deal = I.force
+			if(defense_roll == 2)
+				dmg_to_deal *= 2
+				H.send_item_attack_message(I, user, critical = TRUE)
+			else
+				H.send_item_attack_message(I, user)
+			apply_damage(dmg_to_deal, I.damtype, blocked = armor_block)
+			if(I.damtype == BRUTE)
+				if(prob(33))
+					I.add_mob_blood(src)
+					var/turf/location = get_turf(src)
+					H.add_splatter_floor(location)
+					if(get_dist(user, src) <= 1)
+						user.add_mob_blood(src)
+			return TRUE
+		else
+			H.visible_message("<span class='danger'>[H] dodges the [I]!</span>",\
+			"<span class='userdanger'>[H] dodges the [I]!</span>", null, COMBAT_MESSAGE_RANGE)
+			return FALSE
+	/* hippie end -- adds monk stuff */
 	var/weakness = H.check_weakness(I, user)
 	apply_damage(I.force * weakness, I.damtype, def_zone, armor_block, H)
 
@@ -1318,12 +1406,12 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(affecting.dismember(I.damtype))
 			I.add_mob_blood(H)
 			playsound(get_turf(H), I.get_dismember_sound(), 80, 1)
-			
-	// hippie start -- If we're hit then throw off some hats	
-	if (prob(25))	
-		var/list/L = list()	
-		LAZYADD(L, get_dir(user, H))	
-		H.throw_hats(1 + rand(0, FLOOR(I.force / 5, 1)), L)	
+
+	// hippie start -- If we're hit then throw off some hats
+	if (prob(25))
+		var/list/L = list()
+		LAZYADD(L, get_dir(user, H))
+		H.throw_hats(1 + rand(0, FLOOR(I.force / 5, 1)), L)
 	// hippie end
 
 	var/bloody = 0
@@ -1333,10 +1421,22 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if(prob(I.force * 2))	//blood spatter!
 				bloody = 1
 				var/turf/location = H.loc
-				if(istype(location))
-					H.add_splatter_floor(location)
+				if(prob(50))	//hippie start -- add blood splattering to walls and stuff
+					var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(H.loc)
+					B.add_blood_DNA(H.return_blood_DNA())
+					B.blood_source = H
+					playsound(location, pick('hippiestation/sound/effects/splash.ogg'), 40, TRUE, -1)
+					var/dist = rand(1,3)
+					var/turf/targ = get_ranged_target_turf(H, get_dir(user, H), dist)
+					B.GoTo(targ, dist)
+				else
+					if(istype(location))
+						H.add_splatter_floor(location) //hippie end -- blood splattering
 				if(get_dist(user, H) <= 1)	//people with TK won't get smeared with blood
 					user.add_mob_blood(H)
+					if(ishuman(user))
+						var/mob/living/carbon/human/dirtyboy = user
+						dirtyboy.adjust_hygiene(-10)
 
 		switch(hit_area)
 			if(BODY_ZONE_HEAD)
@@ -1413,6 +1513,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					H.update_damage_overlays()
 			else//no bodypart, we deal damage with a more general method.
 				H.adjustBruteLoss(damage * hit_percent * brutemod * H.physiology.brute_mod)
+			/* hippie start -- play hurt sound */
+			queue_hurt_sound(H)
+			/* hippie end */
 		if(BURN)
 			H.damageoverlaytemp = 20
 			if(BP)
@@ -1420,6 +1523,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					H.update_damage_overlays()
 			else
 				H.adjustFireLoss(damage * hit_percent * burnmod * H.physiology.burn_mod)
+			/* hippie start -- play hurt sound */
+			queue_hurt_sound(H)
+			/* hippie end */
 		if(TOX)
 			H.adjustToxLoss(damage * hit_percent * H.physiology.tox_mod)
 		if(OXY)
@@ -1563,7 +1669,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(H.on_fire)
 		//the fire tries to damage the exposed clothes and items
 		var/list/burning_items = list()
-		var/list/obscured = H.check_obscured_slots()
+		var/list/obscured = H.check_obscured_slots(TRUE)
 		//HEAD//
 
 		if(H.glasses && !(SLOT_GLASSES in obscured))

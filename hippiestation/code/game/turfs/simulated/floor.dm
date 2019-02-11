@@ -17,3 +17,48 @@
 		if(!F.use(1))
 			return
 	..()
+
+/turf/open/floor/plasteel/logo
+	icon = 'hippiestation/icons/turf/floors.dmi'
+
+/turf/open/floor/plasteel/logo/l1
+	icon_state = "L1"
+
+/turf/open/floor/plasteel/logo/l2
+	icon_state = "L2"
+
+/turf/open/floor/plasteel/logo/l3
+	icon_state = "L3"
+
+/turf/open/floor/plasteel/logo/l4
+	icon_state = "L4"
+
+/turf/open/floor/plasteel/logo/l5
+	icon_state = "L5"
+
+/turf/open/floor/plasteel/logo/l6
+	icon_state = "L6"
+
+/turf/open/floor/plasteel/logo/l7
+	icon_state = "L7"
+
+/turf/open/floor/plasteel/logo/l8
+	icon_state = "L8"
+
+/turf/open/floor/plasteel/logo/l9
+	icon_state = "L9"
+
+/turf/open/floor/plasteel/logo/l10
+	icon_state = "L10"
+
+/turf/open/floor/plasteel/logo/l11
+	icon_state = "L11"
+
+/turf/open/floor/plasteel/logo/l12
+	icon_state = "L12"
+
+/turf/open/floor/plasteel/logo/l13
+	icon_state = "L13"
+
+/turf/open/floor/plasteel/logo/l14
+	icon_state = "L14"

@@ -485,9 +485,13 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 
 /obj/item/clothing/mask/fakemoustache/italian/cursed //for those cheeky aliens who think they can circumvent hair
 	flags_1 = MASKINTERNALS
-	item_flags = NODROP | DROPDEL
+	item_flags = DROPDEL
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	desc = "It's made out of your own hair, now."
+
+/obj/item/clothing/mask/fakemoustache/italian/cursed/Initialize()
+	. = ..()
+	add_trait(TRAIT_NODROP, STICKY_MOUSTACHE_TRAIT)
 
 //Spells and Status Effects
 //Horse Stance Spell
