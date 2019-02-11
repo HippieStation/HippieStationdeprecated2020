@@ -39,6 +39,8 @@
 	
 
 /obj/item/clothing/Initialize()
+	if(CHECK_BITFIELD(clothing_flags, VOICEBOX_TOGGLABLE))
+		actions_types += /datum/action/item_action/toggle_voice_box
 	. = ..()
 	if(ispath(pocket_storage_component_path))
 		LoadComponent(pocket_storage_component_path)
@@ -109,6 +111,7 @@ hippie end */
 
 /obj/item/clothing/examine(mob/user)
 	..()
+	clothing_resistance_flag_examine_message(user)
 	if(damaged_clothes)
 		to_chat(user,  "<span class='warning'>It looks damaged!</span>")
 	GET_COMPONENT(pockets, /datum/component/storage)

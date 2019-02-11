@@ -8,10 +8,10 @@
 	speed = 0.8 //as before
 
 /obj/item/projectile/energy
-	speed = 0.2
-
-/obj/item/projectile/energy/electrode
 	speed = 0.8
+
+/obj/item/projectile/beam/disabler
+	speed = 0.7
 
 /obj/item/projectile/beam
 	speed = 0.2
