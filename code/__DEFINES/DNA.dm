@@ -36,8 +36,6 @@
 #define VOID		/datum/mutation/human/void
 #define STRONG    	/datum/mutation/human/strong
 #define FIRESWEAT	/datum/mutation/human/fire
-<<<<<<< HEAD
-=======
 #define INSULATED	/datum/mutation/human/insulated
 #define SHOCKTOUCH	/datum/mutation/human/shock
 #define OLFACTION	/datum/mutation/human/olfaction
@@ -48,7 +46,6 @@
 #define YELLING		/datum/mutation/human/yelling
 #define GELADIKINESIS		/datum/mutation/human/geladikinesis
 #define CRYOKINESIS /datum/mutation/human/cryokinesis
->>>>>>> cefe4a6... [Ready] Adds 5 new negative/minor negative mutations, mutation conflict system (#42524)
 
 #define UI_CHANGED "ui changed"
 #define UE_CHANGED "ue changed"
