@@ -466,7 +466,6 @@
 		return TRUE
 	return FALSE
 
-=======
 /obj/item/dnainjector
 	name = "\improper DNA injector"
 	desc = "This injects the person with DNA."
