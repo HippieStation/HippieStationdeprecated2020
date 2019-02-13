@@ -13837,10 +13837,9 @@
 "aHT" = (
 /obj/machinery/computer/pod/old{
 	density = 0;
-	icon = 'icons/obj/airlock_machines.dmi';
 	icon_state = "airlock_control_standby";
 	id = "chapelgun";
-	name = "Mass Driver Controller";
+	name = "\improper Mass Driver Controller";
 	pixel_x = 24
 	},
 /turf/open/floor/plasteel/dark,
@@ -16115,7 +16114,7 @@
 /area/crew_quarters/bar)
 "aNp" = (
 /obj/item/reagent_containers/food/drinks/shaker,
-/obj/item/gun/ballistic/revolver/doublebarrel,
+/obj/item/gun/ballistic/shotgun/doublebarrel,
 /obj/structure/table/wood,
 /obj/item/stack/spacecash/c10,
 /obj/item/stack/spacecash/c100,

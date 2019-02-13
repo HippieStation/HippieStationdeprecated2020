@@ -191,7 +191,8 @@
 
 		HTML += "<a href='?src=[REF(src)];component=[REF(circuit_pins)]'>Refresh</a> | \
 		<a href='?src=[REF(src)];component=[REF(circuit_pins)];rename_component=1'>Rename</a> | \
-		<a href='?src=[REF(src)];component=[REF(circuit_pins)];scan=1'>Copy Ref</a>"
+		<a href='?src=[REF(src)];component=[REF(circuit_pins)];scan=1'>Copy Ref</a> | \
+		<a href='?src=[REF(src)];component=[REF(circuit_pins)];interact=1'>Interact</a>"
 		if(circuit_pins.removable)
 			HTML += " | <a href='?src=[REF(src)];component=[REF(circuit_pins)];remove=1'>Remove</a>"
 		HTML += "</div><br>"
@@ -358,6 +359,13 @@
 			component.rename_component(usr)
 			if(component.assembly)
 				component.assembly.add_allowed_scanner(usr.ckey)
+		
+		if(href_list["interact"])
+			var/obj/item/I = usr.get_active_held_item()
+			if(istype(I))
+				I.melee_attack_chain(usr, component)
+			else
+				component.attack_hand(usr)
 
 		// Adjust the position
 		if(href_list["change_pos"])
