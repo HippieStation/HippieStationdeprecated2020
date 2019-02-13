@@ -29,10 +29,14 @@ GLOBAL_LIST_INIT(huds, list(
 	ANTAG_HUD_BROTHER = new/datum/atom_hud/antag/hidden(),
 	ANTAG_HUD_HIVE = new/datum/atom_hud/antag/hidden(),
 	ANTAG_HUD_OBSESSED = new/datum/atom_hud/antag/hidden(),
+<<<<<<< HEAD
 
 	ANTAG_HUD_VAMPIRE = new/datum/atom_hud/antag/hidden(),		// hippie -- adds vampire hud
 	ANTAG_HUD_INFILTRATOR = new/datum/atom_hud/antag()			// hippie -- adds infiltrator hud
 	))
+=======
+	ANTAG_HUD_HIVEAWAKE = new/datum/atom_hud/antag()	))
+>>>>>>> 14fa604... Assimilation 2.0: Not quite a big enough PR to be worthy of the 2.0 title but almost (#42607)
 
 /datum/atom_hud
 	var/list/atom/hudatoms = list() //list of all atoms which display this hud
