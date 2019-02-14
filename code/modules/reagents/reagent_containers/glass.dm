@@ -205,12 +205,12 @@
 	name = "bluespace beaker"
 	desc = "A bluespace beaker, powered by experimental bluespace technology \
 		and Element Cuban combined with the Compound Pete. Can hold up to \
-		150 units."
+		300 units." //hippie edit -- we don't like nerfs
 	icon_state = "beakerbluespace"
 	materials = list(MAT_GLASS=3000)
-	volume = 300
+	volume = 300 //hippie edit -- we don't like nerfs
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,20,25,30,50,100,300)
+	possible_transfer_amounts = list(5,10,15,20,25,30,50,100,300) //hippie edit -- we don't like nerfs
 
 /obj/item/reagent_containers/glass/beaker/cryoxadone
 	list_reagents = list("cryoxadone" = 30)
