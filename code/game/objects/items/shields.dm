@@ -115,7 +115,7 @@
 
 /obj/item/shield/riot/tele
 	name = "telescopic shield"
-	desc = "An advanced riot shield made of lightweight materials that collapses for easy storage."
+	desc = "An advanced riot shield made of lightweight materials that collapses for easy storage. Alt-click to deploy." //hippie edit -- make tele riot shields expand via alt click
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "teleriot0"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
@@ -133,7 +133,7 @@
 		return ..()
 	return 0
 
-/obj/item/shield/riot/tele/attack_self(mob/living/user)
+/obj/item/shield/riot/tele/AltClick(mob/living/user) //hippie edit -- make tele riot shields expand via alt click
 	active = !active
 	icon_state = "teleriot[active]"
 	playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)
