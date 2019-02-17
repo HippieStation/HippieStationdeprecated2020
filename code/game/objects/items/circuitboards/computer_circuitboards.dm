@@ -87,6 +87,10 @@
 	name = "Station Alerts (Computer Board)"
 	build_path = /obj/machinery/computer/station_alert
 
+/obj/item/circuitboard/computer/stockexchange
+	name = "circuit board (Stock Exchange Console)"
+	build_path = /obj/machinery/computer/stockexchange
+
 /obj/item/circuitboard/computer/atmos_control
 	name = "Atmospheric Monitor (Computer Board)"
 	build_path = /obj/machinery/computer/atmos_control
