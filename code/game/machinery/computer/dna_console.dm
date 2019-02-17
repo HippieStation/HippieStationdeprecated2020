@@ -329,7 +329,10 @@
 			for(var/datum/mutation/human/HM in stored_mutations)
 				var/i = stored_mutations.Find(HM)
 				temp_html += "<tr><td><a href='?src=[REF(src)];task=inspectstorage;num=[i]'>[HM.name]</a></td>"
-				temp_html += "<td><a href='?src=[REF(src)];task=exportdiskmut;path=[HM.type]'>Export</a></td>"
+				if(diskette)
+					temp_html += "<td><a href='?src=[REF(src)];task=exportdiskmut;path=[HM.type]'>Export</a></td>"
+				else
+					temp_html += "<td><td><span class='linkOff'>Export</span></td>"
 				temp_html += "<td><a href='?src=[REF(src)];task=deletemut;num=[i]'>Delete</a></td>"
 				if(combine == HM.type)
 					temp_html += "<td><span class='linkOff'>Combine</span></td></tr>"
@@ -819,6 +822,14 @@
 		delayed_action = null //or make it stick + reset button ?
 
 /obj/machinery/computer/scan_consolenew/proc/get_valid_mutation(mutation)
+<<<<<<< HEAD
+=======
+	var/mob/living/carbon/C = get_viable_occupant()
+	if(C)
+		var/datum/mutation/human/HM = C.dna.get_mutation(mutation)
+		if(HM)
+			return HM
+>>>>>>> 1ef4363... fixes printing saved mutations (#42820)
 	for(var/datum/mutation/human/A in stored_mutations)
 		if(A.type == mutation)
 			return A
