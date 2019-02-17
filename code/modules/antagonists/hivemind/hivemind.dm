@@ -8,7 +8,16 @@
 	var/list/hivemembers = list()
 	var/hive_size = 0
 	var/threat_level = 0 // Part of what determines how strong the radar is, on a scale of 0 to 10
+<<<<<<< HEAD
 	var/static/datum/objective/hivemind/assimilate_common/common_assimilation_obj //Make it static since we want a common target for all the antags
+=======
+	var/track_bonus = 0 // Bonus time to your tracking abilities
+	var/size_mod = 0 // Bonus size for using reclaim
+	var/list/individual_track_bonus = list() // Bonus time to tracking individual targets
+	var/unlocked_one_mind = FALSE
+	var/datum/team/hivemind/active_one_mind
+	var/mutable_appearance/glow
+>>>>>>> eac0f3c... Assimilation runtime & bug fixes (#42769)
 
 	var/list/upgrade_tiers = list(
 		//Tier 1
@@ -48,6 +57,7 @@
 			if(hive_size > 0)
 				to_chat(owner, "<span class='assimilator'>We have unlocked [the_spell.name].</span><span class='bold'> [the_spell.desc]</span>")
 
+<<<<<<< HEAD
 /datum/antagonist/hivemind/proc/add_to_hive(var/mob/living/carbon/human/H)
 	var/user_warning = "<span class='userdanger'>We have detected an enemy hivemind using our physical form as a vessel and have begun ejecting their mind! They will be alerted of our disappearance once we succeed!</span>"
 	for(var/datum/antagonist/hivemind/enemy_hive in GLOB.antagonists)
@@ -57,12 +67,70 @@
 			addtimer(CALLBACK(src, .proc/handle_ejection, H), eject_time)
 	hivemembers |= H
 	calc_size()
+=======
+	if(!unlocked_one_mind && hive_size >= 15)
+		var/lead = TRUE
+		for(var/datum/antagonist/hivemind/enemy in GLOB.antagonists)
+			if(enemy == src)
+				continue
+			if(!enemy.active_one_mind && enemy.hive_size <= hive_size + size_mod - 20)
+				continue
+			lead = FALSE
+			break
+		if(lead)
+			unlocked_one_mind = TRUE
+			owner.AddSpell(new/obj/effect/proc_holder/spell/self/one_mind)
+			to_chat(owner, "<big><span class='assimilator'>Our true power, the One Mind, is finally within reach.</span></big>")
+
+/datum/antagonist/hivemind/proc/add_track_bonus(datum/antagonist/hivemind/enemy, bonus)
+	if(individual_track_bonus[enemy])
+		individual_track_bonus[enemy] = bonus
+	else
+		individual_track_bonus[enemy] += bonus
+
+/datum/antagonist/hivemind/proc/get_track_bonus(datum/antagonist/hivemind/enemy)
+	if(individual_track_bonus[enemy])
+		. = 0
+	else
+		. = individual_track_bonus[enemy]
+	. += (TRACKER_DEFAULT_TIME + track_bonus)
+>>>>>>> eac0f3c... Assimilation runtime & bug fixes (#42769)
 
 /datum/antagonist/hivemind/proc/remove_from_hive(var/mob/living/carbon/human/H)
 	hivemembers -= H
 	calc_size()
 
+<<<<<<< HEAD
 /datum/antagonist/hivemind/proc/handle_ejection(mob/living/carbon/human/H)
+=======
+	var/user_warning = "<span class='userdanger'>We have detected an enemy hivemind using our physical form as a vessel and have begun ejecting their mind! They will be alerted of our disappearance once we succeed!</span>"
+	if(C.is_real_hivehost())
+		var/eject_time = rand(1400,1600) //2.5 minutes +- 10 seconds
+		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, C, user_warning), rand(500,1300)) // If the host has assimilated an enemy hive host, alert the enemy before booting them from the hive after a short while
+		addtimer(CALLBACK(src, .proc/handle_ejection, C), eject_time)
+	else if(active_one_mind)
+		C.hive_awaken(final_form=active_one_mind)
+
+/datum/antagonist/hivemind/proc/is_carbon_member(mob/living/carbon/C)
+	if(!hivemembers || !C || !iscarbon(C))
+		return FALSE
+	var/datum/mind/M = C.mind
+	if(!M || !hivemembers.Find(M))
+		return FALSE
+	return TRUE
+
+/datum/antagonist/hivemind/proc/remove_from_hive(mob/living/carbon/C)
+	var/datum/mind/M = C.mind
+	if(M)
+		hivemembers -= M
+		calc_size()
+		if(active_one_mind)
+			var/datum/antagonist/hivevessel/V = C.is_wokevessel()
+			if(V)
+				M.remove_antag_datum(/datum/antagonist/hivevessel)
+
+/datum/antagonist/hivemind/proc/handle_ejection(mob/living/carbon/C)
+>>>>>>> eac0f3c... Assimilation runtime & bug fixes (#42769)
 	var/user_warning = "The enemy host has been ejected from our mind"
 
 	if(!H || !owner)
@@ -72,6 +140,7 @@
 	if(!H2)
 		return
 
+<<<<<<< HEAD
 	var/mob/living/real_H = H.get_real_hivehost()
 	var/mob/living/real_H2 = H2.get_real_hivehost()
 
@@ -82,6 +151,25 @@
 	if(is_real_hivehost(H2))
 		real_H.apply_status_effect(STATUS_EFFECT_HIVE_TRACKER, real_H2)
 		real_H2.apply_status_effect(STATUS_EFFECT_HIVE_RADAR)
+=======
+	var/mob/living/real_C = C.get_real_hivehost()
+	var/mob/living/real_C2 = C2.get_real_hivehost()
+	var/datum/antagonist/hivemind/hive_C
+	var/datum/antagonist/hivemind/hive_C2
+	if(real_C.mind)
+		hive_C = real_C.mind.has_antag_datum(/datum/antagonist/hivemind)
+	if(real_C2.mind)
+		hive_C2 = real_C2.mind.has_antag_datum(/datum/antagonist/hivemind)
+	if(!hive_C || !hive_C2)
+		return
+	if(C == real_C) //Mind control check
+		real_C2.apply_status_effect(STATUS_EFFECT_HIVE_TRACKER, real_C, hive_C.get_track_bonus(hive_C2))
+		real_C.apply_status_effect(STATUS_EFFECT_HIVE_RADAR)
+		to_chat(real_C, "<span class='assimilator'>We detect a surge of psionic energy from a far away vessel before they disappear from the hive. Whatever happened, there's a good chance they're after us now.</span>")
+	if(C2 == real_C2)
+		real_C.apply_status_effect(STATUS_EFFECT_HIVE_TRACKER, real_C2, hive_C2.get_track_bonus(hive_C))
+		real_C2.apply_status_effect(STATUS_EFFECT_HIVE_RADAR)
+>>>>>>> eac0f3c... Assimilation runtime & bug fixes (#42769)
 		user_warning += " and we've managed to pinpoint their location"
 
 	to_chat(H2, "<span class='userdanger'>[user_warning]!</span>")
@@ -91,8 +179,25 @@
 	calc_size()
 
 /datum/antagonist/hivemind/antag_panel_data()
-	return "Vessels Assimilated: [hive_size]"
+	return "Vessels Assimilated: [hive_size] (+[size_mod])"
 
+<<<<<<< HEAD
+=======
+/datum/antagonist/hivemind/proc/awaken()
+	if(!owner?.current)
+		return
+	var/mob/living/carbon/C = owner.current.get_real_hivehost()
+	if(!C)
+		return
+	owner.AddSpell(new/obj/effect/proc_holder/spell/self/hive_comms)
+	C.add_trait(TRAIT_STUNIMMUNE, HIVEMIND_ONE_MIND_TRAIT)
+	C.add_trait(TRAIT_SLEEPIMMUNE, HIVEMIND_ONE_MIND_TRAIT)
+	C.add_trait(TRAIT_VIRUSIMMUNE, HIVEMIND_ONE_MIND_TRAIT)
+	C.add_trait(TRAIT_NOLIMBDISABLE, HIVEMIND_ONE_MIND_TRAIT)
+	C.add_trait(TRAIT_NOHUNGER, HIVEMIND_ONE_MIND_TRAIT)
+	C.add_trait(TRAIT_NODISMEMBER, HIVEMIND_ONE_MIND_TRAIT)
+
+>>>>>>> eac0f3c... Assimilation runtime & bug fixes (#42769)
 /datum/antagonist/hivemind/on_gain()
 
 	owner.special_role = special_role

@@ -69,6 +69,11 @@
 						success = TRUE
 						hive.add_to_hive(target)
 						if(ignore_mindshield)
+<<<<<<< HEAD
+=======
+							to_chat(user, "<span class='warning'>We are briefly exhausted by the effort required by our enhanced assimilation abilities.</span>")
+							user.Immobilize(50)
+>>>>>>> eac0f3c... Assimilation runtime & bug fixes (#42769)
 							SEND_SIGNAL(target, COMSIG_NANITE_SET_VOLUME, 0)
 							for(var/obj/item/implant/mindshield/M in target.implants)
 								qdel(M)
@@ -257,6 +262,7 @@
 	var/mob/living/passenger/backseat //Storage for the mind controlled vessel
 	var/power = 100
 	var/time_initialized = 0
+	var/out_of_range = FALSE
 
 /obj/effect/proc_holder/spell/target_hive/hive_control/proc/release_control() //If the spell is active, force everybody into their original bodies if they exist, ghost them otherwise, delete the backseat
 	if(!active)
@@ -354,6 +360,11 @@
 			backseat.blind_eyes(power)
 			vessel.overlay_fullscreen("hive_mc", /obj/screen/fullscreen/hive_mc)
 			active = TRUE
+<<<<<<< HEAD
+=======
+			out_of_range = FALSE
+			starting_spot = get_turf(vessel)
+>>>>>>> eac0f3c... Assimilation runtime & bug fixes (#42769)
 			time_initialized = world.time
 			revert_cast()
 			to_chat(vessel, "<span class='assimilator'>We can sustain our control for a maximum of [round(power/10)] seconds.</span>")
@@ -386,8 +397,25 @@
 		else if(QDELETED(original_body) || original_body.stat == DEAD) //Return vessel to its body, either return or ghost the original
 			to_chat(vessel, "<span class='userdanger'>Our body has been destroyed, the hive cannot survive without its host!</span>")
 			release_control()
+<<<<<<< HEAD
+=======
+		else if(!out_of_range && get_dist(starting_spot, vessel) > 14)
+			out_of_range = TRUE
+			flash_color(vessel, flash_color="#800080", flash_time=10)
+			to_chat(vessel, "<span class='warning'>Our vessel has been moved too far away from the initial point of control, we will be disconnected if we go much further!</span>")
+			addtimer(CALLBACK(src, "range_check"), 30)
+		else if(get_dist(starting_spot, vessel) > 21)
+			release_control()
+>>>>>>> eac0f3c... Assimilation runtime & bug fixes (#42769)
 
 	..()
+
+/obj/effect/proc_holder/spell/target_hive/hive_control/proc/range_check()
+	if(!active)
+		return
+	if(get_dist(starting_spot, vessel) > 14)
+		release_control()
+	out_of_range = FALSE
 
 /obj/effect/proc_holder/spell/target_hive/hive_control/choose_targets(mob/user = usr)
 	if(!active)
@@ -651,6 +679,15 @@
 		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, user, "<span class='warning'>Our heightened power wears off, we are once again unable to assimilate mindshielded crew.</span>"), 300)
 	else
 		to_chat(user, "<span class='notice'>This is a bug. Error:HIVE5</span>")
+<<<<<<< HEAD
+=======
+		return
+	the_spell.ignore_mindshield = !active
+	to_chat(user, "<span class='notice'>We [active?"let our minds rest and cancel our crushing power.":"prepare to crush mindshielding technology!"]</span>")
+	active = !active
+	if(active)
+		revert_cast()
+>>>>>>> eac0f3c... Assimilation runtime & bug fixes (#42769)
 
 /obj/effect/proc_holder/spell/targeted/forcewall/hive
 	name = "Telekinetic Field"
@@ -688,3 +725,92 @@
 	pixel_x = 0
 	pixel_y = 0
 	invisibility = INVISIBILITY_MAXIMUM
+<<<<<<< HEAD
+=======
+
+/obj/effect/proc_holder/spell/self/one_mind
+	name = "One Mind"
+	desc = "Our true power... finally within reach."
+	panel = "Hivemind Abilities"
+	charge_type = "charges"
+	charge_max = 1
+	invocation_type = "none"
+	clothes_req = 0
+	human_req = 1
+	action_icon = 'icons/mob/actions/actions_hive.dmi'
+	action_background_icon_state = "bg_hive"
+	action_icon_state = "assim"
+	antimagic_allowed = TRUE
+
+/obj/effect/proc_holder/spell/self/one_mind/cast(mob/living/user = usr)
+	var/datum/antagonist/hivemind/hive = user.mind.has_antag_datum(/datum/antagonist/hivemind)
+	if(!hive)
+		to_chat(user, "<span class='notice'>This is a bug. Error:HIVE1</span>")
+		return
+	var/mob/living/boss = user.get_real_hivehost()
+	var/datum/objective/objective = new("Ensure the One Mind survives under the leadership of [boss.real_name]!")
+	var/datum/team/hivemind/one_mind_team = new /datum/team/hivemind(user.mind)
+	hive.active_one_mind = one_mind_team
+	one_mind_team.objectives += objective
+	for(var/datum/antagonist/hivevessel/vessel in GLOB.antagonists)
+		var/mob/living/carbon/C = vessel.owner?.current
+		if(C && hive.is_carbon_member(C))
+			vessel.one_mind = one_mind_team
+	for(var/datum/antagonist/hivemind/enemy in GLOB.antagonists)
+		if(enemy.owner)
+			enemy.owner.RemoveSpell(new/obj/effect/proc_holder/spell/self/one_mind)
+	sound_to_playing_players('sound/effects/one_mind.ogg')
+	hive.glow = mutable_appearance('icons/effects/hivemind.dmi', "awoken", -BODY_BEHIND_LAYER)
+	addtimer(CALLBACK(user, /atom/proc/add_overlay, hive.glow), 150)
+	addtimer(CALLBACK(hive, /datum/antagonist/hivemind/proc/awaken), 150)
+	addtimer(CALLBACK(GLOBAL_PROC, /proc/send_to_playing_players, "<span class='bigassimilator'>THE ONE MIND RISES</span>"), 150)
+	addtimer(CALLBACK(GLOBAL_PROC, /proc/sound_to_playing_players, 'sound/effects/magic.ogg'), 150)
+	for(var/datum/mind/M in hive.hivemembers)
+		var/mob/living/carbon/C = M.current
+		if(!C)
+			continue
+		if(is_hivehost(C))
+			continue
+		if(C.stat == DEAD)
+			continue
+		C.Jitter(15)
+		C.Unconscious(150)
+		to_chat(C, "<span class='boldwarning'>Something's wrong...</span>")
+		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, C, "<span class='boldwarning'>...your memories are becoming fuzzy.</span>"), 45)
+		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, C, "<span class='boldwarning'>You try to remember who you are...</span>"), 90)
+		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, C, "<span class='assimilator'>There is no you...</span>"), 110)
+		addtimer(CALLBACK(GLOBAL_PROC, /proc/to_chat, C, "<span class='bigassimilator'>...there is only us.</span>"), 130)
+		addtimer(CALLBACK(C, /mob/living/proc/hive_awaken, objective, one_mind_team), 150)
+
+/obj/effect/proc_holder/spell/self/hive_comms
+	name = "Hive Communication"
+	desc = "Now that we are free we may finally share our thoughts with our many bretheren."
+	panel = "Hivemind Abilities"
+	charge_max = 100
+	invocation_type = "none"
+	clothes_req = 0
+	human_req = 1
+	action_icon = 'icons/mob/actions/actions_hive.dmi'
+	action_background_icon_state = "bg_hive"
+	action_icon_state = "comms"
+	antimagic_allowed = TRUE
+
+/obj/effect/proc_holder/spell/self/hive_comms/cast(mob/living/user = usr)
+	var/message = stripped_input(user, "What do you want to say?", "Hive Communication")
+	if(!message)
+		return
+	var/title = "One Mind"
+	var/span = "changeling"
+	if(user.mind && user.mind.has_antag_datum(/datum/antagonist/hivemind))
+		span = "assimilator"
+	var/my_message = "<span class='[span]'><b>[title] [findtextEx(user.name, user.real_name) ? user.name : "[user.real_name] (as [user.name])"]:</b> [message]</span>"
+	for(var/i in GLOB.player_list)
+		var/mob/M = i
+		if(is_hivehost(M) || is_hivemember(M))
+			to_chat(M, my_message)
+		else if(M in GLOB.dead_mob_list)
+			var/link = FOLLOW_LINK(M, user)
+			to_chat(M, "[link] [my_message]")
+
+	user.log_talk(message, LOG_SAY, tag="hive")
+>>>>>>> eac0f3c... Assimilation runtime & bug fixes (#42769)
