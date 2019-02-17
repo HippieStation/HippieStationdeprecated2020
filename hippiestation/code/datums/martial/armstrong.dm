@@ -79,7 +79,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 
 /datum/martial_art/armstrong/proc/Sloppy(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(current_level <= 9) // level check due to differences once you reach level 10
-		A.say("ATATATATATATAT!!", forced = "armstrong")
+		A.say("ATATATATATATAT!!", ignore_spam = TRUE, forced = "armstrong")
 		SloppyAnimate(A)
 		D.visible_message("<span class='danger'>[A] sloppily flails around, striking [D]!</span>", \
 									"<span class='userdanger'>[A] sends [D] flying with a rushed combo!</span>")
