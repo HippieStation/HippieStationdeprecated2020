@@ -32,8 +32,10 @@
 	var/boost_armor = TRUE
 
 /obj/item/shield/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(!is_A_facing_B(owner,hitby))
+	if(attack_type == PROJECTILE_ATTACK)
 		to_chat(owner, "<span class='notice'>[src] fails to deflect [attack_text].</span>")
+		return FALSE
+	if(!is_A_facing_B(owner,hitby))
 		return FALSE
 	final_block_chance -= damage
 	return ..()
