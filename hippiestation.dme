@@ -3160,6 +3160,7 @@
 #include "hippiestation\code\modules\hydroponics\biogenerator.dm"
 #include "hippiestation\code\modules\hydroponics\buttflower.dm"
 #include "hippiestation\code\modules\hydroponics\gene_modder.dm"
+#include "hippiestation\code\modules\hydroponics\hydroponics.dm"
 #include "hippiestation\code\modules\hydroponics\limbflower.dm"
 #include "hippiestation\code\modules\hydroponics\planet_genes.dm"
 #include "hippiestation\code\modules\hydroponics\seed_extractor.dm"
