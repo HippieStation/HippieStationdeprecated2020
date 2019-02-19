@@ -53,6 +53,22 @@
 	var/mob/living/carbon/carbon_owner
 	var/mob/living/carbon/human/human_owner
 
+	var/list/Cool = list(
+	/obj/item/bedsheet/captain,
+	/obj/item/bedsheet/syndie,
+	/obj/item/bedsheet/medical,
+	/obj/item/bedsheet/patriot,
+	/obj/item/bedsheet/mime,
+	/obj/item/bedsheet/clown,
+	/obj/item/bedsheet/rainbow,
+	/obj/item/bedsheet/cult
+	)
+
+	var/list/SuperCool = list(
+	/obj/item/bedsheet/captain,
+	/obj/item/bedsheet/syndie
+	)//SuperCool stuff must also be on the Cool list
+
 /datum/status_effect/incapacitating/sleeping/on_creation(mob/living/new_owner, updating_canmove)
 	. = ..()
 	if(.)
