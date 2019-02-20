@@ -18,8 +18,8 @@
 	var/max_ammo = 7
 	var/multiple_sprites = 0
 	var/caliber
-	var/multiload = 1
-	var/start_empty = 0
+	var/multiload = TRUE
+	var/start_empty = FALSE
 	var/list/bullet_cost
 	var/list/base_cost// override this one as well if you override bullet_cost
 
@@ -38,7 +38,7 @@
 			stored_ammo += new ammo_type(src)
 	update_icon()
 
-/obj/item/ammo_box/proc/get_round(keep = 0)
+/obj/item/ammo_box/proc/get_round(keep = FALSE)
 	if (!stored_ammo.len)
 		return null
 	else
@@ -70,12 +70,11 @@
 
 				stored_ammo += R
 				R.forceMove(src)
-				return 1
-
-	return 0
+				return TRUE
+	return FALSE
 
 /obj/item/ammo_box/proc/can_load(mob/user)
-	return 1
+	return TRUE
 
 /obj/item/ammo_box/attackby(obj/item/A, mob/user, params, silent = FALSE, replace_spent = 0)
 	var/num_loaded = 0
@@ -99,7 +98,7 @@
 	if(num_loaded)
 		if(!silent)
 			to_chat(user, "<span class='notice'>You load [num_loaded] shell\s into \the [src]!</span>")
-			playsound(src, 'sound/weapons/bulletinsert.ogg', 60, 1)
+			playsound(src, 'sound/weapons/bulletinsert.ogg', 60, TRUE)
 		A.update_icon()
 		update_icon()
 

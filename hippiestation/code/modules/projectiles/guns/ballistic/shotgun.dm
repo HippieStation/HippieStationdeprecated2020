@@ -1,6 +1,6 @@
 //Contender, made by ArcLumin.
 
-/obj/item/gun/ballistic/revolver/doublebarrel/contender
+/obj/item/gun/ballistic/shotgun/doublebarrel/contender
 	desc = "The Contender G13, a favorite amongst space hunters. An easily modified bluespace barrel and break action loading means it can use any ammo available.\
 	The side has an engraving which reads 'Made by ArcWorks'"
 	name = "Contender G13"

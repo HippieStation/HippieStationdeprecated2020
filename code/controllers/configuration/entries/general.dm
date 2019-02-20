@@ -148,6 +148,9 @@
 /datum/config_entry/string/hostedby
 
 /datum/config_entry/flag/norespawn
+
+/datum/config_entry/flag/guest_jobban
+
 /datum/config_entry/flag/usewhitelist
 
 /datum/config_entry/flag/use_age_restriction_for_jobs	//Do jobs use account age restrictions? --requires database
