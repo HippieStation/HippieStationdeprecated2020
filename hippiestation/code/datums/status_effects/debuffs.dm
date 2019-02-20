@@ -18,10 +18,10 @@
 			probability +=5//from stuff on supercool
 			break
 
-	if(prob(probability))
-		owner.adjustBruteLoss(-1, 0)
-		owner.adjustFireLoss(-1, 0)
-		owner.adjustToxLoss(-1, 0)
+	//if(prob(probability))//non rng edit. if we bring back rng, just tab the adjusts and make them -1
+	owner.adjustBruteLoss((-probability/100), 0)
+	owner.adjustFireLoss((-probability/100), 0)
+	owner.adjustToxLoss((-probability/100), 0)
 
 	if(owner.getStaminaLoss())
 		owner.adjustStaminaLoss(-0.5) //reduce stamina loss by 0.5 per tick, 10 per 2 seconds
