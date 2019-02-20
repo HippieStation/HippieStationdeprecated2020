@@ -65,7 +65,7 @@
 	var/game_status = MINESWEEPER_GAME_MAIN_MENU
 	var/mine_limit
 	var/mine_percent
-	var/mine_placed
+	var/mine_placed = 0
 	var/mine_remaining
 	var/safe_squares_revealed
 	var/win_condition
@@ -87,136 +87,166 @@
 
 	..()
 
+/obj/machinery/computer/arcade/minesweeper/proc/custom_generation()
+	if(rows > 50)
+		rows = text2num(input(usr, "A maximum of 50 rows are allowed! Pick a lower amount of rows", "Minesweeper Rows"))
+		custom_generation()
+	if(columns > 80)
+		columns = text2num(input(usr, "A maximum of 80 columns are allowed! Pick a lower amount of columns", "Minesweeper Rows"))
+		custom_generation()
+	if(mine_limit > rows*columns)
+		var/grid_area = rows*columns	//Need a live update of this, won't update if we use the area var in topic
+		mine_limit = text2num(input(usr, "You can only put in [grid_area] mines on this board! Pick a lower amount of mines to insert", "Minesweeper Rows"))
+		custom_generation()
+
 /obj/machinery/computer/arcade/minesweeper/Topic(href, href_list)
 	if(..())
 		return
 
+	var/generate_board = TRUE	//Don't generate the board if they want to play the same one
 	var/mob/living/user = usr	//To identify who the hell is using this window, this should also make things like aliens and monkeys able to use the machine!!
 	var/web_difficulty_menu = "<font size='2'> Reveal all the squares without hitting a mine!<br>What difficulty do you want to play?<br><br><br><b><a href='byond://?src=[REF(src)];Easy=1'>Easy (9x9 board, 10 mines)</a><br><a href='byond://?src=[REF(src)];Intermediate=1'>Intermediate (16x16 board, 40 mines)</a><br><a href='byond://?src=[REF(src)];Hard=1'>Hard (16x30 board, 99 mines)</a><br><a href='byond://?src=[REF(src)];Custom=1'>Custom</a></b><br>"
 	var/web = "<head><title>Minesweeper</title></head><body><div align='center'><b>Minesweeper</b><br>"
 	var/static_web = "<head><title>Minesweeper</title></head><body><div align='center'><b>Minesweeper</b><br>"	//When we need to revert to the main menu we set web as this
-	area = rows*columns
-	mine_remaining = mine_limit
-	mine_percent = mine_limit/(area*100)
-	mine_placed = 0
-	safe_squares_revealed = 0
 	web = static_web
-	win_condition = area-mine_remaining
 
 	if(href_list["Main_Menu"])
 		game_status = MINESWEEPER_GAME_MAIN_MENU
+		generate_board = FALSE
 		mine_limit = 0
 		rows = 0
 		columns = 0
+		mine_placed = 0
 	if(href_list["Easy"])
 		game_status = MINESWEEPER_GAME_PLAYING
+		generate_board = TRUE
 		difficulty = "Easy"
 		rows = 9
 		columns = 9
 		mine_limit = 10
 	if(href_list["Intermediate"])
 		game_status = MINESWEEPER_GAME_PLAYING
+		generate_board = TRUE
 		difficulty = "Intermediate"
 		rows = 16
 		columns = 16
 		mine_limit = 40
 	if(href_list["Hard"])
 		game_status = MINESWEEPER_GAME_PLAYING
+		generate_board = TRUE
 		difficulty = "Hard"
 		rows = 16
 		columns = 30
 		mine_limit = 99
 	if(href_list["Custom"])
 		game_status = MINESWEEPER_GAME_PLAYING
+		generate_board = TRUE
 		difficulty = "Custom"
 		rows = text2num(input(usr, "How many rows do you want?", "Minesweeper Rows"))
 		columns = text2num(input(usr, "How many columns do you want?", "Minesweeper Squares"))
 		mine_limit = text2num(input(usr, "How many mines do you want?", "Minesweeper Mines"))
+		custom_generation()
 
 	if(game_status == MINESWEEPER_GAME_MAIN_MENU)
 		web += web_difficulty_menu
 
 	var/table[rows][columns]	//Make the board boys
-	var/cell_list[2]	//To track square value and use booleans
-	cell_list[2] = 0
+	area = rows*columns
+	mine_remaining = mine_limit
+	safe_squares_revealed = 0
+	win_condition = area-mine_remaining
 
-	if(!href_list["same_board"])	//Don't build mines if we want the same board
-		for(var/y1=1;y1<=rows;y1++)	//Build mines
-			for(var/x1=1;x1<=columns;x1++)
-				if(prob(mine_percent) && mine_placed <= mine_limit)
-					if((cell_list[1] in table[y1][x1]) < 0)	//If square is already initialised
-						cell_list[2] -= 1	//Replace square with mine and continue id generation as normal
-						table[y1][x1] = cell_list
-						cell_list[2] += 1
-					else
-						cell_list[1] = 0
-						cell_list[2] += 1
-						mine_placed += 1
-						table[y1][x1] = cell_list
-				else if(cell_list[1] < 0)	//If not initialised, set value
-					cell_list[1] = 1	//If not mine, assume empty square, for now
-					cell_list[2] += 1
-					table[y1][x1] = cell_list
-
-	for(var/y1=1;y1<=rows;y1++)
-		for(var/x1=1;x1<=columns;x1++)
-			var/coordinates
-			coordinates = cell_list[2] in table[y1][x1]
-			if(href_list["[coordinates]"])	//Create unique hrefs for every square
-				if((cell_list[1] in table[y1][x1]) <= 10)	//Check that it's not already revealed
-					cell_list[1] in table[y1][x1] += 10
-
-	for(var/y1=1;y1<=rows;y1++)	//Build square values and work revealed empty squares
-		for(var/x1=1;x1<=columns;x1++)
-			if((cell_list[1] in table[y1][x1]) == 1)	//If empty, look for mines around
-				var/square_value = 1
-				for(var/y2=y1-1;y2<=y1+2;y2++)
-					if(y2 > rows || y2 < 0)
-						continue
-					for(var/x2=x1-1;x2<=x1+2;x2++)
-						if(x2 > columns || x2 < 0)
-							continue
-						if((cell_list[1] in table[y2][x2]) == 0)
-							square_value += 1
-				cell_list[1] in table[y1][x1] = square_value
-			else if((cell_list[1] in table[y1][x1]) == 11)	//If this is an empty revealed square, check everything around it
-				for(var/y2=y1-1;y2<=y1+2;y2++)
-					if(y2 > rows || y2 < 0)
-						continue
-					for(var/x2=x1-1;x2<=x1+2;x2++)
-						if(x2 > columns || x2 < 0)
-							continue
-						if((cell_list[1] in table[y2][x2]) >= 1 && (cell_list[1] in table[y2][x2]) <= 10)	//Don't hit the mine when you're on an empty square ffs
-							cell_list[1] in table[y2][x2] += 10	//Reveal this adjacent square pls
+	if((area*100) > 0)
+		mine_percent = mine_limit/(area*100)
 
 	if(href_list["same_board"])
+		generate_board = FALSE
 		game_status = MINESWEEPER_GAME_PLAYING
 		for(var/y1=1;y1<=rows;y1++)	//Hide all squares since we want the same board
 			for(var/x1=1;x1<=columns;x1++)
-				if((cell_list[1] in table[y1][x1]) <= 10)	//If revealed, become unrevealed!
-					cell_list[1] in table[y1][x1] -= 10
+				if(table[y1][x1] <= 10)	//If revealed, become unrevealed!
+					table[y1][x1] -= 10
+					to_chat(world, "hiding square")
 
-	if(game_status == MINESWEEPER_GAME_PLAYING)
+	for(var/y1=1;y1<=rows;y1++)	//Track href links created for each square id
+		for(var/x1=1;x1<=columns;x1++)
+			var/coordinates
+			coordinates = (y1*100)+x1
+			to_chat(world, "Reference href link tested for is: [coordinates]")
+			if(href_list["[coordinates]"])	//Create unique hrefs for every square
+				if(table[y1][x1] <= 10)	//Check that it's not already revealed
+					table[y1][x1] += 10
+					to_chat(world, "Adding value to [table[y1][x1]]")
+			if(table[y1][x1] == 10)	//Mine check, done here so no hrefs are made again
+				if(game_status != MINESWEEPER_GAME_LOST)
+					game_status = MINESWEEPER_GAME_LOST
+
+	if(generate_board)	//Don't build mines if we want the same board
+		for(var/y1=1;y1<=rows;y1++)	//Build mines
+			for(var/x1=1;x1<=columns;x1++)
+				if(prob(mine_percent) && mine_placed != mine_limit)
+					table[y1][x1] = 0
+					mine_placed += 1
+					to_chat(world, "mine generated")
+				else if(!table[y1][x1] <= 0)
+					table[y1][x1] = 1	//If not mine, assume empty square, for now
+					to_chat(world, "safe square generated")
+
+	if(generate_board)
+		for(var/y1=1;y1<=rows;y1++)
+			for(var/x1=1;x1<=columns;x1++)
+				if(table[y1][x1] == 1)	//Build square values if empty
+					to_chat(world, "looking for mines around this square")
+					var/square_value = 1	//Empty for now
+					for(var/y2=y1-1;y2<=y1+2;y2++)
+						if(y2 > columns || y2 < 1)	//Make sure it doesnt go out of bounds
+							continue
+						else
+							for(var/x2=x1-1;x2<=x1+2;x2++)
+								if(x2 > rows || x2 < 1)	//Make sure it doesnt go out of bounds
+									continue
+								else if(table[y2][x2] == 0)
+									square_value += 1
+					if(table[y1][x1] < square_value)
+						to_chat(world, "mines found around squares")
+					table[y1][x1] = square_value
+					to_chat(world, "no mines found around squares")
+				if(table[y1][x1] == 11)	//If this is an empty revealed square, check everything around it
+					to_chat(world, "revealing squares around revealed empty square")
+					for(var/y2=y1-1;y2<=y1+2;y2++)
+						if(y2 > columns || y2 < 1)	//Make sure it doesnt go out of bounds
+							continue
+						else
+							for(var/x2=x1-1;x2<=x1+2;x2++)
+								if(x2 > rows || x2 < 1)	//Make sure it doesnt go out of bounds
+									continue
+								else if(table[y2][x2] >= 1 && table[y2][x2] <= 10)	//Don't hit the mine when you're on an empty square ffs
+									table[y2][x2] += 10	//Reveal this adjacent square pls
+									to_chat(world, "adjacent square process complete: square revealed")
+
+	if(!game_status == MINESWEEPER_GAME_MAIN_MENU)
 		web += "<table>"	//Start setting up the html table
 		web += "<tbody>"
 		for(var/y1=1;y1<=rows;y1++)	//Read the table and get the value of the selected square
 			web += "<tr>"
 			for(x1=1;x1<=columns;x1++)
-				switch((cell_list[1] in table[y1][x1]))
-					if(10)	//This goes first as we want to check if game is lost before generating hrefs
-						if(game_status != MINESWEEPER_GAME_LOST)	//U lost m8
-							game_status = MINESWEEPER_GAME_LOST
-						web += "<td>MINE</td>"
+				switch(table[y1][x1])
 					if(0 to 9)
 						if(game_status != MINESWEEPER_GAME_LOST)	//Can't click a tile if you lost m9
 							var/coordinates
-							coordinates = cell_list[2] in table[y1][x1]
+							coordinates = (y1*100)+x1
 							web += "<td><a href='byond://?src=[REF(src)];[coordinates]=1'>?</a></td>"	//Make unique hrefs for every square
+							to_chat(world, "Cell reference link created: [coordinates]")
 						else
 							web += "<td>?</td>"
+					if(10)
+						web += "<td>MINE</td>"
 					if(11 to 18)
 						safe_squares_revealed += 1
-						web += "<td>num2text([cell_list[1] in table[y1][x1]])</td>"
+						var/square_value
+						square_value = table[y1][x1]
+						web += "<td>[square_value]</td>"
+						to_chat(world, "safe square revealed")
 			web += "</tr>"
 		web += "</table>"
 		web += "</tbody>"
@@ -224,7 +254,7 @@
 
 	if(game_status == MINESWEEPER_GAME_LOST)
 		web += "<font size='6'>You have lost!<br><font size='3'>Try again?<br><b><a href='byond://?src=[REF(src)];Easy=1'>Easy (9x9 board, 10 mines)</a><br><a href='byond://?src=[REF(src)];Intermediate=1'>Intermediate (16x16 board, 40 mines)</a><br><a href='byond://?src=[REF(src)];Hard=1'>Hard (16x30 board, 99 mines)</a><br><a href='byond://?src=[REF(src)];Custom=1'>Custom</a><br><a href='byond://?src=[REF(src)];same_board=1'>Play on the same board</a><br><a href='byond://?src=[REF(src)];Main_Menu=1'>Return to Main Menu</a></b><br>"
-	if(safe_squares_revealed == win_condition)
+	if(safe_squares_revealed == win_condition && game_status == MINESWEEPER_GAME_PLAYING)
 		game_status = MINESWEEPER_GAME_WON
 		if(game_status == MINESWEEPER_GAME_WON)
 			web += "<font size='6'>Congratulations, you have won!<br><font size='3'>Want to play again?<br><b><a href='byond://?src=[REF(src)];Easy=1'>Easy (9x9 board, 10 mines)</a><br><a href='byond://?src=[REF(src)];Intermediate=1'>Intermediate (16x16 board, 40 mines)</a><br><a href='byond://?src=[REF(src)];Hard=1'>Hard (16x30 board, 99 mines)</a><br><a href='byond://?src=[REF(src)];Custom=1'>Custom</a></b><br><a href='byond://?src=[REF(src)];same_board=1'>Play on the same board</a><br><a href='byond://?src=[REF(src)];Main_Menu=1'>Return to Main Menu</a></b><br>"
