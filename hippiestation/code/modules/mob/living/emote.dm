@@ -16,9 +16,6 @@
 		return 'sound/creatures/gorilla.ogg'
 	if(ishuman(user))
 		user.adjustOxyLoss(user.scream_oxyloss)
-		return pick('hippiestation/sound/voice/scream_m1.ogg', 'hippiestation/sound/voice/scream_m2.ogg')
-		if(user.gender == FEMALE)
-			return pick('hippiestation/sound/voice/scream_f1.ogg', 'hippiestation/sound/voice/scream_f2.ogg')
 		if(is_species(user, /datum/species/android) || is_species(user, /datum/species/synth) || is_species(user, /datum/species/ipc))
 			return 'hippiestation/sound/voice/scream_silicon.ogg'
 		if(is_species(user, /datum/species/lizard))
@@ -31,6 +28,10 @@
 			return 'hippiestation/sound/voice/caw.ogg'
 		if (is_species(user, /datum/species/tarajan))
 			return 'hippiestation/sound/voice/cat.ogg'
+		if(user.gender == FEMALE)
+			return pick('hippiestation/sound/voice/scream_f1.ogg', 'hippiestation/sound/voice/scream_f2.ogg')
+		else
+			return pick('hippiestation/sound/voice/scream_m1.ogg', 'hippiestation/sound/voice/scream_m2.ogg')
 	if(isalien(user))
 		return 'sound/voice/hiss6.ogg'
 	if(issilicon(user))
