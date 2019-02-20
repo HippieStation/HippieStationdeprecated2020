@@ -1,3 +1,22 @@
+/datum/status_effect/incapacitating/sleeping
+
+	var/list/Cool = list(
+	/obj/item/bedsheet/captain,
+	/obj/item/bedsheet/syndie,
+	/obj/item/bedsheet/medical,
+	/obj/item/bedsheet/patriot,
+	/obj/item/bedsheet/mime,
+	/obj/item/bedsheet/clown,
+	/obj/item/bedsheet/rainbow,
+	/obj/item/bedsheet/cult
+	)
+
+	var/list/SuperCool = list(
+	/obj/item/bedsheet/captain,
+	/obj/item/bedsheet/syndie
+	)//SuperCool stuff must also be on the Cool list
+
+
 /datum/status_effect/incapacitating/sleeping/tick()
 	var/probability = 10 //probability of heal per tick. 200 ticks in 40 seconds of sleep
 	if((locate(/obj/structure/bed) in owner.loc)) //if in bed +10%
