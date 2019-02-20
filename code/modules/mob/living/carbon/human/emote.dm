@@ -45,6 +45,7 @@
 	message = "mumbles!"
 	emote_type = EMOTE_AUDIBLE
 
+/* hippie start -- Removed in favor of a /living/scream for borgs too,and with our sounds
 /datum/emote/living/carbon/human/scream
 	key = "scream"
 	key_third_person = "screams"
@@ -68,7 +69,7 @@
 			return pick('sound/voice/human/malescream_1.ogg', 'sound/voice/human/malescream_2.ogg', 'sound/voice/human/malescream_3.ogg', 'sound/voice/human/malescream_4.ogg', 'sound/voice/human/malescream_5.ogg')
 	else if(ismoth(H))
 		return 'sound/voice/moth/scream_moth.ogg'
-
+hippie end */
 
 /datum/emote/living/carbon/human/pale
 	key = "pale"
