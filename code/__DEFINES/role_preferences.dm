@@ -28,7 +28,7 @@
 #define ROLE_BRAINWASHED		"Brainwashed Victim"
 #define ROLE_OVERTHROW			"Syndicate Mutineer"
 #define ROLE_HIVE				"Hivemind Host"
-#define ROLE_CREEP				"Creep"
+#define ROLE_OBSESSED				"Obsessed"
 #define ROLE_SENTIENCE			"Sentience Potion Spawn"
 #define ROLE_MIND_TRANSFER		"Mind Transfer Potion"
 #define ROLE_POSIBRAIN			"Posibrain"
@@ -40,6 +40,7 @@
 #define ROLE_SHADOWLING			"shadowling" // hippie -- adds shadowling role
 #define ROLE_GANG				"gangster" // hippie -- adds gang related role
 #define ROLE_INFILTRATOR		"syndicate infiltrator" // hippie -- adds infiltrator role
+#define ROLE_KOTD				"Syndicate Recruit (KotD)" // hippie -- adds KotD role
 
 //Missing assignment means it's not a gamemode specific role, IT'S NOT A BUG OR ERROR.
 //The gamemode specific ones are just so the gamemodes can query whether a player is old enough
@@ -57,7 +58,7 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_CULTIST = /datum/game_mode/cult,
 	ROLE_BLOB,
 	ROLE_NINJA,
-	ROLE_CREEP,
+	ROLE_OBSESSED,
 	ROLE_MONKEY = /datum/game_mode/monkey,
 	ROLE_REVENANT,
 	ROLE_ABDUCTOR,
@@ -70,7 +71,8 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_SHADOWLING = /datum/game_mode/shadowling, // hippie -- adds shadowling role=gamemode
 	ROLE_VAMPIRE = /datum/game_mode/vampire, // hippie -- adds vampire role=gamemode
 	ROLE_GANG = /datum/game_mode/gang, // hippie -- adds gang role=gamemode
-	ROLE_INFILTRATOR = /datum/game_mode/infiltration // hippie -- adds infiltrator role=gamemode
+	ROLE_INFILTRATOR = /datum/game_mode/infiltration, // hippie -- adds infiltrator role=gamemode
+	ROLE_KOTD = /datum/game_mode/traitor/kotd // hippie -- adds KotD role=gamemode
 ))
 
 //Job defines for what happens when you fail to qualify for any job during job selection

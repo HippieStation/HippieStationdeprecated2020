@@ -535,10 +535,9 @@
 
 /datum/reagent/medicine/perfluorodecalin/on_mob_life(mob/living/carbon/human/M)
 	M.adjustOxyLoss(-12*REM, 0)
-	M.silent = max(M.silent, 5)
-	if(prob(33))
-		M.adjustBruteLoss(-0.5*REM, 0)
-		M.adjustFireLoss(-0.5*REM, 0)
+	M.adjustToxLoss(2.5*REM, 0)
+	M.adjustBruteLoss(-0.5*REM, 0)
+	M.adjustFireLoss(-0.5*REM, 0)
 	..()
 	return TRUE
 
@@ -835,6 +834,8 @@
 	color = "#EEFF8F"
 
 /datum/reagent/medicine/neurine/on_mob_life(mob/living/carbon/C)
+	if(holder.has_reagent("neurotoxin"))
+		holder.remove_reagent("neurotoxin", 5)
 	if(prob(15))
 		C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
 	..()

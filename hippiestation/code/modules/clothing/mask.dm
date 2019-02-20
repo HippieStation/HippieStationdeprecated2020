@@ -8,8 +8,12 @@
 	item_state = "cluwne"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	flags_1 = MASKINTERNALS
-	item_flags = ABSTRACT | NODROP | DROPDEL
+	item_flags = ABSTRACT | DROPDEL
 	flags_inv = HIDEEARS|HIDEEYES
+	
+/obj/item/clothing/mask/hippie/cluwne/Initialize()
+	. = ..()
+	add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/clothing/mask/hippie/cluwne/equipped(mob/user, slot)
 	if(!ishuman(user))

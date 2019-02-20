@@ -1,5 +1,4 @@
 /mob/living/carbon/human
-	icon_state = null
 
 /mob/living/carbon/human/Initialize()
 	update_teeth()
