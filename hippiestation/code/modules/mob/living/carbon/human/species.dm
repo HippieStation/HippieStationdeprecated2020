@@ -1,7 +1,7 @@
-/datum/species/
+/datum/species
 	var/hurt_sound_cd = 0
-	sound/attack_sound = 'hippiestation/sound/weapons/punch1.ogg'
-	sound/miss_sound = 'hippiestation/sound/weapons/punchmiss.ogg'
+	attack_sound = 'hippiestation/sound/weapons/punch1.ogg'
+	miss_sound = 'hippiestation/sound/weapons/punchmiss.ogg'
 
 /datum/species/proc/queue_hurt_sound(mob/living/carbon/human/H)
 	if (hurt_sound_cd > world.time)
