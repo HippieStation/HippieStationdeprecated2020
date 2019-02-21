@@ -11,7 +11,7 @@
 		streak = ""
 		Knockout(A,D)
 		return TRUE
-	if(findtext(streak,EXHAUSTION_COMBO))	
+	if(findtext(streak,EXHAUSTION_COMBO))
 		streak = ""
 		Exhaustion(A,D)
 		return TRUE
@@ -52,7 +52,7 @@
 	D.adjustStaminaLoss(100)
 	return TRUE
 
-/datum/martial_art/cqc/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/elite_cqc/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("G",D)
 	if(check_streak(A,D))
 		return TRUE
@@ -63,10 +63,10 @@
 		if(A.pulling)
 			D.stop_pulling()
 			log_combat(A, D, "grabbed", addition="by the neck")
-			A.grab_state = GRAB_NECK 
+			A.grab_state = GRAB_NECK
 	return TRUE
 
-/datum/martial_art/cqc/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/elite_cqc/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("H",D)
 	if(check_streak(A,D))
 		return TRUE
@@ -78,7 +78,7 @@
 		basic_hit(A,D)
 	return TRUE
 
-/datum/martial_art/cqc/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/elite_cqc/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("D",D)
 	if(check_streak(A,D))
 		return TRUE
