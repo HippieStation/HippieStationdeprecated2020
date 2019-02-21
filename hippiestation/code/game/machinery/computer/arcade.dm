@@ -78,12 +78,10 @@
 
 /obj/machinery/computer/arcade/minesweeper/interact(mob/user)
 	var/web_difficulty_menu = "<font size='2'> Reveal all the squares without hitting a mine!<br>What difficulty do you want to play?<br><br><br><b><a href='byond://?src=[REF(src)];Easy=1'>Easy (9x9 board, 10 mines)</a><br><a href='byond://?src=[REF(src)];Intermediate=1'>Intermediate (16x16 board, 40 mines)</a><br><a href='byond://?src=[REF(src)];Hard=1'>Hard (16x30 board, 99 mines)</a><br><a href='byond://?src=[REF(src)];Custom=1'>Custom</a></b><br>"
-	var/web = "<head><title>Minesweeper</title></head><body><div align='center'><b>Minesweeper</b><br>"
 	var/static_web = "<head><title>Minesweeper</title></head><body><div align='center'><b>Minesweeper</b><br>"	//When we need to revert to the main menu we set web as this
 
 	if(game_status == MINESWEEPER_GAME_MAIN_MENU)
 		user << browse(static_web+web_difficulty_menu,"window=minesweeper,size=400x500")
-		web = static_web
 	else
 		user << browse(saved_web,"window=minesweeper,size=400x500")
 
@@ -100,6 +98,20 @@
 		var/grid_area = rows*columns	//Need a live update of this, won't update if we use the area var in topic
 		mine_limit = text2num(input(usr, "You can only put in [grid_area] mines on this board! Pick a lower amount of mines to insert", "Minesweeper Rows"))
 		custom_generation()
+
+/obj/machinery/computer/arcade/minesweeper/proc/reveal_squares()
+	if(table[y1][x1] == 11)	//If this is an empty revealed square, check everything around it
+		to_chat(world, "revealing squares around revealed empty square")
+		for(var/y2=y1-1;y2<y1+2;y2++)
+			if(y2 > columns || y2 < 1)	//Make sure it doesnt go out of bounds
+				continue
+			else
+				for(var/x2=x1-1;x2<x1+2;x2++)
+					if(x2 > rows || x2 < 1)	//Make sure it doesnt go out of bounds
+						continue
+					else if(table[y2][x2] >= 1 && table[y2][x2] < 10)	//Don't hit the mine when you're on an empty square ffs
+						table[y2][x2] += 10	//Reveal this adjacent square pls
+						to_chat(world, "adjacent square process complete: square revealed")
 
 /obj/machinery/computer/arcade/minesweeper/Topic(href, href_list)
 	if(..())
@@ -171,14 +183,14 @@
 	if(href_list["same_board"])
 		generate_board = FALSE
 		game_status = MINESWEEPER_GAME_PLAYING
-		for(var/y1=1;y1<=rows;y1++)	//Hide all squares since we want the same board
-			for(var/x1=1;x1<=columns;x1++)
+		for(var/y1=1;y1<rows;y1++)	//Hide all squares since we want the same board
+			for(var/x1=1;x1<columns;x1++)
 				if(table[y1][x1] >= 10)	//If revealed, become unrevealed!
 					table[y1][x1] -= 10
 					to_chat(world, "hiding square")
 
-	for(var/y1=1;y1<=rows;y1++)	//Track href links created for each square id
-		for(var/x1=1;x1<=columns;x1++)
+	for(var/y1=1;y1<rows;y1++)	//Track href links created for each square id
+		for(var/x1=1;x1<columns;x1++)
 			var/coordinates
 			coordinates = (y1*100)+x1
 			to_chat(world, "Reference href link tested for is: [coordinates]")
@@ -191,8 +203,8 @@
 					game_status = MINESWEEPER_GAME_LOST
 
 	if(generate_board)
-		for(var/y1=1;y1<=rows;y1++)
-			for(var/x1=1;x1<=columns;x1++)
+		for(var/y1=1;y1<rows;y1++)
+			for(var/x1=1;x1<columns;x1++)
 				if(reset_board)
 					table[y1][x1] = null	//Uninitialise everything
 				if(prob(area/mine_limit) && mine_placed < mine_limit)	//In case the first pass doesn't generate enough mines
@@ -204,11 +216,11 @@
 					to_chat(world, "safe square generated")
 				if(table[y1][x1] == 1)	//Build square values if empty
 					to_chat(world, "looking for mines around this square")
-					for(var/y2=y1-1;y2<=y1+2;y2++)
+					for(var/y2=y1-1;y2<y1+2;y2++)
 						if(y2 > columns || y2 < 1)	//Make sure it doesnt go out of bounds
 							continue
 						else
-							for(var/x2=x1-1;x2<=x1+2;x2++)
+							for(var/x2=x1-1;x2<x1+2;x2++)
 								if(x2 > rows || x2 < 1)	//Make sure it doesnt go out of bounds
 									continue
 								if(table[y2][x2] == 0)
@@ -216,26 +228,15 @@
 									to_chat(world, "mines found around squares")
 								else
 									to_chat(world, "no mines found around squares")
-				if(table[y1][x1] == 11)	//If this is an empty revealed square, check everything around it
-					to_chat(world, "revealing squares around revealed empty square")
-					for(var/y2=y1-1;y2<=y1+2;y2++)
-						if(y2 > columns || y2 < 1)	//Make sure it doesnt go out of bounds
-							continue
-						else
-							for(var/x2=x1-1;x2<=x1+2;x2++)
-								if(x2 > rows || x2 < 1)	//Make sure it doesnt go out of bounds
-									continue
-								else if(table[y2][x2] >= 1 && table[y2][x2] < 10)	//Don't hit the mine when you're on an empty square ffs
-									table[y2][x2] += 10	//Reveal this adjacent square pls
-									to_chat(world, "adjacent square process complete: square revealed")
+				reveal_squares()	//If this is an empty revealed square, check everything around it
 		reset_board = FALSE
 
 	if(!game_status == MINESWEEPER_GAME_MAIN_MENU)
 		web += "<table>"	//Start setting up the html table
 		web += "<tbody>"
-		for(var/y1=1;y1<=rows;y1++)	//Read the table and get the value of the selected square
+		for(var/y1=1;y1<rows;y1++)	//Read the table and get the value of the selected square
 			web += "<tr>"
-			for(x1=1;x1<=columns;x1++)
+			for(x1=1;x1<columns;x1++)
 				switch(table[y1][x1])
 					if(0 to 9)
 						if(game_status != MINESWEEPER_GAME_LOST)	//Can't click a tile if you lost m9
@@ -254,7 +255,7 @@
 						safe_squares_revealed += 1
 						var/square_value
 						square_value = table[y1][x1]
-						web += "<td>[square_value-10]</td>"
+						web += "<td>[square_value-11]</td>"
 						to_chat(world, "safe square revealed")
 			web += "</tr>"
 		web += "</table>"
