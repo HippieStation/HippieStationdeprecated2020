@@ -24,9 +24,12 @@
 	else
 		if((locate(/obj/structure/table) in owner.loc))//if on a table
 			probability +=5
+	
+	
 	if((locate(/obj/item/bedsheet) in owner.loc))//if under a bedsheet
 		probability +=10
-
+	
+	
 	for(var/i in Cool)
 		if(locate(i) in owner.loc)
 			probability +=5 //from stuff on cool
@@ -37,10 +40,15 @@
 			probability +=5//from stuff on supercool
 			break
 
-	//if(prob(probability))//non rng edit. if we bring back rng, just tab the adjusts and make them -1
-	owner.adjustBruteLoss((-probability/100), 0)
-	owner.adjustFireLoss((-probability/100), 0)
-	owner.adjustToxLoss((-probability/100), 0)
+	if(istype(get_turf(owner), /turf/open/space))
+		probability=5 //nerfs space sleep. cant survive to loop back around in space anymore.
+		
+	//if(prob(probability))	//non rng edit. if we bring back rng, just tab the adjusts and make them -1
+	
+	if(probability>0)		//just in case we ever add negatives
+		owner.adjustBruteLoss((-probability/100), 0)
+		owner.adjustFireLoss((-probability/100), 0)
+		owner.adjustToxLoss((-probability/100), 0)
 
 	if(owner.getStaminaLoss())
 		owner.adjustStaminaLoss(-0.5) //reduce stamina loss by 0.5 per tick, 10 per 2 seconds
