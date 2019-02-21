@@ -8,11 +8,11 @@
     bolt_type = BOLT_TYPE_STANDARD
     semi_auto = FALSE
     internal_magazine = TRUE
-    fire_sound = "sound/weapons/rifleshot.ogg"
+    fire_sound = 'sound/weapons/rifleshot.ogg'
     fire_sound_volume = 80
     vary_fire_sound = FALSE
-    rack_sound = "sound/weapons/mosinboltout.ogg"
-    bolt_drop_sound = "sound/weapons/mosinboltin.ogg"
+    rack_sound = 'sound/weapons/mosinboltout.ogg'
+    bolt_drop_sound = 'sound/weapons/mosinboltin.ogg'
 
 obj/item/gun/ballistic/rifle/update_icon()
     ..()
@@ -26,7 +26,7 @@ obj/item/gun/ballistic/rifle/rack(mob/user = null)
         bolt_locked = TRUE
         update_icon()
         return
-    drop_bolt(user)//hippie edit -- fixes bolt sound
+    drop_bolt(user)
 
 obj/item/gun/ballistic/rifle/can_shoot()
     if (bolt_locked)

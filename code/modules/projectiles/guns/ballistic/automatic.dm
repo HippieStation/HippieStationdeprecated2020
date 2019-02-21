@@ -6,10 +6,10 @@
 	fire_delay = 2
 	actions_types = list(/datum/action/item_action/toggle_firemode)
 	semi_auto = TRUE
-	fire_sound = "sound/weapons/smgshot.ogg"
+	fire_sound = 'sound/weapons/smgshot.ogg'
 	fire_sound_volume = 80
 	vary_fire_sound = FALSE
-	rack_sound = "sound/weapons/smgrack.ogg"
+	rack_sound = 'sound/weapons/smgrack.ogg'
 
 /obj/item/gun/ballistic/automatic/proto
 	name = "\improper Nanotrasen Saber SMG"
@@ -113,6 +113,7 @@
 	burst_size = 2
 	bolt_type = BOLT_TYPE_OPEN
 	mag_display = TRUE
+	rack_sound = 'sound/weapons/pistollock.ogg'
 
 /obj/item/gun/ballistic/automatic/mini_uzi/update_icon()//hippie edit -- bring back old gun icons
 	..()
@@ -302,11 +303,11 @@
 	desc = "A long ranged weapon that does significant damage. No, you can't quickscope."
 	icon_state = "sniper"
 	item_state = "sniper"
-	fire_sound = "sound/weapons/sniper_shot.ogg"
+	fire_sound = 'sound/weapons/sniper_shot.ogg'
 	fire_sound_volume = 90
 	vary_fire_sound = FALSE
-	load_sound = "sound/weapons/sniper_mag_insert.ogg"
-	rack_sound = "sound/weapons/sniper_rack.ogg"
+	load_sound = 'sound/weapons/sniper_mag_insert.ogg'
+	rack_sound = 'sound/weapons/sniper_rack.ogg'
 	recoil = 2
 	weapon_weight = WEAPON_HEAVY
 	mag_type = /obj/item/ammo_box/magazine/sniper_rounds
