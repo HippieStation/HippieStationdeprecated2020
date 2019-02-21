@@ -158,9 +158,5 @@
 #define CHRONOSUIT_TRAIT "chronosuit"
 #define LOCKED_HELMET_TRAIT "locked-helmet"
 #define NINJA_SUIT_TRAIT "ninja-suit"
-<<<<<<< HEAD
-#define ANTI_DROP_IMPLANT_TRAIT "anti-drop-implant"
-=======
 #define ANTI_DROP_IMPLANT_TRAIT "anti-drop-implant"
 #define HIVEMIND_ONE_MIND_TRAIT "one_mind"
->>>>>>> 14fa604... Assimilation 2.0: Not quite a big enough PR to be worthy of the 2.0 title but almost (#42607)
