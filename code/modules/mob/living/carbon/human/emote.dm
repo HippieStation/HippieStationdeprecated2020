@@ -45,8 +45,7 @@
 	message = "mumbles!"
 	emote_type = EMOTE_AUDIBLE
 
-<<<<<<< HEAD
-=======
+/* hippie start -- Removed in favor of a /living/scream for borgs too,and with our sounds
 /datum/emote/living/carbon/human/scream
 	key = "scream"
 	key_third_person = "screams"
@@ -70,9 +69,8 @@
 			return pick('sound/voice/human/malescream_1.ogg', 'sound/voice/human/malescream_2.ogg', 'sound/voice/human/malescream_3.ogg', 'sound/voice/human/malescream_4.ogg', 'sound/voice/human/malescream_5.ogg')
 	else if(ismoth(H))
 		return 'sound/voice/moth/scream_moth.ogg'
+hippie end */
 
-
->>>>>>> 731efa5... Fix only mimes being able to scream (#42766)
 /datum/emote/living/carbon/human/pale
 	key = "pale"
 	message = "goes pale for a second."
