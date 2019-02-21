@@ -1,0 +1,4 @@
+author: "HonkBot"
+delete-after: True
+changes: 
+  - rscadd: "Adds toggleable light and blinking charge indicator to kinetic crusher"

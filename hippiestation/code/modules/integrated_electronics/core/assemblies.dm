@@ -33,6 +33,9 @@
 	var/prefered_hud_icon = "hudstat"		// Used by the AR circuit to change the hud icon.
 	var/creator // circuit creator if any
 	var/static/next_assembly_id = 0
+	var/sealed = FALSE
+	var/datum/weakref/idlock = null
+
 	hud_possible = list(DIAG_STAT_HUD, DIAG_BATT_HUD, DIAG_TRACK_HUD, DIAG_CIRCUIT_HUD) //diagnostic hud overlays
 	max_integrity = 50
 	pass_flags = 0
@@ -40,6 +43,7 @@
 	anchored = FALSE
 	var/can_anchor = TRUE
 	var/detail_color = COLOR_ASSEMBLY_BLACK
+
 /obj/item/electronic_assembly/New()
 	..()
 	src.max_components = round(max_components)
@@ -191,7 +195,8 @@
 
 		HTML += "<a href='?src=[REF(src)];component=[REF(circuit_pins)]'>Refresh</a> | \
 		<a href='?src=[REF(src)];component=[REF(circuit_pins)];rename_component=1'>Rename</a> | \
-		<a href='?src=[REF(src)];component=[REF(circuit_pins)];scan=1'>Copy Ref</a>"
+		<a href='?src=[REF(src)];component=[REF(circuit_pins)];scan=1'>Copy Ref</a> | \
+		<a href='?src=[REF(src)];component=[REF(circuit_pins)];interact=1'>Interact</a>"
 		if(circuit_pins.removable)
 			HTML += " | <a href='?src=[REF(src)];component=[REF(circuit_pins)];remove=1'>Remove</a>"
 		HTML += "</div><br>"
@@ -358,6 +363,13 @@
 			component.rename_component(usr)
 			if(component.assembly)
 				component.assembly.add_allowed_scanner(usr.ckey)
+		
+		if(href_list["interact"])
+			var/obj/item/I = usr.get_active_held_item()
+			if(istype(I))
+				I.melee_attack_chain(usr, component)
+			else
+				component.attack_hand(usr)
 
 		// Adjust the position
 		if(href_list["change_pos"])
@@ -532,6 +544,9 @@
 
 
 /obj/item/electronic_assembly/screwdriver_act(mob/living/user, obj/item/I)
+	if(sealed)
+		to_chat(user,"<span class='notice'>The assembly is sealed. Any attempt to force it open would break it.</span>")
+		return FALSE
 	if(..())
 		return TRUE
 	I.play_tool_sound(src)
@@ -540,9 +555,75 @@
 	update_icon()
 	return TRUE
 
+/obj/item/electronic_assembly/welder_act(mob/living/user, obj/item/I)
+	var/type_to_use
+
+	if(!sealed)
+		type_to_use = input("What would you like to do?","[src] type setting") as null|anything in list("repair", "seal")
+	else
+		type_to_use = input("What would you like to do?","[src] type setting") as null|anything in list("repair", "unseal")
+
+	switch(type_to_use)
+		if("repair")
+			to_chat(world,"Integrity: [obj_integrity] / [max_integrity]")
+			if(obj_integrity < max_integrity)
+				obj_integrity = min(obj_integrity + 20,max_integrity)
+				to_chat(world,"Integrity: [obj_integrity] / [max_integrity]")
+				to_chat(user,"<span class='notice'>You fix the dents and scratches of the assembly.</span>")
+				to_chat(world,user)
+				return TRUE
+
+			else
+				to_chat(user,"<span class='notice'>The assembly is already in impeccable condition.</span>")
+				return FALSE
+
+		if("seal")
+			if(!opened)
+				sealed = TRUE
+				if(I.use_tool(src, user, 50, volume=100, amount=3))
+					to_chat(user,"<span class='notice'>You seal the assembly, making it impossible to be opened.</span>")
+					return TRUE
+
+			else
+				to_chat(user,"<span class='notice'>You need to close the assembly first before sealing it indefinitely!</span>")
+				return FALSE
+
+		if("unseal")
+			to_chat(user,"<span class='notice'>You start unsealing the assembly carefully...</span>")
+			if(I.use_tool(src, user, 50, volume=250, amount=3))
+				for(var/obj/item/integrated_circuit/IC in assembly_components)
+					if(prob(50))
+						IC.disconnect_all()
+
+				to_chat(user,"<span class='notice'>You unsealed the assembly.</span>")
+				sealed = FALSE
+				return TRUE
+
 /obj/item/electronic_assembly/attackby(obj/item/I, mob/living/user)
 	if(can_anchor && default_unfasten_wrench(user, I, 20))
 		return
+
+	// ID-Lock part: check if we have an id-lock and only lock if we're not trying to get values from it, to prevent accidents
+	if(istype(I, /obj/item/integrated_electronics/debugger))
+		var/obj/item/integrated_electronics/debugger/debugger = I
+		if(debugger.idlock)
+			// check if unlocked to lock
+			if(!idlock)
+				idlock = debugger.idlock
+				to_chat(user,"<span class='notice'>You lock \the [src].</span>")
+
+			//if locked, unlock if ids match
+			else
+				if(idlock.resolve() == debugger.idlock.resolve())
+					idlock = null
+					to_chat(user,"<span class='notice'>You unlock \the [src].</span>")
+
+				else
+					to_chat(user,"<span class='notice'>The scanned ID doesn't match with \the [src]'s lock.</span>")
+
+			debugger.idlock = null
+			return
+
 	if(istype(I, /obj/item/integrated_circuit))
 		if(!user.canUnEquip(I))
 			return FALSE
@@ -552,6 +633,7 @@
 			for(var/obj/item/integrated_circuit/input/S in assembly_components)
 				S.attackby_react(I,user,user.a_intent)
 			return ..()
+
 	else if(I.tool_behaviour == TOOL_MULTITOOL || istype(I, /obj/item/integrated_electronics/wirer) || istype(I, /obj/item/integrated_electronics/debugger))
 		if(opened)
 			interact(user)
@@ -561,6 +643,7 @@
 			for(var/obj/item/integrated_circuit/input/S in assembly_components)
 				S.attackby_react(I,user,user.a_intent)
 			return ..()
+
 	else if(istype(I, /obj/item/stock_parts/cell))
 		if(!opened)
 			to_chat(user, "<span class='warning'>[src]'s hatch is closed, so you can't access \the [src]'s power supplier.</span>")
@@ -578,10 +661,12 @@
 		playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
 		to_chat(user, "<span class='notice'>You slot the [I] inside \the [src]'s power supplier.</span>")
 		return TRUE
+
 	else if(istype(I, /obj/item/integrated_electronics/detailer))
 		var/obj/item/integrated_electronics/detailer/D = I
 		detail_color = D.detail_color
 		update_icon()
+
 	else
 		if(user.a_intent != INTENT_HELP)
 			return ..()
