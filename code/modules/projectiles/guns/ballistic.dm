@@ -171,7 +171,7 @@
 		if (!magazine && istype(AM, mag_type))
 			insert_magazine(user, AM)
 		else if (magazine)
-			if(tac_reloads)
+			if(tac_reloads || user.has_trait(TRAIT_TACRELOAD)) //hippie edit -- adds tac_reload trait for nanosuit
 				eject_magazine(user, FALSE, AM)
 			else
 				to_chat(user, "<span class='notice'>There's already a [magazine_wording] in \the [src].</span>")
