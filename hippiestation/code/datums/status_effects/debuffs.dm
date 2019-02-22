@@ -42,8 +42,7 @@
 
 	if(istype(get_turf(owner), /turf/open/space))
 		probability/=2 //nerfs space sleep. cant survive to loop back around in space anymore.
-
-	//if(prob(probability))	//non rng edit. if we bring back rng, just tab the adjusts and make them -1
+		
 
 	if(probability>0)		//just in case we ever add negatives
 		owner.adjustBruteLoss((-probability/100), 0)
