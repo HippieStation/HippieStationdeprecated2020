@@ -450,7 +450,7 @@
 	name = "\improper DNA activator"
 	desc = "Activates the current mutation on injection, if the subject has it."
 	var/doitanyway = FALSE
-    var/research = FALSE //Set to true to get expended and filled injectors for chromosomes
+	var/research = FALSE //Set to true to get expended and filled injectors for chromosomes
 	var/filled = FALSE
 
 /obj/item/dnainjector/activator/inject(mob/living/carbon/M, mob/user)
