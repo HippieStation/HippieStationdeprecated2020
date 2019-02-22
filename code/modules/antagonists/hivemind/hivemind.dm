@@ -127,7 +127,7 @@
 	if(M)
 		hivemembers -= M
 		calc_size()
-    if(active_one_mind)
+	if(active_one_mind)
 			var/datum/antagonist/hivevessel/V = C.is_wokevessel()
 			if(V)
 				M.remove_antag_datum(/datum/antagonist/hivevessel)
