@@ -42,19 +42,10 @@
 
 	if(istype(get_turf(owner), /turf/open/space))
 		healing/=2 //nerfs space sleep. cant survive to loop back around in space anymore.
-		
 
-	if(healing>0)		//just in case we ever add negatives
-		owner.adjustBruteLoss((-healing/100), 0)
-		owner.adjustFireLoss((-healing/100), 0)
-		owner.adjustToxLoss((-healing/100), 0)
 
-	if(owner.getStaminaLoss())
-		owner.adjustStaminaLoss(-0.5) //reduce stamina loss by 0.5 per tick, 10 per 2 seconds
-	if(human_owner && human_owner.drunkenness)
-		human_owner.drunkenness *= 0.997 //reduce drunkenness by 0.3% per tick, 6% per 2 seconds
-	if(prob(20))
-		if(carbon_owner)
-			carbon_owner.handle_dreams()
-		if(prob(10) && owner.health > owner.crit_threshold)
-			owner.emote("snore")
+	owner.adjustBruteLoss((-healing/100), 0)
+	owner.adjustFireLoss((-healing/100), 0)
+	owner.adjustToxLoss((-healing/100), 0)
+
+	..()
