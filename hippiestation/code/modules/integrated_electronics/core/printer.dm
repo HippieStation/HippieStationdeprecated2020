@@ -14,6 +14,7 @@
 	var/cloning = FALSE			// If the printer is currently creating a circuit
 	var/recycling = FALSE		// If an assembly is being emptied into this printer
 	var/list/program			// Currently loaded save, in form of list
+	var/datum/weakref/idlock = null
 
 /obj/item/integrated_circuit_printer/proc/check_interactivity(mob/user)
 	return user.canUseTopic(src, BE_CLOSE)
@@ -42,6 +43,8 @@
 	visible_message("<span class='notice'>[src] has finished printing its assembly!</span>")
 	playsound(src, 'sound/items/poster_being_created.ogg', 50, TRUE)
 	var/obj/item/electronic_assembly/assembly = SScircuit.load_electronic_assembly(get_turf(src), program)
+	if(idlock)
+		assembly.idlock = idlock
 	assembly.creator = key_name(user)
 	assembly.investigate_log("was printed by [assembly.creator].", INVESTIGATE_CIRCUIT)
 	cloning = FALSE
@@ -101,6 +104,23 @@
 			recycling = FALSE
 			return TRUE
 
+	if(istype(O, /obj/item/integrated_electronics/debugger))
+		var/obj/item/integrated_electronics/debugger/debugger = O
+		if(!debugger.idlock)
+			return
+
+		if(!idlock)
+			idlock = debugger.idlock
+			debugger.idlock = null
+			to_chat(user, "<span class='notice'>You set \the [src] to print out id-locked assemblies only.</span>")
+			return
+
+		if(debugger.idlock.resolve() == idlock.resolve())
+			idlock = null
+			debugger.idlock = null
+			to_chat(user, "<span class='notice'>You reset \the [src]'s protection settings.</span>")
+			return
+
 	return ..()
 
 /obj/item/integrated_circuit_printer/attack_self(mob/user)
@@ -124,6 +144,13 @@
 	else
 		HTML += "Metal: [materials.total_amount]/[materials.max_amount].<br><br>"
 
+	HTML += "Identity-lock: "
+	if(idlock)
+		var/obj/item/card/id = idlock.resolve()
+		HTML+= "[id.name] | <A href='?src=[REF(src)];id-lock=TRUE'>Reset</a><br>"
+	else
+		HTML += "None | Reset<br>"
+
 	if(CONFIG_GET(flag/ic_printing) || debug)
 		HTML += "Assembly cloning: [can_clone ? (fast_clone ? "Instant" : "Available") : "Unavailable"].<br>"
 
@@ -135,7 +162,7 @@
 	if((can_clone && CONFIG_GET(flag/ic_printing)) || debug)
 		HTML += "Here you can load script for your assembly.<br>"
 		if(!cloning)
-			HTML += " <A href='?src=[REF(src)];print=load'>{Load Program}</a> "
+			HTML += " <A href='?src=[REF(src)];print=load'>Load Program</a> "
 		else
 			HTML += " Load Program"
 		if(!program)
@@ -149,9 +176,9 @@
 	HTML += "Categories:"
 	for(var/category in SScircuit.circuit_fabricator_recipe_list)
 		if(category != current_category)
-			HTML += " <a href='?src=[REF(src)];category=[category]'>\[[category]\]</a> "
+			HTML += " <a href='?src=[REF(src)];category=[category]'>[category]</a> "
 		else // Bold the button if it's already selected.
-			HTML += " <b>\[[category]\]</b> "
+			HTML += " <b>[category]</b> "
 	HTML += "<hr>"
 	HTML += "<center><h4>[current_category]</h4></center>"
 
@@ -177,6 +204,9 @@
 	if(..())
 		return TRUE
 	add_fingerprint(usr)
+
+	if(href_list["id-lock"])
+		idlock = null
 
 	if(href_list["category"])
 		current_category = href_list["category"]
