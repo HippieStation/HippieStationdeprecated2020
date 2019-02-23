@@ -111,3 +111,7 @@
 
 /obj/item/spellbook
 	persistence_replacement = /obj/item/book/granter/spell/random
+
+/datum/spellbook_entry/GetInfo() // hippiestation variant
+	. = ..()
+	. += "[S.staff_req?"Requires a staff to cast.":"Can be cast without a staff"]<br>"

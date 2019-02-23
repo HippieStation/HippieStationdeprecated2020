@@ -411,6 +411,8 @@
 				Wearer.remove_movespeed_modifier(NANO_SPEED)
 				Wearer.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
 				Wearer.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
+				Wearer.remove_trait(TRAIT_TACRELOAD, NANO_SPEED)
+				Wearer.remove_trait(TRAIT_LIGHT_STEP, NANO_SPEED)
 				style.remove(Wearer)
 				jetpack.full_speed = FALSE
 
@@ -425,6 +427,8 @@
 				Wearer.remove_movespeed_modifier(NANO_SPEED)
 				Wearer.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
 				Wearer.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
+				Wearer.remove_trait(TRAIT_TACRELOAD, NANO_SPEED)
+				Wearer.add_trait(TRAIT_LIGHT_STEP, NANO_SPEED)
 				style.remove(Wearer)
 				jetpack.full_speed = FALSE
 
@@ -439,8 +443,10 @@
 				Wearer.filters = filter(type="outline", size=0.1, color=rgb(255,255,224))
 				animate(Wearer, alpha = 255, time = 5)
 				Wearer.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
+				Wearer.add_trait(TRAIT_TACRELOAD, NANO_SPEED)
 				Wearer.add_movespeed_modifier(NANO_SPEED, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
 				Wearer.add_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
+				Wearer.remove_trait(TRAIT_LIGHT_STEP, NANO_SPEED)
 				style.remove(Wearer)
 				jetpack.full_speed = TRUE
 
@@ -456,6 +462,8 @@
 				Wearer.add_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
 				Wearer.remove_movespeed_modifier(NANO_SPEED)
 				Wearer.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
+				Wearer.remove_trait(TRAIT_TACRELOAD, NANO_SPEED)
+				Wearer.remove_trait(TRAIT_LIGHT_STEP, NANO_SPEED)
 				jetpack.full_speed = FALSE
 
 			if(NANO_NONE)
@@ -469,6 +477,8 @@
 				Wearer.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
 				Wearer.remove_movespeed_modifier(NANO_SPEED)
 				Wearer.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
+				Wearer.remove_trait(TRAIT_TACRELOAD, NANO_SPEED)
+				Wearer.remove_trait(TRAIT_LIGHT_STEP, NANO_SPEED)
 				jetpack.full_speed = FALSE
 
 	for(var/X in actions)
@@ -679,7 +689,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/dropped()
 	..()
-	if(help_verb)
+	if(help_verb && Wearer)
 		Wearer.verbs -= help_verb
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/bootSequence()

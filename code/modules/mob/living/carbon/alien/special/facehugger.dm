@@ -50,29 +50,7 @@
 		Die()
 
 /obj/item/clothing/mask/facehugger/attackby(obj/item/O, mob/user, params)
-	/* hippie start -- moved into type check
 	return O.attack_obj(src, user)
-	hippie end*/
-	// hippie start -- special effects when hit by genderchange potion
-	if(!istype(O, /obj/item/slimepotion/genderchange))
-		return O.attack_obj(src, user)
-
-	if(stat == DEAD)
-		to_chat(user, "<span class='warning'>The potion can only be used if the creature is alive!</span>")
-		return
-
-	if(sterile)
-		visible_message("<span class='danger'>[src] grows a proboscis!</span>")
-		sterile = 0
-	else
-		visible_message("<span class='danger'>[src]'s proboscis shrivels up and drops off!</span>")
-		sterile = 1
-
-	qdel(O)
-	// hippie end
-	
-	return
-
 
 /obj/item/clothing/mask/facehugger/attack_alien(mob/user) //can be picked up by aliens
 	return attack_hand(user)

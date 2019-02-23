@@ -1,0 +1,4 @@
+author: "Carbonhell"
+delete-after: True
+changes: 
+  - bugfix: "Chef's cqc doesn't work outside kitchen anymore."
