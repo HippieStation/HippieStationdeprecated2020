@@ -108,7 +108,7 @@
 	icon_hippie = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
-	siemens_coefficient = 0
+	siemens_coefficient = 0 //because its made of wood
 
 /obj/item/melee/baseball_bat/ablative
 	desc = "A smooth metal club used in baseball to hit the ball. Or to purify your adversaries."
@@ -117,6 +117,7 @@
 	item_state = "hippie_bbat_metal"
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
+	siemens_coefficient = 1 //because its metal
 
 /obj/item/melee/baseball_bat/spiked
 	name = "spiked baseball bat"
@@ -129,6 +130,7 @@
 	force = 15 //for reference, normal bat has 10
 	throwforce = 15 // its got spikes sticking out of it - pre rebase comment :D
 	armour_penetration = 10
+	siemens_coefficient = 1 //because metal spikes
 
 /obj/item/claymore/bone
 	name = "bone sword"
