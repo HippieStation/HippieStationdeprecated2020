@@ -61,7 +61,6 @@
 	var/datum/mind/M = L?.mind
 	if(!M)
 		return
-	var/datum/mind/M = L.mind
 	for(var/datum/antagonist/hivemind/H in GLOB.antagonists)
 		if(H.hivemembers.Find(M))
 			H.hivemembers -= M
