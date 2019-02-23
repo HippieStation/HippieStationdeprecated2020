@@ -651,11 +651,7 @@
 							var/datum/mutation/human/A = new HM.type()
 							A.copy_mutation(HM)
 							succes = TRUE
-<<<<<<< HEAD
-							stored_mutations[A] = get_sequence(mutation) //We only store active mutations and all active mutations have the full sequence.
-=======
 							stored_mutations += A
->>>>>>> 976fbf1... Fix wacky indentation in DNA console (#42851)
 							to_chat(usr,"<span class='notice'>Mutation succesfully stored.</span>")
 				if(!succes) //we can exactly return here
 					to_chat(usr,"<span class='warning'>Mutation storage is full.</span>")
