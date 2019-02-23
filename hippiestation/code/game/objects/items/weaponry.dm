@@ -108,6 +108,7 @@
 	icon_hippie = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
+	siemens_coefficient = 0
 
 /obj/item/melee/baseball_bat/ablative
 	desc = "A smooth metal club used in baseball to hit the ball. Or to purify your adversaries."
