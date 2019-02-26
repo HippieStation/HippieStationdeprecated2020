@@ -74,31 +74,7 @@
 
 /obj/item/gun/ballistic/rocketlauncher/attack_self_tk(mob/user)
 	return //too difficult to remove the rocket with TK
-
-<<<<<<< HEAD
-/obj/item/gun/ballistic/rocketlauncher/attack_self(mob/living/user)
-	if(magazine)
-		if(chambered)
-			chambered.forceMove(magazine)
-			magazine.stored_ammo.Insert(1, chambered)
-			chambered = null
-		else
-			stack_trace("Removed [magazine] from [src] without a chambered round")
-		magazine.forceMove(drop_location())
-		if(user.is_holding(src))
-			user.put_in_hands(magazine)
-		playsound(src, 'sound/weapons/gun_magazine_remove_full.ogg', 70, TRUE)
-		to_chat(user, "<span class='notice'>You work the [magazine] out from [src].</span>")
-		magazine = null
-	else
-		to_chat(user, "<span class='notice'>There's no rocket in [src].</span>")
-	update_icon()
-
-/obj/item/gun/ballistic/rocketlauncher/update_icon()
-	icon_state = "[initial(icon_state)]-[chambered ? "1" : "0"]"
-
-=======
->>>>>>> 86cb5c2... Fixes the RPG, renames it and adds some fluff text (#42853)
+	
 /obj/item/gun/ballistic/rocketlauncher/suicide_act(mob/living/user)
 	user.visible_message("<span class='warning'>[user] aims [src] at the ground! It looks like [user.p_theyre()] performing a sick rocket jump!<span>", \
 		"<span class='userdanger'>You aim [src] at the ground to perform a bisnasty rocket jump...</span>")
