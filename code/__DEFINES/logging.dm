@@ -15,12 +15,9 @@
 #define INVESTIGATE_RADIATION		"radiation"
 #define INVESTIGATE_EXONET			"exonet"
 #define INVESTIGATE_NANITES			"nanites"
-<<<<<<< HEAD
 #define INVESTIGATE_CIRCUIT			"circuit"
 #define INVESTIGATE_PRESENTS    "presents"
-=======
 #define INVESTIGATE_PRESENTS		"presents"
->>>>>>> c9d2b8c... Logging tweaks and fixes (#42817)
 
 // Logging types for log_message()
 #define LOG_ATTACK			(1 << 0)
