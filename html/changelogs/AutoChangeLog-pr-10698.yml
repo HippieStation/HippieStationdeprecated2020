@@ -1,0 +1,4 @@
+author: "Mideanon"
+delete-after: True
+changes: 
+  - rscadd: "You now heal while you sleep."

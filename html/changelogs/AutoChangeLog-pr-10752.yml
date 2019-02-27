@@ -1,0 +1,5 @@
+author: "JF260"
+delete-after: True
+changes: 
+  - balance: "Slightly reduces combat and hazard nanite prices"
+  - rscadd: "Adds back \"Adrenaline Burst\" under combat nanites"
