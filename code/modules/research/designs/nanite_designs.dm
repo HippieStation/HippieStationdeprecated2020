@@ -208,12 +208,12 @@
 	program_type = /datum/nanite_program/conductive
 	category = list("Augmentation Nanites")
 
-/datum/design/nanites/adrenaline
+/*/datum/design/nanites/adrenaline
 	name = "Adrenaline Burst"
 	desc = "The nanites cause a burst of adrenaline when triggered, waking the host from stuns and temporarily increasing their speed."
 	id = "adrenaline_nanites"
 	program_type = /datum/nanite_program/triggered/adrenaline
-	category = list("Augmentation Nanites")
+	category = list("Augmentation Nanites") HIPPIE EDIT - REMOVES FUCKING ADRENALS */
 
 /datum/design/nanites/mindshield
 	name = "Mental Barrier"
