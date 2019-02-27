@@ -335,14 +335,16 @@
 						log_game("[key_name(usr)] won Minesweeper and got a syndicate bomb!")
 					if(2)
 						itemname = "a rocket launcher"
-						new /obj/item/gun/ballistic/rocketlauncher(loc)
-						new /obj/item/ammo_box/magazine/rocket/hedp(loc)
+						var/obj/item/gun/G = new /obj/item/gun/ballistic/rocketlauncher(loc)
+						G.replace_pin(gun = G) //Default firing pin is syndi pin... oops
+						new /obj/item/ammo_box/magazine/internal/rocketlauncher(loc)
+
 						log_game("[key_name(usr)] won Minesweeper and got a rocket launcher!")
 					if(3)
-						itemname = "two c4 bags"
+						itemname = "two bags of c4"
 						new /obj/item/storage/backpack/duffelbag/syndie/c4(loc)
 						new /obj/item/storage/backpack/duffelbag/syndie/x4(loc)
-						log_game("[key_name(usr)] won Minesweeper and got a ton of C4!")
+				log_game("[key_name(usr)] won Minesweeper and got [itemname]!")
 				visible_message("<span class='notice'>[src] dispenses [itemname]!</span>", "<span class='notice'>You hear a chime and a clunk.</span>")
 			web += "<font size='6'>Congratulations, you have won!<br><font size='3'>Want to play again?<br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font></a></b><br><a href='byond://?src=[REF(src)];same_board=1'><font color='#cc66ff'>Play on the same board</font></a><br><a href='byond://?src=[REF(src)];Main_Menu=1'><font color='#cc66ff'>Return to Main Menu</font></a></b><br>"
 
