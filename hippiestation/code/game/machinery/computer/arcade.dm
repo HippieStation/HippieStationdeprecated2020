@@ -79,10 +79,11 @@
 
 
 /obj/machinery/computer/arcade/minesweeper/interact(mob/user)
-	var/web_difficulty_menu = "<font size='2'> Reveal all the squares without hitting a mine!<br>What difficulty do you want to play?<br><br><br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font>"
+	var/web_difficulty_menu = "<font size='2'> Reveal all the squares without hitting a mine!<br>What difficulty do you want to play?<br><br><br><br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font>"
 	var/static_web = "<head><title>Minesweeper</title></head><div align='center'><b>Minesweeper</b><br>"	//When we need to revert to the main menu we set web as this
 	var/static_emagged_web = "<head><title>Minesweeper</title></head><div align='center'><b>Minesweeper <font color='red'>EXTREME EDITION</font>: Iteration <font color='[randomcolour]'>#[randomnumber]</font></b><br>"	//Different colour mix for every random number made
-	var/emagged_web_difficulty_menu = "<font size='2'>Explode in the game, explode in real life!<br>What difficulty do you want to play?<br><br><br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font>"
+	var/emagged_web_difficulty_menu = "<font size='2'>Explode in the game, explode in real life!<br>What difficulty do you want to play?<br><br><br><br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font>"
+	user = usr
 
 	if(game_status == MINESWEEPER_GAME_MAIN_MENU)
 		if(obj_flags & EMAGGED)
@@ -109,6 +110,7 @@
 		user << browse(saved_web,"window=minesweeper,size=400x500")
 	if(obj_flags & EMAGGED)
 		do_sparks(5, 1, src)
+	add_fingerprint(user)
 
 	..()
 
@@ -119,7 +121,7 @@
 	var/exploding_hell = FALSE	//For emagged failures
 	var/reset_board = FALSE
 	var/mob/living/user = usr	//To identify who the hell is using this window, this should also make things like aliens and monkeys able to use the machine!!
-	var/web_difficulty_menu = "<font size='2'> Reveal all the squares without hitting a mine!<br>What difficulty do you want to play?<br><br><br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font>"
+	var/web_difficulty_menu = "<font size='2'> Reveal all the squares without hitting a mine!<br>What difficulty do you want to play?<br><br><br><br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font>"
 	var/web = "<head><title>Minesweeper</title></head><div align='center'><b>Minesweeper</b><br>"
 	var/static_web = "<head><title>Minesweeper</title></head><div align='center'><b>Minesweeper</b><br>"	//When we need to revert to the main menu we set web as this
 	web = static_web
@@ -168,10 +170,11 @@
 		reset_board = TRUE
 		difficulty = "Custom"
 		rows = text2num(input(usr, "How many rows do you want? (Maximum of 30 allowed)", "Minesweeper Rows"))+1	//+1 as dm arrays start at 1
+		custom_generation()
 		columns = text2num(input(usr, "How many columns do you want? (Maximum of 50 allowed)", "Minesweeper Squares"))+1	//+1 as dm arrays start at 1
+		custom_generation()
 		var/grid_area = (rows-1)*(columns-1)
 		mine_limit = text2num(input(usr, "How many mines do you want? (Maximum of [round(grid_area*0.9)] allowed)", "Minesweeper Mines"))
-		playsound(loc, 'hippiestation/sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
 		custom_generation()
 	if(href_list["Flag"])
 		if(!flagging)
@@ -184,7 +187,7 @@
 	if(game_status == MINESWEEPER_GAME_MAIN_MENU)
 		if(obj_flags & EMAGGED)
 			playsound(loc, 'hippiestation/sound/arcade/minesweeper_emag2.ogg', 50, 0, extrarange = -3, falloff = 10)
-			web += "<font size='2'>Explode in the game, explode in real life!<br>What difficulty do you want to play?<br><br><br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font>"
+			web += "<font size='2'>Explode in the game, explode in real life!<br>What difficulty do you want to play?<br><br><br><br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font>"
 		else
 			playsound(loc, 'hippiestation/sound/arcade/minesweeper_startup.ogg', 50, 0, extrarange = -3, falloff = 10)
 			web += web_difficulty_menu
@@ -196,9 +199,12 @@
 	if(reset_board)
 		for(var/y1=1;y1<31;y1++)	//Board resetting and mine building: reset EVERYTHING!!!
 			for(var/x1=1;x1<51;x1++)
-				table[y1][x1] = 1	//Uninitialise everything into an empty square
-		mine_placed = 0
+				table[y1][x1] = null	//Uninitialise everything into... nothing
+		for(var/y1=1;y1<rows;y1++)	//Set up the board again
+			for(var/x1=1;x1<columns;x1++)
+				table[y1][x1] = 1
 		reset_board = FALSE
+		mine_placed = 0
 		make_mines()	//Multiple passes until we reach the mine limit
 
 	for(var/y1=1;y1<rows;y1++)	//Board resetting and href checking
@@ -332,19 +338,17 @@
 					if(1)
 						itemname = "a syndicate bomb beacon"
 						new /obj/item/sbeacondrop/bomb(loc)
-						log_game("[key_name(usr)] won Minesweeper and got a syndicate bomb!")
 					if(2)
 						itemname = "a rocket launcher"
-						var/obj/item/gun/G = new /obj/item/gun/ballistic/rocketlauncher(loc)
-						G.replace_pin(gun = G) //Default firing pin is syndi pin... oops
-						new /obj/item/ammo_box/magazine/internal/rocketlauncher(loc)
-
-						log_game("[key_name(usr)] won Minesweeper and got a rocket launcher!")
+						new /obj/item/gun/ballistic/rocketlauncher/unrestricted(loc)
+						new /obj/item/ammo_casing/caseless/rocket/hedp(loc)
+						new /obj/item/ammo_casing/caseless/rocket/hedp(loc)
+						new /obj/item/ammo_casing/caseless/rocket/hedp(loc)
 					if(3)
 						itemname = "two bags of c4"
 						new /obj/item/storage/backpack/duffelbag/syndie/c4(loc)
 						new /obj/item/storage/backpack/duffelbag/syndie/x4(loc)
-				log_game("[key_name(usr)] won Minesweeper and got [itemname]!")
+				message_admins("[key_name_admin(user)] won emagged Minesweeper and got [itemname]!")
 				visible_message("<span class='notice'>[src] dispenses [itemname]!</span>", "<span class='notice'>You hear a chime and a clunk.</span>")
 			web += "<font size='6'>Congratulations, you have won!<br><font size='3'>Want to play again?<br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font></a></b><br><a href='byond://?src=[REF(src)];same_board=1'><font color='#cc66ff'>Play on the same board</font></a><br><a href='byond://?src=[REF(src)];Main_Menu=1'><font color='#cc66ff'>Return to Main Menu</font></a></b><br>"
 
@@ -355,8 +359,6 @@
 	web += "</div>"
 
 	saved_web = web
-
-	add_fingerprint(user)
 	usr << browse_rsc('hippiestation/icons/arcade/minesweeper_flag.dmi')
 	usr << browse_rsc('hippiestation/icons/arcade/minesweeper_mine.dmi')
 	usr << browse_rsc('hippiestation/icons/arcade/minesweeper_hidden.dmi')
@@ -376,15 +378,21 @@
 /obj/machinery/computer/arcade/minesweeper/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
-	to_chat(user, "<span class='warning'>An ominous tune plays from the arcade's speakers!</span>")
 	desc = "An arcade machine that generates grids. It's clunking and sparking everywhere, almost as if threatening to explode at any moment!"
-	playsound(user, 'hippiestation/sound/arcade/minesweeper_emag1.ogg', 100, 0, extrarange = -3, falloff = 10)
 	do_sparks(5, 1, src)
 	randomnumber = rand(1,255)
 	randomcolour = rgb(randomnumber,randomnumber/2,randomnumber/3)
 	obj_flags |= EMAGGED
+	if(game_status == MINESWEEPER_GAME_MAIN_MENU)
+		to_chat(user, "<span class='warning'>An ominous tune plays from the arcade's speakers!</span>")
+		playsound(user, 'hippiestation/sound/arcade/minesweeper_emag1.ogg', 100, 0, extrarange = 3, falloff = 10)
+	else	//Can't let you do that, star fox!
+		to_chat(user, "<span class='warning'>The machine buzzes and sparks... the game has been reset!</span>")
+		playsound(user, 'sound/machines/buzz-sigh.ogg', 100, 0, extrarange = 3, falloff = 10)	//Loud buzz
+		game_status = MINESWEEPER_GAME_MAIN_MENU
 
 /obj/machinery/computer/arcade/minesweeper/proc/custom_generation()
+	playsound(loc, 'hippiestation/sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)	//Entered into the menu so ping sound
 	if(rows < 4)
 		rows = text2num(input(usr, "You must put at least 4 rows! Pick a higher amount of rows", "Minesweeper Rows"))+1	//+1 as dm arrays start at 1
 		playsound(loc, 'hippiestation/sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
@@ -415,7 +423,7 @@
 	if(mine_placed < mine_limit)
 		for(var/y1=1;y1<rows;y1++)	//Board resetting and mine building
 			for(var/x1=1;x1<columns;x1++)
-				if(prob(area/mine_limit) && mine_placed < mine_limit)
+				if(prob(area/mine_limit) && mine_placed < mine_limit && table[y1][x1] != 0)	//Unlikely for this to happen but this has eaten mines before
 					table[y1][x1] = 0
 					mine_placed += 1
 		make_mines()	//In case the first pass doesn't generate enough mines
