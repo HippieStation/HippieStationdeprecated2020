@@ -55,3 +55,39 @@
 			return TRUE
 	//Disk check, since we're a steal objective using the parent proc is fine
 	return ..()
+
+/datum/objective/crew
+	explanation_text = "Something something"
+	var/job_required = ""
+
+/datum/objective/crew/clown/honk
+	job_required = "Clown"
+
+/datum/objective/crew/clown/honk/update_explanation_text()
+	explanation_text = "Honk 50 people with your bike horn!"
+
+/datum/objective/crew/clown/honk/check_completion()
+	return TRUE
+
+/datum/objective/crew/any/shuttle
+	job_required = ""
+	var/num
+
+/datum/objective/crew/any/shuttle/New()
+	var/mob/living/player = var/datum/antagonist/crew/C
+	for(player in GLOB.player_list)
+		if(player.has_antag_datum(C) && player.stat != DEAD && player.mind && !issilicon(player))
+			if(prob(20))	//Get a percentage of the crew you need to protect
+				num += 1
+
+/datum/objective/crew/any/shuttle/update_explanation_text()
+	explanation_text = "Ensure at least [num] crew members escape on the shuttle."
+
+/datum/objective/crew/any/shuttle/check_completion()
+	var/mob/living/player = var/datum/antagonist/crew/C
+	var/check_num = 0
+	for(player in GLOB.player_list)
+		if(player.has_antag_datum(C) && player.stat != DEAD && player.mind && !issilicon(player))
+			check_num += 1
+	if(check_num >= num)
+		return TRUE
