@@ -418,89 +418,92 @@
 
 /datum/quirk/family_heirloom/on_process()
 	var/mob/living/carbon/human/H = quirk_holder
-	if(H.stat == CONSCIOUS)	//Can't feel much if you're passed out
-		if(heirloom in quirk_holder.GetAllContents())
-			switch(time_without_heirloom)
-				if(0)
-					if(prob(0.5))
-						to_chat(H, "<span class='notice'>You feel safe, knowing that your family heirloom is with you.</span>")
+	if(H.stat != DEAD)
+		if(H.stat == CONSCIOUS)	//Can't feel much if you're passed out
+			if(heirloom in quirk_holder.GetAllContents())
+				switch(time_without_heirloom)
+					if(0)
+						if(prob(0.5))
+							to_chat(H, "<span class='notice'>You feel safe, knowing that your family heirloom is with you.</span>")
+							time_without_heirloom = 0
+					if(1 to 2)
+						to_chat(H, "<span class='notice'>You're relieved you found your heirloom, and calm down.</span>")
 						time_without_heirloom = 0
-				if(1 to 2)
-					to_chat(H, "<span class='notice'>You're relieved you found your heirloom, and calm down.</span>")
-					time_without_heirloom = 0
-				if(3)
-					to_chat(H, "<span class='notice'>You finally found your heirloom again. What a relief.</span>")
-					time_without_heirloom = 0
-				if(4)
-					to_chat(H, "<span class='notice'>After so long desperately, frantically searching around for it, you finally found your heirloom again. You let out a sigh of relief. This is going to take a while to recover from.</span>")
-					time_without_heirloom = 0
-		else
-			switch(time_without_heirloom)
-				if(0)
-					if(prob(5))
-						to_chat(H, "<span class='warning'>You realise you've lost your heirloom. You need to get it back!</span>")
-						time_without_heirloom += 1
-				if(1)
-					if(prob(2))
-						to_chat(H, "<span class='warning'>You've been a while without your heirloom... you're starting to feel uneasy without it!</span>")
-						quirk_holder.Jitter(5)
-						time_without_heirloom += 1
-				if(2)
-					if(prob(10))
-						to_chat(H, "<span class='warning'>You feel uneasy without your heirloom...</span>")
-						quirk_holder.Jitter(5)
-					if(prob(1))
-						to_chat(H, "<span class='warning'>You're starting to feel really bad! You <font size='3'><b>NEED</b></font> to get your heirloom back!!</span>")
-						quirk_holder.Jitter(10)
-						if(H.getOxyLoss() < 40)
-							quirk_holder.emote("scream")
-						time_without_heirloom += 1
-				if(3)
-					if(prob(20))
-						H.Jitter(5)
-					if(prob(10))
-						if(H.getOxyLoss() < 40)
-							H.emote("cough")
-					if(prob(5))
-						H.Dizzy(20)
-					if(prob(1))
-						to_chat(H, "<span class='warning'><font size='3'>YOU NEED YOUR HEIRLOOM BACK NOW!!!</font></span>")
-						time_without_heirloom += 1
-				if(4)	//Now we're really getting fucked up
-					H.Jitter(10)
-					H.hallucination = 5
-					if(prob(10))
-						H.adjustStaminaLoss(5)
-						if(H.getOxyLoss() < 40)
-							H.emote("cough")
-					if(prob(10))
-						H.vomit(5)
-					if(prob(10))
-						to_chat(H, "<span class='warning'><font size='2'>Your heart violently pumps in your chest as you desperately search for your heirloom!</font></span>")
-						H.AdjustKnockdown(10)
-						H.adjustBrainLoss(5)
-						H.Dizzy(20)
-						if(H.getOxyLoss() < 40)
-							H.emote("scream")
-					if(prob(10))
-						H.adjustStaminaLoss(5)
-						H.AdjustKnockdown(10)
-						to_chat(H, "<span class='warning'>You fall over in your panic to find your heirloom!</span>")
-					if(prob(5))
-						to_chat(H, "<span class='warning'>You can't feel yourself breathing!</span>")
-						if(H.getOxyLoss() < 40)
-							H.losebreath++
-							H.emote("gasp")
-					if(prob(0.5) && !goingtodie)
-						switch(pick(1,2))
-							if(1)
-								to_chat(H, "<span class='warning'><font size='3'>Your heart is starting to pound even harder... even faster... you need that heirloom now! You need it now!!</font></span>")
-								goingtodie = TRUE
-								addtimer(CALLBACK(src, .proc/make_heartattack), 300)	//You best find that thing soon kid
-							if(2)
-								to_chat(H, "<span class='warning'><font size='3'>You're starting to feel really, really sick from the panic! You need that heirloom now!</font></span>")
-								goingtodie = TRUE
-								addtimer(CALLBACK(src, .proc/throwup_organ), 300)	//You best find that thing soon kid
+					if(3)
+						to_chat(H, "<span class='notice'>You finally found your heirloom again. What a relief.</span>")
+						time_without_heirloom = 0
+					if(4)
+						to_chat(H, "<span class='notice'>After so long desperately, frantically searching around for it, you finally found your heirloom again. You let out a sigh of relief. This is going to take a while to recover from.</span>")
+						time_without_heirloom = 0
+			else
+				switch(time_without_heirloom)
+					if(0)
+						if(prob(5))
+							to_chat(H, "<span class='warning'>You realise you've lost your heirloom. You need to get it back!</span>")
+							time_without_heirloom += 1
+					if(1)
+						if(prob(2))
+							to_chat(H, "<span class='warning'>You've been a while without your heirloom... you're starting to feel uneasy without it!</span>")
+							quirk_holder.Jitter(5)
+							time_without_heirloom += 1
+					if(2)
+						if(prob(10))
+							to_chat(H, "<span class='warning'>You feel uneasy without your heirloom...</span>")
+							quirk_holder.Jitter(5)
+						if(prob(1))
+							to_chat(H, "<span class='warning'>You're starting to feel really bad! You <font size='3'><b>NEED</b></font> to get your heirloom back!!</span>")
+							quirk_holder.Jitter(10)
+							if(H.getOxyLoss() < 40)
+								quirk_holder.emote("scream")
+							time_without_heirloom += 1
+					if(3)
+						if(prob(20))
+							H.Jitter(5)
+						if(prob(10))
+							if(H.getOxyLoss() < 40)
+								H.emote("cough")
+						if(prob(5))
+							H.Dizzy(20)
+						if(prob(1))
+							to_chat(H, "<span class='warning'><font size='3'>YOU NEED YOUR HEIRLOOM BACK NOW!!!</font></span>")
+							time_without_heirloom += 1
+					if(4)	//Now we're really getting fucked up
+						H.Jitter(10)
+						H.hallucination = 5
+						if(prob(10))
+							H.adjustStaminaLoss(5)
+							if(H.getOxyLoss() < 40)
+								H.emote("cough")
+						if(prob(10))
+							H.vomit(5)
+						if(prob(10))
+							to_chat(H, "<span class='warning'><font size='2'>Your heart violently pumps in your chest as you desperately search for your heirloom!</font></span>")
+							H.AdjustKnockdown(10)
+							H.adjustBrainLoss(5)
+							H.Dizzy(20)
+							if(H.getOxyLoss() < 40)
+								H.emote("scream")
+						if(prob(10))
+							H.adjustStaminaLoss(5)
+							H.AdjustKnockdown(10)
+							to_chat(H, "<span class='warning'>You fall over in your panic to find your heirloom!</span>")
+						if(prob(5))
+							to_chat(H, "<span class='warning'>You can't feel yourself breathing!</span>")
+							if(H.getOxyLoss() < 40)
+								H.losebreath++
+								H.emote("gasp")
+						if(prob(0.5) && !goingtodie)
+							switch(pick(1,2))
+								if(1)
+									to_chat(H, "<span class='warning'><font size='3'>Your heart is starting to pound even harder... even faster... you need that heirloom now! You need it now!!</font></span>")
+									goingtodie = TRUE
+									addtimer(CALLBACK(src, .proc/make_heartattack), 300)	//You best find that thing soon kid
+								if(2)
+									to_chat(H, "<span class='warning'><font size='3'>You're starting to feel really, really sick from the panic! You need that heirloom now!</font></span>")
+									goingtodie = TRUE
+									addtimer(CALLBACK(src, .proc/throwup_organ), 300)	//You best find that thing soon kid
+	else
+		time_without_heirloom = 0	//Give them a chance, if they revive afterwards
 
 /datum/quirk/family_heirloom/clone_data()
 	return heirloom
