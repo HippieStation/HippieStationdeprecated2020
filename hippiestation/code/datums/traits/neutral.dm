@@ -10,7 +10,7 @@
 /datum/quirk/light_drinker
 	name = "Light Drinker"
 	desc = "You just can't handle your drinks and get drunk very quickly."
-	value = -1
+	value = 0
 	mob_trait = TRAIT_LIGHT_DRINKER
 	gain_text = "<span class='notice'>Just the thought of drinking alcohol makes your head spin.</span>"
 	lose_text = "<span class='danger'>You're no longer severely affected by alcohol.</span>"
@@ -50,6 +50,17 @@
 	var/mob/living/carbon/human/H = quirk_holder
 	H.equip_to_slot_or_del(new /obj/item/storage/fancy/candle_box(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/matches(H), SLOT_IN_BACKPACK)
+
+/datum/quirk/spiritual/on_process()
+	var/comforted = FALSE
+	for(var/mob/living/L in oview(5, quirk_holder))
+		if(L.mind && L.mind.isholy && L.stat == CONSCIOUS)
+			comforted = TRUE
+			break
+	if(comforted)
+		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "religious_comfort", /datum/mood_event/religiously_comforted)
+	else
+		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "religious_comfort")
 
 /datum/quirk/musician/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
@@ -175,7 +186,7 @@
 /datum/quirk/family_heirloom
 	name = "Family Heirloom"
 	desc = "You are the current owner of an heirloom, passed down for generations. You have to keep it safe!"
-	value = -1
+	value = 0
 	mood_quirk = TRUE
 	var/obj/item/heirloom
 	var/where
