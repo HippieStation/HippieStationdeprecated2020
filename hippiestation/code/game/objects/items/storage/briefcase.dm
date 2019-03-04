@@ -1,5 +1,5 @@
-	/obj/item/storage/briefcase/lawyer
-  force = 14
+/obj/item/storage/briefcase/lawyer
+ 	force = 14
 	throwforce = 14
 	throwspeed =2
 	throw_range = 7
