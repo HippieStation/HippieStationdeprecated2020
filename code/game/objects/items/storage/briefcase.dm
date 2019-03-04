@@ -29,6 +29,11 @@
 
 /obj/item/storage/briefcase/lawyer
 	folder_path = /obj/item/folder/blue
+	force = 14
+	throwforce = 14
+	throwspeed =2
+	throw_range = 7
+	slot_flags = ITEM_SLOT_BELT
 
 /obj/item/storage/briefcase/lawyer/PopulateContents()
 	new /obj/item/stamp/law(src)
