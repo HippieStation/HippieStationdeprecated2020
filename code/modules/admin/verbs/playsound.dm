@@ -109,6 +109,8 @@
 			else
 				to_chat(src, "<span class='boldwarning'>Youtube-dl URL retrieval FAILED:</span>")
 				to_chat(src, "<span class='warning'>[stderr]</span>")
+				to_chat(src, "<span class='warning'>[stdout]</span>") // hippie -- print stdout to figure out why this happens
+				to_chat(src, "<span class='warning'>Error code: [errorlevel]</span>") //hippie -- error level too
 
 		else //pressed ok with blank
 			log_admin("[key_name(src)] stopped web sound")
