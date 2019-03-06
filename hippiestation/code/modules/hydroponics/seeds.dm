@@ -1,4 +1,4 @@
-/proc/get_random_reagent_id_seeds()
+/obj/item/seeds/proc/get_random_reagent_id_seeds()
 	var/static/list/random_reagents = list()
 	if(!random_reagents.len)
 		for(var/thing  in subtypesof(/datum/reagent))
