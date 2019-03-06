@@ -3166,6 +3166,7 @@
 #include "hippiestation\code\modules\hydroponics\hydroponics.dm"
 #include "hippiestation\code\modules\hydroponics\limbflower.dm"
 #include "hippiestation\code\modules\hydroponics\planet_genes.dm"
+#include "hippiestation\code\modules\hydroponics\random_reagent_proc_seeds.dm"
 #include "hippiestation\code\modules\hydroponics\seed_extractor.dm"
 #include "hippiestation\code\modules\hydroponics\seeds.dm"
 #include "hippiestation\code\modules\hydroponics\grown\berries.dm"
