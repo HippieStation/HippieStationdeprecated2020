@@ -149,8 +149,10 @@
 
 /obj/item/melee/baton/do_special_attack(atom/target, mob/living/carbon/user)
 	if(isliving(user) && status == TRUE)
-		tesla_zap(src, 4, 10000)
+		tesla_zap(src, 4, 10000, TESLA_FUSION_FLAGS)
 		user.electrocute_act(20, src, TRUE, TRUE)
+		log_admin("[user] used [special_name] on [target]")
+		message_admins("<span class='adminnotice'>[user] used [special_name] on [target]</span>")
 		deductcharge(hitcost)
 		user.visible_message("<span class='danger'>[user] spits on the active end of [src]!</span>")
 		playsound(user, 'sound/magic/lightningbolt.ogg', 100, 1, -1)
