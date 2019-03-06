@@ -224,28 +224,7 @@
 		if(ASSEMBLY_SECOND_STEP)
 			desc = "It's a toolbox with tiles sticking out the top and a sensor attached."
 			name = "incomplete floorbot assembly"
-<<<<<<< HEAD
-			icon_state = "toolbox_tiles_sensor"
-
-/obj/item/storage/toolbox/mechanical/attackby(obj/item/stack/tile/plasteel/T, mob/user, params)
-	if(!istype(T, /obj/item/stack/tile/plasteel))
-		..()
-		return
-	if(contents.len >= 1)
-		to_chat(user, "<span class='warning'>They won't fit in, as there is already stuff inside!</span>")
-		return
-	if(T.use(10))
-		var/obj/item/bot_assembly/floorbot/B = new
-		B.toolbox = type
-		user.put_in_hands(B)
-		to_chat(user, "<span class='notice'>You add the tiles into the empty [src.name]. They protrude from the top.</span>")
-		qdel(src)
-	else
-		to_chat(user, "<span class='warning'>You need 10 floor tiles to start building a floorbot!</span>")
-		return
-=======
 			icon_state = "[toolbox_color]toolbox_tiles_sensor"
->>>>>>> e83b625... Merge pull request #42972 from TerraGS/bot-cleanup
 
 /obj/item/bot_assembly/floorbot/attackby(obj/item/W, mob/user, params)
 	..()
