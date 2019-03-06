@@ -374,7 +374,6 @@
 			qdel(R)
 	reagents_from_genes()
 
-
 /obj/item/seeds/proc/add_random_traits(lower = 0, upper = 2)
 	var/amount_random_traits = rand(lower, upper)
 	for(var/i in 1 to amount_random_traits)
