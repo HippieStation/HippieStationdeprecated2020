@@ -299,14 +299,29 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 		return 1
 	else // Prevents you from comboing dead lads, returns the default behavior.
 		return
-
 /datum/martial_art/armstrong/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(D.stat != DEAD) // Checks if they're dead.
 		add_to_streak("G",D)
 		if(check_streak(A,D))
 			return 1
-	if(A.grab_state >= GRAB_AGGRESSIVE)
-		D.grabbedby(A, 1)
+		A.do_attack_animation(D, ATTACK_EFFECT_PUNCH)
+		var/atk_verb_grab = pick("zipper punches", "one, two punches")
+		D.visible_message("<span class='danger'>[A] [atk_verb_grab] [D]!</span>", \
+						  "<span class='userdanger'>[A] [atk_verb_grab] you!</span>")
+		D.apply_damage(rand(4,8), BRUTE) // left hand brute damage - weakened
+		D.adjustStaminaLoss(rand(4,9)) // left hand stamina damage
+		D.apply_damage(rand(6,12), BRUTE) // right hand brute damage - weakened
+		D.adjustStaminaLoss(rand(3,8)) // right hand stamina damage
+		add_exp(rand(2,4), A)
+		playsound(get_turf(D), 'hippiestation/sound/weapons/armstrong_zipper.ogg', 50, 0, -1)
+		A.playsound_local(get_turf(A), 'hippiestation/sound/weapons/armstrong_combo.ogg', 25, FALSE, pressure_affected = FALSE)
+		if(prob(D.getBruteLoss()) && !D.lying)
+			D.visible_message("<span class='warning'>Critical hit!</span>", "<span class='userdanger'>Critical hit!</span>")
+			D.apply_damage(10, BRUTE)
+		if(current_level >= 10)
+			A.changeNext_move(CLICK_CD_RAPID)
+			.= FALSE
+		log_combat(A, D, "[atk_verb_grab] (Armstrong)")
 		return 1
 	else // Prevents you from comboing dead lads, returns the default behavior.
 		return
