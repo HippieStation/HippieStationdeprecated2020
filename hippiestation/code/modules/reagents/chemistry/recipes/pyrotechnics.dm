@@ -277,6 +277,27 @@
 	e.start(log)
 	holder.clear_reagents()
 
+/datum/chemical_reaction/sulfur_trioxide
+	name = "Sulfur Trioxide"
+	id = "sulfur_trioxide"
+	results = list("sulfur_trioxide" = 1.25, "sacid" = 1.25)
+	required_reagents = list("sulfur" = 1, "sacid" = 1, "water" = 3)
+	required_temp = 250
+	is_cold_recipe = 1
+
+datum/chemical_reaction/sulfur_trioxide/on_reaction(datum/reagents/holder, created_volume)
+	var/location = get_turf(holder.my_atom)
+	var/smoke_radius = round(sqrt(created_volume / 1), 1)
+	var/datum/effect_system/smoke_spread/chem/S = new
+	mix_message = "<span class='boldannounce'>The air starts to fill with acid!</span>"
+	S.attach(location)
+	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
+	if(S)
+		S.set_up(holder, smoke_radius, location, 0)
+		S.start()
+	if(holder && holder.my_atom)
+		holder.clear_reagents()
+
 
 /datum/chemical_reaction/reagent_explosion/remove_all
 	var/chem_to_remove
@@ -290,7 +311,7 @@
 	name = "Meth Collapse"
 	chem_to_remove = "methamphetamine"
 	required_catalysts = list("methamphetamine" = 1, "smoke_powder" = 1)
-	
+
 /datum/chemical_reaction/reagent_explosion/remove_all/meth_b
 	name = "Meth Collapse"
 	chem_to_remove = "methamphetamine"
@@ -300,7 +321,7 @@
 	name = "Black Powder Collapse"
 	chem_to_remove = "blackpowder"
 	required_catalysts = list("blackpowder" = 1, "smoke_powder" = 1)
-	
+
 /datum/chemical_reaction/reagent_explosion/remove_all/blackpowder_b
 	name = "Black Powder Collapse"
 	chem_to_remove = "blackpowder"
@@ -311,11 +332,11 @@
 	chem_to_remove = "superboom"
 	required_catalysts = list("superboom" = 1, "smoke_powder" = 1)
 	modifier = 4
-	
+
 /datum/chemical_reaction/reagent_explosion/remove_all/superboom_b
 	name = "N-amino azidotetrazole Collapse"
 	chem_to_remove = "superboom"
 	required_catalysts = list("superboom" = 1, "potassium" = 1, "sugar" = 1, "phosphorus" = 1)
 	modifier = 4
-	
-	
+
+

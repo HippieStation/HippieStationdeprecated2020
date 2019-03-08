@@ -336,3 +336,24 @@
 			holder.chem_temp += 10
 			holder.handle_reactions()
 	..()
+
+/datum/reagent/sulfur_trioxide
+	name = "Sulfur Trioxide"
+	id = "sulfur_trioxide"
+	description = "Makes a large cloud of sulphuric acid."
+	reagent_state = LIQUID
+	metabolization_rate = 3
+	color = "#FF7F50"
+	taste_description = "burning copper"
+/datum/reagent/sulfur_trioxide/reaction_mob(mob/living/carbon/C, method=TOUCH, reac_volume)
+	if(!istype(C))
+		C.adjustBruteLoss(0.1 * min(0.2 * reac_volume))
+	..()
+	return TRUE
+	reac_volume = round(reac_volume,0.1)
+	if(method == INGEST)
+		C.adjustBruteLoss(min(0.6 * reac_volume))
+		return
+	if(method == INJECT)
+		C.adjustBruteLoss(1.0 * min(0.6 * reac_volume))
+		return
