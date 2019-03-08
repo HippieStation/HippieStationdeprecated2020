@@ -1,6 +1,0 @@
-author: "Shdorsh"
-delete-after: True
-changes: 
-  - tweak: "circuits can be sealed so no one can tamper with their insides directly. Unsealing has a 50% probability to remove circuit connections."
-  - tweak: "debuggers have a special id lock setting now, that can be used to prevent analyzing assemblies."
-  - tweak: "making printers id lockable so they only print out id locked circuits. also, making the printers look slightly better."
