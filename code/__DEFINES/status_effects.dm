@@ -38,7 +38,11 @@
 
 #define STATUS_EFFECT_REGENERATIVE_CORE /datum/status_effect/regenerative_core
 
+<<<<<<< HEAD
 #define STATUS_EFFECT_CREEP /datum/status_effect/creep //you feel fuckin great around your obsession
+=======
+#define STATUS_EFFECT_ANTIMAGIC /datum/status_effect/antimagic //grants antimagic (and reapplies if lost) for the duration
+>>>>>>> 9e4856d... [READY] dilutes the staff of chaos pool with some more bolts (#42719)
 
 /////////////
 // DEBUFFS //
@@ -113,6 +117,8 @@
 #define STATUS_EFFECT_HIVE_TRACKER /datum/status_effect/hive_track
 
 #define STATUS_EFFECT_HIVE_RADAR /datum/status_effect/agent_pinpointer/hivemind
+
+#define STATUS_EFFECT_BOUNTY /datum/status_effect/bounty //rewards the person who added this to the target with refreshed spells and a fair heal
 
 /////////////
 //  SLIME  //
