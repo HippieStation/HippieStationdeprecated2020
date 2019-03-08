@@ -86,7 +86,7 @@
 			chambered = null
 		else if(empty_chamber)
 			chambered = null
-	if (chamber_next_round)
+	if (chamber_next_round && (magazine.max_ammo > 1))
 		chamber_round()
 
 /obj/item/gun/ballistic/proc/chamber_round()
@@ -171,7 +171,7 @@
 		if (!magazine && istype(AM, mag_type))
 			insert_magazine(user, AM)
 		else if (magazine)
-			if(tac_reloads)
+			if(tac_reloads || user.has_trait(TRAIT_TACRELOAD)) //hippie edit -- adds tac_reload trait for nanosuit
 				eject_magazine(user, FALSE, AM)
 			else
 				to_chat(user, "<span class='notice'>There's already a [magazine_wording] in \the [src].</span>")
@@ -271,16 +271,14 @@
 		return
 	if(bolt_type == BOLT_TYPE_NO_BOLT)
 		var/num_unloaded = 0
-		while (get_ammo() > 0)
-			var/obj/item/ammo_casing/CB
-			CB = magazine.get_round(FALSE)
-			chambered = null
+		for(var/obj/item/ammo_casing/CB in get_ammo_list(TRUE, TRUE))
 			CB.forceMove(drop_location())
 			CB.bounce_away(FALSE, NONE)
 			num_unloaded++
 		if (num_unloaded)
 			to_chat(user, "<span class='notice'>You unload [num_unloaded] [cartridge_wording]\s from [src].</span>")
 			playsound(user, eject_sound, eject_sound_volume, eject_sound_vary)
+			update_icon()
 		else
 			to_chat(user, "<span class='warning'>[src] is empty!</span>")
 		return
@@ -312,6 +310,15 @@
 	if (magazine)
 		boolets += magazine.ammo_count()
 	return boolets
+
+/obj/item/gun/ballistic/proc/get_ammo_list(countchambered = TRUE, drop_all = FALSE)
+	var/list/rounds = list()
+	if(chambered && countchambered)
+		rounds.Add(chambered)
+		if(drop_all)
+			chambered = null
+	rounds.Add(magazine.ammo_list(drop_all))
+	return rounds
 
 #define BRAINS_BLOWN_THROW_RANGE 3
 #define BRAINS_BLOWN_THROW_SPEED 1

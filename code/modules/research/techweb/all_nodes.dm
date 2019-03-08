@@ -34,7 +34,7 @@
 	display_name = "Mechanical Exosuits"
 	description = "Mechanized exosuits that are several magnitudes stronger and more powerful than the average human."
 	design_ids = list("mecha_tracking", "mechacontrol", "mechapower", "mech_recharger", "ripley_chassis", "firefighter_chassis", "ripley_torso", "ripley_left_arm", "ripley_right_arm", "ripley_left_leg", "ripley_right_leg",
-	"ripley_main", "ripley_peri", "mech_hydraulic_clamp")
+	"ripley_main", "ripley_peri", "ripleyupgrade", "mech_hydraulic_clamp")
 
 /datum/techweb_node/mech_tools
 	id = "mech_tools"
@@ -932,18 +932,18 @@
 	id = "nanite_military"
 	display_name = "Military Nanite Programming"
 	description = "Nanite programs that perform military-grade functions."
-	prereq_ids = list("nanite_harmonic", "syndicate_basic")
+	prereq_ids = list("nanite_harmonic")
 	design_ids = list("explosive_nanites","pyro_nanites","meltdown_nanites","viral_nanites")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 75000)
 	export_price = 12500
 
 /datum/techweb_node/nanite_hazard
 	id = "nanite_hazard"
 	display_name = "Hazard Nanite Programs"
 	description = "Extremely advanced Nanite programs with the potential of being extremely dangerous."
-	prereq_ids = list("nanite_harmonic", "alientech")
+	prereq_ids = list("nanite_harmonic")
 	design_ids = list("spreading_nanites","mindcontrol_nanites","mitosis_nanites")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 100000)
 	export_price = 15000
 
 ////////////////////////Alien technology////////////////////////
