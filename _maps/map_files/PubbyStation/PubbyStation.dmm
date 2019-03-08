@@ -46391,6 +46391,16 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
+<<<<<<< HEAD
+=======
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/emitter/anchored{
+	dir = 4;
+	state = 2
+	},
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 /turf/open/floor/plating,
 /area/engine/engineering)
 "cce" = (
@@ -46415,6 +46425,15 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+<<<<<<< HEAD
+=======
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/reflector/single/anchored{
+	dir = 10
+	},
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 /turf/open/floor/plating,
 /area/engine/engineering)
 "ccg" = (
@@ -47129,10 +47148,6 @@
 	pixel_x = 3;
 	pixel_y = -7
 	},
-/obj/item/stack/cable_coil{
-	pixel_x = 3;
-	pixel_y = -7
-	},
 /obj/item/crowbar,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -47142,6 +47157,7 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+<<<<<<< HEAD
 "cev" = (
 /obj/structure/chair/stool,
 /turf/open/floor/plating,
@@ -47150,6 +47166,8 @@
 /obj/structure/particle_accelerator/power_box,
 /turf/open/floor/plating,
 /area/engine/engineering)
+=======
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 "cex" = (
 /obj/item/screwdriver,
 /turf/open/floor/plating,
@@ -47331,6 +47349,16 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+<<<<<<< HEAD
+=======
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/emitter/anchored{
+	dir = 4;
+	state = 2
+	},
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 /turf/open/floor/plating,
 /area/engine/engineering)
 "cfc" = (
@@ -47617,7 +47645,14 @@
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
 "cfV" = (
+<<<<<<< HEAD
 /turf/open/floor/plating/airless,
+=======
+/obj/machinery/atmospherics/pipe/layer_manifold/visible{
+	dir = 4
+	},
+/turf/open/floor/engine,
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 /area/engine/engineering)
 "cfW" = (
 /obj/machinery/door/poddoor/shutters/preopen{
@@ -48270,8 +48305,13 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
 	},
+<<<<<<< HEAD
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
+=======
+/turf/open/floor/engine,
+/area/engine/supermatter)
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 "ciI" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
@@ -53099,6 +53139,7 @@
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
 "cBS" = (
+<<<<<<< HEAD
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
@@ -53106,6 +53147,10 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/plating/airless,
+=======
+/obj/machinery/atmospherics/pipe/simple/green/visible,
+/turf/open/floor/engine,
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 /area/engine/engineering)
 "cBT" = (
 /obj/effect/spawner/structure/window/plasma/reinforced,
@@ -53966,6 +54011,22 @@
 /obj/item/gavelhammer,
 /turf/open/floor/plating,
 /area/maintenance/department/security/brig)
+<<<<<<< HEAD
+=======
+"ePB" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 "ePU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -55380,6 +55441,19 @@
 /obj/machinery/processor/slime,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+<<<<<<< HEAD
+=======
+"imB" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
+	dir = 4
+	},
+/turf/open/floor/engine,
+/area/engine/engineering)
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 "ioj" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -55395,6 +55469,16 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
+<<<<<<< HEAD
+=======
+"ipH" = (
+/obj/effect/turf_decal/caution,
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/engine,
+/area/engine/supermatter)
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 "iqc" = (
 /turf/open/floor/plasteel/stairs/right,
 /area/maintenance/department/crew_quarters/dorms)
@@ -55900,6 +55984,20 @@
 /obj/effect/spawner/xmastree,
 /turf/open/floor/carpet,
 /area/library)
+<<<<<<< HEAD
+=======
+"jOe" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/door/airlock/engineering/glass/critical{
+	heat_proof = 1;
+	name = "Supermatter Chamber";
+	req_access_txt = "10"
+	},
+/turf/open/floor/engine,
+/area/engine/supermatter)
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 "jOB" = (
 /turf/open/floor/plating,
 /area/storage/emergency/starboard)
@@ -56035,6 +56133,22 @@
 /obj/item/storage/book/bible,
 /turf/open/floor/carpet,
 /area/chapel/office)
+<<<<<<< HEAD
+=======
+"kfS" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/emitter/anchored{
+	dir = 8;
+	state = 2
+	},
+/turf/open/floor/plating,
+/area/engine/engineering)
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 "kgR" = (
 /obj/structure/toilet{
 	dir = 4
@@ -57461,6 +57575,15 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/lawoffice)
+<<<<<<< HEAD
+=======
+"nUq" = (
+/obj/machinery/atmospherics/pipe/layer_manifold/visible{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 "nVz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/sign/directions/evac{
@@ -59101,6 +59224,16 @@
 	},
 /turf/open/floor/plating,
 /area/storage/emergency/starboard)
+<<<<<<< HEAD
+=======
+"rYH" = (
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/obj/machinery/atmospherics/components/trinary/filter/flipped/critical,
+/turf/open/floor/engine,
+/area/engine/engineering)
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 "rYY" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -59334,6 +59467,13 @@
 	},
 /turf/open/floor/plating,
 /area/security/execution/transfer)
+"sPb" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 10
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
 "sQt" = (
 /obj/machinery/door/airlock/external{
 	name = "Supply Dock Airlock";
@@ -59485,6 +59625,17 @@
 /obj/machinery/atmospherics/pipe/simple/general/hidden,
 /turf/closed/wall/r_wall,
 /area/maintenance/disposal/incinerator)
+<<<<<<< HEAD
+=======
+"thT" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/effect/turf_decal/stripes/corner,
+/obj/machinery/atmospherics/components/trinary/filter/flipped/critical,
+/turf/open/floor/engine,
+/area/engine/engineering)
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 "thW" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
@@ -59661,13 +59812,24 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+<<<<<<< HEAD
 /turf/open/floor/plating/airless,
+=======
+/obj/machinery/atmospherics/components/trinary/filter/flipped/critical,
+/turf/open/floor/engine,
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 /area/engine/engineering)
 "tPm" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/closed/wall,
+/area/engine/engineering)
+"tQJ" = (
+/obj/machinery/atmospherics/components/binary/pump{
+	name = "Cold Loop Bypass"
+	},
+/turf/open/floor/engine,
 /area/engine/engineering)
 "tRc" = (
 /obj/structure/ore_box,
@@ -59723,6 +59885,30 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
+<<<<<<< HEAD
+=======
+"tYc" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 5
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
+"tYU" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/reflector/box/anchored,
+/turf/open/floor/plating,
+/area/engine/engineering)
+"uah" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 5
+	},
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 "uaC" = (
 /obj/structure/chair/comfy/black{
 	dir = 8
@@ -59745,7 +59931,12 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+<<<<<<< HEAD
 /turf/open/floor/plating/airless,
+=======
+/obj/machinery/atmospherics/components/trinary/filter/flipped/critical,
+/turf/open/floor/engine,
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 /area/engine/engineering)
 "ubW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -60574,6 +60765,7 @@
 /obj/structure/sign/warning,
 /turf/closed/wall,
 /area/science/mixing)
+<<<<<<< HEAD
 "woh" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -60583,6 +60775,8 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/engineering)
+=======
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 "woq" = (
 /obj/structure/chair,
 /turf/open/floor/plating,
@@ -92665,9 +92859,15 @@ car
 bXk
 ccf
 ccZ
+<<<<<<< HEAD
 cdU
 cew
 cfd
+=======
+ccZ
+ccZ
+tYU
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 cfw
 cfW
 cgw
@@ -93962,6 +94162,12 @@ cBS
 cBS
 cBS
 cBS
+<<<<<<< HEAD
+=======
+tQJ
+ciG
+ciG
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 cjt
 cfV
 cfV
@@ -94215,11 +94421,19 @@ jBn
 tIS
 meF
 chA
+<<<<<<< HEAD
 woh
 woh
 qQr
 woh
 woh
+=======
+iLF
+iLF
+iLF
+iLF
+vmA
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 liR
 lRY
 cks
@@ -94472,6 +94686,7 @@ cfX
 fFv
 fFv
 kWQ
+<<<<<<< HEAD
 fFv
 fFv
 dMG
@@ -94480,6 +94695,14 @@ fFv
 kWQ
 fFv
 fFv
+=======
+ulY
+ulY
+ulY
+ulY
+lFA
+sWj
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 bXk
 abI
 aaa
@@ -94726,6 +94949,7 @@ bXk
 cfg
 bXk
 cfY
+<<<<<<< HEAD
 fFv
 fFv
 fFv
@@ -94737,6 +94961,17 @@ fFv
 fFv
 fFv
 fFv
+=======
+tJX
+kbV
+gEI
+hqF
+dfr
+dfr
+nfj
+rtG
+wTX
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 bXk
 abI
 abI
@@ -96269,6 +96504,7 @@ abI
 adR
 aaa
 aaa
+<<<<<<< HEAD
 aaa
 aaa
 aaa
@@ -96282,6 +96518,9 @@ aaa
 aaa
 aaa
 aaa
+=======
+gYo
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 aaa
 aaa
 aaa
@@ -97039,6 +97278,19 @@ aaa
 aaa
 aaa
 aaa
+<<<<<<< HEAD
+=======
+sPb
+jhq
+sPb
+jhq
+sPb
+jhq
+sPb
+jhq
+sPb
+jhq
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 aaa
 aaa
 aaa
@@ -97296,6 +97548,7 @@ aby
 aaa
 aaa
 aaa
+<<<<<<< HEAD
 aaa
 aaa
 aaa
@@ -97308,6 +97561,22 @@ aaa
 aaa
 aaa
 aaa
+aaa
+aaa
+=======
+aht
+aaa
+aaa
+aht
+aaa
+aht
+aaa
+aaa
+aaa
+aht
+aaa
+fon
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 aaa
 aaa
 aaa
@@ -97551,6 +97820,7 @@ bJP
 abI
 aby
 aaa
+<<<<<<< HEAD
 aaa
 aaa
 aaa
@@ -97567,6 +97837,24 @@ aaa
 aaa
 aaa
 aaa
+=======
+fon
+fon
+fon
+aaa
+fon
+fon
+fon
+fon
+fon
+aaa
+bHI
+fon
+fon
+fon
+aht
+fon
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 aaa
 aaa
 aaa
@@ -97807,6 +98095,24 @@ ccn
 bJP
 aaa
 aby
+<<<<<<< HEAD
+=======
+aht
+pWb
+aaa
+aht
+aaa
+aht
+aaa
+aaa
+aaa
+aht
+aaa
+aaa
+cFB
+aaa
+aht
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 aaa
 aaa
 aaa
@@ -98066,6 +98372,7 @@ aaa
 aby
 aaa
 aaa
+<<<<<<< HEAD
 aaa
 aaa
 aaa
@@ -98079,8 +98386,22 @@ aaa
 aaa
 aaa
 aaa
+=======
+fon
+fon
+fon
+fon
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 aaa
+bHI
+fon
+fon
+fon
+fon
 aaa
+fon
+fon
+fon
 aaa
 aaa
 aaa
@@ -98322,6 +98643,10 @@ bJP
 abI
 aby
 aaa
+<<<<<<< HEAD
+=======
+fon
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 aaa
 aaa
 aaa
@@ -98337,7 +98662,10 @@ aaa
 aaa
 aaa
 aaa
+<<<<<<< HEAD
 aaa
+=======
+>>>>>>> f369234... Merge pull request #43047 from actioninja/pubbysmfixes
 aaa
 aaa
 aaa
