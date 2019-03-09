@@ -1,5 +1,0 @@
-author: "IHadMyUsernameTaken"
-delete-after: True
-changes: 
-  - bugfix: "Crossbows now show their current state properly."
-  - bugfix: "Crossbows won't now cause a runtime error when examined without a rod loaded in."
