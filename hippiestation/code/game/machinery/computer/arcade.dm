@@ -186,9 +186,6 @@
 	if(!refreshing)	//Fuck browser lag
 
 		if(reset_board)
-			for(var/y1=1;y1<31;y1++)	//Board resetting and mine building: reset EVERYTHING!!!
-				for(var/x1=1;x1<51;x1++)
-					table[y1][x1] = null	//Uninitialise everything into... nothing
 			for(var/y1=1;y1<rows;y1++)	//Set up the board again
 				for(var/x1=1;x1<columns;x1++)
 					table[y1][x1] = 1
@@ -200,6 +197,8 @@
 			for(var/x1=1;x1<columns;x1++)
 				var/coordinates
 				coordinates = (y1*100)+x1
+				if(reset_board)
+					table[y1][x1] = 1
 				if(href_list["[coordinates]"])	//Create unique hrefs for every square
 					playsound(loc, 'hippiestation/sound/arcade/minesweeper_boardpress.ogg', 50, 0, extrarange = -3, falloff = 10)
 					refreshing = TRUE
