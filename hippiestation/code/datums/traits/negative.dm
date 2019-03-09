@@ -304,8 +304,6 @@
 	. = ..()
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/I = H.get_item_by_slot(SLOT_WEAR_MASK)
-	if (istype(I, /obj/item/clothing/mask/cigarette))
-		var/obj/item/storage/fancy/cigarettes/C = drug_instance
 
 /datum/quirk/family_heirloom	//Custom edition :)
 	name = "Family Heirloom"
