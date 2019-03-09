@@ -347,7 +347,6 @@
 	taste_description = "burning copper"
 /datum/reagent/sulfur_trioxide/reaction_mob(mob/living/carbon/C, method=TOUCH, reac_volume)
 	if(!istype(C))
-		C.adjustBruteLoss(0.1 * min(0.2 * reac_volume))
 	..()
 	return TRUE
 	reac_volume = round(reac_volume,0.1)
