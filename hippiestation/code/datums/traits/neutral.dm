@@ -60,15 +60,15 @@
 
 /datum/quirk/spiritual/on_process()
 	var/comforted = FALSE
-	var/human
+	var/name
 	for(var/mob/living/L in oview(5, quirk_holder))
 		if(L.mind && L.mind.isholy && L.stat == CONSCIOUS)
 			comforted = TRUE
-			human = L
+			name = L.name
 			break
 	if(comforted && prob(1))
 		var/mob/living/human/H = L
-		to_chat(quirk_holder, "<span class='notice'>You feel safe in the holy presence of [H.name]</span>")
+		to_chat(quirk_holder, "<span class='notice'>You feel safe in the holy presence of [name]</span>")
 
 /datum/quirk/voracious
 	name = "Voracious"
