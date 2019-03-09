@@ -70,6 +70,7 @@
 	var/mine_sound = TRUE	//So it doesn't get repeated when multiple mines are exposed
 	var/randomcolour = 1
 	var/randomnumber = 1	//Random emagged game iteration number to be displayed, put here so it is persistent across one individual arcade machine
+	var/refreshing = FALSE	//Just in case
 	var/safe_squares_revealed
 	var/saved_web = ""	//To display the web if you click on the arcade
 	var/win_condition
@@ -93,20 +94,8 @@
 			user << browse(static_web+web_difficulty_menu,"window=minesweeper,size=400x500")
 	else
 		playsound(loc, 'hippiestation/sound/arcade/minesweeper_boardpress.ogg', 50, 0, extrarange = -3, falloff = 10)
-		usr << browse_rsc('hippiestation/icons/arcade/minesweeper_flag.dmi')
-		usr << browse_rsc('hippiestation/icons/arcade/minesweeper_mine.dmi')
-		usr << browse_rsc('hippiestation/icons/arcade/minesweeper_hidden.dmi')
-		usr << browse_rsc('hippiestation/icons/arcade/minesweeper_minehit.dmi')
-		usr << browse_rsc('hippiestation/icons/arcade/minesweeper_empty.dmi')
-		usr << browse_rsc('hippiestation/icons/arcade/minesweeper_1.dmi')
-		usr << browse_rsc('hippiestation/icons/arcade/minesweeper_2.dmi')
-		usr << browse_rsc('hippiestation/icons/arcade/minesweeper_3.dmi')
-		usr << browse_rsc('hippiestation/icons/arcade/minesweeper_4.dmi')
-		usr << browse_rsc('hippiestation/icons/arcade/minesweeper_5.dmi')
-		usr << browse_rsc('hippiestation/icons/arcade/minesweeper_6.dmi')
-		usr << browse_rsc('hippiestation/icons/arcade/minesweeper_7.dmi')
-		usr << browse_rsc('hippiestation/icons/arcade/minesweeper_8.dmi')
-		usr << browse(saved_web,"window=minesweeper,size=400x500")
+		generate_icons()
+		user << browse(saved_web,"window=minesweeper,size=400x500")
 	if(obj_flags & EMAGGED)
 		do_sparks(5, 1, src)
 	add_fingerprint(user)
@@ -194,173 +183,157 @@
 	safe_squares_revealed = 0
 	win_condition = area-mine_placed
 
-	if(reset_board)
-		for(var/y1=1;y1<31;y1++)	//Board resetting and mine building: reset EVERYTHING!!!
-			for(var/x1=1;x1<51;x1++)
-				table[y1][x1] = null	//Uninitialise everything into... nothing
-		for(var/y1=1;y1<rows;y1++)	//Set up the board again
-			for(var/x1=1;x1<columns;x1++)
-				table[y1][x1] = 1
-		reset_board = FALSE
-		mine_placed = 0
-		make_mines()	//Multiple passes until we reach the mine limit
+	if(!refreshing)	//Fuck browser lag
 
-	for(var/y1=1;y1<rows;y1++)	//Board resetting and href checking
-		for(var/x1=1;x1<columns;x1++)
-			var/coordinates
-			coordinates = (y1*100)+x1
-			if(href_list["[coordinates]"])	//Create unique hrefs for every square
-				playsound(loc, 'hippiestation/sound/arcade/minesweeper_boardpress.ogg', 50, 0, extrarange = -3, falloff = 10)
-				if(!flagging)
-					if(table[y1][x1] < 10 && table[y1][x1] >= 0)	//Check that it's not already revealed, and stop flag removal if we're out of flag mode
-						table[y1][x1] += 10
-				else
-					if(table[y1][x1] >= 0)	//Check that it's not already flagged
-						table[y1][x1] -= 10
-					else if(table[y1][x1] < 0)	//If flagged, remove the flag
-						table[y1][x1] += 10
-			if(href_list["same_board"])	//Reset the board... kinda
-				if(game_status != MINESWEEPER_GAME_PLAYING)
-					playsound(loc, 'hippiestation/sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
-					game_status = MINESWEEPER_GAME_PLAYING
-				if(table[y1][x1] >= 10)	//If revealed, become unrevealed!
-					table[y1][x1] -= 10
-			if(table[y1][x1] == 10)	//Mine check, done here so no hrefs are made again
-				if(game_status != MINESWEEPER_GAME_LOST && game_status != MINESWEEPER_GAME_WON)
-					game_status = MINESWEEPER_GAME_LOST
-					if(obj_flags & EMAGGED)
-						exploding_hell  = TRUE
-					if(mine_sound)
-						switch(rand(1,3))	//Play every time a mine is hit
-							if(1)
-								playsound(loc, 'hippiestation/sound/arcade/minesweeper_explosion1.ogg', 50, 0, extrarange = -3, falloff = 10)
-							if(2)
-								playsound(loc, 'hippiestation/sound/arcade/minesweeper_explosion2.ogg', 50, 0, extrarange = -3, falloff = 10)
-							if(3)
-								playsound(loc, 'hippiestation/sound/arcade/minesweeper_explosion3.ogg', 50, 0, extrarange = -3, falloff = 10)
-						mine_sound = FALSE
-					if(exploding_hell)
-						to_chat(user, "<span class='warning'><font size='2'><b>You feel a great sense of dread wash over you. You feel as if you just unleashed armageddon upon yourself!</b></span>")
-						var/row_limit = rows-1
-						var/column_limit = columns-1
-						var/mine_limit_v2 = mine_limit
-						if(rows > 11)
-							row_limit = 10
-						if(columns > 11)
-							column_limit = 10
-						if(mine_limit > (rows*columns)/3.4)
-							mine_limit_v2 = 33
-						message_admins("[key_name_admin(user)] failed Minesweeper and has unleashed an explosion armageddon of size [row_limit],[column_limit] around [user.loc]!")
-						if(mine_limit_v2 < 10)
-							explosion(src.loc,3,6,12,24, adminlog = TRUE)	//Thought you could survive by putting as few mines as possible, huh??
-						else
-							explosion(src.loc,1,3,rand(1,5),rand(1,10), adminlog = FALSE)
-						for(var/y69=y-row_limit;y69<y+row_limit;y69++)	//Create a shitton of explosions in irl turfs if we lose, it will probably kill us
-							for(var/x69=x-column_limit;x69<x+column_limit;x69++)
-								if(prob(mine_limit_v2))	//Probability of explosion happening, according to how many mines were on the board... up to a limit
-									var/explosionloc
-									explosionloc = locate(y69,x69,z)
-									explosion(explosionloc, ,rand(1,2),rand(1,5),rand(3,10), adminlog = FALSE)
-			var/y2 = y1
-			var/x2 = x1
-			work_squares(y2, x2)	//Work squares while in this loop so there's less load
-			if(table[y1][x1] >= 11)	//Score tracking
-				safe_squares_revealed += 1
-	mine_sound = TRUE
+		if(reset_board)
+			for(var/y1=1;y1<31;y1++)	//Board resetting and mine building: reset EVERYTHING!!!
+				for(var/x1=1;x1<51;x1++)
+					table[y1][x1] = null	//Uninitialise everything into... nothing
+			for(var/y1=1;y1<rows;y1++)	//Set up the board again
+				for(var/x1=1;x1<columns;x1++)
+					table[y1][x1] = 1
+			reset_board = FALSE
+			mine_placed = 0
+			make_mines()	//Multiple passes until we reach the mine limit
 
-	if(safe_squares_revealed == win_condition && game_status == MINESWEEPER_GAME_PLAYING)
-		game_status = MINESWEEPER_GAME_WON
-
-	if(!game_status == MINESWEEPER_GAME_MAIN_MENU)
-		web += "<table>"	//Start setting up the html table
-		web += "<tbody>"
-		for(var/y1=1;y1<rows;y1++)	//Read the table and get the value of the selected square
-			web += "<tr>"
+		for(var/y1=1;y1<rows;y1++)	//Board resetting and href checking
 			for(var/x1=1;x1<columns;x1++)
 				var/coordinates
 				coordinates = (y1*100)+x1
-				switch(table[y1][x1])
-					if(-10 to -1)
-						if(game_status != MINESWEEPER_GAME_PLAYING)
-							web += "<td><img src='minesweeper_flag.dmi' style='border:0;display:block;'></td>"
-						else
-							web += "<td><a href='byond://?src=[REF(src)];[coordinates]=1'><img src='minesweeper_flag.dmi' style='border:0;display:block;'></td>"
-					if(0)
-						if(game_status != MINESWEEPER_GAME_PLAYING)
-							web += "<td><img src='minesweeper_mine.dmi' style='border:0;display:block;'></td>"
-						else
-							web += "<td><a href='byond://?src=[REF(src)];[coordinates]=1'><img src='minesweeper_hidden.dmi' style='border:0;display:block;'></td>"	//Make unique hrefs for every square
-					if(1 to 9)
-						if(game_status == MINESWEEPER_GAME_PLAYING)	//Can't click a tile if you lost or won m9
-							web += "<td><a href='byond://?src=[REF(src)];[coordinates]=1'><img src='minesweeper_hidden.dmi' style='border:0;display:block;'></td>"	//Make unique hrefs for every square
-						else
-							web += "<td><img src='minesweeper_hidden.dmi' style='border:0;display:block;'></td>"
-					if(10)
-						web += "<td><img src='minesweeper_minehit.dmi' style='border:0;display:block;'></td>"
-					if(11)
-						web += "<td><img src='minesweeper_empty.dmi' style='border:0;display:block;'></td>"
-					if(12)
-						web += "<td><img src='minesweeper_1.dmi' style='border:0;display:block;'></td>"
-					if(13)
-						web += "<td><img src='minesweeper_2.dmi' style='border:0;display:block;'></td>"
-					if(14)
-						web += "<td><img src='minesweeper_3.dmi' style='border:0;display:block;'></td>"
-					if(15)
-						web += "<td><img src='minesweeper_4.dmi' style='border:0;display:block;'></td>"
-					if(16)
-						web += "<td><img src='minesweeper_5.dmi' style='border:0;display:block;'></td>"
-					if(17)
-						web += "<td><img src='minesweeper_6.dmi' style='border:0;display:block;'></td>"
-					if(18)
-						web += "<td><img src='minesweeper_7.dmi' style='border:0;display:block;'></td>"
-					if(19)
-						web += "<td><img src='minesweeper_8.dmi' style='border:0;display:block;'></td>"
-			web += "</tr>"
-		web += "</table>"
-		web += "</tbody>"
-	web += "<br>"
+				if(href_list["[coordinates]"])	//Create unique hrefs for every square
+					playsound(loc, 'hippiestation/sound/arcade/minesweeper_boardpress.ogg', 50, 0, extrarange = -3, falloff = 10)
+					refreshing = TRUE
+					if(!flagging)
+						if(table[y1][x1] < 10 && table[y1][x1] >= 0)	//Check that it's not already revealed, and stop flag removal if we're out of flag mode
+							table[y1][x1] += 10
+					else
+						if(table[y1][x1] >= 0)	//Check that it's not already flagged
+							table[y1][x1] -= 10
+						else if(table[y1][x1] < 0)	//If flagged, remove the flag
+							table[y1][x1] += 10
+				if(href_list["same_board"])	//Reset the board... kinda
+					if(game_status != MINESWEEPER_GAME_PLAYING)
+						playsound(loc, 'hippiestation/sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
+						game_status = MINESWEEPER_GAME_PLAYING
+					if(table[y1][x1] >= 10)	//If revealed, become unrevealed!
+						table[y1][x1] -= 10
+				if(table[y1][x1] == 10)	//Mine check, done here so no hrefs are made again
+					if(game_status != MINESWEEPER_GAME_LOST && game_status != MINESWEEPER_GAME_WON)
+						game_status = MINESWEEPER_GAME_LOST
+						if(obj_flags & EMAGGED && !exploding_hell)
+							exploding_hell  = TRUE
+							explode_EVERYTHING()
+						if(mine_sound)
+							switch(rand(1,3))	//Play every time a mine is hit
+								if(1)
+									playsound(loc, 'hippiestation/sound/arcade/minesweeper_explosion1.ogg', 50, 0, extrarange = -3, falloff = 10)
+								if(2)
+									playsound(loc, 'hippiestation/sound/arcade/minesweeper_explosion2.ogg', 50, 0, extrarange = -3, falloff = 10)
+								if(3)
+									playsound(loc, 'hippiestation/sound/arcade/minesweeper_explosion3.ogg', 50, 0, extrarange = -3, falloff = 10)
+							mine_sound = FALSE
+				var/y2 = y1
+				var/x2 = x1
+				work_squares(y2, x2)	//Work squares while in this loop so there's less load
+				if(table[y1][x1] >= 11)	//Score tracking
+					safe_squares_revealed += 1
+		mine_sound = TRUE
 
-	if(game_status == MINESWEEPER_GAME_LOST)
-		web += "<font size='6'>You have lost!<br><font size='3'>Try again?<br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font></a></b><br><a href='byond://?src=[REF(src)];same_board=1'><font color='#cc66ff'>Play on the same board</font></a><br><a href='byond://?src=[REF(src)];Main_Menu=1'><font color='#cc66ff'>Return to Main Menu</font></a></b><br>"
+		if(safe_squares_revealed == win_condition && game_status == MINESWEEPER_GAME_PLAYING)
+			game_status = MINESWEEPER_GAME_WON
 
-	if(game_status == MINESWEEPER_GAME_WON)
-		if(rows < 10 || columns < 10)	//If less than easy difficulty
-			playsound(loc, 'hippiestation/sound/arcade/minesweeper_winfail.ogg', 50, 0, extrarange = -3, falloff = 10)
-			say("You cleared the board of all mines, but you picked too small of a board! Try again with at least a 9x9 board!")
-			web += "<font size='4'>You won, but your board was too small! Pick a bigger board next time!<br><font size='3'>Want to play again?<br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font></a></b><br><a href='byond://?src=[REF(src)];same_board=1'><font color='#cc66ff'>Play on the same board</font></a><br><a href='byond://?src=[REF(src)];Main_Menu=1'><font color='#cc66ff'>Return to Main Menu</font></a></b><br>"
-		else
-			playsound(loc, 'hippiestation/sound/arcade/minesweeper_win.ogg', 50, 0, extrarange = -3, falloff = 10)
-			say("You cleared the board of all mines! Congratulations!")
-			if(obj_flags & EMAGGED)
-				var/itemname
-				switch(rand(1,3))
-					if(1)
-						itemname = "a syndicate bomb beacon"
-						new /obj/item/sbeacondrop/bomb(loc)
-					if(2)
-						itemname = "a rocket launcher"
-						new /obj/item/gun/ballistic/rocketlauncher/unrestricted(loc)
-						new /obj/item/ammo_casing/caseless/rocket/hedp(loc)
-						new /obj/item/ammo_casing/caseless/rocket/hedp(loc)
-						new /obj/item/ammo_casing/caseless/rocket/hedp(loc)
-					if(3)
-						itemname = "two bags of c4"
-						new /obj/item/storage/backpack/duffelbag/syndie/c4(loc)
-						new /obj/item/storage/backpack/duffelbag/syndie/x4(loc)
-				message_admins("[key_name_admin(user)] won emagged Minesweeper and got [itemname]!")
-				visible_message("<span class='notice'>[src] dispenses [itemname]!</span>", "<span class='notice'>You hear a chime and a clunk.</span>")
+		if(!game_status == MINESWEEPER_GAME_MAIN_MENU)
+			web += "<table>"	//Start setting up the html table
+			web += "<tbody>"
+			for(var/y1=1;y1<rows;y1++)	//Read the table and get the value of the selected square
+				web += "<tr>"
+				for(var/x1=1;x1<columns;x1++)
+					var/coordinates
+					coordinates = (y1*100)+x1
+					switch(table[y1][x1])
+						if(-10 to -1)
+							if(game_status != MINESWEEPER_GAME_PLAYING)
+								web += "<td><img src='minesweeper_flag.dmi' style='border:0;display:block;'></td>"
+							else
+								web += "<td><a href='byond://?src=[REF(src)];[coordinates]=1'><img src='minesweeper_flag.dmi' style='border:0;display:block;'></td>"
+						if(0)
+							if(game_status != MINESWEEPER_GAME_PLAYING)
+								web += "<td><img src='minesweeper_mine.dmi' style='border:0;display:block;'></td>"
+							else
+								web += "<td><a href='byond://?src=[REF(src)];[coordinates]=1'><img src='minesweeper_hidden.dmi' style='border:0;display:block;'></td>"	//Make unique hrefs for every square
+						if(1 to 9)
+							if(game_status == MINESWEEPER_GAME_PLAYING)	//Can't click a tile if you lost or won m9
+								web += "<td><a href='byond://?src=[REF(src)];[coordinates]=1'><img src='minesweeper_hidden.dmi' style='border:0;display:block;'></td>"	//Make unique hrefs for every square
+							else
+								web += "<td><img src='minesweeper_hidden.dmi' style='border:0;display:block;'></td>"
+						if(10)
+							web += "<td><img src='minesweeper_minehit.dmi' style='border:0;display:block;'></td>"
+						if(11)
+							web += "<td><img src='minesweeper_empty.dmi' style='border:0;display:block;'></td>"
+						if(12)
+							web += "<td><img src='minesweeper_1.dmi' style='border:0;display:block;'></td>"
+						if(13)
+							web += "<td><img src='minesweeper_2.dmi' style='border:0;display:block;'></td>"
+						if(14)
+							web += "<td><img src='minesweeper_3.dmi' style='border:0;display:block;'></td>"
+						if(15)
+							web += "<td><img src='minesweeper_4.dmi' style='border:0;display:block;'></td>"
+						if(16)
+							web += "<td><img src='minesweeper_5.dmi' style='border:0;display:block;'></td>"
+						if(17)
+							web += "<td><img src='minesweeper_6.dmi' style='border:0;display:block;'></td>"
+						if(18)
+							web += "<td><img src='minesweeper_7.dmi' style='border:0;display:block;'></td>"
+						if(19)
+							web += "<td><img src='minesweeper_8.dmi' style='border:0;display:block;'></td>"
+				web += "</tr>"
+			web += "</table>"
+			web += "</tbody>"
+		web += "<br>"
+
+		if(game_status == MINESWEEPER_GAME_LOST)
+			web += "<font size='6'>You have lost!<br><font size='3'>Try again?<br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font></a></b><br><a href='byond://?src=[REF(src)];same_board=1'><font color='#cc66ff'>Play on the same board</font></a><br><a href='byond://?src=[REF(src)];Main_Menu=1'><font color='#cc66ff'>Return to Main Menu</font></a></b><br>"
+
+		if(game_status == MINESWEEPER_GAME_WON)
+			if(rows < 10 || columns < 10)	//If less than easy difficulty
+				playsound(loc, 'hippiestation/sound/arcade/minesweeper_winfail.ogg', 50, 0, extrarange = -3, falloff = 10)
+				say("You cleared the board of all mines, but you picked too small of a board! Try again with at least a 9x9 board!")
+				web += "<font size='4'>You won, but your board was too small! Pick a bigger board next time!<br><font size='3'>Want to play again?<br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font></a></b><br><a href='byond://?src=[REF(src)];same_board=1'><font color='#cc66ff'>Play on the same board</font></a><br><a href='byond://?src=[REF(src)];Main_Menu=1'><font color='#cc66ff'>Return to Main Menu</font></a></b><br>"
 			else
-				prizevend(user)
-			web += "<font size='6'>Congratulations, you have won!<br><font size='3'>Want to play again?<br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font></a></b><br><a href='byond://?src=[REF(src)];same_board=1'><font color='#cc66ff'>Play on the same board</font></a><br><a href='byond://?src=[REF(src)];Main_Menu=1'><font color='#cc66ff'>Return to Main Menu</font></a></b><br>"
+				playsound(loc, 'hippiestation/sound/arcade/minesweeper_win.ogg', 50, 0, extrarange = -3, falloff = 10)
+				say("You cleared the board of all mines! Congratulations!")
+				if(obj_flags & EMAGGED)
+					var/itemname
+					switch(rand(1,3))
+						if(1)
+							itemname = "a syndicate bomb beacon"
+							new /obj/item/sbeacondrop/bomb(loc)
+						if(2)
+							itemname = "a rocket launcher"
+							new /obj/item/gun/ballistic/rocketlauncher/unrestricted(loc)
+							new /obj/item/ammo_casing/caseless/rocket/hedp(loc)
+							new /obj/item/ammo_casing/caseless/rocket/hedp(loc)
+							new /obj/item/ammo_casing/caseless/rocket/hedp(loc)
+						if(3)
+							itemname = "two bags of c4"
+							new /obj/item/storage/backpack/duffelbag/syndie/c4(loc)
+							new /obj/item/storage/backpack/duffelbag/syndie/x4(loc)
+					message_admins("[key_name_admin(user)] won emagged Minesweeper and got [itemname]!")
+					visible_message("<span class='notice'>[src] dispenses [itemname]!</span>", "<span class='notice'>You hear a chime and a clunk.</span>")
+				else
+					prizevend(user)
+				web += "<font size='6'>Congratulations, you have won!<br><font size='3'>Want to play again?<br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font></a></b><br><a href='byond://?src=[REF(src)];same_board=1'><font color='#cc66ff'>Play on the same board</font></a><br><a href='byond://?src=[REF(src)];Main_Menu=1'><font color='#cc66ff'>Return to Main Menu</font></a></b><br>"
 
-	if(game_status == MINESWEEPER_GAME_PLAYING)
-		web += "<a href='byond://?src=[REF(src)];Main_Menu=1'><font color='#cc66ff'>Return to Main Menu</font></a><br>"
-		web += "<div align='right'>Difficulty: [difficulty]<br>Mines: [mine_placed]<br>Rows: [rows-1]<br>Columns: [columns-1]<br><a href='byond://?src=[REF(src)];Flag=1'><font color='#cc66ff'>Flagging mode: [flag_text]</font></a></div>"
+		if(game_status == MINESWEEPER_GAME_PLAYING)
+			web += "<a href='byond://?src=[REF(src)];Main_Menu=1'><font color='#cc66ff'>Return to Main Menu</font></a><br>"
+			web += "<div align='right'>Difficulty: [difficulty]<br>Mines: [mine_placed]<br>Rows: [rows-1]<br>Columns: [columns-1]<br><a href='byond://?src=[REF(src)];Flag=1'><font color='#cc66ff'>Flagging mode: [flag_text]</font></a></div>"
 
-	web += "</div>"
+		web += "</div>"
 
-	saved_web = web
-	user << browse(web,"window=minesweeper,size=400x500")
+		saved_web = web
+		generate_icons()
+		user << browse(web,"window=minesweeper,size=400x500")
+		refreshing = FALSE
 	return
 
 /obj/machinery/computer/arcade/minesweeper/emag_act(mob/user)
@@ -439,3 +412,43 @@
 				if(table[y3][x3] > 0 && table[y3][x3] < 10)
 					table[y3][x3] += 10
 					work_squares(y3, x3)	//Refresh so we check everything we might be missing
+
+/obj/machinery/computer/arcade/minesweeper/proc/generate_icons()
+	var/mob/user = usr
+	user << browse_rsc('hippiestation/icons/arcade/minesweeper_flag.dmi')
+	user << browse_rsc('hippiestation/icons/arcade/minesweeper_mine.dmi')
+	user << browse_rsc('hippiestation/icons/arcade/minesweeper_hidden.dmi')
+	user << browse_rsc('hippiestation/icons/arcade/minesweeper_minehit.dmi')
+	user << browse_rsc('hippiestation/icons/arcade/minesweeper_empty.dmi')
+	user << browse_rsc('hippiestation/icons/arcade/minesweeper_1.dmi')
+	user << browse_rsc('hippiestation/icons/arcade/minesweeper_2.dmi')
+	user << browse_rsc('hippiestation/icons/arcade/minesweeper_3.dmi')
+	user << browse_rsc('hippiestation/icons/arcade/minesweeper_4.dmi')
+	user << browse_rsc('hippiestation/icons/arcade/minesweeper_5.dmi')
+	user << browse_rsc('hippiestation/icons/arcade/minesweeper_6.dmi')
+	user << browse_rsc('hippiestation/icons/arcade/minesweeper_7.dmi')
+	user << browse_rsc('hippiestation/icons/arcade/minesweeper_8.dmi')
+
+/obj/machinery/computer/arcade/minesweeper/proc/explode_EVERYTHING()
+	var/mob/living/user = usr
+	to_chat(user, "<span class='warning'><font size='2'><b>You feel a great sense of dread wash over you. You feel as if you just unleashed armageddon upon yourself!</b></span>")
+	var/row_limit = rows-1
+	var/column_limit = columns-1
+	var/mine_limit_v2 = mine_limit
+	if(rows > 11)
+		row_limit = 10
+	if(columns > 11)
+		column_limit = 10
+	if(mine_limit > (rows*columns)/3.4)
+		mine_limit_v2 = 33
+	message_admins("[key_name_admin(user)] failed Minesweeper and has unleashed an explosion armageddon of size [row_limit],[column_limit] around [user.loc]!")
+	if(mine_limit_v2 < 10)
+		explosion(src.loc,3,6,12,24, adminlog = TRUE)	//Thought you could survive by putting as few mines as possible, huh??
+	else
+		explosion(src.loc,1,3,rand(1,5),rand(1,10), adminlog = FALSE)
+	for(var/y69=y-row_limit;y69<y+row_limit;y69++)	//Create a shitton of explosions in irl turfs if we lose, it will probably kill us
+		for(var/x69=x-column_limit;x69<x+column_limit;x69++)
+			if(prob(mine_limit_v2))	//Probability of explosion happening, according to how many mines were on the board... up to a limit
+				var/explosionloc
+				explosionloc = locate(y69,x69,z)
+				explosion(explosionloc, ,rand(1,2),rand(1,5),rand(3,10), adminlog = FALSE)
