@@ -67,7 +67,6 @@
 			name = L.name
 			break
 	if(comforted && prob(1))
-		var/mob/living/human/H = L
 		to_chat(quirk_holder, "<span class='notice'>You feel safe in the holy presence of [name]</span>")
 
 /datum/quirk/voracious
