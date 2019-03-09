@@ -70,7 +70,6 @@
 	var/mine_sound = TRUE	//So it doesn't get repeated when multiple mines are exposed
 	var/randomcolour = 1
 	var/randomnumber = 1	//Random emagged game iteration number to be displayed, put here so it is persistent across one individual arcade machine
-	var/refreshing = FALSE	//Just in case
 	var/safe_squares_revealed
 	var/saved_web = ""	//To display the web if you click on the arcade
 	var/win_condition
