@@ -560,23 +560,18 @@
 	..()
 
 /datum/reagent/medicine/ephedrine/on_mob_life(mob/living/carbon/M)
-<<<<<<< HEAD
-=======
 	if(prob(20) && iscarbon(M))
 		var/obj/item/I = M.get_active_held_item()
 		if(I && M.dropItemToGround(I))
 			to_chat(M, "<span class ='notice'>Your hands spaz out and you drop what you were holding!</span>")
 			M.Jitter(10)
 
->>>>>>> 7972457... epinephrine & atrophine buffs
 	M.AdjustAllImmobility(-20, FALSE)
 	M.adjustStaminaLoss(-1*REM, FALSE)
 	..()
 	return TRUE
 
 /datum/reagent/medicine/ephedrine/overdose_process(mob/living/M)
-<<<<<<< HEAD
-=======
 	if(prob(2) && iscarbon(M))
 		var/datum/disease/D = new /datum/disease/heart_failure
 		M.ForceContractDisease(D)
@@ -586,7 +581,6 @@
 	if(prob(7))
 		to_chat(M, "<span class='notice'>[pick("Your head pounds.", "You feel a tight pain in your chest.", "You find it hard to stay still.", "You feel your heart practically beating out of your chest.")]</span>")
 
->>>>>>> 7972457... epinephrine & atrophine buffs
 	if(prob(33))
 		M.adjustToxLoss(0.5*REM, 0)
 		M.losebreath++
@@ -594,14 +588,11 @@
 	return TRUE
 
 /datum/reagent/medicine/ephedrine/addiction_act_stage1(mob/living/M)
-<<<<<<< HEAD
-=======
 	if(prob(3) && iscarbon(M))
 		M.visible_message("<span class='danger'>[M] starts having a seizure!</span>", "<span class='userdanger'>You have a seizure!</span>")
 		M.Unconscious(100)
 		M.Jitter(350)
 
->>>>>>> 7972457... epinephrine & atrophine buffs
 	if(prob(33))
 		M.adjustToxLoss(2*REM, 0)
 		M.losebreath += 2
@@ -609,14 +600,11 @@
 	..()
 
 /datum/reagent/medicine/ephedrine/addiction_act_stage2(mob/living/M)
-<<<<<<< HEAD
-=======
 	if(prob(6) && iscarbon(M))
 		M.visible_message("<span class='danger'>[M] starts having a seizure!</span>", "<span class='userdanger'>You have a seizure!</span>")
 		M.Unconscious(100)
 		M.Jitter(350)
 
->>>>>>> 7972457... epinephrine & atrophine buffs
 	if(prob(33))
 		M.adjustToxLoss(3*REM, 0)
 		M.losebreath += 3
@@ -624,14 +612,11 @@
 	..()
 
 /datum/reagent/medicine/ephedrine/addiction_act_stage3(mob/living/M)
-<<<<<<< HEAD
-=======
 	if(prob(12) && iscarbon(M))
 		M.visible_message("<span class='danger'>[M] starts having a seizure!</span>", "<span class='userdanger'>You have a seizure!</span>")
 		M.Unconscious(100)
 		M.Jitter(350)
-
->>>>>>> 7972457... epinephrine & atrophine buffs
+		
 	if(prob(33))
 		M.adjustToxLoss(4*REM, 0)
 		M.losebreath += 4
@@ -639,14 +624,11 @@
 	..()
 
 /datum/reagent/medicine/ephedrine/addiction_act_stage4(mob/living/M)
-<<<<<<< HEAD
-=======
 	if(prob(24) && iscarbon(M))
 		M.visible_message("<span class='danger'>[M] starts having a seizure!</span>", "<span class='userdanger'>You have a seizure!</span>")
 		M.Unconscious(100)
 		M.Jitter(350)
 
->>>>>>> 7972457... epinephrine & atrophine buffs
 	if(prob(33))
 		M.adjustToxLoss(5*REM, 0)
 		M.losebreath += 5
