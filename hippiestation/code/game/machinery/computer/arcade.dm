@@ -106,7 +106,7 @@
 		usr << browse_rsc('hippiestation/icons/arcade/minesweeper_6.dmi')
 		usr << browse_rsc('hippiestation/icons/arcade/minesweeper_7.dmi')
 		usr << browse_rsc('hippiestation/icons/arcade/minesweeper_8.dmi')
-		user << browse(saved_web,"window=minesweeper,size=400x500")
+		usr << browse(saved_web,"window=minesweeper,size=400x500")
 	if(obj_flags & EMAGGED)
 		do_sparks(5, 1, src)
 	add_fingerprint(user)
@@ -169,7 +169,6 @@
 		reset_board = TRUE
 		difficulty = "Custom"
 		rows = text2num(input(usr, "How many rows do you want? (Maximum of 30 allowed)", "Minesweeper Rows"))+1	//+1 as dm arrays start at 1
-		custom_generation()
 		columns = text2num(input(usr, "How many columns do you want? (Maximum of 50 allowed)", "Minesweeper Squares"))+1	//+1 as dm arrays start at 1
 		custom_generation()
 		var/grid_area = (rows-1)*(columns-1)
@@ -282,9 +281,12 @@
 				coordinates = (y1*100)+x1
 				switch(table[y1][x1])
 					if(-10 to -1)
-						web += "<td><a href='byond://?src=[REF(src)];[coordinates]=1'><img src='minesweeper_flag.dmi' style='border:0;display:block;'></td>"
+						if(game_status != MINESWEEPER_GAME_PLAYING)
+							web += "<td><img src='minesweeper_flag.dmi' style='border:0;display:block;'></td>"
+						else
+							web += "<td><a href='byond://?src=[REF(src)];[coordinates]=1'><img src='minesweeper_flag.dmi' style='border:0;display:block;'></td>"
 					if(0)
-						if(game_status == MINESWEEPER_GAME_LOST)
+						if(game_status != MINESWEEPER_GAME_PLAYING)
 							web += "<td><img src='minesweeper_mine.dmi' style='border:0;display:block;'></td>"
 						else
 							web += "<td><a href='byond://?src=[REF(src)];[coordinates]=1'><img src='minesweeper_hidden.dmi' style='border:0;display:block;'></td>"	//Make unique hrefs for every square
@@ -329,9 +331,7 @@
 		else
 			playsound(loc, 'hippiestation/sound/arcade/minesweeper_win.ogg', 50, 0, extrarange = -3, falloff = 10)
 			say("You cleared the board of all mines! Congratulations!")
-			if(!obj_flags & EMAGGED)
-				prizevend(user)
-			else
+			if(obj_flags & EMAGGED)
 				var/itemname
 				switch(rand(1,3))
 					if(1)
@@ -349,6 +349,8 @@
 						new /obj/item/storage/backpack/duffelbag/syndie/x4(loc)
 				message_admins("[key_name_admin(user)] won emagged Minesweeper and got [itemname]!")
 				visible_message("<span class='notice'>[src] dispenses [itemname]!</span>", "<span class='notice'>You hear a chime and a clunk.</span>")
+			else
+				prizevend(user)
 			web += "<font size='6'>Congratulations, you have won!<br><font size='3'>Want to play again?<br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font></a></b><br><a href='byond://?src=[REF(src)];same_board=1'><font color='#cc66ff'>Play on the same board</font></a><br><a href='byond://?src=[REF(src)];Main_Menu=1'><font color='#cc66ff'>Return to Main Menu</font></a></b><br>"
 
 	if(game_status == MINESWEEPER_GAME_PLAYING)
@@ -358,19 +360,6 @@
 	web += "</div>"
 
 	saved_web = web
-	usr << browse_rsc('hippiestation/icons/arcade/minesweeper_flag.dmi')
-	usr << browse_rsc('hippiestation/icons/arcade/minesweeper_mine.dmi')
-	usr << browse_rsc('hippiestation/icons/arcade/minesweeper_hidden.dmi')
-	usr << browse_rsc('hippiestation/icons/arcade/minesweeper_minehit.dmi')
-	usr << browse_rsc('hippiestation/icons/arcade/minesweeper_empty.dmi')
-	usr << browse_rsc('hippiestation/icons/arcade/minesweeper_1.dmi')
-	usr << browse_rsc('hippiestation/icons/arcade/minesweeper_2.dmi')
-	usr << browse_rsc('hippiestation/icons/arcade/minesweeper_3.dmi')
-	usr << browse_rsc('hippiestation/icons/arcade/minesweeper_4.dmi')
-	usr << browse_rsc('hippiestation/icons/arcade/minesweeper_5.dmi')
-	usr << browse_rsc('hippiestation/icons/arcade/minesweeper_6.dmi')
-	usr << browse_rsc('hippiestation/icons/arcade/minesweeper_7.dmi')
-	usr << browse_rsc('hippiestation/icons/arcade/minesweeper_8.dmi')
 	user << browse(web,"window=minesweeper,size=400x500")
 	return
 
