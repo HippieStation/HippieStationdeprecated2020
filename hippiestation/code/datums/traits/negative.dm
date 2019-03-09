@@ -284,6 +284,7 @@
 	medical_record_text = "Patient is a current smoker."
 	reagent_type = /datum/reagent/drug/nicotine
 	accessory_type = /obj/item/lighter/greyscale
+	var/cigarette_name
 
 /datum/quirk/junkie/smoker/on_spawn()
 	drug_container_type = pick(/obj/item/storage/fancy/cigarettes,
@@ -295,6 +296,10 @@
 		/obj/item/storage/fancy/cigarettes/cigars,
 		/obj/item/storage/fancy/cigarettes/cigars/cohiba,
 		/obj/item/storage/fancy/cigarettes/cigars/havana)
+	if(istype(drug_container_type, /obj/item/storage/fancy/cigarettes/cigars))
+		cigarette_name = "cigar"
+	else
+		cigarette_name = "cigarette"
 	. = ..()
 
 /datum/quirk/junkie/smoker/announce_drugs()
@@ -304,6 +309,12 @@
 	. = ..()
 	var/mob/living/carbon/human/H = quirk_holder
 	var/obj/item/I = H.get_item_by_slot(SLOT_WEAR_MASK)
+	if (istype(I, /obj/item/clothing/mask/cigarette))
+		var/obj/item/storage/fancy/cigarettes/C = drug_instance
+		if(istype(I, C.spawn_type) && prob(1))
+			to_chat(quirk_holder, "<span class='notice'>You feel great smoking your usual brand of [cigarette_name]")
+		else if(prob(1))
+			to_chat(quirk_holder, "<span class='warning'>You'd prefer if you were smoking your usual brand of [cigarette_name]")
 
 /datum/quirk/family_heirloom	//Custom edition :)
 	name = "Family Heirloom"
