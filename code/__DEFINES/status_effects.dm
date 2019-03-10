@@ -38,11 +38,9 @@
 
 #define STATUS_EFFECT_REGENERATIVE_CORE /datum/status_effect/regenerative_core
 
-<<<<<<< HEAD
 #define STATUS_EFFECT_CREEP /datum/status_effect/creep //you feel fuckin great around your obsession
-=======
+
 #define STATUS_EFFECT_ANTIMAGIC /datum/status_effect/antimagic //grants antimagic (and reapplies if lost) for the duration
->>>>>>> 9e4856d... [READY] dilutes the staff of chaos pool with some more bolts (#42719)
 
 /////////////
 // DEBUFFS //
