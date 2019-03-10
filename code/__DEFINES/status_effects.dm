@@ -40,6 +40,8 @@
 
 #define STATUS_EFFECT_CREEP /datum/status_effect/creep //you feel fuckin great around your obsession
 
+#define STATUS_EFFECT_ANTIMAGIC /datum/status_effect/antimagic //grants antimagic (and reapplies if lost) for the duration
+
 /////////////
 // DEBUFFS //
 /////////////
@@ -113,6 +115,8 @@
 #define STATUS_EFFECT_HIVE_TRACKER /datum/status_effect/hive_track
 
 #define STATUS_EFFECT_HIVE_RADAR /datum/status_effect/agent_pinpointer/hivemind
+
+#define STATUS_EFFECT_BOUNTY /datum/status_effect/bounty //rewards the person who added this to the target with refreshed spells and a fair heal
 
 /////////////
 //  SLIME  //
