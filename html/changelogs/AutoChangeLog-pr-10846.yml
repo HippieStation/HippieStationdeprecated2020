@@ -1,0 +1,5 @@
+author: "Jujumatic"
+delete-after: True
+changes: 
+  - tweak: "Changed a few minor things in traits that made mood events cause we don't use moods"
+  - bugfix: "Fixed some traits being locked because of mood stuff"
