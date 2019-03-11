@@ -335,10 +335,10 @@
 //Nanosuit uplink item, available in all traitor rounds and nuke.
 /datum/uplink_item/dangerous/nanosuit
 	name = "CryNet Nanosuit"
-	desc = "Become a posthuman warrior. The items cannot be taken off once you wear them."
+	desc = "Become a posthuman warrior. The items cannot be taken off once you wear them and alerts the crew of your position if equipped on station."
 	item = /obj/item/storage/box/syndie_kit/nanosuit
 	cost = 20
-	exclude_modes = list(/datum/game_mode/infiltration)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
 
 /datum/uplink_item/dangerous/synth
 	name = "Cybersun Sponsorship Kit"
