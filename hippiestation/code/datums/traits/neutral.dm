@@ -60,14 +60,14 @@
 
 /datum/quirk/spiritual/on_process()
 	var/comforted = FALSE
+	var/name
 	for(var/mob/living/L in oview(5, quirk_holder))
 		if(L.mind && L.mind.isholy && L.stat == CONSCIOUS)
 			comforted = TRUE
+			name = L.name
 			break
-	if(comforted)
-		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "religious_comfort", /datum/mood_event/religiously_comforted)
-	else
-		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "religious_comfort")
+	if(comforted && prob(1))
+		to_chat(quirk_holder, "<span class='notice'>You feel safe in the holy presence of [name]</span>")
 
 /datum/quirk/voracious
 	name = "Voracious"
