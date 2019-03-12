@@ -82,6 +82,10 @@ Windows DLL is included in this repository, but Linux users will need to build
 and install it themselves. Directions can be found at the [rust-g
 repo](https://github.com/tgstation/rust-g).
 
+In addition, there is Lua support, through beyond-the-moon. 
+It is available at [it's repo](https://github.com/steamp0rt/BeyondTheMoon).
+Installation is the same as rust-g.
+
 Finally, to start the server, run Dream Daemon and enter the path to your
 compiled tgstation.dmb file. Make sure to set the port to the one you
 specified in the config.txt, and set the Security box to 'Safe'. Then press GO

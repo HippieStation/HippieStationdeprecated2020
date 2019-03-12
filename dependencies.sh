@@ -18,3 +18,6 @@ export BSQL_VERSION=v1.4.0.0
 
 #node version
 export NODE_VERSION=8
+
+#beyond-the-moon commit
+export BTM_COMMIT=90729dc0c083f5ee380776864e7c450a2845c428
