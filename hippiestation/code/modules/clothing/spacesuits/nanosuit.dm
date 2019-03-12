@@ -442,7 +442,7 @@
 				animate(Wearer, alpha = 255, time = 5)
 				Wearer.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
 				Wearer.add_trait(TRAIT_TACRELOAD, NANO_SPEED)
-				Wearer.add_movespeed_modifier(NANO_SPEED, update=TRUE, priority=100, multiplicative_slowdown=-0.5, blacklisted_movetypes=(FLYING|FLOATING))
+				Wearer.add_movespeed_modifier(NANO_SPEED, update=TRUE, priority=100, multiplicative_slowdown=-0.25, blacklisted_movetypes=(FLYING|FLOATING))
 				Wearer.add_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
 				Wearer.remove_trait(TRAIT_LIGHT_STEP, NANO_SPEED)
 				style.remove(Wearer)
