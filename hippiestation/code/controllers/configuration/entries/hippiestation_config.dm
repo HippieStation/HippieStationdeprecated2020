@@ -14,3 +14,6 @@
 /datum/config_entry/flag/allow_vote_shuttlecall	// allow shuttle to be called via vote
 
 /datum/config_entry/flag/enable_tts
+
+/datum/config_entry/number/lua_timeout
+	config_entry_value = 2

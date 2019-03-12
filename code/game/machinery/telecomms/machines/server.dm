@@ -51,6 +51,10 @@
 	log.name = "data packet ([md5(identifier)])"
 	log_entries.Add(log)
 
+	//hippie start -- lua ntsl
+	NTSL(signal)
+	//hippie end
+
 	var/can_send = relay_information(signal, /obj/machinery/telecomms/hub)
 	if(!can_send)
 		relay_information(signal, /obj/machinery/telecomms/broadcaster)
