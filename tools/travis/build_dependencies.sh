@@ -16,8 +16,10 @@ if [ $BUILD_TOOLS = false ] && [ $BUILD_TESTING = false ]; then
     source ~/.profile
     rustup default nightly
 
-    mkdir rust-g
-    cd rust-g
+	export BASE=$PWD
+
+    mkdir $BASE/rust-g
+    cd $BASE/rust-g
     git init
     git remote add origin https://github.com/tgstation/rust-g
     git fetch --depth 1 origin $RUST_G_VERSION
@@ -25,8 +27,8 @@ if [ $BUILD_TOOLS = false ] && [ $BUILD_TESTING = false ]; then
     cargo build --release
     cmp target/rust_g.dm ../code/__DEFINES/rust_g.dm
     
-    mkdir ../beyond-the-moon
-    cd ../beyond-the-moon
+    mkdir $BASE/beyond-the-moon
+    cd $BASE/beyond-the-moon
     git init
     git remote add origin https://github.com/steamp0rt/BeyondTheMoon
     git fetch --depth 1 origin $BTM_COMMIT
@@ -34,11 +36,11 @@ if [ $BUILD_TOOLS = false ] && [ $BUILD_TESTING = false ]; then
     cargo build --release
 
     mkdir -p ~/.byond/bin
-    ln -s $PWD/../rust-g/target/release/librust_g.so ~/.byond/bin/rust_g
-    ln -s $PWD/target/release/libBeyondTheMoon.so ~/.byond/bin/beyond_the_moon
+    ln -s $BASE/rust-g/target/release/librust_g.so ~/.byond/bin/rust_g
+    ln -s $BASE/BeyondTheMoon/target/release/libBeyondTheMoon.so ~/.byond/bin/beyond_the_moon
 
-    mkdir -p ../BSQL/artifacts
-    cd ../BSQL
+    mkdir -p $BASE/BSQL/artifacts
+    cd $BASE/BSQL
     git init
     git remote add origin https://github.com/tgstation/BSQL
     git fetch --depth 1 origin $BSQL_VERSION

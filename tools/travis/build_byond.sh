@@ -46,6 +46,7 @@ if [ "$BUILD_TOOLS" = false ]; then
 	fi;
 
     source $HOME/BYOND/byond/bin/byondsetup
+	export LD_LIBRARY_PATH=$HOME/BYOND/byond/bin
 	if [ "$BUILD_TESTING" = true ]; then
 		tools/travis/dm.sh -DTRAVISBUILDING -DTRAVISTESTING -DALL_MAPS hippiestation.dme
 	else
