@@ -1,0 +1,5 @@
+author: "funkynuggets"
+delete-after: True
+changes: 
+  - rscadd: "Added older cyborg sprites that you can choose either TG or older ones from."
+  - bugfix: "Inivisble cyborg statues. No longer you'll bump into invisible stuff in AI's sat."
