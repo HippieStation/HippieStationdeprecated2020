@@ -56,9 +56,6 @@
 	internal_ext.safety = FALSE
 	internal_ext.precision = TRUE
 	internal_ext.max_water = INFINITY
-<<<<<<< HEAD
-	internal_ext.Initialize()
-=======
 	internal_ext.refill()
 
 /mob/living/simple_animal/bot/firebot/UnarmedAttack(atom/A)
@@ -76,7 +73,6 @@
 		internal_ext.afterattack(A, src)
 	else
 		return ..()
->>>>>>> 8e6ebc9... Fix sentient firebots not using their extinguishers (#43086)
 
 /mob/living/simple_animal/bot/firebot/turn_on()
 	. = ..()
