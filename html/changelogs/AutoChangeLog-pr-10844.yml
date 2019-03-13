@@ -1,4 +1,0 @@
-author: "IHadMyUsernameTaken"
-delete-after: True
-changes: 
-  - bugfix: "A surgery step that uses hands as a tool will now apply damage on the patient and let the surgery they are part of go forward when you fail this step."
