@@ -99,6 +99,7 @@
 		if("Lavaland Colours")
 			cyborg_base_icon = "miner"
 		if("Research Humanoid Borg")
+			cyborg_base_icon = "rdborg"
 			special_light_key = null
 			hat_offset = INFINITY //I'm very lazy
 
