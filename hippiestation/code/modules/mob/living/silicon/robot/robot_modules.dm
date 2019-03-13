@@ -1,3 +1,6 @@
+/obj/item/robot_module
+    var/hippie_cyborg_base_icon
+
 /obj/item/robot_module/standard/be_transformed_to(obj/item/robot_module/old_module)
 	var/mob/living/silicon/robot/R = loc
 	var/borg_icon = input(R, "Select an icon!", "Robot Icon", null) as null|anything in list("Standard", "Classic Style", "Hydro-bot", "Captain")
@@ -5,13 +8,13 @@
 		return FALSE
 	switch(borg_icon)
 		if("Standard")
-			cyborg_base_icon = "robot"
+			hippie_cyborg_base_icon = "robot"
 		if("Classic Style")
-			cyborg_base_icon = "robot_old"
+			hippie_cyborg_base_icon = "robot_old"
 		if("Hydro-bot")
-			cyborg_base_icon = "Hydrobot"
+			hippie_cyborg_base_icon = "Hydrobot"
 		if("Captain")
-			cyborg_base_icon = "captainborg"
+			hippie_cyborg_base_icon = "captainborg"
 	return ..()
 
 /obj/item/robot_module/medical/be_transformed_to(obj/item/robot_module/old_module)
@@ -21,11 +24,11 @@
 		return FALSE
 	switch(borg_icon)
 		if("Standard")
-			cyborg_base_icon = "medical"
+			hippie_cyborg_base_icon = "medical"
 		if("Classic")
-			cyborg_base_icon = "Medbot"
+			hippie_cyborg_base_icon = "Medbot"
 		if("Humanoid")
-			cyborg_base_icon = "cmoborg"
+			hippie_cyborg_base_icon = "cmoborg"
 	return ..()
 
 /obj/item/robot_module/security/be_transformed_to(obj/item/robot_module/old_module)
@@ -35,15 +38,15 @@
 		return FALSE
 	switch(borg_icon)
 		if("Standard")
-			cyborg_base_icon = "sec"
+			hippie_cyborg_base_icon = "sec"
 		if("Classic")
-			cyborg_base_icon = "secborg"
+			hippie_cyborg_base_icon = "secborg"
 		if("Humanoid")
-			cyborg_base_icon = "Security"
+			hippie_cyborg_base_icon = "Security"
 		if("Black Scheme Humanoid")
-			cyborg_base_icon = "hosborg"
+			hippie_cyborg_base_icon = "hosborg"
 		if("PISSED OFF BEEPSKY")
-			cyborg_base_icon = "secbot0"
+			hippie_cyborg_base_icon = "secbot0"
 	return ..()
 
 
@@ -54,21 +57,21 @@
 		return FALSE
 	switch(borg_icon)
 		if("Standard")
-			cyborg_base_icon = "engineer"
+			hippie_cyborg_base_icon = "engineer"
 		if("Classic Style")
-			cyborg_base_icon = "Engineering_old"
+			hippie_cyborg_base_icon = "Engineering_old"
 		if("Tech-Priest")
-			cyborg_base_icon = "Engineering2"
+			hippie_cyborg_base_icon = "Engineering2"
 		if("Super Oldschool")
-			cyborg_base_icon = "engineering_drone"
+			hippie_cyborg_base_icon = "engineering_drone"
 			special_light_key = "medical"
 			hat_offset = 3
 		if("Thicc")
-			cyborg_base_icon = "Engineering3"
+			hippie_cyborg_base_icon = "Engineering3"
 			special_light_key = null
 			hat_offset = INFINITY //He is already wearing a hat
 		if("Humanoid")
-			cyborg_base_icon = "ceborg"
+			hippie_cyborg_base_icon = "ceborg"
 	return ..()
 
 /obj/item/robot_module/janitor/be_transformed_to(obj/item/robot_module/old_module)
@@ -78,11 +81,11 @@
 		return FALSE
 	switch(borg_icon)
 		if("Standard")
-			cyborg_base_icon = "janitor"
+			hippie_cyborg_base_icon = "janitor"
 		if("Classic")
-			cyborg_base_icon = "JanBot2"
+			hippie_cyborg_base_icon = "JanBot2"
 		if("Botany Style")
-			cyborg_base_icon = "botany"
+			hippie_cyborg_base_icon = "botany"
 	return ..()
 
 
@@ -93,13 +96,13 @@
 		return FALSE
 	switch(borg_icon)
 		if("Asteroid Colours")
-			cyborg_base_icon = "minerOLD"
+			hippie_cyborg_base_icon = "minerOLD"
 		if("Classic Skin")
-			cyborg_base_icon = "Miner_old"
+			hippie_cyborg_base_icon = "Miner_old"
 		if("Lavaland Colours")
-			cyborg_base_icon = "miner"
+			hippie_cyborg_base_icon = "miner"
 		if("Research Humanoid Borg")
-			cyborg_base_icon = "rdborg"
+			hippie_cyborg_base_icon = "rdborg"
 			special_light_key = null
 			hat_offset = INFINITY //I'm very lazy
 
