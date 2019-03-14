@@ -327,11 +327,11 @@
 			user.visible_message("<span class='danger'>[user]'s shields deflect [attack_text] draining their energy!</span>")
 			if(damage)
 				if(attack_type != STAMINA)
-					set_nano_energy(5 + damage,NANO_CHARGE_DELAY)//laser guns, anything lethal drains 5 + the damage dealth
+					set_nano_energy(10 + damage,NANO_CHARGE_DELAY)//laser guns, anything lethal drains 5 + the damage dealt
 				else if(P.damage_type == STAMINA && attack_type == PROJECTILE_ATTACK)
-					set_nano_energy(15,NANO_CHARGE_DELAY)//stamina damage, aka disabler beams
+					set_nano_energy(20,NANO_CHARGE_DELAY)//stamina damage, aka disabler beams
 			if(istype(P, /obj/item/projectile/energy/electrode))//if electrode aka taser
-				set_nano_energy(25,NANO_CHARGE_DELAY)
+				set_nano_energy(35,NANO_CHARGE_DELAY)
 			return TRUE
 		else
 			user.visible_message("<span class='warning'>[user]'s shields fail to deflect [attack_text].</span>")
@@ -341,7 +341,7 @@
 			s.set_up(1, 1, src)
 			s.start()
 	kill_cloak()
-	if(prob(damage*2) && user.health < 60 && current_charges > 0)
+	if(prob(damage*1.5) && user.health < 50 && current_charges)
 		addtimer(CALLBACK(src, .proc/addmedicalcharge), medical_delay,TIMER_UNIQUE|TIMER_OVERRIDE)
 		current_charges--
 		heal_nano(user)
@@ -370,8 +370,6 @@
 					helmet.display_visor_message("Thoracic burns detected!")
 					msg_time_react = 300
 
-	if(attack_type == THROWN_PROJECTILE_ATTACK)
-		final_block_chance += 15
 	if(attack_type == LEAP_ATTACK)
 		final_block_chance = 75
 	SEND_SIGNAL(src, COMSIG_ITEM_HIT_REACT, args)
@@ -404,8 +402,8 @@
 				helmet.display_visor_message("Maximum Armor!")
 				block_chance = 50
 				slowdown = initial(slowdown)
-				armor = armor.setRating(melee = 60, bullet = 60, laser = 60, energy = 65, bomb = 100, rad =100)
-				helmet.armor = helmet.armor.setRating(melee = 60, bullet = 60, laser = 60, energy = 65, bomb = 100, rad =100)
+				armor = armor.setRating(melee = 50, bullet = 50, laser = 50, energy = 55, bomb = 90, rad = 90)
+				helmet.armor = helmet.armor.setRating(melee = 50, bullet = 50, laser = 50, energy = 55, bomb = 90, rad = 90)
 				Wearer.filters = list()
 				animate(Wearer, alpha = 255, time = 5)
 				Wearer.remove_movespeed_modifier(NANO_SPEED)
@@ -444,7 +442,7 @@
 				animate(Wearer, alpha = 255, time = 5)
 				Wearer.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
 				Wearer.add_trait(TRAIT_TACRELOAD, NANO_SPEED)
-				Wearer.add_movespeed_modifier(NANO_SPEED, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
+				Wearer.add_movespeed_modifier(NANO_SPEED, update=TRUE, priority=100, multiplicative_slowdown=-0.25, blacklisted_movetypes=(FLYING|FLOATING))
 				Wearer.add_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
 				Wearer.remove_trait(TRAIT_LIGHT_STEP, NANO_SPEED)
 				style.remove(Wearer)
@@ -769,8 +767,7 @@
 
 /datum/martial_art/nanosuit
 	name = "Nanosuit strength mode"
-	block_chance = 75
-	deflection_chance = 25
+	block_chance = 50
 	id = MARTIALART_NANOSUIT
 
 /datum/martial_art/nanosuit/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
