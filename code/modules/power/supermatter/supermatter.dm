@@ -35,7 +35,7 @@
 #define MATTER_POWER_CONVERSION 10         //Crystal converts 1/this value of stored matter into energy.
 
 //These would be what you would get at point blank, decreases with distance
-#define DETONATION_RADS 200
+#define DETONATION_RADS 20000 //hippie
 #define DETONATION_HALLUCINATION 600
 
 
@@ -90,7 +90,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	var/emergency_issued = FALSE
 
-	var/explosion_power = 3500
+	var/explosion_power = 35
 	var/temp_factor = 30
 
 	var/lastwarning = 0				// Time in 1/10th of seconds since the last sent warning
