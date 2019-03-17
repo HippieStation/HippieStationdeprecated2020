@@ -90,7 +90,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 	var/emergency_issued = FALSE
 
-	var/explosion_power = 135r
+	var/explosion_power = 135
 	var/temp_factor = 30
 
 	var/lastwarning = 0				// Time in 1/10th of seconds since the last sent warning
