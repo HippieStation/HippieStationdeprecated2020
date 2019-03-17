@@ -79,5 +79,5 @@
 	. = ..()
 	GET_COMPONENT(STR, /datum/component/storage)
 	STR.max_combined_w_class = WEIGHT_CLASS_HUGE
-	STR.max_items = 5
+	STR.max_items = 6
 	STR.cant_hold = typecacheof(list(/obj/item/storage/backpack))
