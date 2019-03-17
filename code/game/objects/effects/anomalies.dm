@@ -277,12 +277,15 @@
 	if(istype(T))
 		T.atmos_spawn_air("o2=500;plasma=500;TEMP=1000") //Make it hot and burny for the new slime
 	var/new_colour = pick("red", "orange")
-	var/mob/living/simple_animal/slime/S = new(T, new_colour)
-	S.rabid = TRUE
-	S.amount_grown = SLIME_EVOLUTION_THRESHOLD
-	S.Evolve()
-	offer_control(S)
+	var/mob/living/simple_animal/slime/H = new(T, new_colour)
+	H.rabid = TRUE
+	H.amount_grown = SLIME_EVOLUTION_THRESHOLD
+	H.Evolve()
 
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as a pyroslime?", ROLE_PAI, null, FALSE, 100, POLL_IGNORE_PYROSLIME)
+	if(LAZYLEN(candidates))
+		var/mob/dead/observer/C = pick(candidates)
+		H.key = C.key
 /////////////////////
 
 /obj/effect/anomaly/bhole
