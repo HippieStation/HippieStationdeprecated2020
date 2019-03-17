@@ -22,3 +22,9 @@
 			owner.visible_message("<span class='danger'>[owner] skillfully blocks [attack_text] with [src]!</span>")
 			return TRUE
 	return FALSE
+/obj/item/shield/energy/attack_self(mob/living/carbon/human/user)
+	. = ..()
+	if(active)
+		src.add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
+	else
+		src.remove_trait(TRAIT_NODROP, CLOTHING_TRAIT)
