@@ -1,0 +1,5 @@
+/datum/antagonist/ert/deathsquad/apply_innate_effects(mob/living/mob_override)
+  owner.add_trait(TRAIT_IGNOREDAMAGESLOWDOWN, DEATHSQUAD_TRAIT)
+  owner.add_trait(TRAIT_STUNIMMUNE, DEATHSQUAD_TRAIT)
+  owner.add_trait(TRAIT_IGNORESLOWDOWN, DEATHSQUAD_TRAIT)
+  . = ..()
