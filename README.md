@@ -1,10 +1,5 @@
 ## FPStation
 
-**Website:** http://www.hippiestation.com <BR>
-**Code:** https://github.com/hippiestation/hippiestation <BR>
-**Wiki** https://wiki.hippiestation.com/index.php?title=Main_Page <BR>
-**Discord:** [Request access here.](https://hippiestation.com/threads/discord-invites.6055) <BR>
-
 [![forthebadge](https://forthebadge.com/images/badges/built-with-resentment.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/contains-technical-debt.svg)](https://forthebadge.com) [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
 ## ABOUT (HippieStation)
