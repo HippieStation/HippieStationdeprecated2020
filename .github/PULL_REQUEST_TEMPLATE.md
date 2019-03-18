@@ -1,4 +1,4 @@
-[Guidelines]: # (Be sure that your PR follows our guidelines, such as modularization and comment standards. You can read more about the subject here: https://github.com/HippieStation/HippieStation/blob/master/hippiestation/README.md )
+[Guidelines]: # (Be sure that your PR follows our guidelines, such as modularization and comment standards. You can read more about the subject here: https://github.com/brushtool/fpstation/blob/master/fpstation/README.md )
 <!-- Write **BELOW** The Headers and **ABOVE** The comments else it may not be viewable. -->
 <!-- You can view Contributing.MD for a detailed description of the pull request process. -->
 
