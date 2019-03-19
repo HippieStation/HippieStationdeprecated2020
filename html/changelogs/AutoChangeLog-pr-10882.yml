@@ -1,0 +1,5 @@
+author: "Jujumatic"
+delete-after: True
+changes: 
+  - tweak: "Added the board click sound when flagging minesweeper squares"
+  - bugfix: "You can now actually win minesweeper"
