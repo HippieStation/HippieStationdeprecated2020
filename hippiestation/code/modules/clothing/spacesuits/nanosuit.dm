@@ -4,8 +4,8 @@
 #define NANO_STRENGTH "strength"
 #define NANO_NONE "none"
 #define NANO_JUMP_USE 30
-#define NANO_CHARGE_DELAY 15
-#define NANO_EMP_CHARGE_DELAY 40
+#define NANO_CHARGE_DELAY 20
+#define NANO_EMP_CHARGE_DELAY 45
 
 #define POWER_PUNCH "QQQ"
 #define HEAD_EXPLOSION "SSSS"
@@ -307,7 +307,7 @@
 			recharge_cooldown = 15 //then wait 3 seconds(1 value per 2 ticks = 15*2=30/10 = 3 seconds) to recharge again
 		if(mode != NANO_ARMOR && mode != NANO_NONE) //we're not in cloak
 			toggle_mode(NANO_ARMOR, TRUE) //go into it, forced
-	cell.use(round(amount))
+	cell.charge = max(0,(cell.charge - amount))
 	return TRUE
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/addmedicalcharge()
