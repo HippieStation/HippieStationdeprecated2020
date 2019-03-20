@@ -1087,11 +1087,6 @@
 	var/canstand_involuntary = conscious && !stat_softcrit && !knockdown && !chokehold && !paralyzed && (ignore_legs || has_legs) && !(buckled && buckled.buckle_lying)
 	var/canstand = canstand_involuntary && !resting
 
-<<<<<<< HEAD
-	if(canstand)
-		mobility_flags |= MOBILITY_STAND
-		lying = 0
-=======
 	var/should_be_lying = !canstand
 	if(buckled)
 		if(buckled.buckle_lying != -1)
@@ -1105,30 +1100,12 @@
 		if(!lying) //force them on the ground
 			lying = pick(90, 270)
 	else
->>>>>>> 06b8fe7... Fixes adminheal not curing various status effects (#43184)
 		if(!restrained)
 			mobility_flags |= (MOBILITY_UI | MOBILITY_PULL)
 		else
 			mobility_flags &= ~(MOBILITY_UI | MOBILITY_PULL)
-<<<<<<< HEAD
-	else
-		mobility_flags &= ~(MOBILITY_UI | MOBILITY_PULL)
-
-		var/should_be_lying = (buckled && (buckled.buckle_lying != -1)) ? buckled.buckle_lying : TRUE //make lying match buckle_lying if it's not -1, else lay down
-
-		if(should_be_lying)
-			mobility_flags &= ~MOBILITY_STAND
-			if(!lying) //force them on the ground
-				lying = pick(90, 270)
-		else
-			mobility_flags |= MOBILITY_STAND //important to add this back, otherwise projectiles will pass through the mob while they're upright.
-			if(lying) //stand them back up
-				lying = 0
-=======
 		mobility_flags |= MOBILITY_STAND
 		lying = 0
-
->>>>>>> 06b8fe7... Fixes adminheal not curing various status effects (#43184)
 
 	var/canitem = !paralyzed && !stun && conscious && !chokehold && !restrained && has_arms
 	if(canitem)
