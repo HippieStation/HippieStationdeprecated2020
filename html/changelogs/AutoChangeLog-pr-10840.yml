@@ -1,0 +1,4 @@
+author: "Mideanon"
+delete-after: True
+changes: 
+  - balance: "You can now only have 1 advanced disease at once"
