@@ -30,6 +30,13 @@ GLOBAL_VAR(world_mecha_log)
 GLOBAL_PROTECT(world_mecha_log)
 GLOBAL_VAR(world_virus_log)
 GLOBAL_PROTECT(world_virus_log)
+<<<<<<< HEAD
+=======
+GLOBAL_VAR(world_asset_log)
+GLOBAL_PROTECT(world_asset_log)
+GLOBAL_VAR(world_cloning_log)
+GLOBAL_PROTECT(world_cloning_log)
+>>>>>>> 2008953... Merge pull request #43168 from ShizCalev/cloning-logging
 
 GLOBAL_LIST_EMPTY(bombers)
 GLOBAL_PROTECT(bombers)
