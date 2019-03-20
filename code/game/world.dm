@@ -99,11 +99,8 @@ GLOBAL_VAR(restart_counter)
 	GLOB.world_game_log = "[GLOB.log_directory]/game.log"
 	GLOB.world_mecha_log = "[GLOB.log_directory]/mecha.log"
 	GLOB.world_virus_log = "[GLOB.log_directory]/virus.log"
-<<<<<<< HEAD
-=======
 	GLOB.world_cloning_log = "[GLOB.log_directory]/cloning.log"
 	GLOB.world_asset_log = "[GLOB.log_directory]/asset.log"
->>>>>>> 2008953... Merge pull request #43168 from ShizCalev/cloning-logging
 	GLOB.world_attack_log = "[GLOB.log_directory]/attack.log"
 	GLOB.world_pda_log = "[GLOB.log_directory]/pda.log"
 	GLOB.world_telecomms_log = "[GLOB.log_directory]/telecomms.log"
