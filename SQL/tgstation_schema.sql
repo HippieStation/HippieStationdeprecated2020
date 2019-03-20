@@ -462,8 +462,6 @@ $$
 CREATE TRIGGER `role_timeTlogdelete` AFTER DELETE ON `role_time` FOR EACH ROW BEGIN INSERT into role_time_log (ckey, job, delta) VALUES (OLD.ckey, OLD.job, 0-OLD.minutes);
 END
 $$
-<<<<<<< HEAD
-=======
 DELIMITER ;
 
 --
@@ -515,7 +513,6 @@ CREATE TABLE `stickyban_matched_cid` (
 	PRIMARY KEY (`stickyban`, `matched_cid`)
 ) ENGINE=InnoDB;
 
->>>>>>> eaf1a1e... Merge pull request #43196 from ShizCalev/sql-prefix-fix
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
