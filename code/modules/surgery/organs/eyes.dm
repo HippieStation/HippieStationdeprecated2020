@@ -338,3 +338,13 @@
 	name = "moth eyes"
 	desc = "These eyes seem to have increased sensitivity to bright light, with no improvement to low light vision."
 	flash_protect = -1
+<<<<<<< HEAD
+=======
+
+/obj/item/organ/eyes/snail
+	name = "snail eyes"
+	desc = "These eyes seem to have a large range, but might be cumbersome with glasses."
+	eye_icon_state = "snail_eyes"
+	icon_state = "snail_eyeballs"
+	no_glasses = TRUE
+>>>>>>> c731285... New snail sprite and fixes (#43132)
