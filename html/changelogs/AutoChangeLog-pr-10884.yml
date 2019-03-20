@@ -1,0 +1,5 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - balance: "Nerfs nanosuit recharge delay time"
+  - bugfix: "Nanosuit charge was not fully draining and his been fixed."
