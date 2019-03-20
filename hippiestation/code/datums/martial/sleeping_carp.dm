@@ -305,7 +305,7 @@
 		var/obj/item/clothing/mask/gas/carp/freemask = new
 		style.teach(H,1)
 		to_chat(H, "<span class='sciradio'>You have learned the ancient martial art of the Sleeping Carp! Your hand-to-hand combat has become much more effective, and you are now able to deflect any projectiles \
-		directed toward you. However, you are also unable to use any ranged weaponry. You can leqrn more about your newfound art by using the Recall Teachings verb in the Sleeping Carp tab.</span>")
+		directed toward you. However, you are also unable to use any ranged weaponry. You can learn more about your newfound art by using the Recall Teachings verb in the Sleeping Carp tab.</span>")
 		to_chat(H, "<span class='warning'>The suit fastens around you! The Sleeping Carp have chosen you, you can't back out now!")
 		H.put_in_hands(freemask)
 		freemask.name = "complementary carp mask"
