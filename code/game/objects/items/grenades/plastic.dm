@@ -73,7 +73,11 @@
 			explosion(location, boom_sizes[1], boom_sizes[2], boom_sizes[3])
 	if(ismob(target))
 		var/mob/M = target
-		M.gib()
+		if(ishuman(M)) // hippie -- allows gibbing of human corpses, instagibbing with X4
+			if(M.stat || full_damage_on_mobs)
+				M.gib(1, 1, 1)
+		else // hippie end
+			M.gib()
 	qdel(src)
 
 //assembly stuff
@@ -205,7 +209,7 @@
 		wires.interact(user)
 	else
 		return ..()
-
+/* hippie -- did nothing but break shit
 /obj/item/grenade/plastic/c4/prime()
 	if(QDELETED(src))
 		return
@@ -221,7 +225,7 @@
 	if(location)
 		explosion(location,0,0,3)
 	qdel(src)
-
+*/
 /obj/item/grenade/plastic/c4/attack(mob/M, mob/user, def_zone)
 	return
 
