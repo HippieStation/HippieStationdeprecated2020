@@ -1,4 +1,4 @@
- //               /// Section\\
+ //               /// Section
 /obj/item/clothing/suit/jacket/face/
 	alternate_worn_icon = 'face/icons/mob/suit.dmi'
 	icon = 'face/icons/obj/clothing/suits.dmi'
@@ -31,3 +31,6 @@
 	alternate_worn_icon = 'face/icons/mob/head.dmi'
 	icon = 'face/icons/obj/clothing/hats.dmi'
 
+/obj/item/clothing/mask/face/
+	alternate_worn_icon = 'face/icons/mob/mask.dmi'
+	icon = 'face/icons/obj/clothing/masks.dmi'
