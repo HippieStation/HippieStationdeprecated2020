@@ -29,7 +29,7 @@
 	..()
 
 /obj/machinery/sprinkler/proc/spray()
-	if(!is_operational())
+	if(!is_operational() || stat)
 		return
 	if(world.time < last_spray+SPRINKLER_COOLDOWN)
 		return
@@ -39,7 +39,7 @@
 	update_icon()
 	last_spray = world.time
 	detecting = FALSE
-	var/obj/effect/foam_container/A = new(src.loc)
+	var/obj/effect/foam_container/A = new(loc)
 	A.Smoke()
 	playsound(src,'sound/items/syringeproj.ogg',40,1)
 	uses--
@@ -102,7 +102,7 @@
 	pass_flags = PASSTABLE
 
 /obj/effect/foam_container/proc/Smoke()
-	var/obj/effect/particle_effect/foam/firefighting/F = new(src.loc)
+	var/obj/effect/particle_effect/foam/firefighting/F = new(loc)
 	F.amount = 5
 	playsound(src,'sound/effects/bamf.ogg',100,1)
 	qdel(src)
