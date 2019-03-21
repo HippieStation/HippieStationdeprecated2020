@@ -87,7 +87,7 @@
 				W.reagents.remove_reagent("water", 50)
 				user.visible_message("[user] has partly filled [src].", "<span class='notice'>You partly fill [src]. It now has <b>[uses]</b> uses of foam remaining.</span>")
 			else
-				to_chat(user, "<span class='notice'>This machine only accepts containers containing <b>50u of Water</b>.</span>")
+				to_chat(user, "<span class='notice'>This machine only accepts containers containing <b>50u of water</b>.</span>")
 		else
 			to_chat(user, "<span class='notice'>[src] is full!</span>")
 	else
