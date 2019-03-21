@@ -1,4 +1,0 @@
-author: "Denton"
-delete-after: True
-changes: 
-  - bugfix: "Fixed bluespace beakers only containing glass in their materials list."

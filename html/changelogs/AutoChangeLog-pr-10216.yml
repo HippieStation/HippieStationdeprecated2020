@@ -1,5 +1,0 @@
-author: "Shdorsh"
-delete-after: True
-changes: 
-  - rscadd: "redescriber and repainter circuit"
-  - tweak: "renamer circuit can read assembly name"
