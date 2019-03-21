@@ -74,3 +74,10 @@
 		slowdown = adjusted ? adjusted_slowdown : initial(slowdown)
 		GET_COMPONENT(STR, /datum/component/storage)
 		STR.max_combined_w_class = adjusted ? adjusted_max_combined_w_class : normal_max_combined_w_class
+
+/obj/item/storage/backpack/satchel/flat/ComponentInitialize()
+	. = ..()
+	GET_COMPONENT(STR, /datum/component/storage)
+	STR.max_combined_w_class = WEIGHT_CLASS_HUGE
+	STR.max_items = 6
+	STR.cant_hold = typecacheof(list(/obj/item/storage/backpack))
