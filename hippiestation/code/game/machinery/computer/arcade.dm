@@ -163,6 +163,7 @@
 		mine_limit = text2num(input(usr, "How many mines do you want? (Maximum of [round(grid_area*0.85)] allowed)", "Minesweeper Mines"))
 		custom_generation()
 	if(href_list["Flag"])
+		playsound(loc, 'hippiestation/sound/arcade/minesweeper_boardpress.ogg', 50, 0, extrarange = -3, falloff = 10)
 		if(!flagging)
 			flagging = TRUE
 			flag_text = "ON"
@@ -183,14 +184,14 @@
 		mine_sound = TRUE
 
 	area = (rows-1)*(columns-1)
-	safe_squares_revealed = 0
-	win_condition = area-mine_placed
 
 	if(reset_board)
 		mine_placed = 0
 		var/reset_everything = TRUE
 		make_mines(reset_everything)
-		reset_board = FALSE
+
+	safe_squares_revealed = 0
+	win_condition = area-mine_placed
 
 	if(game_status != MINESWEEPER_GAME_MAIN_MENU)
 		for(var/y1=1;y1<rows;y1++)
@@ -220,6 +221,7 @@
 													playsound(loc, 'hippiestation/sound/arcade/minesweeper_explosion3.ogg', 50, 0, extrarange = -3, falloff = 10)
 											mine_sound = FALSE
 						else
+							playsound(loc, 'hippiestation/sound/arcade/minesweeper_boardpress.ogg', 50, 0, extrarange = -3, falloff = 10)
 							if(table[y1][x1] >= 0)	//Check that it's not already flagged
 								table[y1][x1] -= 10
 							else if(table[y1][x1] < 0)	//If flagged, remove the flag
@@ -230,11 +232,12 @@
 					if(table[y1][x1] >= 10)	//If revealed, become unrevealed!
 						playsound(loc, 'hippiestation/sound/arcade/minesweeper_menuselect.ogg', 50, 0, extrarange = -3, falloff = 10)
 						table[y1][x1] -= 10
-				if(table[y1][x1] < 10)
+				if(table[y1][x1] > 10 && !reset_board)
 					safe_squares_revealed += 1
 				var/y2 = y1
 				var/x2 = x1
 				work_squares(y2, x2)	//Work squares while in this loop so there's less load
+				reset_board = FALSE
 
 		web += "<table>"	//Start setting up the html table
 		web += "<tbody>"
@@ -283,6 +286,9 @@
 		web += "</table>"
 		web += "</tbody>"
 	web += "<br>"
+
+	if(safe_squares_revealed >= win_condition && game_status == MINESWEEPER_GAME_PLAYING)
+		game_status = MINESWEEPER_GAME_WON
 
 	if(game_status == MINESWEEPER_GAME_WON)
 		if(rows < 10 || columns < 10)	//If less than easy difficulty
