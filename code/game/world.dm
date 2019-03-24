@@ -244,7 +244,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	if(config)
 		var/server_name = CONFIG_GET(string/servername)
 		hostedby = CONFIG_GET(string/hostedby)
-<<<<<<< HEAD
 		forumurl = CONFIG_GET(string/forumurl)
 		if (server_name)
 			s += "<a href=\"[forumurl]\"><big><b>[server_name]</b> &#8212; [station_name()]</big></a>"
@@ -256,7 +255,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	if (hostedby)
 		s += "<br>Hosted by <b>[hostedby]</b>."
 	s += "<img src=\"https://i.imgur.com/xfWVypg.png\">" //Banner image
-=======
 
 	s += "<b>[station_name()]</b>";
 	s += " ("
@@ -284,7 +282,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 
 	if (features)
 		s += ": [jointext(features, ", ")]"
->>>>>>> b8b2cec... Pop cap support for the hub (#43248)
 
 	status = s
 
