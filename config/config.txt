@@ -1,4 +1,4 @@
-Martavius Hotep# You can use the "$include" directive to split your configs however you want
+# You can use the "$include" directive to split your configs however you want
 
 $include game_options.txt
 $include dbconfig.txt
