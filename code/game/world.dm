@@ -256,7 +256,7 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 		s += "<br>Mode: <b>STARTING</b>"
 	if (hostedby)
 		s += "<br>Hosted by <b>[hostedby]</b>."
-	s += "<img src=\"https://cdn.discordapp.com/attachments/557581829767561216/559756261512445963/FP_Banner_Placeholder.png\">" //Banner image
+	s += "<img src=\"https://i.imgur.com/1QZhKdp.png\">" //Banner image
 
 	status = s
 
