@@ -49,24 +49,24 @@ MULTIPLICATIVE_MOVESPEED /mob/living/simple_animal 1
 
 ## NAMES ###
 ## If uncommented this adds a random surname to a player's name if they only specify one name.
-#HUMANS_NEED_SURNAMES
+HUMANS_NEED_SURNAMES
 
 ## If uncommented, this forces all players to use random names !and appearances!.
 #FORCE_RANDOM_NAMES
 
 ## Unhash this to turn on automatic reopening of a player's job if they suicide at roundstart
-#REOPEN_ROUNDSTART_SUICIDE_ROLES
+REOPEN_ROUNDSTART_SUICIDE_ROLES
 
 ## Unhash to enable reopening of command level positions
-#REOPEN_ROUNDSTART_SUICIDE_ROLES_COMMAND_POSITIONS
+REOPEN_ROUNDSTART_SUICIDE_ROLES_COMMAND_POSITIONS
 
 ## Define the delay for roles to be reopened after the round starts in seconds.
 ## Has a minimum delay of 30 seconds, though it's suggested to keep over 1 min
 ## If undefined, the delay defaults to 4 minutes.
-#REOPEN_ROUNDSTART_SUICIDE_ROLES_DELAY 240
+REOPEN_ROUNDSTART_SUICIDE_ROLES_DELAY 240
 
 ## Unhash to enable a printed command report for reopened roles listing what roles were reopened.
-#REOPEN_ROUNDSTART_SUICIDE_ROLES_COMMAND_REPORT
+REOPEN_ROUNDSTART_SUICIDE_ROLES_COMMAND_REPORT
 
 
 ## ALERT LEVELS ###
@@ -368,8 +368,8 @@ RANDOM_LAWS corporate
 #RANDOM_LAWS drone
 #RANDOM_LAWS liveandletlive
 #RANDOM_LAWS peacekeeper
-#RANDOM_LAWS reporter
-#RANDOM_LAWS hulkamania
+RANDOM_LAWS reporter
+RANDOM_LAWS hulkamania
 
 ## Bad idea laws. Probably shouldn't enable these
 #RANDOM_LAWS syndie
@@ -437,8 +437,8 @@ ROUNDSTART_RACES human
 
 ## Races that are strictly worse than humans that could probably be turned on without balance concerns
 ROUNDSTART_RACES lizard
-#ROUNDSTART_RACES fly
-#ROUNDSTART_RACES moth
+ROUNDSTART_RACES fly
+ROUNDSTART_RACES moth
 ROUNDSTART_RACES plasmaman
 #ROUNDSTART_RACES shadow
 
@@ -480,7 +480,7 @@ OVERFLOW_CAP -1
 
 ## Starlight for exterior walls and breaches. Uncomment for starlight!
 ## This is disabled by default to make testing quicker, should be enabled on production servers or testing servers messing with lighting
-#STARLIGHT
+STARLIGHT
 
 ## Uncomment to bring back old grey suit assistants instead of the now default rainbow colored assistants.
 #GREY_ASSISTANTS
@@ -526,7 +526,7 @@ BOMBCAP 20
 LAVALAND_BUDGET 60
 
 ## Space Ruin Budged
-Space_Budget 16
+Space_Budget 25
 
 ## Time in ds from when a player latejoins till the arrival shuttle docks at the station
 ## Must be at least 30. At least 55 recommended to be visually/aurally appropriate
@@ -553,10 +553,10 @@ MICE_ROUNDSTART 10
 ROUNDSTART_TRAITS
 
 ## Uncomment to disable human moods.
-#DISABLE_HUMAN_MOOD
+DISABLE_HUMAN_MOOD
 
 ## Enable night shifts ##
-#ENABLE_NIGHT_SHIFTS
+ENABLE_NIGHT_SHIFTS
 
 ## Enable randomized shift start times##
 #RANDOMIZE_SHIFT_TIME
@@ -568,4 +568,4 @@ ROUNDSTART_TRAITS
 MONKEYCAP 64
 
 ## Enable the capitalist agenda on your server.
-ECONOMY
+#ECONOMY
