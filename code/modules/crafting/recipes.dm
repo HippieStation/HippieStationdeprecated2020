@@ -142,11 +142,7 @@
 				/obj/item/bodypart/r_leg/robot = 1,
 				/obj/item/stack/sheet/metal = 1,
 				/obj/item/stack/cable_coil = 1,
-<<<<<<< HEAD
-				/obj/item/gun/energy/e_gun/advtaser = 1,
-=======
-				/obj/item/gun/energy/e_gun/dragnet = 1,
->>>>>>> 781c01e... Correct ED-209 tablecrafting recipe (#43163)
+				/obj/item/gun/energy/e_gun/advtaser = 1, //hippie edit -- nothing got changed here
 				/obj/item/stock_parts/cell = 1,
 				/obj/item/assembly/prox_sensor = 1)
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER)
