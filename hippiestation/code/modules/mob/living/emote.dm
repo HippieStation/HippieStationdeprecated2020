@@ -8,6 +8,9 @@
 	vary = TRUE
 
 /datum/emote/living/scream/get_sound(mob/living/user)
+	if(prob(1))
+		vary = FALSE
+		return 'hippiestation/sound/voice/scream_special.ogg'
 	LAZYINITLIST(user.alternate_screams)
 	if(LAZYLEN(user.alternate_screams))
 		return pick(user.alternate_screams)
