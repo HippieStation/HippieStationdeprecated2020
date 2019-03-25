@@ -243,6 +243,15 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	var/s = ""
 	var/hostedby
 	var/forumurl
+
+	var/list/features = list()
+
+	if(GLOB.master_mode)
+		features += GLOB.master_mode
+
+	if (!GLOB.enter_allowed)
+		features += "closed"
+	
 	if(config)
 		var/server_name = CONFIG_GET(string/servername)
 		hostedby = CONFIG_GET(string/hostedby)
