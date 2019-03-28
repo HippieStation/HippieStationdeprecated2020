@@ -942,4 +942,3 @@
 	if(mood)
 		if(mood.sanity < SANITY_UNSTABLE)
 			return TRUE
->>>>>>> 8b8fee0... X-Ray Balance (#43340)
