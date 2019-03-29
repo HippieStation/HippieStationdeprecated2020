@@ -1,0 +1,4 @@
+author: "HonkBot"
+delete-after: True
+changes: 
+  - bugfix: "Fixed a bug that prevented strange reagent from reacting with hydroponics trays. Use with care!"
