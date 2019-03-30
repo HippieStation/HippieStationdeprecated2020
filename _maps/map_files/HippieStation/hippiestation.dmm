@@ -13106,6 +13106,10 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/item/dildo/canine{
+	step_x = 16;
+	step_y = 6
+	},
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "aGq" = (
@@ -13943,6 +13947,7 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 8
 	},
+/obj/item/dildo/equine,
 /turf/open/floor/plasteel,
 /area/hippie/clown)
 "aIk" = (
@@ -18291,6 +18296,10 @@
 	pixel_y = 7
 	},
 /obj/item/pen/invisible,
+/obj/item/dildo/sea{
+	step_x = 9;
+	step_y = 9
+	},
 /turf/open/floor/engine/cult,
 /area/library)
 "aTB" = (
