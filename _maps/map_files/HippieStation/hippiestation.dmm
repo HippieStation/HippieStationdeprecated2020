@@ -13107,8 +13107,8 @@
 	dir = 8
 	},
 /obj/item/dildo/canine{
-	step_x = 16;
-	step_y = 6
+	pixel_x = 15;
+	pixel_y = 5
 	},
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
@@ -18297,8 +18297,8 @@
 	},
 /obj/item/pen/invisible,
 /obj/item/dildo/sea{
-	step_x = 9;
-	step_y = 9
+	pixel_x = 8;
+	pixel_y = 5
 	},
 /turf/open/floor/engine/cult,
 /area/library)
