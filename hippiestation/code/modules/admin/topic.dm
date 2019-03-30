@@ -130,3 +130,54 @@
 	if(joblist.len && (CATBAN in joblist) && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.set_species(/datum/species/tarajan, icon_update=1) // can't escape hell
+
+/datum/admins/proc/makeDonator(ckey)
+	if(!usr.client)
+		return
+	if(!ckey)
+		return
+	var/client/C = GLOB.directory[ckey]
+	if(C)
+		C.is_donator = TRUE
+		to_chat(C, "<span class='notice'>You have been made a donator!")
+	if(SSdbcore.Connect())
+		var/datum/DBQuery/query_find_donator = SSdbcore.NewQuery("SELECT id FROM [format_table_name("donators")] WHERE ckey = '[ckey]'")
+		if(query_find_donator.NextRow())
+			to_chat(usr, "<span class='danger'>[ckey] is already a donator!</span>")
+			qdel(query_find_donator)
+			return
+		var/datum/DBQuery/query_add_donator = SSdbcore.NewQuery("INSERT INTO [format_table_name("donators")] (`id`, `ckey`) VALUES (null, '[ckey]')")
+		if(!query_add_donator.warn_execute())
+			qdel(query_find_donator)
+			qdel(query_add_donator)
+			return
+		to_chat(usr, "<span class='adminnotice'>New donator added!</span>")
+		qdel(query_find_donator)
+		qdel(query_add_donator)
+	else
+		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>")
+
+/datum/admins/proc/removeDonator(ckey)
+	if(!usr.client)
+		return
+	if(!ckey)
+		return
+	var/client/C = GLOB.directory[ckey]
+	if(C)
+		C.is_donator = FALSE
+		to_chat(C, "<span class='danger'>You have been removed as a donator!")
+	if(SSdbcore.Connect())
+		var/datum/DBQuery/query_find_donator = SSdbcore.NewQuery("SELECT id FROM [format_table_name("donators")] WHERE ckey = '[ckey]'")
+		if(!query_find_donator.NextRow())
+			to_chat(usr, "<span class='danger'>[ckey] is not a donator!</span>")
+			qdel(query_find_donator)
+			return
+		var/datum/DBQuery/query_remove_donator = SSdbcore.NewQuery("DELETE FROM [format_table_name("donators")] WHERE ckey = '[ckey]'")
+		if(!query_remove_donator.warn_execute())
+			qdel(query_remove_donator)
+			return
+		to_chat(usr, "<span class='adminnotice'>Donator removed!</span>")
+		qdel(query_find_donator)
+		qdel(query_remove_donator)
+	else
+		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>")
