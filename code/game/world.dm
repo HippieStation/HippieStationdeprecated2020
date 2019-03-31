@@ -1,6 +1,8 @@
 #define RESTART_COUNTER_PATH "data/round_counter.txt"
 
 GLOBAL_VAR(restart_counter)
+//TODO: Replace INFINITY with the version that fixes http://www.byond.com/forum/?post=2407430
+GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_build < INFINITY)
 
 //This happens after the Master subsystem new(s) (it's a global datum)
 //So subsystems globals exist, but are not initialised
@@ -14,7 +16,7 @@ GLOBAL_VAR(restart_counter)
 
 	make_datum_references_lists()	//initialises global lists for referencing frequently used datums (so that we only ever do it once)
 
-	TgsNew(minimum_required_security_level = TGS_SECURITY_TRUSTED)
+	TgsNew(new /datum/tgs_event_handler/tg, minimum_required_security_level = TGS_SECURITY_TRUSTED)
 
 	GLOB.revdata = new
 
@@ -99,6 +101,8 @@ GLOBAL_VAR(restart_counter)
 	GLOB.world_game_log = "[GLOB.log_directory]/game.log"
 	GLOB.world_mecha_log = "[GLOB.log_directory]/mecha.log"
 	GLOB.world_virus_log = "[GLOB.log_directory]/virus.log"
+	GLOB.world_cloning_log = "[GLOB.log_directory]/cloning.log"	
+	GLOB.world_asset_log = "[GLOB.log_directory]/asset.log"
 	GLOB.world_attack_log = "[GLOB.log_directory]/attack.log"
 	GLOB.world_pda_log = "[GLOB.log_directory]/pda.log"
 	GLOB.world_telecomms_log = "[GLOB.log_directory]/telecomms.log"
@@ -203,7 +207,8 @@ GLOBAL_VAR(restart_counter)
 		to_chat(world, "<span class='boldannounce'>Rebooting world...</span>")
 		Master.Shutdown()	//run SS shutdowns
 	
-	TgsReboot()
+	if(!GLOB.bypass_tgs_reboot)
+		TgsReboot()
 
 	if(TEST_RUN_PARAMETER in params)
 		FinishTestRun()
@@ -238,6 +243,15 @@ GLOBAL_VAR(restart_counter)
 	var/s = ""
 	var/hostedby
 	var/forumurl
+
+	var/list/features = list()
+
+	if(GLOB.master_mode)
+		features += GLOB.master_mode
+
+	if (!GLOB.enter_allowed)
+		features += "closed"
+	
 	if(config)
 		var/server_name = CONFIG_GET(string/servername)
 		hostedby = CONFIG_GET(string/hostedby)
@@ -252,6 +266,33 @@ GLOBAL_VAR(restart_counter)
 	if (hostedby)
 		s += "<br>Hosted by <b>[hostedby]</b>."
 	s += "<img src=\"https://i.imgur.com/xfWVypg.png\">" //Banner image
+
+	s += "<b>[station_name()]</b>";
+	s += " ("
+	s += "<a href=\"http://\">" //Change this to wherever you want the hub to link to.
+	s += "Default"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
+	s += "</a>"
+	s += ")"
+	
+	var/players = GLOB.clients.len
+	
+	var/popcaptext = ""
+	var/popcap = max(CONFIG_GET(number/extreme_popcap), CONFIG_GET(number/hard_popcap), CONFIG_GET(number/soft_popcap))
+	if (popcap)
+		popcaptext = "/[popcap]"
+	
+	if (players > 1)
+		features += "[players][popcaptext] players"
+	else if (players > 0)
+		features += "[players][popcaptext] player"
+	
+	game_state = (CONFIG_GET(number/extreme_popcap) && players >= CONFIG_GET(number/extreme_popcap)) //tells the hub if we are full
+	
+	if (!host && hostedby)
+		features += "hosted by <b>[hostedby]</b>"
+
+	if (features)
+		s += ": [jointext(features, ", ")]"
 
 	status = s
 

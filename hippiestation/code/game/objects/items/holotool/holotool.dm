@@ -95,7 +95,7 @@
 	if(chosen)
 		var/new_tool = LAZYACCESS(mode_names, chosen)
 		if(new_tool)
-			switch_tool(user, new_tool)		
+			switch_tool(user, new_tool)
 
 /obj/item/holotool/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
@@ -109,3 +109,13 @@
 /obj/structure/closet/secure_closet/RD/PopulateContents()
 	. = ..()
 	new /obj/item/holotool(src)
+
+/obj/item/holotool/ui_action_click(mob/user, var/datum/action/A)
+	update_listing()
+	var/chosen = show_radial_menu(user, src, radial_modes, custom_check = CALLBACK(src, .proc/check_menu,user))
+	if(!check_menu(user))
+		return
+	if(chosen)
+		var/new_tool = LAZYACCESS(mode_names, chosen)
+		if(new_tool)
+			switch_tool(user, new_tool)

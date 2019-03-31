@@ -86,7 +86,7 @@
 			chambered = null
 		else if(empty_chamber)
 			chambered = null
-	if (chamber_next_round && (magazine.max_ammo > 1))
+	if (chamber_next_round && (magazine?.max_ammo > 1))
 		chamber_round()
 
 /obj/item/gun/ballistic/proc/chamber_round()
