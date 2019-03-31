@@ -68,8 +68,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		var/list/gameodds = list(/obj/item/circuitboard/computer/arcade/battle = 49,
 							/obj/item/circuitboard/computer/arcade/orion_trail = 49,
 							/obj/item/circuitboard/computer/arcade/amputation = 2,
-							/obj/item/circuitboard/computer/arcade/minesweeper = 49	//Hippie -- added minesweeper to weight list for arcade games
-							)
+							/obj/item/circuitboard/computer/arcade/minesweeper = 49)	//Hippie -- added minesweeper to weight list for arcade games
 		var/thegame = pickweight(gameodds)
 		var/obj/item/circuitboard/CB = new thegame()
 		new CB.build_path(loc, CB)
