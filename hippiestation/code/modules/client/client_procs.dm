@@ -68,12 +68,14 @@
 		SStts.start_engine()
 
 /client/proc/add_ooc_icons()
-	var/ooc_icons
+	var/client/C
+	var/ooc_icons = ""
 	if(holder)
 		if(!holder.fakekey)
 			if(check_rights_for(src, R_ADMIN))
-				ooc_icons += "<img src='hippiestation/icons/ooc_icons/banhammer.dmi'/>"
+				ooc_icons += "[icon2html('hippiestation/icons/ooc_icons/banhammer.dmi', C)]"
 	if(is_mentor())
-		ooc_icons += "<img src='hippiestation/icons/ooc_icons/brain.dmi'/>"
+		if(!holder)
+			ooc_icons += "[icon2html('hippiestation/icons/ooc_icons/brain.dmi', C)]"
 	if(is_donator)
-		ooc_icons += "<img src='hippiestation/icons/ooc_icons/gold_coin.dmi'/>"
+		ooc_icons += "[icon2html('hippiestation/icons/ooc_icons/gold_coin.dmi', C)]"

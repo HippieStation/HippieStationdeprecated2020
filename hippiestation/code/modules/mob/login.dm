@@ -1,6 +1,6 @@
 /mob/Login()
 	..()
-	for(var/donator in GLOB.donators)
-		if(donator == computer_id)
+	for(var/i in GLOB.donators)
+		if(ckey(i) == client.ckey)
 			client.is_donator = TRUE
 			return
