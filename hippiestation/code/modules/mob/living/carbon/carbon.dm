@@ -1,9 +1,9 @@
 /mob/living/carbon
 	var/fist_casted = FALSE
 
-/mob/living/carbon/proc/reset_fist_casted()	
-	if(fist_casted)	
-		fist_casted = FALSE	
+/mob/living/carbon/proc/reset_fist_casted()
+	if(fist_casted)
+		fist_casted = FALSE
 
 /mob/living/carbon/update_sight()
 	. = ..()
