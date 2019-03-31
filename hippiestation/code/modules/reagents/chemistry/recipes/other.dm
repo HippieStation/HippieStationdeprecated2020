@@ -67,3 +67,19 @@
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/stack/sheet/plastic(location)
+
+/datum/chemical_reaction/randonium
+	name = "Randonium"
+	id = "randonium"
+	results = list("randonium" = 3)
+	required_reagents = list("lean" = 1, "methamphetamine" = 1, "teslium" = 1)
+	mix_message = "<span class='danger'>The solution sparks and freezes, then suddenly turns back to liquid!</span>"
+	pressure_required = 25
+
+/datum/chemical_reaction/randonium/on_reaction(datum/reagents/holder)
+	..()
+	var/turf/open/T = get_turf(holder.my_atom)
+	do_sparks(8,1,T)
+	explosion(0,0,0,3)
+	tesla_zap(T, 10, 5000, TESLA_MOB_DAMAGE | TESLA_OBJ_DAMAGE | TESLA_MOB_STUN | TESLA_ALLOW_DUPLICATES)	//Big zap boy
+	playsound(T, 'sound/magic/lightningshock.ogg', 50, 1)
