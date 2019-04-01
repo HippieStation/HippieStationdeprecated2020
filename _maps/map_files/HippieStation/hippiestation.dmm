@@ -7802,7 +7802,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
 "aqY" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/liberationstation,
 /obj/effect/turf_decal/tile/red{
 	dir = 2
 	},
@@ -17294,7 +17294,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aQB" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/liberationstation,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
 "aQC" = (
@@ -18996,7 +18996,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "aVH" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/liberationstation,
 /turf/open/floor/plasteel,
 /area/crew_quarters/locker)
 "aVI" = (
@@ -22798,7 +22798,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/starboard)
 "bfY" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/liberationstation,
 /turf/open/floor/wood,
 /area/library)
 "bfZ" = (
@@ -55727,7 +55727,7 @@
 	},
 /area/engine/port_engineering)
 "cMM" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/liberationstation,
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "cNs" = (
@@ -60581,7 +60581,7 @@
 	},
 /area/science/research)
 "jQt" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/liberationstation,
 /turf/open/floor/wood,
 /area/bridge/meeting_room)
 "jRt" = (
@@ -60843,7 +60843,7 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "kqi" = (
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/liberationstation,
 /turf/open/floor/carpet,
 /area/hallway/secondary/entry)
 "kqn" = (
