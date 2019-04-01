@@ -81,8 +81,6 @@ SUBSYSTEM_DEF(job)
 			return FALSE
 		if(is_banned_from(player.ckey, rank) || QDELETED(player))
 			return FALSE
-		if((is_banned_from(player.ckey, CLUWNEBAN) || is_banned_from(player.ckey, CATBAN)) && !is_banned_from(player.ckey, SSjob.overflow_role)) // hippie start -- fixes catbans
-			return FALSE // hippie end
 		if(!job.player_old_enough(player.client))
 			return FALSE
 		if(job.required_playtime_remaining(player.client))
@@ -106,7 +104,7 @@ SUBSYSTEM_DEF(job)
 		if(is_banned_from(player.ckey, job.title) || QDELETED(player))
 			JobDebug("FOC isbanned failed, Player: [player]")
 			continue
-		if((is_banned_from(player.ckey, CLUWNEBAN) || is_banned_from(player.ckey, CATBAN)) && job.title != SSjob.overflow_role) // hippie start -- fixes catbans
+		if((is_banned_from(player.ckey, CLUWNEBAN) || is_banned_from(player.ckey, CATBAN)) && job.title != overflow_role) // hippie start -- fixes catbans
 			JobDebug("FOC isbanned failed (cat/clown ban), Player: [player]")
 			continue // hippie end
 		if(!job.player_old_enough(player.client))
@@ -129,11 +127,6 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/GiveRandomJob(mob/dead/new_player/player)
 	JobDebug("GRJ Giving random job, Player: [player]")
 	. = FALSE
-	if(is_banned_from(player.ckey, CLUWNEBAN) || is_banned_from(player.ckey, CATBAN)) // hippie start -- fixes catbans
-		JobDebug("GRJ player is cat/clown banned")
-		if(AssignRole(player, SSjob.overflow_role))
-			return TRUE
-		return FALSE // hippie end
 	for(var/datum/job/job in shuffle(occupations))
 		if(!job)
 			continue
@@ -167,6 +160,11 @@ SUBSYSTEM_DEF(job)
 			JobDebug("GRJ Random job given, Player: [player], Job: [job]")
 			if(AssignRole(player, job.title))
 				return TRUE
+
+		if(is_banned_from(player.ckey, CLUWNEBAN) || is_banned_from(player.ckey, CATBAN)) // hippie start -- fixes catbans
+			JobDebug("GRJ player is cat/clown banned")
+			if(AssignRole(player, overflow_role))
+				return TRUE// hippie end
 
 /datum/controller/subsystem/job/proc/ResetOccupations()
 	JobDebug("Occupations reset.")
@@ -508,7 +506,7 @@ SUBSYSTEM_DEF(job)
 		jobs.Find(jobstext)
 		J.total_positions = text2num(jobs.group[1])
 		J.spawn_positions = text2num(jobs.group[2])
-		
+
 /datum/controller/subsystem/job/proc/HandleFeedbackGathering()
 	for(var/datum/job/job in occupations)
 		var/high = 0 //high
