@@ -1,6 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - bugfix: "Catbeasts no longer get randomly sent to the start area without a job!"
-  - bugfix: "Catbans sometimes didn't always change your species, this has now been fixed."
-  - bugfix: "Fixed circuit logs not appearing"
