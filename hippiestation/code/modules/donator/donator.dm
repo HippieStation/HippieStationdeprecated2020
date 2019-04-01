@@ -24,3 +24,19 @@ GLOBAL_PROTECT(donators)
 
 /client
 	var/is_donator = FALSE
+
+/client/proc/addDonator()
+	set category = "Admin"
+	set name = "Make donator"
+	var/ckeyvalue = input(src, "Input the ckey of the person you want to make a donator.", "Make donator")
+	if(ckeyvalue)
+		var/datum/admins/A = usr
+		A.makeDonator(ckeyvalue)
+
+/client/proc/deleteDonator()
+	set category = "Admin"
+	set name = "Remove donator"
+	var/ckeyvalue = input(src, "Input the ckey of the person you want to remove as donator.", "Remove donator")
+	if(ckeyvalue)
+		var/datum/admins/A = usr
+		A.removeDonator(ckeyvalue)

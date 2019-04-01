@@ -46,6 +46,10 @@
 		removeMentor(href_list["removementor"])
 	else if(href_list["mentormemoeditlist"])
 		checkMentorEditList(href_list["mentormemoeditlist"])
+	else if(href_list["makedonator"])
+		makeDonator(href_list["makedonator"])
+	else if(href_list["removedonator"])
+		removeDonator(href_list["makedonator"])
 
 /datum/admins/proc/checkMentorEditList(ckey)
 	var/sql_key = sanitizeSQL("[ckey]")
@@ -141,21 +145,30 @@
 		C.is_donator = TRUE
 		to_chat(C, "<span class='notice'>You have been made a donator!")
 	if(SSdbcore.Connect())
-		var/datum/DBQuery/query_find_donator = SSdbcore.NewQuery("SELECT id FROM [format_table_name("donators")] WHERE ckey = '[ckey]'")
+		var/datum/DBQuery/query_find_donator = SSdbcore.NewQuery("SELECT FROM [format_table_name("donators")] WHERE ckey = '[ckey]'")
 		if(query_find_donator.NextRow())
 			to_chat(usr, "<span class='danger'>[ckey] is already a donator!</span>")
 			qdel(query_find_donator)
 			return
-		var/datum/DBQuery/query_add_donator = SSdbcore.NewQuery("INSERT INTO [format_table_name("donators")] (`id`, `ckey`) VALUES (null, '[ckey]')")
+		var/datum/DBQuery/query_add_donator = SSdbcore.NewQuery("INSERT INTO [format_table_name("donators")] (`ckey`) VALUES ('[ckey]')")
 		if(!query_add_donator.warn_execute())
 			qdel(query_find_donator)
 			qdel(query_add_donator)
 			return
-		to_chat(usr, "<span class='adminnotice'>New donator added!</span>")
+		GLOB.donators += ckey
+		message_admins("[ckey] has been made into a donator by [key_name_admin(usr)].")
 		qdel(query_find_donator)
 		qdel(query_add_donator)
 	else
-		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>")
+		if((!ckey in GLOB.donators) && isfile(file('config/donators.txt')))
+			GLOB.donators += ckey
+			text2file("[ckey]", 'config/donators.txt')
+			message_admins("[ckey] has been made into a donator in donators.txt by [key_name_admin(usr)].")
+		if(ckey in GLOB.donators)
+			to_chat(usr, "<span class='danger'>[ckey] is already a donator!")
+		else
+			GLOB.donators += ckey
+			message_admins("[ckey] has been made into a temporary donator by [key_name_admin(usr)], as the database is not connected.")
 
 /datum/admins/proc/removeDonator(ckey)
 	if(!usr.client)
@@ -167,7 +180,7 @@
 		C.is_donator = FALSE
 		to_chat(C, "<span class='danger'>You have been removed as a donator!")
 	if(SSdbcore.Connect())
-		var/datum/DBQuery/query_find_donator = SSdbcore.NewQuery("SELECT id FROM [format_table_name("donators")] WHERE ckey = '[ckey]'")
+		var/datum/DBQuery/query_find_donator = SSdbcore.NewQuery("SELECT FROM [format_table_name("donators")] WHERE ckey = '[ckey]'")
 		if(!query_find_donator.NextRow())
 			to_chat(usr, "<span class='danger'>[ckey] is not a donator!</span>")
 			qdel(query_find_donator)
@@ -176,8 +189,21 @@
 		if(!query_remove_donator.warn_execute())
 			qdel(query_remove_donator)
 			return
-		to_chat(usr, "<span class='adminnotice'>Donator removed!</span>")
+		GLOB.donators -= ckey
+		message_admins("[ckey] has been removed as a donator by [key_name_admin(usr)].")
 		qdel(query_find_donator)
 		qdel(query_remove_donator)
 	else
-		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>")
+		if((ckey in GLOB.donators) && isfile(file('config/donators.txt')))
+			var/list/textlines = file2text('config/donators.txt')
+			var/list/newtextlines = textlines
+			textlines -= ckey
+			newtextlines -= textlines	//Negative ckey so basically delete it
+			text2file("[textlines]", 'config/donators.txt')
+			GLOB.donators -= ckey
+			message_admins("[ckey] has been removed as a donator in donators.txt by [key_name_admin(usr)].")
+		if(!ckey in GLOB.donators)
+			to_chat(usr, "<span class='danger'>[ckey] is not a donator!</span>")
+		else
+			GLOB.donators -= ckey
+			message_admins("[ckey] has been temporarily removed as a donator by [key_name_admin(usr)], as the database is not connected.")
