@@ -11,7 +11,7 @@ GLOBAL_PROTECT(donators)
 				continue
 			if(findtextEx(line, "#", 1, 2))
 				continue
-			GLOB.donators += line
+			GLOB.donators += lowertext("[line]")
 	else
 		var/datum/DBQuery/query_load_donators = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("donators")]")
 		if(!query_load_donators.Execute())
@@ -19,7 +19,7 @@ GLOBAL_PROTECT(donators)
 			return
 		while(query_load_donators.NextRow())
 			var/donator_ckey = query_load_donators.item[1]
-			GLOB.donators += donator_ckey
+			GLOB.donators += lowertext("[donator_ckey]")
 		qdel(query_load_donators)
 
 /client
@@ -30,7 +30,7 @@ GLOBAL_PROTECT(donators)
 	set name = "Make donator"
 	var/ckeyvalue = input(src, "Input the ckey of the person you want to make a donator.", "Make donator")
 	if(ckeyvalue)
-		var/datum/admins/A = usr
+		var/datum/admins/A = usr.client.holder
 		A.makeDonator(ckeyvalue)
 
 /client/proc/deleteDonator()
@@ -38,5 +38,5 @@ GLOBAL_PROTECT(donators)
 	set name = "Remove donator"
 	var/ckeyvalue = input(src, "Input the ckey of the person you want to remove as donator.", "Remove donator")
 	if(ckeyvalue)
-		var/datum/admins/A = usr
+		var/datum/admins/A = usr.client.holder
 		A.removeDonator(ckeyvalue)
