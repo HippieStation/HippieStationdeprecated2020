@@ -173,7 +173,7 @@
 	update_visuals()
 
 	current_cycle = times_fired
-	CalculateAdjacentTurfs()
+	ImmediateCalculateAdjacentTurfs()
 	for(var/i in atmos_adjacent_turfs)
 		var/turf/open/enemy_tile = i
 		var/datum/gas_mixture/enemy_air = enemy_tile.return_air()
@@ -239,11 +239,11 @@
 			for(var/obj/item/I in C.held_items)
 				C.accident(I)
 
-		// hippie start -- Throw some hats if we slipped	
-		if (prob(33))	
-			var/list/L = list()	
-			LAZYADD(L, C.dir)	
-			C.throw_hats(1 + rand(1, 3), L)	
+		// hippie start -- Throw some hats if we slipped
+		if (prob(33))
+			var/list/L = list()
+			LAZYADD(L, C.dir)
+			C.throw_hats(1 + rand(1, 3), L)
 		// hippie end
 
 		var/olddir = C.dir
