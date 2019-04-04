@@ -38,15 +38,10 @@ GLOBAL_LIST_EMPTY(chempiles)
 	return ..()
 
 /obj/effect/decal/cleanable/chempile/ex_act(severity)
-	switch(severity)
-		if(1)
-			qdel(src)
-		if(2)
-			if(prob(15))
-				..()
-		if(3)
-			if(prob(30))
-				..()
+	if(prob(severity))
+		..()
+	else
+		qdel(src)
 
 /obj/effect/decal/cleanable/chempile/Crossed(mob/mover)
 	if(isliving(mover))
@@ -55,7 +50,7 @@ GLOBAL_LIST_EMPTY(chempiles)
 		for(var/obj/item/I in M.get_equipped_items())
 			if(I.body_parts_covered & FEET)
 				protection = I.permeability_coefficient
-		if(reagents && reagents.total_volume >= 1)	//No transfer if there's less than 1u total
+		if(reagents?.total_volume >= 1)	//No transfer if there's less than 1u total
 			reagents.trans_to(M, 2, protection)
 			CHECK_TICK
 			for(var/datum/reagent/R in reagents)
