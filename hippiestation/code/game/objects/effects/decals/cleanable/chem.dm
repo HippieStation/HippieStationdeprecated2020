@@ -27,18 +27,26 @@ GLOBAL_LIST_EMPTY(chempiles)
 		reagents.chem_pressure = pressure_difference / 100
 
 /obj/effect/decal/cleanable/chempile/Initialize()
+	. = ..()
 	GLOB.chempiles += src
 	if(reagents && reagents.total_volume)
 		if(reagents.total_volume < 5)
 			ENABLE_BITFIELD(reagents, NO_REACT)
-	.=..()
 
 /obj/effect/decal/cleanable/chempile/Destroy()
 	GLOB.chempiles -= src
-	.=..()
+	return ..()
 
-/obj/effect/decal/cleanable/chempile/ex_act()
-	qdel(src)
+/obj/effect/decal/cleanable/chempile/ex_act(severity)
+	switch(severity)
+		if(1)
+			qdel(src)
+		if(2)
+			if(prob(15))
+				..()
+		if(3)
+			if(prob(30))
+				..()
 
 /obj/effect/decal/cleanable/chempile/Crossed(mob/mover)
 	if(isliving(mover))
