@@ -91,7 +91,6 @@
 	var/square8
 
 /obj/machinery/computer/arcade/minesweeper/New()
-	..()
 	squareflag = "[icon2html('hippiestation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_flag")]"
 	squaremine = "[icon2html('hippiestation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_mine")]"
 	squarehidden = "[icon2html('hippiestation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_hidden")]"
@@ -105,6 +104,7 @@
 	square6 = "[icon2html('hippiestation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_6")]"
 	square7 = "[icon2html('hippiestation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_7")]"
 	square8 = "[icon2html('hippiestation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_8")]"
+	..()
 
 /obj/machinery/computer/arcade/minesweeper/interact(mob/user)
 	var/web_difficulty_menu = "<font size='2'> Reveal all the squares without hitting a mine!<br>What difficulty do you want to play?<br><br><br><br><b><a href='byond://?src=[REF(src)];Easy=1'><font color='#cc66ff'>Easy (9x9 board, 10 mines)</font></a><br><a href='byond://?src=[REF(src)];Intermediate=1'><font color='#cc66ff'>Intermediate (16x16 board, 40 mines)</font></a><br><a href='byond://?src=[REF(src)];Hard=1'><font color='#cc66ff'>Hard (16x30 board, 99 mines)</font></a><br><a href='byond://?src=[REF(src)];Custom=1'><font color='#cc66ff'>Custom</font>"
