@@ -1,4 +1,0 @@
-author: "Jujumatic"
-delete-after: True
-changes: 
-  - bugfix: "The Minesweeper browser should actually respond pretty quickly now"
