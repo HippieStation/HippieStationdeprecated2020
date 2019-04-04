@@ -90,7 +90,7 @@
 	var/square7
 	var/square8
 
-/obj/machinery/computer/arcade/minesweeper/New()
+/obj/machinery/computer/arcade/minesweeper/Initialize()
 	squareflag = "[icon2html('hippiestation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_flag")]"
 	squaremine = "[icon2html('hippiestation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_mine")]"
 	squarehidden = "[icon2html('hippiestation/icons/arcade/minesweeper_tiles.dmi', world, "minesweeper_hidden")]"
