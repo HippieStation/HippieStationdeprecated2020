@@ -27,7 +27,8 @@
 		'hippiestation/sound/roundend/gameoverinsertfourcoinstoplayagain.ogg',
 		'hippiestation/sound/roundend/reasonsunknown.ogg',
 		'hippiestation/sound/roundend/moon.ogg',
-		'hippiestation/sound/roundend/welcomehomejosh.ogg'\
+		'hippiestation/sound/roundend/welcomehomejosh.ogg',
+		'hippiestation/sound/roundend/what-a-fucking.ogg'\
 		)
 
 	SEND_SOUND(world, sound(round_end_sound))
