@@ -186,7 +186,5 @@
 				var/num = rand(1, 21)
 				soundin = file("hippiestation/sound/voice/male_hurt" + num2text(num) + ".ogg")
 			/* hippie end */
-			if("goose")
-				soundin = pick('sound/creatures/goose1.ogg', 'sound/creatures/goose2.ogg', 'sound/creatures/goose3.ogg', 'sound/creatures/goose4.ogg')
 	return soundin
 
