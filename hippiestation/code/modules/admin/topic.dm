@@ -208,7 +208,6 @@
 					continue
 				if(ckey == word)
 					textlines -= word
-					to_chat(world, "[word] removed")
 			fdel("config/donators.txt")	//god bless this exists
 			text2file(jointext(textlines, "\n"), "config/donators.txt")
 			message_admins("[ckey] has been removed as a donator in donators.txt by [key_name_admin(usr)].")
