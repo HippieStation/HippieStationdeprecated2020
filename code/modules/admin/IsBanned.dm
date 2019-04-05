@@ -20,7 +20,7 @@
 	var/ckey = ckey(key)
 	if(GLOB.admin_datums[ckey] || GLOB.deadmins[ckey])
 		admin = TRUE
-	
+
 	var/client/C = GLOB.directory[ckey]
 
 	//Whitelist
@@ -46,18 +46,11 @@
 	//Population Cap Checking
 	var/extreme_popcap = CONFIG_GET(number/extreme_popcap)
 	if(!real_bans_only && !C && extreme_popcap && !admin)
-		var/hard_popcap = CONFIG_GET(number/hard_popcap)
-
-		var/popcap_value = living_player_count()
-		if (hard_popcap)
-			popcap_value = GLOB.clients.len
-		if (!GLOB.enter_allowed || length(SSticker.queued_players) || !SSticker.HasRoundStarted())
-			hard_popcap = 0
-			popcap_value = GLOB.clients.len
-
-		if(popcap_value >= extreme_popcap && (!hard_popcap || living_player_count() >= hard_popcap))
-			log_access("Failed Login: [key] - Population cap reached")
-			return list("reason"="popcap", "desc"= "\nReason: [CONFIG_GET(string/extreme_popcap_message)]")
+		var/popcap_value = GLOB.clients.len
+		if(popcap_value >= extreme_popcap && !GLOB.joined_player_list.Find(ckey))
+			if(!CONFIG_GET(flag/byond_member_bypass_popcap) || !world.IsSubscribed(ckey, "BYOND"))
+				log_access("Failed Login: [key] - Population cap reached")
+				return list("reason"="popcap", "desc"= "\nReason: [CONFIG_GET(string/extreme_popcap_message)]")
 
 	if(CONFIG_GET(flag/sql_enabled))
 		if(!SSdbcore.Connect())

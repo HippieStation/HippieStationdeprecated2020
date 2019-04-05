@@ -364,7 +364,7 @@
 		for(var/M in mutations)
 			var/datum/mutation/human/HM = M
 			if(HM.allow_transfer || force_transfer_mutations)
-				dna.force_give(HM.class, copymut = new HM.type (HM)) //using force_give since it may include exotic mutations that otherwise wont be handled properly
+				dna.force_give(new HM.type(HM.class, copymut=HM)) //using force_give since it may include exotic mutations that otherwise wont be handled properly
 
 /mob/living/carbon/proc/create_dna()
 	dna = new /datum/dna(src)
@@ -572,7 +572,7 @@
 	dna.remove_all_mutations()
 	dna.stability = 100
 	if(prob(max(70-instability,0)))
-		switch(rand(0,7)) //not complete and utter death
+		switch(rand(0,10)) //not complete and utter death
 			if(0)
 				monkeyize()
 			if(1)
@@ -606,6 +606,9 @@
 					O.forceMove(drop_location())
 					if(prob(20))
 						O.animate_atom_living()
+			if(9 to 10)
+				ForceContractDisease(new/datum/disease/gastrolosis())
+				to_chat(src, "<span class='notice'>Oh, I actually feel quite alright!</span>")
 	else
 		switch(rand(0,5))
 			if(0)

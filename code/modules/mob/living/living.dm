@@ -265,7 +265,7 @@
 		if(ishuman(src))
 			var/mob/living/carbon/human/H = src
 			if(H.dna.species.grab_sound)
-				sound_to_play = H.dna.species.grab_sound 
+				sound_to_play = H.dna.species.grab_sound
 			if(H.has_trait(TRAIT_STRONG_GRABBER))
 				sound_to_play = null
 		playsound(src.loc, sound_to_play, 50, 1, -1)
@@ -298,10 +298,12 @@
 				var/mob/living/carbon/C = L
 				if(src.has_trait(TRAIT_STRONG_GRABBER))
 					C.grippedby(src)
-					
+
 		set_pull_offsets(M, state)
 
 /mob/living/proc/set_pull_offsets(mob/living/M, grab_state = GRAB_PASSIVE)
+	if(M.buckled)
+		return //don't make them change direction or offset them if they're buckled into something.
 	var/offset = 0
 	switch(grab_state)
 		if(GRAB_PASSIVE)
@@ -319,11 +321,21 @@
 		if(SOUTH)
 			animate(M, pixel_x = 0, pixel_y = -offset, 3)
 		if(EAST)
+			if(M.lying == 270) //update the dragged dude's direction if we've turned
+				M.lying = 90
+				M.update_transform() //force a transformation update, otherwise it'll take a few ticks for update_mobility() to do so
+				M.lying_prev = M.lying
 			animate(M, pixel_x = offset, pixel_y = 0, 3)
 		if(WEST)
+			if(M.lying == 90)
+				M.lying = 270
+				M.update_transform()
+				M.lying_prev = M.lying
 			animate(M, pixel_x = -offset, pixel_y = 0, 3)
 
-/mob/living/proc/reset_pull_offsets(mob/living/M)
+/mob/living/proc/reset_pull_offsets(mob/living/M, override)
+	if(!override && M.buckled)
+		return
 	animate(M, pixel_x = 0, pixel_y = 0, 1)
 
 //mob verbs are a lot faster than object verbs
@@ -524,7 +536,7 @@
 	SetUnconscious(0, FALSE)
 	if(should_update_mobility)
 		update_mobility()
-	
+
 //proc used to completely heal a mob.
 /mob/living/proc/fully_heal(admin_revive = 0)
 	restore_blood()
@@ -762,7 +774,7 @@
 // The src mob is trying to strip an item from someone
 // Override if a certain type of mob should be behave differently when stripping items (can't, for example)
 /mob/living/stripPanelUnequip(obj/item/what, mob/who, where)
-	if(what.has_trait(TRAIT_NODROP))
+	if(!what.canStrip(who))
 		to_chat(src, "<span class='warning'>You can't remove \the [what.name], it appears to be stuck!</span>")
 		return
 	who.visible_message("<span class='danger'>[src] tries to remove [who]'s [what.name].</span>", \
@@ -773,10 +785,10 @@
 			if(islist(where))
 				var/list/L = where
 				if(what == who.get_item_for_held_index(L[2]))
-					if(who.dropItemToGround(what))
+					if(what.doStrip(src, who))
 						log_combat(src, who, "stripped [what] off")
 			if(what == who.get_item_by_slot(where))
-				if(who.dropItemToGround(what))
+				if(what.doStrip(src, who))
 					log_combat(src, who, "stripped [what] off")
 
 	if(Adjacent(who)) //update inventory window
@@ -933,7 +945,7 @@
 /mob/living/proc/check_weakness(obj/item/weapon, mob/living/attacker)
 	if(mind && mind.has_antag_datum(/datum/antagonist/devil))
 		return check_devil_bane_multiplier(weapon, attacker)
-	return 1
+	return 1 //This is not a boolean, it's the multiplier for the damage the weapon does.
 
 /mob/living/proc/check_acedia()
 	if(mind && mind.has_objective(/datum/objective/sintouched/acedia))
@@ -1093,19 +1105,21 @@
 			should_be_lying = buckled.buckle_lying
 
 	if(should_be_lying)
-		mobility_flags &= ~(MOBILITY_UI | MOBILITY_PULL | MOBILITY_STAND)
+		mobility_flags &= ~MOBILITY_STAND
 		if(buckled)
 			if(buckled.buckle_lying != -1)
 				lying = buckled.buckle_lying
 		if(!lying) //force them on the ground
 			lying = pick(90, 270)
 	else
-		if(!restrained)
-			mobility_flags |= (MOBILITY_UI | MOBILITY_PULL)
-		else
-			mobility_flags &= ~(MOBILITY_UI | MOBILITY_PULL)
 		mobility_flags |= MOBILITY_STAND
 		lying = 0
+	
+	if(should_be_lying || restrained || incapacitated())
+		mobility_flags &= ~(MOBILITY_UI|MOBILITY_PULL)
+	else
+		mobility_flags |= MOBILITY_UI|MOBILITY_PULL
+		
 
 	var/canitem = !paralyzed && !stun && conscious && !chokehold && !restrained && has_arms
 	if(canitem)

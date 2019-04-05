@@ -53,7 +53,10 @@
 		radio.recalculateChannels()
 
 /obj/machinery/clonepod/Destroy()
+	var/mob/living/mob_occupant = occupant
 	go_out()
+	if(mob_occupant)
+		log_cloning("[key_name(mob_occupant)] ejected from [src] at [AREACOORD(src)] due to Destroy().")
 	QDEL_NULL(radio)
 	QDEL_NULL(countdown)
 	if(connected)
@@ -237,21 +240,22 @@
 
 	if(!is_operational()) //Autoeject if power is lost
 		if(mob_occupant)
-			log_cloning("[mob_occupant] ejected from [src] at [AREACOORD(src)] due to power loss.")
 			go_out()
+			log_cloning("[key_name(mob_occupant)] ejected from [src] at [AREACOORD(src)] due to power loss.")
+
 			connected_message("Clone Ejected: Loss of power.")
 
 	else if(mob_occupant && (mob_occupant.loc == src))
 		if(SSeconomy.full_ancap)
 			if(!current_insurance)
-				log_cloning("[mob_occupant] ejected from [src] at [AREACOORD(src)] due to invalid bank account.")
 				go_out()
+				log_cloning("[key_name(mob_occupant)] ejected from [src] at [AREACOORD(src)] due to invalid bank account.")
 				connected_message("Clone Ejected: No bank account.")
 				if(internal_radio)
 					SPEAK("The cloning of [mob_occupant.real_name] has been terminated due to no bank account to draw payment from.")
 			else if(!current_insurance.adjust_money(-fair_market_price))
-				log_cloning("[mob_occupant] ejected from [src] at [AREACOORD(src)] due to insufficient funds.")
 				go_out()
+				log_cloning("[key_name(mob_occupant)] ejected from [src] at [AREACOORD(src)] due to insufficient funds.")
 				connected_message("Clone Ejected: Out of Money.")
 				if(internal_radio)
 					SPEAK("The cloning of [mob_occupant.real_name] has been ended prematurely due to being unable to pay.")
@@ -264,8 +268,8 @@
 			if(internal_radio)
 				SPEAK("The cloning of [mob_occupant.real_name] has been \
 					aborted due to unrecoverable tissue failure.")
-			log_cloning("[mob_occupant] ejected from [src] at [AREACOORD(src)] after suiciding.")
 			go_out()
+			log_cloning("[key_name(mob_occupant)] ejected from [src] at [AREACOORD(src)] after suiciding.")
 
 		else if(mob_occupant && mob_occupant.cloneloss > (100 - heal_level))
 			mob_occupant.Unconscious(80)
@@ -292,7 +296,6 @@
 
 		else if(mob_occupant && (mob_occupant.cloneloss <= (100 - heal_level)))
 			connected_message("Cloning Process Complete.")
-			log_cloning("[mob_occupant] completed cloning cycle - [src] at [AREACOORD(src)].")
 			if(internal_radio)
 				SPEAK("The cloning cycle of [mob_occupant.real_name] is complete.")
 
@@ -307,6 +310,7 @@
 					BP.attach_limb(mob_occupant)
 
 			go_out()
+			log_cloning("[key_name(mob_occupant)] completed cloning cycle in [src] at [AREACOORD(src)].")
 
 	else if (!mob_occupant || mob_occupant.loc != src)
 		occupant = null
@@ -352,12 +356,13 @@
 			to_chat(user, "<span class='danger'>Error: Pod has no occupant.</span>")
 			return
 		else
-			log_cloning("[user] manually ejected [mob_occupant] from [src] at [AREACOORD(src)].")
-			log_combat(user, mob_occupant, "ejected", W, "from [src]")
+			add_fingerprint(user)
 			connected_message("Emergency Ejection")
 			SPEAK("An emergency ejection of [clonemind.name] has occurred. Survival not guaranteed.")
 			to_chat(user, "<span class='notice'>You force an emergency ejection. </span>")
 			go_out()
+			log_cloning("[key_name(user)] manually ejected [key_name(mob_occupant)] from [src] at [AREACOORD(src)].")
+			log_combat(user, mob_occupant, "ejected", W, "from [src]")
 	else
 		return ..()
 
@@ -366,7 +371,8 @@
 		return
 	to_chat(user, "<span class='warning'>You corrupt the genetic compiler.</span>")
 	malfunction()
-	log_cloning("[user] emagged [src] at [AREACOORD(src)], causing it to malfunction.")
+	add_fingerprint(user)
+	log_cloning("[key_name(user)] emagged [src] at [AREACOORD(src)], causing it to malfunction.")
 	log_combat(user, src, "emagged", null, occupant ? "[occupant] inside, killing them via malfunction." : null)
 
 //Put messages in the connected computer's temp var for display.
@@ -436,7 +442,7 @@
 		to_chat(mob_occupant, "<span class='warning'><b>Agony blazes across your consciousness as your body is torn apart.</b><br><i>Is this what dying is like? Yes it is.</i></span>")
 		playsound(src, 'sound/machines/warning-buzzer.ogg', 50)
 		SEND_SOUND(mob_occupant, sound('sound/hallucinations/veryfar_noise.ogg',0,1,50))
-		log_cloning("[mob_occupant] destroyed within [src] at [AREACOORD(src)] due to malfunction.")
+		log_cloning("[key_name(mob_occupant)] destroyed within [src] at [AREACOORD(src)] due to malfunction.")
 		QDEL_IN(mob_occupant, 40)
 
 /obj/machinery/clonepod/relaymove(mob/user)
@@ -451,15 +457,17 @@
 	if (!(. & EMP_PROTECT_SELF))
 		var/mob/living/mob_occupant = occupant
 		if(mob_occupant && prob(100/(severity*efficiency)))
-			log_cloning("[mob_occupant] ejected from [src] at [AREACOORD(src)] due to EMP pulse.")
 			connected_message(Gibberish("EMP-caused Accidental Ejection", 0))
 			SPEAK(Gibberish("Exposure to electromagnetic fields has caused the ejection of [mob_occupant.real_name] prematurely." ,0))
 			go_out()
+			log_cloning("[key_name(mob_occupant)] ejected from [src] at [AREACOORD(src)] due to EMP pulse.")
 
 /obj/machinery/clonepod/ex_act(severity, target)
 	..()
-	if(!QDELETED(src))
+	if(!QDELETED(src) && occupant)
+		var/mob/living/mob_occupant = occupant
 		go_out()
+		log_cloning("[key_name(mob_occupant)] ejected from [src] at [AREACOORD(src)] due to explosion.")
 
 /obj/machinery/clonepod/handle_atom_del(atom/A)
 	if(A == occupant)
@@ -475,7 +483,9 @@
 
 /obj/machinery/clonepod/deconstruct(disassembled = TRUE)
 	if(occupant)
+		var/mob/living/mob_occupant = occupant
 		go_out()
+		log_cloning("[key_name(mob_occupant)] ejected from [src] at [AREACOORD(src)] due to deconstruction.")
 	..()
 
 /obj/machinery/clonepod/proc/maim_clone(mob/living/carbon/human/H)
