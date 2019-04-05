@@ -71,7 +71,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 					else
 						to_chat(C, "<span class='adminobserverooc'><span class='prefix'>OOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span></span>")
 				else
-					if(is_donator)
+					if(is_donator)	//hippie start -- is donator check to make unique ooc colour
 						to_chat(C, "<font color='[HIPPIE_DONATOR_OOC_COLOUR]'><b><span class='prefix'>OOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></b></font>")
 					if(GLOB.OOC_COLOR && !is_donator)
 						to_chat(C, "<font color='[GLOB.OOC_COLOR]'><b><span class='prefix'>OOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></b></font>")

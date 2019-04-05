@@ -31,7 +31,7 @@ GLOBAL_PROTECT(donators)
 	var/ckeyvalue = input(src, "Input the ckey of the person you want to make a donator.", "Make donator")
 	if(ckeyvalue)
 		var/datum/admins/A = usr.client.holder
-		A.makeDonator(ckeyvalue)
+		A?.makeDonator(ckeyvalue)
 
 /client/proc/deleteDonator()
 	set category = "Admin"
@@ -39,4 +39,4 @@ GLOBAL_PROTECT(donators)
 	var/ckeyvalue = input(src, "Input the ckey of the person you want to remove as donator.", "Remove donator")
 	if(ckeyvalue)
 		var/datum/admins/A = usr.client.holder
-		A.removeDonator(ckeyvalue)
+		A?.removeDonator(ckeyvalue)

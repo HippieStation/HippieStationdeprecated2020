@@ -141,8 +141,12 @@
 		return
 	var/client/C = GLOB.directory[ckey]
 	ckey = lowertext("[ckey]")
+	if("[ckey]" in GLOB.donators)
+		to_chat(usr, "<span class='danger'>[ckey] is already a donator!")
+		return
 	if(SSdbcore.Connect())
-		var/datum/DBQuery/query_find_donator = SSdbcore.NewQuery("SELECT FROM [format_table_name("donators")] WHERE ckey = '[ckey]'")
+		ckey = sanitizeSQL(ckey)
+		var/datum/DBQuery/query_find_donator = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("donators")] WHERE ckey = '[ckey]'")
 		if(query_find_donator.NextRow())
 			to_chat(usr, "<span class='danger'>[ckey] is already a donator!</span>")
 			qdel(query_find_donator)
@@ -153,23 +157,18 @@
 			qdel(query_add_donator)
 			return
 		GLOB.donators += "[ckey]"
+		makedonator = TRUE
 		message_admins("[ckey] has been made into a donator by [key_name_admin(usr)].")
 		qdel(query_find_donator)
 		qdel(query_add_donator)
-		makedonator = TRUE
 	if(!SSdbcore.Connect())
-		if("[ckey]" in GLOB.donators)
-			to_chat(usr, "<span class='danger'>[ckey] is already a donator!")
-			return
-		if((!("[ckey]" in GLOB.donators)) && isfile(file('config/donators.txt')))
-			GLOB.donators += "[ckey]"
-			text2file("[ckey]", 'config/donators.txt')
+		GLOB.donators += "[ckey]"
+		makedonator = TRUE
+		if(isfile(file("config/donators.txt")))
+			text2file("[ckey]", "config/donators.txt")
 			message_admins("[ckey] has been made into a donator in donators.txt by [key_name_admin(usr)].")
-			makedonator = TRUE
 		else
-			GLOB.donators += "[ckey]"
 			message_admins("[ckey] has been made into a temporary donator by [key_name_admin(usr)], as the database is not connected.")
-			makedonator = TRUE
 	if(C && makedonator)
 		C.is_donator = TRUE
 		to_chat(C, "<span class='notice'>You have been made a donator!")
@@ -180,8 +179,12 @@
 		return
 	var/client/C = GLOB.directory[ckey]
 	ckey = lowertext("[ckey]")
+	if(!("[ckey]" in GLOB.donators))
+		to_chat(usr, "<span class='danger'>[ckey] is not a donator!</span>")
+		return
 	if(SSdbcore.Connect())
-		var/datum/DBQuery/query_find_donator = SSdbcore.NewQuery("SELECT FROM [format_table_name("donators")] WHERE ckey = '[ckey]'")
+		ckey = sanitizeSQL(ckey)
+		var/datum/DBQuery/query_find_donator = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("donators")] WHERE ckey = '[ckey]'")
 		if(!query_find_donator.NextRow())
 			to_chat(usr, "<span class='danger'>[ckey] is not a donator!</span>")
 			qdel(query_find_donator)
@@ -191,27 +194,27 @@
 			qdel(query_remove_donator)
 			return
 		GLOB.donators -= "[ckey]"
+		removedonator = TRUE
 		message_admins("[ckey] has been removed as a donator by [key_name_admin(usr)].")
 		qdel(query_find_donator)
 		qdel(query_remove_donator)
-		removedonator = TRUE
 	if(!SSdbcore.Connect())
-		if(!("[ckey]" in GLOB.donators))
-			to_chat(usr, "<span class='danger'>[ckey] is not a donator!</span>")
-			return
-		if(("[ckey]" in GLOB.donators) && isfile(file('config/donators.txt')))
-			var/list/textlines = file2text('config/donators.txt')
+		GLOB.donators -= "[ckey]"
+		removedonator = TRUE
+		if(isfile(file("config/donators.txt")))
+			var/list/textlines = world.file2list("config/donators.txt")
 			for(var/word in textlines)
-				var/regex/removal = new(ckey)
-				removal.Replace(word, "")
-			text2file("[textlines]", 'config/donators.txt')
-			GLOB.donators -= "[ckey]"
+				if(!length(word))
+					continue
+				if(ckey == word)
+					textlines -= word
+					to_chat(world, "[word] removed")
+			fdel("config/donators.txt")	//god bless this exists
+			text2file(jointext(textlines, "\n"), "config/donators.txt")
 			message_admins("[ckey] has been removed as a donator in donators.txt by [key_name_admin(usr)].")
-			removedonator = TRUE
+			qdel(textlines)
 		else
-			GLOB.donators -= "[ckey]"
 			message_admins("[ckey] has been temporarily removed as a donator by [key_name_admin(usr)], as the database is not connected.")
-			removedonator = TRUE
 	if(C && removedonator)
 		C.is_donator = FALSE
 		to_chat(C, "<span class='danger'>You have been removed as a donator!")
