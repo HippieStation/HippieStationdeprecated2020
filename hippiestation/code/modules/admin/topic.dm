@@ -185,7 +185,7 @@
 	if(SSdbcore.Connect())
 		ckey = sanitizeSQL(ckey)
 		var/datum/DBQuery/query_find_donator = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("donators")] WHERE ckey = '[ckey]'")
-		if(!query_find_donator.NextRow())
+		if(!query_find_donator)
 			to_chat(usr, "<span class='danger'>[ckey] is not a donator!</span>")
 			qdel(query_find_donator)
 			return
