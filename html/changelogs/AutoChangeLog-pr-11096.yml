@@ -1,7 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - rscadd: "Chempiles are now affected by explosions."
-  - balance: "Smoke has been balanced and will no longer produce a shit ton of floor chems.
-code Due to shitty duplicate code, smoke will no longer produce 2x the amount of floor chems."
-  - code_imp: "Fixed some improper Initialization for effects."
