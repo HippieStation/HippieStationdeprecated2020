@@ -2,11 +2,8 @@
 	name = "scooter"
 	desc = "A fun way to get around."
 	icon_state = "scooter"
-<<<<<<< HEAD
-=======
 	are_legs_exposed = TRUE
 	fall_off_if_missing_arms = TRUE
->>>>>>> d128a12... paraplegic vehicle fixes (#43399)
 
 /obj/vehicle/ridden/scooter/Initialize()
 	. = ..()
