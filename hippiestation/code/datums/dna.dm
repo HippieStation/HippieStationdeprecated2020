@@ -9,9 +9,9 @@
 		else
 			tts_voice = pick("dennis", "frank", "harry", "kit", "paul")
 
-/datum/dna/initialize_dna()
+/datum/dna/initialize_dna(newblood_type, skip_index = FALSE)
+	. = ..()
 	create_random_voice()
-	.=..()
 
 /datum/dna/transfer_identity(mob/living/carbon/destination, transfer_SE = 0)
 	. = ..()
