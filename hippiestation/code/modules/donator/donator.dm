@@ -2,7 +2,16 @@ GLOBAL_LIST_EMPTY(donators)
 GLOBAL_PROTECT(donators)
 
 /proc/load_donators()
-	if(!SSdbcore.Connect())
+	if(SSdbcore.Connect())
+		var/datum/DBQuery/query_load_donators = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("donators")]")
+		if(!query_load_donators.Execute())
+			qdel(query_load_donators)
+			return
+		while(query_load_donators.NextRow())
+			var/donator_ckey = query_load_donators.item[1]
+			GLOB.donators += lowertext("[donator_ckey]")
+		qdel(query_load_donators)
+	else
 		log_world("Failed to connect to database in load_donators(). Reverting to legacy system.")
 		WRITE_FILE(GLOB.world_game_log, "Failed to connect to database in load_donators(). Reverting to legacy system.")
 		var/list/lines = world.file2list("config/donators.txt")
@@ -12,15 +21,6 @@ GLOBAL_PROTECT(donators)
 			if(findtextEx(line, "#", 1, 2))
 				continue
 			GLOB.donators += lowertext("[line]")
-	else
-		var/datum/DBQuery/query_load_donators = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("donators")]")
-		if(!query_load_donators.Execute())
-			qdel(query_load_donators)
-			return
-		while(query_load_donators.NextRow())
-			var/donator_ckey = query_load_donators.item[1]
-			GLOB.donators += lowertext("[donator_ckey]")
-		qdel(query_load_donators)
 
 /client
 	var/is_donator = FALSE

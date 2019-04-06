@@ -147,7 +147,9 @@
 	if(SSdbcore.Connect())
 		ckey = sanitizeSQL(ckey)
 		var/datum/DBQuery/query_find_donator = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("donators")] WHERE ckey = '[ckey]'")
-		if(query_find_donator.NextRow())
+		if(!query_find_donator.Execute())
+			qdel(query_find_donator)
+		else if(query_find_donator.NextRow())
 			to_chat(usr, "<span class='danger'>[ckey] is already a donator!</span>")
 			qdel(query_find_donator)
 			return
@@ -161,7 +163,7 @@
 		message_admins("[ckey] has been made into a donator by [key_name_admin(usr)].")
 		qdel(query_find_donator)
 		qdel(query_add_donator)
-	if(!SSdbcore.Connect())
+	else
 		GLOB.donators += "[ckey]"
 		makedonator = TRUE
 		if(isfile(file("config/donators.txt")))
@@ -198,7 +200,7 @@
 		message_admins("[ckey] has been removed as a donator by [key_name_admin(usr)].")
 		qdel(query_find_donator)
 		qdel(query_remove_donator)
-	if(!SSdbcore.Connect())
+	else
 		GLOB.donators -= "[ckey]"
 		removedonator = TRUE
 		if(isfile(file("config/donators.txt")))
