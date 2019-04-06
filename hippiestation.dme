@@ -2845,6 +2845,7 @@
 #include "hippiestation\code\datums\antagonists\jesus.dm"
 #include "hippiestation\code\datums\antagonists\meeseeks.dm"
 #include "hippiestation\code\datums\antagonists\mindslave.dm"
+#include "hippiestation\code\datums\antagonists\pillarmen.dm"
 #include "hippiestation\code\datums\antagonists\shadowling.dm"
 #include "hippiestation\code\datums\antagonists\thrall.dm"
 #include "hippiestation\code\datums\antagonists\vampire.dm"
