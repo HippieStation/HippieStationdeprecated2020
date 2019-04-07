@@ -1,0 +1,4 @@
+author: "HonkBot"
+delete-after: True
+changes: 
+  - rscadd: "Space cleaner improves hygiene by a small amount."

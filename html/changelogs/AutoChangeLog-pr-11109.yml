@@ -1,0 +1,5 @@
+author: "HonkBot"
+delete-after: True
+changes: 
+  - tweak: "Renamed Acute Blood Deficiency to Blood Deficiency."
+  - balance: "Blood Deficiency is no longer deadly by itself if left untreated, but will still leave your blood count dangerously low."

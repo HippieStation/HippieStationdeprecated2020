@@ -1,8 +1,8 @@
 /mob/living/carbon/human
 
 /mob/living/carbon/human/Initialize()
-	update_teeth()
 	. = ..()
+	update_teeth()
 
 /mob/living/carbon/human/create_internal_organs()
   internal_organs += new /obj/item/organ/butt

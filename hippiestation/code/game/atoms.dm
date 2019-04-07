@@ -11,5 +11,5 @@
 	icon = icon_hippie
 
 /atom/Initialize()
+	. = ..()
 	check_hippie_icon()
-	return ..()
