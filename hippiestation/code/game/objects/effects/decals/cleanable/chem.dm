@@ -38,7 +38,7 @@ GLOBAL_LIST_EMPTY(chempiles)
 	return ..()
 
 /obj/effect/decal/cleanable/chempile/ex_act(severity)
-	if(prob(severity))
+	if(prob(severity*2))
 		..()
 	else
 		qdel(src)
