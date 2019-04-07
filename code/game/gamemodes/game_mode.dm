@@ -25,6 +25,7 @@
 	var/list/datum/mind/antag_candidates = list()	// List of possible starting antags goes here
 	var/list/restricted_jobs = list()	// Jobs it doesn't make sense to be.  I.E chaplain or AI cultist
 	var/list/protected_jobs = list()	// Jobs that can't be traitors because
+	var/list/restricted_races = list() // Races that can't be antags because you hate furries or it doesn't fit with your antag
 	var/required_players = 0
 	var/maximum_players = -1 // -1 is no maximum, positive numbers limit the selection of a mode on overstaffed stations
 	var/required_enemies = 0
@@ -380,6 +381,13 @@
 			for(var/job in restricted_jobs)					// Remove people who want to be antagonist but have a job already that precludes it
 				if(player.assigned_role == job)
 					candidates -= player
+	/*hippie*/
+	if(restricted_races)
+		for(var/datum/mind/player in canidates)
+			for(var/race in restricted_jobs)
+				if(player.current.species == race)
+					canidates -= player
+
 
 	if(candidates.len < recommended_enemies)
 		for(var/mob/dead/new_player/player in players)
