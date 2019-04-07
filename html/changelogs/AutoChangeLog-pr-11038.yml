@@ -1,8 +1,0 @@
-author: "Jujumatic"
-delete-after: True
-changes: 
-  - rscadd: "People can now be listed as donators! This gives you an icon next to your name and makes your OOC colour gold"
-  - rscadd: "Added icons to staff members! If you are admin you get a banhammer icon next to your name. Also should be pretty easy to customise"
-  - rscadd: "You can add and remove people as donators by using admin procs makeDonator and removeDonator with the person's ckey as an argument"
-  - rscadd: "You can also add and remove people as donators by going to their player panel, it's on the same line as making them mentors"
-  - bugfix: "Mentor OOC colours should be displayed properly now"
