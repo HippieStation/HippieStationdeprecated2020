@@ -77,7 +77,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/aooc, /* hippie -- sends a message to all antags on the server*/
 	/client/proc/fill_breach, /* hippie -- fills breaches in a radius defined by the admin*/
 	/client/proc/addDonator,	//hippie -- adds donator
-	/client/proc/deleteDonator	//hippie -- removes donator
+	/client/proc/deleteDonator,	//hippie -- removes donator
 	/client/proc/kill_turf_chems /*hippie -- destroys all chem piles*/
 	)
 
