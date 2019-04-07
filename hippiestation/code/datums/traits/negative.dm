@@ -13,7 +13,7 @@
 		return
 	else
 		if (H.blood_volume > (BLOOD_VOLUME_SAFE - 25)) // just barely survivable without treatment
-				H.blood_volume -= 0.275
+			H.blood_volume -= 0.275
 
 /datum/quirk/blindness
 	name = "Blind"
