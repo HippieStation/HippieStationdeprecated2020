@@ -12,7 +12,7 @@
 	else
 		return ..()
 
-// TOOLSPEED REMOVAL/equal rights
+// TOOLSPEED SETTINGS START
 //crowbar
 
 /obj/item/crowbar
@@ -83,3 +83,52 @@
 
 /obj/item/wirecutters/power
 	toolspeed = 0.175
+
+//TOOLSPEED SETTINGS END
+
+/obj/item/wrench/ghetto
+	name = "ghetto wrench"
+	desc = "A crude, self-wrought wrench with common uses. Can be found in your hand."
+	icon = 'hippiestation/icons/obj/tools.dmi'
+	icon_state = "wrench_ghetto"
+	toolspeed = 0.3
+
+/obj/item/crowbar/ghetto
+	name = "ghetto crowbar"
+	desc = "A crude, self-wrought crowbar. Heavy."
+	icon = 'hippiestation/icons/obj/tools.dmi'
+	icon_state = "crowbar_ghetto"
+	force = 12 //same as large crowbar, but bulkier
+	w_class = WEIGHT_CLASS_BULKY
+	toolspeed = 0.3
+
+/obj/item/screwdriver/ghetto
+	name = "ghetto screwdriver"
+	desc = "Crude driver of screws. A primitive way to screw things up."
+	icon = 'hippiestation/icons/obj/tools.dmi'
+	icon_state = "screwdriver_ghetto"
+	toolspeed = 0.3
+	random_color = FALSE
+
+/obj/item/wirecutters/ghetto
+	name = "ghetto wirecutters"
+	desc = "Mind your fingers."
+	icon = 'hippiestation/icons/obj/tools.dmi'
+	icon_state = "cutters_ghetto"
+	toolspeed = 0.3
+	random_color = FALSE
+
+/obj/item/weldingtool/ghetto
+	name = "ghetto welding tool"
+	desc = "A MacGyver-style welder."
+	icon = 'hippiestation/icons/obj/tools.dmi'
+	icon_state = "welder_ghetto"
+	toolspeed = 0.3
+	materials = list(MAT_METAL=140)
+
+/obj/item/multitool/ghetto
+	name = "ghetto multitool"
+	desc = "As crappy as it is, its still mostly the same as a standard issue Nanotrasen one."
+	icon = 'hippiestation/icons/obj/tools.dmi'
+	icon_state = "multitool_ghetto"
+	toolspeed = 0.3
