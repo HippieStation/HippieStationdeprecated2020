@@ -1,0 +1,4 @@
+author: "HonkBot"
+delete-after: True
+changes: 
+  - bugfix: "Alt-Click once again rotates soda and booze dispensers."
