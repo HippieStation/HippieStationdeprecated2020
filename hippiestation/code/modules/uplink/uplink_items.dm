@@ -458,6 +458,7 @@
 	category = "Services"
 	include_modes = list(/datum/game_mode/infiltration, /datum/game_mode/nuclear)
 	surplus = 0
+	restricted = TRUE
 
 /datum/uplink_item/services/manifest_spoof
 	name = "Crew Manifest Spoof"
