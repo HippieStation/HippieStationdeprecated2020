@@ -207,6 +207,7 @@
 
 /datum/uplink_item/implants/macrobomb
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor)
+	restricted = FALSE
 
 /datum/uplink_item/dangerous/hockey
 	name = "Ka-nada Hockey Set"
