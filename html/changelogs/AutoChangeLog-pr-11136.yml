@@ -1,0 +1,4 @@
+author: "HonkBot"
+delete-after: True
+changes: 
+  - admin: "Hitting cancel when choosing a z-level to run weather on will now actually cancel."
