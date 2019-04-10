@@ -34,13 +34,12 @@ GLOBAL_VAR(world_asset_log)
 GLOBAL_PROTECT(world_asset_log)
 GLOBAL_VAR(world_cloning_log)
 GLOBAL_PROTECT(world_cloning_log)
-<<<<<<< HEAD
-=======
 GLOBAL_VAR(world_map_error_log)
 GLOBAL_PROTECT(world_map_error_log)
 GLOBAL_VAR(world_paper_log)
 GLOBAL_PROTECT(world_paper_log)
->>>>>>> afd3f58... Merge pull request #43565 from optimumtact/paperogging
+GLOBAL_VAR(world_map_error_log)
+GLOBAL_PROTECT(world_map_error_log)
 
 GLOBAL_LIST_EMPTY(bombers)
 GLOBAL_PROTECT(bombers)
