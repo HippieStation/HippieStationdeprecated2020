@@ -1,4 +1,0 @@
-author: "HonkBot"
-delete-after: True
-changes: 
-  - tweak: "autolathe and protolathe now produce items with the same speed"
