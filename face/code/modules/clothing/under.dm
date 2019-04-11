@@ -59,14 +59,6 @@
 	icon_state = "BDU_s"
 	item_state = "BDU"
 
-
-/obj/item/clothing/under/face/custom/krieg
-	name = "Krieg Uniform"
-	desc = "This station just got about 70% more grimdark."
-	icon_state = "krieguniform"
-	item_state = "krieguniform"
-	armor = list(melee = 10, bullet = 10, laser = 10,energy = 10, bomb = 10, bio = 40, rad = 60, fire = 30, acid = 80)
-
 /obj/item/clothing/under/face/custom/drive
 	name = "White Leather Outfit"
 	desc = "You're a real Human Bean."

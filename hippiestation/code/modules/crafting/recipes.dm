@@ -149,6 +149,3 @@
 	time = 40
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-
-/datum/crafting_recipe/mummy
-	tools = list(/obj/item/nullrod/hippie/egyptian)

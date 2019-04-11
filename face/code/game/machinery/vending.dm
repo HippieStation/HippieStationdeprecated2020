@@ -1,4 +1,4 @@
-/obj/machinery/vending/custom/sovietvend
+/obj/machinery/vending/custom/face/sovietvend
 	name = "KomradeVendtink"
 	desc = "Rodina-mat' zovyot!"
 	icon_state = "soviet"

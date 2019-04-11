@@ -81,3 +81,9 @@
 	icon_state = "jojinew02"
 	item_state = "jojinew02"
 
+/obj/item/clothing/suit/face/custom/krieg
+	name = "NT Korp Armor"
+	desc = "This station just got about 70% more grimdark."
+	icon_state = "krieguniform"
+	item_state = "krieguniform"
+	armor = list(melee = 40, bullet = 55, laser = 66,energy = 40, bomb = 30, bio = 40, rad = 80, fire = 30, acid = 80)
