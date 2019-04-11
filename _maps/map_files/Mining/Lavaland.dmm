@@ -534,7 +534,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Labor Camp APC";
-	pixel_y = 24
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -1082,7 +1082,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Mining Station Starboard Wing APC";
-	pixel_x = -27;
+	pixel_x = -25;
 	pixel_y = 2
 	},
 /obj/structure/cable{
@@ -1172,7 +1172,7 @@
 	dir = 1;
 	name = "Mining Communications APC";
 	pixel_x = 1;
-	pixel_y = 25
+	pixel_y = 23
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/plasteel/dark,
@@ -1621,7 +1621,7 @@
 	dir = 1;
 	name = "Mining Station Port Wing APC";
 	pixel_x = 1;
-	pixel_y = 25
+	pixel_y = 23
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
