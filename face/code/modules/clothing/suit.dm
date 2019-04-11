@@ -5,7 +5,7 @@
 	item_state = "kazcoat"
 
 /obj/item/clothing/suit/space/hardsuit/face/custom/ultramarine
-	name = "Ultramarine Suit"
+	name = "Ultramarine Power Armour"
 	desc = "The death of others is a small price to pay, as they fall, performing their duties in order to achieve glory for the interest of the best Ultramarine Captain - which of course is I, Cato Sicarius!"
 	icon_state = "ultramarinesuit"
 	item_state = "ultramarinesuit"
@@ -17,8 +17,8 @@
 /obj/item/clothing/suit/face/custom/paladinsuit
 	name = "Paladin Armor"
 	desc = "Now to be a white knight and shitpost on tumblr!"
-	icon_state = "Paladinarmor"
-	item_state = "Paladinarmor"
+	icon_state = "paladincuirass"
+	item_state = "paladincuirass"
 	slowdown = 3
 	armor = list(melee = 80, bullet = 20, laser = 00, energy = -10, bomb = 5, bio = 0, rad = -20)
 
