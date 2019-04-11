@@ -4,7 +4,7 @@
 		if(M.id == src.id)
 			if(openclose == null || !sync_doors)
 				openclose = M.density
-    if(!cooldown)
+		if(!cooldown)
 			INVOKE_ASYNC(M, openclose ? /obj/machinery/door/poddoor.proc/open : /obj/machinery/door/poddoor.proc/close)
-      cooldown = TRUE
-	addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 10)
+			cooldown = TRUE
+			addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 10)
