@@ -62,8 +62,8 @@
 /obj/item/clothing/under/face/custom/drive
 	name = "White Leather Outfit"
 	desc = "You're a real Human Bean."
-	icon_state = "driveuniform"
-	item_state = "driveuniform"
+	icon_state = "drivejacket"
+	item_state = "drivejacket"
 
 
 /obj/item/clothing/under/face/custom/dredd
