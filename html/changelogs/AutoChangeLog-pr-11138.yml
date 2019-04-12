@@ -1,5 +1,0 @@
-author: "HonkBot"
-delete-after: True
-changes: 
-  - bugfix: "cargo sectech crate"
-  - bugfix: "sectech refill has right icon"
