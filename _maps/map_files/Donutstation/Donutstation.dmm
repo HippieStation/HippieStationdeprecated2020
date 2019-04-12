@@ -5,10 +5,6 @@
 "aab" = (
 /turf/closed/wall,
 /area/space/nearstation)
-"aac" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/turf/open/floor/plasteel,
-/area/security/processing)
 "aad" = (
 /turf/closed/wall/r_wall,
 /area/engine/engineering)
@@ -968,20 +964,6 @@
 	},
 /turf/open/floor/engine/vacuum,
 /area/science/mixing)
-"acD" = (
-/obj/machinery/computer/teleporter,
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/teleporter)
 "acE" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/toxins_mixing_input,
 /obj/machinery/sparker/toxmix{
@@ -1095,19 +1077,6 @@
 "acQ" = (
 /turf/closed/wall/r_wall,
 /area/crew_quarters/heads/hos)
-"acR" = (
-/obj/structure/table/glass,
-/obj/item/reagent_containers/glass/beaker/large{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/glass/beaker{
-	pixel_x = 8;
-	pixel_y = 2
-	},
-/obj/item/reagent_containers/dropper,
-/turf/open/floor/plasteel/white,
-/area/science/lab)
 "acS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -1293,6 +1262,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+<<<<<<< HEAD
 "ads" = (
 /obj/machinery/power/apc{
 	areastring = "/area/science/lab";
@@ -1313,6 +1283,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel,
 /area/science/storage)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "adu" = (
 /obj/structure/table/wood,
 /turf/open/floor/plasteel/chapel{
@@ -1460,6 +1432,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
+<<<<<<< HEAD
 "adM" = (
 /obj/machinery/power/apc{
 	areastring = "/area/science/mixing";
@@ -1472,6 +1445,8 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "adN" = (
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
@@ -1757,15 +1732,6 @@
 "aew" = (
 /turf/closed/wall/r_wall,
 /area/science/server)
-"aex" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/camera{
-	c_tag = "Research - Toxins Storage";
-	dir = 2;
-	network = list("ss13","Research")
-	},
-/turf/open/floor/plasteel,
-/area/science/storage)
 "aey" = (
 /obj/structure/chair/stool,
 /obj/structure/disposalpipe/segment{
@@ -1943,9 +1909,6 @@
 "aeY" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/techstorage/engineering,
-/turf/open/floor/plating,
-/area/storage/tech)
-"aeZ" = (
 /turf/open/floor/plating,
 /area/storage/tech)
 "afa" = (
@@ -2979,12 +2942,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/science/server)
-"ahm" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/science/server)
 "ahn" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -3117,6 +3074,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+<<<<<<< HEAD
 "ahD" = (
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/heads/captain/private";
@@ -3129,6 +3087,8 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/captain/private)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "ahE" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/plasteel,
@@ -3314,15 +3274,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/tools)
-"ahZ" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/captain/private)
 "aia" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -3851,6 +3802,7 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
+<<<<<<< HEAD
 "ajn" = (
 /obj/machinery/power/apc{
 	areastring = "/area/science/explab";
@@ -3863,6 +3815,8 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "ajo" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -3951,10 +3905,6 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/crew_quarters/heads/hop)
-"ajz" = (
-/obj/machinery/computer/cargo,
-/turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
 "ajA" = (
 /obj/structure/grille,
@@ -4143,6 +4093,7 @@
 "ajT" = (
 /turf/closed/wall,
 /area/crew_quarters/heads/hos)
+<<<<<<< HEAD
 "ajU" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -4155,6 +4106,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "ajV" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -4244,10 +4197,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
-"akf" = (
-/obj/machinery/suit_storage_unit/hos,
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hos)
 "akg" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
@@ -4337,23 +4286,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"akn" = (
-/obj/item/reagent_containers/spray/plantbgone{
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/spray/plantbgone{
-	pixel_x = 8;
-	pixel_y = 8
-	},
-/obj/item/reagent_containers/spray/plantbgone{
-	pixel_x = 13;
-	pixel_y = 5
-	},
-/obj/item/watertank,
-/obj/item/grenade/chem_grenade/antiweed,
-/obj/structure/table/glass,
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "ako" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -4406,6 +4338,7 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/aft)
+<<<<<<< HEAD
 "akz" = (
 /obj/machinery/power/apc{
 	areastring = "/area/hydroponics";
@@ -4418,6 +4351,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/hydroponics)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "akA" = (
 /obj/machinery/door/firedoor,
 /obj/structure/cable/yellow{
@@ -4438,6 +4373,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/research)
+<<<<<<< HEAD
 "akB" = (
 /obj/machinery/power/apc{
 	areastring = "/area/science/research";
@@ -4450,6 +4386,8 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "akC" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -4766,14 +4704,6 @@
 /obj/structure/chair,
 /turf/open/floor/plasteel,
 /area/crew_quarters/bar)
-"alm" = (
-/obj/machinery/chem_master/condimaster{
-	desc = "Looks like a knock-off chem-master. Perhaps useful for separating liquids when mixing drinks precisely. Also dispenses condiments.";
-	name = "HoochMaster Deluxe";
-	pixel_x = -4
-	},
-/turf/open/floor/wood,
-/area/crew_quarters/bar)
 "aln" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -4985,6 +4915,7 @@
 /obj/item/toy/figure/detective,
 /turf/open/floor/carpet,
 /area/security/detectives_office)
+<<<<<<< HEAD
 "alK" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 4
@@ -4998,6 +4929,8 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/plasteel/dark,
 /area/engine/supermatter)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "alN" = (
 /obj/structure/lattice,
 /obj/structure/window/reinforced{
@@ -5180,6 +5113,7 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+<<<<<<< HEAD
 "amj" = (
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/heads/captain";
@@ -5199,6 +5133,8 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "amk" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -5452,6 +5388,7 @@
 "amP" = (
 /turf/closed/wall/r_wall,
 /area/crew_quarters/kitchen)
+<<<<<<< HEAD
 "amQ" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -5467,6 +5404,8 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/teleporter)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "amS" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/atmospherics/components/binary/pump/layer1{
@@ -5909,14 +5848,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/warehouse)
-"anW" = (
-/obj/machinery/camera{
-	c_tag = "Secure - EVA";
-	dir = 8;
-	network = list("ss13","Secure")
-	},
-/turf/open/floor/plasteel,
-/area/ai_monitored/storage/eva)
 "anX" = (
 /turf/closed/wall/r_wall,
 /area/ai_monitored/nuke_storage)
@@ -6239,6 +6170,7 @@
 	},
 /turf/open/floor/plating,
 /area/hydroponics)
+<<<<<<< HEAD
 "aoG" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -6251,6 +6183,8 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "aoH" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -7144,6 +7078,7 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
+<<<<<<< HEAD
 "aqN" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -7165,6 +7100,8 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "aqO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
@@ -7910,10 +7847,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
-"aso" = (
-/obj/machinery/computer/monitor,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/turret_protected/aisat/service)
 "asp" = (
 /obj/item/grenade/barrier{
 	pixel_x = 4
@@ -8585,10 +8518,6 @@
 	},
 /turf/open/floor/plating,
 /area/lawoffice)
-"atN" = (
-/obj/machinery/photocopier,
-/turf/open/floor/wood,
-/area/lawoffice)
 "atO" = (
 /obj/machinery/door/airlock/hatch{
 	name = "TeleSat Space Access Airlock";
@@ -8926,6 +8855,7 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/fitness/recreation)
+<<<<<<< HEAD
 "auA" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -8950,6 +8880,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "auB" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -9505,28 +9437,6 @@
 /obj/structure/grille,
 /turf/open/space/basic,
 /area/space/nearstation)
-"avQ" = (
-/obj/machinery/light,
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/machinery/camera{
-	c_tag = "Hallway - Escape Left Wing 1";
-	dir = 1;
-	network = list("ss13")
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "avR" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -9617,6 +9527,7 @@
 "avZ" = (
 /turf/open/floor/plating,
 /area/construction/mining/aux_base)
+<<<<<<< HEAD
 "awa" = (
 /obj/machinery/power/apc/highcap/ten_k{
 	areastring = "/area/janitor";
@@ -9630,6 +9541,8 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "awb" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -10785,12 +10698,6 @@
 	initial_gas_mix = "co2=1000;TEMP=293.15"
 	},
 /area/engine/atmos)
-"ayE" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 10
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "ayF" = (
 /obj/machinery/air_sensor/atmos/carbon_tank,
 /turf/open/floor/engine/co2{
@@ -12844,21 +12751,6 @@
 	},
 /turf/open/floor/plating,
 /area/solar/starboard)
-"aDf" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/item/storage/toolbox/emergency,
-/obj/item/storage/toolbox/emergency{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/turf/open/floor/plasteel,
-/area/bridge)
 "aDg" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -12992,20 +12884,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
-"aDt" = (
-/obj/structure/table,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/item/folder/red,
-/turf/open/floor/plasteel,
-/area/security/checkpoint/medical)
 "aDv" = (
 /obj/structure/closet/crate,
 /obj/item/kitchen/fork,
@@ -13475,16 +13353,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
-"aEu" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "aEv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 5
@@ -14003,10 +13871,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/brig)
-"aFt" = (
-/obj/structure/closet/secure_closet/freezer/cream_pie,
-/turf/open/floor/wood,
-/area/crew_quarters/theatre)
 "aFu" = (
 /obj/structure/chair/comfy/brown{
 	dir = 4
@@ -14183,18 +14047,6 @@
 	},
 /turf/open/floor/plating,
 /area/science/research)
-"aFJ" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/rxglasses,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/item/storage/box/disks{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "aFK" = (
 /obj/machinery/vending/wardrobe/gene_wardrobe,
 /turf/open/floor/plasteel/white,
@@ -14547,10 +14399,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"aGy" = (
-/obj/structure/chair,
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/lobby)
 "aGz" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -14621,17 +14469,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
-"aGG" = (
-/obj/structure/closet/secure_closet/hop,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/machinery/camera{
-	c_tag = "Bridge - Head of Personnel's Private Quarters";
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hop)
 "aGH" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -14919,18 +14756,6 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/medical/sleeper)
-"aHl" = (
-/obj/structure/table/glass,
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = 7;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = 7;
-	pixel_y = 1
-	},
-/turf/open/floor/plasteel,
-/area/medical/cryo)
 "aHm" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/plasteel,
@@ -15484,20 +15309,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"aIG" = (
-/obj/machinery/dna_scannernew,
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/genetics)
 "aII" = (
 /obj/machinery/smartfridge/chemistry,
 /turf/closed/wall,
@@ -15541,6 +15352,7 @@
 /obj/effect/landmark/start/roboticist,
 /turf/open/floor/plasteel,
 /area/science/robotics/lab)
+<<<<<<< HEAD
 "aIO" = (
 /obj/machinery/computer/med_data,
 /obj/machinery/power/apc{
@@ -15568,6 +15380,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/medical/cryo)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "aIQ" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -16589,6 +16403,7 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
+<<<<<<< HEAD
 "aKZ" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -16617,6 +16432,8 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/storage)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "aLb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -16866,12 +16683,6 @@
 /obj/effect/landmark/start/librarian,
 /turf/open/floor/carpet,
 /area/library)
-"aLN" = (
-/obj/structure/closet/secure_closet/detective,
-/obj/item/camera_film,
-/obj/item/camera_film,
-/turf/open/floor/carpet,
-/area/security/detectives_office)
 "aLO" = (
 /obj/machinery/libraryscanner,
 /turf/open/floor/carpet,
@@ -16893,6 +16704,7 @@
 /obj/machinery/bookbinder,
 /turf/open/floor/wood,
 /area/library)
+<<<<<<< HEAD
 "aLT" = (
 /obj/machinery/computer/aifixer{
 	icon_state = "computer";
@@ -16908,6 +16720,8 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "aLU" = (
 /obj/structure/table/wood,
 /obj/item/camera,
@@ -17111,16 +16925,6 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/hydroponics/garden)
-"aMs" = (
-/obj/structure/rack,
-/obj/item/storage/bag/plants/portaseeder,
-/obj/item/plant_analyzer,
-/obj/item/plant_analyzer{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/turf/open/floor/grass,
-/area/hydroponics/garden)
 "aMt" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -17258,23 +17062,6 @@
 	},
 /turf/open/floor/plating,
 /area/hydroponics/garden)
-"aMK" = (
-/obj/structure/rack,
-/obj/item/gun/energy/ionrifle,
-/obj/item/gun/energy/temperature/security,
-/obj/item/clothing/suit/armor/laserproof,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/security/armory)
 "aML" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/brigdoor/eastright{
@@ -17361,10 +17148,6 @@
 "aMU" = (
 /turf/open/floor/plasteel,
 /area/janitor)
-"aMV" = (
-/obj/machinery/vending/wardrobe/jani_wardrobe,
-/turf/open/floor/plasteel,
-/area/janitor)
 "aMW" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
@@ -17377,12 +17160,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"aMY" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "aMZ" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/effect/turf_decal/bot,
@@ -17498,6 +17275,7 @@
 "aNl" = (
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/foyer)
+<<<<<<< HEAD
 "aNm" = (
 /obj/machinery/power/apc{
 	areastring = "/area/ai_monitored/turret_protected/aisat/service";
@@ -17510,6 +17288,8 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/service)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "aNn" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced,
@@ -17553,16 +17333,6 @@
 "aNq" = (
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat/foyer)
-"aNr" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/mob/living/simple_animal/bot/cleanbot,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/turret_protected/aisat/service)
 "aNs" = (
 /obj/machinery/computer/teleporter{
 	dir = 1
@@ -18048,10 +17818,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
-"aOs" = (
-/obj/machinery/photocopier,
-/turf/open/floor/wood,
-/area/library)
 "aOt" = (
 /turf/open/floor/plasteel/dark,
 /area/security/courtroom)
@@ -18325,6 +18091,7 @@
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
+<<<<<<< HEAD
 "aPa" = (
 /obj/machinery/power/apc{
 	areastring = "/area/chapel/main";
@@ -18337,6 +18104,8 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "aPb" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -19327,6 +19096,7 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+<<<<<<< HEAD
 "aRf" = (
 /obj/machinery/power/apc/highcap/ten_k{
 	areastring = "/area/engine/atmos";
@@ -19339,6 +19109,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "aRg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -20226,6 +19998,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/medical/morgue)
+<<<<<<< HEAD
 "aTm" = (
 /obj/machinery/power/apc{
 	areastring = "/area/ai_monitored/storage/eva";
@@ -20238,6 +20011,8 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "aTn" = (
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /obj/structure/plasticflaps/opaque,
@@ -20290,6 +20065,7 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
+<<<<<<< HEAD
 "aTt" = (
 /obj/machinery/power/apc{
 	areastring = "/area/storage/tools";
@@ -20302,6 +20078,8 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "aTu" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -20344,6 +20122,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/tools)
+<<<<<<< HEAD
 "aTx" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -20362,6 +20141,8 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "aTy" = (
 /obj/effect/turf_decal/bot_white/left,
 /obj/structure/closet/crate/silvercrate,
@@ -20377,6 +20158,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
+<<<<<<< HEAD
 "aTz" = (
 /obj/machinery/power/apc{
 	areastring = "/area/lawoffice";
@@ -20387,6 +20169,8 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "aTA" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/maintenance{
@@ -20410,10 +20194,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"aTD" = (
-/obj/machinery/sleeper,
-/turf/open/floor/plasteel,
-/area/medical/sleeper)
 "aTE" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -20756,12 +20536,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"aUf" = (
-/obj/structure/table/glass,
-/obj/item/reagent_containers/glass/beaker/cryoxadone,
-/obj/item/reagent_containers/glass/beaker/cryoxadone,
-/turf/open/floor/plasteel,
-/area/medical/cryo)
 "aUg" = (
 /obj/structure/table,
 /obj/item/book/manual/hydroponics_pod_people,
@@ -20876,25 +20650,6 @@
 /obj/item/storage/firstaid/regular,
 /obj/structure/sign/departments/chemistry{
 	pixel_y = -32
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/lobby)
-"aUu" = (
-/obj/structure/chair{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/item/radio/intercom{
-	broadcasting = 1;
-	frequency = 1485;
-	listening = 0;
-	name = "Station Intercom (Medbay)";
-	pixel_x = -30
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/lobby)
@@ -21369,6 +21124,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
+<<<<<<< HEAD
 "aVq" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -21388,6 +21144,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "aVr" = (
 /obj/structure/rack,
 /obj/item/electronics/airlock,
@@ -21425,18 +21183,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
-	},
-/turf/open/floor/plasteel,
-/area/construction/mining/aux_base)
-"aVu" = (
-/obj/structure/table,
-/obj/item/stack/sheet/plasteel{
-	amount = 10
-	},
-/obj/item/stack/rods/fifty,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
@@ -22002,6 +21748,7 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/security/main)
+<<<<<<< HEAD
 "aWo" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -22014,6 +21761,8 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "aWp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -22042,6 +21791,7 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
+<<<<<<< HEAD
 "aWr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -22057,6 +21807,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/processing)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "aWs" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Equipment Room";
@@ -22233,6 +21985,7 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/main)
+<<<<<<< HEAD
 "aWG" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -22251,6 +22004,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "aWH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/showroomfloor,
@@ -22423,12 +22178,6 @@
 "aWY" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
-	},
-/turf/open/floor/carpet,
-/area/crew_quarters/heads/hos)
-"aWZ" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
 	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
@@ -22779,6 +22528,7 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+<<<<<<< HEAD
 "aXB" = (
 /obj/machinery/power/apc{
 	areastring = "/area/medical/chemistry";
@@ -22789,6 +22539,8 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "aXC" = (
 /obj/machinery/door/firedoor,
 /obj/structure/disposalpipe/segment{
@@ -22864,6 +22616,7 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+<<<<<<< HEAD
 "aXK" = (
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/heads/cmo";
@@ -22876,6 +22629,8 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "aXL" = (
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
@@ -22903,6 +22658,7 @@
 	},
 /turf/open/floor/plating,
 /area/medical/medbay/lobby)
+<<<<<<< HEAD
 "aXO" = (
 /obj/machinery/power/apc{
 	areastring = "/area/medical/medbay/central";
@@ -22915,6 +22671,8 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "aXP" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 4
@@ -22924,6 +22682,7 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
+<<<<<<< HEAD
 "aXQ" = (
 /obj/machinery/power/apc{
 	areastring = "/area/medical/surgery";
@@ -22936,6 +22695,8 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "aXR" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -23386,6 +23147,7 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
+<<<<<<< HEAD
 "aYH" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -23400,6 +23162,8 @@
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating,
 /area/maintenance/department/security)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "aYI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -24790,33 +24554,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/gravity_generator)
-"bbq" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 6
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/turf/open/floor/plating,
-/area/maintenance/department/security)
-"bbr" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/department/security)
 "bbs" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
@@ -24877,6 +24614,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
+<<<<<<< HEAD
 "bbC" = (
 /obj/machinery/computer/bank_machine,
 /obj/effect/turf_decal/tile/neutral{
@@ -24904,6 +24642,8 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/nuke_storage)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "bbD" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -24940,20 +24680,6 @@
 "bbH" = (
 /turf/open/floor/plating,
 /area/construction)
-"bbI" = (
-/obj/structure/table,
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/glass/fifty,
-/obj/effect/turf_decal/tile/yellow,
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
-/turf/open/floor/plasteel,
-/area/construction/mining/aux_base)
 "bbJ" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -26196,12 +25922,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
-"bex" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
 "bey" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -26571,17 +26291,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
-"bfg" = (
-/obj/machinery/smartfridge/chemistry/virology/preloaded,
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/green{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/virology)
 "bfh" = (
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
@@ -26705,6 +26414,7 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+<<<<<<< HEAD
 "bfr" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -26721,6 +26431,8 @@
 /obj/effect/spawner/lootdrop/grille_or_trash,
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "bfs" = (
 /obj/structure/closet/secure_closet/personal/patient,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -26796,12 +26508,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
-"bfz" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "bfA" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -26944,28 +26650,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"bfL" = (
-/obj/machinery/light,
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/machinery/camera{
-	c_tag = "Hallway - Escape Right Wing 1";
-	dir = 1;
-	network = list("ss13")
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit/departure_lounge)
 "bfM" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/plasteel/white,
@@ -26977,12 +26661,6 @@
 "bfO" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/plasteel/white,
-/area/hallway/secondary/exit/departure_lounge)
-"bfP" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "bfQ" = (
 /obj/effect/turf_decal/tile/blue{
@@ -27195,6 +26873,7 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/security/main)
+<<<<<<< HEAD
 "bgo" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -27207,6 +26886,8 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "bgp" = (
 /obj/machinery/vending/wardrobe/chef_wardrobe,
 /turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
@@ -27511,6 +27192,7 @@
 	},
 /turf/open/floor/plasteel/airless/solarpanel,
 /area/solar/starboard)
+<<<<<<< HEAD
 "bgW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/freezer,
@@ -27531,6 +27213,8 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "bgY" = (
 /obj/item/assembly/prox_sensor{
 	pixel_x = -4;
@@ -27620,12 +27304,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"bhh" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/junction{
-	dir = 1
-	},
-/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
-/area/crew_quarters/kitchen/coldroom)
 "bhi" = (
 /obj/machinery/gibber,
 /turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
@@ -27845,6 +27523,7 @@
 /mob/living/carbon/monkey,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+<<<<<<< HEAD
 "bhG" = (
 /obj/structure/table/glass,
 /obj/machinery/power/apc{
@@ -27870,6 +27549,8 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "bhH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -28132,13 +27813,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"bid" = (
-/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
-	dir = 9
-	},
-/obj/structure/closet/secure_closet/freezer/meat,
-/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
-/area/crew_quarters/kitchen/coldroom)
 "bie" = (
 /obj/machinery/firealarm{
 	dir = 4;
@@ -28210,10 +27884,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
 	},
-/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
-/area/crew_quarters/kitchen/coldroom)
-"bin" = (
-/obj/structure/kitchenspike,
 /turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
 /area/crew_quarters/kitchen/coldroom)
 "bio" = (
@@ -28299,6 +27969,7 @@
 /obj/item/folder/red,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
+<<<<<<< HEAD
 "biz" = (
 /obj/machinery/power/apc{
 	areastring = "/area/solar/aft";
@@ -28315,6 +27986,8 @@
 	},
 /turf/open/floor/plating,
 /area/solar/aft)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "biA" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -29699,14 +29372,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
-"bkT" = (
-/obj/structure/table,
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = 2;
-	pixel_y = 3
-	},
-/turf/open/floor/plasteel/white,
-/area/science/explab)
 "bkU" = (
 /obj/machinery/door/window/eastright{
 	base_state = "left";
@@ -29762,16 +29427,6 @@
 /obj/effect/turf_decal/tile/neutral,
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
-"bla" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/closet/athletic_mixed,
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness)
 "blb" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/effect/turf_decal/tile/yellow{
@@ -30213,24 +29868,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
-"blU" = (
-/obj/machinery/computer/security{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/machinery/newscaster{
-	pixel_x = -30
-	},
-/turf/open/floor/plasteel,
-/area/security/checkpoint/medical)
 "blV" = (
 /obj/structure/rack,
 /obj/item/aicard,
@@ -30304,6 +29941,7 @@
 /obj/item/book/manual/wiki/security_space_law,
 /turf/open/floor/plasteel,
 /area/security/checkpoint)
+<<<<<<< HEAD
 "bma" = (
 /obj/machinery/power/apc{
 	areastring = "/area/security/detectives_office";
@@ -30316,6 +29954,8 @@
 	},
 /turf/open/floor/carpet,
 /area/security/detectives_office)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "bmb" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -30347,6 +29987,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
+<<<<<<< HEAD
 "bmd" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -30364,6 +30005,8 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/plasteel,
 /area/security/checkpoint/science)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "bme" = (
 /obj/machinery/door/airlock/research{
 	name = "Kill Chamber";
@@ -30401,15 +30044,6 @@
 	},
 /turf/open/floor/plating,
 /area/medical/genetics/cloning)
-"bmi" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/security/courtroom)
 "bmj" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -30770,12 +30404,6 @@
 	},
 /turf/open/floor/plating,
 /area/science/robotics/mechbay)
-"bmT" = (
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "bmU" = (
 /obj/structure/grille,
 /obj/structure/disposalpipe/segment,
@@ -30792,20 +30420,6 @@
 	dir = 9
 	},
 /obj/machinery/door/firedoor,
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
-"bmW" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue,
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bmX" = (
@@ -30837,19 +30451,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/crew_quarters/fitness)
-"bmZ" = (
-/obj/machinery/button/door{
-	id = "podescape";
-	name = "Pod Bay Control";
-	normaldoorcontrol = 0;
-	pixel_x = -8;
-	pixel_y = 24
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "bna" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -31106,12 +30707,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/theatre)
-"bnv" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/science/robotics/lab)
 "bnw" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
@@ -31601,14 +31196,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"bop" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "boq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -32036,12 +31623,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/janitor)
-"bpn" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/janitor)
 "bpo" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 10
@@ -32383,6 +31964,7 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+<<<<<<< HEAD
 "bpW" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -32395,6 +31977,8 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "bpX" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -32493,6 +32077,7 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
+<<<<<<< HEAD
 "bqj" = (
 /obj/machinery/power/apc{
 	areastring = "/area/medical/storage";
@@ -32506,6 +32091,8 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/department/medical)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "bqk" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/effect/turf_decal/bot,
@@ -33493,6 +33080,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+<<<<<<< HEAD
 "brS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -33511,6 +33099,8 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "brT" = (
 /obj/machinery/power/smes,
 /obj/structure/cable/yellow,
@@ -33968,18 +33558,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/storage/tech)
-"bsE" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 5
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "bsF" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -34685,18 +34263,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/wood,
 /area/lawoffice)
-"btO" = (
-/obj/structure/table/wood,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/item/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/pen,
-/turf/open/floor/wood,
-/area/lawoffice)
 "btP" = (
 /obj/structure/chair/office/dark{
 	dir = 8
@@ -34916,6 +34482,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/bridge)
+<<<<<<< HEAD
 "bui" = (
 /obj/machinery/computer/bounty,
 /obj/machinery/power/apc{
@@ -34929,6 +34496,8 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "buj" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -35337,12 +34906,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
-"buY" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/ai_monitored/storage/eva)
 "buZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 8
@@ -36054,6 +35617,7 @@
 "bwv" = (
 /turf/open/floor/plasteel/dark,
 /area/engine/atmos)
+<<<<<<< HEAD
 "bww" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction/layer3{
 	icon_state = "pipe11-3";
@@ -36081,6 +35645,8 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/department/crew_quarters/bar)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "bwy" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
@@ -36143,6 +35709,7 @@
 /obj/effect/spawner/lootdrop/crate_spawner,
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+<<<<<<< HEAD
 "bwE" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -36156,6 +35723,8 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/disposal)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "bwF" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/yellow{
@@ -36680,13 +36249,6 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/ai_monitored/storage/eva)
-"bxE" = (
-/obj/machinery/disposal/bin,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/entry)
 "bxF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/structure/cable/yellow{
@@ -36729,6 +36291,7 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+<<<<<<< HEAD
 "bxJ" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
@@ -36759,6 +36322,8 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "bxM" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -37227,20 +36792,6 @@
 	},
 /turf/open/floor/plating,
 /area/security/detectives_office)
-"byI" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/quartermaster/qm)
 "byJ" = (
 /obj/machinery/power/smes{
 	charge = 5e+006
@@ -37654,6 +37205,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/qm)
+<<<<<<< HEAD
 "bzz" = (
 /obj/machinery/ntnet_relay,
 /obj/machinery/power/apc{
@@ -37676,6 +37228,8 @@
 	},
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "bzA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
@@ -38585,6 +38139,7 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
+<<<<<<< HEAD
 "bBu" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -38597,6 +38152,8 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "bBv" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -38665,24 +38222,6 @@
 /obj/item/trash/plate,
 /turf/open/floor/plating,
 /area/maintenance/starboard)
-"bBC" = (
-/obj/machinery/disposal/bin,
-/obj/effect/turf_decal/tile/brown{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/machinery/light_switch{
-	pixel_x = -24;
-	pixel_y = 8
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/qm)
 "bBD" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -38796,15 +38335,6 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/plating,
-/area/maintenance/department/medical)
-"bBM" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
 /turf/open/floor/plating,
 /area/maintenance/department/medical)
 "bBN" = (
@@ -39941,11 +39471,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"bDN" = (
-/obj/structure/table,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plasteel,
-/area/vacant_room/commissary)
 "bDO" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	dir = 1
@@ -40058,17 +39583,6 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
-"bDX" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/hallway/primary/central)
 "bDY" = (
 /obj/structure/rack,
 /obj/item/clothing/under/color/blue,
@@ -40444,6 +39958,7 @@
 /obj/effect/landmark/start/assistant,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+<<<<<<< HEAD
 "bEF" = (
 /obj/machinery/power/apc{
 	areastring = "/area/chapel/office";
@@ -40454,6 +39969,8 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "bEG" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -41120,6 +40637,7 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/security/main)
+<<<<<<< HEAD
 "bFN" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -41141,6 +40659,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "bFP" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -41155,6 +40675,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+<<<<<<< HEAD
 "bFQ" = (
 /obj/machinery/power/apc{
 	areastring = "/area/ai_monitored/turret_protected/ai_upload";
@@ -41165,6 +40686,8 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai_upload)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "bFR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/structure/disposalpipe/segment{
@@ -41221,19 +40744,6 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel,
-/area/security/main)
-"bFW" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
-	dir = 1
-	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/security/main)
@@ -41347,18 +40857,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"bGh" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 9
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/maintenance/department/security)
 "bGi" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -41368,12 +40866,6 @@
 "bGj" = (
 /obj/structure/disposalpipe/segment{
 	dir = 10
-	},
-/turf/open/floor/plating,
-/area/maintenance/department/security)
-"bGk" = (
-/obj/structure/disposalpipe/segment{
-	dir = 5
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/security)
@@ -41682,33 +41174,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
-"bGN" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/medical/medbay/central)
 "bGO" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -42291,16 +41756,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/bridge)
-"bHN" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 8
-	},
-/obj/machinery/airalarm{
-	dir = 8;
-	pixel_x = 24
-	},
-/turf/open/floor/wood,
-/area/library)
 "bHO" = (
 /obj/machinery/airalarm{
 	dir = 8;
@@ -42726,6 +42181,7 @@
 /obj/item/crowbar,
 /turf/open/floor/plating,
 /area/tcommsat/computer)
+<<<<<<< HEAD
 "bIM" = (
 /obj/machinery/announcement_system,
 /obj/machinery/power/apc{
@@ -42739,6 +42195,8 @@
 	},
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "bIN" = (
 /obj/structure/chair/office/dark{
 	dir = 8
@@ -43156,16 +42614,6 @@
 	},
 /turf/open/floor/plating,
 /area/science/robotics/lab)
-"bJM" = (
-/obj/machinery/light/small,
-/obj/machinery/camera{
-	c_tag = "Atmospherics - Breakroom";
-	dir = 1;
-	network = list("ss13","Atmospherics")
-	},
-/obj/effect/turf_decal/tile/yellow,
-/turf/open/floor/plasteel,
-/area/engine/atmos)
 "bJN" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 4
@@ -43413,18 +42861,6 @@
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/heads/hop)
-"bKn" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/open/floor/plasteel/dark,
-/area/bridge)
 "bKo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -43858,23 +43294,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/security/brig)
-"bLm" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/machinery/camera{
-	c_tag = "Security - Main Hall 2";
-	dir = 8;
-	network = list("ss13","Security")
-	},
-/turf/open/floor/plasteel,
-/area/security/brig)
 "bLn" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
 	dir = 8
@@ -43948,16 +43367,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/gravity_generator)
-"bLt" = (
-/obj/structure/table,
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/clothing/head/welding,
-/obj/item/stack/sheet/mineral/plasma{
-	amount = 35
-	},
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/turret_protected/aisat/service)
 "bLu" = (
 /obj/machinery/teleport/station,
 /obj/machinery/camera/motion{
@@ -44191,11 +43600,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/department/security)
-"bLO" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/closet/crate,
-/turf/open/floor/plating,
-/area/maintenance/department/security)
 "bLP" = (
 /obj/structure/closet/crate,
 /obj/effect/spawner/lootdrop/maintenance{
@@ -44247,13 +43651,6 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"bLW" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/effect/spawner/lootdrop/grille_or_trash,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "bLX" = (
 /obj/machinery/camera/motion{
 	c_tag = "Secure - External Telecomm Sat East 2";
@@ -45292,14 +44689,6 @@
 	},
 /turf/open/floor/engine,
 /area/science/xenobiology)
-"bNQ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
-/obj/structure/disposalpipe/segment{
-	dir = 5
-	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
 "bNR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -45423,6 +44812,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/foyer)
+<<<<<<< HEAD
 "bOc" = (
 /obj/machinery/power/apc{
 	areastring = "/area/ai_monitored/turret_protected/aisat/foyer";
@@ -45435,6 +44825,8 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/foyer)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "bOd" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "AI Chamber";
@@ -45598,33 +44990,6 @@
 	},
 /turf/open/floor/grass,
 /area/hydroponics/garden)
-"bOu" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 8
-	},
-/obj/structure/rack,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = -2;
-	pixel_y = -2
-	},
-/obj/item/storage/toolbox/mechanical,
-/obj/item/storage/toolbox/mechanical{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/machinery/camera{
-	c_tag = "Civilian - Tool Storage";
-	dir = 4;
-	network = list("ss13")
-	},
-/turf/open/floor/plasteel,
-/area/storage/tools)
 "bOv" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -45887,6 +45252,7 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+<<<<<<< HEAD
 "bOS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable/yellow{
@@ -45900,6 +45266,8 @@
 	},
 /turf/open/floor/plasteel,
 /area/gateway)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "bOT" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plasteel,
@@ -46683,19 +46051,6 @@
 /obj/item/clothing/head/cone,
 /turf/open/floor/plating,
 /area/maintenance/department/security)
-"bQy" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 5
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
-	},
-/obj/item/clothing/head/cone,
-/turf/open/floor/plating,
-/area/maintenance/port/aft)
 "bQz" = (
 /obj/effect/decal/cleanable/blood/old,
 /turf/open/floor/plating,
@@ -46972,13 +46327,6 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
-"bRe" = (
-/obj/item/clothing/head/cone,
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/turf/open/floor/plating,
-/area/maintenance/department/security)
 "bRf" = (
 /obj/structure/closet/crate{
 	name = "Surplus Genetics Supplies"
@@ -47086,17 +46434,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/plasteel/white,
 /area/medical/medbay/central)
-"bRq" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red,
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/obj/machinery/holopad,
-/turf/open/floor/plasteel,
-/area/security/brig)
 "bRs" = (
 /obj/machinery/holopad,
 /turf/open/floor/plasteel,
@@ -47248,11 +46585,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating,
 /area/maintenance/fore)
-"bRF" = (
-/obj/structure/table,
-/obj/item/toy/figure/borg,
-/turf/open/floor/plasteel/dark,
-/area/ai_monitored/turret_protected/aisat/foyer)
 "bRG" = (
 /obj/structure/bed,
 /obj/effect/turf_decal/tile/neutral{
@@ -48471,17 +47803,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/science/mixing)
-"bUj" = (
-/obj/machinery/camera{
-	c_tag = "Research - Toxins Main 2";
-	dir = 2;
-	network = list("ss13","Research")
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 9
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
@@ -50187,11 +49508,6 @@
 /obj/effect/spawner/lootdrop/grille_or_trash,
 /turf/open/floor/plating,
 /area/maintenance/port)
-"bYF" = (
-/obj/structure/disposalpipe/segment,
-/obj/effect/spawner/lootdrop/crate_spawner,
-/turf/open/floor/plating,
-/area/maintenance/department/security)
 "bYG" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -50251,24 +49567,6 @@
 /obj/effect/spawner/lootdrop/grille_or_trash,
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"bYM" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/spawner/lootdrop/grille_or_trash,
-/turf/open/floor/plating,
-/area/maintenance/department/security)
-"bYN" = (
-/obj/structure/disposalpipe/segment,
-/obj/effect/spawner/lootdrop/grille_or_trash,
-/turf/open/floor/plating,
-/area/maintenance/department/security)
 "bYO" = (
 /obj/effect/spawner/lootdrop/grille_or_trash,
 /turf/open/floor/plating,
@@ -50310,13 +49608,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/spawner/lootdrop/grille_or_trash,
-/turf/open/floor/plating,
-/area/maintenance/department/security)
-"bYT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -50813,14 +50104,6 @@
 	icon_state = "panelscorched"
 	},
 /area/maintenance/department/crew_quarters/bar)
-"bZR" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/obj/structure/closet/crate,
-/obj/item/paicard,
-/turf/open/floor/plating,
-/area/maintenance/department/security)
 "bZS" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -50902,6 +50185,7 @@
 /obj/item/gun/magic/wand,
 /turf/open/floor/carpet,
 /area/crew_quarters/theatre)
+<<<<<<< HEAD
 "cac" = (
 /obj/machinery/power/apc/highcap/five_k{
 	dir = 2;
@@ -50927,6 +50211,8 @@
 	},
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "cad" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -50968,6 +50254,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
+<<<<<<< HEAD
 "cai" = (
 /obj/machinery/power/apc{
 	areastring = "/area/library";
@@ -50981,6 +50268,8 @@
 /obj/effect/spawner/lootdrop/grille_or_trash,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "caj" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -51684,6 +50973,7 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
+<<<<<<< HEAD
 "cbQ" = (
 /obj/structure/table,
 /obj/machinery/power/apc{
@@ -51699,6 +50989,8 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics/cloning)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "cbR" = (
 /obj/machinery/light,
 /obj/structure/disposalpipe/trunk{
@@ -52331,6 +51623,7 @@
 	dir = 8
 	},
 /area/hallway/secondary/exit/departure_lounge)
+<<<<<<< HEAD
 "cdk" = (
 /obj/machinery/power/apc{
 	areastring = "/area/construction";
@@ -52344,6 +51637,8 @@
 	},
 /turf/open/floor/plating,
 /area/construction)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "cdl" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/crowbar,
@@ -52628,6 +51923,7 @@
 	},
 /turf/open/floor/plating,
 /area/security/main)
+<<<<<<< HEAD
 "cdS" = (
 /obj/machinery/suit_storage_unit/security,
 /obj/effect/turf_decal/tile/red{
@@ -52645,6 +51941,8 @@
 /obj/structure/cable/yellow,
 /turf/open/floor/plasteel,
 /area/ai_monitored/security/armory)
+=======
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "cdT" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance{
@@ -52664,13 +51962,6 @@
 "cdV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
-	},
-/obj/effect/spawner/lootdrop/grille_or_trash,
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
-"cdW" = (
-/obj/structure/disposalpipe/segment{
-	dir = 5
 	},
 /obj/effect/spawner/lootdrop/grille_or_trash,
 /turf/open/floor/plating,
@@ -53183,11 +52474,69 @@
 /obj/structure/window/plasma/reinforced{
 	dir = 8
 	},
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
 	dir = 4
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
+=======
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"cla" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room)
+"clO" = (
+/obj/structure/table/glass,
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
+/obj/machinery/airalarm{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel,
+/area/medical/cryo)
+"csr" = (
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -23
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/tcommsat/server)
+"csH" = (
+/obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"cvc" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -23
+	},
+/mob/living/simple_animal/bot/cleanbot,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/aisat/service)
+"cvq" = (
+/obj/machinery/atmospherics/pipe/simple/purple/visible{
+	dir = 6
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -24
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
@@ -53197,6 +52546,45 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
+<<<<<<< HEAD
+=======
+"cxK" = (
+/obj/machinery/atmospherics/pipe/simple/green/visible{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"czY" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/teleporter";
+	dir = 1;
+	name = "Teleporter APC";
+	pixel_y = 23
+	},
+/turf/open/floor/plasteel/dark,
+/area/teleporter)
+"cAa" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "cDf" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -53224,6 +52612,21 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/engine,
 /area/engine/supermatter)
+"cNG" = (
+/obj/structure/table/wood,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/pen,
+/obj/item/radio/intercom{
+	pixel_x = -30
+	},
+/turf/open/floor/wood,
+/area/lawoffice)
 "cOZ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -53239,6 +52642,74 @@
 	},
 /turf/open/floor/plating,
 /area/engine/supermatter)
+<<<<<<< HEAD
+=======
+"cPq" = (
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/heads/captain";
+	dir = 1;
+	name = "Captain's Office APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/machinery/newscaster/security_unit{
+	pixel_x = -32
+	},
+/obj/machinery/door/window/southleft{
+	name = "Suit Access";
+	req_access_txt = "20"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain)
+"cPK" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/maintenance/department/security";
+	dir = 1;
+	name = "Security Maintenance APC";
+	pixel_y = 24
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/security)
+"cRz" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/fitness/recreation";
+	dir = 8;
+	name = "Dormatories APC";
+	pixel_x = -25
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
+"cUe" = (
+/obj/machinery/door/airlock/engineering/glass{
+	name = "Laser Room";
+	req_access_txt = "10"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/engine,
+/area/engine/engine_room)
+"cXx" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "cYx" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible/layer3{
 	dir = 10
@@ -53262,9 +52733,46 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+<<<<<<< HEAD
 /obj/machinery/airalarm{
 	dir = 4;
 	pixel_x = -22
+=======
+/obj/structure/sign/poster/official/random{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room)
+"dfN" = (
+/obj/structure/reflector/single/anchored{
+	dir = 6
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room)
+"dgr" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/closet/crate,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/security)
+"diw" = (
+/obj/item/radio/intercom{
+	pixel_y = -29
+	},
+/turf/open/floor/plasteel/white/side{
+	dir = 5
+	},
+/area/science/research)
+"dlq" = (
+/obj/machinery/door/airlock/hatch{
+	name = "Supermatter External Chamber";
+	req_access_txt = "10"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
@@ -53298,9 +52806,31 @@
 /turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
 /area/crew_quarters/kitchen/coldroom)
 <<<<<<< HEAD
+<<<<<<< HEAD
 "dQM" = (
 /obj/machinery/computer/rdconsole/production{
 	dir = 4
+=======
+"dzi" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/obj/machinery/power/apc/highcap/ten_k{
+	areastring = "/area/engine/engine_room";
+	dir = 2;
+	name = "Engine Room APC";
+	pixel_y = -23
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"dCc" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -53329,9 +52859,28 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/engine,
 /area/engine/supermatter)
+=======
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"dFi" = (
+/obj/machinery/atmospherics/pipe/manifold4w/general/visible,
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room)
+"dIr" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -23
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "dNx" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -53347,6 +52896,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+<<<<<<< HEAD
 "dZW" = (
 /turf/closed/wall/r_wall,
 /area/engine/supermatter)
@@ -53355,6 +52905,95 @@
 /obj/machinery/door/airlock/hatch{
 	name = "Supermatter External Chamber";
 	req_access_txt = "10"
+=======
+"dUa" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"dUt" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/engine/engineering)
+"dUT" = (
+/obj/structure/table/glass,
+/obj/item/reagent_containers/glass/beaker/large{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = 8;
+	pixel_y = 2
+	},
+/obj/item/reagent_containers/dropper,
+/obj/item/radio/intercom{
+	pixel_y = 29
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
+"dXK" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/maintenance/fore";
+	dir = 1;
+	name = "Fore Maintenance APC";
+	pixel_y = 23
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
+"dYW" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/security)
+"dZa" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"dZW" = (
+/turf/closed/wall/r_wall,
+/area/engine/supermatter)
+"edu" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/security/main";
+	dir = 1;
+	name = "Security Office APC";
+	pixel_y = 23
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
+"eiC" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /obj/structure/cable/yellow{
@@ -53371,27 +53010,147 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
+<<<<<<< HEAD
 /area/engine/engineering)
 >>>>>>> 4407899... Merge pull request #43246 from MMMiracles/goodbyesucc
+=======
+/area/engine/engine_room/external)
+"eoH" = (
+/obj/machinery/light/small,
+/obj/machinery/camera{
+	c_tag = "Atmospherics - Breakroom";
+	dir = 1;
+	network = list("ss13","Atmospherics")
+	},
+/obj/effect/turf_decal/tile/yellow,
+/obj/item/radio/intercom{
+	pixel_y = -25
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
+"eqa" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/obj/structure/sign/warning/securearea{
+	pixel_y = 32
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
+"eqn" = (
+/obj/machinery/suit_storage_unit/hos,
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -23
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hos)
+"esp" = (
+/obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"esN" = (
+/obj/structure/chair{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/radio/intercom{
+	pixel_x = -30
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/lobby)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "esU" = (
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple,
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
 /area/crew_quarters/kitchen/coldroom)
+<<<<<<< HEAD
+=======
+"etl" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"etL" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room/external)
+"euD" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 10
+	},
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space/nearstation)
+"euN" = (
+/obj/structure/table/reinforced,
+/obj/item/clothing/glasses/meson,
+/obj/item/clothing/glasses/meson,
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/item/clothing/glasses/meson,
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"exX" = (
+/obj/machinery/power/apc{
+	areastring = "/area/medical/storage";
+	dir = 8;
+	name = "Medical Storage APC";
+	pixel_x = -25
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plating,
+/area/maintenance/department/medical)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "eyM" = (
 /obj/machinery/atmospherics/components/trinary/filter/flipped/layer1{
 	icon_state = "filter_off_f_map-1";
 	dir = 4
 	},
+<<<<<<< HEAD
 /turf/open/floor/engine,
 /area/engine/supermatter)
 "ezL" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
+=======
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"ezo" = (
+/obj/item/radio/intercom{
+	pixel_x = -30
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 	},
-/turf/open/floor/plating,
-/area/maintenance/port/fore)
+/turf/open/floor/wood,
+/area/crew_quarters/theatre)
 "eCj" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -53420,6 +53179,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible/layer3{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
@@ -53428,6 +53188,81 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+=======
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"eLr" = (
+/obj/machinery/button/door{
+	id = "podescape";
+	name = "Pod Bay Control";
+	normaldoorcontrol = 0;
+	pixel_x = -8;
+	pixel_y = 24
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"eMz" = (
+/obj/machinery/chem_master/condimaster{
+	desc = "Looks like a knock-off chem-master. Perhaps useful for separating liquids when mixing drinks precisely. Also dispenses condiments.";
+	name = "HoochMaster Deluxe";
+	pixel_x = -4
+	},
+/obj/item/radio/intercom{
+	pixel_x = -30
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/bar)
+"eNp" = (
+/obj/machinery/power/apc{
+	areastring = "/area/chapel/main";
+	dir = 8;
+	name = "Chapel Main APC";
+	pixel_x = -25
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard)
+"eNw" = (
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 5
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"eQq" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/radio/intercom{
+	pixel_y = 29
+	},
+/obj/machinery/computer/aifixer{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Research - Research Director's Office";
+	dir = 2;
+	network = list("ss13","Research")
+	},
+/turf/open/floor/plasteel/cafeteria,
+/area/crew_quarters/heads/hor)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "eRe" = (
 /obj/effect/turf_decal/bot{
 	dir = 1
@@ -53435,6 +53270,74 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+<<<<<<< HEAD
+=======
+"eRs" = (
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/visible{
+	dir = 8;
+	name = "scrubbers pipe"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"eSa" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/quartermaster/office";
+	dir = 8;
+	name = "Cargo Main APC";
+	pixel_x = -25
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard)
+"eVJ" = (
+/obj/structure/closet/radiation,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room/external)
+"eXR" = (
+/obj/structure/closet/secure_closet/hop,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Bridge - Head of Personnel's Private Quarters";
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	pixel_y = 25
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hop)
+"eZi" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/security/warden";
+	dir = 1;
+	name = "Warden's Office APC";
+	pixel_y = 23
+	},
+/turf/open/floor/plasteel/showroomfloor,
+/area/security/warden)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "fdn" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3,
@@ -53444,10 +53347,40 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "feu" = (
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible/layer3,
+=======
+/obj/machinery/door/airlock/hatch{
+	name = "Supermatter External Chamber";
+	req_access_txt = "10"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/effect/turf_decal/delivery,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room)
+"fid" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/security)
+"fis" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
+<<<<<<< HEAD
 /obj/machinery/camera{
 	c_tag = "Engine - Internal Bottomleft";
 	dir = 4;
@@ -53455,6 +53388,27 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+=======
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"fiC" = (
+/obj/machinery/computer/teleporter,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/item/radio/intercom{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel/dark,
+/area/teleporter)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "fkV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 6
@@ -53479,6 +53433,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible/layer3{
 	dir = 5
 	},
+<<<<<<< HEAD
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
@@ -53495,6 +53450,24 @@
 /obj/machinery/portable_atmospherics/canister,
 /turf/open/floor/plasteel/dark,
 /area/engine/supermatter)
+=======
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"fqe" = (
+/obj/structure/closet/secure_closet/medical3,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/storage)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "fvY" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -53509,6 +53482,24 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"fxC" = (
+/obj/machinery/airalarm{
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel/white/side{
+	dir = 10
+	},
+/area/science/research)
+"fzs" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 9
+	},
+/obj/structure/closet/secure_closet/freezer/meat,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/area/crew_quarters/kitchen/coldroom)
 "fzV" = (
 /obj/machinery/power/emitter,
 /obj/machinery/light/small{
@@ -53521,6 +53512,30 @@
 	},
 /turf/open/floor/plating,
 /area/engine/engineering)
+"fMr" = (
+/obj/item/radio/intercom{
+	pixel_y = -25
+	},
+/turf/open/floor/plasteel/white,
+/area/science/xenobiology)
+"fNR" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/library/lounge";
+	dir = 2;
+	name = "Lounge APC";
+	pixel_y = -23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "fOk" = (
 /obj/machinery/power/terminal{
 	dir = 4
@@ -53532,7 +53547,20 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/plasteel/dark,
+<<<<<<< HEAD
 /area/engine/supermatter)
+=======
+/area/engine/engine_room)
+"fSj" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/radio/intercom{
+	pixel_x = -30
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "fVo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -53548,15 +53576,84 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer1,
 /turf/open/floor/engine,
 /area/engine/supermatter)
+=======
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"gdD" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	pixel_y = 25
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/captain)
+"gqB" = (
+/obj/structure/table/glass,
+/obj/item/storage/box/rxglasses,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/storage/box/disks{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/machinery/requests_console{
+	department = "Genetics";
+	departmentType = 0;
+	name = "Genetics Requests Console";
+	pixel_x = -30
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
+"grn" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/requests_console{
+	department = "Security";
+	departmentType = 5;
+	pixel_x = -30
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "gst" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/closed/wall,
 /area/crew_quarters/fitness/locker_room)
+"gsu" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/quartermaster/warehouse";
+	dir = 1;
+	name = "Cargo Warehouse APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/turf/open/floor/plating,
+/area/maintenance/starboard)
 "gwx" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -53575,6 +53672,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+<<<<<<< HEAD
 "gBq" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple/layer3{
@@ -53588,6 +53686,41 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+=======
+"gBb" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 5
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/security/checkpoint/science";
+	dir = 2;
+	name = "Science Checkpoint APC";
+	pixel_y = -23
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel,
+/area/security/checkpoint/science)
+"gDW" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
+"gEO" = (
+/obj/item/radio/intercom{
+	pixel_x = 29
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
+"gFA" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/plating,
+/area/engine/engine_room)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "gGG" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -53628,6 +53761,7 @@
 "gNI" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible/layer3,
 /obj/effect/turf_decal/stripes/line{
+<<<<<<< HEAD
 	dir = 8
 	},
 /obj/structure/cable/yellow{
@@ -53641,6 +53775,145 @@
 	dir = 8;
 	icon_state = "manifold-3"
 	},
+=======
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"gVB" = (
+/obj/machinery/computer/med_data,
+/obj/machinery/power/apc{
+	areastring = "/area/medical/sleeper";
+	dir = 1;
+	name = "Sleepers APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/sleeper)
+"gVW" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/item/radio/intercom,
+/turf/open/floor/plasteel,
+/area/security/checkpoint/medical)
+"gWa" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room)
+"hdH" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/nuke_storage)
+"hez" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/aisat/foyer)
+"hfx" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"hhd" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/bridge";
+	dir = 8;
+	name = "Bridge APC";
+	pixel_x = -24
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
+"hjz" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/dorms";
+	dir = 2;
+	name = "Sleeping Quarters APC";
+	pixel_y = -23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
+"hjJ" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/hallway/secondary/exit/departure_lounge";
+	dir = 1;
+	name = "Departures APC";
+	pixel_y = 23
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
+"hlK" = (
+/obj/structure/closet/secure_closet/detective,
+/obj/item/camera_film,
+/obj/item/camera_film,
+/obj/item/radio/intercom{
+	pixel_y = 25
+	},
+/turf/open/floor/carpet,
+/area/security/detectives_office)
+"hmG" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible,
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -53670,6 +53943,34 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/fitness/locker_room)
+<<<<<<< HEAD
+=======
+"hpm" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/item/radio/intercom{
+	pixel_x = -29
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
+"hpU" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "hrD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	dir = 4
@@ -53715,6 +54016,33 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+<<<<<<< HEAD
+=======
+"hAI" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"hDU" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/machinery/airalarm{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel,
+/area/security/main)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "hGn" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -53807,12 +54135,62 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+<<<<<<< HEAD
+=======
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"hTU" = (
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"hVt" = (
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/engine,
 /area/engine/supermatter)
+<<<<<<< HEAD
+=======
+"hXd" = (
+/obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper,
+/obj/machinery/door/airlock/external{
+	name = "External Airlock";
+	req_access_txt = "13"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
+"hYj" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/kitchen/coldroom";
+	dir = 1;
+	name = "Kitchen APC";
+	pixel_y = 24
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "hYI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
@@ -53828,6 +54206,57 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+<<<<<<< HEAD
+=======
+"hYL" = (
+/obj/machinery/power/apc{
+	areastring = "/area/ai_monitored/turret_protected/ai_upload";
+	dir = 2;
+	name = "AI Upload APC";
+	pixel_y = -23
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai_upload)
+"hZC" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room/external)
+"ibF" = (
+/obj/machinery/power/apc{
+	areastring = "/area/lawoffice";
+	dir = 2;
+	name = "Lawyer's Office APC";
+	pixel_y = -23
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
+"icc" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 9
+	},
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
+"ice" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 5
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "ifH" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
@@ -53837,6 +54266,7 @@
 	dir = 4
 	},
 /obj/structure/cable/yellow{
+<<<<<<< HEAD
 	icon_state = "4-8"
 	},
 /obj/structure/cable/yellow{
@@ -53846,6 +54276,76 @@
 /area/engine/supermatter)
 "iGD" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible/layer1,
+=======
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"iif" = (
+/obj/structure/table,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/clothing/head/welding,
+/obj/item/stack/sheet/mineral/plasma{
+	amount = 35
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/aisat/service)
+"iiw" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
+"ijH" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	pixel_x = 30
+	},
+/turf/open/floor/plasteel/white,
+/area/science/robotics/lab)
+"ipB" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 6
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/security)
+"itU" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 1
+	},
+/obj/item/radio/intercom{
+	pixel_y = -25
+	},
+/turf/open/floor/plasteel,
+/area/janitor)
+"ixd" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/turf/open/space/basic,
+/area/space/nearstation)
+"iCB" = (
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
@@ -53866,8 +54366,41 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
+<<<<<<< HEAD
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
+=======
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"iHp" = (
+/obj/structure/grille/broken,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"iHE" = (
+/obj/structure/table/glass,
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = 7;
+	pixel_y = 1
+	},
+/obj/item/reagent_containers/glass/beaker/cryoxadone{
+	pixel_x = 7;
+	pixel_y = 1
+	},
+/obj/item/radio/intercom{
+	pixel_y = 29
+	},
+/turf/open/floor/plasteel,
+/area/medical/cryo)
+"iJC" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 4
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 	},
 /obj/machinery/atmospherics/pipe/simple/purple/hidden/layer1,
 /turf/open/floor/plasteel/dark,
@@ -53887,10 +54420,28 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+<<<<<<< HEAD
 "iOg" = (
 /obj/structure/closet/radiation,
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
+=======
+"iNo" = (
+/obj/machinery/power/apc{
+	areastring = "/area/security/detectives_office";
+	dir = 1;
+	name = "Detective's Office APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/carpet,
+/area/security/detectives_office)
+"iRE" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 	},
 /obj/machinery/light/small{
 	dir = 4
@@ -53906,6 +54457,81 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
+<<<<<<< HEAD
+=======
+"iUZ" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
+"iXv" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"jdu" = (
+/obj/structure/closet/radiation,
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room/external)
+"jip" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room)
+"jlL" = (
+/obj/item/reagent_containers/spray/plantbgone{
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/spray/plantbgone{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/reagent_containers/spray/plantbgone{
+	pixel_x = 13;
+	pixel_y = 5
+	},
+/obj/item/watertank,
+/obj/item/grenade/chem_grenade/antiweed,
+/obj/structure/table/glass,
+/obj/item/radio/intercom{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
+"jpL" = (
+/obj/structure/table,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/item/storage/toolbox/emergency,
+/obj/item/storage/toolbox/emergency{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/radio/intercom{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel,
+/area/bridge)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "jqp" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 5
@@ -53966,11 +54592,31 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+<<<<<<< HEAD
 "jHA" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 1
+=======
+"jAc" = (
+/obj/machinery/announcement_system,
+/obj/machinery/power/apc{
+	areastring = "/area/tcommsat/computer";
+	dir = 8;
+	name = "Telecomms Lounge APC";
+	pixel_x = -25
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plasteel/grimy,
+/area/tcommsat/computer)
+"jGy" = (
+/obj/machinery/power/smes/engineering,
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 	},
 /obj/structure/window/reinforced{
 	dir = 8
@@ -53984,6 +54630,45 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+<<<<<<< HEAD
+=======
+"jJz" = (
+/obj/machinery/photocopier,
+/obj/item/radio/intercom{
+	pixel_y = -24
+	},
+/turf/open/floor/wood,
+/area/library)
+"jLo" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/visible{
+	dir = 9
+	},
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"jQo" = (
+/obj/structure/table/reinforced,
+/obj/item/tank/internals/emergency_oxygen/engi{
+	pixel_x = 5
+	},
+/obj/item/clothing/gloves/color/black,
+/obj/item/clothing/glasses/meson/engine,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/structure/sign/warning/electricshock{
+	pixel_y = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room)
+"jSs" = (
+/obj/structure/reflector/double,
+/turf/open/floor/plating,
+/area/engine/engine_room)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "jVA" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/plasteel,
@@ -53992,7 +54677,71 @@
 /obj/effect/turf_decal/tile/yellow,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"kaB" = (
+/obj/machinery/power/apc{
+	areastring = "/area/ai_monitored/storage/eva";
+	dir = 1;
+	name = "EVA APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "kcd" = (
+<<<<<<< HEAD
+=======
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"kcl" = (
+/obj/machinery/power/apc{
+	areastring = "/area/medical/chemistry";
+	dir = 8;
+	name = "Chemistry APC";
+	pixel_x = -25
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/white,
+/area/medical/chemistry)
+"kfj" = (
+/obj/item/radio/intercom{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel/chapel{
+	dir = 4
+	},
+/area/chapel/main)
+"klG" = (
+/obj/machinery/power/apc{
+	areastring = "/area/hydroponics";
+	dir = 1;
+	name = "Hydroponics APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
+"kmI" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/item/radio/intercom{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
+"knv" = (
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
@@ -54010,14 +54759,112 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer1{
 	dir = 4
+=======
+/obj/machinery/button/door{
+	id = "engsm";
+	name = "Radiation Shutters Control";
+	pixel_y = 24;
+	req_access_txt = "10"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"kvC" = (
+/obj/machinery/computer/bank_machine,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/bot_white,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/ai_monitored/nuke_storage";
+	dir = 1;
+	name = "Vault APC";
+	pixel_y = 23
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/nuke_storage)
+"kyS" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/medical/medbay/lobby";
+	dir = 2;
+	name = "Medical Lobby APC";
+	pixel_y = -24
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/medical)
+"kAG" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/crew_quarters/heads/chief)
+"kAU" = (
+/obj/machinery/power/emitter/anchored{
+	dir = 8;
+	state = 2
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+<<<<<<< HEAD
 /turf/open/floor/engine,
 /area/engine/supermatter)
+=======
+/turf/open/floor/plating,
+/area/engine/engine_room)
+"kBb" = (
+/obj/machinery/power/apc{
+	areastring = "/area/maintenance/port/fore";
+	dir = 1;
+	name = "Port Fore Maintenance APC";
+	pixel_y = 24
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"kDh" = (
+/obj/machinery/suit_storage_unit/security,
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/ai_monitored/security/armory";
+	dir = 8;
+	name = "Armory APC";
+	pixel_x = -25
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel,
+/area/ai_monitored/security/armory)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "kLE" = (
 /obj/machinery/power/apc{
 	areastring = "/area/crew_quarters/fitness/locker_room";
@@ -54032,11 +54879,79 @@
 /area/maintenance/port/fore)
 "lhs" = (
 /obj/effect/turf_decal/stripes/line{
+<<<<<<< HEAD
+=======
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/engine/engine_room/external)
+"kTN" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/structure/noticeboard{
+	dir = 8;
+	pixel_x = 27
+	},
+/obj/item/paper/monitorkey,
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/heads/chief";
+	dir = 2;
+	name = "CE Office APC";
+	pixel_y = -23
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/heads/chief)
+"kVx" = (
+/obj/machinery/hydroponics/constructable,
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/item/radio/intercom{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel,
+/area/hydroponics)
+"kXJ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	pixel_x = 30
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
+"leE" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/security)
+"leR" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 	dir = 1
 	},
 /obj/machinery/light{
 	dir = 1
 	},
+<<<<<<< HEAD
 /turf/open/floor/engine,
 /area/engine/supermatter)
 "ljD" = (
@@ -54052,6 +54967,33 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+=======
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"liH" = (
+/obj/machinery/ntnet_relay,
+/obj/machinery/power/apc{
+	areastring = "/area/tcommsat/server";
+	dir = 2;
+	name = "Telecomms Servers APC";
+	pixel_y = -23
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/tcommsat/server)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "ljF" = (
 /obj/machinery/shower{
 	dir = 1
@@ -54059,6 +55001,40 @@
 /obj/structure/curtain,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/fitness/locker_room)
+<<<<<<< HEAD
+=======
+"ltw" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/light,
+/obj/item/radio/intercom{
+	dir = 2;
+	pixel_y = -28
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
+"lwp" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room)
+"lxq" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "lyr" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -54067,6 +55043,32 @@
 /obj/effect/spawner/lootdrop/grille_or_trash,
 /turf/open/floor/plating,
 /area/maintenance/fore)
+<<<<<<< HEAD
+=======
+"lzi" = (
+/obj/structure/rack,
+/obj/item/storage/bag/plants/portaseeder,
+/obj/item/plant_analyzer,
+/obj/item/plant_analyzer{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -23
+	},
+/turf/open/floor/grass,
+/area/hydroponics/garden)
+"lzq" = (
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1;
+	pixel_y = 1
+	},
+/obj/machinery/light/small,
+/turf/open/floor/engine,
+/area/engine/engine_room/external)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "lDQ" = (
 /obj/machinery/rnd/production/techfab/department/engineering,
 /turf/open/floor/plasteel,
@@ -54075,6 +55077,58 @@
 /obj/machinery/chem_master/condimaster,
 /turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
 /area/crew_quarters/kitchen/coldroom)
+<<<<<<< HEAD
+=======
+"lEO" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/maintenance/disposal";
+	dir = 8;
+	name = "Waste Disposal APC";
+	pixel_x = -25;
+	pixel_y = 3
+	},
+/turf/open/floor/plating,
+/area/maintenance/disposal)
+"lFs" = (
+/obj/structure/lattice,
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
+"lFx" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/heads/hos";
+	dir = 4;
+	name = "Head of Security's Office APC";
+	pixel_x = 24
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/hos)
+"lKe" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/disposal/bin,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/heads/chief)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "lKk" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer{
 	icon_state = "freezer";
@@ -54105,7 +55159,22 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+<<<<<<< HEAD
 /turf/open/floor/engine,
+=======
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room)
+"mbB" = (
+/obj/structure/table,
+/obj/item/radio/intercom{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/aisat/foyer)
+"mgs" = (
+/obj/structure/sign/warning/electricshock,
+/turf/closed/wall/r_wall,
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 /area/engine/supermatter)
 "mjA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -54132,6 +55201,51 @@
 /obj/structure/curtain,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/fitness/locker_room)
+<<<<<<< HEAD
+=======
+"mlN" = (
+/obj/structure/closet/secure_closet/freezer/cream_pie,
+/obj/item/radio/intercom{
+	pixel_x = -30
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/theatre)
+"mnC" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/theatre";
+	dir = 2;
+	name = "Theatre APC";
+	pixel_y = -23
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"moJ" = (
+/obj/structure/rack,
+/obj/item/storage/belt/utility,
+/obj/item/wrench,
+/obj/item/weldingtool,
+/obj/item/clothing/head/welding{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "moO" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Engine Room";
@@ -54162,9 +55276,68 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/supermatter)
+<<<<<<< HEAD
 "mCI" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
+=======
+"mtv" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/maintenance/starboard";
+	dir = 1;
+	name = "Starboard Maintenance APC";
+	pixel_y = 24
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard)
+"mwg" = (
+/obj/structure/table,
+/obj/item/stack/sheet/plasteel{
+	amount = 10
+	},
+/obj/item/stack/rods/fifty,
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	pixel_x = 29
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"myk" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/gateway";
+	dir = 2;
+	name = "Gateway APC";
+	pixel_y = -23
+	},
+/turf/open/floor/plasteel,
+/area/gateway)
+"mBI" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/structure/sign/warning/securearea{
+	pixel_y = 32
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
+"mFO" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer1{
 	dir = 5
@@ -54188,11 +55361,86 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
+<<<<<<< HEAD
 "mPw" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
+=======
+"mHS" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/machinery/camera{
+	c_tag = "Security - Main Hall 2";
+	dir = 8;
+	network = list("ss13","Security")
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
+"mJV" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"mKc" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/radio/intercom{
+	pixel_x = 30
+	},
+/turf/open/floor/plasteel,
+/area/vacant_room/commissary)
+"mLl" = (
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/security)
+"mNo" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"mNC" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"mSf" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/item/radio/intercom{
+	pixel_x = 30
+	},
+/turf/open/floor/plasteel,
+/area/security/processing)
+"mUn" = (
+/obj/effect/turf_decal/tile/yellow{
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -54224,6 +55472,22 @@
 /obj/machinery/atmospherics/pipe/simple/purple/hidden/layer1,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"mVy" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 5
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/item/clothing/head/cone,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "mXC" = (
 /obj/structure/rack,
 /obj/item/storage/box/lights/mixed,
@@ -54245,21 +55509,83 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/engine,
 /area/engine/supermatter)
+<<<<<<< HEAD
 "mZS" = (
 /obj/structure/girder,
 /turf/open/floor/plasteel/dark,
 /area/engine/supermatter)
+=======
+"naE" = (
+/obj/machinery/power/apc{
+	areastring = "/area/security/brig";
+	dir = 2;
+	name = "Brig APC";
+	pixel_y = -23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "naO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"nbA" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "njx" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 28
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
+<<<<<<< HEAD
+=======
+"nkG" = (
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	dir = 2;
+	pixel_y = -28
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
+"nlD" = (
+/obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "nnE" = (
 /obj/machinery/atmospherics/components/trinary/filter/flipped/layer1{
 	dir = 4;
@@ -54281,8 +55607,85 @@
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "nsr" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer1,
+/obj/effect/turf_decal/stripes/line,
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"ntE" = (
+/obj/item/radio/intercom{
+	pixel_x = 29
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
+"nuq" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
+/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/area/crew_quarters/kitchen/coldroom)
+"nvs" = (
+/obj/structure/reagent_dispensers/beerkeg,
+/obj/structure/light_construct/small{
+	dir = 1
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/maintenance/department/crew_quarters/bar";
+	cell_type = null;
+	dir = 1;
+	name = "Abandoned Bar APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/maintenance/department/crew_quarters/bar)
+"nwZ" = (
+/obj/structure/table,
+/obj/machinery/cell_charger,
+/obj/machinery/power/apc{
+	areastring = "/area/medical/cryo";
+	dir = 1;
+	name = "Cryogenics APC";
+	pixel_y = 23
+	},
+<<<<<<< HEAD
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
+"nsr" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
+=======
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel,
+/area/medical/cryo)
+"nyj" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
+"nyl" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	pixel_x = -29
+	},
+/turf/open/floor/plasteel/dark,
+/area/bridge)
+"nyx" = (
+/obj/machinery/light{
+	dir = 1
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 	},
 /obj/machinery/atmospherics/components/trinary/filter/flipped/layer1{
 	icon_state = "filter_off_f_map-1";
@@ -54303,11 +55706,71 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+<<<<<<< HEAD
 "nuq" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
 /turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
 /area/crew_quarters/kitchen/coldroom)
 "nyL" = (
+=======
+"nCF" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Hallway - Escape Right Wing 1";
+	dir = 1;
+	network = list("ss13")
+	},
+/obj/item/radio/intercom{
+	dir = 2;
+	pixel_y = -28
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
+"nDW" = (
+/obj/item/radio/intercom{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel/chapel{
+	dir = 8
+	},
+/area/chapel/main)
+"nEo" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"nEL" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -54320,6 +55783,7 @@
 /turf/open/floor/plasteel/dark,
 /area/engine/supermatter)
 "nIf" = (
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel/dark,
 /area/engine/supermatter)
@@ -54333,6 +55797,79 @@
 	c_tag = "Engine -External Topright";
 	dir = 4;
 	network = list("ss13","Engineering","Engine")
+=======
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"nLJ" = (
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"nNJ" = (
+/turf/open/floor/engine,
+/area/engine/supermatter)
+"nOy" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/security)
+"nPi" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/fitness";
+	dir = 8;
+	name = "Fitness APC";
+	pixel_x = -25
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
+"nPz" = (
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/item/analyzer,
+/obj/item/analyzer,
+/obj/item/analyzer,
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"nRb" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/junction{
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/area/crew_quarters/kitchen/coldroom)
+"nUo" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
@@ -54349,8 +55886,40 @@
 	dir = 1;
 	name = "Atmos to Gas"
 	},
+<<<<<<< HEAD
 /turf/open/floor/engine,
 /area/engine/supermatter)
+=======
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
+"nZS" = (
+/obj/structure/table/wood,
+/obj/item/radio/intercom{
+	pixel_x = -30
+	},
+/turf/open/floor/carpet,
+/area/library/lounge)
+"oak" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"odJ" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 8
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/aisat/foyer)
+"oee" = (
+/obj/item/radio/intercom{
+	pixel_x = -29
+	},
+/turf/open/floor/plating,
+/area/storage/tech)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "ofx" = (
 /obj/structure/plasticflaps/opaque,
 /obj/machinery/navbeacon{
@@ -54381,6 +55950,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+<<<<<<< HEAD
 "omp" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple/layer3{
@@ -54389,6 +55959,19 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+=======
+"oms" = (
+/obj/machinery/disposal/bin,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/entry)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "omI" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
@@ -54401,6 +55984,7 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel/dark,
+<<<<<<< HEAD
 /area/engine/supermatter)
 "oAP" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
@@ -54408,12 +55992,164 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/supermatter)
+=======
+/area/engine/engine_room)
+"oqF" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/security)
+"osG" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 10
+	},
+/obj/machinery/camera/autoname{
+	dir = 9
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/item/twohanded/required/kirbyplants/random,
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"oAn" = (
+/obj/item/reagent_containers/food/snacks/salad/validsalad,
+/turf/open/floor/plating,
+/area/engine/engine_room)
+"oAP" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer1,
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 4;
+	name = "Mix to Gas"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"oBN" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/holopad,
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
+"oBZ" = (
+/obj/machinery/computer/bounty,
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/heads/hop";
+	dir = 1;
+	name = "Head of Personnel's Office APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/hop)
+"oCw" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/engine/engine_room/external)
+"oDl" = (
+/obj/machinery/door/window/westright,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/engine/engine_room/external)
+"oDI" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/meter,
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"oGu" = (
+/obj/machinery/power/apc{
+	areastring = "/area/ai_monitored/turret_protected/aisat/service";
+	dir = 8;
+	name = "MiniSat Service APC";
+	pixel_x = -25
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/aisat/service)
+"oHN" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 9
+	},
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space/nearstation)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "oIG" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+<<<<<<< HEAD
+=======
+"oKN" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/security/processing";
+	dir = 1;
+	name = "Labor Processing APC";
+	pixel_y = 23
+	},
+/turf/open/floor/plasteel,
+/area/security/processing)
+"oMf" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/components/binary/pump{
+	dir = 4;
+	name = "Atmos to Loop"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"oMw" = (
+/obj/machinery/camera{
+	c_tag = "Research - Toxins Main 2";
+	dir = 2;
+	network = list("ss13","Research")
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/obj/item/radio/intercom{
+	pixel_y = 29
+	},
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "oNF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
@@ -54435,6 +56171,61 @@
 "oPe" = (
 /turf/closed/wall/r_wall,
 /area/lawoffice)
+<<<<<<< HEAD
+=======
+"oRe" = (
+/obj/machinery/airalarm{
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel/white/side{
+	dir = 6
+	},
+/area/science/research)
+"oVd" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room/external)
+"oVG" = (
+/obj/machinery/power/apc/highcap/five_k{
+	dir = 2;
+	name = "AI Chamber APC";
+	areastring = "/area/ai_monitored/turret_protected/ai";
+	pixel_y = -23
+	},
+/obj/machinery/flasher{
+	id = "AI";
+	pixel_x = -11;
+	pixel_y = -24
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "aishutters";
+	name = "AI privacy shutters"
+	},
+/obj/machinery/door/window/eastleft{
+	name = "AI Access";
+	req_access_txt = "16"
+	},
+/turf/open/floor/circuit,
+/area/ai_monitored/turret_protected/ai)
+"oVP" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/structure/sign/poster/official/random{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "oWa" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/effect/turf_decal/bot{
@@ -54442,6 +56233,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+"oWU" = (
+/obj/machinery/power/apc{
+	areastring = "/area/medical/surgery";
+	dir = 1;
+	name = "Surgery APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port)
 "pgT" = (
 /obj/machinery/atmospherics/components/binary/pump/layer3{
 	dir = 8;
@@ -54464,12 +56267,46 @@
 /obj/machinery/atmospherics/pipe/simple/purple/hidden/layer1,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"pkz" = (
+/obj/machinery/power/apc{
+	areastring = "/area/library";
+	dir = 8;
+	name = "Library APC";
+	pixel_x = -25
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/turf/open/floor/plating,
+/area/maintenance/fore)
 "plI" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 27
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
+"pmp" = (
+/obj/machinery/computer/security{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/newscaster{
+	pixel_x = -30
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/security/checkpoint/medical)
 "poI" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -54494,6 +56331,41 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+<<<<<<< HEAD
+=======
+"pwb" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer1,
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space/nearstation)
+"pwu" = (
+/obj/machinery/power/apc{
+	areastring = "/area/science/explab";
+	dir = 1;
+	name = "Experimentation APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/explab)
+"pxQ" = (
+/obj/item/clothing/head/cone,
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/security)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "pyl" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 6
@@ -54509,6 +56381,7 @@
 	},
 /turf/closed/wall/r_wall,
 /area/engine/supermatter)
+<<<<<<< HEAD
 "pIz" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/atmospherics/pipe/heat_exchanging/simple/layer3,
@@ -54516,6 +56389,76 @@
 	c_tag = "Engine -External Topleft";
 	dir = 8;
 	network = list("ss13","Engineering","Engine")
+=======
+"pGU" = (
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room)
+"pHi" = (
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"pLI" = (
+/obj/machinery/power/emitter/anchored{
+	dir = 4;
+	state = 2
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/area/engine/engine_room)
+"pMU" = (
+/obj/machinery/power/apc{
+	areastring = "/area/storage/tools";
+	dir = 1;
+	name = "Aux Tool Storage APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard/fore)
+"pNR" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/security/courtroom";
+	dir = 8;
+	name = "Courtroom APC";
+	pixel_x = -25;
+	pixel_y = 3
+	},
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plating,
+/area/maintenance/department/security)
+"pSa" = (
+/obj/machinery/camera{
+	c_tag = "Secure - EVA";
+	dir = 8;
+	network = list("ss13","Secure")
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel,
+/area/ai_monitored/storage/eva)
+"pSm" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 4
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
@@ -54528,7 +56471,23 @@
 	pixel_y = 3
 	},
 /turf/open/floor/plasteel,
+<<<<<<< HEAD
 /area/engine/engineering)
+=======
+/area/engine/engine_room)
+"pTq" = (
+/obj/machinery/power/apc{
+	areastring = "/area/medical/medbay/central";
+	dir = 1;
+	name = "Medical Main APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "pWc" = (
 /obj/machinery/camera/motion{
 	c_tag = "Secure - Captain's Office External";
@@ -54536,7 +56495,57 @@
 	network = list("AISat")
 	},
 /turf/open/space/basic,
+<<<<<<< HEAD
 /area/space)
+=======
+/area/space/nearstation)
+"pYp" = (
+/obj/structure/table,
+/obj/machinery/power/apc{
+	areastring = "/area/medical/genetics/cloning";
+	dir = 2;
+	name = "Cloning Bay APC";
+	pixel_y = -23
+	},
+/obj/structure/cable/yellow,
+/obj/item/toy/figure/geneticist,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics/cloning)
+"qag" = (
+/obj/machinery/power/rad_collector/anchored,
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 4
+	},
+/obj/structure/window/plasma/reinforced{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/circuit/green,
+/area/engine/supermatter)
+"qkE" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/flashlight,
+/obj/item/pipe_dispenser,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Engine - SMES";
+	dir = 8;
+	network = list("ss13","Engineering","Engine")
+	},
+/obj/structure/sign/warning/electricshock{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "qlL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -54555,12 +56564,103 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+<<<<<<< HEAD
 "qxF" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer{
 	icon_state = "freezer";
 	dir = 4
 	},
 /obj/machinery/light{
+=======
+"qoF" = (
+/obj/structure/closet/crate/bin,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"qpi" = (
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/obj/item/radio/intercom{
+	dir = 2;
+	pixel_y = -28
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
+"qpo" = (
+/obj/structure/table/glass,
+/obj/machinery/power/apc{
+	areastring = "/area/medical/virology";
+	dir = 2;
+	name = "Virology APC";
+	pixel_y = -23
+	},
+/obj/structure/cable/yellow,
+/obj/item/paper_bin{
+	pixel_x = -2;
+	pixel_y = 5
+	},
+/obj/item/pen/red,
+/obj/machinery/doorButtons/airlock_controller{
+	idExterior = "virology_airlock_exterior";
+	idInterior = "virology_airlock_interior";
+	idSelf = "virology_airlock_control";
+	name = "Virology Access Console";
+	pixel_x = 22;
+	pixel_y = 8;
+	req_access_txt = "39"
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
+"qqo" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/bot,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
+"qrk" = (
+/obj/machinery/smartfridge/chemistry/virology/preloaded,
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/green{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -22
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
+"qxz" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/item/twohanded/required/kirbyplants/random,
+/obj/machinery/button/door{
+	dir = 2;
+	id = "supermatter_external";
+	name = "Supermatter External Lockdown";
+	pixel_x = 5;
+	pixel_y = -24;
+	req_access_txt = "24"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"qxF" = (
+/obj/effect/turf_decal/stripes/line{
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -54608,6 +56708,40 @@
 	},
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness/recreation)
+<<<<<<< HEAD
+=======
+"qCl" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/maintenance/department/medical";
+	dir = 2;
+	name = "Medical Maintenance APC";
+	pixel_y = -24
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/medical)
+"qDQ" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room)
+"qHu" = (
+/obj/structure/table,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/radio/intercom{
+	dir = 2;
+	pixel_y = -28
+	},
+/turf/open/floor/plasteel/white,
+/area/science/explab)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "qIb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
@@ -54617,9 +56751,112 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/fitness/locker_room)
+<<<<<<< HEAD
 "qOX" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
+=======
+"qKO" = (
+/obj/structure/grille,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"qLM" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 10
+	},
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
+"qMo" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/engine/engineering";
+	dir = 1;
+	name = "Engineering APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"qOX" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer1{
+	dir = 10
+	},
+/obj/machinery/holopad,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"qXl" = (
+/turf/closed/wall/r_wall,
+/area/maintenance/department/engine)
+"qYj" = (
+/obj/machinery/power/apc{
+	areastring = "/area/chapel/office";
+	dir = 8;
+	name = "Chapel Office APC";
+	pixel_x = -25
+	},
+/obj/structure/cable/yellow,
+/turf/open/floor/plating,
+/area/maintenance/starboard)
+"qYJ" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple,
+/obj/structure/lattice/catwalk,
+/turf/open/space/basic,
+/area/space/nearstation)
+"qZu" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"rck" = (
+/obj/machinery/power/apc{
+	areastring = "/area/maintenance/port/aft";
+	dir = 1;
+	name = "Port Aft Maintenance APC";
+	pixel_y = 24
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"rcn" = (
+/obj/structure/window/reinforced{
+	dir = 1
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -54636,6 +56873,7 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+<<<<<<< HEAD
 "riR" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced,
@@ -54650,6 +56888,17 @@
 	},
 /turf/open/floor/plating,
 /area/crew_quarters/heads/chief)
+=======
+"ria" = (
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "rmC" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -54686,6 +56935,40 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+<<<<<<< HEAD
+=======
+"rwy" = (
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
+	dir = 4
+	},
+/obj/machinery/meter,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"rBV" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"rDp" = (
+/obj/machinery/power/apc/highcap/ten_k{
+	areastring = "/area/engine/atmos";
+	dir = 8;
+	name = "Atmospherics APC";
+	pixel_x = -25
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "rDY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
@@ -54721,18 +57004,68 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible/layer3{
 	dir = 6
 	},
+<<<<<<< HEAD
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
+=======
+/turf/open/space/basic,
+/area/space/nearstation)
+"rQg" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"rQo" = (
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1;
+	pixel_y = 1
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 5
 	},
 /turf/open/floor/engine,
+<<<<<<< HEAD
 /area/engine/supermatter)
 "sgW" = (
 /obj/machinery/power/terminal{
 	dir = 4
 	},
+=======
+/area/engine/engine_room/external)
+"rSs" = (
+/obj/machinery/computer/monitor,
+/obj/item/radio/intercom{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/aisat/service)
+"rUR" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"rVP" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/disposalpipe/segment,
+/obj/item/radio/intercom{
+	pixel_x = 29
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/virology)
+"rYP" = (
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
@@ -54743,11 +57076,47 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/dark,
+<<<<<<< HEAD
 /area/engine/supermatter)
 "sjE" = (
 /obj/structure/reflector/box/anchored,
 /turf/open/floor/plasteel/dark,
 /area/engine/supermatter)
+=======
+/area/crew_quarters/heads/chief)
+"sfL" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/science/server)
+"sjB" = (
+/obj/machinery/atmospherics/pipe/simple/green/visible{
+	dir = 9
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"skk" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -22
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/aisat/foyer)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "skl" = (
 /obj/machinery/door/airlock/engineering/glass/critical{
 	heat_proof = 1;
@@ -54786,8 +57155,26 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
+<<<<<<< HEAD
 /turf/open/floor/engine,
 /area/engine/supermatter)
+=======
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/plating,
+/area/engine/engine_room)
+"sqt" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/hallway/primary/central";
+	dir = 1;
+	name = "Central Hallway Maintenance APC";
+	pixel_y = 24
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "srD" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -54833,8 +57220,27 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/visible/layer1{
 	dir = 9
 	},
+<<<<<<< HEAD
 /turf/open/floor/engine,
 /area/engine/supermatter)
+=======
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room)
+"sCI" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/closet/athletic_mixed,
+/obj/item/radio/intercom{
+	pixel_y = 29
+	},
+/turf/open/floor/plasteel,
+/area/crew_quarters/fitness)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "sEf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/structure/disposalpipe/segment,
@@ -54846,6 +57252,57 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+<<<<<<< HEAD
+=======
+"sEr" = (
+/obj/machinery/door/firedoor,
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 1
+	},
+/obj/machinery/door/airlock/external{
+	name = "External Airlock";
+	req_access_txt = "13"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/stripes/line{
+	dir = 2
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/engine)
+"sEU" = (
+/obj/machinery/atmospherics/pipe/layer_manifold/visible,
+/obj/effect/turf_decal/delivery,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/engine/engine_room)
+"sHj" = (
+/obj/item/radio/intercom{
+	pixel_x = 29
+	},
+/turf/open/floor/plasteel/white/side{
+	dir = 9
+	},
+/area/science/research)
+"sKR" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/machinery/portable_atmospherics/canister,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"sLW" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/holopad,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "sMe" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -54854,6 +57311,7 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
+<<<<<<< HEAD
 "sTg" = (
 /obj/machinery/power/terminal{
 	dir = 4
@@ -54873,6 +57331,42 @@
 /obj/machinery/atmospherics/pipe/layer_manifold,
 /turf/open/floor/engine,
 /area/engine/supermatter)
+=======
+"sPB" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	pixel_x = -29
+	},
+/turf/open/floor/plasteel/dark,
+/area/medical/morgue)
+"sTB" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/maintenance/aft";
+	dir = 1;
+	name = "Aft Maintenance APC";
+	pixel_y = 28
+	},
+/turf/open/floor/plating,
+/area/maintenance/aft)
+"sXg" = (
+/obj/structure/chair,
+/obj/item/radio/intercom{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/lobby)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "sYx" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -54886,7 +57380,35 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
+<<<<<<< HEAD
 /turf/open/floor/engine,
+=======
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"tdw" = (
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/heads/cmo";
+	dir = 8;
+	name = "CMO's Office APC";
+	pixel_x = -25
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"tfI" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/security)
+"tlY" = (
+/obj/machinery/status_display/evac,
+/turf/closed/wall/r_wall,
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 /area/engine/supermatter)
 "tmV" = (
 /obj/effect/turf_decal/stripes/line{
@@ -54895,8 +57417,24 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
+<<<<<<< HEAD
 /obj/structure/cable{
 	icon_state = "1-2"
+=======
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"tok" = (
+/obj/machinery/vending/wardrobe/jani_wardrobe,
+/obj/machinery/light_switch{
+	pixel_x = -8;
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel,
+/area/janitor)
+"tpd" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 	},
 /obj/machinery/door/poddoor/shutters/preopen{
 	id = "Engine_Shutter"
@@ -54912,6 +57450,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible/layer1{
 	dir = 9
 	},
+<<<<<<< HEAD
 /turf/open/floor/engine,
 /area/engine/supermatter)
 "tqz" = (
@@ -54920,7 +57459,36 @@
 	dir = 10
 	},
 /turf/open/floor/engine,
+=======
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room)
+"tzD" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/item/radio/intercom{
+	dir = 2;
+	pixel_y = -28
+	},
+/turf/open/floor/wood,
+/area/library)
+"tBY" = (
+/obj/machinery/atmospherics/pipe/simple/green/visible,
+/turf/closed/wall/r_wall,
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 /area/engine/supermatter)
+"tFw" = (
+/obj/effect/turf_decal/tile/red,
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
 "tHJ" = (
 /obj/structure/lattice/catwalk,
 /obj/machinery/camera{
@@ -54930,6 +57498,14 @@
 	},
 /turf/open/space/basic,
 /area/space/nearstation)
+"tOh" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/freezer,
+/obj/item/radio/intercom{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/warehouse)
 "tQN" = (
 /obj/machinery/shower{
 	dir = 1
@@ -54965,6 +57541,56 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/crew_quarters/fitness/locker_room)
+<<<<<<< HEAD
+=======
+"uaG" = (
+/obj/item/radio/intercom{
+	pixel_y = 24
+	},
+/turf/open/floor/wood,
+/area/library)
+"ubS" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel,
+/area/ai_monitored/storage/eva)
+"udR" = (
+/obj/structure/sign/warning/enginesafety{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
+"ueA" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Hallway - Escape Left Wing 1";
+	dir = 1;
+	network = list("ss13")
+	},
+/obj/item/radio/intercom{
+	dir = 2;
+	pixel_y = -28
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit/departure_lounge)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "ueN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/disposalpipe/segment,
@@ -54976,6 +57602,26 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+<<<<<<< HEAD
+=======
+"ufN" = (
+/obj/machinery/photocopier,
+/obj/machinery/airalarm{
+	dir = 4;
+	pixel_x = -23
+	},
+/turf/open/floor/wood,
+/area/lawoffice)
+"ugj" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/camera{
+	c_tag = "Engine -External Topleft";
+	dir = 8;
+	network = list("ss13","Engineering","Engine")
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "ugT" = (
 /obj/structure/closet/radiation,
 /obj/effect/turf_decal/stripes/line{
@@ -54990,6 +57636,41 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+<<<<<<< HEAD
+=======
+"uiU" = (
+/obj/structure/lattice/catwalk,
+/obj/machinery/camera{
+	c_tag = "Engine -External Bottomleft";
+	dir = 8;
+	network = list("ss13","Engineering","Engine")
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
+"unF" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/spawner/lootdrop/crate_spawner,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/security)
+"uoF" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/security)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "upM" = (
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -55001,6 +57682,92 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+<<<<<<< HEAD
+=======
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"utg" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room)
+"utL" = (
+/obj/structure/table,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/glass/fifty,
+/obj/effect/turf_decal/tile/yellow,
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/construction/mining/aux_base";
+	dir = 4;
+	name = "Aux Base APC";
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"uva" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3,
+/obj/machinery/airalarm{
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel,
+/area/science/storage)
+"uwG" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 9
+	},
+/obj/item/radio/intercom{
+	pixel_x = 30
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
+"uwV" = (
+/turf/closed/wall/r_wall,
+/area/engine/engine_room)
+"uzp" = (
+/obj/machinery/power/apc{
+	areastring = "/area/ai_monitored/turret_protected/aisat/foyer";
+	dir = 4;
+	name = "MiniSat Main APC";
+	pixel_x = 24
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/aisat/foyer)
+"uzG" = (
+/obj/machinery/power/apc{
+	areastring = "/area/science/research";
+	dir = 2;
+	name = "Science Main APC";
+	pixel_y = -23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"uzT" = (
+/obj/machinery/power/smes/engineering,
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -55046,6 +57813,21 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+"uRy" = (
+/obj/machinery/power/apc{
+	areastring = "/area/quartermaster/miningdock";
+	dir = 1;
+	name = "Mining Dock APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/area/maintenance/starboard)
 "uTy" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -55080,12 +57862,70 @@
 	icon_state = "pipe11-3";
 	dir = 9
 	},
+<<<<<<< HEAD
 /turf/open/space/basic,
 /area/space/nearstation)
 "vdQ" = (
 /obj/machinery/atmospherics/pipe/manifold4w/general/visible,
 /turf/open/floor/plasteel/dark,
 /area/engine/supermatter)
+=======
+/turf/open/floor/plating,
+/area/engine/engine_room)
+"vch" = (
+/obj/machinery/disposal/bin,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_x = -24;
+	pixel_y = 8
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -22
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/qm)
+"vcT" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/bar";
+	dir = 1;
+	name = "Bar APC";
+	pixel_y = 23
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
+"vdQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 10
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"vgy" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "viK" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer3{
 	dir = 4
@@ -55097,6 +57937,27 @@
 /obj/machinery/atmospherics/pipe/simple/purple/hidden/layer1,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"vjd" = (
+/obj/structure/rack,
+/obj/item/gun/energy/ionrifle,
+/obj/item/gun/energy/temperature/security,
+/obj/item/clothing/suit/armor/laserproof,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "vjt" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible/layer3{
 	dir = 8;
@@ -55122,6 +57983,44 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
+<<<<<<< HEAD
+=======
+"voh" = (
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/obj/effect/spawner/lootdrop/grille_or_trash,
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/fore)
+"vpa" = (
+/obj/machinery/atmospherics/pipe/manifold/orange/visible{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/meter,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"vqS" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	pixel_y = 25
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/captain/private)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "vtD" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -55162,9 +58061,47 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+<<<<<<< HEAD
 /turf/open/floor/engine,
 /area/engine/supermatter)
 "vLE" = (
+=======
+/obj/structure/table,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/stack/sheet/plasteel{
+	amount = 10
+	},
+/turf/open/floor/plasteel,
+/area/engine/engineering)
+"vAo" = (
+/obj/machinery/power/emitter{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/engine/engine_room)
+"vBp" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 4
+	},
+/obj/machinery/meter,
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room)
+"vBQ" = (
+/obj/machinery/power/apc/highcap/ten_k{
+	areastring = "/area/janitor";
+	dir = 8;
+	name = "Custodial Closet APC";
+	pixel_x = -25
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plating,
+/area/maintenance/aft)
+"vFq" = (
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -55174,6 +58111,41 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+<<<<<<< HEAD
+=======
+"vHF" = (
+/obj/item/radio/intercom{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/ai_upload)
+"vIe" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 10
+	},
+/obj/item/radio/intercom{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel,
+/area/security/brig)
+"vLi" = (
+/obj/machinery/power/apc{
+	areastring = "/area/maintenance/port";
+	dir = 8;
+	name = "Port Maintenance APC";
+	pixel_x = -24
+	},
+/turf/open/floor/plating,
+/area/maintenance/port)
+"vLE" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/airalarm{
+	dir = 1;
+	pixel_y = -22
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "vMB" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -55210,11 +58182,99 @@
 /area/engine/supermatter)
 "vUd" = (
 /obj/machinery/atmospherics/components/binary/pump{
+<<<<<<< HEAD
 	dir = 8;
 	name = "Mix to Gas"
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/supermatter)
+=======
+	dir = 2;
+	name = "Mix Bypass"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"vVH" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/corner,
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"vXg" = (
+/obj/machinery/dna_scannernew,
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/genetics)
+"waf" = (
+/obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"wia" = (
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
+/obj/structure/closet/crate,
+/obj/item/paicard,
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/security)
+"wkM" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/structure/rack,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/machinery/camera{
+	c_tag = "Civilian - Tool Storage";
+	dir = 4;
+	network = list("ss13")
+	},
+/obj/item/radio/intercom{
+	pixel_x = -29
+	},
+/turf/open/floor/plasteel,
+/area/storage/tools)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "wlc" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -55252,11 +58312,24 @@
 	dir = 4;
 	icon_state = "manifoldlayer"
 	},
+<<<<<<< HEAD
 /obj/machinery/atmospherics/components/binary/valve/digital/layer1{
 	name = "Output to SPACE"
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+=======
+/turf/open/space/basic,
+/area/space/nearstation)
+"wod" = (
+/obj/structure/table,
+/obj/item/toy/figure/borg,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/aisat/foyer)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "wok" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -55269,10 +58342,83 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+<<<<<<< HEAD
 "wIe" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible/layer3{
 	dir = 4
 	},
+=======
+"wrV" = (
+/obj/structure/kitchenspike,
+/obj/item/radio/intercom{
+	dir = 2;
+	pixel_y = -28
+	},
+/turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
+/area/crew_quarters/kitchen/coldroom)
+"wtu" = (
+/obj/structure/bed,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/light_switch{
+	pixel_x = -24
+	},
+/obj/item/bedsheet/dorms,
+/obj/machinery/airalarm{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel/dark,
+/area/crew_quarters/dorms)
+"wvW" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/effect/holodeck_effect/cards,
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"wwX" = (
+/obj/machinery/computer/cargo,
+/obj/item/radio/intercom{
+	pixel_y = 25
+	},
+/turf/open/floor/wood,
+/area/crew_quarters/heads/hop)
+"wxZ" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/security/checkpoint";
+	dir = 8;
+	name = "Docks Checkpoint APC";
+	pixel_x = -25
+	},
+/turf/open/floor/plasteel,
+/area/security/checkpoint)
+"wzU" = (
+/obj/machinery/atmospherics/pipe/manifold/green/visible,
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
@@ -55281,6 +58427,7 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+<<<<<<< HEAD
 "wLF" = (
 /obj/machinery/atmospherics/components/binary/pump{
 	dir = 1;
@@ -55296,6 +58443,89 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+=======
+"wBW" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/turf/open/floor/plating,
+/area/maintenance/fore)
+"wCc" = (
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/security/prison";
+	dir = 8;
+	name = "Prison APC";
+	pixel_x = -25
+	},
+/turf/open/floor/plasteel,
+/area/security/prison)
+"wFi" = (
+/obj/machinery/power/apc{
+	areastring = "/area/crew_quarters/heads/captain/private";
+	dir = 1;
+	name = "Captain's Private Quarters APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/turf/open/floor/carpet,
+/area/crew_quarters/heads/captain/private)
+"wIl" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer1,
+/obj/structure/window/reinforced,
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space/nearstation)
+"wIF" = (
+/obj/machinery/recharge_station,
+/obj/item/radio/intercom{
+	pixel_x = -30
+	},
+/turf/open/floor/plasteel,
+/area/science/robotics/mechbay)
+"wJv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera{
+	c_tag = "Research - Toxins Storage";
+	dir = 2;
+	network = list("ss13","Research")
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/science/storage";
+	dir = 1;
+	name = "Toxins Storage APC";
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel,
+/area/science/storage)
+"wLO" = (
+/obj/machinery/power/apc{
+	areastring = "/area/science/lab";
+	dir = 1;
+	name = "Research Lab APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/lab)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "wMf" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
@@ -55313,6 +58543,26 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"wMM" = (
+/obj/machinery/sleeper,
+/obj/machinery/airalarm{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel,
+/area/medical/sleeper)
+"wPr" = (
+/obj/machinery/power/apc{
+	areastring = "/area/construction";
+	cell_type = null;
+	dir = 8;
+	name = "Construction APC";
+	pixel_x = -25
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
+/area/construction)
 "wQC" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -55329,9 +58579,21 @@
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+<<<<<<< HEAD
 "wVS" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible/layer3{
 	dir = 4
+=======
+"wVQ" = (
+/obj/item/radio/intercom{
+	pixel_x = 29
+	},
+/turf/open/floor/plasteel/dark,
+/area/tcommsat/computer)
+"xaB" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -55375,12 +58637,59 @@
 /obj/machinery/shieldgen,
 /turf/open/floor/plating,
 /area/engine/engineering)
+<<<<<<< HEAD
 "xpX" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
 /turf/open/floor/engine,
 /area/engine/supermatter)
+=======
+"xoZ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/turf/open/floor/plating,
+/area/maintenance/department/security)
+"xrC" = (
+/obj/machinery/power/apc{
+	areastring = "/area/solar/aft";
+	dir = 8;
+	name = "Aft Solar APC";
+	pixel_x = -25;
+	pixel_y = 3
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/area/solar/aft)
+"xtN" = (
+/obj/machinery/airalarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
+"xve" = (
+/obj/machinery/power/apc{
+	areastring = "/area/science/mixing";
+	dir = 1;
+	name = "Toxins Mixing APC";
+	pixel_y = 23
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "xyz" = (
 /obj/machinery/atmospherics/pipe/manifold/dark/visible{
 	dir = 1
@@ -55391,6 +58700,34 @@
 	},
 /turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
 /area/crew_quarters/kitchen/coldroom)
+<<<<<<< HEAD
+=======
+"xBI" = (
+/obj/machinery/atmospherics/pipe/manifold/cyan/visible,
+/obj/effect/turf_decal/stripes/corner{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"xCE" = (
+/obj/item/radio/intercom{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
+"xDp" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/radio/intercom{
+	pixel_x = -30
+	},
+/turf/open/floor/plasteel/dark,
+/area/security/courtroom)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "xGM" = (
 /obj/structure/closet/firecloset,
 /obj/effect/turf_decal/stripes/line{
@@ -55403,6 +58740,48 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+<<<<<<< HEAD
+=======
+"xKE" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer1{
+	dir = 5
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"xLk" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	pixel_y = -25
+	},
+/turf/open/floor/plasteel,
+/area/engine/atmos)
+"xLt" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/purple/hidden/layer1,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/engine,
+/area/engine/engine_room/external)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "xOq" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/machinery/light/small{
@@ -55440,6 +58819,87 @@
 	},
 /turf/open/floor/plasteel,
 /area/engine/engineering)
+<<<<<<< HEAD
+=======
+"ycZ" = (
+/obj/machinery/atmospherics/pipe/heat_exchanging/simple{
+	dir = 10
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
+"ydf" = (
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	pixel_y = 24
+	},
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
+"yeA" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/space/nearstation)
+"yfz" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/aisat/foyer)
+"ygs" = (
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/airalarm{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel/white,
+/area/medical/medbay/central)
+"yhe" = (
+/obj/structure/reflector/single/anchored{
+	dir = 10
+	},
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room)
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 "yjo" = (
 /obj/effect/spawner/lootdrop/grille_or_trash,
 /obj/structure/cable/yellow{
@@ -73105,13 +76565,13 @@ aaN
 atR
 aaN
 aaN
-bIM
+jAc
 bJp
 cdD
 aBY
 aCm
 aCy
-aCp
+csr
 aBY
 bIe
 aCp
@@ -73319,7 +76779,7 @@ ano
 ano
 aAI
 bXL
-aAI
+fMr
 ano
 ano
 ano
@@ -74144,7 +77604,7 @@ bIY
 bJc
 bIW
 bJg
-bzz
+liH
 aBY
 aBY
 bMF
@@ -74582,7 +78042,7 @@ acA
 acX
 adg
 aco
-adM
+xve
 adL
 aec
 aec
@@ -74902,7 +78362,7 @@ aaa
 aaN
 atq
 aBW
-atT
+wVQ
 bIK
 bJd
 bJd
@@ -75090,7 +78550,7 @@ bXg
 bmm
 aeS
 acb
-adt
+uva
 adK
 aVE
 aez
@@ -75347,7 +78807,7 @@ bPc
 bml
 bLM
 acb
-aex
+wJv
 acg
 acg
 acg
@@ -75366,7 +78826,7 @@ bnb
 bkc
 bmL
 bkz
-anp
+diw
 ano
 ano
 ano
@@ -75908,7 +79368,7 @@ aXo
 beg
 aXo
 bem
-bfg
+qrk
 aGE
 bmA
 aHu
@@ -76417,10 +79877,10 @@ aJh
 aYp
 bea
 bei
-bex
+rVP
 bey
 beR
-bhG
+qpo
 aGE
 bTY
 bXh
@@ -76646,7 +80106,7 @@ aeP
 afI
 bll
 aCZ
-ahm
+sfL
 ajd
 aew
 aeB
@@ -76895,7 +80355,7 @@ aco
 aco
 aev
 aiZ
-bUj
+oMw
 njx
 bUr
 aew
@@ -77142,10 +80602,10 @@ aaa
 aeS
 aeS
 aeS
-bTU
-bmT
-aMX
-cdW
+kBb
+ria
+yma
+voh
 bXq
 aeS
 aau
@@ -77161,7 +80621,7 @@ bWL
 bQW
 bTF
 bbS
-akB
+uzG
 aeA
 qxZ
 blD
@@ -77186,7 +80646,7 @@ aGE
 aRz
 aHh
 bdT
-aGO
+gEO
 aIe
 aGE
 aJV
@@ -77402,7 +80862,7 @@ bTU
 bTU
 bTU
 bTU
-bml
+rBV
 bXq
 aeS
 aaa
@@ -77659,7 +81119,7 @@ bTU
 bYc
 bTU
 bTU
-bmm
+iHp
 bQW
 aeS
 aaa
@@ -77680,7 +81140,7 @@ afJ
 afJ
 afJ
 afJ
-afN
+oRe
 aoB
 bNZ
 aeA
@@ -77698,7 +81158,7 @@ bYm
 cbG
 bRf
 aGQ
-aTD
+wMM
 bdI
 bdP
 aQh
@@ -77718,7 +81178,7 @@ bMs
 bdB
 acB
 bZx
-bMs
+vLi
 bMs
 bRO
 bYK
@@ -77916,7 +81376,7 @@ bTU
 bTU
 bTU
 bXg
-bml
+rBV
 bTU
 aeS
 aau
@@ -77955,7 +81415,7 @@ bdv
 cbH
 bTE
 aGQ
-aIO
+gVB
 apL
 aHB
 aIh
@@ -78173,7 +81633,7 @@ adO
 adO
 adO
 adO
-bml
+rBV
 bYc
 aeS
 aeS
@@ -78220,15 +81680,15 @@ aGQ
 aTY
 bAF
 aGt
-aGt
+ntE
 bhL
 bNK
-aGt
+xtN
 bhO
 bdm
 bgs
 aJF
-aXO
+pTq
 bYH
 bdA
 acB
@@ -78430,7 +81890,7 @@ auj
 auj
 brc
 adO
-bmZ
+eLr
 bTU
 brm
 bQW
@@ -78462,7 +81922,7 @@ aER
 aYf
 aFk
 aEv
-aFJ
+gqB
 aFO
 aGf
 aFR
@@ -78687,12 +82147,12 @@ aun
 auW
 aAo
 aOk
-bop
-bxL
-bLW
-bNQ
-bsE
-ezL
+vgy
+mNo
+etl
+cXx
+eNw
+rQg
 yma
 yma
 bTN
@@ -78702,7 +82162,7 @@ bpa
 bmH
 bLh
 afJ
-aLT
+eQq
 ahr
 ahL
 bAV
@@ -78724,9 +82184,9 @@ aFP
 aGg
 aQD
 cbK
-cbQ
+pYp
 aGR
-aHl
+iHE
 bdJ
 aIg
 aIQ
@@ -79240,7 +82700,7 @@ aGA
 aGD
 cbS
 aGR
-aIP
+nwZ
 aUd
 ayG
 aYd
@@ -79471,7 +82931,7 @@ adl
 adG
 adW
 aik
-bkT
+qHu
 acp
 agJ
 aht
@@ -79514,7 +82974,7 @@ bdr
 aKa
 aKn
 aIY
-aXQ
+oWU
 bdC
 asv
 bMs
@@ -79754,7 +83214,7 @@ aGr
 beA
 aGK
 aGR
-aUf
+clO
 aQY
 azU
 aIl
@@ -80039,8 +83499,8 @@ bWj
 bZQ
 bWw
 bVM
-aBx
-bYK
+rck
+pHi
 azH
 aaa
 aaa
@@ -80252,7 +83712,7 @@ ahU
 blC
 ahU
 bNY
-ahU
+sHj
 bwM
 aeA
 bnm
@@ -80297,7 +83757,7 @@ bSy
 bSy
 aRr
 aBx
-aBx
+nbA
 azH
 azH
 aaa
@@ -80456,7 +83916,7 @@ bbH
 awk
 cck
 ccm
-cdk
+wPr
 bbH
 bbH
 avM
@@ -80497,7 +83957,7 @@ acw
 acw
 acp
 acq
-ajn
+pwu
 anj
 adW
 afK
@@ -80516,7 +83976,7 @@ aeA
 bkF
 aBe
 aBe
-aIG
+vXg
 anC
 aFK
 aFU
@@ -80554,7 +84014,7 @@ bWo
 bWv
 bVM
 bZt
-aBx
+nbA
 bTs
 azH
 aaa
@@ -80778,7 +84238,7 @@ aEw
 aEw
 aEw
 aEw
-aGt
+xCE
 beE
 aRt
 aGT
@@ -80788,7 +84248,7 @@ aXm
 aYv
 aGT
 aGT
-bGN
+ygs
 beM
 bhY
 aoR
@@ -80802,7 +84262,7 @@ acB
 bTK
 bYD
 bVM
-bwx
+nvs
 bVP
 bVS
 bSy
@@ -80811,7 +84271,7 @@ bWw
 bWF
 bVM
 bZu
-aBx
+nbA
 aBx
 bWK
 aaa
@@ -80993,7 +84453,7 @@ bwb
 byC
 avi
 adO
-bla
+sCI
 asc
 asS
 afn
@@ -81039,9 +84499,9 @@ aGt
 beE
 aIM
 aqv
-blU
+pmp
 aHI
-aDt
+gVW
 aNL
 aYt
 aqv
@@ -81068,7 +84528,7 @@ asy
 asy
 asy
 asy
-bYK
+hTU
 aBx
 bXI
 aaa
@@ -81236,8 +84696,8 @@ aVg
 aVk
 adx
 aVr
-bbI
-aVu
+utL
+mwg
 ccs
 cct
 ccu
@@ -81278,7 +84738,7 @@ ahU
 ajk
 bkm
 blS
-bmd
+gBb
 ait
 bNN
 aAL
@@ -81310,7 +84770,7 @@ bfo
 bfp
 beo
 aJp
-aXK
+tdw
 aBx
 aBx
 aBx
@@ -81325,7 +84785,7 @@ bPk
 bPq
 bPs
 asy
-aBy
+qKO
 bXV
 bXI
 aaa
@@ -81580,9 +85040,9 @@ bOJ
 bOT
 bPl
 bOT
-bOS
+myk
 asy
-aBx
+nbA
 aBx
 bXI
 aaa
@@ -81800,7 +85260,7 @@ aAU
 ait
 bkM
 aEw
-aLa
+fqe
 aFm
 bGA
 aQt
@@ -81839,7 +85299,7 @@ caW
 bOP
 bOU
 asy
-aBx
+nbA
 aBx
 bXI
 aaa
@@ -81992,7 +85452,7 @@ anQ
 awe
 amE
 agr
-bfz
+kXJ
 awe
 aks
 awe
@@ -82096,7 +85556,7 @@ bPo
 bOT
 bOV
 asy
-aBx
+nbA
 aBx
 bXI
 aaa
@@ -82267,7 +85727,7 @@ aDs
 ceS
 ceS
 ceS
-avQ
+ueA
 avi
 avY
 bvK
@@ -82298,7 +85758,7 @@ bVO
 acW
 adm
 aek
-aeB
+fxC
 afN
 afN
 bay
@@ -82353,7 +85813,7 @@ bOT
 bPr
 bOW
 asy
-bYK
+hTU
 aBx
 bXI
 aaa
@@ -82610,7 +86070,7 @@ bPp
 bPf
 bOX
 asy
-aBx
+nbA
 aBx
 bXI
 aaa
@@ -82829,10 +86289,10 @@ ait
 blB
 blM
 blM
-bqj
+exX
 bBL
 bBL
-bBM
+kyS
 aGo
 aGo
 aUy
@@ -82845,7 +86305,7 @@ aHW
 aIB
 aIp
 beU
-aXB
+kcl
 aHW
 aSs
 bGC
@@ -82867,7 +86327,7 @@ sMe
 bOR
 bOY
 azH
-aBx
+nbA
 aBx
 bXJ
 aaa
@@ -83096,7 +86556,7 @@ aUQ
 aXs
 aGZ
 aJX
-aUu
+esN
 aHW
 bTc
 aIp
@@ -83123,8 +86583,8 @@ aBy
 aBx
 aBx
 bPa
-bQy
-bYK
+mVy
+nLJ
 bMq
 azH
 aaa
@@ -83306,10 +86766,10 @@ aaT
 bXd
 bQh
 aaT
-bxJ
+nPi
 aKR
 asG
-bqQ
+wtu
 aoT
 bRJ
 aoT
@@ -83322,7 +86782,7 @@ bOm
 acy
 acy
 acy
-ads
+wLO
 ael
 ayo
 aek
@@ -83344,7 +86804,7 @@ aCc
 aEy
 bNO
 aEy
-aCc
+wIF
 aBi
 bBN
 aGo
@@ -83564,7 +87024,7 @@ bQf
 bQi
 aaT
 bCh
-aKZ
+hjz
 asG
 afr
 asm
@@ -83836,7 +87296,7 @@ asP
 asP
 asg
 acy
-acR
+dUT
 aZu
 aeO
 acK
@@ -83891,7 +87351,7 @@ aoV
 bbV
 aqd
 aoW
-aFt
+mlN
 aoh
 aBx
 bPa
@@ -84117,7 +87577,7 @@ aEA
 aEA
 bnP
 aBi
-bBN
+qCl
 aGo
 aVX
 aUQ
@@ -84138,7 +87598,7 @@ ahT
 akH
 bcZ
 aoo
-alm
+eMz
 bDh
 ahT
 aBx
@@ -84365,7 +87825,7 @@ aIN
 bmn
 bmp
 bkP
-bnv
+ijH
 aAY
 aBn
 bmN
@@ -84376,7 +87836,7 @@ bnQ
 aBi
 bBN
 aGo
-aGy
+sXg
 aUQ
 aUQ
 aGu
@@ -84399,7 +87859,7 @@ bdd
 bde
 ahT
 aBx
-bgo
+mnC
 aoh
 aoX
 apR
@@ -84585,7 +88045,7 @@ bfN
 avY
 bvK
 avi
-aqN
+hjJ
 bRE
 aCt
 bRE
@@ -84915,7 +88375,7 @@ ahT
 ahT
 ahT
 aoh
-aoW
+ezo
 aoW
 aKu
 cab
@@ -86464,7 +89924,7 @@ amD
 aql
 boa
 ahT
-bpW
+vcT
 bsA
 aUk
 aUk
@@ -86647,7 +90107,7 @@ bQr
 bQr
 bQr
 bQr
-bxK
+cRz
 bgA
 acf
 aus
@@ -86672,7 +90132,7 @@ aRl
 bQr
 bmx
 aLn
-aLs
+uaG
 aLs
 aLB
 bOv
@@ -86688,7 +90148,7 @@ amq
 bOy
 byz
 aLs
-aOs
+jJz
 aLn
 bQj
 aRA
@@ -86921,7 +90381,7 @@ bxC
 avo
 avs
 auJ
-aTm
+kaB
 bLB
 bTn
 aRu
@@ -86940,7 +90400,7 @@ bHK
 aLE
 bHK
 bHL
-bHN
+tzD
 aLn
 aLn
 aLn
@@ -87150,7 +90610,7 @@ bfA
 ceV
 ceV
 ceV
-bfL
+nCF
 avi
 avY
 bvR
@@ -87183,10 +90643,10 @@ aCz
 aCz
 bsg
 aRo
-aTx
+fNR
 aLm
 ars
-aLp
+nZS
 aLt
 bvl
 aLt
@@ -87199,7 +90659,7 @@ aLn
 aLn
 aLn
 aLn
-cai
+pkz
 bQr
 bRZ
 bRZ
@@ -87389,7 +90849,7 @@ boD
 awe
 awe
 agt
-bfP
+fSj
 awe
 aks
 awe
@@ -87464,7 +90924,7 @@ anx
 vtD
 cbU
 afa
-akn
+jlL
 akv
 afa
 akU
@@ -87748,7 +91208,7 @@ alF
 xhI
 bgp
 bgu
-bhh
+nRb
 qyl
 bij
 bry
@@ -88009,7 +91469,7 @@ nuq
 xyz
 bim
 xhI
-brS
+hYj
 bYW
 aSh
 bxg
@@ -88201,7 +91661,7 @@ bmV
 bxO
 auJ
 auJ
-buY
+ubS
 avj
 avd
 avd
@@ -88232,7 +91692,7 @@ aaa
 aaa
 aaa
 afa
-akz
+klG
 caB
 bCO
 bCQ
@@ -88264,7 +91724,7 @@ xhI
 bgJ
 bhi
 dtX
-bin
+wrV
 xhI
 bYV
 bCg
@@ -88307,9 +91767,9 @@ aau
 aau
 bMG
 aeJ
-bLt
-aNm
-aNr
+iif
+oGu
+cvc
 aND
 aeJ
 aNJ
@@ -88455,13 +91915,13 @@ aaT
 bfv
 bna
 axl
-bmW
+qpi
 auJ
 auQ
 buZ
 avm
 avr
-anW
+pSa
 aCB
 bvi
 avj
@@ -88752,7 +92212,7 @@ afa
 afa
 afa
 afa
-alZ
+kVx
 alZ
 aNa
 alZ
@@ -88821,7 +92281,7 @@ aNi
 aNi
 aNp
 aeJ
-aso
+rSs
 bLJ
 bOg
 aNG
@@ -88954,7 +92414,7 @@ aaa
 aaa
 aci
 blX
-auA
+wxZ
 blY
 auC
 awe
@@ -89034,7 +92494,7 @@ alF
 xhI
 bhf
 esU
-bid
+fzs
 bhi
 xhI
 bYV
@@ -89525,6 +92985,7 @@ aaa
 afa
 afa
 ppV
+<<<<<<< HEAD
 apO
 apO
 apO
@@ -89533,6 +92994,16 @@ apO
 apO
 apO
 azE
+=======
+aad
+aad
+aad
+aad
+aad
+aad
+aad
+ydf
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 bCJ
 iMs
 aDl
@@ -89593,7 +93064,7 @@ aNi
 aNo
 aNi
 asx
-atY
+hez
 aNw
 aNw
 bZM
@@ -89997,8 +93468,8 @@ bxU
 arK
 awV
 aaT
-bQr
-bfS
+sqt
+wBW
 bQr
 aaT
 aaa
@@ -90628,7 +94099,7 @@ aNC
 bNq
 bOp
 aNw
-cac
+oVG
 aNw
 aNw
 aNC
@@ -90826,7 +94297,7 @@ aPw
 aQN
 aQT
 aRM
-ohU
+xLk
 bcP
 bgy
 bgy
@@ -90878,7 +94349,7 @@ aNn
 atY
 bLn
 aNl
-bNR
+skk
 aNw
 aNB
 aNB
@@ -91014,7 +94485,7 @@ bxM
 bxM
 byg
 byk
-bxE
+oms
 bqc
 bqc
 arX
@@ -91051,6 +94522,7 @@ dZW
 vUd
 aRx
 hmG
+<<<<<<< HEAD
 dZW
 dZW
 dZW
@@ -91063,6 +94535,20 @@ aau
 aaa
 aaa
 aaa
+=======
+mFQ
+miv
+dZa
+mFO
+qxz
+uwV
+enD
+psF
+tHJ
+mhi
+wTx
+gDW
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 aaa
 aad
 eRe
@@ -91135,7 +94621,7 @@ aNi
 aNf
 aNi
 asx
-bNR
+yfz
 aNw
 aNw
 bZM
@@ -91346,7 +94832,7 @@ lDQ
 axP
 bnB
 bpq
-aRf
+rDp
 bie
 aRj
 aSe
@@ -91520,12 +95006,12 @@ aba
 abK
 aAh
 bhj
-byI
+byT
 bza
 bzy
 bAQ
-bBC
-byI
+vch
+byT
 bEo
 bEL
 bEP
@@ -91905,7 +95391,7 @@ aNi
 aNi
 cdx
 aNi
-asz
+mbB
 bNR
 aNh
 aNs
@@ -92313,7 +95799,7 @@ arn
 axd
 boC
 bti
-bDN
+mKc
 aeu
 aRA
 aaT
@@ -92419,9 +95905,9 @@ aau
 aau
 bMI
 aNi
-bRF
-bOc
-bLn
+wod
+uzp
+odJ
 aNu
 aNi
 bNr
@@ -92623,7 +96109,7 @@ afF
 acj
 ayq
 ass
-bJM
+eoH
 acj
 acj
 ath
@@ -92861,6 +96347,7 @@ wZF
 iOg
 dZW
 alN
+<<<<<<< HEAD
 alN
 alN
 aNT
@@ -92868,6 +96355,13 @@ biI
 emg
 apv
 apf
+=======
+aad
+aad
+aad
+aad
+qMo
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 okf
 jHY
 aad
@@ -93423,7 +96917,7 @@ aDF
 acF
 aDM
 acj
-bpL
+sTB
 bPi
 aAc
 bxc
@@ -93882,11 +97376,20 @@ xdQ
 aaf
 aaf
 aat
+<<<<<<< HEAD
 ljD
 fpn
 dZW
 aug
 aau
+=======
+dzi
+uwV
+tHJ
+tHJ
+tHJ
+aal
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 aaa
 aaa
 aaa
@@ -94098,7 +97601,7 @@ bAo
 bEn
 bEJ
 aAn
-bAx
+nDW
 bBp
 bBe
 bUN
@@ -94109,7 +97612,7 @@ bjo
 aeo
 awV
 aaT
-aoG
+dXK
 bqp
 aRA
 aaT
@@ -94167,7 +97670,7 @@ gJo
 bpi
 bpi
 bpm
-bpn
+itU
 aYK
 atu
 atL
@@ -94420,7 +97923,7 @@ bHF
 afE
 afL
 aMQ
-aMV
+tok
 aMU
 bDe
 aMZ
@@ -94607,7 +98110,7 @@ aQf
 bzu
 bUE
 aQm
-bBu
+eSa
 aup
 bzq
 bAm
@@ -94934,7 +98437,7 @@ bCL
 bDP
 bZK
 aAc
-awa
+vBQ
 bDn
 aAc
 bgC
@@ -95373,7 +98876,7 @@ aiw
 abT
 bVs
 aQm
-bgW
+tOh
 byB
 aQj
 bzx
@@ -95387,7 +98890,7 @@ bAy
 bBz
 bAy
 aaP
-acD
+fiC
 afe
 axa
 aaP
@@ -95477,7 +98980,7 @@ bPi
 bcC
 bcT
 bdg
-bwE
+lEO
 bwI
 bxe
 bCZ
@@ -95635,7 +99138,7 @@ aQm
 aQm
 aQm
 aQm
-bfr
+gsu
 bzq
 bzN
 bAx
@@ -95651,7 +99154,7 @@ aUJ
 akm
 bsk
 bsw
-bDX
+ltw
 aaT
 aMq
 aMq
@@ -95696,9 +99199,15 @@ aad
 apT
 apT
 fzV
+<<<<<<< HEAD
 apF
 xiu
 aad
+=======
+sfa
+kTN
+apO
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 aze
 bAN
 bDE
@@ -95911,7 +99420,7 @@ bwB
 bDL
 aaT
 aMq
-aMs
+lzi
 bOs
 aMu
 aMu
@@ -96144,7 +99653,7 @@ aPH
 abU
 aPH
 auV
-bgX
+uRy
 aup
 aTk
 bXp
@@ -96158,7 +99667,7 @@ bAT
 bBA
 bEp
 aaP
-amQ
+czY
 aPu
 azr
 aaP
@@ -96467,9 +99976,15 @@ oPe
 oPe
 oPe
 oPe
+<<<<<<< HEAD
 amx
 uQd
 awI
+=======
+nVf
+qXl
+kmI
+>>>>>>> 15c4e85... adds 2 million lightswitches to donutstation (#43377)
 ark
 aZm
 bCN
@@ -96480,7 +99995,7 @@ aOp
 bHy
 aOX
 bJW
-bmi
+xDp
 bjW
 aOO
 aOp
@@ -96709,7 +100224,7 @@ aaa
 aaa
 aau
 anX
-bbC
+kvC
 bbD
 bzL
 bLY
@@ -96720,8 +100235,8 @@ anX
 acZ
 aQy
 btM
-btO
-atN
+cNG
+ufN
 aQw
 oPe
 uQd
@@ -96932,7 +100447,7 @@ bUP
 bUP
 aaY
 abQ
-aeZ
+oee
 afb
 aaZ
 act
@@ -97002,7 +100517,7 @@ aOp
 bXv
 bpK
 big
-biz
+xrC
 brC
 brT
 big
@@ -97225,7 +100740,7 @@ aau
 anX
 anX
 bcp
-bcl
+hdH
 bcn
 bcl
 bcx
@@ -97464,11 +100979,11 @@ alk
 arg
 ary
 arJ
-bOu
+wkM
 ast
 asu
 alk
-aTt
+pMU
 aTu
 aSa
 aaa
@@ -97744,7 +101259,7 @@ ceo
 btV
 btV
 bBU
-aTz
+ibF
 acZ
 acZ
 atM
@@ -98458,7 +101973,7 @@ agZ
 bgK
 agh
 aKN
-bEF
+qYj
 agh
 bVf
 bzl
@@ -98733,7 +102248,7 @@ byK
 bPm
 aaK
 aaK
-alK
+sPB
 aSy
 abL
 aak
@@ -99305,7 +102820,7 @@ aqA
 aqz
 aPf
 aqA
-aYH
+pNR
 aQI
 aQI
 aQI
@@ -99492,7 +103007,7 @@ akP
 bEe
 aup
 bzq
-bAl
+kfj
 bAy
 bAl
 bBf
@@ -99564,7 +103079,7 @@ aPh
 aqA
 aYD
 aYO
-bbq
+ipB
 bcO
 bhu
 bcO
@@ -99768,7 +103283,7 @@ asj
 bta
 aup
 abv
-bma
+iNo
 byE
 alJ
 bqb
@@ -99776,7 +103291,7 @@ bqS
 btK
 brd
 agl
-aGG
+eXR
 aKx
 aKB
 aiO
@@ -99791,7 +103306,7 @@ bCp
 aCP
 aED
 bKq
-aMY
+nyl
 aFE
 aED
 akr
@@ -99821,7 +103336,7 @@ aqA
 aqA
 bXY
 aQK
-bYM
+nOy
 aQK
 aQK
 bRu
@@ -100009,7 +103524,7 @@ bXE
 aup
 aup
 aup
-aPa
+eNp
 bVC
 bmD
 bBb
@@ -100072,13 +103587,13 @@ biP
 bjy
 aZJ
 akt
-bFO
+naE
 aqA
 bZo
 aQI
 bMp
 aQI
-bbr
+uoF
 aQK
 bMw
 aQI
@@ -100282,7 +103797,7 @@ asj
 bta
 aup
 abv
-aLN
+hlK
 byN
 abJ
 abZ
@@ -100324,7 +103839,7 @@ aPo
 bhm
 aWL
 biG
-bLm
+mHS
 bhr
 bFF
 bFJ
@@ -100335,7 +103850,7 @@ aYY
 aYY
 aZc
 aYC
-bGh
+dYW
 aQK
 cat
 bSC
@@ -100551,7 +104066,7 @@ aED
 aED
 aED
 aiO
-ajz
+wwX
 buM
 buP
 aiP
@@ -100580,7 +104095,7 @@ aWL
 aWL
 bhs
 ate
-aOE
+uwG
 aDV
 aDV
 bFG
@@ -100592,7 +104107,7 @@ aDV
 bMo
 aQI
 aQI
-bGi
+fid
 aQK
 aQK
 aQK
@@ -100801,14 +104316,14 @@ aUc
 aPQ
 arO
 aiV
-aDf
+jpL
 ahE
 aiT
 ane
 aBc
 aFb
 aiO
-bui
+oBZ
 buN
 buS
 buT
@@ -100849,13 +104364,13 @@ aDV
 aDV
 aDV
 bQu
-bGj
-bYN
-bGc
-bGc
-bGc
-bGc
-bGk
+mLl
+tfI
+oqF
+oqF
+oqF
+oqF
+xoZ
 aQK
 aaa
 biq
@@ -101053,7 +104568,7 @@ aRV
 bta
 aup
 aiV
-alP
+vHF
 alP
 aPT
 anR
@@ -101079,7 +104594,7 @@ bKQ
 bKY
 aCQ
 aED
-ayE
+vIe
 alp
 aEI
 aVP
@@ -101102,7 +104617,7 @@ baD
 aYW
 bFR
 bFV
-bFW
+grn
 bFX
 aDV
 bQA
@@ -101112,7 +104627,7 @@ aQI
 bYB
 aQI
 aQI
-bGi
+fid
 aQK
 aaa
 aaa
@@ -101313,7 +104828,7 @@ aiV
 aBM
 bEW
 bFn
-bFQ
+hYL
 aiV
 arf
 bHM
@@ -101321,7 +104836,7 @@ avJ
 aED
 aED
 bJb
-aEu
+hpm
 aiO
 aiO
 aiO
@@ -101343,7 +104858,7 @@ anZ
 anZ
 aln
 anZ
-bRq
+oBN
 aqA
 aFY
 aZH
@@ -101369,7 +104884,7 @@ acQ
 acQ
 acQ
 bYB
-bGi
+fid
 aQK
 aaa
 bip
@@ -101583,7 +105098,7 @@ bFA
 bIm
 bHz
 aFd
-bKn
+hhd
 bFA
 bKJ
 bKv
@@ -101621,12 +105136,12 @@ bFZ
 bGa
 bGb
 baS
-akf
+eqn
 bRA
 bJY
 acQ
 aQI
-bGi
+fid
 aTE
 aaa
 bNy
@@ -101816,7 +105331,7 @@ aaa
 awc
 azI
 aFz
-bse
+mtv
 aNV
 asj
 bKz
@@ -101830,7 +105345,7 @@ aPY
 arP
 arR
 aea
-ahD
+wFi
 aAO
 aea
 agf
@@ -101883,7 +105398,7 @@ aEZ
 aOZ
 acQ
 akK
-bGi
+fid
 aTF
 aaa
 biq
@@ -102087,7 +105602,7 @@ bys
 arP
 arS
 aea
-ahZ
+vqS
 bHU
 aea
 ahy
@@ -102140,7 +105655,7 @@ akb
 bnz
 acQ
 bQv
-bYT
+leE
 aTF
 aaa
 aau
@@ -102360,11 +105875,11 @@ bZG
 aEH
 bKb
 aCS
-bKU
+gdD
 aFq
 are
 aCS
-aWo
+eZi
 aqx
 aqy
 biS
@@ -102397,7 +105912,7 @@ aFa
 aPm
 acQ
 arc
-bGi
+fid
 aTF
 aaa
 bip
@@ -102648,13 +106163,13 @@ aOM
 aWQ
 aWU
 baT
-aWZ
+lFx
 bgF
 bgH
 bgT
 acQ
 aQI
-bGi
+fid
 aTG
 aaa
 bNy
@@ -102852,7 +106367,7 @@ aup
 aup
 bQD
 aiV
-alP
+vHF
 alP
 bAp
 anR
@@ -102896,7 +106411,7 @@ aGa
 aEh
 aEn
 aDV
-aWG
+edu
 aYT
 aOm
 aOx
@@ -102911,7 +106426,7 @@ acQ
 acQ
 acQ
 aQI
-bGi
+fid
 aQK
 aaa
 biq
@@ -103130,7 +106645,7 @@ aiW
 ahz
 bKy
 aCS
-amj
+cPq
 bKV
 aFu
 asi
@@ -103142,10 +106657,10 @@ aEl
 asU
 biL
 biV
-cdS
+kDh
 arT
 akC
-aZI
+nkG
 aDV
 aEm
 aEh
@@ -103153,7 +106668,7 @@ aGa
 aEh
 aEn
 aDV
-aOe
+hDU
 aYU
 aYX
 aYX
@@ -103168,7 +106683,7 @@ aQI
 bYB
 aQI
 aQI
-bGi
+fid
 aQK
 aaa
 aaa
@@ -103418,14 +106933,14 @@ aZa
 aDV
 bGf
 aDV
-bRe
-bGc
-bGc
-bGc
-bGc
-bYF
-bLO
-bZR
+pxQ
+oqF
+oqF
+oqF
+oqF
+unF
+dgr
+wia
 aQK
 aaa
 aQQ
@@ -103675,7 +107190,7 @@ baM
 aDV
 bQw
 aDV
-bGi
+cPK
 bYB
 aQK
 aQK
@@ -104168,7 +107683,7 @@ alG
 biW
 akN
 aEK
-aMK
+vjd
 aqR
 bKi
 arT
@@ -104678,7 +108193,7 @@ aiA
 aOL
 aiB
 aja
-ajU
+wCc
 aGc
 akc
 aki
@@ -105194,7 +108709,7 @@ ajY
 bLq
 bjQ
 aZv
-ajY
+tFw
 bLq
 bkA
 alg
@@ -106229,7 +109744,7 @@ bkI
 aiN
 aiN
 aDQ
-aWr
+oKN
 aDP
 caI
 aFX
@@ -106479,7 +109994,7 @@ aqO
 blv
 ajB
 anY
-ajB
+dIr
 blv
 apN
 aZD
@@ -106487,7 +110002,7 @@ arp
 aCA
 aDQ
 aZr
-aac
+mSf
 baz
 aFX
 bTV
