@@ -483,3 +483,11 @@
 	desc = "Fakes an immovable rod announcement. Good for a short-lasting distraction."
 	item = /obj/item/service/rodgod
 	cost = 6 //less likely to be believed
+
+/datum/uplink_item/role_restricted/antigrav_boots
+	name = "Anti Gravity Boots"
+	desc = "Modified mag boots that let you float over floors and gaps."
+	item = /obj/item/clothing/shoes/magboots/antigrav
+	cost = 8 //you need two for full damage, so total of 10 for maximum damage
+	limited_stock = 1 //you can't use more than two!
+	restricted_roles = list("Shaft Miner")
