@@ -11,12 +11,11 @@
 	var/list/parts = list()
 	if(iscarbon(the_target))
 		var/mob/living/carbon/C = the_target
-		if(C.stat >= UNCONSCIOUS)
-			for(var/X in C.bodyparts)
-				var/obj/item/bodypart/BP = X
-				if(BP.body_part != HEAD && BP.body_part != CHEST)
-					if(BP.dismemberable)
-						parts += BP
+		for(var/X in C.bodyparts)
+			var/obj/item/bodypart/BP = X
+			if(BP.body_part != HEAD && BP.body_part != CHEST)
+				if(BP.dismemberable)
+					parts += BP
 	return parts
 
 /obj/effect/proc_holder/spell/self/bigass_sword/cast(mob/user = usr)
