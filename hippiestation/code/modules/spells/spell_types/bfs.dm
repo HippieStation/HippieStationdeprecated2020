@@ -7,6 +7,18 @@
 	human_req = TRUE
 	sound = 'sound/magic/clockwork/invoke_general.ogg'
 
+/obj/effect/proc_holder/spell/self/bigass_sword/proc/target_bodyparts(atom/the_target) //stolen from gorillacode
+	var/list/parts = list()
+	if(iscarbon(the_target))
+		var/mob/living/carbon/C = the_target
+		if(C.stat >= UNCONSCIOUS)
+			for(var/X in C.bodyparts)
+				var/obj/item/bodypart/BP = X
+				if(BP.body_part != HEAD && BP.body_part != CHEST)
+					if(BP.dismemberable)
+						parts += BP
+	return parts
+
 /obj/effect/proc_holder/spell/self/bigass_sword/cast(mob/user = usr)
 	user.visible_message("<span class='danger bold'>[user] swings the Big Flaming Sword!</span>")
 	var/tip = multistep(user, user.dir, 17)
@@ -20,6 +32,14 @@
 			L.adjustBruteLoss(8.75)
 			L.fire_stacks += 3
 			L.IgniteMob()
+			if(prob(35))
+				var/list/parts = target_bodyparts(L)
+				if(LAZYLEN(parts))
+					var/obj/item/bodypart/BP = pick(parts)
+					BP.dismember();
+					L.visible_message("<span class='danger'>[L]'s [BP] is turned to ashes by the Big Flaming Sword!</span>'", "<span class='userdanger'>Your [BP] is turned to ashes by the Big Flaming Sword!</span>")
+					qdel(BP)
+					new /obj/effect/decal/cleanable/ash(T)
 		for(var/obj/O in T)
 			O.visible_message("<span class='danger'>[O] is annihilated by the Big Flaming Sword!</span>")
 			O.take_damage(INFINITY) //absolutely destroy any objects
