@@ -34,14 +34,14 @@
 	desc = "Cyka blyat."
 	icon_state = "squatteroutfit"
 	item_state = "squatteroutfit"
-
+	alternate_screams = list('hippiestation/sound/misc/cyka1.ogg', 'hippiestation/sound/misc/cheekibreeki.ogg')
 
 /obj/item/clothing/under/face/custom/vg/russobluecamooutfit
 	name = "Russian blue camo"
 	desc = "Drop and give me dvadtsat!"
 	icon_state = "russobluecamo"
 	item_state = "russobluecamo"
-
+	alternate_screams = list('hippiestation/sound/misc/cyka1.ogg', 'hippiestation/sound/misc/cheekibreeki.ogg')
 
 
 
@@ -91,55 +91,56 @@
 	desc = "INSTALL GENTOO"
 	icon_state = "sysadmin"
 	item_state = "sysadmin"
+	alternate_screams = list('face/sound/screams/gentoo1.ogg','face/sound/screams/gentoo2.ogg')
 
-/obj/item/clothing/under/face/rank/vicedetective
+/obj/item/clothing/under/faceface/custom/vicedetective
 	name = "Vice Detective Suit"
 	desc = "An alternate look to your modern day space detective."
 	icon_state = "detectivevice"
 	item_state = "detectivevice"
 
 
-/obj/item/clothing/under/face/redcoat
+/obj/item/clothing/under/face/custom/redcoat
 	name = "redcoat uniform"
 	desc = "Looks old."
 	icon_state = "redcoat"
 	item_state = "redcoat"
 
 
-/obj/item/clothing/under/face/beater
+/obj/item/clothing/underface/custom/beater
 	name = "Head Of Security Casual Uniform"
 	desc = "EY CLEATUS, THOSE SYNDIES OUR BREAKING DER TRUCK AGAIN"
 	icon_state = "wife"
 	item_state = "wife"
 
-/obj/item/clothing/under/duke
+/obj/item/clothing/under/face/custom/duke
 	name = "Duke Suit"
 	desc = "You have come here to chew bubblegum and kick ass...and you're all out of bubblegum."
 	icon_state = "duke"
 	item_state = "duke"
 	alternate_screams = list('face/sound/screams/duke1.ogg','face/sound/screams/duke2.ogg','face/sound/screams/duke3.ogg','face/sound/screams/duke4.ogg')
 
-/obj/item/clothing/under/face/dd
+/obj/item/clothing/under/face/custom/dd
 	name = "Dog Uniform"
 	desc = "I'll make them give back our past!"
 	icon_state = "DDBDU"
 	item_state = "DDBDU"
 
-/obj/item/clothing/under/face/hosnavy
+/obj/item/clothing/under/face/custom/hosnavy
 	name = "Head of Security's Alternative Uniform"
 	desc = "A product from a bygone era, Some HOS like to stick with it as a momento."
 	icon_state = "hosdnavyclothes"
 	item_state = "hosdnavyclothes"
 	armor = list(melee = 10, bullet = 5, laser = 5,energy = 5, bomb = 5, bio = 00, rad = 00, fire = 5, acid = 05)
 
-/obj/item/clothing/under/face/wardenalt
+/obj/item/clothing/under/face/custom/wardenalt
 	name = "Warden's Alternative Uniform"
 	desc = "Old and worn, it is still favoured by some as a bit of nostalgia."
 	icon_state = "wardendnavyclothes"
 	item_state = "wardendnavyclothes"
 	armor = list(melee = 10, bullet = 5, laser = 5,energy = 5, bomb = 5, bio = 00, rad = 00, fire = 5, acid = 05)
 
-/obj/item/clothing/under/face/officeralt
+/obj/item/clothing/under/face/custom/officeralt
 	name = "Officer's Alternative Uniform"
 	desc = "Let's be honest, this uniform is probably as old as you are. Still looks good!"
 	icon_state = "officerdnavyclothes"
@@ -147,7 +148,7 @@
 	armor = list(melee = 10, bullet = 5, laser = 5,energy = 5, bomb = 5, bio = 00, rad = 00, fire = 5, acid = 05)
 
 
-/obj/item/clothing/under/face/gorka
+/obj/item/clothing/under/face/custom/gorka
 	name = "gorka"
 	desc = "Tanks are still thirty minutes away from Ukraine."
 	icon_state = "gorka"
