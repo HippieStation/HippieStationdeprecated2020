@@ -61,17 +61,19 @@
 
 
 /obj/item/reagent_containers/food/snacks/grown/nettle/stun/proc/nettle_stun(mob/living/L, mob/user)
-	L.Paralyze(stunforce)
-	if(user)
-		L.lastattacker = user.real_name
-		L.lastattackerckey = user.ckey
-		L.visible_message("<span class='danger'>[user] has stunned [L] with [src]!</span>", \
-								"<span class='userdanger'>[user] has stunned you with [src]!</span>")
-		log_combat(user, L, "stunned")
+	if(user.a_intent == INTENT_HARM)
 
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		H.forcesay(GLOB.hit_appends)
+		L.Paralyze(stunforce)
+		if(user)
+			L.lastattacker = user.real_name
+			L.lastattackerckey = user.ckey
+			L.visible_message("<span class='danger'>[user] has stunned [L] with [src]!</span>", \
+								"<span class='userdanger'>[user] has stunned you with [src]!</span>")
+			log_combat(user, L, "stunned")
+
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			H.forcesay(GLOB.hit_appends)
 
 
 	return 1
@@ -81,13 +83,11 @@ obj/item/reagent_containers/food/snacks/grown/nettle/stun/afterattack(atom/A as 
 
 	if(!proximity)
 		return
-
 	if(user.a_intent == INTENT_HARM)
-		uses--// When you whack someone with it, leaves fall off
-
-	if(uses < 1)
-		to_chat(usr, "All the leaves have fallen off the nettle from violent whacking.")
-		qdel(src)
+		uses--		// When you whack someone with it, leaves fall off
+		if(uses < 1)
+			to_chat(usr, "All the leaves have fallen off the nettle from violent whacking.")
+			qdel(src)
 
 
 
