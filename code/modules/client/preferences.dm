@@ -14,7 +14,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	//game-preferences
 	var/lastchangelog = ""				//Saved changlog filesize to detect if there was a change
-	var/ooccolor = null
+	var/ooccolor = "#c43b23"
 	var/asaycolor = null
 	var/enable_tips = TRUE
 	var/tip_delay = 500 //tip delay in milliseconds
@@ -105,6 +105,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/parallax
 
 	var/ambientocclusion = TRUE
+	var/widescreen = FALSE
 	var/auto_fit_viewport = FALSE
 
 	var/uplink_spawn_loc = UPLINK_PDA
@@ -515,6 +516,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "</a><br>"
 
 			dat += "<b>Ambient Occlusion:</b> <a href='?_src_=prefs;preference=ambientocclusion'>[ambientocclusion ? "Enabled" : "Disabled"]</a><br>"
+			dat += "<b>Widescreen:</b> <a href='?_src_=prefs;preference=widescreen'>[widescreen ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>Fit Viewport:</b> <a href='?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Auto" : "Manual"]</a><br>"
 
 			if (CONFIG_GET(flag/maprotation))
@@ -1496,6 +1498,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(parent && parent.screen && parent.screen.len)
 						var/obj/screen/plane_master/game_world/PM = locate(/obj/screen/plane_master/game_world) in parent.screen
 						PM.backdrop(parent.mob)
+
+				if("widescreen")
+					widescreen = !widescreen
+					if(widescreen)
+						CONFIG_SET(string/default_view, "19x15")
+					else
+						CONFIG_SET(string/default_view, "15x15")
+					user.client.change_view(CONFIG_GET(string/default_view))
 
 				if("auto_fit_viewport")
 					auto_fit_viewport = !auto_fit_viewport
