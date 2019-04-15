@@ -243,6 +243,15 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	var/s = ""
 	var/hostedby
 	var/forumurl
+
+	var/list/features = list()
+
+	if(GLOB.master_mode)
+		features += GLOB.master_mode
+
+	if (!GLOB.enter_allowed)
+		features += "closed"
+
 	if(config)
 		var/server_name = CONFIG_GET(string/servername)
 		hostedby = CONFIG_GET(string/hostedby)
@@ -256,7 +265,34 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 		s += "<br>Mode: <b>STARTING</b>"
 	if (hostedby)
 		s += "<br>Hosted by <b>[hostedby]</b>."
-	s += "<img src=\"https://cdn.discordapp.com/attachments/557581829767561216/559756261512445963/FP_Banner_Placeholder.png\">" //Banner image
+	s += "<img src=\"https://i.imgur.com/KKRt1XJ.png\">" //Banner image
+
+	s += "<b>[station_name()]</b>";
+	s += " ("
+	s += "<a href=\"http://\">" //Change this to wherever you want the hub to link to.
+	s += "Default"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
+	s += "</a>"
+	s += ")"
+
+	var/players = GLOB.clients.len
+
+	var/popcaptext = ""
+	var/popcap = max(CONFIG_GET(number/extreme_popcap), CONFIG_GET(number/hard_popcap), CONFIG_GET(number/soft_popcap))
+	if (popcap)
+		popcaptext = "/[popcap]"
+
+	if (players > 1)
+		features += "[players][popcaptext] players"
+	else if (players > 0)
+		features += "[players][popcaptext] player"
+
+	game_state = (CONFIG_GET(number/extreme_popcap) && players >= CONFIG_GET(number/extreme_popcap)) //tells the hub if we are full
+
+	if (!host && hostedby)
+		features += "hosted by <b>[hostedby]</b>"
+
+	if (features)
+		s += ": [jointext(features, ", ")]"
 
 	status = s
 
