@@ -84,3 +84,10 @@
 	desc = "They're gonna send you back to Mother in a cardboard box!"
 	icon_state = "officeruniform"
 	item_state = "officeruniform"
+
+
+/obj/item/clothing/under/face/custom/sysadmin
+	name = "Sysadmin Clothes"
+	desc = "INSTALL GENTOO"
+	icon_state = "sysadmin"
+	item_state = "sysadmin"
