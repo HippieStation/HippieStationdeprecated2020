@@ -7,11 +7,11 @@
 
 
 /obj/effect/particle_effect/vapour/master/Initialize()
+	. = ..()
 	VM = src
 	LAZYADD(newvapes, src)
 	addtimer(CALLBACK(src, .proc/Merge_Master), 0)
 	START_PROCESSING(SSreagent_states, src)
-	. = ..()
 
 /obj/effect/particle_effect/vapour/master/kill_vapour()
 	LAZYREMOVE(newvapes, src)
