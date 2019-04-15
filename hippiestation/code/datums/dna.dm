@@ -9,9 +9,9 @@
 		else
 			tts_voice = pick("dennis", "frank", "harry", "kit", "paul")
 
-/datum/dna/initialize_dna()
+/datum/dna/initialize_dna(newblood_type, skip_index = FALSE)
+	. = ..()
 	create_random_voice()
-	.=..()
 
 /datum/dna/transfer_identity(mob/living/carbon/destination, transfer_SE = 0)
 	. = ..()
@@ -31,7 +31,7 @@
 /mob/living/carbon/human/set_species(datum/species/mrace, icon_update = TRUE, pref_load = FALSE)
 	..()
 	update_teeth()
-	if(is_banned_from(src.ckey, CATBAN) && dna.species.name != "Catbeast")
+	if(is_banned_from(ckey, CATBAN) && !istype(dna.species, /datum/species/tarajan))
 		set_species(/datum/species/tarajan, icon_update=1) // can't escape hell
 
 /datum/dna/remove_mutation(mutation_name)

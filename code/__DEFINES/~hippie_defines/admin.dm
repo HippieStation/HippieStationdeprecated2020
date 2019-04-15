@@ -1,3 +1,3 @@
 //Job Bans
-#define CLUWNEBAN	"cluwneban"
-#define CATBAN		"catban"
+#define CLUWNEBAN	"Cluwne ban"
+#define CATBAN		"Cat ban"

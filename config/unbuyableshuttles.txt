@@ -28,4 +28,7 @@ _maps/shuttles/emergency_airless.dmm
 #_maps/shuttles/emergency_supermatter.dmm
 #_maps/shuttles/emergency_wabbajack.dmm
 #_maps/shuttles/emergency_discoinferno.dmm
+<<<<<<< HEAD
 _maps/shuttles/emergency_big.dmm
+=======
+>>>>>>> 00809786d24f0b59a654db5252b3e4f3332665e5
