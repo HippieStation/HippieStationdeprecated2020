@@ -101,3 +101,10 @@
 	icon_state = "kylecoat"
 	item_state = "kylecoat"
 
+/obj/item/clothing/suit/abs
+	name = "Duke Armor"
+	desc = "Always count on duke!"
+	icon_state = "dukeabs"
+	item_state = "dukeabs"
+	body_parts_covered = CHEST
+	armor = list(melee = 40, bullet = 55, laser = 66,energy = 40, bomb = 30, bio = 40, rad = 80, fire = 30, acid = 80)
