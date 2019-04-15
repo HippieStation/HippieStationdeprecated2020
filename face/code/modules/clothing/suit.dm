@@ -101,7 +101,7 @@
 	icon_state = "kylecoat"
 	item_state = "kylecoat"
 
-/obj/item/clothing/suit/abs
+/obj/item/clothing/suit/face/custom/abs
 	name = "Duke Armor"
 	desc = "Always count on duke!"
 	icon_state = "dukeabs"
