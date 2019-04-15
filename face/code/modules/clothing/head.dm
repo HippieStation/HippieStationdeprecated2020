@@ -17,7 +17,6 @@
 	item_state = "russobluecamohat"
 
 
-
 /obj/item/clothing/head/face/custom/vg/russofurhat
 	name = "Russian fur hat"
 	desc = "Russian winter got you down? Maybe your enemy, but not you!"

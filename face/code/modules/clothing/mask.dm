@@ -10,3 +10,17 @@
 	visor_flags_inv = HIDEFACE
 	flags_cover = MASKCOVERSMOUTH
 	visor_flags_cover = MASKCOVERSMOUTH
+
+/obj/item/clothing/mask/gas/face/custom/jason
+	name = "Ancient Hockey Mask"
+	desc = "A crusty yellowed fiberglass hockey mask covered in scratches and skid marks, from days long past."
+	icon_state = "jason"
+	item_state = "jason"
+
+
+/obj/item/clothing/mask/gas/face/custom/hockey
+	name = "Vintage Goaltender's Mask"
+	desc = "An old fiberglass goalie mask, speckled with a few scuffs and scratch marks."
+	icon_state = "hockey"
+	item_state = "hockey"
+

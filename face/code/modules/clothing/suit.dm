@@ -82,8 +82,22 @@
 	item_state = "jojinew02"
 
 /obj/item/clothing/suit/face/custom/krieg
-	name = "NT Korp Armor"
+	name = "Nanotrasen Sec Korps armor"
 	desc = "This station just got about 70% more grimdark."
 	icon_state = "krieguniform"
 	item_state = "krieguniform"
 	armor = list(melee = 40, bullet = 55, laser = 66,energy = 40, bomb = 30, bio = 40, rad = 80, fire = 30, acid = 80)
+
+/obj/item/clothing/suit/face/custom/machinecult
+	name = "Cultist Engineer overalls"
+	desc = "If the Omnissah decrees, I'll go and recieve the power dildos."
+	icon_state = "mechanicus"
+	item_state = "mechanicus"
+	armor = list(melee = 25, bullet = 15, laser = 25,energy = 25, bomb = 30, bio = 00, rad = 80, fire = 60, acid = 20)
+
+/obj/item/clothing/suit/face/custom/kyle
+	name = "Scruffy Trenchcoat"
+	desc = "An olive drab trenchcoat with a few paint stains on it, perfect for pretending you're in 1984."
+	icon_state = "kylecoat"
+	item_state = "kylecoat"
+
