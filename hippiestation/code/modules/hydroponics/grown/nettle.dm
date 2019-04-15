@@ -10,6 +10,7 @@
 	icon = 'hippiestation/icons/obj/hydroponics/seeds.dmi'
 	icon_state = "seed-stunnettle"
 	species = "stunnettle"
+	growing_icon = 'hippiestation/icons/obj/hydroponics/growing.dmi'
 	plantname = "Stun Nettles"
 	product = /obj/item/reagent_containers/food/snacks/grown/nettle/stun
 	maturation = 8
@@ -18,6 +19,7 @@
 	mutatelist = list(/obj/item/seeds/nettle/death)
 	reagents_add = list("tirizene" = 0.2, "tiresolution" = 0.2, "pax" = 0.05, "kelotane" = 0.05)
 	rarity = 20
+
 
 
 /obj/item/reagent_containers/food/snacks/grown/nettle/stun
@@ -40,22 +42,22 @@
 
 
 /obj/item/reagent_containers/food/snacks/grown/nettle/stun/attack(mob/M, mob/living/carbon/human/user)
-	if(user.a_intent == INTENT_HARM)
 
-		if(user.has_trait(TRAIT_CLUMSY) && prob(50))
-			user.visible_message("<span class='danger'>[user] accidentally hits [user.p_them()]self with [src]!</span>", \
+
+	if(user.a_intent == INTENT_HARM && user.has_trait(TRAIT_CLUMSY) && prob(50))
+		user.visible_message("<span class='danger'>[user] accidentally hits [user.p_them()]self with [src]!</span>", \
 							"<span class='userdanger'>You accidentally hit yourself with [src]!</span>")
-			user.Paralyze(stunforce*3)
-			return
+		user.Paralyze(stunforce*3)
+		return
 
-		if(iscyborg(M))
-			..()
-			return
+	if(iscyborg(M))
+		..()
+		return
 
 
-		if(ishuman(M))
-			nettle_stun(M, user)
-			..()
+	if(ishuman(M))
+		nettle_stun(M, user)
+		..()
 
 
 /obj/item/reagent_containers/food/snacks/grown/nettle/stun/proc/nettle_stun(mob/living/L, mob/user)
@@ -80,7 +82,8 @@ obj/item/reagent_containers/food/snacks/grown/nettle/stun/afterattack(atom/A as 
 	if(!proximity)
 		return
 
-	uses--// When you whack someone with it, leaves fall off
+	if(user.a_intent == INTENT_HARM)
+		uses--// When you whack someone with it, leaves fall off
 
 	if(uses < 1)
 		to_chat(usr, "All the leaves have fallen off the nettle from violent whacking.")
