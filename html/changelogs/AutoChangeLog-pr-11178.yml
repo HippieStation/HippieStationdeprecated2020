@@ -1,0 +1,7 @@
+author: "HonkBot"
+delete-after: True
+changes: 
+  - balance: "NT has now equipped all secways and atvs with new cheap lithium cells. It may cause explosions if they take too much damage"
+  - balance: "secway and atv have less health"
+  - balance: "you can repair vehicles with a welder"
+  - bugfix: "you might hit the driver while straigh shooting"
