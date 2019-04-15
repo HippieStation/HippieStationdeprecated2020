@@ -110,9 +110,11 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	GLOB.world_href_log = "[GLOB.log_directory]/hrefs.log"
 	GLOB.sql_error_log = "[GLOB.log_directory]/sql.log"
 	GLOB.world_qdel_log = "[GLOB.log_directory]/qdel.log"
+	GLOB.world_map_error_log = "[GLOB.log_directory]/map_errors.log"
 	GLOB.world_runtime_log = "[GLOB.log_directory]/runtime.log"
 	GLOB.query_debug_log = "[GLOB.log_directory]/query_debug.log"
 	GLOB.world_job_debug_log = "[GLOB.log_directory]/job_debug.log"
+  GLOB.world_paper_log = "[GLOB.log_directory]/paper.log"
 
 #ifdef UNIT_TESTS
 	GLOB.test_log = file("[GLOB.log_directory]/tests.log")
