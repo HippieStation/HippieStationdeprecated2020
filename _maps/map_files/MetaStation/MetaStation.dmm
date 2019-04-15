@@ -35157,10 +35157,10 @@
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "bpl" = (
-/obj/structure/cable{
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable/cyan{
 	icon_state = "0-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "bpm" = (
@@ -35168,10 +35168,10 @@
 	id = "transittube";
 	name = "Transit Tube Blast Door"
 	},
-/obj/structure/cable{
+/obj/effect/turf_decal/delivery,
+/obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
-/obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/engine/break_room)
 "bpn" = (
@@ -35181,7 +35181,7 @@
 /turf/open/floor/plasteel/dark,
 /area/aisat)
 "bpp" = (
-/obj/structure/cable{
+/obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
@@ -35242,21 +35242,10 @@
 	dir = 4
 	},
 /obj/structure/lattice/catwalk,
-/obj/structure/cable{
+/obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
 /obj/structure/transit_tube/horizontal,
-/turf/open/space,
-/area/space/nearstation)
-"bpx" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/transit_tube/crossing/horizontal,
 /turf/open/space,
 /area/space/nearstation)
 "bpy" = (
@@ -35264,7 +35253,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/structure/cable{
+/obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
 /obj/structure/transit_tube/horizontal,
@@ -35275,11 +35264,11 @@
 	dir = 4
 	},
 /obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /obj/structure/transit_tube/junction/flipped{
 	dir = 8
+	},
+/obj/structure/cable/cyan{
+	icon_state = "4-8"
 	},
 /turf/open/space,
 /area/space/nearstation)
@@ -35288,7 +35277,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/structure/cable{
+/obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
 /turf/open/space,
@@ -35301,7 +35290,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/structure/cable{
+/obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
 /turf/open/space,
@@ -35313,11 +35302,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
 	},
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /obj/structure/transit_tube/station{
 	dir = 4
+	},
+/obj/structure/cable/cyan{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
 /area/aisat)
@@ -35325,7 +35314,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 10
 	},
-/obj/structure/cable{
+/obj/structure/cable/cyan{
 	icon_state = "0-8"
 	},
 /turf/open/floor/plasteel/dark,
@@ -36438,17 +36427,17 @@
 	name = "MiniSat Access";
 	req_one_access_txt = "32;19"
 	},
-/obj/structure/cable{
+/obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/break_room)
 "brL" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
+	},
+/obj/structure/cable/cyan{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/break_room)
@@ -36457,23 +36446,20 @@
 	dir = 4
 	},
 /obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /obj/structure/window/reinforced{
 	dir = 8
 	},
 /obj/structure/transit_tube/curved{
 	dir = 4
 	},
+/obj/structure/cable/cyan{
+	icon_state = "4-8"
+	},
 /turf/open/space,
 /area/space/nearstation)
 "brN" = (
 /obj/structure/window/reinforced{
 	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "4-8"
 	},
 /obj/structure/table/glass,
 /obj/item/phone{
@@ -36486,6 +36472,9 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
 	dir = 1
+	},
+/obj/structure/cable/cyan{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/break_room)
@@ -80214,18 +80203,6 @@
 /turf/open/space,
 /area/space/nearstation)
 "dgO" = (
-/obj/machinery/atmospherics/pipe/simple/orange/visible,
-/turf/open/space,
-/area/space/nearstation)
-"dgS" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/structure/lattice/catwalk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/transit_tube/horizontal,
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/space,
 /area/space/nearstation)
@@ -129450,7 +129427,7 @@ dgO
 dgO
 dgw
 dgO
-dgS
+bpw
 dgO
 dgO
 dgw
@@ -129707,7 +129684,7 @@ aaa
 aaa
 aaf
 aaf
-bpx
+bpw
 aaf
 aaf
 aaf
@@ -130478,7 +130455,7 @@ aaa
 aaa
 aaf
 aaf
-bpx
+bpw
 aaf
 aaf
 aaf
@@ -132277,7 +132254,7 @@ aaa
 aaa
 aaf
 aaf
-bpx
+bpw
 aaf
 aaf
 aaa
@@ -134076,7 +134053,7 @@ aaa
 aaa
 aaf
 aaf
-bpx
+bpw
 aaf
 aaf
 aaa
