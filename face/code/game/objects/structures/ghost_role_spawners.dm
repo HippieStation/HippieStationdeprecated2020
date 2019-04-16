@@ -17,6 +17,7 @@
 		notify_ghosts("A Central Command Shuttle Engineer has been spawned!", source = src, action=NOTIFY_ATTACK, flashwindow = FALSE, ignore_key = POLL_IGNORE_ASHWALKER)
 
 /datum/outfit/centcomshuttle
+	name = "Shuttle Engineer"
 	uniform = /obj/item/clothing/under/rank/centcom_officer
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/combat

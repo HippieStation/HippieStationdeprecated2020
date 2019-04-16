@@ -2799,6 +2799,7 @@
 #include "code\modules\VR\vr_sleeper.dm"
 #include "code\modules\zombie\items.dm"
 #include "code\modules\zombie\organs.dm"
+#include "face\code\datums\ert.dm"
 #include "face\code\game\machinery\vending.dm"
 #include "face\code\game\objects\structures\ghost_role_spawners.dm"
 #include "face\code\modules\clothing\clothing.dm"
