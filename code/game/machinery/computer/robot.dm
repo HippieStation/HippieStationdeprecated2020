@@ -98,8 +98,26 @@
 		dat += "</div>"
 	else
 		dat += "<hr><center>No drone units detected within access parameters.</center>"
+	/*hippie edit -- adds blow up IC option*/
+	dat += "<center><h2>Integrated Circuits</h2></center>"
+	var/ic = 0
+	for(var/obj/item/electronic_assembly/E in GLOB.ic_total)
+		if(E.z)
+			if(ic)
+				dat += "<br><br>"
+			else
+				dat += "<div class='statusDisplay'>"
+			ic++
+			dat += "<b>Name:</b> [E.name]<br>"
+			dat += "<b>Unit Controls:</b> "
+			dat += "<A href='?src=[REF(src)];killcircuit=[REF(E)]'>(<font color=red><i>Destroy</i></font>)</A>"
 
-	var/window_height = min((300+((robot_count+drones) * 110)), 800)
+	if(ic)
+		dat += "</div>"
+	else
+		dat += "<hr><center>No integrated circuit units detected within access parameters.</center>"
+	/*hippie edit -- adds blow up IC option*/
+	var/window_height = min((300+((robot_count+drones+ic) * 110)), 800)//hippie edit -- makes window large for destroying ICs
 
 	var/datum/browser/popup = new(user, "computer", "Robotics Control Console", 375, window_height)
 	popup.set_content(dat)
@@ -176,6 +194,18 @@
 				s.start()
 				D.visible_message("<span class='danger'>\the [D] self destructs!</span>")
 				D.gib()
-
+	//hippie edit -- adds IC destruction
+	else if (href_list["killcircuit"])
+		if(allowed(usr))
+			var/obj/item/electronic_assembly/D = locate(href_list["killcircuit"]) in GLOB.ic_total
+			var/turf/T = get_turf(D)
+			message_admins("[ADMIN_LOOKUPFLW(usr)] destroyed [D] at [ADMIN_VERBOSEJMP(T)]!")
+			log_game("[key_name(usr)] destroyed [D]!")
+			var/datum/effect_system/spark_spread/s = new (src)
+			s.set_up(3, TRUE, D)
+			s.start()
+			D.visible_message("<span class='danger'>\the [D] self destructs!</span>")
+			qdel(D)
+	//hippie end -- IC blowup function
 
 	updateUsrDialog()

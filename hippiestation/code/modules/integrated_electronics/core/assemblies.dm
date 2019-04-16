@@ -82,6 +82,7 @@
 
 /obj/item/electronic_assembly/Initialize()
 	.=..()
+	GLOB.ic_total += src
 	START_PROCESSING(SScircuit, src)
 	materials[MAT_METAL] = round((max_complexity + max_components) / 4) * SScircuit.cost_multiplier
 
@@ -101,6 +102,7 @@
 	for(var/datum/atom_hud/data/diagnostic/diag_hud in GLOB.huds)
 		diag_hud.remove_from_hud(src)
 	QDEL_NULL(access_card)
+	GLOB.ic_total -= src
 	return ..()
 
 /obj/item/electronic_assembly/process()
@@ -363,7 +365,7 @@
 			component.rename_component(usr)
 			if(component.assembly)
 				component.assembly.add_allowed_scanner(usr.ckey)
-		
+
 		if(href_list["interact"])
 			var/obj/item/I = usr.get_active_held_item()
 			if(istype(I))
