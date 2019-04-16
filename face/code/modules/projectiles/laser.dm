@@ -4,7 +4,7 @@
 
 /obj/item/ammo_casing/energy/lasergun/lasgun
 	projectile_type = /obj/item/projectile/beam/laser/lasgun
-	e_cost = 30
+	e_cost = 25
 	select_name = "kill"
 
 /obj/item/gun/energy/laser/retro/face/custom/lasgun
