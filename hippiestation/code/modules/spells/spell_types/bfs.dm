@@ -74,3 +74,9 @@
 
 /obj/effect/bfs/tip
 	icon_state = "tip"
+
+/obj/effect/bfs/blade
+	icon_state = "blade"
+
+/obj/effect/bfs/hilt
+	icon_state = "hilt"
