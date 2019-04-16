@@ -6,6 +6,7 @@
 	clothes_req = FALSE
 	human_req = TRUE
 	sound = 'sound/magic/clockwork/invoke_general.ogg'
+	var/length = 17
 
 /obj/effect/proc_holder/spell/self/bigass_sword/proc/target_bodyparts(atom/the_target) //stolen from gorillacode
 	var/list/parts = list()
@@ -20,11 +21,16 @@
 
 /obj/effect/proc_holder/spell/self/bigass_sword/cast(mob/user = usr)
 	user.visible_message("<span class='danger bold'>[user] swings the Big Flaming Sword!</span>")
-	var/tip = multistep(user, user.dir, 17)
-	var/list/big_sword_hits = getline( get_step(user, user.dir),  tip )
-	big_sword_hits += get_step(multistep(user, user.dir, 2), turn(user.dir, 270))
-	big_sword_hits += get_step(multistep(user, user.dir, 2), turn(user.dir, 90))
+	var/tip = multistep(user, user.dir, length)
+	var/hilt = get_step(user, user.dir)
+	var/list/big_sword_hits = getline( hilt  tip )
+	var/turf/bA = get_step(multistep(user, user.dir, 2), turn(user.dir, 270))
+	big_sword_hits += bA
+	var/turf/bB = get_step(multistep(user, user.dir, 2), turn(user.dir, 90))
+	big_sword_hits += bB
 	for(var/turf/T in big_sword_hits)
+		if(T != tip && T != bA && T != bB && T != hilt)
+			new /obj/effect/bfs/blade(T, user.dir)
 		for(var/mob/living/L in T)
 			L.visible_message("<span class='danger'>[L] is hit by the Big Flaming Sword!</span>")
 			L.adjustFireLoss(8.75)
@@ -45,7 +51,8 @@
 		if(isclosedturf(T))
 			T.visible_message("<span class='danger'>[T] is torn away by the Big Flaming Sword!</span>")
 			T.ScrapeAway() //tear down to baseturf
-		new /obj/effect/hotspot(T)
+	new /obj/effect/bfs/tip(tip, user.dir)
+	new /obj/effect/bfs/hilt(get_step(user, user.dir), user.dir)
 	explosion(tip, 0, 0, 3, 4, flame_range = 3)
 
 /obj/effect/proc_holder/spell/self/bigass_sword/proc/multistep(ref, dir, amt)
@@ -53,3 +60,23 @@
 	for(var/j=0; j<amt ;j++)
 		T = get_step(T, dir)
 	return T
+
+
+/obj/effect/bfs
+	icon = 'hippiestation/icons/effects/bfs.dmi'
+
+/obj/effect/bfs/Initialize(mapload, direction)
+	. = ..()
+	setDir(direction)
+	pixel_y = 32
+	animate(src, pixel_y = 0, time = 10)
+	QDEL_IN(src, 15)
+
+/obj/effect/bfs/tip
+	icon_state = "tip"
+
+/obj/effect/bfs/blade
+	icon_state = "blade"
+
+/obj/effect/bfs/hilt
+	icon_state = "hilt"
