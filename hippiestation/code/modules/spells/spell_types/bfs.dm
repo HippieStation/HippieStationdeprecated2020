@@ -23,7 +23,7 @@
 	user.visible_message("<span class='danger bold'>[user] swings the Big Flaming Sword!</span>")
 	var/tip = multistep(user, user.dir, length)
 	var/hilt = get_step(user, user.dir)
-	var/list/big_sword_hits = getline( hilt  tip )
+	var/list/big_sword_hits = getline( hilt, tip )
 	var/turf/bA = get_step(multistep(user, user.dir, 2), turn(user.dir, 270))
 	big_sword_hits += bA
 	var/turf/bB = get_step(multistep(user, user.dir, 2), turn(user.dir, 90))
@@ -74,9 +74,3 @@
 
 /obj/effect/bfs/tip
 	icon_state = "tip"
-
-/obj/effect/bfs/blade
-	icon_state = "blade"
-
-/obj/effect/bfs/hilt
-	icon_state = "hilt"
