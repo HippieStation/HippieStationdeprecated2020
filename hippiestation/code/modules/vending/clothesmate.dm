@@ -11,7 +11,7 @@
 						   /obj/item/clothing/under/face/custom/vg/russobluecamooutfit = 2,
 						   /obj/item/clothing/under/face/custom/sysadmin = 1,
 						   /obj/item/clothing/under/face/custom/redcoat = 1,
-						   /obj/item/clothing/underface/custom/beater = 1,
+						   /obj/item/clothing/under/face/custom/beater = 1,
 						   /obj/item/clothing/under/face/custom/duke = 1,
 						   /obj/item/clothing/under/face/custom/dd = 2,
 						   /obj/item/clothing/under/face/custom/gorka = 1,
@@ -19,7 +19,7 @@
 						   /obj/item/clothing/under/face/custom/vg/sneaksuit = 1,
 						   /obj/item/clothing/suit/toggle/jacket/face/custom/jojinam_medals = 1,
 						   /obj/item/clothing/suit/toggle/jacket/face/custom/jojinamnew/cavalry = 2,
-						   /obj/item/clothing/suit/face/custom/machinecult = 1,
+						   /obj/item/clothing/suit/hooded/face/custom/machinecult = 1,
 						   /obj/item/clothing/suit/face/custom/kyle = 1,
 						   /obj/item/clothing/gloves/face/custom/kazgloves = 1,
 						   /obj/item/clothing/head/face/custom/kazhat = 1,
@@ -27,7 +27,5 @@
 						   /obj/item/clothing/head/face/custom/vg/russobluecamohat = 1,
 						   /obj/item/clothing/shoes/face/custom/kazshoes = 1,
 						   /obj/item/clothing/shoes/face/custom/nike = 1,
-						   /obj/item/clothing/under/face/custom/vg/squatter_outfit = 1,
-						   /obj/item/clothing/under/face/custom/vg/russobluecamooutfit = 2,
 						   /obj/item/clothing/under/face/custom/sysadmin = 1
 						 )

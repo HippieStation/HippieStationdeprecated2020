@@ -62,3 +62,11 @@
 	desc = "Eins, zwei, drei, alle!"
 	icon_state = "officerhat"
 	item_state = "officerhat"
+
+/obj/item/clothing/head/hooded/face/custom/machinecult
+	name = "Mechanicus Hood"
+	desc = "What is a go? Is go go go da do?"
+	icon_state = "mechanicus"
+	item_state = "mechanicus"
+	body_parts_covered = HEAD
+	flags_inv = HIDEHAIR|HIDEEARS

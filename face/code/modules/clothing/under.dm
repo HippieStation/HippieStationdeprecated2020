@@ -107,7 +107,7 @@
 	item_state = "redcoat"
 
 
-/obj/item/clothing/underface/custom/beater
+/obj/item/clothing/under/face/custom/beater
 	name = "Head Of Security Casual Uniform"
 	desc = "EY CLEATUS, THOSE SYNDIES OUR BREAKING DER TRUCK AGAIN"
 	icon_state = "wife"
