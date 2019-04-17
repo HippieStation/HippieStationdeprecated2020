@@ -93,27 +93,27 @@
 	item_state = "sysadmin"
 	alternate_screams = list('face/sound/screams/gentoo1.ogg','face/sound/screams/gentoo2.ogg')
 
-/obj/item/clothing/under/faceface/custom/vicedetective
+/obj/item/clothing/under/face/custom/vicedetective
 	name = "Vice Detective Suit"
 	desc = "An alternate look to your modern day space detective."
 	icon_state = "detectivevice"
 	item_state = "detectivevice"
 
 
-/obj/item/clothing/under/face/custom/redcoat
+/obj/item/clothing/under/face/custom/redcoat // For some reason this won't appear
 	name = "redcoat uniform"
 	desc = "Looks old."
 	icon_state = "redcoat"
 	item_state = "redcoat"
 
 
-/obj/item/clothing/under/face/custom/beater
-	name = "Head Of Security Casual Uniform"
+/obj/item/clothing/under/face/customeater // wont appear for some reason?
+	name = "Wife BeaterTM"
 	desc = "EY CLEATUS, THOSE SYNDIES OUR BREAKING DER TRUCK AGAIN"
 	icon_state = "wife"
 	item_state = "wife"
 
-/obj/item/clothing/under/face/custom/duke
+/obj/item/clothing/under/face/custom/duke // Sounds are sped up?
 	name = "Duke Suit"
 	desc = "You have come here to chew bubblegum and kick ass...and you're all out of bubblegum."
 	icon_state = "duke"
