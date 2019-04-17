@@ -107,7 +107,7 @@
 	item_state = "redcoat"
 
 
-/obj/item/clothing/under/face/customeater // wont appear for some reason?
+/obj/item/clothing/under/face/custom/beater // wont appear for some reason?
 	name = "Wife BeaterTM"
 	desc = "EY CLEATUS, THOSE SYNDIES OUR BREAKING DER TRUCK AGAIN"
 	icon_state = "wife"
