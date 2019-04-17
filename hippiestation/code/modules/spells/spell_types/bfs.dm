@@ -41,7 +41,7 @@
 				var/list/parts = target_bodyparts(L)
 				if(LAZYLEN(parts))
 					var/obj/item/bodypart/BP = pick(parts)
-					BP.dismember();
+					BP.dismember()
 					L.visible_message("<span class='danger'>[L]'s [BP] is turned to ashes by the Big Flaming Sword!</span>'", "<span class='userdanger'>Your [BP] is turned to ashes by the Big Flaming Sword!</span>")
 					qdel(BP)
 					new /obj/effect/decal/cleanable/ash(T)
@@ -70,7 +70,11 @@
 	setDir(direction)
 	pixel_y = 32
 	animate(src, pixel_y = 0, time = 10)
-	QDEL_IN(src, 15)
+	addtimer(CALLBACK(src, .proc/fire_n_delete), 15)
+
+/obj/effect/bfs/proc/fire_n_delete()
+	new /obj/effect/hotspot(get_turf(src))
+	qdel(src)
 
 /obj/effect/bfs/tip
 	icon_state = "tip"
