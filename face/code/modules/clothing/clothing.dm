@@ -15,6 +15,10 @@
 	alternate_worn_icon = 'face/icons/mob/suit.dmi'
 	icon = 'face/icons/obj/clothing/suits.dmi'
 
+/obj/item/clothing/suit/space/hardsuit/
+	alternate_worn_icon = 'face/icons/mob/suit.dmi'
+	icon = 'face/icons/obj/clothing/suits.dmi'
+
 /obj/item/clothing/shoes/face/
 	alternate_worn_icon = 'face/icons/mob/feet.dmi'
 	icon = 'face/icons/obj/clothing/shoes.dmi'
@@ -34,3 +38,11 @@
 /obj/item/clothing/mask/face/
 	alternate_worn_icon = 'face/icons/mob/mask.dmi'
 	icon = 'face/icons/obj/clothing/masks.dmi'
+
+/obj/item/clothing/mask/gas/face
+	alternate_worn_icon = 'face/icons/mob/mask.dmi'
+	icon = 'face/icons/obj/clothing/masks.dmi'
+
+/obj/item/clothing/head/helmet/space/hardsuit/face/
+	alternate_worn_icon = 'face/icons/mob/head.dmi'
+	icon = 'face/icons/obj/clothing/hats.dmi'
