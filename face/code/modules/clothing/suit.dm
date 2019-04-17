@@ -88,12 +88,14 @@
 	item_state = "krieguniform"
 	armor = list(melee = 40, bullet = 55, laser = 66,energy = 40, bomb = 30, bio = 40, rad = 80, fire = 30, acid = 80)
 
-/obj/item/clothing/suit/face/custom/machinecult
+/obj/item/clothing/suit/hooded/face/custom/machinecult
 	name = "Cultist Engineer overalls"
 	desc = "If the Omnissah decrees, I'll go and recieve the power dildos."
 	icon_state = "mechanicus"
 	item_state = "mechanicus"
 	armor = list(melee = 25, bullet = 15, laser = 25,energy = 25, bomb = 30, bio = 00, rad = 80, fire = 60, acid = 20)
+	hoodtype = /obj/item/clothing/head/hooded/face/custom/machinecult
+
 
 /obj/item/clothing/suit/face/custom/kyle
 	name = "Scruffy Trenchcoat"
