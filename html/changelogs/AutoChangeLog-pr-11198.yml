@@ -1,4 +1,0 @@
-author: "HonkBot"
-delete-after: True
-changes: 
-  - balance: "Reinforced doors reinforcement need to be removed before RCD can deconstruct them."
