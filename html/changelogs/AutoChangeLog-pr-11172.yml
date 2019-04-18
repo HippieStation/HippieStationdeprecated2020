@@ -1,4 +1,0 @@
-author: "Mideanon"
-delete-after: True
-changes: 
-  - bugfix: "Stun nettles now work like stun batons with 1-3 uses, 5 - 25 damage and stun duration based on potency"
