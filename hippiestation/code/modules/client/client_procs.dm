@@ -47,7 +47,7 @@
 	if(input)
 		var/datum/tts/T = new /datum/tts()
 		T.say(src, input, is_global=TRUE)
-		
+
 		to_chat(world, "<span class='boldannounce'>An admin used Text-to-Speech: [input]</span>")
 		log_admin("[key_name(src)] used Text-to-Speech: [input]")
 		message_admins("[key_name_admin(src)] used Text-to-Speech: [input]")
@@ -66,3 +66,16 @@
 
 	if (SStts)
 		SStts.start_engine()
+
+/client/proc/add_ooc_icons()
+	var/icons = ""
+	if(holder)
+		if(!holder.fakekey)
+			if(check_rights_for(src, R_ADMIN))
+				icons += "[icon2html('hippiestation/icons/ooc_icons/banhammer.dmi', world)]"
+	if(is_mentor())
+		if(!holder)
+			icons += "[icon2html('hippiestation/icons/ooc_icons/brain.dmi', world)]"
+	if(is_donator)
+		icons += "[icon2html('hippiestation/icons/ooc_icons/gold_coin.dmi', world)]"
+	return icons

@@ -207,6 +207,7 @@
 
 /datum/uplink_item/implants/macrobomb
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor)
+	restricted = FALSE
 
 /datum/uplink_item/dangerous/hockey
 	name = "Ka-nada Hockey Set"
@@ -458,6 +459,7 @@
 	category = "Services"
 	include_modes = list(/datum/game_mode/infiltration, /datum/game_mode/nuclear)
 	surplus = 0
+	restricted = TRUE
 
 /datum/uplink_item/services/manifest_spoof
 	name = "Crew Manifest Spoof"

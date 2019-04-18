@@ -1,8 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - admin: "Clear turf chems verb is now available."
-  - code_imp: "Fixed heat exchanger manifold runtiming."
-  - code_imp: "Fixed a dna related runtime."
-  - bugfix: "Fixed incorrect initial reagent flags on chemical tanks."
-  - tweak: "Chem tanks now have an examine hint to see if the lid is opened or closed."
