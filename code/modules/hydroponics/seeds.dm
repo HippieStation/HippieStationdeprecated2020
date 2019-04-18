@@ -367,7 +367,7 @@
 	var/amount_random_reagents = rand(lower, upper)
 	for(var/i in 1 to amount_random_reagents)
 		var/random_amount = rand(4, 15) * 0.01 // this must be multiplied by 0.01, otherwise, it will not properly associate
-		var/datum/plant_gene/reagent/R = new(get_random_reagent_id(), random_amount)
+		var/datum/plant_gene/reagent/R = new(get_random_reagent_id_seeds(), random_amount) // hippie --  before change line was var/datum/plant_gene/reagent/R = new(get_random_reagent_id(), random_amount); changed this line to use a hippie proc, why: created a new list to improve balance and only blacklist reagents from appearing only in seeds using can_synth_seeds in datum/reagent, this pro was only used by seeds anyway
 		if(R.can_add(src))
 			genes += R
 		else
