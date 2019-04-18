@@ -110,3 +110,58 @@
 	item_state = "dukeabs"
 	body_parts_covered = CHEST
 	armor = list(melee = 40, bullet = 55, laser = 66,energy = 40, bomb = 30, bio = 40, rad = 80, fire = 30, acid = 80)
+
+
+/obj/item/clothing/suit/face/custom/dio
+	name = "DIO's yellow jacket"
+	desc = "So fashionable it's menacing."
+	icon_state = "DIO"
+	item_state = "DIO"
+
+/obj/item/clothing/suit/face/custom/jotaro
+	name = "Delinquent's school coat"
+	desc = "Wear this, and you'll be shining like platinum."
+	icon_state = "jotaro"
+	item_state = "jotaro"
+
+/obj/item/clothing/suit/face/custom/raincoat
+	name = "Raincoat"
+	desc = "Do you like Huey Lewis and the News?"
+	icon_state = "raincoat"
+	item_state = "raincoat"
+//	allowed = list (/obj/item/weapon/twohanded/fireaxe)
+
+/obj/item/clothing/suit/face/custom/banecoat
+    name = "banecoat"
+    desc = "When Gotham is in ashes, then you have my permission to die."
+    icon_state = "banecoat"
+    item_state = "banecoat"
+    body_parts_covered = CHEST|GROIN|ARMS|LEGS
+    armor = list(melee = 20, bullet = 25, laser = 10)
+    cold_protection = CHEST|GROIN|LEGS|ARMS
+    heat_protection = CHEST|GROIN|LEGS|ARMS
+
+
+//obj/item/clothing/suit/armor/face/chestrig // commented out due to not knowing how to get allowed list woking whoops
+//	name = "chestrig"
+//	desc = "A lightweight, flat-green camoflauge vest which can carry just about any kind of gear, at the cost of offering virtually no protection."
+//	icon_state = "chestrig"
+//	item_state = "chestrig"
+//	allowed = list(/obj/item/weapon/gun/energy,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/weapon/gun/projectile,/obj/item/ammo_box,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/restraints/handcuffs,/obj/item/device/flashlight/seclite,/obj/item/weapon/melee/classic_baton/telescopic)
+//	blood_overlay_type = "armor"
+//	armor = list(melee = 10, bullet = 5, laser = 5, energy = 0, bomb = 0, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/armor/face/defender
+	name = "Defender MK2 Body Armor"
+	desc = "A New-Russia combat armor vest with a flat-green camoflauge. It uses ceramic plates to grant the wearer extremely effective protection against ballistic weaponry and moderate protection from explosions."
+	icon_state = "defender"
+	item_state = "defender"
+	armor = list(melee = 35, bullet = 80, laser = 20, energy = 15, bomb = 45, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/armor/face/hev_suit
+	name = "H.E.V Suit"
+	desc = "A highly advanced Hazardous Environment suit, this is the Mk7 version. Able to efficiently protect the user from just about any danger that a true scientist in the field may encounter. Also has some moderate protection from lasers, bullets, and blunt objects, just incase an angry military force decides to attempt to stop the progression of SCIENCE!"
+	icon_state = "hev"
+	item_state = "armor"
+	w_class = 4		//bulky item
+	armor = list(melee = 40, bullet = 45, laser = 45, energy = 30, bomb = 90, bio = 100, rad = 90)

@@ -1,5 +1,5 @@
  //               /// Section
-/obj/item/clothing/suit/jacket/face/
+/obj/item/clothing/suit/jacket/face/ // This is a very hacky solution to this, I admit, but it works.
 	alternate_worn_icon = 'face/icons/mob/suit.dmi'
 	icon = 'face/icons/obj/clothing/suits.dmi'
 
@@ -54,3 +54,7 @@
 /obj/item/clothing/head/hooded/face/
 	alternate_worn_icon = 'face/icons/mob/head.dmi'
 	icon = 'face/icons/obj/clothing/hats.dmi'
+
+/obj/item/clothing/suit/armor/face/
+	alternate_worn_icon = 'face/icons/mob/suit.dmi'
+	icon = 'face/icons/obj/clothing/suits.dmi'

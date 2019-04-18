@@ -70,3 +70,15 @@
 	item_state = "mechanicus"
 	body_parts_covered = HEAD
 	flags_inv = HIDEHAIR|HIDEEARS
+
+/obj/item/clothing/head/face/custom/dio
+	name = "DIO's heart headband"
+	desc = "Why is there a heart on this headband? The World may never know."
+	icon_state = "DIO"
+	item_state = "DIO"
+
+/obj/item/clothing/head/face/custom/jotaro
+	name = "Delinquent's cap"
+	desc = "or is it your hair...?"
+	icon_state = "jotaro"
+	item_state = "jotaro"
