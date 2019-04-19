@@ -14,6 +14,16 @@
 	armor = list(melee = 40, bullet = 30, laser = 30, energy = 15, bomb = 35, bio = 100, rad = 20)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/face/custom/ultramarine
 
+/obj/item/clothing/suit/space/hardsuit/face/custom/bloodraven
+	name = "Bloodraven Power Armour"
+	desc = "Blood Ravens? Go lock the reliquary."
+	icon_state = "bloodraven_suit"
+	item_state = "bloodraven_suit"
+	w_class = WEIGHT_CLASS_NORMAL
+	slowdown = 1
+	armor = list(melee = 40, bullet = 30, laser = 30, energy = 15, bomb = 35, bio = 100, rad = 20)
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/face/custom/bloodraven
+
 /obj/item/clothing/suit/face/custom/paladinsuit
 	name = "Paladin Armor"
 	desc = "Now to be a white knight and shitpost on tumblr!"

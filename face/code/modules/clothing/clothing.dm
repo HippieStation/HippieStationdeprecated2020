@@ -58,3 +58,7 @@
 /obj/item/clothing/suit/armor/face/
 	alternate_worn_icon = 'face/icons/mob/suit.dmi'
 	icon = 'face/icons/obj/clothing/suits.dmi'
+
+/obj/item/clothing/neck/tie/face
+	alternate_worn_icon = 'face/icons/mob/tie.dmi'
+	icon = 'face/icons/obj/clothing/tie.dmi'
