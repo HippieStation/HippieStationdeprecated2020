@@ -53,7 +53,6 @@
 	var/turf/i_hilt ultistep(fl_tip, turn(direction, 180), length)
 	QDEL_IN(new /obj/effect/bfs/portal(i_hilt, direction), 1)
 	QDEL_IN(new /obj/effect/bfs/portal(fl_tip, direction), 1)
-	to_chat(world, "chugga_amount is [chugga_amount], reverse is [reverse]")
 	if(!reverse)
 		damage_turf(tip)
 		QDEL_IN(new /obj/effect/bfs/tip(tip, direction), 1)
