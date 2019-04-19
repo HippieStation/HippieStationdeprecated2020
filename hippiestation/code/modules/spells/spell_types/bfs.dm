@@ -6,7 +6,7 @@
 	clothes_req = FALSE
 	human_req = TRUE
 	sound = 'sound/magic/clockwork/invoke_general.ogg'
-	var/length = 9
+	var/length = 11
 
 /obj/effect/proc_holder/spell/self/bfs/proc/target_bodyparts(atom/the_target) //stolen from gorillacode
 	var/list/parts = list()
@@ -96,6 +96,5 @@
 	icon_state = "hilt"
 
 /obj/effect/bfs/portal
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "anom"
+	icon_state = "portal"
 	layer = ABOVE_OBJ_LAYER
