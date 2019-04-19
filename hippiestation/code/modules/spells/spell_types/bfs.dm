@@ -50,7 +50,7 @@
 	var/turf/tip = multistep(T, direction, chugga_amount)
 	var/turf/fl_tip = multistep(T, direction, length)
 	var/turf/hilt = multistep(fl_tip, turn(direction, 180), chugga_amount)
-	var/turf/i_hilt ultistep(fl_tip, turn(direction, 180), length)
+	var/turf/i_hilt = multistep(fl_tip, turn(direction, 180), length)
 	QDEL_IN(new /obj/effect/bfs/portal(i_hilt, direction), 1)
 	QDEL_IN(new /obj/effect/bfs/portal(fl_tip, direction), 1)
 	if(!reverse)
