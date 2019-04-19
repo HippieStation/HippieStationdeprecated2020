@@ -4,7 +4,7 @@
 
 /obj/item/storage/bag/bio/holding
 	name = "Bio Bag of Holding"
-	icon = 'hippiestation/icons/obj/chemical.dmi'
+	icon = 'face/icons/obj/chemical.dmi'
 	icon_state = "biobagH"
 	desc = "A bag for the safe transportation and disposal of biowaste and other biological materials. This bag has more storage compared to the regular bio bag."
 	w_class = WEIGHT_CLASS_TINY

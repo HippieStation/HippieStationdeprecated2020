@@ -52,8 +52,3 @@
 	design_ids = list("mech_taser")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
-
-/datum/techweb_node/practical_bluespace
-	design_ids = list("bs_rped","minerbag_holding", "bluespacebeaker", "bluespacesyringe", "bluespacebodybag", "phasic_scanning", "roastingstick", "ore_silo", "biobag_holding")
-
-
