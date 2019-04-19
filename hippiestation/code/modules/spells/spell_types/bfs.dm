@@ -1,7 +1,7 @@
 /obj/effect/proc_holder/spell/self/bfs
 	name = "Interdimensional Sword"
 	desc = "Summons a humungous, flaming sword from another dimension."
-	charge_max = 200
+	charge_max = 0
 	cooldown_min = 95
 	clothes_req = FALSE
 	human_req = TRUE
@@ -21,6 +21,14 @@
 
 /obj/effect/proc_holder/spell/self/bfs/cast(mob/user = usr)
 	user.visible_message("<span class='danger bold'>[user] summons the Interdimensional Sword!</span>")
+	var/turf/fl_tip = multistep(get_turf(user), user.dir, length)
+	var/turf/i_hilt = multistep(fl_tip, turn(user.dir, 180), length-1)
+	var/start_portal = new /obj/effect/bfs/portal(i_hilt, turn(user.dir, 180))
+	var/end_portal = new /obj/effect/bfs/portal(fl_tip, user.dir)
+	flick("portal_open", start_portal)
+	flick("portal_open", end_portal)
+	QDEL_IN(start_portal, length*2)
+	QDEL_IN(end_portal, length*2)
 	chugga_chugga(get_turf(user), user.dir, 1, FALSE)
 
 /obj/effect/proc_holder/spell/self/bfs/proc/damage_turf(turf/T)
@@ -50,9 +58,6 @@
 	var/turf/tip = multistep(T, direction, chugga_amount)
 	var/turf/fl_tip = multistep(T, direction, length)
 	var/turf/hilt = multistep(fl_tip, turn(direction, 180), chugga_amount)
-	var/turf/i_hilt = multistep(fl_tip, turn(direction, 180), length-1)
-	QDEL_IN(new /obj/effect/bfs/portal(i_hilt, turn(direction, 180)), 1)
-	QDEL_IN(new /obj/effect/bfs/portal(fl_tip, direction), 1)
 	if(!reverse)
 		damage_turf(tip)
 		QDEL_IN(new /obj/effect/bfs/tip(tip, direction), 1)
