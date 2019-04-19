@@ -13,6 +13,6 @@
 	id = "biobag_holding"
 	build_type = PROTOLATHE
 	materials = list(MAT_GOLD = 250, MAT_URANIUM = 500) //quite cheap, for more convenience
-	build_path = /obj/item/storage/bags/bio/holding
+	build_path = /obj/item/storage/bag/bio/holding
 	category = list("Bluespace Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SERVICE
