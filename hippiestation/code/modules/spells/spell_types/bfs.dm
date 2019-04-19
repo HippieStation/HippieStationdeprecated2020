@@ -1,6 +1,6 @@
 /obj/effect/proc_holder/spell/self/bfs
-	name = "Big Flaming Sword"
-	desc = "Summons a humungous, flaming sword."
+	name = "Interdimensional Sword"
+	desc = "Summons a humungous, flaming sword from another dimension."
 	charge_max = 200
 	cooldown_min = 95
 	clothes_req = FALSE
@@ -20,12 +20,12 @@
 	return parts
 
 /obj/effect/proc_holder/spell/self/bfs/cast(mob/user = usr)
-	user.visible_message("<span class='danger bold'>[user] summons the Big Flaming Sword!</span>")
+	user.visible_message("<span class='danger bold'>[user] summons the Interdimensional Sword!</span>")
 	chugga_chugga(get_turf(user), user.dir, 1, FALSE)
 
 /obj/effect/proc_holder/spell/self/bfs/proc/damage_turf(turf/T)
 	for(var/mob/living/L in T)
-		L.visible_message("<span class='danger'>[L] is hit by the Big Flaming Sword!</span>")
+		L.visible_message("<span class='danger'>[L] is hit by the Interdimensional Sword!</span>")
 		L.adjustFireLoss(8.75)
 		L.adjustBruteLoss(8.75)
 		L.fire_stacks += 3
@@ -35,23 +35,23 @@
 			if(LAZYLEN(parts))
 				var/obj/item/bodypart/BP = pick(parts)
 				BP.dismember()
-				L.visible_message("<span class='danger'>[L]'s [BP] is turned to ashes by the Big Flaming Sword!</span>'", "<span class='userdanger'>Your [BP] is turned to ashes by the Big Flaming Sword!</span>")
+				L.visible_message("<span class='danger'>[L]'s [BP] is turned to ashes by the Interdimensional Sword!</span>'", "<span class='userdanger'>Your [BP] is turned to ashes by the Interdimensional Sword!</span>")
 				qdel(BP)
 				new /obj/effect/decal/cleanable/ash(T)
 	for(var/obj/O in T)
-		if(!istype(O, /obj/effect/bfs))
-			O.visible_message("<span class='danger'>[O] is annihilated by the Big Flaming Sword!</span>")
+		if(!istype(O, /obj/effect))
+			O.visible_message("<span class='danger'>[O] is annihilated by the Interdimensional Sword!</span>")
 			O.take_damage(INFINITY) //absolutely destroy any objects
 	if(isclosedturf(T))
-		T.visible_message("<span class='danger'>[T] is torn away by the Big Flaming Sword!</span>")
+		T.visible_message("<span class='danger'>[T] is torn away by the Interdimensional Sword!</span>")
 		T.ScrapeAway() //tear down to baseturf
 
 /obj/effect/proc_holder/spell/self/bfs/proc/chugga_chugga(turf/T, direction, chugga_amount, reverse)
 	var/turf/tip = multistep(T, direction, chugga_amount)
 	var/turf/fl_tip = multistep(T, direction, length)
 	var/turf/hilt = multistep(fl_tip, turn(direction, 180), chugga_amount)
-	var/turf/i_hilt = multistep(fl_tip, turn(direction, 180), length)
-	QDEL_IN(new /obj/effect/bfs/portal(i_hilt, direction), 1)
+	var/turf/i_hilt = multistep(fl_tip, turn(direction, 180), length-1)
+	QDEL_IN(new /obj/effect/bfs/portal(i_hilt, turn(direction, 180)), 1)
 	QDEL_IN(new /obj/effect/bfs/portal(fl_tip, direction), 1)
 	if(!reverse)
 		damage_turf(tip)
@@ -86,7 +86,6 @@
 	. = ..()
 	setDir(direction)
 
-
 /obj/effect/bfs/tip
 	icon_state = "tip"
 
@@ -97,5 +96,6 @@
 	icon_state = "hilt"
 
 /obj/effect/bfs/portal
-	icon_state = "portal"
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "anom"
 	layer = ABOVE_OBJ_LAYER

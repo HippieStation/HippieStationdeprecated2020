@@ -59,7 +59,7 @@
 	category = "Assistance"
 
 /datum/spellbook_entry/bfs
-	name = "Big Flaming Sword"
+	name = "Interdimensional Sword"
 	desc = "A massive flaming sword, capable of crushing walls, igniting enemies, and cutting rooms in half."
 	spell_type = /obj/effect/proc_holder/spell/self/bfs
 	cost = 3
