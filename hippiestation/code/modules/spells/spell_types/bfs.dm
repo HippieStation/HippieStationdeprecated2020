@@ -68,7 +68,6 @@
 			addtimer(CALLBACK(src, .proc/chugga_chugga, T, direction, chugga_amount+1, FALSE), 1)
 		else
 			addtimer(CALLBACK(src, .proc/chugga_chugga, T, direction, chugga_amount, TRUE), 1)
-			explosion(tip, 0, 0, 3, 4, flame_range = 3)
 	else
 		for(var/turf/A in getline(hilt, fl_tip)-hilt)
 			QDEL_IN(new /obj/effect/bfs/blade(A, direction), 1)
