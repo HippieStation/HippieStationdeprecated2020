@@ -23,6 +23,13 @@
 	icon_state = "russofurhat"
 	item_state = "russofurhat"
 
+/obj/item/clothing/head/helmet/space/hardsuit/face/custom/bloodraven
+	name = "Bloodraven Helmet"
+	desc = "Spehss Mahrens, todeh the enemeh is at oua doar! We know oua duteh and we will do eet. We fight for our honor as Blod Rehvens,as SPESS MAHRENS, and we fight in the nehme of the Empra!"
+	icon_state = "bloodraven_helmet"
+	item_state = "bloodraven_helmet"
+	armor = list(melee = 40, bullet = 30, laser = 30, energy = 15, bomb = 35, bio = 100, rad = 20)
+
 /obj/item/clothing/head/helmet/space/hardsuit/face/custom/ultramarine
 	name = "Ultramarine Helmet"
 	desc = "*distant sounds of obnoxious chanting*"
@@ -82,3 +89,10 @@
 	desc = "or is it your hair...?"
 	icon_state = "jotaro"
 	item_state = "jotaro"
+
+
+/obj/item/clothing/head/face/custom/redcoat
+	name = "Redcoat hat"
+	desc = "They threw WHAT IN THE HARBOUR!?"
+	icon_state = "redcoat"
+	item_state = "redcoat"
