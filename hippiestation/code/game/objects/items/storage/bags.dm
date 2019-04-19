@@ -2,7 +2,7 @@
  * Biowaste Bag of Holding (xenobiologists get an upgrade)
  */
 
-/obj/item/storage/bag/bio/holding
+/obj/item/storage/bags/bio/holding
 	name = "Bio Bag of Holding"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "biobagH"
@@ -10,7 +10,7 @@
 	w_class = WEIGHT_CLASS_TINY
 
 
-/obj/item/storage/bag/bio/holding/ComponentInitialize()
+/obj/item/storage/bags/bio/holding/ComponentInitialize()
 	. = ..()
 	GET_COMPONENT(STR, /datum/component/storage)
 	STR.max_combined_w_class = 200
