@@ -1,14 +1,14 @@
-/obj/effect/proc_holder/spell/self/bigass_sword
+/obj/effect/proc_holder/spell/self/bfs
 	name = "Big Flaming Sword"
 	desc = "Summons a humungous, flaming sword."
-	charge_max = 350
-	cooldown_min = 150
+	charge_max = 200
+	cooldown_min = 95
 	clothes_req = FALSE
 	human_req = TRUE
 	sound = 'sound/magic/clockwork/invoke_general.ogg'
 	var/length = 9
 
-/obj/effect/proc_holder/spell/self/bigass_sword/proc/target_bodyparts(atom/the_target) //stolen from gorillacode
+/obj/effect/proc_holder/spell/self/bfs/proc/target_bodyparts(atom/the_target) //stolen from gorillacode
 	var/list/parts = list()
 	if(iscarbon(the_target))
 		var/mob/living/carbon/C = the_target
@@ -19,15 +19,12 @@
 					parts += BP
 	return parts
 
-/obj/effect/proc_holder/spell/self/bigass_sword/cast(mob/user = usr)
-	user.visible_message("<span class='danger bold'>[user] swings the Big Flaming Sword!</span>")
-	chugga_chugga(get_turf(user), user.dir, 1)
+/obj/effect/proc_holder/spell/self/bfs/cast(mob/user = usr)
+	user.visible_message("<span class='danger bold'>[user] summons the Big Flaming Sword!</span>")
+	chugga_chugga(get_turf(user), user.dir, 1, FALSE)
 
-/obj/effect/proc_holder/spell/self/bigass_sword/proc/chugga_chugga(turf/T, direction, chugga_amount)
-	var/turf/tip = multistep(T, direction, chugga_amount)
-	//var/hilt = get_step(T, direction)
-	QDEL_IN(new /obj/effect/bfs/tip(tip, direction), 0.5)
-	for(var/mob/living/L in tip)
+/obj/effect/proc_holder/spell/self/bfs/proc/damage_turf(turf/T)
+	for(var/mob/living/L in T)
 		L.visible_message("<span class='danger'>[L] is hit by the Big Flaming Sword!</span>")
 		L.adjustFireLoss(8.75)
 		L.adjustBruteLoss(8.75)
@@ -41,23 +38,41 @@
 				L.visible_message("<span class='danger'>[L]'s [BP] is turned to ashes by the Big Flaming Sword!</span>'", "<span class='userdanger'>Your [BP] is turned to ashes by the Big Flaming Sword!</span>")
 				qdel(BP)
 				new /obj/effect/decal/cleanable/ash(T)
-	for(var/obj/O in tip)
+	for(var/obj/O in T)
 		if(!istype(O, /obj/effect/bfs))
 			O.visible_message("<span class='danger'>[O] is annihilated by the Big Flaming Sword!</span>")
 			O.take_damage(INFINITY) //absolutely destroy any objects
-	if(isclosedturf(tip))
-		tip.visible_message("<span class='danger'>[tip] is torn away by the Big Flaming Sword!</span>")
-		tip.ScrapeAway() //tear down to baseturf
-	if (chugga_amount > 1)
-		for(var/turf/A in getline(get_step(T, direction), tip)-tip)
-			QDEL_IN(new /obj/effect/bfs/blade(A, direction), 0.5)
-	if(chugga_amount < length)
-		addtimer(CALLBACK(src, .proc/chugga_chugga, T, direction, chugga_amount+1), 1)yy
-	else
-		explosion(tip, 0, 0, 3, 4, flame_range = 3)
-		
+	if(isclosedturf(T))
+		T.visible_message("<span class='danger'>[T] is torn away by the Big Flaming Sword!</span>")
+		T.ScrapeAway() //tear down to baseturf
 
-/obj/effect/proc_holder/spell/self/bigass_sword/proc/multistep(ref, dir, amt)
+/obj/effect/proc_holder/spell/self/bfs/proc/chugga_chugga(turf/T, direction, chugga_amount, reverse)
+	var/turf/tip = multistep(T, direction, chugga_amount)
+	var/turf/fl_tip = multistep(T, direction, length)
+	var/turf/hilt = multistep(fl_tip, turn(direction, 180), chugga_amount)
+	var/turf/i_hilt ultistep(fl_tip, turn(direction, 180), length)
+	QDEL_IN(new /obj/effect/bfs/portal(i_hilt, direction), 1)
+	QDEL_IN(new /obj/effect/bfs/portal(fl_tip, direction), 1)
+	to_chat(world, "chugga_amount is [chugga_amount], reverse is [reverse]")
+	if(!reverse)
+		damage_turf(tip)
+		QDEL_IN(new /obj/effect/bfs/tip(tip, direction), 1)
+		if (chugga_amount > 0)
+			for(var/turf/A in getline(get_step(T, direction), tip)-tip)
+				QDEL_IN(new /obj/effect/bfs/blade(A, direction), 1)
+		if(chugga_amount < length)
+			addtimer(CALLBACK(src, .proc/chugga_chugga, T, direction, chugga_amount+1, FALSE), 1)
+		else
+			addtimer(CALLBACK(src, .proc/chugga_chugga, T, direction, chugga_amount, TRUE), 1)
+			explosion(tip, 0, 0, 3, 4, flame_range = 3)
+	else
+		for(var/turf/A in getline(hilt, fl_tip)-hilt)
+			QDEL_IN(new /obj/effect/bfs/blade(A, direction), 1)
+		QDEL_IN(new /obj/effect/bfs/hilt(hilt, direction), 1)
+		if(chugga_amount > 0)
+			addtimer(CALLBACK(src, .proc/chugga_chugga, T, direction, chugga_amount-1, TRUE), 1)
+
+/obj/effect/proc_holder/spell/self/bfs/proc/multistep(ref, dir, amt)
 	var/turf/T = get_turf(ref)
 	for(var/j=0; j<amt ;j++)
 		T = get_step(T, dir)
@@ -71,11 +86,7 @@
 /obj/effect/bfs/Initialize(mapload, direction)
 	. = ..()
 	setDir(direction)
-	addtimer(CALLBACK(src, .proc/fire_n_delete), 15)
 
-/obj/effect/bfs/proc/fire_n_delete()
-	new /obj/effect/hotspot(get_turf(src))
-	qdel(src)
 
 /obj/effect/bfs/tip
 	icon_state = "tip"
@@ -85,3 +96,7 @@
 
 /obj/effect/bfs/hilt
 	icon_state = "hilt"
+
+/obj/effect/bfs/portal
+	icon_state = "portal"
+	layer = ABOVE_OBJ_LAYER
