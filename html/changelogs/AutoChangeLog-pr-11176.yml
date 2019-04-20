@@ -1,0 +1,4 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - rscadd: "Wizards can now buy the Interdimensional Sword for 3 spellpoints. It sets mobs on fire, crushes walls, rips up pipes, and destroys objects. And looks super cool."
