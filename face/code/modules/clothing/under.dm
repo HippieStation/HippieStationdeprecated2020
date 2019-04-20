@@ -210,10 +210,12 @@
 	icon_state = "DIO"
 	item_state = "DIO"
 	item_color = "DIO"
+	alternate_screams = list('face/sound/screams/dio1.ogg','face/sound/screams/dio2.ogg','face/sound/screams/dio3.ogg','face/sound/screams/dio4.ogg','face/sound/screams/dio5.ogg')
 
 /obj/item/clothing/under/face/custom/kira
-	name = "light blue suit"
+	name = "Killer's Suit"
 	desc = "What a beautiful light blue suit."
 	icon_state = "kira"
 	item_state = "kira"
 	item_color = "kira"
+	alternate_screams = list('face/sound/screams/kira1.ogg','face/sound/screams/kira2.ogg')
