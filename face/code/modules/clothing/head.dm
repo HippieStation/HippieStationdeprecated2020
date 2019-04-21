@@ -96,3 +96,10 @@
 	desc = "They threw WHAT IN THE HARBOUR!?"
 	icon_state = "redcoat"
 	item_state = "redcoat"
+
+/obj/item/clothing/head/helmet/swat/face/custom/pmc
+	name = "\improper MK7 Heavy Combat Helmet"
+	desc = "A combat helmet made out of goliath hide plates infused with ablative materials in a dark urban camouflage."
+	icon_state = "swat_pmc"
+	item_state = "swat_pmc"
+	armor = list(melee = 65, bullet = 70, laser = 40, energy = 25, bomb = 75, bio = 0, rad = 30)
