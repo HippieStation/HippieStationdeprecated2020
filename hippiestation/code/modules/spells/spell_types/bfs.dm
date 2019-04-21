@@ -1,8 +1,8 @@
 /obj/effect/proc_holder/spell/self/bfs
 	name = "Interdimensional Sword"
 	desc = "Summons a humungous, flaming sword from another dimension."
-	charge_max = 0
-	cooldown_min = 95
+	charge_max = 250
+	cooldown_min = 105
 	clothes_req = FALSE
 	human_req = TRUE
 	sound = 'sound/magic/clockwork/invoke_general.ogg'
@@ -33,6 +33,9 @@
 
 /obj/effect/proc_holder/spell/self/bfs/proc/damage_turf(turf/T)
 	for(var/mob/living/L in T)
+		if(L.anti_magic_check())
+			L.visible_message("<span class='danger'>The Interdimensional Sword phases through [L]!</span>")
+			continue
 		L.visible_message("<span class='danger'>[L] is hit by the Interdimensional Sword!</span>")
 		L.adjustFireLoss(8.75)
 		L.adjustBruteLoss(8.75)
