@@ -546,9 +546,3 @@
 /datum/map_template/shuttle/snowdin/excavation
 	suffix = "excavation"
 	name = "Snowdin Excavation Elevator"
-
-/datum/map_template/shuttle/merchant
-	port_id = "merchant"
-	suffix = "freighter"
-	name = "Base Freighter Template (Merchant)"
-	can_be_bought = FALSE

@@ -38,11 +38,3 @@
 		last_request = world.time
 		to_chat(usr, "<span class='notice'>Your request has been received by CentCom.</span>")
 		to_chat(GLOB.admins, "<b>FERRY: <font color='#3d5bc3'>[ADMIN_LOOKUPFLW(usr)] (<A HREF='?_src_=holder;[HrefToken()];secrets=moveferry'>Move Ferry</a>)</b> is requesting to move the transport ferry to CentCom.</font>")
-
-//Moved here so that an assistant who breaks in can't go to CentCom with a meteor gun
-/obj/machinery/computer/shuttle/ferry/request/merchant
-	name = "Merchant's Freighter Shuttle Console"
-	desc = "Used to control the merchant's freighter."
-	circuit = /obj/item/circuitboard/computer/ferry/request/merchant
-	shuttleId = "merchant"
-	possible_destinations = "merchant_home;merchant_away"
