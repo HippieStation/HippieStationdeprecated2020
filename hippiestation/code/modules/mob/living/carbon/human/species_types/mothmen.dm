@@ -11,6 +11,7 @@
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	meat = /obj/item/reagent_containers/food/snacks/meat/slab/human/mutant/moth
+	mutanteyes = /obj/item/organ/eyes
 
 /datum/species/moth/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	. = ..()
