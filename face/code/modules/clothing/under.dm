@@ -186,7 +186,7 @@
 	item_color = "jotaro"
 	alternate_screams = list('face/sound/screams/jotaro1.ogg','face/sound/screams/jotaro2.ogg')
 
-/obj/item/clothing/under/face/custompmc
+/obj/item/clothing/under/face/custom/pmc
 	name = "urban-camouflage fatigues"
 	desc = "A set of fatigues in a dark urban camouflage. Manufactured by Ion Incorporated for its private military contractors in need of a robust uniform."
 	icon_state = "pmc"
