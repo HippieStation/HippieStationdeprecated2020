@@ -187,6 +187,8 @@ SUBSYSTEM_DEF(ticker)
 				toggle_dooc(TRUE)
 				declare_completion(force_ending)
 				Master.SetRunLevel(RUNLEVEL_POSTGAME)
+				for(var/obj/effect/forcefield/centcom_dock/field in GLOB.centcom_forcefields)
+					qdel(field)
 
 
 /datum/controller/subsystem/ticker/proc/setup()
@@ -410,7 +412,7 @@ SUBSYSTEM_DEF(ticker)
 		queued_players.len = 0
 		queue_delay = 0
 		return
-		
+
 	queue_delay++
 	var/mob/dead/new_player/next_in_line = queued_players[1]
 

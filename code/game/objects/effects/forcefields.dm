@@ -24,6 +24,20 @@
 	CanAtmosPass = ATMOS_PASS_NO
 	timeleft = 200
 
+obj/effect/forcefield/centcom_dock
+	name = "Bluespace Shield"
+	desc = "Advanced forcefields employed by Central Command to stop trespassing when all other methods have failed."
+	CanAtmosPass = ATMOS_PASS_NO
+	timeleft = 0
+
+/obj/effect/forcefield/centcom_dock/Initialize()
+    . = ..()
+    GLOB.centcom_forcefields += src
+
+/obj/effect/forcefield/centcom_dock/Destroy()
+    GLOB.centcom_forcefields -= src
+    return ..()
+
 ///////////Mimewalls///////////
 
 /obj/effect/forcefield/mime

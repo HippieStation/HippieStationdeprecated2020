@@ -11,7 +11,7 @@
 	righthand_file = 'icons/mob/inhands/equipment/backpack_righthand.dmi'
 	slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
-	var/obj/item/gun/ballistic/minigun/gun
+	var/obj/item/gun/ballistic/minigun/gun = /obj/item/gun/ballistic/minigun
 	var/armed = 0 //whether the gun is attached, 0 is attached, 1 is the gun is wielded.
 	var/overheat = 0
 	var/overheat_max = 40
@@ -19,7 +19,8 @@
 
 /obj/item/minigunpack/Initialize()
 	. = ..()
-	gun = new(src)
+	if(gun)
+		gun = new gun(src)
 	START_PROCESSING(SSobj, src)
 
 /obj/item/minigunpack/Destroy()
@@ -111,10 +112,10 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/minigun
 	casing_ejector = FALSE
 	item_flags = NEEDS_PERMIT | SLOWS_WHILE_IN_HAND
-	var/obj/item/minigunpack/ammo_pack
+	var/obj/item/minigunpack/ammo_pack = /obj/item/minigunpack
 
 /obj/item/gun/ballistic/minigun/Initialize()
-	if(istype(loc, /obj/item/minigunpack)) //We should spawn inside an ammo pack so let's use that one.
+	if(istype(loc, /obj/item/minigunpack || /obj/item/minigunpack/shotgun)) //We should spawn inside an ammo pack so let's use that one.
 		ammo_pack = loc
 	else
 		return INITIALIZE_HINT_QDEL //No pack, no gun
@@ -145,3 +146,20 @@
 
 /obj/item/gun/ballistic/minigun/dropped(mob/living/user)
 	ammo_pack.attach_gun(user)
+
+/obj/item/minigunpack/shotgun
+	name = "backpack ammo pack"
+	desc = "The massive backpack containing the belt-fed shotgun ammo for the gatling shotgun."
+	overheat_max = 120		//Literally will never see this outside of admin or CentCom docks fuckery. Let them have fun with it.
+	heat_diffusion = 2
+	gun = /obj/item/gun/ballistic/minigun/shotgun
+
+/obj/item/gun/ballistic/minigun/shotgun
+	name = "gatling shotgun"
+	desc = "A ludicrous gatling shotgun that some madman conjured up."
+	burst_size = 3
+	fire_sound = 'sound/weapons/sniper_shot.ogg'		//Yeah it's not a sniper, but this sound fits it best.
+	mag_type = /obj/item/ammo_box/magazine/internal/minigun/shotgun
+	ammo_pack = /obj/item/minigunpack/shotgun
+	casing_ejector = TRUE
+	item_flags = SLOWS_WHILE_IN_HAND

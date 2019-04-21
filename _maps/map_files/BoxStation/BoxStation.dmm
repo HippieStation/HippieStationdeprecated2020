@@ -4999,6 +4999,20 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
+"ajY" = (
+/obj/docking_port/stationary{
+	dheight = 0;
+	dir = 8;
+	dwidth = 8;
+	height = 30;
+	id = "merchant_home";
+	json_key = null;
+	name = "SS13: Special Purpose Dock: Station-Port";
+	roundstart_template = null;
+	width = 17
+	},
+/turf/open/space/basic,
+/area/space)
 "ajZ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/vacuum/external{
@@ -64083,7 +64097,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aae
 aaa
 aaa
 aaa
@@ -65357,10 +65371,10 @@ aaa
 aaa
 aaa
 aaa
+ajY
 aaa
 aaa
 aaa
-aae
 aaa
 aaa
 aaa
@@ -65613,9 +65627,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+awW
+aXI
+awW
 aaa
 aaa
 aaa
@@ -65870,9 +65884,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
+awW
+auP
+awW
 aaa
 aaa
 aaa
@@ -66126,11 +66140,11 @@ aaa
 aaa
 aaa
 aaa
-aaf
-aaa
-aaa
-aaa
-aaa
+awW
+awW
+cyl
+awW
+awW
 aaa
 aaa
 aaa
@@ -66383,12 +66397,12 @@ aaa
 aaa
 aaa
 aaa
-aaf
+awW
+awZ
+ayl
+ayl
+awW
 aaa
-aaa
-aaa
-aaa
-aaf
 aaa
 aaa
 aaa
@@ -66640,12 +66654,12 @@ aaa
 aaa
 aaa
 aaa
-aaf
+arB
+awZ
+ayl
+ayl
+arB
 aaa
-aaa
-aaa
-aaf
-aaf
 aaa
 aaa
 aaa
@@ -66897,12 +66911,12 @@ aaa
 aaa
 aaa
 aaa
-aaf
-aaa
-aaf
-aaa
+arB
+awZ
+ayl
+ayl
 aAC
-aaf
+aaa
 aaa
 aaa
 aaa
@@ -67155,11 +67169,11 @@ aaa
 aaa
 aaa
 arB
-awW
-awW
+awZ
+ayl
 asE
 arB
-aaf
+aaa
 aaa
 aaa
 aaa

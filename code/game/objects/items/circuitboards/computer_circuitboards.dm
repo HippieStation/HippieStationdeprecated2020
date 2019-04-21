@@ -308,6 +308,10 @@
 	name = "Transport Ferry Console (Computer Board)"
 	build_path = /obj/machinery/computer/shuttle/ferry/request
 
+/obj/item/circuitboard/computer/ferry/request/merchant
+	name = "Merchant Freighter Console (Computer Board)"
+	build_path = /obj/machinery/computer/shuttle/ferry/request/merchant
+
 /obj/item/circuitboard/computer/mining_shuttle
 	name = "Mining Shuttle (Computer Board)"
 	build_path = /obj/machinery/computer/shuttle/mining
