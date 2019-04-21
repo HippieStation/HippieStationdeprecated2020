@@ -1,7 +1,7 @@
 /obj/effect/proc_holder/spell/self/bfs
 	name = "Interdimensional Sword"
 	desc = "Summons a humungous, flaming sword from another dimension."
-	charge_max = 200
+	charge_max = 250
 	cooldown_min = 105
 	clothes_req = FALSE
 	human_req = TRUE
