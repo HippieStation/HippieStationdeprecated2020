@@ -53,6 +53,7 @@
 	M.SetParalyzed(0, FALSE)
 	M.SetImmobilized(0, FALSE)
 	M.silent = FALSE
+	M.blood_volume = BLOOD_VOLUME_NORMAL
 	M.dizziness = 0
 	M.disgust = 0
 	M.drowsyness = 0
@@ -616,7 +617,7 @@
 		M.visible_message("<span class='danger'>[M] starts having a seizure!</span>", "<span class='userdanger'>You have a seizure!</span>")
 		M.Unconscious(100)
 		M.Jitter(350)
-		
+
 	if(prob(33))
 		M.adjustToxLoss(4*REM, 0)
 		M.losebreath += 4
