@@ -190,7 +190,7 @@
 	name = "urban-camouflage fatigues"
 	desc = "A set of fatigues in a dark urban camouflage. Manufactured by Ion Incorporated for its private military contractors in need of a robust uniform."
 	icon_state = "pmc"
-	item_state = "black"
+	item_state = "pmc"
 	item_color = "pmc"
 	has_sensor = 0
 	armor = list(melee = 10, bullet = 5, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
