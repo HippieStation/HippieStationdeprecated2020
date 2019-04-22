@@ -30,7 +30,7 @@
 	back = /obj/item/storage/backpack/satchel
 	r_pocket = /obj/item/pda/heads
 	l_hand = /obj/item/construction/rcd/combat
-	id = /obj/item/card/id
+	id = /obj/item/card/id/ert/Engineer
 
 	backpack_contents = list(/obj/item/storage/box/engineer=1,\
 		/obj/item/stack/sheet/metal/fifty=1,\
@@ -45,7 +45,7 @@
 	name = "paper- 'ION PMC Contract'"
 	info = "<B>ION, Incorporated, hereafter referred to as the COMPANY, and the CONTRACTOR agree to enter into a new formal arrangement commencing on the TWENTY-FIRST (21) Day of the SEVENTH (7) Month of the year TWO THOUSAND FIVE-HUNDRED AND FIFTY-NINE (2559), hereafter referred to as the OPERATION. <BR> The CONTRACTOR agrees that the rules of engagement hereafter referred to as the ROE (Expounded in detail in Annex II) fall under the remit of the UCMH. Furthermore, the OPERATION stipulates NO UNAUTHORIZED USE OF DEADLY FORCE unless fired upon. <BR> The COMPANY reserves the right to extend or narrow the scope of the UCMJ (Uniform Code of Military Justice) are to be detailed and countersigned in future addenda to this contract. <BR> Agile changes to the ROE are authorized under tactical COMPANY supervision. <BR> The CONTRACTOR agrees to the full liability of any and all deviations from the ROE within the OPERATION AOR nonwithstanding CLIENT or COMPANY contractual addenda. <BR> <BR> --ION <B>"
 
-/obj/effect/mob_spawn/human/face/PMC
+/obj/effect/mob_spawn/human/face/pmc
 	name = "Merc Spawner"
 	desc = "A sleeper designed to hold a soldier during transit."
 	mob_name = "IoN Private Security"
@@ -57,7 +57,7 @@
 	flavour_text = "<b>You're awake. You're a Mercanary, Hired by Space Station 13. Find out who hired you, and follow their orders. You are not an antagonist, so don't start shooting people for no reason. Follow your orders, no matter what."
 	assignedrole = "ION PMC Member"
 
-/obj/effect/mob_spawn/human/face/centcomengineer/Initialize(mapload)
+/obj/effect/mob_spawn/human/face/pmc/Initialize(mapload)
 	. = ..()
 	var/area/A = get_area(src)
 	if(A)
