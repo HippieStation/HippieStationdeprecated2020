@@ -32,5 +32,5 @@
 		var/seed_modifier = 0
 		if(seed)
 			seed_modifier = round(seed.potency / 25)
-		new plank_type(user.loc, rand(1,3) + seed_modifier)
+		new plank_type(user.loc, 1 + seed_modifier)
 		qdel(src)
