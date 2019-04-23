@@ -1,6 +1,5 @@
 /* Crowbar Shoes */
 
-
 /obj/item/clothing/shoes/crowbar //basic syndicate combat boots for nuke ops and mob corpses
 	name = "crowbar shoes"
 	desc = "They're just shoes with some crowbars tacked on at the heels."
@@ -15,8 +14,8 @@
 
 /obj/item/clothing/shoes/crowbar/step_action()
 	var/turf/open/floor/t_loc = get_turf(loc)
-	if(iscarbon(loc))
-		t_loc.crowbar_act(null,src)
+	if(istype(t_loc))
+		t_loc.pry_tile(src, usr, TRUE)
 
 
 /* Lube Banana Peel */
