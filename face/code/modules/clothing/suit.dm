@@ -168,6 +168,13 @@
 	item_state = "defender"
 	armor = list(melee = 35, bullet = 80, laser = 20, energy = 15, bomb = 45, bio = 0, rad = 0)
 
+/obj/item/clothing/suit/armor/face/Ionpmc
+	name = "MK48 Heavy Combat Armor"
+	desc = "A full-body combat armor produced by Ion Incorporated for its private military forces. Often seen worn by riflemen or other combat troops. Covers the entire body excluding the head with ceramic plates infused with goliath plates and coated in ablative materials, allowing for extreme ballistic protection and moderate laser or energy protection. Comes in a dark, urban camouflage."
+	icon_state = "pmc_armor"
+	item_state = "pmc_armor"
+	armor = list(melee = 65, bullet = 90, laser = 50, energy = 35, bomb = 75, bio = 0, rad = 30)
+
 /obj/item/clothing/suit/armor/face/hev_suit
 	name = "H.E.V Suit"
 	desc = "A highly advanced Hazardous Environment suit, this is the Mk7 version. Able to efficiently protect the user from just about any danger that a true scientist in the field may encounter. Also has some moderate protection from lasers, bullets, and blunt objects, just incase an angry military force decides to attempt to stop the progression of SCIENCE!"
