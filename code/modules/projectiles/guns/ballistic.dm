@@ -176,13 +176,8 @@
 		var/obj/item/ammo_box/magazine/AM = A
 		if (!magazine)
 			insert_magazine(user, AM)
-<<<<<<< HEAD
-		else if (magazine)
-			if(tac_reloads || user.has_trait(TRAIT_TACRELOAD)) //hippie edit -- adds tac_reload trait for nanosuit
-=======
 		else
-			if (tac_reloads)
->>>>>>> 3caaabf... [s] Fixes an exploit involving tactical reloading (#43664)
+			if (tac_reloads || user.has_trait(TRAIT_TACRELOAD)) //hippie edit -- adds tac_reload trait for nanosuit
 				eject_magazine(user, FALSE, AM)
 			else
 				to_chat(user, "<span class='notice'>There's already a [magazine_wording] in \the [src].</span>")
