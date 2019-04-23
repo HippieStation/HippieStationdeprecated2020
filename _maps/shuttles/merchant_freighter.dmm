@@ -1,0 +1,2042 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/template_noop)
+"ab" = (
+/obj/machinery/porta_turret/centcom_shuttle/merchant,
+/turf/closed/wall/r_wall/syndicate,
+/area/shuttle/caravan/merchant)
+"ac" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/template_noop)
+"ad" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/closed/wall/r_wall/syndicate,
+/area/shuttle/caravan/merchant)
+"ae" = (
+/obj/structure/lattice,
+/obj/structure/grille,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/shuttle/caravan/merchant)
+"af" = (
+/obj/structure/lattice,
+/obj/structure/grille,
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/shuttle/caravan/merchant)
+"ag" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/closed/wall/r_wall/syndicate,
+/area/shuttle/caravan/merchant)
+"ah" = (
+/obj/structure/window/plasma/reinforced{
+	icon_state = "plasmarwindow";
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/shuttle/caravan/merchant)
+"ai" = (
+/obj/structure/shuttle/engine/heater{
+	icon_state = "heater";
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/caravan/merchant)
+"aj" = (
+/obj/structure/shuttle/engine/router,
+/turf/open/floor/plating/airless,
+/area/shuttle/caravan/merchant)
+"ak" = (
+/obj/structure/shuttle/engine/propulsion/burst/right{
+	icon_state = "burst_r";
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/caravan/merchant)
+"al" = (
+/obj/structure/window/plasma/reinforced{
+	icon_state = "plasmarwindow";
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/shuttle/caravan/merchant)
+"am" = (
+/obj/machinery/atmospherics/components/unary/tank/oxygen,
+/obj/effect/decal/cleanable/cobweb{
+	icon_state = "cobweb2"
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"an" = (
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/shuttle/caravan/merchant)
+"ao" = (
+/obj/structure/lattice,
+/turf/closed/wall/r_wall/syndicate,
+/area/shuttle/caravan/merchant)
+"ap" = (
+/obj/structure/lattice,
+/obj/structure/grille,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/shuttle/caravan/merchant)
+"aq" = (
+/obj/vehicle/ridden/lawnmower,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"ar" = (
+/obj/machinery/atmospherics/components/unary/tank/toxins,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"as" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/closed/wall/r_wall/syndicate,
+/area/shuttle/caravan/merchant)
+"at" = (
+/obj/structure/shuttle/engine/propulsion/burst/left{
+	icon_state = "burst_l";
+	dir = 4
+	},
+/turf/open/floor/plating/airless,
+/area/shuttle/caravan/merchant)
+"au" = (
+/obj/structure/closet/secure_closet/freezer/money,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"av" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"aw" = (
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"ax" = (
+/obj/machinery/door/airlock/centcom{
+	name = "Equipment Room";
+	opacity = 1;
+	req_access_txt = "109"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "merchantmainstorage"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"ay" = (
+/obj/machinery/atmospherics/pipe/manifold/dark/visible{
+	icon_state = "manifold-2";
+	dir = 8
+	},
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"az" = (
+/obj/machinery/atmospherics/pipe/simple/dark/visible{
+	icon_state = "pipe11-2";
+	dir = 9
+	},
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/remains/human,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"aA" = (
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"aB" = (
+/obj/machinery/porta_turret/centcom_shuttle/merchant,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/shuttle/caravan/merchant)
+"aC" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/closed/wall/r_wall/syndicate,
+/area/shuttle/caravan/merchant)
+"aD" = (
+/obj/structure/window/plasma/reinforced{
+	icon_state = "plasmarwindow";
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/merchant)
+"aE" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/shuttle/caravan/merchant)
+"aF" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/closed/wall/r_wall/syndicate,
+/area/shuttle/caravan/merchant)
+"aG" = (
+/obj/machinery/door/airlock/centcom{
+	name = "Equipment Room";
+	opacity = 1;
+	req_access_txt = "109"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "merchantfrontengines"
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/merchant)
+"aH" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/shuttle/caravan/merchant)
+"aI" = (
+/turf/open/floor/plating,
+/area/shuttle/caravan/merchant)
+"aJ" = (
+/turf/closed/wall/r_wall/syndicate,
+/area/shuttle/caravan/merchant)
+"aK" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"aL" = (
+/obj/machinery/atmospherics/pipe/simple/dark/hidden,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/shuttle/caravan/merchant)
+"aM" = (
+/obj/structure/sign/poster/contraband/syndicate_pistol{
+	pixel_y = 31
+	},
+/obj/effect/turf_decal/stripes/red/line{
+	icon_state = "warningline_red";
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 8;
+	req_one_access_txt = "109";
+	volume_rate = 200
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"aN" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plating,
+/area/shuttle/caravan/merchant)
+"aO" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/space/hardsuit/spurdosuit,
+/obj/item/clothing/suit/space/officer,
+/obj/item/clothing/gloves/plate,
+/obj/item/clothing/head/helmet/plate/crusader,
+/obj/item/clothing/shoes/plate,
+/obj/item/clothing/suit/armor/plate/crusader,
+/obj/item/clothing/mask/spurdo/cursed,
+/obj/item/clothing/head/sombrero/shamebrero,
+/obj/effect/spawner/lootdrop/snowdin/dungeonlite,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"aP" = (
+/obj/machinery/button/door{
+	name = "Armory Blast Doors";
+	pixel_x = 33;
+	pixel_y = -2;
+	id = "merchantshuttlearmory"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet,
+/area/shuttle/caravan/merchant)
+"aQ" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"aR" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "merchantshuttlecockpit"
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/merchant)
+"aS" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"aT" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"aU" = (
+/obj/structure/rack,
+/obj/effect/spawner/lootdrop/aimodule_harmful,
+/obj/effect/spawner/lootdrop/aimodule_harmful,
+/obj/effect/spawner/lootdrop/aimodule_harmful,
+/obj/machinery/light/broken{
+	icon_state = "tube-broken";
+	dir = 1
+	},
+/obj/item/flashlight/flashdark,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"aV" = (
+/obj/machinery/atmospherics/components/binary/pump,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"aW" = (
+/obj/structure/closet/secure_closet/contraband/heads,
+/obj/structure/window/plasma/reinforced{
+	dir = 8
+	},
+/obj/structure/window/plasma/reinforced{
+	icon_state = "plasmarwindow";
+	dir = 1
+	},
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"aX" = (
+/obj/structure/closet/secure_closet/contraband,
+/obj/item/card/id/admin,
+/obj/item/gun/energy/meteorgun,
+/obj/effect/spawner/lootdrop/snowdin/dungeonheavy,
+/obj/effect/spawner/lootdrop/snowdin/dungeonheavy,
+/obj/item/gun/ballistic/rocketlauncher/unrestricted,
+/obj/structure/window/plasma/reinforced{
+	icon_state = "plasmarwindow";
+	dir = 1
+	},
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"aY" = (
+/obj/structure/closet/secure_closet/contraband,
+/obj/item/clothing/suit/space/hardsuit/nano,
+/obj/item/clothing/suit/space/hardsuit/shielded/wizard,
+/obj/item/clothing/suit/space/hostile_environment,
+/obj/item/clothing/suit/space/space_ninja,
+/obj/item/clothing/suit/space/hardsuit/syndi/elite,
+/obj/effect/spawner/lootdrop/snowdin/dungeonheavy,
+/obj/effect/spawner/lootdrop/snowdin/dungeonheavy,
+/obj/structure/window/plasma/reinforced{
+	icon_state = "plasmarwindow";
+	dir = 1
+	},
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"aZ" = (
+/obj/structure/closet/secure_closet/contraband/heads,
+/obj/structure/window/plasma/reinforced{
+	icon_state = "plasmarwindow";
+	dir = 1
+	},
+/obj/structure/window/plasma/reinforced{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/cobweb{
+	icon_state = "cobweb2"
+	},
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"ba" = (
+/obj/structure/rack,
+/obj/item/storage/box/syndie_kit/centcom_costume,
+/obj/effect/spawner/lootdrop/snowdin/dungeonlite,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"bb" = (
+/obj/structure/rack,
+/obj/item/twohanded/fireaxe/fireyaxe,
+/obj/item/twohanded/required/chainsaw/energy,
+/obj/item/twohanded/vibro_weapon,
+/obj/item/twohanded/mjollnir,
+/obj/effect/spawner/lootdrop/snowdin/dungeonlite,
+/obj/item/gun/energy/e_gun/stun,
+/obj/item/melee/baseball_bat/homerun,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"bc" = (
+/obj/structure/rack,
+/obj/item/storage/box/cyber_implants,
+/obj/item/storage/box/hero/astronaut{
+	pixel_x = 2;
+	pixel_y = 4
+	},
+/obj/item/storage/box/hero/scottish{
+	pixel_x = 2;
+	pixel_y = -1
+	},
+/obj/effect/spawner/lootdrop/snowdin/dungeonlite,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/clothing/shoes/blastco,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"bd" = (
+/mob/living/simple_animal/pet/dog/corgi/puppy/void,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"be" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/machinery/atmospherics/pipe/simple/dark/hidden{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "merchantshuttledesk"
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/merchant)
+"bf" = (
+/obj/structure/rack,
+/obj/item/storage/box/rndboards{
+	pixel_y = 4
+	},
+/obj/item/storage/box/rndboards,
+/obj/item/storage/box/stockparts/deluxe,
+/obj/item/capturedevice,
+/obj/item/capturedevice,
+/obj/item/capturedevice,
+/obj/item/capturedevice,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"bg" = (
+/obj/machinery/atmospherics/pipe/manifold/dark/hidden{
+	icon_state = "manifold-2";
+	dir = 8
+	},
+/obj/machinery/light/broken{
+	icon_state = "tube-broken";
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"bh" = (
+/obj/machinery/atmospherics/pipe/simple/dark/hidden{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"bi" = (
+/obj/machinery/atmospherics/pipe/simple/dark/hidden{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/obj/structure/sign/poster/contraband/energy_swords{
+	pixel_y = 31
+	},
+/obj/effect/turf_decal/stripes/red/line{
+	icon_state = "warningline_red";
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"bj" = (
+/obj/machinery/atmospherics/pipe/simple/dark/hidden{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/obj/machinery/flasher{
+	pixel_y = 25;
+	id = "merchantshuttleflasher"
+	},
+/obj/effect/turf_decal/stripes/red/line{
+	icon_state = "warningline_red";
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"bk" = (
+/obj/structure/table/wood/fancy,
+/turf/open/floor/carpet,
+/area/shuttle/caravan/merchant)
+"bl" = (
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"bm" = (
+/obj/machinery/flasher{
+	pixel_y = 25;
+	id = "merchantshuttleflasher"
+	},
+/obj/machinery/sparker{
+	pixel_x = 33;
+	id = "merchantshuttleigniter"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/red/line{
+	icon_state = "warningline_red";
+	dir = 10
+	},
+/obj/effect/decal/cleanable/cobweb{
+	icon_state = "cobweb2"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"bn" = (
+/obj/machinery/button/door{
+	name = "Front Engines Blast Doors";
+	pixel_y = 25;
+	req_access_txt = "109";
+	id = "merchantfrontengines"
+	},
+/obj/structure/closet/secure_closet/personal/cabinet,
+/obj/item/card/id/centcom,
+/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka,
+/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka,
+/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka,
+/obj/item/clothing/shoes/russian,
+/obj/item/clothing/under/rank/security/navyblue/russian,
+/obj/item/gun/ballistic/revolver/mateba,
+/obj/item/ammo_box/a357,
+/obj/item/ammo_box/a357,
+/obj/item/clothing/head/ushanka,
+/obj/item/flashlight/seclite,
+/obj/item/clothing/suit/armor/vest/capcarapace/syndicate{
+	desc = "A sinister looking vest of advanced armor worn over a black and red fireproof jacket. Although faded, the gold collar and crest denotes that this belongs to an officer of the New Russia navy.";
+	name = "Russian Officer's Jacket"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/clothing/glasses/sunglasses/big,
+/obj/item/autosurgeon/xray_eyes,
+/obj/item/twohanded/binoculars,
+/turf/open/floor/carpet,
+/area/shuttle/caravan/merchant)
+"bo" = (
+/obj/machinery/computer/shuttle/ferry/request/merchant{
+	icon_state = "computer";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet,
+/area/shuttle/caravan/merchant)
+"bp" = (
+/obj/machinery/button/door{
+	id = "merchantshuttlearmory";
+	name = "Armory Blast Doors";
+	pixel_x = -31;
+	pixel_y = -1;
+	req_access_txt = "109"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"bq" = (
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"br" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"bs" = (
+/obj/structure/chair/comfy/beige{
+	dir = 8
+	},
+/obj/machinery/button/door{
+	name = "Cockpit Blast Doors";
+	pixel_x = -6;
+	pixel_y = -33;
+	id = "merchantshuttlecockpit"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet,
+/area/shuttle/caravan/merchant)
+"bt" = (
+/obj/structure/rack,
+/obj/item/storage/box/gorillacubes,
+/obj/item/storage/box/monkeycubes/syndicate,
+/obj/item/choice_beacon/hero,
+/obj/effect/spawner/lootdrop/snowdin/dungeonlite,
+/obj/machinery/button/door{
+	name = "Armory Blast Doors";
+	pixel_x = -25;
+	pixel_y = -3;
+	id = "merchantshuttlearmory"
+	},
+/obj/item/guardiancreator/carp,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"bu" = (
+/obj/structure/rack,
+/obj/item/storage/belt/military/gang{
+	pixel_y = -2
+	},
+/obj/item/storage/belt/bandolier,
+/obj/item/storage/belt/mining/alt,
+/obj/item/storage/belt/military/snack,
+/obj/item/storage/belt/military,
+/obj/item/storage/belt/military,
+/obj/item/storage/belt/fannypack/yellow/bee_terrorist,
+/obj/effect/spawner/lootdrop/snowdin/dungeonlite,
+/obj/vehicle/ridden/scooter/wheelys,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"bv" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/obj/machinery/door/poddoor/preopen{
+	id = "merchantshuttledesk"
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/merchant)
+"bw" = (
+/obj/structure/rack,
+/obj/item/storage/firstaid/advanced{
+	pixel_x = 0;
+	pixel_y = 6
+	},
+/obj/item/storage/firstaid/advanced{
+	pixel_y = 4
+	},
+/obj/item/storage/firstaid/tactical{
+	pixel_y = 1
+	},
+/obj/effect/spawner/lootdrop/snowdin/dungeonlite,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"bx" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/carpet,
+/area/shuttle/caravan/merchant)
+"by" = (
+/obj/structure/rack,
+/obj/item/storage/part_replacer/bluespace/tier4,
+/obj/item/storage/box/beakers/bluespace,
+/obj/item/storage/box/beakers/variety{
+	pixel_y = 5
+	},
+/obj/machinery/button/door{
+	name = "Main Storage Blast Doors";
+	pixel_x = 28;
+	req_access_txt = "109";
+	id = "merchantmainstorage"
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"bz" = (
+/obj/machinery/button/door{
+	name = "Armory Blast Doors";
+	pixel_x = -1;
+	pixel_y = 24;
+	req_access_txt = "109";
+	id = "merchantshuttlearmory"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small,
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"bA" = (
+/obj/structure/rack,
+/obj/item/storage/box/lethalshot{
+	pixel_y = 4
+	},
+/obj/item/storage/box/lethalshot,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"bB" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"bC" = (
+/obj/machinery/atmospherics/pipe/simple/dark/hidden,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"bD" = (
+/obj/structure/table/reinforced,
+/obj/machinery/button/flasher{
+	id = "merchantshuttleflasher";
+	pixel_x = -6;
+	pixel_y = 6;
+	req_access_txt = "109"
+	},
+/obj/machinery/button/door{
+	id = "merchantshuttleentrance";
+	name = "Entrance Blast Doors";
+	pixel_x = 5;
+	pixel_y = 7;
+	req_access_txt = "109"
+	},
+/obj/machinery/button/door{
+	id = "merchantshuttledesk";
+	name = "Desk Blast Doors";
+	pixel_x = 5;
+	pixel_y = -3;
+	req_access_txt = "109"
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"bE" = (
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	areastring = "/area/security/main";
+	cell_type = /obj/item/stock_parts/cell/bluespace;
+	dir = 4;
+	name = "Security Systems APC";
+	pixel_x = 24
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"bF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"bG" = (
+/obj/effect/turf_decal/stripes/red/corner{
+	icon_state = "warninglinecorner_red";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"bH" = (
+/obj/effect/turf_decal/stripes/red/line{
+	icon_state = "warningline_red";
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"bI" = (
+/obj/machinery/flasher{
+	pixel_x = 27;
+	pixel_y = -1;
+	id = "merchantshuttleflasher"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "merchantshuttleentrance"
+	},
+/obj/effect/turf_decal/stripes/red/line{
+	icon_state = "warningline_red";
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"bJ" = (
+/obj/machinery/door/airlock/centcom{
+	name = "Cockpit";
+	opacity = 1;
+	req_access_txt = "109"
+	},
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 4
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "merchantshuttlearmory"
+	},
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"bK" = (
+/obj/item/flashlight/flare{
+	on = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"bL" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"bM" = (
+/obj/effect/mapping_helpers/airlock/cyclelink_helper{
+	dir = 8
+	},
+/obj/machinery/door/airlock/centcom{
+	name = "Cargo Bay";
+	opacity = 1;
+	req_access_txt = "109"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "merchantshuttlearmory"
+	},
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"bN" = (
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"bO" = (
+/obj/structure/rack,
+/obj/item/suppressor,
+/obj/item/storage/belt/grenade/full,
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"bP" = (
+/turf/closed/wall/r_wall/syndicate,
+/area/template_noop)
+"bQ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/shuttle/caravan/merchant)
+"bR" = (
+/obj/machinery/door/airlock/centcom{
+	name = "Cargo Bay";
+	opacity = 1;
+	req_access_txt = "109"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "merchantshuttlearmory"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"bS" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"bT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"bU" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/parrot/clock_hawk,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"bV" = (
+/obj/machinery/door/airlock/centcom{
+	name = "Cargo Bay";
+	opacity = 1;
+	req_access_txt = "109"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "merchantmainstorage"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"bW" = (
+/obj/structure/chair/comfy/beige{
+	icon_state = "comfychair";
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"bX" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/brigdoor/eastleft,
+/obj/machinery/door/window/brigdoor/westleft,
+/obj/machinery/door/poddoor/preopen{
+	id = "merchantshuttledesk"
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"bY" = (
+/obj/machinery/door/window/brigdoor/eastleft,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/light,
+/area/shuttle/caravan/merchant)
+"bZ" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/hammerandsickle,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"ca" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"cb" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"cc" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "merchantshuttleentrance"
+	},
+/obj/effect/turf_decal/caution/stand_clear/red{
+	icon_state = "stand_clear_red";
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/red/line{
+	icon_state = "warningline_red";
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"cd" = (
+/obj/machinery/door/unpowered/shuttle,
+/obj/effect/forcefield/luxury_shuttle{
+	desc = "Need to show a bit of cash up front. 100 credits";
+	name = "Entry Tax Booth";
+	threshold = 100
+	},
+/obj/docking_port/mobile{
+	dheight = 0;
+	dir = 8;
+	dwidth = 8;
+	height = 30;
+	id = "merchant";
+	name = "merchant shuttle";
+	port_direction = 1;
+	preferred_direction = 4;
+	width = 17
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"ce" = (
+/obj/structure/table/wood/fancy,
+/obj/item/grenade/clusterbuster/clf3{
+	name = "The Last Measure"
+	},
+/turf/open/floor/carpet,
+/area/shuttle/caravan/merchant)
+"cf" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"cg" = (
+/obj/machinery/paystand,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/turf/open/floor/light,
+/area/shuttle/caravan/merchant)
+"ch" = (
+/obj/machinery/atmospherics/pipe/simple/dark/hidden{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/obj/structure/sign/poster/contraband/pwr_game{
+	pixel_y = -33
+	},
+/obj/effect/turf_decal/stripes/red/line,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"ci" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"cj" = (
+/obj/machinery/mech_bay_recharge_port{
+	dir = 2
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"ck" = (
+/obj/machinery/vending/medical/syndicate_access,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"cl" = (
+/obj/machinery/vending/toyliberationstation,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"cm" = (
+/obj/item/gun/ballistic/shotgun/automatic/dual_tube,
+/obj/item/gun/ballistic/shotgun/doublebarrel/contender,
+/obj/item/gun/ballistic/automatic/pistol/deagle,
+/obj/item/gun/ballistic/automatic/pistol/APS,
+/obj/structure/closet/secure_closet/contraband,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"cn" = (
+/obj/structure/table/wood/fancy,
+/obj/item/paper{
+	info = "Note to self: Remember to set up the paystand at the rear of the ship!";
+	name = "Note to self"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/turretid{
+	enabled = 0;
+	pixel_y = -30;
+	req_access_txt = "109"
+	},
+/turf/open/floor/carpet,
+/area/shuttle/caravan/merchant)
+"co" = (
+/obj/structure/table/reinforced,
+/obj/machinery/button/ignition{
+	id = "merchantshuttleigniter";
+	name = "Anti-Tide Device";
+	pixel_x = -6;
+	pixel_y = 7;
+	req_access_txt = "109"
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"cp" = (
+/obj/machinery/atmospherics/pipe/simple/dark/hidden{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/obj/machinery/flasher{
+	pixel_y = -26;
+	id = "merchantshuttleflasher"
+	},
+/obj/effect/turf_decal/stripes/red/line,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"cq" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/structure/window/reinforced/tinted,
+/turf/open/floor/light,
+/area/shuttle/caravan/merchant)
+"cr" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/ash,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"cs" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"ct" = (
+/obj/effect/turf_decal/stripes/red/corner,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"cu" = (
+/obj/effect/turf_decal/stripes/red/line,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"cv" = (
+/obj/machinery/flasher{
+	pixel_x = 27;
+	pixel_y = -1;
+	id = "merchantshuttleflasher"
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "merchantshuttleentrance"
+	},
+/obj/effect/turf_decal/stripes/red/line{
+	icon_state = "warningline_red";
+	dir = 9
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"cw" = (
+/obj/machinery/vending/liberationstation,
+/obj/structure/window/plasma/reinforced,
+/obj/structure/window/plasma/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"cx" = (
+/obj/structure/rack,
+/obj/item/seeds/gatfruit,
+/obj/effect/spawner/lootdrop/snowdin/dungeonmid,
+/obj/effect/spawner/lootdrop/snowdin/dungeonmid,
+/obj/structure/window/plasma/reinforced,
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"cy" = (
+/obj/structure/rack,
+/obj/item/storage/box/syndicate/bundle_A,
+/obj/item/storage/box/syndicate/bundle_B,
+/obj/effect/spawner/lootdrop/snowdin/dungeonmid,
+/obj/effect/spawner/lootdrop/snowdin/dungeonmid,
+/obj/structure/window/plasma/reinforced,
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"cz" = (
+/obj/machinery/atmospherics/pipe/simple/dark/hidden{
+	icon_state = "pipe11-2";
+	dir = 8
+	},
+/obj/machinery/door/poddoor/preopen{
+	id = "merchantshuttledesk"
+	},
+/obj/machinery/door/airlock/centcom{
+	id_tag = "merchantdesk";
+	name = "Desk Access";
+	opacity = 1;
+	req_access_txt = "109"
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"cA" = (
+/obj/structure/rack,
+/obj/item/storage/box/firingpins{
+	pixel_y = -2
+	},
+/obj/item/storage/box/firingpins{
+	pixel_y = -2
+	},
+/obj/effect/spawner/lootdrop/snowdin/dungeonmid,
+/obj/effect/spawner/lootdrop/snowdin/dungeonmid,
+/obj/structure/window/plasma/reinforced,
+/obj/structure/window/plasma/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"cB" = (
+/obj/machinery/door/poddoor{
+	id = "merchantshuttlegarage"
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/merchant)
+"cC" = (
+/obj/mecha/working/ripley/deathripley/real,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"cD" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"cE" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"cF" = (
+/obj/item/grenade/clusterbuster/clf3,
+/obj/item/grenade/clusterbuster/clusterbees,
+/obj/item/grenade/clusterbuster/random,
+/obj/structure/closet/secure_closet/contraband/heads,
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"cG" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"cH" = (
+/obj/structure/closet/secure_closet/contraband/heads,
+/obj/structure/window/reinforced{
+	dir = 1;
+	layer = 2.9
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/grenade/clusterbuster/slime,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"cI" = (
+/obj/structure/closet/secure_closet/armory3,
+/obj/item/gun/energy/laser/captain/scattershot,
+/obj/item/gun/energy/beam_rifle,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"cJ" = (
+/obj/machinery/atmospherics/pipe/simple/dark/hidden{
+	icon_state = "pipe11-2";
+	dir = 5
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"cK" = (
+/obj/structure/window/plasma/reinforced,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/shuttle/caravan/merchant)
+"cL" = (
+/obj/structure/sign/poster/contraband/revolver{
+	pixel_y = -33
+	},
+/obj/effect/turf_decal/stripes/red/line,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/atmospherics/components/unary/outlet_injector/on{
+	dir = 8;
+	req_access_txt = "109";
+	volume_rate = 200
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"cM" = (
+/obj/structure/closet/crate/secure/owned,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/spawner/lootdrop/armory_contraband/metastation,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"cN" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/broken{
+	icon_state = "tube-broken";
+	dir = 8
+	},
+/turf/open/floor/plasteel/elevatorshaft,
+/area/shuttle/caravan/merchant)
+"cO" = (
+/obj/effect/decal/cleanable/cobweb{
+	icon_state = "cobweb2"
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/merchant)
+"cP" = (
+/obj/machinery/computer/mech_bay_power_console{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"cQ" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/effect/decal/cleanable/molten_object,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"cR" = (
+/obj/machinery/button/door{
+	id = "merchantshuttlegarage";
+	name = "Garage Doors";
+	pixel_y = 30;
+	req_access_txt = "109"
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"cS" = (
+/obj/vehicle/ridden/space/speedbike/red,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"cT" = (
+/obj/machinery/flasher{
+	pixel_y = -26;
+	id = "merchantshuttleflasher"
+	},
+/obj/machinery/sparker{
+	pixel_x = 33;
+	id = "merchantshuttleigniter"
+	},
+/obj/effect/turf_decal/stripes/red/line{
+	icon_state = "warningline_red";
+	dir = 9
+	},
+/obj/effect/decal/cleanable/vomit/old,
+/obj/machinery/light/broken{
+	icon_state = "tube-broken";
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+"cU" = (
+/obj/machinery/button/door{
+	id = "merchantdesk";
+	name = "Desk Bolt Control";
+	normaldoorcontrol = 1;
+	pixel_x = 25;
+	req_access_txt = "109";
+	specialfunctions = 4
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"cV" = (
+/obj/structure/closet/infinite,
+/obj/machinery/light/broken,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"cW" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/closed/wall/r_wall/syndicate,
+/area/shuttle/caravan/merchant)
+"cX" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/closed/wall/r_wall/syndicate,
+/area/shuttle/caravan/merchant)
+"cY" = (
+/obj/structure/window/plasma/reinforced,
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/caravan/merchant)
+"cZ" = (
+/obj/item/book/granter/spell/barnyard,
+/obj/structure/closet/secure_closet/contraband/heads,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"da" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/shuttle/caravan/merchant)
+"db" = (
+/obj/structure/lattice,
+/obj/structure/grille,
+/obj/structure/cable,
+/turf/closed/wall/r_wall/syndicate/nodiagonal,
+/area/shuttle/caravan/merchant)
+"dc" = (
+/obj/effect/spawner/lootdrop/armory_contraband,
+/obj/structure/closet/secure_closet/contraband/heads,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"dd" = (
+/obj/structure/closet/crate/secure/owned,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/spawner/lootdrop/armory_contraband/donutstation,
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"de" = (
+/obj/machinery/atmospherics/pipe/simple/dark/hidden,
+/obj/machinery/turretid{
+	enabled = 0;
+	pixel_x = -30;
+	req_access_txt = "109"
+	},
+/turf/open/floor/mineral/plastitanium/red,
+/area/shuttle/caravan/merchant)
+"df" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/closed/wall/r_wall/syndicate,
+/area/shuttle/caravan/merchant)
+"dg" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/closed/wall/r_wall/syndicate,
+/area/shuttle/caravan/merchant)
+"dh" = (
+/turf/template_noop,
+/area/shuttle/caravan/merchant)
+"di" = (
+/obj/machinery/light/small{
+	brightness = 5;
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/shuttle/caravan/merchant)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aR
+aR
+aR
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aR
+aR
+bo
+aR
+aR
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(3,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aR
+bk
+bs
+ce
+aR
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(4,1,1) = {"
+aa
+aa
+ac
+ac
+aB
+an
+an
+bn
+bx
+cn
+an
+an
+aB
+ac
+ac
+aa
+aa
+"}
+(5,1,1) = {"
+aa
+aJ
+aJ
+aJ
+an
+aN
+aG
+aP
+bx
+bQ
+aG
+aI
+an
+aJ
+aJ
+aJ
+aa
+"}
+(6,1,1) = {"
+ac
+aJ
+ai
+ai
+aD
+aE
+an
+an
+bJ
+an
+an
+aE
+cK
+ai
+ai
+aJ
+ac
+"}
+(7,1,1) = {"
+ac
+aJ
+aj
+aj
+ah
+aE
+an
+an
+bz
+an
+an
+cO
+cK
+aj
+aj
+aJ
+ac
+"}
+(8,1,1) = {"
+bP
+aJ
+aj
+aj
+al
+an
+an
+an
+bM
+an
+an
+an
+cY
+aj
+aj
+aJ
+bP
+"}
+(9,1,1) = {"
+aJ
+aJ
+ak
+at
+aJ
+an
+aW
+bp
+bN
+cN
+cw
+an
+aJ
+ak
+at
+aJ
+aJ
+"}
+(10,1,1) = {"
+ab
+ac
+ac
+ac
+aJ
+an
+aX
+bq
+bO
+cf
+cx
+an
+aJ
+ac
+ac
+ac
+ab
+"}
+(11,1,1) = {"
+aa
+aa
+aa
+ac
+aJ
+an
+aY
+br
+bA
+br
+cy
+an
+aJ
+ac
+aa
+aa
+aa
+"}
+(12,1,1) = {"
+aa
+aa
+aa
+ae
+aC
+an
+aZ
+bE
+bB
+ci
+cA
+an
+cW
+db
+aa
+aa
+aa
+"}
+(13,1,1) = {"
+aa
+aa
+aa
+ae
+aF
+an
+an
+an
+bR
+an
+an
+an
+cX
+db
+aa
+aa
+aa
+"}
+(14,1,1) = {"
+bP
+aa
+af
+ap
+aF
+aO
+ba
+bt
+aS
+cj
+cC
+cP
+cX
+db
+af
+aa
+bP
+"}
+(15,1,1) = {"
+aJ
+aJ
+ag
+as
+aH
+aQ
+aK
+aK
+bS
+aK
+cE
+cQ
+da
+as
+df
+aJ
+aJ
+"}
+(16,1,1) = {"
+ab
+ae
+aC
+au
+au
+aS
+bb
+bu
+bT
+ck
+cF
+cD
+cZ
+dc
+cW
+db
+ab
+"}
+(17,1,1) = {"
+aa
+ae
+ad
+av
+aK
+aT
+bc
+bw
+bU
+cl
+cH
+cG
+cM
+dd
+dg
+db
+aa
+"}
+(18,1,1) = {"
+aa
+ae
+df
+aw
+aw
+aw
+bd
+bl
+bK
+bT
+bT
+aw
+bT
+bT
+ag
+db
+aa
+"}
+(19,1,1) = {"
+aJ
+aJ
+aJ
+ax
+an
+aU
+bf
+by
+bL
+cm
+cI
+cV
+an
+ax
+aJ
+aJ
+aJ
+"}
+(20,1,1) = {"
+ae
+aJ
+aq
+aA
+an
+an
+an
+an
+bV
+an
+an
+an
+an
+cR
+cS
+cB
+aa
+"}
+(21,1,1) = {"
+ae
+aJ
+ar
+ay
+aL
+aV
+bg
+bC
+bC
+de
+cJ
+aw
+an
+bF
+aA
+cB
+aa
+"}
+(22,1,1) = {"
+ab
+aJ
+am
+az
+an
+aw
+bh
+bD
+bW
+co
+bh
+cU
+an
+di
+aA
+aJ
+ab
+"}
+(23,1,1) = {"
+aa
+aJ
+an
+an
+an
+an
+be
+bv
+bX
+bv
+cz
+an
+an
+aJ
+aJ
+aJ
+aa
+"}
+(24,1,1) = {"
+aa
+ae
+aJ
+ai
+ai
+an
+bi
+cg
+bY
+cq
+ch
+an
+ai
+ai
+aJ
+db
+aa
+"}
+(25,1,1) = {"
+aa
+ae
+aJ
+aj
+aj
+an
+bj
+aA
+bF
+cr
+cp
+an
+aj
+aj
+aJ
+db
+aa
+"}
+(26,1,1) = {"
+aa
+ab
+aJ
+aj
+aj
+an
+aM
+bF
+bZ
+cs
+cL
+an
+aj
+aj
+aJ
+ab
+aa
+"}
+(27,1,1) = {"
+aJ
+aJ
+aJ
+ak
+at
+an
+bm
+bG
+ca
+ct
+cT
+an
+ak
+at
+aJ
+aJ
+aJ
+"}
+(28,1,1) = {"
+aa
+dh
+ao
+ac
+ac
+an
+an
+bH
+cb
+cu
+an
+an
+ac
+ac
+ao
+dh
+aa
+"}
+(29,1,1) = {"
+bP
+dh
+aa
+aa
+aa
+an
+an
+bI
+cc
+cv
+an
+an
+aa
+aa
+aa
+dh
+bP
+"}
+(30,1,1) = {"
+bP
+aa
+aa
+aa
+aa
+aa
+an
+an
+cd
+an
+an
+aa
+aa
+aa
+aa
+aa
+bP
+"}

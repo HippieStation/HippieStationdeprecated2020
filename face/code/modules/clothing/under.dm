@@ -186,11 +186,11 @@
 	item_color = "jotaro"
 	alternate_screams = list('face/sound/screams/jotaro1.ogg','face/sound/screams/jotaro2.ogg')
 
-/obj/item/clothing/under/face/custompmc
+/obj/item/clothing/under/face/custom/pmc
 	name = "urban-camouflage fatigues"
 	desc = "A set of fatigues in a dark urban camouflage. Manufactured by Ion Incorporated for its private military contractors in need of a robust uniform."
 	icon_state = "pmc"
-	item_state = "black"
+	item_state = "pmc"
 	item_color = "pmc"
 	has_sensor = 0
 	armor = list(melee = 10, bullet = 5, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
@@ -210,10 +210,12 @@
 	icon_state = "DIO"
 	item_state = "DIO"
 	item_color = "DIO"
+	alternate_screams = list('face/sound/screams/dio1.ogg','face/sound/screams/dio2.ogg','face/sound/screams/dio3.ogg','face/sound/screams/dio4.ogg','face/sound/screams/dio5.ogg')
 
 /obj/item/clothing/under/face/custom/kira
-	name = "light blue suit"
+	name = "Killer's Suit"
 	desc = "What a beautiful light blue suit."
 	icon_state = "kira"
 	item_state = "kira"
 	item_color = "kira"
+	alternate_screams = list('face/sound/screams/kira1.ogg','face/sound/screams/kira2.ogg')
