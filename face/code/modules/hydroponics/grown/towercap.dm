@@ -13,11 +13,11 @@
 	plantname = "Money Caps"
 	growing_icon = 'face/icons/obj/hydroponics/growing_mushrooms.dmi'
 	icon_dead = "moneycap-dead"
-	product = /obj/item/grown/log/steel/money
+	product = /obj/item/grown/log/money
 	mutatelist = list()
 	rarity = 20
 
-/obj/item/grown/log/steel/money
+/obj/item/grown/log/money
 	seed = /obj/item/seeds/tower/moneytree
 	name = "money-cap pod"
 	icon = 'face/icons/obj/hydroponics/harvest.dmi'
@@ -26,7 +26,7 @@
 	plank_type = /obj/item/coin/gold
 	plank_name = "gold coins"
 
-/obj/item/grown/log/steel/money/attackby(obj/item/W, mob/user, params)
+/obj/item/grown/log/money/attackby(obj/item/W, mob/user, params)
 	if(W.sharpness)
 		user.show_message("<span class='notice'>You cut the [plank_name] out of \the [src]!</span>", 1)
 		var/seed_modifier = 0
