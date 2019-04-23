@@ -212,7 +212,3 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 
 #Text to speech
 /hippiestation/tools/tts_generator/*
-#broken autodrobe stuff
-/hippiestation/code/modules/vending/autodrobe.dm
-
-
