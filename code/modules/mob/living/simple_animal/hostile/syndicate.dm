@@ -116,7 +116,7 @@
 	icon_state = "syndicate_sword"
 	icon_living = "syndicate_sword"
 	attacktext = "slashes"
-	attack_sound = 'sound/weapons/blade1.ogg'
+	attack_sound = 'face/sound/weapons/blade1.ogg'
 	armour_penetration = 35
 	light_color = LIGHT_COLOR_RED
 	status_flags = 0

@@ -6,7 +6,7 @@
 	fire_delay = 2
 	actions_types = list(/datum/action/item_action/toggle_firemode)
 	semi_auto = TRUE
-	fire_sound = 'sound/weapons/smgshot.ogg'
+	fire_sound = 'face/sound/weapons/firearms/gunshot_smg.ogg'
 	fire_sound_volume = 80
 	vary_fire_sound = FALSE
 	rack_sound = 'sound/weapons/smgrack.ogg'
@@ -59,6 +59,7 @@
 /obj/item/gun/ballistic/automatic/c20r
 	name = "\improper C-20r SMG"
 	desc = "A bullpup two-round burst .45 SMG, designated 'C-20r'. Has a 'Scarborough Arms - Per falcis, per pravitas' buttstamp."
+	fire_sound = 'face/sound/weapons/firearms/gunshot_rifle2.ogg'
 	icon_state = "c20r"
 	item_state = "c20r"
 	mag_type = /obj/item/ammo_box/magazine/smgm45
@@ -87,6 +88,7 @@
 /obj/item/gun/ballistic/automatic/wt550
 	name = "security auto rifle"
 	desc = "An outdated personal defence weapon. Uses 4.6x30mm rounds and is designated the WT-550 Automatic Rifle."
+	fire_sound = 'face/sound/weapons/firearms/gunshot_10mm.ogg'
 	icon_state = "wt550"
 	item_state = "arg"
 	mag_type = /obj/item/ammo_box/magazine/wt550m9
@@ -122,10 +124,11 @@
 /obj/item/gun/ballistic/automatic/m90
 	name = "\improper M-90gl Carbine"
 	desc = "A three-round burst 5.56 toploading carbine, designated 'M-90gl'. Has an attached underbarrel grenade launcher which can be toggled on and off."
+	fire_sound = 'face/sound/weapons/firearms/gunshot_rifle2.ogg'
 	icon_state = "m90"
 	item_state = "m90"
 	mag_type = /obj/item/ammo_box/magazine/m556
-	fire_sound = 'sound/weapons/gunshot_smg.ogg'
+	fire_sound = 'face/sound/weapons/firearms/gunshot_rifle2.ogg'
 	can_suppress = FALSE
 	var/obj/item/gun/ballistic/revolver/grenadelauncher/underbarrel
 	burst_size = 3
@@ -197,6 +200,7 @@
 /obj/item/gun/ballistic/automatic/tommygun
 	name = "\improper Thompson SMG"
 	desc = "Based on the classic 'Chicago Typewriter'."
+	fire_sound = 'face/sound/weapons/firearms/gunshot_rifle.ogg'
 	icon_state = "tommygun"
 	item_state = "shotgun"
 	w_class = WEIGHT_CLASS_HUGE
@@ -215,7 +219,7 @@
 	item_state = "arg"
 	slot_flags = 0
 	mag_type = /obj/item/ammo_box/magazine/m556
-	fire_sound = 'sound/weapons/gunshot_smg.ogg'
+	fire_sound = 'face/sound/weapons/firearms/gunshot_rifle.ogg'
 	can_suppress = FALSE
 	burst_size = 3
 	fire_delay = 1
@@ -241,7 +245,7 @@
 	bolt_type = BOLT_TYPE_OPEN
 	mag_display = TRUE
 	mag_display_ammo = TRUE
-	fire_sound = 'sound/weapons/rifleshot.ogg'
+	fire_sound = 'face/sound/weapons/firearms/gunshot_357.ogg'
 	rack_sound = 'sound/weapons/chunkyrack.ogg'
 
 /obj/item/gun/ballistic/automatic/l6_saw/unrestricted
@@ -303,7 +307,7 @@
 	desc = "A long ranged weapon that does significant damage. No, you can't quickscope."
 	icon_state = "sniper"
 	item_state = "sniper"
-	fire_sound = 'sound/weapons/sniper_shot.ogg'
+	fire_sound = 'face/sound/weapons/firearms/gunshot_rifle_heavy.ogg'
 	fire_sound_volume = 90
 	vary_fire_sound = FALSE
 	load_sound = 'sound/weapons/sniper_mag_insert.ogg'
@@ -339,6 +343,7 @@
 /obj/item/gun/ballistic/automatic/surplus
 	name = "Surplus Rifle"
 	desc = "One of countless obsolete ballistic rifles that still sees use as a cheap deterrent. Uses 10mm ammo and its bulky frame prevents one-hand firing."
+	fire_sound = 'face/sound/weapons/firearms/gunshot_rifle_heavy.ogg'
 	icon_state = "surplus"
 	item_state = "moistnugget"
 	weapon_weight = WEAPON_HEAVY
