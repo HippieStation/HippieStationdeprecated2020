@@ -209,7 +209,7 @@
 //Base ballistic weapon type
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic
 	name = "general ballistic weapon"
-	fire_sound = 'sound/weapons/gunshot.ogg'
+	fire_sound = 'face/sound/weapons/firearms/gunshot_rifle2.ogg'
 	var/projectiles
 	var/projectile_energy_cost
 
@@ -281,6 +281,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot
 	name = "\improper LBX AC 10 \"Scattershot\""
 	desc = "A weapon for combat exosuits. Shoots a spread of pellets."
+	fire_sound = 'face/sound/weapons/firearms/gunshot_shotgun_db.ogg'
 	icon_state = "mecha_scatter"
 	equip_cooldown = 20
 	projectile = /obj/item/projectile/bullet/scattershot

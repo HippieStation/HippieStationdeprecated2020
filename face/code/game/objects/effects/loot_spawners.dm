@@ -35,7 +35,7 @@
 				/obj/item/gun/ballistic/shotgun/bulldog/unrestricted = 15,
 				/obj/item/gun/energy/tesla_revolver = 10,
 				/obj/item/gun/energy/mindflayer = 10,
-				/obj/item/gun/energy/lasercannon = 10,
+				/obj/item/gun/energy/lasercannon/pin = 10,
 				/obj/item/twohanded/required/chainsaw = 20,
 				/obj/item/twohanded/vibro_weapon = 20,
 				/obj/item/nullrod/scythe/talking/chainsword = 20,
