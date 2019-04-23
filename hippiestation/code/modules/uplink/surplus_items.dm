@@ -14,8 +14,9 @@
 
 /obj/item/clothing/shoes/crowbar/step_action()
 	var/turf/open/floor/t_loc = get_turf(loc)
-	if(istype(t_loc))
-		t_loc.pry_tile(src, loc, TRUE)
+	if(istype(t_loc))																																/*
+		t_loc.pry_tile(src, loc, TRUE)																																			*/
+		t_loc.pry_tile(src, usr, TRUE)
 
 
 /* Lube Banana Peel */
