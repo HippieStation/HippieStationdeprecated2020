@@ -14,6 +14,16 @@
 	armor = list(melee = 40, bullet = 30, laser = 30, energy = 15, bomb = 35, bio = 100, rad = 20)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/face/custom/ultramarine
 
+/obj/item/clothing/suit/space/hardsuit/face/custom/bloodraven
+	name = "Bloodraven Power Armour"
+	desc = "Blood Ravens? Go lock the reliquary."
+	icon_state = "bloodraven_suit"
+	item_state = "bloodraven_suit"
+	w_class = WEIGHT_CLASS_NORMAL
+	slowdown = 1
+	armor = list(melee = 40, bullet = 30, laser = 30, energy = 15, bomb = 35, bio = 100, rad = 20)
+	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/face/custom/bloodraven
+
 /obj/item/clothing/suit/face/custom/paladinsuit
 	name = "Paladin Armor"
 	desc = "Now to be a white knight and shitpost on tumblr!"
@@ -157,6 +167,13 @@
 	icon_state = "defender"
 	item_state = "defender"
 	armor = list(melee = 35, bullet = 80, laser = 20, energy = 15, bomb = 45, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/armor/face/Ionpmc
+	name = "MK48 Heavy Combat Armor"
+	desc = "A full-body combat armor produced by Ion Incorporated for its private military forces. Often seen worn by riflemen or other combat troops. Covers the entire body excluding the head with ceramic plates infused with goliath plates and coated in ablative materials, allowing for extreme ballistic protection and moderate laser or energy protection. Comes in a dark, urban camouflage."
+	icon_state = "pmc_armor"
+	item_state = "pmc_armor"
+	armor = list(melee = 65, bullet = 90, laser = 50, energy = 35, bomb = 75, bio = 0, rad = 30)
 
 /obj/item/clothing/suit/armor/face/hev_suit
 	name = "H.E.V Suit"
