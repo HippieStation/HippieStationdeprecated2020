@@ -1,11 +1,11 @@
 /obj/effect/decal/cleanable/crayon/Initialize(mapload, main, type, e_name, graf_rot, alt_icon = null)
+	. = ..()
 	if(type == "poseur tag")
 		var/datum/team/gang/gang = pick(subtypesof(/datum/team/gang))
 		var/gangname = initial(gang.name)
 		icon = 'hippiestation/icons/effects/crayondecal.dmi'
 		icon_state = "[gangname]"
 		type = null
-	.=..()
 
 /obj/effect/decal/cleanable/crayon/gang
 	icon = 'hippiestation/icons/effects/crayondecal.dmi'

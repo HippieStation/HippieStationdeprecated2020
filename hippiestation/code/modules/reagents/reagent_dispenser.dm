@@ -4,8 +4,8 @@
 	var/use_reagent_icon = FALSE
 
 /obj/structure/reagent_dispensers/Initialize()
-	generate_reagent_icon()
 	. = ..()
+	generate_reagent_icon()
 
 /obj/structure/reagent_dispensers/Destroy()
 	QDEL_NULL(reagent_icon)
@@ -37,6 +37,10 @@
 	tank_volume = 1000
 	use_reagent_icon = TRUE
 	reagent_id = null
+
+/obj/structure/reagent_dispensers/chemical/Initialize()
+	. = ..()
+	create_reagents(tank_volume, DRAWABLE | AMOUNT_VISIBLE)
 
 /obj/structure/reagent_dispensers/proc/generate_reagent_icon()
 	if(!use_reagent_icon)
@@ -73,9 +77,16 @@
 		return FALSE
 	..()
 
-/obj/structure/reagent_dispensers/chemical/update_icon()
+/obj/structure/reagent_dispensers/chemical/examine(mob/user)
 	..()
 	if(reagents.flags & DRAWABLE)
+		to_chat(user, "It's lid is closed.")
+	else if(reagents.flags & OPENCONTAINER)
+		to_chat(user, "It's lid is open.")
+
+/obj/structure/reagent_dispensers/chemical/update_icon()
+	..()
+	if(reagents?.flags & DRAWABLE)
 		add_overlay("chemlid")
 
 /obj/structure/reagent_dispensers/watertank

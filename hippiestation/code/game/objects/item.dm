@@ -13,19 +13,16 @@
 
 /obj/item/pickup(mob/user)
 	..()
-
 	if (pickup_sound || dropped_sound)
 		addtimer(CALLBACK(src, .proc/try_play_interact_sound, user), 1)
 
 /obj/item/dropped(mob/user)
 	..()
-
 	if (pickup_sound || dropped_sound)
 		addtimer(CALLBACK(src, .proc/try_play_interact_sound, user), 1)
 
 /obj/item/equipped(mob/user, slot)
 	..()
-
 	if (pickup_sound || dropped_sound)
 		addtimer(CALLBACK(src, .proc/try_play_interact_sound, user), 1)
 

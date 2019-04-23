@@ -1,8 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - tweak: "Security prison maintenance now has it's own area and apc."
-  - bugfix: "Removed duplicated central maint apc."
-  - tweak: "Added in a delivery door to the flaps in atmos delivery (from box station)."
-  - bugfix: "Fixed random space area in clown's office."
-  - tweak: "Port engineering entrance is now a glass door."
