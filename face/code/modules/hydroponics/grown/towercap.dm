@@ -14,6 +14,7 @@
 	growing_icon = 'face/icons/obj/hydroponics/growing_mushrooms.dmi'
 	icon_dead = "moneycap-dead"
 	product = /obj/item/grown/log/money
+	reagents_add = list("gold" = 0.2)
 	mutatelist = list()
 	rarity = 20
 
@@ -29,8 +30,6 @@
 /obj/item/grown/log/money/attackby(obj/item/W, mob/user, params)
 	if(W.sharpness)
 		user.show_message("<span class='notice'>You cut the [plank_name] out of \the [src]!</span>", 1)
-		var/seed_modifier = 0
-		if(seed)
-			seed_modifier = round(seed.potency / 25)
-		new plank_type(user.loc, 1 + seed_modifier)
-		qdel(src)
+	var/seed_modifier = 0
+	new plank_type(user.loc, 1 + seed_modifier)
+	qdel(src)
