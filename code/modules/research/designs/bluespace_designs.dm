@@ -43,7 +43,7 @@
 	build_path = /obj/item/gps
 	category = list("Bluespace Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_CARGO
-	
+
 /datum/design/desynchronizer
 	name = "Desynchronizer"
 	desc = "A device that can desynchronize the user from spacetime."
