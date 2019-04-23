@@ -480,11 +480,7 @@ CREATE TABLE `stickyban` (
 -- Table structure for table `stickyban_matched_ckey`
 --
 DROP TABLE IF EXISTS `stickyban_matched_ckey`;
-<<<<<<< HEAD
 CREATE TABLE `stickyban_matched_ckey` (
-=======
-CREATE TABLE `ss13_stickyban_matched_ckey` (
->>>>>>> c961d93... Merge pull request #42899 from MrStonedOne/sqlstickybans
 	`stickyban` VARCHAR(32) NOT NULL,
 	`matched_ckey` VARCHAR(32) NOT NULL,
 	`first_matched` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -494,17 +490,10 @@ CREATE TABLE `ss13_stickyban_matched_ckey` (
 ) ENGINE=InnoDB;
 
 --
-<<<<<<< HEAD
 -- Table structure for table `stickyban_matched_ip`
 --
 DROP TABLE IF EXISTS `stickyban_matched_ip`;
 CREATE TABLE `stickyban_matched_ip` (
-=======
--- Table structure for table `ss13_stickyban_matched_ip`
---
-DROP TABLE IF EXISTS `ss13_stickyban_matched_ip`;
-CREATE TABLE `ss13_stickyban_matched_ip` (
->>>>>>> c961d93... Merge pull request #42899 from MrStonedOne/sqlstickybans
 	`stickyban` VARCHAR(32) NOT NULL,
 	`matched_ip` INT UNSIGNED NOT NULL,
 	`first_matched` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -523,10 +512,7 @@ CREATE TABLE `stickyban_matched_cid` (
 	`last_matched` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	PRIMARY KEY (`stickyban`, `matched_cid`)
 ) ENGINE=InnoDB;
-<<<<<<< HEAD
-=======
 
->>>>>>> c961d93... Merge pull request #42899 from MrStonedOne/sqlstickybans
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
