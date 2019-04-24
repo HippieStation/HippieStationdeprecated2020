@@ -1,7 +1,3 @@
-/obj/item/nullrod/Initialize()
-	. = ..()
-	add_trait(TRAIT_ANTIMAGIC, NULLROD_TRAIT)
-
 /obj/item/nullrod/reskin_holy_weapon(mob/living/M)
 	if(SSreligion.holy_weapon_type)
 		return
