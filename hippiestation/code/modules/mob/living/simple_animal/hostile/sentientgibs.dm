@@ -40,7 +40,7 @@
 /mob/living/simple_animal/hostile/true_changeling/adminbus/gibs/proc/hurt_gibs()
 	if(prob(40))
 		adjustBruteLoss(35)
-		visible_message("<span class='warning'>[src] shrivels in reaction to being cleaned!</span>", "<span class='danger'>You can feel your form being disintegrated!.</span>")
+		visible_message("<span class='warning'>[src] shrivels in reaction to being cleaned!</span>", "<span class='danger'>You can feel your form being disintegrated!</span>")
 
 /mob/living/simple_animal/hostile/true_changeling/adminbus/gibs/CanAttack(atom/the_target)
 	if(see_invisible < the_target.invisibility)//Target's invisible to us, forget it
@@ -52,32 +52,28 @@
 		return TRUE
 
 /mob/living/simple_animal/hostile/true_changeling/adminbus/gibs/AttackingTarget()
-	if(prob(30))
-		if(isliving(target))
-			var/mob/living/lunch = target
-			if(lunch)
-				devouring = TRUE
-				visible_message("<span class='warning'>[src] begins ripping apart and feasting on [lunch]!</span>", \
-					"<span class='danger'>We begin to feast upon [lunch]...</span>")
-				if(!do_mob(src, 10, target = lunch))
-					devouring = FALSE
-					return FALSE
-				devouring = FALSE
-				if(lunch.getBruteLoss() + lunch.getFireLoss() >= 200) //OK, ok. this change was actually super rad hippiestation  i like it -Armhulen
-					visible_message("<span class='warning'>[lunch] is completely devoured by [src]!</span>", \
-							"<span class='danger'>You completely devour [lunch]!</span>")
-					lunch.gib() //hell yes.
-				else
-					lunch.adjustBruteLoss(60)
-					visible_message("<span class='warning'>[src] tears a chunk from [lunch]'s flesh!</span>", \
-							"<span class='danger'>We tear a chunk of flesh from [lunch] and devour it!</span>")
-					to_chat(lunch, "<span class='userdanger'>[src] takes a huge bite out of you!</span>")
-					var/obj/effect/decal/cleanable/blood/gibs/G = new(get_turf(lunch))
-					step(G, pick(GLOB.alldirs)) //Make some gibs spray out for dramatic effect
-					playsound(lunch, 'sound/effects/splat.ogg', 50, 1)
-					playsound(lunch, 'hippiestation/sound/misc/tear.ogg', 50, 1)
-					lunch.emote("scream")
-					adjustBruteLoss(-50)
+	if(isliving(target))
+		var/mob/living/lunch = target
+		if(lunch && prob(30))
+			visible_message("<span class='warning'>[src] begins ripping apart and feasting on [lunch]!</span>", \
+				"<span class='danger'>We begin to feast upon [lunch]...</span>")
+			if(!do_mob(src, 10, target = lunch))
+				return FALSE
+			if(lunch.getBruteLoss() + lunch.getFireLoss() >= 200) //OK, ok. this change was actually super rad hippiestation  i like it -Armhulen
+				visible_message("<span class='warning'>[lunch] is completely devoured by [src]!</span>", \
+						"<span class='danger'>You completely devour [lunch]!</span>")
+				lunch.gib() //hell yes.
+			else
+				lunch.adjustBruteLoss(60)
+				visible_message("<span class='warning'>[src] tears a chunk from [lunch]'s flesh!</span>", \
+						"<span class='danger'>We tear a chunk of flesh from [lunch] and devour it!</span>")
+				to_chat(lunch, "<span class='userdanger'>[src] takes a huge bite out of you!</span>")
+				var/obj/effect/decal/cleanable/blood/gibs/G = new(get_turf(lunch))
+				step(G, pick(GLOB.alldirs)) //Make some gibs spray out for dramatic effect
+				playsound(lunch, 'sound/effects/splat.ogg', 50, 1)
+				playsound(lunch, 'hippiestation/sound/misc/tear.ogg', 50, 1)
+				lunch.emote("scream")
+				adjustBruteLoss(-50)
 	. = ..()
 
 /mob/living/simple_animal/hostile/true_changeling/adminbus/gibs/Life()
