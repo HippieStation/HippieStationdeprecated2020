@@ -6,4 +6,3 @@
 	w_class = WEIGHT_CLASS_SMALL
 	mag_type = /obj/item/ammo_box/magazine/g17
 	flight_x_offset = 18
-	fire_sound = list('hippiestation/sound/weapons/pistol_glock17_1.ogg','hippiestation/sound/weapons/pistol_glock17_2.ogg')

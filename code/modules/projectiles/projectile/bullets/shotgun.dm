@@ -31,7 +31,7 @@
 	icon_state = "dust"
 	damage = 20
 	paralyze = 80
-	hitsound = 'sound/effects/meteorimpact.ogg'
+	hitsound = 'face/sound/impacts/meteorimpact.ogg'
 
 /obj/item/projectile/bullet/shotgun_meteorslug/on_hit(atom/target, blocked = FALSE)
 	. = ..()

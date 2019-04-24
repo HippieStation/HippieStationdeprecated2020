@@ -298,7 +298,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	if(target.client)
 		target.client.images |= fakebroken
 		target.client.images |= fakerune
-	target.playsound_local(wall,'sound/effects/meteorimpact.ogg', 150, 1)
+	target.playsound_local(wall,'face/sound/impacts/meteorimpact.ogg', 150, 1)
 	bubblegum = new(wall, target)
 	addtimer(CALLBACK(src, .proc/bubble_attack, landing), 10)
 
@@ -307,7 +307,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	while(get_turf(bubblegum) != landing && target && target.stat != DEAD)
 		bubblegum.forceMove(get_step_towards(bubblegum, landing))
 		bubblegum.setDir(get_dir(bubblegum, landing))
-		target.playsound_local(get_turf(bubblegum), 'sound/effects/meteorimpact.ogg', 150, 1)
+		target.playsound_local(get_turf(bubblegum), 'face/sound/impacts/meteorimpact.ogg', 150, 1)
 		shake_camera(target, 2, 1)
 		if(bubblegum.Adjacent(target) && !charged)
 			charged = TRUE
@@ -368,7 +368,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if("esword")
 			target.playsound_local(source, 'sound/weapons/saberon.ogg',15, 1)
 			for(var/i in 1 to rand(4, 8))
-				target.playsound_local(source, 'sound/weapons/blade1.ogg', 50, 1)
+				target.playsound_local(source, 'face/sound/weapons/blade1.ogg', 50, 1)
 				if(i == 4)
 					target.playsound_local(source, get_sfx("bodyfall"), 25, 1)
 				sleep(rand(CLICK_CD_MELEE, CLICK_CD_MELEE + 6))

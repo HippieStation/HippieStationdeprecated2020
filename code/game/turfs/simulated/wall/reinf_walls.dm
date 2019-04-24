@@ -42,7 +42,7 @@
 		return
 	if(M.environment_smash & ENVIRONMENT_SMASH_RWALLS)
 		dismantle_wall(1)
-		playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1)
+		playsound(src, 'face/sound/impacts/meteorimpact.ogg', 100, 1)
 	else
 		playsound(src, 'sound/effects/bang.ogg', 50, 1)
 		to_chat(M, "<span class='warning'>This wall is far too strong for you to destroy.</span>")

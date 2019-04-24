@@ -7,7 +7,7 @@
 	icon = 'face/icons/obj/guns/projectile.dmi'
 	icon_state = "biggun"
 	item_state = "gun"
-	var/fire_sound = 'face/sound/weapons/gibgun.ogg'
+	var/fire_sound = 'face/sound/weapons/firearms/gibgun.ogg'
 	w_class = 3
 
 /obj/item/weapon/gibgun/afterattack(atom/target as mob|obj|turf, mob/living/user as mob|obj, flag, params)

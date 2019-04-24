@@ -5,7 +5,7 @@
 	var/faction_bonus_force = 0 //Bonus force dealt against certain factions
 	var/throwforce_on = 20
 	var/icon_state_on = "axe1"
-	var/hitsound_on = 'sound/weapons/blade1.ogg'
+	var/hitsound_on = 'face/sound/weapons/blade1.ogg'
 	var/list/attack_verb_on = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	var/list/attack_verb_off = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	w_class = WEIGHT_CLASS_SMALL
