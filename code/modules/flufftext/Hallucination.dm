@@ -368,7 +368,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if("esword")
 			target.playsound_local(source, 'sound/weapons/saberon.ogg',15, 1)
 			for(var/i in 1 to rand(4, 8))
-				target.playsound_local(source, 'sound/weapons/blade1.ogg', 50, 1)
+				target.playsound_local(source, 'face/sound/weapons/blade1.ogg', 50, 1)
 				if(i == 4)
 					target.playsound_local(source, get_sfx("bodyfall"), 25, 1)
 				sleep(rand(CLICK_CD_MELEE, CLICK_CD_MELEE + 6))
