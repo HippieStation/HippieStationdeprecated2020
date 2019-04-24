@@ -5,6 +5,10 @@
 	var/coin_id = null
 	export_types = /obj/item/coin/
 
+/datum/export/coins/iron
+	cost = 1
+	message = "iron coins"
+	export_types = /obj/item/coin/iron
 /datum/export/coins/uranium
 	cost = 25
 	message = "uranium coins"
