@@ -24,3 +24,9 @@
 	icon_state = "hockey"
 	item_state = "hockey"
 
+/obj/item/clothing/mask/gas/face/custom/hecumask
+	name = "Hazardous Environment Combat Unit Mask"
+	desc = "Standard issue gasmask given to all HECU Marines on deployment"
+	icon_state = "hecumask"
+	item_state = "hecumask"
+

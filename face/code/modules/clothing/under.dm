@@ -219,3 +219,9 @@
 	item_state = "kira"
 	item_color = "kira"
 	alternate_screams = list('face/sound/screams/kira1.ogg','face/sound/screams/kira2.ogg')
+
+/obj/item/clothing/under/face/custom/hecu
+	name = "Hazardous Environment Combat Unit Uniform"
+	desc = "The HECU Marines are usually sent in to clean up any mess a pesky crew has made"
+	icon_state = "HECU"
+	item_state = "HECU"
