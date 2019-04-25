@@ -3,7 +3,7 @@
 
 /datum/action/changeling/sting/fart
 	name = "Fart Sting"
-	desc = "We silently sting a human with a cocktail of chemicals that will make them fart like they ate chipolte.."
+	desc = "We silently sting a human with a cocktail of chemicals that will make them fart like they ate chipotle.."
 	helptext = "Does not provide a warning to the victim, though they will likely realize they are suddenly blowing up the air around them."
 	sting_icon_hippie = "sting_fart"
 	chemical_cost = 15
