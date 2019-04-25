@@ -247,6 +247,7 @@
 /datum/uplink_item/dangerous/guardian
 	surplus = 5 //Up yours TGbalanceing
 	player_minimum = 0
+	cost = 12
 
 /datum/uplink_item/colab/romerol_kit
 	name = "Romerol"
