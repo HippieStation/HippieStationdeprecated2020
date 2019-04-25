@@ -32,5 +32,6 @@ delete-after: True
 changes:
   - rscadd: "Added the Bio Bag of Holding to the science, service, and medical techlathes under the Bluespace section. It has four times the storage capacity of the original Bio Bag!"
   - rscadd: "Added an new mutation to Tower-Caps: The Money-Cap, which produces Money Pods that can be cut or activated into a random coin"
-  - tweak: "Most coins can now be exported through cargo. Iron being only worth 1 credit per coin up to Bananium being worth 200 credits per coin. Experiment with a export scanner to find out more."
+  - tweak: "Most coins can now be exported through cargo. Experiment with a export scanner to find out their worth."
+  - tweak: "Iron coins = 1 credit, Silver coins = 10 credits. Gold / Uranium coins = 25 credits. Plasma coins = 40 credits. Diamond / Adamantine = 100 credits. Bananaium / Mythril = 200 credits."
   - tweak: "Poppys now contain morphine along with their current chems."

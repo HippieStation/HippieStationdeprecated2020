@@ -43,3 +43,9 @@
 	cost = 25
 	message = "gold coins"
 	export_types = /obj/item/coin/gold
+
+/datum/export/coins/mythril
+	cost = 200
+	message = "mythril coins"
+	export_types = /obj/item/coin/mythril
+

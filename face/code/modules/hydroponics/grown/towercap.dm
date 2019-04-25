@@ -35,7 +35,8 @@
     /obj/item/coin/silver,
     /obj/item/coin/bananium,
     /obj/item/coin/adamantine,
-    /obj/item/coin/plasma)
+    /obj/item/coin/plasma,
+    /obj/item/coin/mythril)
     new coin(get_turf(src))
 
 
