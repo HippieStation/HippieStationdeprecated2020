@@ -4,36 +4,34 @@
 	var/next_warn = 0
 
 /obj/item/clothing/head/helmet/space/hardsuit/rad_act(strength)
-	.=..()
-	if (prob(33) && rad_count > 500 && strength > 25)
+	. = ..()
+	if(prob(33) && rad_count > 500 && strength > 25)
 		if (next_warn > world.time)
 			return
 		next_warn = world.time + WARN_COOLDOWN_TIMER
 		display_visor_message("Radiation present, seek distance from source!")
 
 /obj/item/clothing/suit/space/hardsuit/acid_act(acidpwr, acid_volume)
-	.=..()
-	if (prob(33) && acidpwr >= 10 && helmet)
+	. = ..()
+	if(prob(33) && acidpwr >= 10 && helmet)
 		if(helmet.next_warn > world.time)
 			return
 		helmet.next_warn = world.time + WARN_COOLDOWN_TIMER
 		helmet.display_visor_message("Corrosive chemical detected!")
 
+/obj/item/clothing/suit/space/hardsuit/hit_reaction(mob/living/carbon/human/user, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	var/obj/item/projectile/P = hitby
+	bullet_act(P)
+	return ..()
+
 /obj/item/clothing/suit/space/hardsuit/bullet_act(obj/item/projectile/P, def_zone)
-	.=..()
-	if (prob(P.damage*5) && P.damage_type == BRUTE && helmet)
+	. = ..()
+	if(prob(P.damage*5) && P.damage_type == BRUTE && helmet)
 		if(helmet.next_warn > world.time)
 			return
 		helmet.next_warn = world.time + WARN_COOLDOWN_TIMER
 		helmet.display_visor_message("Ballistic trauma detected!")
 
-/obj/item/clothing/suit/space/hardsuit/tesla_act(power, tesla_flags, shocked_targets)
-	.=..()
-	if (prob(33) && power > 100000 && (tesla_flags & TESLA_OBJ_DAMAGE) && helmet)
-		if(helmet.next_warn > world.time)
-			return
-		helmet.next_warn = world.time + WARN_COOLDOWN_TIMER
-		helmet.display_visor_message("Electrical damage detected!")
 
 /obj/item/clothing/head/helmet/space/hardsuit/spurdosuit
 	name = "emergency spurdo suit helmet"
