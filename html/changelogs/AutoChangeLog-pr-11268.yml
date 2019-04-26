@@ -1,4 +1,0 @@
-author: "HideAndSeekLOGIC & nichlas0010"
-delete-after: True
-changes: 
-  - bugfix: "People could do some weird shit to respawn between getting soulstoned. This should fix it."
