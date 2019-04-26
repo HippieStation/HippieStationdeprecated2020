@@ -2811,6 +2811,7 @@
 #include "face\code\game\objects\items\grenades\misc_spawnergrenade.dm"
 #include "face\code\game\objects\items\storage\backpack.dm"
 #include "face\code\game\objects\items\storage\bags.dm"
+#include "face\code\game\objects\items\storage\belt.dm"
 #include "face\code\game\objects\items\weapons\gibgun.dm"
 #include "face\code\game\objects\items\weapons\shotgun_gatling.dm"
 #include "face\code\game\objects\structures\ghost_role_spawners.dm"
