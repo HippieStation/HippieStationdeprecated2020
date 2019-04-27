@@ -44,7 +44,7 @@ datum/antagonist/hijacked_ai/proc/update_synd_icons_added(mob/living/M)
 		A.hack_software = FALSE
 		if(A.radio)
 			QDEL_NULL(A.radio)
-			A.radio = new /obj/item/radio/headset/ai(A)
+			A.radio = new /obj/item/radio/headset/silicon/ai(A)
 		update_synd_icons_removed(A)
 
 /datum/antagonist/hijacked_ai/on_removal()

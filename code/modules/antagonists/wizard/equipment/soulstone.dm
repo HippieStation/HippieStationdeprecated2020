@@ -279,6 +279,7 @@
 		return FALSE
 	if(contents.len) //If they used the soulstone on someone else in the meantime
 		return FALSE
+	T.ghostize() // hippie -- prevents people from literally respawning
 	T.ckey = chosen_ghost.ckey
 	for(var/obj/item/W in T)
 		T.dropItemToGround(W)

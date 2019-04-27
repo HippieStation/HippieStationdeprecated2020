@@ -4,7 +4,7 @@
 	say_mod = "beeps"
 	default_color = "00FF00"
 	sexes = 0
-	species_traits = list(MUTCOLORS,NOEYES)
+	species_traits = list(MUTCOLORS,NOEYESPRITES)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	mutant_bodyparts = list("ipc_screen")
 	default_features = list("ipc_screen" = "Sunburst")
