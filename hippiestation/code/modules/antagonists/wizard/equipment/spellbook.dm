@@ -115,6 +115,9 @@
 		return FALSE
 	return (SSticker.mode.name != "ragin' mages" && !CONFIG_GET(flag/no_summon_events))
 
+/datum/spellbook_entry/fireball
+	cost = 3
+
 /obj/item/spellbook
 	persistence_replacement = /obj/item/book/granter/spell/random
 
