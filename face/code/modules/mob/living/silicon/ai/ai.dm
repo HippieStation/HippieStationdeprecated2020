@@ -77,4 +77,6 @@
 
 	"Weird",
 
+	"Kitty",
+
 	"Facepunch",)
