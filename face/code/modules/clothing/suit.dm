@@ -188,4 +188,4 @@
 	desc = "The Powered Combat Vest, commonly abbreviated as P.C.V. is a protective vest worn by the Marines of the Hazardous Environment Combat Unit and Military Police, over which the LC-2 Harness is worn."
 	icon_state = "hecuvest"
 	item_state = "hecuvest"
-	armor = list(melee = 55, bullet = 70, laser = 45, energy = 30, bomb = 60, bio = 0, rad = 20)
+	armor = list(melee = 40, bullet = 70, laser = 45, energy = 30, bomb = 60, bio = 0, rad = 0)
