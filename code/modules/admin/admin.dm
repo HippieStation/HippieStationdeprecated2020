@@ -46,7 +46,7 @@
 		// hippie start -- warning when player has related accounts
 		if (M.client.related_accounts_cid || M.client.related_accounts_ip)
 			body += "<br><b><font color=red>Player has related accounts</font></b>"
-		// hippie end	
+		// hippie end
 		var/rep = 0
 		rep += SSpersistence.antag_rep[M.ckey]
 		body += "<br><br>Antagonist reputation: [rep]"
@@ -619,7 +619,7 @@
 			log_admin("[key_name(usr)] delayed the round start.")
 		else
 			to_chat(world, "<b>The game will start in [DisplayTimeText(newtime)].</b>")
-			SEND_SOUND(world, sound('sound/ai/attention.ogg'))
+			SEND_SOUND(world, sound('hippiestation/sound/pyko/attention.ogg')) // hippie -- pykoai
 			log_admin("[key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Delay Game Start") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

@@ -1,4 +1,4 @@
-/proc/priority_announce(text, title = "", sound = 'sound/ai/attention.ogg', type , sender_override)
+/proc/priority_announce(text, title = "", sound = 'hippiestation/sound/pyko/attention.ogg', type , sender_override) // hippie -- pykoai
 	if(!text)
 		return
 
@@ -60,4 +60,4 @@
 				if(alert)
 					SEND_SOUND(M, sound('sound/misc/notice1.ogg'))
 				else
-					SEND_SOUND(M, sound('sound/misc/notice2.ogg'))
+					SEND_SOUND(M, sound('hippiestation/sound/misc/notice2.ogg')) // hippie -- oldbase sound
