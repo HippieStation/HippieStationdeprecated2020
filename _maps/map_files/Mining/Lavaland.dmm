@@ -900,6 +900,12 @@
 "cq" = (
 /turf/open/floor/mech_bay_recharge_floor,
 /area/mine/eva)
+"cr" = (
+/obj/structure/chair,
+/turf/open/floor/plasteel{
+	heat_capacity = 1e+006
+	},
+/area/mine/production)
 "cs" = (
 /obj/structure/closet/emcloset,
 /obj/effect/turf_decal/tile/purple{
@@ -922,6 +928,26 @@
 /obj/structure/ore_box,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"cw" = (
+/obj/machinery/airalarm{
+	pixel_y = 23
+	},
+/turf/open/floor/plasteel{
+	heat_capacity = 1e+006
+	},
+/area/mine/production)
+"cx" = (
+/obj/effect/turf_decal/delivery,
+/turf/open/floor/plasteel,
+/area/mine/production)
+"cy" = (
+/obj/machinery/mineral/mint{
+	step_y = 0;
+	input_dir = 4;
+	output_dir = 8
+	},
+/turf/open/floor/plasteel,
+/area/mine/production)
 "cz" = (
 /obj/machinery/power/port_gen/pacman{
 	anchored = 1
@@ -963,8 +989,7 @@
 /turf/open/floor/plasteel,
 /area/mine/production)
 "cF" = (
-/obj/effect/turf_decal/tile/brown,
-/obj/effect/turf_decal/tile/brown{
+/obj/structure/chair{
 	dir = 4
 	},
 /turf/open/floor/plasteel,
@@ -1008,6 +1033,10 @@
 "cM" = (
 /turf/closed/wall,
 /area/mine/living_quarters)
+"cN" = (
+/obj/structure/table,
+/turf/open/floor/plasteel,
+/area/mine/production)
 "cO" = (
 /obj/item/radio/intercom{
 	dir = 8;
@@ -1118,29 +1147,6 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
-/area/mine/production)
-"da" = (
-/obj/machinery/mineral/mint{
-	input_dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/mine/production)
-"db" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/turf_decal/loading_area{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/mine/production)
-"dc" = (
-/obj/structure/closet/crate,
-/obj/machinery/airalarm{
-	pixel_y = 23
-	},
-/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/mine/production)
 "dd" = (
@@ -1282,10 +1288,6 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
-/area/mine/production)
-"du" = (
-/obj/effect/turf_decal/loading_area,
 /turf/open/floor/plasteel,
 /area/mine/production)
 "dv" = (
@@ -1447,13 +1449,6 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
 	},
-/turf/open/floor/plasteel,
-/area/mine/production)
-"dL" = (
-/obj/structure/closet/crate{
-	icon_state = "crateopen"
-	},
-/obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/mine/production)
 "dM" = (
@@ -2033,12 +2028,6 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/mine/production)
-"eW" = (
-/obj/effect/turf_decal/loading_area{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
@@ -20602,14 +20591,14 @@ cp
 bf
 cL
 bq
-da
-du
-dL
+cD
+cF
+bP
 cH
 xA
 eG
 cD
-bP
+cx
 br
 ab
 ab
@@ -20859,14 +20848,14 @@ cq
 bf
 bq
 bq
-db
-bP
+cr
+cN
 bP
 bP
 rE
 eH
-cF
-eW
+bP
+cy
 bq
 ab
 ab
@@ -21116,7 +21105,7 @@ aV
 bf
 ad
 bq
-dc
+cw
 bP
 dM
 dW
