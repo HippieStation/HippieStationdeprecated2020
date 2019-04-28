@@ -5,7 +5,7 @@
 	for(var/A in ok_areas)
 		compiled_areas += typesof(A)
 	for(var/A in compiled_areas)
-		for(var/obj/item/I in get_area_by_type(A)) //Check for items
+		for(var/obj/item/I in get_area_by_type(A).GetAllContents()) //Check for items
 			if(istype(I, steal_target))
 				if(!targetinfo) //If there's no targetinfo, then that means it was a custom objective. At this point, we know you have the item, so return 1.
 					return TRUE
