@@ -1,4 +1,4 @@
-#define G2G_COOLDOWN 300
+#define G2G_COOLDOWN 3000
 
 /mob/living
 	var/g2g_next = 0
