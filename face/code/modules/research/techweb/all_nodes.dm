@@ -8,6 +8,7 @@
 	id = "botany"
 	display_name = "Botanical Engineering"
 	description = "Highly advanced tools for botanists."
+	prereq_ids = list("cloning", "adv_engi")
 	design_ids = list("diskplantgene", "portaseeder", "plantgenes", "flora_gun", "hydro_tray", "biogenerator", "seed_extractor")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
