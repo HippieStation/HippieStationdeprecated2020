@@ -1,0 +1,5 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - bugfix: "Fixed a runtime with the Kidnap objective"
+  - bugfix: "Fixed item objectives not working sometimes for infiltrators"
