@@ -30,5 +30,6 @@ delete-after: True
 # Also, this gets changed to [] after reading.  Just remove the brackets when you add new shit.
 # Please surround your changes in  double quotes ("). It works without them, but if you use certain characters it screws up compiling. The quotes will not show up in the changelog.
 changes:
-  - bugfix: Fixes an error that prevents botany equipment from being researched
-  - bugfix: Which means you can print more trays and plant dna disks!
+  - bugfix: "Fixes an error that prevents botany equipment from being researched"
+  - bugfix: "Which means you can print more trays and plant dna disks!"
+  - tweak: "Cargo Export Scanners can be printed underneath the equipment tab at roundstart."
