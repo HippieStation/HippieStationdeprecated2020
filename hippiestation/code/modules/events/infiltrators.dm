@@ -25,8 +25,8 @@
 	role_name = "infiltration team"
 
 /datum/round_event/ghost_role/infiltrators/spawn_role()
-	var/datum/game_mode/infiltration/temp = new
-	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you wish to be considered for an infiltration team?", ROLE_INFILTRATOR, temp)
+	var/list/candidates = pollGhostCandidates("Do you wish to be considered for an infiltration team?", ROLE_INFILTRATOR)
+
 	var/list/mob/dead/observer/chosen = list()
 	var/mob/dead/observer/theghost = null
 	if(!LAZYLEN(candidates) || candidates.len < 3)
