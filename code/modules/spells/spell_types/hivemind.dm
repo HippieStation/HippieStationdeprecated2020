@@ -844,6 +844,7 @@
 	include_user = 1
 	antimagic_allowed = TRUE
 	wall_type = /obj/effect/forcefield/wizard/hive
+	var/wall_type_b = /obj/effect/forcefield/wizard/hive/invis
 
 /obj/effect/proc_holder/spell/targeted/forcewall/hive/cast(list/targets,mob/user = usr)
 	new wall_type(get_turf(user),user)
