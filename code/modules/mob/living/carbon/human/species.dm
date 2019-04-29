@@ -477,7 +477,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			standing += lip_overlay
 
 		// eyes
-		if(!(NOEYES in species_traits))
+		if(!(NOEYESPRITES in species_traits))
 			var/obj/item/organ/eyes/E = H.getorganslot(ORGAN_SLOT_EYES)
 			var/mutable_appearance/eye_overlay
 			if(!E)
@@ -1269,43 +1269,27 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 /datum/species/proc/spec_unarmedattacked(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	return
-
+/* hippie start -- modularises disarm rework to not fuck up mirrors
 /datum/species/proc/disarm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 	if(target.check_block())
-		target.visible_message("<span class='warning'>[target] blocks [user]'s disarm attempt!</span>")
-		return 0
+		target.visible_message("<span class='warning'>[target] blocks [user]'s shoving attempt!</span>")
+		return FALSE
 	if(attacker_style && attacker_style.disarm_act(user,target))
-		return 1
+		return TRUE
+	if(user.resting || user.IsKnockdown())
+		return FALSE
+	if(user == target)
+		return FALSE
+	if(user.loc == target.loc)
+		return FALSE
 	else
 		user.do_attack_animation(target, ATTACK_EFFECT_DISARM)
+		playsound(target, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 
 		if(target.w_uniform)
 			target.w_uniform.add_fingerprint(user)
-		var/randomized_zone = ran_zone(user.zone_selected)
 		SEND_SIGNAL(target, COMSIG_HUMAN_DISARM_HIT, user, user.zone_selected)
-		var/obj/item/bodypart/affecting = target.get_bodypart(randomized_zone)
-		var/randn = rand(1, 100)
-		if(randn <= 25)
-			playsound(target, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			target.visible_message("<span class='danger'>[user] has pushed [target]!</span>",
-				"<span class='userdanger'>[user] has pushed [target]!</span>", null, COMBAT_MESSAGE_RANGE)
-			target.apply_effect(40, EFFECT_PARALYZE, target.run_armor_check(affecting, "melee", "Your armor prevents your fall!", "Your armor softens your fall!"))
-			target.forcesay(GLOB.hit_appends)
-			log_combat(user, target, "pushed over")
-			return
 
-<<<<<<< HEAD
-		if(randn <= 60)
-			var/obj/item/I = null
-			if(target.pulling)
-				target.visible_message("<span class='warning'>[user] has broken [target]'s grip on [target.pulling]!</span>")
-				target.stop_pulling()
-			else
-				I = target.get_active_held_item()
-				if(target.dropItemToGround(I))
-					target.visible_message("<span class='danger'>[user] has disarmed [target]!</span>", \
-						"<span class='userdanger'>[user] has disarmed [target]!</span>", null, COMBAT_MESSAGE_RANGE)
-=======
 		var/turf/target_oldturf = target.loc
 		var/shove_dir = get_dir(user.loc, target_oldturf)
 		var/turf/target_shove_turf = get_step(target.loc, shove_dir)
@@ -1390,20 +1374,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if(target_held_item)
 				if(knocked_item)
 					append_message = "causing them to drop [target_held_item]"
->>>>>>> 3573890... Fixes some inconsistencies in genetics (#43583)
 				else
-					I = null
-			playsound(target, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			log_combat(user, target, "disarmed", "[I ? " removing \the [I]" : ""]")
-			return
-
-
-		playsound(target, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-		target.visible_message("<span class='danger'>[user] attempted to disarm [target]!</span>", \
-						"<span class='userdanger'>[user] attempted to disarm [target]!</span>", null, COMBAT_MESSAGE_RANGE)
-		log_combat(user, target, "attempted to disarm")
-
-
+					append_message = "loosening their grip on [target_held_item]"
+			log_combat(user, target, "shoved", append_message)
+hippie end */
 /datum/species/proc/spec_hitby(atom/movable/AM, mob/living/carbon/human/H)
 	return
 

@@ -1,4 +1,0 @@
-author: "HonkBot"
-delete-after: True
-changes: 
-  - tweak: "pAI cards now provide an audible message for available personalities that can be heard from your inventory."
