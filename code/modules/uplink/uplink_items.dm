@@ -181,7 +181,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/box/syndicate/bundle_A
 	cost = 20
 	exclude_modes = list(/datum/game_mode/nuclear)
-	
+
 /datum/uplink_item/bundles_TC/bundle_B
 	name = "Syndi-kit Special"
 	desc = "Syndicate Bundles, also known as Syndi-Kits, are specialized groups of items that arrive in a plain box. \
@@ -228,6 +228,15 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 		var/obj/goods = new I.item(C)
 		if(U.purchase_log)
 			U.purchase_log.LogPurchase(goods, I, 0)
+
+	// hippie -- adds in the surplus only items and kills anyone hoping for no text walls
+	var/list/surplus_items = list(/obj/item/toy/plush/goatplushie, /obj/item/clothing/shoes/crowbar, /obj/item/grown/bananapeel/lube, /obj/item/mop/advanced/energy,
+	/mob/living/simple_animal/pet/gondola, /obj/item/blood_debt_granter)
+	var/item_count = rand(0,5)
+	while(item_count)
+		var/surplus_item = pick(surplus_items)
+		item_count -= 1
+		new surplus_item(C) // hippie end
 	return C
 
 /datum/uplink_item/bundles_TC/random
@@ -1554,7 +1563,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	cost = 20
 	restricted_roles = list("Assistant")
 	surplus = 0
-	
+
 /datum/uplink_item/role_restricted/oldtoolboxclean
 	name = "Ancient Toolbox"
 	desc = "An iconic toolbox design notorious with Assistants everywhere, this design was especially made to become more robust the more telecrystals it has inside it! Tools and insulated gloves included."
