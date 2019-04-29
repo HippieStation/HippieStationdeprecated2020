@@ -68,14 +68,7 @@
 	if(!bars.len)
 		LAZYREMOVE(user.progressbars, bar.loc)
 
-<<<<<<< HEAD
-	animate(bar, alpha = 0, time = 5) // hippie start -- animate instead of just disappearing
-	addtimer(CALLBACK(src, .proc/remove_from_client), 5)
-	QDEL_IN(bar, 5) // hippie end
-	. = ..()
-
-=======
-	animate(bar, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME)
+	animate(bar, alpha = 0, time = PROGRESSBAR_ANIMATION_TIME) // hippie -- this was our feature ported by tg. Hooray!
 	addtimer(CALLBACK(src, .proc/remove_from_client), PROGRESSBAR_ANIMATION_TIME, TIMER_CLIENT_TIME)
 	QDEL_IN(bar, PROGRESSBAR_ANIMATION_TIME * 2) //for garbage collection safety
 	. = ..()
@@ -86,5 +79,4 @@
 		client = null
 
 #undef PROGRESSBAR_ANIMATION_TIME
->>>>>>> 7aaa95a... Ports Hippie's progress bar animations (#43492)
 #undef PROGRESSBAR_HEIGHT
