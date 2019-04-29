@@ -1,5 +1,0 @@
-author: "JJRcop"
-delete-after: True
-changes: 
-  - rscadd: "SDQL2 now features a list constructor that takes a selector query."
-  - tweak: "(sub expressions) will work with var access, like .vars and [list indexes]"
