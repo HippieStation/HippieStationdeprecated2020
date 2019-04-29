@@ -716,7 +716,7 @@
 
 /mob/proc/resist_grab(moving_resist)
 	return 1 //returning 0 means we successfully broke free
-
+/* hippie start -- modulalisation of disarm rework
 /mob/living/resist_grab(moving_resist)
 	. = TRUE
 	if(pulledby.grab_state || resting)
@@ -733,7 +733,7 @@
 	else
 		pulledby.stop_pulling()
 		return FALSE
-
+hippie end */
 /mob/living/proc/resist_buckle()
 	buckled.user_unbuckle_mob(src,src)
 
