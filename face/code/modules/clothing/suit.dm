@@ -182,3 +182,10 @@
 	item_state = "armor"
 	w_class = 4		//bulky item
 	armor = list(melee = 40, bullet = 45, laser = 45, energy = 30, bomb = 90, bio = 100, rad = 90)
+
+/obj/item/clothing/suit/armor/face/hecu_armor
+	name = "Powered Combat Vest"
+	desc = "The Powered Combat Vest, commonly abbreviated as P.C.V. is a protective vest worn by the Marines of the Hazardous Environment Combat Unit and Military Police, over which the LC-2 Harness is worn."
+	icon_state = "hecuvest"
+	item_state = "hecuvest"
+	armor = list(melee = 40, bullet = 70, laser = 45, energy = 30, bomb = 60, bio = 0, rad = 0)
