@@ -1,0 +1,5 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - rscadd: "Hardsuits now react when being shot with a message."
+  - tweak: "Cleaned up hardsuit reaction messages and unified the cooldown timer for all messages."
