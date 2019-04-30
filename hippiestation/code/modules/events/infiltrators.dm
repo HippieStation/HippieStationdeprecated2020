@@ -17,7 +17,7 @@
 	var/datum/station_state/current_state = new /datum/station_state()
 	current_state.count()
 	var/station_integrity = min(PERCENT(GLOB.start_state.score(current_state)), 100)
-	if(station_integrity < 70) // Don't send infiltrators to a broken station!
+	if(station_integrity < 80) // Don't send infiltrators to a broken station!
 		return FALSE
 
 /datum/round_event/ghost_role/infiltrators
