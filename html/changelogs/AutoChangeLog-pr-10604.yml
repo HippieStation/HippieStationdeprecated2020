@@ -1,8 +1,0 @@
-author: "YoYoBatty, Navi.OS"
-delete-after: True
-changes: 
-  - rscadd: "Sprinklers can now have their temperature threshold adjusted.
-sprite: Sprinklers have a new sprite!"
-  - bugfix: "Fixed sprinklers having a misleading message while trying to while them with less than 50 units of water."
-  - tweak: "Sprinklers can now be filled with any reagent container so long as it has water."
-  - code_imp: "Sprinkler code have been slightly refactored."
