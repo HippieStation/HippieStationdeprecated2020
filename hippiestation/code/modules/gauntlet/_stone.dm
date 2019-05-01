@@ -1,11 +1,9 @@
 /obj/item/infinity_stone
 	name = "Generic Stone"
 
-/obj/item/infinity_stone/Initialize()
-	. = ..()
-	RegisterSignal(src, COMSIG_ITEM_AFTERATTACK, .proc/AfterAttackEvent)
-
-/obj/item/infinity_stone/proc/AfterAttackEvent(atom/target, mob/living/user, proximity_flag)
+/obj/item/infinity_stone/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	if(!isliving(user))
+		return
 	switch(user.a_intent)
 		if(INTENT_DISARM)
 			DisarmEvent(target, user, proximity_flag)
