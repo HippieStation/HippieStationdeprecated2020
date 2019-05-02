@@ -1,0 +1,5 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - bugfix: "Alternate slips now work again. Banana peels are great once again."
+  - bugfix: "Also fixed some other squeak components + buttshoes."
