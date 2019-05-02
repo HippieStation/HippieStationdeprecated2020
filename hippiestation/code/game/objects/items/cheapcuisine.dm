@@ -102,7 +102,7 @@
 /obj/item/reagent_containers/food/snacks/butterdog/carbon/ComponentInitialize()
 	. = ..()
 	var/datum/component/comp = GetComponent(/datum/component/slippery)
-	comp.RemoveComponent()
+	qdel(comp)
 
 /obj/item/reagent_containers/food/snacks/hamdisc
 	name = "ham disc"
