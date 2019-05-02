@@ -484,3 +484,11 @@
 	desc = "Fakes an immovable rod announcement. Good for a short-lasting distraction."
 	item = /obj/item/service/rodgod
 	cost = 6 //less likely to be believed
+	
+/datum/uplink_item/role_restricted/monk_manual
+	name = "Monk Manual"
+	desc = "Study the ways of asceticism and pacifism by beating the living shit out of people."
+	item = /obj/item/nullrod/monk_manual
+	cost = 6
+	restricted_roles = list("Chaplain")
+	
