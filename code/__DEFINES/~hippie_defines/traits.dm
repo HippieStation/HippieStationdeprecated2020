@@ -1,1 +1,5 @@
 #define TRAIT_TACRELOAD "tac_reload_trait"
+#define BLUESPACE_STONE_TRAIT "bluespace_stone_trait"
+#define SYNDIE_STONE_TRAIT "syndie_stone_trait"
+#define SERVER_STONE_TRAIT "server_stone_trait"
+#define LAG_STONE_TRAIT "lag_stone_trait"
