@@ -1,7 +1,7 @@
 /obj/item/nullrod/Initialize()
 	. = ..()
 	var/datum/component/comp = GetComponent(/datum/component/anti_magic)
-	comp.RemoveComponent()
+	qdel(comp)
 
 /obj/item/nullrod/godhand/Initialize()
 	. = ..()
