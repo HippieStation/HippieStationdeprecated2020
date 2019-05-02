@@ -1,0 +1,4 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - bugfix: "Nanosuit no longer runtimes when a mob attacks with an invalid mind."
