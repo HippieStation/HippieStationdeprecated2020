@@ -39,6 +39,8 @@
 	var/subscreen			// Which specific function of the main screen is being displayed
 
 	var/obj/item/pda/ai/pai/pda = null
+	
+	var/obj/machinery/newscaster			//pAI Newscaster
 
 	var/secHUD = 0			// Toggles whether the Security HUD is active or not
 	var/medHUD = 0			// Toggles whether the Medical  HUD is active or not
@@ -54,11 +56,13 @@
 
 	var/obj/item/integrated_signaler/signaler // AI's signaller
 
-	var/obj/item/instrument/recorder/internal_instrument
+	var/obj/item/instrument/piano_synth/internal_instrument
 
 	var/encryptmod = FALSE
 	var/holoform = FALSE
 	var/canholo = TRUE
+	var/can_transmit = TRUE
+	var/can_receive = TRUE
 	var/obj/item/card/id/access_card = null
 	var/chassis = "repairbot"
 	var/list/possible_chassis = list("cat" = TRUE, "mouse" = TRUE, "monkey" = TRUE, "corgi" = FALSE, "fox" = FALSE, "repairbot" = TRUE, "rabbit" = TRUE)		//assoc value is whether it can be picked up.
@@ -106,9 +110,13 @@
 		P.setPersonality(src)
 	forceMove(P)
 	card = P
+	job = "personal AI"
 	signaler = new(src)
 	if(!radio)
 		radio = new /obj/item/radio/headset/silicon/pai(src)
+	newscaster = new /obj/machinery/newscaster(src)
+	if(!aicamera)
+		aicamera = new /obj/item/camera/siliconcam/ai_camera(src)
 
 	//PDA
 	pda = new(src)
@@ -119,19 +127,6 @@
 
 	. = ..()
 
-	var/datum/action/innate/pai/software/SW = new
-	var/datum/action/innate/pai/shell/AS = new /datum/action/innate/pai/shell
-	var/datum/action/innate/pai/chassis/AC = new /datum/action/innate/pai/chassis
-	var/datum/action/innate/pai/rest/AR = new /datum/action/innate/pai/rest
-	var/datum/action/innate/pai/light/AL = new /datum/action/innate/pai/light
-
-	var/datum/action/language_menu/ALM = new
-	SW.Grant(src)
-	AS.Grant(src)
-	AC.Grant(src)
-	AR.Grant(src)
-	AL.Grant(src)
-	ALM.Grant(src)
 	emittersemicd = TRUE
 	addtimer(CALLBACK(src, .proc/emittercool), 600)
 

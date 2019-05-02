@@ -86312,7 +86312,6 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "cPb" = (
-/obj/item/twohanded/required/kirbyplants/random,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -86322,6 +86321,7 @@
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
 	},
+/obj/machinery/vending/modularpc,
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "cPc" = (
