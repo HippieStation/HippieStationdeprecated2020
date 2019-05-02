@@ -20,6 +20,8 @@
 		to_chat(owner, "<span class='cultlarge'>You can feel your heart stopping, but something isn't right... \
 		life has not abandoned your broken form. You can only feel a deep and immutable hunger that \
 		not even death can stop, you will rise again!</span>")
-		to_chat(owner ,"<span class='big bold'> Do not seek to be cured, do not help any non-zombies in any way, and do not harm your zombie brethren. You are a creature of hunger and violence. /br You will revive in [revive_time] deciseconds. </span>")
+		to_chat(owner ,"<span class='big bold'> Do not seek to be cured, do not help any non-zombies in any way, and do not harm your zombie brethren. You are a creature of hunger and violence. You will revive in [revive_time] deciseconds. </span>")
+		owner.grant_language(/datum/language/beachbum)
+		owner.remove_language(/datum/language/common)
 	var/flags = TIMER_STOPPABLE
 	timer_id = addtimer(CALLBACK(src, .proc/zombify), revive_time, flags)
