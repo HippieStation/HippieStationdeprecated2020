@@ -3471,6 +3471,7 @@
 #include "hippiestation\code\modules\vending\megaseed.dm"
 #include "hippiestation\code\modules\vending\security.dm"
 #include "hippiestation\code\modules\vending\snack.dm"
+#include "hippiestation\code\modules\zombie\organs.dm"
 #include "hippiestation\interface\interface.dm"
 #include "hippiestation\interface\skin.dmf"
 #include "interface\menu.dm"
