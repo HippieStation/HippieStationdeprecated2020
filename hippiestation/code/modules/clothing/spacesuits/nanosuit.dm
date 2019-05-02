@@ -991,14 +991,14 @@
 			if(NS.mode == NANO_STRENGTH)
 				.=..(target, range*1.5, speed*2, thrower, spin, diagonals_first, callback)
 				return
-	.=..()
+	. = ..()
 
 /datum/martial_art/nanosuit/proc/on_attack_hand(mob/living/carbon/human/owner, atom/target, proximity)
 	if(proximity)
 		return target.attack_nanosuit(owner)
 
 /mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
-	var/datum/martial_art/nanosuit/style = mind.has_martialart(MARTIALART_NANOSUIT)
+	var/datum/martial_art/nanosuit/style = mind?.has_martialart(MARTIALART_NANOSUIT)
 	if(style)
 		if(style.on_attack_hand(src, A, proximity))
 			return
@@ -1007,10 +1007,10 @@
 	..()
 
 /mob/living/simple_animal/attack_hand(mob/living/carbon/human/M)
+	. = ..()
 	if(istype(M.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
 		var/obj/item/clothing/suit/space/hardsuit/nano/NS = M.wear_suit
 		NS.kill_cloak()
-	..()
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/kill_cloak()
 	if(mode == NANO_CLOAK)
