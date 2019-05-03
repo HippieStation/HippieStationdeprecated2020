@@ -4,7 +4,18 @@
 	icon = 'hippiestation/icons/obj/infinity.dmi'
 	icon_state = "bluespace"
 	ability_text = list("HELP INTENT: teleport target to safe location", "HARM INTENT: teleport to specified location", "DISARM EVENT: steal item someone is holding", "GRAB EVENT: toggle intangibility")
-	spell_types = list(/obj/effect/proc_holder/spell/self/bluespace_stone_shield)
+	spell_types = list(/obj/effect/proc_holder/spell/self/infinity/bluespace_stone_shield, 
+		/obj/effect/proc_holder/spell/targeted/turf_teleport/blink/bluespace_stone,
+		/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/bluespace_stone)
+
+/obj/item/infinity_stone/bluespace/DisarmEvent(atom/target, mob/living/user, proximity_flag)
+	if(isliving(target))
+		var/mob/living/L = target
+		var/obj/O = L.get_active_held_item()
+		if(L && L.dropItemToGround(O))
+			L.visible_message("<span class='danger'>[L]'s [O] disappears from their hands!</span>'", "<span class='danger'>Our [O] disappears!</span>")
+			O.forceMove(get_turf(user))
+			user.equip_to_slot(O, SLOT_IN_BACKPACK)	
 
 /obj/item/infinity_stone/bluespace/HelpEvent(atom/target, mob/living/user, proximity_flag)
 	if(proximity_flag && isliving(target))
@@ -66,6 +77,39 @@
 	var/obj/item/shield/bluespace_stone/BS = new
 	if(!user.put_in_hands(BS, TRUE))
 		revert_cast()
+
+/obj/effect/proc_holder/spell/targeted/turf_teleport/blink/bluespace_stone
+	name = "Bluespace Blink"
+	outer_tele_radius = 17
+	clothes_req = FALSE
+	human_req = FALSE
+	staff_req = FALSE
+
+/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/bluespace_stone // un-stuns you so you can move
+	name = "Bluespace Jaunt"
+	clothes_req = FALSE
+	human_req = FALSE
+	staff_req = FALSE
+	jaunt_duration = 100
+
+/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/bluespace_stone/cast(list/targets,mob/user = usr)
+	for(var/mob/living/target in targets)
+		if(target.incorporeal_move == INCORPOREAL_MOVE_BASIC)
+			target.incorporeal_move = 0
+			target.visible_message("<span class='danger'>[target] becomes tangible again!</span>")
+			target.remove_trait(TRAIT_PUSHIMMUNE, BLUESPACE_STONE_TRAIT)
+			target.remove_trait(TRAIT_IGNOREDAMAGESLOWDOWN, BLUESPACE_STONE_TRAIT)
+			target.remove_trait(TRAIT_STUNIMMUNE, BLUESPACE_STONE_TRAIT)
+			target.remove_trait(TRAIT_SLEEPIMMUNE, BLUESPACE_STONE_TRAIT)
+			target.remove_trait(TRAIT_PACIFISM, BLUESPACE_STONE_TRAIT)
+			target.remove_movespeed_modifier(BLUESPACE_STONE_TRAIT)
+			animate(target, alpha = 255, time = 15)
+		target.SetStun(0)
+		target.SetKnockdown(0)
+		target.SetUnconscious(0)
+		target.SetParalyzed(0)
+		target.SetImmobilized(0)
+	return ..()
 
 /////////////////////////////////////////////
 /////////////////// ITEMS ///////////////////

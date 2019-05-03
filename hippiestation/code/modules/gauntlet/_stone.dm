@@ -24,13 +24,13 @@
 
 /obj/item/infinity_stone/proc/GiveAbilities(mob/living/L)
 	for(var/obj/effect/proc_holder/spell/A in spells)
-		L.AddSpell(A)
+		L.mob_spell_list += A
+		A.action.Grant(L)
 
 /obj/item/infinity_stone/proc/RemoveAbilities(mob/living/L)
 	for(var/obj/effect/proc_holder/spell/A in spells)
-		spells -= A
-		spells += new A.type(src)
-		L.RemoveSpell(A)
+		L.mob_spell_list -= A
+		A.action.Remove(L)
 
 
 /obj/item/infinity_stone/proc/GetHolder()
@@ -77,13 +77,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 /obj/effect/proc_holder/spell/self/infinity
-	human_req = FALSE
+	human_req = FALSE // because a monkey with an infinity stone is funny
 	clothes_req = FALSE
+	staff_req = FALSE
 
 /obj/effect/proc_holder/spell/targeted/infinity //copypaste from shadowling
 	ranged_mousepointer = 'icons/effects/cult_target.dmi'
 	human_req = FALSE
 	clothes_req = FALSE
+	staff_req = FALSE
 	var/obj/item/infinity_stone/stone
 	var/mob/living/user
 	var/mob/living/target
