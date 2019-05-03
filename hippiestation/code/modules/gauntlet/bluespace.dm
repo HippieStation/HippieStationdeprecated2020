@@ -12,8 +12,8 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		var/obj/O = L.get_active_held_item()
-		if(L && L.dropItemToGround(O))
-			L.visible_message("<span class='danger'>[L]'s [O] disappears from their hands!</span>'", "<span class='danger'>Our [O] disappears!</span>")
+		if(O && L.dropItemToGround(O))
+			L.visible_message("<span class='danger'>[L]'s [O] disappears from their hands!</span>", "<span class='danger'>Our [O] disappears!</span>")
 			O.forceMove(get_turf(user))
 			user.equip_to_slot(O, SLOT_IN_BACKPACK)	
 
@@ -23,12 +23,11 @@
 		var/turf/potential_T = find_safe_turf(extended_safety_checks = TRUE)
 		do_teleport(target, potential_T, channel = TELEPORT_CHANNEL_MAGIC)
 
-/obj/item/infinity_stone/bluespace/HarmEvent(atom/target, mob/living/user, proximity_flag)
-	if(isliving(target))
-		var/turf/to_teleport = get_turf(target)
-		user.adjustStaminaLoss(15)
-		target.visible_message("<span class='danger'>[target] warps away!</span>", "<span class='notice'>We warp ourselves to our desired location.</span>")
-		do_teleport(user, to_teleport, channel = TELEPORT_CHANNEL_MAGIC)
+/obj/item/infinity_stone/bluespace/HarmEvent(atom/target, mob/living/user, proximity_flag)	
+	var/turf/to_teleport = get_turf(target)
+	user.adjustStaminaLoss(15)
+	target.visible_message("<span class='danger'>[target] warps away!</span>", "<span class='notice'>We warp ourselves to our desired location.</span>")
+	do_teleport(user, to_teleport, channel = TELEPORT_CHANNEL_MAGIC)
 
 /obj/item/infinity_stone/bluespace/GrabEvent(atom/target, mob/living/user, proximity_flag)
 	if(user.incorporeal_move)
@@ -72,10 +71,12 @@
 /obj/effect/proc_holder/spell/self/infinity/bluespace_stone_shield
 	name = "Portal Shield"
 	desc = "Summon a portal shield which sends all projectiles into nullspace. Lasts for 15 seconds, or 5 hits."
+	charge_max = 200
 
 /obj/effect/proc_holder/spell/self/infinity/bluespace_stone_shield/cast(list/targets, mob/user = usr)
 	var/obj/item/shield/bluespace_stone/BS = new
 	if(!user.put_in_hands(BS, TRUE))
+		qdel(BS)
 		revert_cast()
 
 /obj/effect/proc_holder/spell/targeted/turf_teleport/blink/bluespace_stone
