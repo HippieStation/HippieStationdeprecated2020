@@ -3009,6 +3009,7 @@
 #include "hippiestation\code\game\objects\items\devices\transfer_valve.dm"
 #include "hippiestation\code\game\objects\items\grenades\chem_grenade.dm"
 #include "hippiestation\code\game\objects\items\grenades\clusterbuster.dm"
+#include "hippiestation\code\game\objects\items\grenades\ghettobomb.dm"
 #include "hippiestation\code\game\objects\items\grenades\plastic.dm"
 #include "hippiestation\code\game\objects\items\grenades\spawnergrenade.dm"
 #include "hippiestation\code\game\objects\items\holotool\holotool.dm"
