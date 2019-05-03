@@ -74,6 +74,17 @@
 
 /obj/item/infinity_stone/proc/HelpEvent(atom/target, mob/living/user, proximity_flag)
 
+/obj/item/infinity_stone/proc/FireProjectile(projectiletype, atom/target)
+	var/turf/startloc = get_turf(src)
+	var/obj/item/projectile/P = new projectiletype(startloc)
+	P.starting = startloc
+	P.firer = isliving(current_holder) ? current_holder : src
+	P.yo = target.y - startloc.y
+	P.xo = target.x - startloc.x
+	P.original = target
+	P.preparePixelProjectile(target, src)
+	P.fire()
+
 ////////////////////////////////////////////////////////////////////////////////
 
 /obj/effect/proc_holder/spell/self/infinity
