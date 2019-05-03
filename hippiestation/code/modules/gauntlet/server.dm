@@ -2,7 +2,9 @@
 	name = "Server Stone"
 	desc = "The very essence of Hippie. Smells of basement."
 	spell_types = list (/obj/effect/proc_holder/spell/spacetime_dist/server_stone)
-	ability_text = list("DISARM/HELP/GRAB INTENT: Fire a bolt of animation", "HARM INTENT: Fire a bolt of chaos", "Use on a material to use 25 sheets of it for a golem. 2 minute cooldown!")
+	ability_text = list("DISARM/HELP/GRAB INTENT: Fire a bolt of animation", 
+		"HARM INTENT: Fire a bolt of chaos", 
+		"Use on a material to use 25 sheets of it for a golem. 2 minute cooldown!")
 	var/next_golem = 0
 
 /obj/item/infinity_stone/server/DisarmEvent(atom/target, mob/living/user, proximity_flag)

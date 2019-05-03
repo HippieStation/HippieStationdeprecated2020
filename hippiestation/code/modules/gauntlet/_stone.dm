@@ -12,6 +12,7 @@
 	RegisterSignal(src, COMSIG_ITEM_PICKUP, .proc/UpdateHolder)
 	RegisterSignal(src, COMSIG_ITEM_DROPPED, .proc/UpdateHolder)
 	RegisterSignal(src, COMSIG_ITEM_EQUIPPED, .proc/UpdateHolder)
+	AddComponent(/datum/component/stationloving, TRUE)
 
 /obj/item/infinity_stone/examine(mob/user)
 	. = ..()

@@ -3,7 +3,10 @@
 	desc = "Stare into the abyss, and the abyss stares back..."
 	icon = 'hippiestation/icons/obj/infinity.dmi'
 	icon_state = "bluespace"
-	ability_text = list("HELP INTENT: teleport target to safe location", "HARM INTENT: teleport to specified location", "DISARM EVENT: steal item someone is holding", "GRAB EVENT: toggle intangibility")
+	ability_text = list("HELP INTENT: teleport target to safe location", 
+		"HARM INTENT: teleport to specified location", 
+		"DISARM INTENT: steal item someone is holding", 
+		"GRAB INTENT: toggle intangibility")
 	spell_types = list(/obj/effect/proc_holder/spell/self/infinity/bluespace_stone_shield, 
 		/obj/effect/proc_holder/spell/targeted/turf_teleport/blink/bluespace_stone,
 		/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/bluespace_stone)
