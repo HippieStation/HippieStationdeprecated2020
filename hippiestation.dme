@@ -3125,6 +3125,7 @@
 #include "hippiestation\code\modules\client\loadout\mask.dm"
 #include "hippiestation\code\modules\client\loadout\neck.dm"
 #include "hippiestation\code\modules\client\loadout\shoes.dm"
+#include "hippiestation\code\modules\client\verbs\g2g.dm"
 #include "hippiestation\code\modules\client\verbs\who.dm"
 #include "hippiestation\code\modules\clothing\chameleon.dm"
 #include "hippiestation\code\modules\clothing\clothing.dm"
