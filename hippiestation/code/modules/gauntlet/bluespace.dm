@@ -75,8 +75,9 @@
 
 /obj/effect/proc_holder/spell/self/infinity/bluespace_stone_shield/cast(list/targets, mob/user = usr)
 	var/obj/item/shield/bluespace_stone/BS = new
-	if(!user.put_in_hands(BS, TRUE))
-		qdel(BS)
+	if(user.put_in_hands(BS, TRUE))
+		user.visible_message("<span class='danger'>A portal manifests in [user]'s hands!</span>'")
+	else
 		revert_cast()
 
 /obj/effect/proc_holder/spell/targeted/turf_teleport/blink/bluespace_stone
