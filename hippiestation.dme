@@ -13,7 +13,6 @@
 // END_PREFERENCES
 
 // BEGIN_INCLUDE
-#include "_maps\_basemapfacepunch.dm"
 #include "code\_compile_options.dm"
 #include "code\world.dm"
 #include "code\__DEFINES\_globals.dm"
@@ -652,6 +651,7 @@
 #include "code\game\machinery\computer\arcade.dm"
 #include "code\game\machinery\computer\atmos_alert.dm"
 #include "code\game\machinery\computer\atmos_control.dm"
+#include "code\game\machinery\computer\atmos_sim.dm"
 #include "code\game\machinery\computer\buildandrepair.dm"
 #include "code\game\machinery\computer\camera.dm"
 #include "code\game\machinery\computer\camera_advanced.dm"
