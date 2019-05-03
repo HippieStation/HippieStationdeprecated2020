@@ -18,7 +18,8 @@ SUBSYSTEM_DEF(ticker)
 	var/datum/game_mode/mode = null
 
 	var/login_music							//music played in pregame lobby
-	var/round_end_sound						//music/jingle played when the world reboots
+	var/round_end_sound					//music/jingle played when the world reboots
+	var/round_starting_sound
 	var/round_end_sound_sent = TRUE			//If all clients have loaded it
 
 	var/list/datum/mind/minds = list()		//The characters in the game. Used for objective tracking.
@@ -276,7 +277,16 @@ SUBSYSTEM_DEF(ticker)
 	SSdbcore.SetRoundStart()
 
 	to_chat(world, "<span class='notice'><B>Welcome to [station_name()], enjoy your stay!</B></span>")
-	SEND_SOUND(world, sound('sound/ai/welcome.ogg'))
+	if(!round_starting_sound)
+		round_starting_sound = pick(\
+		'sound/ai/welcome.ogg',
+		'face/sound/roundstart/n313.ogg',
+		'face/sound/roundstart/halo.ogg',
+		'face/sound/roundstart/goagain.ogg',
+		'face/sound/roundstart/ts2story.ogg',
+		'face/sound/roundstart/ts2spawn.ogg'\
+		)
+	SEND_SOUND(world, sound(round_starting_sound)) // This will probably cause conflict issues, but... I can't see a better way to change this? Hooray hardcoding.
 
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)
