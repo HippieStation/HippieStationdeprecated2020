@@ -1,3 +1,8 @@
+/obj/item/nullrod/Initialize()
+	. = ..()
+	var/datum/component/AM = GetComponent(/datum/component/anti_magic)
+	AM.RemoveComponent()
+
 /obj/item/nullrod/fedora/attack_self(mob/user)
 	user.visible_message("<span class='danger'>[user] tips [user.p_their()] [name]!</span>")
 	..() //incase an admin allows you to reset the rod
