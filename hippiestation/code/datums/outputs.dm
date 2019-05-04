@@ -28,5 +28,5 @@
 							   'hippiestation/sound/misc/hitsounds/cartoon_woink.ogg'=1)
 
 /datum/outputs/rubberducky
-	sounds = list('hippiestation/sound/misc/quack.ogg'=1)
+	sounds = list('hippiestation/sound/misc/quack.ogg')
 	text = "You hear a QUACK."

@@ -70,6 +70,8 @@
 	var/adminbus = FALSE //If an admin wants to play around with a changeling that doesn't run out of chem charges, here's the var to change that.
 	var/datum/action/innate/changeling/reform/reform
 	var/datum/action/innate/changeling/devour/devour
+	var/scream_sound_near = 'hippiestation/sound/effects/horror_scream.ogg'
+	var/scream_sound_far = 'hippiestation/sound/effects/horror_scream_reverb.ogg'
 
 /mob/living/simple_animal/hostile/true_changeling/Initialize()
 	. = ..()
@@ -132,10 +134,10 @@
 				if(M_turf && M_turf.z == z)
 					var/dist = get_dist(M_turf, src)
 					if(dist <= 7) //source of sound very close
-						M.playsound_local(src, 'hippiestation/sound/effects/horror_scream.ogg', 80, 1, frequency, falloff = 2)
+						M.playsound_local(src, scream_sound_near, 80, 1, frequency, falloff = 2)
 					else
 						var/vol = CLAMP(100-((dist-7)*5), 10, 100) //Every tile decreases sound volume by 5
-						M.playsound_local(src, 'hippiestation/sound/effects/horror_scream_reverb.ogg', vol, 1, frequency, falloff = 5)
+						M.playsound_local(src, scream_sound_far, vol, 1, frequency, falloff = 5)
 				if(M.stat == DEAD && (M.client.prefs.chat_toggles & CHAT_GHOSTSIGHT) && !(M in viewers(get_turf(src),null)))
 					M.show_message(message)
 		audible_message(message)
