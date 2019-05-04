@@ -17,14 +17,24 @@
 	blood_volume = INFINITY
 	wander = TRUE
 	ventcrawler = VENTCRAWLER_ALWAYS
+	faction = list("hostile")
+	stat_attack = UNCONSCIOUS
+	robust_searching = 1
+	pass_flags = LETPASSTHROW
+	move_to_delay = 1
+	rapid_melee = 2
+	speed = 1
 	var/in_vent = FALSE
 	var/min_next_vent = 0
 	var/obj/machinery/atmospherics/components/unary/vent_pump/entry_vent
 	var/obj/machinery/atmospherics/components/unary/vent_pump/exit_vent
+	enter_message = FALSE
+	do_footstep = TRUE
 
 /mob/living/simple_animal/hostile/true_changeling/adminbus/gibs/Initialize()
 	. = ..()
 	qdel(reform)
+	qdel(devour)
 	icon_state = pick("gibdown1", "gibup1", "gibmid3")
 	icon_living = icon_state
 
@@ -34,47 +44,49 @@
 
 /mob/living/simple_animal/hostile/true_changeling/adminbus/gibs/Move(atom/newloc, direct)
 	. = ..()
-	if(prob(80))
-		add_splatter_floor(src.loc,FALSE)
+	add_splatter_floor(src.loc,FALSE)
 
 /mob/living/simple_animal/hostile/true_changeling/adminbus/gibs/proc/hurt_gibs()
 	if(prob(40))
 		adjustBruteLoss(35)
 		visible_message("<span class='warning'>[src] shrivels in reaction to being cleaned!</span>", "<span class='danger'>You can feel your form being disintegrated!</span>")
 
-/mob/living/simple_animal/hostile/true_changeling/adminbus/gibs/CanAttack(atom/the_target)
-	if(see_invisible < the_target.invisibility)//Target's invisible to us, forget it
-		return FALSE
-	if(isliving(the_target))
-		var/mob/living/L = the_target
-		if(faction_check_mob(L) && !attack_same)
-			return FALSE
-		return TRUE
-
 /mob/living/simple_animal/hostile/true_changeling/adminbus/gibs/AttackingTarget()
+	. = ..()
 	if(isliving(target))
 		var/mob/living/lunch = target
 		if(lunch && prob(30))
-			visible_message("<span class='warning'>[src] begins ripping apart and feasting on [lunch]!</span>", \
-				"<span class='danger'>We begin to feast upon [lunch]...</span>")
-			if(!do_mob(src, 10, target = lunch))
-				return FALSE
-			if(lunch.getBruteLoss() + lunch.getFireLoss() >= 200) //OK, ok. this change was actually super rad hippiestation  i like it -Armhulen
-				visible_message("<span class='warning'>[lunch] is completely devoured by [src]!</span>", \
-						"<span class='danger'>You completely devour [lunch]!</span>")
-				lunch.gib() //hell yes.
-			else
-				lunch.adjustBruteLoss(60)
-				visible_message("<span class='warning'>[src] tears a chunk from [lunch]'s flesh!</span>", \
-						"<span class='danger'>We tear a chunk of flesh from [lunch] and devour it!</span>")
-				to_chat(lunch, "<span class='userdanger'>[src] takes a huge bite out of you!</span>")
-				var/obj/effect/decal/cleanable/blood/gibs/G = new(get_turf(lunch))
-				step(G, pick(GLOB.alldirs)) //Make some gibs spray out for dramatic effect
-				playsound(lunch, 'sound/effects/splat.ogg', 50, 1)
-				playsound(lunch, 'hippiestation/sound/misc/tear.ogg', 50, 1)
-				lunch.emote("scream")
-				adjustBruteLoss(-50)
-	. = ..()
+			if(!EatLunch(lunch) && (health < maxHealth * 0.25) && prob(33))//Don't want to see this message all the time.
+				visible_message("<span class='warning'>[lunch] appears frustrated!</span>", \
+						"<span class='danger'>Failing to eat angers you!</span>")
+
+/mob/living/simple_animal/hostile/true_changeling/adminbus/gibs/proc/EatLunch(mob/living/lunch)
+	visible_message("<span class='warning'>[src] begins ripping apart and feasting on [lunch]!</span>", \
+		"<span class='danger'>We begin to feast upon [lunch]...</span>")
+	if(!do_mob(src, 10, target = lunch))
+		return FALSE
+	if((lunch.getBruteLoss() + lunch.getFireLoss() >= 200) || lunch.stat == DEAD)
+		visible_message("<span class='warning'>[lunch] is completely devoured by [src]!</span>", \
+				"<span class='danger'>You completely devour [lunch]!</span>")
+		lunch.gib()
+	else
+		lunch.adjustBruteLoss(60)
+		visible_message("<span class='warning'>[src] tears a chunk from [lunch]'s flesh!</span>", \
+				"<span class='danger'>We tear a chunk of flesh from [lunch] and devour it!</span>")
+		to_chat(lunch, "<span class='userdanger'>[src] takes a huge bite out of you!</span>")
+		if(prob(99))
+			var/obj/effect/decal/cleanable/blood/gibs/G = new(src.loc)
+			step(G, pick(GLOB.alldirs)) //Make some gibs spray out for dramatic effect
+		else
+			visible_message("<span class='warning'>[src] makes an offspring out [lunch]'s flesh!</span>", \
+				"<span class='danger'>We reproduce from flesh from [lunch]!</span>")
+			new /mob/living/simple_animal/hostile/true_changeling/adminbus/gibs(lunch.loc)
+			qdel(lunch)
+		playsound(lunch, 'sound/effects/splat.ogg', 50, 1)
+		playsound(lunch, 'hippiestation/sound/misc/tear.ogg', 50, 1)
+		lunch.emote("scream")
+		adjustBruteLoss(-50)
+	return TRUE
 
 /mob/living/simple_animal/hostile/true_changeling/adminbus/gibs/Life()
 	. = ..()
