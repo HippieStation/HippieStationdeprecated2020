@@ -3162,6 +3162,7 @@
 #include "hippiestation\code\modules\events\blob.dm"
 #include "hippiestation\code\modules\events\floorcluwne.dm"
 #include "hippiestation\code\modules\events\immovable_rod.dm"
+#include "hippiestation\code\modules\events\infiltrators.dm"
 #include "hippiestation\code\modules\events\vent_clog.dm"
 #include "hippiestation\code\modules\events\holiday\vday.dm"
 #include "hippiestation\code\modules\food_and_drinks\drinks\drinks\drinkingglass.dm"
