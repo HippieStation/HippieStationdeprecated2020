@@ -150,9 +150,6 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/mummy
-	tools = list(/obj/item/nullrod/hippie/egyptian)
-
 /datum/crafting_recipe/crowbar_ghetto
 	name = "ghetto crowbar"
 	result = /obj/item/crowbar/ghetto
