@@ -3,6 +3,7 @@
 	desc = "Stare into the abyss, and the abyss stares back..."
 	icon = 'hippiestation/icons/obj/infinity.dmi'
 	icon_state = "bluespace"
+	stone_type = BLUESPACE_STONE
 	ability_text = list("HELP INTENT: teleport target to safe location", 
 		"HARM INTENT: teleport to specified location", 
 		"DISARM INTENT: steal item someone is holding", 
@@ -27,7 +28,7 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		var/obj/O = L.get_active_held_item()
-		if(O && !istype(O, /obj/item/infinity_stone) L.dropItemToGround(O))
+		if(O && !istype(O, /obj/item/infinity_stone) && L.dropItemToGround(O))
 			L.visible_message("<span class='danger'>[L]'s [O] disappears from their hands!</span>", "<span class='danger'>Our [O] disappears!</span>")
 			O.forceMove(get_turf(user))
 			user.equip_to_slot(O, SLOT_IN_BACKPACK)	

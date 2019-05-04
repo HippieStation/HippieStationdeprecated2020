@@ -1,6 +1,7 @@
 /obj/item/infinity_stone/server
 	name = "Server Stone"
 	desc = "The very essence of Hippie. Smells of basement."
+	stone_type = SERVER_STONE
 	spell_types = list (/obj/effect/proc_holder/spell/spacetime_dist/server_stone)
 	ability_text = list("DISARM/HELP/GRAB INTENT: Fire a bolt of animation", 
 		"HARM INTENT: Fire a bolt of chaos", 

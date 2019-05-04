@@ -1,6 +1,7 @@
 /obj/item/infinity_stone
 	name = "Generic Stone"
 	var/mob/living/current_holder
+	var/stone_type = ""
 	var/list/ability_text = list()
 	var/list/spells = list()
 	var/list/spell_types = list()
