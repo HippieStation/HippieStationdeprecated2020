@@ -1,2 +1,2 @@
 #define CLUWNEMUT	/datum/mutation/human/cluwne
-#define ANTIMAGIC	/datum/mutation/human/antimagic
+#define ANTIMAGICMUT	/datum/mutation/human/antimagic
