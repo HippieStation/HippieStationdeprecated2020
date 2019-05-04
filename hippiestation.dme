@@ -2981,6 +2981,7 @@
 #include "hippiestation\code\game\objects\items\cigs_lighters.dm"
 #include "hippiestation\code\game\objects\items\clown_items.dm"
 #include "hippiestation\code\game\objects\items\crayons.dm"
+#include "hippiestation\code\game\objects\items\credit_holochip.dm"
 #include "hippiestation\code\game\objects\items\dildo.dm"
 #include "hippiestation\code\game\objects\items\ducttape.dm"
 #include "hippiestation\code\game\objects\items\execution_sword.dm"
