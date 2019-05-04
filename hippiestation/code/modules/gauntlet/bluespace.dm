@@ -11,11 +11,23 @@
 		/obj/effect/proc_holder/spell/targeted/turf_teleport/blink/bluespace_stone,
 		/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/bluespace_stone)
 
+/obj/item/infinity_stone/bluespace/GiveAbilities(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.gain_trauma_type(/datum/brain_trauma/special/bluespace_prophet, TRAUMA_RESILIENCE_ABSOLUTE)
+
+/obj/item/infinity_stone/bluespace/RemoveAbilities(mob/living/L)
+	. = ..()
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.cure_trauma_type(/datum/brain_trauma/special/bluespace_prophet, TRAUMA_RESILIENCE_ABSOLUTE)
+
 /obj/item/infinity_stone/bluespace/DisarmEvent(atom/target, mob/living/user, proximity_flag)
 	if(isliving(target))
 		var/mob/living/L = target
 		var/obj/O = L.get_active_held_item()
-		if(O && L.dropItemToGround(O))
+		if(O && !istype(O, /obj/item/infinity_stone) L.dropItemToGround(O))
 			L.visible_message("<span class='danger'>[L]'s [O] disappears from their hands!</span>", "<span class='danger'>Our [O] disappears!</span>")
 			O.forceMove(get_turf(user))
 			user.equip_to_slot(O, SLOT_IN_BACKPACK)	
@@ -79,7 +91,7 @@
 /obj/effect/proc_holder/spell/self/infinity/bluespace_stone_shield/cast(list/targets, mob/user = usr)
 	var/obj/item/shield/bluespace_stone/BS = new
 	if(user.put_in_hands(BS, TRUE))
-		user.visible_message("<span class='danger'>A portal manifests in [user]'s hands!</span>'")
+		user.visible_message("<span class='danger'>A portal manifests in [user]'s hands!</span>")
 	else
 		revert_cast()
 
