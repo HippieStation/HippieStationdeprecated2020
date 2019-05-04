@@ -3190,6 +3190,7 @@
 #include "hippiestation\code\modules\gauntlet\bluespace.dm"
 #include "hippiestation\code\modules\gauntlet\gauntlet.dm"
 #include "hippiestation\code\modules\gauntlet\server.dm"
+#include "hippiestation\code\modules\gauntlet\syndie.dm"
 #include "hippiestation\code\modules\hydroponics\biogenerator.dm"
 #include "hippiestation\code\modules\hydroponics\buttflower.dm"
 #include "hippiestation\code\modules\hydroponics\gene_modder.dm"

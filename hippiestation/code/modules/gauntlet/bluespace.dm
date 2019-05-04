@@ -1,8 +1,7 @@
 /obj/item/infinity_stone/bluespace
 	name = "Bluespace Stone"
 	desc = "Stare into the abyss, and the abyss stares back..."
-	icon = 'hippiestation/icons/obj/infinity.dmi'
-	icon_state = "bluespace"
+	color = "#266ef6"
 	stone_type = BLUESPACE_STONE
 	ability_text = list("HELP INTENT: teleport target to safe location", 
 		"HARM INTENT: teleport to specified location", 
@@ -18,7 +17,7 @@
 		var/mob/living/carbon/C = L
 		C.gain_trauma_type(/datum/brain_trauma/special/bluespace_prophet, TRAUMA_RESILIENCE_ABSOLUTE)
 
-/obj/item/infinity_stone/bluespace/RemoveAbilities(mob/living/L)
+/obj/item/infinity_stone/bluespace/RemoveAbilities(mob/living/L, only_extra = FALSE)
 	. = ..()
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L

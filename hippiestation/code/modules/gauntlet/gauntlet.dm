@@ -34,7 +34,7 @@
 		if(INTENT_HELP)
 			IS.HelpEvent(target, user, proximity_flag)
 
-/obj/item/infinity_gauntlet/proc/attack_self(mob/living/user)
+/obj/item/infinity_gauntlet/attack_self(mob/living/user)
 	if(!istype(user))
 		return
 	if(!locked_on)
@@ -52,11 +52,16 @@
 		return
 	var/list/gauntlet_radial = list()
 	for(var/obj/item/infinity_stone/I in stones)
-		gauntlet_radial[I.stone_type] = image(icon = I.icon, icon_state = I.icon_state)
+		var/image/IM = image(icon = I.icon, icon_state = I.icon_state)
+		IM.color = I.color
+		gauntlet_radial[I.stone_type] = IM
 	var/chosen = show_radial_menu(user, src, gauntlet_radial, custom_check = CALLBACK(src, .proc/check_menu, user))
 	if(!check_menu(user))
 		return
 	if(chosen)
+		var/obj/item/infinity_stone/current_stone = GetStone(stone_mode)
+		if(current_stone)
+			current_stone.RemoveAbilities(user, TRUE) // get rid of stuff like intangability or immovable mode
 		stone_mode = chosen
 
 /obj/item/infinity_gauntlet/attackby(obj/item/I, mob/living/user, params)

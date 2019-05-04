@@ -1,5 +1,7 @@
 /obj/item/infinity_stone
 	name = "Generic Stone"
+	icon = 'hippiestation/icons/obj/infinity.dmi'
+	icon_state = "stone"
 	var/mob/living/current_holder
 	var/stone_type = ""
 	var/list/ability_text = list()
@@ -24,15 +26,17 @@
 	for(var/A in ability_text)
 		to_chat(user, "<span class='notice'>[A]</span>")
 
-/obj/item/infinity_stone/proc/GiveAbilities(mob/living/L)
-	for(var/obj/effect/proc_holder/spell/A in spells)
-		L.mob_spell_list += A
-		A.action.Grant(L)
+/obj/item/infinity_stone/proc/GiveAbilities(mob/living/L, only_extra = FALSE)
+	if(!only_extra)
+		for(var/obj/effect/proc_holder/spell/A in spells)
+			L.mob_spell_list += A
+			A.action.Grant(L)
 
-/obj/item/infinity_stone/proc/RemoveAbilities(mob/living/L)
-	for(var/obj/effect/proc_holder/spell/A in spells)
-		L.mob_spell_list -= A
-		A.action.Remove(L)
+/obj/item/infinity_stone/proc/RemoveAbilities(mob/living/L, only_extra = FALSE)
+	if(!only_extra)
+		for(var/obj/effect/proc_holder/spell/A in spells)
+			L.mob_spell_list -= A
+			A.action.Remove(L)
 
 
 /obj/item/infinity_stone/proc/GetHolder()
