@@ -2809,6 +2809,7 @@
 #include "face\code\game\machinery\porta_turret\portable_turret.dm"
 #include "face\code\game\objects\effects\loot_spawners.dm"
 #include "face\code\game\objects\effects\misc_effects.dm"
+#include "face\code\game\objects\items\toy.dm"
 #include "face\code\game\objects\items\grenades\misc_spawnergrenade.dm"
 #include "face\code\game\objects\items\storage\backpack.dm"
 #include "face\code\game\objects\items\storage\bags.dm"
