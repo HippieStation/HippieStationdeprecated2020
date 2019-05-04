@@ -1,5 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - rscadd: "You can now buy the glock 17 on gangs."
-  - bugfix: "Double dominators should no longer cause the escape shuttle not to depart."

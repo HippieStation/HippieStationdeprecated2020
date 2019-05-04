@@ -1,9 +1,0 @@
-author: "Joe Berry"
-delete-after: True
-changes: 
-  - rscadd: "The VR hub is now open, VR sleepers now lead to the same main area every time, where you can access all of the VR content from."
-  - rscadd: "A VR connection from another station has now opened, ghosts can now access VR as a ghost spawn."
-  - rscadd: "A new VR game, runner, run endlessly away from the dark tiles forming behind you and be the last one standing."
-  - tweak: "The vr megafauna arena portals now have multiple exits on every corner so you don't spawn on top of a megafauna and die immediately as often now."
-  - config: "Added a virtual reality config option to enable or disable the VR hub map."
-  - bugfix: "Wormholes can no longer teleport to every single portal in the game."
