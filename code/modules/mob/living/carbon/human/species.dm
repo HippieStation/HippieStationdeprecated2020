@@ -1250,11 +1250,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			log_combat(user, target, "attempted to punch")
 			return FALSE
 
-<<<<<<< HEAD
 		punchouttooth(target,user,rand(0,9),affecting) // hippie -- teethcode
-
-=======
->>>>>>> c59aa61... [Ready] Punching/Grabbing Rebalance (#43291)
+		
 		var/armor_block = target.run_armor_check(affecting, "melee")
 
 		playsound(target.loc, user.dna.species.attack_sound, 25, 1, -1)
