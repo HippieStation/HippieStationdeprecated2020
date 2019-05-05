@@ -6,7 +6,6 @@
 	ability_text = list("HARM INTENT: toggle immovable mode")
 	spell_types = list(/obj/effect/proc_holder/spell/aoe_turf/repulse/syndie_stone,
 		/obj/effect/proc_holder/spell/self/infinity/regenerate)
-	var/toggle_move_force
 
 /obj/item/infinity_stone/syndie/DisarmEvent(atom/target, mob/living/user, proximity_flag)
 
