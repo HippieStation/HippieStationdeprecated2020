@@ -134,7 +134,7 @@
 
 /datum/mutation/human/tourettes/on_life()
 	if(prob(10 * GET_MUTATION_SYNCHRONIZER(src)) && owner.stat == CONSCIOUS && !owner.IsStun())
-		owner.Stun(200)
+		owner.Stun(10)	//Hippie - reduced tourettes stun from literally 20 seconds down to 1 second
 		switch(rand(1, 3))
 			if(1)
 				owner.emote("twitch")
