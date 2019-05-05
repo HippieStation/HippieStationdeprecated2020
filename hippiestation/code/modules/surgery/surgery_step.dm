@@ -6,7 +6,7 @@
 	var/obj/item/bodypart/affecting = target.get_bodypart(check_zone(target_zone))
 	var/damage_amount = 20
 
-	if (tool.force)
+	if (tool?.force)
 		damage_amount = tool.force * 2 // You managed to do it, but also hurt the patient
 
 	if (!affecting)

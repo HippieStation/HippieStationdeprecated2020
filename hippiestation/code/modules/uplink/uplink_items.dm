@@ -155,6 +155,17 @@
 	exclude_modes = list(/datum/game_mode/infiltration)
 	surplus = 30
 
+/datum/uplink_item/stealthy_weapons/crossbow
+	name = "Miniature Energy Crossbow"
+	desc = "A short bow mounted across a tiller in miniature. Small enough to \
+	fit into a pocket or slip into a bag unnoticed. It will synthesize \
+	and fire bolts tipped with lethal toxins that will disorient and \
+	irradiate targets. It can produce an infinite number of bolts \
+	but takes time to automatically recharge after each shot."
+	item = /obj/item/gun/energy/kinetic_accelerator/hippie_ebow
+	cost = 8
+	exclude_modes = list() // Has no reason to be excluded any more.
+
 /datum/uplink_item/stealthy_tools/chameleon
 	cost = 4
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor, /datum/game_mode/infiltration)
@@ -196,6 +207,7 @@
 
 /datum/uplink_item/implants/macrobomb
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor)
+	restricted = FALSE
 
 /datum/uplink_item/dangerous/hockey
 	name = "Ka-nada Hockey Set"
@@ -279,7 +291,12 @@
 	cost = 3
 
 /datum/uplink_item/stealthy_weapons/martialarts
-	cost = 12
+	name = "Sleeping Carp Mask"
+	item = /obj/item/clothing/mask/gas/carp/sleeping
+	desc = "This mask contains the secrets of an ancient martial arts technique. You will master unarmed combat, but you also refuse to use dishonorable ranged weaponry. \
+	Put two together to create the carp suit, which allows you to deflect ranged attacks."
+	cost = 5
+	limited_stock = 2
 
 /datum/uplink_item/stealthy_weapons/throwingweapons
 	cost = 2
@@ -310,7 +327,7 @@
 /datum/uplink_item/badass/contender
 	name = "Contender G13"
 	desc = "A poacher's favorite, ArcWorks' Contender G13 can hold any ammo you put into it. Each shot must be loaded individually. Ammo sold seperately!"
-	item = /obj/item/gun/ballistic/revolver/doublebarrel/contender
+	item = /obj/item/gun/ballistic/shotgun/doublebarrel/contender
 	cost = 7 // You have to buy ammo for it, and there's only two shots. If you really want to get any use out of it, it'll be more around 10 TC.
 	surplus = 45 // Why not? You get a boatload of ammo in Surplus Crates anyhow.
 
@@ -318,7 +335,7 @@
 	name = "Box of Buckshot"
 	desc = "Contains 60 rounds of Buckshot. A popular purchase, whether it be the gondola poachers or the militia."
 	item = /obj/item/ammo_box/buckshotbox
-	cost = 13 // the math has been done, I assure you.
+	cost = 10 // the math has been done, I assure you. // the math has been broken
 	surplus = 25 // let's maybe not have players waste 13 TC on ammo every time they get a crate
 
 /datum/uplink_item/dangerous/armstrong
@@ -334,10 +351,12 @@
 //Nanosuit uplink item, available in all traitor rounds and nuke.
 /datum/uplink_item/dangerous/nanosuit
 	name = "CryNet Nanosuit"
-	desc = "Become a posthuman warrior. The items cannot be taken off once you wear them."
+	desc = "Become a posthuman warrior. The items cannot be taken off once you wear them and alerts the crew of your position if equipped on station."
 	item = /obj/item/storage/box/syndie_kit/nanosuit
 	cost = 20
-	exclude_modes = list(/datum/game_mode/infiltration)
+	surplus = 10
+	cant_discount = TRUE
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
 
 /datum/uplink_item/dangerous/synth
 	name = "Cybersun Sponsorship Kit"
@@ -351,7 +370,7 @@
 	name = "A brick"
 	desc = "A literal brick, able to break a common windows like nothing. Serves well as a melee and thrown weapon aswell. Keep an eye out for the fabled brown brick."
 	item = /obj/item/brick
-	cost = 2
+	cost = 1
 	surplus = 30
 
 /datum/uplink_item/device_tools/arm
@@ -360,18 +379,16 @@
 	item = /obj/item/extra_arm
 	cost = 4
 	limited_stock = 2
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
 
 /datum/uplink_item/role_restricted/clowncar
 	cost = 15
-
-/datum/uplink_item/dangerous/crossbow
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
 
 /datum/uplink_item/dangerous/sword
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration)
 
 /datum/uplink_item/dangerous/doublesword
-	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration)
+	exclude_modes = list(/datum/game_mode/traitor, /datum/game_mode/nuclear, /datum/game_mode/infiltration) //excluded from every mode. you make it by putting two swords together again.
 
 /datum/uplink_item/dangerous/syndicate_minibomb
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration)
@@ -409,11 +426,15 @@
 /datum/uplink_item/badass/balloon
 	exclude_modes = list(/datum/game_mode/infiltration) //no.
 
-/datum/uplink_item/badass/bundle
+/datum/uplink_item/bundles_TC/bundle_A
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
 
-/datum/uplink_item/badass/surplus
+/datum/uplink_item/bundles_TC/bundle_B
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
+
+/datum/uplink_item/bundles_TC/surplus
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration)
+	player_minimum = 0
 
 //Infiltrator shit
 /datum/uplink_item/infiltration
@@ -438,6 +459,7 @@
 	category = "Services"
 	include_modes = list(/datum/game_mode/infiltration, /datum/game_mode/nuclear)
 	surplus = 0
+	restricted = TRUE
 
 /datum/uplink_item/services/manifest_spoof
 	name = "Crew Manifest Spoof"

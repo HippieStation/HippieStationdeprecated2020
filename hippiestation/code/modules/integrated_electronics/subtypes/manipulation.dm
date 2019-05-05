@@ -143,8 +143,8 @@
 	being held, or anchored in some way. It should be noted that the ability to move is dependant on the type of assembly that this circuit inhabits; only drone assemblies can move."
 	w_class = WEIGHT_CLASS_SMALL
 	complexity = 10
-	cooldown_per_use = 1
-	ext_cooldown = 1
+	cooldown_per_use = 1 SECONDS
+	ext_cooldown = 1 SECONDS
 	inputs = list("direction" = IC_PINTYPE_DIR)
 	outputs = list("obstacle" = IC_PINTYPE_REF)
 	activators = list("step towards dir" = IC_PINTYPE_PULSE_IN,"on step"=IC_PINTYPE_PULSE_OUT,"blocked"=IC_PINTYPE_PULSE_OUT)
@@ -481,79 +481,6 @@
 
 
 
-/obj/item/integrated_circuit/manipulation/thrower
-	name = "thrower"
-	desc = "A compact launcher to throw things from inside or nearby tiles."
-	extended_desc = "The first and second inputs need to be numbers which correspond to the coordinates to throw objects at relative to the machine itself. \
-	The 'fire' activator will cause the mechanism to attempt to throw objects at the coordinates, if possible. Note that the \
-	projectile needs to be inside the machine, or on an adjacent tile, and must be medium sized or smaller. The assembly \
-	must also be a gun if you wish to throw something while the assembly is in hand."
-	complexity = 25
-	w_class = WEIGHT_CLASS_SMALL
-	size = 2
-	cooldown_per_use = 10
-	ext_cooldown = 1
-	inputs = list(
-		"target X rel" = IC_PINTYPE_NUMBER,
-		"target Y rel" = IC_PINTYPE_NUMBER,
-		"projectile" = IC_PINTYPE_REF
-		)
-	outputs = list()
-	activators = list(
-		"fire" = IC_PINTYPE_PULSE_IN
-	)
-	spawn_flags = IC_SPAWN_RESEARCH
-	action_flags = IC_ACTION_COMBAT
-	power_draw_per_use = 50
-
-/obj/item/integrated_circuit/manipulation/thrower/do_work()
-	var/max_w_class = assembly.w_class
-	var/target_x_rel = round(get_pin_data(IC_INPUT, 1))
-	var/target_y_rel = round(get_pin_data(IC_INPUT, 2))
-	var/obj/item/A = get_pin_data_as_type(IC_INPUT, 3, /obj/item)
-
-	if(!A || A.anchored || A.throwing || A == assembly || istype(A, /obj/item/twohanded) || istype(A, /obj/item/transfer_valve))
-		return
-
-	if (istype(assembly.loc, /obj/item/implant/storage)) //Prevents the more abusive form of chestgun.
-		return
-
-	if(max_w_class && (A.w_class > max_w_class))
-		return
-
-	if(!assembly.can_fire_equipped && ishuman(assembly.loc))
-		return
-
-	// Is the target inside the assembly or close to it?
-	if(!check_target(A, exclude_components = TRUE))
-		return
-
-	var/turf/T = get_turf(get_object())
-	if(!T)
-		return
-
-	// If the item is in mob's inventory, try to remove it from there.
-	if(ismob(A.loc))
-		var/mob/living/M = A.loc
-		if(!M.temporarilyRemoveItemFromInventory(A))
-			return
-
-	// If the item is in a grabber circuit we'll update the grabber's outputs after we've thrown it.
-	var/obj/item/integrated_circuit/manipulation/grabber/G = A.loc
-
-	var/x_abs = CLAMP(T.x + target_x_rel, 0, world.maxx)
-	var/y_abs = CLAMP(T.y + target_y_rel, 0, world.maxy)
-	var/range = round(CLAMP(sqrt(target_x_rel*target_x_rel+target_y_rel*target_y_rel),0,8),1)
-	//throw it
-	assembly.visible_message("<span class='danger'>[assembly] has thrown [A]!</span>")
-	log_attack("[assembly] [REF(assembly)] has thrown [A].")
-	A.forceMove(drop_location())
-	A.throw_at(locate(x_abs, y_abs, T.z), range, 3)
-
-	// If the item came from a grabber now we can update the outputs since we've thrown it.
-	if(istype(G))
-		G.update_outputs()
-
 
 /obj/item/integrated_circuit/manipulation/matman
 	name = "material manager"
@@ -736,12 +663,78 @@
 	icon_state = "internalbm"
 	extended_desc = "This circuit accepts a string as input, and can be pulsed to rewrite the current assembly's name with said string. On success, it pulses the default pulse-out wire."
 	inputs = list("name" = IC_PINTYPE_STRING)
-	activators = list("pulse in" = IC_PINTYPE_PULSE_IN,"pulse out" = IC_PINTYPE_PULSE_OUT)
+	outputs = list("current name" = IC_PINTYPE_STRING)
+	activators = list("rename" = IC_PINTYPE_PULSE_IN,"get name" = IC_PINTYPE_PULSE_IN,"pulse out" = IC_PINTYPE_PULSE_OUT)
 	power_draw_per_use = 1
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-obj/item/integrated_circuit/manipulation/renamer/do_work()
-	var/new_name = get_pin_data(IC_INPUT, 1)
-	if(assembly && new_name)
-		assembly.name = new_name
-		activate_pin(2)
+/obj/item/integrated_circuit/manipulation/renamer/do_work(var/n)
+	if(!assembly)
+		return
+	switch(n)
+		if(1)
+			var/new_name = get_pin_data(IC_INPUT, 1)
+			if(new_name)
+				assembly.name = new_name
+
+		else
+			set_pin_data(IC_OUTPUT, 1, assembly.name)
+			push_data()
+
+	activate_pin(3)
+
+
+
+// - redescribing circuit - //
+/obj/item/integrated_circuit/manipulation/redescribe
+	name = "redescriber"
+	desc = "Takes any string as an input and will set it as the assembly's description."
+	extended_desc = "Strings should can be of any length."
+	icon_state = "speaker"
+	cooldown_per_use = 10
+	complexity = 3
+	inputs = list("text" = IC_PINTYPE_STRING)
+	outputs = list("description" = IC_PINTYPE_STRING)
+	activators = list("redescribe" = IC_PINTYPE_PULSE_IN,"get description" = IC_PINTYPE_PULSE_IN,"pulse out" = IC_PINTYPE_PULSE_OUT)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/integrated_circuit/manipulation/redescribe/do_work(var/n)
+	if(!assembly)
+		return
+
+	switch(n)
+		if(1)
+			assembly.desc = get_pin_data(IC_INPUT, 1)
+
+		else
+			set_pin_data(IC_OUTPUT, 1, assembly.desc)
+			push_data()
+
+	activate_pin(3)
+
+// - repainting circuit - //
+/obj/item/integrated_circuit/manipulation/repaint
+	name = "auto-repainter"
+	desc = "There's an oddly high amount of spraying cans fitted right inside this circuit."
+	extended_desc = "Takes a value in hexadecimal and uses it to repaint the assembly it is in."
+	cooldown_per_use = 10
+	complexity = 3
+	inputs = list("color" = IC_PINTYPE_COLOR)
+	outputs = list("current color" = IC_PINTYPE_COLOR)
+	activators = list("repaint" = IC_PINTYPE_PULSE_IN,"get color" = IC_PINTYPE_PULSE_IN,"pulse out" = IC_PINTYPE_PULSE_OUT)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+
+/obj/item/integrated_circuit/manipulation/repaint/do_work(var/n)
+	if(!assembly)
+		return
+
+	switch(n)
+		if(1)
+			assembly.detail_color = get_pin_data(IC_INPUT, 1)
+			assembly.update_icon()
+
+		else
+			set_pin_data(IC_OUTPUT, 1, assembly.detail_color)
+			push_data()
+
+	activate_pin(3)

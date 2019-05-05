@@ -21,7 +21,6 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	var/product_path = null
 	var/amount = 0
 	var/max_amount = 0
-	var/display_color = "blue"
 	var/custom_price
 	var/custom_premium_price
 
@@ -42,6 +41,8 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	payment_department = ACCOUNT_SRV
 	var/active = 1		//No sales pitches if off!
 	var/vend_ready = 1	//Are we ready to vend?? Is it time??
+	var/purchase_message_cooldown
+	var/last_shopper
 
 	// To be filled out at compile time
 	var/list/products	= list()	//For each, use the following pattern:
@@ -166,6 +167,15 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 				if (dump_amount >= 16)
 					return
 
+/obj/machinery/vending/proc/GetIconForProduct(datum/data/vending_product/P)
+	if(GLOB.vending_cache[P.product_path])
+		return GLOB.vending_cache[P.product_path]
+
+	var/product = new P.product_path()
+	GLOB.vending_cache[P.product_path] = icon2base64(getFlatIcon(product, no_anim = TRUE))
+	qdel(product)
+	return GLOB.vending_cache[P.product_path]
+
 /obj/machinery/vending/proc/build_inventory(list/productlist, list/recordlist, start_empty = FALSE)
 	for(var/typepath in productlist)
 		var/amount = productlist[typepath]
@@ -179,7 +189,6 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 		if(!start_empty)
 			R.amount = amount
 		R.max_amount = amount
-		R.display_color = pick("#ff8080","#80ff80","#8080ff")
 		R.custom_price = initial(temp.custom_price)
 		R.custom_premium_price = initial(temp.custom_premium_price)
 		recordlist += R
@@ -335,7 +344,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 		var/list/display_records = product_records + coin_records
 		if(extended_inventory)
 			display_records = product_records + coin_records + hidden_records
-		dat += "<ul>"
+		dat += "<table>"
 		for (var/datum/data/vending_product/R in display_records)
 			var/price_listed = "$[default_price]"
 			var/is_hidden = hidden_records.Find(R)
@@ -347,15 +356,14 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 				price_listed = "FREE"
 			if(coin_records.Find(R) || is_hidden)
 				price_listed = "$[R.custom_premium_price ? R.custom_premium_price : extra_price]"
-			dat += "<li>"
+			dat += "<tr><td><img src='data:image/jpeg;base64,[GetIconForProduct(R)]'/></td>"
+			dat += "<td style=\"width: 100%\"><b>[sanitize(R.name)]  ([price_listed])</b></td>"
 			if(R.amount > 0 && ((C && C.registered_account && onstation) || (!onstation && isliving(user))))
-				dat += "<a href='byond://?src=[REF(src)];vend=[REF(R)]'>Vend</a> "
+				dat += "<td align='right'><b>[R.amount]&nbsp;</b><a href='byond://?src=[REF(src)];vend=[REF(R)]'>Vend</a></td>"
 			else
-				dat += "<span class='linkOff'>Not Available</span> "
-			dat += "<font color = '[R.display_color]'><b>[sanitize(R.name)] ([price_listed])</b>:</font>"
-			dat += " <b>[R.amount]</b>"
-			dat += "</li>"
-		dat += "</ul>"
+				dat += "<td align='right'><span class='linkOff'>Not&nbsp;Available</span></td>"
+			dat += "</tr>"
+		dat += "</table>"
 	dat += "</div>"
 	if(onstation && C && C.registered_account)
 		dat += "<b>Balance: $[account.account_balance]</b>"
@@ -475,7 +483,10 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 			var/datum/bank_account/D = SSeconomy.get_dep_account(payment_department)
 			if(D)
 				D.adjust_money(price_to_use)
-		say("Thank you for shopping with [src]!")
+		if(last_shopper != usr || purchase_message_cooldown < world.time)
+			say("Thank you for shopping with [src]!")
+			purchase_message_cooldown = world.time + 5 SECONDS
+			last_shopper = usr
 		use_power(5)
 		if(icon_vend) //Show the vending animation if needed
 			flick(icon_vend,src)

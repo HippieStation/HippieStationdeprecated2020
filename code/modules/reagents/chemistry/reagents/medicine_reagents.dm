@@ -61,6 +61,9 @@
 	M.confused = 0
 	M.SetSleeping(0, 0)
 	M.jitteriness = 0
+	if(M.blood_volume < BLOOD_VOLUME_NORMAL)
+		M.blood_volume = BLOOD_VOLUME_NORMAL
+		
 	M.cure_all_traumas(TRAUMA_RESILIENCE_MAGIC)
 	for(var/thing in M.diseases)
 		var/datum/disease/D = thing
@@ -535,10 +538,9 @@
 
 /datum/reagent/medicine/perfluorodecalin/on_mob_life(mob/living/carbon/human/M)
 	M.adjustOxyLoss(-12*REM, 0)
-	M.silent = max(M.silent, 5)
-	if(prob(33))
-		M.adjustBruteLoss(-0.5*REM, 0)
-		M.adjustFireLoss(-0.5*REM, 0)
+	M.adjustToxLoss(2.5*REM, 0) // hippie start -- reverts perfluorodecalin nerf
+	M.adjustBruteLoss(-0.5*REM, 0)
+	M.adjustFireLoss(-0.5*REM, 0) // hippie end
 	..()
 	return TRUE
 
@@ -561,12 +563,27 @@
 	..()
 
 /datum/reagent/medicine/ephedrine/on_mob_life(mob/living/carbon/M)
+	if(prob(20) && iscarbon(M))
+		var/obj/item/I = M.get_active_held_item()
+		if(I && M.dropItemToGround(I))
+			to_chat(M, "<span class ='notice'>Your hands spaz out and you drop what you were holding!</span>")
+			M.Jitter(10)
+
 	M.AdjustAllImmobility(-20, FALSE)
 	M.adjustStaminaLoss(-1*REM, FALSE)
 	..()
 	return TRUE
 
 /datum/reagent/medicine/ephedrine/overdose_process(mob/living/M)
+	if(prob(2) && iscarbon(M))
+		var/datum/disease/D = new /datum/disease/heart_failure
+		M.ForceContractDisease(D)
+		to_chat(M, "<span class='userdanger'>You're pretty sure you just felt your heart stop for a second there..</span>")
+		M.playsound_local(M, 'sound/effects/singlebeat.ogg', 100, 0)
+
+	if(prob(7))
+		to_chat(M, "<span class='notice'>[pick("Your head pounds.", "You feel a tight pain in your chest.", "You find it hard to stay still.", "You feel your heart practically beating out of your chest.")]</span>")
+
 	if(prob(33))
 		M.adjustToxLoss(0.5*REM, 0)
 		M.losebreath++
@@ -574,6 +591,11 @@
 	return TRUE
 
 /datum/reagent/medicine/ephedrine/addiction_act_stage1(mob/living/M)
+	if(prob(3) && iscarbon(M))
+		M.visible_message("<span class='danger'>[M] starts having a seizure!</span>", "<span class='userdanger'>You have a seizure!</span>")
+		M.Unconscious(100)
+		M.Jitter(350)
+
 	if(prob(33))
 		M.adjustToxLoss(2*REM, 0)
 		M.losebreath += 2
@@ -581,6 +603,11 @@
 	..()
 
 /datum/reagent/medicine/ephedrine/addiction_act_stage2(mob/living/M)
+	if(prob(6) && iscarbon(M))
+		M.visible_message("<span class='danger'>[M] starts having a seizure!</span>", "<span class='userdanger'>You have a seizure!</span>")
+		M.Unconscious(100)
+		M.Jitter(350)
+
 	if(prob(33))
 		M.adjustToxLoss(3*REM, 0)
 		M.losebreath += 3
@@ -588,6 +615,11 @@
 	..()
 
 /datum/reagent/medicine/ephedrine/addiction_act_stage3(mob/living/M)
+	if(prob(12) && iscarbon(M))
+		M.visible_message("<span class='danger'>[M] starts having a seizure!</span>", "<span class='userdanger'>You have a seizure!</span>")
+		M.Unconscious(100)
+		M.Jitter(350)
+		
 	if(prob(33))
 		M.adjustToxLoss(4*REM, 0)
 		M.losebreath += 4
@@ -595,6 +627,11 @@
 	..()
 
 /datum/reagent/medicine/ephedrine/addiction_act_stage4(mob/living/M)
+	if(prob(24) && iscarbon(M))
+		M.visible_message("<span class='danger'>[M] starts having a seizure!</span>", "<span class='userdanger'>You have a seizure!</span>")
+		M.Unconscious(100)
+		M.Jitter(350)
+
 	if(prob(33))
 		M.adjustToxLoss(5*REM, 0)
 		M.losebreath += 5
@@ -726,7 +763,7 @@
 	overdose_threshold = 35
 
 /datum/reagent/medicine/atropine/on_mob_life(mob/living/carbon/M)
-	if(M.health < 0)
+	if(M.health <= M.crit_threshold)
 		M.adjustToxLoss(-2*REM, 0)
 		M.adjustBruteLoss(-2*REM, 0)
 		M.adjustFireLoss(-2*REM, 0)
@@ -754,13 +791,20 @@
 	metabolization_rate = 0.25 * REAGENTS_METABOLISM
 	overdose_threshold = 30
 
+/datum/reagent/medicine/epinephrine/on_mob_add(mob/living/carbon/M)
+	..()
+	M.add_trait(TRAIT_NOCRITDAMAGE, id)
+
+/datum/reagent/medicine/epinephrine/on_mob_delete(mob/living/carbon/M)
+	M.remove_trait(TRAIT_NOCRITDAMAGE, id)
+	..()
+
 /datum/reagent/medicine/epinephrine/on_mob_life(mob/living/carbon/M)
-	if(M.health < 0)
+	if(M.health <= M.crit_threshold)
 		M.adjustToxLoss(-0.5*REM, 0)
 		M.adjustBruteLoss(-0.5*REM, 0)
 		M.adjustFireLoss(-0.5*REM, 0)
-	if(M.oxyloss > 35)
-		M.setOxyLoss(35, 0)
+		M.adjustOxyLoss(-0.5*REM, 0)
 	if(M.losebreath >= 4)
 		M.losebreath -= 2
 	if(M.losebreath < 0)
@@ -788,7 +832,7 @@
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
 	taste_description = "magnets"
 
-/datum/reagent/medicine/strange_reagent/reaction_mob(mob/living/carbon/human/M, method=TOUCH, reac_volume)
+/datum/reagent/medicine/strange_reagent/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(M.stat == DEAD)
 		if(M.suiciding || M.hellbound) //they are never coming back
 			M.visible_message("<span class='warning'>[M]'s body does not react...</span>")
@@ -835,6 +879,8 @@
 	color = "#EEFF8F"
 
 /datum/reagent/medicine/neurine/on_mob_life(mob/living/carbon/C)
+	if(holder.has_reagent("neurotoxin"))
+		holder.remove_reagent("neurotoxin", 5)
 	if(prob(15))
 		C.cure_trauma_type(resilience = TRAUMA_RESILIENCE_BASIC)
 	..()
@@ -849,7 +895,7 @@
 /datum/reagent/medicine/mutadone/on_mob_life(mob/living/carbon/M)
 	M.jitteriness = 0
 	if(M.has_dna())
-		M.dna.remove_all_mutations()
+		M.dna.remove_all_mutations(mutadone = TRUE)
 	if(!QDELETED(M)) //We were a monkey, now a human
 		..()
 

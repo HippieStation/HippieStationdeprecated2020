@@ -247,4 +247,3 @@
 				user.gib() //can you belive I forgot to put this here?? yeah you need to see the message BEFORE you gib
 				priority_announce("What the fuck was that?!", "General Alert")
 				qdel(B)
-

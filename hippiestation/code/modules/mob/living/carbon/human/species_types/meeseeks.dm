@@ -1,7 +1,6 @@
 /datum/species/meeseeks
 	name = "Mr. Meeseeks"
 	id = "meeseeks"
-	blacklisted = TRUE
 	sexes = FALSE
 	no_equip = list(SLOT_WEAR_MASK, SLOT_WEAR_SUIT, SLOT_GLOVES, SLOT_SHOES, SLOT_W_UNIFORM, SLOT_S_STORE)
 	nojumpsuit = TRUE
@@ -18,6 +17,7 @@
 	var/mob/living/carbon/master
 	var/datum/objective/objective
 	var/stage_ticks = 1
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE
 
 /datum/species/meeseeks/on_species_gain(mob/living/carbon/human/C, datum/species/old_species, pref_load)
 	C.draw_hippie_parts()

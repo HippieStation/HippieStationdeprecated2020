@@ -155,14 +155,16 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		explanation_text = team_explanation_text
 
 /datum/objective/proc/give_special_equipment(special_equipment)
-	var/datum/mind/receiver = pick(get_owners())
-	if(receiver && receiver.current)
-		if(ishuman(receiver.current))
-			var/mob/living/carbon/human/H = receiver.current
-			var/list/slots = list("backpack" = SLOT_IN_BACKPACK)
-			for(var/eq_path in special_equipment)
-				var/obj/O = new eq_path
-				H.equip_in_one_of_slots(O, slots)
+	var/list/owners_list = get_owners() // hippie -- prevent pick from empty list runtime
+	if(LAZYLEN(owners_list)) // hippie -- prevent pick from empty list runtime
+		var/datum/mind/receiver = pick(owners_list)
+		if(receiver && receiver.current)
+			if(ishuman(receiver.current))
+				var/mob/living/carbon/human/H = receiver.current
+				var/list/slots = list("backpack" = SLOT_IN_BACKPACK)
+				for(var/eq_path in special_equipment)
+					var/obj/O = new eq_path
+					H.equip_in_one_of_slots(O, slots)
 
 /datum/objective/assassinate
 	name = "assasinate"

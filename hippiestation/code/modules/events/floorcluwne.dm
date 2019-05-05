@@ -1,5 +1,5 @@
 /datum/round_event_control/floor_cluwne
-	name = "floor Cluwne"
+	name = "Floor Cluwne"
 	typepath = /datum/round_event/floor_cluwne
 	max_occurrences = 1
 	min_players = 20
@@ -7,8 +7,8 @@
 
 /datum/round_event/floor_cluwne/start()
 	var/list/spawn_locs = list()
-	for(var/obj/effect/landmark/X in GLOB.xeno_spawn)
-		spawn_locs += X.loc
+	for(var/X in GLOB.xeno_spawn)
+		spawn_locs += X
 
 	if(!spawn_locs.len)
 		message_admins("No valid spawn locations found, aborting...")

@@ -1,3 +1,6 @@
+/datum/design/bluespacebeaker
+	materials = list(MAT_GLASS = 3000, MAT_PLASMA = 3000, MAT_DIAMOND = 250, MAT_BLUESPACE = 250) // reverts bluespace beaker's nerf
+
 /datum/design/implant_adrenalin //This should overwrite the adrenal implant in the Protolathe
 	name = "Combat Stimulant Implant"
 	desc = "A glass case containing an implant."

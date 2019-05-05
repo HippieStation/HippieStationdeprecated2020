@@ -75,6 +75,7 @@
 		for(var/mob/c in chosen)
 			var/mob/living/carbon/human/new_character=makeBody(c)
 			new_character.mind.add_antag_datum(/datum/antagonist/infiltrator, TI)
+		TI.update_objectives()
 		return TRUE
 	else
 		return FALSE

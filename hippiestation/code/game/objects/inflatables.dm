@@ -31,8 +31,8 @@
 	var/itemtype = /obj/item/inflatable
 
 /obj/structure/inflatable/Initialize(location)
+	. = ..()
 	air_update_turf(1)
-	.=..()
 
 /obj/structure/inflatable/Destroy()
 	air_update_turf(1)

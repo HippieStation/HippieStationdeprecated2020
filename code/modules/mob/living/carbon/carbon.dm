@@ -55,7 +55,7 @@
 		var/obj/item/twohanded/TH = item_in_hand
 		if(istype(TH))
 			if(TH.wielded == 1)
-				to_chat(usr, "<span class='warning'>Your other hand is too busy holding [TH]</span>")
+				to_chat(usr, "<span class='warning'>Your other hand is too busy holding [TH].</span>")
 				return
 	var/oindex = active_hand_index
 	active_hand_index = held_index
@@ -86,9 +86,9 @@
 		mode() // Activate held item
 
 /mob/living/carbon/attackby(obj/item/I, mob/user, params)
-	if(!(mobility_flags & MOBILITY_STAND) && surgeries.len)
-		if(user != src && (user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM))
-			for(var/datum/surgery/S in surgeries)
+	for(var/datum/surgery/S in surgeries)
+		if(!(mobility_flags & MOBILITY_STAND) || !S.lying_required)
+			if((S.self_operable || user != src) && (user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM))
 				if(S.next_step(user,user.a_intent))
 					return 1
 	return ..()
@@ -105,29 +105,28 @@
 	if(hit_atom.density && isturf(hit_atom))
 		if(hurt)
 			Paralyze(20)
-			take_bodypart_damage(10)
-		if(fist_casted)//hippie edit -- adds fist
-			var/turf/T = get_turf(src)
-			visible_message("<span class='danger'>[src] slams into [T] with explosive force!</span>", "<span class='userdanger'>You slam into [T] so hard everything nearby feels it!</span>")
-			explosion(T, -1, 1, 4, 0, 0, 0) //No fire and no flash, this is less an explosion and more a shockwave from beign punched THAT hard.
+			take_bodypart_damage(10,check_armor = TRUE)
+		if(fist_casted)//hippie edit -- adds fist	
+			var/turf/T = get_turf(src)	
+			visible_message("<span class='danger'>[src] slams into [T] with explosive force!</span>", "<span class='userdanger'>You slam into [T] so hard everything nearby feels it!</span>")	
+			explosion(T, -1, 1, 4, 0, 0, 0) //No fire and no flash, this is less an explosion and more a shockwave from beign punched THAT hard.	
 			fist_casted = FALSE //hippie end -- fist
 	if(iscarbon(hit_atom) && hit_atom != src)
 		var/mob/living/carbon/victim = hit_atom
 		if(victim.movement_type & FLYING)
 			return
 		if(hurt)
-			victim.take_bodypart_damage(10)
-			take_bodypart_damage(10)
+			victim.take_bodypart_damage(10,check_armor = TRUE)
+			take_bodypart_damage(10,check_armor = TRUE)
 			victim.Paralyze(20)
 			Paralyze(20)
 			visible_message("<span class='danger'>[src] crashes into [victim], knocking them both over!</span>",\
 				"<span class='userdanger'>You violently crash into [victim]!</span>")
 		playsound(src,'sound/weapons/punch1.ogg',50,1)
-		if(fist_casted) //hippie edit -- adds fist
-			visible_message("<span class='danger'>[src] slams into [victim] with enough force to level a skyscraper!</span>", "<span class='userdanger'>You crash into [victim] like a thunderbolt!</span>")
-			var/turf/T = get_turf(src)
+		if(fist_casted) //hippie edit -- adds fist	
+			visible_message("<span class='danger'>[src] slams into [victim] with enough force to level a skyscraper!</span>", "<span class='userdanger'>You crash into [victim] like a thunderbolt!</span>")	
+			var/turf/T = get_turf(src)	
 			explosion(T, -1, 3, 5, 0, 0, 0) //The reward for lining the spell up to hit another person is a bigger boom! //hippie end -- fist
-			
 
 
 //Throwing stuff
@@ -179,7 +178,7 @@
 				if(start_T && end_T)
 					log_combat(src, throwable_mob, "thrown", addition="grab from tile in [AREACOORD(start_T)] towards tile at [AREACOORD(end_T)]")
 
-	else if(!(I.item_flags & (NODROP | ABSTRACT)))
+	else if(!CHECK_BITFIELD(I.item_flags, ABSTRACT) && !I.has_trait(TRAIT_NODROP))
 		thrown_thing = I
 		dropItemToGround(I)
 
@@ -192,6 +191,7 @@
 		log_message("has thrown [thrown_thing]", LOG_ATTACK)
 		newtonian_move(get_dir(target, src))
 		thrown_thing.safe_throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed, src, null, null, null, move_force)
+		playsound(thrown_thing, pick('hippiestation/sound/effects/throw.ogg', 'hippiestation/sound/effects/throw2.ogg', 'hippiestation/sound/effects/throw3.ogg'), 25) // hippie -- adds throw sounds
 
 /mob/living/carbon/restrained(ignore_grab)
 	. = (handcuffed || (!ignore_grab && pulledby && pulledby.grab_state >= GRAB_AGGRESSIVE))
@@ -421,7 +421,7 @@
 		return initial(pixel_y)
 
 /mob/living/carbon/proc/accident(obj/item/I)
-	if(!I || (I.item_flags & (NODROP | ABSTRACT)))
+	if(!I || (I.item_flags & ABSTRACT) || I.has_trait(TRAIT_NODROP))
 		return
 
 	dropItemToGround(I)
@@ -565,7 +565,7 @@
 		if(total_health <= crit_threshold && !stat)
 			if(!IsParalyzed())
 				to_chat(src, "<span class='notice'>You're too exhausted to keep going...</span>")
-			Paralyze(70)
+			Paralyze(70) //hippie edit -- we nerfed this slightly
 			update_health_hud()
 
 /mob/living/carbon/update_sight()
@@ -910,7 +910,6 @@
 				. *= 1.25
 			if(SANITY_NEUTRAL to SANITY_GREAT)
 				. *= 0.90
-
 
 /mob/living/carbon/proc/create_internal_organs()
 	for(var/X in internal_organs)

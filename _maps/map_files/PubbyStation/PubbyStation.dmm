@@ -17318,7 +17318,7 @@
 "aPC" = (
 /obj/structure/rack,
 /obj/effect/spawner/lootdrop/maintenance/two,
-/obj/item/clothing/gloves/color/random,
+/obj/effect/spawner/lootdrop/gloves,
 /turf/open/floor/plating,
 /area/maintenance/department/crew_quarters/bar)
 "aPD" = (
@@ -18317,7 +18317,7 @@
 	},
 /area/maintenance/department/crew_quarters/bar)
 "aRQ" = (
-/obj/item/gun/ballistic/revolver/doublebarrel{
+/obj/item/gun/ballistic/shotgun/doublebarrel{
 	pixel_y = 11
 	},
 /obj/structure/table/wood,
@@ -21160,7 +21160,7 @@
 /obj/machinery/door/airlock{
 	name = "Service Access";
 	req_access_txt = "0";
-	req_one_access_txt = "25; 26; 28; 35"
+	req_one_access_txt = "22;25;26;28;35;37;38;46"
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -26361,11 +26361,7 @@
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/aft)
 "bks" = (
-/obj/structure/table,
-/obj/item/wrench,
-/obj/item/stack/cable_coil,
-/obj/item/electronics/apc,
-/obj/item/electronics/airlock,
+/obj/machinery/vending/modularpc,
 /turf/open/floor/plasteel/dark,
 /area/hallway/primary/aft)
 "bkt" = (
@@ -51451,9 +51447,7 @@
 /turf/open/floor/grass,
 /area/hydroponics/garden/monastery)
 "cuG" = (
-/obj/structure/closet/secure_closet/freezer/fridge{
-	req_access = null
-	},
+/obj/structure/closet/secure_closet/freezer/fridge/open,
 /obj/machinery/light/small{
 	dir = 2
 	},
@@ -53582,7 +53576,7 @@
 /turf/open/floor/plasteel/dark,
 /area/science/xenobiology)
 "dye" = (
-/obj/structure/closet/secure_closet/freezer/meat,
+/obj/structure/closet/secure_closet/freezer/meat/open,
 /obj/structure/sign/departments/science{
 	pixel_y = 32
 	},
@@ -59830,6 +59824,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/storage/primary)
+"ulV" = (
+/obj/structure/rack,
+/obj/item/gun/energy/e_gun/dragnet,
+/obj/item/gun/energy/e_gun/dragnet,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/security/armory)
 "ulY" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -84346,8 +84346,8 @@ aik
 aiM
 ajh
 ajR
+ulV
 akN
-aiM
 amj
 amX
 anH

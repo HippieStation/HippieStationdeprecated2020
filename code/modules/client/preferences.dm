@@ -14,8 +14,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	//game-preferences
 	var/lastchangelog = ""				//Saved changlog filesize to detect if there was a change
-	var/ooccolor = null
-	var/asaycolor = null
+	var/ooccolor = "#c43b23"
+	var/asaycolor = "#ff4500"			//This won't change the color for current admins, only incoming ones.
 	var/enable_tips = TRUE
 	var/tip_delay = 500 //tip delay in milliseconds
 
@@ -75,7 +75,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/negative_quirks = list()
 	var/list/neutral_quirks = list()
 	var/list/all_quirks = list()
-	var/list/character_quirks = list()
 
 		//Jobs, uses bitflags
 	var/job_civilian_high = 0
@@ -264,7 +263,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<span style='border: 1px solid #161616; background-color: #[features["ethcolor"]];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=color_ethereal;task=input'>Change</a><BR>"
 
 
-			if((EYECOLOR in pref_species.species_traits) && !(NOEYES in pref_species.species_traits))
+			if((EYECOLOR in pref_species.species_traits) && !(NOEYESPRITES in pref_species.species_traits))
 
 				if(!use_skintones && !mutant_colors)
 					dat += APPEARANCE_CATEGORY_COLUMN
@@ -495,6 +494,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>Ghosts of Others:</b> <a href='?_src_=prefs;task=input;preference=ghostothers'>[button_name]</a><br>"
 			dat += "<br>"
 
+			dat += "<b>Income Updates:</b> <a href='?_src_=prefs;preference=income_pings'>[(chat_toggles & CHAT_BANKCARD) ? "Allowed" : "Muted"]</a><br>"
+			dat += "<br>"
+
 			dat += "<b>FPS:</b> <a href='?_src_=prefs;preference=clientfps;task=input'>[clientfps]</a><br>"
 
 			dat += "<b>Parallax (Fancy Space):</b> <a href='?_src_=prefs;preference=parallaxdown' oncontextmenu='window.location.href=\"?_src_=prefs;preference=parallaxup\";return false;'>"
@@ -597,6 +599,35 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(CONFIG_GET(flag/allow_admin_asaycolor))
 					dat += "<br>"
 					dat += "<b>ASAY Color:</b> <span style='border: 1px solid #161616; background-color: [asaycolor ? asaycolor : "#FF4500"];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=asaycolor;task=input'>Change</a><br>"
+
+				//deadmin
+				dat += "<h2>Deadmin While Playing</h2>"
+				if(CONFIG_GET(flag/auto_deadmin_players))
+					dat += "<b>Always Deadmin:</b> FORCED</a><br>"
+				else
+					dat += "<b>Always Deadmin:</b> <a href = '?_src_=prefs;preference=toggle_deadmin_always'>[(toggles & DEADMIN_ALWAYS)?"Enabled":"Disabled"]</a><br>"
+					if(!(toggles & DEADMIN_ALWAYS))
+						dat += "<br>"
+						if(!CONFIG_GET(flag/auto_deadmin_antagonists))
+							dat += "<b>As Antag:</b> <a href = '?_src_=prefs;preference=toggle_deadmin_antag'>[(toggles & DEADMIN_ANTAGONIST)?"Deadmin":"Keep Admin"]</a><br>"
+						else
+							dat += "<b>As Antag:</b> FORCED<br>"
+
+						if(!CONFIG_GET(flag/auto_deadmin_heads))
+							dat += "<b>As Command:</b> <a href = '?_src_=prefs;preference=toggle_deadmin_head'>[(toggles & DEADMIN_POSITION_HEAD)?"Deadmin":"Keep Admin"]</a><br>"
+						else
+							dat += "<b>As Command:</b> FORCED<br>"
+
+						if(!CONFIG_GET(flag/auto_deadmin_security))
+							dat += "<b>As Security:</b> <a href = '?_src_=prefs;preference=toggle_deadmin_security'>[(toggles & DEADMIN_POSITION_SECURITY)?"Deadmin":"Keep Admin"]</a><br>"
+						else
+							dat += "<b>As Security:</b> FORCED<br>"
+
+						if(!CONFIG_GET(flag/auto_deadmin_silicons))
+							dat += "<b>As Silicon:</b> <a href = '?_src_=prefs;preference=toggle_deadmin_silicon'>[(toggles & DEADMIN_POSITION_SILICON)?"Deadmin":"Keep Admin"]</a><br>"
+						else
+							dat += "<b>As Silicon:</b> FORCED<br>"
+
 				dat += "</td>"
 			dat += "</tr></table>"
 	dat += hippie_dat_replace(current_tab) // hippie -- our own dat stuff
@@ -649,7 +680,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		var/datum/job/overflow = SSjob.GetJob(SSjob.overflow_role)
 
-		for(var/datum/job/job in SSjob.occupations)
+		for(var/datum/job/job in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
 
 			index += 1
 			if((index >= limit) || (job.title in splitJobs))
@@ -668,8 +699,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(is_banned_from(user.ckey, rank))
 				HTML += "<font color=red>[rank]</font></td><td><a href='?_src_=prefs;bancheck=[rank]'> BANNED</a></td></tr>"
 				continue
-			if(is_banned_from(user.ckey, list(CLUWNEBAN, CATBAN)) && rank != SSjob.overflow_role) // hippie start -- adds our jobban checks	
-				HTML += "<font color=red>[rank]</font></td><td><a href='?_src_=prefs;jobbancheck=[rank]'> BANNED</a></td></tr>"	
+			if(is_banned_from(user.ckey, list(CLUWNEBAN, CATBAN)) && rank != SSjob.overflow_role) // hippie start -- adds our jobban checks
+				HTML += "<font color=red>[rank]</font></td><td><a href='?_src_=prefs;jobbancheck=[rank]'> BANNED</a></td></tr>"
 				continue // hippie end
 			var/required_playtime_remaining = job.required_playtime_remaining(user.client)
 			if(required_playtime_remaining)
@@ -1337,6 +1368,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(new_loc)
 						uplink_spawn_loc = new_loc
 
+				if("ai_core_icon")
+					var/ai_core_icon = input(user, "Choose your preferred AI core display screen:", "AI Core Display Screen Selection") as null|anything in GLOB.ai_core_display_screens
+					if(ai_core_icon)
+						preferred_ai_core_display = ai_core_icon
+
+
 				if("sec_dept")
 					var/department = input(user, "Choose your prefered security department:", "Security Departments") as null|anything in GLOB.security_depts_prefs
 					if(department)
@@ -1424,6 +1461,17 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					user.client.toggle_hear_radio()
 				if("toggle_prayers")
 					user.client.toggleprayers()
+				if("toggle_deadmin_always")
+					toggles ^= DEADMIN_ALWAYS
+				if("toggle_deadmin_antag")
+					toggles ^= DEADMIN_ANTAGONIST
+				if("toggle_deadmin_head")
+					toggles ^= DEADMIN_POSITION_HEAD
+				if("toggle_deadmin_security")
+					toggles ^= DEADMIN_POSITION_SECURITY
+				if("toggle_deadmin_silicon")
+					toggles ^= DEADMIN_POSITION_SILICON
+
 
 				if("be_special")
 					var/be_special_type = href_list["be_special_type"]
@@ -1462,6 +1510,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("ghost_pda")
 					chat_toggles ^= CHAT_GHOSTPDA
+
+				if("income_pings")
+					chat_toggles ^= CHAT_BANKCARD
 
 				if("pull_requests")
 					chat_toggles ^= CHAT_PULLR

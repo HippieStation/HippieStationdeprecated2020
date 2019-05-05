@@ -12,6 +12,7 @@
 #define TRAIT_MONKEYLIKE		"monkeylike" //sets IsAdvancedToolUser to FALSE
 #define TRAIT_PACIFISM			"pacifism"
 #define TRAIT_IGNORESLOWDOWN	"ignoreslow"
+#define TRAIT_IGNOREDAMAGESLOWDOWN "ignoredamageslowdown"
 #define TRAIT_DEATHCOMA			"deathcoma" //Causes death-like unconsciousness
 #define TRAIT_FAKEDEATH			"fakedeath" //Makes the owner appear as dead to most forms of medical examination
 #define TRAIT_DISFIGURED		"disfigured"
@@ -62,6 +63,7 @@
 #define TRAIT_DISK_VERIFIER     "disk-verifier"
 #define TRAIT_NOMOBSWAP         "no-mob-swap"
 #define TRAIT_XRAY_VISION       "xray_vision"
+#define TRAIT_THERMAL_VISION    "thermal_vision"
 #define TRAIT_ABDUCTOR_TRAINING "abductor-training"
 #define TRAIT_ABDUCTOR_SCIENTIST_TRAINING "abductor-scientist-training"
 #define TRAIT_SURGEON           "surgeon"
@@ -73,10 +75,15 @@
 #define TRAIT_ALWAYS_CLEAN      "always-clean"
 #define TRAIT_BOOZE_SLIDER      "booze-slider"
 #define TRAIT_UNINTELLIGIBLE_SPEECH "unintelligible-speech"
+#define TRAIT_UNSTABLE			"unstable"
 
 //non-mob traits
 #define TRAIT_PARALYSIS			"paralysis" //Used for limb-based paralysis, where replacing the limb will fix it
+
+// item traits
+#define TRAIT_NODROP            "nodrop"
 #define TRAIT_T_RAY_VISIBLE     "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
+#define TRAIT_NO_TELEPORT		"no-teleport" //you just can't
 
 #define TRAIT_ALCOHOL_TOLERANCE	"alcohol_tolerance"
 #define TRAIT_AGEUSIA			"ageusia"
@@ -97,6 +104,8 @@
 #define TRAIT_PHOTOGRAPHER		"photographer"
 #define TRAIT_MUSICIAN			"musician"
 #define TRAIT_LIGHT_DRINKER		"light_drinker"
+#define TRAIT_EMPATH			"empath"
+#define TRAIT_FRIENDLY			"friendly"
 
 // common trait sources
 #define TRAIT_GENERIC "generic"
@@ -110,6 +119,12 @@
 #define ORGAN_TRAIT "organ"
 #define ROUNDSTART_TRAIT "roundstart" //cannot be removed without admin intervention
 #define JOB_TRAIT "job"
+#define CYBORG_ITEM_TRAIT "cyborg-item"
+#define ADMIN_TRAIT "admin" // (B)admins only.
+#define CHANGELING_TRAIT "changeling"
+#define CULT_TRAIT "cult"
+#define CURSED_ITEM_TRAIT "cursed-item" // The item is magically cursed
+#define ABSTRACT_ITEM_TRAIT "abstract-item"
 #define STATUS_EFFECT_TRAIT "status-effect"
 #define CLOTHING_TRAIT "clothing"
 
@@ -130,3 +145,24 @@
 #define ABDUCTOR_ANTAGONIST "abductor-antagonist"
 #define NUKEOP_TRAIT "nuke-op"
 #define DEATHSQUAD_TRAIT "deathsquad"
+#define MEGAFAUNA_TRAIT "megafauna"
+#define CLOWN_NUKE_TRAIT "clown-nuke"
+#define STICKY_MOUSTACHE_TRAIT "sticky-moustache"
+#define CHAINSAW_FRENZY_TRAIT "chainsaw-frenzy"
+#define CHRONO_GUN_TRAIT "chrono-gun"
+#define REVERSE_BEAR_TRAP_TRAIT "reverse-bear-trap"
+#define CURSED_MASK_TRAIT "cursed-mask"
+#define HIS_GRACE_TRAIT "his-grace"
+#define HAND_REPLACEMENT_TRAIT "magic-hand"
+#define HOT_POTATO_TRAIT "hot-potato"
+#define SABRE_SUICIDE_TRAIT "sabre-suicide"
+#define ABDUCTOR_VEST_TRAIT "abductor-vest"
+#define CAPTURE_THE_FLAG_TRAIT "capture-the-flag"
+#define EYE_OF_GOD_TRAIT "eye-of-god"
+#define SHAMEBRERO_TRAIT "shamebrero"
+#define CHRONOSUIT_TRAIT "chronosuit"
+#define LOCKED_HELMET_TRAIT "locked-helmet"
+#define NINJA_SUIT_TRAIT "ninja-suit"
+#define ANTI_DROP_IMPLANT_TRAIT "anti-drop-implant"
+#define HIVEMIND_ONE_MIND_TRAIT "one_mind"
+#define VR_ZONE_TRAIT "vr_zone_trait"

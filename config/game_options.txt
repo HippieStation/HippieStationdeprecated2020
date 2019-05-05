@@ -97,6 +97,7 @@ PROBABILITY REVOLUTION 2
 PROBABILITY CULT 2
 PROBABILITY CHANGELING 2
 PROBABILITY WIZARD 4
+PROBABILITY KOTD 2
 PROBABILITY MONKEY 0
 PROBABILITY METEOR 0
 PROBABILITY EXTENDED 0
@@ -125,6 +126,7 @@ CONTINUOUS CULT
 CONTINUOUS CLOCKWORK_CULT
 CONTINUOUS CHANGELING
 CONTINUOUS WIZARD
+CONTINUOUS KOTD
 #CONTINUOUS MONKEY
 CONTINUOUS HIVEMIND
 
@@ -286,6 +288,9 @@ ALLOW_AI_MULTICAM
 
 ## AWAY MISSIONS ###
 
+## Uncomment to load the virtual reality hub map
+#VIRTUAL_REALITY
+
 ## Uncomment to load one of the missions from awaymissionconfig.txt at roundstart.
 #ROUNDSTART_AWAY
 
@@ -416,6 +421,15 @@ LAW_WEIGHT buildawall,0
 ## The maximum number of laws a silicon can have
 ## Attempting to upload laws past this point will fail unless the AI is reset
 SILICON_MAX_LAW_AMOUNT 12
+
+##------------------------------------------------
+
+## SILICON LAW MAX LENGTH ###
+## The maximum number of characters in a law uploaded
+## Affects Freeform, Core Freeform, and Syndicate Hacked boards.
+#MAX_LAW_LEN 1024
+
+##------------------------------------------------
 
 ## Roundstart Races
 ##-------------------------------------------------------------------------------------------

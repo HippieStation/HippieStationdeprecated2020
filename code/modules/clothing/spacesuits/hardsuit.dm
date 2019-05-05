@@ -210,7 +210,7 @@
 	icon_state = "hardsuit0-white"
 	item_state = "ce_helm"
 	item_color = "white"
-	armor = list("melee" = 40, "bullet" = 5, "laser" = 10, "energy" = 5, "bomb" = 50, "bio" = 100, "rad" = 90, "fire" = 100, "acid" = 90)
+	armor = list("melee" = 40, "bullet" = 5, "laser" = 10, "energy" = 5, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 90)
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 
@@ -423,7 +423,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/wizard/Initialize()
 	. = ..()
-	AddComponent(/datum/component/anti_magic, TRUE, FALSE, _blocks_self = FALSE)
+	AddComponent(/datum/component/anti_magic, TRUE, FALSE, INFINITY, FALSE)
 
 
 	//Medical hardsuit
@@ -445,6 +445,7 @@
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/storage/firstaid, /obj/item/healthanalyzer, /obj/item/stack/medical)
 	armor = list("melee" = 30, "bullet" = 5, "laser" = 10, "energy" = 5, "bomb" = 10, "bio" = 100, "rad" = 60, "fire" = 60, "acid" = 75)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/medical
+	slowdown = 0.5
 
 	//Research Director hardsuit
 /obj/item/clothing/head/helmet/space/hardsuit/rd
@@ -722,7 +723,7 @@
 	icon_state = "ert_medical"
 	item_state = "ert_medical"
 	item_color = "ert_medical"
-	item_flags = NODROP //Dont want people changing into the other teams gear
+	// Adding TRAIT_NODROP is done when the CTF spawner equips people
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/shielded/ctf
 	armor = list("melee" = 0, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 95, "acid" = 95)
 	slowdown = 0

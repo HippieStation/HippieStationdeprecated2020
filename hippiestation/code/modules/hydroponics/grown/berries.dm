@@ -1,2 +1,7 @@
-/obj/item/seeds/berry/glow
-	genes = list(/datum/plant_gene/trait/glow/berry , /datum/plant_gene/trait/noreact, /datum/plant_gene/trait/repeated_harvest)
+/obj/item/seeds/berry/glow/Initialize()
+	. = ..()
+	var/datum/plant_gene/trait/noreact/T = new
+	if(prob(10))
+		genes += T
+	else
+		qdel(T)

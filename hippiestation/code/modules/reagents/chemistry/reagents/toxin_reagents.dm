@@ -51,14 +51,14 @@
 		if(prob(5))
 			M.visible_message("<span class='danger'>[M] rubs their bones, they appear to be hurting!</span>", "<span class='danger'>Your bones are starting to hurt a lot.</span>")
 		if(prob(3))
-			M.say(pick("This rattles me bones!", "My bones hurt!", "Oof OUCH Owie!"), forced = "bone hurting juice")
+			M.say(pick("This rattles me bones!", "My bones hurt!", "Oof OUCH Owie!"), ignore_spam = TRUE, forced = "bone hurting juice")
 
 	if(M.dna.species.id == "skeleton")
 		if(prob(5))
 			M.visible_message("<span class='danger'>[M] rubs their bones, they appear to be hurting!</span>", "<span class='danger'>Your bones are starting to hurt a lot.</span>")
 			M.adjustBruteLoss(rand(2,8), 0)
 		if(prob(3))
-			M.say(pick("This rattles me bones!!", "My bones hurt!!", "Oof OUCH Owie!!"), forced = "bone hurting juice") //Something neat, if I put two exclamation points here the mob will yell these lines instead of just saying them. A proper skeleton yells because their bones hurt more.
+			M.say(pick("This rattles me bones!!", "My bones hurt!!", "Oof OUCH Owie!!"), ignore_spam = TRUE, forced = "bone hurting juice") //Something neat, if I put two exclamation points here the mob will yell these lines instead of just saying them. A proper skeleton yells because their bones hurt more.
 			M.adjustBruteLoss(rand(5,10), 0)
 		if(prob(2))
 			M.visible_message("<span class='danger'>[M] bones twist and warp! It looks like it really really hurts!</span>", "<span class='userdanger'>Your bones hurt so much!</span>")

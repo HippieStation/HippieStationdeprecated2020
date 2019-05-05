@@ -163,7 +163,7 @@
 	activate_pin(2)
 
 /obj/item/integrated_circuit/input/slime_scanner
-	name = "slime_scanner"
+	name = "slime scanner"
 	desc = "A very small version of the xenobio analyser. This allows the machine to know every needed properties of slime. Output mutation list is non-associative."
 	icon_state = "medscan_adv"
 	complexity = 12

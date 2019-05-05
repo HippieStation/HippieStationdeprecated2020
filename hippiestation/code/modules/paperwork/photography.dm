@@ -82,8 +82,7 @@
 		disguise = null
 
 		if (!opened)
-			cut_overlays()
-			icon = initial(icon)
+			appearance = initial(appearance)
 	else
 		. = ..()
 

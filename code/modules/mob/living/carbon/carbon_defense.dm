@@ -94,7 +94,7 @@
 				if(get_dist(user, src) <= 1)	//people with TK won't get smeared with blood
 					user.add_mob_blood(src)
 					if(ishuman(user))
-						var/mob/living/carbon/human/dirtyboy
+						var/mob/living/carbon/human/dirtyboy = user
 						dirtyboy.adjust_hygiene(-10)
 				if(affecting.body_zone == BODY_ZONE_HEAD)
 					if(wear_mask)
@@ -131,9 +131,9 @@
 		if(D.spread_flags & DISEASE_SPREAD_CONTACT_SKIN)
 			ContactContractDisease(D)
 
-	if(!(mobility_flags & MOBILITY_STAND) && surgeries.len)
-		if(user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM)
-			for(var/datum/surgery/S in surgeries)
+	for(var/datum/surgery/S in surgeries)
+		if(!(mobility_flags & MOBILITY_STAND) || !S.lying_required)
+			if(user.a_intent == INTENT_HELP || user.a_intent == INTENT_DISARM)
 				if(S.next_step(user, user.a_intent))
 					return 1
 	return 0
@@ -273,6 +273,12 @@
 		M.visible_message("<span class='notice'>[M] hugs [src] to make [p_them()] feel better!</span>", \
 					"<span class='notice'>You hug [src] to make [p_them()] feel better!</span>")
 		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "hug", /datum/mood_event/hug)
+		if(M.has_trait(TRAIT_FRIENDLY))
+			GET_COMPONENT_FROM(mood, /datum/component/mood, M)
+			if (mood.sanity >= SANITY_GREAT)
+				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/besthug, M)
+			else if (mood.sanity >= SANITY_DISTURBED)
+				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/betterhug, M)
 		for(var/datum/brain_trauma/trauma in M.get_traumas())
 			trauma.on_hug(M, src)
 	AdjustStun(-60)
@@ -287,13 +293,16 @@
 
 
 /mob/living/carbon/flash_act(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0)
+	if(NOFLASH in dna?.species?.species_traits)
+		return
+	var/obj/item/organ/eyes/eyes = getorganslot(ORGAN_SLOT_EYES)
+	if(!eyes) //can't flash what can't see!
+		return
+
 	. = ..()
 
 	var/damage = intensity - get_eye_protection()
 	if(.) // we've been flashed
-		var/obj/item/organ/eyes/eyes = getorganslot(ORGAN_SLOT_EYES)
-		if (!eyes)
-			return
 		if(visual)
 			return
 

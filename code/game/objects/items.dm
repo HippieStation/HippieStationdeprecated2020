@@ -550,7 +550,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 /obj/item/proc/after_throw(datum/callback/callback)
 	if (callback) //call the original callback
 		. = callback.Invoke()
-	throw_speed = initial(throw_speed) //explosions change this.
 	item_flags &= ~IN_INVENTORY
 
 /obj/item/proc/remove_item_from_storage(atom/newLoc) //please use this if you're going to snowflake an item out of a obj/item/storage
@@ -806,6 +805,13 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	return ..()
 
 /obj/item/throw_at(atom/target, range, speed, mob/thrower, spin=TRUE, diagonals_first = FALSE, var/datum/callback/callback)
-	if (item_flags & NODROP)
+	if(has_trait(TRAIT_NODROP))
 		return
 	return ..()
+
+/obj/item/proc/canStrip(mob/stripper, mob/owner)
+	return !has_trait(TRAIT_NODROP)
+
+/obj/item/proc/doStrip(mob/stripper, mob/owner)
+	return owner.dropItemToGround(src)
+

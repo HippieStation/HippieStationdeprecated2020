@@ -29,7 +29,7 @@
 
 /obj/item/storage/briefcase/lawyer
 	folder_path = /obj/item/folder/blue
-
+	
 /obj/item/storage/briefcase/lawyer/PopulateContents()
 	new /obj/item/stamp/law(src)
 	..()

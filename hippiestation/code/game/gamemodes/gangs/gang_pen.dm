@@ -6,8 +6,8 @@
 	var/last_used
 
 /obj/item/pen/gang/Initialize()
+	. = ..()
 	last_used = world.time
-	.=..()
 
 /obj/item/pen/gang/attack(mob/living/M, mob/user, stealth = TRUE)
 	if(!istype(M))
