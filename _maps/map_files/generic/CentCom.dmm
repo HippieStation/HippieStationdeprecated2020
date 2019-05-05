@@ -8637,6 +8637,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/effect/forcefield/centcom_dock,
 /turf/open/floor/plasteel,
 /area/centcom/evac)
 "sM" = (
@@ -8651,6 +8652,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/effect/forcefield/centcom_dock,
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
 "sN" = (
@@ -10103,6 +10105,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/effect/forcefield/centcom_dock,
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "vH" = (
@@ -10250,6 +10253,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/effect/forcefield/centcom_dock,
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "vQ" = (
@@ -10309,6 +10313,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/effect/forcefield/centcom_dock,
 /turf/open/floor/plasteel,
 /area/centcom/evac)
 "vV" = (
@@ -11342,6 +11347,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
+/obj/effect/forcefield/centcom_dock,
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "yk" = (
@@ -13026,6 +13032,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 2
 	},
+/obj/effect/forcefield/centcom_dock,
 /turf/open/floor/plasteel,
 /area/centcom/evac)
 "BN" = (
@@ -18821,6 +18828,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
+/obj/effect/forcefield/centcom_dock,
 /turf/open/floor/plasteel,
 /area/centcom/control)
 "UR" = (
@@ -18950,6 +18958,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
+/obj/effect/forcefield/centcom_dock,
 /turf/open/floor/plasteel,
 /area/centcom/evac)
 "Wj" = (
@@ -19311,6 +19320,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
+/obj/effect/forcefield/centcom_dock,
 /turf/open/floor/plasteel,
 /area/centcom/evac)
 "ZN" = (
