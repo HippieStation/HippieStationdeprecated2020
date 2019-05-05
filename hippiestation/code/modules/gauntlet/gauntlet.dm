@@ -4,7 +4,7 @@
 	var/locked_on = FALSE
 	var/stone_mode = BLUESPACE_STONE
 	var/list/stones = list()
-	var/static/list/all_stones = list(SYNDIE_STONE, BLUESPACE_STONE, SERVER_STONE, LAG_STONE, CLOWN_STONE, POWERGAME_STONE)
+	var/static/list/all_stones = list(SYNDIE_STONE, BLUESPACE_STONE, SERVER_STONE, LAG_STONE, CLOWN_STONE, GHOST_STONE)
 
 /obj/item/infinity_gauntlet/examine(mob/user)
 	. = ..()
@@ -63,6 +63,7 @@
 		if(current_stone)
 			current_stone.RemoveAbilities(user, TRUE) // get rid of stuff like intangability or immovable mode
 		stone_mode = chosen
+		update_icon()
 
 /obj/item/infinity_gauntlet/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/infinity_stone))
@@ -80,3 +81,31 @@
 	if(user.incapacitated() || !user.Adjacent(src))
 		return FALSE
 	return TRUE
+
+/////////////////////////////////////////////
+/////////////////// SPELLS //////////////////
+/////////////////////////////////////////////
+//Weaker versions of Syndie Stone spells
+
+/obj/effect/proc_holder/spell/aoe_turf/repulse/syndie_stone
+	name = "Shockwave"
+	desc = "Knock down everyone around down and away from you."
+	range = 4
+	charge_max = 250
+	clothes_req = FALSE
+	human_req = FALSE
+	staff_req = FALSE
+
+/obj/effect/proc_holder/spell/self/infinity/regenerate
+	name = "Regenerate"
+	desc = "Regenerate 2 health per second. Requires you to stand still."
+
+/obj/effect/proc_holder/spell/self/infinity/regenerate/cast(list/targets, mob/user)
+	if(isliving(user))
+		var/mob/living/L = user
+		while(do_after(L, 10, FALSE, L))
+			L.visible_message("<span class='notice'>[L]'s wounds heal!</span>")
+			L.heal_overall_damage(2, 2, 2, null, TRUE)
+			if(L.getBruteLoss() + L.getFireLoss() + L.getStaminaLoss() < 1)
+				to_chat(user, "<span class='notice'>You are fully healed.</span>")
+				return

@@ -36,13 +36,13 @@
 	if(proximity_flag && isliving(target))
 		target.visible_message("<span class='danger'>[target] warps away!</span>", "<span class='notice'>We warp [target == user ? "ourselves" : target] to a safe location.</span>")
 		var/turf/potential_T = find_safe_turf(extended_safety_checks = TRUE)
-		do_teleport(target, potential_T, channel = TELEPORT_CHANNEL_MAGIC)
+		do_teleport(target, potential_T, channel = TELEPORT_CHANNEL_BLUESPACE)
 
 /obj/item/infinity_stone/bluespace/HarmEvent(atom/target, mob/living/user, proximity_flag)	
 	var/turf/to_teleport = get_turf(target)
 	user.adjustStaminaLoss(15)
 	target.visible_message("<span class='danger'>[target] warps away!</span>", "<span class='notice'>We warp ourselves to our desired location.</span>")
-	do_teleport(user, to_teleport, channel = TELEPORT_CHANNEL_MAGIC)
+	do_teleport(user, to_teleport, channel = TELEPORT_CHANNEL_BLUESPACE)
 
 /obj/item/infinity_stone/bluespace/GrabEvent(atom/target, mob/living/user, proximity_flag)
 	if(user.incorporeal_move)
@@ -121,11 +121,7 @@
 			target.remove_trait(TRAIT_PACIFISM, BLUESPACE_STONE_TRAIT)
 			target.remove_movespeed_modifier(BLUESPACE_STONE_TRAIT)
 			animate(target, alpha = 255, time = 15)
-		target.SetStun(0)
-		target.SetKnockdown(0)
-		target.SetUnconscious(0)
-		target.SetParalyzed(0)
-		target.SetImmobilized(0)
+		target.SetAllImmobility(0)
 	return ..()
 
 /////////////////////////////////////////////

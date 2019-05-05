@@ -11,5 +11,5 @@
 #define SERVER_STONE "server_stone"
 #define CLOWN_STONE "clown_stone"
 #define LAG_STONE "lag_stone"
-#define POWERGAME_STONE "powergame_stone"
+#define GHOST_STONE "powergame_stone"
 #define SYNDIE_STONE "syndie_stone"

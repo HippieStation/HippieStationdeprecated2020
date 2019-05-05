@@ -3,5 +3,5 @@
 #define SYNDIE_STONE_TRAIT "syndie_stone_trait"
 #define SERVER_STONE_TRAIT "server_stone_trait"
 #define LAG_STONE_TRAIT "lag_stone_trait"
-#define POWERGAME_STONE_TRAIT "lag_stone_trait"
+#define GHOST_STONE_TRAIT "ghost_stone_trait"
 #define GAUNTLET_TRAIT "gauntlet_trait"

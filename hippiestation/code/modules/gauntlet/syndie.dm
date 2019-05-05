@@ -30,6 +30,7 @@
 /obj/effect/proc_holder/spell/aoe_turf/repulse/syndie_stone
 	name = "Shockwave"
 	desc = "Knock down everyone around down and away from you."
+	range = 6
 	charge_max = 200
 	clothes_req = FALSE
 	human_req = FALSE
