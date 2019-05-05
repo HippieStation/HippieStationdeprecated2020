@@ -43,6 +43,9 @@
 	C.throw_at(target, 7, 3, user, TRUE)
 	next_cleaner = world.time + 10 SECONDS
 
+/////////////////////////////////////////////
+/////////////////// SPELLS //////////////////
+/////////////////////////////////////////////
 
 /obj/effect/proc_holder/spell/targeted/infinity/cluwne_rise_up
 	name = "Rise UP"

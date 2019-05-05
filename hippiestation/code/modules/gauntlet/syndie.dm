@@ -1,7 +1,7 @@
 /obj/item/infinity_stone/syndie
 	name = "Syndie Stone"
 	desc = "Power, baby. Raw power."
-	color = "#e429f2"
+	color = "#ff0130"
 	stone_type = SYNDIE_STONE
 	ability_text = list("HARM INTENT: toggle immovable mode")
 	spell_types = list(/obj/effect/proc_holder/spell/aoe_turf/repulse/syndie_stone,
@@ -22,6 +22,10 @@
 	if(L.move_force >= INFINITY)
 		L.visible_message("<span class='danger'>[L] relaxes a bit.</span>", "<span class='notice'>We exit immovable mode.</span>")
 		L.move_force = initial(L.move_force)
+
+/////////////////////////////////////////////
+/////////////////// SPELLS //////////////////
+/////////////////////////////////////////////
 
 /obj/effect/proc_holder/spell/aoe_turf/repulse/syndie_stone
 	name = "Shockwave"
