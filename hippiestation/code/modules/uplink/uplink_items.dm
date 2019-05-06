@@ -46,6 +46,13 @@
 	cost = 14
 	item = /obj/vehicle/ridden/lawnmower/emagged
 
+/datum/uplink_item/role_restricted/gatfruit
+	name = "Syndi Gatfruit"
+	desc = "An extrememly rare plant seed which grows .357 revolvers. Has been modified to mature twice as fast as normal Gatfruit"
+	restricted_roles = list("Botanist")
+	cost = 16
+	item = /obj/item/seeds/gatfruit/syndi
+
 /datum/uplink_item/dangerous/echainsaw
 	name = "Energy Chainsaw"
 	desc = "An incredibly deadly modified chainsaw with plasma-based energy blades instead of metal and a slick black-and-red finish. While it rips apart matter with extreme efficiency, it is heavy, large, and monstrously loud."
