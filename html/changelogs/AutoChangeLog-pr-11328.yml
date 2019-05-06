@@ -1,5 +1,0 @@
-author: "zamolxius"
-delete-after: True
-changes: 
-  - tweak: "made it so zombies are told to behave like a zombie, and not like a reskinned human"
-  - rscadd: "gives zombies aphasia and removes galactic common language."

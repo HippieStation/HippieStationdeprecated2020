@@ -1,9 +1,0 @@
-author: "yoyobatty"
-delete-after: True
-changes: 
-  - rscadd: "Gibs monster has a very small chance of reproducing when eating."
-  - bugfix: "Fixed Gibs monster getting stuck eating one mob."
-  - balance: "Gibs monster moves and attacks faster."
-  - bugfix: "Gibs nobody longer has the horrorform login message"
-  - tweak: "Gibs will appear frustrating if it fails to get it's meal at low health."
-  - balance: "Gibs are a little bit more smarter now."
