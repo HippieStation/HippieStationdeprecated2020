@@ -3,7 +3,7 @@
 	desc = "Salts your food very well."
 	color = "#e429f2"
 	ability_text = list("HELP INTENT: Transmutate ghosts into a random simplemob.", 
-		"HARM INTENT: Fire  a bolt that scales based on how many ghosts orbit you.")
+		"HARM INTENT: Fire a bolt that scales based on how many ghosts orbit you.")
 	stone_type = GHOST_STONE
 	spell_types = list(/obj/effect/proc_holder/spell/targeted/infinity/cluwne_rise_up)
 	var/summon_cooldown = 0
@@ -42,6 +42,7 @@
 /obj/item/infinity_stone/ghost/HarmEvent(atom/target, mob/living/user, proximity_flag)
 	var/total_spirits = ghost_check()
 	FireProjectile(/obj/item/projectile/magic/spirit_fist, target, CLAMP(total_spirits*2.5, 3, 25))
+	user.changeNext_move(CLICK_CD_RANGE)
 
 // Spectral Sword Copypaste
 /obj/item/infinity_stone/ghost/Initialize()
@@ -105,7 +106,7 @@
 /////////////////////////////////////////////
 
 /obj/effect/proc_holder/spell/targeted/infinity/cluwne_rise_up
-	name = "Cluwne Rise"
+	name = "Ghost Stone: Cluwne Rise"
 	desc = "Rise a corpse as a subservient, magical cluwne. You may only have 1 magical cluwne alive."
 	charge_max = 900
 	var/list/cluwnes = list()
@@ -129,7 +130,7 @@
 		cluwnes |= H
 		H.bloodcrawl = BLOODCRAWL_EAT
 		H.AddSpell(new /obj/effect/proc_holder/spell/targeted/turf_teleport/blink/infinity_cluwne)
-		H.AddSpell(new /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/infinity_cluwne)
+		H.AddSpell(new /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/infinity_cluwne)
 		H.AddSpell(new /obj/effect/proc_holder/spell/bloodcrawl)
 		var/obj/item/kitchen/knife/butcher/BK = new(get_turf(H))
 		BK.add_trait(TRAIT_NODROP, "ghost_stone_cluwne")
@@ -146,7 +147,7 @@
 	human_req = FALSE
 	staff_req = FALSE
 
-/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/infinity_cluwne // un-stuns you so you can move
+/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/infinity_cluwne // un-stuns you so you can move
 	name = "Cluwne Jaunt"
 	clothes_req = FALSE
 	human_req = FALSE

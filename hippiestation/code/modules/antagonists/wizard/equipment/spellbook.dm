@@ -100,6 +100,11 @@
 	item_path = /obj/item/plasma_fist_scroll
 	cost = 3
 
+/datum/spellbook_entry/item/badmin_gauntlet
+	name = "Badmin Gauntlet"
+	item_path = /obj/item/infinity_gauntlet
+	cost = 10
+
 /datum/spellbook_entry/summon/guns/IsAvailible()
 	if (!..())
 		return FALSE

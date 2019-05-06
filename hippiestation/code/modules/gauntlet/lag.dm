@@ -47,16 +47,18 @@
 	do_teleport(user, them, channel = TELEPORT_CHANNEL_BLUESPACE)
 	do_teleport(target, us, channel = TELEPORT_CHANNEL_BLUESPACE)
 	FireProjectile(/obj/item/projectile/magic/arcane_barrage, us)
+	user.changeNext_move(CLICK_CD_RANGE)
 
 /obj/item/infinity_stone/lag/DisarmEvent(atom/target, mob/living/user, proximity_flag)
 	FireProjectile(/obj/item/projectile/magic/lag_stone, target)
+	user.changeNext_move(CLICK_CD_RANGE)
 
 /////////////////////////////////////////////
 /////////////////// SPELLS //////////////////
 /////////////////////////////////////////////
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/lag_stone
-	name = "Summon Lag"
+	name = "Lag Stone: Summon Lag"
 	desc = "Summon a large bout of lag within a 5-tile radius. Very infuriating. Infinity Stone holders are immune, however."
 	summon_type = list(/obj/effect/timestop/wizard/lag_stone)
 	clothes_req = FALSE
@@ -71,6 +73,7 @@
 	duration = 175
 	pixel_x = -64
 	pixel_y = -64
+	start_sound = 'hippiestation/sound/effects/unnatural_clock_noises.ogg'
 
 /obj/effect/timestop/wizard/lag_stone/Initialize(mapload, radius, time, list/immune_atoms, start)
 	. = ..()

@@ -7,7 +7,6 @@
 	spell_types = list(/obj/effect/proc_holder/spell/aoe_turf/repulse/syndie_stone,
 		/obj/effect/proc_holder/spell/self/infinity/regenerate)
 
-/obj/item/infinity_stone/syndie/DisarmEvent(atom/target, mob/living/user, proximity_flag)
 
 /obj/item/infinity_stone/syndie/HarmEvent(atom/target, mob/living/user, proximity_flag)
 	if(user.move_force >= INFINITY)
@@ -28,7 +27,7 @@
 /////////////////////////////////////////////
 
 /obj/effect/proc_holder/spell/aoe_turf/repulse/syndie_stone
-	name = "Shockwave"
+	name = "Syndie Stone: Shockwave"
 	desc = "Knock down everyone around down and away from you."
 	range = 6
 	charge_max = 200
@@ -37,7 +36,7 @@
 	staff_req = FALSE
 
 /obj/effect/proc_holder/spell/self/infinity/regenerate
-	name = "Regenerate"
+	name = "Syndie Stone: Regenerate"
 	desc = "Regenerate 10 health every 5 seconds. Requires you to stand still."
 
 /obj/effect/proc_holder/spell/self/infinity/regenerate/cast(list/targets, mob/user)

@@ -3,88 +3,49 @@
 	desc = "Stare into the abyss, and the abyss stares back..."
 	color = "#266ef6"
 	stone_type = BLUESPACE_STONE
-	ability_text = list("HELP INTENT: teleport target to safe location", 
+	ability_text = list("HELP INTENT: teleport target to safe location. Only works every 75 seconds.", 
 		"HARM INTENT: teleport to specified location", 
-		"DISARM INTENT: steal item someone is holding", 
-		"GRAB INTENT: toggle intangibility")
+		"DISARM INTENT: steal item someone is holding")
 	spell_types = list(/obj/effect/proc_holder/spell/self/infinity/bluespace_stone_shield, 
 		/obj/effect/proc_holder/spell/targeted/turf_teleport/blink/bluespace_stone,
 		/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/bluespace_stone)
-
-/obj/item/infinity_stone/bluespace/GiveAbilities(mob/living/L)
-	. = ..()
-	if(iscarbon(L))
-		var/mob/living/carbon/C = L
-		C.gain_trauma_type(/datum/brain_trauma/special/bluespace_prophet, TRAUMA_RESILIENCE_ABSOLUTE)
-
-/obj/item/infinity_stone/bluespace/RemoveAbilities(mob/living/L, only_extra = FALSE)
-	. = ..()
-	if(iscarbon(L))
-		var/mob/living/carbon/C = L
-		C.cure_trauma_type(/datum/brain_trauma/special/bluespace_prophet, TRAUMA_RESILIENCE_ABSOLUTE)
+	var/next_help = 0
 
 /obj/item/infinity_stone/bluespace/DisarmEvent(atom/target, mob/living/user, proximity_flag)
 	if(isliving(target))
 		var/mob/living/L = target
 		var/obj/O = L.get_active_held_item()
-		if(O && !istype(O, /obj/item/infinity_stone) && L.dropItemToGround(O))
+		if(O && !istype(O, /obj/item/infinity_stone) && !istype(O, /obj/item/infinity_gauntlet) && L.dropItemToGround(O))
 			L.visible_message("<span class='danger'>[L]'s [O] disappears from their hands!</span>", "<span class='danger'>Our [O] disappears!</span>")
 			O.forceMove(get_turf(user))
 			user.equip_to_slot(O, SLOT_IN_BACKPACK)	
+			user.changeNext_move(CLICK_CD_CLICK_ABILITY)
 
 /obj/item/infinity_stone/bluespace/HelpEvent(atom/target, mob/living/user, proximity_flag)
+	if(next_help > world.time)
+		to_chat("<span class='danger'>You need to wait [DisplayTimeText(next_help - world.time)] to do that again!")
+		return
 	if(proximity_flag && isliving(target))
-		target.visible_message("<span class='danger'>[target] warps away!</span>", "<span class='notice'>We warp [target == user ? "ourselves" : target] to a safe location.</span>")
-		var/turf/potential_T = find_safe_turf(extended_safety_checks = TRUE)
-		do_teleport(target, potential_T, channel = TELEPORT_CHANNEL_BLUESPACE)
+		if(do_after(user, 250, target = target))
+			target.visible_message("<span class='danger'>[target] warps away!</span>", "<span class='notice'>We warp [target == user ? "ourselves" : target] to a safe location.</span>")
+			var/turf/potential_T = find_safe_turf(extended_safety_checks = TRUE)
+			do_teleport(target, potential_T, channel = TELEPORT_CHANNEL_BLUESPACE)
+			next_help = world.time + 75 SECONDS
 
 /obj/item/infinity_stone/bluespace/HarmEvent(atom/target, mob/living/user, proximity_flag)	
 	var/turf/to_teleport = get_turf(target)
 	user.adjustStaminaLoss(15)
 	target.visible_message("<span class='danger'>[target] warps away!</span>", "<span class='notice'>We warp ourselves to our desired location.</span>")
 	do_teleport(user, to_teleport, channel = TELEPORT_CHANNEL_BLUESPACE)
+	user.changeNext_move(CLICK_CD_CLICK_ABILITY)
 
-/obj/item/infinity_stone/bluespace/GrabEvent(atom/target, mob/living/user, proximity_flag)
-	if(user.incorporeal_move)
-		user.incorporeal_move = 0
-		user.visible_message("<span class='danger'>[user] becomes tangible again!</span>")
-		user.remove_trait(TRAIT_PUSHIMMUNE, BLUESPACE_STONE_TRAIT)
-		user.remove_trait(TRAIT_IGNOREDAMAGESLOWDOWN, BLUESPACE_STONE_TRAIT)
-		user.remove_trait(TRAIT_STUNIMMUNE, BLUESPACE_STONE_TRAIT)
-		user.remove_trait(TRAIT_SLEEPIMMUNE, BLUESPACE_STONE_TRAIT)
-		user.remove_trait(TRAIT_PACIFISM, BLUESPACE_STONE_TRAIT)
-		user.remove_movespeed_modifier(BLUESPACE_STONE_TRAIT)
-		animate(user, alpha = 255, time = 15)
-	else
-		user.incorporeal_move = INCORPOREAL_MOVE_BASIC
-		user.add_trait(TRAIT_PUSHIMMUNE, BLUESPACE_STONE_TRAIT)
-		user.add_trait(TRAIT_IGNOREDAMAGESLOWDOWN, BLUESPACE_STONE_TRAIT)
-		user.add_trait(TRAIT_STUNIMMUNE, BLUESPACE_STONE_TRAIT)
-		user.add_trait(TRAIT_SLEEPIMMUNE, BLUESPACE_STONE_TRAIT)
-		user.add_trait(TRAIT_PACIFISM, BLUESPACE_STONE_TRAIT) // just so this doesn;t get abused to fire guns while invincible
-		user.add_movespeed_modifier(BLUESPACE_STONE_TRAIT, update=TRUE, priority=100, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
-		user.visible_message("<span class='danger'>[user] becomes intangible!</span>")
-		animate(user, alpha = 100, time = 15)
-
-/obj/item/infinity_stone/bluespace/dropped(mob/living/user)
-	. = ..()
-	if(user.incorporeal_move)
-		user.incorporeal_move = 0
-		user.visible_message("<span class='danger'>[user] becomes tangible again!</span>")
-		user.remove_trait(TRAIT_PUSHIMMUNE, BLUESPACE_STONE_TRAIT)
-		user.remove_trait(TRAIT_IGNOREDAMAGESLOWDOWN, BLUESPACE_STONE_TRAIT)
-		user.remove_trait(TRAIT_STUNIMMUNE, BLUESPACE_STONE_TRAIT)
-		user.remove_trait(TRAIT_SLEEPIMMUNE, BLUESPACE_STONE_TRAIT)
-		user.remove_trait(TRAIT_PACIFISM, BLUESPACE_STONE_TRAIT)
-		user.remove_movespeed_modifier(BLUESPACE_STONE_TRAIT)
-		animate(user, alpha = 255, time = 15)
 
 /////////////////////////////////////////////
 /////////////////// SPELLS //////////////////
 /////////////////////////////////////////////
 
 /obj/effect/proc_holder/spell/self/infinity/bluespace_stone_shield
-	name = "Portal Shield"
+	name = "Bluespace Stone: Portal Shield"
 	desc = "Summon a portal shield which sends all projectiles into nullspace. Lasts for 15 seconds, or 5 hits."
 	charge_max = 200
 
@@ -96,14 +57,14 @@
 		revert_cast()
 
 /obj/effect/proc_holder/spell/targeted/turf_teleport/blink/bluespace_stone
-	name = "Bluespace Blink"
+	name = "Bluespace Stone: Bluespace Blink"
 	outer_tele_radius = 17
 	clothes_req = FALSE
 	human_req = FALSE
 	staff_req = FALSE
 
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/bluespace_stone // un-stuns you so you can move
-	name = "Bluespace Jaunt"
+	name = "Bluespace Stone: Bluespace Jaunt"
 	clothes_req = FALSE
 	human_req = FALSE
 	staff_req = FALSE
@@ -130,6 +91,11 @@
 
 /obj/item/shield/bluespace_stone
 	name = "bluespace energy shield"
+	icon = 'hippiestation/icons/obj/infinity.dmi'
+	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
+	icon_state = "portalshield"
+	item_state = "eshield1"
 	var/hits = 0
 
 /obj/item/shield/bluespace_stone/Initialize()

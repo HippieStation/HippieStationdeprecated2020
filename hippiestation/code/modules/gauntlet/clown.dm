@@ -13,6 +13,7 @@
 /obj/item/infinity_stone/clown/HelpEvent(atom/target, mob/living/user, proximity_flag)
 	var/obj/item/reagent_containers/food/snacks/pie/cream/pie = new(get_turf(user))
 	pie.throw_at(target, 30, 3, user, FALSE)
+	user.changeNext_move(CLICK_CD_RANGE)
 
 /obj/item/infinity_stone/clown/HarmEvent(atom/target, mob/living/user, proximity_flag)
 	if(next_traps > world.time)
@@ -47,7 +48,7 @@
 /////////////////////////////////////////////
 
 /obj/effect/proc_holder/spell/self/infinity/pranksters_delusion
-	name = "Prankster's Delusion"
+	name = "Clown Stone: Prankster's Delusion"
 	desc = "Causes those around you to see others as a clumsy clown, including yourself! Now how will they know who is who?"
 	charge_max = 750
 

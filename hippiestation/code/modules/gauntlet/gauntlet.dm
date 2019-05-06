@@ -1,10 +1,54 @@
 
 /obj/item/infinity_gauntlet
 	name = "Badmin Gauntlet"
+	icon = 'hippiestation/icons/obj/infinity.dmi'
+	icon_state = "gauntlet"
 	var/locked_on = FALSE
+	var/has_snapped = FALSE
 	var/stone_mode = BLUESPACE_STONE
 	var/list/stones = list()
 	var/static/list/all_stones = list(SYNDIE_STONE, BLUESPACE_STONE, SERVER_STONE, LAG_STONE, CLOWN_STONE, GHOST_STONE)
+	var/static/list/stone_types = list(
+		SYNDIE_STONE = /obj/item/infinity_stone/syndie,
+		BLUESPACE_STONE = /obj/item/infinity_stone/bluespace, 
+		SERVER_STONE = /obj/item/infinity_stone/server, 
+		LAG_STONE = /obj/item/infinity_stone/lag, 
+		CLOWN_STONE = /obj/item/infinity_stone/clown, 
+		GHOST_STONE = /obj/item/infinity_stone/ghost)
+	var/static/list/stone_weights = list(
+		SYNDIE_STONE = list(
+			"Head of Security" = 70,
+			"Captain" = 60,
+			"Security Officer" = 20,
+			"Head of Personnel" = 15
+		),
+		BLUESPACE_STONE = list(
+			"Research Director" = 60,
+			"Scientist" = 20,
+			"Mime" = 15
+		),
+		SERVER_STONE = list(
+			"Chief Engineer" = 60,
+			"Curator" = 45,
+			"Station Engineer" = 30,
+			"Atmospheric Technician" = 30
+		),
+		LAG_STONE = list(
+			"Quartermaster" = 40,
+			"Cargo Technician" = 20
+		),
+		GHOST_STONE = list(
+			"Captain" = 55,
+			"Head of Personnel" = 45,
+			"Chaplain" = 25
+		)
+	)
+
+
+/obj/item/infinity_gauntlet/Initialize()
+	. = ..()
+	AddComponent(/datum/component/spell_catalyst)
+	update_icon()
 
 /obj/item/infinity_gauntlet/examine(mob/user)
 	. = ..()
@@ -18,7 +62,96 @@
 			return I
 	return
 
+/obj/item/infinity_gauntlet/proc/DoTheSnap()
+	var/mob/living/snapper = usr
+	var/list/mobs_to_wipe = GLOB.player_list.Copy()
+	shuffle_inplace(mobs_to_wipe)
+	var/to_wipe = FLOOR(mobs_to_wipe.len/2, 1)
+	var/wiped = 0
+	to_chat(world, "<span class='danger italics'>You feel as if something big has happened.</span>")
+	for(var/mob/living/L in mobs_to_wipe)
+		if(wiped >= to_wipe)
+			break
+		if(snapper == L)
+			continue
+		L.dust(TRUE)
+		wiped++
+
+/obj/item/infinity_gauntlet/proc/GetWeightedChances(list/job_list, list/blacklist)
+	var/list/jobs = list()
+	var/list/weighted_list = list()
+	for(var/A in job_list)
+		jobs += A
+	for(var/datum/mind/M in SSticker.minds)
+		if(M.current && !considered_afk(M) && considered_alive(M, TRUE) && is_station_level(M.current.z) && !(M.current in blacklist) && (M.assigned_role in jobs))
+			weighted_list[M.current] = job_list[M.assigned_role]
+	return weighted_list
+
+/obj/item/infinity_gauntlet/proc/MakeStonekeepers(mob/living/current_user)
+	var/list/has_a_stone = list(current_user)
+	for(var/stone in all_stones)
+		var/list/to_get_stones = GetWeightedChances(stone_weights[stone], has_a_stone)
+		var/mob/living/L
+		if(LAZYLEN(to_get_stones))
+			L = pickweight(to_get_stones)
+		else
+			var/list/minds = list()
+			for(var/datum/mind/M in SSticker.minds)
+				if(M.current && !considered_afk(M) && considered_alive(M, TRUE) && is_station_level(M.current.z) && !(M.current in has_a_stone))
+					minds += M
+			if(LAZYLEN(minds))
+				var/datum/mind/M = pick(minds)
+				L = M.current
+		var/stone_type = stone_types[stone]
+		var/obj/item/infinity_stone/IS = new stone_type(L ? get_turf(L) : null)
+		if(L && istype(L))
+			var/datum/antagonist/stonekeeper/SK = L.mind.add_antag_datum(/datum/antagonist/stonekeeper)
+			var/datum/objective/stonekeeper/SKO = new
+			SKO.stone = IS
+			SKO.update_explanation_text()
+			SK.objectives += SKO
+			L.mind.announce_objectives()
+			L.put_in_hands(IS)
+			L.equip_to_slot(IS, SLOT_IN_BACKPACK)
+
+
+/obj/item/infinity_gauntlet/proc/FullyAssembled()
+	for(var/stone in all_stones)
+		if(!GetStone(stone))
+			return FALSE
+	return TRUE
+
+/obj/item/infinity_gauntlet/proc/GetStoneColor(stone_type)
+	var/obj/item/infinity_stone/IS = GetStone(stone_type)
+	if(IS && istype(IS))
+		return IS.color
+	return "#DC143C" //crimson by default
+
+/obj/item/infinity_gauntlet/proc/UpdateAbilities(mob/living/user)
+	for(var/obj/item/infinity_stone/IS in stones)
+		IS.RemoveAbilities(user)
+	var/obj/item/infinity_stone/IS = GetStone(stone_mode)
+	if(IS && istype(IS))
+		IS.GiveAbilities(user)
+
+/obj/item/infinity_gauntlet/update_icon()
+	cut_overlays()
+	var/index = 1
+	var/image/veins = image(icon = 'hippiestation/icons/obj/infinity.dmi', icon_state = "glow-overlay")
+	veins.color = GetStoneColor(stone_mode)
+	add_overlay(veins)
+	for(var/obj/item/infinity_stone/IS in stones)
+		var/I = index
+		if(IS.stone_type == stone_mode)
+			I = 0
+		var/image/O = image(icon = 'hippiestation/icons/obj/infinity.dmi', icon_state = "[I]-stone")
+		O.color = IS.color
+		add_overlay(O)
+		index++
+
 /obj/item/infinity_gauntlet/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	if(!locked_on)
+		return ..()
 	if(!isliving(user))
 		return ..()
 	var/obj/item/infinity_stone/IS = GetStone(stone_mode)
@@ -40,13 +173,26 @@
 	if(!locked_on)
 		var/prompt = alert("Would you like to truly wear the Badmin Gauntlet? You will be unable to remove it!", "Confirm", "Yes", "No")
 		if (prompt == "Yes")
+			user.dropItemToGround(src)
 			if(user.put_in_hands(src))
+				user.apply_status_effect(/datum/status_effect/agent_pinpointer/gauntlet)
+				priority_announce("A Wizard has declared that he will wipe out half the universe with the Badmin Gauntlet!\nStones have been scattered across the station. Protect anyone who holds one!", title = "Declaration of War", sound = 'hippiestation/sound/misc/wizard_wardec.ogg')
 				add_trait(TRAIT_NODROP, GAUNTLET_TRAIT)
 				locked_on = TRUE
 				visible_message("<span class='danger bold'>The badmin gauntlet clamps to [user]'s hand!</span>")
+				MakeStonekeepers(user)
+				user.AddSpell(new /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet)
+				user.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/repulse/gauntlet)
 			else
 				to_chat(user, "<span class='danger'>You do not have an empty hand for the Badmin Gauntlet.</span>")
 		return
+	if(FullyAssembled() && !has_snapped)
+		var/prompt = alert("Would you like to snap half the life in the universe away?", "Confirm", "Yes", "No")
+		if (prompt == "Yes")
+			user.emote("snap")
+			DoTheSnap()
+			has_snapped = TRUE
+			return
 	if(!LAZYLEN(stones))
 		to_chat(user, "<span class='danger'>You have no stones yet.</span>")
 		return
@@ -59,19 +205,25 @@
 	if(!check_menu(user))
 		return
 	if(chosen)
-		var/obj/item/infinity_stone/current_stone = GetStone(stone_mode)
-		if(current_stone)
-			current_stone.RemoveAbilities(user, TRUE) // get rid of stuff like intangability or immovable mode
 		stone_mode = chosen
+		UpdateAbilities(user)
 		update_icon()
 
 /obj/item/infinity_gauntlet/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/infinity_stone))
+		if(!locked_on)
+			to_chat(user, "<span class='notice'>You need to wear the gauntlet first.</span>")
+			return
 		var/obj/item/infinity_stone/IS = I
 		if(!GetStone(IS.stone_type))
-			user.visible_message("<span class='danger bold'>[user] drops \the [IS] into the Badmin Gauntlet.</span>")
+			user.visible_message("<span class='danger bold'>[user] drops the [IS] into the Badmin Gauntlet.</span>")
 			IS.forceMove(src)
 			stones += IS
+			UpdateAbilities(user)
+			update_icon()
+			if(FullyAssembled())
+				user.visible_message("<span class='userdanger'>A massive surge of power courses through [user]. You feel as though your very existence is in danger!</span>", 
+					"<span class='danger bold'>You have fully assembled the Badmin Gauntlet. You can SNAP by clicking the gauntlet while using it.</span>")
 			return
 	return ..()
 
@@ -88,7 +240,7 @@
 //Weaker versions of Syndie Stone spells
 
 /obj/effect/proc_holder/spell/aoe_turf/repulse/gauntlet
-	name = "Shockwave"
+	name = "Badmin Gauntlet: Shockwave"
 	desc = "Knock down everyone around down and away from you."
 	range = 4
 	charge_max = 250
@@ -97,10 +249,10 @@
 	staff_req = FALSE
 
 /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet
-	name = "Regenerate"
+	name = "Badmin Gauntlet: Regenerate"
 	desc = "Regenerate 2 health per second. Requires you to stand still."
 
-/obj/effect/proc_holder/spell/self/infinity/regenerate/cast(list/targets, mob/user)
+/obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet/cast(list/targets, mob/user)
 	if(isliving(user))
 		var/mob/living/L = user
 		while(do_after(L, 10, FALSE, L))
@@ -109,3 +261,24 @@
 			if(L.getBruteLoss() + L.getFireLoss() + L.getStaminaLoss() < 1)
 				to_chat(user, "<span class='notice'>You are fully healed.</span>")
 				return
+
+/obj/screen/alert/status_effect/agent_pinpointer/gauntlet
+	name = "Badmin Gauntlet Pinpointer"
+
+/datum/status_effect/agent_pinpointer/gauntlet
+	id = "gauntlet_pinpointer"
+	minimum_range = 1
+	alert_type = /obj/screen/alert/status_effect/agent_pinpointer/gauntlet
+
+/datum/status_effect/agent_pinpointer/gauntlet/scan_for_target()
+	scan_target = null
+	if(owner)
+		var/obj/item/infinity_gauntlet/IG = locate() in owner
+		for(var/stone in IG.all_stones)
+			if(!IG.GetStone(stone))
+				var/stone_type = IG.stone_types[stone]
+				var/obj/item/infinity_stone/IS = locate(stone_type) in world
+				if(!IS || !istype(IS))
+					continue
+				scan_target = IS
+				break

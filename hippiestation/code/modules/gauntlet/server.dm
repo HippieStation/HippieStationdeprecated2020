@@ -80,7 +80,7 @@
 /////////////////////////////////////////////
 
 /obj/effect/proc_holder/spell/spacetime_dist/server_stone
-	name = "Reality Distortion"
+	name = "Server Stone: Reality Distortion"
 	clothes_req = FALSE
 	human_req = FALSE
 	staff_req = FALSE

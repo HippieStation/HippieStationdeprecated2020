@@ -7,6 +7,7 @@
 	var/list/ability_text = list()
 	var/list/spells = list()
 	var/list/spell_types = list()
+	var/mutable_appearance/aura_overlay
 
 /obj/item/infinity_stone/Initialize()
 	. = ..()
@@ -27,6 +28,10 @@
 	to_chat(user, "<span class='bold notice'>[name]</span>")
 	ShowExamine(user)
 
+/obj/item/infinity_stone/forceMove(atom/destination)
+	. = ..()
+	UpdateHolder()
+
 /obj/item/infinity_stone/proc/ShowExamine(mob/user) // a seperate thing for the gauntlet
 	for(var/A in ability_text)
 		to_chat(user, "<span class='notice'>[A]</span>")
@@ -36,13 +41,14 @@
 		for(var/obj/effect/proc_holder/spell/A in spells)
 			L.mob_spell_list += A
 			A.action.Grant(L)
+	//L.add_overlay(aura_overlay)
 
 /obj/item/infinity_stone/proc/RemoveAbilities(mob/living/L, only_extra = FALSE)
 	if(!only_extra)
 		for(var/obj/effect/proc_holder/spell/A in spells)
 			L.mob_spell_list -= A
 			A.action.Remove(L)
-
+	//L.cut_overlay(aura_overlay)
 
 /obj/item/infinity_stone/proc/GetHolder()
 	var/atom/movable/A = loc
@@ -50,10 +56,14 @@
 		return
 	if(isliving(A))
 		return A
-	for (A; isloc(A.loc) && !isliving(A.loc); A = A.loc);
+	for (A; isloc(A.loc) && !isliving(A.loc); A = A.loc); // it's voodoo to me
+	if(isliving(A.loc))
+		return A.loc
 	return A;
 
 /obj/item/infinity_stone/proc/UpdateHolder()
+	if(istype(loc, /obj/item/infinity_gauntlet))
+		return //gauntlet handles this from now on
 	var/mob/living/new_holder = GetHolder()
 	if (new_holder != current_holder)
 		if(isliving(current_holder))
@@ -66,6 +76,8 @@
 
 /obj/item/infinity_stone/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!isliving(user))
+		return
+	if(istype(target, /obj/item/infinity_gauntlet))
 		return
 	switch(user.a_intent)
 		if(INTENT_DISARM)
