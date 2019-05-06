@@ -57,21 +57,26 @@
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/lag_stone
 	name = "Summon Lag"
-	desc = "Summon a large bout of lag within a 5-tile radius. Very infuriating."
+	desc = "Summon a large bout of lag within a 5-tile radius. Very infuriating. Infinity Stone holders are immune, however."
 	summon_type = list(/obj/effect/timestop/wizard/lag_stone)
 	clothes_req = FALSE
 	staff_req = FALSE
 	human_req = FALSE
+	charge_max = 750
 
 /obj/effect/timestop/wizard/lag_stone
 	name = "lagfield"
 	desc = "Oh no. OH NO."
-	freezerange = 5
+	freezerange = 4
 	duration = 175
+	pixel_x = -64
+	pixel_y = -64
 
 /obj/effect/timestop/wizard/lag_stone/Initialize(mapload, radius, time, list/immune_atoms, start)
 	. = ..()
-	transform.Scale(2.2)
+	var/matrix/ntransform = matrix(transform)
+	ntransform.Scale(2)
+	animate(src, transform = ntransform, time = 2, easing = EASE_IN|EASE_OUT)
 
 /////////////////////////////////////////////
 /////////////////// ITEMS ///////////////////
@@ -84,3 +89,9 @@
 	jitter = 15
 	eyeblur = 20
 	stamina = 7.5
+	
+/obj/item/projectile/magic/lag_stone/on_hit(atom/target, blocked = FALSE)
+	if(isliving(target))
+		var/mob/living/M = target
+		if(blocked != 100)
+			M.Dizzy(35)

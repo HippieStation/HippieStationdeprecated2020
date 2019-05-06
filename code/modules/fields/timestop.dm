@@ -31,7 +31,7 @@
 			immune[L] = TRUE
 	// hippie start -- add immunity for lag stone holders
 	for(var/mob/living/L in GLOB.player_list)
-		if(locate(/obj/item/infinity_stone/lag) in L)
+		if(locate(/obj/item/infinity_stone) in L)
 			immune[L] = TRUE
 	//hippie end
 	for(var/mob/living/simple_animal/hostile/guardian/G in GLOB.parasites)
