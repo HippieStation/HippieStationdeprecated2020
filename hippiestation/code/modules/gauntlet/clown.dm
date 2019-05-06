@@ -6,8 +6,7 @@
 	ability_text = list("HELP INTENT: fire banana cream pies",
 		"HARM INTENT: Spawn the Traps!",
 		"DISARM INTENT: Throw a cleaner grenade")
-	spell_types = list(/obj/effect/proc_holder/spell/targeted/infinity/cluwne_rise_up,
-		/obj/effect/proc_holder/spell/self/infinity/pranksters_delusion)
+	spell_types = list(/obj/effect/proc_holder/spell/self/infinity/pranksters_delusion)
 	var/next_traps = 0
 	var/next_cleaner = 0
 
@@ -46,28 +45,6 @@
 /////////////////////////////////////////////
 /////////////////// SPELLS //////////////////
 /////////////////////////////////////////////
-
-/obj/effect/proc_holder/spell/targeted/infinity/cluwne_rise_up
-	name = "Rise UP"
-	desc = "Rise a corpse as a subservient cluwne. Useless, but funny."
-	charge_max = 900
-
-/obj/effect/proc_holder/spell/targeted/infinity/cluwne_rise_up/InterceptClickOn(mob/living/caller, params, atom/t)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(ishuman(t))
-		var/mob/living/carbon/human/H = t
-		if(H.stat != DEAD && !H.InFullCritical())
-			to_chat(caller, "<span class='danger'>They aren't dead enough yet.</span>")
-			revert_cast()
-			return
-		H.revive(TRUE, TRUE)
-		H.cluwneify()
-		H.visible_message("<span class='danger'>[H] struggles back up, now a cluwne!</span>")
-		to_chat(H, "<span class='userdanger'>You are risen from the dead as a cluwne. [caller] is your master. Follow their orders at all costs.</span>")
-	else
-		revert_cast()
 
 /obj/effect/proc_holder/spell/self/infinity/pranksters_delusion
 	name = "Prankster's Delusion"

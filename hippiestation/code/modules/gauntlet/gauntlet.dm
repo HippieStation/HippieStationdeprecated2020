@@ -87,7 +87,7 @@
 /////////////////////////////////////////////
 //Weaker versions of Syndie Stone spells
 
-/obj/effect/proc_holder/spell/aoe_turf/repulse/syndie_stone
+/obj/effect/proc_holder/spell/aoe_turf/repulse/gauntlet
 	name = "Shockwave"
 	desc = "Knock down everyone around down and away from you."
 	range = 4
@@ -96,7 +96,7 @@
 	human_req = FALSE
 	staff_req = FALSE
 
-/obj/effect/proc_holder/spell/self/infinity/regenerate
+/obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet
 	name = "Regenerate"
 	desc = "Regenerate 2 health per second. Requires you to stand still."
 
