@@ -57,8 +57,9 @@
 		var/mob/living/lunch = target
 		if(lunch && prob(30))
 			if(!EatLunch(lunch) && (health < maxHealth * 0.25) && prob(33))//Don't want to see this message all the time.
-				visible_message("<span class='warning'>[lunch] appears frustrated!</span>", \
+				visible_message("<span class='warning'>[src] flails in exasperation!</span>", \
 						"<span class='danger'>Failing to eat angers you!</span>")
+				emote("scream")
 
 /mob/living/simple_animal/hostile/true_changeling/adminbus/gibs/proc/EatLunch(mob/living/lunch)
 	visible_message("<span class='warning'>[src] begins ripping apart and feasting on [lunch]!</span>", \
