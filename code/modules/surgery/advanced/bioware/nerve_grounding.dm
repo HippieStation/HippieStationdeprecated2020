@@ -32,9 +32,17 @@
 
 /datum/bioware/grounded_nerves/on_gain()
 	..()
+<<<<<<< HEAD
 	prev_coeff = owner.physiology.siemens_coeff
 	owner.physiology.siemens_coeff = 0
 
 /datum/bioware/grounded_nerves/on_lose()
 	..()
 	owner.physiology.siemens_coeff = prev_coeff
+=======
+	ADD_TRAIT(owner, TRAIT_SHOCKIMMUNE, "grounded_nerves")
+
+/datum/bioware/grounded_nerves/on_lose()
+	..()
+	REMOVE_TRAIT(owner, TRAIT_SHOCKIMMUNE, "grounded_nerves")
+>>>>>>> fb45b7a... Turns trait accessors into defines, fixes some bugs (#43820)
