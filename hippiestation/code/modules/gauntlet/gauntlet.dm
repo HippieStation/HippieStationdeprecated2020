@@ -216,11 +216,15 @@ GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
 		var/image/IM = image(icon = I.icon, icon_state = I.icon_state)
 		IM.color = I.color
 		gauntlet_radial[I.stone_type] = IM
+	gauntlet_radial["none"] = image(icon = 'hippiestation/icons/obj/infinity.dmi', icon_state = "none")
 	var/chosen = show_radial_menu(user, src, gauntlet_radial, custom_check = CALLBACK(src, .proc/check_menu, user))
 	if(!check_menu(user))
 		return
 	if(chosen)
-		stone_mode = chosen
+		if(chosen == "none")
+			stone_mode = null
+		else
+			stone_mode = chosen
 		UpdateAbilities(user)
 		update_icon()
 
