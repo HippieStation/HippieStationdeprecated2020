@@ -38,6 +38,8 @@
 /obj/effect/proc_holder/spell/self/infinity/regenerate
 	name = "Syndie Stone: Regenerate"
 	desc = "Regenerate 10 health every 5 seconds. Requires you to stand still."
+	action_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_icon_state = "regenerate"
 
 /obj/effect/proc_holder/spell/self/infinity/regenerate/cast(list/targets, mob/user)
 	if(isliving(user))

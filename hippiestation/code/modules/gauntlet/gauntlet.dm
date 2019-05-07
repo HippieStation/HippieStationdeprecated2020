@@ -74,7 +74,7 @@
 			break
 		if(snapper == L)
 			continue
-		L.dust(TRUE)
+		addtimer(CALLBACK(L, /mob/living.proc/dust, TRUE), rand(5 SECONDS, 10 SECONDS))
 		wiped++
 
 /obj/item/infinity_gauntlet/proc/GetWeightedChances(list/job_list, list/blacklist)
@@ -186,13 +186,6 @@
 			else
 				to_chat(user, "<span class='danger'>You do not have an empty hand for the Badmin Gauntlet.</span>")
 		return
-	if(FullyAssembled() && !has_snapped)
-		var/prompt = alert("Would you like to snap half the life in the universe away?", "Confirm", "Yes", "No")
-		if (prompt == "Yes")
-			user.emote("snap")
-			DoTheSnap()
-			has_snapped = TRUE
-			return
 	if(!LAZYLEN(stones))
 		to_chat(user, "<span class='danger'>You have no stones yet.</span>")
 		return
@@ -222,6 +215,7 @@
 			UpdateAbilities(user)
 			update_icon()
 			if(FullyAssembled())
+				user.AddSpell(new /obj/effect/proc_holder/spell/self/infinity/snap)
 				user.visible_message("<span class='userdanger'>A massive surge of power courses through [user]. You feel as though your very existence is in danger!</span>", 
 					"<span class='danger bold'>You have fully assembled the Badmin Gauntlet. You can SNAP by clicking the gauntlet while using it.</span>")
 			return
@@ -251,6 +245,8 @@
 /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet
 	name = "Badmin Gauntlet: Regenerate"
 	desc = "Regenerate 2 health per second. Requires you to stand still."
+	action_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_icon_state = "regenerate"
 
 /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet/cast(list/targets, mob/user)
 	if(isliving(user))
@@ -261,6 +257,20 @@
 			if(L.getBruteLoss() + L.getFireLoss() + L.getStaminaLoss() < 1)
 				to_chat(user, "<span class='notice'>You are fully healed.</span>")
 				return
+
+/obj/effect/proc_holder/spell/self/infinity/snap
+	name = "SNAP"
+	desc = "Snap the Badmin Gauntlet, erasing half the life in the universe."
+	action_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_icon_state = "gauntlet"
+
+/obj/effect/proc_holder/spell/self/infinity/snap/cast(list/targets, mob/living/user)
+	var/obj/item/infinity_gauntlet/IG = locate() in user
+	if(!IG || !istype(IG))
+		return
+	user.emote("snap")
+	IG.DoTheSnap()
+	user.RemoveSpell(src)
 
 /obj/screen/alert/status_effect/agent_pinpointer/gauntlet
 	name = "Badmin Gauntlet Pinpointer"

@@ -50,6 +50,8 @@
 /obj/effect/proc_holder/spell/self/infinity/pranksters_delusion
 	name = "Clown Stone: Prankster's Delusion"
 	desc = "Causes those around you to see others as a clumsy clown, including yourself! Now how will they know who is who?"
+	action_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_icon_state = "prankstersdelusion"
 	charge_max = 750
 
 /obj/effect/proc_holder/spell/self/infinity/pranksters_delusion/cast(list/targets, mob/user)
