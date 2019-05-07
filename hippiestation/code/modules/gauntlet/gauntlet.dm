@@ -5,13 +5,13 @@ GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
 	name = "Badmin Gauntlet"
 	icon = 'hippiestation/icons/obj/infinity.dmi'
 	icon_state = "gauntlet"
-	force = 22.5
+	force = 17.5
 	throwforce = 12
 	block_chance = 25
 	var/locked_on = FALSE
-	var/stone_mode = BLUESPACE_STONE
+	var/stone_mode = null
 	var/list/stones = list()
-	var/datum/martial_art/martial_art
+	var/datum/martial_art/cqc/martial_art
 	var/static/list/all_stones = list(SYNDIE_STONE, BLUESPACE_STONE, SERVER_STONE, LAG_STONE, CLOWN_STONE, GHOST_STONE)
 	var/static/list/stone_types = list(
 		SYNDIE_STONE = /obj/item/infinity_stone/syndie,
@@ -173,29 +173,29 @@ GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
 		return ..()
 	var/obj/item/infinity_stone/IS = GetStone(stone_mode)
 	if(!IS || !istype(IS))
-		return ..()
-	var/no_mode = (!stone_mode || !GetStone(stone_mode))
+		switch(user.a_intent)
+			if(INTENT_DISARM)
+				if(ishuman(target) && ishuman(user))
+					martial_art.disarm_act(user, target)
+			if(INTENT_HARM)
+				if(ishuman(target) && ishuman(user))
+					martial_art.harm_act(user, target)
+			if(INTENT_GRAB)
+				if(ishuman(target) && ishuman(user))
+					martial_art.grab_act(user, target)
+			if(INTENT_HELP)
+				if(ishuman(target) && ishuman(user))
+					martial_art.help_act(user, target)
+		return
 	switch(user.a_intent)
 		if(INTENT_DISARM)
-			if(no_mode && ishuman(target) && ishuman(user))
-				martial_art.disarm_act(user, target)
-			else
-				IS.DisarmEvent(target, user, proximity_flag)
+			IS.DisarmEvent(target, user, proximity_flag)
 		if(INTENT_HARM)
-			if(no_mode && ishuman(target) && ishuman(user))
-				martial_art.harm_act(user, target)
-			else
-				IS.HarmEvent(target, user, proximity_flag)
+			IS.HarmEvent(target, user, proximity_flag)
 		if(INTENT_GRAB)
-			if(no_mode && ishuman(target) && ishuman(user))
-				martial_art.grab_act(user, target)
-			else
-				IS.GrabEvent(target, user, proximity_flag)
+			IS.GrabEvent(target, user, proximity_flag)
 		if(INTENT_HELP)
-			if(no_mode && ishuman(target) && ishuman(user))
-				martial_art.help_act(user, target)
-			else
-				IS.HelpEvent(target, user, proximity_flag)
+			IS.HelpEvent(target, user, proximity_flag)
 
 /obj/item/infinity_gauntlet/attack_self(mob/living/user)
 	if(!istype(user))
@@ -287,12 +287,14 @@ GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
 	human_req = FALSE
 	staff_req = FALSE
 	invocation_type = "none"
+	action_background_icon_state = "bg_default"
 
 /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet
 	name = "Badmin Gauntlet: Regenerate"
 	desc = "Regenerate 2 health per second. Requires you to stand still."
 	action_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_icon_state = "regenerate"
+	action_background_icon_state = "bg_default"
 
 /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet/cast(list/targets, mob/user)
 	if(isliving(user))
