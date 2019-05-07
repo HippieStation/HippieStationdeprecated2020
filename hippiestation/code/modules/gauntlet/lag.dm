@@ -65,6 +65,7 @@
 	staff_req = FALSE
 	human_req = FALSE
 	charge_max = 750
+	invocation_type = "none"
 
 /obj/effect/timestop/wizard/lag_stone
 	name = "lagfield"

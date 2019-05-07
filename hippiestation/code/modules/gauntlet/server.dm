@@ -84,3 +84,4 @@
 	clothes_req = FALSE
 	human_req = FALSE
 	staff_req = FALSE
+	invocation_type = "none"

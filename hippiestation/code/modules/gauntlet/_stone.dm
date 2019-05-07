@@ -116,12 +116,14 @@
 	human_req = FALSE // because a monkey with an infinity stone is funny
 	clothes_req = FALSE
 	staff_req = FALSE
+	invocation_type = "none"
 
 /obj/effect/proc_holder/spell/targeted/infinity //copypaste from shadowling
 	ranged_mousepointer = 'icons/effects/cult_target.dmi'
 	human_req = FALSE
 	clothes_req = FALSE
 	staff_req = FALSE
+	invocation_type = "none"
 	var/obj/item/infinity_stone/stone
 	var/mob/living/user
 	var/mob/living/target

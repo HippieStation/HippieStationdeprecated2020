@@ -241,6 +241,7 @@
 	clothes_req = FALSE
 	human_req = FALSE
 	staff_req = FALSE
+	invocation_type = "none"
 
 /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet
 	name = "Badmin Gauntlet: Regenerate"
@@ -268,9 +269,11 @@
 	var/obj/item/infinity_gauntlet/IG = locate() in user
 	if(!IG || !istype(IG))
 		return
-	user.emote("snap")
-	IG.DoTheSnap()
-	user.RemoveSpell(src)
+	var/prompt = alert("Are you REALLY sure you'd like to erase half the life in the universe?", "SNAP?", "YES!", "No")
+	if(prompt == "YES!")
+		user.emote("snap")
+		IG.DoTheSnap()
+		user.RemoveSpell(src)
 
 /obj/screen/alert/status_effect/agent_pinpointer/gauntlet
 	name = "Badmin Gauntlet Pinpointer"
@@ -278,6 +281,7 @@
 /datum/status_effect/agent_pinpointer/gauntlet
 	id = "gauntlet_pinpointer"
 	minimum_range = 1
+	range_fuzz_factor = 0
 	alert_type = /obj/screen/alert/status_effect/agent_pinpointer/gauntlet
 
 /datum/status_effect/agent_pinpointer/gauntlet/scan_for_target()

@@ -35,7 +35,7 @@
 /obj/item/infinity_stone/bluespace/HarmEvent(atom/target, mob/living/user, proximity_flag)	
 	var/turf/to_teleport = get_turf(target)
 	user.adjustStaminaLoss(15)
-	target.visible_message("<span class='danger'>[target] warps away!</span>", "<span class='notice'>We warp ourselves to our desired location.</span>")
+	target.visible_message("<span class='danger'>[user] warps away!</span>", "<span class='notice'>We warp ourselves to our desired location.</span>")
 	do_teleport(user, to_teleport, channel = TELEPORT_CHANNEL_BLUESPACE)
 	user.changeNext_move(CLICK_CD_CLICK_ABILITY)
 
@@ -62,6 +62,7 @@
 	clothes_req = FALSE
 	human_req = FALSE
 	staff_req = FALSE
+	invocation_type = "none"
 
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/bluespace_stone // un-stuns you so you can move
 	name = "Bluespace Stone: Bluespace Jaunt"
@@ -69,19 +70,10 @@
 	human_req = FALSE
 	staff_req = FALSE
 	jaunt_duration = 100
+	invocation_type = "none"
 
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/bluespace_stone/cast(list/targets,mob/user = usr)
 	for(var/mob/living/target in targets)
-		if(target.incorporeal_move == INCORPOREAL_MOVE_BASIC)
-			target.incorporeal_move = 0
-			target.visible_message("<span class='danger'>[target] becomes tangible again!</span>")
-			target.remove_trait(TRAIT_PUSHIMMUNE, BLUESPACE_STONE_TRAIT)
-			target.remove_trait(TRAIT_IGNOREDAMAGESLOWDOWN, BLUESPACE_STONE_TRAIT)
-			target.remove_trait(TRAIT_STUNIMMUNE, BLUESPACE_STONE_TRAIT)
-			target.remove_trait(TRAIT_SLEEPIMMUNE, BLUESPACE_STONE_TRAIT)
-			target.remove_trait(TRAIT_PACIFISM, BLUESPACE_STONE_TRAIT)
-			target.remove_movespeed_modifier(BLUESPACE_STONE_TRAIT)
-			animate(target, alpha = 255, time = 15)
 		target.SetAllImmobility(0)
 	return ..()
 
