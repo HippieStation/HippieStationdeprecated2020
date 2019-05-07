@@ -35,7 +35,7 @@
 /obj/item/infinity_stone/bluespace/HarmEvent(atom/target, mob/living/user, proximity_flag)	
 	var/turf/to_teleport = get_turf(target)
 	user.adjustStaminaLoss(15)
-	target.visible_message("<span class='danger'>[user] warps away!</span>", "<span class='notice'>We warp ourselves to our desired location.</span>")
+	user.visible_message("<span class='danger'>[user] warps away!</span>", "<span class='notice'>We warp ourselves to our desired location.</span>")
 	do_teleport(user, to_teleport, channel = TELEPORT_CHANNEL_BLUESPACE)
 	user.changeNext_move(CLICK_CD_CLICK_ABILITY)
 

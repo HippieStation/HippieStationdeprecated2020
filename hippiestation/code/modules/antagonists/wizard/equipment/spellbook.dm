@@ -124,7 +124,7 @@
 /datum/spellbook_entry/item/badmin_gauntlet/IsAvailible()
 	if(!..())
 		return FALSE
-	return SSticker.mode.name != "ragin' mages"
+	return (SSticker.mode.name != "ragin' mages") && !GLOB.gauntlet_equipped
 
 /datum/spellbook_entry/summon/guns/IsAvailible()
 	if (!..())

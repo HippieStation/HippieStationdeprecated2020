@@ -1,4 +1,5 @@
 GLOBAL_VAR_INIT(gauntlet_snapped, FALSE)
+GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
 
 /obj/item/infinity_gauntlet
 	name = "Badmin Gauntlet"
@@ -108,7 +109,9 @@ GLOBAL_VAR_INIT(gauntlet_snapped, FALSE)
 		var/stone_type = stone_types[stone]
 		var/obj/item/infinity_stone/IS = new stone_type(L ? get_turf(L) : null)
 		if(L && istype(L))
+			has_a_stone += L
 			var/datum/antagonist/stonekeeper/SK = L.mind.add_antag_datum(/datum/antagonist/stonekeeper)
+			SK = L.mind.has_antag_datum(/datum/antagonist/stonekeeper)
 			var/datum/objective/stonekeeper/SKO = new
 			SKO.stone = IS
 			SKO.update_explanation_text()
@@ -183,6 +186,7 @@ GLOBAL_VAR_INIT(gauntlet_snapped, FALSE)
 		if (prompt == "Yes")
 			user.dropItemToGround(src)
 			if(user.put_in_hands(src))
+				GLOB.gauntlet_equipped = TRUE
 				user.apply_status_effect(/datum/status_effect/agent_pinpointer/gauntlet)
 				priority_announce("A Wizard has declared that he will wipe out half the universe with the Badmin Gauntlet!\nStones have been scattered across the station. Protect anyone who holds one!", title = "Declaration of War", sound = 'hippiestation/sound/misc/wizard_wardec.ogg')
 				add_trait(TRAIT_NODROP, GAUNTLET_TRAIT)
