@@ -11,6 +11,7 @@ GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
 	var/locked_on = FALSE
 	var/stone_mode = BLUESPACE_STONE
 	var/list/stones = list()
+	var/datum/martial_art/martial_art
 	var/static/list/all_stones = list(SYNDIE_STONE, BLUESPACE_STONE, SERVER_STONE, LAG_STONE, CLOWN_STONE, GHOST_STONE)
 	var/static/list/stone_types = list(
 		SYNDIE_STONE = /obj/item/infinity_stone/syndie,
@@ -52,6 +53,7 @@ GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
 /obj/item/infinity_gauntlet/Initialize()
 	. = ..()
 	AddComponent(/datum/component/spell_catalyst)
+	martial_art = new
 	update_icon()
 
 /obj/item/infinity_gauntlet/examine(mob/user)
@@ -136,6 +138,10 @@ GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
 /obj/item/infinity_gauntlet/proc/UpdateAbilities(mob/living/user)
 	for(var/obj/item/infinity_stone/IS in stones)
 		IS.RemoveAbilities(user)
+	if(ishuman(user))
+		martial_art.remove(user)
+		if(!GetStone(stone_mode) || !stone_mode)
+			martial_art.teach(user)
 	if(FullyAssembled())
 		for(var/obj/item/infinity_stone/IS in stones)
 			if(IS && istype(IS))

@@ -3,21 +3,24 @@
 	desc = "Power, baby. Raw power."
 	color = "#ff0130"
 	stone_type = SYNDIE_STONE
-	ability_text = list("HARM INTENT: toggle immovable mode")
+	ability_text = list("ALL INTENTS: PLACEHOLDER MARTIAL ART")
 	spell_types = list(/obj/effect/proc_holder/spell/aoe_turf/repulse/syndie_stone,
 		/obj/effect/proc_holder/spell/self/infinity/regenerate)
+	var/datum/martial_art/martial_art
 
+/obj/item/infinity_stone/syndie/Initialize()
+	. = ..()
+	martial_art = new
 
-/obj/item/infinity_stone/syndie/HarmEvent(atom/target, mob/living/user, proximity_flag)
-	if(user.move_force >= INFINITY)
-		user.visible_message("<span class='danger'>[user] relaxes a bit.</span>", "<span class='notice'>We exit immovable mode.</span>")
-		user.move_force = initial(user.move_force)
-	else
-		user.visible_message("<span class='danger'>[user] tenses up!</span>", "<span class='notice'>We enter immovable mode!</span>")
-		user.move_force = INFINITY
+/obj/item/infinity_stone/syndie/GiveAbilities(mob/living/L, only_extra = FALSE)
+	. = ..()
+	if(ishuman(L))
+		martial_art.teach(L)
 
 /obj/item/infinity_stone/syndie/RemoveAbilities(mob/living/L, only_extra = FALSE)
 	. = ..()
+	if(ishuman(L))
+		martial_art.remove(L)
 	if(L.move_force >= INFINITY)
 		L.visible_message("<span class='danger'>[L] relaxes a bit.</span>", "<span class='notice'>We exit immovable mode.</span>")
 		L.move_force = initial(L.move_force)
