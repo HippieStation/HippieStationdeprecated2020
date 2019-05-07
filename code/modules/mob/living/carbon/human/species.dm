@@ -1152,15 +1152,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	return
 
 /datum/species/proc/help(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
-<<<<<<< HEAD
 // hippie start -- martial arts check because this was never implemented. sorry not sorry
 	if(attacker_style && attacker_style.help_act(user,target))
 		return 1
 // hippie end
-	if(!((target.health < 0 || target.has_trait(TRAIT_FAKEDEATH)) && !(target.mobility_flags & MOBILITY_STAND)))
-=======
 	if(!((target.health < 0 || HAS_TRAIT(target, TRAIT_FAKEDEATH)) && !(target.mobility_flags & MOBILITY_STAND)))
->>>>>>> fb45b7a... Turns trait accessors into defines, fixes some bugs (#43820)
 		target.help_shake_act(user)
 		if(target != user)
 			log_combat(user, target, "shaken")
