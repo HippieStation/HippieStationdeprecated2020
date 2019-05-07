@@ -21,7 +21,8 @@
 
 /obj/item/clothing/suit/space/hardsuit/hit_reaction(mob/living/carbon/human/user, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/obj/item/projectile/P = hitby
-	bullet_act(P)
+	if(istype(P, /obj/item/projectile/bullet))
+		bullet_act(P)
 	return ..()
 
 /obj/item/clothing/suit/space/hardsuit/bullet_act(obj/item/projectile/P, def_zone)
@@ -47,7 +48,7 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/spurdosuit/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/clothing/head/helmet/space/hardsuit/spurdosuit/attack_self(mob/user)
 	return

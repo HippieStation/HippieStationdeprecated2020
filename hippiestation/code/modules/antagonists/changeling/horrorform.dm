@@ -72,6 +72,7 @@
 	var/datum/action/innate/changeling/devour/devour
 	var/scream_sound_near = 'hippiestation/sound/effects/horror_scream.ogg'
 	var/scream_sound_far = 'hippiestation/sound/effects/horror_scream_reverb.ogg'
+	var/enter_message = TRUE
 
 /mob/living/simple_animal/hostile/true_changeling/Initialize()
 	. = ..()
@@ -91,6 +92,8 @@
 
 /mob/living/simple_animal/hostile/true_changeling/Login()
 	..()
+	if(!enter_message)
+		return
 	to_chat(src, "<b><font size=3 color='red'>We have entered our true form!</font> We are unbelievably powerful, and regenerate life at a steady rate. However, most of \
 	our abilities are useless in this form, and we must utilise the abilities that we have gained as a result of our transformation. Currently, we are incapable of returning to a human. \
 	After several minutes, we will once again be able to revert into a human. Taking too much damage will also turn us back into a human in addition to knocking us out for a long time.</b>")

@@ -86,7 +86,7 @@
 /datum/reagent/medicine/defib/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(M.stat == DEAD)
 		M.electrocute_act(1, "exstatic mixture")
-		if(!M.suiciding && !M.has_trait(TRAIT_HUSK) && !M.hellbound)
+		if(!M.suiciding && !HAS_TRAIT(M, TRAIT_HUSK) && !M.hellbound)
 			if(!M)
 				return
 			if(M.notify_ghost_cloning(source = M))
