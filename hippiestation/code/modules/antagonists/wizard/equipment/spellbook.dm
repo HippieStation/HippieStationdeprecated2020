@@ -1,3 +1,18 @@
+/obj/item/spellbook/attackby(obj/item/O, mob/user, params)
+	if(istype(O, /obj/item/infinity_gauntlet))
+		var/obj/item/infinity_gauntlet/IG = O
+		if(IG.locked_on)
+			to_chat(user, "<span class='notice'>You've put the gauntlet on already. No turning back now.</span>")
+			return
+		to_chat(user, "<span class='notice'>On second thought, wiping out half the universe is possibly a bad idea. You refund your points.</span>")
+		uses += 10
+		for(var/datum/spellbook_entry/item/badmin_gauntlet/I in entries)
+			if(!isnull(I.limit))
+				I.limit++
+		qdel(O)
+		return
+	return ..()
+
 /datum/spellbook_entry/lichdom/IsAvailible()
 	return FALSE
 
@@ -102,8 +117,14 @@
 
 /datum/spellbook_entry/item/badmin_gauntlet
 	name = "Badmin Gauntlet"
+	desc = "A gauntlet capable of holding the Infinity Stones. <b>Wearing this will trigger a war declaration!</b>. Before you wear it, you can refund it by hitting it against the spellbook."
 	item_path = /obj/item/infinity_gauntlet
 	cost = 10
+
+/datum/spellbook_entry/item/badmin_gauntlet/IsAvailible()
+	if(!..())
+		return FALSE
+	return SSticker.mode.name != "ragin' mages"
 
 /datum/spellbook_entry/summon/guns/IsAvailible()
 	if (!..())

@@ -1,10 +1,10 @@
+GLOBAL_VAR_INIT(gauntlet_snapped, FALSE)
 
 /obj/item/infinity_gauntlet
 	name = "Badmin Gauntlet"
 	icon = 'hippiestation/icons/obj/infinity.dmi'
 	icon_state = "gauntlet"
 	var/locked_on = FALSE
-	var/has_snapped = FALSE
 	var/stone_mode = BLUESPACE_STONE
 	var/list/stones = list()
 	var/static/list/all_stones = list(SYNDIE_STONE, BLUESPACE_STONE, SERVER_STONE, LAG_STONE, CLOWN_STONE, GHOST_STONE)
@@ -183,6 +183,13 @@
 				MakeStonekeepers(user)
 				user.AddSpell(new /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet)
 				user.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/repulse/gauntlet)
+				var/datum/antagonist/wizard/W = user.mind.has_antag_datum(/datum/antagonist/wizard)
+				if(W && istype(W))
+					for(var/datum/objective/O in W.objectives)
+						W.objectives -= O
+						qdel(O)
+					W.objectives += new /datum/objective/snap
+					user.mind.announce_objectives()
 			else
 				to_chat(user, "<span class='danger'>You do not have an empty hand for the Badmin Gauntlet.</span>")
 		return
@@ -214,7 +221,7 @@
 			stones += IS
 			UpdateAbilities(user)
 			update_icon()
-			if(FullyAssembled())
+			if(FullyAssembled() && !GLOB.gauntlet_snapped)
 				user.AddSpell(new /obj/effect/proc_holder/spell/self/infinity/snap)
 				user.visible_message("<span class='userdanger'>A massive surge of power courses through [user]. You feel as though your very existence is in danger!</span>", 
 					"<span class='danger bold'>You have fully assembled the Badmin Gauntlet. You can SNAP by clicking the gauntlet while using it.</span>")
@@ -273,7 +280,10 @@
 	if(prompt == "YES!")
 		user.emote("snap")
 		IG.DoTheSnap()
+		GLOB.gauntlet_snapped = TRUE
 		user.RemoveSpell(src)
+		SSshuttle.emergencyNoRecall = TRUE
+		SSshuttle.emergency.request(null, set_coefficient = 0.3)
 
 /obj/screen/alert/status_effect/agent_pinpointer/gauntlet
 	name = "Badmin Gauntlet Pinpointer"
@@ -296,3 +306,11 @@
 					continue
 				scan_target = IS
 				break
+
+
+/datum/objective/snap
+	name = "snap"
+	explanation_text = "Snap out half the life in the universe with the Badmin Gauntlet"
+
+/datum/objective/stonekeeper/check_completion()
+	return GLOB.gauntlet_snapped
