@@ -44,7 +44,7 @@
 /obj/item/reagent_containers/food/snacks/grown/nettle/stun/attack(mob/M, mob/living/carbon/human/user)
 
 
-	if(user.a_intent == INTENT_HARM && user.has_trait(TRAIT_CLUMSY) && prob(50))
+	if(user.a_intent == INTENT_HARM && HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 		user.visible_message("<span class='danger'>[user] accidentally hits [user.p_them()]self with [src]!</span>", \
 							"<span class='userdanger'>You accidentally hit yourself with [src]!</span>")
 		user.Paralyze(stunforce*3)
