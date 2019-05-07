@@ -1,0 +1,4 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - rscdel: "Remove CRAB-17 and Executioner's Sword from VR"

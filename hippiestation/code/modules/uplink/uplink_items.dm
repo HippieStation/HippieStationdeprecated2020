@@ -243,6 +243,7 @@
 	cost = 1 //Its weaker than an energy dagger and cannot be concealed.
 	surplus = 30 //Theres a good chance this will end up in surplus crates, so its a great way to add a little spice to any meme round.
 	exclude_modes = list(/datum/game_mode/infiltration)
+	restricted = TRUE
 
 /datum/uplink_item/dangerous/guardian
 	surplus = 5 //Up yours TGbalanceing
@@ -491,4 +492,7 @@
 	item = /obj/item/nullrod/monk_manual
 	cost = 6
 	restricted_roles = list("Chaplain")
-	
+
+// stop VR CRABBING
+/datum/uplink_item/device_tools/suspiciousphone
+	restricted = TRUE
