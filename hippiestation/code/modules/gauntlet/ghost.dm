@@ -136,7 +136,7 @@
 		H.AddSpell(new /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/infinity_cluwne)
 		H.AddSpell(new /obj/effect/proc_holder/spell/bloodcrawl)
 		var/obj/item/kitchen/knife/butcher/BK = new(get_turf(H))
-		BK.add_trait(TRAIT_NODROP, "ghost_stone_cluwne")
+		ADD_TRAIT(BK, TRAIT_NODROP, "ghost_stone_cluwne")
 		BK.name = "cluwne's cursed knife"
 		H.put_in_hands(BK, TRUE)
 		H.visible_message("<span class='danger'>[H] struggles back up, now a cluwne!</span>")

@@ -192,7 +192,7 @@ GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
 						qdel(SB)
 				user.apply_status_effect(/datum/status_effect/agent_pinpointer/gauntlet)
 				priority_announce("A Wizard has declared that he will wipe out half the universe with the Badmin Gauntlet!\nStones have been scattered across the station. Protect anyone who holds one!", title = "Declaration of War", sound = 'hippiestation/sound/misc/wizard_wardec.ogg')
-				add_trait(TRAIT_NODROP, GAUNTLET_TRAIT)
+				ADD_TRAIT(src, TRAIT_NODROP, GAUNTLET_TRAIT)
 				locked_on = TRUE
 				visible_message("<span class='danger bold'>The badmin gauntlet clamps to [user]'s hand!</span>")
 				MakeStonekeepers(user)

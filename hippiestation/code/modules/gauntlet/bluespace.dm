@@ -95,7 +95,7 @@
 
 /obj/item/shield/bluespace_stone/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, BLUESPACE_STONE_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, BLUESPACE_STONE_TRAIT)
 	QDEL_IN(src, 150)
 
 /obj/item/shield/bluespace_stone/IsReflect()
