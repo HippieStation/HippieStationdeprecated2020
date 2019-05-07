@@ -97,7 +97,7 @@
 
 /obj/item/infinity_stone/proc/HelpEvent(atom/target, mob/living/user, proximity_flag)
 
-/obj/item/infinity_stone/proc/FireProjectile(projectiletype, atom/target, p_damage = null)
+/obj/item/infinity_stone/proc/FireProjectile(projectiletype, atom/target, p_damage = null, fire_sound = 'sound/magic/staff_animation.ogg')
 	var/turf/startloc = get_turf(src)
 	var/obj/item/projectile/P = new projectiletype(startloc)
 	if(p_damage)
@@ -109,6 +109,8 @@
 	P.original = target
 	P.preparePixelProjectile(target, src)
 	P.fire()
+	playsound(src, fire_sound, 50, 1)
+	new /obj/effect/temp_visual/dir_setting/firing_effect/magic(get_turf(src))
 
 ////////////////////////////////////////////////////////////////////////////////
 

@@ -64,6 +64,9 @@
 	staff_req = FALSE
 	invocation_type = "none"
 
+/obj/effect/proc_holder/spell/targeted/turf_teleport/blink/bluespace_stone/after_teleport(mob/user, turf/before, turf/after)
+	before.Beam(after, "bsa_beam", time=35)
+
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/bluespace_stone // un-stuns you so you can move
 	name = "Bluespace Stone: Bluespace Jaunt"
 	clothes_req = FALSE

@@ -111,26 +111,27 @@
 	action_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_icon_state = "cluwnerise"
 	charge_max = 900
-	var/list/cluwnes = list()
+	var/mob/living/carbon/cluwne
 
 /obj/effect/proc_holder/spell/targeted/infinity/cluwne_rise_up/InterceptClickOn(mob/living/caller, params, atom/t)
 	. = ..()
 	if(!.)
 		return FALSE
 	if(ishuman(t))
-		for(var/mob/living/carbon/human/H in cluwnes)
-			if(istype(H) && H.stat != DEAD && !H.InCritical())
-				to_chat(caller, "<span class='danger'>You still have a magical cluwne alive.</span>")
-				return FALSE
+		if(istype(cluwne) && cluwne && cluwne.stat != DEAD && !cluwne.InCritical())
+			to_chat(caller, "<span class='danger'>You still have a magical cluwne alive.</span>")
+			return FALSE
 		var/mob/living/carbon/human/H = t
 		if(H.stat != DEAD && !H.InFullCritical())
 			to_chat(caller, "<span class='danger'>They aren't dead enough yet.</span>")
 			revert_cast()
 			return
 		H.revive(TRUE, TRUE)
+		H.grab_ghost()
 		H.cluwneify()
-		cluwnes |= H
+		cluwne = H
 		H.bloodcrawl = BLOODCRAWL_EAT
+		H.bloodcrawl_allow_items = TRUE
 		H.AddSpell(new /obj/effect/proc_holder/spell/targeted/turf_teleport/blink/infinity_cluwne)
 		H.AddSpell(new /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/infinity_cluwne)
 		H.AddSpell(new /obj/effect/proc_holder/spell/bloodcrawl)
