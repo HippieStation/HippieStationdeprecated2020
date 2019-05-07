@@ -12,6 +12,22 @@
 	. = ..()
 	martial_art = new
 
+/obj/item/infinity_stone/syndie/HelpEvent(atom/target, mob/living/user, proximity_flag)
+	if(ishuman(user) && ishuman(target))
+		martial_art.help_act(user, target)
+
+/obj/item/infinity_stone/syndie/DisarmEvent(atom/target, mob/living/user, proximity_flag)
+	if(ishuman(user) && ishuman(target))
+		martial_art.disarm_act(user, target)
+
+/obj/item/infinity_stone/syndie/HarmEvent(atom/target, mob/living/user, proximity_flag)
+	if(ishuman(user) && ishuman(target))
+		martial_art.harm_act(user, target)
+
+/obj/item/infinity_stone/syndie/GrabEvent(atom/target, mob/living/user, proximity_flag)
+	if(ishuman(user) && ishuman(target))
+		martial_art.grab_act(user, target)
+
 /obj/item/infinity_stone/syndie/GiveAbilities(mob/living/L, only_extra = FALSE)
 	. = ..()
 	if(ishuman(L))
