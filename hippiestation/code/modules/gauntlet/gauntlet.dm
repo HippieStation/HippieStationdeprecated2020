@@ -4,6 +4,9 @@ GLOBAL_VAR_INIT(gauntlet_snapped, FALSE)
 	name = "Badmin Gauntlet"
 	icon = 'hippiestation/icons/obj/infinity.dmi'
 	icon_state = "gauntlet"
+	force = 22.5
+	throwforce = 12
+	block_chance = 25
 	var/locked_on = FALSE
 	var/stone_mode = BLUESPACE_STONE
 	var/list/stones = list()
@@ -130,9 +133,14 @@ GLOBAL_VAR_INIT(gauntlet_snapped, FALSE)
 /obj/item/infinity_gauntlet/proc/UpdateAbilities(mob/living/user)
 	for(var/obj/item/infinity_stone/IS in stones)
 		IS.RemoveAbilities(user)
-	var/obj/item/infinity_stone/IS = GetStone(stone_mode)
-	if(IS && istype(IS))
-		IS.GiveAbilities(user)
+	if(FullyAssembled())
+		for(var/obj/item/infinity_stone/IS in stones)
+			if(IS && istype(IS))
+				IS.GiveAbilities(user)
+	else
+		var/obj/item/infinity_stone/IS = GetStone(stone_mode)
+		if(IS && istype(IS))
+			IS.GiveAbilities(user)
 
 /obj/item/infinity_gauntlet/update_icon()
 	cut_overlays()
@@ -224,7 +232,7 @@ GLOBAL_VAR_INIT(gauntlet_snapped, FALSE)
 			if(FullyAssembled() && !GLOB.gauntlet_snapped)
 				user.AddSpell(new /obj/effect/proc_holder/spell/self/infinity/snap)
 				user.visible_message("<span class='userdanger'>A massive surge of power courses through [user]. You feel as though your very existence is in danger!</span>", 
-					"<span class='danger bold'>You have fully assembled the Badmin Gauntlet. You can SNAP by clicking the gauntlet while using it.</span>")
+					"<span class='danger bold'>You have fully assembled the Badmin Gauntlet. You can use all stone abilities no matter the mode, and can SNAP using the ability.</span>")
 			return
 	return ..()
 
@@ -312,5 +320,5 @@ GLOBAL_VAR_INIT(gauntlet_snapped, FALSE)
 	name = "snap"
 	explanation_text = "Snap out half the life in the universe with the Badmin Gauntlet"
 
-/datum/objective/stonekeeper/check_completion()
+/datum/objective/snap/check_completion()
 	return GLOB.gauntlet_snapped
