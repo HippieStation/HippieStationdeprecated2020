@@ -2,6 +2,7 @@
 	name = "Syndie Stone"
 	desc = "Power, baby. Raw power."
 	color = "#ff0130"
+	force = 15
 	stone_type = SYNDIE_STONE
 	ability_text = list("ALL INTENTS: PLACEHOLDER MARTIAL ART")
 	spell_types = list(/obj/effect/proc_holder/spell/aoe_turf/repulse/syndie_stone,

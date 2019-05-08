@@ -2,6 +2,7 @@
 	name = "Generic Stone"
 	icon = 'hippiestation/icons/obj/infinity.dmi'
 	icon_state = "stone"
+	w_class = WEIGHT_CLASS_SMALL
 	var/mob/living/current_holder
 	var/stone_type = ""
 	var/list/ability_text = list()

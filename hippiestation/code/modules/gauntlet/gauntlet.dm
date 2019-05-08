@@ -74,7 +74,7 @@ GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
 	shuffle_inplace(mobs_to_wipe)
 	var/to_wipe = FLOOR(mobs_to_wipe.len/2, 1)
 	var/wiped = 0
-	to_chat(world, "<span class='danger italics'>You feel as if something big has happened.</span>")
+	to_chat(world, "<span class='userdanger italics'>You feel as if something big has happened.</span>")
 	for(var/mob/living/L in mobs_to_wipe)
 		if(wiped >= to_wipe)
 			break
@@ -322,12 +322,12 @@ GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
 	if(prompt == "YES!")
 		if(user.InCritical())
 			user.say("You should've gone for the head...")
-			user.visible_message("<span class='userdanger'>[user] raises their hand into the air, and... <i>snap.</i></span>")
-			playsound(src, 'hippiestation/sound/voice/snap.ogg', 100)
-		else
-			user.emote("snap")
-		for(var/mob/living/L in view(7, get_turf(src)))
-			L.flash_act()
+		user.visible_message("<span class='userdanger'>[user] raises their Badmin Gauntlet into the air, and... <i>snap.</i></span>")
+		for(var/mob/M in GLOB.mob_list)
+			SEND_SOUND(M, 'hippiestation/sound/voice/snap.ogg')
+			if(isliving(M))
+				var/mob/living/L = M
+				L.flash_act()
 		GLOB.gauntlet_snapped = TRUE
 		IG.DoTheSnap()
 		user.RemoveSpell(src)

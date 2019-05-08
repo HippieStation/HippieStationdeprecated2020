@@ -26,7 +26,7 @@
 		to_chat("<span class='danger'>You need to wait [DisplayTimeText(next_help - world.time)] to do that again!")
 		return
 	if(proximity_flag && isliving(target))
-		if(do_after(user, 250, target = target))
+		if(do_after(user, 25, target = target))
 			target.visible_message("<span class='danger'>[target] warps away!</span>", "<span class='notice'>We warp [target == user ? "ourselves" : target] to a safe location.</span>")
 			var/turf/potential_T = find_safe_turf(extended_safety_checks = TRUE)
 			do_teleport(target, potential_T, channel = TELEPORT_CHANNEL_BLUESPACE)
