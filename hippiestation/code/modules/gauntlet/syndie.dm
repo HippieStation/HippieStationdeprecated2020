@@ -58,16 +58,16 @@
 
 /obj/effect/proc_holder/spell/self/infinity/regenerate
 	name = "Syndie Stone: Regenerate"
-	desc = "Regenerate 10 health every 5 seconds. Requires you to stand still."
+	desc = "Regenerate 4 health per second. Requires you to stand still."
 	action_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_icon_state = "regenerate"
 
 /obj/effect/proc_holder/spell/self/infinity/regenerate/cast(list/targets, mob/user)
 	if(isliving(user))
 		var/mob/living/L = user
-		while(do_after(L, 50, FALSE, L))
+		while(do_after(L, 10, FALSE, L))
 			L.visible_message("<span class='notice'>[L]'s wounds heal!</span>")
-			L.heal_overall_damage(10, 10, 10, null, TRUE)
+			L.heal_overall_damage(4, 4, 4, null, TRUE)
 			if(L.getBruteLoss() + L.getFireLoss() + L.getStaminaLoss() < 1)
 				to_chat(user, "<span class='notice'>You are fully healed.</span>")
 				return
