@@ -51,15 +51,9 @@
 	//L.cut_overlay(aura_overlay)
 
 /obj/item/infinity_stone/proc/GetHolder()
-	var/atom/movable/A = loc
-	if(!istype(A))
-		return
-	if(isliving(A))
-		return A
-	for (A; isloc(A.loc) && !isliving(A.loc); A = A.loc); // it's voodoo to me
-	if(isliving(A.loc))
-		return A.loc
-	return A;
+	if(isliving(loc))
+		return loc
+	return null
 
 /obj/item/infinity_stone/proc/UpdateHolder()
 	if(istype(loc, /obj/item/infinity_gauntlet))
