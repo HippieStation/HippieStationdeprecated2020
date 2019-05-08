@@ -13,6 +13,8 @@
 /obj/item/infinity_stone/clown/HelpEvent(atom/target, mob/living/user, proximity_flag)
 	var/obj/item/reagent_containers/food/snacks/pie/cream/pie = new(get_turf(user))
 	pie.throw_at(target, 30, 3, user, FALSE)
+	playsound(src, fire_sound, 50, 1)
+	new /obj/effect/temp_visual/dir_setting/firing_effect/magic(get_turf(src))
 	user.changeNext_move(CLICK_CD_RANGE)
 
 /obj/item/infinity_stone/clown/GrabEvent(atom/target, mob/living/user, proximity_flag)
@@ -41,6 +43,8 @@
 	var/obj/item/grenade/chem_grenade/cleaner/C = new(get_turf(user))
 	C.preprime(src, null, FALSE)
 	C.throw_at(target, 7, 3, user, TRUE)
+	playsound(src, fire_sound, 50, 1)
+	new /obj/effect/temp_visual/dir_setting/firing_effect/magic(get_turf(src))
 	next_cleaner = world.time + 10 SECONDS
 
 /////////////////////////////////////////////
