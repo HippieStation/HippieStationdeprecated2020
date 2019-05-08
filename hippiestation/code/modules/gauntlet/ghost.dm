@@ -36,6 +36,7 @@
 	var/mob/living/simple_animal/SA = new simplemob(get_turf(O))
 	O.visible_message("<span class='danger'>The ghost of [O] turns into [SA]!</span>")
 	SA.ckey = O.ckey
+	to_chat(SA, "<span class='userdanger'>[user] is your master. Protect them at all costs.</span>")
 	qdel(O)
 
 

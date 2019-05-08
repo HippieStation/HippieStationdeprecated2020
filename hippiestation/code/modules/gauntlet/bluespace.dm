@@ -4,10 +4,9 @@
 	color = "#266ef6"
 	stone_type = BLUESPACE_STONE
 	ability_text = list("HELP INTENT: teleport target to safe location. Only works every 75 seconds.", 
-		"HARM INTENT: teleport to specified location", 
+		"GRAB INTENT: teleport to specified location", 
 		"DISARM INTENT: steal item someone is holding")
 	spell_types = list(/obj/effect/proc_holder/spell/self/infinity/bluespace_stone_shield, 
-		/obj/effect/proc_holder/spell/targeted/turf_teleport/blink/bluespace_stone,
 		/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/bluespace_stone)
 	var/next_help = 0
 
@@ -32,12 +31,15 @@
 			do_teleport(target, potential_T, channel = TELEPORT_CHANNEL_BLUESPACE)
 			next_help = world.time + 75 SECONDS
 
-/obj/item/infinity_stone/bluespace/HarmEvent(atom/target, mob/living/user, proximity_flag)	
+/obj/item/infinity_stone/bluespace/GrabEvent(atom/target, mob/living/user, proximity_flag)	
 	var/turf/to_teleport = get_turf(target)
-	user.adjustStaminaLoss(15)
-	user.visible_message("<span class='danger'>[user] warps away!</span>", "<span class='notice'>We warp ourselves to our desired location.</span>")
-	do_teleport(user, to_teleport, channel = TELEPORT_CHANNEL_BLUESPACE)
-	user.changeNext_move(CLICK_CD_CLICK_ABILITY)
+	if(do_after(user, 3))
+		var/turf/start = get_turf(user)
+		user.adjustStaminaLoss(15)
+		user.visible_message("<span class='danger'>[user] warps away!</span>", "<span class='notice'>We warp ourselves to our desired location.</span>")
+		do_teleport(user, to_teleport, channel = TELEPORT_CHANNEL_BLUESPACE)
+		start.Beam(to_teleport, "bsa_beam", time=25)
+		user.changeNext_move(CLICK_CD_CLICK_ABILITY)
 
 
 /////////////////////////////////////////////
@@ -55,17 +57,6 @@
 		user.visible_message("<span class='danger'>A portal manifests in [user]'s hands!</span>")
 	else
 		revert_cast()
-
-/obj/effect/proc_holder/spell/targeted/turf_teleport/blink/bluespace_stone
-	name = "Bluespace Stone: Bluespace Blink"
-	outer_tele_radius = 17
-	clothes_req = FALSE
-	human_req = FALSE
-	staff_req = FALSE
-	invocation_type = "none"
-
-/obj/effect/proc_holder/spell/targeted/turf_teleport/blink/bluespace_stone/after_teleport(mob/user, turf/before, turf/after)
-	before.Beam(after, "bsa_beam", time=35)
 
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/bluespace_stone // un-stuns you so you can move
 	name = "Bluespace Stone: Bluespace Jaunt"

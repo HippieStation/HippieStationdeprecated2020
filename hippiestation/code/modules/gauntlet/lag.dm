@@ -3,7 +3,6 @@
 	desc = "The bane of a coder's existence."
 	color = "#654321"
 	ability_text = list("HELP INTENT: Set a point on the station, or if a point is already set, teleport back to it. Stuns you for a while, but heals you alot.",
-		"HARM INTENT: Phase to nearby point.",
 		"GRAB INTENT: Swap places with the victim, and then fire a projectile!",
 		"DISARM INTENT: Shoot a disorienting projectile")
 	spell_types = list(/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/lag_stone)
@@ -26,15 +25,6 @@
 		do_teleport(user, teleport_point, channel = TELEPORT_CHANNEL_BLUESPACE)
 		user.Paralyze(450)
 		user.heal_overall_damage(45, 45, 45, null, TRUE)
-
-/obj/item/infinity_stone/lag/HarmEvent(atom/target, mob/living/user, proximity_flag)
-	if(target in view(user.client.view, user))
-		var/turf/from = get_turf(user)
-		var/turf/there = get_turf(target)
-		var/obj/spot1 = new /obj/effect/temp_visual/dir_setting/ninja/phase/out(from)
-		do_teleport(user, there, channel = TELEPORT_CHANNEL_BLUESPACE)
-		var/obj/spot2 = new /obj/effect/temp_visual/dir_setting/ninja/phase(there)
-		spot1.Beam(spot2, "blur", time=20)
 
 /obj/item/infinity_stone/lag/GrabEvent(atom/target, mob/living/user, proximity_flag)
 	if(!isliving(target))

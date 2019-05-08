@@ -4,7 +4,7 @@
 	color = "#FFC0CB"
 	stone_type = CLOWN_STONE
 	ability_text = list("HELP INTENT: fire banana cream pies",
-		"HARM INTENT: Spawn the Traps!",
+		"GRAB INTENT: Spawn the Traps!",
 		"DISARM INTENT: Throw a cleaner grenade")
 	spell_types = list(/obj/effect/proc_holder/spell/self/infinity/pranksters_delusion)
 	var/next_traps = 0
@@ -15,7 +15,7 @@
 	pie.throw_at(target, 30, 3, user, FALSE)
 	user.changeNext_move(CLICK_CD_RANGE)
 
-/obj/item/infinity_stone/clown/HarmEvent(atom/target, mob/living/user, proximity_flag)
+/obj/item/infinity_stone/clown/GrabEvent(atom/target, mob/living/user, proximity_flag)
 	if(next_traps > world.time)
 		to_chat(user, "<span class='danger'>You need to wait [DisplayTimeText(next_traps - world.time)] to summon more traps!</span>")
 		return

@@ -4,30 +4,29 @@
 	stone_type = SERVER_STONE
 	color = "#FF8B00"
 	spell_types = list (/obj/effect/proc_holder/spell/spacetime_dist/server_stone)
-	ability_text = list("DISARM/HELP/GRAB INTENT: Fire a bolt of animation", 
-		"HARM INTENT: Fire a bolt of chaos", 
+	ability_text = list("HELP/GRAB INTENT: Fire a bolt of animation", 
+		"DISARM INTENT: Fire a bolt of chaos", 
 		"Use on a material to use 25 sheets of it for a golem. 2 minute cooldown!")
 	var/next_golem = 0
 
 /obj/item/infinity_stone/server/DisarmEvent(atom/target, mob/living/user, proximity_flag)
-	if(!HandleGolem(user, target))
-		FireProjectile(/obj/item/projectile/magic/animate, target)
-
-/obj/item/infinity_stone/server/HarmEvent(atom/target, mob/living/user, proximity_flag)
 	if(!HandleGolem(user, target))
 		FireProjectile(pick(list(/obj/item/projectile/magic/change, /obj/item/projectile/magic/animate, /obj/item/projectile/magic/resurrection,
 		/obj/item/projectile/magic/death, /obj/item/projectile/magic/teleport, /obj/item/projectile/magic/door, /obj/item/projectile/magic/aoe/fireball,
 		/obj/item/projectile/magic/spellblade, /obj/item/projectile/magic/arcane_barrage, /obj/item/projectile/magic/locker, /obj/item/projectile/magic/flying,
 		/obj/item/projectile/magic/bounty, /obj/item/projectile/magic/antimagic, /obj/item/projectile/magic/fetch, /obj/item/projectile/magic/sapping,
 		/obj/item/projectile/magic/necropotence, /obj/item/projectile/magic, /obj/item/projectile/temp/chill, /obj/item/projectile/magic/wipe)), target)
+		user.changeNext_move(CLICK_CD_RANGE)
 
 /obj/item/infinity_stone/server/GrabEvent(atom/target, mob/living/user, proximity_flag)
 	if(!HandleGolem(user, target))
 		FireProjectile(/obj/item/projectile/magic/animate, target)
+		user.changeNext_move(CLICK_CD_RANGE)
 
 /obj/item/infinity_stone/server/HelpEvent(atom/target, mob/living/user, proximity_flag)
 	if(!HandleGolem(user, target))
 		FireProjectile(/obj/item/projectile/magic/animate, target)
+		user.changeNext_move(CLICK_CD_RANGE)
 
 
 /obj/item/infinity_stone/server/proc/HandleGolem(mob/living/user, atom/target)
