@@ -2821,7 +2821,6 @@
 #include "face\code\game\objects\items\weapons\shotgun_gatling.dm"
 #include "face\code\game\objects\structures\ghost_role_spawners.dm"
 #include "face\code\modules\cargo\exports\coins.dm"
-#include "face\code\modules\cargo\exports\research.dm"
 #include "face\code\modules\clothing\clothing.dm"
 #include "face\code\modules\clothing\gloves.dm"
 #include "face\code\modules\clothing\head.dm"
