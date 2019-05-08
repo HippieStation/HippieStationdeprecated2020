@@ -2,7 +2,7 @@
 	name = "chem implant"
 	desc = "Injects things."
 	icon_state = "reagents"
-	activated = FALSE
+	activated = TRUE
 
 /obj/item/implant/chem/get_data()
 	var/dat = {"<b>Implant Specifications:</b><BR>
@@ -29,10 +29,8 @@
 	GLOB.tracked_chem_implants -= src
 	return ..()
 
-/obj/item/implant/chem/trigger(emote, mob/living/source)
+/obj/item/implant/chem/trigger(emote, mob/source)
 	if(emote == "deathgasp")
-		if(istype(source) && !(source.stat == DEAD))
-			return
 		activate(reagents.total_volume)
 
 /obj/item/implant/chem/activate(cause)
