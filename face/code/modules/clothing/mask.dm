@@ -1,4 +1,4 @@
-	/obj/item/clothing/mask/gas/face/custom/krieg
+/obj/item/clothing/mask/gas/face/custom/krieg
 	name = "Death Korps Gas Mask"
 	desc = "Cat Bois Represent!"
 	icon_state = "krieggasmask"

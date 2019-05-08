@@ -13,6 +13,7 @@
 	slowdown = 1
 	armor = list(melee = 40, bullet = 30, laser = 30, energy = 15, bomb = 35, bio = 100, rad = 20)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/face/custom/ultramarine
+	alternate_screams = list('face/sound/screams/Spacemarine.ogg')
 
 /obj/item/clothing/suit/space/hardsuit/face/custom/bloodraven
 	name = "Bloodraven Power Armour"
@@ -23,6 +24,7 @@
 	slowdown = 1
 	armor = list(melee = 40, bullet = 30, laser = 30, energy = 15, bomb = 35, bio = 100, rad = 20)
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/face/custom/bloodraven
+	alternate_screams = list('face/sound/screams/Spacemarine.ogg')
 
 /obj/item/clothing/suit/face/custom/paladinsuit
 	name = "Paladin Armor"
