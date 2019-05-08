@@ -2,7 +2,7 @@
 	name = "chem implant"
 	desc = "Injects things."
 	icon_state = "reagents"
-	activated = FALSE
+	container_type = OPENCONTAINER
 
 /obj/item/implant/chem/get_data()
 	var/dat = {"<b>Implant Specifications:</b><BR>
@@ -20,23 +20,20 @@
 				<b>Integrity:</b> Implant will last so long as the subject is alive."}
 	return dat
 
-/obj/item/implant/chem/Initialize()
-	. = ..()
-	create_reagents(50, OPENCONTAINER)
+/obj/item/implant/chem/New()
+	..()
+	create_reagents(50)
 	GLOB.tracked_chem_implants += src
 
 /obj/item/implant/chem/Destroy()
+	. = ..()
 	GLOB.tracked_chem_implants -= src
-	return ..()
 
-/obj/item/implant/chem/trigger(emote, mob/living/source)
+/obj/item/implant/chem/trigger(emote, mob/source)
 	if(emote == "deathgasp")
-		if(istype(source) && !(source.stat == DEAD))
-			return
 		activate(reagents.total_volume)
 
 /obj/item/implant/chem/activate(cause)
-	. = ..()
 	if(!cause || !imp_in)
 		return 0
 	var/mob/living/carbon/R = imp_in
