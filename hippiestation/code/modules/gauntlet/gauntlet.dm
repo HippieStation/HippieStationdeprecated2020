@@ -311,6 +311,7 @@ GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
 	desc = "Snap the Badmin Gauntlet, erasing half the life in the universe."
 	action_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_icon_state = "gauntlet"
+	stat_allowed = TRUE
 
 /obj/effect/proc_holder/spell/self/infinity/snap/cast(list/targets, mob/living/user)
 	var/obj/item/infinity_gauntlet/IG = locate() in user
@@ -320,9 +321,12 @@ GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
 	if(prompt == "YES!")
 		if(user.InCritical())
 			user.say("You should've gone for the head...")
-		user.emote("snap")
-		IG.DoTheSnap()
+			user.visible_message("<span class='userdanger'>[user] raises their hand into the air, and... <i>snap.</i></span>")
+			playsound(src, 'hippiestation/sound/voice/snap.ogg', 100)
+		else
+			user.emote("snap")
 		GLOB.gauntlet_snapped = TRUE
+		IG.DoTheSnap()
 		user.RemoveSpell(src)
 		SSshuttle.emergencyNoRecall = TRUE
 		SSshuttle.emergency.request(null, set_coefficient = 0.3)
