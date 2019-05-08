@@ -325,6 +325,8 @@ GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
 			playsound(src, 'hippiestation/sound/voice/snap.ogg', 100)
 		else
 			user.emote("snap")
+		for(var/mob/living/L in view(7, get_turf(src)))
+			L.flash_act()
 		GLOB.gauntlet_snapped = TRUE
 		IG.DoTheSnap()
 		user.RemoveSpell(src)
