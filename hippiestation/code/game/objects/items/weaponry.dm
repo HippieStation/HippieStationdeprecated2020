@@ -1,6 +1,6 @@
 /obj/item/wirerod/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/shard))
-		var/obj/item/twohanded/spear/S = new(src)
+		var/obj/item/twohanded/spear/S = new(src.loc)
 
 		remove_item_from_storage(user)
 		qdel(I)
@@ -10,7 +10,7 @@
 		to_chat(user, "<span class='notice'>You fasten the glass shard to the top of the rod with the cable.</span>")
 
 	else if(istype(I, /obj/item/assembly/igniter) && !HAS_TRAIT(src, TRAIT_NODROP))
-		var/obj/item/melee/baton/cattleprod/hippie_cattleprod/P = new(src)
+		var/obj/item/melee/baton/cattleprod/hippie_cattleprod/P = new(src.loc)
 
 		remove_item_from_storage(user)
 
