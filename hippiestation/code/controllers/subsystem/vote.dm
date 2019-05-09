@@ -21,11 +21,9 @@ datum/controller/subsystem/vote
 				non_voters -= non_voter_ckey
 		if(non_voters.len > 0)
 			if(mode == "restart")
-				choices["Continue Playing"] += non_voters.len
 				if(choices["Continue Playing"] >= greatest_votes)
 					greatest_votes = choices["Continue Playing"]
 			if(mode == "shuttlecall")
-				choices["Do not call Shuttle"] += non_voters.len
 				if(choices["Do not call Shuttle"] >= greatest_votes)
 					greatest_votes = choices["Do not call Shuttle"]
 			if(mode == "gamemode")
@@ -236,7 +234,7 @@ datum/controller/subsystem/vote
 			message_admins("A restart vote has passed, but there are active admins on with +server, so it has been cancelled. If you wish, you may restart the server.")
 	if(shuttlecall)
 		var/shuttle_timer = SSshuttle.emergency.timeLeft()
-		if(shuttle_timer >= 300 || SSshuttle.emergency.mode != SHUTTLE_CALL)
+		if(shuttle_timer >= 300 || (SSshuttle.emergency.mode != SHUTTLE_CALL && SSshuttle.emergency.mode != SHUTTLE_DOCKED && SSshuttle.emergency.mode != SHUTTLE_ESCAPE)) // hippie -- fix shuttle votes upping timers to 5 minutes
 			if(SSshuttle.emergency.mode == SHUTTLE_CALL && shuttle_timer >= 300)	//Apparently doing the emergency request twice cancels the call so these check are just in case
 				SSshuttle.emergency.setTimer(3000)
 				priority_announce("The emergency shuttle will arrive in [SSshuttle.emergency.timeLeft()/60] minutes.")

@@ -33980,7 +33980,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/maintenance{
-	req_one_access_txt = "12;25;46"
+	req_one_access_txt = "12;22;25;37;38;46"
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
@@ -38133,7 +38133,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance{
-	req_one_access_txt = "12;25;46"
+	req_one_access_txt = "12;22;25;37;38;46"
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
@@ -51179,7 +51179,7 @@
 /obj/machinery/door/airlock{
 	name = "Service Hall";
 	req_access_txt = "null";
-	req_one_access_txt = "25;26;35;28"
+	req_one_access_txt = "25;26;35;28;22;37;46;38"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -53153,7 +53153,7 @@
 /obj/machinery/door/airlock{
 	name = "Service Hall";
 	req_access_txt = "null";
-	req_one_access_txt = "25;26;35;28"
+	req_one_access_txt = "25;26;35;28;22;37;46;38"
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
@@ -53587,17 +53587,6 @@
 	pixel_y = -3
 	},
 /obj/item/clothing/glasses/science,
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/science/research)
-"cau" = (
-/obj/structure/table,
-/obj/item/paper/pamphlet/gateway,
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
@@ -83708,6 +83697,16 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/science/misc_lab/range)
+"ofy" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/machinery/vending/modularpc,
+/turf/open/floor/plasteel/white,
+/area/science/research)
 "ogE" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
@@ -112769,7 +112768,7 @@ bVk
 bWx
 bXV
 bZj
-cat
+ofy
 ccd
 ccd
 ceN
@@ -113026,7 +113025,7 @@ aYX
 aXR
 bXW
 bZk
-cau
+cat
 cce
 ccd
 qBh

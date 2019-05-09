@@ -173,7 +173,7 @@
 	update_visuals()
 
 	current_cycle = times_fired
-	CalculateAdjacentTurfs()
+	ImmediateCalculateAdjacentTurfs()
 	for(var/i in atmos_adjacent_turfs)
 		var/turf/open/enemy_tile = i
 		var/datum/gas_mixture/enemy_air = enemy_tile.return_air()
@@ -232,18 +232,31 @@
 				return 0
 		if(!(lube&SLIDE_ICE))
 			to_chat(C, "<span class='notice'>You slipped[ O ? " on the [O.name]" : ""]!</span>")
-			playsound(C.loc, 'sound/misc/slip.ogg', 50, 1, -3)
+			// Hippie Start - custom sounds for slipping
+			var/slip_sound = 'sound/misc/slip.ogg'
+			if(prob(95))
+				if (O)
+					if (istype(O, /obj))
+						var/obj/Obj = O
+						if (Obj)
+							LAZYINITLIST(Obj.alternate_slip_sounds)
+							if (LAZYLEN(Obj.alternate_slip_sounds))
+								slip_sound = pick(Obj.alternate_slip_sounds)
+			else
+				slip_sound = 'hippiestation/sound/misc/oof.ogg'
+			playsound(C.loc, (slip_sound), 50, 1, -3)
+			// Hippie End
 
 		SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "slipped", /datum/mood_event/slipped)
 		if(force_drop)
 			for(var/obj/item/I in C.held_items)
 				C.accident(I)
 
-		// hippie start -- Throw some hats if we slipped	
-		if (prob(33))	
-			var/list/L = list()	
-			LAZYADD(L, C.dir)	
-			C.throw_hats(1 + rand(1, 3), L)	
+		// hippie start -- Throw some hats if we slipped
+		if (prob(33))
+			var/list/L = list()
+			LAZYADD(L, C.dir)
+			C.throw_hats(1 + rand(1, 3), L)
 		// hippie end
 
 		var/olddir = C.dir

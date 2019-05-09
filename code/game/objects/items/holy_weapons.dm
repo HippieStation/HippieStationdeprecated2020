@@ -17,6 +17,8 @@
 	icon_state = "knight_templar"
 	item_state = "knight_templar"
 	allowed = list(/obj/item/storage/book/bible, /obj/item/nullrod, /obj/item/reagent_containers/food/drinks/bottle/holywater, /obj/item/storage/fancy/candle_box, /obj/item/candle, /obj/item/tank/internals/emergency_oxygen, /obj/item/tank/internals/plasmaman)
+	slowdown = 0
+	blocks_shove_knockdown = FALSE
 
 /obj/item/choice_beacon/holy
 	name = "armaments beacon"
@@ -233,7 +235,7 @@
 
 /obj/item/nullrod/godhand/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 
 /obj/item/nullrod/staff
 	icon_state = "godstaff-red"
@@ -479,7 +481,7 @@
 
 /obj/item/nullrod/chainsaw/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	AddComponent(/datum/component/butchering, 30, 100, 0, hitsound)
 
 /obj/item/nullrod/clown
@@ -551,7 +553,7 @@
 
 /obj/item/nullrod/armblade/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, HAND_REPLACEMENT_TRAIT)
 	AddComponent(/datum/component/butchering, 80, 70)
 
 /obj/item/nullrod/armblade/tentacle

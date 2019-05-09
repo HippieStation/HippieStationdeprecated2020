@@ -77,7 +77,7 @@
 		user.visible_message("<span class='danger'>[user] begins to flail around wildly!</span>")
 		user.confused += 200
 		block_chance = 100
-		add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+		ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 		SpinAnimation(15, 50)
 		user.SpinAnimation(15, 50)
 		for(var/I in 1 to 60)
@@ -88,7 +88,7 @@
 						if(prob(50))
 							AM.attackby(src, user)
 
-		remove_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+		REMOVE_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 		user.confused = max(user.confused - 200, 0)
 		block_chance = initial(block_chance)
 		special_attack = FALSE

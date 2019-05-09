@@ -74,7 +74,7 @@
 	display_name = "Biological Processing"
 	description = "From slimes to kitchens."
 	prereq_ids = list("biotech")
-	design_ids = list("smartfridge", "gibber", "deepfryer", "monkey_recycler", "processor", "gibber", "microwave", "reagentgrinder", "dish_drive")
+	design_ids = list("smartfridge", "gibber", "deepfryer", "monkey_recycler", "processor", "gibber", "microwave", "reagentgrinder", "dish_drive", "fat_sucker")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
@@ -181,7 +181,7 @@
 	description = "Application of Bluespace for static teleportation technology."
 	prereq_ids = list("practical_bluespace")
 	design_ids = list("tele_station", "tele_hub", "teleconsole", "quantumpad", "launchpad", "launchpad_console", "bluespace_pod")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
 /datum/techweb_node/micro_bluespace
@@ -190,7 +190,7 @@
 	description = "Extreme reduction in space required for bluespace engines, leading to portable bluespace technology."
 	prereq_ids = list("bluespace_travel", "practical_bluespace", "high_efficiency")
 	design_ids = list("bluespace_matter_bin", "femto_mani", "triphasic_scanning", "bag_holding", "quantum_keycard", "wormholeprojector")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 10000)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
 /datum/techweb_node/practical_bluespace
@@ -199,7 +199,7 @@
 	description = "Using bluespace to make things faster and better."
 	prereq_ids = list("bluespace_basic", "engineering")
 	design_ids = list("bs_rped","minerbag_holding", "bluespacebeaker", "bluespacesyringe", "bluespacebodybag", "phasic_scanning", "roastingstick", "ore_silo")
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 
 /datum/techweb_node/bluespace_power
@@ -471,7 +471,7 @@
 	display_name = "Cybernetic Implants"
 	description = "Electronic implants that improve humans."
 	prereq_ids = list("adv_biotech", "datatheory")
-	design_ids = list("ci-nutriment", "ci-breather", "ci-gloweyes", "ci-welding", "ci-medhud", "ci-sechud")
+	design_ids = list("ci-nutriment", "ci-breather", "ci-gloweyes", "ci-welding", "ci-medhud", "ci-sechud", "ci-diaghud")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 

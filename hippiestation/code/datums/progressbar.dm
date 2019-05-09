@@ -1,3 +1,6 @@
+/* 
+GOOD NIGHT SWEET PRINCE
+
 #define PROGRESSBAR_HEIGHT 6
 
 /datum/progressbar/New(mob/User, goal_number, atom/target)
@@ -16,4 +19,5 @@
 	if (client)
 		client.images -= bar
 
-#undef PROGRESSBAR_HEIGHT
+#undef PROGRESSBAR_HEIGHT 
+*/

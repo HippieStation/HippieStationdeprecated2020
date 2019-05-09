@@ -104,7 +104,7 @@
 /obj/item/water_cannon_controls/Initialize(mapload, obj/vehicle/ridden/the_firetruck)
 	. = ..()
 	firetruck = the_firetruck
-	add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/water_cannon_controls/CanItemAutoclick()
 	return TRUE

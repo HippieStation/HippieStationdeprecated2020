@@ -1,4 +1,0 @@
-author: "HonkBot"
-delete-after: True
-changes: 
-  - bugfix: "Stuff in the Character Setup screen is no longer way too close to the edge of the window."

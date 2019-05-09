@@ -207,6 +207,7 @@
 
 /datum/uplink_item/implants/macrobomb
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor)
+	restricted = FALSE
 
 /datum/uplink_item/dangerous/hockey
 	name = "Ka-nada Hockey Set"
@@ -242,6 +243,7 @@
 	cost = 1 //Its weaker than an energy dagger and cannot be concealed.
 	surplus = 30 //Theres a good chance this will end up in surplus crates, so its a great way to add a little spice to any meme round.
 	exclude_modes = list(/datum/game_mode/infiltration)
+	restricted = TRUE
 
 /datum/uplink_item/dangerous/guardian
 	surplus = 5 //Up yours TGbalanceing
@@ -491,3 +493,7 @@
 	cost = 8 
 	surplus = 30
 	restricted_roles = list("Shaft Miner")
+  
+// stop VR CRABBING
+/datum/uplink_item/device_tools/suspiciousphone
+	restricted = TRUE
