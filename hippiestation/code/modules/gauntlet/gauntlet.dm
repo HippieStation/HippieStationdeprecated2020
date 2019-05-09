@@ -166,6 +166,11 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 		add_overlay(O)
 		index++
 
+/obj/item/infinity_gauntlet/IsReflect(def_zone)
+	if(prob(50))
+		return TRUE
+	return FALSE
+
 /obj/item/infinity_gauntlet/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!locked_on)
 		return ..()
@@ -190,8 +195,17 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 	switch(user.a_intent)
 		if(INTENT_DISARM)
 			IS.DisarmEvent(target, user, proximity_flag)
-		if(INTENT_HARM)
-			IS.HarmEvent(target, user, proximity_flag)
+		if(INTENT_HARM) // there's no harm intent on the stones anyways
+			if(isclosedturf(target))
+				var/turf/closed/T = target
+				if(!GetStone(SYNDIE_STONE))
+					user.visible_message("<span class='danger'>[user] begins to charge up a punch...</span>", "<span class='notice'>We begin to charge a punch...</span>")
+					if(do_after(user, 15, target = T))
+						T.ScrapeAway()
+						user.visible_message("<span class='danger'>[user] punches down [T]!</span>")
+				else
+					T.ScrapeAway()
+					user.visible_message("<span class='danger'>[user] punches down [T]!</span>")
 		if(INTENT_GRAB)
 			IS.GrabEvent(target, user, proximity_flag)
 		if(INTENT_HELP)
@@ -263,6 +277,8 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 		var/obj/item/infinity_stone/IS = I
 		if(!GetStone(IS.stone_type))
 			user.visible_message("<span class='danger bold'>[user] drops the [IS] into the Badmin Gauntlet.</span>")
+			if(IS.stone_type == SYNDIE_STONE)
+				force = 22.5
 			IS.forceMove(src)
 			stones += IS
 			UpdateAbilities(user)

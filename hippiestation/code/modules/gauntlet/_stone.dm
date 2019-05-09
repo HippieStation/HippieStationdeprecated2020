@@ -77,8 +77,6 @@
 	switch(user.a_intent)
 		if(INTENT_DISARM)
 			DisarmEvent(target, user, proximity_flag)
-		if(INTENT_HARM)
-			HarmEvent(target, user, proximity_flag)
 		if(INTENT_GRAB)
 			GrabEvent(target, user, proximity_flag)
 		if(INTENT_HELP)
