@@ -6,7 +6,7 @@
 	species_traits = list(NOTRANSSTING, NOZOMBIE, NO_DNA_COPY, NOEYESPRITES, AGENDER, NO_UNDERWEAR)
 	inherent_traits = list(TRAIT_RESISTCOLD, TRAIT_RESISTHEAT, TRAIT_NOLIMBDISABLE, TRAIT_NODISMEMBER, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE, TRAIT_STABLEHEART)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
-	changesource_flags = NONE
+	changesource_flags = MIRROR_BADMIN
 	sexes = FALSE
 
 /datum/species/ganymede/on_species_gain(mob/living/carbon/human/C, datum/species/old_species, pref_load)

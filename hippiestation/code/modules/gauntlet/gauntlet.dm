@@ -47,6 +47,7 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 	var/locked_on = FALSE
 	var/stone_mode = null
 	var/list/stones = list()
+	var/list/spells = list()
 	var/datum/martial_art/cqc/martial_art
 
 
@@ -55,6 +56,8 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 	AddComponent(/datum/component/spell_catalyst)
 	martial_art = new
 	update_icon()
+	spells += new /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet
+	spells += new /obj/effect/proc_holder/spell/aoe_turf/repulse/gauntlet
 
 /obj/item/infinity_gauntlet/examine(mob/user)
 	. = ..()
@@ -134,6 +137,35 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 	if(IS && istype(IS))
 		return IS.color
 	return "#DC143C" //crimson by default
+
+/obj/item/infinity_gauntlet/proc/OnEquip(mob/living/user)
+	for(var/obj/effect/proc_holder/spell/A in spells)
+		user.mob_spell_list += A
+		A.action.Grant(user)
+	var/datum/antagonist/wizard/W = user.mind.has_antag_datum(/datum/antagonist/wizard)
+	if(W && istype(W))
+		for(var/datum/objective/O in W.objectives)
+			W.objectives -= O
+			qdel(O)
+		W.objectives += new /datum/objective/snap
+		user.mind.announce_objectives()
+
+/obj/item/infinity_gauntlet/proc/OnUnquip(mob/living/user)
+	for(var/obj/effect/proc_holder/spell/A in spells)
+		user.mob_spell_list -= A
+		A.action.Remove(user)
+
+/obj/item/infinity_gauntlet/pickup(mob/user)
+	. = ..()
+	if(locked_on && isliving(user))
+		OnEquip(user)
+		visible_message("<span class='danger'>The Badmin Gauntlet attaches to [user]'s hand!.</span>")
+
+/obj/item/infinity_gauntlet/dropped(mob/user)
+	. = ..()
+	if(locked_on && isliving(user))
+		OnUnquip(user)
+		visible_message("<span class='danger'>The Badmin Gauntlet falls off of [user].</span>")
 
 /obj/item/infinity_gauntlet/proc/UpdateAbilities(mob/living/user)
 	for(var/obj/item/infinity_stone/IS in stones)
@@ -236,16 +268,8 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 				locked_on = TRUE
 				visible_message("<span class='danger bold'>The badmin gauntlet clamps to [user]'s hand!</span>")
 				UpdateAbilities(user)
+				OnEquip(user)
 				MakeStonekeepers(user)
-				user.AddSpell(new /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet)
-				user.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/repulse/gauntlet)
-				var/datum/antagonist/wizard/W = user.mind.has_antag_datum(/datum/antagonist/wizard)
-				if(W && istype(W))
-					for(var/datum/objective/O in W.objectives)
-						W.objectives -= O
-						qdel(O)
-					W.objectives += new /datum/objective/snap
-					user.mind.announce_objectives()
 			else
 				to_chat(user, "<span class='danger'>You do not have an empty hand for the Badmin Gauntlet.</span>")
 		return
