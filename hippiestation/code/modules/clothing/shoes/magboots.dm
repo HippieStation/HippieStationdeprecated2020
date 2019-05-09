@@ -15,6 +15,12 @@
 	cell = new(src)
 	START_PROCESSING(SSobj, src)
 
+/obj/item/clothing/shoes/magboots/antigrav/get_cell()
+	return cell
+
+/obj/item/clothing/shoes/magboots/antigrav/emp_act(severity)
+	cell.emp_act(severity)
+
 /obj/item/clothing/shoes/magboots/antigrav/process()
 	if(!cell?.charge)
 		return PROCESS_KILL
