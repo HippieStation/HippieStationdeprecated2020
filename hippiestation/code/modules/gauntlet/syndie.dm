@@ -7,7 +7,7 @@
 	ability_text = list("ALL INTENTS: PLACEHOLDER MARTIAL ART")
 	spell_types = list(/obj/effect/proc_holder/spell/aoe_turf/repulse/syndie_stone,
 		/obj/effect/proc_holder/spell/self/infinity/regenerate)
-	var/datum/martial_art/elite_cqc/martial_art
+	var/datum/martial_art/wrestling/martial_art
 
 /obj/item/infinity_stone/syndie/Initialize()
 	. = ..()
