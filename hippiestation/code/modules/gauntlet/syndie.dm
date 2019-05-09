@@ -2,7 +2,7 @@
 	name = "Syndie Stone"
 	desc = "Power, baby. Raw power."
 	color = "#ff0130"
-	force = 15
+	force = 30
 	stone_type = SYNDIE_STONE
 	ability_text = list("ALL INTENTS: PLACEHOLDER MARTIAL ART")
 	spell_types = list(/obj/effect/proc_holder/spell/aoe_turf/repulse/syndie_stone,
@@ -61,6 +61,7 @@
 	desc = "Regenerate 4 health per second. Requires you to stand still."
 	action_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_icon_state = "regenerate"
+	stat_allowed = TRUE
 
 /obj/effect/proc_holder/spell/self/infinity/regenerate/cast(list/targets, mob/user)
 	if(isliving(user))

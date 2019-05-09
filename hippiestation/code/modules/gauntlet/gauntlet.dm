@@ -303,6 +303,7 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 	action_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_icon_state = "regenerate"
 	action_background_icon_state = "bg_default"
+	stat_allowed = TRUE
 
 /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet/cast(list/targets, mob/user)
 	if(isliving(user))
@@ -354,11 +355,13 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 		if(prompt)
 			G.stone_target = prompt
 			G.scan_for_target()
+			G.point_to_target()
 
 /datum/status_effect/agent_pinpointer/gauntlet
 	id = "gauntlet_pinpointer"
 	minimum_range = 1
 	range_fuzz_factor = 0
+	tick_interval = 10
 	alert_type = /obj/screen/alert/status_effect/agent_pinpointer/gauntlet
 	var/stone_target = SYNDIE_STONE
 
