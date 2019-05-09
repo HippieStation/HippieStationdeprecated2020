@@ -1,26 +1,14 @@
 GLOBAL_VAR_INIT(gauntlet_snapped, FALSE)
 GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
-
-/obj/item/infinity_gauntlet
-	name = "Badmin Gauntlet"
-	icon = 'hippiestation/icons/obj/infinity.dmi'
-	icon_state = "gauntlet"
-	force = 17.5
-	throwforce = 12
-	block_chance = 25
-	var/locked_on = FALSE
-	var/stone_mode = null
-	var/list/stones = list()
-	var/datum/martial_art/cqc/martial_art
-	var/static/list/all_stones = list(SYNDIE_STONE, BLUESPACE_STONE, SERVER_STONE, LAG_STONE, CLOWN_STONE, GHOST_STONE)
-	var/static/list/stone_types = list(
+GLOBAL_LIST_INIT(infinity_stones, list(SYNDIE_STONE, BLUESPACE_STONE, SERVER_STONE, LAG_STONE, CLOWN_STONE, GHOST_STONE))
+GLOBAL_LIST_INIT(infinity_stone_types, list(
 		SYNDIE_STONE = /obj/item/infinity_stone/syndie,
 		BLUESPACE_STONE = /obj/item/infinity_stone/bluespace, 
 		SERVER_STONE = /obj/item/infinity_stone/server, 
 		LAG_STONE = /obj/item/infinity_stone/lag, 
 		CLOWN_STONE = /obj/item/infinity_stone/clown, 
-		GHOST_STONE = /obj/item/infinity_stone/ghost)
-	var/static/list/stone_weights = list(
+		GHOST_STONE = /obj/item/infinity_stone/ghost))
+GLOBAL_LIST_INIT(infinity_stone_weights, list(
 		SYNDIE_STONE = list(
 			"Head of Security" = 70,
 			"Captain" = 60,
@@ -47,7 +35,19 @@ GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
 			"Head of Personnel" = 45,
 			"Chaplain" = 25
 		)
-	)
+	))
+
+/obj/item/infinity_gauntlet
+	name = "Badmin Gauntlet"
+	icon = 'hippiestation/icons/obj/infinity.dmi'
+	icon_state = "gauntlet"
+	force = 17.5
+	throwforce = 12
+	block_chance = 25
+	var/locked_on = FALSE
+	var/stone_mode = null
+	var/list/stones = list()
+	var/datum/martial_art/cqc/martial_art
 
 
 /obj/item/infinity_gauntlet/Initialize()
@@ -95,8 +95,8 @@ GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
 
 /obj/item/infinity_gauntlet/proc/MakeStonekeepers(mob/living/current_user)
 	var/list/has_a_stone = list(current_user)
-	for(var/stone in all_stones)
-		var/list/to_get_stones = GetWeightedChances(stone_weights[stone], has_a_stone)
+	for(var/stone in GLOB.infinity_stones)
+		var/list/to_get_stones = GetWeightedChances(GLOB.infinity_stone_weights[stone], has_a_stone)
 		var/mob/living/L
 		if(LAZYLEN(to_get_stones))
 			L = pickweight(to_get_stones)
@@ -108,7 +108,7 @@ GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
 			if(LAZYLEN(minds))
 				var/datum/mind/M = pick(minds)
 				L = M.current
-		var/stone_type = stone_types[stone]
+		var/stone_type = GLOB.infinity_stone_types[stone]
 		var/obj/item/infinity_stone/IS = new stone_type(L ? get_turf(L) : null)
 		if(L && istype(L))
 			has_a_stone += L
@@ -124,7 +124,7 @@ GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
 
 
 /obj/item/infinity_gauntlet/proc/FullyAssembled()
-	for(var/stone in all_stones)
+	for(var/stone in GLOB.infinity_stones)
 		if(!GetStone(stone))
 			return FALSE
 	return TRUE
@@ -344,25 +344,30 @@ GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
 /obj/screen/alert/status_effect/agent_pinpointer/gauntlet
 	name = "Badmin Gauntlet Pinpointer"
 
+/obj/screen/alert/status_effect/agent_pinpointer/gauntlet/Click()
+	var/mob/living/L = usr
+	if(!L || !istype(L))
+		return
+	var/datum/status_effect/agent_pinpointer/gauntlet/G = attached_effect
+	if(G && istype(G))
+		var/prompt = input(L, "Choose the Infinity Stone to track.", "Track Stone") as null|anything in GLOB.infinity_stones
+		if(prompt)
+			G.stone_target = prompt
+			G.scan_for_target()
+
 /datum/status_effect/agent_pinpointer/gauntlet
 	id = "gauntlet_pinpointer"
 	minimum_range = 1
 	range_fuzz_factor = 0
 	alert_type = /obj/screen/alert/status_effect/agent_pinpointer/gauntlet
+	var/stone_target = SYNDIE_STONE
 
 /datum/status_effect/agent_pinpointer/gauntlet/scan_for_target()
 	scan_target = null
-	if(owner)
-		var/obj/item/infinity_gauntlet/IG = locate() in owner
-		for(var/stone in IG.all_stones)
-			if(!IG.GetStone(stone))
-				var/stone_type = IG.stone_types[stone]
-				var/obj/item/infinity_stone/IS = locate(stone_type) in world
-				if(!IS || !istype(IS))
-					continue
-				scan_target = IS
-				break
-
+	for(var/obj/item/infinity_stone/IS in world)
+		if(IS.stone_type == stone_target)
+			scan_target = IS
+			return
 
 /datum/objective/snap
 	name = "snap"
