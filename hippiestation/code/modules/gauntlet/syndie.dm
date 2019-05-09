@@ -66,6 +66,9 @@
 /obj/effect/proc_holder/spell/self/infinity/regenerate/cast(list/targets, mob/user)
 	if(isliving(user))
 		var/mob/living/L = user
+		if(L.stat == DEAD)
+			to_chat(L, "<span class='notice'>You can't regenerate out of death.</span>")
+			return
 		while(do_after(L, 10, FALSE, L))
 			L.visible_message("<span class='notice'>[L]'s wounds heal!</span>")
 			L.heal_overall_damage(4, 4, 4, null, TRUE)

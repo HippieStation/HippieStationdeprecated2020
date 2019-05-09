@@ -308,6 +308,9 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet/cast(list/targets, mob/user)
 	if(isliving(user))
 		var/mob/living/L = user
+		if(L.stat == DEAD)
+			to_chat(L, "<span class='notice'>You can't regenerate out of death.</span>")
+			return
 		while(do_after(L, 10, FALSE, L))
 			L.visible_message("<span class='notice'>[L]'s wounds heal!</span>")
 			L.heal_overall_damage(2, 2, 2, null, TRUE)
