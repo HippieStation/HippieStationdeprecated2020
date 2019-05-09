@@ -382,23 +382,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	features["moth_wings"] 	= sanitize_inlist(features["moth_wings"], GLOB.moth_wings_list, "Plain")
 
 	joblessrole	= sanitize_integer(joblessrole, 1, 3, initial(joblessrole))
-<<<<<<< HEAD
-	job_civilian_high = sanitize_integer(job_civilian_high, 0, 65535, initial(job_civilian_high))
-	job_civilian_med = sanitize_integer(job_civilian_med, 0, 65535, initial(job_civilian_med))
-	job_civilian_low = sanitize_integer(job_civilian_low, 0, 65535, initial(job_civilian_low))
-	job_medsci_high = sanitize_integer(job_medsci_high, 0, 65535, initial(job_medsci_high))
-	job_medsci_med = sanitize_integer(job_medsci_med, 0, 65535, initial(job_medsci_med))
-	job_medsci_low = sanitize_integer(job_medsci_low, 0, 65535, initial(job_medsci_low))
-	job_engsec_high = sanitize_integer(job_engsec_high, 0, 65535, initial(job_engsec_high))
-	job_engsec_med = sanitize_integer(job_engsec_med, 0, 65535, initial(job_engsec_med))
-	job_engsec_low = sanitize_integer(job_engsec_low, 0, 65535, initial(job_engsec_low))
-	hippie_character_pref_load(S) // hippie
-=======
 	//Validate job prefs
 	for(var/j in job_preferences)
 		if(job_preferences[j] != JP_LOW && job_preferences[j] != JP_MEDIUM && job_preferences[j] != JP_LOW)
 			job_preferences -= j
->>>>>>> c075978... Job pref revamp (#43559)
 
 	all_quirks = SANITIZE_LIST(all_quirks)
 	positive_quirks = SANITIZE_LIST(positive_quirks)
@@ -458,21 +445,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	//Jobs
 	WRITE_FILE(S["joblessrole"]		, joblessrole)
-<<<<<<< HEAD
-	WRITE_FILE(S["job_civilian_high"]	, job_civilian_high)
-	WRITE_FILE(S["job_civilian_med"]	, job_civilian_med)
-	WRITE_FILE(S["job_civilian_low"]	, job_civilian_low)
-	WRITE_FILE(S["job_medsci_high"]	, job_medsci_high)
-	WRITE_FILE(S["job_medsci_med"]		, job_medsci_med)
-	WRITE_FILE(S["job_medsci_low"]		, job_medsci_low)
-	WRITE_FILE(S["job_engsec_high"]	, job_engsec_high)
-	WRITE_FILE(S["job_engsec_med"]		, job_engsec_med)
-	WRITE_FILE(S["job_engsec_low"]		, job_engsec_low)
 	hippie_character_pref_save(S) // hippie
-=======
 	//Write prefs
 	WRITE_FILE(S["job_preferences"] , job_preferences)
->>>>>>> c075978... Job pref revamp (#43559)
 
 	//Quirks
 	WRITE_FILE(S["all_quirks"]			, all_quirks)
