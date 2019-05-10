@@ -1577,14 +1577,10 @@ hippie end */
 				if(BP.receive_damage(damage_amount, 0))
 					H.update_damage_overlays()
 			else//no bodypart, we deal damage with a more general method.
-<<<<<<< HEAD
-				H.adjustBruteLoss(damage * hit_percent * brutemod * H.physiology.brute_mod)
+				H.adjustBruteLoss(damage_amount)
 			/* hippie start -- play hurt sound */
 			queue_hurt_sound(H)
 			/* hippie end */
-=======
-				H.adjustBruteLoss(damage_amount)
->>>>>>> d98c65f... Fixes shapeshift health adjustment (#43784)
 		if(BURN)
 			H.damageoverlaytemp = 20
 			var/damage_amount = forced ? damage : damage * hit_percent * burnmod * H.physiology.burn_mod
@@ -1592,14 +1588,10 @@ hippie end */
 				if(BP.receive_damage(0, damage_amount))
 					H.update_damage_overlays()
 			else
-<<<<<<< HEAD
-				H.adjustFireLoss(damage * hit_percent * burnmod * H.physiology.burn_mod)
+				H.adjustFireLoss(damage_amount)
 			/* hippie start -- play hurt sound */
 			queue_hurt_sound(H)
 			/* hippie end */
-=======
-				H.adjustFireLoss(damage_amount)
->>>>>>> d98c65f... Fixes shapeshift health adjustment (#43784)
 		if(TOX)
 			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.tox_mod
 			H.adjustToxLoss(damage_amount)
