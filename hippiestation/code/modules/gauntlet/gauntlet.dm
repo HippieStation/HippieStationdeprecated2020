@@ -218,7 +218,7 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 			T.ScrapeAway()
 	else if(iscarbon(target) && prob(35))
 		var/mob/living/carbon/C = target
-		if(!(C.mobility_flags & MOBILITY_MOVE))
+		if(!(C.mobility_flags & MOBILITY_MOVE) || C.InCritical() || C.incapacitated(TRUE, TRUE))
 			var/list/legs = list()
 			for(var/obj/item/bodypart/BP in C.bodyparts)
 				if (BP.body_part & LEGS)
