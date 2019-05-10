@@ -230,7 +230,17 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 				afterattack(target, user, 1, params)
 
 /obj/item/infinity_gauntlet/proc/AttackThing(mob/user, atom/target)
-	if(isclosedturf(target))
+	if(istype(target, /obj/structure/safe))
+		var/obj/structure/safe/S = target
+		user.visible_message("<span class='danger'>[user] begins to pry open [S]!<span>", "<span class='notice'>We begin to pry open [S]...</span>")
+		if(do_after(user, 35, target = S))
+			user.visible_message("<span class='danger'>[user] pries open [S]!<span>", "<span class='notice'>We pry open [S]!</span>")
+			S.tumbler_1_pos = S.tumbler_1_open
+			S.tumbler_2_pos = S.tumbler_2_open
+			S.open = TRUE
+			S.update_icon()
+			S.updateUsrDialog()
+	else if(isclosedturf(target))
 		var/turf/closed/T = target
 		if(!GetStone(SYNDIE_STONE))
 			user.visible_message("<span class='danger'>[user] begins to charge up a punch...</span>", "<span class='notice'>We begin to charge a punch...</span>")
