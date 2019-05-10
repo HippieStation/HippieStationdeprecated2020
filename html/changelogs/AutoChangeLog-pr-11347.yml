@@ -1,6 +1,0 @@
-author: "steamp0rt"
-delete-after: True
-changes: 
-  - rscadd: "Infiltrator pinpointer upgrade now works with items"
-  - rscadd: "Infiltrator pinpointer upgrade now uses a radial menu to select target"
-  - bugfix: "Fixed a runtime with objectives"
