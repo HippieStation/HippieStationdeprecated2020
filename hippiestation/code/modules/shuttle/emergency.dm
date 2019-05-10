@@ -6,4 +6,4 @@
 	
 /obj/docking_port/mobile/emergency/request(obj/docking_port/stationary/S, area/signalOrigin, reason, redAlert, set_coefficient=null)
 	reason = copytext(text, 1, 100)
-	return ..(S, signalOrigin, reason, redAlert, set_coefficent)
+	return ..(S, signalOrigin, reason, redAlert, set_coefficient)
