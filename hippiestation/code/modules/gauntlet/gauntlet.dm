@@ -36,6 +36,7 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 			"Chaplain" = 25
 		)
 	))
+GLOBAL_VAR_INIT(telescroll_time, 0)
 
 /obj/item/infinity_gauntlet
 	name = "Badmin Gauntlet"
@@ -300,6 +301,8 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 						qdel(SB)
 				user.apply_status_effect(/datum/status_effect/agent_pinpointer/gauntlet)
 				priority_announce("A Wizard has declared that he will wipe out half the universe with the Badmin Gauntlet!\nStones have been scattered across the station. Protect anyone who holds one!", title = "Declaration of War", sound = 'hippiestation/sound/misc/wizard_wardec.ogg')
+				GLOB.telescroll_time = world.time + 5 MINUTES
+				to_chat(user, "<span class='notice bold'>You need to wait 5 minutes before teleporting to the station.</span>")
 				ADD_TRAIT(src, TRAIT_NODROP, GAUNTLET_TRAIT)
 				locked_on = TRUE
 				visible_message("<span class='danger bold'>The badmin gauntlet clamps to [user]'s hand!</span>")

@@ -29,7 +29,7 @@
 	for(var/mob/living/L in GLOB.player_list)
 		if(locate(/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop) in L.mind.spell_list) //People who can stop time are immune to its effects
 			immune[L] = TRUE
-	// hippie start -- add immunity for lag stone holders
+	// hippie start -- add immunity for stone holders
 	for(var/mob/living/L in GLOB.player_list)
 		if((locate(/obj/item/infinity_stone) in L) || (locate(/obj/item/infinity_gauntlet) in L))
 			immune[L] = TRUE
