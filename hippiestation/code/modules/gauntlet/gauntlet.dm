@@ -241,7 +241,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			playsound(T, 'sound/effects/bang.ogg', 50, 1)
 			user.visible_message("<span class='danger'>[user] punches down [T]!</span>")
 			T.ScrapeAway()
-	else if(iscarbon(target))
+	else if(iscarbon(target) && (user.zone_selected == BODY_ZONE_L_LEG || user.zone_selected == BODY_ZONE_R_LEG))
 		var/mob/living/carbon/C = target
 		if(!(C.mobility_flags & MOBILITY_MOVE) || C.InCritical() || C.incapacitated(TRUE, TRUE))
 			var/list/legs = list()
