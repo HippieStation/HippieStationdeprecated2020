@@ -27,6 +27,24 @@
 	plank_type = null
 	plank_name = "coins"
 
+
+// Below code is used for determining what coin to spawn based on potency
+/obj/item/grown/log/money/proc/lowrandom_coin()
+    var/coin = pick(/obj/item/coin/gold,
+    /obj/item/coin/uranium,
+    /obj/item/coin/iron,
+    /obj/item/coin/silver)
+    new coin(get_turf(src))
+
+/obj/item/grown/log/money/proc/medrandom_coin()
+    var/coin = pick(/obj/item/coin/gold,
+    /obj/item/coin/diamond,
+    /obj/item/coin/uranium,
+    /obj/item/coin/iron,
+    /obj/item/coin/silver,
+    /obj/item/coin/plasma)
+    new coin(get_turf(src))
+
 /obj/item/grown/log/money/proc/random_coin()
     var/coin = pick(/obj/item/coin/gold,
     /obj/item/coin/diamond,
@@ -39,19 +57,57 @@
     /obj/item/coin/mythril)
     new coin(get_turf(src))
 
+/obj/item/grown/log/money/proc/highrandom_coin()
+    var/coin = pick(/obj/item/coin/gold,
+    /obj/item/coin/diamond,
+    /obj/item/coin/uranium,
+    /obj/item/coin/bananium,
+    /obj/item/coin/adamantine,
+    /obj/item/coin/plasma,
+    /obj/item/coin/mythril)
+    new coin(get_turf(src))
+
 
 /obj/item/grown/log/money/attackby(obj/item/W, mob/user, params)
 	if(W.sharpness)
 		user.show_message("<span class='notice'>You cut the [plank_name] out of \the [src]!</span>", 1)
 		playsound(user, 'sound/effects/blobattack.ogg', 50, 1)
-		random_coin()
-		qdel(src)
+		switch(seed.potency) //so potency in moneycaps matter
+			if(0 to 30)
+				lowrandom_coin()
+				qdel(src)
+			if(31 to 50)
+				medrandom_coin()
+				qdel(src)
+			if(51 to 70)
+				qdel(src)
+				random_coin()
+			if(71 to 90)
+				random_coin()
+				qdel(src)
+			else
+				highrandom_coin()
+				qdel(src)
 	else
 		return
 
 /obj/item/grown/log/money/attack_self(mob/living/user)
 	user.visible_message("<span class='notice'>[user] crushes [src]'s slimy exterior revealing a coin from within.</span>", "<span class='notice'>You crush [src]'s slimy exterior revealing a coin inside.</span>")
 	playsound(user, 'sound/effects/blobattack.ogg', 50, 1)
-	random_coin()
-	qdel(src)
+	switch(seed.potency) //so potency in moneycaps matter
+		if(0 to 30)
+			lowrandom_coin()
+			qdel(src)
+		if(31 to 50)
+			medrandom_coin()
+			qdel(src)
+		if(51 to 70)
+			random_coin()
+			qdel(src)
+		if(71 to 90)
+			random_coin()
+			qdel(src)
+		else
+			highrandom_coin()
+			qdel(src)
 	return 1

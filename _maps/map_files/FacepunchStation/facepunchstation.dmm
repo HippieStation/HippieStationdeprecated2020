@@ -3574,15 +3574,16 @@
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
 "agU" = (
-/obj/machinery/power/apc{
-	name = "Auxillary Base Construction APC";
-	dir = 1;
-	pixel_x = -1;
-	pixel_y = -26;
-	areastring = "/area/construction/mining/aux_base"
+/obj/machinery/camera{
+	c_tag = "Auxillary Base Construction";
+	dir = 8;
+	network = list("ss13")
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/yellow{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
@@ -4566,6 +4567,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/security/prison)
+"aiJ" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
 "aiK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
@@ -4580,6 +4587,12 @@
 /obj/structure/bodycontainer/morgue,
 /turf/open/floor/plasteel/dark,
 /area/security/brig)
+"aiM" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
 "aiN" = (
 /obj/structure/bed,
 /obj/item/clothing/suit/straight_jacket,
@@ -4713,6 +4726,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/main)
+"aiX" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 5
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
 "aiY" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -4771,6 +4794,22 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"ajg" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 6
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
 "ajh" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -4827,6 +4866,26 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/brig)
+"ajn" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
+"ajo" = (
+/obj/machinery/power/apc{
+	areastring = "/area/construction/mining/aux_base";
+	dir = 2;
+	name = "Auxillary Base Construction APC";
+	pixel_x = -1;
+	pixel_y = -26
+	},
+/obj/effect/turf_decal/tile/yellow{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/construction/mining/aux_base)
 "ajp" = (
 /turf/closed/wall/r_wall,
 /area/security/brig)
@@ -58796,13 +58855,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/genetics)
-"hdN" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
-	dir = 5
-	},
-/turf/open/floor/plasteel,
-/area/construction/mining/aux_base)
 "heA" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -58829,22 +58881,6 @@
 	name = "floor"
 	},
 /area/engine/port_engineering)
-"hhb" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 6
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	icon_state = "pipe11-1";
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/construction/mining/aux_base)
 "hhz" = (
 /obj/machinery/rnd/production/techfab/department/service,
 /turf/open/floor/plasteel,
@@ -66582,23 +66618,6 @@
 /obj/machinery/atmospherics/pipe/simple/orange/visible,
 /turf/open/space,
 /area/space/nearstation)
-"sTA" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/camera{
-	c_tag = "Auxillary Base Construction";
-	dir = 8;
-	network = list("ss13")
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/construction/mining/aux_base)
 "sVJ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -74489,9 +74508,9 @@ aaa
 aeR
 wgs
 atw
-atw
-atw
-agU
+aiJ
+ajn
+ajo
 aeR
 aad
 aaa
@@ -74746,7 +74765,7 @@ ipS
 ipS
 agg
 sEL
-atw
+aiM
 orX
 qGe
 aeR
@@ -75003,7 +75022,7 @@ apw
 afY
 agg
 dAu
-hdN
+aiX
 wij
 lZn
 aeR
@@ -75259,8 +75278,8 @@ ipS
 ipS
 ipS
 agg
-sTA
-hhb
+agU
+ajg
 vJx
 axM
 aeR
