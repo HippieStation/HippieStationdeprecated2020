@@ -1,5 +1,5 @@
 /obj/item/melee/transforming/energy
-	hitsound_on = 'sound/weapons/blade1.ogg'
+	hitsound_on = 'face/sound/weapons/blade1.ogg'
 	heat = 3500
 	max_integrity = 200
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 30)
@@ -208,7 +208,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	force = 30 //Normal attacks deal esword damage
-	hitsound = 'sound/weapons/blade1.ogg'
+	hitsound = 'face/sound/weapons/blade1.ogg'
 	active = 1
 	throwforce = 1 //Throwing or dropping the item deletes it.
 	throw_speed = 3

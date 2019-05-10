@@ -174,7 +174,7 @@ Difficulty: Hard
 	new /obj/effect/decal/cleanable/blood(src.loc)
 	if(charging)
 		DestroySurroundings()
-	playsound(src, 'sound/effects/meteorimpact.ogg', 200, 1, 2, 1)
+	playsound(src, 'face/sound/impacts/meteorimpact.ogg', 200, 1, 2, 1)
 	return ..()
 
 /mob/living/simple_animal/hostile/megafauna/bubblegum/proc/charge(var/atom/chargeat = target, var/delay = 3, var/chargepast = 2)
@@ -212,7 +212,7 @@ Difficulty: Hard
 			L.visible_message("<span class='danger'>[src] slams into [L]!</span>", "<span class='userdanger'>[src] tramples you into the ground!</span>")
 			src.forceMove(get_turf(L))
 			L.apply_damage(istype(src, /mob/living/simple_animal/hostile/megafauna/bubblegum/hallucination) ? 15 : 30, BRUTE)
-			playsound(get_turf(L), 'sound/effects/meteorimpact.ogg', 100, 1)
+			playsound(get_turf(L), 'face/sound/impacts/meteorimpact.ogg', 100, 1)
 			shake_camera(L, 4, 3)
 			shake_camera(src, 2, 3)
 	..()

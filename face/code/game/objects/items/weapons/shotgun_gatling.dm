@@ -11,7 +11,7 @@
 	name = "gatling shotgun"
 	desc = "A ludicrous gatling shotgun that some madman conjured up."
 	burst_size = 3
-	fire_sound = 'sound/weapons/sniper_shot.ogg'		//Yeah it's not a sniper, but this sound fits it best.
+	fire_sound = 'face/sound/weapons/firearms/gunshot_shotgun_bulldog.ogg'
 	mag_type = /obj/item/ammo_box/magazine/internal/minigun/shotgun
 	ammo_pack = /obj/item/minigunpack/shotgun
 	casing_ejector = TRUE

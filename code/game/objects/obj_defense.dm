@@ -82,7 +82,7 @@
 		..(user, 1)
 		visible_message("<span class='danger'>[user] smashes [src]!</span>", null, null, COMBAT_MESSAGE_RANGE)
 		if(density)
-			playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1)
+			playsound(src, 'face/sound/impacts/meteorimpact.ogg', 100, 1)
 			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced="hulk")
 		else
 			playsound(src, 'sound/effects/bang.ogg', 50, 1)
@@ -119,7 +119,7 @@
 		else
 			. = attack_generic(M, rand(M.melee_damage_lower,M.melee_damage_upper), M.melee_damage_type, "melee", play_soundeffect, M.armour_penetration)
 		if(. && !play_soundeffect)
-			playsound(src, 'sound/effects/meteorimpact.ogg', 100, 1)
+			playsound(src, 'face/sound/impacts/meteorimpact.ogg', 100, 1)
 
 /obj/force_pushed(atom/movable/pusher, force = MOVE_FORCE_DEFAULT, direction)
 	return TRUE

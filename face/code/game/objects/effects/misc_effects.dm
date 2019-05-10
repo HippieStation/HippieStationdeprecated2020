@@ -5,6 +5,7 @@ obj/effect/forcefield/centcom_dock
 	desc = "Advanced forcefields employed by Central Command to stop trespassing when all other methods have failed."
 	CanAtmosPass = ATMOS_PASS_NO
 	timeleft = 0
+	alpha = 100 //Less obnoxious
 
 /obj/effect/forcefield/centcom_dock/Initialize()
     . = ..()

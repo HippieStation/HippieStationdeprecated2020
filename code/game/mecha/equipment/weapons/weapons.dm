@@ -209,7 +209,7 @@
 //Base ballistic weapon type
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic
 	name = "general ballistic weapon"
-	fire_sound = 'sound/weapons/gunshot.ogg'
+	fire_sound = 'face/sound/weapons/firearms/gunshot_rifle2.ogg'
 	var/projectiles
 	var/projectile_energy_cost
 
@@ -281,6 +281,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot
 	name = "\improper LBX AC 10 \"Scattershot\""
 	desc = "A weapon for combat exosuits. Shoots a spread of pellets."
+	fire_sound = 'face/sound/weapons/firearms/gunshot_shotgun_db.ogg'
 	icon_state = "mecha_scatter"
 	equip_cooldown = 20
 	projectile = /obj/item/projectile/bullet/scattershot
@@ -309,7 +310,7 @@
 	desc = "A weapon for combat exosuits. Shoots light explosive missiles."
 	icon_state = "mecha_missilerack"
 	projectile = /obj/item/projectile/bullet/a84mm_he
-	fire_sound = 'sound/weapons/grenadelaunch.ogg'
+	fire_sound = 'face/sound/weapons/firearms/rocketlaunch.ogg'
 	projectiles = 8
 	projectile_energy_cost = 1000
 	equip_cooldown = 60
@@ -342,7 +343,7 @@
 	desc = "A weapon for combat exosuits. Launches primed flashbangs."
 	icon_state = "mecha_grenadelnchr"
 	projectile = /obj/item/grenade/flashbang
-	fire_sound = 'sound/weapons/grenadelaunch.ogg'
+	fire_sound = 'face/sound/weapons/firearms/rocketlaunch.ogg'
 	projectiles = 6
 	missile_speed = 1.5
 	projectile_energy_cost = 800

@@ -2,7 +2,7 @@
 
 /obj/effect/spawner/lootdrop/snowdin/weaponrylite
 	name = "weaponry lite"
-	lootcount = 2
+	lootcount = 1
 	loot = list(/obj/item/melee/classic_baton = 20,
 				/obj/item/twohanded/fireaxe/fireyaxe = 20,
 				/obj/item/kitchen/knife/combat = 25,
@@ -24,7 +24,7 @@
 
 /obj/effect/spawner/lootdrop/snowdin/weaponrymid
 	name = "weaponry mid"
-	lootcount = 2
+	lootcount = 1
 	loot = list(/obj/item/shield/energy = 10,
 				/obj/item/gun/magic/wand/fireball = 10,
 				/obj/item/grenade/spawnergrenade/spesscarp = 10,
@@ -35,7 +35,7 @@
 				/obj/item/gun/ballistic/shotgun/bulldog/unrestricted = 15,
 				/obj/item/gun/energy/tesla_revolver = 10,
 				/obj/item/gun/energy/mindflayer = 10,
-				/obj/item/gun/energy/lasercannon = 10,
+				/obj/item/gun/energy/lasercannon/pin = 10,
 				/obj/item/twohanded/required/chainsaw = 20,
 				/obj/item/twohanded/vibro_weapon = 20,
 				/obj/item/nullrod/scythe/talking/chainsword = 20,
@@ -50,7 +50,7 @@
 
 /obj/effect/spawner/lootdrop/snowdin/weaponryheavy
 	name = "weaponry heavy"
-	lootcount = 2
+	lootcount = 1
 	loot = list(/obj/item/twohanded/singularityhammer = 5,
 				/obj/item/twohanded/mjollnir = 10,
 				/obj/item/melee/transforming/energy/axe = 5,

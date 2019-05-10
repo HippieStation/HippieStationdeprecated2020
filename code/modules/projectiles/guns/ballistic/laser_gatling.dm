@@ -113,6 +113,7 @@
 	casing_ejector = FALSE
 	item_flags = NEEDS_PERMIT | SLOWS_WHILE_IN_HAND
 	var/obj/item/minigunpack/ammo_pack = /obj/item/minigunpack
+	pickup_sound = 'face/sound/weapons/firearms/minigun_pickup.ogg'
 
 /obj/item/gun/ballistic/minigun/Initialize()
 	if(istype(loc, /obj/item/minigunpack || /obj/item/minigunpack/shotgun)) //We should spawn inside an ammo pack so let's use that one.

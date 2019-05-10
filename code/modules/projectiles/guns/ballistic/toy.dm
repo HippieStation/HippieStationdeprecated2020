@@ -24,7 +24,7 @@
 	bolt_type = BOLT_TYPE_LOCKING
 	w_class = WEIGHT_CLASS_SMALL
 	mag_type = /obj/item/ammo_box/magazine/toy/pistol
-	fire_sound = 'sound/weapons/gunshot.ogg'
+	fire_sound = 'face/sound/weapons/firearms/gunshot_smg.ogg'
 	burst_size = 1
 	fire_delay = 0
 	actions_types = list()

@@ -84,6 +84,9 @@
 	pin = null
 	ammo_x_offset = 3
 
+/obj/item/gun/energy/lasercannon/pin
+	pin = /obj/item/firing_pin
+
 /obj/item/ammo_casing/energy/laser/accelerator
 	projectile_type = /obj/item/projectile/beam/laser/accelerator
 	select_name = "accelerator"
