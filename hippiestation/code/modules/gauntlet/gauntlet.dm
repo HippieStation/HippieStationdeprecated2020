@@ -83,7 +83,10 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 			break
 		if(snapper == L)
 			continue
-		addtimer(CALLBACK(L, /mob/living.proc/dust, TRUE), rand(5 SECONDS, 10 SECONDS))
+		var/dust_time = rand(5 SECONDS, 10 SECONDS)
+		if(prob(15))
+			addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, L, "<span class='danger'>You don't feel so good...</span>"), dust_time - 2 SECONDS)
+		addtimer(CALLBACK(L, /mob/living.proc/dust, TRUE), dust_time)
 		wiped++
 
 /obj/item/infinity_gauntlet/proc/GetWeightedChances(list/job_list, list/blacklist)
