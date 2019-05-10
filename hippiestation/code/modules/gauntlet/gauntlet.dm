@@ -123,6 +123,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			SK = L.mind.has_antag_datum(/datum/antagonist/stonekeeper)
 			var/datum/objective/stonekeeper/SKO = new
 			SKO.stone = IS
+			SKO.owner = L.mind
 			SKO.update_explanation_text()
 			SK.objectives += SKO
 			L.mind.announce_objectives()

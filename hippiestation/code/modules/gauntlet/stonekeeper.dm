@@ -19,10 +19,8 @@
 		explanation_text = "Keep the [stone] secured at all costs."
 
 /datum/objective/stonekeeper/check_completion()
-	var/list/datum/mind/owners = get_owners()
-	for(var/datum/mind/M in owners)
-		if(!M || !M.current)
-			return FALSE
-		if(stone in M.current.GetAllContents())
-			return TRUE
+	if(!owner || !owner.current)
+		return FALSE
+	if(stone in owner.current.GetAllContents())
+		return TRUE
 	return FALSE
