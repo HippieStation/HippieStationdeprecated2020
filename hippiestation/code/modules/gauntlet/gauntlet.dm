@@ -206,6 +206,16 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 		return TRUE
 	return FALSE
 
+/obj/item/infinity_gauntlet/melee_attack_chain(mob/user, atom/target, params)
+	if(!tool_attack_chain(user, target) && pre_attack(target, user, params))
+		if(user == target)
+			if(target && !QDELETED(src))
+				afterattack(target, user, 1, params)
+		else
+			var/resolved = target.attackby(src, user, params)
+			if(!resolved && target && !QDELETED(src))
+				afterattack(target, user, 1, params)
+
 /obj/item/infinity_gauntlet/proc/AttackThing(mob/user, atom/target)
 	if(isclosedturf(target))
 		var/turf/closed/T = target
@@ -219,7 +229,7 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 			playsound(T, 'sound/effects/bang.ogg', 50, 1)
 			user.visible_message("<span class='danger'>[user] punches down [T]!</span>")
 			T.ScrapeAway()
-	else if(iscarbon(target) && prob(35))
+	else if(iscarbon(target))
 		var/mob/living/carbon/C = target
 		if(!(C.mobility_flags & MOBILITY_MOVE) || C.InCritical() || C.incapacitated(TRUE, TRUE))
 			var/list/legs = list()
