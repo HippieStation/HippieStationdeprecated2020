@@ -4999,6 +4999,10 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
+"ajY" = (
+/obj/effect/mapping_helpers/dead_body_placer,
+/turf/open/floor/plasteel/dark,
+/area/medical/morgue)
 "ajZ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/vacuum/external{
@@ -96980,7 +96984,7 @@ bdc
 bfL
 beY
 bhm
-bhm
+ajY
 bhm
 bkR
 bfL
