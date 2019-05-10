@@ -203,6 +203,37 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 		return TRUE
 	return FALSE
 
+/obj/item/infinity_gauntlet/proc/AttackThing(mob/user, atom/target)
+	if(isclosedturf(target))
+		var/turf/closed/T = target
+		if(!GetStone(SYNDIE_STONE))
+			user.visible_message("<span class='danger'>[user] begins to charge up a punch...</span>", "<span class='notice'>We begin to charge a punch...</span>")
+			if(do_after(user, 15, target = T))
+				playsound(T, 'sound/effects/bang.ogg', 50, 1)
+				user.visible_message("<span class='danger'>[user] punches down [T]!</span>")
+				T.ScrapeAway()
+		else
+			playsound(T, 'sound/effects/bang.ogg', 50, 1)
+			user.visible_message("<span class='danger'>[user] punches down [T]!</span>")
+			T.ScrapeAway()
+	else if(iscarbon(target) && prob(35))
+		var/mob/living/carbon/C = target
+		if(!(C.mobility_flags & MOBILITY_MOVE))
+			var/list/legs = list()
+			for(var/obj/item/bodypart/BP in C.bodyparts)
+				if (BP.body_part & LEGS)
+					legs += BP
+			if(LAZYLEN(legs))
+				var/obj/item/bodypart/BP = pick(legs)
+				if(GetStone(SYNDIE_STONE))
+					user.visible_message("<span class='danger bold'>[user] rips off [C]'s [BP]!</span>")
+					BP.dismember()
+					user.put_in_hands(BP)
+				else
+					user.visible_message("<span class='danger bold'>[user] breaks [C]'s [BP]!</span>")
+					C.emote("scream")
+					BP.receive_damage(stamina = 100)
+
 /obj/item/infinity_gauntlet/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!locked_on)
 		return ..()
@@ -217,6 +248,7 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 			if(INTENT_HARM)
 				if(ishuman(target) && ishuman(user))
 					martial_art.harm_act(user, target)
+				AttackThing(user, target)
 			if(INTENT_GRAB)
 				if(ishuman(target) && ishuman(user))
 					martial_art.grab_act(user, target)
@@ -228,16 +260,7 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 		if(INTENT_DISARM)
 			IS.DisarmEvent(target, user, proximity_flag)
 		if(INTENT_HARM) // there's no harm intent on the stones anyways
-			if(isclosedturf(target))
-				var/turf/closed/T = target
-				if(!GetStone(SYNDIE_STONE))
-					user.visible_message("<span class='danger'>[user] begins to charge up a punch...</span>", "<span class='notice'>We begin to charge a punch...</span>")
-					if(do_after(user, 15, target = T))
-						T.ScrapeAway()
-						user.visible_message("<span class='danger'>[user] punches down [T]!</span>")
-				else
-					T.ScrapeAway()
-					user.visible_message("<span class='danger'>[user] punches down [T]!</span>")
+			AttackThing(user, target)
 		if(INTENT_GRAB)
 			IS.GrabEvent(target, user, proximity_flag)
 		if(INTENT_HELP)
