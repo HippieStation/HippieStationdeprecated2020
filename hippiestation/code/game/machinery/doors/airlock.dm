@@ -2,9 +2,9 @@
 #define EASTEREGG_CHANCE 2
 
 /obj/machinery/door/airlock
-	doorOpen = 'hippiestation/sound/machines/airlock.ogg'
-	doorClose = 'hippiestation/sound/machines/airlock.ogg'
-	doorDeni = 'hippiestation/sound/machines/denied.ogg'
+	doorOpen = 'face/sound/machines/ts2siberia.ogg'
+	doorClose ='hippiestation/sound/machines/airlock.ogg'
+	doorDeni = 'face/sound/machines/ts2accessdenied.ogg'
 	var/request_cooldown = 0 //To prevent spamming requests for the AI to open
 	var/easteregg_triggered = FALSE
 	var/easteregg_doorOpen = 'hippiestation/sound/machines/airlockopen_doom.ogg'
