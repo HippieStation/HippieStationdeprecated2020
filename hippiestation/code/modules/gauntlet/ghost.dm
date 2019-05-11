@@ -100,9 +100,8 @@
 /obj/item/infinity_stone/ghost/proc/ghost_check()
 	var/ghost_counter = 0
 	var/turf/T = get_turf(src)
-	var/list/contents = T.GetAllContents()
 	var/mob/dead/observer/current_spirits = list()
-	for(var/thing in contents)
+	for(var/thing in T.GetAllContents())
 		var/atom/A = thing
 		A.transfer_observers_to(src)
 
@@ -133,7 +132,7 @@
 
 /obj/effect/proc_holder/spell/self/infinity/scrying_orb/cast(list/targets, mob/user)
 	. = ..()
-	user.visible_message("<span class='notice'>[user] stares into \the [src], and \the [src] stares back.</span>")
+	user.visible_message("<span class='notice'>[user] stares into the Ghost Stone, and the Ghost Stone stares back.</span>")
 	user.ghostize(TRUE)
 
 /obj/effect/proc_holder/spell/targeted/infinity/cluwne_rise_up
