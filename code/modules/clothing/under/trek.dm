@@ -14,13 +14,13 @@
 	item_state = "y_suit"
 
 /obj/item/clothing/under/trek/engsec
-	name = "engsec uniform"
-	desc = "The uniform worn by engineering/security officers."
+	name = "redshirt uniform"
+	desc = "People who wear this uniform tend to die not too long after."
 	icon_state = "trek_engsec"
 	item_color = "trek_engsec"
 	item_state = "r_suit"
-	armor = list("melee" = 10, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0) //more sec than eng, but w/e.
-	strip_delay = 50
+	armor = list("melee" = -500, "bullet" = -500, "laser" = -500, "energy" = -500, "bomb" = -500, "bio" = -500, "rad" = -500, "fire" = -500, "acid" = -500)
+	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
 
 /obj/item/clothing/under/trek/medsci
 	name = "medsci uniform"
