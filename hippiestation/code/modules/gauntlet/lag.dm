@@ -50,6 +50,8 @@
 /obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/lag_stone
 	name = "Lag Stone: Summon Lag"
 	desc = "Summon a large bout of lag within a 5-tile radius. Very infuriating. Infinity Stone holders are immune, however."
+	action_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_icon_state = "lagfield"
 	summon_type = list(/obj/effect/timestop/wizard/lag_stone)
 	clothes_req = FALSE
 	staff_req = FALSE

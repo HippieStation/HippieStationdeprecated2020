@@ -80,6 +80,8 @@
 
 /obj/effect/proc_holder/spell/spacetime_dist/server_stone
 	name = "Server Stone: Reality Distortion"
+	action_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_icon_state = "reality"
 	clothes_req = FALSE
 	human_req = FALSE
 	staff_req = FALSE

@@ -5,7 +5,8 @@
 	ability_text = list("HELP INTENT: Transmutate ghosts into a random simplemob.", 
 		"DISARM INTENT: Fire a bolt that scales based on how many ghosts orbit you.")
 	stone_type = GHOST_STONE
-	spell_types = list(/obj/effect/proc_holder/spell/targeted/infinity/cluwne_rise_up)
+	spell_types = list(/obj/effect/proc_holder/spell/targeted/infinity/cluwne_rise_up,
+		/obj/effect/proc_holder/spell/self/infinity/scrying_orb)
 	var/summon_cooldown = 0
 	var/list/mob/dead/observer/spirits = list()
 
@@ -123,6 +124,17 @@
 /////////////////////////////////////////////
 /////////////////// SPELLS //////////////////
 /////////////////////////////////////////////
+
+/obj/effect/proc_holder/spell/self/infinity/scrying_orb
+	name = "Ghost Stone: Scrying Detachment"
+	desc = "Detach your soul from your body, going into the realm of the ghosts."
+	action_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_icon_state = "scrying"
+
+/obj/effect/proc_holder/spell/self/infinity/scrying_orb/cast(list/targets, mob/user)
+	. = ..()
+	user.visible_message("<span class='notice'>[user] stares into \the [src], and \the [src] stares back.</span>")
+	user.ghostize(TRUE)
 
 /obj/effect/proc_holder/spell/targeted/infinity/cluwne_rise_up
 	name = "Ghost Stone: Cluwne Rise"
