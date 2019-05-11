@@ -141,13 +141,14 @@
 	action_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_icon_state = "cluwnerise"
 	charge_max = 900
-	var/mob/living/carbon/cluwne
+	var/list/cluwnes = list() // one cluwne per user
 
 /obj/effect/proc_holder/spell/targeted/infinity/cluwne_rise_up/InterceptClickOn(mob/living/caller, params, atom/t)
 	. = ..()
 	if(!.)
 		return FALSE
 	if(ishuman(t))
+		var/mob/living/carbon/human/cluwne = cluwners[caller]
 		if(istype(cluwne) && cluwne && cluwne.stat != DEAD && !cluwne.InCritical())
 			to_chat(caller, "<span class='danger'>You still have a magical cluwne alive.</span>")
 			return FALSE
@@ -159,7 +160,7 @@
 		H.revive(TRUE, TRUE)
 		H.grab_ghost()
 		H.cluwneify()
-		cluwne = H
+		cluwners[caller] = H
 		H.add_memory("<b>[caller] is your master. Follow their orders at all costs.</b>")
 		H.bloodcrawl = BLOODCRAWL_EAT
 		H.bloodcrawl_allow_items = TRUE
