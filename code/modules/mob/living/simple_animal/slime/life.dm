@@ -367,6 +367,11 @@
 					if(locate(/mob/living/simple_animal/slime) in L.buckled_mobs) // Only one slime can latch on at a time.
 						continue
 
+					// hippie start -- slimes don't attack bots
+					if(isbot(L))
+						continue
+					// hippie end
+
 					targets += L // Possible target found!
 
 				if(targets.len > 0)
