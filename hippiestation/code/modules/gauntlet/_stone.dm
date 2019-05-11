@@ -23,6 +23,8 @@
 	RegisterSignal(src, COMSIG_ITEM_EQUIPPED, .proc/UpdateHolder)
 	AddComponent(/datum/component/stationloving, TRUE)
 	GLOB.poi_list |= src
+	aura_overlay = mutable_appearance('hippiestation/icons/obj/infinity.dmi', "aura", -MUTATIONS_LAYER)
+	aura_overlay.color = color
 
 /obj/item/infinity_stone/Destroy()
 	GLOB.poi_list -= src
@@ -49,8 +51,7 @@
 		for(var/obj/effect/proc_holder/spell/A in gauntlet_spells)
 			L.mob_spell_list += A
 			A.action.Grant(L)
-	//L.add_overlay(aura_overlay)
-
+			
 /obj/item/infinity_stone/proc/RemoveAbilities(mob/living/L, gauntlet = FALSE)
 	for(var/obj/effect/proc_holder/spell/A in spells)
 		L.mob_spell_list -= A
@@ -59,24 +60,30 @@
 		for(var/obj/effect/proc_holder/spell/A in gauntlet_spells)
 			L.mob_spell_list -= A
 			A.action.Remove(L)
-	//L.cut_overlay(aura_overlay)
+
+/obj/item/infinity_stone/proc/GiveVisualEffects(mob/living/L)
+	L.add_overlay(aura_overlay)
+
+/obj/item/infinity_stone/proc/TakeVisualEffects(mob/living/L)
+	L.cut_overlay(aura_overlay)
 
 /obj/item/infinity_stone/proc/GetHolder()
-	if(isliving(loc))
-		var/mob/living/L = loc
-		if(L.is_holding(src))
-			return loc
-	return null
+	return recursive_loc_check(src, /mob/living)
 
 /obj/item/infinity_stone/proc/UpdateHolder()
 	if(istype(loc, /obj/item/infinity_gauntlet))
+		if(isliving(current_holder))
+			current_holder.cut_overlay(aura_overlay)
 		return //gauntlet handles this from now on
 	var/mob/living/new_holder = GetHolder()
 	if (new_holder != current_holder)
 		if(isliving(current_holder))
 			RemoveAbilities(current_holder)
+			TakeVisualEffects(current_holder)
 		if(isliving(new_holder))
-			GiveAbilities(new_holder)
+			if(new_holder.is_holding(src))
+				GiveAbilities(new_holder)
+			GiveVisualEffects(new_holder)
 			current_holder = new_holder
 		else
 			current_holder = null
