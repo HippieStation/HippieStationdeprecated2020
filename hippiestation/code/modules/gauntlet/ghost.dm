@@ -148,7 +148,7 @@
 	if(!.)
 		return FALSE
 	if(ishuman(t))
-		var/mob/living/carbon/human/cluwne = cluwners[caller]
+		var/mob/living/carbon/human/cluwne = cluwnes[caller]
 		if(istype(cluwne) && cluwne && cluwne.stat != DEAD && !cluwne.InCritical())
 			to_chat(caller, "<span class='danger'>You still have a magical cluwne alive.</span>")
 			return FALSE
@@ -160,7 +160,7 @@
 		H.revive(TRUE, TRUE)
 		H.grab_ghost()
 		H.cluwneify()
-		cluwners[caller] = H
+		cluwnes[caller] = H
 		H.add_memory("<b>[caller] is your master. Follow their orders at all costs.</b>")
 		H.bloodcrawl = BLOODCRAWL_EAT
 		H.bloodcrawl_allow_items = TRUE
