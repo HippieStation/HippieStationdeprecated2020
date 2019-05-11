@@ -5,8 +5,8 @@
 	force = 30
 	stone_type = SYNDIE_STONE
 	ability_text = list("ALL INTENTS: PLACEHOLDER MARTIAL ART")
-	spell_types = list(/obj/effect/proc_holder/spell/aoe_turf/repulse/syndie_stone,
-		/obj/effect/proc_holder/spell/self/infinity/regenerate)
+	gauntlet_spell_types = list(/obj/effect/proc_holder/spell/aoe_turf/repulse/syndie_stone)
+	spell_types = list(/obj/effect/proc_holder/spell/self/infinity/regenerate)
 	var/datum/martial_art/cqc/martial_art
 
 /obj/item/infinity_stone/syndie/Initialize()
@@ -29,18 +29,15 @@
 	if(ishuman(user) && ishuman(target))
 		martial_art.grab_act(user, target)
 
-/obj/item/infinity_stone/syndie/GiveAbilities(mob/living/L, only_extra = FALSE)
+/obj/item/infinity_stone/syndie/GiveAbilities(mob/living/L, gauntlet = FALSE)
 	. = ..()
 	if(ishuman(L))
 		martial_art.teach(L)
 
-/obj/item/infinity_stone/syndie/RemoveAbilities(mob/living/L, only_extra = FALSE)
+/obj/item/infinity_stone/syndie/RemoveAbilities(mob/living/L, gauntlet = FALSE)
 	. = ..()
 	if(ishuman(L))
 		martial_art.remove(L)
-	if(L.move_force >= INFINITY)
-		L.visible_message("<span class='danger'>[L] relaxes a bit.</span>", "<span class='notice'>We exit immovable mode.</span>")
-		L.move_force = initial(L.move_force)
 
 /////////////////////////////////////////////
 /////////////////// SPELLS //////////////////

@@ -3,7 +3,7 @@
 	desc = "Salts your food very well."
 	color = "#e429f2"
 	ability_text = list("HELP INTENT: Transmutate ghosts into a random simplemob.", 
-		"HARM INTENT: Fire a bolt that scales based on how many ghosts orbit you.")
+		"DISARM INTENT: Fire a bolt that scales based on how many ghosts orbit you.")
 	stone_type = GHOST_STONE
 	spell_types = list(/obj/effect/proc_holder/spell/targeted/infinity/cluwne_rise_up)
 	var/summon_cooldown = 0
@@ -37,13 +37,31 @@
 	O.visible_message("<span class='danger'>The ghost of [O] turns into [SA]!</span>")
 	SA.ckey = O.ckey
 	to_chat(SA, "<span class='userdanger'>[user] is your master. Protect them at all costs.</span>")
+	SA.add_memory("<b>[user] is your master. Protect them at all costs</b>")
 	qdel(O)
 
+/obj/item/infinity_stone/ghost/GrabEvent(atom/target, mob/living/user, proximity_flag)
 
-/obj/item/infinity_stone/ghost/HarmEvent(atom/target, mob/living/user, proximity_flag)
+
+/obj/item/infinity_stone/ghost/DisarmEvent(atom/target, mob/living/user, proximity_flag)
 	var/total_spirits = ghost_check()
 	FireProjectile(/obj/item/projectile/magic/spirit_fist, target, CLAMP(total_spirits*2.5, 3, 25))
 	user.changeNext_move(CLICK_CD_RANGE)
+
+
+/obj/item/infinity_stone/ghost/GiveAbilities(mob/living/L, gauntlet = FALSE)
+	. = ..()
+	ADD_TRAIT(L, TRAIT_SIXTHSENSE, GHOST_STONE_TRAIT)
+	ADD_TRAIT(L, TRAIT_XRAY_VISION, GHOST_STONE_TRAIT)
+	L.see_invisible = SEE_INVISIBLE_OBSERVER
+	L.update_sight()
+
+/obj/item/infinity_stone/ghost/RemoveAbilities(mob/living/L, gauntlet = FALSE)
+	. = ..()
+	REMOVE_TRAIT(L, TRAIT_SIXTHSENSE, GHOST_STONE_TRAIT)
+	REMOVE_TRAIT(L, TRAIT_XRAY_VISION, GHOST_STONE_TRAIT)
+	L.see_invisible = initial(L.see_invisible)
+	L.update_sight()
 
 // Spectral Sword Copypaste
 /obj/item/infinity_stone/ghost/Initialize()
@@ -67,7 +85,7 @@
 	notify_ghosts("[user] is clenching [user.p_their()] [src], calling for your help!",
 		enter_link="<a href=?src=[REF(src)];orbit=1>(Click to help)</a>",
 		source = user, action=NOTIFY_ORBIT, ignore_key = POLL_IGNORE_SPECTRAL_BLADE)
-	summon_cooldown = world.time + 600
+	summon_cooldown = world.time + 60 SECONDS
 
 /obj/item/infinity_stone/ghost/Topic(href, href_list)
 	if(href_list["orbit"])
@@ -131,6 +149,7 @@
 		H.grab_ghost()
 		H.cluwneify()
 		cluwne = H
+		H.add_memory("<b>[caller] is your master. Follow their orders at all costs.</b>")
 		H.bloodcrawl = BLOODCRAWL_EAT
 		H.bloodcrawl_allow_items = TRUE
 		H.AddSpell(new /obj/effect/proc_holder/spell/targeted/turf_teleport/blink/infinity_cluwne)

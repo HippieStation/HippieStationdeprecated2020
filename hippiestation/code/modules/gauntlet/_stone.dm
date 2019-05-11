@@ -7,13 +7,17 @@
 	var/stone_type = ""
 	var/list/ability_text = list()
 	var/list/spells = list()
+	var/list/gauntlet_spells = list()
 	var/list/spell_types = list()
+	var/list/gauntlet_spell_types = list()
 	var/mutable_appearance/aura_overlay
 
 /obj/item/infinity_stone/Initialize()
 	. = ..()
 	for(var/T in spell_types)
 		spells += new T(src)
+	for(var/T in gauntlet_spell_types)
+		gauntlet_spells += new T(src)
 	RegisterSignal(src, COMSIG_ITEM_PICKUP, .proc/UpdateHolder)
 	RegisterSignal(src, COMSIG_ITEM_DROPPED, .proc/UpdateHolder)
 	RegisterSignal(src, COMSIG_ITEM_EQUIPPED, .proc/UpdateHolder)
@@ -37,23 +41,31 @@
 	for(var/A in ability_text)
 		to_chat(user, "<span class='notice'>[A]</span>")
 
-/obj/item/infinity_stone/proc/GiveAbilities(mob/living/L, only_extra = FALSE)
-	if(!only_extra)
-		for(var/obj/effect/proc_holder/spell/A in spells)
+/obj/item/infinity_stone/proc/GiveAbilities(mob/living/L, gauntlet = FALSE)
+	for(var/obj/effect/proc_holder/spell/A in spells)
+		L.mob_spell_list += A
+		A.action.Grant(L)
+	if(gauntlet)
+		for(var/obj/effect/proc_holder/spell/A in gauntlet_spells)
 			L.mob_spell_list += A
 			A.action.Grant(L)
 	//L.add_overlay(aura_overlay)
 
-/obj/item/infinity_stone/proc/RemoveAbilities(mob/living/L, only_extra = FALSE)
-	if(!only_extra)
-		for(var/obj/effect/proc_holder/spell/A in spells)
+/obj/item/infinity_stone/proc/RemoveAbilities(mob/living/L, gauntlet = FALSE)
+	for(var/obj/effect/proc_holder/spell/A in spells)
+		L.mob_spell_list -= A
+		A.action.Remove(L)
+	if(gauntlet)
+		for(var/obj/effect/proc_holder/spell/A in gauntlet_spells)
 			L.mob_spell_list -= A
 			A.action.Remove(L)
 	//L.cut_overlay(aura_overlay)
 
 /obj/item/infinity_stone/proc/GetHolder()
 	if(isliving(loc))
-		return loc
+		var/mob/living/L = loc
+		if(L.is_holding(src))
+			return loc
 	return null
 
 /obj/item/infinity_stone/proc/UpdateHolder()
