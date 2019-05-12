@@ -89,5 +89,14 @@
 	desc = "If you're going on a worldwide hike, you'll need some cold protection."
 	icon_state = "waldo_hat"
 	item_color = "waldo_hat"
+<<<<<<< HEAD
+=======
+	
+/obj/item/clothing/head/beanie/rasta
+	name = "rastacap"
+	desc = "Perfect for tucking in those dreadlocks."
+	icon_state = "beanierasta"
+	item_color = "beanierasta"	
+>>>>>>> 4d37b82... Fixed rastacap icon_state (#43938)
 
 //No dog fashion sprites yet :(  poor Ian can't be dope like the rest of us yet
