@@ -100,9 +100,14 @@
 	var/ghost_counter = 0
 	var/mob/dead/observer/current_spirits = list()
 
-	var/mob/living/holder = recursive_loc_check(src, /mob/living)
-	if(holder)
-		holder.transfer_observers_to(src)
+	var/atom/A = loc
+	while(!istype(A.loc, type))
+		if(isturf(A))
+			break
+		if(!A.loc)
+			return
+		A.transfer_observers_to(src)
+		A = A.loc
 
 	for(var/i in orbiters?.orbiters)
 		if(!isobserver(i))
@@ -197,3 +202,4 @@
 	icon_state = "bounty" // kind of looks like a hand
 	damage = 3
 	damage_type = BRUTE
+	nodamage = FALSE
