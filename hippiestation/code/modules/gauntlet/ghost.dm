@@ -70,12 +70,10 @@
 	notify_ghosts("The Ghost Stone has been formed!",
 		enter_link="<a href=?src=[REF(src)];orbit=1>(Click to orbit)</a>",
 		source = src, action=NOTIFY_ORBIT, ignore_key = POLL_IGNORE_SPECTRAL_BLADE)
-	START_PROCESSING(SSobj, src)
 
 /obj/item/infinity_stone/ghost/Destroy()
 	for(var/mob/dead/observer/G in spirits)
 		G.invisibility = GLOB.observer_default_invisibility
-	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/infinity_stone/ghost/attack_self(mob/user)
@@ -95,6 +93,7 @@
 			ghost.ManualFollow(src)
 
 /obj/item/infinity_stone/ghost/process()
+	..()
 	ghost_check()
 
 /obj/item/infinity_stone/ghost/proc/ghost_check()

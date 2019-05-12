@@ -6,7 +6,8 @@
 	stone_type = SYNDIE_STONE
 	ability_text = list("ALL INTENTS: PLACEHOLDER MARTIAL ART")
 	gauntlet_spell_types = list(/obj/effect/proc_holder/spell/aoe_turf/repulse/syndie_stone)
-	spell_types = list(/obj/effect/proc_holder/spell/self/infinity/regenerate)
+	spell_types = list(/obj/effect/proc_holder/spell/self/infinity/regenerate,
+		/obj/effect/proc_holder/spell/self/infinity/epulse)
 	var/datum/martial_art/cqc/martial_art
 
 /obj/item/infinity_stone/syndie/Initialize()
@@ -72,3 +73,34 @@
 			if(L.getBruteLoss() + L.getFireLoss() + L.getStaminaLoss() < 1)
 				to_chat(user, "<span class='notice'>You are fully healed.</span>")
 				return
+
+/obj/effect/proc_holder/spell/self/infinity/epulse
+	name = "Syndie Stone: Energy Pulse"
+	desc = "Release a pulse of energy, knocking back anyone in front of you."
+	action_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_icon_state = "epulse"
+	range = 3
+	sound = 'sound/magic/repulse.ogg'
+
+/obj/effect/proc_holder/spell/self/infinity/epulse/cast(list/targets, mob/user)
+	var/direction = user.dir
+	var/front = get_step(get_turf(user), direction)
+	user.visible_message("<span class='danger'>[user] unleashes an energy wave!<span>")
+	for (var/i = 0; i < range; i++)
+		for(var/turf/T in GetAdjacents(front, direction))
+			new /obj/effect/temp_visual/dir_setting/firing_effect/magic(T)
+			for(var/atom/movable/AM in T)
+				if(AM == user || AM.anchored)
+					continue
+				if(isliving(AM))
+					var/mob/living/M = AM
+					M.Paralyze(7.5 SECONDS)
+					M.adjustBruteLoss(5)
+					to_chat(M, "<span class='userdanger'>You're slammed into the floor by the energy wave!</span>")
+				var/atom/target = get_edge_target_turf(AM, direction)
+				new /obj/effect/temp_visual/gravpush(get_turf(AM), get_dir(user, AM))
+				AM.throw_at(target, 5, 5, user)
+		front = get_step(front, direction)
+
+/obj/effect/proc_holder/spell/self/infinity/epulse/proc/GetAdjacents(turf/T, direction)
+	return list(T, get_step(T, turn(direction, 90)), get_step(T, turn(direction, 270)))

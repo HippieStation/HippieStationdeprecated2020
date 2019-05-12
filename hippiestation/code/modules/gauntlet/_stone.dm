@@ -4,6 +4,7 @@
 	icon_state = "stone"
 	w_class = WEIGHT_CLASS_SMALL
 	var/mob/living/current_holder
+	var/mob/living/aura_holder
 	var/stone_type = ""
 	var/list/ability_text = list()
 	var/list/spells = list()
@@ -18,16 +19,18 @@
 		spells += new T(src)
 	for(var/T in gauntlet_spell_types)
 		gauntlet_spells += new T(src)
-	RegisterSignal(src, COMSIG_ITEM_PICKUP, .proc/UpdateHolder)
-	RegisterSignal(src, COMSIG_ITEM_DROPPED, .proc/UpdateHolder)
-	RegisterSignal(src, COMSIG_ITEM_EQUIPPED, .proc/UpdateHolder)
+//	RegisterSignal(src, COMSIG_ITEM_PICKUP, .proc/UpdateHolder)
+//	RegisterSignal(src, COMSIG_ITEM_DROPPED, .proc/UpdateHolder)
+//	RegisterSignal(src, COMSIG_ITEM_EQUIPPED, .proc/UpdateHolder)
 	AddComponent(/datum/component/stationloving, TRUE)
+	START_PROCESSING(SSobj, src)
 	GLOB.poi_list |= src
 	aura_overlay = mutable_appearance('hippiestation/icons/obj/infinity.dmi', "aura", -MUTATIONS_LAYER)
 	aura_overlay.color = color
 
 /obj/item/infinity_stone/Destroy()
 	GLOB.poi_list -= src
+	STOP_PROCESSING(SSobj, src)
 	return ..()		
 
 /obj/item/infinity_stone/examine(mob/user)
@@ -68,7 +71,15 @@
 	L.cut_overlay(aura_overlay)
 
 /obj/item/infinity_stone/proc/GetHolder()
+	if(isliving(loc))
+		return loc
+	return null
+
+/obj/item/infinity_stone/proc/GetAuraHolder()
 	return recursive_loc_check(src, /mob/living)
+
+/obj/item/infinity_stone/process()
+	UpdateHolder()
 
 /obj/item/infinity_stone/proc/UpdateHolder()
 	if(istype(loc, /obj/item/infinity_gauntlet))
@@ -76,17 +87,24 @@
 			current_holder.cut_overlay(aura_overlay)
 		return //gauntlet handles this from now on
 	var/mob/living/new_holder = GetHolder()
+	var/mob/living/new_aura_holder = GetAuraHolder()
 	if (new_holder != current_holder)
 		if(isliving(current_holder))
 			RemoveAbilities(current_holder)
-			TakeVisualEffects(current_holder)
 		if(isliving(new_holder))
-			if(new_holder.is_holding(src))
+			if(loc == new_holder)
 				GiveAbilities(new_holder)
-			GiveVisualEffects(new_holder)
 			current_holder = new_holder
 		else
 			current_holder = null
+	if (new_aura_holder != aura_holder)
+		if(isliving(aura_holder))
+			TakeVisualEffects(aura_holder)
+		if(isliving(new_aura_holder))
+			GiveVisualEffects(new_aura_holder)
+			aura_holder = new_aura_holder
+		else
+			aura_holder = null
 
 /obj/item/infinity_stone/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!isliving(user))
