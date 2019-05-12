@@ -34,6 +34,10 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 			"Captain" = 55,
 			"Head of Personnel" = 45,
 			"Chaplain" = 25
+		),
+		CLOWN_STONE = list(
+			"Clown" = 90,
+			"Curator" = 20
 		)
 	))
 GLOBAL_VAR_INIT(telescroll_time, 0)
