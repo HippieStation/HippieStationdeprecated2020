@@ -1,11 +1,12 @@
 /obj/item/infinity_stone/lag
 	name = "Lag Stone"
 	desc = "The bane of a coder's existence."
-	color = "#654321"
+	color = "#20B2AA"
 	ability_text = list("HELP INTENT: Set a point on the station, or if a point is already set, teleport back to it. Stuns you for a while, but heals you alot.",
 		"GRAB INTENT: Swap places with the victim, and then fire a projectile!",
 		"DISARM INTENT: Shoot a disorienting projectile")
-	spell_types = list(/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/lag_stone)
+	spell_types = list()
+	gauntlet_spell_types = list(/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/lag_stone)
 	stone_type = LAG_STONE
 	var/turf/teleport_point
 

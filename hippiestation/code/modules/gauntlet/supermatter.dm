@@ -1,31 +1,27 @@
-/obj/item/infinity_stone/server
-	name = "Server Stone"
-	desc = "The very essence of Hippie. Smells of basement."
-	stone_type = SERVER_STONE
-	color = "#FF8B00"
-	spell_types = list (/obj/effect/proc_holder/spell/spacetime_dist/server_stone)
-	ability_text = list("HELP/GRAB INTENT: Fire a bolt of animation", 
-		"DISARM INTENT: Fire a bolt of chaos", 
+/obj/item/infinity_stone/supermatter
+	name = "Supermatter Stone"
+	desc = "Don't touch, it's hot! Oh yeah, and it bends reality."
+	stone_type = SUPERMATTER_STONE
+	color = "#ECF332"
+	spell_types = list (/obj/effect/proc_holder/spell/spacetime_dist/supermatter_stone)
+	ability_text = list("HELP/GRAB INTENT: Fire a burning-hot crystal spray", 
+		"DISARM INTENT: Fire a short-range fire blast, that'll set people on fire and knock them back.", 
 		"Use on a material to use 25 sheets of it for a golem. 2 minute cooldown!")
 	var/next_golem = 0
 
 /obj/item/infinity_stone/server/DisarmEvent(atom/target, mob/living/user, proximity_flag)
 	if(!HandleGolem(user, target))
-		FireProjectile(pick(list(/obj/item/projectile/magic/change, /obj/item/projectile/magic/animate, /obj/item/projectile/magic/resurrection,
-		/obj/item/projectile/magic/death, /obj/item/projectile/magic/teleport, /obj/item/projectile/magic/door, /obj/item/projectile/magic/aoe/fireball,
-		/obj/item/projectile/magic/spellblade, /obj/item/projectile/magic/arcane_barrage, /obj/item/projectile/magic/locker, /obj/item/projectile/magic/flying,
-		/obj/item/projectile/magic/bounty, /obj/item/projectile/magic/antimagic, /obj/item/projectile/magic/fetch, /obj/item/projectile/magic/sapping,
-		/obj/item/projectile/magic/necropotence, /obj/item/projectile/magic, /obj/item/projectile/temp/chill, /obj/item/projectile/magic/wipe)), target)
+		FireProjectile(/obj/item/projectile/forcefire, target)
 		user.changeNext_move(CLICK_CD_RANGE)
 
 /obj/item/infinity_stone/server/GrabEvent(atom/target, mob/living/user, proximity_flag)
-	if(!HandleGolem(user, target))
-		FireProjectile(/obj/item/projectile/magic/animate, target)
+	if(!proximity_flag || !HandleGolem(user, target))
+		FireProjectile(/obj/item/projectile/supermatter_stone, target)
 		user.changeNext_move(CLICK_CD_RANGE)
 
 /obj/item/infinity_stone/server/HelpEvent(atom/target, mob/living/user, proximity_flag)
-	if(!HandleGolem(user, target))
-		FireProjectile(/obj/item/projectile/magic/animate, target)
+	if(!proximity_flag || !HandleGolem(user, target))
+		FireProjectile(/obj/item/projectile/supermatter_stone, target)
 		user.changeNext_move(CLICK_CD_RANGE)
 
 
@@ -78,11 +74,42 @@
 /////////////////// SPELLS //////////////////
 /////////////////////////////////////////////
 
-/obj/effect/proc_holder/spell/spacetime_dist/server_stone
-	name = "Server Stone: Reality Distortion"
+/obj/effect/proc_holder/spell/spacetime_dist/supermatter_stone
+	name = "Supermatter Stone: Reality Distortion"
+	desc = "Bend reality until it's unrecognizable for a short time."
 	action_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_icon_state = "reality"
 	clothes_req = FALSE
 	human_req = FALSE
 	staff_req = FALSE
 	invocation_type = "none"
+
+/////////////////////////////////////////////
+/////////////////// STUFF ///////////////////
+/////////////////////////////////////////////
+
+/obj/item/projectile/supermatter_stone
+	name = "burning crystal"
+	icon_state = "guardian"
+	damage = 15
+	damage_type = BURN
+	color = "#ECF332"
+	armour_penetration = 100
+
+/obj/item/projectile/forcefire
+	name = "forcefire"
+	icon_state = "plasma"
+	damage = 10
+	damage_type = BURN
+	range = 5
+	var/knockback = 3
+
+/obj/item/projectile/forcefire/on_hit(atom/target, blocked = FALSE)
+	if(ismovableatom(target))
+		var/atom/movable/AM = target
+		if(!AM.anchored)
+			if(isliving(AM))
+				var/mob/living/L = AM
+				L.adjust_fire_stacks(2)
+				L.IgniteMob()
+			AM.throw_at(get_edge_target_turf(AM, get_dir(src, AM)), knockback, 4)

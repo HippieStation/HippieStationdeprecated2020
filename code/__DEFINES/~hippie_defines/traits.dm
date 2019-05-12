@@ -2,7 +2,7 @@
 #define YEET_TRAIT "yeet_trait"
 #define BLUESPACE_STONE_TRAIT "bluespace_stone_trait"
 #define SYNDIE_STONE_TRAIT "syndie_stone_trait"
-#define SERVER_STONE_TRAIT "server_stone_trait"
+#define SUPERMATTER_STONE_TRAIT "supermatter_stone_trait"
 #define LAG_STONE_TRAIT "lag_stone_trait"
 #define GHOST_STONE_TRAIT "ghost_stone_trait"
 #define GAUNTLET_TRAIT "gauntlet_trait"

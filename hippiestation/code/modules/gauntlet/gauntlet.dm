@@ -1,10 +1,10 @@
 GLOBAL_VAR_INIT(gauntlet_snapped, FALSE)
 GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
-GLOBAL_LIST_INIT(infinity_stones, list(SYNDIE_STONE, BLUESPACE_STONE, SERVER_STONE, LAG_STONE, CLOWN_STONE, GHOST_STONE))
+GLOBAL_LIST_INIT(infinity_stones, list(SYNDIE_STONE, BLUESPACE_STONE, SUPERMATTER_STONE, LAG_STONE, CLOWN_STONE, GHOST_STONE))
 GLOBAL_LIST_INIT(infinity_stone_types, list(
 		SYNDIE_STONE = /obj/item/infinity_stone/syndie,
 		BLUESPACE_STONE = /obj/item/infinity_stone/bluespace, 
-		SERVER_STONE = /obj/item/infinity_stone/server, 
+		SUPERMATTER_STONE = /obj/item/infinity_stone/server, 
 		LAG_STONE = /obj/item/infinity_stone/lag, 
 		CLOWN_STONE = /obj/item/infinity_stone/clown, 
 		GHOST_STONE = /obj/item/infinity_stone/ghost))
@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 			"Scientist" = 20,
 			"Mime" = 15
 		),
-		SERVER_STONE = list(
+		SUPERMATTER_STONE = list(
 			"Chief Engineer" = 60,
 			"Curator" = 45,
 			"Station Engineer" = 30,
