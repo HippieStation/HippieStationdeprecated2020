@@ -118,6 +118,8 @@
 			GrabEvent(target, user, proximity_flag)
 		if(INTENT_HELP)
 			HelpEvent(target, user, proximity_flag)
+		if(INTENT_HARM)
+			HarmEvent(target, user, proximity_flag)
 
 /obj/item/infinity_stone/proc/DisarmEvent(atom/target, mob/living/user, proximity_flag)
 
