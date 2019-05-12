@@ -4,7 +4,7 @@ GLOBAL_LIST_INIT(infinity_stones, list(SYNDIE_STONE, BLUESPACE_STONE, SUPERMATTE
 GLOBAL_LIST_INIT(infinity_stone_types, list(
 		SYNDIE_STONE = /obj/item/infinity_stone/syndie,
 		BLUESPACE_STONE = /obj/item/infinity_stone/bluespace, 
-		SUPERMATTER_STONE = /obj/item/infinity_stone/server, 
+		SUPERMATTER_STONE = /obj/item/infinity_stone/supermatter, 
 		LAG_STONE = /obj/item/infinity_stone/lag, 
 		CLOWN_STONE = /obj/item/infinity_stone/clown, 
 		GHOST_STONE = /obj/item/infinity_stone/ghost))
