@@ -237,47 +237,46 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			if(!resolved && target && !QDELETED(src))
 				afterattack(target, user, 1, params)
 
-/obj/item/infinity_gauntlet/proc/AttackThing(mob/user, atom/target, proximity_flag)
-	if(proximity_flag)
-		if(istype(target, /obj/structure/safe))
-			var/obj/structure/safe/S = target
-			user.visible_message("<span class='danger'>[user] begins to pry open [S]!<span>", "<span class='notice'>We begin to pry open [S]...</span>")
-			if(do_after(user, 35, target = S))
-				user.visible_message("<span class='danger'>[user] pries open [S]!<span>", "<span class='notice'>We pry open [S]!</span>")
-				S.tumbler_1_pos = S.tumbler_1_open
-				S.tumbler_2_pos = S.tumbler_2_open
-				S.open = TRUE
-				S.update_icon()
-				S.updateUsrDialog()
-		else if(isclosedturf(target))
-			var/turf/closed/T = target
-			if(!GetStone(SYNDIE_STONE))
-				user.visible_message("<span class='danger'>[user] begins to charge up a punch...</span>", "<span class='notice'>We begin to charge a punch...</span>")
-				if(do_after(user, 15, target = T))
-					playsound(T, 'sound/effects/bang.ogg', 50, 1)
-					user.visible_message("<span class='danger'>[user] punches down [T]!</span>")
-					T.ScrapeAway()
-			else
+/obj/item/infinity_gauntlet/proc/AttackThing(mob/user, atom/target)
+	if(istype(target, /obj/structure/safe))
+		var/obj/structure/safe/S = target
+		user.visible_message("<span class='danger'>[user] begins to pry open [S]!<span>", "<span class='notice'>We begin to pry open [S]...</span>")
+		if(do_after(user, 35, target = S))
+			user.visible_message("<span class='danger'>[user] pries open [S]!<span>", "<span class='notice'>We pry open [S]!</span>")
+			S.tumbler_1_pos = S.tumbler_1_open
+			S.tumbler_2_pos = S.tumbler_2_open
+			S.open = TRUE
+			S.update_icon()
+			S.updateUsrDialog()
+	else if(isclosedturf(target))
+		var/turf/closed/T = target
+		if(!GetStone(SYNDIE_STONE))
+			user.visible_message("<span class='danger'>[user] begins to charge up a punch...</span>", "<span class='notice'>We begin to charge a punch...</span>")
+			if(do_after(user, 15, target = T))
 				playsound(T, 'sound/effects/bang.ogg', 50, 1)
 				user.visible_message("<span class='danger'>[user] punches down [T]!</span>")
 				T.ScrapeAway()
-		else if(iscarbon(target) && (user.zone_selected == BODY_ZONE_L_LEG || user.zone_selected == BODY_ZONE_R_LEG))
-			var/mob/living/carbon/C = target
-			if(!(C.mobility_flags & MOBILITY_MOVE) || C.InCritical() || C.incapacitated(TRUE, TRUE))
-				var/list/legs = list()
-				for(var/obj/item/bodypart/BP in C.bodyparts)
-					if (BP.body_part & LEGS)
-						legs += BP
-				if(LAZYLEN(legs))
-					var/obj/item/bodypart/BP = pick(legs)
-					if(GetStone(SYNDIE_STONE))
-						user.visible_message("<span class='danger bold'>[user] rips off [C]'s [BP]!</span>")
-						BP.dismember()
-						user.put_in_hands(BP)
-					else
-						user.visible_message("<span class='danger bold'>[user] breaks [C]'s [BP]!</span>")
-						C.emote("scream")
-						BP.receive_damage(stamina = 100)
+		else
+			playsound(T, 'sound/effects/bang.ogg', 50, 1)
+			user.visible_message("<span class='danger'>[user] punches down [T]!</span>")
+			T.ScrapeAway()
+	else if(iscarbon(target) && (user.zone_selected == BODY_ZONE_L_LEG || user.zone_selected == BODY_ZONE_R_LEG))
+		var/mob/living/carbon/C = target
+		if(!(C.mobility_flags & MOBILITY_MOVE) || C.InCritical() || C.incapacitated(TRUE, TRUE))
+			var/list/legs = list()
+			for(var/obj/item/bodypart/BP in C.bodyparts)
+				if (BP.body_part & LEGS)
+					legs += BP
+			if(LAZYLEN(legs))
+				var/obj/item/bodypart/BP = pick(legs)
+				if(GetStone(SYNDIE_STONE))
+					user.visible_message("<span class='danger bold'>[user] rips off [C]'s [BP]!</span>")
+					BP.dismember()
+					user.put_in_hands(BP)
+				else
+					user.visible_message("<span class='danger bold'>[user] breaks [C]'s [BP]!</span>")
+					C.emote("scream")
+					BP.receive_damage(stamina = 100)
 
 /obj/item/infinity_gauntlet/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!locked_on)
@@ -293,7 +292,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			if(INTENT_HARM)
 				if(ishuman(target) && ishuman(user))
 					martial_art.harm_act(user, target)
-				AttackThing(user, target)
+				if(proximity_flag)
+					AttackThing(user, target)
 			if(INTENT_GRAB)
 				if(ishuman(target) && ishuman(user))
 					martial_art.grab_act(user, target)
@@ -305,7 +305,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		if(INTENT_DISARM)
 			IS.DisarmEvent(target, user, proximity_flag)
 		if(INTENT_HARM) // there's no harm intent on the stones anyways
-			AttackThing(user, target, proximity_flag)
+			if(proximity_flag)
+				AttackThing(user, target)
 		if(INTENT_GRAB)
 			IS.GrabEvent(target, user, proximity_flag)
 		if(INTENT_HELP)
