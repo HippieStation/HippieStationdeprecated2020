@@ -96,6 +96,8 @@
 /mob/living/carbon/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
 	var/hurt = TRUE
+	if(super_yeet || yeet) // hippie start -- gauntlet bullcharge
+		hurt = FALSE // hippie end
 	if(istype(throwingdatum, /datum/thrownthing))
 		var/datum/thrownthing/D = throwingdatum
 		if(iscyborg(D.thrower))

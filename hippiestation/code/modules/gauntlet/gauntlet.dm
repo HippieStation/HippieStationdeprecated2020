@@ -59,6 +59,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	update_icon()
 	spells += new /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet
 	spells += new /obj/effect/proc_holder/spell/aoe_turf/repulse/gauntlet
+	spells += new /obj/effect/proc_holder/spell/self/infinity/gauntlet_bullcharge
 
 /obj/item/infinity_gauntlet/examine(mob/user)
 	. = ..()
@@ -74,9 +75,9 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 /obj/item/infinity_gauntlet/proc/DoTheSnap()
 	var/mob/living/snapper = usr
-	var/list/mobs_to_wipe = GLOB.player_list.Copy()
+	var/list/mobs_to_wipe = GLOB.alive_mob_list.Copy()
 	shuffle_inplace(mobs_to_wipe)
-	var/to_wipe = FLOOR(mobs_to_wipe.len/2, 1)
+	var/to_wipe = FLOOR((mobs_to_wipe.len-1)/2, 1)
 	var/wiped = 0
 	to_chat(world, "<span class='userdanger italics'>You feel as if something big has happened.</span>")
 	for(var/mob/living/L in mobs_to_wipe)
@@ -86,7 +87,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			continue
 		var/dust_time = rand(5 SECONDS, 10 SECONDS)
 		if(prob(15))
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, L, "<span class='danger'>You don't feel so good...</span>"), dust_time - 2 SECONDS)
+			addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, L, "<span class='danger'>You don't feel so good...</span>"), dust_time - 3 SECONDS)
 		addtimer(CALLBACK(L, /mob/living.proc/dust, TRUE), dust_time)
 		wiped++
 
@@ -232,46 +233,47 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			if(!resolved && target && !QDELETED(src))
 				afterattack(target, user, 1, params)
 
-/obj/item/infinity_gauntlet/proc/AttackThing(mob/user, atom/target)
-	if(istype(target, /obj/structure/safe))
-		var/obj/structure/safe/S = target
-		user.visible_message("<span class='danger'>[user] begins to pry open [S]!<span>", "<span class='notice'>We begin to pry open [S]...</span>")
-		if(do_after(user, 35, target = S))
-			user.visible_message("<span class='danger'>[user] pries open [S]!<span>", "<span class='notice'>We pry open [S]!</span>")
-			S.tumbler_1_pos = S.tumbler_1_open
-			S.tumbler_2_pos = S.tumbler_2_open
-			S.open = TRUE
-			S.update_icon()
-			S.updateUsrDialog()
-	else if(isclosedturf(target))
-		var/turf/closed/T = target
-		if(!GetStone(SYNDIE_STONE))
-			user.visible_message("<span class='danger'>[user] begins to charge up a punch...</span>", "<span class='notice'>We begin to charge a punch...</span>")
-			if(do_after(user, 15, target = T))
+/obj/item/infinity_gauntlet/proc/AttackThing(mob/user, atom/target, proximity_flag)
+	if(proximity_flag)
+		if(istype(target, /obj/structure/safe))
+			var/obj/structure/safe/S = target
+			user.visible_message("<span class='danger'>[user] begins to pry open [S]!<span>", "<span class='notice'>We begin to pry open [S]...</span>")
+			if(do_after(user, 35, target = S))
+				user.visible_message("<span class='danger'>[user] pries open [S]!<span>", "<span class='notice'>We pry open [S]!</span>")
+				S.tumbler_1_pos = S.tumbler_1_open
+				S.tumbler_2_pos = S.tumbler_2_open
+				S.open = TRUE
+				S.update_icon()
+				S.updateUsrDialog()
+		else if(isclosedturf(target))
+			var/turf/closed/T = target
+			if(!GetStone(SYNDIE_STONE))
+				user.visible_message("<span class='danger'>[user] begins to charge up a punch...</span>", "<span class='notice'>We begin to charge a punch...</span>")
+				if(do_after(user, 15, target = T))
+					playsound(T, 'sound/effects/bang.ogg', 50, 1)
+					user.visible_message("<span class='danger'>[user] punches down [T]!</span>")
+					T.ScrapeAway()
+			else
 				playsound(T, 'sound/effects/bang.ogg', 50, 1)
 				user.visible_message("<span class='danger'>[user] punches down [T]!</span>")
 				T.ScrapeAway()
-		else
-			playsound(T, 'sound/effects/bang.ogg', 50, 1)
-			user.visible_message("<span class='danger'>[user] punches down [T]!</span>")
-			T.ScrapeAway()
-	else if(iscarbon(target) && (user.zone_selected == BODY_ZONE_L_LEG || user.zone_selected == BODY_ZONE_R_LEG))
-		var/mob/living/carbon/C = target
-		if(!(C.mobility_flags & MOBILITY_MOVE) || C.InCritical() || C.incapacitated(TRUE, TRUE))
-			var/list/legs = list()
-			for(var/obj/item/bodypart/BP in C.bodyparts)
-				if (BP.body_part & LEGS)
-					legs += BP
-			if(LAZYLEN(legs))
-				var/obj/item/bodypart/BP = pick(legs)
-				if(GetStone(SYNDIE_STONE))
-					user.visible_message("<span class='danger bold'>[user] rips off [C]'s [BP]!</span>")
-					BP.dismember()
-					user.put_in_hands(BP)
-				else
-					user.visible_message("<span class='danger bold'>[user] breaks [C]'s [BP]!</span>")
-					C.emote("scream")
-					BP.receive_damage(stamina = 100)
+		else if(iscarbon(target) && (user.zone_selected == BODY_ZONE_L_LEG || user.zone_selected == BODY_ZONE_R_LEG))
+			var/mob/living/carbon/C = target
+			if(!(C.mobility_flags & MOBILITY_MOVE) || C.InCritical() || C.incapacitated(TRUE, TRUE))
+				var/list/legs = list()
+				for(var/obj/item/bodypart/BP in C.bodyparts)
+					if (BP.body_part & LEGS)
+						legs += BP
+				if(LAZYLEN(legs))
+					var/obj/item/bodypart/BP = pick(legs)
+					if(GetStone(SYNDIE_STONE))
+						user.visible_message("<span class='danger bold'>[user] rips off [C]'s [BP]!</span>")
+						BP.dismember()
+						user.put_in_hands(BP)
+					else
+						user.visible_message("<span class='danger bold'>[user] breaks [C]'s [BP]!</span>")
+						C.emote("scream")
+						BP.receive_damage(stamina = 100)
 
 /obj/item/infinity_gauntlet/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!locked_on)
@@ -299,7 +301,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		if(INTENT_DISARM)
 			IS.DisarmEvent(target, user, proximity_flag)
 		if(INTENT_HARM) // there's no harm intent on the stones anyways
-			AttackThing(user, target)
+			AttackThing(user, target, proximity_flag)
 		if(INTENT_GRAB)
 			IS.GrabEvent(target, user, proximity_flag)
 		if(INTENT_HELP)
@@ -345,7 +347,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		var/image/IM = image(icon = I.icon, icon_state = I.icon_state)
 		IM.color = I.color
 		gauntlet_radial[I.stone_type] = IM
-	gauntlet_radial["none"] = image(icon = 'hippiestation/icons/obj/infinity.dmi', icon_state = "none")
+	if(!GetStone(SYNDIE_STONE))
+		gauntlet_radial["none"] = image(icon = 'hippiestation/icons/obj/infinity.dmi', icon_state = "none")
 	var/chosen = show_radial_menu(user, src, gauntlet_radial, custom_check = CALLBACK(src, .proc/check_menu, user))
 	if(!check_menu(user))
 		return
@@ -423,6 +426,21 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 				to_chat(user, "<span class='notice'>You are fully healed.</span>")
 				return
 
+/obj/effect/proc_holder/spell/self/infinity/gauntlet_bullcharge
+	name = "Badmin Gauntlet: Bull Charge"
+	desc = "Imbue yourself with power, and charge forward, smashing through anyone in your way!"
+	action_background_icon_state = "bg_default"
+	charge_max = 250
+	sound = 'sound/magic/repulse.ogg'
+
+/obj/effect/proc_holder/spell/self/infinity/gauntlet_bullcharge/cast(list/targets, mob/user)
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		ADD_TRAIT(C, TRAIT_STUNIMMUNE, YEET_TRAIT)
+		C.yeet = TRUE
+		C.super_yeet = FALSE
+		C.throw_at(get_edge_target_turf(C, C.dir), 6, 4, spin = FALSE)
+
 /obj/effect/proc_holder/spell/self/infinity/snap
 	name = "SNAP"
 	desc = "Snap the Badmin Gauntlet, erasing half the life in the universe."
@@ -449,6 +467,10 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		user.RemoveSpell(src)
 		SSshuttle.emergencyNoRecall = TRUE
 		SSshuttle.emergency.request(null, set_coefficient = 0.3)
+
+/////////////////////////////////////////////
+/////////////////// OTHER ///////////////////
+/////////////////////////////////////////////
 
 /obj/screen/alert/status_effect/agent_pinpointer/gauntlet
 	name = "Badmin Gauntlet Pinpointer"

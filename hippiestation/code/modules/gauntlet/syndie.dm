@@ -7,7 +7,7 @@
 	ability_text = list("ALL INTENTS: PLACEHOLDER MARTIAL ART")
 	gauntlet_spell_types = list(/obj/effect/proc_holder/spell/aoe_turf/repulse/syndie_stone)
 	spell_types = list(/obj/effect/proc_holder/spell/self/infinity/regenerate,
-		/obj/effect/proc_holder/spell/self/infinity/epulse)
+		/obj/effect/proc_holder/spell/self/infinity/syndie_bullcharge)
 	var/datum/martial_art/cqc/martial_art
 
 /obj/item/infinity_stone/syndie/Initialize()
@@ -74,33 +74,48 @@
 				to_chat(user, "<span class='notice'>You are fully healed.</span>")
 				return
 
-/obj/effect/proc_holder/spell/self/infinity/epulse
-	name = "Syndie Stone: Energy Pulse"
-	desc = "Release a pulse of energy, knocking back anyone in front of you."
-	action_icon = 'hippiestation/icons/obj/infinity.dmi'
-	action_icon_state = "epulse"
-	range = 3
+/obj/effect/proc_holder/spell/self/infinity/syndie_bullcharge
+	name = "Syndie Stone: Bull Charge"
+	desc = "Imbue yourself with power, and charge forward, smashing through anyone or any wall in your way!"
+	charge_max = 200
 	sound = 'sound/magic/repulse.ogg'
 
-/obj/effect/proc_holder/spell/self/infinity/epulse/cast(list/targets, mob/user)
-	var/direction = user.dir
-	var/front = get_step(get_turf(user), direction)
-	user.visible_message("<span class='danger'>[user] unleashes an energy wave!<span>")
-	for (var/i = 0; i < range; i++)
-		for(var/turf/T in GetAdjacents(front, direction))
-			new /obj/effect/temp_visual/dir_setting/firing_effect/magic(T)
-			for(var/atom/movable/AM in T)
-				if(AM == user || AM.anchored)
-					continue
-				if(isliving(AM))
-					var/mob/living/M = AM
-					M.Paralyze(7.5 SECONDS)
-					M.adjustBruteLoss(5)
-					to_chat(M, "<span class='userdanger'>You're slammed into the floor by the energy wave!</span>")
-				var/atom/target = get_edge_target_turf(AM, direction)
-				new /obj/effect/temp_visual/gravpush(get_turf(AM), get_dir(user, AM))
-				AM.throw_at(target, 5, 5, user)
-		front = get_step(front, direction)
+/obj/effect/proc_holder/spell/self/infinity/syndie_bullcharge/cast(list/targets, mob/user)
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		ADD_TRAIT(C, TRAIT_STUNIMMUNE, YEET_TRAIT)
+		C.yeet = TRUE
+		C.super_yeet = TRUE
+		C.throw_at(get_edge_target_turf(C, C.dir), 9, 4, spin = FALSE)
 
-/obj/effect/proc_holder/spell/self/infinity/epulse/proc/GetAdjacents(turf/T, direction)
-	return list(T, get_step(T, turn(direction, 90)), get_step(T, turn(direction, 270)))
+/////////////////////////////////////////////
+/////////////// SNOWFLAKE CODE //////////////
+/////////////////////////////////////////////
+
+/mob/living/carbon
+	var/yeet = FALSE
+	var/super_yeet = FALSE
+
+/mob/living/carbon/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	. = ..()
+	if(yeet || super_yeet)
+		if(super_yeet && isclosedturf(hit_atom))
+			var/turf/closed/T = hit_atom
+			visible_message("<span class='danger'>[src] slams into [T]!</span>")
+			T.ScrapeAway()
+		else if(isliving(hit_atom))
+			var/mob/living/L = hit_atom
+			visible_message("<span class='danger'>[src] slams into [L]!</span>")
+			if(super_yeet)
+				L.Paralyze(7.5 SECONDS)
+				L.adjustBruteLoss(20)
+			else
+				L.Paralyze(5 SECONDS)
+				L.adjustBruteLoss(12)
+		else if(isobj(hit_atom))
+			var/obj/O = hit_atom
+			visible_message("<span class='danger'>[src] slams into [O], and crushes it!</span>")
+			O.take_damage(INFINITY)
+		REMOVE_TRAIT(src, TRAIT_STUNIMMUNE, YEET_TRAIT)
+		yeet = FALSE
+		super_yeet = FALSE

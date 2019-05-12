@@ -83,8 +83,6 @@
 
 /obj/item/infinity_stone/proc/UpdateHolder()
 	if(istype(loc, /obj/item/infinity_gauntlet))
-		if(isliving(current_holder))
-			current_holder.cut_overlay(aura_overlay)
 		return //gauntlet handles this from now on
 	var/mob/living/new_holder = GetHolder()
 	var/mob/living/new_aura_holder = GetAuraHolder()
