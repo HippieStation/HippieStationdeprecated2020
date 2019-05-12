@@ -90,8 +90,16 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		if(snapper == L)
 			continue
 		var/dust_time = rand(5 SECONDS, 10 SECONDS)
-		if(prob(15))
+		var/dust_sound = pick(
+			'hippiestation/sound/effects/snap/snap1.wav',
+			'hippiestation/sound/effects/snap/snap2.wav',
+			'hippiestation/sound/effects/snap/snap3.wav',
+			'hippiestation/sound/effects/snap/snap4.wav',
+			'hippiestation/sound/effects/snap/snap5.wav',
+			'hippiestation/sound/effects/snap/snap6.wav')
+		if(prob(25))
 			addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, L, "<span class='danger'>You don't feel so good...</span>"), dust_time - 3 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, L, dust_sound, 100, TRUE), dust_time)
 		addtimer(CALLBACK(L, /mob/living.proc/dust, TRUE), dust_time)
 		wiped++
 
