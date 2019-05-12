@@ -98,11 +98,11 @@
 
 /obj/item/infinity_stone/ghost/proc/ghost_check()
 	var/ghost_counter = 0
-	var/turf/T = get_turf(src)
 	var/mob/dead/observer/current_spirits = list()
-	for(var/thing in T.GetAllContents())
-		var/atom/A = thing
-		A.transfer_observers_to(src)
+
+	var/mob/living/holder = recursive_loc_check(src, /mob/living)
+	if(holder)
+		holder.transfer_observers_to(src)
 
 	for(var/i in orbiters?.orbiters)
 		if(!isobserver(i))
