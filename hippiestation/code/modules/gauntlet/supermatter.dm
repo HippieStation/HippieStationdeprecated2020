@@ -94,6 +94,7 @@
 	damage = 15
 	damage_type = BURN
 	color = "#ECF332"
+	speed = 0.95
 	armour_penetration = 100
 
 /obj/item/projectile/forcefire
@@ -102,6 +103,7 @@
 	damage = 10
 	damage_type = BURN
 	range = 5
+	speed = 0.95
 	var/knockback = 3
 
 /obj/item/projectile/forcefire/on_hit(atom/target, blocked = FALSE)
@@ -112,4 +114,5 @@
 				var/mob/living/L = AM
 				L.adjust_fire_stacks(2)
 				L.IgniteMob()
+				L.Paralyze(25)
 			AM.throw_at(get_edge_target_turf(AM, get_dir(src, AM)), knockback, 4)
