@@ -119,6 +119,7 @@
 	name = "Badmin Gauntlet"
 	desc = "A gauntlet capable of holding the Infinity Stones. <b>Wearing this will trigger a war declaration!</b>. Before you wear it, you can refund it by hitting it against the spellbook."
 	item_path = /obj/item/infinity_gauntlet
+	category = "Rituals"
 	cost = 10
 
 /datum/spellbook_entry/item/badmin_gauntlet/IsAvailible()
