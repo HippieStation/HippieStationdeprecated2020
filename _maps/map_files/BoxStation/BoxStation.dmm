@@ -17125,19 +17125,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
-"aNZ" = (
-/obj/structure/chair,
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit)
 "aOa" = (
 /obj/machinery/light{
 	dir = 1
@@ -17152,13 +17139,17 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "aOb" = (
-/obj/structure/chair,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red{
 	dir = 4
 	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/structure/table,
+/obj/item/storage/toolbox/emergency,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "aOc" = (
@@ -17632,28 +17623,27 @@
 /obj/effect/spawner/structure/window/reinforced/tinted,
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
-"aPp" = (
-/obj/machinery/camera{
-	c_tag = "Escape Arm Holding Area";
-	dir = 4
-	},
-/obj/item/radio/intercom{
-	dir = 8;
-	pixel_x = -28
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit)
 "aPq" = (
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "aPr" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/machinery/camera{
+	c_tag = "Escape Arm Holding Area";
+	dir = 4
+	},
+/obj/item/radio/intercom{
+	pixel_x = -25
+	},
+/obj/structure/chair{
+	dir = 4
+	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "aPs" = (
@@ -18112,15 +18102,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
-"aQB" = (
-/obj/effect/turf_decal/tile/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/red{
-	dir = 8
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit)
 "aQC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plasteel,
@@ -21027,12 +21008,6 @@
 	},
 /turf/open/floor/carpet,
 /area/chapel/main)
-"aXC" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit)
 "aXD" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -21704,12 +21679,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/carpet,
 /area/chapel/main)
-"aZi" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/hallway/secondary/exit)
 "aZj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -22222,12 +22191,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/chapel/main)
+<<<<<<< HEAD
 "baC" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
+=======
+>>>>>>> 575949c... Makes box's chapel wider (#43898)
 "baD" = (
 /obj/machinery/power/apc{
 	dir = 8;
@@ -51592,6 +51564,7 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/hallway)
+<<<<<<< HEAD
 "cwd" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -51607,6 +51580,8 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/hallway)
+=======
+>>>>>>> 575949c... Makes box's chapel wider (#43898)
 "cwe" = (
 /obj/structure/sign/warning/securearea,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -56443,6 +56418,11 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/medical/chemistry)
+"lqJ" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lantern,
+/turf/open/floor/plasteel/dark,
+/area/chapel/main)
 "ltd" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -56560,6 +56540,29 @@
 /obj/machinery/vending/wardrobe/bar_wardrobe,
 /turf/open/floor/wood,
 /area/crew_quarters/bar)
+<<<<<<< HEAD
+=======
+"mll" = (
+/obj/structure/lattice,
+/obj/structure/lattice/catwalk,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/open/space/basic,
+/area/solar/starboard/fore)
+"mvb" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/turf/open/floor/plasteel/white/corner{
+	dir = 1
+	},
+/area/hallway/secondary/exit)
+>>>>>>> 575949c... Makes box's chapel wider (#43898)
 "mBm" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -56806,6 +56809,14 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/explab)
+"ozs" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden{
+	dir = 4
+	},
+/obj/structure/table/glass,
+/obj/item/storage/fancy/candle_box,
+/turf/open/floor/plasteel/dark,
+/area/chapel/main)
 "oDF" = (
 /obj/machinery/light,
 /turf/open/floor/plating,
@@ -57904,6 +57915,19 @@
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
+"wXs" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/structure/chair{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/hallway/secondary/exit)
 "wZy" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -96554,7 +96578,7 @@ cvT
 cBS
 cwc
 cvz
-cwd
+cvz
 cwf
 cwj
 cwo
@@ -104679,7 +104703,7 @@ aFw
 aMM
 aFz
 aFz
-aQw
+lqJ
 aRS
 aRS
 aRS
@@ -104926,7 +104950,7 @@ auI
 azu
 aAz
 asB
-aCO
+ozs
 aEh
 aFz
 aHk
@@ -104937,7 +104961,7 @@ aML
 aFz
 aFz
 aQw
-cdl
+aRS
 aRS
 aRS
 aRS
@@ -105183,24 +105207,24 @@ auI
 azw
 aAA
 asB
-aCQ
-aEk
-aFB
-aHn
-aFB
-csT
-aFB
-aLr
-aFB
-aPn
-aQy
-aPn
-aTi
-aUK
-aVU
-aWg
+aCO
+aEh
+aFz
+aCO
+aFz
+aFz
+aFz
+aEh
+aFz
+aFz
+lqJ
+cdl
+aRS
+aRS
+aRS
+aRS
 aZf
-baA
+aRS
 bbF
 aYV
 aXq
@@ -105440,24 +105464,24 @@ auI
 awO
 awO
 asB
-aCP
-aEj
-aFA
-aHm
-aEj
-aEj
-aEj
-aEj
-aEj
-aPm
-aQx
-aPm
-aTh
-aUJ
-aTh
-aXz
-aZg
-aFz
+aCQ
+aEk
+aFB
+aHn
+aFB
+csT
+aFB
+aLr
+aFB
+aPn
+aQy
+aPn
+aTi
+aUK
+aVU
+aWg
+aZf
+baA
 bbF
 aYV
 bdv
@@ -105697,25 +105721,25 @@ ayj
 azx
 aAB
 asB
-aCR
-aEm
-aCR
-aPl
-aQv
-aPl
-aQv
-aCR
-aNY
-aCR
-aQA
-aCR
-aTj
+aCP
+aEj
+aFA
+aHm
+aEj
+aEj
+aEj
+aEj
+aEj
+aPm
+aQx
+aPm
+aTh
+aUJ
+aTh
+aXz
+aZg
 aFz
-aVV
-aXB
-aZh
-baB
-aCR
+bbF
 bcq
 bdx
 bcq
@@ -105955,23 +105979,23 @@ asB
 asB
 asB
 aCR
-bfb
+aEm
 aCR
-aHo
-aIE
-aKe
-aIE
+aPl
+aQv
+aPl
+aQv
 aCR
-aNX
-aPo
-aQz
+aNY
 aCR
+aQA
 aCR
-aCR
-aCR
-aXy
-aZe
-aCR
+aTj
+aFz
+aVV
+aXB
+aZh
+baB
 aCR
 bcy
 bdw
@@ -106212,24 +106236,24 @@ aaf
 aaf
 atS
 aCR
-aEn
+bfb
 aCR
-aHq
-aHq
-aHq
-aHq
+aHo
+aIE
+aKe
+aIE
+aCR
+aNX
+aPo
+aQz
 aCR
 aCR
 aCR
 aCR
+aXy
+aZe
 aCR
-aTl
-aUL
-aVW
-aXD
-aZj
-baD
-bbG
+aCR
 aTk
 bdy
 beI
@@ -106468,25 +106492,25 @@ aoV
 aoV
 aaf
 atS
-aaf
-aaa
-aaf
-aaa
-aaa
-aaa
-aaa
-aMZ
-aNZ
-aPp
-aQB
-aNa
-aTk
-aPq
-aPq
-aXC
-aZi
-baC
-aPq
+aCR
+aEn
+aCR
+aHq
+aHq
+aHq
+aHq
+aCR
+aCR
+aCR
+aCR
+aCR
+aTl
+aUL
+aVW
+aXD
+aZj
+baD
+bbG
 aPq
 bdy
 beH
@@ -106735,9 +106759,9 @@ aaf
 aMZ
 aOb
 aPr
-aQC
+wXs
 aRU
-aQC
+mvb
 aQC
 aQC
 czO
