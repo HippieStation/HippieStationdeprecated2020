@@ -483,6 +483,17 @@
 	suffix = "delta"
 	name = "mining shuttle (Delta)"
 
+<<<<<<< HEAD
+=======
+/datum/map_template/shuttle/mining/kilo
+	suffix = "kilo"
+	name = "mining shuttle (Kilo)"
+
+/datum/map_template/shuttle/mining/large
+	suffix = "large"
+	name = "mining shuttle (Large)"
+
+>>>>>>> 85cfd23... New Boxstation mining shuttle (#43920)
 /datum/map_template/shuttle/labour/delta
 	suffix = "delta"
 	name = "labour shuttle (Delta)"
