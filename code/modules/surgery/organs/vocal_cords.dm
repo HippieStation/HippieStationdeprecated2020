@@ -251,8 +251,8 @@
 	var/static/regex/clap_words = regex("clap|applaud")
 	var/static/regex/honk_words = regex("ho+nk") //hooooooonk
 	var/static/regex/multispin_words = regex("like a record baby|right round")
-	var/static/regex/fart_words = regex("fart|poo|poop|defecate")
-	var/static/regex/scream_words = regex("scream|yell|shriek|roar|howl")
+	var/static/regex/fart_words = regex("fart|poo|poop|defecate") //hippie edit
+	var/static/regex/scream_words = regex("scream|yell|shriek|roar|howl") //hippie edit
 
 	var/i = 0
 	//STUN
@@ -564,7 +564,7 @@
 			var/mob/living/L = V
 			L.SpinAnimation(speed = 10, loops = 5)
 
-	//FART
+	//FART //hippie edit
 	else if((findtext(message, fart_words)))
 		cooldown = COOLDOWN_MEME
 		for(var/V in listeners)
@@ -572,7 +572,7 @@
 			addtimer(CALLBACK(L, /mob/living/.proc/emote, "fart"), 5 * i)
 			i++
 
-	//SCREAM
+	//SCREAM //hippie edit
 	else if((findtext(message, scream_words)))
 		cooldown = COOLDOWN_MEME
 		for(var/V in listeners)
