@@ -251,8 +251,8 @@
 	var/static/regex/clap_words = regex("clap|applaud")
 	var/static/regex/honk_words = regex("ho+nk") //hooooooonk
 	var/static/regex/multispin_words = regex("like a record baby|right round")
-    var/static/regex/fart_words = regex("fart|poo|poop|defecate")
-    var/static/regex/scream_words = regex("scream|yell|shriek|roar|howl")
+	var/static/regex/fart_words = regex("fart|poo|poop|defecate")
+	var/static/regex/scream_words = regex("scream|yell|shriek|roar|howl")
 
 	var/i = 0
 	//STUN
