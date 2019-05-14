@@ -3,8 +3,8 @@
 	desc = "Don't touch, it's hot! Oh yeah, and it bends reality."
 	stone_type = SUPERMATTER_STONE
 	color = "#ECF332"
-	spell_types = list (/obj/effect/proc_holder/spell/spacetime_dist/supermatter_stone,
-		/obj/effect/proc_holder/spell/targeted/tesla/supermatter_stone)
+	spell_types = list (/obj/effect/proc_holder/spell/spacetime_dist/supermatter_stone)
+	gauntlet_spell_types = list(/obj/effect/proc_holder/spell/targeted/tesla/supermatter_stone)
 	ability_text = list("HELP INTENT: Fire a short-range, burning-hot crystal spray", 
 		"GRAB INTENT: Fire a long-range, rapid, but low damage volt ray",
 		"DISARM INTENT: Fire a short-range fire blast that knocks people back.", 
