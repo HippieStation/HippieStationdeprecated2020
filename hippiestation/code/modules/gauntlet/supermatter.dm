@@ -3,7 +3,8 @@
 	desc = "Don't touch, it's hot! Oh yeah, and it bends reality."
 	stone_type = SUPERMATTER_STONE
 	color = "#ECF332"
-	spell_types = list (/obj/effect/proc_holder/spell/spacetime_dist/supermatter_stone)
+	spell_types = list (/obj/effect/proc_holder/spell/spacetime_dist/supermatter_stone,
+		/obj/effect/proc_holder/spell/targeted/tesla/supermatter_stone)
 	ability_text = list("HELP INTENT: Fire a short-range, burning-hot crystal spray", 
 		"GRAB INTENT: Fire a long-range, rapid, but low damage volt ray",
 		"DISARM INTENT: Fire a short-range fire blast that knocks people back.", 
@@ -149,3 +150,49 @@
 				L.IgniteMob()
 				L.Paralyze(25)
 			AM.throw_at(get_edge_target_turf(AM, get_dir(src, AM)), knockback, 4)
+
+/obj/effect/proc_holder/spell/targeted/tesla/supermatter_stone
+	name = "Supermatter Blast"
+	desc = "Charge up an arc of supermatter-amped electricity"
+	action_icon = 'icons/obj/supermatter.dmi'
+	action_icon_state = "darkmatter_glow"
+	human_req = FALSE
+	clothes_req = FALSE
+	staff_req = FALSE
+	invocation_type = "none"
+
+/obj/effect/proc_holder/spell/targeted/tesla/supermatter_stone/cast(list/targets, mob/user = usr)
+	ready = FALSE
+	var/mob/living/carbon/target = targets[1]
+	Snd=sound(null, repeat = 0, wait = 1, channel = Snd.channel) //byond, why you suck?
+	playsound(get_turf(user),Snd,50,0)// Sorry MrPerson, but the other ways just didn't do it the way i needed to work, this is the only way.
+	if(get_dist(user,target)>range)
+		to_chat(user, "<span class='notice'>[target.p_theyre(TRUE)] too far away!</span>")
+		Reset(user)
+		return
+
+	playsound(get_turf(user), 'sound/effects/empzap.ogg', 50, 1)
+	user.Beam(target,icon_state="nzcrentrs_power",time=5)
+
+	Bolt(user,target,40,10,user)
+	Reset(user)
+
+/obj/effect/proc_holder/spell/targeted/tesla/supermatter_stone/Bolt(mob/origin,mob/target,bolt_energy,bounces,mob/user = usr)
+	origin.Beam(target,icon_state="nzcrentrs_power",time=5)
+	var/mob/living/carbon/current = target
+	if(bounces < 1)
+		current.electrocute_act(bolt_energy,"SM Bolt",safety=1)
+		playsound(get_turf(current), 'sound/effects/empzap.ogg', 50, 1, -1)
+	else
+		current.electrocute_act(bolt_energy,"SM Bolt",safety=1)
+		playsound(get_turf(current), 'sound/effects/empzap.ogg', 50, 1, -1)
+		var/list/possible_targets = new
+		for(var/mob/living/M in view(range,target))
+			if(user == M || target == M && los_check(current,M)) // || origin == M ? Not sure double shockings is good or not
+				continue
+			possible_targets += M
+		if(!possible_targets.len)
+			return
+		var/mob/living/next = pick(possible_targets)
+		if(next)
+			Bolt(current,next,max((bolt_energy-5),5),bounces-1,user)
