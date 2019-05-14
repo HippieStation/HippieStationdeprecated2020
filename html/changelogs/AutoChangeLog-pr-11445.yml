@@ -1,0 +1,4 @@
+author: "HonkBot"
+delete-after: True
+changes: 
+  - bugfix: "You can now interact with self sustaining crossbreeds"
