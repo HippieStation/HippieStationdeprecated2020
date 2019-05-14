@@ -84,10 +84,12 @@
 	icon_state = "omnilaser"
 	stutter = 15
 	jitter = 15
-	eyeblur = 20
-	stamina = 7.5
+	eyeblur = 15
+	stamina = 5
+	nodamage = FALSE
 	
 /obj/item/projectile/magic/lag_stone/on_hit(atom/target, blocked = FALSE)
+	. = ..()
 	if(isliving(target))
 		var/mob/living/M = target
 		if(blocked != 100)

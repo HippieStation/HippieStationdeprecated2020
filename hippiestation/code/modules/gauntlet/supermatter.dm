@@ -4,8 +4,9 @@
 	stone_type = SUPERMATTER_STONE
 	color = "#ECF332"
 	spell_types = list (/obj/effect/proc_holder/spell/spacetime_dist/supermatter_stone)
-	ability_text = list("HELP/GRAB INTENT: Fire a burning-hot crystal spray", 
-		"DISARM INTENT: Fire a short-range fire blast, that'll set people on fire and knock them back.", 
+	ability_text = list("HELP INTENT: Fire a short-range, burning-hot crystal spray", 
+		"GRAB INTENT: Fire a long-range, rapid, but low damage volt ray",
+		"DISARM INTENT: Fire a short-range fire blast that knocks people back.", 
 		"Use on a material to use 25 sheets of it for a golem. 2 minute cooldown!")
 	var/next_golem = 0
 
@@ -16,8 +17,8 @@
 
 /obj/item/infinity_stone/supermatter/GrabEvent(atom/target, mob/living/user, proximity_flag)
 	if(!proximity_flag || !HandleGolem(user, target))
-		FireProjectile(/obj/item/projectile/supermatter_stone, target)
-		user.changeNext_move(CLICK_CD_RANGE)
+		FireProjectile(/obj/item/projectile/voltray, target)
+		user.changeNext_move(CLICK_CD_RAPID)
 
 /obj/item/infinity_stone/supermatter/HelpEvent(atom/target, mob/living/user, proximity_flag)
 	if(!proximity_flag || !HandleGolem(user, target))
@@ -26,9 +27,6 @@
 
 
 /obj/item/infinity_stone/supermatter/proc/HandleGolem(mob/living/user, atom/target)
-	if(world.time < next_golem)
-		to_chat(user, "<span class='notice'>You need to wait [DisplayTimeText(world.time-next_golem)] before you can make another golem.</span>")
-		return TRUE
 	var/static/list/golem_shell_species_types = list(
 		/obj/item/stack/sheet/metal	                = /datum/species/golem,
 		/obj/item/stack/sheet/glass 	            = /datum/species/golem/glass,
@@ -60,6 +58,9 @@
 		/obj/item/stack/sheet/capitalisium			= /datum/species/golem/capitalist,
 		/obj/item/stack/sheet/stalinium				= /datum/species/golem/soviet)
 	if(istype(target, /obj/item/stack))
+		if(world.time < next_golem)
+			to_chat(user, "<span class='notice'>You need to wait [DisplayTimeText(world.time-next_golem)] before you can make another golem.</span>")
+			return TRUE
 		var/obj/item/stack/O = target
 		var/species = golem_shell_species_types[O.merge_type]
 		if(species)
@@ -97,6 +98,37 @@
 	speed = 0.95
 	armour_penetration = 100
 
+/obj/item/projectile/voltray
+	name = "volt ray"
+	icon = 'icons/effects/beam.dmi'
+	flag = "laser"
+	nodamage = TRUE // handled in on_hit
+	tracer_type = /obj/effect/projectile/tracer/voltray
+	muzzle_type = /obj/effect/projectile/muzzle/voltray
+	impact_type = /obj/effect/projectile/impact/voltray
+	hitscan = TRUE
+
+/obj/item/projectile/voltray/on_hit(atom/target, blocked)
+	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/C = target
+		C.electrocute_act(3, src, 1, FALSE, FALSE, FALSE, FALSE, FALSE)
+	else if(isliving(target))
+		var/mob/living/L = target
+		L.electrocute_act(3, src, 1, FALSE, FALSE, FALSE, FALSE)
+
+/obj/effect/projectile/tracer/voltray
+	name = "volt ray"
+	icon_state = "solar"
+
+/obj/effect/projectile/muzzle/voltray
+	name = "volt ray"
+	icon_state = "solar"
+
+/obj/effect/projectile/impact/voltray
+	name = "volt ray"
+	icon_state = "solar"
+
 /obj/item/projectile/forcefire
 	name = "forcefire"
 	icon_state = "plasma"
@@ -107,6 +139,7 @@
 	var/knockback = 3
 
 /obj/item/projectile/forcefire/on_hit(atom/target, blocked = FALSE)
+	. = ..()
 	if(ismovableatom(target))
 		var/atom/movable/AM = target
 		if(!AM.anchored)
