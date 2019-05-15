@@ -70,6 +70,7 @@
 	id = "cargounload";
 	name = "supply dock unloading door"
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/shuttle/supply)
 "l" = (
@@ -94,6 +95,7 @@
 	dwidth = 4;
 	width = 12
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/shuttle/supply)
 "o" = (
@@ -139,6 +141,7 @@
 	req_access_txt = "31"
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/shuttle/supply)
 "s" = (
@@ -150,6 +153,7 @@
 	dir = 4;
 	id = "cargoload"
 	},
+/obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/shuttle/supply)
 "t" = (

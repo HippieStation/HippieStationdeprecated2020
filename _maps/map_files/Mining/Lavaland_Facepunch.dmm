@@ -2,6 +2,22 @@
 "aa" = (
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
+"ag" = (
+/obj/effect/mob_spawn/human/corpse/russian/ranged/officer,
+/obj/effect/decal/cleanable/blood/old,
+/obj/structure/closet/supplypod,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"aj" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"am" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
 "bA" = (
 /obj/effect/turf_decal/tile/facepunch_alt/purple,
 /obj/effect/turf_decal/tile/facepunch_alt/neutral{
@@ -138,6 +154,9 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/facepunch,
 /area/mine/facepunch_base)
@@ -388,10 +407,6 @@
 /obj/machinery/washing_machine,
 /turf/open/floor/plasteel/facepunch/white,
 /area/mine/facepunch_base/dorms)
-"dJ" = (
-/obj/machinery/mineral/processing_unit_console,
-/turf/closed/wall,
-/area/mine/facepunch_base)
 "dK" = (
 /obj/structure/stone_tile/slab/cracked{
 	dir = 10
@@ -453,6 +468,12 @@
 	},
 /turf/open/floor/plating,
 /area/mine/laborcamp/security)
+"dW" = (
+/obj/machinery/mineral/processing_unit_console{
+	machinedir = 2
+	},
+/turf/closed/wall,
+/area/mine/facepunch_base)
 "dY" = (
 /obj/effect/turf_decal/tile/facepunch_alt/brown,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
@@ -621,6 +642,15 @@
 	},
 /turf/open/floor/plasteel/facepunch/white,
 /area/mine/facepunch_base/aft)
+"fE" = (
+/obj/structure/barricade/sandbags,
+/turf/closed/mineral/random/volcanic,
+/area/lavaland/surface/outdoors/unexplored/danger)
+"fK" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/lavaland/surface/outdoors)
 "fN" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -645,6 +675,15 @@
 	},
 /turf/open/floor/plasteel/facepunch,
 /area/mine/facepunch_base)
+"fX" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/lavaland/surface/outdoors)
 "fZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -804,6 +843,10 @@
 	},
 /turf/open/floor/wood,
 /area/mine/facepunch_base/canteen)
+"hf" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors/explored)
 "hg" = (
 /turf/open/floor/circuit/green/anim,
 /area/mine/facepunch_base/maintenance)
@@ -973,6 +1016,10 @@
 /obj/effect/turf_decal/tile/facepunch_alt/brown,
 /turf/open/floor/plasteel/facepunch,
 /area/mine/facepunch_base)
+"hQ" = (
+/obj/effect/mapping_helpers/no_lava,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
 "hR" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -1000,7 +1047,7 @@
 /area/mine/facepunch_base/aft)
 "hT" = (
 /obj/machinery/mecha_part_fabricator{
-	dir = 2;
+	dir = 1;
 	name = "counterfeit exosuit fabricator";
 	req_access = null
 	},
@@ -1064,6 +1111,9 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer1{
 	icon_state = "manifold-1";
 	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/facepunch,
 /area/mine/facepunch_base)
@@ -1348,6 +1398,9 @@
 	icon_state = "alarm0";
 	pixel_y = -22
 	},
+/obj/machinery/power/floodlight{
+	anchored = 0
+	},
 /turf/open/floor/plasteel/facepunch/dark,
 /area/mine/facepunch_base)
 "kq" = (
@@ -1466,6 +1519,9 @@
 "lc" = (
 /turf/open/floor/plating,
 /area/mine/facepunch_base/aft)
+"lf" = (
+/turf/open/chasm,
+/area/lavaland/surface/outdoors)
 "ll" = (
 /mob/living/simple_animal/bot/secbot/beepsky{
 	desc = "Powered by the tears and sweat of laborers.";
@@ -1479,9 +1535,6 @@
 	dir = 1
 	},
 /obj/structure/ore_box,
-/obj/effect/decal/cleanable/cobweb{
-	icon_state = "cobweb2"
-	},
 /turf/open/floor/plasteel/facepunch,
 /area/mine/facepunch_base/aft)
 "lq" = (
@@ -1766,6 +1819,15 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1,
 /turf/open/floor/wood,
 /area/mine/facepunch_base/aft)
+"nt" = (
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/lavaland/surface/outdoors)
 "nw" = (
 /obj/effect/turf_decal/tile/facepunch_alt/neutral,
 /obj/effect/turf_decal/tile/facepunch_alt/neutral{
@@ -1935,6 +1997,15 @@
 	},
 /turf/open/floor/plasteel/facepunch,
 /area/mine/facepunch_base)
+"oO" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/lavaland/surface/outdoors)
 "oP" = (
 /obj/structure/chair/stool,
 /obj/effect/turf_decal/tile/facepunch_alt/green,
@@ -2061,6 +2132,15 @@
 	},
 /turf/open/floor/plasteel/facepunch/dark,
 /area/mine/laborcamp/security)
+"pj" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/lavaland/surface/outdoors)
 "pm" = (
 /turf/open/floor/plasteel/freezer,
 /area/mine/facepunch_base/dorms)
@@ -2109,6 +2189,9 @@
 /turf/open/floor/plasteel/facepunch,
 /area/mine/laborcamp)
 "pt" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/facepunch/dark,
 /area/mine/facepunch_base)
 "pu" = (
@@ -2144,13 +2227,6 @@
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"pG" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/dirt/dust,
-/turf/open/floor/plasteel/facepunch,
-/area/mine/facepunch_base)
 "pH" = (
 /obj/effect/turf_decal/tile/facepunch_alt/red{
 	icon_state = "tile_corner";
@@ -2235,6 +2311,9 @@
 "pV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/facepunch/dark,
 /area/mine/facepunch_base)
@@ -2436,7 +2515,7 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "rf" = (
-/obj/structure/closet/crate,
+/obj/structure/closet/crate/secure/loot,
 /turf/open/floor/plating,
 /area/mine/facepunch_base/maintenance)
 "rl" = (
@@ -2564,6 +2643,11 @@
 	},
 /obj/effect/mapping_helpers/no_lava,
 /turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
+"rN" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
 /area/lavaland/surface/outdoors)
 "rR" = (
 /obj/machinery/door/airlock{
@@ -2730,6 +2814,10 @@
 	icon_state = "panelscorched"
 	},
 /area/mine/facepunch_base)
+"sR" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "te" = (
 /obj/structure/closet/secure_closet/miner,
 /obj/machinery/light{
@@ -2746,6 +2834,9 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood/old,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/facepunch/dark,
 /area/mine/facepunch_base)
 "tw" = (
@@ -2837,12 +2928,19 @@
 /turf/open/floor/plating,
 /area/mine/laborcamp)
 "uu" = (
-/obj/machinery/autolathe,
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/structure/frame,
 /turf/open/floor/plating,
 /area/mine/facepunch_base/maintenance)
+"uA" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
 "uF" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -3470,6 +3568,9 @@
 	icon_state = "pipe11-1";
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/facepunch,
 /area/mine/facepunch_base)
 "yj" = (
@@ -3574,6 +3675,16 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /turf/open/floor/plasteel/facepunch/white,
 /area/mine/facepunch_base/aft)
+"yW" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
 "yX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
@@ -3637,6 +3748,9 @@
 /obj/structure/disposalpipe/sorting/mail/flip{
 	dir = 2;
 	sortType = 12
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
 	},
 /turf/open/floor/plasteel/facepunch,
 /area/mine/facepunch_base)
@@ -3748,6 +3862,11 @@
 	},
 /turf/open/floor/plasteel/facepunch/white,
 /area/mine/facepunch_base/aft)
+"zZ" = (
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/lavaland/surface/outdoors)
 "Ae" = (
 /obj/effect/turf_decal/tile/facepunch_alt/neutral{
 	icon_state = "tile_corner";
@@ -3891,6 +4010,12 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/mine/laborcamp)
+"AG" = (
+/obj/machinery/power/floodlight{
+	anchored = 0
+	},
+/turf/open/floor/plating,
+/area/mine/facepunch_base/aft)
 "AK" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -4045,6 +4170,9 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/plasteel/facepunch,
 /area/mine/facepunch_base)
 "BX" = (
@@ -4315,6 +4443,12 @@
 	},
 /turf/open/floor/plasteel/facepunch/white,
 /area/mine/facepunch_base/dorms)
+"Dx" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/lavaland/surface/outdoors)
 "Dy" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
@@ -4323,6 +4457,9 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 10
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/open/floor/plasteel/facepunch,
 /area/mine/facepunch_base)
@@ -4818,6 +4955,10 @@
 	},
 /turf/open/floor/plating,
 /area/mine/facepunch_base/aft)
+"GU" = (
+/obj/structure/barricade/sandbags,
+/turf/closed/mineral/random/high_chance/volcanic,
+/area/lavaland/surface/outdoors/unexplored/danger)
 "GV" = (
 /obj/machinery/door/airlock/security/glass{
 	name = "Labor Camp Shuttle Security Airlock";
@@ -5074,6 +5215,9 @@
 /area/mine/facepunch_base)
 "IA" = (
 /obj/effect/decal/cleanable/cobweb,
+/obj/machinery/power/floodlight{
+	anchored = 0
+	},
 /turf/open/floor/plating,
 /area/mine/facepunch_base/aft)
 "IB" = (
@@ -5130,6 +5274,9 @@
 	},
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/disposal/bin,
+/obj/effect/decal/cleanable/cobweb{
+	icon_state = "cobweb2"
+	},
 /turf/open/floor/plasteel/facepunch,
 /area/mine/facepunch_base/aft)
 "IN" = (
@@ -5331,6 +5478,13 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/facepunch/white,
 /area/mine/facepunch_base/aft)
+"Kq" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/power/floodlight{
+	anchored = 0
+	},
+/turf/open/floor/plating,
+/area/mine/facepunch_base/aft)
 "Ks" = (
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/dirt/dust,
@@ -5492,6 +5646,15 @@
 	},
 /turf/open/floor/plating,
 /area/mine/facepunch_base/maintenance)
+"Lg" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "platingdmg1"
+	},
+/area/lavaland/surface/outdoors)
 "Lk" = (
 /obj/machinery/atmospherics/components/unary/tank/air{
 	dir = 8
@@ -5628,7 +5791,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors/unexplored/danger)
+/area/lavaland/surface/outdoors)
 "LG" = (
 /obj/structure/chair/wood{
 	dir = 8
@@ -5657,6 +5820,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/facepunch,
 /area/mine/facepunch_base)
 "LO" = (
@@ -5677,11 +5843,6 @@
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
 "LT" = (
-/obj/machinery/door/airlock/external{
-	name = "Mining Dock Airlock";
-	req_access_txt = "48";
-	shuttledocked = 1
-	},
 /obj/machinery/door/firedoor,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -5692,6 +5853,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer1{
 	icon_state = "pipe11-1";
 	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/external/glass{
+	name = "Mining Exit Airlock";
+	req_access_txt = "48"
 	},
 /turf/open/floor/plasteel/facepunch/dark,
 /area/mine/facepunch_base)
@@ -5924,6 +6092,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/facepunch,
 /area/mine/facepunch_base)
 "Nj" = (
@@ -6132,6 +6303,12 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
 /area/mine/facepunch_base/aft)
+"OX" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "panelscorched"
+	},
+/area/lavaland/surface/outdoors)
 "Pc" = (
 /obj/effect/turf_decal/tile/facepunch_alt/neutral{
 	icon_state = "tile_corner";
@@ -6168,15 +6345,17 @@
 /turf/open/floor/wood,
 /area/mine/facepunch_base/aft)
 "PG" = (
-/obj/machinery/door/airlock/external{
-	name = "Mining Dock Airlock";
-	req_access_txt = "48";
-	shuttledocked = 1
-	},
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
 	},
 /obj/structure/fans/tiny,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/external/glass{
+	name = "Mining Exit Airlock";
+	req_access_txt = "48"
+	},
 /turf/open/floor/plasteel/facepunch/dark,
 /area/mine/facepunch_base)
 "PJ" = (
@@ -6643,6 +6822,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/facepunch,
 /area/mine/facepunch_base)
 "Sq" = (
@@ -6653,6 +6835,12 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/mine/facepunch_base/maintenance)
+"Sr" = (
+/obj/machinery/power/floodlight{
+	anchored = 0
+	},
+/turf/open/floor/plasteel/facepunch/dark,
+/area/mine/facepunch_base)
 "Sx" = (
 /obj/structure/stone_tile/surrounding_tile{
 	dir = 4
@@ -6871,10 +7059,6 @@
 /obj/machinery/computer/mech_bay_power_console,
 /turf/open/floor/plasteel/facepunch,
 /area/mine/facepunch_base)
-"Tu" = (
-/obj/structure/stone_tile,
-/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors/unexplored/danger)
 "Tx" = (
 /obj/effect/turf_decal/tile/facepunch_alt/purple{
 	icon_state = "tile_corner";
@@ -6944,6 +7128,13 @@
 	icon_state = "basalt2"
 	},
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
+"TP" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
 /area/lavaland/surface/outdoors)
 "TY" = (
 /obj/structure/closet,
@@ -7064,6 +7255,9 @@
 	icon_state = "pipe11-1";
 	dir = 9
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/open/floor/plasteel/facepunch/dark,
 /area/mine/facepunch_base)
 "UI" = (
@@ -7145,6 +7339,12 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/facepunch/dark,
 /area/mine/laborcamp)
+"Vw" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating{
+	icon_state = "platingdmg3"
+	},
+/area/lavaland/surface/outdoors)
 "Vy" = (
 /obj/effect/turf_decal/loading_area{
 	dir = 8
@@ -7260,6 +7460,11 @@
 /obj/effect/decal/cleanable/generic,
 /turf/open/floor/wood,
 /area/mine/facepunch_base/canteen)
+"Wf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
 "Wg" = (
 /obj/effect/turf_decal/tile/facepunch_alt/neutral,
 /obj/effect/turf_decal/tile/facepunch_alt/neutral{
@@ -7291,6 +7496,11 @@
 /obj/effect/spawner/structure/window,
 /turf/open/floor/plating,
 /area/mine/facepunch_base/canteen)
+"Wr" = (
+/turf/open/floor/plating{
+	icon_state = "platingdmg2"
+	},
+/area/lavaland/surface/outdoors)
 "Wt" = (
 /obj/effect/turf_decal/tile/facepunch_alt/neutral{
 	icon_state = "tile_corner";
@@ -7407,6 +7617,12 @@
 	},
 /turf/open/floor/wood,
 /area/mine/facepunch_base/canteen)
+"WM" = (
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
 "WP" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/facepunch_alt/neutral{
@@ -7518,6 +7734,9 @@
 "Xp" = (
 /turf/closed/wall/r_wall,
 /area/mine/laborcamp)
+"Xq" = (
+/turf/open/floor/plating,
+/area/lavaland/surface/outdoors)
 "Xr" = (
 /obj/machinery/camera{
 	c_tag = "Testing Chamber";
@@ -7546,6 +7765,11 @@
 	},
 /turf/open/floor/plasteel/facepunch/white,
 /area/mine/facepunch_base/aft)
+"Xv" = (
+/obj/item/twohanded/bonespear,
+/obj/effect/decal/cleanable/blood/old,
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "Xw" = (
 /obj/machinery/light{
 	dir = 1
@@ -15459,7 +15683,7 @@ aa
 aa
 aa
 aa
-EQ
+ME
 aa
 aa
 aa
@@ -15716,8 +15940,8 @@ aa
 aa
 aa
 aa
-EQ
-EQ
+ME
+ME
 aa
 aa
 aa
@@ -15972,12 +16196,12 @@ EQ
 EQ
 aa
 aa
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
+ME
+ME
+ME
+ME
+ME
+ME
 EQ
 EQ
 EQ
@@ -16230,14 +16454,14 @@ EQ
 aa
 aa
 aa
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
+ME
+ME
+ME
+ME
+ME
+ME
+ME
+sR
 EQ
 EQ
 EQ
@@ -16487,14 +16711,14 @@ EQ
 aa
 aa
 aa
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
+ME
+ME
+ME
+ME
+ME
+ME
+ME
+sR
 EQ
 EQ
 EQ
@@ -16745,15 +16969,15 @@ EQ
 aa
 aa
 aa
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
+ME
+ME
+ag
+ME
+ME
+ME
+sR
+lf
+lf
 EQ
 EQ
 EQ
@@ -17002,14 +17226,14 @@ EQ
 EQ
 EQ
 EQ
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
+ME
+ME
+ME
+ME
+ME
+Xv
+ME
+lf
 EQ
 EQ
 EQ
@@ -17258,15 +17482,15 @@ aa
 EQ
 EQ
 EQ
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
+ME
+ME
+ME
+ME
+ME
+ME
+sR
+ME
+lf
 EQ
 EQ
 EQ
@@ -17514,15 +17738,15 @@ aa
 EQ
 EQ
 EQ
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
+ME
+ME
+ME
+ME
+ME
+sR
+sR
+sR
+lf
 EQ
 EQ
 EQ
@@ -17772,15 +17996,15 @@ EQ
 EQ
 EQ
 EQ
+ME
+ME
+ME
+ME
 EQ
 EQ
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
-EQ
+lf
+lf
+lf
 EQ
 EQ
 EQ
@@ -18030,14 +18254,14 @@ EQ
 EQ
 EQ
 EQ
+ME
+ME
 EQ
 EQ
 EQ
 EQ
-EQ
-EQ
-EQ
-EQ
+lf
+lf
 EQ
 EQ
 EQ
@@ -19061,7 +19285,7 @@ Ro
 Ro
 Ro
 EQ
-EQ
+fE
 EQ
 EQ
 EQ
@@ -19318,7 +19542,7 @@ Ro
 Ro
 EQ
 EQ
-EQ
+fE
 EQ
 EQ
 EQ
@@ -19832,7 +20056,7 @@ EQ
 EQ
 Ro
 Ro
-Ro
+GU
 EQ
 EQ
 EQ
@@ -37263,7 +37487,7 @@ jN
 jN
 aa
 aa
-Zn
+aa
 RP
 EQ
 EQ
@@ -37520,7 +37744,7 @@ jN
 jN
 jN
 aa
-Zn
+aa
 RP
 RP
 RP
@@ -37777,12 +38001,12 @@ jN
 jN
 jN
 aa
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
+aa
+aa
+aa
+aa
+aa
+aa
 RP
 EQ
 EQ
@@ -38034,12 +38258,12 @@ jN
 jN
 jN
 jN
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
+aa
+aa
+aa
+aa
+aa
+aa
 RP
 EQ
 EQ
@@ -38291,12 +38515,12 @@ jN
 jN
 jN
 jN
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
+aa
+aa
+aa
+aa
+aa
+aa
 RP
 RP
 RP
@@ -38552,11 +38776,11 @@ jN
 aa
 aa
 aa
-Zn
-Zn
-Zn
-Zn
-Zn
+aa
+aa
+aa
+aa
+aa
 EQ
 EQ
 EQ
@@ -38809,12 +39033,12 @@ jN
 aa
 aa
 aa
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
+aa
+aa
+aa
+aa
+aa
+aa
 EQ
 EQ
 EQ
@@ -39069,10 +39293,10 @@ aa
 ME
 aa
 aa
-Zn
-Zn
-Zn
-Zn
+aa
+aa
+aa
+aa
 EQ
 EQ
 EQ
@@ -39326,12 +39550,12 @@ aa
 ME
 ME
 aa
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
+aa
+aa
+aa
+aa
+aa
+aa
 EQ
 EQ
 EQ
@@ -39583,14 +39807,14 @@ aa
 ME
 ME
 ME
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 EQ
 EQ
 EQ
@@ -39845,10 +40069,10 @@ aa
 aa
 aa
 aa
-RP
-Zn
-Zn
-Zn
+aa
+aa
+aa
+aa
 EQ
 EQ
 EQ
@@ -40102,11 +40326,11 @@ ME
 aa
 aa
 aa
-RP
-RP
-Zn
-Zn
-Zn
+aa
+aa
+aa
+aa
+aa
 EQ
 EQ
 EQ
@@ -40359,12 +40583,12 @@ ME
 aa
 aa
 aa
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
+aa
+aa
+aa
+aa
+aa
+aa
 EQ
 EQ
 EQ
@@ -40616,14 +40840,14 @@ ME
 ME
 aa
 aa
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 RP
 RP
 RP
@@ -40873,17 +41097,17 @@ ME
 ME
 aa
 aa
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 RP
 EQ
 EQ
@@ -41130,17 +41354,17 @@ ME
 ME
 ME
 aa
-Zn
-Zn
-Zn
-Zn
+aa
+aa
+aa
+aa
 RP
 RP
-Zn
-Zn
-Zn
-Zn
-Zn
+aa
+aa
+aa
+aa
+aa
 RP
 EQ
 EQ
@@ -41387,17 +41611,17 @@ ME
 ME
 ME
 ME
-Zn
-Zn
-Zn
+aa
+aa
+aa
 RP
 RP
 RP
 RP
-Zn
-Zn
-Zn
-Zn
+aa
+aa
+aa
+aa
 RP
 EQ
 EQ
@@ -41651,10 +41875,10 @@ aa
 aa
 aa
 RP
-Zn
-Zn
-Zn
-Zn
+aa
+aa
+aa
+aa
 Ro
 EQ
 EQ
@@ -41907,11 +42131,11 @@ aa
 aa
 aa
 aa
-Zn
-Zn
-Zn
-Zn
-Zn
+aa
+aa
+aa
+aa
+aa
 Ro
 Ro
 EQ
@@ -42164,11 +42388,11 @@ aa
 aa
 aa
 aa
-Zn
-Zn
-Zn
-Zn
-Zn
+aa
+aa
+aa
+aa
+aa
 Ro
 Ro
 EQ
@@ -42421,12 +42645,12 @@ ME
 aa
 aa
 aa
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
+aa
+aa
+aa
+aa
+aa
+aa
 Ro
 EQ
 EQ
@@ -42678,12 +42902,12 @@ ME
 ME
 aa
 aa
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
+aa
+aa
+aa
+aa
+aa
+aa
 Ro
 Ro
 EQ
@@ -42935,13 +43159,13 @@ ME
 ME
 ME
 aa
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 Ro
 Ro
 EQ
@@ -43192,14 +43416,14 @@ ME
 ME
 ME
 aa
-Zn
-Zn
-RP
-RP
-Zn
-Zn
-Zn
-Zn
+aa
+aa
+ME
+ME
+aa
+aa
+aa
+aa
 Ro
 EQ
 EQ
@@ -43449,15 +43673,15 @@ ME
 ME
 ME
 ME
-Zn
-Zn
-Zn
-RP
-RP
-Zn
-Zn
-Zn
-Zn
+aa
+aa
+aa
+ME
+ME
+aa
+aa
+aa
+aa
 Ro
 EQ
 EQ
@@ -43706,16 +43930,16 @@ ME
 ME
 ME
 ME
-Zn
-Zn
-Zn
-Zn
-RP
-Zn
-Zn
-Zn
-RP
-RP
+aa
+aa
+aa
+aa
+ME
+aa
+aa
+aa
+ME
+ME
 EQ
 EQ
 EQ
@@ -43964,16 +44188,16 @@ ME
 ME
 ME
 ME
-Zn
-Zn
-Tu
+aa
+aa
+jw
 LE
-Zn
-Zn
-Zn
-Zn
-RP
-RP
+aa
+aa
+aa
+aa
+ME
+ME
 EQ
 EQ
 Ro
@@ -44221,16 +44445,16 @@ ME
 ME
 ME
 ME
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
-Zn
-RP
-RP
-RP
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ME
+ME
+ME
 EQ
 EQ
 Ro
@@ -50003,7 +50227,7 @@ aa
 aa
 aa
 EX
-Bp
+Kq
 nO
 Bp
 lc
@@ -50260,7 +50484,7 @@ aa
 aa
 aa
 EX
-lc
+AG
 vg
 Bp
 JM
@@ -51309,8 +51533,8 @@ rn
 gJ
 gJ
 gJ
-Hz
-Hz
+hQ
+hQ
 ME
 ME
 ME
@@ -51566,9 +51790,9 @@ Jc
 MG
 Yw
 co
-Hz
-Hz
-Hz
+hQ
+hQ
+hQ
 ME
 ME
 ME
@@ -51823,8 +52047,8 @@ rf
 gJ
 gJ
 gJ
-Hz
-Hz
+hQ
+hQ
 ME
 ME
 ME
@@ -52340,8 +52564,8 @@ gY
 Hz
 gY
 aa
-ME
-ME
+sR
+sR
 ME
 ME
 ME
@@ -52598,7 +52822,7 @@ Hz
 gY
 aa
 aa
-ME
+sR
 ME
 wL
 wL
@@ -52855,8 +53079,8 @@ Hz
 gY
 gY
 aa
-ME
-ME
+sR
+sR
 ME
 wL
 Kz
@@ -53112,9 +53336,9 @@ LY
 Jt
 Zz
 aa
-ME
-ME
-ME
+aa
+sR
+sR
 ME
 Kz
 Kz
@@ -53369,11 +53593,11 @@ gJ
 gJ
 Hz
 aa
-ME
-ME
-ME
-ME
-ig
+aa
+aa
+sR
+sR
+hf
 Kz
 Kz
 ig
@@ -53626,11 +53850,11 @@ MN
 gJ
 tE
 aa
-ME
-ME
-ig
-ig
-ig
+aa
+aa
+MK
+MK
+hf
 Kz
 Kz
 Kz
@@ -53883,11 +54107,11 @@ vB
 Sq
 HX
 aa
-ME
-ME
-ME
-Kz
-ig
+aa
+aa
+aa
+MK
+MK
 Kz
 Kz
 Kz
@@ -54140,10 +54364,10 @@ gJ
 gJ
 Zz
 aa
-ME
-ME
-ME
-Kz
+aa
+aa
+aa
+MK
 Kz
 Kz
 Kz
@@ -54397,10 +54621,10 @@ gY
 SR
 tE
 aa
-ME
-ME
-ME
-Kz
+aa
+aa
+aa
+MK
 Kz
 Kz
 Kz
@@ -54654,10 +54878,10 @@ gY
 Hz
 gY
 aa
-ME
-ME
-ME
-Kz
+aa
+aa
+aa
+MK
 Kz
 Kz
 ig
@@ -54912,7 +55136,7 @@ Hz
 gY
 aa
 aa
-ME
+aa
 ME
 Kz
 Kz
@@ -55908,7 +56132,7 @@ RH
 Vh
 Rc
 uf
-vR
+xL
 ep
 aa
 aa
@@ -56164,8 +56388,8 @@ ep
 gg
 Vh
 HP
-uf
-xL
+dW
+vR
 ep
 aa
 aa
@@ -56421,7 +56645,7 @@ ep
 BV
 JH
 hM
-dJ
+uf
 xL
 ep
 aa
@@ -56667,7 +56891,7 @@ qv
 qv
 qv
 ME
-ME
+Dx
 ep
 ju
 pV
@@ -56676,7 +56900,7 @@ ep
 gY
 ep
 wa
-pG
+JH
 QW
 GH
 qG
@@ -56924,7 +57148,7 @@ ME
 qv
 ME
 ME
-ME
+aj
 ep
 xh
 pt
@@ -56932,9 +57156,9 @@ kh
 ep
 gY
 ep
-ep
-ep
-ep
+Jw
+Jw
+Jw
 ep
 ep
 ep
@@ -57180,12 +57404,12 @@ ME
 ME
 ME
 ME
-ME
-ME
+zZ
+aj
 Jw
 eN
 ts
-pt
+Sr
 Jw
 gY
 gY
@@ -57434,11 +57658,11 @@ ME
 ME
 ME
 ME
+WM
 ME
-ME
-ME
-ME
-ME
+zZ
+rN
+Xq
 Wb
 Jw
 PG
@@ -57691,16 +57915,16 @@ ME
 ME
 ME
 ME
-ME
-ME
-ME
-ME
-ME
-ME
-ME
-ME
-ME
-ME
+fX
+pj
+TP
+TP
+pj
+TP
+am
+yW
+Vw
+aj
 gY
 gY
 aa
@@ -57953,11 +58177,11 @@ qv
 qv
 ME
 ME
-ME
-ME
-ME
-ME
-ME
+OX
+Wf
+Lg
+aj
+OX
 xI
 xI
 xI
@@ -58209,11 +58433,11 @@ qv
 qv
 qv
 ME
-ME
-ME
-ME
-ME
-ME
+fK
+rN
+OX
+uA
+aj
 ME
 gY
 gY
@@ -58468,9 +58692,9 @@ qv
 ME
 ME
 ME
-ME
-ME
-ME
+Xq
+uA
+Wr
 ME
 gY
 aa
@@ -58726,7 +58950,7 @@ qv
 ME
 ME
 ME
-ME
+uA
 ME
 ig
 wL
@@ -58983,8 +59207,8 @@ ME
 ME
 ME
 ME
-ME
-ME
+uA
+Dx
 ig
 wL
 wL
@@ -59239,9 +59463,9 @@ ME
 ME
 ME
 ME
-ME
-ME
-ME
+nt
+oO
+aj
 ig
 ig
 wL
