@@ -6839,7 +6839,10 @@
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "anX" = (
-/obj/structure/sign/warning/docking,
+/obj/structure/sign/warning/docking{
+	pixel_x = 31;
+	pixel_y = -1
+	},
 /turf/closed/wall,
 /area/security/processing)
 "anY" = (
@@ -13927,7 +13930,6 @@
 /turf/open/floor/plating,
 /area/crew_quarters/theatre)
 "aHA" = (
-/obj/structure/cable,
 /obj/structure/disposalpipe/sorting/mail{
 	dir = 2;
 	sortType = 18
@@ -13941,6 +13943,9 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	icon_state = "manifold-1";
 	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
@@ -19666,7 +19671,10 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit)
 "aWM" = (
-/obj/structure/sign/warning/docking,
+/obj/structure/sign/warning/docking{
+	pixel_x = 31;
+	pixel_y = -1
+	},
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/hallway/secondary/exit)
@@ -27475,7 +27483,10 @@
 /turf/closed/wall/r_wall,
 /area/maintenance/port)
 "brA" = (
-/obj/structure/sign/warning/docking,
+/obj/structure/sign/warning/docking{
+	pixel_x = 31;
+	pixel_y = -1
+	},
 /turf/closed/wall/r_wall,
 /area/maintenance/port)
 "brB" = (
@@ -35041,12 +35052,6 @@
 /obj/item/nanite_remote,
 /turf/open/floor/plasteel/dark,
 /area/science/nanite)
-"bKC" = (
-/obj/structure/sign/warning/docking{
-	pixel_y = 32
-	},
-/turf/open/space/basic,
-/area/space/nearstation)
 "bKD" = (
 /obj/structure/table,
 /obj/item/folder/yellow,
@@ -36907,28 +36912,6 @@
 	},
 /turf/open/floor/plating,
 /area/science/test_area)
-"bOX" = (
-/obj/item/stack/ore/iron,
-/obj/effect/turf_decal/stripes/line{
-	dir = 9
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
-"bOY" = (
-/obj/structure/closet/crate,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/item/radio/intercom{
-	dir = 4;
-	name = "Station Intercom (General)";
-	pixel_x = 27
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
 "bPa" = (
 /obj/effect/landmark/start/shaft_miner,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -38170,11 +38153,11 @@
 	},
 /obj/structure/reagent_dispensers/fueltank,
 /obj/effect/turf_decal/stripes/line,
+/obj/machinery/light/small{
+	brightness = 5;
+	dir = 4
+	},
 /turf/open/floor/plasteel,
-/area/quartermaster/miningdock)
-"bRM" = (
-/obj/structure/sign/warning/vacuum/external,
-/turf/closed/wall,
 /area/quartermaster/miningdock)
 "bRN" = (
 /obj/machinery/computer/mech_bay_power_console{
@@ -57945,6 +57928,16 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"fHT" = (
+/obj/structure/closet/crate,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "fHU" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
@@ -62886,6 +62879,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"ndG" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/sign/warning/vacuum,
+/turf/open/floor/plating,
+/area/quartermaster/miningdock)
 "ndV" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -66536,6 +66534,14 @@
 	},
 /turf/open/floor/plating/airless,
 /area/engine/port_engineering)
+"sQX" = (
+/obj/item/stack/ore/iron,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/item/radio,
+/turf/open/floor/plasteel,
+/area/quartermaster/miningdock)
 "sRk" = (
 /obj/machinery/door/window/eastright{
 	base_state = "left";
@@ -70001,6 +70007,14 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"xRC" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/sign/warning/docking{
+	pixel_x = 31;
+	pixel_y = -1
+	},
+/turf/open/space/basic,
+/area/space/nearstation)
 "xRG" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -89428,7 +89442,7 @@ aaa
 aaa
 aad
 aaj
-aad
+aaa
 aaa
 aaa
 aaa
@@ -89685,7 +89699,7 @@ aaa
 aaa
 aad
 aaj
-aFi
+aaa
 aaa
 aaa
 aaa
@@ -89941,8 +89955,8 @@ bEU
 aaa
 aaa
 aad
-aaj
-aFi
+xRC
+aaa
 aaa
 aaa
 aaa
@@ -90199,7 +90213,7 @@ bEU
 bEW
 bEU
 bEU
-bKC
+aaa
 aaa
 aaa
 aaa
@@ -90716,8 +90730,8 @@ bEW
 aaa
 aaa
 aaa
-aaa
 bQz
+aaa
 aaa
 aaa
 aaa
@@ -90971,9 +90985,9 @@ bHo
 bIv
 bEW
 aaa
-aaa
 bNA
 bNA
+bQA
 bQA
 bNA
 bNA
@@ -91227,10 +91241,10 @@ bFZ
 bHp
 bIw
 bEW
-aFi
-aFi
+aaa
 bNA
-bOX
+sQX
+bNC
 bNC
 bRK
 bNA
@@ -91485,9 +91499,9 @@ bHq
 bIx
 bEW
 aaa
-aaa
 bNA
-bOY
+fHT
+bNC
 bNC
 bRL
 bNA
@@ -91743,10 +91757,10 @@ bIy
 bEU
 aaa
 bEX
-bEX
-bEX
+ndG
 bQC
-bRM
+bQC
+ndG
 bEX
 aai
 aai
