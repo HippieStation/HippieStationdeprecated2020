@@ -1,0 +1,6 @@
+author: "NautilusViper"
+delete-after: True
+changes: 
+  - balance: "Null Rod skins are back to their old (fun) selves, fixing what could be perceived as bugs (not being able to wear fedora etc) in the process. The Null Rod no longer possesses antimagic capabilities. Rather, antimagic has become an inherent gene in chaplains. The downside: No more sweaty captains dumpstering wizards by having a rod on their belt. The upside: Chappy is FUCKING INVINCIBLE to sorcerer tomfoolery, even if they drop their null rod."
+  - imageadd: "Dark Blessing has had a visual touch-up to Pious Gold from Changeling Red. This will theoretically result in fewer screeching bald men from toolboxing innocent chaplains to death."
+  - rscadd: "Monk Manual is now a Chaplain-exclusive traitor item for six telecrystals."
