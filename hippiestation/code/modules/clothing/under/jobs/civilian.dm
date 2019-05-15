@@ -1,7 +1,8 @@
 /obj/item/clothing/under/rank/clown/Initialize()
 	. = ..()
-	AddComponent(/datum/component/squeak, /datum/outputs/clownsuit, 50)
+	AddComponent(/datum/component/squeak/clownsuit, 50)
+	var/datum/component/comp = GetComponent(/datum/component/squeak/bikehorn)
+	qdel(comp)
 
-/obj/item/clothing/shoes/clown_shoes/Initialize()
-	. = ..()
-	AddComponent(/datum/component/squeak, /datum/outputs/clownstep, 50, ,0)
+/datum/component/squeak/clownsuit
+	datum_outputs = list(/datum/outputs/clownsuit)

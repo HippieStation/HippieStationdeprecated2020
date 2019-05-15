@@ -17,6 +17,10 @@
 /obj/effect/landmark/event_spawn,
 /turf/open/floor/plating,
 /area/maintenance/starboard)
+"aae" = (
+/obj/effect/mapping_helpers/dead_body_placer,
+/turf/open/floor/plasteel/dark,
+/area/medical/morgue)
 "aaf" = (
 /obj/structure/lattice,
 /turf/open/space,
@@ -33980,7 +33984,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/maintenance{
-	req_one_access_txt = "12;25;46"
+	req_one_access_txt = "12;22;25;37;38;46"
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
@@ -38133,7 +38137,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance{
-	req_one_access_txt = "12;25;46"
+	req_one_access_txt = "12;22;25;37;38;46"
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
@@ -51179,7 +51183,7 @@
 /obj/machinery/door/airlock{
 	name = "Service Hall";
 	req_access_txt = "null";
-	req_one_access_txt = "25;26;35;28"
+	req_one_access_txt = "25;26;35;28;22;37;46;38"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -53153,7 +53157,7 @@
 /obj/machinery/door/airlock{
 	name = "Service Hall";
 	req_access_txt = "null";
-	req_one_access_txt = "25;26;35;28"
+	req_one_access_txt = "25;26;35;28;22;37;46;38"
 	},
 /turf/open/floor/plating,
 /area/maintenance/starboard)
@@ -53587,17 +53591,6 @@
 	pixel_y = -3
 	},
 /obj/item/clothing/glasses/science,
-/obj/effect/turf_decal/tile/purple{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/purple{
-	dir = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/science/research)
-"cau" = (
-/obj/structure/table,
-/obj/item/paper/pamphlet/gateway,
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
 	},
@@ -60116,8 +60109,10 @@
 	},
 /area/maintenance/port/aft)
 "cnl" = (
-/obj/structure/mineral_door/wood{
-	name = "The Gobbetting Barmaid"
+/obj/machinery/door/airlock/wood{
+	doorClose = 'sound/effects/doorcreaky.ogg';
+	doorOpen = 'sound/effects/doorcreaky.ogg';
+	name = "The Gobetting Barmaid"
 	},
 /turf/open/floor/wood,
 /area/maintenance/port/aft)
@@ -60854,14 +60849,6 @@
 /obj/machinery/rnd/production/techfab/department/service,
 /turf/open/floor/plasteel,
 /area/hallway/secondary/service)
-"cox" = (
-/obj/structure/mineral_door/wood{
-	name = "The Gobbetting Barmaid"
-	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
-	},
-/area/maintenance/port/aft)
 "coy" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/color/latex,
@@ -83541,6 +83528,16 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/mixing)
+"mrv" = (
+/obj/machinery/door/airlock/wood{
+	doorClose = 'sound/effects/doorcreaky.ogg';
+	doorOpen = 'sound/effects/doorcreaky.ogg';
+	name = "The Gobetting Barmaid"
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/maintenance/port/aft)
 "msD" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -83704,6 +83701,16 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/science/misc_lab/range)
+"ofy" = (
+/obj/effect/turf_decal/tile/purple{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple{
+	dir = 4
+	},
+/obj/machinery/vending/modularpc,
+/turf/open/floor/plasteel/white,
+/area/science/research)
 "ogE" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/plating,
@@ -101982,7 +101989,7 @@ cjv
 diG
 dux
 cnl
-cox
+mrv
 dux
 diI
 diK
@@ -109708,7 +109715,7 @@ ctA
 cCj
 cCj
 cDY
-cCj
+aae
 cCj
 cCe
 cHJ
@@ -112765,7 +112772,7 @@ bVk
 bWx
 bXV
 bZj
-cat
+ofy
 ccd
 ccd
 ceN
@@ -113022,7 +113029,7 @@ aYX
 aXR
 bXW
 bZk
-cau
+cat
 cce
 ccd
 qBh

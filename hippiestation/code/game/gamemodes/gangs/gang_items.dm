@@ -216,6 +216,18 @@
 	cost = 40
 	item_path = /obj/item/ammo_box/magazine/uzim9mm
 
+/datum/gang_item/weapon/glock
+	name = "Glock 17"
+	id = "g17"
+	cost = 30
+	item_path = /obj/item/gun/ballistic/automatic/pistol/g17
+
+/datum/gang_item/weapon/ammo/uzi_ammo
+	name = "G17 Ammo"
+	id = "g17_ammo"
+	cost = 10
+	item_path = /obj/item/ammo_box/magazine/g17
+
 ///////////////////
 //EQUIPMENT
 ///////////////////

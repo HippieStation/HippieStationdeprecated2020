@@ -50,7 +50,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	. = ..()
 	access_card = new /obj/item/card/id(src)
 	access_card.access = get_all_accesses()//THERE IS NO ESCAPE
-	access_card.add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	ADD_TRAIT(access_card, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 	invalid_area_typecache = typecacheof(invalid_area_typecache)
 	Manifest()
 	if(!current_victim)
@@ -207,10 +207,11 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/On_Stage()
 	var/mob/living/carbon/human/H = current_victim
+	if(!H)
+		FindTarget()
+		return
 	switch(stage)
-
 		if(STAGE_HAUNT)
-
 			if(prob(5))
 				H.blur_eyes(1)
 
@@ -227,7 +228,6 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 					to_chat(H, "<span class='warning'>What threw that?</span>")
 
 		if(STAGE_SPOOK)
-
 			if(prob(4))
 				var/turf/T = get_turf(H)
 				T.handle_slip(H, 20)
@@ -268,7 +268,6 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 					addtimer(CALLBACK(src, /mob/living/simple_animal/hostile/floor_cluwne/.proc/Reset_View, screens), 10)
 
 		if(STAGE_TORMENT)
-
 			if(prob(5))
 				var/turf/T = get_turf(H)
 				T.handle_slip(H, 20)

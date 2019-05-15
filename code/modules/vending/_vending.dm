@@ -41,6 +41,8 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	payment_department = ACCOUNT_SRV
 	var/active = 1		//No sales pitches if off!
 	var/vend_ready = 1	//Are we ready to vend?? Is it time??
+	var/purchase_message_cooldown
+	var/last_shopper
 
 	// To be filled out at compile time
 	var/list/products	= list()	//For each, use the following pattern:
@@ -165,14 +167,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 				if (dump_amount >= 16)
 					return
 
-/obj/machinery/vending/proc/GetIconForProduct(datum/data/vending_product/P)
-	if(GLOB.vending_cache[P.product_path])
-		return GLOB.vending_cache[P.product_path]
-
-	var/product = new P.product_path()
-	GLOB.vending_cache[P.product_path] = icon2base64(getFlatIcon(product, no_anim = TRUE))
-	qdel(product)
-	return GLOB.vending_cache[P.product_path]
+GLOBAL_LIST_EMPTY(vending_products)
 
 /obj/machinery/vending/proc/build_inventory(list/productlist, list/recordlist, start_empty = FALSE)
 	for(var/typepath in productlist)
@@ -182,6 +177,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 
 		var/atom/temp = typepath
 		var/datum/data/vending_product/R = new /datum/data/vending_product()
+		GLOB.vending_products[typepath] = 1
 		R.name = initial(temp.name)
 		R.product_path = typepath
 		if(!start_empty)
@@ -320,7 +316,7 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 	return ..()
 
 /obj/machinery/vending/ui_interact(mob/user)
-	var/dat = ""
+	var/list/dat = list()
 	var/datum/bank_account/account
 	var/mob/living/carbon/human/H
 	var/obj/item/card/id/C
@@ -334,8 +330,8 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 		dat += "<font color = 'red'><h3>No account on registered ID card!</h3></font>"
 	if(onstation && C && C.registered_account)
 		account = C.registered_account
-	dat += "<h3>Select an item</h3>"
-	dat += "<div class='statusDisplay'>"
+	dat += {"<h3>Select an item</h3>
+					<div class='statusDisplay'>"}
 	if(!product_records.len)
 		dat += "<font color = 'red'>No product loaded!</font>"
 	else
@@ -354,8 +350,8 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 				price_listed = "FREE"
 			if(coin_records.Find(R) || is_hidden)
 				price_listed = "$[R.custom_premium_price ? R.custom_premium_price : extra_price]"
-			dat += "<tr><td><img src='data:image/jpeg;base64,[GetIconForProduct(R)]'/></td>"
-			dat += "<td style=\"width: 100%\"><b>[sanitize(R.name)]  ([price_listed])</b></td>"
+			dat += {"<tr><td><span class="vending32x32 [replacetext(replacetext("[R.product_path]", "/obj/item/", ""), "/", "-")]"></td>
+							<td style=\"width: 100%\"><b>[sanitize(R.name)]  ([price_listed])</b></td>"}
 			if(R.amount > 0 && ((C && C.registered_account && onstation) || (!onstation && isliving(user))))
 				dat += "<td align='right'><b>[R.amount]&nbsp;</b><a href='byond://?src=[REF(src)];vend=[REF(R)]'>Vend</a></td>"
 			else
@@ -376,7 +372,8 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 		dat += "</div>"
 
 	var/datum/browser/popup = new(user, "vending", (name))
-	popup.set_content(dat)
+	popup.add_stylesheet(get_asset_datum(/datum/asset/spritesheet/vending))
+	popup.set_content(dat.Join(""))
 	popup.set_title_image(user.browse_rsc_icon(icon, icon_state))
 	popup.open()
 
@@ -481,7 +478,10 @@ IF YOU MODIFY THE PRODUCTS LIST OF A MACHINE, MAKE SURE TO UPDATE ITS RESUPPLY C
 			var/datum/bank_account/D = SSeconomy.get_dep_account(payment_department)
 			if(D)
 				D.adjust_money(price_to_use)
-		say("Thank you for shopping with [src]!")
+		if(last_shopper != usr || purchase_message_cooldown < world.time)
+			say("Thank you for shopping with [src]!")
+			purchase_message_cooldown = world.time + 5 SECONDS
+			last_shopper = usr
 		use_power(5)
 		if(icon_vend) //Show the vending animation if needed
 			flick(icon_vend,src)

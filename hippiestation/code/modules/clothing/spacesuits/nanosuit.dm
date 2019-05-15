@@ -21,7 +21,7 @@
 /obj/item/clothing/under/syndicate/combat/nano/equipped(mob/user, slot)
 	..()
 	if(slot == SLOT_W_UNIFORM)
-		add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
+		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 
 /obj/item/clothing/mask/gas/nano_mask
 	name = "nanosuit gas mask"
@@ -33,7 +33,7 @@
 /obj/item/clothing/mask/gas/nano_mask/equipped(mob/user, slot)
 	..()
 	if(slot == SLOT_WEAR_MASK)
-		add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
+		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 
 /datum/action/item_action/nanojump
 	name = "Activate Strength Jump"
@@ -89,7 +89,7 @@
 /obj/item/clothing/shoes/combat/coldres/nanojump/equipped(mob/user, slot)
 	..()
 	if(slot == SLOT_SHOES)
-		add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
+		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 
 /obj/item/clothing/gloves/combat/nano
 	name = "nano gloves"
@@ -102,7 +102,7 @@
 /obj/item/clothing/gloves/combat/nano/equipped(mob/user, slot)
 	..()
 	if(slot == SLOT_GLOVES)
-		add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
+		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 
 /obj/item/radio/headset/syndicate/alt/nano
 	name = "\proper the nanosuit's bowman headset"
@@ -117,7 +117,7 @@
 /obj/item/radio/headset/syndicate/alt/nano/equipped(mob/user, slot)
 	..()
 	if(slot == SLOT_EARS)
-		add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
+		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 
 /obj/item/radio/headset/syndicate/alt/nano/AltClick()
 	var/mob/M = usr
@@ -154,7 +154,7 @@
 /obj/item/clothing/glasses/nano_goggles/equipped(mob/user, slot)
 	..()
 	if(slot == SLOT_GLASSES)
-		add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
+		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 
 /obj/item/clothing/glasses/nano_goggles/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/nanosuit/goggletoggle))
@@ -407,10 +407,10 @@
 				Wearer.filters = list()
 				animate(Wearer, alpha = 255, time = 5)
 				Wearer.remove_movespeed_modifier(NANO_SPEED)
-				Wearer.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
-				Wearer.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
-				Wearer.remove_trait(TRAIT_TACRELOAD, NANO_SPEED)
-				Wearer.remove_trait(TRAIT_LIGHT_STEP, NANO_SPEED)
+				REMOVE_TRAIT(Wearer, TRAIT_IGNORESLOWDOWN, NANO_SPEED)
+				REMOVE_TRAIT(Wearer, TRAIT_PUSHIMMUNE, NANO_STRENGTH)
+				REMOVE_TRAIT(Wearer, TRAIT_TACRELOAD, NANO_SPEED)
+				REMOVE_TRAIT(Wearer, TRAIT_LIGHT_STEP, NANO_SPEED)
 				style.remove(Wearer)
 				jetpack.full_speed = FALSE
 
@@ -423,10 +423,10 @@
 				Wearer.filters = filter(type="blur",size=1)
 				animate(Wearer, alpha = 40, time = 2)
 				Wearer.remove_movespeed_modifier(NANO_SPEED)
-				Wearer.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
-				Wearer.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
-				Wearer.remove_trait(TRAIT_TACRELOAD, NANO_SPEED)
-				Wearer.add_trait(TRAIT_LIGHT_STEP, NANO_SPEED)
+				REMOVE_TRAIT(Wearer, TRAIT_IGNORESLOWDOWN, NANO_SPEED)
+				REMOVE_TRAIT(Wearer, TRAIT_PUSHIMMUNE, NANO_STRENGTH)
+				REMOVE_TRAIT(Wearer, TRAIT_TACRELOAD, NANO_SPEED)
+				ADD_TRAIT(Wearer, TRAIT_LIGHT_STEP, NANO_SPEED)
 				style.remove(Wearer)
 				jetpack.full_speed = FALSE
 
@@ -440,11 +440,11 @@
 				Wearer.adjustStaminaLoss(-20)
 				Wearer.filters = filter(type="outline", size=0.1, color=rgb(255,255,224))
 				animate(Wearer, alpha = 255, time = 5)
-				Wearer.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
-				Wearer.add_trait(TRAIT_TACRELOAD, NANO_SPEED)
+				REMOVE_TRAIT(Wearer, TRAIT_PUSHIMMUNE, NANO_STRENGTH)
+				ADD_TRAIT(Wearer, TRAIT_TACRELOAD, NANO_SPEED)
 				Wearer.add_movespeed_modifier(NANO_SPEED, update=TRUE, priority=100, multiplicative_slowdown=-0.25, blacklisted_movetypes=(FLYING|FLOATING))
-				Wearer.add_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
-				Wearer.remove_trait(TRAIT_LIGHT_STEP, NANO_SPEED)
+				ADD_TRAIT(Wearer, TRAIT_IGNORESLOWDOWN, NANO_SPEED)
+				REMOVE_TRAIT(Wearer, TRAIT_LIGHT_STEP, NANO_SPEED)
 				style.remove(Wearer)
 				jetpack.full_speed = TRUE
 
@@ -457,11 +457,11 @@
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				Wearer.filters = filter(type="outline", size=0.1, color=rgb(255,0,0))
 				animate(Wearer, alpha = 255, time = 5)
-				Wearer.add_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
+				ADD_TRAIT(Wearer, TRAIT_PUSHIMMUNE, NANO_STRENGTH)
 				Wearer.remove_movespeed_modifier(NANO_SPEED)
-				Wearer.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
-				Wearer.remove_trait(TRAIT_TACRELOAD, NANO_SPEED)
-				Wearer.remove_trait(TRAIT_LIGHT_STEP, NANO_SPEED)
+				REMOVE_TRAIT(Wearer, TRAIT_IGNORESLOWDOWN, NANO_SPEED)
+				REMOVE_TRAIT(Wearer, TRAIT_TACRELOAD, NANO_SPEED)
+				REMOVE_TRAIT(Wearer, TRAIT_LIGHT_STEP, NANO_SPEED)
 				jetpack.full_speed = FALSE
 
 			if(NANO_NONE)
@@ -472,11 +472,11 @@
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				Wearer.filters = list()
 				animate(Wearer, alpha = 255, time = 5)
-				Wearer.remove_trait(TRAIT_PUSHIMMUNE, NANO_STRENGTH)
+				REMOVE_TRAIT(Wearer, TRAIT_PUSHIMMUNE, NANO_STRENGTH)
 				Wearer.remove_movespeed_modifier(NANO_SPEED)
-				Wearer.remove_trait(TRAIT_IGNORESLOWDOWN, NANO_SPEED)
-				Wearer.remove_trait(TRAIT_TACRELOAD, NANO_SPEED)
-				Wearer.remove_trait(TRAIT_LIGHT_STEP, NANO_SPEED)
+				REMOVE_TRAIT(Wearer, TRAIT_IGNORESLOWDOWN, NANO_SPEED)
+				REMOVE_TRAIT(Wearer, TRAIT_TACRELOAD, NANO_SPEED)
+				REMOVE_TRAIT(Wearer, TRAIT_LIGHT_STEP, NANO_SPEED)
 				jetpack.full_speed = FALSE
 
 	for(var/X in actions)
@@ -621,7 +621,7 @@
 /obj/item/clothing/head/helmet/space/hardsuit/nano/equipped(mob/living/carbon/human/user, slot)
 	..()
 	if(slot == SLOT_HEAD)
-		add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
+		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 		for(var/hud_type in datahuds)
 			var/datum/atom_hud/DHUD = GLOB.huds[hud_type]
 			DHUD.add_hud_to(user)
@@ -672,10 +672,10 @@
 	if(slot == SLOT_WEAR_SUIT)
 		var/turf/T = get_turf(src)
 		var/area/A = get_area(src)
-		add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
+		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 		Wearer.unequip_everything()
 		Wearer.equipOutfit(/datum/outfit/nanosuit)
-		Wearer.add_trait(TRAIT_NODISMEMBER, "Nanosuit")
+		ADD_TRAIT(Wearer, TRAIT_NODISMEMBER, "Nanosuit")
 		RegisterSignal(Wearer, list(COMSIG_MOB_ITEM_ATTACK,COMSIG_MOB_ITEM_AFTERATTACK,COMSIG_MOB_THROW,COMSIG_MOB_ATTACK_HAND), .proc/kill_cloak,TRUE)
 		if(is_station_level(T.z))
 			priority_announce("[user] has engaged [src] at [A.map_name]!","Message from The Syndicate!", 'sound/misc/notice1.ogg')
@@ -991,14 +991,14 @@
 			if(NS.mode == NANO_STRENGTH)
 				.=..(target, range*1.5, speed*2, thrower, spin, diagonals_first, callback)
 				return
-	.=..()
+	. = ..()
 
 /datum/martial_art/nanosuit/proc/on_attack_hand(mob/living/carbon/human/owner, atom/target, proximity)
 	if(proximity)
 		return target.attack_nanosuit(owner)
 
 /mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
-	var/datum/martial_art/nanosuit/style = mind.has_martialart(MARTIALART_NANOSUIT)
+	var/datum/martial_art/nanosuit/style = mind?.has_martialart(MARTIALART_NANOSUIT)
 	if(style)
 		if(style.on_attack_hand(src, A, proximity))
 			return
@@ -1007,10 +1007,10 @@
 	..()
 
 /mob/living/simple_animal/attack_hand(mob/living/carbon/human/M)
+	. = ..()
 	if(istype(M.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
 		var/obj/item/clothing/suit/space/hardsuit/nano/NS = M.wear_suit
 		NS.kill_cloak()
-	..()
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/kill_cloak()
 	if(mode == NANO_CLOAK)
@@ -1093,7 +1093,7 @@
 /obj/item/tank/internals/emergency_oxygen/recharge/equipped(mob/living/carbon/human/wearer, slot)
 	..()
 	if(slot == SLOT_S_STORE)
-		add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+		ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 		START_PROCESSING(SSobj, src)
 
 /obj/item/tank/internals/emergency_oxygen/recharge/dropped(mob/living/carbon/human/wearer)

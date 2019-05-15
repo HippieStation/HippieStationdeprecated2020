@@ -3,4 +3,7 @@
 
 /obj/item/bikehorn/rubberducky/Initialize()
 	. = ..()
-	AddComponent(/datum/component/squeak, /datum/outputs/rubberducky, 80)
+	AddComponent(/datum/component/squeak/rubberducky, 80)
+
+/datum/component/squeak/rubberducky
+	datum_outputs = list(/datum/outputs/rubberducky)

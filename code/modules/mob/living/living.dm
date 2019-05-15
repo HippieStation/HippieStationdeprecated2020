@@ -104,7 +104,7 @@
 		if(L.pulledby && L.pulledby != src && L.restrained())
 			if(!(world.time % 5))
 				to_chat(src, "<span class='warning'>[L] is restrained, you cannot push past.</span>")
-			return 1
+			return TRUE
 
 		if(L.pulling)
 			if(ismob(L.pulling))
@@ -112,10 +112,10 @@
 				if(P.restrained())
 					if(!(world.time % 5))
 						to_chat(src, "<span class='warning'>[L] is restraining [P], you cannot push past.</span>")
-					return 1
+					return TRUE
 
 	if(moving_diagonally)//no mob swap during diagonal moves.
-		return 1
+		return TRUE
 
 	if(!M.buckled && !M.has_buckled_mobs())
 		var/mob_swap = FALSE
@@ -128,7 +128,7 @@
 			if(M.pulledby == src && a_intent == INTENT_GRAB && !too_strong)
 				mob_swap = TRUE
 			else if(
-				!(M.has_trait(TRAIT_NOMOBSWAP) || has_trait(TRAIT_NOMOBSWAP))&&\
+				!(HAS_TRAIT(M, TRAIT_NOMOBSWAP) || HAS_TRAIT(src, TRAIT_NOMOBSWAP))&&\
 				((M.restrained() && !too_strong) || M.a_intent == INTENT_HELP) &&\
 				(restrained() || a_intent == INTENT_HELP)
 			)
@@ -136,7 +136,7 @@
 		if(mob_swap)
 			//switch our position with M
 			if(loc && !loc.Adjacent(M.loc))
-				return 1
+				return TRUE
 			now_pushing = 1
 			var/oldloc = loc
 			var/oldMloc = M.loc
@@ -160,21 +160,24 @@
 			now_pushing = 0
 
 			if(!move_failed)
-				return 1
+				return TRUE
 
 	//okay, so we didn't switch. but should we push?
 	//not if he's not CANPUSH of course
 	if(!(M.status_flags & CANPUSH))
-		return 1
+		return TRUE
 	if(isliving(M))
 		var/mob/living/L = M
-		if(L.has_trait(TRAIT_PUSHIMMUNE))
-			return 1
-	//anti-riot equipment is also anti-push
+		if(HAS_TRAIT(L, TRAIT_PUSHIMMUNE))
+			return TRUE
+	/* hippie start -- modularise disarm rework
+	if(ishuman(M) && (M.a_intent != INTENT_HELP))
+		return TRUE
+	hippie end*/ //anti-riot equipment is also anti-push
 	for(var/obj/item/I in M.held_items)
 		if(!istype(M, /obj/item/clothing))
 			if(prob(I.block_chance*2))
-				return 1
+				return TRUE
 
 /mob/living/get_photo_description(obj/item/camera/camera)
 	var/list/mob_details = list()
@@ -265,8 +268,8 @@
 		if(ishuman(src))
 			var/mob/living/carbon/human/H = src
 			if(H.dna.species.grab_sound)
-				sound_to_play = H.dna.species.grab_sound 
-			if(H.has_trait(TRAIT_STRONG_GRABBER))
+				sound_to_play = H.dna.species.grab_sound
+			if(HAS_TRAIT(H, TRAIT_STRONG_GRABBER))
 				sound_to_play = null
 		playsound(src.loc, sound_to_play, 50, 1, -1)
 	update_pull_hud_icon()
@@ -275,8 +278,8 @@
 		var/mob/M = AM
 
 		log_combat(src, M, "grabbed", addition="passive grab")
-		if(!supress_message && !(iscarbon(AM) && has_trait(TRAIT_STRONG_GRABBER)))
-			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>") //Hippie - Nothing was ever here, move along citizen.
+		if(!supress_message && !(iscarbon(AM) && HAS_TRAIT(src, TRAIT_STRONG_GRABBER)))
+			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
 		if(!iscarbon(src))
 			M.LAssailant = null
 		else
@@ -296,9 +299,9 @@
 
 			if(iscarbon(L))
 				var/mob/living/carbon/C = L
-				if(src.has_trait(TRAIT_STRONG_GRABBER))
+				if(HAS_TRAIT(src, TRAIT_STRONG_GRABBER))
 					C.grippedby(src)
-					
+
 		set_pull_offsets(M, state)
 
 /mob/living/proc/set_pull_offsets(mob/living/M, grab_state = GRAB_PASSIVE)
@@ -364,7 +367,7 @@
 /mob/living/pointed(atom/A as mob|obj|turf in view())
 	if(incapacitated())
 		return FALSE
-	if(has_trait(TRAIT_DEATHCOMA))
+	if(HAS_TRAIT(src, TRAIT_DEATHCOMA))
 		return FALSE
 	if(!..())
 		return FALSE
@@ -536,7 +539,7 @@
 	SetUnconscious(0, FALSE)
 	if(should_update_mobility)
 		update_mobility()
-	
+
 //proc used to completely heal a mob.
 /mob/living/proc/fully_heal(admin_revive = 0)
 	restore_blood()
@@ -713,21 +716,24 @@
 
 /mob/proc/resist_grab(moving_resist)
 	return 1 //returning 0 means we successfully broke free
-
+/* hippie start -- modulalisation of disarm rework
 /mob/living/resist_grab(moving_resist)
-	. = 1
-	if(pulledby.grab_state)
-		if(prob(30/pulledby.grab_state))
+	. = TRUE
+	if(pulledby.grab_state || resting)
+		var/altered_grab_state = pulledby.grab_state
+		if(resting) //If resting, resisting out of a grab is equivalent to 1 grab state higher
+			altered_grab_state++
+		if(prob(30/altered_grab_state))
 			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>")
 			log_combat(pulledby, src, "broke grab")
 			pulledby.stop_pulling()
-			return 0
+			return FALSE
 		if(moving_resist && client) //we resisted by trying to move
 			client.move_delay = world.time + 20
 	else
 		pulledby.stop_pulling()
-		return 0
-
+		return FALSE
+hippie end */
 /mob/living/proc/resist_buckle()
 	buckled.user_unbuckle_mob(src,src)
 
@@ -774,7 +780,7 @@
 // The src mob is trying to strip an item from someone
 // Override if a certain type of mob should be behave differently when stripping items (can't, for example)
 /mob/living/stripPanelUnequip(obj/item/what, mob/who, where)
-	if(what.has_trait(TRAIT_NODROP))
+	if(!what.canStrip(who))
 		to_chat(src, "<span class='warning'>You can't remove \the [what.name], it appears to be stuck!</span>")
 		return
 	who.visible_message("<span class='danger'>[src] tries to remove [who]'s [what.name].</span>", \
@@ -785,10 +791,10 @@
 			if(islist(where))
 				var/list/L = where
 				if(what == who.get_item_for_held_index(L[2]))
-					if(who.dropItemToGround(what))
+					if(what.doStrip(src, who))
 						log_combat(src, who, "stripped [what] off")
 			if(what == who.get_item_by_slot(where))
-				if(who.dropItemToGround(what))
+				if(what.doStrip(src, who))
 					log_combat(src, who, "stripped [what] off")
 
 	if(Adjacent(who)) //update inventory window
@@ -800,7 +806,7 @@
 // Override if a certain mob should be behave differently when placing items (can't, for example)
 /mob/living/stripPanelEquip(obj/item/what, mob/who, where)
 	what = src.get_active_held_item()
-	if(what && (what.has_trait(TRAIT_NODROP)))
+	if(what && (HAS_TRAIT(what, TRAIT_NODROP)))
 		to_chat(src, "<span class='warning'>You can't put \the [what.name] on [who], it's stuck to your hand!</span>")
 		return
 	if(what)
@@ -976,7 +982,7 @@
 /mob/living/rad_act(amount)
 	. = ..()
 
-	if(!amount || (amount < RAD_MOB_SKIN_PROTECTION) || has_trait(TRAIT_RADIMMUNE))
+	if(!amount || (amount < RAD_MOB_SKIN_PROTECTION) || HAS_TRAIT(src, TRAIT_RADIMMUNE))
 		return
 
 	amount -= RAD_BACKGROUND_RADIATION // This will always be at least 1 because of how skin protection is calculated
@@ -992,7 +998,7 @@
 	. = ..()
 	if(.)
 		return
-	if((magic && has_trait(TRAIT_ANTIMAGIC)) || (holy && has_trait(TRAIT_HOLY)))
+	if((magic && HAS_TRAIT(src, TRAIT_ANTIMAGIC)) || (holy && HAS_TRAIT(src, TRAIT_HOLY)))
 		return src
 
 /mob/living/proc/fakefireextinguish()
@@ -1082,7 +1088,7 @@
 /mob/living/proc/update_mobility()
 	var/stat_softcrit = stat == SOFT_CRIT
 	var/stat_conscious = (stat == CONSCIOUS) || stat_softcrit
-	var/conscious = !IsUnconscious() && stat_conscious && !has_trait(TRAIT_DEATHCOMA)
+	var/conscious = !IsUnconscious() && stat_conscious && !HAS_TRAIT(src, TRAIT_DEATHCOMA)
 	var/chokehold = pulledby && pulledby.grab_state >= GRAB_NECK
 	var/restrained = restrained()
 	var/has_legs = get_num_legs()
@@ -1114,12 +1120,12 @@
 	else
 		mobility_flags |= MOBILITY_STAND
 		lying = 0
-	
+
 	if(should_be_lying || restrained || incapacitated())
 		mobility_flags &= ~(MOBILITY_UI|MOBILITY_PULL)
 	else
 		mobility_flags |= MOBILITY_UI|MOBILITY_PULL
-		
+
 
 	var/canitem = !paralyzed && !stun && conscious && !chokehold && !restrained && has_arms
 	if(canitem)

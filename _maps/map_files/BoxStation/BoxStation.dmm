@@ -4999,6 +4999,10 @@
 	},
 /turf/open/floor/plating,
 /area/ai_monitored/turret_protected/aisat_interior)
+"ajY" = (
+/obj/effect/mapping_helpers/dead_body_placer,
+/turf/open/floor/plasteel/dark,
+/area/medical/morgue)
 "ajZ" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/structure/sign/warning/vacuum/external{
@@ -11952,7 +11956,8 @@
 /area/maintenance/starboard/fore)
 "aBC" = (
 /obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
+	req_access_txt = "12";
+	req_one_access_txt = "0"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -15436,7 +15441,8 @@
 "aJD" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Bar Maintenance";
-	req_access_txt = "12"
+	req_access_txt = "0";
+	req_one_access_txt = "12;25;26;35;28;22;37;46;38"
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -19590,7 +19596,8 @@
 /area/storage/tools)
 "aUx" = (
 /obj/machinery/door/airlock/maintenance{
-	req_access_txt = "12"
+	req_access_txt = "0";
+	req_one_access_txt = "12;38"
 	},
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -56573,6 +56580,11 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"mFY" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/vending/modularpc,
+/turf/open/floor/plasteel,
+/area/storage/primary)
 "mJd" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -57938,7 +57950,7 @@
 "xiw" = (
 /obj/machinery/door/airlock{
 	name = "Service Hall";
-	req_one_access_txt = "25;26;35;28"
+	req_one_access_txt = "22;25;26;28;35;37;38;46"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable{
@@ -77159,7 +77171,7 @@ ayy
 ayy
 aAO
 aBN
-aDe
+mFY
 aDe
 aFT
 aDe
@@ -96972,7 +96984,7 @@ bdc
 bfL
 beY
 bhm
-bhm
+ajY
 bhm
 bkR
 bfL

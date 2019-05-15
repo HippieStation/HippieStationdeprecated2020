@@ -86,7 +86,7 @@
 /datum/reagent/medicine/defib/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(M.stat == DEAD)
 		M.electrocute_act(1, "exstatic mixture")
-		if(!M.suiciding && !M.has_trait(TRAIT_HUSK) && !M.hellbound)
+		if(!M.suiciding && !HAS_TRAIT(M, TRAIT_HUSK) && !M.hellbound)
 			if(!M)
 				return
 			if(M.notify_ghost_cloning(source = M))
@@ -224,3 +224,10 @@ datum/reagent/medicine/virogone/on_mob_life(mob/living/M)//cures viruses very ef
 
 /datum/reagent/medicine/salglu_solution
 	overdose_threshold = 0 //seriously fuck whoever thought this was a good idea.
+
+/datum/reagent/medicine/perfluorodecalin/on_mob_life(mob/living/carbon/human/M)
+	M.adjustOxyLoss(-12*REM, 0)
+	if(prob(33))
+		M.adjustBruteLoss(-0.5*REM, 0)
+		M.adjustFireLoss(-0.5*REM, 0)
+	return FINISHONMOBLIFE(M)

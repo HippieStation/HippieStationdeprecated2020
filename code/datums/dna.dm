@@ -572,7 +572,7 @@
 	dna.remove_all_mutations()
 	dna.stability = 100
 	if(prob(max(70-instability,0)))
-		switch(rand(0,7)) //not complete and utter death
+		switch(rand(0,10)) //not complete and utter death
 			if(0)
 				monkeyize()
 			if(1)
@@ -606,6 +606,9 @@
 					O.forceMove(drop_location())
 					if(prob(20))
 						O.animate_atom_living()
+			if(9 to 10)
+				ForceContractDisease(new/datum/disease/gastrolosis())
+				to_chat(src, "<span class='notice'>Oh, I actually feel quite alright!</span>")
 	else
 		switch(rand(0,5))
 			if(0)
@@ -639,7 +642,7 @@
 
 
 /mob/living/carbon/human/proc/something_horrible_mindmelt()
-	if(!has_trait(TRAIT_BLIND))
+	if(!HAS_TRAIT(src, TRAIT_BLIND))
 		var/obj/item/organ/eyes/eyes = locate(/obj/item/organ/eyes) in internal_organs
 		if(!eyes)
 			return
