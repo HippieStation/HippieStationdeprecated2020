@@ -3255,6 +3255,7 @@
 #include "hippiestation\code\modules\integrated_electronics\subtypes\time.dm"
 #include "hippiestation\code\modules\integrated_electronics\subtypes\trig.dm"
 #include "hippiestation\code\modules\jobs\job_types\captain.dm"
+#include "hippiestation\code\modules\jobs\job_types\chaplain.dm"
 #include "hippiestation\code\modules\jobs\job_types\civilian.dm"
 #include "hippiestation\code\modules\jobs\job_types\clown.dm"
 #include "hippiestation\code\modules\jobs\job_types\engineering.dm"
