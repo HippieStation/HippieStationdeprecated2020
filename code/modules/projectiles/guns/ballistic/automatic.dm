@@ -263,17 +263,9 @@
 		playsound(user, 'sound/weapons/sawopen.ogg', 60, 1)
 	update_icon()
 
-
-<<<<<<< HEAD
 /obj/item/gun/ballistic/automatic/l6_saw/update_icon()//hippie edit -- bring back old gun icons
 	icon_state = "[initial(icon_state)][cover_open ? "open" : "closed"][magazine ? CEILING(get_ammo(0)/12.5, 1)*25 : "-empty"][suppressed ? "-suppressed" : ""]"
 	item_state = "[initial(icon_state)][cover_open ? "openmag" : "closedmag"]"//hippie end -- bring back old gun icons
-=======
-/obj/item/gun/ballistic/automatic/l6_saw/update_icon()
-	. = ..()
-	add_overlay("l6_door_[cover_open ? "open" : "closed"]")
->>>>>>> a0652c3... Enable tac reloads for most ballistic weapons (#43466)
-
 
 /obj/item/gun/ballistic/automatic/l6_saw/afterattack(atom/target as mob|obj|turf, mob/living/user as mob|obj, flag, params)
 	if(cover_open)
