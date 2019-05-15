@@ -1,6 +1,6 @@
 {
     "map_name": "Facepunch Station",
-    "map_path": "map_files/Facepunchstation",
+    "map_path": "map_files/FacepunchStation",
     "map_file": "facepunchstation.dmm",
     "shuttles": {
         "emergency": "emergency_box",
