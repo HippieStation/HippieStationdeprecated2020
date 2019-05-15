@@ -1,20 +1,4 @@
 /obj/item/gun/ballistic/rifle
-<<<<<<< HEAD
-    name = "Bolt Rifle"
-    desc = "Some kind of bolt action rifle. You get the feeling you shouldn't have this."
-    icon_state = "moistnugget"
-    icon_state = "moistnugget"
-    mag_type = /obj/item/ammo_box/magazine/internal/boltaction
-    bolt_wording = "bolt"
-    bolt_type = BOLT_TYPE_STANDARD
-    semi_auto = FALSE
-    internal_magazine = TRUE
-    fire_sound = 'sound/weapons/rifleshot.ogg'
-    fire_sound_volume = 80
-    vary_fire_sound = FALSE
-    rack_sound = 'sound/weapons/mosinboltout.ogg'
-    bolt_drop_sound = 'sound/weapons/mosinboltin.ogg'
-=======
 	name = "Bolt Rifle"
 	desc = "Some kind of bolt action rifle. You get the feeling you shouldn't have this."
 	icon_state = "moistnugget"
@@ -30,7 +14,6 @@
 	rack_sound = "sound/weapons/mosinboltout.ogg"
 	bolt_drop_sound = "sound/weapons/mosinboltin.ogg"
 	tac_reloads = FALSE
->>>>>>> a0652c3... Enable tac reloads for most ballistic weapons (#43466)
 
 obj/item/gun/ballistic/rifle/update_icon()
 	..()
