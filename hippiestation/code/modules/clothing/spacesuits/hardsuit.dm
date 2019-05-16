@@ -76,7 +76,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/deathsquad
 	slowdown = 0
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 1233243124223400, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 
 /obj/item/clothing/head/helmet/space/hardsuit/deathsquad
-	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 1233243124223400, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
