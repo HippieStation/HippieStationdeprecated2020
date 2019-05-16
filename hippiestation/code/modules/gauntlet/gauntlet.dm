@@ -346,8 +346,6 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 				locked_on = TRUE
 				visible_message("<span class='danger bold'>The badmin gauntlet clamps to [user]'s hand!</span>")
 				user.mind.RemoveAllSpells()
-				user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/projectile/magic_missile)
-				user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/ethereal_jaunt)
 				UpdateAbilities(user)
 				OnEquip(user)
 				MakeStonekeepers(user)
