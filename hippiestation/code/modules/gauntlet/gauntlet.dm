@@ -63,6 +63,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	spells += new /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet
 	spells += new /obj/effect/proc_holder/spell/aoe_turf/repulse/gauntlet
 	spells += new /obj/effect/proc_holder/spell/self/infinity/gauntlet_bullcharge
+	spells += new /obj/effect/proc_holder/spell/self/infinity/gauntlet_jump
 
 /obj/item/infinity_gauntlet/examine(mob/user)
 	. = ..()
@@ -166,6 +167,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			qdel(O)
 		W.objectives += new /datum/objective/snap
 		user.mind.announce_objectives()
+	user.move_resist = INFINITY
 
 /obj/item/infinity_gauntlet/proc/OnUnquip(mob/living/user)
 	GET_COMPONENT_FROM(stationloving, /datum/component/stationloving, user)
@@ -174,6 +176,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	for(var/obj/effect/proc_holder/spell/A in spells)
 		user.mob_spell_list -= A
 		A.action.Remove(user)
+	user.move_resist = initial(user.move_resist)
 
 /obj/item/infinity_gauntlet/pickup(mob/user)
 	. = ..()
@@ -328,10 +331,18 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 				if(ishuman(user))
 					var/mob/living/carbon/human/H = user
 					H.set_species(/datum/species/ganymede)
+					H.doUnEquip(H.wear_suit)
+					H.doUnEquip(H.w_uniform)
+					H.doUnEquip(H.head)
+					H.doUnEquip(H.back)
 					var/obj/item/clothing/head/hippie/ganymedian/GH = new(get_turf(user))
 					var/obj/item/clothing/suit/hippie/ganymedian/GS = new(get_turf(user))
+					var/obj/item/clothing/under/hippie/ganymedian/GJ = new(get_turf(user))
+					var/obj/item/tank/jetpack/ganypack/GP = new(get_turf(user))
+					H.equip_to_appropriate_slot(GJ)
 					H.equip_to_appropriate_slot(GH)
 					H.equip_to_appropriate_slot(GS)
+					H.equip_to_slot(GP, SLOT_BACK)
 				GLOB.gauntlet_equipped = TRUE
 				for(var/obj/item/spellbook/SB in world)
 					if(SB.owner == user)
@@ -455,6 +466,71 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		C.yeet = TRUE
 		C.super_yeet = FALSE
 		C.throw_at(get_edge_target_turf(C, C.dir), 6, 4, spin = FALSE)
+
+/obj/effect/proc_holder/spell/self/infinity/gauntlet_jump
+	name = "Badmin Gauntlet: Super Jump"
+	desc = "With a bit of startup time, leap across the station to wherever you'd like!"
+
+/obj/effect/proc_holder/spell/self/infinity/gauntlet_jump/revert_cast(mob/user)
+	. = ..()
+	user.opacity = FALSE
+	user.mouse_opacity = FALSE
+	user.pixel_y = 0
+	user.alpha = 255
+
+// i really hope this never runtimes
+/obj/effect/proc_holder/spell/self/infinity/gauntlet_jump/cast(list/targets, mob/user)
+	var/A = input("Area to teleport to", "Teleport") as null|anything in GLOB.teleportlocs
+	if(A)
+		user.visible_message("<span class='notice'>[user] prepares to leap to incredible heights...</span>")
+		if(!do_after(user, 30))
+			revert_cast(user)
+			return
+		user.visible_message("<span class='danger bold'>[user] LEAPS!</span>")
+		user.opacity = FALSE
+		user.mouse_opacity = FALSE
+		animate(user, pixel_y = 128, alpha = 0, time = 7.5, easing = LINEAR_EASING)
+		sleep(8)
+		var/area/thearea = GLOB.teleportlocs[A]
+		if(!thearea)
+			return
+			revert_cast(user)
+		var/list/L = list()
+		for(var/turf/T in get_area_turfs(thearea.type))
+			if(!T.density)
+				var/clear = TRUE
+				for(var/obj/O in T)
+					if(O.density)
+						clear = FALSE
+						break
+				if(clear)
+					L+=T
+		if(user && user.buckled)
+			user.buckled.unbuckle_mob(user, force=1)
+		if(!LAZYLEN(L))
+			revert_cast(user)
+			return
+		var/list/tempL = L
+		var/attempt = null
+		var/success = FALSE
+		while(tempL.len)
+			attempt = pick(tempL)
+			do_teleport(user, attempt, channel = TELEPORT_CHANNEL_BLUESPACE)
+			if(get_turf(user) == attempt)
+				success = TRUE
+				break
+			else
+				tempL.Remove(attempt)
+		if(!success)
+			do_teleport(user, L, forceMove = TRUE, channel = TELEPORT_CHANNEL_BLUESPACE)
+		user.visible_message("<span class='danger bold'>[user] slams down from above!</span>")
+		animate(user, pixel_y = 0, alpha = 255, time = 3, easing = LINEAR_EASING)
+		sleep(3)
+		user.opacity = TRUE
+		user.mouse_opacity = TRUE
+		playsound(user, 'sound/effects/bang.ogg', 50, 1)
+	else
+		revert_cast(user)
 
 /obj/effect/proc_holder/spell/self/infinity/snap
 	name = "SNAP"

@@ -280,7 +280,7 @@
 		to_chat(user, "<span class='danger'>Only 2 cakes can exist at the same time!</span>")
 		return
 	user.visible_message("<span class='notice'>A cake appears at [user]'s feet!</span>")
-	new /obj/item/reagent_containers/food/snacks/store/cake/birthday/infinity(get_turf(user))
+	cakes += new /obj/item/reagent_containers/food/snacks/store/cake/birthday/infinity(get_turf(user))
 
 /obj/item/reagent_containers/food/snacks/store/cake/birthday/infinity
 	name = "infinity cake"
@@ -297,3 +297,4 @@
 		var/mob/living/L = hit_atom
 		L.fire_stacks += 3
 		L.IgniteMob()
+		qdel(src)

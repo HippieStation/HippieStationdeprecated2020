@@ -8,6 +8,7 @@
 	spell_types = list(/obj/effect/proc_holder/spell/targeted/infinity/cluwne_rise_up,
 		/obj/effect/proc_holder/spell/self/infinity/scrying_orb)
 	var/summon_cooldown = 0
+	var/next_pull = 0
 	var/list/mob/dead/observer/spirits = list()
 
 /obj/item/infinity_stone/ghost/HelpEvent(atom/target, mob/living/user, proximity_flag)
@@ -100,15 +101,12 @@
 	var/ghost_counter = 0
 	var/mob/dead/observer/current_spirits = list()
 
-	var/atom/A = loc
-	while(!istype(A.loc, type))
-		if(isturf(A))
-			break
-		if(!A.loc)
-			return
-		A.transfer_observers_to(src)
-		A = A.loc
+	if(aura_holder && world.time >= next_pull)
+		aura_holder.transfer_observers_to(src)
+		next_pull = world.time + 25
 
+	if(!orbiters)
+		orbiters = GetComponent(/datum/component/orbiter)
 	for(var/i in orbiters?.orbiters)
 		if(!isobserver(i))
 			continue

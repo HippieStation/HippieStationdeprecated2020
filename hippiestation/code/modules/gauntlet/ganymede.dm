@@ -56,3 +56,14 @@
 	if(slot == SLOT_WEAR_SUIT)
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 		item_flags |= DROPDEL
+
+/obj/item/tank/jetpack/ganypack
+	name = "Ganypack"
+	desc = "An alien-made jetpack, capable of infinite spaceflight."
+	gas_type = null
+	actions_types = list(/datum/action/item_action/toggle_jetpack, /datum/action/item_action/jetpack_stabilization)
+
+/obj/item/tank/jetpack/ganypack/allow_thrust(num, mob/living/user)
+	if(!on)
+		return
+	return TRUE
