@@ -83,9 +83,9 @@
 /datum/mutation/human/antimagic/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.add_trait(TRAIT_ANTIMAGIC)
+	ADD_TRAIT(owner, TRAIT_ANTIMAGIC)
 
 /datum/mutation/human/antimagic/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.remove_trait(TRAIT_ANTIMAGIC)
+	REMOVE_TRAIT(owner, TRAIT_ANTIMAGIC)
