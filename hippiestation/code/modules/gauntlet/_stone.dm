@@ -9,8 +9,11 @@
 	var/list/ability_text = list()
 	var/list/spells = list()
 	var/list/gauntlet_spells = list()
+	var/list/stone_spells = list()
 	var/list/spell_types = list()
 	var/list/gauntlet_spell_types = list()
+	var/list/stone_spell_types = list()
+	var/too_many_stones = FALSE
 	var/mutable_appearance/aura_overlay
 
 /obj/item/infinity_stone/Initialize()
@@ -19,6 +22,8 @@
 		spells += new T(src)
 	for(var/T in gauntlet_spell_types)
 		gauntlet_spells += new T(src)
+	for(var/T in stone_spell_types)
+		stone_spells += new T(src)
 //	RegisterSignal(src, COMSIG_ITEM_PICKUP, .proc/UpdateHolder)
 //	RegisterSignal(src, COMSIG_ITEM_DROPPED, .proc/UpdateHolder)
 //	RegisterSignal(src, COMSIG_ITEM_EQUIPPED, .proc/UpdateHolder)
@@ -52,6 +57,10 @@
 		A.action.Grant(L)
 	if(gauntlet)
 		for(var/obj/effect/proc_holder/spell/A in gauntlet_spells)
+			L.mob_spell_list += A
+			A.action.Grant(L)
+	if(!gauntlet)
+		for(var/obj/effect/proc_holder/spell/A in stone_spells)
 			L.mob_spell_list += A
 			A.action.Grant(L)
 			
@@ -98,11 +107,35 @@
 	if (new_aura_holder != aura_holder)
 		if(isliving(aura_holder))
 			TakeVisualEffects(aura_holder)
+			TakeStatusEffect(aura_holder)
 		if(isliving(new_aura_holder))
 			GiveVisualEffects(new_aura_holder)
+			GiveStatusEffect(new_aura_holder)
 			aura_holder = new_aura_holder
 		else
 			aura_holder = null
+
+/obj/item/infinity_stone/proc/GiveStatusEffect(mob/living/target)
+	if(istype(loc, /obj/item/infinity_gauntlet))
+		return
+	var/list/effects = target.has_status_effect_list(/datum/status_effect/infinity_stone)
+	var/datum/status_effect/infinity_stone/M
+	for(var/datum/status_effect/infinity_stone/MM in effects)
+		if(MM.stone == src)
+			M = MM
+			break
+	if(!M)
+		M = target.apply_status_effect(/datum/status_effect/infinity_stone, src)
+
+/obj/item/infinity_stone/proc/TakeStatusEffect(mob/living/target)
+	var/list/effects = target.has_status_effect_list(/datum/status_effect/infinity_stone)
+	var/datum/status_effect/infinity_stone/M
+	for(var/datum/status_effect/infinity_stone/MM in effects)
+		if(MM.stone == src)
+			M = MM
+			break
+	if(M)
+		qdel(M)
 
 /obj/item/infinity_stone/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!isliving(user))
@@ -145,12 +178,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 /obj/effect/proc_holder/spell/self/infinity
+	action_icon = 'hippiestation/icons/obj/infinity.dmi'
 	human_req = FALSE // because a monkey with an infinity stone is funny
 	clothes_req = FALSE
 	staff_req = FALSE
 	invocation_type = "none"
 
 /obj/effect/proc_holder/spell/targeted/infinity //copypaste from shadowling
+	action_icon = 'hippiestation/icons/obj/infinity.dmi'
 	ranged_mousepointer = 'icons/effects/cult_target.dmi'
 	human_req = FALSE
 	clothes_req = FALSE

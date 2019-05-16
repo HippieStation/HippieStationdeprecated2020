@@ -131,7 +131,6 @@
 /obj/effect/proc_holder/spell/self/infinity/scrying_orb
 	name = "Ghost Stone: Scrying Detachment"
 	desc = "Detach your soul from your body, going into the realm of the ghosts."
-	action_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_icon_state = "scrying"
 
 /obj/effect/proc_holder/spell/self/infinity/scrying_orb/cast(list/targets, mob/user)
@@ -142,7 +141,6 @@
 /obj/effect/proc_holder/spell/targeted/infinity/cluwne_rise_up
 	name = "Ghost Stone: Cluwne Rise"
 	desc = "Rise a corpse as a subservient, magical cluwne. You may only have 1 magical cluwne alive."
-	action_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_icon_state = "cluwnerise"
 	charge_max = 900
 	var/list/cluwnes = list() // one cluwne per user

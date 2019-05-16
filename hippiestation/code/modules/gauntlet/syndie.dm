@@ -57,7 +57,6 @@
 /obj/effect/proc_holder/spell/self/infinity/regenerate
 	name = "Syndie Stone: Regenerate"
 	desc = "Regenerate 4 health per second. Requires you to stand still."
-	action_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_icon_state = "regenerate"
 	stat_allowed = TRUE
 

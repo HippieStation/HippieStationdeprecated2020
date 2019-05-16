@@ -4,7 +4,8 @@
 	name = "Ganymedian"
 	id = "ganymede"
 	species_traits = list(NOTRANSSTING, NOZOMBIE, NO_DNA_COPY, NOEYESPRITES, AGENDER, NO_UNDERWEAR, NOFLASH)
-	inherent_traits = list(TRAIT_NOBREATH, TRAIT_NOHUNGER, TRAIT_RESISTCOLD, TRAIT_RESISTHEAT, TRAIT_NOLIMBDISABLE, TRAIT_NODISMEMBER, TRAIT_RESISTHIGHPRESSURE, TRAIT_RESISTLOWPRESSURE, TRAIT_STABLEHEART)
+	inherent_traits = list(TRAIT_NOBREATH, TRAIT_NOHUNGER, TRAIT_RESISTCOLD, TRAIT_RESISTHEAT, TRAIT_NOLIMBDISABLE, TRAIT_NODISMEMBER, TRAIT_RESISTHIGHPRESSURE, 
+		TRAIT_RESISTLOWPRESSURE, TRAIT_STABLEHEART, TRAIT_VIRUSIMMUNE, TRAIT_STUNIMMUNE, TRAIT_SLEEPIMMUNE, TRAIT_PUSHIMMUNE, TRAIT_NOGUNS)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
 	changesource_flags = MIRROR_BADMIN
 	sexes = FALSE
@@ -30,7 +31,7 @@
 	min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 	heat_protection = HEAD
 	max_heat_protection_temperature = SPACE_HELM_MAX_TEMP_PROTECT
-	armor = list("melee" = 30, "bullet" = 75, "laser" = 30, "energy" = 75, "bomb" = 100, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
+	armor = list("melee" = 30, "bullet" = 45, "laser" = 30, "energy" = 45, "bomb" = 100, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
 
 /obj/item/clothing/head/hippie/ganymedian/equipped(mob/user, slot)
 	if(slot == SLOT_HEAD)
@@ -49,7 +50,7 @@
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT
-	armor = list("melee" = 30, "bullet" = 75, "laser" = 30, "energy" = 75, "bomb" = 100, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
+	armor = list("melee" = 30, "bullet" = 45, "laser" = 30, "energy" = 45, "bomb" = 100, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
 
 /obj/item/clothing/suit/hippie/ganymedian/equipped(mob/user, slot)
 	if(slot == SLOT_WEAR_SUIT)

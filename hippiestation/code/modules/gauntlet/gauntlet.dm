@@ -47,8 +47,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	icon = 'hippiestation/icons/obj/infinity.dmi'
 	icon_state = "gauntlet"
 	force = 17.5
-	throwforce = 12
-	block_chance = 25
+	armour_penetration = 70
 	var/locked_on = FALSE
 	var/stone_mode = null
 	var/list/stones = list()
@@ -79,15 +78,14 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 /obj/item/infinity_gauntlet/proc/DoTheSnap()
 	var/mob/living/snapper = usr
-	var/list/mobs_to_wipe = GLOB.alive_mob_list.Copy()
-	shuffle_inplace(mobs_to_wipe)
+	var/list/mobs_to_wipe = GLOB.player_list.Copy()
 	var/to_wipe = FLOOR((mobs_to_wipe.len-1)/2, 1)
 	var/wiped = 0
 	to_chat(world, "<span class='userdanger italics'>You feel as if something big has happened.</span>")
 	for(var/mob/living/L in mobs_to_wipe)
 		if(wiped >= to_wipe)
 			break
-		if(snapper == L)
+		if(snapper == L || !L.ckey)
 			continue
 		var/dust_time = rand(5 SECONDS, 10 SECONDS)
 		var/dust_sound = pick(
@@ -160,6 +158,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	for(var/obj/effect/proc_holder/spell/A in spells)
 		user.mob_spell_list += A
 		A.action.Grant(user)
+	user.AddComponent(/datum/component/stationloving)
 	var/datum/antagonist/wizard/W = user.mind.has_antag_datum(/datum/antagonist/wizard)
 	if(W && istype(W))
 		for(var/datum/objective/O in W.objectives)
@@ -169,6 +168,9 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		user.mind.announce_objectives()
 
 /obj/item/infinity_gauntlet/proc/OnUnquip(mob/living/user)
+	GET_COMPONENT_FROM(stationloving, /datum/component/stationloving, user)
+	if(stationloving)
+		user.TakeComponent(stationloving)
 	for(var/obj/effect/proc_holder/spell/A in spells)
 		user.mob_spell_list -= A
 		A.action.Remove(user)
@@ -229,11 +231,6 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		O.color = IS.color
 		add_overlay(O)
 		index++
-
-/obj/item/infinity_gauntlet/IsReflect(def_zone)
-	if(prob(50))
-		return TRUE
-	return FALSE
 
 /obj/item/infinity_gauntlet/melee_attack_chain(mob/user, atom/target, params)
 	if(!tool_attack_chain(user, target) && pre_attack(target, user, params))
@@ -340,8 +337,10 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 					if(SB.owner == user)
 						qdel(SB)
 				user.apply_status_effect(/datum/status_effect/agent_pinpointer/gauntlet)
-				priority_announce("A Wizard has declared that he will wipe out half the universe with the Badmin Gauntlet!\nStones have been scattered across the station. Protect anyone who holds one!", title = "Declaration of War", sound = 'hippiestation/sound/misc/wizard_wardec.ogg')
-				GLOB.telescroll_time = world.time + 7 MINUTES
+				priority_announce("A Wizard has declared that he will wipe out half the universe with the Badmin Gauntlet!\nStones have been scattered across the station. Protect anyone who holds one!\nCargo has been given $30k to spend, use it wisely!", title = "Declaration of War", sound = 'hippiestation/sound/misc/wizard_wardec.ogg')
+				var/datum/bank_account/cargo_moneys = SSeconomy.get_dep_account(ACCOUNT_CAR)
+				cargo_moneys.adjust_money(30000)
+				GLOB.telescroll_time = world.time + 10 MINUTES
 				to_chat(user, "<span class='notice bold'>You need to wait 7 minutes before teleporting to the station.</span>")
 				ADD_TRAIT(src, TRAIT_NODROP, GAUNTLET_TRAIT)
 				locked_on = TRUE
@@ -388,6 +387,9 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 				force = 22.5
 			IS.forceMove(src)
 			stones += IS
+			GET_COMPONENT_FROM(stationloving, /datum/component/stationloving, IS)
+			if(stationloving)
+				IS.TakeComponent(stationloving)
 			UpdateAbilities(user)
 			update_icon()
 			if(FullyAssembled() && !GLOB.gauntlet_snapped)
@@ -424,7 +426,6 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet
 	name = "Badmin Gauntlet: Regenerate"
 	desc = "Regenerate 2 health per second. Requires you to stand still."
-	action_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_icon_state = "regenerate"
 	action_background_icon_state = "bg_default"
 	stat_allowed = TRUE
@@ -460,7 +461,6 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 /obj/effect/proc_holder/spell/self/infinity/snap
 	name = "SNAP"
 	desc = "Snap the Badmin Gauntlet, erasing half the life in the universe."
-	action_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_icon_state = "gauntlet"
 	stat_allowed = TRUE
 

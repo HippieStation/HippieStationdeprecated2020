@@ -49,3 +49,35 @@
 	owner.adjustToxLoss((-healing/100), 0)
 
 	..()
+
+/datum/status_effect/infinity_stone
+	id = "infinity_stone"
+	status_type = STATUS_EFFECT_MULTIPLE
+	duration = -1
+	tick_interval = 10
+	alert_type = null
+	var/obj/item/infinity_stone/stone
+	var/next_msg = 0
+
+/datum/status_effect/infinity_stone/on_creation(mob/living/new_owner, obj/item/infinity_stone/new_stone)
+	. = ..()
+	if(.)
+		stone = new_stone
+
+/datum/status_effect/infinity_stone/Destroy()
+	stone = null
+	return ..()
+
+/datum/status_effect/infinity_stone/tick()
+	var/has_other_stone = FALSE
+	if(istype(stone.loc, /obj/item/infinity_gauntlet))
+		return
+	for(var/obj/item/infinity_stone/IS in owner.GetAllContents())
+		if(IS != stone)
+			has_other_stone = TRUE
+	if(!has_other_stone)
+		return
+	if(world.time >= next_msg)
+		owner.visible_message("<span class='danger'>[owner]'s [pick("face", "hands", "arms", "legs")] bruise a bit...</span>", "<span class='userdanger'>Your body can't handle holding two infinity stones at once!</span>")
+		next_msg = world.time + rand(10 SECONDS, 25 SECONDS)
+	owner.adjustBruteLoss(4.5)
