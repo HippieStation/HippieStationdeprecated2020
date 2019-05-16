@@ -493,6 +493,14 @@
 	cost = 6
 	restricted_roles = list("Chaplain")
 
+/datum/uplink_item/role_restricted/antigrav_boots
+	name = "Anti Gravity Boots"
+	desc = "Modified mag boots that let you float over floors and gaps."
+	item = /obj/item/clothing/shoes/magboots/antigrav
+	cost = 8 
+	surplus = 30
+	restricted_roles = list("Shaft Miner")
+  
 // stop VR CRABBING
 /datum/uplink_item/device_tools/suspiciousphone
 	restricted = TRUE
