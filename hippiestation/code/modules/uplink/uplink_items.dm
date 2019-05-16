@@ -50,7 +50,7 @@
 	name = "Syndi Gatfruit"
 	desc = "An extrememly rare plant seed which grows .357 revolvers. Has been modified to mature twice as fast as normal Gatfruit"
 	restricted_roles = list("Botanist")
-	cost = 20
+	cost = 18
 	item = /obj/item/seeds/gatfruit/syndi
 
 /datum/uplink_item/dangerous/echainsaw
