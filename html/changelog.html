@@ -71,6 +71,20 @@
 				<li class="code_imp">Mood quirks are now only processed by the quirk holders</li>
 				<li class="rscdel">Removed hull integrity system from economy.dm Should reduce periodic lag.</li>
 				<li class="tweak">Air contents inside a tank react additionally once instead of thrice when exploding</li>
+				<li class="balance">Humans now have a punch damage range of 1-10, up from 0-9</li>
+				<li class="balance">The chance to miss a punch now increases the more stamina and brute damage you have</li>
+				<li class="balance">The stun duration for a critical punch now scales with how much stamina/brute damage the victim has</li>
+				<li class="balance">Punches now deal full stamina damage + half damage in brute (effectively 1.5x damage on all punches, not accounting for stamina regeneration)</li>
+				<li class="balance">Kicking (punching a prone person) does full brute damage, never misses, and does 1.5x damage</li>
+				<li class="balance">Grabs are now harder to break out of the more stamina/brute damage you have</li>
+				<li class="balance">Failing to resist out of a grab will deal a bit of stamina damage to you</li>
+				<li class="balance">In all instances above where both stamina and brute damage are considered, brute is weighed 1/2 as heavily as stamina (meaning stamina has more of an effect than brute when it comes to punch-stun duration, miss chance, etc)</li>
+				<li class="tweak">Follower hoodies are in the crafting menu!</li>
+				<li class="rscadd">Cargo can now order a ridiculously large canister containing only saline to give medbay a more than plentiful supply of the stuff.</li>
+				<li class="bugfix">transform spell transfers damage correctly instead of healing most of the time</li>
+				<li class="bugfix">0% simplemob health maps to 0 carbon health, 100% simplemob to 100% carbon</li>
+				<li class="bugfix">transforming to a form with brute resistance no longer heals you</li>
+				<li class="bugfix">transforming back to a species with brute resistance no longer heals you</li>
 			</ul>
 			<h3 class="author">Jujumatic updated:</h3>
 			<ul class="changes bgimages16">
@@ -81,12 +95,32 @@
 			<ul class="changes bgimages16">
 				<li class="code_imp">Made atmos update_visuals() proc a bit faster</li>
 				<li class="bugfix">mindshield nanites no longer give mindshields to revheads and one mind awoken hiveminds.</li>
+				<li class="balance">The crabphone will no longer deafen everyone who didn't have the foreknowledge that it was coming.</li>
+				<li class="balance">The crabphone has 80% less HP, as befits something that costs 7 TC and is not two bubblegums stacked on top of eachother.</li>
 			</ul>
 			<h3 class="author">NautilusViper updated:</h3>
 			<ul class="changes bgimages16">
 				<li class="balance">Null Rod skins are back to their old (fun) selves, fixing what could be perceived as bugs (not being able to wear fedora etc) in the process. The Null Rod no longer possesses antimagic capabilities. Rather, antimagic has become an inherent gene in chaplains. The downside: No more sweaty captains dumpstering wizards by having a rod on their belt. The upside: Chappy is FUCKING INVINCIBLE to sorcerer tomfoolery, even if they drop their null rod.</li>
 				<li class="imageadd">Dark Blessing has had a visual touch-up to Pious Gold from Changeling Red. This will theoretically result in fewer screeching bald men from toolboxing innocent chaplains to death.</li>
 				<li class="rscadd">Monk Manual is now a Chaplain-exclusive traitor item for six telecrystals.</li>
+			</ul>
+			<h3 class="author">Okand37 updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Nanotrasen Shipyards have released a set of Kilo-pattern shuttles including a new Kilo Emergency Shuttle, purchasable for 5000 credits!</li>
+				<li class="rscadd">Syndicate Skunkworks have ushered in a new model of the infiltrator-pattern shuttle designed for operative insertion and extraction. Rumours report the new shuttle to be an up-armoured version of the original design that Nanotrasen Intelligence workers have taken to calling the "tortoise."</li>
+				<li class="admin">New shuttles are accessible from the shuttle loader!</li>
+			</ul>
+			<h3 class="author">ShizCalev updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="tweak">Enabled tactical reloads for most ballistic weapons.</li>
+			</ul>
+			<h3 class="author">WJohnston updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="imageadd">New .357 revolver sprites.</li>
+			</ul>
+			<h3 class="author">YoYoBatty updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Shaft miner can now buy a nifty pair of anti-gravity boots in their traitor uplinks.</li>
 			</ul>
 			<h3 class="author">imsxz updated:</h3>
 			<ul class="changes bgimages16">
