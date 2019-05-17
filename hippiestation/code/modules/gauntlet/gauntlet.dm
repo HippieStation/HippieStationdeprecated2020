@@ -22,7 +22,6 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 		),
 		SUPERMATTER_STONE = list(
 			"Chief Engineer" = 60,
-			"Curator" = 45,
 			"Station Engineer" = 30,
 			"Atmospheric Technician" = 30
 		),
@@ -77,30 +76,45 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			return I
 	return
 
+/obj/item/infinity_gauntlet/proc/DoSnap(mob/living/snapee)
+	var/dust_time = rand(5 SECONDS, 10 SECONDS)
+	var/dust_sound = pick(
+		'hippiestation/sound/effects/snap/snap1.wav',
+		'hippiestation/sound/effects/snap/snap2.wav',
+		'hippiestation/sound/effects/snap/snap3.wav',
+		'hippiestation/sound/effects/snap/snap4.wav',
+		'hippiestation/sound/effects/snap/snap5.wav',
+		'hippiestation/sound/effects/snap/snap6.wav')
+	if(prob(25))
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, snapee, "<span class='danger'>You don't feel so good...</span>"), dust_time - 3 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, snapee, dust_sound, 100, TRUE), dust_time-2.5)
+	addtimer(CALLBACK(snapee, /mob/living.proc/dust, TRUE), dust_time)
+
 /obj/item/infinity_gauntlet/proc/DoTheSnap()
 	var/mob/living/snapper = usr
-	var/list/mobs_to_wipe = GLOB.player_list.Copy()
-	var/to_wipe = FLOOR((mobs_to_wipe.len-1)/2, 1)
-	var/wiped = 0
+	var/list/players = GLOB.player_list.Copy()
+	var/list/mobs = GLOB.alive_mob_list.Copy() - players
+	shuffle_inplace(players)
+	shuffle_inplace(mobs)
+	var/players_to_wipe = FLOOR((players.len-1)/2, 1)
+	var/mobs_to_wipe = FLOOR(mobs.len/2, 1)
+	var/players_wiped = 0
+	var/mobs_wiped = 0
 	to_chat(world, "<span class='userdanger italics'>You feel as if something big has happened.</span>")
-	for(var/mob/living/L in mobs_to_wipe)
-		if(wiped >= to_wipe)
+	for(var/mob/living/L in players)
+		if(players_wiped >= players_to_wipe)
 			break
 		if(snapper == L || !L.ckey)
 			continue
-		var/dust_time = rand(5 SECONDS, 10 SECONDS)
-		var/dust_sound = pick(
-			'hippiestation/sound/effects/snap/snap1.wav',
-			'hippiestation/sound/effects/snap/snap2.wav',
-			'hippiestation/sound/effects/snap/snap3.wav',
-			'hippiestation/sound/effects/snap/snap4.wav',
-			'hippiestation/sound/effects/snap/snap5.wav',
-			'hippiestation/sound/effects/snap/snap6.wav')
-		if(prob(25))
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, L, "<span class='danger'>You don't feel so good...</span>"), dust_time - 3 SECONDS)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, L, dust_sound, 100, TRUE), dust_time)
-		addtimer(CALLBACK(L, /mob/living.proc/dust, TRUE), dust_time)
-		wiped++
+		DoSnap(L)
+		players_wiped++
+	for(var/mob/living/L in mobs)
+		if(mobs_wiped >= mobs_to_wipe)
+			break
+		if(snapper == L || (L in players))
+			continue
+		DoSnap(L)
+		mobs_wiped++
 
 /obj/item/infinity_gauntlet/proc/GetWeightedChances(list/job_list, list/blacklist)
 	var/list/jobs = list()
