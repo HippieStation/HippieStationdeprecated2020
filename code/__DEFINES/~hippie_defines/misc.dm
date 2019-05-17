@@ -8,7 +8,7 @@
 #define INFILTRATION_NONECOMPLETE 28
 
 #define BLUESPACE_STONE "bluespace stone"
-#define SUPERMATTER_STONE "server stone"
+#define SUPERMATTER_STONE "supermatter stone"
 #define CLOWN_STONE "clown stone"
 #define LAG_STONE "lag stone"
 #define GHOST_STONE "ghost stone"

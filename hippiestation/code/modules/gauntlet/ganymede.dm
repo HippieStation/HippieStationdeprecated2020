@@ -67,3 +67,8 @@
 	if(!on)
 		return
 	return TRUE
+
+/obj/item/tank/jetpack/ganypack/equipped(mob/user, slot)
+	if(slot == SLOT_HEAD)
+		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
+		item_flags |= DROPDEL

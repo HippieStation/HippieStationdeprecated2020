@@ -75,7 +75,7 @@
 
 /obj/effect/proc_holder/spell/self/infinity/syndie_bullcharge
 	name = "Syndie Stone: Bull Charge"
-	desc = "Imbue yourself with power, and charge forward, smashing through anyone or any wall in your way!"
+	desc = "Imbue yourself with power, and charge forward, smashing through anyone or anything in your way!"
 	charge_max = 200
 	sound = 'sound/magic/repulse.ogg'
 
@@ -83,38 +83,34 @@
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		ADD_TRAIT(C, TRAIT_STUNIMMUNE, YEET_TRAIT)
-		C.yeet = TRUE
-		C.super_yeet = TRUE
-		C.throw_at(get_edge_target_turf(C, C.dir), 9, 4, spin = FALSE)
+		C.mario_star = TRUE
+		C.super_mario_star = TRUE
+		C.move_force = INFINITY
+		addtimer(CALLBACK(src, .proc/done, C), 50)
+
+/obj/effect/proc_holder/spell/self/infinity/syndie_bullcharge/proc/done(mob/living/carbon/user)
+	user.mario_star = FALSE
+	user.super_mario_star = FALSE
+	user.move_force = initial(user.move_force)
+	REMOVE_TRAIT(user, TRAIT_STUNIMMUNE, YEET_TRAIT)
 
 /////////////////////////////////////////////
 /////////////// SNOWFLAKE CODE //////////////
 /////////////////////////////////////////////
 
 /mob/living/carbon
-	var/yeet = FALSE
-	var/super_yeet = FALSE
+	var/mario_star = FALSE
+	var/super_mario_star = FALSE
 
-/mob/living/carbon/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+/mob/living/carbon/Bump(atom/A)
 	. = ..()
-	if(yeet || super_yeet)
-		if(super_yeet && isclosedturf(hit_atom))
-			var/turf/closed/T = hit_atom
-			visible_message("<span class='danger'>[src] slams into [T]!</span>")
-			T.ScrapeAway()
-		else if(isliving(hit_atom))
-			var/mob/living/L = hit_atom
-			visible_message("<span class='danger'>[src] slams into [L]!</span>")
-			if(super_yeet)
+	if(mario_star || super_mario_star)
+		if(isliving(A))
+			var/mob/living/L = A
+			visible_message("<span class='danger'>[src] rams into [L]!</span>")
+			if(super_mario_star)
 				L.Paralyze(7.5 SECONDS)
 				L.adjustBruteLoss(20)
 			else
 				L.Paralyze(5 SECONDS)
 				L.adjustBruteLoss(12)
-		else if(isobj(hit_atom))
-			var/obj/O = hit_atom
-			visible_message("<span class='danger'>[src] slams into [O], and crushes it!</span>")
-			O.take_damage(INFINITY)
-		REMOVE_TRAIT(src, TRAIT_STUNIMMUNE, YEET_TRAIT)
-		yeet = FALSE
-		super_yeet = FALSE

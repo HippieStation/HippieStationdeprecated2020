@@ -73,11 +73,11 @@
 	if(istype(stone.loc, /obj/item/infinity_gauntlet))
 		return
 	for(var/obj/item/infinity_stone/IS in owner.GetAllContents())
-		if(IS != stone)
+		if(IS != stone && !istype(IS.loc, /obj/item/infinity_gauntlet))
 			has_other_stone = TRUE
 	if(!has_other_stone)
 		return
 	if(world.time >= next_msg)
-		owner.visible_message("<span class='danger'>[owner]'s [pick("face", "hands", "arms", "legs")] bruise a bit...</span>", "<span class='userdanger'>Your body can't handle holding two infinity stones at once!</span>")
+		owner.visible_message("<span class='danger'>[owner]'s [pick("face", "hands", "arms", "legs")] bruises a bit...</span>", "<span class='userdanger'>Your body can't handle holding two infinity stones at once!</span>")
 		next_msg = world.time + rand(10 SECONDS, 25 SECONDS)
-	owner.adjustBruteLoss(4.5)
+	owner.adjustBruteLoss(4.5) // starting at 7 damage for 2 stones, plus 4.5 damage per extra stone.

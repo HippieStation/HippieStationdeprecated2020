@@ -81,7 +81,10 @@
 	var/list/sparkles = list()
 
 /obj/effect/proc_holder/spell/self/infinity/honksong/cast(list/targets, mob/user)
-	. = ..()
+	var/obj/item/infinity_stone/clown/clown_stone = locate() in user
+	if(!clown_stone)
+		to_chat(user, "<span class='notice'>How are you casting this without the clown stone wtf?</span>")
+		return
 	LAZYINITLIST(dancefloor_turfs)
 	LAZYINITLIST(dancefloor_turfs_types)
 	if(dancefloor_exists)
@@ -109,7 +112,7 @@
 		i = 1
 		user.spin(175, 1)
 		setup_sparkles(user)
-		while(do_after(user, 10))
+		while(do_after(user, 10, target = clown_stone))
 			user.spin(20, 1)
 			user.SpinAnimation(7,1)
 			if(prob(75))

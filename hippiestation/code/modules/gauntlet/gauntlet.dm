@@ -196,6 +196,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	for(var/obj/item/infinity_stone/IS in stones)
 		IS.RemoveAbilities(user, TRUE)
 		IS.TakeVisualEffects(user)
+		IS.TakeStatusEffect(user)
 	for(var/obj/effect/proc_holder/spell/A in spells)
 		user.mob_spell_list -= A
 		A.action.Remove(user)
@@ -462,14 +463,23 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 /obj/effect/proc_holder/spell/self/infinity/gauntlet_bullcharge/cast(list/targets, mob/user)
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
-		ADD_TRAIT(C, TRAIT_STUNIMMUNE, YEET_TRAIT)
-		C.yeet = TRUE
-		C.super_yeet = FALSE
-		C.throw_at(get_edge_target_turf(C, C.dir), 6, 4, spin = FALSE)
+		C.mario_star = TRUE
+		C.super_mario_star = FALSE
+		C.move_force = INFINITY
+		addtimer(CALLBACK(src, .proc/done, C), 50)
+
+/obj/effect/proc_holder/spell/self/infinity/gauntlet_bullcharge/proc/done(mob/living/carbon/user)
+	user.mario_star = FALSE
+	user.super_mario_star = FALSE
+	user.move_force = initial(user.move_force)
+	REMOVE_TRAIT(user, TRAIT_STUNIMMUNE, YEET_TRAIT)
 
 /obj/effect/proc_holder/spell/self/infinity/gauntlet_jump
 	name = "Badmin Gauntlet: Super Jump"
 	desc = "With a bit of startup time, leap across the station to wherever you'd like!"
+	action_background_icon_state = "bg_default"
+	action_icon_state = "jump"
+	charge_max = 900
 
 /obj/effect/proc_holder/spell/self/infinity/gauntlet_jump/revert_cast(mob/user)
 	. = ..()
@@ -480,17 +490,21 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 // i really hope this never runtimes
 /obj/effect/proc_holder/spell/self/infinity/gauntlet_jump/cast(list/targets, mob/user)
+	if(!is_station_level(user.z))
+		to_chat(user, "<span class='notice'>You need to be on-station to do that!</span>")
+		revert_cast(user)
+		return
 	var/A = input("Area to teleport to", "Teleport") as null|anything in GLOB.teleportlocs
 	if(A)
 		user.visible_message("<span class='notice'>[user] prepares to leap to incredible heights...</span>")
-		if(!do_after(user, 30))
+		if(!do_after(user, 30, target = user))
 			revert_cast(user)
 			return
 		user.visible_message("<span class='danger bold'>[user] LEAPS!</span>")
 		user.opacity = FALSE
 		user.mouse_opacity = FALSE
-		animate(user, pixel_y = 128, alpha = 0, time = 7.5, easing = LINEAR_EASING)
-		sleep(8)
+		animate(user, pixel_y = 128, alpha = 0, time = 4, easing = LINEAR_EASING)
+		sleep(4.5)
 		var/area/thearea = GLOB.teleportlocs[A]
 		if(!thearea)
 			return

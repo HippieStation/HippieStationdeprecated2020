@@ -59,7 +59,7 @@
 		for(var/obj/effect/proc_holder/spell/A in gauntlet_spells)
 			L.mob_spell_list += A
 			A.action.Grant(L)
-	if(!gauntlet)
+	else
 		for(var/obj/effect/proc_holder/spell/A in stone_spells)
 			L.mob_spell_list += A
 			A.action.Grant(L)
@@ -68,10 +68,12 @@
 	for(var/obj/effect/proc_holder/spell/A in spells)
 		L.mob_spell_list -= A
 		A.action.Remove(L)
-	if(gauntlet)
-		for(var/obj/effect/proc_holder/spell/A in gauntlet_spells)
-			L.mob_spell_list -= A
-			A.action.Remove(L)
+	for(var/obj/effect/proc_holder/spell/A in stone_spells)
+		L.mob_spell_list -= A
+		A.action.Remove(L)
+	for(var/obj/effect/proc_holder/spell/A in gauntlet_spells)
+		L.mob_spell_list -= A
+		A.action.Remove(L)
 
 /obj/item/infinity_stone/proc/GiveVisualEffects(mob/living/L)
 	L.add_overlay(aura_overlay)
