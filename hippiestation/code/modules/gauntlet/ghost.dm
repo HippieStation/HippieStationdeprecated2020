@@ -209,6 +209,7 @@
 	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_background_icon_state = "ghost"
 	charge_max = 900
+	sound = 'hippiestation/sound/effects/horror_scream.ogg'
 
 /obj/effect/proc_holder/spell/self/infinity/soulscreech/cast(list/targets, mob/user)
 	. = ..()

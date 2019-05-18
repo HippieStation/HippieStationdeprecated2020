@@ -202,8 +202,9 @@
 	stone = linked_stone
 
 /obj/effect/proc_holder/spell/targeted/infinity/proc/Finished()
-	remove_ranged_ability()
+	charge_counter = 0
 	start_recharge()
+	remove_ranged_ability()
 
 /obj/effect/proc_holder/spell/targeted/infinity/Click()
 	var/mob/living/user = usr

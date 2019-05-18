@@ -191,6 +191,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		user.mob_spell_list -= A
 		A.action.Remove(user)
 	user.move_resist = initial(user.move_resist)
+	TakeAbilities(user)
 
 /obj/item/infinity_gauntlet/pickup(mob/user)
 	. = ..()
@@ -204,9 +205,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		OnUnquip(user)
 		visible_message("<span class='danger'>The Badmin Gauntlet falls off of [user].</span>")
 
-// warning: contains snowflake code for syndie stone
-/obj/item/infinity_gauntlet/proc/UpdateAbilities(mob/living/user)
-	var/obj/item/infinity_stone/syndie = GetStone(SYNDIE_STONE)
+/obj/item/infinity_gauntlet/proc/TakeAbilities(mob/living/user)
 	for(var/obj/item/infinity_stone/IS in stones)
 		IS.RemoveAbilities(user, TRUE)
 		IS.TakeVisualEffects(user)
@@ -214,12 +213,17 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	for(var/obj/effect/proc_holder/spell/A in spells)
 		user.mob_spell_list -= A
 		A.action.Remove(user)
+	if(ishuman(user))
+		martial_art.remove(user)
+
+// warning: contains snowflake code for syndie stone
+/obj/item/infinity_gauntlet/proc/GiveAbilities(mob/living/user)
+	var/obj/item/infinity_stone/syndie = GetStone(SYNDIE_STONE)
 	if(!syndie)
 		for(var/obj/effect/proc_holder/spell/A in spells)
 			user.mob_spell_list += A
 			A.action.Grant(user)
 	if(ishuman(user))
-		martial_art.remove(user)
 		if(stone_mode != SYNDIE_STONE && (!GetStone(stone_mode) || !stone_mode))
 			martial_art.teach(user)
 	if(syndie)
@@ -234,6 +238,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			IS.GiveVisualEffects(user)
 			if(stone_mode != SYNDIE_STONE)
 				IS.GiveAbilities(user, TRUE)
+
+/obj/item/infinity_gauntlet/proc/UpdateAbilities(mob/living/user)
 
 /obj/item/infinity_gauntlet/update_icon()
 	cut_overlays()
