@@ -564,22 +564,24 @@
 			var/mob/living/L = V
 			L.SpinAnimation(speed = 10, loops = 5)
 
-	//FART //hippie edit
+	// hippie start -- FART
 	else if((findtext(message, fart_words)))
 		cooldown = COOLDOWN_MEME
 		for(var/V in listeners)
 			var/mob/living/L = V
 			addtimer(CALLBACK(L, /mob/living/.proc/emote, "fart"), 5 * i)
 			i++
+	// hippie end
 
-	//SCREAM //hippie edit
+	// hippie start -- SCREAM
 	else if((findtext(message, scream_words)))
 		cooldown = COOLDOWN_MEME
 		for(var/V in listeners)
 			var/mob/living/L = V
 			addtimer(CALLBACK(L, /mob/living/.proc/emote, "scream"), 5 * i)
 			i++
-
+	// hippie end
+	
 	else
 		cooldown = COOLDOWN_NONE
 
