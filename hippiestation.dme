@@ -3188,6 +3188,7 @@
 #include "hippiestation\code\modules\events\infiltrators.dm"
 #include "hippiestation\code\modules\events\vent_clog.dm"
 #include "hippiestation\code\modules\events\holiday\vday.dm"
+#include "hippiestation\code\modules\fields\timestop.dm"
 #include "hippiestation\code\modules\food_and_drinks\drinks\drinks\drinkingglass.dm"
 #include "hippiestation\code\modules\food_and_drinks\drinks\drinks\drinks.dm"
 #include "hippiestation\code\modules\food_and_drinks\food\snacks_bread.dm"
