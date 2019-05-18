@@ -9,6 +9,7 @@
 	spell_types = list(/obj/effect/proc_holder/spell/self/infinity/pranksters_delusion,
 		/obj/effect/proc_holder/spell/self/infinity/cake)
 	stone_spell_types = list(/obj/effect/proc_holder/spell/self/infinity/honksong)
+	gauntlet_spell_types = list(/obj/effect/proc_holder/spell/self/infinity/thanoscar_thanoscar)
 	var/next_traps = 0
 	var/next_cleaner = 0
 
@@ -307,3 +308,61 @@
 		L.fire_stacks += 3
 		L.IgniteMob()
 		qdel(src)
+
+/obj/effect/proc_holder/spell/self/infinity/thanoscar_thanoscar
+	name = "THANOS CAR"
+	desc = "Summon the legendary THANOS CAR!"
+	action_icon_state = "_thanoscar"
+	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_background_icon_state = "clown"
+	invocation_type = "shout"
+	invocation = "THANOS CAR THANOS CAR"
+	charge_max = 1300
+
+/obj/effect/proc_holder/spell/self/infinity/thanoscar_thanoscar/cast(list/targets, mob/user)
+	user.visible_message("<span class='danger bold'>[user] summons the THANOS CAR!</span>")
+	var/obj/vehicle/sealed/car/thanos/thanos_car = new(get_turf(user))
+	thanos_car.mob_forced_enter(user, TRUE)
+	addtimer(CALLBACK(thanos_car, /obj/vehicle/sealed/car/thanos.proc/ByeBye), 30 SECONDS)
+	
+
+///////////////////////////////////////
+//////// THANOS CAR THANOS CAR ////////
+///////////////////////////////////////
+
+/obj/vehicle/sealed/car/thanos
+	name = "THANOS CAR"
+	desc = "THANOS CAR THANOS CAR"
+	icon = 'hippiestation/icons/obj/infinity.dmi'
+	icon_state = "thanoscar"
+	color = "#6F3C89"
+	max_integrity = 100
+	max_occupants = 1
+	key_type = null
+	movedelay = 0.6
+	armor = list("melee" = 70, "bullet" = 40, "laser" = 40, "energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 80)
+
+/obj/vehicle/sealed/car/thanos/Bump(atom/movable/M)
+	. = ..()
+	if(isliving(M))
+		var/mob/living/L = M
+		visible_message("<span class='danger'>[src] rams into [L]!</span>")
+		L.Paralyze(55)
+
+/obj/vehicle/sealed/car/thanos/proc/RunOver(mob/living/carbon/C)
+	visible_message("<span class='danger'>[src] runs over [C]!</span>")
+	C.adjustBruteLoss(37.5)
+
+/mob/living/carbon/Crossed(atom/movable/AM)
+	if(istype(AM, /obj/vehicle/sealed/car/thanos))
+		var/obj/vehicle/sealed/car/thanos/TC = AM
+		TC.RunOver(src)
+	return ..()
+
+/obj/vehicle/sealed/car/thanos/proc/ByeBye()
+	for(var/mob/living/L in return_occupants())
+		mob_exit(L, TRUE)
+		L.throw_at(get_edge_target_turf(src, dir), 7, 5)
+	visible_message("<span class='danger'>[src] explodes!</span>")
+	explosion(get_turf(src), 0, 0, 1, 2, flame_range = 3)
+	qdel(src)

@@ -37,6 +37,7 @@
 	if(slot == SLOT_HEAD)
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 		item_flags |= DROPDEL
+	return ..()
 
 /obj/item/clothing/suit/hippie/ganymedian
 	name = "Ganymedian Armor"
@@ -56,6 +57,7 @@
 	if(slot == SLOT_WEAR_SUIT)
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 		item_flags |= DROPDEL
+	return ..()
 
 /obj/item/tank/jetpack/ganypack
 	name = "Ganypack"
@@ -80,6 +82,7 @@
 	if(slot == SLOT_BACK)
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 		item_flags |= DROPDEL
+	return ..()
 
 /obj/item/clothing/under/hippie/ganymedian
 	name = "ganymedian jumpsuit"
@@ -109,3 +112,4 @@
 	if(slot == SLOT_SHOES)
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 		item_flags |= DROPDEL
+	return ..()
