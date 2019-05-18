@@ -98,6 +98,7 @@
 	if(slot == SLOT_WEAR_SUIT)
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 		item_flags |= DROPDEL
+	return ..()
 
 /obj/item/clothing/shoes/ganymedian
 	name = "ganymedian shoes"
