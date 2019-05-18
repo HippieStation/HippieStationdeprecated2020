@@ -20,6 +20,7 @@
 
 	var/list/upgrade_tiers = list(
 		/obj/effect/proc_holder/spell/self/rejuvenate = 0,
+		/obj/effect/proc_holder/spell/self/revive = 0,
 		/obj/effect/proc_holder/spell/targeted/hypnotise = 0,
 		/datum/vampire_passive/vision = 175,
 		/obj/effect/proc_holder/spell/self/shapeshift = 175,
@@ -32,8 +33,7 @@
 		/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/mistform = 500,
 		/datum/vampire_passive/full = 666,
 		/obj/effect/proc_holder/spell/self/summon_coat = 666,
-		/obj/effect/proc_holder/spell/targeted/vampirize = 700,
-		/obj/effect/proc_holder/spell/self/revive = 800)
+		/obj/effect/proc_holder/spell/targeted/vampirize = 666)
 
 /datum/antagonist/vampire/get_admin_commands()
 	. = ..()

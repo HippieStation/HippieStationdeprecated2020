@@ -1,0 +1,4 @@
+author: "NautilusViper"
+delete-after: True
+changes: 
+  - tweak: "Syndicate Infiltrator turrets no longer wallbang and stunlock everybody who comes into range."
