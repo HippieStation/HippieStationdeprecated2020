@@ -100,7 +100,7 @@
 		QDEL_LIST(spotlights)
 	else
 		charge_counter = charge_max
-		var/list/funky_turfs = RANGE_TURFS(5, user)
+		var/list/funky_turfs = RANGE_TURFS(3, user)
 		dancefloor_exists = TRUE
 		var/i = 1
 		dancefloor_turfs.len = funky_turfs.len
