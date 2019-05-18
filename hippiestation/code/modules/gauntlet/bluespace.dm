@@ -33,7 +33,7 @@
 
 /obj/item/infinity_stone/bluespace/GrabEvent(atom/target, mob/living/user, proximity_flag)	
 	var/turf/to_teleport = get_turf(target)
-	if(do_after(user, 3))
+	if(do_after(user, 3, target = user))
 		var/turf/start = get_turf(user)
 		user.adjustStaminaLoss(15)
 		user.visible_message("<span class='danger'>[user] warps away!</span>", "<span class='notice'>We warp ourselves to our desired location.</span>")

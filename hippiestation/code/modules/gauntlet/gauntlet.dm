@@ -261,7 +261,9 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 				afterattack(target, user, 1, params)
 
 /obj/item/infinity_gauntlet/proc/AttackThing(mob/user, atom/target)
+	. = FALSE
 	if(istype(target, /obj/structure/safe))
+		. = TRUE
 		var/obj/structure/safe/S = target
 		user.visible_message("<span class='danger'>[user] begins to pry open [S]!<span>", "<span class='notice'>We begin to pry open [S]...</span>")
 		if(do_after(user, 35, target = S))
@@ -273,6 +275,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			S.updateUsrDialog()
 	else if(isclosedturf(target))
 		var/turf/closed/T = target
+		. = TRUE
 		if(!GetStone(SYNDIE_STONE))
 			user.visible_message("<span class='danger'>[user] begins to charge up a punch...</span>", "<span class='notice'>We begin to charge a punch...</span>")
 			if(do_after(user, 15, target = T))
@@ -285,6 +288,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			T.ScrapeAway()
 	else if(iscarbon(target) && (user.zone_selected == BODY_ZONE_L_LEG || user.zone_selected == BODY_ZONE_R_LEG))
 		var/mob/living/carbon/C = target
+		. = TRUE
 		if(!(C.mobility_flags & MOBILITY_MOVE) || C.InCritical() || C.incapacitated(TRUE, TRUE))
 			var/list/legs = list()
 			for(var/obj/item/bodypart/BP in C.bodyparts)
@@ -328,8 +332,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		if(INTENT_DISARM)
 			IS.DisarmEvent(target, user, proximity_flag)
 		if(INTENT_HARM) // there's no harm intent on the stones anyways
-			if(proximity_flag)
-				AttackThing(user, target)
+			if(proximity_flag && !AttackThing(user, target))
+				IS.HarmEvent(target, user, proximity_flag)
 		if(INTENT_GRAB)
 			IS.GrabEvent(target, user, proximity_flag)
 		if(INTENT_HELP)

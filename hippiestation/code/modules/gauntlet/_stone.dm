@@ -201,6 +201,10 @@
 	. = ..()
 	stone = linked_stone
 
+/obj/effect/proc_holder/spell/targeted/infinity/proc/Finished()
+	remove_ranged_ability()
+	start_recharge()
+
 /obj/effect/proc_holder/spell/targeted/infinity/Click()
 	var/mob/living/user = usr
 	if(!istype(user))

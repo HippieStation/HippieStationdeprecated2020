@@ -136,6 +136,7 @@
 	action_icon_state = "chariot"
 	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_background_icon_state = "ghost"
+	charge_max = 200
 
 /obj/effect/proc_holder/spell/targeted/infinity/chariot/InterceptClickOn(mob/living/caller, params, atom/t)
 	. = ..()
@@ -165,7 +166,9 @@
 		return FALSE
 	log_game("[L] was kicked out of their body by The Chariot (user: [caller])")
 	to_chat(L, "<span class='danger bold'>You feel your very soul detach from your body...</span>")
+	to_chat(user, "<span class='notice bold'>You weave [L]'s soul in a way that it's open for the spirits to take...</span>")
 	offer_control(L, FALSE)
+	Finished()
 	return TRUE
 
 /obj/effect/forcefield/heaven
@@ -205,6 +208,7 @@
 	action_icon_state = "reeeeee"
 	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_background_icon_state = "ghost"
+	charge_max = 900
 
 /obj/effect/proc_holder/spell/self/infinity/soulscreech/cast(list/targets, mob/user)
 	. = ..()
@@ -289,6 +293,7 @@
 		H.put_in_hands(BK, TRUE)
 		H.visible_message("<span class='danger'>[H] struggles back up, now a cluwne!</span>")
 		to_chat(H, "<span class='userdanger'>You are risen from the dead as a cluwne. [caller] is your master. Follow their orders at all costs.</span>")
+		Finished()
 	else
 		revert_cast()
 
@@ -299,7 +304,7 @@
 	action_icon_state = "sandman"
 	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_background_icon_state = "ghost"
-	charge_max = 75
+	charge_max = 200
 	item_type = /obj/item/spellpacket/sandman
 	clothes_req = FALSE
 	human_req = FALSE
