@@ -119,7 +119,7 @@
 		initial_loc = user.loc
 		i = 1
 		user.spin(175, 1)
-		INVOKE_ASYNC(src, .proc/setup_sparkles)
+		INVOKE_ASYNC(src, .proc/setup_sparkles, user)
 		while(do_after(user, 10, target = clown_stone))
 			user.spin(20, 1)
 			user.SpinAnimation(7,1)
