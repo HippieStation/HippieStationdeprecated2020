@@ -7,7 +7,8 @@
 	ability_text = list("ALL INTENTS: PLACEHOLDER MARTIAL ART")
 	gauntlet_spell_types = list(/obj/effect/proc_holder/spell/aoe_turf/repulse/syndie_stone)
 	spell_types = list(/obj/effect/proc_holder/spell/self/infinity/regenerate,
-		/obj/effect/proc_holder/spell/self/infinity/syndie_bullcharge)
+		/obj/effect/proc_holder/spell/self/infinity/syndie_bullcharge,
+		/obj/effect/proc_holder/spell/self/infinity/syndie_jump)
 	var/datum/martial_art/cqc/martial_art
 
 /obj/item/infinity_stone/syndie/Initialize()
@@ -52,12 +53,16 @@
 	clothes_req = FALSE
 	human_req = FALSE
 	staff_req = FALSE
+	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_background_icon_state = "syndie"
 	invocation_type = "none"
 
 /obj/effect/proc_holder/spell/self/infinity/regenerate
 	name = "Syndie Stone: Regenerate"
 	desc = "Regenerate 4 health per second. Requires you to stand still."
 	action_icon_state = "regenerate"
+	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_background_icon_state = "syndie"
 	stat_allowed = TRUE
 
 /obj/effect/proc_holder/spell/self/infinity/regenerate/cast(list/targets, mob/user)
@@ -76,6 +81,8 @@
 /obj/effect/proc_holder/spell/self/infinity/syndie_bullcharge
 	name = "Syndie Stone: Bull Charge"
 	desc = "Imbue yourself with power, and charge forward, smashing through anyone or anything in your way!"
+	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_background_icon_state = "syndie"
 	charge_max = 200
 	sound = 'sound/magic/repulse.ogg'
 
@@ -93,6 +100,79 @@
 	user.super_mario_star = FALSE
 	user.move_force = initial(user.move_force)
 	REMOVE_TRAIT(user, TRAIT_STUNIMMUNE, YEET_TRAIT)
+
+/obj/effect/proc_holder/spell/self/infinity/syndie_jump
+	name = "Syndie Stone: Super Jump"
+	desc = "Leap across the station to wherever you'd like!"
+	action_icon_state = "jump"
+	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_background_icon_state = "syndie"
+	charge_max = 750
+
+/obj/effect/proc_holder/spell/self/infinity/syndie_jump/revert_cast(mob/user)
+	. = ..()
+	user.opacity = FALSE
+	user.mouse_opacity = FALSE
+	user.pixel_y = 0
+	user.alpha = 255
+
+// i really hope this never runtimes
+/obj/effect/proc_holder/spell/self/infinity/syndie_jump/cast(list/targets, mob/user)
+	if(!is_station_level(user.z))
+		to_chat(user, "<span class='notice'>You need to be on-station to do that!</span>")
+		revert_cast(user)
+		return
+	var/A = input("Area to teleport to", "Teleport") as null|anything in GLOB.teleportlocs
+	if(A)
+		user.visible_message("<span class='danger bold'>[user] LEAPS!</span>")
+		user.opacity = FALSE
+		user.mouse_opacity = FALSE
+		animate(user, pixel_y = 128, alpha = 0, time = 4, easing = LINEAR_EASING)
+		sleep(4.5)
+		var/area/thearea = GLOB.teleportlocs[A]
+		if(!thearea)
+			return
+			revert_cast(user)
+		var/list/L = list()
+		for(var/turf/T in get_area_turfs(thearea.type))
+			if(!T.density)
+				var/clear = TRUE
+				for(var/obj/O in T)
+					if(O.density)
+						clear = FALSE
+						break
+				if(clear)
+					L+=T
+		if(user && user.buckled)
+			user.buckled.unbuckle_mob(user, force=1)
+		if(!LAZYLEN(L))
+			revert_cast(user)
+			return
+		var/list/tempL = L
+		var/attempt = null
+		var/success = FALSE
+		while(tempL.len)
+			attempt = pick(tempL)
+			do_teleport(user, attempt, channel = TELEPORT_CHANNEL_BLUESPACE)
+			if(get_turf(user) == attempt)
+				success = TRUE
+				break
+			else
+				tempL.Remove(attempt)
+		if(!success)
+			do_teleport(user, L, forceMove = TRUE, channel = TELEPORT_CHANNEL_BLUESPACE)
+		user.visible_message("<span class='danger bold'>[user] slams down from above!</span>")
+		animate(user, pixel_y = 0, alpha = 255, time = 3, easing = LINEAR_EASING)
+		sleep(3)
+		for(var/mob/living/M in view(2, user))
+			if(M != user)
+				to_chat(M, "<span class='danger'>You're knocked down by the force of [user]'s slam!</span>")
+				M.Paralyze(55)
+		user.opacity = TRUE
+		user.mouse_opacity = TRUE
+		playsound(user, 'sound/effects/bang.ogg', 50, 1)
+	else
+		revert_cast(user)
 
 /////////////////////////////////////////////
 /////////////// SNOWFLAKE CODE //////////////

@@ -85,6 +85,8 @@
 	human_req = FALSE
 	staff_req = FALSE
 	invocation_type = "none"
+	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_background_icon_state = "sm"
 
 /////////////////////////////////////////////
 /////////////////// STUFF ///////////////////
@@ -156,6 +158,8 @@
 	desc = "Charge up an arc of supermatter-amped electricity"
 	action_icon = 'icons/obj/supermatter.dmi'
 	action_icon_state = "darkmatter_glow"
+	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_background_icon_state = "sm"
 	human_req = FALSE
 	clothes_req = FALSE
 	staff_req = FALSE

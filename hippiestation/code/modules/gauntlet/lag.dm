@@ -53,6 +53,8 @@
 	desc = "Summon a large bout of lag within a 5-tile radius. Very infuriating. Infinity Stone holders are immune, however."
 	action_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_icon_state = "lagfield"
+	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_background_icon_state = "lag"
 	summon_type = list(/obj/effect/timestop/wizard/lag_stone)
 	clothes_req = FALSE
 	staff_req = FALSE

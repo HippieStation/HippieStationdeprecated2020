@@ -63,12 +63,49 @@
 	gas_type = null
 	actions_types = list(/datum/action/item_action/toggle_jetpack, /datum/action/item_action/jetpack_stabilization)
 
+/obj/item/tank/jetpack/ganypack/turn_off(mob/user)
+	. = ..()
+	slowdown = 0
+
+/obj/item/tank/jetpack/ganypack/turn_on(mob/user)
+	. = ..()
+	slowdown = 1
+
 /obj/item/tank/jetpack/ganypack/allow_thrust(num, mob/living/user)
 	if(!on)
 		return
 	return TRUE
 
 /obj/item/tank/jetpack/ganypack/equipped(mob/user, slot)
-	if(slot == SLOT_HEAD)
+	if(slot == SLOT_BACK)
+		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
+		item_flags |= DROPDEL
+
+/obj/item/clothing/under/hippie/ganymedian
+	name = "ganymedian jumpsuit"
+	desc = "It's uh, not actually a jumpsuit. This is, in fact, a literal placeholder!"
+	icon_state = ""
+	item_state = ""
+	item_color = ""
+	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL
+	can_adjust = 0
+
+/obj/item/clothing/under/hippie/ganymedian/equipped(mob/user, slot)
+	if(slot == SLOT_WEAR_SUIT)
+		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
+		item_flags |= DROPDEL
+
+/obj/item/clothing/shoes/ganymedian
+	name = "ganymedian shoes"
+	desc = "It's uh, not actually shoes. This is, in fact, a literal placeholder!"
+	icon_state = ""
+	item_state = ""
+	item_color = ""
+	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
+	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL
+
+/obj/item/clothing/shoes/ganymedian/equipped(mob/user, slot)
+	if(slot == SLOT_SHOES)
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 		item_flags |= DROPDEL

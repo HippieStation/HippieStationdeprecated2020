@@ -57,14 +57,5 @@
 	item_color = "telvis"
 	can_adjust = 0
 
-
-/obj/item/clothing/under/hippie/ganymedian
-	name = "ganymedian jumpsuit"
-	desc = "It's uh, not actually a jumpsuit. This is, in fact, a literal placeholder!"
-	icon_state = ""
-	item_state = ""
-	item_color = ""
-	can_adjust = 0
-
 /obj/item/clothing/under/jabroni
 	alternate_screams = list('hippiestation/sound/voice/jabroni1.ogg','hippiestation/sound/voice/jabroni2.ogg','hippiestation/sound/voice/jabroni3.ogg','hippiestation/sound/voice/jabroni4.ogg','hippiestation/sound/voice/jabroni5.ogg')

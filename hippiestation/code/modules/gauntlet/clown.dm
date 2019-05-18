@@ -58,6 +58,8 @@
 	desc = "Causes those around you to see others as a clumsy clown, including yourself! Now how will they know who is who?"
 	action_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_icon_state = "prankstersdelusion"
+	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_background_icon_state = "clown"
 	charge_max = 750
 
 /obj/effect/proc_holder/spell/self/infinity/pranksters_delusion/cast(list/targets, mob/user)
@@ -72,6 +74,8 @@
 	desc = "Summon a 5x5 dance floor, and dance to heal everyone around you (but yourself)!"
 	charge_max = 1000
 	action_icon_state = "honksong"
+	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_background_icon_state = "clown"
 	var/list/dancefloor_turfs
 	var/list/dancefloor_turfs_types
 	var/dancefloor_exists = FALSE
@@ -268,6 +272,8 @@
 	name = "Let There Be Cake!"
 	desc = "Summon a powerful cake at your feet, capable of healing those who eat it, and injuring those who are hit by it. <b>Only 2 cakes can exist at the same time.</span>"
 	action_icon_state = "cake"
+	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_background_icon_state = "clown"
 	charge_max = 350
 	var/list/cakes = list()
 

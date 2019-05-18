@@ -6,7 +6,11 @@
 		"DISARM INTENT: Fire a bolt that scales based on how many ghosts orbit you.")
 	stone_type = GHOST_STONE
 	spell_types = list(/obj/effect/proc_holder/spell/targeted/infinity/cluwne_rise_up,
-		/obj/effect/proc_holder/spell/self/infinity/scrying_orb)
+		/obj/effect/proc_holder/spell/self/infinity/scrying_orb,
+		/obj/effect/proc_holder/spell/self/infinity/fortress,
+		/obj/effect/proc_holder/spell/targeted/conjure_item/spellpacket/sandmans_dust)
+	gauntlet_spell_types = list(/obj/effect/proc_holder/spell/self/infinity/soulscreech,
+		/obj/effect/proc_holder/spell/targeted/infinity/chariot)
 	var/summon_cooldown = 0
 	var/next_pull = 0
 	var/list/mob/dead/observer/spirits = list()
@@ -47,7 +51,7 @@
 
 /obj/item/infinity_stone/ghost/DisarmEvent(atom/target, mob/living/user, proximity_flag)
 	var/total_spirits = ghost_check()
-	FireProjectile(/obj/item/projectile/magic/spirit_fist, target, CLAMP(total_spirits*2.5, 3, 25))
+	FireProjectile(/obj/item/projectile/spirit_fist, target, CLAMP(total_spirits*2.5, 3, 25))
 	user.changeNext_move(CLICK_CD_RANGE)
 
 
@@ -126,10 +130,120 @@
 /////////////////// SPELLS //////////////////
 /////////////////////////////////////////////
 
+/obj/effect/proc_holder/spell/targeted/infinity/chariot
+	name = "Ghost Stone: The Chariot"
+	desc = "Open up an unconscious soul to ghosts, ripe for the stealing!"
+	action_icon_state = "chariot"
+	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_background_icon_state = "ghost"
+
+/obj/effect/proc_holder/spell/targeted/infinity/chariot/InterceptClickOn(mob/living/caller, params, atom/t)
+	. = ..()
+	if(!.)
+		revert_cast()
+		return FALSE
+	if(!caller.Adjacent(t))
+		to_chat(caller, "<span class='notice'>You need to be next to the target!</span>")
+		revert_cast()
+		return FALSE
+	if(!isliving(t))
+		to_chat(caller, "<span class='notice'>That doesn't even have a soul.</span>")
+		revert_cast()
+		return FALSE
+	var/mob/living/L = t
+	if(L.stat == DEAD)
+		to_chat(caller, "<span class='notice'>That's dead, stupid.</span>")
+		revert_cast()
+		return FALSE
+	if(L.stat != UNCONSCIOUS)
+		to_chat(caller, "<span class='notice'>That's not unconscious.</span>")
+		revert_cast()
+		return FALSE
+	if(locate(/obj/item/infinity_stone) in L.GetAllContents())
+		to_chat(caller, "<span class='notice'>Something stops you from using The Chariot on that...</span>")
+		revert_cast()
+		return FALSE
+	log_game("[L] was kicked out of their body by The Chariot (user: [caller])")
+	to_chat(L, "<span class='danger bold'>You feel your very soul detach from your body...</span>")
+	offer_control(L, FALSE)
+	return TRUE
+
+/obj/effect/forcefield/heaven
+	name = "heaven's wall"
+	desc = "You'd need a powerful bluespace artifact to get through."
+	var/mob/summoner
+
+/obj/effect/forcefield/heaven/Initialize(mapload, mob/user)
+	. = ..()
+	summoner = user
+	QDEL_IN(src, 450)
+
+/obj/effect/forcefield/heaven/CanPass(atom/movable/mover, turf/target)
+	if(mover == summoner)
+		return TRUE
+	if(locate(/obj/item/infinity_stone/bluespace) in mover)
+		return TRUE
+	return FALSE
+
+/obj/effect/proc_holder/spell/self/infinity/fortress
+	name = "Ghost Stone: Heaven's Fortress"
+	desc = "Summon a massive fortress to keep people in, and keep them out."
+	action_icon_state = "fortress"
+	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_background_icon_state = "ghost"
+	charge_max = 1200
+
+/obj/effect/proc_holder/spell/self/infinity/fortress/cast(list/targets, mob/user)
+	var/fortress = range(5, user) - range(4, user)
+	user.visible_message("<span class='danger bold'>[user] summons Heaven's Fortress!</span>")
+	for(var/turf/T in fortress)
+		new /obj/effect/forcefield/heaven(get_turf(T), user)
+
+/obj/effect/proc_holder/spell/self/infinity/soulscreech
+	name = "Ghost Stone: Soulscreech"
+	desc = "A loud screech that interacts with people's souls in varying ways."
+	action_icon_state = "reeeeee"
+	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_background_icon_state = "ghost"
+
+/obj/effect/proc_holder/spell/self/infinity/soulscreech/cast(list/targets, mob/user)
+	. = ..()
+	user.visible_message("<span class='danger bold'>[user] lets out a horrifying screech!</span>")
+	for(var/mob/living/L in view(7, user))
+		if(L == user)
+			continue
+		var/list/effects = list(1, 2, 3, 4, 6)
+		var/list/ni_effects = list(5)
+		if(!(locate(/obj/item/infinity_stone) in L.GetAllContents()))
+			effects += ni_effects
+		var/effect = pick(effects)
+		switch(effect)
+			if(1)
+				to_chat(L, "<span class='danger'>You feel horrid...</span>")
+				L.adjustOxyLoss(30)
+				L.cultslurring += 300
+				L.Dizzy(300)
+			if(2)
+				L.throw_at(get_edge_target_turf(L, get_dir(user, L)), 7, 5)
+			if(3)
+				var/turf/potential_T = find_safe_turf(extended_safety_checks = TRUE)
+				if(potential_T)
+					do_teleport(L, potential_T, channel = TELEPORT_CHANNEL_BLUESPACE)
+			if(4)
+				to_chat(L, "<span class='danger'>You feel sick...</span>")
+				L.ForceContractDisease(new /datum/disease/vampire)
+			if(5)
+				L.Stun(40)
+				L.petrify()
+			if(6)
+				L.Unconscious(100)
+
 /obj/effect/proc_holder/spell/self/infinity/scrying_orb
 	name = "Ghost Stone: Scrying Detachment"
 	desc = "Detach your soul from your body, going into the realm of the ghosts."
 	action_icon_state = "scrying"
+	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_background_icon_state = "ghost"
 
 /obj/effect/proc_holder/spell/self/infinity/scrying_orb/cast(list/targets, mob/user)
 	. = ..()
@@ -140,6 +254,8 @@
 	name = "Ghost Stone: Cluwne Rise"
 	desc = "Rise a corpse as a subservient, magical cluwne. You may only have 1 magical cluwne alive."
 	action_icon_state = "cluwnerise"
+	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_background_icon_state = "ghost"
 	charge_max = 900
 	var/list/cluwnes = list() // one cluwne per user
 
@@ -176,6 +292,19 @@
 	else
 		revert_cast()
 
+/obj/effect/proc_holder/spell/targeted/conjure_item/spellpacket/sandmans_dust
+	name = "Ghost Stone: Sandman's Dust"
+	desc = "Gives you dust capable of knocking out most people."
+	action_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_icon_state = "sandman"
+	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_background_icon_state = "ghost"
+	charge_max = 75
+	item_type = /obj/item/spellpacket/sandman
+	clothes_req = FALSE
+	human_req = FALSE
+	staff_req = FALSE
+
 /obj/effect/proc_holder/spell/targeted/turf_teleport/blink/infinity_cluwne
 	name = "Cluwne Blink"
 	clothes_req = FALSE
@@ -190,10 +319,29 @@
 	jaunt_duration = 100
 
 /////////////////////////////////////////////
-///////////////// PROJECTILE ////////////////
+///////////////// OTHER CRAP ////////////////
 /////////////////////////////////////////////
 
-/obj/item/projectile/magic/spirit_fist
+/obj/item/spellpacket/sandman
+	name = "\improper Sandman's dust"
+	desc = "Some weird sand wrapped in cloth."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "snappop"
+	w_class = WEIGHT_CLASS_TINY
+
+/obj/item/spellpacket/sandman/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	if(!..())
+		if(isliving(hit_atom))
+			var/mob/living/M = hit_atom
+			if(locate(/obj/item/infinity_gauntlet) in M)
+				to_chat("<span class='danger'>[src] hits you, and you feel dizzy...</span>")
+				M.set_dizziness(75)
+			else
+				to_chat("<span class='danger'>You're knocked out cold by [src]!</span>")
+				M.Unconscious(600)
+		qdel(src)
+
+/obj/item/projectile/spirit_fist
 	name = "spiritual fist"
 	icon_state = "bounty" // kind of looks like a hand
 	damage = 3
