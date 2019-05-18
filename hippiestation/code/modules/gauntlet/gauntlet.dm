@@ -240,6 +240,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 				IS.GiveAbilities(user, TRUE)
 
 /obj/item/infinity_gauntlet/proc/UpdateAbilities(mob/living/user)
+	TakeAbilities(user)
+	GiveAbilities(user)
 
 /obj/item/infinity_gauntlet/update_icon()
 	cut_overlays()
