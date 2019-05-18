@@ -24,7 +24,6 @@ GLOBAL_LIST_INIT(no_reagent_statechange_typecache, typecacheof(list(
 GLOBAL_LIST_INIT(statechange_reagent_blacklist, typecacheof(list(
 	/datum/reagent/water,
 	/datum/reagent/toxin/bleach,
-	/datum/reagent/lube,
 	/datum/reagent/consumable/condensedcapsaicin,
 	/datum/reagent/space_cleaner,
 	/datum/reagent/smoke_powder,
