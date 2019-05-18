@@ -2959,6 +2959,7 @@
 #include "hippiestation\code\game\machinery\cell_charger.dm"
 #include "hippiestation\code\game\machinery\cryo.dm"
 #include "hippiestation\code\game\machinery\doppler_array.dm"
+#include "hippiestation\code\game\machinery\porta_turret\portable_turret.dm"
 #include "hippiestation\code\game\machinery\reagent_forge.dm"
 #include "hippiestation\code\game\machinery\reagent_material_manipulator.dm"
 #include "hippiestation\code\game\machinery\reagent_sheet.dm"
