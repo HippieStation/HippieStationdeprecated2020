@@ -110,7 +110,6 @@
 
 /datum/reagent/randonium/on_mob_life(mob/living/M)
 	..()
-	var/selectedchem
-	selectedchem = pick(everycheminthefuckinguniverse)
+	var/selectedchem = pick(everycheminthefuckinguniverse)
 	M.reagents.add_reagent(selectedchem, 5)
 	return
