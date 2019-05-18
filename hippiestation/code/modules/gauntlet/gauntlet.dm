@@ -275,8 +275,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			S.updateUsrDialog()
 	else if(isclosedturf(target))
 		var/turf/closed/T = target
-		. = TRUE
 		if(!GetStone(SYNDIE_STONE))
+			. = TRUE
 			user.visible_message("<span class='danger'>[user] begins to charge up a punch...</span>", "<span class='notice'>We begin to charge a punch...</span>")
 			if(do_after(user, 15, target = T))
 				playsound(T, 'sound/effects/bang.ogg', 50, 1)

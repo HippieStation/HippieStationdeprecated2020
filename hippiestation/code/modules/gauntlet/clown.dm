@@ -71,7 +71,7 @@
 		new /datum/hallucination/delusion(C, TRUE, "custom", 600, 0, "clown", 'icons/mob/clown_mobs.dmi')
 
 /obj/effect/proc_holder/spell/self/infinity/honksong
-	name = "Honksong"
+	name = "Clown Stone: Honksong"
 	desc = "Summon a 5x5 dance floor, and dance to heal everyone around you (but yourself)!"
 	charge_max = 1000
 	action_icon_state = "honksong"
@@ -84,6 +84,7 @@
 	var/lights_spinning = FALSE
 	var/list/spotlights = list()
 	var/list/sparkles = list()
+	var/sparkles_setup = FALSE
 
 /obj/effect/proc_holder/spell/self/infinity/honksong/cast(list/targets, mob/user)
 	var/obj/item/infinity_stone/clown/clown_stone = locate() in user
@@ -94,6 +95,7 @@
 	LAZYINITLIST(dancefloor_turfs_types)
 	if(dancefloor_exists)
 		dancefloor_exists = FALSE
+		sparkles_setup = FALSE
 		for(var/i in 1 to dancefloor_turfs.len)
 			var/turf/T = dancefloor_turfs[i]
 			if(T)
@@ -103,6 +105,7 @@
 		charge_counter = charge_max
 		var/list/funky_turfs = RANGE_TURFS(3, user)
 		dancefloor_exists = TRUE
+		sparkles_setup = FALSE
 		var/i = 1
 		dancefloor_turfs.len = funky_turfs.len
 		dancefloor_turfs_types.len = funky_turfs.len
@@ -116,7 +119,7 @@
 		initial_loc = user.loc
 		i = 1
 		user.spin(175, 1)
-		setup_sparkles(user)
+		INVOKE_ASYNC(src, .proc/setup_sparkles)
 		while(do_after(user, 10, target = clown_stone))
 			user.spin(20, 1)
 			user.SpinAnimation(7,1)
@@ -270,7 +273,7 @@
 			glow.update_light()
 
 /obj/effect/proc_holder/spell/self/infinity/cake
-	name = "Let There Be Cake!"
+	name = "Clown Stone: Let There Be Cake!"
 	desc = "Summon a powerful cake at your feet, capable of healing those who eat it, and injuring those who are hit by it. <b>Only 2 cakes can exist at the same time.</span>"
 	action_icon_state = "cake"
 	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
@@ -310,7 +313,7 @@
 		qdel(src)
 
 /obj/effect/proc_holder/spell/self/infinity/thanoscar_thanoscar
-	name = "THANOS CAR"
+	name = "Clown Stone: THANOS CAR"
 	desc = "Summon the legendary THANOS CAR!"
 	action_icon_state = "_thanoscar"
 	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
