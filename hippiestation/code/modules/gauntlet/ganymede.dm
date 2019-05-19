@@ -123,3 +123,10 @@
 	if(dna && istype(dna.species, /datum/species/ganymede))
 		return
 	return ..()
+
+/datum/component/chasm/droppable(atom/movable/AM)
+	. = ..()
+	if(ishuman(AM))
+		var/mob/living/carbon/human/H = AM
+		if(H.dna && istype(H.dna.species, /datum/species/ganymede))
+			return FALSE
