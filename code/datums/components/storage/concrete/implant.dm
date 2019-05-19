@@ -9,7 +9,7 @@
 
 /datum/component/storage/concrete/implant/Initialize()
 	. = ..()
-	cant_hold = typecacheof(list(/obj/item/disk/nuclear))
+	cant_hold = typecacheof(list(/obj/item/disk/nuclear, /obj/item/infinity_stone)) // hippie -- bkacjkust infinity stones
 
 /datum/component/storage/concrete/implant/InheritComponent(datum/component/storage/concrete/implant/I, original)
 	if(!istype(I))
