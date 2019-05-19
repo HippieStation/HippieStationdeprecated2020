@@ -18,7 +18,7 @@
 	var/obj/item/disk/data/diskette //Incompatible format to genetics machine
 	//select which parts of the diskette to load
 	var/include_se = FALSE //mutations
-	var/include_ui = FALSE //appearance 
+	var/include_ui = FALSE //appearance
 	var/include_ue = FALSE //blood type, UE, and name
 
 	var/loading = FALSE // Nice loading text
@@ -63,7 +63,7 @@
 				. = pod
 
 /proc/grow_clone_from_record(obj/machinery/clonepod/pod, datum/data/record/R)
-	return pod.growclone(R.fields["name"], R.fields["UI"], R.fields["SE"], R.fields["mind"], R.fields["last_death"], R.fields["mrace"], R.fields["features"], R.fields["factions"], R.fields["quirks"], R.fields["bank_account"]) 	
+	return pod.growclone(R.fields["name"], R.fields["UI"], R.fields["SE"], R.fields["mindref"], R.fields["last_death"], R.fields["mrace"], R.fields["features"], R.fields["factions"], R.fields["quirks"], R.fields["bank_account"], R.fields["traumas"])
 
 /obj/machinery/computer/cloning/process()
 	if(!(scanner && LAZYLEN(pods) && autoprocess))
@@ -73,7 +73,7 @@
 		scan_occupant(scanner.occupant)
 
 	for(var/datum/data/record/R in records)
-		var/obj/machinery/clonepod/pod = GetAvailableEfficientPod(R.fields["mind"])
+		var/obj/machinery/clonepod/pod = GetAvailableEfficientPod(R.fields["mindref"])
 
 		if(!pod)
 			return
@@ -81,8 +81,13 @@
 		if(pod.occupant)
 			break
 
-		if(grow_clone_from_record(pod, R))
+		var/result = grow_clone_from_record(pod, R)
+		if(result & CLONING_SUCCESS)
 			temp = "[R.fields["name"]] => <font class='good'>Cloning cycle in progress...</font>"
+			log_cloning("Cloning of [key_name(R.fields["mindref"])] automatically started via autoprocess - [src] at [AREACOORD(src)]. Pod: [pod] at [AREACOORD(pod)].")
+		if(result & CLONING_DELETE_RECORD)
+			records -= R
+
 
 /obj/machinery/computer/cloning/proc/updatemodules(findfirstcloner)
 	scanner = findscanner()
@@ -245,6 +250,13 @@
 
 				dat += "<b>Unique Identifier:</b><br /><span class='highlight'>[active_record.fields["UI"]]</span><br>"
 				dat += "<b>Structural Enzymes:</b><br /><span class='highlight'>"
+				for(var/key in active_record.fields["SE"])
+					if(key != RACEMUT)
+						var/val = active_record.fields["SE"][key]
+						var/alias = GLOB.all_mutations[key].alias
+						dat +="[alias]: [val]<br />"
+
+				dat += "</span><br />"
 
 				if(diskette && diskette.fields)
 					dat += "<div class='block'>"
@@ -342,8 +354,8 @@
 		say("Initiating scan...")
 
 		spawn(20)
-			scan_occupant(scanner.occupant)
-				
+			scan_occupant(scanner.occupant, usr)
+
 			loading = FALSE
 			updateUsrDialog()
 			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
@@ -383,11 +395,12 @@
 				playsound(src, 'sound/machines/terminal_prompt.ogg', 50, 0)
 			else
 				temp = "Access Denied"
-				menu = 2 
+				menu = 2
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-				
+
 
 		else if (menu == 4)
+			log_cloning("[key_name(usr)] deleted [key_name(active_record.fields["mindref"])]'s cloning records from [src] at [AREACOORD(src)].")
 			temp = "[active_record.fields["name"]] => Record deleted."
 			records.Remove(active_record)
 			active_record = null
@@ -397,7 +410,7 @@
 	else if (href_list["disk"]) //Load or eject.
 		switch(href_list["disk"])
 			if("load")
-						
+
 
 				if (!diskette || !istype(diskette.fields))
 					temp = "<font class='bad'>Load error.</font>"
@@ -419,7 +432,8 @@
 					overwrite_field_if_available(active_record, diskette, "UI")
 				if(include_se)
 					overwrite_field_if_available(active_record, diskette, "SE")
-					
+
+				log_cloning("[key_name(usr)] uploaded [key_name(active_record.fields["mindref"])]'s cloning records to [src] at [AREACOORD(src)] via [diskette].")
 				temp = "Load successful."
 				playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
 
@@ -435,6 +449,7 @@
 					playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 					return
 
+				log_cloning("[key_name(usr)] added [key_name(active_record.fields["mindref"])]'s cloning records to [diskette] via [src] at [AREACOORD(src)].")
 				diskette.fields = active_record.fields.Copy()
 				diskette.name = "data disk - '[diskette.fields["name"]]'"
 				temp = "Save successful."
@@ -449,6 +464,7 @@
 		//Look for that player! They better be dead!
 		if(C)
 			var/obj/machinery/clonepod/pod = GetAvailablePod()
+			var/success = FALSE
 			//Can't clone without someone to clone.  Or a pod.  Or if the pod is busy. Or full of gibs.
 			if(!LAZYLEN(pods))
 				temp = "<font class='bad'>No Clonepods detected.</font>"
@@ -462,13 +478,23 @@
 			else if(pod.occupant)
 				temp = "<font class='bad'>Cloning cycle already in progress.</font>"
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
-			else if(grow_clone_from_record(pod, C))
-				temp = "[C.fields["name"]] => <font class='good'>Cloning cycle in progress...</font>"
-				playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
-				if(active_record == C)
-					active_record = null
-				menu = 1
 			else
+				var/result = grow_clone_from_record(pod, C)
+				if(result & CLONING_SUCCESS)
+					temp = "[C.fields["name"]] => <font class='good'>Cloning cycle in progress...</font>"
+					playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
+					if(active_record == C)
+						active_record = null
+					menu = 1
+					success = TRUE
+					log_cloning("[key_name(usr)] initiated cloning of [key_name(C.fields["mindref"])] via [src] at [AREACOORD(src)]. Pod: [pod] at [AREACOORD(pod)].")
+				if(result &	CLONING_DELETE_RECORD)
+					if(active_record == C)
+						active_record = null
+					menu = 1
+					records -= C
+
+			if(!success)
 				temp = "[C.fields["name"]] => <font class='bad'>Initialisation failure.</font>"
 				playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 
@@ -484,18 +510,21 @@
 	updateUsrDialog()
 	return
 
-/obj/machinery/computer/cloning/proc/scan_occupant(occupant)
+/obj/machinery/computer/cloning/proc/scan_occupant(occupant, mob/M)
 	var/mob/living/mob_occupant = get_mob_or_brainmob(occupant)
 	var/datum/dna/dna
 	var/datum/bank_account/has_bank_account
+
+	// Do not use unless you know what they are.
+	var/mob/living/carbon/C = mob_occupant
+	var/mob/living/brain/B = mob_occupant
+
 	if(ishuman(mob_occupant))
-		var/mob/living/carbon/C = mob_occupant
 		dna = C.has_dna()
 		var/obj/item/card/id/I = C.get_idcard(TRUE)
 		if(I)
 			has_bank_account = I.registered_account
 	if(isbrain(mob_occupant))
-		var/mob/living/brain/B = mob_occupant
 		dna = B.stored_dna
 
 	if(!istype(dna))
@@ -506,8 +535,12 @@
 		scantemp = "<font class='bad'>Subject's brain is not responding to scanning stimuli.</font>"
 		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, 0)
 		return
-	if((mob_occupant.has_trait(TRAIT_NOCLONE)) && (scanner.scan_level < 2))
-		scantemp = "<font class='bad'>Subject no longer contains the fundamental materials required to create a living clone.</font>"
+	if((HAS_TRAIT(mob_occupant, TRAIT_HUSK)) && (src.scanner.scan_level < 2))
+		scantemp = "<font class='bad'>Subject's body is too damaged to scan properly.</font>"
+		playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
+		return
+	if(HAS_TRAIT(mob_occupant, TRAIT_BADDNA))
+		scantemp = "<font class='bad'>Subject's DNA is damaged beyond any hope of recovery.</font>"
 		playsound(src, 'sound/machines/terminal_alert.ogg', 50, 0)
 		return
 	if (isnull(mob_occupant.mind))
@@ -534,17 +567,23 @@
 	R.fields["id"] = copytext(md5(mob_occupant.real_name), 2, 6)
 	R.fields["UE"] = dna.unique_enzymes
 	R.fields["UI"] = dna.uni_identity
-	R.fields["SE"] = dna.struc_enzymes
+	R.fields["SE"] = dna.mutation_index
 	R.fields["blood_type"] = dna.blood_type
 	R.fields["features"] = dna.features
 	R.fields["factions"] = mob_occupant.faction
 	R.fields["quirks"] = list()
-	R.fields["bank_account"] = has_bank_account
 	for(var/V in mob_occupant.roundstart_quirks)
 		var/datum/quirk/T = V
 		R.fields["quirks"][T.type] = T.clone_data()
 
-	R.fields["mind"] = "[REF(mob_occupant.mind)]"
+	R.fields["traumas"] = list()
+	if(ishuman(mob_occupant))
+		R.fields["traumas"] = C.get_traumas()
+	if(isbrain(mob_occupant))
+		R.fields["traumas"] = B.get_traumas()
+
+	R.fields["bank_account"] = has_bank_account
+	R.fields["mindref"] = "[REF(mob_occupant.mind)]"
 	R.fields["last_death"] = mob_occupant.stat == DEAD ? mob_occupant.mind.last_death : -1
 
    //Add an implant if needed
@@ -556,11 +595,12 @@
 		imp = new /obj/item/implant/health(mob_occupant)
 		imp.implant(mob_occupant)
 	R.fields["imp"] = "[REF(imp)]"
-	var/old_record = find_record("mind", REF(mob_occupant.mind), records)
+	var/old_record = find_record("mindref", REF(mob_occupant.mind), records)
 	if(old_record)
 		records -= old_record
 		scantemp = "Record updated."
 	else
 		scantemp = "Subject successfully scanned."
 	records += R
-	playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
+	log_cloning("[M ? key_name(M) : "Autoprocess"] added the record of [key_name(mob_occupant)] to [src] at [AREACOORD(src)].")
+	playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50)

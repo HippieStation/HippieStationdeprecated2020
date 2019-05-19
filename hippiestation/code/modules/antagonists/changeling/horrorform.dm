@@ -1,7 +1,7 @@
 //#define TRUE_CHANGELING_PASSIVE_HEAL 3 //Amount of brute damage restored per tick
 #define SCREAM_DELAY 50
 
-/obj/effect/proc_holder/changeling/horror_form //Horror Form: turns the changeling into a terrifying abomination
+/datum/action/changeling/horror_form //Horror Form: turns the changeling into a terrifying abomination
 	name = "Horror Form"
 	desc = "We tear apart our human disguise, revealing our true form."
 	helptext = "We will become an unstoppable force of destruction. Its use will burn through our chemical supply."
@@ -9,7 +9,7 @@
 	dna_cost = 0 // IT'S FREEEEEEEEEEEEEE except not really
 	req_human = 1
 
-/obj/effect/proc_holder/changeling/horror_form/sting_action(mob/living/carbon/human/user)
+/datum/action/changeling/horror_form/sting_action(mob/living/carbon/human/user)
 	if(!user || user.notransform)
 		return 0
 	user.visible_message("<span class='warning'>[user] writhes and contorts, their body expanding to inhuman proportions!</span>", \
@@ -70,6 +70,9 @@
 	var/adminbus = FALSE //If an admin wants to play around with a changeling that doesn't run out of chem charges, here's the var to change that.
 	var/datum/action/innate/changeling/reform/reform
 	var/datum/action/innate/changeling/devour/devour
+	var/scream_sound_near = 'hippiestation/sound/effects/horror_scream.ogg'
+	var/scream_sound_far = 'hippiestation/sound/effects/horror_scream_reverb.ogg'
+	var/enter_message = TRUE
 
 /mob/living/simple_animal/hostile/true_changeling/Initialize()
 	. = ..()
@@ -89,6 +92,8 @@
 
 /mob/living/simple_animal/hostile/true_changeling/Login()
 	..()
+	if(!enter_message)
+		return
 	to_chat(src, "<b><font size=3 color='red'>We have entered our true form!</font> We are unbelievably powerful, and regenerate life at a steady rate. However, most of \
 	our abilities are useless in this form, and we must utilise the abilities that we have gained as a result of our transformation. Currently, we are incapable of returning to a human. \
 	After several minutes, we will once again be able to revert into a human. Taking too much damage will also turn us back into a human in addition to knocking us out for a long time.</b>")
@@ -132,10 +137,10 @@
 				if(M_turf && M_turf.z == z)
 					var/dist = get_dist(M_turf, src)
 					if(dist <= 7) //source of sound very close
-						M.playsound_local(src, 'hippiestation/sound/effects/horror_scream.ogg', 80, 1, frequency, falloff = 2)
+						M.playsound_local(src, scream_sound_near, 80, 1, frequency, falloff = 2)
 					else
 						var/vol = CLAMP(100-((dist-7)*5), 10, 100) //Every tile decreases sound volume by 5
-						M.playsound_local(src, 'hippiestation/sound/effects/horror_scream_reverb.ogg', vol, 1, frequency, falloff = 5)
+						M.playsound_local(src, scream_sound_far, vol, 1, frequency, falloff = 5)
 				if(M.stat == DEAD && (M.client.prefs.chat_toggles & CHAT_GHOSTSIGHT) && !(M in viewers(get_turf(src),null)))
 					M.show_message(message)
 		audible_message(message)

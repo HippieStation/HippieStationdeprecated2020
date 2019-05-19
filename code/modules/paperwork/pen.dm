@@ -150,9 +150,6 @@
 /*
  * Sleepypens
  */
-/obj/item/pen/sleepy
-	container_type = OPENCONTAINER
-
 
 /obj/item/pen/sleepy/attack(mob/living/M, mob/user)
 	if(!istype(M))
@@ -167,8 +164,8 @@
 
 /obj/item/pen/sleepy/Initialize()
 	. = ..()
-	create_reagents(45)
-	reagents.add_reagent("chloralhydratedelayed", 20)
+	create_reagents(45, OPENCONTAINER)
+	reagents.add_reagent("chloralhydrate", 20)
 	reagents.add_reagent("mutetoxin", 15)
 	reagents.add_reagent("tirizene", 10)
 
@@ -187,6 +184,7 @@
 	if(on)
 		on = FALSE
 		force = initial(force)
+		throw_speed = initial(throw_speed)
 		w_class = initial(w_class)
 		name = initial(name)
 		hitsound = initial(hitsound)
@@ -197,6 +195,7 @@
 	else
 		on = TRUE
 		force = 18
+		throw_speed = 4
 		w_class = WEIGHT_CLASS_NORMAL
 		name = "energy dagger"
 		hitsound = 'sound/weapons/blade1.ogg'

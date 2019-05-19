@@ -16,7 +16,7 @@
 
 
 /mob/living/carbon/monkey/handle_blood()
-	if(bodytemperature >= TCRYO && !(has_trait(TRAIT_NOCLONE))) //cryosleep or husked people do not pump the blood.
+	if(bodytemperature >= TCRYO && !(HAS_TRAIT(src, TRAIT_HUSK))) //cryosleep or husked people do not pump the blood.
 		//Blood regeneration if there is some space
 		if(blood_volume < BLOOD_VOLUME_NORMAL)
 			blood_volume += 0.1 // regenerate blood VERY slowly
@@ -30,10 +30,10 @@
 		bleed_rate = 0
 		return
 
-	if(bodytemperature >= TCRYO && !(has_trait(TRAIT_NOCLONE))) //cryosleep or husked people do not pump the blood.
+	if(bodytemperature >= TCRYO && !(HAS_TRAIT(src, TRAIT_HUSK))) //cryosleep or husked people do not pump the blood.
 
 		//Blood regeneration if there is some space
-		if(blood_volume < BLOOD_VOLUME_NORMAL && !has_trait(TRAIT_NOHUNGER))
+		if(blood_volume < BLOOD_VOLUME_NORMAL && !HAS_TRAIT(src, TRAIT_NOHUNGER))
 			var/nutrition_ratio = 0
 			switch(nutrition)
 				if(0 to NUTRITION_LEVEL_STARVING)
@@ -48,7 +48,7 @@
 					nutrition_ratio = 1
 			if(satiety > 80)
 				nutrition_ratio *= 1.25
-			nutrition = max(0, nutrition - nutrition_ratio * HUNGER_FACTOR)
+			adjust_nutrition(-nutrition_ratio * HUNGER_FACTOR)
 			blood_volume = min(BLOOD_VOLUME_NORMAL, blood_volume + 0.5 * nutrition_ratio)
 
 		//Effects of bloodloss
@@ -69,7 +69,7 @@
 					Unconscious(rand(20,60))
 					to_chat(src, "<span class='warning'>You feel extremely [word].</span>")
 			if(-INFINITY to BLOOD_VOLUME_SURVIVE)
-				if(!has_trait(TRAIT_NODEATH))
+				if(!HAS_TRAIT(src, TRAIT_NODEATH))
 					death()
 
 		var/temp_bleed = 0
@@ -87,7 +87,7 @@
 
 		bleed_rate = max(bleed_rate - 0.5, temp_bleed)//if no wounds, other bleed effects (heparin) naturally decreases
 
-		if(bleed_rate && !bleedsuppress && !(has_trait(TRAIT_FAKEDEATH)))
+		if(bleed_rate && !bleedsuppress && !(HAS_TRAIT(src, TRAIT_FAKEDEATH)))
 			bleed(bleed_rate)
 
 //Makes a blood drop, leaking amt units of blood from the mob
@@ -209,13 +209,15 @@
 		return "blood"
 
 /mob/living/carbon/monkey/get_blood_id()
-	if(!(has_trait(TRAIT_NOCLONE)))
+	if(!(HAS_TRAIT(src, TRAIT_HUSK)))
 		return "blood"
 
 /mob/living/carbon/human/get_blood_id()
+	if(HAS_TRAIT(src, TRAIT_HUSK))
+		return
 	if(dna.species.exotic_blood)
 		return dna.species.exotic_blood
-	else if((NOBLOOD in dna.species.species_traits) || (has_trait(TRAIT_NOCLONE)))
+	else if((NOBLOOD in dna.species.species_traits))
 		return
 	return "blood"
 

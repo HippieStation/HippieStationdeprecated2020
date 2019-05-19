@@ -1,9 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - rscadd: "Moved the forge into construction room"
-  - rscadd: "Added connectors to scrubbers and portable airpumps in arrivals"
-  - rscadd: "Added back the old strange room pre 2017 rebase"
-  - rscdel: "Removed ghetto chemistry"
-  - balance: "Adds higher sec access to gulag shuttle maint airlock"
-  - bugfix: "Fixed a broken pipe and catwalks"

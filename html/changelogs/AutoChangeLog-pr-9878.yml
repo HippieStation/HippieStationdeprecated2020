@@ -1,4 +1,0 @@
-author: "IHadMyUsernameTaken"
-delete-after: True
-changes: 
-  - bugfix: "Fixes assemblies not showing your choices of input when you use an item on the assembly with more than one circuit in the assembly being able to accept it (such as having more than one weapon firing mechanism circuit in your assembly and you're trying to add a weapon to one of them.)"

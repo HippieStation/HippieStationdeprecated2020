@@ -50,7 +50,10 @@
 			return FALSE
 		else
 			var/datum/component/riding/D = LoadComponent(/datum/component/riding)
-			D.vehicle_move_delay = movedelay/H.get_num_arms()
+			if(H.get_num_arms())
+				D.vehicle_move_delay = (movedelay/H.get_num_arms())
+			else
+				D.vehicle_move_delay = movedelay
 	. = ..()
 
 /obj/vehicle/ridden/wheelchair/Move(mob/user)

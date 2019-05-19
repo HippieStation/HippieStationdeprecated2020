@@ -279,7 +279,7 @@
 		cost = 0
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if (H.has_trait(TRAIT_TAGGER))
+		if (HAS_TRAIT(H, TRAIT_TAGGER))
 			cost *= 0.5
 	/* hippie start -- moved to the end of the proc, after the crayon is actually used.
 	var/charges_used = use_charges(user, cost)
@@ -665,13 +665,14 @@
 
 		return
 
-	if(istype(target, /obj/structure/window))
+	if(isobj(target))
 		if(actually_paints)
 			target.add_atom_colour(paint_color, WASHABLE_COLOUR_PRIORITY)
-			if(color_hex2num(paint_color) < 255)
-				target.set_opacity(255)
-			else
-				target.set_opacity(initial(target.opacity))
+			if(istype(target, /obj/structure/window))
+				if(color_hex2num(paint_color) < 255)
+					target.set_opacity(255)
+				else
+					target.set_opacity(initial(target.opacity))
 		. = use_charges(user, 2)
 		var/fraction = min(1, . / reagents.maximum_volume)
 		reagents.reaction(target, TOUCH, fraction * volume_multiplier)
@@ -679,6 +680,7 @@
 
 		if(pre_noise || post_noise)
 			playsound(user.loc, 'sound/effects/spray.ogg', 5, 1, 5)
+		user.visible_message("[user] coats [target] with spray paint!", "<span class='notice'>You coat [target] with spray paint.</span>")
 		return
 
 	. = ..()

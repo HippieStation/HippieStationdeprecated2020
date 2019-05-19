@@ -252,6 +252,11 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     user.forceMove(get_turf(parentSphere))
 
 
+/turf/closed/indestructible/hoteldoor/attack_ghost(mob/dead/observer/user)
+    if(!isobserver(user) || !parentSphere)
+        return ..()
+    user.forceMove(get_turf(parentSphere))
+
 //If only this could be simplified...
 /turf/closed/indestructible/hoteldoor/attack_tk(mob/user)
     return //need to be close.
@@ -320,6 +325,33 @@ GLOBAL_VAR_INIT(hhmysteryRoomNumber, 1337)
     var/obj/item/hilbertshotel/parentSphere
     var/datum/turf_reservation/reservation
     var/turf/storageTurf
+
+/area/hilbertshotel/Entered(atom/movable/AM)
+    . = ..()
+    if(istype(AM, /obj/item/hilbertshotel))
+        relocate(AM)
+    var/list/obj/item/hilbertshotel/hotels = AM.GetAllContents(/obj/item/hilbertshotel)
+    for(var/obj/item/hilbertshotel/H in hotels)
+        if(parentSphere == H)
+            relocate(H)
+ 
+/area/hilbertshotel/proc/relocate(obj/item/hilbertshotel/H)
+    if(prob(0.135685)) //Because screw you
+        qdel(H)
+        return
+    var/turf/targetturf = find_safe_turf()
+    if(!targetturf)
+        if(GLOB.blobstart.len > 0)
+            targetturf = get_turf(pick(GLOB.blobstart))
+        else
+            CRASH("Unable to find a blobstart landmark")
+    var/turf/T = get_turf(H)
+    var/area/A = T.loc
+    log_game("[H] entered itself. Moving it to [loc_name(targetturf)].")
+    message_admins("[H] entered itself. Moving it to [ADMIN_VERBOSEJMP(targetturf)].")
+    for(var/mob/M in A)
+        to_chat(M, "<span class='danger'>[H] almost implodes in upon itself, but quickly rebounds, shooting off into a random point in space!</span>")
+    H.forceMove(targetturf)
 
 /area/hilbertshotel/Exited(atom/movable/AM)
     . = ..()

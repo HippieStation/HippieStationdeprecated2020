@@ -1,4 +1,0 @@
-author: "IHadMyUsernameTaken"
-delete-after: True
-changes: 
-  - bugfix: "Fixed assemblies not letting you use more than one button or any other combination of more than one input circuit that would ask you for input."

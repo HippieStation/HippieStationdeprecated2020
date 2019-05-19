@@ -68,7 +68,7 @@
 			else
 				msg += "<b>[t_He] [t_is] severely deformed!</b>\n"
 
-	if(has_trait(TRAIT_DUMB))
+	if(HAS_TRAIT(src, TRAIT_DUMB))
 		msg += "[t_He] seem[p_s()] to be clumsy and unable to think.\n"
 
 	if(fire_stacks > 0)
@@ -91,8 +91,6 @@
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly unsimian manner.\n"
 	
 	msg += hippie_carbon_examine() // hippie -- add our specific examine stuff
-
-	msg += common_trait_examine()
 
 	msg += common_trait_examine()
 

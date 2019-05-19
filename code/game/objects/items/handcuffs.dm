@@ -44,7 +44,7 @@
 	if(!istype(C))
 		return
 
-	if(iscarbon(user) && (user.has_trait(TRAIT_CLUMSY) && prob(50)))
+	if(iscarbon(user) && (HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50)))
 		to_chat(user, "<span class='warning'>Uh... how do those things work?!</span>")
 		apply_cuffs(user,user)
 		return
@@ -301,8 +301,8 @@
 	item_flags = DROPDEL
 	flags_1 = NONE
 
-/obj/item/restraints/legcuffs/beartrap/energy/New()
-	..()
+/obj/item/restraints/legcuffs/beartrap/energy/Initialize()
+	. = ..()
 	addtimer(CALLBACK(src, .proc/dissipate), 100)
 
 /obj/item/restraints/legcuffs/beartrap/energy/proc/dissipate()
@@ -312,7 +312,7 @@
 
 /obj/item/restraints/legcuffs/beartrap/energy/attack_hand(mob/user)
 	Crossed(user) //honk
-	. = ..()
+	return ..()
 
 /obj/item/restraints/legcuffs/beartrap/energy/cyborg
 	breakouttime = 20 // Cyborgs shouldn't have a strong restraint
@@ -342,6 +342,7 @@
 		SSblackbox.record_feedback("tally", "handcuffs", 1, type)
 		to_chat(C, "<span class='userdanger'>\The [src] ensnares you!</span>")
 		C.Paralyze(knockdown)
+		playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 
 /obj/item/restraints/legcuffs/bola/tactical//traitor variant
 	name = "reinforced bola"

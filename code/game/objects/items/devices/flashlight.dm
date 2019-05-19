@@ -52,7 +52,7 @@
 	add_fingerprint(user)
 	if(istype(M) && on && user.zone_selected in list(BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH))
 
-		if((user.has_trait(TRAIT_CLUMSY) || user.has_trait(TRAIT_DUMB)) && prob(50))	//too dumb to use flashlight properly
+		if((HAS_TRAIT(user, TRAIT_CLUMSY) || HAS_TRAIT(user, TRAIT_DUMB)) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
 
 		if(!user.IsAdvancedToolUser())
@@ -86,7 +86,7 @@
 				else
 					user.visible_message("<span class='warning'>[user] directs [src] to [M]'s eyes.</span>", \
 										 "<span class='danger'>You direct [src] to [M]'s eyes.</span>")
-					if(M.stat == DEAD || (M.has_trait(TRAIT_BLIND)) || !M.flash_act(visual = 1)) //mob is dead or fully blind
+					if(M.stat == DEAD || (HAS_TRAIT(M, TRAIT_BLIND)) || !M.flash_act(visual = 1)) //mob is dead or fully blind
 						to_chat(user, "<span class='warning'>[M]'s pupils don't react to the light!</span>")
 					else if(M.dna && M.dna.check_mutation(XRAY))	//mob has X-ray vision
 						to_chat(user, "<span class='danger'>[M]'s pupils give an eerie glow!</span>")
@@ -262,9 +262,9 @@
 	light_color = LIGHT_COLOR_FLARE
 	grind_results = list("sulfur" = 15)
 
-/obj/item/flashlight/flare/New()
+/obj/item/flashlight/flare/Initialize()
+	. = ..()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
-	..()
 
 /obj/item/flashlight/flare/process()
 	open_flame(heat)
@@ -518,16 +518,14 @@
 	name = "pink glowstick"
 	color = LIGHT_COLOR_PINK
 
-/obj/item/flashlight/glowstick/random
+/obj/effect/spawner/lootdrop/glowstick
 	name = "random colored glowstick"
+	icon = 'icons/obj/lighting.dmi'
 	icon_state = "random_glowstick"
-	color = null
 
-/obj/item/flashlight/glowstick/random/Initialize()
-	..()
-	var/T = pick(typesof(/obj/item/flashlight/glowstick) - /obj/item/flashlight/glowstick/random)
-	new T(loc)
-	return INITIALIZE_HINT_QDEL
+/obj/effect/spawner/lootdrop/glowstick/Initialize()
+	loot = typesof(/obj/item/flashlight/glowstick)
+	. = ..()
 
 /obj/item/flashlight/spotlight //invisible lighting source
 	name = "disco light"

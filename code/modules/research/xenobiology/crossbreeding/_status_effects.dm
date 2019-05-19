@@ -11,7 +11,7 @@
 
 /datum/status_effect/rainbow_protection/on_apply()
 	owner.status_flags |= GODMODE
-	owner.add_trait(TRAIT_PACIFISM, "slimestatus")
+	ADD_TRAIT(owner, TRAIT_PACIFISM, /datum/status_effect/rainbow_protection)
 	owner.visible_message("<span class='warning'>[owner] shines with a brilliant rainbow light.</span>",
 		"<span class='notice'>You feel protected by an unknown force!</span>")
 	originalcolor = owner.color
@@ -24,7 +24,7 @@
 /datum/status_effect/rainbow_protection/on_remove()
 	owner.status_flags &= ~GODMODE
 	owner.color = originalcolor
-	owner.remove_trait(TRAIT_PACIFISM, "slimestatus")
+	REMOVE_TRAIT(owner, TRAIT_PACIFISM, /datum/status_effect/rainbow_protection)
 	owner.visible_message("<span class='notice'>[owner] stops glowing, the rainbow light fading away.</span>",
 		"<span class='warning'>You no longer feel protected...</span>")
 
@@ -199,6 +199,34 @@
 /datum/status_effect/bloodchill/on_remove()
 	owner.remove_movespeed_modifier("bloodchilled")
 
+/obj/screen/alert/status_effect/bloodchill
+	name = "Bloodchilled"
+	desc = "You feel a shiver down your spine after getting hit with a glob of cold blood. You'll move slower and get frostbite for a while!"
+	icon_state = "bloodchill"
+
+/datum/status_effect/bonechill
+	id = "bonechill"
+	duration = 80
+	alert_type = /obj/screen/alert/status_effect/bonechill
+
+/datum/status_effect/bonechill/on_apply()
+	owner.add_movespeed_modifier("bonechilled", TRUE, 100, NONE, override = TRUE, multiplicative_slowdown = 3)
+	return ..()
+
+/datum/status_effect/bonechill/tick()
+	if(prob(50))
+		owner.adjustFireLoss(1)
+		owner.Jitter(3)
+		owner.adjust_bodytemperature(-10)
+
+/datum/status_effect/bonechill/on_remove()
+	owner.remove_movespeed_modifier("bonechilled")
+
+/obj/screen/alert/status_effect/bonechill
+	name = "Bonechilled"
+	desc = "You feel a shiver down your spine after hearing the haunting noise of bone rattling. You'll move slower and get frostbite for a while!"
+	icon_state = "bloodchill"
+
 /datum/status_effect/rebreathing
 	id = "rebreathing"
 	duration = -1
@@ -218,12 +246,12 @@ datum/status_effect/rebreathing/tick()
 	duration = 100
 
 /datum/status_effect/firecookie/on_apply()
-	owner.add_trait(TRAIT_RESISTCOLD,"firecookie")
+	ADD_TRAIT(owner, TRAIT_RESISTCOLD,"firecookie")
 	owner.adjust_bodytemperature(110)
 	return ..()
 
 /datum/status_effect/firecookie/on_remove()
-	owner.remove_trait(TRAIT_RESISTCOLD,"firecookie")
+	REMOVE_TRAIT(owner, TRAIT_RESISTCOLD,"firecookie")
 
 /datum/status_effect/watercookie
 	id = "watercookie"
@@ -232,7 +260,7 @@ datum/status_effect/rebreathing/tick()
 	duration = 100
 
 /datum/status_effect/watercookie/on_apply()
-	owner.add_trait(TRAIT_NOSLIPWATER,"watercookie")
+	ADD_TRAIT(owner, TRAIT_NOSLIPWATER,"watercookie")
 	return ..()
 
 /datum/status_effect/watercookie/tick()
@@ -240,7 +268,7 @@ datum/status_effect/rebreathing/tick()
 		T.MakeSlippery(TURF_WET_WATER, min_wet_time = 10, wet_time_to_add = 5)
 
 /datum/status_effect/watercookie/on_remove()
-	owner.remove_trait(TRAIT_NOSLIPWATER,"watercookie")
+	REMOVE_TRAIT(owner, TRAIT_NOSLIPWATER,"watercookie")
 
 /datum/status_effect/metalcookie
 	id = "metalcookie"
@@ -285,11 +313,11 @@ datum/status_effect/rebreathing/tick()
 	duration = 600
 
 /datum/status_effect/toxincookie/on_apply()
-	owner.add_trait(TRAIT_TOXINLOVER,"toxincookie")
+	ADD_TRAIT(owner, TRAIT_TOXINLOVER,"toxincookie")
 	return ..()
 
 /datum/status_effect/toxincookie/on_remove()
-	owner.remove_trait(TRAIT_TOXINLOVER,"toxincookie")
+	REMOVE_TRAIT(owner, TRAIT_TOXINLOVER,"toxincookie")
 
 /datum/status_effect/timecookie
 	id = "timecookie"
@@ -385,11 +413,11 @@ datum/status_effect/rebreathing/tick()
 	duration = 30
 
 /datum/status_effect/plur/on_apply()
-	owner.add_trait(TRAIT_PACIFISM, "peacecookie")
+	ADD_TRAIT(owner, TRAIT_PACIFISM, "peacecookie")
 	return ..()
 
 /datum/status_effect/plur/on_remove()
-	owner.remove_trait(TRAIT_PACIFISM, "peacecookie")
+	REMOVE_TRAIT(owner, TRAIT_PACIFISM, "peacecookie")
 
 /datum/status_effect/adamantinecookie
 	id = "adamantinecookie"
@@ -483,11 +511,11 @@ datum/status_effect/rebreathing/tick()
 	colour = "blue"
 
 /datum/status_effect/stabilized/blue/on_apply()
-	owner.add_trait(TRAIT_NOSLIPWATER, "slimestatus")
+	ADD_TRAIT(owner, TRAIT_NOSLIPWATER, "slimestatus")
 	return ..()
 
 datum/status_effect/stabilized/blue/on_remove()
-	owner.remove_trait(TRAIT_NOSLIPWATER, "slimestatus")
+	REMOVE_TRAIT(owner, TRAIT_NOSLIPWATER, "slimestatus")
 
 /datum/status_effect/stabilized/metal
 	id = "stabilizedmetal"
@@ -548,7 +576,7 @@ datum/status_effect/stabilized/blue/on_remove()
 	examine_text = "<span class='notice'>Their fingertips burn brightly!</span>"
 
 /datum/status_effect/stabilized/darkpurple/on_apply()
-	owner.add_trait(TRAIT_RESISTHEATHANDS, "slimestatus")
+	ADD_TRAIT(owner, TRAIT_RESISTHEATHANDS, "slimestatus")
 	fire = new(owner)
 	return ..()
 
@@ -566,7 +594,7 @@ datum/status_effect/stabilized/blue/on_remove()
 	return ..()
 
 /datum/status_effect/stabilized/darkpurple/on_remove()
-	owner.remove_trait(TRAIT_RESISTHEATHANDS, "slimestatus")
+	REMOVE_TRAIT(owner, TRAIT_RESISTHEATHANDS, "slimestatus")
 	qdel(fire)
 
 /datum/status_effect/stabilized/darkblue
@@ -665,11 +693,11 @@ datum/status_effect/stabilized/blue/on_remove()
 /datum/status_effect/stabilized/sepia/tick()
 	if(prob(50) && mod > -1)
 		mod--
-		owner.add_movespeed_modifier(MOVESPEED_ID_SEPIA, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
+		owner.add_movespeed_modifier(MOVESPEED_ID_SEPIA, override = TRUE, update=TRUE, priority=100, multiplicative_slowdown=-1, blacklisted_movetypes=(FLYING|FLOATING))
 	else if(mod < 1)
 		mod++
 		// yeah a value of 0 does nothing but replacing the trait in place is cheaper than removing and adding repeatedly
-		owner.add_movespeed_modifier(MOVESPEED_ID_SEPIA, update=TRUE, priority=100, multiplicative_slowdown=0, blacklisted_movetypes=(FLYING|FLOATING))
+		owner.add_movespeed_modifier(MOVESPEED_ID_SEPIA, override = TRUE, update=TRUE, priority=100, multiplicative_slowdown=0, blacklisted_movetypes=(FLYING|FLOATING))
 	return ..()
 
 /datum/status_effect/stabilized/sepia/on_remove()
@@ -869,7 +897,7 @@ datum/status_effect/stabilized/blue/on_remove()
 			healing_types += CLONE
 
 		owner.apply_damage_type(-heal_amount, damagetype=pick(healing_types))
-		owner.nutrition += 3
+		owner.adjust_nutrition(3)
 		M.adjustCloneLoss(heal_amount * 1.2) //This way, two people can't just convert each other's damage away.
 	else
 		messagedelivered = FALSE

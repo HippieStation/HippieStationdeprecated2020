@@ -20,6 +20,7 @@
 			// This proc handles cleanup of screen notifications and
 			// messenging the client
 			malfhacked(malfhack)
+
 		if(isturf(loc) && (QDELETED(eyeobj) || !eyeobj.loc))
 			view_core()
 

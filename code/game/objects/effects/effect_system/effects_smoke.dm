@@ -238,9 +238,9 @@ hippie end */
 				continue
 			if(T.intact && AM.level == 1) //hidden under the floor
 				continue
-			reagents.reaction(AM, TOUCH, fraction)
+			reagents?.reaction(AM, TOUCH, fraction, special_modifier = amount*0.1)//hippie edit -- apparently this sanity check is needed for runtime prevention
 
-		reagents.reaction(T, TOUCH, fraction)
+		reagents?.reaction(T, TOUCH, fraction)//hippie edit -- apparently this sanity check is needed for runtime prevention
 		return 1
 
 /obj/effect/particle_effect/smoke/chem/smoke_mob(mob/living/carbon/M)
@@ -328,3 +328,9 @@ hippie end */
 
 /obj/effect/particle_effect/smoke/transparent
 	opaque = FALSE
+
+/proc/do_smoke(range=0, location=null, smoke_type=/obj/effect/particle_effect/smoke)
+	var/datum/effect_system/smoke_spread/smoke = new
+	smoke.effect_type = smoke_type
+	smoke.set_up(range, location)
+	smoke.start()

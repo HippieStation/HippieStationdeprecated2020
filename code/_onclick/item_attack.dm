@@ -60,7 +60,7 @@
 	if(item_flags & NOBLUDGEON)
 		return
 
-	if(force && user.has_trait(TRAIT_PACIFISM))
+	if(force && HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, "<span class='warning'>You don't want to harm other living beings!</span>")
 		return
 	if(special_attack)// hippie start -- special attacks, handled by afterattack
@@ -113,6 +113,9 @@
 				add_splatter_floor(location)
 				if(get_dist(user, src) <= 1)	//people with TK won't get smeared with blood
 					user.add_mob_blood(src)
+					if(ishuman(user))
+						var/mob/living/carbon/human/dirtyboy = user
+						dirtyboy.adjust_hygiene(-10)
 		return TRUE //successful attack
 
 /mob/living/simple_animal/attacked_by(obj/item/I, mob/living/user)

@@ -180,7 +180,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	if(soulsOwned.Find(soul))
 		return
 	soulsOwned += soul
-	owner.current.nutrition = NUTRITION_LEVEL_FULL
+	owner.current.set_nutrition(NUTRITION_LEVEL_FULL)
 	to_chat(owner.current, "<span class='warning'>You feel satiated as you received a new soul.</span>")
 	update_hud()
 	switch(SOULVALUE)
@@ -477,7 +477,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 				if(SOULVALUE >= ARCH_THRESHOLD && ascendable)
 					A.convert_to_archdevil()
 	else
-		throw EXCEPTION("Unable to find a blobstart landmark for hellish resurrection")
+		CRASH("Unable to find a blobstart landmark for hellish resurrection")
 
 
 /datum/antagonist/devil/proc/update_hud()

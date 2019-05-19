@@ -10,7 +10,6 @@
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 6
-	container_type = INJECTABLE | DRAWABLE
 	grind_results = list()
 	var/Uses = 1 // uses before it goes inert
 	var/qdel_timer = null // deletion timer, for delayed reactions
@@ -39,7 +38,7 @@
 
 /obj/item/slime_extract/Initialize()
 	. = ..()
-	create_reagents(100)
+	create_reagents(100, INJECTABLE | DRAWABLE)
 
 /obj/item/slime_extract/on_grind()
 	if(Uses)
@@ -187,7 +186,7 @@
 /obj/item/slime_extract/purple/activate(mob/living/carbon/human/user, datum/species/jelly/luminescent/species, activation_type)
 	switch(activation_type)
 		if(SLIME_ACTIVATE_MINOR)
-			user.nutrition += 50
+			user.adjust_nutrition(50)
 			user.blood_volume += 50
 			to_chat(user, "<span class='notice'>You activate [src], and your body is refilled with fresh slime jelly!</span>")
 			return 150
@@ -635,7 +634,7 @@
 		return
 
 	M.docile = 1
-	M.nutrition = 700
+	M.set_nutrition(700)
 	to_chat(M, "<span class='warning'>You absorb the potion and feel your intense desire to feed melt away.</span>")
 	to_chat(user, "<span class='notice'>You feed the slime the potion, removing its hunger and calming it.</span>")
 	var/newname = copytext(sanitize(input(user, "Would you like to give the slime a name?", "Name your new pet", "pet slime") as null|text),1,MAX_NAME_LEN)
@@ -703,7 +702,7 @@
 	imp.implant(SM, user)
 
 	SM.access_card = new /obj/item/card/id/syndicate(SM)
-	SM.access_card.item_flags |= NODROP
+	ADD_TRAIT(SM.access_card, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/slimepotion/transference
 	name = "consciousness transference potion"
@@ -864,10 +863,11 @@
 		var/obj/vehicle/V = C
 		var/datum/component/riding/R = V.GetComponent(/datum/component/riding)
 		if(R)
-			if(R.vehicle_move_delay <= 0 )
+			var/vehicle_speed_mod = round(CONFIG_GET(number/movedelay/run_delay) * 0.85, 0.01)
+			if(R.vehicle_move_delay <= vehicle_speed_mod)
 				to_chat(user, "<span class='warning'>The [C] can't be made any faster!</span>")
 				return ..()
-			R.vehicle_move_delay = 0
+			R.vehicle_move_delay = vehicle_speed_mod
 
 	to_chat(user, "<span class='notice'>You slather the red gunk over the [C], making it faster.</span>")
 	C.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)

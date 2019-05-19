@@ -1,4 +1,0 @@
-author: "steamp0rt"
-delete-after: True
-changes: 
-  - bugfix: "Fix non-roundstart infiltrators not being able to use Agent IDs"

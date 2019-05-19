@@ -17,12 +17,15 @@
 
 /datum/reagent/consumable/on_mob_life(mob/living/carbon/M)
 	current_cycle++
-	M.nutrition += nutriment_factor
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(!HAS_TRAIT(H, TRAIT_NOHUNGER))
+			H.adjust_nutrition(nutriment_factor)
 	holder.remove_reagent(src.id, metabolization_rate)
 
 /datum/reagent/consumable/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
 	if(method == INGEST)
-		if (quality && !M.has_trait(TRAIT_AGEUSIA))
+		if (quality && !HAS_TRAIT(M, TRAIT_AGEUSIA))
 			switch(quality)
 				if (DRINK_NICE)
 					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/quality_nice)
@@ -334,7 +337,7 @@
 		return
 	if(reac_volume < 1)
 		return
-	new/obj/effect/decal/cleanable/salt(T)
+	new/obj/effect/decal/cleanable/food/salt(T)
 
 /datum/reagent/consumable/blackpepper
 	name = "Black Pepper"
@@ -376,7 +379,7 @@
 	metabolization_rate = 0.2 * REAGENTS_METABOLISM
 	taste_description = "mushroom"
 
-/datum/reagent/mushroomhallucinogen/on_mob_life(mob/living/carbon/M)
+/datum/reagent/drug/mushroomhallucinogen/on_mob_life(mob/living/carbon/M)
 	if(!M.slurring)
 		M.slurring = 1
 	switch(current_cycle)
@@ -399,6 +402,30 @@
 				M.emote(pick("twitch","giggle"))
 	..()
 
+/datum/reagent/consumable/garlic //NOTE: having garlic in your blood stops vampires from biting you.
+	name = "Garlic Juice"
+	id = "garlic"
+	description = "Crushed garlic. Chefs love it, but it can make you smell bad."
+	color = "#FEFEFE"
+	taste_description = "garlic"
+	metabolization_rate = 0.15 * REAGENTS_METABOLISM
+
+/datum/reagent/consumable/garlic/on_mob_life(mob/living/carbon/M)
+	if(isvampire(M)) //incapacitating but not lethal. Unfortunately, vampires cannot vomit.
+		if(prob(min(25,current_cycle)))
+			to_chat(M, "<span class='danger'>You can't get the scent of garlic out of your nose! You can barely think...</span>")
+			M.Paralyze(10)
+			M.Jitter(10)
+	else if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.job == "Cook")
+			if(prob(20)) //stays in the system much longer than sprinkles/banana juice, so heals slower to partially compensate
+				H.heal_bodypart_damage(1,1, 0)
+				. = 1
+		else //chefs' robust space-Italian metabolism lets them eat garlic without producing allyl methyl sulfide
+			H.adjust_hygiene(-0.15 * volume)
+	..()
+
 /datum/reagent/consumable/sprinkles
 	name = "Sprinkles"
 	id = "sprinkles"
@@ -407,7 +434,7 @@
 	taste_description = "childhood whimsy"
 
 /datum/reagent/consumable/sprinkles/on_mob_life(mob/living/carbon/M)
-	if(ishuman(M) && M.job in list("Security Officer", "Head of Security", "Detective", "Warden"))
+	if(HAS_TRAIT(M, TRAIT_LAW_ENFORCEMENT_METABOLISM))
 		M.heal_bodypart_damage(1,1, 0)
 		. = 1
 	..()
@@ -481,7 +508,7 @@
 
 /datum/reagent/consumable/flour/reaction_turf(turf/T, reac_volume)
 	if(!isspaceturf(T))
-		var/obj/effect/decal/cleanable/flour/reagentdecal = new/obj/effect/decal/cleanable/flour(T)
+		var/obj/effect/decal/cleanable/food/flour/reagentdecal = new(T)
 		reagentdecal = locate() in T //Might have merged with flour already there.
 		if(reagentdecal)
 			reagentdecal.reagents.add_reagent("flour", reac_volume)
@@ -546,7 +573,7 @@
 	..()
 
 /datum/reagent/consumable/honey
-	name = "honey"
+	name = "Honey"
 	id = "honey"
 	description = "Sweet sweet honey that decays into sugar. Has antibacterial and natural healing properties."
 	color = "#d3a308"
@@ -626,7 +653,7 @@
 
 /datum/reagent/consumable/nutriment/stabilized/on_mob_life(mob/living/carbon/M)
 	if(M.nutrition > NUTRITION_LEVEL_FULL - 25)
-		M.nutrition -= 3*nutriment_factor
+		M.adjust_nutrition(-3*nutriment_factor)
 	..()
 
 ////Lavaland Flora Reagents////
@@ -687,3 +714,22 @@
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	color = "#eef442" // rgb: 238, 244, 66
 	taste_description = "mournful honking"
+
+
+/datum/reagent/consumable/liquidelectricity
+	name = "Liquid Electricity"
+	id = "liquidelectricity"
+	description = "The blood of Ethereals, and the stuff that keeps them going. Great for them, horrid for anyone else."
+	nutriment_factor = 5 * REAGENTS_METABOLISM
+	color = "#97ee63"
+	taste_description = "pure electrictiy"
+
+/datum/reagent/consumable/liquidelectricity/on_mob_life(mob/living/carbon/M)
+	if(isethereal(M))
+		var/mob/living/carbon/human/H = M
+		var/datum/species/ethereal/E = H.dna?.species
+		E.adjust_charge(5*REM)
+	else if(prob(25)) //scp13 optimization
+		M.electrocute_act(rand(10,15), "Liquid Electricity in their body", 1) //lmao at the newbs who eat energy bars
+		playsound(M, "sparks", 50, 1)
+	return ..()

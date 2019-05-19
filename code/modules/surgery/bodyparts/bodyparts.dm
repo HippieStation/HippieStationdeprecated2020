@@ -83,7 +83,7 @@
 /obj/item/bodypart/attack(mob/living/carbon/C, mob/user)
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
-		if(C.has_trait(TRAIT_LIMBATTACHMENT))
+		if(HAS_TRAIT(C, TRAIT_LIMBATTACHMENT))
 			if(!H.get_bodypart(body_zone) && !animal_origin)
 				if(H == user)
 					H.visible_message("<span class='warning'>[H] jams [src] into [H.p_their()] empty socket!</span>",\
@@ -142,14 +142,17 @@
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
 //Cannot apply negative damage
-/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status = null)
+/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, blocked = 0, updating_health = TRUE, required_status = null)
+	var/hit_percent = (100-blocked)/100
+	if((!brute && !burn && !stamina) || hit_percent <= 0)
+		return FALSE
 	if(owner && (owner.status_flags & GODMODE))
 		return FALSE	//godmode
 
 	if(required_status && (status != required_status))
 		return FALSE
 
-	var/dmg_mlt = CONFIG_GET(number/damage_multiplier)
+	var/dmg_mlt = CONFIG_GET(number/damage_multiplier) * hit_percent
 	brute = round(max(brute * dmg_mlt, 0),DAMAGE_PRECISION)
 	burn = round(max(burn * dmg_mlt, 0),DAMAGE_PRECISION)
 	stamina = round(max(stamina * dmg_mlt, 0),DAMAGE_PRECISION)
@@ -171,9 +174,8 @@
 	var/total_damage = brute + burn
 
 	if(total_damage > can_inflict)
-		var/excess = total_damage - can_inflict
-		brute = round(brute * (excess / total_damage),DAMAGE_PRECISION)
-		burn = round(burn * (excess / total_damage),DAMAGE_PRECISION)
+		brute = round(brute * (can_inflict / total_damage),DAMAGE_PRECISION)
+		burn = round(burn * (can_inflict / total_damage),DAMAGE_PRECISION)
 
 	brute_dam += brute
 	burn_dam += burn
@@ -220,11 +222,11 @@
 	set_disabled(is_disabled())
 
 /obj/item/bodypart/proc/is_disabled()
-	if(has_trait(TRAIT_PARALYSIS))
+	if(HAS_TRAIT(src, TRAIT_PARALYSIS))
 		return BODYPART_DISABLED_PARALYSIS
-	if(can_dismember() && !owner.has_trait(TRAIT_NOLIMBDISABLE))
+	if(can_dismember() && !HAS_TRAIT(owner, TRAIT_NOLIMBDISABLE))
 		. = disabled //inertia, to avoid limbs healing 0.1 damage and being re-enabled
-		if((get_damage(TRUE) >= max_damage) || (owner.has_trait(TRAIT_EASYLIMBDISABLE) && (get_damage(TRUE) >= (max_damage * 0.6)))) //Easy limb disable disables the limb at 40% health instead of 0%
+		if((get_damage(TRUE) >= max_damage) || (HAS_TRAIT(owner, TRAIT_EASYLIMBDISABLE) && (get_damage(TRUE) >= (max_damage * 0.6)))) //Easy limb disable disables the limb at 40% health instead of 0%
 			return BODYPART_DISABLED_DAMAGE
 		if(disabled && (get_damage(TRUE) <= (max_damage * 0.5)))
 			return BODYPART_NOT_DISABLED
@@ -288,7 +290,7 @@
 		C = owner
 		no_update = FALSE
 
-	if(C.has_trait(TRAIT_HUSK) && is_organic_limb())
+	if(HAS_TRAIT(C, TRAIT_HUSK) && is_organic_limb())
 		species_id = "husk" //overrides species_id
 		dmg_overlay_type = "" //no damage overlay shown when husked
 		should_draw_gender = FALSE
@@ -315,7 +317,7 @@
 		body_gender = H.gender
 		should_draw_gender = S.sexes
 
-		if(MUTCOLORS in S.species_traits)
+		if((MUTCOLORS in S.species_traits) || (DYNCOLORS in S.species_traits))
 			if(S.fixed_mut_color)
 				species_color = S.fixed_mut_color
 			else
@@ -451,6 +453,11 @@
 	max_stamina_damage = 100
 	var/obj/item/cavity_item
 
+/obj/item/bodypart/chest/can_dismember(obj/item/I)
+	if(!((owner.stat == DEAD) || owner.InFullCritical()))
+		return FALSE
+	return ..()
+
 /obj/item/bodypart/chest/Destroy()
 	QDEL_NULL(cavity_item)
 	return ..()
@@ -506,7 +513,7 @@
 	stam_heal_tick = 2
 
 /obj/item/bodypart/l_arm/is_disabled()
-	if(owner.has_trait(TRAIT_PARALYSIS_L_ARM))
+	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_ARM))
 		return BODYPART_DISABLED_PARALYSIS
 	return ..()
 
@@ -571,7 +578,7 @@
 	max_stamina_damage = 50
 
 /obj/item/bodypart/r_arm/is_disabled()
-	if(owner.has_trait(TRAIT_PARALYSIS_R_ARM))
+	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_ARM))
 		return BODYPART_DISABLED_PARALYSIS
 	return ..()
 
@@ -633,7 +640,7 @@
 	max_stamina_damage = 50
 
 /obj/item/bodypart/l_leg/is_disabled()
-	if(owner.has_trait(TRAIT_PARALYSIS_L_LEG))
+	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_L_LEG))
 		return BODYPART_DISABLED_PARALYSIS
 	return ..()
 
@@ -692,7 +699,7 @@
 	stam_heal_tick = 2
 
 /obj/item/bodypart/r_leg/is_disabled()
-	if(owner.has_trait(TRAIT_PARALYSIS_R_LEG))
+	if(HAS_TRAIT(owner, TRAIT_PARALYSIS_R_LEG))
 		return BODYPART_DISABLED_PARALYSIS
 	return ..()
 

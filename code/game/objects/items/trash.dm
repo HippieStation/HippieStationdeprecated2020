@@ -35,6 +35,10 @@
 	name = "syndi-cakes"
 	icon_state = "syndi_cakes"
 
+/obj/item/trash/energybar
+	name = "energybar wrapper"
+	icon_state = "energybar"
+
 /obj/item/trash/waffles
 	name = "waffles tray"
 	icon_state = "waffles"
@@ -67,6 +71,11 @@
 	icon_state = "cola"
 	resistance_flags = NONE
 	grind_results = list("aluminium" = 10)
+
+/obj/item/trash/can/Initialize()
+	. = ..()
+	pixel_x = rand(-4,4)
+	pixel_y = rand(-4,4)
 
 /obj/item/trash/attack(mob/M, mob/living/user)
 	return

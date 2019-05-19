@@ -1,17 +1,13 @@
+/mob/living/carbon/human/treat_message(message)
+	if(lisp)
+		message = lisp(message, lisp)
+	return ..()
+
 /mob/living/can_speak_vocal(message)
-	if(has_trait(TRAIT_MUTE))
-		return FALSE
-
-	if(is_muzzled())
-		return FALSE
-
-	if(!IsVocal())
-		return FALSE
-
 	if(pulledby && pulledby.grab_state == GRAB_KILL)
 		return FALSE
 
-	return TRUE
+	return ..()
 
 /mob/living/say(message, bubble_type,var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 	// If we're in soft crit and tried to talk, automatically make us whisper
@@ -26,7 +22,27 @@
 	if (!.)
 		return
 
-	say_tts(message, language)
+	if(findtext(message, "rouge"))	//You're an idiot and should feel as such
+		var/mob/living/carbon/human/H = src
+		to_chat(src, "<span class='warning'><b>You feel like a fucking idiot.</b></span>")
+		playsound_local(src, 'hippiestation/sound/effects/whistlefail.ogg', 50, 0)	//Rip
+		if(istype(src, /mob/living/carbon/human/))
+			var/trauma_type = pickweight(list(BRAIN_TRAUMA_MILD = 100,BRAIN_TRAUMA_SEVERE = 30,BRAIN_TRAUMA_MAGIC = 10,BRAIN_TRAUMA_SPECIAL = 1))
+			var/trauma_resistance
+			switch(trauma_type)
+				if(BRAIN_TRAUMA_MILD)
+					trauma_resistance = TRAUMA_RESILIENCE_BASIC
+				if(BRAIN_TRAUMA_SEVERE)
+					trauma_resistance = TRAUMA_RESILIENCE_SURGERY
+				if(BRAIN_TRAUMA_MAGIC)
+					trauma_resistance = TRAUMA_RESILIENCE_MAGIC
+				if(BRAIN_TRAUMA_SPECIAL)
+					trauma_resistance = TRAUMA_RESILIENCE_BASIC
+			H.adjustBrainLoss(20)
+			H.gain_trauma_type(trauma_type, trauma_resistance)
+
+/*
+	say_tts(message, language) TTS removed, leaving handlers here for replacement
 
 /mob/living/proc/say_tts(tts_message, datum/language/tts_language = null)
 	if (!CONFIG_GET(flag/enable_tts))
@@ -92,4 +108,4 @@
 		if (!hud_used.tts)
 			return
 		hud_used.tts.icon_state = "tts_cooldown"
-
+*/

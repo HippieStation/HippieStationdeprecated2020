@@ -200,7 +200,7 @@
 
 /obj/item/twohanded/bostaff/attack(mob/target, mob/living/user)
 	add_fingerprint(user)
-	if(user.has_trait(TRAIT_CLUMSY) && prob(50))
+	if(HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 		to_chat(user, "<span class ='warning'>You club yourself over the head with [src].</span>")
 		user.Paralyze(60)
 		if(ishuman(user))
@@ -251,3 +251,73 @@
 	if(wielded)
 		return ..()
 	return FALSE
+
+
+/datum/martial_art/the_sleeping_carp/grudgecode
+	allow_temp_override = TRUE // if you're a chucklefuck who got a mask and the suit, you can keep your martial arts.
+	deflection_chance = 0
+	no_guns = FALSE
+
+/obj/item/clothing/mask/gas/carp/sleeping
+	var/datum/martial_art/the_sleeping_carp/grudgecode/style = new
+	w_class = WEIGHT_CLASS_SMALL
+	desc = "Gnash gnash. <span class='sciradio'>It ebbs with magic!</span>"
+
+/obj/item/clothing/mask/gas/carp/sleeping/equipped(mob/user, slot)
+	. = ..()
+	if(!ishuman(user))
+		return
+	if(slot == SLOT_WEAR_MASK)
+		var/mob/living/carbon/human/H = user
+		style.teach(H,1)
+		to_chat(H, "<span class='sciradio'>You have learned the basics of the Sleeping Carp martial art! \
+		You can learn about your newfound art by using Recall Teachings in the Sleeping Carp tab.</span>")
+	return
+
+/obj/item/clothing/mask/gas/carp/sleeping/dropped(mob/user)
+	. = ..()
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	if(H.get_item_by_slot(SLOT_WEAR_MASK) == src)
+		style.remove(H)
+		to_chat(H, "<span class='sciradio'>You forget the Sleeping Carp martial art!</span>")
+	return
+
+/obj/item/clothing/mask/gas/carp/sleeping/attackby(obj/item/W, mob/living/user, params)
+	if(istype(W, /obj/item/clothing/mask/gas/carp/sleeping))
+		to_chat(user, "<span class='notice'>You put the two masks together, and they burst into a suit! That's fishy.</span>")
+		var/obj/item/clothing/suit/hooded/carp_costume/sleeping/costume = new(user.loc)
+		qdel(W)
+		qdel(src)
+		user.put_in_hands(costume)
+
+/obj/item/clothing/suit/hooded/carp_costume/sleeping
+	var/datum/martial_art/the_sleeping_carp/style = new
+
+/obj/item/clothing/suit/hooded/carp_costume/sleeping/equipped(mob/user, slot)
+	. = ..()
+	if(!ishuman(user))
+		return
+	if(slot == SLOT_WEAR_SUIT)
+		ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+		var/mob/living/carbon/human/H = user
+		var/obj/item/clothing/mask/gas/carp/freemask = new
+		style.teach(H,1)
+		to_chat(H, "<span class='sciradio'>You have learned the ancient martial art of the Sleeping Carp! Your hand-to-hand combat has become much more effective, and you are now able to deflect any projectiles \
+		directed toward you. However, you are also unable to use any ranged weaponry. You can learn more about your newfound art by using the Recall Teachings verb in the Sleeping Carp tab.</span>")
+		to_chat(H, "<span class='warning'>The suit fastens around you! The Sleeping Carp have chosen you, you can't back out now!")
+		H.put_in_hands(freemask)
+		freemask.name = "complementary carp mask"
+		freemask.desc = "Thanks for joining the Sleeping Carp! Remember: you're with us forever!"
+		freemask.w_class = WEIGHT_CLASS_TINY
+		freemask.item_flags = DROPDEL
+
+/obj/item/clothing/suit/hooded/carp_costume/sleeping/dropped(mob/user)
+	. = ..()
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	if(H.get_item_by_slot(SLOT_WEAR_SUIT) == src)
+		style.remove(H)
+	return

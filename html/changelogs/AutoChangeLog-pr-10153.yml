@@ -1,8 +1,0 @@
-author: "IHadMyUsernameTaken"
-delete-after: True
-changes: 
-  - code_imp: "Makes the New proc for pins allow you to set 0 as data."
-  - bugfix: "NTNet receiver circuits now output received passkeys to the passkey output pin instead of the text received pin."
-  - bugfix: "Integrated extinguisher circuits will now shoot the last remaining 5 units they might have in them."
-  - bugfix: "Fixes the plant manipulation module circuit causing a runtime error when you try to harvest a tray with no harvest."
-  - bugfix: "pAIs can now pulse the shift+ctrl pin when they are inside a pAI connector circuit."

@@ -1,8 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - rscadd: "Nanosuit can now quickly break cuffs in strength mode"
-  - balance: "Armor mode in nanosuit no longer slows you down"
-  - balance: "Increased nanosuit damage to simple mobs and monkeys, aliens also take a bit of stamina damage"
-  - bugfix: "You can no longer use the nanosuit's head stomp while laying down"
-  - bugfix: "Attacking simple mob's in nanosuit's cloak now properly disables it"

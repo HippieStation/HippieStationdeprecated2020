@@ -2,20 +2,19 @@
 	name = "Unknown"
 	real_name = "Unknown"
 	icon = 'icons/mob/human.dmi'
-	icon_state = "caucasian_m"
+	icon_state = "human_basic"
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
 
 /mob/living/carbon/human/Initialize()
 	verbs += /mob/living/proc/mob_sleep
 	verbs += /mob/living/proc/lay_down
 
+	icon_state = ""		//Remove the inherent human icon that is visible on the map editor. We're rendering ourselves limb by limb, having it still be there results in a bug where the basic human icon appears below as south in all directions and generally looks nasty.
+
 	//initialize limbs first
 	create_bodyparts()
 
-	//initialize dna. for spawned humans; overwritten by other code
-	create_dna(src)
-	randomize_human(src)
-	dna.initialize_dna()
+	setup_human_dna()
 
 	if(dna.species)
 		set_species(dna.species.type)
@@ -30,6 +29,11 @@
 
 	AddComponent(/datum/component/redirect, list(COMSIG_COMPONENT_CLEAN_ACT = CALLBACK(src, .proc/clean_blood)))
 
+/mob/living/carbon/human/proc/setup_human_dna()
+	//initialize dna. for spawned humans; overwritten by other code
+	create_dna(src)
+	randomize_human(src)
+	dna.initialize_dna()
 
 /mob/living/carbon/human/ComponentInitialize()
 	. = ..()
@@ -75,7 +79,8 @@
 				stat("Absorbed DNA", changeling.absorbedcount)
 			var/datum/antagonist/hivemind/hivemind = mind.has_antag_datum(/datum/antagonist/hivemind)
 			if(hivemind)
-				stat("Hivemind Vessels", hivemind.hive_size)
+				stat("Hivemind Vessels", "[hivemind.hive_size] (+[hivemind.size_mod])")
+				stat("Psychic Link Duration", "[(hivemind.track_bonus + TRACKER_DEFAULT_TIME)/10] seconds")
 
 	//NINJACODE
 	if(istype(wear_suit, /obj/item/clothing/suit/space/space_ninja)) //Only display if actually a ninja.
@@ -209,8 +214,8 @@
 	if(istype(MB))
 		MB.RunOver(src)
 
+	. = ..()
 	spreadFire(AM)
-
 
 /mob/living/carbon/human/Topic(href, href_list)
 	if(href_list["embedded_object"] && usr.canUseTopic(src, BE_CLOSE, NO_DEXTERY))
@@ -238,7 +243,7 @@
 
 	if(href_list["item"]) //canUseTopic check for this is handled by mob/Topic()
 		var/slot = text2num(href_list["item"])
-		if(slot in check_obscured_slots())
+		if(slot in check_obscured_slots(TRUE))
 			to_chat(usr, "<span class='warning'>You can't reach that! Something is covering it.</span>")
 			return
 
@@ -250,7 +255,7 @@
 
 		var/delay_denominator = 1
 		if(pocket_item && !(pocket_item.item_flags & ABSTRACT))
-			if(pocket_item.item_flags & NODROP)
+			if(HAS_TRAIT(pocket_item, TRAIT_NODROP))
 				to_chat(usr, "<span class='warning'>You try to empty [src]'s [pocket_side] pocket, it seems to be stuck!</span>")
 			to_chat(usr, "<span class='notice'>You try to empty [src]'s [pocket_side] pocket.</span>")
 		else if(place_item && place_item.mob_can_equip(src, usr, pocket_id, 1) && !(place_item.item_flags & ABSTRACT))
@@ -492,7 +497,7 @@
 	. = 1 // Default to returning true.
 	if(user && !target_zone)
 		target_zone = user.zone_selected
-	if(has_trait(TRAIT_PIERCEIMMUNE))
+	if(HAS_TRAIT(src, TRAIT_PIERCEIMMUNE))
 		. = 0
 	// If targeting the head, see if the head item is thin enough.
 	// If targeting anything else, see if the wear suit is thin enough.
@@ -573,7 +578,7 @@
 		threatcount += 1
 
 	//mindshield implants imply trustworthyness
-	if(has_trait(TRAIT_MINDSHIELD))
+	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
 		threatcount -= 1
 
 	//Agent cards lower threatlevel.
@@ -606,7 +611,7 @@
 /mob/living/carbon/human/proc/do_cpr(mob/living/carbon/C)
 	CHECK_DNA_AND_SPECIES(C)
 
-	if(C.stat == DEAD || (C.has_trait(TRAIT_FAKEDEATH)))
+	if(C.stat == DEAD || (HAS_TRAIT(C, TRAIT_FAKEDEATH)))
 		to_chat(src, "<span class='warning'>[C.name] is dead!</span>")
 		return
 	if(is_mouth_covered())
@@ -623,7 +628,7 @@
 			to_chat(src, "<span class='warning'>You fail to perform CPR on [C]!</span>")
 			return 0
 
-		var/they_breathe = !C.has_trait(TRAIT_NOBREATH)
+		var/they_breathe = !HAS_TRAIT(C, TRAIT_NOBREATH)
 		var/they_lung = C.getorganslot(ORGAN_SLOT_LUNGS)
 		
 		if(C.health > C.crit_threshold)
@@ -767,12 +772,14 @@
 				hud_used.healthdoll.icon_state = "healthdoll_DEAD"
 
 /mob/living/carbon/human/fully_heal(admin_revive = 0)
+	dna?.species.spec_fully_heal(src)
 	if(admin_revive)
 		regenerate_limbs()
 		regenerate_organs()
 	remove_all_embedded_objects()
 	set_heartattack(FALSE)
 	drunkenness = 0
+	set_hygiene(HYGIENE_LEVEL_NORMAL)
 	for(var/datum/mutation/human/HM in dna.mutations)
 		if(HM.quality != POSITIVE)
 			dna.remove_mutation(HM.name)
@@ -781,7 +788,7 @@
 /mob/living/carbon/human/check_weakness(obj/item/weapon, mob/living/attacker)
 	. = ..()
 	if (dna && dna.species)
-		. += dna.species.check_weakness(weapon, attacker)
+		. += dna.species.check_species_weakness(weapon, attacker)
 
 /mob/living/carbon/human/is_literate()
 	return TRUE
@@ -815,6 +822,7 @@
 	.["Toggle Purrbation"] = "?_src_=vars;[HrefToken()];purrbation=[REF(src)]"
 	.["Make Cluwne"] = "?_src_=vars;[HrefToken()];cluwneing=[REF(src)]" // hippie -- make cluwne
 	.["Copy outfit"] = "?_src_=vars;[HrefToken()];copyoutfit=[REF(src)]"
+	.["Add/Remove Quirks"] = "?_src_=vars;[HrefToken()];modquirks=[REF(src)]"
 
 /mob/living/carbon/human/MouseDrop_T(mob/living/target, mob/living/user)
 	//If they dragged themselves and we're currently aggressively grabbing them try to piggyback
@@ -851,17 +859,46 @@
 				if(!riding_datum.equip_buckle_inhands(M, 2))	//MAKE SURE THIS IS LAST!!
 					M.visible_message("<span class='warning'>[M] can't climb onto [src]!</span>")
 					return
-			. = ..(M, force, check_loc)
 			stop_pulling()
+			. = ..(M, force, check_loc)
 		else
 			visible_message("<span class='warning'>[M] fails to climb onto [src]!</span>")
 	else
-		. = ..(M,force,check_loc)
 		stop_pulling()
+		. = ..(M,force,check_loc)
+
+/mob/living/carbon/human/proc/is_shove_knockdown_blocked() //If you want to add more things that block shove knockdown, extend this
+	var/list/body_parts = list(head, wear_mask, wear_suit, w_uniform, back, gloves, shoes, belt, s_store, glasses, ears, wear_id) //Everything but pockets. Pockets are l_store and r_store. (if pockets were allowed, putting something armored, gloves or hats for example, would double up on the armor)
+	for(var/bp in body_parts)
+		if(istype(bp, /obj/item/clothing))
+			var/obj/item/clothing/C = bp
+			if(C.blocks_shove_knockdown)
+				return TRUE
+	return FALSE
+
+/mob/living/carbon/human/proc/clear_shove_slowdown()
+	remove_movespeed_modifier(MOVESPEED_ID_SHOVE)
+	var/active_item = get_active_held_item()
+	if(is_type_in_typecache(active_item, GLOB.shove_disarming_types))
+		visible_message("<span class='warning'>[src.name] regains their grip on \the [active_item]!</span>", "<span class='warning'>You regain your grip on \the [active_item]</span>", null, COMBAT_MESSAGE_RANGE)
 
 /mob/living/carbon/human/do_after_coefficent()
 	. = ..()
 	. *= physiology.do_after_speed
+
+/mob/living/carbon/human/updatehealth()
+	. = ..()
+	dna?.species.spec_updatehealth(src)
+
+/mob/living/carbon/human/adjust_nutrition(var/change) //Honestly FUCK the oldcoders for putting nutrition on /mob someone else can move it up because holy hell I'd have to fix SO many typechecks
+	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
+		return FALSE
+	return ..()
+
+/mob/living/carbon/human/set_nutrition(var/change) //Seriously fuck you oldcoders.
+	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
+		return FALSE
+	return ..()
 
 /mob/living/carbon/human/species
 	var/race = null
@@ -951,11 +988,32 @@
 /mob/living/carbon/human/species/golem/plastic
 	race = /datum/species/golem/plastic
 
+/mob/living/carbon/human/species/golem/bronze
+	race = /datum/species/golem/bronze
+
+/mob/living/carbon/human/species/golem/cardboard
+	race = /datum/species/golem/cardboard
+
+/mob/living/carbon/human/species/golem/leather
+	race = /datum/species/golem/leather
+
+/mob/living/carbon/human/species/golem/bone
+	race = /datum/species/golem/bone
+
+/mob/living/carbon/human/species/golem/durathread
+	race = /datum/species/golem/durathread
+
 /mob/living/carbon/human/species/golem/clockwork
 	race = /datum/species/golem/clockwork
 
 /mob/living/carbon/human/species/golem/clockwork/no_scrap
 	race = /datum/species/golem/clockwork/no_scrap
+
+/mob/living/carbon/human/species/golem/capitalist
+	race = /datum/species/golem/capitalist
+
+/mob/living/carbon/human/species/golem/soviet
+	race = /datum/species/golem/soviet
 
 /mob/living/carbon/human/species/jelly
 	race = /datum/species/jelly
@@ -971,6 +1029,9 @@
 
 /mob/living/carbon/human/species/lizard
 	race = /datum/species/lizard
+
+/mob/living/carbon/human/species/ethereal
+	race = /datum/species/ethereal
 
 /mob/living/carbon/human/species/lizard/ashwalker
 	race = /datum/species/lizard/ashwalker

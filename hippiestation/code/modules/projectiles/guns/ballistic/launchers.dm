@@ -111,11 +111,12 @@
 		bowstring = bowstring + "not drawn"
 	to_chat(user, "[bowstring][charge > 2 ? "!" : "."]")
 
-	if (chambered.BB)
+	if (chambered?.BB)
 		to_chat(user, "A [chambered.BB] is loaded.")
 
 /obj/item/gun/ballistic/crossbow/update_icon()
 	..()
+	cut_overlays()
 	if (charge >= max_charge)
 		add_overlay("charge_[max_charge]")
 	else if (charge < 1)

@@ -1,4 +1,0 @@
-author: "karma"
-delete-after: True
-changes: 
-  - bugfix: "fixes nuke ops causing secret to fail"

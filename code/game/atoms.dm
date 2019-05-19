@@ -6,7 +6,6 @@
 
 	var/flags_1 = NONE
 	var/interaction_flags_atom = NONE
-	var/container_type = NONE
 	var/datum/reagents/reagents = null
 
 	//This atom's HUD (med/sec, etc) images. Associative list.
@@ -43,7 +42,7 @@
 /atom/New(loc, ...)
 	//atom creation method that preloads variables at creation
 	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
-		GLOB._preloader.load(src)
+		world.preloader_load(src)
 
 	if(datum_flags & DF_USE_TAG)
 		GenerateTag()
@@ -75,23 +74,26 @@
 	if(color)
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 
-	if (light_power && light_range)
+	if(light_power && light_range)
 		update_light()
 
-	if (opacity && isturf(loc))
+	if(opacity && isturf(loc))
 		var/turf/T = loc
 		T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
 
-	if (canSmoothWith)
+	if(canSmoothWith)
 		canSmoothWith = typelist("canSmoothWith", canSmoothWith)
 
+	if(datum_outputs)
+		for(var/i in 1 to length(datum_outputs))
+			datum_outputs[i] = SSoutputs.outputs[datum_outputs[i]]
 	ComponentInitialize()
 
 	return INITIALIZE_HINT_NORMAL
 
 //called if Initialize returns INITIALIZE_HINT_LATELOAD
 /atom/proc/LateInitialize()
-	return
+	set waitfor = FALSE
 
 // Put your AddComponent() calls here
 /atom/proc/ComponentInitialize()
@@ -203,6 +205,9 @@
 	else
 		return null
 
+/atom/proc/return_analyzable_air()
+	return null
+
 /atom/proc/check_eye(mob/user)
 	return
 
@@ -214,16 +219,16 @@
 	return is_refillable() && is_drainable()
 
 /atom/proc/is_injectable(mob/user, allowmobs = TRUE)
-	return reagents && (container_type & (INJECTABLE | REFILLABLE))
+	return reagents && (reagents.flags & (INJECTABLE | REFILLABLE))
 
 /atom/proc/is_drawable(mob/user, allowmobs = TRUE)
-	return reagents && (container_type & (DRAWABLE | DRAINABLE))
+	return reagents && (reagents.flags & (DRAWABLE | DRAINABLE))
 
 /atom/proc/is_refillable()
-	return reagents && (container_type & REFILLABLE)
+	return reagents && (reagents.flags & REFILLABLE)
 
 /atom/proc/is_drainable()
-	return reagents && (container_type & DRAINABLE)
+	return reagents && (reagents.flags & DRAINABLE)
 
 
 /atom/proc/AllowDrop()
@@ -266,13 +271,13 @@
 	. = "[icon2html(src, user)] [thats? "That's ":""][get_examine_name(user)]"
 
 /atom/proc/examine(mob/user)
-	to_chat(user, get_examine_string(user, TRUE))
+	to_chat(user, "[get_examine_string(user, TRUE)].")
 
 	if(desc)
 		to_chat(user, desc)
 
 	if(reagents)
-		if(container_type & TRANSPARENT)
+		if(reagents.flags & TRANSPARENT)
 			to_chat(user, "It contains:")
 			if(reagents.reagent_list.len)
 				if(user.can_see_reagents()) //Show each individual reagent
@@ -285,7 +290,7 @@
 					to_chat(user, "[total_volume] units of various reagents")
 			else
 				to_chat(user, "Nothing.")
-		else if(container_type & AMOUNT_VISIBLE)
+		else if(reagents.flags & AMOUNT_VISIBLE)
 			if(reagents.total_volume)
 				to_chat(user, "<span class='notice'>It has [reagents.total_volume] unit\s left.</span>")
 			else
@@ -695,7 +700,7 @@ Proc for attack log creation, because really why not
 
 	var/sobject = ""
 	if(object)
-		sobject = " with [key_name(object)]"
+		sobject = " with [object]"
 	var/saddition = ""
 	if(addition)
 		saddition = " [addition]"

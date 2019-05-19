@@ -1,8 +1,7 @@
 /datum/mutation/human/cluwne
-
 	name = "Cluwne"
 	quality = NEGATIVE
-	dna_block = NON_SCANNABLE
+	locked = TRUE
 	text_gain_indication = "<span class='danger'>You feel like your brain is tearing itself apart.</span>"
 
 /datum/mutation/human/cluwne/on_acquiring(mob/living/carbon/human/owner)
@@ -73,3 +72,20 @@
 
 /datum/mutation/human/hulk
 	species_allowed = list()
+
+/datum/mutation/human/antimagic
+	name = "Arcane Repellant"
+	desc = "An atypical genetic string which dispels thaumaturgical effects. Briefly, magic. This string may hold the key to the future downfall of the Wizard Federation."
+	locked = TRUE
+	quality = POSITIVE
+	text_gain_indication = "<span class='notice'>You feel shielded, unfazed by the mystical.</span>"
+
+/datum/mutation/human/antimagic/on_acquiring(mob/living/carbon/human/owner)
+	if(..())
+		return
+	ADD_TRAIT(owner, TRAIT_ANTIMAGIC, GENETIC_MUTATION)
+
+/datum/mutation/human/antimagic/on_losing(mob/living/carbon/human/owner)
+	if(..())
+		return
+	REMOVE_TRAIT(owner, TRAIT_ANTIMAGIC, GENETIC_MUTATION)

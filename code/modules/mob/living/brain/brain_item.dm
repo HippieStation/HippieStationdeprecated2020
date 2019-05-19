@@ -23,7 +23,7 @@
 	name = "brain"
 
 	if(C.mind && C.mind.has_antag_datum(/datum/antagonist/changeling) && !no_id_transfer)	//congrats, you're trapped in a body you don't control
-		if(brainmob && !(C.stat == DEAD || (C.has_trait(TRAIT_DEATHCOMA))))
+		if(brainmob && !(C.stat == DEAD || (HAS_TRAIT(C, TRAIT_DEATHCOMA))))
 			to_chat(brainmob, "<span class = danger>You can't feel your body! You're still just a brain!</span>")
 		forceMove(C)
 		C.update_hair()
@@ -59,8 +59,9 @@
 		transfer_identity(C)
 	C.update_hair()
 
-/obj/item/organ/brain/prepare_eat()
-	return // Too important to eat.
+/obj/item/organ/brain/prepare_eat(mob/living/carbon/human/H)
+	if(iszombie(H))//braaaaaains... otherwise, too important to eat.
+		..()
 
 /obj/item/organ/brain/proc/transfer_identity(mob/living/L)
 	name = "[L.name]'s brain"
@@ -78,8 +79,8 @@
 		if(!brainmob.stored_dna)
 			brainmob.stored_dna = new /datum/dna/stored(brainmob)
 		C.dna.copy_dna(brainmob.stored_dna)
-		if(L.has_trait(TRAIT_NOCLONE))
-			brainmob.status_traits[TRAIT_NOCLONE] = L.status_traits[TRAIT_NOCLONE]
+		if(HAS_TRAIT(L, TRAIT_BADDNA))
+			brainmob.status_traits[TRAIT_BADDNA] = L.status_traits[TRAIT_BADDNA]
 		var/obj/item/organ/zombie_infection/ZI = L.getorganslot(ORGAN_SLOT_ZOMBIE)
 		if(ZI)
 			brainmob.set_species(ZI.old_species)	//For if the brain is cloned
@@ -298,6 +299,7 @@
 		actual_trauma.on_gain()
 	if(resilience)
 		actual_trauma.resilience = resilience
+	. = actual_trauma
 	SSblackbox.record_feedback("tally", "traumas", 1, actual_trauma.type)
 
 //Add a random trauma of a certain subtype
@@ -305,7 +307,7 @@
 	var/list/datum/brain_trauma/possible_traumas = list()
 	for(var/T in subtypesof(brain_trauma_type))
 		var/datum/brain_trauma/BT = T
-		if(can_gain_trauma(BT, resilience))
+		if(can_gain_trauma(BT, resilience) && initial(BT.random_gain))
 			possible_traumas += BT
 
 	if(!LAZYLEN(possible_traumas))

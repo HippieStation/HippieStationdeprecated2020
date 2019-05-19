@@ -163,7 +163,7 @@
 	activate_pin(2)
 
 /obj/item/integrated_circuit/input/slime_scanner
-	name = "slime_scanner"
+	name = "slime scanner"
 	desc = "A very small version of the xenobio analyser. This allows the machine to know every needed properties of slime. Output mutation list is non-associative."
 	icon_state = "medscan_adv"
 	complexity = 12
@@ -364,7 +364,7 @@
 			tr = H.reagents.total_volume
 		set_pin_data(IC_OUTPUT, 6, mr)
 		set_pin_data(IC_OUTPUT, 7, tr)
-		set_pin_data(IC_OUTPUT, 8, H.density)
+		set_pin_data(IC_OUTPUT, 8, H.CanPass(assembly ? assembly : src, get_turf(H)))
 		set_pin_data(IC_OUTPUT, 9, H.opacity)
 		set_pin_data(IC_OUTPUT, 10, get_turf(H))
 		push_data()

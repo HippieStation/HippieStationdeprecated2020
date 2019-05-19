@@ -17,11 +17,10 @@
 	if(!istype(T))
 		return
 
-	var/datum/gas_mixture/air = T.return_air()
-	var/list/cached_gases = air.gases
-
-	ASSERT_GAS(/datum/gas/miasma, air)
-	cached_gases[/datum/gas/miasma][MOLES] += amount
+	var/datum/gas_mixture/stank = new
+	ADD_GAS(/datum/gas/miasma, stank.gases)
+	stank.gases[/datum/gas/miasma][MOLES] = amount
+	T.assume_air(stank)
 	T.air_update_turf()
 
 /datum/component/rot/corpse
@@ -47,7 +46,7 @@
 		return
 
 	// No decay if formaldehyde in corpse or when the corpse is charred
-	if(C.reagents.has_reagent("formaldehyde", 15) || C.has_trait(TRAIT_HUSK))
+	if(C.reagents.has_reagent("formaldehyde", 15) || HAS_TRAIT(C, TRAIT_HUSK))
 		return
 
 	// Also no decay if corpse chilled or not organic/undead

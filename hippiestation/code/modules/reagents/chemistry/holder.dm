@@ -19,7 +19,7 @@
 		var/list/cached_reagents = reagent_list
 		var/list/cached_reactions = GLOB.chemical_reactions_list
 		var/datum/cached_my_atom = my_atom
-		if(reagents_holder_flags & REAGENT_NOREACT)
+		if(flags & NO_REACT)
 			return //Yup, no reactions here. No siree.
 
 		var/reaction_occurred = 0
@@ -160,7 +160,7 @@
 		update_total()
 		return 0
 
-/datum/reagents/reaction(atom/A, method = TOUCH, volume_modifier = 1, show_message = 1)
+/datum/reagents/reaction(atom/A, method = TOUCH, volume_modifier = 1, show_message = 1, special_modifier = 1)
 	var/datum/cached_my_atom = my_atom
 	var/react_type
 	if(isliving(A))
@@ -187,8 +187,8 @@
 			if("TURF")
 				if(R.reagent_state != SOLID)
 					R.reaction_turf(A, R.volume * volume_modifier, show_message)
-				R.handle_state_change(A, R.volume, cached_my_atom)
+				R.handle_state_change(A, R.volume * special_modifier, cached_my_atom)
 			if("OBJ")
 				if(R.reagent_state != SOLID)
 					R.reaction_obj(A, R.volume * volume_modifier, show_message)
-				R.handle_state_change(get_turf(A), R.volume, cached_my_atom)
+				R.handle_state_change(get_turf(A), R.volume * special_modifier, cached_my_atom)

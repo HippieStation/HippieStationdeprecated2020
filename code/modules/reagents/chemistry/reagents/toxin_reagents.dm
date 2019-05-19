@@ -42,9 +42,9 @@
 	if((method==VAPOR && prob(min(33, reac_volume))) || method==INGEST || method==PATCH || method==INJECT)
 		M.randmuti()
 		if(prob(98))
-			M.randmutb()
+			M.easy_randmut(NEGATIVE+MINOR_NEGATIVE)
 		else
-			M.randmutg()
+			M.easy_randmut(POSITIVE)
 		M.updateappearance()
 		M.domutcheck()
 	..()
@@ -98,7 +98,7 @@
 /datum/reagent/toxin/lexorin/on_mob_life(mob/living/carbon/C)
 	. = TRUE
 
-	if(C.has_trait(TRAIT_NOBREATH))
+	if(HAS_TRAIT(C, TRAIT_NOBREATH))
 		. = FALSE
 
 	if(.)
@@ -136,7 +136,7 @@
 	taste_description = "mint"
 
 /datum/reagent/toxin/minttoxin/on_mob_life(mob/living/carbon/M)
-	if(M.has_trait(TRAIT_FAT))
+	if(HAS_TRAIT(M, TRAIT_FAT))
 		M.gib()
 	return ..()
 
@@ -183,10 +183,10 @@
 
 /datum/reagent/toxin/ghoulpowder/on_mob_add(mob/living/L)
 	..()
-	L.add_trait(TRAIT_FAKEDEATH, id)
+	ADD_TRAIT(L, TRAIT_FAKEDEATH, id)
 
 /datum/reagent/toxin/ghoulpowder/on_mob_delete(mob/living/L)
-	L.remove_trait(TRAIT_FAKEDEATH, id)
+	REMOVE_TRAIT(L, TRAIT_FAKEDEATH, id)
 	..()
 
 /datum/reagent/toxin/ghoulpowder/on_mob_life(mob/living/carbon/M)
@@ -299,25 +299,6 @@
 			M.Sleeping(40, 0)
 			M.adjustToxLoss((current_cycle - 50)*REM, 0)
 			. = 1
-	..()
-
-/datum/reagent/toxin/chloralhydratedelayed //sedates half as quickly and does not cause toxloss. same name/desc so it doesn't give away sleepypens
-	name = "Chloral Hydrate"
-	id = "chloralhydratedelayed"
-	description = "A powerful sedative that induces confusion and drowsiness before putting its target to sleep."
-	silent_toxin = TRUE
-	reagent_state = SOLID
-	color = "#000067" // rgb: 0, 0, 103
-	toxpwr = 0
-	metabolization_rate = 1.5 * REAGENTS_METABOLISM
-
-/datum/reagent/toxin/chloralhydratedelayed/on_mob_life(mob/living/carbon/M)
-	switch(current_cycle)
-		if(10 to 20)
-			M.confused += 1
-			M.drowsyness += 1
-		if(20 to INFINITY)
-			M.Sleeping(40, 0)
 	..()
 
 /datum/reagent/toxin/fakebeer	//disguised as normal beer for use by emagged brobots
@@ -660,7 +641,7 @@
 /datum/reagent/toxin/lipolicide/on_mob_life(mob/living/carbon/M)
 	if(M.nutrition <= NUTRITION_LEVEL_STARVING)
 		M.adjustToxLoss(1*REM, 0)
-	M.nutrition = max(M.nutrition - 3, 0) // making the chef more valuable, one meme trap at a time
+	M.adjust_nutrition(-3) // making the chef more valuable, one meme trap at a time
 	M.overeatduration = 0
 	return ..()
 
@@ -900,10 +881,10 @@
 	taste_description = "stillness"
 
 /datum/reagent/toxin/mimesbane/on_mob_add(mob/living/L)
-	L.add_trait(TRAIT_EMOTEMUTE, id)
+	ADD_TRAIT(L, TRAIT_EMOTEMUTE, id)
 
 /datum/reagent/toxin/mimesbane/on_mob_delete(mob/living/L)
-	L.remove_trait(TRAIT_EMOTEMUTE, id)
+	REMOVE_TRAIT(L, TRAIT_EMOTEMUTE, id)
 
 /datum/reagent/toxin/bonehurtingjuice //oof ouch
 	name = "Bone Hurting Juice"
@@ -914,14 +895,13 @@
 	toxpwr = 0
 	taste_description = "bone hurting"
 	overdose_threshold = 50
-	metabolization_rate = 2
 
 /datum/reagent/toxin/bonehurtingjuice/on_mob_add(mob/living/carbon/M)
 	M.say("oof ouch my bones", forced = "bonehurtingjuice")
 
 /datum/reagent/toxin/bonehurtingjuice/on_mob_life(mob/living/carbon/M)
 	M.adjustStaminaLoss(15, 0)
-	if(M.dna.species.type == /datum/species/skeleton || M.dna.species.type == /datum/species/plasmaman)
+	if(HAS_TRAIT(M, TRAIT_CALCIUM_HEALER))
 		M.adjustBruteLoss(0.5, 0)
 	if(prob(20))
 		switch(rand(1, 3))

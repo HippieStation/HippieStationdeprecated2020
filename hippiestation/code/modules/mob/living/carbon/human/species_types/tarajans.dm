@@ -2,7 +2,6 @@
 	name = "Catbeast"
 	id = "tarajan"
 	say_mod = "meows"
-	blacklisted = 0
 	sexes = 1
 	species_traits = list(MUTCOLORS,EYECOLOR,NOTRANSSTING)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
@@ -17,6 +16,7 @@
 	burnmod = 1.25
 	brutemod = 1.25
 	teeth_type = /obj/item/stack/teeth/cat
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 
 /datum/species/tarajan/qualifies_for_rank(rank, list/features)
 	if(rank in GLOB.command_positions) //even if you turn off humans only

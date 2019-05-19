@@ -178,7 +178,7 @@
 					if(FRIGID) //Freezing
 						M.adjust_bodytemperature(-60) //cool mob at -35k per cycle, less would not affect the mob enough.
 						if(M.bodytemperature <= 50 && !M.stat)
-							M.apply_status_effect(/datum/status_effect/freon)		
+							M.apply_status_effect(/datum/status_effect/freon)
 				var/mob/living/carbon/human/drownee = M
 				if(drownee.stat == DEAD)
 					continue
@@ -204,7 +204,7 @@
 	if(drained)
 		return
 	var/rcolor
-	if(beaker && beaker.reagents.reagent_list.len)
+	if(beaker && beaker.reagents && beaker.reagents.reagent_list.len)
 		rcolor = mix_color_from_reagents(beaker.reagents.reagent_list)
 	if(rcolor == old_rcolor)
 		return // small performance upgrade hopefully?

@@ -109,4 +109,3 @@
 		to_chat(user, "<span class='warning'>The anchored bolts on this paystand are currently locked!</span>")
 		return
 	. = ..()
-	

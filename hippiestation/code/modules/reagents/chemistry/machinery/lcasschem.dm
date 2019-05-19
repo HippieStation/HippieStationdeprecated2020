@@ -8,42 +8,51 @@
 	var/obj/item/reagent_containers/beaker = null
 	var/on = FALSE
 
+/obj/machinery/chem/Initialize()
+	. = ..()
+	START_PROCESSING(SSfastprocess, src)
+
 /obj/machinery/chem/Destroy()
-	eject_beaker()
+	replace_beaker()
 	return ..()
 
 /obj/machinery/chem/on_deconstruction()
-	eject_beaker()
+	replace_beaker()
 
-/obj/machinery/chem/proc/eject_beaker()
+/obj/machinery/chem/proc/replace_beaker(mob/living/user, obj/item/reagent_containers/new_beaker)
 	if(beaker)
-		beaker.forceMove(get_turf(src))
-		beaker.reagents.handle_reactions()
-		beaker.reagents.chem_pressure = 0//pressure, radioactivity and bluespaced activity are tied to the container itself and don't linger outside the machine
-		beaker.reagents.chem_radioactivity = 0
-		beaker.reagents.chem_bluespaced = FALSE
+		beaker.forceMove(drop_location())
+		if(user && Adjacent(user) && !issiliconoradminghost(user))
+			user.put_in_hands(beaker)
+	if(new_beaker)
+		beaker = new_beaker
+	else
 		beaker = null
+	update_icon()
+	return TRUE
+
+/obj/machinery/chem/AltClick(mob/living/user)
+	if(!istype(user) || !user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK))
+		return
+	replace_beaker(user)
+	return
 
 /obj/machinery/chem/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, icon_state, icon_state, I))
 		return
 
-	if(exchange_parts(user, I))
-		return
-
 	if(default_deconstruction_crowbar(I))
 		return
 
-	if(istype(I, /obj/item/reagent_containers) && (I.container_type & OPENCONTAINER))
-		. = 1 //no afterattack
-		if(beaker)
-			to_chat(user, "<span class='warning'>A container is already loaded into [src]!</span>")
+	if(istype(I, /obj/item/reagent_containers) && !(I.item_flags & ABSTRACT) && I.is_open_container())
+		. = TRUE //no afterattack
+		var/obj/item/reagent_containers/B = I
+		if(!user.transferItemToLoc(B, src))
 			return
-
-		if(!user.transferItemToLoc(I, src))
-			return
-		beaker = I
-		to_chat(user, "<span class='notice'>You add [I] to [src].</span>")
+		replace_beaker(user, B)
+		to_chat(user, "<span class='notice'>You add [B] to [src].</span>")
+		updateUsrDialog()
+		update_icon()
 		return
 	return ..()
 
@@ -52,11 +61,7 @@
 	desc = "Creates high pressures to suit certain reaction conditions"
 	icon_state = "press"
 	var/pressure = 0
-
-/obj/machinery/chem/pressure/Initialize()
-	.=..()
-	var/obj/item/circuitboard/machine/B = new /obj/item/circuitboard/machine/pressure(null)
-	B.apply_default_parts(src)
+	circuit = /obj/item/circuitboard/machine/pressure
 
 /obj/machinery/chem/pressure/process()
 	..()
@@ -81,7 +86,7 @@
 /obj/machinery/chem/pressure/ui_data()
 	var/data = list()
 	data["isActive"] = on
-	data["isBeakerLoaded"] = beaker ? 1 : 0
+	data["isBeakerLoaded"] = beaker ? TRUE : FALSE
 	data["internalPressure"] = pressure
 	data["currentPressure"] = beaker ? beaker.reagents.chem_pressure : null
 	data["beakerCurrentVolume"] = beaker ? beaker.reagents.total_volume : null
@@ -103,7 +108,7 @@
 			on = !on
 			. = TRUE
 		if("eject")
-			eject_beaker()
+			replace_beaker(usr)
 			. = TRUE
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -113,11 +118,7 @@
 	icon_state = "radio"
 	var/material_amt = 0 //requires uranium in order to function
 	var/target_radioactivity = 0
-
-/obj/machinery/chem/radioactive/Initialize()
-	.=..()
-	var/obj/item/circuitboard/machine/B = new /obj/item/circuitboard/machine/radioactive(null)
-	B.apply_default_parts(src)
+	circuit = /obj/item/circuitboard/machine/radioactive
 
 /obj/machinery/chem/radioactive/process()
 	..()
@@ -150,7 +151,7 @@
 
 /obj/machinery/chem/radioactive/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/stack/sheet/mineral/uranium))
-		. = 1 //no afterattack
+		. = TRUE //no afterattack
 		if(material_amt >= 50000)
 			to_chat(user, "<span class='warning'>The [src] is full!</span>")
 			return
@@ -172,7 +173,7 @@
 	var/data = list()
 	data["targetRadioactivity"] = target_radioactivity
 	data["isActive"] = on
-	data["isBeakerLoaded"] = beaker ? 1 : 0
+	data["isBeakerLoaded"] = beaker ? TRUE : FALSE
 	data["materialAmount"] = material_amt
 	data["currentRadioactivity"] = beaker ? beaker.reagents.chem_radioactivity : null
 	data["beakerCurrentVolume"] = beaker ? beaker.reagents.total_volume : null
@@ -209,7 +210,7 @@
 				target_radioactivity = CLAMP(target, 0, 20)
 		if("eject")
 			on = FALSE
-			eject_beaker()
+			replace_beaker(usr)
 			. = TRUE
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -219,11 +220,7 @@
 	icon_state = "blue"
 	var/crystal_amt = 0
 	var/intensity = 0
-
-/obj/machinery/chem/bluespace/Initialize()
-	.=..()
-	var/obj/item/circuitboard/machine/B = new /obj/item/circuitboard/machine/bluespace(null)
-	B.apply_default_parts(src)
+	circuit = /obj/item/circuitboard/machine/bluespace
 
 /obj/machinery/chem/bluespace/process()
 	..()
@@ -255,7 +252,7 @@
 
 /obj/machinery/chem/bluespace/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/stack/ore/bluespace_crystal))
-		. = 1 //no afterattack
+		. = TRUE //no afterattack
 		if(crystal_amt >= 10)
 			to_chat(user, "<span class='warning'>The [src] is full!</span>")
 			return
@@ -275,7 +272,7 @@
 	var/data = list()
 	data["intensity"] = intensity
 	data["isActive"] = on
-	data["isBeakerLoaded"] = beaker ? 1 : 0
+	data["isBeakerLoaded"] = beaker ? TRUE : FALSE
 	data["crystalAmount"] = crystal_amt
 	data["isBluespaced"] = beaker ? beaker.reagents.chem_bluespaced : null
 	data["beakerCurrentVolume"] = beaker ? beaker.reagents.total_volume : null
@@ -312,7 +309,7 @@
 				intensity = CLAMP(target, 0, 30)
 		if("eject")
 			on = FALSE
-			eject_beaker()
+			replace_beaker(usr)
 			. = TRUE
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -322,11 +319,7 @@
 	icon_state = "cent_off"
 	var/time_required = 10
 	var/time = 0
-
-/obj/machinery/chem/centrifuge/Initialize()
-	.=..()
-	var/obj/item/circuitboard/machine/B = new /obj/item/circuitboard/machine/centrifuge(null)
-	B.apply_default_parts(src)
+	circuit = /obj/item/circuitboard/machine/centrifuge
 
 /obj/machinery/chem/centrifuge/process()
 	..()
@@ -356,7 +349,7 @@
 /obj/machinery/chem/centrifuge/ui_data()
 	var/data = list()
 	data["isActive"] = on
-	data["isBeakerLoaded"] = beaker ? 1 : 0
+	data["isBeakerLoaded"] = beaker ? TRUE : FALSE
 	data["timeRemaining"] = time_required - time
 	data["beakerCurrentVolume"] = beaker ? beaker.reagents.total_volume : null
 	data["beakerMaxVolume"] = beaker ? beaker.volume : null
@@ -377,9 +370,9 @@
 			. = TRUE
 		if("eject")
 			on = FALSE
-			eject_beaker()
+			replace_beaker(usr)
 			. = TRUE
 
-/obj/machinery/chem/centrifuge/eject_beaker()
+/obj/machinery/chem/centrifuge/replace_beaker()
 	..()
 	time = 0

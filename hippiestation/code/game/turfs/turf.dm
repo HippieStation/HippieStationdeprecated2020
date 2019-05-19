@@ -16,8 +16,8 @@
 				if (R.pinned)
 					R.pinned = null
 		pinned = null
-	. = ..()
+	return ..()
 
 /turf/Initialize()
-    check_hippie_icon()
-    return ..()
+	. = ..()
+	check_hippie_icon()
