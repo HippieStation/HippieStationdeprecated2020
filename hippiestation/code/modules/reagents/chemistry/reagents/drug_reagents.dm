@@ -312,7 +312,7 @@
 	var/obj/effect/hallucination/simple/druggy/brain
 
 /datum/reagent/drug/grape_blast/proc/create_brain(mob/living/carbon/C)
-	var/turf/where = locate(C.x + pick(-2, 2), C.y + pick(-2, 2), C.z)
+	var/turf/where = locate(C.x + pick(-1, 1), C.y + pick(-1, 1), C.z)
 	brain = new(where, C)
 
 /datum/reagent/drug/grape_blast/on_mob_life(mob/living/carbon/H)
@@ -332,22 +332,17 @@
 			high_message = pick("I feel like I'm flying!", "I feel something swimming inside my lungs....", "I can see the words I'm saying...")
 			if(prob(20))
 				H.blur_eyes(3)
-				var/rotation = min(round(current_cycle/5), 89) // By this point the player is probably puking and quitting anyway
+				var/rotation = min(round(current_cycle/2), 89) // By this point the player is probably puking and quitting anyway
 				for(var/obj/screen/plane_master/whole_screen in screens)
 					animate(whole_screen, transform = matrix(rotation, MATRIX_ROTATE), time = 50, easing = CIRCULAR_EASING)
 					animate(transform = matrix(-rotation, MATRIX_ROTATE), time = 5, easing = BACK_EASING)
-			if(prob(30))
-				for(var/obj/screen/plane_master/whole_screen in screens)
-					whole_screen.filters += filter(type="wave", x=60*rand() - 30, y=60*rand() - 30, size=rand()*2.0+0.5, offset=rand(), flags = WAVE_BOUNDED)
-					animate(whole_screen.filters[whole_screen.filters.len], size = 10, time = 20, SINE_EASING)
-					high_message = pick("Holy shit...", "Reality doesn't exist man.")
 			if(prob(20))
+				for(var/obj/screen/plane_master/whole_screen in screens)
+					whole_screen.filters += filter(type="wave", x=40*rand() - 30, y=40*rand() - 30, size=rand()*2.0+0.5, offset=rand(), flags = WAVE_BOUNDED)
+					animate(whole_screen.filters[whole_screen.filters.len], size = 10, time = 50, SINE_EASING)
+					high_message = pick("Holy shit...", "Reality doesn't exist man.")
+			if(prob(15))
 				create_brain(H)
-				sleep(10)
-				brain.say("This is your brain on drugs.")
-				sleep(10)
-				animate(brain, transform = matrix()*0.75, time = 5)
-				QDEL_IN(brain, 30)
 			if(prob(5))
 				H.emote("laugh")
 				H.say(pick("GRERRKRKRK",";HAHAH I AM SO FUCKING HIGH!!","I AM A BUTTERFLY!!"))
@@ -371,13 +366,24 @@
 	if(!HAS_TRAIT(M, TRAIT_DUMB))
 		M.derpspeech = 0
 	if(M && M.hud_used)
-		var/list/screens = list(M.hud_used.plane_masters["[FLOOR_PLANE]"], M.hud_used.plane_masters["[GAME_PLANE]"], M.hud_used.plane_masters["[LIGHTING_PLANE]"], M.hud_used.plane_masters["[ABOVE_LIGHTING_PLANE]"])
+		var/list/screens = list(M.hud_used.plane_masters["[FLOOR_PLANE]"], M.hud_used.plane_masters["[GAME_PLANE]"], M.hud_used.plane_masters["[LIGHTING_PLANE]"], M.hud_used.plane_masters["[CAMERA_STATIC_PLANE]"])
 		for(var/obj/screen/plane_master/whole_screen in screens)
 			animate(whole_screen, transform = matrix(), time = 300, easing = ELASTIC_EASING)
-			animate(whole_screen.filters[whole_screen.filters.len], time = 300)
+			whole_screen.filters = list()
 
 /obj/effect/hallucination/simple/druggy
 	name = "Your brain"
 	desc = "Don't do drugs kids."
 	image_icon = 'icons/obj/surgery.dmi'
 	image_state = "brain"
+
+/obj/effect/hallucination/simple/druggy/Initialize()
+	. = ..()
+	spook()
+
+/obj/effect/hallucination/simple/druggy/proc/spook()
+	sleep(20)
+	say("This is your brain on drugs.")
+	sleep(10)
+	animate(src, transform = matrix()*0.75, time = 5)
+	QDEL_IN(src, 30)
