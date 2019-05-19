@@ -115,7 +115,7 @@ All foods are distributed among various categories. Use common sense.
 			if(HAS_TRAIT(M, TRAIT_VORACIOUS))
 				M.changeNext_move(CLICK_CD_MELEE * 0.5) //nom nom nom
 			// hippie start -- no accidental eating of organs
-			if (istype(src, obj/item/reagent_containers/food/snacks/organ))
+			if (istype(src, /obj/item/reagent_containers/food/snacks/organ))
 				for(var/datum/surgery/S in M.surgeries)
 					if(S.location == user.zone_selected)
 						return FALSE // no message because the person mid surgery would rarely want to eat there
