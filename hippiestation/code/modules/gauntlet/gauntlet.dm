@@ -54,6 +54,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	var/list/spells = list()
 	var/datum/martial_art/cqc/martial_art
 	var/mutable_appearance/flashy_aura
+	var/mob/living/carbon/last_aura_holder
 
 
 /obj/item/infinity_gauntlet/Initialize()
@@ -80,6 +81,9 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	if(!iscarbon(loc))
 		return
 	var/mob/living/carbon/C = loc
+	if(last_aura_holder && C != last_aura_holder)
+		last_aura_holder.cut_overlay(flashy_aura)
+	last_aura_holder = C
 	C.cut_overlay(flashy_aura)
 	var/static/list/stone_colors = list("#ff0130", "#266ef6", "#ECF332", "#FFC0CB", "#20B2AA", "#e429f2")
 	var/index = (flash_index <= 6) ? flash_index : 1
@@ -234,7 +238,6 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		visible_message("<span class='danger'>The Badmin Gauntlet falls off of [user].</span>")
 
 /obj/item/infinity_gauntlet/proc/TakeAbilities(mob/living/user)
-	user.cut_overlay(flashy_aura)
 	for(var/obj/item/infinity_stone/IS in stones)
 		IS.RemoveAbilities(user, TRUE)
 		IS.TakeVisualEffects(user)
@@ -570,8 +573,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 /obj/effect/proc_holder/spell/self/infinity/gauntlet_jump/revert_cast(mob/user)
 	. = ..()
-	user.opacity = FALSE
-	user.mouse_opacity = FALSE
+	user.opacity = initial(user.opacity)
+	user.mouse_opacity = initial(user.mouse_opacity)
 	user.pixel_y = 0
 	user.alpha = 255
 
@@ -579,7 +582,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 /obj/effect/proc_holder/spell/self/infinity/gauntlet_jump/cast(list/targets, mob/user)
 	if(istype(get_area(user), /area/wizard_station))
 		to_chat(user, "<span class='warning'>You know better than to violate the security of The Den, best wait until you leave.</span>")
-		revert_cast()
+		revert_cast(user)
 		return
 	INVOKE_ASYNC(src, .proc/do_jaunt, user)
 

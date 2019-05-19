@@ -114,6 +114,8 @@
 			TakeVisualEffects(aura_holder)
 			TakeStatusEffect(aura_holder)
 		if(isliving(new_aura_holder))
+			log_game("[src] has a new holder: [ADMIN_LOOKUPFLW(new_aura_holder)]!")
+			message_admins("[src] has a new holder: [key_name(new_aura_holder)]!")
 			GiveVisualEffects(new_aura_holder)
 			GiveStatusEffect(new_aura_holder)
 			aura_holder = new_aura_holder
