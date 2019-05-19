@@ -312,6 +312,9 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			S.updateUsrDialog()
 	else if(isclosedturf(target))
 		var/turf/closed/T = target
+		if(istype(get_area(T), /area/wizard_station)) 
+			to_chat(user, "<span class='warning'>You know better than to violate the security of The Den, best wait until you leave to start smashing down walls.</span>")
+			return FALSE
 		if(!GetStone(SYNDIE_STONE))
 			. = TRUE
 			user.visible_message("<span class='danger'>[user] begins to charge up a punch...</span>", "<span class='notice'>We begin to charge a punch...</span>")
@@ -334,6 +337,9 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		user.visible_message("<span class='danger'>[user] smashes open [C]!<span>")
 	else if(istype(target, /obj/structure/table) || istype(target, /obj/structure/window) || istype(target, /obj/structure/grille))
 		var/obj/structure/T = target
+		if(istype(get_area(T), /area/wizard_station)) 
+			to_chat(user, "<span class='warning'>You know better than to violate the security of The Den, best wait until you leave to start smashing down stuff.</span>")
+			return FALSE
 		. = TRUE
 		playsound(T, 'sound/effects/bang.ogg', 50, 1)
 		user.visible_message("<span class='danger'>[user] smashes [T]!<span>")
@@ -430,6 +436,13 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 				ADD_TRAIT(src, TRAIT_NODROP, GAUNTLET_TRAIT)
 				locked_on = TRUE
 				visible_message("<span class='danger bold'>The badmin gauntlet clamps to [user]'s hand!</span>")
+				for(var/mob/living/simple_animal/hostile/guardian/G in user.hasparasites())
+					user.visible_message("<span class='danger'>[G] is killed by the sheer force of \the [src]!</span>")
+					G.Recall(TRUE)
+					qdel(G)
+				user.verbs -= /mob/living/proc/guardian_comm
+				user.verbs -= /mob/living/proc/guardian_recall
+				user.verbs -= /mob/living/proc/guardian_reset
 				user.mind.RemoveAllSpells()
 				UpdateAbilities(user)
 				OnEquip(user)
@@ -564,6 +577,10 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 // i really hope this never runtimes
 /obj/effect/proc_holder/spell/self/infinity/gauntlet_jump/cast(list/targets, mob/user)
+	if(istype(get_area(user), /area/wizard_station))
+		to_chat(user, "<span class='warning'>You know better than to violate the security of The Den, best wait until you leave.</span>")
+		revert_cast()
+		return
 	INVOKE_ASYNC(src, .proc/do_jaunt, user)
 
 /obj/effect/proc_holder/spell/self/infinity/gauntlet_jump/proc/do_jaunt(mob/living/target)
