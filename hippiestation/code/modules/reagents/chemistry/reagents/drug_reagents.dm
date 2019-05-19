@@ -375,8 +375,6 @@
 		for(var/obj/screen/plane_master/whole_screen in screens)
 			animate(whole_screen, transform = matrix(), time = 300, easing = ELASTIC_EASING)
 			animate(whole_screen.filters[whole_screen.filters.len], time = 300)
-			sleep(300)
-			whole_screen.filters = list()
 
 /obj/effect/hallucination/simple/druggy
 	name = "Your brain"
