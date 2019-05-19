@@ -35,11 +35,13 @@
 	. = ..()
 	if(ishuman(L))
 		martial_art.teach(L)
+	ADD_TRAIT(L, TRAIT_THERMAL_VISION, SYNDIE_STONE_TRAIT)
 
 /obj/item/infinity_stone/syndie/RemoveAbilities(mob/living/L, gauntlet = FALSE)
 	. = ..()
 	if(ishuman(L))
 		martial_art.remove(L)
+	REMOVE_TRAIT(L, TRAIT_THERMAL_VISION, SYNDIE_STONE_TRAIT)
 
 /////////////////////////////////////////////
 /////////////////// SPELLS //////////////////
@@ -107,7 +109,7 @@
 	action_icon_state = "jump"
 	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_background_icon_state = "syndie"
-	charge_max = 750
+	charge_max = 300
 
 /obj/effect/proc_holder/spell/self/infinity/syndie_jump/revert_cast(mob/user)
 	. = ..()
@@ -118,48 +120,54 @@
 
 // i really hope this never runtimes
 /obj/effect/proc_holder/spell/self/infinity/syndie_jump/cast(list/targets, mob/user)
-	if(!is_station_level(user.z))
-		to_chat(user, "<span class='notice'>You need to be on-station to do that!</span>")
-		revert_cast(user)
+	INVOKE_ASYNC(src, .proc/do_jaunt, user)
+
+/obj/effect/proc_holder/spell/self/infinity/syndie_jump/proc/do_jaunt(mob/living/target)
+	target.notransform = TRUE
+	var/turf/mobloc = get_turf(target)
+	var/obj/effect/dummy/phased_mob/spell_jaunt/holder = new /obj/effect/dummy/phased_mob/spell_jaunt(mobloc)
+	holder.movespeed = 1
+
+	target.opacity = FALSE
+	target.mouse_opacity = FALSE
+	target.visible_message("<span class='danger bold'>[target] LEAPS!</span>")
+	animate(target, pixel_y = 128, alpha = 0, time = 5, easing = LINEAR_EASING)
+	sleep(4.5)
+
+	target.forceMove(holder)
+	target.reset_perspective(holder)
+	target.notransform = FALSE //mob is safely inside holder now, no need for protection.
+
+	sleep(5 SECONDS)
+
+	if(target.loc != holder) //mob warped out of the warp
+		qdel(holder)
+		target.opacity = TRUE
+		target.mouse_opacity = TRUE
 		return
-	var/A = input("Area to teleport to", "Teleport") as null|anything in GLOB.teleportlocs
-	if(A)
-		user.visible_message("<span class='danger bold'>[user] LEAPS!</span>")
-		user.opacity = FALSE
-		user.mouse_opacity = FALSE
-		animate(user, pixel_y = 128, alpha = 0, time = 4, easing = LINEAR_EASING)
-		sleep(4.5)
-		var/area/thearea = GLOB.teleportlocs[A]
-		if(!thearea)
-			return
-			revert_cast(user)
-		var/list/L = list()
-		for(var/turf/T in get_area_turfs(thearea.type))
-			if(!T.density)
-				var/clear = TRUE
-				for(var/obj/O in T)
-					if(O.density)
-						clear = FALSE
+	mobloc = get_turf(target.loc)
+	target.mobility_flags &= ~MOBILITY_MOVE
+	holder.reappearing = TRUE
+
+	target.forceMove(mobloc)
+	target.visible_message("<span class='danger bold'>[target] slams down from above!</span>")
+	explosion(mobloc, 0, 0, 2, 3)
+	playsound(target, 'sound/effects/bang.ogg', 50, 1)
+
+	target.setDir(holder.dir)
+	animate(target, pixel_y = 0, alpha = 255, time = 4.5, easing = LINEAR_EASING)
+	sleep(4.5)
+	target.opacity = TRUE
+	target.mouse_opacity = TRUE
+	qdel(holder)
+	if(!QDELETED(target))
+		if(mobloc.density)
+			for(var/direction in GLOB.alldirs)
+				var/turf/T = get_step(mobloc, direction)
+				if(T)
+					if(target.Move(T))
 						break
-				if(clear)
-					L+=T
-		if(user && user.buckled)
-			user.buckled.unbuckle_mob(user, force=1)
-		if(!LAZYLEN(L))
-			revert_cast(user)
-			return
-		var/list/tempL = L
-		var/turf/attempt = get_turf(pick(tempL))
-		user.forceMove(attempt)
-		user.visible_message("<span class='danger bold'>[user] slams down from above!</span>")
-		animate(user, pixel_y = 0, alpha = 255, time = 3, easing = LINEAR_EASING)
-		sleep(3)
-		explosion(attempt, 0, 0, 2, 3, flame_range = 3)
-		user.opacity = TRUE
-		user.mouse_opacity = TRUE
-		playsound(user, 'sound/effects/bang.ogg', 50, 1)
-	else
-		revert_cast(user)
+		target.mobility_flags |= MOBILITY_MOVE
 
 /////////////////////////////////////////////
 /////////////// SNOWFLAKE CODE //////////////

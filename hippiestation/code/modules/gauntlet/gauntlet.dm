@@ -509,7 +509,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	desc = "With a bit of startup time, leap across the station to wherever you'd like!"
 	action_background_icon_state = "bg_default"
 	action_icon_state = "jump"
-	charge_max = 900
+	charge_max = 300
 
 /obj/effect/proc_holder/spell/self/infinity/gauntlet_jump/revert_cast(mob/user)
 	. = ..()
@@ -520,48 +520,51 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 // i really hope this never runtimes
 /obj/effect/proc_holder/spell/self/infinity/gauntlet_jump/cast(list/targets, mob/user)
-	if(!is_station_level(user.z))
-		to_chat(user, "<span class='notice'>You need to be on-station to do that!</span>")
-		revert_cast(user)
-		return
-	var/A = input("Area to teleport to", "Teleport") as null|anything in GLOB.teleportlocs
-	if(A)
-		user.visible_message("<span class='danger bold'>[user] LEAPS!</span>")
-		user.opacity = FALSE
-		user.mouse_opacity = FALSE
-		animate(user, pixel_y = 128, alpha = 0, time = 4, easing = LINEAR_EASING)
-		sleep(4.5)
-		var/area/thearea = GLOB.teleportlocs[A]
-		if(!thearea)
-			return
-			revert_cast(user)
-		var/list/L = list()
-		for(var/turf/T in get_area_turfs(thearea.type))
-			if(!T.density)
-				var/clear = TRUE
-				for(var/obj/O in T)
-					if(O.density)
-						clear = FALSE
-						break
-				if(clear)
-					L+=T
-		if(user && user.buckled)
-			user.buckled.unbuckle_mob(user, force=1)
-		if(!LAZYLEN(L))
-			revert_cast(user)
-			return
-		var/list/tempL = L
-		var/turf/attempt = get_turf(pick(tempL))
-		user.forceMove(attempt)
-		user.visible_message("<span class='danger bold'>[user] slams down from above!</span>")
-		animate(user, pixel_y = 0, alpha = 255, time = 3, easing = LINEAR_EASING)
-		sleep(3)
-		user.opacity = TRUE
-		user.mouse_opacity = TRUE
-		playsound(user, 'sound/effects/bang.ogg', 50, 1)
-	else
-		revert_cast(user)
+	INVOKE_ASYNC(src, .proc/do_jaunt, user)
 
+/obj/effect/proc_holder/spell/self/infinity/gauntlet_jump/proc/do_jaunt(mob/living/target)
+	target.notransform = TRUE
+	var/turf/mobloc = get_turf(target)
+	var/obj/effect/dummy/phased_mob/spell_jaunt/holder = new /obj/effect/dummy/phased_mob/spell_jaunt(mobloc)
+
+	target.opacity = FALSE
+	target.mouse_opacity = FALSE
+	target.visible_message("<span class='danger bold'>[target] LEAPS!</span>")
+	animate(target, pixel_y = 128, alpha = 0, time = 5, easing = LINEAR_EASING)
+	sleep(4.5)
+
+	target.forceMove(holder)
+	target.reset_perspective(holder)
+	target.notransform = FALSE //mob is safely inside holder now, no need for protection.
+
+	sleep(5 SECONDS)
+
+	if(target.loc != holder) //mob warped out of the warp
+		qdel(holder)
+		return
+	mobloc = get_turf(target.loc)
+	target.mobility_flags &= ~MOBILITY_MOVE
+	holder.reappearing = TRUE
+
+	target.forceMove(mobloc)
+	target.visible_message("<span class='danger bold'>[target] slams down from above!</span>")
+	playsound(target, 'sound/effects/bang.ogg', 50, 1)
+
+	target.setDir(holder.dir)
+	animate(target, pixel_y = 0, alpha = 255, time = 4.5, easing = LINEAR_EASING)
+	sleep(4.5)
+	target.opacity = TRUE
+	target.mouse_opacity = TRUE
+	qdel(holder)
+	if(!QDELETED(target))
+		if(mobloc.density)
+			for(var/direction in GLOB.alldirs)
+				var/turf/T = get_step(mobloc, direction)
+				if(T)
+					if(target.Move(T))
+						break
+		target.mobility_flags |= MOBILITY_MOVE
+	
 /obj/effect/proc_holder/spell/self/infinity/snap
 	name = "SNAP"
 	desc = "Snap the Badmin Gauntlet, erasing half the life in the universe."
