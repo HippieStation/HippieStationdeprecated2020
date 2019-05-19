@@ -31,7 +31,7 @@
 	min_cold_protection_temperature = SPACE_HELM_MIN_TEMP_PROTECT
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_HELM_MAX_TEMP_PROTECT
-	armor = list("melee" = 45, "bullet" = 70, "laser" = 30, "energy" = 45, "bomb" = 100, "bio" = 30, "rad" = 30, "fire" = 70, "acid" = 30)
+	armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 45, "bomb" = 100, "bio" = 30, "rad" = 30, "fire" = 70, "acid" = 30)
 
 /obj/item/clothing/head/hippie/ganymedian/equipped(mob/user, slot)
 	if(slot == SLOT_HEAD)
@@ -51,7 +51,7 @@
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = FIRE_HELM_MAX_TEMP_PROTECT
-	armor = list("melee" = 45, "bullet" = 70, "laser" = 30, "energy" = 45, "bomb" = 100, "bio" = 30, "rad" = 30, "fire" = 70, "acid" = 30)
+	armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 45, "bomb" = 100, "bio" = 30, "rad" = 30, "fire" = 70, "acid" = 30)
 
 /obj/item/clothing/suit/hippie/ganymedian/equipped(mob/user, slot)
 	if(slot == SLOT_WEAR_SUIT)
