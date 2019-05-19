@@ -64,7 +64,11 @@
 		qdel(src)
 
 /obj/item/organ/body_egg/changeling_egg/proc/Pop()
+<<<<<<< HEAD
 	var/mob/living/carbon/monkey/M = new(get_turf(owner)) // hippie -- the monkey spawned dead in the last version
+=======
+	var/mob/living/carbon/monkey/M = new(owner)
+>>>>>>> b6c41e3... Merge pull request #43991 from vuonojenmustaturska/vorecode
 
 	for(var/obj/item/organ/I in src)
 		I.Insert(M, 1)
