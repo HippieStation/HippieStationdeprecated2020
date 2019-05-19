@@ -305,6 +305,8 @@
 	action_icon_state = "sandman"
 	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_background_icon_state = "ghost"
+	invocation = "POCKET SAND"
+	invocation_type = "shout"
 	charge_max = 200
 	item_type = /obj/item/spellpacket/sandman
 	clothes_req = FALSE

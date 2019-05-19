@@ -8,7 +8,8 @@
 		"DISARM INTENT: Throw a cleaner grenade")
 	spell_types = list(/obj/effect/proc_holder/spell/self/infinity/pranksters_delusion,
 		/obj/effect/proc_holder/spell/self/infinity/cake)
-	stone_spell_types = list(/obj/effect/proc_holder/spell/self/infinity/honksong)
+	stone_spell_types = list(/obj/effect/proc_holder/spell/self/infinity/honksong,
+		/obj/effect/proc_holder/spell/self/infinity/party_popper)
 	gauntlet_spell_types = list(/obj/effect/proc_holder/spell/self/infinity/thanoscar_thanoscar)
 	var/next_traps = 0
 	var/next_cleaner = 0
@@ -54,10 +55,34 @@
 /////////////////// SPELLS //////////////////
 /////////////////////////////////////////////
 
+/obj/effect/proc_holder/spell/self/infinity/party_popper
+	name = "Clown Stone: Party Popper"
+	desc = "Gib yourself and heal <b>everyone</b> around you, even the dead."
+	action_icon_state = "partypop"
+	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_background_icon_state = "clown"
+	charge_max = 0
+
+/obj/effect/proc_holder/spell/self/infinity/party_popper/cast(list/targets, mob/user)
+	var/prompt = alert("Are you sure you'd like to pop? There's no way to be revived!", "Confirm", "Yes", "No")
+	if(prompt != "Yes")
+		revert_cast()
+		return
+	user.visible_message("<span class='notice big bold'>[user] pops!</span>")
+	playsound(get_turf(user), 'sound/items/party_horn.ogg', 50, 1)
+	for(var/mob/living/L in view(user, 7))
+		if(L == user)
+			continue
+		for(var/i = 1 to 5)
+			new /obj/effect/temp_visual/heal(get_turf(L))
+		L.grab_ghost()
+		L.revive(TRUE, TRUE)
+		to_chat(L, "<span class='notice'>You feel amazing!</span>")
+	user.gib(TRUE, TRUE, TRUE)
+
 /obj/effect/proc_holder/spell/self/infinity/pranksters_delusion
 	name = "Clown Stone: Prankster's Delusion"
-	desc = "Causes those around you to see others as a clumsy clown, including yourself! Now how will they know who is who?"
-	action_icon = 'hippiestation/icons/obj/infinity.dmi'
+	desc = "Causes those around you to see others as a clumsy clown (or maybe a gondola)! Now how will they know who is who?"
 	action_icon_state = "prankstersdelusion"
 	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_background_icon_state = "clown"
@@ -68,11 +93,14 @@
 		if(C == user)
 			continue
 		to_chat(C, "<span class='clown italics'>HONK.</span>")
-		new /datum/hallucination/delusion(C, TRUE, "custom", 600, 0, "clown", 'icons/mob/clown_mobs.dmi')
+		if(prob(50))
+			new /datum/hallucination/delusion(C, TRUE, "custom", 600, 0, "clown", 'icons/mob/clown_mobs.dmi')
+		else
+			new /datum/hallucination/delusion(C, TRUE, "custom", 600, 0, "gondola", 'icons/mob/gondolas.dmi')
 
 /obj/effect/proc_holder/spell/self/infinity/honksong
 	name = "Clown Stone: Honksong"
-	desc = "Summon a 5x5 dance floor, and dance to heal everyone around you (but yourself)!"
+	desc = "Summon a 6x6 dance floor, and dance to heal everyone around you (but yourself)!"
 	charge_max = 1000
 	action_icon_state = "honksong"
 	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'

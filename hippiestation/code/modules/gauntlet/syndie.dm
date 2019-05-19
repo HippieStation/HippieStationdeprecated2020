@@ -153,6 +153,11 @@
 	target.visible_message("<span class='danger bold'>[target] slams down from above!</span>")
 	explosion(mobloc, 0, 0, 2, 3)
 	playsound(target, 'sound/effects/bang.ogg', 50, 1)
+	for(var/mob/living/L in mobloc)
+		if(L.InCritical())
+			L.visible_message("<span class='danger bold'>[L] is pancaked by [target]!</span>")
+			L.gib()
+			new /obj/item/reagent_containers/food/snacks/pancakes(mobloc)
 
 	target.setDir(holder.dir)
 	animate(target, pixel_y = 0, alpha = 255, time = 4.5, easing = LINEAR_EASING)
