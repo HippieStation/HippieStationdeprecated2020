@@ -92,9 +92,11 @@
 	if(iscarbon(user))
 		var/mob/living/carbon/C = user
 		ADD_TRAIT(C, TRAIT_STUNIMMUNE, YEET_TRAIT)
+		ADD_TRAIT(user, TRAIT_IGNORESLOWDOWN, YEET_TRAIT)
 		C.mario_star = TRUE
 		C.super_mario_star = TRUE
 		C.move_force = INFINITY
+		user.visible_message("<span class='danger'>[user] charges!</span>")
 		addtimer(CALLBACK(src, .proc/done, C), 50)
 
 /obj/effect/proc_holder/spell/self/infinity/syndie_bullcharge/proc/done(mob/living/carbon/user)
@@ -102,6 +104,8 @@
 	user.super_mario_star = FALSE
 	user.move_force = initial(user.move_force)
 	REMOVE_TRAIT(user, TRAIT_STUNIMMUNE, YEET_TRAIT)
+	REMOVE_TRAIT(user, TRAIT_IGNORESLOWDOWN, YEET_TRAIT)
+	user.visible_message("<span class='danger'>[user] relaxes...</span>")
 
 /obj/effect/proc_holder/spell/self/infinity/syndie_jump
 	name = "Syndie Stone: Super Jump"
@@ -125,32 +129,48 @@
 /obj/effect/proc_holder/spell/self/infinity/syndie_jump/proc/do_jaunt(mob/living/target)
 	target.notransform = TRUE
 	var/turf/mobloc = get_turf(target)
-	var/obj/effect/dummy/phased_mob/spell_jaunt/holder = new /obj/effect/dummy/phased_mob/spell_jaunt(mobloc)
-	holder.movespeed = 1
+	var/obj/effect/dummy/phased_mob/spell_jaunt/infinity/holder = new(mobloc)
 
+	var/mob/living/passenger
+	if(isliving(target.pulling) && target.grab_state >= GRAB_AGGRESSIVE)
+		passenger = target.pulling
+		holder.passenger = passenger
+
+	target.visible_message("<span class='danger bold'>[target] LEAPS[passenger ? ", bringing [passenger] up with them" : ""]!</span>")
 	target.opacity = FALSE
 	target.mouse_opacity = FALSE
-	target.visible_message("<span class='danger bold'>[target] LEAPS!</span>")
-	animate(target, pixel_y = 128, alpha = 0, time = 5, easing = LINEAR_EASING)
+	if(passenger)
+		passenger.opacity = FALSE
+		passenger.mouse_opacity = FALSE
+		animate(passenger, pixel_y = 128, alpha = 0, time = 4.5, easing = LINEAR_EASING)
+	animate(target, pixel_y = 128, alpha = 0, time = 4.5, easing = LINEAR_EASING)
 	sleep(4.5)
 
+	if(passenger)
+		passenger.forceMove(holder)
+		passenger.reset_perspective(holder)
+		passenger.notransform = FALSE
 	target.forceMove(holder)
 	target.reset_perspective(holder)
 	target.notransform = FALSE //mob is safely inside holder now, no need for protection.
 
 	sleep(7.5 SECONDS)
 
-	if(target.loc != holder) //mob warped out of the warp
+	if(target.loc != holder && (passenger && passenger.loc != holder)) //mob warped out of the warp
 		qdel(holder)
-		target.opacity = TRUE
-		target.mouse_opacity = TRUE
 		return
 	mobloc = get_turf(target.loc)
 	target.mobility_flags &= ~MOBILITY_MOVE
+	if(passenger)
+		passenger.mobility_flags &= ~MOBILITY_MOVE
 	holder.reappearing = TRUE
 
+	if(passenger)
+		passenger.forceMove(mobloc)
+		passenger.Paralyze(50)
+		passenger.take_overall_damage(17.5)
 	target.forceMove(mobloc)
-	target.visible_message("<span class='danger bold'>[target] slams down from above!</span>")
+	target.visible_message("<span class='danger bold'>[target] slams down from above[passenger ? ", slamming [passenger] down to the floor" : ""]!</span>")
 	explosion(mobloc, 0, 0, 2, 3)
 	playsound(target, 'sound/effects/bang.ogg', 50, 1)
 	for(var/mob/living/L in mobloc)
@@ -161,9 +181,15 @@
 
 	target.setDir(holder.dir)
 	animate(target, pixel_y = 0, alpha = 255, time = 4.5, easing = LINEAR_EASING)
+	if(passenger)
+		passenger.setDir(holder.dir)
+		animate(passenger, pixel_y = 0, alpha = 255, time = 4.5, easing = LINEAR_EASING)
 	sleep(4.5)
 	target.opacity = TRUE
 	target.mouse_opacity = TRUE
+	if(passenger)
+		passenger.opacity = TRUE
+		passenger.mouse_opacity = TRUE
 	qdel(holder)
 	if(!QDELETED(target))
 		if(mobloc.density)
@@ -173,6 +199,8 @@
 					if(target.Move(T))
 						break
 		target.mobility_flags |= MOBILITY_MOVE
+	if(!QDELETED(passenger))
+		passenger.mobility_flags |= MOBILITY_MOVE
 
 /////////////////////////////////////////////
 /////////////// SNOWFLAKE CODE //////////////

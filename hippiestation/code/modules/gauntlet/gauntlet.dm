@@ -539,12 +539,14 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		C.mario_star = TRUE
 		C.super_mario_star = FALSE
 		ADD_TRAIT(user, TRAIT_IGNORESLOWDOWN, YEET_TRAIT)
+		user.visible_message("<span class='danger'>[user] charges!</span>")
 		addtimer(CALLBACK(src, .proc/done, C), 50)
 
 /obj/effect/proc_holder/spell/self/infinity/gauntlet_bullcharge/proc/done(mob/living/carbon/user)
 	user.mario_star = FALSE
 	user.super_mario_star = FALSE
 	REMOVE_TRAIT(user, TRAIT_IGNORESLOWDOWN, YEET_TRAIT)
+	user.visible_message("<span class='danger'>[user] relaxes...</span>")
 
 /obj/effect/proc_holder/spell/self/infinity/gauntlet_jump
 	name = "Badmin Gauntlet: Super Jump"
@@ -567,36 +569,61 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 /obj/effect/proc_holder/spell/self/infinity/gauntlet_jump/proc/do_jaunt(mob/living/target)
 	target.notransform = TRUE
 	var/turf/mobloc = get_turf(target)
-	var/obj/effect/dummy/phased_mob/spell_jaunt/holder = new /obj/effect/dummy/phased_mob/spell_jaunt(mobloc)
+	var/obj/effect/dummy/phased_mob/spell_jaunt/infinity/holder = new(mobloc)
 
+	var/mob/living/passenger
+	if(isliving(target.pulling) && target.grab_state >= GRAB_AGGRESSIVE)
+		passenger = target.pulling
+		holder.passenger = passenger
+
+	target.visible_message("<span class='danger bold'>[target] LEAPS[passenger ? ", bringing [passenger] up with them" : ""]!</span>")
 	target.opacity = FALSE
 	target.mouse_opacity = FALSE
-	target.visible_message("<span class='danger bold'>[target] LEAPS!</span>")
-	animate(target, pixel_y = 128, alpha = 0, time = 5, easing = LINEAR_EASING)
+	if(passenger)
+		passenger.opacity = FALSE
+		passenger.mouse_opacity = FALSE
+		animate(passenger, pixel_y = 128, alpha = 0, time = 4.5, easing = LINEAR_EASING)
+	animate(target, pixel_y = 128, alpha = 0, time = 4.5, easing = LINEAR_EASING)
 	sleep(4.5)
 
+	if(passenger)
+		passenger.forceMove(holder)
+		passenger.reset_perspective(holder)
+		passenger.notransform = FALSE
 	target.forceMove(holder)
 	target.reset_perspective(holder)
 	target.notransform = FALSE //mob is safely inside holder now, no need for protection.
 
 	sleep(7.5 SECONDS)
 
-	if(target.loc != holder) //mob warped out of the warp
+	if(target.loc != holder && (passenger && passenger.loc != holder)) //mob warped out of the warp
 		qdel(holder)
 		return
 	mobloc = get_turf(target.loc)
 	target.mobility_flags &= ~MOBILITY_MOVE
+	if(passenger)
+		passenger.mobility_flags &= ~MOBILITY_MOVE
 	holder.reappearing = TRUE
 
+	if(passenger)
+		passenger.forceMove(mobloc)
+		passenger.Paralyze(50)
+		passenger.take_overall_damage(17.5)
 	target.forceMove(mobloc)
-	target.visible_message("<span class='danger bold'>[target] slams down from above!</span>")
+	target.visible_message("<span class='danger bold'>[target] slams down from above[passenger ? ", slamming [passenger] down to the floor" : ""]!</span>")
 	playsound(target, 'sound/effects/bang.ogg', 50, 1)
 
 	target.setDir(holder.dir)
 	animate(target, pixel_y = 0, alpha = 255, time = 4.5, easing = LINEAR_EASING)
+	if(passenger)
+		passenger.setDir(holder.dir)
+		animate(passenger, pixel_y = 0, alpha = 255, time = 4.5, easing = LINEAR_EASING)
 	sleep(4.5)
 	target.opacity = TRUE
 	target.mouse_opacity = TRUE
+	if(passenger)
+		passenger.opacity = TRUE
+		passenger.mouse_opacity = TRUE
 	qdel(holder)
 	if(!QDELETED(target))
 		if(mobloc.density)
@@ -606,7 +633,17 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 					if(target.Move(T))
 						break
 		target.mobility_flags |= MOBILITY_MOVE
+	if(!QDELETED(passenger))
+		passenger.mobility_flags |= MOBILITY_MOVE
 	
+/obj/effect/dummy/phased_mob/spell_jaunt/infinity
+	var/mob/living/passenger
+
+/obj/effect/dummy/phased_mob/spell_jaunt/infinity/relaymove(mob/user, direction)
+	if(user == passenger)
+		return
+	return ..()
+
 /obj/effect/proc_holder/spell/self/infinity/snap
 	name = "SNAP"
 	desc = "Snap the Badmin Gauntlet, erasing half the life in the universe."
