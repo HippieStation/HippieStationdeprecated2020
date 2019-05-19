@@ -2811,6 +2811,7 @@
 #include "hippiestation\code\datums\looping_sounds\Fryer.dm"
 #include "hippiestation\code\datums\martial\armstrong.dm"
 #include "hippiestation\code\datums\martial\cqc.dm"
+#include "hippiestation\code\datums\martial\hamon.dm"
 #include "hippiestation\code\datums\martial\knifeboxing.dm"
 #include "hippiestation\code\datums\martial\krav_maga.dm"
 #include "hippiestation\code\datums\martial\monk.dm"
