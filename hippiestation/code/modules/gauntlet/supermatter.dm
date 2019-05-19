@@ -4,7 +4,8 @@
 	stone_type = SUPERMATTER_STONE
 	color = "#ECF332"
 	spell_types = list (/obj/effect/proc_holder/spell/spacetime_dist/supermatter_stone)
-	gauntlet_spell_types = list(/obj/effect/proc_holder/spell/targeted/tesla/supermatter_stone)
+	gauntlet_spell_types = list(/obj/effect/proc_holder/spell/targeted/tesla/supermatter_stone,
+		/obj/effect/proc_holder/spell/targeted/infinity/delamination)
 	ability_text = list("HELP INTENT: Fire a short-range, burning-hot crystal spray", 
 		"GRAB INTENT: Fire a long-range, rapid, but low damage volt ray",
 		"DISARM INTENT: Fire a short-range fire blast that knocks people back.", 
@@ -87,6 +88,32 @@
 	invocation_type = "none"
 	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_background_icon_state = "sm"
+
+/obj/effect/proc_holder/spell/targeted/infinity/delamination
+	name = "Supermatter Stone: Delamination!"
+	desc = "After 3 seconds, put a marker on someone, which will EXPLODE after 15 seconds!"
+	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_background_icon_state = "sm"
+
+/obj/effect/proc_holder/spell/targeted/infinity/delamination/InterceptClickOn(mob/living/caller, params, atom/t)
+	. = ..()
+	if(!.)
+		revert_cast()
+		return FALSE
+	if(!isliving(t))
+		revert_cast()
+		return FALSE
+	var/mob/living/L = t
+	if(locate(/obj/item/infinity_stone) in L.GetAllContents())
+		L.visible_message("<span class='danger bold'>[L] resists an unseen force!</span>")
+		Finished()
+		return TRUE
+	remove_ranged_ability()
+	if(do_after(caller, 30, target = L))
+		L.visible_message("<span class='danger bold'>[L] seems a bit hot...</span>", "<span class='userdanger'>You feel like you'll explode any second!</span>")
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/explosion, L, 0, 0, 2, 3, TRUE, FALSE, 3), 150)
+	Finished()
+	return TRUE
 
 /////////////////////////////////////////////
 /////////////////// STUFF ///////////////////
