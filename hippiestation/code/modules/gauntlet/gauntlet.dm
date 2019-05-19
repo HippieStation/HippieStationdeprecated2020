@@ -35,8 +35,7 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 			"Chaplain" = 25
 		),
 		CLOWN_STONE = list(
-			"Clown" = 90,
-			"Curator" = 20
+			"Clown" = 100
 		)
 	))
 GLOBAL_VAR_INIT(telescroll_time, 0)
@@ -45,7 +44,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	name = "Badmin Gauntlet"
 	icon = 'hippiestation/icons/obj/infinity.dmi'
 	icon_state = "gauntlet"
-	force = 17.5
+	force = 25
 	armour_penetration = 70
 	var/locked_on = FALSE
 	var/stone_mode = null
@@ -69,6 +68,9 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	for(var/obj/item/infinity_stone/IS in stones)
 		to_chat(user, "<span class='bold notice'>[IS.name] mode</span>")
 		IS.ShowExamine(user)
+
+/obj/item/infinity_gauntlet/ex_act(severity, target)
+	return
 
 /obj/item/infinity_gauntlet/proc/GetStone(stone_type)
 	for(var/obj/item/infinity_stone/I in stones)
@@ -494,14 +496,13 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		var/mob/living/carbon/C = user
 		C.mario_star = TRUE
 		C.super_mario_star = FALSE
-		C.move_force = INFINITY
+		ADD_TRAIT(user, TRAIT_IGNORESLOWDOWN, YEET_TRAIT)
 		addtimer(CALLBACK(src, .proc/done, C), 50)
 
 /obj/effect/proc_holder/spell/self/infinity/gauntlet_bullcharge/proc/done(mob/living/carbon/user)
 	user.mario_star = FALSE
 	user.super_mario_star = FALSE
-	user.move_force = initial(user.move_force)
-	REMOVE_TRAIT(user, TRAIT_STUNIMMUNE, YEET_TRAIT)
+	REMOVE_TRAIT(user, TRAIT_IGNORESLOWDOWN, YEET_TRAIT)
 
 /obj/effect/proc_holder/spell/self/infinity/gauntlet_jump
 	name = "Badmin Gauntlet: Super Jump"
@@ -525,10 +526,6 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		return
 	var/A = input("Area to teleport to", "Teleport") as null|anything in GLOB.teleportlocs
 	if(A)
-		user.visible_message("<span class='notice'>[user] prepares to leap to incredible heights...</span>")
-		if(!do_after(user, 30, target = user))
-			revert_cast(user)
-			return
 		user.visible_message("<span class='danger bold'>[user] LEAPS!</span>")
 		user.opacity = FALSE
 		user.mouse_opacity = FALSE
@@ -554,18 +551,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			revert_cast(user)
 			return
 		var/list/tempL = L
-		var/attempt = null
-		var/success = FALSE
-		while(tempL.len)
-			attempt = pick(tempL)
-			do_teleport(user, attempt, channel = TELEPORT_CHANNEL_BLUESPACE)
-			if(get_turf(user) == attempt)
-				success = TRUE
-				break
-			else
-				tempL.Remove(attempt)
-		if(!success)
-			do_teleport(user, L, forceMove = TRUE, channel = TELEPORT_CHANNEL_BLUESPACE)
+		var/turf/attempt = get_turf(pick(tempL))
+		user.forceMove(attempt)
 		user.visible_message("<span class='danger bold'>[user] slams down from above!</span>")
 		animate(user, pixel_y = 0, alpha = 255, time = 3, easing = LINEAR_EASING)
 		sleep(3)

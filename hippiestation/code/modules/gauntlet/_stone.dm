@@ -47,6 +47,9 @@
 	. = ..()
 	UpdateHolder()
 
+/obj/item/infinity_stone/ex_act(severity, target)
+	return
+
 /obj/item/infinity_stone/proc/ShowExamine(mob/user) // a seperate thing for the gauntlet
 	for(var/A in ability_text)
 		to_chat(user, "<span class='notice'>[A]</span>")

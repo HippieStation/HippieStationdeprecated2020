@@ -78,6 +78,9 @@
 		return
 	return TRUE
 
+/obj/item/tank/jetpack/ganypack/ex_act(severity, target)
+	return
+
 /obj/item/tank/jetpack/ganypack/equipped(mob/user, slot)
 	if(slot == SLOT_BACK)
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
@@ -113,4 +116,10 @@
 	if(slot == SLOT_SHOES)
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 		item_flags |= DROPDEL
+	return ..()
+
+
+/mob/living/carbon/human/ex_act(severity, target, origin)
+	if(dna && istype(dna.species, /datum/species/ganymede))
+		return
 	return ..()

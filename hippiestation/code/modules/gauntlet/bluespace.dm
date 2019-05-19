@@ -37,7 +37,7 @@
 		var/turf/start = get_turf(user)
 		user.adjustStaminaLoss(15)
 		user.visible_message("<span class='danger'>[user] warps away!</span>", "<span class='notice'>We warp ourselves to our desired location.</span>")
-		do_teleport(user, to_teleport, channel = TELEPORT_CHANNEL_BLUESPACE)
+		user.forceMove(to_teleport)
 		start.Beam(to_teleport, "bsa_beam", time=25)
 		user.changeNext_move(CLICK_CD_CLICK_ABILITY)
 

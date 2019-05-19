@@ -5,10 +5,10 @@
 	force = 30
 	stone_type = SYNDIE_STONE
 	ability_text = list("ALL INTENTS: PLACEHOLDER MARTIAL ART")
-	gauntlet_spell_types = list(/obj/effect/proc_holder/spell/aoe_turf/repulse/syndie_stone)
 	spell_types = list(/obj/effect/proc_holder/spell/self/infinity/regenerate,
-		/obj/effect/proc_holder/spell/self/infinity/syndie_bullcharge,
-		/obj/effect/proc_holder/spell/self/infinity/syndie_jump)
+		/obj/effect/proc_holder/spell/self/infinity/syndie_bullcharge)
+	gauntlet_spell_types = list(/obj/effect/proc_holder/spell/self/infinity/syndie_jump,
+		/obj/effect/proc_holder/spell/aoe_turf/repulse/syndie_stone)
 	var/datum/martial_art/cqc/martial_art
 
 /obj/item/infinity_stone/syndie/Initialize()
@@ -149,25 +149,12 @@
 			revert_cast(user)
 			return
 		var/list/tempL = L
-		var/attempt = null
-		var/success = FALSE
-		while(tempL.len)
-			attempt = pick(tempL)
-			do_teleport(user, attempt, channel = TELEPORT_CHANNEL_BLUESPACE)
-			if(get_turf(user) == attempt)
-				success = TRUE
-				break
-			else
-				tempL.Remove(attempt)
-		if(!success)
-			do_teleport(user, L, forceMove = TRUE, channel = TELEPORT_CHANNEL_BLUESPACE)
+		var/turf/attempt = get_turf(pick(tempL))
+		user.forceMove(attempt)
 		user.visible_message("<span class='danger bold'>[user] slams down from above!</span>")
 		animate(user, pixel_y = 0, alpha = 255, time = 3, easing = LINEAR_EASING)
 		sleep(3)
-		for(var/mob/living/M in view(2, user))
-			if(M != user)
-				to_chat(M, "<span class='danger'>You're knocked down by the force of [user]'s slam!</span>")
-				M.Paralyze(55)
+		explosion(attempt, 0, 0, 2, 3, flame_range = 3)
 		user.opacity = TRUE
 		user.mouse_opacity = TRUE
 		playsound(user, 'sound/effects/bang.ogg', 50, 1)
@@ -191,6 +178,8 @@
 			if(super_mario_star)
 				L.Paralyze(7.5 SECONDS)
 				L.adjustBruteLoss(20)
+				heal_overall_damage(12.5, 12.5, 12.5)
 			else
 				L.Paralyze(5 SECONDS)
 				L.adjustBruteLoss(12)
+				heal_overall_damage(7.5, 7.5, 7.5)
