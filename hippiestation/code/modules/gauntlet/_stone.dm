@@ -5,6 +5,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	var/mob/living/current_holder
 	var/mob/living/aura_holder
+	var/mob/living/last_holder
 	var/stone_type = ""
 	var/list/ability_text = list()
 	var/list/spells = list()
@@ -109,6 +110,9 @@
 			current_holder = new_holder
 		else
 			current_holder = null
+	if (new_aura_holder != last_holder && isliving(new_aura_holder)) 
+		log_game("[src] has a new holder: [ADMIN_LOOKUPFLW(new_aura_holder)]!")
+		message_admins("[src] has a new holder: [key_name(new_aura_holder)]!")
 	if (new_aura_holder != aura_holder)
 		if(isliving(aura_holder))
 			TakeVisualEffects(aura_holder)
@@ -119,6 +123,7 @@
 			GiveVisualEffects(new_aura_holder)
 			GiveStatusEffect(new_aura_holder)
 			aura_holder = new_aura_holder
+			last_holder = new_aura_holder
 		else
 			aura_holder = null
 
