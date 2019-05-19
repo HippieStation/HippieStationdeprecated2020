@@ -321,25 +321,27 @@
 	var/high_message
 	var/list/screens = list(H.hud_used.plane_masters["[FLOOR_PLANE]"], H.hud_used.plane_masters["[GAME_PLANE]"], H.hud_used.plane_masters["[LIGHTING_PLANE]"], H.hud_used.plane_masters["[CAMERA_STATIC_PLANE ]"])
 	switch(current_cycle)
-		if(1 to 30)
+		if(1 to 20)
 			high_message = pick("Holy shit, I feel so fucking happy...", "What the fuck is going on?", "Where am I?")
 			if(prob(15))
 				H.dna.add_mutation(SMILE)
 			if(prob(30)) //blurry eyes and talk like an idiot
-				H.blur_eyes(3)
+				H.blur_eyes(2)
 				H.derpspeech++
-		if(31 to 120)
+		if(31 to INFINITY)
 			high_message = pick("I feel like I'm flying!", "I feel something swimming inside my lungs....", "I can see the words I'm saying...")
 			if(prob(20))
-				H.blur_eyes(3)
-				var/rotation = min(round(current_cycle/2), 89) // By this point the player is probably puking and quitting anyway
+				var/rotation = min(round(current_cycle/4), 90)
 				for(var/obj/screen/plane_master/whole_screen in screens)
 					animate(whole_screen, transform = matrix(rotation, MATRIX_ROTATE), time = 50, easing = CIRCULAR_EASING)
 					animate(transform = matrix(-rotation, MATRIX_ROTATE), time = 5, easing = BACK_EASING)
 			if(prob(20))
 				for(var/obj/screen/plane_master/whole_screen in screens)
-					whole_screen.filters += filter(type="wave", x=40*rand() - 30, y=40*rand() - 30, size=rand()*2.0+0.5, offset=rand(), flags = WAVE_BOUNDED)
-					animate(whole_screen.filters[whole_screen.filters.len], size = 10, time = 50, SINE_EASING)
+					if(prob(50))
+						whole_screen.filters += filter(type="wave", x=30*rand() - 30, y=30*rand() - 30, size=rand()*2.0+0.5, offset=rand(), flags = WAVE_BOUNDED)
+					else
+						whole_screen.filters += filter(type="motion_blur" , x=30*rand() - 30, y=30*rand() - 30)
+					animate(whole_screen.filters[whole_screen.filters.len], size = 10, time = 80, SINE_EASING, flags = ANIMATION_PARALLEL)
 					high_message = pick("Holy shit...", "Reality doesn't exist man.")
 			if(prob(15))
 				create_brain(H)
@@ -362,13 +364,13 @@
 
 /datum/reagent/drug/grape_blast/proc/cure_autism(mob/living/carbon/M)
 	to_chat(M, "<span class='notice'>As the drugs wear off, you feel yourself slowly coming back to reality...</span>")
-	M.drowsyness += 2 //We feel sleepy after going through that trip.
+	M.drowsyness++ //We feel sleepy after going through that trip.
 	if(!HAS_TRAIT(M, TRAIT_DUMB))
 		M.derpspeech = 0
 	if(M && M.hud_used)
 		var/list/screens = list(M.hud_used.plane_masters["[FLOOR_PLANE]"], M.hud_used.plane_masters["[GAME_PLANE]"], M.hud_used.plane_masters["[LIGHTING_PLANE]"], M.hud_used.plane_masters["[CAMERA_STATIC_PLANE]"])
 		for(var/obj/screen/plane_master/whole_screen in screens)
-			animate(whole_screen, transform = matrix(), time = 300, easing = ELASTIC_EASING)
+			animate(whole_screen, transform = matrix(), time = 200, easing = ELASTIC_EASING)
 			whole_screen.filters = list()
 
 /obj/effect/hallucination/simple/druggy
@@ -384,6 +386,13 @@
 /obj/effect/hallucination/simple/druggy/proc/spook()
 	sleep(20)
 	say("This is your brain on drugs.")
+	var/list/speech_bubble_recipients = list()
+	for(var/mob/M in get_hearers_in_view(6, src))
+		if(M.client)
+			speech_bubble_recipients.Add(M.client)
+	var/image/I = image('icons/mob/talk.dmi', src, "default2", FLY_LAYER)
+	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	INVOKE_ASYNC(GLOBAL_PROC, /.proc/flick_overlay, I, speech_bubble_recipients, 30)
 	sleep(10)
 	animate(src, transform = matrix()*0.75, time = 5)
 	QDEL_IN(src, 30)
