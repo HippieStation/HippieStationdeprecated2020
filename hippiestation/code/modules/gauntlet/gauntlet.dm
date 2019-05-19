@@ -296,6 +296,21 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			playsound(T, 'sound/effects/bang.ogg', 50, 1)
 			user.visible_message("<span class='danger'>[user] punches down [T]!</span>")
 			T.ScrapeAway()
+	else if(istype(target, /obj/structure/closet))
+		var/obj/structure/closet/C = target
+		. = TRUE
+		C.broken = TRUE
+		C.locked = FALSE
+		C.open()
+		C.update_icon()
+		playsound(C, 'sound/effects/bang.ogg', 50, 1)
+		user.visible_message("<span class='danger'>[user] smashes open [C]!<span>")
+	else if(istype(target, /obj/structure/table) || istype(target, /obj/structure/window) || istype(target, /obj/structure/grille))
+		var/obj/structure/T = target
+		. = TRUE
+		playsound(T, 'sound/effects/bang.ogg', 50, 1)
+		user.visible_message("<span class='danger'>[user] smashes [T]!<span>")
+		T.take_damage(INFINITY)
 	else if(iscarbon(target) && (user.zone_selected == BODY_ZONE_L_LEG || user.zone_selected == BODY_ZONE_R_LEG))
 		var/mob/living/carbon/C = target
 		. = TRUE
