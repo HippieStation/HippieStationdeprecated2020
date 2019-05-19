@@ -46,22 +46,47 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	icon_state = "gauntlet"
 	force = 25
 	armour_penetration = 70
+	var/next_flash = 0
+	var/flash_index = 1
 	var/locked_on = FALSE
 	var/stone_mode = null
 	var/list/stones = list()
 	var/list/spells = list()
 	var/datum/martial_art/cqc/martial_art
+	var/mutable_appearance/flashy_aura
 
 
 /obj/item/infinity_gauntlet/Initialize()
 	. = ..()
+	START_PROCESSING(SSobj, src)
 	AddComponent(/datum/component/spell_catalyst)
 	martial_art = new
+	flashy_aura = mutable_appearance('hippiestation/icons/obj/infinity.dmi', "aura", -MUTATIONS_LAYER)
 	update_icon()
 	spells += new /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet
 	spells += new /obj/effect/proc_holder/spell/aoe_turf/repulse/gauntlet
 	spells += new /obj/effect/proc_holder/spell/self/infinity/gauntlet_bullcharge
 	spells += new /obj/effect/proc_holder/spell/self/infinity/gauntlet_jump
+
+/obj/item/infinity_gauntlet/Destroy()
+	. = ..()
+	STOP_PROCESSING(SSobj, src)
+
+/obj/item/infinity_gauntlet/process()
+	if(!FullyAssembled())
+		return
+	if(world.time < next_flash)
+		return
+	if(!iscarbon(loc))
+		return
+	var/mob/living/carbon/C = loc
+	C.cut_overlay(flashy_aura)
+	var/static/list/stone_colors = list("#ff0130", "#266ef6", "#ECF332", "#FFC0CB", "#20B2AA", "#e429f2")
+	var/index = (flash_index <= 6) ? flash_index : 1
+	flashy_aura.color = stone_colors[index]
+	C.add_overlay(flashy_aura)
+	flash_index = index + 1
+	next_flash = world.time + 10
 
 /obj/item/infinity_gauntlet/examine(mob/user)
 	. = ..()
@@ -186,6 +211,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	user.move_resist = INFINITY
 
 /obj/item/infinity_gauntlet/proc/OnUnquip(mob/living/user)
+	user.cut_overlay(flashy_aura)
 	GET_COMPONENT_FROM(stationloving, /datum/component/stationloving, user)
 	if(stationloving)
 		user.TakeComponent(stationloving)
@@ -208,6 +234,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		visible_message("<span class='danger'>The Badmin Gauntlet falls off of [user].</span>")
 
 /obj/item/infinity_gauntlet/proc/TakeAbilities(mob/living/user)
+	user.cut_overlay(flashy_aura)
 	for(var/obj/item/infinity_stone/IS in stones)
 		IS.RemoveAbilities(user, TRUE)
 		IS.TakeVisualEffects(user)
