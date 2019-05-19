@@ -458,3 +458,4 @@
 	if(prob(10) && istype(M))
 		M.vomit(10)
 	..()
+
