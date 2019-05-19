@@ -138,7 +138,7 @@
 	target.reset_perspective(holder)
 	target.notransform = FALSE //mob is safely inside holder now, no need for protection.
 
-	sleep(5 SECONDS)
+	sleep(7.5 SECONDS)
 
 	if(target.loc != holder) //mob warped out of the warp
 		qdel(holder)
