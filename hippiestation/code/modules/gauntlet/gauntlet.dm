@@ -664,6 +664,20 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 /obj/effect/dummy/phased_mob/spell_jaunt/infinity
 	var/mob/living/passenger
 
+/obj/effect/dummy/phased_mob/spell_jaunt/infinity/relaymove(var/mob/user, direction)
+	if ((movedelay > world.time) || reappearing || !direction)
+		return
+	var/turf/newLoc = get_step(src,direction)
+	setDir(direction)
+
+	movedelay = world.time + movespeed
+
+	if(newLoc.flags_1 & NOJAUNT_1)
+		to_chat(user, "<span class='warning'>Some strange aura is blocking the way.</span>")
+		return
+
+	forceMove(newLoc)
+
 /obj/effect/dummy/phased_mob/spell_jaunt/infinity/relaymove(mob/user, direction)
 	if(user == passenger)
 		return
