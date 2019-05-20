@@ -15,7 +15,7 @@
 /obj/item/infinity_stone/supermatter/DisarmEvent(atom/target, mob/living/user, proximity_flag)
 	if(!HandleGolem(user, target))
 		FireProjectile(/obj/item/projectile/forcefire, target)
-		user.changeNext_move(CLICK_CD_RANGE)
+		user.changeNext_move(6)
 
 /obj/item/infinity_stone/supermatter/GrabEvent(atom/target, mob/living/user, proximity_flag)
 	if(!proximity_flag || !HandleGolem(user, target))
