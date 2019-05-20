@@ -519,6 +519,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	clothes_req = FALSE
 	human_req = FALSE
 	staff_req = FALSE
+	antimagic_allowed = TRUE
 	invocation_type = "none"
 	action_background_icon_state = "bg_default"
 

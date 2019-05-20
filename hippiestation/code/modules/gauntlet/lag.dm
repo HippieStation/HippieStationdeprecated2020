@@ -107,6 +107,7 @@
 	clothes_req = FALSE
 	staff_req = FALSE
 	human_req = FALSE
+	antimagic_allowed = TRUE
 	charge_max = 750
 	invocation_type = "none"
 

@@ -194,6 +194,7 @@
 	human_req = FALSE // because a monkey with an infinity stone is funny
 	clothes_req = FALSE
 	staff_req = FALSE
+	antimagic_allowed = TRUE
 	invocation_type = "none"
 
 /obj/effect/proc_holder/spell/targeted/infinity //copypaste from shadowling
@@ -202,6 +203,7 @@
 	human_req = FALSE
 	clothes_req = FALSE
 	staff_req = FALSE
+	antimagic_allowed = TRUE
 	invocation_type = "none"
 	var/obj/item/infinity_stone/stone
 	var/mob/living/user

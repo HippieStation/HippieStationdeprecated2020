@@ -65,6 +65,7 @@
 	clothes_req = FALSE
 	human_req = FALSE
 	staff_req = FALSE
+	antimagic_allowed = TRUE
 	jaunt_duration = 100
 	invocation_type = "none"
 	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'

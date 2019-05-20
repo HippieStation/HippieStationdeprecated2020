@@ -190,6 +190,7 @@
 	human_req = FALSE
 	clothes_req = FALSE
 	staff_req = FALSE
+	antimagic_allowed = TRUE
 	invocation_type = "none"
 
 /obj/effect/proc_holder/spell/targeted/tesla/supermatter_stone/cast(list/targets, mob/user = usr)

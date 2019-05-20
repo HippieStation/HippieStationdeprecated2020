@@ -312,6 +312,7 @@
 	clothes_req = FALSE
 	human_req = FALSE
 	staff_req = FALSE
+	antimagic_allowed = TRUE
 
 /obj/effect/proc_holder/spell/targeted/turf_teleport/blink/infinity_cluwne
 	name = "Cluwne Blink"
