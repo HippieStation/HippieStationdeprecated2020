@@ -142,10 +142,10 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
-		C.electrocute_act(3, src, 1, FALSE, FALSE, FALSE, FALSE, FALSE)
+		C.electrocute_act(7, src, 1, FALSE, FALSE, FALSE, FALSE, FALSE)
 	else if(isliving(target))
 		var/mob/living/L = target
-		L.electrocute_act(3, src, 1, FALSE, FALSE, FALSE, FALSE)
+		L.electrocute_act(7, src, 1, FALSE, FALSE, FALSE, FALSE)
 
 /obj/effect/projectile/tracer/voltray
 	name = "volt ray"
@@ -177,7 +177,7 @@
 				var/mob/living/L = AM
 				L.adjust_fire_stacks(2)
 				L.IgniteMob()
-				L.Paralyze(25)
+				L.Paralyze(4)
 			AM.throw_at(get_edge_target_turf(AM, get_dir(src, AM)), knockback, 4)
 
 /obj/effect/proc_holder/spell/targeted/tesla/supermatter_stone

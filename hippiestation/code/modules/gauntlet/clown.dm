@@ -367,7 +367,7 @@
 	icon = 'hippiestation/icons/obj/infinity.dmi'
 	icon_state = "thanoscar"
 	color = "#6F3C89"
-	max_integrity = 100
+	max_integrity = 45
 	max_occupants = 1
 	key_type = null
 	movedelay = 0.6
@@ -378,7 +378,7 @@
 	if(isliving(M))
 		var/mob/living/L = M
 		visible_message("<span class='danger'>[src] rams into [L]!</span>")
-		L.Paralyze(55)
+		L.Paralyze(25)
 
 /obj/vehicle/sealed/car/thanos/proc/RunOver(mob/living/carbon/C)
 	visible_message("<span class='danger'>[src] runs over [C]!</span>")
