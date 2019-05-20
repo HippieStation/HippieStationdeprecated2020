@@ -408,6 +408,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		if (prompt == "Yes")
 			user.dropItemToGround(src)
 			if(user.put_in_hands(src))
+				if(LAZYLEN(GLOB.wizardstart))
+					user.forceMove(pick(GLOB.wizardstart))
 				if(ishuman(user))
 					var/mob/living/carbon/human/H = user
 					H.set_species(/datum/species/ganymede)
