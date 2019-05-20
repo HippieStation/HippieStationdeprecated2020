@@ -438,6 +438,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 				cargo_moneys.adjust_money(30000)
 				GLOB.telescroll_time = world.time + 10 MINUTES
 				to_chat(user, "<span class='notice bold'>You need to wait 10 minutes before teleporting to the station.</span>")
+				to_chat(user, "<span class='notice bold'>You can click on the pinpointer at the top right to track a stone.</span>")
+				to_chat(user, "<span class='notice bold'>Examine a stone/the gauntlet to see what each intent does.</span>")
 				ADD_TRAIT(src, TRAIT_NODROP, GAUNTLET_TRAIT)
 				locked_on = TRUE
 				visible_message("<span class='danger bold'>The badmin gauntlet clamps to [user]'s hand!</span>")
