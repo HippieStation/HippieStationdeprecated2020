@@ -1,0 +1,4 @@
+author: "HideAndSeekLOGIC"
+delete-after: True
+changes: 
+  - bugfix: "Fixes spaceman hunger rendering self-surgery organs unusable."
