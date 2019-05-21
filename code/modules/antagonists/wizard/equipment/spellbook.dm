@@ -730,6 +730,7 @@
 					if(E.limit)
 						E.limit--
 					uses -= E.cost
+					gauntlet_flag = TRUE // hippie -- badmin gauntlet
 		else if(href_list["refund"])
 			E = entries[text2num(href_list["refund"])]
 			if(E && E.refundable)

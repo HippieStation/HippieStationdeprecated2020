@@ -1,3 +1,6 @@
+/obj/item/spellbook
+	var/gauntlet_flag = FALSE
+
 /obj/item/spellbook/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/infinity_gauntlet))
 		var/obj/item/infinity_gauntlet/IG = O
@@ -126,6 +129,9 @@
 	if(!..())
 		return FALSE
 	return (SSticker.mode.name != "ragin' mages") && !GLOB.gauntlet_equipped && (GLOB.Debug2 || GLOB.joined_player_list.len >= 25)
+
+/datum/spellbook_entry/item/badmin_gauntlet/CanBuy(mob/living/carbon/human/user, obj/item/spellbook/book)
+	return ..() && !book.gauntlet_flag
 
 /datum/spellbook_entry/summon/guns/IsAvailible()
 	if (!..())
