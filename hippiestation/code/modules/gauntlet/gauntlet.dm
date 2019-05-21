@@ -46,6 +46,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	icon_state = "gauntlet"
 	force = 25
 	armour_penetration = 70
+	var/badmin = FALSE
 	var/next_flash = 0
 	var/flash_index = 1
 	var/locked_on = FALSE
@@ -408,8 +409,6 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		if (prompt == "Yes")
 			user.dropItemToGround(src)
 			if(user.put_in_hands(src))
-				if(LAZYLEN(GLOB.wizardstart))
-					user.forceMove(pick(GLOB.wizardstart))
 				if(ishuman(user))
 					var/mob/living/carbon/human/H = user
 					H.set_species(/datum/species/ganymede)
@@ -433,10 +432,13 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 					if(SB.owner == user)
 						qdel(SB)
 				user.apply_status_effect(/datum/status_effect/agent_pinpointer/gauntlet)
-				priority_announce("A Wizard has declared that he will wipe out half the universe with the Badmin Gauntlet!\nStones have been scattered across the station. Protect anyone who holds one!\nCargo has been given $30k to spend, use it wisely!", title = "Declaration of War", sound = 'hippiestation/sound/misc/wizard_wardec.ogg')
-				var/datum/bank_account/cargo_moneys = SSeconomy.get_dep_account(ACCOUNT_CAR)
-				cargo_moneys.adjust_money(30000)
-				GLOB.telescroll_time = world.time + 10 MINUTES
+				if(!badmin)
+					if(LAZYLEN(GLOB.wizardstart))
+						user.forceMove(pick(GLOB.wizardstart))
+					priority_announce("A Wizard has declared that he will wipe out half the universe with the Badmin Gauntlet!\nStones have been scattered across the station. Protect anyone who holds one!\nCargo has been given $30k to spend, use it wisely!", title = "Declaration of War", sound = 'hippiestation/sound/misc/wizard_wardec.ogg')
+					var/datum/bank_account/cargo_moneys = SSeconomy.get_dep_account(ACCOUNT_CAR)
+					cargo_moneys.adjust_money(30000)
+					GLOB.telescroll_time = world.time + 10 MINUTES
 				to_chat(user, "<span class='notice bold'>You need to wait 10 minutes before teleporting to the station.</span>")
 				to_chat(user, "<span class='notice bold'>You can click on the pinpointer at the top right to track a stone.</span>")
 				to_chat(user, "<span class='notice bold'>Examine a stone/the gauntlet to see what each intent does.</span>")
@@ -453,7 +455,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 				user.mind.RemoveAllSpells()
 				UpdateAbilities(user)
 				OnEquip(user)
-				MakeStonekeepers(user)
+				if(!badmin)
+					MakeStonekeepers(user)
 			else
 				to_chat(user, "<span class='danger'>You do not have an empty hand for the Badmin Gauntlet.</span>")
 		return
@@ -749,3 +752,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 /datum/objective/snap/check_completion()
 	return GLOB.gauntlet_snapped
+
+
+
+/obj/item/infinity_gauntlet/badmin
+	badmin = TRUE
