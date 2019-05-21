@@ -310,6 +310,7 @@
 	reagent_state = LIQUID
 	taste_description = "artificial grape"
 	var/obj/effect/hallucination/simple/druggy/brain
+	var/list/spook_images = list()
 
 /datum/reagent/drug/grape_blast/proc/create_brain(mob/living/carbon/C)
 	var/turf/where = locate(C.x + pick(-1, 1), C.y + pick(-1, 1), C.z)
@@ -325,7 +326,7 @@
 			high_message = pick("Holy shit, I feel so fucking happy...", "What the fuck is going on?", "Where am I?")
 			if(prob(15))
 				H.dna.add_mutation(SMILE)
-			if(prob(30)) //blurry eyes and talk like an idiot
+			else if(prob(30)) //blurry eyes and talk like an idiot
 				H.blur_eyes(2)
 				H.derpspeech++
 		if(31 to INFINITY)
@@ -333,23 +334,27 @@
 			if(prob(20))
 				var/rotation = min(round(current_cycle/4), 90)
 				for(var/obj/screen/plane_master/whole_screen in screens)
-					animate(whole_screen, transform = matrix(rotation, MATRIX_ROTATE), time = 50, easing = CIRCULAR_EASING)
-					animate(transform = matrix(-rotation, MATRIX_ROTATE), time = 5, easing = BACK_EASING)
-			if(prob(20))
-				for(var/obj/screen/plane_master/whole_screen in screens)
 					if(prob(50))
-						whole_screen.filters += filter(type="wave", x=30*rand() - 30, y=30*rand() - 30, size=rand()*2.0+0.5, offset=rand(), flags = WAVE_BOUNDED)
+						animate(whole_screen, transform = matrix(rotation, MATRIX_ROTATE), time = 50, easing = CIRCULAR_EASING)
+						animate(transform = matrix(-rotation, MATRIX_ROTATE), time = 5, easing = BACK_EASING)
 					else
-						whole_screen.filters += filter(type="motion_blur" , x=30*rand() - 30, y=30*rand() - 30)
-					animate(whole_screen.filters[whole_screen.filters.len], size = 10, time = 80, SINE_EASING, flags = ANIMATION_PARALLEL)
-					high_message = pick("Holy shit...", "Reality doesn't exist man.")
-			if(prob(15))
+						animate(whole_screen, transform = matrix(rotation*10, MATRIX_ROTATE), time = 120, easing = QUAD_EASING, loop = -1)
+						animate(whole_screen, transform = matrix()*2.5, time = 120, easing = QUAD_EASING, loop = -1)
+			else if(prob(10))
+				for(var/obj/screen/plane_master/whole_screen in screens)
+					whole_screen.filters += filter(type="wave", x=20*rand() - 20, y=20*rand() - 20, size=rand()*0.1, offset=rand()*0.5, flags = WAVE_BOUNDED)
+					animate(whole_screen.filters[whole_screen.filters.len], size = rand(1,3), time = 60, easing = ELASTIC_EASING, flags = ANIMATION_PARALLEL)
+				high_message = pick("Holy shit...", "Reality doesn't exist man.")
+				to_chat(H, "<span class='notice'>You feel reality melt away...</span>")
+			//else if(prob(10))
+			//	trippy_smoke(H)
+			else if(prob(5))
 				create_brain(H)
-			if(prob(5))
+			else if(prob(4))
 				H.emote("laugh")
 				H.say(pick("GRERRKRKRK",";HAHAH I AM SO FUCKING HIGH!!","I AM A BUTTERFLY!!"))
 				H.visible_message("<span class='notice'>[H] looks high as fuck!</span>")
-			if(prob(3))
+			else if(prob(3))
 				H.Knockdown(20)
 				H.emote("laugh")
 				H.say(pick("TURN IT ON!!!","I CAN HEAR VOICES AHAHAHAH","YOU'RE GOKU!!"))
@@ -358,20 +363,36 @@
 		to_chat(H, "<i>You hear your own thoughts... <b>[high_message]</i></b>")
 	..()
 
-/datum/reagent/drug/grape_blast/on_mob_delete(mob/living/M)
-	cure_autism(M)
+/datum/reagent/drug/grape_blast/on_mob_delete(mob/living/L)
+	cure_autism(L)
 	..()
 
-/datum/reagent/drug/grape_blast/proc/cure_autism(mob/living/carbon/M)
-	to_chat(M, "<span class='notice'>As the drugs wear off, you feel yourself slowly coming back to reality...</span>")
-	M.drowsyness++ //We feel sleepy after going through that trip.
-	if(!HAS_TRAIT(M, TRAIT_DUMB))
-		M.derpspeech = 0
-	if(M && M.hud_used)
-		var/list/screens = list(M.hud_used.plane_masters["[FLOOR_PLANE]"], M.hud_used.plane_masters["[GAME_PLANE]"], M.hud_used.plane_masters["[LIGHTING_PLANE]"], M.hud_used.plane_masters["[CAMERA_STATIC_PLANE]"])
+/datum/reagent/drug/grape_blast/proc/cure_autism(mob/living/carbon/C)
+	to_chat(C, "<span class='notice'>As the drugs wear off, you feel yourself slowly coming back to reality...</span>")
+	C.drowsyness++ //We feel sleepy after going through that trip.
+	if(!HAS_TRAIT(C, TRAIT_DUMB))
+		C.derpspeech = 0
+	if(C && C.hud_used)
+		var/list/screens = list(C.hud_used.plane_masters["[FLOOR_PLANE]"], C.hud_used.plane_masters["[GAME_PLANE]"], C.hud_used.plane_masters["[LIGHTING_PLANE]"], C.hud_used.plane_masters["[CAMERA_STATIC_PLANE]"])
 		for(var/obj/screen/plane_master/whole_screen in screens)
 			animate(whole_screen, transform = matrix(), time = 200, easing = ELASTIC_EASING)
 			whole_screen.filters = list()
+/*
+/datum/reagent/drug/grape_blast/proc/trippy_smoke(mob/living/carbon/C)
+	for(var/obj/effect/spook in GLOB.smoke)
+		var/image/trippy_image = image(loc = spook)
+		if(trippy_image)
+			trippy_image = new(spook.loc)
+			trippy_image.filters += filter(type="wave", x=40*rand() - 20, y=40*rand() - 20, size=rand(), offset=rand())
+			animate(trippy_image.filters[trippy_image.filters.len], size = 5, time = 20)
+			spook_images += trippy_image
+			if(C.client)
+				C.client.images |= spook_images
+			addtimer(CALLBACK(src, .proc/stop_trip, C),80)
+*/
+/datum/reagent/drug/grape_blast/proc/stop_trip(mob/living/carbon/C)
+	if(C.client)
+		C.client.images -= spook_images
 
 /obj/effect/hallucination/simple/druggy
 	name = "Your brain"
