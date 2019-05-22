@@ -478,13 +478,6 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 				ADD_TRAIT(src, TRAIT_NODROP, GAUNTLET_TRAIT)
 				locked_on = TRUE
 				visible_message("<span class='danger bold'>The badmin gauntlet clamps to [user]'s hand!</span>")
-				for(var/mob/living/simple_animal/hostile/guardian/G in user.hasparasites())
-					user.visible_message("<span class='danger'>[G] is killed by the sheer force of \the [src]!</span>")
-					G.Recall(TRUE)
-					qdel(G)
-				user.verbs -= /mob/living/proc/guardian_comm
-				user.verbs -= /mob/living/proc/guardian_recall
-				user.verbs -= /mob/living/proc/guardian_reset
 				user.mind.RemoveAllSpells()
 				UpdateAbilities(user)
 				OnEquip(user)
