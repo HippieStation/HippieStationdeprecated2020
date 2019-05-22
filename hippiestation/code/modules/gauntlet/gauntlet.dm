@@ -435,7 +435,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 				if(!badmin)
 					if(LAZYLEN(GLOB.wizardstart))
 						user.forceMove(pick(GLOB.wizardstart))
-					priority_announce("A Wizard has declared that he will wipe out half the universe with the Badmin Gauntlet!\nStones have been scattered across the station. Protect anyone who holds one!\nCargo has been given $50k to spend, and Science has been given 50k techpoints, use them wisely!", title = "Declaration of War", sound = 'hippiestation/sound/misc/wizard_wardec.ogg')
+					priority_announce("A Wizard has declared that he will wipe out half the universe with the Badmin Gauntlet!\nStones have been scattered across the station. Protect anyone who holds one!\nCargo has been given $50k to spend, and Science has been given 50k techpoints plus a large amount of minerals, use them wisely!", title = "Declaration of War", sound = 'hippiestation/sound/misc/wizard_wardec.ogg')
 					var/datum/bank_account/cargo_moneys = SSeconomy.get_dep_account(ACCOUNT_CAR)
 					var/datum/bank_account/sci_moneys = SSeconomy.get_dep_account(ACCOUNT_SCI)
 					if(cargo_moneys)
@@ -443,6 +443,33 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 					if(sci_moneys)
 						sci_moneys.adjust_money(50000)
 						SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, 50000)
+					var/obj/structure/closet/supplypod/bluespacepod/pod = new()
+					pod.explosionSize = list(0,0,0,0)
+					var/list/materials_to_give_science = list(/obj/item/stack/sheet/metal, 
+						/obj/item/stack/sheet/plasteel,
+						/obj/item/stack/sheet/mineral/diamond,
+						/obj/item/stack/sheet/mineral/uranium,
+						/obj/item/stack/sheet/mineral/plasma,
+						/obj/item/stack/sheet/mineral/gold,
+						/obj/item/stack/sheet/mineral/silver,
+						/obj/item/stack/sheet/glass,
+						/obj/item/stack/ore/bluespace_crystal/artificial)
+					for(var/mat in materials_to_give_science)
+						var/obj/item/stack/sheet/S = new mat(pod)
+						S.amount = 50
+						S.update_icon()
+					var/list/tiles = list()
+					for(var/turf/T in get_area_turfs(/area/science/lab))
+						if(!T.density)
+							var/clear = TRUE
+							for(var/obj/O in T)
+								if(O.density)
+									clear = FALSE
+									break
+							if(clear)
+								tiles += T
+					if(LAZYLEN(tiles))
+						new /obj/effect/DPtarget(get_turf(pick(tiles)), pod)
 					GLOB.telescroll_time = world.time + 10 MINUTES
 				to_chat(user, "<span class='notice bold'>You need to wait 10 minutes before teleporting to the station.</span>")
 				to_chat(user, "<span class='notice bold'>You can click on the pinpointer at the top right to track a stone.</span>")
