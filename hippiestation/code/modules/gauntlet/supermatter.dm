@@ -111,6 +111,10 @@
 		Finished()
 		return TRUE
 	remove_ranged_ability()
+	if(!caller.Adjacent(L))
+		to_chat(caller, "<span class='notice'>They're too far away!</span>")
+		revert_cast()
+		return FALSE
 	if(do_after(caller, 30, target = L))
 		L.visible_message("<span class='danger bold'>[L] seems a bit hot...</span>", "<span class='userdanger'>You feel like you'll explode any second!</span>")
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/explosion, L, 0, 0, 2, 3, TRUE, FALSE, 3), 150)
