@@ -1,0 +1,4 @@
+author: "NautilusViper"
+delete-after: True
+changes: 
+  - soundadd: "Revolvers now have a previously unused reload sound."
