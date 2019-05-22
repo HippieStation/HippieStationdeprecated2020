@@ -25,7 +25,6 @@
 		gauntlet_spells += new T(src)
 	for(var/T in stone_spell_types)
 		stone_spells += new T(src)
-//	RegisterSignal(src, COMSIG_ITEM_PICKUP, .proc/UpdateHolder)
 //	RegisterSignal(src, COMSIG_ITEM_DROPPED, .proc/UpdateHolder)
 //	RegisterSignal(src, COMSIG_ITEM_EQUIPPED, .proc/UpdateHolder)
 	AddComponent(/datum/component/stationloving, TRUE)
@@ -50,6 +49,18 @@
 
 /obj/item/infinity_stone/ex_act(severity, target)
 	return
+
+/obj/item/infinity_stone/pickup(mob/user)
+	. = ..()
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.dna && H.dna.check_mutation(CLUWNEMUT))
+			to_chat(H, "<span class='danger'>\The [src] pulses in your hands, sending a spasm of pain and forcing you to drop it!</span>")
+			addtimer(CALLBACK(src, .proc/NoPickingMeUp, H), 5)
+
+/obj/item/infinity_stone/proc/NoPickingMeUp(mob/user)
+	user.dropItemToGround(src, TRUE)
+	forceMove(get_turf(user))
 
 /obj/item/infinity_stone/proc/ShowExamine(mob/user) // a seperate thing for the gauntlet
 	for(var/A in ability_text)
