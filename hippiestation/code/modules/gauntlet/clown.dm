@@ -354,7 +354,7 @@
 	user.visible_message("<span class='danger bold'>[user] summons the THANOS CAR!</span>")
 	var/obj/vehicle/sealed/car/thanos/thanos_car = new(get_turf(user))
 	thanos_car.mob_forced_enter(user, TRUE)
-	addtimer(CALLBACK(thanos_car, /obj/vehicle/sealed/car/thanos.proc/ByeBye), 30 SECONDS)
+	addtimer(CALLBACK(thanos_car, /obj/vehicle/sealed/car/thanos.proc/ByeBye), 15 SECONDS)
 	
 
 ///////////////////////////////////////
