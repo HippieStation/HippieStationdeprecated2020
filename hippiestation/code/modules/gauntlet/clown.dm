@@ -382,7 +382,7 @@
 
 /obj/vehicle/sealed/car/thanos/proc/RunOver(mob/living/carbon/C)
 	visible_message("<span class='danger'>[src] runs over [C]!</span>")
-	C.take_bodypart_damage(35, check_armor = TRUE)
+	C.take_bodypart_damage(17.5, check_armor = TRUE)
 
 /mob/living/carbon/Crossed(atom/movable/AM)
 	if(istype(AM, /obj/vehicle/sealed/car/thanos))
