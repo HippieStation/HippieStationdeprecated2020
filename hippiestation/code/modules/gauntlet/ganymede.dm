@@ -96,6 +96,7 @@
 	item_color = ""
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL
+	has_sensor = NO_SENSORS
 	can_adjust = 0
 
 /obj/item/clothing/under/hippie/ganymedian/equipped(mob/user, slot)
