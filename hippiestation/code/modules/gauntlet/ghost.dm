@@ -1,3 +1,5 @@
+//Originally coded for HippieStation by Steamp0rt, shared under the AGPL license.
+
 /obj/item/infinity_stone/ghost
 	name = "Ghost Stone"
 	desc = "Salts your food very well."

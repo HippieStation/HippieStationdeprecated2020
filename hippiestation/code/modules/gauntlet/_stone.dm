@@ -1,3 +1,5 @@
+//Originally coded for HippieStation by Steamp0rt, shared under the AGPL license.
+
 /obj/item/infinity_stone
 	name = "Generic Stone"
 	icon = 'hippiestation/icons/obj/infinity.dmi'

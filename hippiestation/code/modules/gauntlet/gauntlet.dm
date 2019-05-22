@@ -1,3 +1,5 @@
+//Originally coded for HippieStation by Steamp0rt, shared under the AGPL license.
+
 GLOBAL_VAR_INIT(gauntlet_snapped, FALSE)
 GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
 GLOBAL_LIST_INIT(infinity_stones, list(SYNDIE_STONE, BLUESPACE_STONE, SUPERMATTER_STONE, LAG_STONE, CLOWN_STONE, GHOST_STONE))

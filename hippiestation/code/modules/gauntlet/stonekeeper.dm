@@ -1,3 +1,5 @@
+//Originally coded for HippieStation by Steamp0rt, shared under the AGPL license.
+
 /datum/antagonist/stonekeeper
 	name = "Stonekeeper"
 	show_in_antagpanel = FALSE

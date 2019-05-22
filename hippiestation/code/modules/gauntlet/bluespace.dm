@@ -1,3 +1,5 @@
+//Originally coded for HippieStation by Steamp0rt, shared under the AGPL license.
+
 /obj/item/infinity_stone/bluespace
 	name = "Bluespace Stone"
 	desc = "Stare into the abyss, and the abyss stares back..."

@@ -1,3 +1,5 @@
+//Originally coded for HippieStation by Steamp0rt, shared under the AGPL license.
+
 /obj/item/infinity_stone/lag
 	name = "Lag Stone"
 	desc = "The bane of a coder's existence."

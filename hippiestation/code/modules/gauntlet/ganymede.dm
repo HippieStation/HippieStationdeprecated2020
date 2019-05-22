@@ -1,5 +1,6 @@
-// haha get it? they're both moons. titan and ganymede.
+//Originally coded for HippieStation by Steamp0rt, shared under the AGPL license.
 
+// haha get it? they're both moons. titan and ganymede.
 /datum/species/ganymede
 	name = "Ganymedian"
 	id = "ganymede"

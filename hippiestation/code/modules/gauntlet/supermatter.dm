@@ -1,3 +1,5 @@
+//Originally coded for HippieStation by Steamp0rt, shared under the AGPL license.
+
 /obj/item/infinity_stone/supermatter
 	name = "Supermatter Stone"
 	desc = "Don't touch, it's hot! Oh yeah, and it bends reality."
