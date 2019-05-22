@@ -666,6 +666,11 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		passenger.mobility_flags |= MOBILITY_MOVE
 	
 /obj/effect/dummy/phased_mob/spell_jaunt/infinity
+	name = "shadow"
+	icon = 'hippiestation/icons/obj/infinity.dmi'
+	icon_state = "shadow"
+	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | LAVA_PROOF
+	invisibility = 0
 	var/mob/living/passenger
 
 /obj/effect/dummy/phased_mob/spell_jaunt/infinity/relaymove(var/mob/user, direction)
