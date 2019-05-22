@@ -303,7 +303,11 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 /obj/item/infinity_gauntlet/proc/AttackThing(mob/user, atom/target)
 	. = FALSE
-	if(istype(target, /obj/structure/safe))
+	if(istype(target, /obj/mecha))
+		. = TRUE
+		var/obj/mecha/mech = target
+		mech.take_damage(17.5) // 17.5 extra damage against mechs, because this calls AFTER hitting something
+	else if(istype(target, /obj/structure/safe))
 		. = TRUE
 		var/obj/structure/safe/S = target
 		user.visible_message("<span class='danger'>[user] begins to pry open [S]!<span>", "<span class='notice'>We begin to pry open [S]...</span>")
