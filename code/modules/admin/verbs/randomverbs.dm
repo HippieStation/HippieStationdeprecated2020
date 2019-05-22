@@ -615,7 +615,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			T.ScrapeAway()
 		else
 			vv_update_display(D, "deleted", VV_MSG_DELETED)
-			qdel(D)
+			qdel(D, TRUE) // hippie -- make admin delete force delete
 			if(!QDELETED(D))
 				vv_update_display(D, "deleted", "")
 
