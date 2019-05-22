@@ -2,5 +2,5 @@
 	..()
 	checklisp()
 	
- /mob/living/carbon/human/handle_hygiene()
+/mob/living/carbon/human/handle_hygiene()
  	return
