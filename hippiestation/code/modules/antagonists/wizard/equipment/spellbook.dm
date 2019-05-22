@@ -128,10 +128,10 @@
 /datum/spellbook_entry/item/badmin_gauntlet/IsAvailible()
 	if(!..())
 		return FALSE
-	return (SSticker.mode.name != "ragin' mages") && !GLOB.gauntlet_equipped && (GLOB.Debug2 || GLOB.joined_player_list.len >= 25)
+	return (SSticker.mode.name != "ragin' mages") && !GLOB.gauntlet_equipped
 
 /datum/spellbook_entry/item/badmin_gauntlet/CanBuy(mob/living/carbon/human/user, obj/item/spellbook/book)
-	return ..() && !book.gauntlet_flag
+	return ..() && !book.gauntlet_flag && (GLOB.Debug2 || GLOB.joined_player_list.len >= 27)
 
 /datum/spellbook_entry/summon/guns/IsAvailible()
 	if (!..())
