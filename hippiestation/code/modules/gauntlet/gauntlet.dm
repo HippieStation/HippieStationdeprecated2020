@@ -442,6 +442,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 				to_chat(user, "<span class='notice bold'>You need to wait 10 minutes before teleporting to the station.</span>")
 				to_chat(user, "<span class='notice bold'>You can click on the pinpointer at the top right to track a stone.</span>")
 				to_chat(user, "<span class='notice bold'>Examine a stone/the gauntlet to see what each intent does.</span>")
+				to_chat(user, "<span class='notice bold'>You can smash walls, tables, grilles, windows, and safes on HARM intent.</span>")
 				ADD_TRAIT(src, TRAIT_NODROP, GAUNTLET_TRAIT)
 				locked_on = TRUE
 				visible_message("<span class='danger bold'>The badmin gauntlet clamps to [user]'s hand!</span>")
