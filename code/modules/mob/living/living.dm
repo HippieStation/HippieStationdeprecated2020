@@ -1101,12 +1101,8 @@ hippie end */
 	var/stun = IsStun()
 	var/knockdown = IsKnockdown()
 	var/ignore_legs = get_leg_ignore()
-<<<<<<< HEAD
-	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && (has_arms || ignore_legs || has_legs) && !pinned_to //hippie edit - support for pinning
-=======
 	var/in_stasis = IsInStasis()
-	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && !in_stasis && (has_arms || ignore_legs || has_legs)
->>>>>>> 6aa8ceb... [READY] Replaces sleepers with stasis beds (Lifeform Stasis Unit) (#43075)
+	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && !in_stasis && pinned_to &&(has_arms || ignore_legs || has_legs) //hippie edit - support for pinning
 	if(canmove)
 		mobility_flags |= MOBILITY_MOVE
 	else
