@@ -40,14 +40,10 @@
 			//Stuff jammed in your limbs hurts
 			handle_embedded_objects()
 
-<<<<<<< HEAD
-	handle_hygiene()
-=======
 		if(stat != DEAD)
 			handle_hygiene()
 
 		dna.species.spec_life(src) // for mutantraces
->>>>>>> 6aa8ceb... [READY] Replaces sleepers with stasis beds (Lifeform Stasis Unit) (#43075)
 
 	//Update our name based on whether our face is obscured/disfigured
 	name = get_visible_name()
