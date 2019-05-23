@@ -116,12 +116,12 @@
 /datum/mutation/human/clumsy/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.add_trait(TRAIT_CLUMSY, GENETIC_MUTATION)
+	ADD_TRAIT(owner, TRAIT_CLUMSY, GENETIC_MUTATION)
 
 /datum/mutation/human/clumsy/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.remove_trait(TRAIT_CLUMSY, GENETIC_MUTATION)
+	REMOVE_TRAIT(owner, TRAIT_CLUMSY, GENETIC_MUTATION)
 
 
 //Tourettes causes you to randomly stand in place and shout.
@@ -134,7 +134,7 @@
 
 /datum/mutation/human/tourettes/on_life()
 	if(prob(10 * GET_MUTATION_SYNCHRONIZER(src)) && owner.stat == CONSCIOUS && !owner.IsStun())
-		owner.Stun(200)
+		owner.Stun(10)	//Hippie - reduced tourettes stun from literally 20 seconds down to 1 second
 		switch(rand(1, 3))
 			if(1)
 				owner.emote("twitch")
@@ -158,12 +158,12 @@
 /datum/mutation/human/deaf/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.add_trait(TRAIT_DEAF, GENETIC_MUTATION)
+	ADD_TRAIT(owner, TRAIT_DEAF, GENETIC_MUTATION)
 
 /datum/mutation/human/deaf/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.remove_trait(TRAIT_DEAF, GENETIC_MUTATION)
+	REMOVE_TRAIT(owner, TRAIT_DEAF, GENETIC_MUTATION)
 
 
 //Monified turns you into a monkey.
@@ -227,12 +227,12 @@
 /datum/mutation/human/insulated/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.add_trait(TRAIT_SHOCKIMMUNE, "genetics")
+	ADD_TRAIT(owner, TRAIT_SHOCKIMMUNE, "genetics")
 
 /datum/mutation/human/insulated/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
-	owner.remove_trait(TRAIT_SHOCKIMMUNE, "genetics")
+	REMOVE_TRAIT(owner, TRAIT_SHOCKIMMUNE, "genetics")
 
 /datum/mutation/human/fire
 	name = "Fiery Sweat"

@@ -491,7 +491,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 
 /obj/item/clothing/mask/fakemoustache/italian/cursed/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, STICKY_MOUSTACHE_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, STICKY_MOUSTACHE_TRAIT)
 
 //Spells and Status Effects
 //Horse Stance Spell

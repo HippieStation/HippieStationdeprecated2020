@@ -15,7 +15,6 @@
 
 	var/cores_to_spawn = 1
 	var/players_per_core = 22
-	var/blob_point_rate = 3
 	var/blob_base_starting_points = 80
 	var/list/blob_overminds = list()
 
@@ -44,7 +43,6 @@
 		B.mind.name = B.name
 		var/turf/T = pick(GLOB.blobstart)
 		B.forceMove(T)
-		B.base_point_rate = blob_point_rate
 
 	SSshuttle.registerHostileEnvironment(src)
 

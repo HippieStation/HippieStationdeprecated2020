@@ -10,10 +10,10 @@
 	flags_1 = MASKINTERNALS
 	item_flags = ABSTRACT | DROPDEL
 	flags_inv = HIDEEARS|HIDEEYES
-	
+
 /obj/item/clothing/mask/hippie/cluwne/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/clothing/mask/hippie/cluwne/equipped(mob/user, slot)
 	if(!ishuman(user))

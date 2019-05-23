@@ -47,7 +47,7 @@
 		return ..()
 
 /obj/item/reagent_containers/proc/canconsume(mob/eater, mob/user)
-	if(!iscarbon(eater))
+/*	if(!iscarbon(eater)) // hippie start -- eat through helmets
 		return 0
 	var/mob/living/carbon/C = eater
 	var/covered = ""
@@ -59,6 +59,7 @@
 		var/who = (isnull(user) || eater == user) ? "your" : "[eater.p_their()]"
 		to_chat(user, "<span class='warning'>You have to remove [who] [covered] first!</span>")
 		return 0
+	*/ // hippie end
 	return 1
 
 /obj/item/reagent_containers/ex_act()
@@ -78,7 +79,7 @@
 
 /obj/item/reagent_containers/proc/bartender_check(atom/target)
 	. = FALSE
-	if(target.CanPass(src, get_turf(src)) && thrownby && thrownby.has_trait(TRAIT_BOOZE_SLIDER))
+	if(target.CanPass(src, get_turf(src)) && thrownby && HAS_TRAIT(thrownby, TRAIT_BOOZE_SLIDER))
 		. = TRUE
 
 /obj/item/reagent_containers/proc/SplashReagents(atom/target, thrown = FALSE)
