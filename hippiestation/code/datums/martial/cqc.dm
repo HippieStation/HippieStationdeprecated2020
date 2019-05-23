@@ -107,7 +107,8 @@
 
 /datum/martial_art/cqc/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if (just_a_cook)
-		if (!is_type_in_typecache(get_area(A), areas_under_siege))
+		var/A_area = get_area(A)
+		if (!is_type_in_typecache(A_area, areas_under_siege))
 			return FALSE
 	add_to_streak("G",D)
 	if(check_streak(A,D))
