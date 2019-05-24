@@ -332,7 +332,7 @@
 		if(31 to INFINITY)
 			high_message = pick("I feel like I'm flying!", "I feel something swimming inside my lungs....", "I can see the words I'm saying...")
 			if(prob(10))
-				var/rotation = min(round(current_cycle/4), 90)
+				var/rotation = min(round(current_cycle/4), 45)
 				for(var/obj/screen/plane_master/whole_screen in screens)
 					if(prob(60))
 						animate(whole_screen, transform = matrix(rotation, MATRIX_ROTATE), time = 50, easing = CIRCULAR_EASING)
@@ -347,7 +347,10 @@
 				high_message = pick("Holy shit...", "Reality doesn't exist man.")
 				to_chat(H, "<span class='notice'>You feel reality melt away...</span>")
 			else if(prob(5))
-				create_brain(H,H)
+				create_brain(H)
+				brain.spook(H)
+//			else if(prob(7))
+//				for(var/obj/screen in H.hud_used)
 			else if(prob(4))
 				H.emote("laugh")
 				H.say(pick("GRERRKRKRK",";HAHAH I AM SO FUCKING HIGH!!","I AM A BUTTERFLY!!"))
@@ -377,7 +380,7 @@
 			whole_screen.filters = list()
 
 /datum/reagent/drug/grape_blast/proc/trippy_hud(mob/living/carbon/C)
-
+	return
 //addtimer(CALLBACK(src, .proc/stop_trip, C),80)
 
 /datum/reagent/drug/grape_blast/proc/stop_trip(mob/living/carbon/C)
@@ -390,16 +393,13 @@
 	image_icon = 'icons/obj/surgery.dmi'
 	image_state = "brain"
 
-/obj/effect/hallucination/simple/druggy/Initialize(mob/living/L)
-	. = ..()
-	spook(L)
-
 /obj/effect/hallucination/simple/druggy/proc/spook(mob/living/L)
 	sleep(20)
 	var/image/I = image('icons/mob/talk.dmi', src, "default2", FLY_LAYER)
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-	if(L && L.client)
-		L.Hear("This is your brain on drugs.", src)
+	if(L)
+		//L.send_speech("This is your brain on drugs.", 7, src, message_language=get_default_language())
+		L.Hear("This is your brain on drugs.", src, L.get_default_language())
 		INVOKE_ASYNC(GLOBAL_PROC, /.proc/flick_overlay, I, list(L.client), 30)
 	sleep(10)
 	animate(src, transform = matrix()*0.75, time = 5)
