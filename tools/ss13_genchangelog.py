@@ -195,13 +195,7 @@ with open(args.targetFile.replace('.htm', '.dry.htm') if args.dryRun else args.t
             for (css_class, change) in (dictToTuples(e)[0] for e in all_changelog_entries[_date][author]):
                 if change in changes_added: continue
                 write_entry = True
-<<<<<<< HEAD
-                changes_added += [change] 
-                css_class = css_class.encode('ascii', 'ignore').decode('ascii')
-                change = change.encode('ascii', 'ignore').decode('ascii')
-=======
                 changes_added += [change]
->>>>>>> 5c6e7a5... PR to make travis use xenial and to make it work (#44079)
                 author_htm += '\t\t\t\t<li class="{css_class}">{change}</li>\n'.format(css_class=css_class, change=change.strip())
             author_htm += '\t\t\t</ul>\n'
             if len(changes_added) > 0:
