@@ -346,10 +346,8 @@
 					animate(whole_screen.filters[whole_screen.filters.len], size = rand(1,3), time = 60, easing = ELASTIC_EASING)
 				high_message = pick("Holy shit...", "Reality doesn't exist man.")
 				to_chat(H, "<span class='notice'>You feel reality melt away...</span>")
-			//else if(prob(10))
-			//	trippy_smoke(H)
 			else if(prob(5))
-				create_brain(H)
+				create_brain(H,H)
 			else if(prob(4))
 				H.emote("laugh")
 				H.say(pick("GRERRKRKRK",";HAHAH I AM SO FUCKING HIGH!!","I AM A BUTTERFLY!!"))
@@ -377,19 +375,11 @@
 		for(var/obj/screen/plane_master/whole_screen in screens)
 			animate(whole_screen, transform = matrix(), time = 200, easing = ELASTIC_EASING)
 			whole_screen.filters = list()
-/*
-/datum/reagent/drug/grape_blast/proc/trippy_smoke(mob/living/carbon/C)
-	for(var/obj/effect/spook in GLOB.smoke)
-		var/image/trippy_image = image(loc = spook)
-		if(trippy_image)
-			trippy_image = new(spook.loc)
-			trippy_image.filters += filter(type="wave", x=40*rand() - 20, y=40*rand() - 20, size=rand(), offset=rand())
-			animate(trippy_image.filters[trippy_image.filters.len], size = 5, time = 20)
-			spook_images += trippy_image
-			if(C.client)
-				C.client.images |= spook_images
-			addtimer(CALLBACK(src, .proc/stop_trip, C),80)
-*/
+
+/datum/reagent/drug/grape_blast/proc/trippy_hud(mob/living/carbon/C)
+
+//addtimer(CALLBACK(src, .proc/stop_trip, C),80)
+
 /datum/reagent/drug/grape_blast/proc/stop_trip(mob/living/carbon/C)
 	if(C.client)
 		C.client.images -= spook_images
@@ -400,20 +390,17 @@
 	image_icon = 'icons/obj/surgery.dmi'
 	image_state = "brain"
 
-/obj/effect/hallucination/simple/druggy/Initialize()
+/obj/effect/hallucination/simple/druggy/Initialize(mob/living/L)
 	. = ..()
-	spook()
+	spook(L)
 
-/obj/effect/hallucination/simple/druggy/proc/spook()
+/obj/effect/hallucination/simple/druggy/proc/spook(mob/living/L)
 	sleep(20)
-	say("This is your brain on drugs.")
-	var/list/speech_bubble_recipients = list()
-	for(var/mob/M in get_hearers_in_view(6, src))
-		if(M.client)
-			speech_bubble_recipients.Add(M.client)
 	var/image/I = image('icons/mob/talk.dmi', src, "default2", FLY_LAYER)
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-	INVOKE_ASYNC(GLOBAL_PROC, /.proc/flick_overlay, I, speech_bubble_recipients, 30)
+	if(L && L.client)
+		L.Hear("This is your brain on drugs.", src)
+		INVOKE_ASYNC(GLOBAL_PROC, /.proc/flick_overlay, I, list(L.client), 30)
 	sleep(10)
 	animate(src, transform = matrix()*0.75, time = 5)
 	QDEL_IN(src, 30)
