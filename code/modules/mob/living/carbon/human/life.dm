@@ -28,16 +28,11 @@
 	if (QDELETED(src))
 		return 0
 
-<<<<<<< HEAD
-	if(.) //not dead
-		handle_active_genes()
-=======
 	if(!IS_IN_STASIS(src))
 		if(.) //not dead
 
 			for(var/datum/mutation/human/HM in dna.mutations) // Handle active genes
 				HM.on_life()
->>>>>>> cdad5e9... Removes some unnecessary wrapper procs (#44061)
 
 	if(stat != DEAD)
 		//heart attack stuff
