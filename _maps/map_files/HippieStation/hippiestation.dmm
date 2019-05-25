@@ -504,6 +504,18 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/security/main)
+"abt" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 4
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "AI Core shutters";
+	name = "AI core shutters"
+	},
+/turf/open/space/basic,
+/area/ai_monitored/turret_protected/ai)
 "abu" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -2144,6 +2156,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"aem" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	icon_state = "pipe11-1";
+	dir = 4
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "AI Core shutters";
+	name = "AI core shutters"
+	},
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/ai)
 "aen" = (
 /obj/machinery/button/door{
 	id = "permacell3";
@@ -109186,7 +109210,7 @@ cKK
 cKj
 cKj
 cKW
-tDk
+abt
 cLk
 cLo
 cLq
@@ -109700,7 +109724,7 @@ cKM
 cKQ
 cKj
 cKY
-tDk
+aem
 cKF
 cKG
 cKj
