@@ -58,6 +58,7 @@
 	human_req = FALSE
 	staff_req = FALSE
 	antimagic_allowed = TRUE
+	anti_magic_check = FALSE
 	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_background_icon_state = "syndie"
 	invocation_type = "none"
