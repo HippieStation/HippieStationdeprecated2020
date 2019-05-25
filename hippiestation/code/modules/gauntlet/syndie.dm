@@ -18,19 +18,19 @@
 	martial_art = new
 
 /obj/item/infinity_stone/syndie/HelpEvent(atom/target, mob/living/user, proximity_flag)
-	if(ishuman(user) && ishuman(target))
+	if(ishuman(user) && ishuman(target) && proximity_flag)
 		martial_art.help_act(user, target)
 
 /obj/item/infinity_stone/syndie/DisarmEvent(atom/target, mob/living/user, proximity_flag)
-	if(ishuman(user) && ishuman(target))
+	if(ishuman(user) && ishuman(target) && proximity_flag)
 		martial_art.disarm_act(user, target)
 
 /obj/item/infinity_stone/syndie/HarmEvent(atom/target, mob/living/user, proximity_flag)
-	if(ishuman(user) && ishuman(target))
+	if(ishuman(user) && ishuman(target) && proximity_flag)
 		martial_art.harm_act(user, target)
 
 /obj/item/infinity_stone/syndie/GrabEvent(atom/target, mob/living/user, proximity_flag)
-	if(ishuman(user) && ishuman(target))
+	if(ishuman(user) && ishuman(target) && proximity_flag)
 		martial_art.grab_act(user, target)
 
 /obj/item/infinity_stone/syndie/GiveAbilities(mob/living/L, gauntlet = FALSE)
