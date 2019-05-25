@@ -522,7 +522,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		if(!GetStone(IS.stone_type))
 			user.visible_message("<span class='danger bold'>[user] drops the [IS] into the Badmin Gauntlet.</span>")
 			if(IS.stone_type == SYNDIE_STONE)
-				force = 22.5
+				force = 27.5
 			IS.forceMove(src)
 			stones += IS
 			GET_COMPONENT_FROM(stationloving, /datum/component/stationloving, IS)
