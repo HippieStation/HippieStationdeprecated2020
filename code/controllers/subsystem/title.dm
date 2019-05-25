@@ -20,7 +20,7 @@ SUBSYSTEM_DEF(title)
 
 	var/list/provisional_title_screens = flist("[global.config.directory]/title_screens/images/")
 	var/list/title_screens = list()
-	var/use_rare_screens = prob(1)
+	//var/use_rare_screens = prob(1) | hippie - fix title screens
 
 	SSmapping.HACK_LoadMapConfig()
 	for(var/S in provisional_title_screens)
