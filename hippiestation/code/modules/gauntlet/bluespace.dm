@@ -16,7 +16,7 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		var/obj/O = L.get_active_held_item()
-		if(O && !istype(O, /obj/item/infinity_stone) && !istype(O, /obj/item/infinity_gauntlet) && L.dropItemToGround(O))
+		if(O && !istype(O, /obj/item/infinity_stone) && !istype(O, /obj/item/badmin_gauntlet) && L.dropItemToGround(O))
 			L.visible_message("<span class='danger'>[L]'s [O] disappears from their hands!</span>", "<span class='danger'>Our [O] disappears!</span>")
 			O.forceMove(get_turf(user))
 			user.equip_to_slot(O, SLOT_IN_BACKPACK)	

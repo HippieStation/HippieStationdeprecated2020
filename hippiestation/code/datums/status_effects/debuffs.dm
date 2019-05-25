@@ -70,10 +70,10 @@
 
 /datum/status_effect/infinity_stone/tick()
 	var/has_other_stone = FALSE
-	if(istype(stone.loc, /obj/item/infinity_gauntlet))
+	if(istype(stone.loc, /obj/item/badmin_gauntlet))
 		return
 	for(var/obj/item/infinity_stone/IS in owner.GetAllContents())
-		if(IS != stone && !istype(IS.loc, /obj/item/infinity_gauntlet))
+		if(IS != stone && !istype(IS.loc, /obj/item/badmin_gauntlet))
 			has_other_stone = TRUE
 	if(!has_other_stone)
 		return

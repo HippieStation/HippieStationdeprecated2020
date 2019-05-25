@@ -344,7 +344,7 @@
 	if(!..())
 		if(isliving(hit_atom))
 			var/mob/living/M = hit_atom
-			if(locate(/obj/item/infinity_gauntlet) in M)
+			if(locate(/obj/item/badmin_gauntlet) in M)
 				to_chat("<span class='danger'>[src] hits you, and you feel dizzy...</span>")
 				M.set_dizziness(75)
 			else

@@ -110,7 +110,7 @@
 	UpdateHolder()
 
 /obj/item/infinity_stone/proc/UpdateHolder()
-	if(istype(loc, /obj/item/infinity_gauntlet))
+	if(istype(loc, /obj/item/badmin_gauntlet))
 		return //gauntlet handles this from now on
 	var/mob/living/new_holder = GetHolder()
 	var/mob/living/new_aura_holder = GetAuraHolder()
@@ -141,7 +141,7 @@
 			aura_holder = null
 
 /obj/item/infinity_stone/proc/GiveStatusEffect(mob/living/target)
-	if(istype(loc, /obj/item/infinity_gauntlet))
+	if(istype(loc, /obj/item/badmin_gauntlet))
 		return
 	var/list/effects = target.has_status_effect_list(/datum/status_effect/infinity_stone)
 	var/datum/status_effect/infinity_stone/M
@@ -165,7 +165,7 @@
 /obj/item/infinity_stone/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!isliving(user))
 		return
-	if(istype(target, /obj/item/infinity_gauntlet))
+	if(istype(target, /obj/item/badmin_gauntlet))
 		return
 	switch(user.a_intent)
 		if(INTENT_DISARM)

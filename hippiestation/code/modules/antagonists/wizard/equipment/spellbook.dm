@@ -2,8 +2,8 @@
 	var/gauntlet_flag = FALSE
 
 /obj/item/spellbook/attackby(obj/item/O, mob/user, params)
-	if(istype(O, /obj/item/infinity_gauntlet))
-		var/obj/item/infinity_gauntlet/IG = O
+	if(istype(O, /obj/item/badmin_gauntlet))
+		var/obj/item/badmin_gauntlet/IG = O
 		if(IG.locked_on)
 			to_chat(user, "<span class='notice'>You've put the gauntlet on already. No turning back now.</span>")
 			return
@@ -123,7 +123,7 @@
 	desc = "A gauntlet capable of holding the Infinity Stones. <b>Wearing this will trigger a war declaration!</b>. Before you wear it, you can refund it by hitting it against the spellbook. \
 		<b>You cannot buy this if you have bought anything else!</b> \
 		Requires 27+ crew."
-	item_path = /obj/item/infinity_gauntlet
+	item_path = /obj/item/badmin_gauntlet
 	category = "Rituals"
 	cost = 10
 

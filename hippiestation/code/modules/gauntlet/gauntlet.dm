@@ -42,7 +42,7 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 	))
 GLOBAL_VAR_INIT(telescroll_time, 0)
 
-/obj/item/infinity_gauntlet
+/obj/item/badmin_gauntlet
 	name = "Badmin Gauntlet"
 	icon = 'hippiestation/icons/obj/infinity.dmi'
 	icon_state = "gauntlet"
@@ -60,7 +60,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	var/mob/living/carbon/last_aura_holder
 
 
-/obj/item/infinity_gauntlet/Initialize()
+/obj/item/badmin_gauntlet/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	AddComponent(/datum/component/spell_catalyst)
@@ -72,11 +72,11 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	spells += new /obj/effect/proc_holder/spell/self/infinity/gauntlet_bullcharge
 	spells += new /obj/effect/proc_holder/spell/self/infinity/gauntlet_jump
 
-/obj/item/infinity_gauntlet/Destroy()
+/obj/item/badmin_gauntlet/Destroy()
 	. = ..()
 	STOP_PROCESSING(SSobj, src)
 
-/obj/item/infinity_gauntlet/process()
+/obj/item/badmin_gauntlet/process()
 	if(!FullyAssembled())
 		return
 	if(world.time < next_flash)
@@ -95,22 +95,22 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	flash_index = index + 1
 	next_flash = world.time + 10
 
-/obj/item/infinity_gauntlet/examine(mob/user)
+/obj/item/badmin_gauntlet/examine(mob/user)
 	. = ..()
 	for(var/obj/item/infinity_stone/IS in stones)
 		to_chat(user, "<span class='bold notice'>[IS.name] mode</span>")
 		IS.ShowExamine(user)
 
-/obj/item/infinity_gauntlet/ex_act(severity, target)
+/obj/item/badmin_gauntlet/ex_act(severity, target)
 	return
 
-/obj/item/infinity_gauntlet/proc/GetStone(stone_type)
+/obj/item/badmin_gauntlet/proc/GetStone(stone_type)
 	for(var/obj/item/infinity_stone/I in stones)
 		if(I.stone_type == stone_type)
 			return I
 	return
 
-/obj/item/infinity_gauntlet/proc/DoSnap(mob/living/snapee)
+/obj/item/badmin_gauntlet/proc/DoSnap(mob/living/snapee)
 	var/dust_time = rand(5 SECONDS, 10 SECONDS)
 	var/dust_sound = pick(
 		'hippiestation/sound/effects/snap/snap1.wav',
@@ -124,7 +124,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, snapee, dust_sound, 100, TRUE), dust_time-2.5)
 	addtimer(CALLBACK(snapee, /mob/living.proc/dust, TRUE), dust_time)
 
-/obj/item/infinity_gauntlet/proc/DoTheSnap()
+/obj/item/badmin_gauntlet/proc/DoTheSnap()
 	var/mob/living/snapper = usr
 	var/list/players = GLOB.player_list.Copy()
 	var/list/mobs = GLOB.alive_mob_list.Copy() - players
@@ -150,7 +150,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		DoSnap(L)
 		mobs_wiped++
 
-/obj/item/infinity_gauntlet/proc/GetWeightedChances(list/job_list, list/blacklist)
+/obj/item/badmin_gauntlet/proc/GetWeightedChances(list/job_list, list/blacklist)
 	var/list/jobs = list()
 	var/list/weighted_list = list()
 	for(var/A in job_list)
@@ -160,7 +160,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			weighted_list[M.current] = job_list[M.assigned_role]
 	return weighted_list
 
-/obj/item/infinity_gauntlet/proc/MakeStonekeepers(mob/living/current_user)
+/obj/item/badmin_gauntlet/proc/MakeStonekeepers(mob/living/current_user)
 	var/list/has_a_stone = list(current_user)
 	for(var/stone in GLOB.infinity_stones)
 		var/list/to_get_stones = GetWeightedChances(GLOB.infinity_stone_weights[stone], has_a_stone)
@@ -191,19 +191,19 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			L.equip_to_slot(IS, SLOT_IN_BACKPACK)
 
 
-/obj/item/infinity_gauntlet/proc/FullyAssembled()
+/obj/item/badmin_gauntlet/proc/FullyAssembled()
 	for(var/stone in GLOB.infinity_stones)
 		if(!GetStone(stone))
 			return FALSE
 	return TRUE
 
-/obj/item/infinity_gauntlet/proc/GetStoneColor(stone_type)
+/obj/item/badmin_gauntlet/proc/GetStoneColor(stone_type)
 	var/obj/item/infinity_stone/IS = GetStone(stone_type)
 	if(IS && istype(IS))
 		return IS.color
 	return "#DC143C" //crimson by default
 
-/obj/item/infinity_gauntlet/proc/OnEquip(mob/living/user)
+/obj/item/badmin_gauntlet/proc/OnEquip(mob/living/user)
 	for(var/obj/effect/proc_holder/spell/A in spells)
 		user.mob_spell_list += A
 		A.action.Grant(user)
@@ -217,7 +217,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		user.mind.announce_objectives()
 	user.move_resist = INFINITY
 
-/obj/item/infinity_gauntlet/proc/OnUnquip(mob/living/user)
+/obj/item/badmin_gauntlet/proc/OnUnquip(mob/living/user)
 	user.cut_overlay(flashy_aura)
 	GET_COMPONENT_FROM(stationloving, /datum/component/stationloving, user)
 	if(stationloving)
@@ -228,19 +228,19 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	user.move_resist = initial(user.move_resist)
 	TakeAbilities(user)
 
-/obj/item/infinity_gauntlet/pickup(mob/user)
+/obj/item/badmin_gauntlet/pickup(mob/user)
 	. = ..()
 	if(locked_on && isliving(user))
 		OnEquip(user)
 		visible_message("<span class='danger'>The Badmin Gauntlet attaches to [user]'s hand!.</span>")
 
-/obj/item/infinity_gauntlet/dropped(mob/user)
+/obj/item/badmin_gauntlet/dropped(mob/user)
 	. = ..()
 	if(locked_on && isliving(user))
 		OnUnquip(user)
 		visible_message("<span class='danger'>The Badmin Gauntlet falls off of [user].</span>")
 
-/obj/item/infinity_gauntlet/proc/TakeAbilities(mob/living/user)
+/obj/item/badmin_gauntlet/proc/TakeAbilities(mob/living/user)
 	for(var/obj/item/infinity_stone/IS in stones)
 		IS.RemoveAbilities(user, TRUE)
 		IS.TakeVisualEffects(user)
@@ -252,7 +252,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		martial_art.remove(user)
 
 // warning: contains snowflake code for syndie stone
-/obj/item/infinity_gauntlet/proc/GiveAbilities(mob/living/user)
+/obj/item/badmin_gauntlet/proc/GiveAbilities(mob/living/user)
 	var/obj/item/infinity_stone/syndie = GetStone(SYNDIE_STONE)
 	if(!syndie)
 		for(var/obj/effect/proc_holder/spell/A in spells)
@@ -274,11 +274,11 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			if(stone_mode != SYNDIE_STONE)
 				IS.GiveAbilities(user, TRUE)
 
-/obj/item/infinity_gauntlet/proc/UpdateAbilities(mob/living/user)
+/obj/item/badmin_gauntlet/proc/UpdateAbilities(mob/living/user)
 	TakeAbilities(user)
 	GiveAbilities(user)
 
-/obj/item/infinity_gauntlet/update_icon()
+/obj/item/badmin_gauntlet/update_icon()
 	cut_overlays()
 	var/index = 1
 	var/image/veins = image(icon = 'hippiestation/icons/obj/infinity.dmi', icon_state = "glow-overlay")
@@ -293,7 +293,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		add_overlay(O)
 		index++
 
-/obj/item/infinity_gauntlet/melee_attack_chain(mob/user, atom/target, params)
+/obj/item/badmin_gauntlet/melee_attack_chain(mob/user, atom/target, params)
 	if(!tool_attack_chain(user, target) && pre_attack(target, user, params))
 		if(user == target)
 			if(target && !QDELETED(src))
@@ -303,7 +303,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			if(!resolved && target && !QDELETED(src))
 				afterattack(target, user, 1, params)
 
-/obj/item/infinity_gauntlet/proc/AttackThing(mob/user, atom/target)
+/obj/item/badmin_gauntlet/proc/AttackThing(mob/user, atom/target)
 	. = FALSE
 	if(istype(target, /obj/mecha))
 		. = TRUE
@@ -373,7 +373,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 					C.emote("scream")
 					BP.receive_damage(stamina = 100)
 
-/obj/item/infinity_gauntlet/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/badmin_gauntlet/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!locked_on)
 		return ..()
 	if(!isliving(user))
@@ -407,7 +407,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		if(INTENT_HELP)
 			IS.HelpEvent(target, user, proximity_flag)
 
-/obj/item/infinity_gauntlet/attack_self(mob/living/user)
+/obj/item/badmin_gauntlet/attack_self(mob/living/user)
 	if(!istype(user))
 		return
 	if(!locked_on)
@@ -513,7 +513,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		UpdateAbilities(user)
 		update_icon()
 
-/obj/item/infinity_gauntlet/attackby(obj/item/I, mob/living/user, params)
+/obj/item/badmin_gauntlet/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/infinity_stone))
 		if(!locked_on)
 			to_chat(user, "<span class='notice'>You need to wear the gauntlet first.</span>")
@@ -537,7 +537,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			return
 	return ..()
 
-/obj/item/infinity_gauntlet/proc/check_menu(mob/living/user)
+/obj/item/badmin_gauntlet/proc/check_menu(mob/living/user)
 	if(!istype(user))
 		return FALSE
 	if(user.incapacitated() || !user.Adjacent(src))
@@ -730,7 +730,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	stat_allowed = TRUE
 
 /obj/effect/proc_holder/spell/self/infinity/snap/cast(list/targets, mob/living/user)
-	var/obj/item/infinity_gauntlet/IG = locate() in user
+	var/obj/item/badmin_gauntlet/IG = locate() in user
 	if(!IG || !istype(IG))
 		return
 	var/prompt = alert("Are you REALLY sure you'd like to erase half the life in the universe?", "SNAP?", "YES!", "No")
@@ -792,5 +792,5 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 
 
-/obj/item/infinity_gauntlet/badmin
+/obj/item/badmin_gauntlet/for_badmins
 	badmin = TRUE
