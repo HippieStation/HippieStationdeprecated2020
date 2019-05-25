@@ -57,3 +57,8 @@
 						 'sound/ambience/ambimaint4.ogg',
 						 'sound/ambience/ambimaint5.ogg',
 						 'sound/spookoween/ghosty_wind.ogg')
+
+/area/quartermaster/arrivals
+	name = "Cargo Arrival Processing"
+	icon = 'hippiestation/icons/turf/areas.dmi'
+	icon_state = "cargo_proc"
