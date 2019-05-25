@@ -330,6 +330,8 @@
 		var/BR = brightness
 		var/PO = bulb_power
 		var/CO = bulb_colour
+		if(color)
+			CO = color
 		var/area/A = get_area(src)
 		if (A && A.fire)
 			CO = bulb_emergency_colour
@@ -368,6 +370,10 @@
 			removeStaticPower(static_power_used, STATIC_LIGHT)
 
 	broken_sparks(start_only=TRUE)
+	
+/obj/machinery/light/update_atom_colour()
+	..()
+	update()
 
 /obj/machinery/light/proc/broken_sparks(start_only=FALSE)
 	if(status == LIGHT_BROKEN && has_power())
