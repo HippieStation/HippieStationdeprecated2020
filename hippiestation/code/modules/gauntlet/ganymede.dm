@@ -64,15 +64,20 @@
 /obj/item/tank/jetpack/ganypack
 	name = "Ganypack"
 	desc = "An alien-made jetpack, capable of infinite spaceflight."
+	icon = 'hippiestation/icons/obj/infinity.dmi'
+	icon_state = "ganypack"
+	item_state = "flightpack_off"
 	gas_type = null
 	actions_types = list(/datum/action/item_action/toggle_jetpack, /datum/action/item_action/jetpack_stabilization)
 
 /obj/item/tank/jetpack/ganypack/turn_off(mob/user)
 	. = ..()
+	item_state = "flightpack_off"
 	slowdown = 0
 
 /obj/item/tank/jetpack/ganypack/turn_on(mob/user)
 	. = ..()
+	item_state = "flightpack_boost"
 	slowdown = 1
 
 /obj/item/tank/jetpack/ganypack/allow_thrust(num, mob/living/user)
