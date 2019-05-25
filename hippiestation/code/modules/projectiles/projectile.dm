@@ -1,4 +1,5 @@
 /obj/item/projectile
+	var/will_be_spammed = FALSE
 	speed = 0.2 //four times faster
 
 /obj/item/projectile/magic
