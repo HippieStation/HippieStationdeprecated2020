@@ -487,6 +487,9 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 					for(var/obj/machinery/telecomms/TC in world)
 						if(istype(get_area(TC), /area/tcommsat))
 							TC.resistance_flags |= INDESTRUCTIBLE
+					for(var/obj/machinery/power/apc/APC in world)
+						if(istype(get_area(APC), /area/tcommsat))
+							APC.resistance_flags |= INDESTRUCTIBLE
 					// move ai(s) to bridge
 					var/list/bridge_tiles = list()
 					for(var/turf/T in get_area_turfs(/area/bridge))
