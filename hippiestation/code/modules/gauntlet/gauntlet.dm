@@ -213,6 +213,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			W.objectives -= O
 			qdel(O)
 		W.objectives += new /datum/objective/snap
+		W.can_hijack = HIJACK_NEUTRAL
 		user.mind.announce_objectives()
 	user.move_resist = INFINITY
 
