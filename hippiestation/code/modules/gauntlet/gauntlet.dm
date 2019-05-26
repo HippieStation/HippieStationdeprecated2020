@@ -32,9 +32,8 @@ GLOBAL_LIST_INIT(infinity_stone_weights, list(
 			"Cargo Technician" = 20
 		),
 		GHOST_STONE = list(
-			"Captain" = 55,
-			"Head of Personnel" = 45,
-			"Chaplain" = 25
+			"Chief Medical Officer" = 50,
+			"Chaplain" = 50
 		),
 		CLOWN_STONE = list(
 			"Clown" = 100
@@ -572,10 +571,10 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet/cast(list/targets, mob/user)
 	if(isliving(user))
-		var/mob/living/L = user
+		var/mob/living/L ="Chief Medical Officer
 		if(L.on_fire)
-			to_chat(L, "<span class='notice'>The fire interferes with your regeneration!'</span>")
-			revert_cast(L)
+			to_chat(L, "<s"Chief Medical Officer
+			revert_cast(L)"Chief Medical Officer
 			return
 		if(L.stat == DEAD)
 			to_chat(L, "<span class='notice'>You can't regenerate out of death.</span>")
