@@ -379,17 +379,8 @@
 	if(isliving(M))
 		var/mob/living/L = M
 		visible_message("<span class='danger'>[src] rams into [L]!</span>")
-		L.Paralyze(25)
-
-/obj/vehicle/sealed/car/thanos/proc/RunOver(mob/living/carbon/C)
-	visible_message("<span class='danger'>[src] runs over [C]!</span>")
-	C.take_bodypart_damage(17.5, check_armor = TRUE)
-
-/mob/living/carbon/Crossed(atom/movable/AM)
-	if(istype(AM, /obj/vehicle/sealed/car/thanos))
-		var/obj/vehicle/sealed/car/thanos/TC = AM
-		TC.RunOver(src)
-	return ..()
+		L.throw_at(get_edge_target_turf(src, get_dir(src, L)), 7, 5)
+		L.take_bodypart_damage(15, check_armor = TRUE)
 
 /obj/vehicle/sealed/car/thanos/proc/ByeBye()
 	for(var/mob/living/L in return_occupants())
