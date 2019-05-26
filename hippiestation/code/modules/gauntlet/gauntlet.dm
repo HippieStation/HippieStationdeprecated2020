@@ -571,10 +571,10 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet/cast(list/targets, mob/user)
 	if(isliving(user))
-		var/mob/living/L ="Chief Medical Officer
+		var/mob/living/L = user
 		if(L.on_fire)
-			to_chat(L, "<s"Chief Medical Officer
-			revert_cast(L)"Chief Medical Officer
+			to_chat(L, "<span class='notice'>The fire interferes with your regeneration!</span>")
+			revert_cast(L)
 			return
 		if(L.stat == DEAD)
 			to_chat(L, "<span class='notice'>You can't regenerate out of death.</span>")

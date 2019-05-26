@@ -347,6 +347,9 @@
 			if(locate(/obj/item/badmin_gauntlet) in M)
 				to_chat("<span class='danger'>[src] hits you, and you feel dizzy...</span>")
 				M.set_dizziness(75)
+				for(var/obj/effect/proc_holder/spell/S in M.mob_spell_list)
+					S.charge_counter = 0
+					S.action.UpdateButtonIcon()
 			else
 				to_chat("<span class='danger'>You're knocked out cold by [src]!</span>")
 				M.Unconscious(600)
