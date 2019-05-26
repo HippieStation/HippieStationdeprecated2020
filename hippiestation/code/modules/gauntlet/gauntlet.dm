@@ -440,7 +440,13 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 				if(!badmin)
 					if(LAZYLEN(GLOB.wizardstart))
 						user.forceMove(pick(GLOB.wizardstart))
-					priority_announce("A Wizard has declared that he will wipe out half the universe with the Badmin Gauntlet!\nStones have been scattered across the station. Protect anyone who holds one!\nCargo has been given $50k to spend, and Science has been given 50k techpoints plus a large amount of minerals, use them wisely!", title = "Declaration of War", sound = 'hippiestation/sound/misc/wizard_wardec.ogg')
+					priority_announce("A Wizard has declared that he will wipe out half the universe with the Badmin Gauntlet!\n\
+						Stones have been scattered across the station. Protect anyone who holds one!\n\
+						We've allocated a large amount of resources to you, for protecting the Stones:\n\
+							Cargo has been given $50k to spend\n\
+							Science has been given 50k techpoints, and a large amount of minerals.\n\
+							In addition, we've moved your Artifical Intelligence unit to your Bridge, and reinforced your telecommunications machinery.", title = "Declaration of War", sound = 'hippiestation/sound/misc/wizard_wardec.ogg')
+					// give cargo/sci money
 					var/datum/bank_account/cargo_moneys = SSeconomy.get_dep_account(ACCOUNT_CAR)
 					var/datum/bank_account/sci_moneys = SSeconomy.get_dep_account(ACCOUNT_SCI)
 					if(cargo_moneys)
@@ -448,8 +454,9 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 					if(sci_moneys)
 						sci_moneys.adjust_money(50000)
 						SSresearch.science_tech.add_point_type(TECHWEB_POINT_TYPE_DEFAULT, 50000)
-					var/obj/structure/closet/supplypod/bluespacepod/pod = new()
-					pod.explosionSize = list(0,0,0,0)
+					// give sci materials
+					var/obj/structure/closet/supplypod/bluespacepod/sci_pod = new()
+					sci_pod.explosionSize = list(0,0,0,0)
 					var/list/materials_to_give_science = list(/obj/item/stack/sheet/metal, 
 						/obj/item/stack/sheet/plasteel,
 						/obj/item/stack/sheet/mineral/diamond,
@@ -460,10 +467,10 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 						/obj/item/stack/sheet/glass,
 						/obj/item/stack/ore/bluespace_crystal/artificial)
 					for(var/mat in materials_to_give_science)
-						var/obj/item/stack/sheet/S = new mat(pod)
+						var/obj/item/stack/sheet/S = new mat(sci_pod)
 						S.amount = 50
 						S.update_icon()
-					var/list/tiles = list()
+					var/list/sci_tiles = list()
 					for(var/turf/T in get_area_turfs(/area/science/lab))
 						if(!T.density)
 							var/clear = TRUE
@@ -472,11 +479,33 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 									clear = FALSE
 									break
 							if(clear)
-								tiles += T
-					if(LAZYLEN(tiles))
-						new /obj/effect/DPtarget(get_turf(pick(tiles)), pod)
+								sci_tiles += T
+					if(LAZYLEN(sci_tiles))
+						new /obj/effect/DPtarget(get_turf(pick(sci_tiles)), sci_pod)
+					// make telecomms machinery invincible
+					for(var/obj/machinery/telecomms/TC in world)
+						if(istype(get_area(TC), /area/tcommsat))
+							TC.resistance_flags |= INDESTRUCTIBLE
+					// move ai(s) to bridge
+					var/list/bridge_tiles = list()
+					for(var/turf/T in get_area_turfs(/area/bridge))
+						if(!T.density)
+							var/clear = TRUE
+							for(var/obj/O in T)
+								if(O.density)
+									clear = FALSE
+									break
+							if(clear)
+								bridge_tiles += T
+					if(LAZYLEN(bridge_tiles))
+						for(var/mob/living/silicon/ai/AI in GLOB.ai_list)
+							var/obj/structure/closet/supplypod/bluespacepod/ai_pod = new
+							AI.forceMove(ai_pod)
+							AI.move_resist = MOVE_FORCE_NORMAL
+							new /obj/effect/DPtarget(get_turf(pick(bridge_tiles)), ai_pod)
 					GLOB.telescroll_time = world.time + 10 MINUTES
-				to_chat(user, "<span class='notice bold'>You need to wait 10 minutes before teleporting to the station.</span>")
+					addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, user, "<span class='notice bold'>You can now teleport to the station.</span>"), 10 MINUTES)
+					to_chat(user, "<span class='notice bold'>You need to wait 10 minutes before teleporting to the station.</span>")
 				to_chat(user, "<span class='notice bold'>You can click on the pinpointer at the top right to track a stone.</span>")
 				to_chat(user, "<span class='notice bold'>Examine a stone/the gauntlet to see what each intent does.</span>")
 				to_chat(user, "<span class='notice bold'>You can smash walls, tables, grilles, windows, and safes on HARM intent.</span>")
