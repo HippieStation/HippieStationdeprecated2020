@@ -5,20 +5,26 @@
 	//the if "armor" check is because this is used for everything on /living, including humans
 	if(armor && armour_penetration)
 		armor = max(0, armor - armour_penetration)
-		if(penetrated_text)
-			to_chat(src, "<span class='userdanger'>[penetrated_text]</span>")
-		else
-			to_chat(src, "<span class='userdanger'>Your armor was penetrated!</span>")
+		if(world.time >= next_armor_spam) // hippie start
+			if(penetrated_text)
+				to_chat(src, "<span class='userdanger'>[penetrated_text]</span>")
+			else
+				to_chat(src, "<span class='userdanger'>Your armor was penetrated!</span>")
+			next_armor_spam = world.time + 7.5 // hippie end
 	else if(armor >= 100)
-		if(absorb_text)
-			to_chat(src, "<span class='userdanger'>[absorb_text]</span>")
-		else
-			to_chat(src, "<span class='userdanger'>Your armor absorbs the blow!</span>")
+		if(world.time >= next_armor_spam) // hippie start
+			if(absorb_text)
+				to_chat(src, "<span class='userdanger'>[absorb_text]</span>")
+			else
+				to_chat(src, "<span class='userdanger'>Your armor absorbs the blow!</span>")
+			next_armor_spam = world.time + 7.5 // hippie end
 	else if(armor > 0)
-		if(soften_text)
-			to_chat(src, "<span class='userdanger'>[soften_text]</span>")
-		else
-			to_chat(src, "<span class='userdanger'>Your armor softens the blow!</span>")
+		if(world.time >= next_armor_spam) // hippie start
+			if(soften_text)
+				to_chat(src, "<span class='userdanger'>[soften_text]</span>")
+			else
+				to_chat(src, "<span class='userdanger'>Your armor softens the blow!</span>")
+			next_armor_spam = world.time + 7.5 // hippie end
 	return armor
 
 

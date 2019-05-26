@@ -26,9 +26,7 @@
 	
 /obj/item/projectile/bullet/pellet/shotgun_buckshot
 	damage = 6.25
-	will_be_spammed = TRUE
 
 /obj/item/projectile/bullet/pellet/shotgun_rubbershot
 	damage = 1.5
 	stamina = 12.5
-	will_be_spammed = TRUE

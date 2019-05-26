@@ -4,6 +4,7 @@
 	name = "Stonekeeper"
 	show_in_antagpanel = FALSE
 	show_name_in_check_antagonists = TRUE
+	prevent_roundtype_conversion = FALSE
 
 /datum/antagonist/stonekeeper/greet()
 	to_chat(owner, "<span class='userdanger'>You are a stonekeeper!</span>")

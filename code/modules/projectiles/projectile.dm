@@ -187,7 +187,7 @@
 				var/volume = vol_by_damage()
 				playsound(loc, hitsound, volume, 1, -1)
 			// hippie start -- reduce shotgun lag
-			if(!will_be_spammed || (will_be_spammed && world.time >= L.next_spam_shot))
+			if(world.time >= L.next_spam_shot)
 				L.visible_message("<span class='danger'>[L] is hit by \a [src][organ_hit_text]!</span>", \
 						"<span class='userdanger'>[L] is hit by \a [src][organ_hit_text]!</span>", null, COMBAT_MESSAGE_RANGE)
 				L.next_spam_shot = world.time + 7.5
