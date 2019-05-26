@@ -216,7 +216,7 @@
 /obj/effect/proc_holder/spell/self/infinity/soulscreech/cast(list/targets, mob/user)
 	. = ..()
 	user.visible_message("<span class='danger bold'>[user] lets out a horrifying screech!</span>")
-	for(var/mob/living/L in view(7, user))
+	for(var/mob/living/L in get_hearers_in_view(6, user))
 		if(L == user)
 			continue
 		var/list/effects = list(1, 2, 3, 4, 6)
@@ -241,7 +241,7 @@
 				L.ForceContractDisease(new /datum/disease/vampire)
 			if(5)
 				L.Stun(40)
-				L.petrify()
+				L.petrify(3 MINUTES)
 			if(6)
 				L.Unconscious(100)
 
@@ -315,6 +315,7 @@
 	human_req = FALSE
 	staff_req = FALSE
 	antimagic_allowed = TRUE
+	sound = 'hippiestation/sound/effects/pocketsand.ogg'
 
 /obj/effect/proc_holder/spell/targeted/turf_teleport/blink/infinity_cluwne
 	name = "Cluwne Blink"
