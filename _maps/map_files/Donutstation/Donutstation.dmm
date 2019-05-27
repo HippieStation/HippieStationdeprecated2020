@@ -19214,7 +19214,7 @@
 	},
 /obj/machinery/requests_console{
 	department = "Atmospherics";
-	departmentType = 4;
+	departmentType = 3;
 	name = "Atmos RC";
 	pixel_x = -30
 	},
@@ -21181,7 +21181,7 @@
 /obj/machinery/requests_console{
 	announcementConsole = 1;
 	department = "Chief Engineer's Desk";
-	departmentType = 3;
+	departmentType = 4;
 	name = "Chief Engineer RC";
 	pixel_x = 0;
 	pixel_y = -32
@@ -32071,7 +32071,7 @@
 /obj/item/multitool,
 /obj/machinery/requests_console{
 	department = "Atmospherics";
-	departmentType = 4;
+	departmentType = 3;
 	name = "Atmos RC";
 	pixel_x = -30
 	},
@@ -36260,7 +36260,7 @@
 	},
 /obj/machinery/requests_console{
 	department = "Atmospherics";
-	departmentType = 4;
+	departmentType = 3;
 	name = "Atmos RC";
 	pixel_x = 30
 	},
