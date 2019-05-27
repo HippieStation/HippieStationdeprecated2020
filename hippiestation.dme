@@ -3488,7 +3488,6 @@
 #include "hippiestation\code\modules\vehicles\clown_car.dm"
 #include "hippiestation\code\modules\vehicles\firetruck.dm"
 #include "hippiestation\code\modules\vehicles\pimpin_ride.dm"
-#include "hippiestation\code\modules\vehicles\wheelchair.dm"
 #include "hippiestation\code\modules\vending\_vending.dm"
 #include "hippiestation\code\modules\vending\autodrobe.dm"
 #include "hippiestation\code\modules\vending\boozeomat.dm"
