@@ -346,7 +346,8 @@
 				to_chat("<span class='danger'>[src] hits you, and you feel dizzy...</span>")
 				M.set_dizziness(75)
 				for(var/obj/effect/proc_holder/spell/S in M.mob_spell_list)
-					S.charge_counter = 1
+					S.charge_counter = 0
+					S.start_recharge()
 					S.action.UpdateButtonIcon()
 			else
 				to_chat("<span class='danger'>You're knocked out cold by [src]!</span>")
