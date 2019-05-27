@@ -47,8 +47,6 @@
 	SA.add_memory("<b>[user] is your master. Protect them at all costs</b>")
 	qdel(O)
 
-/obj/item/infinity_stone/ghost/GrabEvent(atom/target, mob/living/user, proximity_flag)
-
 
 /obj/item/infinity_stone/ghost/DisarmEvent(atom/target, mob/living/user, proximity_flag)
 	var/total_spirits = ghost_check()
@@ -348,7 +346,7 @@
 				to_chat("<span class='danger'>[src] hits you, and you feel dizzy...</span>")
 				M.set_dizziness(75)
 				for(var/obj/effect/proc_holder/spell/S in M.mob_spell_list)
-					S.charge_counter = 0
+					S.charge_counter = 1
 					S.action.UpdateButtonIcon()
 			else
 				to_chat("<span class='danger'>You're knocked out cold by [src]!</span>")
