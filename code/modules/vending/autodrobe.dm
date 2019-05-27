@@ -129,6 +129,9 @@
 		           /obj/item/shield/riot/roman/fake = 1,
 		           /obj/item/skub = 1,)
 
+/obj/machinery/vending/autodrobe/canLoadItem(obj/item/I,mob/user)
+	return (I.type in products)
+
 	refill_canister = /obj/item/vending_refill/autodrobe
 	default_price = 50
 	extra_price = 75
