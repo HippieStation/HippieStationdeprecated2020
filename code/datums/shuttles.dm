@@ -435,10 +435,6 @@
 	suffix = "donut"
 	name = "supply shuttle (Donut)"
 
-/datum/map_template/shuttle/cargo/facepunch
-	suffix = "facepunch"
-	name = "supply shuttle (Facepunch)"
-
 /datum/map_template/shuttle/emergency/delta
 	suffix = "delta"
 	name = "Delta Station Emergency Shuttle"

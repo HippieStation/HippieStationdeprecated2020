@@ -57,9 +57,3 @@
 						 'sound/ambience/ambimaint4.ogg',
 						 'sound/ambience/ambimaint5.ogg',
 						 'sound/spookoween/ghosty_wind.ogg')
-
-/* Additional room in Cargo */
-/area/quartermaster/arrivals
-	name = "Cargo Arrivals Processing"
-	icon = 'hippiestation/icons/turf/areas.dmi'
-	icon_state = "qm_proc"
