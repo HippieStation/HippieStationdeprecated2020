@@ -1,0 +1,4 @@
+author: "HideAndSeekLOGIC"
+delete-after: True
+changes: 
+  - bugfix: "Thanks to the new stamina system, a energy gun of disabler blasts didn't stun. Now, it should."

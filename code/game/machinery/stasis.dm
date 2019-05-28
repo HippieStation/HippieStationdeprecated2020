@@ -144,4 +144,5 @@
 		unbuckle_mob(occupant)
 	else
 		..()
+
 #undef STASIS_TOGGLE_COOLDOWN
