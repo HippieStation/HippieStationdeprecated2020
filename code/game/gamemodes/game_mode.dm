@@ -383,10 +383,11 @@
 					candidates -= player
 	/*hippie*/
 	if(restricted_races)
-		for(var/datum/mind/player in canidates)
+		for(var/datum/mind/player in candidates)
+			var/mob/living/carbon/human/H = player.current
 			for(var/race in restricted_jobs)
-				if(player.current.species == race)
-					canidates -= player
+				if(H.dna.species == race)
+					candidates -= player
 	/*end hippie*/
 
 	if(candidates.len < recommended_enemies)

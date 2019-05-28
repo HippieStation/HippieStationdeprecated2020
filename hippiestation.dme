@@ -119,6 +119,7 @@
 #include "code\__DEFINES\~hippie_defines\layers.dm"
 #include "code\__DEFINES\~hippie_defines\machines.dm"
 #include "code\__DEFINES\~hippie_defines\material.dm"
+#include "code\__DEFINES\~hippie_defines\melee.dm"
 #include "code\__DEFINES\~hippie_defines\mentor.dm"
 #include "code\__DEFINES\~hippie_defines\misc.dm"
 #include "code\__DEFINES\~hippie_defines\mobs.dm"
