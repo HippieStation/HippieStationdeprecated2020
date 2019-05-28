@@ -94,6 +94,7 @@
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
+/* hippie start -- NO MORE LAGSMAN RIFLE
 /datum/design/beamrifle
 	name = "Beam Marksman Rifle"
 	desc = "A powerful long ranged anti-material rifle that fires charged particle beams to obliterate targets."
@@ -103,6 +104,7 @@
 	build_path = /obj/item/gun/energy/beam_rifle
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+hippie end */
 
 /datum/design/decloner
 	name = "Decloner"

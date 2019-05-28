@@ -59,6 +59,42 @@
 		-->
 		<div class="commit sansserif">
 
+			<h2 class="date">26 May 2019</h2>
+			<h3 class="author">HonkBot updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">colossus and drake can no longer attack from the afterlife</li>
+			</ul>
+
+			<h2 class="date">25 May 2019</h2>
+			<h3 class="author">HonkBot updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="rscadd">Colored lights now shine in different colours.</li>
+			</ul>
+
+			<h2 class="date">24 May 2019</h2>
+			<h3 class="author">HonkBot updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="admin">TP now shows the names of blood brothers' brothers.</li>
+				<li class="tweak">colossus chest is intangible to colossus bolts</li>
+				<li class="tweak">All departments can now print basic power cells from their respective techfab.</li>
+			</ul>
+			<h3 class="author">Naksu updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="code_imp">pipeline gas reconciliation is now faster</li>
+				<li class="code_imp">removed /datum/mutation/human/proc/on_move in favor of having the chameleon mutation register for a signal</li>
+			</ul>
+			<h3 class="author">ShizCalev updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="bugfix">Fixed beartraps cuffing a flying/floating mob when crossing over it.</li>
+				<li class="bugfix">Fixed beartraps cuffing and harming a mob who passes over them while inside/on a vehicle.</li>
+				<li class="bugfix">Beartraps will now only cuff/harm you while in a vehicle if your legs are exposed/the primary propulsion method (ie scooters/skateboards.)</li>
+			</ul>
+			<h3 class="author">Zxaber updated:</h3>
+			<ul class="changes bgimages16">
+				<li class="balance">AI power backup is now separate from the health, and is tied to their core. Carding an AI on battery backup will leave the core at partial charge. AIs no longer slowly lose integrity while on backups (but will instantly die as before once the backup runs out). As such, whacking an AI with a wrench will no longer magically lower their backup battery capacity.</li>
+				<li class="balance">AIs on backup battery can now unbolt at the cost of a quarter of their battery's max charge. This cannot be done while at under 25% power.</li>
+			</ul>
+
 			<h2 class="date">22 May 2019</h2>
 			<h3 class="author">HonkBot updated:</h3>
 			<ul class="changes bgimages16">
@@ -1039,78 +1075,6 @@
 				<li class="bugfix">Buckling someone in while they're being pulled will now properly reset their offsets.</li>
 				<li class="bugfix">Pulling offsets will now update properly while dragging someone who's laying down.</li>
 				<li class="bugfix">Fixed a runtime that resulted in the character preview messing up if you were set to a non-human species while having a command level position set to high when enforce human authority is enabled.</li>
-			</ul>
-
-			<h2 class="date">25 March 2019</h2>
-			<h3 class="author">HonkBot updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">ED 209s now drop DRAGNets and not tasers</li>
-				<li class="bugfix">Fixed the connection cap being silly about what connections it counted towards the limit.</li>
-				<li class="bugfix">Lot of small darkmode fixes</li>
-				<li class="bugfix">Heirloom bodybags no longer lose their heirloom status when deployed.</li>
-				<li class="balance">Strong alcoholic beverages in excessive quantity are now far more dangerous. Drink responsibly.</li>
-			</ul>
-			<h3 class="author">ShizCalev updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">ED-209 tablecrafting recipe has been corrected to use a DRAGNet</li>
-				<li class="bugfix">Fixed a minor runtime caused by admins clicking a follow link while in the lobby.</li>
-			</ul>
-
-			<h2 class="date">24 March 2019</h2>
-			<h3 class="author">HonkBot updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="balance">Ethereals no longer die to their own charge levels</li>
-				<li class="rscadd">New negative quirk - back pain causes very bad mood from wearing uneven storage items on your back, but other back items like air tanks and shotguns are okay.</li>
-				<li class="balance">ai/borg uploads now have a gps signal when built which will be active until its monitor gets decostructed</li>
-				<li class="balance">ai/borg uploads take slighty longer to deconstruct</li>
-			</ul>
-			<h3 class="author">MMMiracles updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="tweak">The engine on Donutstation has been changed to the Supermatter.</li>
-			</ul>
-
-			<h2 class="date">22 March 2019</h2>
-			<h3 class="author">Atlanta Ned updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">If you've got Head of Staff access, you can now message Central Command. Central Command is not responsible for any executions sustained as a result of mutinous behavior.</li>
-			</ul>
-			<h3 class="author">HonkBot updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">admin pms display in the proper colors</li>
-				<li class="bugfix">some uis are no longer unreadable.</li>
-				<li class="tweak">Updated the colors of the dark mode ui.</li>
-				<li class="tweak">darkmode is no longer the default</li>
-				<li class="rscadd">Added several new religions to the Nanotrasen-approved faith list, including Judaism, Rastafarianism, and Honkism</li>
-				<li class="spellcheck">Renamed the "any color" paint bucket to "adaptive paint".</li>
-				<li class="rscadd">Watch the Tip of the Round messages, there's a few extra ones out there now, along with outdated ones being revised!</li>
-				<li class="tweak">Exempted byond accounts already in the round from the connected players cap, allowing them to reconnect even if the server is full. This exemption applies even if you are dead or are a ghost, but does not apply if you hit "observe" from the lobby.</li>
-				<li class="bugfix">Goonchat properly loads the white theme by default.</li>
-				<li class="bugfix">The input bar no longer has weirdness with color when swapping themes.</li>
-				<li class="bugfix">the medkits in the beach dome, city of clog and russian shuttle are no longer empty</li>
-				<li class="rscadd">added an ezmk pulse rifle to the seraph mech</li>
-				<li class="rscdel">removed the buckshot gun from the seraph mech</li>
-				<li class="code_imp">Logs for certain kinds of errors will now include better debugging information.</li>
-			</ul>
-			<h3 class="author">Kmc2000 updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Added darkmode! You can opt-in to this by clicking the settings icon on goonchat, and looking for the toggle darkmode button.</li>
-			</ul>
-			<h3 class="author">ShizCalev updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="bugfix">Fixed an exploit allowing you to grab people from anywhere with a clowncar.</li>
-				<li class="imageadd">Mech disablers are no longer invisible.</li>
-				<li class="bugfix">Added logging to cloning machinery.</li>
-				<li class="spellcheck">Repairing robotic limbs attached to yourself will no longer refer to you in the third person.</li>
-				<li class="admin">Improved some cloning logging.</li>
-				<li class="bugfix">Emagging a cloning pod will now leave fingerprints.</li>
-				<li class="bugfix">Ejecting someone while they're being cloned will now leave fingerprints.</li>
-				<li class="bugfix">Admin modify bodyparts panel will now only show parts that are valid for modification.</li>
-				<li class="bugfix">Simple mobs can now only damage clown cars from the inside if they're able to smash through walls.</li>
-				<li class="bugfix">You'll no longer hit an air alarm with your ID when unlocking it.</li>
-			</ul>
-			<h3 class="author">Vile Beggar updated:</h3>
-			<ul class="changes bgimages16">
-				<li class="rscadd">Mechs can now be equipped with disablers.</li>
 			</ul>
 		</div>
 
