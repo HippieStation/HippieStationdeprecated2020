@@ -702,6 +702,51 @@
 		O.push_data()
 		activate_pin(3)
 
+/obj/item/integrated_circuit/input/type_advanced_locator
+	complexity = 6
+	name = "advanced type locator"
+	desc = "This is needed for certain devices that demand a reference for a target to act upon. This type locates something \
+	that is standing in given radius of up to 8 meters"
+	extended_desc = "The first pin requires the type of object that you want the locator to acquire. This means that it will \
+	give refs to nearby objects which have that type or a subtype. If more than one valid object is found nearby, it will \
+	choose one of them at random. The second pin is a radius. The third pin is whether to ignore subtypes or not."
+	inputs = list("desired type" = IC_PINTYPE_STRING, "radius" = IC_PINTYPE_NUMBER, "strict" = IC_PINTYPE_BOOLEAN)
+	outputs = list("located ref" = IC_PINTYPE_REF)
+	activators = list("locate" = IC_PINTYPE_PULSE_IN,"found" = IC_PINTYPE_PULSE_OUT,"not found" = IC_PINTYPE_PULSE_OUT)
+	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
+	power_draw_per_use = 30
+	var/radius = 1
+	var/strict = FALSE
+
+/obj/item/integrated_circuit/input/type_advanced_locator/on_data_written()
+	var/rad = get_pin_data(IC_INPUT, 2)
+	if(isnum(rad))
+		rad = CLAMP(rad, 0, 8)
+		radius = rad
+	strict = get_pin_data(IC_INPUT, 3)
+
+/obj/item/integrated_circuit/input/type_advanced_locator/do_work()
+	var/datum/integrated_io/I = inputs[1]
+	var/datum/integrated_io/O = outputs[1]
+	O.data = null
+	var/turf/T = get_turf(src)
+	var/list/nearby_things =  view(radius,T)
+	var/list/valid_things = list()
+	if(istext(I.data))
+		var/DT = I.data
+		for(var/i in nearby_things)
+			var/atom/thing = i
+			var/path = text2path(DT)
+			if(ispath(path) && ((strict && thing.type == path) || (!strict && istype(thing, path))))
+				valid_things.Add(thing)
+	if(valid_things.len)
+		O.data = WEAKREF(pick(valid_things))
+		O.push_data()
+		activate_pin(2)
+	else
+		O.push_data()
+		activate_pin(3)
+
 /obj/item/integrated_circuit/input/signaler
 	name = "integrated signaler"
 	desc = "Signals from a signaler can be received with this, allowing for remote control. It can also send signals."
