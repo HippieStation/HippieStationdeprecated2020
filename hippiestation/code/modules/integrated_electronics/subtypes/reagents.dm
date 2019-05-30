@@ -760,6 +760,91 @@
 	push_vol()
 
 
+
+/obj/item/integrated_circuit/reagent/synth
+	name = "micro chemical synthesizer"
+	desc = "A miniaturized version of a chemical dispenser, capable of dispensing 5u of a chem at a time."
+	extended_desc = "Can dispense any chemical a chem dispenser can, but only 5u at a time. Takes units x 10 of power per use."
+	icon_state = "injector"
+	inputs = list(
+		"amount" = IC_PINTYPE_NUMBER,
+		"reagent" = IC_PINTYPE_STRING
+	)
+	outputs = list(
+		"volume" = IC_PINTYPE_NUMBER,
+		"self reference" = IC_PINTYPE_SELFREF
+	)
+	activators = list(
+		"synthesize" = IC_PINTYPE_PULSE_IN,
+		"on synthesize" = IC_PINTYPE_PULSE_OUT,
+		"on fail" = IC_PINTYPE_PULSE_OUT
+	)
+	spawn_flags = IC_SPAWN_RESEARCH
+	volume = 5
+	complexity = 15
+	var/amount_to_dispense = 5
+	var/chem_to_dispense = ""
+	var/list/dispensable_reagents = list(
+		"hydrogen",
+		"lithium",
+		"carbon",
+		"nitrogen",
+		"oxygen",
+		"fluorine",
+		"sodium",
+		"aluminium",
+		"silicon",
+		"phosphorus",
+		"sulfur",
+		"chlorine",
+		"potassium",
+		"iron",
+		"copper",
+		"mercury",
+		"radium",
+		"water",
+		"ethanol",
+		"sugar",
+		"sacid",
+		"welding_fuel",
+		"silver",
+		"iodine",
+		"bromine",
+		"stable_plasma"
+	)
+
+/obj/item/integrated_circuit/reagent/synth/Initialize()
+	. = ..()
+	set_pin_data(IC_OUTPUT, 2, src)
+
+/obj/item/integrated_circuit/reagent/synth/on_reagent_change(changetype)
+	push_vol()
+
+/obj/item/integrated_circuit/reagent/synth/on_data_written()
+	var/vol = get_pin_data(IC_INPUT, 1)
+	var/chem = get_pin_data(IC_INPUT, 2)
+	if(isnum(vol))
+		amount_to_dispense = CLAMP(vol, 0, 5)
+		power_draw_per_use = amount_to_dispense * 10
+	if(istext(chem))
+		chem_to_dispense = ""
+		chem = lowertext(chem)
+		if(chem in dispensable_reagents)
+			chem_to_dispense = chem
+
+/obj/item/integrated_circuit/reagent/synth/do_work(ord)
+	if(!(chem_to_dispense in dispensable_reagents))
+		return FALSE
+	var/free = reagents.maximum_volume - reagents.total_volume
+	var/actual = min(amount_to_dispense, free)
+	if(actual > 0)
+		reagents.add_reagent(chem_to_dispense, actual)
+		push_vol()
+		push_data()
+		activate_pin(2)
+	else
+		activate_pin(3)
+
 // - Beaker Connector - //
 /obj/item/integrated_circuit/input/beaker_connector
 	category_text = "Reagent"
