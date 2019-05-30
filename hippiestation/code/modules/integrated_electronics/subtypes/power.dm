@@ -38,6 +38,7 @@
 /obj/item/integrated_circuit/power/transmitter/do_work()
 
 	var/atom/movable/AM = get_pin_data_as_type(IC_INPUT, 1, /atom/movable)
+	var/transfer_amount = amount_to_move
 	if(!AM)
 		return FALSE
 	if(istype(AM, /obj/item/gun/energy))
@@ -46,7 +47,6 @@
 		return FALSE // Pointless to do everything else if there's no battery to draw from.
 	var/obj/item/stock_parts/cell/cell = AM.get_cell()
 	if(cell)
-		var/transfer_amount = amount_to_move
 		var/turf/A = get_turf(src)
 		var/turf/B = get_turf(AM)
 		if(A.Adjacent(B))
