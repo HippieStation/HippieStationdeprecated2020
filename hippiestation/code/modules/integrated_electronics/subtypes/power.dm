@@ -41,7 +41,7 @@
 	if(!AM)
 		return FALSE
 	if(istype(AM, /obj/item/gun/energy))
-		return FALSE
+		transfer_amount *= 0.35
 	if(!assembly)
 		return FALSE // Pointless to do everything else if there's no battery to draw from.
 	var/obj/item/stock_parts/cell/cell = AM.get_cell()
