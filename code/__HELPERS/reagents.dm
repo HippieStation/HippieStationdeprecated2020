@@ -1,21 +1,4 @@
-
-
-/datum/unit_test/reagent_recipe_collisions
-
-/datum/unit_test/reagent_recipe_collisions/Run()
-	build_chemical_reactions_list()
-	var/list/reactions = list()
-	for(var/V in GLOB.chemical_reactions_list)
-		reactions += GLOB.chemical_reactions_list[V]
-	for(var/i in 1 to (reactions.len-1))
-		for(var/i2 in (i+1) to reactions.len)
-			var/datum/chemical_reaction/r1 = reactions[i]
-			var/datum/chemical_reaction/r2 = reactions[i2]
-<<<<<<< HEAD
-			if(recipes_do_conflict(r1, r2))
-				Fail("Chemical recipe conflict between [r1.type] and [r2.type]")
-
-/datum/unit_test/reagent_recipe_collisions/proc/recipes_do_conflict(datum/chemical_reaction/r1, datum/chemical_reaction/r2)
+/proc/chem_recipes_do_conflict(datum/chemical_reaction/r1, datum/chemical_reaction/r2)
 	//do the non-list tests first, because they are cheaper
 	if(r1.required_container != r2.required_container)
 		return FALSE
@@ -64,14 +47,28 @@
 		//there is at least one unique catalyst for the short reaction, so there is no conflict
 		return FALSE
 
-	// hippie start -- short centrifuge recipes don't conflict with longer recipes that aren't centrifuge recipes
-	if(short_req.centrifuge_recipe && !long_req.centrifuge_recipe)
-		return FALSE
-	// hippie end
-
 	//if we got this far, the longer reaction will be impossible to create if the shorter one is earlier in GLOB.chemical_reactions_list, and will require the reagents to be added in a particular order otherwise
 	return TRUE
-=======
-			if(chem_recipes_do_conflict(r1, r2))
-				Fail("Chemical recipe conflict between [r1.type] and [r2.type]")
->>>>>>> d8078e1... Adds system for randomized semi-persistent chem reactions. (#44094)
+
+/proc/get_chemical_reaction(id)
+	if(!GLOB.chemical_reactions_list)
+		return
+	for(var/reagent in GLOB.chemical_reactions_list)
+		for(var/datum/chemical_reaction/R in GLOB.chemical_reactions_list[reagent])
+			if(R.id == id)
+				return R
+
+/proc/remove_chemical_reaction(datum/chemical_reaction/R)
+	if(!GLOB.chemical_reactions_list || !R)
+		return
+	for(var/rid in R.required_reagents)
+		GLOB.chemical_reactions_list[rid] -= R
+
+//see build_chemical_reactions_list in holder.dm for explanations
+/proc/add_chemical_reaction(datum/chemical_reaction/R)
+	if(!GLOB.chemical_reactions_list || !R.id || !R.required_reagents || !R.required_reagents.len)
+		return
+	var/primary_reagent = R.required_reagents[1]
+	if(!GLOB.chemical_reactions_list[primary_reagent])
+		GLOB.chemical_reactions_list[primary_reagent] = list()
+	GLOB.chemical_reactions_list[primary_reagent] += R
