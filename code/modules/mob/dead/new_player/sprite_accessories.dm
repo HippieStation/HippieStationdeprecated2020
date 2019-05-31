@@ -111,10 +111,10 @@
 /datum/sprite_accessory/hair/bedheadlong
 	name = "Long Bedhead"
 	icon_state = "hair_long_bedhead"
-
+/* hippie -- removes awful hair
 /datum/sprite_accessory/hair/bedheadfloorlength
 	name = "Floorlength Bedhead"
-	icon_state = "hair_floorlength_bedhead"
+	icon_state = "hair_floorlength_bedhead" */
 
 /datum/sprite_accessory/hair/beehive
 	name = "Beehive"
