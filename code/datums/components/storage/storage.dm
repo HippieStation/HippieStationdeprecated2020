@@ -14,16 +14,11 @@
 	dupe_mode = COMPONENT_DUPE_UNIQUE
 	var/datum/component/storage/concrete/master		//If not null, all actions act on master and this is just an access point.
 
-<<<<<<< HEAD
-	var/list/can_hold								//if this is set, only things in this typecache will fit.
-	var/list/cant_hold								//if this is set, anything in this typecache will not be able to fit.
-=======
 	var/list/can_hold								//if this is set, only items, and their children, will fit
 	var/list/cant_hold								//if this is set, items, and their children, won't fit
 	var/list/exception_hold           //if set, these items will be the exception to the max size of object that can fit.
 
 	var/can_hold_description
->>>>>>> 2d32be1... Small storage refactor and examine change (#44109)
 
 	var/list/mob/is_using							//lazy list of mobs looking at the contents of this storage.
 
@@ -611,7 +606,7 @@
 		if(!stop_messages)
 			to_chat(M, "<span class='warning'>[host] cannot hold [I]!</span>")
 		return FALSE
-	if(I.w_class > max_w_class)
+	if(I.w_class > max_w_class && !is_type_in_typecache(I, exception_hold))
 		if(!stop_messages)
 			to_chat(M, "<span class='warning'>[I] is too big for [host]!</span>")
 		return FALSE
