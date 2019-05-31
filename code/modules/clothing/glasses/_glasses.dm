@@ -339,11 +339,7 @@
 	desc = "A pair of xray goggles manufactured by the Syndicate."
 	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
 	flash_protect = -1
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> e1d5052... Merge pull request #42896 from py01/bundle
 /obj/item/clothing/glasses/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
 	name = "chameleon thermals"
 	desc = "A pair of thermal optic goggles with an onboard chameleon generator."
