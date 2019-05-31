@@ -5,13 +5,9 @@
 	buckle_lying = FALSE
 	default_driver_move = FALSE
 	var/legs_required = 2
-<<<<<<< HEAD
-	var/arms_requires = 0	//why not?
-=======
 	var/arms_required = 1	//why not?
 	var/fall_off_if_missing_arms = FALSE //heh...
 	var/message_cooldown = 0
->>>>>>> 1625ecd... fixes message spam from ridden vehicles (#44116)
 
 /obj/vehicle/ridden/Initialize()
 	. = ..()
@@ -66,8 +62,6 @@
 	if(key_type && !is_key(inserted_key))
 		to_chat(user, "<span class='warning'>[src] has no key inserted!</span>")
 		return FALSE
-<<<<<<< HEAD
-=======
 	if(legs_required)
 		var/how_many_legs = user.get_num_legs()
 		if(how_many_legs < legs_required)
@@ -91,7 +85,6 @@
 				to_chat(user, "<span class='warning'>You can't seem to manage that with[how_many_arms ? " your arm[how_many_arms > 1 ? "s" : null]" : "out arms"]...</span>")
 				message_cooldown = world.time + 5 SECONDS			
 			return FALSE
->>>>>>> 1625ecd... fixes message spam from ridden vehicles (#44116)
 	var/datum/component/riding/R = GetComponent(/datum/component/riding)
 	R.handle_ride(user, direction)
 	return ..()
