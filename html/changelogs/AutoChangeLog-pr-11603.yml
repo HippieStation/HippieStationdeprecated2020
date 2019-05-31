@@ -1,0 +1,4 @@
+author: "HonkBot"
+delete-after: True
+changes: 
+  - balance: "Medulary Failure takes 3 seconds to cast now."
