@@ -93,12 +93,7 @@
 /obj/item/clothing/head/beanie/rasta
 	name = "rastacap"
 	desc = "Perfect for tucking in those dreadlocks."
-<<<<<<< HEAD
 	icon_state = "beanierasta"
 	item_color = "beanierasta"
-=======
-	icon_state = "rastabeanie"
-	item_color = "rastabeanie"	
->>>>>>> 3dbc8c3... Adds a Bunch of New Religious Clothing Items (#43841)
 
 //No dog fashion sprites yet :(  poor Ian can't be dope like the rest of us yet
