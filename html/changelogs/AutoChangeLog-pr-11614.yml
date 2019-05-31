@@ -1,5 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - bugfix: "Nanosuit prevents contents explosion to prevent it's cell from deleting on accident"
-  - soundadd: "Added an announcement theme for the nanosuit"
