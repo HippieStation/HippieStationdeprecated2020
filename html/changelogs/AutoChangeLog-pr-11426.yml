@@ -1,0 +1,4 @@
+author: "HideAndSeekLOGIC"
+delete-after: True
+changes: 
+  - bugfix: "VR cameras no longer break stuff"

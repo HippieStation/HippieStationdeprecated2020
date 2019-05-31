@@ -79,6 +79,10 @@
 	medical_record_text = "Patient has a severe mood disorder causing them to experience sudden moments of sadness."
 	mood_quirk = TRUE
 
+/datum/quirk/depression/on_process()
+	if(prob(0.05))
+		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "depression", /datum/mood_event/depression)
+
 /datum/quirk/family_heirloom
 	name = "Family Heirloom"
 	desc = "You are the current owner of an heirloom, passed down for generations. You have to keep it safe!"
@@ -380,14 +384,6 @@
 		return
 	to_chat(quirk_holder, "<span class='big bold info'>Please note that your dissociation syndrome does NOT give you the right to attack people or otherwise cause any interference to \
 	the round. You are not an antagonist, and the rules will treat you the same as other crewmembers.</span>")
-
-/datum/quirk/obstructive
-	name = "Physically Obstructive"
-	desc = "You somehow manage to always be in the way. You can't swap places with other people."
-	value = -1
-	mob_trait = TRAIT_NOMOBSWAP
-	gain_text = "<span class='danger'>You feel like you're in the way.</span>"
-	lose_text = "<span class='notice'>You feel less like you're in the way.</span>"
 
 /datum/quirk/social_anxiety
 	name = "Social Anxiety"

@@ -67,6 +67,10 @@
 	mob_trait = TRAIT_JOLLY
 	mood_quirk = TRUE
 
+/datum/quirk/jolly/on_process()
+	if(prob(0.05))
+		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "jolly", /datum/mood_event/jolly)
+
 /datum/quirk/light_step
 	name = "Light Step"
 	desc = "You walk with a gentle step; stepping on sharp objects is quieter, less painful and you won't leave footprints behind you."
@@ -145,17 +149,6 @@
 	H.equip_to_slot_or_del(new /obj/item/storage/fancy/candle_box(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/matches(H), SLOT_IN_BACKPACK)
 
-/datum/quirk/spiritual/on_process()
-	var/comforted = FALSE
-	for(var/mob/living/L in oview(5, quirk_holder))
-		if(L.mind && L.mind.isholy && L.stat == CONSCIOUS)
-			comforted = TRUE
-			break
-	if(comforted)
-		SEND_SIGNAL(quirk_holder, COMSIG_ADD_MOOD_EVENT, "religious_comfort", /datum/mood_event/religiously_comforted)
-	else
-		SEND_SIGNAL(quirk_holder, COMSIG_CLEAR_MOOD_EVENT, "religious_comfort")
-
 /datum/quirk/tagger
 	name = "Tagger"
 	desc = "You're an experienced artist. While drawing graffiti, you can get twice as many uses out of drawing supplies."
@@ -194,3 +187,10 @@
 	if(!D) //if their current mob doesn't have a bank account, likely due to them being a special role (ie nuke op)
 		return
 	D.welfare = TRUE
+
+/datum/quirk/neet/on_process()
+	var/mob/living/carbon/human/H = quirk_holder
+	if (H.hygiene <= HYGIENE_LEVEL_DIRTY)
+		SEND_SIGNAL(H, COMSIG_ADD_MOOD_EVENT, "NEET", /datum/mood_event/happy_neet)
+	else
+		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "NEET")

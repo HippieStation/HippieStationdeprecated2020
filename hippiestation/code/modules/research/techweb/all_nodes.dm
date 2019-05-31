@@ -52,3 +52,6 @@
 	design_ids = list("mech_taser")	
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)	
 	export_price = 5000
+	
+/datum/techweb_node/adv_beam_weapons
+	design_ids = list()
