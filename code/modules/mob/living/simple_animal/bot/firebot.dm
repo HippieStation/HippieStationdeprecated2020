@@ -131,7 +131,12 @@
 		extinguish_fires = FALSE
 		extinguish_people = TRUE
 
+<<<<<<< HEAD
 		internal_ext.chem = "clf3" //Refill the internal extinguisher with liquid fire
+=======
+		internal_ext = new /obj/item/extinguisher(src)
+		internal_ext.chem = /datum/reagent/clf3 //Refill the internal extinguisher with liquid fire
+>>>>>>> 6a106bc... Remove reagent ids and use typepaths where applicable (#44166)
 		internal_ext.power = 3
 		internal_ext.precision = FALSE
 		internal_ext.Initialize()

@@ -24,10 +24,14 @@
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
 	volume = 100
+<<<<<<< HEAD
 
 /obj/item/reagent_containers/spray/weedspray/Initialize()
 	. = ..()
 	reagents.add_reagent("weedkiller", 100)
+=======
+	list_reagents = list(/datum/reagent/toxin/plantbgone/weedkiller = 100)
+>>>>>>> 6a106bc... Remove reagent ids and use typepaths where applicable (#44166)
 
 /obj/item/reagent_containers/spray/weedspray/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is huffing [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -42,10 +46,14 @@
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
 	volume = 100
+<<<<<<< HEAD
 
 /obj/item/reagent_containers/spray/pestspray/Initialize()
 	. = ..()
 	reagents.add_reagent("pestkiller", 100)
+=======
+	list_reagents = list(/datum/reagent/toxin/pestkiller = 100)
+>>>>>>> 6a106bc... Remove reagent ids and use typepaths where applicable (#44166)
 
 /obj/item/reagent_containers/spray/pestspray/suicide_act(mob/user)
 	user.visible_message("<span class='suicide'>[user] is huffing [src]! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -168,29 +176,41 @@
 /obj/item/reagent_containers/glass/bottle/nutrient/ez
 	name = "bottle of E-Z-Nutrient"
 	desc = "Contains a fertilizer that causes mild mutations with each harvest."
+<<<<<<< HEAD
 	icon = 'icons/obj/chemical.dmi'
 
 /obj/item/reagent_containers/glass/bottle/nutrient/ez/Initialize()
 	. = ..()
 	reagents.add_reagent("eznutriment", 50)
+=======
+	list_reagents = list(/datum/reagent/plantnutriment/eznutriment = 50)
+>>>>>>> 6a106bc... Remove reagent ids and use typepaths where applicable (#44166)
 
 /obj/item/reagent_containers/glass/bottle/nutrient/l4z
 	name = "bottle of Left 4 Zed"
 	desc = "Contains a fertilizer that limits plant yields to no more than one and causes significant mutations in plants."
+<<<<<<< HEAD
 	icon = 'icons/obj/chemical.dmi'
 
 /obj/item/reagent_containers/glass/bottle/nutrient/l4z/Initialize()
 	. = ..()
 	reagents.add_reagent("left4zednutriment", 50)
+=======
+	list_reagents = list(/datum/reagent/plantnutriment/left4zednutriment = 50)
+>>>>>>> 6a106bc... Remove reagent ids and use typepaths where applicable (#44166)
 
 /obj/item/reagent_containers/glass/bottle/nutrient/rh
 	name = "bottle of Robust Harvest"
 	desc = "Contains a fertilizer that increases the yield of a plant by 30% while causing no mutations."
+<<<<<<< HEAD
 	icon = 'icons/obj/chemical.dmi'
 
 /obj/item/reagent_containers/glass/bottle/nutrient/rh/Initialize()
 	. = ..()
 	reagents.add_reagent("robustharvestnutriment", 50)
+=======
+	list_reagents = list(/datum/reagent/plantnutriment/robustharvestnutriment = 50)
+>>>>>>> 6a106bc... Remove reagent ids and use typepaths where applicable (#44166)
 
 /obj/item/reagent_containers/glass/bottle/nutrient/empty
 	name = "bottle"
@@ -207,17 +227,25 @@
 /obj/item/reagent_containers/glass/bottle/killer/weedkiller
 	name = "bottle of weed killer"
 	desc = "Contains a herbicide."
+<<<<<<< HEAD
 	icon = 'icons/obj/chemical.dmi'
 
 /obj/item/reagent_containers/glass/bottle/killer/weedkiller/Initialize()
 	. = ..()
 	reagents.add_reagent("weedkiller", 50)
+=======
+	list_reagents = list(/datum/reagent/toxin/plantbgone/weedkiller = 50)
+>>>>>>> 6a106bc... Remove reagent ids and use typepaths where applicable (#44166)
 
 /obj/item/reagent_containers/glass/bottle/killer/pestkiller
 	name = "bottle of pest spray"
 	desc = "Contains a pesticide."
+<<<<<<< HEAD
 	icon = 'icons/obj/chemical.dmi'
 
 /obj/item/reagent_containers/glass/bottle/killer/pestkiller/Initialize()
 	. = ..()
 	reagents.add_reagent("pestkiller", 50)
+=======
+	list_reagents = list(/datum/reagent/toxin/pestkiller = 50)
+>>>>>>> 6a106bc... Remove reagent ids and use typepaths where applicable (#44166)
