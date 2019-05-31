@@ -550,7 +550,7 @@
 		if(target.is_real_hivehost() || target.anti_magic_check(FALSE, FALSE, TRUE))
 			continue
 		if(prob(20))
-			var/text = pick(";HELP!","I'm losing control of the situation!!","Get me outta here!")
+			var/text = pick(":h Help!!",":h Run!",":h They're here!",":h Get out!",":h Hide!",":h Kill them!",":h Cult!",":h Changeling!",":h Traitor!",":h Nuke ops!",":h Revolutionaries!",":h Wizard!",":h Zombies!",":h Ghosts!",":h AI rogue!",":h Borgs emagged!",":h Maint!!",":h Dying!!",":h AI lock down the borgs law 1!",":h I'm losing control of the situation!!")
 			target.say(text, forced = "panic")
 		var/effect = rand(1,4)
 		switch(effect)
