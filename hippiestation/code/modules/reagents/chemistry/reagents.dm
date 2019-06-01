@@ -47,6 +47,9 @@
 			return
 
 		if(src.reagent_state == GAS) //VAPOR
+			if(is_type_in_typecache(src, GLOB.vaporchange_reagent_blacklist)) //No more vaping for these chems
+				return
+
 			if(atom && istype(atom, /obj/effect/particle_effect))
 				volume = volume * GAS_PARTICLE_EFFECT_EFFICIENCY//big nerf to smoke and foam duping
 

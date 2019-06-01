@@ -8,7 +8,7 @@
 GLOBAL_LIST_INIT(no_reagent_message_typecache, typecacheof(list(
   /obj/effect/particle_effect,
   /obj/effect/decal/cleanable,
-  /mob/living,
+  /mob,
   /obj/item/reagent_containers/food,
   /turf/open/pool)
 ))
@@ -24,7 +24,6 @@ GLOBAL_LIST_INIT(no_reagent_statechange_typecache, typecacheof(list(
 GLOBAL_LIST_INIT(statechange_reagent_blacklist, typecacheof(list(
 	/datum/reagent/water,
 	/datum/reagent/toxin/bleach,
-	/datum/reagent/lube,
 	/datum/reagent/consumable/condensedcapsaicin,
 	/datum/reagent/space_cleaner,
 	/datum/reagent/smoke_powder,
@@ -35,8 +34,13 @@ GLOBAL_LIST_INIT(statechange_reagent_blacklist, typecacheof(list(
 	/datum/reagent/oxygen,
 	/datum/reagent/nitrogen,
 	/datum/reagent/nitrous_oxide,
+	/datum/reagent/carbondioxide
 	/datum/reagent/cryostylane,
-	/datum/reagent/consumable/ethanol/neurotoxin,
+	/datum/reagent/consumable/ethanol/neurotoxin)
+))
+
+GLOBAL_LIST_INIT(vaporchange_reagent_blacklist, typechacheof(list(
+	/datum/reagent/lube,
 	/datum/reagent/clf3)
 ))
 
