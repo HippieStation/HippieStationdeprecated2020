@@ -3114,6 +3114,7 @@
 #include "hippiestation\code\modules\antagonists\brother\brother.dm"
 #include "hippiestation\code\modules\antagonists\changeling\horrorform.dm"
 #include "hippiestation\code\modules\antagonists\changeling\powers\tiny_prick.dm"
+#include "hippiestation\code\modules\antagonists\clockcult\clock_effects\spatial_gateway.dm"
 #include "hippiestation\code\modules\antagonists\cult\cult.dm"
 #include "hippiestation\code\modules\antagonists\disease\disease_datum.dm"
 #include "hippiestation\code\modules\antagonists\gang\gang.dm"
