@@ -58,6 +58,8 @@
 		var/mob/M = locate(href_list["redeemtoken"])
 		if(M && M.client && alert("Are you sure you want to redeem [M]'s antag token?","Confirm","Yes","No") == "Yes")
 			var/reason = input(usr, "Please enter the reason for redeeming [M]'s antag token.", "Antag Tickets", "") as text|null
+			message_admins("[key_name_admin(usr)] redeemed [M.ckey]'s antag token for the following reason: \"[reason]\"")
+			log_admin_private("[key_name(usr)] redeemed [M.ckey]'s antag token for the following reason: \"[reason]\"")
 			M.client.ticket_holder.RedeemAntagTicket(reason ? reason : "No Reason Given")
 
 /datum/admins/proc/checkMentorEditList(ckey)
