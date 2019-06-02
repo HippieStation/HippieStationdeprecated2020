@@ -334,14 +334,12 @@
 		if(GLOB.allow_antag_tokens)
 			if(GLOB.allow_antag_token_mode && GLOB.current_token_forced)
 				var/datum/mode_ticket/MT = GLOB.current_token_forced
-				for(var/datum/mind/mind in candidates)	
-					if(p_ckey == MT.ckey)
-						return mind
-			for(var/datum/mind/mind in candidates)
-				if(GLOB.token_users[p_ckey] == TRUE)
-					if(mind.current.client.ticket_holder.RedeemAntagTicket("Chosen for antagonist role", antag_type))
-						GLOB.token_users[p_ckey] = FALSE
-						return mind
+				if(p_ckey == MT.ckey)
+					return mind
+			if(GLOB.token_users[p_ckey] == TRUE)
+				if(mind.current.client.ticket_holder.RedeemAntagTicket("Chosen for antagonist role", antag_flag))
+					GLOB.token_users[p_ckey] = FALSE
+					return mind
 		total_tickets += min(SSpersistence.antag_rep[p_ckey] + DEFAULT_ANTAG_TICKETS, MAX_TICKETS_PER_ROLL)
 
 	var/antag_select = rand(1,total_tickets)
