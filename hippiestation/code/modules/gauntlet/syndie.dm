@@ -150,6 +150,9 @@
 	target.visible_message("<span class='danger bold'>[target] LEAPS[passenger ? ", bringing [passenger] up with them" : ""]!</span>")
 	target.opacity = FALSE
 	target.mouse_opacity = FALSE
+	if(iscarbon(target))
+		var/mob/living/carbon/C = target
+		C.leaping = TRUE
 	if(passenger)
 		passenger.opacity = FALSE
 		passenger.mouse_opacity = FALSE
@@ -191,6 +194,9 @@
 	sleep(4.5)
 	target.opacity = initial(target.opacity)
 	target.mouse_opacity = initial(target.mouse_opacity)
+	if(iscarbon(target))
+		var/mob/living/carbon/C = target
+		C.leaping = FALSE
 	if(passenger)
 		passenger.opacity = initial(passenger.opacity)
 		passenger.mouse_opacity = initial(passenger.mouse_opacity)
@@ -218,6 +224,12 @@
 /mob/living/carbon
 	var/mario_star = FALSE
 	var/super_mario_star = FALSE
+	var/leaping = FALSE
+
+/mob/living/carbon/ex_act(severity, target, origin)
+	if(leaping)
+		return
+	return ..()
 
 /mob/living/carbon/Bump(atom/A)
 	. = ..()
