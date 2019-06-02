@@ -311,7 +311,7 @@
 			return new T
 	return new /datum/game_mode/extended()
 
-/datum/controller/configuration/proc/get_runnable_modes(care_about_prob = TRUE) // hippie -- for antag tokens
+/datum/controller/configuration/proc/get_runnable_modes()
 	var/list/datum/game_mode/runnable_modes = new
 	var/list/probabilities = Get(/datum/config_entry/keyed_list/probability)
 	var/list/min_pop = Get(/datum/config_entry/keyed_list/min_pop)
@@ -322,7 +322,7 @@
 		if(!(M.config_tag in modes))
 			qdel(M)
 			continue
-		if(care_about_prob && probabilities[M.config_tag]<=0) // hippie -- for antag tokens
+		if(probabilities[M.config_tag]<=0)
 			qdel(M)
 			continue
 		if(min_pop[M.config_tag])
@@ -330,7 +330,7 @@
 		if(max_pop[M.config_tag])
 			M.maximum_players = max_pop[M.config_tag]
 		if(M.can_start())
-			var/final_weight = care_about_prob ? probabilities[M.config_tag] : 1 // hippie -- for antag tokens
+			var/final_weight = probabilities[M.config_tag]
 			if(SSpersistence.saved_modes.len == 3 && repeated_mode_adjust.len == 3)
 				var/recent_round = min(SSpersistence.saved_modes.Find(M.config_tag),3)
 				var/adjustment = 0

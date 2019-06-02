@@ -14,15 +14,3 @@ GLOBAL_LIST_EMPTY(token_users)
 	reason = res
 	creator = cre
 	antag_type = ant
-
-
-/datum/mode_ticket
-	var/ckey
-	var/gamemode
-	var/datum/antag_ticket_holder/ticket_holder
-
-/datum/mode_ticket/New(c, g, t)
-	..()
-	ckey = c
-	gamemode = g
-	ticket_holder = t

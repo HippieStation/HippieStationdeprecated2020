@@ -332,10 +332,6 @@
 		p_ckey = ckey(mind.key)
 		// hippie start -- antag tokens
 		if(GLOB.allow_antag_tokens)
-			if(GLOB.allow_antag_token_mode && GLOB.current_token_forced)
-				var/datum/mode_ticket/MT = GLOB.current_token_forced
-				if(p_ckey == MT.ckey)
-					return mind
 			if(GLOB.token_users[p_ckey] == TRUE)
 				if(mind.current.client.ticket_holder.RedeemAntagTicket("Chosen for antagonist role", antag_flag))
 					GLOB.token_users[p_ckey] = FALSE
