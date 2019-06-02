@@ -18,7 +18,7 @@
 
 /client/proc/toggle_antag_token_modes()
 	set category = "Server"
-	set name = "Toggle Antag Tokens on/off"
+	set name = "Toggle Antag Token Gamemodes on/off"
 	set desc = "Toggles whether antag tokens can be used or not."
 	GLOB.allow_antag_token_mode = !GLOB.allow_antag_token_mode
 	if(GLOB.allow_antag_token_mode)

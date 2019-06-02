@@ -268,7 +268,7 @@ SUBSYSTEM_DEF(ticker)
 	
 	// hippie start -- more antag token stuff
 	if(mode_ticket && mode_ticket.gamemode == mode.config_tag)
-		to_chat(world, "3 -- [mode.antag_flag] / [mode_ticket.ticket_holder.RedeemAntagTicket("Gamemode Chosen", mode.antag_flag)]")
+		mode_ticket.ticket_holder.RedeemAntagTicket("Gamemode Chosen", mode.antag_flag)
 	// hippie end
 
 	CHECK_TICK
