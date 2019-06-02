@@ -8,3 +8,4 @@
 		ticket_holder.LoadAntagTickets()
 	else
 		ticket_holder = GLOB.ticket_holders[ckey]
+		ticket_holder.client = src
