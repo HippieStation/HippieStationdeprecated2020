@@ -2,7 +2,6 @@
     name = "Burpinate"
     id = "burpinate"
     description = "They call me gaseous clay."
-    reagent_state = LIQUID
     color = "#bfe8a7" // rgb: 191, 232, 167
     metabolization_rate = 0.9 * REAGENTS_METABOLISM
     taste_description = "wet hot dogs"
@@ -25,7 +24,6 @@
 	id = "fartium"
 	description = "A chemical compound that promotes concentrated production of gas in your groin area."
 	color = "#8A4B08" // rgb: 138, 75, 8
-	reagent_state = LIQUID
 	overdose_threshold = 30
 	addiction_threshold = 50
 
@@ -178,7 +176,6 @@
 	id = "flipout"
 	description = "A chemical compound that causes uncontrolled and extremely violent flipping."
 	color = "#ff33cc" // rgb: 255, 51, 204
-	reagent_state = LIQUID
 	overdose_threshold = 40
 	addiction_threshold = 30
 
@@ -266,7 +263,6 @@
 	id = "yespowder"
 	description = "Powder that makes you say yes."
 	color = "#fffae0"
-	reagent_state = LIQUID
 
 /datum/reagent/drug/yespowder/on_mob_life(mob/living/M)
 	var/high_message = pick("Agreement fills your mind.", "'No' is so last year. 'Yes' is in.", "Yes.")
@@ -281,7 +277,6 @@
 	id = "sweetbrown"
 	description = "A fetid concoction often huffed or drank by vagrants and bums. High dosages have... interesting effects."
 	color = "#602101" // rgb: 96, 33, 1
-	reagent_state = LIQUID
 	overdose_threshold = 100
 	addiction_threshold = 50 // doesn't do shit though
 

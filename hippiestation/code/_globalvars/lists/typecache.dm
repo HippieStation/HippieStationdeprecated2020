@@ -34,7 +34,7 @@ GLOBAL_LIST_INIT(statechange_reagent_blacklist, typecacheof(list(
 	/datum/reagent/oxygen,
 	/datum/reagent/nitrogen,
 	/datum/reagent/nitrous_oxide,
-	/datum/reagent/carbondioxide
+	/datum/reagent/carbondioxide,
 	/datum/reagent/cryostylane,
 	/datum/reagent/consumable/ethanol/neurotoxin)
 ))
@@ -43,6 +43,8 @@ GLOBAL_LIST_INIT(vaporchange_reagent_blacklist, typecacheof(list(
 	/datum/reagent/lube,
 	/datum/reagent/clf3)
 ))
+
+GLOBAL_LIST_INIT(solidchange_reagent_blacklist, typecacheof(list())) //for future use
 
 GLOBAL_LIST_INIT(statechange_turf_blacklist, typecacheof(list(
 	/turf/open/pool,

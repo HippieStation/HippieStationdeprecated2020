@@ -32,7 +32,6 @@
 	name = "Bone Hurting Juice"
 	id =  "bone_hurting_juice"
 	description = "A corrupted form of calcium that reacts horribly with more calcium."
-	reagent_state = LIQUID
 	color = "#DEDEDE" // a horrible shade of off-white grey, also FUG!!!
 	toxpwr = 0 //It only hurts your bones
 
@@ -345,7 +344,6 @@
 	name = "Bleach"
 	id = "bleach"
 	description = "Also known as sodium hypochlorite. A potent and toxic cleaning agent"
-	reagent_state = LIQUID
 	color = "#FFFFFF"
 	toxpwr = 2
 
@@ -373,7 +371,6 @@
 	name = "Impure Glucosaryll"
 	id = "impgluco"
 	description = "The incredibly sweet precursor to a frighteningly dangerous substance that Nanotrasen once used to cut costs on soft drink sweetener before it was quietly recalled."
-	reagent_state = LIQUID
 	color = "#EFD6D0"
 	taste_description = "dizzying sweetness"
 	taste_mult = 2.0
@@ -386,7 +383,6 @@
 	name = "Glucosaryll"
 	id = "gluco"
 	description = "This revolting sludge smells like the inside of the pillsbury doughboy's ascending colon."
-	reagent_state = LIQUID
 	color = "#F6F1D2"
 	taste_description = "ungodly sweetness"
 	taste_mult = 5.0
@@ -403,7 +399,6 @@
 	name = "Screechisol"
 	id = "screech"
 	description = "Stimulates the vocal cords heavily, inducing involuntary yelling."
-	reagent_state = LIQUID
 	color = "#853358"
 	taste_description = "salty and sour"
 
@@ -448,7 +443,6 @@
 	name = "Vomit"
 	id = "vomit"
 	description = "Chunky."
-	reagent_state = LIQUID
 	color = "#f4f442" // rgb(244, 244, 66)
 	toxpwr = 0.5
 	taste_description = "absolutely disgusting"
