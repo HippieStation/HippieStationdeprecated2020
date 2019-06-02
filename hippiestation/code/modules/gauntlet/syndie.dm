@@ -85,6 +85,8 @@
 		while(do_after(L, 10, FALSE, L))
 			L.visible_message("<span class='notice'>[L]'s wounds heal!</span>")
 			L.heal_overall_damage(4, 4, 4, null, TRUE)
+			L.adjustToxLoss(-4)
+			L.adjustOxyLoss(-4)
 			if(L.getBruteLoss() + L.getFireLoss() + L.getStaminaLoss() < 1)
 				to_chat(user, "<span class='notice'>You are fully healed.</span>")
 				return
