@@ -118,6 +118,13 @@
 	required_reagents = list("carbon" = 1, "oxygen" = 2)
 	required_temp = 777 // pure carbon isn't especially reactive.
 
+/datum/chemical_reaction/SodaWater
+	name = "Sodafication"
+	id = "sodafication"
+	results = list("sodawater" = 10)
+	required_reagents = list("co2" = 1, "water" = 10)
+	pressure_required = 20 //the co2 needs to be under pressure to be solved in water
+
 /datum/chemical_reaction/nitrous_oxide
 	name = "Nitrous Oxide"
 	id = "nitrous_oxide"
