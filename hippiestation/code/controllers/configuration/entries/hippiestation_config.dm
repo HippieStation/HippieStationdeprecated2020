@@ -14,3 +14,7 @@
 /datum/config_entry/flag/allow_vote_shuttlecall	// allow shuttle to be called via vote
 
 /datum/config_entry/flag/enable_tts
+
+/datum/config_entry/keyed_list/token_mode
+	key_mode = KEY_MODE_TEXT
+	value_mode = VALUE_MODE_FLAG

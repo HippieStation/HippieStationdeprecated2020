@@ -18,6 +18,9 @@
 		<ui-section>
 			<b>Tokens:</b> {{amount}}
 		</ui-section>
+		<ui-section>
+			<b>Valid for:</b> {{antag_type}}
+		</ui-section>
 		{{#if data.admin}}
 			<ui-section>
 				<ui-button icon='edit' action='edit' params='{"ticket_id": "{{id}}"}'>

@@ -207,6 +207,7 @@ SUBSYSTEM_DEF(ticker)
 	var/init_start = world.timeofday
 		//Create and announce mode
 	var/list/datum/game_mode/runnable_modes
+	var/datum/mode_ticket/mode_ticket // hippie -- antag tokens
 	if(GLOB.master_mode == "random" || GLOB.master_mode == "secret")
 		runnable_modes = config.get_runnable_modes()
 
@@ -223,9 +224,18 @@ SUBSYSTEM_DEF(ticker)
 			if(!runnable_modes.len)
 				to_chat(world, "<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby.")
 				return 0
-			mode = pickweight(runnable_modes)
-			if(!mode)	//too few roundtypes all run too recently
-				mode = pick(runnable_modes)
+			// hippie start -- antag token gamemode forcing
+			if(GLOB.current_token_forced && GLOB.allow_antag_token_mode && GLOB.allow_antag_tokens)
+				mode_ticket = GLOB.current_token_forced
+				for(var/G in runnable_modes)
+					var/datum/game_mode/GM = G
+					if(GM && GM.config_tag == mode_ticket.gamemode)
+						mode = GM
+			if(!mode)
+				mode = pickweight(runnable_modes)
+				if(!mode)	//too few roundtypes all run too recently
+					mode = pick(runnable_modes)
+			// hippie end
 
 	else
 		mode = config.pick_mode(GLOB.master_mode)
@@ -253,6 +263,11 @@ SUBSYSTEM_DEF(ticker)
 			return 0
 	else
 		message_admins("<span class='notice'>DEBUG: Bypassing prestart checks...</span>")
+	
+	// hippie start -- more antag token stuff
+	if(mode_ticket)
+		to_chat(world, "3 -- [mode.antag_flag] / [mode_ticket.ticket_holder.RedeemAntagTicket("Gamemode Chosen", mode.antag_flag)]")
+	// hippie end
 
 	CHECK_TICK
 	if(hide_mode)

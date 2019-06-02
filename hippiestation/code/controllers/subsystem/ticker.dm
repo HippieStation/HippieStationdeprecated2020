@@ -5,6 +5,8 @@
 	. = ..()
 	login_music_name = pop(splittext(login_music, "/")) // title name will be last element of the list
 
+/datum/controller/subsystem/ticker/proc/handle_antag_token_gamemode()
+
 /datum/controller/subsystem/ticker/Shutdown()
 	gather_newscaster() //called here so we ensure the log is created even upon admin reboot
 	save_admin_data()

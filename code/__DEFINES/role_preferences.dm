@@ -75,6 +75,30 @@ GLOBAL_LIST_INIT(special_roles, list(
 	ROLE_KOTD = /datum/game_mode/traitor/kotd // hippie -- adds KotD role=gamemode
 ))
 
+// hippie start -- UPDATE THIS LIST EVERY TIME A NEW ANTAG GETS ADDED. DON'T ADD GAMEMODE-LESS TYPES. USED FOR ANTAG TOKENS.
+GLOBAL_LIST_INIT(antag_types, list(
+	"Any Antagonist",
+	ROLE_TRAITOR,
+	ROLE_BROTHER,
+	ROLE_OPERATIVE,
+	ROLE_CHANGELING,
+	ROLE_WIZARD,
+	ROLE_REV,
+	ROLE_CULTIST,
+	ROLE_MONKEY,
+	ROLE_DEVIL,
+	ROLE_SERVANT_OF_RATVAR,
+	ROLE_OVERTHROW,
+	ROLE_HIVE,
+	ROLE_INTERNAL_AFFAIRS,
+	ROLE_SHADOWLING,
+	ROLE_VAMPIRE,
+	ROLE_GANG,
+	ROLE_INFILTRATOR,
+	ROLE_KOTD,
+))
+// hippie end
+
 //Job defines for what happens when you fail to qualify for any job during job selection
 #define BEOVERFLOW 	1
 #define BERANDOMJOB 	2

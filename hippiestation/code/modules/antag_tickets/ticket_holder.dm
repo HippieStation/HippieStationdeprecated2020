@@ -1,11 +1,17 @@
+GLOBAL_LIST_EMPTY(ticket_holders)
+
 /datum/antag_ticket_holder
 	var/list/antag_tickets = list()
 	var/client/client
 
 /datum/antag_ticket_holder/New(c)
-	. = ..()
+	..()
 	client = c
+	GLOB.ticket_holders[client.ckey] += src
 
+/datum/antag_ticket_holder/Destroy(c)
+	..()
+	GLOB.ticket_holders[client.ckey] = null
 
 /datum/antag_ticket_holder/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
@@ -26,7 +32,8 @@
 				"id" = AT.id,
 				"desc" = AT.reason,
 				"amount" = AT.amount,
-				"creator" = AT.creator
+				"creator" = AT.creator,
+				"antag_type" = AT.antag_type
 			))
 
 /datum/antag_ticket_holder/ui_act(action, params)
@@ -37,16 +44,20 @@
 		if("create")
 			if(!check_rights(R_ADMIN))
 				return
-			var/reason = input(usr, "Please enter the reason for the antag ticket", "Antag Ticket Forge", "") as text|null
+			var/reason = input(usr, "Please enter the reason for the antag ticket", "Antag Ticket Printer", "") as text|null
 			if(!reason)
 				reason = "No reason given"
-			var/amount = input(usr, "Please enter the amount of antag tokens", "Antag Ticket Forge", "") as num|null
+			var/amount = input(usr, "Please enter the amount of antag tokens", "Antag Ticket Printer", "") as num|null
 			if(!amount)
 				to_chat(usr, "<span class='danger bold'>You must specify an amount of antag tokens!</span>")
 				return
-			var/datum/antag_ticket/AT = new(0, amount, reason, usr.ckey)
-			log_admin_private("[key_name(usr)] has created an antag ticket for [ckey(client.key)], with [amount] tokens: \"[reason]\".")
-			message_admins("[key_name_admin(usr)] has created an antag ticket for [ckey(client.key)], with [amount] tokens: \"[reason]\".")
+			var/antag_type = input(usr, "Please enter the antag type this ticket is valid for", "Antag Ticket Printer", "") as null|anything in GLOB.antag_types
+			if(!antag_type)
+				to_chat(usr, "<span class='danger bold'>You must specify the antag type</span>")
+				return
+			var/datum/antag_ticket/AT = new(0, amount, reason, usr.ckey, antag_type)
+			log_admin_private("[key_name(usr)] has created an antag ticket for [ckey(client.key)], for [antag_type], with [amount] tokens: \"[reason]\".")
+			message_admins("[key_name_admin(usr)] has created an antag ticket for [ckey(client.key)], for [antag_type], with [amount] tokens: \"[reason]\".")
 			SaveAntagTicket(AT)
 			LoadAntagTickets()
 		if("edit")
@@ -78,17 +89,18 @@
 /datum/antag_ticket_holder/proc/LoadAntagTickets()
 	if(LAZYLEN(antag_tickets))
 		QDEL_LIST(antag_tickets)
-	var/datum/DBQuery/get_tickets = SSdbcore.NewQuery("SELECT `id`, `amount`, `desc`, `creator` FROM [format_table_name("antag_tickets")] WHERE ckey = '[sanitizeSQL(client.ckey)]'")
+	var/datum/DBQuery/get_tickets = SSdbcore.NewQuery("SELECT `id`, `amount`, `desc`, `creator`, `antag_type` FROM [format_table_name("antag_tickets")] WHERE ckey = '[sanitizeSQL(client.ckey)]'")
 	if(get_tickets.Execute())
 		while(get_tickets.NextRow())
 			var/id = text2num(get_tickets.item[1])
 			var/amt = text2num(get_tickets.item[2])
 			var/desc = get_tickets.item[3]
 			var/creator = get_tickets.item[4]
-			antag_tickets["[id]"] = new /datum/antag_ticket(id, amt, desc, creator)
+			var/antag = get_tickets.item[5]
+			antag_tickets["[id]"] = new /datum/antag_ticket(id, amt, desc, creator, antag)
 
 /datum/antag_ticket_holder/proc/SaveAntagTicket(datum/antag_ticket/ticket)
-	var/datum/DBQuery/set_tickets = SSdbcore.NewQuery("INSERT INTO [format_table_name("antag_tickets")] (`ckey`, `desc`, `amount`, `creator`) VALUES ('[sanitizeSQL(client.ckey)]', '[sanitizeSQL(ticket.reason)]', '[sanitizeSQL(ticket.amount)]', '[sanitizeSQL(ticket.creator)]') ")
+	var/datum/DBQuery/set_tickets = SSdbcore.NewQuery("INSERT INTO [format_table_name("antag_tickets")] (`ckey`, `desc`, `amount`, `creator`, `antag_type`) VALUES ('[sanitizeSQL(client.ckey)]', '[sanitizeSQL(ticket.reason)]', '[sanitizeSQL(ticket.amount)]', '[sanitizeSQL(ticket.creator)]', '[sanitizeSQL(ticket.antag_type)]') ")
 	if(!set_tickets.warn_execute())
 		qdel(set_tickets)
 
@@ -106,10 +118,22 @@
 	if(!set_tickets.warn_execute())
 		qdel(set_tickets)
 
-/datum/antag_ticket_holder/proc/RedeemAntagTicket(reason)
+/datum/antag_ticket_holder/proc/CanRedeemFor(antag)
+	antag = lowertext(antag)
 	for(var/A in antag_tickets)
 		var/datum/antag_ticket/AT = antag_tickets[A]
 		if(AT.amount < 1) // shouldn't ever happen, but let's be safe
+			continue
+		if(lowertext(AT.antag_type) == "any antagonist" || lowertext(AT.antag_type) == antag)
+			return TRUE
+	return FALSE
+
+/datum/antag_ticket_holder/proc/RedeemAntagTicket(reason, antag = "Any Antagonist")
+	for(var/A in antag_tickets)
+		var/datum/antag_ticket/AT = antag_tickets[A]
+		if(AT.amount < 1) // shouldn't ever happen, but let's be safe
+			continue
+		if(!(AT.antag_type == "Any Antagonist" || AT.antag_type == antag)) // not valid for this antag type, let's go on
 			continue
 		AT.amount -= 1
 		UpdateAntagTicket(AT)

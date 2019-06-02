@@ -78,7 +78,9 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/fill_breach, /* hippie -- fills breaches in a radius defined by the admin*/
 	/client/proc/addDonator,	//hippie -- adds donator
 	/client/proc/deleteDonator,	//hippie -- removes donator
-	/client/proc/kill_turf_chems /*hippie -- destroys all chem piles*/
+	/client/proc/kill_turf_chems, /*hippie -- destroys all chem piles*/
+	/client/proc/toggle_antag_tokens, // hippie -- for antag tokens
+	/client/proc/toggle_antag_token_modes // hippie -- for antag tokens
 	)
 
 GLOBAL_LIST_INIT(admin_verbs_ban, list(/client/proc/unban_panel, /client/proc/ban_panel, /client/proc/stickybanpanel))
