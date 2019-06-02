@@ -24,7 +24,8 @@
 	var/n_agents = min(max(CEILING(num_players() / 7, 1), 1), antag_candidates.len, agents_possible)
 	if(GLOB.Debug2 || n_agents >= required_enemies)
 		for(var/i = 0, i < n_agents, ++i)
-			var/datum/mind/new_sit = pick_n_take(antag_candidates)
+			var/datum/mind/new_sit = antag_pick(antag_candidates)
+			antag_candidates -= new_sit
 			pre_sit += new_sit
 			new_sit.assigned_role = "Syndicate Infiltrator"
 			new_sit.special_role = "Syndicate Infiltrator"

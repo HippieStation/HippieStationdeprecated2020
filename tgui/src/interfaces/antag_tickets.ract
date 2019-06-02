@@ -1,0 +1,32 @@
+<ui-display>
+	{{#if data.admin}}
+		<ui-section>
+			<ui-button icon='plus' action='create'>
+				Create Ticket
+			</ui-button>
+		</ui-section>
+	{{/if}}
+</ui-display>
+{{#each data.tickets}}
+	<ui-display>
+		<ui-section>
+			<b>Reason:</b> {{desc}}
+		</ui-section>
+		<ui-section>
+			<b>Creator:</b> {{creator}}
+		</ui-section>
+		<ui-section>
+			<b>Tokens:</b> {{amount}}
+		</ui-section>
+		{{#if data.admin}}
+			<ui-section>
+				<ui-button icon='edit' action='edit' params='{"ticket_id": "{{id}}"}'>
+					Edit Ticket
+				</ui-button>
+				<ui-button icon='trash' action='delete' params='{"ticket_id": "{{id}}"}'>
+					Delete Ticket
+				</ui-button>
+			</ui-section>
+		{{/if}}
+	</ui-display>
+{{/each}}

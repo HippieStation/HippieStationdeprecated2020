@@ -50,6 +50,15 @@
 		makeDonator(href_list["makedonator"])
 	else if(href_list["removedonator"])
 		removeDonator(href_list["removedonator"])
+	else if(href_list["antagtickets"])
+		var/mob/M = locate(href_list["antagtickets"])
+		if(M && M.client)
+			M.client.ticket_holder.ui_interact(usr)
+	else if(href_list["redeemtoken"])
+		var/mob/M = locate(href_list["redeemtoken"])
+		if(M && M.client && alert("Are you sure you want to redeem [M]'s antag token?","Confirm","Yes","No") == "Yes")
+			var/reason = input(usr, "Please enter the reason for redeeming [M]'s antag token.", "Antag Tickets", "") as text|null
+			M.client.ticket_holder.RedeemAntagTicket(reason ? reason : "No Reason Given")
 
 /datum/admins/proc/checkMentorEditList(ckey)
 	var/sql_key = sanitizeSQL("[ckey]")

@@ -1,4 +1,5 @@
 #define LINKIFY_READY(string, value) "<a href='byond://?src=[REF(src)];ready=[value]'>[string]</a>"
+#define ANTAG_TOKEN_BUTTON (using_token ? "<a href='byond://?src=[REF(src)];token=0'>AT</a>" : "<a href='byond://?src=[REF(src)];token=1'>NT</a>")
 
 /mob/dead/new_player
 	var/ready = 0
@@ -38,7 +39,7 @@
 			if(PLAYER_NOT_READY)
 				output += "<p>\[ [LINKIFY_READY("Ready", PLAYER_READY_TO_PLAY)] | <b>Not Ready</b> | [LINKIFY_READY("Observe", PLAYER_READY_TO_OBSERVE)] \]</p>"
 			if(PLAYER_READY_TO_PLAY)
-				output += "<p>\[ <b>Ready</b> | [LINKIFY_READY("Not Ready", PLAYER_NOT_READY)] | [LINKIFY_READY("Observe", PLAYER_READY_TO_OBSERVE)] \]</p>"
+				output += "<p>\[ <b>Ready</b> [ANTAG_TOKEN_BUTTON] | [LINKIFY_READY("Not Ready", PLAYER_NOT_READY)] | [LINKIFY_READY("Observe", PLAYER_READY_TO_OBSERVE)] \]</p>" // hippie -- antag tokens
 			if(PLAYER_READY_TO_OBSERVE)
 				output += "<p>\[ [LINKIFY_READY("Ready", PLAYER_READY_TO_PLAY)] | [LINKIFY_READY("Not Ready", PLAYER_NOT_READY)] | <b> Observe </b> \]</p>"
 	else

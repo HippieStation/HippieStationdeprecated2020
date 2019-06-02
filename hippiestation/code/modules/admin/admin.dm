@@ -4,5 +4,7 @@
 		body += "<A href='?_src_=holder;[HrefToken()];makementor=[M.ckey]'>Make mentor</A> | "
 		body += "<A href='?_src_=holder;[HrefToken()];removementor=[M.ckey]'>Remove mentor</A> | "
 		body += "<A href='?_src_=holder;[HrefToken()];makedonator=[M.ckey]'>Make donator</A> | "
-		body += "<A href='?_src_=holder;[HrefToken()];removedonator=[M.ckey]'>Remove donator</A>"
+		body += "<A href='?_src_=holder;[HrefToken()];removedonator=[M.ckey]'>Remove donator</A> | "
+		body += "<A href='?_src_=holder;[HrefToken()];antagtickets=[REF(M)]'>Antag Ticket Panel</A> | "
+		body += "<A href='?_src_=holder;[HrefToken()];redeemtoken=[REF(M)]'>Redeem Antag Token</A>"
 	return body

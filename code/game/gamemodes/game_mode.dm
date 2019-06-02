@@ -312,7 +312,7 @@
 //     Player B: 100 / 250 = 0.4 = 40%
 /datum/game_mode/proc/antag_pick(list/datum/candidates)
 	if(!CONFIG_GET(flag/use_antag_rep)) // || candidates.len <= 1)
-		return pick(candidates)
+		return pick_with_tokens(candidates) // hippie -- antag tokens
 
 	// Tickets start at 100
 	var/DEFAULT_ANTAG_TICKETS = CONFIG_GET(number/default_antag_tickets)
@@ -330,6 +330,11 @@
 
 	for(var/datum/mind/mind in candidates)
 		p_ckey = ckey(mind.key)
+		// hippie start -- antag tokens
+		if(GLOB.token_users[p_ckey] == TRUE)
+			if(mind.current.client.ticket_holder.RedeemAntagTicket("Chosen for antagonist role"))
+				GLOB.token_users[p_ckey] = FALSE
+				return mind // hippie end
 		total_tickets += min(SSpersistence.antag_rep[p_ckey] + DEFAULT_ANTAG_TICKETS, MAX_TICKETS_PER_ROLL)
 
 	var/antag_select = rand(1,total_tickets)
