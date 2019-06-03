@@ -515,6 +515,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 				to_chat(user, "<span class='notice bold'>You can click on the pinpointer at the top right to track a stone.</span>")
 				to_chat(user, "<span class='notice bold'>Examine a stone/the gauntlet to see what each intent does.</span>")
 				to_chat(user, "<span class='notice bold'>You can smash walls, tables, grilles, windows, and safes on HARM intent.</span>")
+				to_chat(user, "<span class='notice bold'>Be warned -- you may be mocked if you kill innocents, that does not bring balance!</span>")
 				ADD_TRAIT(src, TRAIT_NODROP, GAUNTLET_TRAIT)
 				locked_on = TRUE
 				visible_message("<span class='danger bold'>The badmin gauntlet clamps to [user]'s hand!</span>")
@@ -847,7 +848,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 /datum/objective/snap
 	name = "snap"
-	explanation_text = "Bring balance to the universe, by snapping out half the life in the universe with the Badmin Gauntlet"
+	explanation_text = "Bring balance to the universe, by snapping out half the life with the Badmin Gauntlet"
 
 /datum/objective/snap/check_completion()
 	return GLOB.gauntlet_snapped
