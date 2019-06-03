@@ -112,7 +112,7 @@
 	return TRUE
 
 /datum/martial_art/cqc/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!can_cook)
+	if(!can_cook(A))
 		return
 	add_to_streak("G",D)
 	if(check_streak(A,D))
@@ -129,7 +129,7 @@
 	return TRUE
 
 /datum/martial_art/cqc/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!can_cook)
+	if(!can_cook(A))
 		return
 	add_to_streak("H",D)
 	if(check_streak(A,D))
@@ -159,7 +159,7 @@
 	return TRUE
 
 /datum/martial_art/cqc/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(!can_cook)
+	if(!can_cook(A))
 		return
 	add_to_streak("D",D)
 	var/obj/item/I = null
