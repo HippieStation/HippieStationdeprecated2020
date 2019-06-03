@@ -129,7 +129,7 @@
 
 
 /mob/living/carbon/human/ex_act(severity, target, origin)
-	if(leaping || (dna && istype(dna.species, /datum/species/ganymede)))
+	if(super_leaping || (dna && istype(dna.species, /datum/species/ganymede)))
 		return
 	return ..()
 

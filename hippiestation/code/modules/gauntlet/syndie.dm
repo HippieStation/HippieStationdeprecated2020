@@ -196,7 +196,7 @@
 	target.mouse_opacity = initial(target.mouse_opacity)
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
-		C.leaping = FALSE
+		C.super_leaping = FALSE
 	if(passenger)
 		passenger.opacity = initial(passenger.opacity)
 		passenger.mouse_opacity = initial(passenger.mouse_opacity)
