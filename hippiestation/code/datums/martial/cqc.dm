@@ -19,6 +19,12 @@
 
 /datum/martial_art/cqc/proc/drop_restraining()
 	restraining = 0
+	
+/datum/martial_art/cqc/proc/can_cook(mob/living/carbon/human/A)
+	if(just_a_cook)
+		var/A_area = get_area(A)
+		if (!is_type_in_typecache(A_area, areas_under_siege))
+			return FALSE
 
 /datum/martial_art/cqc/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	A.hud_used.combo_object.update_icon(streak, 60)
@@ -106,9 +112,8 @@
 	return TRUE
 
 /datum/martial_art/cqc/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if (just_a_cook)
-		if (!is_type_in_typecache(get_area(A), areas_under_siege))
-			return FALSE
+	if(!can_cook(A))
+		return
 	add_to_streak("G",D)
 	if(check_streak(A,D))
 		return TRUE
@@ -124,9 +129,8 @@
 	return TRUE
 
 /datum/martial_art/cqc/harm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if (just_a_cook)
-		if (!is_type_in_typecache(get_area(A), areas_under_siege))
-			return FALSE
+	if(!can_cook(A))
+		return
 	add_to_streak("H",D)
 	if(check_streak(A,D))
 		return TRUE
@@ -155,9 +159,8 @@
 	return TRUE
 
 /datum/martial_art/cqc/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if (just_a_cook)
-		if (!is_type_in_typecache(get_area(A), areas_under_siege))
-			return FALSE
+	if(!can_cook(A))
+		return
 	add_to_streak("D",D)
 	var/obj/item/I = null
 	if(check_streak(A,D))
