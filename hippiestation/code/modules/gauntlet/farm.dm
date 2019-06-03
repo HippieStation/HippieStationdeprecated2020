@@ -30,14 +30,15 @@ GLOBAL_LIST_EMPTY(thanos_portal)
 			teleportify(AM)
 
 /obj/effect/thanos_portal/proc/teleportify(atom/movable/AM)
-	var/turf/T = get_turf(pick(GLOB.thanos_portal))
-	AM.visible_message("<span class='danger'>[AM] passes through [src]!</span>", null, null, null, AM)
-	AM.forceMove(T)
-	AM.visible_message("<span class='danger'>[AM] materializes from the air!</span>", \
-	"<span class='boldannounce'>You pass through [src] and appear somewhere unfamiliar.</span>")
-	do_sparks(5, TRUE, src)
-	do_sparks(5, TRUE, AM)
-	if(isliving(AM))
-		var/mob/living/L = AM
-		L.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/static)
-		L.clear_fullscreen("flash", 5)
+	if(LAZYLEN(GLOB.thanos_portal))
+		var/turf/T = get_turf(pick(GLOB.thanos_portal))
+		AM.visible_message("<span class='danger'>[AM] passes through [src]!</span>", null, null, null, AM)
+		AM.forceMove(T)
+		AM.visible_message("<span class='danger'>[AM] materializes from the air!</span>", \
+		"<span class='boldannounce'>You pass through [src] and appear somewhere unfamiliar.</span>")
+		do_sparks(5, TRUE, src)
+		do_sparks(5, TRUE, AM)
+		if(isliving(AM))
+			var/mob/living/L = AM
+			L.overlay_fullscreen("flash", /obj/screen/fullscreen/flash/static)
+			L.clear_fullscreen("flash", 5)

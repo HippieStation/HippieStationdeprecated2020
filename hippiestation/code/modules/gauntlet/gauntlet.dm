@@ -810,7 +810,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		for(var/i = 1 to 3)
 			var/turf/T = pick_n_take(shuttle_turfs)
 			new /obj/effect/thanos_portal(T)
-		user.forceMove(pick(GLOB.thanos_start))
+		if(LAZYLEN(GLOB.thanos_start))
+			user.forceMove(pick(GLOB.thanos_start))
 
 /////////////////////////////////////////////
 /////////////////// OTHER ///////////////////
