@@ -15285,12 +15285,6 @@
 /obj/machinery/vending/wardrobe/viro_wardrobe,
 /turf/open/floor/plasteel/white,
 /area/medical/virology)
-"aIf" = (
-/obj/machinery/sleeper{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/medical/sleeper)
 "aIg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -18868,14 +18862,12 @@
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "aQh" = (
-/obj/machinery/sleeper{
-	dir = 1
-	},
 /obj/machinery/camera{
 	c_tag = "Medical - Sleeper Bay";
 	dir = 1;
 	network = list("ss13","Medical")
 	},
+/obj/machinery/stasis,
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "aQi" = (
@@ -20406,7 +20398,11 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard)
 "aTD" = (
+<<<<<<< HEAD
 /obj/machinery/sleeper,
+=======
+/obj/machinery/stasis,
+>>>>>>> 6aa8ceb... [READY] Replaces sleepers with stasis beds (Lifeform Stasis Unit) (#43075)
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "aTE" = (
@@ -23154,10 +23150,10 @@
 /turf/open/floor/plasteel/white,
 /area/medical/surgery)
 "aYo" = (
-/obj/machinery/sleeper,
 /obj/machinery/firealarm{
 	pixel_y = 24
 	},
+/obj/machinery/stasis,
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "aYp" = (
@@ -50866,7 +50862,7 @@
 	empty = 1;
 	name = "First-Aid (empty)"
 	},
-/obj/item/circuitboard/machine/sleeper,
+/obj/item/circuitboard/machine/stasis,
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bZY" = (
@@ -57457,6 +57453,29 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+<<<<<<< HEAD
+=======
+"wMM" = (
+/obj/machinery/stasis,
+/obj/machinery/airalarm{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel,
+/area/medical/sleeper)
+"wPr" = (
+/obj/machinery/power/apc{
+	areastring = "/area/construction";
+	cell_type = null;
+	dir = 8;
+	name = "Construction APC";
+	pixel_x = -25
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating,
+/area/construction)
+>>>>>>> 6aa8ceb... [READY] Replaces sleepers with stasis beds (Lifeform Stasis Unit) (#43075)
 "wQC" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -80446,7 +80465,7 @@ aGQ
 aYo
 aJb
 aHP
-aIf
+aTD
 aGQ
 aTY
 bAF
