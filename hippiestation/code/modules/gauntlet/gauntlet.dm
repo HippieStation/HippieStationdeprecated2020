@@ -148,6 +148,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			continue
 		DoSnap(L)
 		mobs_wiped++
+	log_game("[key_name(snapper)] snapped, wiping out [players_wiped] players and [mobs_wiped] non-player mobs.")
+	message_admins("[key_name(snapper)] snapped, wiping out [players_wiped] players and [mobs_wiped] non-player mobs.")
 
 /obj/item/badmin_gauntlet/proc/GetWeightedChances(list/job_list, list/blacklist)
 	var/list/jobs = list()
@@ -794,6 +796,20 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		user.RemoveSpell(src)
 		SSshuttle.emergencyNoRecall = TRUE
 		SSshuttle.emergency.request(null, set_coefficient = 0.3)
+		var/list/shuttle_turfs = list()
+		for(var/turf/T in get_area_turfs(/area/shuttle/escape))
+			if(!T.density)
+				var/clear = TRUE
+				for(var/obj/O in T)
+					if(O.density)
+						clear = FALSE
+						break
+				if(clear)
+					shuttle_turfs+=T
+		for(var/i = 1 to 3)
+			var/turf/T = pick_n_take(shuttle_turfs)
+			new /obj/effect/thanos_portal(T)
+		user.forceMove(pick(GLOB.thanos_start))
 
 /////////////////////////////////////////////
 /////////////////// OTHER ///////////////////
@@ -831,7 +847,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 /datum/objective/snap
 	name = "snap"
-	explanation_text = "Snap out half the life in the universe with the Badmin Gauntlet"
+	explanation_text = "Bring balance to the universe, by snapping out half the life in the universe with the Badmin Gauntlet"
 
 /datum/objective/snap/check_completion()
 	return GLOB.gauntlet_snapped

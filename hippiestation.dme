@@ -3223,6 +3223,7 @@
 #include "hippiestation\code\modules\gauntlet\_stone.dm"
 #include "hippiestation\code\modules\gauntlet\bluespace.dm"
 #include "hippiestation\code\modules\gauntlet\clown.dm"
+#include "hippiestation\code\modules\gauntlet\farm.dm"
 #include "hippiestation\code\modules\gauntlet\ganymede.dm"
 #include "hippiestation\code\modules\gauntlet\gauntlet.dm"
 #include "hippiestation\code\modules\gauntlet\ghost.dm"
