@@ -152,7 +152,7 @@
 	target.mouse_opacity = FALSE
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
-		C.leaping = TRUE
+		C.super_leaping = TRUE
 	if(passenger)
 		passenger.opacity = FALSE
 		passenger.mouse_opacity = FALSE
@@ -224,10 +224,10 @@
 /mob/living/carbon
 	var/mario_star = FALSE
 	var/super_mario_star = FALSE
-	var/leaping = FALSE
+	var/super_leaping = FALSE
 
 /mob/living/carbon/ex_act(severity, target, origin)
-	if(leaping)
+	if(super_leaping)
 		return
 	return ..()
 

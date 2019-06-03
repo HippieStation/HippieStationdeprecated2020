@@ -679,6 +679,9 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	target.visible_message("<span class='danger bold'>[target] LEAPS[passenger ? ", bringing [passenger] up with them" : ""]!</span>")
 	target.opacity = FALSE
 	target.mouse_opacity = FALSE
+	if(iscarbon(target))
+		var/mob/living/carbon/C = target
+		C.super_leaping = TRUE
 	if(passenger)
 		passenger.opacity = FALSE
 		passenger.mouse_opacity = FALSE
@@ -721,6 +724,9 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	sleep(4.5)
 	target.opacity = initial(target.opacity)
 	target.mouse_opacity = initial(target.mouse_opacity)
+	if(iscarbon(target))
+		var/mob/living/carbon/C = target
+		C.super_leaping = FALSE
 	if(passenger)
 		passenger.opacity = initial(passenger.opacity)
 		passenger.mouse_opacity = initial(passenger.mouse_opacity)
