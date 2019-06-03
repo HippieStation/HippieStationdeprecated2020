@@ -20,6 +20,7 @@
 
 	var/list/upgrade_tiers = list(
 		/obj/effect/proc_holder/spell/self/rejuvenate = 0,
+		/obj/effect/proc_holder/spell/self/revive = 0,
 		/obj/effect/proc_holder/spell/targeted/hypnotise = 0,
 		/datum/vampire_passive/vision = 175,
 		/obj/effect/proc_holder/spell/self/shapeshift = 175,
@@ -32,8 +33,7 @@
 		/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/mistform = 500,
 		/datum/vampire_passive/full = 666,
 		/obj/effect/proc_holder/spell/self/summon_coat = 666,
-		/obj/effect/proc_holder/spell/targeted/vampirize = 700,
-		/obj/effect/proc_holder/spell/self/revive = 800)
+		/obj/effect/proc_holder/spell/targeted/vampirize = 666)
 
 /datum/antagonist/vampire/get_admin_commands()
 	. = ..()
@@ -216,8 +216,8 @@
 		H.LAssailant = null
 	else
 		H.LAssailant = O
-	playsound(O.loc, 'sound/weapons/bite.ogg', 50, 1)
-	while(do_mob(O, H, 50))
+	playsound(O.loc, 'sound/weapons/bite.ogg', 40, 1)
+	while(do_mob(O, H, 22))
 		if(!is_vampire(O))
 			to_chat(O, "<span class='warning'>Your fangs have disappeared!</span>")
 			return
@@ -227,11 +227,11 @@
 			to_chat(O, "<span class='warning'>They've got no blood left to give.</span>")
 			break
 		if(H.stat != DEAD)
-			blood = min(20, H.blood_volume)// if they have less than 20 blood, give them the remnant else they get 20 blood
+			blood = min(10, H.blood_volume)// if they have less than 10 blood, give them the remnant else they get 10 blood
 			total_blood += blood / 2	//divide by 2 to counted the double suction since removing cloneloss -Melandor0
 			usable_blood += blood / 2
 		else
-			blood = min(5, H.blood_volume)	// The dead only give 5 blood
+			blood = min(2, H.blood_volume)	// The dead only give 2 blood
 			total_blood += blood
 		check_vampire_upgrade()
 		if(old_bloodtotal != total_blood)
@@ -239,7 +239,7 @@
 		H.blood_volume = max(H.blood_volume - 25, 0)
 		if(ishuman(O))
 			O.nutrition = min(O.nutrition + (blood / 2), NUTRITION_LEVEL_WELL_FED)
-		playsound(O.loc, 'sound/items/eatfood.ogg', 40, 1)
+		playsound(O.loc, 'hippiestation/sound/effects/vampsip.ogg', 25, 1)
 
 	draining = null
 	to_chat(owner, "<span class='notice'>You stop draining [H.name] of blood.</span>")

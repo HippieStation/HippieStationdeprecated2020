@@ -66,7 +66,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 		H << browse(dat, "window=editicon;can_close=0;can_minimize=0;size=250x650")
 
 /obj/item/storage/book/bible/Topic(href, href_list)
-	if(!usr.canUseTopic(src))
+	if(!usr.canUseTopic(src, BE_CLOSE))
 		return
 	if(href_list["seticon"] && SSreligion && !SSreligion.bible_icon_state)
 		var/iconi = text2num(href_list["seticon"])
@@ -206,14 +206,16 @@ GLOBAL_LIST_INIT(bibleitemstates, list("bible", "koran", "scrapbook", "burning",
 		if(do_after(user, 40, target = SS))
 			playsound(src,'sound/effects/pray_chaplain.ogg',60,1)
 			SS.usability = TRUE
+			SS.purified = TRUE
+			SS.icon_state = "purified_soulstone"
+			for(var/mob/M in SS.contents)
+				if(M.mind)
+					SS.icon_state = "purified_soulstone2"
 			for(var/mob/living/simple_animal/shade/EX in SS)
-				SSticker.mode.remove_cultist(EX.mind, 1, 0)
 				EX.icon_state = "ghost1"
-				EX.name = "Purified [EX.name]"
-				SS.release_shades(user)
+				EX.name = "Purified [EX.name]"				
 			user.visible_message("<span class='notice'>[user] has purified the [SS]!</span>")
-			qdel(SS)
-
+			
 /obj/item/storage/book/bible/booze
 	desc = "To be applied to the head repeatedly."
 

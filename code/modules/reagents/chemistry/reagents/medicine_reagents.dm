@@ -1104,6 +1104,7 @@
 	description = "Miniature medical robots that swiftly restore bodily damage."
 	reagent_state = SOLID
 	color = "#555555"
+	// overdose_threshold = 30 // hippie -- get that shit out of here
 
 /datum/reagent/medicine/syndicate_nanites/on_mob_life(mob/living/carbon/M)
 	M.adjustBruteLoss(-5*REM, 0) //A ton of healing - this is a 50 telecrystal investment.
@@ -1114,7 +1115,14 @@
 	M.adjustCloneLoss(-3*REM, 0)
 	..()
 	. = 1
-
+/* hippie start -- modulisation, we don't want this
+/datum/reagent/medicine/syndicate_nanites/overdose_process(mob/living/carbon/M) //wtb flavortext messages that hint that you're vomitting up robots
+	if(prob(25))
+		M.reagents.remove_reagent(src.id, metabolization_rate*15) // ~5 units at a rate of 0.4 but i wanted a nice number in code
+		M.vomit(20) // nanite safety protocols make your body expel them to prevent harmies
+	..()
+	. = 1
+hippie end*/
 /datum/reagent/medicine/earthsblood //Created by ambrosia gaia plants
 	name = "Earthsblood"
 	id = "earthsblood"

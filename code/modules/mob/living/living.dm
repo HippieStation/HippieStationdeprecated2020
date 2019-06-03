@@ -384,8 +384,8 @@
 			to_chat(src, "<span class='notice'>You have given up life and succumbed to death.</span>")
 		death()
 
-/mob/living/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, check_immobilized = FALSE)
-	if(stat || IsUnconscious() || IsStun() || IsParalyzed() || (check_immobilized && IsImmobilized()) || (!ignore_restraints && restrained(ignore_grab)))
+/mob/living/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, check_immobilized = FALSE, ignore_stasis = FALSE)
+	if(stat || IsUnconscious() || IsStun() || IsParalyzed() || (check_immobilized && IsImmobilized()) || (!ignore_restraints && restrained(ignore_grab)) || (!ignore_stasis && IsInStasis()))
 		return TRUE
 
 /mob/living/canUseStorage()
@@ -680,7 +680,7 @@
 		..(pressure_difference, direction, pressure_resistance_prob_delta)
 
 /mob/living/can_resist()
-	return !((next_move > world.time) || incapacitated(ignore_restraints = TRUE))
+	return !((next_move > world.time) || incapacitated(ignore_restraints = TRUE, ignore_stasis = TRUE))
 
 /mob/living/verb/resist()
 	set name = "Resist"
@@ -693,7 +693,6 @@
 	SEND_SIGNAL(src, COMSIG_LIVING_RESIST, src)
 	//resisting grabs (as if it helps anyone...)
 	if(!restrained(ignore_grab = 1) && pulledby)
-		visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
 		log_combat(src, pulledby, "resisted grab")
 		resist_grab()
 		return
@@ -721,13 +720,18 @@
 	. = TRUE
 	if(pulledby.grab_state || resting)
 		var/altered_grab_state = pulledby.grab_state
-		if(resting) //If resting, resisting out of a grab is equivalent to 1 grab state higher
+		if(resting && pulledby.grab_state < GRAB_KILL) //If resting, resisting out of a grab is equivalent to 1 grab state higher. wont make the grab state exceed the normal max, however
 			altered_grab_state++
-		if(prob(30/altered_grab_state))
+		var/resist_chance = BASE_GRAB_RESIST_CHANCE // see defines/combat.dm
+		resist_chance = max(resist_chance/altered_grab_state-sqrt((getStaminaLoss()+getBruteLoss()/2)*(3-altered_grab_state)), 0) // https://i.imgur.com/6yAT90T.png for sample output values
+		if(prob(resist_chance))
 			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>")
 			log_combat(pulledby, src, "broke grab")
 			pulledby.stop_pulling()
 			return FALSE
+		else
+			adjustStaminaLoss(rand(8,15))//8 is from 7.5 rounded up
+			visible_message("<span class='danger'>[src] struggles as they fail to break free of [pulledby]'s grip!</span>")
 		if(moving_resist && client) //we resisted by trying to move
 			client.move_delay = world.time + 20
 	else
@@ -994,7 +998,7 @@ hippie end */
 
 	apply_effect((amount*RAD_MOB_COEFFICIENT)/max(1, (radiation**2)*RAD_OVERDOSE_REDUCTION), EFFECT_IRRADIATE, blocked)
 
-/mob/living/anti_magic_check(magic = TRUE, holy = FALSE, major = TRUE, self = FALSE)
+/mob/living/anti_magic_check(magic = TRUE, holy = FALSE, tinfoil = FALSE, chargecost = 1, self = FALSE)
 	. = ..()
 	if(.)
 		return
@@ -1097,7 +1101,8 @@ hippie end */
 	var/stun = IsStun()
 	var/knockdown = IsKnockdown()
 	var/ignore_legs = get_leg_ignore()
-	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && (has_arms || ignore_legs || has_legs) && !pinned_to //hippie edit - support for pinning
+	var/in_stasis = IsInStasis()
+	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && !in_stasis && !pinned_to &&(has_arms || ignore_legs || has_legs) //hippie edit - support for pinning
 	if(canmove)
 		mobility_flags |= MOBILITY_MOVE
 	else
