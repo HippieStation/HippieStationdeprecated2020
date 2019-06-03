@@ -1647,12 +1647,6 @@
 /obj/structure/window/reinforced,
 /turf/open/space/basic,
 /area/space/nearstation)
-"aei" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/turf/open/floor/plasteel,
-/area/crew_quarters/fitness)
 "aej" = (
 /turf/open/floor/plasteel,
 /area/crew_quarters/fitness)
@@ -53178,7 +53172,43 @@
 /obj/structure/window/plasma/reinforced{
 	dir = 8
 	},
+<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/manifold/general/visible{
+=======
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"cla" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
+/turf/open/floor/plasteel/dark,
+/area/engine/engine_room)
+"clO" = (
+/obj/structure/table/glass,
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
+/obj/item/reagent_containers/glass/beaker/cryoxadone,
+/obj/machinery/airalarm{
+	pixel_y = 25
+	},
+/turf/open/floor/plasteel,
+/area/medical/cryo)
+"csr" = (
+/obj/machinery/airalarm/server{
+	dir = 4;
+	pixel_x = -22
+	},
+/turf/open/floor/plasteel/dark/telecomms,
+/area/tcommsat/server)
+"csH" = (
+/obj/machinery/atmospherics/components/trinary/filter/flipped/critical{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/engine/engine_room)
+"cvc" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on/layer3{
+>>>>>>> 06ea919... Fix Donutstation telecomms server air alarm (#44257)
 	dir = 4
 	},
 /obj/structure/cable{
@@ -82987,13 +83017,13 @@ bkQ
 avi
 adO
 ako
-aei
-aei
-aei
-aei
-aei
-aei
-aei
+adP
+adP
+adP
+adP
+adP
+adP
+adP
 bkX
 cIZ
 gst
@@ -83500,7 +83530,7 @@ avi
 avi
 avi
 adP
-aei
+adP
 aej
 auk
 auy
