@@ -252,3 +252,5 @@ Remote devices will work when used through cameras. For example: Bluespace RPEDs
 As Thanos, you can switch which stone you're tracking by clicking on the pinpointer at the top right!
 As Thanos, you can break people's legs by aiming at a leg on harm intent! With the Syndie Stone, you can rip legs off!
 As Thanos, your Super Jump has a shadow, so people CAN see where you're going!
+PROTIP: To defeat Thanos, shoot at him until he dies
+You can light a cigar on a supermatter crystal.
