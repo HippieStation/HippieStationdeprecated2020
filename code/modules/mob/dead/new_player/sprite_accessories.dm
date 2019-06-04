@@ -1492,7 +1492,7 @@
 /datum/sprite_accessory/socks/white_short
 	name = "Short (White)"
 	icon_state = "white_short"
-
+/* hippie begin
 /datum/sprite_accessory/socks/stockings_black
 	name = "Stockings (Black)"
 	icon_state = "stockings_black"
@@ -1528,7 +1528,7 @@
 /datum/sprite_accessory/socks/stockings_yellow
 	name = "Stockings (Yellow)"
 	icon_state = "stockings_yellow"
-
+*/ //hippie end
 /datum/sprite_accessory/socks/black_thigh
 	name = "Thigh-high (Black)"
 	icon_state = "black_thigh"
