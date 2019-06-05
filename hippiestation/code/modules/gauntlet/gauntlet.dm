@@ -126,13 +126,9 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 /obj/item/badmin_gauntlet/proc/DoTheSnap()
 	var/mob/living/snapper = usr
 	var/list/players = GLOB.player_list.Copy()
-	var/list/mobs = GLOB.alive_mob_list.Copy() - players
 	shuffle_inplace(players)
-	shuffle_inplace(mobs)
 	var/players_to_wipe = FLOOR((players.len-1)/2, 1)
-	var/mobs_to_wipe = FLOOR(mobs.len/2, 1)
 	var/players_wiped = 0
-	var/mobs_wiped = 0
 	to_chat(world, "<span class='userdanger italics'>You feel as if something big has happened.</span>")
 	for(var/mob/living/L in players)
 		if(players_wiped >= players_to_wipe)
@@ -141,15 +137,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			continue
 		DoSnap(L)
 		players_wiped++
-	for(var/mob/living/L in mobs)
-		if(mobs_wiped >= mobs_to_wipe)
-			break
-		if(snapper == L || (L in players))
-			continue
-		DoSnap(L)
-		mobs_wiped++
-	log_game("[key_name(snapper)] snapped, wiping out [players_wiped] players and [mobs_wiped] non-player mobs.")
-	message_admins("[key_name(snapper)] snapped, wiping out [players_wiped] players and [mobs_wiped] non-player mobs.")
+	log_game("[key_name(snapper)] snapped, wiping out [players_wiped] players.")
+	message_admins("[key_name(snapper)] snapped, wiping out [players_wiped] players.")
 
 /obj/item/badmin_gauntlet/proc/GetWeightedChances(list/job_list, list/blacklist)
 	var/list/jobs = list()
