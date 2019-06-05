@@ -114,6 +114,11 @@
 		return //gauntlet handles this from now on
 	var/mob/living/new_holder = GetHolder()
 	var/mob/living/new_aura_holder = GetAuraHolder()
+	if(ishuman(new_aura_holder))
+		var/mob/living/carbon/human/H = user
+		if(H.dna && H.dna.check_mutation(CLUWNEMUT))
+			NoPickingMeUp(H)
+			return
 	if (new_holder != current_holder)
 		if(isliving(current_holder))
 			RemoveAbilities(current_holder)
