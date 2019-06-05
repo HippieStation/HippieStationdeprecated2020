@@ -16,7 +16,7 @@
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
 
-	outfit = /datum/outfit/job/hos
+	outfit = /datum/outfit/job/hos/hippie // hippie -- new sec
 	mind_traits = list(TRAIT_LAW_ENFORCEMENT_METABOLISM)
 
 	access = list(ACCESS_SECURITY, ACCESS_SEC_DOORS, ACCESS_BRIG, ACCESS_ARMORY, ACCESS_COURT, ACCESS_WEAPONS, ACCESS_MECH_SECURITY,
@@ -33,7 +33,7 @@
 	display_order = JOB_DISPLAY_ORDER_HEAD_OF_SECURITY
 
 /datum/outfit/job/hos
-	name = "Head of Security"
+	name = "Head of Security (Classic)" // hippie -- lets you pick the old sec
 	jobtype = /datum/job/hos
 
 	id = /obj/item/card/id/silver

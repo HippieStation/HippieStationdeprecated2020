@@ -19,4 +19,5 @@
 
 /obj/item/ammo_box/magazine/mm712x82/update_icon()
 	..()
-	icon_state = "a762-[round(ammo_count(),10)]"
+	if(box_opened) // hippie -- new box spritestuffs
+		icon_state = "a762-[round(ammo_count(),10)]" // hippie end

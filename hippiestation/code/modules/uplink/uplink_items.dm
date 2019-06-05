@@ -163,7 +163,7 @@
 	irradiate targets. It can produce an infinite number of bolts \
 	but takes time to automatically recharge after each shot."
 	item = /obj/item/gun/energy/kinetic_accelerator/hippie_ebow
-	cost = 8
+	cost = 7
 	exclude_modes = list() // Has no reason to be excluded any more.
 
 /datum/uplink_item/stealthy_tools/chameleon
@@ -203,10 +203,10 @@
 	surplus = 60
 
 /datum/uplink_item/implants/microbomb
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor, /datum/game_mode/traitor/vampire)
 
 /datum/uplink_item/implants/macrobomb
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor)
+	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor, /datum/game_mode/traitor/vampire)
 	restricted = FALSE
 
 /datum/uplink_item/dangerous/hockey
@@ -485,7 +485,7 @@
 	desc = "Fakes an immovable rod announcement. Good for a short-lasting distraction."
 	item = /obj/item/service/rodgod
 	cost = 6 //less likely to be believed
-	
+
 /datum/uplink_item/role_restricted/monk_manual
 	name = "Monk Manual"
 	desc = "Study the ways of asceticism and pacifism by beating the living shit out of people."
@@ -497,10 +497,44 @@
 	name = "Anti Gravity Boots"
 	desc = "Modified mag boots that let you float over floors and gaps."
 	item = /obj/item/clothing/shoes/magboots/antigrav
-	cost = 8 
+	cost = 8
 	surplus = 30
 	restricted_roles = list("Shaft Miner")
-  
+
 // stop VR CRABBING
 /datum/uplink_item/device_tools/suspiciousphone
 	restricted = TRUE
+
+/datum/uplink_item/badass/syndie_tophat
+	name = "Gentleman's Hat"
+	desc = "A basic hat, to show where your true allegience lies. Put telecrystals into it to make it cooler, and more gentlemanly.\
+	 Soon your crime times will be in style."
+	item = /obj/item/clothing/head/syndie_tophat
+	cost = 0
+	surplus = 0
+	limited_stock = 1
+	exclude_modes = list(/datum/game_mode/infiltration) // not excluded from ops because it'd be hilarious if some lad poured all of his TC into a hat, then actually armed the nuke.
+
+/datum/uplink_item/dangerous/ak922
+	name = "AK-922"
+	desc = "A standard issue New Russia assault rifle praised for being able to survive common issues in the field,\
+	 including but not limited to: explosions, laser beams, toolboxes, and clowns. Chambered in the 7.62x39mm cartridge."
+	item = /obj/item/gun/ballistic/automatic/ak922
+	cost = 14
+	surplus = 25
+	include_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/dangerous/ak922gold
+	name = "Golden AK-922"
+	desc = "An AK-922 with gold-plating. Now you can kill innocent workers of a hated company with efficiency AND style!"
+	item = /obj/item/gun/ballistic/automatic/ak922/gold
+	cost = 15
+	surplus = 25
+	include_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/ammo/ak922
+	name = "AK-922 Magazine"
+	desc = "A basic 7.62x39 magazine."
+	item = /obj/item/ammo_box/magazine/ak922
+	cost = 2
+	include_modes = list(/datum/game_mode/nuclear)

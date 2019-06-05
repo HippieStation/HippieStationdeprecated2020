@@ -34,10 +34,13 @@
 	var/stack_offset_y = 0
 	var/list/stacked_hats = list()
 	var/max_hats = 500
+	var/can_stack = TRUE
 
 /obj/item/clothing/head/attackby(obj/item/I, mob/user, params)
 	if (istype(I, /obj/item/clothing/head))
 		var/obj/item/clothing/head/H = I
+		if(!can_stack || !H.can_stack)
+			return
 		var/current_count = LAZYLEN(stacked_hats)
 		var/trying_to_add = LAZYLEN(H.stacked_hats) + 1
 
