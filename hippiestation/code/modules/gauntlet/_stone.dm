@@ -115,7 +115,7 @@
 	var/mob/living/new_holder = GetHolder()
 	var/mob/living/new_aura_holder = GetAuraHolder()
 	if(ishuman(new_aura_holder))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/carbon/human/H = new_aura_holder
 		if(H.dna && H.dna.check_mutation(CLUWNEMUT))
 			NoPickingMeUp(H)
 			return
