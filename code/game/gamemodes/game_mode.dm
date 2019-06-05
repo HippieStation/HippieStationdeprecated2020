@@ -361,9 +361,14 @@
 
 	// Ultimate randomizing code right here
 	for(var/mob/dead/new_player/player in GLOB.player_list)
+<<<<<<< HEAD
 		if(player.client && player.ready == PLAYER_READY_TO_PLAY)
 			if(!is_banned_from(player.ckey, CATBAN) && !is_banned_from(player.ckey, CLUWNEBAN)) // hippie -- adds our jobban checks
 				players += player
+=======
+		if(player.client && player.ready == PLAYER_READY_TO_PLAY && player.check_preferences())
+			players += player
+>>>>>>> 2e5a3c2... Merge pull request #44319 from actioninja/gaybabyjail
 
 	// Shuffling, the players list is now ping-independent!!!
 	// Goodbye antag dante
