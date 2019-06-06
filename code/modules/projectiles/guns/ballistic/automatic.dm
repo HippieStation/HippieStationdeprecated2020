@@ -19,7 +19,6 @@
 	pin = null
 	bolt_type = BOLT_TYPE_LOCKING
 	mag_display = TRUE
-	tac_reloads = TRUE
 
 /obj/item/gun/ballistic/automatic/proto/unrestricted
 	pin = /obj/item/firing_pin
@@ -71,7 +70,6 @@
 	mag_display = TRUE
 	mag_display_ammo = TRUE
 	empty_indicator = TRUE
-	tac_reloads = TRUE
 
 /obj/item/gun/ballistic/automatic/c20r/unrestricted
 	pin = /obj/item/firing_pin
@@ -241,6 +239,7 @@
 	bolt_type = BOLT_TYPE_OPEN
 	mag_display = TRUE
 	mag_display_ammo = TRUE
+	tac_reloads = FALSE
 	fire_sound = 'sound/weapons/rifleshot.ogg'
 	rack_sound = 'sound/weapons/chunkyrack.ogg'
 
@@ -264,11 +263,9 @@
 		playsound(user, 'sound/weapons/sawopen.ogg', 60, 1)
 	update_icon()
 
-
 /obj/item/gun/ballistic/automatic/l6_saw/update_icon()//hippie edit -- bring back old gun icons
 	icon_state = "[initial(icon_state)][cover_open ? "open" : "closed"][magazine ? CEILING(get_ammo(0)/12.5, 1)*25 : "-empty"][suppressed ? "-suppressed" : ""]"
 	item_state = "[initial(icon_state)][cover_open ? "openmag" : "closedmag"]"//hippie end -- bring back old gun icons
-
 
 /obj/item/gun/ballistic/automatic/l6_saw/afterattack(atom/target as mob|obj|turf, mob/living/user as mob|obj, flag, params)
 	if(cover_open)

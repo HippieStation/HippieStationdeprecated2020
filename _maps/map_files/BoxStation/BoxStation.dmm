@@ -7298,6 +7298,7 @@
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance/two,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/stock_parts/capacitor,
 /turf/open/floor/plasteel,
 /area/maintenance/port/fore)
 "apM" = (
@@ -9549,6 +9550,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "avS" = (
+/obj/item/circuitboard/machine/stasis,
 /obj/item/wrench,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
@@ -10076,9 +10078,7 @@
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
 "axe" = (
-/obj/machinery/sleeper{
-	dir = 4
-	},
+/obj/structure/frame/machine,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "axf" = (
@@ -10592,6 +10592,7 @@
 "ayt" = (
 /obj/structure/table/glass,
 /obj/item/hemostat,
+/obj/item/stock_parts/manipulator,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "ayu" = (
@@ -31272,9 +31273,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bwD" = (
-/obj/machinery/sleeper{
-	dir = 8
-	},
+/obj/machinery/stasis,
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bwE" = (
@@ -32891,14 +32890,12 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bAq" = (
-/obj/machinery/sleeper{
-	dir = 8
-	},
 /obj/machinery/camera{
 	c_tag = "Medbay Treatment Center";
 	network = list("ss13","medbay");
 	dir = 8
 	},
+/obj/machinery/stasis,
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bAr" = (
@@ -36471,9 +36468,12 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bIH" = (
-/obj/machinery/pipedispenser/disposal,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 4
+	},
+/obj/machinery/space_heater,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
@@ -36874,10 +36874,14 @@
 /turf/closed/wall/r_wall,
 /area/medical/medbay/central)
 "bJF" = (
-/obj/machinery/pipedispenser/disposal/transit_tube,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/machinery/space_heater,
+/obj/structure/window/reinforced,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bJG" = (
@@ -38189,7 +38193,10 @@
 /turf/open/floor/plating,
 /area/engine/atmos)
 "bMR" = (
-/obj/machinery/pipedispenser,
+/obj/machinery/space_heater,
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bMS" = (
@@ -42413,10 +42420,10 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bXR" = (
-/obj/structure/closet/secure_closet/atmospherics,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/structure/closet/radiation,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "bXS" = (
@@ -43989,6 +43996,9 @@
 /area/maintenance/port/aft)
 "cbz" = (
 /obj/machinery/vending/wardrobe/atmos_wardrobe,
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "cbA" = (
@@ -43996,17 +44006,15 @@
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "cbB" = (
-/obj/machinery/space_heater,
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
+/obj/structure/closet/secure_closet/atmospherics,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "cbC" = (
-/obj/machinery/space_heater,
-/obj/effect/turf_decal/stripes/line{
-	dir = 10
-	},
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/closet/secure_closet/atmospherics,
 /turf/open/floor/plasteel,
 /area/engine/atmos)
 "cbD" = (
@@ -55588,6 +55596,10 @@
 /obj/structure/grille,
 /turf/open/space/basic,
 /area/space/nearstation)
+"eTd" = (
+/obj/machinery/pipedispenser/disposal,
+/turf/open/floor/plating,
+/area/maintenance/disposal)
 "eUr" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "testlab";
@@ -55803,6 +55815,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/nanite)
+"gwp" = (
+/obj/machinery/pipedispenser,
+/turf/open/floor/plasteel,
+/area/construction)
 "gwQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
@@ -72057,7 +72073,7 @@ bgj
 bgj
 bjc
 cAF
-cAF
+eTd
 bja
 aaa
 aaa
@@ -85699,7 +85715,7 @@ bJm
 bFa
 bHO
 bCs
-cCd
+gwp
 cCd
 aYg
 cjL

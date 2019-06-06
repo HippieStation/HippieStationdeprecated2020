@@ -224,3 +224,10 @@ datum/reagent/medicine/virogone/on_mob_life(mob/living/M)//cures viruses very ef
 
 /datum/reagent/medicine/salglu_solution
 	overdose_threshold = 0 //seriously fuck whoever thought this was a good idea.
+
+/datum/reagent/medicine/perfluorodecalin/on_mob_life(mob/living/carbon/human/M)
+	M.adjustOxyLoss(-12*REM, 0)
+	if(prob(33))
+		M.adjustBruteLoss(-0.5*REM, 0)
+		M.adjustFireLoss(-0.5*REM, 0)
+	return FINISHONMOBLIFE(M)

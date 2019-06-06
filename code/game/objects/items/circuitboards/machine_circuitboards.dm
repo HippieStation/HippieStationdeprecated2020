@@ -255,6 +255,7 @@
 		/obj/machinery/vending/robotics = "Robotech Deluxe",
 		/obj/machinery/vending/engineering = "Robco Tool Maker",
 		/obj/machinery/vending/sovietsoda = "BODA",
+		/obj/machinery/vending/security = "SecTech",
 		/obj/machinery/vending/modularpc = "Deluxe Silicate Selections")
 
 /obj/item/circuitboard/machine/vendor/attackby(obj/item/I, mob/user, params)
@@ -1002,3 +1003,11 @@
 	build_path = /obj/machinery/fat_sucker
 	req_components = list(/obj/item/stock_parts/micro_laser = 1,
 		/obj/item/kitchen/fork = 1)
+
+/obj/item/circuitboard/machine/stasis
+	name = "Lifeform Stasis Unit (Machine Board)"
+	build_path = /obj/machinery/stasis
+	req_components = list(
+		/obj/item/stack/cable_coil = 3,
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stock_parts/capacitor = 1)

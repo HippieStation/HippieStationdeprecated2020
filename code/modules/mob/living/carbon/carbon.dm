@@ -11,6 +11,7 @@
 	//This must be done first, so the mob ghosts correctly before DNA etc is nulled
 	. =  ..()
 
+	QDEL_LIST(hand_bodyparts)
 	QDEL_LIST(internal_organs)
 	QDEL_LIST(stomach_contents)
 	QDEL_LIST(bodyparts)
@@ -502,8 +503,8 @@
 				add_splatter_floor(T)
 			if(stun)
 				adjustBruteLoss(3)
-		else if(src.reagents.has_reagent("blazaam"))
-			if(T)
+    else if(src.reagents.has_reagent("blazaam"))
+		  if(T)
 				T.add_vomit_floor(src, VOMIT_PURPLE)
 		else
 			if(T)
@@ -747,7 +748,7 @@
 	if(hud_used.healths)
 		if(stat != DEAD)
 			. = 1
-			if(!shown_health_amount)
+			if(shown_health_amount == null)
 				shown_health_amount = health
 			if(shown_health_amount >= maxHealth)
 				hud_used.healths.icon_state = "health0"
