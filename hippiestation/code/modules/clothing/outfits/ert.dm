@@ -18,7 +18,7 @@
 		H.dna.add_mutation(/datum/mutation/human/hulk/avenger)
 
 /datum/outfit/av_nano
-	name = "Nano-Man"
+	name = "Nano Guy"
 
 	suit =  /obj/item/clothing/suit/space/hardsuit/nano
 	gloves = /obj/item/clothing/gloves/combat
@@ -33,7 +33,7 @@
 		return
 	var/obj/item/organ/cyberimp/arm/gun/laser/laser_arm = new
 	laser_arm.Insert(H)
-	H.fully_replace_character_name(null, "Nano-Man")
+	H.fully_replace_character_name(null, "Nano Guy")
 
 /datum/outfit/av_cap
 	name = "Captain Nanotrasen"

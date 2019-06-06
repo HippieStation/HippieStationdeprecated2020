@@ -3,7 +3,7 @@
 	outfit = /datum/outfit/av_hulk
 
 /datum/antagonist/ert/nano
-	role = "Nano Man"
+	role = "Nano Guy"
 	outfit = /datum/outfit/av_nano
 
 /datum/antagonist/ert/cap

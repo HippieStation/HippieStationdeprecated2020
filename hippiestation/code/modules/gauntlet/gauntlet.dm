@@ -500,6 +500,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 							new /obj/effect/DPtarget(get_turf(pick(bridge_tiles)), ai_pod)
 					GLOB.telescroll_time = world.time + 10 MINUTES
 					addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, user, "<span class='notice bold'>You can now teleport to the station.</span>"), 10 MINUTES)
+					addtimer(CALLBACK(src, .proc/CallAvengers), 25 MINUTES)
 					to_chat(user, "<span class='notice bold'>You need to wait 10 minutes before teleporting to the station.</span>")
 				to_chat(user, "<span class='notice bold'>You can click on the pinpointer at the top right to track a stone.</span>")
 				to_chat(user, "<span class='notice bold'>Examine a stone/the gauntlet to see what each intent does.</span>")
@@ -536,6 +537,75 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			stone_mode = chosen
 		UpdateAbilities(user)
 		update_icon()
+
+/obj/item/badmin_gauntlet/proc/CallAvengers()
+	message_admins("The Avengers ERT has been auto-called.")
+	log_game("The Avengers ERT has been auto-called.")
+
+	var/datum/ert/avengers/ertemplate = new
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you wish to be an Avenger?", "deathsquad", null)
+	var/teamSpawned = FALSE
+
+	if(candidates.len > 0)
+		//Pick the (un)lucky players
+		var/numagents = min(ertemplate.teamsize,candidates.len)
+
+		//Create team
+		var/datum/team/ert/ert_team = new ertemplate.team
+		if(ertemplate.rename_team)
+			ert_team.name = ertemplate.rename_team
+
+		//Asign team objective
+		var/datum/objective/missionobj = new
+		missionobj.team = ert_team
+		missionobj.explanation_text = ertemplate.mission
+		missionobj.completed = TRUE
+		ert_team.objectives += missionobj
+		ert_team.mission = missionobj
+
+		var/list/spawnpoints = GLOB.emergencyresponseteamspawn
+		while(numagents && candidates.len)
+			if (numagents > spawnpoints.len)
+				numagents--
+				continue // This guy's unlucky, not enough spawn points, we skip him.
+			var/spawnloc = spawnpoints[numagents]
+			var/mob/dead/observer/chosen_candidate = pick(candidates)
+			candidates -= chosen_candidate
+			if(!chosen_candidate.key)
+				continue
+
+			//Spawn the body
+			var/mob/living/carbon/human/ERTOperative = new ertemplate.mobtype(spawnloc)
+			chosen_candidate.client.prefs.copy_to(ERTOperative)
+			ERTOperative.key = chosen_candidate.key
+
+			ERTOperative.set_species(/datum/species/human)
+
+			//Give antag datum
+			var/datum/antagonist/ert/ert_antag
+
+			if(numagents == 1)
+				ert_antag = new ertemplate.leader_role
+			else
+				ert_antag = ertemplate.roles[WRAP(numagents,1,length(ertemplate.roles) + 1)]
+				ert_antag = new ert_antag
+
+			ERTOperative.mind.add_antag_datum(ert_antag,ert_team)
+			ERTOperative.mind.assigned_role = ert_antag.name
+
+			//Logging and cleanup
+			log_game("[key_name(ERTOperative)] has been selected as an [ert_antag.name]")
+			numagents--
+			teamSpawned++
+
+		if (teamSpawned)
+			message_admins("Avengers ERT has auto-spawned with the mission: [ertemplate.mission]")
+
+		//Open the Armory doors
+		if(ertemplate.opendoors)
+			for(var/obj/machinery/door/poddoor/ert/door in GLOB.airlocks)
+				door.open()
+				CHECK_TICK
 
 /obj/item/badmin_gauntlet/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/badmin_stone))
