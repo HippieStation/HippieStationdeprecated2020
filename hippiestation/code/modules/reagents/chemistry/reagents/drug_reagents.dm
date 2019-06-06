@@ -311,6 +311,8 @@
 	taste_description = "artificial grape"
 	var/obj/effect/hallucination/simple/druggy/brain
 	var/list/spook_images = list()
+	var/bad_trip = FALSE
+	var/badtrip_cooldown = 0
 
 /datum/reagent/drug/grape_blast/proc/create_brain(mob/living/carbon/C)
 	var/turf/where = locate(C.x + pick(-1, 1), C.y + pick(-1, 1), C.z)
@@ -319,6 +321,8 @@
 /datum/reagent/drug/grape_blast/on_mob_life(mob/living/carbon/H)
 	if(!H && !H.hud_used)
 		return
+	if(prob(5))
+		H.emote(pick("twitch","drool","moan"))
 	var/high_message
 	var/list/screens = list(H.hud_used.plane_masters["[FLOOR_PLANE]"], H.hud_used.plane_masters["[GAME_PLANE]"], H.hud_used.plane_masters["[LIGHTING_PLANE]"], H.hud_used.plane_masters["[CAMERA_STATIC_PLANE ]"])
 	switch(current_cycle)
@@ -330,36 +334,60 @@
 				H.blur_eyes(2)
 				H.derpspeech++
 		if(31 to INFINITY)
+			if(prob(20) && (H.mobility_flags & MOBILITY_MOVE) && !ismovableatom(H.loc))
+				step(H, pick(GLOB.cardinals))
 			high_message = pick("I feel like I'm flying!", "I feel something swimming inside my lungs....", "I can see the words I'm saying...")
-			if(prob(10))
+			if(prob(20))
 				var/rotation = min(round(current_cycle/4), 45)
 				for(var/obj/screen/plane_master/whole_screen in screens)
 					if(prob(60))
 						animate(whole_screen, transform = matrix(rotation, MATRIX_ROTATE), time = 50, easing = CIRCULAR_EASING)
 						animate(transform = matrix(-rotation, MATRIX_ROTATE), time = 5, easing = BACK_EASING)
-					else
+					else if(prob(30))
 						animate(whole_screen, transform = matrix(rotation*4, MATRIX_ROTATE), time = 120, easing = QUAD_EASING)
-						animate(transform = matrix()*2, time = 120, easing = QUAD_EASING)
-			else if(prob(10))
-				for(var/obj/screen/plane_master/whole_screen in screens)
-					whole_screen.filters += filter(type="wave", x=20*rand() - 20, y=20*rand() - 20, size=rand()*0.1, offset=rand()*0.5, flags = WAVE_BOUNDED)
-					animate(whole_screen.filters[whole_screen.filters.len], size = rand(1,3), time = 60, easing = ELASTIC_EASING)
-				high_message = pick("Holy shit...", "Reality doesn't exist man.")
-				to_chat(H, "<span class='notice'>You feel reality melt away...</span>")
+						animate(whole_screen, transform = matrix()*2, time = 120, easing = QUAD_EASING)
+					else if(prob(15))
+						whole_screen.filters += filter(type="wave", x=20*rand() - 20, y=20*rand() - 20, size=rand()*0.1, offset=rand()*0.5, flags = WAVE_BOUNDED)
+						animate(whole_screen.filters[whole_screen.filters.len], size = rand(1,3), time = 30, easing = QUAD_EASING, loop = -1)
+						to_chat(H, "<span class='notice'>You feel reality melt away...</span>")
+				high_message = pick("Holy shit...", "Reality doesn't exist man.", "...", "No one flies around the sun.")
 			else if(prob(5))
 				create_brain(H)
 				brain.spook(H)
-//			else if(prob(7))
-//				for(var/obj/screen in H.hud_used)
-			else if(prob(4))
-				H.emote("laugh")
-				H.say(pick("GRERRKRKRK",";HAHAH I AM SO FUCKING HIGH!!","I AM A BUTTERFLY!!"))
-				H.visible_message("<span class='notice'>[H] looks high as fuck!</span>")
-			else if(prob(3))
-				H.Knockdown(20)
-				H.emote("laugh")
-				H.say(pick("TURN IT ON!!!","I CAN HEAR VOICES AHAHAHAH","YOU'RE GOKU!!"))
-				H.visible_message("<span class='notice'>[H] appears to be on some good drugs!</span>")
+			if(!bad_trip)
+				if(prob(4))
+					H.emote("laugh")
+					H.say(pick("GRERRKRKRK",";HAHAH I AM SO FUCKING HIGH!!","I AM A BUTTERFLY!!"))
+					H.visible_message("<span class='notice'>[H] looks high as fuck!</span>")
+				else if(prob(3))
+					H.Knockdown(20)
+					H.emote("laugh")
+					H.say(pick("TURN IT ON!!!","I CAN HEAR VOICES AHAHAHAH","YOU'RE GOKU!!"))
+					H.visible_message("<span class='notice'>[H] appears to be on some good drugs!</span>")
+			if(prob(1) && badtrip_cooldown < world.time)
+				bad_trip = TRUE
+			if(bad_trip)
+				for(var/obj/screen/plane_master/whole_screen in screens)
+					if(prob(35))
+						whole_screen.filters += filter(type="wave", x=30*rand() - 20, y=30*rand() - 20, size=rand()*0.5, offset=rand()*0.5)
+						animate(whole_screen.filters[whole_screen.filters.len], size = rand(2,5), time = 60, easing = QUAD_EASING)
+				high_message = pick("I can feel my thoughts racing!", "WHO THE FUCK SAID THAT??!!", "I feel like I'm going to die!")
+				if(prob(40))
+					H.hallucination += 2
+					H.jitteriness += 3
+				else if(prob(5))
+					H.emote("cry")
+					H.say(pick("MAKE IT STOP!! I'M SORRY!!", ";I'LL DO ANYTHING, MAKE IT STOP!!", "YOU DIDN'T EVEN BOTHER, YOU DIDN'T SEE THEM GO!!", "YOU WANNA SEE WHAT REALITY REALLY IS?!!"))
+					H.visible_message("<span class='warning'>[H] appears to be freaking out! You need to calm them down!</span>")
+				else if(prob(1))
+					H.stop_sound_channel(CHANNEL_HEARTBEAT)
+					H.playsound_local(H, 'sound/effects/singlebeat.ogg', 100, 0)
+					H.visible_message("<span class='warning'>[H] clutches at [H.p_their()] chest as if [H.p_their()] heart is stopping!</span>")
+					H.adjustStaminaLoss(80)
+					H.emote("gasp")
+				else if(prob(3))
+					addtimer(CALLBACK(src, .proc/end_bad_trip, H) ,50)
+
 	if(prob(5))
 		to_chat(H, "<i>You hear your own thoughts... <b>[high_message]</i></b>")
 	..()
@@ -367,6 +395,11 @@
 /datum/reagent/drug/grape_blast/on_mob_delete(mob/living/L)
 	cure_autism(L)
 	..()
+
+/datum/reagent/drug/grape_blast/proc/end_bad_trip(mob/living/carbon/human/H)
+	bad_trip = FALSE
+	badtrip_cooldown = world.time + 180
+	H.visible_message("<span class='notice'>[H] appears to have calmed down, they look like they need a hug.</span>")
 
 /datum/reagent/drug/grape_blast/proc/cure_autism(mob/living/carbon/C)
 	to_chat(C, "<span class='notice'>As the drugs wear off, you feel yourself slowly coming back to reality...</span>")
@@ -396,10 +429,11 @@
 /obj/effect/hallucination/simple/druggy/proc/spook(mob/living/L)
 	sleep(20)
 	var/image/I = image('icons/mob/talk.dmi', src, "default2", FLY_LAYER)
+	var/message = "This is your brain on drugs."
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	if(L)
 		//L.send_speech("This is your brain on drugs.", 7, src, message_language=get_default_language())
-		L.Hear("This is your brain on drugs.", src, L.get_default_language())
+		L.Hear(message, src, L.get_default_language(), message)
 		INVOKE_ASYNC(GLOBAL_PROC, /.proc/flick_overlay, I, list(L.client), 30)
 	sleep(10)
 	animate(src, transform = matrix()*0.75, time = 5)
