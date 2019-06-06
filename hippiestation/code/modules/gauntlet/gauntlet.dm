@@ -52,6 +52,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	var/flash_index = 1
 	var/locked_on = FALSE
 	var/stone_mode = null
+	var/ert_canceled = FALSE
 	var/list/stones = list()
 	var/list/spells = list()
 	var/datum/martial_art/cqc/martial_art
@@ -500,7 +501,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 							new /obj/effect/DPtarget(get_turf(pick(bridge_tiles)), ai_pod)
 					GLOB.telescroll_time = world.time + 10 MINUTES
 					addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, user, "<span class='notice bold'>You can now teleport to the station.</span>"), 10 MINUTES)
-					addtimer(CALLBACK(src, .proc/CallAvengers), 25 MINUTES)
+					addtimer(CALLBACK(src, .proc/_CallAvengers), 25 MINUTES)
 					to_chat(user, "<span class='notice bold'>You need to wait 10 minutes before teleporting to the station.</span>")
 				to_chat(user, "<span class='notice bold'>You can click on the pinpointer at the top right to track a stone.</span>")
 				to_chat(user, "<span class='notice bold'>Examine a stone/the gauntlet to see what each intent does.</span>")
@@ -538,7 +539,22 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		UpdateAbilities(user)
 		update_icon()
 
+/obj/item/badmin_gauntlet/Topic(href, list/href_list)
+	. = ..()
+	if(href_list["cancel"])
+		if(!check_rights(R_ADMIN) || ert_canceled) // no href exploits for you, karma!
+			return
+		message_admins("[key_name_admin(usr)] cancelled the automatic Avengers ERT.")
+		log_admin_private("[key_name(usr)] cancelled the automatic Avengers ERT.")
+		ert_canceled = TRUE
+
+/obj/item/badmin_gauntlet/proc/_CallAvengers()
+	message_admins("Avengers ERT being auto-called in 15 seconds (<a href='?src=[REF(src)];cancel=1'>CANCEL</a>)")
+	addtimer(CALLBACK(src, .proc/CallAvengers), 15 SECONDS)
+
 /obj/item/badmin_gauntlet/proc/CallAvengers()
+	if(!ert_canceled)
+		return
 	message_admins("The Avengers ERT has been auto-called.")
 	log_game("The Avengers ERT has been auto-called.")
 
