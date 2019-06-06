@@ -553,7 +553,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	addtimer(CALLBACK(src, .proc/CallAvengers), 15 SECONDS)
 
 /obj/item/badmin_gauntlet/proc/CallAvengers()
-	if(!ert_canceled)
+	if(ert_canceled)
 		return
 	message_admins("The Avengers ERT has been auto-called.")
 	log_game("The Avengers ERT has been auto-called.")
