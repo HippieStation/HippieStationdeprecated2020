@@ -41,6 +41,14 @@
 	desc = "A mighty hammer on load from Thor, God of Thunder. It crackles with darely contained power. Counts as a staff."
 	cost = 1
 
+/datum/spellbook_entry/item/mjolnir/Buy(mob/living/carbon/human/user, obj/item/spellbook/book)
+	. = ..()
+	user.worthiness += 5
+
+/datum/spellbook_entry/item/mjolnir/Refund(mob/living/carbon/human/user, obj/item/spellbook/book)
+	. = ..()
+	user.worthiness -= 5
+
 /datum/spellbook_entry/item/singularity_hammer
 	desc = "A hammer that creates an intensely powerful field of gravity where it strikes, pulling everything nearby to the point of impact. Counts as a staff."
 	cost = 1

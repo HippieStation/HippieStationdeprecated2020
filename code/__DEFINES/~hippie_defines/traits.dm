@@ -1,4 +1,5 @@
 #define TRAIT_TACRELOAD "tac_reload_trait"
+#define TRAIT_WORTHY 	"worthy"
 #define YEET_TRAIT "yeet_trait"
 #define BLUESPACE_STONE_TRAIT "bluespace_stone_trait"
 #define SYNDIE_STONE_TRAIT "syndie_stone_trait"

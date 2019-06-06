@@ -51,6 +51,7 @@
 	. = ..()
 	if(visualsOnly)
 		return
+	H.worthiness = 1
 	var/datum/martial_art/cqc/cqc = new
 	cqc.teach(H)
 	H.fully_replace_character_name(null, "Captain Nanotrasen")
@@ -70,6 +71,7 @@
 	if(visualsOnly)
 		return
 	H.fully_replace_character_name(null, "Thor")
+	H.worthiness = 100
 	if(prob(50))
 		var/obj/item/reagent_containers/food/drinks/beer/beer = new(get_turf(H))
 		H.put_in_hands(beer)
