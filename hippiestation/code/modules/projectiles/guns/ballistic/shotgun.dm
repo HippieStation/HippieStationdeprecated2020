@@ -37,3 +37,20 @@
 
 /obj/item/gun/ballistic/automatic/l6_saw/abzats/unrestricted
 	pin = /obj/item/firing_pin
+
+// Bulldog
+
+/obj/item/gun/ballistic/shotgun/bulldog
+	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
+
+/obj/item/ammo_box/magazine/m12g
+	icon = 'hippiestation/icons/obj/ammo/ammo.dmi'
+
+/obj/item/ammo_box/magazine/m12g/update_icon()
+	..()
+	icon_state = "[initial(icon_state)]-[CEILING(ammo_count(FALSE)/2, 1)*2]"
+
+/obj/item/gun/ballistic/shotgun/bulldog/afterattack(atom/target as mob|obj|turf, mob/living/user as mob|obj, flag, params)
+	. = ..()
+	if(magazine)
+		magazine.update_icon()
