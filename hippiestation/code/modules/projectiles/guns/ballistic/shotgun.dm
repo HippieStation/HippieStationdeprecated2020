@@ -26,6 +26,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	mag_type = /obj/item/ammo_box/magazine/mbox12g
 	weapon_weight = WEAPON_HEAVY
+	spawnwithmagazine = FALSE
 	fire_sound = 'hippiestation/sound/weapons/shotgun_big_shoot.ogg'
 	rack_sound = 'sound/weapons/chunkyrack.ogg'
 	burst_size = 2

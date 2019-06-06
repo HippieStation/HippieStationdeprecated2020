@@ -68,15 +68,15 @@
 
 /obj/item/clothing/head/helmet/space/hardsuit/syndi
 	name = "blood-red spacesuit helmet"
-	icon = 'hippiestation/icons/obj/clothing/hats.dmi'
-	alternate_worn_icon = 'hippiestation/icons/mob/head.dmi'
+	icon = 'hippiestation/icons/obj/clothing/sechats.dmi'
+	alternate_worn_icon = 'hippiestation/icons/mob/sechead.dmi'
 	var/flushed_name = "old blood-red hardsuit helmet"
 
 /obj/item/clothing/suit/space/hardsuit/syndi
 	name = "blood-red spacesuit"
 	desc = "An advanced spacesuit with a built in helmet and energy shielding."
-	icon = 'hippiestation/icons/obj/clothing/suits.dmi'
-	alternate_worn_icon = 'hippiestation/icons/mob/suit.dmi'
+	icon = 'hippiestation/icons/obj/clothing/secsuits.dmi'
+	alternate_worn_icon = 'hippiestation/icons/mob/secsuit.dmi'
 	var/flushed_name = "old blood-red hardsuit"
 	var/flushed = 0
 	var/can_be_flushed = 1

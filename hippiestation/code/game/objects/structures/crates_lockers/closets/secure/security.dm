@@ -26,13 +26,13 @@
 	new /obj/item/door_remote/head_of_security(src)
 	new /obj/item/gun/ballistic/shotgun/automatic/combat/compact(src)
 
-/obj/structure/closet/secure_closet/hos/PopulateContents() // Contains "spare" versions of the HoS armor, which have insulting descriptions and bring shame to their wearers (read: powergamers).
+/obj/structure/closet/secure_closet/hos/PopulateContents() // reverted spares but left them in the code just in case.
 	..()
 	new /obj/item/cartridge/hos(src)
 	new /obj/item/radio/headset/heads/hos(src)
-	new /obj/item/clothing/suit/armor/hos/trenchcoat/hippie/spare(src)
-	new /obj/item/clothing/under/rank/head_of_security/hippie/spare(src)
-	new /obj/item/clothing/head/helmet/sec/hippie/custodian/hos/spare(src)
+	new /obj/item/clothing/suit/armor/hos/trenchcoat/hippie(src)
+	new /obj/item/clothing/under/rank/head_of_security/hippie(src)
+	new /obj/item/clothing/head/helmet/sec/hippie/custodian/hos(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses/eyepatch(src)
 	new /obj/item/clothing/glasses/hud/security/sunglasses/gars/supergars(src)
 	new /obj/item/storage/lockbox/medal/sec(src)

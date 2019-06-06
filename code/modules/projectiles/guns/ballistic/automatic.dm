@@ -289,9 +289,6 @@
 	if(!cover_open && istype(A, mag_type))
 		to_chat(user, "<span class='warning'>[src]'s dust cover prevents a magazine from being fit.</span>")
 		return
-	if(istype(A, mag_type)) // hippie -- magazine spritestuffs kill me now
-		var/obj/item/ammo_box/magazine/M = A
-		M.box_opened = TRUE // hippie end
 	..()
 
 

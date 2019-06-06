@@ -1,4 +1,5 @@
 // L6 SAW
+
 /obj/item/gun/ballistic/automatic/l6_saw
 	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
 	alternate_worn_icon = 'hippiestation/icons/obj/guns/worn_guns.dmi'
@@ -6,7 +7,13 @@
 	item_state = null
 	lefthand_file = 'hippiestation/icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/weapons/guns_righthand.dmi'
+	spawnwithmagazine = FALSE
 
+/obj/item/gun/ballistic/automatic/l6_saw/attackby(obj/item/A, mob/user, params)
+	. = ..()
+	if(istype(A, mag_type))
+		var/obj/item/ammo_box/magazine/M = A
+		M.box_opened = TRUE
 
 /obj/item/gun/ballistic/automatic/l6_saw/attack_self(mob/living/user)
 	if(!internal_magazine && magazine)

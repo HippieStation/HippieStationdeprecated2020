@@ -520,7 +520,7 @@
 	desc = "A standard issue New Russia assault rifle praised for being able to survive common issues in the field,\
 	 including but not limited to: explosions, laser beams, toolboxes, and clowns. Chambered in the 7.62x39mm cartridge."
 	item = /obj/item/gun/ballistic/automatic/ak922
-	cost = 14
+	cost = 13
 	surplus = 25
 	include_modes = list(/datum/game_mode/nuclear)
 
@@ -528,7 +528,7 @@
 	name = "Golden AK-922"
 	desc = "An AK-922 with gold-plating. Now you can kill innocent workers of a hated company with efficiency AND style!"
 	item = /obj/item/gun/ballistic/automatic/ak922/gold
-	cost = 15
+	cost = 14
 	surplus = 25
 	include_modes = list(/datum/game_mode/nuclear)
 
@@ -538,3 +538,15 @@
 	item = /obj/item/ammo_box/magazine/ak922
 	cost = 2
 	include_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/dangerous/machineshotgun
+	name = "Abzats Machineshotgun"
+	desc = "An old friend. It's a modified Aussec Armoury belt-fed machine gun kit, and comes with a massive 40-round box magazine of 12 gauge buckshot cartridges."
+	item = /obj/item/storage/box/syndie_kit/abzats
+	cost = 16
+	include_modes = list(/datum/game_mode/nuclear)
+
+/datum/uplink_item/dangerous/machinegun
+	desc = "A fully-loaded Aussec Armoury belt-fed machine gun kit. \
+			This deadly weapon comes with a massive 50-round magazine of devastating 7.12x82mm ammunition."
+	item = /obj/item/storage/box/syndie_kit/l6saw

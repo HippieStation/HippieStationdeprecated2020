@@ -9,7 +9,7 @@
 	dynamic_fhair_suffix = ""
 	icon_state = "guardhelm"
 	item_state = "guardhelm"
-	icon = 'hippiestation/icons/obj/clothing/hats.dmi'
+	icon = 'hippiestation/icons/obj/clothing/sechats.dmi'
 	alternate_worn_icon = 'hippiestation/icons/mob/head.dmi'
 	alternate_screams = list('hippiestation/sound/voice/stop_right_there.ogg', 'hippiestation/sound/voice/stop_right_there2.ogg')
 
@@ -20,8 +20,8 @@
 /obj/item/clothing/head/helmet/sec/hippie
 	name = "security cap"
 	desc = "Standard Security hat. Has some interior padding to protect the head from impacts."
-	icon = 'hippiestation/icons/obj/clothing/hats.dmi'
-	alternate_worn_icon = 'hippiestation/icons/mob/head.dmi'
+	icon = 'hippiestation/icons/obj/clothing/sechats.dmi'
+	alternate_worn_icon = 'hippiestation/icons/mob/sechead.dmi'
 	icon_state = "sec_hat-1"
 	item_state = "sec_hat-1"
 	can_flashlight = FALSE
