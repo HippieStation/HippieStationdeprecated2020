@@ -548,5 +548,5 @@
 
 /datum/uplink_item/dangerous/machinegun
 	desc = "A fully-loaded Aussec Armoury belt-fed machine gun kit. \
-			This deadly weapon comes with a massive 50-round magazine of devastating 7.12x82mm ammunition."
+			Comes with a massive 50-round magazine of devastating 7.12x82mm ammunition."
 	item = /obj/item/storage/box/syndie_kit/l6saw
