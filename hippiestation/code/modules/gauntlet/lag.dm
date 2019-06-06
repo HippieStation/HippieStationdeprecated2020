@@ -1,6 +1,6 @@
 //Originally coded for HippieStation by Steamp0rt, shared under the AGPL license.
 
-/obj/item/infinity_stone/lag
+/obj/item/badmin_stone/lag
 	name = "Lag Stone"
 	desc = "The bane of a coder's existence."
 	color = "#20B2AA"
@@ -13,7 +13,7 @@
 	stone_type = LAG_STONE
 	var/turf/teleport_point
 
-/obj/item/infinity_stone/lag/HelpEvent(atom/target, mob/living/user, proximity_flag)
+/obj/item/badmin_stone/lag/HelpEvent(atom/target, mob/living/user, proximity_flag)
 	var/turf/T = get_turf(target)
 	if(T == teleport_point)
 		to_chat(user, "<span class='notice'>You unset [T] as your teleportation point.</span>")
@@ -30,7 +30,7 @@
 		user.Paralyze(450)
 		user.heal_overall_damage(45, 45, 45, null, TRUE)
 
-/obj/item/infinity_stone/lag/GrabEvent(atom/target, mob/living/user, proximity_flag)
+/obj/item/badmin_stone/lag/GrabEvent(atom/target, mob/living/user, proximity_flag)
 	if(!isliving(target))
 		to_chat(user, "<span class='notice'>You can only switch places with living targets!</span>")
 		return
@@ -43,7 +43,7 @@
 	FireProjectile(/obj/item/projectile/magic/arcane_barrage, us)
 	user.changeNext_move(CLICK_CD_RANGE)
 
-/obj/item/infinity_stone/lag/DisarmEvent(atom/target, mob/living/user, proximity_flag)
+/obj/item/badmin_stone/lag/DisarmEvent(atom/target, mob/living/user, proximity_flag)
 	FireProjectile(/obj/item/projectile/magic/lag_stone, target)
 	user.changeNext_move(CLICK_CD_RANGE)
 
@@ -100,7 +100,7 @@
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/lag_stone
 	name = "Lag Stone: Summon Lag"
-	desc = "Summon a large bout of lag within a 5-tile radius. Very infuriating. Infinity Stone holders are immune, however."
+	desc = "Summon a large bout of lag within a 5-tile radius. Very infuriating. Badmin Stone holders are immune, however."
 	action_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_icon_state = "lagfield"
 	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'

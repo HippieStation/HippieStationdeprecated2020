@@ -1,6 +1,6 @@
 //Originally coded for HippieStation by Steamp0rt, shared under the AGPL license.
 
-/obj/item/infinity_stone/syndie
+/obj/item/badmin_stone/syndie
 	name = "Syndie Stone"
 	desc = "Power, baby. Raw power."
 	color = "#ff0130"
@@ -13,33 +13,33 @@
 		/obj/effect/proc_holder/spell/aoe_turf/repulse/syndie_stone)
 	var/datum/martial_art/cqc/martial_art
 
-/obj/item/infinity_stone/syndie/Initialize()
+/obj/item/badmin_stone/syndie/Initialize()
 	. = ..()
 	martial_art = new
 
-/obj/item/infinity_stone/syndie/HelpEvent(atom/target, mob/living/user, proximity_flag)
+/obj/item/badmin_stone/syndie/HelpEvent(atom/target, mob/living/user, proximity_flag)
 	if(ishuman(user) && ishuman(target) && proximity_flag)
 		martial_art.help_act(user, target)
 
-/obj/item/infinity_stone/syndie/DisarmEvent(atom/target, mob/living/user, proximity_flag)
+/obj/item/badmin_stone/syndie/DisarmEvent(atom/target, mob/living/user, proximity_flag)
 	if(ishuman(user) && ishuman(target) && proximity_flag)
 		martial_art.disarm_act(user, target)
 
-/obj/item/infinity_stone/syndie/HarmEvent(atom/target, mob/living/user, proximity_flag)
+/obj/item/badmin_stone/syndie/HarmEvent(atom/target, mob/living/user, proximity_flag)
 	if(ishuman(user) && ishuman(target) && proximity_flag)
 		martial_art.harm_act(user, target)
 
-/obj/item/infinity_stone/syndie/GrabEvent(atom/target, mob/living/user, proximity_flag)
+/obj/item/badmin_stone/syndie/GrabEvent(atom/target, mob/living/user, proximity_flag)
 	if(ishuman(user) && ishuman(target) && proximity_flag)
 		martial_art.grab_act(user, target)
 
-/obj/item/infinity_stone/syndie/GiveAbilities(mob/living/L, gauntlet = FALSE)
+/obj/item/badmin_stone/syndie/GiveAbilities(mob/living/L, gauntlet = FALSE)
 	. = ..()
 	if(ishuman(L))
 		martial_art.teach(L)
 	ADD_TRAIT(L, TRAIT_THERMAL_VISION, SYNDIE_STONE_TRAIT)
 
-/obj/item/infinity_stone/syndie/RemoveAbilities(mob/living/L, gauntlet = FALSE)
+/obj/item/badmin_stone/syndie/RemoveAbilities(mob/living/L, gauntlet = FALSE)
 	. = ..()
 	if(ishuman(L))
 		martial_art.remove(L)

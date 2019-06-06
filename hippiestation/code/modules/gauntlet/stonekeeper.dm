@@ -8,14 +8,14 @@
 
 /datum/antagonist/stonekeeper/greet()
 	to_chat(owner, "<span class='userdanger'>You are a stonekeeper!</span>")
-	to_chat(owner, "<span class='danger'>You have an infinity stone in your backpack. <b>Keep it safe at all costs, even if it means killing.</b></span>")
+	to_chat(owner, "<span class='danger'>You have an badmin stone in your backpack. <b>Keep it safe at all costs, even if it means killing.</b></span>")
 	to_chat(owner, "<span class='danger'>You can examine your stone to see details on how to use it.</span>")
 
 
 /datum/objective/stonekeeper
-	name = "keep infinity stone secure"
-	explanation_text = "Keep your Infinity Stone secure."
-	var/obj/item/infinity_stone/stone
+	name = "keep badmin stone secure"
+	explanation_text = "Keep your Badmin Stone secure."
+	var/obj/item/badmin_stone/stone
 
 /datum/objective/stonekeeper/update_explanation_text()
 	if(stone)

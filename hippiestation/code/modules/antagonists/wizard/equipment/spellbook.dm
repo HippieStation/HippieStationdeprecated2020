@@ -120,7 +120,7 @@
 
 /datum/spellbook_entry/item/badmin_gauntlet
 	name = "Badmin Gauntlet"
-	desc = "A gauntlet capable of holding the Infinity Stones. <b>Wearing this will trigger a war declaration!</b>. Before you wear it, you can refund it by hitting it against the spellbook. \
+	desc = "A gauntlet capable of holding the Badmin Stones. <b>Wearing this will trigger a war declaration!</b>. Before you wear it, you can refund it by hitting it against the spellbook. \
 		<b>You cannot buy this if you have bought anything else!</b> \
 		Requires 27+ crew."
 	item_path = /obj/item/badmin_gauntlet

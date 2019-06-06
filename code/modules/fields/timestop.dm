@@ -31,7 +31,7 @@
 			immune[L] = TRUE
 	// hippie start -- add immunity for stone holders
 	for(var/mob/living/L in GLOB.player_list)
-		if((locate(/obj/item/infinity_stone) in L) || (locate(/obj/item/badmin_gauntlet) in L))
+		if((locate(/obj/item/badmin_stone) in L) || (locate(/obj/item/badmin_gauntlet) in L))
 			immune[L] = TRUE
 	//hippie end
 	for(var/mob/living/simple_animal/hostile/guardian/G in GLOB.parasites)

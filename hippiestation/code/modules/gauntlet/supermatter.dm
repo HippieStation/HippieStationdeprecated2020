@@ -1,6 +1,6 @@
 //Originally coded for HippieStation by Steamp0rt, shared under the AGPL license.
 
-/obj/item/infinity_stone/supermatter
+/obj/item/badmin_stone/supermatter
 	name = "Supermatter Stone"
 	desc = "Don't touch, it's hot! Oh yeah, and it bends reality."
 	stone_type = SUPERMATTER_STONE
@@ -14,23 +14,23 @@
 		"Use on a material to use 25 sheets of it for a golem. 2 minute cooldown!")
 	var/next_golem = 0
 
-/obj/item/infinity_stone/supermatter/DisarmEvent(atom/target, mob/living/user, proximity_flag)
+/obj/item/badmin_stone/supermatter/DisarmEvent(atom/target, mob/living/user, proximity_flag)
 	if(!HandleGolem(user, target))
 		FireProjectile(/obj/item/projectile/forcefire, target)
 		user.changeNext_move(6)
 
-/obj/item/infinity_stone/supermatter/GrabEvent(atom/target, mob/living/user, proximity_flag)
+/obj/item/badmin_stone/supermatter/GrabEvent(atom/target, mob/living/user, proximity_flag)
 	if(!proximity_flag || !HandleGolem(user, target))
 		FireProjectile(/obj/item/projectile/voltray, target)
 		user.changeNext_move(CLICK_CD_RAPID)
 
-/obj/item/infinity_stone/supermatter/HelpEvent(atom/target, mob/living/user, proximity_flag)
+/obj/item/badmin_stone/supermatter/HelpEvent(atom/target, mob/living/user, proximity_flag)
 	if(!proximity_flag || !HandleGolem(user, target))
 		FireProjectile(/obj/item/projectile/supermatter_stone, target)
 		user.changeNext_move(CLICK_CD_RANGE)
 
 
-/obj/item/infinity_stone/supermatter/proc/HandleGolem(mob/living/user, atom/target)
+/obj/item/badmin_stone/supermatter/proc/HandleGolem(mob/living/user, atom/target)
 	var/static/list/golem_shell_species_types = list(
 		/obj/item/stack/sheet/metal	                = /datum/species/golem,
 		/obj/item/stack/sheet/glass 	            = /datum/species/golem/glass,
@@ -106,7 +106,7 @@
 		revert_cast()
 		return FALSE
 	var/mob/living/L = t
-	if(locate(/obj/item/infinity_stone) in L.GetAllContents())
+	if(locate(/obj/item/badmin_stone) in L.GetAllContents())
 		L.visible_message("<span class='danger bold'>[L] resists an unseen force!</span>")
 		Finished()
 		return TRUE

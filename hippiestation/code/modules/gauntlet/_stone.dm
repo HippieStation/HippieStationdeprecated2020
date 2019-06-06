@@ -1,6 +1,6 @@
 //Originally coded for HippieStation by Steamp0rt, shared under the AGPL license.
 
-/obj/item/infinity_stone
+/obj/item/badmin_stone
 	name = "Generic Stone"
 	icon = 'hippiestation/icons/obj/infinity.dmi'
 	icon_state = "stone"
@@ -19,7 +19,7 @@
 	var/too_many_stones = FALSE
 	var/mutable_appearance/aura_overlay
 
-/obj/item/infinity_stone/Initialize()
+/obj/item/badmin_stone/Initialize()
 	. = ..()
 	for(var/T in spell_types)
 		spells += new T(src)
@@ -35,24 +35,24 @@
 	aura_overlay = mutable_appearance('hippiestation/icons/obj/infinity.dmi', "aura", -MUTATIONS_LAYER)
 	aura_overlay.color = color
 
-/obj/item/infinity_stone/Destroy()
+/obj/item/badmin_stone/Destroy()
 	GLOB.poi_list -= src
 	STOP_PROCESSING(SSobj, src)
 	return ..()		
 
-/obj/item/infinity_stone/examine(mob/user)
+/obj/item/badmin_stone/examine(mob/user)
 	. = ..()
 	to_chat(user, "<span class='bold notice'>[name]</span>")
 	ShowExamine(user)
 
-/obj/item/infinity_stone/forceMove(atom/destination)
+/obj/item/badmin_stone/forceMove(atom/destination)
 	. = ..()
 	UpdateHolder()
 
-/obj/item/infinity_stone/ex_act(severity, target)
+/obj/item/badmin_stone/ex_act(severity, target)
 	return
 
-/obj/item/infinity_stone/pickup(mob/user)
+/obj/item/badmin_stone/pickup(mob/user)
 	. = ..()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -60,15 +60,15 @@
 			to_chat(H, "<span class='danger'>\The [src] pulses in your hands, sending a spasm of pain and forcing you to drop it!</span>")
 			addtimer(CALLBACK(src, .proc/NoPickingMeUp, H), 5)
 
-/obj/item/infinity_stone/proc/NoPickingMeUp(mob/user)
+/obj/item/badmin_stone/proc/NoPickingMeUp(mob/user)
 	user.dropItemToGround(src, TRUE)
 	forceMove(get_turf(user))
 
-/obj/item/infinity_stone/proc/ShowExamine(mob/user) // a seperate thing for the gauntlet
+/obj/item/badmin_stone/proc/ShowExamine(mob/user) // a seperate thing for the gauntlet
 	for(var/A in ability_text)
 		to_chat(user, "<span class='notice'>[A]</span>")
 
-/obj/item/infinity_stone/proc/GiveAbilities(mob/living/L, gauntlet = FALSE)
+/obj/item/badmin_stone/proc/GiveAbilities(mob/living/L, gauntlet = FALSE)
 	for(var/obj/effect/proc_holder/spell/A in spells)
 		L.mob_spell_list += A
 		A.action.Grant(L)
@@ -81,7 +81,7 @@
 			L.mob_spell_list += A
 			A.action.Grant(L)
 			
-/obj/item/infinity_stone/proc/RemoveAbilities(mob/living/L, gauntlet = FALSE)
+/obj/item/badmin_stone/proc/RemoveAbilities(mob/living/L, gauntlet = FALSE)
 	for(var/obj/effect/proc_holder/spell/A in spells)
 		L.mob_spell_list -= A
 		A.action.Remove(L)
@@ -92,24 +92,24 @@
 		L.mob_spell_list -= A
 		A.action.Remove(L)
 
-/obj/item/infinity_stone/proc/GiveVisualEffects(mob/living/L)
+/obj/item/badmin_stone/proc/GiveVisualEffects(mob/living/L)
 	L.add_overlay(aura_overlay)
 
-/obj/item/infinity_stone/proc/TakeVisualEffects(mob/living/L)
+/obj/item/badmin_stone/proc/TakeVisualEffects(mob/living/L)
 	L.cut_overlay(aura_overlay)
 
-/obj/item/infinity_stone/proc/GetHolder()
+/obj/item/badmin_stone/proc/GetHolder()
 	if(isliving(loc))
 		return loc
 	return null
 
-/obj/item/infinity_stone/proc/GetAuraHolder()
+/obj/item/badmin_stone/proc/GetAuraHolder()
 	return recursive_loc_check(src, /mob/living)
 
-/obj/item/infinity_stone/process()
+/obj/item/badmin_stone/process()
 	UpdateHolder()
 
-/obj/item/infinity_stone/proc/UpdateHolder()
+/obj/item/badmin_stone/proc/UpdateHolder()
 	if(istype(loc, /obj/item/badmin_gauntlet))
 		return //gauntlet handles this from now on
 	var/mob/living/new_holder = GetHolder()
@@ -145,29 +145,29 @@
 		else
 			aura_holder = null
 
-/obj/item/infinity_stone/proc/GiveStatusEffect(mob/living/target)
+/obj/item/badmin_stone/proc/GiveStatusEffect(mob/living/target)
 	if(istype(loc, /obj/item/badmin_gauntlet))
 		return
-	var/list/effects = target.has_status_effect_list(/datum/status_effect/infinity_stone)
-	var/datum/status_effect/infinity_stone/M
-	for(var/datum/status_effect/infinity_stone/MM in effects)
+	var/list/effects = target.has_status_effect_list(/datum/status_effect/badmin_stone)
+	var/datum/status_effect/badmin_stone/M
+	for(var/datum/status_effect/badmin_stone/MM in effects)
 		if(MM.stone == src)
 			M = MM
 			break
 	if(!M)
-		M = target.apply_status_effect(/datum/status_effect/infinity_stone, src)
+		M = target.apply_status_effect(/datum/status_effect/badmin_stone, src)
 
-/obj/item/infinity_stone/proc/TakeStatusEffect(mob/living/target)
-	var/list/effects = target.has_status_effect_list(/datum/status_effect/infinity_stone)
-	var/datum/status_effect/infinity_stone/M
-	for(var/datum/status_effect/infinity_stone/MM in effects)
+/obj/item/badmin_stone/proc/TakeStatusEffect(mob/living/target)
+	var/list/effects = target.has_status_effect_list(/datum/status_effect/badmin_stone)
+	var/datum/status_effect/badmin_stone/M
+	for(var/datum/status_effect/badmin_stone/MM in effects)
 		if(MM.stone == src)
 			M = MM
 			break
 	if(M)
 		qdel(M)
 
-/obj/item/infinity_stone/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/badmin_stone/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!isliving(user))
 		return
 	if(istype(target, /obj/item/badmin_gauntlet))
@@ -182,15 +182,15 @@
 		if(INTENT_HARM)
 			HarmEvent(target, user, proximity_flag)
 
-/obj/item/infinity_stone/proc/DisarmEvent(atom/target, mob/living/user, proximity_flag)
+/obj/item/badmin_stone/proc/DisarmEvent(atom/target, mob/living/user, proximity_flag)
 
-/obj/item/infinity_stone/proc/HarmEvent(atom/target, mob/living/user, proximity_flag)
+/obj/item/badmin_stone/proc/HarmEvent(atom/target, mob/living/user, proximity_flag)
 
-/obj/item/infinity_stone/proc/GrabEvent(atom/target, mob/living/user, proximity_flag)
+/obj/item/badmin_stone/proc/GrabEvent(atom/target, mob/living/user, proximity_flag)
 
-/obj/item/infinity_stone/proc/HelpEvent(atom/target, mob/living/user, proximity_flag)
+/obj/item/badmin_stone/proc/HelpEvent(atom/target, mob/living/user, proximity_flag)
 
-/obj/item/infinity_stone/proc/FireProjectile(projectiletype, atom/target, p_damage = null, fire_sound = 'sound/magic/staff_animation.ogg')
+/obj/item/badmin_stone/proc/FireProjectile(projectiletype, atom/target, p_damage = null, fire_sound = 'sound/magic/staff_animation.ogg')
 	var/turf/startloc = get_turf(src)
 	var/obj/item/projectile/P = new projectiletype(startloc)
 	if(p_damage)
@@ -223,7 +223,7 @@
 	staff_req = FALSE
 	antimagic_allowed = TRUE
 	invocation_type = "none"
-	var/obj/item/infinity_stone/stone
+	var/obj/item/badmin_stone/stone
 	var/mob/living/user
 	var/mob/living/target
 

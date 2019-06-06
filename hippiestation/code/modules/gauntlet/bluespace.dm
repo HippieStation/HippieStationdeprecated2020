@@ -1,6 +1,6 @@
 //Originally coded for HippieStation by Steamp0rt, shared under the AGPL license.
 
-/obj/item/infinity_stone/bluespace
+/obj/item/badmin_stone/bluespace
 	name = "Bluespace Stone"
 	desc = "Stare into the abyss, and the abyss stares back..."
 	color = "#266ef6"
@@ -12,17 +12,17 @@
 		/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/bluespace_stone)
 	var/next_help = 0
 
-/obj/item/infinity_stone/bluespace/DisarmEvent(atom/target, mob/living/user, proximity_flag)
+/obj/item/badmin_stone/bluespace/DisarmEvent(atom/target, mob/living/user, proximity_flag)
 	if(isliving(target))
 		var/mob/living/L = target
 		var/obj/O = L.get_active_held_item()
-		if(O && !istype(O, /obj/item/infinity_stone) && !istype(O, /obj/item/badmin_gauntlet) && L.dropItemToGround(O))
+		if(O && !istype(O, /obj/item/badmin_stone) && !istype(O, /obj/item/badmin_gauntlet) && L.dropItemToGround(O))
 			L.visible_message("<span class='danger'>[L]'s [O] disappears from their hands!</span>", "<span class='danger'>Our [O] disappears!</span>")
 			O.forceMove(get_turf(user))
 			user.equip_to_slot(O, SLOT_IN_BACKPACK)	
 			user.changeNext_move(CLICK_CD_CLICK_ABILITY)
 
-/obj/item/infinity_stone/bluespace/HelpEvent(atom/target, mob/living/user, proximity_flag)
+/obj/item/badmin_stone/bluespace/HelpEvent(atom/target, mob/living/user, proximity_flag)
 	if(next_help > world.time)
 		to_chat("<span class='danger'>You need to wait [DisplayTimeText(next_help - world.time)] to do that again!")
 		return
@@ -33,7 +33,7 @@
 			do_teleport(target, potential_T, channel = TELEPORT_CHANNEL_BLUESPACE)
 			next_help = world.time + 75 SECONDS
 
-/obj/item/infinity_stone/bluespace/GrabEvent(atom/target, mob/living/user, proximity_flag)	
+/obj/item/badmin_stone/bluespace/GrabEvent(atom/target, mob/living/user, proximity_flag)	
 	var/turf/to_teleport = get_turf(target)
 	if(do_after(user, 3, target = user))
 		var/turf/start = get_turf(user)

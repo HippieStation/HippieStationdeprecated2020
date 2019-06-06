@@ -1,6 +1,6 @@
 //Originally coded for HippieStation by Steamp0rt, shared under the AGPL license.
 
-/obj/item/infinity_stone/ghost
+/obj/item/badmin_stone/ghost
 	name = "Ghost Stone"
 	desc = "Salts your food very well."
 	color = "#e429f2"
@@ -17,7 +17,7 @@
 	var/next_pull = 0
 	var/list/mob/dead/observer/spirits = list()
 
-/obj/item/infinity_stone/ghost/HelpEvent(atom/target, mob/living/user, proximity_flag)
+/obj/item/badmin_stone/ghost/HelpEvent(atom/target, mob/living/user, proximity_flag)
 	if(!isobserver(target))
 		to_chat(user, "<span class='notice'>You can only transmutate ghosts!</span>")
 		return
@@ -48,20 +48,20 @@
 	qdel(O)
 
 
-/obj/item/infinity_stone/ghost/DisarmEvent(atom/target, mob/living/user, proximity_flag)
+/obj/item/badmin_stone/ghost/DisarmEvent(atom/target, mob/living/user, proximity_flag)
 	var/total_spirits = ghost_check()
 	FireProjectile(/obj/item/projectile/spirit_fist, target, CLAMP(total_spirits*2.5, 3, 25))
 	user.changeNext_move(CLICK_CD_RANGE)
 
 
-/obj/item/infinity_stone/ghost/GiveAbilities(mob/living/L, gauntlet = FALSE)
+/obj/item/badmin_stone/ghost/GiveAbilities(mob/living/L, gauntlet = FALSE)
 	. = ..()
 	ADD_TRAIT(L, TRAIT_SIXTHSENSE, GHOST_STONE_TRAIT)
 	ADD_TRAIT(L, TRAIT_XRAY_VISION, GHOST_STONE_TRAIT)
 	L.see_invisible = SEE_INVISIBLE_OBSERVER
 	L.update_sight()
 
-/obj/item/infinity_stone/ghost/RemoveAbilities(mob/living/L, gauntlet = FALSE)
+/obj/item/badmin_stone/ghost/RemoveAbilities(mob/living/L, gauntlet = FALSE)
 	. = ..()
 	REMOVE_TRAIT(L, TRAIT_SIXTHSENSE, GHOST_STONE_TRAIT)
 	REMOVE_TRAIT(L, TRAIT_XRAY_VISION, GHOST_STONE_TRAIT)
@@ -69,18 +69,18 @@
 	L.update_sight()
 
 // Spectral Sword Copypaste
-/obj/item/infinity_stone/ghost/Initialize()
+/obj/item/badmin_stone/ghost/Initialize()
 	. = ..()
 	notify_ghosts("The Ghost Stone has been formed!",
 		enter_link="<a href=?src=[REF(src)];orbit=1>(Click to orbit)</a>",
 		source = src, action=NOTIFY_ORBIT, ignore_key = POLL_IGNORE_SPECTRAL_BLADE)
 
-/obj/item/infinity_stone/ghost/Destroy()
+/obj/item/badmin_stone/ghost/Destroy()
 	for(var/mob/dead/observer/G in spirits)
 		G.invisibility = GLOB.observer_default_invisibility
 	return ..()
 
-/obj/item/infinity_stone/ghost/attack_self(mob/user)
+/obj/item/badmin_stone/ghost/attack_self(mob/user)
 	if(summon_cooldown > world.time)
 		to_chat(user, "You just recently called out for aid. You don't want to annoy the spirits.")
 		return
@@ -90,17 +90,17 @@
 		source = user, action=NOTIFY_ORBIT, ignore_key = POLL_IGNORE_SPECTRAL_BLADE)
 	summon_cooldown = world.time + 60 SECONDS
 
-/obj/item/infinity_stone/ghost/Topic(href, href_list)
+/obj/item/badmin_stone/ghost/Topic(href, href_list)
 	if(href_list["orbit"])
 		var/mob/dead/observer/ghost = usr
 		if(istype(ghost))
 			ghost.ManualFollow(src)
 
-/obj/item/infinity_stone/ghost/process()
+/obj/item/badmin_stone/ghost/process()
 	..()
 	ghost_check()
 
-/obj/item/infinity_stone/ghost/proc/ghost_check()
+/obj/item/badmin_stone/ghost/proc/ghost_check()
 	var/ghost_counter = 0
 	var/mob/dead/observer/current_spirits = list()
 
@@ -159,7 +159,7 @@
 		to_chat(caller, "<span class='notice'>That's not unconscious.</span>")
 		revert_cast()
 		return FALSE
-	if(locate(/obj/item/infinity_stone) in L.GetAllContents())
+	if(locate(/obj/item/badmin_stone) in L.GetAllContents())
 		to_chat(caller, "<span class='notice'>Something stops you from using The Chariot on that...</span>")
 		revert_cast()
 		return FALSE
@@ -183,7 +183,7 @@
 /obj/effect/forcefield/heaven/CanPass(atom/movable/mover, turf/target)
 	if(mover == summoner)
 		return TRUE
-	if(locate(/obj/item/infinity_stone/bluespace) in mover)
+	if(locate(/obj/item/badmin_stone/bluespace) in mover)
 		return TRUE
 	return FALSE
 
@@ -218,7 +218,7 @@
 			continue
 		var/list/effects = list(1, 2, 3, 4, 6)
 		var/list/ni_effects = list(5)
-		if(!(locate(/obj/item/infinity_stone) in L.GetAllContents()))
+		if(!(locate(/obj/item/badmin_stone) in L.GetAllContents()))
 			effects += ni_effects
 		var/effect = pick(effects)
 		switch(effect)

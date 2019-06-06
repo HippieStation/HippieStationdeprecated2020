@@ -2,15 +2,15 @@
 
 GLOBAL_VAR_INIT(gauntlet_snapped, FALSE)
 GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
-GLOBAL_LIST_INIT(infinity_stones, list(SYNDIE_STONE, BLUESPACE_STONE, SUPERMATTER_STONE, LAG_STONE, CLOWN_STONE, GHOST_STONE))
-GLOBAL_LIST_INIT(infinity_stone_types, list(
-		SYNDIE_STONE = /obj/item/infinity_stone/syndie,
-		BLUESPACE_STONE = /obj/item/infinity_stone/bluespace, 
-		SUPERMATTER_STONE = /obj/item/infinity_stone/supermatter, 
-		LAG_STONE = /obj/item/infinity_stone/lag, 
-		CLOWN_STONE = /obj/item/infinity_stone/clown, 
-		GHOST_STONE = /obj/item/infinity_stone/ghost))
-GLOBAL_LIST_INIT(infinity_stone_weights, list(
+GLOBAL_LIST_INIT(badmin_stones, list(SYNDIE_STONE, BLUESPACE_STONE, SUPERMATTER_STONE, LAG_STONE, CLOWN_STONE, GHOST_STONE))
+GLOBAL_LIST_INIT(badmin_stone_types, list(
+		SYNDIE_STONE = /obj/item/badmin_stone/syndie,
+		BLUESPACE_STONE = /obj/item/badmin_stone/bluespace, 
+		SUPERMATTER_STONE = /obj/item/badmin_stone/supermatter, 
+		LAG_STONE = /obj/item/badmin_stone/lag, 
+		CLOWN_STONE = /obj/item/badmin_stone/clown, 
+		GHOST_STONE = /obj/item/badmin_stone/ghost))
+GLOBAL_LIST_INIT(badmin_stone_weights, list(
 		SYNDIE_STONE = list(
 			"Head of Security" = 70,
 			"Captain" = 60,
@@ -96,7 +96,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 /obj/item/badmin_gauntlet/examine(mob/user)
 	. = ..()
-	for(var/obj/item/infinity_stone/IS in stones)
+	for(var/obj/item/badmin_stone/IS in stones)
 		to_chat(user, "<span class='bold notice'>[IS.name] mode</span>")
 		IS.ShowExamine(user)
 
@@ -104,7 +104,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	return
 
 /obj/item/badmin_gauntlet/proc/GetStone(stone_type)
-	for(var/obj/item/infinity_stone/I in stones)
+	for(var/obj/item/badmin_stone/I in stones)
 		if(I.stone_type == stone_type)
 			return I
 	return
@@ -152,8 +152,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 /obj/item/badmin_gauntlet/proc/MakeStonekeepers(mob/living/current_user)
 	var/list/has_a_stone = list(current_user)
-	for(var/stone in GLOB.infinity_stones)
-		var/list/to_get_stones = GetWeightedChances(GLOB.infinity_stone_weights[stone], has_a_stone)
+	for(var/stone in GLOB.badmin_stones)
+		var/list/to_get_stones = GetWeightedChances(GLOB.badmin_stone_weights[stone], has_a_stone)
 		var/mob/living/L
 		if(LAZYLEN(to_get_stones))
 			L = pickweight(to_get_stones)
@@ -165,8 +165,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			if(LAZYLEN(minds))
 				var/datum/mind/M = pick(minds)
 				L = M.current
-		var/stone_type = GLOB.infinity_stone_types[stone]
-		var/obj/item/infinity_stone/IS = new stone_type(L ? get_turf(L) : null)
+		var/stone_type = GLOB.badmin_stone_types[stone]
+		var/obj/item/badmin_stone/IS = new stone_type(L ? get_turf(L) : null)
 		if(L && istype(L))
 			has_a_stone += L
 			var/datum/antagonist/stonekeeper/SK = L.mind.add_antag_datum(/datum/antagonist/stonekeeper)
@@ -182,13 +182,13 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 
 /obj/item/badmin_gauntlet/proc/FullyAssembled()
-	for(var/stone in GLOB.infinity_stones)
+	for(var/stone in GLOB.badmin_stones)
 		if(!GetStone(stone))
 			return FALSE
 	return TRUE
 
 /obj/item/badmin_gauntlet/proc/GetStoneColor(stone_type)
-	var/obj/item/infinity_stone/IS = GetStone(stone_type)
+	var/obj/item/badmin_stone/IS = GetStone(stone_type)
 	if(IS && istype(IS))
 		return IS.color
 	return "#DC143C" //crimson by default
@@ -232,7 +232,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		visible_message("<span class='danger'>The Badmin Gauntlet falls off of [user].</span>")
 
 /obj/item/badmin_gauntlet/proc/TakeAbilities(mob/living/user)
-	for(var/obj/item/infinity_stone/IS in stones)
+	for(var/obj/item/badmin_stone/IS in stones)
 		IS.RemoveAbilities(user, TRUE)
 		IS.TakeVisualEffects(user)
 		IS.TakeStatusEffect(user)
@@ -244,7 +244,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 // warning: contains snowflake code for syndie stone
 /obj/item/badmin_gauntlet/proc/GiveAbilities(mob/living/user)
-	var/obj/item/infinity_stone/syndie = GetStone(SYNDIE_STONE)
+	var/obj/item/badmin_stone/syndie = GetStone(SYNDIE_STONE)
 	if(!syndie)
 		for(var/obj/effect/proc_holder/spell/A in spells)
 			user.mob_spell_list += A
@@ -255,11 +255,11 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	if(syndie)
 		syndie.GiveAbilities(user, TRUE)
 	if(FullyAssembled())
-		for(var/obj/item/infinity_stone/IS in stones)
+		for(var/obj/item/badmin_stone/IS in stones)
 			if(IS && istype(IS) && IS.stone_type != SYNDIE_STONE)
 				IS.GiveAbilities(user, TRUE)
 	else
-		var/obj/item/infinity_stone/IS = GetStone(stone_mode)
+		var/obj/item/badmin_stone/IS = GetStone(stone_mode)
 		if(IS && istype(IS))
 			IS.GiveVisualEffects(user)
 			if(stone_mode != SYNDIE_STONE)
@@ -275,7 +275,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	var/image/veins = image(icon = 'hippiestation/icons/obj/infinity.dmi', icon_state = "glow-overlay")
 	veins.color = GetStoneColor(stone_mode)
 	add_overlay(veins)
-	for(var/obj/item/infinity_stone/IS in stones)
+	for(var/obj/item/badmin_stone/IS in stones)
 		var/I = index
 		if(IS.stone_type == stone_mode)
 			I = 0
@@ -369,7 +369,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		return ..()
 	if(!isliving(user))
 		return ..()
-	var/obj/item/infinity_stone/IS = GetStone(stone_mode)
+	var/obj/item/badmin_stone/IS = GetStone(stone_mode)
 	if(!IS || !istype(IS))
 		switch(user.a_intent)
 			if(INTENT_DISARM)
@@ -520,7 +520,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		to_chat(user, "<span class='danger'>You have no stones yet.</span>")
 		return
 	var/list/gauntlet_radial = list()
-	for(var/obj/item/infinity_stone/I in stones)
+	for(var/obj/item/badmin_stone/I in stones)
 		var/image/IM = image(icon = I.icon, icon_state = I.icon_state)
 		IM.color = I.color
 		gauntlet_radial[I.stone_type] = IM
@@ -538,11 +538,11 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		update_icon()
 
 /obj/item/badmin_gauntlet/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/infinity_stone))
+	if(istype(I, /obj/item/badmin_stone))
 		if(!locked_on)
 			to_chat(user, "<span class='notice'>You need to wear the gauntlet first.</span>")
 			return
-		var/obj/item/infinity_stone/IS = I
+		var/obj/item/badmin_stone/IS = I
 		if(!GetStone(IS.stone_type))
 			user.visible_message("<span class='danger bold'>[user] drops the [IS] into the Badmin Gauntlet.</span>")
 			if(IS.stone_type == SYNDIE_STONE)
@@ -815,7 +815,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		return
 	var/datum/status_effect/agent_pinpointer/gauntlet/G = attached_effect
 	if(G && istype(G))
-		var/prompt = input(L, "Choose the Infinity Stone to track.", "Track Stone") as null|anything in GLOB.infinity_stones
+		var/prompt = input(L, "Choose the Badmin Stone to track.", "Track Stone") as null|anything in GLOB.badmin_stones
 		if(prompt)
 			G.stone_target = prompt
 			G.scan_for_target()
@@ -831,7 +831,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 /datum/status_effect/agent_pinpointer/gauntlet/scan_for_target()
 	scan_target = null
-	for(var/obj/item/infinity_stone/IS in world)
+	for(var/obj/item/badmin_stone/IS in world)
 		if(IS.stone_type == stone_target)
 			scan_target = IS
 			return
