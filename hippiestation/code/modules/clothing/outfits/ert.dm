@@ -71,7 +71,9 @@
 		return
 	H.fully_replace_character_name(null, "Thor")
 	if(prob(50))
-		ADD_TRAIT(H, TRAIT_FAT, "thor") // lmao
+		var/obj/item/reagent_containers/food/drinks/beer/beer = new(get_turf(H))
+		H.put_in_hands(beer)
+		H.nutrition = NUTRITION_LEVEL_FAT // lmao
 	var/obj/item/twohanded/mjollnir/MJ = new(get_turf(H))
 	H.put_in_hands(MJ)
 	var/obj/effect/proc_holder/spell/targeted/summonitem/summon_mj = new
