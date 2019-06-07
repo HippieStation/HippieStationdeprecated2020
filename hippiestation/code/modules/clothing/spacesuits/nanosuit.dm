@@ -688,7 +688,7 @@
 		log_game("[user] has engaged [src]")
 		if(help_verb)
 			Wearer.verbs += help_verb
-		bootSequence()
+		INVOKE_ASYNC(src, .proc/bootSequence)
 	..()
 
 /obj/item/clothing/suit/space/hardsuit/nano/dropped()
