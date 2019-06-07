@@ -431,7 +431,9 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 						qdel(SB)
 				user.apply_status_effect(/datum/status_effect/agent_pinpointer/gauntlet)
 				if(!badmin)
-					if(LAZYLEN(GLOB.wizardstart))
+					if(LAZYLEN(GLOB.thanos_start))
+						user.forceMove(pick(GLOB.thanos_start))
+					else if(LAZYLEN(GLOB.wizardstart))
 						user.forceMove(pick(GLOB.wizardstart))
 					priority_announce("A Wizard has declared that he will wipe out half the universe with the Badmin Gauntlet!\n\
 						Stones have been scattered across the station. Protect anyone who holds one!\n\
@@ -738,8 +740,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 // i really hope this never runtimes
 /obj/effect/proc_holder/spell/self/infinity/gauntlet_jump/cast(list/targets, mob/user)
-	if(istype(get_area(user), /area/wizard_station))
-		to_chat(user, "<span class='warning'>You know better than to violate the security of The Den, best wait until you leave.</span>")
+	if(istype(get_area(user), /area/wizard_station) || istype(get_area(user), /area/hippie/thanos_farm))
+		to_chat(user, "<span class='warning'>You can't jump here!</span>")
 		revert_cast(user)
 		return
 	INVOKE_ASYNC(src, .proc/do_jaunt, user)

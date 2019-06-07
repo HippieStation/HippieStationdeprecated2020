@@ -135,6 +135,10 @@
 
 // i really hope this never runtimes
 /obj/effect/proc_holder/spell/self/infinity/syndie_jump/cast(list/targets, mob/user)
+	if(istype(get_area(user), /area/wizard_station) || istype(get_area(user), /area/hippie/thanos_farm))
+		to_chat(user, "<span class='warning'>You can't jump here!</span>")
+		revert_cast(user)
+		return
 	INVOKE_ASYNC(src, .proc/do_jaunt, user)
 
 /obj/effect/proc_holder/spell/self/infinity/syndie_jump/proc/do_jaunt(mob/living/target)
