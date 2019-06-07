@@ -377,9 +377,6 @@ hippie end */
 		var/datum/player_details/P = GLOB.player_details[owner.ckey]
 		if(P)
 			P.player_actions -= src
-<<<<<<< HEAD
 	else
 		return
 hippie end */
-=======
->>>>>>> a66126d... Add map voting (#44244)
