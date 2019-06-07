@@ -1,0 +1,10 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - bugfix: "Dead/observer mobs should not longer accidentally get reaction messages in them."
+  - tweak: "You can now make lube and clf3 ingots at the forge again, hooray!!"
+  - bugfix: "Reagents on the state change blacklist should no longer turn their reagents into solid/vapor form."
+  - bugfix: "Throwing \"solidified\" blacklisted chems will no longer delete the chem."
+  - tweak: "Changed the boiling and melting point of ethanol to mimic that of real life."
+  - rscdel: "You can no longer make carbon dioxide ingots"
+  - code_imp: "Added separate vapor and solid reagent state change blacklists."
