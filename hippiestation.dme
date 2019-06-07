@@ -3228,6 +3228,7 @@
 #include "hippiestation\code\modules\hydroponics\grown\berries.dm"
 #include "hippiestation\code\modules\hydroponics\grown\cereals.dm"
 #include "hippiestation\code\modules\hydroponics\grown\flowers.dm"
+#include "hippiestation\code\modules\hydroponics\grown\gatfruit.dm"
 #include "hippiestation\code\modules\hydroponics\grown\grass_carpet.dm"
 #include "hippiestation\code\modules\hydroponics\grown\misc.dm"
 #include "hippiestation\code\modules\hydroponics\grown\nettle.dm"
