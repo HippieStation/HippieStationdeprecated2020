@@ -1,3 +1,4 @@
+#define BADTRIP_COOLDOWN 180
 /datum/reagent/drug/burpinate
     name = "Burpinate"
     id = "burpinate"
@@ -310,7 +311,6 @@
 	reagent_state = LIQUID
 	taste_description = "artificial grape"
 	var/obj/effect/hallucination/simple/druggy/brain
-	var/list/spook_images = list()
 	var/bad_trip = FALSE
 	var/badtrip_cooldown = 0
 
@@ -338,14 +338,14 @@
 				step(H, pick(GLOB.cardinals))
 			high_message = pick("I feel like I'm flying!", "I feel something swimming inside my lungs....", "I can see the words I'm saying...")
 			if(prob(20))
-				var/rotation = min(round(current_cycle/4), 45)
+				var/rotation = min(round(current_cycle/4), 20)
 				for(var/obj/screen/plane_master/whole_screen in screens)
 					if(prob(60))
 						animate(whole_screen, transform = matrix(rotation, MATRIX_ROTATE), time = 50, easing = CIRCULAR_EASING)
 						animate(transform = matrix(-rotation, MATRIX_ROTATE), time = 5, easing = BACK_EASING)
 					else if(prob(30))
 						animate(whole_screen, transform = matrix(rotation*4, MATRIX_ROTATE), time = 120, easing = QUAD_EASING)
-						animate(whole_screen, transform = matrix()*2, time = 120, easing = QUAD_EASING)
+						animate(whole_screen, transform = matrix()*1.5, time = 120, easing = QUAD_EASING)
 					else if(prob(15))
 						whole_screen.filters += filter(type="wave", x=20*rand() - 20, y=20*rand() - 20, size=rand()*0.1, offset=rand()*0.5, flags = WAVE_BOUNDED)
 						animate(whole_screen.filters[whole_screen.filters.len], size = rand(1,3), time = 30, easing = QUAD_EASING, loop = -1)
@@ -371,22 +371,36 @@
 					if(prob(35))
 						whole_screen.filters += filter(type="wave", x=30*rand() - 20, y=30*rand() - 20, size=rand()*0.5, offset=rand()*0.5)
 						animate(whole_screen.filters[whole_screen.filters.len], size = rand(2,5), time = 60, easing = QUAD_EASING)
+				var/list/t_ray_images = list()
+				for(var/mob/living/L in orange(8, H) )
+					if(!L.invisibility)
+						var/image/I = new(loc = L)
+						var/mutable_appearance/MA = new(L)
+						MA.alpha = 128
+						MA.dir = L.dir
+						I.appearance = MA
+						step(I, pick(GLOB.cardinals))
+						t_ray_images += I
+				if(t_ray_images.len)
+					flick_overlay(t_ray_images, list(H.client), rand(10,30))
 				high_message = pick("I can feel my thoughts racing!", "WHO THE FUCK SAID THAT??!!", "I feel like I'm going to die!")
-				if(prob(40))
+				if(prob(25))
 					H.hallucination += 2
 					H.jitteriness += 3
+					H.emote("me", 1, pick("hyperventilates.", "gasps."))
+					H.confused += 2
 				else if(prob(5))
 					H.emote("cry")
 					H.say(pick("MAKE IT STOP!! I'M SORRY!!", ";I'LL DO ANYTHING, MAKE IT STOP!!", "YOU DIDN'T EVEN BOTHER, YOU DIDN'T SEE THEM GO!!", "YOU WANNA SEE WHAT REALITY REALLY IS?!!"))
-					H.visible_message("<span class='warning'>[H] appears to be freaking out! You need to calm them down!</span>")
-				else if(prob(1))
+					H.visible_message("<span class='warning'>[H] appears to be freaking out!</span>")
+				else if(prob(3))
 					H.stop_sound_channel(CHANNEL_HEARTBEAT)
 					H.playsound_local(H, 'sound/effects/singlebeat.ogg', 100, 0)
-					H.visible_message("<span class='warning'>[H] clutches at [H.p_their()] chest as if [H.p_their()] heart is stopping!</span>")
+					if(prob(40))
+						H.visible_message("<span class='warning'>[H] clutches at [H.p_their()] chest as if [H.p_their()] heart is stopping!</span>")
 					H.adjustStaminaLoss(80)
-					H.emote("gasp")
-				else if(prob(3))
-					addtimer(CALLBACK(src, .proc/end_bad_trip, H) ,50)
+				if(prob(3))
+					addtimer(CALLBACK(src, .proc/end_bad_trip, H), 30)
 
 	if(prob(5))
 		to_chat(H, "<i>You hear your own thoughts... <b>[high_message]</i></b>")
@@ -398,8 +412,9 @@
 
 /datum/reagent/drug/grape_blast/proc/end_bad_trip(mob/living/carbon/human/H)
 	bad_trip = FALSE
-	badtrip_cooldown = world.time + 180
-	H.visible_message("<span class='notice'>[H] appears to have calmed down, they look like they need a hug.</span>")
+	badtrip_cooldown = world.time + BADTRIP_COOLDOWN
+	H.visible_message("<span class='notice'>[H] appears to have calmed down.</span>")
+	H.emote("me", 1, pick("takes a deep breath.", "relaxes."))
 
 /datum/reagent/drug/grape_blast/proc/cure_autism(mob/living/carbon/C)
 	to_chat(C, "<span class='notice'>As the drugs wear off, you feel yourself slowly coming back to reality...</span>")
@@ -411,14 +426,6 @@
 		for(var/obj/screen/plane_master/whole_screen in screens)
 			animate(whole_screen, transform = matrix(), time = 200, easing = ELASTIC_EASING)
 			whole_screen.filters = list()
-
-/datum/reagent/drug/grape_blast/proc/trippy_hud(mob/living/carbon/C)
-	return
-//addtimer(CALLBACK(src, .proc/stop_trip, C),80)
-
-/datum/reagent/drug/grape_blast/proc/stop_trip(mob/living/carbon/C)
-	if(C.client)
-		C.client.images -= spook_images
 
 /obj/effect/hallucination/simple/druggy
 	name = "Your brain"
