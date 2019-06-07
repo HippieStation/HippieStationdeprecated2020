@@ -637,7 +637,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 				force = 27.5
 			IS.forceMove(src)
 			stones += IS
-			var/datum/component/stationloving/stationloving = AM.GetComponent(/datum/component/stationloving)
+			var/datum/component/stationloving/stationloving = IS.GetComponent(/datum/component/stationloving)
 			if(stationloving)
 				stationloving.RemoveComponent()
 			UpdateAbilities(user)
