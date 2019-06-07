@@ -433,9 +433,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 						qdel(SB)
 				user.apply_status_effect(/datum/status_effect/agent_pinpointer/gauntlet)
 				if(!badmin)
-					if(LAZYLEN(GLOB.thanos_start))
-						user.forceMove(pick(GLOB.thanos_start))
-					else if(LAZYLEN(GLOB.wizardstart))
+					if(LAZYLEN(GLOB.wizardstart))
 						user.forceMove(pick(GLOB.wizardstart))
 					priority_announce("A Wizard has declared that he will wipe out half the universe with the Badmin Gauntlet!\n\
 						Stones have been scattered across the station. Protect anyone who holds one!\n\
@@ -639,9 +637,9 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 				force = 27.5
 			IS.forceMove(src)
 			stones += IS
-			GET_COMPONENT_FROM(stationloving, /datum/component/stationloving, IS)
+			var/datum/component/stationloving/stationloving = AM.GetComponent(/datum/component/stationloving)
 			if(stationloving)
-				IS.TakeComponent(stationloving)
+				stationloving.RemoveComponent()
 			UpdateAbilities(user)
 			update_icon()
 			if(FullyAssembled() && !GLOB.gauntlet_snapped)
