@@ -46,6 +46,13 @@
 	cost = 14
 	item = /obj/vehicle/ridden/lawnmower/emagged
 
+/datum/uplink_item/role_restricted/gatfruit
+	name = "Syndi Gatfruit"
+	desc = "An extrememly rare plant seed which grows .357 revolvers. Has been modified to mature twice as fast as normal Gatfruit"
+	restricted_roles = list("Botanist")
+	cost = 18
+	item = /obj/item/seeds/gatfruit/syndi
+
 /datum/uplink_item/dangerous/echainsaw
 	name = "Energy Chainsaw"
 	desc = "An incredibly deadly modified chainsaw with plasma-based energy blades instead of metal and a slick black-and-red finish. While it rips apart matter with extreme efficiency, it is heavy, large, and monstrously loud."
@@ -243,6 +250,7 @@
 	cost = 1 //Its weaker than an energy dagger and cannot be concealed.
 	surplus = 30 //Theres a good chance this will end up in surplus crates, so its a great way to add a little spice to any meme round.
 	exclude_modes = list(/datum/game_mode/infiltration)
+	restricted = TRUE
 
 /datum/uplink_item/dangerous/guardian
 	surplus = 5 //Up yours TGbalanceing
@@ -484,3 +492,22 @@
 	desc = "Fakes an immovable rod announcement. Good for a short-lasting distraction."
 	item = /obj/item/service/rodgod
 	cost = 6 //less likely to be believed
+	
+/datum/uplink_item/role_restricted/monk_manual
+	name = "Monk Manual"
+	desc = "Study the ways of asceticism and pacifism by beating the living shit out of people."
+	item = /obj/item/nullrod/monk_manual
+	cost = 6
+	restricted_roles = list("Chaplain")
+
+/datum/uplink_item/role_restricted/antigrav_boots
+	name = "Anti Gravity Boots"
+	desc = "Modified mag boots that let you float over floors and gaps."
+	item = /obj/item/clothing/shoes/magboots/antigrav
+	cost = 8 
+	surplus = 30
+	restricted_roles = list("Shaft Miner")
+  
+// stop VR CRABBING
+/datum/uplink_item/device_tools/suspiciousphone
+	restricted = TRUE

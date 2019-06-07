@@ -114,7 +114,7 @@
 /obj/effect/proc_holder/spell/targeted/hypnotise/cast(list/targets, mob/user = usr)
 	for(var/mob/living/target in targets)
 		user.visible_message("<span class='warning'>[user]'s eyes flash briefly as he stares into [target]'s eyes</span>")
-		if(do_mob(user, target, 50))
+		if(do_mob(user, target, 20))
 			to_chat(user, "<span class='warning'>Your piercing gaze knocks out [target].</span>")
 			to_chat(target, "<span class='warning'>You find yourself unable to move and barely able to speak.</span>")
 			target.Paralyze(150)
@@ -336,12 +336,13 @@
 /obj/effect/proc_holder/spell/self/revive/proc/revive(mob/living/user)
 	user.revive(full_heal = TRUE)
 	user.visible_message("<span class='warning'>[user] reanimates from death!</span>", "<span class='notice'>We get back up.</span>")
+	playsound(user, 'sound/magic/demon_consume.ogg', 50, 1)
 	var/list/missing = user.get_missing_limbs()
 	if(missing.len)
-		playsound(user, 'sound/magic/demon_consume.ogg', 50, 1)
 		user.visible_message("<span class='warning'>Shadowy matter takes the place of [user]'s missing limbs as they reform!</span>")
 		user.regenerate_limbs(0, list(BODY_ZONE_HEAD))
 	user.regenerate_organs()
+	user.Paralyze(100)
 	
 /obj/effect/proc_holder/spell/self/summon_coat
 	name = "Summon Dracula Coat (5)"

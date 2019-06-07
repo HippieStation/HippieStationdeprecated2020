@@ -1,4 +1,0 @@
-author: "HonkBot"
-delete-after: True
-changes: 
-  - tweak: "TGUI buttons do not fully grey out while the UI is still updating"

@@ -59,7 +59,7 @@
 
 obj/item/clothing/mask/spurdo/cursed
 	flags_1 =  MASKINTERNALS
-	
+
 obj/item/clothing/mask/spurdo/cursed/Initialize()
-	add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 	. = ..()

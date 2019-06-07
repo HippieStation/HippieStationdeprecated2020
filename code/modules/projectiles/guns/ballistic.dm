@@ -53,7 +53,7 @@
 	var/cartridge_wording = "bullet"
 	var/rack_delay = 5
 	var/recent_rack = 0
-	var/tac_reloads = FALSE //Snowflake mechanic no more.
+	var/tac_reloads = TRUE //Snowflake mechanic no more.
 
 /obj/item/gun/ballistic/Initialize()
 	. = ..()
@@ -153,7 +153,7 @@
 	var/obj/item/ammo_box/magazine/old_mag = magazine
 	if (tac_load)
 		if (insert_magazine(user, tac_load, FALSE))
-			to_chat(user, "<span class='notice'>You perform a tactical reload on \the [src].")
+			to_chat(user, "<span class='notice'>You perform a tactical reload on \the [src].</span>")
 		else
 			to_chat(user, "<span class='warning'>You dropped the old [magazine_wording], but the new one doesn't fit. How embarassing.</span>")
 			magazine = null
@@ -177,7 +177,7 @@
 		if (!magazine)
 			insert_magazine(user, AM)
 		else
-			if (tac_reloads || user.has_trait(TRAIT_TACRELOAD)) //hippie edit -- adds tac_reload trait for nanosuit
+			if (tac_reloads || HAS_TRAIT(user, TRAIT_TACRELOAD)) //hippie edit -- adds tac_reload trait for nanosuit
 				eject_magazine(user, FALSE, AM)
 			else
 				to_chat(user, "<span class='notice'>There's already a [magazine_wording] in \the [src].</span>")

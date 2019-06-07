@@ -21,7 +21,7 @@ GLOBAL_LIST_INIT(infiltrator_kidnap_areas, typecacheof(list(/area/shuttle/hippie
 
 
 /datum/objective/infiltrator/exploit/find_target()
-	var/list/possible_targets = active_ais(1)
+	var/list/possible_targets = active_ais()
 	var/mob/living/silicon/ai/target_ai = pick(possible_targets)
 	target = target_ai.mind
 	update_explanation_text()
@@ -37,9 +37,9 @@ GLOBAL_LIST_INIT(infiltrator_kidnap_areas, typecacheof(list(/area/shuttle/hippie
 /datum/objective/infiltrator/exploit/check_completion()
 	if(!target)
 		return LAZYLEN(get_antag_minds(/datum/antagonist/hijacked_ai))
-	if(isAI(target))
-		var/mob/living/silicon/ai/A = target
-		return A && A.mind && A.mind.has_antag_datum(/datum/antagonist/hijacked_ai)
+	if(istype(target, /datum/mind))
+		var/datum/mind/A = target
+		return A && A.has_antag_datum(/datum/antagonist/hijacked_ai)
 	return FALSE
 
 
@@ -86,4 +86,5 @@ GLOBAL_LIST_INIT(infiltrator_kidnap_areas, typecacheof(list(/area/shuttle/hippie
 		explanation_text = "Free Objective"
 
 /datum/objective/infiltrator/kidnap/check_completion()
-	return (considered_alive(target) || (target.current && target.current.suiciding)) && is_type_in_typecache(get_area(target.current), GLOB.infiltrator_kidnap_areas)
+	var/target_area = get_area(target.current)
+	return !target || (target.current && target.current.suiciding) || (considered_alive(target) && is_type_in_typecache(target_area, GLOB.infiltrator_kidnap_areas))
