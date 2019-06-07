@@ -1,5 +1,0 @@
-author: "NautilusViper"
-delete-after: True
-changes: 
-  - balance: "Vampire sipping has halved in drain effectiveness, but slightly more than doubled in speed."
-  - soundadd: "Vampire sipping is slightly quieter, but now has a unique sound not heard elsewhere, making it a dead giveaway."
