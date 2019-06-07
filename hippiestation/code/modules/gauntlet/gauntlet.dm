@@ -897,7 +897,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 /////////////////////////////////////////////
 
 /obj/screen/alert/status_effect/agent_pinpointer/gauntlet
-	name = "Badmin Gauntlet Pinpointer"
+	name = "Badmin Stone Pinpointer"
 
 /obj/screen/alert/status_effect/agent_pinpointer/gauntlet/Click()
 	var/mob/living/L = usr
@@ -912,7 +912,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			G.point_to_target()
 
 /datum/status_effect/agent_pinpointer/gauntlet
-	id = "gauntlet_pinpointer"
+	id = "badmin_stone_pinpointer"
 	minimum_range = 1
 	range_fuzz_factor = 0
 	tick_interval = 10
