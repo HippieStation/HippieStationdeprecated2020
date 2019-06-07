@@ -56,7 +56,7 @@
 
 /datum/component/stationloving/proc/in_bounds()
 	var/static/list/allowed_shuttles = typecacheof(list(/area/shuttle/syndicate, /area/shuttle/escape, /area/shuttle/pod_1, /area/shuttle/pod_2, /area/shuttle/pod_3, /area/shuttle/pod_4))
-	var/static/list/disallowed_centcom_areas = typecacheof(list(/area/abductor_ship, /area/fabric_of_reality, /area/awaymission/errorroom, /area/hippie/thanos_farm)) // hippie -- don't move things to The Garden
+	var/static/list/disallowed_centcom_areas = typecacheof(list(/area/abductor_ship, /area/fabric_of_reality, /area/awaymission/errorroom))
 	var/turf/T = get_turf(parent)
 	if (!T)
 		return FALSE
@@ -64,6 +64,10 @@
 	if (is_station_level(T.z))
 		return TRUE
 	if (is_centcom_level(T.z))
+		// hippie start -- don't move thanos out of the garden, but move anything else.
+		if(!isliving(parent) && istype(A, /area/hippie/thanos_farm))
+			return FALSE
+		// hippie end
 		if (is_type_in_typecache(A, disallowed_centcom_areas))
 			return FALSE
 		return TRUE
