@@ -1,0 +1,6 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - tweak: "Gibs are no longer as fast as players"
+  - tweak: "Gibs eat slightly slower"
+  - tweak: "Gibs vent search time is lowered to make them more interesting."
