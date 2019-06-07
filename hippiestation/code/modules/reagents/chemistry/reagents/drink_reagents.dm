@@ -1,3 +1,7 @@
+/datum/reagent/consumable
+	boiling_point = 373
+
+
 /datum/reagent/consumable/berryjuice/on_mob_life(mob/living/M)
 	if(prob(25))
 		M.reagents.add_reagent("vitamin",0.8)
