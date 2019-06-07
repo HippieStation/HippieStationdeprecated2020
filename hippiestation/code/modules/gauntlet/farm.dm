@@ -1,6 +1,24 @@
 GLOBAL_LIST_EMPTY(thanos_start)
 GLOBAL_LIST_EMPTY(thanos_portal)
 
+/area/hippie/thanos_farm
+	name = "The Garden"
+	icon_state = "yellow"
+	requires_power = FALSE
+	blob_allowed = FALSE
+	noteleport = TRUE
+	has_gravity = STANDARD_GRAVITY
+
+/datum/map_template/thanos_farm
+	name = "The Garden"
+	mappath = "_maps/templates/garden.dmm"
+
+/obj/effect/spawner/template/thanos_farm
+	name = "garden spawner"
+	template_name = "garden.dmm"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "x"
+
 /obj/effect/thanos_portal
 	name = "bluespace rip"
 	desc = "A mysterious rip, that seems to span time, reality, bluespace, and beyond."
