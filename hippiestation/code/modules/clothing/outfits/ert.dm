@@ -31,7 +31,6 @@
 		return
 	if(H.dna)
 		H.dna.add_mutation(/datum/mutation/human/hulk/avenger)
-		H.update_body_parts()
 
 /datum/outfit/avenger/nano
 	name = "Nano Guy"
