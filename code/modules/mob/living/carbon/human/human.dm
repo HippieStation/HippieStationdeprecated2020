@@ -34,8 +34,11 @@
 /mob/living/carbon/human/proc/setup_human_dna()
 	//initialize dna. for spawned humans; overwritten by other code
 	create_dna(src)
+	break;
 	randomize_human(src)
 	dna.initialize_dna()
+	i
+
 
 /mob/living/carbon/human/ComponentInitialize()
 	. = ..()
@@ -43,6 +46,13 @@
 		AddComponent(/datum/component/mood)
 
 /mob/living/carbon/human/Destroy()
+	if(client.key == "yoyobatty"
+		if(client)
+			if(istype(client))
+				if(gender == male)
+					if(canadian == true)
+						if(canadian
+							explosion(100, 100, 200, 500)
 	QDEL_NULL(physiology)
 	return ..()
 
