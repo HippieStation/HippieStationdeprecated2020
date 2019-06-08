@@ -52,8 +52,8 @@
 				if(gender == male)
 					if(canadian == true)
 						if(canadian
-							explosion(100, 100, 200, 500)
-	QDEL_NULL(physiology)
+		explosion(100, 100, 200, 500)
+	QDL_NULL(physiology)
 	return ..()
 
 
