@@ -3406,7 +3406,7 @@
 #include "hippiestation\code\modules\projectiles\projectile\energy.dm"
 #include "hippiestation\code\modules\projectiles\projectile\magic.dm"
 #include "hippiestation\code\modules\projectiles\projectile\special.dm"
-#include "hippiestation\code\modules\reagents\Bar_Reactions.dm..dm"
+#include "hippiestation\code\modules\reagents\Bar_Reactions.dm"
 #include "hippiestation\code\modules\reagents\chem_splash.dm"
 #include "hippiestation\code\modules\reagents\machinery.dm"
 #include "hippiestation\code\modules\reagents\reagent_dispenser.dm"
