@@ -68,7 +68,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	flashy_aura = mutable_appearance('hippiestation/icons/obj/infinity.dmi', "aura", -MUTATIONS_LAYER)
 	update_icon()
 	spells += new /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet
-	spells += new /obj/effect/proc_holder/spell/aoe_turf/repulse/gauntlet
+	spells += new /obj/effect/proc_holder/spell/self/infinity/shockwave
 	spells += new /obj/effect/proc_holder/spell/self/infinity/gauntlet_bullcharge
 	spells += new /obj/effect/proc_holder/spell/self/infinity/gauntlet_jump
 
@@ -662,18 +662,41 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 /////////////////////////////////////////////
 //Weaker versions of Syndie Stone spells
 
-/obj/effect/proc_holder/spell/aoe_turf/repulse/gauntlet
+/obj/effect/proc_holder/spell/self/infinity/shockwave
 	name = "Badmin Gauntlet: Shockwave"
-	desc = "Knock down everyone around down and away from you."
-	range = 4
+	desc = "Stomp down and send out a slow-moving shockwave that is capable of knocking people down."
 	charge_max = 250
 	clothes_req = FALSE
 	human_req = FALSE
 	staff_req = FALSE
-	antimagic_allowed = TRUE
-	anti_magic_check = FALSE
-	invocation_type = "none"
 	action_background_icon_state = "bg_default"
+	range = 5
+	sound = 'sound/effects/bang.ogg'
+
+/obj/effect/proc_holder/spell/self/infinity/shockwave/cast(list/targets, mob/user)
+	user.visible_message("<span class='danger'>[user] stomps down!</span>")
+	INVOKE_ASYNC(src, .proc/shockwave, user, get_turf(user))
+
+/obj/effect/proc_holder/spell/self/infinity/shockwave/proc/shockwave(mob/user, turf/center)
+	for(var/i = 1 to range)
+		var/to_hit = range(center, i) - range(center, i-1)
+		for(var/turf/T in to_hit)
+			new /obj/effect/temp_visual/gravpush(T)
+		for(var/mob/living/L in to_hit)
+			if(L == user)
+				continue
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				if(istype(H.shoes, /obj/item/clothing/shoes/magboots))
+					var/obj/item/clothing/shoes/magboots/M = H.shoes
+					if(M.magpulse)
+						if(prob(75))
+							continue
+						else
+							to_chat(L, "<span class='warning'>Your [M] temporarily fails!</span>")
+			L.visible_message("<span class='danger'>[L] is knocked down by a shockwave!</span>", "<span class='danger bold'>A shockwave knocks you off your feet!</span>")
+			L.Paralyze(17.5)
+		sleep(2.75)
 
 /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet
 	name = "Badmin Gauntlet: Regenerate"

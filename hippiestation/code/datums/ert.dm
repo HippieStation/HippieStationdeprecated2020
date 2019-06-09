@@ -1,6 +1,6 @@
 /datum/ert/avengers
-	roles = list(/datum/antagonist/ert/thor, /datum/antagonist/ert/hulk, /datum/antagonist/ert/cap)
-	leader_role = /datum/antagonist/ert/nano
+	roles = list(/datum/antagonist/ert/avengers/thor, /datum/antagonist/ert/avengers/hulk, /datum/antagonist/ert/avengers/cap)
+	leader_role = /datum/antagonist/ert/avengers/nano
 	teamsize = 4
 	opendoors = TRUE
 	rename_team = "Avengers"

@@ -3234,6 +3234,7 @@
 #include "hippiestation\code\modules\food_and_drinks\recipes\tablecraft\recipes_sandwich.dm"
 #include "hippiestation\code\modules\food_and_drinks\recipes\tablecraft\recipes_soup.dm"
 #include "hippiestation\code\modules\gauntlet\_stone.dm"
+#include "hippiestation\code\modules\gauntlet\avengers.dm"
 #include "hippiestation\code\modules\gauntlet\bluespace.dm"
 #include "hippiestation\code\modules\gauntlet\clown.dm"
 #include "hippiestation\code\modules\gauntlet\farm.dm"

@@ -19,7 +19,9 @@
 	W.assignment = "Avenger"
 	W.registered_name = H.real_name
 	W.update_label()
-	H.apply_status_effect(/datum/status_effect/agent_pinpointer/gauntlet)
+	H.apply_status_effect(/datum/status_effect/agent_pinpointer/avenger)
+	H.apply_status_effect(/datum/status_effect/avenger)
+	H.flags_1 |= TESLA_IGNORE_1 // just so they don't get lightning blasted by Thor
 
 /datum/outfit/avenger/hulk
 	name = "Hulk"
@@ -73,9 +75,13 @@
 		H.nutrition = NUTRITION_LEVEL_FAT // lmao
 	var/obj/item/twohanded/mjollnir/MJ = new(get_turf(H))
 	H.put_in_hands(MJ)
+
 	var/obj/effect/proc_holder/spell/targeted/summonitem/summon_mj = new
 	summon_mj.charge_max = 0
 	summon_mj.marked_item = MJ
 	summon_mj.name = "Recall [MJ]"
-	H.mind.spell_list += summon_mj
-	summon_mj.action.Grant(H)
+	H.mind.AddSpell(summon_mj)
+
+	var/obj/effect/proc_holder/spell/aimed/lightningbolt/lightning = new
+	lightning.clothes_req = FALSE
+	H.mind.AddSpell(lightning)

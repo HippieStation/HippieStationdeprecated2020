@@ -10,7 +10,7 @@
 	spell_types = list(/obj/effect/proc_holder/spell/self/infinity/regenerate,
 		/obj/effect/proc_holder/spell/self/infinity/syndie_bullcharge)
 	gauntlet_spell_types = list(/obj/effect/proc_holder/spell/self/infinity/syndie_jump,
-		/obj/effect/proc_holder/spell/aoe_turf/repulse/syndie_stone)
+		/obj/effect/proc_holder/spell/self/infinity/shockwave/syndie_stone)
 	var/datum/martial_art/cqc/martial_art
 
 /obj/item/badmin_stone/syndie/Initialize()
@@ -49,19 +49,11 @@
 /////////////////// SPELLS //////////////////
 /////////////////////////////////////////////
 
-/obj/effect/proc_holder/spell/aoe_turf/repulse/syndie_stone
+/obj/effect/proc_holder/spell/self/infinity/shockwave/syndie_stone
 	name = "Syndie Stone: Shockwave"
-	desc = "Knock down everyone around down and away from you."
-	range = 6
-	charge_max = 200
-	clothes_req = FALSE
-	human_req = FALSE
-	staff_req = FALSE
-	antimagic_allowed = TRUE
-	anti_magic_check = FALSE
 	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_background_icon_state = "syndie"
-	invocation_type = "none"
+	range = 8
 
 /obj/effect/proc_holder/spell/self/infinity/regenerate
 	name = "Syndie Stone: Regenerate"
