@@ -373,6 +373,8 @@
 	max_occupants = 1
 	key_type = null
 	movedelay = 0.6
+	do_explode = FALSE
+	var/bloodiness = 0
 
 /obj/vehicle/sealed/car/thanos/Bump(atom/movable/M)
 	. = ..()
@@ -380,12 +382,48 @@
 		var/mob/living/L = M
 		visible_message("<span class='danger'>[src] rams into [L]!</span>")
 		L.throw_at(get_edge_target_turf(src, get_dir(src, L)), 7, 5)
-		L.take_bodypart_damage(15, check_armor = TRUE)
+		L.take_bodypart_damage(10, check_armor = TRUE)
+
+/obj/vehicle/sealed/car/thanos/driver_move(mob/user, direction)
+	. = ..()
+	if(. && bloodiness)
+		var/obj/effect/decal/cleanable/blood/tracks/B = new(loc)
+		B.add_blood_DNA(return_blood_DNA())
+		B.setDir(direction)
+		bloodiness--
+
+
+/obj/vehicle/sealed/car/thanos/proc/RunOver(mob/living/carbon/H)
+	log_combat(src, H, "run over", null, "(DAMTYPE: [uppertext(BRUTE)])")
+	H.visible_message("<span class='danger'>[src] drives over [H]!</span>", \
+					"<span class='userdanger'>[src] drives over you!</span>")
+	playsound(loc, 'sound/effects/splat.ogg', 50, 1)
+
+	var/damage = rand(2,4)
+	H.apply_damage(2*damage, BRUTE, BODY_ZONE_HEAD, H.run_armor_check(BODY_ZONE_HEAD, "melee"))
+	H.apply_damage(2*damage, BRUTE, BODY_ZONE_CHEST, H.run_armor_check(BODY_ZONE_CHEST, "melee"))
+	H.apply_damage(0.5*damage, BRUTE, BODY_ZONE_L_LEG, H.run_armor_check(BODY_ZONE_L_LEG, "melee"))
+	H.apply_damage(0.5*damage, BRUTE, BODY_ZONE_R_LEG, H.run_armor_check(BODY_ZONE_R_LEG, "melee"))
+	H.apply_damage(0.5*damage, BRUTE, BODY_ZONE_L_ARM, H.run_armor_check(BODY_ZONE_L_ARM, "melee"))
+	H.apply_damage(0.5*damage, BRUTE, BODY_ZONE_R_ARM, H.run_armor_check(BODY_ZONE_R_ARM, "melee"))
+
+	var/turf/T = get_turf(src)
+	T.add_mob_blood(H)
+
+	var/list/blood_dna = H.get_blood_dna_list()
+	add_blood_DNA(blood_dna)
+	bloodiness += 4
 
 /obj/vehicle/sealed/car/thanos/proc/ByeBye()
 	for(var/mob/living/L in return_occupants())
 		mob_exit(L, TRUE)
 		L.throw_at(get_edge_target_turf(src, dir), 7, 5)
 	visible_message("<span class='danger'>[src] explodes!</span>")
-	explosion(get_turf(src), 0, 0, 1, 2, flame_range = 3)
+	explosion(get_turf(src), 0, 0, 2, 3, flame_range = 3)
 	qdel(src)
+
+/mob/living/carbon/human/Crossed(atom/movable/AM)
+	var/obj/vehicle/sealed/car/thanos/TC = AM
+	if(istype(TC))
+		TC.RunOver(src)
+	return ..()

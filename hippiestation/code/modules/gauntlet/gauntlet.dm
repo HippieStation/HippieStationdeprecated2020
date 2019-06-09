@@ -690,13 +690,10 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 				if(istype(H.shoes, /obj/item/clothing/shoes/magboots))
 					var/obj/item/clothing/shoes/magboots/M = H.shoes
 					if(M.magpulse)
-						if(prob(75))
-							continue
-						else
-							to_chat(L, "<span class='warning'>Your [M] temporarily fails!</span>")
+						continue
 			L.visible_message("<span class='danger'>[L] is knocked down by a shockwave!</span>", "<span class='danger bold'>A shockwave knocks you off your feet!</span>")
 			L.Paralyze(17.5)
-		sleep(2.75)
+		sleep(2)
 
 /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet
 	name = "Badmin Gauntlet: Regenerate"
