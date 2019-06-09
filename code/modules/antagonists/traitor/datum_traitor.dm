@@ -221,7 +221,7 @@
 		if(TRAITOR_HUMAN)
 			if(should_equip)
 				equip(silent)
-			owner.current.playsound_local(get_turf(owner.current), 'sound/ambience/antag/tatoralert.ogg', 100, FALSE, pressure_affected = FALSE)
+			owner.current.playsound_local(get_turf(owner.current), 'hippeistation/sound/ambience/antag/tatortor.ogg', 100, FALSE, pressure_affected = FALSE) // hippie -- THIS IS THE INFO WAR
 
 /datum/antagonist/traitor/apply_innate_effects(mob/living/mob_override)
 	. = ..()
