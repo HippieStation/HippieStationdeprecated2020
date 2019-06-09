@@ -8,9 +8,9 @@
 	stone_type = SYNDIE_STONE
 	ability_text = list("ALL INTENTS: PLACEHOLDER MARTIAL ART")
 	spell_types = list(/obj/effect/proc_holder/spell/self/infinity/regenerate,
-		/obj/effect/proc_holder/spell/self/infinity/syndie_bullcharge)
-	gauntlet_spell_types = list(/obj/effect/proc_holder/spell/self/infinity/syndie_jump,
-		/obj/effect/proc_holder/spell/self/infinity/shockwave/syndie_stone)
+		/obj/effect/proc_holder/spell/self/infinity/syndie_bullcharge,
+		/obj/effect/proc_holder/spell/self/infinity/syndie_jump)
+	gauntlet_spell_types = list(/obj/effect/proc_holder/spell/self/infinity/shockwave/syndie_stone)
 	var/datum/martial_art/cqc/martial_art
 
 /obj/item/badmin_stone/syndie/Initialize()

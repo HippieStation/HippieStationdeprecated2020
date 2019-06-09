@@ -1,4 +1,5 @@
 /datum/outfit/avenger
+	name = "Avenger"
 	uniform = /obj/item/clothing/under/syndicate/tacticool
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/combat
@@ -6,6 +7,7 @@
 	back = /obj/item/storage/backpack/ert
 	glasses = /obj/item/clothing/glasses/hud/security/sunglasses
 	id = /obj/item/card/id/ert
+	r_pocket = /obj/item/reagent_containers/hypospray/combat
 
 /datum/outfit/avenger/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
@@ -20,34 +22,37 @@
 	W.registered_name = H.real_name
 	W.update_label()
 	H.apply_status_effect(/datum/status_effect/agent_pinpointer/avenger)
-	H.apply_status_effect(/datum/status_effect/avenger)
 	H.flags_1 |= TESLA_IGNORE_1 // just so they don't get lightning blasted by Thor
 
 /datum/outfit/avenger/hulk
 	name = "Hulk"
 	uniform = /obj/item/clothing/under/shorts/purple
 
-/datum/outfit/avenger/post_equip(mob/living/carbon/human/H, visualsOnly)
+/datum/outfit/avenger/hulk/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	if(visualsOnly)
 		return
 	if(H.dna)
 		H.dna.add_mutation(/datum/mutation/human/hulk/avenger)
+	var/datum/martial_art/wrestling/wrestling = new
+	wrestling.teach(H)
 
 /datum/outfit/avenger/nano
 	name = "Nano Guy"
-	suit = /obj/item/clothing/suit/space/hardsuit/nano
+	suit = /obj/item/clothing/suit/space/hardsuit/nano/nanoguy
 
 /datum/outfit/avenger/nano/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	if(visualsOnly)
 		return
-	var/obj/item/organ/cyberimp/arm/gun/laser/laser_arm = new
-	laser_arm.Insert(H)
 	var/obj/item/organ/cyberimp/chest/reviver/reviver = new
 	reviver.Insert(H)
 	var/obj/item/organ/cyberimp/brain/anti_stun/cns = new
 	cns.Insert(H)
+	var/obj/item/organ/cyberimp/arm/nanoguy/nano_r = new
+	nano_r.Insert(H)
+	var/obj/item/organ/cyberimp/arm/nanoguy/l/nano_l = new
+	nano_l.Insert(H)
 
 /datum/outfit/avenger/captain
 	name = "Captain Nanotrasen"

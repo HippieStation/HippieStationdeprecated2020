@@ -346,24 +346,6 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		playsound(T, 'sound/effects/bang.ogg', 50, 1)
 		user.visible_message("<span class='danger'>[user] smashes [T]!<span>")
 		T.take_damage(INFINITY)
-	else if(iscarbon(target) && (user.zone_selected == BODY_ZONE_L_LEG || user.zone_selected == BODY_ZONE_R_LEG))
-		var/mob/living/carbon/C = target
-		. = TRUE
-		if(!(C.mobility_flags & MOBILITY_MOVE) || C.InCritical() || C.incapacitated(TRUE, TRUE))
-			var/list/legs = list()
-			for(var/obj/item/bodypart/BP in C.bodyparts)
-				if (BP.body_part & LEGS)
-					legs += BP
-			if(LAZYLEN(legs))
-				var/obj/item/bodypart/BP = pick(legs)
-				if(GetStone(SYNDIE_STONE))
-					user.visible_message("<span class='danger bold'>[user] rips off [C]'s [BP]!</span>")
-					BP.dismember()
-					user.put_in_hands(BP)
-				else
-					user.visible_message("<span class='danger bold'>[user] breaks [C]'s [BP]!</span>")
-					C.emote("scream")
-					BP.receive_damage(stamina = 100)
 
 /obj/item/badmin_gauntlet/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	if(!locked_on)
@@ -438,9 +420,9 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 					priority_announce("A Wizard has declared that he will wipe out half the universe with the Badmin Gauntlet!\n\
 						Stones have been scattered across the station. Protect anyone who holds one!\n\
 						We've allocated a large amount of resources to you, for protecting the Stones:\n\
-							Cargo has been given $50k to spend\n\
-							Science has been given 50k techpoints, and a large amount of minerals.\n\
-							In addition, we've moved your Artifical Intelligence unit to your Bridge, and reinforced your telecommunications machinery.", title = "Declaration of War", sound = 'hippiestation/sound/misc/wizard_wardec.ogg')
+						Cargo has been given $50k to spend\n\
+						Science has been given 50k techpoints, and a large amount of minerals.\n\
+						In addition, we've moved your Artifical Intelligence unit to your Bridge, and reinforced your telecommunications machinery.", title = "Declaration of War", sound = 'hippiestation/sound/misc/wizard_wardec.ogg')
 					// give cargo/sci money
 					var/datum/bank_account/cargo_moneys = SSeconomy.get_dep_account(ACCOUNT_CAR)
 					var/datum/bank_account/sci_moneys = SSeconomy.get_dep_account(ACCOUNT_SCI)
