@@ -37090,8 +37090,9 @@
 	icon_state = "pipe11-1";
 	dir = 8
 	},
+/obj/machinery/door/firedoor/heavy,
 /turf/open/floor/plasteel/white,
-/area/maintenance/department/science)
+/area/science/mixing)
 "bQs" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -39382,6 +39383,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	icon_state = "pipe11-1";
 	dir = 1
+	},
+/obj/structure/sign/poster/random{
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
@@ -51259,6 +51263,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/firealarm{
+	pixel_y = 22
+	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
 "cCT" = (
@@ -55990,6 +55997,7 @@
 /area/engine/engineering)
 "dJE" = (
 /obj/machinery/door/airlock/research/glass,
+/obj/machinery/door/firedoor/heavy,
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
 "dKp" = (
@@ -56159,7 +56167,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/maintenance/department/science)
+/area/science/mixing)
 "dXf" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plating,
@@ -56454,6 +56462,17 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plating,
 /area/maintenance/starboard/aft)
+"esk" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
+	},
+/obj/machinery/airalarm/unlocked{
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -22
+	},
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "esQ" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -58856,6 +58875,9 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer{
 	dir = 1
 	},
+/obj/structure/sign/poster/random{
+	pixel_y = -32
+	},
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
 "hPR" = (
@@ -61238,6 +61260,10 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 24
+	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
 "lpx" = (
@@ -61489,6 +61515,13 @@
 	name = "floor"
 	},
 /area/engine/gravity_generator)
+"lHu" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/open/floor/plasteel/white,
+/area/science/mixing)
 "lIo" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -63915,6 +63948,9 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
+/obj/machinery/firealarm{
+	pixel_y = 22
+	},
 /turf/open/floor/plasteel/dark,
 /area/science/mixing)
 "pfC" = (
@@ -64128,6 +64164,9 @@
 	},
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/structure/sign/poster/official/dont_panic{
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/white,
 /area/science/mixing)
@@ -118360,7 +118399,7 @@ bYP
 haV
 dLD
 bVd
-bVd
+esk
 cmf
 cfE
 cgL
@@ -118864,7 +118903,7 @@ wsJ
 bNp
 bLX
 cah
-cah
+lHu
 bSO
 bUd
 bVc
