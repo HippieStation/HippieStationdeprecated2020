@@ -218,7 +218,7 @@
 			continue
 		var/list/effects = list(1, 2, 3, 4, 6)
 		var/list/ni_effects = list(5)
-		if(!(locate(/obj/item/badmin_stone) in L.GetAllContents()) && !(L.mind && L.mind.has_antag_datum(/datum/antagonist/ert/revengers)))
+		if(!(locate(/obj/item/badmin_stone) in L.GetAllContents()) && !(L.mind && L.mind.has_antag_datum(/datum/antagonist/ert/revenger)))
 			effects += ni_effects
 		var/effect = pick(effects)
 		switch(effect)
