@@ -8,32 +8,33 @@
 		damageoverlaytemp = 0
 		update_damage_hud()
 
-<<<<<<< HEAD
-	if(stat != DEAD) //Reagent processing needs to come before breathing, to prevent edge cases.
-		handle_organs()
-=======
 	if(!IS_IN_STASIS(src))
->>>>>>> cdad5e9... Removes some unnecessary wrapper procs (#44061)
 
-	. = ..()
+		if(stat != DEAD) //Reagent processing needs to come before breathing, to prevent edge cases.
+			handle_organs()
 
-	if (QDELETED(src))
-		return
+		. = ..()
 
-	if(.) //not dead
-		handle_blood()
+		if (QDELETED(src))
+			return
 
-	if(stat != DEAD)
-		var/bprv = handle_bodyparts()
-		if(bprv & BODYPART_LIFE_UPDATE_HEALTH)
-			updatehealth()
-			update_stamina()
+		if(.) //not dead
+			handle_blood()
 
-	if(stat != DEAD)
-		handle_brain_damage()
+		if(stat != DEAD)
+			var/bprv = handle_bodyparts()
+			if(bprv & BODYPART_LIFE_UPDATE_HEALTH)
+				updatehealth()
+				update_stamina()
 
-	if(stat != DEAD)
-		handle_liver()
+		if(stat != DEAD)
+			handle_brain_damage()
+
+		if(stat != DEAD)
+			handle_liver()
+
+	else
+		. = ..()
 
 	if(stat == DEAD)
 		stop_sound_channel(CHANNEL_HEARTBEAT)

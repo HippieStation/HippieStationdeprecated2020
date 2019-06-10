@@ -34,7 +34,6 @@
 		return
 	if(!loc)
 		return
-	var/datum/gas_mixture/environment = loc.return_air()
 
 	if(!IS_IN_STASIS(src))
 
@@ -42,37 +41,37 @@
 			//Mutations and radiation
 			handle_mutations_and_radiation()
 
-	if(stat != DEAD)
-		//Breathing, if applicable
-		handle_breathing(times_fired)
+		if(stat != DEAD)
+			//Breathing, if applicable
+			handle_breathing(times_fired)
 
-	handle_diseases()// DEAD check is in the proc itself; we want it to spread even if the mob is dead, but to handle its disease-y properties only if you're not.
+		handle_diseases()// DEAD check is in the proc itself; we want it to spread even if the mob is dead, but to handle its disease-y properties only if you're not.
 
-	if (QDELETED(src)) // diseases can qdel the mob via transformations
-		return
+		if (QDELETED(src)) // diseases can qdel the mob via transformations
+			return
 
-	if(stat != DEAD)
-		//Random events (vomiting etc)
-		handle_random_events()
+		if(stat != DEAD)
+			//Random events (vomiting etc)
+			handle_random_events()
 
-	//Handle temperature/pressure differences between body and environment
-	if(environment)
-		handle_environment(environment)
+		//Handle temperature/pressure differences between body and environment
+		var/datum/gas_mixture/environment = loc.return_air()
+		if(environment)
+			handle_environment(environment)
+
+		//stuff in the stomach
+		handle_stomach()
+
+		handle_gravity()
+
+		if(stat != DEAD)
+			handle_traits() // eye, ear, brain damages
+			handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
 
 	handle_fire()
 
-	//stuff in the stomach
-	handle_stomach()
-
-	handle_gravity()
-
 	if(machine)
 		machine.check_eye(src)
-
-	if(stat != DEAD)
-		handle_traits() // eye, ear, brain damages
-	if(stat != DEAD)
-		handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
 
 	if(stat != DEAD)
 		return 1
