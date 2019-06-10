@@ -69,6 +69,7 @@
 
 /datum/outfit/revenger/thor
 	name = "Thor"
+	suit = /obj/item/clothing/suit/armor/thor
 
 /datum/outfit/revenger/thor/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
