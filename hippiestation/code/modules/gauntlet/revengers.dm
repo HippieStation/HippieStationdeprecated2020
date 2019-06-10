@@ -16,7 +16,7 @@
 ///////////////////////
 
 /datum/outfit/nanosuit/nanoguy
-	name = "Nano Guy"
+	name = "Nano Guy (Nanosuit)"
 	implants = list(/obj/item/implant/explosive/disintegrate, /obj/item/implant/adrenalin)
 	internals_slot = SLOT_S_STORE
 
