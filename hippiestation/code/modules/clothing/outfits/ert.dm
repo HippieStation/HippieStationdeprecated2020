@@ -22,6 +22,7 @@
 	W.update_label()
 	H.apply_status_effect(/datum/status_effect/agent_pinpointer/revenger)
 	H.flags_1 |= TESLA_IGNORE_1 // just so they don't get lightning blasted by Thor
+	H.gender = MALE
 
 /datum/outfit/revenger/hulk
 	name = "Hulk"
@@ -78,6 +79,9 @@
 		var/obj/item/reagent_containers/food/drinks/beer/beer = new(get_turf(H))
 		H.put_in_hands(beer)
 		H.nutrition = NUTRITION_LEVEL_FAT // lmao
+		H.facial_hair_style = "Broken Man"
+	else
+		H.facial_hair_style = "Long"
 	var/obj/item/twohanded/mjollnir/MJ = new(get_turf(H))
 	H.put_in_hands(MJ)
 
