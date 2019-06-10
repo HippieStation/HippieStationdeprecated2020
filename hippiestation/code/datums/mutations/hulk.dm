@@ -1,5 +1,5 @@
-/datum/mutation/human/hulk/avenger
+/datum/mutation/human/hulk/revenger
 	mutadone_proof = TRUE
 
-/datum/mutation/human/hulk/avenger/on_life()
+/datum/mutation/human/hulk/revenger/on_life()
 	return

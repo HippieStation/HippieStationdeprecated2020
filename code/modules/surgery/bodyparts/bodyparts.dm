@@ -326,7 +326,7 @@
 		else
 			species_color = ""
 
-		if(!dropping_limb && (H.dna.check_mutation(HULK) || H.dna.check_mutation(/datum/mutation/human/hulk/avenger))) // hippie -- allow avengers ert hulk to be green too
+		if(!dropping_limb && (H.dna.check_mutation(HULK) || H.dna.check_mutation(/datum/mutation/human/hulk/revenger))) // hippie -- allow revengers ert hulk to be green too
 			mutation_color = "00aa00"
 		else
 			mutation_color = ""

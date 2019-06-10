@@ -1,5 +1,5 @@
-/datum/outfit/avenger
-	name = "Avenger"
+/datum/outfit/revenger
+	name = "Revenger"
 	uniform = /obj/item/clothing/under/syndicate/tacticool
 	shoes = /obj/item/clothing/shoes/combat/swat
 	gloves = /obj/item/clothing/gloves/combat
@@ -9,7 +9,7 @@
 	id = /obj/item/card/id/ert
 	r_pocket = /obj/item/reagent_containers/hypospray/combat
 
-/datum/outfit/avenger/post_equip(mob/living/carbon/human/H, visualsOnly)
+/datum/outfit/revenger/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	if(visualsOnly)
 		return
@@ -17,31 +17,31 @@
 		H.fully_replace_character_name(null, name)
 	var/obj/item/card/id/W = H.wear_id
 	W.icon_state = "centcom"
-	W.access = get_ert_access("commander")
-	W.assignment = "Avenger"
+	W.assignment = "Revenger"
 	W.registered_name = H.real_name
 	W.update_label()
-	H.apply_status_effect(/datum/status_effect/agent_pinpointer/avenger)
+	H.apply_status_effect(/datum/status_effect/agent_pinpointer/revenger)
 	H.flags_1 |= TESLA_IGNORE_1 // just so they don't get lightning blasted by Thor
 
-/datum/outfit/avenger/hulk
+/datum/outfit/revenger/hulk
 	name = "Hulk"
 	uniform = /obj/item/clothing/under/shorts/purple
 
-/datum/outfit/avenger/hulk/post_equip(mob/living/carbon/human/H, visualsOnly)
+/datum/outfit/revenger/hulk/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	if(visualsOnly)
 		return
 	if(H.dna)
-		H.dna.add_mutation(/datum/mutation/human/hulk/avenger)
+		H.dna.add_mutation(/datum/mutation/human/hulk/revenger)
+		H.update_body_parts()
 	var/datum/martial_art/wrestling/wrestling = new
 	wrestling.teach(H)
 
-/datum/outfit/avenger/nano
+/datum/outfit/revenger/nano
 	name = "Nano Guy"
 	suit = /obj/item/clothing/suit/space/hardsuit/nano/nanoguy
 
-/datum/outfit/avenger/nano/post_equip(mob/living/carbon/human/H, visualsOnly)
+/datum/outfit/revenger/nano/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	if(visualsOnly)
 		return
@@ -54,11 +54,11 @@
 	var/obj/item/organ/cyberimp/arm/nanoguy/l/nano_l = new
 	nano_l.Insert(H)
 
-/datum/outfit/avenger/captain
+/datum/outfit/revenger/captain
 	name = "Captain Nanotrasen"
 	l_pocket = /obj/item/shield/energy/bananium
 
-/datum/outfit/avenger/captain/post_equip(mob/living/carbon/human/H, visualsOnly)
+/datum/outfit/revenger/captain/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	if(visualsOnly)
 		return
@@ -66,10 +66,10 @@
 	var/datum/martial_art/cqc/cqc = new
 	cqc.teach(H)
 
-/datum/outfit/avenger/thor
+/datum/outfit/revenger/thor
 	name = "Thor"
 
-/datum/outfit/avenger/thor/post_equip(mob/living/carbon/human/H, visualsOnly)
+/datum/outfit/revenger/thor/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()
 	if(visualsOnly)
 		return
