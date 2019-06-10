@@ -75,7 +75,7 @@
 		var/mob/living/carbon/H = user
 		if(H.wear_mask == src)
 			set_obj_flags = "EMAGGED"
-			add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
+			ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 			to_chat(user, "<span class='warning'>You overload \the [src]'s Big Guy synthesizer.")
 			aggressiveness = 5
 		else

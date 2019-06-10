@@ -25,6 +25,7 @@
 	var/list/datum/mind/antag_candidates = list()	// List of possible starting antags goes here
 	var/list/restricted_jobs = list()	// Jobs it doesn't make sense to be.  I.E chaplain or AI cultist
 	var/list/protected_jobs = list()	// Jobs that can't be traitors because
+	var/list/required_jobs = list()		// alternative required job groups eg list(list(cap=1),list(hos=1,sec=2)) translates to one captain OR one hos and two secmans
 	var/required_players = 0
 	var/maximum_players = -1 // -1 is no maximum, positive numbers limit the selection of a mode on overstaffed stations
 	var/required_enemies = 0
@@ -139,7 +140,7 @@
 		else
 			qdel(G)
 
-	if(!usable_modes)
+	if(!usable_modes.len)
 		message_admins("Convert_roundtype failed due to no valid modes to convert to. Please report this error to the Coders.")
 		return null
 
@@ -161,7 +162,7 @@
 
 	for(var/mob/living/carbon/human/H in living_crew)
 		if(H.client && H.client.prefs.allow_midround_antag && !is_centcom_level(H.z))
-			if(!is_banned_from(H.ckey, CATBAN) && !is_banned_from(H.ckey, CLUWNEBAN) && !H.has_trait(TRAIT_MINDSHIELD)) // hippie -- adds our jobban checks, cockblocks mindshielded people
+			if(!is_banned_from(H.ckey, CATBAN) && !is_banned_from(H.ckey, CLUWNEBAN) && !HAS_TRAIT(H, TRAIT_MINDSHIELD)) // hippie -- adds our jobban checks, cockblocks mindshielded people
 				antag_candidates += H
 
 	if(!antag_candidates)
@@ -387,24 +388,6 @@
 				if(!(role in player.client.prefs.be_special)) // We don't have enough people who want to be antagonist, make a separate list of people who don't want to be one
 					if(!is_banned_from(player.ckey, list(role, ROLE_SYNDICATE)) && !QDELETED(player))
 						drafted += player.mind
-
-	if(restricted_jobs)
-		for(var/datum/mind/player in drafted)				// Remove people who can't be an antagonist
-			for(var/job in restricted_jobs)
-				if(player.assigned_role == job)
-					drafted -= player
-
-	drafted = shuffle(drafted) // Will hopefully increase randomness, Donkie
-
-	while(candidates.len < recommended_enemies)				// Pick randomlly just the number of people we need and add them to our list of candidates
-		if(drafted.len > 0)
-			applicant = pick(drafted)
-			if(applicant)
-				candidates += applicant
-				drafted.Remove(applicant)
-
-		else												// Not enough scrubs, ABORT ABORT ABORT
-			break
 
 	if(restricted_jobs)
 		for(var/datum/mind/player in drafted)				// Remove people who can't be an antagonist

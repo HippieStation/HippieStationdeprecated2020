@@ -1,3 +1,4 @@
+#define CHEMICAL_QUANTISATION_LEVEL 0.01 //stops floating point errors causing issues with checking reagent amounts
 
 /proc/build_chemical_reagent_list()
 	//Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id
@@ -659,7 +660,7 @@ hippie end */
 			if(!amount)
 				return R
 			else
-				if(R.volume >= amount)
+				if(round(R.volume, CHEMICAL_QUANTISATION_LEVEL) >= amount)
 					return R
 				else
 					return 0
@@ -671,7 +672,7 @@ hippie end */
 	for(var/_reagent in cached_reagents)
 		var/datum/reagent/R = _reagent
 		if (R.id == reagent)
-			return R.volume
+			return round(R.volume, CHEMICAL_QUANTISATION_LEVEL)
 
 	return 0
 

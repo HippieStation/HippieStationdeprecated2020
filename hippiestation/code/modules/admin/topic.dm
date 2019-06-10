@@ -46,6 +46,10 @@
 		removeMentor(href_list["removementor"])
 	else if(href_list["mentormemoeditlist"])
 		checkMentorEditList(href_list["mentormemoeditlist"])
+	else if(href_list["makedonator"])
+		makeDonator(href_list["makedonator"])
+	else if(href_list["removedonator"])
+		removeDonator(href_list["removedonator"])
 
 /datum/admins/proc/checkMentorEditList(ckey)
 	var/sql_key = sanitizeSQL("[ckey]")
@@ -130,3 +134,81 @@
 	if(joblist.len && (CATBAN in joblist) && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.set_species(/datum/species/tarajan, icon_update=1) // can't escape hell
+
+/datum/admins/proc/makeDonator(ckey)
+	var/makedonator = FALSE
+	if(!ckey)
+		return
+	var/client/C = GLOB.directory[ckey]
+	ckey = lowertext("[ckey]")
+	if("[ckey]" in GLOB.donators)
+		to_chat(usr, "<span class='danger'>[ckey] is already a donator!")
+		log_admin("[key_name(usr)] tried to make [ckey] into a donator but they were already a donator.")
+		return
+	if(SSdbcore.Connect())
+		ckey = sanitizeSQL(ckey)
+		var/datum/DBQuery/query_add_donator = SSdbcore.NewQuery("INSERT INTO [format_table_name("donators")] (`ckey`) VALUES ('[ckey]')")
+		if(!query_add_donator.warn_execute())
+			qdel(query_add_donator)
+			return
+		GLOB.donators += "[ckey]"
+		makedonator = TRUE
+		message_admins("[ckey] has been made into a donator by [key_name_admin(usr)].")
+		log_admin("[key_name(usr)] made [ckey] into a donator.")
+		qdel(query_add_donator)
+	else
+		GLOB.donators += "[ckey]"
+		makedonator = TRUE
+		if(isfile(file("config/donators.txt")))
+			text2file("[ckey]", "config/donators.txt")
+			message_admins("[ckey] has been made into a donator in donators.txt by [key_name_admin(usr)].")
+			log_admin("[key_name(usr)] made [ckey] into a donator in donators.txt")
+		else
+			message_admins("[ckey] has been made into a temporary donator by [key_name_admin(usr)], as the database is not connected.")
+			log_admin("[key_name(usr)] made [ckey] into a temporary donator, as the database was not connected.")
+	if(C && makedonator)
+		C.is_donator = TRUE
+		to_chat(C, "<span class='notice'>You have been made a donator!")
+
+/datum/admins/proc/removeDonator(ckey)
+	var/removedonator = FALSE
+	if(!ckey)
+		return
+	var/client/C = GLOB.directory[ckey]
+	ckey = lowertext("[ckey]")
+	if(!("[ckey]" in GLOB.donators))
+		to_chat(usr, "<span class='danger'>[ckey] is not a donator!</span>")
+		log_admin("[key_name(usr)] tried to remove [ckey] as a donator but they were not a donator.")
+		return
+	if(SSdbcore.Connect())
+		ckey = sanitizeSQL(ckey)
+		var/datum/DBQuery/query_remove_donator = SSdbcore.NewQuery("DELETE FROM [format_table_name("donators")] WHERE ckey = '[ckey]'")
+		if(!query_remove_donator.warn_execute())
+			qdel(query_remove_donator)
+			return
+		GLOB.donators -= "[ckey]"
+		removedonator = TRUE
+		message_admins("[ckey] has been removed as a donator by [key_name_admin(usr)].")
+		log_admin("[key_name(usr)] removed [ckey] as a donator.")
+		qdel(query_remove_donator)
+	else
+		GLOB.donators -= "[ckey]"
+		removedonator = TRUE
+		if(isfile(file("config/donators.txt")))
+			var/list/textlines = world.file2list("config/donators.txt")
+			for(var/word in textlines)
+				if(!length(word))
+					continue
+				if(ckey == word)
+					textlines -= word
+			fdel("config/donators.txt")	//god bless this exists
+			text2file(jointext(textlines, "\n"), "config/donators.txt")
+			message_admins("[ckey] has been removed as a donator in donators.txt by [key_name_admin(usr)].")
+			log_admin("[key_name(usr)] removed [ckey] as a donator in donators.txt.")
+			qdel(textlines)
+		else
+			message_admins("[ckey] has been temporarily removed as a donator by [key_name_admin(usr)], as the database is not connected.")
+			log_admin("[key_name(usr)] temporarily removed [ckey] as a donator, as the database was not connected.")
+	if(C && removedonator)
+		C.is_donator = FALSE
+		to_chat(C, "<span class='danger'>You have been removed as a donator!")

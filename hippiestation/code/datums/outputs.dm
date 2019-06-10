@@ -1,4 +1,5 @@
 /datum/outputs/clownsuit
+	text = "You hear a cartoonish squeak."
 	sounds = list('hippiestation/sound/misc/hitsounds/cartoon_badoing.ogg'=1,
 							   'hippiestation/sound/misc/hitsounds/cartoon_bird_whistle_down.ogg'=1,
 							   'hippiestation/sound/misc/hitsounds/cartoon_boing.ogg'=1,
@@ -25,6 +26,7 @@
 							   'hippiestation/sound/misc/hitsounds/cartoon_wiggle_metal2.ogg'=1,
 							   'hippiestation/sound/misc/hitsounds/cartoon_wiggle_whistle_up.ogg'=1,
 							   'hippiestation/sound/misc/hitsounds/cartoon_woink.ogg'=1)
-							   
+
 /datum/outputs/rubberducky
-	sounds = list('hippiestation/sound/misc/quack.ogg'=1)
+	sounds = list('hippiestation/sound/misc/quack.ogg')
+	text = "You hear a QUACK."

@@ -1118,9 +1118,7 @@
 /obj/structure/window{
 	dir = 8
 	},
-/obj/machinery/sleeper{
-	dir = 1
-	},
+/obj/machinery/stasis,
 /turf/open/floor/holofloor{
 	icon_state = "white"
 	},
@@ -1132,9 +1130,7 @@
 	},
 /area/holodeck/rec_center/medical)
 "dd" = (
-/obj/machinery/sleeper{
-	dir = 1
-	},
+/obj/machinery/stasis,
 /turf/open/floor/holofloor{
 	icon_state = "white"
 	},
@@ -1264,9 +1260,9 @@
 /area/holodeck/rec_center/chapelcourt)
 "dw" = (
 /obj/structure/table/wood/fancy,
-/obj/item/clothing/suit/nun,
+/obj/item/clothing/suit/chaplainsuit/nun,
 /obj/item/clothing/head/nun_hood,
-/obj/item/clothing/suit/holidaypriest,
+/obj/item/clothing/suit/chaplainsuit/holidaypriest,
 /turf/open/floor/holofloor{
 	dir = 8;
 	icon_state = "dark"
@@ -8243,11 +8239,13 @@
 	pixel_y = 3
 	},
 /obj/item/stamp,
+/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/grimy,
 /area/centcom/ferry)
 "rZ" = (
 /obj/structure/table/reinforced,
 /obj/item/book/manual/wiki/security_space_law,
+/obj/item/taperecorder,
 /turf/open/floor/plasteel/grimy,
 /area/centcom/ferry)
 "sa" = (
@@ -8323,7 +8321,6 @@
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
 "si" = (
-/obj/machinery/computer/telecrystals/uplinker,
 /obj/effect/turf_decal/stripes/line{
 	dir = 9
 	},
@@ -8796,6 +8793,9 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/centcom/ferry)
+"tb" = (
+/turf/open/floor/white,
+/area/holodeck/rec_center/photobooth)
 "tc" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/light/floor,
@@ -8831,7 +8831,6 @@
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
 "tg" = (
-/obj/machinery/computer/telecrystals/uplinker,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -8848,6 +8847,25 @@
 	},
 /turf/open/floor/plating/airless,
 /area/syndicate_mothership/control)
+"tj" = (
+/obj/structure/falsewall/wood,
+/obj/structure/mirror,
+/turf/open/floor/holofloor/carpet,
+/area/holodeck/rec_center/photobooth)
+"tk" = (
+/obj/structure/table/wood,
+/obj/item/paint/anycolor{
+	pixel_x = 7
+	},
+/obj/item/paint/anycolor{
+	pixel_x = -5
+	},
+/turf/open/floor/holofloor/carpet,
+/area/holodeck/rec_center/photobooth)
+"tl" = (
+/obj/structure/dresser,
+/turf/open/floor/holofloor/carpet,
+/area/holodeck/rec_center/photobooth)
 "tn" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -9507,7 +9525,6 @@
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
 "uM" = (
-/obj/machinery/computer/telecrystals/uplinker,
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
@@ -9936,7 +9953,7 @@
 	name = "Hanger Bay Shutters";
 	pixel_x = -8;
 	pixel_y = 24;
-	req_access_txt = "2"
+	req_access_txt = "101"
 	},
 /obj/machinery/button/door/indestructible{
 	id = "XCCsec3";
@@ -10298,7 +10315,7 @@
 	id = "XCCFerry";
 	name = "Hanger Bay Shutters";
 	pixel_y = 24;
-	req_access_txt = "2"
+	req_access_txt = "101"
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -10482,9 +10499,6 @@
 /turf/open/floor/carpet,
 /area/wizard_station)
 "wV" = (
-/obj/machinery/computer/telecrystals/boss{
-	dir = 1
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
@@ -11631,9 +11645,7 @@
 /turf/open/floor/holofloor,
 /area/holodeck/rec_center/basketball)
 "zV" = (
-/obj/structure/closet/secure_closet/freezer/meat{
-	locked = 0
-	},
+/obj/structure/closet/secure_closet/freezer/meat/open,
 /obj/item/reagent_containers/food/snacks/carpmeat,
 /obj/item/reagent_containers/food/snacks/carpmeat,
 /obj/item/reagent_containers/food/snacks/carpmeat,
@@ -14564,7 +14576,7 @@
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
 "GF" = (
-/obj/structure/closet/secure_closet/freezer/meat,
+/obj/structure/closet/secure_closet/freezer/meat/open,
 /obj/item/reagent_containers/food/snacks/meat/rawbacon,
 /obj/item/reagent_containers/food/snacks/meat/rawbacon,
 /obj/item/reagent_containers/food/snacks/meat/rawbacon,
@@ -14599,7 +14611,7 @@
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeobserve)
 "GG" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/structure/closet/secure_closet/freezer/fridge/open,
 /obj/item/reagent_containers/food/snacks/grown/potato,
 /obj/item/reagent_containers/food/snacks/grown/potato,
 /obj/item/reagent_containers/food/snacks/grown/whitebeet,
@@ -14667,7 +14679,7 @@
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeobserve)
 "GJ" = (
-/obj/structure/closet/secure_closet/freezer/meat,
+/obj/structure/closet/secure_closet/freezer/meat/open,
 /obj/item/reagent_containers/food/snacks/meat/slab/bear,
 /obj/item/reagent_containers/food/snacks/meat/slab/bear,
 /obj/item/reagent_containers/food/snacks/meat/slab/bear,
@@ -17490,6 +17502,13 @@
 /obj/structure/closet/crate/bin,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"Pj" = (
+/obj/structure/chair/comfy/brown{
+	color = "#596479";
+	dir = 4
+	},
+/turf/open/floor/plasteel/grimy,
+/area/centcom/ferry)
 "Pl" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -17828,6 +17847,12 @@
 "Si" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
+"Sq" = (
+/obj/structure/table/wood,
+/obj/item/camera,
+/obj/item/camera,
+/turf/open/floor/holofloor/carpet,
+/area/holodeck/rec_center/photobooth)
 "Su" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
@@ -18454,9 +18479,7 @@
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
 "Yu" = (
-/obj/structure/closet/secure_closet/freezer/fridge{
-	locked = 0
-	},
+/obj/structure/closet/secure_closet/freezer/fridge/open,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
 "Yv" = (
@@ -18572,6 +18595,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/evac)
+"ZN" = (
+/obj/structure/table/wood,
+/obj/item/toy/crayon/spraycan{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/toy/crayon/spraycan{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/turf/open/floor/holofloor/carpet,
+/area/holodeck/rec_center/photobooth)
 "ZQ" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -23477,21 +23512,21 @@ aa
 aa
 aa
 aa
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
 aa
 "}
 (20,1,1) = {"
@@ -23734,6 +23769,7 @@ aa
 aa
 aa
 aa
+jA
 hH
 hH
 hH
@@ -23747,8 +23783,7 @@ hH
 hH
 hH
 hH
-hH
-hH
+jA
 aa
 "}
 (21,1,1) = {"
@@ -23991,6 +24026,7 @@ aa
 aa
 aa
 aa
+jA
 hH
 hH
 hH
@@ -24004,8 +24040,7 @@ hH
 hH
 hH
 hH
-hH
-hH
+jA
 aa
 "}
 (22,1,1) = {"
@@ -24248,6 +24283,7 @@ aa
 aa
 aa
 aa
+jA
 hH
 hH
 hH
@@ -24261,8 +24297,7 @@ hH
 hH
 hH
 hH
-hH
-hH
+jA
 aa
 "}
 (23,1,1) = {"
@@ -24505,6 +24540,7 @@ aa
 aa
 aa
 aa
+jA
 hH
 hH
 hH
@@ -24518,8 +24554,7 @@ hH
 hH
 hH
 hH
-hH
-hH
+jA
 aa
 "}
 (24,1,1) = {"
@@ -24762,6 +24797,7 @@ aa
 aa
 aa
 aa
+jA
 hH
 hH
 hH
@@ -24775,8 +24811,7 @@ hH
 hH
 hH
 hH
-hH
-hH
+jA
 aa
 "}
 (25,1,1) = {"
@@ -25019,7 +25054,7 @@ aa
 aa
 aa
 aa
-hH
+jA
 hH
 hH
 hH
@@ -25033,7 +25068,7 @@ hH
 hH
 hH
 hH
-hH
+jA
 aa
 "}
 (26,1,1) = {"
@@ -25276,7 +25311,7 @@ aa
 aa
 aa
 aa
-hH
+jA
 hH
 hH
 hH
@@ -25290,7 +25325,7 @@ hH
 hH
 hH
 hH
-hH
+jA
 aa
 "}
 (27,1,1) = {"
@@ -25533,7 +25568,7 @@ aa
 aa
 aa
 aa
-hH
+jA
 hH
 hH
 hH
@@ -25547,7 +25582,7 @@ hH
 hH
 hH
 hH
-hH
+jA
 aa
 "}
 (28,1,1) = {"
@@ -25790,7 +25825,7 @@ aa
 aa
 aa
 aa
-hH
+jA
 hH
 hH
 hH
@@ -25804,7 +25839,7 @@ hH
 hH
 hH
 hH
-hH
+jA
 aa
 "}
 (29,1,1) = {"
@@ -26047,7 +26082,7 @@ aa
 aa
 aa
 aa
-hH
+jA
 hH
 hH
 hH
@@ -26061,7 +26096,7 @@ hH
 hH
 hH
 hH
-hH
+jA
 aa
 "}
 (30,1,1) = {"
@@ -26304,6 +26339,7 @@ aa
 aa
 aa
 aa
+jA
 hH
 hH
 hH
@@ -26317,8 +26353,7 @@ hH
 hH
 hH
 hH
-hH
-hH
+jA
 aa
 "}
 (31,1,1) = {"
@@ -26561,6 +26596,7 @@ aa
 aa
 aa
 aa
+jA
 hH
 hH
 hH
@@ -26574,8 +26610,7 @@ hH
 hH
 hH
 hH
-hH
-hH
+jA
 aa
 "}
 (32,1,1) = {"
@@ -26818,6 +26853,7 @@ lI
 lI
 lI
 aa
+jA
 hH
 hH
 hH
@@ -26831,8 +26867,7 @@ hH
 hH
 hH
 hH
-hH
-hH
+jA
 aa
 "}
 (33,1,1) = {"
@@ -27075,6 +27110,7 @@ lI
 lI
 lI
 aa
+jA
 hH
 hH
 hH
@@ -27088,8 +27124,7 @@ hH
 hH
 hH
 hH
-hH
-hH
+jA
 aa
 "}
 (34,1,1) = {"
@@ -27332,6 +27367,7 @@ lI
 lI
 lI
 aa
+jA
 hH
 hH
 hH
@@ -27345,8 +27381,7 @@ hH
 hH
 hH
 hH
-hH
-hH
+jA
 aa
 "}
 (35,1,1) = {"
@@ -27589,21 +27624,21 @@ lI
 lI
 lI
 aa
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
-hH
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
+jA
 aa
 "}
 (36,1,1) = {"
@@ -55542,7 +55577,7 @@ qR
 za
 pg
 Ab
-pg
+Pj
 Bv
 pg
 Cs
@@ -71554,18 +71589,18 @@ aa
 aa
 "}
 (207,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ab
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ab
 aa
 aa
 aa
@@ -71811,18 +71846,18 @@ aa
 aa
 "}
 (208,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+tj
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+fx
 aa
 aa
 aa
@@ -72068,18 +72103,18 @@ aa
 aa
 "}
 (209,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+tk
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+fx
 aa
 aa
 aa
@@ -72325,18 +72360,18 @@ aa
 aa
 "}
 (210,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+Sq
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+fx
 aa
 aa
 aa
@@ -72582,18 +72617,18 @@ aa
 aa
 "}
 (211,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+ZN
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+fx
 aa
 aa
 aa
@@ -72839,18 +72874,18 @@ aa
 aa
 "}
 (212,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ac
+tl
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+tb
+fx
 aa
 aa
 aa
@@ -73097,16 +73132,16 @@ aa
 "}
 (213,1,1) = {"
 ab
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
-ae
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 ab
 ae
 ae

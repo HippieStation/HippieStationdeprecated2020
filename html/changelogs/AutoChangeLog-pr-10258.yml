@@ -1,4 +1,0 @@
-author: "steamp0rt"
-delete-after: True
-changes: 
-  - tweak: "You can now interact with circuits in assemblies without removing them, from the assembly menu"

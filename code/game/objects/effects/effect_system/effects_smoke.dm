@@ -238,9 +238,9 @@ hippie end */
 				continue
 			if(T.intact && AM.level == 1) //hidden under the floor
 				continue
-			reagents.reaction(AM, TOUCH, fraction)
+			reagents?.reaction(AM, TOUCH, fraction, special_modifier = amount*0.1)//hippie edit -- apparently this sanity check is needed for runtime prevention
 
-		reagents.reaction(T, TOUCH, fraction)
+		reagents?.reaction(T, TOUCH, fraction)//hippie edit -- apparently this sanity check is needed for runtime prevention
 		return 1
 
 /obj/effect/particle_effect/smoke/chem/smoke_mob(mob/living/carbon/M)

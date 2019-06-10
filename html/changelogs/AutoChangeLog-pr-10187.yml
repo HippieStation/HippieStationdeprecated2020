@@ -1,9 +1,0 @@
-author: "karma"
-delete-after: True
-changes: 
-  - balance: "deathsquad now has a x2 bomb cap bomb implant"
-  - balance: "deathsquad now has martial arts"
-  - balance: "deathsquad's shield now reflects more (e.g. ballistics, melee, etc)"
-  - balance: "deathsquad now have no drops and cns rebooter"
-  - balance: "deathsquad's hardsuit has no slowdown and 90% resist on everything"
-  - balance: "deathsquad's shield only works if you are a deathsquaddie"

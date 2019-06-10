@@ -1,6 +1,7 @@
 /datum/job/captain
 	title = "Captain"
 	flag = CAPTAIN
+	auto_deadmin_role_flags = DEADMIN_POSITION_HEAD|DEADMIN_POSITION_SECURITY
 	department_head = list("CentCom")
 	department_flag = ENGSEC
 	faction = "Station"
@@ -12,6 +13,7 @@
 	minimal_player_age = 14
 	exp_requirements = 180
 	exp_type = EXP_TYPE_CREW
+	exp_type_department = EXP_TYPE_COMMAND
 
 	outfit = /datum/outfit/job/captain
 
@@ -28,7 +30,7 @@
 	return get_all_accesses()
 
 /datum/job/captain/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
-	H.mind.add_trait(TRAIT_DISK_VERIFIER, JOB_TRAIT)
+	ADD_TRAIT(H.mind, TRAIT_DISK_VERIFIER, JOB_TRAIT)
 
 /datum/job/captain/announce(mob/living/carbon/human/H)
 	..()

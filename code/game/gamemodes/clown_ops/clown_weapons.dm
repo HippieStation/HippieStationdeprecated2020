@@ -138,7 +138,7 @@
 	GET_COMPONENT(slipper, /datum/component/slippery)
 	slipper.signal_enabled = active
 
-/obj/item/shield/energy/bananium/throw_at(atom/target, range, speed, mob/thrower, spin=1)
+/obj/item/shield/energy/bananium/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force)
 	if(active)
 		if(iscarbon(thrower))
 			var/mob/living/carbon/C = thrower
@@ -217,11 +217,11 @@
 
 /obj/item/clothing/mask/fakemoustache/sticky/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, STICKY_MOUSTACHE_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, STICKY_MOUSTACHE_TRAIT)
 	addtimer(CALLBACK(src, .proc/unstick), unstick_time)
 
 /obj/item/clothing/mask/fakemoustache/sticky/proc/unstick()
-	remove_trait(TRAIT_NODROP, STICKY_MOUSTACHE_TRAIT)
+	REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_MOUSTACHE_TRAIT)
 
 //DARK H.O.N.K. AND CLOWN MECH WEAPONS
 

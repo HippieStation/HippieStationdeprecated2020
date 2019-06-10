@@ -1,4 +1,0 @@
-author: "HonkBot"
-delete-after: True
-changes: 
-  - refactor: "Slot Machines can now accept holocredits (Switch mode back and forth with a multitool. Default is Holocredit.)"

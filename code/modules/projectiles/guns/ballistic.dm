@@ -53,7 +53,7 @@
 	var/cartridge_wording = "bullet"
 	var/rack_delay = 5
 	var/recent_rack = 0
-	var/tac_reloads = FALSE //Snowflake mechanic no more.
+	var/tac_reloads = TRUE //Snowflake mechanic no more.
 
 /obj/item/gun/ballistic/Initialize()
 	. = ..()
@@ -86,7 +86,7 @@
 			chambered = null
 		else if(empty_chamber)
 			chambered = null
-	if (chamber_next_round && (magazine.max_ammo > 1))
+	if (chamber_next_round && (magazine?.max_ammo > 1))
 		chamber_round()
 
 /obj/item/gun/ballistic/proc/chamber_round()
@@ -125,6 +125,9 @@
 	update_icon()
 
 /obj/item/gun/ballistic/proc/insert_magazine(mob/user, obj/item/ammo_box/magazine/AM, display_message = TRUE)
+	if(!istype(AM, mag_type))
+		to_chat(user, "<span class='warning'>\The [AM] doesn't seem to fit into \the [src]...</span>")
+		return FALSE
 	if(user.transferItemToLoc(AM, src))
 		magazine = AM
 		if (display_message)
@@ -149,12 +152,15 @@
 	magazine.forceMove(drop_location())
 	var/obj/item/ammo_box/magazine/old_mag = magazine
 	if (tac_load)
-		insert_magazine(user, tac_load, FALSE)
-		to_chat(user, "<span class='notice'>You perform a tactical reload on \the [src].")
+		if (insert_magazine(user, tac_load, FALSE))
+			to_chat(user, "<span class='notice'>You perform a tactical reload on \the [src].</span>")
+		else
+			to_chat(user, "<span class='warning'>You dropped the old [magazine_wording], but the new one doesn't fit. How embarassing.</span>")
+			magazine = null
+	else
+		magazine = null
 	user.put_in_hands(old_mag)
 	old_mag.update_icon()
-	if (!tac_load)
-		magazine = null
 	if (display_message)
 		to_chat(user, "<span class='notice'>You pull the [magazine_wording] out of \the [src].</span>")
 	update_icon()
@@ -168,10 +174,10 @@
 		return
 	if (!internal_magazine && istype(A, /obj/item/ammo_box/magazine))
 		var/obj/item/ammo_box/magazine/AM = A
-		if (!magazine && istype(AM, mag_type))
+		if (!magazine)
 			insert_magazine(user, AM)
-		else if (magazine)
-			if(tac_reloads || user.has_trait(TRAIT_TACRELOAD)) //hippie edit -- adds tac_reload trait for nanosuit
+		else
+			if (tac_reloads || HAS_TRAIT(user, TRAIT_TACRELOAD)) //hippie edit -- adds tac_reload trait for nanosuit
 				eject_magazine(user, FALSE, AM)
 			else
 				to_chat(user, "<span class='notice'>There's already a [magazine_wording] in \the [src].</span>")

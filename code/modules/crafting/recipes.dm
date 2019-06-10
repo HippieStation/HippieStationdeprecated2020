@@ -10,6 +10,7 @@
 	var/chem_catalysts[] = list() //like tools but for reagents
 	var/category = CAT_NONE //where it shows up in the crafting UI
 	var/subcategory = CAT_NONE
+	var/always_availible = TRUE //Set to FALSE if it needs to be learned first.
 
 /datum/crafting_recipe/pin_removal
 	name = "Pin Removal"
@@ -142,7 +143,7 @@
 				/obj/item/bodypart/r_leg/robot = 1,
 				/obj/item/stack/sheet/metal = 1,
 				/obj/item/stack/cable_coil = 1,
-				/obj/item/gun/energy/e_gun/advtaser = 1,
+				/obj/item/gun/energy/e_gun/advtaser = 1, //hippie edit -- nothing got changed here
 				/obj/item/stock_parts/cell = 1,
 				/obj/item/assembly/prox_sensor = 1)
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER)
@@ -173,8 +174,8 @@
 /datum/crafting_recipe/floorbot
 	name = "Floorbot"
 	result = /mob/living/simple_animal/bot/floorbot
-	reqs = list(/obj/item/storage/toolbox/mechanical = 1,
-				/obj/item/stack/tile/plasteel = 1,
+	reqs = list(/obj/item/storage/toolbox = 1,
+				/obj/item/stack/tile/plasteel = 10,
 				/obj/item/assembly/prox_sensor = 1,
 				/obj/item/bodypart/r_arm/robot = 1)
 	time = 40
@@ -390,6 +391,14 @@
 	time = 65
 	reqs = list(/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/rods = 12)
+	category = CAT_MISC
+
+/datum/crafting_recipe/wheelchair
+	name = "Wheelchair"
+	result = /obj/vehicle/ridden/wheelchair
+	reqs = list(/obj/item/stack/sheet/metal = 4,
+				/obj/item/stack/rods = 6)
+	time = 100
 	category = CAT_MISC
 
 /datum/crafting_recipe/mousetrap
@@ -635,6 +644,14 @@
 	name = "Mummification Bandages (Body)"
 	result = /obj/item/clothing/under/mummy
 	reqs = list(/obj/item/stack/sheet/cloth = 5)
+
+/datum/crafting_recipe/chaplain_hood
+	name = "Follower Hoodie"
+	result = /obj/item/clothing/suit/hooded/chaplain_hoodie
+	time = 10
+	tools = list(/obj/item/clothing/suit/hooded/chaplain_hoodie, /obj/item/storage/book/bible)
+	reqs = list(/obj/item/stack/sheet/cloth = 4)
+	category = CAT_CLOTHING
 
 /datum/crafting_recipe/guillotine
 	name = "Guillotine"

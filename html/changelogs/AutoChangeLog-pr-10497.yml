@@ -1,4 +1,0 @@
-author: "Manly-Dwarf"
-delete-after: True
-changes: 
-  - rscadd: "The Spellbook now actually tells you if a spell requires a staff or not."

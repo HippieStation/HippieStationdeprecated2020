@@ -1,5 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - rscadd: "Guns held by a nanosuit user in speed mode can be tactically reloaded."
-  - rscadd: "Nanosuit cloaking ability gives the user a light step."

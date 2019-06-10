@@ -610,7 +610,8 @@
 	activators = list(
 		"spray" = IC_PINTYPE_PULSE_IN,
 		"on sprayed" = IC_PINTYPE_PULSE_OUT,
-		"on fail" = IC_PINTYPE_PULSE_OUT
+		"on fail" = IC_PINTYPE_PULSE_OUT,
+		"push ref" = IC_PINTYPE_PULSE_IN
 		)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 15
@@ -711,7 +712,8 @@
 	activators = list(
 		"drain" = IC_PINTYPE_PULSE_IN,
 		"on drained" = IC_PINTYPE_PULSE_OUT,
-		"on fail" = IC_PINTYPE_PULSE_OUT
+		"on fail" = IC_PINTYPE_PULSE_OUT,
+		"push ref" = IC_PINTYPE_PULSE_IN
 		)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 15

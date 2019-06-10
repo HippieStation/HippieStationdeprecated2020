@@ -1,27 +1,38 @@
+#define WARN_COOLDOWN_TIMER 150
+
 /obj/item/clothing/head/helmet/space/hardsuit
-	var/next_warn_rad = 0
-	var/warn_rad_cooldown = 180
+	var/next_warn = 0
 
-/obj/item/clothing/suit/space/hardsuit
-	var/next_warn_acid = 0
-	var/warn_acid_cooldown = 150
-
-/obj/item/clothing/head/helmet/space/hardsuit/rad_act(severity)
-	.=..()
-	if (prob(33) && rad_count > 500 && severity > 25)
-		if (next_warn_rad > world.time)
+/obj/item/clothing/head/helmet/space/hardsuit/rad_act(strength)
+	. = ..()
+	if(prob(33) && rad_count > 500 && strength > 25)
+		if (next_warn > world.time)
 			return
-		next_warn_rad = world.time + warn_rad_cooldown
+		next_warn = world.time + WARN_COOLDOWN_TIMER
 		display_visor_message("Radiation present, seek distance from source!")
 
 /obj/item/clothing/suit/space/hardsuit/acid_act(acidpwr, acid_volume)
-	.=..()
-	if (prob(33) && acidpwr >= 10)
-		if(helmet)
-			if(next_warn_acid > world.time)
-				return
-			next_warn_acid = world.time + warn_acid_cooldown
-			helmet.display_visor_message("Corrosive Chemical Detected!")
+	. = ..()
+	if(prob(33) && acidpwr >= 10 && helmet)
+		if(helmet.next_warn > world.time)
+			return
+		helmet.next_warn = world.time + WARN_COOLDOWN_TIMER
+		helmet.display_visor_message("Corrosive chemical detected!")
+
+/obj/item/clothing/suit/space/hardsuit/hit_reaction(mob/living/carbon/human/user, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+	var/obj/item/projectile/P = hitby
+	if(istype(P, /obj/item/projectile/bullet))
+		bullet_act(P)
+	return ..()
+
+/obj/item/clothing/suit/space/hardsuit/bullet_act(obj/item/projectile/P, def_zone)
+	. = ..()
+	if(prob(P.damage*5) && P.damage_type == BRUTE && helmet)
+		if(helmet.next_warn > world.time)
+			return
+		helmet.next_warn = world.time + WARN_COOLDOWN_TIMER
+		helmet.display_visor_message("Ballistic trauma detected!")
+
 
 /obj/item/clothing/head/helmet/space/hardsuit/spurdosuit
 	name = "emergency spurdo suit helmet"
@@ -34,10 +45,10 @@
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 50, "fire" = 80, "acid" = 70)
 	strip_delay = 130
 	actions_types = list()
-	
+
 /obj/item/clothing/head/helmet/space/hardsuit/spurdosuit/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/clothing/head/helmet/space/hardsuit/spurdosuit/attack_self(mob/user)
 	return

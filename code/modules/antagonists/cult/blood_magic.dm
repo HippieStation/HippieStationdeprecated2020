@@ -71,7 +71,7 @@
 	if(!channeling)
 		channeling = TRUE
 	else
-		to_chat(owner, "<span class='cultitalic'>You are already invoking blood magic!")
+		to_chat(owner, "<span class='cultitalic'>You are already invoking blood magic!</span>")
 		return
 	if(do_after(owner, 100 - rune*60, target = owner))
 		if(ishuman(owner))
@@ -338,7 +338,7 @@
 	desc = "Sinister looking aura that distorts the flow of reality around it."
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "disintegrate"
-	item_state = null
+	item_state = "disintegrate"
 	item_flags = NEEDS_PERMIT | ABSTRACT | DROPDEL
 
 	w_class = WEIGHT_CLASS_HUGE
@@ -358,7 +358,7 @@
 
 /obj/item/melee/blood_magic/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, CULT_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, CULT_TRAIT)
 
 /obj/item/melee/blood_magic/Destroy()
 	if(!QDELETED(source))

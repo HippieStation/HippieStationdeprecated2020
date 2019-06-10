@@ -2,8 +2,8 @@
 	var/login_music_name					// hippie - song name displayed when title theme plays
 
 /datum/controller/subsystem/ticker/Initialize(timeofday)
+	. = ..()
 	login_music_name = pop(splittext(login_music, "/")) // title name will be last element of the list
-	return ..()
 
 /datum/controller/subsystem/ticker/Shutdown()
 	gather_newscaster() //called here so we ensure the log is created even upon admin reboot
@@ -27,7 +27,10 @@
 		'hippiestation/sound/roundend/gameoverinsertfourcoinstoplayagain.ogg',
 		'hippiestation/sound/roundend/reasonsunknown.ogg',
 		'hippiestation/sound/roundend/moon.ogg',
-		'hippiestation/sound/roundend/welcomehomejosh.ogg'\
+		'hippiestation/sound/roundend/welcomehomejosh.ogg',
+		'hippiestation/sound/roundend/ssethdisappointed.ogg',
+		'hippiestation/sound/roundend/ssethenjoyedyourchaos.ogg',
+		'hippiestation/sound/roundend/ssethyoumakemesick.ogg'\
 		)
 
 	SEND_SOUND(world, sound(round_end_sound))
