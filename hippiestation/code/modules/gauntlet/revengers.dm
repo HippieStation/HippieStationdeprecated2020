@@ -15,9 +15,12 @@
 //// NANO GUY SUIT ////
 ///////////////////////
 
+/obj/item/implant/adrenalin/nanoguy
+	uses = 10
+
 /datum/outfit/nanosuit/nanoguy
 	name = "Nano Guy (Nanosuit)"
-	implants = list(/obj/item/implant/explosive/disintegrate, /obj/item/implant/adrenalin)
+	implants = list(/obj/item/implant/explosive/disintegrate, /obj/item/implant/adrenalin/nanoguy)
 	internals_slot = SLOT_S_STORE
 
 /obj/item/clothing/suit/space/hardsuit/nano/nanoguy
