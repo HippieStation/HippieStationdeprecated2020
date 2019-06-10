@@ -17,6 +17,9 @@ map facepunchstation
 	#voteweight 1.5
 endmap
 
+map calderastation
+endmap
+
 map hippiestation
 	#voteweight 1.5
 endmap
