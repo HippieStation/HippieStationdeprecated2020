@@ -13,6 +13,7 @@
 
 	QDEL_LIST(hand_bodyparts)
 	QDEL_LIST(internal_organs)
+	QDEL_LIST(stomach_contents)
 	QDEL_LIST(bodyparts)
 	QDEL_LIST(implants)
 	remove_from_all_data_huds()
@@ -21,6 +22,30 @@
 
 /mob/living/carbon/initialize_footstep()
 	AddComponent(/datum/component/footstep, 1, 2)
+
+/mob/living/carbon/relaymove(mob/user, direction)
+	if(user in src.stomach_contents)
+		if(prob(40))
+			if(prob(25))
+				audible_message("<span class='warning'>You hear something rumbling inside [src]'s stomach...</span>", \
+							 "<span class='warning'>You hear something rumbling.</span>", 4,\
+							  "<span class='userdanger'>Something is rumbling inside your stomach!</span>")
+			var/obj/item/I = user.get_active_held_item()
+			if(I && I.force)
+				var/d = rand(round(I.force / 4), I.force)
+				var/obj/item/bodypart/BP = get_bodypart(BODY_ZONE_CHEST)
+				if(BP.receive_damage(d, 0))
+					update_damage_overlays()
+				visible_message("<span class='danger'>[user] attacks [src]'s stomach wall with the [I.name]!</span>", \
+									"<span class='userdanger'>[user] attacks your stomach wall with the [I.name]!</span>")
+				playsound(user.loc, 'sound/effects/attackblob.ogg', 50, 1)
+
+				if(prob(src.getBruteLoss() - 50))
+					for(var/atom/movable/A in stomach_contents)
+						A.forceMove(drop_location())
+						stomach_contents.Remove(A)
+					src.gib()
+
 
 /mob/living/carbon/swap_hand(held_index)
 	if(!held_index)
@@ -82,6 +107,11 @@
 		if(hurt)
 			Paralyze(20)
 			take_bodypart_damage(10,check_armor = TRUE)
+		if(fist_casted)//hippie edit -- adds fist
+			var/turf/T = get_turf(src)
+			visible_message("<span class='danger'>[src] slams into [T] with explosive force!</span>", "<span class='userdanger'>You slam into [T] so hard everything nearby feels it!</span>")
+			explosion(T, -1, 1, 4, 0, 0, 0) //No fire and no flash, this is less an explosion and more a shockwave from beign punched THAT hard.
+			fist_casted = FALSE //hippie end -- fist
 	if(iscarbon(hit_atom) && hit_atom != src)
 		var/mob/living/carbon/victim = hit_atom
 		if(victim.movement_type & FLYING)
@@ -94,6 +124,10 @@
 			visible_message("<span class='danger'>[src] crashes into [victim], knocking them both over!</span>",\
 				"<span class='userdanger'>You violently crash into [victim]!</span>")
 		playsound(src,'sound/weapons/punch1.ogg',50,1)
+		if(fist_casted) //hippie edit -- adds fist
+			visible_message("<span class='danger'>[src] slams into [victim] with enough force to level a skyscraper!</span>", "<span class='userdanger'>You crash into [victim] like a thunderbolt!</span>")
+			var/turf/T = get_turf(src)
+			explosion(T, -1, 3, 5, 0, 0, 0) //The reward for lining the spell up to hit another person is a bigger boom! //hippie end -- fist
 
 
 //Throwing stuff
@@ -158,6 +192,7 @@
 		log_message("has thrown [thrown_thing]", LOG_ATTACK)
 		newtonian_move(get_dir(target, src))
 		thrown_thing.safe_throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed, src, null, null, null, move_force)
+		playsound(thrown_thing, pick('hippiestation/sound/effects/throw.ogg', 'hippiestation/sound/effects/throw2.ogg', 'hippiestation/sound/effects/throw3.ogg'), 25) // hippie -- adds throw sounds
 
 /mob/living/carbon/restrained(ignore_grab)
 	. = (handcuffed || (!ignore_grab && pulledby && pulledby.grab_state >= GRAB_AGGRESSIVE))
@@ -468,12 +503,9 @@
 				add_splatter_floor(T)
 			if(stun)
 				adjustBruteLoss(3)
-		else if(src.reagents.has_reagent(/datum/reagent/consumable/ethanol/blazaam))
-			if(T)
-				T.add_vomit_floor(src, VOMIT_PURPLE)
 		else
 			if(T)
-				T.add_vomit_floor(src, VOMIT_TOXIC)//toxic barf looks different
+				T.add_vomit_floor(src, toxic)//toxic barf looks different
 		T = get_step(T, dir)
 		if (is_blocked_turf(T))
 			break
@@ -530,12 +562,11 @@
 /mob/living/carbon/update_stamina()
 	var/stam = getStaminaLoss()
 	if(stam > DAMAGE_PRECISION)
-		var/total_health = (maxHealth - stam)
+		var/total_health = (health - stam)
 		if(total_health <= crit_threshold && !stat)
 			if(!IsParalyzed())
 				to_chat(src, "<span class='notice'>You're too exhausted to keep going...</span>")
-			Paralyze(100)
-			stam_paralysed = TRUE
+			Paralyze(70) //hippie edit -- we nerfed this slightly
 			update_health_hud()
 
 /mob/living/carbon/update_sight()
@@ -575,10 +606,6 @@
 		if(!isnull(G.lighting_alpha))
 			lighting_alpha = min(lighting_alpha, G.lighting_alpha)
 
-	if(HAS_TRAIT(src, TRAIT_THERMAL_VISION))
-		sight |= (SEE_MOBS)
-		lighting_alpha = min(lighting_alpha, LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
-
 	if(HAS_TRAIT(src, TRAIT_XRAY_VISION))
 		sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
 		see_in_dark = max(see_in_dark, 8)
@@ -616,17 +643,6 @@
 
 	else
 		. += INFINITY
-
-/mob/living/carbon/get_permeability_protection(list/target_zones = list(HANDS = 0, CHEST = 0, GROIN = 0, LEGS = 0, FEET = 0, ARMS = 0, HEAD = 0))
-	for(var/obj/item/I in get_equipped_items())
-		for(var/zone in target_zones)
-			if(I.body_parts_covered & zone)
-				target_zones[zone] = max(1 - I.permeability_coefficient, target_zones[zone])
-	var/protection = 0
-	for(var/zone in target_zones)
-		protection += target_zones[zone]
-	protection *= INVERSE(target_zones.len)
-	return protection
 
 //this handles hud updates
 /mob/living/carbon/update_damage_hud()
@@ -855,6 +871,19 @@
 
 /mob/living/carbon/fakefireextinguish()
 	remove_overlay(FIRE_LAYER)
+
+
+/mob/living/carbon/proc/devour_mob(mob/living/carbon/C, devour_time = 130)
+	C.visible_message("<span class='danger'>[src] is attempting to devour [C]!</span>", \
+					"<span class='userdanger'>[src] is attempting to devour you!</span>")
+	if(!do_mob(src, C, devour_time))
+		return
+	if(pulling && pulling == C && grab_state >= GRAB_AGGRESSIVE && a_intent == INTENT_GRAB)
+		C.visible_message("<span class='danger'>[src] devours [C]!</span>", \
+						"<span class='userdanger'>[src] devours you!</span>")
+		C.forceMove(src)
+		stomach_contents.Add(C)
+		log_combat(src, C, "devoured")
 
 /mob/living/carbon/proc/create_bodyparts()
 	var/l_arm_index_next = -1
