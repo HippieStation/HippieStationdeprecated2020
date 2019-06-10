@@ -17,6 +17,11 @@ map facepunchstation
 	#voteweight 1.5
 endmap
 
+map calderastation
+	default
+	#voteweight 1.5
+endmap
+
 map hippiestation
 	#voteweight 1.5
 endmap
