@@ -14,6 +14,7 @@
 
 // BEGIN_INCLUDE
 #include "_maps\_basemaphippie.dm"
+#include "_maps\templates\dwarf-fort-tier0.dmm"
 #include "code\_compile_options.dm"
 #include "code\world.dm"
 #include "code\__DEFINES\_globals.dm"
@@ -3308,6 +3309,8 @@
 #include "hippiestation\code\modules\mining\machine_stacking.dm"
 #include "hippiestation\code\modules\mining\machine_unloading.dm"
 #include "hippiestation\code\modules\mining\machine_vending.dm"
+#include "hippiestation\code\modules\mining\shelters.dm"
+#include "hippiestation\code\modules\mining\equipment\survival_pod.dm"
 #include "hippiestation\code\modules\mob\emote.dm"
 #include "hippiestation\code\modules\mob\login.dm"
 #include "hippiestation\code\modules\mob\mob.dm"

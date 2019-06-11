@@ -1,0 +1,17 @@
+"a" = (/turf/closed/wall/mineral/bronze,/area/dwarf)
+"b" = (/turf/open/floor/clockwork/reebe,/area/dwarf)
+"c" = (/mob/living/simple_animal/pet/gondola,/turf/open/floor/clockwork/reebe,/area/dwarf)
+"d" = (/obj/machinery/door/airlock/gold,/turf/open/floor/clockwork/reebe,/area/dwarf)
+
+(1,1,1) = {"
+aaaaaaaaaa
+abbbbbbbba
+abbbbbbbba
+abbbbbbbba
+abbbcbbbba
+abbbbbbbba
+abbbbbbbba
+abbbbbbbba
+abbbbbbbba
+aaaaddaaaa
+"}
