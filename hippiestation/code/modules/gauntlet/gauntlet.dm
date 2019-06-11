@@ -44,7 +44,10 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 /obj/item/badmin_gauntlet
 	name = "Badmin Gauntlet"
 	icon = 'hippiestation/icons/obj/infinity.dmi'
+	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
 	icon_state = "gauntlet"
+	item_state = "gauntlet"
 	force = 25
 	armour_penetration = 70
 	var/badmin = FALSE
@@ -93,7 +96,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	flashy_aura.color = stone_colors[index]
 	C.add_overlay(flashy_aura)
 	flash_index = index + 1
-	next_flash = world.time + 10
+	next_flash = world.time + 5
 
 /obj/item/badmin_gauntlet/examine(mob/user)
 	. = ..()
