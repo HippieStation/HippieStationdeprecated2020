@@ -2,7 +2,16 @@
 	var/worthiness = 0
 
 /obj/item/twohanded/mjollnir
+	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
+	icon_state = "mjollnir"
+	item_state = "mjollnir0"
 	var/is_returning = FALSE
+
+/obj/item/twohanded/mjollnir/update_icon()  //Currently only here to fuck with the on-mob icons.
+	item_state = "mjollnir[wielded]"
+	return
 
 /obj/item/twohanded/mjollnir/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force)
 	if(iscarbon(thrower))
