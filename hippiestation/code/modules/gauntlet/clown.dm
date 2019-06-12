@@ -7,14 +7,21 @@
 	stone_type = CLOWN_STONE
 	ability_text = list("HELP INTENT: fire banana cream pies",
 		"GRAB INTENT: Spawn the Traps!",
-		"DISARM INTENT: Throw a cleaner grenade")
+		"DISARM INTENT: Throw an angry monkey that will hunt whatever you target!")
 	spell_types = list(/obj/effect/proc_holder/spell/self/infinity/pranksters_delusion,
 		/obj/effect/proc_holder/spell/self/infinity/cake)
 	stone_spell_types = list(/obj/effect/proc_holder/spell/self/infinity/honksong,
 		/obj/effect/proc_holder/spell/self/infinity/party_popper)
 	gauntlet_spell_types = list(/obj/effect/proc_holder/spell/self/infinity/thanoscar_thanoscar)
 	var/next_traps = 0
-	var/next_cleaner = 0
+	var/monkey_stockpile = 3
+	var/next_monkey = 0
+
+/obj/item/badmin_stone/clown/process()
+	..()
+	if(world.time >= next_monkey)
+		monkey_stockpile = min(3, monkey_stockpile + 1)
+		next_monkey = world.time + 25 SECONDS
 
 /obj/item/badmin_stone/clown/HelpEvent(atom/target, mob/living/user, proximity_flag)
 	var/obj/item/reagent_containers/food/snacks/pie/cream/pie = new(get_turf(user))
@@ -43,15 +50,16 @@
 	next_traps = world.time + 15 SECONDS
 
 /obj/item/badmin_stone/clown/DisarmEvent(atom/target, mob/living/user, proximity_flag)
-	if(next_cleaner > world.time)
-		to_chat(user, "<span class='danger'>You need to wait [DisplayTimeText(next_cleaner - world.time)] to summon another cleaner grenade!</span>")
+	if(monkey_stockpile < 1)
+		to_chat(user, "<span class='warning'>\The [src] is out of monkeys!</span>")
 		return
-	var/obj/item/grenade/chem_grenade/cleaner/C = new(get_turf(user))
-	C.preprime(src, null, FALSE)
-	C.throw_at(target, 7, 3, user, TRUE)
-	playsound(src, 'sound/magic/staff_animation.ogg', 50, 1)
-	new /obj/effect/temp_visual/dir_setting/firing_effect/magic(get_turf(src))
-	next_cleaner = world.time + 10 SECONDS
+	var/turf/monkey_loc = get_step(get_turf(user), get_dir(user, target))
+	var/mob/living/carbon/monkey/monkey = new(monkey_loc)
+	if(isliving(target))
+		monkey.mode = MONKEY_HUNT
+		monkey.target = target
+	monkey.throw_at(target, 7, 3, src, TRUE)
+	monkey_stockpile--
 
 /////////////////////////////////////////////
 /////////////////// SPELLS //////////////////
