@@ -112,11 +112,6 @@
 	add_fingerprint(user)
 
 /obj/item/melee/baton/attack(mob/M, mob/living/carbon/human/user)
-	if(is_ganymede(user)) // hippie start -- don't let thanos use stunbatons
-		user.visible_message("<span class='danger'>[user] accidentally crushes [src] in their hand!</span>")
-		qdel(src)
-		return // hippie end
-
 	if(status && HAS_TRAIT(user, TRAIT_CLUMSY) && prob(50))
 		user.visible_message("<span class='danger'>[user] accidentally hits [user.p_them()]self with [src]!</span>", \
 							"<span class='userdanger'>You accidentally hit yourself with [src]!</span>")
