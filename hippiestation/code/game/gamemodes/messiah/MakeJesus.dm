@@ -13,7 +13,7 @@
 		Jesus.key = chosen_candidate.key
 		Jesus.dna.update_dna_identity()
 		Jesus.gender = MALE
-		Jesus.real_name = SSreligion.deity ? "[SSreligion.deity]" : "Space Jesus"
+		Jesus.real_name = GLOB.deity ? "[GLOB.deity]" : "Space Jesus"
 		Jesus.equipOutfit(/datum/outfit/jesus)
 		SSticker.mode.traitors += Jesus.mind
 		Jesus.mind.special_role = "jesus"
