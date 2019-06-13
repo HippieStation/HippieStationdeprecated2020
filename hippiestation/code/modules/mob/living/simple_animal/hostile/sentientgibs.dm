@@ -21,9 +21,9 @@
 	stat_attack = UNCONSCIOUS
 	robust_searching = 1
 	pass_flags = LETPASSTHROW
-	move_to_delay = 1
+	move_to_delay = 2
 	rapid_melee = 2
-	speed = 1
+	speed = 1.5
 	var/in_vent = FALSE
 	var/min_next_vent = 0
 	var/obj/machinery/atmospherics/components/unary/vent_pump/entry_vent
@@ -55,7 +55,7 @@
 	. = ..()
 	if(isliving(target))
 		var/mob/living/lunch = target
-		if(lunch && prob(30))
+		if(lunch && prob(25))
 			if(!EatLunch(lunch) && (health < maxHealth * 0.25) && prob(33))//Don't want to see this message all the time.
 				visible_message("<span class='warning'>[src] flails in exasperation!</span>", \
 						"<span class='danger'>Failing to eat angers you!</span>")
@@ -114,7 +114,7 @@
 			addtimer(CALLBACK(src, .proc/exit_vents), travel_time) //come out at exit vent in 2 to 20 seconds
 
 
-		if(world.time > min_next_vent && !entry_vent && !in_vent && prob(GIB_VENT_CHANCE) && !target) //small chance to go into a vent
+		if(world.time > min_next_vent && prob(GIB_VENT_CHANCE) && !entry_vent && !in_vent && !target) //small chance to go into a vent
 			for(var/obj/machinery/atmospherics/components/unary/vent_pump/v in view(7,src))
 				if(!v.welded)
 					entry_vent = v
@@ -137,4 +137,4 @@
 		new_area.Entered(src)
 	visible_message("<span class='notice'>[src] climbs out of the ventilation ducts!</span>")
 	emote("scream")
-	min_next_vent = world.time + 900 //90 seconds between ventcrawls
+	min_next_vent = world.time + 450 //45 seconds between ventcrawls

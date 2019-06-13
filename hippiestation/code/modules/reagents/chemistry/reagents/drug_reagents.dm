@@ -1,8 +1,8 @@
+#define BADTRIP_COOLDOWN 180
 /datum/reagent/drug/burpinate
     name = "Burpinate"
     id = "burpinate"
     description = "They call me gaseous clay."
-    reagent_state = LIQUID
     color = "#bfe8a7" // rgb: 191, 232, 167
     metabolization_rate = 0.9 * REAGENTS_METABOLISM
     taste_description = "wet hot dogs"
@@ -25,7 +25,6 @@
 	id = "fartium"
 	description = "A chemical compound that promotes concentrated production of gas in your groin area."
 	color = "#8A4B08" // rgb: 138, 75, 8
-	reagent_state = LIQUID
 	overdose_threshold = 30
 	addiction_threshold = 50
 
@@ -178,7 +177,6 @@
 	id = "flipout"
 	description = "A chemical compound that causes uncontrolled and extremely violent flipping."
 	color = "#ff33cc" // rgb: 255, 51, 204
-	reagent_state = LIQUID
 	overdose_threshold = 40
 	addiction_threshold = 30
 
@@ -266,7 +264,6 @@
 	id = "yespowder"
 	description = "Powder that makes you say yes."
 	color = "#fffae0"
-	reagent_state = LIQUID
 
 /datum/reagent/drug/yespowder/on_mob_life(mob/living/M)
 	var/high_message = pick("Agreement fills your mind.", "'No' is so last year. 'Yes' is in.", "Yes.")
@@ -281,7 +278,6 @@
 	id = "sweetbrown"
 	description = "A fetid concoction often huffed or drank by vagrants and bums. High dosages have... interesting effects."
 	color = "#602101" // rgb: 96, 33, 1
-	reagent_state = LIQUID
 	overdose_threshold = 100
 	addiction_threshold = 50 // doesn't do shit though
 
@@ -301,3 +297,146 @@
 		to_chat(H, "<span class= 'userdanger'>Oh shit!</span>")
 		H.set_species(/datum/species/krokodil_addict)
 	..()
+
+/datum/reagent/drug/grape_blast
+	name = "Grape Blast"
+	id = "grapeblast"
+	description = "A juice of a very special fruit, concentrated and sold at your local A1 vendor."
+	color = "#ffffe6"
+	reagent_state = LIQUID
+	taste_description = "artificial grape"
+	var/obj/effect/hallucination/simple/druggy/brain
+	var/bad_trip = FALSE
+	var/badtrip_cooldown = 0
+
+/datum/reagent/drug/grape_blast/proc/create_brain(mob/living/carbon/C)
+	var/turf/where = locate(C.x + pick(-1, 1), C.y + pick(-1, 1), C.z)
+	brain = new(where, C)
+
+/datum/reagent/drug/grape_blast/on_mob_life(mob/living/carbon/H)
+	if(!H && !H.hud_used)
+		return
+	if(prob(5))
+		H.emote(pick("twitch","drool","moan"))
+	var/high_message
+	var/list/screens = list(H.hud_used.plane_masters["[FLOOR_PLANE]"], H.hud_used.plane_masters["[GAME_PLANE]"], H.hud_used.plane_masters["[LIGHTING_PLANE]"], H.hud_used.plane_masters["[CAMERA_STATIC_PLANE ]"])
+	switch(current_cycle)
+		if(1 to 20)
+			high_message = pick("Holy shit, I feel so fucking happy...", "What the fuck is going on?", "Where am I?")
+			if(prob(15))
+				H.dna.add_mutation(SMILE)
+			else if(prob(30)) //blurry eyes and talk like an idiot
+				H.blur_eyes(2)
+				H.derpspeech++
+		if(31 to INFINITY)
+			if(prob(20) && (H.mobility_flags & MOBILITY_MOVE) && !ismovableatom(H.loc))
+				step(H, pick(GLOB.cardinals))
+			high_message = pick("I feel like I'm flying!", "I feel something swimming inside my lungs....", "I can see the words I'm saying...")
+			if(prob(20))
+				var/rotation = min(round(current_cycle/4), 20)
+				for(var/obj/screen/plane_master/whole_screen in screens)
+					if(prob(60))
+						animate(whole_screen, transform = matrix(rotation, MATRIX_ROTATE), time = 50, easing = CIRCULAR_EASING)
+						animate(transform = matrix(-rotation, MATRIX_ROTATE), time = 5, easing = BACK_EASING)
+					else if(prob(30))
+						animate(whole_screen, transform = matrix(rotation*4, MATRIX_ROTATE), time = 120, easing = QUAD_EASING)
+						animate(whole_screen, transform = matrix()*1.5, time = 120, easing = QUAD_EASING)
+					else if(prob(15))
+						whole_screen.filters += filter(type="wave", x=20*rand() - 20, y=20*rand() - 20, size=rand()*0.1, offset=rand()*0.5, flags = WAVE_BOUNDED)
+						animate(whole_screen.filters[whole_screen.filters.len], size = rand(1,3), time = 30, easing = QUAD_EASING, loop = -1)
+						to_chat(H, "<span class='notice'>You feel reality melt away...</span>")
+				high_message = pick("Holy shit...", "Reality doesn't exist man.", "...", "No one flies around the sun.")
+			else if(prob(5))
+				create_brain(H)
+				brain.spook(H)
+			if(!bad_trip)
+				if(prob(4))
+					H.emote("laugh")
+					H.say(pick("GRERRKRKRK",";HAHAH I AM SO FUCKING HIGH!!","I AM A BUTTERFLY!!"))
+					H.visible_message("<span class='notice'>[H] looks high as fuck!</span>")
+				else if(prob(3))
+					H.Knockdown(20)
+					H.emote("laugh")
+					H.say(pick("TURN IT ON!!!","I CAN HEAR VOICES AHAHAHAH","YOU'RE GOKU!!"))
+					H.visible_message("<span class='notice'>[H] appears to be on some good drugs!</span>")
+			if(prob(1) && badtrip_cooldown < world.time)
+				bad_trip = TRUE
+			if(bad_trip)
+				for(var/obj/screen/plane_master/whole_screen in screens)
+					if(prob(35))
+						whole_screen.filters += filter(type="wave", x=30*rand() - 20, y=30*rand() - 20, size=rand()*0.5, offset=rand()*0.5)
+						animate(whole_screen.filters[whole_screen.filters.len], size = rand(2,5), time = 60, easing = QUAD_EASING)
+				var/list/t_ray_images = list()
+				for(var/mob/living/L in orange(8, H) )
+					if(!L.invisibility)
+						var/image/I = new(loc = L)
+						var/mutable_appearance/MA = new(L)
+						MA.alpha = 128
+						MA.dir = L.dir
+						I.appearance = MA
+						step(I, pick(GLOB.cardinals))
+						t_ray_images += I
+				if(t_ray_images.len)
+					flick_overlay(t_ray_images, list(H.client), rand(10,30))
+				high_message = pick("I can feel my thoughts racing!", "WHO THE FUCK SAID THAT??!!", "I feel like I'm going to die!")
+				if(prob(25))
+					H.hallucination += 2
+					H.jitteriness += 3
+					H.emote("me", 1, pick("hyperventilates.", "gasps."))
+					H.confused += 2
+				else if(prob(5))
+					H.emote("cry")
+					H.say(pick("MAKE IT STOP!! I'M SORRY!!", ";I'LL DO ANYTHING, MAKE IT STOP!!", "YOU DIDN'T EVEN BOTHER, YOU DIDN'T SEE THEM GO!!", "YOU WANNA SEE WHAT REALITY REALLY IS?!!"))
+					H.visible_message("<span class='warning'>[H] appears to be freaking out!</span>")
+				else if(prob(3))
+					H.stop_sound_channel(CHANNEL_HEARTBEAT)
+					H.playsound_local(H, 'sound/effects/singlebeat.ogg', 100, 0)
+					if(prob(40))
+						H.visible_message("<span class='warning'>[H] clutches at [H.p_their()] chest as if [H.p_their()] heart is stopping!</span>")
+					H.adjustStaminaLoss(80)
+				if(prob(3))
+					addtimer(CALLBACK(src, .proc/end_bad_trip, H), 30)
+
+	if(prob(5))
+		to_chat(H, "<i>You hear your own thoughts... <b>[high_message]</i></b>")
+	..()
+
+/datum/reagent/drug/grape_blast/on_mob_delete(mob/living/L)
+	cure_autism(L)
+	..()
+
+/datum/reagent/drug/grape_blast/proc/end_bad_trip(mob/living/carbon/human/H)
+	bad_trip = FALSE
+	badtrip_cooldown = world.time + BADTRIP_COOLDOWN
+	H.visible_message("<span class='notice'>[H] appears to have calmed down.</span>")
+	H.emote("me", 1, pick("takes a deep breath.", "relaxes."))
+
+/datum/reagent/drug/grape_blast/proc/cure_autism(mob/living/carbon/C)
+	to_chat(C, "<span class='notice'>As the drugs wear off, you feel yourself slowly coming back to reality...</span>")
+	C.drowsyness++ //We feel sleepy after going through that trip.
+	if(!HAS_TRAIT(C, TRAIT_DUMB))
+		C.derpspeech = 0
+	if(C && C.hud_used)
+		var/list/screens = list(C.hud_used.plane_masters["[FLOOR_PLANE]"], C.hud_used.plane_masters["[GAME_PLANE]"], C.hud_used.plane_masters["[LIGHTING_PLANE]"], C.hud_used.plane_masters["[CAMERA_STATIC_PLANE]"])
+		for(var/obj/screen/plane_master/whole_screen in screens)
+			animate(whole_screen, transform = matrix(), time = 200, easing = ELASTIC_EASING)
+			whole_screen.filters = list()
+
+/obj/effect/hallucination/simple/druggy
+	name = "Your brain"
+	desc = "Don't do drugs kids."
+	image_icon = 'icons/obj/surgery.dmi'
+	image_state = "brain"
+
+/obj/effect/hallucination/simple/druggy/proc/spook(mob/living/L)
+	sleep(20)
+	var/image/I = image('icons/mob/talk.dmi', src, "default2", FLY_LAYER)
+	var/message = "This is your brain on drugs."
+	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	if(L)
+		//L.send_speech("This is your brain on drugs.", 7, src, message_language=get_default_language())
+		L.Hear(message, src, L.get_default_language(), message)
+		INVOKE_ASYNC(GLOBAL_PROC, /.proc/flick_overlay, I, list(L.client), 30)
+	sleep(10)
+	animate(src, transform = matrix()*0.75, time = 5)
+	QDEL_IN(src, 30)

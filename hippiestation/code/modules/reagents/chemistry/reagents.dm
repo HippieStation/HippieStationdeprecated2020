@@ -47,6 +47,8 @@
 			return
 
 		if(src.reagent_state == GAS) //VAPOR
+			if(is_type_in_typecache(src, GLOB.vaporchange_reagent_blacklist))
+				return
 			if(atom && istype(atom, /obj/effect/particle_effect))
 				volume = volume * GAS_PARTICLE_EFFECT_EFFICIENCY//big nerf to smoke and foam duping
 
@@ -70,6 +72,8 @@
 
 
 		if(src.reagent_state == LIQUID) //LIQUID
+			if(is_type_in_typecache(src, GLOB.vaporchange_reagent_blacklist)) //this is to prevent lube and clf3 from making chempiles
+				return
 			if(atom && istype(atom, /obj/effect/particle_effect))
 				volume = volume * LIQUID_PARTICLE_EFFECT_EFFICIENCY//big nerf to smoke and foam duping
 
@@ -84,7 +88,7 @@
 						DISABLE_BITFIELD(c.reagents.flags, NO_REACT)
 					return TRUE
 
-			var/obj/effect/decal/cleanable/chempile/C = new /obj/effect/decal/cleanable/chempile(T)//otherwise makes a new one
+			var/obj/effect/decal/cleanable/chempile/C = new (T)//otherwise makes a new one
 			if(C.reagents)
 				if(touch_msg)
 					C.add_fingerprint(touch_mob)
@@ -93,6 +97,8 @@
 				C.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
 
 		if(src.reagent_state == SOLID) //SOLID
+			if(is_type_in_typecache(src, GLOB.solidchange_reagent_blacklist))
+				return
 			if(atom && istype(atom, /obj/effect/particle_effect))
 				volume = volume * SOLID_PARTICLE_EFFECT_EFFICIENCY//big nerf to smoke and foam duping
 
@@ -101,15 +107,13 @@
 					if(touch_msg)
 						SR.add_fingerprint(touch_mob)
 					SR.reagents.add_reagent("[src.id]", volume)
-					SR.bitecount = SR.reagents.total_volume*0.5
 					return TRUE
 
-			var/obj/item/reagent_containers/food/snacks/solid_reagent/Sr = new /obj/item/reagent_containers/food/snacks/solid_reagent(T)
+			var/obj/item/reagent_containers/food/snacks/solid_reagent/Sr = new (T)
 			if(touch_msg)
 				Sr.add_fingerprint(touch_mob)
 			Sr.reagents.add_reagent("[src.id]", volume)
 			Sr.reagent_type = src.id
-			Sr.bitecount = Sr.reagents.total_volume*0.5
 			Sr.name = "solidified [src]"
 			Sr.add_atom_colour(src.color, FIXED_COLOUR_PRIORITY)
 			Sr.filling_color = src.color

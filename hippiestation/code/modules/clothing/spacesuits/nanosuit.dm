@@ -80,7 +80,7 @@
 
 	var/atom/target = get_edge_target_turf(user, user.dir) //gets the user's direction
 	if(user.throw_at(target, jumpdistance, jumpspeed, spin = FALSE, diagonals_first = TRUE))
-		playsound(src, 'sound/effects/stealthoff.ogg', 50, 0.75, TRUE)
+		playsound(src, 'sound/effects/stealthoff.ogg', 50, TRUE)
 		user.visible_message("<span class='warning'>[user] jumps forward into the air!</span>")
 	else
 		to_chat(user, "<span class='warning'>Something prevents you from dashing forward!</span>")
@@ -226,7 +226,6 @@
 	var/trauma_threshold = 30
 	var/obj/item/stock_parts/cell/nano/cell //What type of power cell this uses
 	block_chance = 0
-	var/menu_open = FALSE
 	//variables for cloak pausing when shooting a suppressed gun
 	var/stealth_cloak_out = 1 //transition time out of cloak
 	var/stealth_cloak_in = 2 //transition time back into cloak
@@ -247,9 +246,17 @@
 	if(Wearer && help_verb)
 		Wearer.verbs -= help_verb
 	Wearer = null
-	QDEL_NULL(style)
-	QDEL_NULL(cell)
+	if(style)
+		QDEL_NULL(style)
+	if(cell)
+		QDEL_NULL(cell)
 	return ..()
+
+/obj/item/clothing/suit/space/hardsuit/nano/prevent_content_explosion()
+	return TRUE
+
+/obj/item/clothing/suit/space/hardsuit/nano/contents_explosion()
+	return
 
 /obj/item/clothing/suit/space/hardsuit/nano/examine(mob/user)
 	..()
@@ -308,7 +315,6 @@
 		if(mode != NANO_ARMOR && mode != NANO_NONE) //we're not in cloak
 			toggle_mode(NANO_ARMOR, TRUE) //go into it, forced
 	cell.charge = max(0,(cell.charge - amount))
-	return TRUE
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/addmedicalcharge()
 	if(current_charges < max_charges)
@@ -373,7 +379,7 @@
 	if(attack_type == LEAP_ATTACK)
 		final_block_chance = 75
 	SEND_SIGNAL(src, COMSIG_ITEM_HIT_REACT, args)
-	return FALSE
+	return ..()
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/heal_nano(mob/living/carbon/human/user)
 	helmet.display_visor_message("Engaging emergency medical protocols")
@@ -678,7 +684,7 @@
 		ADD_TRAIT(Wearer, TRAIT_NODISMEMBER, "Nanosuit")
 		RegisterSignal(Wearer, list(COMSIG_MOB_ITEM_ATTACK,COMSIG_MOB_ITEM_AFTERATTACK,COMSIG_MOB_THROW,COMSIG_MOB_ATTACK_HAND), .proc/kill_cloak,TRUE)
 		if(is_station_level(T.z))
-			priority_announce("[user] has engaged [src] at [A.map_name]!","Message from The Syndicate!", 'sound/misc/notice1.ogg')
+			priority_announce("[user] has engaged [src] at [A.map_name]!","Message from The Syndicate!", sound = 'hippiestation/sound/misc/nanosuitengage.ogg')
 		log_game("[user] has engaged [src]")
 		if(help_verb)
 			Wearer.verbs += help_verb
@@ -1008,7 +1014,7 @@
 
 /mob/living/simple_animal/attack_hand(mob/living/carbon/human/M)
 	. = ..()
-	if(istype(M.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
+	if(M && ishuman(M) && istype(M.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
 		var/obj/item/clothing/suit/space/hardsuit/nano/NS = M.wear_suit
 		NS.kill_cloak()
 
