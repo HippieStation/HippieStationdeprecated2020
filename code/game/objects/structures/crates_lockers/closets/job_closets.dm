@@ -60,13 +60,8 @@
 	new /obj/item/melee/flyswatter(src)
 	new /obj/item/flashlight(src)
 	for(var/i in 1 to 3)
-<<<<<<< HEAD
-		new /obj/item/caution(src)
-	new /obj/item/holosign_creator(src)
-=======
 		new /obj/item/clothing/suit/caution(src)
 	new /obj/item/holosign_creator/janibarrier(src)
->>>>>>> 47700b8... Allows you to wear the caution sign + new sprite for the caution sign (#44289)
 	new /obj/item/lightreplacer(src)
 	new /obj/item/soap(src)
 	new /obj/item/storage/bag/trash(src)
