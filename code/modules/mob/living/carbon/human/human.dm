@@ -646,7 +646,7 @@
 			to_chat(C, "<span class='unconscious'>You feel a breath of fresh air... which is a sensation you don't recognise...</span>")
 
 /mob/living/carbon/human/cuff_resist(obj/item/I)
-	if(dna && istype(dna.species, /datum/species/ganymede)) // hippie start -- thanos stuff. and nanosuit stuff
+	if(is_ganymede(src)) // hippie start -- thanos stuff. and nanosuit stuff
 		if(..(I, cuff_break = INSTANT_CUFFBREAK))
 			visible_message("<span class='danger'>[src] snaps [I] in half!</span>")
 			qdel(I)

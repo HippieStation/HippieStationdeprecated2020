@@ -7,10 +7,8 @@
 			return FALSE
 
 		var/can_ult = TRUE
-		if(ishuman(C))
-			var/mob/living/carbon/human/H = C
-			if(H.dna && istype(H.dna.species, /datum/species/ganymede))
-				can_ult = FALSE
+		if(is_ganymede())
+			can_ult = FALSE
 		if(can_ult && do_special_attack(target, user, proximity_flag))
 			C.adjustStaminaLoss(src.special_cost)
 			playsound(user, 'hippiestation/sound/weapons/special.ogg',40, 1, 1)

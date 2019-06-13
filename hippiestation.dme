@@ -3151,6 +3151,8 @@
 #include "hippiestation\code\modules\assembly\bomb.dm"
 #include "hippiestation\code\modules\assembly\flash.dm"
 #include "hippiestation\code\modules\atmospherics\gasmixtures\reactions.dm"
+#include "hippiestation\code\modules\atmospherics\machinery\components\binary_devices\pump.dm"
+#include "hippiestation\code\modules\atmospherics\machinery\components\binary_devices\volume_pump.dm"
 #include "hippiestation\code\modules\atmospherics\unary_devices\vent_pump.dm"
 #include "hippiestation\code\modules\atmospherics\unary_devices\vent_scrubber.dm"
 #include "hippiestation\code\modules\awaymissions\corpse.dm"

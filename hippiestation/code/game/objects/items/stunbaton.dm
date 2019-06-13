@@ -81,6 +81,10 @@
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/melee/baton/cattleprod/hippie_cattleprod/baton_stun(mob/living/L, mob/user)
+	if(is_ganymede(user))
+		user.visible_message("<span class='danger'>[user] accidentally crushes [src] in their hand!</span>")
+		qdel(src)
+		return 0
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK)) //No message; check_shields() handles that
