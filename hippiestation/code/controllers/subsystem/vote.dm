@@ -31,6 +31,13 @@ datum/controller/subsystem/vote
 					choices[GLOB.master_mode] += non_voters.len
 					if(choices[GLOB.master_mode] >= greatest_votes)
 						greatest_votes = choices[GLOB.master_mode]
+			else if(mode == "map")
+				for (var/non_voter_ckey in non_voters)
+					var/client/C = non_voters[non_voter_ckey]
+					if(C.prefs.preferred_map)
+						choices[C.prefs.preferred_map] += 1
+					else
+						choices[global.config.defaultmap.map_name] += 1
 	//get all options with that many votes and return them in a list
 	. = list()
 	if(greatest_votes)
@@ -64,6 +71,12 @@ datum/controller/subsystem/vote
 				choices.Add("Call Shuttle","Do not call Shuttle")
 			if("gamemode")
 				choices.Add(config.votable_modes)
+			if("map")
+				for(var/map in global.config.maplist)
+					var/datum/map_config/VM = config.maplist[map]
+					if(!VM.votable)
+						continue
+					choices.Add(VM.map_name)
 			if("custom")
 				question = stripped_input(usr,"What is the vote for?")
 				if(!question)
@@ -150,7 +163,15 @@ datum/controller/subsystem/vote
 			. += "<font color='grey'>GameMode (Disallowed)</font>"
 		if(trialmin)
 			. += "\t(<a href='?src=[REF(src)];vote=toggle_gamemode'>[avm ? "Allowed" : "Disallowed"]</a>)"
-
+		. += "</li>"
+		//map
+		var/avmap = CONFIG_GET(flag/allow_vote_map)
+		if(trialmin || avmap)
+			. += "<a href='?src=[REF(src)];vote=map'>Map</a>"
+		else
+			. += "<font color='grey'>Map (Disallowed)</font>"
+		if(trialmin)
+			. += "\t(<a href='?src=[REF(src)];vote=toggle_map'>[avmap ? "Allowed" : "Disallowed"]</a>)"
 		. += "</li>"
 		//custom
 		if(trialmin)
@@ -162,6 +183,12 @@ datum/controller/subsystem/vote
 /datum/controller/subsystem/vote/Topic(href,href_list[],hsrc)
 	if(!usr || !usr.client)
 		return	//not necessary but meh...just in-case somebody does something stupid
+		
+	var/trialmin = 0
+	if(usr.client.holder)
+		if(check_rights_for(usr.client, R_ADMIN))
+			trialmin = 1
+			
 	switch(href_list["vote"])
 		if("close")
 			voting -= usr.client
@@ -171,14 +198,17 @@ datum/controller/subsystem/vote
 			if(usr.client.holder)
 				reset()
 		if("toggle_restart")
-			if(usr.client.holder)
+			if(usr.client.holder && trialmin)
 				CONFIG_SET(flag/allow_vote_restart, !CONFIG_GET(flag/allow_vote_restart))
 		if("toggle_shuttlecall")
-			if(usr.client.holder)
+			if(usr.client.holder && trialmin)
 				CONFIG_SET(flag/allow_vote_shuttlecall, !CONFIG_GET(flag/allow_vote_shuttlecall))
 		if("toggle_gamemode")
 			if(usr.client.holder)
 				CONFIG_SET(flag/allow_vote_mode, !CONFIG_GET(flag/allow_vote_mode))
+		if("toggle_map")
+			if(usr.client.holder && trialmin)
+				CONFIG_SET(flag/allow_vote_map, !CONFIG_GET(flag/allow_vote_map))
 		if("restart")
 			if(CONFIG_GET(flag/allow_vote_restart) || usr.client.holder)
 				if(min_restart_time < world.time)
@@ -194,6 +224,9 @@ datum/controller/subsystem/vote
 		if("gamemode")
 			if(CONFIG_GET(flag/allow_vote_mode) || usr.client.holder)
 				initiate_vote("gamemode",usr.key)
+		if("map")
+			if(CONFIG_GET(flag/allow_vote_map) || usr.client.holder)
+				initiate_vote("map",usr.key)
 		if("custom")
 			if(usr.client.holder)
 				initiate_vote("custom",usr.key)
@@ -218,6 +251,9 @@ datum/controller/subsystem/vote
 						restart = 1
 					else
 						GLOB.master_mode = .
+			if("map")
+				SSmapping.changemap(global.config.maplist[.])
+				SSmapping.map_voted = TRUE
 			if("shuttlecall")
 				if(. == "Call Shuttle")
 					shuttlecall = 1
