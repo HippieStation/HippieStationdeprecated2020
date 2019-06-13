@@ -5,7 +5,7 @@
 	tick_interval = 10
 	alert_type = /obj/screen/alert/status_effect/agent_pinpointer/revenger
 
-/datum/status_effect/agent_pinpointer/gauntlet/scan_for_target()
+/datum/status_effect/agent_pinpointer/revenger/scan_for_target()
 	scan_target = locate(/obj/item/badmin_gauntlet) in world
 
 /obj/screen/alert/status_effect/agent_pinpointer/revenger

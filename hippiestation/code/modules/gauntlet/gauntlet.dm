@@ -416,7 +416,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 				for(var/obj/item/spellbook/SB in world)
 					if(SB.owner == user)
 						qdel(SB)
-				user.apply_status_effect(/datum/status_effect/agent_pinpointer/stone)
+				user.apply_status_effect(/datum/status_effect/agent_pinpointer/gauntlet)
 				if(!badmin)
 					if(LAZYLEN(GLOB.wizardstart))
 						user.forceMove(pick(GLOB.wizardstart))
@@ -899,10 +899,10 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 /////////////////// OTHER ///////////////////
 /////////////////////////////////////////////
 
-/obj/screen/alert/status_effect/agent_pinpointer/stone
+/obj/screen/alert/status_effect/agent_pinpointer/gauntlet
 	name = "Badmin Stone Pinpointer"
 
-/obj/screen/alert/status_effect/agent_pinpointer/stone/Click()
+/obj/screen/alert/status_effect/agent_pinpointer/gauntlet/Click()
 	var/mob/living/L = usr
 	if(!L || !istype(L))
 		return
