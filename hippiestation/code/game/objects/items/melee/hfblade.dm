@@ -8,7 +8,6 @@
 	icon_state = "hfblade"
 	item_state = "hfblade"
 	icon = 'hippiestation/icons/obj/hfblade.dmi'
-	alternate_worn_icon = 'hippiestation/icons/mob/hfblade.dmi'
 	lefthand_file = 'hippiestation/icons/mob/inhands/weapons/melee_lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/weapons/melee_righthand.dmi'
 	flags_1 = CONDUCT_1
@@ -23,12 +22,21 @@
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	materials = list(MAT_METAL = 10000)
 	interact_sound_cooldown = 100
+	light_color = "#40ceff"
 	var/rules_of_nature = TRUE // Turn this off to break the rules, and watch the horrors of no proximity flags unfold.
 	var/brazil = FALSE
+	var/brightness = 5
 
 /obj/item/melee/hfblade/Initialize()
 	. = ..()
 	AddComponent(/datum/component/butchering, 30, 95, 5)
+	set_light(brightness)
+	START_PROCESSING(SSobj, src)
+	. = ..()
+
+/obj/item/melee/hfblade/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
 
 /obj/item/melee/hfblade/hit_reaction(mob/living/carbon/human/owner, mob/living/carbon/human/attacker, datum/martial_art/attacker_style, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	if(attack_type == PROJECTILE_ATTACK)
@@ -88,6 +96,8 @@
 			item_state = "hfblade-red"
 			pickup_sound = 'hippiestation/sound/weapons/hfblade-music1.ogg'
 			dropped_sound = 'hippiestation/sound/weapons/hfblade-music2.ogg'
+			brightness = 7
+			light_color = "red"
 			brazil = TRUE
 			user.update_inv_hands()
 			playsound(user, 'sound/vehicles/clowncar_fart.ogg')
