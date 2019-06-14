@@ -1,7 +1,7 @@
 /datum/chemical_reaction/bone_hurting_juice
 	name = "Bone Hurting Juice"
 	id = "bone_hurting_juice"
-	results = list("bone_hurting_juice" = 3)
+	results = list(/datum/reagent/toxin/bone_hurting_juice = 3)
 	required_reagents = list("milk" = 1, "cola" = 1, "carbon" = 1) //Milk for calcium, cola because it rots your teeth and carbon because something to do with calcium carbonate.
 
 /datum/chemical_reaction/bleach
@@ -27,7 +27,7 @@
 /datum/chemical_reaction/aus
 	name = "Ausium"
 	id = "aus"
-	results = list("aus" = 6)
+	results = list(/datum/reagent/toxin/aus = 6)
 	required_reagents = list("space_drugs" = 4, "ethanol" = 2, "lithium" = 2)
 	required_temp = 430
 	centrifuge_recipe = TRUE
@@ -49,7 +49,7 @@
 /datum/chemical_reaction/emote
 	name = "Emotium"
 	id = "emote"
-	results = list("emote" = 5)
+	results = list(/datum/reagent/toxin/emote = 5)
 	required_reagents = list("synaptizine" = 1, "sugar" = 2,"ammonia" = 1)
 	required_catalysts = list("mutagen" = 1)
 	centrifuge_recipe = TRUE
