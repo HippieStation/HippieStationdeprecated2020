@@ -4,11 +4,19 @@
 	var/melting_point = 273//the point at which a reagent changes from a liquid to a solid state
 	var/processes = FALSE
 	var/can_synth_seeds = TRUE
+	var/viscosity = 1 //how 'thick' is it in solution?
 
 /datum/reagent/New()
 	..()
 	if(processes)
 		START_PROCESSING(SSreagent_states, src)
+	switch(initial(reagent_state))
+		if(SOLID)
+			viscosity = 20
+		if(LIQUID)
+			viscosity = 2
+		if(GAS)
+			viscosity = 1
 
 /datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
 	if(processes)
@@ -31,7 +39,7 @@
 			return
 		if(!volume)
 			return
-		if(volume * 0.25 < 1)
+		if(volume < 6)
 			return
 		if(atom)
 			if(is_type_in_typecache(atom, GLOB.no_reagent_statechange_typecache))
@@ -47,8 +55,6 @@
 			return
 
 		if(src.reagent_state == GAS) //VAPOR
-			if(is_type_in_typecache(src, GLOB.vaporchange_reagent_blacklist))
-				return
 			if(atom && istype(atom, /obj/effect/particle_effect))
 				volume = volume * GAS_PARTICLE_EFFECT_EFFICIENCY//big nerf to smoke and foam duping
 
@@ -72,33 +78,51 @@
 
 
 		if(src.reagent_state == LIQUID) //LIQUID
-			if(is_type_in_typecache(src, GLOB.vaporchange_reagent_blacklist)) //this is to prevent lube and clf3 from making chempiles
-				return
 			if(atom && istype(atom, /obj/effect/particle_effect))
 				volume = volume * LIQUID_PARTICLE_EFFECT_EFFICIENCY//big nerf to smoke and foam duping
-
-			for(var/obj/effect/decal/cleanable/chempile/c in T.contents)//handles merging existing chempiles
-				if(c.reagents)
-					if(touch_msg)
-						c.add_fingerprint(touch_mob)
-					c.reagents.add_reagent("[src.id]", volume)
-					var/mixcolor = mix_color_from_reagents(c.reagents.reagent_list)
-					c.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
-					if(c.reagents && c.reagents.total_volume < 5 & NO_REACT)
-						DISABLE_BITFIELD(c.reagents.flags, NO_REACT)
+			var/can_be_chempile = !is_type_in_typecache(src, GLOB.chempile_reagent_blacklist)
+			if(can_be_chempile)
+				for(var/obj/effect/decal/cleanable/chempile/c in T.contents)//handles merging existing chempiles
+					if(c.reagents)
+						if(touch_msg)
+							c.add_fingerprint(touch_mob)
+						c.reagents.add_reagent("[src.id]", volume)
+						var/mixcolor = mix_color_from_reagents(c.reagents.reagent_list)
+						c.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
+						if(c.reagents.total_volume >= 10)
+							var/obj/effect/liquid/W = new /obj/effect/liquid(T)
+							c.reagents.trans_to(W, c.reagents.total_volume)
+							qdel(c)
+							W.depth = CLAMP(W.depth + (c.reagents.total_volume / REAGENT_TO_DEPTH), 0, MAX_INITIAL_DEPTH)
+							W.update_depth()
+							return TRUE
+						if(c.reagents && c.reagents.total_volume < 5 & NO_REACT)
+							DISABLE_BITFIELD(c.reagents.flags, NO_REACT)
+						return TRUE
+			for(var/obj/effect/liquid/L in T.contents)//handles merging existing liquids
+				if(L.reagents)
+					L.reagents.add_reagent("[src.id]", volume * 4)
+					L.depth = CLAMP(L.depth + (volume / REAGENT_TO_DEPTH), 0, MAX_INITIAL_DEPTH)
+					L.update_depth()
 					return TRUE
-
-			var/obj/effect/decal/cleanable/chempile/C = new (T)//otherwise makes a new one
-			if(C.reagents)
-				if(touch_msg)
-					C.add_fingerprint(touch_mob)
-				C.reagents.add_reagent("[src.id]", volume)
-				var/mixcolor = mix_color_from_reagents(C.reagents.reagent_list)
-				C.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
+			if(volume < 10 && !can_be_chempile)
+				var/obj/effect/decal/cleanable/chempile/C = new /obj/effect/decal/cleanable/chempile(T)
+				if(C.reagents)
+					if(touch_msg)
+						C.add_fingerprint(touch_mob)
+					C.reagents.add_reagent("[src.id]", volume)
+					var/mixcolor = mix_color_from_reagents(C.reagents.reagent_list)
+					C.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
+			else
+				var/obj/effect/liquid/W = new /obj/effect/liquid(T)//otherwise makes a new one
+				W.reagents.add_reagent("[src.id]", volume * 4)
+				W.depth = max(volume / REAGENT_TO_DEPTH, 0)
+				if(W.depth <= 0)
+					return
+				W.update_depth()
+				log_game("Reagent liquid of type [src] was released at [COORD(T)] Last Fingerprint: [touch_msg] ")
 
 		if(src.reagent_state == SOLID) //SOLID
-			if(is_type_in_typecache(src, GLOB.solidchange_reagent_blacklist))
-				return
 			if(atom && istype(atom, /obj/effect/particle_effect))
 				volume = volume * SOLID_PARTICLE_EFFECT_EFFICIENCY//big nerf to smoke and foam duping
 
@@ -107,13 +131,15 @@
 					if(touch_msg)
 						SR.add_fingerprint(touch_mob)
 					SR.reagents.add_reagent("[src.id]", volume)
+					SR.bitecount = SR.reagents.total_volume*0.5
 					return TRUE
 
-			var/obj/item/reagent_containers/food/snacks/solid_reagent/Sr = new (T)
+			var/obj/item/reagent_containers/food/snacks/solid_reagent/Sr = new /obj/item/reagent_containers/food/snacks/solid_reagent(T)
 			if(touch_msg)
 				Sr.add_fingerprint(touch_mob)
 			Sr.reagents.add_reagent("[src.id]", volume)
 			Sr.reagent_type = src.id
+			Sr.bitecount = Sr.reagents.total_volume*0.5
 			Sr.name = "solidified [src]"
 			Sr.add_atom_colour(src.color, FIXED_COLOUR_PRIORITY)
 			Sr.filling_color = src.color

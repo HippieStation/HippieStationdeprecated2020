@@ -99,6 +99,7 @@
 /atom/proc/ComponentInitialize()
 	return
 
+ /* hippie start - Mirrored this function in <hippiestation/code/game/atoms.dm> for <to allow for dense atom deletion to wake up inactive liquids> 
 /atom/Destroy()
 	if(alternate_appearances)
 		for(var/K in alternate_appearances)
@@ -116,6 +117,7 @@
 	QDEL_NULL(light)
 
 	return ..()
+*/ //hippie end 
 
 /atom/proc/handle_ricochet(obj/item/projectile/P)
 	return

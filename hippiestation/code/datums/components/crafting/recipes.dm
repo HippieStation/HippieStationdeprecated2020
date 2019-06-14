@@ -196,3 +196,11 @@
 				/obj/item/stack/rods = 1)
 	time = 120
 	category = CAT_MISC
+
+
+/datum/crafting_recipe/drain
+	name = "drain assembly"
+	result = /obj/item/drain_assembly
+	reqs = list(/obj/item/stack/sheet/metal = 1)
+	time = 45
+	category = CAT_MISC

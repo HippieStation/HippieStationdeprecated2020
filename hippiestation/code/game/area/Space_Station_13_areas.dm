@@ -57,3 +57,7 @@
 						 'sound/ambience/ambimaint4.ogg',
 						 'sound/ambience/ambimaint5.ogg',
 						 'sound/spookoween/ghosty_wind.ogg')
+
+
+/area/hippie/singularity_gen
+	name = "Singularity/Tesla Engine" 
