@@ -2,8 +2,6 @@
 	var/nextsoundemote = 1
 
 /datum/emote/living/scream
-	key = "scream"
-	key_third_person = "screams"
 	message = "screams!"
 	message_mime = "acts out a scream."
 	only_forced_audio = FALSE
