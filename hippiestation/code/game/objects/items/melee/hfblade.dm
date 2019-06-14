@@ -69,17 +69,13 @@
 		return ..()
 	. = ..()
 
-/obj/item/melee/hfblade/on_exit_storage(obj/item/storage/S)
+/obj/item/melee/hfblade/on_exit_storage()
 	..()
-	var/obj/item/storage/belt/sabre/B = S
-	if(istype(B))
-		playsound(B, 'sound/items/unsheath.ogg', 25, 1)
+	playsound(src, 'sound/items/unsheath.ogg', 25, 1)
 
-/obj/item/melee/hfblade/on_enter_storage(obj/item/storage/S)
+/obj/item/melee/hfblade/on_enter_storage()
 	..()
-	var/obj/item/storage/belt/sabre/B = S
-	if(istype(B))
-		playsound(B, 'sound/items/sheath.ogg', 25, 1)
+	playsound(src, 'sound/items/sheath.ogg', 25, 1)
 
 
 /obj/item/melee/hfblade/attackby(obj/item/W, mob/living/user, params)
@@ -97,3 +93,53 @@
 			playsound(user, 'sound/vehicles/clowncar_fart.ogg')
 		else
 			to_chat(user, "<span class = 'notice'>Don't get edgier than this, son.</span>")
+
+/obj/item/storage/belt/hfblade
+	name = "edgelord's sheath"
+	desc = "A strange sheath designed to hold an electric blade of some sort. One could only imagine how edgy this guy's musical preference is."
+	icon = 'hippiestation/icons/obj/hfblade.dmi'
+	alternate_worn_icon = 'hippiestation/icons/mob/hfblade.dmi'
+	icon_state = "sheath"
+	item_state = "sheath"
+	w_class = WEIGHT_CLASS_BULKY
+
+/obj/item/storage/belt/hfblade/ComponentInitialize()
+	. = ..()
+	GET_COMPONENT(STR, /datum/component/storage)
+	STR.max_items = 1
+	STR.rustle_sound = FALSE
+	STR.max_w_class = WEIGHT_CLASS_BULKY
+	STR.set_holdable(list(
+		/obj/item/melee/hfblade
+		))
+
+/obj/item/storage/belt/hfblade/examine(mob/user)
+	..()
+	if(length(contents))
+		to_chat(user, "<span class='notice'>Alt-click it to quickly draw the blade.</span>")
+
+/obj/item/storage/belt/hfblade/AltClick(mob/user)
+	if(!iscarbon(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
+		return
+	if(length(contents))
+		var/obj/item/I = contents[1]
+		user.visible_message("[user] takes [I] out of [src].", "<span class='notice'>You take [I] out of [src].</span>")
+		user.put_in_hands(I)
+		update_icon()
+	else
+		to_chat(user, "[src] is empty.")
+
+/obj/item/storage/belt/hfblade/update_icon()
+	icon_state = "sheath"
+	item_state = "sheath"
+	if(contents.len)
+		icon_state += "-sabre"
+		item_state += "-sabre"
+	if(loc && isliving(loc))
+		var/mob/living/L = loc
+		L.regenerate_icons()
+	..()
+
+/obj/item/storage/belt/hfblade/PopulateContents()
+	new /obj/item/melee/hfblade(src)
+	update_icon()
