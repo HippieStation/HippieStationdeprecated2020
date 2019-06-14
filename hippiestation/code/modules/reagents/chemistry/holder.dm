@@ -10,7 +10,7 @@
 		for(var/thing  in subtypesof(/datum/reagent/toxin))
 			var/datum/reagent/RT = thing
 			if(initial(RT.can_synth))
-				random_reagents += initial(RT.type)
+				random_reagents += RT.type
 	var/picked_reagent = pick(random_reagents)
 	return picked_reagent
 
