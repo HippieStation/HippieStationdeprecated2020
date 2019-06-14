@@ -100,7 +100,7 @@
 			light_color = "red"
 			brazil = TRUE
 			user.update_inv_hands()
-			playsound(user, 'sound/vehicles/clowncar_fart.ogg')
+			playsound(user, 'sound/vehicles/clowncar_fart.ogg', 50, 1)
 		else
 			to_chat(user, "<span class = 'notice'>Don't get edgier than this, son.</span>")
 
