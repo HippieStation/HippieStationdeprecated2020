@@ -1,0 +1,5 @@
+author: "Manly Dwarf"
+delete-after: True
+changes: 
+  - rscadd: "Added the High Frequency Blade to Traitors, costs 8 telecrystals. Don't try to disarm it."
+  - soundadd: "Increased likelihood of us getting sued over parody by 500%"
