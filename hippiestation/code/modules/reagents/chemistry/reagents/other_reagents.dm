@@ -17,12 +17,11 @@
 		M.adjustFireLoss(2, 0)
 		M.adjustOxyLoss(2, 0)
 		M.adjustBruteLoss(2, 0)
-	holder.remove_reagent(src.id, 1)
+	holder.remove_reagent(src.type, 1)
 	return FINISHONMOBLIFE(M)
 
 /datum/reagent/shadowling_blindness_smoke
 	name = "odd black liquid"
-	id = "blindness_smoke"
 	description = "<::ERROR::> CANNOT ANALYZE REAGENT <::ERROR::>"
 	color = "#000000" //Complete black (RGB: 0, 0, 0)
 	metabolization_rate = 100 //lel
@@ -76,7 +75,6 @@
 
 /datum/reagent/unstablemutationtoxin	//For some reason the TG Menace seems to have deleted this one :(
 	name = "Unstable Mutation Toxin"	//Also putting this in the hippie tree so that we don't get fucked by TG messing with the reagents again
-	id = "unstablemutationtoxin"
 	description = "A corruptive toxin... it seems to bubble and froth unpredictably. Are you sure you want to be around this for long?"
 	color = "#a872e6" // rgb: 168, 114, 230
 	metabolization_rate = INFINITY

@@ -15,7 +15,7 @@
 /obj/vehicle/ridden/firetruck/Initialize()
 	. = ..()
 	create_reagents(REAGENTS_PER_EFFECT*1000, OPENCONTAINER)
-	reagents.add_reagent("firefighting_foam", REAGENTS_PER_EFFECT*1000)
+	reagents.add_reagent(/datum/reagent/firefighting_foam, REAGENTS_PER_EFFECT*1000)
 	controls = new(src,src)
 	water_cannon = new
 	water_cannon.attach(src)
