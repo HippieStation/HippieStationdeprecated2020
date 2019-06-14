@@ -47,7 +47,7 @@
 
 	spray(A, user)
 
-	playsound(src.loc, 'hippiestation/sound/effects/spray2.ogg', 50, 1, -6) // hippie -- changes the sound to our hippiestation variant
+	playsound(src.loc, 'sound/effects/spray2.ogg', 50, 1, -6)
 	user.changeNext_move(CLICK_CD_RANGE*2)
 	user.newtonian_move(get_dir(A, user))
 
@@ -321,37 +321,6 @@
 	amount_per_transfer_from_this = 5
 	var/generate_amount = 50
 	var/generate_type = /datum/reagent/space_cleaner
-	var/last_generate = 0
-	var/generate_delay = 10	//deciseconds
-
-/obj/item/reagent_containers/spray/chemsprayer/janitor/Initialize()
-	. = ..()
-	START_PROCESSING(SSfastprocess, src)
-
-/obj/item/reagent_containers/spray/chemsprayer/janitor/Destroy()
-	STOP_PROCESSING(SSfastprocess, src)
-	return ..()
-
-/obj/item/reagent_containers/spray/chemsprayer/janitor/process()
-	if(world.time < last_generate + generate_delay)
-		return
-	last_generate = world.time
-	reagents.add_reagent(generate_type, generate_amount)
-
-
-/obj/item/reagent_containers/spray/chemsprayer/janitor
-	name = "janitor chem sprayer"
-	desc = "A utility used to spray large amounts of cleaning reagents in a given area. It regenerates space cleaner by itself but it's unable to be fueled by normal means."
-	icon_state = "chemsprayer_janitor"
-	item_state = "chemsprayer_janitor"
-	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
-	reagent_flags = NONE
-	list_reagents = list("cleaner" = 1000)
-	volume = 1000
-	amount_per_transfer_from_this = 5
-	var/generate_amount = 50
-	var/generate_type = "cleaner"
 	var/last_generate = 0
 	var/generate_delay = 10	//deciseconds
 

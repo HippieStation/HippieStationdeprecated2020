@@ -43,7 +43,7 @@
 			return
 
 		if(R.reagent_type)
-			if(!currently_forging || !currently_forging.id)
+			if(!currently_forging || !currently_forging.type)
 				var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 				if(R.amount <= 0)//this shouldn't exist
 					to_chat(user, "<span class='warning'>The sheet crumbles away into dust, perhaps it was a fake one?</span>")
@@ -54,7 +54,7 @@
 				currently_forging = new R.reagent_type.type
 				return
 
-			if(currently_forging && currently_forging.id && R.reagent_type.id == currently_forging.id)//preventing unnecessary references from being made
+			if(currently_forging && currently_forging.type && R.reagent_type.type == currently_forging.type)//preventing unnecessary references from being made
 				var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 				materials.insert_stack(R, R.amount)
 				to_chat(user, "<span class='notice'>You add [R] to [src]</span>")
@@ -105,7 +105,7 @@
 					var/paths = subtypesof(/datum/reagent)
 					for(var/path in paths)
 						var/datum/reagent/RR = new path
-						if(RR.id == currently_forging.id)
+						if(RR.type == currently_forging.type)
 							F.reagent_type = RR
 							F.assign_properties()
 							break
@@ -176,7 +176,7 @@
 
 					for(var/path in paths)
 						var/datum/reagent/RR = new path
-						if(RR.id == currently_forging.id)
+						if(RR.type == currently_forging.type)
 							RS.reagent_type = RR
 							RS.name = "[RR.name] ingots"
 							RS.singular_name = "[RR.name] ingot"
