@@ -38,8 +38,6 @@
 
 #define STATUS_EFFECT_REGENERATIVE_CORE /datum/status_effect/regenerative_core
 
-#define STATUS_EFFECT_CREEP /datum/status_effect/creep //you feel fuckin great around your obsession
-
 #define STATUS_EFFECT_ANTIMAGIC /datum/status_effect/antimagic //grants antimagic (and reapplies if lost) for the duration
 
 /////////////
@@ -126,3 +124,7 @@
 
 #define STATUS_EFFECT_RAINBOWPROTECTION /datum/status_effect/rainbow_protection //Invulnerable and pacifistic
 #define STATUS_EFFECT_SLIMESKIN /datum/status_effect/slimeskin //Increased armor
+
+// Stasis helpers
+
+#define IS_IN_STASIS(mob) (mob.has_status_effect(STATUS_EFFECT_STASIS))

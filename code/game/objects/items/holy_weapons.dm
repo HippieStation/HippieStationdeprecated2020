@@ -223,8 +223,8 @@
 /obj/item/nullrod/godhand
 	icon_state = "disintegrate"
 	item_state = "disintegrate"
-	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
+	lefthand_file = 'icons/mob/inhands/misc/touchspell_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/touchspell_righthand.dmi'
 	name = "god hand"
 	desc = "This hand of yours glows with an awesome power!"
 	item_flags = ABSTRACT | DROPDEL
@@ -386,6 +386,19 @@
 	attack_verb = list("chopped", "sliced", "cut", "zandatsu'd")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 
+/obj/item/nullrod/Hypertool
+	icon = 'icons/obj/device.dmi'
+	icon_state = "hypertool"
+	item_state = "hypertool"
+	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	slot_flags = ITEM_SLOT_BELT
+	name = "hypertool"
+	desc = "A tool so powerful even you cannot perfectly use it."
+	armour_penetration = 35
+	damtype = BRAIN
+	attack_verb = list("pulsed", "mended", "cut")
+	hitsound = 'sound/effects/sparks4.ogg'
 
 /obj/item/nullrod/scythe/spellblade
 	icon_state = "spellblade"

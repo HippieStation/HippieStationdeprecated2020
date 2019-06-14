@@ -570,7 +570,7 @@
 			qdel(src)
 			return
 
-		GET_COMPONENT_FROM(STR, /datum/component/storage, B)
+		var/datum/component/storage/STR = B.GetComponent(/datum/component/storage)
 		if(STR.max_items > 0)
 			STR.max_items = STR.max_items - 1
 		else
@@ -584,7 +584,7 @@
 		if(!B)
 			return
 
-		GET_COMPONENT_FROM(STR, /datum/component/storage, B)
+		var/datum/component/storage/STR = B.GetComponent(/datum/component/storage)
 		STR.max_items = STR.max_items + 1
 
 

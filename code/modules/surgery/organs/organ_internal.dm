@@ -57,7 +57,7 @@
 
 /obj/item/organ/examine(mob/user)
 	..()
-	if(status == ORGAN_ROBOTIC && crit_fail)
+	if(status == ORGAN_ROBOTIC && broken_cyber_organ)
 		to_chat(user, "<span class='warning'>[src] seems to be broken!</span>")
 
 
@@ -75,7 +75,7 @@
 	name = "appendix"
 	icon_state = "appendix"
 	icon = 'icons/obj/surgery.dmi'
-	list_reagents = list("nutriment" = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5)
 	foodtype = RAW | MEAT | GROSS
 
 

@@ -6,10 +6,10 @@
 	fire_delay = 2
 	actions_types = list(/datum/action/item_action/toggle_firemode)
 	semi_auto = TRUE
-	fire_sound = 'sound/weapons/smgshot.ogg'
+	fire_sound = "sound/weapons/smgshot.ogg"
 	fire_sound_volume = 80
 	vary_fire_sound = FALSE
-	rack_sound = 'sound/weapons/smgrack.ogg'
+	rack_sound = "sound/weapons/smgrack.ogg"
 
 /obj/item/gun/ballistic/automatic/proto
 	name = "\improper Nanotrasen Saber SMG"
@@ -26,10 +26,9 @@
 /obj/item/gun/ballistic/automatic/update_icon()//hippie edit -- bring back old gun icons
 	..()
 	if(!select)
-		add_overlay("[initial(icon_state)]semi")
+		add_overlay("[initial(icon_state)]_semi")
 	if(select == 1)
-		add_overlay("[initial(icon_state)]burst")
-	icon_state = "[initial(icon_state)][magazine ? "-[magazine.max_ammo]" : ""][chambered||!bolt_locked ? "" : "-e"][suppressed ? "-suppressed" : ""]"//hippie end -- bring back old gun icons
+		add_overlay("[initial(icon_state)]_burst")
 
 /obj/item/gun/ballistic/automatic/ui_action_click(mob/user, actiontype)
 	if(istype(actiontype, /datum/action/item_action/toggle_firemode))
@@ -159,14 +158,13 @@
 	else
 		..()
 
-/obj/item/gun/ballistic/automatic/m90/update_icon()//hippie edit -- bring back old gun icons
+/obj/item/gun/ballistic/automatic/m90/update_icon()
 	..()
-	cut_overlays()
 	switch(select)
 		if(0)
-			add_overlay("[initial(icon_state)]semi")
+			add_overlay("[initial(icon_state)]_semi")
 		if(1)
-			add_overlay("[initial(icon_state)]burst")
+			add_overlay("[initial(icon_state)]_burst")
 		if(2)
 			add_overlay("[initial(icon_state)]gren")
 	icon_state = "[initial(icon_state)][magazine ? "" : "-e"]"
@@ -267,6 +265,11 @@
 	icon_state = "[initial(icon_state)][cover_open ? "open" : "closed"][magazine ? CEILING(get_ammo(0)/12.5, 1)*25 : "-empty"][suppressed ? "-suppressed" : ""]"
 	item_state = "[initial(icon_state)][cover_open ? "openmag" : "closedmag"]"//hippie end -- bring back old gun icons
 
+/obj/item/gun/ballistic/automatic/l6_saw/update_icon()
+	. = ..()
+	add_overlay("l6_door_[cover_open ? "open" : "closed"]")
+
+
 /obj/item/gun/ballistic/automatic/l6_saw/afterattack(atom/target as mob|obj|turf, mob/living/user as mob|obj, flag, params)
 	if(cover_open)
 		to_chat(user, "<span class='warning'>[src]'s cover is open! Close it before firing!</span>")
@@ -300,11 +303,11 @@
 	desc = "A long ranged weapon that does significant damage. No, you can't quickscope."
 	icon_state = "sniper"
 	item_state = "sniper"
-	fire_sound = 'sound/weapons/sniper_shot.ogg'
+	fire_sound = "sound/weapons/sniper_shot.ogg"
 	fire_sound_volume = 90
 	vary_fire_sound = FALSE
-	load_sound = 'sound/weapons/sniper_mag_insert.ogg'
-	rack_sound = 'sound/weapons/sniper_rack.ogg'
+	load_sound = "sound/weapons/sniper_mag_insert.ogg"
+	rack_sound = "sound/weapons/sniper_rack.ogg"
 	recoil = 2
 	weapon_weight = WEAPON_HEAVY
 	mag_type = /obj/item/ammo_box/magazine/sniper_rounds

@@ -47,7 +47,6 @@
 #define BADBLINK	/datum/mutation/human/badblink
 #define SPASTIC		/datum/mutation/human/spastic
 #define EXTRASTUN	/datum/mutation/human/extrastun
-#define YELLING		/datum/mutation/human/yelling
 #define GELADIKINESIS		/datum/mutation/human/geladikinesis
 #define CRYOKINESIS /datum/mutation/human/cryokinesis
 
@@ -144,6 +143,7 @@
 #define ORGAN_SLOT_BRAIN_ANTIDROP "brain_antidrop"
 #define ORGAN_SLOT_BRAIN_ANTISTUN "brain_antistun"
 #define ORGAN_SLOT_TAIL "tail"
+#define ORGAN_SLOT_PARASITE_EGG "parasite_egg"
 
 
 //used for the can_chromosome var on mutations

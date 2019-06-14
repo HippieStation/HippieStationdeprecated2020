@@ -302,6 +302,8 @@
 				if(HAS_TRAIT(src, TRAIT_STRONG_GRABBER))
 					C.grippedby(src)
 
+			update_pull_movespeed()
+
 		set_pull_offsets(M, state)
 
 /mob/living/proc/set_pull_offsets(mob/living/M, grab_state = GRAB_PASSIVE)
@@ -356,6 +358,7 @@
 	if(ismob(pulling))
 		reset_pull_offsets(pulling)
 	..()
+	update_pull_movespeed()
 	update_pull_hud_icon()
 
 /mob/living/verb/stop_pulling1()
@@ -385,7 +388,7 @@
 		death()
 
 /mob/living/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, check_immobilized = FALSE, ignore_stasis = FALSE)
-	if(stat || IsUnconscious() || IsStun() || IsParalyzed() || (check_immobilized && IsImmobilized()) || (!ignore_restraints && restrained(ignore_grab)) || (!ignore_stasis && IsInStasis()))
+	if(stat || IsUnconscious() || IsStun() || IsParalyzed() || (check_immobilized && IsImmobilized()) || (!ignore_restraints && restrained(ignore_grab)) || (!ignore_stasis && IS_IN_STASIS(src)))
 		return TRUE
 
 /mob/living/canUseStorage()
@@ -569,7 +572,7 @@
 	stuttering = 0
 	slurring = 0
 	jitteriness = 0
-	GET_COMPONENT(mood, /datum/component/mood)
+	var/datum/component/mood/mood = GetComponent(/datum/component/mood)
 	if (mood)
 		mood.remove_temp_moods(admin_revive)
 	update_mobility()
@@ -593,6 +596,10 @@
 
 	var/old_direction = dir
 	var/turf/T = loc
+
+	if(pulling)
+		update_pull_movespeed()
+
 	. = ..()
 
 	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1 && (pulledby != moving_from_pull))//separated from our puller and not in the middle of a diagonal move.
@@ -905,7 +912,7 @@ hippie end */
 	return 1
 
 //used in datum/reagents/reaction() proc
-/mob/living/proc/get_permeability_protection()
+/mob/living/proc/get_permeability_protection(list/target_zones)
 	return 0
 
 /mob/living/proc/harvest(mob/living/user) //used for extra objects etc. in butchering
@@ -1011,7 +1018,8 @@ hippie end */
 /mob/living/proc/fakefire()
 	return
 
-
+/mob/living/proc/unfry_mob() //Callback proc to tone down spam from multiple sizzling frying oil dipping.
+	REMOVE_TRAIT(src, TRAIT_OIL_FRIED, "cooking_oil_react")
 
 //Mobs on Fire
 /mob/living/proc/IgniteMob()
@@ -1101,8 +1109,7 @@ hippie end */
 	var/stun = IsStun()
 	var/knockdown = IsKnockdown()
 	var/ignore_legs = get_leg_ignore()
-	var/in_stasis = IsInStasis()
-	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && !in_stasis && !pinned_to &&(has_arms || ignore_legs || has_legs) //hippie edit - support for pinning
+	var/canmove = !IsImmobilized() && !stun && conscious && !paralyzed && !buckled && (!stat_softcrit || !pulledby) && !chokehold && !IsFrozen() && !IS_IN_STASIS(src) && (has_arms || ignore_legs || has_legs) && !pinned_to
 	if(canmove)
 		mobility_flags |= MOBILITY_MOVE
 	else
@@ -1130,6 +1137,7 @@ hippie end */
 		mobility_flags &= ~(MOBILITY_UI|MOBILITY_PULL)
 	else
 		mobility_flags |= MOBILITY_UI|MOBILITY_PULL
+
 
 
 	var/canitem = !paralyzed && !stun && conscious && !chokehold && !restrained && has_arms

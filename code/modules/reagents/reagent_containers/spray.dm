@@ -161,7 +161,7 @@
 	name = "space cleaner"
 	desc = "BLAM!-brand non-foaming space cleaner!"
 	volume = 100
-	list_reagents = list("cleaner" = 100)
+	list_reagents = list(/datum/reagent/space_cleaner = 100)
 	amount_per_transfer_from_this = 2
 	stream_amount = 5
 
@@ -184,7 +184,7 @@
 	name = "spray tan"
 	volume = 50
 	desc = "Gyaro brand spray tan. Do not spray near eyes or other orifices."
-	list_reagents = list("spraytan" = 50)
+	list_reagents = list(/datum/reagent/spraytan = 50)
 
 
 //pepperspray
@@ -199,7 +199,7 @@
 	volume = 40
 	stream_range = 4
 	amount_per_transfer_from_this = 5
-	list_reagents = list("condensedcapsaicin" = 40)
+	list_reagents = list(/datum/reagent/consumable/condensedcapsaicin = 40)
 
 /obj/item/reagent_containers/spray/pepper/empty //for protolathe printing
 	list_reagents = null
@@ -223,7 +223,7 @@
 	item_state = "sunflower"
 	amount_per_transfer_from_this = 1
 	volume = 10
-	list_reagents = list("water" = 10)
+	list_reagents = list(/datum/reagent/water = 10)
 
 /obj/item/reagent_containers/spray/waterflower/attack_self(mob/user) //Don't allow changing how much the flower sprays
 	return
@@ -231,9 +231,9 @@
 /obj/item/reagent_containers/spray/waterflower/cyborg
 	reagent_flags = NONE
 	volume = 100
-	list_reagents = list("water" = 100)
+	list_reagents = list(/datum/reagent/water = 100)
 	var/generate_amount = 5
-	var/generate_type = "water"
+	var/generate_type = /datum/reagent/water
 	var/last_generate = 0
 	var/generate_delay = 10	//deciseconds
 	can_fill_from_container = FALSE
@@ -241,9 +241,9 @@
 /obj/item/reagent_containers/spray/waterflower/cyborg/hacked
 	name = "nova flower"
 	desc = "This doesn't look safe at all..."
-	list_reagents = list("clf3" = 3)
+	list_reagents = list(/datum/reagent/clf3 = 3)
 	volume = 3
-	generate_type = "clf3"
+	generate_type = /datum/reagent/clf3
 	generate_amount = 1
 	generate_delay = 40		//deciseconds
 
@@ -305,7 +305,38 @@
 		..(the_targets[i], user)
 
 /obj/item/reagent_containers/spray/chemsprayer/bioterror
-	list_reagents = list("sodium_thiopental" = 100, "coniine" = 100, "venom" = 100, "condensedcapsaicin" = 100, "initropidril" = 100, "polonium" = 100)
+	list_reagents = list(/datum/reagent/toxin/sodium_thiopental = 100, /datum/reagent/toxin/coniine = 100, /datum/reagent/toxin/venom = 100, /datum/reagent/consumable/condensedcapsaicin = 100, /datum/reagent/toxin/initropidril = 100, /datum/reagent/toxin/polonium = 100)
+
+
+/obj/item/reagent_containers/spray/chemsprayer/janitor
+	name = "janitor chem sprayer"
+	desc = "A utility used to spray large amounts of cleaning reagents in a given area. It regenerates space cleaner by itself but it's unable to be fueled by normal means."
+	icon_state = "chemsprayer_janitor"
+	item_state = "chemsprayer_janitor"
+	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+	reagent_flags = NONE
+	list_reagents = list(/datum/reagent/space_cleaner = 1000)
+	volume = 1000
+	amount_per_transfer_from_this = 5
+	var/generate_amount = 50
+	var/generate_type = /datum/reagent/space_cleaner
+	var/last_generate = 0
+	var/generate_delay = 10	//deciseconds
+
+/obj/item/reagent_containers/spray/chemsprayer/janitor/Initialize()
+	. = ..()
+	START_PROCESSING(SSfastprocess, src)
+
+/obj/item/reagent_containers/spray/chemsprayer/janitor/Destroy()
+	STOP_PROCESSING(SSfastprocess, src)
+	return ..()
+
+/obj/item/reagent_containers/spray/chemsprayer/janitor/process()
+	if(world.time < last_generate + generate_delay)
+		return
+	last_generate = world.time
+	reagents.add_reagent(generate_type, generate_amount)
 
 
 /obj/item/reagent_containers/spray/chemsprayer/janitor
@@ -348,4 +379,4 @@
 	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
 	volume = 100
-	list_reagents = list("plantbgone" = 100)
+	list_reagents = list(/datum/reagent/toxin/plantbgone = 100)

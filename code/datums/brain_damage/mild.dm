@@ -192,7 +192,8 @@
 
 	var/static/list/common_words = world.file2list("strings/1000_most_common.txt")
 
-/datum/brain_trauma/mild/expressive_aphasia/on_say(message)
+/datum/brain_trauma/mild/expressive_aphasia/handle_speech(datum/source, list/speech_args)
+	var/message = speech_args[SPEECH_MESSAGE]
 	if(message)
 		var/list/message_split = splittext(message, " ")
 		var/list/new_message = list()
@@ -222,4 +223,4 @@
 					
 		message = jointext(new_message, " ")
 		
-	return trim(message)
+	speech_args[SPEECH_MESSAGE] = trim(message)

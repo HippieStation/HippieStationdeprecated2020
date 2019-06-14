@@ -177,14 +177,13 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 1
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
 	},
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Frigate Bar APC";
-	pixel_x = -24;
+	pixel_x = -25;
 	req_access = null
 	},
 /obj/structure/spider/stickyweb,
@@ -352,7 +351,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/external/glass{
@@ -393,7 +392,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -403,10 +402,10 @@
 /area/shuttle/abandoned/engine)
 "aQ" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -419,7 +418,7 @@
 /area/shuttle/abandoned/crew)
 "aR" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -432,7 +431,7 @@
 /area/shuttle/abandoned/crew)
 "aS" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -446,7 +445,7 @@
 "aT" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/light/small,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/machinery/airalarm/all_access{
@@ -467,19 +466,19 @@
 /area/shuttle/abandoned/crew)
 "aU" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "Frigate Crew Quarters APC";
-	pixel_y = 24;
+	pixel_y = 23;
 	req_access = null
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -493,7 +492,7 @@
 "aV" = (
 /obj/machinery/light/small/built,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -507,7 +506,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/external/glass{
@@ -527,7 +526,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -542,7 +541,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -558,7 +557,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
@@ -568,7 +567,7 @@
 /area/shuttle/abandoned/crew)
 "ba" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
 /obj/effect/turf_decal/tile/bar,
@@ -702,7 +701,7 @@
 	dir = 4;
 	pixel_x = -24
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
@@ -732,7 +731,7 @@
 /obj/machinery/light/small/built{
 	dir = 8
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/structure/spider/stickyweb,
@@ -775,7 +774,7 @@
 "bq" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/door/firedoor,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/public/glass{
@@ -862,7 +861,7 @@
 /area/shuttle/abandoned/engine)
 "bz" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -897,7 +896,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/door/firedoor,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -922,7 +921,7 @@
 /area/shuttle/abandoned/crew)
 "bG" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/tile/blue,
@@ -1035,7 +1034,7 @@
 /area/shuttle/abandoned/engine)
 "bQ" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/structure/spider/stickyweb,
@@ -1053,7 +1052,7 @@
 	req_access = null
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -1090,7 +1089,7 @@
 "bU" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/airalarm/all_access{
@@ -1145,7 +1144,7 @@
 /area/shuttle/abandoned/bridge)
 "bX" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -1190,7 +1189,7 @@
 /area/shuttle/abandoned/crew)
 "cb" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/structure/spider/stickyweb,
@@ -1207,7 +1206,7 @@
 	name = "Engineering"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -1224,13 +1223,13 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Frigate Bridge APC";
-	pixel_x = -24;
+	pixel_x = -25;
 	req_access = null
 	},
 /obj/effect/turf_decal/tile/blue{
@@ -1243,10 +1242,10 @@
 /area/shuttle/abandoned/bridge)
 "cf" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
 /obj/item/gun/energy/laser/retro,
@@ -1290,7 +1289,7 @@
 /area/shuttle/abandoned/bridge)
 "cj" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/structure/spider/stickyweb,
@@ -1310,20 +1309,20 @@
 /obj/machinery/power/smes/engineering{
 	charge = 1e+006
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "cl" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc{
@@ -1373,7 +1372,7 @@
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -1414,7 +1413,7 @@
 /area/shuttle/abandoned/crew)
 "cr" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/tile/blue{
@@ -1431,16 +1430,15 @@
 /obj/machinery/power/terminal{
 	dir = 1
 	},
-/obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 1
-	},
 /obj/machinery/space_heater,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "ct" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/button/door{
@@ -1480,7 +1478,7 @@
 "cv" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/firealarm{
@@ -1527,13 +1525,13 @@
 /obj/machinery/power/port_gen/pacman{
 	anchored = 1
 	},
-/obj/structure/cable,
 /obj/item/wrench,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/abandoned/engine)
 "cC" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/effect/decal/cleanable/oil,
@@ -1686,7 +1684,7 @@
 	dir = 4;
 	pixel_x = -24
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/structure/spider/stickyweb,
@@ -1707,7 +1705,7 @@
 /obj/machinery/light/small/built{
 	dir = 8
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/effect/turf_decal/tile/blue{
@@ -1750,7 +1748,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/door/firedoor,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -1871,7 +1869,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
 /obj/structure/spider/stickyweb,
@@ -1882,7 +1880,7 @@
 /area/shuttle/abandoned/engine)
 "dd" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -1895,7 +1893,7 @@
 	name = "Engineering"
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -1905,10 +1903,10 @@
 /area/shuttle/abandoned/engine)
 "df" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
@@ -1916,7 +1914,7 @@
 /area/shuttle/abandoned/medbay)
 "dg" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -1928,7 +1926,7 @@
 /obj/machinery/door/airlock/medical{
 	name = "Medbay Storage"
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -1949,7 +1947,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/structure/spider/stickyweb,
@@ -1965,7 +1963,7 @@
 /area/shuttle/abandoned/medbay)
 "dk" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
@@ -1977,13 +1975,13 @@
 /area/shuttle/abandoned/medbay)
 "dl" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
@@ -1996,7 +1994,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -2012,7 +2010,7 @@
 	},
 /obj/machinery/light/small/built,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -2023,7 +2021,7 @@
 "do" = (
 /obj/effect/turf_decal/stripes/white/line,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -2037,7 +2035,7 @@
 	},
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/light/small,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/structure/spider/stickyweb,
@@ -2048,7 +2046,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/external/glass{
@@ -2066,7 +2064,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/external/glass{
@@ -2086,7 +2084,7 @@
 /area/shuttle/abandoned/cargo)
 "dt" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -2236,7 +2234,7 @@
 /area/shuttle/abandoned/medbay)
 "dG" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /mob/living/simple_animal/hostile/poison/giant_spider/hunter{
@@ -2269,13 +2267,13 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable,
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Frigate Cargo APC";
-	pixel_x = -24;
+	pixel_x = -25;
 	req_access = null
 	},
+/obj/structure/cable/yellow,
 /turf/open/floor/plasteel,
 /area/shuttle/abandoned/cargo)
 "dK" = (
@@ -2519,7 +2517,7 @@
 /area/shuttle/abandoned/medbay)
 "oo" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/effect/turf_decal/tile/neutral{

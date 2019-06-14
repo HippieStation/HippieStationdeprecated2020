@@ -89,7 +89,7 @@
 			H.electrocution_animation(10)
 		addtimer(CALLBACK(user, /mob/proc/gib), 10)
 	else
-		GET_COMPONENT_FROM(STR, /datum/component/storage, B)
+		var/datum/component/storage/STR = B.GetComponent(/datum/component/storage)
 
 		if(STR)
 			var/list/STR_contents = STR.contents()
@@ -166,7 +166,7 @@
 			playsound(user, 'hippiestation/sound/effects/fart.ogg', 100, 1, 5)
 			sleep(1)
 		playsound(user, 'hippiestation/sound/effects/fartmassive.ogg', 75, 1, 5)
-		GET_COMPONENT_FROM(STR, /datum/component/storage, B)
+		var/datum/component/storage/STR = B.GetComponent(/datum/component/storage)
 
 		if(STR)
 			var/list/STR_contents = STR.contents()

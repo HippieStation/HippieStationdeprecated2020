@@ -23,7 +23,7 @@
 
 /obj/item/storage/backpack/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 21
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.max_items = 21
@@ -38,7 +38,7 @@
 
 /obj/item/storage/backpack/old/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 12
 
 /obj/item/storage/backpack/holding
@@ -53,7 +53,7 @@
 
 /obj/item/storage/backpack/holding/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.allow_big_nesting = TRUE
 	STR.max_w_class = WEIGHT_CLASS_GIGANTIC
 	STR.max_combined_w_class = 35
@@ -83,7 +83,7 @@
 
 /obj/item/storage/backpack/santabag/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_w_class = WEIGHT_CLASS_NORMAL
 	STR.max_combined_w_class = 60
 
@@ -98,7 +98,7 @@
 	if(!istype(M))
 		return
 	if(HAS_TRAIT(M, TRAIT_CANNOT_OPEN_PRESENTS))
-		GET_COMPONENT(STR, /datum/component/storage)
+		var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 		var/turf/floor = get_turf(src)
 		var/obj/item/I = new /obj/item/a_gift/anything(floor)
 		if(STR.can_be_inserted(I, stop_messages=TRUE))
@@ -299,7 +299,7 @@
 
 /obj/item/storage/backpack/satchel/flat/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 15
 	STR.set_holdable(null, list(/obj/item/storage/backpack/satchel/flat)) //muh recursive backpacks)
 
@@ -341,7 +341,7 @@
 
 /obj/item/storage/backpack/duffelbag/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = 30
 
 /obj/item/storage/backpack/duffelbag/captain
@@ -437,7 +437,7 @@
 
 /obj/item/storage/backpack/duffelbag/syndie/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.silent = TRUE
 
 /obj/item/storage/backpack/duffelbag/syndie/hitman
@@ -490,7 +490,7 @@
 /obj/item/storage/backpack/duffelbag/syndie/ammo/shotgun/PopulateContents()
 	for(var/i in 1 to 6)
 		new /obj/item/ammo_box/magazine/m12g(src)
-	new /obj/item/ammo_box/magazine/m12g/stun(src)
+	new /obj/item/ammo_box/magazine/m12g/slug(src)
 	new /obj/item/ammo_box/magazine/m12g/slug(src)
 	new /obj/item/ammo_box/magazine/m12g/dragon(src)
 
@@ -514,9 +514,9 @@
 	desc = "A large duffel bag containing a Bulldog, some drums, and a pair of thermal imaging glasses."
 
 /obj/item/storage/backpack/duffelbag/syndie/bulldogbundle/PopulateContents()
-	new /obj/item/ammo_box/magazine/m12g(src)
 	new /obj/item/gun/ballistic/shotgun/bulldog(src)
-	new /obj/item/ammo_box/magazine/m12g/stun(src)
+	new /obj/item/ammo_box/magazine/m12g(src)
+	new /obj/item/ammo_box/magazine/m12g(src)
 	new /obj/item/clothing/glasses/thermal/syndi(src)
 
 /obj/item/storage/backpack/duffelbag/syndie/med/medicalbundle
@@ -576,7 +576,7 @@
 // For ClownOps.
 /obj/item/storage/backpack/duffelbag/clown/syndie/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	slowdown = 0
 	STR.silent = TRUE
 

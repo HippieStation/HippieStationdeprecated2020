@@ -44,7 +44,7 @@
 
 		if(R.reagent_type)
 			if(!currently_forging || !currently_forging.id)
-				GET_COMPONENT(materials, /datum/component/material_container)
+				var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 				if(R.amount <= 0)//this shouldn't exist
 					to_chat(user, "<span class='warning'>The sheet crumbles away into dust, perhaps it was a fake one?</span>")
 					qdel(R)
@@ -55,7 +55,7 @@
 				return
 
 			if(currently_forging && currently_forging.id && R.reagent_type.id == currently_forging.id)//preventing unnecessary references from being made
-				GET_COMPONENT(materials, /datum/component/material_container)
+				var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 				materials.insert_stack(R, R.amount)
 				to_chat(user, "<span class='notice'>You add [R] to [src]</span>")
 				return
@@ -68,7 +68,7 @@
 
 
 /obj/machinery/reagent_forge/proc/check_cost(materials, using)
-	GET_COMPONENT(ourmaterials, /datum/component/material_container)
+	var/datum/component/material_container/ourmaterials = GetComponent(/datum/component/material_container)
 
 	if(ourmaterials.amount(MAT_REAGENT) <= 0)
 		qdel(currently_forging)
@@ -138,7 +138,7 @@
 				lowest_cost = cost
 	sortList(listofrecipes)
 
-	GET_COMPONENT(materials, /datum/component/material_container)
+	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	data["recipes"] = listofrecipes
 	data["currently_forging"] = currently_forging ? currently_forging : "Nothing"
 	data["material_amount"] = materials.amount(MAT_REAGENT)
@@ -165,7 +165,7 @@
 
 		if("Dump")
 			if(currently_forging)
-				GET_COMPONENT(materials, /datum/component/material_container)
+				var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 				var/amount = materials.amount(MAT_REAGENT)
 				if(amount > 0)
 					var/list/materials_used = list(MAT_REAGENT=amount)
