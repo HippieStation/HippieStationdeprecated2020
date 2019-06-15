@@ -9232,6 +9232,10 @@
 	},
 /turf/open/floor/engine/cult,
 /area/wizard_station)
+"tY" = (
+/obj/effect/spawner/template/thanos_farm,
+/turf/open/space/basic,
+/area/space)
 "ud" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "nukeop_ready";
@@ -29933,7 +29937,7 @@ aa
 aa
 aa
 aa
-aa
+tY
 aa
 aa
 aa
