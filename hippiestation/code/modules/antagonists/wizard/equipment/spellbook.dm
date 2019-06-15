@@ -1,3 +1,21 @@
+/obj/item/spellbook
+	var/gauntlet_flag = FALSE
+
+/obj/item/spellbook/attackby(obj/item/O, mob/user, params)
+	if(istype(O, /obj/item/badmin_gauntlet))
+		var/obj/item/badmin_gauntlet/IG = O
+		if(IG.locked_on)
+			to_chat(user, "<span class='notice'>You've put the gauntlet on already. No turning back now.</span>")
+			return
+		to_chat(user, "<span class='notice'>On second thought, wiping out half the universe is possibly a bad idea. You refund your points.</span>")
+		uses += 10
+		for(var/datum/spellbook_entry/item/badmin_gauntlet/I in entries)
+			if(!isnull(I.limit))
+				I.limit++
+		qdel(O)
+		return
+	return ..()
+
 /datum/spellbook_entry/lichdom/IsAvailible()
 	return FALSE
 
@@ -22,6 +40,14 @@
 /datum/spellbook_entry/item/mjolnir
 	desc = "A mighty hammer on load from Thor, God of Thunder. It crackles with darely contained power. Counts as a staff."
 	cost = 1
+
+/datum/spellbook_entry/item/mjolnir/Buy(mob/living/carbon/human/user, obj/item/spellbook/book)
+	. = ..()
+	user.worthiness += 5
+
+/datum/spellbook_entry/item/mjolnir/Refund(mob/living/carbon/human/user, obj/item/spellbook/book)
+	. = ..()
+	user.worthiness -= 5
 
 /datum/spellbook_entry/item/singularity_hammer
 	desc = "A hammer that creates an intensely powerful field of gravity where it strikes, pulling everything nearby to the point of impact. Counts as a staff."
@@ -99,6 +125,27 @@
 	desc = "Consider this more of a \"spell bundle.\" This artifact is NOT reccomended for weaklings. An ancient scroll that will teach you the art of Plasma Fist. With it's various combos you can knock people down in the area around you, light them on fire and finally perform the PLASMA FIST that will gib your target."
 	item_path = /obj/item/plasma_fist_scroll
 	cost = 3
+
+/datum/spellbook_entry/item/badmin_gauntlet
+	name = "Badmin Gauntlet"
+	desc = "A gauntlet capable of holding the Badmin Stones. <b>Wearing this will trigger a war declaration!</b>. Before you wear it, you can refund it by hitting it against the spellbook. \
+		<b>You cannot buy this if you have bought anything else!</b> \
+		Requires 27+ crew."
+	item_path = /obj/item/badmin_gauntlet
+	category = "Rituals"
+	cost = 10
+
+/datum/spellbook_entry/item/badmin_gauntlet/IsAvailible()
+	if(!..())
+		return FALSE
+	return (SSticker.mode.name != "ragin' mages") && !GLOB.gauntlet_equipped
+
+/datum/spellbook_entry/item/badmin_gauntlet/Buy(mob/living/carbon/human/user, obj/item/spellbook/book)
+	. = ..()
+	book.uses = 0
+
+/datum/spellbook_entry/item/badmin_gauntlet/CanBuy(mob/living/carbon/human/user, obj/item/spellbook/book)
+	return ..() && !book.gauntlet_flag && (GLOB.Debug2 || GLOB.joined_player_list.len >= 27)
 
 /datum/spellbook_entry/summon/guns/IsAvailible()
 	if (!..())
