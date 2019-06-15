@@ -1,0 +1,8 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - rscadd: "The Badmin Gauntlet!"
+  - rscadd: "Wizards, for all their spellpoints, can now declare war by buying the Badmin Gauntlet!"
+  - rscadd: "Their objective is to collect all 6 Infinity Stones and snap out half the station!"
+  - bugfix: "Autoshotguns should no longer be lag guns"
+  - bugfix: "Admins can now delete stationloving stuff"
