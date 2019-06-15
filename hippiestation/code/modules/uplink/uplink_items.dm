@@ -557,3 +557,11 @@
 	desc = "A fully-loaded Aussec Armoury belt-fed machine gun kit. \
 			Comes with a massive 50-round magazine of devastating 7.12x82mm ammunition."
 	item = /obj/item/storage/box/syndie_kit/l6saw
+
+/datum/uplink_item/dangerous/vibroblade
+	name = "High Frequency Blade"
+	desc = "An electric katana that weakens the molecular bonds of whatever it touches. Perfect for slicing off the limbs of your coworkers. \
+	Avoid using a multitool on it."
+	item = /obj/item/storage/belt/hfblade
+	cost = 8
+	surplus = 15
