@@ -192,11 +192,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(!(AGENDER in pref_species.species_traits))
 				var/dispGender
 				if(gender == MALE)
-					dispGender = "Masculine (He/Him)"
+					dispGender = "Male" // hippie -- fix /tg/nonsense
 				else if(gender == FEMALE)
-					dispGender = "Feminine (She/Her)"
+					dispGender = "Female" // hippie -- fix /tg/nonsense
 				else
-					dispGender = "Other (They/Them)"
+					dispGender = "Other" // hippie -- fix /tg/nonsense
 				dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'>[dispGender]</a><BR>"
 			dat += "<b>Age:</b> <a href='?_src_=prefs;preference=age;task=input'>[age]</a><BR>"
 
