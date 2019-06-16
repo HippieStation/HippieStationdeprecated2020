@@ -10,22 +10,22 @@
 		"dexterity",
 		"constitution",
 		"intelligence",
-		"wisdom", 
+		"wisdom",
 		"charisma",
 		"the forest",
-		"the hills", 
-		"the plains", 
-		"the sea", 
-		"the sun", 
-		"the moon", 
-		"the void", 
-		"the world", 
-		"many secrets", 
-		"many tales", 
-		"many colors", 
-		"rending", 
-		"sundering", 
-		"the night", 
+		"the hills",
+		"the plains",
+		"the sea",
+		"the sun",
+		"the moon",
+		"the void",
+		"the world",
+		"many secrets",
+		"many tales",
+		"many colors",
+		"rending",
+		"sundering",
+		"the night",
 		"the day",
 		)
 	badSuffixes = list(
@@ -165,5 +165,5 @@
 /datum/fantasy_affix/fool/apply(datum/component/fantasy/comp, newName)
 	. = ..()
 	var/obj/item/master = comp.parent
-	comp.appliedComponents += master.AddComponent(/datum/component/squeak/bikehorn)
+	comp.appliedComponents += master.AddComponent(/datum/component/squeak, list('sound/items/bikehorn.ogg'=1), 50)
 	return "[newName] of the fool"
