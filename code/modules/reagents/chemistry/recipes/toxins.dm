@@ -81,12 +81,6 @@
 	results = list(/datum/reagent/toxin/ghoulpowder = 2)
 	required_reagents = list(/datum/reagent/toxin/zombiepowder = 1, /datum/reagent/medicine/epinephrine = 1)
 
-/datum/chemical_reaction/ghoulpowder
-	name = "Ghoul Powder"
-	id = "ghoulpowder"
-	results = list("ghoulpowder" = 2)
-	required_reagents = list("zombiepowder" = 1, "epinephrine" = 1)
-
 /datum/chemical_reaction/mindbreaker
 	name = "Mindbreaker Toxin"
 	id = /datum/reagent/toxin/mindbreaker

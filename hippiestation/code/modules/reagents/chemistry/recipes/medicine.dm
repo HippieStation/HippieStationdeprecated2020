@@ -41,7 +41,7 @@
 /datum/chemical_reaction/liquid_life
 	name = "Liquid life"
 	id = "liquid_life"
-	results = list(/datum/reagent/medicine/liquid_life = 3, INVALID = 2)
+	results = list(/datum/reagent/medicine/liquid_life = 3, /datum/reagent/toxin/methphos = 2)
 	required_reagents = list(/datum/reagent/medicine/superzine = 1, /datum/reagent/medicine/virogone = 1, /datum/reagent/medicine/defib = 1)
 	bluespace_recipe = TRUE
 
