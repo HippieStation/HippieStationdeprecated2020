@@ -15,7 +15,7 @@
 		M.nutrition = max(M.nutrition - rand(0,10), 1) //Cannot go below 1.
 	return FINISHONMOBLIFE(M)
 
-/datum/reagent/medicine/ephedrine/on_mob_delete(mob/living/M)
+/datum/reagent/medicine/ephedrine/on_mob_end_metabolize(mob/living/M)
 	if (istype(M))
 		M.remove_movespeed_modifier(type)
 	..()
@@ -56,7 +56,7 @@
 		M.Knockdown(30, 0)
 	..()
 
-/datum/reagent/medicine/superzine/on_mob_delete(mob/living/M)
+/datum/reagent/medicine/superzine/on_mob_end_metabolize(mob/living/M)
 	if (istype(M))
 		M.remove_movespeed_modifier(type)
 	..()

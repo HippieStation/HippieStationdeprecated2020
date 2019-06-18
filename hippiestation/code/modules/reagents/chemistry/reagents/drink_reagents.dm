@@ -56,13 +56,13 @@
 	var/old_skin_tone
 	var/old_hair_style
 
-/datum/reagent/consumable/lean/on_mob_add(mob/living/L)
+/datum/reagent/consumable/lean/on_mob_metabolize(mob/living/L)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		old_skin_tone = H.skin_tone
 		old_hair_style = H.hair_style
 
-/datum/reagent/consumable/lean/on_mob_delete(mob/living/L)
+/datum/reagent/consumable/lean/on_mob_end_metabolize(mob/living/L)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		H.skin_tone = old_skin_tone

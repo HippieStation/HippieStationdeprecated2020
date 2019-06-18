@@ -165,7 +165,7 @@
 			M.dropItemToGround(M.get_active_held_item())
 	return FINISHONMOBLIFE(M)
 
-/datum/reagent/drug/bath_salts/on_mob_delete(mob/living/M)
+/datum/reagent/drug/bath_salts/on_mob_end_metabolize(mob/living/M)
 	if (istype(M))
 		M.remove_movespeed_modifier(type)
 	..()
@@ -395,7 +395,7 @@
 		to_chat(H, "<i>You hear your own thoughts... <b>[high_message]</i></b>")
 	..()
 
-/datum/reagent/drug/grape_blast/on_mob_delete(mob/living/L)
+/datum/reagent/drug/grape_blast/on_mob_end_metabolize(mob/living/L)
 	cure_autism(L)
 	..()
 

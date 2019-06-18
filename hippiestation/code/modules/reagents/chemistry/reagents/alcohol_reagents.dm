@@ -121,7 +121,7 @@
 		. = 1
 	..()
 
-/datum/reagent/consumable/ethanol/manly_dorf/on_mob_add(mob/living/M)
+/datum/reagent/consumable/ethanol/manly_dorf/on_mob_metabolize(mob/living/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.facial_hair_style = "Dwarf Beard"

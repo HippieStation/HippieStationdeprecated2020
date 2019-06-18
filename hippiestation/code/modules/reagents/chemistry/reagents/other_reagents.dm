@@ -81,7 +81,7 @@
 	taste_description = "fizzy slime"
 	can_synth = TRUE
 
-/datum/reagent/unstablemutationtoxin/on_mob_add(mob/living/carbon/human/H)
+/datum/reagent/unstablemutationtoxin/on_mob_metabolize(mob/living/carbon/human/H)
 	..()
 	if(!istype(H))
 		return

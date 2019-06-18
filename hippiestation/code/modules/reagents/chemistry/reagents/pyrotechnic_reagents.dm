@@ -291,7 +291,7 @@
 				T.atmos_spawn_air("water_vapor= 40 ;TEMP= 298")//janitor friendly
 	..()
 
-/datum/reagent/arclumin/on_mob_delete(mob/living/M)// so you don't remain at luminosity 3 forever
+/datum/reagent/arclumin/on_mob_end_metabolize(mob/living/M)// so you don't remain at luminosity 3 forever
 	M.set_light(0)
 
 /datum/reagent/arclumin/reaction_mob(mob/living/M, method=TOUCH, reac_volume, show_message = 1)//weak on touch, short teleport and low damage shock, will however give a permanent weak glow

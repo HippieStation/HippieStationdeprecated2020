@@ -411,7 +411,7 @@
 
 	..()
 
-/datum/reagent/impedrezene/on_mob_delete(mob/living/M)
+/datum/reagent/impedrezene/on_mob_end_metabolize(mob/living/M)
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 		REMOVE_TRAIT(H, TRAIT_CLUMSY, type)
