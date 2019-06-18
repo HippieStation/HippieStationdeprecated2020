@@ -8,6 +8,10 @@
 	icon = 'hippiestation/icons/obj/statue.dmi'
 	icon_state = "asstue"
 
+/obj/structure/statue/sandstone/asstue/Initialize()
+	. = ..()
+	AddComponent(/datum/component/art, 50) // such fine craftsmanship
+
 /obj/structure/statue/sandstone/asstue/proc/toot()
 	playsound(src, 'hippiestation/sound/effects/fart.ogg', 100, 1)
 
