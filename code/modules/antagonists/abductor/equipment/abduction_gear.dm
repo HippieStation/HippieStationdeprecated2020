@@ -756,6 +756,7 @@ Congratulations! You are now trained for invasive xenobiology research!"}
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "bed"
 	can_buckle = 1
+	buckle_lying = 90 // hippie -- fix buckling
 
 	var/static/list/injected_reagents = list(/datum/reagent/medicine/corazone)
 
