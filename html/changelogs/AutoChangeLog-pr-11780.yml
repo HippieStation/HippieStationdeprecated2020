@@ -1,0 +1,4 @@
+author: "mideanon"
+delete-after: True
+changes: 
+  - bugfix: "Beds now make you horizontal when you are buckled to them"
