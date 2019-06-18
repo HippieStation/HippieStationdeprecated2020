@@ -310,8 +310,6 @@
 		temp = "drawing"
 	else if(drawing in graffiti|oriented)
 		temp = "graffiti"
-	else if(drawing in numerals)
-		temp = "number"
 	var/gang_check = hippie_gang_check(user,target) // hippie start -- gang check and temp setting
 	if(!gang_check) return
 	else if(gang_check == "gang graffiti") temp = gang_check // hippie end
