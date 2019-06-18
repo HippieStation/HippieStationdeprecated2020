@@ -134,6 +134,11 @@
 	internal_magazine = FALSE
 	tac_reloads = TRUE
 
+/obj/item/gun/ballistic/shotgun/bulldog/update_icon()//hippie edit -- bring back old gun icons
+	cut_overlays()
+	if(magazine)
+		add_overlay("[magazine.icon_state]")
+	icon_state = "[initial(icon_state)][chambered||!bolt_locked ? "" : "-e"]"//hippie end -- bring back old gun icons
 
 /obj/item/gun/ballistic/shotgun/bulldog/unrestricted
 	pin = /obj/item/firing_pin

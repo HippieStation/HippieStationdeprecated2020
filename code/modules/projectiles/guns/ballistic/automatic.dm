@@ -23,7 +23,7 @@
 /obj/item/gun/ballistic/automatic/proto/unrestricted
 	pin = /obj/item/firing_pin
 
-/obj/item/gun/ballistic/automatic/update_icon()
+/obj/item/gun/ballistic/automatic/update_icon()//hippie edit -- bring back old gun icons
 	..()
 	if(!select)
 		add_overlay("[initial(icon_state)]_semi")
@@ -77,6 +77,10 @@
 	. = ..()
 	update_icon()
 
+/obj/item/gun/ballistic/automatic/c20r/update_icon()//hippie edit -- bring back old gun icons
+	..()
+	icon_state = "[initial(icon_state)][magazine ? "-[CEILING(get_ammo(0)/4, 1)*4]" : ""][chambered ? "" : "-e"][suppressed ? "-suppressed" : ""]"//hippie end -- bring back old gun icons
+
 /obj/item/gun/ballistic/automatic/wt550
 	name = "security auto rifle"
 	desc = "An outdated personal defence weapon. Uses 4.6x30mm rounds and is designated the WT-550 Automatic Rifle."
@@ -94,15 +98,23 @@
 	mag_display_ammo = TRUE
 	empty_indicator = TRUE
 
+/obj/item/gun/ballistic/automatic/wt550/update_icon()//hippie edit -- bring back old gun icons
+	..()
+	icon_state = "[initial(icon_state)][magazine ? "-[CEILING(get_ammo(0)/4, 1)*4]" : ""]"//hippie end -- bring back old gun icons
+
 /obj/item/gun/ballistic/automatic/mini_uzi
 	name = "\improper Type U3 Uzi"
 	desc = "A lightweight, burst-fire submachine gun, for when you really want someone dead. Uses 9mm rounds."
-	icon_state = "miniuzi"
+	icon_state = "mini-uzi"//hippie edit -- fixes uzi sprite
 	mag_type = /obj/item/ammo_box/magazine/uzim9mm
 	burst_size = 2
 	bolt_type = BOLT_TYPE_OPEN
 	mag_display = TRUE
-	rack_sound = "sound/weapons/pistollock.ogg"
+	rack_sound = 'sound/weapons/pistollock.ogg'
+
+/obj/item/gun/ballistic/automatic/mini_uzi/update_icon()//hippie edit -- bring back old gun icons
+	..()
+	icon_state = "[initial(icon_state)][magazine ? "-[magazine.max_ammo]" : ""][chambered ? "" : "-e"][suppressed ? "-suppressed" : ""]"//hippie end -- bring back old gun icons
 
 /obj/item/gun/ballistic/automatic/m90
 	name = "\improper M-90gl Carbine"
@@ -154,8 +166,9 @@
 		if(1)
 			add_overlay("[initial(icon_state)]_burst")
 		if(2)
-			add_overlay("[initial(icon_state)]_gren")
-	return
+			add_overlay("[initial(icon_state)]gren")
+	icon_state = "[initial(icon_state)][magazine ? "" : "-e"]"
+	return//hippie end -- bring back old gun icons
 
 /obj/item/gun/ballistic/automatic/m90/burst_select()
 	var/mob/living/carbon/human/user = usr
@@ -248,6 +261,9 @@
 		playsound(user, 'sound/weapons/sawopen.ogg', 60, 1)
 	update_icon()
 
+/obj/item/gun/ballistic/automatic/l6_saw/update_icon()//hippie edit -- bring back old gun icons
+	icon_state = "[initial(icon_state)][cover_open ? "open" : "closed"][magazine ? CEILING(get_ammo(0)/12.5, 1)*25 : "-empty"][suppressed ? "-suppressed" : ""]"
+	item_state = "[initial(icon_state)][cover_open ? "openmag" : "closedmag"]"//hippie end -- bring back old gun icons
 
 /obj/item/gun/ballistic/automatic/l6_saw/update_icon()
 	. = ..()
@@ -305,6 +321,12 @@
 	actions_types = list()
 	mag_display = TRUE
 
+/obj/item/gun/ballistic/automatic/sniper_rifle/update_icon()//hippie edit -- bring back old gun icons
+	if(magazine)
+		icon_state = "sniper-mag"
+	else
+		icon_state = "sniper"	//hippie end -- bring back old gun icons
+
 /obj/item/gun/ballistic/automatic/sniper_rifle/syndicate
 	name = "syndicate sniper rifle"
 	desc = "An illegally modified .50 cal sniper rifle with suppression compatibility. Quickscoping still doesn't work."
@@ -330,6 +352,12 @@
 	actions_types = list()
 	mag_display = TRUE
 
+/obj/item/gun/ballistic/automatic/surplus/update_icon()//hippie edit -- bring back old gun icons
+	if(magazine)
+		icon_state = "surplus"
+	else
+		icon_state = "surplus-e"//hippie end -- bring back old gun icons
+
 // Laser rifle (rechargeable magazine) //
 
 /obj/item/gun/ballistic/automatic/laser
@@ -344,3 +372,8 @@
 	actions_types = list()
 	fire_sound = 'sound/weapons/laser.ogg'
 	casing_ejector = FALSE
+
+/obj/item/gun/ballistic/automatic/laser/update_icon()//hippie edit -- bring back old gun icons
+	..()
+	icon_state = "[initial(icon_state)][magazine ? "-[CEILING(get_ammo(0)/4, 1)*4]" : ""]"
+	return//hippie end -- bring back old gun icons
