@@ -6,10 +6,10 @@
 	fire_delay = 2
 	actions_types = list(/datum/action/item_action/toggle_firemode)
 	semi_auto = TRUE
-	fire_sound = "sound/weapons/smgshot.ogg"
+	fire_sound = 'sound/weapons/smgshot.ogg'
 	fire_sound_volume = 80
 	vary_fire_sound = FALSE
-	rack_sound = "sound/weapons/smgrack.ogg"
+	rack_sound = 'sound/weapons/smgrack.ogg'
 
 /obj/item/gun/ballistic/automatic/proto
 	name = "\improper Nanotrasen Saber SMG"
