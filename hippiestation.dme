@@ -3321,6 +3321,7 @@
 #include "hippiestation\code\modules\jobs\job_types\medical.dm"
 #include "hippiestation\code\modules\jobs\job_types\science.dm"
 #include "hippiestation\code\modules\jobs\job_types\security.dm"
+#include "hippiestation\code\modules\jobs\job_types\security_officer.dm"
 #include "hippiestation\code\modules\keybindings\bindings_client.dm"
 #include "hippiestation\code\modules\keybindings\bindings_hippie.dm"
 #include "hippiestation\code\modules\keybindings\bindings_mentor.dm"
