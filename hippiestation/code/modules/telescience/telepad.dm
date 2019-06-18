@@ -9,10 +9,12 @@
 	idle_power_usage = 200
 	active_power_usage = 5000
 	var/efficiency
+
 /obj/machinery/telepad/Initialize()
 	. = ..()
 	var/obj/item/circuitboard/machine/B = new /obj/item/circuitboard/machine/telesci_pad(null)
 	B.apply_default_parts(src)
+
 /obj/item/circuitboard/machine/telesci_pad
 	name = "Telepad (Machine Board)"
 	build_path = /obj/machinery/telepad
@@ -22,11 +24,13 @@
 							/obj/item/stack/cable_coil = 1,
 							/obj/item/stack/sheet/glass = 1)
 	def_components = list(/obj/item/stack/ore/bluespace_crystal = /obj/item/stack/ore/bluespace_crystal/artificial)
+
 /obj/machinery/telepad/RefreshParts()
 	var/E
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		E += C.rating
 	efficiency = E
+
 /obj/machinery/telepad/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, "pad-idle-o", "pad-idle", I))
 		return
