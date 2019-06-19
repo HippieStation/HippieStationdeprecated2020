@@ -143,7 +143,7 @@
     <ui-section label=' ' candystripe right> <ui-button style='{{data.styleChoice == 14 ? "selected" : null}}' action='styleSeeThrough' tooltip-side='left'
     tooltip='By selecting this, the pod will instead look like whatevers inside it (as if it were the contents falling by themselves, without a pod). Useful for launching mechs at the station and standing tall as they soar in from the heavens.'>Show Contents (See-Through Pod)!</ui-button> </ui-section>
     <ui-section label=' ' candystripe right> <ui-button style='{{data.styleChoice == 15 ? "selected" : null}}' action='styleClockpod' tooltip-side='left'
-    tooltip='One of Neovgre's finest delivery system.'>Clockpod</ui-button> </ui-section>
+    tooltip=`One of Neovgre's finest delivery system.`>Clockpod</ui-button> </ui-section>
 </ui-display>
 
 
