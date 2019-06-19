@@ -103,9 +103,9 @@
 /datum/reagent/randonium/on_mob_add(mob/living/M)
 	..()
 	if(!everycheminthefuckinguniverse.len)
-		for(var/reagent in subtypesof(/datum/reagent/))
+		for(var/reagent in subtypesof(/datum/reagent))
 			var/datum/reagent/newreagent = reagent
-			everycheminthefuckinguniverse += initial(newreagent.id)
+			everycheminthefuckinguniverse += newreagent.id
 	return
 
 /datum/reagent/randonium/on_mob_life(mob/living/M)
