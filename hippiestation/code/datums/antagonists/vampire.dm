@@ -228,15 +228,15 @@
 			break
 		if(H.stat != DEAD)
 			blood = min(10, H.blood_volume)// if they have less than 10 blood, give them the remnant else they get 10 blood
-			total_blood += blood / 2	//divide by 2 to counted the double suction since removing cloneloss -Melandor0
-			usable_blood += blood / 2
+			total_blood += blood
+			usable_blood += blood
 		else
 			blood = min(2, H.blood_volume)	// The dead only give 2 blood
 			total_blood += blood
 		check_vampire_upgrade()
 		if(old_bloodtotal != total_blood)
 			to_chat(O, "<span class='notice'><b>You have accumulated [total_blood] [total_blood > 1 ? "units" : "unit"] of blood[usable_blood != old_bloodusable ? ", and have [usable_blood] left to use" : ""].</b></span>")
-		H.blood_volume = max(H.blood_volume - 25, 0)
+		H.blood_volume = max(H.blood_volume - 10, 0)
 		if(ishuman(O))
 			O.nutrition = min(O.nutrition + (blood / 2), NUTRITION_LEVEL_WELL_FED)
 		playsound(O.loc, 'hippiestation/sound/effects/vampsip.ogg', 25, 1)

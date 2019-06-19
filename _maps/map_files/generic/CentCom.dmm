@@ -8866,6 +8866,10 @@
 /obj/structure/dresser,
 /turf/open/floor/holofloor/carpet,
 /area/holodeck/rec_center/photobooth)
+"tm" = (
+/obj/effect/spawner/template/thanos_farm,
+/turf/open/space/basic,
+/area/space)
 "tn" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -28981,7 +28985,7 @@ aa
 aa
 aa
 aa
-aa
+tm
 aa
 aa
 aa

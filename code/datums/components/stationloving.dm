@@ -64,6 +64,10 @@
 	if (is_station_level(T.z))
 		return TRUE
 	if (is_centcom_level(T.z))
+		// hippie start -- don't move thanos out of the garden, but move anything else.
+		if(!isliving(parent) && istype(A, /area/hippie/thanos_farm))
+			return FALSE
+		// hippie end
 		if (is_type_in_typecache(A, disallowed_centcom_areas))
 			return FALSE
 		return TRUE
