@@ -106,10 +106,8 @@
 		for(var/reagent in subtypesof(/datum/reagent))
 			var/datum/reagent/newreagent = reagent
 			everycheminthefuckinguniverse += newreagent.id
-	return
 
 /datum/reagent/randonium/on_mob_life(mob/living/M)
 	..()
 	var/selectedchem = pick(everycheminthefuckinguniverse)
 	M.reagents.add_reagent(selectedchem, 5)
-	return
