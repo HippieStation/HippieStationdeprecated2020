@@ -34,8 +34,8 @@
 /obj/item/survivalcapsule/examine(mob/user)
 	. = ..()
 	get_template()
-	to_chat(user, "This capsule has the [template.name] stored.")
-	to_chat(user, template.description)
+	. += "This capsule has the [template.name] stored."
+	. += template.description
 
 //hippie start -- to prevent station capsule grief
 /obj/item/survivalcapsule/emag_act(mob/user)
