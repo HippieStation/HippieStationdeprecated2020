@@ -1,0 +1,4 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - balance: "Revert genetics analyzer to old behavior"
