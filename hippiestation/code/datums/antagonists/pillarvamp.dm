@@ -7,3 +7,4 @@
 /datum/antagonist/vampire/pillarmen/create_team(datum/team/pillarmen/team)
 	if(istype(team))
 		pillarTeam = team
+		owner.current.faction |= "pillarmen_[pillarTeam.pillar_id]"

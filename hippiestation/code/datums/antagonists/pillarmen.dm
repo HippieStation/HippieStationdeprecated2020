@@ -1,4 +1,5 @@
 //made by Karma
+GLOBAL_VAR_INIT(pillarMenID, 0)
 
 
 /datum/team/pillarmen
@@ -8,6 +9,12 @@
 	var/list/datum/mind/vampires
 	var/list/datum/mind/thralls
 	var/ascended
+	var/pillar_id = 0 // used for faction stiff
+
+/datum/team/pillarmen/New(starting_members)
+	. = ..()
+	pillar_id = GLOB.pillarMenID
+	GLOB.pillarMenID += 1
 
 /datum/team/pillarmen/roundend_report()
 	var/list/parts = new/list
