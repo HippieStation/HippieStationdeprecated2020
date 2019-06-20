@@ -4,6 +4,8 @@
 #define ANTAG_DATUM_INFILTRATOR	/datum/antagonist/infiltrator
 #define ANTAG_DATUM_HIJACKEDAI	/datum/antagonist/hijacked_ai
 #define ANTAG_DATUM_KOTD		/datum/antagonist/traitor/kotd
+#define ANTAG_DATUM_PILLARMAN   /datum/antagonist/pillarman
+#define ANTAG_DATUM_PILLARTHRALL /datum/antagonist/pillarthrall 
 
 #define NOT_DOMINATING			-1
 #define MAX_LEADERS_GANG		3

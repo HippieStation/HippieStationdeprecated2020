@@ -1,4 +1,5 @@
-/mob/living/carbon/human
+/mob/living/carbon/human/species/pillarmen
+	race = /datum/species/pillarmen
 
 /mob/living/carbon/human/Initialize()
 	. = ..()

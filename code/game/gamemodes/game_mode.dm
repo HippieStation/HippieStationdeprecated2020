@@ -394,6 +394,13 @@
 			for(var/job in restricted_jobs)
 				if(player.assigned_role == job)
 					drafted -= player
+	
+	// hippie start -- no lizards as pillar men
+	if(restricted_races)
+		for(var/datum/mind/M in drafted)
+			if(is_type_in_typecache(M.client.prefs.pref_species, restricted_races))
+				drafted -= M
+	// hippie end
 
 	drafted = shuffle(drafted) // Will hopefully increase randomness, Donkie
 
