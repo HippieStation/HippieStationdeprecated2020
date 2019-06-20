@@ -3458,6 +3458,7 @@
 #include "hippiestation\code\modules\reagents\chemistry\reagents\pyrotechnic_reagents.dm"
 #include "hippiestation\code\modules\reagents\chemistry\reagents\slime_extracts.dm"
 #include "hippiestation\code\modules\reagents\chemistry\reagents\toxin_reagents.dm"
+#include "hippiestation\code\modules\reagents\chemistry\recipes\Bar_Reactions.dm"
 #include "hippiestation\code\modules\reagents\chemistry\recipes\drugs.dm"
 #include "hippiestation\code\modules\reagents\chemistry\recipes\medicine.dm"
 #include "hippiestation\code\modules\reagents\chemistry\recipes\other.dm"
