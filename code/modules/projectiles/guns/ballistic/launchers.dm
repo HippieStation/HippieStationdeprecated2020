@@ -12,6 +12,10 @@
 	pin = /obj/item/firing_pin/implant/pindicate
 	bolt_type = BOLT_TYPE_NO_BOLT
 
+/obj/item/gun/ballistic/automatic/gyropistol/update_icon()
+	..()
+	icon_state = "[initial(icon_state)][magazine ? "loaded" : ""]"
+
 /obj/item/gun/ballistic/revolver/grenadelauncher/unrestricted
 	pin = /obj/item/firing_pin
 

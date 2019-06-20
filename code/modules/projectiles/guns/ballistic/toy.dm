@@ -13,10 +13,6 @@
 	item_flags = NONE
 	casing_ejector = FALSE
 
-/obj/item/gun/ballistic/automatic/toy/update_icon()
-	. = ..()
-	add_overlay("[icon_state]_toy")
-
 /obj/item/gun/ballistic/automatic/toy/unrestricted
 	pin = /obj/item/firing_pin
 
@@ -56,10 +52,6 @@
 	casing_ejector = FALSE
 	can_suppress = FALSE
 
-/obj/item/gun/ballistic/shotgun/toy/update_icon()
-	. = ..()
-	add_overlay("[icon_state]_toy")
-
 /obj/item/gun/ballistic/shotgun/toy/process_chamber(empty_chamber = 0)
 	..()
 	if(chambered && !chambered.BB)
@@ -95,10 +87,6 @@
 /obj/item/gun/ballistic/automatic/c20r/toy/unrestricted/riot
 	mag_type = /obj/item/ammo_box/magazine/toy/smgm45/riot
 
-/obj/item/gun/ballistic/automatic/c20r/toy/update_icon()
-	. = ..()
-	add_overlay("[icon_state]_toy")
-
 /obj/item/gun/ballistic/automatic/l6_saw/toy //This is the syndicate variant with syndicate firing pin and riot darts.
 	name = "donksoft LMG"
 	desc = "A heavily modified toy light machine gun, designated 'L6 SAW'. Ages 8 and up."
@@ -114,7 +102,3 @@
 
 /obj/item/gun/ballistic/automatic/l6_saw/toy/unrestricted/riot
 	mag_type = /obj/item/ammo_box/magazine/toy/m762/riot
-
-/obj/item/gun/ballistic/automatic/l6_saw/toy/update_icon()
-	. = ..()
-	add_overlay("[icon_state]_toy")

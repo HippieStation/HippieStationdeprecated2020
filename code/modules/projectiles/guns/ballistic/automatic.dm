@@ -28,7 +28,8 @@
 	if(!select)
 		add_overlay("[initial(icon_state)]_semi")
 	if(select == 1)
-		add_overlay("[initial(icon_state)]_burst")
+		add_overlay("[initial(icon_state)]burst")
+	icon_state = "[initial(icon_state)][magazine ? "-[magazine.max_ammo]" : ""][chambered||!bolt_locked ? "" : "-e"][suppressed ? "-suppressed" : ""]"//hippie end -- bring back old gun icons
 
 /obj/item/gun/ballistic/automatic/ui_action_click(mob/user, actiontype)
 	if(istype(actiontype, /datum/action/item_action/toggle_firemode))
@@ -164,7 +165,7 @@
 		if(0)
 			add_overlay("[initial(icon_state)]_semi")
 		if(1)
-			add_overlay("[initial(icon_state)]_burst")
+			add_overlay("[initial(icon_state)]burst")
 		if(2)
 			add_overlay("[initial(icon_state)]gren")
 	icon_state = "[initial(icon_state)][magazine ? "" : "-e"]"
