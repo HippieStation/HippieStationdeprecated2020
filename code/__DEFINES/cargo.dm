@@ -12,6 +12,7 @@
 #define STYLE_INVISIBLE 12
 #define STYLE_GONDOLA 13
 #define STYLE_SEETHROUGH 14
+#define STYLE_CLOCKPOD 15
 
 #define POD_ICON_STATE 1
 #define POD_NAME 2
@@ -31,5 +32,7 @@
     list("fruitpod", "\improper Orange", "An angry orange."),\
     list("", "\improper S.T.E.A.L.T.H. pod MKVII", "A supply pod that, under normal circumstances, is completely invisible to conventional methods of detection. How are you even seeing this?"),\
     list("gondolapod", "gondola", "The silent walker. This one seems to be part of a delivery agency."),\
+	list("debugpod", "debugpod", "."),\
+    list("clockpod", "clockpod", "You can hear the push of cogs and the blows of steam within the very shell of it."),\
     list("", "", "")\
 )
