@@ -1,11 +1,3 @@
-/datum/uplink_item
-	var/surplus_nullcrates //Chance of being included in null crates. null = pull from surplus
-
-/datum/uplink_item/New()
-	. = ..()
-	if(isnull(surplus_nullcrates))
-		surplus_nullcrates = surplus 
-
 /datum/uplink_item/colab
 	category = "Collaborative Gear"
 	surplus = 0
@@ -527,6 +519,3 @@
 	item = /obj/item/storage/belt/hfblade
 	cost = 8
 	surplus = 15
-
-/datum/uplink_item/device_tools/fakenucleardisk
-	surplus_nullcrates = 0
