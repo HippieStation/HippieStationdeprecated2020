@@ -169,7 +169,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		return FALSE
 
 	if(!antimagic_allowed)
-		var/antimagic = user.anti_magic_check(TRUE, FALSE, major = FALSE, self = TRUE)
+		var/antimagic = user.anti_magic_check(TRUE, FALSE, FALSE, 0, TRUE)
 		if(antimagic)
 			if(isitem(antimagic))
 				to_chat(user, "<span class='notice'>[antimagic] is interfering with your magic.</span>")
@@ -194,7 +194,10 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		/obj/item/clothing/head/wizard,
 		/obj/item/clothing/head/helmet/space/hardsuit/wizard,
 		/obj/item/clothing/suit/space/hardsuit/shielded/wizard,
-		/obj/item/clothing/head/helmet/space/hardsuit/shielded/wizard))
+		/obj/item/clothing/head/helmet/space/hardsuit/shielded/wizard,
+		/obj/item/clothing/head/hippie/ganymedian,	// hippie -- add ganymedian helmet
+		/obj/item/clothing/suit/hippie/ganymedian	// hippie -- add ganymedian armor
+		))
 
 		if(clothes_req) //clothes check
 			if(!is_type_in_typecache(H.wear_suit, casting_clothes))
@@ -526,7 +529,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	if(user.stat && !stat_allowed)
 		return FALSE
 
-	if(!antimagic_allowed && user.anti_magic_check(TRUE, FALSE, major = FALSE, self = TRUE))
+	if(!antimagic_allowed && user.anti_magic_check(TRUE, FALSE, FALSE, 0, TRUE))
 		return FALSE
 
 	if(!ishuman(user))

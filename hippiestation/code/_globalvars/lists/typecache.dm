@@ -6,25 +6,24 @@
 
 // Don't show reaction messages in these atoms
 GLOBAL_LIST_INIT(no_reagent_message_typecache, typecacheof(list(
-  /obj/effect/particle_effect,
-  /obj/effect/decal/cleanable,
-  /mob/living,
-  /obj/item/reagent_containers/food,
-  /turf/open/pool)
+	/obj/effect/particle_effect,
+	/obj/effect/decal/cleanable,
+	/mob,
+	/obj/item/reagent_containers/food,
+	/turf/open/pool)
 ))
 
 // Don't do state change in these atoms
 GLOBAL_LIST_INIT(no_reagent_statechange_typecache, typecacheof(list(
-  /obj/effect/particle_effect/water,
-  /obj/effect/decal/cleanable,
-  /obj/effect/particle_effect/smoke/chem/smoke_machine,
-  /mob/living)
+	/obj/effect/particle_effect/water,
+	/obj/effect/decal/cleanable,
+	/obj/effect/particle_effect/smoke/chem/smoke_machine,
+	/mob)
 ))
 
 GLOBAL_LIST_INIT(statechange_reagent_blacklist, typecacheof(list(
 	/datum/reagent/water,
 	/datum/reagent/toxin/bleach,
-	/datum/reagent/lube,
 	/datum/reagent/consumable/condensedcapsaicin,
 	/datum/reagent/space_cleaner,
 	/datum/reagent/smoke_powder,
@@ -35,10 +34,17 @@ GLOBAL_LIST_INIT(statechange_reagent_blacklist, typecacheof(list(
 	/datum/reagent/oxygen,
 	/datum/reagent/nitrogen,
 	/datum/reagent/nitrous_oxide,
+	/datum/reagent/carbondioxide,
 	/datum/reagent/cryostylane,
-	/datum/reagent/consumable/ethanol/neurotoxin,
+	/datum/reagent/consumable/ethanol/neurotoxin)
+))
+
+GLOBAL_LIST_INIT(vaporchange_reagent_blacklist, typecacheof(list(
+	/datum/reagent/lube,
 	/datum/reagent/clf3)
 ))
+
+GLOBAL_LIST_INIT(solidchange_reagent_blacklist, typecacheof(list())) //for future use
 
 GLOBAL_LIST_INIT(statechange_turf_blacklist, typecacheof(list(
 	/turf/open/pool,

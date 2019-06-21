@@ -7298,6 +7298,7 @@
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/maintenance/two,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/stock_parts/capacitor,
 /turf/open/floor/plasteel,
 /area/maintenance/port/fore)
 "apM" = (
@@ -9549,6 +9550,7 @@
 /turf/open/floor/plasteel,
 /area/crew_quarters/dorms)
 "avS" = (
+/obj/item/circuitboard/machine/stasis,
 /obj/item/wrench,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
@@ -10076,9 +10078,7 @@
 /turf/open/floor/plasteel,
 /area/construction/mining/aux_base)
 "axe" = (
-/obj/machinery/sleeper{
-	dir = 4
-	},
+/obj/structure/frame/machine,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "axf" = (
@@ -10592,6 +10592,7 @@
 "ayt" = (
 /obj/structure/table/glass,
 /obj/item/hemostat,
+/obj/item/stock_parts/manipulator,
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
 "ayu" = (
@@ -31272,9 +31273,7 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bwD" = (
-/obj/machinery/sleeper{
-	dir = 8
-	},
+/obj/machinery/stasis,
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bwE" = (
@@ -32891,14 +32890,12 @@
 /turf/open/floor/plasteel/white,
 /area/medical/sleeper)
 "bAq" = (
-/obj/machinery/sleeper{
-	dir = 8
-	},
 /obj/machinery/camera{
 	c_tag = "Medbay Treatment Center";
 	network = list("ss13","medbay");
 	dir = 8
 	},
+/obj/machinery/stasis,
 /turf/open/floor/plasteel,
 /area/medical/sleeper)
 "bAr" = (
@@ -39013,7 +39010,7 @@
 	},
 /obj/machinery/requests_console{
 	department = "Atmospherics";
-	departmentType = 4;
+	departmentType = 3;
 	name = "Atmos RC";
 	pixel_x = 30
 	},
@@ -43530,7 +43527,7 @@
 "caE" = (
 /obj/machinery/requests_console{
 	department = "Atmospherics";
-	departmentType = 4;
+	departmentType = 3;
 	name = "Atmos RC";
 	pixel_x = 30
 	},
@@ -44236,7 +44233,7 @@
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
 "ccg" = (
-/obj/machinery/telecomms/message_server,
+/obj/machinery/telecomms/message_server/preset,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
 "cch" = (
@@ -46953,7 +46950,7 @@
 /obj/machinery/requests_console{
 	announcementConsole = 1;
 	department = "Chief Engineer's Desk";
-	departmentType = 3;
+	departmentType = 4;
 	name = "Chief Engineer RC";
 	pixel_x = -32
 	},
@@ -55248,7 +55245,7 @@
 /obj/machinery/requests_console{
 	announcementConsole = 0;
 	department = "Engineering";
-	departmentType = 4;
+	departmentType = 3;
 	name = "Engineering RC";
 	pixel_y = 30
 	},

@@ -3,6 +3,7 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 	new/datum/stack_recipe("table frame", /obj/structure/table_frame, 2, time = 10, one_per_turf = 1, on_floor = 1), \
 	new/datum/stack_recipe("staple", /obj/item/stack/staples, 1, 5, 10), \
 	new/datum/stack_recipe("scooter frame", /obj/item/scooter_frame, 10, time = 25, one_per_turf = 0), \
+	new/datum/stack_recipe("linen bin", /obj/structure/bedsheetbin/empty, 2, time = 5, one_per_turf = 0), \
 	)) // hippie -- staples added. Comment is here because the \ would escape the comment character
 
 /obj/item/stack/rods
