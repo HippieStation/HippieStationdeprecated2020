@@ -504,6 +504,10 @@
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
 /area/security/main)
+"abt" = (
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/plating,
+/area/science/research)
 "abu" = (
 /obj/effect/spawner/structure/window/reinforced,
 /obj/machinery/door/poddoor/preopen{
@@ -2144,6 +2148,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/security/prison)
+"aem" = (
+/obj/machinery/door/poddoor/preopen{
+	id = "tox1";
+	name = "Toxins Lockdown Door"
+	},
+/obj/effect/spawner/structure/window/plasma/reinforced,
+/turf/open/floor/plating,
+/area/science/mixing)
 "aen" = (
 /obj/machinery/button/door{
 	id = "permacell3";
@@ -38470,10 +38482,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/science/xenobiology)
-"bTX" = (
-/obj/structure/window/plasma/reinforced/fulltile,
-/turf/open/floor/plating,
-/area/science/research)
 "bTY" = (
 /obj/machinery/door/poddoor/incinerator_toxmix,
 /turf/open/floor/engine/vacuum,
@@ -40299,14 +40307,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/science/xenobiology)
-"bYM" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "tox1";
-	name = "Toxins Lockdown Door"
-	},
-/obj/structure/window/plasma/reinforced/fulltile,
-/turf/open/floor/plating,
-/area/science/mixing)
 "bYN" = (
 /obj/structure/closet/bombcloset,
 /turf/open/floor/plasteel/white,
@@ -59173,9 +59173,6 @@
 	name = "floor"
 	},
 /area/engine/port_engineering)
-"ind" = (
-/turf/closed/wall,
-/area/space)
 "iof" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -68970,10 +68967,6 @@
 /obj/structure/fans/tiny,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
-"wFr" = (
-/obj/structure/lattice,
-/turf/closed/wall,
-/area/space/nearstation)
 "wGg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -116854,9 +116847,9 @@ bOJ
 bQg
 bDc
 bSM
-bTX
-bTX
-bTX
+abt
+abt
+abt
 boj
 cMM
 eQA
@@ -117116,9 +117109,9 @@ aai
 aai
 bLN
 bLN
-bYM
+aem
 eyY
-bYM
+aem
 bLN
 cmf
 cfA
@@ -121488,8 +121481,8 @@ bSP
 bSP
 bSP
 egu
-ind
-wFr
+bSP
+egu
 bSP
 cgT
 bWr
@@ -121746,7 +121739,7 @@ aaa
 aaa
 aai
 aaa
-wFr
+egu
 bSP
 bSP
 bVk

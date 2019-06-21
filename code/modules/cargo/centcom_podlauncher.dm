@@ -421,6 +421,9 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 		if("styleSeeThrough")
 			temp_pod.setStyle(STYLE_SEETHROUGH)
 			. = TRUE
+		if("styleClockpod")
+			temp_pod.setStyle(STYLE_CLOCKPOD)
+			. = TRUE
 		if("refresh") //Refresh the Pod bay. User should press this if they spawn something new in the centcom bay. Automatically called whenever the user launches a pod
 			refreshBay()
 			. = TRUE
