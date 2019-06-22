@@ -40,9 +40,9 @@
 	icon_state = "nghelmet"
 	item_state = "nghelmet"
 
-/////////////////////////
-//// NANO GUY SHIELD ////
-/////////////////////////
+/////////////////////////////
+//// NANO GUY NANO-STUFF ////
+/////////////////////////////
 
 /obj/item/twohanded/required/nanoshield
 	name = "Nano Shield"
@@ -122,3 +122,33 @@
 	icon = 'hippiestation/icons/obj/clothing/suits.dmi'
 	icon_state = "thor"
 	armor = list("melee" = 50, "bullet" = 30, "laser" = 50, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+
+//////////////////////////////
+//// CAP NANOTRASEN STUFF ////
+//////////////////////////////
+
+/obj/item/shield/captain_nt
+	name = "Captain Nanotrasen's Shield"
+	desc = "A powerful shield constructed of a top-secret alloy, derived in the deepest of Nanotrasen labs."
+	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
+	icon_state = "ntshield"
+	item_state = "ntshield"
+	throw_range = 6
+	force = 25
+	throwforce = 30
+	throw_speed = 3
+	attack_verb = list("shoved", "bashed")
+
+/obj/item/shield/captain_nt/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback, force)
+	if(iscarbon(thrower))
+		var/mob/living/carbon/C = thrower
+		C.throw_mode_on() //so they can catch it on the return.
+	return ..()
+
+/obj/item/shield/captain_nt/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	var/caught = hit_atom.hitby(src, FALSE, FALSE, throwingdatum=throwingdatum)
+	if(thrownby && !caught)
+		sleep(1)
+		throw_at(thrownby, throw_range+2, throw_speed, null, TRUE)

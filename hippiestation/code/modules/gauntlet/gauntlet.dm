@@ -677,8 +677,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 					if(M.magpulse)
 						continue
 			L.visible_message("<span class='danger'>[L] is knocked down by a shockwave!</span>", "<span class='danger bold'>A shockwave knocks you off your feet!</span>")
-			L.Paralyze(17.5)
-		sleep(2)
+			L.Paralyze(35)
+		sleep(1)
 
 /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet
 	name = "Badmin Gauntlet: Regenerate"
