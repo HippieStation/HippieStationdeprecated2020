@@ -26,7 +26,7 @@
 /obj/item/gun/ballistic/automatic/update_icon()//hippie edit -- bring back old gun icons
 	..()
 	if(!select)
-		add_overlay("[initial(icon_state)]_semi")
+		add_overlay("[initial(icon_state)]semi")
 	if(select == 1)
 		add_overlay("[initial(icon_state)]burst")
 	icon_state = "[initial(icon_state)][magazine ? "-[magazine.max_ammo]" : ""][chambered||!bolt_locked ? "" : "-e"][suppressed ? "-suppressed" : ""]"//hippie end -- bring back old gun icons
@@ -163,7 +163,7 @@
 	..()
 	switch(select)
 		if(0)
-			add_overlay("[initial(icon_state)]_semi")
+			add_overlay("[initial(icon_state)]semi")
 		if(1)
 			add_overlay("[initial(icon_state)]burst")
 		if(2)
@@ -265,10 +265,6 @@
 /obj/item/gun/ballistic/automatic/l6_saw/update_icon()//hippie edit -- bring back old gun icons
 	icon_state = "[initial(icon_state)][cover_open ? "open" : "closed"][magazine ? CEILING(get_ammo(0)/12.5, 1)*25 : "-empty"][suppressed ? "-suppressed" : ""]"
 	item_state = "[initial(icon_state)][cover_open ? "openmag" : "closedmag"]"//hippie end -- bring back old gun icons
-
-/obj/item/gun/ballistic/automatic/l6_saw/update_icon()
-	. = ..()
-	add_overlay("l6_door_[cover_open ? "open" : "closed"]")
 
 
 /obj/item/gun/ballistic/automatic/l6_saw/afterattack(atom/target as mob|obj|turf, mob/living/user as mob|obj, flag, params)
