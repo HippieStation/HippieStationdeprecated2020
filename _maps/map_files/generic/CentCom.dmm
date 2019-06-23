@@ -12042,6 +12042,10 @@
 /obj/item/reagent_containers/food/snacks/meat/slab/xeno,
 /turf/open/floor/grass,
 /area/wizard_station)
+"Bn" = (
+/obj/effect/spawner/template/thanos_farm,
+/turf/open/space/basic,
+/area/space)
 "Bo" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
@@ -16297,6 +16301,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
+"Kd" = (
+/obj/effect/spawner/template/infiltrator,
+/turf/open/space/basic,
+/area/space)
 "Kg" = (
 /turf/closed/indestructible/fakedoor{
 	name = "Thunderdome Admin"
@@ -24808,7 +24816,7 @@ aa
 aa
 aa
 aa
-aa
+Bn
 aa
 aa
 aa
@@ -49739,7 +49747,7 @@ aa
 aa
 aa
 aa
-aa
+Kd
 aa
 aa
 aa
