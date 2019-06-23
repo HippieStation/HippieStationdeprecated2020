@@ -86,4 +86,5 @@ GLOBAL_LIST_INIT(infiltrator_kidnap_areas, typecacheof(list(/area/shuttle/hippie
 		explanation_text = "Free Objective"
 
 /datum/objective/infiltrator/kidnap/check_completion()
-	return !target || (target.current && target.current.suiciding) || (considered_alive(target) && is_type_in_typecache(get_area(target.current), GLOB.infiltrator_kidnap_areas))
+	var/target_area = get_area(target.current)
+	return !target || (target.current && target.current.suiciding) || (considered_alive(target) && is_type_in_typecache(target_area, GLOB.infiltrator_kidnap_areas))

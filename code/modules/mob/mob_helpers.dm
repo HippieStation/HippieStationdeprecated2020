@@ -180,7 +180,6 @@
 		message = stutter(message)
 	return message
 
-
 /proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added
 	/* Turn text into complete gibberish! */
 	var/returntext = ""
@@ -414,11 +413,12 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 		return
 	return TRUE
 
-/proc/offer_control(mob/M)
-	to_chat(M, "Control of your mob has been offered to dead players.")
-	if(usr)
-		log_admin("[key_name(usr)] has offered control of ([key_name(M)]) to ghosts.")
-		message_admins("[key_name_admin(usr)] has offered control of ([ADMIN_LOOKUPFLW(M)]) to ghosts")
+/proc/offer_control(mob/M, log_stuff = TRUE) // hippie start -- for ghost stone
+	if(log_stuff)
+		to_chat(M, "Control of your mob has been offered to dead players.")
+		if(usr)
+			log_admin("[key_name(usr)] has offered control of ([key_name(M)]) to ghosts.")
+			message_admins("[key_name_admin(usr)] has offered control of ([ADMIN_LOOKUPFLW(M)]) to ghosts") // hippie end
 	var/poll_message = "Do you want to play as [M.real_name]?"
 	if(M.mind && M.mind.assigned_role)
 		poll_message = "[poll_message] Job:[M.mind.assigned_role]."

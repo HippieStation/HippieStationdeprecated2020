@@ -23,11 +23,10 @@
 	create_internal_organs() //most of it is done in set_species now, this is only for parent call
 	physiology = new()
 
-	handcrafting = new()
-
 	. = ..()
 
 	AddComponent(/datum/component/redirect, list(COMSIG_COMPONENT_CLEAN_ACT = CALLBACK(src, .proc/clean_blood)))
+	AddComponent(/datum/component/personal_crafting)
 
 /mob/living/carbon/human/proc/setup_human_dna()
 	//initialize dna. for spawned humans; overwritten by other code
@@ -44,9 +43,6 @@
 	QDEL_NULL(physiology)
 	return ..()
 
-
-/mob/living/carbon/human/OpenCraftingMenu()
-	handcrafting.ui_interact(src)
 
 /mob/living/carbon/human/prepare_data_huds()
 	//Update med hud images...
@@ -650,10 +646,14 @@
 			to_chat(C, "<span class='unconscious'>You feel a breath of fresh air... which is a sensation you don't recognise...</span>")
 
 /mob/living/carbon/human/cuff_resist(obj/item/I)
-	if(dna && dna.check_mutation(HULK) || istype(mind.martial_art, /datum/martial_art/nanosuit)) //Hippie edit -- Allows nanosuit strength mode to break cuffs fast
+	if(is_ganymede(src)) // hippie start -- thanos stuff. and nanosuit stuff
+		if(..(I, cuff_break = INSTANT_CUFFBREAK))
+			visible_message("<span class='danger'>[src] snaps [I] in half!</span>")
+			qdel(I)
+	else if(dna && dna.check_mutation(HULK) || istype(mind.martial_art, /datum/martial_art/nanosuit))
 		say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced = "hulk")
 		if(..(I, cuff_break = FAST_CUFFBREAK))
-			dropItemToGround(I)
+			dropItemToGround(I) // hippie end
 	else
 		if(..())
 			dropItemToGround(I)

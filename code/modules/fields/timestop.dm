@@ -29,6 +29,11 @@
 	for(var/mob/living/L in GLOB.player_list)
 		if(locate(/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop) in L.mind.spell_list) //People who can stop time are immune to its effects
 			immune[L] = TRUE
+	// hippie start -- add immunity for stone holders
+	for(var/mob/living/L in GLOB.player_list)
+		if((locate(/obj/item/badmin_stone) in L) || (locate(/obj/item/badmin_gauntlet) in L))
+			immune[L] = TRUE
+	//hippie end
 	for(var/mob/living/simple_animal/hostile/guardian/G in GLOB.parasites)
 		if(G.summoner && locate(/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop) in G.summoner.mind.spell_list) //It would only make sense that a person's stand would also be immune.
 			immune[G] = TRUE
@@ -37,12 +42,12 @@
 
 /obj/effect/timestop/Destroy()
 	qdel(chronofield)
-	playsound(src, 'sound/magic/timeparadox2.ogg', 75, TRUE, frequency = -1) //reverse!
+	playsound(src, start_sound, 75, TRUE, frequency = -1) //reverse! || Hippie -- customizable sound
 	return ..()
 
 /obj/effect/timestop/proc/timestop()
 	target = get_turf(src)
-	playsound(src, 'sound/magic/timeparadox2.ogg', 75, 1, -1)
+	playsound(src, start_sound, 75, 1, -1) // Hippie -- customizable sound
 	chronofield = make_field(/datum/proximity_monitor/advanced/timestop, list("current_range" = freezerange, "host" = src, "immune" = immune, "check_anti_magic" = check_anti_magic, "check_holy" = check_holy))
 	QDEL_IN(src, duration)
 
