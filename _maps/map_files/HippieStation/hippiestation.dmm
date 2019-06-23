@@ -43620,6 +43620,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cxN" = (
@@ -44400,6 +44401,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "czX" = (
@@ -44653,6 +44655,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "cAO" = (
@@ -45264,6 +45267,7 @@
 	req_access_txt = "10"
 	},
 /obj/machinery/door/firedoor/heavy,
+/obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "cCJ" = (
@@ -45620,6 +45624,7 @@
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "cDS" = (
@@ -45686,6 +45691,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "cEd" = (
@@ -45815,6 +45821,7 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "cEC" = (
@@ -46008,6 +46015,7 @@
 /area/engine/engineering)
 "cFe" = (
 /obj/structure/closet/firecloset,
+/obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "cFf" = (
@@ -49870,6 +49878,7 @@
 	dir = 4;
 	state = 2
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "eyM" = (
@@ -51191,6 +51200,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 6
 	},
+/obj/structure/cable,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "gGr" = (
@@ -51789,6 +51799,7 @@
 	name = "Output Release";
 	on = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "hOL" = (
@@ -53455,6 +53466,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/science/nanite)
+"kwu" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "kwC" = (
 /obj/docking_port/stationary{
 	dheight = 1;
@@ -53499,6 +53517,13 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space)
+"kzB" = (
+/obj/structure/reflector/box/anchored{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
 "kzN" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/maintenance{
@@ -53652,6 +53677,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "kOT" = (
@@ -55066,6 +55092,14 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/engine/port_engineering)
+"nfK" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
 "ngj" = (
 /obj/structure/chair,
 /turf/open/floor/plating,
@@ -55375,6 +55409,10 @@
 /obj/item/storage/box/stockparts/basic,
 /turf/open/floor/plasteel,
 /area/construction)
+"nJp" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "nKf" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -55476,6 +55514,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "nSR" = (
@@ -56431,6 +56470,7 @@
 /obj/structure/reflector/double/anchored{
 	dir = 6
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "pyn" = (
@@ -56586,6 +56626,7 @@
 	dir = 4;
 	name = "Output to Waste"
 	},
+/obj/structure/cable,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "pRg" = (
@@ -56748,6 +56789,15 @@
 	},
 /turf/open/floor/carpet,
 /area/hallway/secondary/entry)
+"qgm" = (
+/obj/machinery/door/airlock/engineering/glass{
+	name = "Laser Room";
+	req_access_txt = "10"
+	},
+/obj/machinery/door/firedoor/heavy,
+/obj/structure/cable,
+/turf/open/floor/engine,
+/area/engine/engineering)
 "qhG" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/cable,
@@ -57416,6 +57466,10 @@
 	},
 /turf/open/floor/engine,
 /area/engine/engineering)
+"rwB" = (
+/obj/structure/cable,
+/turf/open/floor/plasteel/dark,
+/area/engine/engineering)
 "rxN" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -57699,6 +57753,7 @@
 	dir = 8;
 	state = 2
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "rXP" = (
@@ -57989,6 +58044,7 @@
 "sBj" = (
 /obj/structure/table,
 /obj/item/pipe_dispenser,
+/obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "sDt" = (
@@ -58580,6 +58636,7 @@
 /area/construction)
 "twq" = (
 /obj/effect/turf_decal/stripes/corner,
+/obj/structure/cable,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "twF" = (
@@ -58714,6 +58771,7 @@
 /area/medical/virology)
 "tJH" = (
 /obj/machinery/light,
+/obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "tKd" = (
@@ -58814,6 +58872,11 @@
 	},
 /turf/open/floor/plasteel,
 /area/quartermaster/storage)
+"tQE" = (
+/obj/effect/turf_decal/stripes/line,
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/engine/engineering)
 "tQR" = (
 /turf/open/floor/plating,
 /area/space/nearstation)
@@ -59629,6 +59692,7 @@
 /area/engine/gravity_generator)
 "vsf" = (
 /obj/structure/closet/secure_closet/engineering_personal,
+/obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "vsC" = (
@@ -59931,6 +59995,7 @@
 	dir = 4
 	},
 /obj/machinery/meter,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "vVb" = (
@@ -60341,6 +60406,7 @@
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "wAW" = (
@@ -60680,6 +60746,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "xcx" = (
@@ -61166,6 +61233,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engineering)
 "xPA" = (
@@ -61276,6 +61344,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/general/visible,
+/obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
 "xYs" = (
@@ -89619,8 +89688,8 @@ obw
 vJD
 qtI
 xxi
-ctJ
-ctJ
+nJp
+nJp
 eyl
 eyl
 ctJ
@@ -90390,7 +90459,7 @@ uet
 cFk
 cFk
 fmU
-dIF
+kzB
 sKc
 dIF
 cGh
@@ -90647,7 +90716,7 @@ sIg
 cFl
 cFu
 xxi
-sXO
+rwB
 sKc
 sXO
 dYS
@@ -91161,10 +91230,10 @@ nFo
 lvb
 qtI
 xxi
-ctJ
-ctJ
+nJp
+nJp
 rXs
-ctJ
+nJp
 owW
 owW
 clH
@@ -91417,8 +91486,8 @@ kBI
 sFQ
 vpg
 pRd
-dEi
-ctJ
+qgm
+nJp
 ctJ
 ctJ
 ctJ
@@ -91915,7 +91984,7 @@ ctY
 cuY
 cvJ
 cuQ
-ctP
+jwq
 cyy
 clH
 jsP
@@ -92172,7 +92241,7 @@ cpm
 cpm
 cpm
 cwL
-ctP
+jwq
 cys
 xxi
 xxi
@@ -92946,12 +93015,12 @@ cwO
 cxN
 cyA
 czj
-cAR
+kwu
 cAN
 vUb
-cys
+tQE
 cCH
-knd
+nfK
 cDQ
 cEb
 cEA
