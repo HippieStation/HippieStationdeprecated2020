@@ -101,7 +101,4 @@
 	return BULLET_ACT_HIT
 
 /obj/item/gun/energy/printer
-	icon_state = "l6"
-
-/obj/item/gun/energy/printer/update_icon()
-	icon_state = "[initial(icon_state)]closed[magazine ? CEILING(get_ammo(0)/12.5, 1)*25 : "-empty"]"
+	icon_state = "l6closed100"
