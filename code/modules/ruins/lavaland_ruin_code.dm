@@ -85,13 +85,13 @@
 		var/species = golem_shell_species_types[O.merge_type]
 		if(species)
 			if(O.use(10))
-				to_chat(user, "You finish up the golem shell with ten sheets of [O].")
+				to_chat(user, "<span class='notice'>You finish up the golem shell with ten sheets of [O].</span>")
 				new shell_type(get_turf(src), species, user)
 				qdel(src)
 			else
-				to_chat(user, "You need at least ten sheets to finish a golem.")
+				to_chat(user, "<span class='warning'>You need at least ten sheets to finish a golem!</span>")
 		else
-			to_chat(user, "You can't build a golem out of this kind of material.")
+			to_chat(user, "<span class='warning'>You can't build a golem out of this kind of material!</span>")
 
 //made with xenobiology, the golem obeys its creator
 /obj/item/golem_shell/servant
