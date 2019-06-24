@@ -17,6 +17,7 @@
 		'sound/roundend/leavingtg.ogg',
 		'sound/roundend/its_only_game.ogg',
 		'sound/roundend/yeehaw.ogg',
+		'sound/roundend/you're not cool.ogg',
 		'hippiestation/sound/roundend/disappointed.ogg',
 		'hippiestation/sound/roundend/enjoyedyourchaos.ogg',
 		'hippiestation/sound/roundend/yamakemesick.ogg',
