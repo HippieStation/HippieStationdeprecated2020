@@ -230,8 +230,12 @@
 			blood = min(10, H.blood_volume)// if they have less than 10 blood, give them the remnant else they get 10 blood
 			total_blood += blood
 			usable_blood += blood
+			if(H.anti_magic_check(FALSE, TRUE)) // are they holy?
+				H.reagents.add_reagent("holywater", blood/2)
 		else
 			blood = min(2, H.blood_volume)	// The dead only give 2 blood
+			if(H.anti_magic_check(FALSE, TRUE)) // are they holy?
+				H.reagents.add_reagent("holywater", blood/2)
 			total_blood += blood
 		check_vampire_upgrade()
 		if(old_bloodtotal != total_blood)
