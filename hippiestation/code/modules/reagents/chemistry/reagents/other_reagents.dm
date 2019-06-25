@@ -89,3 +89,25 @@
 		return
 	H.reagents.add_reagent(pick("stablemutationtoxin","lizardmutationtoxin","flymutationtoxin", "mothmutationtoxin", "podmutationtoxin", "jellymutationtoxin", "golemmutationtoxin", "abductormutationtoxin", "androidmutationtoxin", "skeletonmutationtoxin", "zombiemutationtoxin", "ashmutationtoxin", "shadowmutationtoxin"), 1) //No plasmaman 4u xDDD
 	return
+
+/datum/reagent/randonium
+	name = "Randonium"
+	id = "randonium"
+	description = "A whizzing, chaotic substance that affects any drinker unpredictably. It might not be a good idea to drink this."
+	color = "#245e28"	//rgb(36, 94, 40)
+	metabolization_rate = 0.1
+	taste_description = "a horrible mistake"
+	can_synth = TRUE
+	var/static/list/everycheminthefuckinguniverse = list()
+
+/datum/reagent/randonium/on_mob_add(mob/living/M)
+	..()
+	if(!everycheminthefuckinguniverse.len)
+		for(var/reagent in subtypesof(/datum/reagent))
+			var/datum/reagent/newreagent = reagent
+			everycheminthefuckinguniverse += newreagent.id
+
+/datum/reagent/randonium/on_mob_life(mob/living/M)
+	..()
+	var/selectedchem = pick(everycheminthefuckinguniverse)
+	M.reagents.add_reagent(selectedchem, 5)
