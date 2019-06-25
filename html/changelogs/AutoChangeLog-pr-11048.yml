@@ -1,0 +1,4 @@
+author: "Jujumatic"
+delete-after: True
+changes: 
+  - rscadd: "Added a new chemical, Randonium. This chemical has the property of fabricating other random chemicals while inside of you. Admins beware!"
