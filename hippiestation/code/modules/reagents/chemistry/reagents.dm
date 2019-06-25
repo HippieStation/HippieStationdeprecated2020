@@ -18,7 +18,7 @@
 
 /datum/reagent/proc/FINISHONMOBLIFE(mob/living/M)
 	current_cycle++
-	M.reagents.remove_reagent(src.id, metabolization_rate * M.metabolism_efficiency) //By default it slowly disappears.
+	M.reagents.remove_reagent(src.type, metabolization_rate * M.metabolism_efficiency) //By default it slowly disappears.
 	return TRUE
 
 /datum/reagent/proc/handle_state_change(turf/T, volume, atom)
@@ -63,7 +63,7 @@
 					var/paths = subtypesof(/datum/reagent)
 					for(var/path in paths)
 						var/datum/reagent/RR = new path
-						if(RR.id == id)
+						if(RR.type == type)
 							V.reagent_type = RR
 							break
 						else
@@ -81,7 +81,7 @@
 				if(c.reagents)
 					if(touch_msg)
 						c.add_fingerprint(touch_mob)
-					c.reagents.add_reagent("[src.id]", volume)
+					c.reagents.add_reagent(src.type, volume)
 					var/mixcolor = mix_color_from_reagents(c.reagents.reagent_list)
 					c.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
 					if(c.reagents && c.reagents.total_volume < 5 & NO_REACT)
@@ -92,7 +92,7 @@
 			if(C.reagents)
 				if(touch_msg)
 					C.add_fingerprint(touch_mob)
-				C.reagents.add_reagent("[src.id]", volume)
+				C.reagents.add_reagent(src.type, volume)
 				var/mixcolor = mix_color_from_reagents(C.reagents.reagent_list)
 				C.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
 
@@ -103,17 +103,17 @@
 				volume = volume * SOLID_PARTICLE_EFFECT_EFFICIENCY//big nerf to smoke and foam duping
 
 			for(var/obj/item/reagent_containers/food/snacks/solid_reagent/SR in T.contents)
-				if(SR.reagents && SR.reagent_type == src.id && SR.reagents.total_volume < 200)
+				if(SR.reagents && SR.reagent_type == src.type && SR.reagents.total_volume < 200)
 					if(touch_msg)
 						SR.add_fingerprint(touch_mob)
-					SR.reagents.add_reagent("[src.id]", volume)
+					SR.reagents.add_reagent(src.type, volume)
 					return TRUE
 
 			var/obj/item/reagent_containers/food/snacks/solid_reagent/Sr = new (T)
 			if(touch_msg)
 				Sr.add_fingerprint(touch_mob)
-			Sr.reagents.add_reagent("[src.id]", volume)
-			Sr.reagent_type = src.id
+			Sr.reagents.add_reagent(src.type, volume)
+			Sr.reagent_type = src.type
 			Sr.name = "solidified [src]"
 			Sr.add_atom_colour(src.color, FIXED_COLOUR_PRIORITY)
 			Sr.filling_color = src.color

@@ -1,3 +1,6 @@
+/obj/item/gun/ballistic/automatic/pistol
+	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
+
 /obj/item/gun/ballistic/automatic/pistol/g17
 	name = "Glock 17"
 	desc = "A classic 9mm handgun with a large magazine capacity. Used by security teams everywhere."

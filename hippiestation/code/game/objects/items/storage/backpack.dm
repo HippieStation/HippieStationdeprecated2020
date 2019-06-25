@@ -33,7 +33,7 @@
 
 /obj/item/storage/backpack/duffelbag/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = normal_max_combined_w_class
 
 /datum/action/item_action/adjust_bag
@@ -72,12 +72,12 @@
 
 		to_chat(usr, "<span class='notice'>You adjust the [src], [adjusted ? "leaving less space, but making it easier to carry around" : "allowing you to carry more stuff, but slowing you down"]</span>")
 		slowdown = adjusted ? adjusted_slowdown : initial(slowdown)
-		GET_COMPONENT(STR, /datum/component/storage)
+		var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 		STR.max_combined_w_class = adjusted ? adjusted_max_combined_w_class : normal_max_combined_w_class
 
 /obj/item/storage/backpack/satchel/flat/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_combined_w_class = WEIGHT_CLASS_HUGE
 	STR.max_items = 6
 	STR.cant_hold = typecacheof(list(/obj/item/storage/backpack))

@@ -37,7 +37,7 @@
 
 /obj/effect/particle_effect/vapour/master/proc/Merge_Master()
 	for(var/obj/effect/particle_effect/vapour/master/M in orange(5, src))//a little costly but it only does it once and is much better than calling it on process
-		if(M.reagent_type.id == reagent_type.id)
+		if(M.reagent_type.type == reagent_type.type)
 			volume += M.volume
 			M.kill_vapour()
 
@@ -138,16 +138,16 @@ GLOBAL_LIST_EMPTY(vapour)
 		for(var/I in T)
 			if(istype(I, /obj/effect/particle_effect/vapour))//checks the tile for any vapour, prevents stacking of the same type
 				var/obj/effect/particle_effect/vapour/foundvape = I
-				if(foundvape && foundvape.reagent_type.id != reagent_type.id)
+				if(foundvape && foundvape.reagent_type.type != reagent_type.type)
 					clear = TRUE
 					if(prob(3) && reac_count < 1)//BIG safety check
 						create_reagents(50)//used just for in air reactions
-						reagents.add_reagent(reagent_type.id, 5)
-						reagents.add_reagent(foundvape.reagent_type.id, 5)
+						reagents.add_reagent(reagent_type.type, 5)
+						reagents.add_reagent(foundvape.reagent_type.type, 5)
 						qdel(reagents)
 						reac_count++
 
-				if(foundvape && foundvape.reagent_type.id == reagent_type.id)
+				if(foundvape && foundvape.reagent_type.type == reagent_type.type)
 					clear = FALSE
 					supply++
 					break
@@ -178,7 +178,7 @@ GLOBAL_LIST_EMPTY(vapour)
 	if(C.internal != null || C.has_smoke_protection())
 		return FALSE
 
-	C.reagents.add_reagent(reagent_type.id, 1.5)//doesn't actually carry reagents but just adds them to mobs at a slow fixed rate
+	C.reagents.add_reagent(reagent_type.type, 1.5)//doesn't actually carry reagents but just adds them to mobs at a slow fixed rate
 	C.reagents.reaction(C, INGEST, 1.5)
 	return FALSE
 

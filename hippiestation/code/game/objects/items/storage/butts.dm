@@ -2,7 +2,7 @@
 	if(user.zone_selected == "groin")
 		var/obj/item/organ/butt/B = getorgan(/obj/item/organ/butt)
 		if(!w_uniform)
-			GET_COMPONENT_FROM(STR, /datum/component/storage, B)
+			var/datum/component/storage/STR = B.GetComponent(/datum/component/storage)
 			if(B && STR)
 				user.visible_message("<span class='warning'>[user] starts inspecting [user == src ? "his own" : "[src]'s"] ass!</span>", "<span class='warning'>You start inspecting [user == src ? "your" : "[src]'s"] ass!</span>")
 				if(do_mob(user, src, 40))
@@ -39,7 +39,7 @@
 				return FALSE
 			var/obj/item/organ/butt/B = buttowner.getorgan(/obj/item/organ/butt)
 			if(B)
-				GET_COMPONENT_FROM(STR, /datum/component/storage, B)
+				var/datum/component/storage/STR = B.GetComponent(/datum/component/storage)
 				if(!STR)
 					return FALSE
 				user.visible_message("<span class='warning'>[user] starts hiding [I] inside [src == user ? "his own" : "[user]'s"] butt.</span>", "<span class='warning'>You start hiding [I] inside [user == src ? "your" : "[user]'s"] butt.</span>")
@@ -52,6 +52,6 @@
 /obj/item/clothing/proc/checkbuttuniform(mob/user)
 	var/obj/item/organ/butt/B = user.getorgan(/obj/item/organ/butt)
 	if(B)
-		GET_COMPONENT_FROM(STR, /datum/component/storage, B)
+		var/datum/component/storage/STR = B.GetComponent(/datum/component/storage)
 		if(STR)
 			STR.close_all()

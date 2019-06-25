@@ -20,8 +20,8 @@
 		/obj/effect/proc_holder/spell/target_hive/hive_add = 0,
 		/obj/effect/proc_holder/spell/target_hive/hive_remove = 0,
 		/obj/effect/proc_holder/spell/target_hive/hive_see = 0,
-		/obj/effect/proc_holder/spell/target_hive/hive_shock = 0,
-		/obj/effect/proc_holder/spell/target_hive/hive_warp = 0,
+		/obj/effect/proc_holder/spell/targeted/hive_shock = 0,
+		/obj/effect/proc_holder/spell/self/telekinetic_hand = 0,
 		//Tier 2 - Tracking related powers
 		/obj/effect/proc_holder/spell/self/hive_scan = 5,
 		/obj/effect/proc_holder/spell/targeted/hive_reclaim = 5,
@@ -35,8 +35,8 @@
 		/obj/effect/proc_holder/spell/self/hive_loyal = 15,
 		/obj/effect/proc_holder/spell/target_hive/hive_control = 15,
 		//Tier 5 - Deadly powers
-		/obj/effect/proc_holder/spell/targeted/induce_sleep = 20,
-		/obj/effect/proc_holder/spell/target_hive/hive_attack = 20
+		/obj/effect/proc_holder/spell/targeted/pin = 20,
+		/obj/effect/proc_holder/spell/target_hive/nightmare = 20
 	)
 
 
@@ -86,13 +86,13 @@
 			to_chat(owner, "<big><span class='assimilator'>Our true power, the One Mind, is finally within reach.</span></big>")
 
 /datum/antagonist/hivemind/proc/add_track_bonus(datum/antagonist/hivemind/enemy, bonus)
-	if(individual_track_bonus[enemy])
+	if(!individual_track_bonus[enemy])
 		individual_track_bonus[enemy] = bonus
 	else
 		individual_track_bonus[enemy] += bonus
 
 /datum/antagonist/hivemind/proc/get_track_bonus(datum/antagonist/hivemind/enemy)
-	if(individual_track_bonus[enemy])
+	if(!individual_track_bonus[enemy])
 		. = 0
 	else
 		. = individual_track_bonus[enemy]
@@ -127,10 +127,10 @@
 	if(M)
 		hivemembers -= M
 		calc_size()
-	if(active_one_mind)
-		var/datum/antagonist/hivevessel/V = C.is_wokevessel()
-		if(V)
-			M.remove_antag_datum(/datum/antagonist/hivevessel)
+		if(active_one_mind)
+			var/datum/antagonist/hivevessel/V = C.is_wokevessel()
+			if(V)
+				M.remove_antag_datum(/datum/antagonist/hivevessel)
 
 /datum/antagonist/hivemind/proc/handle_ejection(mob/living/carbon/C)
 	var/user_warning = "The enemy host has been ejected from our mind"
@@ -153,12 +153,12 @@
 	if(C == real_C) //Mind control check
 		real_C2.apply_status_effect(STATUS_EFFECT_HIVE_TRACKER, real_C, hive_C.get_track_bonus(hive_C2))
 		real_C.apply_status_effect(STATUS_EFFECT_HIVE_RADAR)
-		to_chat(real_C, "<span class='assimilator'>We detect a surge of psionic energy from a far away vessel before they disappear from the hive. Whatever happened, there's a good chance they're after us now.</span>")
+		to_chat(real_C2, "<span class='assimilator'>We detect a surge of psionic energy from a far away vessel before they disappear from the hive. Whatever happened, there's a good chance they're after us now.</span>")
 	if(C2 == real_C2)
-		real_C.apply_status_effect(STATUS_EFFECT_HIVE_TRACKER, real_C2, hive_C2.get_track_bonus(hive_C) )
+		real_C.apply_status_effect(STATUS_EFFECT_HIVE_TRACKER, real_C2, hive_C2.get_track_bonus(hive_C))
 		real_C2.apply_status_effect(STATUS_EFFECT_HIVE_RADAR)
 		user_warning += " and we've managed to pinpoint their location"
-	to_chat(C2, "<span class='userdanger'>[user_warning]!</span>")
+	to_chat(real_C, "<span class='userdanger'>[user_warning]!</span>")
 
 /datum/antagonist/hivemind/proc/destroy_hive()
 	go_back_to_sleep()
