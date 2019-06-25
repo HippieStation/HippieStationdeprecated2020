@@ -78,6 +78,7 @@
 	else
 		icon_state = "[initial(icon_state)]-off"
 
+/* hippie -- readd mining points
 /obj/machinery/mineral/equipment_vendor/ui_interact(mob/user)
 	. = ..()
 	var/list/dat = list()
@@ -143,6 +144,7 @@
 			flick(icon_deny, src)
 	updateUsrDialog()
 	return
+*/// hippie end
 
 /obj/machinery/mineral/equipment_vendor/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/mining_voucher))
