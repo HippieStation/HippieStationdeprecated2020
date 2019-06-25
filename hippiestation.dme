@@ -2988,6 +2988,7 @@
 #include "hippiestation\code\game\machinery\reagent_sheet.dm"
 #include "hippiestation\code\game\machinery\recharger.dm"
 #include "hippiestation\code\game\machinery\sprinkler.dm"
+#include "hippiestation\code\game\machinery\stasis.dm"
 #include "hippiestation\code\game\machinery\suit_storage_unit.dm"
 #include "hippiestation\code\game\machinery\trapdoors.dm"
 #include "hippiestation\code\game\machinery\washing_machine.dm"
