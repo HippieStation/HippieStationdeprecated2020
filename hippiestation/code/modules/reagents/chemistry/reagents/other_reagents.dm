@@ -95,14 +95,14 @@
 	metabolization_rate = 0.1
 	taste_description = "a horrible mistake"
 	can_synth = TRUE
-	var/static/list/everycheminthefuckinguniverse = list()
+	var/list/everycheminthefuckinguniverse = list()
 
 /datum/reagent/randonium/on_mob_add(mob/living/M)
 	..()
 	if(!everycheminthefuckinguniverse.len)
 		for(var/reagent in subtypesof(/datum/reagent))
 			var/datum/reagent/newreagent = reagent
-			everycheminthefuckinguniverse += newreagent.id
+			everycheminthefuckinguniverse += newreagent.type
 
 /datum/reagent/randonium/on_mob_life(mob/living/M)
 	..()
