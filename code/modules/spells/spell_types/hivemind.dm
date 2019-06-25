@@ -671,7 +671,7 @@
 		user.put_in_hands(W)
 		to_chat(user, "<span class='notice'>You make a telekinetic hand!</span>")
 	else
-		to_chat(user,"<span class='notice'>You cannot make a telekinetic hand while holding something!</span>")
+		to_chat(user,"<span class='warning'>You cannot make a telekinetic hand while holding something!</span>")
 		revert_cast()
 		
 /obj/effect/proc_holder/spell/targeted/hive_hack
