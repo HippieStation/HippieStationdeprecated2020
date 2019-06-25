@@ -43,7 +43,7 @@
 		return
 	var/datum/antagonist/changeling/changeling = user.mind.has_antag_datum(/datum/antagonist/changeling)
 	if(!changeling.chosen_sting)
-		to_chat(user, "We haven't prepared our sting yet!")
+		to_chat(user, "<span class='warning'>We haven't prepared our sting yet!</span>")
 	if(!iscarbon(target))
 		return
 	if(!isturf(user.loc))
@@ -84,7 +84,7 @@
 	if(!selected_dna)
 		return
 	if(NOTRANSSTING in selected_dna.dna.species.species_traits)
-		to_chat(user, "<span class = 'notice'>That DNA is not compatible with changeling retrovirus!</span>")
+		to_chat(user, "<span class='notice'>That DNA is not compatible with changeling retrovirus!</span>")
 		return
 	..()
 
