@@ -71,8 +71,8 @@
 /datum/chemical_reaction/randonium
 	name = "Randonium"
 	id = "randonium"
-	results = list("randonium" = 3)
-	required_reagents = list("lean" = 1, "methamphetamine" = 1, "teslium" = 1)
+	results = list(/datum/reagent/randonium = 3)
+	required_reagents = list(/datum/reagent/consumable/lean = 1, /datum/reagent/drug/methamphetamine = 1, /datum/reagent/teslium = 1)
 	mix_message = "<span class='danger'>The solution sparks and freezes, then suddenly turns back to liquid!</span>"
 	pressure_required = 25
 

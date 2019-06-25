@@ -90,7 +90,6 @@
 
 /datum/reagent/randonium
 	name = "Randonium"
-	id = "randonium"
 	description = "A whizzing, chaotic substance that affects any drinker unpredictably. It might not be a good idea to drink this."
 	color = "#245e28"	//rgb(36, 94, 40)
 	metabolization_rate = 0.1
