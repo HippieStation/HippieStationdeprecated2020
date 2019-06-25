@@ -65,8 +65,8 @@
 		honorific = "Ms."
 	else if(owner.current.gender == MALE)
 		honorific = "Mr."
-	else
-		honorific = "Mx."
+	/*else
+		honorific = "Mx."*/ // hippie -- remove fluff
 	if(GLOB.possible_changeling_IDs.len)
 		changelingID = pick(GLOB.possible_changeling_IDs)
 		GLOB.possible_changeling_IDs -= changelingID
