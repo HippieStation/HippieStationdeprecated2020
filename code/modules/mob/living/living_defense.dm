@@ -146,7 +146,7 @@
 		return FALSE
 
 	if(user.grab_state >= GRAB_AGGRESSIVE && HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, "<span class='notice'>You don't want to risk hurting [src]!</span>")
+		to_chat(user, "<span class='warning'>You don't want to risk hurting [src]!</span>")
 		return FALSE
 	grippedby(user)
 
@@ -158,7 +158,7 @@
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(H.dna.species.grab_sound)
-				sound_to_play = H.dna.species.grab_sound 	
+				sound_to_play = H.dna.species.grab_sound
 		playsound(src.loc, sound_to_play, 50, 1, -1)
 
 		if(user.grab_state) //only the first upgrade is instantaneous
@@ -221,7 +221,7 @@
 		return // can't attack while eating!
 
 	if(HAS_TRAIT(src, TRAIT_PACIFISM))
-		to_chat(M, "<span class='notice'>You don't want to hurt anyone!</span>")
+		to_chat(M, "<span class='warning'>You don't want to hurt anyone!</span>")
 		return FALSE
 
 	if (stat != DEAD)
@@ -238,7 +238,7 @@
 		return FALSE
 	else
 		if(HAS_TRAIT(M, TRAIT_PACIFISM))
-			to_chat(M, "<span class='notice'>You don't want to hurt anyone!</span>")
+			to_chat(M, "<span class='warning'>You don't want to hurt anyone!</span>")
 			return FALSE
 
 		if(M.attack_sound)
@@ -257,7 +257,7 @@
 
 	if (M.a_intent == INTENT_HARM)
 		if(HAS_TRAIT(M, TRAIT_PACIFISM))
-			to_chat(M, "<span class='notice'>You don't want to hurt anyone!</span>")
+			to_chat(M, "<span class='warning'>You don't want to hurt anyone!</span>")
 			return FALSE
 
 		if(M.is_muzzled() || M.is_mouth_covered(FALSE, TRUE))
@@ -283,7 +283,7 @@
 
 		else
 			if(HAS_TRAIT(L, TRAIT_PACIFISM))
-				to_chat(L, "<span class='notice'>You don't want to hurt anyone!</span>")
+				to_chat(L, "<span class='warning'>You don't want to hurt anyone!</span>")
 				return
 
 			L.do_attack_animation(src)
@@ -308,7 +308,7 @@
 			return FALSE
 		if("harm")
 			if(HAS_TRAIT(M, TRAIT_PACIFISM))
-				to_chat(M, "<span class='notice'>You don't want to hurt anyone!</span>")
+				to_chat(M, "<span class='warning'>You don't want to hurt anyone!</span>")
 				return FALSE
 			M.do_attack_animation(src)
 			return TRUE
