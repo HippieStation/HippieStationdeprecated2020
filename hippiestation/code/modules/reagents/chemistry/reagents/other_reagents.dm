@@ -101,8 +101,7 @@
 	..()
 	if(!everycheminthefuckinguniverse.len)
 		for(var/reagent in subtypesof(/datum/reagent))
-			var/datum/reagent/newreagent = reagent
-			everycheminthefuckinguniverse += newreagent.type
+			everycheminthefuckinguniverse += reagent
 
 /datum/reagent/randonium/on_mob_life(mob/living/M)
 	..()
