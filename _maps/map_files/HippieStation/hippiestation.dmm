@@ -49022,6 +49022,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"dcp" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/mob/living/silicon/robot/shell,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/ai)
 "dda" = (
 /obj/structure/table/wood,
 /obj/item/canvas/twentythreeXtwentythree,
@@ -100770,7 +100778,7 @@ cKe
 cJn
 cKg
 cKl
-kKJ
+dcp
 cKx
 cKC
 cKH
