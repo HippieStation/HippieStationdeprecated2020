@@ -83,7 +83,6 @@
 			continue
 		if(!affix.validate(src))
 			continue
-
 		affixes += affix
 		usedSlots |= affix.placement
 

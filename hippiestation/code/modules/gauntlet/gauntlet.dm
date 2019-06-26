@@ -214,7 +214,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 /obj/item/badmin_gauntlet/proc/OnUnquip(mob/living/user)
 	user.cut_overlay(flashy_aura)
-	GET_COMPONENT_FROM(stationloving, /datum/component/stationloving, user)
+	var/datum/component/stationloving/stationloving = user.GetComponent(/datum/component/stationloving)
 	if(stationloving)
 		user.TakeComponent(stationloving)
 	for(var/obj/effect/proc_holder/spell/A in spells)

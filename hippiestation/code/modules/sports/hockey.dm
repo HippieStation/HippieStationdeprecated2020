@@ -186,7 +186,7 @@
 
 /obj/item/storage/belt/hippie/hockey/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 2
 	STR.can_hold = typecacheof(list(/obj/item/holopuck))
 
