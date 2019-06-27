@@ -4,7 +4,6 @@
 
 /datum/reagent/consumable/ethanol/impalco
 	name = "Impure Superhol"
-	id = "impalco"
 	description = "An impure solution of superhol, still very strong!"
 	color = "#CAD15A"
 	boozepwr = 100
@@ -15,7 +14,6 @@
 
 /datum/reagent/consumable/ethanol/alco
 	name = "Superhol"
-	id = "alco"
 	description = "An incredibly potent form of synthetic ethanol"
 	color = "#CAD15A"
 	boozepwr = 350
@@ -41,7 +39,6 @@
 
 /datum/reagent/consumable/ethanol/isopropyl
 	name = "Isopropyl alcohol"
-	id = "isopropyl"
 	description = "Can make you sick and drunk at the same time. Amazing!"
 	color = "#C8A5DC"
 
@@ -124,7 +121,7 @@
 		. = 1
 	..()
 
-/datum/reagent/consumable/ethanol/manly_dorf/on_mob_add(mob/living/M)
+/datum/reagent/consumable/ethanol/manly_dorf/on_mob_metabolize(mob/living/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.facial_hair_style = "Dwarf Beard"
@@ -170,13 +167,13 @@
 /datum/reagent/consumable/ethanol/singulo/on_mob_life(mob/living/M)
 	for(var/datum/reagent/R in M.reagents.reagent_list)
 		if(R != src)
-			M.reagents.remove_reagent(R.id,2)
+			M.reagents.remove_reagent(R.type,2)
 		. = 1
 		..()
 
 /datum/reagent/consumable/ethanol/mead/on_mob_life(mob/living/M)
 	if(prob(10))
-		M.reagents.add_reagent("honey",2)
+		M.reagents.add_reagent(/datum/reagent/consumable/honey,2)
 	..()
 
 /datum/reagent/consumable/ethanol/grog/on_mob_life(mob/living/M)

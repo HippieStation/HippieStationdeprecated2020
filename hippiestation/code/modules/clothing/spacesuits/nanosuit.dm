@@ -216,6 +216,7 @@
 	var/defrosted = FALSE
 	var/detecting = FALSE
 	var/help_verb = /mob/living/carbon/human/proc/Nanosuit_help
+	var/outfit = /datum/outfit/nanosuit
 	jetpack = /obj/item/tank/jetpack/suit
 	var/recharge_cooldown = 0 //if this number is greater than 0, we can't recharge
 	var/cloak_use_rate = 1.2 //cloaked energy consume rate
@@ -280,7 +281,7 @@
 		if(world.time > temp_cooldown)
 			if(!defrosted)
 				helmet.display_visor_message("Activating suit defrosting protocols.")
-				Wearer.reagents.add_reagent("leporazine", 3)
+				Wearer.reagents.add_reagent(/datum/reagent/medicine/leporazine, 3)
 				defrosted = TRUE
 				temp_cooldown += 100
 	else
@@ -383,7 +384,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/heal_nano(mob/living/carbon/human/user)
 	helmet.display_visor_message("Engaging emergency medical protocols")
-	user.reagents.add_reagent("syndicate_nanites", 1)
+	user.reagents.add_reagent(/datum/reagent/medicine/syndicate_nanites, 1)
 
 /obj/item/clothing/suit/space/hardsuit/nano/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/nanosuit/armor))
@@ -680,7 +681,7 @@
 		var/area/A = get_area(src)
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 		Wearer.unequip_everything()
-		Wearer.equipOutfit(/datum/outfit/nanosuit)
+		Wearer.equipOutfit(outfit)
 		ADD_TRAIT(Wearer, TRAIT_NODISMEMBER, "Nanosuit")
 		RegisterSignal(Wearer, list(COMSIG_MOB_ITEM_ATTACK,COMSIG_MOB_ITEM_AFTERATTACK,COMSIG_MOB_THROW,COMSIG_MOB_ATTACK_HAND), .proc/kill_cloak,TRUE)
 		if(is_station_level(T.z))
@@ -688,7 +689,7 @@
 		log_game("[user] has engaged [src]")
 		if(help_verb)
 			Wearer.verbs += help_verb
-		bootSequence()
+		INVOKE_ASYNC(src, .proc/bootSequence)
 	..()
 
 /obj/item/clothing/suit/space/hardsuit/nano/dropped()

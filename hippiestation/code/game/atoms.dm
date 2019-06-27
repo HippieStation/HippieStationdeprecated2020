@@ -1,5 +1,6 @@
 /atom
 	var/icon_hippie
+	var/next_spam_shot = 0
 
 /atom/proc/wake_liquids()
 	for(var/obj/effect/liquid/L in orange(1, src))

@@ -6,6 +6,7 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/kitchen/knife/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)
+	..()
 	if(ishuman(target) && proximity_flag)
 		var/mob/living/carbon/human/H = target
 		special_attack = FALSE
@@ -28,6 +29,7 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/melee/transforming/energy/sword/saber/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)
+	..()
 	if(!proximity_flag && get_dist(user,target) == 2 && ishuman(target))
 		var/mob/living/carbon/human/HT = target
 		user.throw_at(target, 1, 10)
@@ -73,6 +75,7 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/twohanded/dualsaber/do_special_attack(atom/target, mob/living/carbon/user)
+	..()
 	if(wielded)
 		user.visible_message("<span class='danger'>[user] begins to flail around wildly!</span>")
 		user.confused += 200
@@ -103,6 +106,7 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/melee/transforming/butterfly/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)//no alternative for aliens because their code is cancer
+	..()
 	if(ishuman(target) && proximity_flag && active)
 		var/mob/living/carbon/human/H = target
 		var/obj/item/organ/butt/B = H.getorganslot("butt")
@@ -126,6 +130,7 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/melee/baseball_bat/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)
+	..()
 	if(iscarbon(target) && proximity_flag)
 		var/mob/living/carbon/C = target
 		C.adjustBrainLoss(30)
@@ -148,11 +153,10 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/melee/baton/do_special_attack(atom/target, mob/living/carbon/user)
+	..()
 	if(isliving(user) && status == TRUE)
 		tesla_zap(src, 4, 10000, TESLA_FUSION_FLAGS)
 		user.electrocute_act(20, src, TRUE, TRUE)
-		log_admin("[user] used [special_name] on [target]")
-		message_admins("<span class='adminnotice'>[user] used [special_name] on [target]</span>")
 		deductcharge(hitcost)
 		user.visible_message("<span class='danger'>[user] spits on the active end of [src]!</span>")
 		playsound(user, 'sound/magic/lightningbolt.ogg', 100, 1, -1)
@@ -169,6 +173,7 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/melee/chainofcommand/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)
+	..()
 	if(!proximity_flag && get_dist(user,target) < 6 && isliving(target))
 		for(var/I in getline(user,target))
 			var/turf/T = I
@@ -203,6 +208,7 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/screwdriver/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)
+	..()
 	if(ishuman(target) && proximity_flag)
 		var/mob/living/carbon/human/H = target
 		special_attack = FALSE

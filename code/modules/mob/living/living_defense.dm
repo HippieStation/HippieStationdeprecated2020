@@ -5,20 +5,26 @@
 	//the if "armor" check is because this is used for everything on /living, including humans
 	if(armor && armour_penetration)
 		armor = max(0, armor - armour_penetration)
-		if(penetrated_text)
-			to_chat(src, "<span class='userdanger'>[penetrated_text]</span>")
-		else
-			to_chat(src, "<span class='userdanger'>Your armor was penetrated!</span>")
+		if(world.time >= next_armor_spam) // hippie start
+			if(penetrated_text)
+				to_chat(src, "<span class='userdanger'>[penetrated_text]</span>")
+			else
+				to_chat(src, "<span class='userdanger'>Your armor was penetrated!</span>")
+			next_armor_spam = world.time + 7.5 // hippie end
 	else if(armor >= 100)
-		if(absorb_text)
-			to_chat(src, "<span class='userdanger'>[absorb_text]</span>")
-		else
-			to_chat(src, "<span class='userdanger'>Your armor absorbs the blow!</span>")
+		if(world.time >= next_armor_spam) // hippie start
+			if(absorb_text)
+				to_chat(src, "<span class='userdanger'>[absorb_text]</span>")
+			else
+				to_chat(src, "<span class='userdanger'>Your armor absorbs the blow!</span>")
+			next_armor_spam = world.time + 7.5 // hippie end
 	else if(armor > 0)
-		if(soften_text)
-			to_chat(src, "<span class='userdanger'>[soften_text]</span>")
-		else
-			to_chat(src, "<span class='userdanger'>Your armor softens the blow!</span>")
+		if(world.time >= next_armor_spam) // hippie start
+			if(soften_text)
+				to_chat(src, "<span class='userdanger'>[soften_text]</span>")
+			else
+				to_chat(src, "<span class='userdanger'>Your armor softens the blow!</span>")
+			next_armor_spam = world.time + 7.5 // hippie end
 	return armor
 
 
@@ -137,7 +143,7 @@
 		to_chat(user, "<span class='warning'>[src] can't be grabbed more aggressively!</span>")
 		return FALSE
 
-	if(HAS_TRAIT(user, TRAIT_PACIFISM))
+	if(user.grab_state >= GRAB_AGGRESSIVE && HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, "<span class='notice'>You don't want to risk hurting [src]!</span>")
 		return FALSE
 	grippedby(user)
@@ -173,11 +179,17 @@
 		user.grab_state++
 		switch(user.grab_state)
 			if(GRAB_AGGRESSIVE)
-				log_combat(user, src, "grabbed", addition="aggressive grab")
-				visible_message("<span class='danger'>[user] has grabbed [src] aggressively!</span>", \
-								"<span class='userdanger'>[user] has grabbed [src] aggressively!</span>")
-				drop_all_held_items()
+				var/add_log = ""
+				if(HAS_TRAIT(user, TRAIT_PACIFISM))
+					visible_message("<span class='danger'>[user] has firmly gripped [src]!</span>",
+						"<span class='danger'>[user] has firmly gripped you!</span>")
+					add_log = " (pacifist)"
+				else
+					visible_message("<span class='danger'>[user] has grabbed [src] aggressively!</span>", \
+									"<span class='userdanger'>[user] has grabbed you aggressively!</span>")
+					drop_all_held_items()
 				stop_pulling()
+				log_combat(user, src, "grabbed", addition="aggressive grab[add_log]")
 			if(GRAB_NECK)
 				log_combat(user, src, "grabbed", addition="neck grab")
 				visible_message("<span class='danger'>[user] has grabbed [src] by the neck!</span>",\
@@ -350,7 +362,7 @@
 		to_chat(src, "<span class='userdanger'>You resist Nar'Sie's influence... but not all of it. <i>Run!</i></span>")
 		adjustBruteLoss(35)
 		if(src && reagents)
-			reagents.add_reagent("heparin", 5)
+			reagents.add_reagent(/datum/reagent/toxin/heparin, 5)
 		return FALSE
 	if(GLOB.cult_narsie && GLOB.cult_narsie.souls_needed[src])
 		GLOB.cult_narsie.souls_needed -= src

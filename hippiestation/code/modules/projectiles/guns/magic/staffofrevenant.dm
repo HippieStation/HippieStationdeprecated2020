@@ -1,7 +1,7 @@
 /obj/item/gun/magic/staff/staffofrevenant
 	name = "staff of revenant"
 	desc = "A cursed artifact that starts off weak, but you can drain the souls of dead bodies in order to make it more powerful! Activate the staff in hand to see how many souls you have and, if you have enough, make your staff stronger."
-	fire_sound = "sound/magic/WandODeath.ogg"
+	fire_sound = 'sound/magic/WandODeath.ogg'
 	ammo_type = /obj/item/ammo_casing/magic/staffofrevenant
 	icon_state = "staffofrevenant"
 	item_state = "staffofrevenant"

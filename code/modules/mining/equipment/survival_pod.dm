@@ -34,8 +34,8 @@
 /obj/item/survivalcapsule/examine(mob/user)
 	. = ..()
 	get_template()
-	to_chat(user, "This capsule has the [template.name] stored.")
-	to_chat(user, template.description)
+	. += "This capsule has the [template.name] stored."
+	. += template.description
 
 //hippie start -- to prevent station capsule grief
 /obj/item/survivalcapsule/emag_act(mob/user)
@@ -164,13 +164,6 @@
 
 /obj/machinery/stasis/survival_pod/update_icon()
 	return
-
-//NanoMed
-/obj/machinery/vending/wallmed/survival_pod
-	name = "survival pod medical supply"
-	desc = "Wall-mounted Medical Equipment dispenser. This one seems just a tiny bit smaller."
-	refill_canister = null
-	onstation = FALSE
 
 //Computer
 /obj/item/gps/computer

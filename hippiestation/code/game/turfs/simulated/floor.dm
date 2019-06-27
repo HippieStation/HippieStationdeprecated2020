@@ -5,7 +5,7 @@
 		var/paths = subtypesof(/datum/reagent)
 		for(var/path in paths)
 			var/datum/reagent/RR = new path
-			if(RR.id == F.reagent_type.id)
+			if(RR.type == F.reagent_type.type)
 				FT.reagent_type = RR
 				FT.name ="[F.reagent_type] floor"
 				FT.desc = "floor tiles made of [F.reagent_type]"

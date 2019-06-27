@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT(reagent_recipes, list ( \
 	if(!istype(S, /obj/item/stack/sheet/mineral/reagent))
 		return
 	var/obj/item/stack/sheet/mineral/reagent/R = S
-	if(QDELETED(S) || QDELETED(src) || S == src || !R.reagent_type || !reagent_type || R.reagent_type.id != reagent_type.id) //amusingly this can cause a stack to consume itself, let's not allow that.
+	if(QDELETED(S) || QDELETED(src) || S == src || !R.reagent_type || !reagent_type || R.reagent_type.type != reagent_type.type) //amusingly this can cause a stack to consume itself, let's not allow that.
 		return
 
 	var/transfer = get_amount()
@@ -81,7 +81,7 @@ GLOBAL_LIST_INIT(reagent_recipes, list ( \
 				var/paths = subtypesof(/datum/reagent)
 				for(var/path in paths)
 					var/datum/reagent/RR = new path
-					if(RR.id == reagent_type.id)
+					if(RR.type == reagent_type.type)
 						W.reagent_type = RR
 						W.name ="[reagent_type] plated wall"
 						W.desc = "A wall plated with sheets of [reagent_type]"
@@ -109,7 +109,7 @@ GLOBAL_LIST_INIT(reagent_recipes, list ( \
 			var/paths = subtypesof(/datum/reagent)
 			for(var/path in paths)
 				var/datum/reagent/RR = new path
-				if(RR.id == reagent_type.id)
+				if(RR.type == reagent_type.type)
 					D.reagent_type = RR
 					D.name ="[reagent_type] door"
 					D.desc = "A slightly transparent door made out of sheets of [reagent_type]"
@@ -125,7 +125,7 @@ GLOBAL_LIST_INIT(reagent_recipes, list ( \
 			var/paths = subtypesof(/datum/reagent)
 			for(var/path in paths)
 				var/datum/reagent/RR = new path
-				if(RR.id == reagent_type.id)
+				if(RR.type == reagent_type.type)
 					F.reagent_type = RR
 					F.name ="[reagent_type] floor tiles"
 					F.singular_name = "[reagent_type] floor tile"

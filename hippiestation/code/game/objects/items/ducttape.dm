@@ -6,6 +6,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	gas_transfer_coefficient = 0.90
 	strip_delay = 10
+	modifies_speech = TRUE
 	var/used = FALSE
 
 /obj/item/clothing/mask/hippie/tape/attack_hand(mob/user as mob)
@@ -38,9 +39,8 @@
 		user.emote("scream")
 		qdel(src)
 
-/obj/item/clothing/mask/hippie/tape/speechModification(message)
-	var/M = muffledspeech(message)
-	return M
+/obj/item/clothing/mask/hippie/tape/handle_speech(datum/source, list/speech_args)
+	speech_args[SPEECH_MESSAGE] = muffledspeech(speech_args[SPEECH_MESSAGE])
 
 /obj/item/stack/ducttape
 	desc = "It's duct tape. You can use it to tape something... or someone."

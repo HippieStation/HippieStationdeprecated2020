@@ -159,9 +159,8 @@
 	else
 		..()
 
-/obj/item/gun/ballistic/automatic/m90/update_icon()//hippie edit -- bring back old gun icons
+/obj/item/gun/ballistic/automatic/m90/update_icon()
 	..()
-	cut_overlays()
 	switch(select)
 		if(0)
 			add_overlay("[initial(icon_state)]semi")
@@ -248,10 +247,10 @@
 
 
 /obj/item/gun/ballistic/automatic/l6_saw/examine(mob/user)
-	..()
-	to_chat(user, "<b>alt + click</b> to [cover_open ? "close" : "open"] the dust cover.")
+	. = ..()
+	. += "<b>alt + click</b> to [cover_open ? "close" : "open"] the dust cover."
 	if(cover_open && magazine)
-		to_chat(user, "<span class='notice'>It seems like you could use an <b>empty hand</b> to remove the magazine.</span>")
+		. += "<span class='notice'>It seems like you could use an <b>empty hand</b> to remove the magazine.</span>"
 
 
 /obj/item/gun/ballistic/automatic/l6_saw/AltClick(mob/user)
@@ -266,6 +265,7 @@
 /obj/item/gun/ballistic/automatic/l6_saw/update_icon()//hippie edit -- bring back old gun icons
 	icon_state = "[initial(icon_state)][cover_open ? "open" : "closed"][magazine ? CEILING(get_ammo(0)/12.5, 1)*25 : "-empty"][suppressed ? "-suppressed" : ""]"
 	item_state = "[initial(icon_state)][cover_open ? "openmag" : "closedmag"]"//hippie end -- bring back old gun icons
+
 
 /obj/item/gun/ballistic/automatic/l6_saw/afterattack(atom/target as mob|obj|turf, mob/living/user as mob|obj, flag, params)
 	if(cover_open)
@@ -300,11 +300,11 @@
 	desc = "A long ranged weapon that does significant damage. No, you can't quickscope."
 	icon_state = "sniper"
 	item_state = "sniper"
-	fire_sound = 'sound/weapons/sniper_shot.ogg'
+	fire_sound = "sound/weapons/sniper_shot.ogg"
 	fire_sound_volume = 90
 	vary_fire_sound = FALSE
-	load_sound = 'sound/weapons/sniper_mag_insert.ogg'
-	rack_sound = 'sound/weapons/sniper_rack.ogg'
+	load_sound = "sound/weapons/sniper_mag_insert.ogg"
+	rack_sound = "sound/weapons/sniper_rack.ogg"
 	recoil = 2
 	weapon_weight = WEAPON_HEAVY
 	mag_type = /obj/item/ammo_box/magazine/sniper_rounds

@@ -10,7 +10,7 @@
 		for(var/thing  in subtypesof(/datum/reagent/toxin))
 			var/datum/reagent/RT = thing
 			if(initial(RT.can_synth))
-				random_reagents += initial(RT.id)
+				random_reagents += RT.type
 	var/picked_reagent = pick(random_reagents)
 	return picked_reagent
 
@@ -58,7 +58,7 @@
 									for(var/mob/M in viewers(3, T))
 										to_chat(M, ("<span class='notice'>[icon2html(cached_my_atom, viewers(cached_my_atom))] The solution solidifies!</span>"))
 
-				for(var/reaction in cached_reactions[R.id]) // Was a big list but now it should be smaller since we filtered it with our reagent id
+				for(var/reaction in cached_reactions[R.type]) // Was a big list but now it should be smaller since we filtered it with our reagent id
 					if(!reaction)
 						continue
 

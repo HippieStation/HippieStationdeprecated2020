@@ -13,7 +13,7 @@
 				resize = 1.25
 		if(7)
 			var/obj/item/reagent_containers/food/drinks/drinkingglass/martini = new(src)
-			martini.reagents.add_reagent("martini", martini.volume)
+			martini.reagents.add_reagent(/datum/reagent/consumable/ethanol/martini, martini.volume)
 			var/obj/item/clothing/mask/cigarette/cigar = new(src)
 			cigar.light()
 			equip_to_slot_or_del(cigar, SLOT_WEAR_MASK)

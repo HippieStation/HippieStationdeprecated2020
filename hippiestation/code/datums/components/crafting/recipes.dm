@@ -15,7 +15,7 @@
 /datum/crafting_recipe/garrote_handles //Still need to apply some wires to finish it
 	name = "Garrote Handles"
 	result = /obj/item/garrotehandles
-	reqs = list(/obj/item/stack/cable_coil = 15,
+	reqs = list(/obj/item/stack/pipe_cleaner_coil = 15,
 				/obj/item/stack/rods = 1,)
 	tools = list(/obj/item/weldingtool)
 	time = 120
