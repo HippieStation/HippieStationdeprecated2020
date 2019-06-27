@@ -197,18 +197,18 @@ SUBSYSTEM_DEF(shuttle)
 		emergency = backup_shuttle
 	var/srd = CONFIG_GET(number/shuttle_refuel_delay)
 	if(world.time - SSticker.round_start_time < srd)
-		to_chat(user, "The emergency shuttle is refueling. Please wait [DisplayTimeText(srd - (world.time - SSticker.round_start_time))] before trying again.")
+		to_chat(user, "<span class='error'>The emergency shuttle is refueling. Please wait [DisplayTimeText(srd - (world.time - SSticker.round_start_time))] before trying again.</span>")
 		return
 
 	switch(emergency.mode)
 		if(SHUTTLE_RECALL)
-			to_chat(user, "The emergency shuttle may not be called while returning to CentCom.")
+			to_chat(user, "<span class='error'>The emergency shuttle may not be called while returning to CentCom.</span>")
 			return
 		if(SHUTTLE_CALL)
-			to_chat(user, "The emergency shuttle is already on its way.")
+			to_chat(user, "<span class='error'>The emergency shuttle is already on its way.</span>")
 			return
 		if(SHUTTLE_DOCKED)
-			to_chat(user, "The emergency shuttle is already here.")
+			to_chat(user, "<span class='error'>The emergency shuttle is already here.</span>")
 			return
 		if(SHUTTLE_IGNITING)
 			to_chat(user, "The emergency shuttle is firing its engines to leave.")
@@ -217,7 +217,7 @@ SUBSYSTEM_DEF(shuttle)
 			to_chat(user, "The emergency shuttle is moving away to a safe distance.")
 			return
 		if(SHUTTLE_STRANDED)
-			to_chat(user, "The emergency shuttle has been disabled by CentCom.")
+			to_chat(user, "<span class='error'>The emergency shuttle has been disabled by CentCom.</span>")
 			return
 		if(SHUTTLE_DISABLED)//MODULE: SHUTTLE TOGGLE
 			to_chat(user, "The emergency shuttle has been disabled by CentCom.")
@@ -226,7 +226,7 @@ SUBSYSTEM_DEF(shuttle)
 	call_reason = trim(html_encode(call_reason))
 
 	if(length(call_reason) < CALL_SHUTTLE_REASON_LENGTH && seclevel2num(get_security_level()) > SEC_LEVEL_GREEN)
-		to_chat(user, "You must provide a reason.")
+		to_chat(user, "<span class='error'>You must provide a reason.</span>")
 		return
 
 	var/area/signal_origin = get_area(user)
@@ -895,4 +895,3 @@ SUBSYSTEM_DEF(shuttle)
 					message_admins("[key_name_admin(usr)] loaded [mdp] with the shuttle manipulator.")
 					log_admin("[key_name(usr)] loaded [mdp] with the shuttle manipulator.</span>")
 					SSblackbox.record_feedback("text", "shuttle_manipulator", 1, "[mdp.name]")
-

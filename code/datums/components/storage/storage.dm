@@ -211,7 +211,7 @@
 		things = typecache_filter_list(things, typecacheof(I.type))
 	var/len = length(things)
 	if(!len)
-		to_chat(M, "<span class='notice'>You failed to pick up anything with [parent].</span>")
+		to_chat(M, "<span class='warning'>You failed to pick up anything with [parent]!</span>")
 		return
 	var/datum/progressbar/progress = new(M, len, I.loc)
 	var/list/rejections = list()

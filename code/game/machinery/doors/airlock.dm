@@ -701,7 +701,7 @@
 			aiHacking = FALSE
 			return
 		else if(!canAIHack())
-			to_chat(user, "Connection lost! Unable to hack airlock.")
+			to_chat(user, "<span class='error'>Connection lost! Unable to hack airlock.</span>")
 			aiHacking = FALSE
 			return
 		to_chat(user, "Fault confirmed: airlock control wire disabled or cut.")
@@ -723,7 +723,7 @@
 			aiHacking = FALSE
 			return
 		else if(!canAIHack())
-			to_chat(user, "Connection lost! Unable to hack airlock.")
+			to_chat(user, "<span class='error'>Connection lost! Unable to hack airlock.</span>")
 			aiHacking = FALSE
 			return
 		to_chat(user, "Transfer complete. Forcing airlock to execute program.")
@@ -1476,14 +1476,14 @@
 				loseMainPower()
 				update_icon()
 			else
-				to_chat(usr, "Main power is already offline.")
+				to_chat(usr, "<span class='error'>Main power is already offline.</span>")
 			. = TRUE
 		if("disrupt-backup")
 			if(!secondsBackupPowerLost)
 				loseBackupPower()
 				update_icon()
 			else
-				to_chat(usr, "Backup power is already offline.")
+				to_chat(usr, "<span class='error'>Backup power is already offline.</span>")
 			. = TRUE
 		if("shock-restore")
 			shock_restore(usr)
@@ -1524,7 +1524,7 @@
 	if(!user_allowed(user))
 		return
 	if(wires.is_cut(WIRE_SHOCK))
-		to_chat(user, "Can't un-electrify the airlock - The electrification wire is cut.")
+		to_chat(user, "<span class='error'>Can't un-electrify the airlock - The electrification wire is cut.</span>")
 	else if(isElectrified())
 		set_electrified(MACHINE_NOT_ELECTRIFIED, user)
 
