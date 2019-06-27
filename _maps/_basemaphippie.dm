@@ -13,6 +13,7 @@
 		#include "map_files\PubbyStation\PubbyStation.dmm"
 		#include "map_files\BoxStation\BoxStation.dmm"
 		#include "map_files\HippieStation\hippiestation.dmm"
+		#include "map_files\HippieLand\HippieLand.dmm"
 
 		#ifdef TRAVISBUILDING
 			#include "templates.dm"
