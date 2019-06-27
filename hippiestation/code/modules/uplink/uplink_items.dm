@@ -14,6 +14,14 @@
 	cost = 5
 	surplus = 90
 
+/datum/uplink_item/stealthy_tools/thermal
+	name = "Thermal Imaging Goggles"
+	desc = "These goggles allow you to see organisms through walls by capturing the upper portion of the infrared light spectrum, \
+			emitted as heat and light by objects. Hotter objects, such as warm bodies, cybernetic organisms \
+			and artificial intelligence cores emit more of this light than cooler objects like walls and airlocks."
+	item = /obj/item/clothing/glasses/thermal
+	cost = 4
+
 /* Implants */
 /datum/uplink_item/implants/adrenal
 	name = "Combat Stimulant Implant"
@@ -179,12 +187,13 @@
 	player_minimum = 0
 
 /datum/uplink_item/stealthy_tools/syndigaloshes
-	item = /obj/item/clothing/shoes/chameleon/noslip // you have to be a real doofus to forget to add the /noslip part
-	cost = 2
+	name = "No-Slip Brown Shoes"
+	item = /obj/item/clothing/shoes/sneakers/brown/noslip
+	cost = 4
 	player_minimum = 0
 
 /datum/uplink_item/stealthy_tools/syndigaloshes/nuke
-	cost = 2
+	cost = 3
 	player_minimum = 0
 
 /datum/uplink_item/stealthy_tools/mulligan
