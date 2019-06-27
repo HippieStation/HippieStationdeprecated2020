@@ -318,15 +318,15 @@
 	icon_state = "bigsunglasses"
 	item_state = "bigsunglasses"
 
-/obj/item/clothing/glasses/thermal // hippie -- also edits this region a bit
-	name = "thermal imaging goggles"
-	desc = "A pair of thermal optic goggles."
+/obj/item/clothing/glasses/thermal
+	name = "optical thermal scanner"
+	desc = "Thermals in the shape of glasses."
 	icon_state = "thermal"
 	item_state = "glasses"
 	vision_flags = SEE_MOBS
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	flash_protect = 0
-	glass_colour_type = /datum/client_colour/glass_colour/red // hippie end
+	glass_colour_type = /datum/client_colour/glass_colour/red
 
 /obj/item/clothing/glasses/thermal/emp_act(severity)
 	. = ..()
@@ -340,7 +340,7 @@
 	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
 	flash_protect = -1
 
-/obj/item/clothing/glasses/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete // NOT ANY MORE YOU FRAUD
+/obj/item/clothing/glasses/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
 	name = "chameleon thermals"
 	desc = "A pair of thermal optic goggles with an onboard chameleon generator."
 	flash_protect = -1
