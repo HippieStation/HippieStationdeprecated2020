@@ -47,13 +47,13 @@ GLOBAL_LIST_INIT(space_reagents_blacklist_areas, typecacheof(list(/area/hippie/s
 					var/obj/effect/liquid/L = A
 					moist = TRUE
 					if(L.reagents)
-						L.reagents.add_reagent("[GLOB.space_reagent]", SPACE_REAGENTS_PER_TICK)
+						L.reagents.add_reagent(GLOB.space_reagent, SPACE_REAGENTS_PER_TICK)
 						L.depth = CLAMP(L.depth + (SPACE_REAGENTS_PER_TICK / REAGENT_TO_DEPTH), 0, MAX_INITIAL_DEPTH)
 						L.update_depth()
 					INVOKE_ASYNC(L, /obj/effect/liquid.proc/equilibrate)
 			if(!moist && can_spawn_liquid)
 				var/obj/effect/liquid/W = new /obj/effect/liquid(T)
-				W.reagents.add_reagent("[GLOB.space_reagent]", SPACE_REAGENTS_PER_TICK)
+				W.reagents.add_reagent(GLOB.space_reagent, SPACE_REAGENTS_PER_TICK)
 				W.depth = max(SPACE_REAGENTS_PER_TICK / REAGENT_TO_DEPTH, 0)
 				if(W.depth <= 0)
 					return

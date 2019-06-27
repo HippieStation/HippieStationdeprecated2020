@@ -31131,6 +31131,7 @@
 "bLb" = (
 /obj/item/storage/box/lights/mixed,
 /obj/item/storage/box/lights/mixed,
+/obj/machinery/fluid_pump,
 /turf/open/floor/plasteel,
 /area/janitor)
 "bLc" = (
@@ -31934,6 +31935,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/fluid_pump,
 /turf/open/floor/plasteel,
 /area/science/storage)
 "bNf" = (
@@ -57272,6 +57274,10 @@
 /obj/item/shard,
 /turf/open/floor/plating,
 /area/maintenance/aft)
+"rdb" = (
+/obj/machinery/fluid_pump,
+/turf/open/floor/plating,
+/area/engine/engineering)
 "rdx" = (
 /obj/structure/chair{
 	dir = 1
@@ -87358,7 +87364,7 @@ eoL
 csD
 cuK
 ctJ
-ctJ
+rdb
 cvz
 clH
 cyW

@@ -2,25 +2,28 @@
 	set name = "Spawn Liquid Pool"
 	set category = "Fun"
 	set desc = "Spawn A Liquid Pool"
-	var/list/reagent_options = sortList(GLOB.chemical_reagents_list)
 	var/chosen_id
-	switch(alert(usr, "Choose a method.", "Add Reagents", "Enter ID", "Choose ID"))
-		if("Enter ID")
+	switch(alert(usr, "Choose a method.", "Add Reagents", "Enter ID", "Choose ID", "Clear Reagent"))
+		if("Search")
 			var/valid_id
 			while(!valid_id)
-				chosen_id = stripped_input(usr, "Enter the ID of the reagent you want to add.")
-				if(!chosen_id) //Get me out of here!
-					break
-				for(var/ID in reagent_options)
-					if(ID == chosen_id)
+				chosen_id = input(usr, "Enter the ID of the reagent you want to add.", "Search reagents") as null|text
+				if(!chosen_id)
+					return
+				if (!ispath(text2path(chosen_id)))
+					chosen_id = pick_closest_path(chosen_id, make_types_fancy(subtypesof(/datum/reagent)))
+					if (ispath(chosen_id))
 						valid_id = TRUE
+				else
+					valid_id = TRUE
 				if(!valid_id)
 					to_chat(usr, "<span class='warning'>A reagent with that ID doesn't exist!</span>")
-					return
-		if("Choose ID")
-			chosen_id = input(usr, "Choose a reagent to add.", "Choose a reagent.") as null|anything in reagent_options
+		if("Choose from a list")
+			chosen_id = input(usr, "Choose a reagent to add.", "Choose a reagent.") as null|anything in subtypesof(/datum/reagent)
 			if(!chosen_id)
 				return
+		if("I'm feeling lucky")
+			chosen_id = pick(subtypesof(/datum/reagent))
 	var/amount = input(usr, "Choose the amount to add.", "Choose the amount.", 1000) as num
 	if(!amount)
 		return
@@ -30,7 +33,7 @@
 
 	var/obj/effect/liquid/W = new /obj/effect/liquid(T)
 	W.reagents.maximum_volume = max(W.reagents.maximum_volume, amount)
-	W.reagents.add_reagent("[chosen_id]", amount)
+	W.reagents.add_reagent(chosen_id, amount)
 	W.depth = max(amount / REAGENT_TO_DEPTH, 0)
 	if(W.depth <= 0)
 		return
