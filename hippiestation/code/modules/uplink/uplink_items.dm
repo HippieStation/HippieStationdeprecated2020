@@ -193,7 +193,7 @@
 	player_minimum = 0
 
 /datum/uplink_item/stealthy_tools/syndigaloshes/nuke
-	cost = 3
+	cost = 4
 	player_minimum = 0
 
 /datum/uplink_item/stealthy_tools/mulligan
