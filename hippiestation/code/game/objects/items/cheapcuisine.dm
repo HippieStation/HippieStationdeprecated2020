@@ -38,20 +38,20 @@
 		if(used)
 			return FALSE
 		else
-			addtimer(CALLBACK(src, .proc/spawnFood, possibleFood[choice]), 50)
+			addtimer(CALLBACK(src, .proc/spawnFood, user, possibleFood[choice]), 50)
 			soundloop.start()
 			used = TRUE
 			icon_state = "carboncan-on"
 	else
 		to_chat(user, "<span class='notice'>It's already been used!</span>")
 
-/obj/item/cheapcuisine/proc/spawnFood(var/foodtype)
+/obj/item/cheapcuisine/proc/spawnFood(mob/user, foodtype)
 	soundloop.stop()
 	if(isnull(foodtype))
 		icon_state = "carboncan-off"
 		used = FALSE
 		return
-	new foodtype(get_turf(src))
+	user.put_in_hands(new foodtype(get_turf(src)))
 	icon_state = "carboncan-open"
 	desc = "It's been used already."
 
