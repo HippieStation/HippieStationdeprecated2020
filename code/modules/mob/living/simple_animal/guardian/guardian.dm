@@ -472,7 +472,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/used_message = "<span class='holoparasite'>All the cards seem to be blank now.</span>"
 	var/failure_message = "<span class='holoparasite bold'>..And draw a card! It's...blank? Maybe you should try again later.</span>"
 	var/ling_failure = "<span class='holoparasite bold'>The deck refuses to respond to a souless creature such as you.</span>"
-	var/list/possible_guardians = list("Assassin", "Chaos", "Charger", "Explosive", "Lightning", "Protector", "Ranged", "Standard", "Support", "Gravitokinetic")
+	var/list/possible_guardians = list("Assassin", "Chaos", "Charger", "Explosive", "Lightning", "Protector", "Ranged", "Standard", "Support", "Gravitokinetic", "Reflective") // hippie -- add reflective holopara
 	var/random = TRUE
 	var/allowmultiple = FALSE
 	var/allowling = TRUE
@@ -549,6 +549,10 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 		if("Gravitokinetic")
 			pickedtype = /mob/living/simple_animal/hostile/guardian/gravitokinetic
+		
+		// hippie start -- reflective holopara
+		if("Reflective")
+			pickedtype = /mob/living/simple_animal/hostile/guardian/reflective // hippie end
 
 	var/list/guardians = user.hasparasites()
 	if(guardians.len && !allowmultiple)
@@ -597,13 +601,13 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	ling_failure = "<span class='holoparasite bold'>The holoparasites recoil in horror. They want nothing to do with a creature like you.</span>"
 
 /obj/item/guardiancreator/tech/choose/traitor
-	possible_guardians = list("Assassin", "Chaos", "Charger", "Explosive", "Lightning", "Protector", "Ranged", "Standard", "Support", "Gravitokinetic")
+	possible_guardians = list("Assassin", "Chaos", "Charger", "Explosive", "Lightning", "Protector", "Ranged", "Standard", "Support", "Gravitokinetic", "Reflective") // hippie -- add reflective holopara
 
 /obj/item/guardiancreator/tech/choose
 	random = FALSE
 
 /obj/item/guardiancreator/tech/choose/dextrous
-	possible_guardians = list("Assassin", "Chaos", "Charger", "Dextrous", "Explosive", "Lightning", "Protector", "Ranged", "Standard", "Support", "Gravitokinetic")
+	possible_guardians = list("Assassin", "Chaos", "Charger", "Dextrous", "Explosive", "Lightning", "Protector", "Ranged", "Standard", "Support", "Gravitokinetic", "Reflective") // hippie -- add reflective holopara
 
 /obj/item/paper/guides/antag/guardian
 	name = "Holoparasite Guide"
