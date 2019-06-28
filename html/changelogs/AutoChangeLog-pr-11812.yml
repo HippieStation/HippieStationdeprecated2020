@@ -1,0 +1,4 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - rscadd: "Added reflective holoparasites. They can only manifest while reflecting through an object. Examine the glowing green object in order to be able to see it, lest it stab you!"
