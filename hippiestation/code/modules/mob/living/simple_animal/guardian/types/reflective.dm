@@ -33,6 +33,8 @@ GLOBAL_LIST_INIT(reflect_blacklist, typecacheof(list(/obj/structure, /obj/machin
 		return // can't attack anything if you're not reflecting
 	if(!isliving(target))
 		return
+	if(target == summoner)
+		return
 	var/mob/living/L = target
 	var/bodypart = pick("shoulder", "side")
 	if(can_see(target, FALSE))
@@ -59,7 +61,7 @@ GLOBAL_LIST_INIT(reflect_blacklist, typecacheof(list(/obj/structure, /obj/machin
 		B.GoTo(targ, dist)
 	else
 		L.adjustBruteLoss(40)
-	changeNext_move(14) // kinda slow
+	changeNext_move(22) // kinda slow
 
 /mob/living/simple_animal/hostile/guardian/reflective/snapback()
 	if(!host || !istype(host) || !isturf(host.loc))
