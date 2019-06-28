@@ -1,4 +1,4 @@
-GLOBAL_LIST_INIT(reflect_blacklist, typecacheof(list(/obj/structure, /obj/machinery/button, /obj/item/cigbutt, /obj/effect, /obj/machinery/atmospherics, /obj/machinery/disposal, /obj/machinery/camera, /obj/machinery/door, /obj/structure/closet)))
+GLOBAL_LIST_INIT(reflect_blacklist, typecacheof(list(/obj/structure, /obj/machinery/button, /obj/item/cigbutt, /obj/effect, /obj/machinery/atmospherics, /obj/machinery/disposal, /obj/machinery/camera, /obj/machinery/door, /obj/structure/closet, /obj/structure/transit_tube)))
 
 /mob/living/simple_animal/hostile/guardian/reflective
 	melee_damage_lower = 35
@@ -22,6 +22,11 @@ GLOBAL_LIST_INIT(reflect_blacklist, typecacheof(list(/obj/structure, /obj/machin
 /mob/living/simple_animal/hostile/guardian/reflective/Life()
 	. = ..()
 	UpdateViewers()
+
+/mob/living/simple_animal/hostile/guardian/reflective/CanPass(atom/movable/mover, turf/target)
+	if(!isliving(mover)) // non-living things pass through it
+		return TRUE
+	return !can_see(mover, FALSE)
 
 /mob/living/simple_animal/hostile/guardian/reflective/AttackingTarget()
 	if(!host || !istype(host))
