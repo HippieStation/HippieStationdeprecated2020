@@ -48433,10 +48433,6 @@
 	pixel_y = 24
 	},
 /obj/machinery/door/airlock/highsecurity,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "AI Core shutters";
-	name = "AI core shutters"
-	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "cKX" = (
@@ -48460,10 +48456,6 @@
 /area/ai_monitored/turret_protected/ai)
 "cKY" = (
 /obj/machinery/door/airlock/highsecurity,
-/obj/machinery/door/poddoor/shutters/preopen{
-	id = "AI Core shutters";
-	name = "AI core shutters"
-	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "cKZ" = (
