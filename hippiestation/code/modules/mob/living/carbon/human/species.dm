@@ -41,7 +41,7 @@
 		// does the vars n stuff
 		target.times_disarmed += 1
 		target.disarm_cooldown = world.time + 20
-		if(world.time >= target.disarm_cooldown || target.stat || target.IsUnconscious())
+		if(world.time >= target.disarm_cooldown || target.stat || target.IsUnconscious() || target.IsParalyzed())
 			target.times_disarmed = 0
 			target.disarm_cooldown = 0
 
