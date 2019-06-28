@@ -1,4 +1,4 @@
-GLOBAL_LIST_INIT(reflect_blacklist, typecacheof(list(/obj/structure, /obj/machinery/button, /obj/item/cigbutt, /obj/effect, /obj/machinery/atmospherics, /obj/machinery/disposal, /obj/machinery/camera)))
+GLOBAL_LIST_INIT(reflect_blacklist, typecacheof(list(/obj/structure, /obj/machinery/button, /obj/item/cigbutt, /obj/effect, /obj/machinery/atmospherics, /obj/machinery/disposal, /obj/machinery/camera, /obj/machinery/door)))
 
 /mob/living/simple_animal/hostile/guardian/reflective
 	melee_damage_lower = 35
