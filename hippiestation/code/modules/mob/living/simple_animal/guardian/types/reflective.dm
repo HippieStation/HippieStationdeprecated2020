@@ -1,3 +1,5 @@
+GLOBAL_LIST_INIT(reflect_blacklist, typecacheof(list(/obj/structure, /obj/machinery/button, /obj/item/cigbutt, /obj/effect, /obj/machinery/atmospherics)))
+
 /mob/living/simple_animal/hostile/guardian/reflective
 	melee_damage_lower = 35
 	melee_damage_upper = 35
@@ -146,6 +148,8 @@
 	charge_counter = 0
 	start_recharge()
 	remove_ranged_ability()
+	if(action)
+		action.UpdateButtonIcon()
 
 /obj/effect/proc_holder/spell/targeted/reflect/Click()
 	var/mob/living/user = usr
@@ -169,10 +173,14 @@
 	if(!isobj(t))
 		to_chat(caller, "<span class='warning'>You may only reflect into objects!</span>")
 		return FALSE
+	if(is_type_in_typecache(t, GLOB.reflect_blacklist))
+		to_chat(caller, "<span class='warning'>You can't reflect into [t]!</span>")
+		return FALSE
 	var/mob/living/simple_animal/hostile/guardian/reflective/G = caller
 	if(!istype(G) || !G)
 		revert_cast()
 		return FALSE
+	G.loc.Beam(t, "light_beam", 'hippiestation/icons/effects/beam.dmi', 2)
 	G.Goodbye()
 	to_chat(G, "<span class='notice'>You reflect onto [t].</span>")
 	G.host = t
@@ -213,7 +221,7 @@
 	RegisterSignal(parent, 	COMSIG_PARENT_PREQDELETED, .proc/oh_god_lets_get_out)
 	reflection = new(parent)
 
-/datum/component/hanged_man/Destroy(force, silent)
+/datum/component/hanged_man/UnregisterFromParent()
 	. = ..()
 	qdel(reflection)
 
