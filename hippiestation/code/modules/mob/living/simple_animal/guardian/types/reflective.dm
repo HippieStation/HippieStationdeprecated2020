@@ -1,4 +1,4 @@
-GLOBAL_LIST_INIT(reflect_blacklist, typecacheof(list(/obj/structure, /obj/machinery/button, /obj/item/cigbutt, /obj/effect, /obj/machinery/atmospherics, /obj/machinery/disposal, /obj/machinery/camera, /obj/machinery/door)))
+GLOBAL_LIST_INIT(reflect_blacklist, typecacheof(list(/obj/structure, /obj/machinery/button, /obj/item/cigbutt, /obj/effect, /obj/machinery/atmospherics, /obj/machinery/disposal, /obj/machinery/camera, /obj/machinery/door, /obj/structure/closet)))
 
 /mob/living/simple_animal/hostile/guardian/reflective
 	melee_damage_lower = 35
@@ -173,7 +173,7 @@ GLOBAL_LIST_INIT(reflect_blacklist, typecacheof(list(/obj/structure, /obj/machin
 	if(!isobj(t))
 		to_chat(caller, "<span class='warning'>You may only reflect into objects!</span>")
 		return FALSE
-	if(is_type_in_typecache(t, GLOB.reflect_blacklist))
+	if(is_type_in_typecache(t, GLOB.reflect_blacklist) || t.GetComponent(/datum/component/storage))
 		to_chat(caller, "<span class='warning'>You can't reflect into [t]!</span>")
 		return FALSE
 	var/mob/living/simple_animal/hostile/guardian/reflective/G = caller
