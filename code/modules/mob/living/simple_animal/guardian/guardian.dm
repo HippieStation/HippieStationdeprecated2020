@@ -633,7 +633,9 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
  <br>
  <b>Gravitokinetic</b>: Attacks will apply crushing gravity to the target. Can target the ground as well to slow targets advancing on you, but this will affect the user.<br>
  <br>
-"}
+ <b>Reflective</b>: Can only manifest by reflecting into an object. Invisible to everyone until they examine it's host object, which gives off a green glow. Attack causes severe bloodloss and bleeding.<br>
+ <br>
+"} // hippie -- add reflective holopara
 
 /obj/item/paper/guides/antag/guardian/update_icon()
 	return
@@ -663,7 +665,9 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
  <br>
  <b>Gravitokinetic</b>: Attacks will apply crushing gravity to the target. Can target the ground as well to slow targets advancing on you, but this will affect the user.<br>
  <br>
-"}
+ <b>Reflective</b>: Can only manifest by reflecting into an object. Invisible to everyone until they examine it's host object, which gives off a green glow. Attack causes severe bloodloss and bleeding.<br>
+ <br>
+"} // hippie -- add reflective holopara
 
 
 /obj/item/storage/box/syndie_kit/guardian
