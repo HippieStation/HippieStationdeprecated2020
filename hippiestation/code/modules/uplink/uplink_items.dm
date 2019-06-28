@@ -189,11 +189,11 @@
 /datum/uplink_item/stealthy_tools/syndigaloshes
 	name = "No-Slip Brown Shoes"
 	item = /obj/item/clothing/shoes/sneakers/brown/noslip
-	cost = 4
+	cost = 3
 	player_minimum = 0
 
 /datum/uplink_item/stealthy_tools/syndigaloshes/nuke
-	cost = 4
+	cost = 3
 	player_minimum = 0
 
 /datum/uplink_item/stealthy_tools/mulligan
