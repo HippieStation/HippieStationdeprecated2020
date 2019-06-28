@@ -28,6 +28,19 @@ GLOBAL_LIST_INIT(reflect_blacklist, typecacheof(list(/obj/structure, /obj/machin
 		return TRUE
 	return !can_see(mover, FALSE)
 
+// don't show an obvious message when the summoner is likely off screen
+/mob/living/simple_animal/hostile/guardian/reflective/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+	. = amount
+	if(summoner)
+		if(loc == summoner || loc == host)
+			return FALSE
+		summoner.adjustBruteLoss(amount)
+		if(amount > 0)
+			to_chat(summoner, "<span class='danger'><B>Your [name] is under attack! You take damage!</span></B>")
+			if(summoner.stat == UNCONSCIOUS)
+				to_chat(summoner, "<span class='danger'><B>Your body can't take the strain of sustaining [src] in this condition, it begins to fall apart!</span></B>")
+				summoner.adjustCloneLoss(amount * 0.5) //dying hosts take 50% bonus damage as cloneloss
+
 /mob/living/simple_animal/hostile/guardian/reflective/AttackingTarget()
 	if(!host || !istype(host))
 		return // can't attack anything if you're not reflecting
