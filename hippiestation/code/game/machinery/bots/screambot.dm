@@ -54,10 +54,10 @@
 	s.start()
 
 	new /obj/effect/decal/cleanable/oil(loc)
-	. = ..() //qdels us and removes us from processing objects
+	..() //qdels us and removes us from processing objects
 
 /mob/living/simple_animal/bot/screambot/Initialize()
-	..()
+	. = ..()
 	icon_state = "screambot[on]"
 
 /mob/living/simple_animal/bot/screambot/turn_on()
