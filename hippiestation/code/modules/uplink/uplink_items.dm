@@ -517,5 +517,5 @@
 	desc = "An electric katana that weakens the molecular bonds of whatever it touches. Perfect for slicing off the limbs of your coworkers. \
 	Avoid using a multitool on it."
 	item = /obj/item/storage/belt/hfblade
-	cost = 8
+	cost = 9
 	surplus = 15
