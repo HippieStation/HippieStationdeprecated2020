@@ -90,6 +90,8 @@
 
 //MENU
 
+//Commented out because it's really old cold that carely works any more.
+/*
 /mob/living/simple_animal/bot/screambot/attack_hand(mob/user)
 	var/dat = "<div class='statusDisplay'>"
 	dat += "Human scream: <A href='?src=\ref[src];action=toggle;scream=human'>[('hippiestation/sound/voice/scream_f1.ogg' in sounds) ? "On" : "Off"]</A><BR>"
@@ -101,3 +103,44 @@
 	popup.set_content(dat)
 	popup.open()
 	return
+
+/obj/machinery/bot/screambot/Topic(href, href_list)
+	if(..() || panel_open)
+		return
+
+	if(href_list["action"] == "toggle")
+		switch(href_list["scream"])
+			if("human")
+				if('sound/misc/scream_f1.ogg' in sounds)
+					sounds -= 'sound/misc/scream_f1.ogg'
+					sounds -= 'sound/misc/scream_f2.ogg'
+					sounds -= 'sound/misc/scream_m1.ogg'
+					sounds -= 'sound/misc/scream_m2.ogg'
+				else
+					sounds += 'sound/misc/scream_f1.ogg'
+					sounds += 'sound/misc/scream_f2.ogg'
+					sounds += 'sound/misc/scream_m1.ogg'
+					sounds += 'sound/misc/scream_m2.ogg'
+			if("silicon")
+				if('sound/voice/screamsilicon.ogg' in sounds)
+					sounds -= 'sound/voice/screamsilicon.ogg'
+				else
+					sounds += 'sound/voice/screamsilicon.ogg'
+			if("cat")
+				if('sound/misc/cat.ogg' in sounds)
+					sounds -= 'sound/misc/cat.ogg'
+				else
+					sounds += 'sound/misc/cat.ogg'
+			if("lizard")
+				if('sound/misc/lizard.ogg' in sounds)
+					sounds -= 'sound/misc/lizard.ogg'
+				else
+					sounds += 'sound/misc/lizard.ogg'
+			if("caw")
+				if('sound/misc/caw.ogg' in sounds)
+					sounds -= 'sound/misc/caw.ogg'
+				else
+					sounds += 'sound/misc/caw.ogg'
+
+	updateUsrDialog() // This line here is the problem, fucks up the compile.
+	return	*/
