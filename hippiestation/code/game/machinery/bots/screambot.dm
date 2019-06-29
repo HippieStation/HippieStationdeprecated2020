@@ -1,13 +1,13 @@
-/obj/item/weapon/screambot_chasis
+/obj/item/screambot_chasis
 	desc = "A chasis for a new screambot."
 	name = "screambot chasis"
 	icon = 'hippiestation/icons/obj/aibots_new.dmi'
 	icon_state = "screambot_chasis"
-	force = 3.0
-	throwforce = 5.0
+	force = 3
+	throwforce = 5
 	throw_speed = 2
 	throw_range = 5
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_SMALL
 	var/build_step = 0
 
 /obj/item/weapon/screambot_chasis/attackby(obj/item/W, mob/user)
@@ -56,7 +56,7 @@
 	new /obj/effect/decal/cleanable/oil(loc)
 	..() //qdels us and removes us from processing objects
 
-/mob/living/simple_animal/bot/screambot/New()
+/mob/living/simple_animal/bot/screambot/Initialize()
 	..()
 	icon_state = "screambot[on]"
 

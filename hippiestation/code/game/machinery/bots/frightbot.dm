@@ -1,13 +1,13 @@
-/obj/item/weapon/frightbot_chasis
+/obj/item/frightbot_chasis
 	desc = "A chasis for a new frightbot."
 	name = "frightbot chasis"
 	icon = 'hippiestation/icons/obj/aibots_new.dmi'
 	icon_state = "frightbot_chasis"
-	force = 3.0
-	throwforce = 5.0
+	force = 3
+	throwforce = 5
 	throw_speed = 2
 	throw_range = 5
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/weapon/frightbot_chasis/attackby(obj/item/weapon/W, mob/user)
 	..()
@@ -53,7 +53,7 @@
 		emagged = 1
 		to_chat(user, "<span class='warning'>The frightbot will now tell stories so spooky that people will be affected by them physically!</span>")
 
-/mob/living/simple_animal/bot/frightbot/New()
+/mob/living/simple_animal/bot/frightbot/Initialize()
 	..()
 	icon_state = "frightbot[on]"
 
