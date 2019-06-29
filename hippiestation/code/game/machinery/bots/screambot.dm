@@ -86,7 +86,7 @@
 		emagged = 1
 		speedup = 10
 		probability = 100
-		to_chat("<span class='warning'>Nice. The screambot is going to be really, REALLY annoying now.</span>")
+		to_chat(user, "<span class='warning'>Nice. The screambot is going to be really, REALLY annoying now.</span>")
 
 //MENU
 
