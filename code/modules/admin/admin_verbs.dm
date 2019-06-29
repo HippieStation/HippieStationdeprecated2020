@@ -73,6 +73,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/toggleadminhelpsound,
 	/client/proc/respawn_character,
 	/datum/admins/proc/open_borgopanel,
+	/client/proc/discord_id_manipulation,
 	/client/proc/reset_atmos, /* hippie -- reset atmos if some griefer spams plasma */
 	/client/proc/aooc, /* hippie -- sends a message to all antags on the server*/
 	/client/proc/fill_breach, /* hippie -- fills breaches in a radius defined by the admin*/
