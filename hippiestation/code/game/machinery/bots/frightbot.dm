@@ -1,4 +1,4 @@
-/obj/item/weapon/frightbot_chasis
+/obj/item/frightbot_chasis
 	desc = "A chasis for a new frightbot."
 	name = "frightbot chasis"
 	icon = 'hippiestation/icons/obj/aibots_new.dmi'
@@ -7,9 +7,9 @@
 	throwforce = 5.0
 	throw_speed = 2
 	throw_range = 5
-	w_class = 3.0
+	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/weapon/frightbot_chasis/attackby(obj/item/weapon/W, mob/user)
+/obj/item/frightbot_chasis/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W, /obj/item/radio))
 		to_chat(user, "<span class='notice'>You complete the Frightbot! KEEEEEEEEEEE!!!</span>")
@@ -53,8 +53,8 @@
 		emagged = 1
 		to_chat(user, "<span class='warning'>The frightbot will now tell stories so spooky that people will be affected by them physically!</span>")
 
-/mob/living/simple_animal/bot/frightbot/New()
-	..()
+/mob/living/simple_animal/bot/frightbot/Initialize()
+	. = ..()
 	icon_state = "frightbot[on]"
 
 /mob/living/simple_animal/bot/frightbot/turn_on()
