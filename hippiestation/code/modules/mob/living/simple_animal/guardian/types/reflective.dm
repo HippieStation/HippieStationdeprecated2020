@@ -263,7 +263,7 @@ GLOBAL_LIST_INIT(reflect_blacklist, typecacheof(list(/obj/structure, /obj/machin
 
 /obj/effect/reflective_light
 	light_color = "#BFFF00"
-	light_range = 3
+	light_range = 5
 
 ///////////
 // STUFF //
