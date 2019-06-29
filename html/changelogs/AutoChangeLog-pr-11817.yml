@@ -1,0 +1,7 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - balance: "The reflective holopara now does less bloodloss and bleeding"
+  - balance: "The reflective holopara now has a longer attack cooldown"
+  - balance: "The reflective holopara can no longer drag it's host object"
+  - balance: "The reflective holopara's host object now shines brighter"
