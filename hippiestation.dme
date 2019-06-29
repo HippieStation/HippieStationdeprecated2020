@@ -2991,6 +2991,8 @@
 #include "hippiestation\code\game\machinery\suit_storage_unit.dm"
 #include "hippiestation\code\game\machinery\trapdoors.dm"
 #include "hippiestation\code\game\machinery\washing_machine.dm"
+#include "hippiestation\code\game\machinery\bots\frightbot.dm"
+#include "hippiestation\code\game\machinery\bots\screambot.dm"
 #include "hippiestation\code\game\machinery\computer\_computer.dm"
 #include "hippiestation\code\game\machinery\computer\arcade.dm"
 #include "hippiestation\code\game\machinery\doors\airlock.dm"
