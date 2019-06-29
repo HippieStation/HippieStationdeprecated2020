@@ -1,0 +1,4 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - tweak: "Carbonhell's Can of Cheap Cuisine now puts the food item in an empty hand."
