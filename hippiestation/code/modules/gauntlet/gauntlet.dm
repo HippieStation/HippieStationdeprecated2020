@@ -5,10 +5,10 @@ GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
 GLOBAL_LIST_INIT(badmin_stones, list(SYNDIE_STONE, BLUESPACE_STONE, SUPERMATTER_STONE, LAG_STONE, CLOWN_STONE, GHOST_STONE))
 GLOBAL_LIST_INIT(badmin_stone_types, list(
 		SYNDIE_STONE = /obj/item/badmin_stone/syndie,
-		BLUESPACE_STONE = /obj/item/badmin_stone/bluespace, 
-		SUPERMATTER_STONE = /obj/item/badmin_stone/supermatter, 
-		LAG_STONE = /obj/item/badmin_stone/lag, 
-		CLOWN_STONE = /obj/item/badmin_stone/clown, 
+		BLUESPACE_STONE = /obj/item/badmin_stone/bluespace,
+		SUPERMATTER_STONE = /obj/item/badmin_stone/supermatter,
+		LAG_STONE = /obj/item/badmin_stone/lag,
+		CLOWN_STONE = /obj/item/badmin_stone/clown,
 		GHOST_STONE = /obj/item/badmin_stone/ghost))
 GLOBAL_LIST_INIT(badmin_stone_weights, list(
 		SYNDIE_STONE = list(
@@ -44,10 +44,11 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 /obj/item/badmin_gauntlet
 	name = "Badmin Gauntlet"
 	icon = 'hippiestation/icons/obj/infinity.dmi'
+	/*
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
-	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi' */
 	icon_state = "gauntlet"
-	item_state = "gauntlet"
+	item_state = null // need a new in-hand
 	force = 25
 	armour_penetration = 70
 	var/badmin = FALSE
@@ -276,9 +277,10 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 /obj/item/badmin_gauntlet/update_icon()
 	cut_overlays()
 	var/index = 1
-	var/image/veins = image(icon = 'hippiestation/icons/obj/infinity.dmi', icon_state = "glow-overlay")
-	veins.color = GetStoneColor(stone_mode)
-	add_overlay(veins)
+	if(stone_mode)
+		var/image/veins = image(icon = 'hippiestation/icons/obj/infinity.dmi', icon_state = "glow-overlay")
+		veins.color = GetStoneColor(stone_mode)
+		add_overlay(veins)
 	for(var/obj/item/badmin_stone/IS in stones)
 		var/I = index
 		if(IS.stone_type == stone_mode)
@@ -317,7 +319,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			S.updateUsrDialog()
 	else if(isclosedturf(target))
 		var/turf/closed/T = target
-		if(istype(get_area(T), /area/wizard_station)) 
+		if(istype(get_area(T), /area/wizard_station))
 			to_chat(user, "<span class='warning'>You know better than to violate the security of The Den, best wait until you leave to start smashing down walls.</span>")
 			return FALSE
 		if(!GetStone(SYNDIE_STONE))
@@ -342,7 +344,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		user.visible_message("<span class='danger'>[user] smashes open [C]!<span>")
 	else if(istype(target, /obj/structure/table) || istype(target, /obj/structure/window) || istype(target, /obj/structure/grille))
 		var/obj/structure/T = target
-		if(istype(get_area(T), /area/wizard_station)) 
+		if(istype(get_area(T), /area/wizard_station))
 			to_chat(user, "<span class='warning'>You know better than to violate the security of The Den, best wait until you leave to start smashing down stuff.</span>")
 			return FALSE
 		. = TRUE
@@ -437,7 +439,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 					// give sci materials
 					var/obj/structure/closet/supplypod/bluespacepod/sci_pod = new()
 					sci_pod.explosionSize = list(0,0,0,0)
-					var/list/materials_to_give_science = list(/obj/item/stack/sheet/metal, 
+					var/list/materials_to_give_science = list(/obj/item/stack/sheet/metal,
 						/obj/item/stack/sheet/plasteel,
 						/obj/item/stack/sheet/mineral/diamond,
 						/obj/item/stack/sheet/mineral/uranium,
@@ -629,7 +631,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			update_icon()
 			if(FullyAssembled() && !GLOB.gauntlet_snapped)
 				user.AddSpell(new /obj/effect/proc_holder/spell/self/infinity/snap)
-				user.visible_message("<span class='userdanger'>A massive surge of power courses through [user]. You feel as though your very existence is in danger!</span>", 
+				user.visible_message("<span class='userdanger'>A massive surge of power courses through [user]. You feel as though your very existence is in danger!</span>",
 					"<span class='danger bold'>You have fully assembled the Badmin Gauntlet. You can use all stone abilities no matter the mode, and can SNAP using the ability.</span>")
 			return
 	return ..()
@@ -826,7 +828,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		target.mobility_flags |= MOBILITY_MOVE
 	if(!QDELETED(passenger))
 		passenger.mobility_flags |= MOBILITY_MOVE
-	
+
 /obj/effect/dummy/phased_mob/spell_jaunt/infinity
 	name = "shadow"
 	icon = 'hippiestation/icons/obj/infinity.dmi'
