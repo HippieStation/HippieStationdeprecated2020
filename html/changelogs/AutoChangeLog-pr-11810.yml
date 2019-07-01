@@ -1,6 +1,0 @@
-author: "Manly Dwarf"
-delete-after: True
-changes: 
-  - balance: "No-Slips are now 3 TC brown shoes that cannot be chameleoned."
-  - balance: "Thermal Imaging Goggles also cannot be chameleoned, and look like regular mesons at first."
-  - tweak: "Thermal Imaging Goggles are now considered a stealthy tool rather than a device (they'll be found in stealthy tools, not devices and tools)"
