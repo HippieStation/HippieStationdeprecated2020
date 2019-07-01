@@ -38,6 +38,7 @@
 			if(!L.is_static && L.viscosity)
 				var/chance = CLAMP((100 / L.viscosity) / max(get_dist(src, L), 1), 30, 100)
 				if(prob(chance))
+					step_to(L, get_turf(src))
 					L.depth--
 					L.active = TRUE
 					L.update_depth()
