@@ -1,5 +1,3 @@
-/mob/living/carbon/human
-
 /mob/living/carbon/human/Initialize()
 	. = ..()
 	update_teeth()
