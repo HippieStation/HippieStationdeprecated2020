@@ -17,7 +17,7 @@
 	yield = 2
 	genes = list(/datum/plant_gene/trait/repeated_harvest, /datum/plant_gene/trait/plant_type/weed_hardy, /datum/plant_gene/trait/stinging)
 	mutatelist = list(/obj/item/seeds/nettle/death)
-	reagents_add = list("tirizene" = 0.2, "tiresolution" = 0.2, "pax" = 0.05, "kelotane" = 0.05)
+	reagents_add = list(/datum/reagent/toxin/staminatoxin = 0.2, /datum/reagent/peaceborg/tire = 0.2, /datum/reagent/pax = 0.05, /datum/reagent/medicine/kelotane = 0.05)
 	rarity = 20
 
 

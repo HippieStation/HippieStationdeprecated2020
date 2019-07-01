@@ -74,10 +74,10 @@
 /obj/item/projectile/energy/hippie_ebolt/Initialize()
 	. = ..()
 	create_reagents(30, NO_REACT)
-	reagents.add_reagent("polonium", 5)
-	reagents.add_reagent("fentanyl", 5)
-	reagents.add_reagent("atomicbomb", 8)
-	reagents.add_reagent("toxin", 8)
+	reagents.add_reagent(/datum/reagent/toxin/polonium, 5)
+	reagents.add_reagent(/datum/reagent/toxin/fentanyl, 5)
+	reagents.add_reagent(/datum/reagent/consumable/ethanol/atomicbomb, 8)
+	reagents.add_reagent(/datum/reagent/toxin, 8)
 
 /obj/item/projectile/energy/hippie_ebolt/on_hit(atom/target, blocked = FALSE)
 	if(iscarbon(target))
@@ -99,3 +99,6 @@
 	DISABLE_BITFIELD(reagents.flags, NO_REACT)
 	reagents.handle_reactions()
 	return BULLET_ACT_HIT
+
+/obj/item/gun/energy/printer
+	icon_state = "l6closed100"

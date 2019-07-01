@@ -38,20 +38,20 @@
 		if(used)
 			return FALSE
 		else
-			addtimer(CALLBACK(src, .proc/spawnFood, possibleFood[choice]), 50)
+			addtimer(CALLBACK(src, .proc/spawnFood, user, possibleFood[choice]), 50)
 			soundloop.start()
 			used = TRUE
 			icon_state = "carboncan-on"
 	else
 		to_chat(user, "<span class='notice'>It's already been used!</span>")
 
-/obj/item/cheapcuisine/proc/spawnFood(var/foodtype)
+/obj/item/cheapcuisine/proc/spawnFood(mob/user, foodtype)
 	soundloop.stop()
 	if(isnull(foodtype))
 		icon_state = "carboncan-off"
 		used = FALSE
 		return
-	new foodtype(get_turf(src))
+	user.put_in_hands(new foodtype(get_turf(src)))
 	icon_state = "carboncan-open"
 	desc = "It's been used already."
 
@@ -64,8 +64,8 @@
 	icon_state = "pizzacornpotato"
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/cornpotato/carbon
 	bitesize = 3
-	list_reagents = list("nutriment" = 4, "vitamin" = 2, "toxin" = 3, "fartium" = 5, "mushroomhallucinogen" = 3)
-	bonus_reagents = list("methamphetamine" = 2.5, "histamine" = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/toxin = 3, /datum/reagent/drug/fartium = 5, /datum/reagent/drug/mushroomhallucinogen = 3)
+	bonus_reagents = list(/datum/reagent/drug/methamphetamine = 2.5, /datum/reagent/toxin/histamine = 2)
 	tastes = list("pure, unadulterated misery" = 5)
 	foodtype = GROSS | TOXIC // none of the food is actually real, it's just gross.
 
@@ -76,16 +76,16 @@
 	icon_state = "pizzacornpotatoslice"
 	filling_color = "#FFA500"
 	bitesize = 1
-	list_reagents = list("nutriment" = 2, "vitamin" = 0.5, "toxin" = 1.5, "fartium" = 2)
-	bonus_reagents = list("methamphetamine" = 0.5, "histamine" = 0.5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/vitamin = 0.5, /datum/reagent/toxin = 1.5, /datum/reagent/drug/fartium = 2)
+	bonus_reagents = list(/datum/reagent/drug/methamphetamine = 0.5, /datum/reagent/toxin/histamine = 0.5)
 	tastes = list("pure, unadulterated misery" = 2)
 	foodtype = GROSS | TOXIC
 
 /obj/item/reagent_containers/food/snacks/soup/amanitajelly/carbon
 	name = "insta-jelly"
 	desc = "The jelly was so corrupted that it ended up gaining sentience."
-	list_reagents = list("nutriment" = 1, "vitamin" = 3, "amatoxin" = 7, "mushroomhallucinogen" = 3) // will KILL you
-	bonus_reagents = list("formaldehyde" = 3, "rotatium" = 3, "skewium" = 3) // who knows what you're gonna get
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 3, /datum/reagent/toxin/amatoxin = 7, /datum/reagent/drug/mushroomhallucinogen = 3) // will KILL you
+	bonus_reagents = list(/datum/reagent/toxin/formaldehyde = 3, /datum/reagent/toxin/rotatium = 3, /datum/reagent/toxin/skewium = 3) // who knows what you're gonna get
 	tastes = list("death" = 10)
 	bitesize = 2
 	foodtype = GROSS | TOXIC
@@ -93,8 +93,8 @@
 /obj/item/reagent_containers/food/snacks/butterdog/carbon
 	name = "butterdog"
 	desc = "This isn't a hot dog! It smells of heart disease!"
-	list_reagents = list("nutriment" = 4, "vitamin" = 2, "slimejelly" = 5, "mushroomhallucinogen" = 3)
-	bonus_reagents = list("impedrezene" = 3, "sulfonal" = 2) // nerfed but still dangerous
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/toxin/slimejelly = 5, /datum/reagent/drug/mushroomhallucinogen = 3)
+	bonus_reagents = list(/datum/reagent/impedrezene = 3, /datum/reagent/toxin/sulfonal = 2) // nerfed but still dangerous
 	tastes = list("cardiac arrest" = 10)
 	bitesize = 2
 	foodtype = GROSS | TOXIC
@@ -109,7 +109,7 @@
 	desc = "The laziest food someone could possibly make, alongside some corn."
 	icon = 'hippiestation/icons/obj/food/food.dmi'
 	icon_state = "ham_disk"
-	list_reagents = list("nutriment" = 1, "vitamin" = 1, "soymilk" = 6)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/soymilk = 6)
 	tastes = list("laziness" = 2)
 	foodtype = GROSS | RAW | MEAT | VEGETABLES
 
@@ -118,5 +118,5 @@
 	desc = "Tastes about as terrible as you'd expect."
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "oliveoil"
-	list_reagents = list("amanitin" = 5, "soymilk" = 12, "atomicbomb" = 10, "hearty_punch" = 8) //guaranteed to fuck you up, soylent. also surprisingly robust if used before crit
+	list_reagents = list(/datum/reagent/toxin/amanitin = 5, /datum/reagent/consumable/soymilk = 12, /datum/reagent/consumable/ethanol/atomicbomb = 10, /datum/reagent/consumable/ethanol/hearty_punch = 8) //guaranteed to fuck you up, soylent. also surprisingly robust if used before crit
 	foodtype = GROSS | ALCOHOL

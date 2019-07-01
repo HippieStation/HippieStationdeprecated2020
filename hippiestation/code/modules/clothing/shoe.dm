@@ -48,14 +48,7 @@
 
 /obj/item/clothing/shoes/buttshoes/Initialize()
 	. = ..()
-	AddComponent(/datum/component/squeak/buttshoes, 50)
-
-/datum/component/squeak/buttshoes
-	datum_outputs = list(/datum/outputs/buttshoes)
-
-/datum/outputs/buttshoes
-	sounds = list('hippiestation/sound/effects/fart.ogg')
-	text = "You hear a FART."
+	AddComponent(/datum/component/squeak, list('hippiestation/sound/effects/fart.ogg'), 50)
 
 /obj/item/clothing/shoes/jackboots/larp
 	name = "guard boots"

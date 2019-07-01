@@ -430,7 +430,7 @@
 
 /turf/open/pool/attackby(obj/item/W, mob/living/user)
 	if(istype(W, /obj/item/mop) && filled)
-		W.reagents.add_reagent("water", 5)
+		W.reagents.add_reagent(/datum/reagent/water, 5)
 		to_chat(user, "<span class='notice'>You wet [W] in [src].</span>")
 		playsound(loc, 'sound/effects/slosh.ogg', 25, TRUE)
 

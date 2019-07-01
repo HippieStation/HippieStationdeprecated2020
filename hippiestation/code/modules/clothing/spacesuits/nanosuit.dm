@@ -281,7 +281,7 @@
 		if(world.time > temp_cooldown)
 			if(!defrosted)
 				helmet.display_visor_message("Activating suit defrosting protocols.")
-				Wearer.reagents.add_reagent("leporazine", 3)
+				Wearer.reagents.add_reagent(/datum/reagent/medicine/leporazine, 3)
 				defrosted = TRUE
 				temp_cooldown += 100
 	else
@@ -384,7 +384,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/proc/heal_nano(mob/living/carbon/human/user)
 	helmet.display_visor_message("Engaging emergency medical protocols")
-	user.reagents.add_reagent("syndicate_nanites", 1)
+	user.reagents.add_reagent(/datum/reagent/medicine/syndicate_nanites, 1)
 
 /obj/item/clothing/suit/space/hardsuit/nano/ui_action_click(mob/user, action)
 	if(istype(action, /datum/action/item_action/nanosuit/armor))

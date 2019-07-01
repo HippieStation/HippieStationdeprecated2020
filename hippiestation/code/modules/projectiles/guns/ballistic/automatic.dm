@@ -1,3 +1,12 @@
+/obj/item/gun/ballistic/automatic/c20r
+	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
+
+/obj/item/gun/ballistic/automatic/l6_saw
+	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
+
+/obj/item/gun/ballistic/automatic/sniper_rifle
+	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
+
 /obj/item/gun/ballistic/automatic/l6_saw/attack_self(mob/living/user)
 	if(!internal_magazine && magazine)
 		if(!cover_open)

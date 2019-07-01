@@ -1,6 +1,6 @@
 /obj/item/reagent_containers/food/drinks/drinkingglass/suicide_act(mob/user)
 	var/mob/living/carbon/human/H = user
-	if(reagents && reagents.has_reagent("lean"))
+	if(reagents && reagents.has_reagent(/datum/reagent/consumable/lean))
 		H.visible_message("<span class='suicide'>[H] is overdosing on that purple stuff!</span>")
 		H.say("Aww hol up mane.. dat too much drank..", forced = "drinking glass suicide")
 		H.vomit(80)
