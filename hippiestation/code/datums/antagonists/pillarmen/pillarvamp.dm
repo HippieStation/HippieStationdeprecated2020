@@ -18,5 +18,5 @@
 
 /datum/antagonist/vampire/pillarmen/greet()
 	. = ..()
-	to_chat(owner, "<span class='bold big notice'>You are a special kind of vampire, transformed by the Stone Mask. You lack much of your cortex for free will - you are instead controlled and owned by your Pillar Man masters!</span>")
+	to_chat(owner, "<span class='bold big notice'>You are a special kind of vampire, transformed by the Stone Mask. You lack much of your cortex for free will - you are instead controlled and owned by your Pillar Man master!</span>")
 	to_chat(owner, "<span class='bold big notice'>However, this makes room in your brain for special abilities!</span>")

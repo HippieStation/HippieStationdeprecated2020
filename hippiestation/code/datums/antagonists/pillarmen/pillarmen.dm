@@ -19,13 +19,14 @@
 /datum/antagonist/pillarmen/create_team(datum/team/pillarmen/new_team)
 	if(istype(new_team))
 		pillarManTeam = new_team
-		pillarManTeam.pillars |= owner
+		pillarManTeam.pillarMan = owner
 
 /datum/antagonist/pillarmen/get_team()
 	return pillarManTeam
 
 /datum/antagonist/pillarmen/greet()
 	to_chat(owner.current, "<span class='cultlarge'>You are a <span class='reallybig hypnophrase'>Pillar Man</span>, in disguise.</span>")
-	to_chat(owner.current, "<span class='cult'>In order to unlock your immense power, you must hatch first. Work with your fellow Pillar Men.</span>")
+	to_chat(owner.current, "<span class='cult'>In order to unlock your immense power, you must hatch first.</span>")
 	to_chat(owner.current, "<span class='cult'>However, you are still mortal. You must ascend to godhood by utilizing the Red Stone of Aja with a stone mask.</span>")
-	to_chat(owner.current, "<span class='cult'>Ascending will allow you to become the ultimate organism., however, you die if you fail to ascend by being stunned while ascending.</span>")
+	to_chat(owner.current, "<span class='cult'>There are other Pillar Men, working to get the stone. Get the stone before the others, in order to ascend!</span>")
+	to_chat(owner.current, "<span class='cult'>Ascending will allow you to become the ultimate organism, however, you die if you fail to ascend by being stunned while ascending.</span>")
