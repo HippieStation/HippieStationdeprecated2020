@@ -1517,14 +1517,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/book/bible/syndicate
 	cost = 5
 
-/datum/uplink_item/device_tools/thermal
-	name = "Thermal Imaging Glasses"
-	desc = "These goggles can be turned to resemble common eyewear found throughout the station. \
-			They allow you to see organisms through walls by capturing the upper portion of the infrared light spectrum, \
+/* /datum/uplink_item/device_tools/thermal hippie -- edited this whole area, removed the chameleon, moved to stealth & camo
+	name = "Thermal Imaging Goggles"
+	desc = "These goggles allow you to see organisms through walls by capturing the upper portion of the infrared light spectrum, \
 			emitted as heat and light by objects. Hotter objects, such as warm bodies, cybernetic organisms \
 			and artificial intelligence cores emit more of this light than cooler objects like walls and airlocks."
-	item = /obj/item/clothing/glasses/thermal/syndi
-	cost = 4
+	item = /obj/item/clothing/glasses/thermal
+	cost = 4 -- hippie end */
 
 /datum/uplink_item/device_tools/potion
 	name = "Syndicate Sentience Potion"
