@@ -55,6 +55,7 @@
 	name = "Emerge"
 	desc = "Emerge from your shell, and become a full Pillar Man"
 	charge_max = 0
+	clothes_req = FALSE
 	var/emerging = FALSE
 
 /obj/effect/proc_holder/spell/self/pillar_hatch/cast(list/targets, mob/user)
