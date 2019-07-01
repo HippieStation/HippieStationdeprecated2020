@@ -4,7 +4,7 @@
 	antag_flag = ROLE_PILLARMEN
 	required_players = 25
 	required_enemies = 2
-	recommended_enemies = 4
+	recommended_enemies = 3
 	restricted_jobs = list("AI", "Cyborg")
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_races = list(/datum/species/lizard, /datum/species/ipc, /datum/species/bird, /datum/species/tarajan)

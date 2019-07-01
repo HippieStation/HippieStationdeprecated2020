@@ -11,6 +11,7 @@
 
 /datum/antagonist/pillarmen/on_gain()
 	. = ..()
+	owner.AddSpell(new /obj/effect/proc_holder/spell/self/pillar_hatch)
 
 /datum/antagonist/pillarmen/on_removal()
 	. = ..()

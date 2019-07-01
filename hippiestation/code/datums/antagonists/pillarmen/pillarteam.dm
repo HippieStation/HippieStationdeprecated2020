@@ -12,10 +12,10 @@
 		parts += "<span class='greentext big'>The [team_name] Pillar Man managed to ascend, against all odds!</span>"
 	else
 		parts += "<span class='redtext big'>The [team_name] Pillar Man failed to ascend!</span>"
-	parts += "<b>The Pillar Man was:</b>"
+	parts += "<span class='header'>The Pillar Man was:</span>"
 	parts += printplayer(pillarMan)
-	parts += "<b>The Vampires were:</b>"
+	parts += "<span class='header'>The Vampires were:</span>"
 	parts += printplayerlist(vampires)
-	parts += "<b>The Vampiric Thralls were:</b>"
+	parts += "<span class='header'>The Vampiric Thralls were:</span>"
 	parts += printplayerlist(thralls)
 	return "<div class='panel redborder'>[parts.Join("<br>")]</div>"
