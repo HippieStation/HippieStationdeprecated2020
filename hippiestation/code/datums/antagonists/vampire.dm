@@ -225,6 +225,16 @@
 		old_bloodusable = usable_blood
 		if(!H.blood_volume)
 			to_chat(O, "<span class='warning'>They've got no blood left to give.</span>")
+			if(istype(src, /datum/antagonist/vampire/pillarmen))
+				var/datum/antagonist/vampire/pillarmen/PV = src
+				var/datum/team/pillarmen/PT = PV.pillarTeam
+				H.set_species(/datum/species/human/thrall)
+				H.fully_heal(TRUE)
+				H.grab_ghost()
+				var/datum/antagonist/pillar_thrall/P = new
+				P.master = src
+				H.mind.add_antag_datum(P, PT)
+				H.visible_message("<span class='danger bold'>[H] stumbles to their feet, a lifeless look in their eyes...</span>")
 			break
 		if(H.stat != DEAD)
 			blood = min(10, H.blood_volume)// if they have less than 10 blood, give them the remnant else they get 10 blood

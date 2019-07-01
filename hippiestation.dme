@@ -3394,6 +3394,7 @@
 #include "hippiestation\code\modules\mob\living\carbon\human\species_types\meeseeks.dm"
 #include "hippiestation\code\modules\mob\living\carbon\human\species_types\mothmen.dm"
 #include "hippiestation\code\modules\mob\living\carbon\human\species_types\pillarmen.dm"
+#include "hippiestation\code\modules\mob\living\carbon\human\species_types\pillarthrall.dm"
 #include "hippiestation\code\modules\mob\living\carbon\human\species_types\shadowpeople.dm"
 #include "hippiestation\code\modules\mob\living\carbon\human\species_types\skeletons.dm"
 #include "hippiestation\code\modules\mob\living\carbon\human\species_types\species.dm"

@@ -4,8 +4,9 @@
 	var/datum/antagonist/vampire/pillarmen/master
 	var/datum/team/pillarmen/pillarTeam
 
-/datum/antagonist/pillar_thrall/on_gain()
-	. = ..()
+/datum/antagonist/pillar_thrall/greet()
+	to_chat(owner, "<span class='reallybig cult'>You are a thrall of the Vampire [master.owner.name], and of the Pillar Man [pillarTeam.pillarMan.name].</span>")
+	to_chat(owner, "<span class='cult'>Follow their orders at all costs, even at the cost of your own life.</span>")
 
 /datum/antagonist/pillar_thrall/on_removal()
 	. = ..()

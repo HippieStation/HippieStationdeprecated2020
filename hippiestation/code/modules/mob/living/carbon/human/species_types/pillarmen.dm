@@ -9,8 +9,10 @@
 	damage_overlay_type = "" //they won't show signs of damage until they're dead.
 	changesource_flags = MIRROR_BADMIN
 
+
 /datum/species/pillarmen/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	..()
+	H.draw_hippie_parts()
 	H.move_force = MOVE_FORCE_OVERPOWERING
 	H.move_resist = MOVE_FORCE_OVERPOWERING
 	H.ventcrawler = VENTCRAWLER_ALWAYS
@@ -22,3 +24,7 @@
 		A.add_hud_to(H)
 	for(var/datum/atom_hud/antag/A in GLOB.huds) // add antag huds
 		A.add_hud_to(H)
+
+/datum/species/pillarmen/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
+	. = ..()
+	C.draw_hippie_parts(TRUE)
