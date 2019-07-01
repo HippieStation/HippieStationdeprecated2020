@@ -109,6 +109,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, list(
 	/client/proc/smite,
 	/client/proc/admin_away, /* hippie -- add comma */
 	/client/proc/space_liquid, /* hippie -- space liquids */
+	/client/proc/space_unliquid, /* hippie -- space liquids */
 	/client/proc/make_liquid, /* hippie -- liquids */
 	))
 GLOBAL_PROTECT(admin_verbs_fun)

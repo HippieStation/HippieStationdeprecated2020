@@ -2878,6 +2878,7 @@
 #include "hippiestation\code\_onclick\hud\fullscreen.dm"
 #include "hippiestation\code\_onclick\hud\hud.dm"
 #include "hippiestation\code\_onclick\hud\human.dm"
+#include "hippiestation\code\_onclick\hud\parallax.dm"
 #include "hippiestation\code\_onclick\hud\stamina.dm"
 #include "hippiestation\code\_onclick\hud\tts.dm"
 #include "hippiestation\code\_onclick\hud\vampire.dm"

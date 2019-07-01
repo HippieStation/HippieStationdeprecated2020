@@ -3,7 +3,7 @@
 	set category = "Fun"
 	set desc = "Spawn A Liquid Pool"
 	var/chosen_id
-	switch(alert(usr, "Choose a method.", "Add Reagents", "Enter ID", "Choose ID", "Clear Reagent"))
+	switch(alert(usr, "Choose a method.", "Add Reagents", "Search", "Choose from a list", "I'm feeling lucky"))
 		if("Search")
 			var/valid_id
 			while(!valid_id)

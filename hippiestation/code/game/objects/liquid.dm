@@ -99,7 +99,7 @@
 /obj/effect/liquid/Initialize()
 	. = ..()
 	create_reagents(1000)
-	addtimer(CALLBACK(src, .proc/get_pool), 0)
+	get_pool()
 	var/turf/T = get_turf(src)
 	var/atom/movable/AM = locate() in T//since crossed doesn't work if the liquid is the one doing the 'moving'
 	if(AM)

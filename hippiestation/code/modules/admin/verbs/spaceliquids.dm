@@ -3,7 +3,7 @@
 	set category = "Fun"
 	set desc = "Turns space into a liquid!"
 	var/chosen_id
-	switch(alert(usr, "Choose a method.", "Add Reagents", "Enter ID", "Choose ID", "Clear Reagent"))
+	switch(alert(usr, "Choose a method.", "Add Reagents", "Search", "Choose from a list", "I'm feeling lucky"))
 		if("Search")
 			var/valid_id
 			while(!valid_id)
@@ -24,27 +24,21 @@
 				return
 		if("I'm feeling lucky")
 			chosen_id = pick(subtypesof(/datum/reagent))
-		if("Clear Reagent")
-			GLOB.space_reagent = null
-			message_admins("[key_name(src)] has un-liquified space.")
-			log_game("[key_name(src)] has un-liquified space.")
-			change_parallax_colors(null)
-			for(var/turf/open/space/S in world)
-				STOP_PROCESSING(SSprocessing, S)
-			return
 	message_admins("[key_name(src)] has turned space into '[chosen_id]' liquid.")
 	log_game("[key_name(src)] has turned space into '[chosen_id]' liquid.")
 	GLOB.space_reagent = chosen_id
-	var/datum/reagent/R = GLOB.chemical_reagents_list[chosen_id]
-	if(R && R.color)
-		change_parallax_colors(R.color)
 	for(var/turf/open/space/S in world)
-		//if(S.is_actually_next_to_something())
 		if(is_station_level(S.z))
 			START_PROCESSING(SSprocessing, S)
 
-/proc/change_parallax_colors(color)
-	for(var/client/C in GLOB.clients)
-		for(var/thing in C.parallax_layers)
-			var/obj/screen/parallax_layer/L = thing
-			L.color = color
+/client/proc/space_unliquid()
+	set name = "Un-Liquify Space"
+	set category = "Fun"
+	set desc = "Turns space into a liquid!"
+	if(!GLOB.space_reagent)
+		return
+	GLOB.space_reagent = null
+	message_admins("[key_name(src)] has un-liquified space.")
+	log_game("[key_name(src)] has un-liquified space.")
+	for(var/turf/open/space/S in world)
+		STOP_PROCESSING(SSprocessing, S)

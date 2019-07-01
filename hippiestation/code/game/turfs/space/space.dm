@@ -1,4 +1,4 @@
-#define SPACE_REAGENTS_PER_TICK 20.75 // SSprocessing only does one tick per second.
+#define SPACE_REAGENTS_PER_TICK 25 // SSprocessing only does one tick per second.
 GLOBAL_VAR_INIT(space_reagent, null)
 GLOBAL_LIST_INIT(space_reagents_blacklist, typecacheof(list(/turf/open/floor/plasteel/airless/solarpanel)))
 GLOBAL_LIST_INIT(space_reagents_can_pass_anyways, typecacheof(list(/obj/structure/grille, /obj/structure/barricade/security)))
@@ -14,16 +14,18 @@ GLOBAL_LIST_INIT(space_reagents_blacklist_areas, typecacheof(list(/area/hippie/s
 
 /turf/open/space/Initialize()
 	. = ..()
-	if(is_station_level(z))
+	if(is_station_level(z) && GLOB.space_reagent)
 		START_PROCESSING(SSprocessing, src)
 
 /turf/open/space/examine(mob/user)
 	. = ..()
 	if(is_station_level(z) && GLOB.space_reagent)
 		var/datum/reagent/R = GLOB.chemical_reagents_list[GLOB.space_reagent]
-		to_chat(user, "<span class='notice'>It appears to be made of [R.name].</span>")
+		. += "<span class='notice'>It appears to be made of [R.name].</span>"
 
 /turf/open/space/process()
+	if(!GLOB.space_reagent)
+		return
 	if(!is_actually_next_to_something())
 		return
 	if(GLOB.space_reagent)
@@ -40,7 +42,7 @@ GLOBAL_LIST_INIT(space_reagents_blacklist_areas, typecacheof(list(/area/hippie/s
 					break
 				if(istype(A, /obj))
 					var/obj/O = A
-					if(!O.CanPass() && !is_type_in_typecache(O, GLOB.space_reagents_can_pass_anyways))
+					if(O.density && !is_type_in_typecache(O, GLOB.space_reagents_can_pass_anyways))
 						can_spawn_liquid = FALSE
 						break
 				if(istype(A, /obj/effect/liquid) && can_spawn_liquid)
@@ -48,7 +50,7 @@ GLOBAL_LIST_INIT(space_reagents_blacklist_areas, typecacheof(list(/area/hippie/s
 					moist = TRUE
 					if(L.reagents)
 						L.reagents.add_reagent(GLOB.space_reagent, SPACE_REAGENTS_PER_TICK)
-						L.depth = CLAMP(L.depth + (SPACE_REAGENTS_PER_TICK / REAGENT_TO_DEPTH), 0, MAX_INITIAL_DEPTH)
+						L.depth = max(L.depth + (SPACE_REAGENTS_PER_TICK / REAGENT_TO_DEPTH), 0)
 						L.update_depth()
 					INVOKE_ASYNC(L, /obj/effect/liquid.proc/equilibrate)
 			if(!moist && can_spawn_liquid)
