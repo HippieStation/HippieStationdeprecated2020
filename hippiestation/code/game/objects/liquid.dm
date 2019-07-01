@@ -139,12 +139,13 @@
 	var/turf/OT = get_turf(src)
 	if(!OT)
 		return//this is stuck here to HUGELY reduce the amount of unneeded immersed calls
-	if(!GLOB.space_reagent && isspaceturf(OT))//drain to space?
-		for(var/obj/effect/liquid/LD in view(3, OT))
-			if(LD.viscosity)
-				var/chance = CLAMP(50 / LD.viscosity, 20, 100)
-				if(prob(chance))
-					step_to(LD, OT)
+	if(isspaceturf(OT))//drain to space?
+		if(!GLOB.space_reagent)
+			for(var/obj/effect/liquid/LD in view(3, OT))
+				if(LD.viscosity)
+					var/chance = CLAMP(50 / LD.viscosity, 20, 100)
+					if(prob(chance))
+						step_to(LD, OT)
 		qdel(src)
 		return
 	if(prob(25) && reagents)
