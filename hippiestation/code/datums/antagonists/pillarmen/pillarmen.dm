@@ -14,7 +14,8 @@
 
 /datum/antagonist/pillarmen/on_removal()
 	. = ..()
-	pillarManTeam.pillars -= owner
+	if(pillarManTeam.pillarMan == owner)
+		pillarManTeam.pillarMan = null
 
 /datum/antagonist/pillarmen/create_team(datum/team/pillarmen/new_team)
 	if(istype(new_team))

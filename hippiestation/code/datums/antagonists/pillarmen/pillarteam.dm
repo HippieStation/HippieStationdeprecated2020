@@ -5,7 +5,6 @@
 	var/list/datum/mind/vampires
 	var/list/datum/mind/thralls
 	var/ascended
-	var/team_name = ""
 
 /datum/team/pillarmen/roundend_report()
 	var/list/parts = new/list
