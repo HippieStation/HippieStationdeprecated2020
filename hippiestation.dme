@@ -3047,6 +3047,7 @@
 #include "hippiestation\code\game\objects\items\special_attacks.dm"
 #include "hippiestation\code\game\objects\items\staples.dm"
 #include "hippiestation\code\game\objects\items\stunbaton.dm"
+#include "hippiestation\code\game\objects\items\syndielad.dm"
 #include "hippiestation\code\game\objects\items\tools.dm"
 #include "hippiestation\code\game\objects\items\toy.dm"
 #include "hippiestation\code\game\objects\items\twohanded.dm"
