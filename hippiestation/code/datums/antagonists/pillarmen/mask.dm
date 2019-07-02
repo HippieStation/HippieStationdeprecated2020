@@ -7,6 +7,10 @@
 /obj/item/clothing/mask/stone/equipped(mob/M, slot)
 	. = ..()
 	if(ishuman(M) && slot == SLOT_WEAR_MASK)
+		if(M.mind?.has_antag_datum(/datum/antagonist/pillar_thrall) || M.mind?.has_antag_datum(/datum/antagonist/pillarmen) || M.mind?.has_antag_datum(/datum/antagonist/vampire))
+			visible_message("<span class='hypnophrase big'>[src] falls off of [M]'s face!</span>")
+			M.doUnEquip(src, TRUE)
+			return
 		if(M.stat)
 			visible_message("<span class='hypnophrase big'>[src] falls off of [M]'s face, they don't have enough life force!</span>")
 			M.doUnEquip(src, TRUE)
