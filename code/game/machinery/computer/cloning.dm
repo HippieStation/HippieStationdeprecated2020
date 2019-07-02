@@ -598,6 +598,7 @@
 
 	R.fields["bank_account"] = has_bank_account
 	R.fields["mindref"] = "[REF(mob_occupant.mind)]"
+	R.fields["body_only"] = body_only
 
 	if(!body_only)
 	    //Add an implant if needed
