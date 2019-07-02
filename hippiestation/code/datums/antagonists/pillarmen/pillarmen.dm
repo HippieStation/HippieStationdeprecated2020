@@ -35,6 +35,7 @@
 	return pillarTeam
 
 /datum/antagonist/pillarmen/greet()
+	SEND_SOUND(owner.current, 'hippiestation/sound/ambience/antag/pillar.ogg')
 	to_chat(owner.current, "<span class='cultlarge'>You are a <span class='reallybig hypnophrase'>Pillar Man</span>, in disguise.</span>")
 	to_chat(owner.current, "<span class='cult'>In order to unlock your immense power, you must hatch first.</span>")
 	to_chat(owner.current, "<span class='cult'>However, you are still mortal. You must ascend to godhood by utilizing the Red Stone of Aja with a stone mask.</span>")
