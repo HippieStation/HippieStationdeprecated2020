@@ -8,7 +8,7 @@
 	restricted_jobs = list("AI", "Cyborg")
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_races = list(/datum/species/lizard, /datum/species/ipc, /datum/species/bird, /datum/species/tarajan)
-	var/list/datum/team/pillarmen/pillarManTeams
+	var/list/datum/team/pillarmen/pillarManTeams = list()
 	var/list/datum/mind/pre_pillars = list()
 
 /datum/game_mode/pillarmen/pre_setup()

@@ -229,7 +229,7 @@
 				var/datum/antagonist/vampire/pillarmen/PV = src
 				var/datum/team/pillarmen/PT = PV.pillarTeam
 				H.set_species(/datum/species/human/thrall)
-				H.fully_heal(TRUE)
+				H.revive(TRUE, TRUE)
 				H.grab_ghost()
 				var/datum/antagonist/pillar_thrall/P = new
 				P.master = src

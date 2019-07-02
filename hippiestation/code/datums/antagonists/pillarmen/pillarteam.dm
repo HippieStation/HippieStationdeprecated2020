@@ -2,9 +2,16 @@
 	name = "Pillar Men"
 	var/team_name = "pls fix" //randomly generated
 	var/datum/mind/pillarMan
-	var/list/datum/mind/vampires
-	var/list/datum/mind/thralls
+	var/list/datum/mind/vampires = list()
+	var/list/datum/mind/thralls = list()
 	var/ascended
+	var/hud_entry_num
+
+/datum/team/pillarmen/Destroy()
+	var/datum/atom_hud/antag/pillarhud = GLOB.huds[hud_entry_num]
+	GLOB.huds -= GLOB.huds[hud_entry_num]
+	qdel(pillarhud)
+	. = ..()
 
 /datum/team/pillarmen/roundend_report()
 	var/list/parts = new/list
