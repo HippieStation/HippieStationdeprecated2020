@@ -4,7 +4,7 @@
 	max_occurrences = 0
 
 /datum/round_event_control/vent_clog/threatening
-name = "Clogged Vents: Threatening \[WILL LAG OUT SERVER\]"
+	name = "Clogged Vents: Threatening \[WILL LAG OUT SERVER\]"
 	weight = 0
 	max_occurrences = 0
 

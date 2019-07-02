@@ -326,18 +326,20 @@
 
 	if(prob(50) && reagents)
 		var/turf/T = get_turf(src)
-		var/obj/effect/decal/cleanable/chempile/c = locate() in T//handles merging existing chempiles
-		if(c && c.reagents)
-			reagents.trans_to(c, max(reagents.total_volume * 0.25, 0.1))
-			var/mixcolor = mix_color_from_reagents(c.reagents.reagent_list)
-			c.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
-			if(c.reagents && c.reagents.total_volume < 5)
-				DISABLE_BITFIELD(c.reagents.flags, NO_REACT)
-		else
-			var/obj/effect/decal/cleanable/chempile/P = new /obj/effect/decal/cleanable/chempile(T)//otherwise makes a new one
-			reagents.trans_to(P, max(reagents.total_volume * 0.25, 0.1))
-			var/mixcolor = mix_color_from_reagents(P.reagents.reagent_list)
-			P.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
+		for(var/datum/reagent/R in reagents.reagent_list)
+			if(!is_type_in_typecache(R, GLOB.chempile_reagent_blacklist) && !is_type_in_typecache(R, GLOB.statechange_reagent_blacklist))
+				var/obj/effect/decal/cleanable/chempile/c = locate() in T//handles merging existing chempiles
+				if(c && c.reagents)
+					reagents.trans_id_to(c, R.type, max(reagents.total_volume * 0.25, 0.1))
+					var/mixcolor = mix_color_from_reagents(c.reagents.reagent_list)
+					c.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
+					if(c.reagents && c.reagents.total_volume < 5)
+						DISABLE_BITFIELD(c.reagents.flags, NO_REACT)
+				else
+					var/obj/effect/decal/cleanable/chempile/P = new /obj/effect/decal/cleanable/chempile(T)//otherwise makes a new one
+					reagents.trans_id_to(P, R.type, max(reagents.total_volume * 0.25, 0.1))
+					var/mixcolor = mix_color_from_reagents(P.reagents.reagent_list)
+					P.add_atom_colour(mixcolor, FIXED_COLOUR_PRIORITY)
 
 	return ..()
 
