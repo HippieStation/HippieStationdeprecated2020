@@ -3195,6 +3195,7 @@
 #include "hippiestation\code\modules\clothing\shoe.dm"
 #include "hippiestation\code\modules\clothing\suit.dm"
 #include "hippiestation\code\modules\clothing\under.dm"
+#include "hippiestation\code\modules\clothing\gloves\gloves.dm"
 #include "hippiestation\code\modules\clothing\gloves\knifeboxing.dm"
 #include "hippiestation\code\modules\clothing\gloves\softgloves.dm"
 #include "hippiestation\code\modules\clothing\head\helmet.dm"

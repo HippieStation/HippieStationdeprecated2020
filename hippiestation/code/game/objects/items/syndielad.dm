@@ -15,8 +15,13 @@
 	strip_delay = 100
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
+	cold_protection = HANDS
+	min_cold_protection_temperature = GLOVES_MIN_TEMP_PROTECT
+	heat_protection = HANDS
+	max_heat_protection_temperature = GLOVES_MAX_TEMP_PROTECT
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF | FREEZE_PROOF
+	always_obscured = TRUE
 	var/syndilad_on = FALSE
 	var/syndilad_ready = TRUE // basically just prevents breaking the animations
 	var/syndilad_pinactive = FALSE
@@ -25,6 +30,7 @@
 	var/syndilad_detonating = FALSE
 	var/syndilad_bombmessage = "WAR NEVER CHANGES"
 	var/mob/living/carbon/human/wearer = null
+	var/bomb_armed = FALSE
 
 /obj/item/clothing/gloves/syndielad/Initialize(mapload, owner, tc_amount = 0)
 	. = ..()
@@ -77,6 +83,15 @@ obj/item/clothing/gloves/syndielad/Destroy()
 		return PROCESS_KILL
 	scan_for_target()
 	update_icon()
+	..()
+	for(var/obj/machinery/nuclearbomb/bomb in GLOB.nuke_list)
+		if(bomb.timing)
+			if(!bomb_armed)
+				bomb_armed = TRUE
+				playsound(src, 'sound/items/nuke_toy_lowpower.ogg', 50, 0)
+				if(isliving(loc))
+					var/mob/living/L = loc
+					to_chat(L, "<span class='userdanger'>Your [name] vibrates and lets out a tinny alarm. Uh oh.</span>")
 
 /obj/item/clothing/gloves/syndielad/proc/scan_for_target() // honestly only here because the pinpointer seemed to need it
 	return
@@ -87,6 +102,9 @@ obj/item/clothing/gloves/syndielad/Destroy()
 		return
 	var/turf/here = get_turf(src)
 	var/turf/there = get_turf(syndilad_target)
+	if(bomb_armed)
+		icon_state = "syndilad-nuke"
+		return
 	if(here.z != there.z || !syndilad_target)
 		icon_state = "syndilad-pin-null"
 		return
@@ -112,13 +130,12 @@ obj/item/clothing/gloves/syndielad/Destroy()
 						targets[S.targetinfo.name] = locate(S.targetinfo.targetitem)
 	return targets
 
-/obj/item/clothing/gloves/syndielad/proc/toggle_pinpointer(mob/user)
+/obj/item/clothing/gloves/syndielad/proc/toggle_pinpointer(mob/living/user)
 	if(syndilad_pinactive)
 		syndilad_pinactive = FALSE
 		STOP_PROCESSING(SSfastprocess, src)
 	else
 		syndilad_pinactive = TRUE
-		START_PROCESSING(SSfastprocess, src)
 		var/list/radial_list = list()
 		var/list/targets = get_targets(user)
 		for(var/A in targets)
@@ -127,11 +144,16 @@ obj/item/clothing/gloves/syndielad/Destroy()
 			else if(istype(targets[A], /atom))
 				var/atom/AT = targets[A]
 				radial_list[A] = image(AT.icon, AT.icon_state)
+		if(!targets)
+			to_chat(user, "<span class = 'notice'>No targets found.</span>")
+			syndilad_pinactive = FALSE
+			return FALSE
 		var/chosen = show_radial_menu(user, wearer, radial_list, custom_check = CALLBACK(src, .proc/check_menu, user))
 		if(!check_menu(user))
 			return
 		if(chosen)
 			syndilad_target = targets[chosen]
+			START_PROCESSING(SSfastprocess, src)
 		scan_for_target()
 	update_icon()
 
@@ -243,3 +265,36 @@ obj/item/clothing/gloves/syndielad/Destroy()
 		if("detonate")
 			toggle_detonation(user)
 			return
+
+
+// Nuclear Operative Variant
+
+
+/obj/item/clothing/gloves/syndielad/nuke
+	syndilad_bombmessage = "I'M NUCLEAR"
+
+/obj/item/clothing/gloves/syndielad/nuke/Initialize()
+	. = ..()
+	var/datum/component/uplink/hidden_uplink = GetComponent(/datum/component/uplink)
+	hidden_uplink.set_gamemode(/datum/game_mode/nuclear)
+
+/obj/item/clothing/gloves/syndielad/nuke/scan_for_target()
+	var/obj/item/disk/nuclear/N = locate() in GLOB.poi_list
+	syndilad_target = N
+
+/obj/item/clothing/gloves/syndielad/nuke/examine(mob/user)
+	. = ..()
+	var/msg = "Its tracking indicator reads \"nuclear disk\"."
+	. += msg
+	for(var/obj/machinery/nuclearbomb/bomb in GLOB.machines)
+		if(bomb.timing)
+			. += "Extreme danger. Arming signal detected. Time remaining: [bomb.get_time_left()]."
+
+/obj/item/clothing/gloves/syndielad/nuke/toggle_pinpointer(mob/living/user)
+	syndilad_pinactive = !syndilad_pinactive
+	if(syndilad_pinactive)
+		START_PROCESSING(SSfastprocess, src)
+	else
+		syndilad_target = null
+		STOP_PROCESSING(SSfastprocess, src)
+	update_icon()
