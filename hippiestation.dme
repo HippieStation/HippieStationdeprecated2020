@@ -2906,6 +2906,7 @@
 #include "hippiestation\code\datums\antagonists\vampire.dm"
 #include "hippiestation\code\datums\antagonists\vday.dm"
 #include "hippiestation\code\datums\antagonists\wizard.dm"
+#include "hippiestation\code\datums\antagonists\pillarmen\mask.dm"
 #include "hippiestation\code\datums\antagonists\pillarmen\pillarmen.dm"
 #include "hippiestation\code\datums\antagonists\pillarmen\pillarmen_abilities.dm"
 #include "hippiestation\code\datums\antagonists\pillarmen\pillarteam.dm"
