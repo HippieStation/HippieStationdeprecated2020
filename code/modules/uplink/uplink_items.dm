@@ -95,6 +95,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	var/refund_amount = 0 // specified refund amount in case there needs to be a TC penalty for refunds.
 	var/refundable = FALSE
 	var/surplus = 100 // Chance of being included in the surplus crate.
+	var/surplus_nullcrates //Chance of being included in null crates. null = pull from surplus
 	var/cant_discount = FALSE
 	var/limited_stock = -1 //Setting this above zero limits how many times this item can be bought by the same traitor in a round, -1 is unlimited
 	var/list/include_modes = list() // Game modes to allow this item in.
@@ -105,6 +106,11 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	var/restricted = FALSE // Adds restrictions for VR/Events
 	var/list/restricted_species //Limits items to a specific species. Hopefully.
 	var/illegal_tech = TRUE // Can this item be deconstructed to unlock certain techweb research nodes?
+
+/datum/uplink_item/New()
+	. = ..()
+	if(isnull(surplus_nullcrates))
+		surplus_nullcrates = surplus
 
 /datum/uplink_item/proc/get_discount()
 	return pick(4;0.75,2;0.5,1;0.25)
@@ -1376,6 +1382,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/disk/nuclear/fake
 	cost = 1
 	surplus = 1
+	surplus_nullcrates = 0
 
 /datum/uplink_item/device_tools/frame
 	name = "F.R.A.M.E. PDA Cartridge"
@@ -1510,14 +1517,13 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/book/bible/syndicate
 	cost = 5
 
-/datum/uplink_item/device_tools/thermal
-	name = "Thermal Imaging Glasses"
-	desc = "These goggles can be turned to resemble common eyewear found throughout the station. \
-			They allow you to see organisms through walls by capturing the upper portion of the infrared light spectrum, \
+/* /datum/uplink_item/device_tools/thermal hippie -- edited this whole area, removed the chameleon, moved to stealth & camo
+	name = "Thermal Imaging Goggles"
+	desc = "These goggles allow you to see organisms through walls by capturing the upper portion of the infrared light spectrum, \
 			emitted as heat and light by objects. Hotter objects, such as warm bodies, cybernetic organisms \
 			and artificial intelligence cores emit more of this light than cooler objects like walls and airlocks."
-	item = /obj/item/clothing/glasses/thermal/syndi
-	cost = 4
+	item = /obj/item/clothing/glasses/thermal
+	cost = 4 -- hippie end */
 
 /datum/uplink_item/device_tools/potion
 	name = "Syndicate Sentience Potion"

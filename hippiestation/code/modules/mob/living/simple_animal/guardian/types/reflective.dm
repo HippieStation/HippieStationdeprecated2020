@@ -28,6 +28,11 @@ GLOBAL_LIST_INIT(reflect_blacklist, typecacheof(list(/obj/structure, /obj/machin
 		return TRUE
 	return !can_see(mover, FALSE)
 
+/mob/living/simple_animal/hostile/guardian/reflective/start_pulling(atom/movable/AM, state, force = pull_force, supress_message = FALSE)
+	if(AM == host)
+		return FALSE
+	return ..()
+
 // don't show an obvious message when the summoner is likely off screen
 /mob/living/simple_animal/hostile/guardian/reflective/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	. = amount
@@ -61,8 +66,8 @@ GLOBAL_LIST_INIT(reflect_blacklist, typecacheof(list(/obj/structure, /obj/machin
 			to_chat(M, "<span class='danger'>Out of nothingness, something stabs [target] in the [bodypart]!")
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		H.bleed_rate = min(H.bleed_rate + 12.5, 12.5)
-		H.blood_volume -= 27.5
+		H.bleed_rate = min(H.bleed_rate + 9.5, 9.5)
+		H.blood_volume -= 20
 		H.adjustBruteLoss(5)
 		// spray blood
 		var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(H.loc)
@@ -74,7 +79,7 @@ GLOBAL_LIST_INIT(reflect_blacklist, typecacheof(list(/obj/structure, /obj/machin
 		B.GoTo(targ, dist)
 	else
 		L.adjustBruteLoss(40)
-	changeNext_move(22) // kinda slow
+	changeNext_move(35) // kinda slow
 
 /mob/living/simple_animal/hostile/guardian/reflective/snapback()
 	if(!host || !istype(host) || !isturf(host.loc))
@@ -258,7 +263,7 @@ GLOBAL_LIST_INIT(reflect_blacklist, typecacheof(list(/obj/structure, /obj/machin
 
 /obj/effect/reflective_light
 	light_color = "#BFFF00"
-	light_range = 3
+	light_range = 5
 
 ///////////
 // STUFF //
