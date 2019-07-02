@@ -1,7 +1,6 @@
 #define BADTRIP_COOLDOWN 180
 /datum/reagent/drug/burpinate
     name = "Burpinate"
-    id = "burpinate"
     description = "They call me gaseous clay."
     color = "#bfe8a7" // rgb: 191, 232, 167
     metabolization_rate = 0.9 * REAGENTS_METABOLISM
@@ -22,7 +21,6 @@
 
 /datum/reagent/drug/fartium
 	name = "Fartium"
-	id = "fartium"
 	description = "A chemical compound that promotes concentrated production of gas in your groin area."
 	color = "#8A4B08" // rgb: 138, 75, 8
 	overdose_threshold = 30
@@ -130,27 +128,27 @@
 	var/high_message = pick("You feel hyper.", "You feel like you're unstoppable!", "You feel like you can take on the world.")
 	if(prob(5))
 		to_chat(M, "<span class='notice'>[high_message]</span>")
-	M.reagents.remove_reagent("diphenhydramine",2) //Greatly increases rate of decay
+	M.reagents.remove_reagent(/datum/reagent/medicine/diphenhydramine,2) //Greatly increases rate of decay
 	if(M.IsStun() || M.IsParalyzed() || M.IsUnconscious())
 		M.AdjustStun(-40, 0)
 		M.AdjustParalyzed(-40, 0)
 		M.AdjustUnconscious(-40, 0)
 		var/amount2replace = rand(2,6)
-		M.reagents.add_reagent("histamine",amount2replace)
-		M.reagents.remove_reagent("methamphetamine",amount2replace)
+		M.reagents.add_reagent(/datum/reagent/toxin/histamine,amount2replace)
+		M.reagents.remove_reagent(/datum/reagent/drug/methamphetamine,amount2replace)
 	M.adjustStaminaLoss(-2, 0)
 	M.Jitter(2)
 	M.adjustBrainLoss(0.25)
 	if(prob(5))
 		M.emote(pick("twitch", "shiver"))
-		M.reagents.add_reagent("histamine", rand(1,5))
+		M.reagents.add_reagent(/datum/reagent/toxin/histamine, rand(1,5))
 	return FINISHONMOBLIFE(M)
 
 /datum/reagent/drug/bath_salts/on_mob_life(mob/living/M)
 	var/high_message = pick("You feel amped up.", "You feel ready.", "You feel like you can push it to the limit.")
 	if(prob(5))
 		to_chat(M, "<span class='notice'>[high_message]</span>")
-	M.add_movespeed_modifier(id, update=TRUE, priority=100, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
+	M.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-2, blacklisted_movetypes=(FLYING|FLOATING))
 	M.AdjustUnconscious(-100, 0)
 	M.AdjustStun(-100, 0)
 	M.AdjustParalyzed(-100, 0)
@@ -167,14 +165,13 @@
 			M.dropItemToGround(M.get_active_held_item())
 	return FINISHONMOBLIFE(M)
 
-/datum/reagent/drug/bath_salts/on_mob_delete(mob/living/M)
+/datum/reagent/drug/bath_salts/on_mob_end_metabolize(mob/living/M)
 	if (istype(M))
-		M.remove_movespeed_modifier(id)
+		M.remove_movespeed_modifier(type)
 	..()
 
 /datum/reagent/drug/flipout
 	name = "Flipout"
-	id = "flipout"
 	description = "A chemical compound that causes uncontrolled and extremely violent flipping."
 	color = "#ff33cc" // rgb: 255, 51, 204
 	overdose_threshold = 40
@@ -261,7 +258,6 @@
 
 /datum/reagent/drug/yespowder
 	name = "Yes Powder"
-	id = "yespowder"
 	description = "Powder that makes you say yes."
 	color = "#fffae0"
 
@@ -275,7 +271,6 @@
 
 /datum/reagent/drug/pupupipi
 	name = "Sweet Brown"
-	id = "sweetbrown"
 	description = "A fetid concoction often huffed or drank by vagrants and bums. High dosages have... interesting effects."
 	color = "#602101" // rgb: 96, 33, 1
 	overdose_threshold = 100
@@ -300,7 +295,6 @@
 
 /datum/reagent/drug/grape_blast
 	name = "Grape Blast"
-	id = "grapeblast"
 	description = "A juice of a very special fruit, concentrated and sold at your local A1 vendor."
 	color = "#ffffe6"
 	reagent_state = LIQUID
@@ -401,7 +395,7 @@
 		to_chat(H, "<i>You hear your own thoughts... <b>[high_message]</i></b>")
 	..()
 
-/datum/reagent/drug/grape_blast/on_mob_delete(mob/living/L)
+/datum/reagent/drug/grape_blast/on_mob_end_metabolize(mob/living/L)
 	cure_autism(L)
 	..()
 

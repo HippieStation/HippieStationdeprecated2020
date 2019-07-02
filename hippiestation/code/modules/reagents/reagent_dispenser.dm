@@ -102,7 +102,7 @@
 	name = "honk-cooler"
 	desc = "A machine that dispenses the clown's thick juice. HONK!"
 	icon_state = "honk_cooler"
-	reagent_id = "banana"
+	reagent_id = /datum/reagent/consumable/banana
 
 /obj/structure/reagent_dispensers/cooking_oil
 	icon = 'icons/obj/objects.dmi'

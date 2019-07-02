@@ -13,14 +13,16 @@
 
 /datum/species/ipc/on_species_gain(mob/living/carbon/human/C, datum/species/old_species, pref_load)
 	C.draw_hippie_parts()
+	RegisterSignal(C, COMSIG_MOB_SAY, .proc/handle_speech)
 	. = ..()
 
 /datum/species/ipc/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	C.draw_hippie_parts(TRUE)
+	UnregisterSignal(C, COMSIG_MOB_SAY)
 	. = ..()
 
-/datum/species/ipc/get_spans()
-	return SPAN_ROBOT
+/datum/species/ipc/proc/handle_speech(datum/source, list/speech_args)
+	speech_args[SPEECH_SPANS] |= SPAN_ROBOT
 
 /datum/species/ipc/check_roundstart_eligible()
 	return TRUE

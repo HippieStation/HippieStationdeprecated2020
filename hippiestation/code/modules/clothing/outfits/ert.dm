@@ -57,7 +57,7 @@
 
 /datum/outfit/revenger/captain
 	name = "Captain Nanotrasen"
-	l_pocket = /obj/item/shield/energy/bananium
+	r_hand = /obj/item/shield/captain_nt
 
 /datum/outfit/revenger/captain/post_equip(mob/living/carbon/human/H, visualsOnly)
 	. = ..()

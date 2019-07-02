@@ -12,3 +12,6 @@
 	materials = list(MAT_METAL=10000)
 	obj_flags = UNIQUE_RENAME
 	unique_reskin = 0
+
+/obj/item/gun/ballistic/shotgun
+	icon = 'hippiestation/icons/obj/guns/projectile.dmi'

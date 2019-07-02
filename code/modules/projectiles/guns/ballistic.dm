@@ -68,9 +68,11 @@
 
 /*hippie edit -- old skins*/
 /obj/item/gun/ballistic/update_icon()
+	if (QDELETED(src))
+		return
 	..()
 	if(current_skin)
-		icon_state = "[unique_reskin[current_skin]][suppressed ? "-suppressed" : ""][sawn_off ? "-sawn" : ""]"
+		icon_state = "[unique_reskin[current_skin]][sawn_off ? "_sawn" : ""]"
 	else
 		icon_state = "[initial(icon_state)][suppressed ? "-suppressed" : ""][sawn_off ? "-sawn" : ""]"
 /*hippie end -- old skins*/
@@ -89,11 +91,11 @@
 	if (chamber_next_round && (magazine?.max_ammo > 1))
 		chamber_round()
 
-/obj/item/gun/ballistic/proc/chamber_round()
+/obj/item/gun/ballistic/proc/chamber_round(keep_bullet = FALSE)
 	if (chambered || !magazine)
 		return
 	if (magazine.ammo_count())
-		chambered = magazine.get_round((bolt_type == BOLT_TYPE_NO_BOLT))
+		chambered = magazine.get_round(keep_bullet || bolt_type == BOLT_TYPE_NO_BOLT)
 		if (bolt_type != BOLT_TYPE_OPEN)
 			chambered.forceMove(src)
 
@@ -103,7 +105,7 @@
 	if (bolt_type == BOLT_TYPE_OPEN)
 		if(!bolt_locked)	//If it's an open bolt, racking again would do nothing
 			if (user)
-				to_chat(user, "<span class='notice'>\The [src] is already ready to fire!</span>")
+				to_chat(user, "<span class='notice'>\The [src]'s [bolt_wording] is already cocked!</span>")
 			return
 		bolt_locked = FALSE
 	if (user)
@@ -135,7 +137,7 @@
 		playsound(src, load_empty_sound, load_sound_volume, load_sound_vary)
 		drop_bolt(user)//hippie edit -- rack by default so you don't have to manually fucking do it
 		if (bolt_type == BOLT_TYPE_OPEN && !bolt_locked)
-			chamber_round()
+			chamber_round(TRUE)
 		update_icon()
 		return TRUE
 	else
@@ -276,8 +278,9 @@
 		eject_magazine(user)
 		return
 	if(bolt_type == BOLT_TYPE_NO_BOLT)
+		chambered = null
 		var/num_unloaded = 0
-		for(var/obj/item/ammo_casing/CB in get_ammo_list(TRUE, TRUE))
+		for(var/obj/item/ammo_casing/CB in get_ammo_list(FALSE, TRUE))
 			CB.forceMove(drop_location())
 			CB.bounce_away(FALSE, NONE)
 			num_unloaded++
@@ -299,15 +302,15 @@
 
 
 /obj/item/gun/ballistic/examine(mob/user)
-	..()
-	var/count_chambered = !((bolt_type == BOLT_TYPE_NO_BOLT) || (bolt_type == BOLT_TYPE_OPEN))
-	to_chat(user, "It has [get_ammo(count_chambered)] round\s remaining.")
+	. = ..()
+	var/count_chambered = !(bolt_type == BOLT_TYPE_NO_BOLT || bolt_type == BOLT_TYPE_OPEN)
+	. += "It has [get_ammo(count_chambered)] round\s remaining."
 	if (!chambered)
-		to_chat(user, "It does not seem to have a round chambered.")
+		. += "It does not seem to have a round chambered."
 	if (bolt_locked)
-		to_chat(user, "The [bolt_wording] is locked back and needs to be released before firing.")
+		. += "The [bolt_wording] is locked back and needs to be released before firing."
 	if (suppressed)
-		to_chat(user, "It has a suppressor attached that can be removed with <b>alt+click</b>.")
+		. += "It has a suppressor attached that can be removed with <b>alt+click</b>."
 
 /obj/item/gun/ballistic/proc/get_ammo(countchambered = TRUE)
 	var/boolets = 0 //mature var names for mature people

@@ -143,7 +143,7 @@
 				/obj/item/bodypart/r_leg/robot = 1,
 				/obj/item/stack/sheet/metal = 1,
 				/obj/item/stack/cable_coil = 1,
-				/obj/item/gun/energy/e_gun/advtaser = 1, //hippie edit -- nothing got changed here
+				/obj/item/gun/energy/e_gun/dragnet = 1,
 				/obj/item/stock_parts/cell = 1,
 				/obj/item/assembly/prox_sensor = 1)
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER)
@@ -591,6 +591,20 @@
 	time = 60
 	reqs = list(/obj/item/grown/log = 5)
 	result = /obj/structure/bonfire
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/rake //Category resorting incoming
+	name = "Rake"
+	time = 30
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 5)
+	result = /obj/item/cultivator/rake
+	category = CAT_PRIMAL
+
+/datum/crafting_recipe/woodbucket
+	name = "Wooden Bucket"
+	time = 30
+	reqs = list(/obj/item/stack/sheet/mineral/wood = 3)
+	result = /obj/item/reagent_containers/glass/bucket/wooden
 	category = CAT_PRIMAL
 
 /datum/crafting_recipe/headpike
