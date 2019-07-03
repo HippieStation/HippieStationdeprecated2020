@@ -45708,6 +45708,7 @@
 /obj/machinery/atmospherics/components/binary/pump{
 	name = "Emergency Cooling Loop Bypass"
 	},
+/obj/structure/cable,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "cEg" = (
@@ -60581,6 +60582,7 @@
 /area/science/nanite)
 "wNs" = (
 /obj/effect/turf_decal/bot,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "wOI" = (
