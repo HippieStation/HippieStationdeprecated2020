@@ -40,6 +40,7 @@
 		var/datum/team/pillarmen/team = new
 		pillarManTeams += team
 		pillar.add_antag_datum(/datum/antagonist/pillarmen, team)
+	SSshuttle.registerHostileEnvironment(src)
 
 /datum/game_mode/pillarmen/generate_report()
 	return "Reports of an ancient evil, who were launched into space a thousand years ago, have resurfaced on a NanoTrasen space station. \
