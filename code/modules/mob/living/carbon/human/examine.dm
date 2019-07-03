@@ -49,7 +49,9 @@
 	var/datum/component/forensics/FR = GetComponent(/datum/component/forensics)
 	//gloves
 	if(gloves && !(SLOT_GLOVES in obscured))
-		. += "[t_He] [t_has] [gloves.get_examine_string(user)] on [t_his] hands."
+		var/obj/item/clothing/gloves/G = gloves // hippie -- allows unexamineable gloves
+		if(!G.always_obscured)
+			. += "[t_He] [t_has] [G.get_examine_string(user)] on [t_his] hands." // hippie end
 	else if(FR && length(FR.blood_DNA))
 		var/hand_number = get_num_arms(FALSE)
 		if(hand_number)
@@ -292,7 +294,7 @@
 
 		if(digitalcamo)
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
-		
+
 	msg += hippie_carbon_examine() // hippie -- add our specific examine stuff
 	if (length(msg))
 		. += "<span class='warning'>[msg.Join("")]</span>"
