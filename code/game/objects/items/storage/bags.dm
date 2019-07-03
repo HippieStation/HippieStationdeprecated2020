@@ -125,6 +125,7 @@
 
 /obj/item/storage/bag/ore/dropped()
 	. = ..()
+	if(listeningTo)
 	UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
 	listeningTo = null
 
