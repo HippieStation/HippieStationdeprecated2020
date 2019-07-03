@@ -8,21 +8,21 @@
 	. = ..()
 	if(ishuman(M) && slot == SLOT_WEAR_MASK)
 		if(M.mind?.has_antag_datum(/datum/antagonist/pillar_thrall) || M.mind?.has_antag_datum(/datum/antagonist/pillarmen) || M.mind?.has_antag_datum(/datum/antagonist/vampire))
-			visible_message("<span class='hypnophrase big'>[src] falls off of [M]'s face!</span>")
+			M.visible_message("<span class='hypnophrase big'>[src] falls off of [M]'s face!</span>")
 			M.doUnEquip(src, TRUE)
 			return
 		if(M.stat)
-			visible_message("<span class='hypnophrase big'>[src] falls off of [M]'s face, they don't have enough life force!</span>")
+			M.visible_message("<span class='hypnophrase big'>[src] falls off of [M]'s face, they don't have enough life force!</span>")
 			M.doUnEquip(src, TRUE)
 			return
 		INVOKE_ASYNC(src, .proc/do_the_thing, M)
 
 /obj/item/clothing/mask/stone/process()
-	set_light(5, null, rgb(rand(1, 127), rand(1, 127), rand(1, 127))) // random bright color?
+	set_light(4, 10, rgb(rand(1, 127), rand(1, 127), rand(1, 127))) // random bright color?
 
 /obj/item/clothing/mask/stone/proc/do_the_thing(mob/living/carbon/human/H)
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
-	visible_message("<span class='hypnophrase big'>[src] sinks 6 needles into [H]'s head, and begins to glow a brilliant light!</span>")
+	H.visible_message("<span class='hypnophrase big'>[src] sinks 6 needles into [H]'s head, and begins to glow a brilliant light!</span>")
 	START_PROCESSING(SSobj, src)
 	to_chat(H, "<span class='danger bold'>Everything... everything hurts.</span>")
 	H.SetStun(INFINITY)
@@ -33,9 +33,10 @@
 	sleep(45)
 	H.SetStun(0)
 	H.fully_heal()
-	H.mind.add_antag_datum(/datum/antagonist/vampire/pillarmen, pillarMan.pillarTeam)
+	H.mind?.add_antag_datum(/datum/antagonist/vampire/pillarmen, pillarMan.pillarTeam)
 	REMOVE_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 	STOP_PROCESSING(SSobj, src)
 	set_light(0, 0)
-	visible_message("<span class='hypnophrase'>[src] falls off of [H], it's needles retracting...</span>")
+	H.visible_message("<span class='hypnophrase'>[src] falls off of [H], it's needles retracting...</span>")
 	H.doUnEquip(src, TRUE)
+	H.forceMove(get_turf(H))
