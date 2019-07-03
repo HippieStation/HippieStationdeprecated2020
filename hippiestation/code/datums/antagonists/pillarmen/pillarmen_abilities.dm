@@ -75,8 +75,12 @@
 	H.status_flags |= GODMODE
 	H.SetStun(INFINITY)
 	var/list/walls = list()
+	var/list/original_turfs = list()
 	for(var/turf/T in orange(1, get_turf(H)))
-		walls += T.PlaceOnTop(/turf/closed/wall/mineral/sandstone)
+		var/turf_type = T.type
+		var/turf/closed/wall/mineral/sandstone/SSW = T.PlaceOnTop(/turf/closed/wall/mineral/sandstone)
+		walls += SSW
+		original_turfs[SSW] = turf_type
 	notify_ghosts("[H] has begun to emerge as a Pillar Man at [get_area(H)]", source = H, action = NOTIFY_ORBIT)
 	H.visible_message("<span class='notice bold'>[H] closes their eyes and begins to concentrate...</span>")
 	sleep(100)
@@ -84,7 +88,6 @@
 	H.unequip_everything()
 	H.set_species(/datum/species/pillarmen)
 	H.faction |= "pillarmen"
-	H.underwear = "Nude"
 	H.undershirt = "Nude"
 	H.socks = "Nude"
 	H.SetStun(0)
@@ -96,7 +99,11 @@
 		sleep(10)
 	H.visible_message("<span class='danger bold'>[H] bursts out of the sandstone cocoon, full of power!</span>")
 	for(var/turf/closed/wall/mineral/sandstone/SSW in walls)
-		SSW.ScrapeAway(1)
+		var/orig = original_turfs[SSW]
+		if(ispath(orig))
+			SSW.PlaceOnTop(orig)
+		else
+			SSW.ScrapeAway()
 	notify_ghosts("[H] has emerged as a Pillar Man at [get_area(H)]", source = H, action = NOTIFY_ORBIT)
 	playsound(get_turf(H), 'sound/hallucinations/veryfar_noise.ogg', 100, TRUE)
 	H.mind.RemoveSpell(src)
