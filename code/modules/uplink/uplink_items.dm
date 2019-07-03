@@ -1579,7 +1579,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			This will permanently destroy your body, however."
 	item = /obj/item/storage/box/syndie_kit/imp_microbomb
 	cost = 2
-	include_modes = list(/datum/game_mode/nuclear)
+	// include_modes = list(/datum/game_mode/nuclear) hippie -- go away
 
 /datum/uplink_item/implants/macrobomb
 	name = "Macrobomb Implant"
@@ -1587,7 +1587,7 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 			Upon death, releases a massive explosion that will wipe out everything nearby."
 	item = /obj/item/storage/box/syndie_kit/imp_macrobomb
 	cost = 20
-	include_modes = list(/datum/game_mode/nuclear)
+	// include_modes = list(/datum/game_mode/nuclear) hippie -- go away
 	restricted = TRUE
 
 /datum/uplink_item/implants/radio
