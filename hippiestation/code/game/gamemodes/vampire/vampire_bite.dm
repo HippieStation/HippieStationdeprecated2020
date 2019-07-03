@@ -5,8 +5,8 @@
 	if((NOBLOOD in dna.species.species_traits) || dna.species.exotic_blood || !blood_volume)
 		to_chat(M, "<span class='warning'>They have no blood!</span>")
 		return FALSE
-	if(is_vampire(src))
-		to_chat(M, "<span class='warning'>Your fangs fail to pierce [name]'s cold flesh</span>")
+	if(mind?.has_antag_datum(/datum/antagonist/pillar_thrall) || mind?.has_antag_datum(/datum/antagonist/pillarmen) || mind?.has_antag_datum(/datum/antagonist/vampire))
+		to_chat(M, "<span class='warning'>Your fangs fail to pierce [name]'s cold flesh!</span>")
 		return FALSE
 	if(dna.species.name == "skeleton")
 		to_chat(M, "<span class='warning'>There is no blood in a skeleton!</span>")
