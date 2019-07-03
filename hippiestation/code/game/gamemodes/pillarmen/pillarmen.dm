@@ -42,6 +42,16 @@
 		pillar.add_antag_datum(/datum/antagonist/pillarmen, team)
 	SSshuttle.registerHostileEnvironment(src)
 
+/datum/game_mode/pillarmen/check_finished()
+	if((SSshuttle.emergency.mode == SHUTTLE_ENDGAME) || station_was_nuked)
+		return TRUE
+	for(var/datum/team/pillarmen/PT in pillarManTeams)
+		var/mob/PM = PT.pillarMan?.current
+		if(PM && istype(PM))
+			if((is_station_level(PM.z) || is_reserved_level(PM.z) || is_centcom_level(PM.z)) && considered_alive(PT.pillarMan, TRUE))
+				return FALSE
+	return TRUE
+
 /datum/game_mode/pillarmen/generate_report()
 	return "Reports of an ancient evil, who were launched into space a thousand years ago, have resurfaced on a NanoTrasen space station. \
 			It is said they are after a mysterious artifact, the details of which are unknown."
