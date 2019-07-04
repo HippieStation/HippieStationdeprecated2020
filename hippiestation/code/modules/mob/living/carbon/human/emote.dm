@@ -259,7 +259,7 @@
 	desc = ":smug:"
 	icon = 'hippiestation/icons/mob/smug.dmi'
 	icon_state = "smug"
-	anchored = 1.0
+	anchored = 1
 	pixel_x = -16
 	pixel_y = -16
 
