@@ -4,7 +4,6 @@
 	var/super_fart = 76
 	var/super_nova_fart = 12
 	var/fart_fly = 12
-	var/smug = 0
 	var/smug_cd = 0
 
 /datum/emote/living/carbon/fart
