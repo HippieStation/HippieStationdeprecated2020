@@ -1,0 +1,4 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - balance: "Gang dominators no longer work if it's in a wall"
