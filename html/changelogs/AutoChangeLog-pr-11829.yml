@@ -1,5 +1,0 @@
-author: "Manly-Dwarf"
-delete-after: True
-changes: 
-  - code_imp: "Nuked include_mode() out of areas where it didn't need to be. This means some items that were previously invisible from traitorvamp and other gamemodes, such as Microbomb and Macrobomb implants, are now visible and can be purchased again."
-  - refactor: "For NO REASON AT ALL I feel like reminding you all that you can buy a Voice Changer from the Chameleon Kit, and for some strange reason a coder made it cost 4 TC. Reverted. It doesn't even come with a spare ID that lets you fake your identity, that has to be purchased separately, and the shoes aren't noslips. Has no reason to be 4 TC on its own."
