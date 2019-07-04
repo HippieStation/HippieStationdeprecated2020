@@ -158,7 +158,7 @@
 	if(!S || QDELETED(S))
 		S = new spell_type()
 	for(var/obj/effect/proc_holder/spell/self/the_world/aspell in user.mind.spell_list)
-		aspell.second += 10
+		aspell.seconds += 10
 		aspell.name = "THE WORLD ([aspell.seconds / 10] seconds)"
 		SSblackbox.record_feedback("nested tally", "wizard_spell_improved", 1, list("THE WORLD", "[aspell.seconds]"))
 		return TRUE
