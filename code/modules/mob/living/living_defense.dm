@@ -3,7 +3,7 @@
 	var/armor = getarmor(def_zone, attack_flag)
 
 	//the if "armor" check is because this is used for everything on /living, including humans
-	if(armor && armour_penetration)
+	if(armor > 0 && armour_penetration)
 		armor = max(0, armor - armour_penetration)
 		if(world.time >= next_armor_spam) // hippie start
 			if(penetrated_text)
