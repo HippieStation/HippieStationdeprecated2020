@@ -1,6 +1,0 @@
-author: "Manly Dwarf"
-delete-after: True
-changes: 
-  - rscadd: "Traitors can now set their uplink of choice to the Syndie-Lad, a portable arm mounted computer that tracks objectives and stores your uplink. Equipping it and pressing C will open the radial menu, or just hold it in your hand and press Z (assuming you're on hotkey mode). It also explodes, if you really need it to."
-  - tweak: "I currently don't have any good ideas for as to why you'd want to wear it instead of just hiding it in your backpack and using the pinpointer, so as of now it's also insulated. Have fun not getting shocked by the AI."
-  - imageadd: "Syndie-Lad sprite is by kmc, \"detonate\" button icon is by Navi.OS."
