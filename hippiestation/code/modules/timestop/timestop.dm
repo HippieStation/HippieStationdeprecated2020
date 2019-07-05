@@ -1,5 +1,7 @@
 GLOBAL_VAR(timestop)
 GLOBAL_LIST_INIT(timestop_blacklist, typecacheof(list(/obj/screen, /obj/effect, /obj/machinery/light))) // for some reason lightbulbs, and just lightbulbs, act up when timestopped.
+GLOBAL_LIST_INIT(timestop_whitelist, typecacheof(list(/obj/screen/parallax_layer)))
+GLOBAL_LIST_INIT(timestop_noz, typecacheof(list(/obj/screen)))
 
 /datum/timestop
 	var/list/frozen_mobs
@@ -8,14 +10,18 @@ GLOBAL_LIST_INIT(timestop_blacklist, typecacheof(list(/obj/screen, /obj/effect, 
 	var/list/immune
 	var/list/shuttles
 	var/z_level
+	var/mob/master
 	var/time = 10 SECONDS
 
-/datum/timestop/New(t, zl)
+/datum/timestop/New(mob/master, t, zl)
 	..()
 	if(GLOB.timestop && GLOB.timestop != src) // only one timestop can exist at once
 		qdel(src)
 		return
 	GLOB.timestop = src
+	if(master)
+		LAZYSET(immune, master, TRUE)
+		src.master = master
 	if(zl)
 		z_level = zl
 	if(t)
@@ -25,7 +31,7 @@ GLOBAL_LIST_INIT(timestop_blacklist, typecacheof(list(/obj/screen, /obj/effect, 
 			LAZYSET(immune, L, TRUE)
 		if(istype(L, /mob/living/simple_animal/hostile/guardian))
 			var/mob/living/simple_animal/hostile/guardian/G = L
-			if(HAS_TRAIT(G.summoner, TRAIT_TIMELESS))
+			if(HAS_TRAIT(G.summoner, TRAIT_TIMELESS) || (master && G.summoner == master))
 				LAZYSET(immune, G, TRUE)
 	INVOKE_ASYNC(src, .proc/za_warudo)
 
@@ -35,6 +41,8 @@ GLOBAL_LIST_INIT(timestop_blacklist, typecacheof(list(/obj/screen, /obj/effect, 
 
 /datum/timestop/proc/za_warudo()
 	START_PROCESSING(SSfields, src)
+	if(master)
+		playsound(master, 'hippiestation/sound/effects/dzw.ogg', 100, 0)
 	var/sound/S = sound('hippiestation/sound/effects/unnatural_clock_noises.ogg')
 	SEND_SOUND(world, S)
 	for(var/M in immune)
@@ -42,9 +50,17 @@ GLOBAL_LIST_INIT(timestop_blacklist, typecacheof(list(/obj/screen, /obj/effect, 
 			to_chat(M, "<span class='red big'>Time has stopped.</span>")
 	for(var/atom/movable/A in world)
 		freeze_atom(A)
+	for(var/turf/T in world)
+		if(z_level && (T.z != z_level))
+			continue
+		LAZYADD(negative_things, T)
+		into_the_negative_zone(T)
 	for(var/obj/docking_port/mobile/SH in world)
 		LAZYSET(shuttles, SH, SH.timeLeft(1))
-	sleep(time)
+	sleep(20)
+	if(master)
+		playsound(master, 'hippiestation/sound/effects/dzw-success.ogg', 100, 0)
+	sleep(time - 20)
 	S.frequency = -1
 	SEND_SOUND(world, S)
 	for(var/M in immune)
@@ -52,6 +68,8 @@ GLOBAL_LIST_INIT(timestop_blacklist, typecacheof(list(/obj/screen, /obj/effect, 
 			to_chat(M, "<span class='red big'>Time has begun to move again.</span>")
 	STOP_PROCESSING(SSfields, src)
 	unfreeze_all()
+	if(master)
+		playsound(master, 'hippiestation/sound/effects/dzw-end.ogg', 100, 0)
 	qdel(src)
 
 // copypaste from timestop below
@@ -60,9 +78,9 @@ GLOBAL_LIST_INIT(timestop_blacklist, typecacheof(list(/obj/screen, /obj/effect, 
 		return FALSE
 	if(!isobj(A) && !ismob(A))
 		return FALSE
-	if(z_level && (A.z != z_level))
+	if(is_type_in_typecache(A, GLOB.timestop_noz) || (z_level && (A.z != z_level)))
 		return FALSE
-	if(is_type_in_typecache(A, GLOB.timestop_blacklist))
+	if(is_type_in_typecache(A, GLOB.timestop_blacklist) && !is_type_in_typecache(A, GLOB.timestop_whitelist))
 		return FALSE
 	var/frozen = TRUE
 	into_the_negative_zone(A)
@@ -158,10 +176,12 @@ GLOBAL_LIST_INIT(timestop_blacklist, typecacheof(list(/obj/screen, /obj/effect, 
 //you don't look quite right, is something the matter?
 /datum/timestop/proc/into_the_negative_zone(atom/A)
 	A.add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), TEMPORARY_COLOUR_PRIORITY)
+	A.update_atom_colour()
 
 //let's put some colour back into your cheeks
 /datum/timestop/proc/escape_the_negative_zone(atom/A)
 	A.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
+	A.update_atom_colour()
 
 // freeze things as they happen
 
@@ -175,4 +195,14 @@ GLOBAL_LIST_INIT(timestop_blacklist, typecacheof(list(/obj/screen, /obj/effect, 
 	if(GLOB.timestop && !paused)
 		var/datum/timestop/TS = GLOB.timestop
 		TS.freeze_atom(src)
+	return ..()
+
+/datum/controller/subsystem/air/fire(resumed = 0)
+	if(GLOB.timestop)
+		return
+	return ..()
+
+/datum/controller/subsystem/fire_burning/fire(resumed = 0)
+	if(GLOB.timestop)
+		return
 	return ..()
