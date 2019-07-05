@@ -6,6 +6,7 @@ GLOBAL_LIST_INIT(timestop_blacklist, typecacheof(list(/obj/screen, /obj/effect, 
 	var/list/frozen_things
 	var/list/negative_things
 	var/list/immune
+	var/list/shuttles
 	var/z_level
 	var/time = 10 SECONDS
 
@@ -41,6 +42,8 @@ GLOBAL_LIST_INIT(timestop_blacklist, typecacheof(list(/obj/screen, /obj/effect, 
 			to_chat(M, "<span class='red big'>Time has stopped.</span>")
 	for(var/atom/movable/A in world)
 		freeze_atom(A)
+	for(var/obj/docking_port/mobile/SH in world)
+		LAZYSET(shuttles, SH, SH.timeLeft(1))
 	sleep(time)
 	S.frequency = -1
 	SEND_SOUND(world, S)
@@ -109,6 +112,9 @@ GLOBAL_LIST_INIT(timestop_blacklist, typecacheof(list(/obj/screen, /obj/effect, 
 /datum/timestop/process()
 	for(var/mob/living/L in frozen_mobs)
 		L.Stun(20, 1, 1)
+	for(var/s in shuttles)
+		var/obj/docking_port/mobile/S = s
+		S.setTimer(shuttles[s]) // constantly set the timer to be the same as when it started
 		
 /datum/timestop/proc/freeze_mecha(obj/mecha/M)
 	M.completely_disabled = TRUE
