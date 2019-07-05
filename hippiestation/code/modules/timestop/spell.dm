@@ -6,7 +6,7 @@
 	invocation_type = "shout"
 	action_icon_state = "time"
 	charge_max = 1.5 MINUTES
-	var/seconds = 1
+	var/seconds = 10
 
 /obj/effect/proc_holder/spell/self/the_world/cast(list/targets, mob/user)
 	if(GLOB.timestop)
