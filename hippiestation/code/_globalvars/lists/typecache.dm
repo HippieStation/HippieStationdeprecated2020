@@ -27,7 +27,9 @@ GLOBAL_LIST_INIT(statechange_reagent_blacklist, typecacheof(list(
 	/datum/reagent/consumable/condensedcapsaicin,
 	/datum/reagent/space_cleaner,
 	/datum/reagent/smoke_powder,
+	/datum/reagent/colorful_reagent/crayonpowder,
 	/datum/reagent/consumable/sugar,
+	/datum/reagent/consumable/nutriment
 	/datum/reagent/thermite,
 	/datum/reagent/toxin/plasma,
 	/datum/reagent/radium,
