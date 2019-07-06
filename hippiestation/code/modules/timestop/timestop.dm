@@ -206,3 +206,12 @@ GLOBAL_LIST_INIT(timestop_noz, typecacheof(list(/obj/screen)))
 	if(GLOB.timestop)
 		return
 	return ..()
+
+
+
+/mob/living/Life(seconds, times_fired)
+	if(GLOB.timestop)
+		var/datum/timestop/TS = GLOB.timestop
+		if(!TS.immune[src])
+			return FALSE
+	return ..()
