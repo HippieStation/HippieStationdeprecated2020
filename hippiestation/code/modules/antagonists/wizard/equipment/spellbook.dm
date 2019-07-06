@@ -165,6 +165,7 @@
 	SSblackbox.record_feedback("tally", "wizard_spell_learned", 1, "THE WORLD")
 	ADD_TRAIT(user, TRAIT_TIMELESS, SPELL_TRAIT)
 	user.mind.AddSpell(new /obj/effect/proc_holder/spell/aimed/checkmate)
+	S.name = "THE WORLD (1 second)"
 	user.mind.AddSpell(S)
 	to_chat(user, "<span class='notice'>You have learned [S.name].</span>")
 	return TRUE
