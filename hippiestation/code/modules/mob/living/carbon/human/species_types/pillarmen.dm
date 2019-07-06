@@ -9,6 +9,7 @@
 	inherent_biotypes = list(MOB_HUMANOID)
 	damage_overlay_type = "" //they won't show signs of damage until they're dead.
 	changesource_flags = MIRROR_BADMIN
+	sexes = FALSE
 
 /datum/species/pillarmen/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	..()

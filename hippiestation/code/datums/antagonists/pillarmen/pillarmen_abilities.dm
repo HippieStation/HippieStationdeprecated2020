@@ -89,7 +89,9 @@
 	H.set_species(/datum/species/pillarmen)
 	H.faction |= "pillarmen"
 	H.undershirt = "Nude"
+	H.underwear = "Nude"
 	H.socks = "Nude"
+	H.update_body()
 	H.SetStun(0)
 	H.status_flags &= ~GODMODE
 	sleep(100)
