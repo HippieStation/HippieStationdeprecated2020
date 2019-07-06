@@ -23,7 +23,7 @@
 /obj/effect/temp_visual/the_world
 	icon = 'hippiestation/icons/effects/96x96.dmi'
 	icon_state = "zawarudo"
-	duration = 20
+	duration = 10
 	pixel_x = -32
 	pixel_y = -32
 
@@ -31,4 +31,4 @@
 	. = ..()
 	var/matrix/ntransform = matrix(transform)
 	ntransform.Scale(10)
-	animate(src, transform = ntransform, time = 20, easing = EASE_IN|EASE_OUT)
+	animate(src, transform = ntransform, time = 10, easing = EASE_IN|EASE_OUT)

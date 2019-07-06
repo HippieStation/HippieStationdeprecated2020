@@ -207,7 +207,10 @@ GLOBAL_LIST_INIT(timestop_noz, typecacheof(list(/obj/screen)))
 		return
 	return ..()
 
-
+/datum/controller/subsystem/throwing/fire(resumed = 0)
+	if(GLOB.timestop)
+		return
+	return ..()
 
 /mob/living/Life(seconds, times_fired)
 	if(GLOB.timestop)
