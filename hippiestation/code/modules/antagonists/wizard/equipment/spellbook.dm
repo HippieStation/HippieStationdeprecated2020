@@ -149,7 +149,7 @@
 
 /datum/spellbook_entry/the_world
 	name = "THE WORLD"
-	desc = "Freeze time across the entire station. 1 second per spellpoint. Comes with a bag of knives. <b><i>Cannot be refunded.</i></b>"
+	desc = "Freeze time across the entire station. 1 second per spellpoint. Comes with the ability to throw a large amount of knives. <b><i>Cannot be refunded.</i></b>"
 	category = "Offensive"
 	cost = 1
 	spell_type = /obj/effect/proc_holder/spell/self/the_world
@@ -164,7 +164,7 @@
 		return TRUE
 	SSblackbox.record_feedback("tally", "wizard_spell_learned", 1, "THE WORLD")
 	ADD_TRAIT(user, TRAIT_TIMELESS, SPELL_TRAIT)
-	new /obj/item/storage/backpack/duffelbag/syndie/knives(get_turf(user))
+	user.mind.AddSpell(new /obj/effect/proc_holder/spell/aimed/checkmate)
 	user.mind.AddSpell(S)
 	to_chat(user, "<span class='notice'>You have learned [S.name].</span>")
 	return TRUE

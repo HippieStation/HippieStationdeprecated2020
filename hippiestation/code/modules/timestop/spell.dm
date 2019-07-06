@@ -19,11 +19,40 @@
 /obj/effect/proc_holder/spell/self/the_world/universal
 	does_z = FALSE
 
+/obj/effect/proc_holder/spell/aimed/checkmate
+	name = "CHECKMATE"
+	desc = "Throw a large amount of knives at your opponent!"
+	invocation = "CHECKMATE!"
+	invocation_type = "shout"
+	clothes_req = FALSE
+	charge_max = 600
+	projectile_type = /obj/item/projectile/knife
+	projectile_amount = 1
+	projectiles_per_fire = 9
+	var/projectile_initial_spread_amount = 20
+	var/projectile_location_spread_amount = 10
+
+/obj/effect/proc_holder/spell/aimed/checkmate/ready_projectile(obj/item/projectile/P, atom/target, mob/user, iteration)
+	var/total_angle = projectile_initial_spread_amount * 2
+	var/adjusted_angle = total_angle - ((projectile_initial_spread_amount / projectiles_per_fire) * 0.5)
+	var/one_fire_angle = adjusted_angle / projectiles_per_fire
+	var/current_angle = iteration * one_fire_angle - (projectile_initial_spread_amount / 2)
+	P.pixel_x = rand(-projectile_location_spread_amount, projectile_location_spread_amount)
+	P.pixel_y = rand(-projectile_location_spread_amount, projectile_location_spread_amount)
+	P.preparePixelProjectile(target, user, null, current_angle)
+
+/obj/item/projectile/knife
+	name = "knife"
+	icon = 'hippiestation/icons/obj/projectiles.dmi'
+	icon_state = "knife"
+	damage_type = BRUTE
+	damage = 10
+	armour_penetration = 100
 
 /obj/effect/temp_visual/the_world
 	icon = 'hippiestation/icons/effects/96x96.dmi'
 	icon_state = "zawarudo"
-	duration = 10
+	duration = 8
 	pixel_x = -32
 	pixel_y = -32
 
@@ -31,4 +60,4 @@
 	. = ..()
 	var/matrix/ntransform = matrix(transform)
 	ntransform.Scale(10)
-	animate(src, transform = ntransform, time = 10, easing = EASE_IN|EASE_OUT)
+	animate(src, transform = ntransform, time = 7.5, easing = EASE_IN|EASE_OUT)
