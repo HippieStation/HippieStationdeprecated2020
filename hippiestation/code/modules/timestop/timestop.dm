@@ -192,7 +192,7 @@ GLOBAL_LIST_INIT(timestop_noz, typecacheof(list(/obj/screen)))
 	return ..()
 
 /obj/item/projectile/process()
-	if(GLOB.timestop && !paused)
+	if(GLOB.timestop && !paused && (!original || get_dist(src, original) <= 2))
 		var/datum/timestop/TS = GLOB.timestop
 		TS.freeze_atom(src)
 	return ..()
