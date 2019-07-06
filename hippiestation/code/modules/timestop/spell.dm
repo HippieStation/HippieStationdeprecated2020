@@ -13,7 +13,22 @@
 	if(GLOB.timestop)
 		revert_cast()
 		return
+	new /obj/effect/temp_visual/the_world(get_turf(user))
 	new /datum/timestop(user, seconds, does_z ? user.z : null)
 
 /obj/effect/proc_holder/spell/self/the_world/universal
 	does_z = FALSE
+
+
+/obj/effect/temp_visual/the_world
+	icon = 'hippiestation/icons/effects/96x96.dmi'
+	icon_state = "zawarudo"
+	duration = 20
+	pixel_x = -32
+	pixel_y = -32
+
+/obj/effect/temp_visual/the_world/Initialize()
+	. = ..()
+	var/matrix/ntransform = matrix(transform)
+	ntransform.Scale(10)
+	animate(src, transform = ntransform, time = 20, easing = EASE_IN|EASE_OUT)
