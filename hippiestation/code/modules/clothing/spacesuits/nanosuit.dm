@@ -613,7 +613,7 @@
 	var/zoom_range = 12
 	var/zoom = FALSE
 	var/obj/machinery/doppler_array/integrated/bomb_radar
-	scan_reagents = TRUE
+	clothing_flags = SCAN_REAGENTS 
 	actions_types = list(/datum/action/item_action/nanosuit/zoom)
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	rad_insulation = RAD_NO_INSULATION
