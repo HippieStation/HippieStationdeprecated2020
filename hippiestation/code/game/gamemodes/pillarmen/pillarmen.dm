@@ -48,7 +48,7 @@
 	for(var/datum/team/pillarmen/PT in pillarManTeams)
 		var/mob/PM = PT.pillarMan?.current
 		if(PM && istype(PM))
-			if((is_station_level(PM.z) || is_reserved_level(PM.z) || is_centcom_level(PM.z)) && considered_alive(PT.pillarMan, TRUE))
+			if((is_station_level(PM.z) || is_reserved_level(PM.z) || is_centcom_level(PM.z) || isobj(PM.loc)) && considered_alive(PT.pillarMan, TRUE))
 				return FALSE
 	return TRUE
 

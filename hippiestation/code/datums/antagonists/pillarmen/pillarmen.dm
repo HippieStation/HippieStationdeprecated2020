@@ -1,4 +1,5 @@
 //made by Karma
+GLOBAL_LIST_INIT(pm_elements, list("Fire", "Wind", "Ice", "Light"))
 
 /datum/antagonist/pillarmen
 	name = "Pillar Man"
