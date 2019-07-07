@@ -2913,6 +2913,7 @@
 #include "hippiestation\code\datums\antagonists\pillarmen\pillarvamp.dm"
 #include "hippiestation\code\datums\antagonists\pillarmen\abilities\_ability.dm"
 #include "hippiestation\code\datums\antagonists\pillarmen\abilities\generic.dm"
+#include "hippiestation\code\datums\antagonists\pillarmen\abilities\light.dm"
 #include "hippiestation\code\datums\antagonists\pillarmen\abilities\wind.dm"
 #include "hippiestation\code\datums\components\footstep.dm"
 #include "hippiestation\code\datums\components\material_container.dm"

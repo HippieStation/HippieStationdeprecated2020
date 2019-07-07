@@ -70,6 +70,8 @@
 	switch(element)
 		if("Wind")
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/pillar_nado)
+		if("Light")
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/pillar_blade)
 
 /obj/effect/proc_holder/spell/self/absorb
 	name = "Absorb Bullets"
