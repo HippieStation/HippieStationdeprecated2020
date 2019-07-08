@@ -5,7 +5,7 @@
 	invocation = "ZA WARUDO!" // i'm conflicted between this and "BRING FORTH THE WORLD!"
 	invocation_type = "shout"
 	action_icon_state = "time"
-	charge_max = 2.2 MINUTES
+	charge_max = 3 MINUTES
 	var/seconds = 10
 	var/does_z = TRUE
 
@@ -25,7 +25,7 @@
 	invocation = "CHECKMATE!"
 	invocation_type = "shout"
 	clothes_req = FALSE
-	charge_max = 600
+	charge_max = 2 MINUTES
 	projectile_type = /obj/item/projectile/knife
 	projectile_amount = 1
 	projectiles_per_fire = 9
