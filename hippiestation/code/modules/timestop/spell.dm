@@ -8,15 +8,22 @@
 	charge_max = 3 MINUTES
 	var/seconds = 10
 	var/does_z = TRUE
+	var/timestop_type = /datum/timestop
 
 /obj/effect/proc_holder/spell/self/the_world/cast(list/targets, mob/user)
 	if(GLOB.timestop)
 		revert_cast()
 		return
 	new /obj/effect/temp_visual/the_world(get_turf(user))
-	new /datum/timestop(user, seconds, does_z ? user.z : null)
+	new timestop_type(user, seconds, does_z ? user.z : null)
 
 /obj/effect/proc_holder/spell/self/the_world/universal
+	does_z = FALSE
+
+/obj/effect/proc_holder/spell/self/the_world/jotaro
+	timestop_type = /datum/timestop/jotaro
+
+/obj/effect/proc_holder/spell/self/the_world/jotaro/universal
 	does_z = FALSE
 
 /obj/effect/proc_holder/spell/aimed/checkmate

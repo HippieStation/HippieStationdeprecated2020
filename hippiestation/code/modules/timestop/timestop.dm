@@ -12,6 +12,16 @@ GLOBAL_LIST_INIT(timestop_noz, typecacheof(list(/obj/screen)))
 	var/z_level
 	var/mob/master
 	var/time = 10 SECONDS
+	var/start_sound = 'hippiestation/sound/effects/dzw.ogg'
+	var/dubstep_sound = 'hippiestation/sound/effects/unnatural_clock_noises.ogg'
+	var/success_sound = 'hippiestation/sound/effects/dzw-success.ogg'
+	var/end_sound = 'hippiestation/sound/effects/dzw-end.ogg'
+
+/datum/timestop/jotaro
+	dubstep_sound = 'hippiestation/sound/effects/spzw.ogg'
+	start_sound = 'hippiestation/sound/effects/S_JOT_00015.wav'
+	success_sound = 'hippiestation/sound/effects/S_JOT_00016.wav'
+	end_sound = 'hippiestation/sound/effects/S_JOT_00028.wav'
 
 /datum/timestop/New(mob/master, t, zl)
 	..()
@@ -44,8 +54,8 @@ GLOBAL_LIST_INIT(timestop_noz, typecacheof(list(/obj/screen)))
 /datum/timestop/proc/za_warudo()
 	START_PROCESSING(SSfields, src)
 	if(master)
-		playsound(master, 'hippiestation/sound/effects/dzw.ogg', 100, 0)
-	var/sound/S = sound('hippiestation/sound/effects/unnatural_clock_noises.ogg')
+		playsound(master, start_sound, 100, 0)
+	var/sound/S = sound(dubstep_sound)
 	for(var/mob/M in GLOB.player_list)
 		if(!z_level || (M.z == z_level))
 			SEND_SOUND(M, S)
@@ -63,7 +73,7 @@ GLOBAL_LIST_INIT(timestop_noz, typecacheof(list(/obj/screen)))
 		LAZYSET(shuttles, SH, SH.timeLeft(1))
 	sleep(20)
 	if(master)
-		playsound(master, 'hippiestation/sound/effects/dzw-success.ogg', 100, 0)
+		playsound(master, success_sound, 100, 0)
 	sleep(time - 20)
 	S.frequency = -1
 	for(var/mob/M in GLOB.player_list)
@@ -75,7 +85,7 @@ GLOBAL_LIST_INIT(timestop_noz, typecacheof(list(/obj/screen)))
 	STOP_PROCESSING(SSfields, src)
 	unfreeze_all()
 	if(master)
-		playsound(master, 'hippiestation/sound/effects/dzw-end.ogg', 100, 0)
+		playsound(master, end_sound, 100, 0)
 	qdel(src)
 
 // copypaste from timestop below
