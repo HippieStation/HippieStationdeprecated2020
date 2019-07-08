@@ -25,7 +25,7 @@
 	invocation = "CHECKMATE!"
 	invocation_type = "shout"
 	clothes_req = FALSE
-	charge_max = 2 MINUTES
+	charge_max = 50 SECONDS
 	projectile_type = /obj/item/projectile/knife
 	projectile_amount = 1
 	projectiles_per_fire = 9
