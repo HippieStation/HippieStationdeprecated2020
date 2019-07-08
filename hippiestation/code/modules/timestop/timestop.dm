@@ -1,5 +1,5 @@
 GLOBAL_VAR(timestop)
-GLOBAL_LIST_INIT(timestop_blacklist, typecacheof(list(/obj/screen, /obj/effect, /obj/machinery/light))) // for some reason lightbulbs, and just lightbulbs, act up when timestopped.
+GLOBAL_LIST_INIT(timestop_blacklist, typecacheof(list(/obj/screen, /obj/effect, /obj/machinery/light, /mob/dead))) // for some reason lightbulbs, and just lightbulbs, act up when timestopped.
 GLOBAL_LIST_INIT(timestop_whitelist, typecacheof(list(/obj/screen/parallax_layer)))
 GLOBAL_LIST_INIT(timestop_noz, typecacheof(list(/obj/screen)))
 
@@ -230,7 +230,7 @@ GLOBAL_LIST_INIT(timestop_noz, typecacheof(list(/obj/screen)))
 		return
 	return ..()
 
-/mob/living/Life(seconds, times_fired)
+/mob/living/say(message, bubble_type, list/spans, sanitize, datum/language/language, ignore_spam, forced)
 	if(GLOB.timestop)
 		var/datum/timestop/TS = GLOB.timestop
 		if(!TS.immune[src] && (!TS.z_level || z == TS.z_level))
