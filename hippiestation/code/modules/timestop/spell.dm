@@ -5,7 +5,7 @@
 	invocation = "ZA WARUDO!" // i'm conflicted between this and "BRING FORTH THE WORLD!"
 	invocation_type = "shout"
 	action_icon_state = "time"
-	charge_max = 1.5 MINUTES
+	charge_max = 2.2 MINUTES
 	var/seconds = 10
 	var/does_z = TRUE
 
