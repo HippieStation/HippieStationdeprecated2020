@@ -1,3 +1,5 @@
+GLOBAL_VAR_INIT(pm_hatched, FALSE)
+
 /obj/effect/proc_holder/spell/self/pillar_hatch
 	name = "Emerge"
 	desc = "Emerge from your shell, and become a full Pillar Man"
@@ -72,6 +74,32 @@
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/pillar_nado)
 		if("Light")
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/pillar_blade)
+	if(!GLOB.pm_hatched)
+		GLOB.pm_hatched = TRUE
+		var/list/eligible = list()
+		var/list/got_stone = list()
+		for(var/datum/mind/M in SSticker.minds)
+			if(!M.current)
+				continue
+			if(M.has_antag_datum(/datum/antagonist/pillar_thrall) || M.has_antag_datum(/datum/antagonist/pillarmen) || M.has_antag_datum(/datum/antagonist/vampire))
+				continue
+			if(!is_station_level(M.current))
+				continue
+			if(!considered_alive(M))
+				continue
+			if(considered_afk(M))
+				continue
+			eligible += M.current
+		while(got_stone.len < 4)
+			var/mob/living/L = pick_n_take(eligible)
+			var/obj/item/stack/redshard/RS = new(get_turf(L))
+			L.equip_to_slot(RS, SLOT_IN_BACKPACK)
+			var/datum/antagonist/shardkeeper/SK = L.mind.add_antag_datum(/datum/antagonist/shardkeeper)
+			SK = L.mind.has_antag_datum(/datum/antagonist/shardkeeper)
+			var/datum/objective/shardkeeper/SKO = new
+			SK.objectives += SKO
+			L.mind.announce_objectives()
+			got_stone += L
 
 /obj/effect/proc_holder/spell/self/absorb
 	name = "Absorb Bullets"

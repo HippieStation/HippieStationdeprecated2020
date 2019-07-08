@@ -228,7 +228,7 @@
 			if(istype(src, /datum/antagonist/vampire/pillarmen))
 				var/datum/antagonist/vampire/pillarmen/PV = src
 				var/datum/team/pillarmen/PT = PV.pillarTeam
-				H.set_species(/datum/species/human/thrall)
+				H.set_species(/datum/species/human/pillarthrall)
 				H.revive(TRUE, TRUE)
 				H.grab_ghost()
 				var/datum/antagonist/pillar_thrall/P = new

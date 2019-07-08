@@ -2911,6 +2911,8 @@
 #include "hippiestation\code\datums\antagonists\pillarmen\pillarteam.dm"
 #include "hippiestation\code\datums\antagonists\pillarmen\pillarthrall.dm"
 #include "hippiestation\code\datums\antagonists\pillarmen\pillarvamp.dm"
+#include "hippiestation\code\datums\antagonists\pillarmen\redstone.dm"
+#include "hippiestation\code\datums\antagonists\pillarmen\shardkeeper.dm"
 #include "hippiestation\code\datums\antagonists\pillarmen\abilities\_ability.dm"
 #include "hippiestation\code\datums\antagonists\pillarmen\abilities\generic.dm"
 #include "hippiestation\code\datums\antagonists\pillarmen\abilities\light.dm"
