@@ -33,6 +33,8 @@ GLOBAL_LIST_INIT(timestop_noz, typecacheof(list(/obj/screen)))
 			var/mob/living/simple_animal/hostile/guardian/G = L
 			if(HAS_TRAIT(G.summoner, TRAIT_TIMELESS) || (master && G.summoner == master))
 				LAZYSET(immune, G, TRUE)
+			if(master == G)
+				LAZYSET(immune, G.summoner, TRUE)
 	INVOKE_ASYNC(src, .proc/za_warudo)
 
 /datum/timestop/Destroy()
