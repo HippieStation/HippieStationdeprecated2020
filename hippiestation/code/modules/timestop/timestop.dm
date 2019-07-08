@@ -190,13 +190,15 @@ GLOBAL_LIST_INIT(timestop_noz, typecacheof(list(/obj/screen)))
 /atom/Initialize()
 	if(GLOB.timestop)
 		var/datum/timestop/TS = GLOB.timestop
-		TS.freeze_atom(src)
+		if(!TS.z_level || z == TS.z_level)
+			TS.freeze_atom(src)
 	return ..()
 
 /obj/item/projectile/process()
 	if(GLOB.timestop && !paused && (!original || get_dist(src, original) <= 2))
 		var/datum/timestop/TS = GLOB.timestop
-		TS.freeze_atom(src)
+		if(!TS.z_level || z == TS.z_level)
+			TS.freeze_atom(src)
 	return ..()
 
 /datum/controller/subsystem/air/fire(resumed = 0)
@@ -217,6 +219,6 @@ GLOBAL_LIST_INIT(timestop_noz, typecacheof(list(/obj/screen)))
 /mob/living/Life(seconds, times_fired)
 	if(GLOB.timestop)
 		var/datum/timestop/TS = GLOB.timestop
-		if(!TS.immune[src])
+		if(!TS.immune[src] && (!TS.z_level || z == TS.z_level))
 			return FALSE
 	return ..()
