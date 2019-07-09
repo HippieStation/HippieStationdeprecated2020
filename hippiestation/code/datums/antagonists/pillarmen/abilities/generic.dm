@@ -81,9 +81,11 @@ GLOBAL_VAR_INIT(pm_hatched, FALSE)
 		for(var/datum/mind/M in SSticker.minds)
 			if(!M.current)
 				continue
+			if(!ishuman(M.current))
+				continue
 			if(M.has_antag_datum(/datum/antagonist/pillar_thrall) || M.has_antag_datum(/datum/antagonist/pillarmen) || M.has_antag_datum(/datum/antagonist/vampire))
 				continue
-			if(!is_station_level(M.current))
+			if(!is_station_level(M.current.z))
 				continue
 			if(!considered_alive(M))
 				continue

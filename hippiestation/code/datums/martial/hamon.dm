@@ -44,6 +44,9 @@
 		D.dropItemToGround(D.get_active_held_item())
 		D.apply_damage(5, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
 		D.Stun(20)
+		if(pillarmen_check(D))
+			D.apply_damage(rand(15, 20), BURN, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM))
+			to_chat(D, "<span class='userdanger'>[A]'s chop burns your flesh!</span>'")
 		return 1
 	log_combat(A, D, "used ripple beat (hamon)")
 	return basic_hit(A,D)
@@ -57,6 +60,9 @@
 		playsound(get_turf(A), 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 		D.emote("scream")
 		D.apply_damage(10, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_CHEST))
+		if(pillarmen_check(D))
+			D.apply_damage(rand(15, 20), BURN, BODY_ZONE_CHEST)
+			to_chat(D, "<span class='userdanger'>[A]'s arm burns your flesh!</span>'")
 		return 1
 	log_combat(A, D, "used zoom punch (hamon)")
 	return basic_hit(A,D)
@@ -74,6 +80,9 @@
 		D.Stun(40)
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
 		D.apply_damage(10, BRUTE, BODY_ZONE_CHEST)
+		if(pillarmen_check(D))
+			D.apply_damage(rand(15, 20), BURN, BODY_ZONE_CHEST)
+			to_chat(D, "<span class='userdanger'>[A]'s knee burns your flesh!</span>'")
 		return 1
 	log_combat(A, D, "sendo wave kicked (hamon)")
 	return basic_hit(A,D)
@@ -87,6 +96,9 @@
 		A.say("Tornado Overdrive!")
 		D.Paralyze(80)
 		D.apply_damage(10, BRUTE, BODY_ZONE_CHEST)
+		if(pillarmen_check(D))
+			D.apply_damage(rand(15, 20), BURN, BODY_ZONE_CHEST)
+			to_chat(D, "<span class='userdanger'>[A]'s kick burns your flesh!</span>'")
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
 		return 1
 	log_combat(A, D, "tornado overdrived (hamon)")
@@ -102,6 +114,9 @@
 		if(D.stat)
 			D.death() //FINISH HIM!
 		D.apply_damage(50, BRUTE, BODY_ZONE_CHEST)
+		if(pillarmen_check(D))
+			D.apply_damage(rand(20, 30), BURN, BODY_ZONE_CHEST)
+			to_chat(D, "<span class='userdanger'>[A]'s fist annihilates your flesh, leaving a burning smell behind!</span>'")
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 75, 1, -1)
 		return 1
 	log_combat(A, D, "sunlight yellow overdrived (hamon)")
@@ -138,6 +153,9 @@
 					  "<span class='userdanger'>[A] [atk_verb] you!</span>")
 	D.apply_damage(rand(10,15), BRUTE)
 	playsound(get_turf(D), 'sound/weapons/punch1.ogg', 25, 1, -1)
+	if(pillarmen_check(D))
+		D.apply_damage(rand(4, 9), BURN)
+		to_chat(D, "<span class='userdanger'>[A]'s punch burns you!</span>'")
 	if(prob(D.getBruteLoss()) && (D.mobility_flags & MOBILITY_STAND))
 		D.visible_message("<span class='warning'>[D] stumbles and falls!</span>", "<span class='userdanger'>The blow sends you to the ground!</span>")
 		D.Paralyze(80)
