@@ -1,7 +1,7 @@
-/proc/pillarmen_check(mob/user = usr)
+/proc/pillarmen_check(mob/user = usr, also_ultimate = TRUE)
     if (istype(usr, /mob/living/carbon/human))
         var/mob/living/carbon/human/H = user
-        return istype(H.dna?.species, /datum/species/pillarmen)
+        return istype(H.dna?.species, /datum/species/pillarmen) || (also_ultimate && istype(H.dna?.species, /datum/species/ultimate_lifeform))
     return FALSE 
 
 /obj/effect/proc_holder/spell/targeted/pillar //Stuns and mutes a human target for 10 seconds
