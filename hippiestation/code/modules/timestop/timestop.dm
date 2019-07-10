@@ -5,7 +5,8 @@ GLOBAL_LIST_INIT(timestop_noz, typecacheof(list(/obj/screen)))
 
 /proc/get_final_z(atom/A)
 	var/turf/T = get_turf(A)
-	return T.z
+	if(T)
+		return T.z
 
 /datum/timestop
 	var/list/frozen_mobs
