@@ -3,6 +3,10 @@ GLOBAL_LIST_INIT(timestop_blacklist, typecacheof(list(/obj/screen, /obj/effect, 
 GLOBAL_LIST_INIT(timestop_whitelist, typecacheof(list(/obj/screen/parallax_layer)))
 GLOBAL_LIST_INIT(timestop_noz, typecacheof(list(/obj/screen)))
 
+/proc/get_final_z(atom/A)
+	var/turf/T = get_turf(A)
+	return T.z
+
 /datum/timestop
 	var/list/frozen_mobs
 	var/list/frozen_things
@@ -57,7 +61,7 @@ GLOBAL_LIST_INIT(timestop_noz, typecacheof(list(/obj/screen)))
 		playsound(master, start_sound, 100, 0)
 	var/sound/S = sound(dubstep_sound)
 	for(var/mob/M in GLOB.player_list)
-		if(!z_level || (M.z == z_level))
+		if(!z_level || (get_final_z(M) == z_level))
 			SEND_SOUND(M, S)
 	for(var/M in immune)
 		if(ismob(M))
@@ -77,7 +81,7 @@ GLOBAL_LIST_INIT(timestop_noz, typecacheof(list(/obj/screen)))
 	sleep(time - 20)
 	S.frequency = -1
 	for(var/mob/M in GLOB.player_list)
-		if(!z_level || (M.z == z_level))
+		if(!z_level || (get_final_z(M) == z_level))
 			SEND_SOUND(M, S)
 	for(var/M in immune)
 		if(ismob(M))
@@ -89,9 +93,6 @@ GLOBAL_LIST_INIT(timestop_noz, typecacheof(list(/obj/screen)))
 	qdel(src)
 
 // copypaste from timestop below
-/datum/timestop/proc/get_final_z(atom/A)
-	var/turf/T = get_turf(A)
-	return T.z
 
 /datum/timestop/proc/freeze_atom(atom/movable/A)
 	if(LAZYACCESS(immune, A) || !istype(A))
@@ -208,14 +209,14 @@ GLOBAL_LIST_INIT(timestop_noz, typecacheof(list(/obj/screen)))
 /atom/Initialize()
 	if(GLOB.timestop)
 		var/datum/timestop/TS = GLOB.timestop
-		if(!TS.z_level || z == TS.z_level)
+		if(!TS.z_level || get_final_z(src) == TS.z_level)
 			TS.freeze_atom(src)
 	return ..()
 
 /obj/item/projectile/process()
 	if(GLOB.timestop && !paused && (!original || get_dist(src, original) <= 2))
 		var/datum/timestop/TS = GLOB.timestop
-		if(!TS.z_level || z == TS.z_level)
+		if(!TS.z_level || get_final_z(src) == TS.z_level)
 			TS.freeze_atom(src)
 	return ..()
 
@@ -234,9 +235,23 @@ GLOBAL_LIST_INIT(timestop_noz, typecacheof(list(/obj/screen)))
 		return
 	return ..()
 
+/mob/living/carbon/handle_organs()
+	if(GLOB.timestop)
+		var/datum/timestop/TS = GLOB.timestop
+		if(!TS.immune[src] && (!TS.z_level || get_final_z(src) == TS.z_level))
+			return FALSE
+	return ..()
+
+/mob/living/carbon/handle_bodyparts()
+	if(GLOB.timestop)
+		var/datum/timestop/TS = GLOB.timestop
+		if(!TS.immune[src] && (!TS.z_level || get_final_z(src) == TS.z_level))
+			return FALSE
+	return ..()
+
 /mob/living/say(message, bubble_type, list/spans, sanitize, datum/language/language, ignore_spam, forced)
 	if(GLOB.timestop)
 		var/datum/timestop/TS = GLOB.timestop
-		if(!TS.immune[src] && (!TS.z_level || z == TS.z_level))
+		if(!TS.immune[src] && (!TS.z_level || get_final_z(src) == TS.z_level))
 			return FALSE
 	return ..()
