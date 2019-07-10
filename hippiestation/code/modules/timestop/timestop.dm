@@ -89,12 +89,16 @@ GLOBAL_LIST_INIT(timestop_noz, typecacheof(list(/obj/screen)))
 	qdel(src)
 
 // copypaste from timestop below
+/datum/timestop/proc/get_final_z(atom/A)
+	var/turf/T = get_turf(A)
+	return T.z
+
 /datum/timestop/proc/freeze_atom(atom/movable/A)
 	if(LAZYACCESS(immune, A) || !istype(A))
 		return FALSE
 	if(!isobj(A) && !ismob(A))
 		return FALSE
-	if(is_type_in_typecache(A, GLOB.timestop_noz) || (z_level && (A.z != z_level)))
+	if(is_type_in_typecache(A, GLOB.timestop_noz) || (z_level && (get_final_z(A) != z_level)))
 		return FALSE
 	if(is_type_in_typecache(A, GLOB.timestop_blacklist) && !is_type_in_typecache(A, GLOB.timestop_whitelist))
 		return FALSE
