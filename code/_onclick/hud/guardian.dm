@@ -26,6 +26,7 @@
 	using.screen_loc = ui_back
 	static_inventory += using
 
+/* // hippie - get rid of guardian types
 /datum/hud/dextrous/guardian/New(mob/living/simple_animal/hostile/guardian/owner) //for a dextrous guardian
 	..()
 	var/obj/screen/using
@@ -83,7 +84,7 @@
 			if(D.internal_storage)
 				D.internal_storage.screen_loc = null
 
-	..()
+	..()*/
 
 /obj/screen/guardian
 	icon = 'icons/mob/guardian.dmi'
