@@ -1,0 +1,76 @@
+/datum/guardian_ability/major/time
+	name = "Time Erasure"
+	desc = "The power to destroy time..."
+	cost = 6
+	spell_type = /obj/effect/proc_holder/spell/self/erase_time
+
+/datum/guardian_ability/major/time/Apply(mob/living/simple_animal/hostile/guardian/guardian)
+	. = ..()
+	var/obj/effect/proc_holder/spell/self/erase_time/S = spell
+	S.length = master_stats.persistence * 2 * 10
+
+/obj/effect/proc_holder/spell/self/erase_time
+	name = "Erase Time"
+	desc = "Erase the very concept of time for a short period of time."
+	clothes_req = FALSE
+	staff_req = FALSE
+	human_req = FALSE
+	charge_max = 90 SECONDS
+	action_icon_state = "time"
+	var/length = 10 SECONDS
+
+/obj/effect/proc_holder/spell/self/erase_time/cast(list/targets, mob/user)
+	if(!isturf(user.loc) && !isguardian(user))
+		revert_cast()
+		return
+	var/list/immune = list(user)
+	if(isguardian(user))
+		var/mob/living/simple_animal/hostile/guardian/G = user
+		immune |= G.summoner
+		for(var/mob/living/simple_animal/hostile/guardian/GG in G.summoner.hasparasites())
+			immune |= GG
+	for(var/mob/living/L in immune)
+		var/image/I = image(icon = 'icons/effects/blood.dmi', icon_state = null, loc = L)
+		I.override = TRUE
+		if(isturf(L.loc))
+			var/mob/living/simple_animal/hostile/illusion/doppelganger/E = new(L.loc)
+			E.setDir(L.dir)
+			E.Copy_Parent(L, length, 100)
+			E.target = null
+		L.status_flags |= GODMODE
+		L.opacity = FALSE
+		L.mouse_opacity = FALSE
+		L.density = FALSE
+		if(isguardian(L))
+			var/mob/living/simple_animal/hostile/guardian/G = L
+			G.erased_time = TRUE
+		ADD_TRAIT(L, TRAIT_PACIFISM, "king_crimson")
+		L.remove_alt_appearance("king_crimson")
+		L.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/king_crimson, "king_crimson", I, NONE, immune)
+	sleep(length)
+	for(var/mob/living/L in immune)
+		if(isguardian(L))
+			var/mob/living/simple_animal/hostile/guardian/G = L
+			G.erased_time = FALSE
+		L.status_flags &= ~GODMODE
+		L.opacity = initial(L.opacity)
+		L.mouse_opacity = initial(L.mouse_opacity)
+		L.density = initial(L.density)
+		L.remove_alt_appearance("king_crimson")
+		REMOVE_TRAIT(L, TRAIT_PACIFISM, "king_crimson")
+
+/datum/atom_hud/alternate_appearance/basic/king_crimson
+	var/list/seers
+
+/datum/atom_hud/alternate_appearance/basic/king_crimson/New(key, image/I, options, list/seers)
+	..()
+	src.seers = seers
+	for(var/mob/M in GLOB.mob_list)
+		if(mobShouldSee(M))
+			add_hud_to(M)
+			M.reload_huds()
+
+/datum/atom_hud/alternate_appearance/basic/king_crimson/mobShouldSee(mob/M)
+	if(isobserver(M) || (M in seers))
+		return FALSE // they see the actual sprite
+	return TRUE

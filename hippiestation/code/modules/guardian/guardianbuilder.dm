@@ -8,7 +8,7 @@
 	var/failure_message = "<span class='holoparasite bold'>..And draw a card! It's...blank? Maybe you should try again later.</span>"
 	var/used = FALSE
 
-/datum/guardianbuilder/New(mob_name, theme, failure_message)
+/datum/guardianbuilder/New(mob_name, theme, failure_message, max_points)
 	..()
 	if(mob_name)
 		src.mob_name = mob_name
@@ -16,6 +16,8 @@
 		src.theme = theme 
 	if(failure_message)
 		src.failure_message = failure_message
+	if(max_points)
+		src.max_points = max_points
 
 /datum/guardianbuilder/ui_interact(mob/user, ui_key, datum/tgui/ui = null, force_open, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
@@ -189,10 +191,11 @@
 	var/allowguardian = FALSE
 	var/mob_name = "Guardian Spirit"
 	var/theme = "magic"
+	var/max_points = 15
 
 /obj/item/guardiancreator/Initialize()
 	. = ..()
-	builder = new(mob_name, theme, failure_message)
+	builder = new(mob_name, theme, failure_message, max_points)
 
 /obj/item/guardiancreator/attack_self(mob/living/user)
 	if(isguardian(user) && !allowguardian)
@@ -210,7 +213,28 @@
 		return
 	builder.ui_interact(user)
 
-/obj/item/storage/box/syndie_kit/guardian
-/obj/item/paper/guides/antag/guardian/wizard
-/obj/item/guardiancreator/choose/wizard
-/obj/item/guardiancreator/choose/traitor
+/obj/item/guardiancreator/tech
+	name = "holoparasite injector"
+	desc = "It contains an alien nanoswarm of unknown origin. Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, it requires an organic host as a home base and source of fuel."
+	icon = 'icons/obj/syringe.dmi'
+	icon_state = "combat_hypo"
+	theme = "tech"
+	mob_name = "Holoparasite"
+	use_message = "<span class='holoparasite'>You start to power on the injector...</span>"
+	used_message = "<span class='holoparasite'>The injector has already been used.</span>"
+	failure_message = "<span class='holoparasite bold'>...ERROR. BOOT SEQUENCE ABORTED. AI FAILED TO INTIALIZE. PLEASE CONTACT SUPPORT OR TRY AGAIN LATER.</span>"
+	ling_failure = "<span class='holoparasite bold'>The holoparasites recoil in horror. They want nothing to do with a creature like you.</span>"
+
+/obj/item/guardiancreator/carp
+	name = "holocarp fishsticks"
+	desc = "Using the power of Carp'sie, you can catch a carp from byond the veil of Carpthulu, and bind it to your fleshy flesh form."
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "fishfingers"
+	theme = "carp"
+	mob_name = "Holocarp"
+	use_message = "<span class='holoparasite'>You put the fishsticks in your mouth...</span>"
+	used_message = "<span class='holoparasite'>Someone's already taken a bite out of these fishsticks! Ew.</span>"
+	failure_message = "<span class='holoparasite bold'>You couldn't catch any carp spirits from the seas of Lake Carp. Maybe there are none, maybe you fucked up.</span>"
+	ling_failure = "<span class='holoparasite bold'>Carp'sie is fine with changelings, so you shouldn't be seeing this message.</span>"
+	allowmultiple = TRUE
+	allowling = TRUE

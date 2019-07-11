@@ -52,6 +52,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/obj/structure/receiving_pad/beacon
 	var/beacon_cooldown = 0
 	var/do_the_cool_invisible_thing = TRUE
+	var/erased_time = FALSE
 
 /mob/living/simple_animal/hostile/guardian/Initialize(mapload, theme)
 	GLOB.parasites += src
@@ -189,6 +190,9 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	return loc != summoner
 
 /mob/living/simple_animal/hostile/guardian/AttackingTarget()
+	if(erased_time)
+		to_chat(src, "<span class='danger'>There is no time, and you cannot intefere!</span>")
+		return FALSE
 	if(stats.ability && stats.ability.Attack(src, target))
 		return FALSE
 	if(!is_deployed())
@@ -209,6 +213,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 /mob/living/simple_animal/hostile/guardian/CanMobAutoclick(object, location, params)
 	if(istype(object, /obj/screen) || istype(object, /obj/effect))
+		return FALSE
+	if(erased_time)
 		return FALSE
 	return atk_cooldown
 
