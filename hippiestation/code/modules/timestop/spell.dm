@@ -14,8 +14,12 @@
 	if(GLOB.timestop)
 		revert_cast()
 		return
-	new /obj/effect/temp_visual/the_world(get_turf(user))
-	new timestop_type(user, seconds, does_z ? user.z : null)
+	var/turf/T = get_turf(user)
+	var/the_z_level = user.z
+	if(T)
+		the_z_level = T.z
+	new /obj/effect/temp_visual/the_world(T)
+	new timestop_type(user, seconds, does_z ? the_z_level : null)
 
 /obj/effect/proc_holder/spell/self/the_world/universal
 	does_z = FALSE
