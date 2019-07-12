@@ -54,6 +54,8 @@
 	sleep(length)
 	var/mob/living/simple_animal/hostile/illusion/doppelganger/DP = pick(fakes)
 	playsound(DP.loc, 'hippiestation/sound/effects/kingcrimson_end.ogg')
+	for(var/mob/living/simple_animal/hostile/illusion/doppelganger/DG in fakes)
+		DG.death()
 	for(var/mob/living/L in immune)
 		if(isguardian(L))
 			var/mob/living/simple_animal/hostile/guardian/G = L
