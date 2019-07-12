@@ -134,13 +134,15 @@
 /datum/guardianbuilder/proc/calc_points()
 	points = max_points
 	if(saved_stats.damage > 1)
-		points -= saved_stats.damage
+		points -= saved_stats.damage - 1
 	if(saved_stats.defense > 1)
-		points -= saved_stats.defense
+		points -= saved_stats.defense - 1
 	if(saved_stats.persistence > 1)
-		points -= saved_stats.persistence
+		points -= saved_stats.persistence - 1
 	if(saved_stats.speed > 1)
-		points -= saved_stats.speed
+		points -= saved_stats.speed - 1
+	if(saved_stats.range > 1)
+		points -= saved_stats.range - 1
 	if(saved_stats.ability)
 		points -= saved_stats.ability.cost
 	for(var/datum/guardian_ability/minor/minor in saved_stats.minor_abilities)

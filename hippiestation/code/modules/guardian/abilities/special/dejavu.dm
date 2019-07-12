@@ -14,9 +14,9 @@
 	charge_max = 90 SECONDS
 	action_icon_state = "time"
 
-/obj/effect/proc_holder/spell/self/erase_time/cast(list/targets, mob/user)
+/obj/effect/proc_holder/spell/self/zero/cast(list/targets, mob/user)
 	if(!isturf(user.loc) && !isguardian(user))
 		revert_cast()
 		return
-	for(var/mob/living/L in range(7, get_turf(user)))
-		L.AddComponent(/datum/component/dejavu/stand, 1)
+	for(var/mob/living/L in range(7, user))
+		L.AddComponent(/datum/component/dejavu/stand)
