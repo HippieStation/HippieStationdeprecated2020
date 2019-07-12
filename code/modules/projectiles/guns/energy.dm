@@ -21,6 +21,9 @@
 	var/use_cyborg_cell = FALSE //whether the gun's cell drains the cyborg user's cell to recharge
 	var/dead_cell = FALSE //set to true so the gun is given an empty cell
 
+	//Multi State weaponry rework vars
+	var/multistate = 0 //Is this gun a multistate gun?
+	var/multistateicon = "" //Dont touch this.
 /obj/item/gun/energy/emp_act(severity)
 	. = ..()
 	if(!(. & EMP_PROTECT_CONTENTS))
@@ -44,6 +47,9 @@
 	recharge_newshot(TRUE)
 	if(selfcharge)
 		START_PROCESSING(SSobj, src)
+	if(multistate == 1)
+		multistateicon = "[icon_state][select]" //Set the multistate icon
+		add_overlay("[multistateicon]_charge[charge_sections]")
 	update_icon()
 
 /obj/item/gun/energy/proc/update_ammo_types()
@@ -120,6 +126,8 @@
 	select++
 	if (select > ammo_type.len)
 		select = 1
+	if(multistate == 1)
+		multistateicon = "[icon_state][select]" //Set the multistate icon.
 	var/obj/item/ammo_casing/energy/shot = ammo_type[select]
 	fire_sound = shot.fire_sound
 	fire_delay = shot.delay
@@ -154,14 +162,17 @@
 	if(cell.charge < shot.e_cost)
 		add_overlay("[icon_state]_empty")
 	else
-		if(!shaded_charge)
+		if(!shaded_charge && multistate == 0) //Are we using the legacy system?
 			var/mutable_appearance/charge_overlay = mutable_appearance(icon, iconState)
 			for(var/i = ratio, i >= 1, i--)
 				charge_overlay.pixel_x = ammo_x_offset * (i - 1)
 				charge_overlay.pixel_y = ammo_y_offset * (i - 1)
 				add_overlay(charge_overlay)
+		else if(multistate == 1)
+			add_overlay("[multistateicon]_charge[ratio]") //Multistate icon processor.
 		else
 			add_overlay("[icon_state]_charge[ratio]")
+
 	if(itemState)
 		itemState += "[ratio]"
 		item_state = itemState
@@ -184,7 +195,6 @@
 		user.visible_message("<span class='suicide'>[user] is pretending to melt [user.p_their()] face off with [src]! It looks like [user.p_theyre()] trying to commit suicide!</b></span>")
 		playsound(src, dry_fire_sound, 30, TRUE)
 		return (OXYLOSS)
-
 
 /obj/item/gun/energy/vv_edit_var(var_name, var_value)
 	switch(var_name)

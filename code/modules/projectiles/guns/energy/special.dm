@@ -11,6 +11,7 @@
 	ammo_x_offset = 3
 	flight_x_offset = 17
 	flight_y_offset = 9
+	shaded_charge = 1
 
 /obj/item/gun/energy/ionrifle/emp_act(severity)
 	return
@@ -25,6 +26,7 @@
 	ammo_x_offset = 2
 	flight_x_offset = 18
 	flight_y_offset = 11
+	shaded_charge = 1
 
 /obj/item/gun/energy/decloner
 	name = "biological demolecularisor"
@@ -33,6 +35,7 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/declone)
 	pin = null
 	ammo_x_offset = 1
+	shaded_charge = 1
 
 /obj/item/gun/energy/decloner/update_icon()
 	..()
@@ -307,6 +310,7 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/temp, /obj/item/ammo_casing/energy/temp/hot)
 	cell_type = "/obj/item/stock_parts/cell/high"
 	pin = null
+	shaded_charge = 1
 
 /obj/item/gun/energy/temperature/security
 	name = "security temperature gun"
