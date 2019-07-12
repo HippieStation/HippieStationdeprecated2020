@@ -193,7 +193,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	if(erased_time)
 		to_chat(src, "<span class='danger'>There is no time, and you cannot intefere!</span>")
 		return FALSE
-	if(stats.ability && stats.ability.Attack(src, target))
+	if(stats.ability && stats.ability.Attack(target))
 		return FALSE
 	if(!is_deployed())
 		to_chat(src, "<span class='danger'><B>You must be manifested to attack!</span></B>")
@@ -210,6 +210,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 			say("[battlecry]!!", ignore_spam = TRUE)
 			playsound(loc, src.attack_sound, 50, 1, 1)
 		changeNext_move(atk_cooldown)
+		if(stats.ability)
+			stats.ability.AfterAttack(target)
 
 /mob/living/simple_animal/hostile/guardian/CanMobAutoclick(object, location, params)
 	if(istype(object, /obj/screen) || istype(object, /obj/effect))
@@ -247,6 +249,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 				to_chat(summoner, "<span class='danger'><B>Your body can't take the strain of sustaining [src] in this condition, it begins to fall apart!</span></B>")
 				summoner.adjustCloneLoss(amount * 0.5) //dying hosts take 50% bonus damage as cloneloss
 		update_health_hud()
+	if(stats.ability)
+		stats.ability.Health(amount)
 
 /mob/living/simple_animal/hostile/guardian/ex_act(severity, target)
 	switch(severity)
@@ -266,21 +270,22 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	qdel(src)
 
 /mob/living/simple_animal/hostile/guardian/AltClickOn(atom/A)
-	if(stats.ability && stats.ability.AltClickOn(src, A))
+	if(stats.ability && stats.ability.AltClickOn(A))
 		return
 	return ..()
 
 /mob/living/simple_animal/hostile/guardian/CtrlClickOn(atom/A)
-	if(stats.ability && stats.ability.CtrlClickOn(src, A))
+	if(stats.ability && stats.ability.CtrlClickOn(A))
 		return
 	return ..()
+
 
 //MANIFEST, RECALL, TOGGLE MODE/LIGHT, SHOW TYPE
 
 /mob/living/simple_animal/hostile/guardian/proc/Manifest(forced)
 	if(istype(summoner.loc, /obj/effect) || (cooldown > world.time && !forced))
 		return FALSE
-	if(stats.ability && stats.ability.Manifest(src))
+	if(stats.ability && stats.ability.Manifest())
 		return TRUE
 	if(loc == summoner)
 		forceMove(summoner.loc)
@@ -295,7 +300,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 /mob/living/simple_animal/hostile/guardian/proc/Recall(forced)
 	if(!summoner || loc == summoner || (cooldown > world.time && !forced))
 		return FALSE
-	if(stats.ability && stats.ability.Recall(src))
+	if(stats.ability && stats.ability.Recall())
 		return TRUE
 	new /obj/effect/temp_visual/guardian/phase/out(loc)
 
@@ -318,7 +323,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	else
 		stats.ability.mode = TRUE
 		to_chat(src, stats.ability.mode_on_msg)
-	stats.ability.Mode(src)
+	stats.ability.Mode()
 	cooldown = world.time + 10
 
 /mob/living/simple_animal/hostile/guardian/proc/ToggleLight()
@@ -328,6 +333,21 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	else
 		to_chat(src, "<span class='notice'>You deactivate your light.</span>")
 		set_light(0)
+
+/mob/living/simple_animal/hostile/guardian/verb/show_detail()
+	set name = "Show Powers"
+	set category = "Guardian"
+	to_chat(src, "<b>Your Stats:</b>")
+	to_chat(src, "<b>DAMAGE:</b> [level_to_grade(stats.damage)]")
+	to_chat(src, "<b>DEFENSE:</b> [level_to_grade(stats.defense)]")
+	to_chat(src, "<b>SPEED:</b> [level_to_grade(stats.speed)]")
+	to_chat(src, "<b>PERSISTENCE:</b> [level_to_grade(stats.persistence)]")
+	to_chat(src, "<b>RANGE:</b> [level_to_grade(stats.range)]")
+	if(stats.ability)
+		to_chat(src, "<b>SPECIAL ABILITY:</b> [stats.ability.name] - [stats.ability.desc]")
+	for(var/datum/guardian_ability/minor/M in stats.minor_abilities)
+		to_chat(src, "<b>MINOR ABILITY:</b> [M.name]")
+		to_chat(src, " [M.desc]")
 
 //COMMUNICATION
 
@@ -441,3 +461,18 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 /mob/living/simple_animal/hostile/guardian/proc/hasmatchingsummoner(mob/living/simple_animal/hostile/guardian/G) //returns 1 if the summoner matches the target's summoner
 	return (istype(G) && G.summoner == summoner)
+
+
+/proc/level_to_grade(num)
+	switch(num)
+		if(1)
+			return "F"
+		if(2)
+			return "D"
+		if(3)
+			return "C"
+		if(4)
+			return "B"
+		if(5)
+			return "A"
+	return "F"

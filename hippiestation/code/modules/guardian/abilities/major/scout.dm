@@ -7,7 +7,7 @@
 	mode_on_msg = "<span class='danger'><B>You switch to scout mode.</span></B>"
 	mode_off_msg = "<span class='danger'><B>You switch to combat mode.</span></B>"
 
-/datum/guardian_ability/major/scout/Mode(mob/living/simple_animal/hostile/guardian/guardian)
+/datum/guardian_ability/major/scout/Mode()
 	if(mode)
 		guardian.ranged = 0
 		guardian.melee_damage_lower = 0
@@ -28,9 +28,9 @@
 		guardian.do_the_cool_invisible_thing = initial(guardian.do_the_cool_invisible_thing)
 		guardian.stats.Apply(guardian)
 
-/datum/guardian_ability/major/scout/Manifest(mob/living/simple_animal/hostile/guardian/guardian)
+/datum/guardian_ability/major/scout/Manifest()
 	if(mode)
 		guardian.incorporeal_move = INCORPOREAL_MOVE_BASIC
 
-/datum/guardian_ability/major/scout/Recall(mob/living/simple_animal/hostile/guardian/guardian)
+/datum/guardian_ability/major/scout/Recall()
 	guardian.incorporeal_move = FALSE

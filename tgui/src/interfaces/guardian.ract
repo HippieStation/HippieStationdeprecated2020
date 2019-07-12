@@ -1,4 +1,4 @@
-Points: <span class='{{data.points > 0 ? "good" : "bad"}}'>{{data.points}}</span>
+Points: <span class='{{data.points > 0 ? "good" : "bad"}}'>{{data.points}}</span> <ui-button action='reset'>Reset</ui-button>
 <ui-display>
 	{{#each data.ratedskills}}
 		<ui-section label='{{name}}' candystripe>

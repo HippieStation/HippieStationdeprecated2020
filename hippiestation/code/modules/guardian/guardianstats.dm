@@ -3,12 +3,12 @@
 	var/defense = 1
 	var/speed = 1
 	var/persistence = 1
-	var/accuracy = 1
+	var/range = 1
 	var/datum/guardian_ability/major/ability
 	var/list/datum/guardian_ability/minor/minor_abilities = list()
 
 /datum/guardian_stats/proc/Apply(mob/living/simple_animal/hostile/guardian/guardian)
-	guardian.range = persistence * 2
+	guardian.range = range * 2
 	guardian.melee_damage_lower = damage * 5
 	guardian.melee_damage_upper = damage * 5
 	guardian.obj_damage = damage * 16
@@ -18,8 +18,10 @@
 		guardian.environment_smash = ENVIRONMENT_SMASH_WALLS
 	guardian.atk_cooldown = (15 / speed) * 1.5
 	if(ability)
+		ability.guardian = guardian
 		ability.Apply(guardian)
 	for(var/datum/guardian_ability/minor/minor in minor_abilities)
+		minor.guardian = guardian
 		minor.Apply(guardian)
 
 /datum/guardian_stats/proc/HasMinorAbility(typepath)

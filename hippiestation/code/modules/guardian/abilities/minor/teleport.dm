@@ -4,7 +4,7 @@
 	cost = 3
 	spell_type = /obj/effect/proc_holder/spell/targeted/stand/teleport
 
-/datum/guardian_ability/minor/teleport/Apply(mob/living/simple_animal/hostile/guardian/guardian)
+/datum/guardian_ability/minor/teleport/Apply()
 	..()
 	guardian.verbs += /mob/living/simple_animal/hostile/guardian/proc/Beacon
 
@@ -70,7 +70,7 @@
 		beacon.disappear()
 		beacon = null
 	beacon = new(beacon_loc, src)
-	to_chat(src, "<span class='danger'><B>Beacon placed! You may now warp targets and objects to it, including your user, via Alt+Click.</span></B>")
+	to_chat(src, "<span class='danger'><B>Beacon placed! You may now warp targets and objects to it, including your user, via the Teleport ability.</span></B>")
 	beacon_cooldown = world.time + 3000
 
 

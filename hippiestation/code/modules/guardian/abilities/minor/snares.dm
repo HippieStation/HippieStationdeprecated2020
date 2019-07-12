@@ -3,7 +3,7 @@
 	desc = "The ability to lay a surveillance snare, which alerts the guardian and the user to anyone who crosses it."
 	cost = 2
 
-/datum/guardian_ability/minor/snare/Apply(mob/living/simple_animal/hostile/guardian/guardian)
+/datum/guardian_ability/minor/snare/Apply()
 	guardian.verbs += /mob/living/simple_animal/hostile/guardian/proc/Snare
 	guardian.verbs += /mob/living/simple_animal/hostile/guardian/proc/DisarmSnare
 

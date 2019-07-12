@@ -7,8 +7,9 @@
 	var/theme = "magic"
 	var/failure_message = "<span class='holoparasite bold'>..And draw a card! It's...blank? Maybe you should try again later.</span>"
 	var/used = FALSE
+	var/allow_special = FALSE
 
-/datum/guardianbuilder/New(mob_name, theme, failure_message, max_points)
+/datum/guardianbuilder/New(mob_name, theme, failure_message, max_points, allow_special)
 	..()
 	if(mob_name)
 		src.mob_name = mob_name
@@ -18,6 +19,7 @@
 		src.failure_message = failure_message
 	if(max_points)
 		src.max_points = max_points
+	src.allow_special = allow_special
 
 /datum/guardianbuilder/ui_interact(mob/user, ui_key, datum/tgui/ui = null, force_open, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
@@ -48,12 +50,13 @@
 						level = "[saved_stats.persistence]"
 					))
 	.["ratedskills"] += list(list(
-						name = "Accuracy",
-						level = "[saved_stats.accuracy]"
+						name = "Range",
+						level = "[saved_stats.range]"
 					))
 	.["no_ability"] = (!saved_stats.ability || !istype(saved_stats.ability))
 	.["abilities_major"] = list()
-	for(var/ability in subtypesof(/datum/guardian_ability/major))
+	var/list/types = allow_special ? (subtypesof(/datum/guardian_ability/major) - /datum/guardian_ability/major/special) : (subtypesof(/datum/guardian_ability/major) - typesof(/datum/guardian_ability/major/special))
+	for(var/ability in types)
 		var/datum/guardian_ability/major/GA = new ability
 		.["abilities_major"] += list(list(
 			name = GA.name,
@@ -100,16 +103,17 @@
 					if((points + (saved_stats.persistence > 1 ? saved_stats.persistence : 0)) >= lvl || lvl == 1)
 						saved_stats.persistence = CLAMP(text2num(params["level"]), 1, 5)
 					. = TRUE
-				if("Accuracy")
+				if("Range")
 					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
-					if((points + (saved_stats.accuracy > 1 ? saved_stats.accuracy : 0)) >= lvl || lvl == 1)
-						saved_stats.accuracy = CLAMP(text2num(params["level"]), 1, 5)
+					if((points + (saved_stats.range > 1 ? saved_stats.range : 0)) >= lvl || lvl == 1)
+						saved_stats.range = CLAMP(text2num(params["level"]), 1, 5)
 					. = TRUE
 		if("clear_ability_major")
 			QDEL_NULL(saved_stats.ability)
 		if("ability_major")
 			var/ability = text2path(params["path"])
-			if(ispath(ability) && (ability in subtypesof(/datum/guardian_ability/major))) // no nullspace narsie for you!
+			var/list/types = allow_special ? (subtypesof(/datum/guardian_ability/major) - /datum/guardian_ability/major/special) : (subtypesof(/datum/guardian_ability/major) - typesof(/datum/guardian_ability/major/special))
+			if(ispath(ability) && (ability in types)) // no nullspace narsie for you!
 				QDEL_NULL(saved_stats.ability)
 				saved_stats.ability = new ability
 				saved_stats.ability.master_stats = saved_stats
@@ -122,6 +126,10 @@
 					saved_stats.AddMinorAbility(ability)
 		if("spawn")
 			. = spawn_guardian(usr)
+		if("reset")
+			QDEL_NULL(saved_stats)
+			saved_stats = new
+			. = TRUE
 
 /datum/guardianbuilder/proc/calc_points()
 	points = max_points
@@ -129,14 +137,14 @@
 		points -= saved_stats.damage
 	if(saved_stats.defense > 1)
 		points -= saved_stats.defense
-	if(saved_stats.accuracy > 1)
-		points -= saved_stats.accuracy
 	if(saved_stats.persistence > 1)
 		points -= saved_stats.persistence
 	if(saved_stats.speed > 1)
 		points -= saved_stats.speed
 	if(saved_stats.ability)
 		points -= saved_stats.ability.cost
+	for(var/datum/guardian_ability/minor/minor in saved_stats.minor_abilities)
+		points -= minor.cost
 	return points
 
 /datum/guardianbuilder/proc/spawn_guardian(mob/living/user)
@@ -157,6 +165,7 @@
 		G.mind.enslave_mind_to_creator(user)
 		G.stats = saved_stats
 		G.stats.Apply(G)
+		G.show_detail()
 		log_game("[key_name(user)] has summoned [key_name(G)], a holoparasite.")
 		switch(theme)
 			if("tech")
@@ -192,10 +201,11 @@
 	var/mob_name = "Guardian Spirit"
 	var/theme = "magic"
 	var/max_points = 15
+	var/allowspecial = FALSE
 
 /obj/item/guardiancreator/Initialize()
 	. = ..()
-	builder = new(mob_name, theme, failure_message, max_points)
+	builder = new(mob_name, theme, failure_message, max_points, allowspecial)
 
 /obj/item/guardiancreator/attack_self(mob/living/user)
 	if(isguardian(user) && !allowguardian)
@@ -213,6 +223,9 @@
 		return
 	builder.ui_interact(user)
 
+/obj/item/guardiancreator/rare
+	allowspecial = TRUE
+
 /obj/item/guardiancreator/tech
 	name = "holoparasite injector"
 	desc = "It contains an alien nanoswarm of unknown origin. Though capable of near sorcerous feats via use of hardlight holograms and nanomachines, it requires an organic host as a home base and source of fuel."
@@ -224,6 +237,9 @@
 	used_message = "<span class='holoparasite'>The injector has already been used.</span>"
 	failure_message = "<span class='holoparasite bold'>...ERROR. BOOT SEQUENCE ABORTED. AI FAILED TO INTIALIZE. PLEASE CONTACT SUPPORT OR TRY AGAIN LATER.</span>"
 	ling_failure = "<span class='holoparasite bold'>The holoparasites recoil in horror. They want nothing to do with a creature like you.</span>"
+
+/obj/item/guardiancreator/tech/rare
+	allowspecial = TRUE
 
 /obj/item/guardiancreator/carp
 	name = "holocarp fishsticks"
@@ -238,3 +254,6 @@
 	ling_failure = "<span class='holoparasite bold'>Carp'sie is fine with changelings, so you shouldn't be seeing this message.</span>"
 	allowmultiple = TRUE
 	allowling = TRUE
+
+/obj/item/guardiancreator/carp/rare
+	allowspecial = TRUE

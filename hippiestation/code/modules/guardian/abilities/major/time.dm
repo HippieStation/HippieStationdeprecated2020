@@ -3,8 +3,9 @@
 	desc = "The power to destroy time..."
 	cost = 6
 	spell_type = /obj/effect/proc_holder/spell/self/erase_time
+	arrow_weight = 0.2
 
-/datum/guardian_ability/major/time/Apply(mob/living/simple_animal/hostile/guardian/guardian)
+/datum/guardian_ability/major/time/Apply()
 	. = ..()
 	var/obj/effect/proc_holder/spell/self/erase_time/S = spell
 	S.length = master_stats.persistence * 2 * 10

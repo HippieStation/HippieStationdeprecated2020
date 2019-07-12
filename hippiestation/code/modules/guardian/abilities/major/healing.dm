@@ -5,20 +5,21 @@
 	has_mode = TRUE
 	mode_on_msg = "<span class='danger'><B>You switch to healing mode.</span></B>"
 	mode_off_msg = "<span class='danger'><B>You switch to combat mode.</span></B>"
+	arrow_weight = 1.1
 
-/datum/guardian_ability/major/healing/Apply(mob/living/simple_animal/hostile/guardian/guardian)
+/datum/guardian_ability/major/healing/Apply()
 	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	medsensor.add_hud_to(guardian)
 
-/datum/guardian_ability/major/healing/Attack(mob/living/simple_animal/hostile/guardian/guardian, atom/target)
+/datum/guardian_ability/major/healing/Attack(atom/target)
 	if(mode)
 		if(isliving(target))
 			var/mob/living/L = target
 			guardian.do_attack_animation(L)
-			L.adjustBruteLoss(-5)
-			L.adjustFireLoss(-5)
-			L.adjustOxyLoss(-5)
-			L.adjustToxLoss(-5)
+			L.adjustBruteLoss(-(master_stats.persistence * 1.5))
+			L.adjustFireLoss(-(master_stats.persistence * 1.5))
+			L.adjustOxyLoss(-(master_stats.persistence * 1.5))
+			L.adjustToxLoss(-(master_stats.persistence * 1.5))
 			var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(L))
 			if(guardian.namedatum)
 				H.color = guardian.namedatum.colour

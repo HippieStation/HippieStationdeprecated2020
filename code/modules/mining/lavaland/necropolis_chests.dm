@@ -49,7 +49,13 @@
 		if(15)
 			new /obj/item/nullrod/armblade(src)
 		if(16)
-			new /obj/item/guardiancreator(src)
+			if(prob(75)) // hippie start -- stand arrow
+				if(prob(2))
+					new /obj/item/stand_arrow/rare(src)
+				else
+					new /obj/item/stand_arrow(src)
+			else // hippie end
+				new /obj/item/guardiancreator(src)
 		if(17)
 			if(prob(50))
 				new /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe(src)

@@ -4,7 +4,7 @@
 	cost = 4
 	var/bomb_cooldown = 0
 
-/datum/guardian_ability/major/explosive/Attack(mob/living/simple_animal/hostile/guardian/guardian, atom/target)
+/datum/guardian_ability/major/explosive/Attack(atom/target)
 	if(prob(40) && isliving(target))
 		var/mob/living/M = target
 		if(!M.anchored && M != guardian.summoner && !guardian.hasmatchingsummoner(M))
@@ -17,7 +17,7 @@
 					L.apply_damage(15, BRUTE)
 			new /obj/effect/temp_visual/explosion(get_turf(M))
 
-/datum/guardian_ability/major/explosive/AltClickOn(mob/living/simple_animal/hostile/guardian/guardian, atom/A)
+/datum/guardian_ability/major/explosive/AltClickOn(atom/A)
 	if(!istype(A))
 		return
 	if(guardian.loc == guardian.summoner)

@@ -4,16 +4,16 @@
 	cost = 4
 	var/list/gravito_targets = list()
 
-/datum/guardian_ability/major/gravity/Apply(mob/living/simple_animal/hostile/guardian/guardian)
+/datum/guardian_ability/major/gravity/Apply()
 	RegisterSignal(guardian, COMSIG_MOVABLE_MOVED, .proc/recheck_distances)
 
-/datum/guardian_ability/major/gravity/Attack(mob/living/simple_animal/hostile/guardian/guardian, atom/target)
+/datum/guardian_ability/major/gravity/Attack(atom/target)
 	if(isliving(target) && target != guardian)
 		to_chat(guardian, "<span class='danger'><B>Your punch has applied heavy gravity to [target]!</span></B>")
 		add_gravity(target, 2)
 		to_chat(target, "<span class='userdanger'>Everything feels really heavy!</span>")
 
-/datum/guardian_ability/major/gravity/Recall(mob/living/simple_animal/hostile/guardian/guardian)
+/datum/guardian_ability/major/gravity/Recall()
 	for(var/datum/component/C in gravito_targets)
 		if(get_dist(src, C.parent) > (master_stats.persistence * 2))
 			remove_gravity(C)
@@ -23,7 +23,7 @@
 		if(get_dist(src, C.parent) > (master_stats.persistence * 2))
 			remove_gravity(C)
 
-/datum/guardian_ability/major/gravity/AltClickOn(mob/living/simple_animal/hostile/guardian/guardian, atom/A)
+/datum/guardian_ability/major/gravity/AltClickOn(atom/A)
 	if(isopenturf(A) && guardian.is_deployed() && guardian.stat != DEAD && in_range(guardian, A) && !guardian.incapacitated())
 		var/turf/T = A
 		if(isspaceturf(T))
