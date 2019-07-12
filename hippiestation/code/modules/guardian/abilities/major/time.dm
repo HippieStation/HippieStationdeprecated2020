@@ -25,19 +25,22 @@
 		revert_cast()
 		return
 	var/list/immune = list(user)
+	var/list/fakes = list()
 	if(isguardian(user))
 		var/mob/living/simple_animal/hostile/guardian/G = user
 		immune |= G.summoner
 		for(var/mob/living/simple_animal/hostile/guardian/GG in G.summoner.hasparasites())
 			immune |= GG
 	for(var/mob/living/L in immune)
+		SEND_SOUND(L, sound('hippiestation/sound/effects/kingcrimson_start.ogg'))
 		var/image/I = image(icon = 'icons/effects/blood.dmi', icon_state = null, loc = L)
 		I.override = TRUE
 		if(isturf(L.loc))
 			var/mob/living/simple_animal/hostile/illusion/doppelganger/E = new(L.loc)
 			E.setDir(L.dir)
-			E.Copy_Parent(L, length, 100)
+			E.Copy_Parent(L, INFINITY, 100)
 			E.target = null
+			fakes += E
 		L.status_flags |= GODMODE
 		L.opacity = FALSE
 		L.mouse_opacity = FALSE
@@ -49,6 +52,8 @@
 		L.remove_alt_appearance("king_crimson")
 		L.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/king_crimson, "king_crimson", I, NONE, immune)
 	sleep(length)
+	var/mob/living/simple_animal/hostile/illusion/doppelganger/DP = pick(fakes)
+	playsound(DP.loc, 'hippiestation/sound/effects/kingcrimson_end.ogg')
 	for(var/mob/living/L in immune)
 		if(isguardian(L))
 			var/mob/living/simple_animal/hostile/guardian/G = L
