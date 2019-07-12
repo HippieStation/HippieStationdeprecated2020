@@ -1,8 +1,8 @@
 /datum/guardianbuilder
 	var/datum/guardian_stats/saved_stats = new
 	var/mob/living/target
-	var/max_points = 15
-	var/points = 15
+	var/max_points = 20
+	var/points = 20
 	var/mob_name = "Guardian"
 	var/theme = "magic"
 	var/failure_message = "<span class='holoparasite bold'>..And draw a card! It's...blank? Maybe you should try again later.</span>"
@@ -85,27 +85,27 @@
 			switch(params["name"])
 				if("Damage")
 					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
-					if((points + (saved_stats.damage > 1 ? saved_stats.damage : 0)) >= lvl || lvl == 1)
+					if((points + (saved_stats.damage > 1 ? saved_stats.damage - 1 : 0)) >= lvl || lvl == 1)
 						saved_stats.damage = lvl
 					. = TRUE
 				if("Defense")
 					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
-					if((points + (saved_stats.defense > 1 ? saved_stats.defense : 0)) >= lvl || lvl == 1)
+					if((points + (saved_stats.defense > 1 ? saved_stats.defense - 1 : 0)) >= lvl || lvl == 1)
 						saved_stats.defense = CLAMP(text2num(params["level"]), 1, 5)
 					. = TRUE
 				if("Speed")
 					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
-					if((points + (saved_stats.speed > 1 ? saved_stats.speed : 0)) >= lvl || lvl == 1)
+					if((points + (saved_stats.speed > 1 ? saved_stats.speed - 1 : 0)) >= lvl || lvl == 1)
 						saved_stats.speed = CLAMP(text2num(params["level"]), 1, 5)
 					. = TRUE
 				if("Persistence")
 					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
-					if((points + (saved_stats.persistence > 1 ? saved_stats.persistence : 0)) >= lvl || lvl == 1)
+					if((points + (saved_stats.persistence > 1 ? saved_stats.persistence - 1 : 0)) >= lvl || lvl == 1)
 						saved_stats.persistence = CLAMP(text2num(params["level"]), 1, 5)
 					. = TRUE
 				if("Range")
 					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
-					if((points + (saved_stats.range > 1 ? saved_stats.range : 0)) >= lvl || lvl == 1)
+					if((points + (saved_stats.range > 1 ? saved_stats.range - 1 : 0)) >= lvl || lvl == 1)
 						saved_stats.range = CLAMP(text2num(params["level"]), 1, 5)
 					. = TRUE
 		if("clear_ability_major")
