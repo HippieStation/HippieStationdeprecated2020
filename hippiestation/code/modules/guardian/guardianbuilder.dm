@@ -85,28 +85,28 @@
 			switch(params["name"])
 				if("Damage")
 					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
-					if((points + (saved_stats.damage > 1 ? saved_stats.damage - 1 : 0)) >= lvl || lvl == 1)
+					if((points + (saved_stats.damage > 1 ? saved_stats.damage - 1 : 0)) >= lvl - 1 || lvl == 1)
 						saved_stats.damage = lvl
 					. = TRUE
 				if("Defense")
 					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
-					if((points + (saved_stats.defense > 1 ? saved_stats.defense - 1 : 0)) >= lvl || lvl == 1)
-						saved_stats.defense = CLAMP(text2num(params["level"]), 1, 5)
+					if((points + (saved_stats.defense > 1 ? saved_stats.defense - 1 : 0)) >= lvl - 1 || lvl == 1)
+						saved_stats.defense = lvl
 					. = TRUE
 				if("Speed")
 					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
-					if((points + (saved_stats.speed > 1 ? saved_stats.speed - 1 : 0)) >= lvl || lvl == 1)
-						saved_stats.speed = CLAMP(text2num(params["level"]), 1, 5)
+					if((points + (saved_stats.speed > 1 ? saved_stats.speed - 1 : 0)) >= lvl - 1 || lvl == 1)
+						saved_stats.speed = lvl
 					. = TRUE
 				if("Persistence")
 					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
-					if((points + (saved_stats.persistence > 1 ? saved_stats.persistence - 1 : 0)) >= lvl || lvl == 1)
-						saved_stats.persistence = CLAMP(text2num(params["level"]), 1, 5)
+					if((points + (saved_stats.persistence > 1 ? saved_stats.persistence - 1 : 0)) >= lvl - 1 || lvl == 1)
+						saved_stats.persistence = lvl
 					. = TRUE
 				if("Range")
 					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
-					if((points + (saved_stats.range > 1 ? saved_stats.range - 1 : 0)) >= lvl || lvl == 1)
-						saved_stats.range = CLAMP(text2num(params["level"]), 1, 5)
+					if((points + (saved_stats.range > 1 ? saved_stats.range - 1 : 0)) >= lvl - 1 || lvl == 1)
+						saved_stats.range = lvl
 					. = TRUE
 		if("clear_ability_major")
 			QDEL_NULL(saved_stats.ability)

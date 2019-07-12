@@ -53,7 +53,7 @@
 		L.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/king_crimson, "king_crimson", I, NONE, immune)
 	sleep(length)
 	var/mob/living/simple_animal/hostile/illusion/doppelganger/DP = pick(fakes)
-	playsound(DP.loc, 'hippiestation/sound/effects/kingcrimson_end.ogg')
+	playsound(DP.loc, 'hippiestation/sound/effects/kingcrimson_end.ogg', 100)
 	for(var/mob/living/simple_animal/hostile/illusion/doppelganger/DG in fakes)
 		DG.death()
 	for(var/mob/living/L in immune)
