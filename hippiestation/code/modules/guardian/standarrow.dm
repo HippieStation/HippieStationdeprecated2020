@@ -7,10 +7,10 @@
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
 	sharpness = IS_SHARP
-	var/kill_chance = 75 // people will still chuck these at the nearest security officer anyways, so who cares
+	var/kill_chance = 50 // people will still chuck these at the nearest security officer anyways, so who cares
 	var/in_use = FALSE
 	var/allow_special = FALSE
-	var/uses = 1
+	var/uses = 3
 
 /obj/item/stand_arrow/attack(mob/living/M, mob/living/user)
 	if(in_use)
