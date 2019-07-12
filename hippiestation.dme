@@ -2882,6 +2882,7 @@
 #include "hippiestation\code\datums\dna.dm"
 #include "hippiestation\code\datums\ert.dm"
 #include "hippiestation\code\datums\martial.dm"
+#include "hippiestation\code\datums\mind.dm"
 #include "hippiestation\code\datums\mutations.dm"
 #include "hippiestation\code\datums\progressbar.dm"
 #include "hippiestation\code\datums\shuttles.dm"

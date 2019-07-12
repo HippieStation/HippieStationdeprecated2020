@@ -35,10 +35,11 @@
 		forceMove(H)
 		sleep(15 SECONDS)
 		if(prob(kill_chance))
-			H.visible_message("<span class='danger bold'>[H] stares ahead, eyes full of fear, before collapsing lifelessly, \the [src] falling out...</span>")
+			H.visible_message("<span class='danger bold'>[H] stares ahead, eyes full of fear, before collapsing lifelessly into ash, \the [src] falling out...</span>")
 			forceMove(H.drop_location())
+			H.mind.no_cloning_at_all = TRUE
 			H.adjustCloneLoss(500)
-			H.become_husk("standarrow")
+			H.dust(TRUE)
 			in_use = FALSE
 		else
 			generate_stand(H)
