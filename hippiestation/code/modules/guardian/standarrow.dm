@@ -6,6 +6,7 @@
 	item_state = "standarrow"
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
+	w_class = WEIGHT_CLASS_BULKY
 	sharpness = IS_SHARP
 	var/kill_chance = 50 // people will still chuck these at the nearest security officer anyways, so who cares
 	var/in_use = FALSE
