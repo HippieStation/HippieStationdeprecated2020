@@ -36,12 +36,14 @@ GLOBAL_LIST_INIT(statechange_reagent_blacklist, typecacheof(list(
 	/datum/reagent/nitrous_oxide,
 	/datum/reagent/carbondioxide,
 	/datum/reagent/cryostylane,
-	/datum/reagent/consumable/ethanol/neurotoxin)
+	/datum/reagent/consumable/ethanol/neurotoxin,
+	/datum/reagent/mutationtoxin)
 ))
 
 GLOBAL_LIST_INIT(vaporchange_reagent_blacklist, typecacheof(list(
 	/datum/reagent/lube,
-	/datum/reagent/clf3)
+	/datum/reagent/clf3,
+	/datum/reagent/mutationtoxin)
 ))
 
 GLOBAL_LIST_INIT(solidchange_reagent_blacklist, typecacheof(list())) //for future use
