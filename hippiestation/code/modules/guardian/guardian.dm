@@ -189,6 +189,27 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 /mob/living/simple_animal/hostile/guardian/proc/is_deployed()
 	return loc != summoner
 
+/mob/living/simple_animal/hostile/guardian/Shoot(atom/targeted_atom)
+	if( QDELETED(targeted_atom) || targeted_atom == targets_from.loc || targeted_atom == targets_from )
+		return
+	var/turf/startloc = get_turf(targets_from)
+	var/obj/item/projectile/P = new /obj/item/projectile/guardian(startloc)
+	playsound(src, projectilesound, 100, 1)
+	if(namedatum)
+		P.color = namedatum.colour
+	P.damage = stats.damage * 1.5
+	P.starting = startloc
+	P.firer = src
+	P.fired_from = src
+	P.yo = targeted_atom.y - startloc.y
+	P.xo = targeted_atom.x - startloc.x
+	if(AIStatus != AI_ON)//Don't want mindless mobs to have their movement screwed up firing in space
+		newtonian_move(get_dir(targeted_atom, targets_from))
+	P.original = targeted_atom
+	P.preparePixelProjectile(targeted_atom, src)
+	P.fire()
+	return P
+
 /mob/living/simple_animal/hostile/guardian/AttackingTarget()
 	if(erased_time)
 		to_chat(src, "<span class='danger'>There is no time, and you cannot intefere!</span>")
@@ -476,3 +497,10 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		if(5)
 			return "A"
 	return "F"
+
+/obj/item/projectile/guardian
+	name = "crystal spray"
+	icon_state = "guardian"
+	damage = 5
+	damage_type = BRUTE
+	armour_penetration = 100

@@ -1,6 +1,7 @@
 /datum/guardianbuilder
 	var/datum/guardian_stats/saved_stats = new
 	var/mob/living/target
+	var/guardian_name
 	var/max_points = 20
 	var/points = 20
 	var/mob_name = "Guardian"
@@ -30,6 +31,7 @@
 
 /datum/guardianbuilder/ui_data(mob/user)
 	. = list()
+	.["guardian_name"] = guardian_name
 	.["name"] = mob_name
 	.["points"] = calc_points()
 	.["ratedskills"] = list()
@@ -54,6 +56,7 @@
 						level = "[saved_stats.range]"
 					))
 	.["no_ability"] = (!saved_stats.ability || !istype(saved_stats.ability))
+	.["melee"] = !saved_stats.ranged
 	.["abilities_major"] = list()
 	var/list/types = allow_special ? (subtypesof(/datum/guardian_ability/major) - /datum/guardian_ability/major/special) : (subtypesof(/datum/guardian_ability/major) - typesof(/datum/guardian_ability/major/special))
 	for(var/ability in types)
@@ -81,6 +84,8 @@
 		return
 	calc_points()
 	switch(action)
+		if("name")
+			guardian_name = stripped_input(usr, "Name your Guardian", ,"", MAX_NAME_LEN)
 		if("set")
 			switch(params["name"])
 				if("Damage")
@@ -130,6 +135,11 @@
 			QDEL_NULL(saved_stats)
 			saved_stats = new
 			. = TRUE
+		if("ranged")
+			if(points >= 3)
+				saved_stats.ranged = TRUE
+		if("melee")
+			saved_stats.ranged = FALSE
 
 /datum/guardianbuilder/proc/calc_points()
 	points = max_points
@@ -143,6 +153,8 @@
 		points -= saved_stats.speed - 1
 	if(saved_stats.range > 1)
 		points -= saved_stats.range - 1
+	if(saved_stats.ranged)
+		points -= 3
 	if(saved_stats.ability)
 		points -= saved_stats.ability.cost
 	for(var/datum/guardian_ability/minor/minor in saved_stats.minor_abilities)
@@ -162,6 +174,9 @@
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
 		var/mob/living/simple_animal/hostile/guardian/G = new(user, theme)
+		if(guardian_name)
+			G.real_name = guardian_name
+			G.name = guardian_name
 		G.summoner = user
 		G.key = C.key
 		G.mind.enslave_mind_to_creator(user)

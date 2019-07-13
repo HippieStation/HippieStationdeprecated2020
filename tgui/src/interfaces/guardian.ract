@@ -1,5 +1,11 @@
 Points: <span class='{{data.points > 0 ? "good" : "bad"}}'>{{data.points}}</span> <ui-button action='reset'>Reset</ui-button>
 <ui-display>
+	<ui-section label='Name' candystripe>
+		<ui-button action='name'>{{data.guardian_name ? data.guardian_name : "Random Name"}}</ui-button>
+	</ui-section>
+	<ui-section label='Attack Type' candystripe>
+		<ui-button action='melee' state='{{data.melee ? "selected" : null}}'>Melee</ui-button>  <ui-button action='ranged' state='{{data.melee ? (data.points >= 3 ? null : "disabled") : "selected"}}'>Ranged</ui-button> 
+	</ui-section>
 	{{#each data.ratedskills}}
 		<ui-section label='{{name}}' candystripe>
 			<ui-button action='set' state='{{level == "5" ? "selected" : null}}' params='{"name": "{{name}}", "level": "5"}'>A</ui-button>
