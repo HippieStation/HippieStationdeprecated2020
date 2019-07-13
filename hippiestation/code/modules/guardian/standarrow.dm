@@ -12,6 +12,14 @@
 	var/allow_special = FALSE
 	var/uses = 3
 
+/obj/item/stand_arrow/Initialize()
+	. = ..()
+	GLOB.poi_list += src
+
+/obj/item/stand_arrow/Destroy()
+	. = ..()
+	GLOB.poi_list -= src
+
 /obj/item/stand_arrow/attack(mob/living/M, mob/living/user)
 	if(in_use)
 		return
@@ -79,10 +87,10 @@
 				stats.speed++
 				if(stats.speed >= 5)
 					categories -= "Speed"
-			if("Persistence")
-				stats.persistence++
-				if(stats.persistence >= 5)
-					categories -= "Persistence"
+			if("Potential")
+				stats.potential++
+				if(stats.potential >= 5)
+					categories -= "Potential"
 			if("Range")
 				stats.range++
 				if(stats.range >= 5)

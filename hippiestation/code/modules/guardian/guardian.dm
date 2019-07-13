@@ -362,7 +362,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	to_chat(src, "<b>DAMAGE:</b> [level_to_grade(stats.damage)]")
 	to_chat(src, "<b>DEFENSE:</b> [level_to_grade(stats.defense)]")
 	to_chat(src, "<b>SPEED:</b> [level_to_grade(stats.speed)]")
-	to_chat(src, "<b>PERSISTENCE:</b> [level_to_grade(stats.persistence)]")
+	to_chat(src, "<b>POTENTIAL:</b> [level_to_grade(stats.potential)]")
 	to_chat(src, "<b>RANGE:</b> [level_to_grade(stats.range)]")
 	if(stats.ability)
 		to_chat(src, "<b>SPECIAL ABILITY:</b> [stats.ability.name] - [stats.ability.desc]")

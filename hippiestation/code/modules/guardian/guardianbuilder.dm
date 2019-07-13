@@ -48,8 +48,8 @@
 						level = "[saved_stats.speed]"
 					))
 	.["ratedskills"] += list(list(
-						name = "Persistence",
-						level = "[saved_stats.persistence]"
+						name = "Potential",
+						level = "[saved_stats.potential]"
 					))
 	.["ratedskills"] += list(list(
 						name = "Range",
@@ -103,10 +103,10 @@
 					if((points + (saved_stats.speed > 1 ? saved_stats.speed - 1 : 0)) >= lvl - 1 || lvl == 1)
 						saved_stats.speed = lvl
 					. = TRUE
-				if("Persistence")
+				if("Potential")
 					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
-					if((points + (saved_stats.persistence > 1 ? saved_stats.persistence - 1 : 0)) >= lvl - 1 || lvl == 1)
-						saved_stats.persistence = lvl
+					if((points + (saved_stats.potential > 1 ? saved_stats.potential - 1 : 0)) >= lvl - 1 || lvl == 1)
+						saved_stats.potential = lvl
 					. = TRUE
 				if("Range")
 					var/lvl = CLAMP(text2num(params["level"]), 1, 5)
@@ -147,8 +147,8 @@
 		points -= saved_stats.damage - 1
 	if(saved_stats.defense > 1)
 		points -= saved_stats.defense - 1
-	if(saved_stats.persistence > 1)
-		points -= saved_stats.persistence - 1
+	if(saved_stats.potential > 1)
+		points -= saved_stats.potential - 1
 	if(saved_stats.speed > 1)
 		points -= saved_stats.speed - 1
 	if(saved_stats.range > 1)

@@ -29,7 +29,7 @@
 			to_chat(guardian, "<span class='danger'><B>Success! Bomb armed!</B></span>")
 			bomb_cooldown = world.time + 200
 			B.spawner = guardian
-			B.disguise(A, master_stats.persistence * 18 * 10) // 90 seconds at level A persistence, 18 at Level F persistence.
+			B.disguise(A, master_stats.potential * 18 * 10) // 90 seconds at level A persistence, 18 at Level F persistence.
 		else
 			to_chat(src, "<span class='danger'><B>Your powers are on cooldown! You must wait 20 seconds between bombs.</B></span>")
 

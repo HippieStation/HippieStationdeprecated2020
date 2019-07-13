@@ -16,7 +16,7 @@
 /datum/guardian_ability/major/assassin/Apply()
 	. = ..()
 	guardian.do_the_cool_invisible_thing = FALSE
-	stealthcooldown = 75 / master_stats.persistence
+	stealthcooldown = 75 / master_stats.potential
 
 /datum/guardian_ability/major/assassin/Health(amount)
 	if(amount > 0)

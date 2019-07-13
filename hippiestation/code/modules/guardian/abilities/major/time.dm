@@ -8,7 +8,7 @@
 /datum/guardian_ability/major/time/Apply()
 	. = ..()
 	var/obj/effect/proc_holder/spell/self/erase_time/S = spell
-	S.length = master_stats.persistence * 2 * 10
+	S.length = master_stats.potential * 2 * 10
 
 /obj/effect/proc_holder/spell/self/erase_time
 	name = "Erase Time"

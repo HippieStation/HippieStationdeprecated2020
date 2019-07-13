@@ -15,12 +15,12 @@
 
 /datum/guardian_ability/major/gravity/Recall()
 	for(var/datum/component/C in gravito_targets)
-		if(get_dist(src, C.parent) > (master_stats.persistence * 2))
+		if(get_dist(src, C.parent) > (master_stats.potential * 2))
 			remove_gravity(C)
 
 /datum/guardian_ability/major/gravity/proc/recheck_distances()
 	for(var/datum/component/C in gravito_targets)
-		if(get_dist(src, C.parent) > (master_stats.persistence * 2))
+		if(get_dist(src, C.parent) > (master_stats.potential * 2))
 			remove_gravity(C)
 
 /datum/guardian_ability/major/gravity/AltClickOn(atom/A)
@@ -45,5 +45,5 @@
 	qdel(C)
 
 /datum/guardian_ability/major/gravity/proc/__distance_check(atom/movable/AM, OldLoc, Dir, Forced)
-	if(get_dist(src, AM) > (master_stats.persistence * 2))
+	if(get_dist(src, AM) > (master_stats.potential * 2))
 		remove_gravity(AM.GetComponent(/datum/component/forced_gravity))

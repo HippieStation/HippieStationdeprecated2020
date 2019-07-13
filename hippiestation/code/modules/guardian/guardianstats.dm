@@ -2,7 +2,7 @@
 	var/damage = 1
 	var/defense = 1
 	var/speed = 1
-	var/persistence = 1
+	var/potential = 1
 	var/range = 1
 	var/ranged = FALSE
 	var/datum/guardian_ability/major/ability
