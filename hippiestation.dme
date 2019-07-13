@@ -3269,6 +3269,7 @@
 #include "hippiestation\code\modules\guardian\abilities\major\time.dm"
 #include "hippiestation\code\modules\guardian\abilities\minor\snares.dm"
 #include "hippiestation\code\modules\guardian\abilities\minor\teleport.dm"
+#include "hippiestation\code\modules\guardian\abilities\special\pocket.dm"
 #include "hippiestation\code\modules\hydroponics\biogenerator.dm"
 #include "hippiestation\code\modules\hydroponics\buttflower.dm"
 #include "hippiestation\code\modules\hydroponics\gene_modder.dm"

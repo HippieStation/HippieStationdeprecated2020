@@ -48,11 +48,13 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/datum/guardian_stats/stats
 	var/summoner_visible = TRUE
 	var/battlecry = "AT"
+	var/do_the_cool_invisible_thing = TRUE
+	var/erased_time = FALSE
+	// ability stuff below
 	var/list/snares = list()
 	var/obj/structure/receiving_pad/beacon
 	var/beacon_cooldown = 0
-	var/do_the_cool_invisible_thing = TRUE
-	var/erased_time = FALSE
+	var/list/pocket_dim
 
 /mob/living/simple_animal/hostile/guardian/Initialize(mapload, theme)
 	GLOB.parasites += src
