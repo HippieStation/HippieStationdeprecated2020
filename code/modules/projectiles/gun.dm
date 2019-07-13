@@ -40,6 +40,7 @@
 	var/weapon_weight = WEAPON_LIGHT
 	var/spread = 0						//Spread induced by the gun itself.
 	var/randomspread = 1				//Set to 0 for shotguns. This is used for weapons that don't fire all their bullets at once.
+	var/canshoot = 1 //This works better than a delay system as you can dynamically break a gun.
 
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
@@ -196,6 +197,10 @@
 			return
 
 	if(!can_shoot()) //Just because you can pull the trigger doesn't mean it can shoot.
+		shoot_with_empty_chamber(user)
+		return
+
+	if(canshoot == 0) //Check if the gun has been disabled.
 		shoot_with_empty_chamber(user)
 		return
 
@@ -531,6 +536,7 @@
 		chambered.BB.damage *= 5
 
 	process_fire(target, user, TRUE, params)
+
 
 /obj/item/gun/proc/unlock() //used in summon guns and as a convience for admins
 	if(pin)

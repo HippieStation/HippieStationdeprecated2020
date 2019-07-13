@@ -24,6 +24,8 @@
 	//Multi State weaponry rework vars
 	var/multistate = 0 //Is this gun a multistate gun?
 	var/multistateicon = "" //Dont touch this.
+
+
 /obj/item/gun/energy/emp_act(severity)
 	. = ..()
 	if(!(. & EMP_PROTECT_CONTENTS))
