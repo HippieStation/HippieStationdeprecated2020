@@ -69,7 +69,7 @@ GLOBAL_VAR_INIT(pocket_dim, 1)
 				L.pulling.x = last_x
 				L.pulling.y = last_y
 				L.pulling.z = last_z
-			L.visible_message("<span class='danger'>[L]'s body suddenly swirls into existence, [(pull_the_pulling_thing_too && L.pulling) ? "bringing [L.pulling] with it, " : ""]as if emergingfrom a vortex!</span>")
+			L.visible_message("<span class='danger'>[L]'s body suddenly swirls into existence, [(pull_the_pulling_thing_too && L.pulling) ? "bringing [L.pulling] with it, " : ""]as if emerging from a vortex!</span>")
 	else
 		L.visible_message("<span class='danger'>[L]'s body swirls up and disappears, [(pull_the_pulling_thing_too && L.pulling) ? "pulling [L.pulling] in with it, " : ""]as if sucked into a vortex!</span>")
 		last_x = L.x
