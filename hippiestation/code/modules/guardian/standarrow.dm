@@ -57,7 +57,7 @@
 
 /obj/item/stand_arrow/proc/generate_stand(mob/living/carbon/human/H)
 	var/points = 15
-	var/list/categories = list("Damage", "Defense", "Speed", "Persistence", "Range") // will be shuffled every iteration
+	var/list/categories = list("Damage", "Defense", "Speed", "Potential", "Range") // will be shuffled every iteration
 	var/list/majors = allow_special ? (subtypesof(/datum/guardian_ability/major) - /datum/guardian_ability/major/special) : (subtypesof(/datum/guardian_ability/major) - typesof(/datum/guardian_ability/major/special))
 	var/list/major_weighted = list()
 	for(var/M in majors)
