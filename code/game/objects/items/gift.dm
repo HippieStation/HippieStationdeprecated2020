@@ -121,7 +121,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 /obj/item/a_gift/gun/get_gift_type()
 
 	var/gun_type = pick(GLOB.summoned_guns)
-	var/obj/item/gun/G = new gun_type(get_turf(H))
-	if (istype(G)) // The list contains some non-gun type guns like the speargun which do not have this proc
-		G.unlock()
-	return G
+	return gun_type
+/obj/item/a_gift/attack_self(mob/M)
+	..()
+	I.unlock()
