@@ -123,5 +123,11 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	var/gun_type = pick(GLOB.summoned_guns)
 	return gun_type
 /obj/item/a_gift/attack_self(mob/M)
-	..()
-	I.unlock()
+	qdel(src)
+	var/obj/item/gun/I = new contains_type(get_turf(M))
+	M.visible_message("<span class='notice'>[M] unwraps \the [src], finding \a [I] inside!</span>")
+	I.investigate_log("([I.type]) was found in a present by [key_name(M)].", INVESTIGATE_PRESENTS)
+	M.put_in_hands(I)
+	I.add_fingerprint(M)
+	if (istype(G)) // The list contains some non-gun type guns like the speargun which do not have this proc
+		G.unlock()
