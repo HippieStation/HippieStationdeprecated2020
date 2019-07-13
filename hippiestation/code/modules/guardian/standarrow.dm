@@ -114,6 +114,12 @@
 		H.verbs += /mob/living/proc/guardian_comm
 		H.verbs += /mob/living/proc/guardian_recall
 		H.verbs += /mob/living/proc/guardian_reset
+		uses--
+		H.visible_message("<span class='danger bold'>\The [src] falls out of [H]!</span>")
+		forceMove(H.drop_location())
+		if(!uses)
+			visible_message("<span class='warning'>[src] falls apart!</span>")
+			qdel(src)
 	else
 		addtimer(CALLBACK(src, .proc/get_stand, H, stats), 90 SECONDS) // lmao
 
