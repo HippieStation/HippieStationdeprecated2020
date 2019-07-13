@@ -267,7 +267,7 @@ obj/item/projectile/beam/gauss_overdrive/on_hit(atom/target, blocked = FALSE) //
 	if(ishuman(H))
 		var/hit_zone = H.check_limb_hit(def_zone)
 		var/obj/item/bodypart/BP = H.get_bodypart(hit_zone)
-		if(prob(20) && hit_zone == "chest" || hit_zone == "head") //20 percent chance to decap/disembowel.
+		if(prob(20) && hit_zone == "chest" || prob(20) && hit_zone == "head") //20 percent chance to decap/disembowel.
 			BP.dismember()
 			playsound(H.loc, 'sound/misc/splort.ogg', 60, 1)
 			var/obj/effect/decal/cleanable/blood/T = new/obj/effect/decal/cleanable/blood
