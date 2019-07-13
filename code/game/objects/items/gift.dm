@@ -111,3 +111,17 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	var/gift_type = pick(GLOB.possible_gifts)
 
 	return gift_type
+
+
+
+/obj/item/a_gift/gun
+	name = "christmas gift"
+	desc = "It's vaguely gun shaped"
+
+/obj/item/a_gift/gun/get_gift_type()
+
+	var/gun_type = pick(GLOB.summoned_guns)
+	var/obj/item/gun/G = new gun_type(get_turf(H))
+	if (istype(G)) // The list contains some non-gun type guns like the speargun which do not have this proc
+		G.unlock()
+	return G
