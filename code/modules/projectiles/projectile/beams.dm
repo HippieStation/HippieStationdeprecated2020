@@ -261,9 +261,10 @@ obj/item/projectile/beam/gauss_overdrive/on_hit(atom/target, blocked = FALSE) //
 	if(!ismob(H))
 		do_sparks(2, TRUE, src)
 		new /obj/item/stack/broken_rods(get_turf(src))
-	if(H.health < 10 && !iscarbon(H) || ismonkey(H) && H.health < 10) //Gibs those inferior simple_animals if they are low enough health
-		visible_message("<span class='warning'>[H] is obliterated by the gauss shot!</span>")
-		H.gib()
+	if(ismob(H) && !iscarbon(H) || ismonkey(H)) //Gibs those inferior simple_animals if they are low enough health
+		if(H.health < 10)
+			visible_message("<span class='warning'>[H] is obliterated by the gauss shot!</span>")
+			H.gib()
 	if(ishuman(H))
 		var/hit_zone = H.check_limb_hit(def_zone)
 		var/obj/item/bodypart/BP = H.get_bodypart(hit_zone)
