@@ -13,6 +13,9 @@
 
 /datum/guardian_ability/major/healing/Attack(atom/target)
 	if(mode)
+		if(target == guardian)
+			to_chat(guardian, "<span class='danger bold'>You can't heal yourself!</span>")
+			return TRUE
 		if(isliving(target))
 			var/mob/living/L = target
 			guardian.do_attack_animation(L)
