@@ -18,7 +18,7 @@
 
 
 /datum/status_effect/incapacitating/sleeping/tick()
-	if(owner.health > owner.crit_threshold) // shittier code but at least it verified works.
+	if(owner.health > HEALTH_THRESHOLD_FULLCRIT) // shittier code but at least it verified works.
 		var/healing = 10 //	healing/100 per tick. 200 ticks in 40 seconds of sleep
 		if((locate(/obj/structure/bed) in owner.loc)) //if in bed +10%
 			healing +=10
