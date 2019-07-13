@@ -15,7 +15,7 @@ GLOBAL_VAR_INIT(pocket_dim, 1)
 /datum/guardian_ability/major/special/pocket/Apply()
 	if(!LAZYLEN(guardian.pocket_dim))
 		var/list/errorList = list()
-		var/pocket_dim = SSmapping.LoadGroup(errorList, "Pocket Dimension [GLOB.pocket_dim]", "templates", "pocket_dimension.dmm", default_traits = list("Pocket Dimension [GLOB.pocket_dim]" = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0), silent = TRUE)
+		var/pocket_dim = SSmapping.LoadGroup(errorList, "Pocket Dimension [GLOB.pocket_dim]", "templates", "pocket_dimension.dmm", default_traits = list("Pocket Dimension" = TRUE, "Pocket Dimension [GLOB.pocket_dim]" = TRUE, ZTRAIT_BOMBCAP_MULTIPLIER = 0), silent = TRUE)
 		if(errorList.len)	// reebe failed to load
 			message_admins("A pocket dimension failed to load!")
 			log_game("A pocket dimension failed to load!")
@@ -28,6 +28,10 @@ GLOBAL_VAR_INIT(pocket_dim, 1)
 	var/obj/effect/proc_holder/spell/self/pocket_dim/S = spell
 	if(S && istype(S))
 		S.guardian = guardian
+		var/turf/T = get_turf(guardian)
+		S.last_x = T.x
+		S.last_y = T.y
+		S.last_z = T.z
 
 
 /obj/effect/proc_holder/spell/self/pocket_dim
@@ -59,9 +63,10 @@ GLOBAL_VAR_INIT(pocket_dim, 1)
 	var/pull_the_pulling_thing_too = TRUE
 	if(isliving(L.pulling) && L.grab_state < GRAB_AGGRESSIVE)
 		pull_the_pulling_thing_too = FALSE
-	if(L.z == pocket)
+	new /obj/effect/temp_visual/bluespace_fissure(get_turf(L))
+	if(SSmapping.level_trait(L.z, "Pocket Dimension"))
 		if(last_x && last_y && last_z)
-			take_effects(L)	
+			take_effects(L)
 			L.x = last_x
 			L.y = last_y
 			L.z = last_z

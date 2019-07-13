@@ -118,3 +118,7 @@
 
 /obj/item/stand_arrow/rare
 	allow_special = TRUE
+
+/obj/item/stand_arrow/rare/examine(mob/user)
+	. = ..()
+	. += "<span class='hypnophrase italics'>It radiates with power...</span>"
