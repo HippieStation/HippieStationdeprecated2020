@@ -2,6 +2,7 @@
 	name = "THE WORLD"
 	desc = "Stop time across the entire station, for a varianle amount of seconds."
 	clothes_req = FALSE
+	staff_req = TRUE
 	invocation = "ZA WARUDO!" // i'm conflicted between this and "BRING FORTH THE WORLD!"
 	invocation_type = "shout"
 	action_icon_state = "time"
