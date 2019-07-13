@@ -127,7 +127,7 @@
 						if(M && (M.stat != DEAD) && (M.client))
 							bp = 500000
 				if((assembly.battery.maxcharge-assembly.battery.charge) / GLOB.CELLRATE > bp)
-					if(reagents.remove_reagent("blood", 1))
+					if(reagents.remove_reagent(/datum/reagent/blood, 1))
 						assembly.give_power(bp)
 			for(var/I in fuel)
 				if((assembly.battery.maxcharge-assembly.battery.charge) / GLOB.CELLRATE > fuel[I])

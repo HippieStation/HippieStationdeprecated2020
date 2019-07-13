@@ -55,6 +55,7 @@
 		add_overlay("deagle_magazine")
 	else
 		cut_overlays()//hippie end -- bring back old gun icons
+	icon_state = "[initial(icon_state)][chambered ? "" : "-e"]"//hippie end -- bring back old gun icons
 
 /obj/item/gun/ballistic/automatic/pistol/deagle/gold
 	desc = "A gold plated Desert Eagle folded over a million times by superior martian gunsmiths. Uses .50 AE ammo."

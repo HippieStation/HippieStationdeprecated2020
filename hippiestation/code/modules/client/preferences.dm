@@ -4,11 +4,12 @@
 
 /datum/preferences
 	features = list("mcolor" = "FFF", "tail_lizard" = "Smooth", "tail_human" = "None", "snout" = "Round", "horns" = "None", "ears" = "None", "wings" = "None", "frills" = "None", "spines" = "None", "body_markings" = "None", "legs" = "Normal Legs", "moth_wings" = "Plain", "ipc_screen" = "Sunburst")
+	max_save_slots = 6
+	friendlyGenders = list("Male" = "male", "Female" = "female")
 	var/gear_points = 5
 	var/list/gear_categories
 	var/list/chosen_gear
 	var/gear_tab
-	max_save_slots = 6
 	var/hippie_toggles = HIPPIE_TOGGLES_DEFAULT // our own toggles.
 
 /datum/preferences/New(client/C)

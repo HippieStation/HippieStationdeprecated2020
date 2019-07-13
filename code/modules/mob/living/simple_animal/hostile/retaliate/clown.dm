@@ -109,7 +109,7 @@
 	attacktext = "cheers up"
 	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/item/soap, /obj/item/seeds/banana/bluespace)
 	banana_type = /obj/item/grown/bananapeel
-	attack_reagent = "laughter"
+	attack_reagent = /datum/reagent/consumable/laughter
 
 /mob/living/simple_animal/hostile/retaliate/clown/fleshclown
 	name = "Fleshclown"
@@ -216,11 +216,7 @@
 	attacktext = "ferociously mauls"
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/xeno/bodypartless, /obj/effect/particle_effect/foam, /obj/item/soap)
-	attack_reagent = "dizzysolution"
-
-/mob/living/simple_animal/hostile/retaliate/clown/clownhulk/destroyer
 	name = "The Destroyer"
-	desc = "An ancient being born of arcane honking."
 	icon_state = "destroyer"
 	icon_living = "destroyer"
 	response_disarm = "bounces off of"
@@ -274,4 +270,4 @@
 	speed = 20
 	attacktext = "bounces off of"
 	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/xeno/bodypartless, /obj/effect/particle_effect/foam, /obj/item/soap, /obj/effect/gibspawner/generic, /obj/effect/gibspawner/generic/animal, /obj/effect/gibspawner/human/bodypartless, /obj/effect/gibspawner/human)
-	attack_reagent = "mindbreaker"
+	attack_reagent = /datum/reagent/toxin/mindbreaker

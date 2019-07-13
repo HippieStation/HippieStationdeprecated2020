@@ -40,7 +40,7 @@
 
 /mob/living/simple_animal/hostile/true_changeling/adminbus/gibs/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/redirect, list(COMSIG_COMPONENT_CLEAN_ACT = CALLBACK(src, .proc/hurt_gibs)))
+	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_ACT, .proc/hurt_gibs)
 
 /mob/living/simple_animal/hostile/true_changeling/adminbus/gibs/Move(atom/newloc, direct)
 	. = ..()

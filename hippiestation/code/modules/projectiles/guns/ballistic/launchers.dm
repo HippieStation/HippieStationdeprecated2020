@@ -16,7 +16,7 @@
 	var/charging = FALSE
 	var/charge_time = 10
 	var/draw_sound = "sound/weapons/draw_bow.ogg"
-	var/insert_sound = "sound/weapons/bulletinsert.ogg"
+	var/insert_sound = 'sound/weapons/bulletinsert.ogg'
 	weapon_weight = WEAPON_MEDIUM
 	spawnwithmagazine = FALSE
 	casing_ejector = FALSE

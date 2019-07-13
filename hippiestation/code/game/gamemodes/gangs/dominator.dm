@@ -202,6 +202,8 @@
 
 /obj/machinery/dominator/proc/excessive_walls_check() // why the fuck was this even a global proc...
 	var/open = FALSE
+	if(isclosedturf(loc))
+		return TRUE
 	for(var/turf/T in view(3, src))
 		if(!isclosedturf(T))
 			open++

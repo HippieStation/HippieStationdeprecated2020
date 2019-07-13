@@ -14,6 +14,14 @@
 	cost = 5
 	surplus = 90
 
+/datum/uplink_item/stealthy_tools/thermal
+	name = "Thermal Imaging Goggles"
+	desc = "These goggles allow you to see organisms through walls by capturing the upper portion of the infrared light spectrum, \
+			emitted as heat and light by objects. Hotter objects, such as warm bodies, cybernetic organisms \
+			and artificial intelligence cores emit more of this light than cooler objects like walls and airlocks."
+	item = /obj/item/clothing/glasses/thermal/meson
+	cost = 4
+
 /* Implants */
 /datum/uplink_item/implants/adrenal
 	name = "Combat Stimulant Implant"
@@ -173,18 +181,14 @@
 	cost = 8
 	exclude_modes = list() // Has no reason to be excluded any more.
 
-/datum/uplink_item/stealthy_tools/chameleon
-	cost = 4
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor, /datum/game_mode/infiltration)
-	player_minimum = 0
-
 /datum/uplink_item/stealthy_tools/syndigaloshes
-	item = /obj/item/clothing/shoes/chameleon/noslip // you have to be a real doofus to forget to add the /noslip part
-	cost = 2
+	name = "No-Slip Brown Shoes"
+	item = /obj/item/clothing/shoes/sneakers/brown/noslip
+	cost = 3
 	player_minimum = 0
 
 /datum/uplink_item/stealthy_tools/syndigaloshes/nuke
-	cost = 2
+	cost = 3
 	player_minimum = 0
 
 /datum/uplink_item/stealthy_tools/mulligan
@@ -195,6 +199,7 @@
 
 /datum/uplink_item/device_tools/syndicate_bomb
 	cost = 10
+	exclude_modes = list(/datum/game_mode/infiltration) //no blowing shit up
 
 /datum/uplink_item/device_tools/syndicate_detonator
 	cost = 1 //Nuke ops already spawn with one
@@ -209,11 +214,7 @@
 	cost = 1
 	surplus = 60
 
-/datum/uplink_item/implants/microbomb
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor)
-
 /datum/uplink_item/implants/macrobomb
-	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/traitor)
 	restricted = FALSE
 
 /datum/uplink_item/dangerous/hockey
@@ -425,9 +426,6 @@
 /datum/uplink_item/device_tools/singularity_beacon
 	exclude_modes = list(/datum/game_mode/infiltration) //no.
 
-/datum/uplink_item/device_tools/syndicate_bomb
-	exclude_modes = list(/datum/game_mode/infiltration) //no blowing shit up
-
 /datum/uplink_item/cyber_implants/thermals
 	include_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
 
@@ -517,5 +515,5 @@
 	desc = "An electric katana that weakens the molecular bonds of whatever it touches. Perfect for slicing off the limbs of your coworkers. \
 	Avoid using a multitool on it."
 	item = /obj/item/storage/belt/hfblade
-	cost = 8
+	cost = 9
 	surplus = 15

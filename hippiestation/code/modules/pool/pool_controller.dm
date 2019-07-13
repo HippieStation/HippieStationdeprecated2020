@@ -91,7 +91,7 @@
 						var/turf/open/pool/P = I
 						if(P.reagents)
 							P.reagents.clear_reagents()
-							P.reagents.add_reagent(R.id, 100)
+							P.reagents.add_reagent(R.type, 100)
 					if(GLOB.adminlog)
 						log_game("[key_name(user)] has changed the [src] chems to [R.name]")
 						message_admins("[key_name_admin(user)] has changed the [src] chems to [R.name].")
@@ -142,7 +142,7 @@
 				W.reagents.reaction(swimee, VAPOR, 0.03) //3 percent
 				for(var/Q in W.reagents.reagent_list)
 					var/datum/reagent/R = Q
-					swimee.reagents.add_reagent(R.id, 0.5) //osmosis
+					swimee.reagents.add_reagent(R.type, 0.5) //osmosis
 		for(var/obj/objects in W)
 			if(beaker && cur_reagent && W.reagents)
 				W.reagents.reaction(objects, VAPOR, 1)

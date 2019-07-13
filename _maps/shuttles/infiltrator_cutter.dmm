@@ -458,9 +458,6 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "ba" = (
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "Syndicate Cutter APC";
@@ -475,6 +472,7 @@
 	pixel_x = 24;
 	req_access = 150
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/hippie/stealthcruiser)
 "bb" = (
@@ -532,7 +530,7 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "bg" = (
-/obj/structure/chair/office/dark{
+/obj/structure/chair/office{
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral{
@@ -562,7 +560,7 @@
 /turf/open/floor/plasteel/dark,
 /area/shuttle/hippie/stealthcruiser)
 "bi" = (
-/obj/structure/chair/office/dark{
+/obj/structure/chair/office{
 	dir = 4
 	},
 /obj/machinery/turretid{
@@ -601,21 +599,17 @@
 /obj/machinery/power/smes{
 	charge = 5e+006
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/hippie/stealthcruiser)
 "bl" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/hippie/stealthcruiser)
 "bm" = (
@@ -782,9 +776,6 @@
 /obj/machinery/power/terminal{
 	dir = 1
 	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/metal/twenty,
 /obj/item/stack/sheet/glass{
@@ -801,6 +792,7 @@
 /obj/item/stack/sheet/mineral/plasma{
 	amount = 20
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/shuttle/hippie/stealthcruiser)
 "bA" = (
@@ -985,7 +977,7 @@
 "bQ" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
-/obj/item/stack/cable_coil/yellow,
+/obj/item/stack/cable_coil,
 /obj/item/stock_parts/cell/high,
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
