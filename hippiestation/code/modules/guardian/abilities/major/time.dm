@@ -45,6 +45,7 @@
 		L.opacity = FALSE
 		L.mouse_opacity = FALSE
 		L.density = FALSE
+		L.alpha = 128
 		if(isguardian(L))
 			var/mob/living/simple_animal/hostile/guardian/G = L
 			G.erased_time = TRUE
@@ -57,6 +58,7 @@
 	for(var/mob/living/simple_animal/hostile/illusion/doppelganger/DG in fakes)
 		DG.death()
 	for(var/mob/living/L in immune)
+		SEND_SOUND(L, sound('hippiestation/sound/effects/kingcrimson_end.ogg'))
 		if(isguardian(L))
 			var/mob/living/simple_animal/hostile/guardian/G = L
 			G.erased_time = FALSE
@@ -64,6 +66,7 @@
 		L.opacity = initial(L.opacity)
 		L.mouse_opacity = initial(L.mouse_opacity)
 		L.density = initial(L.density)
+		L.alpha = initial(L.alpha)
 		L.remove_alt_appearance("king_crimson")
 		REMOVE_TRAIT(L, TRAIT_PACIFISM, "king_crimson")
 
