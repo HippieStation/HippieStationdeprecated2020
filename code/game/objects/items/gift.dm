@@ -129,5 +129,5 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	I.investigate_log("([I.type]) was found in a present by [key_name(M)].", INVESTIGATE_PRESENTS)
 	M.put_in_hands(I)
 	I.add_fingerprint(M)
-	if (istype(G)) // The list contains some non-gun type guns like the speargun which do not have this proc
-		G.unlock()
+	if (istype(I)) // The list contains some non-gun type guns like the speargun which do not have this proc
+		I.unlock()
