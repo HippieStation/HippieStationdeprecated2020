@@ -1,0 +1,5 @@
+author: "Manly Dwarf"
+delete-after: True
+changes: 
+  - bugfix: "you know at first I thought I was being smug but then I realized the code didn't work at all, so the joke is on me. sleeping will now actually heal you again, assuming you aren't in deepcrit"
+  - bugfix: "meaning that you should be fine if you're in softcrit, you can still sleep there"
