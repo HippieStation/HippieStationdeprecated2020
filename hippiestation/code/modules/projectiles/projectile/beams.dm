@@ -20,7 +20,7 @@
 	hitsound = 'hippiestation/sound/weapons/rodgun_pierce.ogg'
 	hitsound_wall = 'sound/weapons/effects/batreflect2.ogg'
 
-/obj/item/projectile/beam/gauss_normal/proc/Impale(mob/living/carbon/human/H) //Imaples the target, if next to a wall impales them onto that as well.
+/obj/item/projectile/beam/gauss_normal/proc/Impale(mob/living/carbon/human/H) //Imaples the target,
 	if (H)
 		var/hit_zone = H.check_limb_hit(def_zone)
 		var/obj/item/bodypart/BP = H.get_bodypart(hit_zone)
@@ -31,20 +31,10 @@
 			R.forceMove(H)
 			BP.embedded_objects += R
 			H.update_damage_overlays()
-			visible_message("<span class='warning'>The [R] has embedded into [H]'s [BP.name]!</span>",
+			H.visible_message("<span class='warning'>The [R] has embedded into [H]'s [BP.name]!</span>",
 							"<span class='userdanger'>You feel [R] lodge into your [BP.name]!</span>")
 			playsound(H, 'hippiestation/sound/weapons/rodgun_pierce.ogg', 50, 1)
 			H.emote("scream")
-			var/turf/T = get_step(H, dir)
-			if (istype(T) && T.density && !H.pinned_to) // Can only pin someone once
-				H.pinned_to = T
-				T.pinned = H
-				H.anchored = TRUE
-				H.update_mobility()
-				H.do_pindown(T, 1)
-				R.pinned = T
-
-			log_combat(firer, H, "shot", src, addition="[H.pinned_to ? " PINNED" : ""]")
 
 /obj/item/projectile/beam/gauss_normal/on_hit(atom/target, blocked = FALSE)
 	..()
@@ -79,23 +69,23 @@ obj/item/projectile/beam/gauss_overdrive/on_hit(atom/target, blocked = FALSE) //
 		new /obj/item/stack/broken_rods(get_turf(src))
 	if(ismob(H) && !iscarbon(H) || ismonkey(H)) //Gibs those inferior simple_animals if they are low enough health
 		if(H.health < 10)
-			visible_message("<span class='warning'>[H] is obliterated by the gauss shot!</span>")
+			H.visible_message("<span class='warning'>[H] is obliterated by the gauss shot!</span>")
 			H.gib()
 	if(ishuman(H))
 		var/hit_zone = H.check_limb_hit(def_zone)
 		var/obj/item/bodypart/BP = H.get_bodypart(hit_zone)
-		if(prob(20) && hit_zone == "chest" || prob(20) && hit_zone == "head") //20 percent chance to decap/disembowel.
+		if(prob(10) && hit_zone == "chest" || prob(10) && hit_zone == "head") //10 percent chance to decap/disembowel.
 			BP.dismember()
 			playsound(H.loc, 'sound/misc/splort.ogg', 60, 1)
 			var/obj/effect/decal/cleanable/blood/T = new/obj/effect/decal/cleanable/blood
 			T.loc = H.loc
-			visible_message("<span class='warning'>[H]'s [BP.name] is obliterated by the gauss shot!</span>",
+			H.visible_message("<span class='warning'>[H]'s [BP.name] is obliterated by the gauss shot!</span>",
 									"<span class='userdanger'>Your [BP.name] is obliterated by the gauss shot!</span>") //oof
-		if(hit_zone != "chest" && hit_zone != "head") //Only dismember arms and legs!
+		if(hit_zone != "chest" && hit_zone != "head" && prob(80)) //Only dismember arms and legs!
 			BP.dismember()
 			playsound(H.loc, 'sound/misc/splort.ogg', 60, 1)
 			var/obj/effect/decal/cleanable/blood/T = new/obj/effect/decal/cleanable/blood
 			T.loc = H.loc
-			visible_message("<span class='warning'>[H]'s [BP.name] is obliterated by the gauss shot!</span>",
+			H.visible_message("<span class='warning'>[H]'s [BP.name] is obliterated by the gauss shot!</span>",
 									"<span class='userdanger'>Your [BP.name] is obliterated by the gauss shot!</span>") //oof
 

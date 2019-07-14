@@ -461,7 +461,6 @@
 	var/ammo = 50
 	name = "gauss rifle"
 	icon_state = "gauss"
-	w_class = 4
 	lefthand_file = 'hippiestation/icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/weapons/guns_righthand.dmi'
 	item_state = "gauss"
