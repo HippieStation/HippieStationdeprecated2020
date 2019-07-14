@@ -59,7 +59,7 @@
 ///GAUSS RIFLE///
 /datum/techweb_node/electromagnetic_weapons
 	id = "gauss_rifle"
-	display_name = "Gauss Rifle MK1"
+	display_name = "Electromagnetic Weaponry(Gauss Rifle MK1)"
 	description = "The gauss rifle, electromagnetic weaponry at its finest. You won't regret researching this."
 	prereq_ids = list("adv_weaponry", "emp_adv")
 	design_ids = list("gaussrifle")
