@@ -236,12 +236,12 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		if(stats.ability)
 			stats.ability.AfterAttack(target)
 
-/mob/living/simple_animal/hostile/guardian/CanMobAutoclick(object, location, params)
+/*/mob/living/simple_animal/hostile/guardian/CanMobAutoclick(object, location, params)
 	if(istype(object, /obj/screen) || istype(object, /obj/effect))
 		return FALSE
 	if(erased_time)
 		return FALSE
-	return atk_cooldown
+	return atk_cooldown*/
 
 /mob/living/simple_animal/hostile/guardian/death()
 	..()
