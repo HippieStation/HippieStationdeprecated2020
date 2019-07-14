@@ -3507,6 +3507,7 @@
 #include "hippiestation\code\modules\research\designs\nanite_designs.dm"
 #include "hippiestation\code\modules\research\designs\power_designs.dm"
 #include "hippiestation\code\modules\research\designs\reagent_forge_designs.dm"
+#include "hippiestation\code\modules\research\designs\weapon_designs.dm"
 #include "hippiestation\code\modules\research\nanites\nanite_programs.dm"
 #include "hippiestation\code\modules\research\nanites\nanite_programs\sensor.dm"
 #include "hippiestation\code\modules\research\techweb\_techweb.dm"
