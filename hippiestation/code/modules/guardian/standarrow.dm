@@ -29,6 +29,9 @@
 	if(!ishuman(M))
 		to_chat("<span class='italics warning'>You can't stab [M], it won't work!</span>")
 		return
+	if(M.stat == DEAD)
+		to_chat("<span class='italics warning'>You can't stab [M], they're already dead!</span>")
+		return
 	var/mob/living/carbon/human/H = M
 	user.visible_message("<span class='warning'>[user] prepares to stab [H] with \the [src]!</span>", "<span class='notice'>You raise \the [src] into the air.</span>")
 	if(do_mob(user, H, 5 SECONDS, uninterruptible=FALSE))
