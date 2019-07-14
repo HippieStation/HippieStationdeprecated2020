@@ -355,10 +355,3 @@
 	var/area/A = get_area(src)
 	if(!A.lightswitch || !A.light_power)
 		charge = 0 //For naturally depowered areas, we start with no power
-
-/obj/item/stock_parts/cell/gauss
-	name = "gauss magnetic core"
-	desc = "A powerful energy core capable of creating the magnetic power for the gauss rifle."
-	icon_state = "bscell"
-	maxcharge = 30000
-	chargerate = 3000

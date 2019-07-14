@@ -83,7 +83,6 @@
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/accelerator)
 	pin = null
 	ammo_x_offset = 3
-	shaded_charge = 1
 
 /obj/item/ammo_casing/energy/laser/accelerator
 	projectile_type = /obj/item/projectile/beam/laser/accelerator
@@ -108,7 +107,6 @@
 	item_state = null
 	ammo_type = list(/obj/item/ammo_casing/energy/xray)
 	pin = null
-	shaded_charge = 1
 	ammo_x_offset = 3
 
 ////////Laser Tag////////////////////
@@ -140,5 +138,3 @@
 
 /obj/item/gun/energy/laser/redtag/hitscan
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/redtag/hitscan)
-
-
