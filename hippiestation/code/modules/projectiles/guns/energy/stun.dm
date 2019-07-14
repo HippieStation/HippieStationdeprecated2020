@@ -5,6 +5,7 @@
 	item_state = null	//so the human update icon uses the icon_state instead.
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode)
 	ammo_x_offset = 3
+	shaded_charge = 1
 
 /obj/item/gun/energy/tesla_revolver
 	name = "tesla gun"
@@ -22,6 +23,8 @@
 	icon_state = "advtaser"
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode, /obj/item/ammo_casing/energy/disabler)
 	ammo_x_offset = 2
+	shaded_charge = 0
+	multistate = 1
 
 /obj/item/gun/energy/e_gun/advtaser/cyborg
 	name = "cyborg taser"
@@ -39,6 +42,7 @@
 	ammo_x_offset = 2
 	can_flashlight = TRUE
 	flight_x_offset = 15
+	shaded_charge = 1
 	flight_y_offset = 10
 
 /obj/item/gun/energy/disabler/cyborg
