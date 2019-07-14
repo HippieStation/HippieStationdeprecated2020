@@ -43,3 +43,29 @@
 		L.visible_message("<span class='warning'>[L] is sent flying by the tornado!</span>", "<span class='danger'>The tornado sends you flying!</span>")
 		L.adjustBruteLoss(9)
 	AM.throw_at(get_edge_target_turf(AM, pick(GLOB.alldirs)), 10, 3)
+
+
+/obj/effect/forcefield/pillarmen/wind
+	desc = "A whirling current of cold air blocking your path. It'd be unwise to cross it."
+	var/mob/owner
+
+/obj/effect/forcefield/wizard/Initialize(mapload, mob/summoner)
+	. = ..()
+	owner = summoner
+
+/obj/effect/forcefield/wizard/CanPass(atom/movable/mover, turf/target)
+	if(mover == owner)
+		return TRUE
+	if(ismob(mover))
+		var/mob/M = mover
+		if (M.mind)
+			if(istype(M.mind.martial_art,/datum/martial_art/hamon))
+				return TRUE
+		M.visible_message("<span class='warning'>[M] gets sent flying by the whirlwind currents!</span>", "<span class='danger'>The currents sends you flying!</span>")
+		M.throw_at(get_edge_target_turf(M, pick(GLOB.alldirs)), 10, 3)
+		owner.Paralyze(70)
+	return FALSE
+
+
+/obj/effect/proc_holder/spell/targeted/forcewall/pillar_wind
+	wall_type =	/obj/effect/forcefield/pillarmen/wind
