@@ -27,4 +27,4 @@
 	projectile_type = /obj/item/projectile/beam/gauss_overdrive
 	e_cost = 250
 	select_name = "overdrive"
-	fire_sound = 'sound/weapons/pulse.ogg'
+	fire_sound = 'hippiestation/sound/weapons/railgun.ogg'
