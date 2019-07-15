@@ -464,13 +464,15 @@
 
 /obj/machinery/computer/shuttle/pod/update_icon()
 	return
-
+/* HANDLED IN HIPPIESTATION EMERGENCY.DM  - MODULE: SHUTTLE TOGGLE - Changes here too.
 /obj/machinery/computer/shuttle/pod/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
+	if(SHUTTLE_DISABLED)//MODULE: SHUTTLE TOGGLE
+		return
 	ENABLE_BITFIELD(obj_flags, EMAGGED)
 	to_chat(user, "<span class='warning'>You fry the pod's alert level checking system.</span>")
-
+*/
 /obj/machinery/computer/shuttle/pod/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	. = ..()
 	if(possible_destinations == initial(possible_destinations) || override)
