@@ -77,6 +77,7 @@ GLOBAL_VAR_INIT(pocket_dim, 1)
 				L.pulling.y = last_y
 				L.pulling.z = last_z
 			L.visible_message("<span class='danger'>[L]'s body suddenly swirls into existence, [(pull_the_pulling_thing_too && L.pulling) ? "bringing [L.pulling] with it, " : ""]as if emerging from a vortex!</span>")
+			charge_counter = 0
 	else
 		L.visible_message("<span class='danger'>[L]'s body swirls up and disappears, [(pull_the_pulling_thing_too && L.pulling) ? "pulling [L.pulling] in with it, " : ""]as if sucked into a vortex!</span>")
 		last_x = L.x
@@ -87,9 +88,13 @@ GLOBAL_VAR_INIT(pocket_dim, 1)
 		L.y = 4
 		L.z = pocket
 		if(pull_the_pulling_thing_too && L.pulling)
+			if(ishuman(L.pulling))
+				var/mob/living/carbon/human/HP = L.pulling
+				HP.forcesay_allowcomms("-")
 			L.pulling.x = 4
 			L.pulling.y = 4
 			L.pulling.z = pocket
+		charge_counter = charge_max
 
 /obj/effect/proc_holder/spell/self/pocket_dim/proc/check_if_teleport(mob/living/L)
 	var/list/zs = SSmapping.levels_by_trait(guardian.pocket_dim)

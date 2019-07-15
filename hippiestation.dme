@@ -3385,6 +3385,7 @@
 #include "hippiestation\code\modules\mob\living\carbon\human\human_defense.dm"
 #include "hippiestation\code\modules\mob\living\carbon\human\inventory.dm"
 #include "hippiestation\code\modules\mob\living\carbon\human\life.dm"
+#include "hippiestation\code\modules\mob\living\carbon\human\say.dm"
 #include "hippiestation\code\modules\mob\living\carbon\human\species.dm"
 #include "hippiestation\code\modules\mob\living\carbon\human\species_types\avians.dm"
 #include "hippiestation\code\modules\mob\living\carbon\human\species_types\dullahan.dm"
