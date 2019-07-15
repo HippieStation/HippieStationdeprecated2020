@@ -4,6 +4,8 @@ GLOBAL_VAR_INIT(pocket_dim, 1)
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 	has_gravity = STANDARD_GRAVITY
 	noteleport = TRUE
+	unique = FALSE
+	requires_power = FALSE
 
 /datum/guardian_ability/major/special/pocket
 	name = "Pocket Dimension"
