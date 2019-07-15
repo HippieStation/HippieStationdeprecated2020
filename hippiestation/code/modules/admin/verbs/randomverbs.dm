@@ -41,7 +41,7 @@
 		SSshuttle.lastMode = SHUTTLE_IDLE
 
 	SSshuttle.emergency.mode = SSshuttle.lastMode
-	if(SSshuttle.lastCallTime < 100)
+	if(SSshuttle.lastCallTime < 100 && SSshuttle.lastMode != SHUTTLE_IDLE)
 		SSshuttle.lastCallTime = 100 //Make sure no insta departures.
 
 	SSshuttle.emergency.setTimer(SSshuttle.lastCallTime)
