@@ -68,6 +68,7 @@ GLOBAL_VAR_INIT(pocket_dim, 1)
 	new /obj/effect/temp_visual/bluespace_fissure(get_turf(L))
 	if(SSmapping.level_trait(L.z, "Pocket Dimension"))
 		if(last_x && last_y && last_z)
+			L.forceMove(get_turf(L))
 			take_effects(L)
 			L.x = last_x
 			L.y = last_y
@@ -79,6 +80,7 @@ GLOBAL_VAR_INIT(pocket_dim, 1)
 			L.visible_message("<span class='danger'>[L]'s body suddenly swirls into existence, [(pull_the_pulling_thing_too && L.pulling) ? "bringing [L.pulling] with it, " : ""]as if emerging from a vortex!</span>")
 			charge_counter = 0
 	else
+		L.forceMove(get_turf(L))
 		L.visible_message("<span class='danger'>[L]'s body swirls up and disappears, [(pull_the_pulling_thing_too && L.pulling) ? "pulling [L.pulling] in with it, " : ""]as if sucked into a vortex!</span>")
 		last_x = L.x
 		last_y = L.y
