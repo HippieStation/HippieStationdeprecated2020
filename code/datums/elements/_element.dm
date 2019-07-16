@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /**
   * A holder for simple behaviour that can be attached to many different types
   *
@@ -12,24 +11,14 @@
 /// Activates the functionality defined by the element on the given target datum
 /datum/element/proc/Attach(datum/target)
 	SHOULD_CALL_PARENT(1)
-=======
-/datum/element
-	var/element_flags = NONE
-
-/datum/element/proc/Attach(datum/target)
->>>>>>> 328fc7b1f16... Adds elements: Lightweight shared components/Global components (#44817)
 	if(type == /datum/element)
 		return ELEMENT_INCOMPATIBLE
 	if(element_flags & ELEMENT_DETACH)
 		RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/Detach)
 
-<<<<<<< HEAD
 /// Deactivates the functionality defines by the element on the given datum
 /datum/element/proc/Detach(datum/source, force)
 	SHOULD_CALL_PARENT(1)
-=======
-/datum/element/proc/Detach(datum/source, force)
->>>>>>> 328fc7b1f16... Adds elements: Lightweight shared components/Global components (#44817)
 	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
 
 /datum/element/Destroy(force)
@@ -40,20 +29,14 @@
 
 //DATUM PROCS
 
-<<<<<<< HEAD
 /// Finds the singleton for the element type given and attaches it to src
-=======
->>>>>>> 328fc7b1f16... Adds elements: Lightweight shared components/Global components (#44817)
 /datum/proc/AddElement(eletype, ...)
 	var/datum/element/ele = SSdcs.GetElement(eletype)
 	args[1] = src
 	if(ele.Attach(arglist(args)) == ELEMENT_INCOMPATIBLE)
 		CRASH("Incompatible [eletype] assigned to a [type]! args: [json_encode(args)]")
 
-<<<<<<< HEAD
 /// Finds the singleton for the element type given and detaches it from src
-=======
->>>>>>> 328fc7b1f16... Adds elements: Lightweight shared components/Global components (#44817)
 /datum/proc/RemoveElement(eletype)
 	var/datum/element/ele = SSdcs.GetElement(eletype)
 	ele.Detach(src)
