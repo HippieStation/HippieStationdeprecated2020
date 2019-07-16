@@ -38,6 +38,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	melee_damage_upper = 15
 	AIStatus = AI_OFF
 	hud_type = /datum/hud/guardian
+	var/custom_name = FALSE
 	var/atk_cooldown = 10
 	var/range = 10
 	var/reset = 0 //if the summoner has reset the guardian already
@@ -455,7 +456,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 				to_chat(src, "<span class='holoparasite bold'>Your <font color=\"[G.namedatum.colour]\">[G.real_name]</font> has been successfully reset.</span>")
 				message_admins("[key_name_admin(C)] has taken control of ([ADMIN_LOOKUPFLW(G)])")
 				G.ghostize(0)
-				G.setthemename(G.namedatum.theme) //give it a new color, to show it's a new person
+				if(!G.custom_name)
+					G.setthemename(G.namedatum.theme) //give it a new color, to show it's a new person
 				G.key = C.key
 				G.reset = TRUE
 				switch(G.namedatum.theme)

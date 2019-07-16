@@ -177,6 +177,7 @@
 		if(guardian_name)
 			G.real_name = guardian_name
 			G.name = guardian_name
+			G.custom_name = TRUE
 		G.summoner = user
 		G.key = C.key
 		G.mind.enslave_mind_to_creator(user)
