@@ -75,13 +75,15 @@ obj/item/projectile/beam/gauss_overdrive/on_hit(atom/target, blocked = FALSE) //
 	if(ishuman(H))
 		var/hit_zone = H.check_limb_hit(def_zone)
 		var/obj/item/bodypart/BP = H.get_bodypart(hit_zone)
-		if(prob(10) && hit_zone == "chest" || prob(10) && hit_zone == "head") //10 percent chance to decap/disembowel.
+		if(prob(15) && hit_zone == "chest" || prob(10) && hit_zone == "head") //10 percent chance to decap/15 to disembowel.
 			BP.dismember()
 			playsound(H.loc, 'hippiestation/sound/misc/heavysmash.ogg', 60, 1)
 			var/obj/effect/decal/cleanable/blood/T = new/obj/effect/decal/cleanable/blood
 			T.loc = H.loc
 			H.visible_message("<span class='warning'>[H]'s [BP.name] is obliterated by the gauss shot!</span>",
 									"<span class='userdanger'>Your [BP.name] is obliterated by the gauss shot!</span>") //oof
+			if(hit_zone == "chest")
+				to_chat(H, "<span class='userdanger'>Your internal organs slop out of your abdomen! Holy shit!</span>")
 		if(hit_zone != "chest" && hit_zone != "head" && prob(80)) //Only dismember arms and legs!
 			BP.dismember()
 			playsound(H.loc, 'hippiestation/sound/misc/heavysmash.ogg', 60, 1)

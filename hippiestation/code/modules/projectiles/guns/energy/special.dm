@@ -458,9 +458,13 @@
 /////Gauss rifle/////
 /obj/item/gun/energy/gauss
 	multistate = 1
-	var/ammo = 50
+	var/recharge_time = 20
+	var/maxrods = 50
+	ammo = 50
 	name = "gauss rifle"
 	icon_state = "gauss"
+	w_class = WEIGHT_CLASS_BULKY
+	slot_flags = ITEM_SLOT_BACK
 	lefthand_file = 'hippiestation/icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/weapons/guns_righthand.dmi'
 	item_state = "gauss"
@@ -469,7 +473,6 @@
 	cell_type = /obj/item/stock_parts/cell/gauss
 
 /obj/item/gun/energy/gauss/attackby(obj/item/I, mob/user)
-	var/maxrods = 50
 	if(istype(I, /obj/item/stack/rods))
 		if(ammo < maxrods)
 			var/obj/item/stack/rods/R = I
@@ -482,10 +485,10 @@
 			ammo += amt
 			update_icon()
 			playsound(user, 'hippiestation/sound/weapons/rodgun_reload.ogg', 50, 1)
-			user << "<span class='notice'>You insert [amt] rods in \the [src]. Now it contains [ammo] rods."
+			to_chat(user,"<span class='notice'>You insert [amt] rods in \the [src]. Now it contains [ammo] rods.")
 			src.desc = "A seriously powerful rifle with an electromagnetic acceleration core, capable of blowing limbs off. It has [ammo] rods left."
 		else
-			user << "<span class='notice'>\The [src] is already full!</span>"
+			to_chat(user,"<span class='notice'>\The [src] is already full!</span>")
 
 /obj/item/gun/energy/gauss/process_chamber()
 	if(chambered && !chambered.BB) //if BB is null, i.e the shot has been fired...
@@ -499,7 +502,7 @@
 				playsound(src.loc, 'sound/weapons/smg_empty_alarm.ogg', 60, 1)
 		if(select == 3)
 			canshoot = 0
-			spawn(10)
+			spawn(recharge_time)
 				canshoot = 1
 				if(cell.charge >= shot.e_cost && ammo > 0)
 					playsound(src.loc, 'sound/weapons/kenetic_reload.ogg', 60, 1)
@@ -507,12 +510,6 @@
 	recharge_newshot()
 	src.desc = "A seriously powerful rifle with an electromagnetic acceleration core, capable of blowing limbs off. It has [src.ammo] rods left."
 	return
-
-/obj/item/gun/energy/gauss/afterattack(mob/living/user)
-	if(ammo <= 0)
-		shoot_with_empty_chamber(user)
-	else
-		..()
 
 /obj/item/gun/energy/gauss/handle_suicide(mob/living/carbon/human/user, mob/living/carbon/human/target, params, bypass_timer)
 	if(!ishuman(user) || !ishuman(target))

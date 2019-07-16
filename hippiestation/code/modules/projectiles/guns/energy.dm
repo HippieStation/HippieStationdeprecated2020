@@ -111,6 +111,9 @@
 	if(chambered && !chambered.BB) //if BB is null, i.e the shot has been fired...
 		var/obj/item/ammo_casing/energy/shot = chambered
 		cell.use(shot.e_cost)//... drain the cell cell
+		if(cell.charge < shot.e_cost)
+			cut_overlays()
+			add_overlay("[icon_state]_empty")
 	chambered = null //either way, released the prepared shot
 	recharge_newshot() //try to charge a new shot
 	update_icon()

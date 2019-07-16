@@ -41,6 +41,7 @@
 	var/spread = 0						//Spread induced by the gun itself.
 	var/randomspread = 1				//Set to 0 for shotguns. This is used for weapons that don't fire all their bullets at once.
 	var/canshoot = 1 					//This works better than a delay system as you can dynamically break a gun.
+	var/ammo = 1
 
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
@@ -145,7 +146,10 @@
 //check if there's enough ammo/energy/whatever to shoot one time
 //i.e if clicking would make it shoot
 /obj/item/gun/proc/can_shoot()
-	return TRUE
+	if(ammo <= 0)
+		return FALSE
+	else
+		return TRUE
 
 /obj/item/gun/proc/shoot_with_empty_chamber(mob/living/user as mob|obj)
 	to_chat(user, "<span class='danger'>*click*</span>")
@@ -295,6 +299,10 @@
 	add_fingerprint(user)
 
 	if(semicd)
+		return
+
+	if(ammo <= 0 || canshoot == 0)
+		shoot_with_empty_chamber(user)
 		return
 
 	var/sprd = 0
