@@ -1,6 +1,6 @@
 /datum/guardian_ability/major/assassin
 	name = "Assassin"
-	desc = "The power to to sneak up and do a powerful attack."
+	desc = "The stand can sneak up on people and do a powerful attack."
 	cost = 4
 	has_mode = TRUE
 	recall_mode = TRUE

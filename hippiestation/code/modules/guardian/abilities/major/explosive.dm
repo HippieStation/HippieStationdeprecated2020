@@ -1,6 +1,6 @@
 /datum/guardian_ability/major/explosive
 	name = "Explosive"
-	desc = "The power to turn any object into a bomb."
+	desc = "The stand can, with a single touch, turn any inanimate object into a bomb."
 	cost = 4
 	var/bomb_cooldown = 0
 

@@ -1,6 +1,6 @@
 /datum/guardian_ability/minor/teleport
 	name = "Teleportation Pad"
-	desc = "The ability to prepare a teleportation pad, and teleport things to it afterwards."
+	desc = "The stand can prepare a teleportation pad, and teleport things to it afterwards."
 	cost = 3
 	spell_type = /obj/effect/proc_holder/spell/targeted/stand/teleport
 

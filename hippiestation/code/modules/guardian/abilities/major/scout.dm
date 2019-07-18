@@ -1,6 +1,6 @@
 /datum/guardian_ability/major/scout
 	name = "Scout"
-	desc = "The power to turn near-invisible and scout the entire station."
+	desc = "The stand can turn near-invisible and invincible and scout the station, although it cannot attack anything."
 	cost = 3
 	has_mode = TRUE
 	recall_mode = TRUE

@@ -1,6 +1,6 @@
 /datum/guardian_ability/major/time
 	name = "Time Erasure"
-	desc = "The power to destroy time..."
+	desc = "The stand can erase a short period of time."
 	cost = 6
 	spell_type = /obj/effect/proc_holder/spell/self/erase_time
 	arrow_weight = 0.2

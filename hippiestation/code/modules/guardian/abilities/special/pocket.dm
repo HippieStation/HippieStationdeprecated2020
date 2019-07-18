@@ -9,7 +9,7 @@ GLOBAL_VAR_INIT(pocket_dim, 1)
 
 /datum/guardian_ability/major/special/pocket
 	name = "Pocket Dimension"
-	desc = "The power to hide and attack from a small pocket dimension"
+	desc = "The stand can access a small pocket dimension, bringing it's owner with it as well."
 	cost = 6
 	arrow_weight = 0.4
 	spell_type = /obj/effect/proc_holder/spell/self/pocket_dim
