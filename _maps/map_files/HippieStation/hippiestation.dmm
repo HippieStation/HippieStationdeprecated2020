@@ -41598,7 +41598,6 @@
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "crL" = (
-/obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
@@ -42076,6 +42075,7 @@
 	pixel_x = 28
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "ctj" = (
@@ -42393,6 +42393,11 @@
 	},
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera{
+	c_tag = "Turbine Chamber";
+	dir = 4;
+	network = list("turbine")
+	},
 /turf/open/floor/plasteel,
 /area/maintenance/disposal/incinerator)
 "cuh" = (
@@ -43667,6 +43672,7 @@
 	pixel_x = 8;
 	pixel_y = 24
 	},
+/obj/machinery/camera/emp_proof,
 /turf/open/floor/engine,
 /area/maintenance/disposal/incinerator)
 "cxU" = (
@@ -45702,6 +45708,7 @@
 /obj/machinery/atmospherics/components/binary/pump{
 	name = "Emergency Cooling Loop Bypass"
 	},
+/obj/structure/cable,
 /turf/open/floor/engine,
 /area/engine/engineering)
 "cEg" = (
@@ -48426,27 +48433,10 @@
 	pixel_x = 5;
 	pixel_y = 24
 	},
-/obj/machinery/door/window{
-	base_state = "rightsecure";
-	dir = 8;
-	icon_state = "rightsecure";
-	max_integrity = 300;
-	name = "AI Core Door";
-	req_access_txt = "16"
-	},
+/obj/machinery/door/airlock/highsecurity,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "cKX" = (
-/obj/machinery/requests_console{
-	department = "AI";
-	departmentType = 5;
-	pixel_x = 30;
-	pixel_y = -30
-	},
-/obj/machinery/newscaster/security_unit{
-	pixel_x = -28;
-	pixel_y = -28
-	},
 /obj/machinery/flasher{
 	id = "AI";
 	pixel_x = 24;
@@ -48458,22 +48448,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
+/obj/machinery/camera/motion{
+	c_tag = "Vault";
+	dir = 1;
+	network = list("SS13")
+	},
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "cKY" = (
-/obj/machinery/door/window{
-	base_state = "leftsecure";
-	dir = 4;
-	icon_state = "leftsecure";
-	max_integrity = 300;
-	name = "AI Core Door";
-	req_access_txt = "16"
-	},
-/obj/machinery/camera/motion{
-	c_tag = "MiniSat AI Chamber Core";
-	dir = 1;
-	network = list("MiniSat")
-	},
+/obj/machinery/door/airlock/highsecurity,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "cKZ" = (
@@ -49032,6 +49015,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"dcp" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/mob/living/silicon/robot/shell,
+/turf/open/floor/plasteel/dark,
+/area/ai_monitored/turret_protected/ai)
 "dda" = (
 /obj/structure/table/wood,
 /obj/item/canvas/twentythreeXtwentythree,
@@ -58770,6 +58761,17 @@
 	},
 /turf/open/floor/plating,
 /area/medical/virology)
+"tJo" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/spawner/structure/window/reinforced,
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "AI Core shutters";
+	name = "AI core shutters"
+	},
+/turf/open/floor/plating,
+/area/ai_monitored/turret_protected/ai)
 "tJH" = (
 /obj/machinery/light,
 /obj/structure/cable,
@@ -60580,6 +60582,7 @@
 /area/science/nanite)
 "wNs" = (
 /obj/effect/turf_decal/bot,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/engine/engineering)
 "wOI" = (
@@ -100520,7 +100523,7 @@ cKK
 cKj
 cKj
 cKW
-tDk
+tJo
 cLk
 cLj
 cKQ
@@ -100769,7 +100772,7 @@ cKe
 cJn
 cKg
 cKl
-kKJ
+dcp
 cKx
 cKC
 cKH
@@ -101034,7 +101037,7 @@ cKM
 cKQ
 cKj
 cKY
-tDk
+tJo
 cKF
 cKG
 cKj
