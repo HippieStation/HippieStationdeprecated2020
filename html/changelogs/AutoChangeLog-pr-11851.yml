@@ -1,0 +1,11 @@
+author: "Gandalf2k15"
+delete-after: True
+changes: 
+  - rscadd: "Added a new energy framework for making energy based guns."
+  - rscadd: "Gauss rifle! It's back."
+  - tweak: "Sprite processing is slightly different."
+  - bugfix: "Fixed the sprite bug when throwing weapons."
+  - bugfix: "Fixed stungun sprite not updating when charging."
+  - bugfix: "Fixed self charging eguns and some eguns not updating when empty."
+  - imageadd: "Updated all existent sprites to use the new framework."
+  - refactor: "Heavily modified and streamlined previous rework code."
