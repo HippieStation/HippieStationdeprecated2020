@@ -275,3 +275,9 @@
 
 /obj/item/guardiancreator/carp/rare
 	allowspecial = TRUE
+
+/obj/item/guardiancreator/wizard
+	allowmultiple = TRUE
+
+/obj/item/guardiancreator/wizard/rare
+	allowspecial = TRUE
