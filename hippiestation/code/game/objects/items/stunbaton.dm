@@ -42,8 +42,7 @@
 
 /obj/item/melee/baton/stungun/update_icon()
 	..()
-	var/ratio = CEILING(CLAMP(cell.charge / cell.maxcharge, 0, 1) * charge_sections, 1)
-	cut_overlays()
+	var/ratio = CEILING((cell.charge / cell.maxcharge) * charge_sections, 1)
 	var/iconState = "[initial(name)]_charge"
 	var/itemState = null
 	if(!initial(item_state))
