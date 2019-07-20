@@ -18,35 +18,36 @@
 
 
 /datum/status_effect/incapacitating/sleeping/tick()
-	var/healing = 10 //	healing/100 per tick. 200 ticks in 40 seconds of sleep
-	if((locate(/obj/structure/bed) in owner.loc)) //if in bed +10%
-		healing +=10
-	else
-		if((locate(/obj/structure/table) in owner.loc))//if on a table
-			healing +=5
+	if(owner.health > HEALTH_THRESHOLD_FULLCRIT) // shittier code but at least it verified works.
+		var/healing = 10 //	healing/100 per tick. 200 ticks in 40 seconds of sleep
+		if((locate(/obj/structure/bed) in owner.loc)) //if in bed +10%
+			healing +=10
+		else
+			if((locate(/obj/structure/table) in owner.loc))//if on a table
+				healing +=5
 
 
-	if((locate(/obj/item/bedsheet) in owner.loc))//if under a bedsheet
-		healing +=10
+		if((locate(/obj/item/bedsheet) in owner.loc))//if under a bedsheet
+			healing +=10
 
 
-	for(var/i in cool)
-		if(locate(i) in owner.loc)
-			healing +=5 //from stuff on cool
-			break
+		for(var/i in cool)
+			if(locate(i) in owner.loc)
+				healing +=5 //from stuff on cool
+				break
 
-	for(var/i in supercool)
-		if(locate(i) in owner.loc)
-			healing +=5//from stuff on supercool
-			break
+		for(var/i in supercool)
+			if(locate(i) in owner.loc)
+				healing +=5//from stuff on supercool
+				break
 
-	if(istype(get_turf(owner), /turf/open/space))
-		healing/=2 //nerfs space sleep. cant survive to loop back around in space anymore.
+		if(istype(get_turf(owner), /turf/open/space))
+			healing/=2 //nerfs space sleep. cant survive to loop back around in space anymore.
 
 
-	owner.adjustBruteLoss((-healing/100), 0)
-	owner.adjustFireLoss((-healing/100), 0)
-	owner.adjustToxLoss((-healing/100), 0)
+		owner.adjustBruteLoss((-healing/100), 0)
+		owner.adjustFireLoss((-healing/100), 0)
+		owner.adjustToxLoss((-healing/100), 0)
 
 	..()
 

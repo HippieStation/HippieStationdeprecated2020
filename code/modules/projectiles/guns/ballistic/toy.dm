@@ -29,6 +29,10 @@
 	fire_delay = 0
 	actions_types = list()
 
+/obj/item/gun/ballistic/automatic/toy/update_icon()//hippie edit -- bring back old gun icons
+	..()
+	icon_state = "[initial(icon_state)][chambered||!bolt_locked ? "" : "-e"][suppressed ? "-suppressed" : ""]"//hippie end -- bring back old gun icons
+
 /obj/item/gun/ballistic/automatic/toy/pistol/riot
 	mag_type = /obj/item/ammo_box/magazine/toy/pistol/riot
 

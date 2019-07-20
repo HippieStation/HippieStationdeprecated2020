@@ -1,7 +1,22 @@
 /obj/item/gun/ballistic/automatic/c20r
 	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
 
+/obj/item/gun/ballistic/automatic/wt550
+	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
+
+/obj/item/gun/ballistic/automatic/mini_uzi
+	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
+
 /obj/item/gun/ballistic/automatic/l6_saw
+	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
+
+/obj/item/gun/ballistic/automatic/ar
+	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
+
+/obj/item/gun/ballistic/automatic/tommygun
+	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
+
+/obj/item/gun/ballistic/automatic/gyropistol
 	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
 
 /obj/item/gun/ballistic/automatic/sniper_rifle
