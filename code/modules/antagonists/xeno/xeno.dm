@@ -12,7 +12,7 @@
 	name = "Xenomorph"
 	job_rank = ROLE_ALIEN
 	show_in_antagpanel = FALSE
-	prevents_roundtype_conversion = FALSE
+	prevent_roundtype_conversion = FALSE
 	var/datum/team/xeno/xeno_team
 
 /datum/antagonist/xeno/create_team(datum/team/xeno/new_team)
