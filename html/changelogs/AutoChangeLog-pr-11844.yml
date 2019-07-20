@@ -1,0 +1,4 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - tweak: "Whoever does a sepia timestop is now immune to the timestop again."
