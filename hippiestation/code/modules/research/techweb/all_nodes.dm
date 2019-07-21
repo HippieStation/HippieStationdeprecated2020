@@ -57,6 +57,7 @@
 	design_ids = list()
 
 ///GAUSS RIFLE///
+/*
 /datum/techweb_node/electromagnetic_weapons
 	id = "gauss_rifle"
 	display_name = "Electromagnetic Weaponry(Gauss Rifle MK1)"
@@ -65,3 +66,4 @@
 	design_ids = list("gaussrifle")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
+*/

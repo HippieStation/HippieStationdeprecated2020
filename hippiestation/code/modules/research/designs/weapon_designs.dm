@@ -1,3 +1,4 @@
+/*
 /datum/design/gauss_rifle
 	name = "Gauss Rifle"
 	desc = "A seriously powerful rifle with an electromagnetic acceleration core, capable of blowing limbs off."
@@ -7,3 +8,4 @@
 	build_path = /obj/item/gun/energy/gauss
 	category = list("Weapons")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
+*/
