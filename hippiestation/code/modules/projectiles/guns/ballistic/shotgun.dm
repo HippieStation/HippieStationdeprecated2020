@@ -13,5 +13,9 @@
 	obj_flags = UNIQUE_RENAME
 	unique_reskin = 0
 
+/obj/item/gun/ballistic/shotgun/doublebarrel/contender/sawoff(mob/user)
+	to_chat(user, "<span class='warning'>Why would you mutilate this work of art?</span>")
+	return
+
 /obj/item/gun/ballistic/shotgun
 	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
