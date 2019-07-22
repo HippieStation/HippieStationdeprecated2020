@@ -1,0 +1,5 @@
+author: "IHadMyUsernameTaken"
+delete-after: True
+changes: 
+  - bugfix: "You no longer can make invisible sawn-off contenders."
+  - bugfix: "Contenders now get initialized with an empty internal magazine."
