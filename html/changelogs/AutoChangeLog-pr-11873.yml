@@ -1,0 +1,5 @@
+author: "IHadMyUsernameTaken"
+delete-after: True
+changes: 
+  - bugfix: "Foam force shotguns are now visible."
+  - bugfix: "Alternative skins of the double barrel shotgun and the sawn-off double barrel shotgun no longer are invisible."
