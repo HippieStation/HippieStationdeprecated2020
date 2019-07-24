@@ -310,19 +310,8 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 		return
 	for(var/dir_check in GLOB.cardinals)
 		if(linked_dirs & dir_check)
-			T1 = get_step(T1, dir_check)
-			P_list += power_list(T1, src, FALSE, TRUE)	// what adjacently joins on to cut cable...
-
-	P_list += power_list(loc, src, FALSE, TRUE)//... and on turf
-
-
-	if(P_list.len == 0)//if nothing in both list, then the cable was a lone cable, just delete it and its powernet
-		powernet.remove_cable(src)
-
-		for(var/obj/machinery/power/P in T1)//check if it was powering a machine
-			if(!P.connect_to_network()) //can't find a node cable on a the turf to connect to
-				P.disconnect_from_network() //remove from current network (and delete powernet)
-		return
+			T1 = get_step(loc, dir_check)
+			P_list += locate(/obj/structure/cable) in T1
 	
 	// remove the cut cable from its turf and powernet, so that it doesn't get count in propagate_network worklist
 	if(remove)
