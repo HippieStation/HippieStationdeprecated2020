@@ -18,6 +18,10 @@
 	guardian.do_the_cool_invisible_thing = FALSE
 	stealthcooldown = 75 / master_stats.potential
 
+/datum/guardian_ability/major/assassin/Remove()
+	. = ..()
+	guardian.do_the_cool_invisible_thing = initial(guardian.do_the_cool_invisible_thing)
+
 /datum/guardian_ability/major/assassin/Health(amount)
 	if(amount > 0)
 		mode = FALSE

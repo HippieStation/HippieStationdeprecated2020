@@ -1,8 +1,15 @@
+#define UNREGISTER_BOMB_SIGNALS(A) \
+	do { \
+		UnregisterSignal(A, boom_signals); \
+		UnregisterSignal(A, COMSIG_PARENT_EXAMINE); \
+	} while (0)
+
 /datum/guardian_ability/major/explosive
 	name = "Explosive"
 	desc = "The stand can, with a single touch, turn any inanimate object into a bomb."
 	cost = 4
 	var/bomb_cooldown = 0
+	var/static/list/boom_signals = list(COMSIG_PARENT_ATTACKBY, COMSIG_ATOM_BUMPED, COMSIG_ATOM_ATTACK_HAND)
 
 /datum/guardian_ability/major/explosive/Attack(atom/target)
 	if(prob(40) && isliving(target))
@@ -25,61 +32,32 @@
 		return
 	if(isobj(A) && guardian.Adjacent(A))
 		if(bomb_cooldown <= world.time && !guardian.stat)
-			var/obj/guardian_bomb/B = new /obj/guardian_bomb(get_turf(A))
 			to_chat(guardian, "<span class='danger'><B>Success! Bomb armed!</B></span>")
 			bomb_cooldown = world.time + 200
-			B.spawner = guardian
-			B.disguise(A, master_stats.potential * 18 * 10) // 90 seconds at level A persistence, 18 at Level F persistence.
+			RegisterSignal(A, COMSIG_PARENT_EXAMINE, .proc/display_examine)
+			RegisterSignal(A, boom_signals, .proc/kaboom)
+			addtimer(CALLBACK(src, .proc/disable, A), master_stats.potential * 18 * 10, TIMER_UNIQUE|TIMER_OVERRIDE)
 		else
-			to_chat(src, "<span class='danger'><B>Your powers are on cooldown! You must wait 20 seconds between bombs.</B></span>")
+			to_chat(guardian, "<span class='danger'><B>Your powers are on cooldown! You must wait 20 seconds between bombs.</B></span>")
 
-// the bomb
-/obj/guardian_bomb
-	name = "bomb"
-	desc = "You shouldn't be seeing this!"
-	var/obj/stored_obj
-	var/mob/living/simple_animal/hostile/guardian/spawner
+/datum/guardian_ability/major/explosive/proc/kaboom(atom/source, mob/living/explodee)
+	if(!istype(explodee))
+		return
+	if(explodee == guardian || explodee == guardian.summoner || guardian.hasmatchingsummoner(explodee))
+		return
+	to_chat(explodee, "<span class='danger'><B>[source] was boobytrapped!</B></span>")
+	to_chat(guardian, "<span class='danger'><B>Success! Your trap caught [explodee]</B></span>")
+	var/turf/T = get_turf(source)
+	playsound(T,'sound/effects/explosion2.ogg', 200, 1)
+	new /obj/effect/temp_visual/explosion(T)
+	explodee.ex_act(EXPLODE_HEAVY)
+	UNREGISTER_BOMB_SIGNALS(source)
 
-/obj/guardian_bomb/proc/disguise(obj/A, time)
-	A.forceMove(src)
-	stored_obj = A
-	opacity = A.opacity
-	anchored = A.anchored
-	density = A.density
-	appearance = A.appearance
-	addtimer(CALLBACK(src, .proc/disable), time)
+/datum/guardian_ability/major/explosive/proc/disable(atom/A)
+	to_chat(src, "<span class='danger'><B>Failure! Your trap didn't catch anyone this time.</B></span>")
+	UNREGISTER_BOMB_SIGNALS(A)
 
-/obj/guardian_bomb/proc/disable()
-	stored_obj.forceMove(get_turf(src))
-	to_chat(spawner, "<span class='danger'><B>Failure! Your trap didn't catch anyone this time.</B></span>")
-	qdel(src)
+/datum/guardian_ability/major/explosive/proc/display_examine(datum/source, mob/user, text)
+	text += "<span class='holoparasite'>It glows with a strange <font color=\"[guardian.namedatum.colour]\">light</font>!</span>"
 
-/obj/guardian_bomb/proc/detonate(mob/living/user)
-	if(isliving(user))
-		if(user != spawner && user != spawner.summoner && !spawner.hasmatchingsummoner(user))
-			to_chat(user, "<span class='danger'><B>[src] was boobytrapped!</B></span>")
-			to_chat(spawner, "<span class='danger'><B>Success! Your trap caught [user]</B></span>")
-			var/turf/T = get_turf(src)
-			stored_obj.forceMove(T)
-			playsound(T,'sound/effects/explosion2.ogg', 200, 1)
-			new /obj/effect/temp_visual/explosion(T)
-			user.ex_act(EXPLODE_HEAVY)
-			qdel(src)
-		else
-			to_chat(user, "<span class='holoparasite'>[src] glows with a strange <font color=\"[spawner.namedatum.colour]\">light</font>, and you don't touch it.</span>")
-
-/obj/guardian_bomb/Bumped(atom/A)
-	detonate(A)
-	..()
-
-/obj/guardian_bomb/attackby(mob/living/user)
-	detonate(user)
-
-//ATTACK HAND IGNORING PARENT RETURN VALUE
-/obj/guardian_bomb/attack_hand(mob/living/user)
-	detonate(user)
-
-/obj/guardian_bomb/examine(mob/user)
-	. = stored_obj.examine(user)
-	if(get_dist(user,src)<=2)
-		. += "<span class='holoparasite'>It glows with a strange <font color=\"[spawner.namedatum.colour]\">light</font>!</span>"
+#undef UNREGISTER_BOMB_SIGNALS

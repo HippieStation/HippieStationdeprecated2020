@@ -56,6 +56,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/obj/structure/receiving_pad/beacon
 	var/beacon_cooldown = 0
 	var/list/pocket_dim
+	var/transforming = FALSE
 
 /mob/living/simple_animal/hostile/guardian/Initialize(mapload, theme)
 	GLOB.parasites += src
@@ -214,6 +215,9 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	return P
 
 /mob/living/simple_animal/hostile/guardian/AttackingTarget()
+	if(transforming)
+		to_chat(src, "<span class='holoparasite italics'>No... no... you can't!</span>")
+		return FALSE
 	if(erased_time)
 		to_chat(src, "<span class='danger'>There is no time, and you cannot intefere!</span>")
 		return FALSE
@@ -322,6 +326,9 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	return FALSE
 
 /mob/living/simple_animal/hostile/guardian/proc/Recall(forced)
+	if(transforming)
+		to_chat(src, "<span class='holoparasite italics'>No... no... you can't!</span>")
+		return FALSE
 	if(!summoner || loc == summoner || (cooldown > world.time && !forced))
 		return FALSE
 	if(stats.ability && stats.ability.Recall())
@@ -333,6 +340,9 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	return TRUE
 
 /mob/living/simple_animal/hostile/guardian/proc/ToggleMode()
+	if(transforming)
+		to_chat(src, "<span class='holoparasite italics'>No... no... you can't!</span>")
+		return FALSE
 	if(cooldown > world.time)
 		return
 	if(!stats.ability || !stats.ability.has_mode)
@@ -370,8 +380,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	if(stats.ability)
 		to_chat(src, "<b>SPECIAL ABILITY:</b> [stats.ability.name] - [stats.ability.desc]")
 	for(var/datum/guardian_ability/minor/M in stats.minor_abilities)
-		to_chat(src, "<b>MINOR ABILITY:</b> [M.name]")
-		to_chat(src, " [M.desc]")
+		to_chat(src, "<b>MINOR ABILITY:</b> [M.name] - [M.desc]")
 
 //COMMUNICATION
 

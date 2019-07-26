@@ -15,6 +15,10 @@
 	if(spell && !(spell in guardian.mob_spell_list))
 		guardian.AddSpell(spell)
 
+/datum/guardian_ability/proc/Remove()
+	if(spell)
+		guardian.RemoveSpell(spell)
+
 // major abilities have a mode usually
 /datum/guardian_ability/major
 	var/has_mode = FALSE

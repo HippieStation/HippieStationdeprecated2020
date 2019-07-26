@@ -8,6 +8,10 @@
 	..()
 	guardian.verbs += /mob/living/simple_animal/hostile/guardian/proc/Beacon
 
+/datum/guardian_ability/minor/teleport/Remove()
+	..()
+	guardian.verbs -= /mob/living/simple_animal/hostile/guardian/proc/Beacon
+
 /obj/effect/proc_holder/spell/targeted/stand/teleport
 	name = "Teleport"
 	desc = "Teleport someone to your recieving pad."

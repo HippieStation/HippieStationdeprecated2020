@@ -7,6 +7,10 @@
 	guardian.verbs += /mob/living/simple_animal/hostile/guardian/proc/Snare
 	guardian.verbs += /mob/living/simple_animal/hostile/guardian/proc/DisarmSnare
 
+/datum/guardian_ability/minor/snare/Remove()
+	guardian.verbs -= /mob/living/simple_animal/hostile/guardian/proc/Snare
+	guardian.verbs -= /mob/living/simple_animal/hostile/guardian/proc/DisarmSnare
+
 /mob/living/simple_animal/hostile/guardian/proc/Snare()
 	set name = "Set Surveillance Snare"
 	set category = "Guardian"

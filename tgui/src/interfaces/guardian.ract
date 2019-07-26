@@ -19,7 +19,7 @@ Points: <span class='{{data.points > 0 ? "good" : "bad"}}'>{{data.points}}</span
 		<ui-button action='clear_ability_major' state='{{data.no_ability ? "selected" : null}}'>None</ui-button>
 		{{#each data.abilities_major}}
 			<ui-button tooltip-side='down' tooltip='{{name}}: {{desc}}' 
-				action='ability_major' state='{{selected ? "selected" : available ? null : "disabled"}}' 
+				action='ability_major' state='{{selected ? "selected" : available ? (requiem ? "gold" : null) : "disabled"}}' 
 				params='{"path": "{{path}}"}'>{{name}}</ui-button>
 		{{/each}}
 	</ui-section>

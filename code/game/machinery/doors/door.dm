@@ -84,6 +84,7 @@
 	return ..()
 
 /obj/machinery/door/Bumped(atom/movable/AM)
+	. = ..() // hippie -- port bumped comsig for better guardian booms
 	if(operating || (obj_flags & EMAGGED))
 		return
 	if(ismob(AM))

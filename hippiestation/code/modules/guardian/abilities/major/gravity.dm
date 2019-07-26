@@ -7,6 +7,9 @@
 /datum/guardian_ability/major/gravity/Apply()
 	RegisterSignal(guardian, COMSIG_MOVABLE_MOVED, .proc/recheck_distances)
 
+/datum/guardian_ability/major/gravity/Remove()
+	UnregisterSignal(guardian, COMSIG_MOVABLE_MOVED)
+
 /datum/guardian_ability/major/gravity/Attack(atom/target)
 	if(isliving(target) && target != guardian)
 		to_chat(guardian, "<span class='danger'><B>Your punch has applied heavy gravity to [target]!</span></B>")

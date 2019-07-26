@@ -24,10 +24,25 @@
 	guardian.atk_cooldown = (15 / speed) * 1.5
 	if(ability)
 		ability.guardian = guardian
-		ability.Apply(guardian)
+		ability.Apply()
 	for(var/datum/guardian_ability/minor/minor in minor_abilities)
 		minor.guardian = guardian
-		minor.Apply(guardian)
+		minor.Apply()
+
+/datum/guardian_stats/proc/Unapply(mob/living/simple_animal/hostile/guardian/guardian)
+	guardian.range = initial(guardian.range)
+	guardian.ranged = FALSE
+	guardian.ranged_cooldown_time = initial(guardian.ranged_cooldown_time)
+	guardian.melee_damage_lower = initial(guardian.melee_damage_lower)
+	guardian.melee_damage_upper = initial(guardian.melee_damage_upper)
+	guardian.obj_damage = initial(guardian.obj_damage)
+	guardian.damage_coeff = initial(guardian.damage_coeff)
+	guardian.environment_smash = initial(guardian.environment_smash)
+	guardian.atk_cooldown = initial(guardian.atk_cooldown)
+	if(ability)
+		ability.Remove()
+	for(var/datum/guardian_ability/minor/minor in minor_abilities)
+		minor.Remove()
 
 /datum/guardian_stats/proc/HasMinorAbility(typepath)
 	for(var/datum/guardian_ability/minor/minor in minor_abilities)

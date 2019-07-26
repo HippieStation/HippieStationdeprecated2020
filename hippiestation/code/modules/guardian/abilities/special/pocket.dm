@@ -11,7 +11,6 @@ GLOBAL_VAR_INIT(pocket_dim, 1)
 	name = "Pocket Dimension"
 	desc = "The stand can access a small pocket dimension, bringing it's owner with it as well."
 	cost = 5
-	arrow_weight = 1.5
 	spell_type = /obj/effect/proc_holder/spell/self/pocket_dim
 
 /datum/guardian_ability/major/special/pocket/Apply()
@@ -63,7 +62,7 @@ GLOBAL_VAR_INIT(pocket_dim, 1)
 		return
 	var/pocket = zs[1]
 	var/pull_the_pulling_thing_too = TRUE
-	if(isliving(L.pulling) && L.grab_state < GRAB_AGGRESSIVE)
+	if(isliving(L.pulling) && L.grab_state < GRAB_NECK)
 		pull_the_pulling_thing_too = FALSE
 	new /obj/effect/temp_visual/bluespace_fissure(get_turf(L))
 	if(SSmapping.level_trait(L.z, "Pocket Dimension"))

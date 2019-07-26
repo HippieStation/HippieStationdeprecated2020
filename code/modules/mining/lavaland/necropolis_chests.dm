@@ -13,7 +13,7 @@
 	desc = "It's watching you suspiciously."
 
 /obj/structure/closet/crate/necropolis/tendril/PopulateContents()
-	var/loot = rand(1,28)
+	var/loot = rand(1,29) // hippie -- add item
 	switch(loot)
 		if(1)
 			new /obj/item/shared_storage/red(src)
@@ -49,13 +49,7 @@
 		if(15)
 			new /obj/item/nullrod/armblade(src)
 		if(16)
-			if(prob(75)) // hippie start -- stand arrow
-				if(prob(2))
-					new /obj/item/stand_arrow/rare(src)
-				else
-					new /obj/item/stand_arrow(src)
-			else // hippie end
-				new /obj/item/guardiancreator(src)
+			new /obj/item/stand_arrow(src) // hippie -- stand arrow
 		if(17)
 			if(prob(50))
 				new /obj/item/disk/design_disk/modkit_disc/mob_and_turf_aoe(src)
@@ -85,6 +79,8 @@
 			new /obj/item/bedsheet/cult(src)
 		if(28)
 			new /obj/item/clothing/neck/necklace/memento_mori(src)
+		if(29) // hippie start -- guardian stuff
+			new /obj/item/guardiancreator(src) // hippie end
 
 //KA modkit design discs
 /obj/item/disk/design_disk/modkit_disc

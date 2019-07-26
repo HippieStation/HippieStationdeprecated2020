@@ -11,8 +11,8 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/kill_chance = 50 // people will still chuck these at the nearest security officer anyways, so who cares
 	var/in_use = FALSE
-	var/allow_special = FALSE
 	var/uses = 3
+	var/users = list()
 
 /obj/item/stand_arrow/Initialize()
 	. = ..()
@@ -27,43 +27,79 @@
 		return
 	if(!M.client)
 		return
-	if(!ishuman(M))
+	if(!ishuman(M) && !isguardian(M))
 		to_chat("<span class='italics warning'>You can't stab [M], it won't work!</span>")
 		return
 	if(M.stat == DEAD)
 		to_chat("<span class='italics warning'>You can't stab [M], they're already dead!</span>")
 		return
 	var/mob/living/carbon/human/H = M
+	var/mob/living/simple_animal/hostile/guardian/G = M
 	user.visible_message("<span class='warning'>[user] prepares to stab [H] with \the [src]!</span>", "<span class='notice'>You raise \the [src] into the air.</span>")
 	if(do_mob(user, H, 5 SECONDS, uninterruptible=FALSE))
-		if(LAZYLEN(H.hasparasites()))
-			H.visible_message("<span class='holoparasite'>\The [src] rejects [H]!</span>")
-			return
-		if(H.mind && H.mind.has_antag_datum(/datum/antagonist/changeling))
+		if(LAZYLEN(H.hasparasites()) || (H.mind && H.mind.has_antag_datum(/datum/antagonist/changeling)) || (isguardian(M) && users[G.summoner]))
 			H.visible_message("<span class='holoparasite'>\The [src] rejects [H]!</span>")
 			return
 		in_use = TRUE
 		H.visible_message("<span class='holoparasite'>\The [src] embeds itself into [H], and begins to glow!</span>")
 		user.dropItemToGround(src, TRUE)
 		forceMove(H)
-		sleep(15 SECONDS)
-		if(prob(kill_chance))
-			H.visible_message("<span class='danger bold'>[H] stares ahead, eyes full of fear, before collapsing lifelessly into ash, \the [src] falling out...</span>")
-			forceMove(H.drop_location())
-			H.mind.no_cloning_at_all = TRUE
-			H.adjustCloneLoss(500)
-			H.dust(TRUE)
-			in_use = FALSE
-		else
-			generate_stand(H)
+		if(ishuman(M))
+			sleep(15 SECONDS)
+			if(prob(kill_chance))
+				H.visible_message("<span class='danger bold'>[H] stares ahead, eyes full of fear, before collapsing lifelessly into ash, \the [src] falling out...</span>")
+				forceMove(H.drop_location())
+				H.mind.no_cloning_at_all = TRUE
+				H.adjustCloneLoss(500)
+				H.dust(TRUE)
+				in_use = FALSE
+			else
+				users[M] = TRUE
+				INVOKE_ASYNC(src, .proc/generate_stand, H)
+		else if(isguardian(M))
+			INVOKE_ASYNC(src, .proc/requiem, M)
+
 	if(!uses)
 		visible_message("<span class='warning'>[src] falls apart!</span>")
 		qdel(src)
 
+/obj/item/stand_arrow/proc/requiem(mob/living/simple_animal/hostile/guardian/G)
+	G.range = 255
+	G.transforming = TRUE
+	G.visible_message("<span class='holoparasite'>[G] begins to melt!</span>")
+	to_chat(G, "<span class='holoparasite'>This power... You can't handle it! RUN AWAY!</span>")
+	var/i = 0
+	var/flicker = TRUE
+	while(i < 10)
+		i++
+		G.set_light(4, 10, rgb(rand(1, 127), rand(1, 127), rand(1, 127)))
+		var/a = flicker ? 127 : 255
+		flicker = !flicker
+		animate(G, alpha = a, time = 5 SECONDS)
+		sleep(5 SECONDS)
+	G.stats.Unapply(G)
+	G.stats.damage = min(G.stats.damage + rand(1,3), 5)
+	G.stats.defense = min(G.stats.defense + rand(1,3), 5)
+	G.stats.speed = min(G.stats.speed + rand(1,3), 5)
+	G.stats.potential = min(G.stats.damage + rand(1,3), 5)
+	G.stats.potential = min(G.stats.damage + rand(1,3), 5)
+	G.stats.range = min(G.stats.range + rand(1,3), 5)
+	for(var/T in subtypesof(/datum/guardian_ability/minor))
+		G.stats.TakeMinorAbility(T)
+	QDEL_NULL(G.stats.ability)
+	var/requiem_ability = pick(subtypesof(/datum/guardian_ability/major/special))
+	G.stats.ability = new requiem_ability
+	G.stats.Apply(G)
+	G.transforming = FALSE
+	G.Recall(TRUE)
+	G.visible_message("<span class='holoparasite'>\The [src] is absorbed into [G]!</span>")
+	qdel(src)
+
+
 /obj/item/stand_arrow/proc/generate_stand(mob/living/carbon/human/H)
 	var/points = 15
 	var/list/categories = list("Damage", "Defense", "Speed", "Potential", "Range") // will be shuffled every iteration
-	var/list/majors = allow_special ? (subtypesof(/datum/guardian_ability/major) - /datum/guardian_ability/major/special) : (subtypesof(/datum/guardian_ability/major) - typesof(/datum/guardian_ability/major/special))
+	var/list/majors = subtypesof(/datum/guardian_ability/major) - typesof(/datum/guardian_ability/major/special)
 	var/list/major_weighted = list()
 	for(var/M in majors)
 		var/datum/guardian_ability/major/major = new M
@@ -110,6 +146,10 @@
 		G.summoner = H
 		G.key = C.key
 		G.mind.enslave_mind_to_creator(H)
+		var/datum/antagonist/stand/S = new
+		S.stats = stats
+		S.summoner = H.mind.name
+		G.mind.add_antag_datum(S)
 		G.stats = stats
 		G.stats.Apply(G)
 		G.show_detail()
@@ -127,10 +167,3 @@
 			qdel(src)
 	else
 		addtimer(CALLBACK(src, .proc/get_stand, H, stats), 90 SECONDS) // lmao
-
-/obj/item/stand_arrow/rare
-	allow_special = TRUE
-
-/obj/item/stand_arrow/rare/examine(mob/user)
-	. = ..()
-	. += "<span class='hypnophrase italics'>It radiates with power...</span>"

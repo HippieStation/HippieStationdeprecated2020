@@ -1,14 +1,11 @@
-
-/*/datum/guardian_ability/major/special/timestop
+/datum/guardian_ability/major/special/timestop
 	name = "Time Stop"
-	desc = "The stand can stop time for 10 seconds."
+	desc = "The stand can stop time in a localized area."
 	cost = 5
-	arrow_weight = 1.5
-	spell_type = /obj/effect/proc_holder/spell/self/the_world
+	spell_type = /obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/stand
 
-/datum/guardian_ability/major/special/timestop/Apply()
-	. = ..()
-	var/obj/effect/proc_holder/spell/self/the_world/S = spell
-	if(S && istype(S))
-		S.seconds = 10 SECONDS
-*/
+/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop/stand
+	invocation_type = "none"
+	clothes_req = FALSE
+	staff_req = FALSE
+	summon_type = list(/obj/effect/timestop)

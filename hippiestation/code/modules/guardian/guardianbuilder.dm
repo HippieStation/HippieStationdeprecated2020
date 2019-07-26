@@ -66,7 +66,8 @@
 			desc = GA.desc,
 			selected = istype(saved_stats.ability, ability),
 			available = (points >= GA.cost),
-			path = "[ability]"
+			path = "[ability]",
+			requiem = istype(GA, /datum/guardian_ability/major/special)
 		))
 	.["abilities_minor"] = list()
 	for(var/ability in subtypesof(/datum/guardian_ability/minor))
@@ -181,6 +182,10 @@
 		G.summoner = user
 		G.key = C.key
 		G.mind.enslave_mind_to_creator(user)
+		var/datum/antagonist/stand/S = new
+		S.stats = saved_stats
+		S.summoner = user.mind.name
+		G.mind.add_antag_datum(S)
 		G.stats = saved_stats
 		G.stats.Apply(G)
 		G.show_detail()
