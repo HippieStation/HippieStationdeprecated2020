@@ -72,7 +72,7 @@
 		return
 	..()
 	if(current_skin)
-		icon_state = "[unique_reskin[current_skin]][sawn_off ? "_sawn" : ""]"
+		icon_state = "[unique_reskin[current_skin]][sawn_off ? "-sawn" : ""]" // hippie -- fixes sawn-off sprites
 	else
 		icon_state = "[initial(icon_state)][suppressed ? "-suppressed" : ""][sawn_off ? "-sawn" : ""]"
 /*hippie end -- old skins*/
