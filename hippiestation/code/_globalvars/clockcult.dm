@@ -1,1 +1,0 @@
-GLOBAL_VAR_INIT(neovgre_exists, 0)
