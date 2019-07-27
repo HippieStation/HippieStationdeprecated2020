@@ -169,3 +169,8 @@
 			qdel(src)
 	else
 		addtimer(CALLBACK(src, .proc/get_stand, H, stats), 90 SECONDS) // lmao
+
+/obj/item/stand_arrow/examine(mob/user)
+	. = ..()
+	if(isobserver(user))
+		. += "The arrow has a [kill_chance]% chance of killing the user."

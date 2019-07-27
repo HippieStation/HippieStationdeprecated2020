@@ -8,19 +8,19 @@
 
 /datum/antagonist/stand/roundend_report()
 	var/list/parts = list()
-	parts += printplayer(owner)
+	parts += ..()
 	if(summoner)
-		parts += "<li><B>SUMMONER</B>: [summoner]</li>"
+		parts += "<B>SUMMONER</B>: [summoner]"
 	if(stats)
-		parts += "<li><b>DAMAGE:</b> [level_to_grade(stats.damage)]</li>"
-		parts += "<li><b>DEFENSE:</b> [level_to_grade(stats.defense)]</li>"
-		parts += "<li><b>SPEED:</b> [level_to_grade(stats.speed)]</li>"
-		parts += "<li><b>POTENTIAL:</b> [level_to_grade(stats.potential)]</li>"
-		parts += "<li><b>RANGE:</b> [level_to_grade(stats.range)]</li>"
+		parts += "<b>DAMAGE:</b> [level_to_grade(stats.damage)]"
+		parts += "<b>DEFENSE:</b> [level_to_grade(stats.defense)]"
+		parts += "<b>SPEED:</b> [level_to_grade(stats.speed)]"
+		parts += "<b>POTENTIAL:</b> [level_to_grade(stats.potential)]"
+		parts += "<b>RANGE:</b> [level_to_grade(stats.range)]"
 		if(stats.ability)
-			parts += "<li><b>SPECIAL ABILITY:</b> [stats.ability.name]</li>"
+			parts += "<b>SPECIAL ABILITY:</b> [stats.ability.name]"
 		for(var/datum/guardian_ability/minor/M in stats.minor_abilities)
-			parts += "<li><b>MINOR ABILITY:</b> [M.name]</li>"
+			parts += "<b>MINOR ABILITY:</b> [M.name]"
 	return parts.Join("<br>")
 
 /datum/antagonist/stand/antag_panel_data()

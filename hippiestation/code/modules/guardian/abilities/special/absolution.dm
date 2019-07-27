@@ -109,3 +109,13 @@
 		AM.throw_at(throwingdatum.thrower, throwingdatum.maxrange * 2, throwingdatum.speed * 2, src, TRUE)
 		return
 	return ..()
+
+/datum/martial_art/basic_hit(mob/living/carbon/human/A,mob/living/carbon/human/D)
+	if(HAS_TRAIT(D, TRAIT_ONEWAYROAD))
+		D = A
+	return ..(A, D)
+
+/datum/species/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
+	if(HAS_TRAIT(target, TRAIT_ONEWAYROAD))
+		target = user
+	return ..(user, target, attacker_style)
