@@ -19,12 +19,13 @@
 
 /datum/martial_art/cqc/proc/drop_restraining()
 	restraining = 0
-	
+
 /datum/martial_art/cqc/proc/can_cook(mob/living/carbon/human/A)
 	if(just_a_cook)
 		var/A_area = get_area(A)
 		if (!is_type_in_typecache(A_area, areas_under_siege))
 			return FALSE
+	return TRUE
 
 /datum/martial_art/cqc/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	A.hud_used.combo_object.update_icon(streak, 60)
