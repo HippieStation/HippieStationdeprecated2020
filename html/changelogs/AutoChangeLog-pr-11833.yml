@@ -1,0 +1,6 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - rscadd: "Added a Station-wide Timestop for wizards, THE WORLD!"
+  - rscadd: "1 second per spellpoint put into THE WORLD."
+  - rscadd: "It also comes with the CHECKMATE spell, which allows you to throw your kitchen knife collection at your enemies."
