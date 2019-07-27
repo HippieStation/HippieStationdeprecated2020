@@ -117,11 +117,7 @@
 	shoes = /obj/item/clothing/shoes/combat
 	back = /obj/item/storage/backpack/fireproof
 	ears = /obj/item/radio/headset/syndicate/alt
-	/datum/outfit/syndicate/no_crystals/recruit
-	l_pocket = /obj/item/pinpointer
-	
-	/datum/antagonist/nukeop/reinforcement
-	nukeop_outfit = /datum/outfit/syndicate/no_crystals/recruit
+	l_pocket = /obj/item/reagent_containers/food/snacks/donkpocket/warm // hippie -- had to replace the syndie-lad with something!
 	id = /obj/item/card/id/syndicate
 	belt = /obj/item/gun/ballistic/automatic/pistol
 	backpack_contents = list(/obj/item/storage/box/syndie=1,\
@@ -142,6 +138,7 @@
 /datum/outfit/syndicate/no_crystals
 	name = "Syndicate Operative - Reinforcement"
 	tc = 0
+	l_pocket = /obj/item/pinpointer
 
 /datum/outfit/syndicate/post_equip(mob/living/carbon/human/H)
 	var/obj/item/radio/R = H.ears
