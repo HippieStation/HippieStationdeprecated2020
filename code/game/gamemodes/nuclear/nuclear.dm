@@ -117,7 +117,7 @@
 	shoes = /obj/item/clothing/shoes/combat
 	back = /obj/item/storage/backpack/fireproof
 	ears = /obj/item/radio/headset/syndicate/alt
-	l_pocket = /obj/item/reagent_containers/food/snacks/donkpocket/warm // hippie -- had to replace the syndie-lad with something!
+	l_pocket = /obj/item/pinpointer // hippie -- had to replace the syndie-lad with something!
 	id = /obj/item/card/id/syndicate
 	belt = /obj/item/gun/ballistic/automatic/pistol
 	backpack_contents = list(/obj/item/storage/box/syndie=1,\
