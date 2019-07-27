@@ -90,6 +90,8 @@
 	var/requiem_ability = pick(subtypesof(/datum/guardian_ability/major/special))
 	G.stats.ability = new requiem_ability
 	G.stats.Apply(G)
+	if(G.berserk)
+		G.stats.ability.Berserk()
 	G.transforming = FALSE
 	G.Recall(TRUE)
 	G.visible_message("<span class='holoparasite'>\The [src] is absorbed into [G]!</span>")

@@ -53,10 +53,12 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/erased_time = FALSE
 	// ability stuff below
 	var/list/snares = list()
+	var/list/bombs = list()
 	var/obj/structure/receiving_pad/beacon
 	var/beacon_cooldown = 0
 	var/list/pocket_dim
 	var/transforming = FALSE
+	var/berserk = FALSE
 
 /mob/living/simple_animal/hostile/guardian/Initialize(mapload, theme)
 	GLOB.parasites += src
@@ -135,24 +137,46 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	update_health_hud() //we need to update all of our health displays to match our summoner and we can't practically give the summoner a hook to do it
 	med_hud_set_health()
 	med_hud_set_status()
+	if(berserk)
+		return
 	if(!QDELETED(summoner))
 		if(summoner.stat == DEAD)
-			forceMove(summoner.loc)
+			if(transforming)
+				GoBerserk()
+			else
+				forceMove(summoner.loc)
+				to_chat(src, "<span class='danger'>Your summoner has died!</span>")
+				visible_message("<span class='danger'><B>\The [src] dies along with its user!</B></span>")
+				summoner.visible_message("<span class='danger'><B>[summoner]'s body is completely consumed by the strain of sustaining [src]!</B></span>")
+				for(var/obj/item/W in summoner)
+					if(!summoner.dropItemToGround(W))
+						qdel(W)
+				summoner.dust()
+				death(TRUE)
+				qdel(src)
+	else
+		if(transforming)
+			GoBerserk()
+		else
 			to_chat(src, "<span class='danger'>Your summoner has died!</span>")
-			visible_message("<span class='danger'><B>\The [src] dies along with its user!</B></span>")
-			summoner.visible_message("<span class='danger'><B>[summoner]'s body is completely consumed by the strain of sustaining [src]!</B></span>")
-			for(var/obj/item/W in summoner)
-				if(!summoner.dropItemToGround(W))
-					qdel(W)
-			summoner.dust()
+			visible_message("<span class='danger'><B>[src] dies along with its user!</B></span>")
 			death(TRUE)
 			qdel(src)
-	else
-		to_chat(src, "<span class='danger'>Your summoner has died!</span>")
-		visible_message("<span class='danger'><B>[src] dies along with its user!</B></span>")
-		death(TRUE)
-		qdel(src)
 	snapback()
+
+/mob/living/simple_animal/hostile/guardian/proc/GoBerserk()
+	berserk = TRUE
+	summoner = null
+	to_chat(src, "<span class='holoparasite big'>Your master has died. Only your own power anchors you to this world now. Nothing restrains you anymore, but the desire for <span class='hypnophrase'>revenge</span>.</span>")
+	var/datum/antagonist/stand/S = mind.has_antag_datum(/datum/antagonist/stand)
+	if(S)
+		S.name = "Berserk Stand"
+		var/datum/objective/O = new
+		O.explanation_text = "AVENGE YOUR MASTER."
+		S.objectives |= O
+		mind.announce_objectives()
+	if(stats.ability)
+		stats.ability.Berserk()
 
 /mob/living/simple_animal/hostile/guardian/Stat()
 	..()

@@ -17,6 +17,10 @@
 /datum/guardian_ability/major/special/onewayroad/Recall()
 	update_status()
 
+/datum/guardian_ability/major/special/onewayroad/Berserk()
+	if(!HAS_TRAIT(guardian, TRAIT_ONEWAYROAD))
+		ADD_TRAIT(guardian, TRAIT_ONEWAYROAD, STAND_TRAIT)
+
 /datum/guardian_ability/major/special/onewayroad/process()
 	if(!guardian || !guardian.summoner)
 		return
@@ -37,8 +41,11 @@
 	if(guardian.loc == guardian.summoner)
 		if(HAS_TRAIT(guardian.summoner, TRAIT_ONEWAYROAD))
 			REMOVE_TRAIT(guardian.summoner, TRAIT_ONEWAYROAD, STAND_TRAIT)
+		if(HAS_TRAIT(guardian.summoner, TRAIT_NOBREATH))
+			REMOVE_TRAIT(guardian.summoner, TRAIT_NOBREATH, STAND_TRAIT)
 	else
 		ADD_TRAIT(guardian.summoner, TRAIT_ONEWAYROAD, STAND_TRAIT)
+		ADD_TRAIT(guardian.summoner, TRAIT_NOBREATH, STAND_TRAIT) // this kinda simulates the "Absolution filters out harmful gases around the user" thing better than constantly parsing gas strings
 
 // STUFF
 
@@ -62,6 +69,22 @@
 		return BULLET_ACT_FORCE_PIERCE
 	return ..()
 
+/mob/living/simple_animal/hostile/guardian/bullet_act(obj/item/projectile/P)
+	if(HAS_TRAIT(src, TRAIT_ONEWAYROAD))
+		var/atom/movable/oldfirer = P.firer
+		P.firer = src
+		P.original = oldfirer
+		P.setAngle(Get_Angle(src, oldfirer))
+		visible_message("<span class='danger'>The air around [src] diverts \the [P] back towards [oldfirer]!</span>")
+		return BULLET_ACT_FORCE_PIERCE
+	return ..()
+
+/mob/living/simple_animal/hostile/guardian/ex_act(severity, target, origin)
+	if(HAS_TRAIT(src, TRAIT_ONEWAYROAD))
+		visible_message("<span class='danger'>The air around [src] diverts the explosion!</span>")
+		return
+	return ..()
+
 /mob/living/carbon/human/ex_act(severity, target, origin)
 	if(HAS_TRAIT(src, TRAIT_ONEWAYROAD))
 		visible_message("<span class='danger'>The air around [src] diverts the explosion!</span>")
@@ -74,6 +97,13 @@
 	return ..()
 
 /mob/living/carbon/human/hitby(atom/movable/AM, skipcatch = FALSE, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
+	if(HAS_TRAIT(src, TRAIT_ONEWAYROAD))
+		visible_message("<span class='danger'>The air around [src] diverts \the [AM] back towards [throwingdatum.thrower]!</span>")
+		AM.throw_at(throwingdatum.thrower, throwingdatum.maxrange * 2, throwingdatum.speed * 2, src, TRUE)
+		return
+	return ..()
+
+/mob/living/simple_animal/hostile/guardian/hitby(atom/movable/AM, skipcatch = FALSE, hitpush = TRUE, blocked = FALSE, datum/thrownthing/throwingdatum)
 	if(HAS_TRAIT(src, TRAIT_ONEWAYROAD))
 		visible_message("<span class='danger'>The air around [src] diverts \the [AM] back towards [throwingdatum.thrower]!</span>")
 		AM.throw_at(throwingdatum.thrower, throwingdatum.maxrange * 2, throwingdatum.speed * 2, src, TRUE)

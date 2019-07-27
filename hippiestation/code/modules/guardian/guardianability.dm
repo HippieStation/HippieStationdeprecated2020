@@ -43,6 +43,8 @@
 
 /datum/guardian_ability/major/proc/CtrlClickOn(atom/A)
 
+/datum/guardian_ability/major/proc/Berserk()
+
 /datum/guardian_ability/major/special
 
 // minor ability stub
