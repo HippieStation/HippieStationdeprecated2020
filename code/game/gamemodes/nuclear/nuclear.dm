@@ -117,7 +117,11 @@
 	shoes = /obj/item/clothing/shoes/combat
 	back = /obj/item/storage/backpack/fireproof
 	ears = /obj/item/radio/headset/syndicate/alt
-	l_pocket = /obj/item/pinpointer // hippie -- had to replace the syndie-lad with something!
+	/datum/outfit/syndicate/no_crystals/recruit
+	l_pocket = /obj/item/pinpointer
+	
+	/datum/antagonist/nukeop/reinforcement
+	nukeop_outfit = /datum/outfit/syndicate/no_crystals/recruit
 	id = /obj/item/card/id/syndicate
 	belt = /obj/item/gun/ballistic/automatic/pistol
 	backpack_contents = list(/obj/item/storage/box/syndie=1,\
