@@ -57,7 +57,10 @@
 		else
 			resolved = target.attackby(src, user, params)
 		if(!resolved && target && !QDELETED(src))
-			afterattack(target, user, 1, params)
+			if(HAS_TRAIT(target, TRAIT_ONEWAYROAD))
+				afterattack(user, user, 1, params)
+			else
+				afterattack(target, user, 1, params)
 
 /mob/living/carbon/human/bullet_act(obj/item/projectile/P, def_zone)
 	if(HAS_TRAIT(src, TRAIT_ONEWAYROAD))
