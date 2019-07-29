@@ -138,6 +138,7 @@
 /datum/outfit/syndicate/no_crystals
 	name = "Syndicate Operative - Reinforcement"
 	tc = 0
+	l_pocket = /obj/item/pinpointer/nuke/syndicate
 
 /datum/outfit/syndicate/post_equip(mob/living/carbon/human/H)
 	var/obj/item/radio/R = H.ears
