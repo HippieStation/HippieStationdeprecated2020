@@ -59,6 +59,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/list/pocket_dim
 	var/transforming = FALSE
 	var/berserk = FALSE
+	var/requiem = FALSE
 
 /mob/living/simple_animal/hostile/guardian/Initialize(mapload, theme)
 	GLOB.parasites += src

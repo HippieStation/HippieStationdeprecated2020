@@ -72,6 +72,56 @@
 		return BULLET_ACT_FORCE_PIERCE
 	return ..()
 
+/mob/living/carbon/human/attack_animal(mob/living/simple_animal/M)
+	if(HAS_TRAIT(src, TRAIT_ONEWAYROAD))
+		return M.attack_animal(M)
+	return ..()
+
+/mob/living/simple_animal/hostile/guardian/attack_animal(mob/living/simple_animal/M)
+	if(HAS_TRAIT(src, TRAIT_ONEWAYROAD))
+		return M.attack_animal(M)
+	return ..()
+
+/mob/living/carbon/human/attack_hulk(mob/living/carbon/human/user, does_attack_animation)
+	if(HAS_TRAIT(src, TRAIT_ONEWAYROAD))
+		return user.attack_hulk(user, does_attack_animation)
+	return ..()
+
+/mob/living/simple_animal/hostile/guardian/attack_hulk(mob/living/carbon/human/user, does_attack_animation)
+	if(HAS_TRAIT(src, TRAIT_ONEWAYROAD))
+		return user.attack_hulk(user, does_attack_animation)
+	return ..()
+
+/mob/living/carbon/human/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation)
+	if(HAS_TRAIT(src, TRAIT_ONEWAYROAD))
+		return user.attack_nanosuit(user, does_attack_animation)
+	return ..()
+
+/mob/living/simple_animal/hostile/guardian/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation)
+	if(HAS_TRAIT(src, TRAIT_ONEWAYROAD))
+		return user.attack_nanosuit(user, does_attack_animation)
+	return ..()
+
+/mob/living/carbon/human/attack_alien(mob/living/carbon/alien/humanoid/M)
+	if(HAS_TRAIT(src, TRAIT_ONEWAYROAD))
+		return M.attack_alien(M)
+	return ..()
+
+/mob/living/simple_animal/hostile/guardian/attack_alien(mob/living/carbon/alien/humanoid/M)
+	if(HAS_TRAIT(src, TRAIT_ONEWAYROAD))
+		return M.attack_alien(M)
+	return ..()
+
+/mob/living/carbon/human/attack_paw(mob/living/carbon/monkey/M)
+	if(HAS_TRAIT(src, TRAIT_ONEWAYROAD))
+		return M.attack_paw(M)
+	return ..()
+
+/mob/living/simple_animal/hostile/guardian/attack_paw(mob/living/carbon/monkey/M)
+	if(HAS_TRAIT(src, TRAIT_ONEWAYROAD))
+		return M.attack_paw(M)
+	return ..()
+
 /mob/living/simple_animal/hostile/guardian/bullet_act(obj/item/projectile/P)
 	if(HAS_TRAIT(src, TRAIT_ONEWAYROAD))
 		var/atom/movable/oldfirer = P.firer
