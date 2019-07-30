@@ -290,6 +290,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		hud_used.healths.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#efeeef'>[resulthealth]%</font></div>"
 
 /mob/living/simple_animal/hostile/guardian/adjustHealth(amount, updating_health = TRUE, forced = FALSE) //The spirit is invincible, but passes on damage to the summoner
+	if(berserk)
+		return ..()
 	. = amount
 	if(summoner)
 		if(loc == summoner)
