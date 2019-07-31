@@ -51,7 +51,7 @@
 	if((istype(I, /obj/item/stack/sheet/cloth)) && (src != padded))
 		if(istype(I, use(10)))
 			to_chat(user, "You pad the insides of the [src] with [I].")
-			src.padded = 1.
+			src.padded = TRUE
 			src.desc += "This one is padded, and thus it is easier to move comfortably while wearing it."
 			src.slowdown = 0
 		else
