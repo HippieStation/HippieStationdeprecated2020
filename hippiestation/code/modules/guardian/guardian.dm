@@ -170,8 +170,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 /mob/living/simple_animal/hostile/guardian/proc/GoBerserk()
 	berserk = TRUE
 	summoner = null
-	maxHealth = 2500
-	health = 2500
+	maxHealth = 750
+	health = 750
 	to_chat(src, "<span class='holoparasite big'>Your master has died. Only your own power anchors you to this world now. Nothing restrains you anymore, but the desire for <span class='hypnophrase'>revenge</span>.</span>")
 	var/datum/antagonist/stand/S = mind.has_antag_datum(/datum/antagonist/stand)
 	if(S)
