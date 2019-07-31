@@ -181,7 +181,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		S.objectives |= O
 		mind.announce_objectives()
 	if(stats.ability)
-
 		stats.ability.Berserk()
 
 /mob/living/simple_animal/hostile/guardian/Stat()
