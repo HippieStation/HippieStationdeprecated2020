@@ -2918,6 +2918,7 @@
 #include "hippiestation\code\datums\martial\sleeping_carp.dm"
 #include "hippiestation\code\datums\mood_events\generic_positive_events.dm"
 #include "hippiestation\code\datums\mutations\hulk.dm"
+#include "hippiestation\code\datums\ruins\lavaland.dm"
 #include "hippiestation\code\datums\status_effects\debuffs.dm"
 #include "hippiestation\code\datums\traits\good.dm"
 #include "hippiestation\code\datums\traits\negative.dm"
