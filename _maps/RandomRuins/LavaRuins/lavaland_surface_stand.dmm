@@ -36,7 +36,6 @@
 /turf/open/floor/holofloor/wood,
 /area/ruin/powered/stand_ruin)
 "j" = (
-/obj/item/gps/internal/stand_ruin,
 /mob/living/simple_animal/hostile/syndicate/ranged/shotgun{
 	environment_smash = 0;
 	faction = list("hostile","stand");
