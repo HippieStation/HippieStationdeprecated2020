@@ -7,27 +7,25 @@
 /area/lavaland/surface/outdoors)
 "c" = (
 /turf/closed/indestructible/riveted/boss,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered/stand_ruin)
 "d" = (
 /turf/open/floor/holofloor/wood,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered/stand_ruin)
 "e" = (
-/obj/structure/displaycase{
-	start_showpiece_type = /obj/item/stand_arrow
-	},
+/obj/structure/displaycase/stand,
 /turf/open/floor/holofloor/wood,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered/stand_ruin)
 "f" = (
 /obj/structure/mineral_door/wood,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered/stand_ruin)
 "g" = (
 /mob/living/simple_animal/hostile/netherworld{
 	environment_smash = 0;
 	faction = list("hostile","stand")
 	},
 /turf/open/floor/holofloor/wood,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered/stand_ruin)
 "h" = (
 /mob/living/simple_animal/hostile/syndicate/ranged/smg{
 	environment_smash = 0;
@@ -36,8 +34,9 @@
 	resize = 0.35
 	},
 /turf/open/floor/holofloor/wood,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered/stand_ruin)
 "j" = (
+/obj/item/gps/internal/stand_ruin,
 /mob/living/simple_animal/hostile/syndicate/ranged/shotgun{
 	environment_smash = 0;
 	faction = list("hostile","stand");
@@ -45,14 +44,14 @@
 	resize = 0.35
 	},
 /turf/open/floor/holofloor/wood,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered/stand_ruin)
 "k" = (
 /mob/living/simple_animal/hostile/faithless{
 	environment_smash = 0;
 	faction = list("hostile","stand")
 	},
 /turf/open/floor/holofloor/wood,
-/area/lavaland/surface/outdoors)
+/area/ruin/powered/stand_ruin)
 
 (1,1,1) = {"
 a

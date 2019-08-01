@@ -9,3 +9,7 @@
 	..()
 	if(prob(1))
 		allow_duplicates = TRUE
+
+/area/ruin/powered/stand_ruin
+	name = "Nijimura's Attic"
+	icon_state = "dk_yellow"

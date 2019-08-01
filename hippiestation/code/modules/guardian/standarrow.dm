@@ -178,3 +178,13 @@
 	. = ..()
 	if(isobserver(user))
 		. += "The arrow has a [kill_chance]% chance of killing the user."
+
+/obj/structure/displaycase/stand
+	start_showpiece_type = /obj/item/stand_arrow
+
+/obj/structure/displaycase/stand/Initialize()
+	. = ..()
+	new /obj/item/gps/internal/stand_ruin(src)
+
+/obj/item/gps/internal/stand_ruin
+	gpstag = "Powerful Signal"
