@@ -50,7 +50,7 @@
 		icon_state = "plate_armor_spikey"
 		new /obj/item/clothing/head/helmet/plate_armor/spikey(src.loc)
 		armor = list("melee" = 50, "bullet" = 10, "laser" = -10, "energy" = -25, "bomb" = 10, "bio" = 25, "rad" = 20, "fire" = -15, "acid" = 80) //this is a menacing plate armor
-		desc = "A suit of plate armor. It is so heavy one cannot be pushed down while inside it. It menaces with jagged spikes."
+		desc = "A suit of plate armor. It is so heavy one cannot be pushed down while inside it. It menaces with jagged spikes, touching it with your bare hand would be painful."
 		return
 	if(prob(75))
 		item_state = "crude_armor"
@@ -87,9 +87,9 @@
 		return 0
 	var/mob/living/carbon/human/H = owner
 	if(H.gloves)
-		owner.visible_message("<span class='danger'>[hitby] successfully attacked [owner], his gloves protecting him from the spikes of [src]!</span>")
 		return 0
-	owner.visible_message("<span class='danger'>[hitby] gets visibly wounded by punching [owner]'s [src]!</span>")
+	var/mob/living/carbon/human/V = hitby
+	V.emote("scream")
 	return 1
 
 /obj/item/clothing/head/helmet/plate_armor
@@ -147,7 +147,7 @@
 		to_chat(user, "You pad the insides of the [src] with [I].")
 		src.padded = TRUE
 		src.desc += " This one is padded, and thus it is easier to move comfortably while wearing it."
-		src.slowdown = 0.1
+		src.slowdown = 0.2
 	else
 		to_chat(user, "[src] is already padded")
 
