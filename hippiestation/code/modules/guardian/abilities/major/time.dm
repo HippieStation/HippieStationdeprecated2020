@@ -46,6 +46,8 @@
 		L.mouse_opacity = FALSE
 		L.density = FALSE
 		L.alpha = 128
+		if(L.pulledby)
+			L.pulledby.stop_pulling()
 		if(isguardian(L))
 			var/mob/living/simple_animal/hostile/guardian/G = L
 			G.erased_time = TRUE
