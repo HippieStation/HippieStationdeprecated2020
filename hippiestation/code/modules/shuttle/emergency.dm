@@ -71,7 +71,7 @@
 		SSshuttle.emergencyLastCallLoc = null
 	var/callsound = pick(pyko_call)
 
-	priority_announce("The emergency shuttle has been called. [redAlert ? "Red Alert state confirmed: Dispatching priority shuttle. " : "" ]It will arrive in [timeLeft(600)] minutes.[reason][SSshuttle.emergencyLastCallLoc ? "\n\nCall signal traced. Results can be viewed on any communications console." : "" ] [SSshuttle.adminEmergencyNoRecall ? "\n\nWarning: Shuttle recall subroutines disabled; Recall not possible." : ""]", null, 'callsound', "Priority")//Shuttle disable check
+	priority_announce("The emergency shuttle has been called. [redAlert ? "Red Alert state confirmed: Dispatching priority shuttle. " : "" ]It will arrive in [timeLeft(600)] minutes.[reason][SSshuttle.emergencyLastCallLoc ? "\n\nCall signal traced. Results can be viewed on any communications console." : "" ] [SSshuttle.adminEmergencyNoRecall ? "\n\nWarning: Shuttle recall subroutines disabled; Recall not possible." : ""]", null, callsound, "Priority")//Shuttle disable check
 	reason = copytext(reason, 1, 100)
 
 /obj/docking_port/mobile/emergency/cancel(area/signalOrigin)
@@ -92,7 +92,7 @@
 	else
 		SSshuttle.emergencyLastCallLoc = null
 	var/recallsound = pick(pyko_recall)
-	priority_announce("The emergency shuttle has been recalled.[SSshuttle.emergencyLastCallLoc ? " Recall signal traced. Results can be viewed on any communications console." : "" ]", null, 'recallsound', "Priority")
+	priority_announce("The emergency shuttle has been recalled.[SSshuttle.emergencyLastCallLoc ? " Recall signal traced. Results can be viewed on any communications console." : "" ]", null, recallsound, "Priority")
 
 /obj/docking_port/mobile/emergency/check()
 	if(!timer)
