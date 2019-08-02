@@ -150,7 +150,7 @@ SUBSYSTEM_DEF(shuttle)
 		message_admins(msg)
 		log_game("[msg] Alive: [alive], Roundstart: [total], Threshold: [threshold]")
 		emergencyNoRecall = TRUE
-		priority_announce("Catastrophic casualties detected: crisis shuttle protocols activated - jamming recall signals across all frequencies.")
+		priority_announce("Catastrophic casualties detected: crisis shuttle protocols activated - jamming recall signals across all frequencies.", null, 'hippiestation/sound/pyko/catastrophic.ogg', "Red Alert")
 		if(emergency.timeLeft(1) > emergencyCallTime * 0.4)
 			emergency.request(null, set_coefficient = 0.4)
 
@@ -385,7 +385,7 @@ SUBSYSTEM_DEF(shuttle)
 		emergency.setTimer(emergencyDockTime)
 		priority_announce("Hostile environment resolved. \
 			You have 3 minutes to board the Emergency Shuttle.",
-			null, 'sound/ai/shuttledock.ogg', "Priority")
+			null, 'hippiestation/sound/pyko/shuttledock.ogg', "Priority")
 
 //try to move/request to dockHome if possible, otherwise dockAway. Mainly used for admin buttons
 /datum/controller/subsystem/shuttle/proc/toggleShuttle(shuttleId, dockHome, dockAway, timed)
