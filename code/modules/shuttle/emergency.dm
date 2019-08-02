@@ -70,7 +70,7 @@
 	var/old_len = authorized.len
 
 	HIPPIE_HOOK_SHUTTLE_AUTH
-	
+
 	switch(action)
 		if("authorize")
 			. = authorize(user)
@@ -188,6 +188,8 @@
 	dir = EAST
 	port_direction = WEST
 	var/sound_played = 0 //If the launch sound has been sent to all players on the shuttle itself
+	var/pyko_call = list('hippiestation/sound/pyko/shuttlecall.ogg', 'hippiestation/sound/pyko/shuttlecallF.ogg') // hippie -- pykoai
+	var/pyko_recall = list('hippiestation/sound/pyko/shuttlerecall.ogg', 'hippiestation/sound/pyko/who_the_fuck_just_recalled.ogg') // hippie -- pykoai
 
 /obj/docking_port/mobile/emergency/canDock(obj/docking_port/stationary/S)
 	return SHUTTLE_CAN_DOCK //If the emergency shuttle can't move, the whole game breaks, so it will force itself to land even if it has to crush a few departments in the process

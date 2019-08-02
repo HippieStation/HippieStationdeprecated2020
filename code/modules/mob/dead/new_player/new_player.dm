@@ -3,6 +3,7 @@
 /mob/dead/new_player
 	var/ready = 0
 	var/spawning = 0//Referenced when you want to delete the new_player later on in the code.
+	var/pyko_hello // hippie -- pykoai
 
 	flags_1 = NONE
 
@@ -362,7 +363,12 @@
 		if(!arrivals_docked)
 			var/obj/screen/splash/Spl = new(character.client, TRUE)
 			Spl.Fade(TRUE)
-			character.playsound_local(get_turf(character), 'sound/voice/ApproachingTG.ogg', 25)
+			var/picked_number = rand(1, 10) // hippie -- pykoai changes, also a random chance to make a joke about tgstation
+			if(picked_number > 1)
+				pyko_hello = 'hippiestation/sound/pyko/WelcomeHippie.ogg'
+			else
+				pyko_hello = 'hippiestation/sound/pyko/WelcomeUh.ogg'
+			character.playsound_local(get_turf(character), pyko_hello, 70)
 
 		character.update_parallax_teleport()
 
@@ -535,6 +541,6 @@
 		if(has_antags)
 			log_admin("[src.ckey] just got booted back to lobby with no jobs, but antags enabled.")
 			message_admins("[src.ckey] just got booted back to lobby with no jobs enabled, but antag rolling enabled. Likely antag rolling abuse.")
-		
+
 		return FALSE //This is the only case someone should actually be completely blocked from antag rolling as well
 	return TRUE
