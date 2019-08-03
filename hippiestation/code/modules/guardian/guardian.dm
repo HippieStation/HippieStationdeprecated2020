@@ -178,6 +178,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	if(S)
 		S.name = "Berserk Stand"
 		var/datum/objective/O = new
+		O.completed = TRUE
 		O.explanation_text = "AVENGE YOUR MASTER."
 		S.objectives |= O
 		mind.announce_objectives()
