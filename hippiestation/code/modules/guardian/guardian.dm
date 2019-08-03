@@ -51,6 +51,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/battlecry = "AT"
 	var/do_the_cool_invisible_thing = TRUE
 	var/erased_time = FALSE
+	var/berserk = FALSE
+	var/requiem = FALSE
 	// ability stuff below
 	var/list/snares = list()
 	var/list/bombs = list()
@@ -58,12 +60,11 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/beacon_cooldown = 0
 	var/list/pocket_dim
 	var/transforming = FALSE
-	var/berserk = FALSE
-	var/requiem = FALSE
 
 /mob/living/simple_animal/hostile/guardian/Initialize(mapload, theme)
 	GLOB.parasites += src
 	setthemename(theme)
+	battlecry = pick("ORA", "MUDA", "DORA", "ARRI", "VOLA", "AT")
 	return ..()
 
 /mob/living/simple_animal/hostile/guardian/med_hud_set_health()
