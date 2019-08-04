@@ -83,3 +83,10 @@
 	explosion(0,0,0,3)
 	tesla_zap(T, 10, 5000, TESLA_MOB_DAMAGE | TESLA_OBJ_DAMAGE | TESLA_MOB_STUN | TESLA_ALLOW_DUPLICATES)	//Big zap boy
 	playsound(T, 'sound/magic/lightningshock.ogg', 50, 1)
+
+
+
+/datum/chemical_reaction/sharplipium
+	name = "Sharplipium"
+	required_reagents = list(/datum/reagent/silver = 1, /datum/reagent/iron = 1, /datum/reagent/medicine/ephedrine = 1, /datum/reagent/drug/space_drugs = 1)
+	results = list(/datum/reagent/sharplipium = 3)
