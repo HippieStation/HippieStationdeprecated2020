@@ -134,6 +134,7 @@
 		return ..()
 
 /obj/machinery/power/rad_collector/wrench_act(mob/living/user, obj/item/I)
+	..()
 	default_unfasten_wrench(user, I)
 	return TRUE
 

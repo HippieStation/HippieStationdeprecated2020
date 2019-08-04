@@ -344,11 +344,18 @@
 		return FAILED_UNFASTEN
 	return ..()
 
-/obj/machinery/shieldwallgen/attackby(obj/item/W, mob/user, params)
-	if(W.tool_behaviour == TOOL_WRENCH)
-		default_unfasten_wrench(user, W, 0)
 
-	else if(W.GetID())
+/obj/machinery/power/shieldwallgen/wrench_act(mob/living/user, obj/item/I)
+	. = ..()
+	. |= default_unfasten_wrench(user, I, 0)
+	var/turf/T = get_turf(src)
+	update_cable_icons_on_turf(T)
+	if(. == SUCCESSFUL_UNFASTEN && anchored)
+		connect_to_network()
+
+
+/obj/machinery/power/shieldwallgen/attackby(obj/item/W, mob/user, params)
+	if(W.GetID())
 		if(allowed(user) && !(obj_flags & EMAGGED))
 			locked = !locked
 			to_chat(user, "<span class='notice'>You [src.locked ? "lock" : "unlock"] the controls.</span>")

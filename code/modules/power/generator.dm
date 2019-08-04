@@ -190,6 +190,7 @@
 				C.generator = src
 
 /obj/machinery/power/generator/wrench_act(mob/living/user, obj/item/I)
+	. = ..()
 	if(!panel_open)
 		return
 	anchored = !anchored
@@ -201,6 +202,7 @@
 	return TRUE
 
 /obj/machinery/power/generator/multitool_act(mob/living/user, obj/item/I)
+	. = ..()
 	if(!anchored)
 		return
 	find_circs()
