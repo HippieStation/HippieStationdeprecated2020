@@ -386,7 +386,7 @@ Auto Patrol[]"},
 	drop_part(cell_type, Tsec)
 
 	if(!lasercolor)
-		var/obj/item/gun/energy/e_gun/dragnet/G = new (Tsec)
+		var/obj/item/gun/energy/e_gun/advtaser/G = new (Tsec) //hippie - ed209 is made with hybrid tasers, it drops this instead of dragnets also
 		G.cell.charge = 0
 		G.update_icon()
 	else if(lasercolor == "b")
