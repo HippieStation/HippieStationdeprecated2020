@@ -21,6 +21,9 @@
 
 /obj/item/gun/ballistic/automatic/sniper_rifle
 	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
+	
+/obj/item/gun/ballistic/automatic/laser
+	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
 
 /obj/item/gun/ballistic/automatic/l6_saw/attack_self(mob/living/user)
 	if(!internal_magazine && magazine)
