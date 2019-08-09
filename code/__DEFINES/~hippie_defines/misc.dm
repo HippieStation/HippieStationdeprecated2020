@@ -13,3 +13,6 @@
 #define LAG_STONE "lag stone"
 #define GHOST_STONE "ghost stone"
 #define SYNDIE_STONE "syndie stone"
+
+#define GANGMAGEDDON	(1 << 0)
+#define GANGS			(1 << 1)

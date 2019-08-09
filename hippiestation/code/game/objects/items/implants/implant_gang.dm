@@ -46,6 +46,7 @@
 			if(!success)
 				target.visible_message("<span class='warning'>[target] seems to resist the implant!</span>", "<span class='warning'>You feel the influence of your enemies try to invade your mind!</span>")
 				return FALSE
+		target.mind.remove_antag_datum(/datum/antagonist/vigilante)
 		target.mind.add_antag_datum(/datum/antagonist/gang, gang)
 		qdel(src)
 		return TRUE

@@ -7,8 +7,9 @@
 	var/list/gang_whitelist = list()
 	var/list/gang_blacklist = list()
 	var/id
+	var/mode_flags = GANGMAGEDDON | GANGS
 
-/datum/gang_item/proc/purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool, check_canbuy = TRUE)
+/datum/gang_item/gang/proc/purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool, check_canbuy = TRUE)
 	if(check_canbuy && !can_buy(user, gang, gangtool))
 		return FALSE
 	var/real_cost = get_cost(user, gang, gangtool)
@@ -17,7 +18,7 @@
 		to_chat(user, "<span class='notice'>You bought \the [name].</span>")
 		return TRUE
 
-/datum/gang_item/proc/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool) // If this returns anything other than null, something fucked up and influence won't lower.
+/datum/gang_item/gang/proc/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool) // If this returns anything other than null, something fucked up and influence won't lower.
 	if(item_path)
 		var/obj/item/O = new item_path(user.loc)
 		user.put_in_hands(O)
@@ -26,37 +27,37 @@
 	if(spawn_msg)
 		to_chat(user, spawn_msg)
 
-/datum/gang_item/proc/can_buy(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+/datum/gang_item/gang/proc/can_buy(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	return gang && (gang.influence >= get_cost(user, gang, gangtool)) && can_see(user, gang, gangtool)
 
-/datum/gang_item/proc/can_see(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+/datum/gang_item/gang/proc/can_see(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	return TRUE
 
-/datum/gang_item/proc/get_cost(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+/datum/gang_item/gang/proc/get_cost(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	return cost
 
-/datum/gang_item/proc/get_cost_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+/datum/gang_item/gang/proc/get_cost_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	return "([get_cost(user, gang, gangtool)] Influence)"
 
-/datum/gang_item/proc/get_name_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+/datum/gang_item/gang/proc/get_name_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	return name
 
-/datum/gang_item/proc/get_extra_info(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+/datum/gang_item/gang/proc/get_extra_info(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	return
 
 ///////////////////
 //CLOTHING
 ///////////////////
 
-/datum/gang_item/clothing
+/datum/gang_item/gang/clothing
 	category = "Purchase Gang Clothes (Only the jumpsuit and suit give you added influence):"
 
-/datum/gang_item/clothing/under
+/datum/gang_item/gang/clothing/under
 	name = "Gang Uniform"
 	id = "under"
 	cost = 1
 
-/datum/gang_item/clothing/under/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+/datum/gang_item/gang/clothing/under/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	if(gang.inner_outfits.len)
 		var/outfit = pick(gang.inner_outfits)
 		if(outfit)
@@ -66,12 +67,12 @@
 			return
 	return TRUE
 
-/datum/gang_item/clothing/suit
+/datum/gang_item/gang/clothing/suit
 	name = "Gang Armored Outerwear"
 	id = "suit"
 	cost = 1
 
-/datum/gang_item/clothing/suit/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+/datum/gang_item/gang/clothing/suit/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	if(gang.outer_outfits.len)
 		var/outfit = pick(gang.outer_outfits)
 		if(outfit)
@@ -84,7 +85,7 @@
 	return TRUE
 
 
-/datum/gang_item/clothing/hat
+/datum/gang_item/gang/clothing/hat
 	name = "Pimp Hat"
 	id = "hat"
 	cost = 16
@@ -95,7 +96,7 @@
 	name = "pimpin' hat"
 	desc = "The undisputed king of style."
 
-/datum/gang_item/clothing/mask
+/datum/gang_item/gang/clothing/mask
 	name = "Golden Death Mask"
 	id = "mask"
 	cost = 18
@@ -106,7 +107,7 @@
 	icon_state = "gskull"
 	desc = "Strike terror, and envy, into the hearts of your enemies."
 
-/datum/gang_item/clothing/shoes
+/datum/gang_item/gang/clothing/shoes
 	name = "Bling Boots"
 	id = "boots"
 	cost = 22
@@ -117,13 +118,13 @@
 	desc = "Stand aside peasants."
 	icon_state = "bling"
 
-/datum/gang_item/clothing/neck
+/datum/gang_item/gang/clothing/neck
 	name = "Gold Necklace"
 	id = "necklace"
 	cost = 9
 	item_path = /obj/item/clothing/neck/necklace/dope
 
-/datum/gang_item/clothing/hands
+/datum/gang_item/gang/clothing/hands
 	name = "Decorative Brass Knuckles"
 	id = "hand"
 	cost = 11
@@ -135,7 +136,7 @@
 	icon_state = "knuckles"
 	w_class = 3
 
-/datum/gang_item/clothing/belt
+/datum/gang_item/gang/clothing/belt
 	name = "Badass Belt"
 	id = "belt"
 	cost = 13
@@ -151,78 +152,78 @@
 //WEAPONS
 ///////////////////
 
-/datum/gang_item/weapon
+/datum/gang_item/gang/weapon
 	category = "Purchase Weapons:"
 
-/datum/gang_item/weapon/ammo
+/datum/gang_item/gang/weapon/ammo
 
-/datum/gang_item/weapon/shuriken
+/datum/gang_item/gang/weapon/shuriken
 	name = "Shuriken"
 	id = "shuriken"
 	cost = 3
 	item_path = /obj/item/throwing_star
 
-/datum/gang_item/weapon/switchblade
+/datum/gang_item/gang/weapon/switchblade
 	name = "Switchblade"
 	id = "switchblade"
 	cost = 5
 	item_path = /obj/item/switchblade
 
-/datum/gang_item/weapon/surplus
+/datum/gang_item/gang/weapon/surplus
 	name = "Surplus Rifle"
 	id = "surplus"
 	cost = 8
 	item_path = /obj/item/gun/ballistic/automatic/surplus
 
-/datum/gang_item/weapon/ammo/surplus_ammo
+/datum/gang_item/gang/weapon/ammo/surplus_ammo
 	name = "Surplus Rifle Ammo"
 	id = "surplus_ammo"
 	cost = 5
 	item_path = /obj/item/ammo_box/magazine/m10mm/rifle
 
-/datum/gang_item/weapon/improvised
+/datum/gang_item/gang/weapon/improvised
 	name = "Sawn-Off Improvised Shotgun"
 	id = "sawn"
 	cost = 6
 	item_path = /obj/item/gun/ballistic/shotgun/doublebarrel/improvised/sawn
 
-/datum/gang_item/weapon/ammo/improvised_ammo
+/datum/gang_item/gang/weapon/ammo/improvised_ammo
 	name = "Box of Buckshot"
 	id = "buckshot"
 	cost = 5
 	item_path = /obj/item/storage/box/lethalshot
 
-/datum/gang_item/weapon/pistol
+/datum/gang_item/gang/weapon/pistol
 	name = "10mm Pistol"
 	id = "pistol"
 	cost = 30
 	item_path = /obj/item/gun/ballistic/automatic/pistol
 
-/datum/gang_item/weapon/ammo/pistol_ammo
+/datum/gang_item/gang/weapon/ammo/pistol_ammo
 	name = "10mm Ammo"
 	id = "pistol_ammo"
 	cost = 10
 	item_path = /obj/item/ammo_box/magazine/m10mm
 
-/datum/gang_item/weapon/uzi
+/datum/gang_item/gang/weapon/uzi
 	name = "Uzi SMG"
 	id = "uzi"
 	cost = 60
 	item_path = /obj/item/gun/ballistic/automatic/mini_uzi
 
-/datum/gang_item/weapon/ammo/uzi_ammo
+/datum/gang_item/gang/weapon/ammo/uzi_ammo
 	name = "Uzi Ammo"
 	id = "uzi_ammo"
 	cost = 40
 	item_path = /obj/item/ammo_box/magazine/uzim9mm
 
-/datum/gang_item/weapon/glock
+/datum/gang_item/gang/weapon/glock
 	name = "Glock 17"
 	id = "g17"
 	cost = 30
 	item_path = /obj/item/gun/ballistic/automatic/pistol/g17
 
-/datum/gang_item/weapon/ammo/uzi_ammo
+/datum/gang_item/gang/weapon/ammo/uzi_ammo
 	name = "G17 Ammo"
 	id = "g17_ammo"
 	cost = 10
@@ -232,63 +233,63 @@
 //EQUIPMENT
 ///////////////////
 
-/datum/gang_item/equipment
+/datum/gang_item/gang/equipment
 	category = "Purchase Equipment:"
 
 
-/datum/gang_item/equipment/spraycan
+/datum/gang_item/gang/equipment/spraycan
 	name = "Territory Spraycan"
 	id = "spraycan"
 	cost = 5
 	item_path = /obj/item/toy/crayon/spraycan/gang
 
-/datum/gang_item/equipment/spraycan/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+/datum/gang_item/gang/equipment/spraycan/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	var/obj/item/O = new item_path(user.loc, gang)
 	user.put_in_hands(O)
 
-/datum/gang_item/equipment/sharpener
+/datum/gang_item/gang/equipment/sharpener
 	name = "Sharpener"
 	id = "whetstone"
 	cost = 3
 	item_path = /obj/item/sharpener
 
 
-/datum/gang_item/equipment/emp
+/datum/gang_item/gang/equipment/emp
 	name = "EMP Grenade"
 	id = "EMP"
 	cost = 5
 	item_path = /obj/item/grenade/empgrenade
 
-/datum/gang_item/equipment/c4
+/datum/gang_item/gang/equipment/c4
 	name = "C4 Explosive"
 	id = "c4"
 	cost = 7
 	item_path = /obj/item/grenade/plastic/c4
 
-/datum/gang_item/equipment/frag
+/datum/gang_item/gang/equipment/frag
 	name = "Fragmentation Grenade"
 	id = "frag nade"
 	cost = 18
 	item_path = /obj/item/grenade/syndieminibomb/concussion/frag
 
-/datum/gang_item/equipment/stimpack
+/datum/gang_item/gang/equipment/stimpack
 	name = "Black Market Stimulants"
 	id = "stimpack"
 	cost = 12
 	item_path = /obj/item/reagent_containers/syringe/nanoboost
 
-/datum/gang_item/equipment/implant_breaker
+/datum/gang_item/gang/equipment/implant_breaker
 	name = "Implant Breaker"
 	id = "implant_breaker"
 	cost = 10
 	item_path = /obj/item/implanter/gang
 	spawn_msg = "<span class='notice'>The <b>implant breaker</b> is a single-use device that destroys all implants within the target before trying to recruit them to your gang. Also works on enemy gangsters.</span>"
 
-/datum/gang_item/equipment/implant_breaker/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+/datum/gang_item/gang/equipment/implant_breaker/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	var/obj/item/O = new item_path(user.loc, gang)
 	user.put_in_hands(O)
 
-/datum/gang_item/equipment/wetwork_boots
+/datum/gang_item/gang/equipment/wetwork_boots
 	name = "Wetwork boots"
 	id = "wetwork"
 	cost = 20
@@ -300,35 +301,36 @@
 	permeability_coefficient = 0.01
 	clothing_flags = NOSLIP
 
-/datum/gang_item/equipment/pen
+/datum/gang_item/gang/equipment/pen
 	name = "Recruitment Pen"
 	id = "pen"
 	cost = 10
 	item_path = /obj/item/pen/gang
 	spawn_msg = "<span class='notice'>More <b>recruitment pens</b> will allow you to recruit gangsters faster. Only gang leaders can recruit with pens.</span>"
 
-/datum/gang_item/equipment/pen/purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+/datum/gang_item/gang/equipment/pen/purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	if(..())
 		gangtool.free_pen = FALSE
 		return TRUE
 	return FALSE
 
-/datum/gang_item/equipment/pen/get_cost(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+/datum/gang_item/gang/equipment/pen/get_cost(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	if(gangtool && gangtool.free_pen)
 		return 0
 	return ..()
 
-/datum/gang_item/equipment/pen/get_cost_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+/datum/gang_item/gang/equipment/pen/get_cost_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	if(gangtool && gangtool.free_pen)
 		return "(GET ONE FREE)"
 	return ..()
 
 
-/datum/gang_item/equipment/gangtool
+/datum/gang_item/gang/equipment/gangtool
 	id = "gangtool"
 	cost = 10
+	mode_flags = GANGS
 
-/datum/gang_item/equipment/gangtool/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+/datum/gang_item/gang/equipment/gangtool/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	var/item_type
 	if(gang)
 		item_type = /obj/item/device/gangtool/spare/lt
@@ -339,38 +341,38 @@
 	var/obj/item/device/gangtool/spare/tool = new item_type(user.loc)
 	user.put_in_hands(tool)
 
-/datum/gang_item/equipment/gangtool/get_name_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+/datum/gang_item/gang/equipment/gangtool/get_name_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	if(gang && (gang.leaders.len < gang.max_leaders))
 		return "Promote a Gangster"
 	return "Spare Gangtool"
 
-/datum/gang_item/equipment/dominator
+/datum/gang_item/gang/equipment/dominator
 	name = "Station Dominator"
 	id = "dominator"
 	cost = 30
 	item_path = /obj/machinery/dominator
 	spawn_msg = "<span class='notice'>The <b>dominator</b> will secure your gang's dominance over the station. Turn it on when you are ready to defend it.</span>"
 
-/datum/gang_item/equipment/dominator/can_buy(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+/datum/gang_item/gang/equipment/dominator/can_buy(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	if(!gang || !gang.dom_attempts)
 		return FALSE
 	return ..()
 
-/datum/gang_item/equipment/dominator/get_name_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+/datum/gang_item/gang/equipment/dominator/get_name_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	if(!gang || !gang.dom_attempts)
 		return ..()
 	return "<b>[..()]</b>"
 
-/datum/gang_item/equipment/dominator/get_cost_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+/datum/gang_item/gang/equipment/dominator/get_cost_display(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	if(!gang || !gang.dom_attempts)
 		return "(Out of stock)"
 	return ..()
 
-/datum/gang_item/equipment/dominator/get_extra_info(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+/datum/gang_item/gang/equipment/dominator/get_extra_info(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	if(gang)
 		return "This device requires a 5x5 area clear of walls to work. (Estimated Takeover Time: [round(gang.determine_domination_time()/60,0.1)] minutes)"
 
-/datum/gang_item/equipment/dominator/purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+/datum/gang_item/gang/equipment/dominator/purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	var/area/userarea = get_area(user)
 	if(!(userarea.type in gang.territories|gang.new_territories))
 		to_chat(user,"<span class='warning'>The <b>dominator</b> can be spawned only on territory controlled by your gang!</span>")
@@ -382,6 +384,6 @@
 
 	return ..()
 
-/datum/gang_item/equipment/dominator/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
+/datum/gang_item/gang/equipment/dominator/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/device/gangtool/gangtool)
 	new item_path(user.loc)
 	to_chat(user, spawn_msg)

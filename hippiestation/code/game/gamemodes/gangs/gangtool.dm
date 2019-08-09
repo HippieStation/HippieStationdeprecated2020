@@ -17,29 +17,38 @@
 	var/outfits = 2
 	var/free_pen = 0
 	var/promotable = FALSE
-	var/static/list/buyable_items = list()
+	var/list/buyable_items = list()
+	var/item_subtype = /datum/gang_item/gang
 	var/list/tags = list()
+	var/flag = GANGS
 
 /obj/item/device/gangtool/Initialize()
 	. = ..()
 	update_icon()
-	for(var/i in subtypesof(/datum/gang_item))
+	for(var/i in subtypesof(item_subtype))
 		var/datum/gang_item/G = i
 		var/id = initial(G.id)
 		var/cat = initial(G.category)
+		if(!(initial(G.mode_flags) & flag))
+			qdel(G)
+			continue
 		if(id)
 			if(!islist(buyable_items[cat]))
 				buyable_items[cat] = list()
 			buyable_items[cat][id] = new G
+
 /obj/item/device/gangtool/Destroy()
 	if(gang)
 		gang.gangtools -= src
 	return ..()
 
-/obj/item/device/gangtool/attack_self(mob/user)
+/obj/item/device/gangtool/attack_hand(mob/user)
 	..()
 	if (!can_use(user))
 		return
+	show_ui(user)
+
+/obj/item/device/gangtool/proc/show_ui(mob/user)
 	var/datum/antagonist/gang/boss/L = user.mind.has_antag_datum(/datum/antagonist/gang/boss)
 	var/dat
 	if(!gang)
@@ -71,7 +80,7 @@
 		for(var/cat in buyable_items)
 			dat += "<b>[cat]</b><br>"
 			for(var/id in buyable_items[cat])
-				var/datum/gang_item/G = buyable_items[cat][id]
+				var/datum/gang_item/gang/G = buyable_items[cat][id]
 				if(!G.can_see(user, gang, src))
 					continue
 
@@ -110,7 +119,7 @@
 	if(href_list["purchase"])
 		if(islist(buyable_items[href_list["cat"]]))
 			var/list/L = buyable_items[href_list["cat"]]
-			var/datum/gang_item/G = L[href_list["id"]]
+			var/datum/gang_item/gang/G = L[href_list["id"]]
 			if(G && G.can_buy(usr, gang, src))
 				G.purchase(usr, gang, src, FALSE)
 
@@ -257,3 +266,33 @@
 
 /obj/item/device/gangtool/spare/lt
 	promotable = TRUE
+
+/obj/item/device/gangtool/hell_march
+	flag = GANGMAGEDDON
+	var/datum/action/innate/gangtool/linked_action
+
+/obj/item/device/gangtool/hell_march/Initialize()
+	. = ..()
+	if(!ismob(loc))
+		return INITIALIZE_HINT_QDEL
+	var/mob/user = loc
+	var/datum/antagonist/gang/boss/L = user.mind.has_antag_datum(/datum/antagonist/gang/boss)
+	linked_action = new(user)
+	linked_action.Grant(user, src, L.gang)
+
+/obj/item/device/gangtool/hell_march/attack_self()
+	return
+
+/datum/action/innate/gangtool
+	name = "Personal Gang Tool"
+	desc = "An implanted gang tool that lets you purchase gear"
+	background_icon_state = "bg_demon"
+	button_icon_state = "bolt_action"
+	var/obj/item/device/gangtool/hell_march/GT
+
+/datum/action/innate/gangtool/Grant(mob/user, obj/reg)
+	. = ..()
+	GT = reg
+
+/datum/action/innate/gangtool/Activate()
+	GT.show_ui(owner)
