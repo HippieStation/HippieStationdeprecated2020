@@ -194,7 +194,7 @@
 	)
 
 	if(gangtool)
-		var/obj/item/device/gangtool/G = new()
+		var/obj/item/gangtool/G = new()
 		var/where = H.equip_in_one_of_slots(G, slots)
 		if (!where)
 			to_chat(H, "Your Syndicate benefactors were unfortunately unable to get you a Gangtool.")
@@ -259,7 +259,7 @@
 
 /datum/antagonist/gang/boss/proc/admin_take_gangtool(mob/admin)
 	var/list/L = owner.current.get_contents()
-	var/obj/item/device/gangtool/gangtool = locate() in L
+	var/obj/item/gangtool/gangtool = locate() in L
 	if (!gangtool)
 		to_chat(admin, "<span class='danger'>Deleting gangtool failed!</span>")
 		return
@@ -286,6 +286,7 @@
 	member_name = "gangster"
 	var/hud_entry_num // because if you put something other than a number in GLOB.huds, god have mercy on your fucking soul friend
 	var/list/leaders = list() // bosses
+	var/gateways = 0
 	var/max_leaders = MAX_LEADERS_GANG
 	var/list/territories = list() // territories owned by the gang.
 	var/list/lost_territories = list() // territories lost by the gang.
@@ -449,7 +450,7 @@
 	if(!gangtools.len || !message)
 		return
 	for(var/i in gangtools)
-		var/obj/item/device/gangtool/tool = i
+		var/obj/item/gangtool/tool = i
 		var/mob/living/mob = get(tool.loc, /mob/living)
 		if(mob && mob.mind && mob.stat == CONSCIOUS)
 			var/datum/antagonist/gang/gangster = mob.mind.has_antag_datum(/datum/antagonist/gang)

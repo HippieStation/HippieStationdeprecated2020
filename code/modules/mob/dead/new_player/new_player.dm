@@ -395,6 +395,13 @@
 			give_magic(humanc)
 		if(GLOB.curse_of_madness_triggered)
 			give_madness(humanc, GLOB.curse_of_madness_triggered)
+		// hippie start
+		if(istype(SSticker.mode, /datum/game_mode/hell_march))
+			humanc.mind.add_antag_datum(/datum/antagonist/vigilante)
+			new /obj/item/gangtool/hell_march/vigilante(humanc)
+			var/obj/item/soap/vigilante/VS = new(humanc.drop_location())
+			humanc.equip_to_appropriate_slot(VS)
+		// hippie end
 
 	GLOB.joined_player_list += character.ckey
 

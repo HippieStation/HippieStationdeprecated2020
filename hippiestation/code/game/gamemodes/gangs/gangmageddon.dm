@@ -42,7 +42,6 @@
 		gangs_to_create++
 	gangs_to_create = min(gangs_to_create, GLOB.possible_gangs.len)
 	bosses_per_gang = CLAMP(FLOOR(antag_candidates.len / 3, 1), 1, 3)
-	to_chat(world, "[gangs_to_create] / [bosses_per_gang]")
 
 	for(var/i in 1 to gangs_to_create)
 		if(!antag_candidates.len)
@@ -57,7 +56,7 @@
 
 	if(!gangboss_candidates.len)
 		to_chat(world, "!gangboss_candidates.len")
-		return
+		return FALSE
 
 	SSjob.DisableJob(/datum/job/captain)
 	SSjob.DisableJob(/datum/job/hop)
@@ -86,6 +85,7 @@
 			target_captain2 = C
 			break
 	gangpocalypse()
+	return TRUE
 
 /datum/game_mode/hell_march/post_setup()
 	set waitfor = FALSE
@@ -103,11 +103,15 @@
 			passione.leaders += gangstar
 			var/datum/antagonist/gang/boss/giorno = new
 			gangstar.add_antag_datum(giorno, passione)
-			var/obj/item/device/gangtool/hell_march/HM = new /obj/item/device/gangtool/hell_march(gangstar.current)
+			var/obj/item/gangtool/hell_march/HM = new /obj/item/gangtool/hell_march(gangstar.current)
 			HM.register_device(gangstar.current)
+			giorno.equip_gang(FALSE, TRUE, TRUE, TRUE)
 	for(var/mob/living/M in GLOB.player_list)
 		if(!M.mind.has_antag_datum(/datum/antagonist/gang))
 			M.mind.add_antag_datum(/datum/antagonist/vigilante)
+			new /obj/item/gangtool/hell_march/vigilante(M)
+			var/obj/item/soap/vigilante/VS = new(M.drop_location())
+			M.equip_to_appropriate_slot(VS)
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/priority_announce, "Excessive costs associated with lawsuits from employees injured by Security and Synthetics have compelled us to re-evaluate the personnel budget for new stations. Accordingly, this station will be expected to operate without Security or Synthetic assistance. In the event that criminal enterprises seek to exploit this situation, we have implanted all crew with a device that will assist and incentivize the removal of all contraband and criminals.", "Nanotrasen Board of Directors"), 8 SECONDS)
 
 /datum/game_mode/hell_march/proc/cleanup(area/target)
@@ -149,3 +153,14 @@
 			CHECK_TICK
 			T.ChangeTurf(/turf/open/floor/engine/airless)
 			new /obj/structure/barricade/wooden(T)
+
+
+/obj/item/soap/vigilante
+	name = "cleaning rag"
+	desc = "All great things start with a little elbow grease."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "rag"
+	cleanspeed = 35
+
+/obj/item/soap/vigilante/ComponentInitialize()
+	return // no slippery

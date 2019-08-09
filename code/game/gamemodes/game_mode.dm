@@ -361,7 +361,7 @@
 
 	// Ultimate randomizing code right here
 	for(var/mob/dead/new_player/player in GLOB.player_list)
-		if(player.client && player.ready == PLAYER_READY_TO_PLAY && player.check_preferences())
+		if(player.client && player.ready == PLAYER_READY_TO_PLAY && player.check_preferences() && !IsGuestKey(player.key)) // yell at me if I leave the IsGuestKey in, it's for debugging
 			if(!is_banned_from(player.ckey, CATBAN) && !is_banned_from(player.ckey, CLUWNEBAN)) // hippie -- adds our jobban checks
 				players += player
 

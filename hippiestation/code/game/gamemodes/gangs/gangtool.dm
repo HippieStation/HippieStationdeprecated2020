@@ -1,5 +1,5 @@
 //gangtool device
-/obj/item/device/gangtool
+/obj/item/gangtool
 	name = "suspicious device"
 	desc = "A strange device of sorts. Hard to really make out what it actually does if you don't know how to operate it."
 	icon = 'hippiestation/icons/obj/device.dmi'
@@ -18,14 +18,13 @@
 	var/free_pen = 0
 	var/promotable = FALSE
 	var/list/buyable_items = list()
-	var/item_subtype = /datum/gang_item/gang
 	var/list/tags = list()
 	var/flag = GANGS
 
-/obj/item/device/gangtool/Initialize()
+/obj/item/gangtool/Initialize()
 	. = ..()
 	update_icon()
-	for(var/i in subtypesof(item_subtype))
+	for(var/i in subtypesof(/datum/gang_item))
 		var/datum/gang_item/G = i
 		var/id = initial(G.id)
 		var/cat = initial(G.category)
@@ -36,18 +35,18 @@
 				buyable_items[cat] = list()
 			buyable_items[cat][id] = new G
 
-/obj/item/device/gangtool/Destroy()
+/obj/item/gangtool/Destroy()
 	if(gang)
 		gang.gangtools -= src
 	return ..()
 
-/obj/item/device/gangtool/attack_hand(mob/user)
+/obj/item/gangtool/attack_hand(mob/user)
 	..()
 	if (!can_use(user))
 		return
 	show_ui(user)
 
-/obj/item/device/gangtool/proc/show_ui(mob/user)
+/obj/item/gangtool/proc/show_ui(mob/user)
 	var/datum/antagonist/gang/boss/L = user.mind.has_antag_datum(/datum/antagonist/gang/boss)
 	var/dat
 	if(!gang)
@@ -79,7 +78,7 @@
 		for(var/cat in buyable_items)
 			dat += "<b>[cat]</b><br>"
 			for(var/id in buyable_items[cat])
-				var/datum/gang_item/gang/G = buyable_items[cat][id]
+				var/datum/gang_item/G = buyable_items[cat][id]
 				if(!G.can_see(user, gang, src))
 					continue
 
@@ -103,7 +102,7 @@
 	popup.set_content(dat)
 	popup.open()
 
-/obj/item/device/gangtool/Topic(href, href_list)
+/obj/item/gangtool/Topic(href, href_list)
 	if(!can_use(usr))
 		return
 
@@ -118,7 +117,7 @@
 	if(href_list["purchase"])
 		if(islist(buyable_items[href_list["cat"]]))
 			var/list/L = buyable_items[href_list["cat"]]
-			var/datum/gang_item/gang/G = L[href_list["id"]]
+			var/datum/gang_item/G = L[href_list["id"]]
 			if(G && G.can_buy(usr, gang, src))
 				G.purchase(usr, gang, src, FALSE)
 
@@ -128,14 +127,14 @@
 		recall(usr)
 	attack_self(usr)
 
-/obj/item/device/gangtool/update_icon()
+/obj/item/gangtool/update_icon()
 	overlays.Cut()
 	var/image/I = new(icon, "[icon_state]-overlay")
 	if(gang)
 		I.color = gang.color
 	overlays.Add(I)
 
-/obj/item/device/gangtool/proc/ping_gang(mob/user)
+/obj/item/gangtool/proc/ping_gang(mob/user)
 	if(!can_use(user))
 		return
 	var/message = stripped_input(user,"Discreetly send a gang-wide message.","Send Message") as null|text
@@ -157,7 +156,7 @@
 			to_chat(M, "[link] [ping]")
 		user.log_talk(message,LOG_SAY, tag="[gang.name] gangster")
 
-/obj/item/device/gangtool/proc/register_device(mob/user)
+/obj/item/gangtool/proc/register_device(mob/user)
 	if(gang)	//It's already been registered!
 		return
 	var/datum/antagonist/gang/G = user.mind.has_antag_datum(/datum/antagonist/gang)
@@ -174,7 +173,7 @@
 	else
 		to_chat(user, "<span class='warning'>ACCESS DENIED: Unauthorized user.</span>")
 
-/obj/item/device/gangtool/proc/recall(mob/user)
+/obj/item/gangtool/proc/recall(mob/user)
 	if(!recallchecks(user))
 		return
 	if(recalling)
@@ -185,13 +184,13 @@
 	to_chat(user, "<span class='info'>[icon2html(src, loc)]Generating shuttle recall order with codes retrieved from last call signal...</span>")
 	addtimer(CALLBACK(src, .proc/recall2, user), rand(100,300))
 
-/obj/item/device/gangtool/proc/recall2(mob/user)
+/obj/item/gangtool/proc/recall2(mob/user)
 	if(!recallchecks(user))
 		return
 	to_chat(user, "<span class='info'>[icon2html(src, loc)]Shuttle recall order generated. Accessing station long-range communication arrays...</span>")
 	addtimer(CALLBACK(src, .proc/recall3, user), rand(100,300))
 
-/obj/item/device/gangtool/proc/recall3(mob/user)
+/obj/item/gangtool/proc/recall3(mob/user)
 	if(!recallchecks(user))
 		return
 	var/list/living_crew = list()//shamelessly copied from mulligan code, there should be a helper for this
@@ -206,7 +205,7 @@
 	to_chat(user, "<span class='info'>[icon2html(src, loc)]Comm arrays accessed. Broadcasting recall signal...</span>")
 	addtimer(CALLBACK(src, .proc/recallfinal, user), rand(100,300))
 
-/obj/item/device/gangtool/proc/recallfinal(mob/user)
+/obj/item/gangtool/proc/recallfinal(mob/user)
 	if(!recallchecks(user))
 		return
 	recalling = FALSE
@@ -219,7 +218,7 @@
 	to_chat(user, "<span class='info'>[icon2html(src, loc)]No response recieved. Emergency shuttle cannot be recalled at this time.</span>")
 	return
 
-/obj/item/device/gangtool/proc/recallchecks(mob/user)
+/obj/item/gangtool/proc/recallchecks(mob/user)
 	if(!can_use(user))
 		return
 	if(SSshuttle.emergencyNoRecall)
@@ -241,7 +240,7 @@
 		return
 	return TRUE
 
-/obj/item/device/gangtool/proc/can_use(mob/living/carbon/human/user)
+/obj/item/gangtool/proc/can_use(mob/living/carbon/human/user)
 	if(!istype(user))
 		return
 	if(user.incapacitated())
@@ -251,7 +250,7 @@
 	if(!user.mind)
 		return
 	var/datum/antagonist/gang/G = user.mind.has_antag_datum(/datum/antagonist/gang)
-	if(!G)
+	if(!G && !istype(src, /obj/item/gangtool/hell_march/vigilante))
 		to_chat(user, "<span class='notice'>Huh, what's this?</span>")
 		return
 	if(!isnull(gang) && G.gang != gang)
@@ -260,36 +259,183 @@
 	return TRUE
 
 
-/obj/item/device/gangtool/spare
+/obj/item/gangtool/spare
 	outfits = TRUE
 
-/obj/item/device/gangtool/spare/lt
+/obj/item/gangtool/spare/lt
 	promotable = TRUE
 
-/obj/item/device/gangtool/hell_march
+/obj/item/gangtool/hell_march
 	flag = GANGMAGEDDON
 	var/datum/action/innate/gangtool/linked_action
+	var/action_type = /datum/action/innate/gangtool
 
-/obj/item/device/gangtool/hell_march/Initialize()
+/obj/item/gangtool/hell_march/Initialize()
 	. = ..()
 	if(!ismob(loc))
 		return INITIALIZE_HINT_QDEL
 	var/mob/user = loc
 	var/datum/antagonist/gang/boss/L = user.mind.has_antag_datum(/datum/antagonist/gang/boss)
-	if(!L)
+	if(!L && flag != VIGILANTE)
 		return
-	linked_action = new(user)
-	linked_action.Grant(user, src, L.gang)
+	linked_action = new action_type(user)
+	linked_action.Grant(user, src, L ? L.gang : null)
 
-/obj/item/device/gangtool/hell_march/attack_self()
+/obj/item/gangtool/hell_march/attack_self()
 	return
+
+/obj/item/gangtool/hell_march/vigilante
+	flag = VIGILANTE
+	action_type = /datum/action/innate/gangtool/vigilante
+	var/points = 0
+
+/obj/item/gangtool/hell_march/vigilante/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/earnings), 1500, TIMER_UNIQUE)
+
+/obj/item/gangtool/hell_march/vigilante/proc/earnings()
+	var/all_territory = list()
+	var/newpoints = 0
+	var/mob/living/carbon/human/H = loc
+	for(var/datum/team/gang/G in GLOB.antagonist_teams)
+		all_territory += G.territories
+	for(var/area/A in tags)
+		if(!(A in all_territory))
+			newpoints += 0.5
+	to_chat(H, "<span class='notice'>You have received 3 influence for your continued loyalty, [newpoints] for keeping the station tag-free.")
+	points += newpoints + 3
+	for(var/obj/item/implant/mindshield/I in H.implants)
+		points += 3
+		to_chat(H, "<span class='notice'>You have also received 3 influence for possessing a mindshield implant.</span>")
+	addtimer(CALLBACK(src, .proc/earnings), 1500, TIMER_UNIQUE)
+
+/obj/item/gangtool/hell_march/vigilante/show_ui(mob/user)
+	if(user.mind.has_antag_datum(/datum/antagonist/gang))
+		return
+	var/dat
+	dat += "Registration: <B>Vigilante</B><br>"
+	dat += "Your Influence: <B>[points]</B><br>"
+	dat += "<center><a href='?src=[REF(src)];destroy=TRUE'><B>DESTROY HELD CONTRABAND</a></center></B><br>"
+	dat += "<hr>"
+	for(var/cat in buyable_items)
+		dat += "<b>[cat]</b><br>"
+		for(var/id in buyable_items[cat])
+			var/datum/gang_item/G = buyable_items[cat][id]
+			if(!G.can_see(user, gang, src))
+				continue
+
+			var/cost = G.get_cost_display(user, gang, src)
+			if(cost)
+				dat += cost + " "
+
+			var/toAdd = G.get_name_display(user, gang, src)
+			if(G.can_buy(user, gang, src))
+				toAdd = "<a href='?src=[REF(src)];purchase=1;id=[id];cat=[cat]'>[toAdd]</a>"
+			dat += toAdd
+			var/extra = G.get_extra_info(user, gang, src)
+			if(extra)
+				dat += "<br><i>[extra]</i>"
+			dat += "<br>"
+		dat += "<br>"
+
+	dat += "<a href='?src=[REF(src)];choice=refresh'>Refresh</a><br>"
+
+	var/datum/browser/popup = new(user, "gangtool", "Welcome to Vigilante's Companion v1.2", 340, 625)
+	popup.set_content(dat)
+	popup.open()
+
+/obj/item/gangtool/hell_march/vigilante/Topic(href, list/href_list)
+	if(!can_use(usr))
+		return
+	if(href_list["purchase"])
+		if(islist(buyable_items[href_list["cat"]]))
+			var/list/L = buyable_items[href_list["cat"]]
+			var/datum/gang_item/G = L[href_list["id"]]
+			if(G && G.can_buy(usr, gang, src))
+				G.purchase(usr, gang, src, FALSE)
+	if(href_list["destroy"])
+		Destroy_Contraband(usr)
+	show_ui(usr)
+
+/obj/item/gangtool/hell_march/vigilante/proc/Destroy_Contraband(mob/living/user)
+	var/obj/item/I = user.get_active_held_item()
+	var/value
+	if(QDELETED(I))
+		to_chat(user, "<span class='notice'>No item detected.</span>")
+		return
+	switch(I.type)
+		if(/obj/item/gun/ballistic/automatic/pistol)
+			value = 20
+		if(/obj/item/implanter/gang)
+			value = 12
+		if(/obj/item/reagent_containers/syringe/stimulants)
+			var/obj/item/reagent_containers/syringe/stimulants/S
+			if(S.list_reagents.len)
+				value = 10
+			else
+				value = 2
+		if(/obj/item/grenade/plastic/c4)
+			value = 5
+		if(/obj/item/toy/crayon/spraycan/gang)
+			var/obj/item/toy/crayon/spraycan/gang/SC = I
+			value = 1 + round(SC.charges/9)
+		if(/obj/item/grenade/syndieminibomb/concussion/frag)
+			value = 13
+		if(/obj/item/clothing/shoes/combat/gang)
+			value = 9
+		if(/obj/item/pen/gang)
+			value = 17
+		if(/obj/item/reviver)
+			value = 10
+		if(/obj/item/gangtool)
+			value = 20
+		if(/obj/item/clothing/glasses/hud/security/chameleon)
+			value = 5
+		if(/obj/item/gun/ballistic/automatic/mini_uzi)
+			value = 30
+		if(/obj/item/gun/ballistic/automatic/sniper_rifle)
+			value = 20
+		if(/obj/item/ammo_box/magazine/sniper_rounds)
+			value = 5
+		if(/obj/item/gun/ballistic/shotgun/lethal)
+			value = 20
+		if(/obj/item/gun/ballistic/automatic/surplus)
+			value = 8
+		if(/obj/item/throwing_star)
+			value = 3
+		if(/obj/item/switchblade)
+			value = 5
+		if(/obj/item/storage/belt/military/gang)
+			value = 8
+		if(/obj/item/clothing/gloves/gang)
+			value = 8
+		if(/obj/item/clothing/neck/necklace/dope)
+			value = 6
+		if(/obj/item/clothing/shoes/gang)
+			value = 14
+		if(/obj/item/clothing/mask/gskull)
+			value = 11
+		if(/obj/item/clothing/head/collectable/petehat/gang)
+			value = 10
+	if(istype(I, /obj/item/clothing))
+		for(var/datum/team/gang/G in GLOB.gangs)
+			if(I.type in (G.outer_outfits) && I.armor["bullet"]>=35)
+				value = 5
+	if(!value)
+		to_chat(user, "<span class='notice'>No contraband detected!</span>")
+		return
+	playsound(src, 'sound/items/poster_being_created.ogg', 75, 1)
+	if(do_after(user, 20, TRUE, I))
+		points += value
+		to_chat(user, "<span class='notice'>[I] has been processed for [value] influence.")
+		qdel(I)
 
 /datum/action/innate/gangtool
 	name = "Personal Gang Tool"
 	desc = "An implanted gang tool that lets you purchase gear"
 	background_icon_state = "bg_demon"
 	button_icon_state = "bolt_action"
-	var/obj/item/device/gangtool/hell_march/GT
+	var/obj/item/gangtool/hell_march/GT
 
 /datum/action/innate/gangtool/Grant(mob/user, obj/reg)
 	. = ..()
@@ -297,3 +443,7 @@
 
 /datum/action/innate/gangtool/Activate()
 	GT.show_ui(owner)
+
+/datum/action/innate/gangtool/vigilante
+	name = "Vigilante Uplink"
+	desc = "An implanted vigilante uplink."

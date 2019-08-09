@@ -16,3 +16,4 @@
 
 #define GANGMAGEDDON	(1 << 0)
 #define GANGS			(1 << 1)
+#define VIGILANTE		(1 << 2)
