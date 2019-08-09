@@ -30,7 +30,6 @@
 		var/id = initial(G.id)
 		var/cat = initial(G.category)
 		if(!(initial(G.mode_flags) & flag))
-			qdel(G)
 			continue
 		if(id)
 			if(!islist(buyable_items[cat]))
@@ -277,6 +276,8 @@
 		return INITIALIZE_HINT_QDEL
 	var/mob/user = loc
 	var/datum/antagonist/gang/boss/L = user.mind.has_antag_datum(/datum/antagonist/gang/boss)
+	if(!L)
+		return
 	linked_action = new(user)
 	linked_action.Grant(user, src, L.gang)
 

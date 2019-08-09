@@ -25,6 +25,7 @@
 	var/area/target_atmos
 	var/list/datum/mind/gangboss_candidates = list()
 	var/gangs_to_create = 2
+	var/bosses_per_gang = 1
 
 /datum/game_mode/hell_march/pre_setup()
 
@@ -40,11 +41,13 @@
 	if(prob(num_players()) && num_players() > 2*required_players)
 		gangs_to_create++
 	gangs_to_create = min(gangs_to_create, GLOB.possible_gangs.len)
+	bosses_per_gang = CLAMP(FLOOR(antag_candidates.len / 3, 1), 1, 3)
+	to_chat(world, "[gangs_to_create] / [bosses_per_gang]")
 
 	for(var/i in 1 to gangs_to_create)
 		if(!antag_candidates.len)
 			break
-		for(var/j in 1 to 3)
+		for(var/j in 1 to bosses_per_gang)
 			if(!antag_candidates.len)
 				break
 			var/datum/mind/bossman = pick_n_take(antag_candidates)
@@ -53,6 +56,7 @@
 			bossman.restricted_roles = restricted_jobs
 
 	if(!gangboss_candidates.len)
+		to_chat(world, "!gangboss_candidates.len")
 		return
 
 	SSjob.DisableJob(/datum/job/captain)
@@ -84,13 +88,15 @@
 	gangpocalypse()
 
 /datum/game_mode/hell_march/post_setup()
+	set waitfor = FALSE
+	..()
 	var/list/all_gangs = GLOB.possible_gangs.Copy()
 	for(var/i in 1 to gangs_to_create)
 		if(!gangboss_candidates.len)
 			break
 		var/gang_type = pick_n_take(all_gangs)
 		var/datum/team/gang/passione = new gang_type
-		for(var/j in 1 to 3)
+		for(var/j in 1 to bosses_per_gang)
 			if(!gangboss_candidates.len)
 				break
 			var/datum/mind/gangstar = pick_n_take(gangboss_candidates)
@@ -132,6 +138,14 @@
 			qdel(TTV)
 	if(target_atmos)
 		for(var/turf/open/floor/engine/plasma/T in target_atmos.GetAllContents())
+			CHECK_TICK
+			T.ChangeTurf(/turf/open/floor/engine/airless)
+			new /obj/structure/barricade/wooden(T)
+		for(var/turf/open/floor/engine/n2o/T in target_atmos.GetAllContents())
+			CHECK_TICK
+			T.ChangeTurf(/turf/open/floor/engine/airless)
+			new /obj/structure/barricade/wooden(T)
+		for(var/turf/open/floor/engine/co2/T in target_atmos.GetAllContents())
 			CHECK_TICK
 			T.ChangeTurf(/turf/open/floor/engine/airless)
 			new /obj/structure/barricade/wooden(T)
