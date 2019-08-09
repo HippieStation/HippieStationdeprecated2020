@@ -10,5 +10,5 @@
 #define LAG_STONE_TRAIT "lag_stone_trait"
 #define GHOST_STONE_TRAIT "ghost_stone_trait"
 #define GAUNTLET_TRAIT "gauntlet_trait"
-#define STAND_TRAIT	"stand_trait"
+#define GUARDIAN_TRAIT	"guardian_trait"
 #define SPELL_TRAIT "spell_trait"

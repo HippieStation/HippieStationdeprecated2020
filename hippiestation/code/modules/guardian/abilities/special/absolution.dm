@@ -1,6 +1,6 @@
 /datum/guardian_ability/major/special/onewayroad // a cookie for you if you get the reference
 	name = "Absolution"
-	desc = "The stand forms an absolute shield around it's user, protecting them from all harm."
+	desc = "The guardian forms an absolute shield around it's user, protecting them from all harm."
 	cost = 5
 
 /datum/guardian_ability/major/special/onewayroad/New()
@@ -19,7 +19,7 @@
 
 /datum/guardian_ability/major/special/onewayroad/Berserk()
 	if(!HAS_TRAIT(guardian, TRAIT_ONEWAYROAD))
-		ADD_TRAIT(guardian, TRAIT_ONEWAYROAD, STAND_TRAIT)
+		ADD_TRAIT(guardian, TRAIT_ONEWAYROAD, GUARDIAN_TRAIT)
 
 /datum/guardian_ability/major/special/onewayroad/process()
 	if(!guardian || !guardian.summoner)
@@ -40,12 +40,12 @@
 		return
 	if(guardian.loc == guardian.summoner)
 		if(HAS_TRAIT(guardian.summoner, TRAIT_ONEWAYROAD))
-			REMOVE_TRAIT(guardian.summoner, TRAIT_ONEWAYROAD, STAND_TRAIT)
+			REMOVE_TRAIT(guardian.summoner, TRAIT_ONEWAYROAD, GUARDIAN_TRAIT)
 		if(HAS_TRAIT(guardian.summoner, TRAIT_NOBREATH))
-			REMOVE_TRAIT(guardian.summoner, TRAIT_NOBREATH, STAND_TRAIT)
+			REMOVE_TRAIT(guardian.summoner, TRAIT_NOBREATH, GUARDIAN_TRAIT)
 	else
-		ADD_TRAIT(guardian.summoner, TRAIT_ONEWAYROAD, STAND_TRAIT)
-		ADD_TRAIT(guardian.summoner, TRAIT_NOBREATH, STAND_TRAIT) // this kinda simulates the "Absolution filters out harmful gases around the user" thing better than constantly parsing gas strings
+		ADD_TRAIT(guardian.summoner, TRAIT_ONEWAYROAD, GUARDIAN_TRAIT)
+		ADD_TRAIT(guardian.summoner, TRAIT_NOBREATH, GUARDIAN_TRAIT) // this kinda simulates the "Absolution filters out harmful gases around the user" thing better than constantly parsing gas strings
 
 // STUFF
 

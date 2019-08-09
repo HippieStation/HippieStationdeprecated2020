@@ -6,7 +6,7 @@
 
 /datum/guardian_ability/major/explosive
 	name = "Explosive"
-	desc = "The stand can, with a single touch, turn any inanimate object into a bomb."
+	desc = "The guardian can, with a single touch, turn any inanimate object into a bomb."
 	cost = 4
 	var/bomb_cooldown = 0
 	var/static/list/boom_signals = list(COMSIG_PARENT_ATTACKBY, COMSIG_ATOM_BUMPED, COMSIG_ATOM_ATTACK_HAND)

@@ -1,4 +1,4 @@
-/obj/effect/meteor/stand
+/obj/effect/meteor/guardian
 	name = "glowing meteor"
 	icon_state = "glowing"
 	hits = 3

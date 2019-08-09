@@ -3526,7 +3526,6 @@
 #include "hippiestation\code\modules\research\techweb\_techweb.dm"
 #include "hippiestation\code\modules\research\techweb\all_nodes.dm"
 #include "hippiestation\code\modules\research\xenobiology\xenobiology.dm"
-#include "hippiestation\code\modules\research\xenobiology\crossbreeding\_misc.dm"
 #include "hippiestation\code\modules\shuttle\emergency.dm"
 #include "hippiestation\code\modules\shuttle\shuttle.dm"
 #include "hippiestation\code\modules\shuttle\syndicate.dm"

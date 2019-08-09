@@ -174,9 +174,9 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	maxHealth = 750
 	health = 750
 	to_chat(src, "<span class='holoparasite big'>Your master has died. Only your own power anchors you to this world now. Nothing restrains you anymore, but the desire for <span class='hypnophrase'>revenge</span>.</span>")
-	var/datum/antagonist/stand/S = mind.has_antag_datum(/datum/antagonist/stand)
+	var/datum/antagonist/guardian/S = mind.has_antag_datum(/datum/antagonist/guardian)
 	if(S)
-		S.name = "Berserk Stand"
+		S.name = "Berserk Guardian"
 		var/datum/objective/O = new
 		O.completed = TRUE
 		O.explanation_text = "AVENGE YOUR MASTER."

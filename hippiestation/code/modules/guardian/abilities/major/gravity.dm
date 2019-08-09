@@ -1,6 +1,6 @@
 /datum/guardian_ability/major/gravity
 	name = "Gravity"
-	desc = "The stand's punches apply heavy gravity to whatever it punches."
+	desc = "The guardian's punches apply heavy gravity to whatever it punches."
 	cost = 4
 	var/list/gravito_targets = list()
 

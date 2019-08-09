@@ -1,12 +1,12 @@
-// why does this exist? simply so stands show up on roundend screen.
+// why does this exist? simply so guardians show up on roundend screen.
 
-/datum/antagonist/stand
-	name = "Stand"
+/datum/antagonist/guardian
+	name = "Guardian"
 	show_in_antagpanel = FALSE
 	var/datum/guardian_stats/stats
 	var/summoner
 
-/datum/antagonist/stand/roundend_report()
+/datum/antagonist/guardian/roundend_report()
 	var/list/parts = list()
 	parts += ..()
 	if(summoner)
@@ -23,6 +23,6 @@
 			parts += "<b>MINOR ABILITY:</b> [M.name]"
 	return parts.Join("<br>")
 
-/datum/antagonist/stand/antag_panel_data()
+/datum/antagonist/guardian/antag_panel_data()
 	var/mob/living/simple_animal/hostile/guardian/G = owner.current
 	return "<B>Summoner: [G.summoner]/([G.summoner.ckey])</B>"

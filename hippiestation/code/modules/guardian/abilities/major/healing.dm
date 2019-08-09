@@ -1,6 +1,6 @@
 /datum/guardian_ability/major/healing
 	name = "Healing"
-	desc = "Allows the stand to heal anything, living or inanimate, by touch."
+	desc = "Allows the guardian to heal anything, living or inanimate, by touch."
 	cost = 4
 	has_mode = TRUE
 	mode_on_msg = "<span class='danger'><B>You switch to healing mode.</span></B>"

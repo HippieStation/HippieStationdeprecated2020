@@ -1,8 +1,8 @@
 /datum/guardian_ability/minor/teleport
 	name = "Teleportation Pad"
-	desc = "The stand can prepare a teleportation pad, and teleport things to it afterwards."
+	desc = "The guardian can prepare a teleportation pad, and teleport things to it afterwards."
 	cost = 3
-	spell_type = /obj/effect/proc_holder/spell/targeted/stand/teleport
+	spell_type = /obj/effect/proc_holder/spell/targeted/guardian/teleport
 
 /datum/guardian_ability/minor/teleport/Apply()
 	..()
@@ -12,11 +12,11 @@
 	..()
 	guardian.verbs -= /mob/living/simple_animal/hostile/guardian/proc/Beacon
 
-/obj/effect/proc_holder/spell/targeted/stand/teleport
+/obj/effect/proc_holder/spell/targeted/guardian/teleport
 	name = "Teleport"
 	desc = "Teleport someone to your recieving pad."
 
-/obj/effect/proc_holder/spell/targeted/stand/teleport/InterceptClickOn(mob/living/caller, params, atom/movable/A)
+/obj/effect/proc_holder/spell/targeted/guardian/teleport/InterceptClickOn(mob/living/caller, params, atom/movable/A)
 	if(!istype(A))
 		return
 	if(!isguardian(caller))

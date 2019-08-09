@@ -9,7 +9,7 @@ GLOBAL_VAR_INIT(pocket_dim, 1)
 
 /datum/guardian_ability/major/special/pocket
 	name = "Pocket Dimension"
-	desc = "The stand can access a small pocket dimension, bringing it's owner with it as well."
+	desc = "The guardian can access a small pocket dimension, bringing it's owner with it as well."
 	cost = 5
 	spell_type = /obj/effect/proc_holder/spell/self/pocket_dim
 
@@ -108,13 +108,13 @@ GLOBAL_VAR_INIT(pocket_dim, 1)
 /obj/effect/proc_holder/spell/self/pocket_dim/proc/add_effects(mob/living/L)
 	L.status_flags |= GODMODE
 	RegisterSignal(L, COMSIG_MOVABLE_MOVED, .proc/check_if_teleport)
-	for(var/mob/living/simple_animal/hostile/guardian/stando in L.hasparasites())
-		stando.Recall(TRUE)
-		stando.status_flags |= GODMODE
+	for(var/mob/living/simple_animal/hostile/guardian/G in L.hasparasites())
+		G.Recall(TRUE)
+		G.status_flags |= GODMODE
 
 /obj/effect/proc_holder/spell/self/pocket_dim/proc/take_effects(mob/living/L)
 	L.status_flags &= ~GODMODE
 	UnregisterSignal(L, COMSIG_MOVABLE_MOVED)
-	for(var/mob/living/simple_animal/hostile/guardian/stando in L.hasparasites())
-		stando.Recall(TRUE)
-		stando.status_flags &= ~GODMODE
+	for(var/mob/living/simple_animal/hostile/guardian/G in L.hasparasites())
+		G.Recall(TRUE)
+		G.status_flags &= ~GODMODE

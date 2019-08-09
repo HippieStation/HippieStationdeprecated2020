@@ -152,7 +152,7 @@
 		G.summoner = H
 		G.key = C.key
 		G.mind.enslave_mind_to_creator(H)
-		var/datum/antagonist/stand/S = new
+		var/datum/antagonist/guardian/S = new
 		S.stats = stats
 		S.summoner = H.mind.name
 		G.mind.add_antag_datum(S)

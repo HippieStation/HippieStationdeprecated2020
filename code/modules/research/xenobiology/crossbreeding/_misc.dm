@@ -105,10 +105,6 @@ Slimecrossing Items
 		L.setToxLoss(tox_loss)
 		L.setOxyLoss(oxy_loss)
 		L.setBrainLoss(brain_loss)
-		if(L.stat == DEAD && can_revive) // hippie start -- stand dejavu
-			L.grab_ghost()
-			L.revive() // hippie end
-
 	if(iscarbon(parent))
 		if(saved_bodyparts)
 			var/mob/living/carbon/C = parent

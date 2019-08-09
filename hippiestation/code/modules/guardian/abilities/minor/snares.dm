@@ -1,6 +1,6 @@
 /datum/guardian_ability/minor/snare
 	name = "Surveillance Snares"
-	desc = "The stand can lay a surveillance snare, which alerts the guardian and the user to anyone who crosses it."
+	desc = "The guardian can lay a surveillance snare, which alerts the guardian and the user to anyone who crosses it."
 	cost = 2
 
 /datum/guardian_ability/minor/snare/Apply()
