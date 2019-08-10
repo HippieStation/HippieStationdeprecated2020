@@ -282,7 +282,7 @@
 	linked_action.Grant(user, src, L ? L.gang : null)
 
 /obj/item/gangtool/hell_march/Destroy()
-	linked_action.Remove(user)
+	linked_action.Remove(linked_action.owner)
 	qdel(linked_action)
 	return ..()
 
