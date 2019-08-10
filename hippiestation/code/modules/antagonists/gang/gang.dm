@@ -43,9 +43,12 @@
 			to_chat(owner, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 			H.dna.remove_mutation(CLOWNMUT)
 	add_to_gang()
+	owner.remove_antag_datum(/datum/antagonist/vigilante)
 
 /datum/antagonist/gang/on_removal()
 	remove_from_gang()
+	if(istype(SSticker.mode, /datum/game_mode/hell_march))
+		owner.add_antag_datum(/datum/antagonist/vigilante)
 	..()
 
 /datum/antagonist/gang/create_team(team)

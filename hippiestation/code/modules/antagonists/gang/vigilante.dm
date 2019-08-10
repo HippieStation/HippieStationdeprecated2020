@@ -4,11 +4,21 @@
 	antagpanel_category = "Vigilante"
 	job_rank = ROLE_GANG
 	var/datum/team/vigilante/batman
+	var/obj/item/gangtool/hell_march/vigilante/V
 
 /datum/antagonist/vigilante/on_gain()
 	. = ..()
-	//new /obj/item/device/vigilante_tool(owner.current)
-	owner.current.equip_to_slot_or_del(new /obj/item/soap(owner.current), SLOT_IN_BACKPACK)
+	if(owner && owner.current)
+		V = new(owner.current)
+		var/obj/item/soap/vigilante/VS = new(owner.current.drop_location())
+		owner.current.equip_to_appropriate_slot(VS)
+
+/datum/antagonist/vigilante/on_removal()
+	. = ..()
+	if(owner && owner.current)
+		qdel(V)
+		for(var/obj/item/gangtool/hell_march/vigilante/O in owner.current.contents)
+			qdel(O)
 
 /datum/antagonist/vigilante/greet()
 	if(!owner.current)

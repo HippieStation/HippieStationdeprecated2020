@@ -219,6 +219,14 @@
 	item_path = /obj/item/ammo_box/magazine/m10mm
 	mode_flags = GANGS | GANGMAGEDDON | VIGILANTE
 
+/datum/gang_item/weapon/machinegun
+	name = "Mounted Machine Gun"
+	id = "MG"
+	cost = 70
+	item_path = /obj/machinery/manned_turret
+	spawn_msg = "<span class='notice'>The mounted machine gun features enhanced responsiveness. Hold down on the trigger while firing to control where you're shooting.</span>"
+	mode_flags = GANGMAGEDDON
+
 /datum/gang_item/weapon/uzi
 	name = "Uzi SMG"
 	id = "uzi"
@@ -469,21 +477,7 @@
 
 
 /obj/machinery/gang/backup/proc/spawn_gangster()
-	var/mob/living/carbon/human/H = new(src)
 	var/mob/dead/observer/winner
-	var/obj/item/clothing/uniform = pick(G.inner_outfits)
-	var/obj/item/clothing/suit/outerwear = pick(G.outer_outfits)
-	outerwear.armor = list(melee = 20, bullet = 35, laser = 10, energy = 10, bomb = 30, bio = 0, rad = 0, fire = 30, acid = 30)
-	outerwear.body_parts_covered = CHEST|GROIN|LEGS|ARMS
-	outerwear.desc += " Tailored for the [G.name] Gang to offer the wearer moderate protection against ballistics and physical trauma."
-	H.equip_to_slot_or_del(new uniform(H), SLOT_W_UNIFORM)
-	H.equip_to_slot_or_del(new outerwear(H), SLOT_WEAR_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), SLOT_SHOES)
-	H.put_in_l_hand(new /obj/item/gun/ballistic/automatic/surplus(H))
-	H.equip_to_slot_or_del(new /obj/item/ammo_box/magazine/m10mm/rifle(H), SLOT_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/switchblade(H), SLOT_R_STORE)
-	var/equip = SSjob.EquipRank(H, "Assistant", 1)
-	H = equip
 	if(LAZYLEN(queue))
 		var/list/mob/dead/observer/finalists = pollCandidates("Would you like to be a [G.name] gang reinforcement?", jobbanType = ROLE_GANG, poll_time = 100, ignore_category = "gang war", group = queue)
 		if(LAZYLEN(finalists))
@@ -498,12 +492,26 @@
 			winner = pick(candidates)
 	if(!src || !winner)
 		message_admins("No ghosts to serve as a [G.name] gang reinforement")
-		qdel(H)
 		return
+	var/mob/living/carbon/human/H = new(src)
 	var/datum/mind/reinforcement = new /datum/mind(winner.key)
-	reinforcement.active = 1
+	reinforcement.active = TRUE
 	reinforcement.transfer_to(H)
 	reinforcement.add_antag_datum(/datum/antagonist/gang, G)
+	var/obj/item/clothing/uniform = pick(G.inner_outfits)
+	var/obj/item/clothing/suit/OW = pick(G.outer_outfits)
+	var/obj/item/clothing/suit/outerwear = new OW(H)
+	outerwear.armor = list(melee = 20, bullet = 35, laser = 10, energy = 10, bomb = 30, bio = 0, rad = 0, fire = 30, acid = 30)
+	outerwear.body_parts_covered = CHEST|GROIN|LEGS|ARMS
+	outerwear.desc += " Tailored for the [G.name] Gang to offer the wearer moderate protection against ballistics and physical trauma."
+	H.equip_to_slot_or_del(new uniform(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(outerwear, SLOT_WEAR_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), SLOT_SHOES)
+	H.put_in_l_hand(new /obj/item/gun/ballistic/automatic/surplus(H))
+	H.equip_to_slot_or_del(new /obj/item/ammo_box/magazine/m10mm/rifle(H), SLOT_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/switchblade(H), SLOT_R_STORE)
+	var/equip = SSjob.EquipRank(H, "Assistant", 1)
+	H = equip
 	do_sparks(4, TRUE, src)
 	H.forceMove(get_turf(src))
 

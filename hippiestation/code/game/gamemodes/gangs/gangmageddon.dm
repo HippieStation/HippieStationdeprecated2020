@@ -109,10 +109,8 @@
 	for(var/mob/living/M in GLOB.player_list)
 		if(!M.mind.has_antag_datum(/datum/antagonist/gang))
 			M.mind.add_antag_datum(/datum/antagonist/vigilante)
-			new /obj/item/gangtool/hell_march/vigilante(M)
-			var/obj/item/soap/vigilante/VS = new(M.drop_location())
-			M.equip_to_appropriate_slot(VS)
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/priority_announce, "Excessive costs associated with lawsuits from employees injured by Security and Synthetics have compelled us to re-evaluate the personnel budget for new stations. Accordingly, this station will be expected to operate without Security or Synthetic assistance. In the event that criminal enterprises seek to exploit this situation, we have implanted all crew with a device that will assist and incentivize the removal of all contraband and criminals.", "Nanotrasen Board of Directors"), 8 SECONDS)
+	addtimer(CALLBACK(src, .proc/vigilante_vengeance), rand(12 MINUTES, 17 MINUTES))
 
 /datum/game_mode/hell_march/proc/cleanup(area/target)
 	if(target)
@@ -154,6 +152,32 @@
 			T.ChangeTurf(/turf/open/floor/engine/airless)
 			new /obj/structure/barricade/wooden(T)
 
+
+/datum/game_mode/hell_march/proc/vigilante_vengeance()
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Would you like be a part of a Vigilante posse?", ROLE_PAI, null, FALSE, 100)
+	var/list/mob/dead/observer/finalists = list()
+	var/posse_size = 1+round(GLOB.joined_player_list.len * 0.05)+round(world.time/5000)
+	if(candidates.len)
+		for(var/n in 1 to min(candidates.len,posse_size))
+			finalists += pick_n_take(candidates)
+	else
+		message_admins("No ghosts were willing to join the posse")
+		addtimer(CALLBACK(src, .proc/vigilante_vengeance), rand(3 MINUTES, 5 MINUTES))
+		return
+	for(var/i in 1 to finalists.len)
+		var/mob/living/carbon/human/character = new(src)
+		var/equip = SSjob.EquipRank(character, "Assistant", 1)
+		character = equip
+		SSjob.SendToLateJoin(character)
+		GLOB.data_core.manifest_inject(character)
+		SSshuttle.arrivals.QueueAnnounce(character, "Vigilante")
+		GLOB.joined_player_list += character.ckey
+		var/mob/dead/observer/spoo = pick_n_take(finalists)
+		character.key = spoo.key
+		character.mind.add_antag_datum(/datum/antagonist/vigilante)
+		character.put_in_l_hand(new /obj/item/flashlight/flare/torch(character))
+		character.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/vest/alt(character), SLOT_WEAR_SUIT)
+	addtimer(CALLBACK(src, .proc/vigilante_vengeance), rand(12 MINUTES, 17 MINUTES))
 
 /obj/item/soap/vigilante
 	name = "cleaning rag"

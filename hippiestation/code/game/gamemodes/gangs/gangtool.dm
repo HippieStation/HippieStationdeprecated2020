@@ -281,6 +281,11 @@
 	linked_action = new action_type(user)
 	linked_action.Grant(user, src, L ? L.gang : null)
 
+/obj/item/gangtool/hell_march/Destroy()
+	linked_action.Remove(user)
+	qdel(linked_action)
+	return ..()
+
 /obj/item/gangtool/hell_march/attack_self()
 	return
 
