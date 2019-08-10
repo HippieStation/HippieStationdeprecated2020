@@ -17,9 +17,14 @@
 		return FALSE
 	var/real_cost = get_cost(user, gang, gangtool)
 	if(!spawn_item(user, gang, gangtool))
-		if(gang)
-			gang.adjust_influence(-real_cost)
+		if(istype(gangtool, /obj/item/gangtool/hell_march))
+			var/obj/item/gangtool/hell_march/HM = gangtool
+			HM.points -= real_cost
+		else
+			if(gang)
+				gang.adjust_influence(-real_cost)
 		to_chat(user, "<span class='notice'>You bought \the [name].</span>")
+		gangtool.show_ui(user)
 		return TRUE
 
 /datum/gang_item/proc/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool) // If this returns anything other than null, something fucked up and influence won't lower.
@@ -32,9 +37,9 @@
 		to_chat(user, spawn_msg)
 
 /datum/gang_item/proc/can_buy(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
-	if(istype(gangtool, /obj/item/gangtool/hell_march/vigilante))
-		var/obj/item/gangtool/hell_march/vigilante/V = gangtool
-		return (V.points >= get_cost(user, null, V)) && can_see(user, null, V)
+	if(istype(gangtool, /obj/item/gangtool/hell_march))
+		var/obj/item/gangtool/hell_march/HM = gangtool
+		return (HM.points >= get_cost(user, null, HM)) && can_see(user, null, HM)
 	return gang && (gang.influence >= get_cost(user, gang, gangtool)) && can_see(user, gang, gangtool)
 
 /datum/gang_item/proc/can_see(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
@@ -381,6 +386,8 @@
 	mode_flags = GANGMAGEDDON
 
 /datum/gang_item/function/backup/can_see(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
+	if(!user.mind.has_antag_datum(/datum/antagonist/gang/boss))
+		return FALSE
 	if(gang.gateways >= GATEWAYMAX)
 		return FALSE
 	return TRUE
@@ -550,6 +557,11 @@
 	item_path = /obj/item/pen/gang
 	spawn_msg = "<span class='notice'>More <b>recruitment pens</b> will allow you to recruit gangsters faster. Only gang leaders can recruit with pens.</span>"
 
+/datum/gang_item/equipment/pen/can_see(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
+	if(!user.mind.has_antag_datum(/datum/antagonist/gang/boss))
+		return FALSE
+	return ..()
+
 /datum/gang_item/equipment/pen/purchase(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
 	if(..())
 		gangtool.free_pen = FALSE
@@ -594,6 +606,11 @@
 	cost = 30
 	item_path = /obj/machinery/dominator
 	spawn_msg = "<span class='notice'>The <b>dominator</b> will secure your gang's dominance over the station. Turn it on when you are ready to defend it.</span>"
+
+/datum/gang_item/equipment/dominator/can_see(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
+	if(!user.mind.has_antag_datum(/datum/antagonist/gang/boss))
+		return FALSE
+	return ..()
 
 /datum/gang_item/equipment/dominator/can_buy(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
 	if(!gang || !gang.dom_attempts)

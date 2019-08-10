@@ -269,17 +269,60 @@
 	flag = GANGMAGEDDON
 	var/datum/action/innate/gangtool/linked_action
 	var/action_type = /datum/action/innate/gangtool
+	var/points = 0
 
 /obj/item/gangtool/hell_march/Initialize()
 	. = ..()
 	if(!ismob(loc))
 		return INITIALIZE_HINT_QDEL
 	var/mob/user = loc
-	var/datum/antagonist/gang/boss/L = user.mind.has_antag_datum(/datum/antagonist/gang/boss)
+	var/datum/antagonist/gang/L = user.mind.has_antag_datum(/datum/antagonist/gang)
 	if(!L && flag != VIGILANTE)
 		return
 	linked_action = new action_type(user)
 	linked_action.Grant(user, src, L ? L.gang : null)
+
+/obj/item/gangtool/hell_march/proc/pay_income()
+	if(!ismob(loc))
+		return 0
+	var/mob/M = loc
+	if(!M.mind)
+		return 0
+	if(M.mind.has_antag_datum(/datum/antagonist/gang/boss))
+		return pay_territory_income_to_boss()
+	return pay_soldier_territory_income()
+
+/obj/item/gangtool/hell_march/proc/pay_soldier_territory_income()
+	if(!ismob(loc))
+		return 0
+	var/mob/M = loc
+	if(!M.mind)
+		return 0
+	var/datum/antagonist/gang/G = M.mind.has_antag_datum(/datum/antagonist/gang)
+	if(!G)
+		return 0
+	. = 0
+	. = round(max(0,(3 - points/10)) + (G.gang.get_soldier_territories(M.mind)*0.5) + (LAZYLEN(G.gang.territories)*0.3))
+	points += .
+	if(.)
+		to_chat(M, "<span class='notice'>You have gained [.] influence from [G.gang.get_soldier_territories(M.mind)] territories you have personally tagged.</span>")
+	else
+		to_chat(M, "<span class='warning'>You have not gained any influence from territories you personally tagged. Get to work!</span>")
+
+/obj/item/gangtool/hell_march/proc/pay_territory_income_to_boss()
+	if(!ismob(loc))
+		return 0
+	var/mob/M = loc
+	if(!M.mind)
+		return 0
+	var/datum/antagonist/gang/boss/G = M.mind.has_antag_datum(/datum/antagonist/gang/boss)
+	if(!G)
+		return 0
+	. = 0
+	var/inc = round(max(0,(5 - points/10)) + (LAZYLEN(G.gang.territories)*0.6))
+	. += inc
+	points += inc
+	to_chat(M, "<span class='notice'>Your influence has increased by [inc] from your gang holding [LAZYLEN(G.gang.territories)] territories!</span>")
 
 /obj/item/gangtool/hell_march/Destroy()
 	linked_action.Remove(linked_action.owner)
@@ -289,10 +332,50 @@
 /obj/item/gangtool/hell_march/attack_self()
 	return
 
+/obj/item/gangtool/hell_march/show_ui(mob/user)
+	if(user.mind.has_antag_datum(/datum/antagonist/gang/boss))
+		return ..()
+	if(!user.mind.has_antag_datum(/datum/antagonist/gang))
+		return
+	var/dat
+	if(gang.domination_time != NOT_DOMINATING)
+		dat += "<center><font color='red'>Takeover In Progress:<br><B>[DisplayTimeText(gang.domination_time_remaining() * 10)] remain</B></font></center>"
+	dat += "Registration: <B>[gang.name] Gangster</B><br>"
+	dat += "Organization Size: <B>[gang.members.len]</B> | Station Control: <B>[gang.territories.len] territories under control.</B> | Influence: <B>[points]</B><br>"
+	dat += "<a href='?src=[REF(src)];commute=1'>Send message to Gang</a><br>"
+	dat += "<hr>"
+	for(var/cat in buyable_items)
+		dat += "<b>[cat]</b><br>"
+		for(var/id in buyable_items[cat])
+			var/datum/gang_item/G = buyable_items[cat][id]
+			if(!G.can_see(user, gang, src))
+				continue
+
+			var/cost = G.get_cost_display(user, gang, src)
+			if(cost)
+				dat += cost + " "
+
+			var/toAdd = G.get_name_display(user, gang, src)
+			if(G.can_buy(user, gang, src))
+				toAdd = "<a href='?src=[REF(src)];purchase=1;id=[id];cat=[cat]'>[toAdd]</a>"
+			dat += toAdd
+			var/extra = G.get_extra_info(user, gang, src)
+			if(extra)
+				dat += "<br><i>[extra]</i>"
+			dat += "<br>"
+		dat += "<br>"
+
+	dat += "<a href='?src=[REF(src)];choice=refresh'>Refresh</a><br>"
+
+	var/datum/browser/popup = new(user, "gangtool", "Welcome to GangTool v4.0", 340, 625)
+	popup.set_content(dat)
+	popup.open()
+
+// vigilante tool
+
 /obj/item/gangtool/hell_march/vigilante
 	flag = VIGILANTE
 	action_type = /datum/action/innate/gangtool/vigilante
-	var/points = 0
 
 /obj/item/gangtool/hell_march/vigilante/Initialize()
 	. = ..()

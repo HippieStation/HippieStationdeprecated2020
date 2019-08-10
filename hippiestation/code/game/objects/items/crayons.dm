@@ -74,6 +74,8 @@
 	var/datum/antagonist/gang/G = user.mind.has_antag_datum(/datum/antagonist/gang)
 	var/area/territory = get_area(target)
 	new /obj/effect/decal/cleanable/crayon/gang(target,G.gang,"graffiti",0,user)
+	if(user.mind)
+		LAZYADD(G.gang.tags_by_mind[user.mind], src)
 	to_chat(user, "<span class='notice'>You tagged [territory] for your gang!</span>")
 
 /obj/item/toy/crayon/spraycan/gang
@@ -93,7 +95,7 @@
 /obj/item/toy/crayon/spraycan/gang/examine(mob/user)
 	. = ..()
 	if(user.mind && user.mind.has_antag_datum(/datum/antagonist/gang) || isobserver(user))
-		to_chat(user, "This spraycan has been specially modified for tagging territory.")
+		. += "This spraycan has been specially modified for tagging territory."
 
 #undef RANDOM_GRAFFITI
 #undef RANDOM_LETTER

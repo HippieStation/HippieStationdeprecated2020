@@ -103,8 +103,6 @@
 			passione.leaders += gangstar
 			var/datum/antagonist/gang/boss/giorno = new
 			gangstar.add_antag_datum(giorno, passione)
-			var/obj/item/gangtool/hell_march/HM = new /obj/item/gangtool/hell_march(gangstar.current)
-			HM.register_device(gangstar.current)
 			giorno.equip_gang(FALSE, TRUE, TRUE, TRUE)
 	for(var/mob/living/M in GLOB.player_list)
 		if(!M.mind.has_antag_datum(/datum/antagonist/gang))

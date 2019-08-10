@@ -44,9 +44,14 @@
 			H.dna.remove_mutation(CLOWNMUT)
 	add_to_gang()
 	owner.remove_antag_datum(/datum/antagonist/vigilante)
+	if(istype(SSticker.mode, /datum/game_mode/hell_march))
+		var/obj/item/gangtool/hell_march/HM = new(owner.current)
+		HM.register_device(owner.current)
 
 /datum/antagonist/gang/on_removal()
 	remove_from_gang()
+	for(var/obj/item/gangtool/hell_march/O in owner.current.contents)
+		qdel(O)
 	if(istype(SSticker.mode, /datum/game_mode/hell_march))
 		owner.add_antag_datum(/datum/antagonist/vigilante)
 	..()
@@ -295,6 +300,7 @@
 	var/list/lost_territories = list() // territories lost by the gang.
 	var/list/new_territories = list() // territories captured by the gang.
 	var/list/gangtools = list()
+	var/list/tags_by_mind = list() //Assoc list in format of tags_by_mind[mind_of_gangster] = list(tag1, tag2, tag3) where tags are the actual object decals.
 	var/domination_time = NOT_DOMINATING
 	var/dom_attempts = INITIAL_DOM_ATTEMPTS
 	var/color
@@ -352,6 +358,12 @@
 	to_chat(gangster, "<font color='red'>You can identify your mates by their <b>large, bright \[G\] <font color='[color]'>icon</font></b>.</font>")
 	gangster.store_memory("You are a member of the [name] Gang!")
 
+/datum/team/gang/proc/get_soldier_territories(datum/mind/soldier)
+	if(!islist(tags_by_mind[soldier]))	//They have no tagged territories!
+		return 0
+	var/list/tags = tags_by_mind[soldier]
+	return tags.len
+
 /datum/team/gang/proc/handle_territories()
 	next_point_time = world.time + INFLUENCE_INTERVAL
 	if(!leaders.len)
@@ -399,11 +411,15 @@
 			domination_time = new_time
 		message += "<b>[domination_time_remaining()] seconds remain</b> in hostile takeover.<BR>"
 	else
-		var/new_influence = check_territory_income()
-		if(new_influence != influence)
-			message += "Gang influence has increased by [new_influence - influence] for defending [territories.len] territories and [uniformed] uniformed gangsters.<BR>"
-		influence = new_influence
-		message += "Your gang now has <b>[influence] influence</b>.<BR>"
+		if(locate(/obj/item/gangtool/hell_march) in gangtools) // this is a Gangmageddon gang
+			for(var/obj/item/gangtool/hell_march/HM in gangtools)
+				HM.pay_income()
+		else
+			var/new_influence = check_territory_income()
+			if(new_influence != influence)
+				message += "Gang influence has increased by [new_influence - influence] for defending [territories.len] territories and [uniformed] uniformed gangsters.<BR>"
+			influence = new_influence
+			message += "Your gang now has <b>[influence] influence</b>.<BR>"
 	message_gangtools(message)
 	addtimer(CALLBACK(src, .proc/handle_territories), INFLUENCE_INTERVAL)
 
