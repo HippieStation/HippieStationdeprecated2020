@@ -7,7 +7,6 @@
 	anchored = TRUE
 	max_integrity = 1
 	armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
-	layer = BELOW_OBJ_LAYER
 	var/obj/item/holosign_creator/projector
 
 /obj/structure/holosign/New(loc, source_projector)
@@ -73,6 +72,11 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "holosign"
 
+/obj/structure/holosign/barrier/wetsign/CanPass(atom/movable/mover, turf/target)
+	if(istype(mover, /obj/vehicle/ridden/janicart))
+		return TRUE
+	return ..()
+
 /obj/structure/holosign/barrier/engineering
 	icon_state = "holosign_engi"
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
@@ -106,6 +110,7 @@
 		take_damage(10, BRUTE, "melee", 1)	//Tasers aren't harmful.
 	if(istype(P, /obj/item/projectile/beam/disabler))
 		take_damage(5, BRUTE, "melee", 1)	//Disablers aren't harmful.
+	return BULLET_ACT_HIT
 
 /obj/structure/holosign/barrier/medical
 	name = "\improper PENLITE holobarrier"
@@ -116,8 +121,8 @@
 	var/buzzcd = 0
 
 /obj/structure/holosign/barrier/medical/examine(mob/user)
-	..()
-	to_chat(user,"<span class='notice'>The biometric scanners are <b>[force_allaccess ? "off" : "on"]</b>.</span>")
+	. = ..()
+	. += "<span class='notice'>The biometric scanners are <b>[force_allaccess ? "off" : "on"]</b>.</span>"
 
 /obj/structure/holosign/barrier/medical/CanPass(atom/movable/mover, turf/target)
 	icon_state = "holo_medical"
@@ -151,6 +156,7 @@
 
 /obj/structure/holosign/barrier/cyborg/hacked/bullet_act(obj/item/projectile/P)
 	take_damage(P.damage, BRUTE, "melee", 1)	//Yeah no this doesn't get projectile resistance.
+	return BULLET_ACT_HIT
 
 /obj/structure/holosign/barrier/cyborg/hacked/proc/cooldown()
 	shockcd = FALSE

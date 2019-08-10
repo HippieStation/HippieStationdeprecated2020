@@ -1,4 +1,0 @@
-author: "Shdorsh"
-delete-after: True
-changes: 
-  - rscadd: "Storage examiner and storage inserter/extractor circuit to insert and extract items from boxes, toolboxes, backpacks etc. lying in the open and next to the circuit."

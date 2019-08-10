@@ -9,23 +9,21 @@
 	var/dropped_sound = null         // This sound plays when you put it down/away
 
 /obj/item/proc/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)
-	return
+	log_admin("[key_name_admin(user)] used [special_name] on [ADMIN_LOOKUPFLW(target)].")
+	message_admins("[key_name_admin(user)] used [special_name] on [ADMIN_LOOKUPFLW(target)].")
 
 /obj/item/pickup(mob/user)
 	..()
-
 	if (pickup_sound || dropped_sound)
 		addtimer(CALLBACK(src, .proc/try_play_interact_sound, user), 1)
 
 /obj/item/dropped(mob/user)
 	..()
-
 	if (pickup_sound || dropped_sound)
 		addtimer(CALLBACK(src, .proc/try_play_interact_sound, user), 1)
 
 /obj/item/equipped(mob/user, slot)
 	..()
-
 	if (pickup_sound || dropped_sound)
 		addtimer(CALLBACK(src, .proc/try_play_interact_sound, user), 1)
 

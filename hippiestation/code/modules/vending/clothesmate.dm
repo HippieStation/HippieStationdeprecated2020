@@ -4,4 +4,5 @@
 						   /obj/item/pimpstick = 1,
 						   /obj/item/clothing/under/hippie/telvis = 1,
 						   /obj/item/clothing/head/hippie/turban = 2,
+						   /obj/item/clothing/suit/hippie/wifebeater = 3
 						   )

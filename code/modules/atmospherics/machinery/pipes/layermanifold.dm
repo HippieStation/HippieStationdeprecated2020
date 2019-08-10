@@ -61,9 +61,9 @@
 	var/image/I
 
 	if(p_color)
-		I = getpipeimage(icon, "pipe", p_dir, p_color, piping_layer = piping_layer)
+		I = getpipeimage(icon, "pipe", p_dir, p_color, piping_layer = p_layer)
 	else
-		I = getpipeimage(icon, "pipe", p_dir, piping_layer = piping_layer)
+		I = getpipeimage(icon, "pipe", p_dir, piping_layer = p_layer)
 
 	I.layer = layer - 0.01
 	add_overlay(I)
@@ -132,3 +132,8 @@
 	if((SOUTH|WEST) & dir)
 		user.ventcrawl_layer = CLAMP(user.ventcrawl_layer - 1, PIPING_LAYER_MIN, PIPING_LAYER_MAX)
 	to_chat(user, "You align yourself with the [user.ventcrawl_layer]\th output.")
+
+/obj/machinery/atmospherics/pipe/layer_manifold/visible
+	level = PIPE_VISIBLE_LEVEL
+	layer = GAS_PIPE_VISIBLE_LAYER
+	

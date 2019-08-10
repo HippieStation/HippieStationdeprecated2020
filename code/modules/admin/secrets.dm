@@ -20,7 +20,6 @@
 			<BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=clear_virus'>Cure all diseases currently in existence</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=list_bombers'>Bombing List</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=check_antagonist'>Show current traitors and objectives</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=list_signalers'>Show last [length(GLOB.lastsignalers)] signalers</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=list_lawchanges'>Show last [length(GLOB.lawchanges)] law changes</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=showailaws'>Show AI Laws</A><BR>
@@ -133,15 +132,15 @@
 			log_admin("[key_name(usr)] reset the thunderdome to default with delete_mobs==[delete_mobs].", 1)
 			message_admins("<span class='adminnotice'>[key_name_admin(usr)] reset the thunderdome to default with delete_mobs==[delete_mobs].</span>")
 
-			var/area/thunderdome = locate(/area/tdome/arena)
+			var/area/thunderdome = GLOB.areas_by_type[/area/tdome/arena]
 			if(delete_mobs == "Yes")
 				for(var/mob/living/mob in thunderdome)
 					qdel(mob) //Clear mobs
 			for(var/obj/obj in thunderdome)
-				if(!istype(obj, /obj/machinery/camera))
+				if(!istype(obj, /obj/machinery/camera) && !istype(obj, /obj/effect/abstract/proximity_checker))
 					qdel(obj) //Clear objects
 
-			var/area/template = locate(/area/tdome/arena_source)
+			var/area/template = GLOB.areas_by_type[/area/tdome/arena_source]
 			template.copy_contents_to(thunderdome)
 
 		if("clear_virus")
@@ -411,7 +410,7 @@
 						var/obj/item/organ/tail/cat/tail = new
 						ears.Insert(H, drop_if_replaced=FALSE)
 						tail.Insert(H, drop_if_replaced=FALSE)
-					var/list/honorifics = list("[MALE]" = list("kun"), "[FEMALE]" = list("chan","tan"), "[NEUTER]" = list("san")) //John Robust -> Robust-kun
+					var/list/honorifics = list("[MALE]" = list("kun"), "[FEMALE]" = list("chan","tan"), "[NEUTER]" = list("san"), "[PLURAL]" = list("san")) //John Robust -> Robust-kun
 					var/list/names = splittext(H.real_name," ")
 					var/forename = names.len > 1 ? names[2] : names[1]
 					var/newname = "[forename]-[pick(honorifics["[H.gender]"])]"
@@ -425,7 +424,7 @@
 						H.equip_to_slot_or_del(I, SLOT_W_UNIFORM)
 						qdel(olduniform)
 						if(droptype == "Yes")
-							I.item_flags |= NODROP
+							ADD_TRAIT(I, TRAIT_NODROP, ADMIN_TRAIT)
 				else
 					to_chat(H, "You're not kawaii enough for this.")
 
@@ -472,7 +471,7 @@
 				if(is_station_level(W.z) && !istype(get_area(W), /area/bridge) && !istype(get_area(W), /area/crew_quarters) && !istype(get_area(W), /area/security/prison))
 					W.req_access = list()
 			message_admins("[key_name_admin(usr)] activated Egalitarian Station mode")
-			priority_announce("CentCom airlock control override activated. Please take this time to get acquainted with your coworkers.", null, 'sound/ai/commandreport.ogg')
+			priority_announce("CentCom airlock control override activated. Please take this time to get acquainted with your coworkers.", null, 'hippiestation/sound/pyko/commandreport.ogg') // hippie -- pykoai
 
 		if("ancap")
 			if(!check_rights(R_FUN))
@@ -481,9 +480,9 @@
 			SSeconomy.full_ancap = !SSeconomy.full_ancap
 			message_admins("[key_name_admin(usr)] toggled Anarcho-capitalist mode")
 			if(SSeconomy.full_ancap)
-				priority_announce("The NAP is now in full effect.", null, 'sound/ai/commandreport.ogg')
+				priority_announce("The NAP is now in full effect.", null, 'hippiestation/sound/pyko/commandreport.ogg') // hippie -- pykoai
 			else
-				priority_announce("The NAP has been revoked.", null, 'sound/ai/commandreport.ogg')
+				priority_announce("The NAP has been revoked.", null, 'hippiestation/sound/pyko/commandreport.ogg') // hippie -- pykoai
 
 
 

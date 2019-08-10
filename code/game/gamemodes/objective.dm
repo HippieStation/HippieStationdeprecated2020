@@ -155,14 +155,16 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 		explanation_text = team_explanation_text
 
 /datum/objective/proc/give_special_equipment(special_equipment)
-	var/datum/mind/receiver = pick(get_owners())
-	if(receiver && receiver.current)
-		if(ishuman(receiver.current))
-			var/mob/living/carbon/human/H = receiver.current
-			var/list/slots = list("backpack" = SLOT_IN_BACKPACK)
-			for(var/eq_path in special_equipment)
-				var/obj/O = new eq_path
-				H.equip_in_one_of_slots(O, slots)
+	var/list/owners_list = get_owners() // hippie -- prevent pick from empty list runtime
+	if(LAZYLEN(owners_list)) // hippie -- prevent pick from empty list runtime
+		var/datum/mind/receiver = pick(owners_list)
+		if(receiver && receiver.current)
+			if(ishuman(receiver.current))
+				var/mob/living/carbon/human/H = receiver.current
+				var/list/slots = list("backpack" = SLOT_IN_BACKPACK)
+				for(var/eq_path in special_equipment)
+					var/obj/O = new eq_path
+					H.equip_in_one_of_slots(O, slots)
 
 /datum/objective/assassinate
 	name = "assasinate"
@@ -676,6 +678,24 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 		target_amount = count
 	update_explanation_text()
 
+/datum/objective/protect_object
+	name = "protect object"
+	var/obj/protect_target
+
+/datum/objective/protect_object/proc/set_target(obj/O)
+	protect_target = O
+	update_explanation_text()
+
+/datum/objective/protect_object/update_explanation_text()
+	. = ..()
+	if(protect_target)
+		explanation_text = "Protect \the [protect_target] at all costs."
+	else
+		explanation_text = "Free objective."
+
+/datum/objective/protect_object/check_completion()
+	return !QDELETED(protect_target)
+
 //Changeling Objectives
 
 /datum/objective/absorb
@@ -755,7 +775,7 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 			continue
 		var/total_genetic_points = changeling.geneticpoints
 
-		for(var/obj/effect/proc_holder/changeling/p in changeling.purchasedpowers)
+		for(var/datum/action/changeling/p in changeling.purchasedpowers)
 			total_genetic_points += p.dna_cost
 
 		if(total_genetic_points > initial(changeling.geneticpoints))
@@ -1053,5 +1073,25 @@ GLOBAL_LIST_EMPTY(possible_items_special)
 
 	for(var/T in allowed_types)
 		var/datum/objective/X = T
-
 		GLOB.admin_objective_list[initial(X.name)] = T
+
+/datum/objective/contract
+	var/payout = 0
+	var/payout_bonus = 0
+	var/area/dropoff = null
+
+// Generate a random valid area on the station that the dropoff will happen.
+/datum/objective/contract/proc/generate_dropoff()
+	var/found = FALSE
+	while (!found)
+		var/area/dropoff_area = pick(GLOB.sortedAreas)
+		if(dropoff_area && is_station_level(dropoff_area.z) && dropoff_area.valid_territory)
+			dropoff = dropoff_area
+			found = TRUE
+
+// Check if both the contractor and contract target are at the dropoff point.
+/datum/objective/contract/proc/dropoff_check(mob/user, mob/target)
+	var/area/user_area = get_area(user)
+	var/area/target_area = get_area(target)
+
+	return (istype(user_area, dropoff) && istype(target_area, dropoff))

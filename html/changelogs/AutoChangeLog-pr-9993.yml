@@ -1,5 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - rscadd: "Moves air supply pipes to piping layer 1."
-  - tweak: "Remaps scrubbers and air supply pipes."

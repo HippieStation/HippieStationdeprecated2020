@@ -20,7 +20,6 @@
 	resistance_flags = FIRE_PROOF
 	max_integrity = 200
 	obj_flags = CAN_BE_HIT | ON_BLUEPRINTS
-	var/nodealert = 0
 	var/can_unwrench = 0
 	var/initialize_directions = 0
 	var/pipe_color
@@ -40,11 +39,11 @@
 	var/on = FALSE
 
 /obj/machinery/atmospherics/examine(mob/user)
-	..()
+	. = ..()
 	if(is_type_in_list(src, GLOB.ventcrawl_machinery) && isliving(user))
 		var/mob/living/L = user
 		if(L.ventcrawler)
-			to_chat(L, "<span class='notice'>Alt-click to crawl through it.</span>")
+			. += "<span class='notice'>Alt-click to crawl through it.</span>"
 
 /obj/machinery/atmospherics/New(loc, process = TRUE, setdir)
 	if(!isnull(setdir))

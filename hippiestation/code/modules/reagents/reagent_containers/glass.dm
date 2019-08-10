@@ -1,3 +1,5 @@
+/obj/item/reagent_containers/glass/beaker/bluespace
+	materials = list(MAT_GLASS = 5000, MAT_PLASMA = 3000, MAT_DIAMOND = 1000, MAT_BLUESPACE = 1000) // matches the materials it's made of with the recipe in medical_designs.dm
 
 /obj/item/reagent_containers/glass/afterattack(obj/target, mob/user, proximity)
 	if((!proximity) || !check_allowed_items(target,target_self=1)) return

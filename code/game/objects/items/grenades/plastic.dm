@@ -73,7 +73,11 @@
 			explosion(location, boom_sizes[1], boom_sizes[2], boom_sizes[3])
 	if(ismob(target))
 		var/mob/M = target
-		M.gib()
+		if(ishuman(M)) // hippie -- allows gibbing of human corpses, instagibbing with X4
+			if(M.stat || full_damage_on_mobs)
+				M.gib(1, 1, 1)
+		else // hippie end
+			M.gib()
 	qdel(src)
 
 //assembly stuff
@@ -114,7 +118,9 @@
 		target = AM
 
 		message_admins("[ADMIN_LOOKUPFLW(user)] planted [name] on [target.name] at [ADMIN_VERBOSEJMP(target)] with [det_time] second fuse")
-		log_game("[key_name(user)] planted [name] on [target.name] at [AREACOORD(user)] with [det_time] second fuse")
+		log_game("[key_name(user)] planted [name] on [target.name] at [AREACOORD(user)] with a [det_time] second fuse")
+
+		notify_ghosts("[user] has planted \a [src] on [target] with a [det_time] second fuse!", source = target, action = NOTIFY_ORBIT)
 
 		moveToNullspace()	//Yep
 
@@ -175,9 +181,9 @@
 	var/open_panel = 0
 	can_attach_mob = TRUE
 
-/obj/item/grenade/plastic/c4/New()
+/obj/item/grenade/plastic/c4/Initialize()
+	. = ..()
 	wires = new /datum/wires/explosive/c4(src)
-	..()
 
 /obj/item/grenade/plastic/c4/Destroy()
 	qdel(wires)
@@ -203,7 +209,7 @@
 		wires.interact(user)
 	else
 		return ..()
-
+/* hippie -- did nothing but break shit
 /obj/item/grenade/plastic/c4/prime()
 	if(QDELETED(src))
 		return
@@ -219,7 +225,7 @@
 	if(location)
 		explosion(location,0,0,3)
 	qdel(src)
-
+*/
 /obj/item/grenade/plastic/c4/attack(mob/M, mob/user, def_zone)
 	return
 

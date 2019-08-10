@@ -1,4 +1,0 @@
-author: "karma"
-delete-after: True
-changes: 
-  - rscdel: "Re-removes war op pop limit"

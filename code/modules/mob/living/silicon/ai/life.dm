@@ -20,6 +20,7 @@
 			// This proc handles cleanup of screen notifications and
 			// messenging the client
 			malfhacked(malfhack)
+
 		if(isturf(loc) && (QDELETED(eyeobj) || !eyeobj.loc))
 			view_core()
 
@@ -29,11 +30,15 @@
 		// Handle power damage (oxy)
 		if(aiRestorePowerRoutine)
 			// Lost power
-			adjustOxyLoss(1)
+			if (!battery)
+				to_chat(src, "<span class='warning'>Your backup battery's output drops below usable levels. It takes only a moment longer for your systems to fail, corrupted and unusable.</span>")
+				adjustOxyLoss(200)
+			else
+				battery --
 		else
 			// Gain Power
-			if(getOxyLoss())
-				adjustOxyLoss(-1)
+			if (battery < 200)
+				battery ++
 
 		if(!lacks_power())
 			var/area/home = get_area(src)

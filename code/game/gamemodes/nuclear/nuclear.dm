@@ -115,10 +115,9 @@
 
 	uniform = /obj/item/clothing/under/syndicate
 	shoes = /obj/item/clothing/shoes/combat
-	gloves = /obj/item/clothing/gloves/combat
 	back = /obj/item/storage/backpack/fireproof
 	ears = /obj/item/radio/headset/syndicate/alt
-	l_pocket = /obj/item/pinpointer/nuke/syndicate
+	l_pocket = /obj/item/reagent_containers/food/snacks/donkpocket/warm // hippie -- had to replace the syndie-lad with something!
 	id = /obj/item/card/id/syndicate
 	belt = /obj/item/gun/ballistic/automatic/pistol
 	backpack_contents = list(/obj/item/storage/box/syndie=1,\
@@ -126,17 +125,20 @@
 
 	var/tc = 25
 	var/command_radio = FALSE
-	var/uplink_type = /obj/item/uplink/nuclear
+	var/uplink_type = /obj/item/clothing/gloves/syndielad/nuke // hippie -- changed from regular station bounced radio to a syndielad
 
 
 /datum/outfit/syndicate/leader
 	name = "Syndicate Leader - Basic"
 	id = /obj/item/card/id/syndicate/nuke_leader
+	gloves = /obj/item/clothing/gloves/krav_maga/combatglovesplus
 	r_hand = /obj/item/nuclear_challenge
 	command_radio = TRUE
 
 /datum/outfit/syndicate/no_crystals
+	name = "Syndicate Operative - Reinforcement"
 	tc = 0
+	l_pocket = /obj/item/pinpointer/nuke/syndicate
 
 /datum/outfit/syndicate/post_equip(mob/living/carbon/human/H)
 	var/obj/item/radio/R = H.ears
@@ -145,7 +147,7 @@
 	if(command_radio)
 		R.command = TRUE
 
-	if(tc)
+	if(ispath(uplink_type, /obj/item/uplink/nuclear) || tc) // /obj/item/uplink/nuclear understands 0 tc
 		var/obj/item/U = new uplink_type(H, H.key, tc)
 		H.equip_to_slot_or_del(U, SLOT_IN_BACKPACK)
 
@@ -165,7 +167,7 @@
 	r_pocket = /obj/item/tank/internals/emergency_oxygen/engi
 	internals_slot = SLOT_R_STORE
 	belt = /obj/item/storage/belt/military
-	r_hand = /obj/item/gun/ballistic/automatic/shotgun/bulldog
+	r_hand = /obj/item/gun/ballistic/shotgun/bulldog
 	backpack_contents = list(/obj/item/storage/box/syndie=1,\
 		/obj/item/tank/jetpack/oxygen/harness=1,\
 		/obj/item/gun/ballistic/automatic/pistol=1,\

@@ -6,8 +6,12 @@
 	item_state = "cluwne"
 	item_color = "cluwne"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
-	item_flags = NODROP | DROPDEL
+	item_flags = DROPDEL
 	can_adjust = 0
+
+/obj/item/clothing/under/hippie/cluwne/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/clothing/under/hippie/cluwne/equipped(mob/living/carbon/user, slot)
 	if(!ishuman(user))

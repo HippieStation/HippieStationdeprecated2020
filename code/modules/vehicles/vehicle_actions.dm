@@ -175,7 +175,6 @@
 		var/obj/vehicle/sealed/car/clowncar/C = vehicle_entered_target
 		if(C.cannonbusy)
 			to_chat(owner, "<span class='notice'>Please wait for the vehicle to finish its current action first.</span>")
-
 		C.ToggleCannon()
 
 /datum/action/vehicle/sealed/Thank

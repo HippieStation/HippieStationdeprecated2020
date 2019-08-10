@@ -91,7 +91,7 @@
 						var/turf/open/pool/P = I
 						if(P.reagents)
 							P.reagents.clear_reagents()
-							P.reagents.add_reagent(R.id, 100)
+							P.reagents.add_reagent(R.type, 100)
 					if(GLOB.adminlog)
 						log_game("[key_name(user)] has changed the [src] chems to [R.name]")
 						message_admins("[key_name_admin(user)] has changed the [src] chems to [R.name].")
@@ -142,7 +142,7 @@
 				W.reagents.reaction(swimee, VAPOR, 0.03) //3 percent
 				for(var/Q in W.reagents.reagent_list)
 					var/datum/reagent/R = Q
-					swimee.reagents.add_reagent(R.id, 0.5) //osmosis
+					swimee.reagents.add_reagent(R.type, 0.5) //osmosis
 		for(var/obj/objects in W)
 			if(beaker && cur_reagent && W.reagents)
 				W.reagents.reaction(objects, VAPOR, 1)
@@ -178,7 +178,7 @@
 					if(FRIGID) //Freezing
 						M.adjust_bodytemperature(-60) //cool mob at -35k per cycle, less would not affect the mob enough.
 						if(M.bodytemperature <= 50 && !M.stat)
-							M.apply_status_effect(/datum/status_effect/freon)		
+							M.apply_status_effect(/datum/status_effect/freon)
 				var/mob/living/carbon/human/drownee = M
 				if(drownee.stat == DEAD)
 					continue
@@ -204,7 +204,7 @@
 	if(drained)
 		return
 	var/rcolor
-	if(beaker && beaker.reagents.reagent_list.len)
+	if(beaker && beaker.reagents && beaker.reagents.reagent_list.len)
 		rcolor = mix_color_from_reagents(beaker.reagents.reagent_list)
 	if(rcolor == old_rcolor)
 		return // small performance upgrade hopefully?

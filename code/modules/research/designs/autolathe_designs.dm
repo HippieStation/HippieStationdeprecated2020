@@ -10,6 +10,15 @@
 	build_path = /obj/item/reagent_containers/glass/bucket
 	category = list("initial","Tools","Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
+	
+/datum/design/mop
+	name = "Mop"
+	id = "mop"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(MAT_METAL = 1000)
+	build_path = /obj/item/mop
+	category = list("initial","Tools","Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /datum/design/crowbar
 	name = "Pocket Crowbar"
@@ -128,9 +137,9 @@
 	id = "cable_coil"
 	build_type = AUTOLATHE
 	materials = list(MAT_METAL = 10, MAT_GLASS = 5)
-	build_path = /obj/item/stack/cable_coil/random
+	build_path = /obj/item/stack/cable_coil
 	category = list("initial","Tools","Tool Designs")
-	maxstack = 30
+	maxstack = 15
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
 /datum/design/toolbox
@@ -644,10 +653,11 @@
 /datum/design/syringe
 	name = "Syringe"
 	id = "syringe"
-	build_type = AUTOLATHE
+	build_type = AUTOLATHE | PROTOLATHE
 	materials = list(MAT_METAL = 10, MAT_GLASS = 20)
 	build_path = /obj/item/reagent_containers/syringe
-	category = list("initial", "Medical")
+	category = list("initial", "Medical", "Medical Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
 
 /datum/design/prox_sensor
 	name = "Proximity Sensor"
@@ -922,3 +932,30 @@
 	materials = list(MAT_METAL = 100, MAT_GLASS = 100)
 	build_path = /obj/item/disk/holodisk
 	category = list("initial", "Misc")
+
+/datum/design/circuit
+	name = "Blue Circuit Tile"
+	id = "circuit"
+	build_type = AUTOLATHE
+	materials = list(MAT_METAL = 500, MAT_GLASS = 500)
+	build_path = /obj/item/stack/tile/circuit
+	category = list("initial", "Misc")
+	maxstack = 50
+
+/datum/design/circuitgreen
+	name = "Green Circuit Tile"
+	id = "circuitgreen"
+	build_type = AUTOLATHE
+	materials = list(MAT_METAL = 500, MAT_GLASS = 500)
+	build_path = /obj/item/stack/tile/circuit/green
+	category = list("initial", "Misc")
+	maxstack = 50
+
+/datum/design/circuitred
+	name = "Red Circuit Tile"
+	id = "circuitred"
+	build_type = AUTOLATHE
+	materials = list(MAT_METAL = 500, MAT_GLASS = 500)
+	build_path = /obj/item/stack/tile/circuit/red
+	category = list("initial", "Misc")
+	maxstack = 50

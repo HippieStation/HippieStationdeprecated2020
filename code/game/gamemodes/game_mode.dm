@@ -25,13 +25,14 @@
 	var/list/datum/mind/antag_candidates = list()	// List of possible starting antags goes here
 	var/list/restricted_jobs = list()	// Jobs it doesn't make sense to be.  I.E chaplain or AI cultist
 	var/list/protected_jobs = list()	// Jobs that can't be traitors because
+	var/list/required_jobs = list()		// alternative required job groups eg list(list(cap=1),list(hos=1,sec=2)) translates to one captain OR one hos and two secmans
 	var/required_players = 0
 	var/maximum_players = -1 // -1 is no maximum, positive numbers limit the selection of a mode on overstaffed stations
 	var/required_enemies = 0
 	var/recommended_enemies = 0
 	var/antag_flag = null //preferences flag such as BE_WIZARD that need to be turned on for players to be antag
 	var/mob/living/living_antag_player = null
-	var/list/datum/game_mode/replacementmode = null
+	var/datum/game_mode/replacementmode = null
 	var/round_converted = 0 //0: round not converted, 1: round going to convert, 2: round converted
 	var/reroll_friendly 	//During mode conversion only these are in the running
 	var/continuous_sanity_checked	//Catches some cases where config options could be used to suggest that modes without antagonists should end when all antagonists die
@@ -117,7 +118,7 @@
 		replacementmode.make_antag_chance(character)
 	return
 
-
+/* HANDLED IN HIPPIESTATION GAME_MODE.DM  - MODULE: SHUTTLE TOGGLE - Changes here too.
 ///Allows rounds to basically be "rerolled" should the initial premise fall through. Also known as mulligan antags.
 /datum/game_mode/proc/convert_roundtype()
 	set waitfor = FALSE
@@ -139,14 +140,14 @@
 		else
 			qdel(G)
 
-	if(!usable_modes)
+	if(!usable_modes.len)
 		message_admins("Convert_roundtype failed due to no valid modes to convert to. Please report this error to the Coders.")
 		return null
 
 	replacementmode = pickweight(usable_modes)
 
 	switch(SSshuttle.emergency.mode) //Rounds on the verge of ending don't get new antags, they just run out
-		if(SHUTTLE_STRANDED, SHUTTLE_ESCAPE)
+		if(SHUTTLE_STRANDED, SHUTTLE_ESCAPE, SHUTTLE_DISABLED) //MODULE: SHUTTLE TOGGLE
 			return 1
 		if(SHUTTLE_CALL)
 			if(SSshuttle.emergency.timeLeft(1) < initial(SSshuttle.emergencyCallTime)*0.5)
@@ -161,7 +162,7 @@
 
 	for(var/mob/living/carbon/human/H in living_crew)
 		if(H.client && H.client.prefs.allow_midround_antag && !is_centcom_level(H.z))
-			if(!is_banned_from(H.ckey, CATBAN) && !is_banned_from(H.ckey, CLUWNEBAN)) // hippie -- adds our jobban checks
+			if(!is_banned_from(H.ckey, CATBAN) && !is_banned_from(H.ckey, CLUWNEBAN) && !HAS_TRAIT(H, TRAIT_MINDSHIELD)) // hippie -- adds our jobban checks, cockblocks mindshielded people
 				antag_candidates += H
 
 	if(!antag_candidates)
@@ -195,7 +196,7 @@
 	replacementmode.gamemode_ready = TRUE //Awful but we're not doing standard setup here.
 	round_converted = 2
 	message_admins("-- IMPORTANT: The roundtype has been converted to [replacementmode.name], antagonists may have been created! --")
-
+*/
 
 ///Called by the gameSSticker
 /datum/game_mode/process()
@@ -236,10 +237,11 @@
 			return 0 //A resource saver: once we find someone who has to die for all antags to be dead, we can just keep checking them, cycling over everyone only when we lose our mark.
 
 		for(var/mob/Player in GLOB.alive_mob_list)
-			if(Player.mind && Player.stat != DEAD && !isnewplayer(Player) &&!isbrain(Player) && Player.client)
-				if(Player.mind.special_role || LAZYLEN(Player.mind.antag_datums)) //Someone's still antaging!
-					living_antag_player = Player
-					return 0
+			if(Player.mind && Player.stat != DEAD && !isnewplayer(Player) &&!isbrain(Player) && Player.client && (Player.mind.special_role || LAZYLEN(Player.mind.antag_datums))) //Someone's still antagging but is their antagonist datum important enough to skip mulligan?
+				for(var/datum/antagonist/antag_types in Player.mind.antag_datums)
+					if(antag_types.prevent_roundtype_conversion)
+						living_antag_player = Player //they were an important antag, they're our new mark
+						return 0
 
 		if(!are_special_antags_dead())
 			return FALSE
@@ -291,7 +293,7 @@
 			intercepttext += G.get_report()
 
 	print_command_report(intercepttext, "Central Command Status Summary", announce=FALSE)
-	priority_announce("A summary has been copied and printed to all communications consoles.", "Enemy communication intercepted. Security level elevated.", 'sound/ai/intercept.ogg')
+	priority_announce("A summary has been copied and printed to all communications consoles.", "Enemy communication intercepted. Security level elevated.", 'hippiestation/sound/pyko/intercept.ogg') // hippie -- pykoai
 	if(GLOB.security_level < SEC_LEVEL_BLUE)
 		set_security_level(SEC_LEVEL_BLUE)
 
@@ -359,7 +361,7 @@
 
 	// Ultimate randomizing code right here
 	for(var/mob/dead/new_player/player in GLOB.player_list)
-		if(player.client && player.ready == PLAYER_READY_TO_PLAY)
+		if(player.client && player.ready == PLAYER_READY_TO_PLAY && player.check_preferences())
 			if(!is_banned_from(player.ckey, CATBAN) && !is_banned_from(player.ckey, CLUWNEBAN)) // hippie -- adds our jobban checks
 				players += player
 
@@ -386,24 +388,6 @@
 				if(!(role in player.client.prefs.be_special)) // We don't have enough people who want to be antagonist, make a separate list of people who don't want to be one
 					if(!is_banned_from(player.ckey, list(role, ROLE_SYNDICATE)) && !QDELETED(player))
 						drafted += player.mind
-
-	if(restricted_jobs)
-		for(var/datum/mind/player in drafted)				// Remove people who can't be an antagonist
-			for(var/job in restricted_jobs)
-				if(player.assigned_role == job)
-					drafted -= player
-
-	drafted = shuffle(drafted) // Will hopefully increase randomness, Donkie
-
-	while(candidates.len < recommended_enemies)				// Pick randomlly just the number of people we need and add them to our list of candidates
-		if(drafted.len > 0)
-			applicant = pick(drafted)
-			if(applicant)
-				candidates += applicant
-				drafted.Remove(applicant)
-
-		else												// Not enough scrubs, ABORT ABORT ABORT
-			break
 
 	if(restricted_jobs)
 		for(var/datum/mind/player in drafted)				// Remove people who can't be an antagonist

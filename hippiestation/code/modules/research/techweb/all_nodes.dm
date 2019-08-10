@@ -42,3 +42,28 @@
 	design_ids = list("telepad", "telesci_console")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
 	export_price = 5000
+
+//Because TG removed them
+/datum/techweb_node/mech_taser
+	id = "mech_taser"
+	display_name =  "Exosuit Weapon (PBT \"Pacifier\" Mounted Taser)"
+	description = "A basic piece of mech weaponry"
+	prereq_ids = list("electronic_weapons")
+	design_ids = list("mech_taser")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	export_price = 5000
+
+/datum/techweb_node/adv_beam_weapons
+	design_ids = list()
+
+///GAUSS RIFLE///
+/*
+/datum/techweb_node/electromagnetic_weapons
+	id = "gauss_rifle"
+	display_name = "Electromagnetic Weaponry(Gauss Rifle MK1)"
+	description = "The gauss rifle, electromagnetic weaponry at its finest. You won't regret researching this."
+	prereq_ids = list("adv_weaponry", "emp_adv")
+	design_ids = list("gaussrifle")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	export_price = 5000
+*/

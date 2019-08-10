@@ -1,4 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - bugfix: "Fixed shuttle arm rests when facing west/east."

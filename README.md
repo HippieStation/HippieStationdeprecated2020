@@ -102,10 +102,11 @@ the new version.
 ## MAPS
 Hippie Station currently comes equipped with five maps.
 * [Hippie BoxStation (default)](https://tgstation13.org/wiki/Boxstation)
-* [BoxStation (default)](https://tgstation13.org/wiki/Boxstation)
+* [BoxStation](https://tgstation13.org/wiki/Boxstation)
 * [MetaStation](https://tgstation13.org/wiki/MetaStation)
 * [DeltaStation](https://tgstation13.org/wiki/DeltaStation)
 * [PubbyStation](https://tgstation13.org/wiki/PubbyStation)
+* [DonutStation](https://tgstation13.org/wiki/Donutstation)
 
 
 All maps have their own code file that is in the base of the _maps directory. Maps are loaded dynamically when the game starts. Follow this guideline when adding your own map, to your fork, for easy compatibility.
@@ -167,4 +168,3 @@ See tgui/assets/fonts/SIL-OFL-1.1-LICENSE.md for the SIL Open Font License.
 See the footers of code/\_\_DEFINES/server\_tools.dm, code/modules/server\_tools/st\_commands.dm, and code/modules/server\_tools/st\_inteface.dm for the MIT license.
 
 All assets including icons and sound are under a [Creative Commons 3.0 BY-SA license](https://creativecommons.org/licenses/by-sa/3.0/) unless otherwise indicated.
-

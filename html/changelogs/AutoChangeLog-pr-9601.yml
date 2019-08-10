@@ -1,7 +1,0 @@
-author: "steamp0rt"
-delete-after: True
-changes: 
-  - rscdel: "Ling nerfs got reverted"
-  - rscdel: "Horrorform still exists, though"
-  - rscadd: "As it turns out, Horrorform was actually just OP's mom."
-  - rscadd: "Fart sting."

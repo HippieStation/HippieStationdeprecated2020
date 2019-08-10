@@ -1,4 +1,0 @@
-author: "karma"
-delete-after: True
-changes: 
-  - balance: "lube now requires 10u to apply to a tile and has an extremely more obvious sprite (blue sparkles) and no longer bypasses noslips"

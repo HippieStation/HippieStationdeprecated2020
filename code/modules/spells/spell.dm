@@ -35,6 +35,8 @@
 GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for the badmin verb for now
 
 /obj/effect/proc_holder/Destroy()
+	if (action)
+		qdel(action)
 	if(ranged_ability_user)
 		remove_ranged_ability()
 	return ..()
@@ -165,16 +167,16 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	if(user.stat && !stat_allowed)
 		to_chat(user, "<span class='notice'>Not when you're incapacitated.</span>")
 		return FALSE
-	
+
 	if(!antimagic_allowed)
-		var/antimagic = user.anti_magic_check(TRUE, FALSE)
+		var/antimagic = user.anti_magic_check(TRUE, FALSE, FALSE, 0, TRUE)
 		if(antimagic)
 			if(isitem(antimagic))
 				to_chat(user, "<span class='notice'>[antimagic] is interfering with your magic.</span>")
-			else 
+			else
 				to_chat(user, "<span class='notice'>Magic seems to flee from you, you can't gather enough power to cast this spell.</span>")
 			return FALSE
-				
+
 	if(!phase_allowed && istype(user.loc, /obj/effect/dummy))
 		to_chat(user, "<span class='notice'>[name] cannot be cast unless you are completely manifested in the material plane.</span>")
 		return FALSE
@@ -192,7 +194,10 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		/obj/item/clothing/head/wizard,
 		/obj/item/clothing/head/helmet/space/hardsuit/wizard,
 		/obj/item/clothing/suit/space/hardsuit/shielded/wizard,
-		/obj/item/clothing/head/helmet/space/hardsuit/shielded/wizard))
+		/obj/item/clothing/head/helmet/space/hardsuit/shielded/wizard,
+		/obj/item/clothing/head/hippie/ganymedian,	// hippie -- add ganymedian helmet
+		/obj/item/clothing/suit/hippie/ganymedian	// hippie -- add ganymedian armor
+		))
 
 		if(clothes_req) //clothes check
 			if(!is_type_in_typecache(H.wear_suit, casting_clothes))
@@ -201,7 +206,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			if(!is_type_in_typecache(H.head, casting_clothes))
 				to_chat(H, "<span class='notice'>I don't feel strong enough without my hat.</span>")
 				return FALSE
-		// hippie start -- check for if a spell needs a spell catalyst	
+		// hippie start -- check for if a spell needs a spell catalyst
 		if(staff_req)
 			var/catalyst_found = FALSE
 			for(var/obj/O in H.held_items)
@@ -523,8 +528,8 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 	if(user.stat && !stat_allowed)
 		return FALSE
-		
-	if(!antimagic_allowed && user.anti_magic_check(TRUE, FALSE))
+
+	if(!antimagic_allowed && user.anti_magic_check(TRUE, FALSE, FALSE, 0, TRUE))
 		return FALSE
 
 	if(!ishuman(user))

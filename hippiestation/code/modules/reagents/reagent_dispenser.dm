@@ -4,8 +4,8 @@
 	var/use_reagent_icon = FALSE
 
 /obj/structure/reagent_dispensers/Initialize()
-	generate_reagent_icon()
 	. = ..()
+	generate_reagent_icon()
 
 /obj/structure/reagent_dispensers/Destroy()
 	QDEL_NULL(reagent_icon)
@@ -38,6 +38,10 @@
 	use_reagent_icon = TRUE
 	reagent_id = null
 
+/obj/structure/reagent_dispensers/chemical/Initialize()
+	. = ..()
+	create_reagents(tank_volume, DRAWABLE | AMOUNT_VISIBLE)
+
 /obj/structure/reagent_dispensers/proc/generate_reagent_icon()
 	if(!use_reagent_icon)
 		return
@@ -50,13 +54,13 @@
 
 /obj/structure/reagent_dispensers/chemical/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/screwdriver))
-		if(container_type & DRAWABLE)
-			container_type |= OPENCONTAINER
-			container_type &= ~DRAWABLE
+		if(reagents.flags & DRAWABLE)
+			ENABLE_BITFIELD(reagents.flags, OPENCONTAINER)
+			DISABLE_BITFIELD(reagents.flags, DRAWABLE)
 			to_chat(user, "<span class='notice'>You unfasten the tank's cap.</span>")
-		else if(container_type & OPENCONTAINER)
-			container_type |= DRAWABLE
-			container_type &= ~OPENCONTAINER
+		else if(reagents.flags & OPENCONTAINER)
+			DISABLE_BITFIELD(reagents.flags, OPENCONTAINER)
+			ENABLE_BITFIELD(reagents.flags, DRAWABLE)
 			to_chat(user, "<span class='notice'>You fasten the tank's cap.</span>")
 		update_icon()
 		playsound(src.loc, 'sound/machines/click.ogg', 20, 1)
@@ -73,9 +77,16 @@
 		return FALSE
 	..()
 
+/obj/structure/reagent_dispensers/chemical/examine(mob/user)
+	..()
+	if(reagents.flags & DRAWABLE)
+		to_chat(user, "It's lid is closed.")
+	else if(reagents.flags & OPENCONTAINER)
+		to_chat(user, "It's lid is open.")
+
 /obj/structure/reagent_dispensers/chemical/update_icon()
 	..()
-	if(container_type & DRAWABLE)
+	if(reagents?.flags & DRAWABLE)
 		add_overlay("chemlid")
 
 /obj/structure/reagent_dispensers/watertank
@@ -91,7 +102,7 @@
 	name = "honk-cooler"
 	desc = "A machine that dispenses the clown's thick juice. HONK!"
 	icon_state = "honk_cooler"
-	reagent_id = "banana"
+	reagent_id = /datum/reagent/consumable/banana
 
 /obj/structure/reagent_dispensers/cooking_oil
 	icon = 'icons/obj/objects.dmi'

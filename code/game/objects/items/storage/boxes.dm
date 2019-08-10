@@ -74,8 +74,28 @@
 		return 0
 	return ..()
 
+//Mime spell boxes
+
+/obj/item/storage/box/mime
+	name = "invisible box"
+	desc = "Unfortunately not large enough to trap the mime."
+	foldable = null
+	icon_state = "box"
+	item_state = null
+	alpha = 0
+
+/obj/item/storage/box/mime/attack_hand(mob/user)
+	..()
+	if(user.mind.miming)
+		alpha = 255
+
+/obj/item/storage/box/mime/Moved(oldLoc, dir)
+	if (iscarbon(oldLoc))
+		alpha = 0
+	..()
 
 //Disk boxes
+
 /obj/item/storage/box/disks
 	name = "diskette box"
 	illustration = "disk_kit"
@@ -113,7 +133,7 @@
 
 /obj/item/storage/box/survival_mining/PopulateContents()
 	new /obj/item/clothing/mask/gas/explorer(src)
-	new /obj/item/tank/internals/emergency_oxygen/engi(src)
+	new /obj/item/tank/internals/emergency_oxygen(src)
 	new /obj/item/crowbar/red(src)
 	new /obj/item/reagent_containers/hypospray/medipen(src)
 
@@ -170,6 +190,16 @@
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/syringe(src)
 
+/obj/item/storage/box/syringes/variety
+	name = "syringe variety box"
+
+/obj/item/storage/box/syringes/variety/PopulateContents()
+	new /obj/item/reagent_containers/syringe(src)
+	new /obj/item/reagent_containers/syringe/lethal(src)
+	new /obj/item/reagent_containers/syringe/noreact(src)
+	new /obj/item/reagent_containers/syringe/piercing(src)
+	new /obj/item/reagent_containers/syringe/bluespace(src)
+
 /obj/item/storage/box/medipens
 	name = "box of medipens"
 	desc = "A box full of epinephrine MediPens."
@@ -204,6 +234,17 @@
 /obj/item/storage/box/beakers/bluespace/PopulateContents()
 	for(var/i in 1 to 7)
 		new /obj/item/reagent_containers/glass/beaker/bluespace(src)
+
+/obj/item/storage/box/beakers/variety
+	name = "beaker variety box"
+
+/obj/item/storage/box/beakers/variety/PopulateContents()
+	new /obj/item/reagent_containers/glass/beaker(src)
+	new /obj/item/reagent_containers/glass/beaker/large(src)
+	new /obj/item/reagent_containers/glass/beaker/plastic(src)
+	new /obj/item/reagent_containers/glass/beaker/meta(src)
+	new /obj/item/reagent_containers/glass/beaker/noreact(src)
+	new /obj/item/reagent_containers/glass/beaker/bluespace(src)
 
 /obj/item/storage/box/medsprays
 	name = "box of medical sprayers"
@@ -380,8 +421,8 @@
 
 /obj/item/storage/box/donkpockets/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
-	STR.can_hold = typecacheof(list(/obj/item/reagent_containers/food/snacks/donkpocket))
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/donkpocket))
 
 /obj/item/storage/box/donkpockets/PopulateContents()
 	for(var/i in 1 to 6)
@@ -396,9 +437,9 @@
 
 /obj/item/storage/box/monkeycubes/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 7
-	STR.can_hold = typecacheof(list(/obj/item/reagent_containers/food/snacks/monkeycube))
+	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/monkeycube))
 
 /obj/item/storage/box/monkeycubes/PopulateContents()
 	for(var/i in 1 to 5)
@@ -416,9 +457,9 @@
 
 /obj/item/storage/box/gorillacubes/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 3
-	STR.can_hold = typecacheof(list(/obj/item/reagent_containers/food/snacks/monkeycube))
+	STR.set_holdable(list(/obj/item/reagent_containers/food/snacks/monkeycube))
 
 /obj/item/storage/box/gorillacubes/PopulateContents()
 	for(var/i in 1 to 3)
@@ -546,7 +587,7 @@
 /obj/item/storage/box/mousetraps
 	name = "box of Pest-B-Gon mousetraps"
 	desc = "<span class='alert'>Keep out of reach of children.</span>"
-	illustration = "mousetraps"
+	illustration = "mousetrap"
 
 /obj/item/storage/box/mousetraps/PopulateContents()
 	for(var/i in 1 to 6)
@@ -569,8 +610,8 @@
 
 /obj/item/storage/box/snappops/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
-	STR.can_hold = typecacheof(list(/obj/item/toy/snappop))
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.set_holdable(list(/obj/item/toy/snappop))
 	STR.max_items = 8
 
 /obj/item/storage/box/snappops/PopulateContents()
@@ -587,9 +628,9 @@
 
 /obj/item/storage/box/matches/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 10
-	STR.can_hold = typecacheof(list(/obj/item/match))
+	STR.set_holdable(list(/obj/item/match))
 
 /obj/item/storage/box/matches/PopulateContents()
 	SEND_SIGNAL(src, COMSIG_TRY_STORAGE_FILL_TYPE, /obj/item/match)
@@ -610,9 +651,9 @@
 
 /obj/item/storage/box/lights/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 21
-	STR.can_hold = typecacheof(list(/obj/item/light/tube, /obj/item/light/bulb))
+	STR.set_holdable(list(/obj/item/light/tube, /obj/item/light/bulb))
 	STR.max_combined_w_class = 21
 	STR.click_gather = FALSE //temp workaround to re-enable filling the light replacer with the box
 

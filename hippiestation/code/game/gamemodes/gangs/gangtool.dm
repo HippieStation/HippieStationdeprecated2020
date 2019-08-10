@@ -21,6 +21,7 @@
 	var/list/tags = list()
 
 /obj/item/device/gangtool/Initialize()
+	. = ..()
 	update_icon()
 	for(var/i in subtypesof(/datum/gang_item))
 		var/datum/gang_item/G = i
@@ -30,8 +31,6 @@
 			if(!islist(buyable_items[cat]))
 				buyable_items[cat] = list()
 			buyable_items[cat][id] = new G
-	.=..()
-
 /obj/item/device/gangtool/Destroy()
 	if(gang)
 		gang.gangtools -= src

@@ -114,7 +114,7 @@
 /obj/effect/proc_holder/spell/targeted/hypnotise/cast(list/targets, mob/user = usr)
 	for(var/mob/living/target in targets)
 		user.visible_message("<span class='warning'>[user]'s eyes flash briefly as he stares into [target]'s eyes</span>")
-		if(do_mob(user, target, 50))
+		if(do_mob(user, target, 20))
 			to_chat(user, "<span class='warning'>Your piercing gaze knocks out [target].</span>")
 			to_chat(target, "<span class='warning'>You find yourself unable to move and barely able to speak.</span>")
 			target.Paralyze(150)
@@ -170,13 +170,13 @@
 	to_chat(user, "<span class='notice'>You will now be [V.iscloaking ? "hidden" : "seen"] in darkness.</span>")
 
 /obj/effect/proc_holder/spell/targeted/disease
-	name = "Diseased Touch (100)"
+	name = "Diseased Touch (45)"
 	desc = "Touches your victim with infected blood giving them Grave Fever, which will, left untreated, causes toxic building and frequent collapsing."
 	gain_desc = "You have gained the Diseased Touch ability which causes those you touch to become weak unless treated medically."
 	action_icon_state = "disease"
 	action_icon = 'hippiestation/icons/mob/vampire.dmi'
 	action_background_icon_state = "bg_demon"
-	blood_used = 100
+	blood_used = 45
 	vamp_req = TRUE
 
 /obj/effect/proc_holder/spell/targeted/disease/cast(list/targets, mob/user = usr)
@@ -190,13 +190,13 @@
 		target.ForceContractDisease(D)
 
 /obj/effect/proc_holder/spell/self/screech
-	name = "Chiropteran Screech (30)"
+	name = "Chiropteran Screech (25)"
 	desc = "An extremely loud shriek that stuns nearby humans and breaks windows as well."
 	gain_desc = "You have gained the Chiropteran Screech ability which stuns anything with ears in a large radius and shatters glass in the process."
 	action_icon_state = "reeee"
 	action_icon = 'hippiestation/icons/mob/vampire.dmi'
 	action_background_icon_state = "bg_demon"
-	blood_used = 30
+	blood_used = 25
 	vamp_req = TRUE
 
 /obj/effect/proc_holder/spell/self/screech/cast(list/targets, mob/user = usr)
@@ -215,7 +215,7 @@
 	playsound(user.loc, 'sound/effects/screech.ogg', 100, 1)
 
 /obj/effect/proc_holder/spell/bats
-	name = "Summon Bats (75)"
+	name = "Summon Bats (55)"
 	desc = "You summon a pair of space bats who attack nearby targets until they or their target is dead."
 	gain_desc = "You have gained the Summon Bats ability."
 	action_icon_state = "bats"
@@ -223,7 +223,7 @@
 	action_background_icon_state = "bg_demon"
 	charge_max = 1200
 	vamp_req = TRUE
-	blood_used = 75
+	blood_used = 55
 	var/num_bats = 2
 
 /obj/effect/proc_holder/spell/bats/choose_targets(mob/user = usr)
@@ -247,9 +247,9 @@
 
 
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/mistform
-	name = "Mist Form (30)"
+	name = "Mist Form (20)"
 	gain_desc = "You have gained the Mist Form ability which allows you to take on the form of mist for a short period and pass over any obstacle in your path."
-	blood_used = 30
+	blood_used = 20
 	action_background_icon_state = "bg_demon"
 	vamp_req = TRUE
 
@@ -274,7 +274,7 @@
 			to_chat(user, "<span class='warning'>They're already a vampire!</span>")
 			continue
 		user.visible_message("<span class='warning'>[user] latches onto [target]'s neck, and a pure dread eminates from them.</span>", "<span class='warning'>You latch onto [target]'s neck, preparing to transfer your unholy blood to them.</span>", "<span class='warning'>A dreadful feeling overcomes you</span>")
-		target.reagents.add_reagent("salbutamol", 10) //incase you're choking the victim
+		target.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 10) //incase you're choking the victim
 		for(var/progress = 0, progress <= 3, progress++)
 			switch(progress)
 				if(1)
@@ -322,7 +322,7 @@
 		to_chat(user, "<span class='notice'>We aren't dead enough to do that yet!</span>")
 		revert_cast()
 		return
-	if(user.reagents.has_reagent("holywater"))
+	if(user.reagents.has_reagent(/datum/reagent/water/holywater))
 		to_chat(user, "<span class='danger'>We cannot revive, holy water is in our system!</span>")
 		return
 	var/mob/living/L = user
@@ -336,12 +336,13 @@
 /obj/effect/proc_holder/spell/self/revive/proc/revive(mob/living/user)
 	user.revive(full_heal = TRUE)
 	user.visible_message("<span class='warning'>[user] reanimates from death!</span>", "<span class='notice'>We get back up.</span>")
+	playsound(user, 'sound/magic/demon_consume.ogg', 50, 1)
 	var/list/missing = user.get_missing_limbs()
 	if(missing.len)
-		playsound(user, 'sound/magic/demon_consume.ogg', 50, 1)
 		user.visible_message("<span class='warning'>Shadowy matter takes the place of [user]'s missing limbs as they reform!</span>")
 		user.regenerate_limbs(0, list(BODY_ZONE_HEAD))
 	user.regenerate_organs()
+	user.Paralyze(100)
 	
 /obj/effect/proc_holder/spell/self/summon_coat
 	name = "Summon Dracula Coat (5)"

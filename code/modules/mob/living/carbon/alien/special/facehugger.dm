@@ -50,29 +50,7 @@
 		Die()
 
 /obj/item/clothing/mask/facehugger/attackby(obj/item/O, mob/user, params)
-	/* hippie start -- moved into type check
 	return O.attack_obj(src, user)
-	hippie end*/
-	// hippie start -- special effects when hit by genderchange potion
-	if(!istype(O, /obj/item/slimepotion/genderchange))
-		return O.attack_obj(src, user)
-
-	if(stat == DEAD)
-		to_chat(user, "<span class='warning'>The potion can only be used if the creature is alive!</span>")
-		return
-
-	if(sterile)
-		visible_message("<span class='danger'>[src] grows a proboscis!</span>")
-		sterile = 0
-	else
-		visible_message("<span class='danger'>[src]'s proboscis shrivels up and drops off!</span>")
-		sterile = 1
-
-	qdel(O)
-	// hippie end
-	
-	return
-
 
 /obj/item/clothing/mask/facehugger/attack_alien(mob/user) //can be picked up by aliens
 	return attack_hand(user)
@@ -90,16 +68,16 @@
 		Leap(M)
 
 /obj/item/clothing/mask/facehugger/examine(mob/user)
-	..()
+	. = ..()
 	if(!real)//So that giant red text about probisci doesn't show up.
 		return
 	switch(stat)
 		if(DEAD,UNCONSCIOUS)
-			to_chat(user, "<span class='boldannounce'>[src] is not moving.</span>")
+			. += "<span class='boldannounce'>[src] is not moving.</span>"
 		if(CONSCIOUS)
-			to_chat(user, "<span class='boldannounce'>[src] seems to be active!</span>")
+			. += "<span class='boldannounce'>[src] seems to be active!</span>"
 	if (sterile)
-		to_chat(user, "<span class='boldannounce'>It looks like the proboscis has been removed.</span>")
+		. += "<span class='boldannounce'>It looks like the proboscis has been removed.</span>"
 
 
 /obj/item/clothing/mask/facehugger/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
@@ -236,6 +214,8 @@
 		var/obj/item/bodypart/chest/LC = target.get_bodypart(BODY_ZONE_CHEST)
 		if((!LC || LC.status != BODYPART_ROBOTIC) && !target.getorgan(/obj/item/organ/body_egg/alien_embryo))
 			new /obj/item/organ/body_egg/alien_embryo(target)
+			var/turf/T = get_turf(target)
+			log_game("[key_name(target)] was impregnated by a facehugger at [loc_name(T)]")
 
 	else
 		target.visible_message("<span class='danger'>[src] violates [target]'s face!</span>", \

@@ -70,7 +70,9 @@
 /obj/bullet_act(obj/item/projectile/P)
 	. = ..()
 	playsound(src, P.hitsound, 50, 1)
-	visible_message("<span class='danger'>[src] is hit by \a [P]!</span>", null, null, COMBAT_MESSAGE_RANGE)
+	if(world.time >= next_spam_shot) // hippie start
+		visible_message("<span class='danger'>[src] is hit by \a [P]!</span>", null, null, COMBAT_MESSAGE_RANGE)
+		next_spam_shot = world.time + 75 // hippie end
 	if(!QDELETED(src)) //Bullet on_hit effect might have already destroyed this object
 		take_damage(P.damage, P.damage_type, P.flag, 0, turn(P.dir, 180), P.armour_penetration)
 
@@ -210,7 +212,7 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 			return
 	if(exposed_temperature && !(resistance_flags & FIRE_PROOF))
 		take_damage(CLAMP(0.02 * exposed_temperature, 0, 20), BURN, "fire", 0)
-	if(!(resistance_flags & ON_FIRE) && (resistance_flags & FLAMMABLE))
+	if(!(resistance_flags & ON_FIRE) && (resistance_flags & FLAMMABLE) && !(resistance_flags & FIRE_PROOF))
 		resistance_flags |= ON_FIRE
 		SSfire_burning.processing[src] = src
 		add_overlay(GLOB.fire_overlay, TRUE)

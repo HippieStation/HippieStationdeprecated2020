@@ -50,30 +50,31 @@
 	speed = 1
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		speed = M.rating
-		
+
 /obj/machinery/reagentgrinder/examine(mob/user)
-	..()
+	. = ..()
 	if(!in_range(user, src) && !issilicon(user) && !isobserver(user))
-		to_chat(user, "<span class='warning'>You're too far away to examine [src]'s contents and display!</span>")
+		. += "<span class='warning'>You're too far away to examine [src]'s contents and display!</span>"
 		return
 
 	if(operating)
-		to_chat(user, "<span class='warning'>\The [src] is operating.</span>")
+		. += "<span class='warning'>\The [src] is operating.</span>"
 		return
 
 	if(beaker || length(holdingitems))
-		to_chat(user, "<span class='notice'>\The [src] contains:</span>")
+		. += "<span class='notice'>\The [src] contains:</span>"
 		if(beaker)
-			to_chat(user, "<span class='notice'>- \A [beaker].</span>")
+			. += "<span class='notice'>- \A [beaker].</span>"
 		for(var/i in holdingitems)
 			var/obj/item/O = i
-			to_chat(user, "<span class='notice'>- \A [O.name].</span>")
+			. += "<span class='notice'>- \A [O.name].</span>"
 
 	if(!(stat & (NOPOWER|BROKEN)))
-		to_chat(user, "<span class='notice'>The status display reads:</span>")
-		to_chat(user, "<span class='notice'>- Grinding reagents at <b>[speed*100]%</b>.<span>")
-		for(var/datum/reagent/R in beaker.reagents.reagent_list)
-			to_chat(user, "<span class='notice'>- [R.volume] units of [R.name].</span>")
+		. += {"<span class='notice'>The status display reads:</span>\n
+		<span class='notice'>- Grinding reagents at <b>[speed*100]%</b>.<span>"}
+		if(beaker)
+			for(var/datum/reagent/R in beaker.reagents.reagent_list)
+				. += "<span class='notice'>- [R.volume] units of [R.name].</span>"
 
 /obj/machinery/reagentgrinder/handle_atom_del(atom/A)
 	. = ..()
@@ -95,6 +96,18 @@
 	else
 		icon_state = "juicer0"
 
+/obj/machinery/reagentgrinder/proc/replace_beaker(mob/living/user, obj/item/reagent_containers/new_beaker)
+	if(beaker)
+		beaker.forceMove(drop_location())
+		if(user && Adjacent(user) && !issiliconoradminghost(user))
+			user.put_in_hands(beaker)
+	if(new_beaker)
+		beaker = new_beaker
+	else
+		beaker = null
+	update_icon()
+	return TRUE
+
 /obj/machinery/reagentgrinder/attackby(obj/item/I, mob/user, params)
 	//You can only screw open empty grinder
 	if(!beaker && !length(holdingitems) && default_deconstruction_screwdriver(user, icon_state, icon_state, I))
@@ -110,15 +123,13 @@
 		return TRUE
 
 	if (istype(I, /obj/item/reagent_containers) && !(I.item_flags & ABSTRACT) && I.is_open_container())
-		if (!beaker)
-			if(!user.transferItemToLoc(I, src))
-				to_chat(user, "<span class='warning'>[I] is stuck to your hand!</span>")
-				return TRUE
-			to_chat(user, "<span class='notice'>You slide [I] into [src].</span>")
-			beaker = I
-			update_icon()
-		else
-			to_chat(user, "<span class='warning'>There's already a container inside [src].</span>")
+		var/obj/item/reagent_containers/B = I
+		. = TRUE //no afterattack
+		if(!user.transferItemToLoc(B, src))
+			return
+		replace_beaker(user, B)
+		to_chat(user, "<span class='notice'>You add [B] to [src].</span>")
+		update_icon()
 		return TRUE //no afterattack
 
 	if(holdingitems.len >= limit)
@@ -155,7 +166,7 @@
 /obj/machinery/reagentgrinder/ui_interact(mob/user) // The microwave Menu //I am reasonably certain that this is not a microwave
 	. = ..()
 
-	if(operating || !user.canUseTopic(src))
+	if(operating || !user.canUseTopic(src, !issilicon(user)))
 		return
 
 	var/list/options = list()
@@ -186,7 +197,7 @@
 		choice = show_radial_menu(user, src, options, require_near = !issilicon(user))
 
 	// post choice verification
-	if(operating || (isAI(user) && stat & NOPOWER) || !user.canUseTopic(src))
+	if(operating || (isAI(user) && stat & NOPOWER) || !user.canUseTopic(src, !issilicon(user)))
 		return
 
 	switch(choice)
@@ -207,11 +218,7 @@
 		O.forceMove(drop_location())
 		holdingitems -= O
 	if(beaker)
-		beaker.forceMove(drop_location())
-		if(Adjacent(user) && !issilicon(user))
-			user.put_in_hands(beaker)
-		beaker = null
-		update_icon()
+		replace_beaker(user)
 
 /obj/machinery/reagentgrinder/proc/remove_object(obj/item/O)
 	holdingitems -= O
@@ -291,12 +298,12 @@
 /obj/machinery/reagentgrinder/proc/mix_complete()
 	if(beaker?.reagents.total_volume)
 		//Recipe to make Butter
-		var/butter_amt = FLOOR(beaker.reagents.get_reagent_amount("milk") / MILK_TO_BUTTER_COEFF, 1)
-		beaker.reagents.remove_reagent("milk", MILK_TO_BUTTER_COEFF * butter_amt)
+		var/butter_amt = FLOOR(beaker.reagents.get_reagent_amount(/datum/reagent/consumable/milk) / MILK_TO_BUTTER_COEFF, 1)
+		beaker.reagents.remove_reagent(/datum/reagent/consumable/milk, MILK_TO_BUTTER_COEFF * butter_amt)
 		for(var/i in 1 to butter_amt)
 			new /obj/item/reagent_containers/food/snacks/butter(drop_location())
 		//Recipe to make Mayonnaise
-		if (beaker.reagents.has_reagent("eggyolk"))
-			var/amount = beaker.reagents.get_reagent_amount("eggyolk")
-			beaker.reagents.remove_reagent("eggyolk", amount)
-			beaker.reagents.add_reagent("mayonnaise", amount)
+		if (beaker.reagents.has_reagent(/datum/reagent/consumable/eggyolk))
+			var/amount = beaker.reagents.get_reagent_amount(/datum/reagent/consumable/eggyolk)
+			beaker.reagents.remove_reagent(/datum/reagent/consumable/eggyolk, amount)
+			beaker.reagents.add_reagent(/datum/reagent/consumable/mayonnaise, amount)

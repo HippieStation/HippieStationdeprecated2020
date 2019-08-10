@@ -32,7 +32,7 @@
 			qdel(W)
 			disable = !disable
 	if(istype(W, /obj/item/reagent_containers) && (obj_flags & EMAGGED))
-		if(W.reagents.has_reagent("lean"))
+		if(W.reagents.has_reagent(/datum/reagent/consumable/lean))
 			W.reagents.clear_reagents()
 			playsound(src.loc, 'hippiestation/sound/effects/pottedLeanSpawnSound.ogg', 25)
 			new /mob/living/simple_animal/hostile/retaliate/pottedlean(get_turf(src))
@@ -134,7 +134,7 @@ obj/item/kirbyplants_onehanded/equipped(mob/living/user)
 			qdel(W)
 			disable = !disable
 	if(istype(W, /obj/item/reagent_containers)) //You have to emag a plant to get this item, so it shouldn't need a check for emagging again
-		if(W.reagents.has_reagent("lean"))
+		if(W.reagents.has_reagent(/datum/reagent/consumable/lean))
 			W.reagents.clear_reagents()
 			playsound(src.loc, 'hippiestation/sound/effects/pottedLeanSpawnSound.ogg', 25)
 			new /mob/living/simple_animal/hostile/retaliate/pottedlean(get_turf(src))

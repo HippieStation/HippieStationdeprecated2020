@@ -1,4 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - bugfix: "Deleting the working reagent in the reagent refinery wasn't working and has been fixed."

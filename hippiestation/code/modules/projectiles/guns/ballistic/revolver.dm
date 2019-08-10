@@ -1,5 +1,6 @@
 /obj/item/gun/ballistic/revolver
 	fire_sound = 'hippiestation/sound/weapons/gunshot_magnum.ogg'
+	load_sound = 'hippiestation/sound/weapons/speedload.ogg'
 
 /obj/item/gun/ballistic/revolver/detective
 	fire_sound = 'hippiestation/sound/weapons/gunshot_38special.ogg'
@@ -7,7 +8,7 @@
 	pickup_sound = 'hippiestation/sound/weapons/mysterious_out.ogg'
 	dropped_sound = 'hippiestation/sound/weapons/mysterious_in.ogg'
 
-/obj/item/gun/ballistic/revolver/doublebarrel
+/obj/item/gun/ballistic/shotgun/doublebarrel
 	fire_sound = 'hippiestation/sound/weapons/shotgun_shoot.ogg'
 
 /obj/item/gun/ballistic/revolver/detective/try_play_interact_sound(mob/user)

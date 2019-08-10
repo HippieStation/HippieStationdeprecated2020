@@ -1,6 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - bugfix: "Fix RD office missing 3rd shutter"
-  - bugfix: "Fix lack of windows in telecomms maint"
-  - bugfix: "Fix vacant office area string name"

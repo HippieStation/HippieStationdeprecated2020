@@ -205,7 +205,7 @@
 			if(M.bodytemperature)
 				M.bodytemperature -= 200 //Extreme amount of initial cold
 			if(M.reagents)
-				M.reagents.add_reagent("frostoil", 15) //Half of a cryosting
+				M.reagents.add_reagent(/datum/reagent/consumable/frostoil, 15) //Half of a cryosting
 
 
 
@@ -268,7 +268,7 @@
 					user.visible_message("<span class='warning'>[user]'s palms flare a bright red against [target]'s temples!</span>")
 					to_chat(target, "<span class='danger'>A terrible red light floods your mind. You collapse as conscious thought is wiped away.</span>")
 					target.Knockdown(120)
-					if(target.has_trait(TRAIT_MINDSHIELD))
+					if(HAS_TRAIT(target, TRAIT_MINDSHIELD))
 						to_chat(user, "<span class='notice'>They are protected by an implant. You begin to shut down the nanobots in their brain - this will take some time..</span>")
 						user.visible_message("<span class='warning'>[user] pauses, then dips their head in concentration!</span>")
 						to_chat(target, "<span class='boldannounce'>You feel your mental protection faltering</span>")
@@ -302,8 +302,8 @@
 		var/obj/item/organ/internal/shadowtumor/ST = new
 		ST.Insert(target, FALSE, FALSE)
 		target.add_thrall()
-		if(target.reagents.has_reagent("frostoil")) //Stabilize body temp incase the sling froze them earlier
-			target.reagents.remove_reagent("frostoil")
+		if(target.reagents.has_reagent(/datum/reagent/consumable/frostoil)) //Stabilize body temp incase the sling froze them earlier
+			target.reagents.remove_reagent(/datum/reagent/consumable/frostoil)
 			to_chat(target, "<span class='notice'>You feel warmer... it feels good.</span>")
 			target.bodytemperature = 310
 
@@ -447,7 +447,7 @@
 	var/obj/item/reagent_containers/glass/beaker/large/B = new /obj/item/reagent_containers/glass/beaker/large(user.loc) //hacky
 	B.reagents.clear_reagents() //Just in case!
 	B.invisibility = INFINITY //This ought to do the trick
-	B.reagents.add_reagent("blindness_smoke", 10)
+	B.reagents.add_reagent(/datum/reagent/shadowling_blindness_smoke, 10)
 	var/datum/effect_system/smoke_spread/chem/S = new
 	S.attach(B)
 	if(S)

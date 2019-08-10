@@ -1,6 +1,10 @@
+/datum/reagent/consumable
+	boiling_point = 373
+
+
 /datum/reagent/consumable/berryjuice/on_mob_life(mob/living/M)
 	if(prob(25))
-		M.reagents.add_reagent("vitamin",0.8)
+		M.reagents.add_reagent(/datum/reagent/consumable/nutriment/vitamin,0.8)
 	..()
 
 /datum/reagent/consumable/watermelonjuice/on_mob_life(mob/living/M)
@@ -13,11 +17,11 @@
 	..()
 
 /datum/reagent/consumable/cherryshake/on_mob_life(mob/living/M)
-	M.reagents.add_reagent("sugar",1.2)
+	M.reagents.add_reagent(/datum/reagent/consumable/sugar,1.2)
 	..()
 
 /datum/reagent/consumable/bluecherryshake/reaction_mob(mob/living/M)
-	M.reagents.add_reagent("sugar",2)
+	M.reagents.add_reagent(/datum/reagent/consumable/sugar,2)
 	..()
 
 /datum/reagent/consumable/gibbfloats/on_mob_life(mob/living/M)
@@ -41,7 +45,6 @@
 
 /datum/reagent/consumable/lean
 	name = "Lean"
-	id = "lean"
 	description = "A bubbly, neon purple antitussive syrup"
 	color = "#de72f9" //rgb: rgb(222, 103, 252)
 	taste_description = "purple"
@@ -53,13 +56,13 @@
 	var/old_skin_tone
 	var/old_hair_style
 
-/datum/reagent/consumable/lean/on_mob_add(mob/living/L)
+/datum/reagent/consumable/lean/on_mob_metabolize(mob/living/L)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		old_skin_tone = H.skin_tone
 		old_hair_style = H.hair_style
 
-/datum/reagent/consumable/lean/on_mob_delete(mob/living/L)
+/datum/reagent/consumable/lean/on_mob_end_metabolize(mob/living/L)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		H.skin_tone = old_skin_tone

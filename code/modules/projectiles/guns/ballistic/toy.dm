@@ -21,6 +21,7 @@
 	name = "foam force pistol"
 	desc = "A small, easily concealable toy handgun. Ages 8 and up."
 	icon_state = "pistol"
+	bolt_type = BOLT_TYPE_LOCKING
 	w_class = WEIGHT_CLASS_SMALL
 	mag_type = /obj/item/ammo_box/magazine/toy/pistol
 	fire_sound = 'sound/weapons/gunshot.ogg'
@@ -28,9 +29,9 @@
 	fire_delay = 0
 	actions_types = list()
 
-/obj/item/gun/ballistic/automatic/toy/pistol/update_icon()
+/obj/item/gun/ballistic/automatic/toy/update_icon()//hippie edit -- bring back old gun icons
 	..()
-	icon_state = "[initial(icon_state)][chambered ? "" : "-e"][suppressed ? "-suppressed" : ""]"
+	icon_state = "[initial(icon_state)][chambered||!bolt_locked ? "" : "-e"][suppressed ? "-suppressed" : ""]"//hippie end -- bring back old gun icons
 
 /obj/item/gun/ballistic/automatic/toy/pistol/riot
 	mag_type = /obj/item/ammo_box/magazine/toy/pistol/riot

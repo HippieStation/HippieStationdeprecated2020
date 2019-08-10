@@ -9,7 +9,7 @@
 /obj/item/integrated_circuit/reagent/Initialize()
 	. = ..()
 	if(volume)
-		create_reagents(volume)
+		create_reagents(volume, OPENCONTAINER)
 		push_vol()
 
 /obj/item/integrated_circuit/reagent/proc/push_vol()
@@ -51,7 +51,6 @@
 	extended_desc = "This autoinjector can push up to 30 units of reagents into another container or someone else outside of the machine. The target \
 	must be adjacent to the machine, and if it is a person, they cannot be wearing thick clothing. Negative given amounts makes the injector suck out reagents instead."
 
-	container_type = OPENCONTAINER
 	volume = 30
 
 	complexity = 20
@@ -260,7 +259,6 @@
 	icon_state = "reagent_storage"
 	extended_desc = "This is effectively an internal beaker."
 
-	container_type = OPENCONTAINER
 	volume = 60
 
 	complexity = 4
@@ -302,7 +300,7 @@
 
 /obj/item/integrated_circuit/reagent/storage/cryo/Initialize()
 	. = ..()
-	reagents.set_reacting(FALSE)
+	ENABLE_BITFIELD(reagents.flags, NO_REACT)
 
 /obj/item/integrated_circuit/reagent/storage/grinder
 	name = "reagent grinder"
@@ -420,7 +418,7 @@
 		if(1)
 			var/cont[0]
 			for(var/datum/reagent/RE in reagents.reagent_list)
-				cont += RE.id
+				cont += RE.type
 			set_pin_data(IC_OUTPUT, 3, cont)
 			push_data()
 		if(2)
@@ -488,11 +486,11 @@
 
 	for(var/datum/reagent/G in source.reagents.reagent_list)
 		if(!direction_mode)
-			if(G.id in demand)
-				source.reagents.trans_id_to(target, G.id, transfer_amount)
+			if(G.type in demand)
+				source.reagents.trans_id_to(target, G.type, transfer_amount)
 		else
-			if(!(G.id in demand))
-				source.reagents.trans_id_to(target, G.id, transfer_amount)
+			if(!(G.type in demand))
+				source.reagents.trans_id_to(target, G.type, transfer_amount)
 	activate_pin(2)
 	push_data()
 
@@ -501,7 +499,6 @@
 	desc = "Stores liquid inside the device away from electrical components. It can store up to 60u. It will heat or cool the reagents \
 	to the target temperature when turned on."
 	icon_state = "heater"
-	container_type = OPENCONTAINER
 	complexity = 8
 	inputs = list(
 		"target temperature" = IC_PINTYPE_NUMBER,
@@ -548,7 +545,6 @@
 	extended_desc = "This smoke generator creates clouds of smoke on command. It can also hold liquids inside, which will go \
 	into the smoke clouds when activated. The reagents are consumed when the smoke is made."
 	ext_cooldown = 1
-	container_type = OPENCONTAINER
 	volume = 100
 	complexity = 20
 	cooldown_per_use = 1 SECONDS
@@ -599,7 +595,6 @@
 	icon_state = "injector"
 	extended_desc = "This circuit can hold up to 30 units of any given chemicals. On each use, it sprays these reagents like a fire extinguisher."
 
-	container_type = OPENCONTAINER
 	volume = 30
 
 	complexity = 20
@@ -615,7 +610,8 @@
 	activators = list(
 		"spray" = IC_PINTYPE_PULSE_IN,
 		"on sprayed" = IC_PINTYPE_PULSE_OUT,
-		"on fail" = IC_PINTYPE_PULSE_OUT
+		"on fail" = IC_PINTYPE_PULSE_OUT,
+		"push ref" = IC_PINTYPE_PULSE_IN
 		)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 15
@@ -703,7 +699,6 @@
 	icon_state = "injector"
 	extended_desc = "Set mode to FALSE to eliminate reagents and TRUE to drain."
 
-	container_type = OPENCONTAINER
 	volume = 20
 
 	complexity = 10
@@ -717,7 +712,8 @@
 	activators = list(
 		"drain" = IC_PINTYPE_PULSE_IN,
 		"on drained" = IC_PINTYPE_PULSE_OUT,
-		"on fail" = IC_PINTYPE_PULSE_OUT
+		"on fail" = IC_PINTYPE_PULSE_OUT,
+		"push ref" = IC_PINTYPE_PULSE_IN
 		)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 15
@@ -772,7 +768,6 @@
 	desc = "Lets you add a beaker to your assembly and remove it even when the assembly is closed."
 	icon_state = "reagent_storage"
 	extended_desc = "It can help you extract reagents easier."
-	container_type = OPENCONTAINER
 	complexity = 4
 
 	inputs = list()

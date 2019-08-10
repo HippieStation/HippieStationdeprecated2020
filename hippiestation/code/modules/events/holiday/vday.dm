@@ -8,8 +8,8 @@
 	name = "Valentines!"
 	holidayID = VALENTINES
 	typepath = /datum/round_event/valentines
-	weight = -1							//forces it to be called, regardless of weight
-	max_occurrences = 1
+	weight = 0							//forces it to never be called
+	max_occurrences = 0
 	earliest_start = 0
 
 /datum/round_event/valentines/start()
@@ -166,7 +166,7 @@
 	icon = 'icons/obj/holiday_misc.dmi'
 	icon_state = "candyheart"
 	desc = "A heart-shaped candy that reads: "
-	list_reagents = list("sugar" = 2)
+	list_reagents = list(/datum/reagent/consumable/sugar = 2)
 	junkiness = 5
 
 /obj/item/reagent_containers/food/snacks/candyheart/New()

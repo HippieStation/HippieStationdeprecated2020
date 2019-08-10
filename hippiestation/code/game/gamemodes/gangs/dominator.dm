@@ -12,6 +12,7 @@
 	layer = HIGH_OBJ_LAYER
 	max_integrity = 300
 	integrity_failure = 100
+	move_resist = INFINITY
 	armor = list("melee" = 20, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 10, "acid" = 70)
 	var/datum/team/gang/gang
 	var/operating = FALSE	//false=standby or broken, true=takeover
@@ -21,13 +22,13 @@
 	var/obj/effect/countdown/dominator/countdown
 
 /obj/machinery/dominator/Initialize()
+	. = ..()
 	set_light(2)
 	GLOB.poi_list |= src
 	spark_system = new
 	spark_system.set_up(5, TRUE, src)
 	countdown = new(src)
 	update_icon()
-	.=..()
 
 /obj/machinery/dominator/Destroy()
 	if(!(stat & BROKEN))
@@ -201,6 +202,8 @@
 
 /obj/machinery/dominator/proc/excessive_walls_check() // why the fuck was this even a global proc...
 	var/open = FALSE
+	if(isclosedturf(loc))
+		return TRUE
 	for(var/turf/T in view(3, src))
 		if(!isclosedturf(T))
 			open++
@@ -221,13 +224,13 @@
 				break
 		if(!takeover_in_progress)
 			var/was_stranded = SSshuttle.emergency.mode == SHUTTLE_STRANDED
-			SSshuttle.clearHostileEnvironment(src)
 			if(!was_stranded)
 				priority_announce("All hostile activity within station systems has ceased.","Network Alert")
 
 			if(get_security_level() == "delta")
 				set_security_level("red")
 
+		SSshuttle.clearHostileEnvironment(src)
 		gang.message_gangtools("Hostile takeover cancelled: Dominator is no longer operational.[gang.dom_attempts ? " You have [gang.dom_attempts] attempt remaining." : " The station network will have likely blocked any more attempts by us."]",1,1)
 
 	set_light(0)

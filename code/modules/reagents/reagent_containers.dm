@@ -7,6 +7,7 @@
 	var/amount_per_transfer_from_this = 5
 	var/list/possible_transfer_amounts = list(5,10,15,20,25,30)
 	var/volume = 30
+	var/reagent_flags
 	var/list/list_reagents = null
 	var/spawned_disease = null
 	var/disease_amount = 20
@@ -16,11 +17,11 @@
 	. = ..()
 	if(isnum(vol) && vol > 0)
 		volume = vol
-	create_reagents(volume)
+	create_reagents(volume, reagent_flags)
 	if(spawned_disease)
 		var/datum/disease/F = new spawned_disease()
 		var/list/data = list("viruses"= list(F))
-		reagents.add_reagent("blood", disease_amount, data)
+		reagents.add_reagent(/datum/reagent/blood, disease_amount, data)
 
 	add_initial_reagents()
 
@@ -46,7 +47,7 @@
 		return ..()
 
 /obj/item/reagent_containers/proc/canconsume(mob/eater, mob/user)
-	if(!iscarbon(eater))
+/*	if(!iscarbon(eater)) // hippie start -- eat through helmets
 		return 0
 	var/mob/living/carbon/C = eater
 	var/covered = ""
@@ -58,6 +59,7 @@
 		var/who = (isnull(user) || eater == user) ? "your" : "[eater.p_their()]"
 		to_chat(user, "<span class='warning'>You have to remove [who] [covered] first!</span>")
 		return 0
+	*/ // hippie end
 	return 1
 
 /obj/item/reagent_containers/ex_act()
@@ -77,10 +79,8 @@
 
 /obj/item/reagent_containers/proc/bartender_check(atom/target)
 	. = FALSE
-	if(target.CanPass(src, get_turf(src)) && thrownby && thrownby.actions)
-		for(var/datum/action/innate/drink_fling/D in thrownby.actions)
-			if(D.active)
-				return TRUE
+	if(target.CanPass(src, get_turf(src)) && thrownby && HAS_TRAIT(thrownby, TRAIT_BOOZE_SLIDER))
+		. = TRUE
 
 /obj/item/reagent_containers/proc/SplashReagents(atom/target, thrown = FALSE)
 	if(!reagents || !reagents.total_volume || !spillable)
@@ -94,8 +94,7 @@
 		target.visible_message("<span class='danger'>[M] has been splashed with something!</span>", \
 						"<span class='userdanger'>[M] has been splashed with something!</span>")
 		for(var/datum/reagent/A in reagents.reagent_list)
-			R += A.id + " ("
-			R += num2text(A.volume) + "),"
+			R += "[A.type]  ([num2text(A.volume)]),"
 
 		if(thrownby)
 			log_combat(thrownby, M, "splashed", R)

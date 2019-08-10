@@ -13,7 +13,7 @@
 	if(exposed_temperature && !fakeholder)
 		fakeholder = new(get_turf(src))
 		fakeholder.create_reagents(50)
-		fakeholder.reagents.add_reagent(reagent_type.id, 50, reagtemp = exposed_temperature)
+		fakeholder.reagents.add_reagent(reagent_type.type, 50, reagtemp = exposed_temperature)
 		fakeholder.reagents.handle_reactions()
 		QDEL_IN(fakeholder, 150)
 
@@ -38,7 +38,7 @@
 			var/paths = subtypesof(/datum/reagent)
 			for(var/path in paths)
 				var/datum/reagent/RR = new path
-				if(RR.id == reagent_type.id)
+				if(RR.type == reagent_type.type)
 					V.reagent_type = RR
 					break
 				else
@@ -90,7 +90,7 @@
 	else
 		fakeholder = new(get_turf(src))
 		fakeholder.create_reagents(30)
-		fakeholder.reagents.add_reagent(reagent_type.id, 100)
+		fakeholder.reagents.add_reagent(reagent_type.type, 100)
 		for(var/datum/reagent/R in fakeholder.reagents.reagent_list)
 			R.on_ex_act()
 		fakeholder.reagents.handle_reactions()
@@ -103,7 +103,7 @@
 	var/paths = subtypesof(/datum/reagent)//one reference per stack
 	for(var/path in paths)
 		var/datum/reagent/RR = new path
-		if(RR.id == reagent_type.id)
+		if(RR.type == reagent_type.type)
 			RS.reagent_type = RR
 			RS.name = "[RR.name] ingots"
 			RS.singular_name = "[RR.name] ingot"

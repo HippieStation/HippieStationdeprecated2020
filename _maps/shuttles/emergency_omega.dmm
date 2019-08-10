@@ -386,19 +386,19 @@
 	desc = "A high-visibility lifejacket complete with whistle and slot for oxygen tanks.";
 	name = "emergency lifejacket"
 	},
-/obj/item/tank/internals/emergency_oxygen/double{
+/obj/item/tank/internals/emergency_oxygen{
 	pixel_x = 3
 	},
-/obj/item/tank/internals/emergency_oxygen/double{
+/obj/item/tank/internals/emergency_oxygen{
 	pixel_x = 3
 	},
-/obj/item/tank/internals/emergency_oxygen/double{
+/obj/item/tank/internals/emergency_oxygen{
 	pixel_x = 3
 	},
-/obj/item/tank/internals/emergency_oxygen/double{
+/obj/item/tank/internals/emergency_oxygen{
 	pixel_x = 3
 	},
-/obj/item/tank/internals/emergency_oxygen/double{
+/obj/item/tank/internals/emergency_oxygen{
 	pixel_x = 3
 	},
 /obj/item/clothing/mask/breath{
@@ -609,9 +609,6 @@
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/escape)
 "ba" = (
-/obj/machinery/sleeper{
-	dir = 4
-	},
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
 	pixel_x = -26;
@@ -623,6 +620,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/stasis,
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "bb" = (
@@ -635,9 +633,6 @@
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "bc" = (
-/obj/machinery/sleeper{
-	dir = 8
-	},
 /obj/item/radio/intercom{
 	name = "Station Intercom";
 	pixel_x = 26
@@ -648,6 +643,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/machinery/stasis,
 /turf/open/floor/plasteel/white,
 /area/shuttle/escape)
 "bd" = (
