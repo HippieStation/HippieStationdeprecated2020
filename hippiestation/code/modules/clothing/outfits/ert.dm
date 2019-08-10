@@ -1,7 +1,7 @@
 /datum/outfit/revenger
 	name = "Revenger"
 	uniform = /obj/item/clothing/under/syndicate/tacticool
-	shoes = /obj/item/clothing/shoes/combat/swat
+	shoes = /obj/item/clothing/shoes/magboots/advance
 	gloves = /obj/item/clothing/gloves/combat
 	ears = /obj/item/radio/headset/headset_cent/alt
 	back = /obj/item/storage/backpack/ert
