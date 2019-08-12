@@ -237,9 +237,9 @@
 					say("Not enough energy to complete operation!")
 					return
 				if(actual > 0)
-					R.add_reagent(r_id, actual)
+					R.add_reagent(reagent, actual)
 				if(actual < 0)
-					R.remove_reagent(r_id, abs(actual))
+					R.remove_reagent(reagent, abs(actual))
 
 				work_animation()
 				. = TRUE
