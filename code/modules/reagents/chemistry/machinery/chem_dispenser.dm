@@ -239,10 +239,7 @@
 				if(actual > 0)
 					R.add_reagent(r_id, actual)
 				if(actual < 0)
-					if(macroresolution == 1)
-						R.remove_reagent(r_id, abs(actual))
-					if(macroresolution > 1)
-						say("Femtomanipulator required to remove chemicals from mixture!"
+					R.remove_reagent(r_id, abs(actual))
 
 				work_animation()
 				. = TRUE
