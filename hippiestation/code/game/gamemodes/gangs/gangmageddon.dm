@@ -19,6 +19,7 @@
 	var/area/target_captain
 	var/area/target_captain2
 	var/area/target_science
+	var/area/target_science2
 	var/area/target_hop
 	var/area/target_det
 	var/area/target_ward
@@ -55,7 +56,6 @@
 			bossman.restricted_roles = restricted_jobs
 
 	if(!gangboss_candidates.len)
-		to_chat(world, "!gangboss_candidates.len")
 		return FALSE
 
 	SSjob.DisableJob(/datum/job/captain)
@@ -77,7 +77,8 @@
 	target_det = locate(/area/security/detectives_office) in GLOB.sortedAreas
 	target_captain = locate(/area/crew_quarters/heads/captain/private) in GLOB.sortedAreas
 	target_hop = locate(/area/crew_quarters/heads/hop) in GLOB.sortedAreas
-	target_science = locate(/area/science/mixing) in GLOB.sortedAreas
+	target_science = locate(/area/science/research) in GLOB.sortedAreas
+	target_science2 = locate(/area/science/mixing) in GLOB.sortedAreas
 	target_atmos = locate(/area/engine/atmos) in GLOB.sortedAreas
 
 	for(var/area/crew_quarters/heads/captain/C in GLOB.sortedAreas)
@@ -121,6 +122,13 @@
 					qdel(I)
 				if(istype(I, /obj/item/gun))
 					qdel(I)
+				if(istype(I, /obj/item/transfer_valve))
+					qdel(I)
+			for(var/obj/machinery/vending/V in T.GetAllContents())
+				for(var/datum/data/vending_product/R in (V.product_records + V.coin_records + V.hidden_records))
+					if(R.product_path in (typesof(/obj/item/weapon) + typesof(/obj/item/gun) + list(/obj/item/transfer_valve)))
+						R.max_amount = 0
+						R.amount = 0
 
 /datum/game_mode/hell_march/proc/gangpocalypse()
 	set waitfor = FALSE
@@ -133,9 +141,8 @@
 	cleanup(target_det)
 	cleanup(target_ward)
 	cleanup(target_hop)
-	if(target_science)
-		for(var/obj/item/transfer_valve/TTV in target_science.GetAllContents())
-			qdel(TTV)
+	cleanup(target_science)
+	cleanup(target_science2)
 	if(target_atmos)
 		for(var/turf/open/floor/engine/plasma/T in target_atmos.GetAllContents())
 			CHECK_TICK

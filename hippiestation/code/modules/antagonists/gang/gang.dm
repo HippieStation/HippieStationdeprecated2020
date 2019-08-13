@@ -50,7 +50,7 @@
 
 /datum/antagonist/gang/on_removal()
 	remove_from_gang()
-	for(var/obj/item/gangtool/hell_march/O in owner.current.contents)
+	for(var/obj/item/gangtool/hell_march/O in owner.current.GetAllContents())
 		qdel(O)
 	if(istype(SSticker.mode, /datum/game_mode/hell_march))
 		owner.add_antag_datum(/datum/antagonist/vigilante)

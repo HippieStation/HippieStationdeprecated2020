@@ -15,7 +15,7 @@
 /datum/antagonist/vigilante/on_removal()
 	. = ..()
 	if(owner && owner.current)
-		for(var/obj/item/gangtool/hell_march/vigilante/O in owner.current.contents)
+		for(var/obj/item/gangtool/hell_march/vigilante/O in owner.current.GetAllContents())
 			qdel(O)
 
 /datum/antagonist/vigilante/greet()
