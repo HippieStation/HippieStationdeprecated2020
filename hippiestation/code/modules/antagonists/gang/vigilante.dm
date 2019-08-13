@@ -21,7 +21,7 @@
 /datum/antagonist/vigilante/greet()
 	if(!owner.current)
 		return
-	to_chat(owner.current, "<FONT size=3><u><b>You are a Vigilante!</b></u><br> Nanotrasen has given all loyal crew the authority to eliminate gang activity aboard the station.<br> You possess a reverse-engineered gangtool that rewards influence for destroying gangster equipment.<br> You will also receive influence for keeping the station free of gang tags.<br><b>Prevent gangs from taking over the station!<b></FONT>")
+	to_chat(owner.current, "<FONT size=3><u><b>You are a Vigilante!</b></u><br> Nanotrasen has given all loyal crew the authority to eliminate gang activity aboard the station.<br> You possess a reverse-engineered gangtool that rewards influence for destroying gangster equipment.<br> You will also receive influence for keeping the station free of gang tags.<br><b>Prevent gangs from taking over the station! Use lethal force against gangsters <i>if they cannot be converted back to Nanotrasen</i>, but do not kill loyal crewmembers!</b></FONT>")
 	owner.announce_objectives()
 
 /datum/antagonist/vigilante/farewell()
