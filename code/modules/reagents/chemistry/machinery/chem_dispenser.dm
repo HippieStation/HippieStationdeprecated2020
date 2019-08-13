@@ -270,7 +270,7 @@
 						if(actual > 0)
 							R.add_reagent(r_id, actual)
 						if(actual < 0)
-							R.remove_reagent(r_id, actual)
+							R.remove_reagent(r_id, abs(actual))
 						work_animation()
 		if("clear_recipes")
 			if(!is_operational())
