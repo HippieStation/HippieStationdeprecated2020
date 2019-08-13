@@ -42,7 +42,6 @@ SUBSYSTEM_DEF(ipstack)
 			if(response && response["country_name"])
 				var/country = response["country_name"]
 				cache[ip] = country
-				to_chat(world, "INSERT INTO [format_table_name("ipstack")] (ip, country) VALUES (INET_ATON('[ip]'), [sanitizeSQL(country)])")
 				var/datum/DBQuery/query_add_ip = SSdbcore.NewQuery("INSERT INTO [format_table_name("ipstack")] (ip, country) VALUES (INET_ATON('[ip]'), '[sanitizeSQL(country)]')")
 				query_add_ip.Execute()
 				qdel(query_add_ip)
