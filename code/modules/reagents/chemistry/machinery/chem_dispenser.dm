@@ -233,14 +233,10 @@
 				var/free = R.maximum_volume - R.total_volume
 				var/actual = min(amount, (cell.charge * powerefficiency)*10, free)
 
-				if(!cell.use(abs(actual) / powerefficiency))
+				if(!cell.use(actual / powerefficiency))
 					say("Not enough energy to complete operation!")
 					return
-				if(actual > 0)
-					R.add_reagent(reagent, actual)
-				if(actual < 0)
-					R.remove_reagent(reagent, abs(actual))
-
+				R.add_reagent(r_id, actual)
 				work_animation()
 				. = TRUE
 		if("remove")
@@ -268,10 +264,13 @@
 					var/free = R.maximum_volume - R.total_volume
 					var/actual = min(max(chemicals_to_dispense[key], res), (cell.charge * powerefficiency)*10, free)
 					if(actual)
-						if(!cell.use(actual / powerefficiency))
+						if(!cell.use(abs(actual) / powerefficiency))
 							say("Not enough energy to complete operation!")
 							return
-						R.add_reagent(r_id, actual)
+						if(actual > 0)
+							R.add_reagent(r_id, actual)
+						if(actual < 0)
+							R.remove_reagent(r_id, actual)
 						work_animation()
 		if("clear_recipes")
 			if(!is_operational())
