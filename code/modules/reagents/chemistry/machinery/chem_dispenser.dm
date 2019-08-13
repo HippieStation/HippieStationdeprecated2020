@@ -236,7 +236,7 @@
 				if(!cell.use(actual / powerefficiency))
 					say("Not enough energy to complete operation!")
 					return
-				R.add_reagent(r_id, actual)
+				R.add_reagent(reagent, actual)
 				work_animation()
 				. = TRUE
 		if("remove")
