@@ -262,7 +262,7 @@
 				if(beaker && dispensable_reagents.Find(r_id)) // but since we verify we have the reagent, it'll be fine
 					var/datum/reagents/R = beaker.reagents
 					var/free = R.maximum_volume - R.total_volume
-					var/actual = min(max(chemicals_to_dispense[key], res), (cell.charge * powerefficiency)*10, free)
+					var/actual = min(round(chemicals_to_dispense[key], res), (cell.charge * powerefficiency)*10, free)
 					if(actual)
 						if(!cell.use(abs(actual) / powerefficiency))
 							say("Not enough energy to complete operation!")
@@ -399,7 +399,7 @@
 
 /obj/machinery/chem_dispenser/proc/check_macro_part(var/part, var/res = macroresolution)
 	var/detail = splittext(part, "=")
-	if (text2num(detail[2]) < res)
+	if (abs(text2num(detail[2])) < res)
 		return FALSE
 	return TRUE
 
