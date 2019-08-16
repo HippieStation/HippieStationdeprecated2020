@@ -3129,6 +3129,7 @@
 #include "hippiestation\code\modules\admin\verbs\spawnfloorcluwne.dm"
 #include "hippiestation\code\modules\admin\verbs\spawnhuman.dm"
 #include "hippiestation\code\modules\admin\verbs\testdummy.dm"
+#include "hippiestation\code\modules\antagonists\_common\antag_spawner.dm"
 #include "hippiestation\code\modules\antagonists\abductor\abductor.dm"
 #include "hippiestation\code\modules\antagonists\brother\brother.dm"
 #include "hippiestation\code\modules\antagonists\changeling\horrorform.dm"
