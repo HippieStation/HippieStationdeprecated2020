@@ -126,6 +126,13 @@
 	item_path = /obj/item/plasma_fist_scroll
 	cost = 3
 
+/datum/spellbook_entry/item/loudnigramagicmissilerainbowridebeesremastered
+	name = "MAGIC MISSILE! MAGIC MISSILE! MAGIC MISSILE!"
+	desc = "Press button, make crew's ears bleed."
+	item_path = /obj/item/loudnigramagicmissilerainbowridebeesremastered
+	cost = 0
+	limit = 1
+
 /datum/spellbook_entry/item/badmin_gauntlet
 	name = "Badmin Gauntlet"
 	desc = "A gauntlet capable of holding the Badmin Stones. <b>Wearing this will trigger a war declaration!</b>. Before you wear it, you can refund it by hitting it against the spellbook. \
