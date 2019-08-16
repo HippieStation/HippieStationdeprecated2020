@@ -12,3 +12,4 @@
 	message_admins("[key_name_admin(user)] has activated LOUD NIGRA RAINBOW RIDE MAGIC MISSILE BEES!")
 	log_game("[key_name_admin(user)] has activated LOUD NIGRA RAINBOW RIDE MAGIC MISSILE BEES!")
 	SEND_SOUND(world, sound('hippiestation/sound/misc/OHGOD.ogg'))
+	qdel(src)
