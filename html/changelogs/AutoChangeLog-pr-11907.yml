@@ -1,0 +1,5 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - rscadd: "Added crab bans. They're like cat bans, but you're a crab."
+  - bugfix: "You can now G2G while catbanned if you're not a cat"
