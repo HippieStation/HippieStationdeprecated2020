@@ -41,7 +41,7 @@
 
 	for(var/mob/living/carbon/human/H in living_crew)
 		if(H.client && H.client.prefs.allow_midround_antag && !is_centcom_level(H.z))
-			if(!is_banned_from(H.ckey, CATBAN) && !is_banned_from(H.ckey, CLUWNEBAN) && !HAS_TRAIT(H, TRAIT_MINDSHIELD)) // hippie -- adds our jobban checks, cockblocks mindshielded people
+			if(!is_banned_from(H.ckey, CATBAN) && !is_banned_from(H.ckey, CLUWNEBAN) && !is_banned_from(H.ckey, CRABBAN) && !HAS_TRAIT(H, TRAIT_MINDSHIELD)) // hippie -- adds our jobban checks, cockblocks mindshielded people
 				antag_candidates += H
 
 	if(!antag_candidates)

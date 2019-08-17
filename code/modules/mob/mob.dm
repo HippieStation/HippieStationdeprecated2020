@@ -581,12 +581,6 @@
 			for(var/atom/A in listed_turf)
 				if(!A.mouse_opacity)
 					continue
-				// hippie start -- stop people from alt clicking to see hanged man
-				if(istype(A, /mob/living/simple_animal/hostile/guardian/reflective))
-					var/mob/living/simple_animal/hostile/guardian/reflective/G = A
-					if(!G.can_see(src))
-						continue
-				// hippie end
 				if(A.invisibility > see_invisible)
 					continue
 				if(overrides.len && (A in overrides))

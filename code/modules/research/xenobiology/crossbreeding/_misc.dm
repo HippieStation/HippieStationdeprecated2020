@@ -105,7 +105,6 @@ Slimecrossing Items
 		L.setToxLoss(tox_loss)
 		L.setOxyLoss(oxy_loss)
 		L.setBrainLoss(brain_loss)
-
 	if(iscarbon(parent))
 		if(saved_bodyparts)
 			var/mob/living/carbon/C = parent
