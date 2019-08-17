@@ -136,6 +136,7 @@
 		H.set_species(/datum/species/tarajan, icon_update=1) // can't escape hell
 	if(joblist.len && (CRABBAN in joblist) && iscarbon(M))
 		var/mob/living/carbon/C = M
+		C.unequip_everything()
 		C.change_mob_type(/mob/living/simple_animal/crab, null, C.real_name, TRUE)
 
 /datum/admins/proc/makeDonator(ckey)
