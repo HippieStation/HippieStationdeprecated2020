@@ -29,6 +29,8 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 		quirk_points[initial(T.name)] = initial(T.value)
 
 /datum/controller/subsystem/processing/quirks/proc/AssignQuirks(mob/living/user, client/cli, spawn_effects)
+	if(!user || !cli) // hippie -- fix crabban runtime
+		return // hippie end
 	for(var/V in cli.prefs.all_quirks)
 		var/datum/quirk/Q = quirks[V]
 		if(Q)

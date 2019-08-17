@@ -699,7 +699,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(is_banned_from(user.ckey, rank))
 				HTML += "<font color=red>[rank]</font></td><td><a href='?_src_=prefs;bancheck=[rank]'> BANNED</a></td></tr>"
 				continue
-			if(is_banned_from(user.ckey, list(CLUWNEBAN, CATBAN)) && rank != SSjob.overflow_role) // hippie start -- adds our jobban checks
+			if(is_banned_from(user.ckey, list(CLUWNEBAN, CATBAN, CRABBAN)) && rank != SSjob.overflow_role) // hippie start -- adds our jobban checks
 				HTML += "<font color=red>[rank]</font></td><td><a href='?_src_=prefs;jobbancheck=[rank]'> BANNED</a></td></tr>"
 				continue // hippie end
 			var/required_playtime_remaining = job.required_playtime_remaining(user.client)

@@ -19,8 +19,14 @@
 		to_chat(src, "<span class='danger'>You need to wait for [DisplayTimeText(g2g_next-world.time)] to offer again.</span>")
 		return
 	
-	if(is_banned_from(ckey, CATBAN))
-		to_chat(src, "<span class='danger'>No getting out of your catban that way!</span>")
+	if(is_banned_from(ckey, CATBAN) && ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if(H.dna && istype(H.dna.species, /datum/species/tarajan))
+			to_chat(src, "<span class='danger'>No getting out of your catban that way!</span>")
+			return
+	
+	if(is_banned_from(ckey, CRABBAN) && istype(src, /mob/living/simple_animal/crab))
+		to_chat(src, "<span class='danger'>No getting out of your crabban that way!</span>")
 		return
 	
 	if(alert("Are you sure you want to give your body up to ghosts?", "Confirm", "Yes", "No") == "Yes")

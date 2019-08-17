@@ -106,7 +106,7 @@ SUBSYSTEM_DEF(job)
 		if(is_banned_from(player.ckey, job.title) || QDELETED(player))
 			JobDebug("FOC isbanned failed, Player: [player]")
 			continue
-		if((is_banned_from(player.ckey, CLUWNEBAN) || is_banned_from(player.ckey, CATBAN)) && job.title != overflow_role) // hippie start -- fixes catbans
+		if((is_banned_from(player.ckey, CLUWNEBAN) || is_banned_from(player.ckey, CATBAN) || is_banned_from(player.ckey, CRABBAN)) && job.title != overflow_role) // hippie start -- fixes catbans
 			JobDebug("FOC isbanned failed (cat/clown ban), Player: [player]")
 			continue // hippie end
 		if(!job.player_old_enough(player.client))
@@ -163,8 +163,8 @@ SUBSYSTEM_DEF(job)
 			if(AssignRole(player, job.title))
 				return TRUE
 
-		if(is_banned_from(player.ckey, CLUWNEBAN) || is_banned_from(player.ckey, CATBAN)) // hippie start -- fixes catbans
-			JobDebug("GRJ player is cat/clown banned")
+		if(is_banned_from(player.ckey, CLUWNEBAN) || is_banned_from(player.ckey, CATBAN) || is_banned_from(player.ckey, CRABBAN)) // hippie start -- fixes catbans
+			JobDebug("GRJ player is cat/crab/clown banned")
 			if(AssignRole(player, overflow_role))
 				return TRUE// hippie end
 

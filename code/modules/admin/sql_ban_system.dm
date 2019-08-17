@@ -260,7 +260,7 @@
 									ROLE_MONKEY, ROLE_NINJA, ROLE_OPERATIVE,
 									ROLE_OVERTHROW, ROLE_REV, ROLE_REVENANT,
 									ROLE_REV_HEAD, ROLE_SERVANT_OF_RATVAR, ROLE_SYNDICATE,
-									ROLE_TRAITOR, ROLE_WIZARD, CATBAN, CLUWNEBAN)) //ROLE_REV_HEAD is excluded from this because rev jobbans are handled by ROLE_REV // Hippie edit -- Adds cluwne and cat bans
+									ROLE_TRAITOR, ROLE_WIZARD, CATBAN, CLUWNEBAN, CRABBAN)) //ROLE_REV_HEAD is excluded from this because rev jobbans are handled by ROLE_REV // Hippie edit -- Adds cluwne, crab, and cat bans
 		for(var/department in long_job_lists)
 			output += "<div class='column'><label class='rolegroup long [ckey(department)]'><input type='checkbox' name='[department]' class='hidden' [usr.client.prefs.tgui_fancy ? " onClick='toggle_checkboxes(this, \"_com\")'" : ""]>[department]</label><div class='content'>"
 			break_counter = 0
