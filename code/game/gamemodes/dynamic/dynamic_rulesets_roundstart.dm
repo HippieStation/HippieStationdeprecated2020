@@ -46,7 +46,7 @@
 //                                      //
 //////////////////////////////////////////
 
-/datum/dynamic_ruleset/roundstart/traitorbro
+/*/datum/dynamic_ruleset/roundstart/traitorbro
 	name = "Blood Brothers"
 	antag_flag = ROLE_BROTHER
 	antag_datum = /datum/antagonist/brother/
@@ -90,7 +90,7 @@
 			M.add_antag_datum(/datum/antagonist/brother, team)
 		team.update_name()
 	mode.brother_teams += pre_brother_teams
-	return TRUE
+	return TRUE*/
 
 //////////////////////////////////////////////
 //                                          //

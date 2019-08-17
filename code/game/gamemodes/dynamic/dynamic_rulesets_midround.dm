@@ -349,7 +349,7 @@
 //                                          //
 //////////////////////////////////////////////
 
-/datum/dynamic_ruleset/midround/from_ghosts/blob
+/*/datum/dynamic_ruleset/midround/from_ghosts/blob
 	name = "Blob"
 	antag_datum = /datum/antagonist/blob
 	antag_flag = ROLE_BLOB
@@ -364,7 +364,7 @@
 
 /datum/dynamic_ruleset/midround/from_ghosts/blob/generate_ruleset_body(mob/applicant)
 	var/body = applicant.become_overmind()
-	return body
+	return body*/
 
 //////////////////////////////////////////////
 //                                          //
