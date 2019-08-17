@@ -3266,6 +3266,7 @@
 #include "hippiestation\code\modules\guardian\abilities\major\assassin.dm"
 #include "hippiestation\code\modules\guardian\abilities\major\explosive.dm"
 #include "hippiestation\code\modules\guardian\abilities\major\gravity.dm"
+#include "hippiestation\code\modules\guardian\abilities\major\hand.dm"
 #include "hippiestation\code\modules\guardian\abilities\major\healing.dm"
 #include "hippiestation\code\modules\guardian\abilities\major\predator.dm"
 #include "hippiestation\code\modules\guardian\abilities\major\scout.dm"

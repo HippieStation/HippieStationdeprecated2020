@@ -29,6 +29,8 @@
 
 /datum/guardian_ability/major/proc/Attack(atom/target)
 
+/datum/guardian_ability/major/proc/RangedAttack(atom/target)
+
 /datum/guardian_ability/major/proc/AfterAttack(atom/target)
 
 /datum/guardian_ability/major/proc/Manifest()
