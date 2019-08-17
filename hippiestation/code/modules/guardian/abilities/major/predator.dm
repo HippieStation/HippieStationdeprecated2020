@@ -90,6 +90,9 @@
 	tick_interval = 10
 	alert_type = /obj/screen/alert/status_effect/agent_pinpointer/predator
 
+/datum/status_effect/agent_pinpointer/predator/scan_for_target()
+	return
+
 /datum/status_effect/agent_pinpointer/predator/point_to_target()
 	if(!isguardian(owner))
 		return
