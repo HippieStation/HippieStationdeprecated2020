@@ -198,6 +198,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 			stat(null, "Summoner Health: [resulthealth]%")
 		if(cooldown >= world.time)
 			stat(null, "Manifest/Recall Cooldown Remaining: [DisplayTimeText(cooldown - world.time)]")
+		if(stats.ability)
+			stats.ability.Stat()
 
 /mob/living/simple_animal/hostile/guardian/Move() //Returns to summoner if they move out of range
 	pixel_x = initial(pixel_x)

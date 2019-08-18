@@ -61,22 +61,24 @@
 	var/list/types = allow_special ? (subtypesof(/datum/guardian_ability/major) - /datum/guardian_ability/major/special) : (subtypesof(/datum/guardian_ability/major) - typesof(/datum/guardian_ability/major/special))
 	for(var/ability in types)
 		var/datum/guardian_ability/major/GA = new ability
+		GA.master_stats = saved_stats
 		.["abilities_major"] += list(list(
 			name = GA.name,
 			desc = GA.desc,
 			selected = istype(saved_stats.ability, ability),
-			available = (points >= GA.cost),
+			available = (points >= GA.cost) && GA.CanBuy(),
 			path = "[ability]",
 			requiem = istype(GA, /datum/guardian_ability/major/special)
 		))
 	.["abilities_minor"] = list()
 	for(var/ability in subtypesof(/datum/guardian_ability/minor))
 		var/datum/guardian_ability/minor/GA = new ability
+		GA.master_stats = saved_stats
 		.["abilities_minor"] += list(list(
 			name = GA.name,
 			desc = GA.desc,
 			selected = saved_stats.HasMinorAbility(ability),
-			available = (points >= GA.cost),
+			available = (points >= GA.cost) && GA.CanBuy(),
 			path = "[ability]"
 		))
 
