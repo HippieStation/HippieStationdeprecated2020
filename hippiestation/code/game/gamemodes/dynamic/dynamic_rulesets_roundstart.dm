@@ -64,3 +64,43 @@
 		M.mind.restricted_roles = restricted_roles
 		M.mind.special_role = ROLE_HIVE
 	return TRUE
+
+
+/datum/dynamic_ruleset/roundstart/abductors
+	name = "Abductors"
+	antag_flag = ROLE_ABDUCTOR
+	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
+	restricted_roles = list("Cyborg")
+	required_candidates = 2
+	weight = 2
+	cost = 25
+	var/datum/mind/scientist
+	var/datum/mind/agent
+
+/datum/dynamic_ruleset/roundstart/abductors/pre_execute()
+	if(!islist(candidates) || candidates.len < 2)
+		return FALSE
+	var/mob/S = pick(candidates)
+	candidates -= S
+	var/mob/A = pick(candidates)
+	candidates -= A
+	if(!S || !A || !S.mind || !A.mind)
+		return FALSE
+	assigned += S
+	S.mind.special_role = ROLE_ABDUCTOR
+	S.mind.assigned_role = ROLE_ABDUCTOR
+	scientist = S.mind
+	assigned += A
+	A.mind.special_role = ROLE_ABDUCTOR
+	A.mind.assigned_role = ROLE_ABDUCTOR
+	agent = A.mind
+	return TRUE
+
+/datum/dynamic_ruleset/roundstart/abductors/execute()
+	if(!scientist || !agent)
+		return FALSE
+	var/datum/team/abductor_team/T = new
+	if(T.team_number > ABDUCTOR_MAX_TEAMS)
+		return FALSE
+	scientist.add_antag_datum(/datum/antagonist/abductor/scientist, T)
+	agent.add_antag_datum(/datum/antagonist/abductor/agent, T)
