@@ -169,6 +169,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	snapback()
 
 /mob/living/simple_animal/hostile/guardian/proc/GoBerserk()
+	UnregisterSignal(summoner, COMSIG_MOVABLE_MOVED)
 	berserk = TRUE
 	summoner = null
 	maxHealth = 750
@@ -199,13 +200,61 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 			stat(null, "Manifest/Recall Cooldown Remaining: [DisplayTimeText(cooldown - world.time)]")
 
 /mob/living/simple_animal/hostile/guardian/Move() //Returns to summoner if they move out of range
+	pixel_x = initial(pixel_x)
+	pixel_y = initial(pixel_y)
+	layer = initial(layer)
+	if(stats && stats.range == 1 && range != 255 && is_deployed())
+		if(istype(summoner.loc, /obj/effect))
+			Recall(TRUE)
+		else
+			alpha = 128
+			forceMove(summoner.loc)
+			setDir(summoner.dir)
+			switch(dir)
+				if(NORTH)
+					pixel_y = -16
+					layer = summoner.layer + 0.1
+				if(SOUTH)
+					pixel_y = 16
+					layer = summoner.layer - 0.1
+				if(EAST)
+					pixel_x = -16
+					layer = summoner.layer
+				if(WEST)
+					pixel_x = 16
+					layer = summoner.layer
+		return
 	. = ..()
 	if(do_the_cool_invisible_thing && alpha == 64)
 		alpha = initial(alpha)
 	snapback()
 
 /mob/living/simple_animal/hostile/guardian/proc/snapback()
+	pixel_x = initial(pixel_x)
+	pixel_y = initial(pixel_y)
+	layer = initial(layer)
 	if(summoner)
+		if(stats && stats.range == 1 && range != 255 && is_deployed())
+			if(istype(summoner.loc, /obj/effect))
+				Recall(TRUE)
+			else
+				alpha = 128
+				forceMove(summoner.loc)
+				setDir(summoner.dir)
+				switch(dir)
+					if(NORTH)
+						pixel_y = -16
+						layer = summoner.layer + 0.1
+					if(SOUTH)
+						pixel_y = 16
+						layer = summoner.layer - 0.1
+					if(EAST)
+						pixel_x = -16
+						layer = summoner.layer
+					if(WEST)
+						pixel_x = 16
+						layer = summoner.layer
+			return
 		if(get_dist(get_turf(summoner),get_turf(src)) <= range)
 			return
 		else
@@ -378,7 +427,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	if(stats.ability && stats.ability.Recall())
 		return TRUE
 	new /obj/effect/temp_visual/guardian/phase/out(loc)
-
 	forceMove(summoner)
 	cooldown = world.time + 10
 	return TRUE
