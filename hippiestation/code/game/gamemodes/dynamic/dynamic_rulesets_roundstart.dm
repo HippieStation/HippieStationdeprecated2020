@@ -5,7 +5,7 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("Cyborg")
 	required_candidates = 1
-	weight = 0.75
+	weight = 5
 	cost = 10
 	requirements = list(10,10,10,10,10,10,10,10,10,10)
 	high_population_requirement = 10
@@ -51,7 +51,7 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("Cyborg")
 	required_candidates = 2
-	weight = 2
+	weight = 20
 	cost = 25
 	antag_datum = /datum/antagonist/hivemind
 
@@ -72,7 +72,7 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("Cyborg")
 	required_candidates = 2
-	weight = 3
+	weight = 30
 	cost = 20
 	var/datum/mind/scientist
 	var/datum/mind/agent
@@ -106,14 +106,14 @@
 	agent.add_antag_datum(/datum/antagonist/abductor/agent, T)
 	
 /datum/dynamic_ruleset/roundstart/delayed/revs
-	weight = 3
+	weight = 30
 	minimum_players = 25
 
 /datum/dynamic_ruleset/roundstart/traitor
-	weight = 4
+	weight = 35
 	
 /datum/dynamic_ruleset/roundstart/monkey
-	weight = 0.2
+	weight = 2
 	requirements = list(101,101,70,40,30,20,10,10,10,10)
 	high_population_requirement = 10
 	flags = HIGHLANDER_RULESET
@@ -124,10 +124,25 @@
 /datum/dynamic_ruleset/roundstart/nuclear/clown_ops
 	requirements = list(90,90,90,80,60,40,30,20,10,10)
 	high_population_requirement = 10
-	weight = 0.3
+	weight = 3
 	
 /datum/dynamic_ruleset/roundstart/clockcult
-	cost = 35
-	weight = 0.3
+	cost = 50
+	weight = 3
 	requirements = list(100,90,80,60,40,30,10,10,10,10)
 	high_population_requirement = 10
+	
+/datum/dynamic_ruleset/roundstart/changeling
+	weight = 30
+	
+/datum/dynamic_ruleset/roundstart/wizard
+	weight = 20
+	
+/datum/dynamic_ruleset/roundstart/bloodcult
+	weight = 30
+	
+/datum/dynamic_ruleset/roundstart/nuclear
+	weight = 30
+	
+/datum/dynamic_ruleset/roundstart/delayed/revs
+	weight = 20
