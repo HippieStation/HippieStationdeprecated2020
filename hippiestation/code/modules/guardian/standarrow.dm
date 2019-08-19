@@ -84,9 +84,6 @@
 	G.name = "[G.name] Requiem"
 	G.real_name = "[G.real_name] Requiem"
 	G.mind.name = "[G.mind.name] Requiem"
-	var/datum/antagonist/guardian/S = G.mind.has_antag_datum(/datum/antagonist/guardian)
-	if(S)
-		S.name = "Requiem Guardian"
 	G.stats.damage = min(G.stats.damage + rand(1,3), 5)
 	G.stats.defense = min(G.stats.defense + rand(1,3), 5)
 	G.stats.speed = min(G.stats.speed + rand(1,3), 5)
@@ -101,6 +98,10 @@
 	G.stats.Apply(G)
 	if(G.berserk)
 		G.stats.ability.Berserk()
+	else
+		var/datum/antagonist/guardian/S = G.mind.has_antag_datum(/datum/antagonist/guardian)
+		if(S)
+			S.name = "Requiem Guardian"
 	G.transforming = FALSE
 	G.Recall(TRUE)
 	G.visible_message("<span class='holoparasite'>\The [src] is absorbed into [G]!</span>")
