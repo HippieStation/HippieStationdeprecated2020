@@ -48,6 +48,7 @@
 			sleep(15 SECONDS)
 			if(prob(kill_chance))
 				H.visible_message("<span class='danger bold'>[H] stares ahead, eyes full of fear, before collapsing lifelessly into ash, \the [src] falling out...</span>")
+				log_game("[key_name(H)] was killed by a stand arrow.")
 				forceMove(H.drop_location())
 				H.mind.no_cloning_at_all = TRUE
 				H.adjustCloneLoss(500)
@@ -68,6 +69,7 @@
 	G.transforming = TRUE
 	G.visible_message("<span class='holoparasite'>[G] begins to melt!</span>")
 	to_chat(G, "<span class='holoparasite'>This power... You can't handle it! RUN AWAY!</span>")
+	log_game("[key_name(G)] was stabbed by a stand arrow, it is now becoming requiem.")
 	var/i = 0
 	var/flicker = TRUE
 	while(i < 10)
@@ -82,6 +84,9 @@
 	G.name = "[G.name] Requiem"
 	G.real_name = "[G.real_name] Requiem"
 	G.mind.name = "[G.mind.name] Requiem"
+	var/datum/antagonist/guardian/S = G.mind.has_antag_datum(/datum/antagonist/guardian)
+	if(S)
+		S.name = "Requiem Guardian"
 	G.stats.damage = min(G.stats.damage + rand(1,3), 5)
 	G.stats.defense = min(G.stats.defense + rand(1,3), 5)
 	G.stats.speed = min(G.stats.speed + rand(1,3), 5)
