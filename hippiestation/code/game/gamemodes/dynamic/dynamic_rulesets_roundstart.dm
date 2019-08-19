@@ -128,5 +128,6 @@
 	
 /datum/dynamic_ruleset/roundstart/clockcult
 	cost = 35
+	weight = 0.3
 	requirements = list(100,90,80,60,40,30,10,10,10,10)
 	high_population_requirement = 10
