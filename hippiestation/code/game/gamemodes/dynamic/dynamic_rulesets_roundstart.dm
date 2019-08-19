@@ -119,6 +119,7 @@
 	flags = HIGHLANDER_RULESET
 	
 /datum/dynamic_ruleset/roundstart/nuclear
+	weight = 20
 	required_candidates = 1
 
 /datum/dynamic_ruleset/roundstart/nuclear/clown_ops
@@ -139,9 +140,6 @@
 	weight = 20
 	
 /datum/dynamic_ruleset/roundstart/bloodcult
-	weight = 30
-	
-/datum/dynamic_ruleset/roundstart/nuclear
 	weight = 30
 	
 /datum/dynamic_ruleset/roundstart/delayed/revs
