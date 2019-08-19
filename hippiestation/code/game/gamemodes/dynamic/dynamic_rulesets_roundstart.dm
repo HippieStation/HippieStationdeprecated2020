@@ -5,7 +5,7 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("Cyborg")
 	required_candidates = 1
-	weight = 0.1
+	weight = 0.75
 	cost = 10
 	requirements = list(10,10,10,10,10,10,10,10,10,10)
 	high_population_requirement = 10
@@ -107,3 +107,21 @@
 	
 /datum/dynamic_ruleset/roundstart/delayed/revs
 	weight = 3
+	minimum_players = 25
+
+/datum/dynamic_ruleset/roundstart/traitor
+	weight = 4
+	
+/datum/dynamic_ruleset/roundstart/monkey
+	weight = 0.2
+	requirements = list(101,101,70,40,30,20,10,10,10,10)
+	high_population_requirement = 10
+	flags = HIGHLANDER_RULESET
+	
+/datum/dynamic_ruleset/roundstart/nuclear
+	required_candidates = 2
+
+/datum/dynamic_ruleset/roundstart/nuclear/clown_ops
+	requirements = list(90,90,90,80,60,40,30,20,10,10)
+	high_population_requirement = 10
+	weight = 0.3
