@@ -30,7 +30,7 @@ GLOBAL_VAR_INIT(dynamic_curve_width, 1.8)
 // If enabled only picks a single starting rule and executes only autotraitor midround ruleset. 
 GLOBAL_VAR_INIT(dynamic_classic_secret, FALSE)
 // How many roundstart players required for high population override to take effect.
-GLOBAL_VAR_INIT(dynamic_high_pop_limit, 55)
+GLOBAL_VAR_INIT(dynamic_high_pop_limit, 30) // hippie -- our pop.
 // If enabled does not accept or execute any rulesets.
 GLOBAL_VAR_INIT(dynamic_forced_extended, FALSE)
 // How high threat is required for HIGHLANDER_RULESETs stacking.
@@ -72,7 +72,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	  * If it is seven the range is:
 	  * 0-6, 7-13, 14-20, 21-27, 28-34, 35-41, 42-48, 49-55, 56-62, 63+
 	  */
-	var/pop_per_requirement = 6
+	var/pop_per_requirement = 4 // hippie -- don't sit on threat points on lowpop
 	/// The requirement used for checking if a second rule should be selected.
 	var/list/second_rule_req = list(100, 100, 80, 70, 60, 50, 30, 20, 10, 0)
 	/// The requirement used for checking if a third rule should be selected.
