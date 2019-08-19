@@ -1,6 +1,12 @@
 /client/New()
 	. = ..()
 	mentor_datum_set()
+	if(CONFIG_GET(string/ipstack_api_key))
+		country = SSipstack.check_ip(address)
+		if(country == "???")
+			message_admins("<span class='adminnotice'>GeoIP for [key_name_admin(src)] was invalid!</span>")
+		else if(country == "Brazil")
+			message_admins("<span class='adminnotice'>[key_name_admin(src)] is a Brazilian!</span>")
 
 /client/proc/hippie_client_procs(href_list)
 	if(href_list["mentor_msg"])

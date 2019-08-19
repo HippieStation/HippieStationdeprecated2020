@@ -20,3 +20,6 @@ TOKEN_CONSUMER http://127.0.0.1:9000/byondLinker.php
 
 ## Enables the text-to-speech subsystem, allowing humans to use it
 ENABLE_TTS
+
+## Enables the GeoIP subsystem when you give it an ipstack.com API key
+#IPSTACK_API_KEY

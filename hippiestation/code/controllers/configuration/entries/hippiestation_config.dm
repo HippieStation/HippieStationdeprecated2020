@@ -14,3 +14,6 @@
 /datum/config_entry/flag/allow_vote_shuttlecall	// allow shuttle to be called via vote
 
 /datum/config_entry/flag/enable_tts
+
+/datum/config_entry/string/ipstack_api_key
+	protection = CONFIG_ENTRY_HIDDEN | CONFIG_ENTRY_LOCKED

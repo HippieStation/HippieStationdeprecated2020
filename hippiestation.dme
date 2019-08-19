@@ -2872,6 +2872,7 @@
 #include "hippiestation\code\_onclick\hud\vampire.dm"
 #include "hippiestation\code\controllers\configuration\entries\hippiestation_config.dm"
 #include "hippiestation\code\controllers\subsystem\communications.dm"
+#include "hippiestation\code\controllers\subsystem\ipstack.dm"
 #include "hippiestation\code\controllers\subsystem\job.dm"
 #include "hippiestation\code\controllers\subsystem\reagent_states.dm"
 #include "hippiestation\code\controllers\subsystem\shuttle.dm"
