@@ -36,6 +36,7 @@
 #define ROLE_DEATHSQUAD			"Deathsquad"
 #define ROLE_LAVALAND			"Lavaland"
 #define ROLE_INTERNAL_AFFAIRS	"Internal Affairs Agent"
+#define ROLE_HOLOPARASITE		"Holoparasite" // hippie -- holopara bans
 #define ROLE_VAMPIRE			"vampire" // hippie -- adds vampire role
 #define ROLE_SHADOWLING			"shadowling" // hippie -- adds shadowling role
 #define ROLE_GANG				"gangster" // hippie -- adds gang related role
