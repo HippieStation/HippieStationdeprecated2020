@@ -402,9 +402,11 @@
 	var/fraction = min(1, . / reagents.maximum_volume)
 	if(affected_turfs.len)
 		fraction /= affected_turfs.len
+	/* hippie start -- making chem puddle not appear where you draw
 	for(var/t in affected_turfs)
 		reagents.reaction(t, TOUCH, fraction * volume_multiplier)
 		reagents.trans_to(t, ., volume_multiplier, transfered_by = user)
+	hippie end */
 	check_empty(user)
 
 /obj/item/toy/crayon/attack(mob/M, mob/user)
