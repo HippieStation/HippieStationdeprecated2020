@@ -1,4 +1,0 @@
-author: "mideanon"
-delete-after: True
-changes: 
-  - tweak: "only a single traitor is now made per \"create traitors\" button press instead of 3"
