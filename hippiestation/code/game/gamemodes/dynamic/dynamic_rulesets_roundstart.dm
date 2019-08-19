@@ -73,7 +73,7 @@
 	restricted_roles = list("Cyborg")
 	required_candidates = 2
 	weight = 3
-	cost = 25
+	cost = 20
 	var/datum/mind/scientist
 	var/datum/mind/agent
 
