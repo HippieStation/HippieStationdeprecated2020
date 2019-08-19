@@ -119,7 +119,7 @@
 	flags = HIGHLANDER_RULESET
 	
 /datum/dynamic_ruleset/roundstart/nuclear
-	required_candidates = 2
+	required_candidates = 1
 
 /datum/dynamic_ruleset/roundstart/nuclear/clown_ops
 	requirements = list(90,90,90,80,60,40,30,20,10,10)
