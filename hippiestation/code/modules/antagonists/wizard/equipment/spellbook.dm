@@ -138,7 +138,7 @@
 /datum/spellbook_entry/item/badmin_gauntlet/IsAvailible()
 	if(!..())
 		return FALSE
-	return (SSticker.mode.name != "ragin' mages") && !GLOB.gauntlet_equipped
+	return !istype(SSticker.mode, /datum/game_mode/wizard/raginmages) && !istype(SSticker.mode, /datum/game_mode/dynamic) && !GLOB.gauntlet_equipped
 
 /datum/spellbook_entry/item/badmin_gauntlet/Buy(mob/living/carbon/human/user, obj/item/spellbook/book)
 	. = ..()
