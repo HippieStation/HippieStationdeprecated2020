@@ -72,7 +72,7 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("Cyborg")
 	required_candidates = 2
-	weight = 2
+	weight = 3
 	cost = 25
 	var/datum/mind/scientist
 	var/datum/mind/agent
@@ -104,3 +104,6 @@
 		return FALSE
 	scientist.add_antag_datum(/datum/antagonist/abductor/scientist, T)
 	agent.add_antag_datum(/datum/antagonist/abductor/agent, T)
+	
+/datum/dynamic_ruleset/roundstart/delayed/revs
+	weight = 3
