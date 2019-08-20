@@ -237,7 +237,6 @@
 					say("Not enough energy to complete operation!")
 					return
 				R.add_reagent(reagent, actual)
-
 				work_animation()
 				. = TRUE
 		if("remove")
@@ -263,12 +262,15 @@
 				if(beaker && dispensable_reagents.Find(r_id)) // but since we verify we have the reagent, it'll be fine
 					var/datum/reagents/R = beaker.reagents
 					var/free = R.maximum_volume - R.total_volume
-					var/actual = min(max(chemicals_to_dispense[key], res), (cell.charge * powerefficiency)*10, free)
+					var/actual = min(round(chemicals_to_dispense[key], res), (cell.charge * powerefficiency)*10, free)
 					if(actual)
-						if(!cell.use(actual / powerefficiency))
+						if(!cell.use(abs(actual) / powerefficiency))
 							say("Not enough energy to complete operation!")
 							return
-						R.add_reagent(r_id, actual)
+						if(actual > 0)
+							R.add_reagent(r_id, actual)
+						if(actual < 0)
+							R.remove_reagent(r_id, abs(actual))
 						work_animation()
 		if("clear_recipes")
 			if(!is_operational())
@@ -397,7 +399,7 @@
 
 /obj/machinery/chem_dispenser/proc/check_macro_part(var/part, var/res = macroresolution)
 	var/detail = splittext(part, "=")
-	if (text2num(detail[2]) < res)
+	if (abs(text2num(detail[2])) % res != 0)
 		return FALSE
 	return TRUE
 
