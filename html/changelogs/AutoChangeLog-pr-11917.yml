@@ -1,0 +1,9 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - rscadd: "Added 3 new stand types"
+  - rscadd: "Predator, which can track down anyone, with just a blood drop or fingerprint."
+  - rscadd: "THE HAND, which can turn a shoot-out into a punch-out."
+  - rscadd: "Frenzy, which can make any situation look like a Florida Man headline"
+  - rscadd: "Range F stands are now anchored to their owner."
+  - admin: "Admins can now ban people from becoming holoparasite."
