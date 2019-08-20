@@ -61,22 +61,24 @@
 	var/list/types = allow_special ? (subtypesof(/datum/guardian_ability/major) - /datum/guardian_ability/major/special) : (subtypesof(/datum/guardian_ability/major) - typesof(/datum/guardian_ability/major/special))
 	for(var/ability in types)
 		var/datum/guardian_ability/major/GA = new ability
+		GA.master_stats = saved_stats
 		.["abilities_major"] += list(list(
 			name = GA.name,
 			desc = GA.desc,
 			selected = istype(saved_stats.ability, ability),
-			available = (points >= GA.cost),
+			available = (points >= GA.cost) && GA.CanBuy(),
 			path = "[ability]",
 			requiem = istype(GA, /datum/guardian_ability/major/special)
 		))
 	.["abilities_minor"] = list()
 	for(var/ability in subtypesof(/datum/guardian_ability/minor))
 		var/datum/guardian_ability/minor/GA = new ability
+		GA.master_stats = saved_stats
 		.["abilities_minor"] += list(list(
 			name = GA.name,
 			desc = GA.desc,
 			selected = saved_stats.HasMinorAbility(ability),
-			available = (points >= GA.cost),
+			available = (points >= GA.cost) && GA.CanBuy(),
 			path = "[ability]"
 		))
 
@@ -171,7 +173,7 @@
 		to_chat("<span class='danger'>You don't have enough points for a Guardian like that!</span>")
 		used = FALSE
 		return FALSE
-	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the [mob_name] of [user.real_name]?", ROLE_PAI, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the [mob_name] of [user.real_name]?", ROLE_HOLOPARASITE, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
 		var/mob/living/simple_animal/hostile/guardian/G = new(user, theme)
@@ -182,6 +184,7 @@
 		G.summoner = user
 		G.key = C.key
 		G.mind.enslave_mind_to_creator(user)
+		G.RegisterSignal(G.summoner, COMSIG_MOVABLE_MOVED, /mob/living/simple_animal/hostile/guardian.proc/snapback)
 		var/datum/antagonist/guardian/S = new
 		S.stats = saved_stats
 		S.summoner = user.mind.name

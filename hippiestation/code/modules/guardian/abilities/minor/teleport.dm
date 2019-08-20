@@ -23,7 +23,7 @@
 		revert_cast()
 		return
 	var/mob/living/simple_animal/hostile/guardian/G = caller
-	if(G.loc == G.summoner)
+	if(!G.is_deployed())
 		to_chat(G, "<span class='danger'><B>You must be manifested to warp a target!</span></B>")
 		return
 	if(!G.beacon)

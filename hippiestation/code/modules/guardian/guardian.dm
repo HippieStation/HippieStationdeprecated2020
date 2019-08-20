@@ -169,11 +169,13 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	snapback()
 
 /mob/living/simple_animal/hostile/guardian/proc/GoBerserk()
+	UnregisterSignal(summoner, COMSIG_MOVABLE_MOVED)
 	berserk = TRUE
 	summoner = null
 	maxHealth = 750
 	health = 750
 	to_chat(src, "<span class='holoparasite big'>Your master has died. Only your own power anchors you to this world now. Nothing restrains you anymore, but the desire for <span class='hypnophrase'>revenge</span>.</span>")
+	log_game("[key_name(src)] has went berserk.")
 	var/datum/antagonist/guardian/S = mind.has_antag_datum(/datum/antagonist/guardian)
 	if(S)
 		S.name = "Berserk Guardian"
@@ -197,15 +199,65 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 			stat(null, "Summoner Health: [resulthealth]%")
 		if(cooldown >= world.time)
 			stat(null, "Manifest/Recall Cooldown Remaining: [DisplayTimeText(cooldown - world.time)]")
+		if(stats.ability)
+			stats.ability.Stat()
 
 /mob/living/simple_animal/hostile/guardian/Move() //Returns to summoner if they move out of range
+	pixel_x = initial(pixel_x)
+	pixel_y = initial(pixel_y)
+	layer = initial(layer)
+	if(stats && stats.range == 1 && range != 255 && is_deployed())
+		if(istype(summoner.loc, /obj/effect))
+			Recall(TRUE)
+		else
+			alpha = 128
+			forceMove(summoner.loc)
+			setDir(summoner.dir)
+			switch(dir)
+				if(NORTH)
+					pixel_y = -16
+					layer = summoner.layer + 0.1
+				if(SOUTH)
+					pixel_y = 16
+					layer = summoner.layer - 0.1
+				if(EAST)
+					pixel_x = -16
+					layer = summoner.layer
+				if(WEST)
+					pixel_x = 16
+					layer = summoner.layer
+		return
 	. = ..()
 	if(do_the_cool_invisible_thing && alpha == 64)
 		alpha = initial(alpha)
 	snapback()
 
 /mob/living/simple_animal/hostile/guardian/proc/snapback()
+	pixel_x = initial(pixel_x)
+	pixel_y = initial(pixel_y)
+	layer = initial(layer)
 	if(summoner)
+		if(stats && stats.range == 1 && range != 255 && is_deployed())
+			if(istype(summoner.loc, /obj/effect))
+				Recall(TRUE)
+			else
+				alpha = 128
+				forceMove(summoner.loc)
+				setDir(summoner.dir)
+				switch(dir)
+					if(NORTH)
+						pixel_y = -16
+						layer = summoner.layer + 0.1
+					if(SOUTH)
+						pixel_y = 16
+						layer = summoner.layer - 0.1
+					if(EAST)
+						pixel_x = -16
+						layer = summoner.layer
+					if(WEST)
+						pixel_x = 16
+						layer = summoner.layer
+			return
 		if(get_dist(get_turf(summoner),get_turf(src)) <= range)
 			return
 		else
@@ -244,6 +296,17 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	P.preparePixelProjectile(targeted_atom, src)
 	P.fire()
 	return P
+
+/mob/living/simple_animal/hostile/guardian/RangedAttack(atom/A, params)
+	if(transforming)
+		to_chat(src, "<span class='holoparasite italics'>No... no... you can't!</span>")
+		return
+	if(erased_time)
+		to_chat(src, "<span class='danger'>There is no time, and you cannot intefere!</span>")
+		return
+	if(stats.ability && stats.ability.RangedAttack(A))
+		return
+	return ..()
 
 /mob/living/simple_animal/hostile/guardian/AttackingTarget()
 	if(transforming)
@@ -367,7 +430,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	if(stats.ability && stats.ability.Recall())
 		return TRUE
 	new /obj/effect/temp_visual/guardian/phase/out(loc)
-
 	forceMove(summoner)
 	cooldown = world.time + 10
 	return TRUE
@@ -491,12 +553,12 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		var/mob/living/simple_animal/hostile/guardian/G = input(src, "Pick the guardian you wish to reset", "Guardian Reset") as null|anything in guardians
 		if(G)
 			to_chat(src, "<span class='holoparasite'>You attempt to reset <font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font>'s personality...</span>")
-			var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as [src.real_name]'s [G.real_name]?", ROLE_PAI, null, FALSE, 100)
+			var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as [src.real_name]'s [G.real_name]?", ROLE_HOLOPARASITE, null, FALSE, 100)
 			if(LAZYLEN(candidates))
 				var/mob/dead/observer/C = pick(candidates)
 				to_chat(G, "<span class='holoparasite'>Your user reset you, and your body was taken over by a ghost. Looks like they weren't happy with your performance.</span>")
 				to_chat(src, "<span class='holoparasite bold'>Your <font color=\"[G.namedatum.colour]\">[G.real_name]</font> has been successfully reset.</span>")
-				message_admins("[key_name_admin(C)] has taken control of ([ADMIN_LOOKUPFLW(G)])")
+				log_game("[key_name(src)] has reset their holoparasite, it is now [key_name(G)].")
 				G.ghostize(0)
 				if(!G.custom_name)
 					G.setthemename(G.namedatum.theme) //give it a new color, to show it's a new person

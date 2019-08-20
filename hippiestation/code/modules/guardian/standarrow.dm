@@ -48,6 +48,7 @@
 			sleep(15 SECONDS)
 			if(prob(kill_chance))
 				H.visible_message("<span class='danger bold'>[H] stares ahead, eyes full of fear, before collapsing lifelessly into ash, \the [src] falling out...</span>")
+				log_game("[key_name(H)] was killed by a stand arrow.")
 				forceMove(H.drop_location())
 				H.mind.no_cloning_at_all = TRUE
 				H.adjustCloneLoss(500)
@@ -68,6 +69,7 @@
 	G.transforming = TRUE
 	G.visible_message("<span class='holoparasite'>[G] begins to melt!</span>")
 	to_chat(G, "<span class='holoparasite'>This power... You can't handle it! RUN AWAY!</span>")
+	log_game("[key_name(G)] was stabbed by a stand arrow, it is now becoming requiem.")
 	var/i = 0
 	var/flicker = TRUE
 	while(i < 10)
@@ -96,6 +98,10 @@
 	G.stats.Apply(G)
 	if(G.berserk)
 		G.stats.ability.Berserk()
+	else
+		var/datum/antagonist/guardian/S = G.mind.has_antag_datum(/datum/antagonist/guardian)
+		if(S)
+			S.name = "Requiem Guardian"
 	G.transforming = FALSE
 	G.Recall(TRUE)
 	G.visible_message("<span class='holoparasite'>\The [src] is absorbed into [G]!</span>")
@@ -145,13 +151,14 @@
 	INVOKE_ASYNC(src, .proc/get_stand, H, stats)
 
 /obj/item/stand_arrow/proc/get_stand(mob/living/carbon/human/H, datum/guardian_stats/stats)
-	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Guardian Spirit of [H.real_name]?", ROLE_PAI, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Guardian Spirit of [H.real_name]?", ROLE_HOLOPARASITE, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
 		var/mob/living/simple_animal/hostile/guardian/G = new(H, "magic")
 		G.summoner = H
 		G.key = C.key
 		G.mind.enslave_mind_to_creator(H)
+		G.RegisterSignal(G.summoner, COMSIG_MOVABLE_MOVED, /mob/living/simple_animal/hostile/guardian.proc/snapback)
 		var/datum/antagonist/guardian/S = new
 		S.stats = stats
 		S.summoner = H.mind.name

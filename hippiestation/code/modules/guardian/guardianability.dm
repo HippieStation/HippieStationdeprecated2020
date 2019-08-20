@@ -19,6 +19,11 @@
 	if(spell)
 		guardian.RemoveSpell(spell)
 
+/datum/guardian_ability/proc/CanBuy()
+	return TRUE
+
+/datum/guardian_ability/proc/Stat()
+
 // major abilities have a mode usually
 /datum/guardian_ability/major
 	var/has_mode = FALSE
@@ -28,6 +33,8 @@
 	var/mode_off_msg = ""
 
 /datum/guardian_ability/major/proc/Attack(atom/target)
+
+/datum/guardian_ability/major/proc/RangedAttack(atom/target)
 
 /datum/guardian_ability/major/proc/AfterAttack(atom/target)
 
