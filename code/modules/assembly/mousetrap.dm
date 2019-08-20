@@ -63,6 +63,7 @@
 	playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 	armed = FALSE
 	update_icon()
+	sleep(1.5) // hippie -- adds a small enough delay to prevent mousetrap signalers from being better voice analyzers
 	pulse(FALSE)
 
 
