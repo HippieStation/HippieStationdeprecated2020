@@ -1,4 +1,0 @@
-author: "yorii"
-delete-after: True
-changes: 
-  - tweak: "Chem dispenser now supports negative values in macros."
