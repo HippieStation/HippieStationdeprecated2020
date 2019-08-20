@@ -114,7 +114,7 @@
 	
 /datum/dynamic_ruleset/roundstart/monkey
 	weight = 2
-	cost = 35
+	cost = 50
 	requirements = list(101,101,70,40,30,20,10,10,10,10)
 	high_population_requirement = 10
 	flags = HIGHLANDER_RULESET
