@@ -63,6 +63,7 @@
 	playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 	armed = FALSE
 	update_icon()
+	sleep(1.5) // hippie -- adds a small enough delay to prevent mousetrap signalers from being better voice analyzers
 	pulse(FALSE)
 
 
@@ -116,13 +117,15 @@
 	..()
 
 
-/obj/item/assembly/mousetrap/on_found(mob/finder)
+/obj/item/assembly/mousetrap/on_found(mob/living/finder) // hippie -- consider this whole section edited
 	if(armed)
-		if(finder)
-			finder.visible_message("<span class='warning'>[finder] accidentally sets off [src], breaking their fingers.</span>", \
-							   "<span class='warning'>You accidentally trigger [src]!</span>")
-			triggered(finder, (finder.active_hand_index % 2 == 0) ? BODY_ZONE_PRECISE_R_HAND : BODY_ZONE_PRECISE_L_HAND)
-			return TRUE	//end the search!
+		if(finder && ishuman(finder))
+			var/mob/living/carbon/human/H = finder
+			if(!H.handcuffed && !H.incapacitated())
+				finder.visible_message("<span class='warning'>[finder] accidentally sets off [src], breaking their fingers.</span>", \
+								   "<span class='warning'>You accidentally trigger [src]!</span>")
+				triggered(finder, (finder.active_hand_index % 2 == 0) ? BODY_ZONE_PRECISE_R_HAND : BODY_ZONE_PRECISE_L_HAND)
+				return TRUE	//end the search!
 		else
 			visible_message("<span class='warning'>[src] snaps shut!</span>")
 			triggered(loc)
