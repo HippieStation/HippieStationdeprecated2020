@@ -1,0 +1,5 @@
+author: "Manly Dwarf"
+delete-after: True
+changes: 
+  - bugfix: "Fixed an exploit related to mousetrap bombs exploding despite the user being stunned or handcuffed."
+  - balance: "Also slowed down the explosion a bit so they aren't outright better than voice analyzers."
