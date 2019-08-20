@@ -43,9 +43,17 @@
 			to_chat(owner, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 			H.dna.remove_mutation(CLOWNMUT)
 	add_to_gang()
+	owner.remove_antag_datum(/datum/antagonist/vigilante)
+	if(istype(SSticker.mode, /datum/game_mode/hell_march))
+		var/obj/item/gangtool/hell_march/HM = new(owner.current)
+		HM.register_device(owner.current)
 
 /datum/antagonist/gang/on_removal()
 	remove_from_gang()
+	for(var/obj/item/gangtool/hell_march/O in owner.current.GetAllContents())
+		qdel(O)
+	if(istype(SSticker.mode, /datum/game_mode/hell_march))
+		owner.add_antag_datum(/datum/antagonist/vigilante)
 	..()
 
 /datum/antagonist/gang/create_team(team)
@@ -194,7 +202,7 @@
 	)
 
 	if(gangtool)
-		var/obj/item/device/gangtool/G = new()
+		var/obj/item/gangtool/G = new()
 		var/where = H.equip_in_one_of_slots(G, slots)
 		if (!where)
 			to_chat(H, "Your Syndicate benefactors were unfortunately unable to get you a Gangtool.")
@@ -259,7 +267,7 @@
 
 /datum/antagonist/gang/boss/proc/admin_take_gangtool(mob/admin)
 	var/list/L = owner.current.get_contents()
-	var/obj/item/device/gangtool/gangtool = locate() in L
+	var/obj/item/gangtool/gangtool = locate() in L
 	if (!gangtool)
 		to_chat(admin, "<span class='danger'>Deleting gangtool failed!</span>")
 		return
@@ -286,11 +294,13 @@
 	member_name = "gangster"
 	var/hud_entry_num // because if you put something other than a number in GLOB.huds, god have mercy on your fucking soul friend
 	var/list/leaders = list() // bosses
+	var/gateways = 0
 	var/max_leaders = MAX_LEADERS_GANG
 	var/list/territories = list() // territories owned by the gang.
 	var/list/lost_territories = list() // territories lost by the gang.
 	var/list/new_territories = list() // territories captured by the gang.
 	var/list/gangtools = list()
+	var/list/tags_by_mind = list() //Assoc list in format of tags_by_mind[mind_of_gangster] = list(tag1, tag2, tag3) where tags are the actual object decals.
 	var/domination_time = NOT_DOMINATING
 	var/dom_attempts = INITIAL_DOM_ATTEMPTS
 	var/color
@@ -348,6 +358,12 @@
 	to_chat(gangster, "<font color='red'>You can identify your mates by their <b>large, bright \[G\] <font color='[color]'>icon</font></b>.</font>")
 	gangster.store_memory("You are a member of the [name] Gang!")
 
+/datum/team/gang/proc/get_soldier_territories(datum/mind/soldier)
+	if(!islist(tags_by_mind[soldier]))	//They have no tagged territories!
+		return 0
+	var/list/tags = tags_by_mind[soldier]
+	return tags.len
+
 /datum/team/gang/proc/handle_territories()
 	next_point_time = world.time + INFLUENCE_INTERVAL
 	if(!leaders.len)
@@ -395,11 +411,15 @@
 			domination_time = new_time
 		message += "<b>[domination_time_remaining()] seconds remain</b> in hostile takeover.<BR>"
 	else
-		var/new_influence = check_territory_income()
-		if(new_influence != influence)
-			message += "Gang influence has increased by [new_influence - influence] for defending [territories.len] territories and [uniformed] uniformed gangsters.<BR>"
-		influence = new_influence
-		message += "Your gang now has <b>[influence] influence</b>.<BR>"
+		if(locate(/obj/item/gangtool/hell_march) in gangtools) // this is a Gangmageddon gang
+			for(var/obj/item/gangtool/hell_march/HM in gangtools)
+				HM.pay_income()
+		else
+			var/new_influence = check_territory_income()
+			if(new_influence != influence)
+				message += "Gang influence has increased by [new_influence - influence] for defending [territories.len] territories and [uniformed] uniformed gangsters.<BR>"
+			influence = new_influence
+			message += "Your gang now has <b>[influence] influence</b>.<BR>"
 	message_gangtools(message)
 	addtimer(CALLBACK(src, .proc/handle_territories), INFLUENCE_INTERVAL)
 
@@ -449,7 +469,7 @@
 	if(!gangtools.len || !message)
 		return
 	for(var/i in gangtools)
-		var/obj/item/device/gangtool/tool = i
+		var/obj/item/gangtool/tool = i
 		var/mob/living/mob = get(tool.loc, /mob/living)
 		if(mob && mob.mind && mob.stat == CONSCIOUS)
 			var/datum/antagonist/gang/gangster = mob.mind.has_antag_datum(/datum/antagonist/gang)
