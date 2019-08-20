@@ -3,6 +3,7 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_TINY
 	var/used = FALSE
+	var/is_spawning = FALSE // hippie -- anti-ghost-spam
 
 /obj/item/antag_spawner/proc/spawn_antag(client/C, turf/T, kind = "", datum/mind/user)
 	return
@@ -56,6 +57,11 @@
 			if(used)
 				to_chat(H, "You already used this contract!")
 				return
+			// hippie start -- anti-ghost-spam
+			if(is_spawning)
+				to_chat(H, "You're already trying to spawn an apprentice!")
+				return
+			is_spawning = TRUE // hippie end
 			var/list/candidates = pollCandidatesForMob("Do you want to play as a wizard's [href_list["school"]] apprentice?", ROLE_WIZARD, null, ROLE_WIZARD, 150, src)
 			if(LAZYLEN(candidates))
 				if(QDELETED(src))
@@ -68,6 +74,7 @@
 				spawn_antag(C.client, get_turf(src), href_list["school"],H.mind)
 			else
 				to_chat(H, "Unable to reach your apprentice! You can either attack the spellbook with the contract to refund your points, or wait and try again later.")
+			is_spawning = FALSE // hippie -- anti-ghost-spam
 
 /obj/item/antag_spawner/contract/spawn_antag(client/C, turf/T, kind ,datum/mind/user)
 	new /obj/effect/particle_effect/smoke(T)
@@ -113,6 +120,10 @@
 	if(!user.onSyndieBase())
 		to_chat(user, "<span class='warning'>[src] is out of range! It can only be used at your base!</span>")
 		return FALSE
+	// hippie start -- anti-ghost-spam
+	if(is_spawning)
+		to_chat(user, "<span class='warning'>Wait for [src] to finish contacting Syndicate Command first!</span>")
+		return FALSE // hippie end
 	return TRUE
 
 
@@ -121,6 +132,7 @@
 		return
 
 	to_chat(user, "<span class='notice'>You activate [src] and wait for confirmation.</span>")
+	is_spawning = TRUE
 	var/list/nuke_candidates = pollGhostCandidates("Do you want to play as a syndicate [borg_to_spawn ? "[lowertext(borg_to_spawn)] cyborg":"operative"]?", ROLE_OPERATIVE, null, ROLE_OPERATIVE, 150, POLL_IGNORE_SYNDICATE)
 	if(LAZYLEN(nuke_candidates))
 		if(QDELETED(src) || !check_usability(user))
@@ -132,6 +144,7 @@
 		qdel(src)
 	else
 		to_chat(user, "<span class='warning'>Unable to connect to Syndicate command. Please wait and try again later or use the teleporter on your uplink to get your points refunded.</span>")
+	is_spawning = FALSE
 
 /obj/item/antag_spawner/nuke_ops/spawn_antag(client/C, turf/T, kind, datum/mind/user)
 	var/mob/living/carbon/human/M = new/mob/living/carbon/human(T)
@@ -241,6 +254,11 @@
 		return
 	if(used)
 		return
+	// hippie start -- anti-ghost-spam
+	if(is_spawning)
+		to_chat(user, "<span class='notice'>You're already trying to shatter the bottle!</span>")
+		return
+	is_spawning = TRUE // hippie end
 	var/list/candidates = pollCandidatesForMob("Do you want to play as a [initial(demon_type.name)]?", ROLE_ALIEN, null, ROLE_ALIEN, 50, src)
 	if(LAZYLEN(candidates))
 		if(used || QDELETED(src))
@@ -254,6 +272,7 @@
 		qdel(src)
 	else
 		to_chat(user, "<span class='notice'>You can't seem to work up the nerve to shatter the bottle. Perhaps you should try again later.</span>")
+	is_spawning = FALSE // hippie -- anti-ghost-spam
 
 
 /obj/item/antag_spawner/slaughter_demon/spawn_antag(client/C, turf/T, kind = "", datum/mind/user)
