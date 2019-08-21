@@ -105,7 +105,7 @@
 	scientist.add_antag_datum(/datum/antagonist/abductor/scientist, T)
 	agent.add_antag_datum(/datum/antagonist/abductor/agent, T)
 	
-/datum/dynamic_ruleset/roundstart/delayed/revs
+/datum/dynamic_ruleset/roundstart/revs
 	weight = 30
 	minimum_players = 25
 
