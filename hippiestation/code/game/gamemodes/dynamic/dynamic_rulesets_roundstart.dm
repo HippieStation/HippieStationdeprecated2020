@@ -56,7 +56,7 @@
 	antag_datum = /datum/antagonist/hivemind
 
 /datum/dynamic_ruleset/roundstart/hivemind/pre_execute()
-	var/num_hosts = max( 1 , rand(0,1) + min(8, round(num_players() / 8) ) ) //1 host for every 8 players up to 64, with a 50% chance of an extra
+	var/num_hosts = max( 1 , rand(0,1) + min(8, round(mode.roundstart_pop_ready / 8) ) ) //1 host for every 8 players up to 64, with a 50% chance of an extra
 	for (var/i = 1 to num_hosts)
 		var/mob/M = pick(candidates)
 		candidates -= M
