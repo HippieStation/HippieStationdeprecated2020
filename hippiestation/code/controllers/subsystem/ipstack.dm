@@ -23,6 +23,7 @@ SUBSYSTEM_DEF(ipstack)
 			var/country = query_get_ip.item[1]
 			if(country)
 				cache[ip] = country
+				qdel(query_get_ip)
 				return country
 		qdel(query_get_ip)
 	return fetch_ip(ip)
