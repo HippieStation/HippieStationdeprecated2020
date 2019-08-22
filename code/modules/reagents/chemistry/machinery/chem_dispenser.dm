@@ -399,7 +399,7 @@
 
 /obj/machinery/chem_dispenser/proc/check_macro_part(var/part, var/res = macroresolution)
 	var/detail = splittext(part, "=")
-	if (abs(text2num(detail[2])) % res != 0)
+	if (abs(text2num(detail[2])) < res)
 		return FALSE
 	return TRUE
 
