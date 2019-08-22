@@ -281,6 +281,10 @@
 	cost = 6
 	surplus = 10
 
+/datum/uplink_item/support/reinforcement
+	desc = "Call in an additional team member. They'll start with a kit of their choice, but that's it."
+	cost = 30
+
 /datum/uplink_item/badass/surplus
 	player_minimum = 0
 
