@@ -209,9 +209,6 @@
 
 /obj/machinery/computer/bsa_control
 	name = "bluespace artillery control"
-	var/obj/machinery/bsa/full/cannon
-	var/notice
-	var/target
 	use_power = NO_POWER_USE
 	circuit = /obj/item/circuitboard/computer/bsa_control
 	icon = 'icons/obj/machines/particle_accelerator.dmi'
@@ -228,7 +225,7 @@
 										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.physical_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "bsa", name, 400, 305, master_ui, state)
+		ui = new(user, src, ui_key, "bsa", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/bsa_control/ui_data()
