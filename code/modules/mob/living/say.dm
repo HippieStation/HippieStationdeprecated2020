@@ -171,7 +171,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		message_range = 1
 		message_mode = MODE_WHISPER
 		src.log_talk(message, LOG_WHISPER)
-		if(fullcrit)
+		if(fullcrit && !HAS_TRAIT(src, TRAIT_NODEATH)) // hippie -- fix NODEATH mobs from being able to whisper their way into death
 			var/health_diff = round(-HEALTH_THRESHOLD_DEAD + health)
 			// If we cut our message short, abruptly end it with a-..
 			var/message_len = length(message)
