@@ -1,0 +1,4 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - bugfix: "NODEATH mobs can no longer accidentally die via whispering"
