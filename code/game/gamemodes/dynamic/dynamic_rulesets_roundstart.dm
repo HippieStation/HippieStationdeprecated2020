@@ -96,6 +96,7 @@
 //                                          //
 //////////////////////////////////////////////
 
+/* hippie -- remove kebab
 /datum/dynamic_ruleset/roundstart/changeling
 	name = "Changelings"
 	antag_flag = ROLE_CHANGELING
@@ -135,7 +136,7 @@
 		var/datum/antagonist/changeling/new_antag = new antag_datum()
 		new_antag.team_mode = team_mode
 		changeling.add_antag_datum(new_antag)
-	return TRUE
+	return TRUE*/
 
 //////////////////////////////////////////////
 //                                          //
