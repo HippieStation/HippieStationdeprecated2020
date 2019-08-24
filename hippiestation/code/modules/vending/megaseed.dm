@@ -1,4 +1,5 @@
 /obj/machinery/vending/hydroseeds
+	light_color = LIGHT_COLOR_GREEN
 	hippie_contraband = list(/obj/item/seeds/amanita = 1,
 		              /obj/item/seeds/glowshroom = 1,
 		              /obj/item/seeds/liberty = 1,
