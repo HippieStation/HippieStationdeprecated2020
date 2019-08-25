@@ -235,7 +235,8 @@
 		H.grab_ghost()
 		H.cluwneify()
 		cluwnes[caller] = H
-		H.mind.enslave_mind_to_creator(caller)
+		if(H.mind)
+			H.mind.enslave_mind_to_creator(caller)
 		H.add_memory("<b>[caller] is your master. Follow their orders at all costs.</b>")
 		H.bloodcrawl = BLOODCRAWL_EAT
 		H.bloodcrawl_allow_items = TRUE
@@ -243,7 +244,7 @@
 		H.AddSpell(new /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/infinity_cluwne)
 		H.AddSpell(new /obj/effect/proc_holder/spell/bloodcrawl)
 		if(locate(/obj/item/badmin_gauntlet) in caller)
-			H.add_atom_colour("#FFD700", FIXED_COLOUR_PRIORITY)
+			H.add_atom_colour("#FFDF00", FIXED_COLOUR_PRIORITY)
 		else
 			H.add_atom_colour("#e429f2", FIXED_COLOUR_PRIORITY)
 		H.update_atom_colour()
