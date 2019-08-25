@@ -21,7 +21,8 @@ GLOBAL_LIST_INIT(badmin_stone_weights, list(
 		BLUESPACE_STONE = list(
 			"Research Director" = 60,
 			"Scientist" = 20,
-			"Mime" = 15
+			"Mime" = 15,
+			"Assistant" = 5
 		),
 		SUPERMATTER_STONE = list(
 			"Chief Engineer" = 60,
@@ -63,7 +64,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	var/datum/martial_art/cqc/martial_art
 	var/mutable_appearance/flashy_aura
 	var/mob/living/carbon/last_aura_holder
-
+	var/hnnnnnnnnngh = FALSE
 
 /obj/item/badmin_gauntlet/Initialize()
 	. = ..()
