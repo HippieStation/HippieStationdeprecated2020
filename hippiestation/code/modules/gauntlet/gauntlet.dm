@@ -483,6 +483,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 					var/list/materials_to_give_science = list(/obj/item/stack/sheet/metal,
 						/obj/item/stack/sheet/plasteel,
 						/obj/item/stack/sheet/mineral/diamond,
+						/obj/item/stack/sheet/mineral/uranium,
 						/obj/item/stack/sheet/mineral/titanium,
 						/obj/item/stack/sheet/mineral/plasma,
 						/obj/item/stack/sheet/mineral/gold,
