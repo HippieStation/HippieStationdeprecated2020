@@ -680,9 +680,9 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	var/has_nostun = HAS_TRAIT_FROM(thanos, TRAIT_STUNIMMUNE, SPECIES_TRAIT)
 	if(has_nostun)
 		REMOVE_TRAIT(thanos, TRAIT_STUNIMMUNE, SPECIES_TRAIT)
-	thanos.Stun(15 SECONDS, TRUE) // it takes roughly 5 seconds for thanos in infinity war
+	thanos.Stun(5 SECONDS, TRUE) // it takes roughly 5 seconds for thanos in infinity war
 	hnnnnnnnnngh = TRUE
-	if(do_after_mob(thanos, src, 15 SECONDS, TRUE))
+	if(do_after_mob(thanos, src, 5 SECONDS, TRUE))
 		if(has_nostun)
 			ADD_TRAIT(thanos, TRAIT_STUNIMMUNE, SPECIES_TRAIT)
 		hnnnnnnnnngh = FALSE
