@@ -153,6 +153,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		var/mob/living/L = pick_n_take(eligible_mobs)
 		DoSnap(L)
 	_CallRevengers()
+	priority_announce("A power surge of unseen proportions has been detected in your sector. Event has been flagged DEVASTATION-CLASS.", "Central Command Higher Dimensional Affairs", 'sound/misc/airraid.ogg')
 	log_game("[key_name(snapper)] snapped, wiping out [players_to_wipe] players.")
 	message_admins("[key_name(snapper)] snapped, wiping out [players_to_wipe] players.")
 
