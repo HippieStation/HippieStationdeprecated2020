@@ -95,11 +95,11 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	last_aura_holder = C
 	C.cut_overlay(flashy_aura)
 	var/static/list/stone_colors = list("#ff0130", "#266ef6", "#ECF332", "#FFC0CB", "#20B2AA", "#e429f2")
-	var/index = (flash_index <= (hnnnnnnnnngh ? 6 : 3)) ? flash_index : 1
+	var/index = (flash_index <= 6) ? flash_index : 1
 	flashy_aura.color = stone_colors[index]
 	C.add_overlay(flashy_aura)
 	flash_index = index + 1
-	next_flash = world.time + 5
+	next_flash = world.time + (hnnnnnnnnngh ? 1 : 5)
 
 /obj/item/badmin_gauntlet/examine(mob/user)
 	. = ..()
