@@ -235,6 +235,7 @@
 		H.grab_ghost()
 		H.cluwneify()
 		cluwnes[caller] = H
+		H.mind.enslave_mind_to_creator(caller)
 		H.add_memory("<b>[caller] is your master. Follow their orders at all costs.</b>")
 		H.bloodcrawl = BLOODCRAWL_EAT
 		H.bloodcrawl_allow_items = TRUE
