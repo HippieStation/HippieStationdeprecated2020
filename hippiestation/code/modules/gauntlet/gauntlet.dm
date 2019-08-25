@@ -2,6 +2,7 @@
 
 GLOBAL_VAR_INIT(gauntlet_snapped, FALSE)
 GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
+GLOBAL_VAR_INIT(revengers_autocalled, FALSE)
 GLOBAL_LIST_INIT(badmin_stones, list(SYNDIE_STONE, BLUESPACE_STONE, SUPERMATTER_STONE, LAG_STONE, CLOWN_STONE, GHOST_STONE))
 GLOBAL_LIST_INIT(badmin_stone_types, list(
 		SYNDIE_STONE = /obj/item/badmin_stone/syndie,
@@ -151,6 +152,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	for(var/i = 1 to players_to_wipe)
 		var/mob/living/L = pick_n_take(eligible_mobs)
 		DoSnap(L)
+	_CallRevengers()
 	log_game("[key_name(snapper)] snapped, wiping out [players_to_wipe] players.")
 	message_admins("[key_name(snapper)] snapped, wiping out [players_to_wipe] players.")
 
@@ -477,7 +479,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 					var/list/materials_to_give_science = list(/obj/item/stack/sheet/metal,
 						/obj/item/stack/sheet/plasteel,
 						/obj/item/stack/sheet/mineral/diamond,
-						/obj/item/stack/sheet/mineral/uranium,
+						/obj/item/stack/sheet/mineral/titanium,
 						/obj/item/stack/sheet/mineral/plasma,
 						/obj/item/stack/sheet/mineral/gold,
 						/obj/item/stack/sheet/mineral/silver,
@@ -572,6 +574,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		ert_canceled = TRUE
 
 /obj/item/badmin_gauntlet/proc/_CallRevengers()
+	if(GLOB.revengers_autocalled)
+		return
 	message_admins("Revengers ERT being auto-called in 15 seconds (<a href='?src=[REF(src)];cancel=1'>CANCEL</a>)")
 	addtimer(CALLBACK(src, .proc/CallRevengers), 15 SECONDS)
 
@@ -639,6 +643,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 		if (teamSpawned)
 			message_admins("Revengers ERT has auto-spawned with the mission: [ertemplate.mission]")
+			GLOB.revengers_autocalled = TRUE
 
 		//Open the Armory doors
 		if(ertemplate.opendoors)
