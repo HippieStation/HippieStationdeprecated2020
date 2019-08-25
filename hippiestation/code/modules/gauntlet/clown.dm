@@ -336,7 +336,7 @@
 /obj/item/reagent_containers/food/snacks/store/cake/birthday/infinity
 	name = "infinity cake"
 	throwforce = 35
-	list_reagents = list("nutriment" = 20, "sprinkles" = 10, "vitamin" = 5, "omnizine" = 40)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/sprinkles = 10, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/medicine/omnizine = 25)
 	tastes = list("cake" = 3, "power" = 2, "sweetness" = 1)
 
 /obj/item/reagent_containers/food/snacks/store/cake/birthday/infinity/slice(accuracy, obj/item/W, mob/user)

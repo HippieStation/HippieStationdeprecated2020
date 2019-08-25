@@ -12042,10 +12042,6 @@
 /obj/item/reagent_containers/food/snacks/meat/slab/xeno,
 /turf/open/floor/grass,
 /area/wizard_station)
-"Bn" = (
-/obj/effect/spawner/template/thanos_farm,
-/turf/open/space/basic,
-/area/space)
 "Bo" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
@@ -24816,7 +24812,7 @@ aa
 aa
 aa
 aa
-Bn
+aa
 aa
 aa
 aa

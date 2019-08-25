@@ -165,6 +165,15 @@
 		return
 	if(!B)
 		return
+	// hippie start -- don't bloodcrawl with badmin stones
+	var/lost_something = FALSE
+	for(var/obj/item/badmin_stone/BS in GetAllContents())
+		if(!istype(BS.loc, /obj/item/badmin_gauntlet)) // just incase some idiot revives thanos
+			BS.forceMove(get_turf(src))
+			lost_something = TRUE
+	if(lost_something)
+		to_chat(src, "<span class='danger italics'>You feel like you lost something in the normal world...</span>")
+	// hippie end
 	forceMove(B.loc)
 	src.client.eye = src
 	src.visible_message("<span class='warning'><B>[src] rises out of the pool of blood!</B></span>")

@@ -49,10 +49,11 @@
 
 
 /obj/item/badmin_stone/ghost/DisarmEvent(atom/target, mob/living/user, proximity_flag)
-	var/total_spirits = ghost_check()
-	FireProjectile(/obj/item/projectile/spirit_fist, target, CLAMP(total_spirits*2.5, 3, 25))
+	var/total_spirits = 0
+	for(var/mob/dead/observer/O in get_turf(user))
+		total_spirits++
+	FireProjectile(/obj/item/projectile/spirit_fist, target, CLAMP(total_spirits*5, 3, 35))
 	user.changeNext_move(CLICK_CD_RANGE)
-
 
 /obj/item/badmin_stone/ghost/GiveAbilities(mob/living/L, gauntlet = FALSE)
 	. = ..()
@@ -68,18 +69,6 @@
 	L.see_invisible = initial(L.see_invisible)
 	L.update_sight()
 
-// Spectral Sword Copypaste
-/obj/item/badmin_stone/ghost/Initialize()
-	. = ..()
-	notify_ghosts("The Ghost Stone has been formed!",
-		enter_link="<a href=?src=[REF(src)];orbit=1>(Click to orbit)</a>",
-		source = src, action=NOTIFY_ORBIT, ignore_key = POLL_IGNORE_SPECTRAL_BLADE)
-
-/obj/item/badmin_stone/ghost/Destroy()
-	for(var/mob/dead/observer/G in spirits)
-		G.invisibility = GLOB.observer_default_invisibility
-	return ..()
-
 /obj/item/badmin_stone/ghost/attack_self(mob/user)
 	if(summon_cooldown > world.time)
 		to_chat(user, "You just recently called out for aid. You don't want to annoy the spirits.")
@@ -90,48 +79,13 @@
 		source = user, action=NOTIFY_ORBIT, ignore_key = POLL_IGNORE_SPECTRAL_BLADE)
 	summon_cooldown = world.time + 60 SECONDS
 
-/obj/item/badmin_stone/ghost/Topic(href, href_list)
-	if(href_list["orbit"])
-		var/mob/dead/observer/ghost = usr
-		if(istype(ghost))
-			ghost.ManualFollow(src)
-
-/obj/item/badmin_stone/ghost/process()
-	..()
-	ghost_check()
-
-/obj/item/badmin_stone/ghost/proc/ghost_check()
-	var/ghost_counter = 0
-	var/mob/dead/observer/current_spirits = list()
-
-	if(aura_holder && world.time >= next_pull)
-		aura_holder.transfer_observers_to(src)
-		next_pull = world.time + 25
-
-	if(!orbiters)
-		orbiters = GetComponent(/datum/component/orbiter)
-	for(var/i in orbiters?.orbiters)
-		if(!isobserver(i))
-			continue
-		var/mob/dead/observer/G = i
-		ghost_counter++
-		G.invisibility = 0
-		current_spirits |= G
-
-	for(var/mob/dead/observer/G in spirits - current_spirits)
-		G.invisibility = GLOB.observer_default_invisibility
-
-	spirits = current_spirits
-
-	return ghost_counter
-
 /////////////////////////////////////////////
 /////////////////// SPELLS //////////////////
 /////////////////////////////////////////////
 
 /obj/effect/proc_holder/spell/targeted/infinity/chariot
 	name = "Ghost Stone: The Chariot"
-	desc = "Open up an unconscious soul to ghosts, ripe for the stealing!"
+	desc = "Open up an unconscious soul to ghosts, ripe for the stealing! They are not loyal to you, however."
 	action_icon_state = "chariot"
 	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_background_icon_state = "ghost"
@@ -216,8 +170,8 @@
 	for(var/mob/living/L in get_hearers_in_view(6, user))
 		if(L == user)
 			continue
-		var/list/effects = list(1, 2, 3, 4, 6)
-		var/list/ni_effects = list(5)
+		var/list/effects = list(1, 2, 3)
+		var/list/ni_effects = list(4, 5, 6)
 		if(!(locate(/obj/item/badmin_stone) in L.GetAllContents()) && !(L.mind && L.mind.has_antag_datum(/datum/antagonist/ert/revenger)))
 			effects += ni_effects
 		var/effect = pick(effects)
@@ -269,7 +223,7 @@
 		return FALSE
 	if(ishuman(t))
 		var/mob/living/carbon/human/cluwne = cluwnes[caller]
-		if(istype(cluwne) && cluwne && cluwne.stat != DEAD && !cluwne.InCritical())
+		if(istype(cluwne) && cluwne && cluwne.stat != DEAD && !cluwne.InFullCritical())
 			to_chat(caller, "<span class='danger'>You still have a magical cluwne alive.</span>")
 			return FALSE
 		var/mob/living/carbon/human/H = t

@@ -127,7 +127,7 @@
 
 // i really hope this never runtimes
 /obj/effect/proc_holder/spell/self/infinity/syndie_jump/cast(list/targets, mob/user)
-	if(istype(get_area(user), /area/wizard_station) || istype(get_area(user), /area/hippie/thanos_farm))
+	if(istype(get_area(user), /area/wizard_station))
 		to_chat(user, "<span class='warning'>You can't jump here!</span>")
 		revert_cast(user)
 		return
@@ -223,6 +223,11 @@
 	var/super_leaping = FALSE
 
 /mob/living/carbon/ex_act(severity, target, origin)
+	if(super_leaping)
+		return
+	return ..()
+
+/mob/living/carbon/contents_explosion(severity, target)
 	if(super_leaping)
 		return
 	return ..()
