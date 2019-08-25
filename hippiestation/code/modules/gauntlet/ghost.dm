@@ -241,6 +241,11 @@
 		H.AddSpell(new /obj/effect/proc_holder/spell/targeted/turf_teleport/blink/infinity_cluwne)
 		H.AddSpell(new /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift/infinity_cluwne)
 		H.AddSpell(new /obj/effect/proc_holder/spell/bloodcrawl)
+		if(locate(/obj/item/badmin_gauntlet) in caller)
+			H.add_atom_colour("#FFD700", FIXED_COLOUR_PRIORITY)
+		else
+			H.add_atom_colour("#e429f2", FIXED_COLOUR_PRIORITY)
+		H.update_atom_colour()
 		var/obj/item/kitchen/knife/butcher/BK = new(get_turf(H))
 		ADD_TRAIT(BK, TRAIT_NODROP, "ghost_stone_cluwne")
 		BK.name = "cluwne's cursed knife"
