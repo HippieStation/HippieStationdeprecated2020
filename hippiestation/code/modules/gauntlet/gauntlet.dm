@@ -63,7 +63,6 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	var/datum/martial_art/cqc/martial_art
 	var/mutable_appearance/flashy_aura
 	var/mob/living/carbon/last_aura_holder
-	var/hnnnnnnnnngh = FALSE
 
 
 /obj/item/badmin_gauntlet/Initialize()
@@ -677,14 +676,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 /obj/item/badmin_gauntlet/proc/FullPowerSequence(mob/living/thanos)
 	thanos.emote("scream")
-	var/has_nostun = HAS_TRAIT_FROM(thanos, TRAIT_STUNIMMUNE, SPECIES_TRAIT)
-	if(has_nostun)
-		REMOVE_TRAIT(thanos, TRAIT_STUNIMMUNE, SPECIES_TRAIT)
-	thanos.Stun(5 SECONDS, TRUE) // it takes roughly 5 seconds for thanos in infinity war
 	hnnnnnnnnngh = TRUE
 	if(do_after_mob(thanos, src, 5 SECONDS, TRUE))
-		if(has_nostun)
-			ADD_TRAIT(thanos, TRAIT_STUNIMMUNE, SPECIES_TRAIT)
 		hnnnnnnnnngh = FALSE
 		if(thanos.stat == DEAD)
 			to_chat(thanos, "<span class='big danger'>You died while absorbing the power of the Badmin Stones. Too bad!</span>")
@@ -694,8 +687,6 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			return
 		thanos.AddSpell(new /obj/effect/proc_holder/spell/self/infinity/snap)
 	else
-		if(has_nostun)
-			ADD_TRAIT(thanos, TRAIT_STUNIMMUNE, SPECIES_TRAIT)
 		hnnnnnnnnngh = FALSE
 
 /obj/item/badmin_gauntlet/proc/check_menu(mob/living/user)
