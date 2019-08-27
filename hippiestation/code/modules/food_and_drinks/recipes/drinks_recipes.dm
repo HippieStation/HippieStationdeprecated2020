@@ -7,10 +7,10 @@
 	mix_sound = 'hippiestation/sound/effects/lean_pour.ogg'
 	
 	
-/datum/chemical_reaction/lean
+/datum/chemical_reaction/dumbfuckjuice
 	name = "Dumb Fuck Juice"
 	id = "dumbfuckjuice"
-	results = list(/datum/reagent/consumable/lean = 3)
+	results = list(/datum/reagent/consumable/dumbfuckjuice = 3)
 	required_reagents = list(/datum/reagent/impedrezene = 1, /datum/reagent/consumable/ethanol/syndicatebomb = 1, /datum/reagent/toxin/plasma = 1)
 	mix_message = "The ingredients mix, and a thick smoke forms. It smells like braindeath."
 	mix_sound = 'hippiestation/sound/effects/lean_pour.ogg'
