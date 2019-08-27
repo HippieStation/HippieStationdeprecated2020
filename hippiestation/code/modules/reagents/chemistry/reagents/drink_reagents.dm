@@ -1,3 +1,13 @@
+/datum/reagent/consumable/wizardsblood
+	name = "Wizard's Blood"
+	description = "An exact recreation of the blood of a wizard. Contains great power."
+	color = "#de72f9" //rgb: rgb(222, 103, 252)
+	taste_description = "magic beans"
+	glass_icon_state = "demonsblood"
+	glass_desc = "This odd liquid smells of iron and seems to fizz with energy..."
+	glass_name = "Wizard's Blood"
+	
+	
 /datum/reagent/consumable
 	boiling_point = 373
 
