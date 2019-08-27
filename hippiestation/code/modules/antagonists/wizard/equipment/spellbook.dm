@@ -142,7 +142,7 @@
 
 /datum/spellbook_entry/item/badmin_gauntlet/Buy(mob/living/carbon/human/user, obj/item/spellbook/book)
 	. = ..()
-	book.uses = 0
+	book.uses = cost
 
 /datum/spellbook_entry/item/badmin_gauntlet/CanBuy(mob/living/carbon/human/user, obj/item/spellbook/book)
 	return ..() && !book.gauntlet_flag && (GLOB.Debug2 || GLOB.joined_player_list.len >= 27)
