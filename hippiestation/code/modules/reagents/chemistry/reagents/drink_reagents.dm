@@ -8,10 +8,9 @@
 	glass_name = "Dumb Fuck Juice"
 	
 	
-/datum/reagent/consumable/dumbfuckjuice/on_mob_life(mob/living/M)
+/datum/reagent/consumable/dumbfuckjuice/on_mob_metabolize(mob/living/L)
     var/trauma_type = pickweight(list(BRAIN_TRAUMA_MILD = 15,BRAIN_TRAUMA_SEVERE = 15,BRAIN_TRAUMA_MAGIC = 20,BRAIN_TRAUMA_SPECIAL = 50))
-			M.gain_trauma_type(trauma_type)
-
+			L.gain_trauma_type(trauma_type)
 	
 	
 /datum/reagent/consumable
