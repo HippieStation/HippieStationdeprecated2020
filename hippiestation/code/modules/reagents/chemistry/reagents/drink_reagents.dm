@@ -1,11 +1,17 @@
-/datum/reagent/consumable/ichor
-	name = "Ichor"
-	description = "Said to be the blood of the gods. This drink, however, is likely just fancy alcohol."
+/datum/reagent/consumable/dumbfuckjuice
+	name = "Dumb Fuck Juice"
+	description = "A particular juice known for its efficiency in destroying the human brain, and it's odd popularity with pomeranians."
 	color = "#de72f9" //rgb: rgb(255, 215, 130)
-	taste_description = "holy retribution"
+	taste_description = "decaying brain cells"
 	glass_icon_state = "vanillapudding"
-	glass_desc = "Said to be the blood of the gods. This drink, however, is likely just fancy alcohol."
-	glass_name = "Ichor"
+	glass_desc = "A particular juice known for its efficiency in destroying the human brain, and it's odd popularity with pomeranians."
+	glass_name = "Dumb Fuck Juice"
+	
+	
+/datum/reagent/consumable/dumbfuckjuice/on_mob_life(mob/living/M)
+    var/trauma_type = pickweight(list(BRAIN_TRAUMA_MILD = 15,BRAIN_TRAUMA_SEVERE = 15,BRAIN_TRAUMA_MAGIC = 20,BRAIN_TRAUMA_SPECIAL = 50))
+			M.gain_trauma_type(trauma_type)
+
 	
 	
 /datum/reagent/consumable
