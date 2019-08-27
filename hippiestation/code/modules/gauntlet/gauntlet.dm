@@ -433,7 +433,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	if(istype(god, /obj/singularity/narsie))
 		send_to_playing_players("<span class='hierophant'><font size=5>Who are you, to intrude and threaten balance?</font></span>\n\
 								<span class='narsie'><font size=5>Foolish mortal. You are NOTHING before me.</font></span>\n\
-								<span class='hierophant'><font size=5>You should choose your words wisely more wisely. You will be nothing before me.</font></span>")
+								<span class='hierophant'><font size=5>You should choose your words more wisely. You will be nothing before me.</font></span>")
 		for(var/mob/M in GLOB.mob_list)
 			if(!isnewplayer(M))
 				flash_color(M, flash_color="#966400", flash_time=1)
