@@ -955,7 +955,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	if(!IG || !istype(IG))
 		return
 	var/prompt = alert("Are you REALLY sure you'd like to erase half of all life in the universe?", "SNAP?", "YES!", "No")
-	if(prompt == "YES!")
+	if(prompt == "YES!" && !QDELETED(src))
 		IG.DoTheSnap(user)
 		user.RemoveSpell(src)
 		SSshuttle.emergencyNoRecall = TRUE
