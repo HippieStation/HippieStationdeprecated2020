@@ -731,7 +731,7 @@
 					if(E.limit)
 						E.limit--
 					uses -= E.cost
-					gauntlet_flag = TRUE // hippie -- badmin gauntlet
+					bought_things[E.type] = bought_things[E.type] ? bought_things[E.type] + 1 : 1 // hippie -- badmin gauntlet stuff
 		else if(href_list["refund"])
 			E = entries[text2num(href_list["refund"])]
 			if(E && E.refundable)
@@ -740,6 +740,7 @@
 					if(!isnull(E.limit))
 						E.limit += result
 					uses += result
+					bought_things[E.type] = bought_things[E.type] ? bought_things[E.type] - max(result / E.cost, E.cost) : 0 // hippie -- badmin gauntlet stuff
 		else if(href_list["page"])
 			tab = sanitize(href_list["page"])
 	attack_self(H)
