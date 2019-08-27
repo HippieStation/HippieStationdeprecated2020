@@ -140,8 +140,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		SEND_SOUND(M, 'hippiestation/sound/effects/SNAP.ogg')
 		if(isliving(M))
 			var/mob/living/L = M
-			L.overlay_fullscreen("thanos_snap", /obj/screen/fullscreen/thanos_snap)
-			addtimer(CALLBACK(L, /mob/living.proc/clear_fullscreen, "thanos_snap"), 25)
+			addtimer(CALLBACK(L, /mob/living.proc/overlay_fullscreen, "thanos_snap", /obj/screen/fullscreen/thanos_snap), 10)
+			addtimer(CALLBACK(L, /mob/living.proc/clear_fullscreen, "thanos_snap"), 35)
 	var/list/eligible_mobs = list()	
 	for(var/mob/living/L in GLOB.player_list)
 		if(L.stat == DEAD || !L.ckey || L == snapper)
@@ -153,10 +153,10 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		var/mob/living/L = pick_n_take(eligible_mobs)
 		DoSnap(L)
 	_CallRevengers()
-	priority_announce("A power surge of unseen proportions has been detected in your sector. Event has been flagged DEVASTATION-CLASS.\n\
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/priority_announce, "A power surge of unseen proportions has been detected in your sector. Event has been flagged DEVASTATION-CLASS.\n\
 						Approximate Power: %$!#ERROR Joules\n\
 						Expected Fatalities: Approximately 50% of all life.\n\
-						Location: [get_area(snapper)]", "Central Command Higher Dimensional Affairs", 'sound/misc/airraid.ogg')
+						Location: [get_area(snapper)]", "Central Command Higher Dimensional Affairs", 'sound/misc/airraid.ogg'), 15 SECONDS)
 	log_game("[key_name(snapper)] snapped, wiping out [players_to_wipe] players.")
 	message_admins("[key_name(snapper)] snapped, wiping out [players_to_wipe] players.")
 
@@ -426,6 +426,31 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			IS.GrabEvent(target, user, proximity_flag)
 		if(INTENT_HELP)
 			IS.HelpEvent(target, user, proximity_flag)
+
+/obj/item/badmin_gauntlet/proc/clash_with_gods(god)
+	if(!istype(loc, /mob/living/carbon))
+		return
+	if(istype(god, /obj/singularity/narsie))
+		send_to_playing_players("<span class='hierophant'><font size=5>Who are you, to intrude and threaten balance?</font></span>\n\
+								<span class='narsie'><font size=5>Foolish mortal. You are NOTHING before me.</font></span>\n\
+								<span class='hierophant'><font size=5>You should choose your words wisely more wisely. You will be nothing before me.</font></span>")
+		for(var/mob/M in GLOB.mob_list)
+			if(!isnewplayer(M))
+				flash_color(M, flash_color="#966400", flash_time=1)
+				shake_camera(M, 4, 3)
+		sound_to_playing_players('sound/magic/clockwork/narsie_attack.ogg')
+		sound_to_playing_players('hippiestation/sound/effects/SNAP.ogg')
+	else if(istype(god, /obj/structure/destructible/clockwork/massive/ratvar))
+		send_to_playing_players("<span class='hierophant'><font size=5>Leave.</font></span>\n\
+								<span class='heavy_brass'><font size=5>HERETIC. I SHALL BURN YOUR CORPSE IN THE FORGES FOR MANY MILLENIA.</font></span>\n\
+								<span class='hierophant'><font size=5>Rot, machine.</font></span>")
+		for(var/mob/M in GLOB.mob_list)
+			if(!isnewplayer(M))
+				flash_color(M, flash_color="#966400", flash_time=1)
+				shake_camera(M, 4, 3)
+		sound_to_playing_players('sound/magic/clockwork/ratvar_attack.ogg')
+		sound_to_playing_players('hippiestation/sound/effects/SNAP.ogg')
+	qdel(god)
 
 /obj/item/badmin_gauntlet/attack_self(mob/living/user)
 	if(!istype(user))
@@ -981,3 +1006,20 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 /obj/item/badmin_gauntlet/for_badmins
 	badmin = TRUE
+
+
+// cool misc effects
+
+/obj/structure/destructible/clockwork/massive/ratvar/process()
+	for(var/obj/item/badmin_gauntlet/BG in world)
+		if(iscarbon(BG.loc) && BG.FullyAssembled())
+			BG.clash_with_gods(src)
+			return
+	return ..()
+
+/obj/singularity/narsie/process()
+	for(var/obj/item/badmin_gauntlet/BG in world)
+		if(iscarbon(BG.loc) && BG.FullyAssembled())
+			BG.clash_with_gods(src)
+			return
+	return ..()
