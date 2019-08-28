@@ -7,3 +7,10 @@
 
 		if (B)
 			. += B.contents
+
+/proc/IsCatbanned(player_ckey)
+	var/client/C = GLOB.directory[player_ckey]
+	if(C)
+		if(C.country == "Brazil")
+			return TRUE
+	return is_banned_from(player_ckey, CATBAN)
