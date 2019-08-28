@@ -1,0 +1,5 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - rscadd: "Abductors can now be a midround antagonist in dynamic."
+  - tweak: "Changed the range for dynamic midround injection to 10-25 minutes, from 15-35 minutes."
