@@ -312,7 +312,7 @@
 
 /obj/effect/proc_holder/spell/self/infinity/cake
 	name = "Clown Stone: Let There Be Cake!"
-	desc = "Summon a powerful cake at your feet, capable of healing those who eat it, and injuring those who are hit by it. <b>Only 2 cakes can exist at the same time.</span>"
+	desc = "Summon a powerful cake at your feet, capable of healing those who eat it, and injuring those who are hit by it. <b>Only 2 cakes can exist at the same time.</b>"
 	action_icon_state = "cake"
 	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_background_icon_state = "clown"
@@ -326,9 +326,21 @@
 			amt++
 	return amt
 
+/obj/effect/proc_holder/spell/self/infinity/cake/proc/GetMostEatenCake()
+	var/obj/item/reagent_containers/food/snacks/store/cake/birthday/infinity/nom_nom
+	for(var/obj/item/reagent_containers/food/snacks/store/cake/birthday/infinity/cake in cakes)
+		if(!QDELETED(cake) && (!nom_nom || cake.bitecount > nom_nom.bitecount))
+			nom_nom = cake
+	return nom_nom
+
 /obj/effect/proc_holder/spell/self/infinity/cake/cast(list/targets, mob/user)
 	if(CountCakes() >= 2)
-		to_chat(user, "<span class='danger'>Only 2 cakes can exist at the same time!</span>")
+		var/obj/item/reagent_containers/food/snacks/store/cake/birthday/infinity/nom_nom = GetMostEatenCake()
+		if(istype(nom_nom))
+			user.visible_message("<span class='notice'>\The [nom_nom] appears at [user]'s feet!</span>")
+			nom_nom.forceMove(user.drop_location())
+		else
+			to_chat(user, "<span class='danger'>Only 2 cakes can exist at the same time!</span>")
 		return
 	user.visible_message("<span class='notice'>A cake appears at [user]'s feet!</span>")
 	cakes += new /obj/item/reagent_containers/food/snacks/store/cake/birthday/infinity(get_turf(user))
@@ -336,7 +348,7 @@
 /obj/item/reagent_containers/food/snacks/store/cake/birthday/infinity
 	name = "infinity cake"
 	throwforce = 35
-	list_reagents = list("nutriment" = 20, "sprinkles" = 10, "vitamin" = 5, "omnizine" = 40)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/sprinkles = 10, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/medicine/omnizine = 25)
 	tastes = list("cake" = 3, "power" = 2, "sweetness" = 1)
 
 /obj/item/reagent_containers/food/snacks/store/cake/birthday/infinity/slice(accuracy, obj/item/W, mob/user)

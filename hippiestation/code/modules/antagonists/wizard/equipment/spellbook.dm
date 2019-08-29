@@ -1,5 +1,5 @@
 /obj/item/spellbook
-	var/gauntlet_flag = FALSE
+	var/list/bought_things = list()
 
 /obj/item/spellbook/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/badmin_gauntlet))
@@ -12,6 +12,7 @@
 		for(var/datum/spellbook_entry/item/badmin_gauntlet/I in entries)
 			if(!isnull(I.limit))
 				I.limit++
+		bought_things[/datum/spellbook_entry/item/badmin_gauntlet] = 0
 		qdel(O)
 		return
 	return ..()
@@ -142,10 +143,13 @@
 
 /datum/spellbook_entry/item/badmin_gauntlet/Buy(mob/living/carbon/human/user, obj/item/spellbook/book)
 	. = ..()
-	book.uses = 0
+	book.uses = cost
 
 /datum/spellbook_entry/item/badmin_gauntlet/CanBuy(mob/living/carbon/human/user, obj/item/spellbook/book)
-	return ..() && !book.gauntlet_flag && (GLOB.Debug2 || GLOB.joined_player_list.len >= 27)
+	for(var/SP in book.bought_things)
+		if(book.bought_things[SP] > 0)
+			return FALSE
+	return ..() && (GLOB.Debug2 || GLOB.joined_player_list.len >= 27)
 
 /datum/spellbook_entry/the_world
 	name = "THE WORLD"

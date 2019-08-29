@@ -34,6 +34,15 @@
 	GLOB.poi_list |= src
 	aura_overlay = mutable_appearance('hippiestation/icons/obj/infinity.dmi', "aura", -MUTATIONS_LAYER)
 	aura_overlay.color = color
+	notify_ghosts("\The [src] has been formed!",
+		enter_link="<a href=?src=[REF(src)];orbit=1>(Click to orbit)</a>",
+		source = src, action=NOTIFY_ORBIT, ignore_key = POLL_IGNORE_SPECTRAL_BLADE)
+
+/obj/item/badmin_stone/Topic(href, href_list)
+	if(href_list["orbit"])
+		var/mob/dead/observer/ghost = usr
+		if(istype(ghost))
+			ghost.ManualFollow(src)
 
 /obj/item/badmin_stone/Destroy()
 	GLOB.poi_list -= src
@@ -42,8 +51,9 @@
 
 /obj/item/badmin_stone/examine(mob/user)
 	. = ..()
-	to_chat(user, "<span class='bold notice'>[name]</span>")
-	ShowExamine(user)
+	. += "<span class='bold notice'>[name]</span>"
+	for(var/A in ability_text)
+		. += "<span class='notice'>[A]</span>"
 
 /obj/item/badmin_stone/forceMove(atom/destination)
 	. = ..()
@@ -63,10 +73,6 @@
 /obj/item/badmin_stone/proc/NoPickingMeUp(mob/user)
 	user.dropItemToGround(src, TRUE)
 	forceMove(get_turf(user))
-
-/obj/item/badmin_stone/proc/ShowExamine(mob/user) // a seperate thing for the gauntlet
-	for(var/A in ability_text)
-		to_chat(user, "<span class='notice'>[A]</span>")
 
 /obj/item/badmin_stone/proc/GiveAbilities(mob/living/L, gauntlet = FALSE)
 	for(var/obj/effect/proc_holder/spell/A in spells)

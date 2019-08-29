@@ -23,6 +23,10 @@
 	H.apply_status_effect(/datum/status_effect/agent_pinpointer/revenger)
 	H.flags_1 |= TESLA_IGNORE_1 // just so they don't get lightning blasted by Thor
 	H.gender = MALE
+	var/obj/item/organ/cyberimp/chest/reviver/reviver = new
+	reviver.Insert(H)
+	var/obj/item/organ/cyberimp/brain/anti_stun/cns = new
+	cns.Insert(H)
 
 /datum/outfit/revenger/hulk
 	name = "Hulk"
@@ -46,10 +50,6 @@
 	. = ..()
 	if(visualsOnly)
 		return
-	var/obj/item/organ/cyberimp/chest/reviver/reviver = new
-	reviver.Insert(H)
-	var/obj/item/organ/cyberimp/brain/anti_stun/cns = new
-	cns.Insert(H)
 	var/obj/item/organ/cyberimp/arm/nanoguy/nano_r = new
 	nano_r.Insert(H)
 	var/obj/item/organ/cyberimp/arm/nanoguy/l/nano_l = new
