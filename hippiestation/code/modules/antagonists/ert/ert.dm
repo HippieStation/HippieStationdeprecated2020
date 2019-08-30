@@ -1,3 +1,6 @@
+/datum/antagonist/ert
+	prevent_roundtype_conversion = FALSE
+
 /datum/antagonist/ert/revenger/hulk
 	role = "Hulk"
 	outfit = /datum/outfit/revenger/hulk
