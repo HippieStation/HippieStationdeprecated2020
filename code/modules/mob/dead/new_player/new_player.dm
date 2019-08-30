@@ -363,12 +363,7 @@
 		if(!arrivals_docked)
 			var/obj/screen/splash/Spl = new(character.client, TRUE)
 			Spl.Fade(TRUE)
-			var/picked_number = rand(1, 10) // hippie -- pykoai changes, also a random chance to make a joke about tgstation
-			if(picked_number > 1)
-				pyko_hello = 'hippiestation/sound/pyko/WelcomeHippie.ogg'
-			else
-				pyko_hello = 'hippiestation/sound/pyko/WelcomeUh.ogg'
-			character.playsound_local(get_turf(character), pyko_hello, 70)
+			character.playsound_local(get_turf(character), 'hippiestation/sound/voice/APPROACHING.ogg', 70) // hippie -- NOW APPROACHING
 
 		character.update_parallax_teleport()
 
