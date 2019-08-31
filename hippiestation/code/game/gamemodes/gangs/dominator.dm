@@ -1,7 +1,3 @@
-#define DOM_BLOCKED_SPAM_CAP 6
-#define DOM_REQUIRED_TURFS 30
-#define DOM_HULK_HITS_REQUIRED 10
-
 /obj/machinery/dominator
 	name = "dominator"
 	desc = "A visibly sinister device. Looks like you can break it if you hit it enough."
@@ -238,7 +234,3 @@
 	stat |= BROKEN
 	update_icon()
 	STOP_PROCESSING(SSmachines, src)
-
-#undef DOM_BLOCKED_SPAM_CAP
-#undef DOM_REQUIRED_TURFS
-#undef DOM_HULK_HITS_REQUIRED
