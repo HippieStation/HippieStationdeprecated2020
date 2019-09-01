@@ -23,13 +23,13 @@ ENABLE_TTS
 
 # The command to run for TTS generation.
 # %I is input textfile,  %O is output wavefile, %V is voice name.
-# TTS_COMMAND mimic -f "%I" -o "%O" -voice "%V"
+#TTS_COMMAND mimic -f "%I" -o "%O" -voice "%V"
 
 # A comma seperated list of male voices
-# TTS_VOICE_MALE ap,kal,awb,kal16,rms
+#TTS_VOICE_MALE ap,kal,awb,kal16,rms
 
 # A comma seperated list of female voices
-# TTS_VOICE_MALE slt
+#TTS_VOICE_MALE slt
 
 ## Enables the GeoIP subsystem when you give it an ipstack.com API key
 #IPSTACK_API_KEY
