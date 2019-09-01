@@ -3295,6 +3295,7 @@
 #include "hippiestation\code\modules\hydroponics\planet_genes.dm"
 #include "hippiestation\code\modules\hydroponics\seed_extractor.dm"
 #include "hippiestation\code\modules\hydroponics\seeds.dm"
+#include "hippiestation\code\modules\hydroponics\grown\apple.dm"
 #include "hippiestation\code\modules\hydroponics\grown\berries.dm"
 #include "hippiestation\code\modules\hydroponics\grown\cereals.dm"
 #include "hippiestation\code\modules\hydroponics\grown\flowers.dm"
