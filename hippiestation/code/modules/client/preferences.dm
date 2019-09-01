@@ -11,6 +11,7 @@
 	var/list/chosen_gear
 	var/gear_tab
 	var/hippie_toggles = HIPPIE_TOGGLES_DEFAULT // our own toggles.
+	var/voice
 
 /datum/preferences/New(client/C)
 	..()
@@ -30,11 +31,17 @@
 /datum/preferences/proc/process_hippie_link(mob/user, list/href_list)
 	switch(href_list["task"])
 		if("input")
-			if(href_list["preference"] == "ipc_screen")
-				var/new_ipc_screen
-				new_ipc_screen = input(user, "Choose your character's screen:", "Character Preference") as null|anything in GLOB.ipc_screens_list
-				if(new_ipc_screen)
-					features["ipc_screen"] = new_ipc_screen
+			switch(href_list["preference"])
+				if("ipc_screen")
+					var/new_ipc_screen
+					new_ipc_screen = input(user, "Choose your character's screen:", "Character Preference") as null|anything in GLOB.ipc_screens_list
+					if(new_ipc_screen)
+						features["ipc_screen"] = new_ipc_screen
+				if("voice")
+					var/list/voices = ((gender == FEMALE) ? splittext(CONFIG_GET(string/tts_voice_female), ",") : splittext(CONFIG_GET(string/tts_voice_male), ","))
+					var/new_voice = input(user, "Choose your character's TTS voice:", "Character Preference") as null|anything in voices
+					if(new_voice)
+						voice = new_voice
 		else
 			switch(href_list["preference"])
 				if("hear_tts")
@@ -140,3 +147,8 @@
 		else
 			if(L[slot_to_string(slot)] < DEFAULT_SLOT_AMT)
 				return TRUE
+
+/datum/preferences/copy_to(mob/living/carbon/human/character, icon_updates, roundstart_checks)
+	. = ..()
+	if(character.dna && voice)
+		character.dna.tts_voice = voice

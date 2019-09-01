@@ -14,6 +14,9 @@
 	//ipcs
 	S["feature_ipc_screen"] >> features["ipc_screen"]
 	features["ipc_screen"] 	= sanitize_inlist(features["ipc_screen"], GLOB.ipc_screens_list)
+
+	S["voice"] >> voice
+	voice = sanitize_inlist(voice, ((gender == FEMALE) ? splittext(CONFIG_GET(string/tts_voice_female), ",") : splittext(CONFIG_GET(string/tts_voice_male), ",")))
 	//gear loadout
 	var/text_to_load
 	S["loadout"] >> text_to_load
@@ -30,6 +33,7 @@
 /datum/preferences/proc/hippie_character_pref_save(savefile/S)
 	//ipcs
 	S["feature_ipc_screen"] << features["ipc_screen"]
+	S["voice"] << voice
 	//gear loadout
 	if(islist(chosen_gear))
 		if(chosen_gear.len)
