@@ -27,8 +27,8 @@
 	special_traits = list(SPECIAL_TRAIT_METALLIC, SPECIAL_TRAIT_SHARP)
 
 /datum/reagent/uranium
-	density = 12
-	special_traits = list(SPECIAL_TRAIT_METALLIC, SPECIAL_TRAIT_RADIOACTIVE, SPECIAL_TRAIT_ULTRADENSE)
+	density = 6
+	special_traits = list(SPECIAL_TRAIT_METALLIC, SPECIAL_TRAIT_RADIOACTIVE)
 
 /datum/reagent/sodium
 	density = 3
