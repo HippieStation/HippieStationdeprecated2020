@@ -2882,6 +2882,7 @@
 #include "hippiestation\code\controllers\subsystem\vote.dm"
 #include "hippiestation\code\controllers\subsystem\processing\circuit.dm"
 #include "hippiestation\code\datums\action.dm"
+#include "hippiestation\code\datums\cinematic.dm"
 #include "hippiestation\code\datums\dna.dm"
 #include "hippiestation\code\datums\ert.dm"
 #include "hippiestation\code\datums\martial.dm"
