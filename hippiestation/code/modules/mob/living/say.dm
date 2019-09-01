@@ -41,8 +41,7 @@
 			H.adjustBrainLoss(20)
 			H.gain_trauma_type(trauma_type, trauma_resistance)
 
-/*
-	say_tts(message, language) TTS removed, leaving handlers here for replacement
+	say_tts(message, language)
 
 /mob/living/proc/say_tts(tts_message, datum/language/tts_language = null)
 	if (!CONFIG_GET(flag/enable_tts))
@@ -90,10 +89,8 @@
 	if (istype(src, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = src
 
-		if (H)
-			if (H.dna)
-				if (H.dna.tts_voice)
-					tts_voice = H.dna.tts_voice
+		if (H && H.dna && H.dna.tts_voice)
+			tts_voice = H.dna.tts_voice
 
 	if (world.time > client.tts_cooldown && !SStts.check_processing(src))
 		var/tts_volume_mod = 1
@@ -108,4 +105,3 @@
 		if (!hud_used.tts)
 			return
 		hud_used.tts.icon_state = "tts_cooldown"
-*/

@@ -5,9 +5,11 @@
 	var/mob/living/carbon/human/H = holder
 	if (H)
 		if (H.gender == FEMALE)
-			tts_voice = pick("betty", "rita", "ursula", "wendy")
+			var/voices = splittext(CONFIG_GET(string/tts_voice_female), ",")
+			tts_voice = pick(LAZYLEN(voices) ? voices : list("slt"))
 		else
-			tts_voice = pick("dennis", "frank", "harry", "kit", "paul")
+			var/voices = splittext(CONFIG_GET(string/tts_voice_male), ",")
+			tts_voice = pick(LAZYLEN(voices) ? voices : list("ap", "kal", "awb", "kal16", "rms"))
 
 /datum/dna/initialize_dna(newblood_type, skip_index = FALSE)
 	. = ..()

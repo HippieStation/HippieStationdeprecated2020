@@ -60,19 +60,6 @@
 
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Play TTS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/start_tts_engine()
-	set category = "Debug"
-	set name = "Start TTS Engine"
-
-	if (!check_rights(R_DEBUG))
-		return
-	if (!CONFIG_GET(flag/enable_tts))
-		to_chat(usr, "<span='warning'>Text-to-Speech is not enabled!</span>")
-		return
-
-	if (SStts)
-		SStts.start_engine()
-
 /client/proc/add_ooc_icons()
 	var/icons = ""
 	if(holder)

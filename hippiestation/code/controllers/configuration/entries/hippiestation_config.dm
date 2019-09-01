@@ -15,5 +15,21 @@
 
 /datum/config_entry/flag/enable_tts
 
+// %I is input textfile
+// %O is output wavefile
+// %V is voice name
+// -v should be in there so we can try to parse `0.593651 seconds of speech synthesized in 0.845112`
+/datum/config_entry/string/tts_command
+	config_entry_value = "mimic -v -f \"%I\" -o \"%O\" -voice \"%V\""
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/string/tts_voice_male
+	config_entry_value = "ap,kal,awb,kal16,rms"
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/string/tts_voice_female
+	config_entry_value = "slt"
+	protection = CONFIG_ENTRY_LOCKED
+
 /datum/config_entry/string/ipstack_api_key
 	protection = CONFIG_ENTRY_HIDDEN | CONFIG_ENTRY_LOCKED
