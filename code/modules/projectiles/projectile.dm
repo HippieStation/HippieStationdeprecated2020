@@ -532,7 +532,13 @@
 	if(QDELETED(target))
 		return FALSE
 	if(!ignore_source_check && firer)
-		var/mob/M = firer
+		var/mob/M = firer 
+		// hippie start
+		if(isliving(M))
+			var/mob/living/L = M
+			if((target in L.hasparasites()) && target.loc == L.loc)
+				return FALSE
+		// hippie end
 		if((target == firer) || ((target == firer.loc) && ismecha(firer.loc)) || (target in firer.buckled_mobs) || (istype(M) && (M.buckled == target)))
 			return FALSE
 	if(!ignore_loc && (loc != target.loc))
