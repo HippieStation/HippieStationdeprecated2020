@@ -42,6 +42,10 @@ PROCESSING_SUBSYSTEM_DEF(tts)
 		message_admins("TTS request has no mob")
 		delete_files(T)
 		return
+	if(!(T.voice in splittext(CONFIG_GET(string/tts_voice_male), ",")) && !(T.voice in splittext(CONFIG_GET(string/tts_voice_female), ",")))
+		message_admins("TTS request has invalid voice")
+		delete_files(T)
+		return
 
 	var/next_channel = open_sound_channel()
 
