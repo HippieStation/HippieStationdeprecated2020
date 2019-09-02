@@ -73,7 +73,8 @@ GLOBAL_LIST_INIT(summoned_magic, list(
 	/obj/item/warpwhistle,
 	/obj/item/clothing/suit/space/hardsuit/shielded/wizard,
 	/obj/item/immortality_talisman,
-	/obj/item/melee/ghost_sword))
+	/obj/item/melee/ghost_sword,
+	/obj/item/stand_arrow)) // hippie -- stand arrow
 
 GLOBAL_LIST_INIT(summoned_special_magic, list(
 	/obj/item/gun/magic/staff/change,
