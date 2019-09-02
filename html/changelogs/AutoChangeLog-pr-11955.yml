@@ -1,0 +1,4 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - rscadd: "Stand arrow can now appear in Summon Magic"
