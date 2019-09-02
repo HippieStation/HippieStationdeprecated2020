@@ -198,6 +198,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				else
 					dispGender = "Other"
 				dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'>[dispGender]</a><BR>"
+			dat += "<b>Voice:</b> <a href='?_src_=prefs;preference=voice;task=input'>[voice ? voice : "Random"]</a><BR>" // hippie -- tts voice
 			dat += "<b>Age:</b> <a href='?_src_=prefs;preference=age;task=input'>[age]</a><BR>"
 
 			dat += "<b>Special Names:</b><BR>"
