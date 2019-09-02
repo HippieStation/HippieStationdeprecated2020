@@ -136,8 +136,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	if(snapper.InCritical())
 		snapper.say("You should've gone for the head...", forced = "badmin gauntlet")
 	snapper.visible_message("<span class='userdanger'>[snapper] raises their Badmin Gauntlet into the air, and... <i>snap.</i></span>")
+	SEND_SOUND(world, sound('hippiestation/sound/effects/SNAP.ogg'))
 	for(var/mob/M in GLOB.mob_list)
-		SEND_SOUND(M, 'hippiestation/sound/effects/SNAP.ogg')
 		if(isliving(M))
 			var/mob/living/L = M
 			addtimer(CALLBACK(L, /mob/living.proc/overlay_fullscreen, "thanos_snap", /obj/screen/fullscreen/thanos_snap), 10)
@@ -153,12 +153,26 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		var/mob/living/L = pick_n_take(eligible_mobs)
 		DoSnap(L)
 	_CallRevengers()
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/priority_announce, "A power surge of unseen proportions has been detected in your sector. Event has been flagged DEVASTATION-CLASS.\n\
-						Approximate Power: %$!#ERROR Joules\n\
-						Expected Fatalities: Approximately 50% of all life.\n\
-						Location: [get_area(snapper)]", "Central Command Higher Dimensional Affairs", 'sound/misc/airraid.ogg'), 15 SECONDS)
+	INVOKE_ASYNC(src, .proc/TotallyFine)
 	log_game("[key_name(snapper)] snapped, wiping out [players_to_wipe] players.")
 	message_admins("[key_name(snapper)] snapped, wiping out [players_to_wipe] players.")
+
+/obj/item/badmin_gauntlet/proc/TotallyFine()
+	sleep(10 SECONDS)
+	priority_announce("A power surge of unseen proportions has been detected in your sector. Event has been flagged DEVASTATION-CLASS.\n\
+						Approximate Power: %$!#ERROR Joules\n\
+						Expected Fatalities: Approximately 50% of all life.", "Central Command Higher Dimensional Affairs", 'sound/misc/airraid.ogg')
+	sleep(15 SECONDS)
+	priority_announce("Attempting to contain source of power surge. Deploying solution package.\n\
+						Deployment ETA: 90 SECONDS. ","Central Command Higher Dimensional Affairs")
+	sleep(5 SECONDS)
+	set_security_level(SEC_LEVEL_DELTA)
+	SSshuttle.registerHostileEnvironment(src)
+	SSshuttle.lockdown = TRUE
+	sleep(76 SECONDS)
+	SEND_SOUND(world, sound('sound/machines/alarm.ogg'))
+	sleep(9 SECONDS)
+	Cinematic(CINEMATIC_THANOS, world, CALLBACK(GLOBAL_PROC,/proc/ending_helper))
 
 /obj/item/badmin_gauntlet/proc/GetWeightedChances(list/job_list, list/blacklist)
 	var/list/jobs = list()
@@ -958,8 +972,6 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	if(prompt == "YES!" && !QDELETED(src))
 		IG.DoTheSnap(user)
 		user.RemoveSpell(src)
-		SSshuttle.emergencyNoRecall = TRUE
-		SSshuttle.emergency.request(null, set_coefficient = 0.3)
 
 /////////////////////////////////////////////
 /////////////////// OTHER ///////////////////
