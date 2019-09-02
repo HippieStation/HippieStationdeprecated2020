@@ -640,7 +640,35 @@
 		if(obj.density)
 			to_chat(user, "<span class='warning'>There's not enough room here!</span>")
 			return FALSE
-
+	var/list/open = list()
+	var/list/closed = list()
+	for(var/turf/T in view(3, user))
+		if(isclosedturf(T))
+			closed += T
+		else if(isopenturf(T))
+			open += T
+	if(open.len < DOM_REQUIRED_TURFS)
+		var/c_images = list()
+		for(var/turf/T in closed)
+			var/image/I = image('icons/obj/closet.dmi', T, "cardboard_special")
+			I.layer = ABOVE_LIGHTING_LAYER
+			I.plane = ABOVE_LIGHTING_PLANE
+			c_images += I
+			user.client.images += I
+		for(var/turf/T in open)
+			var/image/I = image('hippiestation/icons/effects/effects.dmi', T, "checkmark")
+			I.layer = ABOVE_LIGHTING_LAYER
+			I.plane = ABOVE_LIGHTING_PLANE
+			c_images += I
+			user.client.images += I
+		if(alert(user,"Are you sure you wish to place the dominator here?\nThere needs to be [DOM_REQUIRED_TURFS - open.len] more open tiles!","Confirm","Ready","Later") != "Ready")
+			for(var/image/I in c_images)
+				user.client.images -= I
+				qdel(I)
+			return
+		for(var/image/I in c_images)
+			user.client.images -= I
+			qdel(I)
 	return ..()
 
 /datum/gang_item/equipment/dominator/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
