@@ -2,7 +2,7 @@
 	name = "Abductors"
 	antag_flag = ROLE_ABDUCTOR
 	required_candidates = 2
-	weight = 5
+	weight = 3
 	cost = 15
 	high_population_requirement = 10
 	var/datum/team/abductor_team/team
