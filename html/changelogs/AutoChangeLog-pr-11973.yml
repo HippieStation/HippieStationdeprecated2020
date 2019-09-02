@@ -1,4 +1,0 @@
-author: "steamp0rt"
-delete-after: True
-changes: 
-  - bugfix: "Shooting certain weapons with a Range F guardian is no longer suicide"

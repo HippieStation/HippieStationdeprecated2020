@@ -1,4 +1,0 @@
-author: "steamp0rt"
-delete-after: True
-changes: 
-  - bugfix: "Non-abductor midround rulesets should actually have a chance of happening now."

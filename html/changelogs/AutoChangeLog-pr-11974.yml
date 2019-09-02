@@ -1,5 +1,0 @@
-author: "steamp0rt"
-delete-after: True
-changes: 
-  - rscadd: "Added a HUD for dominator placement"
-  - rscadd: "Added a HUD for guardian range."
