@@ -1,4 +1,0 @@
-author: "steamp0rt"
-delete-after: True
-changes: 
-  - bugfix: "ERTs no longer stop the round from ending"
