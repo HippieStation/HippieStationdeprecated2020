@@ -1,5 +1,0 @@
-author: "steamp0rt"
-delete-after: True
-changes: 
-  - bugfix: "You should now hopefully display the correct flag in OOC"
-  - bugfix: "Added China and Poland to the OOC flag sprites"
