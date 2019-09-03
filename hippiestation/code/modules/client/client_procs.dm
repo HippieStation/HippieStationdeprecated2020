@@ -71,6 +71,15 @@
 			icons += "[icon2html('hippiestation/icons/ooc_icons/brain.dmi', world)]"
 	if(is_donator)
 		icons += "[icon2html('hippiestation/icons/ooc_icons/gold_coin.dmi', world)]"
-	if(country && (country in icon_states('hippiestation/icons/ooc_icons/countries.dmi')))
-		icons += "[icon2html('hippiestation/icons/ooc_icons/countries.dmi', world, country)]"
+	var/list/flags = icon_states('hippiestation/icons/ooc_icons/countries.dmi')
+	if((country && length(country)) || country_icon)
+		if(country && length(country) && !country_icon)
+			if(country in flags)
+				country_icon = country
+			else
+				for(var/name in flags)
+					if(findtext(name, country))
+						country_icon = name
+		if(country_icon)
+			icons += "[icon2html('hippiestation/icons/ooc_icons/countries.dmi', world, country_icon)]"
 	return icons
