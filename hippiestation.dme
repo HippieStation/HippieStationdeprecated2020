@@ -3382,6 +3382,7 @@
 #include "hippiestation\code\modules\mining\machine_unloading.dm"
 #include "hippiestation\code\modules\mining\machine_vending.dm"
 #include "hippiestation\code\modules\mob\emote.dm"
+#include "hippiestation\code\modules\mob\inventory.dm"
 #include "hippiestation\code\modules\mob\login.dm"
 #include "hippiestation\code\modules\mob\mob.dm"
 #include "hippiestation\code\modules\mob\mob_defines.dm"
