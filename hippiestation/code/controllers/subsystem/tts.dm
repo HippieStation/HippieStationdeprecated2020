@@ -73,6 +73,11 @@ PROCESSING_SUBSYSTEM_DEF(tts)
 			return
 		var/list/listeners = SSmobs.clients_by_zlevel[origin.z]
 		listeners = listeners & hearers(world.view, origin)
+		if(T.owner.mob && T.owner.mob.loc != origin)
+			for(var/mob/living/L in T.owner.mob.loc)
+				listeners |= L
+		for(var/mob/dead/observer/O in range(world.view, origin))
+			listeners |= O
 
 		T.owner.tts_cooldown = world.time + T.length
 
@@ -84,7 +89,7 @@ PROCESSING_SUBSYSTEM_DEF(tts)
 			if (!(P.client.prefs.hippie_toggles & SOUND_TTS))
 				continue
 			if (T.language)
-				if (!P.can_speak_in_language(T.language))
+				if (!P.can_speak_in_language(T.language) && !isobserver(P))
 					continue
 
 			if (get_dist(P, origin) <= world.view)
@@ -108,7 +113,6 @@ PROCESSING_SUBSYSTEM_DEF(tts)
 			status = STATUS_GENERATING
 			filename = md5("[world.time][owner.ckey][text][voice]")
 			if(fexists(TTS_PATH + "[filename].lock"))
-				SStts.delete_files(src)
 				qdel(src)
 				return
 			text2file("", TTS_PATH + "[filename].lock")
