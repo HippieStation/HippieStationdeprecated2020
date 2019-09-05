@@ -220,7 +220,7 @@
 	var/recharge_cooldown = 0 //if this number is greater than 0, we can't recharge
 	var/med_cooldown = 0
 	var/cloak_use_rate = 1.2 //cloaked energy consume rate
-	var/speed_use_rate = 1.6 //speed energy consume rate
+	var/speed_use_rate = 2.4 //speed energy consume rate
 	var/crit_energy = 20 //critical energy level
 	var/regen_rate = 3 //rate at which we regen
 	var/msg_time_react = 0
@@ -333,7 +333,7 @@
 	if(mode == NANO_CLOAK)
 		cut_nano_energy(cloak_use_rate / upgrademulti,NANO_CHARGE_DELAY)
 	else if(mode == NANO_SPEED)
-		cut_nano_energy(speed_use_rate / upgrademulti,NANO_CHARGE_DELAY)
+		cut_nano_energy(speed_use_rate * upgrademulti,NANO_CHARGE_DELAY)
 
 /obj/item/clothing/suit/space/hardsuit/nano/hit_reaction(mob/living/carbon/human/user, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	var/obj/item/projectile/P = hitby
@@ -342,11 +342,11 @@
 			user.visible_message("<span class='danger'>[user]'s shields deflect [attack_text] draining their energy!</span>")
 			if(damage)
 				if(attack_type != STAMINA)
-					cut_nano_energy((10 + damage)/upgrademulti,NANO_CHARGE_DELAY)//laser guns, anything lethal drains 5 + the damage dealt
+					cut_nano_energy((10 + damage)*upgrademulti,NANO_CHARGE_DELAY)//laser guns, anything lethal drains 5 + the damage dealt
 				else if(P.damage_type == STAMINA && attack_type == PROJECTILE_ATTACK)
-					cut_nano_energy(20/upgrademulti,NANO_CHARGE_DELAY)//stamina damage, aka disabler beams
+					cut_nano_energy(20*upgrademulti,NANO_CHARGE_DELAY)//stamina damage, aka disabler beams
 			if(istype(P, /obj/item/projectile/energy/electrode))//if electrode aka taser
-				cut_nano_energy(35/upgrademulti,NANO_CHARGE_DELAY)
+				cut_nano_energy(35*upgrademulti,NANO_CHARGE_DELAY)
 			return TRUE
 		else
 			user.visible_message("<span class='warning'>[user]'s shields fail to deflect [attack_text].</span>")
@@ -419,10 +419,10 @@
 				helmet.display_visor_message("Maximum Armor!")
 				var/datum/component/footstep/FS = Wearer.GetComponent(/datum/component/footstep)
 				FS.volume = 1.5
-				block_chance = 50
+				block_chance = hacked ? 65 : 50 //65% block emagged, 50% normal
 				slowdown = initial(slowdown)
-				armor = armor.setRating(melee = 50, bullet = 50, laser = 50, energy = 55, bomb = 90, rad = 90)
-				helmet.armor = helmet.armor.setRating(melee = 50, bullet = 50, laser = 50, energy = 55, bomb = 90, rad = 90)
+				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 90, rad = 90)
+				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 90, rad = 90)
 				Wearer.filters = list()
 				animate(Wearer, alpha = 255, time = 5)
 				Wearer.remove_movespeed_modifier(NANO_SPEED)
@@ -458,15 +458,15 @@
 				FS.volume = 1.0
 				block_chance = initial(block_chance)
 				slowdown = initial(slowdown)
-				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
-				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
+				armor = armor.setRating(melee = 25, bullet = 25, laser = 25, energy = 45, bomb = 70, rad = 70)
+				helmet.armor = helmet.armor.setRating(melee = 25, bullet = 25, laser = 25, energy = 45, bomb = 70, rad = 70)
 				Wearer.adjustOxyLoss(-5, 0)
 				Wearer.adjustStaminaLoss(-20)
 				Wearer.filters = filter(type="outline", size=0.1, color=rgb(255,255,224))
 				animate(Wearer, alpha = 255, time = 5)
 				REMOVE_TRAIT(Wearer, TRAIT_PUSHIMMUNE, NANO_STRENGTH)
 				ADD_TRAIT(Wearer, TRAIT_TACRELOAD, NANO_SPEED)
-				Wearer.add_movespeed_modifier(NANO_SPEED, update=TRUE, priority=100, multiplicative_slowdown=-0.25, override = TRUE, blacklisted_movetypes=(FLYING|FLOATING))
+				Wearer.add_movespeed_modifier(NANO_SPEED, update=TRUE, priority=100, multiplicative_slowdown = hacked ? -1 : -0.25, override = TRUE, blacklisted_movetypes=(FLYING|FLOATING))
 				ADD_TRAIT(Wearer, TRAIT_IGNORESLOWDOWN, NANO_SPEED)
 				REMOVE_TRAIT(Wearer, TRAIT_LIGHT_STEP, NANO_SPEED)
 				style.remove(Wearer)
