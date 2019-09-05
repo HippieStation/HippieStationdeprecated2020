@@ -1,4 +1,4 @@
-#define TTS_PATH    "tts\\"
+#define TTS_PATH    "tts/"
 #define STATUS_NEW        0
 #define STATUS_GENERATING 1
 #define STATUS_PLAYING    2
@@ -9,10 +9,18 @@ PROCESSING_SUBSYSTEM_DEF(tts)
 	runlevels = (RUNLEVEL_LOBBY | RUNLEVEL_GAME | RUNLEVEL_POSTGAME)
 	var/list/ckeys_playing = list()// list of ckeys of users currently playing a tts sound
 
+/datum/controller/subsystem/processing/tts/proc/delete_everything()
+	for(var/datum/tts/T in processing)
+		delete_files(T)
+	can_fire = FALSE
+
 /datum/controller/subsystem/processing/tts/Initialize()
 	if (!CONFIG_GET(flag/enable_tts))
 		can_fire = FALSE
 	return ..()
+
+/datum/controller/subsystem/processing/tts/stat_entry()
+	..("P:[ckeys_playing.len]")
 
 /datum/controller/subsystem/processing/tts/proc/check_processing(client/C)
 	if (!C)
@@ -42,7 +50,7 @@ PROCESSING_SUBSYSTEM_DEF(tts)
 		message_admins("TTS request has no mob")
 		delete_files(T)
 		return
-	if(!(T.voice in splittext(CONFIG_GET(string/tts_voice_male), ",")) && !(T.voice in splittext(CONFIG_GET(string/tts_voice_female), ",")))
+	if(!(T.voice in splittext(CONFIG_GET(string/tts_voice_male), ",")) && !(T.voice in splittext(CONFIG_GET(string/tts_voice_female), ",")) && T.voice != "")
 		message_admins("TTS request has invalid voice")
 		delete_files(T)
 		return
@@ -68,7 +76,7 @@ PROCESSING_SUBSYSTEM_DEF(tts)
 
 		T.owner.tts_cooldown = world.time + T.length
 
-		addtimer(CALLBACK(T.owner.mob, /mob/living.proc/update_tts_hud), T.length)
+		addtimer(CALLBACK(T.owner.mob, /mob/living.proc/update_tts_hud), T.length + 5)
 		addtimer(CALLBACK(src, .proc/delete_files, T), T.length)
 
 		for (var/M in listeners)
@@ -100,6 +108,7 @@ PROCESSING_SUBSYSTEM_DEF(tts)
 			status = STATUS_GENERATING
 			filename = md5("[world.time][owner.ckey][text][voice]")
 			if(fexists(TTS_PATH + "[filename].lock"))
+				SStts.delete_files(src)
 				qdel(src)
 				return
 			text2file("", TTS_PATH + "[filename].lock")
@@ -113,6 +122,7 @@ PROCESSING_SUBSYSTEM_DEF(tts)
 			var/list/output = world.shelleo(command)
 			var/errorlevel = output[SHELLEO_ERRORLEVEL]
 			if(errorlevel)
+				SStts.delete_files(src)
 				qdel(src)
 				return
 			output = world.shelleo("mediainfo --Inform=\"General;%Duration%\" \"[TTS_PATH][filename].wav\"")
