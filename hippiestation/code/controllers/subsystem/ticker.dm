@@ -6,7 +6,7 @@
 	login_music_name = pop(splittext(login_music, "/")) // title name will be last element of the list
 
 /datum/controller/subsystem/ticker/Shutdown()
-	SStts.delete_everything() // get rid of any clogged TTS files
+	//SStts.delete_everything() // get rid of any clogged TTS files
 	gather_newscaster() //called here so we ensure the log is created even upon admin reboot
 	save_admin_data()
 	update_everything_flag_in_db()
