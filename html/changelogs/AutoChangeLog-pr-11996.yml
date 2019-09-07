@@ -1,0 +1,5 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - bugfix: "Ghosts can now hear TTS"
+  - bugfix: "TTS now works properly in lockers/mechs/crates/etc"
