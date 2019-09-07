@@ -61,6 +61,7 @@
 	var/mob/living/carbon/human/H = user
 	if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
 		var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
+		jumpdistance *= NS.upgrademulti
 		if(NS.mode == NANO_STRENGTH)
 			if(istype(T) || istype(S))
 				if(NS.cell.charge >= NANO_JUMP_USE)
@@ -435,6 +436,10 @@
 
 			if(NANO_CLOAK)
 				helmet.display_visor_message("Cloak Engaged!")
+				if(prob(hacked?15:2))
+					var/datum/effect_system/spark_spread/spark = new
+					spark.set_up(1, 1, src)
+					spark.start()
 				var/datum/component/footstep/FS = Wearer.GetComponent(/datum/component/footstep)
 				FS.volume = hacked ? 0.25 : 0.75 //upgrade module
 				visible_message("<span class='warning'>[Wearer] suddenly disappears!</span>", vision_distance = 3)
@@ -443,7 +448,7 @@
 				armor = armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				helmet.armor = helmet.armor.setRating(melee = 40, bullet = 40, laser = 40, energy = 45, bomb = 70, rad = 70)
 				Wearer.filters = filter(type="blur",size=1)
-				animate(Wearer, alpha = 40, time = 2)
+				animate(Wearer, alpha = 40, time = 5/upgrademulti)
 				Wearer.remove_movespeed_modifier(NANO_SPEED)
 				REMOVE_TRAIT(Wearer, TRAIT_IGNORESLOWDOWN, NANO_SPEED)
 				REMOVE_TRAIT(Wearer, TRAIT_PUSHIMMUNE, NANO_STRENGTH)
