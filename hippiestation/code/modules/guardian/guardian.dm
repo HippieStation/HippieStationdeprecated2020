@@ -38,6 +38,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	melee_damage_upper = 15
 	AIStatus = AI_OFF
 	hud_type = /datum/hud/guardian
+	var/list/barrier_images = list()
 	var/custom_name = FALSE
 	var/atk_cooldown = 10
 	var/range = 10
@@ -88,6 +89,36 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	GLOB.parasites -= src
 	return ..()
 
+/mob/living/simple_animal/hostile/guardian/proc/cut_barriers()
+	for(var/image/I in barrier_images)
+		client.images -= I
+		qdel(I)
+	barrier_images.Cut()
+
+/mob/living/simple_animal/hostile/guardian/proc/setup_barriers()
+	cut_barriers()
+	if(!is_deployed() || (range <= 1 || (stats && stats.range <= 1)) || !summoner || get_dist_euclidian(summoner, src) < (range - world.view))
+		return
+	var/sx = summoner.x
+	var/sy = summoner.y
+	var/sz = summoner.z
+	for(var/turf/T in getline(locate(sx - range, sy + range + 1, sz), locate(sx + range, sy + range + 1, sz)))
+		barrier_images += image('hippiestation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, EAST)
+	for(var/turf/T in getline(locate(sx - range, sy - range - 1, sz), locate(sx + range, sy - range - 1, sz)))
+		barrier_images += image('hippiestation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, EAST)
+	for(var/turf/T in getline(locate(sx - range - 1, sy - range, sz), locate(sx - range - 1, sy + range, sz)))
+		barrier_images += image('hippiestation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, NORTH)
+	for(var/turf/T in getline(locate(sx + range + 1, sy - range, sz), locate(sx + range + 1, sy + range, sz)))
+		barrier_images += image('hippiestation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, NORTH)
+	barrier_images += image('hippiestation/icons/effects/effects.dmi', locate(sx - range - 1 , sy + range + 1, sz), "barrier", ABOVE_LIGHTING_LAYER, SOUTHEAST)
+	barrier_images += image('hippiestation/icons/effects/effects.dmi', locate(sx + range + 1, sy + range + 1, sz), "barrier", ABOVE_LIGHTING_LAYER, SOUTHWEST)
+	barrier_images += image('hippiestation/icons/effects/effects.dmi', locate(sx + range + 1, sy - range - 1, sz), "barrier", ABOVE_LIGHTING_LAYER, NORTHWEST)
+	barrier_images += image('hippiestation/icons/effects/effects.dmi', locate(sx - range - 1, sy - range - 1, sz), "barrier", ABOVE_LIGHTING_LAYER, NORTHEAST)
+	for(var/image/I in barrier_images)
+		I.layer = ABOVE_LIGHTING_LAYER
+		I.plane = ABOVE_LIGHTING_PLANE
+		client.images += I
+
 /mob/living/simple_animal/hostile/guardian/proc/setthemename(pickedtheme) //set the guardian's theme to something cool!
 	if(!pickedtheme)
 		pickedtheme = pick("magic", "tech", "carp")
@@ -135,6 +166,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	to_chat(src, "<span class='holoparasite'>You are <font color=\"[namedatum.colour]\"><b>[real_name]</b></font>, bound to serve [summoner.real_name].</span>")
 	to_chat(src, "<span class='holoparasite'>You are capable of manifesting or recalling to your master with the buttons on your HUD. You will also find a button to communicate with [summoner.p_them()] privately there.</span>")
 	to_chat(src, "<span class='holoparasite'>While personally invincible, you will die if [summoner.real_name] does, and any damage dealt to you will have a portion passed on to [summoner.p_them()] as you feed upon [summoner.p_them()] to sustain yourself.</span>")
+	setup_barriers()
 
 /mob/living/simple_animal/hostile/guardian/Life() //Dies if the summoner dies
 	. = ..()
@@ -168,8 +200,13 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 			qdel(src)
 	snapback()
 
+/mob/living/simple_animal/hostile/guardian/proc/OnMoved()
+	snapback()
+	setup_barriers()
+
 /mob/living/simple_animal/hostile/guardian/proc/GoBerserk()
 	UnregisterSignal(summoner, COMSIG_MOVABLE_MOVED)
+	cut_barriers()
 	berserk = TRUE
 	summoner = null
 	maxHealth = 750
@@ -231,6 +268,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	if(do_the_cool_invisible_thing && alpha == 64)
 		alpha = initial(alpha)
 	snapback()
+	setup_barriers()
 
 /mob/living/simple_animal/hostile/guardian/proc/snapback()
 	pixel_x = initial(pixel_x)
@@ -418,6 +456,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		new /obj/effect/temp_visual/guardian/phase(loc)
 		cooldown = world.time + 10
 		reset_perspective()
+		setup_barriers()
 		return TRUE
 	return FALSE
 
@@ -432,6 +471,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	new /obj/effect/temp_visual/guardian/phase/out(loc)
 	forceMove(summoner)
 	cooldown = world.time + 10
+	cut_barriers()
 	return TRUE
 
 /mob/living/simple_animal/hostile/guardian/proc/ToggleMode()
