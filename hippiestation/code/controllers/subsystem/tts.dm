@@ -1,22 +1,21 @@
 #define TTS_PATH    "tts/"
-#define STATUS_NEW        0
-#define STATUS_GENERATING 1
-#define STATUS_PLAYING    2
+#define STATUS_NEW			0
+#define STATUS_GENERATING	1
+#define STATUS_INTERMEDIATE	2
+#define STATUS_PLAYING		3
 
 PROCESSING_SUBSYSTEM_DEF(tts)
 	name = "Text-to-Speech"
 	wait = 2
 	runlevels = (RUNLEVEL_LOBBY | RUNLEVEL_GAME | RUNLEVEL_POSTGAME)
+	flags = SS_BACKGROUND|SS_POST_FIRE_TIMING
 	var/list/ckeys_playing = list()// list of ckeys of users currently playing a tts sound
-
-/datum/controller/subsystem/processing/tts/proc/delete_everything()
-	for(var/datum/tts/T in processing)
-		delete_files(T)
-	can_fire = FALSE
 
 /datum/controller/subsystem/processing/tts/Initialize()
 	if (!CONFIG_GET(flag/enable_tts))
 		can_fire = FALSE
+	for(var/file in flist(TTS_PATH))
+		fdel(TTS_PATH + file)
 	return ..()
 
 /datum/controller/subsystem/processing/tts/stat_entry()
@@ -28,14 +27,9 @@ PROCESSING_SUBSYSTEM_DEF(tts)
 
 	return (C.ckey in ckeys_playing)
 
-/datum/controller/subsystem/processing/tts/proc/delete_files(datum/tts/T)
-	if (!T)
+/datum/controller/subsystem/processing/tts/proc/terminate(datum/tts/T)
+	if (QDELETED(T))
 		return
-	if (!T.filename)
-		return
-	fdel(TTS_PATH + "[T.filename].wav")
-	fdel(TTS_PATH + "[T.filename].txt")
-	fdel(TTS_PATH + "[T.filename].lock")
 	STOP_PROCESSING(src, T)
 	ckeys_playing -= T.ckey
 	qdel(T) // not needed anymore, it can die
@@ -44,15 +38,15 @@ PROCESSING_SUBSYSTEM_DEF(tts)
 	T.status = STATUS_PLAYING
 	if (!T.owner)
 		message_admins("TTS request has no owner")
-		delete_files(T)
+		terminate(T)
 		return
 	if (!T.owner.mob)
 		message_admins("TTS request has no mob")
-		delete_files(T)
+		terminate(T)
 		return
 	if(!(T.voice in splittext(CONFIG_GET(string/tts_voice_male), ",")) && !(T.voice in splittext(CONFIG_GET(string/tts_voice_female), ",")) && T.voice != "")
 		message_admins("TTS request has invalid voice")
-		delete_files(T)
+		terminate(T)
 		return
 
 	var/next_channel = open_sound_channel()
@@ -61,15 +55,14 @@ PROCESSING_SUBSYSTEM_DEF(tts)
 		for (var/mob/M in GLOB.player_list)
 			if (!(M.client.prefs.hippie_toggles & SOUND_TTS))
 				continue
-
 			M.playsound_local(M.loc, TTS_PATH +  "[T.filename].wav", 100, 0, channel=next_channel)
-		addtimer(CALLBACK(src, .proc/delete_files, T), T.length)
+		addtimer(CALLBACK(src, .proc/terminate, T), T.length)
 		return
 	else
 		var/turf/origin = get_turf(T.owner.mob)
 		if(!origin)
 			message_admins("TTS mob has no loc")
-			delete_files(T)
+			terminate(T)
 			return
 		var/list/listeners = SSmobs.clients_by_zlevel[origin.z]
 		listeners = listeners & hearers(world.view, origin)
@@ -82,7 +75,7 @@ PROCESSING_SUBSYSTEM_DEF(tts)
 		T.owner.tts_cooldown = world.time + T.length
 
 		addtimer(CALLBACK(T.owner.mob, /mob/living.proc/update_tts_hud), T.length + 5)
-		addtimer(CALLBACK(src, .proc/delete_files, T), T.length)
+		addtimer(CALLBACK(src, .proc/terminate, T), T.length)
 
 		for (var/M in listeners)
 			var/mob/P = M
@@ -91,7 +84,6 @@ PROCESSING_SUBSYSTEM_DEF(tts)
 			if (T.language)
 				if (!P.can_speak_in_language(T.language) && !isobserver(P))
 					continue
-
 			if (get_dist(P, origin) <= world.view)
 				P.playsound_local(origin, TTS_PATH +  "[T.filename].wav", 100 * T.volume_mod, 0, channel=next_channel)
 
@@ -110,7 +102,7 @@ PROCESSING_SUBSYSTEM_DEF(tts)
 /datum/tts/process(wait)
 	switch(status)
 		if(STATUS_NEW)
-			status = STATUS_GENERATING
+			status = STATUS_INTERMEDIATE // the purpose of STATUS_INTERMEDIATE is to prevent the next process from playing the sound before it was generated
 			filename = md5("[world.time][owner.ckey][text][voice]")
 			if(fexists(TTS_PATH + "[filename].lock"))
 				qdel(src)
@@ -126,7 +118,7 @@ PROCESSING_SUBSYSTEM_DEF(tts)
 			var/list/output = world.shelleo(command)
 			var/errorlevel = output[SHELLEO_ERRORLEVEL]
 			if(errorlevel)
-				SStts.delete_files(src)
+				SStts.terminate(src)
 				qdel(src)
 				return
 			output = world.shelleo("mediainfo --Inform=\"General;%Duration%\" \"[TTS_PATH][filename].wav\"")
@@ -136,10 +128,9 @@ PROCESSING_SUBSYSTEM_DEF(tts)
 				length = 10 SECONDS // ugh
 			else
 				length = text2num(stdout) * 0.01 // it outputs in ms. we want ds.
+			status = STATUS_GENERATING
 		if(STATUS_GENERATING)
 			if (fexists(TTS_PATH + "[filename].wav"))
-				fdel(TTS_PATH + "[filename].lock")
-				fdel(TTS_PATH + "[filename].txt")
 				SStts.play_tts(src)
 
 /datum/tts/proc/say(client/C, msg, voice = "", is_global = FALSE, volume_mod = 1, datum/language/language)
