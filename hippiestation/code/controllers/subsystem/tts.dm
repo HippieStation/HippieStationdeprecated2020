@@ -119,7 +119,6 @@ PROCESSING_SUBSYSTEM_DEF(tts)
 			var/errorlevel = output[SHELLEO_ERRORLEVEL]
 			if(errorlevel)
 				SStts.terminate(src)
-				qdel(src)
 				return
 			output = world.shelleo("mediainfo --Inform=\"General;%Duration%\" \"[TTS_PATH][filename].wav\"")
 			errorlevel = output[SHELLEO_ERRORLEVEL]
