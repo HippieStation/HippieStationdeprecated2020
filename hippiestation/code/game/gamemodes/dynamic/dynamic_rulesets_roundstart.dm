@@ -153,7 +153,7 @@
 	minimum_required_age = 14
 	required_candidates = 3
 	weight = 10
-	cost = 35
+	cost = 25
 	requirements = list(90,90,90,80,60,40,30,20,10,10)
 	high_population_requirement = 10
 	var/infil_cap = list(2,3,3,3,3,4,4,5,5,5)
