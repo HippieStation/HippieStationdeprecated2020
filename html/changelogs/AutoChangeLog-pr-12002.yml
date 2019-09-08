@@ -1,5 +1,0 @@
-author: "steamp0rt"
-delete-after: True
-changes: 
-  - bugfix: "Hopefully fixed TTS file cleanup hanging the server on restart sometimes"
-  - bugfix: "The TTS subsystem will actually wait until sound generation is finished before playing it."
