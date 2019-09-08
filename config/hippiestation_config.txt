@@ -29,7 +29,7 @@ ENABLE_TTS
 #TTS_VOICE_MALE ap,kal,awb,kal16,rms
 
 # A comma seperated list of female voices
-#TTS_VOICE_MALE slt
+#TTS_VOICE_FEMALE slt
 
 ## Enables the GeoIP subsystem when you give it an ipstack.com API key
 #IPSTACK_API_KEY
