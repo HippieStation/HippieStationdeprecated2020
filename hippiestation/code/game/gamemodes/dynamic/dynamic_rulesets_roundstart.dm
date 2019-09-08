@@ -161,7 +161,7 @@
 
 /datum/dynamic_ruleset/roundstart/infiltrator/ready(forced = FALSE)
 	var/indice_pop = min(10,round(mode.roundstart_pop_ready/pop_per_requirement)+1)
-	required_candidates = operative_cap[indice_pop]
+	required_candidates = infil_cap[indice_pop]
 	. = ..()
 
 /datum/dynamic_ruleset/roundstart/infiltrator/pre_execute()
