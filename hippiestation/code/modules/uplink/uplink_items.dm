@@ -310,6 +310,7 @@
 	Put two together to create the carp suit, which allows you to deflect ranged attacks."
 	cost = 5
 	limited_stock = 2
+	exclude_modes = list(/datum/game_mode/infiltration)
 
 /datum/uplink_item/stealthy_weapons/throwingweapons
 	cost = 2
@@ -357,6 +358,7 @@
 	item = /obj/item/storage/box/syndie_kit/armstrong
 	cost = 14
 	surplus = 20 // someone who respects the eldritch god Nar-Sie a little (((too much))) complained
+	exclude_modes = list(/datum/game_mode/infiltration)
 
 /datum/uplink_item/device_tools/brainwash_disk
 	restricted_roles = list("Medical Doctor", "Chief Medical Officer")
@@ -521,3 +523,4 @@
 	item = /obj/item/storage/belt/hfblade
 	cost = 9
 	surplus = 15
+	exclude_modes = list(/datum/game_mode/infiltration)
