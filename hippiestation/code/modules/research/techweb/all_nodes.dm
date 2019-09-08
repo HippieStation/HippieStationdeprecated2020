@@ -67,3 +67,12 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
 */
+
+/datum/techweb_node/adv_chem
+	id = "adv_chem"
+	display_name = "Advanced Chemistry"
+	description = "Advanced chemical processing machines."
+	prereq_ids = list("biotech")
+	design_ids = list("lcass_pressure", "lcass_centrifuge", "lcass_radioactive", "lcass_bluespace")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
+	export_price = 5000
