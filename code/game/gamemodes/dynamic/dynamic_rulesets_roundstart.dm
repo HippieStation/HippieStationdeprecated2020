@@ -270,7 +270,7 @@
 /datum/dynamic_ruleset/roundstart/nuclear/pre_execute()
 	// If ready() did its job, candidates should have 5 or more members in it
 
-	var/indice_pop = min(10,round(mode.roundstart_pop_ready/5)+1)
+	var/indice_pop = min(10,round(mode.roundstart_pop_ready/pop_per_requirement)+1) // hippie -- fix this not using pop_per_requirement
 	var/operatives = operative_cap[indice_pop]
 	for(var/operatives_number = 1 to operatives)
 		if(candidates.len <= 0)
