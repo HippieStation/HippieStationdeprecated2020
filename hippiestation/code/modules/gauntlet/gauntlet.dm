@@ -531,7 +531,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 						/obj/item/stack/ore/bluespace_crystal/artificial)
 					for(var/mat in materials_to_give_science)
 						var/obj/item/stack/sheet/S = new mat(sci_pod)
-						S.amount = 50
+						S.amount = 15
 						S.update_icon()
 					var/list/sci_tiles = list()
 					for(var/turf/T in get_area_turfs(/area/science/lab))
