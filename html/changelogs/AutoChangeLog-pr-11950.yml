@@ -1,0 +1,10 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - balance: "Toxins lab has been nerfed slightly and given extra supplies to make up for it"
+  - rscdel: "Removed lcass chem machines and autolathe from science"
+  - rscdel: "Plasma glass windows in science are now normal reinforced windows"
+  - rscdel: "Reverted plasma glass window above engineering SMES with reinforced wall"
+  - bugfix: "Fixed incorrectly named cameras around the station"
+  - rscdel: "Testing lab has been made partially derelict"
+  - rscadd: "LCass chemistry machines added to techweb"
