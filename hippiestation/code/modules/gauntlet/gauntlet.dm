@@ -810,8 +810,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	var/chosen = show_radial_menu(H, H, radial)
 	if(chosen)
 		if(last_mode)
-			add_to_phys(H, -40, last_mode)
-		add_to_phys(H, 40, chosen)
+			add_to_phys(H, -20, last_mode)
+		add_to_phys(H, 20, chosen)
 		to_chat(H, "<span class='notice'>[last_mode ? "You switch your resistance focus from [lowertext(last_mode)] to" : "You are now more resistant to"] [lowertext(chosen)] attacks.</span>")
 		last_mode = chosen
 
