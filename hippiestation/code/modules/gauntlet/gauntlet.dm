@@ -734,14 +734,6 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	else
 		hnnnnnnnnngh = FALSE
 
-/proc/check_menu(mob/living/user, obj/source)
-	if(!istype(user))
-		return FALSE
-	if(user.incapacitated() || !user.Adjacent(source))
-		return FALSE
-	return TRUE
-
-
 /////////////////////////////////////////////
 /////////////////// SPELLS //////////////////
 /////////////////////////////////////////////
@@ -1112,7 +1104,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		if(drifting && !user.inertia_dir)
 			drifting = 0
 			Uloc = user.loc
-		if(QDELETED(user) || user.stat || (!drifting && user.loc != Uloc))
+		if(QDELETED(user) || user.stat == DEAD || (!drifting && user.loc != Uloc))
 			. = 0
 			break
 		if(!QDELETED(Tloc) && (QDELETED(target) || Tloc != target.loc))
