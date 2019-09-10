@@ -33,3 +33,14 @@ ENABLE_TTS
 
 ## Enables the GeoIP subsystem when you give it an ipstack.com API key
 #IPSTACK_API_KEY
+
+## Whether to enable VaporAuth-based authenticaiton or not.
+## Requires VAS_SERVER and optionally VAS_SERVER_CLIENT to be set
+#VAS_AUTH
+
+## The VaporAuth webserver.
+## Should optimally be hosted locally or on the same local network. Ensure it has your server's IP whitelisted!
+#VAS_SERVER http://localhost:8000
+
+## The VaporAuth webserver, but accessible from clients. Should be the same server as in VAS_SERVER, but behind a reverse proxy or something.
+#VAS_SERVER_CLIENT http://localhost:8000

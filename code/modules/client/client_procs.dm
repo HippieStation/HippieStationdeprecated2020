@@ -160,6 +160,8 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 GLOBAL_LIST_EMPTY(external_rsc_urls)
 #endif
 
+/*
+	mirrored in hippie's client_procs.dm
 /client/New(TopicData)
 	var/tdata = TopicData //save this for later use
 	chatOutput = new /datum/chatOutput(src)
@@ -400,6 +402,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 			menuitem.Load_checked(src)
 
 	Master.UpdateTickRate()
+*/
 
 //////////////
 //DISCONNECT//
