@@ -62,6 +62,7 @@
 	var/data = urlbase64(json_encode(list(uuid = challenge_uuid)))
 	world.Export("[CONFIG_GET(string/vas_server)]/clearchallenge/[data]")
 	challenge_uuid = null
+	challenge_attempts = 0
 
 /proc/get_auth_status(user)
 	if(!CONFIG_GET(flag/vas_auth) || !CONFIG_GET(string/vas_server) || !length(CONFIG_GET(string/vas_server)) || !user || !length(user))

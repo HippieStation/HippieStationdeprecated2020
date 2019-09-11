@@ -1,4 +1,5 @@
-#define LOGIN_COOLDOWN 3 SECONDS
+#define LOGIN_COOLDOWN	3 SECONDS
+#define MAX_CHALLENGES	3
 
 /mob/dead/unauthed
 	flags_1 = NONE
@@ -7,6 +8,7 @@
 	stat = DEAD
 	var/username
 	var/challenge_uuid
+	var/challenge_attempts = 0
 	var/supported_login = list()
 	var/tdata
 	var/logging_in = FALSE
@@ -34,10 +36,16 @@
 	popup.open(FALSE)
 
 /mob/dead/unauthed/process()
-	if(challenge_uuid && length(challenge_uuid) && check_challenge())
-		log_game("[key]/[username] passed [challenge_uuid]")
+	if(challenge_attempts >= MAX_CHALLENGES)
 		clear_challenge()
-		login_as(username)
+		return PROCESS_KILL
+	if(challenge_uuid && length(challenge_uuid))
+		if(check_challenge())
+			log_game("[key]/[username] passed [challenge_uuid]")
+			clear_challenge()
+			login_as(username)
+		else
+			challenge_attempts++
 		return PROCESS_KILL
 
 /mob/dead/unauthed/proc/login_as(new_key)
@@ -110,4 +118,5 @@
 			client.mob = new /mob/dead/new_player
 			qdel(src)
 
+#undef MAX_CHALLENGES
 #undef LOGIN_COOLDOWN
