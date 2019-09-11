@@ -46,7 +46,7 @@
 //Because TG removed them
 /datum/techweb_node/mech_taser
 	id = "mech_taser"
-	display_name =  "Exosuit Weapon (PBT \"Pacifier\" Mounted Taser)"
+	display_name = "Exosuit Weapon (PBT \"Pacifier\" Mounted Taser)"
 	description = "A basic piece of mech weaponry"
 	prereq_ids = list("electronic_weapons")
 	design_ids = list("mech_taser")
