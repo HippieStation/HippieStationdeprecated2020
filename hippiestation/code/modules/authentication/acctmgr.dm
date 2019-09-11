@@ -48,7 +48,7 @@
 								to_chat(src, "<span class='danger bold italics'>That's a garbage password.</span>")
 								continue
 							data["password"] = pass
-			var/list/http[] = world.Export("[CONFIG_GET(string/vas_server)]/register/[urlbase64(json_encode(data))]")
+			world.Export("[CONFIG_GET(string/vas_server)]/register/[urlbase64(json_encode(data))]")
 			if(SSdbcore.Connect())
 				if(is_updating)
 					var/datum/DBQuery/query_set_connect = SSdbcore.NewQuery({"
