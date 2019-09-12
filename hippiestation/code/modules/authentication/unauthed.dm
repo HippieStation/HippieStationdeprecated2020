@@ -26,8 +26,8 @@
 
 /mob/dead/unauthed/proc/login_panel()
 	var/output = "<center><p><b>Username: </b><a href='byond://?src=[REF(src)];username=1'>[username ? username : "Input"]</a></p></center>"
-	output += "<p><center>[(username && CONFIG_GET(string/vas_server_client) && ("challenge" in supported_login)) ? "<a href='byond://?src=[REF(src)];login=1'>" : ""]Login with Password[(username && CONFIG_GET(string/vas_server_client) && ("challenge" in supported_login)) ? "</a>" : ""]</center>"
-	output += "<center>[(username && ("password" in supported_login)) ? "<a href='byond://?src=[REF(src)];login=2'>" : ""]Login with Vapor-Auth Client[(username && ("password" in supported_login)) ? "</a>" : ""]</center>"
+	output += "<p><center>[(username && ("password" in supported_login)) ? "<a href='byond://?src=[REF(src)];login=1'>" : ""]Login with Password[(username && ("password" in supported_login)) ? "</a>" : ""]</center>"
+	output += "<p><center>[(username && CONFIG_GET(string/vas_server_client) && ("challenge" in supported_login)) ? "<a href='byond://?src=[REF(src)];login=2'>" : ""]Login with Vapor-Auth-Client[(username && CONFIG_GET(string/vas_server_client) && ("challenge" in supported_login)) ? "</a>" : ""]</center>"
 	output += "<center>[!CONFIG_GET(flag/guest_ban) ? "<a href='byond://?src=[REF(src)];login=3'>" : ""]Login as Guest[!CONFIG_GET(flag/guest_ban) ? "</a>" : ""]</center></p>"
 
 	var/datum/browser/popup = new(src, "loginpanel", "<div align='center'>Login</div>", 250, 200)
@@ -62,6 +62,13 @@
 	GLOB.preferences_datums -= ckey
 	client.key = new_key
 	GLOB.directory[C.ckey] = C
+	var/list/banned = world.IsBanned(C.ckey, C.address, C.computer_id, real_bans_only=TRUE)
+	if(LAZYLEN(banned))
+		to_chat(C, "<span class='boldannounce'>You are banned from the server.</span>")
+		to_chat(C, banned["desc"])
+		qdel(C)
+		qdel(src)
+		return
 	C.InitClient(tdata)
 	if(istype(C.mob, /mob/dead/unauthed))
 		C.mob = new /mob/dead/new_player
