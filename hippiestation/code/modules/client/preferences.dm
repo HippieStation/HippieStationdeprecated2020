@@ -13,7 +13,32 @@
 	var/hippie_toggles = HIPPIE_TOGGLES_DEFAULT // our own toggles.
 	var/voice
 
-/datum/preferences/New(client/C)
+/datum/preferences/New(client/C, key_override)
+	parent = C
+
+	for(var/custom_name_id in GLOB.preferences_custom_names)
+		custom_names[custom_name_id] = get_default_name(custom_name_id)
+
+	UI_style = GLOB.available_ui_styles[1]
+	if(istype(C))
+		if(!IsGuestKey(key_override || C.key))
+			load_path(key_override ? ckey(key_override) : C.ckey)
+			unlock_content = C.IsByondMember()
+			if(unlock_content)
+				max_save_slots = 8
+	var/loaded_preferences_successfully = load_preferences()
+	if(loaded_preferences_successfully)
+		if(load_character())
+			return
+	//we couldn't load character data so just randomize the character appearance + name
+	random_character()		//let's create a random character then - rather than a fat, bald and naked man.
+	real_name = pref_species.random_name(gender,1)
+	if(!loaded_preferences_successfully)
+		save_preferences()
+	save_character()		//let's save this new random character so it doesn't keep generating new ones.
+	menuoptions = list()
+	
+/datum/preferences/New(client/C, key_override)
 	..()
 	LAZYINITLIST(chosen_gear)
 

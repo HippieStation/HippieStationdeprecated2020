@@ -106,7 +106,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/action_buttons_screen_locs = list()
 
-/datum/preferences/New(client/C)
+/datum/preferences/New(client/C) // overriden in hippie's preferences.dm
 	parent = C
 
 	for(var/custom_name_id in GLOB.preferences_custom_names)

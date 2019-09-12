@@ -60,6 +60,20 @@
 	GLOB.directory -= ckey
 	GLOB.player_details -= ckey
 	GLOB.preferences_datums -= ckey
+	// some workarounds to prevent runtimes
+	client.prefs = GLOB.preferences_datums[new_key]
+	if(client.prefs)
+		client.prefs.parent = client
+	else
+		client.prefs = new /datum/preferences(client, new_key)
+		GLOB.preferences_datums[new_key] = client.prefs
+	if(GLOB.player_details[new_key])
+		client.player_details = GLOB.player_details[new_key]
+		client.player_details.byond_version = "[client.byond_version].[client.byond_build || "xxx"]"
+	else
+		client.player_details = new
+		client.player_details.byond_version = "[client.byond_version].[client.byond_build || "xxx"]"
+		GLOB.player_details[new_key] = client.player_details
 	client.key = new_key
 	GLOB.directory[C.ckey] = C
 	var/list/banned = world.IsBanned(C.ckey, C.address, C.computer_id, real_bans_only=TRUE)
@@ -124,7 +138,10 @@
 			logging_in = FALSE
 			next_login = world.time + LOGIN_COOLDOWN
 		else if(val == 3 && !CONFIG_GET(flag/guest_ban))
+			var/client/C = client
+			C.InitClient(tdata)
 			client.mob = new /mob/dead/new_player
+			C.PostInitClient(tdata)
 			qdel(src)
 
 #undef MAX_CHALLENGES
