@@ -64,8 +64,10 @@
 	GLOB.directory[C.ckey] = C
 	var/list/banned = world.IsBanned(C.ckey, C.address, C.computer_id, real_bans_only=TRUE)
 	if(LAZYLEN(banned))
-		to_chat(C, "<span class='boldannounce'>You are banned from the server.</span>")
+		overlay_fullscreen("ban_message", /obj/screen/fullscreen/ban_message)
+		to_chat(C, "<span class='boldannounce big'>You are banned from the server.</span>")
 		to_chat(C, banned["desc"])
+		sleep(5)
 		qdel(C)
 		qdel(src)
 		return
