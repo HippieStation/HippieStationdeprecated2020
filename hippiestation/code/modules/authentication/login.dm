@@ -13,10 +13,3 @@
 		if(!SSauth.can_fire)
 			to_chat(src, "<span class='big danger'>Warning: authentication is currently offline. Please contact admins.</span>")
 		auth_setup()
-
-/mob/dead/unauthed/proc/auth_setup()
-	guess_username()
-	update_supported()
-	if(LAZYLEN(supported_login) && ("challenge" in supported_login))
-		setup_challenge()
-	login_panel()

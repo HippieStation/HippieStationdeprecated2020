@@ -10,7 +10,7 @@
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
 
-	if(IsGuestKey(key) && CONFIG_GET(flag/vas_auth))
+	if(IsGuestKey(key) && CONFIG_GET(string/auth_provider))
 		prefs = new /datum/preferences(src)
 		GLOB.preferences_datums[ckey] = prefs
 		player_details = new
@@ -260,7 +260,7 @@
 		else if(country == "Brazil")
 			message_admins("<span class='adminnotice'>[key_name_admin(src)] is a Brazilian!</span>")
 	
-	verbs += /client/proc/register_account
+	//verbs += /client/proc/register_account
 
 /client/proc/hippie_client_procs(href_list)
 	if(href_list["mentor_msg"])

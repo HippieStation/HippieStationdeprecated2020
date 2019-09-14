@@ -1,3 +1,4 @@
 /mob/dead/unauthed/Logout()
 	..()
-	clear_challenge()
+	qdel(provider)
+	qdel(src)

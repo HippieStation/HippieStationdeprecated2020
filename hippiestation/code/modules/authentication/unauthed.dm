@@ -1,15 +1,9 @@
-#define LOGIN_COOLDOWN	3 SECONDS
-#define MAX_CHALLENGES	3
-
 /mob/dead/unauthed
 	flags_1 = NONE
 	invisibility = INVISIBILITY_ABSTRACT
 	density = FALSE
 	stat = DEAD
-	var/username
-	var/challenge_uuid
-	var/challenge_attempts = 0
-	var/supported_login = list()
+	var/datum/auth_provider/provider
 	var/tdata
 	var/logging_in = FALSE
 	var/next_login = 0
@@ -21,32 +15,18 @@
 		forceMove(locate(1,1,1))
 	return ..()
 
+/mob/dead/unauthed/Destroy()
+	qdel(provider)
+	return ..()
+
 /mob/dead/unauthed/prepare_huds()
 	return
 
 /mob/dead/unauthed/proc/login_panel()
-	var/output = "<center><p><b>Username: </b><a href='byond://?src=[REF(src)];username=1'>[username ? username : "Input"]</a></p></center>"
-	output += "<p><center>[(username && ("password" in supported_login)) ? "<a href='byond://?src=[REF(src)];login=1'>" : ""]Login with Password[(username && ("password" in supported_login)) ? "</a>" : ""]</center>"
-	output += "<center>[(username && CONFIG_GET(string/vas_server_client) && ("challenge" in supported_login)) ? "<a href='byond://?src=[REF(src)];login=2'>" : ""]Login with Vapor-Auth-Client[(username && CONFIG_GET(string/vas_server_client) && ("challenge" in supported_login)) ? "</a>" : ""]</center>"
-	output += "<center>[!CONFIG_GET(flag/guest_ban) ? "<a href='byond://?src=[REF(src)];login=3'>" : ""]Login as Guest[!CONFIG_GET(flag/guest_ban) ? "</a>" : ""]</center></p>"
-
 	var/datum/browser/popup = new(src, "loginpanel", "<div align='center'>Login</div>", 250, 200)
 	popup.set_window_options("can_close=0;can_minimize=0;can_maximize=0;can_resize=0;titlebar=0")
-	popup.set_content(output)
+	popup.set_content(provider.LoginMenu())
 	popup.open(FALSE)
-
-/mob/dead/unauthed/process()
-	if(challenge_attempts >= MAX_CHALLENGES)
-		clear_challenge()
-		return PROCESS_KILL
-	if(challenge_uuid && length(challenge_uuid))
-		if(check_challenge())
-			log_game("[key]/[username] passed [challenge_uuid]")
-			clear_challenge()
-			login_as(username)
-		else
-			challenge_attempts++
-		return PROCESS_KILL
 
 /mob/dead/unauthed/proc/login_as(new_key)
 	if(!client)
@@ -102,47 +82,8 @@
 /mob/dead/unauthed/CanProcCall(procname)
 	return procname != "login_as" && ..() // how about NO
 
-/mob/dead/unauthed/Topic(href, href_list)
-	if(src != usr)
-		return
-	if(href_list["username"])
-		var/new_username = input(usr, null, "Username")
-		if(new_username && length(new_username))
-			var/corrected = get_correct_key(new_username)
-			if(corrected)
-				var/list/status = get_auth_status(new_username)
-				if(status && status["valid"])
-					username = corrected
-					update_supported()
-					login_panel()
-	if(href_list["login"])
-		if(!username || !length(username))
-			return
-		if(logging_in)
-			to_chat(src, "<span class='danger'>You are already attempting to log in!</span>")
-			return
-		if(next_login > world.time)
-			to_chat(src, "<span class='danger'>You must wait [DisplayTimeText(next_login - world.time)] to try to login again!</span>")
-			return
-		var/val = text2num(href_list["login"])
-		if(val == 1 && ("password" in supported_login))
-			var/password = input(usr, null, "Password")
-			logging_in = TRUE
-			if(password && length(password) && check_password(password))
-				login_as(username)
-			logging_in = FALSE
-			next_login = world.time + LOGIN_COOLDOWN
-		else if(val == 2 && ("challenge" in supported_login))
-			logging_in = TRUE
-			setup_challenge()
-			logging_in = FALSE
-			next_login = world.time + LOGIN_COOLDOWN
-		else if(val == 3 && !CONFIG_GET(flag/guest_ban))
-			var/client/C = client
-			C.InitClient(tdata)
-			client.mob = new /mob/dead/new_player
-			C.PostInitClient(tdata)
-			qdel(src)
-
-#undef MAX_CHALLENGES
-#undef LOGIN_COOLDOWN
+/mob/dead/unauthed/proc/auth_setup()
+	provider = new SSauth.provider.type(src, FALSE)
+	provider.config = SSauth.provider.config
+	provider.Setup()
+	login_panel()

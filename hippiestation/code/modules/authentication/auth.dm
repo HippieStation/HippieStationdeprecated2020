@@ -1,3 +1,31 @@
+/mob/dead/unauthed
+	var/challenge_uuid
+	var/challenge_attempts = 0
+
+/mob/dead/unauthed/Logout()
+	..()
+	clear_challenge()
+
+/mob/dead/unauthed/proc/auth_setup()
+	guess_username()
+	update_supported()
+	if(LAZYLEN(supported_login) && ("challenge" in supported_login))
+		setup_challenge()
+	login_panel()
+
+/mob/dead/unauthed/process()
+	if(challenge_attempts >= MAX_CHALLENGES)
+		clear_challenge()
+		return PROCESS_KILL
+	if(challenge_uuid && length(challenge_uuid))
+		if(check_challenge())
+			log_game("[key]/[username] passed [challenge_uuid]")
+			clear_challenge()
+			login_as(username)
+		else
+			challenge_attempts++
+		return PROCESS_KILL
+
 /mob/dead/unauthed/proc/guess_username()
 	var/id = md5("[client.address][client.computer_id]")
 	if(SSdbcore.Connect())
@@ -13,9 +41,9 @@
 			var/last_login = query_get_login.item[1]
 			if(last_login)
 				username = last_login
-				qdel(query_get_login)
-				return
-		qdel(query_get_login)
+				qdel(query_get_logicheck_pan)
+				returncheck_pa
+		qdel(query_get_login)check_pa
 
 /mob/dead/unauthed/proc/get_correct_key(user)
 	if(SSdbcore.Connect())

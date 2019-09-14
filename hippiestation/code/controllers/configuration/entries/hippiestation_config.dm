@@ -33,10 +33,10 @@
 /datum/config_entry/string/ipstack_api_key
 	protection = CONFIG_ENTRY_HIDDEN | CONFIG_ENTRY_LOCKED
 
-/datum/config_entry/flag/vas_auth
-
-/datum/config_entry/string/vas_server
+/datum/config_entry/string/auth_provider
 	protection = CONFIG_ENTRY_LOCKED
 
-/datum/config_entry/string/vas_server_client
+/datum/config_entry/keyed_list/auth_var
+	key_mode = KEY_MODE_TEXT
+	value_mode = VALUE_MODE_TEXT
 	protection = CONFIG_ENTRY_LOCKED

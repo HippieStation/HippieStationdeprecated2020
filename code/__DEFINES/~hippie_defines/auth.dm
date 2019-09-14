@@ -1,0 +1,5 @@
+#define MAX_AUTH_ATTEMPTS	3
+#define AUTH_COOLDOWN	3 SECONDS
+
+#define LOGIN_PASSWORD		(1<<0)
+#define LOGIN_ED25519		(1<<1)
