@@ -12,7 +12,7 @@
 	var/hashed_pass
 
 /datum/auth_provider/byondcrypt/AuthStatus(user)
-	return list("valid" = istext(get_correct_key(user)))
+	return istext(get_correct_key(user))
 
 /datum/auth_provider/byondcrypt/LoginMenu()
 	var/output = "<center><p><b>Username: </b><a href='byond://?src=[REF(src)];username=1'>[current_username ? current_username : "Input"]</a></p></center>"
@@ -78,8 +78,7 @@
 		return PROCESS_KILL
 	else
 		if(current_pw_id)
-			var/json = BC_STATUS(current_pw_id)
-			var/status = json_decode(json)
+			var/status = json_decode(BC_STATUS(current_pw_id))
 			if(status["status"] == 2 && status["data"])
 				current_pw_id = null
 				auth_attempts = 0
@@ -139,8 +138,13 @@
 	for(var/i in 1 to length(input["data"]))
 		hexed_sig = "[hexed_sig][dec2hex(input["data"][i])]"
 	for(var/i in 1 to length(current_ed25519))
-	if(BC_ED25519(hexed_data, hexed_sig, ed25519_key) == "yes")
+		hexed_data = "[hexed_data][dec2hex(current_ed25519[i])]"
+	var/response = BC_ED25519(hexed_data, hexed_sig, ed25519_key)
+	if(response == "yes")
+		to_chat(linked_unauth, "<span class='big notice bold'>Logged in successfully!</span>")
 		linked_unauth.login_as(current_username)
+	else
+		to_chat(linked_unauth, "<span class='danger'>Invalid auth response: <i><b>\"[response]\"</b></i></span>")
 
 /datum/auth_provider/byondcrypt/AccountManager(client/user, updating = FALSE)
 	var/list/methods = list("Challenge-Response (requires vapor-auth-client)", "Password", "I'm done!")
@@ -177,12 +181,26 @@
 						continue
 					data["password"] = pass
 	if(SSdbcore.Connect())
+		var/pubkey = data["pubkey"] ? "UNHEX('[sanitizeSQL(data["pubkey"])]')" : "NULL"
+		var/password = "NULL"
+		if(data["password"])	
+			var/uid = BC_HASH(data["password"])
+			var/tries = 0
+			while(TRUE)
+				if(tries > 5)
+					break
+				var/status = json_decode(BC_STATUS(uid))
+				if(status["status"] == 2 && status["data"])
+					password = "'[sanitizeSQL(status["data"])]'"
+					break
+				tries++
+				sleep(5)
 		if(updating)
 			var/datum/DBQuery/query_set_connect = SSdbcore.NewQuery({"
 				UPDATE [format_table_name("authentication")]
 				SET `last_login` = '[sanitizeSQL(md5("[user.address][user.computer_id]"))]',
-				SET `pubkey` = [data["pubkey"] ? "'[sanitizeSQL(data["pubkey"])]'" : "NULL"],
-				SET `password` = [data["password"] ? "'[sanitizeSQL(data["password"])]'" : "NULL"],
+				SET `pubkey` = [pubkey],
+				SET `password` = [password],
 				WHERE `ckey` = '[sanitizeSQL(user.ckey)]'
 			"})
 			query_set_connect.Execute()
@@ -191,7 +209,7 @@
 			var/datum/DBQuery/query_insert_auth = SSdbcore.NewQuery({"
 				INSERT INTO [format_table_name("authentication")] 
 				(`ckey`, `key`, `last_login`, `password`, `pubkey`) 
-				VALUES ('[sanitizeSQL(user.ckey)]', '[sanitizeSQL(user.key)]', '[sanitizeSQL(md5("[user.address][user.computer_id]"))]', [data["password"] ? "'[sanitizeSQL(data["password"])]'" : "NULL"], [data["pubkey"] ? "'[sanitizeSQL(data["pubkey"])]'" : "NULL"])
+				VALUES ('[sanitizeSQL(user.ckey)]', '[sanitizeSQL(user.key)]', '[sanitizeSQL(md5("[user.address][user.computer_id]"))]', [password], [pubkey])
 				"})
 			query_insert_auth.Execute()
 			qdel(query_insert_auth)
