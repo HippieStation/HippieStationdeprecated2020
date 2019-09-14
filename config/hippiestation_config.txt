@@ -34,13 +34,15 @@ ENABLE_TTS
 ## Enables the GeoIP subsystem when you give it an ipstack.com API key
 #IPSTACK_API_KEY
 
-## Whether to enable VaporAuth-based authenticaiton or not.
-## Requires VAS_SERVER and optionally VAS_SERVER_CLIENT to be set
-#VAS_AUTH
+## Determines the provider to use for external authentication. If none is specified, external auth is disabled.
+## Use `dll` for byond_crypt based authentication, and `vas` for vapor-auth-server-based authentication.
+## `dll` requires the byond_crypt library be in the same directory as hippiestation.dme!
+## https://github.com/steamp0rt/byond_crypt
+#AUTH_PROVIDER dll
 
-## The VaporAuth webserver.
-## Should optimally be hosted locally or on the same local network. Ensure it has your server's IP whitelisted!
-#VAS_SERVER http://localhost:8000
-
-## The VaporAuth webserver, but accessible from clients. Should be the same server as in VAS_SERVER, but behind a reverse proxy or something.
-#VAS_SERVER_CLIENT http://localhost:8000
+## vapor-auth-server requires two variables -- `client`, which is the HTTP (not HTTPS) path to the VAS instance.
+## `server` is the VAS instance that's exposed to the internet -- preferrably behind a reverse proxy
+## https://github.com/steamp0rt/vapor-auth
+#AUTH_PROVIDER vas
+#AUTH_VAR client https://ss13.example.com/auth
+#AUTH_VAR server http://localhost:8000
