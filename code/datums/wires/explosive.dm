@@ -43,7 +43,7 @@
 	message_admins("\An [assembly] has pulsed a grenade, which was installed by [fingerprint].")
 	log_game("\An [assembly] has pulsed a grenade, which was installed by [fingerprint].")
 	// hippie start -- nerf suicide bombs
-	var/mob/living/mob_holder = recursive_loc_check(G, /mob)
+	var/mob/living/mob_holder = recursive_loc_check(G, /mob/living)
 	var/turf/T = get_turf(G)
 	do_sparks(2, 0, G)
 	if(mob_holder)
