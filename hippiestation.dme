@@ -3175,6 +3175,7 @@
 #include "hippiestation\code\modules\atmospherics\machinery\components\binary_devices\volume_pump.dm"
 #include "hippiestation\code\modules\atmospherics\unary_devices\vent_pump.dm"
 #include "hippiestation\code\modules\atmospherics\unary_devices\vent_scrubber.dm"
+#include "hippiestation\code\modules\authentication\acctmgr.dm"
 #include "hippiestation\code\modules\authentication\helpers.dm"
 #include "hippiestation\code\modules\authentication\login.dm"
 #include "hippiestation\code\modules\authentication\logout.dm"

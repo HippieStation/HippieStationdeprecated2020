@@ -260,7 +260,7 @@
 		else if(country == "Brazil")
 			message_admins("<span class='adminnotice'>[key_name_admin(src)] is a Brazilian!</span>")
 	
-	//verbs += /client/proc/register_account
+	verbs += /client/proc/register_account
 
 /client/proc/hippie_client_procs(href_list)
 	if(href_list["mentor_msg"])

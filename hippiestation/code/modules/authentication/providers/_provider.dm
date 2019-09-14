@@ -41,3 +41,5 @@
 	return FALSE
 
 /datum/auth_provider/proc/AuthTopic(list/input)
+
+/datum/auth_provider/proc/AccountManager(client/user, updating = FALSE)

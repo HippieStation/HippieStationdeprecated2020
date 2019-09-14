@@ -142,5 +142,62 @@
 	if(BC_ED25519(hexed_data, hexed_sig, ed25519_key) == "yes")
 		linked_unauth.login_as(current_username)
 
+/datum/auth_provider/byondcrypt/AccountManager(client/user, updating = FALSE)
+	var/list/methods = list("Challenge-Response (requires vapor-auth-client)", "Password", "I'm done!")
+	var/list/data = list("ckey" = user.ckey)
+	while(TRUE)
+		var/ret = input(usr, "Please select the login method to configure", "Register") as anything in methods
+		if(ret == "I'm done!")
+			if(data.len == 1)
+				to_chat(usr, "<span class='danger bold italics'>[updating ? "Update" : "Registration"] canceled.</span>")
+				return FALSE
+			else
+				break
+		else
+			switch(ret)
+				if("Challenge-Response (requires vapor-auth-client)")
+					to_chat(usr, "<span class='big notice'>Click <a href='https://github.com/steamp0rt/vapor-auth'><b>here</b></a> for vapor-auth-client.</span>")
+					var/pubkey = input(usr, "Please paste your public key from 'vapor-auth-client keygen' here.", "Register") as null|text 
+					var/list/decoded = base64bin(pubkey)
+					decoded.len-- // because this puts a null at the end for some stupid reason and i don't wanna fix it
+					if(!LAZYLEN(decoded) || length(decoded) != 32)
+						to_chat(usr, "<span class='danger bold italics'>Invalid public key. It should be a 42+ character Base64 string.</span>")
+						continue
+					var/hexed_key = ""
+					for(var/i in 1 to length(decoded))
+						hexed_key = "[hexed_key][dec2hex(decoded[i])]"
+					data["pubkey"] = hexed_key
+				if("Password")
+					var/pass = input(usr, "Please insert your password.", "Register") as null|text 
+					if(length(pass) < 8)
+						to_chat(usr, "<span class='danger bold italics'>Password must be at least 8 characters.</span>")
+						continue
+					if(findtext(lowertext(pass), "password") || findtext(lowertext(pass), "hunter2") || findtext(lowertext(pass), "12345") || findtext(lowertext(pass), user.ckey) || findtext(lowertext(pass), "qwerty"))
+						to_chat(usr, "<span class='danger bold italics'>That's a garbage password.</span>")
+						continue
+					data["password"] = pass
+	if(SSdbcore.Connect())
+		if(updating)
+			var/datum/DBQuery/query_set_connect = SSdbcore.NewQuery({"
+				UPDATE [format_table_name("authentication")]
+				SET `last_login` = '[sanitizeSQL(md5("[user.address][user.computer_id]"))]',
+				SET `pubkey` = [data["pubkey"] ? "'[sanitizeSQL(data["pubkey"])]'" : "NULL"],
+				SET `password` = [data["password"] ? "'[sanitizeSQL(data["password"])]'" : "NULL"],
+				WHERE `ckey` = '[sanitizeSQL(user.ckey)]'
+			"})
+			query_set_connect.Execute()
+			qdel(query_set_connect)
+		else
+			var/datum/DBQuery/query_insert_auth = SSdbcore.NewQuery({"
+				INSERT INTO [format_table_name("authentication")] 
+				(`ckey`, `key`, `last_login`, `password`, `pubkey`) 
+				VALUES ('[sanitizeSQL(user.ckey)]', '[sanitizeSQL(user.key)]', '[sanitizeSQL(md5("[user.address][user.computer_id]"))]', [data["password"] ? "'[sanitizeSQL(data["password"])]'" : "NULL"], [data["pubkey"] ? "'[sanitizeSQL(data["pubkey"])]'" : "NULL"])
+				"})
+			query_insert_auth.Execute()
+			qdel(query_insert_auth)
+	log_game("[user.ckey] successfully [updating ? "updated their" : "registered an"] account.")
+	to_chat(usr, "<span class='notice bold'>[updating ? "Update" : "Registration"] successful.</span>")
+	return TRUE
+
 /proc/dec2hex(n)
     return "[round(n/16)%16>9?ascii2text(round(n/16)%16+55):round(n/16)%16][n%16>9?ascii2text(n%16+55):n%16]"

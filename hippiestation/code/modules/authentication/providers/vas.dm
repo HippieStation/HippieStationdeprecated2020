@@ -150,3 +150,56 @@
 				log_game("Setup challenge [challenge_uuid] for [linked_unauth.key]/[ckey(current_username)]")
 				linked_unauth.client << link("vaporauth://[urlbase64(json_encode(list(ckey = ckey(current_username), uuid = challenge_uuid, url = config["client"], data = challenge_data)))]")
 				return TRUE
+
+/datum/auth_provider/vaporauth/AccountManager(client/user, updating = FALSE)
+	var/list/methods = list("Challenge-Response (requires vapor-auth-client)", "Password", "I'm done!")
+	var/list/data = list("ckey" = user.ckey)
+	while(TRUE)
+		var/ret = input(usr, "Please select the login method to configure", "Register") as anything in methods
+		if(ret == "I'm done!")
+			if(data.len == 1)
+				to_chat(usr, "<span class='danger bold italics'>[updating ? "Update" : "Registration"] canceled.</span>")
+				return FALSE
+			else
+				break
+		else
+			switch(ret)
+				if("Challenge-Response (requires vapor-auth-client)")
+					to_chat(usr, "<span class='big notice'>Click <a href='https://github.com/steamp0rt/vapor-auth'><b>here</b></a> for vapor-auth-client.</span>")
+					var/pubkey = input(usr, "Please paste your 42-character public key from 'vapor-auth-client keygen' here.", "Register") as null|text 
+					var/list/decoded = base64bin(pubkey)
+					decoded.len-- // because this puts a null at the end for some stupid reason and i don't wanna fix it
+					if(!LAZYLEN(decoded) || length(decoded) != 32)
+						to_chat(src, "<span class='danger bold italics'>Invalid public key. It should be a 42+ character Base64 string.</span>")
+						continue
+					data["pubkey"] = decoded
+				if("Password")
+					var/pass = input(usr, "Please insert your password.", "Register") as null|text 
+					if(length(pass) < 8)
+						to_chat(usr, "<span class='danger bold italics'>Password must be at least 8 characters.</span>")
+						continue
+					if(findtext(lowertext(pass), "password") || findtext(lowertext(pass), "hunter2") || findtext(lowertext(pass), "12345") || findtext(lowertext(pass), user.ckey) || findtext(lowertext(pass), "qwerty"))
+						to_chat(usr, "<span class='danger bold italics'>That's a garbage password.</span>")
+						continue
+					data["password"] = pass
+	world.Export("[config["server"]]/register/[urlbase64(json_encode(data))]")
+	if(SSdbcore.Connect())
+		if(updating)
+			var/datum/DBQuery/query_set_connect = SSdbcore.NewQuery({"
+				UPDATE [format_table_name("authentication")]
+				SET `last_login` = '[sanitizeSQL(md5("[user.address][user.computer_id]"))]'
+				WHERE `ckey` = '[sanitizeSQL(user.ckey)]'
+			"})
+			query_set_connect.Execute()
+			qdel(query_set_connect)
+		else
+			var/datum/DBQuery/query_insert_auth = SSdbcore.NewQuery({"
+				INSERT INTO [format_table_name("authentication")] 
+				(`ckey`, `key`, `last_login`) 
+				VALUES ('[sanitizeSQL(user.ckey)]', '[sanitizeSQL(user.key)]', '[sanitizeSQL(md5("[user.address][user.computer_id]"))]')
+				"})
+			query_insert_auth.Execute()
+			qdel(query_insert_auth)
+	log_game("[user.ckey] successfully [updating ? "updated their" : "registered an"] account.")
+	to_chat(usr, "<span class='notice bold'>[updating ? "Update" : "Registration"] successful.</span>")
+	return TRUE
