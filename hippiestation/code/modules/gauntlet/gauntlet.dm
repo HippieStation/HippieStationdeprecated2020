@@ -472,6 +472,8 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	if(!locked_on)
 		var/prompt = alert("Would you like to truly wear the Badmin Gauntlet? You will be unable to remove it!", "Confirm", "Yes", "No")
 		if (prompt == "Yes")
+			if(locked_on)
+				return
 			user.dropItemToGround(src)
 			if(user.put_in_hands(src))
 				if(ishuman(user))
