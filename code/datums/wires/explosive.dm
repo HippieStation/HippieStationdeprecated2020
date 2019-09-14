@@ -42,7 +42,15 @@
 	var/obj/item/assembly/assembly = get_attached(get_wire(1))
 	message_admins("\An [assembly] has pulsed a grenade, which was installed by [fingerprint].")
 	log_game("\An [assembly] has pulsed a grenade, which was installed by [fingerprint].")
-	G.prime()
+	// hippie start -- nerf suicide bombs
+	var/mob/living/mob_holder = recursive_loc_check(G, /mob)
+	var/turf/T = get_turf(G)
+	if(T)
+		T.hotspot_expose(1000,500,1)
+	if(mob_holder)
+		mob_holder.visible_message("<span class='danger'>[mob_holder] starts beeping ominously!</span>") 
+	G.preprime(mob_holder, null, FALSE, 100)
+	// hippie end
 
 /datum/wires/explosive/chem_grenade/detach_assembly(color)
 	var/obj/item/assembly/S = get_attached(color)
