@@ -591,17 +591,17 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stock_parts/cell))
-		var/obj/item/stock_parts/cell/cell = W
-		if(cell && cell.charge >= 10000)
+		var/obj/item/stock_parts/cell/charge = W
+		if(charge && charge.charge >= 10000)
 			if(current_charges < max_charges)
 				if(do_after(Wearer, 30, target = src))
-					to_chat(user, "<span class='notice'>You recharge [src]'s medical systems with [cell].</span>")
+					to_chat(user, "<span class='notice'>You recharge [src]'s medical systems with [charge].</span>")
 					addmedicalcharge()
-					cell.use(10000)
-					cell.chargerate /= 10
-					cell.chargerate = max(0.1, cell.chargerate)
-					to_chat(user, "<span class='notice'>In doing so, [cell]'s ability to charge has been weakened.</span>")
-					cell.update_icon()
+					charge.use(10000)
+					charge.chargerate /= 10
+					charge.chargerate = max(0.1, charge.chargerate)
+					to_chat(user, "<span class='notice'>In doing so, [charge]'s ability to charge has been weakened.</span>")
+					charge.update_icon()
 					return
 			else if(current_charges >= max_charges)
 				helmet.display_visor_message("Medical systems fully charged.")
