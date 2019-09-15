@@ -1,3 +1,12 @@
+/datum/antagonist
+	var/tips
+
+/datum/antagonist/on_gain()
+	. = ..()
+	if(owner && owner.current)
+		if(!silent && tips)
+			show_tips(tips)
+
 /datum/antagonist/proc/show_tips(file)
 	if(!owner || !owner.current || !owner.current.client)
 		return
