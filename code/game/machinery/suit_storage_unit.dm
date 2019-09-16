@@ -158,7 +158,7 @@
 		add_overlay("human")
 
 /obj/machinery/suit_storage_unit/power_change()
-	..()
+	. = ..()
 	if(!is_operational() && state_open)
 		open_machine()
 		dump_contents()

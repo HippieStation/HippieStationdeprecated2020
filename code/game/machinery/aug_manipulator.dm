@@ -134,7 +134,3 @@
 		return
 	else
 		eject_part(user)
-
-/obj/machinery/aug_manipulator/power_change()
-	..()
-	update_icon()
