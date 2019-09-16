@@ -139,4 +139,3 @@
 		update_icon()
 	else
 		to_chat(usr, "<span class='warning'>[src] is empty!</span>")
-		
