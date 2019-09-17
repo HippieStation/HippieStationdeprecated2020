@@ -1025,7 +1025,7 @@
 				user.Paralyze(60)	
 				return	
 			user.visible_message("<span class='notice'>[user] removes [charge] from [src].</span>", \	
-							 "<span class='notice'>You gently pry out [charge] from [src] and unhook its wires.</span>")	
+								"<span class='notice'>You gently pry out [charge] from [src] and unhook its wires.</span>")	
 			charge.forceMove(get_turf(user))	
 			charge = null	
 			return
