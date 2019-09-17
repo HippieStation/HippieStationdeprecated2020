@@ -121,9 +121,9 @@ GLOBAL_LIST_EMPTY(doppler_arrays)
 	if(stat & BROKEN)
 		icon_state = "[initial(icon_state)]-broken"
 	else if(powered())
-			icon_state = initial(icon_state)
-		else
-			icon_state = "[initial(icon_state)]-off"
+		icon_state = initial(icon_state)
+	else
+		icon_state = "[initial(icon_state)]-off"
 
 //Portable version, built into EOD equipment. It simply provides an explosion's three damage levels.
 /obj/machinery/doppler_array/integrated

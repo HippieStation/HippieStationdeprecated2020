@@ -21,9 +21,9 @@
 	if(stat & BROKEN)
 		return
 	if((stat & NOPOWER) || cooldown_time > world.time || !uses)
-			icon_state = "ai-slipper0"
-		else
-			icon_state = "ai-slipper1"
+		icon_state = "ai-slipper0"
+	else
+		icon_state = "ai-slipper1"
 
 /obj/machinery/ai_slipper/interact(mob/user)
 	if(!allowed(user))

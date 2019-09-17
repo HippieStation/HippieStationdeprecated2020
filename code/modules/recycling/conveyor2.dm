@@ -111,7 +111,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	if(stat & BROKEN)
 		icon_state = "conveyor-broken"
 	else
-	icon_state = "conveyor[operating * verted]"
+		icon_state = "conveyor[operating * verted]"
 
 /obj/machinery/conveyor/proc/update()
 	if(stat & BROKEN || !operable || stat & NOPOWER)
