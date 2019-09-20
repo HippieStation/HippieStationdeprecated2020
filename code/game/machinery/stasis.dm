@@ -84,7 +84,6 @@
 /obj/machinery/stasis/power_change()
 	. = ..()
 	play_power_sound()
-	update_icon()
 
 /obj/machinery/stasis/proc/chill_out(mob/living/target)
 	if(target != occupant)
@@ -126,11 +125,13 @@
 		thaw_them(L_occupant)
 
 /obj/machinery/stasis/screwdriver_act(mob/living/user, obj/item/I)
-	. = default_deconstruction_screwdriver(user, "stasis_maintenance", "stasis", I)
+	. = ..()
+	. |= default_deconstruction_screwdriver(user, "stasis_maintenance", "stasis", I)
 	update_icon()
 
 /obj/machinery/stasis/crowbar_act(mob/living/user, obj/item/I)
-	return default_deconstruction_crowbar(I)
+	. = ..()
+	return default_deconstruction_crowbar(I) || .
 
 /obj/machinery/stasis/nap_violation(mob/violator)
 	unbuckle_mob(violator, TRUE)

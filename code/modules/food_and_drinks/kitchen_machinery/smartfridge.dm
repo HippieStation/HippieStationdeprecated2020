@@ -36,11 +36,7 @@
 /obj/machinery/smartfridge/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: This unit can hold a maximum of <b>[max_n_of_items]</b> items.<span>"
-
-/obj/machinery/smartfridge/power_change()
-	..()
-	update_icon()
+		. += "<span class='notice'>The status display reads: This unit can hold a maximum of <b>[max_n_of_items]</b> items.</span>"
 
 /obj/machinery/smartfridge/update_icon()
 	if(!stat)
@@ -277,13 +273,15 @@
 			return TRUE
 	return FALSE
 
+/obj/machinery/smartfridge/drying_rack/powered()
+	if(!anchored)
+		return FALSE
+	return ..()
+
 /obj/machinery/smartfridge/drying_rack/power_change()
-	if(powered() && anchored)
-		stat &= ~NOPOWER
-	else
-		stat |= NOPOWER
+	. = ..()
+	if(!powered())
 		toggle_drying(TRUE)
-	update_icon()
 
 /obj/machinery/smartfridge/drying_rack/load() //For updating the filled overlay
 	..()

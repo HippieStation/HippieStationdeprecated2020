@@ -124,10 +124,6 @@
 	else
 		icon_state = initial(icon_state)
 
-/obj/machinery/power/emitter/power_change()
-	. = ..()
-	update_icon()
-
 /obj/machinery/power/emitter/interact(mob/user)
 	add_fingerprint(user)
 	if(state == EMITTER_WELDED)
@@ -252,10 +248,12 @@
 			state = EMITTER_UNWRENCHED
 
 /obj/machinery/power/emitter/wrench_act(mob/living/user, obj/item/I)
+	..()
 	default_unfasten_wrench(user, I)
 	return TRUE
 
 /obj/machinery/power/emitter/welder_act(mob/living/user, obj/item/I)
+	. = ..()
 	if(active)
 		to_chat(user, "Turn \the [src] off first.")
 		return TRUE

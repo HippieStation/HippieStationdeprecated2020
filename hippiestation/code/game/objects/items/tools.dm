@@ -135,31 +135,35 @@
 	toolspeed = 0.5
 
 /obj/item/wirecutters/ghetto/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
 	if(prob(5))
 		to_chat(usr, "<span class='danger'>[src] crumbles apart in your hands!</span>")
 		qdel(src)
 		return
 
 /obj/item/crowbar/ghetto/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
 	if(prob(2))
 		to_chat(user, "<span class='danger'>[src] crumbles apart in your hands!</span>")
 		qdel(src)
 		return
-		...()
 
 /obj/item/screwdriver/ghetto/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
 	if(prob(5))
 		to_chat(user, "<span class='danger'>[src] crumbles apart in your hands!</span>")
 		qdel(src)
 		return
 
 /obj/item/wrench/ghetto/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
 	if(prob(2))
 		to_chat(user, "<span class='danger'>[src] crumbles apart in your hands!</span>")
 		qdel(src)
 		return
 
 /obj/item/multitool/ghetto/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
 	if(prob(5))
 		user.rad_act(20)
 		to_chat(user, "<span class='userdanger'>[src] breaks down and emits dangerous rays!</span>")
