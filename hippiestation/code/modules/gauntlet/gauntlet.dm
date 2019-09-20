@@ -472,8 +472,11 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	if(!locked_on)
 		var/prompt = alert("Would you like to truly wear the Badmin Gauntlet? You will be unable to remove it!", "Confirm", "Yes", "No")
 		if (prompt == "Yes")
+			if(locked_on)
+				return
 			user.dropItemToGround(src)
 			if(user.put_in_hands(src))
+				locked_on = TRUE
 				if(ishuman(user))
 					var/mob/living/carbon/human/H = user
 					H.set_species(/datum/species/ganymede)
@@ -578,7 +581,6 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 				to_chat(user, "<span class='notice bold'>Examine a stone/the gauntlet to see what each intent does.</span>")
 				to_chat(user, "<span class='notice bold'>You can smash walls, tables, grilles, windows, and safes on HARM intent.</span>")
 				to_chat(user, "<span class='notice bold'>Be warned -- you may be mocked if you kill innocents, that does not bring balance!</span>")
-				locked_on = TRUE
 				visible_message("<span class='danger bold'>The badmin gauntlet clamps to [user]'s hand!</span>")
 				user.mind.RemoveAllSpells()
 				UpdateAbilities(user)
