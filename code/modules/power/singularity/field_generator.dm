@@ -48,7 +48,7 @@ field_generator power level display
 	cut_overlays()
 	if(warming_up)
 		add_overlay("+a[warming_up]")
-	if(fields.len)
+	if(LAZYLEN(fields))
 		add_overlay("+on")
 	if(power_level)
 		add_overlay("+p[power_level]")
@@ -106,10 +106,12 @@ field_generator power level display
 			state = FG_UNSECURED
 
 /obj/machinery/field/generator/wrench_act(mob/living/user, obj/item/I)
+	..()
 	default_unfasten_wrench(user, I)
 	return TRUE
 
 /obj/machinery/field/generator/welder_act(mob/living/user, obj/item/I)
+	. = ..()
 	if(active)
 		to_chat(user, "<span class='warning'>[src] needs to be off!</span>")
 		return TRUE

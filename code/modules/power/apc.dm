@@ -525,12 +525,14 @@
 		update_icon()
 
 /obj/machinery/power/apc/wirecutter_act(mob/living/user, obj/item/W)
+	. = ..()
 	if (terminal && opened)
 		terminal.dismantle(user, W)
 		return TRUE
 
 
 /obj/machinery/power/apc/welder_act(mob/living/user, obj/item/W)
+	. = ..()
 	if (opened && !has_electronics && !terminal)
 		if(!W.tool_start_check(user, amount=3))
 			return

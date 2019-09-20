@@ -474,9 +474,6 @@
 	update_icon()
 
 
-/obj/machinery/power/solar_control/power_change()
-	..()
-	update_icon()
 
 
 

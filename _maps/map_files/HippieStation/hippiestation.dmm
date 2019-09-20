@@ -27905,7 +27905,7 @@
 /turf/open/floor/plasteel,
 /area/teleporter)
 "bCw" = (
-/obj/machinery/shieldwallgen,
+/obj/machinery/power/shieldwallgen,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -27913,7 +27913,7 @@
 /turf/open/floor/plasteel,
 /area/teleporter)
 "bCx" = (
-/obj/machinery/shieldwallgen,
+/obj/machinery/power/shieldwallgen,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/teleporter)
@@ -33258,7 +33258,7 @@
 /area/medical/medbay/central)
 "bRk" = (
 /obj/structure/cable,
-/obj/machinery/shieldwallgen/xenobiologyaccess,
+/obj/machinery/power/shieldwallgen/xenobiologyaccess,
 /turf/open/floor/plating,
 /area/science/xenobiology)
 "bRl" = (
@@ -51940,7 +51940,7 @@
 /area/hallway/secondary/entry)
 "hYN" = (
 /obj/structure/cable,
-/obj/machinery/shieldwallgen/xenobiologyaccess,
+/obj/machinery/power/shieldwallgen/xenobiologyaccess,
 /obj/structure/sign/poster/official/safety_eye_protection{
 	pixel_x = 32
 	},
