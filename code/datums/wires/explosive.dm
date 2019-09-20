@@ -42,7 +42,20 @@
 	var/obj/item/assembly/assembly = get_attached(get_wire(1))
 	message_admins("\An [assembly] has pulsed a grenade, which was installed by [fingerprint].")
 	log_game("\An [assembly] has pulsed a grenade, which was installed by [fingerprint].")
-	G.prime()
+	// hippie start -- nerf suicide bombs
+	var/turf/T = get_turf(G)
+	if(G.loc == T)
+		G.prime()
+	else
+		var/mob/living/mob_holder = recursive_loc_check(G, /mob/living)
+		do_sparks(2, 0, G)
+		if(mob_holder)
+			playsound(mob_holder, 'sound/items/timer.ogg', 100, 0)
+			mob_holder.visible_message("<span class='danger'>[mob_holder] starts beeping ominously!</span>") 
+		else
+			playsound(T, 'sound/items/timer.ogg', 100, 0)
+		G.preprime(mob_holder, null, FALSE, 100)
+	// hippie end
 
 /datum/wires/explosive/chem_grenade/detach_assembly(color)
 	var/obj/item/assembly/S = get_attached(color)

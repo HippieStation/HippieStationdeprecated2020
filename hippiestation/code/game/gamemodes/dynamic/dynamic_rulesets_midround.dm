@@ -1,3 +1,13 @@
+/datum/dynamic_ruleset/midround/from_ghosts/review_applications()
+	if(required_candidates > candidates.len)
+		message_admins("The ruleset [name] didn't recieve enough applications (got [candidates.len], needed [required_candidates]).")
+		log_game("DYNAMIC: The ruleset [name] didn't recieve enough applications (got [candidates.len], needed [required_candidates]).")
+		mode.refund_threat(cost)
+		mode.threat_log += "[worldtime2text()]: Rule [name] refunded [cost] (not enough applications)"
+		mode.executed_rules -= src
+		return FALSE
+	return ..()
+
 /datum/dynamic_ruleset/midround/from_ghosts/abductor
 	name = "Abductors"
 	antag_flag = ROLE_ABDUCTOR
