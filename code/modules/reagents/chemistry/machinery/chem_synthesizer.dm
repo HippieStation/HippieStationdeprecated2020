@@ -61,7 +61,4 @@
 	if(GLOB.chemical_reagents_list[input]) //prefer IDs!
 		return input
 	else
-		for(var/X in GLOB.chemical_reagents_list)
-			var/datum/reagent/R = GLOB.chemical_reagents_list[X]
-			if(input == replacetext(lowertext(R.name), " ", ""))
-				return X
+		return get_chem_id(input)
