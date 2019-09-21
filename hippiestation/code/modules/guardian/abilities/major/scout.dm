@@ -1,7 +1,7 @@
 /datum/guardian_ability/major/scout
 	name = "Scout"
 	desc = "The guardian can turn near-invisible and invincible and scout the station, although it cannot attack anything."
-	cost = 3
+	cost = 1
 	has_mode = TRUE
 	recall_mode = TRUE
 	mode_on_msg = "<span class='danger'><B>You switch to scout mode.</span></B>"
