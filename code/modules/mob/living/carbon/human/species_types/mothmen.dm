@@ -1,4 +1,4 @@
-/datum/species/moth
+/datum/species/moth //fuck mothfags everyone hates them
 	name = "Mothman"
 	id = "moth"
 	say_mod = "flutters"
