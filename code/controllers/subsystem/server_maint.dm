@@ -59,7 +59,16 @@ SUBSYSTEM_DEF(server_maint)
 		afk_period = CONFIG_GET(number/afk_period)
 	for(var/I in currentrun)
 		var/client/C = I
-		
+		/* hippie edit - removes idlekicking
+		//handle kicking inactive players
+		if(round_started && kick_inactive && !C.holder && C.is_afk(afk_period))
+			var/cmob = C.mob
+			if (!isnewplayer(cmob) || !SSticker.queued_players.Find(cmob))
+				log_access("AFK: [key_name(C)]")
+				to_chat(C, "<span class='userdanger'>You have been inactive for more than [DisplayTimeText(afk_period)] and have been disconnected.</span><br><span class='danger'>You may reconnect via the button in the file menu or by <b><u><a href='byond://winset?command=.reconnect'>clicking here to reconnect</a></u></b>.</span>")
+				QDEL_IN(C, 1) //to ensure they get our message before getting disconnected
+				continue
+		*/
 		if (!(!C || world.time - C.connection_time < PING_BUFFER_TIME || C.inactivity >= (wait-1)))
 			winset(C, null, "command=.update_ping+[world.time+world.tick_lag*TICK_USAGE_REAL/100]")
 
