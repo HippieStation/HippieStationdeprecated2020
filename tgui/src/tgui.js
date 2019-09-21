@@ -44,3 +44,5 @@ act(ref, 'tgui:initialize')
 
 // Load fonts.
 import { loadCSS } from 'fg-loadcss'
+loadCSS('v4shim.css')
+loadCSS('font-awesome.css')
