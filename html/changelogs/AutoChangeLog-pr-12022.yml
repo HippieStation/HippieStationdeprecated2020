@@ -1,5 +1,0 @@
-author: "steamp0rt"
-delete-after: True
-changes: 
-  - balance: "Assembly-triggered grenades that are being held are no longer instant."
-  - rscadd: "Assembly-triggered grenades emit sparks and a unique message now."
