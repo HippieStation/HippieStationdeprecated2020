@@ -310,7 +310,10 @@
 	Put two together to create the carp suit, which allows you to deflect ranged attacks."
 	cost = 5
 	limited_stock = 2
-	exclude_modes = list(/datum/game_mode/infiltration)
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration)
+
+/datum/uplink_item/stealthy_weapons/cqc
+	item = /obj/item/cqc_manual // lmao @ granter code
 
 /datum/uplink_item/stealthy_weapons/throwingweapons
 	cost = 2
@@ -409,9 +412,6 @@
 	exclude_modes = list(/datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration)
 
 /datum/uplink_item/dangerous/guardian
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration)
-
-/datum/uplink_item/stealthy_weapons/martialarts
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/nuclear/clown_ops, /datum/game_mode/infiltration)
 
 /datum/uplink_item/stealthy_weapons/romerol_kit
