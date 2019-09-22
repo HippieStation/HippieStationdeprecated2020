@@ -22,9 +22,7 @@
 	if (!.)
 		return
 
-	if(findtext(message, "rouge"))	//You're an idiot and should feel as such
-	if(findtext(message, "owo"))	//You're a furfag and should die
-	if(findtext(message, "uwu"))	//You're a furfag and should die
+	if(findtext(message, "rouge") || findtext(message, "owo") || findtext(message, "uwu")) //thanks steamp0rt
 		var/mob/living/carbon/human/H = src
 		to_chat(src, "<span class='warning'><b>You feel like a fucking idiot.</b></span>")
 		playsound_local(src, 'hippiestation/sound/effects/whistlefail.ogg', 50, 0)	//Rip
