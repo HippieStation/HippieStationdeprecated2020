@@ -25,6 +25,16 @@
 		if(LAZYLEN(diseases_to_add))
 			AddComponent(/datum/component/infective, diseases_to_add)
 
+	var/turf/T = get_turf(src)
+	if(T && is_station_level(T.z))
+		SSblackbox.record_feedback("tally", "station_mess_created", 1, name)
+
+/obj/effect/decal/cleanable/Destroy()
+	var/turf/T = get_turf(src)
+	if(T && is_station_level(T.z))
+		SSblackbox.record_feedback("tally", "station_mess_destroyed", 1, name)
+	return ..()
+
 /obj/effect/decal/cleanable/proc/replace_decal(obj/effect/decal/cleanable/C) // Returns true if we should give up in favor of the pre-existing decal
 	if(mergeable_decal)
 		return TRUE
@@ -44,11 +54,11 @@
 			if(!reagents.total_volume) //scooped up all of it
 				qdel(src)
 				return
-	if(W.is_hot()) //todo: make heating a reagent holder proc
+	if(W.get_temperature()) //todo: make heating a reagent holder proc
 		if(istype(W, /obj/item/clothing/mask/cigarette))
 			return
 		else
-			var/hotness = W.is_hot()
+			var/hotness = W.get_temperature()
 			reagents.expose_temperature(hotness)
 			to_chat(user, "<span class='notice'>You heat [name] with [W]!</span>")
 	else

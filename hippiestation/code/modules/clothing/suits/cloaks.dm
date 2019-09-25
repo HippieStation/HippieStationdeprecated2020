@@ -9,13 +9,13 @@
 /obj/item/clothing/neck/cloak/black
 	name = "black cloak"
 	desc = "A dark-colored cloak."
-	alternate_worn_icon = 'hippiestation/icons/mob/cloaks.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/cloaks.dmi'
 	icon = 'hippiestation/icons/obj/clothing/back.dmi'
 	icon_state = "blackcloak"
 
 /obj/item/clothing/neck/cloak/green
 	name = "green cloak"
 	desc = "A cool green cloak."
-	alternate_worn_icon = 'hippiestation/icons/mob/cloaks.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/cloaks.dmi'
 	icon = 'hippiestation/icons/obj/clothing/back.dmi'
 	icon_state = "greencloak"

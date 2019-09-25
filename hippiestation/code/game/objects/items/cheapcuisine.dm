@@ -12,7 +12,7 @@
 	throwforce = 5
 	w_class = WEIGHT_CLASS_SMALL
 	sharpness = IS_BLUNT
-	materials = list(MAT_METAL=4000)
+	materials = list(/datum/material/iron=4000)
 	var/datum/looping_sound/microwave/soundloop
 	var/selected_food
 	var/used = FALSE

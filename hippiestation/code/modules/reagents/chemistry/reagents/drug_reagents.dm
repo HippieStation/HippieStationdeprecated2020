@@ -118,7 +118,7 @@
 	M.AdjustParalyzed(-20, 0)
 	M.AdjustUnconscious(-20, 0)
 	M.adjustToxLoss(2)
-	M.adjustBrainLoss(1*REM)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1*REM)
 	return FINISHONMOBLIFE(M)
 
 /datum/reagent/drug/methamphetamine
@@ -138,7 +138,7 @@
 		M.reagents.remove_reagent(/datum/reagent/drug/methamphetamine,amount2replace)
 	M.adjustStaminaLoss(-2, 0)
 	M.Jitter(2)
-	M.adjustBrainLoss(0.25)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.25)
 	if(prob(5))
 		M.emote(pick("twitch", "shiver"))
 		M.reagents.add_reagent(/datum/reagent/toxin/histamine, rand(1,5))
@@ -153,7 +153,7 @@
 	M.AdjustStun(-100, 0)
 	M.AdjustParalyzed(-100, 0)
 	M.adjustStaminaLoss(-100, 0)
-	M.adjustBrainLoss(5)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
 	M.adjustToxLoss(4)
 	M.hallucination += 20
 	if((M.mobility_flags & MOBILITY_MOVE) && !istype(M.loc, /atom/movable))
@@ -287,7 +287,7 @@
 
 /datum/reagent/drug/pupupipi/overdose_process(mob/living/carbon/human/H)
 	CHECK_DNA_AND_SPECIES(H)
-	H.setBrainLoss(30)
+	H.setOrganLoss(ORGAN_SLOT_BRAIN, 30)
 	if(ishuman(H))
 		to_chat(H, "<span class= 'userdanger'>Oh shit!</span>")
 		H.set_species(/datum/species/krokodil_addict)

@@ -124,7 +124,7 @@
 	icon = 'hippiestation/icons/obj/tools.dmi'
 	icon_state = "welder_ghetto"
 	toolspeed = 0.5
-	materials = list(MAT_METAL=140)
+	materials = list(/datum/material/iron=140)
 	max_fuel = 10
 
 /obj/item/multitool/ghetto

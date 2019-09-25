@@ -78,7 +78,7 @@
 		reagent_act(AM)
 
 /turf/open/floor/mineral/reagent/attackby(obj/item/I, mob/user, params)
-	var/hotness = I.is_hot()
+	var/hotness = I.get_temperature()
 	if(hotness)
 		temperature_expose(exposed_temperature = hotness)
 		to_chat(user, "<span class='warning'>You heat [src] with [I]!</span>")

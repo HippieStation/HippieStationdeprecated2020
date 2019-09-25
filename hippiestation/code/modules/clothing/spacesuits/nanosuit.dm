@@ -137,7 +137,7 @@
 /obj/item/clothing/glasses/nano_goggles
 	name = "nanosuit goggles"
 	desc = "Goggles built for a nanosuit. Property of CryNet Systems."
-	alternate_worn_icon = 'hippiestation/icons/mob/nanosuit.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/nanosuit.dmi'
 	icon = 'hippiestation/icons/obj/nanosuit.dmi'
 	icon_state = "nvgmesonnano"
 	item_state = "nvgmesonnano"
@@ -188,7 +188,7 @@
 		nvgmode(loc,TRUE)
 
 /obj/item/clothing/suit/space/hardsuit/nano
-	alternate_worn_icon = 'hippiestation/icons/mob/nanosuit.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/nanosuit.dmi'
 	icon = 'hippiestation/icons/obj/nanosuit.dmi'
 	icon_state = "nanosuit"
 	item_state = "nanosuit"
@@ -597,11 +597,11 @@
 /obj/item/clothing/head/helmet/space/hardsuit/nano
 	name = "nanosuit helmet"
 	desc = "The cherry on top. Property of CryNet Systems."
-	alternate_worn_icon = 'hippiestation/icons/mob/nanosuit.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/nanosuit.dmi'
 	icon = 'hippiestation/icons/obj/nanosuit.dmi'
 	icon_state = "nanohelmet"
 	item_state = "nanohelmet"
-	item_color = "nano"
+	//item_color = "nano"
 	siemens_coefficient = 0
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
@@ -609,11 +609,11 @@
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 45, "bomb" = 70, "bio" = 100, "rad" = 70, "fire" = 100, "acid" = 100)
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
+	clothing_flags = SCAN_REAGENTS
 	var/list/datahuds = list(DATA_HUD_SECURITY_ADVANCED, DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_BASIC)
 	var/zoom_range = 12
 	var/zoom = FALSE
 	var/obj/machinery/doppler_array/integrated/bomb_radar
-	scan_reagents = TRUE
 	actions_types = list(/datum/action/item_action/nanosuit/zoom)
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	rad_insulation = RAD_NO_INSULATION
@@ -881,7 +881,7 @@
 			if(check_streak(A,D))
 				return TRUE
 		else if(prob(35))
-			cleeve_attack(A,D)
+			//cleeve_attack(A,D)
 			return FALSE
 	D.visible_message("<span class='danger'>[A] [quick?"quick":""] [picked_hit_type] [D]!</span>", \
 					"<span class='userdanger'>[A] [quick?"quick":""] [picked_hit_type] you!</span>")
@@ -914,10 +914,10 @@
 	log_combat(A, D, "disarmed with nanosuit", "[I ? " removing \the [I]" : ""]")
 	return TRUE
 
-/datum/martial_art/nanosuit/proc/cleeve_attack(mob/living/carbon/human/A, mob/living/carbon/D)
+/*/datum/martial_art/nanosuit/proc/cleeve_attack(mob/living/carbon/human/A, mob/living/carbon/D)
 	for(D in orange(1, A))
 		if(D != A && is_A_facing_B(A,D) && (!D.stat || !D.IsParalyzed()))
-			basic_hit(A,D)
+			basic_hit(A,D)*/
 
 /obj/proc/nanosuit_damage() //the damage nanosuits do on punches to this object, is affected by melee armor
 	return 25 //just enough to damage an airlock

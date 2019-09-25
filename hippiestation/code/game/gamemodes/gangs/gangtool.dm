@@ -462,7 +462,7 @@
 				value = 10
 			else
 				value = 2
-		if(/obj/item/grenade/plastic/c4)
+		if(/obj/item/grenade/c4)
 			value = 5
 		if(/obj/item/toy/crayon/spraycan/gang)
 			var/obj/item/toy/crayon/spraycan/gang/SC = I

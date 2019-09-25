@@ -26,11 +26,11 @@
 	if(istype(M))
 		switch(current_cycle)
 			if(1 to 15)
-				M.adjustBrainLoss(3)
+				M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3)
 				if(prob(15))
 					M.vomit(20)
 			if(20 to INFINITY)
-				M.adjustBrainLoss(5)
+				M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
 				if(prob(30))
 					M.vomit(20, 0, 8)
 					if(prob(10))
@@ -124,7 +124,7 @@
 /datum/reagent/consumable/ethanol/manly_dorf/on_mob_metabolize(mob/living/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		H.facial_hair_style = "Dwarf Beard"
+		H.facial_hairstyle = "Dwarf Beard"
 		H.update_hair()
 		if(H.dna.check_mutation(DWARFISM))
 			to_chat(H, "<span class='notice'>Now THAT is MANLY!</span>")
@@ -203,7 +203,7 @@
 /datum/reagent/consumable/ethanol/martini/on_mob_life(mob/living/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(istype(H) && istype(H.wear_suit, /obj/item/clothing/under/suit_jacket))
+		if(istype(H) && istype(H.wear_suit, /obj/item/clothing/under/suit))
 			M.adjustBruteLoss(-0.25, 0)
 			M.adjustFireLoss(-0.25, 0)
 			M.adjustToxLoss(-0.25, 0)

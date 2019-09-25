@@ -65,7 +65,7 @@
 		update_icon()
 		playsound(src.loc, 'sound/machines/click.ogg', 20, 1)
 		return FALSE
-	var/hotness = W.is_hot()
+	var/hotness = W.get_temperature()
 	if(hotness && reagents)
 		var/added_heat = (hotness * 0.01) //ishot returns a temperature
 		if(reagents.chem_temp < hotness) //can't be heated to be hotter than the source

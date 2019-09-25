@@ -113,7 +113,7 @@
 		/datum/reagent/consumable/ethanol/peppermint_patty,\
 		/datum/reagent/consumable/ethanol/aloe,\
 		/datum/reagent/consumable/pumpkin_latte)
-		
+
 	var/reagent_type = pick(possible_reagents)
 	wanted_reagent = new reagent_type
 	name = wanted_reagent.name
@@ -131,7 +131,6 @@
 		/datum/reagent/medicine/leporazine,\
 		/datum/reagent/medicine/clonexadone,\
 		/datum/reagent/medicine/mine_salve,\
-		/datum/reagent/medicine/perfluorodecalin,\
 		/datum/reagent/medicine/ephedrine,\
 		/datum/reagent/medicine/diphenhydramine,\
 		/datum/reagent/drug/space_drugs,\

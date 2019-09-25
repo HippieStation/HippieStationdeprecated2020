@@ -10,7 +10,7 @@
 	new /obj/item/clothing/head/beret(src)
 	new /obj/item/clothing/mask/gas/mime(src)
 	new /obj/item/clothing/shoes/sneakers/mime(src)
-	new /obj/item/clothing/under/rank/mime(src)
+	new /obj/item/clothing/under/rank/civilian/mime(src)
 	new /obj/item/storage/backpack/mime(src)
 	new /obj/item/clothing/gloves/color/white(src)
 	new /obj/item/clothing/suit/suspenders(src)

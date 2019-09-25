@@ -52,7 +52,7 @@
 
 /obj/effect/timestop/proc/timestop()
 	target = get_turf(src)
-	playsound(src, start_sound, 75, 1, -1) // Hippie -- customizable sound
+	playsound(src, start_sound, 75, TRUE, -1) // Hippie -- customizable sound
 	chronofield = make_field(/datum/proximity_monitor/advanced/timestop, list("current_range" = freezerange, "host" = src, "immune" = immune, "check_anti_magic" = check_anti_magic, "check_holy" = check_holy))
 	QDEL_IN(src, duration)
 

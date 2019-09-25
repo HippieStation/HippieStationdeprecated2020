@@ -17,13 +17,10 @@
 	if(HasDisease(D))
 		return FALSE
 
-	var/can_infect = TRUE // hippie -- ignore biotypes
-	for(var/host_type in D.infectable_biotypes)
-		if(host_type in mob_biotypes)
-			can_infect = TRUE
-			break
-	if(!can_infect)
+	/* hippie -- ignore biotypes
+	if(!(D.infectable_biotypes & mob_biotypes))
 		return FALSE
+	*/// hippeie end
 
 	if(!(type in D.viable_mobtypes))
 		return FALSE

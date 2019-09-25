@@ -31,7 +31,6 @@
 	var/datum/action/monk/stunning_fist/stunning_fist = new/datum/action/monk/stunning_fist()
 	var/datum/action/monk/quivering_palm/quivering_palm = new/datum/action/monk/quivering_palm()
 	var/datum/action/monk/wholeness_of_body/wholeness_of_body = new/datum/action/monk/wholeness_of_body()
-	no_guns = TRUE
 
 /datum/martial_art/monk/disciple
 	name = "Disciple Monk"
@@ -62,7 +61,7 @@
 		to_chat(H, "<span class = 'danger'>Your abilities have a use limit, before you need to rest to regain your strength.</span>")
 		to_chat(H, "<span class = 'danger'>You can't gain experience on yourself, dead humans, non humans, or braindead humans.</span>")
 		START_PROCESSING(SSfastprocess, src)
-		H.hair_style = "Short Hair"
+		H.hairstyle = "Short Hair"
 		H.update_body()
 		H.update_hair()
 
@@ -81,7 +80,7 @@
 	make_disciple.Remove(H)
 	STOP_PROCESSING(SSfastprocess, src)
 
-/datum/martial_art/monk/basic_hit(mob/living/carbon/human/A,mob/living/carbon/human/D) // this is how you to it properly you fucks
+/*/datum/martial_art/monk/basic_hit(mob/living/carbon/human/A,mob/living/carbon/human/D) // this is how you to it properly you fucks
 	var/defense_roll = defense_roll(0)
 	var/damage = rand(A.dna.species.punchdamagelow, A.dna.species.punchdamagehigh)
 	var/atk_verb = A.dna.species.attack_verb
@@ -116,7 +115,7 @@
 		D.visible_message("<span class='warning'>[A] has attempted to [atk_verb] [D]!</span>", \
 			"<span class='userdanger'>[A] has attempted to [atk_verb] [D]!</span>", null, COMBAT_MESSAGE_RANGE)
 		log_combat(A, D, "attempted to [atk_verb]")
-		return FALSE
+		return FALSE*/
 
 /datum/martial_art/monk/process()
 	..()
@@ -144,7 +143,7 @@
 			to_chat(owner, "<span class = 'danger'>You feel more confident in your strikes, and your body is pure.</span>")
 			flurry_of_blows_penalty = -1
 			purity_of_body = TRUE
-			owner.hair_style = "Balding Hair"
+			owner.hairstyle = "Balding Hair"
 			owner.update_hair()
 		if(7)
 			to_chat(owner, "<span class = 'danger'>You can perform more Stunning Fists before resting. You have figured out the wholeness of your body.</span>")
@@ -161,7 +160,7 @@
 		if(10)
 			to_chat(owner, "<span class = 'danger'>Your Ki helps you seek the holes in enemy armor.</span>")
 			ki_level = 75
-			owner.hair_style = "Bald"
+			owner.hairstyle = "Bald"
 			owner.update_hair()
 		if(11)
 			to_chat(owner, "<span class = 'danger'>You feel confident enough to strike more and harder, and use this against toxins in your body.</span>")

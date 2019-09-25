@@ -77,7 +77,7 @@ GLOBAL_LIST_EMPTY(chempiles)
 			qdel(src)
 			return
 
-	var/hotness = I.is_hot()
+	var/hotness = I.get_temperature()
 	if(hotness && reagents)
 		reagents.expose_temperature(hotness)
 		to_chat(user, "<span class='notice'>You heat [src] with [I].</span>")

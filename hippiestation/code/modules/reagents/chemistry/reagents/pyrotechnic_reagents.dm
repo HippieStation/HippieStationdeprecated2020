@@ -17,7 +17,7 @@
 /datum/reagent/cryogenic_fluid/on_mob_life(mob/living/M) //not very pleasant but fights fires
 	M.adjust_fire_stacks(-2)
 	M.adjustStaminaLoss(2)
-	M.adjustBrainLoss(1)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1)
 	M.bodytemperature = max(M.bodytemperature - 10, TCMB)
 	return ..()
 
@@ -36,7 +36,7 @@
 				M.losebreath += (0.2*reac_volume) //no longer instadeath rape but losebreath instead much more immulshion friendly
 				M.drowsyness += 2
 				M.confused += 6
-				M.adjustBrainLoss(0.25*reac_volume) //hypothermia isn't good for the brain
+				M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.25*reac_volume) //hypothermia isn't good for the brain
 
 			else
 			 M.bodytemperature = max(M.bodytemperature - 15, TCMB)

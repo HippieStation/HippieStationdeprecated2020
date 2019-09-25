@@ -75,7 +75,7 @@
 		"<span class='userdanger'>[A] slams their hands into you, knocking you down!</span>")
 		D.Paralyze(60)
 	else
-		basic_hit(A,D)
+		return FALSE
 	return TRUE
 
 /datum/martial_art/elite_cqc/disarm_act(mob/living/carbon/human/A, mob/living/carbon/human/D)

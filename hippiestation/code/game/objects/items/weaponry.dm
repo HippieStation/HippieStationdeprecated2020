@@ -184,7 +184,7 @@
 				M.visible_message("<span class='danger'>[user] knocks out [M] with [src]!</span>", \
 								"<span class='userdanger'>[user] knocks out [M] with [src]!</span>")
 				M.AdjustUnconscious(60)
-				M.adjustBrainLoss(5)
+				M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
 
 /obj/item/brick/throw_impact(atom/hit_atom)
 	. = ..()
@@ -201,7 +201,7 @@
 				H.visible_message("<span class='danger'>[H] falls unconscious as [H.p_theyre()] hit by [src]!</span>", \
 								"<span class='userdanger'>You suddenly black out as you're hit by [src]!</span>")
 				H.AdjustUnconscious(80)
-				H.adjustBrainLoss(10)
+				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10)
 				playsound(src, 'hippiestation/sound/effects/ZUBALAWA.ogg', 50, 0)
 				durability -= 1
 

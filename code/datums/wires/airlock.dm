@@ -95,8 +95,6 @@
 		if(WIRE_POWER1, WIRE_POWER2) // Cut to loose power, repair all to gain power.
 			if(mend && !is_cut(WIRE_POWER1) && !is_cut(WIRE_POWER2))
 				A.regainMainPower()
-				if(isliving(usr))
-					A.shock(usr, 50)
 			else
 				A.loseMainPower()
 				if(isliving(usr))
@@ -104,8 +102,6 @@
 		if(WIRE_BACKUP1, WIRE_BACKUP2) // Cut to loose backup power, repair all to gain backup power.
 			if(mend && !is_cut(WIRE_BACKUP1) && !is_cut(WIRE_BACKUP2))
 				A.regainBackupPower()
-				if(isliving(usr))
-					A.shock(usr, 50)
 			else
 				A.loseBackupPower()
 				if(isliving(usr))

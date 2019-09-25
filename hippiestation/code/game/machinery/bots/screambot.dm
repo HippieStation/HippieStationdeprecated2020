@@ -12,7 +12,7 @@
 
 /obj/item/screambot_chasis/attackby(obj/item/W, mob/user)
 	..()
-	var/hotness = W.is_hot()
+	var/hotness = W.get_temperature()
 	if(hotness && build_step <= 0)
 		to_chat(user, "<span class='notice'>You weld some holes in [src].</span>")
 		build_step = 1

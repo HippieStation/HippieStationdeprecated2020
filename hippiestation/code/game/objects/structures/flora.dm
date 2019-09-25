@@ -14,7 +14,7 @@
 			user.visible_message("[user] prepares the foliage for connection.", "<span class='notice'>The screwdriver reveals a panel labelled 'INSERT SHARP ITEM HERE'...</span>")
 		if(!disable)
 			user.visible_message("[user] impedes the foliage from connection.", "<span class='notice'>You close the panel back up.</span>")
-	if(W.is_sharp() && disable)  //If screwdriven and the item is sharp, it creates sharp plant
+	if(W.get_sharpness() && disable)  //If screwdriven and the item is sharp, it creates sharp plant
 		if(is_sharpened)
 			var/mob/living/carbon/C = user
 			var/hit_hand = ((user.active_hand_index % 2 == 0) ? "r_" : "l_") + "arm"
@@ -116,7 +116,7 @@ obj/item/kirbyplants_onehanded/equipped(mob/living/user)
 			user.visible_message("[user] prepares the foliage for connection.", "<span class='notice'>The screwdriver reveals a panel labelled 'INSERT SHARP ITEM HERE'...</span>")
 		if(!disable)
 			user.visible_message("[user] impedes the foliage from connection.", "<span class='notice'>You close the panel back up.</span>")
-	if(W.is_sharp() && disable)  //If screwdriven and the item is sharp, it creates sharp plant
+	if(W.get_sharpness() && disable)  //If screwdriven and the item is sharp, it creates sharp plant
 		if(is_sharpened)
 			var/mob/living/carbon/C = user
 			var/hit_hand = ((user.active_hand_index % 2 == 0) ? "r_" : "l_") + "arm"

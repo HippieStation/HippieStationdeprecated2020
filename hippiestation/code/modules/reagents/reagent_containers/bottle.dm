@@ -88,3 +88,14 @@
 	name = "Hallucigen virion culture bottle"
 	desc = "A small bottle. Contains hallucigen virion culture in synthblood medium."
 	spawned_disease = /datum/disease/advance/hallucigen
+
+/obj/item/reagent_containers/glass/bottle/charcoal
+	name = "charcoal bottle"
+	desc = "A small bottle of charcoal, which removes toxins and other chemicals from the bloodstream."
+	list_reagents = list(/datum/reagent/medicine/charcoal = 30)
+
+// just to avoid editing maps
+/obj/item/reagent_containers/glass/bottle/multiver
+	name = "charcoal bottle"
+	desc = "A small bottle of charcoal, which removes toxins and other chemicals from the bloodstream."
+	list_reagents = list(/datum/reagent/medicine/charcoal = 30)

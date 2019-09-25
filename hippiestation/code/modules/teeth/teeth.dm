@@ -91,7 +91,7 @@
 	name = "Replacement teeth"
 	id = "replacement_teeth"
 	build_type = AUTOLATHE
-	materials = list(MAT_METAL = 250)
+	materials = list(/datum/material/iron = 250)
 	build_path = /obj/item/stack/teeth/replacement
 	category = list("initial", "Medical")
 

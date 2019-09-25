@@ -320,16 +320,6 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		add_overlay(O)
 		index++
 
-/obj/item/badmin_gauntlet/melee_attack_chain(mob/user, atom/target, params)
-	if(!tool_attack_chain(user, target) && pre_attack(target, user, params))
-		if(user == target)
-			if(target && !QDELETED(src))
-				afterattack(target, user, 1, params)
-		else
-			var/resolved = target.attackby(src, user, params)
-			if(!resolved && target && !QDELETED(src))
-				afterattack(target, user, 1, params)
-
 /obj/item/badmin_gauntlet/proc/AttackThing(mob/user, atom/target)
 	. = FALSE
 	if(istype(target, /obj/item/badmin_stone))

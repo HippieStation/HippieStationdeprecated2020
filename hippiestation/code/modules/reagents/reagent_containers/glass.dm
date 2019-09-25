@@ -1,5 +1,24 @@
+/obj/item/reagent_containers/glass/beaker/large/styptic
+	name = "styptic reserve tank"
+	list_reagents = list(/datum/reagent/medicine/styptic_powder = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/silver_sulfadiazine
+	name = "silver sulfadiazine reserve tank"
+	list_reagents = list(/datum/reagent/medicine/silver_sulfadiazine = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/charcoal
+	name = "charcoal reserve tank"
+	list_reagents = list(/datum/reagent/medicine/charcoal = 50)
+
+/obj/item/reagent_containers/glass/beaker/large/epinephrine
+	name = "epinephrine reserve tank"
+	list_reagents = list(/datum/reagent/medicine/epinephrine = 50)
+
+/obj/item/reagent_containers/glass/beaker/synthflesh
+	list_reagents = list(/datum/reagent/medicine/synthflesh = 50)
+
 /obj/item/reagent_containers/glass/beaker/bluespace
-	materials = list(MAT_GLASS = 5000, MAT_PLASMA = 3000, MAT_DIAMOND = 1000, MAT_BLUESPACE = 1000) // matches the materials it's made of with the recipe in medical_designs.dm
+	materials = list(/datum/material/glass = 5000, /datum/material/plasma = 3000, /datum/material/diamond = 1000, /datum/material/bluespace = 1000) // matches the materials it's made of with the recipe in medical_designs.dm
 
 /obj/item/reagent_containers/glass/afterattack(obj/target, mob/user, proximity)
 	if((!proximity) || !check_allowed_items(target,target_self=1)) return

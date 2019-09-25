@@ -23,6 +23,8 @@
 	var/area_type
 	var/hidden = FALSE //are we invisible to shuttle navigation computers?
 
+	var/delete_after = FALSE ///Delete this port after ship fly off.
+
 	//these objects are indestructible
 /obj/docking_port/Destroy(force)
 	// unless you assert that you know what you're doing. Horrible things
@@ -202,7 +204,7 @@
 
 		roundstart_template = SSmapping.shuttle_templates[sid]
 		if(!roundstart_template)
-			CRASH("Invalid path ([roundstart_template]) passed to docking port.")
+			CRASH("Invalid path ([sid]/[roundstart_template]) passed to docking port.")
 
 	if(roundstart_template)
 		SSshuttle.action_load(roundstart_template, src)
@@ -432,7 +434,10 @@
 		if(initiate_docking(S1) != DOCKING_SUCCESS)
 			WARNING("shuttle \"[id]\" could not enter transit space. Docked at [S0 ? S0.id : "null"]. Transit dock [S1 ? S1.id : "null"].")
 		else
-			previous = S0
+			if(S0.delete_after)
+				qdel(S0, TRUE)
+			else
+				previous = S0
 	else
 		WARNING("shuttle \"[id]\" could not enter transit space. S0=[S0 ? S0.id : "null"] S1=[S1 ? S1.id : "null"]")
 
@@ -670,16 +675,11 @@
 			return "RCH"
 		if(SHUTTLE_PREARRIVAL)
 			return "LDN"
-		if(SHUTTLE_DISABLED)
-			return "DIS"
 	return ""
 
 // returns 5-letter timer string, used by status screens and mob status panel
 /obj/docking_port/mobile/proc/getTimerStr()
 	if(mode == SHUTTLE_STRANDED)
-		return "--:--"
-
-	if(mode == SHUTTLE_DISABLED)
 		return "--:--"
 
 	var/timeleft = timeLeft()
@@ -689,7 +689,7 @@
 		return "[add_zero(num2text((timeleft / 60) % 60),2)]:[add_zero(num2text(timeleft % 60), 2)]"
 	else
 		return "00:00"
-*/
+hippie end*/
 
 /obj/docking_port/mobile/proc/getStatusText()
 	var/obj/docking_port/stationary/dockedAt = get_docked()

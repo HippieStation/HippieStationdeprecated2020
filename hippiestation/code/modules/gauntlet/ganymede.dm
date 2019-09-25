@@ -25,7 +25,7 @@
 /obj/item/clothing/head/hippie/ganymedian
 	name = "Ganymedian Helmet"
 	desc = "A robust-looking helmet from Ganymede."
-	alternate_worn_icon = 'hippiestation/icons/mob/large-worn-icons/64x64/head.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/large-worn-icons/64x64/head.dmi'
 	icon_state = "ganymede"
 	item_state = "ganymede"
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
@@ -101,7 +101,7 @@
 	desc = "It's uh, not actually a jumpsuit. This is, in fact, a literal placeholder!"
 	icon_state = ""
 	item_state = ""
-	item_color = ""
+	//item_color = ""
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL
 	has_sensor = NO_SENSORS
@@ -118,7 +118,7 @@
 	desc = "It's uh, not actually shoes. This is, in fact, a literal placeholder!"
 	icon_state = ""
 	item_state = ""
-	item_color = ""
+	//item_color = ""
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 	clothing_flags = STOPSPRESSUREDAMAGE | THICKMATERIAL
 

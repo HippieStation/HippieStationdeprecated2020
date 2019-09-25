@@ -77,13 +77,22 @@
 	if(heal_level > 100)
 		heal_level = 100
 
+/obj/machinery/clonepod/attack_hand(mob/user)
+	. = ..()
+	if(.)
+		return
+	user.examinate(src)
+
+/obj/machinery/clonepod/attack_ai(mob/user)
+	return attack_hand(user)
+
 /obj/machinery/clonepod/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>The <i>linking</i> device can be <i>scanned<i> with a multitool.</span>"
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Cloning speed at <b>[speed_coeff*50]%</b>.<br>Predicted amount of cellular damage: <b>[100-heal_level]%</b>.<span>"
+		. += "<span class='notice'>The status display reads: Cloning speed at <b>[speed_coeff*50]%</b>.<br>Predicted amount of cellular damage: <b>[100-heal_level]%</b>.</span>"
 		if(efficiency > 5)
-			. += "<span class='notice'>Pod has been upgraded to support autoprocessing and apply beneficial mutations.<span>"
+			. += "<span class='notice'>Pod has been upgraded to support autoprocessing and apply beneficial mutations.</span>"
 
 //The return of data disks?? Just for transferring between genetics machine/cloning machine.
 //TO-DO: Make the genetics machine accept them.
@@ -219,7 +228,6 @@
 
 	if(H)
 		H.faction |= factions
-		remove_hivemember(H)
 
 		for(var/V in quirks)
 			var/datum/quirk/Q = new V(H)
@@ -290,6 +298,7 @@
 				var/obj/item/I = pick_n_take(unattached_flesh)
 				if(isorgan(I))
 					var/obj/item/organ/O = I
+					O.organ_flags &= ~ORGAN_FROZEN
 					O.Insert(mob_occupant)
 				else if(isbodypart(I))
 					var/obj/item/bodypart/BP = I
@@ -307,6 +316,7 @@
 			for(var/i in unattached_flesh)
 				if(isorgan(i))
 					var/obj/item/organ/O = i
+					O.organ_flags &= ~ORGAN_FROZEN
 					O.Insert(mob_occupant)
 				else if(isbodypart(i))
 					var/obj/item/bodypart/BP = i
@@ -397,10 +407,13 @@
 	if(mess) //Clean that mess and dump those gibs!
 		for(var/obj/fl in unattached_flesh)
 			fl.forceMove(T)
+			if(istype(fl, /obj/item/organ))
+				var/obj/item/organ/O = fl
+				O.organ_flags &= ~ORGAN_FROZEN
 		unattached_flesh.Cut()
 		mess = FALSE
 		new /obj/effect/gibspawner/generic(get_turf(src), mob_occupant)
-		audible_message("<span class='italics'>You hear a splat.</span>")
+		audible_message("<span class='hear'>You hear a splat.</span>")
 		icon_state = "pod_0"
 		return
 
@@ -419,8 +432,6 @@
 		to_chat(occupant, "<span class='notice'><b>There is a bright flash!</b><br><i>You feel like a new being.</i></span>")
 		mob_occupant.flash_act()
 
-	mob_occupant.adjustBrainLoss(mob_occupant.getCloneLoss())
-
 	occupant.forceMove(T)
 	icon_state = "pod_0"
 	mob_occupant.domutcheck(1) //Waiting until they're out before possible monkeyizing. The 1 argument forces powers to manifest.
@@ -429,6 +440,7 @@
 	unattached_flesh.Cut()
 
 	occupant = null
+	clonemind = null
 
 /obj/machinery/clonepod/proc/malfunction()
 	var/mob/living/mob_occupant = occupant
@@ -439,7 +451,7 @@
 		mess = TRUE
 		maim_clone(mob_occupant)	//Remove every bit that's grown back so far to drop later, also destroys bits that haven't grown yet
 		icon_state = "pod_g"
-		if(mob_occupant.mind != clonemind)
+		if(clonemind && mob_occupant.mind != clonemind)
 			clonemind.transfer_to(mob_occupant)
 		mob_occupant.grab_ghost() // We really just want to make you suffer.
 		flash_color(mob_occupant, flash_color="#960000", flash_time=100)
@@ -461,8 +473,8 @@
 	if (!(. & EMP_PROTECT_SELF))
 		var/mob/living/mob_occupant = occupant
 		if(mob_occupant && prob(100/(severity*efficiency)))
-			connected_message(Gibberish("EMP-caused Accidental Ejection", 0))
-			SPEAK(Gibberish("Exposure to electromagnetic fields has caused the ejection of [mob_occupant.real_name] prematurely." ,0))
+			connected_message(Gibberish("EMP-caused Accidental Ejection"))
+			SPEAK(Gibberish("Exposure to electromagnetic fields has caused the ejection of [mob_occupant.real_name] prematurely."))
 			go_out()
 			log_cloning("[key_name(mob_occupant)] ejected from [src] at [AREACOORD(src)] due to EMP pulse.")
 
@@ -516,8 +528,9 @@
 
 	for(var/o in H.internal_organs)
 		var/obj/item/organ/organ = o
-		if(!istype(organ) || organ.vital)
+		if(!istype(organ) || (organ.organ_flags & ORGAN_VITAL))
 			continue
+		organ.organ_flags |= ORGAN_FROZEN
 		organ.Remove(H, special=TRUE)
 		organ.forceMove(src)
 		unattached_flesh += organ

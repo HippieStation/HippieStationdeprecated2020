@@ -2,7 +2,7 @@
 	name = "makeshift armor"
 	desc = "A hazard vest with metal plate taped on it. It offers minor protection."
 	icon = 'hippiestation/icons/obj/armor.dmi'
-	alternate_worn_icon = 'hippiestation/icons/obj/armor.dmi'
+	mob_overlay_icon = 'hippiestation/icons/obj/armor.dmi'
 	icon_state = "makeshiftarmor-worn"
 	item_state = "makeshiftarmor"
 	w_class = 3

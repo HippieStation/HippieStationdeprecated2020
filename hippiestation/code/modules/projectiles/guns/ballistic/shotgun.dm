@@ -9,7 +9,7 @@
 	mag_type = /obj/item/ammo_box/magazine/internal/shot/contender
 	weapon_weight = WEAPON_MEDIUM
 	w_class = WEIGHT_CLASS_NORMAL
-	materials = list(MAT_METAL=10000)
+	materials = list(/datum/material/iron=10000)
 	obj_flags = UNIQUE_RENAME
 	unique_reskin = 0
 

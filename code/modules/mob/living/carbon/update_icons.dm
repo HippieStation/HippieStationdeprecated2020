@@ -69,15 +69,11 @@
 							observers = null
 							break
 
-		var/t_state = I.item_state
-		if(!t_state)
-			t_state = I.icon_state
-
 		var/icon_file = I.lefthand_file
 		if(get_held_index_of_item(I) % 2 == 0)
 			icon_file = I.righthand_file
 
-		hands += I.build_worn_icon(state = t_state, default_layer = HANDS_LAYER, default_icon_file = icon_file, isinhands = TRUE)
+		hands += I.build_worn_icon(default_layer = HANDS_LAYER, default_icon_file = icon_file, isinhands = TRUE)
 
 	overlays_standing[HANDS_LAYER] = hands
 	apply_overlay(HANDS_LAYER)
@@ -121,7 +117,7 @@
 
 	if(wear_mask)
 		if(!(SLOT_WEAR_MASK in check_obscured_slots()))
-			overlays_standing[FACEMASK_LAYER] = wear_mask.build_worn_icon(state = wear_mask.icon_state, default_layer = FACEMASK_LAYER, default_icon_file = 'icons/mob/mask.dmi')
+			overlays_standing[FACEMASK_LAYER] = wear_mask.build_worn_icon(default_layer = FACEMASK_LAYER, default_icon_file = 'icons/mob/clothing/mask.dmi')
 		update_hud_wear_mask(wear_mask)
 
 	apply_overlay(FACEMASK_LAYER)
@@ -135,7 +131,7 @@
 
 	if(wear_neck)
 		if(!(SLOT_NECK in check_obscured_slots()))
-			overlays_standing[NECK_LAYER] = wear_neck.build_worn_icon(state = wear_neck.icon_state, default_layer = NECK_LAYER, default_icon_file = 'icons/mob/neck.dmi')
+			overlays_standing[NECK_LAYER] = wear_neck.build_worn_icon(default_layer = NECK_LAYER, default_icon_file = 'icons/mob/clothing/neck.dmi')
 		update_hud_neck(wear_neck)
 
 	apply_overlay(NECK_LAYER)
@@ -148,7 +144,7 @@
 		inv.update_icon()
 
 	if(back)
-		overlays_standing[BACK_LAYER] = back.build_worn_icon(state = back.icon_state, default_layer = BACK_LAYER, default_icon_file = 'icons/mob/back.dmi')
+		overlays_standing[BACK_LAYER] = back.build_worn_icon(default_layer = BACK_LAYER, default_icon_file = 'icons/mob/clothing/back.dmi')
 		update_hud_back(back)
 
 	apply_overlay(BACK_LAYER)
@@ -165,7 +161,7 @@
 
 	if(head)
 		// hippie start -- Stackable hats
-		var/mutable_appearance/hm = head.build_worn_icon(state = head.icon_state, default_layer = HEAD_LAYER, default_icon_file = 'icons/mob/head.dmi')
+		var/mutable_appearance/hm = head.build_worn_icon(default_layer = HEAD_LAYER, default_icon_file = 'icons/mob/clothing/head.dmi')
 		
 		if (istype(head, /obj/item/clothing/head))
 			var/obj/item/clothing/head/H = head
@@ -173,14 +169,13 @@
 				var/I = 1
 				for (var/obj/item/clothing/head/J in H.stacked_hats)
 					if (istype(J))
-						var/mutable_appearance/new_hat = J.build_worn_icon(state = J.icon_state, default_layer = HEAD_LAYER, default_icon_file = 'icons/mob/head.dmi')
+						var/mutable_appearance/new_hat = J.build_worn_icon(default_layer = HEAD_LAYER, default_icon_file = 'icons/mob/clothing/head.dmi')
 						new_hat.pixel_y += 3 * I
 						hm.add_overlay(new_hat)
 					I += 1
 
 		overlays_standing[HEAD_LAYER] = hm
 		// hippie end
-
 		update_hud_head(head)
 
 	apply_overlay(HEAD_LAYER)

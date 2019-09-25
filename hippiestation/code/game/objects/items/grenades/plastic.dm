@@ -1,8 +1,7 @@
-/obj/item/grenade/plastic/Initialize()
+/obj/item/grenade/c4/Initialize()
 	. = ..()
 	plastic_overlay = mutable_appearance(icon, "[item_state]2", ABOVE_ALL_MOB_LAYER)
 
-/obj/item/grenade/plastic/x4
-	can_attach_mob = TRUE // oh no no no no no
+/obj/item/grenade/c4/x4
 	full_damage_on_mobs = TRUE // OHHHHHHHH
 

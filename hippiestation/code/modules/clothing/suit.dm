@@ -1,5 +1,5 @@
 /obj/item/clothing/suit/wizrobe/hippie
-	alternate_worn_icon = 'hippiestation/icons/mob/suit.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/suit.dmi'
 	icon = 'hippiestation/icons/obj/clothing/suits.dmi'
 
 /obj/item/clothing/suit/wizrobe/hippie/necrolord
@@ -11,7 +11,7 @@
 	allowed = list(/obj/item/teleportation_scroll, /obj/item/gun/magic/staff/staffofrevenant)
 
 /obj/item/clothing/suit/space/hardsuit/syndi/elite/blastco
-	alternate_worn_icon = 'hippiestation/icons/mob/suit.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/suit.dmi'
 	icon = 'hippiestation/icons/obj/clothing/suits.dmi'
 	name = "BlastCo(tm) Hardsuit"
 	desc = "A specialized hardsuit built for sustaining concussive blasts and shrapnel. It is in travel mode."
@@ -26,7 +26,7 @@
 /obj/item/clothing/suit/fire/atmos/syndicate
 	name = "warm firesuit"
 	desc = "A firesuit with blaze-themed colors. You can almost hear the crackling of a distant inferno...."
-	alternate_worn_icon = 'hippiestation/icons/mob/suit.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/suit.dmi'
 	icon = 'hippiestation/icons/obj/clothing/suits.dmi'
 	icon_state = "firesuit_syndicate"
 	item_state = "firesuit_syndicate"
@@ -40,7 +40,7 @@
 	icon_state = "guardarmor"
 	item_state = "guardarmor"
 	icon = 'hippiestation/icons/obj/clothing/suits.dmi'
-	alternate_worn_icon = 'hippiestation/icons/mob/suit.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/suit.dmi'
 /obj/item/clothing/suit/space/hardsuit/syndi
 	armor = list("melee" = 40, "bullet" = 50, "laser" = 30, "energy" = 15, "bomb" = 40, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 90)
 /obj/item/clothing/head/helmet/space/hardsuit/syndi

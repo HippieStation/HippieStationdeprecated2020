@@ -6,7 +6,7 @@
 	// item_state = "rods"
 	icon = 'hippiestation/icons/obj/garrote.dmi'
 	w_class = 2
-	materials = list(MAT_METAL=1000)
+	materials = list(/datum/material/iron=1000)
 
 /obj/item/garrotehandles/attackby(obj/item/I, mob/user, params)
 	..()
@@ -16,7 +16,7 @@
 			var/obj/item/garrote/W = new /obj/item/garrote
 			if(!remove_item_from_storage(user))
 				user.temporarilyRemoveItemFromInventory(src)
-			W.item_color = I.item_color
+			W.cable_color = R.pipe_cleaner_color
 			W.update_icon()
 			user.put_in_hands(W)
 			to_chat(user, "<span class='notice'>You attach the cable to the handles and pull on them tightly, creating a garrote.</span>")
@@ -32,7 +32,7 @@
 	w_class = 2
 	icon = 'hippiestation/icons/obj/garrote.dmi'
 	icon_state = "garrote"
-	item_color = "red"
+	var/cable_color = "red"
 	color = "#ff0000"
 	var/garroting = FALSE
 	var/next_garrote = 0
@@ -41,43 +41,43 @@
 	.=..()
 
 	var/list/cable_colors = GLOB.pipe_cleaner_colors
-	item_color = param_color || item_color || pick(cable_colors)
-	if(cable_colors[item_color])
-		item_color = cable_colors[item_color]
+	cable_color = param_color || cable_color || pick(cable_colors)
+	if(cable_colors[cable_color])
+		cable_color = cable_colors[cable_color]
 	update_icon()
 
 /obj/item/garrote/update_icon()
     icon_state = "garrote[garroting ? "_w" : ""]"
 
 /obj/item/garrote/red
-	item_color = "red"
+	cable_color = "red"
 	color = "#ff0000"
 
 /obj/item/garrote/yellow
 	color = "#ffff00"
 
 /obj/item/garrote/blue
-	item_color = "blue"
+	cable_color = "blue"
 	color = "#1919c8"
 
 /obj/item/garrote/green
-	item_color = "green"
+	cable_color = "green"
 	color = "#00aa00"
 
 /obj/item/garrote/pink
-	item_color = "pink"
+	cable_color = "pink"
 	color = "#ff3ccd"
 
 /obj/item/garrote/orange
-	item_color = "orange"
+	cable_color = "orange"
 	color = "#ff8000"
 
 /obj/item/garrote/cyan
-	item_color = "cyan"
+	cable_color = "cyan"
 	color = "#00ffff"
 
 /obj/item/garrote/white
-	item_color = "white"
+	cable_color = "white"
 
 /obj/item/garrote/Destroy()
 	STOP_PROCESSING(SSobj, src)

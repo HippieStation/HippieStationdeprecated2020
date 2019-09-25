@@ -96,7 +96,7 @@
 	user.changeNext_move(CLICK_CD_MELEE)
 	if(!istype(W))
 		return
-	if(W.is_sharp())
+	if(W.get_sharpness())
 		visible_message("<span class='danger'><b>[user] pierces [src] with [W]!</b></span>")
 		deflate(1)
 	if(W.damtype == BRUTE || W.damtype == BURN)

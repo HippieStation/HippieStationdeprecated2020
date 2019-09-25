@@ -9,7 +9,7 @@
 	icon_state = "broken_rod"
 	item_state = "rods"
 	max_amount = 5
-	materials = list(MAT_METAL=500)
+	materials = list(/datum/material/iron=500)
 
 /obj/item/stack/broken_rods/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_WELDER)

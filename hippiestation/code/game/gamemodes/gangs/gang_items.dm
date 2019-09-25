@@ -349,7 +349,7 @@
 	name = "C4 Explosive"
 	id = "c4"
 	cost = 7
-	item_path = /obj/item/grenade/plastic/c4
+	item_path = /obj/item/grenade/c4
 
 /datum/gang_item/equipment/frag
 	name = "Fragmentation Grenade"
@@ -690,7 +690,7 @@
 	item_state = "syringe_0"
 	throw_speed = 3
 	throw_range = 5
-	materials = list(MAT_METAL=600, MAT_GLASS=200)
+	materials = list(/datum/material/iron=600, /datum/material/glass=200)
 
 /obj/item/reviver/attack(mob/living/carbon/human/H, mob/user)
 	if(!ishuman(H) || icon_state == "implanter0")
@@ -736,7 +736,7 @@
 			H.grab_ghost()
 			H.revive()
 			H.emote("gasp")
-			H.setBrainLoss(40)
+			H.setOrganLoss(ORGAN_SLOT_BRAIN, 40)
 			icon_state = "implanter0"
 			update_icon()
 

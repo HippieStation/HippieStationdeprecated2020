@@ -6,10 +6,26 @@
 
 /datum/martial_art/the_sleeping_carp
 	name = "The Sleeping Carp"
-	deflection_chance = 100
-	no_guns = TRUE
 	allow_temp_override = FALSE
 	help_verb = /mob/living/carbon/human/proc/sleeping_carp_help
+
+/datum/martial_art/the_sleeping_carp/on_projectile_hit(mob/living/carbon/human/A, obj/item/projectile/P, def_zone)
+	. = ..()
+	if(!prob(deflection_chance))
+		return BULLET_ACT_HIT
+	if(A.incapacitated(FALSE, TRUE)) //NO STUN
+		return BULLET_ACT_HIT
+	if(!(A.mobility_flags & MOBILITY_USE)) //NO UNABLE TO USE
+		return BULLET_ACT_HIT
+	if(A.dna && A.dna.check_mutation(HULK)) //NO HULK
+		return BULLET_ACT_HIT
+	if(!isturf(A.loc)) //NO MOTHERFLIPPIN MECHS!
+		return BULLET_ACT_HIT
+	A.visible_message("<span class='danger'>[A] deflects the projectile; [A.p_they()] can't be hit with ranged weapons!</span>", "<span class='userdanger'>You deflect the projectile!</span>")
+	playsound(src, pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg'), 75, TRUE)
+	P.firer = A
+	P.setAngle(rand(0, 360))//SHING
+	return BULLET_ACT_FORCE_PIERCE
 
 /datum/martial_art/the_sleeping_carp/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	A.hud_used.combo_object.update_icon(streak, 60)
@@ -52,7 +68,7 @@
 		D.Stun(60)
 		return TRUE
 	log_combat(A, D, "wrist wrenched (Sleeping Carp)")
-	return basic_hit(A,D)
+	return FALSE
 
 /datum/martial_art/the_sleeping_carp/proc/backKick(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(A.dir == D.dir && !D.stat && !D.IsParalyzed())
@@ -64,7 +80,7 @@
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
 		return TRUE
 	log_combat(A, D, "back-kicked (Sleeping Carp)")
-	return basic_hit(A,D)
+	return FALSE
 
 /datum/martial_art/the_sleeping_carp/proc/kneeStomach(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!D.stat && !D.IsParalyzed())
@@ -77,7 +93,7 @@
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
 		return TRUE
 	log_combat(A, D, "stomach kneed (Sleeping Carp)")
-	return basic_hit(A,D)
+	return FALSE
 
 /datum/martial_art/the_sleeping_carp/proc/headKick(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!D.stat && !D.IsParalyzed())
@@ -90,7 +106,7 @@
 		D.Stun(80)
 		return TRUE
 	log_combat(A, D, "head kicked (Sleeping Carp)")
-	return basic_hit(A,D)
+	return FALSE
 
 /datum/martial_art/the_sleeping_carp/proc/elbowDrop(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(D.IsParalyzed() || D.resting || D.stat)
@@ -103,7 +119,7 @@
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 75, 1, -1)
 		return TRUE
 	log_combat(A, D, "elbow dropped (Sleeping Carp)")
-	return basic_hit(A,D)
+	return FALSE
 
 /datum/martial_art/the_sleeping_carp/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("G",D)
@@ -243,7 +259,7 @@
 				H.visible_message("<span class='warning'>[user] delivers a heavy hit to [H]'s head, knocking them out cold!</span>", \
 									   "<span class='userdanger'>[user] knocks you unconscious!</span>")
 				H.SetSleeping(600)
-				H.adjustBrainLoss(25)
+				H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 25)
 	else
 		return ..()
 

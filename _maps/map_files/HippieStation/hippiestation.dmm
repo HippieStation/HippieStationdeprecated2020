@@ -4016,7 +4016,7 @@
 /turf/open/floor/plasteel,
 /area/security/processing)
 "ajC" = (
-/obj/machinery/computer/gulag_teleporter_computer,
+/obj/machinery/computer/prisoner/gulag_teleporter_computer,
 /turf/open/floor/plasteel,
 /area/security/processing)
 "ajD" = (
@@ -4357,7 +4357,7 @@
 /obj/structure/rack,
 /obj/item/clothing/head/ushanka,
 /obj/item/clothing/shoes/jackboots,
-/obj/item/clothing/under/soviet,
+/obj/item/clothing/under/costume/soviet,
 /obj/machinery/power/apc{
 	areastring = "/area/maintenance/commiespy";
 	dir = 1;
@@ -11004,7 +11004,7 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/fore)
 "aFe" = (
-/obj/item/clothing/under/rank/mailman,
+/obj/item/clothing/under/misc/mailman,
 /obj/item/clothing/head/mailman,
 /obj/structure/closet,
 /obj/effect/landmark/blobstart,
@@ -15274,12 +15274,12 @@
 /area/chapel/office)
 "aQU" = (
 /obj/structure/table/wood,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
-/obj/item/clothing/under/burial,
+/obj/item/clothing/under/misc/burial,
+/obj/item/clothing/under/misc/burial,
+/obj/item/clothing/under/misc/burial,
+/obj/item/clothing/under/misc/burial,
+/obj/item/clothing/under/misc/burial,
+/obj/item/clothing/under/misc/burial,
 /turf/open/floor/plasteel/grimy,
 /area/chapel/office)
 "aQV" = (
@@ -16442,7 +16442,7 @@
 /area/library)
 "aUP" = (
 /obj/structure/destructible/cult/tome,
-/obj/item/clothing/under/suit_jacket/red,
+/obj/item/clothing/under/suit/red,
 /obj/item/book/codex_gigas,
 /turf/open/floor/engine/cult,
 /area/library)
@@ -19820,11 +19820,11 @@
 /area/crew_quarters/locker)
 "beZ" = (
 /obj/structure/closet,
-/obj/item/clothing/under/suit_jacket/female{
+/obj/item/clothing/under/rank/civilian/lawyer/female{
 	pixel_x = 3;
 	pixel_y = 1
 	},
-/obj/item/clothing/under/suit_jacket/really_black{
+/obj/item/clothing/under/suit/black_really{
 	pixel_x = -2
 	},
 /obj/structure/window{
@@ -40866,7 +40866,7 @@
 /area/maintenance/port/aft)
 "cpb" = (
 /obj/structure/closet,
-/obj/item/clothing/under/rank/vice,
+/obj/item/clothing/under/misc/vice_officer,
 /obj/item/clothing/shoes/jackboots,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
@@ -52272,7 +52272,7 @@
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "iAp" = (
-/obj/structure/chair/wood/normal{
+/obj/structure/chair/wood{
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -55926,7 +55926,7 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/heads/hor)
 "oFR" = (
-/obj/structure/chair/wood/normal,
+/obj/structure/chair/wood,
 /turf/open/floor/carpet,
 /area/hallway/secondary/entry)
 "oGs" = (
@@ -58639,7 +58639,7 @@
 /turf/open/floor/engine,
 /area/engine/engineering)
 "ttg" = (
-/obj/structure/chair/wood/normal{
+/obj/structure/chair/wood{
 	dir = 8
 	},
 /turf/open/floor/carpet,
@@ -59717,7 +59717,7 @@
 "vna" = (
 /obj/structure/table,
 /obj/item/storage/fancy/cigarettes,
-/obj/item/reagent_containers/food/snacks/beans,
+/obj/item/reagent_containers/food/snacks/canned/beans,
 /obj/item/kitchen/knife,
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
@@ -60631,7 +60631,7 @@
 /turf/open/floor/plating,
 /area/crew_quarters/heads/cmo)
 "wLT" = (
-/obj/structure/chair/wood/normal{
+/obj/structure/chair/wood{
 	dir = 1
 	},
 /turf/open/floor/carpet,

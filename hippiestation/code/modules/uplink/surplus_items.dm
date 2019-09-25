@@ -3,7 +3,7 @@
 /obj/item/clothing/shoes/crowbar //basic syndicate combat boots for nuke ops and mob corpses
 	name = "crowbar shoes"
 	desc = "They're just shoes with some crowbars tacked on at the heels."
-	alternate_worn_icon = 'hippiestation/icons/mob/feet.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/feet.dmi'
 	icon = 'hippiestation/icons/obj/clothing/shoes.dmi'
 	icon_state = "crowbarshoes"
 	item_state = "crowbarshoes"

@@ -10,7 +10,7 @@
 	throw_speed = 2
 	throw_range = 3
 	w_class = WEIGHT_CLASS_BULKY
-	materials = list(MAT_METAL=1000)
+	materials = list(/datum/material/iron=1000)
 	attack_verb = list("shoved", "bashed")
 	block_chance = 45
 	armor = list("melee" = 50, "bullet" = 40, "laser" = 30, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)

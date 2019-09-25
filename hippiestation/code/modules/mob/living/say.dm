@@ -38,7 +38,7 @@
 					trauma_resistance = TRAUMA_RESILIENCE_MAGIC
 				if(BRAIN_TRAUMA_SPECIAL)
 					trauma_resistance = TRAUMA_RESILIENCE_BASIC
-			H.adjustBrainLoss(20)
+			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 20)
 			H.gain_trauma_type(trauma_type, trauma_resistance)
 
 	say_tts(message, language)

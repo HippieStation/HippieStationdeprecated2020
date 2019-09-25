@@ -50,17 +50,17 @@
 // STUFF
 
 /obj/item/melee_attack_chain(mob/user, atom/target, params)
-	if(!tool_attack_chain(user, target) && pre_attack(target, user, params))
-		var/resolved
-		if(HAS_TRAIT(target, TRAIT_ONEWAYROAD))
-			resolved = user.attackby(src, user, params) // you just hit yourself
-		else
-			resolved = target.attackby(src, user, params)
-		if(!resolved && target && !QDELETED(src))
-			if(HAS_TRAIT(target, TRAIT_ONEWAYROAD))
-				afterattack(user, user, 1, params)
-			else
-				afterattack(target, user, 1, params)
+	if(tool_behaviour && target.tool_act(user, src, tool_behaviour))
+		return
+	if(HAS_TRAIT(target, TRAIT_ONEWAYROAD))
+		user = target
+	if(pre_attack(target, user, params))
+		return
+	if(target.attackby(src,user, params))
+		return
+	if(QDELETED(src) || QDELETED(target))
+		return
+	afterattack(target, user, TRUE, params)
 
 /mob/living/carbon/human/bullet_act(obj/item/projectile/P, def_zone)
 	if(HAS_TRAIT(src, TRAIT_ONEWAYROAD))
@@ -162,11 +162,6 @@
 		AM.throw_at(throwingdatum.thrower, throwingdatum.maxrange * 2, throwingdatum.speed * 2, src, TRUE)
 		return
 	return ..()
-
-/datum/martial_art/basic_hit(mob/living/carbon/human/A,mob/living/carbon/human/D)
-	if(HAS_TRAIT(D, TRAIT_ONEWAYROAD))
-		D = A
-	return ..(A, D)
 
 /datum/species/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
 	if(HAS_TRAIT(target, TRAIT_ONEWAYROAD))

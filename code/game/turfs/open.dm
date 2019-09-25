@@ -49,7 +49,7 @@
 /turf/open/indestructible/singularity_act()
 	return
 
-/turf/open/indestructible/TerraformTurf(path, defer_change = FALSE, ignore_air = FALSE)
+/turf/open/indestructible/TerraformTurf(path, new_baseturf, flags, defer_change = FALSE, ignore_air = FALSE)
 	return
 
 /turf/open/indestructible/sound
@@ -63,7 +63,7 @@
 /turf/open/indestructible/sound/Entered(var/mob/AM)
 	..()
 	if(istype(AM))
-		playsound(src,sound,50,1)
+		playsound(src,sound,50,TRUE)
 
 /turf/open/indestructible/necropolis
 	name = "necropolis floor"
@@ -244,7 +244,7 @@
 								slip_sound = pick(Obj.alternate_slip_sounds)
 			else
 				slip_sound = 'hippiestation/sound/misc/oof.ogg'
-			playsound(C.loc, (slip_sound), 50, 1, -3)
+			playsound(C.loc, (slip_sound), 50, TRUE, -3)
 			// Hippie End
 
 		SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "slipped", /datum/mood_event/slipped)

@@ -6,8 +6,9 @@
 		var/obj/item/clothing/head/helmet/space/hardsuit/HH = new HS.helmettype
 		update_item(HS.helmettype, I.head_piece)
 		I.head_piece.basestate = initial(HH.basestate)
-		I.head_piece.item_color = initial(HH.item_color)
-		I.head_piece.icon_state = "[I.head_piece.basestate][I.head_piece.on]-[I.head_piece.item_color]"
+		I.head_piece.dye_color = initial(HH.dye_color)
+		I.head_piece.hardsuit_type = initial(HH.hardsuit_type)
+		I.head_piece.icon_state = "[I.head_piece.basestate][I.head_piece.on][I.head_piece.hardsuit_type ? "-[I.head_piece.hardsuit_type]" : ""]"
 		var/mob/living/M = owner
 		if(istype(M))
 			M.update_inv_head()

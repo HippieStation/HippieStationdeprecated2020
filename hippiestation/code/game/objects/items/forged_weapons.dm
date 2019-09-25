@@ -74,7 +74,7 @@
 	desc = "A custom sword forged from solid ingots"
 	icon_state = "forged_sword"
 	item_state = "forged_sword"
-	alternate_worn_icon = 'hippiestation/icons/mob/belt.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/belt.dmi'
 	slot_flags = SLOT_BELT
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	weapon_type = MELEE_TYPE_SWORD
@@ -89,7 +89,7 @@
 	desc = "A custom mace forged from solid ingots"
 	icon_state = "forged_mace"
 	item_state = "forged_mace"
-	alternate_worn_icon = 'hippiestation/icons/mob/belt.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/belt.dmi'
 	slot_flags = SLOT_BELT
 	hitsound = 'hippiestation/sound/misc/crunch.ogg'
 	weapon_type = MELEE_TYPE_MACE
@@ -187,7 +187,7 @@
 	name = "forged warhammer"
 	desc = "A custom warhammer forged from solid ingots"
 	icon_state = "forged_hammer0"
-	alternate_worn_icon = 'hippiestation/icons/mob/back.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/back.dmi'
 	slot_flags = ITEM_SLOT_BACK
 	hitsound = 'hippiestation/sound/misc/crunch.ogg'
 	weapon_type = MELEE_TYPE_WARHAMMER

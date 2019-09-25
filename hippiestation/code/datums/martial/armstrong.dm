@@ -205,7 +205,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 	playsound(get_turf(D), 'hippiestation/sound/weapons/armstrong_headbutt.ogg', 80, 0, -1)
 	A.playsound_local(get_turf(A), 'hippiestation/sound/weapons/armstrong_success.ogg', 50, FALSE, pressure_affected = FALSE)
 	D.AdjustUnconscious(15)
-	D.adjustBrainLoss(30)
+	D.adjustOrganLoss(ORGAN_SLOT_BRAIN, 30)
 	add_exp(12, A)
 	var/datum/effect_system/explosion/E = new
 	E.set_up(get_turf(D))
@@ -429,7 +429,7 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 			to_chat(owner, "<span class = 'notice'>You remember how to utilize your emotion, and learned Fireball. To use: Help Grab Disarm</span>")
 			to_chat(owner, "<span class = 'danger'>You also seem to be growing some facial hair...</span>")
 			if(is_species(owner, /datum/species/human))
-				owner.facial_hair_style = "Broken Man"
+				owner.facial_hairstyle = "Broken Man"
 				owner.update_hair() //makes the hair/facial hair change actually happen
 			else
 				if(!istype(owner.wear_mask, /obj/item/clothing/mask/fakemoustache/italian/cursed))
@@ -451,8 +451,8 @@ var/horse_stance_effects = FALSE // ensures the horse stance gains it effect
 			to_chat(owner, "<span class = 'notice'>You have mastered basic combos. Your attacks are more swift.</span>")
 			to_chat(owner, "<span class = 'notice'>You have also unlocked Cannonball. To use: Disarm Disarm Grab.</span>")
 			to_chat(owner, "<span class = 'danger'><b>This great speed requires precision. Use your combos!</b></span>")
-			owner.hair_style = "Bald"
-			owner.facial_hair_style = "Broken Man" //ensures the proper look
+			owner.hairstyle = "Bald"
+			owner.facial_hairstyle = "Broken Man" //ensures the proper look
 			owner.update_hair() //makes the hair/facial hair change actually happen
 			owner.playsound_local(get_turf(owner), 'hippiestation/sound/weapons/armstrong_newcombo.ogg', 50, FALSE, pressure_affected = FALSE)
 		if(12)

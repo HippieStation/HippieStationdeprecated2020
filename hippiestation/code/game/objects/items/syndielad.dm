@@ -8,7 +8,7 @@
 	desc = "A Syndie-Lad portable arm-mounted computer, generally used to assist with directives. It utilizes outdated technology, but it's extremely cheap and durable, ensuring its \
 	continued production and relevancy."
 	gender = MALE // Yes, this is an actual clothing var. Prevents examine from showing "they" despite the syndie-lad being a single item
-	alternate_worn_icon = 'hippiestation/icons/obj/syndielad.dmi'
+	mob_overlay_icon = 'hippiestation/icons/obj/syndielad.dmi'
 	icon = 'hippiestation/icons/obj/syndielad.dmi'
 	icon_state = "syndilad"
 	item_state = "syndilad-worn"

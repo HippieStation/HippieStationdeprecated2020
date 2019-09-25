@@ -1,7 +1,7 @@
 /obj/item/organ/butt
 	name = "butt"
 	desc = "extremely treasured body part"
-	alternate_worn_icon = 'hippiestation/icons/mob/head.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/head.dmi'
 	icon = 'hippiestation/icons/obj/butts.dmi'
 	icon_state = "butt"
 	item_state = "butt"
@@ -66,7 +66,7 @@
 	if(owner && STR)
 		var/list/STR_contents = STR.contents()
 		for(var/obj/item/I in STR_contents)
-			if(I.is_sharp() || is_pointed(I))
+			if(I.get_sharpness() || is_pointed(I))
 				owner.bleed(4)
 
 /obj/item/organ/butt/attackby(var/obj/item/W, mob/user as mob, params) // copypasting bot manufucturing process, im a lazy fuck

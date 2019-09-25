@@ -17,7 +17,7 @@
 			var/mob/living/carbon/human/H = M
 			if(istype(H.ears, /obj/item/clothing/ears/earmuffs))
 				continue
-		M.adjustBrainLoss(HORN_BRAIN_DAMAGE, 75)
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, HORN_BRAIN_DAMAGE, 75)
 		log_admin("[key_name(user)] dealt brain damage to [key_name(M)] with the Extra annoying bike horn")
 
 #undef HORN_BRAIN_DAMAGE

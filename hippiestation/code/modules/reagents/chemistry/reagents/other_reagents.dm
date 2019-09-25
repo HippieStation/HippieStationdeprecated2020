@@ -6,13 +6,13 @@
 		M.adjustBruteLoss(-3, 0)
 		M.adjustFireLoss(-3, 0)
 		M.adjustCloneLoss(-5, 0)
-		M.adjustBrainLoss(-3, 0)
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, -3, 0)
 		if(iscarbon(M))
 			var/mob/living/carbon/C = M
 			if(C.blood_volume < BLOOD_VOLUME_NORMAL)
 				C.blood_volume += 5
 	else
-		M.adjustBrainLoss(3)
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3)
 		M.adjustToxLoss(1, 0)
 		M.adjustFireLoss(2, 0)
 		M.adjustOxyLoss(2, 0)

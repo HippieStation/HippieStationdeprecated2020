@@ -24,7 +24,7 @@
 
 /obj/machinery/reagent_forge/Initialize()
 	. = ..()
-	AddComponent(/datum/component/material_container, list(MAT_REAGENT), 200000)
+	AddComponent(/datum/component/material_container, list(/datum/material/reagent), 200000)
 	stored_research = new /datum/techweb/specialized/autounlocking/reagent_forge
 
 /obj/machinery/reagent_forge/attackby(obj/item/I, mob/user)
@@ -70,7 +70,7 @@
 /obj/machinery/reagent_forge/proc/check_cost(materials, using)
 	var/datum/component/material_container/ourmaterials = GetComponent(/datum/component/material_container)
 
-	if(ourmaterials.amount(MAT_REAGENT) <= 0)
+	if(ourmaterials.materials[/datum/material/reagent] <= 0)
 		qdel(currently_forging)
 		currently_forging = null
 		return FALSE
@@ -78,12 +78,12 @@
 	if(!materials)
 		return FALSE
 
-	if(materials*efficiency > ourmaterials.amount(MAT_REAGENT))
+	if(materials*efficiency > ourmaterials.materials[/datum/material/reagent])
 		return FALSE
 	else
 		if(using)
-			var/list/materials_used = list(MAT_REAGENT=materials*efficiency)
-			ourmaterials.use_amount(materials_used)
+			var/list/materials_used = list(/datum/material/reagent=materials*efficiency)
+			ourmaterials.use_materials(materials_used)
 		return TRUE
 
 
@@ -92,7 +92,7 @@
 		return FALSE
 
 	for(var/i in 1 to amount)
-		if(!check_cost(D.materials[MAT_REAGENT], TRUE))
+		if(!check_cost(D.materials[/datum/material/reagent], TRUE))
 			visible_message("<span class='warning'>The low material indicator flashes on [src]!</span>")
 			playsound(src, 'sound/machines/buzz-two.ogg', 60, 0)
 			return FALSE
@@ -131,7 +131,7 @@
 	for(var/v in stored_research.researched_designs)
 		var/datum/design/forge/D = SSresearch.techweb_design_by_id(v)
 		var/md5name = md5(D.name)
-		var/cost = D.materials[MAT_REAGENT]*efficiency
+		var/cost = D.materials[/datum/material/reagent]*efficiency
 		if(!listofrecipes[md5name])
 			listofrecipes[md5name] = list("name" = D.name, "category" = D.category[2], "cost" = cost)
 			if(cost < lowest_cost)
@@ -141,7 +141,7 @@
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	data["recipes"] = listofrecipes
 	data["currently_forging"] = currently_forging ? currently_forging : "Nothing"
-	data["material_amount"] = materials.amount(MAT_REAGENT)
+	data["material_amount"] = materials.materials[/datum/material/reagent]
 	data["can_afford"] = check_cost(lowest_cost, FALSE)
 	return data
 
@@ -166,10 +166,10 @@
 		if("Dump")
 			if(currently_forging)
 				var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
-				var/amount = materials.amount(MAT_REAGENT)
+				var/amount = materials.materials[/datum/material/reagent]
 				if(amount > 0)
-					var/list/materials_used = list(MAT_REAGENT=amount)
-					materials.use_amount(materials_used)
+					var/list/materials_used = list(/datum/material/reagent=amount)
+					materials.use_materials(materials_used)
 					var/obj/item/stack/sheet/mineral/reagent/RS = new(get_turf(usr))
 					RS.amount = materials.amount2sheet(amount)
 					var/paths = subtypesof(/datum/reagent)//one reference per stack

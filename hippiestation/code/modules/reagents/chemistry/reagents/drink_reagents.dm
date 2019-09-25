@@ -60,13 +60,13 @@
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		old_skin_tone = H.skin_tone
-		old_hair_style = H.hair_style
+		old_hair_style = H.hairstyle
 
 /datum/reagent/consumable/lean/on_mob_end_metabolize(mob/living/L)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		H.skin_tone = old_skin_tone
-		H.hair_style = old_hair_style
+		H.hairstyle = old_hair_style
 		H.update_body()
 		H.update_hair()
 
@@ -84,7 +84,7 @@
 			to_chat(H,"<span class='notice'>[syrup_feeling]</span>")
 		if(prob(3))
 			H.skin_tone = "african1"
-			H.hair_style = "Big Afro"
+			H.hairstyle = "Big Afro"
 			H.update_body()
 			H.update_hair()
 
@@ -107,10 +107,10 @@
 	var/prefix = ""
 	if(Soylet.gender == FEMALE)
 		prefix = "fe"
-		Soylet.hair_style = "Kusanagi Hair"
+		Soylet.hairstyle = "Kusanagi Hair"
 	else
-		Soylet.hair_style = "Balding Hair"
-		Soylet.facial_hair_style = "Hipster Beard"
+		Soylet.hairstyle = "Balding Hair"
+		Soylet.facial_hairstyle = "Hipster Beard"
 
 	Soylet.dropItemToGround(Soylet.glasses)
 	Soylet.equip_to_slot_or_del(new /obj/item/clothing/glasses/regular/hipster(Soylet), SLOT_GLASSES)

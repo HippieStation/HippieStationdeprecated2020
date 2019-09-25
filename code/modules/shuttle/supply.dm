@@ -26,6 +26,8 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/obj/structure/extraction_point,
 		/obj/machinery/syndicatebomb,
 		/obj/item/hilbertshotel,
+		/obj/item/swapper,
+		/obj/docking_port,
 		/obj/machinery/telepad, //Hippie - Shouldn't be exportable, could be used to retrieve someone from the station if it was on the Centcom Z-level.
         /obj/machinery/computer/telescience //Hippie - Used to control the telepad.
 	)))
@@ -61,7 +63,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		for(var/trf in shuttle_area)
 			var/turf/T = trf
 			for(var/a in T.GetAllContents())
-				if(is_type_in_typecache(a, GLOB.blacklisted_cargo_types))
+				if(is_type_in_typecache(a, GLOB.blacklisted_cargo_types) && !istype(a, /obj/docking_port))
 					return FALSE
 	return TRUE
 

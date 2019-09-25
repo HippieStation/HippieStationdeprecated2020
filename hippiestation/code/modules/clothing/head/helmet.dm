@@ -10,5 +10,5 @@
 	icon_state = "guardhelm"
 	item_state = "guardhelm"
 	icon = 'hippiestation/icons/obj/clothing/hats.dmi'
-	alternate_worn_icon = 'hippiestation/icons/mob/head.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/head.dmi'
 	alternate_screams = list('hippiestation/sound/voice/stop_right_there.ogg', 'hippiestation/sound/voice/stop_right_there2.ogg')

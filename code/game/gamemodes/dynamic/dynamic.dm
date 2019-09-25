@@ -107,6 +107,8 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 	var/highlander_executed = FALSE
 	/// If a only ruleset has been executed.
 	var/only_ruleset_executed = FALSE
+	/// Dynamic configuration, loaded on pre_setup
+	var/list/configuration = null
 
 /datum/game_mode/dynamic/admin_panel()
 	var/list/dat = list("<html><head><title>Game Mode Panel</title></head><body><h1><B>Game Mode Panel</B></h1>")
@@ -282,11 +284,14 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 
 	var/midround_injection_cooldown_middle = 0.5*(GLOB.dynamic_midround_delay_max + GLOB.dynamic_midround_delay_min)
 	midround_injection_cooldown = round(CLAMP(EXP_DISTRIBUTION(midround_injection_cooldown_middle), GLOB.dynamic_midround_delay_min, GLOB.dynamic_midround_delay_max)) + world.time
-	message_admins("Dynamic Mode initialized with a Threat Level of... [threat_level]!")
 	log_game("DYNAMIC: Dynamic Mode initialized with a Threat Level of... [threat_level]!")
 	return TRUE
 
 /datum/game_mode/dynamic/pre_setup()
+	if(CONFIG_GET(flag/dynamic_config_enabled))
+		var/json_file = file("[global.config.directory]/dynamic.json")
+		if(fexists(json_file))
+			configuration = json_decode(file2text(json_file))
 	for (var/rule in subtypesof(/datum/dynamic_ruleset))
 		var/datum/dynamic_ruleset/ruleset = new rule()
 		// Simple check if the ruleset should be added to the lists.
@@ -300,7 +305,19 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 			if ("Midround")
 				if (ruleset.weight)
 					midround_rules += ruleset
-	for(var/mob/dead/new_player/player in GLOB.player_list)
+		if(configuration)
+			if(!configuration[ruleset.ruletype])
+				continue
+			if(!configuration[ruleset.ruletype][ruleset.name])
+				continue
+			var/rule_conf = configuration[ruleset.ruletype][ruleset.name]
+			for(var/variable in rule_conf)
+				if(!ruleset.vars[variable])
+					stack_trace("Invalid dynamic configuration variable [variable] in [ruleset.ruletype] [ruleset.name]")
+				ruleset.vars[variable] = rule_conf[variable]
+
+	for(var/i in GLOB.new_player_list)
+		var/mob/dead/new_player/player = i
 		if(player.ready == PLAYER_READY_TO_PLAY && player.mind)
 			roundstart_pop_ready++
 			candidates.Add(player)
@@ -421,7 +438,6 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 				return FALSE
 			starting_rule = pickweight(drafted_rules)
 
-	message_admins("Picking a ruleset [starting_rule.name]")
 	log_game("DYNAMIC: Picking a ruleset [starting_rule.name]")
 
 	roundstart_rules -= starting_rule

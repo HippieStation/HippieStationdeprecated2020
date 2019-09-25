@@ -10,7 +10,7 @@
 	throw_range = 7
 	throwforce = 1
 	w_class = 1
-	materials = list(MAT_METAL = 100)
+	materials = list(/datum/material/iron = 100)
 	max_amount = 10
 	attack_verb = list("stapled")
 

@@ -74,7 +74,7 @@
 	if(istype(M))
 		M.name = "Aussie Cant"
 		M.real_name = "Aussie Cant"
-		M.adjustBrainLoss(min(M.getBrainLoss() + 60, 60))
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, min(M.getOrganLoss(ORGAN_SLOT_BRAIN) + 60, 60))
 	..()
 
 /datum/reagent/toxin/emote
@@ -145,7 +145,7 @@
 			if(5 to 15)
 				if(prob(15))
 					M.emote(pick("twitch","blink_r","scream"))
-					M.adjustBrainLoss(2)
+					M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2)
 			if(15 to 40)
 				if(prob(15))
 					M.vomit(20)
@@ -153,7 +153,7 @@
 				if(prob(10))
 					M.vomit(20, 0, 4)
 					M.adjustBruteLoss(10)
-					M.adjustBrainLoss(10)//this gets much more serious
+					M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 10)//this gets much more serious
 			if(60 to INFINITY)
 				if(prob(50))
 					M.visible_message("<span class='danger'>[M.name] explodes in a shower of gibs leaving a space bear!</span>")
@@ -215,14 +215,14 @@
 			M.eye_blurry = max(M.eye_blurry, 10)
 			M.adjustToxLoss(3.5)
 			M.adjustOxyLoss(3.5)
-			M.adjustBrainLoss(1)
+			M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 1)
 
 		if(15 to 25)
 			M.adjustStaminaLoss(20)
 			M.setStaminaLoss(40)
 			M.adjustToxLoss(4.5)
 			M.adjustOxyLoss(3.5)
-			M.adjustBrainLoss(5)
+			M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
 			M.losebreath++
 
 		if(25 to INFINITY)
@@ -230,7 +230,7 @@
 			M.adjustToxLoss(6)
 			M.adjustOxyLoss(4)
 			M.adjustBruteLoss(2)
-			M.adjustBrainLoss(15)
+			M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 15)
 			M.losebreath++
 	..()
 
@@ -258,7 +258,7 @@
 /datum/reagent/toxin/tabun/on_mob_life(var/mob/living/M as mob)
 	M.adjustToxLoss(3*REM)//This stuff is crazily powerful
 	M.losebreath += 2
-	M.adjustBrainLoss(5)
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
 	M.eye_blurry = max(M.eye_blurry, 2)
 	..()
 
@@ -311,15 +311,15 @@
 			if(prob(33))
 				if(iscarbon(M))
 					var/mob/living/carbon/C = M
-					C.applyLiverDamage(5)
+					C.adjustOrganLoss(ORGAN_SLOT_LIVER, 5)
 		if(30 to INFINITY)
 			M.Sleeping(40,0)
-			M.adjust_eye_damage(1)
+			M.adjustOrganLoss(ORGAN_SLOT_EYES, 1)
 			M.losebreath++
 			if(prob(33))
 				if(iscarbon(M))
 					var/mob/living/carbon/C = M
-					C.applyLiverDamage(15)//liver damage does fuck all but oh well
+					C.adjustOrganLoss(ORGAN_SLOT_LIVER, 15)//liver damage does fuck all but oh well
 	..()
 
 /datum/reagent/toxin/bleach
@@ -399,7 +399,7 @@
 /datum/reagent/impedrezene/on_mob_life(mob/living/M)
 	M.jitteriness = max(M.jitteriness-5,0)
 	if(prob(80))
-		M.adjustBrainLoss(4*REM)
+		M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 4*REM)
 	if(prob(50))
 		M.drowsyness = max(M.drowsyness, 3)
 	if(prob(10))

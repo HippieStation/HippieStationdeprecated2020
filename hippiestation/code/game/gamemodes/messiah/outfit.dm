@@ -14,8 +14,8 @@
 	H.hair_color = "754"
 	H.facial_hair_color = "754"
 	H.eye_color = "49a"
-	H.hair_style = "Long Fringe"
-	H.facial_hair_style = "Full Beard"
+	H.hairstyle = "Long Fringe"
+	H.facial_hairstyle = "Full Beard"
 	H.socks = "Nude"
 
 	H.regenerate_icons()

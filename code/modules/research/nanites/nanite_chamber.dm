@@ -32,7 +32,7 @@
 /obj/machinery/nanite_chamber/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Scanning module has been upgraded to level <b>[scan_level]</b>.<span>"
+		. += "<span class='notice'>The status display reads: Scanning module has been upgraded to level <b>[scan_level]</b>.</span>"
 
 /obj/machinery/nanite_chamber/proc/set_busy(status, message, working_icon)
 	busy = status
@@ -178,7 +178,7 @@
 	user.last_special = world.time + CLICK_CD_BREAKOUT
 	user.visible_message("<span class='notice'>You see [user] kicking against the door of [src]!</span>", \
 		"<span class='notice'>You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)</span>", \
-		"<span class='italics'>You hear a metallic creaking from [src].</span>")
+		"<span class='hear'>You hear a metallic creaking from [src].</span>")
 	if(do_after(user,(breakout_time), target = src))
 		if(!user || user.stat != CONSCIOUS || user.loc != src || state_open || !locked || busy)
 			return

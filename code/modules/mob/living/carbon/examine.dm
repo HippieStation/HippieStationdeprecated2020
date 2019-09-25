@@ -88,9 +88,6 @@
 			. += "[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep."
 		else if(InCritical())
 			. += "[t_His] breathing is shallow and labored."
-
-		if(digitalcamo)
-			. += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly unsimian manner."
 	
 	. += hippie_carbon_examine() // hippie -- add our specific examine stuff
 

@@ -27,7 +27,7 @@
 /datum/dynamic_ruleset/roundstart/choose/proc/let_choice(datum/mind/M)
 	var/choice
 	while(!choice)
-		choice = input(M.current, "Which antagonist would you like to be?", "Your lucky day!") as null|anything in list("Traitor", "Vampire", "Devil", "Hivemind")
+		choice = input(M.current, "Which antagonist would you like to be?", "Your lucky day!") as null|anything in list("Traitor", "Vampire", "Devil")
 		if(!choice)
 			continue
 		switch(choice)
@@ -40,12 +40,12 @@
 			if("Devil")
 				M.add_antag_datum(/datum/antagonist/devil)
 				M.special_role = ROLE_DEVIL
-			if("Hivemind")
+			/*if("Hivemind")
 				M.add_antag_datum(/datum/antagonist/hivemind)
-				M.special_role = ROLE_HIVE
+				M.special_role = ROLE_HIVE*/
 
 
-/datum/dynamic_ruleset/roundstart/hivemind
+/*/datum/dynamic_ruleset/roundstart/hivemind
 	name = "Hivemind"
 	antag_flag = ROLE_HIVE
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
@@ -63,7 +63,7 @@
 		assigned += M.mind
 		M.mind.restricted_roles = restricted_roles
 		M.mind.special_role = ROLE_HIVE
-	return TRUE
+	return TRUE*/
 
 
 /datum/dynamic_ruleset/roundstart/abductors

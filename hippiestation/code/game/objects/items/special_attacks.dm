@@ -133,7 +133,7 @@
 	..()
 	if(iscarbon(target) && proximity_flag)
 		var/mob/living/carbon/C = target
-		C.adjustBrainLoss(30)
+		C.adjustOrganLoss(ORGAN_SLOT_BRAIN, 30)
 		C.confused += 25
 		var/armor_block = C.run_armor_check("head", "melee")
 		C.apply_damage(force, BRUTE, C.get_bodypart("head"), armor_block)

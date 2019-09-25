@@ -104,7 +104,7 @@
 
 /turf/open/pool/proc/wash_mob(mob/living/L)
 	SEND_SIGNAL(L, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
-	L.wash_cream()
+	qdel(L.GetComponent(/datum/component/creamed))
 	L.ExtinguishMob()
 	L.adjust_fire_stacks(-20) //Douse ourselves with water to avoid fire more easily
 	L.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
@@ -241,7 +241,7 @@
 													"<span class='userdanger'>You fall in the drained pool, and crack your skull!</span>")
 						H.apply_damage(15, BRUTE, "head")
 						H.Knockdown(200) // This should hurt. And it does.
-						H.adjustBrainLoss(30) //herp
+						H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 30) //herp
 						H.swimming = TRUE
 						playsound(src, 'sound/effects/woodhit.ogg', 60, 1, 1)
 						playsound(src, 'hippiestation/sound/misc/crack.ogg', 100, 1)

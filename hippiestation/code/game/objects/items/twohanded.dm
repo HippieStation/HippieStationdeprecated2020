@@ -47,7 +47,7 @@
 	heat = 1000
 	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
 	icon_state = "fireaxe0"
-	alternate_worn_icon = 'hippiestation/icons/mob/back.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/back.dmi'
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
 	attack_verb = list("incinerated", "conflagrated", "seared", "scorched", "roasted", "immolated")

@@ -14,9 +14,3 @@
 /datum/martial_art/add_to_streak(element,mob/living/carbon/human/D)
 	..()
 	addtimer(CALLBACK(src, .proc/reset_streak), 100, TIMER_OVERRIDE|TIMER_UNIQUE)
-
-/datum/martial_art/proc/reset_streak()
-	if(owner && owner.client && owner.hud_used)
-		if(owner.hud_used.combo_object)
-			owner.hud_used.combo_object.reset_streak()
-			streak = ""

@@ -80,9 +80,9 @@
 		var/obj/item/reagent_containers/food/drinks/beer/beer = new(get_turf(H))
 		H.put_in_hands(beer)
 		H.nutrition = NUTRITION_LEVEL_FAT // lmao
-		H.facial_hair_style = "Broken Man"
+		H.facial_hairstyle = "Broken Man"
 	else
-		H.facial_hair_style = "Long"
+		H.facial_hairstyle = "Long"
 	var/obj/item/twohanded/mjollnir/MJ = new(get_turf(H))
 	H.put_in_hands(MJ)
 

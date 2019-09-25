@@ -22,7 +22,7 @@
 	sharpness = IS_BLUNT
 	var/sharpness_on = IS_SHARP_ACCURATE
 	w_class_on = WEIGHT_CLASS_NORMAL
-	materials = list(MAT_METAL=12000)
+	materials = list(/datum/material/iron=12000)
 	var/onsound
 	var/offsound
 

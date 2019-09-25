@@ -5,7 +5,7 @@
 	name = "Ka-Nada Special Sport Forces Hockey Pack"
 	desc = "Holds and powers a Ka-Nada SSF Hockey Stick, A devastating weapon capable of knocking men around like toys and batting objects at deadly velocities."
 	icon = 'hippiestation/icons/obj/clothing/back.dmi'
-	alternate_worn_icon = 'hippiestation/icons/mob/back.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/back.dmi'
 	icon_state = "hockey_bag"
 	item_state = "hockey_bag"
 	w_class = WEIGHT_CLASS_BULKY

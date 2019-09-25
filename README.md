@@ -19,6 +19,7 @@ If you would like to contribute to this codebase, first take a look at the [CONT
 **Code:** https://github.com/tgstation/tgstation
 **Wiki** https://tgstation13.org/wiki/Main_Page
 **IRC:** irc://irc.rizon.net/coderbus or if you dont have an IRC client, you can click  [here](https://kiwiirc.com/client/irc.rizon.net:6667/?&theme=cli#coderbus)
+**Codedocs:** https://codedocs.tgstation13.org/
 
 ## DOWNLOADING
 

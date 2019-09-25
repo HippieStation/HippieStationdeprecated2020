@@ -42,7 +42,7 @@
 	medical_record_text = "Patient has a tumor in their brain that is slowly driving them to brain death."
 
 /datum/quirk/brainproblems/on_process()
-	quirk_holder.adjustBrainLoss(0.2)
+	quirk_holder.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2)
 
 /datum/quirk/deafness
 	name = "Deaf"
@@ -483,7 +483,7 @@
 						if(prob(10))
 							to_chat(H, "<span class='warning'><font size='2'>Your heart violently pumps in your chest as you desperately search for your heirloom!</font></span>")
 							H.AdjustKnockdown(10)
-							H.adjustBrainLoss(5)
+							H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5)
 							H.Dizzy(20)
 							if(H.getOxyLoss() < 40)
 								H.emote("scream")

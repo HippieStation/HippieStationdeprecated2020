@@ -92,7 +92,7 @@
 	icon_state = "crossbow"
 	item_state = "crossbow"
 	w_class = WEIGHT_CLASS_SMALL
-	materials = list(MAT_METAL=2000)
+	materials = list(/datum/material/iron=2000)
 	suppressed = TRUE
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt)
 	weapon_weight = WEAPON_LIGHT
@@ -115,7 +115,7 @@
 	desc = "A reverse engineered weapon using syndicate technology."
 	icon_state = "crossbowlarge"
 	w_class = WEIGHT_CLASS_NORMAL
-	materials = list(MAT_METAL=4000)
+	materials = list(/datum/material/iron=4000)
 	suppressed = null
 	ammo_type = list(/obj/item/ammo_casing/energy/bolt/large)
 	pin = null
@@ -393,7 +393,7 @@
 	icon_state = "crossbow"
 	item_state = "crossbow"
 	w_class = WEIGHT_CLASS_SMALL
-	materials = list(MAT_METAL=2000)
+	materials = list(/datum/material/iron=2000)
 	suppressed = TRUE
 	ammo_type = list(/obj/item/ammo_casing/energy/hippie_ebolt)
 	weapon_weight = WEAPON_LIGHT
@@ -439,7 +439,7 @@
 				..()
 				reagents.reaction(M, INJECT)
 				reagents.trans_to(M, reagents.total_volume)
-				M.adjustBrainLoss(15)
+				M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 15)
 				M.confused += 10
 				return BULLET_ACT_HIT
 			else

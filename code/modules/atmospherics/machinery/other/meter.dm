@@ -55,7 +55,7 @@
 	PIPING_LAYER_DOUBLE_SHIFT(src, target_layer)
 
 /obj/machinery/meter/process_atmos()
-	if(!target)
+	if(!(target?.flags_1 & INITIALIZED_1))
 		icon_state = "meterX"
 		return 0
 
@@ -120,7 +120,7 @@
 		user.visible_message(
 			"[user] unfastens \the [src].",
 			"<span class='notice'>You unfasten \the [src].</span>",
-			"<span class='italics'>You hear ratchet.</span>")
+			"<span class='hear'>You hear ratchet.</span>")
 		deconstruct()
 	return TRUE
 

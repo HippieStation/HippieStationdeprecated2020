@@ -54,7 +54,7 @@
 		to_chat(H, "<span class='userdanger'>Your master either died, or no longer exists. Your task is complete!</span>")
 		destroy_meeseeks(H, src)
 	H.adjustCloneLoss(0.3)
-	H.adjustBrainLoss(0.8)
+	H.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.8)
 	if(stage_ticks == MEESEEKS_TICKS_STAGE_ONE)
 		ADD_TRAIT(H, TRAIT_CLUMSY, GENETIC_MUTATION)
 		H.dna.add_mutation(SMILE)

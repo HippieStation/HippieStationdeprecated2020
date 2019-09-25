@@ -46,7 +46,7 @@
 		D.Stun(20)
 		return 1
 	log_combat(A, D, "used ripple beat (hamon)")
-	return basic_hit(A,D)
+	return FALSE
 
 /datum/martial_art/hamon/proc/zoomPunch(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!D.stat && !D.IsStun() && !D.IsParalyzed())
@@ -59,7 +59,7 @@
 		D.apply_damage(10, BRUTE, pick(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_CHEST))
 		return 1
 	log_combat(A, D, "used zoom punch (hamon)")
-	return basic_hit(A,D)
+	return FALSE
 
 
 /datum/martial_art/hamon/proc/sendoWaveKick(mob/living/carbon/human/A, mob/living/carbon/human/D)
@@ -76,7 +76,7 @@
 		D.apply_damage(10, BRUTE, BODY_ZONE_CHEST)
 		return 1
 	log_combat(A, D, "sendo wave kicked (hamon)")
-	return basic_hit(A,D)
+	return FALSE
 
 /datum/martial_art/hamon/proc/tornadoOverdrive(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(A.dir == D.dir && !D.stat && !D.IsParalyzed())
@@ -90,7 +90,7 @@
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 50, 1, -1)
 		return 1
 	log_combat(A, D, "tornado overdrived (hamon)")
-	return basic_hit(A,D)
+	return FALSE
 
 /datum/martial_art/hamon/proc/sunlightYellowOverdrive(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!(D.mobility_flags & MOBILITY_STAND))
@@ -105,7 +105,7 @@
 		playsound(get_turf(D), 'sound/weapons/punch1.ogg', 75, 1, -1)
 		return 1
 	log_combat(A, D, "sunlight yellow overdrived (hamon)")
-	return basic_hit(A,D)
+	return FALSE
 
 /datum/martial_art/hamon/grab_act(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	add_to_streak("G",D)

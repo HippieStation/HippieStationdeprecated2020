@@ -5,7 +5,7 @@
 	icon_state = "tile_silver"
 	turf_type = /turf/open/floor/mineral/reagent
 	mineralType = "reagent"
-	materials = list(MAT_REAGENT=500)
+	materials = list(/datum/material/reagent=500)
 	var/datum/reagent/reagent_type
 
 /obj/item/stack/tile/mineral/reagent/change_stack(mob/user,amount)

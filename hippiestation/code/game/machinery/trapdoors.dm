@@ -102,7 +102,7 @@
 				chance = 80
 				M = "accidentally do a backward flip, falling inside"
 				U = "accidentally does a backward flip, falling inside"
-			else if(user.getBrainLoss() >= 50)
+			else if(user.getOrganLoss(ORGAN_SLOT_BRAIN) >= 50)
 				chance = 70
 				M = "close your eyes and boldly step forward"
 				U = "closes his eyes and boldly steps forward"

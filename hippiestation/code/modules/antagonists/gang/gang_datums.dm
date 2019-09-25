@@ -22,7 +22,7 @@
 /datum/team/gang/zerog
 	name = "Zero-G"
 	color = "#C0C0C0"
-	inner_outfits = list(/obj/item/clothing/under/suit_jacket/white)
+	inner_outfits = list(/obj/item/clothing/under/suit/black)
 	outer_outfits = list(/obj/item/clothing/suit/hooded/wintercoat)
 
 /datum/team/gang/max
@@ -34,13 +34,13 @@
 /datum/team/gang/blasto
 	name = "Blasto"
 	color = "#000080"
-	inner_outfits = list(/obj/item/clothing/under/suit_jacket/navy)
+	inner_outfits = list(/obj/item/clothing/under/suit/navy)
 	outer_outfits = list(/obj/item/clothing/suit/jacket/miljacket)
 
 /datum/team/gang/waffle
 	name = "Waffle"
 	color = "#808000"
-	inner_outfits = list(/obj/item/clothing/under/suit_jacket/green)
+	inner_outfits = list(/obj/item/clothing/under/suit/green)
 	outer_outfits = list(/obj/item/clothing/suit/poncho)
 
 /datum/team/gang/north
@@ -123,7 +123,7 @@
 /datum/team/gang/h
 	name = "H"
 	color = "#993333"
-	inner_outfits = list(/obj/item/clothing/under/rank/psyche)
+	inner_outfits = list(/obj/item/clothing/under/misc/psyche)
 	outer_outfits = list(/obj/item/clothing/suit/hippie/jesus) // perfect
 
 /datum/team/gang/rigatonifamily

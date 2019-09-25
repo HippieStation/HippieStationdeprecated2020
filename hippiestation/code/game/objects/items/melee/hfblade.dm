@@ -20,7 +20,7 @@
 	sharpness = IS_SHARP
 	attack_verb = list("chopped", "sliced", "cut", "zandatsu'd")
 	hitsound = 'sound/weapons/rapierhit.ogg'
-	materials = list(MAT_METAL = 10000)
+	materials = list(/datum/material/iron = 10000)
 	interact_sound_cooldown = 100
 	light_color = "#40ceff"
 	var/rules_of_nature = TRUE // Turn this off to break the rules, and watch the horrors of no proximity flags unfold.
@@ -108,7 +108,7 @@
 	name = "edgelord's sheath"
 	desc = "A strange sheath designed to hold an electric blade of some sort. One could only imagine how edgy this guy's musical preference is."
 	icon = 'hippiestation/icons/obj/hfblade.dmi'
-	alternate_worn_icon = 'hippiestation/icons/mob/hfblade.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/hfblade.dmi'
 	icon_state = "sheath"
 	item_state = "sheath"
 	w_class = WEIGHT_CLASS_BULKY

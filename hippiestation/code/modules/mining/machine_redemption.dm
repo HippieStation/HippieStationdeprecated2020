@@ -18,7 +18,7 @@
 	var/ore_pickup_rate = 15
 	var/sheet_per_ore = 1
 	var/point_upgrade = 1
-	var/list/ore_values = list(MAT_GLASS = 1, MAT_METAL = 1, MAT_PLASMA = 15, MAT_SILVER = 16, MAT_GOLD = 18, MAT_TITANIUM = 30, MAT_URANIUM = 30, MAT_DIAMOND = 50, MAT_BLUESPACE = 50, MAT_BANANIUM = 60)
+	var/list/ore_values = list(/datum/material/glass = 1, /datum/material/iron = 1, /datum/material/plasma = 15, /datum/material/silver = 16, /datum/material/gold = 18, /datum/material/titanium = 30, /datum/material/uranium = 30, /datum/material/diamond = 50, /datum/material/bluespace = 50, /datum/material/bananium = 60)
 	var/message_sent = FALSE
 	var/list/ore_buffer = list()
 	var/datum/techweb/stored_research
@@ -93,12 +93,12 @@
 
 	for(var/mat_id in D.materials)
 		var/M = D.materials[mat_id]
-		var/datum/material/redemption_mat = mat_container.materials[mat_id]
+		var/amt = mat_container.materials[mat_id]
 
-		if(!M || !redemption_mat)
+		if(!M || !amt)
 			return FALSE
 
-		var/smeltable_sheets = FLOOR(redemption_mat.amount / M, 1)
+		var/smeltable_sheets = FLOOR(amt / M, 1)
 
 		if(!smeltable_sheets)
 			return FALSE
@@ -129,8 +129,9 @@
 	var/has_minerals = FALSE
 
 	for(var/mat_id in mat_container.materials)
-		var/datum/material/M = mat_container.materials[mat_id]
-		var/mineral_amount = M.amount / MINERAL_MATERIAL_AMOUNT
+		var/amt = mat_container.materials[mat_id]
+		var/datum/material/M = mat_id
+		var/mineral_amount = amt / MINERAL_MATERIAL_AMOUNT
 		if(mineral_amount)
 			has_minerals = TRUE
 		msg += "[capitalize(M.name)]: [mineral_amount] sheets<br>"
@@ -225,8 +226,9 @@
 	var/datum/component/material_container/mat_container = materials.mat_container
 	if (mat_container)
 		for(var/mat_id in mat_container.materials)
-			var/datum/material/M = mat_container.materials[mat_id]
-			var/sheet_amount = M.amount ? M.amount / MINERAL_MATERIAL_AMOUNT : "0"
+			var/datum/material/M = mat_id
+			var/amt = mat_container.materials[mat_id]
+			var/sheet_amount = amt ? amt / MINERAL_MATERIAL_AMOUNT : "0"
 			data["materials"] += list(list("name" = M.name, "id" = M.id, "amount" = sheet_amount, "value" = ore_values[M.id] * point_upgrade))
 
 		data["alloys"] = list()
@@ -288,8 +290,8 @@
 				var/mat_id = params["id"]
 				if(!mat_container.materials[mat_id])
 					return
-				var/datum/material/mat = mat_container.materials[mat_id]
-				var/stored_amount = mat.amount / MINERAL_MATERIAL_AMOUNT
+				var/amt = mat_container.materials[mat_id]
+				var/stored_amount = amt / MINERAL_MATERIAL_AMOUNT
 
 				if(!stored_amount)
 					return
@@ -341,7 +343,7 @@
 				else
 					desired = input("How many sheets?", "How many sheets would you like to smelt?", 1) as null|num
 				var/amount = round(min(desired,50,smelt_amount))
-				mat_container.use_amount(alloy.materials, amount)
+				mat_container.use_materials(alloy.materials, amount)
 				materials.silo_log(src, "released", -amount, "sheets", alloy.materials)
 				var/output
 				if(ispath(alloy.build_path, /obj/item/stack/sheet))

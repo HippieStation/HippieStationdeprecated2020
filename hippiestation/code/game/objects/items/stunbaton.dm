@@ -35,6 +35,37 @@
 		START_PROCESSING(SSobj, src)
 	update_icon()
 
+/obj/item/melee/baton/baton_effect(mob/living/L, mob/user)
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		if(H.check_shields(src, 0, "[user]'s [name]", MELEE_ATTACK)) //No message; check_shields() handles that
+			playsound(L, 'sound/weapons/genhit.ogg', 50, 1)
+			return 0
+	if(iscyborg(loc))
+		var/mob/living/silicon/robot/R = loc
+		if(!R || !R.cell || !R.cell.use(hitcost))
+			return 0
+	else
+		if(!deductcharge(hitcost))
+			return 0
+
+	L.Paralyze(stunforce)
+	L.apply_effect(EFFECT_STUTTER, stunforce)
+	SEND_SIGNAL(L, COMSIG_LIVING_MINOR_SHOCK)
+	if(user)
+		L.lastattacker = user.real_name
+		L.lastattackerckey = user.ckey
+		L.visible_message("<span class='danger'>[user] has stunned [L] with [src]!</span>", \
+								"<span class='userdanger'>[user] has stunned you with [src]!</span>")
+		log_combat(user, L, "stunned")
+
+	playsound(loc, 'sound/weapons/egloves.ogg', 50, 1, -1)
+
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		H.forcesay(GLOB.hit_appends)
+	return TRUE
+
 /obj/item/melee/baton/stungun/attackby(obj/item/W, mob/user, params)
 	if(istype(W, /obj/item/screwdriver))
 		to_chat(user, "<span class='warning'>That would void the warranty.</span>")
@@ -75,7 +106,7 @@
 			playsound(src, 'hippiestation/sound/misc/charge.ogg', 35, FALSE, pressure_affected = FALSE)
 			update_icon()
 
-/obj/item/melee/baton/stungun/baton_stun()
+/obj/item/melee/baton/stungun/baton_effect()
 	..()
 	playsound(loc, 'hippiestation/sound/weapons/stungun.ogg', 75, 1, -1)
 	update_icon()
@@ -88,7 +119,7 @@
 	var/stamforce = 100
 	w_class = WEIGHT_CLASS_NORMAL
 
-/obj/item/melee/baton/cattleprod/hippie_cattleprod/baton_stun(mob/living/L, mob/user)
+/obj/item/melee/baton/cattleprod/hippie_cattleprod/baton_effect(mob/living/L, mob/user)
 	if(is_ganymede(user))
 		user.visible_message("<span class='danger'>[user] accidentally crushes [src] in their hand!</span>")
 		qdel(src)

@@ -26,7 +26,7 @@
 /obj/item/clothing/suit/space/hardsuit/nano/nanoguy
 	name = "Nanotrasen Nanotech Suit"
 	desc = "A state-of-the-art nanotechnology-powered suit."
-	alternate_worn_icon = 'hippiestation/icons/mob/nanoguy.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/nanoguy.dmi'
 	icon_state = "ngsuit"
 	item_state = "ngsuit"
 	outfit = /datum/outfit/nanosuit/nanoguy
@@ -36,7 +36,7 @@
 	name = "Nanotrasen Nanotech Helmet"
 	desc = "A state-of-the-art nanotechnology-powered helmet."
 	icon = 'hippiestation/icons/obj/nanoguy.dmi'
-	alternate_worn_icon = 'hippiestation/icons/mob/nanoguy.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/nanoguy.dmi'
 	icon_state = "nghelmet"
 	item_state = "nghelmet"
 
@@ -118,7 +118,7 @@
 /obj/item/clothing/suit/armor/thor
 	name = "Thor's Armor"
 	desc = "Armor worthy of the gods... literally."
-	alternate_worn_icon = 'hippiestation/icons/mob/suit.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/suit.dmi'
 	icon = 'hippiestation/icons/obj/clothing/suits.dmi'
 	icon_state = "thor"
 	armor = list("melee" = 50, "bullet" = 30, "laser" = 50, "energy" = 50, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)

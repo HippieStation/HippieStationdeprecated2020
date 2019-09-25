@@ -3,7 +3,7 @@
 	name = "clown shoes"
 	icon_state = "cluwne"
 	item_state = "cluwne"
-	item_color = "cluwne"
+	//item_color = "cluwne"
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	item_flags = DROPDEL
 	slowdown = SHOES_SLOWDOWN+1
@@ -40,11 +40,11 @@
 /obj/item/clothing/shoes/buttshoes
 	desc = "Why?"
 	name = "butt shoes"
-	alternate_worn_icon = 'hippiestation/icons/mob/feet.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/feet.dmi'
 	icon = 'hippiestation/icons/obj/clothing/shoes.dmi'
 	icon_state = "buttshoes"
 	item_state = "buttshoes"
-	item_color = "buttshoes"
+	//item_color = "buttshoes"
 
 /obj/item/clothing/shoes/buttshoes/Initialize()
 	. = ..()
@@ -56,4 +56,4 @@
 	icon_state = "guardboots"
 	item_state = "guardboots"
 	icon = 'hippiestation/icons/obj/clothing/shoes.dmi'
-	alternate_worn_icon = 'hippiestation/icons/mob/feet.dmi'
+	mob_overlay_icon = 'hippiestation/icons/mob/feet.dmi'
