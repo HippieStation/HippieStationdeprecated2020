@@ -16,7 +16,7 @@
 	light_range = 5
 	light_power = 1.5
 	light_color = LIGHT_COLOR_FIRE
-	var/datum/reagent/currently_forging//forge one mat at a time
+	var/datum/reagent/currently_forging //forge one mat at a time
 	var/processing = FALSE
 	var/efficiency = 1
 	var/datum/techweb/stored_research
@@ -54,7 +54,7 @@
 				currently_forging = new R.reagent_type.type
 				return
 
-			if(currently_forging && currently_forging.type && R.reagent_type.type == currently_forging.type)//preventing unnecessary references from being made
+			if(currently_forging && R.reagent_type.type == currently_forging.type)//preventing unnecessary references from being made
 				var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 				materials.insert_stack(R, R.amount)
 				to_chat(user, "<span class='notice'>You add [R] to [src]</span>")
@@ -70,7 +70,7 @@
 /obj/machinery/reagent_forge/proc/check_cost(materials, using)
 	var/datum/component/material_container/ourmaterials = GetComponent(/datum/component/material_container)
 
-	if(ourmaterials.materials[/datum/material/reagent] <= 0)
+	if(ourmaterials.get_material_amount(/datum/material/reagent) <= 0)
 		qdel(currently_forging)
 		currently_forging = null
 		return FALSE
@@ -78,7 +78,7 @@
 	if(!materials)
 		return FALSE
 
-	if(materials*efficiency > ourmaterials.materials[/datum/material/reagent])
+	if(materials*efficiency > ourmaterials.get_material_amount(/datum/material/reagent))
 		return FALSE
 	else
 		if(using)
@@ -92,7 +92,7 @@
 		return FALSE
 
 	for(var/i in 1 to amount)
-		if(!check_cost(D.materials[/datum/material/reagent], TRUE))
+		if(!check_cost(D.materials[getmaterialref(/datum/material/reagent)], TRUE))
 			visible_message("<span class='warning'>The low material indicator flashes on [src]!</span>")
 			playsound(src, 'sound/machines/buzz-two.ogg', 60, 0)
 			return FALSE
@@ -131,7 +131,7 @@
 	for(var/v in stored_research.researched_designs)
 		var/datum/design/forge/D = SSresearch.techweb_design_by_id(v)
 		var/md5name = md5(D.name)
-		var/cost = D.materials[/datum/material/reagent]*efficiency
+		var/cost = D.materials[getmaterialref(/datum/material/reagent)]*efficiency
 		if(!listofrecipes[md5name])
 			listofrecipes[md5name] = list("name" = D.name, "category" = D.category[2], "cost" = cost)
 			if(cost < lowest_cost)
@@ -141,7 +141,7 @@
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	data["recipes"] = listofrecipes
 	data["currently_forging"] = currently_forging ? currently_forging : "Nothing"
-	data["material_amount"] = materials.materials[/datum/material/reagent]
+	data["material_amount"] = materials.get_material_amount(/datum/material/reagent)
 	data["can_afford"] = check_cost(lowest_cost, FALSE)
 	return data
 
@@ -166,7 +166,7 @@
 		if("Dump")
 			if(currently_forging)
 				var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
-				var/amount = materials.materials[/datum/material/reagent]
+				var/amount = materials.get_material_amount(/datum/material/reagent)
 				if(amount > 0)
 					var/list/materials_used = list(/datum/material/reagent=amount)
 					materials.use_materials(materials_used)

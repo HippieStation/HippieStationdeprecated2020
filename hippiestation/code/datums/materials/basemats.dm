@@ -2,5 +2,5 @@
 	name = "reagent"
 	id = "reagent"
 	desc = "Reagent"
-	categories = list(MAT_CATEGORY_ORE = TRUE, MAT_CATEGORY_RIGID = TRUE)
+	categories = list(MAT_CATEGORY_RIGID = TRUE)
 	sheet_type = /obj/item/stack/sheet/mineral/reagent
