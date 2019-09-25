@@ -499,7 +499,7 @@
 			if(ammo < 0)
 				ammo = 0 //Just ensuring this never goes below 1 if it has ammo.
 			if(ammo < 1)
-				playsound(src.loc, 'sound/weapons/smg_empty_alarm.ogg', 60, 1)
+				playsound(src.loc, 'sound/weapons/gun/general/empty_alarm.ogg', 60, 1)
 		if(select == 3)
 			canshoot = 0
 			spawn(recharge_time)
