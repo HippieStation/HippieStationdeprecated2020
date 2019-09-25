@@ -376,6 +376,7 @@
 
 //this is shitcode but all of construction is shitcode and needs a refactor, it works for now
 //If you find this like 4 years later and construction still hasn't been refactored, I'm so sorry for this
+/* hippie -- how about no
 /obj/structure/window/reinforced/attackby(obj/item/I, mob/living/user, params)
 	switch(state)
 		if(RWINDOW_SECURE)
@@ -421,6 +422,7 @@
 					setAnchored(FALSE)
 				return
 	return ..()
+*/
 
 /obj/structure/window/proc/cool_bolts()
 	if(state == RWINDOW_BOLTS_HEATED)
