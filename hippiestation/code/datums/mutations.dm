@@ -9,7 +9,7 @@
 		return
 	owner.dna.add_mutation(CLOWNMUT)
 	owner.dna.add_mutation(EPILEPSY)
-	owner.setOrganLoss(ORGAN_SLOT_BRAIN, 200)
+	owner.setOrganLoss(ORGAN_SLOT_BRAIN, max(150, owner.getOrganLoss(ORGAN_SLOT_BRAIN))) //changed this to 150 so the cluwne doesn't instantly die and be free from the pain -steamport
 
 	var/mob/living/carbon/human/H = owner
 
@@ -30,8 +30,8 @@
 	owner.equip_to_slot_or_del(new /obj/item/storage/backpack/clown(owner), SLOT_BACK) // ditto
 
 /datum/mutation/human/cluwne/on_life()
-	if((prob(15) && owner.IsUnconscious()))
-		owner.setOrganLoss(ORGAN_SLOT_BRAIN, 200) // there I changed it to setBrainLoss
+	if(prob(15) && owner.IsUnconscious())
+		owner.setOrganLoss(ORGAN_SLOT_BRAIN, max(150, owner.getOrganLoss(ORGAN_SLOT_BRAIN))) //changed this to 150 so the cluwne doesn't instantly die and be free from the pain -steamport
 		switch(rand(1, 6))
 			if(1)
 				owner.say("HONK", forced = "cluwne")
