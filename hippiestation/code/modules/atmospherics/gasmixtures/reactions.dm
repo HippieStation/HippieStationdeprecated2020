@@ -20,8 +20,7 @@
 
 	if((cached_gases[/datum/gas/plasma][MOLES]+cached_gases[/datum/gas/carbon_dioxide][MOLES])/air.total_moles() < FUSION_PURITY_THRESHOLD_HIPPIE || reaction_energy < PLASMA_BINDING_ENERGY_HIPPIE)
 		//Fusion wont occur if the level of impurities is too high.
-		return FALSE
-
+		return NO_REACTION
 	else
 		var/moles_impurities = (cached_gases[/datum/gas/plasma][MOLES]+cached_gases[/datum/gas/carbon_dioxide][MOLES])/air.total_moles()//more plasma+carbon = higher chance of collision regardless of actual thermal energy
 		var/carbon_plasma_ratio = min(cached_gases[/datum/gas/carbon_dioxide][MOLES] / cached_gases[/datum/gas/plasma][MOLES], MAX_CARBON_EFFICENCY_HIPPIE)//more carbon = more fusion
@@ -48,8 +47,21 @@
 				location.set_light(4, 30)
 				location.light_color = LIGHT_COLOR_GREEN
 				radiation_pulse(location, 8, energy_released * FUSION_POWER_GENERATION_COEFFICIENT_HIPPIE)//set to an arbitrary value for now because radiation scaling with reaction energy is insane
-
 				addtimer(CALLBACK(location, .atom/proc/set_light, 0, 0), 30)
-			return TRUE
+			return REACTING
 
-		return FALSE
+//freon: does a freezy thing?
+/datum/gas_reaction/freon
+	priority = 1
+	name = "Freon"
+	id = "freon"
+
+/datum/gas_reaction/freon/init_reqs()
+	min_requirements = list(/datum/gas/freon = MOLES_GAS_VISIBLE)
+
+/datum/gas_reaction/freon/react(datum/gas_mixture/air, datum/holder)
+	var/turf/open/location = isturf(holder) ? holder : null
+	. = NO_REACTION
+	if(location && location.freon_gas_act())
+		air.gases[/datum/gas/freon][MOLES] -= MOLES_GAS_VISIBLE
+		. = REACTING
