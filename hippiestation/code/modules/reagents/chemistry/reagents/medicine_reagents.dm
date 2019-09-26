@@ -225,3 +225,6 @@ datum/reagent/medicine/virogone/on_mob_life(mob/living/M)//cures viruses very ef
 		M.adjustBruteLoss(-0.5*REM, 0)
 		M.adjustFireLoss(-0.5*REM, 0)
 	return FINISHONMOBLIFE(M)
+
+/datum/reagent/medicine/morphine
+	name = "Sleep Toxin"
