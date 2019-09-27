@@ -16,7 +16,7 @@
 		return
 	return ..()
 
-/mob/living/silicon/ai/proc/update_icon()
+/mob/living/silicon/ai/update_icon()
 	..()
 	cut_overlays()
 	if(hijacking)

@@ -25,7 +25,6 @@
 		for(var/mob/M in viewers(3, src))
 			to_chat(M, ("<span class='warning'>[icon2html(src, viewers(src))] The [src] boils away in the extreme heat!</span>"))
 		vapourise()
-	..()
 
 /turf/closed/wall/mineral/reagent/proc/vapourise()
 	if(reagent_type && !QDELETED(src))
