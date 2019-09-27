@@ -1,4 +1,4 @@
-#define KNOCKOUT_COMBO "HHG"
+#define KNOCKOUT_COMBOEC "HHG"
 #define EXHAUSTION_COMBO "DDG"
 #define GIB_COMBO "DHHHH"
 
@@ -7,7 +7,7 @@
 	help_verb = /mob/living/carbon/human/proc/elite_cqc_help
 
 /datum/martial_art/elite_cqc/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
-	if(findtext(streak,KNOCKOUT_COMBO))
+	if(findtext(streak,KNOCKOUT_COMBOEC))
 		streak = ""
 		Knockout(A,D)
 		return TRUE
