@@ -47,7 +47,7 @@
 	return amt
 
 /obj/item/bodypart/head/robot/get_teeth() //override to prevent lisps
-	return max_teeth
+	return initial(max_teeth)
 
 /proc/punchouttooth(var/mob/living/carbon/human/target, var/mob/living/carbon/human/user, var/strength, var/obj/Q)
 	if(istype(Q, /obj/item/bodypart/head) && prob(strength * (user.zone_selected == "mouth" ? 3 : 1))) //MUCH higher chance to knock out teeth if you aim for mouth
