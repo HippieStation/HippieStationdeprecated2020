@@ -1,6 +1,5 @@
 /obj/item/bodypart/head
 	var/obj/item/stack/teeth/teeth = null
-	var/lisp_affected = TRUE
 	var/list/teeth_list = list() //Teeth are added in carbon/human/New()
 	var/max_teeth = 32 //Changed based on teeth type the species spawns with
 
@@ -53,9 +52,6 @@
 	for(var/obj/item/stack/teeth in teeth_list)
 		amt += teeth.amount
 	return amt
-
-/obj/item/bodypart/head/robot
-	lisp_affected = FALSE
 
 /proc/punchouttooth(var/mob/living/carbon/human/target, var/mob/living/carbon/human/user, var/strength, var/obj/Q)
 	if(istype(Q, /obj/item/bodypart/head) && prob(strength * (user.zone_selected == "mouth" ? 3 : 1))) //MUCH higher chance to knock out teeth if you aim for mouth
