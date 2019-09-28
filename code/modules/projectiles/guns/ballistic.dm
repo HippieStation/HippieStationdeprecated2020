@@ -72,9 +72,9 @@
 		return
 	..()
 	if(current_skin)
-		icon_state = "[unique_reskin[current_skin]][sawn_off ? "-sawn" : ""]" // hippie -- fixes sawn-off sprites
+		icon_state = "[unique_reskin[current_skin]][sawn_off ? "_sawn" : ""]" // hippie -- fixes sawn-off sprites
 	else
-		icon_state = "[initial(icon_state)][suppressed ? "-suppressed" : ""][sawn_off ? "-sawn" : ""]"
+		icon_state = "[initial(icon_state)][suppressed ? "-suppressed" : ""][sawn_off ? "_sawn" : ""]" //hippie -- Same as above.
 /*hippie end -- old skins*/
 
 /obj/item/gun/ballistic/process_chamber(empty_chamber = TRUE, from_firing = TRUE, chamber_next_round = TRUE)
