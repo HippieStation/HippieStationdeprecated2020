@@ -1,0 +1,4 @@
+author: "IHadMyUsernameTaken"
+delete-after: True
+changes: 
+  - bugfix: "All sawn-off shotguns are visible again."
