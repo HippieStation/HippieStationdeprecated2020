@@ -336,7 +336,7 @@
 						animate(whole_screen, transform = matrix(rotation*4, MATRIX_ROTATE), time = 120, easing = QUAD_EASING)
 						animate(whole_screen, transform = matrix()*1.5, time = 120, easing = QUAD_EASING)
 					else if(prob(15))
-						whole_screen.filters += filter(type="wave", x=20*rand() - 20, y=20*rand() - 20, size=rand()*0.1, offset=rand()*0.5, flags = WAVE_BOUNDED)
+						whole_screen.filters += filter(type="wave", x=20*rand() - 20, y=20*rand() - 20, size=rand()*0.1, offset=rand()*0.5, flags = "WAVE_BOUNDED")
 						animate(whole_screen.filters[whole_screen.filters.len], size = rand(1,3), time = 30, easing = QUAD_EASING, loop = -1)
 						to_chat(H, "<span class='notice'>You feel reality melt away...</span>")
 				high_message = pick("Holy shit...", "Reality doesn't exist man.", "...", "No one flies around the sun.")

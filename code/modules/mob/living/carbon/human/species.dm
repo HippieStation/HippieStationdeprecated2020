@@ -1245,7 +1245,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			return FALSE
 
 		punchouttooth(target,user,rand(0,9),affecting) // hippie -- teethcode
-		
+
 		var/armor_block = target.run_armor_check(affecting, "melee")
 
 		playsound(target.loc, user.dna.species.attack_sound, 25, 1, -1)
@@ -1450,8 +1450,6 @@ hippie end */
 			var/dmg_to_deal = I.force
 			if(defense_roll == 2)
 				dmg_to_deal *= 2
-				H.send_item_attack_message(I, user, critical = TRUE)
-			else
 				H.send_item_attack_message(I, user)
 			apply_damage(dmg_to_deal, I.damtype, blocked = armor_block)
 			if(I.damtype == BRUTE)

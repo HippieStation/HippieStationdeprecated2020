@@ -1,7 +1,8 @@
-#define SYNDIELAD-POWEROFF "poweroff"
-#define SYNDIELAD-UPLINK "uplink"
-#define SYNDIELAD-PINPOINTER "pinpointer"
-#define SYNDIELAD-DETONATE "detonate"
+//#define SYNDIELAD_POWEROFF "poweroff"
+//#define SYNDIELAD_UPLINK "uplink"
+//#define SYNDIELAD_PINPOINTER "pinpointer"
+//#define SYNDIELAD_DETONATE "detonate"
+///Not sure what the hell happened to these defines as they were never used. Leaving for now.
 
 /obj/item/clothing/gloves/syndielad
 	name = "syndie-lad"
