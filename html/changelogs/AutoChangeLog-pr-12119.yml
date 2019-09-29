@@ -1,4 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - bugfix: "The solid chemicals will no longer melt into a liquid for objects it shouldn't!"
