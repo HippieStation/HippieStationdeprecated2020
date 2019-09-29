@@ -73,10 +73,11 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	martial_art = new
 	flashy_aura = mutable_appearance('hippiestation/icons/obj/infinity.dmi', "aura", -MUTATIONS_LAYER)
 	update_icon()
-	spells += new /obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet
+	spells += new /obj/effect/proc_holder/spell/self/infinity/regenerate
 	spells += new /obj/effect/proc_holder/spell/self/infinity/shockwave
 	spells += new /obj/effect/proc_holder/spell/self/infinity/gauntlet_bullcharge
 	spells += new /obj/effect/proc_holder/spell/self/infinity/gauntlet_jump
+	spells += new /obj/effect/proc_holder/spell/self/infinity/armor
 
 /obj/item/badmin_gauntlet/Destroy()
 	. = ..()
@@ -600,9 +601,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		gauntlet_radial[I.stone_type] = IM
 	if(!GetStone(SYNDIE_STONE))
 		gauntlet_radial["none"] = image(icon = 'hippiestation/icons/obj/infinity.dmi', icon_state = "none")
-	var/chosen = show_radial_menu(user, src, gauntlet_radial, custom_check = CALLBACK(src, .proc/check_menu, user))
-	if(!check_menu(user))
-		return
+	var/chosen = show_radial_menu(user, src, gauntlet_radial)
 	if(chosen)
 		if(chosen == "none")
 			stone_mode = null
@@ -737,14 +736,6 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	else
 		hnnnnnnnnngh = FALSE
 
-/obj/item/badmin_gauntlet/proc/check_menu(mob/living/user)
-	if(!istype(user))
-		return FALSE
-	if(user.incapacitated() || !user.Adjacent(src))
-		return FALSE
-	return TRUE
-
-
 /////////////////////////////////////////////
 /////////////////// SPELLS //////////////////
 /////////////////////////////////////////////
@@ -758,6 +749,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	human_req = FALSE
 	staff_req = FALSE
 	action_background_icon_state = "bg_default"
+	action_icon_state = "stomp"
 	range = 5
 	sound = 'sound/effects/bang.ogg'
 
@@ -787,14 +779,54 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			L.Paralyze(35)
 		sleep(1)
 
-/obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet
+/obj/effect/proc_holder/spell/self/infinity/armor
+	name = "Badmin Gauntlet: Tank Armor"
+	desc = "Change your defense focus -- tank melee, tank ballistics, or tank energy."
+	charge_max = 30 SECONDS
+	clothes_req = FALSE
+	human_req = FALSE
+	staff_req = FALSE
+	action_icon = 'icons/effects/effects.dmi'
+	action_icon_state = "shield1"
+	action_background_icon_state = "bg_default"
+	var/last_mode
+
+/obj/effect/proc_holder/spell/self/infinity/armor/proc/add_to_phys(mob/living/carbon/human/H, amt, typ)
+	switch(typ)
+		if("Ballistics")
+			H.physiology.armor.bullet += amt
+		if("Energy")
+			H.physiology.armor.energy += amt
+			H.physiology.armor.laser += amt
+		if("Melee")
+			H.physiology.armor.melee += amt
+
+/obj/effect/proc_holder/spell/self/infinity/armor/cast(list/targets, mob/user)
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	var/list/radial = list()
+	radial["Ballistics"] = image(icon = 'hippiestation/icons/obj/guns/projectile.dmi', icon_state = "cshotgun")
+	radial["Energy"] = image(icon = 'hippiestation/icons/obj/guns/energy.dmi', icon_state = "retro")
+	radial["Melee"] = image(icon = 'icons/obj/items_and_weapons.dmi', icon_state = "fireaxe1")
+	var/chosen = show_radial_menu(H, H, radial)
+	if(chosen)
+		if(last_mode)
+			add_to_phys(H, -20, last_mode)
+		add_to_phys(H, 20, chosen)
+		to_chat(H, "<span class='notice'>[last_mode ? "You switch your resistance focus from [lowertext(last_mode)] to" : "You are now more resistant to"] [lowertext(chosen)] attacks.</span>")
+		last_mode = chosen
+
+/obj/effect/proc_holder/spell/self/infinity/regenerate
 	name = "Badmin Gauntlet: Regenerate"
-	desc = "Regenerate 2 health per second. Requires you to stand still."
+	desc = "Regenerate 3 health per second. Requires you to stand still."
 	action_icon_state = "regenerate"
 	action_background_icon_state = "bg_default"
 	stat_allowed = TRUE
+	var/default_regen = 3
 
-/obj/effect/proc_holder/spell/self/infinity/regenerate_gauntlet/cast(list/targets, mob/user)
+
+/obj/effect/proc_holder/spell/self/infinity/regenerate/cast(list/targets, mob/user)
 	if(isliving(user))
 		var/mob/living/L = user
 		if(L.on_fire)
@@ -805,11 +837,15 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			to_chat(L, "<span class='notice'>You can't regenerate out of death.</span>")
 			revert_cast(L)
 			return
-		while(do_after(L, 10, FALSE, L))
+		while(do_after_oiim(L, 10, L))
 			L.visible_message("<span class='notice'>[L]'s wounds heal!</span>")
-			L.heal_overall_damage(2, 2, 2, null, TRUE)
-			L.adjustToxLoss(-2)
-			L.adjustOxyLoss(-2)
+			var/healing_amt = default_regen
+			if(isspaceturf(get_turf(user)))
+				to_chat(L, "<span class='notice italics'>Your healing is reduced due to the fact you're in space!</span>")
+				healing_amt = default_regen * 0.5
+			L.heal_overall_damage(healing_amt, healing_amt, healing_amt, null, TRUE)
+			L.adjustToxLoss(-healing_amt)
+			L.adjustOxyLoss(-healing_amt)
 			if(L.getBruteLoss() + L.getFireLoss() + L.getStaminaLoss() < 1)
 				to_chat(user, "<span class='notice'>You are fully healed.</span>")
 				return
@@ -818,6 +854,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	name = "Badmin Gauntlet: Bull Charge"
 	desc = "Imbue yourself with power, and charge forward, smashing through anyone in your way!"
 	action_background_icon_state = "bg_default"
+	action_icon_state = "charge"
 	charge_max = 250
 	sound = 'sound/magic/repulse.ogg'
 
@@ -1038,3 +1075,43 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			BG.clash_with_gods(src)
 			return
 	return ..()
+
+
+//////////
+// crap //
+//////////
+
+// only interrupt if move
+/proc/do_after_oiim(mob/user, var/delay, atom/target = null, progress = 1)
+	if(!user)
+		return 0
+	var/atom/Tloc = null
+	if(target && !isturf(target))
+		Tloc = target.loc
+	var/atom/Uloc = user.loc
+	var/drifting = 0
+	if(!user.Process_Spacemove(0) && user.inertia_dir)
+		drifting = 1
+	delay *= user.do_after_coefficent()
+	var/datum/progressbar/progbar
+	if (progress)
+		progbar = new(user, delay, target)
+	var/endtime = world.time + delay
+	var/starttime = world.time
+	. = 1
+	while (world.time < endtime)
+		stoplag(1)
+		if (progress)
+			progbar.update(world.time - starttime)
+		if(drifting && !user.inertia_dir)
+			drifting = 0
+			Uloc = user.loc
+		if(QDELETED(user) || user.stat == DEAD || (!drifting && user.loc != Uloc))
+			. = 0
+			break
+		if(!QDELETED(Tloc) && (QDELETED(target) || Tloc != target.loc))
+			if((Uloc != Tloc || Tloc != user) && !drifting)
+				. = 0
+				break
+	if (progress)
+		qdel(progbar)

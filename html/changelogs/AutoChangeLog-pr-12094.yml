@@ -1,4 +1,0 @@
-author: "Manly Dwarf"
-delete-after: True
-changes: 
-  - bugfix: "CQC manuals now actually work, and by that I mean I used a completely different, older item because granter code is piss stupid."

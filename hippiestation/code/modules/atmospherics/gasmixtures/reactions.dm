@@ -1,5 +1,3 @@
-#define PLASMA_BINDING_ENERGY 3000000
-
 /datum/gas_reaction/hippie_fusion
 	exclude = FALSE
 	priority = 2

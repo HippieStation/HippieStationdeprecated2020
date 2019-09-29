@@ -24,7 +24,7 @@
 			if(gang)
 				gang.adjust_influence(-real_cost)
 		to_chat(user, "<span class='notice'>You bought \the [name].</span>")
-		gangtool.show_ui(user)
+		gangtool.attack_self(user)
 		return TRUE
 
 /datum/gang_item/proc/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool) // If this returns anything other than null, something fucked up and influence won't lower.

@@ -1,7 +1,7 @@
 /datum/guardian_ability/minor/snare
 	name = "Surveillance Snares"
 	desc = "The guardian can lay a surveillance snare, which alerts the guardian and the user to anyone who crosses it."
-	cost = 2
+	cost = 1
 
 /datum/guardian_ability/minor/snare/Apply()
 	guardian.verbs += /mob/living/simple_animal/hostile/guardian/proc/Snare

@@ -40,13 +40,18 @@
 		gang.gangtools -= src
 	return ..()
 
-/obj/item/gangtool/attack_hand(mob/user)
-	..()
-	if (!can_use(user))
-		return
-	show_ui(user)
+/obj/item/gangtool/attack_self(mob/user)
+	if(!can_use(user))
+		return FALSE
+	user.set_machine(src)
+	interact(user)
+	return TRUE
 
-/obj/item/gangtool/proc/show_ui(mob/user)
+/obj/item/gangtool/interact(mob/user)
+	return ui_interact(user)
+
+/obj/item/gangtool/ui_interact(mob/user)
+	. = ..()
 	var/datum/antagonist/gang/boss/L = user.mind.has_antag_datum(/datum/antagonist/gang/boss)
 	var/dat
 	if(!gang)
@@ -103,6 +108,7 @@
 	popup.open()
 
 /obj/item/gangtool/Topic(href, href_list)
+	..()
 	if(!can_use(usr))
 		return
 
@@ -110,7 +116,6 @@
 
 	if(href_list["register"])
 		register_device(usr)
-
 	else if(!gang) //Gangtool must be registered before you can use the functions below
 		return
 
@@ -125,7 +130,8 @@
 		ping_gang(usr)
 	if(href_list["recall"])
 		recall(usr)
-	attack_self(usr)
+	if(usr)
+		attack_self(usr)
 
 /obj/item/gangtool/update_icon()
 	overlays.Cut()
@@ -137,7 +143,7 @@
 /obj/item/gangtool/proc/ping_gang(mob/user)
 	if(!can_use(user))
 		return
-	var/message = stripped_input(user,"Discreetly send a gang-wide message.","Send Message") as null|text
+	var/message = stripped_input(user, "Discreetly send a gang-wide message.","Send Message")
 	if(!message || !can_use(user))
 		return
 	if(!is_station_level(user.z))
@@ -329,10 +335,7 @@
 	qdel(linked_action)
 	return ..()
 
-/obj/item/gangtool/hell_march/attack_self()
-	return
-
-/obj/item/gangtool/hell_march/show_ui(mob/user)
+/obj/item/gangtool/hell_march/ui_interact(mob/user)
 	if(user.mind.has_antag_datum(/datum/antagonist/gang/boss))
 		return ..()
 	if(!user.mind.has_antag_datum(/datum/antagonist/gang))
@@ -397,7 +400,7 @@
 		to_chat(H, "<span class='notice'>You have also received 3 influence for possessing a mindshield implant.</span>")
 	addtimer(CALLBACK(src, .proc/earnings), 1500, TIMER_UNIQUE)
 
-/obj/item/gangtool/hell_march/vigilante/show_ui(mob/user)
+/obj/item/gangtool/hell_march/vigilante/ui_interact(mob/user)
 	if(user.mind.has_antag_datum(/datum/antagonist/gang))
 		return
 	var/dat
@@ -443,7 +446,7 @@
 				G.purchase(usr, gang, src, FALSE)
 	if(href_list["destroy"])
 		Destroy_Contraband(usr)
-	show_ui(usr)
+	ui_interact(usr)
 
 /obj/item/gangtool/hell_march/vigilante/proc/Destroy_Contraband(mob/living/user)
 	var/obj/item/I = user.get_active_held_item()
@@ -530,7 +533,7 @@
 	GT = reg
 
 /datum/action/innate/gangtool/Activate()
-	GT.show_ui(owner)
+	GT.ui_interact(owner)
 
 /datum/action/innate/gangtool/vigilante
 	name = "Vigilante Uplink"

@@ -6,11 +6,12 @@
 	color = "#ff0130"
 	force = 30
 	stone_type = SYNDIE_STONE
-	ability_text = list("ALL INTENTS: PLACEHOLDER MARTIAL ART")
-	spell_types = list(/obj/effect/proc_holder/spell/self/infinity/regenerate,
+	ability_text = list("ALL INTENTS: CQC. 30 force!")
+	spell_types = list(/obj/effect/proc_holder/spell/self/infinity/regenerate/syndie,
 		/obj/effect/proc_holder/spell/self/infinity/syndie_bullcharge,
 		/obj/effect/proc_holder/spell/self/infinity/syndie_jump)
-	gauntlet_spell_types = list(/obj/effect/proc_holder/spell/self/infinity/shockwave/syndie_stone)
+	gauntlet_spell_types = list(/obj/effect/proc_holder/spell/self/infinity/shockwave/syndie_stone,
+		/obj/effect/proc_holder/spell/self/infinity/armor/syndie)
 	var/datum/martial_art/cqc/martial_art
 
 /obj/item/badmin_stone/syndie/Initialize()
@@ -53,41 +54,22 @@
 	name = "Syndie Stone: Shockwave"
 	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_background_icon_state = "syndie"
+	action_icon_state = "stomp"
 	range = 8
 
-/obj/effect/proc_holder/spell/self/infinity/regenerate
+/obj/effect/proc_holder/spell/self/infinity/regenerate/syndie
 	name = "Syndie Stone: Regenerate"
-	desc = "Regenerate 4 health per second. Requires you to stand still."
-	action_icon_state = "regenerate"
+	desc = "Regenerate 5 health per second. Requires you to stand still."
 	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_background_icon_state = "syndie"
-	stat_allowed = TRUE
-
-/obj/effect/proc_holder/spell/self/infinity/regenerate/cast(list/targets, mob/user)
-	if(isliving(user))
-		var/mob/living/L = user
-		if(L.on_fire)
-			to_chat(L, "<span class='notice'>The fire interferes with your regeneration!'</span>")
-			revert_cast(L)
-			return
-		if(L.stat == DEAD)
-			to_chat(L, "<span class='notice'>You can't regenerate out of death.</span>")
-			revert_cast(L)
-			return
-		while(do_after(L, 10, FALSE, L))
-			L.visible_message("<span class='notice'>[L]'s wounds heal!</span>")
-			L.heal_overall_damage(4, 4, 4, null, TRUE)
-			L.adjustToxLoss(-4)
-			L.adjustOxyLoss(-4)
-			if(L.getBruteLoss() + L.getFireLoss() + L.getStaminaLoss() < 1)
-				to_chat(user, "<span class='notice'>You are fully healed.</span>")
-				return
+	default_regen = 5
 
 /obj/effect/proc_holder/spell/self/infinity/syndie_bullcharge
 	name = "Syndie Stone: Bull Charge"
 	desc = "Imbue yourself with power, and charge forward, smashing through anyone or anything in your way!"
 	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
 	action_background_icon_state = "syndie"
+	action_icon_state = "charge"
 	charge_max = 200
 	sound = 'sound/magic/repulse.ogg'
 
@@ -109,6 +91,15 @@
 	REMOVE_TRAIT(user, TRAIT_STUNIMMUNE, YEET_TRAIT)
 	REMOVE_TRAIT(user, TRAIT_IGNORESLOWDOWN, YEET_TRAIT)
 	user.visible_message("<span class='danger'>[user] relaxes...</span>")
+
+/obj/effect/proc_holder/spell/self/infinity/armor/syndie
+	name = "Syndie Stone: Tank Armor"
+	desc = "Change your defense focus -- tank melee, tank ballistics, or tank energy."
+	action_icon = 'icons/effects/effects.dmi'
+	action_icon_state = "shield1"
+	action_background_icon = 'hippiestation/icons/obj/infinity.dmi'
+	action_background_icon_state = "syndie"
+	charge_max = 15 SECONDS
 
 /obj/effect/proc_holder/spell/self/infinity/syndie_jump
 	name = "Syndie Stone: Super Jump"
@@ -237,12 +228,16 @@
 	if(mario_star || super_mario_star)
 		if(isliving(A))
 			var/mob/living/L = A
+			var/paralyzed
 			visible_message("<span class='danger'>[src] rams into [L]!</span>")
 			if(super_mario_star)
-				L.Paralyze(7.5 SECONDS)
+				paralyzed = L.Paralyze(7.5 SECONDS)
 				L.adjustBruteLoss(20)
 				heal_overall_damage(12.5, 12.5, 12.5)
 			else
-				L.Paralyze(5 SECONDS)
+				paralyzed = L.Paralyze(5 SECONDS)
 				L.adjustBruteLoss(12)
 				heal_overall_damage(7.5, 7.5, 7.5)
+			if(!paralyzed)
+				L.visible_message("<span class='danger'>[L] is thrown back by the sheer force of [src]!</span>")
+				L.throw_at(get_edge_target_turf(src, get_dir(src, L)), INFINITY, 5)
