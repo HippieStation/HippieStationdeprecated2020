@@ -76,3 +76,13 @@
 	design_ids = list("lcass_pressure", "lcass_centrifuge", "lcass_radioactive", "lcass_bluespace")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
+
+
+/datum/techweb_node/autosurgeon
+	id = "autosurgeon"
+	display_name = "Real-Time Anatomical Processing"
+	description = "Using "
+	prereq_ids = list("adv_biotech", "bio_process", "adv_surgery", "datatheory")
+	design_ids = list("autosurgeon")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
+	export_price = 5000
