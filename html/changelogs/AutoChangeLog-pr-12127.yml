@@ -1,0 +1,4 @@
+author: "yoyobatty"
+delete-after: True
+changes: 
+  - bugfix: "Fixed staff of locker not working"
