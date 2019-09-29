@@ -70,7 +70,6 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 					valid = FALSE
 					break
 		if(valid)
-			to_chat(world, "[S]([S.type]) is a valid surgery!")
 			valid_surgeries += S
 
 /obj/machinery/autodoc/ComponentInitialize()
