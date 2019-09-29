@@ -1,7 +1,7 @@
 /datum/guardian_ability/major/predator
 	name = "Predator"
 	desc = "The guardian can track down any living being with just a fingerprint or blood sample."
-	cost = 5
+	cost = 2
 	spell_type = /obj/effect/proc_holder/spell/self/predator
 	var/list/can_track = list()
 
