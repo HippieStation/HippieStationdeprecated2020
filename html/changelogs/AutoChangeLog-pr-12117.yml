@@ -1,0 +1,4 @@
+author: "blessedmulligan"
+delete-after: True
+changes: 
+  - bugfix: "Space can no longer get hot. In particular, doing fusion near space tiles won't wreck the SM."
