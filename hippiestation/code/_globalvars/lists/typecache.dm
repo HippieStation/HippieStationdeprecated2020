@@ -10,7 +10,9 @@ GLOBAL_LIST_INIT(no_reagent_message_typecache, typecacheof(list(
 	/obj/effect/decal/cleanable,
 	/mob,
 	/obj/item/reagent_containers/food,
-	/turf/open/pool)
+	/turf/open/pool,
+	/obj/item/toy,
+	/obj/item/grown)
 ))
 
 // Don't do state change in these atoms
