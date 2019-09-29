@@ -34132,9 +34132,6 @@
 /turf/open/floor/engine/vacuum,
 /area/science/mixing/chamber)
 "bUa" = (
-/obj/machinery/sparker/toxmix{
-	pixel_x = 25
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
@@ -34462,7 +34459,7 @@
 /area/science/mixing/chamber)
 "bUY" = (
 /obj/effect/landmark/event_spawn,
-/obj/machinery/air_sensor/atmos/toxins_mixing_tank,
+/obj/machinery/igniter/incinerator_toxmix,
 /turf/open/floor/engine/vacuum,
 /area/science/mixing/chamber)
 "bUZ" = (
@@ -34867,9 +34864,6 @@
 /turf/open/floor/plasteel/white,
 /area/science/research)
 "bWm" = (
-/obj/machinery/sparker/toxmix{
-	pixel_x = 25
-	},
 /obj/machinery/atmospherics/components/unary/outlet_injector/atmos/toxins_mixing_input{
 	dir = 4
 	},
@@ -57535,6 +57529,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/secondary/entry)
+"rzS" = (
+/obj/machinery/air_sensor/atmos/toxins_mixing_tank,
+/turf/open/floor/engine/vacuum,
+/area/science/mixing/chamber)
 "rAe" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -108990,7 +108988,7 @@ jtb
 bRv
 bFR
 bTZ
-bUX
+rzS
 bUX
 meu
 qvn
