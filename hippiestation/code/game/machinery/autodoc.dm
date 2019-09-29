@@ -146,9 +146,6 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 	if(in_use)
 		say("Auto-Doc currently in use!")
 		playsound(src, 'sound/machines/buzz-two.ogg', 50, FALSE)
-		if(!state_open)
-			open_machine()
-			update_icon()
 		return
 	if(!target_surgery || !target_zone)
 		say("Invalid configuration!")
