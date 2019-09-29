@@ -1,0 +1,4 @@
+author: "yoyobatty"
+delete-after: True
+changes: 
+  - rscdel: "Removed roundstart reactive teleport armor"
