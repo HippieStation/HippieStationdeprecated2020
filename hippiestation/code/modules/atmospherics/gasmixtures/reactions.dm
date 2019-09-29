@@ -55,11 +55,17 @@
 	id = "freon"
 
 /datum/gas_reaction/freon/init_reqs()
-	min_requirements = list(/datum/gas/freon = MOLES_GAS_VISIBLE)
+	min_requirements = list(/datum/gas/freon = MOLES_GAS_VISIBLE,
+							/datum/gas/oxygen = MINIMUM_MOLE_COUNT,
+							/datum/gas/nitrogen = MINIMUM_MOLE_COUNT)
 
 /datum/gas_reaction/freon/react(datum/gas_mixture/air, datum/holder)
+	var/list/cached_gases = air.gases
 	var/turf/open/location = isturf(holder) ? holder : null
-	. = NO_REACTION
+	var/air_requirements = cached_gases[/datum/gas/nitrogen][MOLES] * 0.1
 	if(location && location.freon_gas_act())
-		air.gases[/datum/gas/freon][MOLES] -= MOLES_GAS_VISIBLE
-		. = REACTING
+		if(air_requirements)
+			cached_gases[/datum/gas/freon][MOLES] -= MOLES_GAS_VISIBLE
+			cached_gases[/datum/gas/nitrogen][MOLES] -= air_requirements
+			return REACTING
+	return NO_REACTION
