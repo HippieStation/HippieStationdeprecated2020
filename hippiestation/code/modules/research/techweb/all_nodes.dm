@@ -76,3 +76,12 @@
 	design_ids = list("lcass_pressure", "lcass_centrifuge", "lcass_radioactive", "lcass_bluespace")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 	export_price = 5000
+
+/datum/techweb_node/autodoc
+	id = "autodoc"
+	display_name = "Complex Anatomical Automation"
+	description = "Advanced automation and complex anatomical knowhow combined to make advanced surgical things!"
+	prereq_ids = list("exp_surgery", "bio_process", "adv_datatheory", "adv_engi", "high_efficiency")
+	design_ids = list("autodoc")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 15000)
+	export_price = 10000
