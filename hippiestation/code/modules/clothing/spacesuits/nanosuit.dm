@@ -221,7 +221,7 @@
 	var/recharge_cooldown = 0 //if this number is greater than 0, we can't recharge
 	var/med_cooldown = 0
 	var/cloak_use_rate = 1.2 //cloaked energy consume rate
-	var/speed_use_rate = 2.4 //speed energy consume rate
+	var/speed_use_rate = 2.0 //speed energy consume rate
 	var/crit_energy = 20 //critical energy level
 	var/regen_rate = 3 //rate at which we regen
 	var/msg_time_react = 0
