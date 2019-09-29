@@ -81,8 +81,8 @@
 /datum/techweb_node/autosurgeon
 	id = "autosurgeon"
 	display_name = "Real-Time Anatomical Processing"
-	description = "Using "
-	prereq_ids = list("adv_biotech", "bio_process", "adv_surgery", "datatheory")
+	description = "Using an in-depth knowledge of biology and anatomy, in addition to real-time data processing, we gain the ability to automate in-depth surgical processes."
+	prereq_ids = list("adv_biotech", "bio_process", "adv_surgery", "adv_datatheory")
 	design_ids = list("autosurgeon")
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 7500)
 	export_price = 5000
