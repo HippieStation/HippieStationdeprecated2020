@@ -95,10 +95,12 @@
 	return TRUE
 
 /datum/antagonist/gang/proc/promote() // Bump up to boss
-	var/datum/team/gang/old_gang = gang
+	var/datum/team/gang/old_gang = get_team()
 	var/datum/mind/old_owner = owner
-	owner.remove_antag_datum(/datum/antagonist/gang)
 	var/datum/antagonist/gang/boss/lieutenant/new_boss = new
+	var/datum/antagonist/gang/current_gang = src
+	current_gang.silent = TRUE
+	owner.remove_antag_datum(current_gang)
 	new_boss.silent = TRUE
 	old_owner.add_antag_datum(new_boss,old_gang)
 	new_boss.silent = FALSE
@@ -239,12 +241,10 @@
 /datum/antagonist/gang/boss/admin_add(datum/mind/new_owner,mob/admin)
 	if(!new_owner.has_antag_datum(parent_type))
 		..()
-		to_chat(new_owner.current, "<span class='userdanger'>You are a member of the [gang.name] Gang leadership now!</span>")
-		return
-	promote()
-	message_admins("[key_name_admin(admin)] has made [new_owner.current] a boss of the [gang.name] gang.")
+	equip_gang()
 	log_admin("[key_name(admin)] has made [new_owner.current] a boss of the [gang.name] gang.")
 	to_chat(new_owner.current, "<span class='userdanger'>You are a member of the [gang.name] Gang leadership now!</span>")
+	return TRUE
 
 /datum/antagonist/gang/boss/get_admin_commands()
 	. = ..()
@@ -277,8 +277,8 @@
 	equip_gang(TRUE, FALSE, FALSE, FALSE)
 
 /datum/antagonist/gang/boss/proc/admin_demote(datum/mind/target,mob/user)
-	message_admins("[key_name_admin(user)] has demoted [owner.current] from gang boss.")
-	log_admin("[key_name(user)] has demoted [owner.current] from gang boss.")
+	message_admins("[key_name_admin(user)] has demoted [owner.current] from [name].")
+	log_admin("[key_name(user)] has demoted [owner.current] from [name].")
 	admin_take_gangtool(user)
 	demote()
 
