@@ -137,7 +137,7 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 	victim.slurring = 300
 	victim.dizziness = 300
 	victim.jitteriness = 300
-	victim.setBrainLoss(min(135, victim.getBrainLoss()))
+	victim.setBrainLoss(max(135, victim.getBrainLoss()))
 	caesar = FALSE
 
 /obj/machinery/autodoc/proc/surgery_time()
