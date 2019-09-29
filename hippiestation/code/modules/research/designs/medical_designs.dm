@@ -15,7 +15,7 @@
 	desc = "A device capable of automatically and painlessly insering implants into the user's body."
 	id = "autosurgeon"
 	build_type = PROTOLATHE
-	materials = list(MAT_METAL = 2500, MAT_GOLD = 1000)
+	materials = list(MAT_METAL = 2500, MAT_GOLD = 1000, MAT_DIAMOND = 1000, MAT_TITANIUM = 1000, MAT_URANIUM = 1500)
 	build_path = /obj/item/autosurgeon
 	category = list("Medical Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL | DEPARTMENTAL_FLAG_SCIENCE
