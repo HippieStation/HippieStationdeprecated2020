@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 	/datum/surgery_step/revive,
 	/datum/surgery_step/pacify,
 	/datum/surgery_step/thread_veins,
-	/datum/surgery_step/splice_nerves,
+//	/datum/surgery_step/splice_nerves,
 	/datum/surgery_step/ground_nerves,
 	/datum/surgery_step/muscled_veins,
 	/datum/surgery_step/reinforce_ligaments,
