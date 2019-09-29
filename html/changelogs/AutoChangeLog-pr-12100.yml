@@ -1,0 +1,5 @@
+author: "Neowt"
+delete-after: True
+changes: 
+  - rscadd: "RnD departamental protolathe in MetaLake has been replaced with a protolathe."
+  - bugfix: "Fixed toxins burn chamber in MetaLake and HippieStation."
