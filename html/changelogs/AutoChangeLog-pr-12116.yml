@@ -1,0 +1,8 @@
+author: "yoyobatty"
+delete-after: True
+changes: 
+  - rscadd: "Gangs now have their own cinematic!"
+  - bugfix: "Fix gang dominators counting down and examination while broken"
+  - tweak: "Gang tools menu activation is no longer clunky"
+  - admin: "Making someone a gang boss equips them with appropriate gear"
+  - bugfix: "Fix gang promotion message"
