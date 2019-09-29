@@ -22,7 +22,7 @@
 	if (!.)
 		return
 
-	if(findtext(message, "rouge"))	//You're an idiot and should feel as such
+	if(findtext(message, "rouge") || findtext(message, "owo") || findtext(message, "uwu") || findtext(message, "nya" || findtext(message, "hola")) || findtext(message, "hue"))
 		var/mob/living/carbon/human/H = src
 		to_chat(src, "<span class='warning'><b>You feel like a fucking idiot.</b></span>")
 		playsound_local(src, 'hippiestation/sound/effects/whistlefail.ogg', 50, 0)	//Rip
@@ -40,6 +40,7 @@
 					trauma_resistance = TRAUMA_RESILIENCE_BASIC
 			H.adjustBrainLoss(20)
 			H.gain_trauma_type(trauma_type, trauma_resistance)
+
 
 	say_tts(message, language)
 
