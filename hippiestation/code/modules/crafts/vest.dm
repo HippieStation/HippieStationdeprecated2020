@@ -37,30 +37,6 @@
 	equip_delay_other = 60
 	slowdown = 0.6
 
-/obj/item/clothing/suit/armor/plate_armor/steel/dummy
-	desc = "You aren't supposed to see this"
-
-/obj/item/clothing/suit/armor/plate_armor/steel/crude
-	desc = "A suit of plate armor. This one is crap."
-	item_state = "crude_armor"
-	icon_state = "crude_armor"
-	armor = list("melee" = 30, "bullet" = 10, "laser" = -15, "energy" = -15, "bomb" = 0, "bio" = 15, "rad" = 10, "fire" = -15, "acid" = 50) //this is a low quality plate armor
-
-/obj/item/clothing/suit/armor/plate_armor/steel/dummy/Initialize(obj/item/I)
-	AddComponent(/datum/component/spraycan_paintable)
-	if(prob(75))
-		new /obj/item/clothing/head/helmet/plate_armor/crude(loc)
-		new /obj/item/clothing/suit/armor/plate_armor/steel/crude(loc)
-		return qdel(src)
-	else
-		new /obj/item/clothing/head/helmet/plate_armor(loc)
-		new /obj/item/clothing/suit/armor/plate_armor/steel(loc)
-		return qdel(src)
-
-/obj/item/clothing/suit/armor/plate_armor/steel/Initialize()
-	AddComponent(/datum/component/spraycan_paintable)
-	return
-
 /obj/item/clothing/head/helmet/plate_armor
 	name = "plate armor helm"
 	desc = "A solid helm of metal. It is exceedingly heavy and makes your neck ache."
@@ -70,19 +46,42 @@
 	item_state = "metal_helmet"
 	armor = list("melee" = 40, "bullet" = 15, "laser" = -10,"energy" = -10, "bomb" = 15, "bio" = 25, "rad" = 20, "fire" = -15, "acid" = 80)
 	resistance_flags = ACID_PROOF
-	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
+	flags_inv = HIDEMASK | HIDEEARS| HIDEEYES| HIDEFACE| HIDEHAIR| HIDEFACIALHAIR
 	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
 	clothing_flags = THICKMATERIAL
+
+/obj/item/clothing/suit/armor/plate_armor/steel/Initialize(obj/item/I)
+	. = ..()
+	AddComponent(/datum/component/spraycan_paintable)
+	new /obj/item/clothing/head/helmet/plate_armor(loc)
+
+/obj/item/clothing/head/helmet/plate_armor/Initialize()
+	. = ..()
+	AddComponent(/datum/component/spraycan_paintable)
+
+/*/obj/item/clothing/suit/armor/plate_armor/steel/crude
+	desc = "A suit of plate armor. This one is crap."
+	item_state = "crude_armor"
+	icon_state = "crude_armor"
+	armor = list("melee" = 30, "bullet" = 10, "laser" = -15, "energy" = -15, "bomb" = 0, "bio" = 15, "rad" = 10, "fire" = -15, "acid" = 50) //this is a low quality plate armor
+
+/obj/item/clothing/suit/armor/plate_armor/steel/crude/Initialize(obj/item/I)
+	AddComponent(/datum/component/spraycan_paintable)
+	new /obj/item/clothing/suit/armor/plate_armor/steel/crude(loc)
+
+/obj/item/clothing/suit/armor/plate_armor/steel/Initialize(obj/item/I)
+	AddComponent(/datum/component/spraycan_paintable)
+	new /obj/item/clothing/head/helmet/plate_armor(loc)
+
+/obj/item/clothing/suit/armor/plate_armor/steel/crude/Initialize(obj/item/I)
+	AddComponent(/datum/component/spraycan_paintable)
+	new /obj/item/clothing/suit/armor/plate_armor/steel/crude(loc)
 
 /obj/item/clothing/head/helmet/plate_armor/crude
 	icon_state = "crude_armor_helmet"
 	item_state = "crude_armor_helmet"
 	armor = list("melee" = 30, "bullet" = 10, "laser" = -15,"energy" = -15, "bomb" = 10, "bio" = 15, "rad" = 10, "fire" = -15, "acid" = 40)
 	desc = "A helm of metal. It is exceedingly heavy and makes your neck ache. This one is crap."
-
-/obj/item/clothing/head/helmet/plate_armor/Initialize()
-	. = ..()
-	AddComponent(/datum/component/spraycan_paintable)
 
 /obj/item/clothing/suit/armor/plate_armor/plasteel
 	name = "plasteel plate armor"
@@ -95,9 +94,6 @@
 	strip_delay = 80
 	equip_delay_other = 60
 	slowdown = 0.6
-
-/obj/item/clothing/suit/armor/plate_armor/plasteel/dummy
-	desc = "You aren't supposed to see this"
 
 /obj/item/clothing/suit/armor/plate_armor/plasteel/Initialize()
 	AddComponent(/datum/component/spraycan_paintable)
@@ -135,7 +131,7 @@
 	desc = "A solid helm of plasteel. It is exceedingly heavy and makes your neck ache. This one looks very robust."
 	icon_state = "juggernaut_armor_helmet"
 	item_state = "juggernaut_armor_helmet"
-	armor = list("melee" = 65, "bullet" = 35, "laser" = 20,"energy" = 20, "bomb" = 25, "bio" = 25, "rad" = 30, "fire" = 20, "acid" = 80)
+	armor = list("melee" = 65, "bullet" = 35, "laser" = 20,"energy" = 20, "bomb" = 25, "bio" = 25, "rad" = 30, "fire" = 20, "acid" = 80)*/
 
 /**********************************         **********************************/
 /********************************** Recipes **********************************/
@@ -143,18 +139,18 @@
 
 /datum/crafting_recipe/plate_armor
 	name = "plate armor"
-	result =  pick("1","2","fudge","space","00","8bd20","4dd6","100")
+	result =  /obj/item/clothing/suit/armor/plate_armor/steel
 	reqs = list(/obj/item/stack/sheet/metal = 50,
 				/obj/item/weldingtool)
 	time = 30 //time gating is a shit concept
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/plate_armor_plasteel
+/*datum/crafting_recipe/plate_armor_plasteel
 	name = "plasteel plate armor"
 	result =  /obj/item/clothing/suit/armor/plate_armor/plasteel/dummy
 	reqs = list(/obj/item/stack/sheet/plasteel = 50,
 				/obj/item/weldingtool)
 	time = 60
 	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
+	subcategory = CAT_WEAPON*/
