@@ -145,6 +145,15 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 			playsound(src, 'sound/weapons/circsawhit.ogg', 50, TRUE)
 			BP.dismember()
 			sleep(10)
+	var/list/organs = list()
+	for(var/obj/item/organ/OR in victim.internal_organs)
+		if(!istype(OR, /obj/item/organ/brain) && !istype(OR, /obj/item/organ/heart))
+			organs += OR
+	if(LAZYLEN(organs))
+		var/obj/item/organ/O = pick(organs)
+		O.Remove(victim)
+		O.forceMove(get_turf(src))
+		O.throw_at(get_edge_target_turf(src, pick(GLOB.alldirs)), INFINITY, 5, spin = TRUE)
 	// this is just a big ol' middle finger to the victim
 	victim.slurring = 300
 	victim.dizziness = 300
