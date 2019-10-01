@@ -206,6 +206,9 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 			update_icon()
 		return
 	in_use = TRUE
+	var/datum/component/storage/ST = GetComponent(/datum/component/storage/concrete/autodoc)
+	ST.close_all()
+	ST.locked = TRUE
 	update_icon()
 	active_surgery = new target_surgery.type(patient, target_zone, affecting)
 	while(active_surgery.status <= active_surgery.steps.len)
@@ -234,6 +237,7 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 	active_surgery = null
 	active_step = null
 	in_use = FALSE
+	ST.locked = FALSE
 	if(!state_open)
 		open_machine()
 	update_icon()
