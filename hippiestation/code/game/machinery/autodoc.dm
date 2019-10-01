@@ -33,7 +33,7 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 	circuit = /obj/item/circuitboard/machine/autodoc
 	icon = 'hippiestation/icons/obj/machines/autodoc.dmi'
 	icon_state = "autodoc_base"
-	density = TRUE
+	density = FALSE
 	anchored = TRUE
 	layer = ABOVE_WINDOW_LAYER
 	use_power = IDLE_POWER_USE
@@ -59,8 +59,9 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 	. += "<span class='notice'><b>Ctrl-Click</b> to access the internal storage.</span>"
 
 /obj/machinery/autodoc/CanPass(atom/movable/mover, turf/target)
-	. = ..()
-	
+	if(get_dir(src, mover) == NORTH || get_dir(src, target) == NORTH)
+		return FALSE
+	return ..()
 
 /obj/machinery/autodoc/Initialize()
 	. = ..()
@@ -81,7 +82,8 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 
 /obj/machinery/autodoc/ComponentInitialize()
 	. = ..()
-	AddComponent(/datum/component/storage/concrete/autodoc)
+	var/datum/component/storage/STR = LoadComponent(/datum/component/storage/concrete/autodoc)
+	STR.cant_hold = typecacheof(list(/obj/item/card/emag))
 
 /obj/machinery/autodoc/RefreshParts()
 	var/list/P = list()
@@ -101,8 +103,9 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
 		P += M.get_part_rating()
 	max_storage = round(list_avg(P), 1)
-	var/datum/component/storage/ST = LoadComponent(/datum/component/storage/concrete/autodoc)
-	ST.max_items = max_storage
+	var/datum/component/storage/STR = LoadComponent(/datum/component/storage/concrete/autodoc)
+	STR.max_items = max_storage
+	STR.cant_hold = typecacheof(list(/obj/item/card/emag))
 
 /obj/machinery/autodoc/CtrlClick(mob/user)
 	if(in_use)
@@ -139,13 +142,16 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 /obj/machinery/autodoc/proc/mcdonalds(mob/living/carbon/victim)
 	for(var/obj/item/bodypart/BP in victim.bodyparts)
 		if(BP.body_part != HEAD && BP.body_part != CHEST && BP.dismemberable)
+			playsound(src, 'sound/weapons/circsawhit.ogg', 50, TRUE)
 			BP.dismember()
+			sleep(10)
 	// this is just a big ol' middle finger to the victim
 	victim.slurring = 300
 	victim.dizziness = 300
 	victim.jitteriness = 300
 	victim.setBrainLoss(max(135, victim.getBrainLoss()))
 	caesar = FALSE
+	playsound(src, 'sound/weapons/circsawhit.ogg', 50, TRUE)
 
 /obj/machinery/autodoc/proc/surgery_time()
 	var/mob/living/carbon/patient
