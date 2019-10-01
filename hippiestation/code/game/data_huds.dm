@@ -47,3 +47,20 @@
 		holder.icon_state = "hudtracking"
 	else
 		holder.icon_state = null
+
+/datum/atom_hud/data/human/threat
+	hud_icons = list(WANTED_HUD)
+
+/mob/living/carbon/human/proc/sec_hud_set_threat_status(mob/living/carbon/human/user)
+	var/image/holder = hud_list[WANTED_HUD]
+	var/icon/I = icon(icon, icon_state, dir)
+	holder.pixel_y = I.Height() - world.icon_size
+	if(istype(user.glasses, /obj/item/clothing/glasses/hud/threat))
+		var/obj/item/clothing/glasses/hud/threat/scanner = user.glasses
+		if(src in scanner.threat_list)
+			holder.icon_state = "hudwarn"
+			message_admins("icon state: [holder.icon_state]")
+		else
+			holder.icon_state = null
+			message_admins("icon state: [holder.icon_state]")
+	message_admins("icon state: test")
