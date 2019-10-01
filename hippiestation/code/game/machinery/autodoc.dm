@@ -31,14 +31,15 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 	name = "Auto-Doc Mark IX"
 	desc = "A fully stationary automated surgeon! Fun for the whole family!"
 	circuit = /obj/item/circuitboard/machine/autodoc
-	icon = 'icons/obj/machines/nanite_chamber.dmi'
-	icon_state = "nanite_chamber"
+	icon = 'hippiestation/icons/obj/machines/autodoc.dmi'
+	icon_state = "autodoc_base"
 	density = TRUE
 	anchored = TRUE
 	layer = ABOVE_WINDOW_LAYER
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 50
 	active_power_usage = 300
+	pixel_x = -16
 	var/speed_mult = 1
 	var/max_storage = 1
 	var/list/valid_surgeries = list()
@@ -49,6 +50,7 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 	var/in_use = FALSE
 	var/caesar = FALSE
 	var/message_cooldown = 0
+	var/mutable_appearance/top_overlay
 
 /obj/machinery/autodoc/examine(mob/user)
 	. = ..()
@@ -56,8 +58,13 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 		. += "<span class='notice'>You see <b>[occupant]</b> inside.</span>"
 	. += "<span class='notice'><b>Ctrl-Click</b> to access the internal storage.</span>"
 
+/obj/machinery/autodoc/CanPass(atom/movable/mover, turf/target)
+	. = ..()
+	
+
 /obj/machinery/autodoc/Initialize()
 	. = ..()
+	top_overlay = mutable_appearance(icon, "autodoc_top", ABOVE_MOB_LAYER)
 	occupant_typecache = GLOB.typecache_living
 	update_icon()
 	for(var/datum/surgery/S in GLOB.surgeries_list)
@@ -274,25 +281,16 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 
 /obj/machinery/autodoc/update_icon()
 	cut_overlays()
-
-	if((stat & MAINT) || panel_open)
-		add_overlay("maint")
-	else if(!(stat & (NOPOWER|BROKEN)))
+	add_overlay(top_overlay)
+	if(!(stat & (NOPOWER|BROKEN)))
 		if(in_use)
-			add_overlay("red")
+			add_overlay("auto_doc_lights_working")
 		else
-			add_overlay("green")
-
-	//running and someone in there
+			add_overlay("auto_doc_lights_on")
 	if(occupant)
-		if(in_use)
-			icon_state = initial(icon_state) + "_active"
-		else
-			icon_state = initial(icon_state) + "_occupied"
-		return
-
-	//running
-	icon_state = initial(icon_state) + "_open"
+		add_overlay("autodoc_door_closed")
+	else
+		add_overlay("autodoc_door_open")
 
 /obj/machinery/autodoc/proc/toggle_open(mob/user)
 	if(panel_open)
@@ -312,6 +310,7 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 	..(FALSE)
 	if(occupant)
 		occupant.forceMove(get_turf(src))
+	update_icon()
 	return TRUE
 
 /obj/machinery/autodoc/relaymove(mob/user as mob)
