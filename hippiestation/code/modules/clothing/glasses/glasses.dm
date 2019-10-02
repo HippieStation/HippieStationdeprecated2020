@@ -48,5 +48,5 @@
 	clear_threats(user)
 
 /mob/living/carbon/human/ShiftClick(mob/user)
-	SEND_SIGNAL(user, COMSIG_THREAT_SCAN_CLICK_SHIFT, src)
 	..()
+	SEND_SIGNAL(user, COMSIG_THREAT_SCAN_CLICK_SHIFT, src)
