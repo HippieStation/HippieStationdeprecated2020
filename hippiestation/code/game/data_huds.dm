@@ -51,16 +51,17 @@
 /datum/atom_hud/data/human/threat
 	hud_icons = list(WANTED_HUD)
 
-/mob/living/carbon/human/proc/sec_hud_set_threat_status(mob/living/carbon/human/user)
+/mob/living/carbon/human/proc/sec_hud_set_threat_status(mob/living/carbon/human/user, clear = FALSE)
 	var/image/holder = hud_list[WANTED_HUD]
 	var/icon/I = icon(icon, icon_state, dir)
 	holder.pixel_y = I.Height() - world.icon_size
+	holder.icon = 'icons/mob/hud.dmi'
 	if(istype(user.glasses, /obj/item/clothing/glasses/hud/threat))
 		var/obj/item/clothing/glasses/hud/threat/scanner = user.glasses
+		if(clear)
+			scanner.threat_list -= src
 		if(src in scanner.threat_list)
-			holder.icon_state = "hudwarn"
-			message_admins("icon state: [holder.icon_state]")
+			holder.icon_state = "hudalert-red"
+
 		else
 			holder.icon_state = null
-			message_admins("icon state: [holder.icon_state]")
-	message_admins("icon state: test")
