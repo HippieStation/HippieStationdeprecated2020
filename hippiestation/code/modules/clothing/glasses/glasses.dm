@@ -39,14 +39,13 @@
 
 /obj/item/clothing/glasses/hud/threat/proc/clear_threats(mob/user)
 	if(threat_list && threat_list.len)
-		//LAZYCLEARLIST(threat_list)
+		for(var/mob/living/carbon/human/H in threat_list)
+			H.sec_hud_set_threat_status(user, TRUE)
 		to_chat(user, "<span class='notice'>Cleared all threats.</span>")
 	to_chat(user, "<span class='warning'>No threats to clear.</span>")
 
-/obj/item/clothing/glasses/hud/threat/attack_self(mob/living/user)
+/obj/item/clothing/glasses/hud/threat/attack_self(mob/user)
 	clear_threats(user)
-	for(var/mob/living/carbon/human/H in threat_list)
-		H.sec_hud_set_threat_status(user, TRUE)
 
 /mob/living/carbon/human/ShiftClick(mob/user)
 	SEND_SIGNAL(user, COMSIG_THREAT_SCAN_CLICK_SHIFT, src)
