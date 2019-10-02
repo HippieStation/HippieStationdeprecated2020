@@ -31,11 +31,11 @@
 	..()
 
 /obj/structure/chair/noose/Initialize()
+	. = ..()
 	pixel_y += 16 //Noose looks like it's "hanging" in the air
 	over = image(icon, "noose_overlay")
 	over.layer = FLY_LAYER
 	add_overlay(over, priority = 0)
-	.=..()
 
 /obj/structure/chair/noose/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -93,42 +93,30 @@
 		to_chat(user, "<span class='warning'>[M] has no head!</span>")
 		return FALSE
 
-	if(M.loc != src.loc) return FALSE //Can only noose someone if they're on the same tile as noose
+	if(M.loc != src.loc)
+		return FALSE //Can only noose someone if they're on the same tile as noose
 
 	add_fingerprint(user)
 
-	if(M == user && buckle_mob(M))
-		M.visible_message(\
-			"<span class='suicide'>[M] ties \the [src] over their neck!</span>",\
-			"<span class='suicide'>You tie \the [src] over your neck!</span>")
-		playsound(user.loc, 'hippiestation/sound/effects/noosed.ogg', 50, 1, -1)
-		log_combat(user, null, "hanged themselves", src)
-		M.noosed = TRUE
-		return TRUE
-	else
-		M.visible_message(\
-			"<span class='danger'>[user] attempts to tie \the [src] over [M]'s neck!</span>",\
-			"<span class='userdanger'>[user] ties \the [src] over your neck!</span>")
+	M.visible_message(\
+		"<span class='danger'>[user] attempts to tie \the [src] over [M]'s neck!</span>",\
+		"<span class='userdanger'>[user] ties \the [src] over your neck!</span>")
+	if(user != M)
 		to_chat(user, "<span class='notice'>It will take 20 seconds and you have to stand still.</span>")
-		if(do_mob(user, M, 200))
-			if(buckle_mob(M))
-				M.visible_message(\
-					"<span class='danger'>[user] ties \the [src] over [M]'s neck!</span>",\
-					"<span class='userdanger'>[user] ties \the [src] over your neck!</span>")
-				playsound(user.loc, 'hippiestation/sound/effects/noosed.ogg', 50, 1, -1)
-				log_combat(user, M, "hanged", src)
-				M.noosed = TRUE
-				return TRUE
-			else
-				user.visible_message(\
-					"<span class='warning'>[user] fails to tie \the [src] over [M]'s neck!</span>",\
-					"<span class='warning'>You fail to tie \the [src] over [M]'s neck!</span>")
-				return FALSE
-		else
+	if(do_mob(user, M, user == M ? 0:200))
+		if(buckle_mob(M))
 			user.visible_message(\
-				"<span class='warning'>[user] fails to tie \the [src] over [M]'s neck!</span>",\
-				"<span class='warning'>You fail to tie \the [src] over [M]'s neck!</span>")
-			return FALSE
+				"<span class='warning'>[user] ties \the [M != user ? "[user]" : "their"][src] over [M]'s neck!</span>",\
+				"<span class='userdanger'>[M != user ? "[user] ties" : "You tie"] \the [src] over your neck!</span>")
+			playsound(user.loc, 'hippiestation/sound/effects/noosed.ogg', 50, 1, -1)
+			log_combat(user, M, "hanged", src)
+			M.noosed = TRUE
+			return TRUE
+	user.visible_message(\
+		"<span class='warning'>[user] fails to tie \the [src] over [M]'s neck!</span>",\
+		"<span class='warning'>You fail to tie \the [src] over [M]'s neck!</span>")
+	return FALSE
+
 
 /obj/structure/chair/noose/process()
 	if(!has_buckled_mobs())
