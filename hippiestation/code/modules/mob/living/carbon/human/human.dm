@@ -36,6 +36,6 @@
 		to_chat(usr, "<b>Secret/Objective items:</b>")
 		for(var/datum/objective_item/O in GLOB.possible_items)
 			for(var/obj/item/I in contents)
-				if(I == O.targetitem)
+				if(I == O.targetitem && O.targetitem)
 					to_chat(usr, "<b>Found:</b> [I]")
 		to_chat(usr, "<b>None!</b>")
