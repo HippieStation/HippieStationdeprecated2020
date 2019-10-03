@@ -85,12 +85,21 @@ GLOBAL_LIST_INIT(nonreactive_gases, typecacheof(list(/datum/gas/oxygen, /datum/g
 	fusion_power = 8
 	rarity = 500
 
+/datum/gas/freon
+	id = "freon"
+	specific_heat = 2000
+	name = "Freon"
+	gas_overlay = "freon"
+	moles_visible = MOLES_GAS_VISIBLE
+	dangerous = TRUE
+	rarity = 50
+
 /datum/gas/hypernoblium
 	id = "nob"
 	specific_heat = 2000
 	name = "Hyper-noblium"
 	gas_overlay = "freon"
-	moles_visible = MOLES_GAS_VISIBLE
+	moles_visible = MOLES_GAS_VISIBLE * 2
 	dangerous = TRUE
 	rarity = 50
 
