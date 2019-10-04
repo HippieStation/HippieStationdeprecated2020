@@ -13,6 +13,8 @@
 /obj/item/clothing/glasses/hud/threat
 	name = "threat marking glasses"
 	desc = "An advanced heads-up display which can mark targets as a threat for easy assesment of situations."
+	icon_state = "sun"
+	item_state = "sunglasses"
 	hud_type = DATA_HUD_THREAT_SCAN
 	var/list/threat_list = list()
 	actions_types = list(/datum/action/item_action/clear_threats)
@@ -42,6 +44,7 @@
 		for(var/mob/living/carbon/human/H in threat_list)
 			H.sec_hud_set_threat_status(user, TRUE)
 		to_chat(user, "<span class='notice'>Cleared all threats.</span>")
+		return
 	to_chat(user, "<span class='warning'>No threats to clear.</span>")
 
 /obj/item/clothing/glasses/hud/threat/attack_self(mob/user)
