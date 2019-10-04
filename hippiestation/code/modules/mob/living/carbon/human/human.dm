@@ -36,8 +36,6 @@
 		to_chat(usr, "<b>Secret/Objective items:</b>")
 		for(var/obj/item/I in GetAllContents())
 			for(var/datum/objective_item/O in GLOB.possible_items)
-				if(!O || !GLOB.possible_items)
-					to_chat(usr, "<b>Error finding objective database</b>")
 				if(istype(I, O.targetitem) && O.check_special_completion(I))
 					to_chat(usr, "<b>Found:</b> [I]")
 					break
