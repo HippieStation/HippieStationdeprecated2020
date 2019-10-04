@@ -1916,3 +1916,9 @@ GLOBAL_LIST_INIT(uplink_items, subtypesof(/datum/uplink_item))
 	item = /obj/item/storage/fancy/cigarettes/cigpack_syndicate
 	cost = 2
 	illegal_tech = FALSE
+	
+/datum/uplink_item/device_tools/threat
+	name = "Threat scanning glasses"
+	desc = "Mark threats and check enemies for objectives items and high level access."
+	item = /obj/item/clothing/glasses/hud/threat
+	cost = 6
