@@ -135,7 +135,8 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 			INVOKE_ASYNC(src, .proc/surgery_time)
 
 /obj/machinery/autodoc/Destroy()
-	active_surgery.complete()
+	if(active_surgery)
+		active_surgery.complete()
 	open_machine()
 	return ..()
 
