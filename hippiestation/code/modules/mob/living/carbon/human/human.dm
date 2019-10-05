@@ -20,10 +20,14 @@
 	else
 		return ..()
 
+/mob/living/carbon/human/Initialize()
+	hud_possible |= THREAT_HUD
+	. = ..()
 
 /mob/living/carbon/human/Topic(href, href_list)
 	..()
 	if(href_list["threat"])
+		var/list/card_auth_requirements = list(ACCESS_CHANGE_IDS, ACCESS_SECURITY, ACCESS_ARMORY)
 		if(!ishuman(usr))
 			return
 		var/mob/living/carbon/human/H = usr
@@ -41,6 +45,6 @@
 					break
 			if(istype(I, /obj/item/card/id))
 				var/obj/item/card/id/auth_card = I
-				if(auth_card && ((ACCESS_CHANGE_IDS in auth_card.access) || (ACCESS_SECURITY in auth_card.access) || (ACCESS_ARMORY in auth_card.access)))
+				if(auth_card && length(card_auth_requirements & auth_card.access))
 					to_chat(usr, "<b>Access card of interest: [auth_card]</b>")
 		to_chat(usr, "<b>Scan complete</b>")

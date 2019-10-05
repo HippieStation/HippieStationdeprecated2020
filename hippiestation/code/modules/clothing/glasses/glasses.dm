@@ -1,4 +1,4 @@
-#define COMSIG_THREAT_SCAN_CLICK_SHIFT "threat_scan_click_shift"
+#define COMSIG_THREAT_SCAN_CLICK_CTRL_SHIFT "threat_scan_click_shift_shift"
 
 /obj/item/clothing/glasses/thermal/meson
 	name = "optical meson scanner"
@@ -12,7 +12,7 @@
 
 /obj/item/clothing/glasses/hud/threat
 	name = "threat marking glasses"
-	desc = "An advanced heads-up display which can mark targets as a threat for easy assesment of situations."
+	desc = "An advanced heads-up display which can mark targets as a threat for easy assesment of situations. Ctrl + Shift click a target to mark."
 	icon_state = "sun"
 	item_state = "sunglasses"
 	hud_type = DATA_HUD_THREAT_SCAN
@@ -22,11 +22,11 @@
 /obj/item/clothing/glasses/hud/threat/equipped(mob/user, slot)
 	..()
 	if(slot == SLOT_GLASSES)
-		RegisterSignal(user, COMSIG_THREAT_SCAN_CLICK_SHIFT, .proc/ToggleThreat)
+		RegisterSignal(user, COMSIG_THREAT_SCAN_CLICK_CTRL_SHIFT, .proc/ToggleThreat)
 
 /obj/item/clothing/glasses/hud/threat/dropped(mob/user)
 	..()
-	UnregisterSignal(user, COMSIG_THREAT_SCAN_CLICK_SHIFT)
+	UnregisterSignal(user, COMSIG_THREAT_SCAN_CLICK_CTRL_SHIFT)
 
 /obj/item/clothing/glasses/hud/threat/proc/ToggleThreat(mob/living/user, mob/living/carbon/human/H)
 	LAZYINITLIST(threat_list)
@@ -50,6 +50,6 @@
 /obj/item/clothing/glasses/hud/threat/attack_self(mob/user)
 	clear_threats(user)
 
-/mob/living/carbon/human/ShiftClick(mob/user)
+/mob/living/carbon/human/CtrlShiftClick(mob/user)
 	..()
-	SEND_SIGNAL(user, COMSIG_THREAT_SCAN_CLICK_SHIFT, src)
+	SEND_SIGNAL(user, COMSIG_THREAT_SCAN_CLICK_CTRL_SHIFT, src)

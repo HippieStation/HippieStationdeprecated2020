@@ -49,10 +49,10 @@
 		holder.icon_state = null
 
 /datum/atom_hud/data/human/threat
-	hud_icons = list(WANTED_HUD)
+	hud_icons = list(THREAT_HUD)
 
 /mob/living/carbon/human/proc/sec_hud_set_threat_status(mob/living/carbon/human/user, clear = FALSE)
-	var/image/holder = hud_list[WANTED_HUD]
+	var/image/holder = hud_list[THREAT_HUD]
 	var/icon/I = icon(icon, icon_state, dir)
 	holder.pixel_y = I.Height() - world.icon_size
 	holder.icon = 'icons/mob/hud.dmi'

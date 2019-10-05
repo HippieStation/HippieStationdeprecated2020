@@ -297,8 +297,8 @@
 
 	. += hippie_carbon_examine() // hippie -- add our specific examine stuff
 
-	if(user != src)
-		. += "<span class='info'><a href='?src=[REF(src)];threat=1'>\[View secret and object items\]</a></span>" // hippie -- add examine for threat scan glasses
+	if(user != src && istype(glasses, /obj/item/clothing/glasses/hud/threat))
+		. += "<span class='info'><a href='?src=[REF(src)];threat=1'>\[View secret items\]</a></span>" // hippie -- add examine for threat scan glasses
 
 	if (length(msg))
 		. += "<span class='warning'>[msg.Join("")]</span>"
