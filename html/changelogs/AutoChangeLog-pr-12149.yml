@@ -1,4 +1,0 @@
-author: "zamolxius"
-delete-after: True
-changes: 
-  - bugfix: "PDAs no longer explode by setting the ringtone to a space."
