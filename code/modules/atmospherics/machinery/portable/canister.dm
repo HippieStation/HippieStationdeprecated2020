@@ -187,7 +187,6 @@
 
 
 /obj/machinery/portable_atmospherics/canister/Initialize(mapload, datum/gas_mixture/existing_mixture)
-
 	. = ..()
 	if(existing_mixture)
 		air_contents.copy_from(existing_mixture)
@@ -390,7 +389,7 @@
 	if (holding)
 		data["holdingTank"] = list()
 		data["holdingTank"]["name"] = holding.name
-		data["holdingTank"]["tankPressure"] = round(air_contents.return_pressure() ? air_contents.return_pressure() : 0)
+		data["holdingTank"]["tankPressure"] = round(holding.air_contents.return_pressure())
 	return data
 
 /obj/machinery/portable_atmospherics/canister/ui_act(action, params)

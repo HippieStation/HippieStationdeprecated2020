@@ -56,16 +56,18 @@
 
 /datum/gas_reaction/freon/init_reqs()
 	min_requirements = list(/datum/gas/freon = MOLES_GAS_VISIBLE,
-							/datum/gas/oxygen = MINIMUM_MOLE_COUNT,
 							/datum/gas/nitrogen = MINIMUM_MOLE_COUNT)
 
 /datum/gas_reaction/freon/react(datum/gas_mixture/air, datum/holder)
 	var/list/cached_gases = air.gases
+	var/temperature = air.temperature
 	var/turf/open/location = isturf(holder) ? holder : null
-	var/air_requirements = cached_gases[/datum/gas/nitrogen][MOLES] * 0.1
+	var/air_requirements = cached_gases[/datum/gas/nitrogen][MOLES] * 0.05
 	if(location && location.freon_gas_act())
-		if(air_requirements)
+		if(air_requirements && temperature <= T0C)
 			cached_gases[/datum/gas/freon][MOLES] -= MOLES_GAS_VISIBLE
 			cached_gases[/datum/gas/nitrogen][MOLES] -= air_requirements
-			return REACTING
-	return NO_REACTION
+			if(air.heat_capacity() > MINIMUM_HEAT_CAPACITY)
+				air.temperature = max(temperature - max(500 / air.heat_capacity(), TCMB),TCMB)// energy released is thermal energy so we convert back to kelvin via division
+			. = REACTING
+	. = NO_REACTION
