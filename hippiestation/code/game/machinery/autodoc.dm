@@ -239,13 +239,15 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 		active_surgery.status++
 		if(next_step.repeatable || next_step.ad_repeatable)
 			while(next_step.autodoc_check(target_zone, src, TRUE, patient))
+				sleep((next_step.time * speed_mult) / 2)
 				playsound(src, 'sound/weapons/circsawhit.ogg', 50, TRUE)
-				sleep(next_step.time * speed_mult)
+				sleep((next_step.time * speed_mult) / 2)
 				playsound(src, 'sound/weapons/circsawhit.ogg', 50, TRUE)
 				next_step.autodoc_success(patient, target_zone, active_surgery, src)
 		else
+			sleep((next_step.time * speed_mult) / 2)
 			playsound(src, 'sound/weapons/circsawhit.ogg', 50, TRUE)
-			sleep(next_step.time * speed_mult)
+			sleep((next_step.time * speed_mult) / 2)
 			playsound(src, 'sound/weapons/circsawhit.ogg', 50, TRUE)
 			next_step.autodoc_success(patient, target_zone, active_surgery, src)
 		active_surgery.step_in_progress = FALSE
