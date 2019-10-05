@@ -297,8 +297,12 @@
 
 	. += hippie_carbon_examine() // hippie -- add our specific examine stuff
 
-	if(user != src && istype(glasses, /obj/item/clothing/glasses/hud/threat))
-		. += "<span class='info'><a href='?src=[REF(src)];threat=1'>\[View secret items\]</a></span>" // hippie -- add examine for threat scan glasses
+	/*hippie -- add examine for threat scan glasses*/
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H != src  && istype(H.glasses, /obj/item/clothing/glasses/hud/threat))
+			. += "<span class='info'><a href='?src=[REF(src)];threat=1'>\[View secret items\]</a></span>"
+	/*hippie end -- add examine for threat scan glasses*/
 
 	if (length(msg))
 		. += "<span class='warning'>[msg.Join("")]</span>"
