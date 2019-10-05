@@ -141,6 +141,9 @@
 			target.adjustToxLoss(organ_rejection_dam)
 	return TRUE
 
+/datum/surgery_step/insert_pill
+	ad_repeatable = TRUE
+
 /datum/surgery_step/insert_pill/autodoc_check(target_zone, obj/machinery/autodoc/autodoc, silent = TRUE, mob/living/carbon/target)
 	for(var/obj/item/reagent_containers/pill/P in autodoc.contents)
 		return TRUE

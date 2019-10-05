@@ -177,7 +177,6 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 		playsound(src, 'sound/machines/buzz-two.ogg', 50, FALSE)
 		if(!state_open)
 			open_machine()
-			update_icon()
 		return
 	if(state_open)
 		close_machine()
@@ -190,7 +189,6 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 		playsound(src, 'sound/machines/buzz-two.ogg', 50, FALSE)
 		if(!state_open)
 			open_machine()
-			update_icon()
 		return
 	var/obj/item/bodypart/affecting = patient.get_bodypart(check_zone(target_zone))
 	if(affecting)
@@ -198,26 +196,31 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 			playsound(src, 'sound/machines/buzz-two.ogg', 50, FALSE)
 			if(!state_open)
 				open_machine()
-				update_icon()
 			return
 		if(target_surgery.requires_bodypart_type && affecting.status != target_surgery.requires_bodypart_type)
 			playsound(src, 'sound/machines/buzz-two.ogg', 50, FALSE)
 			if(!state_open)
 				open_machine()
-				update_icon()
 			return
 		if(target_surgery.requires_real_bodypart && affecting.is_pseudopart)
 			playsound(src, 'sound/machines/buzz-two.ogg', 50, FALSE)
 			if(!state_open)
 				open_machine()
-				update_icon()
 			return
 	else if(patient && target_surgery.requires_bodypart) //mob with no limb in surgery zone when we need a limb
 		playsound(src, 'sound/machines/buzz-two.ogg', 50, FALSE)
 		if(!state_open)
 			open_machine()
-			update_icon()
 		return
+	for(var/surgery_type in target_surgery.steps)
+		var/datum/surgery_step/SS = new surgery_type
+		if(!SS.autodoc_check(target_zone, src, FALSE, patient))
+			qdel(SS)
+			playsound(src, 'sound/machines/buzz-two.ogg', 50, FALSE)
+			if(!state_open)
+				open_machine()
+			return
+		qdel(SS)
 	in_use = TRUE
 	var/datum/component/storage/ST = GetComponent(/datum/component/storage/concrete/autodoc)
 	ST.close_all()
@@ -234,7 +237,7 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 		active_step = next_step
 		active_surgery.step_in_progress = TRUE
 		active_surgery.status++
-		if(next_step.repeatable)
+		if(next_step.repeatable || next_step.ad_repeatable)
 			while(next_step.autodoc_check(target_zone, src, TRUE, patient))
 				playsound(src, 'sound/weapons/circsawhit.ogg', 50, TRUE)
 				sleep(next_step.time * speed_mult)

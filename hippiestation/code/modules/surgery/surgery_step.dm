@@ -1,3 +1,6 @@
+/datum/surgery_step
+	var/ad_repeatable = FALSE
+
 /datum/surgery_step/proc/autodoc_success(mob/living/carbon/target, target_zone, datum/surgery/surgery, obj/machinery/autodoc/autodoc)
 	return TRUE
 

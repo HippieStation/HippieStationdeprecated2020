@@ -8,7 +8,7 @@
       <ui-button action='target' state='{{data.target == "l_leg" ? "selected" : null}}' params='{"part": "l_leg"}'>Left Leg</ui-button>
       <ui-button action='target' state='{{data.target == "r_leg" ? "selected" : null}}' params='{"part": "r_leg"}'>Right Leg</ui-button>
       <ui-button action='target' state='{{data.target == "groin" ? "selected" : null}}' params='{"part": "groin"}'>Groin</ui-button>
-      <ui-button action='target' state='{{data.target == "eyes" ? "selected" : null}}' params='{"part": "eyes"}'>Groin</ui-button>
+      <ui-button action='target' state='{{data.target == "eyes" ? "selected" : null}}' params='{"part": "eyes"}'>Eyes</ui-button>
       <ui-button action='target' state='{{data.target == "mouth" ? "selected" : null}}' params='{"part": "mouth"}'>Mouth</ui-button>
     </ui-display>
     <ui-display title='Surgeries'>
