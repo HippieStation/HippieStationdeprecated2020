@@ -384,11 +384,11 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			if(do_after(user, 15, target = T))
 				playsound(T, 'sound/effects/bang.ogg', 50, 1)
 				user.visible_message("<span class='danger'>[user] punches down [T]!</span>")
-				T.ScrapeAway()
+				T.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 		else
 			playsound(T, 'sound/effects/bang.ogg', 50, 1)
 			user.visible_message("<span class='danger'>[user] punches down [T]!</span>")
-			T.ScrapeAway()
+			T.ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 	else if(istype(target, /obj/structure/closet))
 		var/obj/structure/closet/C = target
 		. = TRUE

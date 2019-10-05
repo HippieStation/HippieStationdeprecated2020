@@ -1,0 +1,4 @@
+author: "yoyobatty"
+delete-after: True
+changes: 
+  - bugfix: "Fixed a runtime while hanging yourself with a noose"

@@ -238,7 +238,7 @@
 		update |= CANISTER_UPDATE_HOLDING
 	if(connected_port)
 		update |= CANISTER_UPDATE_CONNECTED
-	var/pressure = air_contents.return_pressure()
+	var/pressure = air_contents.return_pressure() ? air_contents.return_pressure() : 0
 	if(pressure < 10)
 		update |= CANISTER_UPDATE_EMPTY
 	else if(pressure < 5 * ONE_ATMOSPHERE)
@@ -390,7 +390,7 @@
 	if (holding)
 		data["holdingTank"] = list()
 		data["holdingTank"]["name"] = holding.name
-		data["holdingTank"]["tankPressure"] = round(holding.air_contents.return_pressure())
+		data["holdingTank"]["tankPressure"] = round(air_contents.return_pressure() ? air_contents.return_pressure() : 0)
 	return data
 
 /obj/machinery/portable_atmospherics/canister/ui_act(action, params)
