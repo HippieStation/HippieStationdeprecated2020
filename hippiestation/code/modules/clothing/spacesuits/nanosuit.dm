@@ -1207,24 +1207,24 @@
 	set desc = "You read through the manual..."
 	set category = "Nanosuit help"
 
-	to_chat(src, "<b><i>Welcome to CryNet Systems user manual 1.22 rev. 6618. Today we will learn about what your new piece of hardware has to offer.</i></b>")
+	to_chat(src, "<b><i>Welcome to CryNet Systems user manual 1.47 rev. 10619. Today we will learn about what your new piece of hardware has to offer.</i></b>")
 	to_chat(src, "<b><i>If you are reading this, you've probably alerted the entire sector about the purchase of an illegal syndicate item banned in a radius of 50 megaparsecs!</i></b>")
-	to_chat(src, "<b><i>Fortunately the syndicate equipped this bad boy with high tech sensing equipment,the downside is the whole crew knows you're here.</i></b>")
-	to_chat(src, "<b>Sensors</b>: Reagent scanner, bomb radar, medical, security and diagnostic huds, user life signs monitor and bluespace communication relay.")
-	to_chat(src, "<b>Passive equipment</b>: Binoculars, night vision, anti-slips, shock and heat proof gloves, self refilling mini o2 tank, emergency medical systems and body temperature defroster.")
+	to_chat(src, "<b><i>Fortunately, the syndicate equipped this bad boy with high tech sensing equipment, the downside is the whole crew knows you're here.</i></b>")
+	to_chat(src, "<b>Sensors</b>: Reagent scanner, bomb radar, medical, user life signs monitor and bluespace communication relay.")
+	to_chat(src, "<b>Passive equipment</b>: Binoculars, night vision, anti-slips, shock and heat proof gloves, self-refilling mini o2 tank, body temperature stabilizer and impact reactive medical systems.")
 	to_chat(src, "<b>Press C to toggle quick mode selection.</b>")
 	to_chat(src, "<b>Active modes</b>: Armor, strength, speed and cloak.")
-	to_chat(src, "<span class='notice'>Armor</span>: Resist damage that would normally kill or seriously injure you. Blocks 50% of attacks at a cost of suit energy drain.")
-	to_chat(src, "<span class='notice'>Cloak</span>: Become a ninja. Cloaking technology alters the outer layers to refract light through and around the suit, making the user appear almost completely invisible. Simple tasks such as attacking in any way, being hit or throwing objects cancels cloak.")
-	to_chat(src, "<span class='notice'>Speed</span>: Run like a madman. Use conservatively as suit energy drains fairly quickly.")
-	to_chat(src, "<span class='notice'>Strength</span>: Beat the shit out of objects  or people with your fists. Jump across small gaps and structures. You hit and throw harder with brute objects. You can't be grabbed aggressively or pushed. 25% ranged hits deflection. Toggling throw mode gives you a 75% block chance.")
-	to_chat(src, "<span class='notice'>Aggressive grab</span>: Your grabs start aggressive.")
-	to_chat(src, "<span class='notice'>Robust push</span>: Your disarms have a 70% chance of knocking an opponent down for 4 seconds.")
-	to_chat(src, "<span class='notice'>MMA master</span>: Harm intents deals more damage, occasionally trigger series of fast hits and you can leg sweep while lying down.")
-	to_chat(src, "<span class='notice'>Highschool bully</span>: Grab someone and harm intent them to deliver a deadly knock down punch.")
-	to_chat(src, "<span class='notice'>Knockout master</span>: Tighten your grip and harm intent to deliver a very deadly knock out punch.")
-	to_chat(src, "<span class='notice'>Mike Tyson</span>: Getting 2 successful quick punches and a regular punch sends your victim flying back.")
-	to_chat(src, "<span class='notice'>Head stomp special</span>: Target victims head while they're knocked down, stomp until their brain explodes.")
+	to_chat(src, "<span class='notice'>Armor</span>: Resist damage that would normally kill or seriously injure you. Blocks 50% of attacks at a cost of suit energy drain.\n\
+    <span class='notice'>Cloak</span>: Become a ninja. Cloaking technology alters the outer layers to refract light through and around the suit, making the user appear almost completely invisible. Simple tasks such as attacking in any way, being hit or throwing objects cancels cloak.\n\
+	<span class='notice'>Speed</span>: Run like a madman. Use conservatively as suit energy drains rather quickly.\n\
+	<span class='notice'>Strength</span>: Beat the shit out of objects  or people with your fists. Jump across small gaps and structures. You hit and throw harder with brute objects. You can't be grabbed aggressively or pushed. 25% ranged hits deflection. Toggling throw mode gives you a 75% block chance.\n\
+	<span class='notice'>Aggressive grab</span>: Your grabs start aggressive.\n\
+	<span class='notice'>Robust push</span>: Your disarms have a 70% chance of knocking an opponent down for 4 seconds.\n\
+	<span class='notice'>MMA master</span>: Harm intents deals more damage, occasionally trigger series of fast hits and you can leg sweep while lying down.\n\
+	<span class='notice'>Highschool bully</span>: Grab someone and harm intent them to deliver a deadly knock down punch.\n\
+	<span class='notice'>Knockout master</span>: Tighten your grip and harm intent to deliver a very deadly knockout punch.\n\
+	<span class='notice'>Mike Tyson</span>: Getting 2 successful quick punches and a regular punch sends your victim flying back.\n\
+	<span class='notice'>Head stomp special</span>: Target victims head while they're knocked down, stomp until their brain explodes.")
 	to_chat(src, "<b><i>User warning: The suit is equipped with an implant which vaporizes the suit and user upon request or death.</i></b>")
 
 /obj/item/stock_parts/cell/nano
