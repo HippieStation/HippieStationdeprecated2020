@@ -304,6 +304,7 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 	if(caesar)
 		to_chat(user, "<span class='notice'>\The [src]'s safeties are already corrupted!</span>")
 		return
+	log_combat(user, src, "emagged")
 	to_chat(user, "<span class='notice'>You discretely emag \the [src], corrupting it's safeties.</span>")
 	add_fingerprint(user)
 	caesar = TRUE
