@@ -527,6 +527,6 @@
 	
 /datum/uplink_item/device_tools/threat
 	name = "Threat scanning glasses"
-	desc = "Mark threats and check enemies for objectives items and high level access."
+	desc = "Mark threats and check enemies for objective items, weapons and high level access. Guaranteed to greentext or your telecrystals back."
 	item = /obj/item/clothing/glasses/hud/threat
 	cost = 6
