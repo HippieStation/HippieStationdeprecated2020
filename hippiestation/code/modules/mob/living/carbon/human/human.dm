@@ -40,8 +40,10 @@
 		for(var/obj/item/I in GetAllContents())
 			for(var/datum/objective_item/O in GLOB.possible_items)
 				if(istype(I, O.targetitem) && O.check_special_completion(I))
-					to_chat(usr, "<b>Found:</b> [I]")
+					to_chat(usr, "<b>High-class item found:</b> [I]")
 					break
+			if(istype(I, /obj/item/gun) || istype(I, /obj/item/melee))
+				to_chat(usr, "<b>Weapon found:</b> [I]")
 			if(istype(I, /obj/item/card/id))
 				var/obj/item/card/id/auth_card = I
 				if(auth_card && length(card_auth_requirements & auth_card.access))
