@@ -1,3 +1,12 @@
+/datum/surgery_step
+	var/ad_repeatable = FALSE
+
+/datum/surgery_step/proc/autodoc_success(mob/living/carbon/target, target_zone, datum/surgery/surgery, obj/machinery/autodoc/autodoc)
+	return TRUE
+
+/datum/surgery_step/proc/autodoc_check(target_zone, obj/machinery/autodoc/autodoc, silent = TRUE, mob/living/carbon/target)
+	return TRUE
+
 /datum/surgery_step/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	// Do what we wanted anyway, but with consequences
 	success(user, target, target_zone, tool, surgery)
