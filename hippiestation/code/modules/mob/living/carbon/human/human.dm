@@ -21,7 +21,6 @@
 		return ..()
 
 /mob/living/carbon/human/Initialize()
-	hud_possible |= THREAT_HUD
 	. = ..()
 
 /mob/living/carbon/human/Topic(href, href_list)

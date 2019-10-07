@@ -48,20 +48,28 @@
 	else
 		holder.icon_state = null
 
-/datum/atom_hud/data/human/threat
-	hud_icons = list(THREAT_HUD)
+/mob/living/carbon/human
+	var/list/stored_hud_images = list()
+
+/mob/living/carbon/human/Login()
+	. = ..()
+	for(var/mob/living/carbon/human/H in GLOB.carbon_list)
+		H.sec_hud_set_threat_status(src)
 
 /mob/living/carbon/human/proc/sec_hud_set_threat_status(mob/living/carbon/human/user, clear = FALSE)
-	var/image/holder = hud_list[THREAT_HUD]
+	var/list/hud_images = list()
+	var/image/holder_threat
+	holder_threat = image('icons/mob/hud.dmi', src, "hudalert-red", HUD_LAYER)
+	holder_threat.appearance_flags = RESET_COLOR|RESET_TRANSFORM
 	var/icon/I = icon(icon, icon_state, dir)
-	holder.pixel_y = I.Height() - world.icon_size
-	holder.icon = 'icons/mob/hud.dmi'
+	holder_threat.pixel_y = I.Height() - world.icon_size
+	hud_images += holder_threat
+	stored_hud_images += hud_images
 	if(istype(user.glasses, /obj/item/clothing/glasses/hud/threat))
 		var/obj/item/clothing/glasses/hud/threat/scanner = user.glasses
 		if(clear)
 			scanner.threat_list -= src
 		if(src in scanner.threat_list)
-			holder.icon_state = "hudalert-red"
-
+			user.client.images += hud_images
 		else
-			holder.icon_state = null
+			user.client.images -= stored_hud_images

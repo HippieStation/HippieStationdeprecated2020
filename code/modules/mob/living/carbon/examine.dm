@@ -91,8 +91,8 @@
 
 		if(digitalcamo)
 			. += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly unsimian manner."
-	
-	. += hippie_carbon_examine() // hippie -- add our specific examine stuff
+
+	. += hippie_carbon_examine(user) // hippie -- add our specific examine stuff
 
 	var/trait_exam = common_trait_examine()
 	if (!isnull(trait_exam))

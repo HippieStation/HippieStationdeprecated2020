@@ -15,7 +15,7 @@
 	desc = "An advanced heads-up display which can mark targets as a threat for easy assesment of situations. Ctrl + Shift click a target to mark."
 	icon_state = "sun"
 	item_state = "sunglasses"
-	hud_type = DATA_HUD_THREAT_SCAN
+	//hud_type = DATA_HUD_THREAT_SCAN
 	var/list/threat_list = list()
 	actions_types = list(/datum/action/item_action/clear_threats)
 
