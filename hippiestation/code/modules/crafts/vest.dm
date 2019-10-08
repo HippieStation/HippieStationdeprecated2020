@@ -32,6 +32,7 @@
 	allowed = list(/obj/item/flashlight, /obj/item/tank/internals, /obj/item/claymore, /obj/item/forged/melee/sword, /obj/item/forged/melee/dagger, /obj/item/twohanded/forged/greatsword, /obj/item/forged/melee/mace,/obj/item/nullrod)
 	armor = list("melee" = 40, "bullet" = 20, "laser" = -10, "energy" = -10, "bomb" = 15, "bio" = 25, "rad" = 20, "fire" = -15, "acid" = 80)
 	resistance_flags = ACID_PROOF
+	clothing_flags = THICKMATERIAL
 	w_class = WEIGHT_CLASS_BULKY
 	strip_delay = 80
 	equip_delay_other = 60
