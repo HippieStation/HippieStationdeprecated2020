@@ -103,13 +103,13 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/sy = summoner.y
 	var/sz = summoner.z
 	for(var/turf/T in getline(locate(sx - range, sy + range + 1, sz), locate(sx + range, sy + range + 1, sz)))
-		barrier_images += image('hippiestation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, EAST)
+		barrier_images += image('hippiestation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, SOUTH)
 	for(var/turf/T in getline(locate(sx - range, sy - range - 1, sz), locate(sx + range, sy - range - 1, sz)))
-		barrier_images += image('hippiestation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, EAST)
+		barrier_images += image('hippiestation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, NORTH)
 	for(var/turf/T in getline(locate(sx - range - 1, sy - range, sz), locate(sx - range - 1, sy + range, sz)))
-		barrier_images += image('hippiestation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, NORTH)
+		barrier_images += image('hippiestation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, EAST)
 	for(var/turf/T in getline(locate(sx + range + 1, sy - range, sz), locate(sx + range + 1, sy + range, sz)))
-		barrier_images += image('hippiestation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, NORTH)
+		barrier_images += image('hippiestation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, WEST)
 	barrier_images += image('hippiestation/icons/effects/effects.dmi', locate(sx - range - 1 , sy + range + 1, sz), "barrier", ABOVE_LIGHTING_LAYER, SOUTHEAST)
 	barrier_images += image('hippiestation/icons/effects/effects.dmi', locate(sx + range + 1, sy + range + 1, sz), "barrier", ABOVE_LIGHTING_LAYER, SOUTHWEST)
 	barrier_images += image('hippiestation/icons/effects/effects.dmi', locate(sx + range + 1, sy - range - 1, sz), "barrier", ABOVE_LIGHTING_LAYER, NORTHWEST)
