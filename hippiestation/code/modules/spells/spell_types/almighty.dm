@@ -85,6 +85,7 @@
 			else
 				if(our_dist > best_dist)
 					best_position = T
+					best_dist = our_dist
 	if(best_position)
 		user.forceMove(best_position)
 		playsound(user, 'sound/magic/wand_teleport.ogg', 75, TRUE)
