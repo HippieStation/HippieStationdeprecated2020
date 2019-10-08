@@ -1,0 +1,6 @@
+author: "DON-KARMA"
+delete-after: True
+changes: 
+  - balance: "Devils now ascend at 8 souls and become a true devil at 5, from 12 and 7 respectively."
+  - balance: "Devils can no longer have cremation as one of their banishment routines."
+  - balance: "Devils also now take shorter to ascend."
