@@ -91,6 +91,12 @@
 	spell_type = /obj/effect/proc_holder/spell/self/bfs
 	cost = 3
 
+/datum/spellbook_entry/almighty
+	name = "The Almighty"
+	desc = "A powerful spell, allowing you to choose a target, and then shift everything until you are in a position of advantage."
+	spell_type = /obj/effect/proc_holder/spell/self/almighty
+	cost = 4
+
 /obj/item/book/granter/spell/smoke/lesser
 	spell = /obj/effect/proc_holder/spell/targeted/smoke/lesser
 
