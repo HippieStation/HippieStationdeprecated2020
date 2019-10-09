@@ -24,7 +24,13 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 	/datum/surgery_step/ground_nerves,
 	/datum/surgery_step/muscled_veins,
 	/datum/surgery_step/reinforce_ligaments,
-	/datum/surgery_step/reshape_ligaments
+	/datum/surgery_step/reshape_ligaments,
+	/datum/surgery_step/mechanic_open,
+	/datum/surgery_step/mechanic_unwrench,
+	/datum/surgery_step/prepare_electronics,
+	/datum/surgery_step/mechanic_wrench,
+	/datum/surgery_step/open_hatch,
+	/datum/surgery_step/mechanic_close
 )))
 
 /obj/machinery/autodoc
