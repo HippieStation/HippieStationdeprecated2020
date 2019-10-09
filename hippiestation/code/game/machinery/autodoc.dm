@@ -295,7 +295,7 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 				))
 
 /obj/machinery/autodoc/MouseDrop_T(mob/target, mob/user)
-	if(!(QDELETED(occupant) || !istype(occupant)))
+	if(!QDELETED(occupant) && istype(occupant))
 		return
 	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK) || !Adjacent(target) || !user.Adjacent(target) || !iscarbon(target))
 		return
