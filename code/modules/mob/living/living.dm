@@ -691,6 +691,7 @@
 	return !((next_move > world.time) || incapacitated(ignore_restraints = TRUE, ignore_stasis = TRUE))
 
 /mob/living/verb/resist()
+	SHOULD_CALL_PARENT(TRUE)
 	set name = "Resist"
 	set category = "IC"
 
@@ -891,6 +892,7 @@ hippie end */
 	cameraFollow = null
 
 /mob/living/proc/can_track(mob/living/user)
+	SHOULD_CALL_PARENT(TRUE)
 	//basic fast checks go first. When overriding this proc, I recommend calling ..() at the end.
 	var/turf/T = get_turf(src)
 	if(!T)
@@ -1024,6 +1026,7 @@ hippie end */
 
 //Mobs on Fire
 /mob/living/proc/IgniteMob()
+	SHOULD_CALL_PARENT(TRUE)
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = 1
 		src.visible_message("<span class='warning'>[src] catches fire!</span>", \
@@ -1036,6 +1039,7 @@ hippie end */
 	return FALSE
 
 /mob/living/proc/ExtinguishMob()
+	SHOULD_CALL_PARENT(TRUE)
 	if(on_fire)
 		on_fire = 0
 		fire_stacks = 0
