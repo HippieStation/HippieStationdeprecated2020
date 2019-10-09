@@ -205,6 +205,7 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 				open_machine()
 			return
 		if(target_surgery.requires_bodypart_type && affecting.status != target_surgery.requires_bodypart_type)
+			say("The Auto-Doc cannot perform that surgery on that bodypart!")
 			playsound(src, 'sound/machines/buzz-two.ogg', 50, FALSE)
 			if(!state_open)
 				open_machine()
