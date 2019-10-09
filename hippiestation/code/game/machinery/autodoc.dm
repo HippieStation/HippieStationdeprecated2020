@@ -132,7 +132,7 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 						target_surgery = S
 						return
 		if("start")
-			INVOKE_ASYNC(src, .proc/surgery_time)
+			INVOKE_ASYNC(src, .proc/surgery_time, usr)
 
 /obj/machinery/autodoc/Destroy()
 	if(active_surgery)
@@ -167,7 +167,7 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 	caesar = FALSE
 	playsound(src, 'sound/weapons/circsawhit.ogg', 50, TRUE)
 
-/obj/machinery/autodoc/proc/surgery_time()
+/obj/machinery/autodoc/proc/surgery_time(mob/living/doer)
 	var/mob/living/carbon/patient
 	if(in_use)
 		say("Auto-Doc currently in use!")
@@ -213,6 +213,7 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 		if(!state_open)
 			open_machine()
 		return
+	log_combat(doer, patient, "began [target_surgery] surgery", src)
 	for(var/surgery_type in target_surgery.steps)
 		var/datum/surgery_step/SS = new surgery_type
 		if(!SS.autodoc_check(target_zone, src, FALSE, patient))
@@ -294,6 +295,8 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 				))
 
 /obj/machinery/autodoc/MouseDrop_T(mob/target, mob/user)
+	if(!QDELETED(occupant) && istype(occupant))
+		return
 	if(!user.canUseTopic(src, BE_CLOSE, FALSE, NO_TK) || !Adjacent(target) || !user.Adjacent(target) || !iscarbon(target))
 		return
 	if(close_machine(target))
