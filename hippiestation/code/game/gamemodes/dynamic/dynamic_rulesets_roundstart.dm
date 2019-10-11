@@ -27,7 +27,7 @@
 /datum/dynamic_ruleset/roundstart/choose/proc/let_choice(datum/mind/M)
 	var/choice
 	while(!choice)
-		choice = input(M.current, "Which antagonist would you like to be?", "Your lucky day!") as null|anything in list("Traitor", "Vampire", "Devil", "Hivemind")
+		choice = input(M.current, "Which antagonist would you like to be?", "Your lucky day!") as null|anything in list("Traitor", "Vampire", "Devil")
 		if(!choice)
 			continue
 		switch(choice)
@@ -40,30 +40,6 @@
 			if("Devil")
 				M.add_antag_datum(/datum/antagonist/devil)
 				M.special_role = ROLE_DEVIL
-			if("Hivemind")
-				M.add_antag_datum(/datum/antagonist/hivemind)
-				M.special_role = ROLE_HIVE
-
-
-/datum/dynamic_ruleset/roundstart/hivemind
-	name = "Hivemind"
-	antag_flag = ROLE_HIVE
-	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
-	restricted_roles = list("Cyborg")
-	required_candidates = 2
-	weight = 20
-	cost = 25
-	antag_datum = /datum/antagonist/hivemind
-
-/datum/dynamic_ruleset/roundstart/hivemind/pre_execute()
-	var/num_hosts = max( 1 , rand(0,1) + min(8, round(mode.roundstart_pop_ready / 8) ) ) //1 host for every 8 players up to 64, with a 50% chance of an extra
-	for (var/i = 1 to num_hosts)
-		var/mob/M = pick(candidates)
-		candidates -= M
-		assigned += M.mind
-		M.mind.restricted_roles = restricted_roles
-		M.mind.special_role = ROLE_HIVE
-	return TRUE
 	
 /datum/dynamic_ruleset/roundstart/abductors
 	name = "Abductors"
