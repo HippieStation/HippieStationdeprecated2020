@@ -1,0 +1,4 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - bugfix: "The auto-doc now works properly on augumented bodyparts"
