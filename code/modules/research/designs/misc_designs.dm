@@ -255,6 +255,16 @@
 	build_path = /obj/item/tank/internals/plasma/empty
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
+	
+/datum/design/rubberducky
+	name = "Rubber Ducky"
+	desc = "Release the quacken!"
+	id = "rubberducky"
+	build_type = PROTOLATHE
+	materials = list(MAT_PLASTIC = 5000)
+	build_path = /obj/item/bikehorn/rubberducky
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_SERVICE
 
 /////////////////////////////////////////
 ////////////Janitor Designs//////////////
