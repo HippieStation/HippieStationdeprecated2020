@@ -24,7 +24,13 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 	/datum/surgery_step/ground_nerves,
 	/datum/surgery_step/muscled_veins,
 	/datum/surgery_step/reinforce_ligaments,
-	/datum/surgery_step/reshape_ligaments
+	/datum/surgery_step/reshape_ligaments,
+	/datum/surgery_step/mechanic_open,
+	/datum/surgery_step/mechanic_unwrench,
+	/datum/surgery_step/prepare_electronics,
+	/datum/surgery_step/mechanic_wrench,
+	/datum/surgery_step/open_hatch,
+	/datum/surgery_step/mechanic_close
 )))
 
 /obj/machinery/autodoc
@@ -199,6 +205,7 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 				open_machine()
 			return
 		if(target_surgery.requires_bodypart_type && affecting.status != target_surgery.requires_bodypart_type)
+			say("The Auto-Doc cannot perform that surgery on that bodypart!")
 			playsound(src, 'sound/machines/buzz-two.ogg', 50, FALSE)
 			if(!state_open)
 				open_machine()
