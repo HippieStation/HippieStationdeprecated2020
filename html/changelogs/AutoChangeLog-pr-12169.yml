@@ -1,0 +1,4 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - bugfix: "Wrestling action buttons now have icons. Turns out they already existed, but someone forgot to add them properly."
