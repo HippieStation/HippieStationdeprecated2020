@@ -1,5 +1,0 @@
-author: "steamp0rt"
-delete-after: True
-changes: 
-  - bugfix: "You can no longer eternally trap someone inside an auto-doc by drag-clicking yourself on the auto-doc while they're inside"
-  - admin: "Auto-Doc surgeries now show up in the combat log."
