@@ -104,7 +104,7 @@
 			else
 				to_chat(user, "<span class='warning'>There is not enough ice cream left!</span>")
 		else
-			to_chat(user, "<span class='notice'>[O] already has ice cream in it.</span>")
+			to_chat(user, "<span class='warning'>[O] already has ice cream in it!</span>")
 		return 1
 	else if(O.is_drainable())
 		return

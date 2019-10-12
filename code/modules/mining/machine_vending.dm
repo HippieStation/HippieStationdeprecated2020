@@ -246,7 +246,7 @@
 		I.access |= ACCESS_MECH_MINING
 		I.access |= ACCESS_MINERAL_STOREROOM
 		I.access |= ACCESS_CARGO
-		to_chat(user, "You upgrade [I] with mining access.")
+		to_chat(user, "<span class='notice'>You upgrade [I] with mining access.</span>")
 		qdel(src)
 
 /obj/item/storage/backpack/duffelbag/mining_conscript

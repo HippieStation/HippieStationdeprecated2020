@@ -315,14 +315,14 @@
 /mob/living/simple_animal/bot/mulebot/proc/buzz(type)
 	switch(type)
 		if(SIGH)
-			audible_message("[src] makes a sighing buzz.", "<span class='italics'>You hear an electronic buzzing sound.</span>")
-			playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
+			audible_message("<span class='hear'>[src] makes a sighing buzz.</span>", "<span class='hear'>You hear an electronic buzzing sound.</span>")
+			playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
 		if(ANNOYED)
-			audible_message("[src] makes an annoyed buzzing sound.", "<span class='italics'>You hear an electronic buzzing sound.</span>")
-			playsound(loc, 'sound/machines/buzz-two.ogg', 50, 0)
+			audible_message("<span class='hear'>[src] makes an annoyed buzzing sound.</span>", "<span class='hear'>You hear an electronic buzzing sound.</span>")
+			playsound(loc, 'sound/machines/buzz-two.ogg', 50, FALSE)
 		if(DELIGHT)
-			audible_message("[src] makes a delighted ping!", "<span class='italics'>You hear a ping.</span>")
-			playsound(loc, 'sound/machines/ping.ogg', 50, 0)
+			audible_message("<span class='hear'>[src] makes a delighted ping!</span>", "<span class='hear'>You hear a ping.</span>")
+			playsound(loc, 'sound/machines/ping.ogg', 50, FALSE)
 
 
 // mousedrop a crate to load the bot
@@ -582,8 +582,8 @@
 /mob/living/simple_animal/bot/mulebot/proc/at_target()
 	if(!reached_target)
 		radio_channel = RADIO_CHANNEL_SUPPLY //Supply channel
-		audible_message("[src] makes a chiming sound!", "<span class='italics'>You hear a chime.</span>")
-		playsound(loc, 'sound/machines/chime.ogg', 50, 0)
+		audible_message("<span class='hear'>[src] makes a chiming sound!</span>", "<span class='hear'>You hear a chime.</span>")
+		playsound(loc, 'sound/machines/chime.ogg', 50, FALSE)
 		reached_target = 1
 
 		if(pathset) //The AI called us here, so notify it of our arrival.
