@@ -1,7 +1,12 @@
+#define ALMIGHTY_DAMAGE_MIN		3
+#define ALMIGHTY_DAMAGE_MAX		9
+#define ALMIGHTY_MIN_COOLDOWN	5 SECONDS
+
 /obj/effect/proc_holder/spell/self/almighty
 	name = "The Almighty"
 	desc = "Shift the ground below you to bring you into an advantageous position over your target."
-	charge_max = 0
+	charge_max = 45 SECONDS
+	cooldown_min = 45 SECONDS
 	clothes_req = FALSE
 	staff_req = FALSE
 	active = FALSE
@@ -10,19 +15,34 @@
 	ranged_clickcd_override = 6 // halfway between CLICK_CD_RANGE and CLICK_CD_MELEE
 	var/datum/weakref/current_target_weakref
 	var/datum/component/lockon_aiming/lockon_component
+	var/streak = 0
+
+/obj/effect/proc_holder/spell/self/almighty/proc/reset_streak()
+	streak = 0
+	charge_max = initial(charge_max)
+	if(active)
+		charge_counter = 0
+		start_recharge()
+		action.UpdateButtonIcon()
+		remove_ranged_ability()
 
 /obj/effect/proc_holder/spell/self/almighty/Click()
 	var/mob/living/user = usr
 	if(!istype(user))
 		return
+	reset_streak()
 	if(!can_cast(user))
 		remove_ranged_ability("<span class='warning'>You can no longer cast [name]!</span>")
 		return
 	QDEL_NULL(lockon_component)
 	if(active)
+		charge_counter = 0
+		start_recharge()
+		action.UpdateButtonIcon()
 		remove_ranged_ability()
 	else
 		lockon_component = user.AddComponent(/datum/component/lockon_aiming, world.view, typecacheof(list(/mob/living)), 1, null, CALLBACK(src, .proc/on_lockon_component, user))
+		charge_counter = charge_max
 
 /obj/effect/proc_holder/spell/self/almighty/proc/on_lockon_component(mob/living/user, list/locked_weakrefs)
 	if(!length(locked_weakrefs))
@@ -39,8 +59,12 @@
 	if(..())
 		return FALSE
 	if(caller.incapacitated())
+		charge_counter = 0
+		start_recharge()
+		action.UpdateButtonIcon()
 		QDEL_NULL(lockon_component)
 		remove_ranged_ability()
+		reset_streak()
 		return
 	if(isturf(A) && current_target_weakref)
 		var/mob/living/L = current_target_weakref.resolve()
@@ -48,16 +72,25 @@
 		if(!QDELETED(L) && istype(L) && isturf(L.loc))
 			advantage(caller, L)
 			return TRUE
+		charge_counter = 0
+		start_recharge()
+		action.UpdateButtonIcon()
 		remove_ranged_ability()
+		reset_streak()
 	return FALSE
 
 /obj/effect/proc_holder/spell/self/almighty/proc/attack(mob/living/user, mob/living/target)
-	var/obj/item/W = user.get_active_held_item()
-	if(W)
-		W.melee_attack_chain(user, target)
+	if(prob(35))
+		user.do_attack_animation(target, ATTACK_EFFECT_KICK)
+		user.visible_message("<span class='danger'>[user] swiftly kicks [target]!</span>")
 	else
-		user.changeNext_move(CLICK_CD_MELEE)
-		user.UnarmedAttack(target)
+		user.do_attack_animation(target, ATTACK_EFFECT_PUNCH)
+		user.visible_message("<span class='danger'>[user] punches [target]!</span>")
+	user.apply_damage(CLAMP(((streak + 6) * 0.45), ALMIGHTY_DAMAGE_MIN, ALMIGHTY_DAMAGE_MAX), BRUTE, target.get_bodypart(ran_zone(user.zone_selected)), FALSE)
+	streak++
+	var/ic = initial(charge_max)
+	charge_max = CLAMP(ic / (streak * 0.25), ALMIGHTY_MIN_COOLDOWN, ic)
+	addtimer(CALLBACK(src, .proc/reset_streak), 3 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /obj/effect/proc_holder/spell/self/almighty/proc/advantage(mob/living/user, mob/living/target)
 	if(target.client)
@@ -91,3 +124,7 @@
 		playsound(user, 'sound/magic/wand_teleport.ogg', 75, TRUE)
 		user.face_atom(target)
 		attack(user, target)
+
+#undef ALMIGHTY_MIN_COOLDOWN
+#undef ALMIGHTY_DAMAGE_MAX
+#undef ALMIGHTY_DAMAGE_MIN
