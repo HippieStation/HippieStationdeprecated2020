@@ -71,7 +71,7 @@
 		B.blood_source = H
 		playsound(H, pick('hippiestation/sound/effects/splash.ogg'), 40, TRUE, -1)
 		var/dist = rand(1,3)
-		var/turf/targ = get_ranged_target_turf(H, get_dir(src, H), dist)
+		var/turf/targ = get_ranged_target_turf(H, pick(GLOB.alldirs), dist)
 		B.GoTo(targ, dist)
 
 /obj/effect/proc_holder/spell/self/bfs/proc/chugga_chugga(turf/T, direction, chugga_amount, reverse)
