@@ -17,14 +17,19 @@
 	var/datum/component/lockon_aiming/lockon_component
 	var/streak = 0
 
-/obj/effect/proc_holder/spell/self/almighty/proc/reset_streak()
+/obj/effect/proc_holder/spell/self/almighty/proc/reset_streak(reset_charge = FALSE, start_charge = TRUE)
 	streak = 0
-	charge_max = initial(charge_max)
-	if(active)
+	if(reset_charge)
+		charge_max = initial(charge_max)
+	if(start_charge && active)
 		charge_counter = 0
 		start_recharge()
 		action.UpdateButtonIcon()
 		remove_ranged_ability()
+
+/obj/effect/proc_holder/spell/self/almighty/remove_ranged_ability(msg)
+	. = ..()
+	current_target_weakref = null
 
 /obj/effect/proc_holder/spell/self/almighty/Click()
 	var/mob/living/user = usr
@@ -35,12 +40,7 @@
 		remove_ranged_ability("<span class='warning'>You can no longer cast [name]!</span>")
 		return
 	QDEL_NULL(lockon_component)
-	if(active)
-		charge_counter = 0
-		start_recharge()
-		action.UpdateButtonIcon()
-		remove_ranged_ability()
-	else
+	if(!active)
 		lockon_component = user.AddComponent(/datum/component/lockon_aiming, world.view, typecacheof(list(/mob/living)), 1, null, CALLBACK(src, .proc/on_lockon_component, user))
 		charge_counter = charge_max
 
@@ -90,7 +90,7 @@
 	streak++
 	var/ic = initial(charge_max)
 	charge_max = CLAMP(ic / (streak * 0.25), ALMIGHTY_MIN_COOLDOWN, ic)
-	addtimer(CALLBACK(src, .proc/reset_streak), 3 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, .proc/reset_streak, FALSE, FALSE), 3 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /obj/effect/proc_holder/spell/self/almighty/proc/advantage(mob/living/user, mob/living/target)
 	if(target.client)
