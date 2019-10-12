@@ -36,19 +36,21 @@
 		if(L.anti_magic_check())
 			L.visible_message("<span class='danger'>The Interdimensional Sword phases through [L]!</span>")
 			continue
-		L.visible_message("<span class='danger'>[L] is hit by the Interdimensional Sword!</span>")
-		L.adjustFireLoss(8.75)
-		L.adjustBruteLoss(8.75)
-		L.fire_stacks += 3
-		L.IgniteMob()
-		if(prob(35))
+		L.visible_message("<span class='danger'>[L] is hit by the Interdimensional Sword!</span>", "<span class='userdanger'>The Interdimensional Sword slams into you!</span>")
+		L.adjustFireLoss(12.5)
+		L.adjustBruteLoss(12.5)
+		if(prob(45))
 			var/list/parts = target_bodyparts(L)
 			if(LAZYLEN(parts))
 				var/obj/item/bodypart/BP = pick(parts)
-				BP.dismember()
-				L.visible_message("<span class='danger'>[L]'s [BP] is turned to ashes by the Interdimensional Sword!</span>'", "<span class='userdanger'>Your [BP] is turned to ashes by the Interdimensional Sword!</span>")
+				BP.drop_limb()
+				L.visible_message("<span class='danger'>[L]'s [BP] is turned to ashes by the Interdimensional Sword!</span>", "<span class='userdanger'>Your [BP] is turned to ashes by the Interdimensional Sword!</span>")
 				qdel(BP)
 				new /obj/effect/decal/cleanable/ash(T)
+			else
+				lol(L)
+		else
+			lol(L)
 	for(var/obj/O in T)
 		if(!istype(O, /obj/effect))
 			O.visible_message("<span class='danger'>[O] is annihilated by the Interdimensional Sword!</span>")
@@ -56,6 +58,21 @@
 	if(isclosedturf(T))
 		T.visible_message("<span class='danger'>[T] is torn away by the Interdimensional Sword!</span>")
 		T.ScrapeAway(flags = CHANGETURF_INHERIT_AIR) //tear down to baseturf
+		
+/obj/effect/proc_holder/spell/self/bfs/proc/lol(mob/living/L)
+	L.fire_stacks += 3
+	L.IgniteMob()
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		H.bleed_rate = max(H.bleed_rate + 6, 6)
+		H.blood_volume -= 10
+		var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(H.loc) // you just got impaled by a big-ass sword
+		B.add_blood_DNA(H.return_blood_DNA())
+		B.blood_source = H
+		playsound(H, pick('hippiestation/sound/effects/splash.ogg'), 40, TRUE, -1)
+		var/dist = rand(1,3)
+		var/turf/targ = get_ranged_target_turf(H, get_dir(src, H), dist)
+		B.GoTo(targ, dist)
 
 /obj/effect/proc_holder/spell/self/bfs/proc/chugga_chugga(turf/T, direction, chugga_amount, reverse)
 	var/turf/tip = multistep(T, direction, chugga_amount)
