@@ -23,8 +23,8 @@
 	user.visible_message("<span class='danger bold'>[user] summons the Interdimensional Sword!</span>")
 	var/turf/fl_tip = multistep(get_turf(user), user.dir, length)
 	var/turf/i_hilt = multistep(fl_tip, turn(user.dir, 180), length-1)
-	var/start_portal = new /obj/effect/bfs/portal(i_hilt, turn(user.dir, 180))
-	var/end_portal = new /obj/effect/bfs/portal(fl_tip, user.dir)
+	var/start_portal = new /obj/effect/bfs_portal(i_hilt, turn(user.dir, 180))
+	var/end_portal = new /obj/effect/bfs_portal(fl_tip, user.dir)
 	flick("portal_open", start_portal)
 	flick("portal_open", end_portal)
 	QDEL_IN(start_portal, length*2)
@@ -39,7 +39,7 @@
 		L.visible_message("<span class='danger'>[L] is hit by the Interdimensional Sword!</span>", "<span class='userdanger'>The Interdimensional Sword slams into you!</span>")
 		L.adjustFireLoss(12.5)
 		L.adjustBruteLoss(12.5)
-		if(prob(45))
+		if(prob(35))
 			var/list/parts = target_bodyparts(L)
 			if(LAZYLEN(parts))
 				var/obj/item/bodypart/BP = pick(parts)
@@ -64,7 +64,7 @@
 	L.IgniteMob()
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		H.bleed_rate = max(H.bleed_rate + 6, 6)
+		H.bleed_rate = max(H.bleed_rate + 9, 6)
 		H.blood_volume -= 10
 		var/obj/effect/decal/cleanable/blood/hitsplatter/B = new(H.loc) // you just got impaled by a big-ass sword
 		B.add_blood_DNA(H.return_blood_DNA())
@@ -79,19 +79,19 @@
 	var/turf/fl_tip = multistep(T, direction, length)
 	var/turf/hilt = multistep(fl_tip, turn(direction, 180), chugga_amount)
 	if(!reverse)
-		damage_turf(tip)
-		QDEL_IN(new /obj/effect/bfs/tip(tip, direction), 1)
+		INVOKE_ASYNC(src, .proc/damage_turf, tip)
+		new /obj/effect/temp_visual/bfs/tip(tip, direction)
 		if (chugga_amount > 0)
 			for(var/turf/A in getline(get_step(T, direction), tip)-tip)
-				QDEL_IN(new /obj/effect/bfs/blade(A, direction), 1)
+				new /obj/effect/temp_visual/bfs/blade(A, direction)
 		if(chugga_amount < length)
 			addtimer(CALLBACK(src, .proc/chugga_chugga, T, direction, chugga_amount+1, FALSE), 1)
 		else
 			addtimer(CALLBACK(src, .proc/chugga_chugga, T, direction, chugga_amount, TRUE), 1)
 	else
 		for(var/turf/A in getline(hilt, fl_tip)-hilt)
-			QDEL_IN(new /obj/effect/bfs/blade(A, direction), 1)
-		QDEL_IN(new /obj/effect/bfs/hilt(hilt, direction), 1)
+			new /obj/effect/temp_visual/bfs/blade(A, direction)
+		new /obj/effect/temp_visual/bfs/hilt(hilt, direction)
 		if(chugga_amount > 0)
 			addtimer(CALLBACK(src, .proc/chugga_chugga, T, direction, chugga_amount-1, TRUE), 1)
 
@@ -102,23 +102,31 @@
 	return T
 
 
-/obj/effect/bfs
+/obj/effect/temp_visual/bfs
 	icon = 'hippiestation/icons/effects/bfs.dmi'
+	randomdir = FALSE
+	duration = 1
 	density = TRUE // it's a bigass sword lol
 
-/obj/effect/bfs/Initialize(mapload, direction)
+/obj/effect/temp_visual/bfs/Initialize(mapload, direction)
 	. = ..()
 	setDir(direction)
 
-/obj/effect/bfs/tip
+/obj/effect/temp_visual/bfs/tip
 	icon_state = "tip"
 
-/obj/effect/bfs/blade
+/obj/effect/temp_visual/bfs/blade
 	icon_state = "blade"
 
-/obj/effect/bfs/hilt
+/obj/effect/temp_visual/bfs/hilt
 	icon_state = "hilt"
 
-/obj/effect/bfs/portal
+/obj/effect/bfs_portal
+	icon = 'hippiestation/icons/effects/bfs.dmi'
 	icon_state = "portal"
 	layer = ABOVE_OBJ_LAYER
+	density = TRUE // it's a bigass sword lol
+
+/obj/effect/bfs_portal/Initialize(mapload, direction)
+	. = ..()
+	setDir(direction)
