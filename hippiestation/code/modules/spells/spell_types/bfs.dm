@@ -124,7 +124,7 @@
 /obj/effect/bfs_portal
 	icon = 'hippiestation/icons/effects/bfs.dmi'
 	icon_state = "portal"
-	layer = ABOVE_OBJ_LAYER
+	layer = ABOVE_OBJ_LAYER + 0.1
 	density = TRUE // it's a bigass sword lol
 
 /obj/effect/bfs_portal/Initialize(mapload, direction)
