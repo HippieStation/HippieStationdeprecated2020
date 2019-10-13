@@ -109,7 +109,7 @@ Borg Hypospray
 		R.reaction(M, INJECT, fraction)
 		if(M.reagents)
 			var/trans = R.trans_to(M, amount_per_transfer_from_this, transfered_by = user)
-			to_chat(user, "<span class='notice'>[trans] unit\s injected.  [R.total_volume] unit\s remaining.</span>")
+			to_chat(user, "<span class='notice'>[trans] unit\s injected. [R.total_volume] unit\s remaining.</span>")
 
 	var/list/injected = list()
 	for(var/datum/reagent/RG in R.reagent_list)
