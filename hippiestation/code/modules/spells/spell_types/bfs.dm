@@ -107,6 +107,7 @@
 	randomdir = FALSE
 	duration = 1
 	density = TRUE // it's a bigass sword lol
+	layer = LYING_MOB_LAYER + 0.1
 
 /obj/effect/temp_visual/bfs/Initialize(mapload, direction)
 	. = ..()
@@ -124,7 +125,7 @@
 /obj/effect/bfs_portal
 	icon = 'hippiestation/icons/effects/bfs.dmi'
 	icon_state = "portal"
-	layer = ABOVE_OBJ_LAYER + 0.1
+	layer = LYING_MOB_LAYER + 0.15
 	density = TRUE // it's a bigass sword lol
 
 /obj/effect/bfs_portal/Initialize(mapload, direction)
