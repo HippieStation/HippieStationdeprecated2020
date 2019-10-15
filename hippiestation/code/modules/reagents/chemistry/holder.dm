@@ -43,6 +43,9 @@
 							if(!is_type_in_typecache(cached_my_atom, GLOB.no_reagent_message_typecache) && SSticker.HasRoundStarted())
 								for(var/mob/M in viewers(3, T))
 									to_chat(M, ("<span class='notice'>[icon2html(cached_my_atom, viewers(cached_my_atom))] The solid chemicals melt into a liquid!</span>"))
+									//for(var/i = 1; i <= cached_reagents.len; i++)
+									//	message_admins("[cached_reagents[i]] melted into liquid of atom [my_atom] located in [my_atom.loc]")
+									///For debug purposes, feel free to uncomment in future. (YoYoBatty)
 
 					if(LIQUID)
 						if(!is_type_in_typecache(R, GLOB.statechange_reagent_blacklist)) //Reagent states are interchangeable, so one blacklist to rule them all.

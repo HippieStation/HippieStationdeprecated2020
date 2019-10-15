@@ -18,7 +18,7 @@
 	singular_name = "human tooth"
 
 /obj/item/stack/teeth/human/Initialize()
-	.=..()
+	. = ..()
 	transform *= TRANSFORM_USING_VARIABLE(0.25, 1) + 0.5 //Half-size the teeth
 
 /obj/item/stack/teeth/human/gold //Special traitor objective maybe?

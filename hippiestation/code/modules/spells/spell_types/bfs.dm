@@ -55,7 +55,7 @@
 			O.take_damage(INFINITY) //absolutely destroy any objects
 	if(isclosedturf(T))
 		T.visible_message("<span class='danger'>[T] is torn away by the Interdimensional Sword!</span>")
-		T.ScrapeAway() //tear down to baseturf
+		T.ScrapeAway(flags = CHANGETURF_INHERIT_AIR) //tear down to baseturf
 
 /obj/effect/proc_holder/spell/self/bfs/proc/chugga_chugga(turf/T, direction, chugga_amount, reverse)
 	var/turf/tip = multistep(T, direction, chugga_amount)

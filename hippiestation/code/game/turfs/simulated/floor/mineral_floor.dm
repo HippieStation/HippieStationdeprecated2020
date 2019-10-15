@@ -41,7 +41,7 @@
 					break
 				else
 					qdel(RR)
-		ScrapeAway()
+		ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 
 
 /turf/open/floor/mineral/reagent/proc/reagent_act(atom/A)

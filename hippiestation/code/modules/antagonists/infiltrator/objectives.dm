@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(infiltrator_kidnap_areas, typecacheof(list(/area/shuttle/hippie
 	item_type = /obj/item/ai_hijack_device
 
 
-/datum/objective/infiltrator/exploit/find_target()
+/datum/objective/infiltrator/exploit/find_target(dupe_search_range)
 	var/list/possible_targets = active_ais()
 	var/mob/living/silicon/ai/target_ai = pick(possible_targets)
 	target = target_ai.mind
@@ -68,7 +68,7 @@ GLOBAL_LIST_INIT(infiltrator_kidnap_areas, typecacheof(list(/area/shuttle/hippie
 /datum/objective/infiltrator/kidnap
 	explanation_text = "You were supposed to kidnap someone, but we couldn't find anyone to kidnap!"
 
-/datum/objective/infiltrator/kidnap/find_target()
+/datum/objective/infiltrator/kidnap/find_target(dupe_search_range)
 	var/list/possible_targets = SSjob.get_living_heads()
 	for(var/datum/mind/M in SSticker.minds)
 		if(!M || !considered_alive(M) || considered_afk(M) || !M.current || !M.current.client)

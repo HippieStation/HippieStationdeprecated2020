@@ -77,7 +77,7 @@
 
 /obj/machinery/door/firedoor/power_change()
 	. = ..()
-		latetoggle()
+	latetoggle()
 
 /obj/machinery/door/firedoor/attack_hand(mob/user)
 	. = ..()

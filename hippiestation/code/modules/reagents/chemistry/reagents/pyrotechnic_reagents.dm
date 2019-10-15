@@ -264,7 +264,7 @@
 
 			if(1)
 				playsound(T, 'sound/magic/lightningbolt.ogg', 50, 1)
-				tesla_zap(T, zap_range = 6, power = 1000, explosive = FALSE)//weak tesla zap
+				tesla_zap(T, 6, 1000)//weak tesla zap
 				M.Stun(2)
 
 			if(2)

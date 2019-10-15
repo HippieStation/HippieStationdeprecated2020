@@ -43,6 +43,7 @@
 
 /datum/action/slam
 	name = "Slam (Cinch) - Slam a grappled opponent into the floor."
+	button_icon = 'hippiestation/icons/mob/actions.dmi'
 	button_icon_state = "wrassle_slam"
 
 /datum/action/slam/Trigger()
@@ -55,6 +56,7 @@
 
 /datum/action/throw_wrassle
 	name = "Throw (Cinch) - Spin a cinched opponent around and throw them."
+	button_icon = 'hippiestation/icons/mob/actions.dmi'
 	button_icon_state = "wrassle_throw"
 
 /datum/action/throw_wrassle/Trigger()
@@ -67,6 +69,7 @@
 
 /datum/action/kick
 	name = "Kick - A powerful kick, sends people flying away from you. Also useful for escaping from bad situations."
+	button_icon = 'hippiestation/icons/mob/actions.dmi'
 	button_icon_state = "wrassle_kick"
 
 /datum/action/kick/Trigger()
@@ -79,6 +82,7 @@
 
 /datum/action/strike
 	name = "Strike - Hit a neaby opponent with a quick attack."
+	button_icon = 'hippiestation/icons/mob/actions.dmi'
 	button_icon_state = "wrassle_strike"
 
 /datum/action/strike/Trigger()
@@ -91,6 +95,7 @@
 
 /datum/action/drop
 	name = "Drop - Smash down onto an opponent."
+	button_icon = 'hippiestation/icons/mob/actions.dmi'
 	button_icon_state = "wrassle_drop"
 
 /datum/action/drop/Trigger()
@@ -447,6 +452,7 @@
 	var/datum/martial_art/wrestling/style = new
 
 /obj/item/storage/belt/champion/wrestling/equipped(mob/user, slot)
+	. = ..()
 	if(!ishuman(user))
 		return
 	if(slot == SLOT_BELT)
@@ -455,6 +461,7 @@
 	return
 
 /obj/item/storage/belt/champion/wrestling/dropped(mob/user)
+	. = ..()
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
