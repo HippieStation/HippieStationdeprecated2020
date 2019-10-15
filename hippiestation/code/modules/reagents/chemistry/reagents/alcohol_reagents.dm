@@ -233,6 +233,7 @@
 					M.vomit(20, 0, 8)
 					if(prob(10))
 						M.spew_organ()
-						dust_mob(M, cause = "drinking fermented supermater")
+						M.dust()
+					
 
 	..()
