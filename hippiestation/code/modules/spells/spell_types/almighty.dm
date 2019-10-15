@@ -61,12 +61,7 @@
 	if(..())
 		return FALSE
 	if(caller.incapacitated())
-		charge_counter = 0
-		start_recharge()
-		action.UpdateButtonIcon()
-		QDEL_NULL(lockon_component)
-		remove_ranged_ability()
-		reset_streak()
+		reset_streak(FALSE, TRUE)
 		return
 	if(isturf(A) && current_target_weakref)
 		var/mob/living/L = current_target_weakref.resolve()
@@ -74,11 +69,7 @@
 		if(!QDELETED(L) && istype(L) && isturf(L.loc))
 			advantage(caller, L)
 			return TRUE
-		charge_counter = 0
-		start_recharge()
-		action.UpdateButtonIcon()
-		remove_ranged_ability()
-		reset_streak()
+		reset_streak(FALSE, TRUE)
 	return FALSE
 
 /obj/effect/proc_holder/spell/self/almighty/proc/attack(mob/living/user, mob/living/target)
