@@ -210,7 +210,7 @@
 			M.adjustOxyLoss(-0.25, 0)
 			. = 1
 		..()
-		/datum/reagent/consumable/ethanol/SMcider
+/datum/reagent/consumable/ethanol/SMcider
 	name = "Supermatter cider"
 	description = "who would have thought supermatter was alcoholic"
 	color = "#FFF542"
