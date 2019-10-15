@@ -22,6 +22,7 @@
 	if(reset_charge)
 		charge_max = initial(charge_max)
 	if(start_charge && active)
+		current_target_weakref = null
 		remove_ranged_ability()
 		charge_counter = 0
 		start_recharge()
@@ -35,8 +36,7 @@
 	var/mob/living/user = usr
 	if(!istype(user))
 		return
-	current_target_weakref = null
-	reset_streak()
+	reset_streak(FALSE, TRUE)
 	if(!can_cast(user))
 		remove_ranged_ability("<span class='warning'>You can no longer cast [name]!</span>")
 		return
