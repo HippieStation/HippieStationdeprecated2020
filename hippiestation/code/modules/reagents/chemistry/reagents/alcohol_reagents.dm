@@ -212,7 +212,7 @@
 		..()
 		/datum/reagent/consumable/ethanol/SMcider
 	name = "Supermatter cider"
-	description = "who would have thought supermatter was alcoholic "
+	description = "who would have thought supermatter was alcoholic"
 	color = "#FFF542"
 	boozepwr = 500
 	taste_description = "tastes like you're being dusted"
@@ -233,6 +233,6 @@
 					M.vomit(20, 0, 8)
 					if(prob(10))
 						M.spew_organ()
-						dust_mob(user, cause = "drinking fermented supermater")
+						dust_mob(M, cause = "drinking fermented supermater")
 
 	..()
