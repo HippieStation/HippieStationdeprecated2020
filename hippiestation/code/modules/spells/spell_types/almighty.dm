@@ -22,10 +22,10 @@
 	if(reset_charge)
 		charge_max = initial(charge_max)
 	if(start_charge && active)
+		remove_ranged_ability()
 		charge_counter = 0
 		start_recharge()
 		action.UpdateButtonIcon()
-		remove_ranged_ability()
 
 /obj/effect/proc_holder/spell/self/almighty/remove_ranged_ability(msg)
 	. = ..()
@@ -35,6 +35,7 @@
 	var/mob/living/user = usr
 	if(!istype(user))
 		return
+	current_target_weakref = null
 	reset_streak()
 	if(!can_cast(user))
 		remove_ranged_ability("<span class='warning'>You can no longer cast [name]!</span>")
