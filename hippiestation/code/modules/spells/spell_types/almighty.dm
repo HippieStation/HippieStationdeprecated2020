@@ -22,11 +22,12 @@
 	if(reset_charge)
 		charge_max = initial(charge_max)
 	if(start_charge)
+		if(current_target_weakref)			
+			charge_counter = 0
+			start_recharge()
+			action.UpdateButtonIcon()
 		current_target_weakref = null
 		remove_ranged_ability()
-		charge_counter = 0
-		start_recharge()
-		action.UpdateButtonIcon()
 
 /obj/effect/proc_holder/spell/self/almighty/remove_ranged_ability(msg)
 	. = ..()
