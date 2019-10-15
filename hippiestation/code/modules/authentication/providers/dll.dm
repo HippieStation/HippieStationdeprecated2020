@@ -64,6 +64,7 @@
 			for(var/i = 1 to 32)
 				LAZYADD(current_ed25519, rand(1, 255))
 			client_data["data"] = current_ed25519
+			logging_in = TRUE
 			linked_unauth.client << link("vaporauth://[urlbase64(json_encode(client_data))]")
 
 /datum/auth_provider/byondcrypt/process()
