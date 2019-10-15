@@ -59,13 +59,12 @@
 		else if(val == 2 && (login_flags & LOGIN_ED25519) && ed25519_key && length(ed25519_key) == 64)
 			var/client_data = list()
 			client_data["ckey"] = ckey(current_username)
-			client_data["url"] = "byond://localhost:9311"
+			client_data["url"] = "byond://[world.internet_address]:[world.port]"
 			current_ed25519 = list()
 			for(var/i = 1 to 32)
 				LAZYADD(current_ed25519, rand(1, 255))
 			client_data["data"] = current_ed25519
-			to_chat(linked_unauth, urlbase64(json_encode(client_data)))
-			
+			linked_unauth.client << link("vaporauth://[urlbase64(json_encode(client_data))]")
 
 /datum/auth_provider/byondcrypt/process()
 	if(!current_pw_id && !LAZYLEN(current_ed25519))
