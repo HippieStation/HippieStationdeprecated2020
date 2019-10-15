@@ -12,7 +12,7 @@
 	active = FALSE
 	action_icon = 'hippiestation/icons/mob/actions.dmi'
 	action_icon_state = "almighty"
-	ranged_clickcd_override = CLICK_CD_MELEE
+	ranged_clickcd_override = 6
 	var/datum/weakref/current_target_weakref
 	var/datum/component/lockon_aiming/lockon_component
 	var/streak = 0
