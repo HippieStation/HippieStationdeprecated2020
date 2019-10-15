@@ -21,7 +21,7 @@
 	streak = 0
 	if(reset_charge)
 		charge_max = initial(charge_max)
-	if(start_charge && active)
+	if(start_charge)
 		current_target_weakref = null
 		remove_ranged_ability()
 		charge_counter = 0
