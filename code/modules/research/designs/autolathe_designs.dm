@@ -124,6 +124,15 @@
 	category = list("initial","Tools","Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_SCIENCE
 
+/datum/design/plunger
+	name = "Plunger"
+	id = "plunger"
+	build_type = AUTOLATHE | PROTOLATHE
+	materials = list(/datum/material/iron = 150)
+	build_path = /obj/item/plunger
+	category = list("initial","Tools","Tool Designs")
+	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_MEDICAL
+
 /datum/design/welding_helmet
 	name = "Welding Helmet"
 	id = "welding_helmet"
@@ -700,6 +709,14 @@
 	build_path = /obj/item/pipe_dispenser
 	category = list("hacked", "Construction")
 
+/datum/design/plumbing_rcd
+	name = "Plumbing Constructor"
+	id = "plumbing_rcd"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 75000, /datum/material/glass = 37500)
+	build_path = /obj/item/construction/plumbing
+	category = list("hacked", "Construction")
+
 /datum/design/electropack
 	name = "Electropack"
 	id = "electropack"
@@ -959,3 +976,11 @@
 	build_path = /obj/item/stack/tile/circuit/red
 	category = list("initial", "Misc")
 	maxstack = 50
+
+/datum/design/ducts
+	name = "Fluid Ducts"
+	id = "fluid_ducts"
+	build_type = AUTOLATHE
+	materials = list(/datum/material/iron = 500)
+	build_path = /obj/item/stack/ducts
+	category = list("initial", "Construction")
