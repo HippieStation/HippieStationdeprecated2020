@@ -1,6 +1,7 @@
 /datum/magic
 	var/name
 	var/complexity = 1
+	var/max_misfire = 1
 	var/antimagic_interaction = ANTIMAGIC_NULLIFY
 	var/residual_cost = 5
 	var/roundstart = TRUE

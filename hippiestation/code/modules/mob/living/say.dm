@@ -131,7 +131,7 @@
 			to_chat(world, "[src] invoked [MI.name]")
 			MI.fire(src, FALSE)
 			return TRUE
-		else if (diff == 1 || (!diff && trimmed != MI.phrase))
+		else if (diff <= MT.max_misfire || (!diff && trimmed != MI.phrase))
 			to_chat(world, "[src] misfired [MI.name]")
 			MI.misfire(src, FALSE)
 			return TRUE
