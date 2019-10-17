@@ -7,4 +7,4 @@ SUBSYSTEM_DEF(magic)
 
 /datum/controller/subsystem/magic/Initialize()
 	. = ..()
-	magical_factor = rand(MAGIC_RANDOMIZATION_MIN, MAGIC_RANDOMIZATION_MAX)
+	magical_factor = rand(MAGIC_RANDOMIZATION_MIN, MAGIC_RANDOMIZATION_MAX) * 0.1
