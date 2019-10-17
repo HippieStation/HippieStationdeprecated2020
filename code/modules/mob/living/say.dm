@@ -126,6 +126,12 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		say_dead(original_message)
 		return
 
+	// hippie start -- invoking magic
+	if(try_say_magic(original_message))
+		ignore_spam = FALSE
+		saymode = null
+	// hippie end
+
 	if(check_emote(original_message, forced) || !can_speak_basic(original_message, ignore_spam))
 		return
 

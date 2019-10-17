@@ -12,4 +12,12 @@ SUBSYSTEM_DEF(magic)
 	for(var/M in subtypesof(/datum/magic_trait))
 		var/datum/magic_trait/MT = M
 		if(initial(MT.name))
+			to_chat(world, "loaded trait [initial(MT.name)]")
 			magic_traits += new M
+	for(var/m in subtypesof(/datum/magic))
+		var/datum/magic/M = m
+		if(initial(M.name) && initial(M.roundstart))
+			to_chat(world, "loaded magic [initial(M.name)]")
+			var/datum/magic/magick = new m
+			magick.setup()
+			loaded_magic += magick

@@ -17,6 +17,7 @@
 		if (first_char != "*" && stat == SOFT_CRIT && get_message_mode(message) != MODE_WHISPER)
 			message = "#" + message
 
+
 	. = ..()
 
 	if (!.)
@@ -106,3 +107,31 @@
 		if (!hud_used.tts)
 			return
 		hud_used.tts.icon_state = "tts_cooldown"
+
+/mob/living/proc/try_say_magic(msg)
+	. = FALSE
+	if(!msg)
+		return
+	if(!SSmagic || !SSmagic.initialized)
+		return
+	for(var/datum/magic/invoke/MI in SSmagic.loaded_magic)
+		var/trimmed = trim(lowertext(msg))
+		var/list/split_pre = splittext(trimmed, " ")
+		var/list/split = list()
+		var/ok = TRUE
+		for(var/i = 1 to MI.complexity)
+			if(!(split_pre[i] in MI.possible_words)) // bleh
+				ok = FALSE
+				break
+			split += split_pre[i]
+		if(!ok)
+			continue
+		var/diff = length(difflist(MI.phrase_list, split))
+		if(!diff && trimmed == MI.phrase)
+			to_chat(world, "[src] invoked [MI.name]")
+			MI.fire(src, FALSE)
+			return TRUE
+		else if (diff == 1 || (!diff && trimmed != MI.phrase))
+			to_chat(world, "[src] misfired [MI.name]")
+			MI.misfire(src, FALSE)
+			return TRUE
