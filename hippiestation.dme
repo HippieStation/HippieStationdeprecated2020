@@ -3380,6 +3380,7 @@
 #include "hippiestation\code\modules\magic\invoke\_invoking.dm"
 #include "hippiestation\code\modules\magic\rituals\_ritualism.dm"
 #include "hippiestation\code\modules\magic\rituals\traits\_traits.dm"
+#include "hippiestation\code\modules\magic\rituals\traits\fire.dm"
 #include "hippiestation\code\modules\magic\rituals\traits\light.dm"
 #include "hippiestation\code\modules\magic\rituals\traits\organic.dm"
 #include "hippiestation\code\modules\magic\symbols\_symbolism.dm"
