@@ -69,3 +69,37 @@
 	if (!hud_used.tts)
 		return
 	hud_used.tts.icon_state = "tts_ready"
+
+/mob/living/proc/process_residual_energy()
+	var/static/list/beneficial_clothes = typecacheof(list(
+		/obj/item/clothing/suit/wizrobe,
+		/obj/item/clothing/head/wizard
+	))
+
+	var/residual_decay = 5
+	if(mind && (mind.assigned_role == "Scientist" || mind.assigned_role == "Research Director"))
+		residual_decay -= 0.5
+	var/obj/item/clothing/helmet = get_item_by_slot(ITEM_SLOT_HEAD)
+	if(is_type_in_typecache(helmet, beneficial_clothes))
+		residual_decay += 0.45
+	else
+		if(helmet && istype(helmet))
+			if(helmet.clothing_flags & THICKMATERIAL)
+				residual_decay -= 0.5
+	var/obj/item/clothing/armor = get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(is_type_in_typecache(armor, beneficial_clothes))
+		residual_decay += 0.75
+	else
+		if(armor && istype(armor))
+			if(armor.clothing_flags & THICKMATERIAL)
+				if(armor.body_parts_covered & CHEST)
+					residual_decay -= 0.5
+				if(armor.body_parts_covered & GROIN)
+					residual_decay -= 0.5
+				if(armor.body_parts_covered & LEGS)
+					residual_decay -= 0.5
+				if(armor.body_parts_covered & ARMS)
+					residual_decay -= 0.5
+	if(SSmagic && SSmagic.initialized)
+		residual_decay *= SSmagic.magical_factor
+	residual_energy = max(residual_energy - residual_decay, 0)

@@ -3,3 +3,4 @@
 	var/scream_vol = 50
 	var/scream_oxyloss = 5
 	var/next_armor_spam = 0
+	var/residual_energy = 0

@@ -1,9 +1,9 @@
 /datum/magic_trait/light
 	name = "Light"
-	typecache = typecacheof(list(
+	typecache = list(
 		/obj/item/flashlight,
 		/obj/item/organ/eyes/robotic/glow
-	))
+	)
 
 /datum/magic_trait/light/has_trait(atom/thing)
 	if(istype(thing, /obj/item/light))
