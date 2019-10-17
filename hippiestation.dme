@@ -3180,6 +3180,7 @@
 #include "hippiestation\code\modules\atmospherics\machinery\components\binary_devices\pump.dm"
 #include "hippiestation\code\modules\atmospherics\machinery\components\binary_devices\volume_pump.dm"
 #include "hippiestation\code\modules\atmospherics\machinery\portable\canister.dm"
+#include "hippiestation\code\modules\atmospherics\machinery\portable\other\miner.dm"
 #include "hippiestation\code\modules\atmospherics\unary_devices\vent_pump.dm"
 #include "hippiestation\code\modules\atmospherics\unary_devices\vent_scrubber.dm"
 #include "hippiestation\code\modules\awaymissions\corpse.dm"

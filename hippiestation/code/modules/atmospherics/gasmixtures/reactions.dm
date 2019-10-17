@@ -71,3 +71,34 @@
 				air.temperature = max(temperature - max(500 / air.heat_capacity(), TCMB),TCMB)// energy released is thermal energy so we convert back to kelvin via division
 			. = REACTING
 	. = NO_REACTION
+
+/datum/gas_reaction/freonformation
+	priority = 3
+	name = "Freon formation"
+	id = "freonformation"
+
+/datum/gas_reaction/freonformation/init_reqs()
+	min_requirements = list(
+		/datum/gas/plasma = 20,
+		/datum/gas/nitrogen = 20,
+		/datum/gas/carbon = 20,
+		/datum/gas/pluoxium = 5
+		"TEMP" = TCMB+100
+	)
+
+/datum/gas_reaction/freonformation/react(datum/gas_mixture/air)
+	var/list/cached_gases = air.gases
+	var/temperature = air.temperature
+	var/old_heat_capacity = air.heat_capacity()
+	ASSERT_GAS(/datum/gas/freon,air)
+	if ((cached_gases[/datum/gas/plasma][MOLES] < 0 ) || (cached_gases[/datum/gas/nitrogen][MOLES] < 0) || (cached_gases[/datum/gas/carbon][MOLES] < 0) || (cached_gases[/datum/gas/pluoxium][MOLES] < 0)) //Shouldn't produce gas from nothing.
+		return NO_REACTION
+	cached_gases[/datum/gas/plasma][MOLES] -= cached_gases[/datum/gas/plasma][MOLES]
+	cached_gases[/datum/gas/nitrogen][MOLES] -= heat_efficency
+	cached_gases[/datum/gas/nitryl][MOLES] += heat_efficency*2
+
+	if(energy_used > 0)
+		var/new_heat_capacity = air.heat_capacity()
+		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			air.temperature = max(((temperature*old_heat_capacity - energy_used)/new_heat_capacity),TCMB)
+		return REACTING
