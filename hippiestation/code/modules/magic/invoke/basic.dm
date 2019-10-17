@@ -1,7 +1,7 @@
 /datum/magic/invoke/sparks
 	name = "Summon Sparks"
 	complexity = 3
-	possible_words = list("spark", "scintilla", "igniculus", "accendo", "kindle", "incito", "ignesco")
+	possible_words = list("spark", "scintilla", "accendo", "kindle", "incito", "ignesco")
 
 /datum/magic/invoke/sparks/fire(mob/living/firer, amped)
 	do_sparks(amped ? 6 : 3, TRUE, firer)
