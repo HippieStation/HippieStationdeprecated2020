@@ -234,6 +234,4 @@
 					if(prob(10))
 						M.spew_organ()
 						M.dust()
-					
-
 	..()
