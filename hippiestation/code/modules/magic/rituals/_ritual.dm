@@ -34,7 +34,6 @@
 		to_chat(world, "diff for [RI.name] is [diff]")
 		if(!diff)
 			if(RI.should_reject(user))
-				visible_message("<span class='danger'>The carvings begin to flash violently!</span>")
 				user.log_message("experienced rejection from [RI.name]", LOG_ATTACK)
 				user.visible_message("<span class='danger'>[user]'s blood vessels burst!</span>", "<span class='userdanger'>Your blood vessels burst!</span>")
 				user.adjustToxLoss(35 * SSmagic.magical_factor)
@@ -66,7 +65,6 @@
 			to_misfire += RI
 	for(var/datum/magic/ritualism/MI in to_misfire)
 		if(MI.should_reject(user))
-			visible_message("<span class='danger'>The carvings begin to flash violently!</span>")
 			user.log_message("experienced rejection from [MI.name]", LOG_ATTACK)
 			user.visible_message("<span class='danger'>[user]'s blood vessels burst!</span>", "<span class='userdanger'>Your blood vessels burst!</span>")
 			user.adjustToxLoss(35 * SSmagic.magical_factor)
