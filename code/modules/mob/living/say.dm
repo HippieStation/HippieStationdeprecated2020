@@ -128,7 +128,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 	// hippie start -- invoking magic
 	if(try_say_magic(original_message))
-		ignore_spam = FALSE
+		ignore_spam = TRUE
 		saymode = null
 	// hippie end
 
