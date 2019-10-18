@@ -45,7 +45,6 @@
 						var/mob/living/carbon/human/H = C
 						H.bleed(40 * SSmagic.magical_factor)
 						H.bleed_rate = max(H.bleed_rate + (9 * SSmagic.magical_factor), 9 * SSmagic.magical_factor)
-				return
 			if(RI.antimagic_interaction != ANTIMAGIC_NOTHING && antimagic && antimagic <= RI.complexity)
 				switch(RI.antimagic_interaction)
 					if(ANTIMAGIC_AMP)
@@ -76,7 +75,6 @@
 					var/mob/living/carbon/human/H = C
 					H.bleed(40 * SSmagic.magical_factor)
 					H.bleed_rate = max(H.bleed_rate + (10 * SSmagic.magical_factor), 10 * SSmagic.magical_factor)
-			return
 		if(MI.antimagic_interaction != ANTIMAGIC_NOTHING && antimagic && antimagic <= MI.complexity)
 			switch(MI.antimagic_interaction)
 				if(ANTIMAGIC_AMP)
