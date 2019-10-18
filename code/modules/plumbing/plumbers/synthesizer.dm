@@ -48,8 +48,8 @@
 		/datum/reagent/fuel
 	)
 
-	ui_x = 300
-	ui_y = 435
+	//ui_x = 300 - uncomment when tgui-next is implemented
+	//ui_y = 435 - uncomment when tgui-next is implemented
 
 /obj/machinery/plumbing/synthesizer/Initialize(mapload, bolt)
 	. = ..()

@@ -128,7 +128,7 @@
 	name = "Plunger"
 	id = "plunger"
 	build_type = AUTOLATHE | PROTOLATHE
-	materials = list(/datum/material/iron = 150)
+	materials = list(MAT_METAL = 150)
 	build_path = /obj/item/plunger
 	category = list("initial","Tools","Tool Designs")
 	departmental_flags = DEPARTMENTAL_FLAG_ENGINEERING | DEPARTMENTAL_FLAG_MEDICAL
@@ -713,7 +713,7 @@
 	name = "Plumbing Constructor"
 	id = "plumbing_rcd"
 	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 75000, /datum/material/glass = 37500)
+	materials = list(MAT_METAL = 75000, MAT_GLASS = 37500)
 	build_path = /obj/item/construction/plumbing
 	category = list("hacked", "Construction")
 
@@ -981,6 +981,6 @@
 	name = "Fluid Ducts"
 	id = "fluid_ducts"
 	build_type = AUTOLATHE
-	materials = list(/datum/material/iron = 500)
+	materials = list(MAT_METAL = 500)
 	build_path = /obj/item/stack/ducts
 	category = list("initial", "Construction")

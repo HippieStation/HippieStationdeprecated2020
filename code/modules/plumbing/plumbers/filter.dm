@@ -13,8 +13,8 @@
 	///whitelist of chems but their name instead of path
 	var/list/english_right = list()
 
-	ui_x = 500
-	ui_y = 300
+	//ui_x = 500 - uncomment when tgui-next is implemented
+	//ui_y = 300 - uncomment when tgui-next is implemented
 
 /obj/machinery/plumbing/filter/Initialize(mapload, bolt)
 	. = ..()

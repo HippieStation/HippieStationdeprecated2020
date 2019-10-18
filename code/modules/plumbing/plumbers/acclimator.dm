@@ -26,8 +26,8 @@
 	*/
 	var/emptying = FALSE
 
-	ui_x = 320
-	ui_y = 300
+	//ui_x = 320 - uncomment when tgui-next is implemented
+	//ui_y = 300 - uncomment when tgui-next is implemented
 
 /obj/machinery/plumbing/acclimator/Initialize(mapload, bolt)
 	. = ..()
