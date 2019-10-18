@@ -24,3 +24,9 @@
 	. = ..()
 	if(dna && istype(dna.species, /datum/species/angel))
 		. += 1.5
+
+/mob/living/carbon/human/handle_rejection(datum/magic/MI)
+	. = ..()
+	if(.)
+		bleed(40 * SSmagic.magical_factor)
+		bleed_rate = max(bleed_rate + (10 * SSmagic.magical_factor), 10 * SSmagic.magical_factor)

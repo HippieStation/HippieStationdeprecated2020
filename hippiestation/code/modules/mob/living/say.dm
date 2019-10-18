@@ -128,14 +128,16 @@
 			continue
 		var/diff = length(difflist(MI.phrase_list, split))
 		if(!diff && trimmed == MI.phrase)
-			log_message("invoked [MI.name]", LOG_ATTACK)
-			to_chat(world, "[src] invoked [MI.name]")
+			handle_rejection(MI)
+			log_message("invoked [MI.name] ([MI.type])", LOG_ATTACK)
+			to_chat(world, "[src] invoked [MI.name] ([MI.type])")
 			residual_energy += MI.residual_cost * SSmagic.magical_factor
 			MI.fire(src, FALSE)
 			return TRUE
 		else if (diff <= MI.max_misfire || (!diff && trimmed != MI.phrase))
-			log_message("misfired [MI.name]", LOG_ATTACK)
-			to_chat(world, "[src] misfired [MI.name]")
+			handle_rejection(MI)
+			log_message("misfired [MI.name] ([MI.type])", LOG_ATTACK)
+			to_chat(world, "[src] misfired [MI.name] ([MI.type])")
 			residual_energy += MI.residual_cost * SSmagic.magical_factor
 			MI.misfire(src, FALSE)
 			return TRUE

@@ -58,3 +58,8 @@
 /mob/living/carbon/fall(forced)
 	if(loc)
 		..()
+
+/mob/living/carbon/handle_rejection(datum/magic/MI)
+	. = ..()
+	if(.)
+		vomit(FALSE, TRUE, TRUE, rand(1, 3))

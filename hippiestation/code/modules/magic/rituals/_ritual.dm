@@ -33,22 +33,12 @@
 			diff += length(difflist(their_traits, our_traits))
 		to_chat(world, "diff for [RI.name] is [diff]")
 		if(!diff)
-			if(RI.should_reject(user))
-				user.log_message("experienced rejection from [RI.name]", LOG_ATTACK)
-				user.visible_message("<span class='danger'>[user]'s blood vessels burst!</span>", "<span class='userdanger'>Your blood vessels burst!</span>")
-				user.adjustToxLoss(35 * SSmagic.magical_factor)
-				if(iscarbon(user))
-					var/mob/living/carbon/C = user
-					C.vomit(FALSE, TRUE, TRUE, rand(1, 3))
-					if(ishuman(C))
-						var/mob/living/carbon/human/H = C
-						H.bleed(40 * SSmagic.magical_factor)
-						H.bleed_rate = max(H.bleed_rate + (9 * SSmagic.magical_factor), 9 * SSmagic.magical_factor)
+			user.handle_rejection(RI)
 			if(RI.antimagic_interaction != ANTIMAGIC_NOTHING && antimagic && antimagic <= RI.complexity)
 				switch(RI.antimagic_interaction)
 					if(ANTIMAGIC_AMP)
-						user.log_message("misfired [RI.name], due to antimagic", LOG_ATTACK)
-						to_chat(world, "[src] misfired [RI.name], due to antimagic")
+						user.log_message("misfired [RI.name] ([RI.type]), due to antimagic", LOG_ATTACK)
+						to_chat(world, "[src] misfired [RI.name] ([RI.type]), due to antimagic")
 						visible_message("<span class='danger'>The carvings begin to flash violently!</span>")
 						RI.misfire(user, T, TRUE)
 						user.residual_energy += RI.residual_cost * SSmagic.magical_factor 
@@ -56,38 +46,28 @@
 						visible_message("<span class='warning'>The carvings flash brightly for a split second, then fall dark.</span>")
 			else
 				visible_message("<span class='warning'>The carvings begin to glow brightly!</span>")
-				user.log_message("invoked [RI.name]", LOG_ATTACK)
-				to_chat(world, "[src] invoked [RI.name]")
+				user.log_message("invoked [RI.name] ([RI.type])", LOG_ATTACK)
+				to_chat(world, "[src] invoked [RI.name] ([RI.type])")
 				RI.fire(user, T, FALSE)
 				user.residual_energy += RI.residual_cost * SSmagic.magical_factor 
 			return
 		else if(diff <= RI.max_misfire)
 			to_misfire += RI
 	for(var/datum/magic/ritualism/MI in to_misfire)
-		if(MI.should_reject(user))
-			user.log_message("experienced rejection from [MI.name]", LOG_ATTACK)
-			user.visible_message("<span class='danger'>[user]'s blood vessels burst!</span>", "<span class='userdanger'>Your blood vessels burst!</span>")
-			user.adjustToxLoss(35 * SSmagic.magical_factor)
-			if(iscarbon(user))
-				var/mob/living/carbon/C = user
-				C.vomit(FALSE, TRUE, TRUE, rand(1, 3))
-				if(ishuman(C))
-					var/mob/living/carbon/human/H = C
-					H.bleed(40 * SSmagic.magical_factor)
-					H.bleed_rate = max(H.bleed_rate + (10 * SSmagic.magical_factor), 10 * SSmagic.magical_factor)
+		user.handle_rejection(MI)
 		if(MI.antimagic_interaction != ANTIMAGIC_NOTHING && antimagic && antimagic <= MI.complexity)
 			switch(MI.antimagic_interaction)
 				if(ANTIMAGIC_AMP)
-					user.log_message("misfired [MI.name], due to antimagic", LOG_ATTACK)
-					to_chat(world, "[src] misfired [MI.name], due to antimagic")
+					user.log_message("misfired [MI.name] ([MI.type]), due to antimagic", LOG_ATTACK)
+					to_chat(world, "[src] misfired [MI.name] ([MI.type]), due to antimagic")
 					visible_message("<span class='danger'>The carvings begin to flash violently!</span>")
 					MI.misfire(user, T, TRUE)
 					user.residual_energy += MI.residual_cost * SSmagic.magical_factor 
 				if(ANTIMAGIC_NULLIFY)
 					visible_message("<span class='warning'>The carvings flash erratically for a split second, then fall dark.</span>")
 		else
-			user.log_message("misfired [MI.name]", LOG_ATTACK)
-			to_chat(world, "[src] misfired [MI.name]")
+			user.log_message("misfired [MI.name] ([MI.type])", LOG_ATTACK)
+			to_chat(world, "[src] misfired [MI.name] ([MI.type])")
 			visible_message("<span class='warning'>The carvings begin to flash erratically!</span>")
 			MI.misfire(user, T, FALSE)
 			user.residual_energy += MI.residual_cost * SSmagic.magical_factor 

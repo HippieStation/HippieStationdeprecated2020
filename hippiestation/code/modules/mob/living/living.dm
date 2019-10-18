@@ -100,3 +100,11 @@
 					. -= 0.5
 				if(armor.body_parts_covered & ARMS)
 					. -= 0.5
+
+/mob/living/proc/handle_rejection(datum/magic/MI)
+	if(MI.should_reject(src))
+		log_message("experienced rejection from [MI.name] ([MI.type])", LOG_ATTACK)
+		visible_message("<span class='danger'>[src]'s blood vessels burst!</span>", "<span class='userdanger'>Your blood vessels burst!</span>")
+		adjustToxLoss(35 * SSmagic.magical_factor)
+		return TRUE
+	return FALSE
