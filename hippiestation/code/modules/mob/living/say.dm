@@ -128,11 +128,13 @@
 			continue
 		var/diff = length(difflist(MI.phrase_list, split))
 		if(!diff && trimmed == MI.phrase)
+			log_message("invoked [MI.name]", LOG_ATTACK)
 			to_chat(world, "[src] invoked [MI.name]")
 			residual_energy += MI.residual_cost
 			MI.fire(src, FALSE)
 			return TRUE
 		else if (diff <= MI.max_misfire || (!diff && trimmed != MI.phrase))
+			log_message("misfired [MI.name]", LOG_ATTACK)
 			to_chat(world, "[src] misfired [MI.name]")
 			residual_energy += MI.residual_cost
 			MI.misfire(src, FALSE)
