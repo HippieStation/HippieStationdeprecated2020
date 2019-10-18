@@ -202,7 +202,6 @@
 #define COMSIG_OBJ_SETANCHORED "obj_setanchored"				//called in /obj/structure/setAnchored(): (value)
 #define COMSIG_OBJ_DEFAULT_UNFASTEN_WRENCH "obj_default_unfasten_wrench"	//from base of code/game/machinery
 
-#define COMSIG_OBJ_DEFAULT_UNFASTEN_WRENCH "obj_default_unfasten_wrench"	//from base of code/game/machinery
 #define COMSIG_OBJ_UPDATE_ICON	"obj_update_icon"				//Called by obj to itself whenever update_icon is run. Useful for containers that want to detect this change
 
 // /obj/machinery signals
