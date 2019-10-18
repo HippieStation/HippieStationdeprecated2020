@@ -4,3 +4,5 @@
 #define ANTIMAGIC_NOTHING	"do nothing"
 #define ANTIMAGIC_NULLIFY	"nullify"
 #define ANTIMAGIC_AMP		"cause an amped misfire"
+
+#define MAX_MAGIC_COMPLEXITY	5
