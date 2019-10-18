@@ -709,14 +709,6 @@
 	build_path = /obj/item/pipe_dispenser
 	category = list("hacked", "Construction")
 
-/datum/design/plumbing_rcd
-	name = "Plumbing Constructor"
-	id = "plumbing_rcd"
-	build_type = AUTOLATHE
-	materials = list(MAT_METAL = 75000, MAT_GLASS = 37500)
-	build_path = /obj/item/construction/plumbing
-	category = list("hacked", "Construction")
-
 /datum/design/electropack
 	name = "Electropack"
 	id = "electropack"
@@ -984,3 +976,4 @@
 	materials = list(MAT_METAL = 500)
 	build_path = /obj/item/stack/ducts
 	category = list("initial", "Construction")
+	maxstack = 50
