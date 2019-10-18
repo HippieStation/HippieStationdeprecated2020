@@ -114,9 +114,9 @@
 		return
 	if(!SSmagic || !SSmagic.initialized)
 		return
+	var/trimmed = trim(lowertext(msg))
+	var/list/split_pre = splittext(trimmed, " ")
 	for(var/datum/magic/invoke/MI in SSmagic.loaded_magic)
-		var/trimmed = trim(lowertext(msg))
-		var/list/split_pre = splittext(trimmed, " ")
 		var/list/split = list()
 		var/ok = TRUE
 		for(var/i = 1 to MI.complexity)
