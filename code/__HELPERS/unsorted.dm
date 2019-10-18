@@ -459,8 +459,8 @@ Turf and target are separate in case you want to teleport some distance from a t
 #endif
 #if DM_VERSION < 513
 /proc/arctan(x)
-	var/y=arcsin(x/sqrt(1+x*x))		var/y=arcsin(x/sqrt(1+x*x))
-	return y		return y
+	var/y=arcsin(x/sqrt(1+x*x))
+	return y
 #endif
 
 /*
