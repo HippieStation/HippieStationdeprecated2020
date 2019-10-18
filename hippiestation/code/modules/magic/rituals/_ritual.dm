@@ -52,6 +52,7 @@
 						to_chat(world, "[src] misfired [RI.name], due to antimagic")
 						visible_message("<span class='danger'>The carvings begin to flash violently!</span>")
 						RI.misfire(user, T, TRUE)
+						user.residual_energy += RI.residual_cost * SSmagic.magical_factor 
 					if(ANTIMAGIC_NULLIFY)
 						visible_message("<span class='warning'>The carvings flash brightly for a split second, then fall dark.</span>")
 			else
@@ -59,6 +60,7 @@
 				user.log_message("invoked [RI.name]", LOG_ATTACK)
 				to_chat(world, "[src] invoked [RI.name]")
 				RI.fire(user, T, FALSE)
+				user.residual_energy += RI.residual_cost * SSmagic.magical_factor 
 			return
 		else if(diff <= RI.max_misfire)
 			to_misfire += RI
@@ -82,6 +84,7 @@
 					to_chat(world, "[src] misfired [MI.name], due to antimagic")
 					visible_message("<span class='danger'>The carvings begin to flash violently!</span>")
 					MI.misfire(user, T, TRUE)
+					user.residual_energy += MI.residual_cost * SSmagic.magical_factor 
 				if(ANTIMAGIC_NULLIFY)
 					visible_message("<span class='warning'>The carvings flash erratically for a split second, then fall dark.</span>")
 		else
@@ -89,5 +92,6 @@
 			to_chat(world, "[src] misfired [MI.name]")
 			visible_message("<span class='warning'>The carvings begin to flash erratically!</span>")
 			MI.misfire(user, T, FALSE)
+			user.residual_energy += MI.residual_cost * SSmagic.magical_factor 
 		return
 	visible_message("<span class='warning'>The carvings pulse with a small flash of light, then fall dark.</span>")
