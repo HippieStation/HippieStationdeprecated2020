@@ -23,6 +23,8 @@ import { Mint } from './interfaces/Mint';
 import { ThermoMachine } from './interfaces/ThermoMachine';
 import { VaultController } from './interfaces/VaultController';
 import { Wires } from './interfaces/Wires';
+import { Mint } from './interfaces/Mint';
+import { VaultController} from './interfaces/VaultController';
 
 const ROUTES = {
   acclimator: {
@@ -109,16 +111,8 @@ const ROUTES = {
     component: () => Mint,
     scrollable: false,
   },
-  thermomachine: {
-    component: () => ThermoMachine,
-    scrollable: false,
-  },
   vault_controller: {
     component: () => VaultController,
-    scrollable: false,
-  },
-  wires: {
-    component: () => Wires,
     scrollable: false,
   },
 };
