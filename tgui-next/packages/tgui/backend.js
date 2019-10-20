@@ -26,16 +26,18 @@ export const backendReducer = (state, action) => {
 
   if (type === 'backendUpdate') {
     // Merge config
-    const config = {
-      ...state.config,
-      ...payload.config,
-    };
+    let config = state.config;
+    if (payload.config) {
+      config = payload.config;
+    }
     // Merge data
-    const data = {
-      ...state.data,
+    let data = state.data;
+    if (payload.data || payload.static_data) {
+      data = {
       ...payload.static_data,
       ...payload.data,
     };
+    }
     // Calculate our own fields
     const visible = config.status !== UI_DISABLED;
     const interactive = config.status === UI_INTERACTIVE;

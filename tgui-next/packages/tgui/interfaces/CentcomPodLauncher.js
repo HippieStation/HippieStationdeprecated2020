@@ -1,4 +1,4 @@
-import { multiline } from 'common/string';
+import { multiline } from 'common/string.macro';
 import { Fragment } from 'inferno';
 import { act } from '../byond';
 import { Button, LabeledList, NoticeBox, Section } from '../components';

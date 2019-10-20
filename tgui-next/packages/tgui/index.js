@@ -104,6 +104,30 @@ const parseStateJson = json => {
     logger.error('JSON parsing error: ' + err.message + '\n' + json);
     throw err;
   }
+  // Report rendering time
+  if (process.env.NODE_ENV !== 'production') {
+    const finishedAt = Date.now();
+    const diff = finishedAt - startedAt;
+    const diffFrames = (diff / 16.6667).toFixed(2);
+    logger.debug(`rendered in ${diff}ms (${diffFrames} frames)`);
+    if (window.__inception__) {
+      const diff = finishedAt - window.__inception__;
+      const diffFrames = (diff / 16.6667).toFixed(2);
+      logger.log(`fully loaded in ${diff}ms (${diffFrames} frames)`);
+      window.__inception__ = null;
+    }
+  }
+};
+
+// Parse JSON and report all abnormal JSON strings coming from BYOND
+const parseStateJson = json => {
+  try {
+    return JSON.parse(json);
+  }
+  catch (err) {
+    logger.error('JSON parsing error: ' + err.message + '\n' + json);
+    throw err;
+  }
 };
 
 const setupApp = () => {
