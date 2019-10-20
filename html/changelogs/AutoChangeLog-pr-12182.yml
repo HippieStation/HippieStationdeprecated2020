@@ -1,4 +1,0 @@
-author: "steamp0rt"
-delete-after: True
-changes: 
-  - bugfix: "Summon guns/magic/etc actually no longer works on dynamic"
