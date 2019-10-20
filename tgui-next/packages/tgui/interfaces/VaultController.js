@@ -1,6 +1,7 @@
-import { toFixed } from 'common/math';
+import { Fragment } from 'inferno';
 import { act } from '../byond';
-import { Button, LabeledList, ProgressBar, Section } from '../components';
+import { toFixed } from 'common/math';
+import { Button, Section, LabeledList, ProgressBar } from '../components';
 
 export const VaultController = props => {
   const { state } = props;
@@ -9,13 +10,13 @@ export const VaultController = props => {
   return (
     <Section
       title="Lock Status: "
-      buttons={(
+      buttons={
         <Button
-          content={data.doorstatus ? 'Locked' : 'Unlocked'}
+          content={data.doorstatus ? "Locked" : "Unlocked"}
           disabled={data.stored < data.max}
           onClick={() => act(ref, 'togglelock')}
         />
-      )}>
+      }>
       <LabeledList>
         <LabeledList.Item label="Charge">
           <ProgressBar
