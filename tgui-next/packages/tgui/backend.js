@@ -25,6 +25,19 @@ export const backendReducer = (state, action) => {
   const { type, payload } = action;
 
   if (type === 'backendUpdate') {
+    // Merge config
+    let config = state.config;
+    if (payload.config) {
+      config = payload.config;
+    }
+    // Merge data
+    let data = state.data;
+    if (payload.data || payload.static_data) {
+      data = {
+        ...payload.static_data,
+        ...payload.data,
+      };
+    }
     // Calculate our own fields
     const visible = payload.config.status !== UI_DISABLED;
     const interactive = payload.config.status === UI_INTERACTIVE;
