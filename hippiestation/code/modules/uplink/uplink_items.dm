@@ -551,7 +551,7 @@
 	player_minimum = 30
 	
 /datum/uplink_item/dangerous/machinegun
-	player_minimum = 40
+	player_minimum = 35
 	
 /datum/uplink_item/dangerous/carbine
 	player_minimum = 35
@@ -584,7 +584,7 @@
 	player_minimum = 35
 	
 /datum/uplink_item/ammo/machinegun
-	player_minimum = 40
+	player_minimum = 35
 	
 /datum/uplink_item/ammo/rocket
 	player_minimum = 30
