@@ -547,9 +547,6 @@
 /datum/uplink_item/dangerous/doublesword
 	player_minimum = 35
 	
-/datum/uplink_item/dangerous/rapid
-	player_minimum = 30
-	
 /datum/uplink_item/dangerous/machinegun
 	player_minimum = 35
 	
@@ -559,16 +556,7 @@
 /datum/uplink_item/dangerous/revolver
 	player_minimum = 25
 	
-/datum/uplink_item/stealthy_weapons/combatglovesplus
-	player_minimum = 20
-	
-/datum/uplink_item/stealthy_weapons/cqc
-	player_minimum = 20
-	
 /datum/uplink_item/stealthy_weapons/martialarts
-	player_minimum = 20
-	
-/datum/uplink_item/stealthy_weapons/crossbow
 	player_minimum = 20
 	
 /datum/uplink_item/ammo/a40mm
