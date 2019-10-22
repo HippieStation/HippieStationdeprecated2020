@@ -1,17 +1,40 @@
 /obj/effect/ritual_center
 	name = "ritualistic circle"
 	desc = "A strange, carved circle."
-	icon = 'icons/obj/rune.dmi'
-	icon_state = "1"
-	color = "#7DF9FF"
+	icon = 'hippiestation/icons/obj/magic.dmi'
+	icon_state = "rune"
+	var/complexity = 1
+	var/mutable_appearance/mid
+	var/mutable_appearance/big
+
+/obj/effect/ritual_center/Initialize()
+	. = ..()
+	mid = mutable_appearance('hippiestation/icons/obj/magic_96x96.dmi', "rune_1")
+	mid.pixel_x = -32
+	mid.pixel_y = -32
+	big = mutable_appearance('hippiestation/icons/obj/magic_96x96.dmi', "rune_2")
+	big.pixel_x = -32
+	big.pixel_y = -32
+	for(var/layer = 1 to MAX_MAGIC_COMPLEXITY)
+		for(var/turf/closed/T in orange(layer, src) - orange(layer - 1, src))
+			complexity = layer - 1
+			update_icon()
+			return
+
+/obj/effect/ritual_center/update_icon()
+	cut_overlays()
+	if(complexity > 1)
+		add_overlay(mid)
+	if(complexity > 2)
+		add_overlay(big)
 
 /obj/effect/ritual_center/attack_hand(mob/living/user)
 	if(!SSmagic || !SSmagic.initialized)
 		return
 	var/antimagic
 	var/turf/T = get_turf(src)
-	var/list/traits_per_layer = new(MAX_MAGIC_COMPLEXITY)
-	for(var/layer = 1 to MAX_MAGIC_COMPLEXITY)
+	var/list/traits_per_layer = new(complexity)
+	for(var/layer = 1 to complexity)
 		traits_per_layer[layer] = list()
 		for(var/atom/A in orange(layer, src) - orange(layer - 1, src))
 			if(isliving(A))
