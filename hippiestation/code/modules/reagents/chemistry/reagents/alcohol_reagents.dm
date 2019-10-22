@@ -212,13 +212,13 @@
 		..()
 /datum/reagent/consumable/ethanol/SMcider
 	name = "Supermatter cider"
-	description = "who would have thought supermatter was alcoholic"
+	description = "Who couldve predicted liquified Supermatter Shards were not only toxic, but still highly radioactive!"
 	color = "#FFF542"
 	boozepwr = 500
-	taste_description = "tastes like you're being dusted"
+	taste_description = "Tastes like dust."
 	taste_mult = 2
 	glass_name = "Supermatter cider"
-	glass_desc = "Science has gone too far"
+	glass_desc = "Careful Freeman, those are quite fragile!"
 
 /datum/reagent/consumable/ethanol/SMcider/on_mob_life(mob/living/carbon/M)
 	if(istype(M))
