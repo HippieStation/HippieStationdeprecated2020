@@ -533,7 +533,7 @@
 	
 //Nuke Ops low pop restriction
 /datum/uplink_item/bundles_TC/c20r
-	player_minimum = 40
+	player_minimum = 30
 	
 /datum/uplink_item/bundles_TC/surplus
 	player_minimum = 30
@@ -542,7 +542,7 @@
 	player_minimum = 30
 	
 /datum/uplink_item/dangerous/smg
-	player_minimum = 35
+	player_minimum = 30
 	
 /datum/uplink_item/dangerous/doublesword
 	player_minimum = 35
@@ -575,10 +575,10 @@
 	player_minimum = 35
 	
 /datum/uplink_item/ammo/smg/bag
-	player_minimum = 35
+	player_minimum = 30
 	
 /datum/uplink_item/ammo/smg
-	player_minimum = 35
+	player_minimum = 30
 	
 /datum/uplink_item/ammo/carbine
 	player_minimum = 35
