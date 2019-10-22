@@ -530,3 +530,71 @@
 	desc = "Mark threats and check enemies for objective items, weapons and high level access. Guaranteed to greentext or your telecrystals back."
 	item = /obj/item/clothing/glasses/hud/threat
 	cost = 6
+	
+//Nuke Ops low pop restriction
+/datum/uplink_item/bundles_TC/c20r
+	player_minimum = 40
+	
+/datum/uplink_item/bundles_TC/surplus
+	player_minimum = 30
+	
+/datum/uplink_item/dangerous/rawketlawnchair
+	player_minimum = 30
+	
+/datum/uplink_item/dangerous/smg
+	player_minimum = 35
+	
+/datum/uplink_item/dangerous/doublesword
+	player_minimum = 35
+	
+/datum/uplink_item/dangerous/rapid
+	player_minimum = 30
+	
+/datum/uplink_item/dangerous/machinegun
+	player_minimum = 40
+	
+/datum/uplink_item/dangerous/carbine
+	player_minimum = 35
+	
+/datum/uplink_item/dangerous/revolver
+	player_minimum = 25
+	
+/datum/uplink_item/stealthy_weapons/combatglovesplus
+	player_minimum = 20
+	
+/datum/uplink_item/stealthy_weapons/cqc
+	player_minimum = 20
+	
+/datum/uplink_item/stealthy_weapons/martialarts
+	player_minimum = 20
+	
+/datum/uplink_item/stealthy_weapons/crossbow
+	player_minimum = 20
+	
+/datum/uplink_item/ammo/a40mm
+	player_minimum = 35
+	
+/datum/uplink_item/ammo/smg/bag
+	player_minimum = 35
+	
+/datum/uplink_item/ammo/smg
+	player_minimum = 35
+	
+/datum/uplink_item/ammo/carbine
+	player_minimum = 35
+	
+/datum/uplink_item/ammo/machinegun
+	player_minimum = 40
+	
+/datum/uplink_item/ammo/rocket
+	player_minimum = 30
+	
+/datum/uplink_item/explosives/buzzkill
+	player_minimum = 20
+	
+/datum/uplink_item/support/reinforcement/assault_borg
+	player_minimum = 40
+
+/datum/uplink_item/suits/hardsuit/shielded
+	player_minimum = 30
+
