@@ -100,6 +100,26 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/update_pocket_mirror, pocket_z, manifested_at_x - 4, manifested_at_y - 4, manifested_at_z), 3.5 SECONDS)
 	addtimer(VARSET_CALLBACK(src, manifesting, FALSE), 3 SECONDS)
 
+/datum/guardian_ability/major/special/pocket/proc/check_if_teleport(mob/living/L)
+	var/list/pocket_z = get_pocket_z()
+	if(!pocket_z)
+		return
+	if(get_final_z(L) != pocket_z)
+		take_effects(L)
+
+/datum/guardian_ability/major/special/pocket/proc/add_effects(mob/living/L)
+	L.status_flags |= GODMODE
+	if(!isguardian(L))
+		RegisterSignal(L, COMSIG_MOVABLE_MOVED, .proc/check_if_teleport)
+	for(var/mob/living/simple_animal/hostile/guardian/G in L.hasparasites())
+		G.status_flags |= GODMODE
+
+/datum/guardian_ability/major/special/pocket/proc/take_effects(mob/living/L)
+	L.status_flags &= ~GODMODE
+	UnregisterSignal(L, COMSIG_MOVABLE_MOVED)
+	for(var/mob/living/simple_animal/hostile/guardian/G in L.hasparasites())
+		G.status_flags &= ~GODMODE
+
 /obj/effect/manifestation
 	layer = ABOVE_LIGHTING_LAYER
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
@@ -194,6 +214,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 						to_chat(LL, "<span class='danger'>All of existence fades out for a moment...</span>")
 						LL.Paralyze(5 SECONDS)
 				L.forceMove(locate(manifest_at_x, manifest_at_y, pocket_z))
+				PD.add_effects(L)
 				if(pull)
 					L.start_pulling(pull)
 		PD.demanifest_dimension()
@@ -224,6 +245,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 				if(L.alpha == 255)
 					L.alpha = 0
 					animate(L, alpha = 255, time = 3 SECONDS, easing = LINEAR_EASING)
+				PD.take_effects(L)
 				L.forceMove(locate(manifest_at_x, manifest_at_y, PD.manifested_at_z))
 				if(pull)
 					L.start_pulling(pull)
@@ -241,6 +263,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	human_req = FALSE
 	charge_max = 0
 	var/mob/living/simple_animal/hostile/guardian/guardian
+
 
 /obj/effect/proc_holder/spell/self/pocket_dim_move/cast(list/targets, mob/living/user)
 	if(!guardian || !istype(guardian))
