@@ -3,10 +3,12 @@
 /turf/closed/indestructible/riveted,
 /area/hippie/pocket_dimension)
 "b" = (
-/turf/open/floor/fakespace,
+/turf/open/floor/pocketspace,
 /area/hippie/pocket_dimension)
 
 (1,1,1) = {"
+a
+a
 a
 a
 a
@@ -22,10 +24,14 @@ b
 b
 b
 b
+b
+b
 a
 "}
 (3,1,1) = {"
 a
+b
+b
 b
 b
 b
@@ -40,10 +46,14 @@ b
 b
 b
 b
+b
+b
 a
 "}
 (5,1,1) = {"
 a
+b
+b
 b
 b
 b
@@ -58,9 +68,35 @@ b
 b
 b
 b
+b
+b
 a
 "}
 (7,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(8,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(9,1,1) = {"
+a
+a
 a
 a
 a
