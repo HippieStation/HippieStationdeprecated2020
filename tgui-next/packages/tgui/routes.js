@@ -16,12 +16,14 @@ import { Cargo } from './interfaces/Cargo';
 import { CellularEmporium } from './interfaces/CellularEmporium';
 import { CentcomPodLauncher } from './interfaces/CentcomPodLauncher';
 import { ChemDispenser } from './interfaces/ChemDispenser';
+import { ChemHeater } from './interfaces/ChemHeater';
+import { ChemMaster } from './interfaces/ChemMaster';
 import { Crayon } from './interfaces/Crayon';
 import { DisposalUnit } from './interfaces/DisposalUnit';
 import { KitchenSink } from './interfaces/KitchenSink';
 import { Mint } from './interfaces/Mint';
 import { ThermoMachine } from './interfaces/ThermoMachine';
-import { VaultController} from './interfaces/VaultController';
+import { VaultController } from './interfaces/VaultController';
 import { Wires } from './interfaces/Wires';
 
 const ROUTES = {
@@ -95,6 +97,14 @@ const ROUTES = {
   },
   chem_dispenser: {
     component: () => ChemDispenser,
+    scrollable: true,
+  },
+  chem_heater: {
+    component: () => ChemHeater,
+    scrollable: true,
+  },
+  chem_master: {
+    component: () => ChemMaster,
     scrollable: true,
   },
   crayon: {
