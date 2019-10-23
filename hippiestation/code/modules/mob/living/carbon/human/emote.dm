@@ -287,3 +287,29 @@
 	animate(time = 5, alpha = 0, pixel_y = -16, easing = CIRCULAR_EASING)
 	spawn(30) qdel(S)
 	return ..()
+
+/datum/emote/living/dab
+	key = "dab"
+	key_third_person = "dabs"
+	message = "dabs!"
+
+/datum/emote/living/dab/run_emote(mob/living/carbon/user, params)
+	if(!ishuman(user))
+		return ..()
+	var/obj/item/bodypart/r_arm/D = user.get_bodypart(BODY_ZONE_R_ARM)
+	var/mob/living/carbon/human/R = user
+	if(!D)
+		to_chat(user, "<span class='warning'>You can't dab without your right arm!</span>") //I'm right handed, so we're making it rely on the right arm :smug:
+		return FALSE // This will tell you that the emote is unusable as well.
+	var/armblood = /obj/effect/decal/cleanable/blood
+	var/dabstrength = rand(1,3)//there should be a pretty high chance of you getting brain damage from dabbing
+	if (dabstrength == 1)
+		user.visible_message("<span class='warning'><b>[R]</b> tries to dab, but they hit themself in the head on accident!</span>", "<span class='warning'>You try dabbing but you fuck it up somehow!</span>")
+		playsound(R, 'sound/effects/snap.ogg', 50, TRUE)
+		R.adjustBrainLoss(20)
+		new armblood(R.loc)
+		return
+	R.visible_message("<span class='warning'><b>[user]</b> does an extremely cool dab! Yeet! </span>", "<span class='warning'>Holy shit, you just did a sick dab!</span>")
+	R.hallucination += 2
+	R.say(pick("CARBON COME BACK PLS!!","WE DON'T EVEN NEED MAINTAINERS!","HIGHPOP BY AUGUST!!"))
+	return ..()
