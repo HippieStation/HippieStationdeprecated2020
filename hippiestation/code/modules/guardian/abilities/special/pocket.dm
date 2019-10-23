@@ -66,6 +66,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	var/pocket_z = get_pocket_z()
 	if(!pocket_z)
 		return
+	destroy_pocket_mirror(pocket_z)
 	manifesting = TRUE
 	if(LAZYLEN(GLOB.pocket_mirrors[guardian.pocket_dim]))
 		for(var/turf/open/floor/pocketspace/PS in GLOB.pocket_mirrors[guardian.pocket_dim])
@@ -92,11 +93,11 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	manifesting = TRUE
 	for(var/obj/effect/manifestation/M in manifestations)
 		manifestations -= M
-		animate(M, alpha = 0, time = 3 SECONDS, easing = CUBIC_EASING)
+		animate(M, alpha = 0, time = 3 SECONDS, easing = LINEAR_EASING)
 		QDEL_IN(M, 3 SECONDS)
 	var/pocket_z = get_pocket_z()
 	if(pocket_z)
-		update_pocket_mirror(pocket_z, manifested_at_x - 4, manifested_at_y - 4, manifested_at_z)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/update_pocket_mirror, pocket_z, manifested_at_x - 4, manifested_at_y - 4, manifested_at_z), 3.5 SECONDS)
 	addtimer(VARSET_CALLBACK(src, manifesting, FALSE), 3 SECONDS)
 
 /obj/effect/manifestation
@@ -117,7 +118,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		while(rsq<100 || rsq>900)
 		filters += filter(type="wave", x=X, y=Y, size=rand()*2.5+0.5, offset=rand())
 	START_PROCESSING(SSobj, src)
-	animate(src, alpha = 127, time = 3 SECONDS, easing = CUBIC_EASING)
+	animate(src, alpha = 127, time = 3 SECONDS, easing = LINEAR_EASING)
 
 /obj/effect/manifestation/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -179,10 +180,10 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 			people_to_suck_in += summoner
 			for(var/mob/living/L in summoner.hasparasites())
 				people_to_suck_in |= L
-		var/real_max = PD.manifested_at_x + 4
-		var/real_may = PD.manifested_at_y + 4
+		var/real_max = PD.manifested_at_x
+		var/real_may = PD.manifested_at_y
 		for(var/mob/living/L in people_to_suck_in)
-			if(L.x > real_max && L.y > PD.manifested_at_y + 4 && L.x < real_max + 9 && L.y < PD.manifested_at_y + 4 + 9 && L.z == PD.manifested_at_z)
+			if(L.x > real_max && L.y > PD.manifested_at_y && L.x < real_max + 9 && L.y < PD.manifested_at_y + 9 && L.z == PD.manifested_at_z)
 				var/manifest_at_x = L.x - real_max
 				var/manifest_at_y = L.y - real_may
 				var/atom/movable/pull = L.pulling
@@ -208,15 +209,21 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 				for(var/mob/living/L in summoner.hasparasites())
 					people_to_suck_out |= L
 			for(var/mob/living/L in people_to_suck_out)
-				var/manifest_at_x = PD.manifested_at_x + L.x - 5
-				var/manifest_at_y = PD.manifested_at_y + L.y - 5
+				var/manifest_at_x = PD.manifested_at_x + L.x - 4
+				var/manifest_at_y = PD.manifested_at_y + L.y - 4
 				var/atom/movable/pull = L.pulling
 				if(pull && ((isobj(pull) && !pull.anchored) || (isliving(pull) && L.grab_state >= GRAB_NECK)))
-					L.forceMove(locate(manifest_at_x, manifest_at_y, PD.manifested_at_z))
+					pull.forceMove(locate(manifest_at_x, manifest_at_y, PD.manifested_at_z))
+					if(pull.alpha == 255)
+						pull.alpha = 0
+						animate(pull, alpha = 255, time = 3 SECONDS, easing = LINEAR_EASING)
 					if(isliving(pull))
 						var/mob/living/LL = L
 						to_chat(LL, "<span class='danger'>All of existence fades out for a moment...</span>")
 						LL.Paralyze(5 SECONDS)
+				if(L.alpha == 255)
+					L.alpha = 0
+					animate(L, alpha = 255, time = 3 SECONDS, easing = LINEAR_EASING)
 				L.forceMove(locate(manifest_at_x, manifest_at_y, PD.manifested_at_z))
 				if(pull)
 					L.start_pulling(pull)
@@ -291,7 +298,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		while(rsq<100 || rsq>900)
 		filters += filter(type="wave", x=X, y=Y, size=rand()*2.5+0.5, offset=rand())
 	START_PROCESSING(SSobj, src)
-	animate(src, alpha = 127, time = 3 SECONDS, easing = CUBIC_EASING)
+	animate(src, alpha = 127, time = 3 SECONDS, easing = LINEAR_EASING)
 
 /turf/open/floor/pocketspace/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -328,7 +335,10 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		PDS.manifested_at_y = CLAMP(T.y, 1, world.maxy)
 		PDS.manifested_at_z = T.z
 		if(pocket_z)
-			update_pocket_mirror(pocket_z, T.x - 4, T.y - 4, T.z)
+			if(LAZYLEN(PDS.manifestations))
+				destroy_pocket_mirror(pocket_z)
+			else
+				update_pocket_mirror(pocket_z, T.x - 4, T.y - 4, T.z)
 
 /proc/update_pocket_mirror(pocket_z, sx, sy, sz)
 	for(var/px = 1 to 7)
@@ -337,3 +347,10 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 			if(PS && istype(PS))
 				PS.vis_contents.Cut()
 				PS.vis_contents += locate(sx + px, sy + py, sz)
+
+/proc/destroy_pocket_mirror(pocket_z)
+	for(var/px = 1 to 7)
+		for(var/py = 1 to 7)
+			var/turf/open/floor/pocketspace/PS = locate(px + 1, py + 1, pocket_z)
+			if(PS && istype(PS))
+				PS.vis_contents.Cut()
