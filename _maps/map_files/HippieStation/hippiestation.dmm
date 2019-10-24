@@ -44180,7 +44180,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
-/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "czx" = (
@@ -44470,10 +44469,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "cAk" = (
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "cAl" = (
@@ -45311,7 +45310,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/port_engineering)
 "cCR" = (
@@ -52321,6 +52319,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/port_engineering)
 "iFO" = (
@@ -60030,9 +60029,6 @@
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/plating,
 /area/engine/port_engineering)
-"wac" = (
-/turf/open/floor/plasteel/dark,
-/area/space)
 "waY" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -84779,7 +84775,7 @@ csw
 hfe
 cvu
 cvu
-wac
+cvu
 cvu
 cyk
 cyN
