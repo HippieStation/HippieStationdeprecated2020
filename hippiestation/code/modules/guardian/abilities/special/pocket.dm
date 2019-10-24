@@ -11,7 +11,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 
 /datum/guardian_ability/major/special/pocket
 	name = "Dimensional Manifestation"
-	desc = "The guardian can access a small pocket dimension, bringing it's owner with it as well."
+	desc = "The guardian has access to a pocket dimension, which it can manifest in realspace at will."
 	cost = 5
 	var/manifested_at_x
 	var/manifested_at_y
