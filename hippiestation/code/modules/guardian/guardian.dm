@@ -427,6 +427,19 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		if(3)
 			adjustBruteLoss(30)
 
+/mob/living/simple_animal/hostile/guardian/examine(mob/user)
+	. = ..()
+	if(isobserver(user) || user == summoner)
+		. += "<span class='holoparasite'><b>DAMAGE:</b> [level_to_grade(stats.damage)]</span>"
+		. += "<span class='holoparasite'><b>DEFENSE:</b> [level_to_grade(stats.defense)]</span>"
+		. += "<span class='holoparasite'><b>SPEED:</b> [level_to_grade(stats.speed)]</span>"
+		. += "<span class='holoparasite'><b>POTENTIAL:</b> [level_to_grade(stats.potential)]</span>"
+		. += "<span class='holoparasite'><b>RANGE:</b> [level_to_grade(stats.range)]</span>"
+		if(stats.ability)
+			. += "<span class='holoparasite'><b>SPECIAL ABILITY:</b> [stats.ability.name] - [stats.ability.desc]</span>"
+		for(var/datum/guardian_ability/minor/M in stats.minor_abilities)
+			. += "<span class='holoparasite'><b>MINOR ABILITY:</b> [M.name] - [M.desc]</span>"
+
 /mob/living/simple_animal/hostile/guardian/gib()
 	if(summoner)
 		to_chat(summoner, "<span class='danger'><B>Your [src] was blown up!</span></B>")

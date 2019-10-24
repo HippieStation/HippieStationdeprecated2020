@@ -71,9 +71,9 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	if(LAZYLEN(GLOB.pocket_mirrors[guardian.pocket_dim]))
 		for(var/turf/open/floor/pocketspace/PS in GLOB.pocket_mirrors[guardian.pocket_dim])
 			PS.vis_contents.Cut()
-	var/corrected_max = manifested_at_x - 4
-	var/corrected_may = manifested_at_y - 4
-	if(!pos_already_set)
+	var/corrected_max = manifested_at_x
+	var/corrected_may = manifested_at_y
+	if(!pos_already_set) // don't subtract 4 if the pos is set, because we will have already subtracted by 4.
 		manifested_at_x = CLAMP(guardian.x - 4, 1, world.maxx)
 		corrected_max = manifested_at_x
 		manifested_at_y = CLAMP(guardian.y - 4, 1, world.maxy)
@@ -97,7 +97,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		QDEL_IN(M, 3 SECONDS)
 	var/pocket_z = get_pocket_z()
 	if(pocket_z)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/update_pocket_mirror, pocket_z, manifested_at_x - 4, manifested_at_y - 4, manifested_at_z), 3.5 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/update_pocket_mirror, pocket_z, manifested_at_x, manifested_at_y, manifested_at_z), 3.5 SECONDS)
 	addtimer(VARSET_CALLBACK(src, manifesting, FALSE), 3 SECONDS)
 
 /datum/guardian_ability/major/special/pocket/proc/check_if_teleport(mob/living/L)
@@ -161,7 +161,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	clothes_req = FALSE
 	staff_req = FALSE
 	human_req = FALSE
-	charge_max = 30 SECONDS
+	charge_max = 0
 	action_icon = 'icons/obj/objects.dmi'
 	action_icon_state = "anom"
 	var/mob/living/simple_animal/hostile/guardian/guardian
@@ -171,17 +171,17 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		return
 	var/mob/living/summoner = guardian.summoner
 	if(!guardian.is_deployed())
-		to_chat("<span class='red bold'>You must be manifested to summon the pocket dimension!</span>")
+		to_chat(guardian, "<span class='red bold'>You must be manifested to summon the pocket dimension!</span>")
 		return
 	var/datum/guardian_ability/major/special/pocket/PD = guardian?.stats?.ability
 	if(!PD || !istype(PD))
 		return
 	var/pocket_z = PD.get_pocket_z()
 	if(!pocket_z)
-		to_chat("<span class='red bold'>ERROR: You do not have a pocket dimension generated! Report this bug on Github!</span>")
+		to_chat(guardian, "<span class='red bold'>ERROR: You do not have a pocket dimension generated! Report this bug on Github!</span>")
 		return
 	if(PD.manifesting)
-		to_chat("<span class='red bold'>Wait! Your pocket dimension is currently (de)manifesting!</span>")
+		to_chat(guardian, "<span class='red bold'>Wait! Your pocket dimension is currently (de)manifesting!</span>")
 		return
 	if(guardian.remote_control == PD.eye)
 		for(var/V in PD.eye.visibleCameraChunks)
@@ -203,9 +203,9 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		var/real_max = PD.manifested_at_x
 		var/real_may = PD.manifested_at_y
 		for(var/mob/living/L in people_to_suck_in)
-			if(L.x > real_max && L.y > PD.manifested_at_y && L.x < real_max + 9 && L.y < PD.manifested_at_y + 9 && L.z == PD.manifested_at_z)
-				var/manifest_at_x = L.x - real_max
-				var/manifest_at_y = L.y - real_may
+			if(L.x > real_max && L.y > PD.manifested_at_y && L.x < real_max + 8 && L.y < PD.manifested_at_y + 8 && L.z == PD.manifested_at_z)
+				var/manifest_at_x = L.x - real_max + 1
+				var/manifest_at_y = L.y - real_may + 1
 				var/atom/movable/pull = L.pulling
 				if(pull && ((isobj(pull) && !pull.anchored) || (isliving(pull) && L.grab_state == GRAB_NECK)))
 					L.forceMove(locate(manifest_at_x, manifest_at_y, pocket_z))
@@ -230,8 +230,8 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 				for(var/mob/living/L in summoner.hasparasites())
 					people_to_suck_out |= L
 			for(var/mob/living/L in people_to_suck_out)
-				var/manifest_at_x = PD.manifested_at_x + L.x - 4
-				var/manifest_at_y = PD.manifested_at_y + L.y - 4
+				var/manifest_at_x = PD.manifested_at_x + L.x - 1
+				var/manifest_at_y = PD.manifested_at_y + L.y - 1
 				var/atom/movable/pull = L.pulling
 				if(pull && ((isobj(pull) && !pull.anchored) || (isliving(pull) && L.grab_state >= GRAB_NECK)))
 					pull.forceMove(locate(manifest_at_x, manifest_at_y, PD.manifested_at_z))
@@ -273,14 +273,17 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		return
 	var/pocket_z = PD.get_pocket_z()
 	if(!pocket_z)
-		to_chat("<span class='red bold'>ERROR: You do not have a pocket dimension generated! Report this bug on Github!</span>")
+		to_chat(guardian, "<span class='red bold'>ERROR: You do not have a pocket dimension generated! Report this bug on Github!</span>")
 		return
 	if(!PD.eye)
-		to_chat("<span class='red bold'>ERROR: You do not have a camera eye generated! Report this bug on Github!</span>")
+		to_chat(guardian, "<span class='red bold'>ERROR: You do not have a camera eye generated! Report this bug on Github!</span>")
 		return
 	var/turf/T = get_turf(guardian)
 	if(T.z != pocket_z)
-		to_chat("<span class='notice bold'>You must be inside a demanifested pocket dimension to move it!</span>")
+		to_chat(guardian, "<span class='notice bold'>You must be inside a demanifested pocket dimension to move it!</span>")
+		return
+	if(PD.manifesting)
+		to_chat(guardian, "<span class='red bold'>Wait! Your pocket dimension is currently (de)manifesting!</span>")
 		return
 	var/mob/camera/aiEye/remote/pocket/eyeobj = PD.eye
 	if(eyeobj.eye_user)
@@ -358,10 +361,10 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		PDS.manifested_at_y = CLAMP(T.y, 1, world.maxy)
 		PDS.manifested_at_z = T.z
 		if(pocket_z)
-			if(LAZYLEN(PDS.manifestations))
+			if(PDS.manifesting || LAZYLEN(PDS.manifestations))
 				destroy_pocket_mirror(pocket_z)
 			else
-				update_pocket_mirror(pocket_z, T.x - 4, T.y - 4, T.z)
+				update_pocket_mirror(pocket_z, T.x, T.y, T.z)
 
 /proc/update_pocket_mirror(pocket_z, sx, sy, sz)
 	for(var/px = 1 to 7)

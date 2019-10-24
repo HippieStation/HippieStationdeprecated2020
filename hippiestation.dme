@@ -3284,7 +3284,6 @@
 #include "hippiestation\code\modules\guardian\guardianbuilder.dm"
 #include "hippiestation\code\modules\guardian\guardiandatum.dm"
 #include "hippiestation\code\modules\guardian\guardianstats.dm"
-#include "hippiestation\code\modules\guardian\guardiantesting.dm"
 #include "hippiestation\code\modules\guardian\standarrow.dm"
 #include "hippiestation\code\modules\guardian\abilities\_ability.dm"
 #include "hippiestation\code\modules\guardian\abilities\major\assassin.dm"
