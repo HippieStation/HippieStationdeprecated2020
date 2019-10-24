@@ -43763,7 +43763,6 @@
 /area/maintenance/solars/starboard/aft)
 "cyg" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
-/obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
 "cyk" = (
@@ -43773,7 +43772,6 @@
 	network = list("SS13")
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
 "cyl" = (
@@ -43929,7 +43927,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/engine/engine_smes)
 "cyK" = (
@@ -44183,7 +44180,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
-/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "czx" = (
@@ -44193,6 +44189,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "czy" = (
@@ -44472,10 +44469,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "cAk" = (
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/engine_smes)
 "cAl" = (
@@ -45313,7 +45310,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/port_engineering)
 "cCR" = (
@@ -49120,16 +49116,6 @@
 	},
 /turf/open/floor/carpet,
 /area/chapel/main)
-"dmH" = (
-/obj/machinery/power/smes/engineering{
-	req_access_txt = "32"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/plasteel,
-/area/engine/port_engineering)
 "dmJ" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -52333,6 +52319,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/engine/port_engineering)
 "iFO" = (
@@ -61353,9 +61340,6 @@
 /area/engine/engineering)
 "xYs" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/power/terminal{
-	dir = 1
-	},
 /obj/effect/turf_decal/stripes/end{
 	dir = 4
 	},
@@ -81462,7 +81446,7 @@ cLV
 vkT
 vkT
 vkT
-dmH
+vkT
 xYs
 fyu
 opM
@@ -83761,10 +83745,10 @@ bJS
 nGd
 csw
 hfe
-vcQ
-vcQ
-vcQ
-vcQ
+cvu
+cvu
+cvu
+cvu
 cyg
 cyJ
 czw
@@ -84018,7 +84002,7 @@ bJS
 crk
 csw
 hfe
-vcQ
+cvu
 cvu
 cwx
 cwy
@@ -84276,7 +84260,7 @@ crl
 csw
 eYO
 eZv
-cvu
+vcQ
 nLO
 vcQ
 nLO
@@ -84532,7 +84516,7 @@ bJS
 crm
 csw
 hfe
-vcQ
+cvu
 cvu
 cwx
 cwy
@@ -84789,10 +84773,10 @@ bJS
 iga
 csw
 hfe
-vcQ
-vcQ
-vcQ
-vcQ
+cvu
+cvu
+cvu
+cvu
 cyk
 cyN
 czA
