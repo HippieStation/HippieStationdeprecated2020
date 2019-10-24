@@ -161,7 +161,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	clothes_req = FALSE
 	staff_req = FALSE
 	human_req = FALSE
-	charge_max = 30 SECONDS
+	charge_max = 40 SECONDS
 	action_icon = 'icons/obj/objects.dmi'
 	action_icon_state = "anom"
 	var/mob/living/simple_animal/hostile/guardian/guardian
