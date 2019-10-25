@@ -67,7 +67,7 @@
 	if(D)
 		data["points"] = D.account_balance
 	data["away"] = SSshuttle.supply.getDockedId() == "supply_away"
-	data["self_paid"] = self_paid
+	//data["self_paid"] = self_paid
 	data["docked"] = SSshuttle.supply.mode == SHUTTLE_IDLE
 	data["loan"] = !!SSshuttle.shuttle_loan
 	data["loan_dispatched"] = SSshuttle.shuttle_loan && SSshuttle.shuttle_loan.dispatched
@@ -77,28 +77,6 @@
 	if(SSshuttle.supplyBlocked)
 		message = blockade_warning
 	data["message"] = message
-<<<<<<< HEAD
-	data["supplies"] = list()
-	for(var/pack in SSshuttle.supply_packs)
-		var/datum/supply_pack/P = SSshuttle.supply_packs[pack]
-		if(!data["supplies"][P.group])
-			data["supplies"][P.group] = list(
-				"name" = P.group,
-				"packs" = list()
-			)
-		if((P.hidden && !(obj_flags & EMAGGED)) || (P.contraband && !contraband) || (P.special && !P.special_enabled) || P.DropPodOnly)
-			continue
-		data["supplies"][P.group]["packs"] += list(list(
-			"name" = P.name,
-			"cost" = P.cost,
-			"id" = pack,
-			"desc" = P.desc || P.name, // If there is a description, use it. Otherwise use the pack's name.
-			"small_item" = P.small_item,
-			"access" = P.access
-		))
-
-=======
->>>>>>> 0e1f1ca9a5... TGUI-next static data (#47123)
 	data["cart"] = list()
 	for(var/datum/supply_order/SO in SSshuttle.shoppinglist)
 		data["cart"] += list(list(
@@ -255,9 +233,9 @@
 		if("denyall")
 			SSshuttle.requestlist.Cut()
 			. = TRUE
-		if("toggleprivate")
-			self_paid = !self_paid
-			. = TRUE
+		//if("toggleprivate")
+		//	self_paid = !self_paid
+		//	. = TRUE
 	if(.)
 		post_signal("supply")
 

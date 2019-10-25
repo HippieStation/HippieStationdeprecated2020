@@ -12,32 +12,12 @@
 
 	var/produced_coins = 0 // how many coins the machine has made in it's last cycle
 	var/processing = FALSE
-<<<<<<< HEAD
 	var/chosen = MAT_METAL //which material will be used to make coins
-	var/coinsToProduce = 10
-	speed_process = TRUE
-=======
-	var/chosen = /datum/material/iron //which material will be used to make coins
->>>>>>> e2303d5b85... Reworks coin press (TGUI) (#46947)
-
 
 /obj/machinery/mineral/mint/Initialize()
 	. = ..()
-	AddComponent(/datum/component/material_container, list(
-		/datum/material/iron,
-		/datum/material/plasma,
-		/datum/material/silver,
-		/datum/material/gold,
-		/datum/material/uranium,
-		/datum/material/titanium,
-		/datum/material/diamond,
-		/datum/material/bananium,
-		/datum/material/adamantine,
-		/datum/material/mythril,
-		/datum/material/plastic,
-		/datum/material/runite
-	), MINERAL_MATERIAL_AMOUNT * 75, FALSE, /obj/item/stack)
-	chosen = getmaterialref(chosen)
+	AddComponent(/datum/component/material_container, list(MAT_METAL, MAT_PLASMA, MAT_SILVER, MAT_GOLD, MAT_URANIUM, MAT_DIAMOND, MAT_BANANIUM), MINERAL_MATERIAL_AMOUNT * 50, FALSE, /obj/item/stack)
+
 
 
 /obj/machinery/mineral/mint/process()
@@ -65,7 +45,7 @@
 				for(var/coin_to_make in 1 to 5)
 					create_coins()
 					produced_coins++
-			else 
+			else
 				var/found_new = FALSE
 				for(var/datum/material/inserted_material in materials.materials)
 					var/amount = materials.get_material_amount(inserted_material)

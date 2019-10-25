@@ -1,6 +1,3 @@
-#define PILL_STYLE_COUNT 22 //Update this if you add more pill icons or you die
-#define RANDOM_PILL_STYLE 22 //Dont change this one though
-
 /obj/machinery/chem_master
 	name = "ChemMaster 3000"
 	desc = "Used to separate chemicals and distribute them in a variety of forms."
@@ -97,7 +94,7 @@
 			to_chat(user, "<span class='warning'>You can't use the [src.name] while its panel is opened!</span>")
 			return
 		var/obj/item/reagent_containers/B = I
-		. = TRUE //no afterattack
+		. = TRUE // no afterattack
 		if(!user.transferItemToLoc(B, src))
 			return
 		replace_beaker(user, B)
@@ -177,13 +174,13 @@
 	if(beaker)
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			beakerContents.Add(list(list("name" = R.name, "id" = ckey(R.name), "volume" = R.volume))) // list in a list because Byond merges the first list...
-		data["beakerContents"] = beakerContents
+	data["beakerContents"] = beakerContents
 
 	var/bufferContents[0]
 	if(reagents.total_volume)
 		for(var/datum/reagent/N in reagents.reagent_list)
 			bufferContents.Add(list(list("name" = N.name, "id" = ckey(N.name), "volume" = N.volume))) // ^
-		data["bufferContents"] = bufferContents
+	data["bufferContents"] = bufferContents
 
 	//Calculated at init time as it never changes
 	data["pillStyles"] = pillStyles
@@ -194,22 +191,22 @@
 		return
 
 	if(action == "eject")
-			replace_beaker(usr)
+		replace_beaker(usr)
 		return TRUE
 
 	if(action == "ejectPillBottle")
 		if(!bottle)
 			return FALSE
-				bottle.forceMove(drop_location())
-				adjust_item_drop_location(bottle)
-				bottle = null
+		bottle.forceMove(drop_location())
+		adjust_item_drop_location(bottle)
+		bottle = null
 		return TRUE
 
 	if(action == "transfer")
 		if(!beaker)
 			return FALSE
-				var/reagent = GLOB.name2reagent[params["id"]]
-				var/amount = text2num(params["amount"])
+		var/reagent = GLOB.name2reagent[params["id"]]
+		var/amount = text2num(params["amount"])
 		var/to_container = params["to"]
 		// Custom amount
 		if (amount == -1)
@@ -219,18 +216,18 @@
 		if (amount == null || amount <= 0)
 			return FALSE
 		if (to_container == "buffer")
-					beaker.reagents.trans_id_to(src, reagent, amount)
+			beaker.reagents.trans_id_to(src, reagent, amount)
 			return TRUE
 		if (to_container == "beaker" && mode)
-					reagents.trans_id_to(beaker, reagent, amount)
+			reagents.trans_id_to(beaker, reagent, amount)
 			return TRUE
 		if (to_container == "beaker" && !mode)
-					reagents.remove_reagent(reagent, amount)
+			reagents.remove_reagent(reagent, amount)
 			return TRUE
 		return FALSE
 
 	if(action == "toggleMode")
-			mode = !mode
+		mode = !mode
 		return TRUE
 
 	if(action == "pillStyle")
@@ -239,7 +236,7 @@
 		return TRUE
 
 	if(action == "create")
-			if(reagents.total_volume == 0)
+		if(reagents.total_volume == 0)
 			return FALSE
 		var/item_type = params["type"]
 		// Get amount of items
@@ -289,32 +286,32 @@
 				"Give it a name!",
 				name_default,
 				MAX_NAME_LEN)
-				if(!name || !reagents.total_volume || !src || QDELETED(src) || !usr.canUseTopic(src, !issilicon(usr)))
+		if(!name || !reagents.total_volume || !src || QDELETED(src) || !usr.canUseTopic(src, !issilicon(usr)))
 			return FALSE
 		// Start filling
 		if(item_type == "pill")
-				var/obj/item/reagent_containers/pill/P
-				var/target_loc = drop_location()
-				var/drop_threshold = INFINITY
-				if(bottle)
+			var/obj/item/reagent_containers/pill/P
+			var/target_loc = drop_location()
+			var/drop_threshold = INFINITY
+			if(bottle)
 				var/datum/component/storage/STRB = bottle.GetComponent(
 					/datum/component/storage)
-					if(STRB)
-						drop_threshold = STRB.max_items - bottle.contents.len
-				for(var/i = 0; i < amount; i++)
-					if(i < drop_threshold)
+				if(STRB)
+					drop_threshold = STRB.max_items - bottle.contents.len
+			for(var/i = 0; i < amount; i++)
+				if(i < drop_threshold)
 					P = new/obj/item/reagent_containers/pill(target_loc)
-					else
+				else
 					P = new/obj/item/reagent_containers/pill(drop_location())
-					P.name = trim("[name] pill")
-					if(chosenPillStyle == RANDOM_PILL_STYLE)
-						P.icon_state ="pill[rand(1,21)]"
-					else
-						P.icon_state = "pill[chosenPillStyle]"
-					if(P.icon_state == "pill4")
-						P.desc = "A tablet or capsule, but not just any, a red one, one taken by the ones not scared of knowledge, freedom, uncertainty and the brutal truths of reality."
-					adjust_item_drop_location(P)
-					reagents.trans_to(P,vol_each, transfered_by = usr)
+				P.name = trim("[name] pill")
+				if(chosenPillStyle == RANDOM_PILL_STYLE)
+					P.icon_state ="pill[rand(1,21)]"
+				else
+					P.icon_state = "pill[chosenPillStyle]"
+				if(P.icon_state == "pill4")
+					P.desc = "A tablet or capsule, but not just any, a red one, one taken by the ones not scared of knowledge, freedom, uncertainty and the brutal truths of reality."
+				adjust_item_drop_location(P)
+				reagents.trans_to(P, vol_each, transfered_by = usr)
 			return TRUE
 		if(item_type == "patch")
 			var/obj/item/reagent_containers/pill/patch/P
@@ -322,14 +319,14 @@
 				P = new/obj/item/reagent_containers/pill/patch(drop_location())
 				P.name = trim("[name] patch")
 				adjust_item_drop_location(P)
-				reagents.trans_to(P,vol_each, transfered_by = usr)
+				reagents.trans_to(P, vol_each, transfered_by = usr)
 			return TRUE
 		if(item_type == "bottle")
-				var/obj/item/reagent_containers/glass/bottle/P
+			var/obj/item/reagent_containers/glass/bottle/P
 			for(var/i = 0; i < amount; i++)
-					P = new/obj/item/reagent_containers/glass/bottle(drop_location())
-					P.name = trim("[name] bottle")
-					adjust_item_drop_location(P)
+				P = new/obj/item/reagent_containers/glass/bottle(drop_location())
+				P.name = trim("[name] bottle")
+				adjust_item_drop_location(P)
 				reagents.trans_to(P, vol_each, transfered_by = usr)
 			return TRUE
 		if(item_type == "condimentPack")
@@ -346,29 +343,29 @@
 			for(var/i = 0; i < amount; i++)
 				P = new/obj/item/reagent_containers/food/condiment(drop_location())
 				P.originalname = name
-					P.name = trim("[name] bottle")
+				P.name = trim("[name] bottle")
 				reagents.trans_to(P, vol_each, transfered_by = usr)
 			return TRUE
 		return FALSE
 
 	if(action == "analyze")
-			var/datum/reagent/R = GLOB.name2reagent[params["id"]]
-			if(R)
-				var/state = "Unknown"
-				if(initial(R.reagent_state) == 1)
-					state = "Solid"
-				else if(initial(R.reagent_state) == 2)
-					state = "Liquid"
-				else if(initial(R.reagent_state) == 3)
-					state = "Gas"
-				var/const/P = 3 //The number of seconds between life ticks
-				var/T = initial(R.metabolization_rate) * (60 / P)
-				analyzeVars = list("name" = initial(R.name), "state" = state, "color" = initial(R.color), "description" = initial(R.description), "metaRate" = T, "overD" = initial(R.overdose_threshold), "addicD" = initial(R.addiction_threshold))
-				screen = "analyze"
+		var/datum/reagent/R = GLOB.name2reagent[params["id"]]
+		if(R)
+			var/state = "Unknown"
+			if(initial(R.reagent_state) == 1)
+				state = "Solid"
+			else if(initial(R.reagent_state) == 2)
+				state = "Liquid"
+			else if(initial(R.reagent_state) == 3)
+				state = "Gas"
+			var/const/P = 3 //The number of seconds between life ticks
+			var/T = initial(R.metabolization_rate) * (60 / P)
+			analyzeVars = list("name" = initial(R.name), "state" = state, "color" = initial(R.color), "description" = initial(R.description), "metaRate" = T, "overD" = initial(R.overdose_threshold), "addicD" = initial(R.addiction_threshold))
+			screen = "analyze"
 			return TRUE
 
 	if(action == "goScreen")
-			screen = params["screen"]
+		screen = params["screen"]
 		return TRUE
 
 	return FALSE
@@ -411,6 +408,3 @@
 	name = "CondiMaster 3000"
 	desc = "Used to create condiments and other cooking supplies."
 	condi = TRUE
-
-#undef PILL_STYLE_COUNT
-#undef RANDOM_PILL_STYLE
