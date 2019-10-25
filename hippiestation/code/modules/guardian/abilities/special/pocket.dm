@@ -167,7 +167,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	clothes_req = FALSE
 	staff_req = FALSE
 	human_req = FALSE
-	charge_max = 40 SECONDS
+	charge_max = 45 SECONDS
 	action_icon = 'icons/obj/objects.dmi'
 	action_icon_state = "anom"
 	var/mob/living/simple_animal/hostile/guardian/guardian
@@ -264,6 +264,8 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 
 /obj/effect/proc_holder/spell/self/pocket_dim_move
 	name = "Dimensional Movement"
+	action_icon = 'icons/mob/actions/actions_silicon.dmi'
+	action_icon_state = "camera_jump"
 	clothes_req = FALSE
 	staff_req = FALSE
 	human_req = FALSE
