@@ -90,10 +90,11 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	return ..()
 
 /mob/living/simple_animal/hostile/guardian/proc/cut_barriers()
-	for(var/image/I in barrier_images)
-		client.images -= I
-		qdel(I)
-	barrier_images.Cut()
+	if(client)
+		for(var/image/I in barrier_images)
+			client.images -= I
+			qdel(I)
+		barrier_images.Cut()
 
 /mob/living/simple_animal/hostile/guardian/proc/setup_barriers()
 	cut_barriers()
@@ -102,6 +103,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/sx = summoner.x
 	var/sy = summoner.y
 	var/sz = summoner.z
+	if(sx - range < 1 || sx + range + 1 > world.maxx || sy - range - 1 < 1 || sy + range + 1 > world.maxy)
+		return
 	for(var/turf/T in getline(locate(sx - range, sy + range + 1, sz), locate(sx + range, sy + range + 1, sz)))
 		barrier_images += image('hippiestation/icons/effects/effects.dmi', T, "barrier", ABOVE_LIGHTING_LAYER, SOUTH)
 	for(var/turf/T in getline(locate(sx - range, sy - range - 1, sz), locate(sx + range, sy - range - 1, sz)))
@@ -423,6 +426,19 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 			adjustBruteLoss(60)
 		if(3)
 			adjustBruteLoss(30)
+
+/mob/living/simple_animal/hostile/guardian/examine(mob/user)
+	. = ..()
+	if(isobserver(user) || user == summoner)
+		. += "<span class='holoparasite'><b>DAMAGE:</b> [level_to_grade(stats.damage)]</span>"
+		. += "<span class='holoparasite'><b>DEFENSE:</b> [level_to_grade(stats.defense)]</span>"
+		. += "<span class='holoparasite'><b>SPEED:</b> [level_to_grade(stats.speed)]</span>"
+		. += "<span class='holoparasite'><b>POTENTIAL:</b> [level_to_grade(stats.potential)]</span>"
+		. += "<span class='holoparasite'><b>RANGE:</b> [level_to_grade(stats.range)]</span>"
+		if(stats.ability)
+			. += "<span class='holoparasite'><b>SPECIAL ABILITY:</b> [stats.ability.name] - [stats.ability.desc]</span>"
+		for(var/datum/guardian_ability/minor/M in stats.minor_abilities)
+			. += "<span class='holoparasite'><b>MINOR ABILITY:</b> [M.name] - [M.desc]</span>"
 
 /mob/living/simple_animal/hostile/guardian/gib()
 	if(summoner)
