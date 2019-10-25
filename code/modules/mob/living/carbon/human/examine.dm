@@ -295,7 +295,8 @@
 		if(digitalcamo)
 			msg += "[t_He] [t_is] moving [t_his] body in an unnatural and blatantly inhuman manner.\n"
 
-	msg += hippie_carbon_examine() // hippie -- add our specific examine stuff
+	. += hippie_carbon_examine(user) // hippie -- add our specific examine stuff
+
 	if (length(msg))
 		. += "<span class='warning'>[msg.Join("")]</span>"
 
