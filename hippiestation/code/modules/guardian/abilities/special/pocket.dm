@@ -214,7 +214,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 				var/manifest_at_y = L.y - real_may + 1
 				var/atom/movable/pull = L.pulling
 				if(pull && ((isobj(pull) && !pull.anchored) || (isliving(pull) && L.grab_state == GRAB_NECK)))
-					L.forceMove(locate(manifest_at_x, manifest_at_y, pocket_z))
+					pull.forceMove(locate(manifest_at_x, manifest_at_y, pocket_z))
 					if(isliving(pull))
 						var/mob/living/LL = L
 						to_chat(LL, "<span class='danger'>All of existence fades out for a moment...</span>")
