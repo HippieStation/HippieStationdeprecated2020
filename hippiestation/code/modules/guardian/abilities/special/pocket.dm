@@ -46,7 +46,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		eye.pocket_z = pz
 		eye.PDS = src
 		eye.name = "Inactive Guardian Eye ([guardian])"
-		for(var/turf/open/floor/pocketspace/PS in world)
+		for(var/turf/open/indestructible/pocketspace/PS in world)
 			if(PS.z == pz)
 				GLOB.pocket_mirrors[guardian.pocket_dim] += PS
 
@@ -69,7 +69,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	destroy_pocket_mirror(pocket_z)
 	manifesting = TRUE
 	if(LAZYLEN(GLOB.pocket_mirrors[guardian.pocket_dim]))
-		for(var/turf/open/floor/pocketspace/PS in GLOB.pocket_mirrors[guardian.pocket_dim])
+		for(var/turf/open/indestructible/pocketspace/PS in GLOB.pocket_mirrors[guardian.pocket_dim])
 			PS.vis_contents.Cut()
 	var/corrected_max = manifested_at_x
 	var/corrected_may = manifested_at_y
@@ -313,7 +313,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	eyeobj.name = "Guardian Eye ([guardian.name])"
 	guardian.remote_control = eyeobj
 
-/turf/open/floor/pocketspace
+/turf/open/indestructible/pocketspace
 	name = "interdimensional distortion"
 	icon = 'icons/turf/space.dmi'
 	icon_state = "0"
@@ -321,7 +321,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
 	var/next_animate = 0
 
-/turf/open/floor/pocketspace/Initialize()
+/turf/open/indestructible/pocketspace/Initialize()
 	. = ..()
 	var/X,Y,i,rsq
 	for(i=1, i<=7, ++i)
@@ -334,11 +334,11 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	START_PROCESSING(SSobj, src)
 	animate(src, alpha = 127, time = 3 SECONDS, easing = LINEAR_EASING)
 
-/turf/open/floor/pocketspace/Destroy()
+/turf/open/indestructible/pocketspace/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/turf/open/floor/pocketspace/process()
+/turf/open/indestructible/pocketspace/process()
 	if(next_animate > world.time)
 		return
 	var/i,f
@@ -349,10 +349,10 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		animate(offset=f:offset-1, time=next)
 		next_animate = world.time + next
 
-/turf/open/floor/pocketspace/pry_tile()
+/turf/open/indestructible/pocketspace/pry_tile()
 	return
 
-/turf/open/floor/pocketspace/remove_tile()
+/turf/open/indestructible/pocketspace/remove_tile()
 	return
 
 /mob/camera/aiEye/remote/pocket
@@ -377,7 +377,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 /proc/update_pocket_mirror(pocket_z, sx, sy, sz)
 	for(var/px = 1 to 7)
 		for(var/py = 1 to 7)
-			var/turf/open/floor/pocketspace/PS = locate(px + 1, py + 1, pocket_z)
+			var/turf/open/indestructible/pocketspace/PS = locate(px + 1, py + 1, pocket_z)
 			if(PS && istype(PS))
 				PS.vis_contents.Cut()
 				PS.vis_contents += locate(sx + px, sy + py, sz)
@@ -385,6 +385,6 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 /proc/destroy_pocket_mirror(pocket_z)
 	for(var/px = 1 to 7)
 		for(var/py = 1 to 7)
-			var/turf/open/floor/pocketspace/PS = locate(px + 1, py + 1, pocket_z)
+			var/turf/open/indestructible/pocketspace/PS = locate(px + 1, py + 1, pocket_z)
 			if(PS && istype(PS))
 				PS.vis_contents.Cut()
