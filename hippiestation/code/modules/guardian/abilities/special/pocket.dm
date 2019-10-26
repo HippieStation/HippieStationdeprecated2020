@@ -317,7 +317,6 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 	name = "interdimensional distortion"
 	icon = 'icons/turf/space.dmi'
 	icon_state = "0"
-	tiled_dirt = FALSE
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
 	var/next_animate = 0
 
@@ -348,12 +347,6 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 		animate(f, offset=f:offset, time=0, loop=3, flags=ANIMATION_PARALLEL)
 		animate(offset=f:offset-1, time=next)
 		next_animate = world.time + next
-
-/turf/open/indestructible/pocketspace/pry_tile()
-	return
-
-/turf/open/indestructible/pocketspace/remove_tile()
-	return
 
 /mob/camera/aiEye/remote/pocket
 	name = "Inactive Guardian Eye"
