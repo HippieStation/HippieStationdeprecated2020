@@ -6,6 +6,7 @@
 	var/complexity = 1
 	var/mutable_appearance/mid
 	var/mutable_appearance/big
+	var/mutable_appearance/reallybig
 
 /obj/effect/ritual_center/Initialize()
 	. = ..()
@@ -15,6 +16,9 @@
 	big = mutable_appearance('hippiestation/icons/obj/magic_96x96.dmi', "rune_2")
 	big.pixel_x = -32
 	big.pixel_y = -32
+	reallybig = mutable_appearance('hippiestation/icons/obj/magic_160x160.dmi', "rune_3")
+	reallybig.pixel_x = -64
+	reallybig.pixel_y = -64
 	for(var/layer = 1 to MAX_MAGIC_COMPLEXITY)
 		for(var/turf/closed/T in orange(layer, src) - orange(layer - 1, src))
 			complexity = layer - 1
@@ -27,6 +31,8 @@
 		add_overlay(mid)
 	if(complexity > 2)
 		add_overlay(big)
+	if(complexity > 3)
+		add_overlay(reallybig)
 
 /obj/effect/ritual_center/attack_hand(mob/living/user)
 	if(!SSmagic || !SSmagic.initialized)
