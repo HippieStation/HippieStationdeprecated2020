@@ -1,4 +1,4 @@
-//Originally coded for HippieStation by Steamp0rt, shared under the AGPL license.
+//Originally coded for HippieStation by Don Karma, shared under the AGPL license.
 
 GLOBAL_VAR_INIT(gauntlet_snapped, FALSE)
 GLOBAL_VAR_INIT(gauntlet_equipped, FALSE)
