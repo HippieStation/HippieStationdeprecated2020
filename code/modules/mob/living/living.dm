@@ -503,9 +503,14 @@
 
 
 /mob/living/proc/updatehealth()
-	if(status_flags & GODMODE)
+	if((status_flags & GODMODE))
 		return
-	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss()
+	// hippie start -- fix godmode
+	var/new_health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss()
+	if(new_health < health && (status_flags & GODMODE))
+		return
+	// hippie end
+	health = new_health
 	staminaloss = getStaminaLoss()
 	update_stat()
 	med_hud_set_health()

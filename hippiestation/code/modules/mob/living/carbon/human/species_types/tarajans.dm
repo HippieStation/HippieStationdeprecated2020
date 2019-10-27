@@ -5,6 +5,7 @@
 	sexes = 1
 	species_traits = list(MUTCOLORS,EYECOLOR,NOTRANSSTING)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	inherent_traits  = list(TRAIT_PACIFISM)
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'

@@ -7,6 +7,7 @@ GLOBAL_LIST_INIT(timestop_noz, typecacheof(list(/obj/screen)))
 	var/turf/T = get_turf(A)
 	if(T)
 		return T.z
+	return A.z
 
 /datum/timestop
 	var/list/frozen_mobs
