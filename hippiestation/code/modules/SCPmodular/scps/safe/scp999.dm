@@ -5,20 +5,15 @@
 	desc = "A happy, blorbling hug monster."
 	icon = 'hippiestation/icons/mob/scpicon/scpmobs/scp-999.dmi'
 	icon_state = "SCP-999"
+	say_mod = "blorbles"
 	icon_living = "SCP-999"
 	icon_dead = "SCP-999_dead"
 	alpha = 200
 	maxHealth = 15000
 	health = 15000
-	hud_type = DATA_HUD_MEDICAL_ADVANCED
 	var/mob/living/carbon/attached
 	var/attached_mode = HUGGING
 	var/list/last_healing = list()
-
-
-/mob/living/simple_animal/scp_999/examine(mob/user)
-	. = ..()
-	. += "<span class='notice'>SCP 999, hug monster</span>"
 
 mob/living/simple_animal/scp_999/UnarmedAttack(atom/a)
 	if(ishuman(a))
@@ -35,10 +30,10 @@ mob/living/simple_animal/scp_999/UnarmedAttack(atom/a)
 		if(last_healing[attached] == null || ((last_healing[attached] + 2 MINUTES) >= world.time))
 			last_healing[attached] = world.time
 			if(attached_mode == HUGGING)
-				attached.adjustOxyLoss(-rand(20,30))
-				attached.adjustToxLoss(-rand(20,30))
-				attached.adjustBruteLoss(-rand(20,30))
-				attached.adjustFireLoss(-rand(20, 30))
+				attached.adjustOxyLoss(-rand(5,30))
+				attached.adjustToxLoss(-rand(5,30))
+				attached.adjustBruteLoss(-rand(5,30))
+				attached.adjustFireLoss(-rand(5, 30))
 				to_chat(attached, "<span class='notice'>You feel your injuries healing and becoming numb...</span>")
 				attached.emote(pick("laugh","giggle","smile","grin"))
 
@@ -51,7 +46,7 @@ mob/living/simple_animal/scp_999/UnarmedAttack(atom/a)
 			if(prob(1))
 				attached.Move(a,b,f)
 			return
-	return ..()
+	return ..(a,b,f)
 
 /mob/living/simple_animal/scp_999/verb/detach()
 	set category = "SCP"
