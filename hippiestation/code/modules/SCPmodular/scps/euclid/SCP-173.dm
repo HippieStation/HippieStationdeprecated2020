@@ -16,7 +16,8 @@
 	var/list/next_blinks = list()
 
 /mob/living/scp_173/examine(mob/user)
-	to_chat(user, "<span class='warning'>SCP 173, Neck Snapper.</span>")
+	. = ..()
+	. += "<span class='warning'>SCP 173, Neck Snapper.</span>"
 
 /mob/living/scp_173/Destroy()
 	..()
