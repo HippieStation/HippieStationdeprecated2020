@@ -5,7 +5,7 @@
 	ventcrawler = VENTCRAWLER_NUDE
 	icon_state = "173"
 
-	maxHealth = 5000000000
+	maxHealth = INFINITY
 	health = 5000000000
 	move_force = MOVE_FORCE_EXTREMELY_STRONG
 	move_resist = MOVE_FORCE_EXTREMELY_STRONG
