@@ -1,0 +1,4 @@
+author: "Mideanon and zamolxius"
+delete-after: True
+changes: 
+  - rscadd: "Give more information about zombie infected patients when using a health analyzer"
