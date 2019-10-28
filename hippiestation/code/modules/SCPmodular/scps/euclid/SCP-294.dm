@@ -17,10 +17,11 @@ GLOBAL_LIST_EMPTY(scp294_reagents)
 
 	if(!GLOB.scp294_reagents.len)
 		//Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id
-		var/paths = subtypesof(/datum/reagent) - /datum/reagent/medicine/adminordrazine
+		var/paths = subtypesof(/datum/reagent)
 		for(var/path in paths)
 			var/datum/reagent/D = new path
-			GLOB.scp294_reagents[D.name] = D
+			if(D.can_synth)
+				GLOB.scp294_reagents[D.name] = D
 
 /obj/machinery/scp294/examine(mob/user)
 	to_chat(user, "<span class='notice'>SCP 294, Glorified Chem Dispenser</span>")
