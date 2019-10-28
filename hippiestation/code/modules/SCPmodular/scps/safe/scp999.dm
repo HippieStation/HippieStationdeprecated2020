@@ -5,7 +5,6 @@
 	desc = "A happy, blorbling hug monster."
 	icon = 'hippiestation/icons/mob/scpicon/scpmobs/scp-999.dmi'
 	icon_state = "SCP-999"
-	say_mod = "blorbles"
 	icon_living = "SCP-999"
 	icon_dead = "SCP-999_dead"
 	alpha = 200
