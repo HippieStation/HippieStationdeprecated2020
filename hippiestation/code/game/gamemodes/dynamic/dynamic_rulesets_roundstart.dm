@@ -64,15 +64,14 @@
 		M.mind.restricted_roles = restricted_roles
 		M.mind.special_role = ROLE_HIVE
 	return TRUE
-
-
+	
 /datum/dynamic_ruleset/roundstart/abductors
 	name = "Abductors"
 	antag_flag = ROLE_ABDUCTOR
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("Cyborg")
 	required_candidates = 2
-	weight = 30
+	weight = 15
 	cost = 20
 	var/datum/mind/scientist
 	var/datum/mind/agent
@@ -104,7 +103,6 @@
 		return FALSE
 	scientist.add_antag_datum(/datum/antagonist/abductor/scientist, T)
 	agent.add_antag_datum(/datum/antagonist/abductor/agent, T)
-	
 /datum/dynamic_ruleset/roundstart/revs
 	weight = 30
 	minimum_players = 25

@@ -7,3 +7,10 @@
 
 		if (B)
 			. += B.contents
+
+/proc/list_avg(list/L)
+	. = 0
+	for(var/num in L)
+		. += num
+	. /= length(L)
+	LAZYCLEARLIST(L)

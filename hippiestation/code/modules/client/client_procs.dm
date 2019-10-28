@@ -78,8 +78,12 @@
 				country_icon = country
 			else
 				for(var/name in flags)
-					if(findtext(name, country))
+					if(findtext(lowertext(name), lowertext(country)))
 						country_icon = name
+				if(!country_icon)
+					for(var/name in flags)
+						if(findtext(lowertext(country), lowertext(name)))
+							country_icon = name
 		if(country_icon)
 			icons += "[icon2html('hippiestation/icons/ooc_icons/countries.dmi', world, country_icon)]"
 	return icons
