@@ -45,7 +45,7 @@
 		if(R.reagent_type)
 			var/datum/reagent/RE = R.reagent_type
 			if(!initial(RE.can_forge))
-				to_chat(user, "<span class='warning'>[initial(RE)] cannot be forged!</span>")
+				to_chat(user, "<span class='warning'>[initial(RE.name)] cannot be forged!</span>")
 				return
 
 			if(!currently_forging || !currently_forging.type)
