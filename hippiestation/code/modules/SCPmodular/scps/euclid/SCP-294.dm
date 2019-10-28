@@ -14,7 +14,6 @@ GLOBAL_LIST_EMPTY(scp294_reagents)
 
 /obj/machinery/scp294/Initialize()
 	. = ..()
-	..()
 
 	if(!GLOB.scp294_reagents.len)
 		//Chemical Reagents - Initialises all /datum/reagent into a list indexed by reagent id
