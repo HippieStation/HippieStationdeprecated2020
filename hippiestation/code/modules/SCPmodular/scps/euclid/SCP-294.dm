@@ -8,7 +8,7 @@ GLOBAL_LIST_EMPTY(scp294_reagents)
 	layer = 2.9
 	anchored = 1
 	density = 1
-	var/uses_left = 12
+	var/uses_left = 5000
 	var/last_use = 0
 	var/restocking_timer = 0
 
@@ -34,23 +34,13 @@ GLOBAL_LIST_EMPTY(scp294_reagents)
 	last_use = world.time
 	if(uses_left < 1)
 		visible_message("<span class='notice'>[src] displays RESTOCKING, PLEASE WAIT message.</span>")
+		uses_left = 2000
 		return
 
 	var/product = null
 	var/input_reagent = (input("Enter the name of any liquid") as text)
 	product = find_reagent(input_reagent)
 
-
-
-
-	// use one use
-	if (product)
-		--uses_left
-		if (!uses_left)
-			spawn(2000)
-				uses_left = initial(uses_left)
-
-	sleep(10)
 	if(product)
 		var/obj/item/reagent_containers/glass/D = new /obj/item/reagent_containers/glass(loc)
 		D.reagents.add_reagent(product, 30)
