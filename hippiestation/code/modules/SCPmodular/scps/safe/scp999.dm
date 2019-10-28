@@ -29,13 +29,16 @@ mob/living/simple_animal/scp_999/UnarmedAttack(atom/a)
 		if(last_healing[attached] == null || ((last_healing[attached] + 2 MINUTES) >= world.time))
 			last_healing[attached] = world.time
 			if(attached_mode == HUGGING)
-				attached.adjustOxyLoss(-rand(5,30))
-				attached.adjustToxLoss(-rand(5,30))
-				attached.adjustBruteLoss(-rand(5,30))
-				attached.adjustFireLoss(-rand(5, 30))
-				to_chat(attached, "<span class='notice'>You feel your injuries healing and becoming numb...</span>")
-				attached.emote(pick("laugh","giggle","smile","grin"))
-
+				if(prob(10))
+					to_chat(attached, "<span class='notice'>You feel your injuries healing and becoming numb...</span>")
+					attached.emote(pick("laugh","giggle","smile","grin"))
+					attached.adjustOxyLoss(-rand(15,30))
+					attached.adjustToxLoss(-rand(15,30))
+					attached.adjustBruteLoss(-rand(15,30))
+					attached.adjustFireLoss(-rand(15,30))
+				if(prob(50)) // i was gonna do prob(80) but nobody would get that except other coders
+					to_chat(attached, "<span class='notice'>You feel happy.</span>")
+				
 /mob/living/simple_animal/scp_999/Move(a,b,f)
 	if(attached)
 		if(attached_mode == HUGGING)
