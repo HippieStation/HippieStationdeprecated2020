@@ -19,9 +19,6 @@
 	. = ..()
 	. += "<span class='warning'>SCP 173, Neck Snapper.</span>"
 
-/mob/living/scp_173/Destroy()
-	..()
-
 /mob/living/scp_173/proc/IsBeingWatched()
 	for(var/mob/living/carbon/human/H in view(src, 7))
 		if(is_blind(H) || H.eye_blind > 0)
