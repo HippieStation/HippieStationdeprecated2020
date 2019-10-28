@@ -270,7 +270,8 @@
 
 //Returns a string with the first element of the string capitalized.
 /proc/capitalize(t as text)
-	return uppertext(copytext(t, 1, 2)) + copytext(t, 2)
+    var/first = ascii2text(text2ascii(word))
+    return uppertext(first) + copytext(word, length(first) + 1)
 
 //Centers text by adding spaces to either side of the string.
 /proc/dd_centertext(message, length)
