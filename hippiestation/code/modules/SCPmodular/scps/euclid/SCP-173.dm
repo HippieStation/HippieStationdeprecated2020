@@ -6,7 +6,7 @@
 	icon_state = "173"
 
 	maxHealth = INFINITY
-	health = 5000000000
+	health = INFINITY
 	move_force = MOVE_FORCE_EXTREMELY_STRONG
 	move_resist = MOVE_FORCE_EXTREMELY_STRONG
 	pull_force = MOVE_FORCE_EXTREMELY_STRONG
