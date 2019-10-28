@@ -34,7 +34,7 @@
 /mob/living/scp_173/Move(a,b,f)
 	if(IsBeingWatched())
 		return FALSE
-	return ..(a,b,f)
+	return ..()
 
 /mob/living/scp_173/movement_delay()
 	return -5
