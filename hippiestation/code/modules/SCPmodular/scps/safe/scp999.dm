@@ -17,7 +17,8 @@
 
 
 /mob/living/simple_animal/scp_999/examine(mob/user)
-	to_chat(user, "<span class='notice'>SCP 999, hug monster</span>")
+	. = ..()
+	. += "<span class='notice'>SCP 999, hug monster</span>"
 
 mob/living/simple_animal/scp_999/UnarmedAttack(atom/a)
 	if(ishuman(a))
