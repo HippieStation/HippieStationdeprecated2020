@@ -23,9 +23,6 @@ GLOBAL_LIST_EMPTY(scp294_reagents)
 			if(D.can_synth)
 				GLOB.scp294_reagents[D.name] = D
 
-/obj/machinery/scp294/examine(mob/user)
-	to_chat(user, "<span class='notice'>SCP 294, Glorified Chem Dispenser</span>")
-
 /obj/machinery/scp294/attack_hand(mob/user)
 
 	if((last_use + 3 SECONDS) > world.time)
@@ -43,9 +40,9 @@ GLOBAL_LIST_EMPTY(scp294_reagents)
 	product = find_reagent(input_reagent)
 
 	if(product)
-		var/obj/item/reagent_containers/glass/D = new /obj/item/reagent_containers/glass(loc)
+		var/obj/item/reagent_containers/glass/bottle/precision/D = new /obj/item/reagent_containers/glass/bottle/precision(loc)
 		D.reagents.add_reagent(product, 30)
-		visible_message("<span class='notice'>[src] dispenses a small paper cup.</span>")
+		visible_message("<span class='notice'>[src] dispenses a small glass.</span>")
 	else
 		visible_message("<span class='notice'>[src]'s OUT OF RANGE light flashes rapidly.</span>")
 
