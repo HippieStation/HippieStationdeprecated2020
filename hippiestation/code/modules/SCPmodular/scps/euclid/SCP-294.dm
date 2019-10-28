@@ -12,7 +12,8 @@ GLOBAL_LIST_EMPTY(scp294_reagents)
 	var/last_use = 0
 	var/restocking_timer = 0
 
-/obj/machinery/scp294/New()
+/obj/machinery/scp294/Initialize()
+	. = ..()
 	..()
 
 	if(!GLOB.scp294_reagents.len)
