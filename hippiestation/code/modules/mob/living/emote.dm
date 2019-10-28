@@ -7,7 +7,7 @@
 	only_forced_audio = FALSE
 	vary = TRUE
 
-/datum/emote/living/scream/get_sound(mob/living/user)
+/datum/emote/living/scream/get_sound(mob/living/user, mob/living/carbon/human/H)
 	LAZYINITLIST(user.alternate_screams)
 	if(LAZYLEN(user.alternate_screams))
 		return pick(user.alternate_screams)
@@ -31,6 +31,8 @@
 			return 'hippiestation/sound/voice/cat.ogg'
 		if(user.gender == FEMALE)
 			return pick('hippiestation/sound/voice/scream_f1.ogg', 'hippiestation/sound/voice/scream_f2.ogg')
+		if((H.skin_tone == "african2") || (H.skin_tone == "african1"))
+			return pick('hippiestation/sound/voice/loudnigra1.ogg', 'hippiestation/sound/voice/loudnigra2.ogg', 'hippiestation/sound/voice/loudnigra3.ogg')
 		else
 			return pick('hippiestation/sound/voice/scream_m1.ogg', 'hippiestation/sound/voice/scream_m2.ogg')
 	if(isalien(user))
