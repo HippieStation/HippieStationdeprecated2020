@@ -3,7 +3,7 @@
 /turf/closed/indestructible/riveted,
 /area/hippie/pocket_dimension)
 "b" = (
-/turf/open/floor/pocketspace,
+/turf/open/indestructible/pocketspace,
 /area/hippie/pocket_dimension)
 
 (1,1,1) = {"
