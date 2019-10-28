@@ -48,7 +48,7 @@ mob/living/simple_animal/scp_999/UnarmedAttack(atom/a)
 			if(prob(1))
 				attached.Move(a,b,f)
 			return
-	return ..(a,b,f)
+	return ..()
 
 /mob/living/simple_animal/scp_999/verb/detach()
 	set category = "SCP"
