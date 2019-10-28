@@ -1,6 +1,5 @@
 //This is the hippie init file, here we will initialize everything hippie where possible.
 //Create a proc to load something in the appropriate module file and call the proc here.
-//this is just to create a current branch
 /proc/hippie_initialize()
 	load_mentors()
 	load_donators()
