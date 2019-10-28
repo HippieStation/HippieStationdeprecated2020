@@ -5,8 +5,8 @@
 	ventcrawler = VENTCRAWLER_NUDE
 	icon_state = "173"
 
-	maxHealth = INFINITY
-	health = INFINITY
+	maxHealth = 5000000000
+	health = 5000000000
 	move_force = MOVE_FORCE_EXTREMELY_STRONG
 	move_resist = MOVE_FORCE_EXTREMELY_STRONG
 	pull_force = MOVE_FORCE_EXTREMELY_STRONG
@@ -15,9 +15,9 @@
 	var/last_snap = 0
 	var/list/next_blinks = list()
 
-/mob/living/scp_173/examine(mob/user)
-	. = ..()
-	. += "<span class='warning'>SCP 173, Neck Snapper.</span>"
+
+/mob/living/scp_173/Destroy()
+	..()
 
 /mob/living/scp_173/proc/IsBeingWatched()
 	for(var/mob/living/carbon/human/H in view(src, 7))
@@ -64,7 +64,5 @@
 				next_blinks[A] = null
 				continue
 			H.visible_message("<span class='notice'>[H] blinks.</span>")
-			H.eye_blind += 2
+			H.blind_eyes(3)
 			next_blinks[H] = 10+world.time+rand(15 SECONDS, 45 SECONDS)
-
-
