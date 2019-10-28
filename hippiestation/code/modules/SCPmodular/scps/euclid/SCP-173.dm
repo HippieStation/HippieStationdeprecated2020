@@ -53,7 +53,7 @@
 	. = ..()
 	if (isobj(loc))
 		return
-	var/list/our_view = view(src, 7)
+	var/list/our_view = view(src, 13)
 	for(var/A in next_blinks)
 		if(!(A in our_view))
 			next_blinks[A] = null
@@ -65,4 +65,4 @@
 				continue
 			H.visible_message("<span class='notice'>[H] blinks.</span>")
 			H.blind_eyes(3)
-			next_blinks[H] = 10+world.time+rand(15 SECONDS, 45 SECONDS)
+			next_blinks[H] = 10+world.time+rand(6 SECONDS, 30 SECONDS)
