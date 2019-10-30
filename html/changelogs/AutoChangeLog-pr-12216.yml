@@ -1,5 +1,0 @@
-author: "steamp0rt"
-delete-after: True
-changes: 
-  - bugfix: "Pocket dimension stands can now actually drag stuff to their dimension"
-  - bugfix: "The pocket dimension's mirror tiles will no longer be destroyed by an explosion"
