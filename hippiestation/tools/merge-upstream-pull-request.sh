@@ -73,7 +73,7 @@ readonly COMMITS=$(curl --silent "$BASE_PULL_URL/$1/commits" | jq '.[].sha' -r)
 
 # Cherry pick onto the new branch
 echo "Cherry picking onto branch"
-CHERRY_PICK_OUTPUT=$(git cherry-pick -m 1 "$MERGE_SHA" 2>&1)
+CHERRY_PICK_OUTPUT=$(git -c core.editor=true cherry-pick -m 1 "$MERGE_SHA" 2>&1)
 echo "$CHERRY_PICK_OUTPUT"
 
 # If it's a squash commit, you can't use -m 1, you need to remove it
@@ -83,17 +83,17 @@ if echo "$CHERRY_PICK_OUTPUT" | grep -i 'error: mainline was specified but commi
   if containsElement "$MERGE_SHA" "${COMMITS[@]}"; then
     for commit in $COMMITS; do
   	  echo "Cherry-picking: $commit"
-	  git cherry-pick "$commit"
+	  git -c core.editor=true cherry-pick "$commit"
 	  # Add all files onto this branch
 	  git add -A .
-	  git cherry-pick --continue
+	  git -c core.editor=true cherry-pick --continue
     done
   else
     echo "Cherry-picking: $MERGE_SHA"
-	git cherry-pick "$MERGE_SHA"
+	git -c core.editor=true cherry-pick "$MERGE_SHA"
 	# Add all files onto this branch
 	git add -A .
-	git cherry-pick --continue
+	git -c core.editor=true cherry-pick --continue
   fi
 else
   # Add all files onto this branch
@@ -103,7 +103,7 @@ fi
 
 # Commit these changes
 echo "Commiting changes"
-git commit --allow-empty -m "$2"
+git -c core.editor=true commit --allow-empty -m "$2"
 
 # Push them onto the branch
 echo "Pushing changes"

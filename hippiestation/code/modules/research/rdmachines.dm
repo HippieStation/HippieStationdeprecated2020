@@ -1,5 +1,5 @@
-/obj/machinery/r_n_d
+/obj/machinery/rnd
 	icon_hippie = 'hippiestation/icons/obj/machines/research.dmi'
 
-/obj/machinery/r_n_d/server
+/obj/machinery/rnd/server
 	icon_hippie = 'hippiestation/icons/obj/machines/research.dmi'

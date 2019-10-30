@@ -20,6 +20,9 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	GLOB.cameranet.updateVisibility(src)
 	return ..()
 
+/obj/effect/particle_effect/newtonian_move() // Prevents effects from getting registered for SSspacedrift
+	return TRUE
+
 /datum/effect_system
 	var/number = 3
 	var/cardinals = FALSE
@@ -30,7 +33,6 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	var/autocleanup = FALSE //will delete itself after use
 
 /datum/effect_system/Destroy()
-	total_effects-- //Hippie code
 	holder = null
 	location = null
 	return ..()
@@ -68,8 +70,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	for(var/j in 1 to steps_amt)
 		sleep(5)
 		step(E,direction)
-	if(autocleanup && total_effects <= 0) //Hippie
-		QDEL_IN(src, 20) //Code
+	addtimer(CALLBACK(src, .proc/decrement_total_effect), 20)
 
 /datum/effect_system/proc/decrement_total_effect()
 	total_effects--

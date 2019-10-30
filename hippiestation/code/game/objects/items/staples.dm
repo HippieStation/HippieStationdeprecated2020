@@ -43,7 +43,7 @@
 	var/obj/item/organ/butt/B
 
 /obj/item/staplegun/Initialize()
-	..()
+	.=..()
 	update_icon()
 
 /obj/item/staplegun/examine(mob/user)
@@ -91,7 +91,7 @@
 				H.try_to_embed(S,O)
 			user.visible_message("<span class='danger'>[user] has stapled [target] in the [O]!</span>", "<span class='userdanger'>You staple [target]!</span>")
 			H.update_damage_overlays()
-			add_logs(user, H, "stapled", src)
+			log_combat(user, H, "stapled", src)
 		else
 			visible_message("<span class='danger'>[user] has attempted to staple [target] in the [O]!</span>")
 	else
@@ -243,7 +243,7 @@
 					"<span class='italics'>You hear a ratchet.</span>")
 
 /mob/living/carbon/human/proc/try_to_embed(var/obj/item/I, var/obj/item/bodypart/L, var/message = FALSE)
-	if(dna && has_trait(TRAIT_PIERCEIMMUNE))
+	if(dna && HAS_TRAIT(src, TRAIT_PIERCEIMMUNE))
 		return
 	throw_alert("embeddedobject", /obj/screen/alert/embeddedobject)
 	L.embedded_objects |= I

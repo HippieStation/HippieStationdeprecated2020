@@ -8,8 +8,8 @@
 	name = "Valentines!"
 	holidayID = VALENTINES
 	typepath = /datum/round_event/valentines
-	weight = -1							//forces it to be called, regardless of weight
-	max_occurrences = 1
+	weight = 0							//forces it to never be called
+	max_occurrences = 0
 	earliest_start = 0
 
 /datum/round_event/valentines/start()
@@ -46,8 +46,8 @@
 			var/datum/objective/martyr/normiesgetout = new
 			normiesgetout.owner = L.mind
 			L.mind.special_role = "heartbreaker"
-			L.mind.objectives += normiesgetout
-			L.mind.add_antag_datum(/datum/antagonist/auto_custom)
+			var/datum/antagonist/heartbreaker/HB = L.mind.add_antag_datum(/datum/antagonist/heartbreaker)
+			HB.objectives |= normiesgetout
 
 
 /proc/forge_valentines_objective(mob/living/lover,mob/living/date)
@@ -61,8 +61,8 @@
 		protect_objective.owner = lover.mind
 		protect_objective.target = date.mind
 		protect_objective.explanation_text = "Protect [date.real_name], your date."
-		lover.mind.objectives += protect_objective
-		lover.mind.add_antag_datum(/datum/antagonist/auto_custom)
+		var/datum/antagonist/lover/LV = lover.mind.add_antag_datum(/datum/antagonist/lover)
+		LV.objectives |= protect_objective
 
 	to_chat(lover, "<span class='warning'><B>[msg]</B></span>")
 
@@ -166,7 +166,7 @@
 	icon = 'icons/obj/holiday_misc.dmi'
 	icon_state = "candyheart"
 	desc = "A heart-shaped candy that reads: "
-	list_reagents = list("sugar" = 2)
+	list_reagents = list(/datum/reagent/consumable/sugar = 2)
 	junkiness = 5
 
 /obj/item/reagent_containers/food/snacks/candyheart/New()
@@ -175,7 +175,7 @@
                 "A heart-shaped candy that reads: ERP",
                 "A heart-shaped candy that reads: LEWD",
                 "A heart-shaped candy that reads: LUSTY",
-                "A heart-shaped candy that reads: SPESS LOVE"
+                "A heart-shaped candy that reads: SPESS LOVE",
                 "A heart-shaped candy that reads: AYY LMAO",
                 "A heart-shaped candy that reads: TABLE ME",
                 "A heart-shaped candy that reads: HAND CUFFS",

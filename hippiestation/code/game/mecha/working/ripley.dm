@@ -6,9 +6,9 @@
 	name = "\improper APLU \"Miner\""
 
 /obj/mecha/working/ripley/mining_roundstart/Initialize()
-	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/drill/D = new
 	D.attach(src)
+	.=..()
 
 	cargo.Add(new /obj/structure/ore_box(src)) //Starts with its own nice little ore box.
 

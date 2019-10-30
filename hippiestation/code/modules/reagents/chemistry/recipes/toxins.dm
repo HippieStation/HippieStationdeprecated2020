@@ -1,64 +1,64 @@
 /datum/chemical_reaction/bone_hurting_juice
 	name = "Bone Hurting Juice"
 	id = "bone_hurting_juice"
-	results = list("bone_hurting_juice" = 3)
-	required_reagents = list("milk" = 1, "cola" = 1, "carbon" = 1) //Milk for calcium, cola because it rots your teeth and carbon because something to do with calcium carbonate.
+	results = list(/datum/reagent/toxin/bone_hurting_juice = 3)
+	required_reagents = list(/datum/reagent/consumable/milk = 1, /datum/reagent/consumable/space_cola = 1, /datum/reagent/carbon = 1) //Milk for calcium, cola because it rots your teeth and carbon because something to do with calcium carbonate.
 
 /datum/chemical_reaction/bleach
 	name = "bleach"
 	id = "bleach"
-	results = list("bleach" = 3)
-	required_reagents = list("cleaner" = 1, "sodium" = 1, "chlorine" = 1)
+	results = list(/datum/reagent/toxin/bleach = 3)
+	required_reagents = list(/datum/reagent/space_cleaner = 1, /datum/reagent/sodium = 1, /datum/reagent/chlorine = 1)
 
 /datum/chemical_reaction/isopropyl
 	name = "Isopropyl Alcohol"
 	id = "isopropyl"
-	results = list("isopropyl" = 5)
-	required_catalysts = list("aluminium" = 1)
-	required_reagents = list("water" = 6, "carbon" = 3)
+	results = list(/datum/reagent/consumable/ethanol/isopropyl = 5)
+	required_catalysts = list(/datum/reagent/aluminium = 1)
+	required_reagents = list(/datum/reagent/water = 6, /datum/reagent/carbon = 3)
 
 /datum/chemical_reaction/carbonf
 	name = "Carbonic Fluoride"
 	id = "carbonf"
-	results = list("carbonf" = 4)
-	required_reagents = list("ethanol" = 4, "fluorine" = 2)
+	results = list(/datum/reagent/toxin/carbonf = 4)
+	required_reagents = list(/datum/reagent/consumable/ethanol = 4, /datum/reagent/fluorine = 2)
 	required_temp = 320
 
 /datum/chemical_reaction/aus
 	name = "Ausium"
 	id = "aus"
-	results = list("aus" = 6)
-	required_reagents = list("space_drugs" = 4, "ethanol" = 2, "lithium" = 2)
+	results = list(/datum/reagent/toxin/aus = 6)
+	required_reagents = list(/datum/reagent/drug/space_drugs = 4, /datum/reagent/consumable/ethanol = 2, /datum/reagent/lithium = 2)
 	required_temp = 430
 	centrifuge_recipe = TRUE
 
 /datum/chemical_reaction/impalco
 	name = "Impure Superhol"
 	id = "impalco"
-	results = list("impalco" = 5)
-	required_reagents = list("aus" = 2, "ethanol" = 3,"methamphetamine" = 2)
+	results = list(/datum/reagent/consumable/ethanol/impalco = 5)
+	required_reagents = list(/datum/reagent/toxin/aus = 2, /datum/reagent/consumable/ethanol = 3, /datum/reagent/drug/methamphetamine = 2)
 	pressure_required = 5
 
 /datum/chemical_reaction/alco
 	name = "Superhol"
 	id = "alco"
-	results = list("alco" = 6, "ethanol" = 6)
-	required_reagents = list("impalco" = 3, "ethanol" = 3 , "isopropyl" = 3)
+	results = list(/datum/reagent/consumable/ethanol/alco = 6, /datum/reagent/consumable/ethanol = 6)
+	required_reagents = list(/datum/reagent/consumable/ethanol/impalco = 3, /datum/reagent/consumable/ethanol = 3, /datum/reagent/consumable/ethanol/isopropyl = 3)
 	centrifuge_recipe = TRUE
 
 /datum/chemical_reaction/emote
 	name = "Emotium"
 	id = "emote"
-	results = list("emote" = 5)
-	required_reagents = list("synaptizine" = 1, "sugar" = 2,"ammonia" = 1)
-	required_catalysts = list("mutagen" = 1)
+	results = list(/datum/reagent/toxin/emote = 5)
+	required_reagents = list(/datum/reagent/medicine/synaptizine = 1, /datum/reagent/consumable/sugar = 2, /datum/reagent/ammonia = 1)
+	required_catalysts = list(/datum/reagent/toxin/mutagen = 1)
 	centrifuge_recipe = TRUE
 
 /datum/chemical_reaction/over_reactible/bear
 	name = "Bearium"
 	id = "bear"
-	results = list("bear" = 4, "radgoop" = 2)
-	required_reagents = list("liquid_life" = 2, "volt" = 3,"ephedrine" = 1)
+	results = list(/datum/reagent/toxin/bear = 4, /datum/reagent/toxin/radgoop = 2)
+	required_reagents = list(/datum/reagent/medicine/liquid_life = 2, /datum/reagent/volt = 3, /datum/reagent/medicine/ephedrine = 1)
 	required_temp = 460
 	bluespace_recipe = TRUE
 	can_overheat = TRUE
@@ -68,164 +68,164 @@
 /datum/chemical_reaction/methphos
 	name = "Methylphosphonyl difluoride"
 	id = "methphos"
-	results = list("methphos" = 4)
-	required_reagents = list("hydrogen" = 3, "carbon" = 1, "phosphorus" = 1 , "oxygen" = 1, "fluorine" = 2)
+	results = list(/datum/reagent/toxin/methphos = 4)
+	required_reagents = list(/datum/reagent/hydrogen = 3, /datum/reagent/carbon = 1, /datum/reagent/phosphorus = 1, /datum/reagent/oxygen = 1, /datum/reagent/fluorine = 2)
 	pressure_required = 26
 
 /datum/chemical_reaction/sarin_a
 	name = "Translucent mixture"
 	id = "sarina"
-	results = list("sarina" = 3)
-	required_reagents = list("isopropyl" = 3, "methphos" = 2)
+	results = list(/datum/reagent/toxin/sarin_a = 3)
+	required_reagents = list(/datum/reagent/consumable/ethanol/isopropyl = 3, /datum/reagent/toxin/methphos = 2)
 
 /datum/chemical_reaction/sarin_b
 	name = "Dilute sarin"
 	id = "sarinb"
-	results = list("sarinb" = 2)
+	results = list(/datum/reagent/toxin/sarin_b = 2)
 	required_temp = 700
 	pressure_required = 5
-	required_reagents = list("sarina" = 2)
+	required_reagents = list(/datum/reagent/toxin/sarin_a = 2)
 
 /datum/chemical_reaction/over_reactible/sarin
 	name = "Sarin"
 	id = "sarin"
-	results = list("sarin" = 3)
+	results = list(/datum/reagent/toxin/sarin = 3)
 	can_overheat = TRUE
 	can_overpressure = TRUE//hehehe quickest way to get killed as a lunatic chemist
 	overheat_threshold = 450
 	overpressure_threshold = 100
 	centrifuge_recipe = TRUE
 	pressure_required = 95
-	required_reagents = list("sarinb" = 6)
+	required_reagents = list(/datum/reagent/toxin/sarin_b = 6)
 
 /datum/chemical_reaction/tabun_pa
 	name = "Dimethlymine"
 	id = "tabuna"
-	results = list("tabuna" = 4, "oxygen" = 2)
-	required_reagents = list("sodium" = 1,"water" = 3 ,"carbon" = 2, "nitrogen" = 1)
+	results = list(/datum/reagent/toxin/tabun_pa = 4, /datum/reagent/oxygen = 2)
+	required_reagents = list(/datum/reagent/sodium = 1, /datum/reagent/water = 3, /datum/reagent/carbon = 2, /datum/reagent/nitrogen = 1)
 	required_temp = 420
 
 /datum/chemical_reaction/tabun_pb
 	name = "Phosphoryll"
 	id = "tabunb"
-	results = list("tabunb" = 1)
-	required_reagents = list("chlorine" = 3,"phosphorus" = 1, "oxygen" = 1)
+	results = list(/datum/reagent/toxin/tabun_pb = 1)
+	required_reagents = list(/datum/reagent/chlorine = 3, /datum/reagent/phosphorus = 1, /datum/reagent/oxygen = 1)
 
 /datum/chemical_reaction/tabun_pc
 	name = "Noxious mixture"
 	id = "tabunc"
-	results = list("tabunc" = 2)
-	required_reagents = list("tabunb" = 2,"tabuna" = 2)
+	results = list(/datum/reagent/toxin/tabun_pc = 2)
+	required_reagents = list(/datum/reagent/toxin/tabun_pb = 2, /datum/reagent/toxin/tabun_pa = 2)
 
 /datum/chemical_reaction/tabun
 	name = "Tabun"
 	id = "tabun"
-	results = list("tabun" = 1, "goop" = 9)
-	required_reagents = list("tabunc" = 3)
+	results = list(/datum/reagent/toxin/tabun = 1, /datum/reagent/toxin/goop = 9)
+	required_reagents = list(/datum/reagent/toxin/tabun_pc = 3)
 	centrifuge_recipe = TRUE
 
 /datum/chemical_reaction/impgluco
 	name = "Impure Glucosaryll"
 	id = "impgluco"
-	results = list("impgluco" = 1)
+	results = list(/datum/reagent/toxin/impgluco = 1)
 	required_temp = 170
 	pressure_required = 45
-	required_reagents = list("sugar" = 3,"isopropyl" = 1,"sodiumchloride" = 1)
+	required_reagents = list(/datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/ethanol/isopropyl = 1, /datum/reagent/consumable/sodiumchloride = 1)
 
 /datum/chemical_reaction/gluco
 	name = "Glucosaryll"
 	id = "gluco"
-	results = list("gluco" = 1)
+	results = list(/datum/reagent/toxin/gluco = 1)
 	required_temp = 120
 	is_cold_recipe = TRUE
 	pressure_required = 85
-	required_reagents = list("impgluco" = 2,"cryogenic_fluid" = 1)
+	required_reagents = list(/datum/reagent/toxin/impgluco = 2, /datum/reagent/cryogenic_fluid = 1)
 	centrifuge_recipe = TRUE
 
 /datum/chemical_reaction/over_reactible/screech
 	name = "Screechisol"
 	id = "screech"
-	results = list("screech" = 3)
+	results = list(/datum/reagent/toxin/screech = 3)
 	can_overheat = TRUE
 	required_temp = 750
 	pressure_required = 30
 	overheat_threshold = 775
-	required_reagents = list("emote" = 3,"ephedrine" = 1)
+	required_reagents = list(/datum/reagent/toxin/emote = 3, /datum/reagent/medicine/ephedrine = 1)
 
 /datum/chemical_reaction/stablemutationtoxin
 	name = "Stable Mutation Toxin"
 	id = "stablemutationtoxin"
-	results = list("stablemutationtoxin" = 1)
-	required_reagents = list("unstablemutationtoxin" = 1, "blood" = 1)
+	results = list(/datum/reagent/mutationtoxin = 1)
+	required_reagents = list(/datum/reagent/unstablemutationtoxin = 1, /datum/reagent/blood = 1)
 
 /datum/chemical_reaction/lizardmutationtoxin
 	name = "Lizard Mutation Toxin"
 	id = "lizardmutationtoxin"
-	results = list("lizardmutationtoxin" = 1)
-	required_reagents = list("unstablemutationtoxin" = 1, "radium" = 1)
+	results = list(/datum/reagent/mutationtoxin/lizard = 1)
+	required_reagents = list(/datum/reagent/unstablemutationtoxin = 1, /datum/reagent/uranium/radium = 1)
 
 /datum/chemical_reaction/flymutationtoxin
 	name = "Fly Mutation Toxin"
 	id = "flymutationtoxin"
-	results = list("flymutationtoxin" = 1)
-	required_reagents = list("unstablemutationtoxin" = 1, "mutagen" = 1)
+	results = list(/datum/reagent/mutationtoxin/fly = 1)
+	required_reagents = list(/datum/reagent/unstablemutationtoxin = 1, /datum/reagent/toxin/mutagen = 1)
 
 /datum/chemical_reaction/jellymutationtoxin
 	name = "Imperfect Mutation Toxin"
 	id = "jellymutationtoxin"
-	results = list("jellymutationtoxin" = 1)
-	required_reagents = list("unstablemutationtoxin" = 1, "slimejelly" = 1)
+	results = list(/datum/reagent/mutationtoxin/jelly = 1)
+	required_reagents = list(/datum/reagent/unstablemutationtoxin = 1, /datum/reagent/toxin/slimejelly = 1)
 
 /datum/chemical_reaction/podmutationtoxin
 	name = "Pod Mutation Toxin"
 	id = "podmutationtoxin"
-	results = list("podmutationtoxin" = 1)
-	required_reagents = list("unstablemutationtoxin" = 1, "eznutriment" = 1)
+	results = list(/datum/reagent/mutationtoxin/pod = 1)
+	required_reagents = list(/datum/reagent/unstablemutationtoxin = 1, /datum/reagent/plantnutriment/eznutriment = 1)
 
 /datum/chemical_reaction/golemmutationtoxin
 	name = "Golem Mutation Toxin"
 	id = "golemmutationtoxin"
-	results = list("golemmutationtoxin" = 1)
-	required_reagents = list("unstablemutationtoxin" = 1, "silver" = 1)
+	results = list(/datum/reagent/mutationtoxin/golem = 1)
+	required_reagents = list(/datum/reagent/unstablemutationtoxin = 1, /datum/reagent/silver = 1)
 
 /datum/chemical_reaction/abductormutationtoxin
 	name = "Abductor Mutation Toxin"
 	id = "abductormutationtoxin"
-	results = list("abductormutationtoxin" = 1)
-	required_reagents = list("unstablemutationtoxin" = 1, "morphine" = 1)
+	results = list(/datum/reagent/mutationtoxin/abductor = 1)
+	required_reagents = list(/datum/reagent/unstablemutationtoxin = 1, /datum/reagent/medicine/morphine = 1)
 
 /datum/chemical_reaction/androidmutationtoxin
 	name = "Android Mutation Toxin"
 	id = "androidmutationtoxin"
-	results = list("androidmutationtoxin" = 1)
-	required_reagents = list("unstablemutationtoxin" = 1, "teslium" = 1)
+	results = list(/datum/reagent/mutationtoxin/android = 1)
+	required_reagents = list(/datum/reagent/unstablemutationtoxin = 1, /datum/reagent/teslium = 1)
 
 /datum/chemical_reaction/skeletonmutationtoxin
 	name = "Skeleton Mutation Toxin"
 	id = "skeletonmutationtoxin"
-	results = list("skeletonmutationtoxin" = 1)
-	required_reagents = list("unstablemutationtoxin" = 1, "milk" = 1)
+	results = list(/datum/reagent/mutationtoxin/skeleton = 1)
+	required_reagents = list(/datum/reagent/unstablemutationtoxin = 1, /datum/reagent/consumable/milk = 1)
 
 /datum/chemical_reaction/zombiemutationtoxin
 	name = "Zombie Mutation Toxin"
 	id = "zombiemutationtoxin"
-	results = list("zombiemutationtoxin" = 1)
-	required_reagents = list("unstablemutationtoxin" = 1, "toxin" = 1)
+	results = list(/datum/reagent/mutationtoxin/zombie = 1)
+	required_reagents = list(/datum/reagent/unstablemutationtoxin = 1, /datum/reagent/toxin = 1)
 
 /datum/chemical_reaction/ashmutationtoxin
 	name = "Ash Mutation Toxin"
 	id = "ashmutationtoxin"
-	results = list("ashmutationtoxin" = 1)
-	required_reagents = list("unstablemutationtoxin" = 1, "lizardmutationtoxin" = 1, "ash" = 1)
+	results = list(/datum/reagent/mutationtoxin/ash = 1)
+	required_reagents = list(/datum/reagent/unstablemutationtoxin = 1, /datum/reagent/mutationtoxin/lizard = 1, /datum/reagent/ash = 1)
 
 /datum/chemical_reaction/shadowmutationtoxin
 	name = "Shadow Mutation Toxin"
 	id = "shadowmutationtoxin"
-	results = list("shadowmutationtoxin" = 1)
-	required_reagents = list("unstablemutationtoxin" = 1, "liquid_dark_matter" = 1, "holywater" = 1)
+	results = list(/datum/reagent/mutationtoxin/shadow = 1)
+	required_reagents = list(/datum/reagent/unstablemutationtoxin = 1, /datum/reagent/liquid_dark_matter = 1, /datum/reagent/water/holywater = 1)
 
 /datum/chemical_reaction/plasmamutationtoxin
 	name = "Plasma Mutation Toxin"
 	id = "plasmamutationtoxin"
-	results = list("plasmamutationtoxin" = 1)
-	required_reagents = list("unstablemutationtoxin" = 1, "uranium" = 1, plasma = 1)
+	results = list(/datum/reagent/mutationtoxin/plasma = 1)
+	required_reagents = list(/datum/reagent/unstablemutationtoxin = 1, /datum/reagent/uranium = 1, /datum/reagent/toxin/plasma = 1)

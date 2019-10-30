@@ -44,6 +44,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	if(client.cache.Find(asset_name) || client.sending.Find(asset_name))
 		return 0
 
+	log_asset("Sending asset [asset_name] to client [client]")
 	client << browse_rsc(SSassets.cache[asset_name], asset_name)
 	if(!verify)
 		client.cache += asset_name
@@ -92,6 +93,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		to_chat(client, "Sending Resources...")
 	for(var/asset in unreceived)
 		if (asset in SSassets.cache)
+			log_asset("Sending asset [asset] to client [client]")
 			client << browse_rsc(SSassets.cache[asset], asset)
 
 	if(!verify) // Can't access the asset cache browser, rip.
@@ -225,8 +227,10 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 	var/res_name = "spritesheet_[name].css"
 	var/fname = "data/spritesheets/[res_name]"
-	call("rust_g", "file_write")(generate_css(), fname)
-	register_asset(res_name, file(fname))
+	fdel(fname)
+	text2file(generate_css(), fname)
+	register_asset(res_name, fcopy_rsc(fname))
+	fdel(fname)
 
 	for(var/size_id in sizes)
 		var/size = sizes[size_id]
@@ -249,10 +253,11 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		// save flattened version
 		var/fname = "data/spritesheets/[name]_[size_id].png"
 		fcopy(size[SPRSZ_ICON], fname)
-		var/error = call("rust_g", "dmi_strip_metadata")(fname)
+		var/error = rustg_dmi_strip_metadata(fname)
 		if(length(error))
 			stack_trace("Failed to strip [name]_[size_id].png: [error]")
 		size[SPRSZ_STRIPPED] = icon(fname)
+		fdel(fname)
 
 /datum/asset/spritesheet/proc/generate_css()
 	var/list/out = list()
@@ -378,12 +383,12 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	assets = list(
 		"tgui.css"	= 'tgui/assets/tgui.css',
 		"tgui.js"	= 'tgui/assets/tgui.js',
-		"font-awesome.min.css" = 'tgui/assets/font-awesome.min.css',
-		"fontawesome-webfont.eot" = 'tgui/assets/fonts/fontawesome-webfont.eot',
-		"fontawesome-webfont.woff2" = 'tgui/assets/fonts/fontawesome-webfont.woff2',
-		"fontawesome-webfont.woff" = 'tgui/assets/fonts/fontawesome-webfont.woff',
-		"fontawesome-webfont.ttf" = 'tgui/assets/fonts/fontawesome-webfont.ttf',
-		"fontawesome-webfont.svg" = 'tgui/assets/fonts/fontawesome-webfont.svg'
+	)
+
+/datum/asset/group/tgui
+	children = list(
+		/datum/asset/simple/tgui,
+		/datum/asset/simple/fontawesome
 	)
 
 /datum/asset/simple/headers
@@ -464,6 +469,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"stamp-law" = 'icons/stamp_icons/large_stamp-law.png'
 	)
 
+
 /datum/asset/simple/IRV
 	assets = list(
 		"jquery-ui.custom-core-widgit-mouse-sortable-min.js" = 'html/IRV/jquery-ui.custom-core-widgit-mouse-sortable-min.js',
@@ -502,7 +508,8 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	children = list(
 		/datum/asset/simple/jquery,
 		/datum/asset/simple/goonchat,
-		/datum/asset/spritesheet/goonchat
+		/datum/asset/spritesheet/goonchat,
+		/datum/asset/simple/fontawesome
 	)
 
 /datum/asset/simple/jquery
@@ -515,14 +522,20 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	verify = FALSE
 	assets = list(
 		"json2.min.js"             = 'code/modules/goonchat/browserassets/js/json2.min.js',
-		"errorHandler.js"          = 'code/modules/goonchat/browserassets/js/errorHandler.js',
 		"browserOutput.js"         = 'code/modules/goonchat/browserassets/js/browserOutput.js',
-		"fontawesome-webfont.eot"  = 'tgui/assets/fonts/fontawesome-webfont.eot',
-		"fontawesome-webfont.svg"  = 'tgui/assets/fonts/fontawesome-webfont.svg',
-		"fontawesome-webfont.ttf"  = 'tgui/assets/fonts/fontawesome-webfont.ttf',
-		"fontawesome-webfont.woff" = 'tgui/assets/fonts/fontawesome-webfont.woff',
-		"font-awesome.css"	       = 'code/modules/goonchat/browserassets/css/font-awesome.css',
 		"browserOutput.css"	       = 'code/modules/goonchat/browserassets/css/browserOutput.css',
+		"browserOutput_white.css"  = 'code/modules/goonchat/browserassets/css/browserOutput_white.css',
+	)
+
+/datum/asset/simple/fontawesome
+	verify = FALSE
+	assets = list(
+		"fa-regular-400.eot"  = 'html/font-awesome/webfonts/fa-regular-400.eot',
+		"fa-regular-400.woff" = 'html/font-awesome/webfonts/fa-regular-400.woff',
+		"fa-solid-900.eot"    = 'html/font-awesome/webfonts/fa-solid-900.eot',
+		"fa-solid-900.woff"   = 'html/font-awesome/webfonts/fa-solid-900.woff',
+		"font-awesome.css"    = 'html/font-awesome/css/all.min.css',
+		"v4shim.css"          = 'html/font-awesome/css/v4-shims.min.css'
 	)
 
 /datum/asset/spritesheet/goonchat
@@ -548,6 +561,41 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		"padlock.png"	= 'html/padlock.png'
 	)
 
+/datum/asset/simple/notes
+	assets = list(
+		"high_button.png" = 'html/high_button.png',
+		"medium_button.png" = 'html/medium_button.png',
+		"minor_button.png" = 'html/minor_button.png',
+		"none_button.png" = 'html/none_button.png',
+	)
+
+/datum/asset/spritesheet/simple/pills
+	name ="pills"
+	assets = list(
+		"pill1" = 'icons/UI_Icons/Pills/pill1.png',
+		"pill2" = 'icons/UI_Icons/Pills/pill2.png',
+		"pill3" = 'icons/UI_Icons/Pills/pill3.png',
+		"pill4" = 'icons/UI_Icons/Pills/pill4.png',
+		"pill5" = 'icons/UI_Icons/Pills/pill5.png',
+		"pill6" = 'icons/UI_Icons/Pills/pill6.png',
+		"pill7" = 'icons/UI_Icons/Pills/pill7.png',
+		"pill8" = 'icons/UI_Icons/Pills/pill8.png',
+		"pill9" = 'icons/UI_Icons/Pills/pill9.png',
+		"pill10" = 'icons/UI_Icons/Pills/pill10.png',
+		"pill11" = 'icons/UI_Icons/Pills/pill11.png',
+		"pill12" = 'icons/UI_Icons/Pills/pill12.png',
+		"pill13" = 'icons/UI_Icons/Pills/pill13.png',
+		"pill14" = 'icons/UI_Icons/Pills/pill14.png',
+		"pill15" = 'icons/UI_Icons/Pills/pill15.png',
+		"pill16" = 'icons/UI_Icons/Pills/pill16.png',
+		"pill17" = 'icons/UI_Icons/Pills/pill17.png',
+		"pill18" = 'icons/UI_Icons/Pills/pill18.png',
+		"pill19" = 'icons/UI_Icons/Pills/pill19.png',
+		"pill20" = 'icons/UI_Icons/Pills/pill20.png',
+		"pill21" = 'icons/UI_Icons/Pills/pill21.png',
+		"pill22" = 'icons/UI_Icons/Pills/pill22.png',
+	)
+
 //this exists purely to avoid meta by pre-loading all language icons.
 /datum/asset/language/register()
 	for(var/path in typesof(/datum/language))
@@ -571,34 +619,94 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	for (var/path in subtypesof(/datum/design))
 		var/datum/design/D = path
 
-		// construct the icon and slap it into the resource cache
-		var/atom/item = initial(D.build_path)
-		if (!ispath(item, /atom))
-			// biogenerator outputs to beakers by default
-			if (initial(D.build_type) & BIOGENERATOR)
-				item = /obj/item/reagent_containers/glass/beaker/large
-			else
-				continue  // shouldn't happen, but just in case
+		var/icon_file
+		var/icon_state
+		var/icon/I
 
-		// circuit boards become their resulting machines or computers
-		if (ispath(item, /obj/item/circuitboard))
-			var/obj/item/circuitboard/C = item
-			var/machine = initial(C.build_path)
-			if (machine)
-				item = machine
-		var/icon_file = initial(item.icon)
-		var/icon/I = icon(icon_file, initial(item.icon_state), SOUTH)
+		if(initial(D.research_icon) && initial(D.research_icon_state)) //If the design has an icon replacement skip the rest
+			icon_file = initial(D.research_icon)
+			icon_state = initial(D.research_icon_state)
+			if(!(icon_state in icon_states(icon_file)))
+				warning("design [D] with icon '[icon_file]' missing state '[icon_state]'")
+				continue
+			I = icon(icon_file, icon_state, SOUTH)
 
-		// computers (and snowflakes) get their screen and keyboard sprites
-		if (ispath(item, /obj/machinery/computer) || ispath(item, /obj/machinery/power/solar_control))
-			var/obj/machinery/computer/C = item
-			var/screen = initial(C.icon_screen)
-			var/keyboard = initial(C.icon_keyboard)
-			var/all_states = icon_states(icon_file)
-			if (screen && (screen in all_states))
-				I.Blend(icon(icon_file, screen, SOUTH), ICON_OVERLAY)
-			if (keyboard && (keyboard in all_states))
-				I.Blend(icon(icon_file, keyboard, SOUTH), ICON_OVERLAY)
+		else
+			// construct the icon and slap it into the resource cache
+			var/atom/item = initial(D.build_path)
+			if (!ispath(item, /atom))
+				// biogenerator outputs to beakers by default
+				if (initial(D.build_type) & BIOGENERATOR)
+					item = /obj/item/reagent_containers/glass/beaker/large
+				else
+					continue  // shouldn't happen, but just in case
+
+			// circuit boards become their resulting machines or computers
+			if (ispath(item, /obj/item/circuitboard))
+				var/obj/item/circuitboard/C = item
+				var/machine = initial(C.build_path)
+				if (machine)
+					item = machine
+
+			icon_file = initial(item.icon)
+			icon_state = initial(item.icon_state)
+
+			if(!(icon_state in icon_states(icon_file)))
+				warning("design [D] with icon '[icon_file]' missing state '[icon_state]'")
+				continue
+			I = icon(icon_file, icon_state, SOUTH)
+
+			// computers (and snowflakes) get their screen and keyboard sprites
+			if (ispath(item, /obj/machinery/computer) || ispath(item, /obj/machinery/power/solar_control))
+				var/obj/machinery/computer/C = item
+				var/screen = initial(C.icon_screen)
+				var/keyboard = initial(C.icon_keyboard)
+				var/all_states = icon_states(icon_file)
+				if (screen && (screen in all_states))
+					I.Blend(icon(icon_file, screen, SOUTH), ICON_OVERLAY)
+				if (keyboard && (keyboard in all_states))
+					I.Blend(icon(icon_file, keyboard, SOUTH), ICON_OVERLAY)
 
 		Insert(initial(D.id), I)
 	return ..()
+
+/datum/asset/spritesheet/vending
+	name = "vending"
+
+/datum/asset/spritesheet/vending/register()
+	for (var/k in GLOB.vending_products)
+		var/atom/item = k
+
+
+		var/icon_file
+		var/icon_state
+		var/icon/I
+
+
+		if (!ispath(item, /atom))
+			continue
+
+		icon_file = initial(item.icon)
+		icon_state = initial(item.icon_state)
+
+		if(icon_state in icon_states(icon_file))
+			I = icon(icon_file, icon_state, SOUTH)
+			var/c = initial(item.color)
+			if (!isnull(c) && c != "#FFFFFF")
+				I.Blend(initial(c), ICON_MULTIPLY)
+		else
+			item = new item()
+			I = icon(item.icon, item.icon_state, SOUTH)
+			qdel(item)
+
+		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
+
+		Insert(imgid, I)
+	return ..()
+
+/datum/asset/simple/genetics
+	assets = list(
+		"dna_discovered.png"	= 'html/dna_discovered.png',
+		"dna_undiscovered.png"	= 'html/dna_undiscovered.png',
+		"dna_extra.png" 		= 'html/dna_extra.png'
+)

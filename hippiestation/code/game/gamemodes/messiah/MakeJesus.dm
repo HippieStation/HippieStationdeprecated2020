@@ -13,7 +13,7 @@
 		Jesus.key = chosen_candidate.key
 		Jesus.dna.update_dna_identity()
 		Jesus.gender = MALE
-		Jesus.real_name = SSreligion.deity ? "[SSreligion.deity]" : "Space Jesus"
+		Jesus.real_name = GLOB.deity ? "[GLOB.deity]" : "Space Jesus"
 		Jesus.equipOutfit(/datum/outfit/jesus)
 		SSticker.mode.traitors += Jesus.mind
 		Jesus.mind.special_role = "jesus"
@@ -21,8 +21,9 @@
 		var/datum/objective/missionobj = new
 		missionobj.owner = Jesus.mind
 		missionobj.explanation_text = objective
-		missionobj.completed = 1
-		Jesus.mind.objectives += missionobj
+		missionobj.completed = TRUE
+		var/datum/antagonist/jesus/J = Jesus.mind.add_antag_datum(/datum/antagonist/jesus)
+		J.objectives |= missionobj
 
 		to_chat(Jesus, "<B><font size=3 color=red>You are the Messiah, [Jesus.real_name]!</font></B>")
 		to_chat(Jesus, "You have many miracles at your disposal. These may either be used to aid the crew or protect yourself from harm:")

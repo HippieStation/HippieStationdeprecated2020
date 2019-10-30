@@ -6,6 +6,7 @@ Prismatic extracts:
 	name = "prismatic extract"
 	desc = "It's constantly wet with a semi-transparent, colored goo."
 	effect = "prismatic"
+	effect_desc = "When used it paints whatever it hits."
 	icon_state = "prismatic"
 	var/paintcolor = "#FFFFFF"
 
@@ -22,6 +23,7 @@ Prismatic extracts:
 	desc = "It's constantly wet with a pungent-smelling, clear chemical."
 
 /obj/item/slimecross/prismatic/grey/afterattack(turf/target, mob/user, proximity)
+	. = ..()
 	if(!proximity)
 		return
 	if(istype(target) && target.color != initial(target.color))

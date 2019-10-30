@@ -1,8 +1,8 @@
 /turf/open/floor/mineral/reagent
 	name = "reagent floor"
-	icon_state = "shuttlefloor3"
+	icon_state = "titanium_white"
 	floor_tile = /obj/item/stack/tile/mineral/reagent
-	icons = list("silver","silver_dam")
+	icons = list("titanium_white","titanium_dam1")
 	var/datum/reagent/reagent_type
 	var/obj/effect/particle_effect/fakeholder
 
@@ -10,7 +10,7 @@
 	if(exposed_temperature && !fakeholder)
 		fakeholder = new(get_turf(src))
 		fakeholder.create_reagents(50)
-		fakeholder.reagents.add_reagent(reagent_type.id, 50, reagtemp = exposed_temperature)
+		fakeholder.reagents.add_reagent(reagent_type.type, 50, reagtemp = exposed_temperature)
 		fakeholder.reagents.handle_reactions()
 		QDEL_IN(fakeholder, 150)
 
@@ -31,16 +31,17 @@
 			foundvape.VM.volume += 20000
 		else
 			var/obj/effect/particle_effect/vapour/master/V = new(get_turf(src))
+			log_game("[src] of [reagent_type] was vaporized in [AREACOORD(src)]")
 			V.volume = 20000
 			var/paths = subtypesof(/datum/reagent)
 			for(var/path in paths)
 				var/datum/reagent/RR = new path
-				if(RR.id == reagent_type.id)
+				if(RR.type == reagent_type.type)
 					V.reagent_type = RR
 					break
 				else
 					qdel(RR)
-		ScrapeAway()
+		ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 
 
 /turf/open/floor/mineral/reagent/proc/reagent_act(atom/A)
@@ -81,6 +82,8 @@
 	if(hotness)
 		temperature_expose(exposed_temperature = hotness)
 		to_chat(user, "<span class='warning'>You heat [src] with [I]!</span>")
+		message_admins("[src] of [reagent_type] was heated by [ADMIN_LOOKUPFLW(user)] with [I] in [ADMIN_VERBOSEJMP(src)]")
+		log_game("[src] of [reagent_type] was heated by [ADMIN_LOOKUPFLW(user)] with [I] in [AREACOORD(src)]")
 	..()
 
 /turf/open/floor/mineral/reagent/ex_act()
@@ -90,7 +93,7 @@
 	else
 		fakeholder = new(get_turf(src))
 		fakeholder.create_reagents(30)
-		fakeholder.reagents.add_reagent(reagent_type.id, 50)
+		fakeholder.reagents.add_reagent(reagent_type.type, 50)
 		for(var/datum/reagent/R in fakeholder.reagents.reagent_list)
 			R.on_ex_act()
 		fakeholder.reagents.handle_reactions()
@@ -107,15 +110,15 @@
 		if(user && !silent)
 			to_chat(user, "<span class='notice'>You remove the floor tile.</span>")
 		if(floor_tile && make_tile)
-			var/obj/item/stack/tile/mineral/reagent/F = new(src)
+			var/obj/item/stack/tile/mineral/reagent/F = new floor_tile(src)
 			var/paths = subtypesof(/datum/reagent)
 			for(var/path in paths)
 				var/datum/reagent/RR = new path
-				if(RR.id == reagent_type.id)
+				if(RR.type == reagent_type.type)
 					F.reagent_type = RR
 					F.name ="[reagent_type] floor tiles"
 					F.singular_name = "[reagent_type] floor tile"
-					F.desc = "Floor tiles made of [reagent_type]"
+					F.desc = "floor tiles made of [reagent_type]"
 					F.add_atom_colour(reagent_type.color, FIXED_COLOUR_PRIORITY)
 					break
 				else
@@ -124,5 +127,5 @@
 
 /turf/open/floor/mineral/reagent/Destroy()
 	if(fakeholder)
-		qdel(fakeholder)
+		QDEL_NULL(fakeholder)
 	return ..()

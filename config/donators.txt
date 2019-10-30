@@ -1,0 +1,4 @@
+# Exactly the same as mentors.txt, put the ckey of the person you want to make a donator
+# One ckey per line
+# only use lowercase letters
+jujumatic

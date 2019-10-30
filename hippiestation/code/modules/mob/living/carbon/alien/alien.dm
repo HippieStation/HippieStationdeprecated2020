@@ -1,2 +1,2 @@
 /mob/living/carbon/alien
-  alternate_farts = list('hippiestation/sound/effects/alienfart.ogg')
+	alternate_farts = list('hippiestation/sound/effects/alienfart.ogg')

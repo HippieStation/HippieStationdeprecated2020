@@ -1,5 +1,5 @@
 
-#define DISEASE_LIMIT		3	//Hippie change from 1 to 3
+#define DISEASE_LIMIT		3	// hippie -- change from 1 to 3
 #define VIRUS_SYMPTOM_LIMIT	6
 
 //Visibility Flags

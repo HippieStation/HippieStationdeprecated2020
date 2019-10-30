@@ -37,9 +37,17 @@
 		GLOB.deliverybeacontags += location
 
 /obj/machinery/navbeacon/Destroy()
-	GLOB.navbeacons["[z]"] -= src //Remove from beacon list, if in one.
+	if (GLOB.navbeacons["[z]"])
+		GLOB.navbeacons["[z]"] -= src //Remove from beacon list, if in one.
 	GLOB.deliverybeacons -= src
 	return ..()
+
+/obj/machinery/navbeacon/onTransitZ(old_z, new_z)
+	if (GLOB.navbeacons["[old_z]"])
+		GLOB.navbeacons["[old_z]"] -= src
+	if (GLOB.navbeacons["[new_z]"])
+		GLOB.navbeacons["[new_z]"] += src
+	..()
 
 // set the transponder codes assoc list from codes_txt
 /obj/machinery/navbeacon/proc/set_codes()
@@ -64,10 +72,10 @@
 // hide the object if turf is intact
 /obj/machinery/navbeacon/hide(intact)
 	invisibility = intact ? INVISIBILITY_MAXIMUM : 0
-	updateicon()
+	update_icon()
 
 // update the icon_state
-/obj/machinery/navbeacon/proc/updateicon()
+/obj/machinery/navbeacon/update_icon()
 	var/state="navbeacon[open]"
 
 	if(invisibility)
@@ -81,12 +89,12 @@
 	if(T.intact)
 		return		// prevent intraction when T-scanner revealed
 
-	if(istype(I, /obj/item/screwdriver))
+	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		open = !open
 
 		user.visible_message("[user] [open ? "opens" : "closes"] the beacon's cover.", "<span class='notice'>You [open ? "open" : "close"] the beacon's cover.</span>")
 
-		updateicon()
+		update_icon()
 
 	else if (istype(I, /obj/item/card/id)||istype(I, /obj/item/pda))
 		if(open)

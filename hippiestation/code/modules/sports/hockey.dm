@@ -21,7 +21,7 @@
 	if (slot != SLOT_BACK) //The Pack is cursed so this should not happen, but i'm going to play it safe.
 		remove_stick()
 	if(slot == ITEM_SLOT_BACK)
-		item_flags = NODROP
+		ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/hockeypack/ui_action_click()
 	toggle_stick()
@@ -66,8 +66,7 @@
 	if (on)
 		packstick.unwield()
 		remove_stick()
-		qdel(packstick)
-		packstick = null
+		QDEL_NULL(packstick)
 	return ..()
 
 /obj/item/hockeypack/attack_hand(mob/user)
@@ -112,7 +111,6 @@
 	specthrow_sound = 'sound/weapons/resonator_blast.ogg'
 	throwforce = 3
 	throw_speed = 4
-	item_flags = NODROP
 	attack_verb = list("smacked", "thwacked", "bashed", "struck", "battered")
 	specthrow_forcemult = 1.4
 	specthrow_msg = list("chipped", "shot")
@@ -124,11 +122,15 @@
 	icon_state = "hockeystick[wielded]"
 	return
 
-/obj/item/twohanded/hockeystick/New(parent_pack)
-	..()
-	if(check_pack_exists(parent_pack, src))
-		pack = parent_pack
-		forceMove(pack)
+/obj/item/twohanded/hockeystick/Initialize(mapload)
+	. = ..()
+	if(istype(loc, /obj/item/hockeypack))
+		pack = loc
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+
+/obj/item/twohanded/hockeystick/Destroy()
+	pack = null
+	return ..()
 
 /obj/item/twohanded/hockeystick/attack(mob/living/target, mob/living/user) //Sure it's the powerfist code, right down to the sound effect. Gonna be fun though.
 
@@ -146,7 +148,7 @@
 
 	playsound(loc, 'sound/weapons/resonator_blast.ogg', 50, 1)
 
-	add_logs(user, target, "used a hockey stick on", src) //Very unlikeley non-antags are going to get their hands on this but just in case...
+	log_combat(user, target, "used a hockey stick on", src) //Very unlikeley non-antags are going to get their hands on this but just in case...
 
 	user.changeNext_move(CLICK_CD_MELEE * HOCKEYSTICK_CD)
 
@@ -163,13 +165,6 @@
 		return
 	pack.on = FALSE
 	forceMove(pack)
-
-/obj/item/twohanded/hockeystick/proc/check_pack_exists(parent_pack, mob/living/carbon/human/M, obj/O)
-	if(!parent_pack || !istype(parent_pack, /obj/item/hockeypack))
-		qdel(O)
-		return FALSE
-	else
-		return TRUE
 
 /obj/item/twohanded/hockeystick/Move()
 	..()
@@ -189,16 +184,20 @@
 	var/charged = TRUE
 	var/obj/item/holopuck/newpuck
 
-/obj/item/storage/belt/hippie/ComponentInitialize()
+/obj/item/storage/belt/hippie/hockey/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 2
 	STR.can_hold = typecacheof(list(/obj/item/holopuck))
+
+/obj/item/storage/belt/hippie/hockey/Destroy()
+	QDEL_NULL(newpuck)
+	return ..()
 
 /obj/item/storage/belt/hippie/hockey/equipped(mob/user, slot)
 	..()
 	if(slot == SLOT_BELT)
-		item_flags = NODROP
+		ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/storage/belt/hippie/hockey/item_action_slot_check(slot, mob/user)
 	if(slot == user.getBeltSlot())
@@ -277,7 +276,7 @@
 
 /obj/item/clothing/suit/hippie/hockey/equipped(mob/user, slot)
 	if(slot == SLOT_WEAR_SUIT)
-		item_flags = NODROP
+		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 
 /obj/item/clothing/shoes/hippie/hockey
 	name = "Ka-Nada Hyperblades"
@@ -289,7 +288,7 @@
 
 /obj/item/clothing/shoes/hippie/hockey/equipped(mob/user, slot)
 	if(slot == SLOT_SHOES)
-		item_flags = NODROP
+		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 
 /obj/item/clothing/mask/hippie/hockey
 	name = "Ka-Nada Hockey Mask"
@@ -301,7 +300,7 @@
 
 /obj/item/clothing/mask/hippie/hockey/equipped(mob/user, slot)
 	if(slot == SLOT_WEAR_MASK)
-		item_flags = NODROP
+		ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/clothing/head/hippie/hockey
 	name = "Ka-Nada winter sport combat helmet."
@@ -316,7 +315,7 @@
 
 /obj/item/clothing/mask/head/hockey/equipped(mob/user, slot)
 	if(slot == SLOT_HEAD)
-		item_flags = NODROP
+		ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /datum/action/item_action/toggle_stick
 	name = "Get Stick"

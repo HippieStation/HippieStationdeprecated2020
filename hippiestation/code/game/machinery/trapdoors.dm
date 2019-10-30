@@ -22,7 +22,7 @@
 	icon_state = "open"
 	spawn(5)
 		for(var/mob/living/M in loc)
-			if(!M.floating)
+			if(!(M.movement_type & FLOATING))
 				M.forceMove(src)
 				trap_flush()
 				addtimer(CALLBACK(src, .proc/close), TIME_AUTO_CLOSE_MOB)
@@ -42,16 +42,16 @@
 		return TRUE
 
 /obj/machinery/disposal/trapdoor/Initialize(loc,var/obj/structure/disposalconstruct/make_from)
-	. = ..()
 	trunk = locate() in loc
 	if(trunk)
 		trunk.linked = src
+	.=..()
 
 /obj/machinery/disposal/trapdoor/Crossed(AM as mob|obj)
 	if(open)
 		if(istype(AM, /mob/living))
 			var/mob/living/M = AM
-			if(M.floating)
+			if((M.movement_type & FLOATING))
 				return
 			M.forceMove(src)
 			trap_flush()
@@ -78,7 +78,7 @@
 		return
 	add_fingerprint(user)
 	if(user == target)
-		if(target.floating)
+		if((target.movement_type & FLOATING))
 			user.visible_message("[user] is attempting to dive into [name].", \
 				"<span class='notice'>You start diving into [name]...</span>")
 			if(!do_mob(target, user, 10))
@@ -98,7 +98,7 @@
 			var/turf/open/floor/T = get_turf(src)
 			var/M = "fall inside"
 			var/U = "falls inside"
-			if(user.has_trait(TRAIT_CLUMSY))
+			if(HAS_TRAIT(user, TRAIT_CLUMSY))
 				chance = 80
 				M = "accidentally do a backward flip, falling inside"
 				U = "accidentally does a backward flip, falling inside"
@@ -131,7 +131,7 @@
 			target.forceMove(src)
 			target.visible_message("<span class='danger'>[user] has pushed [target] in \the [name].</span>", \
 				"<span class='userdanger'>[user] has pushedd [target] in \the [name].</span>")
-			add_logs(user, target, "pushed", addition="into [name]")
+			log_combat(user, target, "pushed", addition="into [name]")
 			sleep(5)
 			trap_flush()
 

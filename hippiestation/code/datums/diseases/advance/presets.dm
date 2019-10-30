@@ -42,3 +42,18 @@
 	name = "Experimental Insomnia Cure"
 	symptoms = list(new/datum/symptom/narcolepsy)
 	..()
+
+//Super mega healy thing
+/datum/disease/advance/heal/godblood
+	name = "Godblood Syndrome"
+	mutable = FALSE	//The essence of the gods laughs at your pitiful SCIENCE!
+	stage_prob = 10
+	bypasses_immunity = TRUE
+	disease_flags = CAN_CARRY|CAN_RESIST	//Once you drink this, there's no going back
+	symptoms = list(new/datum/symptom/mind_restoration,
+					new/datum/symptom/heal/supertoxin,
+					new/datum/symptom/heal/superbrute,
+					new/datum/symptom/heal/heatresistance,
+					new/datum/symptom/heal/dna,
+					new/datum/symptom/oxygen
+					)

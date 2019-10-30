@@ -15,9 +15,8 @@
 
 
 /obj/machinery/reagent_material_manipulator/Initialize()
-	. =..()
+	. = ..()
 	create_reagents(100)
-
 
 /obj/machinery/reagent_material_manipulator/attackby(obj/item/I, mob/user)
 	if(user.a_intent == INTENT_HARM)
@@ -36,7 +35,7 @@
 			for(var/X in W.reagents.reagent_list)
 				var/datum/reagent/S = X
 
-				if(synthesis && S.id != synthesis.id)
+				if(synthesis && S.type != synthesis.type)
 					to_chat(user, "<span class='warning'>[src] already has a reagent of a different type, remove it before adding something else!</span>")
 					return
 

@@ -46,3 +46,14 @@
 							/obj/item/stock_parts/scanning_module = 4,
 							/obj/item/stack/ore/bluespace_crystal = 3,//this thing is an utter SHIT to make
 							/obj/item/stock_parts/cell = 1)
+
+/obj/item/circuitboard/machine/autodoc
+	name = "circuit board (Auto-Doc Mark IX)"
+	build_path = /obj/machinery/autodoc
+	req_components = list(
+							/obj/item/stock_parts/capacitor = 2,
+							/obj/item/stock_parts/scanning_module = 1,
+							/obj/item/stock_parts/manipulator = 2,
+							/obj/item/stock_parts/micro_laser = 2,
+							/obj/item/stock_parts/matter_bin = 1,
+							/obj/item/stack/sheet/glass = 1)

@@ -46,7 +46,7 @@
 		playsound(src, 'sound/weapons/tap.ogg', 20, 1)
 		update_icon()
 		return
-	if(nadeassembly && istype(I, /obj/item/wirecutters))
+	if(nadeassembly && I.tool_behaviour == TOOL_WIRECUTTER)
 		I.play_tool_sound(src, 20)
 		nadeassembly.forceMove(get_turf(src))
 		nadeassembly.master = null
@@ -73,7 +73,11 @@
 			explosion(location, boom_sizes[1], boom_sizes[2], boom_sizes[3])
 	if(ismob(target))
 		var/mob/M = target
-		M.gib()
+		if(ishuman(M)) // hippie -- allows gibbing of human corpses, instagibbing with X4
+			if(M.stat || full_damage_on_mobs)
+				M.gib(1, 1, 1)
+		else // hippie end
+			M.gib()
 	qdel(src)
 
 //assembly stuff
@@ -99,6 +103,7 @@
 		to_chat(user, "Timer set for [det_time] seconds.")
 
 /obj/item/grenade/plastic/afterattack(atom/movable/AM, mob/user, flag)
+	. = ..()
 	aim_dir = get_dir(user,AM)
 	if(!flag)
 		return
@@ -113,7 +118,9 @@
 		target = AM
 
 		message_admins("[ADMIN_LOOKUPFLW(user)] planted [name] on [target.name] at [ADMIN_VERBOSEJMP(target)] with [det_time] second fuse")
-		log_game("[key_name(user)] planted [name] on [target.name] at [AREACOORD(user)] with [det_time] second fuse")
+		log_game("[key_name(user)] planted [name] on [target.name] at [AREACOORD(user)] with a [det_time] second fuse")
+
+		notify_ghosts("[user] has planted \a [src] on [target] with a [det_time] second fuse!", source = target, action = NOTIFY_ORBIT, flashwindow = FALSE, header = "Explosive Planted")
 
 		moveToNullspace()	//Yep
 
@@ -122,31 +129,30 @@
 			I.throw_speed = max(1, (I.throw_speed - 3))
 			I.throw_range = max(1, (I.throw_range - 3))
 			I.embedding = I.embedding.setRating(embed_chance = 0)
+		else if(istype(AM, /mob/living))
+			plastic_overlay.layer = FLOAT_LAYER
 
-		target.add_overlay(plastic_overlay, TRUE)
-		if(!nadeassembly)
-			to_chat(user, "<span class='notice'>You plant the bomb. Timer counting down from [det_time].</span>")
-			addtimer(CALLBACK(src, .proc/prime), det_time*10)
-		else
-			qdel(src)	//How?
+		target.add_overlay(plastic_overlay)
+		to_chat(user, "<span class='notice'>You plant the bomb. Timer counting down from [det_time].</span>")
+		addtimer(CALLBACK(src, .proc/prime), det_time*10)
 
 /obj/item/grenade/plastic/proc/shout_syndicate_crap(mob/M)
 	if(!M)
 		return
 	var/message_say = "FOR NO RAISIN!"
 	if(M.mind)
-		var/datum/mind/UM = M
+		var/datum/mind/UM = M.mind
 		if(UM.has_antag_datum(/datum/antagonist/nukeop) || UM.has_antag_datum(/datum/antagonist/traitor))
 			message_say = "FOR THE SYNDICATE!"
 		else if(UM.has_antag_datum(/datum/antagonist/changeling))
 			message_say = "FOR THE HIVE!"
 		else if(UM.has_antag_datum(/datum/antagonist/cult))
-			message_say = "FOR NAR-SIE!"
+			message_say = "FOR NAR'SIE!"
 		else if(UM.has_antag_datum(/datum/antagonist/clockcult))
 			message_say = "FOR RATVAR!"
 		else if(UM.has_antag_datum(/datum/antagonist/rev))
 			message_say = "VIVA LA REVOLUTION!"
-	M.say(message_say)
+	M.say(message_say, forced="C4 suicide")
 
 /obj/item/grenade/plastic/suicide_act(mob/user)
 	message_admins("[ADMIN_LOOKUPFLW(user)] suicided with [src] at [ADMIN_VERBOSEJMP(user)]")
@@ -171,13 +177,12 @@
 	name = "C4"
 	desc = "Used to put holes in specific areas without too much extra hole. A saboteur's favorite."
 	gender = PLURAL
-	var/timer = 10
 	var/open_panel = 0
 	can_attach_mob = TRUE
 
-/obj/item/grenade/plastic/c4/New()
+/obj/item/grenade/plastic/c4/Initialize()
+	. = ..()
 	wires = new /datum/wires/explosive/c4(src)
-	..()
 
 /obj/item/grenade/plastic/c4/Destroy()
 	qdel(wires)
@@ -192,53 +197,19 @@
 	message_admins("[ADMIN_LOOKUPFLW(user)] suicided with [name] at [ADMIN_VERBOSEJMP(src)]")
 	log_game("[key_name(user)] suicided with [name] at [AREACOORD(user)]")
 	sleep(10)
-	explode(get_turf(user))
+	prime()
 	user.gib(1, 1)
 
 /obj/item/grenade/plastic/c4/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/screwdriver))
+	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		open_panel = !open_panel
 		to_chat(user, "<span class='notice'>You [open_panel ? "open" : "close"] the wire panel.</span>")
 	else if(is_wire_tool(I))
 		wires.interact(user)
 	else
 		return ..()
-
-/obj/item/grenade/plastic/c4/attack_self(mob/user)
-	var/newtime = input(usr, "Please set the timer.", "Timer", 10) as num
-	if(user.get_active_held_item() == src)
-		newtime = CLAMP(newtime, 10, 60000)
-		timer = newtime
-		to_chat(user, "Timer set for [timer] seconds.")
-
-/obj/item/grenade/plastic/c4/afterattack(atom/movable/AM, mob/user, flag)
-	if (!flag)
-		return
-	if(ismob(AM) && !can_attach_mob)
-		return
-	if(loc == AM)
-		return
-	if(SEND_SIGNAL(AM, COMSIG_CONTAINS_STORAGE) && !SEND_SIGNAL(AM, COMSIG_IS_STORAGE_LOCKED))
-		return
-
-	to_chat(user, "<span class='notice'>You start planting the bomb...</span>")
-
-	if(do_after(user, 30, target = AM))
-		if(!user.temporarilyRemoveItemFromInventory(src))
-			return
-		src.target = AM
-		moveToNullspace()
-
-		var/message = "[ADMIN_LOOKUPFLW(user)] planted [name] on [target.name] at [ADMIN_VERBOSEJMP(target)] with [timer] second fuse"
-		GLOB.bombers += message
-		message_admins(message,0,1)
-		log_game("[key_name(user)] planted [name] on [target.name] at [AREACOORD(target)] with [timer] second fuse")
-
-		target.add_overlay(plastic_overlay, TRUE)
-		to_chat(user, "<span class='notice'>You plant the bomb. Timer counting down from [timer].</span>")
-		addtimer(CALLBACK(src, .proc/explode), timer * 10)
-
-/obj/item/grenade/plastic/c4/proc/explode()
+/* hippie -- did nothing but break shit
+/obj/item/grenade/plastic/c4/prime()
 	if(QDELETED(src))
 		return
 	var/turf/location
@@ -253,7 +224,7 @@
 	if(location)
 		explosion(location,0,0,3)
 	qdel(src)
-
+*/
 /obj/item/grenade/plastic/c4/attack(mob/M, mob/user, def_zone)
 	return
 

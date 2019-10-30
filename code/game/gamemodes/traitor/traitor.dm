@@ -8,10 +8,11 @@
 /datum/game_mode/traitor
 	name = "traitor"
 	config_tag = "traitor"
+	report_type = "traitor"
 	antag_flag = ROLE_TRAITOR
 	false_report_weight = 20 //Reports of traitors are pretty common.
 	restricted_jobs = list("Cyborg")//They are part of the AI if he is traitor so are they, they use to get double chances
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel")
+	protected_jobs = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel") // hippie -- adds HoP
 	required_players = 0
 	required_enemies = 1
 	recommended_enemies = 4
@@ -56,7 +57,13 @@
 		log_game("[key_name(traitor)] has been selected as a [traitor_name]")
 		antag_candidates.Remove(traitor)
 
-	return !traitors_required || pre_traitors.len > 0
+	var/enough_tators = !traitors_required || pre_traitors.len > 0
+
+	if(!enough_tators)
+		setup_error = "Not enough traitor candidates"
+		return FALSE
+	else
+		return TRUE
 
 
 /datum/game_mode/traitor/post_setup()
@@ -78,8 +85,8 @@
 	if((SSticker.mode.traitors.len + pre_traitors.len) >= traitorcap) //Upper cap for number of latejoin antagonists
 		return
 	if((SSticker.mode.traitors.len + pre_traitors.len) <= (traitorcap - 2) || prob(100 / (tsc * 2)))
-		if(ROLE_TRAITOR in character.client.prefs.be_special)
-			if(!jobban_isbanned(character, ROLE_TRAITOR) && !QDELETED(character) && !jobban_isbanned(character, ROLE_SYNDICATE) && !QDELETED(character))
+		if(antag_flag in character.client.prefs.be_special)
+			if(!is_banned_from(character.ckey, list(ROLE_TRAITOR, ROLE_SYNDICATE)) && !QDELETED(character))
 				if(age_check(character.client))
 					if(!(character.job in restricted_jobs))
 						add_latejoin_traitor(character.mind)

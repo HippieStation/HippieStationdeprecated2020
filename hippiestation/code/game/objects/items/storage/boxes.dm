@@ -1,6 +1,14 @@
 /obj/item/storage/box
 	icon_hippie = 'hippiestation/icons/obj/storage.dmi'
 
+/obj/item/storage/box/update_icon()
+	. = ..()
+	if(illustration)
+		cut_overlays()
+		var/image/I = image(icon = 'icons/obj/storage.dmi', icon_state = illustration) // use the /tg/ icons
+		I.pixel_y = 5
+		add_overlay(I)
+
 /obj/item/storage/box/monkeycubes
 	icon = 'icons/obj/storage.dmi'
 
@@ -9,6 +17,9 @@
 
 /obj/item/storage/box/cyber_implants
 	icon = 'icons/obj/storage.dmi'
+
+/obj/item/storage/box/mousetraps
+	illustration = "mousetrap" // fucking tg typoed it
 
 /obj/item/storage/box/emergency/old
 	icon = 'icons/obj/storage.dmi'

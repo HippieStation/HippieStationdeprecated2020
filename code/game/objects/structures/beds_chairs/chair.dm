@@ -15,10 +15,10 @@
 	layer = OBJ_LAYER
 
 /obj/structure/chair/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>It's held together by a couple of <b>bolts</b>.</span>")
+	. = ..()
+	. += "<span class='notice'>It's held together by a couple of <b>bolts</b>.</span>"
 	if(!has_buckled_mobs())
-		to_chat(user, "<span class='notice'>Drag your sprite to sit in it.</span>")
+		. += "<span class='notice'>Drag your sprite to sit in it.</span>"
 
 /obj/structure/chair/Initialize()
 	. = ..()
@@ -71,7 +71,7 @@
 	qdel(src)
 
 /obj/structure/chair/attackby(obj/item/W, mob/user, params)
-	if(istype(W, /obj/item/wrench) && !(flags_1&NODECONSTRUCT_1))
+	if(W.tool_behaviour == TOOL_WRENCH && !(flags_1&NODECONSTRUCT_1))
 		W.play_tool_sound(src)
 		deconstruct()
 	else if(istype(W, /obj/item/assembly/shock_kit))
@@ -192,10 +192,20 @@
 /obj/structure/chair/comfy/lime
 	color = rgb(255,251,0)
 
+/obj/structure/chair/comfy/shuttle
+	name = "shuttle seat"
+	desc = "A comfortable, secure seat. It has a more sturdy looking buckling system, for smoother flights."
+	icon_state = "shuttle_chair"
+
+/obj/structure/chair/comfy/shuttle/GetArmrest()
+	return mutable_appearance('icons/obj/chairs.dmi', "shuttle_chair_armrest")
+
 /obj/structure/chair/office
 	anchored = FALSE
 	buildstackamount = 5
 	item_chair = null
+	icon_state = "officechair_dark"
+
 
 /obj/structure/chair/office/Moved()
 	. = ..()
@@ -204,9 +214,6 @@
 
 /obj/structure/chair/office/light
 	icon_state = "officechair_white"
-
-/obj/structure/chair/office/dark
-	icon_state = "officechair_dark"
 
 //Stool
 
@@ -295,6 +302,8 @@
 	if(remaining_mats)
 		for(var/M=1 to remaining_mats)
 			new stack_type(get_turf(loc))
+	else if(materials[MAT_METAL])
+		new /obj/item/stack/rods(get_turf(loc), 2)
 	qdel(src)
 
 
@@ -307,7 +316,7 @@
 	return 0
 
 /obj/item/chair/afterattack(atom/target, mob/living/carbon/user, proximity)
-	..()
+	. = ..()
 	if(!proximity)
 		return
 	if(prob(break_chance))
@@ -315,7 +324,7 @@
 		if(iscarbon(target))
 			var/mob/living/carbon/C = target
 			if(C.health < C.maxHealth*0.5)
-				C.Knockdown(20)
+				C.Paralyze(20)
 		smash(user)
 
 
@@ -410,9 +419,17 @@
 	if(has_gravity())
 		playsound(src, 'sound/machines/clockcult/integration_cog_install.ogg', 50, TRUE)
 
-/obj/structure/chair/shuttle
-	name = "shuttle seat"
-	desc = "A comfortable, secure seat. It has a more sturdy looking buckling system, for smoother flights."
-	icon = 'goon/icons/obj/chairs.dmi'
-	icon_state = "shuttle_chair" //thanks gannets!
+/obj/structure/chair/mime
+	name = "invisible chair"
+	desc = "The mime needs to sit down and shut up."
+	anchored = FALSE
+	icon_state = null
+	buildstacktype = null
+	item_chair = null
+	flags_1 = NODECONSTRUCT_1
 
+/obj/structure/chair/mime/post_buckle_mob(mob/living/M)
+	M.pixel_y += 5
+
+/obj/structure/chair/mime/post_unbuckle_mob(mob/living/M)
+	M.pixel_y -= 5

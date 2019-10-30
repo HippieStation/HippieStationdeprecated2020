@@ -1,24 +1,30 @@
 /obj/item/bodypart/head
+	var/obj/item/stack/teeth/teeth = null
 	var/list/teeth_list = list() //Teeth are added in carbon/human/New()
 	var/max_teeth = 32 //Changed based on teeth type the species spawns with
 
-/mob/living/carbon/human/regenerate_organs()
+/obj/item/bodypart/head/New()
 	..()
 	update_teeth()
 
-/mob/living/carbon/human/proc/update_teeth()
-	var/obj/item/bodypart/head/U = locate() in bodyparts
-	if(istype(U))
-		U.teeth_list.Cut() //Clear out their mouth of teeth if they had any
-		var/obj/item/stack/teeth/T = new dna.species.teeth_type
-		T.forceMove(U)
-		U.max_teeth = T.max_amount //Set max teeth for the head based on teeth spawntype
-		T.amount = T.max_amount
-		U.teeth_list += T
+/obj/item/bodypart/head/Destroy()
+	QDEL_LIST(teeth_list) //order is sensitive, see warning in handle_atom_del() below
+	if(teeth)
+		QDEL_NULL(teeth)
+	return ..()
+
+/obj/item/bodypart/head/proc/update_teeth()
+	teeth_list.Cut() //Clear out their mouth of teeth if they had any
+	if(teeth)
+		QDEL_NULL(teeth)
+	teeth = new (owner ? owner.dna.species.teeth_type : /obj/item/stack/teeth/generic)
+	teeth.forceMove(src)
+	max_teeth = teeth.max_amount //Set max teeth for the head based on teeth spawntype
+	teeth.amount = teeth.max_amount
+	teeth_list += teeth
 
 /obj/item/bodypart/head/proc/knock_out_teeth(throw_dir, num=32) //Won't support knocking teeth out of a dismembered head or anything like that yet.
 	num = CLAMP(num, 1, 32)
-	var/done = 0
 	if(teeth_list && teeth_list.len) //We still have teeth
 		var/stacks = rand(1,3)
 		for(var/curr = 1 to stacks) //Random amount of teeth stacks
@@ -37,8 +43,8 @@
 					break
 			T.throw_at(target,T.throw_range,T.throw_speed)
 			teeth.zero_amount() //Try to delete the teeth
-			done = 1
-	return done
+			return TRUE
+	return FALSE
 
 /obj/item/bodypart/head/proc/get_teeth() //returns collective amount of teeth
 	var/amt = 0
@@ -63,8 +69,52 @@
 	message = prob(intensity) ? replacetext(message, "k", "gh") : message
 	return message
 
-/mob
+/obj/item/proc/tearoutteeth(var/mob/living/carbon/C, var/mob/living/user)
+	if(ishuman(C) && user.zone_selected == "mouth")
+		var/mob/living/carbon/human/H = C
+		var/obj/item/bodypart/head/O = locate() in H.bodyparts
+		if(!O || !O.get_teeth())
+			to_chat(user, "<span class='notice'>[H] doesn't have any teeth left!</span>")
+			return TRUE
+		if(user.next_move > world.time)
+			user.changeNext_move(50)
+			H.visible_message("<span class='danger'>[user] tries to tear off [H]'s tooth with [src]!</span>",
+								"<span class='userdanger'>[user] tries to tear off your tooth with [src]!</span>")
+			if(do_after(user, 50, target = H))
+				if(!O || !O.get_teeth()) return TRUE
+				var/obj/item/stack/teeth/E = pick(O.teeth_list)
+				if(!E || E.zero_amount()) return TRUE
+				var/obj/item/stack/teeth/T = new E.type(H.loc, 1)
+				T.copy_evidences(E)
+				E.use(1)
+				E.zero_amount() //Try to delete the teeth
+				log_combat(user, H, "torn out the tooth from", src)
+				H.visible_message("<span class='danger'>[user] tears off [H]'s tooth with [src]!</span>",
+								"<span class='userdanger'>[user] tears off your tooth with [src]!</span>")
+				var/armor = H.run_armor_check(O, "melee")
+				H.apply_damage(rand(1,5), BRUTE, O, armor)
+				playsound(H, 'hippiestation/sound/misc/tear.ogg', 40, 1, -1) //RIP AND TEAR. RIP AND TEAR.
+				H.emote("scream")
+			else
+				to_chat(user, "<span class='notice'>Your attempt to pull out a teeth fails...</span>")
+				user.changeNext_move(0)
+			return TRUE
+		else
+			to_chat(user, "<span class='notice'>You are already trying to pull out a teeth!</span>")
+		return TRUE
+
+
+/mob/living/carbon/human // as far as i know,only humans have teeth
 	var/lisp = 0
+
+/mob/living/carbon/human/regenerate_organs()
+	..()
+	update_teeth()
+
+/mob/living/carbon/human/proc/update_teeth()
+	var/obj/item/bodypart/head/U = locate() in bodyparts
+	if(istype(U))
+		U.update_teeth()
 
 /mob/living/carbon/human/proc/checklisp()
 	var/obj/item/bodypart/head/O = locate(/obj/item/bodypart/head) in bodyparts
@@ -75,37 +125,3 @@
 			lisp = (1 - (O.get_teeth()/O.max_teeth)) * 100 //Less teeth = more lisp
 	else
 		lisp = 0 //No head = no lisp.
-
-/obj/item/proc/tearoutteeth(var/mob/living/carbon/C, var/mob/living/user)
-	if(ishuman(C) && user.zone_selected == "mouth")
-		var/mob/living/carbon/human/H = C
-		var/obj/item/bodypart/head/O = locate() in H.bodyparts
-		if(!O || !O.get_teeth())
-			to_chat(user, "<span class='notice'>[H] doesn't have any teeth left!</span>")
-			return 1
-		if(user.next_move > world.time)
-			user.changeNext_move(50)
-			H.visible_message("<span class='danger'>[user] tries to tear off [H]'s tooth with [src]!</span>",
-								"<span class='userdanger'>[user] tries to tear off your tooth with [src]!</span>")
-			if(do_after(user, 50, target = H))
-				if(!O || !O.get_teeth()) return 1
-				var/obj/item/stack/teeth/E = pick(O.teeth_list)
-				if(!E || E.zero_amount()) return 1
-				var/obj/item/stack/teeth/T = new E.type(H.loc, 1)
-				T.copy_evidences(E)
-				E.use(1)
-				E.zero_amount() //Try to delete the teeth
-				add_logs(user, H, "torn out the tooth from", src)
-				H.visible_message("<span class='danger'>[user] tears off [H]'s tooth with [src]!</span>",
-								"<span class='userdanger'>[user] tears off your tooth with [src]!</span>")
-				var/armor = H.run_armor_check(O, "melee")
-				H.apply_damage(rand(1,5), BRUTE, O, armor)
-				playsound(H, 'hippiestation/sound/misc/tear.ogg', 40, 1, -1) //RIP AND TEAR. RIP AND TEAR.
-				H.emote("scream")
-			else
-				to_chat(user, "<span class='notice'>Your attempt to pull out a teeth fails...</span>")
-				user.changeNext_move(0)
-			return 1
-		else
-			to_chat(user, "<span class='notice'>You are already trying to pull out a teeth!</span>")
-		return 1

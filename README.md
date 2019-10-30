@@ -34,6 +34,12 @@ hassle if you want to make any changes at all, so it's not recommended.)
 
 Option 3: Download a pre-compiled nightly at https://tgstation13.download/nightlies/ (same caveats as option 2)
 
+Option 4: Use our docker image that tracks the master branch (See commits for build status. Again, same caveats as option 2)
+
+```
+docker run -d -p <your port>:1337 -v /path/to/your/config:/hippiestation/config -v /path/to/your/data:/hippiestation/data hippiestation/hippiestation <dream daemon options i.e. -public or -params>
+```
+
 ## INSTALLATION
 
 First-time installation should be fairly straightforward. First, you'll need
@@ -74,7 +80,7 @@ where the admin rank must be properly capitalised.
 This codebase also depends on a native library called rust-g. A precompiled
 Windows DLL is included in this repository, but Linux users will need to build
 and install it themselves. Directions can be found at the [rust-g
-repo](https://github.com/tgstation13/rust-g).
+repo](https://github.com/tgstation/rust-g).
 
 Finally, to start the server, run Dream Daemon and enter the path to your
 compiled tgstation.dmb file. Make sure to set the port to the one you
@@ -94,13 +100,13 @@ recompile the game.  Once you start the server up again, you should be running
 the new version.
 
 ## MAPS
-Hippie Station currently comes equipped with six maps.
+Hippie Station currently comes equipped with five maps.
 * [Hippie BoxStation (default)](https://tgstation13.org/wiki/Boxstation)
-* [BoxStation (default)](https://tgstation13.org/wiki/Boxstation)
+* [BoxStation](https://tgstation13.org/wiki/Boxstation)
 * [MetaStation](https://tgstation13.org/wiki/MetaStation)
 * [DeltaStation](https://tgstation13.org/wiki/DeltaStation)
-* [OmegaStation](https://tgstation13.org/wiki/OmegaStation)
 * [PubbyStation](https://tgstation13.org/wiki/PubbyStation)
+* [DonutStation](https://tgstation13.org/wiki/Donutstation)
 
 
 All maps have their own code file that is in the base of the _maps directory. Maps are loaded dynamically when the game starts. Follow this guideline when adding your own map, to your fork, for easy compatibility.

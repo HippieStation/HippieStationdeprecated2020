@@ -1,9 +1,9 @@
 /obj/effect/particle_effect/foam
 	alpha = 0
 
-/obj/effect/particle_effect/foam/New(loc)
-	..()
-	addtimer(CALLBACK(src, /obj/effect/particle_effect/.proc/smokefoam_fade_in), 0)
+/obj/effect/particle_effect/foam/Initialize(loc)
+	. = ..()
+	addtimer(CALLBACK(src, .proc/smokefoam_fade_in), 0)
 
 /obj/effect/particle_effect/foam/kill_foam()
 	..()

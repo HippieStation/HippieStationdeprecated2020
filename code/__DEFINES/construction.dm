@@ -28,10 +28,6 @@
 #define AIRLOCK_ASSEMBLY_NEEDS_ELECTRONICS 1
 #define AIRLOCK_ASSEMBLY_NEEDS_SCREWDRIVER 2
 
-//plastic flaps construction states
-#define PLASTIC_FLAPS_NORMAL 0
-#define PLASTIC_FLAPS_DETACHED 1
-
 //default_unfasten_wrench() return defines
 #define CANT_UNFASTEN 0
 #define FAILED_UNFASTEN 1
@@ -57,7 +53,7 @@
 
 //other construction-related things
 
-//windows affected by nar-sie turn this color.
+//windows affected by Nar'Sie turn this color.
 #define NARSIE_WINDOW_COLOUR "#7D1919"
 
 //let's just pretend fulltile windows being children of border windows is fine
@@ -81,7 +77,7 @@
 //The maximum size of a stack object.
 #define MAX_STACK_SIZE 50
 //maximum amount of cable in a coil
-#define MAXCOIL 30
+#define MAXCOIL 15
 
 //tablecrafting defines
 #define CAT_NONE	""
@@ -111,3 +107,5 @@
 #define RCD_AIRLOCK 2
 #define RCD_DECONSTRUCT 3
 #define RCD_WINDOWGRILLE 4
+#define RCD_MACHINE 8
+#define RCD_COMPUTER 16

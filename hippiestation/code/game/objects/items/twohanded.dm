@@ -55,8 +55,6 @@
 	var/burnwall = TRUE
 	var/static/list/extra_damage_targets = typecacheof(list(/obj/structure/door_assembly, /obj/structure/grille, /obj/structure/mineral_door, /obj/structure/window, /obj/machinery/door))
 
-/obj/item/twohanded/fireaxe/fireyaxe/Initialize()
-	.=..()
 
 /obj/item/twohanded/fireaxe/fireyaxe/update_icon()
 	icon_state = "fireaxe[wielded]"

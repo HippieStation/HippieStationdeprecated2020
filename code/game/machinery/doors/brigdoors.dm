@@ -1,7 +1,7 @@
 #define CHARS_PER_LINE 5
 #define FONT_SIZE "5pt"
 #define FONT_COLOR "#09f"
-#define FONT_STYLE "Arial Black"
+#define FONT_STYLE "Small Fonts"
 #define MAX_TIMER 9000
 
 #define PRESET_SHORT 1200
@@ -36,6 +36,7 @@
 
 	maptext_height = 26
 	maptext_width = 32
+	maptext_y = -1
 
 /obj/machinery/door_timer/Initialize()
 	. = ..()
@@ -57,9 +58,9 @@
 		for(var/obj/structure/closet/secure_closet/brig/C in urange(20, src))
 			if(C.id == id)
 				targets += C
-		for(var/obj/machinery/disposal/trapdoor/T in urange(20, src))
+		for(var/obj/machinery/disposal/trapdoor/T in urange(20, src)) // hippie start -- trapdoors
 			if(T.id == src.id)
-				targets += T
+				targets += T // hippie end
 
 	if(!targets.len)
 		stat |= BROKEN
@@ -77,12 +78,6 @@
 		if(world.time - activation_time >= timer_duration)
 			timer_end() // open doors, reset timer, clear status screen
 		update_icon()
-
-// has the door power sitatuation changed, if so update icon.
-/obj/machinery/door_timer/power_change()
-	..()
-	update_icon()
-
 
 // open/closedoor checks if door_timer has power, if so it checks if the
 // linked door is open/closed (by density) then opens it/closes it.
@@ -105,8 +100,8 @@
 			continue
 		C.locked = TRUE
 		C.update_icon()
-	for(var/obj/machinery/disposal/trapdoor/T in targets)
-		T.close()
+	for(var/obj/machinery/disposal/trapdoor/T in targets) // hippie start -- trapdoors
+		T.close() // hippie end
 	return 1
 
 
@@ -136,8 +131,8 @@
 			continue
 		C.locked = FALSE
 		C.update_icon()
-	for(var/obj/machinery/disposal/trapdoor/T in targets)
-		T.open()
+	for(var/obj/machinery/disposal/trapdoor/T in targets) // hippie start -- trapdoors
+		T.open() // hippie end
 
 	return 1
 
@@ -175,7 +170,7 @@
 	if(timing)
 		var/disp1 = id
 		var/time_left = time_left(seconds = TRUE)
-		var/disp2 = "[add_zero(num2text((time_left / 60) % 60),2)]~[add_zero(num2text(time_left % 60), 2)]"
+		var/disp2 = "[add_zero(num2text((time_left / 60) % 60),2)]:[add_zero(num2text(time_left % 60), 2)]"
 		if(length(disp2) > CHARS_PER_LINE)
 			disp2 = "Error"
 		update_display(disp1, disp2)
@@ -196,6 +191,8 @@
 //Checks to see if there's 1 line or 2, adds text-icons-numbers/letters over display
 // Stolen from status_display
 /obj/machinery/door_timer/proc/update_display(line1, line2)
+	line1 = uppertext(line1)
+	line2 = uppertext(line2)
 	var/new_text = {"<div style="font-size:[FONT_SIZE];color:[FONT_COLOR];font:'[FONT_STYLE]';text-align:center;" valign="top">[line1]<br>[line2]</div>"}
 	if(maptext != new_text)
 		maptext = new_text

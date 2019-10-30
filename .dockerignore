@@ -14,7 +14,6 @@ TGS3.json
 .git/objects
 .git/refs
 .vs*
-tools
 cfg
 data
 SQL
@@ -24,6 +23,13 @@ tgstation.int
 tgstation.rsc
 tgstation.lk
 tgstation.dyn.rsc
+hippiestation.dmb
+hippiestation.int
+hippiestation.rsc
+hippiestation.lk
+hippiestation.dyn.rsc
 libmariadb.dll
 rust_g.dll
+BSQL.dll
+appveyor.yml
 Dockerfile

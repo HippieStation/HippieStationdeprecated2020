@@ -36,12 +36,12 @@ This file contains the arcane tome files.
 	if(!iscultist(user))
 		return ..()
 	if(iscultist(M))
-		if(M.reagents && M.reagents.has_reagent("holywater")) //allows cultists to be rescued from the clutches of ordained religion
+		if(M.reagents && M.reagents.has_reagent(/datum/reagent/water/holywater)) //allows cultists to be rescued from the clutches of ordained religion
 			to_chat(user, "<span class='cult'>You remove the taint from [M].</span>" )
 			var/holy2unholy = M.reagents.get_reagent_amount("holywater")
-			M.reagents.del_reagent("holywater")
-			M.reagents.add_reagent("unholywater",holy2unholy)
-			add_logs(user, M, "smacked", src, " removing the holy water from them")
+			M.reagents.del_reagent(/datum/reagent/water/holywater)
+			M.reagents.add_reagent(/datum/reagent/fuel/unholywater,holy2unholy)
+			log_combat(user, M, "smacked", src, " removing the holy water from them")
 		return
 	M.take_bodypart_damage(0, 15) //Used to be a random between 5 and 20
 	playsound(M, 'sound/weapons/sear.ogg', 50, 1)
@@ -49,7 +49,7 @@ This file contains the arcane tome files.
 					  "<span class='userdanger'>[user] strikes you with the tome, searing your flesh!</span>")
 	flick("tome_attack", src)
 	user.do_attack_animation(M)
-	add_logs(user, M, "smacked", src)
+	log_combat(user, M, "smacked", src)
 
 /obj/item/tome/attack_self(mob/user)
 	if(!iscultist(user))
@@ -227,7 +227,7 @@ This file contains the arcane tome files.
 		if(!(A in summon_objective.summon_spots))  // Check again to make sure they didn't move
 			to_chat(user, "<span class='cultlarge'>The Geometer can only be summoned where the veil is weak - in [english_list(summon_objective.summon_spots)]!</span>")
 			return
-		priority_announce("Figments from an eldritch god are being summoned by [user] into [A.map_name] from an unknown dimension. Disrupt the ritual at all costs!","Central Command Higher Dimensional Affairs", 'sound/ai/spanomalies.ogg')
+		priority_announce("Figments from an eldritch god are being summoned by [user] into [A.map_name] from an unknown dimension. Disrupt the ritual at all costs!","Central Command Higher Dimensional Affairs", 'hippiestation/sound/pyko/spanomalies.ogg') // hippie -- pykoai
 		for(var/B in spiral_range_turfs(1, user, 1))
 			var/obj/structure/emergency_shield/sanguine/N = new(B)
 			shields += N
@@ -269,11 +269,11 @@ This file contains the arcane tome files.
 	if(!is_station_level(T.z) && !is_mining_level(T.z))
 		to_chat(user, "<span class='warning'>The veil is not weak enough here.</span>")
 		return FALSE
-		
+
 	var/area/A = get_area(T)
 	if(A && !A.blob_allowed)
 		to_chat(user, "<span class='warning'>There's a passage in [src] specifically forbidding oyster consumption, triple-frying, and building outside of designated cult zones.</span>")
 		return FALSE
-		
+
 
 	return TRUE

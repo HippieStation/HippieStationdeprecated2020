@@ -124,9 +124,10 @@
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_NORMAL
 	layer = MOB_LAYER
-	var/list/banned_mobs
+	var/list/banned_mobs = list(/mob/living/simple_animal/hostile/guardian) // hippie -- no more immortal standos
 
 /obj/item/fugu_gland/afterattack(atom/target, mob/user, proximity_flag)
+	. = ..()
 	if(proximity_flag && isanimal(target))
 		var/mob/living/simple_animal/A = target
 		if(A.buffed || (A.type in banned_mobs) || A.stat)

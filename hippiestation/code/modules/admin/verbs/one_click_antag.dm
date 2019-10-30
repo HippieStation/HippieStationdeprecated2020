@@ -12,7 +12,7 @@
 			if(!applicant.stat)
 				if(applicant.mind)
 					if(!applicant.mind.special_role)
-						if(!jobban_isbanned(applicant, "shadowling") && !jobban_isbanned(applicant, "Syndicate") && !jobban_isbanned(applicant, CLUWNEBAN) && !jobban_isbanned(applicant, CATBAN))
+						if(!is_banned_from(applicant.ckey, ROLE_SHADOWLING) && !is_banned_from(applicant.ckey, ROLE_SYNDICATE) && !is_banned_from(applicant.ckey, CLUWNEBAN) && !is_banned_from(applicant.ckey, CATBAN))
 							if(temp.age_check(applicant.client))
 								if(!(applicant.job in temp.restricted_jobs))
 									if(!(is_shadow_or_thrall(applicant)))
@@ -20,18 +20,9 @@
 
 	if(candidates.len)
 		H = pick(candidates)
-		SSticker.mode.shadows += H.mind
-		H.mind.special_role = "shadowling"
-		to_chat(H, "<span class='shadowling'><b><i>You are a shadowling!</b></i></span>")
-		to_chat(H, "<span class='shadowling'><b><i>Something stirs in the space between worlds. A red light floods your mind, and suddenly you understand. Your human disguise has served you well, but it \
-		is time you cast it away. You are a shadowling, and you are to ascend at all costs.</b></i></span>")
-		to_chat(H, "<span class='shadowling'>Don't know how to play Shadowling? Read the wiki at https://wiki.hippiestation.com/index.php?title=Shadowling</span>")
-		SSticker.mode.finalize_shadowling(H.mind)
-		H.playsound_local(get_turf(H), 'hippiestation/sound/ambience/antag/sling.ogg', 100, FALSE, pressure_affected = FALSE)
-		message_admins("[H] has been made into a shadowling.")
-		candidates.Remove(H)
-		return 1
-	return 0
+		H.add_sling()
+		return TRUE
+	return FALSE
 
 /datum/admins/proc/makeVampire()
 	var/datum/game_mode/vampire/temp = new
@@ -43,7 +34,7 @@
 	var/mob/living/carbon/human/H
 	for(var/mob/living/carbon/human/applicant in GLOB.player_list)
 		if((ROLE_VAMPIRE in applicant.client.prefs.be_special) && !applicant.stat && applicant.mind && !applicant.mind.special_role)
-			if(!jobban_isbanned(applicant, "vampire") && !jobban_isbanned(applicant, "Syndicate") && !jobban_isbanned(applicant, CLUWNEBAN) && !jobban_isbanned(applicant, CATBAN))
+			if(!is_banned_from(applicant.ckey, ROLE_VAMPIRE) && !is_banned_from(applicant.ckey, ROLE_SYNDICATE) && !is_banned_from(applicant.ckey, CLUWNEBAN) && !is_banned_from(applicant.ckey, CATBAN))
 				if(temp.age_check(applicant.client) && !(applicant.job in temp.restricted_jobs) && !is_vampire(applicant))
 					candidates += applicant
 
@@ -52,3 +43,39 @@
 		add_vampire(H)
 		return TRUE
 	return FALSE
+
+/datum/admins/proc/makeInfiltratorTeam()
+	var/datum/game_mode/infiltration/temp = new
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you wish to be considered for a infiltration team being sent in?", ROLE_INFILTRATOR, temp)
+	var/list/mob/dead/observer/chosen = list()
+	var/mob/dead/observer/theghost = null
+
+	if(candidates.len)
+		var/numagents = 5
+		var/agentcount = 0
+
+		for(var/i = 0, i<numagents,i++)
+			shuffle_inplace(candidates) //More shuffles means more randoms
+			for(var/mob/j in candidates)
+				if(!j || !j.client)
+					candidates.Remove(j)
+					continue
+
+				theghost = j
+				candidates.Remove(theghost)
+				chosen += theghost
+				agentcount++
+				break
+		//Making sure we have atleast 3 Nuke agents, because less than that is kinda bad
+		if(agentcount < 3)
+			return FALSE
+
+		//Let's find the spawn locations
+		var/datum/team/infiltrator/TI = new/datum/team/infiltrator/
+		for(var/mob/c in chosen)
+			var/mob/living/carbon/human/new_character=makeBody(c)
+			new_character.mind.add_antag_datum(/datum/antagonist/infiltrator, TI)
+		TI.update_objectives()
+		return TRUE
+	else
+		return FALSE

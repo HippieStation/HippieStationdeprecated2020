@@ -9,7 +9,7 @@
 	resistance_flags = FLAMMABLE
 	var/plantname = "Plants"		// Name of plant when planted.
 	var/product						// A type path. The thing that is created when the plant is harvested.
-	var/species = ""				// Used to update icons. Should match the name in the sprites unless all icon_* are overriden.
+	var/species = ""				// Used to update icons. Should match the name in the sprites unless all icon_* are overridden.
 
 	var/growing_icon = 'icons/obj/hydroponics/growing.dmi' //the file that stores the sprites of the growing plant from this seed.
 	var/icon_grow					// Used to override grow icon (default is "[species]-grow"). You can use one grow icon for multiple closely related plants with it.
@@ -156,7 +156,7 @@
 	return result
 
 
-/obj/item/seeds/proc/prepare_result(var/obj/item/reagent_containers/food/snacks/grown/T)
+/obj/item/seeds/proc/prepare_result(var/obj/item/T)
 	if(!T.reagents)
 		CRASH("[T] has no reagents.")
 
@@ -164,11 +164,13 @@
 		var/amount = 1 + round(potency * reagents_add[rid], 1)
 
 		var/list/data = null
-		if(rid == "blood") // Hack to make blood in plants always O-
+		if(rid == /datum/reagent/blood) // Hack to make blood in plants always O-
 			data = list("blood_type" = "O-")
-		if(rid == "nutriment" || rid == "vitamin")
+		if(rid == /datum/reagent/consumable/nutriment || rid == /datum/reagent/consumable/nutriment/vitamin)
 			// apple tastes of apple.
-			data = T.tastes
+			if(istype(T, /obj/item/reagent_containers/food/snacks/grown))
+				var/obj/item/reagent_containers/food/snacks/grown/grown_edible = T
+				data = grown_edible.tastes
 
 		T.reagents.add_reagent(rid, amount, data)
 
@@ -296,12 +298,12 @@
 	text += "- Weed Vulnerability: [weed_chance]\n"
 	if(rarity)
 		text += "- Species Discovery Value: [rarity]\n"
-	var/all_quirks = ""
+	var/all_traits = ""
 	for(var/datum/plant_gene/trait/traits in genes)
 		if(istype(traits, /datum/plant_gene/trait/plant_type))
 			continue
-		all_quirks += " [traits.get_name()]"
-	text += "- Plant Traits:[all_quirks]\n"
+		all_traits += " [traits.get_name()]"
+	text += "- Plant Traits:[all_traits]\n"
 
 	text += "*---------*"
 
@@ -365,7 +367,7 @@
 	var/amount_random_reagents = rand(lower, upper)
 	for(var/i in 1 to amount_random_reagents)
 		var/random_amount = rand(4, 15) * 0.01 // this must be multiplied by 0.01, otherwise, it will not properly associate
-		var/datum/plant_gene/reagent/R = new(get_random_reagent_id(), random_amount)
+		var/datum/plant_gene/reagent/R = new(get_random_reagent_id_seeds(), random_amount) // hippie --  before change line was var/datum/plant_gene/reagent/R = new(get_random_reagent_id(), random_amount); changed this line to use a hippie proc, why: created a new list to improve balance and only blacklist reagents from appearing only in seeds using can_synth_seeds in datum/reagent, this pro was only used by seeds anyway
 		if(R.can_add(src))
 			genes += R
 		else

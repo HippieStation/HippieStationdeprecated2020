@@ -40,7 +40,7 @@
 
 /obj/machinery/portable_atmospherics/pump/process_atmos()
 	..()
-	if(!on && pump)//Hippie code. Do we still exist?
+	if(!on)
 		pump.airs[1] = null
 		pump.airs[2] = null
 		return
@@ -150,7 +150,6 @@
 				investigate_log("was set to [pump.target_pressure] kPa by [key_name(usr)].", INVESTIGATE_ATMOS)
 		if("eject")
 			if(holding)
-				holding.forceMove(drop_location())
-				holding = null
+				replace_tank(usr, FALSE)
 				. = TRUE
 	update_icon()

@@ -1,3 +1,7 @@
+datum/controller/subsystem/vote
+	var/min_restart_time = 60 MINUTES
+	var/min_shuttle_time = 30 MINUTES
+
 /datum/controller/subsystem/vote/proc/get_result()
 	//get the highest number of votes
 	var/greatest_votes = 0
@@ -16,6 +20,12 @@
 			if (!C || C.is_afk())
 				non_voters -= non_voter_ckey
 		if(non_voters.len > 0)
+			if(mode == "restart")
+				if(choices["Continue Playing"] >= greatest_votes)
+					greatest_votes = choices["Continue Playing"]
+			if(mode == "shuttlecall")
+				if(choices["Do not call Shuttle"] >= greatest_votes)
+					greatest_votes = choices["Do not call Shuttle"]
 			if(mode == "gamemode")
 				if(GLOB.master_mode in choices)
 					choices[GLOB.master_mode] += non_voters.len
@@ -73,7 +83,7 @@
 			text += "<div style='font-size: 18px'>\n[question]</div>"
 		log_vote(text)
 		var/vp = CONFIG_GET(number/vote_period)
-		to_chat(world, "\n<font color='purple'><b>[text]</b>\n<div style='font-size: 18px'>Type <b>vote</b> or click <a href='?src=[REF(src)]'>here</a> to place your votes.\nYou have [DisplayTimeText(vp)] to vote. Remember, not voting means you will not be auto-assigned to any option!</font></div>")
+		to_chat(world, "\n<font color='purple'><b>[text]</b>\n<div style='font-size: 18px'>Type <b>vote</b> or click <a href='?src=[REF(src)]'>here</a> to place your votes.\nYou have [DisplayTimeText(vp)] to vote.</font></div>")
 		SEND_SOUND(world, sound('sound/ai/attention.ogg'))
 		time_remaining = round(vp/10)
 		for(var/c in GLOB.clients)
@@ -171,10 +181,16 @@
 				CONFIG_SET(flag/allow_vote_mode, !CONFIG_GET(flag/allow_vote_mode))
 		if("restart")
 			if(CONFIG_GET(flag/allow_vote_restart) || usr.client.holder)
-				initiate_vote("restart",usr.key)
+				if(min_restart_time < world.time)
+					initiate_vote("restart",usr.key)
+				else
+					to_chat(usr, "<span style='boldannounce'>Restart can only initiate after [DisplayTimeText(min_restart_time)].</span>")
 		if("shuttlecall")
 			if(CONFIG_GET(flag/allow_vote_shuttlecall) || usr.client.holder)
-				initiate_vote("shuttlecall",usr.key)
+				if(min_shuttle_time < world.time)
+					initiate_vote("shuttlecall",usr.key)
+				else
+					to_chat(usr, "<span style='boldannounce'>Shuttle call can only initiate after [DisplayTimeText(min_shuttle_time)].</span>")
 		if("gamemode")
 			if(CONFIG_GET(flag/allow_vote_mode) || usr.client.holder)
 				initiate_vote("gamemode",usr.key)
@@ -218,7 +234,7 @@
 			message_admins("A restart vote has passed, but there are active admins on with +server, so it has been cancelled. If you wish, you may restart the server.")
 	if(shuttlecall)
 		var/shuttle_timer = SSshuttle.emergency.timeLeft()
-		if(shuttle_timer >= 300 || SSshuttle.emergency.mode != SHUTTLE_CALL)
+		if(shuttle_timer >= 300 || (SSshuttle.emergency.mode != SHUTTLE_CALL && SSshuttle.emergency.mode != SHUTTLE_DOCKED && SSshuttle.emergency.mode != SHUTTLE_ESCAPE)) // hippie -- fix shuttle votes upping timers to 5 minutes
 			if(SSshuttle.emergency.mode == SHUTTLE_CALL && shuttle_timer >= 300)	//Apparently doing the emergency request twice cancels the call so these check are just in case
 				SSshuttle.emergency.setTimer(3000)
 				priority_announce("The emergency shuttle will arrive in [SSshuttle.emergency.timeLeft()/60] minutes.")

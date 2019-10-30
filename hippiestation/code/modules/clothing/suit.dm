@@ -21,7 +21,7 @@
 	helmettype = /obj/item/clothing/head/helmet/space/hardsuit/syndi/elite/blastco
 	armor = list("melee" = 70, "bullet" = 30, "laser" = 50, "energy" = 25, "bomb" = 100, "bio" = 100, "rad" = 70)
 	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	max_heat_protection_temperature = FIRE_IMMUNITY_SUIT_MAX_TEMP_PROTECT
+	max_heat_protection_temperature = FIRE_IMMUNITY_MAX_TEMP_PROTECT
 
 /obj/item/clothing/suit/fire/atmos/syndicate
 	name = "warm firesuit"
@@ -41,3 +41,7 @@
 	item_state = "guardarmor"
 	icon = 'hippiestation/icons/obj/clothing/suits.dmi'
 	alternate_worn_icon = 'hippiestation/icons/mob/suit.dmi'
+/obj/item/clothing/suit/space/hardsuit/syndi
+	armor = list("melee" = 40, "bullet" = 50, "laser" = 30, "energy" = 15, "bomb" = 40, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 90)
+/obj/item/clothing/head/helmet/space/hardsuit/syndi
+	armor = list("melee" = 40, "bullet" = 50, "laser" = 30, "energy" = 15, "bomb" = 40, "bio" = 100, "rad" = 50, "fire" = 50, "acid" = 90)

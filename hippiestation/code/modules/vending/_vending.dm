@@ -12,6 +12,8 @@
 
 /obj/machinery/vending
 	icon_hippie = 'hippiestation/icons/obj/vending.dmi'
+	light_color = LIGHT_COLOR_WHITE
+	var/brightness_on = 4
 	var/hippie_products = list()
 	var/hippie_contraband = list()
 	var/hippie_premium = list()
@@ -50,3 +52,18 @@
 				premium[i] = hippie_premium[i]
 
 	return ..()
+
+/obj/machinery/vending/power_change()
+	..()
+	if(stat & NOPOWER)
+		set_light(0)
+	else
+		set_light(MINIMUM_USEFUL_LIGHT_RANGE, brightness_on)
+	update_icon()
+	return
+
+
+/obj/machinery/vending/obj_break(damage_flag)
+	..()
+	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
+		set_light(0)

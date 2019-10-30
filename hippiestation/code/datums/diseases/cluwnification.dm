@@ -48,7 +48,7 @@
 				affected_mob.adjustBrainLoss(10)
 				affected_mob.updatehealth()
 			if(prob(15))
-				affected_mob.say( pick( list("HONK!", "Honk!", "Honk.", "Honk?", "Honk!!", "Honk?!", "Honk...") ) )
+				affected_mob.say( pick( list("HONK!", "Honk!", "Honk.", "Honk?", "Honk!!", "Honk?!", "Honk...") ), forced = "cluwne disease" )
 			if(prob(10))
 				to_chat(affected_mob, "<span class='danger'>You fail to form any kind of coherent thought</span>")
 				affected_mob.set_drugginess(10)

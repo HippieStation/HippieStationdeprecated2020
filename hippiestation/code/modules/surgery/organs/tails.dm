@@ -30,6 +30,7 @@
 		M.internal_organs -= src
 		if(M.internal_organs_slot[slot] == src)
 			M.internal_organs_slot.Remove(slot)
-	M.endTailWag()
+	if(M && M.dna && M.dna.species)
+		M.dna.species.stop_wagging_tail(M)
 	M.dna.features["tail_human"] = "None"
 	M.update_body()

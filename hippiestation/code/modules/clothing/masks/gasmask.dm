@@ -15,3 +15,14 @@
 
 /obj/item/clothing/mask/gas/cyborg 
 	alternate_screams = list('hippiestation/sound/voice/scream_silicon.ogg')
+
+/obj/item/clothing/mask/gas/clown_hat/ui_action_click(mob/user)
+	if(..())
+		switch(icon_state)
+			if("chaos")
+				alternate_screams = list('hippiestation/sound/voice/jevil1.ogg', 'hippiestation/sound/voice/jevil2.ogg', 'hippiestation/sound/voice/jevil3.ogg', 'hippiestation/sound/voice/jevil4.ogg')
+			else
+				alternate_screams = list('sound/voice/human/manlaugh1.ogg', 'sound/voice/human/manlaugh2.ogg')
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		C.reindex_screams()

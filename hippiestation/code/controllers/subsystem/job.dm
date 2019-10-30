@@ -19,3 +19,17 @@
 			if(!M.equip_to_slot_if_possible(I, G.category, disable_warning = TRUE, bypass_equip_delay_self = TRUE)) // Try to put it in its slot, first
 				if(!M.equip_to_slot_if_possible(I, SLOT_IN_BACKPACK, disable_warning = TRUE, bypass_equip_delay_self = TRUE)) // If it fails, try to put it in the backpack
 					I.forceMove(get_turf(M)) // If everything fails, just put it on the floor under the mob.
+
+/datum/controller/subsystem/job/proc/HippieFillBannedPosition()
+	for(var/p in unassigned)
+		var/mob/dead/new_player/player = p
+		if(is_banned_from(player.ckey, CLUWNEBAN) || is_banned_from(player.ckey, CATBAN) || is_banned_from(player.ckey, CRABBAN))
+			AssignRole(player, overflow_role)
+
+/datum/controller/subsystem/job/proc/DisableJob(job_path)
+	for(var/I in occupations)
+		var/datum/job/J = I
+		if(istype(J, job_path))
+			J.total_positions = 0
+			J.spawn_positions = 0
+			J.current_positions = 0

@@ -4,7 +4,7 @@
 
 /obj/item/clothing/gloves/color/white/soft/Touch(mob/living/carbon/human/target,proximity = 1)
 	var/mob/M = loc
-	
+
 	if(ishuman(target) && get_dist(src, target) <= 1)
 		if(M.a_intent == INTENT_HELP && target.a_intent != INTENT_HELP)
 			target.a_intent_change(INTENT_HELP)
@@ -22,4 +22,4 @@
 /obj/item/clothing/gloves/color/white/soft/emag_act(mob/user)
 	if(!(obj_flags & EMAGGED))
 		to_chat(user,"<span class='warning'>The electrostatic charge in the card somehow makes the gloves even softer!</span>")
-		set_obj_flags = "EMAGGED"
+		obj_flags |= EMAGGED

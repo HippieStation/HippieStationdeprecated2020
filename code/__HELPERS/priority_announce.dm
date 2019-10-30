@@ -1,4 +1,4 @@
-/proc/priority_announce(text, title = "", sound = 'sound/ai/attention.ogg', type , sender_override)
+/proc/priority_announce(text, title = "", sound = 'hippiestation/sound/pyko/attention.ogg', type , sender_override) // hippie -- pykoai
 	if(!text)
 		return
 
@@ -19,7 +19,7 @@
 			announcement += "<h1 class='alert'>[sender_override]</h1>"
 		if (title && length(title) > 0)
 			announcement += "<br><h2 class='alert'>[html_encode(title)]</h2>"
-		
+
 		if(!sender_override)
 			if(title == "")
 				GLOB.news_network.SubmitArticle(text, "Central Command Update", "Station Announcements", null)
@@ -41,12 +41,12 @@
 		title = "Classified [command_name()] Update"
 
 	if(announce)
-		priority_announce("A report has been downloaded and printed out at all communications consoles.", "Incoming Classified Message", 'sound/ai/commandreport.ogg')
+		priority_announce("A report has been downloaded and printed out at all communications consoles.", "Incoming Classified Message", 'hippiestation/sound/pyko/commandreport.ogg') // hippie -- pykoai
 
 	var/datum/comm_message/M  = new
 	M.title = title
 	M.content =  text
-	
+
 	SScommunications.send_message(M)
 
 /proc/minor_announce(message, title = "Attention:", alert)
@@ -55,9 +55,9 @@
 
 	for(var/mob/M in GLOB.player_list)
 		if(!isnewplayer(M) && M.can_hear())
-			to_chat(M, "<span class='big bold'><font color = red>[title]</font color><BR>[message]</span><BR>")
+			to_chat(M, "<span class='big bold'><font color = red>[html_encode(title)]</font color><BR>[html_encode(message)]</span><BR>")
 			if(M.client.prefs.toggles & SOUND_ANNOUNCEMENTS)
 				if(alert)
 					SEND_SOUND(M, sound('sound/misc/notice1.ogg'))
 				else
-					SEND_SOUND(M, sound('sound/misc/notice2.ogg'))
+					SEND_SOUND(M, sound('hippiestation/sound/misc/notice2.ogg')) // hippie -- oldbase sound

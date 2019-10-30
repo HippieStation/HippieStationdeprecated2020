@@ -27,7 +27,6 @@
 	AddComponent(/datum/component/material_container, list(MAT_REAGENT), 200000)
 	stored_research = new /datum/techweb/specialized/autounlocking/reagent_forge
 
-
 /obj/machinery/reagent_forge/attackby(obj/item/I, mob/user)
 
 	if(user.a_intent == INTENT_HARM)
@@ -44,8 +43,8 @@
 			return
 
 		if(R.reagent_type)
-			if(!currently_forging || !currently_forging.id)
-				GET_COMPONENT(materials, /datum/component/material_container)
+			if(!currently_forging || !currently_forging.type)
+				var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 				if(R.amount <= 0)//this shouldn't exist
 					to_chat(user, "<span class='warning'>The sheet crumbles away into dust, perhaps it was a fake one?</span>")
 					qdel(R)
@@ -55,8 +54,8 @@
 				currently_forging = new R.reagent_type.type
 				return
 
-			if(currently_forging && currently_forging.id && R.reagent_type.id == currently_forging.id)//preventing unnecessary references from being made
-				GET_COMPONENT(materials, /datum/component/material_container)
+			if(currently_forging && currently_forging.type && R.reagent_type.type == currently_forging.type)//preventing unnecessary references from being made
+				var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 				materials.insert_stack(R, R.amount)
 				to_chat(user, "<span class='notice'>You add [R] to [src]</span>")
 				return
@@ -69,7 +68,7 @@
 
 
 /obj/machinery/reagent_forge/proc/check_cost(materials, using)
-	GET_COMPONENT(ourmaterials, /datum/component/material_container)
+	var/datum/component/material_container/ourmaterials = GetComponent(/datum/component/material_container)
 
 	if(ourmaterials.amount(MAT_REAGENT) <= 0)
 		qdel(currently_forging)
@@ -106,7 +105,7 @@
 					var/paths = subtypesof(/datum/reagent)
 					for(var/path in paths)
 						var/datum/reagent/RR = new path
-						if(RR.id == currently_forging.id)
+						if(RR.type == currently_forging.type)
 							F.reagent_type = RR
 							F.assign_properties()
 							break
@@ -129,8 +128,8 @@
 	var/list/data = list()
 	var/lowest_cost = 1
 
-	for(var/V in stored_research.researched_designs)
-		var/datum/design/forge/D = stored_research.researched_designs[V]
+	for(var/v in stored_research.researched_designs)
+		var/datum/design/forge/D = SSresearch.techweb_design_by_id(v)
 		var/md5name = md5(D.name)
 		var/cost = D.materials[MAT_REAGENT]*efficiency
 		if(!listofrecipes[md5name])
@@ -139,7 +138,7 @@
 				lowest_cost = cost
 	sortList(listofrecipes)
 
-	GET_COMPONENT(materials, /datum/component/material_container)
+	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	data["recipes"] = listofrecipes
 	data["currently_forging"] = currently_forging ? currently_forging : "Nothing"
 	data["material_amount"] = materials.amount(MAT_REAGENT)
@@ -158,15 +157,15 @@
 			if(amount <= 0)
 				return FALSE
 
-			for(var/V in stored_research.researched_designs)
-				var/datum/design/forge/D = stored_research.researched_designs[V]
+			for(var/v in stored_research.researched_designs)
+				var/datum/design/forge/D = SSresearch.techweb_design_by_id(v)
 				if(D.name == params["name"])
 					create_product(D, amount, usr)
 					return TRUE
 
 		if("Dump")
 			if(currently_forging)
-				GET_COMPONENT(materials, /datum/component/material_container)
+				var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 				var/amount = materials.amount(MAT_REAGENT)
 				if(amount > 0)
 					var/list/materials_used = list(MAT_REAGENT=amount)
@@ -177,7 +176,7 @@
 
 					for(var/path in paths)
 						var/datum/reagent/RR = new path
-						if(RR.id == currently_forging.id)
+						if(RR.type == currently_forging.type)
 							RS.reagent_type = RR
 							RS.name = "[RR.name] ingots"
 							RS.singular_name = "[RR.name] ingot"

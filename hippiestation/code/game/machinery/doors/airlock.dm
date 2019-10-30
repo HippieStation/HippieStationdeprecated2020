@@ -2,7 +2,8 @@
 #define EASTEREGG_CHANCE 2
 
 /obj/machinery/door/airlock
-	doorClose = 'sound/machines/airlock.ogg'
+	doorOpen = 'hippiestation/sound/machines/airlock.ogg'
+	doorClose = 'hippiestation/sound/machines/airlock.ogg'
 	doorDeni = 'hippiestation/sound/machines/denied.ogg'
 	var/request_cooldown = 0 //To prevent spamming requests for the AI to open
 	var/easteregg_triggered = FALSE
@@ -10,16 +11,14 @@
 	var/easteregg_doorClose = 'hippiestation/sound/machines/airlockclose_doom.ogg'
 
 /obj/machinery/door/airlock/open(forced = 0)
+	. = ..()
 	if (prob(EASTEREGG_CHANCE))
 		easteregg_triggered = TRUE
 		doorOpen = easteregg_doorOpen
 		doorClose = easteregg_doorClose
 
-	return ..()
-
 /obj/machinery/door/airlock/close(forced = 0)
 	. = ..()
-
 	// Reset the sounds
 	if (easteregg_triggered)
 		easteregg_triggered = FALSE

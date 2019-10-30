@@ -23,7 +23,7 @@
 	return FALSE
 
 // Check if levels[z] has all of the specified traits
-/datum/controller/subsystem/mapping/proc/level_has_all_quirks(z, list/traits)
+/datum/controller/subsystem/mapping/proc/level_has_all_traits(z, list/traits)
 	for (var/I in traits)
 		if (!level_trait(z, I))
 			return FALSE

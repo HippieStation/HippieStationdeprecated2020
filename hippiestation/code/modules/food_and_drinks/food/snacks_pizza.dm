@@ -4,7 +4,7 @@
 	icon = 'hippiestation/icons/obj/food/pizzaspaghetti.dmi'
 	icon_state = "pizzacornpotato"
 	slice_path = /obj/item/reagent_containers/food/snacks/pizzaslice/cornpotato
-	bonus_reagents = list("nutriment" = 8, "vitamin" = 8, "toxin" = 3)
+	bonus_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 8, /datum/reagent/toxin = 3)
 	tastes = list("crust" = 1, "disgusting" = 4, "cheese" = 1, "corn" = 1, "potato" = 1)
 	foodtype = GRAIN | VEGETABLES | GROSS
 

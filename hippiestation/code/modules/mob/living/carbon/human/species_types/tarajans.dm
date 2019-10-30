@@ -2,10 +2,10 @@
 	name = "Catbeast"
 	id = "tarajan"
 	say_mod = "meows"
-	blacklisted = 0
 	sexes = 1
 	species_traits = list(MUTCOLORS,EYECOLOR,NOTRANSSTING)
 	inherent_biotypes = list(MOB_ORGANIC, MOB_HUMANOID)
+	inherent_traits  = list(TRAIT_PACIFISM)
 	attack_verb = "slash"
 	attack_sound = 'sound/weapons/slash.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
@@ -17,6 +17,7 @@
 	burnmod = 1.25
 	brutemod = 1.25
 	teeth_type = /obj/item/stack/teeth/cat
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | MIRROR_MAGIC | RACE_SWAP | ERT_SPAWN | SLIME_EXTRACT
 
 /datum/species/tarajan/qualifies_for_rank(rank, list/features)
 	if(rank in GLOB.command_positions) //even if you turn off humans only
@@ -33,14 +34,14 @@
 		return 0
 	return 1
 
-/datum/species/tarajan/on_species_gain(mob/living/carbon/human/C)
+/datum/species/tarajan/on_species_gain(mob/living/carbon/human/C, datum/species/old_species, pref_load)
 	C.draw_hippie_parts()
 	. = ..()
 
-/datum/species/tarajan/on_species_loss(mob/living/carbon/human/C)
+/datum/species/tarajan/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	C.draw_hippie_parts(TRUE)
 	. = ..()
 
 /datum/species/tarajan/spec_death(gibbed, mob/living/carbon/human/H)
-	if(H)
-		H.endTailWag()
+	if(H && H.dna && H.dna.species)
+		H.dna.species.stop_wagging_tail(H)

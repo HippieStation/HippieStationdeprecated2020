@@ -1,7 +1,7 @@
 //Updating pixelshift, position and direction
 //Gets called on process, when the grab gets upgraded or the assailant moves
 /mob/living/proc/adjust_position(mob/living/carbon/assailant)
-	if(buckled || !assailant.canmove || assailant.lying) //So people don't get randomly teleported or something
+	if(buckled || !(mobility_flags & MOBILITY_MOVE) || assailant.lying) //So people don't get randomly teleported or something
 		return
 	var/easing = LINEAR_EASING
 	var/time = 5
@@ -54,9 +54,9 @@
 		var/mob/living/L = pulling
 		L.adjust_position(src)
 
-/mob/living/grippedby(mob/living/carbon/user)
-	. = ..(user)
+/mob/living/grippedby(mob/living/carbon/user, instant = FALSE)
 	adjust_position(user)
+	..()
 
 /mob/stop_pulling()
 	if(pulling && isliving(pulling)) //run this first because pulling is set to null in stop_pulling

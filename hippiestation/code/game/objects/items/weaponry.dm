@@ -1,6 +1,6 @@
 /obj/item/wirerod/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/shard))
-		var/obj/item/twohanded/spear/S = new /obj/item/twohanded/spear
+		var/obj/item/twohanded/spear/S = new(src.loc)
 
 		remove_item_from_storage(user)
 		qdel(I)
@@ -9,8 +9,8 @@
 		user.put_in_hands(S)
 		to_chat(user, "<span class='notice'>You fasten the glass shard to the top of the rod with the cable.</span>")
 
-	else if(istype(I, /obj/item/assembly/igniter) && !(I.item_flags & NODROP))
-		var/obj/item/melee/baton/cattleprod/hippie_cattleprod/P = new /obj/item/melee/baton/cattleprod/hippie_cattleprod
+	else if(istype(I, /obj/item/assembly/igniter) && !HAS_TRAIT(src, TRAIT_NODROP))
+		var/obj/item/melee/baton/cattleprod/hippie_cattleprod/P = new(src.loc)
 
 		remove_item_from_storage(user)
 
@@ -54,7 +54,7 @@
 	item_state = "mounted_chainsaw"
 	lefthand_file = 'icons/mob/inhands/weapons/chainsaw_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/chainsaw_righthand.dmi'
-	item_flags = NODROP | ABSTRACT | DROPDEL
+	item_flags = ABSTRACT | DROPDEL
 	w_class = WEIGHT_CLASS_HUGE
 	force = 60
 	block_chance = 50
@@ -69,10 +69,13 @@
 	playsound(src, pick('hippiestation/sound/weapons/echainsawhit1.ogg','hippiestation/sound/weapons/echainsawhit2.ogg'))
 	..()
 
+/obj/item/mounted_energy_chainsaw/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+
 /obj/item/staff // to make sure people don't get confused
 	desc = "Apparently a staff used by the wizard. Doesn't shoot anything."
 	w_class = WEIGHT_CLASS_NORMAL
-
 
 /obj/item/staff/Initialize()
 	. = ..()
@@ -134,7 +137,97 @@
 	item_state = "bonesword"
 	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
-	slot_flags = null
+//	slot_flags = null commented due to making the swords absolutely useless in practice as you cant even transport them around and for fuckin 16 force its weak af considering it's made from goliath bones
 	force = 16
 	throwforce = 10
 	block_chance = 10
+
+/obj/item/hatchet/improvised
+	name = "glass hatchet"
+	desc = "A makeshift hand axe with a crude blade of broken glass."
+	icon = 'hippiestation/icons/obj/weapons.dmi'
+	icon_state = "glasshatchet"
+	item_state = "glasshatchet"
+	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
+
+/obj/item/brick
+	name = "brick"
+	desc = "A brick, prefered break-in tool in many planets."
+	icon = 'hippiestation/icons/obj/weapons.dmi'
+	icon_state = "brick"
+	item_state = "brick"
+	force = 12 // decent weapon
+	throwforce = 15 // good throw
+	attack_verb = list("bricked")
+	hitsound = 'hippiestation/sound/effects/brick.ogg'
+	var/durability = 5
+
+/obj/item/brick/Initialize()
+	. = ..()
+	if(prob(0.5))
+		name = "brown brick"
+		desc = "<font color = #835C3B>I understand why all the kids are playing this game these days. It's because they like to build brown bricks with Minecrap. I also like to build brown bricks with Minecrap. It's the most fun you can possibly have.</font>"
+		icon_state = "brownbrick"
+		item_state = "brownbrick"
+		force = 15
+		throwforce = 20
+		durability = INFINITY
+
+/obj/item/brick/attack(mob/living/target, mob/living/user)
+	..()
+	if(ishuman(target))
+		var/mob/living/carbon/human/M = target
+		if(!istype(M.head, /obj/item/clothing/head/helmet) && user.zone_selected == BODY_ZONE_HEAD)
+			if(prob(1) && M.stat != DEAD)
+				M.emote("scream")
+				M.visible_message("<span class='danger'>[user] knocks out [M] with [src]!</span>", \
+								"<span class='userdanger'>[user] knocks out [M] with [src]!</span>")
+				M.AdjustUnconscious(60)
+				M.adjustBrainLoss(5)
+
+/obj/item/brick/throw_impact(atom/hit_atom)
+	. = ..()
+	if(!.)
+		if(istype(hit_atom, /obj/structure/window) && durability)
+			var/obj/structure/window/W = hit_atom
+			W.take_damage(throwforce*10, BRUTE, "melee", 0)
+			durability -= 1
+
+		if(ishuman(hit_atom))
+			var/mob/living/carbon/human/H = hit_atom
+			if(prob(10) && !istype(H.head, /obj/item/clothing/head/helmet) && durability) // I couldnt figure out how to make it check if it's hitting the head so I just made it check for helmet, sry bby
+				H.apply_damage(throwforce, BRUTE, BODY_ZONE_HEAD) // double damage
+				H.visible_message("<span class='danger'>[H] falls unconscious as [H.p_theyre()] hit by [src]!</span>", \
+								"<span class='userdanger'>You suddenly black out as you're hit by [src]!</span>")
+				H.AdjustUnconscious(80)
+				H.adjustBrainLoss(10)
+				playsound(src, 'hippiestation/sound/effects/ZUBALAWA.ogg', 50, 0)
+				durability -= 1
+
+/obj/item/switchblade/civilian
+	desc = "A cheap spring-loaded knife. A small tag on the side of the blade spells out 'Made in Space China'."
+
+/obj/item/switchblade/civilian/attack_self(mob/user)
+	extended = !extended
+	playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)
+	if(extended)
+		force = 10
+		w_class = WEIGHT_CLASS_NORMAL
+		throwforce = 15
+		icon_state = "switchblade_ext"
+		attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+		hitsound = 'sound/weapons/bladeslice.ogg'
+		sharpness = IS_SHARP
+	else
+		force = 3
+		w_class = WEIGHT_CLASS_SMALL
+		throwforce = 5
+		icon_state = "switchblade"
+		attack_verb = list("stubbed", "poked")
+		hitsound = 'sound/weapons/genhit.ogg'
+		sharpness = IS_BLUNT
+
+/obj/item/switchblade/civilian/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	..()
+	user.changeNext_move(CLICK_CD_CLICK_ABILITY)

@@ -80,6 +80,14 @@
 	new /obj/item/armstrong_scroll(src)
 	new /obj/item/paper/armstrong_tutorial(src)
 
+/obj/item/storage/box/syndie_kit/synth
+	name = "\improper Cybersun Sponsorship Kit"
+	desc = "A kit with various cybernetic upgrades available to you thanks to Cybersun Industries."
+
+/obj/item/storage/box/syndie_kit/synth/PopulateContents()
+	new /obj/item/synthmorpher(src)
+	new /obj/item/autosurgeon/armlaser(src)
+
 /obj/item/storage/box/syndie_kit/scrake
 	name = "\improper Kevin Clamley's twisted killer kit"
 	desc = "Vroom vroom goes the saw."

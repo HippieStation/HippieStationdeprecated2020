@@ -5,6 +5,7 @@ GLOBAL_LIST_EMPTY(chempiles)
 	icon = 'hippiestation/icons/effects/32x32.dmi'
 	icon_state = "chempile"
 	mergeable_decal = FALSE
+	resistance_flags = ACID_PROOF | FIRE_PROOF
 
 /obj/effect/decal/cleanable/chempile/examine(mob/user)
 	..()
@@ -30,14 +31,17 @@ GLOBAL_LIST_EMPTY(chempiles)
 	GLOB.chempiles += src
 	if(reagents && reagents.total_volume)
 		if(reagents.total_volume < 5)
-			reagents.set_reacting(FALSE)
+			ENABLE_BITFIELD(reagents, NO_REACT)
 
 /obj/effect/decal/cleanable/chempile/Destroy()
-	..()
 	GLOB.chempiles -= src
+	return ..()
 
-/obj/effect/decal/cleanable/chempile/ex_act()
-	qdel(src)
+/obj/effect/decal/cleanable/chempile/ex_act(severity)
+	if(prob(severity*2))
+		..()
+	else
+		qdel(src)
 
 /obj/effect/decal/cleanable/chempile/Crossed(mob/mover)
 	if(isliving(mover))
@@ -46,7 +50,7 @@ GLOBAL_LIST_EMPTY(chempiles)
 		for(var/obj/item/I in M.get_equipped_items())
 			if(I.body_parts_covered & FEET)
 				protection = I.permeability_coefficient
-		if(reagents && reagents.total_volume >= 1)	//No transfer if there's less than 1u total
+		if(reagents?.total_volume >= 1)	//No transfer if there's less than 1u total
 			reagents.trans_to(M, 2, protection)
 			CHECK_TICK
 			for(var/datum/reagent/R in reagents)

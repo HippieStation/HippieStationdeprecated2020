@@ -20,8 +20,9 @@
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/megaphone/command(src)
 	new /obj/item/storage/lockbox/medal/sci(src)
-	new /obj/item/clothing/suit/armor/reactive/teleport(src)
+	//new /obj/item/clothing/suit/armor/reactive/teleport(src) hippie edit -- peace the fuck out powergamers
 	new /obj/item/assembly/flash/handheld(src)
 	new /obj/item/laser_pointer(src)
 	new /obj/item/door_remote/research_director(src)
 	new /obj/item/circuitboard/machine/techfab/department/science(src)
+	new /obj/item/storage/photo_album/RD(src)

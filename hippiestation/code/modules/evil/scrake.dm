@@ -12,39 +12,40 @@
 	var/rage_cooldown_duration = 600
 	var/rage_cooldown = 0
 	var/raged = FALSE
-	var/red_splash = list(1,0,0,0.8,0.2,0, 0.8,0,0.2,0.1,0,0)
-	var/pure_red = list(0,0,0,0,0,0,0,0,0,1,0,0)
 
 /obj/item/clothing/suit/apron/chef/scrake/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_WEAR_SUIT)
-		item_flags = NODROP
+		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 		user.set_species(/datum/species/scrake)
 		user.maxHealth = 250
 		user.health = 250
+		var/datum/component/footstep/FS = user.GetComponent(/datum/component/footstep)
+		FS.volume = 2.0 //big stomper
 
 /obj/item/clothing/suit/apron/chef/scrake/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	if(prob(damage*1.25) && !raged)
-		var/mob/living/carbon/human/H = owner
-		Rage(H)
-		spawn(180)
-			H.client.color = initial(H.client.color)
-			slowdown = initial(slowdown)
-			raged = FALSE
-	return 0
+	if(prob(damage*1.2) && !raged)
+		Rage(owner)
+	return ..()
 
 /obj/item/clothing/suit/apron/chef/scrake/proc/Rage(mob/living/carbon/human/owner)
 	if(world.time < rage_cooldown)
 		return
 	if(!owner)
 		return
-	owner.client.color = pure_red
-	animate(owner.client,color = red_splash, time = 10, easing = SINE_EASING|EASE_OUT)
+	owner.client.color = COLOR_RED
+	animate(owner.client,color = COLOR_RED_LIGHT, time = 10, easing = SINE_EASING|EASE_OUT)
 	owner.visible_message("<span class='userdanger'>The scrake looks pissed, run!</span>", \
 						"<span class='userdanger'>That HURT! NOW I'M MAD!!</span>")
 	playsound(src, 'hippiestation/sound/misc/floor_cluwne_emerge.ogg', 100, 1)
 	raged = TRUE
 	slowdown = -0.25
 	rage_cooldown = world.time + rage_cooldown_duration
+	addtimer(CALLBACK(src, .proc/rage_reset, owner), 180)
+
+/obj/item/clothing/suit/apron/chef/scrake/proc/rage_reset(mob/living/carbon/human/owner)
+	H.client.color = initial(H.client.color)
+	slowdown = initial(slowdown)
+	raged = FALSE
 
 /obj/item/clothing/mask/surgical/scrake
 	name = "butcher mask"
@@ -56,7 +57,7 @@
 
 /obj/item/clothing/mask/surgical/scrake/equipped(mob/living/carbon/human/user, slot)
 	if(slot == SLOT_WEAR_MASK)
-		item_flags = NODROP
+		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 
 /obj/item/twohanded/required/chainsaw/scrake_saw
 	name = "mounted industrial chainsaw"
@@ -64,10 +65,14 @@
 	force = 15
 	force_on = 40
 	armour_penetration = 10
-	item_flags = NODROP | DROPDEL
+	item_flags = DROPDEL
 	throwforce = 0
 	throw_range = 0
 	throw_speed = 0
+
+/obj/item/twohanded/required/chainsaw/scrake_saw/Initialize()
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 
 /obj/item/twohanded/required/chainsaw/scrake_saw/attack(mob/living/target, mob/living/user)
 	. = ..()

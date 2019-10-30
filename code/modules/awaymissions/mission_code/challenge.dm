@@ -19,7 +19,7 @@
 	name = "Energy Cannon"
 	desc = "A heavy duty industrial laser."
 	icon = 'icons/obj/singularity.dmi'
-	icon_state = "emitter"
+	icon_state = "emitter_+a"
 	anchored = TRUE
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
@@ -28,7 +28,7 @@
 	idle_power_usage = 0
 	active_power_usage = 0
 
-	active = 0 //Hippie code. Start disabled to reduce lag.
+	active = TRUE
 	locked = TRUE
 	state = 2
 

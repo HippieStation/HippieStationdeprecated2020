@@ -134,7 +134,7 @@
 			if(FORGED_BULLET_CASING)
 				var/obj/item/projectile/bullet/forged/F = I
 				if(F.damage >= 20)
-					F.forcedodge = TRUE
+					F.movement_type |= UNSTOPPABLE
 					F.range = F.range * 0.5//oof
 
 
@@ -304,7 +304,7 @@
 		if(ishuman(C))
 			var/mob/living/carbon/human/H = C
 			if(H.dna && H.dna.species)
-				if(H.has_trait(TRAIT_PIERCEIMMUNE))
+				if(HAS_TRAIT(H, TRAIT_PIERCEIMMUNE))
 					return
 		var/hit_zone = (C.held_index_to_dir(C.active_hand_index) == "l" ? "l_":"r_") + "arm"
 		var/obj/item/bodypart/affecting = C.get_bodypart(hit_zone)

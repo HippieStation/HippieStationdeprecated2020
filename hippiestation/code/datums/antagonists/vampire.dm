@@ -1,14 +1,16 @@
+#define ALL_POWERS_UNLOCKED 800
+
 /datum/antagonist/vampire
 
 	name = "Vampire"
+	antagpanel_category = "Vampire"
 	roundend_category = "vampires"
 	job_rank = ROLE_VAMPIRE
-	
+
 	var/usable_blood = 0
 	var/total_blood = 0
 	var/fullpower = FALSE
 	var/draining
-	var/list/objectives_given = list()
 
 	var/iscloaking = FALSE
 
@@ -18,6 +20,7 @@
 
 	var/list/upgrade_tiers = list(
 		/obj/effect/proc_holder/spell/self/rejuvenate = 0,
+		/obj/effect/proc_holder/spell/self/revive = 0,
 		/obj/effect/proc_holder/spell/targeted/hypnotise = 0,
 		/datum/vampire_passive/vision = 175,
 		/obj/effect/proc_holder/spell/self/shapeshift = 175,
@@ -30,8 +33,26 @@
 		/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/mistform = 500,
 		/datum/vampire_passive/full = 666,
 		/obj/effect/proc_holder/spell/self/summon_coat = 666,
-		/obj/effect/proc_holder/spell/targeted/vampirize = 700,
-		/obj/effect/proc_holder/spell/self/revive = 800)
+		/obj/effect/proc_holder/spell/targeted/vampirize = 666)
+
+/datum/antagonist/vampire/get_admin_commands()
+	. = ..()
+	.["Full Power"] = CALLBACK(src,.proc/admin_set_full_power)
+	.["Set Blood Amount"] = CALLBACK(src,.proc/admin_set_blood)
+
+/datum/antagonist/vampire/proc/admin_set_full_power(mob/admin)
+	usable_blood = ALL_POWERS_UNLOCKED
+	total_blood = ALL_POWERS_UNLOCKED
+	check_vampire_upgrade()
+	message_admins("[key_name_admin(admin)] made [owner.current] a full power vampire..")
+	log_admin("[key_name(admin)] made [owner.current] a full power vampire..")
+
+/datum/antagonist/vampire/proc/admin_set_blood(mob/admin)
+	total_blood = input(admin, "Set Vampire Total Blood", "Total Blood", total_blood) as null|num
+	usable_blood = min((input(admin, "Set Vampire Usable Blood", "Usable Blood", usable_blood) as null|num), total_blood)
+	check_vampire_upgrade()
+	message_admins("[key_name_admin(admin)] set [owner.current]'s total blood to [total_blood], and usable blood to [usable_blood].")
+	log_admin("[key_name(admin)] set [owner.current]'s total blood to [total_blood], and usable blood to [usable_blood].")
 
 /datum/antagonist/vampire/on_gain()
 	SSticker.mode.vampires += owner
@@ -40,6 +61,12 @@
 	owner.special_role = "vampire"
 	owner.current.faction += "vampire"
 	SSticker.mode.update_vampire_icons_added(owner)
+	var/mob/living/carbon/human/C = owner.current
+	if(istype(C))
+		var/obj/item/organ/brain/B = C.getorganslot(ORGAN_SLOT_BRAIN)
+		if(B)
+			B.vital = FALSE
+			B.decoy_override = TRUE
 	..()
 
 /datum/antagonist/vampire/on_removal()
@@ -52,12 +79,15 @@
 		if(owner && H.hud_used && H.hud_used.vamp_blood_display)
 			H.hud_used.vamp_blood_display.invisibility = INVISIBILITY_ABSTRACT
 	SSticker.mode.update_vampire_icons_removed(owner)
-	for(var/O in objectives_given)
-		owner.objectives -= O
-	LAZYCLEARLIST(objectives_given)
 	if(owner.current)
 		to_chat(owner.current,"<span class='userdanger'>Your powers have been quenched! You are no longer a vampire</span>")
 	owner.special_role = null
+	var/mob/living/carbon/human/C = owner.current
+	if(istype(C))
+		var/obj/item/organ/brain/B = C.getorganslot(ORGAN_SLOT_BRAIN)
+		if(B && (B.decoy_override != initial(B.decoy_override)))
+			B.vital = TRUE
+			B.decoy_override = FALSE
 	..()
 
 /datum/antagonist/vampire/greet()
@@ -65,7 +95,7 @@
 	to_chat(owner, "<span class='danger bold'>You are a creature of the night -- holy water, the chapel, and space will cause you to burn.</span>")
 	to_chat(owner, "<span class='notice bold'>Hit someone in the head with harm intent to start sucking their blood. However, only blood from living creatures is usable!</span>")
 	to_chat(owner, "<span class='notice bold'>Coffins will heal you.</span>")
-	if(LAZYLEN(objectives_given))
+	if(LAZYLEN(objectives))
 		owner.announce_objectives()
 	owner.current.playsound_local(get_turf(owner.current), 'hippiestation/sound/ambience/antag/vampire.ogg',80,0)
 
@@ -78,15 +108,14 @@
 	for(var/i = 1, i < CONFIG_GET(number/traitor_objectives_amount), i++)
 		forge_single_objective()
 
-	if(!(locate(/datum/objective/escape) in owner.objectives))
+	if(!(locate(/datum/objective/escape) in objectives))
 		var/datum/objective/escape/escape_objective = new
 		escape_objective.owner = owner
 		add_objective(escape_objective)
 		return
 
 /datum/antagonist/vampire/proc/add_objective(var/datum/objective/O)
-	owner.objectives += O
-	objectives_given += O
+	objectives |= O
 
 /datum/antagonist/vampire/proc/forge_single_objective() //Returns how many objectives are added
 	.=1
@@ -187,8 +216,8 @@
 		H.LAssailant = null
 	else
 		H.LAssailant = O
-	playsound(O.loc, 'sound/weapons/bite.ogg', 50, 1)
-	while(do_mob(O, H, 50))
+	playsound(O.loc, 'sound/weapons/bite.ogg', 40, 1)
+	while(do_mob(O, H, 22))
 		if(!is_vampire(O))
 			to_chat(O, "<span class='warning'>Your fangs have disappeared!</span>")
 			return
@@ -198,19 +227,19 @@
 			to_chat(O, "<span class='warning'>They've got no blood left to give.</span>")
 			break
 		if(H.stat != DEAD)
-			blood = min(20, H.blood_volume)// if they have less than 20 blood, give them the remnant else they get 20 blood
-			total_blood += blood / 2	//divide by 2 to counted the double suction since removing cloneloss -Melandor0
-			usable_blood += blood / 2
+			blood = min(10, H.blood_volume)// if they have less than 10 blood, give them the remnant else they get 10 blood
+			total_blood += blood
+			usable_blood += blood
 		else
-			blood = min(5, H.blood_volume)	// The dead only give 5 blood
+			blood = min(2, H.blood_volume)	// The dead only give 2 blood
 			total_blood += blood
 		check_vampire_upgrade()
 		if(old_bloodtotal != total_blood)
 			to_chat(O, "<span class='notice'><b>You have accumulated [total_blood] [total_blood > 1 ? "units" : "unit"] of blood[usable_blood != old_bloodusable ? ", and have [usable_blood] left to use" : ""].</b></span>")
-		H.blood_volume = max(H.blood_volume - 25, 0)
+		H.blood_volume = max(H.blood_volume - 10, 0)
 		if(ishuman(O))
 			O.nutrition = min(O.nutrition + (blood / 2), NUTRITION_LEVEL_WELL_FED)
-		playsound(O.loc, 'sound/items/eatfood.ogg', 40, 1)
+		playsound(O.loc, 'hippiestation/sound/effects/vampsip.ogg', 25, 1)
 
 	draining = null
 	to_chat(owner, "<span class='notice'>You stop draining [H.name] of blood.</span>")
@@ -293,9 +322,9 @@
 	result += printplayer(owner)
 
 	var/objectives_text = ""
-	if(objectives_given.len)//If the vampire had no objectives, don't need to process this.
+	if(LAZYLEN(objectives))//If the vampire had no objectives, don't need to process this.
 		var/count = 1
-		for(var/datum/objective/objective in objectives_given)
+		for(var/datum/objective/objective in objectives)
 			if(objective.check_completion())
 				objectives_text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <span class='greentext'>Success!</span>"
 			else
@@ -312,3 +341,5 @@
 		SEND_SOUND(owner.current, 'sound/ambience/ambifailure.ogg')
 
 	return result.Join("<br>")
+
+#undef ALL_POWERS_UNLOCKED

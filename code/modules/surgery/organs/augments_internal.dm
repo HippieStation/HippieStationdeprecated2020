@@ -1,4 +1,3 @@
-#define STUN_SET_AMOUNT 40
 
 /obj/item/organ/cyberimp
 	name = "cybernetic implant"
@@ -51,8 +50,7 @@
 	active = !active
 	if(active)
 		for(var/obj/item/I in owner.held_items)
-			if(!(I.item_flags & NODROP))
-				stored_items += I
+			stored_items += I
 
 		var/list/L = owner.get_empty_held_indexes()
 		if(LAZYLEN(L) == owner.held_items.len)
@@ -62,7 +60,7 @@
 		else
 			for(var/obj/item/I in stored_items)
 				to_chat(owner, "<span class='notice'>Your [owner.get_held_index_name(owner.get_held_index_of_item(I))]'s grip tightens.</span>")
-				I.item_flags |= NODROP
+				ADD_TRAIT(I, TRAIT_NODROP, ANTI_DROP_IMPLANT_TRAIT)
 
 	else
 		release_items()
@@ -86,7 +84,7 @@
 
 /obj/item/organ/cyberimp/brain/anti_drop/proc/release_items()
 	for(var/obj/item/I in stored_items)
-		I.item_flags &= ~NODROP
+		REMOVE_TRAIT(I, TRAIT_NODROP, ANTI_DROP_IMPLANT_TRAIT)
 	stored_items = list()
 
 
@@ -95,33 +93,49 @@
 		ui_action_click()
 	..()
 
-
 /obj/item/organ/cyberimp/brain/anti_stun
 	name = "CNS Rebooter implant"
 	desc = "This implant will automatically give you back control over your central nervous system, reducing downtime when stunned."
 	implant_color = "#FFFF00"
 	slot = ORGAN_SLOT_BRAIN_ANTISTUN
 
-/obj/item/organ/cyberimp/brain/anti_stun/on_life()
-	..()
-	if(crit_fail)
-		return
+	var/static/list/signalCache = list(
+		COMSIG_LIVING_STATUS_STUN,
+		COMSIG_LIVING_STATUS_KNOCKDOWN,
+		COMSIG_LIVING_STATUS_IMMOBILIZE,
+		COMSIG_LIVING_STATUS_PARALYZE,
+	)
 
-	if(owner.AmountStun() > STUN_SET_AMOUNT)
-		owner.SetStun(STUN_SET_AMOUNT)
-	if(owner.AmountKnockdown() > STUN_SET_AMOUNT)
-		owner.SetKnockdown(STUN_SET_AMOUNT)
+	var/stun_cap_amount = 40
+
+/obj/item/organ/cyberimp/brain/anti_stun/Remove(mob/living/carbon/M, special = FALSE)
+	. = ..()
+	UnregisterSignal(M, signalCache)
+
+/obj/item/organ/cyberimp/brain/anti_stun/Insert()
+	. = ..()
+	RegisterSignal(owner, signalCache, .proc/on_signal)
+
+/obj/item/organ/cyberimp/brain/anti_stun/proc/on_signal(datum/source, amount)
+	if(!broken_cyber_organ && amount > 0)
+		addtimer(CALLBACK(src, .proc/clear_stuns), stun_cap_amount, TIMER_UNIQUE|TIMER_OVERRIDE)
+
+/obj/item/organ/cyberimp/brain/anti_stun/proc/clear_stuns()
+	if(owner || !broken_cyber_organ)
+		owner.SetStun(0)
+		owner.SetKnockdown(0)
+		owner.SetImmobilized(0)
+		owner.SetParalyzed(0)
 
 /obj/item/organ/cyberimp/brain/anti_stun/emp_act(severity)
 	. = ..()
-	if(crit_fail || . & EMP_PROTECT_SELF)
+	if(broken_cyber_organ || . & EMP_PROTECT_SELF)
 		return
-	crit_fail = TRUE
+	broken_cyber_organ = TRUE
 	addtimer(CALLBACK(src, .proc/reboot), 90 / severity)
 
 /obj/item/organ/cyberimp/brain/anti_stun/proc/reboot()
-	crit_fail = FALSE
-
+	broken_cyber_organ = FALSE
 
 //[[[[MOUTH]]]]
 /obj/item/organ/cyberimp/mouth

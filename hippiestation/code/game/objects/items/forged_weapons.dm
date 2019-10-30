@@ -46,7 +46,7 @@
 		var/armour_block = C.getarmor(affecting, "melee") * 0.01
 		if(!armour_block)
 			armour_block = 1
-		C.reagents.add_reagent(reagent_type.id, max(0, (0.2 * stabby) * max(1, armour_block - armour_penetration)))
+		C.reagents.add_reagent(reagent_type.type, max(0, (0.2 * stabby) * max(1, armour_block - armour_penetration)))
 		if(stabby < 1 && stabby > 0)
 			reagent_type.reaction_mob(C, TOUCH, max(0, 1 / stabby))
 	if(proximity_flag && reagent_type)
@@ -150,7 +150,7 @@
 		var/armour_block = C.getarmor(affecting, "melee") * 0.01
 		if(!armour_block)
 			armour_block = 1
-		C.reagents.add_reagent(reagent_type.id, max(0, (0.2 * stabby) * max(1, armour_block - armour_penetration)))
+		C.reagents.add_reagent(reagent_type.type, max(0, (0.2 * stabby) * max(1, armour_block - armour_penetration)))
 		if(stabby < 1 && stabby > 0)
 			reagent_type.reaction_mob(C, TOUCH, max(0, 1 / stabby))
 	if(proximity_flag && reagent_type)
@@ -262,7 +262,7 @@
 		var/armour_block = C.getarmor(limb_hit, "bullet") * 0.01
 		if(!armour_block)
 			armour_block = 1
-		C.reagents.add_reagent(reagent_type.id, max(0, 1 * max(1, armour_block - armour_penetration)))
+		C.reagents.add_reagent(reagent_type.type, max(0, 1 * max(1, armour_block - armour_penetration)))
 		reagent_type.reaction_mob(C, TOUCH, 1)
 
 

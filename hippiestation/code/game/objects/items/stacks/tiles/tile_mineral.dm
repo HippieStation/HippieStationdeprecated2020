@@ -27,7 +27,7 @@
 	if(!istype(S, /obj/item/stack/tile/mineral/reagent))
 		return
 	var/obj/item/stack/tile/mineral/reagent/R = S
-	if(QDELETED(S) || QDELETED(src) || S == src || !R.reagent_type || !reagent_type || R.reagent_type.id != reagent_type.id) //amusingly this can cause a stack to consume itself, let's not allow that.
+	if(QDELETED(S) || QDELETED(src) || S == src || !R.reagent_type || !reagent_type || R.reagent_type.type != reagent_type.type) //amusingly this can cause a stack to consume itself, let's not allow that.
 		return
 
 	var/transfer = get_amount()

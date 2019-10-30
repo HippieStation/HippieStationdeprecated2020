@@ -1,8 +1,7 @@
 /datum/mutation/human/cluwne
-
 	name = "Cluwne"
 	quality = NEGATIVE
-	dna_block = NON_SCANNABLE
+	locked = TRUE
 	text_gain_indication = "<span class='danger'>You feel like your brain is tearing itself apart.</span>"
 
 /datum/mutation/human/cluwne/on_acquiring(mob/living/carbon/human/owner)
@@ -30,12 +29,12 @@
 	owner.equip_to_slot_or_del(new /obj/item/clothing/gloves/color/white(owner), SLOT_GLOVES) // this is purely for cosmetic purposes incase they aren't wearing anything in that slot
 	owner.equip_to_slot_or_del(new /obj/item/storage/backpack/clown(owner), SLOT_BACK) // ditto
 
-/datum/mutation/human/cluwne/on_life(mob/living/carbon/human/owner)
+/datum/mutation/human/cluwne/on_life()
 	if((prob(15) && owner.IsUnconscious()))
 		owner.setBrainLoss(200) // there I changed it to setBrainLoss
 		switch(rand(1, 6))
 			if(1)
-				owner.say("HONK")
+				owner.say("HONK", forced = "cluwne")
 			if(2 to 5)
 				owner.emote("scream")
 			if(6)
@@ -56,14 +55,14 @@
 					"<span class='danger'>Your brain feels like it's being torn apart, and after a short while, you notice that you've become a cluwne!</span>")
 	flash_act()
 
-/datum/mutation/human/tourettes/on_life(mob/living/carbon/human/owner)
+/datum/mutation/human/cluwne/on_life()
 	if(prob(10) && owner.stat == CONSCIOUS)
 		owner.Stun(20)
 		switch(rand(1, 3))
 			if(1)
 				owner.emote("twitch")
 			if(2 to 3)
-				owner.say("[prob(50) ? ";" : ""][pick("SHIT", "PISS", "FUCK", "CUNT", "COCKSUCKER", "MOTHERFUCKER", "TITS")]")
+				owner.say("[prob(50) ? ";" : ""][pick("SHIT", "PISS", "FUCK", "CUNT", "COCKSUCKER", "MOTHERFUCKER", "TITS")]", forced = "cluwne")
 		var/x_offset_old = owner.pixel_x
 		var/y_offset_old = owner.pixel_y
 		var/x_offset = owner.pixel_x + rand(-2,2)
@@ -73,3 +72,20 @@
 
 /datum/mutation/human/hulk
 	species_allowed = list()
+
+/datum/mutation/human/antimagic
+	name = "Arcane Repellant"
+	desc = "An atypical genetic string which dispels thaumaturgical effects. Briefly, magic. This string may hold the key to the future downfall of the Wizard Federation."
+	locked = TRUE
+	quality = POSITIVE
+	text_gain_indication = "<span class='notice'>You feel shielded, unfazed by the mystical.</span>"
+
+/datum/mutation/human/antimagic/on_acquiring(mob/living/carbon/human/owner)
+	if(..())
+		return
+	ADD_TRAIT(owner, TRAIT_ANTIMAGIC, GENETIC_MUTATION)
+
+/datum/mutation/human/antimagic/on_losing(mob/living/carbon/human/owner)
+	if(..())
+		return
+	REMOVE_TRAIT(owner, TRAIT_ANTIMAGIC, GENETIC_MUTATION)

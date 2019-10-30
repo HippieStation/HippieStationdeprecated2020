@@ -105,18 +105,15 @@
 "av" = (
 /obj/machinery/power/apc{
 	dir = 1;
-	name = "cabin APC"
+	name = "cabin APC";
+	pixel_y = 23
 	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/awaymission/cabin)
 "aw" = (
 /obj/machinery/power/smes/magical,
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/awaymission/cabin)
 "ax" = (
@@ -128,9 +125,7 @@
 	icon_state = "turbine";
 	name = "geothermal generator"
 	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/awaymission/cabin)
 "ay" = (
@@ -175,15 +170,11 @@
 /obj/machinery/power/terminal{
 	dir = 1
 	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/awaymission/cabin)
 "aF" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/awaymission/cabin)
 "aG" = (
@@ -205,7 +196,6 @@
 /area/awaymission/cabin)
 "aJ" = (
 /obj/machinery/shower{
-	icon_state = "shower";
 	dir = 8
 	},
 /obj/machinery/door/window/northright,
@@ -213,7 +203,6 @@
 /area/awaymission/cabin)
 "aK" = (
 /obj/machinery/shower{
-	icon_state = "shower";
 	dir = 4
 	},
 /obj/machinery/door/window/northleft,
@@ -316,7 +305,7 @@
 /turf/open/floor/carpet,
 /area/awaymission/cabin)
 "bd" = (
-/obj/structure/chair/office/dark,
+/obj/structure/chair/office,
 /turf/open/floor/carpet,
 /area/awaymission/cabin)
 "be" = (
@@ -466,12 +455,10 @@
 /area/awaymission/cabin)
 "bI" = (
 /obj/machinery/shower{
-	icon_state = "shower";
 	dir = 4
 	},
 /obj/machinery/door/window/eastright,
 /obj/structure/window{
-	icon_state = "window";
 	dir = 1
 	},
 /turf/open/floor/plasteel/freezer,
@@ -677,7 +664,7 @@
 /turf/open/floor/wood,
 /area/awaymission/cabin)
 "ct" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/structure/closet/secure_closet/freezer/fridge/open,
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/cabin)
 "cu" = (
@@ -751,7 +738,7 @@
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/cabin)
 "cG" = (
-/obj/structure/closet/secure_closet/freezer/meat,
+/obj/structure/closet/secure_closet/freezer/meat/open,
 /turf/open/floor/plasteel/freezer,
 /area/awaymission/cabin)
 "cH" = (
@@ -967,10 +954,6 @@
 	},
 /turf/open/floor/plating,
 /area/awaymission/cabin)
-"dw" = (
-/obj/effect/mapping_helpers/planet_z,
-/turf/closed/indestructible/rock/snow,
-/area/space)
 
 (1,1,1) = {"
 aa
@@ -1227,7 +1210,7 @@ aa
 aa
 aa
 aa
-dw
+aa
 "}
 (2,1,1) = {"
 aa

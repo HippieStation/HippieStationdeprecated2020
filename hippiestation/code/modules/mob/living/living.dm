@@ -6,7 +6,7 @@
 	if(pulledby.grab_state)
 		if(prob(30) && pulledby.grab_state != GRAB_KILL)
 			visible_message("<span class='danger'>[src] has broken free of [pulledby]'s grip!</span>")
-			add_logs(pulledby, src, "broke grab")
+			log_combat(pulledby, src, "broke grab")
 			pulledby.stop_pulling()
 			return FALSE
 		if(moving_resist && client) //we resisted by trying to move
@@ -49,13 +49,23 @@
 		animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2)
 	else
 		animate(src, pixel_x = initial(pixel_x), pixel_y = initial(pixel_y), time = 2)
-		floating = 0 // If we were without gravity, the bouncing animation got stopped, so we make sure we restart the bouncing after the next movement.
+		setMovetype(movement_type & ~FLOATING) // If we were without gravity, the bouncing animation got stopped, so we make sure we restart the bouncing after the next movement.
 
+/mob/living/Initialize()
+	. = ..()
+	update_transform()
 
 //Called when we bump onto a mob
-/mob/living/MobCollide(mob/M)
+/mob/living/MobBump(mob/M)
 	// Can't move with pinned people
 	if (pinned_to || M.pinned_to)
-		return TRUE	
+		return TRUE
 
 	return ..()
+
+/mob/living/proc/update_tts_hud()
+	if (!hud_used)
+		return
+	if (!hud_used.tts)
+		return
+	hud_used.tts.icon_state = "tts_ready"

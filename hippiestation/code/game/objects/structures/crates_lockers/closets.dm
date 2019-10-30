@@ -10,6 +10,7 @@ Sorry for doing this, but apparently the Hippie community hates art and new thin
 
 /obj/structure/closet/update_icon()
 	cut_overlays()
+	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
 	if(!opened)
 		layer = OBJ_LAYER
 		if(icon_door)
@@ -18,15 +19,11 @@ Sorry for doing this, but apparently the Hippie community hates art and new thin
 			add_overlay("[icon_state]_door")
 		if(welded)
 			add_overlay("welded")
-		if(secure)
-			if(!broken)
-				if(locked)
-					add_overlay("locked")
-				else
-					add_overlay("unlocked")
+		if(secure && !broken)
+			if(locked)
+				SSvis_overlays.add_vis_overlay(src, icon, "locked", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
 			else
-				add_overlay("off")
-
+				SSvis_overlays.add_vis_overlay(src, icon, "unlocked", ABOVE_LIGHTING_LAYER, ABOVE_LIGHTING_PLANE, dir)
 	else
 		layer = BELOW_OBJ_LAYER
 		if(icon_door_override)

@@ -50,7 +50,7 @@
 /////HAIRSTYLES/////
 ////////////////////
 
-/datum/sprite_accessory/hair/hippie/
+/datum/sprite_accessory/hair/hippie
 	icon = 'hippiestation/icons/mob/human_face.dmi'
 
 /datum/sprite_accessory/hair/hippie/birdnest

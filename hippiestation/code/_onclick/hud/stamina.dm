@@ -1,5 +1,3 @@
-/datum/hud/var/obj/screen/staminas/staminas
-
 /obj/screen/staminas
 	icon = 'hippiestation/icons/mob/screen_gen.dmi'
 	name = "stamina"
@@ -8,7 +6,7 @@
 	mouse_opacity = 0
 
 /mob/living/carbon/human/proc/staminahudamount()
-	if(stat == DEAD || IsStun() || IsKnockdown())
+	if(stat == DEAD || IsStun() || IsParalyzed())
 		return "stamina6"
 	else
 		switch(hal_screwyhud)
