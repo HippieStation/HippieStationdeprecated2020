@@ -63,7 +63,7 @@
 
 
 /mob/living/carbon/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
-	if(!forced && (status_flags & GODMODE))
+	if(!forced && (status_flags & GODMODE) && amount > 0) // hippie -- fix godmode
 		return FALSE
 	if(amount > 0)
 		take_overall_damage(amount, 0, 0, updating_health, required_status)
@@ -72,7 +72,7 @@
 	return amount
 
 /mob/living/carbon/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
-	if(!forced && (status_flags & GODMODE))
+	if(!forced && (status_flags & GODMODE) && amount > 0) // hippie -- fix godmode
 		return FALSE
 	if(amount > 0)
 		take_overall_damage(0, amount, 0, updating_health, required_status)
@@ -96,7 +96,7 @@
 		. += round(BP.stamina_dam * BP.stam_damage_coeff, DAMAGE_PRECISION)
 
 /mob/living/carbon/adjustStaminaLoss(amount, updating_health = TRUE, forced = FALSE)
-	if(!forced && (status_flags & GODMODE))
+	if(!forced && (status_flags & GODMODE) && amount > 0) // hippie -- fix godmode
 		return FALSE
 	if(amount > 0)
 		take_overall_damage(0, 0, amount, updating_health)

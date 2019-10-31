@@ -524,3 +524,9 @@
 	cost = 9
 	surplus = 15
 	exclude_modes = list(/datum/game_mode/infiltration)
+	
+/datum/uplink_item/device_tools/threat
+	name = "Threat scanning glasses"
+	desc = "Mark threats and check enemies for objective items, weapons and high level access. Guaranteed to greentext or your telecrystals back."
+	item = /obj/item/clothing/glasses/hud/threat
+	cost = 6
