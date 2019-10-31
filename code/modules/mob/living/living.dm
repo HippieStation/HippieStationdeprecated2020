@@ -503,9 +503,14 @@
 
 
 /mob/living/proc/updatehealth()
-	if(status_flags & GODMODE)
+	if((status_flags & GODMODE))
 		return
-	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss()
+	// hippie start -- fix godmode
+	var/new_health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss()
+	if(new_health < health && (status_flags & GODMODE))
+		return
+	// hippie end
+	health = new_health
 	staminaloss = getStaminaLoss()
 	update_stat()
 	med_hud_set_health()
@@ -513,6 +518,7 @@
 
 //proc used to ressuscitate a mob
 /mob/living/proc/revive(full_heal = 0, admin_revive = 0)
+	SHOULD_CALL_PARENT(TRUE)
 	if(full_heal)
 		fully_heal(admin_revive)
 	if(stat == DEAD && can_be_revived()) //in some cases you can't revive (e.g. no brain)
@@ -690,6 +696,7 @@
 	return !((next_move > world.time) || incapacitated(ignore_restraints = TRUE, ignore_stasis = TRUE))
 
 /mob/living/verb/resist()
+	SHOULD_CALL_PARENT(TRUE)
 	set name = "Resist"
 	set category = "IC"
 
@@ -890,6 +897,7 @@ hippie end */
 	cameraFollow = null
 
 /mob/living/proc/can_track(mob/living/user)
+	SHOULD_CALL_PARENT(TRUE)
 	//basic fast checks go first. When overriding this proc, I recommend calling ..() at the end.
 	var/turf/T = get_turf(src)
 	if(!T)
@@ -1023,6 +1031,7 @@ hippie end */
 
 //Mobs on Fire
 /mob/living/proc/IgniteMob()
+	SHOULD_CALL_PARENT(TRUE)
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = 1
 		src.visible_message("<span class='warning'>[src] catches fire!</span>", \
@@ -1035,6 +1044,7 @@ hippie end */
 	return FALSE
 
 /mob/living/proc/ExtinguishMob()
+	SHOULD_CALL_PARENT(TRUE)
 	if(on_fire)
 		on_fire = 0
 		fire_stacks = 0
