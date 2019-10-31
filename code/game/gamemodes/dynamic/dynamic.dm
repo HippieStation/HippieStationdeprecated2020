@@ -331,8 +331,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 					stack_trace("Invalid dynamic configuration variable [variable] in [ruleset.ruletype] [ruleset.name].")
 					continue
 				ruleset.vars[variable] = rule_conf[variable]
-	for(var/i in GLOB.new_player_list)
-		var/mob/dead/new_player/player = i
+	for(var/mob/dead/new_player/player in GLOB.player_list)
 		if(player.ready == PLAYER_READY_TO_PLAY && player.mind)
 			roundstart_pop_ready++
 			candidates.Add(player)
