@@ -1,0 +1,12 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - rscdel: "Nanosuit medical systems no longer auto charge"
+  - rscadd: "Can now charge medical systems using 10MJ cell"
+  - tweak: "Various suit modes adjust your footstep volumes"
+  - balance: "Nanosuit adds bonus damage against aliens in melee combat"
+  - rscadd: "You can now emag the nanosuit to unlock various enhancements to all modes"
+  - balance: "Increased nano speed consumption from 1.6 to 2.0"
+  - bugfix: "Nanosuit speedmode now works at low nutrition and health"
+  - balance: "Nanosuit sec and robotics hud's have been moved to it's emagged mode"
+  - balance: "Reduced armor stats for armor mode and speed mode"
