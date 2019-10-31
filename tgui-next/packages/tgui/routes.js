@@ -30,8 +30,6 @@ import { SmartVend } from './interfaces/SmartVend';
 import { ThermoMachine } from './interfaces/ThermoMachine';
 import { VaultController } from './interfaces/VaultController';
 import { Wires } from './interfaces/Wires';
-import { Mint } from './interfaces/Mint';
-import { VaultController} from './interfaces/VaultController';
 
 const ROUTES = {
   ai_airlock: {
