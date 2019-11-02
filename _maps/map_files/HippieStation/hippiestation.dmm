@@ -58987,7 +58987,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 8
 	},
-/obj/structure/beebox/premade,
+/obj/structure/beebox/unwrenched,
+/obj/structure/closet/crate/hydroponics,
+/obj/item/honey_frame,
+/obj/item/honey_frame,
+/obj/item/honey_frame,
+/obj/item/queen_bee/bought,
+/obj/item/melee/flyswatter,
+/obj/item/clothing/suit/beekeeper_suit,
+/obj/item/clothing/head/beekeeper_head,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "tWk" = (
@@ -102532,7 +102540,7 @@ aQK
 aLR
 aTp
 aUI
-tWi
+kWp
 aXW
 aZC
 aWv
