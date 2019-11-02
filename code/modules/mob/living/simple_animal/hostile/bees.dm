@@ -29,7 +29,8 @@
 	health = 10
 	spacewalk = TRUE
 	faction = list("hostile")
-	move_to_delay = 0
+	move_to_delay = 1
+	turns_per_move = 3
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
