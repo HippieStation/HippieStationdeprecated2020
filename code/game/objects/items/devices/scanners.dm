@@ -201,6 +201,9 @@ GENE SCANNER
 	if(advanced && M.hallucinating())
 		to_chat(user, "\t<span class='info'>Subject is hallucinating.</span>")
 
+	if(M.getorgan(/obj/item/organ/zombie_infection)) //hippie edit
+		to_chat(user, "<span class='boldannounce'>\tBiometrics consistent with Romerol infection. \tBrain surgery needed to remove malignant tumorous mass.</span>") //hippie edit
+
 	//Eyes and ears
 	if(advanced)
 		if(iscarbon(M))

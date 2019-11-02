@@ -15999,10 +15999,10 @@
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aTq" = (
-/obj/machinery/hydroponics/constructable,
 /obj/machinery/camera{
 	c_tag = "Hydroponics North"
 	},
+/obj/machinery/hydroponics/constructable,
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aTr" = (
@@ -17848,11 +17848,11 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aZE" = (
-/obj/machinery/hydroponics/constructable,
 /obj/machinery/airalarm{
 	dir = 8;
 	pixel_x = 24
 	},
+/obj/machinery/hydroponics/constructable,
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "aZG" = (
@@ -18384,10 +18384,10 @@
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "bbc" = (
-/obj/machinery/hydroponics/constructable,
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/hydroponics/constructable,
 /turf/open/floor/plasteel/dark,
 /area/hydroponics)
 "bbd" = (
@@ -32013,7 +32013,6 @@
 /area/science/mixing)
 "bNw" = (
 /obj/machinery/vending/coffee{
-	light_color = "#966432";
 	light_range = 1.4
 	},
 /turf/open/floor/plasteel,
@@ -51131,7 +51130,6 @@
 "gzS" = (
 /obj/machinery/camera{
 	c_tag = "Toxins Lab - East";
-	dir = 2;
 	network = list("MiniSat");
 	start_active = 1
 	},
@@ -58985,6 +58983,13 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
+"tWi" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/structure/beebox/premade,
+/turf/open/floor/plasteel,
+/area/hydroponics)
 "tWk" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
@@ -102270,7 +102275,7 @@ aQJ
 aLR
 aTq
 aUI
-kWp
+tWi
 aXV
 aZB
 aWv
@@ -102527,7 +102532,7 @@ aQK
 aLR
 aTp
 aUI
-kWp
+tWi
 aXW
 aZC
 aWv
