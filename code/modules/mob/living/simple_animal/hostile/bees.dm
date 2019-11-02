@@ -19,7 +19,6 @@
 	gender = FEMALE
 	speak_emote = list("buzzes")
 	emote_hear = list("buzzes")
-	turns_per_move = 0
 	melee_damage_lower = 1
 	melee_damage_upper = 1
 	attacktext = "stings"
