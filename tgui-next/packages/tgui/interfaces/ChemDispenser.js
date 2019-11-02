@@ -8,34 +8,20 @@ export const ChemDispenser = props => {
   const { state } = props;
   const { config, data } = state;
   const { ref } = config;
-  const recording = !!data.recordingRecipe;
   // TODO: Change how this piece of shit is built on server side
   // It has to be a list, not a fucking OBJECT!
   const recipes = Object.keys(data.recipes)
-    .map(name => ({
-      name,
-      contents: data.recipes[name],
+    .map(a => ({
+      name: data.recipes[a].recipe_name,
+      contents: data.recipes[a].contents,
     }));
   const beakerTransferAmounts = data.beakerTransferAmounts || [];
-  const beakerContents = recording
-    && Object.keys(data.recordingRecipe)
-      .map(id => ({
-        id,
-        name: toTitleCase(id.replace(/_/, ' ')),
-        volume: data.recordingRecipe[id],
-      }))
-    || data.beakerContents
-    || [];
+  const beakerContents = data.beakerContents || [];
   return (
     <Fragment>
       <Section
         title="Status"
-        buttons={recording && (
-          <Box inline mx={1} color="pale-red">
-            <Icon name="circle" mr={1} />
-            Recording
-          </Box>
-        )}>
+      >
         <LabeledList>
           <LabeledList.Item label="Energy">
             <ProgressBar
@@ -48,35 +34,16 @@ export const ChemDispenser = props => {
         title="Recipes"
         buttons={(
           <Fragment>
-            {!recording && (
-              <Box inline mx={1}>
-                <Button
-                  color="transparent"
-                  content="Clear recipes"
-                  onClick={() => act(ref, 'clear_recipes')} />
-              </Box>
-            )}
-            {!recording && (
+            <Box inline mx={1}>
               <Button
-                icon="circle"
-                disabled={!data.isBeakerLoaded}
-                content="Record"
-                onClick={() => act(ref, 'record_recipe')} />
-            )}
-            {recording && (
-              <Button
-                icon="ban"
                 color="transparent"
-                content="Discard"
-                onClick={() => act(ref, 'cancel_recording')} />
-            )}
-            {recording && (
-              <Button
-                icon="floppy-o"
-                color="green"
-                content="Save"
-                onClick={() => act(ref, 'save_recording')} />
-            )}
+                content="Clear Recipes"
+                onClick={() => act(ref, 'clear_recipes')} />
+            </Box>
+            <Button
+              icon="circle"
+              content="Add Recipe"
+              onClick={() => act(ref, 'add_recipe')} />
           </Fragment>
         )}>
         {recipes.map(recipe => (
@@ -86,7 +53,7 @@ export const ChemDispenser = props => {
             lineHeight="21px"
             content={recipe.name}
             onClick={() => act(ref, 'dispense_recipe', {
-              recipe: recipe.name,
+              recipe: recipe.contents,
             })} />
         ))}
         {recipes.length === 0 && (
@@ -127,7 +94,6 @@ export const ChemDispenser = props => {
           beakerTransferAmounts.map(amount => (
             <Button key={amount}
               icon="minus"
-              disabled={recording}
               content={amount}
               onClick={() => act(ref, 'remove', { amount })} />
           ))
@@ -142,23 +108,21 @@ export const ChemDispenser = props => {
                 disabled={!data.isBeakerLoaded}
                 onClick={() => act(ref, 'eject')} />
             )}>
-            {recording
-              && 'Virtual beaker'
-              || data.isBeakerLoaded
-                && (
-                  <Fragment>
-                    <AnimatedNumber
-                      initial={0}
-                      value={data.beakerCurrentVolume} />
-                    /{data.beakerMaxVolume} units
-                  </Fragment>
-                )
+            {data.isBeakerLoaded
+              && (
+                <Fragment>
+                  <AnimatedNumber
+                    initial={0}
+                    value={data.beakerCurrentVolume} />
+                  /{data.beakerMaxVolume} units
+                </Fragment>
+              )
               || 'No beaker'}
           </LabeledList.Item>
           <LabeledList.Item
             label="Contents">
             <Box color="highlight">
-              {(!data.isBeakerLoaded && !recording) && 'N/A'
+              {(!data.isBeakerLoaded) && 'N/A'
                 || beakerContents.length === 0 && 'Nothing'}
             </Box>
             {beakerContents.map(chemical => (
