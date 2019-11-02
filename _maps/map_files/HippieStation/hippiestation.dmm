@@ -42197,7 +42197,6 @@
 /turf/open/floor/plating,
 /area/maintenance/port/aft)
 "ctG" = (
-/obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
@@ -53357,6 +53356,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/engine/engineering)
+"knk" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/maintenance/port/aft)
 "knC" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -58983,13 +58990,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"tWi" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/structure/beebox/premade,
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "tWk" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
@@ -86657,9 +86657,9 @@ ccE
 fNC
 csC
 ctG
-iyH
-iyH
-iyH
+knk
+knk
+knk
 cxA
 cym
 cyT
@@ -102275,7 +102275,7 @@ aQJ
 aLR
 aTq
 aUI
-tWi
+kWp
 aXV
 aZB
 aWv
@@ -102532,7 +102532,7 @@ aQK
 aLR
 aTp
 aUI
-tWi
+kWp
 aXW
 aZC
 aWv
