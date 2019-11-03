@@ -1,0 +1,7 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - balance: "The Interdimensional Sword now deals a total of 25 damage, up from 17.5"
+  - balance: "The Interdimensional Sword now has a higher chance to dismember."
+  - balance: "The Interdimensional Sword will no longer ignites things that it dismembers"
+  - balance: "When the Interdimensional Sword does not dismember, it will impale the victim, set them on fire, and cause blood loss and bleeding."
