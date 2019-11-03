@@ -32,6 +32,9 @@ import { SmartVend } from './interfaces/SmartVend';
 import { ThermoMachine } from './interfaces/ThermoMachine';
 import { VaultController } from './interfaces/VaultController';
 import { Wires } from './interfaces/Wires';
+// hippie start
+import { Guardian } from './interfaces/Guardian';
+// hippie end
 
 const ROUTES = {
   ai_airlock: {
@@ -170,6 +173,12 @@ const ROUTES = {
     component: () => Wires,
     scrollable: false,
   },
+  // hippie start
+  guardian: {
+    component: () => Guardian,
+    scrollable: true,
+  },
+  // hippie end
 };
 
 export const getRoute = state => {
