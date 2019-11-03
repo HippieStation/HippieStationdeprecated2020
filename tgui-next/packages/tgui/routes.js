@@ -31,6 +31,7 @@ import { PersonalCrafting } from './interfaces/PersonalCrafting';
 import { PortableGenerator } from './interfaces/PortableGenerator';
 import { ShuttleManipulator } from './interfaces/ShuttleManipulator';
 import { SmartVend } from './interfaces/SmartVend';
+import { SMES } from './interfaces/SMES';
 import { ThermoMachine } from './interfaces/ThermoMachine';
 import { VaultController } from './interfaces/VaultController';
 import { Wires } from './interfaces/Wires';
@@ -151,6 +152,10 @@ const ROUTES = {
     component: () => Mint,
     scrollable: false,
   },
+  operating_computer: {
+    component: () => OperatingComputer,
+    scrollable: true,
+  },
   personal_crafting: {
     component: () => PersonalCrafting,
     scrollable: true,
@@ -167,9 +172,9 @@ const ROUTES = {
     component: () => SmartVend,
     scrollable: true,
   },
-  operating_computer: {
-    component: () => OperatingComputer,
-    scrollable: true,
+  smes: {
+    component: () => SMES,
+    scrollable: false,
   },
   thermomachine: {
     component: () => ThermoMachine,
