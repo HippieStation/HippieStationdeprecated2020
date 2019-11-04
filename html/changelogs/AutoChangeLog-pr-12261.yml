@@ -1,0 +1,4 @@
+author: "Exxion"
+delete-after: True
+changes: 
+  - bugfix: "Atmospheres will no longer fail to mix if the pressure and temperature are close together but gas composition is not."
