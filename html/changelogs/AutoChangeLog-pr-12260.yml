@@ -1,0 +1,4 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - bugfix: "Ghosts orbiting the ghost stone (or it's holder) are now visible again. No, it's not a ghost magnet anymore."
