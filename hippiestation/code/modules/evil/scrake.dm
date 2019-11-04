@@ -19,6 +19,9 @@
 		user.set_species(/datum/species/scrake)
 		user.maxHealth = 250
 		user.health = 250
+		user.hair_style = "Short Hair"
+		user.hair_color = "000"
+		user.regenerate_icons()
 		var/datum/component/footstep/FS = user.GetComponent(/datum/component/footstep)
 		FS.volume = 2.0 //big stomper
 
@@ -43,7 +46,7 @@
 	addtimer(CALLBACK(src, .proc/rage_reset, owner), 180)
 
 /obj/item/clothing/suit/apron/chef/scrake/proc/rage_reset(mob/living/carbon/human/owner)
-	H.client.color = initial(H.client.color)
+	owner.client.color = initial(owner.client.color)
 	slowdown = initial(slowdown)
 	raged = FALSE
 
