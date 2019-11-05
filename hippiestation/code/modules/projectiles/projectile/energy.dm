@@ -25,11 +25,19 @@
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "singularity_s1"
 	var/singulo_range = 5
+	range = 30
+	movement_type = FLYING | UNSTOPPABLE
 
 /obj/item/projectile/energy/singulo/Range()
 	..()
 	transform *= 1.25 //25% larger per tile
 	eat()
+	if(range < 15)
+		DISABLE_BITFIELD(movement_type, UNSTOPPABLE)
+
+/obj/item/projectile/energy/singulo/on_range()
+	explosion(get_turf(src), 0, 1, 4, flame_range = 4)
+	return ..()
 
 /obj/item/projectile/energy/singulo/on_hit(atom/target)
 	. = ..()
@@ -42,7 +50,7 @@
 			continue
 		T.singularity_pull(src, singulo_range)
 		for(var/thing in T)
-			if(isturf(loc) && thing != src)
+			if(isturf(loc) && thing != src && thing != firer && thing != fired_from)
 				var/atom/movable/X = thing
 				X.singularity_pull(src, singulo_range)
 			CHECK_TICK
