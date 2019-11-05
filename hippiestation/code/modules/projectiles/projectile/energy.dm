@@ -25,14 +25,22 @@
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "singularity_s1"
 	var/singulo_range = 5
-	range = 60
+	range = 30
+	movement_type = FLYING | UNSTOPPABLE
 
 /obj/item/projectile/energy/singulo/Range()
 	..()
 	transform *= 1.25 //25% larger per tile
 	eat()
+	if(range < 15)
+		DISABLE_BITFIELD(movement_type, UNSTOPPABLE)
+
+/obj/item/projectile/energy/singulo/on_range()
+	explosion(get_turf(src), 0, 1, 4, flame_range = 4)
+	return ..()
 
 /obj/item/projectile/energy/singulo/on_hit(atom/target)
+	. = ..()
 	target.singularity_act()
 
 /obj/item/projectile/energy/singulo/proc/eat()
