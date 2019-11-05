@@ -55,15 +55,19 @@ export const Button = props => {
       tabIndex={!disabled && '0'}
       unselectable={tridentVersion <= 4}
       onclick={e => {
-        if (disabled || !onClick) {
-          return;
-        }
         refocusLayout();
-        onClick(e);
+        if (!disabled && onClick) {
+          onClick(e);
+        }
       }}
       onKeyPress={e => {
         const keyCode = window.event ? e.which : e.keyCode;
-        if (!BUTTON_ACTIVATION_KEYCODES.includes(keyCode)) {
+        // Simulate a click when pressing space or enter.
+        if (keyCode === KEY_SPACE || keyCode === KEY_ENTER) {
+          e.preventDefault();
+          if (!disabled && onClick) {
+            onClick(e);
+          }
           return;
         }
         if (disabled || !onClick) {
