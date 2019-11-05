@@ -25,6 +25,7 @@
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "singularity_s1"
 	var/singulo_range = 5
+	range = 60
 
 /obj/item/projectile/energy/singulo/Range()
 	..()
@@ -32,7 +33,6 @@
 	eat()
 
 /obj/item/projectile/energy/singulo/on_hit(atom/target)
-	. = ..()
 	target.singularity_act()
 
 /obj/item/projectile/energy/singulo/proc/eat()
@@ -42,7 +42,7 @@
 			continue
 		T.singularity_pull(src, singulo_range)
 		for(var/thing in T)
-			if(isturf(loc) && thing != src)
+			if(isturf(loc) && thing != src && thing != firer && thing != fired_from)
 				var/atom/movable/X = thing
 				X.singularity_pull(src, singulo_range)
 			CHECK_TICK
