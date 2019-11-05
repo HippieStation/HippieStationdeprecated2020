@@ -1,0 +1,5 @@
+author: "YoYoBatty"
+delete-after: True
+changes: 
+  - bugfix: "Singulo spawner no longer pulls user or gun from hands"
+  - tweak: "Singulo spawner projectile continuously goes through walls until a certain distance then eventually explodes"
