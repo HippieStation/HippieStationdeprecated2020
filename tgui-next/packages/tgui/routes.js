@@ -28,6 +28,7 @@ import { CodexGigas } from './interfaces/CodexGigas';
 import { Crayon } from './interfaces/Crayon';
 import { Cryo } from './interfaces/Cryo';
 import { DisposalUnit } from './interfaces/DisposalUnit';
+import { Gps } from './interfaces/Gps';
 import { LanguageMenu } from './interfaces/LanguageMenu';
 import { Mint } from './interfaces/Mint';
 import { OperatingComputer } from './interfaces/OperatingComputer';
@@ -39,6 +40,8 @@ import { ShuttleManipulator } from './interfaces/ShuttleManipulator';
 import { SmartVend } from './interfaces/SmartVend';
 import { SMES } from './interfaces/SMES';
 import { SolarControl } from './interfaces/SolarControl';
+import { SuitStorageUnit } from './interfaces/SuitStorageUnit';
+import { TankDispenser } from './interfaces/TankDispenser';
 import { ThermoMachine } from './interfaces/ThermoMachine';
 import { VaultController } from './interfaces/VaultController';
 import { Wires } from './interfaces/Wires';
@@ -171,6 +174,10 @@ const ROUTES = {
     component: () => DisposalUnit,
     scrollable: false,
   },
+  gps: {
+    component: () => Gps,
+    scrollable: true,
+  },
   language_menu: {
     component: () => LanguageMenu,
     scrollable: true,
@@ -213,6 +220,14 @@ const ROUTES = {
   },
   solar_control: {
     component: () => SolarControl,
+    scrollable: false,
+  },
+  suit_storage_unit: {
+    component: () => SuitStorageUnit,
+    scrollable: false,
+  },
+  tank_dispenser: {
+    component: () => TankDispenser,
     scrollable: false,
   },
   thermomachine: {
