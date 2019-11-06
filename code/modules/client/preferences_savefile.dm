@@ -106,11 +106,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 				job_preferences[initial(J.title)] = new_value
 
 	if(current_version < 23)
-		key_bindings = sanitize_islist(key_bindings, deepCopyList(GLOB.keybinding_list_by_key))
-		key_bindings["T"] = list(1 = "say")
-		key_bindings["M"] = list(1 = "me")
-		key_bindings["O"] = list(1 = "ooc")
-		key_bindings["L"] = list(1 = "looc")
+		key_bindings = deepCopyList(GLOB.keybinding_list_by_key)
 		WRITE_FILE(S["key_bindings"], key_bindings)
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
