@@ -978,6 +978,17 @@
 	build_path = /obj/machinery/power/generator
 	req_components = list()
 
+/obj/item/circuitboard/machine/pump
+	name = "Portable Liquid Pump (Machine Board)"
+	icon_state = "supply"
+	build_path = /obj/machinery/power/liquid_pump
+	needs_anchored = FALSE
+	req_components = list(
+		/obj/item/stock_parts/manipulator = 2,
+		/obj/item/stock_parts/matter_bin = 2)
+
+//Misc
+
 /obj/item/circuitboard/machine/circulator
 	name = "Circulator/Heat Exchanger (Machine Board)"
 	build_path = /obj/machinery/atmospherics/components/binary/circulator

@@ -493,4 +493,11 @@
 	category = list("Equipment")
 	departmental_flags = DEPARTMENTAL_FLAG_SECURITY
 
-
+/datum/design/plumbing_rcd
+	name = "Plumbing Constructor"
+	id = "plumbing_rcd"
+	build_type = PROTOLATHE
+	materials = list(MAT_METAL = 75000, MAT_GLASS = 37500, MAT_PLASTIC = 1000)
+	build_path = /obj/item/construction/plumbing
+	category = list("Equipment")
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL

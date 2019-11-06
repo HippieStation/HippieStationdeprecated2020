@@ -56,6 +56,8 @@
 	integrity_failure = 50
 	resistance_flags = FIRE_PROOF
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON
+	ui_x = 450 
+	ui_y = 460
 
 	var/lon_range = 1.5
 	var/area/area
@@ -806,7 +808,7 @@
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "apc", name, 535, 515, master_ui, state)
+		ui = new(user, src, ui_key, "apc", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/power/apc/ui_data(mob/user)
