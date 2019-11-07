@@ -158,13 +158,11 @@
 	var/datum/team/infiltrator/sit_team
 
 /datum/dynamic_ruleset/roundstart/infiltrator/ready(forced = FALSE)
-	var/indice_pop = min(10,round(mode.roundstart_pop_ready/pop_per_requirement)+1)
 	required_candidates = infil_cap[indice_pop]
 	. = ..()
 
 /datum/dynamic_ruleset/roundstart/infiltrator/pre_execute()
 	// If ready() did its job, candidates should have 5 or more members in it
-	var/indice_pop = min(10,round(mode.roundstart_pop_ready/pop_per_requirement)+1)
 	var/infiltrators = infil_cap[indice_pop]
 	for(var/infils_number = 1 to infiltrators)
 		if(candidates.len <= 0)
