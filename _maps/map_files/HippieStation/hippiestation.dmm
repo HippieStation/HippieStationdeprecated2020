@@ -14572,6 +14572,16 @@
 	req_access_txt = "35"
 	},
 /obj/effect/turf_decal/delivery,
+/obj/structure/closet/crate/secure/hydroponics{
+	name = "Beekeeping Starter Crate"
+	},
+/obj/item/honey_frame,
+/obj/item/honey_frame,
+/obj/item/honey_frame,
+/obj/item/queen_bee/bought,
+/obj/item/melee/flyswatter,
+/obj/item/clothing/suit/beekeeper_suit,
+/obj/item/clothing/head/beekeeper_head,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aOQ" = (
@@ -59161,13 +59171,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"tWi" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/structure/beebox/premade,
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "tWk" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
@@ -102447,7 +102450,7 @@ aQJ
 aLR
 aTq
 aUI
-tWi
+kWp
 aXV
 aZB
 aWv
@@ -102704,7 +102707,7 @@ aQK
 aLR
 aTp
 aUI
-tWi
+kWp
 aXW
 aZC
 aWv
