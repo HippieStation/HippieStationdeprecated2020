@@ -256,14 +256,14 @@
 				return
 			var/recipe_to_use = params["recipe"]
 			var/list/chemicals_to_dispense = process_recipe_list(recipe_to_use)
-			var/res = macroresolution
 			for(var/key in chemicals_to_dispense) // i suppose you could edit the list locally before passing it
 				var/list/keysplit = splittext(key," ")
 				var/r_id = GLOB.name2reagent[translate_legacy_chem_id(keysplit[1])]
 				if(beaker && dispensable_reagents.Find(r_id)) // but since we verify we have the reagent, it'll be fine
 					var/datum/reagents/R = beaker.reagents
 					var/free = R.maximum_volume - R.total_volume
-					var/actual = min(round(chemicals_to_dispense[key], res), (cell.charge * powerefficiency)*10, free)
+					var/rounded = is_resolution(chemicals_to_dispense[key]) ? chemicals_to_dispense[key] : round(chemicals_to_dispense[key], macroresolution)
+					var/actual = min(rounded, (cell.charge * powerefficiency)*10, free)
 					if(actual)
 						if(!cell.use(abs(actual) / powerefficiency))
 							say("Not enough energy to complete operation!")
@@ -290,13 +290,13 @@
 				var/list/first_process = splittext(recipe, ";")
 				if(!LAZYLEN(first_process))
 					return
-				var/res = macroresolution
 				var/resmismatch = FALSE
 				for(var/reagents in first_process)
 					var/list/reagent = splittext(reagents, "=")
+					var/amt = text2num(reagent[2]) || 0
 					var/reagent_id = GLOB.name2reagent[translate_legacy_chem_id(reagent[1])]
-					if(dispensable_reagents.Find(reagent_id))
-						if (!resmismatch && !check_macro_part(reagents, res))
+					if(dispensable_reagents.Find(reagent_id) || (reagent_id && amt < 0))
+						if (!resmismatch && !check_macro_part(reagents))
 							resmismatch = TRUE
 						continue
 					else
@@ -392,17 +392,20 @@
 	return ..()
 
 /obj/machinery/chem_dispenser/proc/check_macro(macro)
-	var/res = macroresolution
 	for (var/reagent in splittext(trim(macro), ";"))
-		if (!check_macro_part(reagent, res))
+		if (!check_macro_part(reagent))
 			return FALSE
 	return TRUE
 
 /obj/machinery/chem_dispenser/proc/check_macro_part(var/part, var/res = macroresolution)
 	var/detail = splittext(part, "=")
-	if (abs(text2num(detail[2])) < res)
-		return FALSE
-	return TRUE
+	return is_resolution(text2num(detail[2]), res)
+
+/obj/machinery/chem_dispenser/proc/is_resolution(var/amt, var/res = macroresolution)
+	. = FALSE
+	for(var/i in 5 to macroresolution step -1)
+		if(amt % i == 0)
+			return TRUE
 
 /obj/machinery/chem_dispenser/proc/process_recipe_list(var/recipe)
 	var/list/key_list = list()
