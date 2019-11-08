@@ -364,3 +364,17 @@
 
 	l += "</tr></table></div>"
 	return l
+
+// hippie -- machine malfunctions
+
+/obj/machinery/rnd/production/proc/malfunction_act()
+	var/turf/T = get_turf(src)
+	visible_message("<span class='warning'>[src] sizzles and sparks!</span>")
+	playsound(T, 'sound/effects/pop.ogg', 50, 0)
+	sleep(15)
+	if((src) && powered)
+		for(var/turf/turf in range(4,T))
+			if((prob(75)) && (isInSight(src, turf)))
+				new /obj/effect/hotspot(turf)
+
+// hippie end
