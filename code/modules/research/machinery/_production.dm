@@ -90,7 +90,7 @@
 		if(efficient_with(I.type))
 			I.materials = matlist.Copy()
 	SSblackbox.record_feedback("nested tally", "item_printed", amount, list("[type]", "[path]"))
-	process_malfunction(amount, (efficiency_coeff^2 * 2)) // from 2.46% at low tier to 12.5% at high tier
+	process_malfunction(amount, ((efficiency_coeff ** 2) * 2)) // from 2.46% at low tier to 12.5% at high tier
 
 /obj/machinery/rnd/production/proc/check_mat(datum/design/being_built, M)	// now returns how many times the item can be built with the material
 	if (!materials.mat_container)  // no connected silo

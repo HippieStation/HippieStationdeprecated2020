@@ -158,7 +158,7 @@
 
 	updateUsrDialog()
 
-	process_malfunction(1, ((1/time_coeff)^2 * 3)) // Roboticists are goddamn wankers so I'll give them a 3% chance at low tier to an 18.75% chance at high tier
+	process_malfunction(1, (((1/time_coeff) ** 2) * 3)) // Roboticists are goddamn wankers so I'll give them a 3% chance at low tier to an 18.75% chance at high tier
 
 	return TRUE
 
