@@ -61,5 +61,5 @@
 	alternate_screams = list('hippiestation/sound/voice/jabroni1.ogg','hippiestation/sound/voice/jabroni2.ogg','hippiestation/sound/voice/jabroni3.ogg','hippiestation/sound/voice/jabroni4.ogg','hippiestation/sound/voice/jabroni5.ogg')
 
 /obj/item/clothing/under
-	random_sensor = TRUE
+	random_sensor = FALSE
 	sensor_mode = SENSOR_COORDS
