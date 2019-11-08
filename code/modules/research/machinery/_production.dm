@@ -90,6 +90,7 @@
 		if(efficient_with(I.type))
 			I.materials = matlist.Copy()
 	SSblackbox.record_feedback("nested tally", "item_printed", amount, list("[type]", "[path]"))
+	malfunction_act()
 
 /obj/machinery/rnd/production/proc/check_mat(datum/design/being_built, M)	// now returns how many times the item can be built with the material
 	if (!materials.mat_container)  // no connected silo
@@ -372,7 +373,9 @@
 	visible_message("<span class='warning'>[src] sizzles and sparks!</span>")
 	playsound(T, 'sound/effects/pop.ogg', 50, 0)
 	sleep(15)
-	if((src) && powered)
+	investigate_log("\a [src] has malfunctioned.", INVESTIGATE_RESEARCH)
+	message_admins("\a [src] has malfunctioned.")
+	if(src && powered(power_channel))
 		for(var/turf/turf in range(4,T))
 			if((prob(75)) && (isInSight(src, turf)))
 				new /obj/effect/hotspot(turf)
