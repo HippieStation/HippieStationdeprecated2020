@@ -373,16 +373,6 @@
 	item = /obj/item/storage/box/syndie_kit/nanosuit
 	cost = 20
 
-//Scrake uplink item, available in all traitor rounds and nuke.
-/datum/uplink_item/dangerous/scrake
-	name = "Scrake Rage Kit"
-	desc = "Become a fucking scrake."
-	item = /obj/item/storage/box/syndie_kit/scrake
-	cost = 20
-	surplus = 10
-	cant_discount = TRUE
-	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
-
 /datum/uplink_item/dangerous/synth
 	name = "Cybersun Sponsorship Kit"
 	desc = "Containing an arm mounted laser implant and a device bestowing the mysteries of the synth augmentation upon you, this kit also comes with a free autosurgeon."

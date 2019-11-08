@@ -8,7 +8,7 @@
 	clothing_flags = THICKMATERIAL | STOPSPRESSUREDAMAGE
 	armor = list("melee" = 70, "bullet" = 40, "laser" = 40, "energy" = 45, "bomb" = 75, "bio" = 0, "rad" = 30, "fire" = 80, "acid" = 100)
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
-	slowdown = 1
+	slowdown = 0.5
 	var/rage_cooldown_duration = 600
 	var/rage_cooldown = 0
 	var/raged = FALSE
@@ -20,8 +20,10 @@
 		user.maxHealth = 250
 		user.health = 250
 		user.hair_style = "Short Hair"
+		user.facial_hair_style = "Shaved"
 		user.hair_color = "000"
 		user.regenerate_icons()
+		user.name = "Scrake"
 		var/datum/component/footstep/FS = user.GetComponent(/datum/component/footstep)
 		FS.volume = 2.0 //big stomper
 
@@ -95,3 +97,9 @@
 		playsound(src, 'hippiestation/sound/weapons/echainsawon.ogg', 50, 1)
 	else
 		playsound(src, 'hippiestation/sound/weapons/echainsawoff.ogg', 50, 1)
+
+/datum/outfit/scrake
+	name = "Scrake outfit"
+	mask = /obj/item/clothing/mask/surgical/scrake
+	suit = /obj/item/clothing/suit/apron/chef/scrake
+	l_hand = /obj/item/twohanded/required/chainsaw/scrake_saw
