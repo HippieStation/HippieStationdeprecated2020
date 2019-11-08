@@ -553,3 +553,30 @@ Class Procs:
 	. = . % 9
 	AM.pixel_x = -8 + ((.%3)*8)
 	AM.pixel_y = -8 + (round( . / 3)*8)
+
+// hippie -- machine malfunctions
+// I have to put this here because some absolute FUCKO decided to make mech machines without putting them in /obj/machinery/rdn/production since they don't know how to fucking code
+
+/obj/machinery/proc/process_malfunction(amount, malfunction_chance)
+	var/malfunction = FALSE
+	for(var/i=0, i < amount, i++)
+		if(prob(malfunction_chance))
+			malfunction = TRUE
+	if(malfunction)
+		malfunction_act()
+
+/obj/machinery/proc/malfunction_act()
+	var/turf/T = get_turf(src)
+	visible_message("<span class='warning'>[src] sizzles and sparks!</span>")
+	playsound(T, 'sound/effects/light_flicker.ogg', 50)
+	playsound(T, 'sound/effects/sparks1.ogg', 100)
+	sleep(15)
+	investigate_log("\A [src] has malfunctioned.", INVESTIGATE_RESEARCH)
+	message_admins("\A [src] has malfunctioned.")
+	playsound(T, 'sound/magic/fireball.ogg', 70)
+	if(src && powered(power_channel))
+		for(var/turf/turf in range(4,T))
+			if((prob(75)) && (isNotBlocked(src, turf)))
+				new /obj/effect/hotspot(turf)
+
+// hippie end

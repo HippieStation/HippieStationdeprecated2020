@@ -90,7 +90,7 @@
 		if(efficient_with(I.type))
 			I.materials = matlist.Copy()
 	SSblackbox.record_feedback("nested tally", "item_printed", amount, list("[type]", "[path]"))
-	malfunction_act()
+	process_malfunction(amount, (efficiency_coeff^2 * 2)) // from 2.46% at low tier to 12.5% at high tier
 
 /obj/machinery/rnd/production/proc/check_mat(datum/design/being_built, M)	// now returns how many times the item can be built with the material
 	if (!materials.mat_container)  // no connected silo
@@ -365,19 +365,3 @@
 
 	l += "</tr></table></div>"
 	return l
-
-// hippie -- machine malfunctions
-
-/obj/machinery/rnd/production/proc/malfunction_act()
-	var/turf/T = get_turf(src)
-	visible_message("<span class='warning'>[src] sizzles and sparks!</span>")
-	playsound(T, 'sound/effects/pop.ogg', 50, 0)
-	sleep(15)
-	investigate_log("\a [src] has malfunctioned.", INVESTIGATE_RESEARCH)
-	message_admins("\a [src] has malfunctioned.")
-	if(src && powered(power_channel))
-		for(var/turf/turf in range(4,T))
-			if((prob(75)) && (isInSight(src, turf)))
-				new /obj/effect/hotspot(turf)
-
-// hippie end

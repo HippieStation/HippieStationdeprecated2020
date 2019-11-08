@@ -157,6 +157,9 @@
 	being_built = null
 
 	updateUsrDialog()
+
+	process_malfunction(1, ((1/time_coeff)^2 * 3)) // Roboticists are goddamn wankers so I'll give them a 3% chance at low tier to an 18.75% chance at high tier
+
 	return TRUE
 
 /obj/machinery/mecha_part_fabricator/proc/update_queue_on_page()
