@@ -44,7 +44,7 @@
 	return 1
 #undef SIGNV
 
-// checks if there are any dense objects between two coordinates
+// checks if there are any dense objects between two atoms
 /proc/isNotBlocked(atom/A, atom/B)
 	var/turf/Aturf = get_turf(A)
 	var/turf/Bturf = get_turf(B)
