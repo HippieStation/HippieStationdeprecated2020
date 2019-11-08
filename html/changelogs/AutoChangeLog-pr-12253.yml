@@ -1,5 +1,0 @@
-author: "steamp0rt"
-delete-after: True
-changes: 
-  - bugfix: "Gangtools now get properly deleted when converted/deconverted in Gangmageddon"
-  - imageadd: "The gangtool action button now has an icon"
