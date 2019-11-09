@@ -1,0 +1,4 @@
+author: "HideAndSeekLOGIC"
+delete-after: True
+changes: 
+  - code_imp: "Added a new tarot deck specifically designed to assist in holoparasite debugging"
