@@ -7,6 +7,7 @@
 	var/hud_type = "gangster"
 	var/message_name = "Gangster"
 	var/datum/team/gang/gang
+	var/obj/item/gangtool/hell_march/gangtool
 
 /datum/antagonist/gang/can_be_owned(datum/mind/new_owner)
 	. = ..()
@@ -45,13 +46,13 @@
 	add_to_gang()
 	owner.remove_antag_datum(/datum/antagonist/vigilante)
 	if(istype(SSticker.mode, /datum/game_mode/hell_march))
-		var/obj/item/gangtool/hell_march/HM = new(owner.current)
-		HM.register_device(owner.current)
+		gangtool = new(owner.current)
+		gangtool.register_device(owner.current)
 
 /datum/antagonist/gang/on_removal()
 	remove_from_gang()
-	for(var/obj/item/gangtool/hell_march/O in owner.current.GetAllContents())
-		qdel(O)
+	if(gangtool)
+		qdel(gangtool)
 	if(istype(SSticker.mode, /datum/game_mode/hell_march))
 		owner.add_antag_datum(/datum/antagonist/vigilante)
 	..()

@@ -7,4 +7,4 @@
 		else
 			addtimer(CALLBACK(H, /mob/living/carbon/human.proc/change_mob_type, /mob/living/simple_animal/crab, null, H.real_name, TRUE), 1 SECONDS)
 	else if(is_banned_from(M.ckey, CATBAN))
-		H.set_species(/datum/species/tarajan) // can't escape hell
+		H.set_species(/datum/species/human/felinid/tarajan) // can't escape hell
