@@ -9,8 +9,9 @@
 	var/failure_message = "<span class='holoparasite bold'>..And draw a card! It's...blank? Maybe you should try again later.</span>"
 	var/used = FALSE
 	var/allow_special = FALSE
+	var/debug_mode = FALSE
 
-/datum/guardianbuilder/New(mob_name, theme, failure_message, max_points, allow_special)
+/datum/guardianbuilder/New(mob_name, theme, failure_message, max_points, allow_special, debug_mode)
 	..()
 	if(mob_name)
 		src.mob_name = mob_name
@@ -21,6 +22,7 @@
 	if(max_points)
 		src.max_points = max_points
 	src.allow_special = allow_special
+	src.debug_mode = debug_mode
 
 /datum/guardianbuilder/ui_interact(mob/user, ui_key, datum/tgui/ui = null, force_open, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
@@ -178,7 +180,8 @@
 		to_chat("<span class='danger'>You don't have enough points for a Guardian like that!</span>")
 		used = FALSE
 		return FALSE
-	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the [mob_name] of [user.real_name]?", ROLE_HOLOPARASITE, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
+	// IMPORTANT - if we're debugging, the user gets thrown into the stand
+	var/list/mob/dead/observer/candidates = debug_mode ? list(user) : pollGhostCandidates("Do you want to play as the [mob_name] of [user.real_name]?", ROLE_HOLOPARASITE, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
 		var/mob/living/simple_animal/hostile/guardian/G = new(user, theme)
@@ -233,10 +236,11 @@
 	var/theme = "magic"
 	var/max_points = 15
 	var/allowspecial = FALSE
+	var/debug_mode = FALSE
 
 /obj/item/guardiancreator/Initialize()
 	. = ..()
-	builder = new(mob_name, theme, failure_message, max_points, allowspecial)
+	builder = new(mob_name, theme, failure_message, max_points, allowspecial, debug_mode)
 
 /obj/item/guardiancreator/attack_self(mob/living/user)
 	if(isguardian(user) && !allowguardian)
@@ -253,6 +257,14 @@
 		to_chat(user, "[used_message]")
 		return
 	builder.ui_interact(user)
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/obj/item/guardiancreator/debug
+	desc = "If you're seeing this and you're not debugging, yell at @Zyzarda"
+	debug_mode = TRUE
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /obj/item/guardiancreator/rare
 	allowspecial = TRUE
