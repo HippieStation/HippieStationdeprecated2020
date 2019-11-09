@@ -134,6 +134,9 @@
 	if(joblist.len && (CATBAN in joblist) && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.set_species(/datum/species/tarajan, icon_update=1) // can't escape hell
+	if(joblist.len && (CLUWNEBAN in joblist) && ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.cluwneify()
 	if(joblist.len && (CRABBAN in joblist) && iscarbon(M))
 		var/mob/living/carbon/C = M
 		C.unequip_everything()
