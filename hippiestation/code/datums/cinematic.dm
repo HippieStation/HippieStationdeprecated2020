@@ -12,3 +12,11 @@
 	screen.icon_state = "station_intact"
 	sleep(30 SECONDS)
 	special()
+
+/datum/cinematic/gang
+	id = CINEMATIC_GANG
+
+/datum/cinematic/malf/content()
+	flick("intro_malf",screen)
+	special()
+	screen.icon_state = "intro_malf_still"

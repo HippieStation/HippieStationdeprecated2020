@@ -298,7 +298,7 @@
 		parts += "[GLOB.TAB]Threat left: [mode.threat]"
 		parts += "[GLOB.TAB]Executed rules:"
 		for(var/datum/dynamic_ruleset/rule in mode.executed_rules)
-			parts += "[GLOB.TAB][GLOB.TAB][rule.ruletype] - <b>[rule.name]</b>: -[rule.cost] threat"
+			parts += "[FOURSPACES][FOURSPACES][rule.ruletype] - <b>[rule.name]</b>: -[rule.cost + rule.scaled_times * rule.scaling_cost] threat"
 	return parts.Join("<br>")
 
 /client/proc/roundend_report_file()

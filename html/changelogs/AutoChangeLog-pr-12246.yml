@@ -1,0 +1,4 @@
+author: "Turret"
+delete-after: True
+changes: 
+  - rscdel: "Dumbspeech filters have been removed. No more braindamage from saying Barnyard or Enya."

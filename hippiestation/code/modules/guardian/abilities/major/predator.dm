@@ -1,8 +1,11 @@
 /datum/guardian_ability/major/predator
 	name = "Predator"
 	desc = "The guardian can track down any living being with just a fingerprint or blood sample."
-	cost = 5
+	cost = 2
 	spell_type = /obj/effect/proc_holder/spell/self/predator
+	has_mode = TRUE
+	mode_on_msg = "<span class='danger'><B>You switch to analysis mode.</span></B>"
+	mode_off_msg = "<span class='danger'><B>You switch to combat mode.</span></B>"
 	var/list/can_track = list()
 
 /datum/guardian_ability/major/predator/Apply()
@@ -14,38 +17,38 @@
 	guardian.remove_status_effect(/datum/status_effect/agent_pinpointer/predator)
 
 /datum/guardian_ability/major/predator/Attack(atom/target)
-	if(!guardian.Adjacent(target))
-		return ..()
-	if(istype(target, /obj/effect/decal/cleanable/blood) || istype(target, /obj/effect/decal/cleanable/trail_holder))
-		guardian.visible_message("<span class='notice'>[guardian] swirls it's finger around in [target] for a bit, before shaking it off.</span>")
-		var/obj/effect/decal/D = target
-		var/list/blood = D.return_blood_DNA()
-		if(LAZYLEN(blood))
-			for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
-				if(H.dna && blood[H.dna.unique_enzymes])
-					if(!(H in can_track))
-						to_chat(guardian, "<span class='notice italics'>We learn the identity of [H.real_name].</span>")
-						can_track += H
-		return TRUE
-	if(isobj(target))
-		guardian.visible_message("<span class='notice'>[guardian] picks up [target], and looks at it for a second, before setting it down.</span>")
-		var/obj/O = target
-		var/list/prints = O.return_fingerprints()
-		if(LAZYLEN(prints))
-			for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
-				if(H.dna && prints[md5(H.dna.uni_identity)])
-					if(!(H in can_track))
-						to_chat(guardian, "<span class='notice italics'>We learn the identity of [H.real_name].</span>")
-						can_track += H
-		var/list/blood = O.return_blood_DNA()
-		if(LAZYLEN(blood))
-			for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
-				if(H.dna && blood[H.dna.unique_enzymes])
-					if(!(H in can_track))
-						to_chat(guardian, "<span class='notice italics'>We learn the identity of [H.real_name].</span>")
-						can_track += H
-		return TRUE
-	return ..()
+	if(mode)
+		if(!guardian.Adjacent(target))
+			return ..()
+		if(istype(target, /obj/effect/decal/cleanable/blood) || istype(target, /obj/effect/decal/cleanable/trail_holder))
+			guardian.visible_message("<span class='notice'>[guardian] swirls it's finger around in [target] for a bit, before shaking it off.</span>")
+			var/obj/effect/decal/D = target
+			var/list/blood = D.return_blood_DNA()
+			if(LAZYLEN(blood))
+				for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
+					if(H.dna && blood[H.dna.unique_enzymes])
+						if(!(H in can_track))
+							to_chat(guardian, "<span class='notice italics'>We learn the identity of [H.real_name].</span>")
+							can_track += H
+			return TRUE
+		if(isobj(target))
+			guardian.visible_message("<span class='notice'>[guardian] picks up [target], and looks at it for a second, before setting it down.</span>")
+			var/obj/O = target
+			var/list/prints = O.return_fingerprints()
+			if(LAZYLEN(prints))
+				for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
+					if(H.dna && prints[md5(H.dna.uni_identity)])
+						if(!(H in can_track))
+							to_chat(guardian, "<span class='notice italics'>We learn the identity of [H.real_name].</span>")
+							can_track += H
+			var/list/blood = O.return_blood_DNA()
+			if(LAZYLEN(blood))
+				for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
+					if(H.dna && blood[H.dna.unique_enzymes])
+						if(!(H in can_track))
+							to_chat(guardian, "<span class='notice italics'>We learn the identity of [H.real_name].</span>")
+							can_track += H
+			return TRUE
 
 /obj/effect/proc_holder/spell/self/predator
 	name = "All-Seeing Predator"

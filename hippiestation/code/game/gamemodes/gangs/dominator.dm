@@ -64,16 +64,14 @@
 
 /obj/machinery/dominator/examine(mob/user)
 	..()
-	if(stat & BROKEN)
-		return
-
-	if(gang && gang.domination_time != NOT_DOMINATING)
-		if(gang.domination_time > world.time)
-			to_chat(user, "<span class='notice'>Hostile Takeover in progress. Estimated [gang.domination_time_remaining()] seconds remain.</span>")
+	if(!(stat & BROKEN))
+		if(gang && gang.domination_time != NOT_DOMINATING)
+			if(gang.domination_time > world.time)
+				to_chat(user, "<span class='notice'>Hostile Takeover in progress. Estimated [gang.domination_time_remaining()] seconds remain.</span>")
+			else
+				to_chat(user, "<span class='notice'>Hostile Takeover of [station_name()] successful. Have a great day.</span>")
 		else
-			to_chat(user, "<span class='notice'>Hostile Takeover of [station_name()] successful. Have a great day.</span>")
-	else
-		to_chat(user, "<span class='notice'>System on standby.</span>")
+			to_chat(user, "<span class='notice'>System on standby.</span>")
 	to_chat(user, "<span class='danger'>System Integrity: [round((obj_integrity/max_integrity)*100,1)]%</span>")
 
 /obj/machinery/dominator/process()
@@ -102,7 +100,7 @@
 					if(tempgang != gang)
 						tempgang.message_gangtools("WARNING: [gang.name] Gang takeover imminent. Their dominator at [domloc.map_name] must be destroyed!",1,1)
 		else
-			Cinematic(CINEMATIC_MALF,world)
+			Cinematic(CINEMATIC_GANG,world)
 			gang.winner = TRUE
 			SSticker.force_ending = TRUE
 
@@ -131,8 +129,8 @@
 
 
 /obj/machinery/dominator/obj_break(damage_flag)
-	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
-		set_broken()
+	. = ..()
+	set_broken()
 
 /obj/machinery/dominator/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
@@ -229,8 +227,8 @@
 		SSshuttle.clearHostileEnvironment(src)
 		gang.message_gangtools("Hostile takeover cancelled: Dominator is no longer operational.[gang.dom_attempts ? " You have [gang.dom_attempts] attempt remaining." : " The station network will have likely blocked any more attempts by us."]",1,1)
 
+	countdown.stop()
+	update_icon()
 	set_light(0)
 	operating = FALSE
-	stat |= BROKEN
-	update_icon()
 	STOP_PROCESSING(SSmachines, src)

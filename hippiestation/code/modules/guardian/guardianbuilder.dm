@@ -25,7 +25,7 @@
 /datum/guardianbuilder/ui_interact(mob/user, ui_key, datum/tgui/ui = null, force_open, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "guardian", "Build-A-Guardian", 300, 400, master_ui, state)
+		ui = new(user, src, ui_key, "guardian", "Build-A-Guardian", 500, 600, master_ui, state)
 		ui.set_autoupdate(TRUE)
 		ui.open()
 
@@ -37,23 +37,23 @@
 	.["ratedskills"] = list()
 	.["ratedskills"] += list(list(
 						name = "Damage",
-						level = "[saved_stats.damage]",
+						level = saved_stats.damage,
 					))
 	.["ratedskills"] += list(list(
 						name = "Defense",
-						level = "[saved_stats.defense]"
+						level = saved_stats.defense
 					))
 	.["ratedskills"] += list(list(
 						name = "Speed",
-						level = "[saved_stats.speed]"
+						level = saved_stats.speed
 					))
 	.["ratedskills"] += list(list(
 						name = "Potential",
-						level = "[saved_stats.potential]"
+						level = saved_stats.potential
 					))
 	.["ratedskills"] += list(list(
 						name = "Range",
-						level = "[saved_stats.range]"
+						level = saved_stats.range
 					))
 	.["no_ability"] = (!saved_stats.ability || !istype(saved_stats.ability))
 	.["melee"] = !saved_stats.ranged
@@ -65,6 +65,7 @@
 		.["abilities_major"] += list(list(
 			name = GA.name,
 			desc = GA.desc,
+			cost = GA.cost,
 			selected = istype(saved_stats.ability, ability),
 			available = (points >= GA.cost) && GA.CanBuy(),
 			path = "[ability]",
@@ -77,6 +78,7 @@
 		.["abilities_minor"] += list(list(
 			name = GA.name,
 			desc = GA.desc,
+			cost = GA.cost,
 			selected = saved_stats.HasMinorAbility(ability),
 			available = (points >= GA.cost) && GA.CanBuy(),
 			path = "[ability]"
@@ -121,10 +123,13 @@
 		if("ability_major")
 			var/ability = text2path(params["path"])
 			var/list/types = allow_special ? (subtypesof(/datum/guardian_ability/major) - /datum/guardian_ability/major/special) : (subtypesof(/datum/guardian_ability/major) - typesof(/datum/guardian_ability/major/special))
-			if(ispath(ability) && (ability in types)) // no nullspace narsie for you!
-				QDEL_NULL(saved_stats.ability)
-				saved_stats.ability = new ability
-				saved_stats.ability.master_stats = saved_stats
+			if(ispath(ability))
+				if(saved_stats.ability && saved_stats.ability.type == ability)
+					QDEL_NULL(saved_stats.ability)
+				else if(ability in types) // no nullspace narsie for you!
+					QDEL_NULL(saved_stats.ability)
+					saved_stats.ability = new ability
+					saved_stats.ability.master_stats = saved_stats
 		if("ability_minor")
 			var/ability = text2path(params["path"])
 			if(ispath(ability) && (ability in subtypesof(/datum/guardian_ability/minor))) // no nullspace narsie for you!

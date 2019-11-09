@@ -64,15 +64,14 @@
 		M.mind.restricted_roles = restricted_roles
 		M.mind.special_role = ROLE_HIVE
 	return TRUE
-
-
+	
 /datum/dynamic_ruleset/roundstart/abductors
 	name = "Abductors"
 	antag_flag = ROLE_ABDUCTOR
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("Cyborg")
 	required_candidates = 2
-	weight = 30
+	weight = 15
 	cost = 20
 	var/datum/mind/scientist
 	var/datum/mind/agent
@@ -104,7 +103,6 @@
 		return FALSE
 	scientist.add_antag_datum(/datum/antagonist/abductor/scientist, T)
 	agent.add_antag_datum(/datum/antagonist/abductor/agent, T)
-	
 /datum/dynamic_ruleset/roundstart/revs
 	weight = 30
 	minimum_players = 25
@@ -160,13 +158,11 @@
 	var/datum/team/infiltrator/sit_team
 
 /datum/dynamic_ruleset/roundstart/infiltrator/ready(forced = FALSE)
-	var/indice_pop = min(10,round(mode.roundstart_pop_ready/pop_per_requirement)+1)
 	required_candidates = infil_cap[indice_pop]
 	. = ..()
 
 /datum/dynamic_ruleset/roundstart/infiltrator/pre_execute()
 	// If ready() did its job, candidates should have 5 or more members in it
-	var/indice_pop = min(10,round(mode.roundstart_pop_ready/pop_per_requirement)+1)
 	var/infiltrators = infil_cap[indice_pop]
 	for(var/infils_number = 1 to infiltrators)
 		if(candidates.len <= 0)

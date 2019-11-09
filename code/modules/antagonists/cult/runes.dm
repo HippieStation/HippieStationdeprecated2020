@@ -42,9 +42,11 @@ Runes can either be invoked by one's self or with many different cultists. Each 
 	. = ..()
 	if(set_keyword)
 		keyword = set_keyword
+/* hippie start -- silicons can now see cult stuff
 	var/image/I = image(icon = 'icons/effects/blood.dmi', icon_state = null, loc = src)
 	I.override = TRUE
 	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/silicons, "cult_runes", I)
+hippie end*/
 
 /obj/effect/rune/examine(mob/user)
 	. = ..()

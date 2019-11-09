@@ -137,9 +137,7 @@
 	cost = 10
 
 /datum/spellbook_entry/item/badmin_gauntlet/IsAvailible()
-	if(!..())
-		return FALSE
-	return !istype(SSticker.mode, /datum/game_mode/wizard/raginmages) && !istype(SSticker.mode, /datum/game_mode/dynamic) && !GLOB.gauntlet_equipped
+	return ..() && SSticker.mode.name != "ragin' mages" && SSticker.mode.name != "dynamic mode"
 
 /datum/spellbook_entry/item/badmin_gauntlet/Buy(mob/living/carbon/human/user, obj/item/spellbook/book)
 	. = ..()
@@ -177,24 +175,16 @@
 	return FALSE
 
 /datum/spellbook_entry/summon/IsAvailible()
-	if(!..())
-		return FALSE
-	return !istype(SSticker.mode, /datum/game_mode/wizard/raginmages) && !istype(SSticker.mode, /datum/game_mode/dynamic)
+	return ..() && SSticker.mode.name != "ragin' mages" && SSticker.mode.name != "dynamic mode"
 
 /datum/spellbook_entry/summon/guns/IsAvailible()
-	if (!..())
-		return FALSE
-	return !CONFIG_GET(flag/no_summon_guns)
+	return ..() && !CONFIG_GET(flag/no_summon_guns)
 
 /datum/spellbook_entry/summon/magic/IsAvailible()
-	if (!..())
-		return FALSE
-	return !CONFIG_GET(flag/no_summon_magic)
+	return ..() && !CONFIG_GET(flag/no_summon_magic)
 
 /datum/spellbook_entry/summon/events/IsAvailible()
-	if (!..())
-		return FALSE
-	return !CONFIG_GET(flag/no_summon_events)
+	return ..() && !CONFIG_GET(flag/no_summon_events)
 
 /obj/item/spellbook
 	persistence_replacement = /obj/item/book/granter/spell/random

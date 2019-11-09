@@ -295,8 +295,8 @@
 
 /obj/machinery/door/airlock/Destroy()
 	QDEL_NULL(wires)
-	if(charge)	
-		qdel(charge)	
+	if(charge)
+		qdel(charge)
 		charge = null
 	QDEL_NULL(electronics)
 	if (cyclelinkedairlock)
@@ -635,9 +635,9 @@
 	. = ..()
 	if(obj_flags & EMAGGED)
 		. += "<span class='warning'>Its access panel is smoking slightly.</span>"
-	if(charge && !panel_open && in_range(user, src))	
-		. += "<span class='warning'>The maintenance panel seems haphazardly fastened.</span>"	
-	if(charge && panel_open)	
+	if(charge && !panel_open && in_range(user, src))
+		. += "<span class='warning'>The maintenance panel seems haphazardly fastened.</span>"
+	if(charge && panel_open)
 		. += "<span class='warning'>Something is wired up to the airlock's electronics!</span>"
 	if(note)
 		if(!in_range(user, src))
@@ -951,22 +951,22 @@
 		cable.plugin(src, user)
 	else if(istype(C, /obj/item/airlock_painter))
 		change_paintjob(C, user)
-	else if(istype(C, /obj/item/doorCharge))	
-		if(!panel_open || security_level)	
-			to_chat(user, "<span class='warning'>The maintenance panel must be open to apply [C]!</span>")	
-			return	
-		if(obj_flags & EMAGGED)	
-			return	
-		if(charge && !detonated)	
-			to_chat(user, "<span class='warning'>There's already a charge hooked up to this door!</span>")	
-			return	
-		if(detonated)	
-			to_chat(user, "<span class='warning'>The maintenance panel is destroyed!</span>")	
-			return	
-		to_chat(user, "<span class='warning'>You apply [C]. Next time someone opens the door, it will explode.</span>")	
-		panel_open = FALSE	
-		update_icon()	
-		user.transferItemToLoc(C, src, TRUE)	
+	else if(istype(C, /obj/item/doorCharge))
+		if(!panel_open || security_level)
+			to_chat(user, "<span class='warning'>The maintenance panel must be open to apply [C]!</span>")
+			return
+		if(obj_flags & EMAGGED)
+			return
+		if(charge && !detonated)
+			to_chat(user, "<span class='warning'>There's already a charge hooked up to this door!</span>")
+			return
+		if(detonated)
+			to_chat(user, "<span class='warning'>The maintenance panel is destroyed!</span>")
+			return
+		to_chat(user, "<span class='warning'>You apply [C]. Next time someone opens the door, it will explode.</span>")
+		panel_open = FALSE
+		update_icon()
+		user.transferItemToLoc(C, src, TRUE)
 		charge = C
 	else if(istype(C, /obj/item/paper) || istype(C, /obj/item/photo))
 		if(note)
@@ -1017,17 +1017,17 @@
 /obj/machinery/door/airlock/try_to_crowbar(obj/item/I, mob/living/user, forced = FALSE)
 	if(I)
 		var/beingcrowbarred = (I.tool_behaviour == TOOL_CROWBAR)
-		if(panel_open && charge)	
-			to_chat(user, "<span class='notice'>You carefully start removing [charge] from [src]...</span>")	
-			if(!I.use_tool(src, user, 150, volume=50))	
-				to_chat(user, "<span class='warning'>You slip and [charge] detonates!</span>")	
-				charge.ex_act(EXPLODE_DEVASTATE)	
-				user.Paralyze(60)	
-				return	
+		if(panel_open && charge)
+			to_chat(user, "<span class='notice'>You carefully start removing [charge] from [src]...</span>")
+			if(!I.use_tool(src, user, 150, volume=50))
+				to_chat(user, "<span class='warning'>You slip and [charge] detonates!</span>")
+				charge.ex_act(EXPLODE_DEVASTATE)
+				user.Paralyze(60)
+				return
 			user.visible_message("<span class='notice'>[user] removes [charge] from [src].</span>", \
 								"<span class='notice'>You gently pry out [charge] from [src] and unhook its wires.</span>")
-			charge.forceMove(get_turf(user))	
-			charge = null	
+			charge.forceMove(get_turf(user))
+			charge = null
 			return
 		if(!security_level && (beingcrowbarred && panel_open && ((obj_flags & EMAGGED) || (density && welded && !operating && !hasPower() && !locked))))
 			user.visible_message("<span class='notice'>[user] removes the electronics from the airlock assembly.</span>", \
@@ -1078,19 +1078,19 @@
 	if(!forced)
 		if(!hasPower() || wires.is_cut(WIRE_OPEN))
 			return FALSE
-	if(charge && !detonated)	
-		panel_open = TRUE	
-		update_icon(AIRLOCK_OPENING)	
-		visible_message("<span class='warning'>[src]'s panel is blown off in a spray of deadly shrapnel!</span>")	
-		charge.forceMove(drop_location())	
-		charge.ex_act(EXPLODE_DEVASTATE)	
-		detonated = 1	
-		charge = null	
-		for(var/mob/living/carbon/human/H in orange(2,src))	
-			H.Unconscious(160)	
-			H.adjust_fire_stacks(20)	
-			H.IgniteMob() //Guaranteed knockout and ignition for nearby people	
-			H.apply_damage(40, BRUTE, BODY_ZONE_CHEST)	
+	if(charge && !detonated)
+		panel_open = TRUE
+		update_icon(AIRLOCK_OPENING)
+		visible_message("<span class='warning'>[src]'s panel is blown off in a spray of deadly shrapnel!</span>")
+		charge.forceMove(drop_location())
+		charge.ex_act(EXPLODE_DEVASTATE)
+		detonated = 1
+		charge = null
+		for(var/mob/living/carbon/human/H in orange(2,src))
+			H.Unconscious(160)
+			H.adjust_fire_stacks(20)
+			H.IgniteMob() //Guaranteed knockout and ignition for nearby people
+			H.apply_damage(40, BRUTE, BODY_ZONE_CHEST)
 		return
 	if(forced < 2)
 		if(obj_flags & EMAGGED)
@@ -1423,9 +1423,9 @@
 
 /obj/machinery/door/airlock/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 													datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "ai_airlock", name, 550, 456, master_ui, state)
+		ui = new(user, src, ui_key, "ai_airlock", name, 500, 390, master_ui, state)
 		ui.open()
 	return TRUE
 
@@ -1494,84 +1494,24 @@
 		if("shock-perm")
 			shock_perm(usr)
 			. = TRUE
-		if("idscan-on")
-			if(wires.is_cut(WIRE_IDSCAN))
-				to_chat(usr, "You can't enable IdScan - The IdScan wire has been cut.")
-			else if(aiDisabledIdScanner)
-				aiDisabledIdScanner = FALSE
-			else
-				to_chat(usr, "The IdScan feature is not disabled.")
+		if("idscan-toggle")
+			aiDisabledIdScanner = !aiDisabledIdScanner
 			. = TRUE
-		if("idscan-off")
-			if(wires.is_cut(WIRE_IDSCAN))
-				to_chat(usr, "The IdScan wire has been cut - So, you can't disable it, but it is already disabled anyways.")
-			else if(aiDisabledIdScanner)
-				to_chat(usr, "You've already disabled the IdScan feature.")
-			else
-				aiDisabledIdScanner = TRUE
+		if("emergency-toggle")
+			toggle_emergency(usr)
 			. = TRUE
-		if("emergency-on")
-			emergency_on(usr)
+		if("bolt-toggle")
+			toggle_bolt(usr)
 			. = TRUE
-		if("emergency-off")
-			emergency_off(usr)
+		if("light-toggle")
+			lights = !lights
+			update_icon()
 			. = TRUE
-		if("bolt-raise")
-			bolt_raise(usr)
+		if("safe-toggle")
+			safe = !safe
 			. = TRUE
-		if("bolt-drop")
-			bolt_drop(usr)
-			. = TRUE
-		if("light-on")
-			if(wires.is_cut(WIRE_LIGHT))
-				to_chat(usr, "Control to door bolt lights has been severed.")
-			else if (!lights)
-				lights = TRUE
-				update_icon()
-			else
-				to_chat(usr, text("Door bolt lights are already enabled!"))
-			. = TRUE
-		if("light-off")
-			if(wires.is_cut(WIRE_LIGHT))
-				to_chat(usr, "Control to door bolt lights has been severed.")
-			else if (lights)
-				lights = FALSE
-				update_icon()
-			else
-				to_chat(usr, "Door bolt lights are already disabled!")
-			. = TRUE
-		if("safe-on")
-			if(wires.is_cut(WIRE_SAFETY))
-				to_chat(usr, "Control to door sensors is disabled.")
-			else if (!safe)
-				safe = TRUE
-			else
-				to_chat(usr, "Firmware reports safeties already in place.")
-			. = TRUE
-		if("safe-off")
-			if(wires.is_cut(WIRE_SAFETY))
-				to_chat(usr, "Control to door sensors is disabled.")
-			else if (safe)
-				safe = FALSE
-			else
-				to_chat(usr, "Firmware reports safeties already overridden.")
-			. = TRUE
-		if("speed-on")
-			if(wires.is_cut(WIRE_TIMING))
-				to_chat(usr, "Control to door timing circuitry has been severed.")
-			else if (!normalspeed)
-				normalspeed = 1
-			else
-				to_chat(usr,"Door timing circuitry currently operating normally.")
-			. = TRUE
-		if("speed-off")
-			if(wires.is_cut(WIRE_TIMING))
-				to_chat(usr, "Control to door timing circuitry has been severed.")
-			else if (normalspeed)
-				normalspeed = 0
-			else
-				to_chat(usr, "Door timing circuitry already accelerated.")
-
+		if("speed-toggle")
+			normalspeed = !normalspeed
 			. = TRUE
 		if("open-close")
 			user_toggle_open(usr)
@@ -1604,44 +1544,25 @@
 	else
 		set_electrified(MACHINE_ELECTRIFIED_PERMANENT, user)
 
-/obj/machinery/door/airlock/proc/emergency_on(mob/user)
-	if(!user_allowed(user))
-		return
-	if (!emergency)
-		emergency = TRUE
-		update_icon()
-	else
-		to_chat(user, "Emergency access is already enabled!")
-
-/obj/machinery/door/airlock/proc/emergency_off(mob/user)
-	if(!user_allowed(user))
-		return
-	if (emergency)
-		emergency = FALSE
-		update_icon()
-	else
-		to_chat(user, "Emergency access is already disabled!")
-
-/obj/machinery/door/airlock/proc/bolt_raise(mob/user)
+/obj/machinery/door/airlock/proc/toggle_bolt(mob/user)
 	if(!user_allowed(user))
 		return
 	if(wires.is_cut(WIRE_BOLTS))
-		to_chat(user, "The door bolt drop wire is cut - you can't raise the door bolts")
-	else if(!locked)
-		to_chat(user, "The door bolts are already up")
-	else
-		if(hasPower())
-			unbolt()
+		to_chat(user, "<span class='warning'>The door bolt drop wire is cut - you can't toggle the door bolts.</span>")
+		return
+	if(locked)
+		if(!hasPower())
+			to_chat(user, "<span class='warning'>The door has no power - you can't raise the door bolts.</span>")
 		else
-			to_chat(user, "Cannot raise door bolts due to power failure")
-
-/obj/machinery/door/airlock/proc/bolt_drop(mob/user)
-	if(!user_allowed(user))
-		return
-	if(wires.is_cut(WIRE_BOLTS))
-		to_chat(user, "You can't drop the door bolts - The door bolt dropping wire has been cut.")
+			unbolt()
 	else
 		bolt()
+
+/obj/machinery/door/airlock/proc/toggle_emergency(mob/user)
+	if(!user_allowed(user))
+		return
+	emergency = !emergency
+	update_icon()
 
 /obj/machinery/door/airlock/proc/user_toggle_open(mob/user)
 	if(!user_allowed(user))

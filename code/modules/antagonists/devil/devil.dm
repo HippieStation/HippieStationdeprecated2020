@@ -1,6 +1,6 @@
 #define BLOOD_THRESHOLD 3 //How many souls are needed per stage.
-#define TRUE_THRESHOLD 7
-#define ARCH_THRESHOLD 12
+#define TRUE_THRESHOLD 5
+#define ARCH_THRESHOLD 8
 
 #define BASIC_DEVIL 0
 #define BLOOD_LIZARD 1
@@ -43,7 +43,6 @@ GLOBAL_LIST_INIT(lawlorify, list (
 			BANISH_FORMALDYHIDE = "To banish the devil, you must inject its lifeless body with embalming fluid.",
 			BANISH_RUNES = "This devil will resurrect after death, unless its remains are within a rune.",
 			BANISH_CANDLES = "A large number of nearby lit candles will prevent it from resurrecting.",
-			BANISH_DESTRUCTION = "Its corpse must be utterly destroyed to prevent resurrection.",
 			BANISH_FUNERAL_GARB = "If clad in funeral garments, this devil will be unable to resurrect.  Should the clothes not fit, lay them gently on top of the devil's corpse."
 		),
 		LAW = list(
@@ -74,7 +73,6 @@ GLOBAL_LIST_INIT(lawlorify, list (
 			BANISH_FORMALDYHIDE = "If your corpse is embalmed, you will be unable to resurrect.",
 			BANISH_RUNES = "If your corpse is placed within a rune, you will be unable to resurrect.",
 			BANISH_CANDLES = "If your corpse is near lit candles, you will be unable to resurrect.",
-			BANISH_DESTRUCTION = "If your corpse is destroyed, you will be unable to resurrect.",
 			BANISH_FUNERAL_GARB = "If your corpse is clad in funeral garments, you will be unable to resurrect."
 		)
 	))
@@ -172,7 +170,7 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 	return pick(BANE_SALT, BANE_LIGHT, BANE_IRON, BANE_WHITECLOTHES, BANE_SILVER, BANE_HARVEST, BANE_TOOLBOX)
 
 /proc/randomdevilbanish()
-	return pick(BANISH_WATER, BANISH_COFFIN, BANISH_FORMALDYHIDE, BANISH_RUNES, BANISH_CANDLES, BANISH_DESTRUCTION, BANISH_FUNERAL_GARB)
+	return pick(BANISH_WATER, BANISH_COFFIN, BANISH_FORMALDYHIDE, BANISH_RUNES, BANISH_CANDLES, BANISH_FUNERAL_GARB)
 
 /datum/antagonist/devil/proc/add_soul(datum/mind/soul)
 	if(soulsOwned.Find(soul))
@@ -273,12 +271,12 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 		return
 	D.visible_message("<span class='warning'>[D]'s skin begins to erupt with spikes.</span>", \
 		"<span class='warning'>Your flesh begins creating a shield around yourself.</span>")
-	sleep(100)
+	sleep(65)
 	if(!D)
 		return
 	D.visible_message("<span class='warning'>The horns on [D]'s head slowly grow and elongate.</span>", \
 		"<span class='warning'>Your body continues to mutate. Your telepathic abilities grow.</span>")
-	sleep(90)
+	sleep(55)
 	if(!D)
 		return
 	D.visible_message("<span class='warning'>[D]'s body begins to violently stretch and contort.</span>", \
@@ -405,10 +403,6 @@ GLOBAL_LIST_INIT(devil_suffix, list(" the Red", " the Soulless", " the Master", 
 				if(count>=4)
 					return 1
 			return 0
-		if(BANISH_DESTRUCTION)
-			if(body)
-				return 0
-			return 1
 		if(BANISH_FUNERAL_GARB)
 			if(ishuman(body))
 				var/mob/living/carbon/human/H = body
