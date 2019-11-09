@@ -45,3 +45,10 @@
 /datum/species/tarajan/spec_death(gibbed, mob/living/carbon/human/H)
 	if(H && H.dna && H.dna.species)
 		H.dna.species.stop_wagging_tail(H)
+
+
+/datum/species/tarajan/post_spawn(mob/living/carbon/human/C)
+	..()
+	for(var/datum/mutation/human/C in H.dna.mutations)
+		if(istype(C, /datum/mutation/human/clumsy))
+			C.mutadone_proof = TRUE
