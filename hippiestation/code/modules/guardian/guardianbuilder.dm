@@ -178,7 +178,8 @@
 		to_chat("<span class='danger'>You don't have enough points for a Guardian like that!</span>")
 		used = FALSE
 		return FALSE
-	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the [mob_name] of [user.real_name]?", ROLE_HOLOPARASITE, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
+	// IMPORTANT - if we're debugging, the user gets thrown into the stand
+	var/list/mob/dead/observer/candidates = debug_mode ? list(user) : pollGhostCandidates("Do you want to play as the [mob_name] of [user.real_name]?", ROLE_HOLOPARASITE, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
 		var/mob/living/simple_animal/hostile/guardian/G = new(user, theme)
@@ -233,6 +234,7 @@
 	var/theme = "magic"
 	var/max_points = 15
 	var/allowspecial = FALSE
+	var/debug_mode = FALSE
 
 /obj/item/guardiancreator/Initialize()
 	. = ..()
@@ -253,6 +255,13 @@
 		to_chat(user, "[used_message]")
 		return
 	builder.ui_interact(user)
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/obj/item/guardiancreator/debug
+	debug_mode = TRUE
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /obj/item/guardiancreator/rare
 	allowspecial = TRUE
