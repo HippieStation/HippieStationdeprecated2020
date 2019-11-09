@@ -4,6 +4,7 @@
 	var/melting_point = 273//the point at which a reagent changes from a liquid to a solid state
 	var/processes = FALSE
 	var/can_synth_seeds = TRUE
+	var/can_forge = TRUE
 
 /datum/reagent/New()
 	..()
