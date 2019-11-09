@@ -125,6 +125,14 @@ Class Procs:
 	var/ui_x	//For storing and overriding ui dimensions
 	var/ui_y
 
+
+	// hippie start -- percussive maintenance
+
+	var/percussive_delay = 300		
+	var/percussively_maintained	
+
+	// hippie end
+
 /obj/machinery/Initialize()
 	if(!armor)
 		armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 70)
@@ -570,6 +578,9 @@ Class Procs:
 	visible_message("<span class='warning'>[src] sizzles and sparks!</span>")
 	playsound(T, 'sound/effects/light_flicker.ogg', 50)
 	playsound(T, 'sound/effects/sparks1.ogg', 100)
+	if(percussively_maintained)
+		visible_message("<span class='notice'>...but quietens down thanks to a boot-shaped dent on its side.</span>")
+		return
 	sleep(15)
 	investigate_log("\A [src] has malfunctioned.", INVESTIGATE_RESEARCH)
 	message_admins("\A [src] has malfunctioned.")
@@ -578,5 +589,15 @@ Class Procs:
 		for(var/turf/turf in range(4,T))
 			if((prob(75)) && (isNotBlocked(src, turf)))
 				new /obj/effect/hotspot(turf)
+
+/obj/machinery/proc/maintain_percussively(mob/living/user)
+	user.changeNext_move(CLICK_CD_MELEE)
+	user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
+	user.visible_message("<span class='danger'>[user.name] angrily punts \the [src.name] with [user.p_their(FALSE)] boot.</span>", null, null, COMBAT_MESSAGE_RANGE)
+	take_damage(2, BRUTE, "melee", 1)
+	playsound(get_turf(src), 'sound/effects/clang.ogg', 80)
+	percussively_maintained = TRUE
+	sleep(percussive_delay)
+	percussively_maintained = FALSE
 
 // hippie end
