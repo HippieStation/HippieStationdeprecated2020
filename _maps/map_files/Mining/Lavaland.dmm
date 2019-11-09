@@ -893,7 +893,6 @@
 	},
 /obj/effect/turf_decal/tile/purple,
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "dx" = (
@@ -1337,7 +1336,6 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "gj" = (
@@ -1711,10 +1709,6 @@
 	},
 /turf/open/lava/smooth/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"jK" = (
-/obj/structure/spider/stickyweb,
-/turf/open/floor/plating/airless,
-/area/mine/maintenance)
 "jL" = (
 /obj/structure/stone_tile/surrounding_tile,
 /obj/structure/stone_tile/surrounding_tile{
@@ -2480,11 +2474,6 @@
 /obj/structure/lattice/catwalk,
 /turf/open/floor/plating/asteroid/basalt/lava_land_surface,
 /area/lavaland/surface/outdoors)
-"oe" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/plasteel,
-/area/mine/living_quarters)
 "or" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -2495,7 +2484,7 @@
 /area/mine/living_quarters)
 "oC" = (
 /obj/structure/table_frame,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/mine/maintenance)
 "oP" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -2585,9 +2574,6 @@
 	},
 /turf/open/floor/plating,
 /area/mine/maintenance)
-"rI" = (
-/turf/open/lava/smooth/lava_land_surface,
-/area/mine/living_quarters)
 "sn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -2595,6 +2581,14 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"sN" = (
+/obj/item/radio/intercom{
+	dir = 8;
+	name = "Station Intercom (General)";
+	pixel_x = -28
+	},
+/turf/open/floor/plating/asteroid/basalt/lava_land_surface,
+/area/lavaland/surface/outdoors)
 "sP" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -2657,9 +2651,6 @@
 /obj/structure/foamedmetal,
 /turf/open/floor/plating,
 /area/mine/maintenance)
-"wv" = (
-/turf/closed/wall,
-/area/lavaland/surface/outdoors)
 "xb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 9
@@ -2694,6 +2685,10 @@
 	},
 /turf/open/floor/plating,
 /area/mine/maintenance)
+"xx" = (
+/obj/structure/rack,
+/turf/open/floor/plating,
+/area/mine/maintenance)
 "xS" = (
 /obj/structure/spider/stickyweb,
 /turf/open/floor/plating,
@@ -2716,7 +2711,7 @@
 "zL" = (
 /obj/structure/spider/stickyweb,
 /obj/item/trash/semki,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/mine/maintenance)
 "Ae" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
@@ -2757,7 +2752,7 @@
 /area/lavaland/surface/outdoors)
 "AX" = (
 /obj/item/hot_potato/harmless/toy,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/mine/maintenance)
 "BS" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
@@ -2770,7 +2765,7 @@
 /area/mine/eva)
 "Cr" = (
 /obj/item/candle/infinite,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/mine/maintenance)
 "Cs" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -2818,6 +2813,18 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
+"DB" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/obj/item/radio/intercom{
+	dir = 8;
+	name = "Station Intercom (General)";
+	pixel_x = -28
+	},
+/turf/open/floor/plasteel,
+/area/mine/living_quarters)
 "DE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
 	icon_state = "pipe11-3";
@@ -2839,7 +2846,7 @@
 "FN" = (
 /obj/structure/spider/stickyweb,
 /obj/item/trash/cheesie,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/mine/maintenance)
 "Gg" = (
 /obj/machinery/power/port_gen/pacman{
@@ -2997,7 +3004,7 @@
 /area/mine/maintenance)
 "MJ" = (
 /obj/structure/mopbucket,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/mine/maintenance)
 "Ne" = (
 /obj/machinery/light{
@@ -3079,10 +3086,6 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
-"OZ" = (
-/obj/structure/foamedmetal,
-/turf/open/floor/plating/airless,
-/area/mine/maintenance)
 "Qc" = (
 /obj/machinery/door/airlock/mining/glass{
 	name = "Mining Station Corridor";
@@ -3151,12 +3154,13 @@
 /turf/open/floor/plasteel,
 /area/mine/living_quarters)
 "RB" = (
-/turf/open/floor/plating/airless,
+/obj/structure/frame/machine,
+/turf/open/floor/plating,
 /area/mine/maintenance)
 "RY" = (
 /obj/structure/spider/cocoon,
 /obj/structure/bed,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/mine/maintenance)
 "Sf" = (
 /obj/machinery/door/airlock/maintenance{
@@ -3361,7 +3365,7 @@
 "Xd" = (
 /obj/structure/spider/stickyweb,
 /obj/item/trash/can,
-/turf/open/floor/plating/airless,
+/turf/open/floor/plating,
 /area/mine/maintenance)
 "Xs" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer3{
@@ -15245,7 +15249,7 @@ fL
 cR
 ab
 ab
-rI
+aj
 aj
 aj
 aj
@@ -16253,7 +16257,7 @@ ab
 ab
 ai
 ai
-wv
+ID
 cQ
 cQ
 cQ
@@ -16508,9 +16512,9 @@ aj
 aj
 aj
 ab
+ab
 ai
-ai
-wv
+ID
 ns
 ns
 ns
@@ -16765,10 +16769,10 @@ ab
 aj
 ab
 ab
-ai
-ai
-wv
-ns
+ab
+ab
+ID
+xx
 ns
 ns
 ns
@@ -16784,7 +16788,7 @@ Zz
 cw
 Zz
 tJ
-oe
+Zz
 cM
 cM
 cM
@@ -17022,8 +17026,8 @@ ab
 ab
 ab
 ab
-ai
-ai
+aj
+JZ
 cM
 cM
 cM
@@ -17278,13 +17282,13 @@ ab
 aj
 aj
 aj
-ai
-ai
-ai
+aj
+aj
+FF
 cM
 vf
 lb
-cj
+DB
 Kn
 cM
 Ws
@@ -17536,8 +17540,8 @@ aj
 aj
 aj
 aj
-ai
 aj
+FF
 cR
 cj
 br
@@ -17794,7 +17798,7 @@ aj
 aj
 aj
 aj
-aj
+FF
 cR
 bP
 ps
@@ -17820,9 +17824,9 @@ oC
 ID
 ID
 ID
-jK
-OZ
-OZ
+xS
+wp
+wp
 aj
 aj
 aj
@@ -18051,7 +18055,7 @@ aj
 aj
 aj
 aj
-aj
+FF
 cR
 WE
 LW
@@ -18071,12 +18075,12 @@ ns
 ns
 ID
 oC
-RB
-RB
-RB
+ns
+ns
+ns
 ID
-jK
-jK
+xS
+xS
 Xd
 ID
 ID
@@ -18308,7 +18312,7 @@ aj
 aj
 aj
 aj
-aj
+FF
 cR
 fk
 bP
@@ -18328,17 +18332,17 @@ hC
 ns
 ID
 oC
-RB
-RB
-RB
+ns
+ns
+ns
 Dp
-jK
-jK
-RB
+xS
+xS
+ns
 ID
 xS
-jK
-OZ
+xS
+wp
 aj
 aj
 aj
@@ -18565,7 +18569,7 @@ aj
 aj
 aj
 aj
-aj
+FF
 cR
 fk
 cl
@@ -18584,18 +18588,18 @@ xW
 xW
 Df
 ID
-RB
-RB
-RB
-RB
+ns
+ns
+ns
+ns
 ID
 ID
 xS
 ID
 ID
 ID
-jK
-jK
+xS
+xS
 ID
 aj
 aj
@@ -18822,7 +18826,7 @@ aj
 aj
 aj
 aj
-aj
+JZ
 cR
 cj
 cE
@@ -18847,11 +18851,11 @@ MJ
 ID
 ID
 ID
-RB
-RB
-jK
-jK
-jK
+ns
+ns
+xS
+xS
+xS
 FN
 ID
 aj
@@ -19079,7 +19083,7 @@ ai
 aj
 aj
 ai
-ai
+ab
 cM
 fn
 fv
@@ -19096,20 +19100,20 @@ cM
 FF
 FF
 ID
-OZ
-OZ
-RB
+wp
+wp
+ns
 ID
 ID
 ID
 aj
 ID
-RB
-jK
-RB
-RB
-RB
-jK
+ns
+xS
+ns
+ns
+ns
+xS
 ID
 aj
 aj
@@ -19355,18 +19359,18 @@ aj
 ID
 ID
 ID
-RB
-RB
-RB
+ns
+ns
+ns
 ID
 aj
 ID
 zL
-jK
-RB
+xS
+ns
 AX
-RB
-RB
+ns
+ns
 ID
 aj
 aj
@@ -19622,7 +19626,7 @@ ID
 ID
 ID
 ID
-RB
+ns
 RY
 ID
 aj
@@ -21907,7 +21911,7 @@ ab
 ab
 ab
 ab
-ab
+sN
 ab
 ab
 ab
@@ -22681,8 +22685,8 @@ ab
 ab
 ab
 ab
-aj
-aj
+ab
+ab
 aj
 aj
 aj
@@ -22938,7 +22942,7 @@ ab
 ab
 ab
 ab
-aj
+ab
 aj
 aj
 aj
