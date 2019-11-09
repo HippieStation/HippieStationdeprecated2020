@@ -133,7 +133,7 @@
 /datum/admins/proc/hippie_on_jobban(mob/M, list/joblist)
 	if(joblist.len && (CATBAN in joblist) && ishuman(M))
 		var/mob/living/carbon/human/H = M
-		H.set_species(/datum/species/tarajan, icon_update=1) // can't escape hell
+		H.set_species(/datum/species/human/felinid/tarajan, icon_update=1) // can't escape hell
 	if(joblist.len && (CLUWNEBAN in joblist) && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.cluwneify()
