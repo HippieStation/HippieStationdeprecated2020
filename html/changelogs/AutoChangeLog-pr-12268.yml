@@ -1,0 +1,5 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - bugfix: "Upgrading chem dispensers no longer break macros"
+  - tweak: "Macros can now remove non-dispensable chems via negative amounts"
