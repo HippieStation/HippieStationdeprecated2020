@@ -1,0 +1,4 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - bugfix: "Mousetrap grenades work again. Just remember to arm the mousetrap before putting it in!"
