@@ -2556,6 +2556,7 @@
 	pixel_y = -23
 	},
 /obj/structure/cable,
+/obj/mecha/working/ripley/mining_roundstart,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/mine/eva)
 "ry" = (
@@ -3110,9 +3111,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/mine/eva)
-"QA" = (
-/turf/open/lava/smooth/lava_land_surface,
-/area/space)
 "QH" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/bar{
@@ -20903,7 +20901,7 @@ aj
 aj
 aj
 aj
-QA
+aj
 aj
 aj
 aj

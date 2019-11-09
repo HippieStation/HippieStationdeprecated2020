@@ -33452,9 +33452,6 @@
 /turf/open/floor/plasteel,
 /area/quartermaster/miningdock)
 "bRP" = (
-/obj/mecha/working/ripley/mining_roundstart{
-	armor = list("melee" = 40, "bullet" = 20, "laser" = 10, "energy" = 20, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 100)
-	},
 /turf/open/floor/mech_bay_recharge_floor,
 /area/quartermaster/miningdock)
 "bRQ" = (
