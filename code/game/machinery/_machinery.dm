@@ -129,7 +129,7 @@ Class Procs:
 	// hippie start -- percussive maintenance
 
 	var/percussive_delay = 300		
-	var/percussively_maintained	
+	var/percussively_maintained	= FALSE
 
 	// hippie end
 
