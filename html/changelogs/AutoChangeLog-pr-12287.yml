@@ -1,5 +1,0 @@
-author: "steamp0rt"
-delete-after: True
-changes: 
-  - tweak: "Predator stands now have to enter \"analysis mode\" to analyze blood/fingerprints. They are unable to attack while in this mode."
-  - bugfix: "That fixes predator stands being unable to attack anything."
