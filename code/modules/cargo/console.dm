@@ -8,6 +8,7 @@
 
 	var/requestonly = FALSE
 	var/contraband = FALSE
+	var/self_paid = FALSE
 	var/safety_warning = "For safety reasons, the automated supply shuttle \
 		cannot transport live organisms, human remains, classified nuclear weaponry \
 		or homing beacons."
@@ -159,7 +160,6 @@
 				. = TRUE
 		if("add")
 			var/id = text2path(params["id"])
-			var/self_paid = text2num(params["self_paid"])
 			var/datum/supply_pack/pack = SSshuttle.supply_packs[id]
 			if(!istype(pack))
 				return
