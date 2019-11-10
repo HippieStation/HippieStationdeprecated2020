@@ -1,6 +1,11 @@
 /obj/item/blastco_spawner
 	name = "BlastCo beacon"
 	desc = "Summons a BlastCo(tm) equipment drop onto your location."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "gangtool-red"
+	item_state = "radio"
+	lefthand_file = 'icons/mob/inhands/misc/devices_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	var/used = FALSE
 
 /obj/item/blastco_spawner/attack_hand(mob/user)
