@@ -1,17 +1,13 @@
 import { classes, pureComponentHooks } from 'common/react';
 import { tridentVersion } from '../byond';
+import { KEY_ENTER, KEY_ESCAPE, KEY_SPACE } from '../hotkeys';
 import { createLogger } from '../logging';
+import { refocusLayout } from '../refocus';
 import { Box } from './Box';
 import { Icon } from './Icon';
 import { Tooltip } from './Tooltip';
-import { refocusLayout } from '../refocus';
 
 const logger = createLogger('Button');
-
-export const BUTTON_ACTIVATION_KEYCODES = [
-  13, // Enter
-  32, // Space
-];
 
 export const Button = props => {
   const {
@@ -37,8 +33,8 @@ export const Button = props => {
       + "Please use a camelCase 'onClick' instead and read: "
       + "https://infernojs.org/docs/guides/event-handling");
   }
-  // NOTE: Lowercase "onclick" and unselectable are used internally for
-  // compatibility with IE8. Do not change it!
+  // IE8: Use a lowercase "onclick" because synthetic events are fucked.
+  // IE8: Use an "unselectable" prop because "user-select" doesn't work.
   return (
     <Box as="span"
       className={classes([
@@ -60,7 +56,7 @@ export const Button = props => {
           onClick(e);
         }
       }}
-      onKeyPress={e => {
+      onKeyDown={e => {
         const keyCode = window.event ? e.which : e.keyCode;
         // Simulate a click when pressing space or enter.
         if (keyCode === KEY_SPACE || keyCode === KEY_ENTER) {
@@ -70,12 +66,12 @@ export const Button = props => {
           }
           return;
         }
-        if (disabled || !onClick) {
+        // Refocus layout on pressing escape.
+        if (keyCode === KEY_ESCAPE) {
+          e.preventDefault();
+          refocusLayout();
           return;
         }
-        e.preventDefault();
-        refocusLayout();
-        onClick(e);
       }}
       {...rest}>
       {icon && (

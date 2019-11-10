@@ -39,7 +39,13 @@ export const Wires = props => {
                       wire: wire.color,
                     })} />
                 </Fragment>
-              )} />
+              )}>
+              {!!wire.wire && (
+                <i>
+                  ({wire.wire})
+                </i>
+              )}
+            </LabeledList.Item>
           ))}
         </LabeledList>
       </Section>

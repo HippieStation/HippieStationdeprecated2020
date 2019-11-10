@@ -36,6 +36,10 @@ export class NumberInput extends Component {
 
     this.handleDragStart = e => {
       const { value } = this.props;
+      const { editing } = this.state;
+      if (editing) {
+        return;
+      }
       document.body.style['pointer-events'] = 'none';
       this.ref = e.target;
       this.setState({
@@ -91,23 +95,18 @@ export class NumberInput extends Component {
 
     this.handleDragEnd = e => {
       const { onChange, onDrag } = this.props;
-      const { dragging, value } = this.state;
+      const { dragging, value, internalValue } = this.state;
       document.body.style['pointer-events'] = 'auto';
       clearTimeout(this.timer);
       clearInterval(this.dragInterval);
-      const editing = !dragging;
       this.setState({
         dragging: false,
-        editing,
+        editing: !dragging,
         origin: null,
       });
-      if (editing) {
-        if (this.inputRef) {
-          this.inputRef.current.focus();
-          this.inputRef.current.select();
-        }
-      }
-      else {
+      document.removeEventListener('mousemove', this.handleDragMove);
+      document.removeEventListener('mouseup', this.handleDragEnd);
+      if (dragging) {
         this.suppressFlicker();
         if (onChange) {
           onChange(e, value);
@@ -116,8 +115,17 @@ export class NumberInput extends Component {
           onDrag(e, value);
         }
       }
-      document.removeEventListener('mousemove', this.handleDragMove);
-      document.removeEventListener('mouseup', this.handleDragEnd);
+      else if (this.inputRef) {
+        const input = this.inputRef.current;
+        input.value = internalValue;
+        // IE8: Dies when trying to focus a hidden element
+        // (Error: Object does not support this action)
+        try {
+          input.focus();
+          input.select();
+        }
+        catch {}
+      }
     };
   }
 
@@ -126,7 +134,6 @@ export class NumberInput extends Component {
       dragging,
       editing,
       value: intermediateValue,
-      internalValue,
       suppressingFlicker,
     } = this.state;
     const {
@@ -146,6 +153,7 @@ export class NumberInput extends Component {
     if (dragging || suppressingFlicker) {
       displayValue = intermediateValue;
     }
+    // IE8: Use an "unselectable" prop because "user-select" doesn't work.
     const renderContentElement = value => (
       <div
         className="NumberInput__content"
@@ -187,7 +195,6 @@ export class NumberInput extends Component {
           style={{
             display: !editing ? 'none' : undefined,
           }}
-          value={internalValue}
           onBlur={e => {
             if (!editing) {
               return;
@@ -227,10 +234,7 @@ export class NumberInput extends Component {
               });
               return;
             }
-          }}
-          onInput={e => this.setState({
-            internalValue: e.target.value,
-          })} />
+          }} />
       </Box>
     );
   }

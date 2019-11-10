@@ -2,7 +2,7 @@
   position: relative;
   display: inline-block;
   border: 1px solid rgba($input-base-color, 0.75);
-  border-radius: 2px;
+  border-radius: $input-border-radius;
   color: $input-base-color;
   background-color: #000;
   background-color: rgba(0, 0, 0, 0.75);
