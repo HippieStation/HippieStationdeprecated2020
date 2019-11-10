@@ -241,6 +241,7 @@ datum/controller/subsystem/vote
 			else if (SSshuttle.emergency.mode != SHUTTLE_CALL)
 				SSshuttle.emergency.request()
 				SSshuttle.emergency.setTimer(6000)
+				SSshuttle.emergencyNoRecall = TRUE
 				priority_announce("The emergency shuttle will arrive in [SSshuttle.emergency.timeLeft()/60] minutes.")
 
 			message_admins("The emergency shuttle has been force-called due to a successful shuttle call vote.")
