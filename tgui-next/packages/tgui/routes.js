@@ -1,3 +1,4 @@
+import { Achievements } from './interfaces/Achievements';
 import { AiAirlock } from './interfaces/AiAirlock';
 import { AirAlarm } from './interfaces/AirAlarm';
 import { AirlockElectronics } from './interfaces/AirlockElectronics';
@@ -20,12 +21,13 @@ import { ChemDispenser } from './interfaces/ChemDispenser';
 import { ChemFilter } from './interfaces/ChemFilter';
 import { ChemHeater } from './interfaces/ChemHeater';
 import { ChemMaster } from './interfaces/ChemMaster';
-import { CrewConsole } from './interfaces/CrewConsole';
 import { ChemPress } from './interfaces/ChemPress';
 import { ChemSplitter } from './interfaces/ChemSplitter';
 import { ChemSynthesizer } from './interfaces/ChemSynthesizer';
 import { CodexGigas } from './interfaces/CodexGigas';
+import { ComputerFabricator } from './interfaces/ComputerFabricator';
 import { Crayon } from './interfaces/Crayon';
+import { CrewConsole } from './interfaces/CrewConsole';
 import { Cryo } from './interfaces/Cryo';
 import { DisposalUnit } from './interfaces/DisposalUnit';
 import { Gps } from './interfaces/Gps';
@@ -50,6 +52,10 @@ import { Guardian } from './interfaces/Guardian';
 // hippie end
 
 const ROUTES = {
+  achievements: {
+    component: () => Achievements,
+    scrollable: true,
+  },
   ai_airlock: {
     component: () => AiAirlock,
     scrollable: false,
@@ -156,6 +162,10 @@ const ROUTES = {
   },
   codex_gigas: {
     component: () => CodexGigas,
+    scrollable: false,
+  },
+  computer_fabricator: {
+    component: () => ComputerFabricator,
     scrollable: false,
   },
   crayon: {

@@ -21,6 +21,7 @@ export const Wires = props => {
               className="candystripe"
               label={wire.color}
               labelColor={wire.color}
+              color={wire.color}
               buttons={(
                 <Fragment>
                   <Button
