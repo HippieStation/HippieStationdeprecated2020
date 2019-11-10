@@ -3200,6 +3200,8 @@
 #include "hippiestation\code\modules\antagonists\infiltrator\items\hardsuit.dm"
 #include "hippiestation\code\modules\antagonists\infiltrator\items\pinpointer.dm"
 #include "hippiestation\code\modules\antagonists\infiltrator\items\services.dm"
+#include "hippiestation\code\modules\antagonists\nukeop\blastco.dm"
+#include "hippiestation\code\modules\antagonists\nukeop\nukeop.dm"
 #include "hippiestation\code\modules\antagonists\traitor\datum_traitor.dm"
 #include "hippiestation\code\modules\antagonists\traitor\equipment\Malf_Modules.dm"
 #include "hippiestation\code\modules\antagonists\wizard\equipment\spellbook.dm"
