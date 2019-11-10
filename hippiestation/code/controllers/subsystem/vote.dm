@@ -1,6 +1,6 @@
 datum/controller/subsystem/vote
-	var/min_restart_time = 75 MINUTES
-	var/min_shuttle_time = 45 MINUTES
+	var/min_restart_time = 60 MINUTES
+	var/min_shuttle_time = 35 MINUTES
 
 /datum/controller/subsystem/vote/proc/get_result()
 	//get the highest number of votes
