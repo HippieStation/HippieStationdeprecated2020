@@ -67,7 +67,7 @@
 	if(D)
 		data["points"] = D.account_balance
 	data["away"] = SSshuttle.supply.getDockedId() == "supply_away"
-	//data["self_paid"] = self_paid
+	data["self_paid"] = self_paid
 	data["docked"] = SSshuttle.supply.mode == SHUTTLE_IDLE
 	data["loan"] = !!SSshuttle.shuttle_loan
 	data["loan_dispatched"] = SSshuttle.shuttle_loan && SSshuttle.shuttle_loan.dispatched
@@ -233,9 +233,9 @@
 		if("denyall")
 			SSshuttle.requestlist.Cut()
 			. = TRUE
-		//if("toggleprivate")
-		//	self_paid = !self_paid
-		//	. = TRUE
+		if("toggleprivate")
+			self_paid = !self_paid
+			. = TRUE
 	if(.)
 		post_signal("supply")
 
