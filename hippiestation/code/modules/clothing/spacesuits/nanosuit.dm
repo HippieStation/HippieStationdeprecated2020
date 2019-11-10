@@ -741,7 +741,7 @@
 
 /obj/item/clothing/suit/space/hardsuit/nano/dropped()
 	..()
-	STOP_PROCESSING(SSfastprocess, src)
+	//STOP_PROCESSING(SSfastprocess, src)
 	var/datum/atom_hud/secsensor = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 	var/datum/atom_hud/diagsensor = GLOB.huds[DATA_HUD_DIAGNOSTIC_BASIC ]
 	secsensor.remove_hud_from(Wearer)
