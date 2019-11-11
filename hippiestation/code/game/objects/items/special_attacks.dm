@@ -85,9 +85,8 @@
 				if((user.mobility_flags & MOBILITY_MOVE) && !isspaceturf(user.loc))
 					step(user, pick(GLOB.cardinals))
 					for(var/atom/movable/AM in orange(1, user))
-						if(prob(50) && !AM.IsObscured())
+						if(prob(50) && !AM.IsObscured() && AM.level > 1)
 							AM.attackby(src, user)
-
 		REMOVE_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 		user.confused = max(user.confused - 200, 0)
 		block_chance = initial(block_chance)
