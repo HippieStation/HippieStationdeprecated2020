@@ -6,7 +6,6 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/kitchen/knife/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)
-	..()
 	if(ishuman(target) && proximity_flag)
 		var/mob/living/carbon/human/H = target
 		special_attack = FALSE
@@ -18,7 +17,7 @@
 			H.add_splatter_floor(T)
 		H.visible_message("<span class='danger'>[user] slashes open one of [H]'s arteries with [src]!</span>", "<span class='userdanger'>[user] slices open one of your arteries with [src]!</span>")
 		playsound(H, 'sound/effects/splat.ogg', 50, 1)
-		return TRUE
+		return ..()
 
 	return FALSE
 
@@ -29,7 +28,6 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/melee/transforming/energy/sword/saber/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)
-	..()
 	if(!proximity_flag && get_dist(user,target) == 2 && ishuman(target))
 		var/mob/living/carbon/human/HT = target
 		user.throw_at(target, 1, 10)
@@ -63,7 +61,7 @@
 					forceMove(HT.loc)
 
 			special_attack = FALSE
-			return TRUE
+			return ..()
 	else
 		to_chat(user, "<span class='warning'>You need to be 1 tile away from a human enemy to initiate the attack</span>")
 	return FALSE
@@ -75,7 +73,6 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/twohanded/dualsaber/do_special_attack(atom/target, mob/living/carbon/user)
-	..()
 	if(wielded)
 		user.visible_message("<span class='danger'>[user] begins to flail around wildly!</span>")
 		user.confused += 200
@@ -88,14 +85,13 @@
 				if((user.mobility_flags & MOBILITY_MOVE) && !isspaceturf(user.loc))
 					step(user, pick(GLOB.cardinals))
 					for(var/atom/movable/AM in orange(1, user))
-						if(prob(50))
+						if(prob(50) && !AM.IsObscured() && AM.level > 1)
 							AM.attackby(src, user)
-
 		REMOVE_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 		user.confused = max(user.confused - 200, 0)
 		block_chance = initial(block_chance)
 		special_attack = FALSE
-		return TRUE
+		return ..()
 
 	return FALSE
 
@@ -106,7 +102,6 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/melee/transforming/butterfly/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)//no alternative for aliens because their code is cancer
-	..()
 	if(ishuman(target) && proximity_flag && active)
 		var/mob/living/carbon/human/H = target
 		var/obj/item/organ/butt/B = H.getorganslot("butt")
@@ -118,7 +113,7 @@
 			playsound(H, 'sound/misc/splort.ogg', 50, 1, -1)
 			user.do_attack_animation(target)
 			special_attack = FALSE
-			return TRUE
+			return ..()
 		else
 			to_chat(user,"<span class='warning'>They have no butt!</span>")
 	return FALSE
@@ -130,7 +125,6 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/melee/baseball_bat/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)
-	..()
 	if(iscarbon(target) && proximity_flag)
 		var/mob/living/carbon/C = target
 		C.adjustBrainLoss(30)
@@ -142,7 +136,7 @@
 		playsound(C, hitsound, 100, 1, -1)
 		user.do_attack_animation(target)
 		special_attack = FALSE
-		return TRUE
+		return ..()
 
 	return FALSE
 
@@ -153,7 +147,6 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/melee/baton/do_special_attack(atom/target, mob/living/carbon/user)
-	..()
 	if(isliving(user) && status == TRUE)
 		tesla_zap(src, 4, 10000, TESLA_FUSION_FLAGS)
 		user.electrocute_act(20, src, TRUE, TRUE)
@@ -161,7 +154,7 @@
 		user.visible_message("<span class='danger'>[user] spits on the active end of [src]!</span>")
 		playsound(user, 'sound/magic/lightningbolt.ogg', 100, 1, -1)
 		special_attack = FALSE
-		return TRUE
+		return ..()
 
 	return FALSE
 
@@ -173,7 +166,6 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/melee/chainofcommand/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)
-	..()
 	if(!proximity_flag && get_dist(user,target) < 6 && isliving(target))
 		for(var/I in getline(user,target))
 			var/turf/T = I
@@ -199,7 +191,7 @@
 					playsound(M, pick('hippiestation/sound/effects/bodyscrape-01.ogg', 'hippiestation/sound/effects/bodyscrape-02.ogg'), 20, 1, -4)
 			special_attack = FALSE
 			M.pass_flags = initial(M.pass_flags)
-			return TRUE
+			return ..()
 
 /obj/item/screwdriver
 	special_name = "Nipple Twist"
@@ -208,7 +200,6 @@
 	actions_types = list(/datum/action/item_action/special_attack)
 
 /obj/item/screwdriver/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)
-	..()
 	if(ishuman(target) && proximity_flag)
 		var/mob/living/carbon/human/H = target
 		special_attack = FALSE
@@ -227,5 +218,5 @@
 				H.apply_damage(8, BRUTE, H.get_bodypart("chest"))
 				H.Stun(25)
 				H.visible_message("<span class='danger'>[user] twists one of [H]'s nipples with [src]!</span>", "<span class='userdanger'>[user] twists your nipple with [src]!</span>")
-		return TRUE
+		return ..()
 	return FALSE
