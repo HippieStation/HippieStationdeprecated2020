@@ -1,5 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - bugfix: "Chem duping is no longer a thing with spray bottles"
-  - bugfix: "Fixes vapour glitches and runtimes causing them to never delete"
