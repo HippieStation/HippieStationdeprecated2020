@@ -3513,6 +3513,7 @@
 #include "hippiestation\code\modules\projectiles\ammunition\energy.dm"
 #include "hippiestation\code\modules\projectiles\ammunition\magazines.dm"
 #include "hippiestation\code\modules\projectiles\ammunition\special.dm"
+#include "hippiestation\code\modules\projectiles\ammunition\ballistic\magammo.dm"
 #include "hippiestation\code\modules\projectiles\ammunition\ballistic\shotgun.dm"
 #include "hippiestation\code\modules\projectiles\boxes_magazines\ammo_boxes.dm"
 #include "hippiestation\code\modules\projectiles\boxes_magazines\external_mag.dm"
