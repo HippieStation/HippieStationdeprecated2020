@@ -18,6 +18,8 @@
 	STOP_PROCESSING(SSreagent_states, src)
 	if(LAZYLEN(newvapes))
 		for(var/I in newvapes)
+			if(!I)
+				continue
 			var/obj/effect/particle_effect/vapour/V = I
 			V.VM = null
 			V.On_Tick()
@@ -29,6 +31,8 @@
 	STOP_PROCESSING(SSreagent_states, src)
 	if(LAZYLEN(newvapes))
 		for(var/I in newvapes)
+			if(!I)
+				continue
 			var/obj/effect/particle_effect/vapour/V = I
 			V.VM = null
 			V.On_Tick()
@@ -40,7 +44,6 @@
 		if(M.reagent_type.type == reagent_type.type)
 			volume += M.volume
 			M.kill_vapour()
-
 	spread_delay = CLAMP(100 / (volume * 0.001), 2, 60) //spread delay is inversely proportional to volume
 	decay_factor = min(volume * 0.00005, 10)//decay is proportional to volume so higher volume means faster spread but also a relatively faster death
 
@@ -49,14 +52,15 @@
 	volume -= decay_factor * LAZYLEN(newvapes)
 	if(volume <= 40)
 		kill_vapour()
-
-	for(var/I in newvapes)//scrubbing
-		var/obj/effect/particle_effect/vapour/V = I
-		V.On_Tick()
-		var/turf/T = get_turf(V)
-		if(!T)
-			V.kill_vapour()
-
+	if(LAZYLEN(newvapes))
+		for(var/I in newvapes)//scrubbing
+			if(!I)
+				continue
+			var/obj/effect/particle_effect/vapour/V = I
+			V.On_Tick()
+			var/turf/T = get_turf(V)
+			if(!T)
+				V.kill_vapour()
 	CHECK_TICK
 	..()
 
@@ -86,7 +90,7 @@ GLOBAL_LIST_EMPTY(vapour)
 
 /obj/effect/particle_effect/vapour/proc/kill_vapour()
 	LAZYREMOVE(GLOB.vapour, src)
-	qdel(src)
+	QDEL_NULL(src)
 
 /obj/effect/particle_effect/vapour/proc/On_Tick()//attempts to spread and smoke mobs, slowly decays at a fixed rate + the amount of mobs currently being affected
 	var/turf/t_loc = get_turf(src)
@@ -144,7 +148,7 @@ GLOBAL_LIST_EMPTY(vapour)
 						create_reagents(50)//used just for in air reactions
 						reagents.add_reagent(reagent_type.type, 5)
 						reagents.add_reagent(foundvape.reagent_type.type, 5)
-						qdel(reagents)
+						QDEL_NULL(reagents)
 						reac_count++
 
 				if(foundvape && foundvape.reagent_type.type == reagent_type.type)
@@ -154,7 +158,7 @@ GLOBAL_LIST_EMPTY(vapour)
 			else
 				clear = TRUE
 
-		if(supply <= 0 && src != VM)//prevents master from dying instantly
+		if(!supply && src != VM)//prevents master from dying instantly
 			kill_vapour()//no connecting tiles of same type
 
 		if(clear)
@@ -168,7 +172,7 @@ GLOBAL_LIST_EMPTY(vapour)
 
 
 /obj/effect/particle_effect/vapour/proc/vape_mob(mob/living/carbon/M)
-	if(VM.volume<1)
+	if(VM.volume < 1)
 		return FALSE
 	if(!istype(M))
 		return FALSE

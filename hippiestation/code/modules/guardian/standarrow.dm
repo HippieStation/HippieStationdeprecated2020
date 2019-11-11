@@ -190,7 +190,4 @@
 
 /obj/structure/displaycase/stand/Initialize()
 	. = ..()
-	new /obj/item/gps/internal/stand_ruin(src)
-
-/obj/item/gps/internal/stand_ruin
-	gpstag = "Powerful Signal"
+	AddComponent(/datum/component/gps, "Powerful Signal")

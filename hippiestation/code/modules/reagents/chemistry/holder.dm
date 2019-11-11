@@ -3,6 +3,7 @@
 	var/chem_radioactivity = 0
 	var/chem_bluespaced = FALSE
 	var/chem_centrifuged = FALSE
+	var/next_react = 0
 
 /proc/get_random_toxin_reagent_id()	// Returns a random toxin reagent ID minus blacklisted reagents
 	var/static/list/random_reagents = list()
@@ -191,8 +192,12 @@
 			if("TURF")
 				if(R.reagent_state != SOLID)
 					R.reaction_turf(A, R.volume * volume_modifier, show_message)
-				R.handle_state_change(A, R.volume * special_modifier, cached_my_atom)
+				if(world.time >= next_react)
+					R.handle_state_change(A, R.volume * special_modifier, cached_my_atom)
+					next_react = world.time + 1
 			if("OBJ")
 				if(R.reagent_state != SOLID)
 					R.reaction_obj(A, R.volume * volume_modifier, show_message)
-				R.handle_state_change(get_turf(A), R.volume * special_modifier, cached_my_atom)
+				if(world.time >= next_react)
+					R.handle_state_change(get_turf(A), R.volume * special_modifier, cached_my_atom)
+					next_react = world.time + 1

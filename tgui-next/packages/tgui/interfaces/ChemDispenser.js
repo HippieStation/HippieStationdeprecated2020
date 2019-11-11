@@ -121,14 +121,14 @@ export const ChemDispenser = props => {
           </LabeledList.Item>
           <LabeledList.Item
             label="Contents">
-            <Box color="highlight">
+            <Box color="label">
               {(!data.isBeakerLoaded) && 'N/A'
                 || beakerContents.length === 0 && 'Nothing'}
             </Box>
             {beakerContents.map(chemical => (
               <Box
                 key={chemical.name}
-                color="highlight">
+                color="label">
                 <AnimatedNumber
                   initial={0}
                   value={chemical.volume} />
