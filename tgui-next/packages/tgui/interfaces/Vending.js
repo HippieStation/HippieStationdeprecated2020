@@ -28,8 +28,8 @@ export const Vending = props => {
           </Box>
         ) || (
           <Box color="light-gray">
-              No registered ID card!<br />
-              Please contact your local HoP!
+            No registered ID card!<br />
+            Please contact your local HoP!
           </Box>
         )}
       </Section>
@@ -40,7 +40,6 @@ export const Vending = props => {
           {inventory.map((product => {
             const free = ((data.department && data.user && data.department === data.user.department)
               || product.price === 0);
-            const can_see = !product.extended || (product.extended && data.extended_inventory);
             return (
               <Table.Row key={product.name}>
                 <Table.Cell>
@@ -65,8 +64,7 @@ export const Vending = props => {
                       onClick={() => act(ref, 'dispense', {
                         'item': product.name,
                       })} />
-                  )}
-                  {(!custom && can_see) && (
+                  ) || (
                     <Button
                       disabled={!free && (!data.user || (product.price > data.user.cash))}
                       content={free ? 'FREE' : '$' + product.price}
