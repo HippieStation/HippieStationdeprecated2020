@@ -38,7 +38,7 @@
 	var/hungry = 0
 	if (nutrition < get_starve_nutrition())
 		hungry = 2
-	else if (nutrition < get_grow_nutrition() && prob(25) || nutrition < get_hunger_nutrition())
+	else if (nutrition < get_grow_nutrition() && prob(35) || nutrition < get_hunger_nutrition()) // hippie -- buff slimes a bit more
 		hungry = 1
 
 	AIproc = 1
