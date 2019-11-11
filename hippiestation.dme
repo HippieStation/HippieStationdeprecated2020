@@ -3521,6 +3521,8 @@
 #include "hippiestation\code\modules\projectiles\guns\ballistic\automatic.dm"
 #include "hippiestation\code\modules\projectiles\guns\ballistic\ballistic.dm"
 #include "hippiestation\code\modules\projectiles\guns\ballistic\launchers.dm"
+#include "hippiestation\code\modules\projectiles\guns\ballistic\magweapon.dm"
+#include "hippiestation\code\modules\projectiles\guns\ballistic\magweapon_energy.dm"
 #include "hippiestation\code\modules\projectiles\guns\ballistic\pistols.dm"
 #include "hippiestation\code\modules\projectiles\guns\ballistic\revolver.dm"
 #include "hippiestation\code\modules\projectiles\guns\ballistic\shotgun.dm"
