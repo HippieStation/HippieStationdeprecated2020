@@ -1,5 +1,0 @@
-author: "yoyobatty"
-delete-after: True
-changes: 
-  - bugfix: "Fixes special attack log spamming"
-  - bugfix: "Dual esword no longer attacks things below floors"
