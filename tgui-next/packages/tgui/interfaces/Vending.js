@@ -43,7 +43,8 @@ export const Vending = props => {
             return (
               <Table.Row key={product.name}>
                 <Table.Cell>
-                  <img src={`data:image/jpeg;base64,${product.img}`} style={{ 'vertical-align': 'middle' }} />
+                  <img src={`data:image/jpeg;base64,${product.img}`}
+                    style={{ 'vertical-align': 'middle', 'horizontal-align': 'middle' }} />
                   <b>{product.name}</b>
                 </Table.Cell>
                 <Table.Cell>
