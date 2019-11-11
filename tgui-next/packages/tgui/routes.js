@@ -49,6 +49,7 @@ import { VaultController } from './interfaces/VaultController';
 import { Wires } from './interfaces/Wires';
 // hippie start
 import { Guardian } from './interfaces/Guardian';
+import { Vending } from './interfaces/Vending';
 // hippie end
 
 const ROUTES = {
@@ -255,6 +256,10 @@ const ROUTES = {
   // hippie start
   guardian: {
     component: () => Guardian,
+    scrollable: true,
+  },
+  vending: {
+    component: () => Vending,
     scrollable: true,
   },
   // hippie end
