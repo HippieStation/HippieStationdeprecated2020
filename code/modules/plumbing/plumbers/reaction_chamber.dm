@@ -23,6 +23,7 @@
 		reagents.flags |= NO_REACT
 
 /obj/machinery/plumbing/reaction_chamber/power_change()
+	. = ..()
 	if(use_power != NO_POWER_USE)
 		icon_state = initial(icon_state) + "_on"
 	else

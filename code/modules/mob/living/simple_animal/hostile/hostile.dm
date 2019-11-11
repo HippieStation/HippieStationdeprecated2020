@@ -126,7 +126,7 @@
 	return ..()
 
 //////////////HOSTILE MOB TARGETTING AND AGGRESSION////////////
-
+/* Hippie edit - overriden in hippie code
 /mob/living/simple_animal/hostile/proc/ListTargets()//Step 1, find out what we can see
 	if(!search_objects)
 		. = hearers(vision_range, targets_from) - src //Remove self, so we don't suicide
@@ -138,7 +138,7 @@
 				. += HM
 	else
 		. = oview(vision_range, targets_from)
-
+*/
 /mob/living/simple_animal/hostile/proc/FindTarget(var/list/possible_targets, var/HasTargetsList = 0)//Step 2, filter down possible targets to things we actually care about
 	. = list()
 	if(!HasTargetsList)

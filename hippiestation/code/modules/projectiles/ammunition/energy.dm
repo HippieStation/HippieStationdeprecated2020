@@ -28,3 +28,8 @@
 	e_cost = 250
 	select_name = "overdrive"
 	fire_sound = 'hippiestation/sound/weapons/railgun.ogg'
+
+/obj/item/ammo_casing/energy/singulo
+	projectile_type = /obj/item/projectile/energy/singulo
+	e_cost = 1
+	fire_sound = 'hippiestation/sound/weapons/railgun.ogg'
