@@ -1079,7 +1079,7 @@
 
 
 /obj/attacked_by(obj/item/I, mob/living/user)
-	if(I.force && I.damtype == BRUTE && ishuman(user) && user.mind.has_martialart(MARTIALART_NANOSUIT))
+	if(I.force && I.damtype == BRUTE && ishuman(user) && !user.stat && user.mind.has_martialart(MARTIALART_NANOSUIT))
 		visible_message("<span class='danger'>[user] has hit [src] with a strengthened blow from [I]!</span>", null, null, COMBAT_MESSAGE_RANGE)
 		take_damage(I.force*1.75, I.damtype, "melee", TRUE)//take 75% more damage with strength on
 		return
