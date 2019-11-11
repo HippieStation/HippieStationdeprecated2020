@@ -130,6 +130,7 @@ Class Procs:
 
 	var/percussive_delay = 300		
 	var/percussively_maintained	= FALSE
+var/percussively_maintained_examine = "<span class='notice'>This machine has a boot-shaped dent in its side. It looks like it won't malfunction for a while.</span>"
 
 	// hippie end
 
@@ -323,7 +324,7 @@ Class Procs:
 		user.changeNext_move(CLICK_CD_MELEE)
 		user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 		user.visible_message("<span class='danger'>[user.name] smashes against \the [src.name] with its paws.</span>", null, null, COMBAT_MESSAGE_RANGE)
-		take_damage(4, BRUTE, "melee", 1)
+		take_damage(4, BRUTE, "melee", FALSE)
 
 /obj/machinery/attack_robot(mob/user)
 	if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON) && !IsAdminGhost(user))
@@ -528,6 +529,9 @@ Class Procs:
 				. += "<span class='warning'>It's falling apart!</span>"
 	if(user.research_scanner && component_parts)
 		. += display_parts(user, TRUE)
+	// hippie start -- percussive maintenance
+	if(percussively_maintained)
+		. += percussively_maintained_examine
 
 //called on machinery construction (i.e from frame to machinery) but not on initialization
 /obj/machinery/proc/on_construction()
