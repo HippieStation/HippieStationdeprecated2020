@@ -67,7 +67,8 @@ export const Vending = props => {
                       })} />
                   ) || (
                     <Button
-                      disabled={!free && (!data.user || (product.price > data.user.cash))}
+                      disabled={(!free && (!data.user || (product.price > data.user.cash)))
+                        || data.stock[product.name] === 0}
                       content={free ? 'FREE' : '$' + product.price}
                       onClick={() => act(ref, 'vend', {
                         'ref': product.ref,
