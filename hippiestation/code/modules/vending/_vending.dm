@@ -68,6 +68,10 @@
 	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		set_light(0)
 
+/obj/machinery/vending/ui_base_html(html)
+	var/datum/asset/spritesheet/assets = get_asset_datum(/datum/asset/spritesheet/vending)
+	. = replacetext(html, "<!--customheadhtml-->", assets.css_tag())
+
 /obj/machinery/vending/ui_interact(mob/user, ui_key, datum/tgui/ui = null, force_open, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
@@ -81,42 +85,30 @@
 	.["department"] = payment_department
 	.["product_records"] = list()
 	for (var/datum/data/vending_product/R in product_records)
-		var/base64
-		if(R.product_path)
-			var/atom/A = R.product_path
-			base64 = icon2base64(icon(initial(A.icon), initial(A.icon_state)))
 		var/list/data = list(
+			path = replacetext(replacetext("[R.product_path]", "/obj/item/", ""), "/", "-"),
 			name = R.name,
 			price = R.custom_price || default_price,
 			max_amount = R.max_amount,
-			img = base64,
 			ref = REF(R)
 		)
 		.["product_records"] += list(data)
 	.["coin_records"] = list()
 	for (var/datum/data/vending_product/R in coin_records)
-		var/base64
-		if(R.product_path)
-			var/atom/A = R.product_path
-			base64 = icon2base64(icon(initial(A.icon), initial(A.icon_state)))
 		var/list/data = list(
+			path = replacetext(replacetext("[R.product_path]", "/obj/item/", ""), "/", "-"),
 			name = R.name,
 			price = R.custom_premium_price || extra_price,
 			max_amount = R.max_amount,
-			img = base64,
 			ref = REF(R)
 		)
 		.["coin_records"] += list(data)
 	for (var/datum/data/vending_product/R in hidden_records)
-		var/base64
-		if(R.product_path)
-			var/atom/A = R.product_path
-			base64 = icon2base64(icon(initial(A.icon), initial(A.icon_state)))
 		var/list/data = list(
+			path = replacetext(replacetext("[R.product_path]", "/obj/item/", ""), "/", "-"),
 			name = R.name,
 			price = R.custom_price || default_price,
 			max_amount = R.max_amount,
-			img = base64,
 			ref = REF(R),
 			extended = TRUE
 		)
@@ -215,6 +207,9 @@
 			SSblackbox.record_feedback("nested tally", "vending_machine_usage", 1, list("[type]", "[R.product_path]"))
 			vend_ready = TRUE
 
+/obj/machinery/vending/custom
+	var/list/base64_cache = list()
+
 /obj/machinery/vending/custom/ui_static_data(mob/user)
 	return
 
@@ -224,13 +219,17 @@
 	.["vending_machine_input"] = list()
 	for (var/O in vending_machine_input)
 		if(vending_machine_input[O] > 0)
-			var/N = vending_machine_input[O]
 			var/base64
 			var/price = 0
 			for(var/obj/T in contents)
 				if(T.name == O)
 					price = T.custom_price
-					base64 = icon2base64(icon(T.icon, T.icon_state))
+					if(!base64)
+						if(base64_cache[T.type])
+							base64 = base64_cache[T.type]
+						else
+							base64 = icon2base64(icon(T.icon, T.icon_state))
+							base64_cache[T.type] = base64
 					break
 			var/list/data = list(
 				name = O,
