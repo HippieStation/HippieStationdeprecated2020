@@ -130,7 +130,6 @@ Class Procs:
 
 	var/percussive_delay = 300		
 	var/percussively_maintained	= FALSE
-var/percussively_maintained_examine = "<span class='notice'>This machine has a boot-shaped dent in its side. It looks like it won't malfunction for a while.</span>"
 
 	// hippie end
 
@@ -531,7 +530,7 @@ var/percussively_maintained_examine = "<span class='notice'>This machine has a b
 		. += display_parts(user, TRUE)
 	// hippie start -- percussive maintenance
 	if(percussively_maintained)
-		. += percussively_maintained_examine
+		. += "<span class='notice'>This machine has a boot-shaped dent in its side. It looks like it won't malfunction for a while.</span>"
 
 //called on machinery construction (i.e from frame to machinery) but not on initialization
 /obj/machinery/proc/on_construction()
