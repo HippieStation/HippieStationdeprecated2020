@@ -16,6 +16,7 @@
 	burnmod = 0.3
 	stunmod = 0.25
 	var/static/list/spooks = list('hippiestation/sound/creatures/ScrakeVoice1.wav','hippiestation/sound/creatures/ScrakeVoice2.wav','hippiestation/sound/creatures/ScrakeVoice3.wav','hippiestation/sound/creatures/ScrakeVoice4.wav','hippiestation/sound/creatures/ScrakeVoice7.wav','hippiestation/sound/creatures/ScrakeVoice8.wav','hippiestation/sound/creatures/ScrakeGiggle.wav')
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | ERT_SPAWN
 
 /datum/species/scrake/spec_life(mob/living/carbon/C)
 	. = ..()
