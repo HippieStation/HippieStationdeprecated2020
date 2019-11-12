@@ -376,7 +376,6 @@ Class Procs:
 	M.icon_state = "box_1"
 
 /obj/machinery/obj_break(damage_flag)
-	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
 	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		stat |= BROKEN

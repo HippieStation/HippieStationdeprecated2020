@@ -53,6 +53,7 @@
 	qdel(src)
 
 /obj/item/twohanded/required/kirbyplants/equipped(mob/user, slot)
+	. = ..()
 	if((obj_flags & EMAGGED) && wielded)
 		unwield(user) //This is a ghetto way to make it one-handed and it works
 	var/image/I = image(icon = 'icons/obj/flora/plants.dmi' , icon_state = src.icon_state, loc = user)

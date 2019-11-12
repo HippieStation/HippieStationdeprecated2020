@@ -16,12 +16,12 @@
 	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/clothing/mask/hippie/cluwne/equipped(mob/user, slot)
+	. = ..()
 	if(!ishuman(user))
 		return
 	if(slot == SLOT_WEAR_MASK)
 		var/mob/living/carbon/human/H = user
 		H.dna.add_mutation(CLUWNEMUT)
-	return
 
 /obj/item/clothing/mask/hippie/cluwne/happy_cluwne
 	name = "Happy Cluwne Mask"
