@@ -22,7 +22,7 @@
 		footstep++
 
 /obj/item/clothing/shoes/hippie/cluwne/equipped(mob/user, slot)
-	. = ..9
+	. = ..()
 	if(!ishuman(user))
 		return
 	if(slot == SLOT_SHOES)

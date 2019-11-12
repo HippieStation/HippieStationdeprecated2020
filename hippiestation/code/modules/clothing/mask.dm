@@ -31,6 +31,7 @@
 	var/can_cluwne = TRUE
 
 /obj/item/clothing/mask/hippie/cluwne/happy_cluwne/equipped(mob/user, slot)
+	. = ..()
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
