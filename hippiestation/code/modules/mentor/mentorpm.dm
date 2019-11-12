@@ -27,9 +27,11 @@
 	else if(istype(whom,/client))
 		C = whom
 	if(!C)
-		if(is_mentor())	to_chat(src, "<font color='red'>Error: Mentor-PM: Client not found.</font>")
-		else		mentorhelp(msg)	//Mentor we are replying to left. Mentorhelp instead(check below)
-		return
+		if(is_mentor())
+			to_chat(src, "<font color='red'>Error: Mentor-PM: Client not found.</font>")
+		else
+			mentorhelp(msg)	//Mentor we are replying to left. Mentorhelp instead(check below)
+			return
 
 	//get message text, limit it's length.and clean/escape html
 	if(!msg)
@@ -50,7 +52,8 @@
 			return
 
 	msg = sanitize(copytext(msg,1,MAX_MESSAGE_LEN))
-	if(!msg)	return
+	if(!msg)
+		return
 
 	log_mentor("Mentor PM: [key_name(src)]->[key_name(C)]: [msg]")
 
