@@ -1,0 +1,4 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - rscadd: "BlastCo has been readded. Instead of an armory, it's now a choosable kit."
