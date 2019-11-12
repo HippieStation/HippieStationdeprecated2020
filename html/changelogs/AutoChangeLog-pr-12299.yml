@@ -1,5 +1,0 @@
-author: "yoyobatty"
-delete-after: True
-changes: 
-  - tweak: "Increases restart vote delay from 30 to 35 mins"
-  - tweak: "Shuttle vote now makes the shuttle call normally"

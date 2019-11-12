@@ -1,5 +1,0 @@
-author: "Toxici11i"
-delete-after: True
-changes: 
-  - rscadd: "Added magnetic weaponry, printable at sec lathes along with the ammunition"
-  - tweak: "(EDITED)tweaked recharger behaviour to allow ballistic weapons to be put in(everything under mag) - this is very messy but due to how the naming was done, it is a neccessary evil."
