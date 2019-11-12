@@ -1,4 +1,0 @@
-author: "Atlas48"
-delete-after: True
-changes: 
-  - tweak: "Updated file permissions, every other file in the directory apart from this one has the same permissions, this bugged me, so I changed it."
