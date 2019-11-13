@@ -106,8 +106,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 				job_preferences[initial(J.title)] = new_value
 
 	if(current_version < 23)
-		key_bindings = deepCopyList(GLOB.keybinding_list_by_key)
-		WRITE_FILE(S["key_bindings"], key_bindings)
+		WRITE_FILE(S["key_bindings"], null)
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
@@ -197,9 +196,15 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	be_special		= SANITIZE_LIST(be_special)
 	pda_style		= sanitize_inlist(pda_style, GLOB.pda_styles, initial(pda_style))
 	pda_color		= sanitize_hexcolor(pda_color, 6, 1, initial(pda_color))
-	key_bindings 	= sanitize_islist(key_bindings, deepCopyList(GLOB.keybinding_list_by_key)) 
+	key_bindings 	= sanitize_islist(key_bindings, list())
+
+	if(!length(key_bindings))
+		key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+		parent.update_movement_keys()
+		addtimer(CALLBACK(src, .proc/load_default_keybindings, parent), 5 SECONDS)
 
 	hippie_pref_load(S) // hippie -- load our preferences
+
 	return TRUE
 
 /datum/preferences/proc/save_preferences()
