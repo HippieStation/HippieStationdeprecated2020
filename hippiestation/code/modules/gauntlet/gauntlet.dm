@@ -155,11 +155,11 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		snapper.say("You should've gone for the head...", forced = "badmin gauntlet")
 	snapper.visible_message("<span class='userdanger'>[snapper] raises their Badmin Gauntlet into the air, and... <i>snap.</i></span>")
 	SEND_SOUND(world, sound('hippiestation/sound/effects/SNAP.ogg'))
-	/*for(var/mob/M in GLOB.mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if(isliving(M))
 			var/mob/living/L = M
 			addtimer(CALLBACK(L, /mob/living.proc/overlay_fullscreen, "thanos_snap", /obj/screen/fullscreen/thanos_snap), 10)
-			addtimer(CALLBACK(L, /mob/living.proc/clear_fullscreen, "thanos_snap"), 35)*/
+			addtimer(CALLBACK(L, /mob/living.proc/clear_fullscreen, "thanos_snap"), 35)
 	var/list/eligible_mobs = list()	
 	for(var/mob/living/L in GLOB.mob_living_list)
 		if(L.stat == DEAD || !L.ckey || L == snapper)
