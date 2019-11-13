@@ -34,6 +34,16 @@
 /datum/techweb_node/emp_super
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 2500)
 
+/datum/techweb_node/ancient_weaponry
+	id = "ancient_weapons"
+	display_name = "Ancient Weapons"
+	description = "Plasma power cells are the perfect replacement for the elerium hungry weapons of old Earth"
+	prereq_ids = list("adv_weaponry", "adv_power", "adv_engi")
+	design_ids = list("xcomrifle", "xcomammo")
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = 5000)
+	export_price = 5000
+
+
 /datum/techweb_node/adv_bluetravel
 	id = "advanced_bluetravel"
 	display_name = "Advanced Bluespace Travel"
