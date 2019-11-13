@@ -139,11 +139,13 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	new /obj/effect/snap_rt(victim.loc, REF(victim))
 	victim.filters += filter(type="displace", size=256, render_source="*snap[REF(victim)]")
 	animate(victim, alpha=0, time=20, easing=(EASE_IN | SINE_EASING))
-	sleep(20)
+	sleep(5)
+	victim.spawn_dust(TRUE)
+	sleep(15)
 	victim.death(TRUE)
 	if(victim.buckled)
 		victim.buckled.unbuckle_mob(victim, force = TRUE)
-	victim.spawn_dust(TRUE)
+	
 	QDEL_IN(victim, 5)
 #endif
 
