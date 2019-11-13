@@ -2472,6 +2472,7 @@
 #include "code\modules\projectiles\guns\ballistic\rifle.dm"
 #include "code\modules\projectiles\guns\ballistic\shotgun.dm"
 #include "code\modules\projectiles\guns\ballistic\toy.dm"
+#include "code\modules\projectiles\guns\ballistic\xcomrifle.dm"
 #include "code\modules\projectiles\guns\energy\dueling.dm"
 #include "code\modules\projectiles\guns\energy\kinetic_accelerator.dm"
 #include "code\modules\projectiles\guns\energy\mounted.dm"
