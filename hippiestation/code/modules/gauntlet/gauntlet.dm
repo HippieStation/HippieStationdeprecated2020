@@ -1145,6 +1145,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		qdel(progbar)
 
 
+#if DM_VERSION < 513
 /obj/effect/snap_rt
 	icon = 'hippiestation/icons/effects/filters.dmi'
 	icon_state = "nothing"
@@ -1154,3 +1155,4 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	loc = L
 	icon_state = "snap3"
 	render_target = "*snap[id]"
+#endif
