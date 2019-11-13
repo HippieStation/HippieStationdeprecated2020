@@ -1145,7 +1145,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		qdel(progbar)
 
 
-#if DM_VERSION < 513
+#if DM_VERSION > 512
 /obj/effect/snap_rt
 	icon = 'hippiestation/icons/effects/filters.dmi'
 	icon_state = "nothing"
