@@ -136,7 +136,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 #if DM_VERSION < 513
 	victim.dust(TRUE)
 #else
-	new /obj/effect/snap_rt(victim.loc, REF(victim))
+	var/obj/effect/snap_rt/snap_effect = new(victim.loc, REF(victim))
 	victim.filters += filter(type="displace", size=256, render_source="*snap[REF(victim)]")
 	animate(victim, alpha=0, time=20, easing=(EASE_IN | SINE_EASING))
 	sleep(5)
@@ -145,7 +145,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 	victim.death(TRUE)
 	if(victim.buckled)
 		victim.buckled.unbuckle_mob(victim, force = TRUE)
-	
+	qdel(snap_effect)
 	QDEL_IN(victim, 5)
 #endif
 
