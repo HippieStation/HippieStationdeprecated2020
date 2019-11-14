@@ -14,6 +14,8 @@
 	spread = 5
 	w_class = WEIGHT_CLASS_HUGE
 	weapon_weight = WEAPON_HEAVY
+	lefthand_file = 'icons\mob\inhands\weapons\xcom_lefthand.dmi'
+	righthand_file = 'icons\mob\inhands\weapons\xcom_righthand.dmi'
 
 
 /obj/item/gun/ballistic/automatic/xcomrifle/update_icon()

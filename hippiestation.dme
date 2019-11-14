@@ -19,7 +19,6 @@
 #include "code\__DEFINES\_globals.dm"
 #include "code\__DEFINES\_protect.dm"
 #include "code\__DEFINES\_readme.dm"
-
 #include "code\__DEFINES\_tick.dm"
 #include "code\__DEFINES\access.dm"
 #include "code\__DEFINES\admin.dm"
@@ -2473,6 +2472,7 @@
 #include "code\modules\projectiles\guns\ballistic\rifle.dm"
 #include "code\modules\projectiles\guns\ballistic\shotgun.dm"
 #include "code\modules\projectiles\guns\ballistic\toy.dm"
+#include "code\modules\projectiles\guns\ballistic\xcomrifle.dm"
 #include "code\modules\projectiles\guns\energy\dueling.dm"
 #include "code\modules\projectiles\guns\energy\kinetic_accelerator.dm"
 #include "code\modules\projectiles\guns\energy\mounted.dm"
@@ -3648,5 +3648,4 @@
 #include "hippiestation\interface\skin.dmf"
 #include "interface\menu.dm"
 #include "interface\stylesheet.dm"
-#include "code\modules\projectiles\guns\ballistic\xcomrifle.dm"
 // END_INCLUDE
