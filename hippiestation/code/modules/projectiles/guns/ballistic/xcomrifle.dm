@@ -6,8 +6,8 @@
 	item_state = "xcomrifle"
 	pixel_x = -5
 	pixel_y = -5
-	fire_sound = 'sound/weapons/shoot.ogg'
-	load_sound = 'sound/weapons/reload.ogg'
+	fire_sound = 'hippiestation/sound/weapons/shoot.ogg'
+	load_sound = 'hippiestation/sound/weapons/reload.ogg'
 	mag_type = /obj/item/ammo_box/magazine/xcomammo
 	can_suppress = FALSE
 	burst_size = 3
@@ -15,8 +15,8 @@
 	spread = 5
 	w_class = WEIGHT_CLASS_HUGE
 	weapon_weight = WEAPON_HEAVY
-	lefthand_file = 'icons/mob/inhands/weapons/xcom_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/xcom_righthand.dmi'
+	lefthand_file = 'hippiestation/icons/mob/inhands/weapons/xcom_lefthand.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/weapons/xcom_righthand.dmi'
 
 
 /obj/item/gun/ballistic/automatic/xcomrifle/update_icon()
@@ -24,7 +24,7 @@
 
 /obj/item/ammo_box/magazine/xcomammo
 	name = "6.7mm magazine"
-	icon = 'icons/obj/AA2.dmi'
+	icon = 'hippiestation/icons/obj/AA2.dmi'
 	icon_state = "xcomammo"
 	ammo_type = /obj/item/ammo_casing/bul67
 	caliber = "6.7mm"
@@ -35,16 +35,16 @@
 	name = "6.7mm bullet casing"
 	desc = "A 6.7mm bullet casing."
 	caliber = "6.7mm"
-	icon = 'icons/obj/ammo.dmi'
+	icon = 'hippiestation/icons/obj/ammo.dmi'
 	icon_state = "s-casing"
 	projectile_type = /obj/item/projectile/bullet/bul67
 
 /obj/item/projectile/bullet/bul67
 	name = "6.7mm bullet"
 	damage = 20
-	icon = 'icons/obj/AA2.dmi'
+	icon = 'hippiestation/icons/obj/AA2.dmi'
 	icon_state = "xcombullet"
 
 /obj/item/projectile/bullet/bul67/on_hit(atom/target)
-	playsound(target, 'sound/weapons/hit.ogg', 100)
+	playsound(target, 'hippiestation/sound/weapons/hit.ogg', 100)
 

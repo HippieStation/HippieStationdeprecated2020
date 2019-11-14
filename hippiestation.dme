@@ -2472,7 +2472,6 @@
 #include "code\modules\projectiles\guns\ballistic\rifle.dm"
 #include "code\modules\projectiles\guns\ballistic\shotgun.dm"
 #include "code\modules\projectiles\guns\ballistic\toy.dm"
-#include "code\modules\projectiles\guns\ballistic\xcomrifle.dm"
 #include "code\modules\projectiles\guns\energy\dueling.dm"
 #include "code\modules\projectiles\guns\energy\kinetic_accelerator.dm"
 #include "code\modules\projectiles\guns\energy\mounted.dm"
@@ -3520,6 +3519,7 @@
 #include "hippiestation\code\modules\projectiles\guns\ballistic\revolver.dm"
 #include "hippiestation\code\modules\projectiles\guns\ballistic\shotgun.dm"
 #include "hippiestation\code\modules\projectiles\guns\ballistic\toy.dm"
+#include "hippiestation\code\modules\projectiles\guns\ballistic\xcomrifle.dm"
 #include "hippiestation\code\modules\projectiles\guns\energy\energy_gun.dm"
 #include "hippiestation\code\modules\projectiles\guns\energy\laser.dm"
 #include "hippiestation\code\modules\projectiles\guns\energy\pulse.dm"
@@ -3648,4 +3648,5 @@
 #include "hippiestation\interface\skin.dmf"
 #include "interface\menu.dm"
 #include "interface\stylesheet.dm"
+#include "hippiestation\code\modules\projectiles\guns\ballistic\xcomrifle.dm"
 // END_INCLUDE
