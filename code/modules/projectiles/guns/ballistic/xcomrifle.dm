@@ -3,6 +3,7 @@
 	desc = "An old Earth classic, used by X-COM Operatives during the First Alien War. It's usefullness died with the development of the laser rifle."
 	icon = 'icons/obj/AA2.dmi'
 	icon_state = "xcomrifle"
+	item_state = "xcomrifle"
 	pixel_x = -5
 	pixel_y = -5
 	fire_sound = 'sound/weapons/shoot.ogg'
