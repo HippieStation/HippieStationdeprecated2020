@@ -22,6 +22,7 @@
 
 /obj/item/a3/Initialize()
 	. = ..()
+	AddComponent(/datum/component/anti_magic, TRUE, FALSE, FALSE, ITEM_SLOT_BACK, FALSE)
 	lights_pulse = mutable_appearance(icon, "lights_pulse", BACK_LAYER)
 	//lights_pulse.pixel_x = -16
 	lights = mutable_appearance(icon, "lights", BACK_LAYER)
