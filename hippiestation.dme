@@ -19,7 +19,7 @@
 #include "code\__DEFINES\_globals.dm"
 #include "code\__DEFINES\_protect.dm"
 #include "code\__DEFINES\_readme.dm"
-#include "code\modules\projectiles\guns\ballistic\xcomrifle.dm"
+
 #include "code\__DEFINES\_tick.dm"
 #include "code\__DEFINES\access.dm"
 #include "code\__DEFINES\admin.dm"
@@ -3648,4 +3648,5 @@
 #include "hippiestation\interface\skin.dmf"
 #include "interface\menu.dm"
 #include "interface\stylesheet.dm"
+#include "code\modules\projectiles\guns\ballistic\xcomrifle.dm"
 // END_INCLUDE
