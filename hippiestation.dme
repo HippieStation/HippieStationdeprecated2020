@@ -3648,5 +3648,4 @@
 #include "hippiestation\interface\skin.dmf"
 #include "interface\menu.dm"
 #include "interface\stylesheet.dm"
-#include "hippiestation\code\modules\projectiles\guns\ballistic\xcomrifle.dm"
 // END_INCLUDE

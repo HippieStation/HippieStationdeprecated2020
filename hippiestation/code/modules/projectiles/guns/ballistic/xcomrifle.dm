@@ -1,7 +1,7 @@
 /obj/item/gun/ballistic/automatic/xcomrifle
 	name = "6.7mm rifle"
 	desc = "An old Earth classic, used by X-COM Operatives during the First Alien War. It's usefullness died with the development of the laser rifle."
-	icon = 'icons/obj/AA2.dmi'
+	icon = 'hippiestation/icons/obj/AA2.dmi'
 	icon_state = "xcomrifle"
 	item_state = "xcomrifle"
 	pixel_x = -5
@@ -35,7 +35,7 @@
 	name = "6.7mm bullet casing"
 	desc = "A 6.7mm bullet casing."
 	caliber = "6.7mm"
-	icon = 'hippiestation/icons/obj/ammo.dmi'
+	icon = 'hippiestation/icons/obj/ammo/ammo.dmi'
 	icon_state = "s-casing"
 	projectile_type = /obj/item/projectile/bullet/bul67
 
