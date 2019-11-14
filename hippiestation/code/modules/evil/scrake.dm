@@ -14,6 +14,7 @@
 	var/raged = FALSE
 
 /obj/item/clothing/suit/apron/chef/scrake/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
 	if(slot == SLOT_WEAR_SUIT)
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 		user.set_species(/datum/species/scrake)
@@ -61,6 +62,7 @@
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/mask/surgical/scrake/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
 	if(slot == SLOT_WEAR_MASK)
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 
@@ -89,7 +91,7 @@
 		if(istype(H.wear_suit, /obj/item/clothing/suit/apron/chef/scrake))
 			var/obj/item/clothing/suit/apron/chef/scrake/sc = H.wear_suit
 			if(sc.raged)
-				H.changeNext_move(CLICK_CD_MELEE * 0.75)//rage attack, hit 25% faster
+				H.changeNext_move(CLICK_CD_CLICK_ABILITY)//rage attack, hit 25% faster
 
 /obj/item/twohanded/required/chainsaw/scrake_saw/attack_self(mob/user)
 	..()
