@@ -96,7 +96,7 @@
 	return ..()
 
 /obj/item/gun/energy/beam_rifle/ui_action_click(mob/user, actiontype)
-	if(istype(actiontype, zoom_lock_action))
+	if(can_zoom && istype(actiontype, zoom_lock_action)) // hippie
 		zoom_lock++
 		if(zoom_lock > 3)
 			zoom_lock = 0
@@ -120,14 +120,14 @@
 	current_zoom_y = cos(current_angle) + cos(current_angle) * AUTOZOOM_PIXEL_STEP_FACTOR * zoom_current_view_increase
 
 /obj/item/gun/energy/beam_rifle/proc/handle_zooming()
-	if(!zooming || !check_user())
+	if(!zooming || !check_user() || !can_zoom) // hippie
 		return
 	current_user.client.change_view(world.view + zoom_target_view_increase)
 	zoom_current_view_increase = zoom_target_view_increase
 	set_autozoom_pixel_offsets_immediate(zooming_angle)
 
 /obj/item/gun/energy/beam_rifle/proc/start_zooming()
-	if(zoom_lock == ZOOM_LOCK_OFF)
+	if(zoom_lock == ZOOM_LOCK_OFF || !can_zoom) // hippie
 		return
 	zooming = TRUE
 
@@ -172,7 +172,8 @@
 	fire_delay = delay
 	current_tracers = list()
 	START_PROCESSING(SSfastprocess, src)
-	zoom_lock_action = new(src)
+	if(!can_zoom) // hippie
+		zoom_lock_action = new(src)
 
 /obj/item/gun/energy/beam_rifle/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)

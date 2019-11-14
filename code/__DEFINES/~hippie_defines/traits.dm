@@ -12,3 +12,4 @@
 #define GAUNTLET_TRAIT "gauntlet_trait"
 #define GUARDIAN_TRAIT	"guardian_trait"
 #define SPELL_TRAIT "spell_trait"
+#define A3_TRAIT	"a3_trait"
