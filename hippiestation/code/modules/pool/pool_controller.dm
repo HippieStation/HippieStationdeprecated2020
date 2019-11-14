@@ -35,6 +35,7 @@
 
 /obj/machinery/poolcontroller/Initialize()
 	. = ..()
+	STOP_PROCESSING(SSmachines, src)
 	START_PROCESSING(SSprocessing, src)
 	wires = new /datum/wires/poolcontroller(src)
 	for(var/turf/open/pool/W in range(srange,src)) //Search for /turf/open/beach/water in the range of var/srange
@@ -158,8 +159,8 @@
 	if(reagenttimer > 0)
 		reagenttimer--
 	if(stat & (NOPOWER|BROKEN))
-		return
-	else if(!reagenttimer && !drained)
+		return PROCESS_KILL
+	if(!reagenttimer && !drained)
 		poolreagent()
 
 /obj/machinery/poolcontroller/proc/updatePool()

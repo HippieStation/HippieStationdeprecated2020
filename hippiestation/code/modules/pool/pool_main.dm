@@ -11,10 +11,10 @@
 
 
 /turf/open/pool/Initialize()
+	. = ..()
 	create_reagents(100)
 	watereffect = new /obj/effect/overlay/water(src)
 	watertop = new /obj/effect/overlay/water/top(src)
-	. = ..()
 
 /turf/open/pool/Destroy()
 	QDEL_NULL(watereffect)
@@ -93,7 +93,7 @@
 
 /turf/open/pool/ex_act(severity, target)
 	return
-	
+
 /turf/open/pool/proc/wash_obj(obj/O)
 	. = SEND_SIGNAL(O, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
 	O.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
