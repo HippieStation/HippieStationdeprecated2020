@@ -13,8 +13,11 @@
 		"beam_rifle" = /obj/item/gun/energy/beam_rifle/railgun,
 		"gatling_spin" = /obj/item/gun/ballistic/a3_gatling
 	)
+	var/online = FALSE
+	var/onlining = FALSE
 	var/list/gun_overlays = list()
 	var/overlay_sprite
+	var/datum/effect_system/trail_follow/ion/flight/ion_trail
 
 /obj/item/a3/Initialize()
 	. = ..()
@@ -32,20 +35,41 @@
 		MA.pixel_x = 3
 		MA.pixel_y = -1
 		gun_overlays[sprite] = MA
+	ion_trail = new
+	ion_trail.set_up(src)
 
 /obj/item/a3/equipped(mob/user, slot)
 	. = ..()
 	if(slot == SLOT_BACK)
-		//ADD_TRAIT(src, TRAIT_NODROP, A3_TRAIT)
+		ADD_TRAIT(src, TRAIT_NODROP, A3_TRAIT)
+		if(!(user.movement_type & FLYING))
+			user.setMovetype(user.movement_type | FLYING)
 		update_mob_overlays(user)
+		ion_trail.start()
+		user.add_movespeed_modifier(MOVESPEED_ID_A3, priority=100, multiplicative_slowdown=-0.5, movetypes=FLOATING, conflict=MOVE_CONFLICT_JETPACK)
+		if(!online && !onlining)
+			onlining = TRUE
+			to_chat(user, "<span class='notice'>A3 Powered Suit initializing...</span>")
+			addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, user, "<span class='notice'>Integrity: <b>OK</b></span>"), 1 SECONDS)
+			addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, user, "<span class='notice'>Core Systems: <b>OK</b></span>"), 2 SECONDS)
+			addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, user, "<span class='notice'>Weapons Systens: <b>OK</b></span>"), 3 SECONDS)
+			addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, user, "<span class='notice'>A3 Powered Suit initialized. All systems <b>OK</b>.</span>"), 5 SECONDS)
+			addtimer(VARSET_CALLBACK(src, online, TRUE), 5 SECONDS)
+			addtimer(VARSET_CALLBACK(src, onlining, FALSE), 5 SECONDS)
 
 /obj/item/a3/dropped(mob/user)
 	. = ..()
+	online = FALSE
 	cut_mob_overlays(user)
 	REMOVE_TRAIT(src, TRAIT_NODROP, A3_TRAIT)
+	if(user.movement_type & FLYING)
+		user.setMovetype(user.movement_type & ~FLYING)
 
 /obj/item/a3/ui_action_click(mob/user, var/datum/action/A)
 	if(istype(A, /datum/action/item_action/aaa))
+		if(!online)
+			to_chat(user, "<span class='notice italics'>Not online!</span>")
+			return
 		overlay_sprite = null
 		update_mob_overlays(user)
 		for(var/sprite in guns)
@@ -91,3 +115,46 @@
 	source.forceMove(src)
 	if(isliving(loc))
 		update_mob_overlays(loc)
+
+// other stuff
+
+/mob/living/carbon/Process_Spacemove(movement_dir = 0)
+	. = ..()
+	if(istype(back, /obj/item/a3))
+		return TRUE
+
+/datum/effect_system/trail_follow/ion/flight
+	effect_type = /obj/effect/particle_effect/ion_trails/flight
+	fadetype = "ion_fade_flight"
+	nograv_required = FALSE
+	auto_process = FALSE
+
+/datum/effect_system/trail_follow/ion/flight/set_dir(obj/effect/particle_effect/ion_trails/I)
+	if(istype(holder, /obj/item/a3))
+		var/obj/item/a3/F = holder
+		if(isliving(F.loc))
+			I.setDir(F.loc.dir)
+
+/mob/living/carbon/human/Stat()
+	..()
+	if(istype(back, /obj/item/a3))
+		var/obj/item/a3/A3 = back
+		var/datum/gas_mixture/environment = loc?.return_air()
+		var/pressure = environment.return_pressure()
+		if(statpanel("A3"))
+			stat("A3 Status : [A3.online ? "Online" : "Offline"]")
+			if(A3.online)
+				stat("Weapon:", "[A3.overlay_sprite ? "[A3.guns[A3.overlay_sprite]]" : "None"]")
+				stat("Overall Status:", "[health]% healthy")
+				stat("Nutrition Status:", "[nutrition]")
+				stat("Oxygen Loss:", "[getOxyLoss()]")
+				stat("Toxin Levels:", "[getToxLoss()]")
+				stat("Burn Severity:", "[getFireLoss()]")
+				stat("Brute Trauma:", "[getBruteLoss()]")
+				stat("Cellular Damage:", "[getCloneLoss()]")
+				stat("Stamina:", "[100 - getStaminaLoss()]%")
+				stat("Radiation Levels:","[radiation] rads")
+				stat("Body Temperature:", "[bodytemperature-T0C] degrees C ([bodytemperature*1.8-459.67] degrees F)")
+				stat("Atmospheric Pressure:","[pressure] kPa")
+				stat("Atmoshperic Temperature:","<span class='[environment.temperature > FIRE_IMMUNITY_MAX_TEMP_PROTECT?"alert":"info"]'>[round(environment.temperature-T0C, 0.01)] &deg;C ([round(environment.temperature, 0.01)] K)</span>")
+				stat("Atmospheric Thermal Energy:","THERMAL_ENERGY(environment)/1000] kJ")

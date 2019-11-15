@@ -129,6 +129,7 @@
 #include "code\__DEFINES\~hippie_defines\mentor.dm"
 #include "code\__DEFINES\~hippie_defines\misc.dm"
 #include "code\__DEFINES\~hippie_defines\mobs.dm"
+#include "code\__DEFINES\~hippie_defines\movespeed_modification.dm"
 #include "code\__DEFINES\~hippie_defines\preferences.dm"
 #include "code\__DEFINES\~hippie_defines\shuttles.dm"
 #include "code\__DEFINES\~hippie_defines\sound.dm"
