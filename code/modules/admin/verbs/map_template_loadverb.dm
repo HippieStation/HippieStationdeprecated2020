@@ -64,4 +64,4 @@
 
 	SSmapping.map_templates[M.name] = M
 	message_admins("<span class='adminnotice'>[key_name_admin(src)] has uploaded a map template '[map]' ([M.width]x[M.height])[report_link].</span>")
-	to_chat(src, "<span class='notice'>Map template '[map]' ready to place ([M.width]x[M.height])</span>", confidental = TRUE)
+	to_chat(src, "<span class='notice'>Map template '[map]' ready to place ([M.width]x[M.height])</span>", confidential = TRUE)
