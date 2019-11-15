@@ -17,7 +17,7 @@
 	var/onlining = FALSE
 	var/list/gun_overlays = list()
 	var/overlay_sprite
-	var/datum/effect_system/trail_follow/ion/flight/ion_trail
+	var/datum/effect_system/trail_follow/ion/a3/ion_trail
 
 /obj/item/a3/Initialize()
 	. = ..()
@@ -142,13 +142,11 @@
 	if(istype(back, /obj/item/a3))
 		return TRUE
 
-/datum/effect_system/trail_follow/ion/flight
-	effect_type = /obj/effect/particle_effect/ion_trails/flight
-	fadetype = "ion_fade_flight"
+/datum/effect_system/trail_follow/ion/a3
 	nograv_required = FALSE
 	auto_process = FALSE
 
-/datum/effect_system/trail_follow/ion/flight/set_dir(obj/effect/particle_effect/ion_trails/I)
+/datum/effect_system/trail_follow/ion/a3/set_dir(obj/effect/particle_effect/ion_trails/I)
 	if(istype(holder, /obj/item/a3))
 		var/obj/item/a3/F = holder
 		if(isliving(F.loc))
