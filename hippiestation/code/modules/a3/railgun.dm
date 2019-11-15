@@ -6,6 +6,7 @@
 	cell_type = /obj/item/stock_parts/cell/infinite
 	ammo_type = list(/obj/item/ammo_casing/energy/beam_rifle/hitscan/railgun)
 	aiming_time_increase_user_movement = 0
+	can_zoom = FALSE
 
 /obj/item/gun/energy/beam_rifle/railgun/update_icon()
 	return
