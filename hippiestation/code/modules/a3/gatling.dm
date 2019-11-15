@@ -32,4 +32,4 @@
 
 /obj/item/projectile/bullet/a3
 	name = "gatling bullet"
-	damage = 5
+	damage = 7

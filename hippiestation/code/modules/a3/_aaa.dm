@@ -15,27 +15,10 @@
 	)
 	var/list/gun_overlays = list()
 	var/overlay_sprite
-	var/lights_color = "#990000"
-	var/mutable_appearance/lights_pulse
-	var/mutable_appearance/lights
-	var/mutable_appearance/lights_fade
-	var/mutable_appearance/lights_off
 
 /obj/item/a3/Initialize()
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, FALSE, FALSE, ITEM_SLOT_BACK, FALSE)
-	lights_pulse = mutable_appearance(icon, "lights_pulse", BACK_LAYER + 0.1)
-	lights_pulse.color = lights_color
-	//lights_pulse.pixel_x = -16
-	lights = mutable_appearance(icon, "lights", BACK_LAYER + 0.1)
-	lights.color = lights_color
-	//lights.pixel_x = -16
-	lights_fade = mutable_appearance(icon, "lights_fade", BACK_LAYER + 0.1)
-	lights_fade.color = lights_color
-	//lights_fade.pixel_x = -16
-	lights_off = mutable_appearance(icon, "lights_off", BACK_LAYER + 0.1)
-	lights_off.color = lights_color
-	//lights_off.pixel_x = -16
 	var/list/G = guns.Copy()
 	guns.Cut()
 	for(var/sprite in G)
@@ -53,7 +36,7 @@
 /obj/item/a3/equipped(mob/user, slot)
 	. = ..()
 	if(slot == SLOT_BACK)
-		ADD_TRAIT(src, TRAIT_NODROP, A3_TRAIT)
+		//ADD_TRAIT(src, TRAIT_NODROP, A3_TRAIT)
 		update_mob_overlays(user)
 
 /obj/item/a3/dropped(mob/user)
@@ -90,16 +73,11 @@
 /obj/item/a3/proc/cut_mob_overlays(mob/living/L)
 	for(var/MA in gun_overlays)
 		L.cut_overlay(gun_overlays[MA])
-	L.cut_overlay(lights_fade)
-	L.cut_overlay(lights)
-	L.cut_overlay(lights_off)
-	L.cut_overlay(lights_pulse)
 
 /obj/item/a3/proc/update_mob_overlays(mob/living/L)
 	cut_mob_overlays(L)
 	if(overlay_sprite)
 		L.add_overlay(gun_overlays[overlay_sprite])
-	L.add_overlay(lights)
 
 /obj/item/a3/item_action_slot_check(slot, mob/user)
 	if(slot == user.getBackSlot())
