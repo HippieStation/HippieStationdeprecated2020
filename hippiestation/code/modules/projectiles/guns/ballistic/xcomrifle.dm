@@ -30,6 +30,12 @@
 	caliber = "6.7mm"
 	max_ammo = 20
 
+/obj/item/ammo_box/magazine/xcomammo/update_icon()
+	..()
+	if(ammo_count())
+		icon_state = "xcomammo20"
+	else
+		icon_state = "xcomammo"
 
 /obj/item/ammo_casing/bul67
 	name = "6.7mm bullet casing"
