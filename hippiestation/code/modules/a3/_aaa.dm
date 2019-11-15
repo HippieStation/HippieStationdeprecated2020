@@ -10,7 +10,8 @@
 	resistance_flags = FIRE_PROOF | ACID_PROOF | UNACIDABLE | FREEZE_PROOF | LAVA_PROOF
 	actions_types = list(/datum/action/item_action/aaa)
 	var/list/guns = list(
-		"beam_rifle" = /obj/item/gun/energy/beam_rifle/railgun
+		"beam_rifle" = /obj/item/gun/energy/beam_rifle/railgun,
+		"gatling_spin" = /obj/item/gun/ballistic/a3_gatling
 	)
 	var/list/gun_overlays = list()
 	var/overlay_sprite
@@ -23,13 +24,17 @@
 /obj/item/a3/Initialize()
 	. = ..()
 	AddComponent(/datum/component/anti_magic, TRUE, FALSE, FALSE, ITEM_SLOT_BACK, FALSE)
-	lights_pulse = mutable_appearance(icon, "lights_pulse", BACK_LAYER)
+	lights_pulse = mutable_appearance(icon, "lights_pulse", BACK_LAYER + 0.1)
+	lights_pulse.color = lights_color
 	//lights_pulse.pixel_x = -16
-	lights = mutable_appearance(icon, "lights", BACK_LAYER)
+	lights = mutable_appearance(icon, "lights", BACK_LAYER + 0.1)
+	lights.color = lights_color
 	//lights.pixel_x = -16
-	lights_fade = mutable_appearance(icon, "lights_fade", BACK_LAYER)
+	lights_fade = mutable_appearance(icon, "lights_fade", BACK_LAYER + 0.1)
+	lights_fade.color = lights_color
 	//lights_fade.pixel_x = -16
-	lights_off = mutable_appearance(icon, "lights_off", BACK_LAYER)
+	lights_off = mutable_appearance(icon, "lights_off", BACK_LAYER + 0.1)
+	lights_off.color = lights_color
 	//lights_off.pixel_x = -16
 	var/list/G = guns.Copy()
 	guns.Cut()
@@ -94,8 +99,7 @@
 	cut_mob_overlays(L)
 	if(overlay_sprite)
 		L.add_overlay(gun_overlays[overlay_sprite])
-	//lights_pulse.color = lights_color
-	//L.add_overlay(lights_pulse)
+	L.add_overlay(lights)
 
 /obj/item/a3/item_action_slot_check(slot, mob/user)
 	if(slot == user.getBackSlot())
