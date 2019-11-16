@@ -11,7 +11,8 @@
 	actions_types = list(/datum/action/item_action/aaa)
 	var/list/guns = list(
 		"beam_rifle" = /obj/item/gun/energy/beam_rifle/railgun,
-		"gatling_spin" = /obj/item/gun/ballistic/a3_gatling
+		"gatling_spin" = /obj/item/gun/ballistic/a3/gatling,
+		"rocketpod" = /obj/item/gun/ballistic/a3/rocketpods
 	)
 	var/online = FALSE
 	var/onlining = FALSE

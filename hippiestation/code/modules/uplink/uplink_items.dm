@@ -86,6 +86,14 @@
 	cost = 13
 	surplus = 45
 
+/datum/uplink_item/dangerous/aaa
+	name = "A3 Powered Suit"
+	desc = "The A.A.A Powered Suit is an experimental attachment, in a secret Syndicate project to reverse engineer NanoTrasen mecha technology, \
+		with help from double agents within the Wizard Federation."
+	item = /obj/item/a3
+	include_modes = list(/datum/game_mode/nuclear)
+	cost = 100
+
 /datum/uplink_item/bundles_TC/blastco
 	name = "BlastCo(tm) Armory"
 	desc = "Enough gear to fully equip a team!"
