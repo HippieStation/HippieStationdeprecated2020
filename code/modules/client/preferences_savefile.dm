@@ -42,7 +42,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 //if your savefile is 3 months out of date, then 'tough shit'.
 
 /datum/preferences/proc/update_preferences(current_version, savefile/S)
-	return
+	if(current_version < 23)
+		key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+		parent.update_movement_keys()
+		to_chat(parent, "<span class='userdanger'>Empty keybindings, setting default to [hotkeys ? "Hotkey" : "Classic"] mode</span>")
 
 /datum/preferences/proc/update_character(current_version, savefile/S)
 	if(current_version < 19)
@@ -104,9 +107,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 						new_value = JP_LOW
 			if(new_value)
 				job_preferences[initial(J.title)] = new_value
-
-	if(current_version < 23)
-		WRITE_FILE(S["key_bindings"], null)
 
 /datum/preferences/proc/load_path(ckey,filename="preferences.sav")
 	if(!ckey)
@@ -198,10 +198,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	pda_color		= sanitize_hexcolor(pda_color, 6, 1, initial(pda_color))
 	key_bindings 	= sanitize_islist(key_bindings, list())
 
-	if(!length(key_bindings))
-		key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
-		parent.update_movement_keys()
-		addtimer(CALLBACK(src, .proc/load_default_keybindings, parent), 5 SECONDS)
 
 	hippie_pref_load(S) // hippie -- load our preferences
 
