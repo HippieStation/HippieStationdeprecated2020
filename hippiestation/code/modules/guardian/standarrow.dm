@@ -27,24 +27,24 @@
 		return
 	if(!M.client)
 		return
-	if(!ishuman(M) && !isguardian(M))
+	if(!iscarbon(M) && !isguardian(M))
 		to_chat("<span class='italics warning'>You can't stab [M], it won't work!</span>")
 		return
 	if(M.stat == DEAD)
 		to_chat("<span class='italics warning'>You can't stab [M], they're already dead!</span>")
 		return
-	var/mob/living/carbon/human/H = M
+	var/mob/living/carbon/H = M
 	var/mob/living/simple_animal/hostile/guardian/G = M
 	user.visible_message("<span class='warning'>[user] prepares to stab [H] with \the [src]!</span>", "<span class='notice'>You raise \the [src] into the air.</span>")
 	if(do_mob(user, H, 5 SECONDS, uninterruptible=FALSE))
-		if(LAZYLEN(H.hasparasites()) || (H.mind && H.mind.has_antag_datum(/datum/antagonist/changeling)) || (isguardian(M) && (users[G.summoner] || G.requiem || G.transforming)))
+		if(LAZYLEN(H.hasparasites()) || (H.mind && H.mind.has_antag_datum(/datum/antagonist/changeling)) || (isguardian(M) && (users[G] || G.requiem || G.transforming)))
 			H.visible_message("<span class='holoparasite'>\The [src] rejects [H]!</span>")
 			return
 		in_use = TRUE
 		H.visible_message("<span class='holoparasite'>\The [src] embeds itself into [H], and begins to glow!</span>")
 		user.dropItemToGround(src, TRUE)
 		forceMove(H)
-		if(ishuman(M))
+		if(iscarbon(M))
 			sleep(15 SECONDS)
 			if(prob(kill_chance))
 				H.visible_message("<span class='danger bold'>[H] stares ahead, eyes full of fear, before collapsing lifelessly into ash, \the [src] falling out...</span>")
@@ -55,7 +55,6 @@
 				H.dust(TRUE)
 				in_use = FALSE
 			else
-				users[M] = TRUE
 				INVOKE_ASYNC(src, .proc/generate_stand, H)
 		else if(isguardian(M))
 			INVOKE_ASYNC(src, .proc/requiem, M)
@@ -149,22 +148,23 @@
 					categories -= "Range"
 	INVOKE_ASYNC(src, .proc/get_stand, H, stats)
 
-/obj/item/stand_arrow/proc/get_stand(mob/living/carbon/human/H, datum/guardian_stats/stats)
+/obj/item/stand_arrow/proc/get_stand(mob/living/carbon/H, datum/guardian_stats/stats)
 	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Guardian Spirit of [H.real_name]?", ROLE_HOLOPARASITE, null, FALSE, 100, POLL_IGNORE_HOLOPARASITE)
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
 		var/mob/living/simple_animal/hostile/guardian/G = new(H, "magic")
-		G.summoner = H
+		G.summoner = H.mind
 		G.key = C.key
 		G.mind.enslave_mind_to_creator(H)
-		G.RegisterSignal(G.summoner, COMSIG_MOVABLE_MOVED, /mob/living/simple_animal/hostile/guardian.proc/OnMoved)
+		G.RegisterSignal(H, COMSIG_MOVABLE_MOVED, /mob/living/simple_animal/hostile/guardian.proc/OnMoved)
 		var/datum/antagonist/guardian/S = new
 		S.stats = stats
-		S.summoner = H.mind.name
+		S.summoner = H.mind
 		G.mind.add_antag_datum(S)
 		G.stats = stats
 		G.stats.Apply(G)
 		G.show_detail()
+		users[G] = TRUE
 		log_game("[key_name(H)] has summoned [key_name(G)], a holoparasite, via the stand arrow.")
 		to_chat(H, "<span class='holoparasite'><font color=\"[G.namedatum.colour]\"><b>[G.real_name]</b></font> has been summoned!</span>")
 		H.verbs += /mob/living/proc/guardian_comm
