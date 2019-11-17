@@ -30,34 +30,6 @@
 	impossible to aim and do about next to jack shit, fuck all. The shotgun is the superior law enforcement weapon. Because it stops crime. \
 	And it stops crime by reducing the number of criminals roaming the fucking halls."
 
-/obj/item/gun/ballistic/shotgun/triplebarrel
-	name = "triple-barreled shotgun"
-	desc = "Say goobye to your wrists, knucklehead."
-	mag_type = /obj/item/ammo_box/magazine/internal/shot/triplebarrel
-	fire_sound_volume = 150
-	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
-	icon_state = "triplethreat"
-	item_state = "shotgun"
-	load_sound = 'sound/weapons/shotguninsert.ogg'
-	w_class = WEIGHT_CLASS_BULKY
-	force = 10
-	flags_1 =  CONDUCT_1
-	slot_flags = ITEM_SLOT_BACK
-	weapon_weight = WEAPON_MEDIUM
-	internal_magazine = TRUE
-	casing_ejector = FALSE
-	cartridge_wording = "shell"
-	tac_reloads = FALSE
-	rack_sound_volume = 0
-	burst_size = 3
-	fire_delay = 0
-	semi_auto = FALSE
-	bolt_type = BOLT_TYPE_NO_BOLT
-
-/obj/item/ammo_box/magazine/internal/shot/triplebarrel
-	name = "triple-barrel shotgun internal magazine"
-	max_ammo = 3
-
 
 /obj/item/gun/ballistic/shotgun/canegun
 	name = "pimp stick"
