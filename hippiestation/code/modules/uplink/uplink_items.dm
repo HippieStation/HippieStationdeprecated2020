@@ -14,6 +14,14 @@
 	cost = 5
 	surplus = 90
 
+/datum/uplink_item/dangerous/triplethreat
+	name = "Triple-barreled Shotgun"
+	desc = "Gonna keep it real with you chief, this is literally a shotgun with another barrel welded to it. You can't \
+    even fire each barrel individually, gotta fire them all at once."
+	item = /obj/item/gun/ballistic/shotgun/triplebarrel
+	cost = 8
+	
+
 /datum/uplink_item/stealthy_tools/thermal
 	name = "Thermal Imaging Goggles"
 	desc = "These goggles allow you to see organisms through walls by capturing the upper portion of the infrared light spectrum, \
