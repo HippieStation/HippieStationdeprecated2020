@@ -1,7 +1,7 @@
 /datum/guardian_ability/major/time
 	name = "Time Erasure"
 	desc = "The guardian can erase a short period of time."
-	cost = 6
+	cost = 4
 	spell_type = /obj/effect/proc_holder/spell/self/erase_time
 	arrow_weight = 0.2
 
