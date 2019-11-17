@@ -57,3 +57,43 @@
 /obj/item/ammo_box/magazine/internal/shot/triplebarrel
 	name = "triple-barrel shotgun internal magazine"
 	max_ammo = 3
+
+
+/obj/item/gun/ballistic/shotgun/canegun
+	name = "pimp stick"
+	desc = "A gold-rimmed cane, with a gleaming diamond set at the top. Great for bashing in kneecaps."
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/canegun
+	fire_sound_volume = 80
+	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	icon_state = "pimpstick"
+	item_state = "pimpstick"
+	lefthand_file = 'hippiestation/icons/mob/inhands/lefthand.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/righthand.dmi'
+	force = 15
+	throwforce = 7
+	w_class = WEIGHT_CLASS_NORMAL
+	attack_verb = list("pimped", "smacked", "disciplined", "busted", "capped", "decked")
+	resistance_flags = FIRE_PROOF
+	weapon_weight = WEAPON_MEDIUM
+	internal_magazine = TRUE
+	casing_ejector = FALSE
+	cartridge_wording = "shell"
+	tac_reloads = FALSE
+	rack_sound_volume = 0
+	fire_delay = 0
+	burst_size = 1
+	semi_auto = TRUE
+	bolt_type = BOLT_TYPE_NO_BOLT
+
+/obj/item/gun/ballistic/shotgun/canegun/sawoff(mob/user)
+	to_chat(user, "<span class='warning'>Kinda defeats the purpose of a cane, doesn't it?</span>")
+	return
+
+/obj/item/pimpstick/suicide_act(mob/user)
+		user.visible_message("<span class='suicide'>[user] is hitting [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to discipline [user.p_them()]self for being a mark-ass trick.</span>")
+		return (BRUTELOSS)
+
+/obj/item/ammo_box/magazine/internal/shot/canegun
+	name = "cane-gun internal magazine"
+	max_ammo = 8
+	

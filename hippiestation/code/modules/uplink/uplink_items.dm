@@ -69,6 +69,13 @@
 	cost = 18
 	item = /obj/item/seeds/gatfruit/syndi
 
+/datum/uplink_item/role_restricted/canegun
+	name = "Concealed cane shotgun"
+	desc = "A shotgun cleverly disgusied as a pimp stick. Pull on it to rack it and fold it to fire. Holds 8 shells at once. Keep away from mimes."
+	restricted_roles = list("Clown")
+	cost = 8
+	item = /obj/item/gun/ballistic/shotgun/canegun
+
 /datum/uplink_item/dangerous/echainsaw
 	name = "Energy Chainsaw"
 	desc = "An incredibly deadly modified chainsaw with plasma-based energy blades instead of metal and a slick black-and-red finish. While it rips apart matter with extreme efficiency, it is heavy, large, and monstrously loud."
