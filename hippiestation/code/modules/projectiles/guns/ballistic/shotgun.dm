@@ -57,6 +57,7 @@
 obj/item/gun/ballistic/shotgun/triplebarrel/sawoff(mob/user)
 	to_chat(user, "<span class='warning'>You're not stupid enough to try sawing off this cursed weapon.?</span>")
 	return
+	
 /obj/item/ammo_box/magazine/internal/shot/triplebarrel
 	name = "triple-barrel shotgun internal magazine"
 	max_ammo = 3
