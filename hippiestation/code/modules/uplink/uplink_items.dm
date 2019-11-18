@@ -64,8 +64,8 @@
 
 /datum/uplink_item/role_restricted/canegun
 	name = "Concealed cane shotgun"
-	desc = "A shotgun cleverly disgusied as a pimp stick. Pull on it to rack it and fold it to fire. Holds 8 shells at once. Keep away from mimes."
-	restricted_roles = list("Clown")
+	desc = "A shotgun cleverly disgusied as a pimp stick. Pull on it to rack it and fold it to fire. Holds 8 shells at once. Keep away from assistants."
+	restricted_roles = list("Clown","Mime")
 	cost = 8
 	item = /obj/item/gun/ballistic/shotgun/canegun
 

@@ -57,6 +57,21 @@
 	semi_auto = TRUE
 	bolt_type = BOLT_TYPE_NO_BOLT
 
+var/mob/current_owner
+
+/obj/item/gun/ballistic/shotgun/canegun/equipped(mob/user, slot)
+	slot = SLOT_HANDS
+	var/mob/holder = get(loc, /mob)
+	var/mob/living/carbon/human/H = user
+	if(!current_owner && holder)
+		current_owner = holder
+		if(istype(H))
+			if(H.get_num_legs(1) < 2)
+				H.add_movespeed_modifier(type, update=TRUE, priority=100, multiplicative_slowdown=-3, blacklisted_movetypes=(FLYING|FLOATING))
+	if(current_owner && current_owner != holder)
+		H.remove_movespeed_modifier(type)
+		current_owner = null
+
 /obj/item/gun/ballistic/shotgun/canegun/sawoff(mob/user)
 	to_chat(user, "<span class='warning'>Kinda defeats the purpose of a cane, doesn't it?</span>")
 	return
