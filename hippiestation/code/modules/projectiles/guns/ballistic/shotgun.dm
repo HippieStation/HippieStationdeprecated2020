@@ -29,3 +29,24 @@
 	with the disabler shots, which take half a clip just to bring someone down, or with the tazer bolts which are slow as balls, \
 	impossible to aim and do about next to jack shit, fuck all. The shotgun is the superior law enforcement weapon. Because it stops crime. \
 	And it stops crime by reducing the number of criminals roaming the fucking halls."
+
+/obj/item/gun/ballistic/shotgun/triplebarrel
+	name = "triple-barreled shotgun"
+	desc = "Say goobye to your wrists, knucklehead."
+	mag_type = /obj/item/ammo_box/magazine/internal/shot/triplebarrel
+	fire_sound_volume = 150
+	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
+	icon_state = "triplethreat"
+	load_sound = 'sound/weapons/shotguninsert.ogg'
+	rack_sound_volume = 0
+	burst_size = 3
+	fire_delay = 0
+	bolt_type = BOLT_TYPE_NO_BOLT
+
+obj/item/gun/ballistic/shotgun/triplebarrel/sawoff(mob/user)
+	to_chat(user, "<span class='warning'>You're not stupid enough to try sawing off this cursed weapon, are ya?</span>")
+	return
+
+/obj/item/ammo_box/magazine/internal/shot/triplebarrel
+	name = "triple-barrel shotgun internal magazine"
+	max_ammo = 3
