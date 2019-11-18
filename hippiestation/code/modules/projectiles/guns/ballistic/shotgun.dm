@@ -39,19 +39,10 @@
 	icon_state = "triplethreat"
 	item_state = "shotgun"
 	load_sound = 'sound/weapons/shotguninsert.ogg'
-	w_class = WEIGHT_CLASS_BULKY
-	force = 10
-	flags_1 =  CONDUCT_1
-	slot_flags = ITEM_SLOT_BACK
-	weapon_weight = WEAPON_MEDIUM
-	internal_magazine = TRUE
-	casing_ejector = FALSE
-	cartridge_wording = "shell"
 	tac_reloads = FALSE
 	rack_sound_volume = 0
 	burst_size = 3
 	fire_delay = 0
-	semi_auto = FALSE
 	bolt_type = BOLT_TYPE_NO_BOLT
 
 obj/item/gun/ballistic/shotgun/triplebarrel/sawoff(mob/user)
