@@ -46,10 +46,8 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("pimped", "smacked", "disciplined", "busted", "capped", "decked")
 	resistance_flags = FIRE_PROOF
-	tac_reloads = FALSE
 	rack_sound_volume = 0
 	semi_auto = TRUE
-	bolt_type = BOLT_TYPE_NO_BOLT
 
 var/mob/current_owner
 
