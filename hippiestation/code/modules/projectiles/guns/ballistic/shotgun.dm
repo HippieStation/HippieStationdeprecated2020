@@ -65,6 +65,7 @@ var/mob/current_owner
 	if(current_owner && current_owner != holder)
 		H.remove_movespeed_modifier(type)
 		current_owner = null
+		. = ..()
 
 /obj/item/gun/ballistic/shotgun/canegun/sawoff(mob/user)
 	to_chat(user, "<span class='warning'>Kinda defeats the purpose of a cane, doesn't it?</span>")
