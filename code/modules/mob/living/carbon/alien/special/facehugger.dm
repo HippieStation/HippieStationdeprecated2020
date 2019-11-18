@@ -172,7 +172,7 @@
 			var/obj/item/clothing/W = target.wear_mask
 			if(target.dropItemToGround(W))
 				target.visible_message("<span class='danger'>[src] tears [W] off of [target]'s face!</span>", \
-									"<span class='userdanger'>[src] tears [W] off of [target]'s face!</span>")
+									"<span class='userdanger'>[src] tears [W] off of your face!</span>")
 		target.equip_to_slot_if_possible(src, ITEM_SLOT_MASK, 0, 1, 1)
 	return TRUE // time for a smoke
 

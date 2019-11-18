@@ -115,13 +115,13 @@
 	if(!get_bodypart(BODY_ZONE_HEAD)) //Decapitated
 		return
 
-	if(client && hud_used && hud_used.inv_slots[ITEM_SLOT_MASK])
-		var/obj/screen/inventory/inv = hud_used.inv_slots[ITEM_SLOT_MASK]
+	if(client && hud_used && hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_MASK) + 1])
+		var/obj/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_MASK) + 1]
 		inv.update_icon()
 
 	if(wear_mask)
 		if(!(ITEM_SLOT_MASK in check_obscured_slots()))
-			overlays_standing[FACEMASK_LAYER] = wear_mask.build_worn_icon(state = wear_mask.icon_state, default_layer = FACEMASK_LAYER, default_icon_file = 'icons/mob/mask.dmi')
+			overlays_standing[FACEMASK_LAYER] = wear_mask.build_worn_icon(default_layer = FACEMASK_LAYER, default_icon_file = 'icons/mob/mask.dmi')
 		update_hud_wear_mask(wear_mask)
 
 	apply_overlay(FACEMASK_LAYER)
@@ -129,13 +129,13 @@
 /mob/living/carbon/update_inv_neck()
 	remove_overlay(NECK_LAYER)
 
-	if(client && hud_used && hud_used.inv_slots[ITEM_SLOT_NECK])
-		var/obj/screen/inventory/inv = hud_used.inv_slots[ITEM_SLOT_NECK]
+	if(client && hud_used && hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_NECK) + 1])
+		var/obj/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_NECK) + 1]
 		inv.update_icon()
 
 	if(wear_neck)
 		if(!(ITEM_SLOT_NECK in check_obscured_slots()))
-			overlays_standing[NECK_LAYER] = wear_neck.build_worn_icon(state = wear_neck.icon_state, default_layer = NECK_LAYER, default_icon_file = 'icons/mob/neck.dmi')
+			overlays_standing[NECK_LAYER] = wear_neck.build_worn_icon(default_layer = NECK_LAYER, default_icon_file = 'icons/mob/neck.dmi')
 		update_hud_neck(wear_neck)
 
 	apply_overlay(NECK_LAYER)
@@ -143,8 +143,8 @@
 /mob/living/carbon/update_inv_back()
 	remove_overlay(BACK_LAYER)
 
-	if(client && hud_used && hud_used.inv_slots[ITEM_SLOT_BACK])
-		var/obj/screen/inventory/inv = hud_used.inv_slots[ITEM_SLOT_BACK]
+	if(client && hud_used && hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_BACK) + 1])
+		var/obj/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_BACK) + 1]
 		inv.update_icon()
 
 	if(back)
@@ -159,8 +159,8 @@
 	if(!get_bodypart(BODY_ZONE_HEAD)) //Decapitated
 		return
 
-	if(client && hud_used && hud_used.inv_slots[ITEM_SLOT_BACK])
-		var/obj/screen/inventory/inv = hud_used.inv_slots[ITEM_SLOT_HEAD]
+	if(client && hud_used && hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_BACK) + 1])
+		var/obj/screen/inventory/inv = hud_used.inv_slots[TOBITSHIFT(ITEM_SLOT_HEAD) + 1]
 		inv.update_icon()
 
 	if(head)

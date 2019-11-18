@@ -43,8 +43,8 @@
 
 	for(var/obj/item/I in H.get_equipped_items(TRUE))
 		qdel(I)
-	for(var/obj/item/I in H.held_items)
-		qdel(I)
+	H.regenerate_icons()
+	H.revive(full_heal = TRUE, admin_revive = TRUE)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/kilt/highlander(H), ITEM_SLOT_ICLOTHING)
 	H.equip_to_slot_or_del(new /obj/item/radio/headset/heads/captain(H), ITEM_SLOT_EARS)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/highlander(H), ITEM_SLOT_HEAD)
@@ -59,7 +59,7 @@
 	W.assignment = "Highlander"
 	W.registered_name = H.real_name
 	ADD_TRAIT(W, TRAIT_NODROP, HIGHLANDER)
-	W.update_label(H.real_name)
+	W.update_label()
 	H.equip_to_slot_or_del(W, ITEM_SLOT_ID)
 
 	sword = new(H)

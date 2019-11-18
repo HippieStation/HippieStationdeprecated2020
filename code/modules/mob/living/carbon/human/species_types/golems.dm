@@ -1051,7 +1051,7 @@
 	. = ..()
 	C.equip_to_slot_or_del(new /obj/item/clothing/head/that (), ITEM_SLOT_HEAD)
 	C.equip_to_slot_or_del(new /obj/item/clothing/glasses/monocle (), ITEM_SLOT_EYES)
-	C.revive(full_heal = TRUE)
+	C.revive(full_heal = TRUE, admin_revive = FALSE)
 
 	SEND_SOUND(C, sound('sound/misc/capitialism.ogg'))
 	C.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock ())
@@ -1093,7 +1093,7 @@
 /datum/species/golem/soviet/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	. = ..()
 	C.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka (), ITEM_SLOT_HEAD)
-	C.revive(full_heal = TRUE)
+	C.revive(full_heal = TRUE, admin_revive = FALSE)
 
 	SEND_SOUND(C, sound('sound/misc/Russian_Anthem_chorus.ogg'))
 	C.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/knock ())

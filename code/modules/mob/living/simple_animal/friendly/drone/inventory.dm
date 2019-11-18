@@ -25,8 +25,8 @@
 			if(head)
 				return 0
 			if(!((I.slot_flags & ITEM_SLOT_HEAD) || (I.slot_flags & ITEM_SLOT_MASK)))
-				return 0
-			return 1
+				return FALSE
+			return TRUE
 		if(ITEM_SLOT_DEX_STORAGE)
 			if(internal_storage)
 				return 0
