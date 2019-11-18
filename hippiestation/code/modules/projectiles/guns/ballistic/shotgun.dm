@@ -37,9 +37,7 @@
 	fire_sound_volume = 150
 	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
 	icon_state = "triplethreat"
-	item_state = "shotgun"
 	load_sound = 'sound/weapons/shotguninsert.ogg'
-	tac_reloads = FALSE
 	rack_sound_volume = 0
 	burst_size = 3
 	fire_delay = 0
