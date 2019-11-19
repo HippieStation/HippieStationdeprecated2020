@@ -41,6 +41,7 @@
 	rack_sound_volume = 0
 	burst_size = 3
 	fire_delay = 0
+	semi_auto = TRUE
 	bolt_type = BOLT_TYPE_NO_BOLT
 
 obj/item/gun/ballistic/shotgun/triplebarrel/sawoff(mob/user)
