@@ -4,7 +4,7 @@
 	if(!check_rights(0))
 		return
 	if(!SSdbcore.IsConnected())
-		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
 		return
 	var/memotask = input(usr,"Choose task.","Memo") in list("Show","Write","Edit","Remove")
 	if(!memotask)
@@ -17,7 +17,7 @@
 	if(!is_mentor())
 		return
 	if(!SSdbcore.IsConnected())
-		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
 		return
 	mentor_memo_output("Show")
 
@@ -25,7 +25,7 @@
 	if(!task)
 		return
 	if(!SSdbcore.IsConnected())
-		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>", confidential=TRUE)
 		return
 	var/sql_ckey = sanitizeSQL(ckey)
 	switch(task)
@@ -37,7 +37,7 @@
 				qdel(query_memocheck)
 				return
 			if(query_memocheck.NextRow())
-				to_chat(src, "You already have set a memo.")
+				to_chat(src, "You already have set a memo.", confidential=TRUE)
 				qdel(query_memocheck)
 				return
 			var/memotext = input(src,"Write your Memo","Memo") as message
@@ -69,7 +69,7 @@
 				var/lkey = query_memolist.item[1]
 				memolist += "[lkey]"
 			if(!memolist.len)
-				to_chat(src, "No memos found in database.")
+				to_chat(src, "No memos found in database.", confidential=TRUE)
 				qdel(query_memolist)
 				return
 			var/target_ckey = input(src, "Select whose memo to edit", "Select memo") as null|anything in memolist
@@ -129,10 +129,10 @@
 					output += "<br><span class='memoedit'>Last edit by [last_editor] <A href='?_src_=holder;mentormemoeditlist=[ckey];[HrefToken(TRUE)]'>(Click here to see edit log)</A></span>"
 				output += "<br>[memotext]</span><br>"
 			if(!output)
-				to_chat(src, "No memos found in database.")
+				to_chat(src, "No memos found in database.", confidential=TRUE)
 				qdel(query_memoshow)
 				return
-			to_chat(src, output)
+			to_chat(src, output, confidential=TRUE)
 			qdel(query_memoshow)
 		if("Remove")
 			var/datum/DBQuery/query_memodellist = SSdbcore.NewQuery("SELECT ckey FROM [format_table_name("mentor_memo")]")
@@ -146,7 +146,7 @@
 				var/ckey = query_memodellist.item[1]
 				memolist += "[ckey]"
 			if(!memolist.len)
-				to_chat(src, "No memos found in database.")
+				to_chat(src, "No memos found in database.", confidential=TRUE)
 				qdel(query_memodellist)
 				return
 			var/target_ckey = input(src, "Select whose mentor memo to delete", "Select mentor memo") as null|anything in memolist
