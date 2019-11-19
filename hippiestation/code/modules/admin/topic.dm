@@ -72,12 +72,12 @@
 	var/client/C = GLOB.directory[ckey]
 	if(C)
 		if(check_rights_for(C, R_ADMIN,0))
-			to_chat(usr, "<span class='danger'>The client chosen is an admin! Cannot mentorize.</span>")
+			to_chat(usr, "<span class='danger'>The client chosen is an admin! Cannot mentorize.</span>", confidential = TRUE)
 			return
 	if(SSdbcore.Connect())
 		var/datum/DBQuery/query_get_mentor = SSdbcore.NewQuery("SELECT id FROM [format_table_name("mentor")] WHERE ckey = '[ckey]'")
 		if(query_get_mentor.NextRow())
-			to_chat(usr, "<span class='danger'>[ckey] is already a mentor.</span>")
+			to_chat(usr, "<span class='danger'>[ckey] is already a mentor.</span>", confidential = TRUE)
 			qdel(query_get_mentor)
 			return
 		var/datum/DBQuery/query_add_mentor = SSdbcore.NewQuery("INSERT INTO `[format_table_name("mentor")]` (`id`, `ckey`) VALUES (null, '[ckey]')")
@@ -95,9 +95,9 @@
 		qdel(query_add_mentor)
 		qdel(query_add_admin_log)
 	else
-		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>")
+		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>", confidential = TRUE)
 	new /datum/mentors(ckey)
-	to_chat(usr, "<span class='adminnotice'>New mentor added.</span>")
+	to_chat(usr, "<span class='adminnotice'>New mentor added.</span>", confidential = TRUE)
 
 /datum/admins/proc/removeMentor(ckey)
 	if(!usr.client)
@@ -109,7 +109,7 @@
 	var/client/C = GLOB.directory[ckey]
 	if(C)
 		if(check_rights_for(C, R_ADMIN,0))
-			to_chat(usr, "<span class='danger'>The client chosen is an admin, not a mentor! Cannot de-mentorize.</span>")
+			to_chat(usr, "<span class='danger'>The client chosen is an admin, not a mentor! Cannot de-mentorize.</span>", confidential = TRUE)
 			return
 		C.remove_mentor_verbs()
 		C.mentor_datum = null
@@ -127,8 +127,8 @@
 		qdel(query_remove_mentor)
 		qdel(query_add_admin_log)
 	else
-		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>")
-	to_chat(usr, "<span class='adminnotice'>Mentor removed.</span>")
+		to_chat(usr, "<span class='danger'>Failed to establish database connection. The changes will last only for the current round.</span>", confidential = TRUE)
+	to_chat(usr, "<span class='adminnotice'>Mentor removed.</span>", confidential = TRUE)
 
 /datum/admins/proc/hippie_on_jobban(mob/M, list/joblist)
 	if(joblist.len && (CATBAN in joblist) && ishuman(M))
@@ -149,7 +149,7 @@
 	var/client/C = GLOB.directory[ckey]
 	ckey = lowertext("[ckey]")
 	if("[ckey]" in GLOB.donators)
-		to_chat(usr, "<span class='danger'>[ckey] is already a donator!")
+		to_chat(usr, "<span class='danger'>[ckey] is already a donator!", confidential = TRUE)
 		log_admin("[key_name(usr)] tried to make [ckey] into a donator but they were already a donator.")
 		return
 	if(SSdbcore.Connect())
@@ -175,7 +175,7 @@
 			log_admin("[key_name(usr)] made [ckey] into a temporary donator, as the database was not connected.")
 	if(C && makedonator)
 		C.is_donator = TRUE
-		to_chat(C, "<span class='notice'>You have been made a donator!")
+		to_chat(C, "<span class='notice'>You have been made a donator!", confidential = TRUE)
 
 /datum/admins/proc/removeDonator(ckey)
 	var/removedonator = FALSE
@@ -184,7 +184,7 @@
 	var/client/C = GLOB.directory[ckey]
 	ckey = lowertext("[ckey]")
 	if(!("[ckey]" in GLOB.donators))
-		to_chat(usr, "<span class='danger'>[ckey] is not a donator!</span>")
+		to_chat(usr, "<span class='danger'>[ckey] is not a donator!</span>", confidential = TRUE)
 		log_admin("[key_name(usr)] tried to remove [ckey] as a donator but they were not a donator.")
 		return
 	if(SSdbcore.Connect())
@@ -218,4 +218,4 @@
 			log_admin("[key_name(usr)] temporarily removed [ckey] as a donator, as the database was not connected.")
 	if(C && removedonator)
 		C.is_donator = FALSE
-		to_chat(C, "<span class='danger'>You have been removed as a donator!")
+		to_chat(C, "<span class='danger'>You have been removed as a donator!", confidential = TRUE)
