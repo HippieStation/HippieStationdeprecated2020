@@ -221,7 +221,7 @@
 
 /obj/machinery/power/port_gen/pacman/attack_paw(mob/user)
 	interact(user)
-/*hippie start -- removed tgui interface on portgen
+
 /obj/machinery/power/port_gen/pacman/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 												datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
@@ -268,7 +268,7 @@
 			if (power_output < 4 || (obj_flags & EMAGGED))
 				power_output++
 				. = TRUE
-hippie end -- removed tgui interface on portgen*/
+
 /obj/machinery/power/port_gen/pacman/super
 	name = "\improper S.U.P.E.R.P.A.C.M.A.N.-type portable generator"
 	icon_state = "portgen1_0"
