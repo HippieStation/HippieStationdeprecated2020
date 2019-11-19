@@ -14,6 +14,7 @@
 	cost = 5
 	surplus = 90
 
+
 /datum/uplink_item/stealthy_tools/thermal
 	name = "Thermal Imaging Goggles"
 	desc = "These goggles allow you to see organisms through walls by capturing the upper portion of the infrared light spectrum, \
