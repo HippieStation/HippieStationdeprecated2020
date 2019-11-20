@@ -42,13 +42,15 @@ export const Pool = props => {
             content={temperature.content} />
         </LabeledList>
         <Button
-          content="Decrease temperature"
-          icon="minus"
-          onClick={() => act(ref, 'lower_temp')} />
-        <Button
           content="Increase temperature"
+          disabled={data.timer}
           icon="plus"
           onClick={() => act(ref, 'raise_temp')} />
+        <Button
+          content="Decrease temperature"
+          disabled={data.timer}
+          icon="minus"
+          onClick={() => act(ref, 'lower_temp')} />
       </Section>
       <Section title="Drain">
         <LabeledList>
@@ -59,10 +61,11 @@ export const Pool = props => {
           <LabeledList.Item
             label="Pool status"
             color={data.poolstatus ? 'bad' : 'good'}
-            content={data.poolstatus ? "Full" : "Drained"} />
+            content={data.poolstatus ? "Drained" : "Full"} />
         </LabeledList>
         <Button
           content={data.poolstatus ? "Fill Pool" : "Drain Pool"}
+          disabled={data.timer}
           onClick={() => act(ref, 'toggle_drain')} />
       </Section>
       <Section title="Chemistry">
@@ -74,7 +77,7 @@ export const Pool = props => {
         <Button
           icon="eject"
           content="Remove Beaker"
-          disabled={!data.reagent}
+          disabled={(data.hasBeaker === null) || data.timer}
           onClick={() => act(ref, 'remove_beaker')} />
       </Section>
     </Fragment>); };

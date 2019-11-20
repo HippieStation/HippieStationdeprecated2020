@@ -170,14 +170,17 @@
 			for(var/mob/living/M in W) //Check for mobs in the linked pool-turfs.
 				switch(temperature) //Apply different effects based on what the temperature is set to.
 					if(SCALDING) //Scalding
-						M.adjust_bodytemperature(50,0,500)
+						M.adjust_bodytemperature(TEMPERATURE_DAMAGE_COEFFICIENT*50,0,500)
 					if(WARM) //Warm
-						M.adjust_bodytemperature(20,0,360) //Heats up mobs till the termometer shows up
+						M.adjust_bodytemperature(TEMPERATURE_DAMAGE_COEFFICIENT*20,0,360) //Heats up mobs till the termometer shows up
 					if(NORMAL) //Normal temp does nothing, because it's just room temperature water.
+						if(iscarbon(M))
+							var/mob/living/carbon/C = M
+							C.adjust_bodytemperature(C.natural_bodytemperature_stabilization())
 					if(COOL)
-						M.adjust_bodytemperature(-20,250) //Cools mobs till the termometer shows up
+						M.adjust_bodytemperature(TEMPERATURE_DAMAGE_COEFFICIENT*-20,250) //Cools mobs till the termometer shows up
 					if(FRIGID) //Freezing
-						M.adjust_bodytemperature(-60) //cool mob at -35k per cycle, less would not affect the mob enough.
+						M.adjust_bodytemperature(TEMPERATURE_DAMAGE_COEFFICIENT*-60) //cool mob at -35k per cycle, less would not affect the mob enough.
 						if(M.bodytemperature <= 50 && !M.stat)
 							M.apply_status_effect(/datum/status_effect/freon)
 				var/mob/living/carbon/human/drownee = M
@@ -250,12 +253,12 @@
 	update_icon()
 
 /obj/machinery/poolcontroller/proc/CanUpTemp(mob/user)
-	if(!timer && ((temperature == WARM && (tempunlocked || issilicon(user) || IsAdminGhost(user)) || temperature < WARM)))
+	if(temperature == WARM && (tempunlocked || issilicon(user) || IsAdminGhost(user)) || temperature < WARM)
 		return TRUE
 	return FALSE
 
 /obj/machinery/poolcontroller/proc/CanDownTemp(mob/user)
-	if(!timer && ((temperature == COOL && (tempunlocked || issilicon(user) || IsAdminGhost(user)) || temperature > COOL)))
+	if(temperature == COOL && (tempunlocked || issilicon(user) || IsAdminGhost(user)) || temperature > COOL)
 		return TRUE
 	return FALSE
 
@@ -269,9 +272,9 @@
 	changecolor()
 
 /obj/machinery/poolcontroller/proc/ToggleDrain(mob/user)
-	if(isDrainable(user) && !timer && !linkeddrain.active)
+	if(isDrainable(user) && !linkeddrain.active)
 		handle_temp()
-		timer = 20
+		timer = 15
 		linkeddrain.active = TRUE
 		linkeddrain.timer = 15
 		if(!linkeddrain.status)
@@ -299,10 +302,13 @@
 	.["drainable"] = isDrainable(user)
 	.["poolstatus"] = drained
 	.["reagent"] = cur_reagent
+	.["hasBeaker"] = beaker
 
 
 /obj/machinery/poolcontroller/ui_act(action, params)
 	if(..())
+		return
+	if(timer)
 		return
 	switch(action)
 		if("toggle_drain")
