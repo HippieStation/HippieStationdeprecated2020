@@ -11,10 +11,10 @@
 
 
 /turf/open/pool/Initialize()
+	. = ..()
 	create_reagents(100)
 	watereffect = new /obj/effect/overlay/water(src)
 	watertop = new /obj/effect/overlay/water/top(src)
-	. = ..()
 
 /turf/open/pool/Destroy()
 	QDEL_NULL(watereffect)
@@ -37,7 +37,7 @@
 	name = "water"
 	icon = 'hippiestation/icons/turf/pool.dmi'
 	icon_state = "bottom"
-	density = 0
+	density = FALSE
 	mouse_opacity = 0
 	layer = ABOVE_MOB_LAYER
 	anchored = TRUE
@@ -91,9 +91,6 @@
 			return FALSE
 	return ..()
 
-/turf/open/pool/ex_act(severity, target)
-	return
-	
 /turf/open/pool/proc/wash_obj(obj/O)
 	. = SEND_SIGNAL(O, COMSIG_COMPONENT_CLEAN_ACT, CLEAN_WEAK)
 	O.remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
@@ -260,30 +257,30 @@
 /obj/structure/pool
 	name = "pool"
 	icon = 'hippiestation/icons/turf/pool.dmi'
-	anchored = 1
+	anchored = TRUE
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/structure/pool/ladder
 	name = "Ladder"
 	icon_state = "ladder"
 	desc = "Are you getting in or are you getting out?."
-	layer = 5.1
-	dir=4
+	layer = RIPPLE_LAYER
+	dir = EAST
 
 /obj/structure/pool/ladder/attack_hand(mob/living/user as mob)
-	if(Adjacent(user) && user.y == y && user.swimming == 0)
-		user.swimming = 1
+	if(Adjacent(user) && user.y == y && !user.swimming)
+		user.swimming = TRUE
 		user.forceMove(get_step(user, get_dir(user, src))) //Either way, you're getting IN or OUT of the pool.
-	else if(user.loc == loc && user.swimming == 1)
-		user.swimming = 0
+	else if(user.loc == loc && user.swimming == TRUE)
+		user.swimming = FALSE
 		user.forceMove(get_step(user, turn(dir, 180)))
 
 /obj/structure/pool/Rboard
 	name = "JumpBoard"
-	density = 0
+	density = FALSE
 	icon_state = "boardright"
 	desc = "The less-loved portion of the jumping board."
-	dir = 4
+	dir = EAST
 
 /obj/structure/pool/Rboard/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.pass_flags & PASSGLASS)
@@ -296,8 +293,8 @@
 	name = "JumpBoard"
 	icon_state = "boardleft"
 	desc = "Get on there to jump!"
-	layer = 5
-	dir = 8
+	layer = FLY_LAYER
+	dir = WEST
 	var/jumping = FALSE
 	var/timer
 
@@ -337,7 +334,7 @@
 				jumper.layer = 5.1
 				jumper.pixel_x = 3
 				jumper.pixel_y = 7
-				jumper.dir=8
+				jumper.dir = WEST
 				sleep(1)
 				jumper.loc = T
 				addtimer(CALLBACK(src, .proc/dive, jumper), 10)
