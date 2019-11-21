@@ -77,8 +77,7 @@
 			if(atom && istype(atom, /obj/effect/particle_effect))
 				volume *= LIQUID_PARTICLE_EFFECT_EFFICIENCY//big nerf to smoke and foam duping
 
-			var/obj/effect/decal/cleanable/chempile/c = locate() in T//handles merging existing chempiles
-			if(istype(c))
+			for(var/obj/effect/decal/cleanable/chempile/c in T.contents)//handles merging existing chempiles
 				if(c.reagents)
 					if(touch_msg)
 						c.add_fingerprint(touch_mob)
@@ -103,8 +102,7 @@
 			if(atom && istype(atom, /obj/effect/particle_effect))
 				volume *= SOLID_PARTICLE_EFFECT_EFFICIENCY//big nerf to smoke and foam duping
 
-			var/obj/item/reagent_containers/food/snacks/solid_reagent/SR = locate() in T
-			if(istype(SR))
+			for(var/obj/item/reagent_containers/food/snacks/solid_reagent/SR in T.contents)
 				if(SR.reagents && SR.reagent_type == type && SR.reagents.total_volume < 200)
 					if(touch_msg)
 						SR.add_fingerprint(touch_mob)

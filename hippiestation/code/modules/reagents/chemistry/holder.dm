@@ -194,10 +194,12 @@
 					R.reaction_turf(A, R.volume * volume_modifier, show_message)
 				if(world.time >= next_react)
 					R.handle_state_change(A, R.volume * special_modifier, cached_my_atom)
-					next_react = world.time + 1
+					if(method == VAPOR)
+						next_react = world.time + 1
 			if("OBJ")
 				if(R.reagent_state != SOLID)
 					R.reaction_obj(A, R.volume * volume_modifier, show_message)
 				if(world.time >= next_react)
 					R.handle_state_change(get_turf(A), R.volume * special_modifier, cached_my_atom)
-					next_react = world.time + 1
+					if(method == VAPOR)
+						next_react = world.time + 1
