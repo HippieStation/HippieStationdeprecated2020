@@ -1,5 +1,0 @@
-author: "YoYoBatty"
-delete-after: True
-changes: 
-  - bugfix: "Pool timeout counter should actually be 1 second intervals rather than 2"
-  - rscadd: "Pool has tgui-next ui and has been given a huge refactor and bug fix treatment"
