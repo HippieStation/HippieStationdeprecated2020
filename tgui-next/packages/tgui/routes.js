@@ -37,6 +37,7 @@ import { Holodeck } from './interfaces/Holodeck';
 import { LanguageMenu } from './interfaces/LanguageMenu';
 import { Mint } from './interfaces/Mint';
 import { NtosMain } from './interfaces/NtosMain';
+import { NtosNetDownloader } from './interfaces/NtosNetDownloader';
 import { NtosSupermatterMonitor } from './interfaces/NtosSupermatterMonitor';
 import { NtosWrapper } from './interfaces/NtosWrapper';
 import { OperatingComputer } from './interfaces/OperatingComputer';
@@ -228,16 +229,25 @@ const ROUTES = {
     component: () => NtosMain,
     wrapper: () => NtosWrapper,
     scrollable: true,
+    theme: 'ntos',
+  },
+  ntos_net_downloader: {
+    component: () => NtosNetDownloader,
+    wrapper: () => NtosWrapper,
+    scrollable: true,
+    theme: 'ntos',
   },
   ntos_power_monitor: {
     component: () => PowerMonitor,
     wrapper: () => NtosWrapper,
     scrollable: true,
+    theme: 'ntos',
   },
   ntos_supermatter_monitor: {
     component: () => NtosSupermatterMonitor,
     wrapper: () => NtosWrapper,
     scrollable: true,
+    theme: 'ntos',
   },
   ore_redemption_machine: {
     component: () => OreRedemptionMachine,
