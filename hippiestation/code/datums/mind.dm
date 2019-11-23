@@ -2,7 +2,7 @@
 	var/no_cloning_at_all = FALSE
 
 /datum/mind/transfer_to(mob/new_character, var/force_key_move = 0)
-	if(!(/mob/living/proc/guardian_comm in new_character.verbs))
+	if(!QDELETED(current) && !(/mob/living/proc/guardian_comm in new_character.verbs))
 		current.verbs -= /mob/living/proc/guardian_comm
 		current.verbs -= /mob/living/proc/guardian_recall
 		current.verbs -= /mob/living/proc/guardian_reset
