@@ -70,8 +70,6 @@ obj/item/gun/ballistic/shotgun/triplebarrel/sawoff(mob/user)
 	rack_sound_volume = 0
 	semi_auto = TRUE
 
-
-
 /obj/item/gun/ballistic/shotgun/canegun/equipped(mob/user, slot)
 	var/mob/current_owner
 	if(slot == SLOT_HANDS)
@@ -88,7 +86,8 @@ obj/item/gun/ballistic/shotgun/triplebarrel/sawoff(mob/user)
 
 /obj/item/gun/ballistic/shotgun/canegun/dropped(mob/user, slot)
 	var/mob/living/carbon/human/H = user
-	H.remove_movespeed_modifier(type)
+	if(ishuman(user))
+		H.remove_movespeed_modifier(type)
 	. = ..()
 
 /obj/item/gun/ballistic/shotgun/canegun/sawoff(mob/user)
