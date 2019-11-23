@@ -69,9 +69,9 @@ obj/item/gun/ballistic/shotgun/triplebarrel/sawoff(mob/user)
 	resistance_flags = FIRE_PROOF
 	rack_sound_volume = 0
 	semi_auto = TRUE
+	var/mob/current_owner
 
 /obj/item/gun/ballistic/shotgun/canegun/equipped(mob/user, slot)
-	var/mob/current_owner
 	if(slot == SLOT_HANDS)
 		var/mob/living/carbon/human/H = user
 		if(!current_owner && user)
