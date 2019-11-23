@@ -2,15 +2,17 @@
 	var/no_cloning_at_all = FALSE
 
 /datum/mind/transfer_to(mob/new_character, var/force_key_move = 0)
-	if(!QDELETED(current) && !(/mob/living/proc/guardian_comm in new_character.verbs))
+	var/has_guardian_verbs = (/mob/living/proc/guardian_comm in new_character.verbs)
+	if(!QDELETED(current) && !has_guardian_verbs)
 		current.verbs -= /mob/living/proc/guardian_comm
 		current.verbs -= /mob/living/proc/guardian_recall
 		current.verbs -= /mob/living/proc/guardian_reset
 	. = ..()
 	if(current && current.stat != DEAD)
-		current.verbs += /mob/living/proc/guardian_comm
-		current.verbs += /mob/living/proc/guardian_recall
-		current.verbs += /mob/living/proc/guardian_reset
+		if(has_guardian_verbs)
+			current.verbs += /mob/living/proc/guardian_comm
+			current.verbs += /mob/living/proc/guardian_recall
+			current.verbs += /mob/living/proc/guardian_reset
 		for(var/mob/living/simple_animal/hostile/guardian/jojo in GLOB.parasites)
 			if(jojo.summoner == src)
 				jojo.forceMove(current)
