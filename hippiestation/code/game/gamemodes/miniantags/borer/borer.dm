@@ -61,9 +61,9 @@ GLOBAL_VAR_INIT(total_borer_hosts_needed, 10)
 	name = "cortical borer"
 	real_name = "cortical borer"
 	desc = "A small, quivering, slug-like creature."
-	icon_state = "brainslug"
-	icon_living = "brainslug"
-	icon_dead = "brainslug_dead"
+	icon_state = "headcrab"
+	icon_living = "headcrab"
+	icon_dead = "headcrab"
 	health = 20
 	maxHealth = 20
 	melee_damage_lower = 5
