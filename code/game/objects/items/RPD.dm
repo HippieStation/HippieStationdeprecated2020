@@ -346,12 +346,8 @@ GLOBAL_LIST_INIT(fluid_duct_recipes, list(
 				mode |= n
 	if(playeffect)
 		spark_system.start()
-<<<<<<< HEAD
-		playsound(get_turf(src), 'sound/effects/pop.ogg', 50, 0)
-=======
 		playsound(get_turf(src), 'sound/effects/pop.ogg', 50, FALSE)
 	return TRUE
->>>>>>> e87b6c6701... Tgui error reporting, Keyboard passthrough, RPD, NtOS, Power Monitor (#47749)
 
 /obj/item/pipe_dispenser/pre_attack(atom/A, mob/user)
 	if(!user.IsAdvancedToolUser() || istype(A, /turf/open/space/transit))
