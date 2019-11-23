@@ -1,0 +1,4 @@
+author: "Turret"
+delete-after: True
+changes: 
+  - rscadd: "Catbeasts are now clumsy, thus making them unable to use anything useful."

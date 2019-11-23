@@ -22,11 +22,11 @@
 		ADD_TRAIT(guardian, TRAIT_ONEWAYROAD, GUARDIAN_TRAIT)
 
 /datum/guardian_ability/major/special/onewayroad/process()
-	if(!guardian || !guardian.summoner)
+	if(!guardian?.summoner?.current)
 		return
 	update_status()
-	if(isopenturf(guardian.summoner.loc))
-		var/turf/open/T = guardian.summoner.loc
+	if(isopenturf(guardian.summoner.current.loc))
+		var/turf/open/T = guardian.summoner.current.loc
 		T.air?.parse_gas_string("o2=22;n2=82;TEMP=293.15")
 		for(var/obj/effect/particle_effect/smoke/S in T)
 			S.visible_message("<span class='danger'>\The [S] is dispersed into a million tiny particles!</span>")
@@ -36,16 +36,16 @@
 			qdel(F)
 
 /datum/guardian_ability/major/special/onewayroad/proc/update_status()
-	if(!guardian || !guardian.summoner)
+	if(!guardian?.summoner?.current)
 		return
-	if(guardian.loc == guardian.summoner)
-		if(HAS_TRAIT(guardian.summoner, TRAIT_ONEWAYROAD))
-			REMOVE_TRAIT(guardian.summoner, TRAIT_ONEWAYROAD, GUARDIAN_TRAIT)
-		if(HAS_TRAIT(guardian.summoner, TRAIT_NOBREATH))
-			REMOVE_TRAIT(guardian.summoner, TRAIT_NOBREATH, GUARDIAN_TRAIT)
+	if(!guardian.is_deployed())
+		if(HAS_TRAIT(guardian.summoner.current, TRAIT_ONEWAYROAD))
+			REMOVE_TRAIT(guardian.summoner.current, TRAIT_ONEWAYROAD, GUARDIAN_TRAIT)
+		if(HAS_TRAIT(guardian.summoner.current, TRAIT_NOBREATH))
+			REMOVE_TRAIT(guardian.summoner.current, TRAIT_NOBREATH, GUARDIAN_TRAIT)
 	else
-		ADD_TRAIT(guardian.summoner, TRAIT_ONEWAYROAD, GUARDIAN_TRAIT)
-		ADD_TRAIT(guardian.summoner, TRAIT_NOBREATH, GUARDIAN_TRAIT) // this kinda simulates the "Absolution filters out harmful gases around the user" thing better than constantly parsing gas strings
+		ADD_TRAIT(guardian.summoner.current, TRAIT_ONEWAYROAD, GUARDIAN_TRAIT)
+		ADD_TRAIT(guardian.summoner.current, TRAIT_NOBREATH, GUARDIAN_TRAIT) // this kinda simulates the "Absolution filters out harmful gases around the user" thing better than constantly parsing gas strings
 
 // STUFF
 

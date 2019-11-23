@@ -31,6 +31,20 @@ export const OreRedemptionMachine = props => {
             content="Claim"
             disabled={unclaimedPoints === 0}
             onClick={() => act(ref, 'Claim')} />
+          {data.hasID ? (
+            <Box>
+              <Button
+                content="Eject ID"
+                onClick={() => act(ref, 'Eject')} />
+              You have {data.claimedPoints} mining points collected.
+            </Box>
+          ) : (
+            <Box>
+              <Button
+                content="Insert ID"
+                onClick={() => act(ref, 'Insert')} />
+            </Box>
+          )}
         </Box>
       </Section>
       <Section>

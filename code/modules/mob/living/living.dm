@@ -696,7 +696,6 @@
 	return !((next_move > world.time) || incapacitated(ignore_restraints = TRUE, ignore_stasis = TRUE))
 
 /mob/living/verb/resist()
-	SHOULD_CALL_PARENT(TRUE)
 	set name = "Resist"
 	set category = "IC"
 
@@ -1009,7 +1008,7 @@ hippie end */
 	var/blocked = getarmor(null, "rad")
 
 	if(amount > RAD_BURN_THRESHOLD)
-		apply_damage((amount-RAD_BURN_THRESHOLD)/RAD_BURN_THRESHOLD, BURN, null, blocked)
+		apply_damage(log(amount)*2, BURN, null, blocked)
 
 	apply_effect((amount*RAD_MOB_COEFFICIENT)/max(1, (radiation**2)*RAD_OVERDOSE_REDUCTION), EFFECT_IRRADIATE, blocked)
 
@@ -1031,7 +1030,6 @@ hippie end */
 
 //Mobs on Fire
 /mob/living/proc/IgniteMob()
-	SHOULD_CALL_PARENT(TRUE)
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = 1
 		src.visible_message("<span class='warning'>[src] catches fire!</span>", \
@@ -1044,7 +1042,6 @@ hippie end */
 	return FALSE
 
 /mob/living/proc/ExtinguishMob()
-	SHOULD_CALL_PARENT(TRUE)
 	if(on_fire)
 		on_fire = 0
 		fire_stacks = 0

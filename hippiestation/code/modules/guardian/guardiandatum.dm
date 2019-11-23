@@ -4,13 +4,13 @@
 	name = "Guardian"
 	show_in_antagpanel = FALSE
 	var/datum/guardian_stats/stats
-	var/summoner
+	var/datum/mind/summoner
 
 /datum/antagonist/guardian/roundend_report()
 	var/list/parts = list()
 	parts += ..()
 	if(summoner)
-		parts += "<B>SUMMONER</B>: [summoner]"
+		parts += "<B>SUMMONER</B>: [summoner.name]"
 	if(stats)
 		parts += "<b>DAMAGE:</b> [level_to_grade(stats.damage)]"
 		parts += "<b>DEFENSE:</b> [level_to_grade(stats.defense)]"
@@ -25,4 +25,4 @@
 
 /datum/antagonist/guardian/antag_panel_data()
 	var/mob/living/simple_animal/hostile/guardian/G = owner.current
-	return "<B>Summoner: [G.summoner]/([G.summoner.ckey])</B>"
+	return "<B>Summoner: [G.summoner.name]/([ckey(G.summoner.key)])</B>"

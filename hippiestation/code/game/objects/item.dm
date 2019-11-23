@@ -11,6 +11,7 @@
 /obj/item/proc/do_special_attack(atom/target, mob/living/carbon/user, proximity_flag)
 	log_admin("[key_name_admin(user)] used [special_name] on [ADMIN_LOOKUPFLW(target)].")
 	message_admins("[key_name_admin(user)] used [special_name] on [ADMIN_LOOKUPFLW(target)].")
+	return TRUE
 
 /obj/item/pickup(mob/user)
 	..()

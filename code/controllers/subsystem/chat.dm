@@ -18,7 +18,7 @@ SUBSYSTEM_DEF(chat)
 			return
 
 
-/datum/controller/subsystem/chat/proc/queue(target, message, handle_whitespace = TRUE)
+/datum/controller/subsystem/chat/proc/queue(target, message, handle_whitespace = TRUE, confidential = FALSE) // hippie -- moody blues
 	if(!target || !message)
 		return
 
@@ -30,6 +30,7 @@ SUBSYSTEM_DEF(chat)
 		target = GLOB.clients
 
 	//Some macros remain in the string even after parsing and fuck up the eventual output
+	var/original_message = message
 	message = replacetext(message, "\improper", "")
 	message = replacetext(message, "\proper", "")
 	if(handle_whitespace)
@@ -37,6 +38,8 @@ SUBSYSTEM_DEF(chat)
 		message = replacetext(message, "\t", "[FOURSPACES][FOURSPACES]")
 	message += "<br>"
 
+	if(!confidential && target != GLOB.admins && target != GLOB.mentors) // hippie -- moody blues
+		SSdemo.write_chat(target, message)
 
 	//url_encode it TWICE, this way any UTF-8 characters are able to be decoded by the Javascript.
 	//Do the double-encoding here to save nanoseconds
@@ -45,6 +48,12 @@ SUBSYSTEM_DEF(chat)
 	if(islist(target))
 		for(var/I in target)
 			var/client/C = CLIENT_FROM_VAR(I) //Grab us a client if possible
+
+			if(!C)
+				return
+
+			//Send it to the old style output window.
+			SEND_TEXT(C, original_message)
 
 			if(!C?.chatOutput || C.chatOutput.broken) //A player who hasn't updated his skin file.
 				continue
@@ -57,6 +66,12 @@ SUBSYSTEM_DEF(chat)
 
 	else
 		var/client/C = CLIENT_FROM_VAR(target) //Grab us a client if possible
+
+		if(!C)
+			return
+
+		//Send it to the old style output window.
+		SEND_TEXT(C, original_message)
 
 		if(!C?.chatOutput || C.chatOutput.broken) //A player who hasn't updated his skin file.
 			return

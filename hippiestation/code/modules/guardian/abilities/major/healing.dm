@@ -30,7 +30,7 @@
 			var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal(get_turf(L))
 			if(guardian.namedatum)
 				H.color = guardian.namedatum.colour
-			if(L == guardian.summoner)
+			if(L == guardian.summoner?.current)
 				guardian.update_health_hud()
 				guardian.med_hud_set_health()
 				guardian.med_hud_set_status()

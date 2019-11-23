@@ -22,20 +22,20 @@
 /datum/guardian_ability/major/explosive/Attack(atom/target)
 	if(prob(40) && isliving(target))
 		var/mob/living/M = target
-		if(!M.anchored && M != guardian.summoner && !guardian.hasmatchingsummoner(M))
+		if(!M.anchored && M != guardian.summoner?.current && !guardian.hasmatchingsummoner(M))
 			new /obj/effect/temp_visual/guardian/phase/out(get_turf(M))
 			do_teleport(M, M, 10, channel = TELEPORT_CHANNEL_BLUESPACE)
 			for(var/mob/living/L in range(1, M))
 				if(guardian.hasmatchingsummoner(L)) //if the summoner matches don't hurt them
 					continue
-				if(L != guardian && L != guardian.summoner)
+				if(L != guardian && L != guardian.summoner?.current)
 					L.apply_damage(15, BRUTE)
 			new /obj/effect/temp_visual/explosion(get_turf(M))
 
 /datum/guardian_ability/major/explosive/AltClickOn(atom/A)
 	if(!istype(A))
 		return
-	if(guardian.loc == guardian.summoner)
+	if(!guardian.is_deployed())
 		to_chat(guardian, "<span class='danger'><B>You must be manifested to create bombs!</B></span>")
 		return
 	if(isobj(A) && guardian.Adjacent(A))
@@ -52,7 +52,7 @@
 /datum/guardian_ability/major/explosive/proc/kaboom(atom/source, mob/living/explodee)
 	if(!istype(explodee))
 		return
-	if(explodee == guardian || explodee == guardian.summoner || guardian.hasmatchingsummoner(explodee))
+	if(explodee == guardian || explodee == guardian.summoner?.current || guardian.hasmatchingsummoner(explodee))
 		return
 	to_chat(explodee, "<span class='danger'><B>[source] was boobytrapped!</B></span>")
 	to_chat(guardian, "<span class='danger'><B>Success! Your trap caught [explodee]</B></span>")

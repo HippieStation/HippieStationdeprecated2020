@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/range = 10
 	var/reset = 0 //if the summoner has reset the guardian already
 	var/cooldown = 0
-	var/mob/living/summoner
+	var/datum/mind/summoner
 	var/toggle_button_type = /obj/screen/guardian/ToggleMode
 	var/datum/guardianname/namedatum = new/datum/guardianname()
 	var/datum/guardian_stats/stats
@@ -71,16 +71,16 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 /mob/living/simple_animal/hostile/guardian/med_hud_set_health()
 	if(berserk)
 		return ..()
-	if(summoner)
+	if(summoner?.current)
 		var/image/holder = hud_list[HEALTH_HUD]
-		holder.icon_state = "hud[RoundHealth(summoner)]"
+		holder.icon_state = "hud[RoundHealth(summoner.current)]"
 
 /mob/living/simple_animal/hostile/guardian/med_hud_set_status()
-	if(summoner)
+	if(summoner?.current)
 		var/image/holder = hud_list[STATUS_HUD]
 		var/icon/I = icon(icon, icon_state, dir)
 		holder.pixel_y = I.Height() - world.icon_size
-		if(summoner.stat == DEAD)
+		if(summoner?.current.stat == DEAD)
 			holder.icon_state = "huddead"
 		else
 			holder.icon_state = "hudhealthy"
@@ -98,11 +98,11 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 /mob/living/simple_animal/hostile/guardian/proc/setup_barriers()
 	cut_barriers()
-	if(!is_deployed() || (range <= 1 || (stats && stats.range <= 1)) || !summoner || get_dist_euclidian(summoner, src) < (range - world.view))
+	if(!summoner?.current || !is_deployed() || (range <= 1 || (stats && stats.range <= 1)) || get_dist_euclidian(summoner.current, src) < (range - world.view))
 		return
-	var/sx = summoner.x
-	var/sy = summoner.y
-	var/sz = summoner.z
+	var/sx = summoner.current.x
+	var/sy = summoner.current.y
+	var/sz = summoner.current.z
 	if(sx - range < 1 || sx + range + 1 > world.maxx || sy - range - 1 < 1 || sy + range + 1 > world.maxy)
 		return
 	for(var/turf/T in getline(locate(sx - range, sy + range + 1, sz), locate(sx + range, sy + range + 1, sz)))
@@ -160,15 +160,17 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 
 /mob/living/simple_animal/hostile/guardian/Login() //if we have a mind, set its name to ours when it logs in
-	..()
+	. = ..()
 	if(mind)
 		mind.name = "[real_name]"
-	if(!summoner)
+	if(berserk)
+		return
+	if(!summoner?.current)
 		to_chat(src, "<span class='holoparasite bold'>For some reason, somehow, you have no summoner. Please report this bug immediately.</span>")
 		return
-	to_chat(src, "<span class='holoparasite'>You are <font color=\"[namedatum.colour]\"><b>[real_name]</b></font>, bound to serve [summoner.real_name].</span>")
-	to_chat(src, "<span class='holoparasite'>You are capable of manifesting or recalling to your master with the buttons on your HUD. You will also find a button to communicate with [summoner.p_them()] privately there.</span>")
-	to_chat(src, "<span class='holoparasite'>While personally invincible, you will die if [summoner.real_name] does, and any damage dealt to you will have a portion passed on to [summoner.p_them()] as you feed upon [summoner.p_them()] to sustain yourself.</span>")
+	to_chat(src, "<span class='holoparasite'>You are <font color=\"[namedatum.colour]\"><b>[real_name]</b></font>, bound to serve [summoner.current.real_name].</span>")
+	to_chat(src, "<span class='holoparasite'>You are capable of manifesting or recalling to your master with the buttons on your HUD. You will also find a button to communicate with [summoner.current.p_them()] privately there.</span>")
+	to_chat(src, "<span class='holoparasite'>While personally invincible, you will die if [summoner.current.real_name] does, and any damage dealt to you will have a portion passed on to [summoner.current.p_them()] as you feed upon [summoner.current.p_them()] to sustain yourself.</span>")
 	setup_barriers()
 
 /mob/living/simple_animal/hostile/guardian/Life() //Dies if the summoner dies
@@ -176,23 +178,22 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	update_health_hud() //we need to update all of our health displays to match our summoner and we can't practically give the summoner a hook to do it
 	med_hud_set_health()
 	med_hud_set_status()
-	if(berserk)
+	if(berserk || stat == DEAD)
 		return
-	if(!QDELETED(summoner))
-		if(summoner.stat == DEAD)
+	if(!QDELETED(summoner) && !QDELETED(summoner.current))
+		if(summoner.current.stat == DEAD)
 			if(transforming)
 				GoBerserk()
 			else
-				forceMove(summoner.loc)
+				forceMove(summoner.current)
 				to_chat(src, "<span class='danger'>Your summoner has died!</span>")
 				visible_message("<span class='danger'><B>\The [src] dies along with its user!</B></span>")
-				summoner.visible_message("<span class='danger'><B>[summoner]'s body is completely consumed by the strain of sustaining [src]!</B></span>")
-				for(var/obj/item/W in summoner)
-					if(!summoner.dropItemToGround(W))
+				summoner.current.visible_message("<span class='danger'><B>[summoner.current]'s body is completely consumed by the strain of sustaining [src]!</B></span>")
+				for(var/obj/item/W in summoner.current)
+					if(!summoner.current.dropItemToGround(W))
 						qdel(W)
-				summoner.dust()
 				death(TRUE)
-				qdel(src)
+				summoner.current.dust()
 	else
 		if(transforming)
 			GoBerserk()
@@ -200,7 +201,6 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 			to_chat(src, "<span class='danger'>Your summoner has died!</span>")
 			visible_message("<span class='danger'><B>[src] dies along with its user!</B></span>")
 			death(TRUE)
-			qdel(src)
 	snapback()
 
 /mob/living/simple_animal/hostile/guardian/proc/OnMoved()
@@ -208,7 +208,8 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	setup_barriers()
 
 /mob/living/simple_animal/hostile/guardian/proc/GoBerserk()
-	UnregisterSignal(summoner, COMSIG_MOVABLE_MOVED)
+	if(!QDELETED(summoner?.current))
+		UnregisterSignal(summoner.current, COMSIG_MOVABLE_MOVED)
 	cut_barriers()
 	berserk = TRUE
 	summoner = null
@@ -230,12 +231,12 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 /mob/living/simple_animal/hostile/guardian/Stat()
 	..()
 	if(statpanel("Status"))
-		if(summoner)
+		if(summoner?.current)
 			var/resulthealth
-			if(iscarbon(summoner))
-				resulthealth = round((abs(HEALTH_THRESHOLD_DEAD - summoner.health) / abs(HEALTH_THRESHOLD_DEAD - summoner.maxHealth)) * 100)
+			if(iscarbon(summoner.current))
+				resulthealth = round((abs(HEALTH_THRESHOLD_DEAD - summoner.current.health) / abs(HEALTH_THRESHOLD_DEAD - summoner.current.maxHealth)) * 100)
 			else
-				resulthealth = round((summoner.health / summoner.maxHealth) * 100, 0.5)
+				resulthealth = round((summoner.current.health / summoner.current.maxHealth) * 100, 0.5)
 			stat(null, "Summoner Health: [resulthealth]%")
 		if(cooldown >= world.time)
 			stat(null, "Manifest/Recall Cooldown Remaining: [DisplayTimeText(cooldown - world.time)]")
@@ -246,27 +247,28 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	pixel_x = initial(pixel_x)
 	pixel_y = initial(pixel_y)
 	layer = initial(layer)
-	if(stats && stats.range == 1 && range != 255 && is_deployed())
-		if(istype(summoner.loc, /obj/effect))
-			Recall(TRUE)
-		else
-			alpha = 128
-			forceMove(summoner.loc)
-			setDir(summoner.dir)
-			switch(dir)
-				if(NORTH)
-					pixel_y = -16
-					layer = summoner.layer + 0.1
-				if(SOUTH)
-					pixel_y = 16
-					layer = summoner.layer - 0.1
-				if(EAST)
-					pixel_x = -16
-					layer = summoner.layer
-				if(WEST)
-					pixel_x = 16
-					layer = summoner.layer
-		return
+	if(summoner?.current)
+		if(stats && stats.range == 1 && range != 255 && is_deployed())
+			if(istype(summoner.current.loc, /obj/effect))
+				Recall(TRUE)
+			else
+				alpha = 128
+				forceMove(summoner.current.loc)
+				setDir(summoner.current.dir)
+				switch(dir)
+					if(NORTH)
+						pixel_y = -16
+						layer = summoner.current.layer + 0.1
+					if(SOUTH)
+						pixel_y = 16
+						layer = summoner.current.layer - 0.1
+					if(EAST)
+						pixel_x = -16
+						layer = summoner.current.layer
+					if(WEST)
+						pixel_x = 16
+						layer = summoner.current.layer
+			return
 	. = ..()
 	if(do_the_cool_invisible_thing && alpha == 64)
 		alpha = initial(alpha)
@@ -277,45 +279,52 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	pixel_x = initial(pixel_x)
 	pixel_y = initial(pixel_y)
 	layer = initial(layer)
-	if(summoner)
+	if(!berserk && (QDELETED(summoner?.current) || summoner.current.stat == DEAD))
+		nullspace()
+		return
+	if(summoner?.current)
 		if(stats && stats.range == 1 && range != 255 && is_deployed())
-			if(istype(summoner.loc, /obj/effect))
+			if(istype(summoner.current.loc, /obj/effect))
 				Recall(TRUE)
 			else
 				alpha = 128
-				forceMove(summoner.loc)
-				setDir(summoner.dir)
+				forceMove(summoner.current.loc)
+				setDir(summoner.current.dir)
 				switch(dir)
 					if(NORTH)
 						pixel_y = -16
-						layer = summoner.layer + 0.1
+						layer = summoner.current.layer + 0.1
 					if(SOUTH)
 						pixel_y = 16
-						layer = summoner.layer - 0.1
+						layer = summoner.current.layer - 0.1
 					if(EAST)
 						pixel_x = -16
-						layer = summoner.layer
+						layer = summoner.current.layer
 					if(WEST)
 						pixel_x = 16
-						layer = summoner.layer
+						layer = summoner.current.layer
 			return
-		if(get_dist(get_turf(summoner),get_turf(src)) <= range)
+		if(get_dist(get_turf(summoner.current),get_turf(src)) <= range)
 			return
 		else
-			to_chat(src, "<span class='holoparasite'>You moved out of range, and were pulled back! You can only move [range] meters from [summoner.real_name]!</span>")
+			to_chat(src, "<span class='holoparasite'>You moved out of range, and were pulled back! You can only move [range] meters from [summoner.current.real_name]!</span>")
 			visible_message("<span class='danger'>\The [src] jumps back to its user.</span>")
-			if(istype(summoner.loc, /obj/effect))
+			if(istype(summoner.current.loc, /obj/effect))
 				Recall(TRUE)
 			else
 				new /obj/effect/temp_visual/guardian/phase/out(loc)
-				forceMove(summoner.loc)
+				forceMove(summoner.current.loc)
 				new /obj/effect/temp_visual/guardian/phase(loc)
+
+/mob/living/simple_animal/hostile/guardian/proc/nullspace()
+	if(stat == DEAD)
+		moveToNullspace()
 
 /mob/living/simple_animal/hostile/guardian/canSuicide()
 	return FALSE
 
 /mob/living/simple_animal/hostile/guardian/proc/is_deployed()
-	return loc != summoner
+	return loc != summoner?.current
 
 /mob/living/simple_animal/hostile/guardian/Shoot(atom/targeted_atom)
 	if( QDELETED(targeted_atom) || targeted_atom == targets_from.loc || targeted_atom == targets_from )
@@ -365,7 +374,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		if(target == src)
 			to_chat(src, "<span class='danger'><B>You can't attack yourself!</span></B>")
 			return FALSE
-		else if(target == summoner)
+		else if(target == summoner?.current)
 			to_chat(src, "<span class='danger'><B>You can't attack your summoner!</span></B>")
 			return FALSE
 		. = ..()
@@ -384,35 +393,37 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	return atk_cooldown*/
 
 /mob/living/simple_animal/hostile/guardian/death()
-	..()
-	if(summoner)
+	. = ..()
+	if(summoner?.current && summoner.current.stat != DEAD)
 		to_chat(summoner, "<span class='danger'><B>Your [name] died somehow!</span></B>")
-		summoner.death()
+		summoner.current.death()
+	ghostize(FALSE)
+	nullspace() // move ourself into nullspace for the time being
 
 /mob/living/simple_animal/hostile/guardian/update_health_hud()
-	if(summoner && hud_used && hud_used.healths)
+	if(summoner?.current && hud_used && hud_used.healths)
 		var/resulthealth
-		if(iscarbon(summoner))
-			resulthealth = round((abs(HEALTH_THRESHOLD_DEAD - summoner.health) / abs(HEALTH_THRESHOLD_DEAD - summoner.maxHealth)) * 100)
+		if(iscarbon(summoner.current))
+			resulthealth = round((abs(HEALTH_THRESHOLD_DEAD - summoner.current.health) / abs(HEALTH_THRESHOLD_DEAD - summoner.current.maxHealth)) * 100)
 		else
-			resulthealth = round((summoner.health / summoner.maxHealth) * 100, 0.5)
+			resulthealth = round((summoner.current.health / summoner.current.maxHealth) * 100, 0.5)
 		hud_used.healths.maptext = "<div align='center' valign='middle' style='position:relative; top:0px; left:6px'><font color='#efeeef'>[resulthealth]%</font></div>"
 
 /mob/living/simple_animal/hostile/guardian/adjustHealth(amount, updating_health = TRUE, forced = FALSE) //The spirit is invincible, but passes on damage to the summoner
 	if(berserk)
 		return ..()
 	. = amount
-	if(summoner)
-		if(loc == summoner)
+	if(summoner?.current)
+		if(!is_deployed())
 			return FALSE
-		summoner.adjustBruteLoss(amount)
+		summoner.current.adjustBruteLoss(amount)
 		if(amount > 0)
-			to_chat(summoner, "<span class='danger'><B>Your [name] is under attack! You take damage!</span></B>")
+			to_chat(summoner.current, "<span class='danger'><B>Your [name] is under attack! You take damage!</span></B>")
 			if(summoner_visible)
-				summoner.visible_message("<span class='danger'><B>Blood sprays from [summoner] as [src] takes damage!</B></span>")
-			if(summoner.stat == UNCONSCIOUS)
-				to_chat(summoner, "<span class='danger'><B>Your body can't take the strain of sustaining [src] in this condition, it begins to fall apart!</span></B>")
-				summoner.adjustCloneLoss(amount * 0.5) //dying hosts take 50% bonus damage as cloneloss
+				summoner.current.visible_message("<span class='danger'><B>Blood sprays from [summoner] as [src] takes damage!</B></span>")
+			if(summoner.current.stat == UNCONSCIOUS)
+				to_chat(summoner.current, "<span class='danger'><B>Your body can't take the strain of sustaining [src] in this condition, it begins to fall apart!</span></B>")
+				summoner.current.adjustCloneLoss(amount * 0.5) //dying hosts take 50% bonus damage as cloneloss
 		update_health_hud()
 	if(stats.ability)
 		stats.ability.Health(amount)
@@ -429,7 +440,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 
 /mob/living/simple_animal/hostile/guardian/examine(mob/user)
 	. = ..()
-	if(isobserver(user) || user == summoner)
+	if(isobserver(user) || user == summoner?.current)
 		. += "<span class='holoparasite'><b>DAMAGE:</b> [level_to_grade(stats.damage)]</span>"
 		. += "<span class='holoparasite'><b>DEFENSE:</b> [level_to_grade(stats.defense)]</span>"
 		. += "<span class='holoparasite'><b>SPEED:</b> [level_to_grade(stats.speed)]</span>"
@@ -441,11 +452,10 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 			. += "<span class='holoparasite'><b>MINOR ABILITY:</b> [M.name] - [M.desc]</span>"
 
 /mob/living/simple_animal/hostile/guardian/gib()
-	if(summoner)
-		to_chat(summoner, "<span class='danger'><B>Your [src] was blown up!</span></B>")
-		summoner.gib()
-	ghostize()
-	qdel(src)
+	death()
+	if(summoner?.current)
+		to_chat(summoner.current, "<span class='danger'><B>Your [src] was blown up!</span></B>")
+		summoner.current.gib()
 
 /mob/living/simple_animal/hostile/guardian/AltClickOn(atom/A)
 	if(stats.ability && stats.ability.AltClickOn(A))
@@ -461,12 +471,14 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 //MANIFEST, RECALL, TOGGLE MODE/LIGHT, SHOW TYPE
 
 /mob/living/simple_animal/hostile/guardian/proc/Manifest(forced)
-	if(istype(summoner.loc, /obj/effect) || (cooldown > world.time && !forced))
+	if(!summoner?.current)
+		return FALSE
+	if(istype(summoner.current.loc, /obj/effect) || istype(summoner.current.loc, /obj/machinery/clonepod) || (cooldown > world.time && !forced))
 		return FALSE
 	if(stats.ability && stats.ability.Manifest())
 		return TRUE
-	if(loc == summoner)
-		forceMove(summoner.loc)
+	if(!is_deployed())
+		forceMove(summoner.current.loc)
 		if(do_the_cool_invisible_thing)
 			alpha = 64
 		new /obj/effect/temp_visual/guardian/phase(loc)
@@ -477,15 +489,18 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	return FALSE
 
 /mob/living/simple_animal/hostile/guardian/proc/Recall(forced)
+	if(!berserk && (QDELETED(summoner?.current) || summoner.current.stat == DEAD))
+		nullspace()
+		return
 	if(transforming)
 		to_chat(src, "<span class='holoparasite italics'>No... no... you can't!</span>")
 		return FALSE
-	if(!summoner || loc == summoner || (cooldown > world.time && !forced))
+	if(!is_deployed() || (cooldown > world.time && !forced))
 		return FALSE
 	if(stats.ability && stats.ability.Recall())
 		return TRUE
 	new /obj/effect/temp_visual/guardian/phase/out(loc)
-	forceMove(summoner)
+	forceMove(summoner.current)
 	cooldown = world.time + 10
 	cut_barriers()
 	return TRUE
@@ -536,21 +551,22 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 //COMMUNICATION
 
 /mob/living/simple_animal/hostile/guardian/proc/Communicate()
-	if(summoner)
+	if(summoner?.current)
 		var/input = stripped_input(src, "Please enter a message to tell your summoner.", "Guardian", "")
 		if(!input)
 			return
 
 		var/preliminary_message = "<span class='holoparasite bold'>[input]</span>" //apply basic color/bolding
 		var/my_message = "<font color=\"[namedatum.colour]\"><b><i>[src]:</i></b></font> [preliminary_message]" //add source, color source with the guardian's color
+		var/ghost_message = "<font color=\"[namedatum.colour]\"><b><i>[src] -> [summoner.name]:</i></b></font> [preliminary_message]"
 
-		to_chat(summoner, my_message)
-		var/list/guardians = summoner.hasparasites()
+		to_chat(summoner.current, my_message)
+		var/list/guardians = summoner.current.hasparasites()
 		for(var/para in guardians)
 			to_chat(para, my_message)
 		for(var/M in GLOB.dead_mob_list)
 			var/link = FOLLOW_LINK(M, src)
-			to_chat(M, "[link] [my_message]")
+			to_chat(M, "[link] [ghost_message]")
 
 		src.log_talk(input, LOG_SAY, tag="guardian")
 
@@ -615,7 +631,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 				to_chat(G, "<span class='holoparasite'>Your user reset you, and your body was taken over by a ghost. Looks like they weren't happy with your performance.</span>")
 				to_chat(src, "<span class='holoparasite bold'>Your <font color=\"[G.namedatum.colour]\">[G.real_name]</font> has been successfully reset.</span>")
 				log_game("[key_name(src)] has reset their holoparasite, it is now [key_name(G)].")
-				G.ghostize(0)
+				G.ghostize(FALSE)
 				if(!G.custom_name)
 					G.setthemename(G.namedatum.theme) //give it a new color, to show it's a new person
 				G.key = C.key
@@ -641,7 +657,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	. = list()
 	for(var/P in GLOB.parasites)
 		var/mob/living/simple_animal/hostile/guardian/G = P
-		if(G.summoner == src)
+		if(G.summoner == mind)
 			. += G
 
 /mob/living/simple_animal/hostile/guardian/proc/hasmatchingsummoner(mob/living/simple_animal/hostile/guardian/G) //returns 1 if the summoner matches the target's summoner
