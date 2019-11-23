@@ -9,9 +9,6 @@
 	armour_penetration = 100
 	sharpness = IS_SHARP_ACCURATE
 	hitsound = 'sound/weapons/rapierhit.ogg'
-	materials = list(MAT_METAL = 10000)
-	interact_sound_cooldown = 100
-	light_color = "#40ceff"
 	var/slicing = FALSE
 
 /obj/item/melee/nanothorn/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
