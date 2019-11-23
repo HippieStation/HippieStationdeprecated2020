@@ -94,9 +94,9 @@ obj/item/gun/ballistic/shotgun/triplebarrel/sawoff(mob/user)
 	to_chat(user, "<span class='warning'>Kinda defeats the purpose of a cane, doesn't it?</span>")
 	return
 
-/obj/item/pimpstick/suicide_act(mob/user)
-		user.visible_message("<span class='suicide'>[user] is hitting [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to discipline [user.p_them()]self for being a mark-ass trick.</span>")
-		return (BRUTELOSS)
+/obj/item/gun/ballistic/shotgun/canegun/suicide_act(mob/user)
+	user.visible_message("<span class='suicide'>[user] is hitting [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to discipline [user.p_them()]self for being a mark-ass trick.</span>")
+	return (BRUTELOSS)
 
 /obj/item/ammo_box/magazine/internal/shot/canegun
 	name = "cane-gun internal magazine"
