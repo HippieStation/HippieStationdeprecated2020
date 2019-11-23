@@ -12,7 +12,8 @@
 	var/list/guns = list(
 		"beam_rifle" = /obj/item/gun/energy/beam_rifle/railgun,
 		"gatling_spin" = /obj/item/gun/ballistic/a3/gatling,
-		"rocketpod" = /obj/item/gun/ballistic/a3/rocketpods
+		"rocketpod" = /obj/item/gun/ballistic/a3/rocketpods,
+		"nanothorn" = /obj/item/melee/nanothorn
 	)
 	var/online = FALSE
 	var/onlining = FALSE
@@ -28,14 +29,15 @@
 	for(var/sprite in G)
 		var/gun = G[sprite]
 		var/obj/item/gun/AG = new gun(src)
-		AG.resistance_flags |= INDESTRUCTIBLE | FIRE_PROOF | LAVA_PROOF | UNACIDABLE
+		AG.resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | LAVA_PROOF | UNACIDABLE | ACID_PROOF
 		ADD_TRAIT(AG, TRAIT_NODROP, A3_TRAIT)
 		RegisterSignal(AG, COMSIG_ITEM_DROPPED, .proc/recover_item)
 		guns[sprite] = AG
-		var/mutable_appearance/MA = mutable_appearance(icon, sprite, BACK_LAYER)
-		MA.pixel_x = 3
-		MA.pixel_y = -1
-		gun_overlays[sprite] = MA
+		if(sprite in icon_states(icon))
+			var/mutable_appearance/MA = mutable_appearance(icon, sprite, BACK_LAYER)
+			MA.pixel_x = 3
+			MA.pixel_y = -1
+			gun_overlays[sprite] = MA
 	ion_trail = new
 	ion_trail.set_up(src)
 
@@ -120,7 +122,7 @@
 
 /obj/item/a3/proc/update_mob_overlays(mob/living/L)
 	cut_mob_overlays(L)
-	if(overlay_sprite)
+	if(overlay_sprite && gun_overlays[overlay_sprite])
 		L.add_overlay(gun_overlays[overlay_sprite])
 
 /obj/item/a3/item_action_slot_check(slot, mob/user)

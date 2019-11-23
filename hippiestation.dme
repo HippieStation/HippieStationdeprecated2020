@@ -3170,6 +3170,7 @@
 #include "hippiestation\code\modules\a3\_aaa.dm"
 #include "hippiestation\code\modules\a3\_gun.dm"
 #include "hippiestation\code\modules\a3\gatling.dm"
+#include "hippiestation\code\modules\a3\nanothorn.dm"
 #include "hippiestation\code\modules\a3\railgun.dm"
 #include "hippiestation\code\modules\a3\rocketpods.dm"
 #include "hippiestation\code\modules\admin\admin.dm"
