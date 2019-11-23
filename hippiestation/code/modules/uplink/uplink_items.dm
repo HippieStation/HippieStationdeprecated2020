@@ -47,6 +47,7 @@
 	exclude_modes = list(/datum/game_mode/infiltration)
 	cost = 10
 
+
 /* Botany */
 /datum/uplink_item/role_restricted/lawnmower
 	name = "Gas powered lawn mower"
@@ -150,6 +151,13 @@
 
 /datum/uplink_item/ammo/revolver
 	cost = 3
+
+/datum/uplink_item/role_restricted/canegun
+	name = "Concealed cane shotgun"
+	desc = "A shotgun cleverly disgusied as a pimp stick. Pull on it to rack it and fold it to fire. Holds 8 shells at once. Keep away from assistants."
+	restricted_roles = list("Clown","Mime")
+	cost = 8
+	item = /obj/item/gun/ballistic/shotgun/canegun
 
 /datum/uplink_item/dangerous/butterfly
 	name = "Energy Butterfly Knife"
@@ -535,7 +543,7 @@
 	cost = 9
 	surplus = 15
 	exclude_modes = list(/datum/game_mode/infiltration)
-	
+
 /datum/uplink_item/device_tools/threat
 	name = "Threat scanning glasses"
 	desc = "Mark threats and check enemies for objective items, weapons and high level access. Guaranteed to greentext or your telecrystals back."
