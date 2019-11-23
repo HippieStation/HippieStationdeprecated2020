@@ -172,7 +172,7 @@
 	return points
 
 /datum/guardianbuilder/proc/spawn_guardian(mob/living/user)
-	if(!user || !istype(user))
+	if(!user || !iscarbon(user) || !user.mind)
 		return FALSE
 	used = TRUE
 	calc_points()
@@ -189,13 +189,13 @@
 			G.real_name = guardian_name
 			G.name = guardian_name
 			G.custom_name = TRUE
-		G.summoner = user
+		G.summoner = user.mind
 		G.key = C.key
 		G.mind.enslave_mind_to_creator(user)
-		G.RegisterSignal(G.summoner, COMSIG_MOVABLE_MOVED, /mob/living/simple_animal/hostile/guardian.proc/OnMoved)
+		G.RegisterSignal(user, COMSIG_MOVABLE_MOVED, /mob/living/simple_animal/hostile/guardian.proc/OnMoved)
 		var/datum/antagonist/guardian/S = new
 		S.stats = saved_stats
-		S.summoner = user.mind.name
+		S.summoner = user.mind
 		G.mind.add_antag_datum(S)
 		G.stats = saved_stats
 		G.stats.Apply(G)
