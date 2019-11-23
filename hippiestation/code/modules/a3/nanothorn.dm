@@ -15,7 +15,7 @@
 	var/slicing = FALSE
 
 /obj/item/melee/nanothorn/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	if(slicing)
+	if(!proximity_flag || slicing)
 		return
 	if(istype(target, /turf/closed/wall))
 		slicing = TRUE
