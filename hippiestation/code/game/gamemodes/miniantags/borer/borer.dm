@@ -118,18 +118,6 @@ GLOBAL_VAR_INIT(total_borer_hosts_needed, 10)
 	notify_ghosts("A cortical borer has been created in [get_area(src)]!", enter_link = "<a href=?src=\ref[src];ghostjoin=1>(Click to enter)</a>", source = src, action = NOTIFY_ATTACK)
 	real_name = "Cortical Borer [rand(1000,9999)]"
 	truename = "[borer_names[min(generation, borer_names.len)]] [rand(1000,9999)]"
-	borer_chems += /datum/borer_chem/epinephrine
-	borer_chems += /datum/borer_chem/leporazine
-	borer_chems += /datum/borer_chem/mannitol
-	borer_chems += /datum/borer_chem/bicaridine
-	borer_chems += /datum/borer_chem/kelotane
-	borer_chems += /datum/borer_chem/charcoal
-	borer_chems += /datum/borer_chem/methamphetamine
-	borer_chems += /datum/borer_chem/salbutamol
-	borer_chems += /datum/borer_chem/spacedrugs
-	//borer_chems += /datum/borer_chem/creagent
-	borer_chems += /datum/borer_chem/ethanol
-	borer_chems += /datum/borer_chem/rezadone
 
 	GLOB.borers += src
 
