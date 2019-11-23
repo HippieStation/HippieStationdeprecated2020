@@ -49,7 +49,7 @@ import { Radio } from './interfaces/Radio';
 import { RapidPipeDispenser } from './interfaces/RapidPipeDispenser';
 import { ShuttleManipulator } from './interfaces/ShuttleManipulator';
 import { SmartVend } from './interfaces/SmartVend';
-import { SMES } from './interfaces/SMES';
+import { Smes } from './interfaces/Smes';
 import { SpawnersMenu } from './interfaces/SpawnersMenu';
 import { SolarControl } from './interfaces/SolarControl';
 import { SpaceHeater } from './interfaces/SpaceHeater';
@@ -286,7 +286,7 @@ const ROUTES = {
     scrollable: true,
   },
   smes: {
-    component: () => SMES,
+    component: () => Smes,
     scrollable: false,
   },
   solar_control: {
