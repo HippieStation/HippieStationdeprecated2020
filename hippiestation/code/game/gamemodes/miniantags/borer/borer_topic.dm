@@ -8,11 +8,11 @@
 		var/topic_chem = href_list["borer_use_chem"]
 		var/datum/borer_chem/C
 
-	for(var/D in typesof(/datum/borer_chem))
-		var/datum/borer_chem/test = D
-		if(initial(test.chemname) == topic_chem)
-			C = new D
-			break
+		for(var/D in typesof(/datum/borer_chem))
+			var/datum/borer_chem/test = D
+			if(initial(test.chemname) == topic_chem)
+				C = new D
+				break
 
 		if(!C || !victim || controlling || !src || stat)
 			return
