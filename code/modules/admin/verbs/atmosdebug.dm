@@ -9,17 +9,17 @@
 	//all plumbing - yes, some things might get stated twice, doesn't matter.
 	for(var/obj/machinery/atmospherics/components/pipe in GLOB.machines)
 		if(pipe.z && (!pipe.nodes || !pipe.nodes.len || (null in pipe.nodes)))
-			to_chat(usr, "Unconnected [pipe.name] located at [ADMIN_VERBOSEJMP(pipe)]")
+			to_chat(usr, "Unconnected [pipe.name] located at [ADMIN_VERBOSEJMP(pipe)]", confidential=TRUE)
 
 	//Manifolds
 	for(var/obj/machinery/atmospherics/pipe/manifold/pipe in GLOB.machines)
 		if(pipe.z && (!pipe.nodes || !pipe.nodes.len || (null in pipe.nodes)))
-			to_chat(usr, "Unconnected [pipe.name] located at [ADMIN_VERBOSEJMP(pipe)]")
+			to_chat(usr, "Unconnected [pipe.name] located at [ADMIN_VERBOSEJMP(pipe)]", confidential=TRUE)
 
 	//Pipes
 	for(var/obj/machinery/atmospherics/pipe/simple/pipe in GLOB.machines)
 		if(pipe.z && (!pipe.nodes || !pipe.nodes.len || (null in pipe.nodes)))
-			to_chat(usr, "Unconnected [pipe.name] located at [ADMIN_VERBOSEJMP(pipe)]")
+			to_chat(usr, "Unconnected [pipe.name] located at [ADMIN_VERBOSEJMP(pipe)]", confidential=TRUE)
 
 /client/proc/powerdebug()
 	set category = "Mapping"
@@ -53,4 +53,4 @@
 			var/obj/structure/cable/C = locate(/obj/structure/cable) in T.contents
 			if(!C)
 				results += "Unwired terminal at [ADMIN_VERBOSEJMP(term)]"
-	to_chat(usr, "[results.Join("\n")]")
+	to_chat(usr, "[results.Join("\n")]", confidential=TRUE)

@@ -21,7 +21,7 @@
 	var/linkedmist = list() //Used to keep track of created mist
 	var/misted = FALSE //Used to check for mist.
 	var/obj/item/reagent_containers/beaker = null
-	var/cur_reagent = "water"
+	var/cur_reagent = "Water"
 	var/drainable = FALSE
 	var/drained = FALSE
 	var/bloody = FALSE
@@ -35,6 +35,7 @@
 
 /obj/machinery/poolcontroller/Initialize()
 	. = ..()
+	STOP_PROCESSING(SSmachines, src)
 	START_PROCESSING(SSprocessing, src)
 	wires = new /datum/wires/poolcontroller(src)
 	for(var/turf/open/pool/W in range(srange,src)) //Search for /turf/open/beach/water in the range of var/srange
@@ -158,8 +159,8 @@
 	if(reagenttimer > 0)
 		reagenttimer--
 	if(stat & (NOPOWER|BROKEN))
-		return
-	else if(!reagenttimer && !drained)
+		return PROCESS_KILL
+	if(!reagenttimer && !drained)
 		poolreagent()
 
 /obj/machinery/poolcontroller/proc/updatePool()
@@ -169,14 +170,17 @@
 			for(var/mob/living/M in W) //Check for mobs in the linked pool-turfs.
 				switch(temperature) //Apply different effects based on what the temperature is set to.
 					if(SCALDING) //Scalding
-						M.adjust_bodytemperature(50,0,500)
+						M.adjust_bodytemperature(TEMPERATURE_DAMAGE_COEFFICIENT*50,0,500)
 					if(WARM) //Warm
-						M.adjust_bodytemperature(20,0,360) //Heats up mobs till the termometer shows up
+						M.adjust_bodytemperature(TEMPERATURE_DAMAGE_COEFFICIENT*20,0,360) //Heats up mobs till the termometer shows up
 					if(NORMAL) //Normal temp does nothing, because it's just room temperature water.
+						if(iscarbon(M))
+							var/mob/living/carbon/C = M
+							C.adjust_bodytemperature(C.natural_bodytemperature_stabilization())
 					if(COOL)
-						M.adjust_bodytemperature(-20,250) //Cools mobs till the termometer shows up
+						M.adjust_bodytemperature(TEMPERATURE_DAMAGE_COEFFICIENT*-20,250) //Cools mobs till the termometer shows up
 					if(FRIGID) //Freezing
-						M.adjust_bodytemperature(-60) //cool mob at -35k per cycle, less would not affect the mob enough.
+						M.adjust_bodytemperature(TEMPERATURE_DAMAGE_COEFFICIENT*-60) //cool mob at -35k per cycle, less would not affect the mob enough.
 						if(M.bodytemperature <= 50 && !M.stat)
 							M.apply_status_effect(/datum/status_effect/freon)
 				var/mob/living/carbon/human/drownee = M
@@ -249,107 +253,83 @@
 	update_icon()
 
 /obj/machinery/poolcontroller/proc/CanUpTemp(mob/user)
-	if(!timer && ((temperature == WARM && (tempunlocked || issilicon(user) || IsAdminGhost(user)) || temperature < WARM)))
+	if(temperature == WARM && (tempunlocked || issilicon(user) || IsAdminGhost(user)) || temperature < WARM)
 		return TRUE
 	return FALSE
 
 /obj/machinery/poolcontroller/proc/CanDownTemp(mob/user)
-	if(!timer && ((temperature == COOL && (tempunlocked || issilicon(user) || IsAdminGhost(user)) || temperature > COOL)))
+	if(temperature == COOL && (tempunlocked || issilicon(user) || IsAdminGhost(user)) || temperature > COOL)
 		return TRUE
 	return FALSE
 
-/obj/machinery/poolcontroller/Topic(href, href_list)
+/obj/machinery/poolcontroller/proc/removeBeaker()
+	var/obj/item/reagent_containers/glass/B = beaker
+	if(QDELETED(B))
+		return
+	B.forceMove(loc)
+	beaker = null
+	cur_reagent = initial(cur_reagent)
+	changecolor()
+
+/obj/machinery/poolcontroller/proc/ToggleDrain(mob/user)
+	if(isDrainable(user) && !linkeddrain.active)
+		handle_temp()
+		timer = 15
+		linkeddrain.active = TRUE
+		linkeddrain.timer = 15
+		if(!linkeddrain.status)
+			new /obj/effect/whirlpool(linkeddrain.loc)
+			temperature = NORMAL
+		else
+			new /obj/effect/effect/waterspout(linkeddrain.loc)
+			temperature = NORMAL
+		bloody = FALSE
+
+/obj/machinery/poolcontroller/proc/isDrainable(mob/user)
+	return (drainable || issilicon(user) || IsAdminGhost(user))
+
+/obj/machinery/poolcontroller/ui_interact(mob/user, ui_key, datum/tgui/ui = null, force_open, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "pool_controller", "[name]", 300, 450, master_ui, state)
+		ui.set_autoupdate(TRUE)
+		ui.open()
+
+/obj/machinery/poolcontroller/ui_data(mob/user)
+	. = list()
+	.["timer"] = timer
+	.["temperature"] = temperature
+	.["drainable"] = isDrainable(user)
+	.["poolstatus"] = drained
+	.["reagent"] = cur_reagent
+	.["hasBeaker"] = beaker
+
+
+/obj/machinery/poolcontroller/ui_act(action, params)
 	if(..())
 		return
-	if(timer > 0)
-		return
-	if(href_list["IncreaseTemp"])
-		if(CanUpTemp(usr))
-			temperature++
-			handle_temp()
-	if(href_list["DecreaseTemp"])
-		if(CanDownTemp(usr))
-			temperature--
-			handle_temp()
-	if(href_list["beaker"])
-		var/obj/item/reagent_containers/glass/B = beaker
-		B.forceMove(loc)
-		beaker = null
-		changecolor()
-	if(href_list["Activate Drain"])
-		if((drainable || issilicon(usr) || IsAdminGhost(usr)) && !timer && !linkeddrain.active)
-			mistoff()
-			timer = 60
-			linkeddrain.active = TRUE
-			linkeddrain.timer = 15
-			if(!linkeddrain.status)
-				new /obj/effect/whirlpool(linkeddrain.loc)
-				temperature = NORMAL
-			else
-				new /obj/effect/effect/waterspout(linkeddrain.loc)
-				temperature = NORMAL
-			handle_temp()
-			bloody = FALSE
-	updateUsrDialog()
-
-/obj/machinery/poolcontroller/proc/temp2text()
-	switch(temperature)
-		if(FRIGID)
-			return "<span class='bad'>Frigid</span>"
-		if(COOL)
-			return "<span class='good'>Cool</span>"
-		if(NORMAL)
-			return "<span class='good'>Normal</span>"
-		if(WARM)
-			return "<span class='good'>Warm</span>"
-		if(SCALDING)
-			return "<span class='bad'>Scalding</span>"
-		else
-			return "Outside of possible range."
-
-/obj/machinery/poolcontroller/ui_interact(mob/user)
-	. = ..()
-	if(.)
-		return
-	if(shocked && !(stat & NOPOWER))
-		shock(user,50)
-	if(panel_open && !isAI(user))
-		return wires.interact(user)
-	if(stat & (NOPOWER|BROKEN))
-		return
-	var/datum/browser/popup = new(user, "Pool Controller", name, 300, 450)
-	var/dat = ""
 	if(timer)
-		dat += "<span class='notice'>[timer] seconds left until [src] can operate again.</span><BR>"
-	dat += text({"
-		<h3>Temperature</h3>
-		<div class='statusDisplay'>
-		<B>Current temperature:</B> [temp2text()]<BR>
-		[CanUpTemp(user) ? "<a href='?src=\ref[src];IncreaseTemp=1'>Increase Temperature</a><br>" : "<span class='linkOff'>Increase Temperature</span><br>"]
-		[CanDownTemp(user) ? "<a href='?src=\ref[src];DecreaseTemp=1'>Decrease Temperature</a><br>" : "<span class='linkOff'>Decrease Temperature</span><br>"]
-		</div>
-		<h3>Drain</h3>
-		<div class='statusDisplay'>
-		<B>Drain status:</B> [(issilicon(user) || IsAdminGhost(user) || drainable) ? "<span class='bad'>Enabled</span>" : "<span class='good'>Disabled</span>"]
-		<br><b>Pool status:</b> "})
-	if(timer < 45)
-		if(!drained)
-			dat += "<span class='good'>Full</span><BR>"
-		else
-			dat += "<span class='bad'>Drained</span><BR>"
-	else
-		dat += "<span class='bad'>[drained ? "Filling" : "Draining"]<BR></span>"
-	if((issilicon(user) || IsAdminGhost(user) || drainable) && !timer && !linkeddrain.active)
-		dat += "<a href='?src=\ref[src];Activate Drain=1'>[drained ? "Fill" : "Drain"] Pool</a><br>"
-	dat += text({"</div>
-		<h3>Chemistry</h3>
-		<div class='statusDisplay'>
-		<b>Duplicator reagent:</b> [cur_reagent]
-		<br>[beaker ? "<a href='?src=\ref[src];beaker=1'>Remove Beaker</a>" : "<span class='linkOff'>Remove Beaker</span>"]
-		</div>
-		"})
-	popup.set_content(dat)
-	popup.open()
+		return
+	switch(action)
+		if("toggle_drain")
+			ToggleDrain(usr)
+			. = TRUE
+
+		if("remove_beaker")
+			removeBeaker()
+			. = TRUE
+
+		if("lower_temp")
+			if(CanDownTemp(usr))
+				temperature--
+				handle_temp()
+				. = TRUE
+
+		if("raise_temp")
+			if(CanUpTemp(usr))
+				temperature++
+				handle_temp()
+				. = TRUE
 
 /obj/machinery/poolcontroller/proc/reset(wire)
 	switch(wire)

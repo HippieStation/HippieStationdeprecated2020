@@ -18,7 +18,7 @@ SUBSYSTEM_DEF(chat)
 			return
 
 
-/datum/controller/subsystem/chat/proc/queue(target, message, handle_whitespace = TRUE)
+/datum/controller/subsystem/chat/proc/queue(target, message, handle_whitespace = TRUE, confidential = FALSE) // hippie -- moody blues
 	if(!target || !message)
 		return
 
@@ -38,6 +38,8 @@ SUBSYSTEM_DEF(chat)
 		message = replacetext(message, "\t", "[FOURSPACES][FOURSPACES]")
 	message += "<br>"
 
+	if(!confidential && target != GLOB.admins && target != GLOB.mentors) // hippie -- moody blues
+		SSdemo.write_chat(target, message)
 
 	//url_encode it TWICE, this way any UTF-8 characters are able to be decoded by the Javascript.
 	//Do the double-encoding here to save nanoseconds
