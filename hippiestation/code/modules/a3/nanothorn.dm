@@ -2,13 +2,15 @@
 	name = "nanothorn blade"
 	desc = "An experimental blade, capable of easily severing molecular bonds and achieving maximum damage."
 	icon_state = "nanothorn"
+	item_state = "nanothorn"
 	icon = 'hippiestation/icons/obj/items_and_weapons.dmi'
+	lefthand_file = 'hippiestation/icons/mob/inhands/weapons/melee_lefthand.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/weapons/melee_righthand.dmi'
 	hitsound = 'sound/weapons/etherealhit.ogg'
 	force = 35
 	w_class = WEIGHT_CLASS_BULKY
 	armour_penetration = 100
 	sharpness = IS_SHARP_ACCURATE
-	hitsound = 'sound/weapons/rapierhit.ogg'
 	var/slicing = FALSE
 
 /obj/item/melee/nanothorn/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
@@ -21,14 +23,16 @@
 			user.visible_message("<span class='danger'>[user] slices through [W] with [src]!</span>")
 			var/turf/T = W.ScrapeAway()
 			if(T)
+				playsound(T, 'sound/weapons/blade1.ogg', 100, TRUE)
 				new /obj/effect/decal/cleanable/molten_object/large(T)
 		slicing = FALSE
-	else if(isobj(target) && !isitem(target))
+	else if(isobj(target) && !isitem(target) && !iseffect(target))
 		var/obj/O = target
 		if(O.resistance_flags & INDESTRUCTIBLE)
 			return
 		slicing = TRUE
 		if(do_after(user, 4, FALSE, O))
+			playsound(get_turf(O), 'sound/weapons/blade1.ogg', 100, TRUE)
 			user.visible_message("<span class='danger'>[user] slices through [O] with [src]!</span>")
 			new /obj/effect/decal/cleanable/molten_object(get_turf(O))
 			O.take_damage(INFINITY)
