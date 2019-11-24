@@ -206,7 +206,6 @@ window "infowindow"
 		size = 640x445
 		anchor1 = 0,0
 		anchor2 = 100,100
-		background-color = none
 		saved-params = "splitter"
 		left = "statwindow"
 		right = "outputwindow"
@@ -217,7 +216,6 @@ window "infowindow"
 		size = 104x20
 		anchor1 = 3,0
 		anchor2 = 20,0
-		background-color = none
 		saved-params = "is-checked"
 		text = "Changelog"
 		command = "changelog"
@@ -227,7 +225,6 @@ window "infowindow"
 		size = 75x20
 		anchor1 = 20,0
 		anchor2 = 32,0
-		background-color = none
 		saved-params = "is-checked"
 		text = "Rules"
 		command = "rules"
@@ -237,7 +234,6 @@ window "infowindow"
 		size = 75x20
 		anchor1 = 32,0
 		anchor2 = 44,0
-		background-color = none
 		saved-params = "is-checked"
 		text = "Wiki"
 		command = "wiki"
@@ -247,7 +243,6 @@ window "infowindow"
 		size = 75x20
 		anchor1 = 44,0
 		anchor2 = 56,0
-		background-color = none
 		saved-params = "is-checked"
 		text = "Forum"
 		command = "forum"
@@ -257,7 +252,6 @@ window "infowindow"
 		size = 75x20
 		anchor1 = 56,0
 		anchor2 = 68,0
-		background-color = none
 		saved-params = "is-checked"
 		text = "Github"
 		command = "github"
@@ -267,7 +261,6 @@ window "infowindow"
 		size = 75x20
 		anchor1 = 68,0
 		anchor2 = 80,0
-		background-color = none
 		saved-params = "is-checked"
 		text = "Report Issue"
 		command = "report-issue"
@@ -277,7 +270,6 @@ window "infowindow"
 		size = 75x20
 		anchor1 = 80,0
 		anchor2 = 92,0
-		background-color = none
 		saved-params = "is-checked"
 		text = "Statbus"
 		command = "statbus"
@@ -340,15 +332,12 @@ window "preferences_window"
 window "statwindow"
 	elem "statwindow"
 		type = MAIN
-		pos = 281,0
+		pos = 0,0
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
-		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
-		outer-size = 656x538
-		inner-size = 640x499
 	elem "stat"
 		type = INFO
 		pos = 0,0
@@ -357,14 +346,12 @@ window "statwindow"
 		anchor2 = 100,100
 		is-default = true
 		saved-params = ""
-		tab-background-color = none
 	elem "hbest"
 		type = BROWSER
 		pos = 0,0
 		size = 200x200
 		anchor1 = none
 		anchor2 = none
-		background-color = none
 		is-visible = false
 		saved-params = ""
 
