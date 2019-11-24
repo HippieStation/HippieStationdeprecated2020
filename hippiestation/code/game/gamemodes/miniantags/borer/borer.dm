@@ -4,7 +4,7 @@
 	name = "host brain"
 	real_name = "host brain"
 
-/mob/living/captive_brain/say(var/message)
+/mob/living/captive_brain/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
 
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
