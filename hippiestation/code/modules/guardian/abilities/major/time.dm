@@ -28,9 +28,10 @@
 	var/list/fakes = list()
 	if(isguardian(user))
 		var/mob/living/simple_animal/hostile/guardian/G = user
-		immune |= G.summoner
-		for(var/mob/living/simple_animal/hostile/guardian/GG in G.summoner.hasparasites())
-			immune |= GG
+		if(G.summoner?.current)
+			immune |= G.summoner.current
+			for(var/mob/living/simple_animal/hostile/guardian/GG in G.summoner.current.hasparasites())
+				immune |= GG
 	for(var/mob/living/L in immune)
 		SEND_SOUND(L, sound('hippiestation/sound/effects/kingcrimson_start.ogg'))
 		var/image/I = image(icon = 'icons/effects/blood.dmi', icon_state = null, loc = L)

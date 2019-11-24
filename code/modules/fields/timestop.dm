@@ -35,12 +35,12 @@
 			immune[L] = TRUE
 	//hippie end
 	for(var/mob/living/simple_animal/hostile/guardian/G in GLOB.parasites)
-		if(G.summoner && locate(/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop) in G.summoner.mind.spell_list) //It would only make sense that a person's stand would also be immune.
+		if(G.summoner && locate(/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop) in G.summoner.spell_list) //It would only make sense that a person's stand would also be immune.
 			immune[G] = TRUE
 		// hippie start -- if the stand has timestop, make the summoner immune
-		if(G.summoner && locate(/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop) in G.mob_spell_list)
+		if(G.summoner?.current && locate(/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop) in G.mob_spell_list)
 			immune[G] = TRUE
-			immune[G.summoner] = TRUE
+			immune[G.summoner.current] = TRUE
 		//hippie end
 	if(start)
 		timestop()

@@ -175,7 +175,7 @@ GLOBAL_LIST_EMPTY(pocket_mirrors)
 /obj/effect/proc_holder/spell/self/pocket_dim/Click()
 	if(!guardian || !istype(guardian))
 		return
-	var/mob/living/summoner = guardian.summoner
+	var/mob/living/summoner = guardian.summoner?.current
 	if(!guardian.is_deployed())
 		to_chat(guardian, "<span class='red bold'>You must be manifested to summon the pocket dimension!</span>")
 		return
