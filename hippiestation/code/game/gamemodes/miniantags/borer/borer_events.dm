@@ -4,10 +4,10 @@
 	weight = 15
 	max_occurrences = 0
 	min_players = 15
-	earliest_start = 12000
+	earliest_start = 6000 // lower start time since borers arent too dangerous
 
 /datum/round_event/borer
-	announceWhen = 2400 //Borers get 4 minutes till the crew tries to murder them.
+	announceWhen = 3000 //Borers get increased time till the crew tries to murder them.
 	var/successSpawn = 0
 
 	var/spawncount = 2
@@ -26,14 +26,14 @@
 	for(var/obj/machinery/atmospherics/components/unary/vent_pump/temp_vent in GLOB.machines)
 		if(QDELETED(temp_vent))
 			continue
-		if(temp_vent.loc.z == ZLEVEL_STATION && !temp_vent.welded)
-			var/datum/pipeline/temp_vent_parent = temp_vent.PARENT1
+		if(is_station_level(temp_vent.loc.z) && !temp_vent.welded) //code improvement
+			var/datum/pipeline/temp_vent_parent = temp_vent.parents[1] // fixing old shitcode
 			if(temp_vent_parent.other_atmosmch.len > 20)
 				vents += temp_vent
 
 	if(!vents.len)
-		message_admins("An event attempted to spawn a borer but no suitable vents were found. Shutting down.")
-		return kill()
+		message_admins("An event attempted to spawn a borer, but no suitable vents were found. Shutting down.")
+		return MAP_ERROR //code improvement
 
 	var/total_humans = 0
 	for(var/mob/living/carbon/human/H in GLOB.mob_list)
@@ -47,3 +47,4 @@
 		new /mob/living/simple_animal/borer(vent.loc)
 		successSpawn = TRUE
 		spawncount--
+		
