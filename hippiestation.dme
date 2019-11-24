@@ -3002,6 +3002,7 @@
 #include "hippiestation\code\game\gamemodes\miniantags\borer\borer.dm"
 #include "hippiestation\code\game\gamemodes\miniantags\borer\borer_chemicals.dm"
 #include "hippiestation\code\game\gamemodes\miniantags\borer\borer_html.dm"
+#include "hippiestation\code\game\gamemodes\miniantags\borer\borer_events.dm"
 #include "hippiestation\code\game\gamemodes\miniantags\borer\borer_topic.dm"
 #include "hippiestation\code\game\gamemodes\nuclear\nuclear.dm"
 #include "hippiestation\code\game\gamemodes\shadowling\ascendant_shadowling.dm"
