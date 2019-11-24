@@ -372,11 +372,11 @@
 	spawn_msg = "<span class='notice'>The <b>implant breaker</b> is a single-use device that destroys all implants within the target before trying to recruit them to your gang. Also works on enemy gangsters.</span>"
 
 /datum/gang_item/equipment/stando_powah
-	name = "Mysterious Tarot Deck"
-	id = "tarotdeck"
+	name = "Mysterious Arrow"
+	id = "stand_arrow"
 	cost = 150
-	item_path = /obj/item/guardiancreator
-	spawn_msg = "<span class='hypnophrase'>We found a <b>Tarot Deck</b> package in one of our warehouses, they seem promising.</span>"
+	item_path = /obj/item/stand_arrow
+	spawn_msg = "<span class='hypnophrase'>We found a weird arrow package in one of our warehouses. They seem promising.</span>"
 	mode_flags = GANGS | GANGMAGEDDON | VIGILANTE
 
 /datum/gang_item/equipment/implant_breaker/spawn_item(mob/living/carbon/user, datum/team/gang/gang, obj/item/gangtool/gangtool)
