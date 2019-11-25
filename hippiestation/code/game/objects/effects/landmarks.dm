@@ -17,3 +17,7 @@
 	..()
 	GLOB.infiltrator_objective_items += loc
 	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/start/vice_officer
+	name = "Vice Officer"
+	icon_state = "x4"

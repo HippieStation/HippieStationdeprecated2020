@@ -32,3 +32,9 @@
 		new_character.mind.add_antag_datum(/datum/antagonist/abductor/scientist, team)
 	else
 		new_character.mind.add_antag_datum(/datum/antagonist/abductor/agent, team)
+
+/datum/dynamic_ruleset/midround/autotraitor
+	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Vice Officer")
+
+/datum/dynamic_ruleset/midround/malf
+	enemy_roles = list("Security Officer", "Warden","Detective","Head of Security", "Captain", "Scientist", "Chemist", "Research Director", "Chief Engineer", "Vice Officer")

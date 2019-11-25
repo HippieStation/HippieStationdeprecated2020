@@ -2,7 +2,7 @@
 	name = "Choice"
 	antag_flag = ROLE_TRAITOR
 	minimum_required_age = 0
-	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
+	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Vice Officer")
 	restricted_roles = list("Cyborg")
 	required_candidates = 1
 	weight = 5
@@ -48,7 +48,7 @@
 /datum/dynamic_ruleset/roundstart/hivemind
 	name = "Hivemind"
 	antag_flag = ROLE_HIVE
-	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
+	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Vice Officer")
 	restricted_roles = list("Cyborg")
 	required_candidates = 2
 	weight = 20
@@ -68,7 +68,7 @@
 /datum/dynamic_ruleset/roundstart/abductors
 	name = "Abductors"
 	antag_flag = ROLE_ABDUCTOR
-	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
+	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Vice Officer")
 	restricted_roles = list("Cyborg")
 	required_candidates = 2
 	weight = 15
@@ -103,11 +103,14 @@
 		return FALSE
 	scientist.add_antag_datum(/datum/antagonist/abductor/scientist, T)
 	agent.add_antag_datum(/datum/antagonist/abductor/agent, T)
+
 /datum/dynamic_ruleset/roundstart/revs
+	restricted_roles = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Head of Personnel", "Chief Engineer", "Chief Medical Officer", "Research Director", "Vice Officer")
 	weight = 30
 	minimum_players = 25
 
 /datum/dynamic_ruleset/roundstart/traitor
+	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Vice Officer", "Head of Personnel")
 	weight = 35
 	
 /datum/dynamic_ruleset/roundstart/monkey
@@ -132,17 +135,12 @@
 	requirements = list(100,90,80,60,40,30,10,10,10,10)
 	high_population_requirement = 10
 	
-/datum/dynamic_ruleset/roundstart/changeling
-	weight = 30
-	
 /datum/dynamic_ruleset/roundstart/wizard
 	weight = 20
 	
 /datum/dynamic_ruleset/roundstart/bloodcult
+	restricted_roles = list("AI", "Cyborg", "Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Chaplain", "Head of Personnel", "Vice Officer")
 	weight = 30
-	
-/datum/dynamic_ruleset/roundstart/delayed/revs
-	weight = 20
 
 /datum/dynamic_ruleset/roundstart/infiltrator
 	name = "Infiltration Unit"
