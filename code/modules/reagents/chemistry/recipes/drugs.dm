@@ -52,4 +52,4 @@
 	name = /datum/reagent/drug/psychium
 	id = /datum/reagent/drug/psychium
 	results = list(/datum/reagent/drug/psychium = 3)
-	required_reagents = list/(/datum/reagent/drug/crank = 1, /datum/reagent/medicine/epinephrine = 1, /datum/reagent/consumable/ethanol/beer = 1)
+	required_reagents = list(/datum/reagent/drug/crank = 1, /datum/reagent/medicine/epinephrine = 1, /datum/reagent/consumable/ethanol/beer = 1)
