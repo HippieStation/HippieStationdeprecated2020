@@ -442,7 +442,7 @@
 	description = "A drink derivative of the infamous drug psycho,popular with wastelanders."
 	reagent_state = LIQUID
 	color = "#FAFAFA"
-	taste_description = "Pure rage"
+	taste_description = "Pure_rage"
 	var/datum/brain_trauma/special/psychotic_brawling/rage
 
 /datum/reagent/drug/psychium/on_mob_metabolize(mob/living/L)
