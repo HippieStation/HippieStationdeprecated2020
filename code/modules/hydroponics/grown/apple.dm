@@ -48,4 +48,4 @@
 	desc = "Emblazoned upon the apple is the word 'Kallisti'."
 	icon_state = "goldapple"
 	filling_color = "#FFD700"
-	distill_reagent = distill_reagent = /datum/reagent/consumable/ethanol/mead/ambrosia
+	distill_reagent = /datum/reagent/consumable/ethanol/mead/ambrosia
