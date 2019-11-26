@@ -213,4 +213,3 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 #Text to speech
 /hippiestation/tools/tts_generator/*
 tts/
-config/admins.txt
