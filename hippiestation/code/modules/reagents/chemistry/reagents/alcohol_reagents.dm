@@ -238,7 +238,7 @@
 
 /datum/reagent/consumable/ethanol/devilskiss/lilithskiss
 	name = "Lilith's Kiss"
-	desc = "She'll suck the life right out of you."
+	description = "She'll suck the life right out of you."
 	taste_description = "something salty"
 	boozepwr = 100
 	glass_icon_state = "lilithskiss"
@@ -247,7 +247,7 @@
 
 /datum/reagent/consumable/ethanol/gin/wasteland
 	name = "Wasteland Gin"
-	desc = "Irradiated gin imported from a distant post-apocalyptic planet"
+	description = "Irradiated gin imported from a distant post-apocalyptic planet"
 	taste_description = "dirty gin"
 	boozepwr = 60
 	glass_icon_state = "ginvodkaglass_w"
@@ -256,7 +256,7 @@
 
 /datum/reagent/consumable/ethanol/mead/ambrosia
 	name = "Ambrosia"
-	desc = "Nectar of the gods!"
+	description = "Nectar of the gods!"
 	boozepwr = 50
 	taste_description = "godhood mixed with honey"
 	glass_icon_state = "meadglass"
@@ -265,7 +265,7 @@
 
 /datum/reagent/consumable/ethanol/beer/colt45
 	name = "Colt .45"
-	desc = "Rule #1: Never run out of Colt .45"
+	description = "Rule #1: Never run out of Colt .45"
 	boozepwr = 30
 	taste_description = "a good time"
 	glass_icon_state = "colt45"

@@ -51,8 +51,7 @@
 	foodtype = FRUIT | TOXIC
 	juice_results = list(/datum/reagent/consumable/poisonberryjuice = 0)
 	tastes = list("poison-berry" = 1)
-	distill_reagent = null
-	wine_power = 35
+	distill_reagent = /datum/reagent/consumable/ethanol/devilskiss
 
 // Death Berries
 /obj/item/seeds/berry/death
@@ -76,8 +75,7 @@
 	filling_color = "#708090"
 	foodtype = FRUIT | TOXIC
 	tastes = list("death-berry" = 1)
-	distill_reagent = null
-	wine_power = 50
+	distill_reagent = /datum/reagent/consumable/ethanol/devilskiss/lilithskiss
 
 // Glow Berries
 /obj/item/seeds/berry/glow
@@ -102,8 +100,7 @@
 	filling_color = "#7CFC00"
 	foodtype = FRUIT
 	tastes = list("glow-berry" = 1)
-	distill_reagent = null
-	wine_power = 60
+	distill_reagent = /datum/reagent/consumable/ethanol/gin/wasteland
 
 // Cherries
 /obj/item/seeds/cherry
