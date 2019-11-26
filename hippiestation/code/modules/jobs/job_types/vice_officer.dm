@@ -25,6 +25,7 @@
 	name = "Vice Officer"
 	jobtype = /datum/job/viceofficer
 
+	glasses = /obj/item/clothing/glasses/sunglasses
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/headset_sec
 	uniform = /obj/item/clothing/under/rank/vice
