@@ -2092,3 +2092,39 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	glass_icon_state = "planet_cracker"
 	glass_name = "Planet Cracker"
 	glass_desc = "Although historians believe the drink was originally created to commemorate the end of an important conflict in man's past, its origins have largely been forgotten and it is today seen more as a general symbol of human supremacy."
+
+/datum/reagent/consumable/ethanol/devilskiss/lilithskiss
+	name = "Lilith's Kiss"
+	description = "She'll suck the life right out of you."
+	taste_description = "something salty"
+	boozepwr = 100
+	glass_icon_state = "lilithskiss"
+	glass_name = "Liliths Kiss"
+	glass_desc = "She'll suck the life right out of you."
+
+/datum/reagent/consumable/ethanol/gin/wasteland
+	name = "Wasteland Gin"
+	description = "Irradiated gin imported from a distant post-apocalyptic planet"
+	taste_description = "dirty gin"
+	boozepwr = 60
+	glass_icon_state = "ginvodkaglass_w"
+	glass_name = "glowing glass of gin"
+	glass_desc = "A glowing, slightly murky glass of gin."
+
+/datum/reagent/consumable/ethanol/mead/ambrosia
+	name = "Ambrosia"
+	description = "Nectar of the gods!"
+	boozepwr = 50
+	taste_description = "godhood mixed with honey"
+	glass_icon_state = "meadglass"
+	glass_name = "Abrsosia"
+	glass_desc = "Nectar of the gods!"
+
+/datum/reagent/consumable/ethanol/beer/colt45
+	name = "Colt .45"
+	description = "Rule #1: Never run out of Colt .45"
+	boozepwr = 30
+	taste_description = "a good time"
+	glass_icon_state = "colt45"
+	glass_name = "glass of Colt .45"
+	glass_desc = "A freezing pint of Colt .45"
