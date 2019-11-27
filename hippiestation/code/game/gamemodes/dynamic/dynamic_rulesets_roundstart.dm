@@ -110,7 +110,7 @@
 	minimum_players = 25
 
 /datum/dynamic_ruleset/roundstart/traitor
-	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Vice Officer", "Head of Personnel")
+	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain", "Vice Officer")
 	weight = 35
 	
 /datum/dynamic_ruleset/roundstart/monkey
