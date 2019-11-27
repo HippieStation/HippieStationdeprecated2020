@@ -2127,4 +2127,4 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "a good time"
 	glass_icon_state = "colt45"
 	glass_name = "glass of Colt .45"
-	glass_desc = "A freezing pint of Colt .45"
+	glass_desc = "Rule #1: Never run out of Colt .45"
