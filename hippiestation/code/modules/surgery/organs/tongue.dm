@@ -48,3 +48,13 @@ GLOBAL_LIST_EMPTY(abductortongue_other)
 			GLOB.abductortongue_abductors -= H
 		if(H in GLOB.abductortongue_other)
 			GLOB.abductortongue_other -= H
+
+
+// Dwarven tongue, they only know their language.
+/obj/item/organ/tongue/dwarven
+	name = "nol"
+	var/static/list/dwarvenLang = typecacheof(list(/datum/language/dwarven))
+
+/obj/item/organ/tongue/dwarven/Initialize(mapload)
+	. = ..()
+	languages_possible = dwarvenLang
