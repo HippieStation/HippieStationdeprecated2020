@@ -2117,7 +2117,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 50
 	taste_description = "godhood mixed with honey"
 	glass_icon_state = "meadglass"
-	glass_name = "Abrsosia"
+	glass_name = "Abrosia"
 	glass_desc = "Nectar of the gods!"
 
 /datum/reagent/consumable/ethanol/beer/colt45
