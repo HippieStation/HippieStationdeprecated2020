@@ -8,21 +8,23 @@
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS)
 	default_features = list("mcolor" = "FFF", "wings" = "None")
 	use_skintones = 1
+	no_equip = list(SLOT_W_UNIFORM) // To make dwarven only jumpsuits, add this species' path to the clothing's species_exception list.
 	disliked_food = GROSS | RAW
 	liked_food = JUNKFOOD | FRIED
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
-	offset_features = list(OFFSET_HANDS = list(0,0))
+	offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,0), OFFSET_HEAD = list(0,0), OFFSET_HAIR = list(0,-4), OFFSET_FACE = list(0,-3), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,0))
 	mutantlungs = /obj/item/organ/lungs/dwarven
 	mutanttongue = /obj/item/organ/tongue/dwarven
 	var/dwarfDrunkness = 100 // A value between 0 and 100.
 	var/notDrunkEnoughTime = 0 // World time offset
 
 /datum/species/dwarf/on_species_gain(mob/living/carbon/human/C, datum/species/old_species, pref_load)
+	var/dwarf_hair = pick("Dwarf Beard", "Very Long Beard", "Full Beard")
 	C.draw_hippie_parts()
-	C.facial_hair_style = "Dwarf Beard"
+	. = ..()
+	C.facial_hair_style = dwarf_hair
 	C.remove_all_languages()
 	C.grant_language(/datum/language/dwarven)
-	. = ..()
 
 /datum/species/dwarf/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	C.draw_hippie_parts(TRUE)

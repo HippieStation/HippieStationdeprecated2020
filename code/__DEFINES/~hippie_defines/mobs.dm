@@ -9,3 +9,4 @@
 
 //Offsets
 #define OFFSET_HANDS "hands"
+#define OFFSET_HAIR "hair"
