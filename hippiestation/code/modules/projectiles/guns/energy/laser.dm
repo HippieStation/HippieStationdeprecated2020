@@ -141,4 +141,37 @@
 /obj/item/gun/energy/laser/redtag/hitscan
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/redtag/hitscan)
 
+////////////Makeshift lasers///////////
 
+/obj/item/gun/energy/laser/makeshiftLasRifle
+	name = "makeshift laser rifle"
+	desc = "A makeshift rifle that shoots lasers. Lacks factory precision, the focusing lens is a lightbulb, don't expect too much from it.."
+	icon_state = "lasrifle"
+	item_state = "makeshiftlas"
+	lefthand_file = 'hippiestation/icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/weapons/guns_righthand.dmi'
+	w_class = WEIGHT_CLASS_NORMAL
+	materials = list(MAT_METAL=2000)
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/makeshiftRifle)
+	ammo_x_offset = 1
+	shaded_charge = 1
+	icon = 'hippiestation/icons/obj/guns/energy.dmi'
+	cell_type = /obj/item/stock_parts/cell
+	can_charge = TRUE
+	charge_sections = 1
+	ammo_x_offset = 2
+	shaded_charge = FALSE //if this gun uses a stateful charge bar for more detail
+
+/obj/item/ammo_casing/energy/laser/makeshiftRifle
+	e_cost = 1000 //The amount of energy a cell needs to expend to create this shot.
+	projectile_type = /obj/item/projectile/beam/laser
+
+/obj/item/projectile/beam/laser/makeshiftRifle
+	name = "laser"
+	damage = 18
+	light_range = 2
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
+	light_color = LIGHT_COLOR_RED
+	ricochets_max = 50
+	ricochet_chance = 50
+	reflectable = REFLECT_NORMAL

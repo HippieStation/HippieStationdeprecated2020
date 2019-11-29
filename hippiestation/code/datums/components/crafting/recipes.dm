@@ -196,3 +196,16 @@
 				/obj/item/stack/rods = 1)
 	time = 120
 	category = CAT_MISC
+
+/datum/crafting_recipe/makeshiftLaserRifle
+	name = "makeshift laser rifle"
+	result = /obj/item/gun/energy/laser/makeshiftLasRifle
+	reqs = list(/obj/item/stack/cable_coil = 15,
+				/obj/item/weaponcrafting/stock = 1,
+				/obj/item/pipe = 1,
+				/obj/item/light/bulb = 1,
+				/obj/item/stock_parts/cell = 1,
+				/obj/item/screwdriver)
+	time = 120
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
