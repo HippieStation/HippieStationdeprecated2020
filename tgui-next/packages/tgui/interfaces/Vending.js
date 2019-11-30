@@ -1,11 +1,9 @@
 import { Fragment } from 'inferno';
-import { act } from '../byond';
+import { useBackend } from '../backend';
 import { Section, Box, Button, Table } from '../components';
 
 export const Vending = props => {
-  const { state } = props;
-  const { config, data } = state;
-  const { ref } = config;
+  const { act, data } = useBackend(props);
   let inventory;
   let custom = false;
   if (data.vending_machine_input) {
@@ -67,7 +65,7 @@ export const Vending = props => {
                   {custom && (
                     <Button
                       content={data.access ? 'FREE' : '$' + product.price}
-                      onClick={() => act(ref, 'dispense', {
+                      onClick={() => act('dispense', {
                         'item': product.name,
                       })} />
                   ) || (
@@ -75,7 +73,7 @@ export const Vending = props => {
                       disabled={(!free && (!data.user || (product.price > data.user.cash)))
                         || data.stock[product.name] === 0}
                       content={free ? 'FREE' : '$' + product.price}
-                      onClick={() => act(ref, 'vend', {
+                      onClick={() => act('vend', {
                         'ref': product.ref,
                       })} />
                   )}
