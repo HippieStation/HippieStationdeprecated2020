@@ -145,16 +145,14 @@
 
 /obj/item/gun/energy/laser/makeshiftLasRifle
 	name = "makeshift laser rifle"
-	desc = "A makeshift rifle that shoots lasers. Lacks factory precision, the focusing lens is a lightbulb, don't expect too much from it.."
+	desc = "A makeshift rifle that shoots lasers. Lacks factory precision, but the screwable bulb allows modulating the photonic output."
 	icon_state = "lasrifle"
 	item_state = "makeshiftlas"
 	lefthand_file = 'hippiestation/icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/weapons/guns_righthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	materials = list(MAT_METAL=2000)
-	ammo_type = list(/obj/item/ammo_casing/energy/laser/makeshiftRifle)
-	ammo_x_offset = 1
-	shaded_charge = 1
+	ammo_type = list(/obj/item/ammo_casing/energy/laser/makeshiftRifle, /obj/item/ammo_casing/energy/laser/makeshiftRifle/weak)
 	icon = 'hippiestation/icons/obj/guns/energy.dmi'
 	cell_type = /obj/item/stock_parts/cell
 	can_charge = TRUE
@@ -165,10 +163,28 @@
 /obj/item/ammo_casing/energy/laser/makeshiftRifle
 	e_cost = 1000 //The amount of energy a cell needs to expend to create this shot.
 	projectile_type = /obj/item/projectile/beam/laser
+	select_name = "strong"
+	variance = 2
 
 /obj/item/projectile/beam/laser/makeshiftRifle
 	name = "laser"
-	damage = 18
+	damage = 25
+	light_range = 2
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
+	light_color = LIGHT_COLOR_RED
+	ricochets_max = 50
+	ricochet_chance = 80
+	reflectable = REFLECT_NORMAL
+
+/obj/item/ammo_casing/energy/laser/makeshiftRifle/weak
+	e_cost = 100 //The amount of energy a cell needs to expend to create this shot.
+	projectile_type = /obj/item/projectile/beam/laser/makeshiftRifle/weak
+	select_name = "weak"
+	fire_sound = 'sound/weapons/laser2.ogg'
+
+/obj/item/projectile/beam/laser/makeshiftRifle/weak
+	name = "weak laser"
+	damage = 5
 	light_range = 2
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
 	light_color = LIGHT_COLOR_RED
