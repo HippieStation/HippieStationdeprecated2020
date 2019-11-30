@@ -503,9 +503,14 @@
 
 
 /mob/living/proc/updatehealth()
-	if(status_flags & GODMODE)
+	if((status_flags & GODMODE))
 		return
-	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss()
+	// hippie start -- fix godmode
+	var/new_health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss()
+	if(new_health < health && (status_flags & GODMODE))
+		return
+	// hippie end
+	health = new_health
 	staminaloss = getStaminaLoss()
 	update_stat()
 	med_hud_set_health()
@@ -513,6 +518,7 @@
 
 //proc used to ressuscitate a mob
 /mob/living/proc/revive(full_heal = 0, admin_revive = 0)
+	SHOULD_CALL_PARENT(TRUE)
 	if(full_heal)
 		fully_heal(admin_revive)
 	if(stat == DEAD && can_be_revived()) //in some cases you can't revive (e.g. no brain)
@@ -890,6 +896,7 @@ hippie end */
 	cameraFollow = null
 
 /mob/living/proc/can_track(mob/living/user)
+	SHOULD_CALL_PARENT(TRUE)
 	//basic fast checks go first. When overriding this proc, I recommend calling ..() at the end.
 	var/turf/T = get_turf(src)
 	if(!T)
@@ -1001,7 +1008,7 @@ hippie end */
 	var/blocked = getarmor(null, "rad")
 
 	if(amount > RAD_BURN_THRESHOLD)
-		apply_damage((amount-RAD_BURN_THRESHOLD)/RAD_BURN_THRESHOLD, BURN, null, blocked)
+		apply_damage(log(amount)*2, BURN, null, blocked)
 
 	apply_effect((amount*RAD_MOB_COEFFICIENT)/max(1, (radiation**2)*RAD_OVERDOSE_REDUCTION), EFFECT_IRRADIATE, blocked)
 

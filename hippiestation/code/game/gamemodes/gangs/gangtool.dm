@@ -273,8 +273,8 @@
 
 /obj/item/gangtool/hell_march
 	flag = GANGMAGEDDON
-	var/datum/action/innate/gangtool/linked_action
-	var/action_type = /datum/action/innate/gangtool
+	var/datum/action/gangtool/linked_action
+	var/action_type = /datum/action/gangtool
 	var/points = 0
 
 /obj/item/gangtool/hell_march/Initialize()
@@ -378,7 +378,7 @@
 
 /obj/item/gangtool/hell_march/vigilante
 	flag = VIGILANTE
-	action_type = /datum/action/innate/gangtool/vigilante
+	action_type = /datum/action/gangtool/vigilante
 
 /obj/item/gangtool/hell_march/vigilante/Initialize()
 	. = ..()
@@ -521,20 +521,21 @@
 		to_chat(user, "<span class='notice'>[I] has been processed for [value] influence.")
 		qdel(I)
 
-/datum/action/innate/gangtool
+/datum/action/gangtool
 	name = "Personal Gang Tool"
 	desc = "An implanted gang tool that lets you purchase gear"
 	background_icon_state = "bg_demon"
-	button_icon_state = "bolt_action"
+	icon_icon = 'hippiestation/icons/obj/device.dmi'
+	button_icon_state = "gangtool"
 	var/obj/item/gangtool/hell_march/GT
 
-/datum/action/innate/gangtool/Grant(mob/user, obj/reg)
+/datum/action/gangtool/Grant(mob/user, obj/reg)
 	. = ..()
 	GT = reg
 
-/datum/action/innate/gangtool/Activate()
+/datum/action/gangtool/Trigger()
 	GT.ui_interact(owner)
 
-/datum/action/innate/gangtool/vigilante
+/datum/action/gangtool/vigilante
 	name = "Vigilante Uplink"
 	desc = "An implanted vigilante uplink."

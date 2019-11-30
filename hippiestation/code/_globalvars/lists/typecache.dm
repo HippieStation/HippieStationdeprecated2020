@@ -12,7 +12,9 @@ GLOBAL_LIST_INIT(no_reagent_message_typecache, typecacheof(list(
 	/obj/item/reagent_containers/food,
 	/turf/open/pool,
 	/obj/item/toy,
-	/obj/item/grown)
+	/obj/item/grown,
+	/obj/machinery/duct,
+	/obj/machinery/plumbing)
 ))
 
 // Don't do state change in these atoms

@@ -502,6 +502,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 			return
 	return ..()
 
+/* hippie start -- tgui-next vendors
 /obj/machinery/vending/ui_interact(mob/user)
 	var/list/dat = list()
 	var/datum/bank_account/account
@@ -685,6 +686,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		shut_up = !shut_up
 
 	updateUsrDialog()
+hippie end*/
 
 /obj/machinery/vending/process()
 	if(stat & (BROKEN|NOPOWER))
@@ -832,7 +834,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(I.custom_price)
 		return TRUE
 
-/obj/machinery/vending/custom/Topic(href, href_list)
+/*/obj/machinery/vending/custom/Topic(href, href_list)
 	usr.set_machine(src)
 	///what we are selling
 	var/obj/S
@@ -928,7 +930,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	popup.add_stylesheet(get_asset_datum(/datum/asset/spritesheet/vending))
 	popup.set_content(dat.Join(""))
 	popup.set_title_image(user.browse_rsc_icon(icon, icon_state))
-	popup.open()
+	popup.open()*/
 
 /obj/machinery/vending/custom/attackby(obj/item/I, mob/user, params)
 	if(!private_a)

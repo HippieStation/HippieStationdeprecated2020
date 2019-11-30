@@ -325,6 +325,13 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	var/size_id = sprite[SPR_SIZE]
 	return {"<span class="[name][size_id] [sprite_name]"></span>"}
 
+/datum/asset/spritesheet/proc/icon_class_name(sprite_name)
+	var/sprite = sprites[sprite_name]
+	if (!sprite)
+		return null
+	var/size_id = sprite[SPR_SIZE]
+	return {"[name][size_id] [sprite_name]"}
+
 #undef SPR_SIZE
 #undef SPR_IDX
 #undef SPRSZ_COUNT
@@ -381,8 +388,18 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 /datum/asset/simple/tgui
 	assets = list(
+		// tgui
 		"tgui.css"	= 'tgui/assets/tgui.css',
 		"tgui.js"	= 'tgui/assets/tgui.js',
+		// tgui-next
+		"tgui-main.html" = 'tgui-next/packages/tgui/public/tgui-main.html',
+		"tgui-fallback.html" = 'tgui-next/packages/tgui/public/tgui-fallback.html',
+		"tgui.bundle.js" = 'tgui-next/packages/tgui/public/tgui.bundle.js',
+		"tgui.bundle.css" = 'tgui-next/packages/tgui/public/tgui.bundle.css',
+		"shim-html5shiv.js" = 'tgui-next/packages/tgui/public/shim-html5shiv.js',
+		"shim-ie8.js" = 'tgui-next/packages/tgui/public/shim-ie8.js',
+		"shim-dom4.js" = 'tgui-next/packages/tgui/public/shim-dom4.js',
+		"shim-css-om.js" = 'tgui-next/packages/tgui/public/shim-css-om.js',
 	)
 
 /datum/asset/group/tgui
@@ -607,7 +624,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	name = "pipes"
 
 /datum/asset/spritesheet/pipes/register()
-	for (var/each in list('icons/obj/atmospherics/pipes/pipe_item.dmi', 'icons/obj/atmospherics/pipes/disposal.dmi', 'icons/obj/atmospherics/pipes/transit_tube.dmi'))
+	for (var/each in list('icons/obj/atmospherics/pipes/pipe_item.dmi', 'icons/obj/atmospherics/pipes/disposal.dmi', 'icons/obj/atmospherics/pipes/transit_tube.dmi', 'icons/obj/plumbing/fluid_ducts.dmi'))
 		InsertAll("", each, GLOB.alldirs)
 	..()
 
