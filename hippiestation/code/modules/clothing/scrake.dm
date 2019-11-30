@@ -17,6 +17,7 @@
 	. = ..()
 	if(slot == SLOT_WEAR_SUIT)
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
+		item_flags |= DROPDEL
 		user.set_species(/datum/species/scrake)
 		user.maxHealth = 250
 		user.health = 250
@@ -64,6 +65,7 @@
 /obj/item/clothing/mask/surgical/scrake/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(slot == SLOT_WEAR_MASK)
+		item_flags |= DROPDEL
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 
 /obj/item/twohanded/required/chainsaw/scrake_saw
