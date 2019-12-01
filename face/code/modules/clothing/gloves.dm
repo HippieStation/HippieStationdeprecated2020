@@ -11,4 +11,6 @@
 	item_state = "paladingloves"
 	armor = list(melee = 10, bullet = 05, laser = 00, energy = -05, bomb = 5, bio = 0, rad = -05)
 
-
+/obj/item/clothing/gloves/boxing
+	name = "Knockout Gloves"
+	desc = "These were once used for Facepunching, the tag reads '12th of the 6th, never forget!'"

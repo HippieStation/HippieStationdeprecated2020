@@ -1,3 +1,4 @@
+
 // DM Environment file for tgstation.dme.
 // All manual changes should be made outside the BEGIN_ and END_ blocks.
 // New source code should be placed in .dm files: choose File/New --> Code File.
@@ -2814,6 +2815,7 @@
 #include "face\code\game\objects\items\storage\bags.dm"
 #include "face\code\game\objects\items\weapons\gibgun.dm"
 #include "face\code\game\objects\items\weapons\handgun.dm"
+#include "face\code\modules\projectiles\guns\laser.dm
 #include "face\code\game\objects\items\weapons\shotgun_gatling.dm"
 #include "face\code\game\objects\structures\ghost_role_spawners.dm"
 #include "face\code\modules\clothing\clothing.dm"

@@ -4,7 +4,7 @@
 
 #ifndef LOWMEMORYMODE
 	#ifdef ALL_MAPS
-		#include "map_files\Mining\Lavaland.dmm"
+		#include "map_files\Mining\Lavaland_Facepunch.dmm"
 		#include "map_files\generic\City_of_Cogs.dmm"
 		#include "map_files\debug\runtimestation.dmm"
 		#include "map_files\Deltastation\DeltaStation2.dmm"
@@ -14,6 +14,7 @@
 		#include "map_files\BoxStation\BoxStation.dmm"
 		#include "map_files\HippieStation\hippiestation.dmm"
 		#include "map_files\FacepunchStation\facepunchstation.dmm"
+		#include "map_files\CalderaStation\calderastation.dmm"
 
 		#ifdef TRAVISBUILDING
 			#include "templates.dm"

@@ -70,6 +70,12 @@
 /obj/structure/shuttle/engine/propulsion/burst,
 /turf/open/floor/plating/airless,
 /area/shuttle/mining)
+"y" = (
+/obj/machinery/door/airlock/titanium{
+	name = "Mining Shuttle Airlock"
+	},
+/turf/open/floor/plating,
+/area/shuttle/mining)
 "Q" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 1
@@ -79,11 +85,11 @@
 
 (1,1,1) = {"
 a
-a
+b
 b
 a
-b
 a
+b
 a
 "}
 (2,1,1) = {"
@@ -115,10 +121,10 @@ a
 "}
 (5,1,1) = {"
 a
-a
+b
 b
 h
+y
 b
-a
 a
 "}

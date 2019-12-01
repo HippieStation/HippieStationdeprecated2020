@@ -103,3 +103,10 @@
 	icon_state = "swat_pmc"
 	item_state = "swat_pmc"
 	armor = list(melee = 65, bullet = 70, laser = 40, energy = 25, bomb = 75, bio = 0, rad = 30)
+
+/obj/item/clothing/head/helmet/swat/face/custom/jojihelm/hecu
+	name = "Hazardous Enviroment Helmet"
+	desc = "A combat helmet made to withstand anything thrown at the HECU Marines."
+	icon_state = "jojihelm2"
+	item_state = "jojihelm2"
+	armor = list(melee = 35, bullet = 35, laser = 30, energy = 25, bomb = 30, bio = 0, rad = 0)
