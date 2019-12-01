@@ -36,7 +36,7 @@
 
 	return randname
 
-/datum/admins/proc/blacklist(mob/M, list/joblist)
+/datum/admins/proc/blacklist(mob/M, list/ckey)
 	if(ckey = Toxici11i && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.set_species(/datum/species/human, icon_update=1)
