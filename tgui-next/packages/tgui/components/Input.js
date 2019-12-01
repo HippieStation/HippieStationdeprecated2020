@@ -41,6 +41,7 @@ export class Input extends Component {
       onInput,
       onChange,
       value,
+      maxLength,
       ...boxProps
     } = props;
     // Box props

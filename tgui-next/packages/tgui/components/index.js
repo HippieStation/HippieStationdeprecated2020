@@ -4,6 +4,7 @@ export { Box } from './Box';
 export { Button } from './Button';
 export { ColorBox } from './ColorBox';
 export { Dimmer } from './Dimmer';
+export { Dropdown } from './Dropdown';
 export { Flex } from './Flex';
 export { Grid } from './Grid';
 export { Icon } from './Icon';
