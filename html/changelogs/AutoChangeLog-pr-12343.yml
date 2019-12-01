@@ -1,0 +1,5 @@
+author: "zamolxius"
+delete-after: True
+changes: 
+  - rscadd: "Added a bee crate to botany, containing all the standard cargo bee crate shit except the suit, as the lockers contain some."
+  - rscdel: "Removed the 2 functional nests from botany."
