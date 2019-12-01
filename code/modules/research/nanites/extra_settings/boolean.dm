@@ -10,12 +10,9 @@
 
 /datum/nanite_extra_setting/boolean/set_value(value)
 	if(isnull(value))
-		src.value = !src.value
+		value = !value
 		return
 	. = ..()
-
-/datum/nanite_extra_setting/boolean/get_copy()
-	return new /datum/nanite_extra_setting/boolean(value, true_text, false_text)
 
 /datum/nanite_extra_setting/boolean/get_frontend_list(name)
 	return list(list(
