@@ -1,7 +1,7 @@
 /datum/species/scrake
 	name = "Scrake"
 	id = "scrake"
-	limbs_id = "zombie"
+	limbs_id = "husk"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,NOBLOOD)
 	default_features = list("mcolor" = "FFF", "tail_human" = "None", "ears" = "None", "wings" = "None")
 	sexes = 0
@@ -15,11 +15,16 @@
 	heatmod = 0.3
 	burnmod = 0.3
 	stunmod = 0.25
-	var/static/list/spooks = list('hippiestation/sound/creatures/ScrakeVoice1.wav','hippiestation/sound/creatures/ScrakeVoice2.wav','hippiestation/sound/creatures/ScrakeVoice3.wav','hippiestation/sound/creatures/ScrakeVoice4.wav','hippiestation/sound/creatures/ScrakeVoice7.wav','hippiestation/sound/creatures/ScrakeVoice8.wav','hippiestation/sound/creatures/ScrakeGiggle.wav')
-	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_PRIDE | ERT_SPAWN
+	var/static/list/spooks = list('hippiestation/sound/creatures/ScrakeVoice1.ogg','hippiestation/sound/creatures/ScrakeVoice2.ogg','hippiestation/sound/creatures/ScrakeVoice3.ogg','hippiestation/sound/creatures/ScrakeVoice4.ogg','hippiestation/sound/creatures/ScrakeVoice7.ogg','hippiestation/sound/creatures/ScrakeVoice8.ogg','hippiestation/sound/creatures/ScrakeGiggle.ogg','hippiestation/sound/creatures/zombiegrowl1.ogg')
+	changesource_flags = MIRROR_BADMIN | WABBAJACK
+	deathsound = 'hippiestation/sound/creatures/ZombieDie2.ogg'
 
 /datum/species/scrake/spec_life(mob/living/carbon/C)
 	. = ..()
+	if(C.stat == DEAD)
+		return
 	C.a_intent = INTENT_HARM // THE SUFFERING MUST FLOW
 	if(prob(6))
 		playsound(C, pick(spooks), 50, FALSE, 12)
+	if(prob(10))
+		playsound(C, 'hippiestation/sound/creatures/SawIdle.ogg', 25, FALSE)

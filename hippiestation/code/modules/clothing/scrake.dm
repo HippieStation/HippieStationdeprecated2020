@@ -8,6 +8,7 @@
 	clothing_flags = THICKMATERIAL | STOPSPRESSUREDAMAGE
 	armor = list("melee" = 70, "bullet" = 40, "laser" = 40, "energy" = 45, "bomb" = 75, "bio" = 0, "rad" = 30, "fire" = 80, "acid" = 100)
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
+	alternate_screams = list('hippiestation/sound/creatures/zombiegrowl1.ogg')
 	slowdown = 0.5
 	var/rage_cooldown_duration = 600
 	var/rage_cooldown = 0
@@ -78,6 +79,16 @@
 	throwforce = 0
 	throw_range = 0
 	throw_speed = 0
+	var/onsound = 'hippiestation/sound/weapons/echainsawon.ogg'
+	var/offsound = 'hippiestation/sound/weapons/echainsawoff.ogg'
+
+/obj/item/twohanded/required/chainsaw/scrake_saw/equipped(mob/living/user, slot)
+	..()
+	attack_self(user)
+
+/obj/item/twohanded/required/chainsaw/scrake_saw/attack_self(mob/user)
+	..()
+	playsound(user, on ? onsound : offsound , 50, 1)
 
 /obj/item/twohanded/required/chainsaw/scrake_saw/Initialize()
 	. = ..()
@@ -94,13 +105,6 @@
 			var/obj/item/clothing/suit/apron/chef/scrake/sc = H.wear_suit
 			if(sc.raged)
 				H.changeNext_move(CLICK_CD_CLICK_ABILITY)//rage attack, hit 25% faster
-
-/obj/item/twohanded/required/chainsaw/scrake_saw/attack_self(mob/user)
-	..()
-	if(on)
-		playsound(src, 'hippiestation/sound/weapons/echainsawon.ogg', 50, 1)
-	else
-		playsound(src, 'hippiestation/sound/weapons/echainsawoff.ogg', 50, 1)
 
 /datum/outfit/scrake
 	name = "Scrake outfit"

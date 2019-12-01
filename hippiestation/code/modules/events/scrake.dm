@@ -27,7 +27,6 @@
 	Mind.active = TRUE
 	Mind.transfer_to(S)
 	S.equipOutfit(/datum/outfit/scrake)
-	playsound(S, 'hippiestation/sound/weapons/echainsawon.ogg', 50, 1, -1)
 	spawned_mobs += S
 	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into scrake by an event.")
 	log_game("[key_name(S)] was spawned as a scrake by an event.")
