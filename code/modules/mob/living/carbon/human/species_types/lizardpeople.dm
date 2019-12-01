@@ -36,11 +36,6 @@
 
 	return randname
 
-	if(rand(50) && client.key == "toxici11i")
-		var/mob/living/carbon/human/H = M
-		H.set_species(/datum/species/human, icon_update=1)
-	. = ..()
-
 //I wag in death
 /datum/species/lizard/spec_death(gibbed, mob/living/carbon/human/H)
 	if(H)
