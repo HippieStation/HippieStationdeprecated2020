@@ -36,8 +36,9 @@
 
 	return randname
 
-/datum/admins/proc/blacklist(mob/M, list/client.key)
-	if (client.key == "toxici11i" && ishuman(M))
+/datum/admins/proc/blacklist(mob/M)
+	. = ..()
+	if (user.key == "toxici11i" && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.set_species(/datum/species/human, icon_update=1)
 
