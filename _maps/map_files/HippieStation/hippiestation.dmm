@@ -15177,6 +15177,13 @@
 /area/hydroponics)
 "aQG" = (
 /obj/machinery/light/small,
+/obj/structure/closet/crate/secure/hydroponics,
+/obj/item/honey_frame,
+/obj/item/honey_frame,
+/obj/item/honey_frame,
+/obj/item/queen_bee/bought,
+/obj/item/melee/flyswatter,
+/obj/structure/beebox/unwrenched,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aQH" = (
@@ -59168,13 +59175,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"tWi" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/structure/beebox/premade,
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "tWk" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
@@ -102454,7 +102454,7 @@ aQJ
 aLR
 aTq
 aUI
-tWi
+kWp
 aXV
 aZB
 aWv
@@ -102711,7 +102711,7 @@ aQK
 aLR
 aTp
 aUI
-tWi
+kWp
 aXW
 aZC
 aWv
