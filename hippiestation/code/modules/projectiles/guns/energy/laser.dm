@@ -151,7 +151,6 @@
 	lefthand_file = 'hippiestation/icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'hippiestation/icons/mob/inhands/weapons/guns_righthand.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
-	materials = list(MAT_METAL=2000)
 	ammo_type = list(/obj/item/ammo_casing/energy/laser/makeshiftRifle, /obj/item/ammo_casing/energy/laser/makeshiftRifle/weak)
 	icon = 'hippiestation/icons/obj/guns/energy.dmi'
 	can_charge = TRUE
