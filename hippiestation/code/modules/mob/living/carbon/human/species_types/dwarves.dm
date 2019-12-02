@@ -55,6 +55,8 @@
 				H.adjustStaminaLoss(60)
 			if(45 to 60)
 				H.adjustStaminaLoss(40)
+				if(prob(30))
+					to_chat(H, "<span class='danger'>You could really use a drink right about now.</span>")
 			if(60 to 75)
 				if(prob(30))
 					to_chat(H, "<span class='danger'>You feel quite thirsty. A good beverage wouldn't hurt.</span>")
