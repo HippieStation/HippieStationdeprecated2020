@@ -27,10 +27,10 @@
 	return ..()
 
 /datum/species/dwarf/on_species_gain(mob/living/carbon/human/C, datum/species/old_species, pref_load)
-	var/dwarf_hair = pick("Dwarf Beard", "Very Long Beard", "Full Beard")
+	var/dwarf_hair = pick("Beard (Full)", "Beard (Dwarf)", "Beard (Very Long)")
+	C.facial_hair_style = dwarf_hair
 	C.draw_hippie_parts()
 	. = ..()
-	C.facial_hair_style = dwarf_hair
 	C.remove_all_languages()
 	C.grant_language(/datum/language/dwarven)
 

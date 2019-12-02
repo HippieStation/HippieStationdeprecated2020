@@ -389,7 +389,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				facial_overlay.color = forced_colour
 
 			facial_overlay.alpha = hair_alpha
-
+			if(OFFSET_HAIR in H.dna.species.offset_features) // hippie -- specific offset for facial hair
+				facial_overlay.pixel_x += H.dna.species.offset_features[OFFSET_HAIR][1] // hippie -- specific offset for facial hair
+				facial_overlay.pixel_y += H.dna.species.offset_features[OFFSET_HAIR][2] // hippie -- specific offset for facial hair
 			standing += facial_overlay
 
 	if(H.head)
@@ -448,7 +450,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				else
 					hair_overlay.color = forced_colour
 				hair_overlay.alpha = hair_alpha
-				if(OFFSET_FACE in H.dna.species.offset_features)
+				if(OFFSET_HAIR in H.dna.species.offset_features) // hippie -- specific offset for hair
 					hair_overlay.pixel_x += H.dna.species.offset_features[OFFSET_HAIR][1] // hippie -- specific offset for hair
 					hair_overlay.pixel_y += H.dna.species.offset_features[OFFSET_HAIR][2] // hippie -- specific offset for hair
 		if(hair_overlay.icon)
