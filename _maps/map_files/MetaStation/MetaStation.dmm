@@ -3163,7 +3163,6 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "agS" = (
-/obj/machinery/holopad,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
@@ -3174,6 +3173,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/holopad/secure,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "agT" = (
@@ -3239,10 +3239,10 @@
 "agY" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable,
+/obj/machinery/holopad/secure,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
 "agZ" = (
-/obj/machinery/holopad,
 /obj/structure/chair{
 	dir = 1
 	},
@@ -7143,7 +7143,6 @@
 /turf/open/floor/plasteel,
 /area/security/main)
 "aoE" = (
-/obj/machinery/holopad,
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
@@ -7158,6 +7157,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/machinery/holopad/secure,
 /turf/open/floor/plasteel,
 /area/security/main)
 "aoF" = (
@@ -8322,9 +8322,9 @@
 /turf/open/floor/plating,
 /area/maintenance/starboard/secondary)
 "ari" = (
-/obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
+/obj/machinery/holopad/secure,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "arj" = (
@@ -18364,7 +18364,7 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
 "aOc" = (
-/obj/machinery/holopad,
+/obj/machinery/holopad/secure,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
 "aOd" = (
@@ -23792,7 +23792,6 @@
 /turf/open/floor/circuit/green,
 /area/ai_monitored/turret_protected/ai)
 "aZR" = (
-/obj/machinery/holopad,
 /obj/machinery/flasher{
 	id = "AI";
 	pixel_x = -25;
@@ -23808,6 +23807,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/holopad/secure,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "aZS" = (
@@ -23869,7 +23869,6 @@
 /turf/open/floor/circuit,
 /area/ai_monitored/turret_protected/ai)
 "aZX" = (
-/obj/machinery/holopad,
 /obj/machinery/flasher{
 	id = "AI";
 	pixel_x = 25;
@@ -23885,6 +23884,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/machinery/holopad/secure,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "aZY" = (
@@ -27636,7 +27636,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/holopad,
+/obj/machinery/holopad/secure,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain/private)
 "bhz" = (
@@ -28092,8 +28092,8 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "bip" = (
-/obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/holopad/secure,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "biq" = (
@@ -30564,12 +30564,12 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "bnC" = (
-/obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
 /obj/effect/landmark/start/cyborg,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
+/obj/machinery/holopad/secure,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "bnD" = (
@@ -31507,9 +31507,9 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/foyer)
 "bpK" = (
-/obj/machinery/holopad,
 /obj/item/beacon,
 /obj/structure/cable,
+/obj/machinery/holopad/secure,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/foyer)
 "bpL" = (
@@ -33826,7 +33826,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain/private)
 "buG" = (
-/obj/machinery/holopad{
+/obj/machinery/holopad/secure{
 	pixel_x = 9;
 	pixel_y = -9
 	},
@@ -36114,12 +36114,12 @@
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "bzq" = (
-/obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable,
+/obj/machinery/holopad/secure,
 /turf/open/floor/plasteel/grimy,
 /area/tcommsat/computer)
 "bzr" = (
@@ -39568,11 +39568,11 @@
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
 "bHE" = (
-/obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 5
 	},
 /obj/structure/cable,
+/obj/machinery/holopad/secure,
 /turf/open/floor/plasteel/dark/telecomms,
 /area/tcommsat/server)
 "bHF" = (
