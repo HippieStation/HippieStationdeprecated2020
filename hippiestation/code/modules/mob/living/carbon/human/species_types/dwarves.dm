@@ -2,13 +2,13 @@
 								// With 0.1, 100 units of the strongest alcohol would refill you completely from 0 to 100, which is perfect.
 #define DRUNK_ALERT_TIME_OFFSET 10 SECONDS
 
+// To make dwarven only jumpsuits, add this species' path to the clothing's species_exception list. By default jumpsuits don't fit dwarven since they're big boned
 /datum/species/dwarf
 	name = "Dwarf"
 	id = "dwarf"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS)
 	default_features = list("mcolor" = "FFF", "wings" = "None")
 	use_skintones = 1
-	no_equip = list(SLOT_W_UNIFORM) // To make dwarven only jumpsuits, add this species' path to the clothing's species_exception list.
 	disliked_food = GROSS | RAW
 	liked_food = JUNKFOOD | FRIED
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
@@ -20,6 +20,11 @@
 
 /datum/species/dwarf/check_roundstart_eligible()
 	return FALSE
+
+/datum/species/dwarf/can_equip(obj/item/I, slot, disable_warning, mob/living/carbon/human/H, bypass_equip_delay_self = FALSE)
+	if((slot == SLOT_W_UNIFORM) && !is_type_in_list(src, I.species_exception))
+		return FALSE
+	return ..()
 
 /datum/species/dwarf/on_species_gain(mob/living/carbon/human/C, datum/species/old_species, pref_load)
 	var/dwarf_hair = pick("Dwarf Beard", "Very Long Beard", "Full Beard")
