@@ -18,6 +18,9 @@
 	var/dwarfDrunkness = 100 // A value between 0 and 100.
 	var/notDrunkEnoughTime = 0 // World time offset
 
+/datum/species/dwarf/check_roundstart_eligible()
+	return FALSE
+
 /datum/species/dwarf/on_species_gain(mob/living/carbon/human/C, datum/species/old_species, pref_load)
 	var/dwarf_hair = pick("Dwarf Beard", "Very Long Beard", "Full Beard")
 	C.draw_hippie_parts()
