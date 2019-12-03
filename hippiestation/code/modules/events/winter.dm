@@ -16,7 +16,9 @@ GLOBAL_LIST_INIT(winter_blacklisted_tiles, typecacheof(list(/turf/open/floor/eng
 		to_chat(usr, "<span class='notice'>Winter is already active!</span>")
 		return
 	GLOB.winter_starttemp = GLOB.winter_starttemp || T20C
+	var/first_time = TRUE
 	if(GLOB.winter_starttemp != T20C)
+		first_time = FALSE
 		if(alert("It appears winter has been ran previously. It stopped at [GLOB.winter_starttemp * (9/5) - 459.67] Fahrenheit. Keep this temperature?",,"Yes","No") == "No")
 			GLOB.winter_starttemp = T20C
 	if(alert("Are you SURE you want to begin winter? This will cause station-wide effects!",,"Yes","No") == "No")
@@ -25,6 +27,12 @@ GLOBAL_LIST_INIT(winter_blacklisted_tiles, typecacheof(list(/turf/open/floor/eng
 	GLOB.winter_starttime = world.time
 	if(alert("Announce winter to the station?",,"Yes","No") == "Yes")
 		priority_announce("The Central Command Space Weather Service has detected a space winter storm headed your way.\nExpect extremely low temperatures, and higher coffee prices.", "Space Weather Alert")
+	if(first_time)
+		for(var/obj/machinery/vending/V in GLOB.machines)
+			for(var/datum/data/vending_product/R in (V.product_records + V.coin_records + V.hidden_records))
+				if(R.product_path in list(/obj/item/reagent_containers/food/drinks/coffee, /obj/item/reagent_containers/food/drinks/mug/tea, /obj/item/reagent_containers/food/drinks/mug/coco))
+					R.amount = FLOOR(R.amount / 2, 1)
+					R.custom_price = (R.custom_price || V.default_price) * 2
 	message_admins("[key_name_admin(usr)] has started winter.")
 	log_admin("[key_name(usr)] has started winter.")
 	GLOB.winter_timer = addtimer(CALLBACK(GLOBAL_PROC, .proc/ProgressWinter), 15 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
