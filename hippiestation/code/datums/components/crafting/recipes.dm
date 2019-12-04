@@ -197,15 +197,15 @@
 	time = 120
 	category = CAT_MISC
 
-/datum/crafting_recipe/makeshiftLaserRifle
+/datum/crafting_recipe/makeshiftlasifle
 	name = "makeshift laser rifle"
-	result = /obj/item/gun/energy/laser/makeshiftLasRifle
+	result = /obj/item/gun/energy/laser/makeshiftlasrifle
 	reqs = list(/obj/item/stack/cable_coil = 15,
 				/obj/item/weaponcrafting/stock = 1,
 				/obj/item/pipe = 1,
 				/obj/item/light/bulb = 1,
-				/obj/item/stock_parts/cell = 1,
-				/obj/item/screwdriver)
+				/obj/item/stock_parts/cell = 1)
+	tools = list(/obj/item/screwdriver)
 	time = 120
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
