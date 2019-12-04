@@ -51,6 +51,7 @@
 	protected_roles = list("Security Officer", "Warden", "Detective", "Head of Security", "Captain")
 	restricted_roles = list("Cyborg")
 	required_candidates = 2
+	minimum_players = 20
 	weight = 20
 	cost = 25
 	antag_datum = /datum/antagonist/hivemind
