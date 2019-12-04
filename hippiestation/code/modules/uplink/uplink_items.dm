@@ -391,6 +391,7 @@
 	desc = "Become a posthuman warrior. The items cannot be taken off once you wear them and alerts the crew of your position if equipped on station."
 	item = /obj/item/storage/box/syndie_kit/nanosuit
 	cost = 20
+	surplus = 10
 
 /datum/uplink_item/dangerous/synth
 	name = "Cybersun Sponsorship Kit"
