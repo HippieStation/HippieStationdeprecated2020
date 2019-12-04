@@ -1,0 +1,4 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - tweak: "Hiveminds now require 20 players to be considered in dynamic"
