@@ -197,7 +197,7 @@
 	time = 120
 	category = CAT_MISC
 
-/datum/crafting_recipe/makeshiftlasifle
+/datum/crafting_recipe/makeshiftlasrifle
 	name = "makeshift laser rifle"
 	result = /obj/item/gun/energy/laser/makeshiftlasrifle
 	reqs = list(/obj/item/stack/cable_coil = 15,
