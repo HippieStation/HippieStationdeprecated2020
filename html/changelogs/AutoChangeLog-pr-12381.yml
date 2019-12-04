@@ -1,0 +1,4 @@
+author: "steamp0rt"
+delete-after: True
+changes: 
+  - admin: "Added an admin-only event - Winter. It slowly causes temps on the station to go down, try to avert it with space heaters, coffee, and winter coats!"
