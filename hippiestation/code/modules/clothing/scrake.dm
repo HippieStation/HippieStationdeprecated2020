@@ -83,11 +83,11 @@
 	var/offsound = 'hippiestation/sound/weapons/echainsawoff.ogg'
 
 /obj/item/twohanded/required/chainsaw/scrake_saw/equipped(mob/living/user, slot)
-	..()
+	. = ..()
 	attack_self(user)
 
 /obj/item/twohanded/required/chainsaw/scrake_saw/attack_self(mob/user)
-	..()
+	. = ..()
 	playsound(user, on ? onsound : offsound , 50, 1)
 
 /obj/item/twohanded/required/chainsaw/scrake_saw/Initialize()
