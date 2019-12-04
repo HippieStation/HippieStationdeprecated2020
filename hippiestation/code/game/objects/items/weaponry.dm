@@ -232,8 +232,7 @@
 	..()
 	user.changeNext_move(CLICK_CD_CLICK_ABILITY)
 
-
-/obj/item/gun/ballistic/flak_cannon
+/obj/item/gun/energy/flak_cannon
 	name = "flak cannon"
 	desc = "The somewhat cumbersome Flak Cannon uses jagged shards of metal for ammunition. Don’t let its lack of pyrotechnic flash fool you: a little shrapnel can dish out a hell of a lot of damage."
 	icon_state = "shotgun"
@@ -241,33 +240,23 @@
 	fire_sound = 'sound/weapons/shotgunshot.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 90
-	rack_sound = 'sound/weapons/shotgunpump.ogg'
-	load_sound = 'sound/weapons/shotguninsert.ogg'
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
-	slot_flags = ITEM_SLOT_BACK
-	mag_type = /obj/item/ammo_box/magazine/internal/flak_cannon
-	weapon_weight = WEAPON_MEDIUM
-	bolt_type = BOLT_TYPE_NO_BOLT
-	var/mode = 1
-	var/whacking = 0
-	var/universalAmmo = 0
+	can_charge = FALSE //Can it be charged in a recharger?
+	dead_cell = FALSE
+	cell_type = /obj/item/stock_parts/cell{charge = 0; maxcharge = 600}
+	slot_flags = ITEM_SLOT_BELT
+	ammo_type = list(/obj/item/ammo_casing/energy/electrode/spec, /obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser)
 	attack_verb = list("clobbered", "whacked", "clubbed", "donked", "bopped")
 
-/obj/item/ammo_box/magazine/internal/flak_cannon
-	name = "flak cannon shard shot magazine"
-	ammo_type = /obj/item/ammo_casing/caseless/flak
-	max_ammo = 6
-	start_empty = TRUE
-
-/obj/item/ammo_casing/caseless/flak
+/obj/item/ammo_casing/energy/flak
 	name = "metal shard clump"
 	desc = "A bunch of tightly clumped together metal shard. Beware tetanus."
-	caliber = "flak"
+	e_cost = 100 //The amount of energy a cell needs to expend to create this shot.
+	select_name = "flak"
 	icon_state = "s-casing-live"
 	projectile_type = /obj/item/projectile/bullet/pellet/flak_shard
 	fire_sound = 'sound/weapons/laser.ogg'
-	firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect/energy
 	pellets = 12
 
 /obj/item/projectile/bullet/pellet/flak_shard
@@ -281,45 +270,32 @@
 	ricochets_max = 10
 	ricochet_chance = 100
 
-/obj/item/ammo_box/magazine/internal/flak_cannon/ball
-	name = "flak cannon ball magazine"
-	ammo_type = /obj/item/ammo_casing/caseless/flakball
-	max_ammo = 2
-	start_empty = TRUE
-
-/obj/item/ammo_casing/caseless/flakball
+/obj/item/ammo_casing/energy/flak_ball
 	name = "flak ball pair"
 	desc = "Two brittle metallic balls, usually shot by a flak cannon individually."
-	caliber = "flakball"
+	desc = "A bunch of tightly clumped together metal shard. Beware tetanus."
+	e_cost = 300 //The amount of energy a cell needs to expend to create this shot.
+	select_name = "ball"
 	icon_state = "s-casing-live"
-	projectile_type = /obj/item/projectile/beam
+	projectile_type = /obj/item/projectile/bullet/flak_ball
 	fire_sound = 'sound/weapons/laser.ogg'
 
-/obj/item/gun/ballistic/flak_cannon/attack_self(mob/user)
-	mode = !mode
-	playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)
-	if (mode)
-		to_chat(user, "<span class='notice'>You engage the [src]'s flak shot mode.</span>")
-		force = 10
-		icon_state = "flakcannon"
-		hitsound = 'sound/weapons/bladeslice.ogg'
-	else
-		to_chat(user, "<span class='notice'>You engage the [src]'s flak charge mode.</span>")
-		force = 3
-		throwforce = 5
-		icon_state = "flakcannon_ball"
-		whacking = TRUE
+/obj/item/projectile/bullet/pellet/flak_shard
+	name = "flak shard"
+	damage = 5
+	icon_state = "flak"
+	pass_flags = PASSTABLE
+	damage_type = BRUTE
+	hitsound = 'sound/weapons/sear.ogg'
+	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
+	ricochet_chance = 0
 
 /obj/item/gun/ballistic/flak_cannon/attack(mob/living/target, mob/living/user)
 	. = ..()
-	if (whacking)
-		var/atom/throw_target = get_edge_target_turf(target, user.dir)
-		target.throw_at(throw_target, rand(1,2), 7, user)
+	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	target.throw_at(throw_target, rand(1,2), 7, user)
 
-
-
-
-/obj/item/gun/ballistic/flak_cannon/attackby(obj/item/A, mob/user, params)
+/obj/item/gun/energy/flak_cannon/attackby(obj/item/A, mob/user, params)
 	if(istype(A,/obj/item/stack/sheet/metal))
 		if(A.use(10))
 			to_chat(user, "<span class='notice'>The [src] gobbles up the metal.</span>")
@@ -327,15 +303,3 @@
 			to_chat(user, "<span class='warning'>The intake will not accept any less than ten sheets !</span>")
 			return
 
-
-		if (bolt_type == BOLT_TYPE_NO_BOLT || internal_magazine)
-			if (chambered && !chambered.BB)
-				chambered.forceMove(drop_location())
-				chambered = null
-			var/num_loaded = magazine.attackby(A, user, params, TRUE)
-			if (num_loaded)
-				to_chat(user, "<span class='notice'>You load [num_loaded] [cartridge_wording]\s into \the [src].</span>")
-				playsound(src, load_sound, load_sound_volume, load_sound_vary)
-				if (chambered == null && bolt_type == BOLT_TYPE_NO_BOLT)
-					chamber_round()
-			return
