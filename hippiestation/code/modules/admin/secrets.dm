@@ -6,3 +6,11 @@
 	if(!GLOB.mentorlog.len)
 		dat += "No mentors have done anything this round!"
 	usr << browse(dat, "window=mentor_log")
+
+/datum/admins/Secrets_topic(item,href_list)
+	. = ..()
+	if (item == "winter")
+		if(href_list["toggle"])
+			StartWinter()
+		else
+			StopWinter()

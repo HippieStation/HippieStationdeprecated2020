@@ -76,6 +76,9 @@
 			<A href='?src=[REF(src)];[HrefToken()];secrets=changebombcap'>Change bomb cap</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=masspurrbation'>Mass Purrbation</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=massremovepurrbation'>Mass Remove Purrbation</A><BR>
+			<BR>
+			<A href='?src=[REF(src)];[HrefToken()];secrets=winter;toggle=1'>Start Winter</A><BR>
+			<A href='?src=[REF(src)];[HrefToken()];secrets=winter;toggle=0'>Stop Winter</A><BR>
 			"}
 
 	dat += "<BR>"
