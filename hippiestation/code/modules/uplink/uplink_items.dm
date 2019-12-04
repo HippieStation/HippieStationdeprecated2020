@@ -392,6 +392,8 @@
 	item = /obj/item/storage/box/syndie_kit/nanosuit
 	cost = 20
 	surplus = 10
+	cant_discount = TRUE	
+	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
 
 /datum/uplink_item/dangerous/synth
 	name = "Cybersun Sponsorship Kit"
