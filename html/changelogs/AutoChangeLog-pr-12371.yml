@@ -1,0 +1,5 @@
+author: "Turret"
+delete-after: True
+changes: 
+  - rscdel: "Liggers no longer have a heat resistance. No more stupid powergaming, folks."
+  - rscadd: "As an additional note, Toxic no longer has access to playing any other race other than human."
