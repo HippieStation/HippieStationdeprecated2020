@@ -10,18 +10,20 @@ export const Vending = props => {
     inventory = data.vending_machine_input;
     custom = true;
   } else if (data.extended_inventory) {
-    inventory = [...data.product_records, ...data.coin_records, ...data.hidden_records];
+    inventory = [...data.product_records,
+      ...data.coin_records,
+      ...data.hidden_records];
   } else {
     inventory = [...data.product_records, ...data.coin_records];
   }
   return (
     <Fragment>
       <Section
-        title="User"
-      >
+        title="User">
         {data.user && (
           <Box>
-            Welcome, <b>{data.user.name}</b>, <b>{data.user.job || "Unemployed"}</b>!<br />
+            Welcome, <b>{data.user.name}</b>,
+            <b>{data.user.job || "Unemployed"}</b>!<br />
             Your balance is <b>${data.user.cash}</b>.
           </Box>
         ) || (
@@ -32,21 +34,27 @@ export const Vending = props => {
         )}
       </Section>
       <Section
-        title="Products"
-      >
+        title="Products">
         <Table>
           {inventory.map((product => {
-            const free = ((data.department && data.user && data.department === data.user.department)
+            const free = ((data.department && data.user
+              && data.department === data.user.department)
               || product.price === 0 || !data.onstation);
             return (
               <Table.Row key={product.name}>
                 <Table.Cell>
                   {product.base64 && (
                     <img src={`data:image/jpeg;base64,${product.img}`}
-                      style={{ 'vertical-align': 'middle', 'horizontal-align': 'middle' }} />
+                      style={{
+                        'vertical-align': 'middle',
+                        'horizontal-align': 'middle',
+                      }} />
                   ) || (
                     <span className={['vending32x32', product.path].join(' ')}
-                      style={{ 'vertical-align': 'middle', 'horizontal-align': 'middle' }} />
+                      style={{
+                        'vertical-align': 'middle',
+                        'horizontal-align': 'middle',
+                      }} />
                   )}
                   <b>{product.name}</b>
                 </Table.Cell>
@@ -70,8 +78,9 @@ export const Vending = props => {
                       })} />
                   ) || (
                     <Button
-                      disabled={(!free && (!data.user || (product.price > data.user.cash)))
-                        || data.stock[product.name] === 0}
+                      disabled={(!free && (!data.user
+                          || (product.price > data.user.cash)))
+                          || data.stock[product.name] === 0}
                       content={free ? 'FREE' : '$' + product.price}
                       onClick={() => act('vend', {
                         'ref': product.ref,

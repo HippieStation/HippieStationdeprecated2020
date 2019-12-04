@@ -18,8 +18,7 @@ export const ChemDispenser = props => {
   return (
     <Fragment>
       <Section
-        title="Status"
-      >
+        title="Status">
         <LabeledList>
           <LabeledList.Item label="Energy">
             <ProgressBar
