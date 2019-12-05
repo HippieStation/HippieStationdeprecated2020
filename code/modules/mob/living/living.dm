@@ -230,8 +230,8 @@
 	var/current_dir
 	if(isliving(AM))
 		current_dir = AM.dir
-	if(step(AM, t))
-		step(src, t)
+	if(AM.Move(get_step(AM.loc, t), t, glide_size))
+		Move(get_step(loc, t), t)
 	if(current_dir)
 		AM.setDir(current_dir)
 	now_pushing = FALSE
@@ -593,10 +593,22 @@
 /mob/living/proc/update_damage_overlays()
 	return
 
+<<<<<<< HEAD
 /mob/living/Move(atom/newloc, direct)
+=======
+/mob/living/Move(atom/newloc, direct, glide_size_override)
+	if(lying)
+		if(direct & EAST)
+			lying = 90
+		if(direct & WEST)
+			lying = 270
+		update_transform()
+		lying_prev = lying
+>>>>>>> 798bbd3d99... [ready] Smooth-ish move rising: revengeance (#47817)
 	if (buckled && buckled.loc != newloc) //not updating position
 		if (!buckled.anchored)
-			return buckled.Move(newloc, direct)
+			buckled.glide_size = glide_size //This should be being set by the override in the move below but it's not and I'm fucking suffering
+			return buckled.Move(newloc, direct, glide_size_override)
 		else
 			return 0
 

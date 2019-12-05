@@ -101,7 +101,10 @@
 
 	var/datum/click_intercept
 
-	///THe z level this mob is currently registered in
+	///The z level this mob is currently registered in
 	var/registered_z = null
 	
 	var/memory_throttle_time = 0
+
+	///Whether the mob is updating glide size when movespeed updates or not
+	var/updating_glide_size = TRUE

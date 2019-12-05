@@ -77,6 +77,8 @@
 				continue
 		. += amt
 	cached_multiplicative_slowdown = .
+	if(updating_glide_size)
+		set_glide_size(DELAY_TO_GLIDE_SIZE(cached_multiplicative_slowdown))
 
 /mob/proc/get_movespeed_modifiers()
 	return movespeed_modification
