@@ -6,9 +6,6 @@
 	l_hand = /obj/item/gun/magic/staff
 	backpack_contents = list(/obj/item/storage/box/survival=1)
 
-/datum/outfit/death_commando
-	r_pocket = /obj/item/shield/energy/deathsquad
-	implants = list(/obj/item/implant/explosive/macro/deathsquad)
 	
 /datum/outfit/death_commando/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	H.set_species(/datum/species/corporate)
