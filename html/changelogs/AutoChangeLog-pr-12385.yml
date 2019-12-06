@@ -1,4 +1,0 @@
-author: "Neotw"
-delete-after: True
-changes: 
-  - bugfix: "Fixed autodoc making beep beeep bep when a ghost ctrl click it"
