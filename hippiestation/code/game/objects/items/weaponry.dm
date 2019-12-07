@@ -243,7 +243,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
 	can_charge = FALSE //Can it be charged in a recharger?
-	dead_cell = FALSE
 	cell_type = /obj/item/stock_parts/cell{charge = 0; maxcharge = 600}
 	slot_flags = ITEM_SLOT_BELT
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode/spec, /obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser)
@@ -280,7 +279,7 @@
 	projectile_type = /obj/item/projectile/bullet/flak_ball
 	fire_sound = 'sound/weapons/laser.ogg'
 
-/obj/item/projectile/bullet/pellet/flak_shard
+/obj/item/projectile/bullet/flak_ball
 	name = "flak shard"
 	damage = 5
 	icon_state = "flak"
@@ -289,6 +288,7 @@
 	hitsound = 'sound/weapons/sear.ogg'
 	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
 	ricochet_chance = 0
+	speed = 1.2
 
 /obj/item/gun/ballistic/flak_cannon/attack(mob/living/target, mob/living/user)
 	. = ..()
@@ -298,7 +298,8 @@
 /obj/item/gun/energy/flak_cannon/attackby(obj/item/A, mob/user, params)
 	if(istype(A,/obj/item/stack/sheet/metal))
 		if(A.use(10))
-			to_chat(user, "<span class='notice'>The [src] gobbles up the metal.</span>")
+			to_chat(user, "<span class='notice'>The [src]'s intake port hungrily gobbles up the [A].</span>")
+			src.cell.use(100)
 		else
 			to_chat(user, "<span class='warning'>The intake will not accept any less than ten sheets !</span>")
 			return
