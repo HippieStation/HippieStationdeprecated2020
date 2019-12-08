@@ -6,7 +6,7 @@
 /datum/species/dwarf
 	name = "Dwarf"
 	id = "dwarf"
-	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS)
+	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,NO_UNDERWEAR)
 	default_features = list("mcolor" = "FFF", "wings" = "None")
 	use_skintones = 1
 	disliked_food = GROSS | RAW
@@ -27,8 +27,10 @@
 	return ..()
 
 /datum/species/dwarf/on_species_gain(mob/living/carbon/human/C, datum/species/old_species, pref_load)
-	var/dwarf_hair = pick("Beard (Full)", "Beard (Dwarf)", "Beard (Very Long)")
-	C.facial_hair_style = dwarf_hair
+	var/dwarf_hair = pick("Bald", "Skinhead", "Dandy Pompadour")
+	var/dwarf_beard = pick("Beard (Dwarf)") // you know it'd be cool if this actually worked with more than one beard
+	C.hair_style = dwarf_hair
+	C.facial_hair_style = dwarf_beard
 	C.draw_hippie_parts()
 	. = ..()
 	C.remove_all_languages()
@@ -51,7 +53,7 @@
 	if(notDrunkEnoughTime < world.time)
 		dwarfDrunkness--
 		notDrunkEnoughTime = world.time + DRUNK_ALERT_TIME_OFFSET + rand(0, DRUNK_ALERT_TIME_OFFSET/2) // between 10 and 15 seconds
-		switch(dwarfDrunkness) 
+		switch(dwarfDrunkness)
 			if(0 to 30) // too low, harmful
 				H.adjustBruteLoss(10)
 				H.adjustStaminaLoss(80)
@@ -70,6 +72,8 @@
 					to_chat(H, "<span class='danger'>You feel quite thirsty. A good beverage wouldn't hurt.</span>")
 			// Else nothing happens
 
+/datum/species/dwarf/random_name(gender,unique,lastname)
+	return dwarf_name()
 
 #undef DWARF_ALCOHOL_RATE
-			
+
