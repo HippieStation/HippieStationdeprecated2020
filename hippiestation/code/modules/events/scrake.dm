@@ -2,6 +2,7 @@
 	name = "Scrake attack"
 	typepath = /datum/round_event/ghost_role/scrake
 	max_occurrences = 1
+	weight = 5
 
 /datum/round_event/ghost_role/scrake
 	role_name = "Scrake zombie"
