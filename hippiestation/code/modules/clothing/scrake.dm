@@ -27,6 +27,7 @@
 		user.hair_color = "000"
 		user.regenerate_icons()
 		user.name = "Scrake"
+		user.name_override = "Scrake"
 		var/datum/component/footstep/FS = user.GetComponent(/datum/component/footstep)
 		FS.volume = 2.0 //big stomper
 
