@@ -1,6 +1,0 @@
-author: "HideAndSeekLOGIC"
-delete-after: True
-changes: 
-  - rscadd: "Lathes and Mechfabs now have a random chance to set things on fire around them, scaling quadratically with the part tier."
-  - rscadd: "Engineers can now percussively maintain the machines to temporarily stop these malfunctions entirely"
-  - code_imp: "Added a function similar to `isInSight` called `isNotBlocked`, which just replaces `density` with `opacity`"
