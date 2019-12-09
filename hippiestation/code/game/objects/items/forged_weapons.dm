@@ -67,7 +67,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	sharpness = IS_SHARP_ACCURATE
 	attack_verb = list("poked", "prodded", "stabbed", "pierced", "gashed", "punctured")
-
+	embedding = list("embed_chance" = 30, "embedded_pain_multiplier" = 0.25, "embedded_fall_pain_multiplier" = 1, "embedded_impact_pain_multiplier" = 0.75, "embedded_unsafe_removal_pain_multiplier" = 1.25)
 
 /obj/item/forged/melee/sword
 	name = "forged sword"
@@ -82,7 +82,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	sharpness = IS_SHARP
 	attack_verb = list("slashed", "sliced", "stabbed", "pierced", "diced", "run-through")
-
+	embedding = list("embed_chance" = 10, "embedded_pain_multiplier" = 1.25, "embedded_fall_pain_multiplier" = 1.5, "embedded_impact_pain_multiplier" = 1.2, "embedded_unsafe_removal_pain_multiplier" = 1.5)
 
 /obj/item/forged/melee/mace
 	name = "forged mace"
@@ -97,6 +97,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	sharpness = IS_BLUNT
 	attack_verb = list("beaten", "bludgeoned")
+	embedding = list("embed_chance" = 1, "embedded_pain_multiplier" = 2, "embedded_fall_pain_multiplier" = 2.5, "embedded_impact_pain_multiplier" = 3, "embedded_unsafe_removal_pain_multiplier" = 2.5)
 	armour_penetration = 5
 
 
@@ -174,7 +175,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	sharpness = IS_SHARP
 	attack_verb = list("gored", "impaled", "stabbed", "slashed", "torn", "run-through")
-
+	embedding = list("embed_chance" = 5, "embedded_pain_multiplier" = 1.75, "embedded_fall_pain_multiplier" = 2, "embedded_impact_pain_multiplier" = 2, "embedded_unsafe_removal_pain_multiplier" = 1.5)
 
 /obj/item/twohanded/forged/greatsword/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	..()

@@ -130,3 +130,6 @@
 			H.dna.species.attack_verb = initial(H.dna.species.attack_verb)
 			H.dna.species.attack_sound = initial(H.dna.species.attack_sound)
 			H.dna.species.miss_sound = initial(H.dna.species.miss_sound)
+
+/datum/reagent/bluespace
+	can_forge = FALSE

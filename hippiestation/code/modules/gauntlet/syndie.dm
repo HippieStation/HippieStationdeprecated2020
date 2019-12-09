@@ -222,6 +222,9 @@
 	if(super_leaping)
 		return
 	return ..()
+	
+/mob/living/carbon/prevent_content_explosion()
+	return super_leaping || ..()
 
 /mob/living/carbon/Bump(atom/A)
 	. = ..()

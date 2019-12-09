@@ -32,7 +32,6 @@
 	AddComponent(/datum/component/butchering, 30, 95, 5)
 	set_light(brightness)
 	START_PROCESSING(SSobj, src)
-	. = ..()
 
 /obj/item/melee/hfblade/Destroy()
 	STOP_PROCESSING(SSobj, src)

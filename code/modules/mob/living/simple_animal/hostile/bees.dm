@@ -19,7 +19,6 @@
 	gender = FEMALE
 	speak_emote = list("buzzes")
 	emote_hear = list("buzzes")
-	turns_per_move = 0
 	melee_damage_lower = 1
 	melee_damage_upper = 1
 	attacktext = "stings"
@@ -30,7 +29,8 @@
 	health = 10
 	spacewalk = TRUE
 	faction = list("hostile")
-	move_to_delay = 0
+	move_to_delay = 1
+	turns_per_move = 3
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
@@ -82,6 +82,16 @@
 	if(!beehome)
 		. += "<span class='warning'>This bee is homeless!</span>"
 
+/mob/living/simple_animal/hostile/poison/bees/ListTargets() // Bee processing is expessive, so we override them finding targets here.
+	if(!search_objects) //In case we want to have purely hostile bees
+		return ..()
+	else
+		. = list() // The following code is only very slightly slower than just returning oview(vision_range, targets_from), but it saves us much more work down the line
+		var/list/searched_for = oview(vision_range, targets_from)
+		for(var/obj/A in searched_for)
+			. += A
+		for(var/mob/A in searched_for)
+			. += A
 
 /mob/living/simple_animal/hostile/poison/bees/proc/generate_bee_visuals()
 	cut_overlays()

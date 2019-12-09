@@ -72,24 +72,7 @@ matrix:
         - mysql -u root -e 'CREATE DATABASE tg_travis_prefixed;'
         - mysql -u root tg_travis_prefixed < SQL/tgstation_schema_prefixed.sql
         - tools/travis/build_bsql.sh
+        - tools/travis/build_quickwrite.sh
       script:
         - tools/travis/dm.sh -DTRAVISBUILDING hippiestation.dme || travis_terminate 1
         - tools/travis/run_server.sh
-
-    - name: "Generate Documentation"
-      # Only run for non-PR commits to the real master branch.
-      if: branch = master AND head_branch IS blank
-      install:
-        - tools/travis/install_spaceman_dmm.sh dmdoc
-      before_script:
-        # Travis checks out a hash, try to get back on a branch.
-        - git checkout $TRAVIS_BRANCH || true
-      script:
-        - ~/dmdoc
-        - touch dmdoc/.nojekyll
-      deploy:
-        provider: pages
-        skip_cleanup: true
-        local_dir: dmdoc
-        github_token: $DMDOC_GITHUB_TOKEN
-        fqdn: codedocs.tgstation13.org

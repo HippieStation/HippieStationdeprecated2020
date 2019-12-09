@@ -75,6 +75,15 @@
 		to_chat(src, "<span class='danger'>The Github URL is not set in the server configuration.</span>")
 	return
 
+/client/verb/statbus()
+	set name = "statbus"
+	set desc = "View Statbus"
+	set hidden = 1
+	if(alert("This will open Statbus in your browser. Are you sure?",,"Yes","No")!="Yes")
+		return
+	DIRECT_OUTPUT(src, link("https://statbus.hippiestation.com"))
+	return
+
 /client/verb/hotkeys_help()
 	set name = "hotkeys-help"
 	set category = "OOC"

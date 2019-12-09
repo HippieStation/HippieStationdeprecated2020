@@ -28,9 +28,10 @@
 	var/list/fakes = list()
 	if(isguardian(user))
 		var/mob/living/simple_animal/hostile/guardian/G = user
-		immune |= G.summoner
-		for(var/mob/living/simple_animal/hostile/guardian/GG in G.summoner.hasparasites())
-			immune |= GG
+		if(G.summoner?.current)
+			immune |= G.summoner.current
+			for(var/mob/living/simple_animal/hostile/guardian/GG in G.summoner.current.hasparasites())
+				immune |= GG
 	for(var/mob/living/L in immune)
 		SEND_SOUND(L, sound('hippiestation/sound/effects/kingcrimson_start.ogg'))
 		var/image/I = image(icon = 'icons/effects/blood.dmi', icon_state = null, loc = L)
@@ -55,8 +56,9 @@
 		L.remove_alt_appearance("king_crimson")
 		L.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/king_crimson, "king_crimson", I, NONE, immune)
 	sleep(length)
-	var/mob/living/simple_animal/hostile/illusion/doppelganger/DP = pick(fakes)
-	playsound(DP.loc, 'hippiestation/sound/effects/kingcrimson_end.ogg', 100)
+	if(LAZYLEN(fakes))
+		var/mob/living/simple_animal/hostile/illusion/doppelganger/DP = pick(fakes)
+		playsound(DP.loc, 'hippiestation/sound/effects/kingcrimson_end.ogg', 100)
 	for(var/mob/living/simple_animal/hostile/illusion/doppelganger/DG in fakes)
 		DG.death()
 	for(var/mob/living/L in immune)

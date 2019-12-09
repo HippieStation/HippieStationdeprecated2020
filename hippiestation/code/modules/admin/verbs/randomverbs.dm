@@ -9,7 +9,7 @@
 	if(!check_rights(R_ADMIN))	return
 
 	if(SSshuttle.emergency.mode == SHUTTLE_DISABLED)
-		to_chat(usr, "<span class='warning'>Error, shuttle is already disabled.</span>")
+		to_chat(usr, "<span class='warning'>Error, shuttle is already disabled.</span>", confidential = TRUE)
 		return
 
 	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes") return
@@ -29,7 +29,7 @@
 	if(!check_rights(R_ADMIN))	return
 
 	if(SSshuttle.emergency.mode != SHUTTLE_DISABLED)
-		to_chat(usr, "<span class='warning'>Error, shuttle not disabled.</span>")
+		to_chat(usr, "<span class='warning'>Error, shuttle not disabled.</span>", confidential = TRUE)
 		return
 
 	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes") return

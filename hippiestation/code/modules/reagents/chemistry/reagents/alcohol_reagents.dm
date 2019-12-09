@@ -210,3 +210,28 @@
 			M.adjustOxyLoss(-0.25, 0)
 			. = 1
 		..()
+/datum/reagent/consumable/ethanol/SMcider
+	name = "Supermatter cider"
+	description = "Who couldve predicted liquified Supermatter Shards were not only toxic, but still highly radioactive!"
+	color = "#FFF542"
+	boozepwr = 500
+	taste_description = "Tastes like dust."
+	taste_mult = 2
+	glass_name = "Supermatter cider"
+	glass_desc = "Careful Freeman, those are quite fragile!"
+
+/datum/reagent/consumable/ethanol/SMcider/on_mob_life(mob/living/carbon/M)
+	if(istype(M))
+		switch(current_cycle)
+			if(1 to 15)
+				M.adjustBrainLoss(5)
+				if(prob(15))
+					M.vomit(20)
+			if(20 to INFINITY)
+				M.adjustBrainLoss(5)
+				if(prob(30))
+					M.vomit(20, 0, 8)
+					if(prob(10))
+						M.spew_organ()
+						M.dust()
+	..()

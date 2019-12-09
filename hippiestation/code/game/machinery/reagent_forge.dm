@@ -43,6 +43,11 @@
 			return
 
 		if(R.reagent_type)
+			var/datum/reagent/RE = R.reagent_type
+			if(!initial(RE.can_forge))
+				to_chat(user, "<span class='warning'>[initial(RE.name)] cannot be forged!</span>")
+				return
+
 			if(!currently_forging || !currently_forging.type)
 				var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 				if(R.amount <= 0)//this shouldn't exist

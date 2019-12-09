@@ -18,17 +18,17 @@
 	return ..() && master_stats.range >= 3
 
 /datum/guardian_ability/major/frenzy/Manifest()
-	if(guardian.summoner)
-		guardian.summoner.add_movespeed_modifier("frenzy", update=TRUE, priority=100, multiplicative_slowdown=-1.5)
+	if(guardian.summoner?.current)
+		guardian.summoner.current.add_movespeed_modifier("frenzy", update=TRUE, priority=100, multiplicative_slowdown=-1.5)
 
 /datum/guardian_ability/major/frenzy/Recall()	
-	if(guardian.summoner)
-		guardian.summoner.remove_movespeed_modifier("frenzy")
+	if(guardian.summoner?.current)
+		guardian.summoner.current.remove_movespeed_modifier("frenzy")
 
 /datum/guardian_ability/major/frenzy/RangedAttack(atom/target)
 	if(isliving(target) && world.time >= next_rush && guardian.is_deployed())
 		var/mob/living/L = target
-		if(get_dist_euclidian(guardian.summoner, L) > master_stats.range)
+		if(guardian.summoner?.current && get_dist_euclidian(guardian.summoner.current, L) > master_stats.range)
 			to_chat(guardian, "<span class='danger italics'>[L] is out of your range!</span>")
 			return
 		playsound(guardian, 'hippiestation/sound/effects/vector_rush.ogg', 100, FALSE)
