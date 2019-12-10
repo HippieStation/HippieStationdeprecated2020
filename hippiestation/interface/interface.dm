@@ -84,25 +84,6 @@
 	DIRECT_OUTPUT(src, link("https://statbus.hippiestation.com"))
 	return
 
-/client/verb/hotkeys_help()
-	set name = "hotkeys-help"
-	set category = "OOC"
-
-	var/adminhotkeys = {"<font color='purple'>
-Admin:
-\tF3 = asay
-\tF4 = msay
-\tF5 = Aghost (admin-ghost)
-\tF6 = player-panel
-\tF7 = admin-pm
-\tF8 = Invisimin
-</font>"}
-
-	mob.hotkey_help()
-
-	if(holder)
-		to_chat(src, adminhotkeys)
-
 /client/verb/changelog()
 	set name = "Changelog"
 	set category = "OOC"
