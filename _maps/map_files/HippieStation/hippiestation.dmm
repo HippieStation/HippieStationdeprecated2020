@@ -761,7 +761,7 @@
 /turf/open/floor/plasteel,
 /area/security/prison)
 "acl" = (
-/obj/machinery/holopad,
+/obj/machinery/holopad/secure,
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
 "acm" = (
@@ -2911,11 +2911,11 @@
 /area/security/main)
 "agN" = (
 /obj/structure/cable,
-/obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
+/obj/machinery/holopad/secure,
 /turf/open/floor/plasteel,
 /area/security/main)
 "agO" = (
@@ -3051,11 +3051,11 @@
 /area/security/warden)
 "ahg" = (
 /obj/structure/cable,
-/obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/holopad/secure,
 /turf/open/floor/plasteel/showroomfloor,
 /area/security/warden)
 "ahh" = (
@@ -15177,6 +15177,13 @@
 /area/hydroponics)
 "aQG" = (
 /obj/machinery/light/small,
+/obj/structure/closet/crate/secure/hydroponics,
+/obj/item/honey_frame,
+/obj/item/honey_frame,
+/obj/item/honey_frame,
+/obj/item/queen_bee/bought,
+/obj/item/melee/flyswatter,
+/obj/structure/beebox/unwrenched,
 /turf/open/floor/plasteel,
 /area/hydroponics)
 "aQH" = (
@@ -16865,6 +16872,9 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -5;
 	pixel_y = 30
+	},
+/obj/machinery/grill{
+	dir = 2
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/crew_quarters/kitchen)
@@ -20756,7 +20766,7 @@
 /area/ai_monitored/turret_protected/ai_upload)
 "bhP" = (
 /obj/structure/cable,
-/obj/machinery/holopad,
+/obj/machinery/holopad/secure,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai_upload)
 "bhQ" = (
@@ -22589,7 +22599,7 @@
 /area/crew_quarters/heads/captain)
 "bny" = (
 /obj/structure/cable,
-/obj/machinery/holopad,
+/obj/machinery/holopad/secure,
 /turf/open/floor/wood,
 /area/crew_quarters/heads/captain)
 "bnz" = (
@@ -46871,11 +46881,11 @@
 /area/ai_monitored/turret_protected/aisat_interior)
 "cHz" = (
 /obj/structure/cable,
-/obj/machinery/holopad,
 /obj/effect/landmark/start/cyborg,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
+/obj/machinery/holopad/secure,
 /turf/open/floor/plasteel/grimy,
 /area/ai_monitored/turret_protected/aisat_interior)
 "cHA" = (
@@ -47324,8 +47334,8 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/atmos)
 "cIw" = (
-/obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/machinery/holopad/secure,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/atmos)
 "cIx" = (
@@ -47376,13 +47386,13 @@
 /area/ai_monitored/turret_protected/aisat_interior)
 "cIA" = (
 /obj/structure/cable,
-/obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
+/obj/machinery/holopad/secure,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat_interior)
 "cIB" = (
@@ -47418,10 +47428,10 @@
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/service)
 "cID" = (
-/obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/machinery/holopad/secure,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/service)
 "cIE" = (
@@ -47897,10 +47907,10 @@
 /area/ai_monitored/turret_protected/aisat/hallway)
 "cJM" = (
 /obj/structure/cable,
-/obj/machinery/holopad,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/holopad/secure,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/aisat/hallway)
 "cJO" = (
@@ -48282,7 +48292,6 @@
 /area/ai_monitored/turret_protected/ai)
 "cKL" = (
 /obj/structure/cable,
-/obj/machinery/holopad,
 /obj/machinery/flasher{
 	id = "AI";
 	pixel_y = -24
@@ -48290,6 +48299,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/holopad/secure,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/turret_protected/ai)
 "cKM" = (
@@ -50386,6 +50396,10 @@
 /area/crew_quarters/toilet/locker)
 "flA" = (
 /obj/structure/cable,
+/mob/living/simple_animal/pet/dog/pug{
+	desc = "It's the HOS's beloved pet pug.";
+	name = "\improper Handcuffs"
+	},
 /turf/open/floor/carpet,
 /area/crew_quarters/heads/hos)
 "flE" = (
@@ -59161,13 +59175,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/port/fore)
-"tWi" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/structure/beebox/premade,
-/turf/open/floor/plasteel,
-/area/hydroponics)
 "tWk" = (
 /obj/machinery/door/airlock/external{
 	name = "Engineering External Access";
@@ -102447,7 +102454,7 @@ aQJ
 aLR
 aTq
 aUI
-tWi
+kWp
 aXV
 aZB
 aWv
@@ -102704,7 +102711,7 @@ aQK
 aLR
 aTp
 aUI
-tWi
+kWp
 aXW
 aZC
 aWv

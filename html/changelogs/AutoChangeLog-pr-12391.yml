@@ -1,0 +1,5 @@
+author: "Couls and ninjanomnom"
+delete-after: True
+changes: 
+  - rscadd: "You can now customize hotkeys."
+  - rscadd: "Also you can bind emotes to keys."

@@ -6,6 +6,7 @@
 	message_mime = "acts out a scream."
 	only_forced_audio = FALSE
 	vary = TRUE
+	default_keybind = "CtrlS"
 
 /datum/emote/living/scream/get_sound(mob/living/user)
 	LAZYINITLIST(user.alternate_screams)

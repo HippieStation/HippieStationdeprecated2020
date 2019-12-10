@@ -2,6 +2,7 @@
 #define TRAIT_WORTHY 	"worthy"
 #define TRAIT_ONEWAYROAD	"one-way road"
 #define TRAIT_TIMELESS	"timeless"
+#define TRAIT_BOOT_OF_LIFE "boot_of_life_trait"
 
 #define YEET_TRAIT "yeet_trait"
 #define BLUESPACE_STONE_TRAIT "bluespace_stone_trait"
