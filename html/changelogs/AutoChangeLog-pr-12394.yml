@@ -1,0 +1,5 @@
+author: "yoyobatty"
+delete-after: True
+changes: 
+  - rscadd: "Scrake gets a spawn announcement"
+  - balance: "Scrake has been slightly nerfed to make it slightly more fair to the crew"
