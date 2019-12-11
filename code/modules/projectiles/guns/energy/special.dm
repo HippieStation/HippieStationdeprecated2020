@@ -349,7 +349,7 @@
 	desc = "Greytide-issue taser gun, it is able to fire four stun rounds at once but the other four tasers will be destroyed."
 	icon = "hippiestation/icons/obj/tasertron.dmi"
 	icon_state = "tasertron"
-	item_state = "plasmacutter" //placeholder I guess
+	item_state = "tasertron"
 	cell_type = /obj/item/stock_parts/cell{charge = 400; maxcharge = 400}
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode/four)
 	automatic_charge_overlays = TRUE
@@ -361,6 +361,8 @@
 	can_charge = FALSE
 	burst_size = 4
 	use_cyborg_cell = FALSE
+	lefthand_file = 'hippiestation/icons/mob/inhands/weapons/lefthand_tasertron.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/weapons/righthand_tasertron.dmi'
 
 /obj/item/ammo_casing/energy/electrode/five
 	e_cost = 400 //The amount of energy a cell needs to expend to create this shot.
