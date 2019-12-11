@@ -351,16 +351,35 @@
 	icon_state = "tasertron"
 	item_state = "plasmacutter" //placeholder I guess
 	cell_type = /obj/item/stock_parts/cell{charge = 400; maxcharge = 400}
-	ammo_type = list(/obj/item/ammo_casing/energy/electrode, /obj/item/ammo_casing/energy/electrode, /obj/item/ammo_casing/energy/electrode, /obj/item/ammo_casing/energy/electrode)
-	charge_sections = 4
+	ammo_type = list(/obj/item/ammo_casing/energy/electrode/four)
 	automatic_charge_overlays = TRUE
-	select = 1
-	old_ratio = 1
+	select = TRUE
+	old_ratio = TRUE
 	ammo_x_offset = 4
-	shaded_charge = 0
+	shaded_charge = FALSE
 	can_flashlight = FALSE
 	can_charge = FALSE
+	burst_size = 4
 	use_cyborg_cell = FALSE
+
+/obj/item/ammo_casing/energy/electrode/five
+	e_cost = 400 //The amount of energy a cell needs to expend to create this shot.
+	projectile_type = /obj/item/projectile/energy/electrode/four
+	variance = 1
+
+/obj/item/projectile/energy/electrode/four
+	name = "electrode"
+	icon_state = "spark"
+	color = "#FFFF00"
+	nodamage = FALSE
+	paralyze = 100
+	stutter = 5
+	jitter = 20
+	hitsound = 'sound/weapons/taserhit.ogg'
+	range = 12
+	tracer_type = /obj/effect/projectile/tracer/stun
+	muzzle_type = /obj/effect/projectile/muzzle/stun
+	impact_type = /obj/effect/projectile/impact/stun
 
 		var/obj/item/gun/energy/e_gun/advtaser/new_item = new(user.loc)
 	to_chat(user, "<span class='notice'>The taser guns melt upon firing, but you manage to save at least one [src]!</span>")
