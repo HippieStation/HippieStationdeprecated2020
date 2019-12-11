@@ -666,7 +666,9 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 
 	heart.beating = !status
 
+/mob/living/carbon/proc/inflate_big()
 	if(NUTRITION_LEVEL_FAT)
-/mob/living/carbon/proc/inflate() //makes fatties appear bigger
+	addtimer(CALLBACK(src, .proc/big, null, null, TRUE, TRUE), 25)
+	var/matrix/M = matrix()
 	M.Scale(1.8, 1.2)
 	animate(src, time = 40, transform = M, easing = SINE_EASING)
