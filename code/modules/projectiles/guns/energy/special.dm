@@ -344,7 +344,7 @@
 	icon_state = "gravity_gun"
 	var/power = 4
 
-/obj/item/gun/energy/fivetaser
+/obj/item/gun/energy/special/fivetaser
 	name = "tasertron"
 	desc = "Greytide-issue taser gun, it is able to fire four stun rounds at once but the other four tasers will be destroyed."
 	icon = "hippiestation/icons/obj/tasertron.dmi"
