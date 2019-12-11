@@ -349,11 +349,20 @@
 	desc = "Greytide-issue taser gun, it is able to fire four stun rounds at once but the other four tasers will be destroyed."
 	icon = "hippiestation/icons/obj/tasertron.dmi"
 	icon_state = "tasertron"
-	item_state = null //the human update icon will use icon_state instead right
+	item_state = "plasmacutter" //placeholder I guess
+	cell_type = /obj/item/stock_parts/cell{charge = 400; maxcharge = 400}
 	ammo_type = list(/obj/item/ammo_casing/energy/electrode, /obj/item/ammo_casing/energy/electrode, /obj/item/ammo_casing/energy/electrode, /obj/item/ammo_casing/energy/electrode)
-	var/select = 1
+	charge_sections = 4
+	automatic_charge_overlays = TRUE
+	select = 1
+	old_ratio = 1
 	ammo_x_offset = 4
 	shaded_charge = 0
 	can_flashlight = FALSE
 	can_charge = FALSE
 	use_cyborg_cell = FALSE
+
+		var/obj/item/gun/energy/e_gun/advtaser/new_item = new(user.loc)
+	to_chat(user, "<span class='notice'>The taser guns melt upon firing, but you manage to save at least one [src]!</span>")
+	qdel(src)
+	user.put_in_hands(new_item)
