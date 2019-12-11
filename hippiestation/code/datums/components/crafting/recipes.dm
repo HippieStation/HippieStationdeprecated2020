@@ -210,7 +210,7 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
-/datum/crafting_recipe/fivetaser
+/datum/crafting_recipe/tasertron
 	name = "tasertron"
 	result = /obj/item/gun/energy/fivetaser
 	reqs = list(/obj/item/stack/cable_coil = 15,
