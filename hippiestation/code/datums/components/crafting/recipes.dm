@@ -209,3 +209,17 @@
 	time = 120
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/fivetaser
+	name = "tasertron"
+	result = /obj/item/gun/energy/e_gun/fivetaser
+	reqs = list(/obj/item/stack/cable_coil = 15,
+				/obj/item/gun/energy/e_gun/advtaser = 4,
+				/obj/item/pipe = 1,
+				/obj/item/ducttape = 1,
+				/obj/item/gun/energy/e_gun/dragnet = 2,
+				/obj/item/stock_parts/cell = 2)
+	tools = list(/obj/item/weldingtool, /obj/item/screwdriver, /obj/item/wirecutters, /obj/item/crowbar)
+	time = 120
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
