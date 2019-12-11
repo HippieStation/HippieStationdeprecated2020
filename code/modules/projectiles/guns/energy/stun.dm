@@ -46,3 +46,14 @@
 	desc = "An integrated disabler that draws from a cyborg's power cell. This weapon contains a limiter to prevent the cyborg's power cell from overheating."
 	can_charge = FALSE
 	use_cyborg_cell = TRUE
+
+/obj/item/gun/energy/e_gun/fivetaser
+	name = "tasertron"
+	desc = "Greytide-issue taser gun, it is able to fire five stun rounds at once but the other five tasers will be destroyed."
+	icon_state = "tasertron"
+	item_state = null //the human update icon will use icon_state instead right
+	ammo_type = list(/obj/item/ammo_casing/energy/electrode)
+	ammo_x_offset = 4
+	can_flashlight = FALSE
+	can_charge = FALSE
+	use_cyborg_cell = FALSE
