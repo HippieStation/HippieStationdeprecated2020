@@ -672,7 +672,7 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 	animate(src, time = 40, transform = M, easing = SINE_EASING)
 
 	var/M.satiety
-	if(M.satiety) = 500
+	if(M.satiety < 500)
 	/mob/living/carbon/gib(no_brain, no_organs, no_bodyparts, safe_gib = FALSE)
 	if(safe_gib)
 		for(var/obj/item/W in src)
