@@ -153,4 +153,4 @@
 	desc = "Greytide-issue taser gun, it is able to fire five stun rounds at once but the other five tasers will be destroyed."
 	icon_state = "tasertron"
 	ammo_x_offset = 4
-	ammo_type = list(/obj/item/ammo_casing/energy/electrode/old)
+	ammo_type = list(/obj/item/ammo_casing/energy/electrode)
