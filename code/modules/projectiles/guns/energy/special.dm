@@ -380,8 +380,3 @@
 	tracer_type = /obj/effect/projectile/tracer/stun
 	muzzle_type = /obj/effect/projectile/muzzle/stun
 	impact_type = /obj/effect/projectile/impact/stun
-
-		var/obj/item/gun/energy/e_gun/advtaser/new_item = new(user.loc)
-	to_chat(user, "<span class='notice'>The taser guns melt upon firing, but you manage to save at least one [src]!</span>")
-	qdel(src)
-	user.put_in_hands(new_item)
