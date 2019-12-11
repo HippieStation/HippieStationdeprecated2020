@@ -216,7 +216,7 @@
 	reqs = list(/obj/item/stack/cable_coil = 15,
 				/obj/item/gun/energy/e_gun/advtaser = 4,
 				/obj/item/pipe = 1,
-				/obj/item/ducttape = 1,
+				/obj/item/stack/ducttape = 5,
 				/obj/item/gun/energy/e_gun/dragnet = 2,
 				/obj/item/stock_parts/cell = 2)
 	tools = list(/obj/item/weldingtool, /obj/item/screwdriver, /obj/item/wirecutters, /obj/item/crowbar)
