@@ -212,7 +212,7 @@
 
 /datum/crafting_recipe/fivetaser
 	name = "tasertron"
-	result = /obj/item/gun/energy/e_gun/fivetaser
+	result = code/modules/projectiles/guns/energy/special/obj/item/gun/energy/e_gun/fivetaser
 	reqs = list(/obj/item/stack/cable_coil = 15,
 				/obj/item/gun/energy/e_gun/advtaser = 4,
 				/obj/item/pipe = 1,
