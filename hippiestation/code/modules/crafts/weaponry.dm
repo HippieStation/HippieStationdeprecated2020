@@ -19,3 +19,14 @@
 	to_chat(user, "<span class='notice'>You take the duct tape off the [src].</span>")
 	qdel(src)
 	user.put_in_hands(new_item)
+
+/obj/item/gun/energy/e_gun/fivetaser
+	name = "tasertron"
+	desc = "Greytide-issue taser gun, it is able to fire five stun rounds at once but the other five tasers will be destroyed."
+	icon_state = "tasertron"
+	item_state = null //the human update icon will use icon_state instead right
+	ammo_type = list(/obj/item/ammo_casing/energy/electrode)
+	ammo_x_offset = 4
+	can_flashlight = FALSE
+	can_charge = FALSE
+	use_cyborg_cell = FALSE
