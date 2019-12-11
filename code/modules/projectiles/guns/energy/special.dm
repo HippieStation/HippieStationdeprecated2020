@@ -347,10 +347,13 @@
 /obj/item/gun/energy/e_gun/fivetaser
 	name = "tasertron"
 	desc = "Greytide-issue taser gun, it is able to fire five stun rounds at once but the other five tasers will be destroyed."
+	icon = "hippiestation/icons/obj/tasertron.dmi"
 	icon_state = "tasertron"
 	item_state = null //the human update icon will use icon_state instead right
-	ammo_type = list(/obj/item/ammo_casing/energy/electrode)
+	ammo_type = list(/obj/item/ammo_casing/energy/electrode, /obj/item/ammo_casing/energy/electrode, /obj/item/ammo_casing/energy/electrode, /obj/item/ammo_casing/energy/electrode)
+	var/select = 1
 	ammo_x_offset = 4
+	shaded_charge = 0
 	can_flashlight = FALSE
 	can_charge = FALSE
 	use_cyborg_cell = FALSE
