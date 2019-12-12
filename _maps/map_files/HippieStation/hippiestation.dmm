@@ -19349,7 +19349,10 @@
 /turf/closed/wall/r_wall,
 /area/security/detectives_office)
 "bdE" = (
-/obj/structure/closet/secure_closet/detective,
+/obj/structure/closet/secure_closet/detective{
+	anchored = 1;
+	max_integrity = 250
+	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -20340,7 +20343,8 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/security{
 	name = "Detective's Office";
-	req_access_txt = "4"
+	req_access_txt = "4";
+	security_level = 6
 	},
 /turf/open/floor/plasteel/grimy,
 /area/security/detectives_office)
@@ -20660,7 +20664,8 @@
 "bhB" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Detective Maintenance";
-	req_access_txt = "4"
+	req_access_txt = "4";
+	security_level = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -20709,6 +20714,7 @@
 	id = "kanyewest";
 	name = "privacy shutters"
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/security/detectives_office)
 "bhH" = (
@@ -22515,6 +22521,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bnj" = (
@@ -23707,6 +23714,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
+/obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/hallway/primary/central)
 "bqt" = (
@@ -60347,6 +60355,11 @@
 /obj/item/pen,
 /turf/open/floor/wood,
 /area/hallway/secondary/entry)
+"whw" = (
+/obj/effect/landmark/event_spawn,
+/obj/structure/cable,
+/turf/open/floor/plasteel,
+/area/hallway/primary/central)
 "wic" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -86271,7 +86284,7 @@ aNa
 aNa
 hQl
 aNa
-aNa
+brR
 aVT
 bkc
 blC
@@ -86528,12 +86541,12 @@ aNa
 aNa
 hQl
 aNa
-aNa
-aRJ
-aNa
-aNa
+brR
+whw
+brR
+brR
 bni
-aNa
+brR
 bqs
 brQ
 btp
