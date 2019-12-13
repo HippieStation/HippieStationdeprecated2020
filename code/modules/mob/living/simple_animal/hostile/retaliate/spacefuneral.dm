@@ -1,12 +1,6 @@
 /mob/living/simple_animal/hostile/space_funeral
 	icon = 'icons/mob/spacefuneral.dmi'
 	speak = list("gibbers")
-	health = 1
-	maxHealth = 1
-	melee_damage_lower = 1
-	melee_damage_upper = 2
-	attacktext = "pokes"
-	attack_sound = 'sound/weapons/bite.ogg'
 	faction = list("funeral")
 
 
