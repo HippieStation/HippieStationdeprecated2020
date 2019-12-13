@@ -235,8 +235,9 @@
 /obj/item/gun/energy/flak_cannon
 	name = "flak cannon"
 	desc = "The somewhat cumbersome Flak Cannon uses jagged shards of metal for ammunition. Don’t let its lack of pyrotechnic flash fool you: a little shrapnel can dish out a hell of a lot of damage."
-	icon_state = "shotgun"
 	item_state = "shotgun"
+	icon = 'hippiestation/icons/obj/guns/projectile.dmi'
+	icon_state = "flak"
 	fire_sound = 'sound/weapons/shotgunshot.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 90
@@ -245,13 +246,13 @@
 	can_charge = FALSE //Can it be charged in a recharger?
 	cell_type = /obj/item/stock_parts/cell{charge = 0; maxcharge = 600}
 	slot_flags = ITEM_SLOT_BELT
-	ammo_type = list(/obj/item/ammo_casing/energy/electrode/spec, /obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser)
+	ammo_type = /obj/item/ammo_casing/energy/flak
 	attack_verb = list("clobbered", "whacked", "clubbed", "donked", "bopped")
 
 /obj/item/ammo_casing/energy/flak
 	name = "metal shard clump"
 	desc = "A bunch of tightly clumped together metal shard. Beware tetanus."
-	e_cost = 100 //The amount of energy a cell needs to expend to create this shot.
+	e_cost = 250 //The amount of energy a cell needs to expend to create this shot.
 	select_name = "flak"
 	icon_state = "s-casing-live"
 	projectile_type = /obj/item/projectile/bullet/pellet/flak_shard
@@ -269,37 +270,17 @@
 	ricochets_max = 10
 	ricochet_chance = 100
 
-/obj/item/ammo_casing/energy/flak_ball
-	name = "flak ball pair"
-	desc = "Two brittle metallic balls, usually shot by a flak cannon individually."
-	desc = "A bunch of tightly clumped together metal shard. Beware tetanus."
-	e_cost = 300 //The amount of energy a cell needs to expend to create this shot.
-	select_name = "ball"
-	icon_state = "s-casing-live"
-	projectile_type = /obj/item/projectile/bullet/flak_ball
-	fire_sound = 'sound/weapons/laser.ogg'
-
-/obj/item/projectile/bullet/flak_ball
-	name = "flak shard"
-	damage = 5
-	icon_state = "flak"
-	pass_flags = PASSTABLE
-	damage_type = BRUTE
-	hitsound = 'sound/weapons/sear.ogg'
-	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
-	ricochet_chance = 0
-	speed = 1.2
-
-/obj/item/gun/ballistic/flak_cannon/attack(mob/living/target, mob/living/user)
+/obj/item/gun/ballistic/flak_cannon/attack(mob/living/target, mob/living/user, cell_type)
 	. = ..()
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	target.throw_at(throw_target, rand(1,2), 7, user)
 
 /obj/item/gun/energy/flak_cannon/attackby(obj/item/A, mob/user, params)
 	if(istype(A,/obj/item/stack/sheet/metal))
-		if(A.use(10))
+		if(A.use(10) || cell_type.charge != 1000) // || (cell not full)
 			to_chat(user, "<span class='notice'>The [src]'s intake port hungrily gobbles up the [A].</span>")
-			src.cell.use(100)
+			var/obj/item/stock_parts/cell/S = cell_type
+			S.give(100)
 		else
 			to_chat(user, "<span class='warning'>The intake will not accept any less than ten sheets !</span>")
 			return
