@@ -1,11 +1,6 @@
 /mob/living/simple_animal/hostile/space_funeral
-	name = "bloodhound"
-	desc = "A sanity-destroying dog-like creature."
 	icon = 'icons/mob/spacefuneral.dmi'
 	speak = list("gibbers")
-	icon_state = "bloodhound"
-	icon_living = "bloodhound"
-	icon_dead = "bloodhound-dead"
 	health = 1
 	maxHealth = 1
 	melee_damage_lower = 1
