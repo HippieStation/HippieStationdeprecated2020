@@ -7,8 +7,10 @@ SUBSYSTEM_DEF(parallax)
 	var/list/currentrun
 	var/planet_x_offset = 128
 	var/planet_y_offset = 128
+	var/random_layer
+	var/random_parallax_color
+	
 /datum/controller/subsystem/parallax/Initialize(timeofday)
-	. = ..()
 	. = ..()
 	if(prob(70))	//70% chance to pick a special extra layer
 		random_layer = pick(/obj/screen/parallax_layer/random/space_gas, /obj/screen/parallax_layer/random/asteroids)
