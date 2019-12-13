@@ -352,10 +352,10 @@
 		else
 			user.visible_message("<span class='warning'>[user]'s shields fail to deflect [attack_text].</span>")
 			return FALSE
-		if(damage && attack_type == PROJECTILE_ATTACK && P.damage_type != STAMINA && prob(50))
-			var/datum/effect_system/spark_spread/s = new
-			s.set_up(1, 1, src)
-			s.start()
+	if(damage && attack_type == PROJECTILE_ATTACK && P.damage_type != STAMINA && prob(50))
+		var/datum/effect_system/spark_spread/s = new
+		s.set_up(1, 1, src)
+		s.start()
 	kill_cloak()
 	if(prob(damage*1.5) && user.health < HEALTH_THRESHOLD_CRIT + 50)
 		heal_nano(user)
