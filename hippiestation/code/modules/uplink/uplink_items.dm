@@ -47,6 +47,9 @@
 	exclude_modes = list(/datum/game_mode/infiltration)
 	cost = 10
 
+/datum/uplink_item/implants/stealthimplant
+	cost = 5
+
 /* Botany */
 /datum/uplink_item/role_restricted/lawnmower
 	name = "Gas powered lawn mower"
