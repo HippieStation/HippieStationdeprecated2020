@@ -1,4 +1,0 @@
-author: "zamolxius"
-delete-after: True
-changes: 
-  - bugfix: "fixed being able to continuously sell and buy BZ canisters at a profit"
