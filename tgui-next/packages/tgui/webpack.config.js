@@ -20,6 +20,9 @@ module.exports = (env = {}, argv) => {
     entry: {
       tgui: [
         path.resolve(__dirname, './styles/main.scss'),
+        path.resolve(__dirname, './styles/themes/ntos.scss'),
+        path.resolve(__dirname, './styles/themes/syndicate.scss'),
+        path.resolve(__dirname, './styles/themes/retro.scss'),
         path.resolve(__dirname, './index.js'),
       ],
     },

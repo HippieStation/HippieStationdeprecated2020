@@ -514,7 +514,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	if(!stats.ability || !stats.ability.has_mode)
 		to_chat(src, "<span class='danger'><B>You don't have another mode!</span></B>")
 		return
-	if(stats.ability.recall_mode && (loc != summoner))
+	if(stats.ability.recall_mode && is_deployed())
 		to_chat(src, "<span class='danger'><B>You have to be recalled to toggle modes!</span></B>")
 		return
 	if(stats.ability.mode)

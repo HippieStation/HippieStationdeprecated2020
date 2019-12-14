@@ -41,6 +41,20 @@
 		mutant_bodyparts -= "waggingtail_human"
 		mutant_bodyparts |= "tail_human"
 	H.update_body()
+	
+/datum/species/human/felinid/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/M)
+	.=..()
+	if(chem.type == /datum/reagent/consumable/coco || chem.type == /datum/reagent/consumable/hot_coco || chem.type == /datum/reagent/consumable/milk/chocolate_milk)
+		if(prob(20))
+			M.adjust_disgust(20)
+		if(prob(5))
+			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>")
+		if(prob(10))
+			var/sick_message = pick("Your insides revolt at the presence of lethal chocolate!", "You feel nauseous.", "You're not feeling so good.","You feel like your insides are melting.","You feel ill.")
+			to_chat(M, "<span class='notice'>[sick_message]</span>")
+		if(prob(35))
+			M.applyLiverDamage(rand(5, 10))
+		return FALSE
 
 /datum/species/human/felinid/on_species_gain(mob/living/carbon/C, datum/species/old_species, pref_load)
 	if(ishuman(C))

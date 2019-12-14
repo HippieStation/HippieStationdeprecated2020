@@ -8,7 +8,7 @@
 	if(message)
 		say(message)
 
-
+///Whisper verb
 /mob/verb/whisper_verb(message as text)
 	set name = "Whisper"
 	set category = "IC"

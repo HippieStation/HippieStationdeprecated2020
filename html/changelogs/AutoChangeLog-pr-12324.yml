@@ -1,6 +1,0 @@
-author: "steamp0rt"
-delete-after: True
-changes: 
-  - rscadd: "Holoparasites now follow the user's mind -- meaning that if the user is mindswapped, the holoparasite will follow them into their new body."
-  - rscadd: "Holoparasites will be revived if the user is cloned."
-  - rscadd: "Monkeys and xenos can now have holoparasites too."

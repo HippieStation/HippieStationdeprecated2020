@@ -77,3 +77,6 @@
 
 /datum/supply_pack/emergency/syndicate
 	cost = 10000
+
+/datum/supply_pack/materials/bz
+	cost = 8000

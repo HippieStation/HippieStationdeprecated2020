@@ -1,0 +1,4 @@
+author: "QuarianCommando"
+delete-after: True
+changes: 
+  - rscadd: "All projectile weapons can now be renamed."
