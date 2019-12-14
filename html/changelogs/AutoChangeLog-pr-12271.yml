@@ -1,0 +1,5 @@
+author: "zamolxius sponsorized by Higitus/Old Man"
+delete-after: True
+changes: 
+  - tweak: "tweaked suit sensor starting position. It starts on, as Nanotrasen intended."
+  - balance: "rebalanced suit sensors. They now start on the maximum position."
