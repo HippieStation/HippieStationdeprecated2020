@@ -26,10 +26,9 @@ Bonus
 	var/sleep_level = 0
 	var/sleepy_ticks = 0
 	var/stamina = FALSE
-	var/yawning = FALSE
 	threshold_descs = list(
-		"Transmission 4" = "Causes the host to periodically emit a yawn that spreads the virus in a manner similar to that of a sneeze.",
-		"Stage Speed 10" = "Causes narcolepsy more often, increasing the chance of the host falling asleep.",
+		"Transmission 7" = "Also relaxes the muscles, weakening and slowing the host.",
+		"Resistance 10" = "Causes narcolepsy more often, increasing the chance of the host falling asleep.",
 	)
 
 /datum/symptom/narcolepsy/Start(datum/disease/advance/A)
