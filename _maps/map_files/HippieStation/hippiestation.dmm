@@ -6872,7 +6872,7 @@
 /turf/open/floor/plating,
 /area/maintenance/fore)
 "arH" = (
-/turf/closed/wall,
+/turf/closed/wall/r_wall,
 /area/security/detectives_office)
 "arI" = (
 /obj/machinery/door/airlock/security{
@@ -18647,7 +18647,7 @@
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bbT" = (
-/turf/closed/wall/r_wall,
+/turf/closed/wall,
 /area/vacant_room/office)
 "bbU" = (
 /obj/machinery/door/firedoor,
@@ -19329,12 +19329,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
 /area/maintenance/port)
-"bdD" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/closed/wall/r_wall,
-/area/vacant_room/office)
 "bdE" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -20287,7 +20281,8 @@
 "bgD" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Vacant Office A";
-	req_access_txt = "32"
+	req_access_txt = "0";
+	req_one_access_txt = "32;50"
 	},
 /turf/open/floor/plating,
 /area/vacant_room/office)
@@ -20646,7 +20641,12 @@
 /turf/open/floor/carpet,
 /area/vacant_room/office)
 "bhG" = (
-/obj/effect/spawner/structure/window/reinforced,
+/obj/structure/table/reinforced,
+/obj/machinery/door/window/westleft{
+	name = "Delivery Desk";
+	req_access_txt = "0";
+	req_one_access_txt = "32;50"
+	},
 /turf/open/floor/plating,
 /area/vacant_room/office)
 "bhH" = (
@@ -21390,7 +21390,7 @@
 /area/quartermaster/warehouse)
 "bkb" = (
 /obj/structure/disposalpipe/segment,
-/turf/closed/wall/r_wall,
+/turf/closed/wall,
 /area/vacant_room/office)
 "bkc" = (
 /obj/machinery/firealarm{
@@ -83971,7 +83971,7 @@ aXh
 aYR
 aUj
 bbS
-bdD
+bdH
 bbT
 bbT
 bhB
@@ -84228,7 +84228,7 @@ aXi
 aYS
 aUj
 bbT
-bdD
+bdH
 bfl
 cnc
 frO
@@ -86769,7 +86769,7 @@ ajp
 ajp
 akp
 apM
-ajc
+akp
 arH
 arH
 arH
