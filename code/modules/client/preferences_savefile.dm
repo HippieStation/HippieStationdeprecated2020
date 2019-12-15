@@ -5,7 +5,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	23
+#define SAVEFILE_VERSION_MAX	24
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -46,6 +46,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		key_bindings = (hotkeys) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 		parent.update_movement_keys()
 		to_chat(parent, "<span class='userdanger'>Empty keybindings, setting default to [hotkeys ? "Hotkey" : "Classic"] mode</span>")
+	if(current_version < 24) // hippie!
+		hotkeys = TRUE
+		key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key)
+		parent.update_movement_keys()
+		to_chat(parent, "<span class='notice big'>In order to get people to shut up about WASD not working, <i>we've globally reset all keybinds</i>.<br>\
+						If you had custom hotkeys, you will need to re-configure them!</span>")
 
 /datum/preferences/proc/update_character(current_version, savefile/S)
 	if(current_version < 19)
