@@ -1,0 +1,6 @@
+author: "yoyobatty"
+delete-after: True
+changes: 
+  - tweak: "Detectives office is now beside the lawyers with strong doors"
+  - balance: "Detectives cabinet is stronger"
+  - tweak: "A vacant office is now available for lease where the det's office used to be"
