@@ -17,16 +17,3 @@
 	name = "fart"
 	full_name = "Fart"
 	description = "Uh oh, stinky!"
-
-
-/datum/keybinding/emote/flip
-	hotkey_keys = list("Unbound")
-	name = "flip"
-	full_name = "Flip"
-	description = "I'm going to jump! No!- DO A FLIP!"
-
-/datum/keybinding/emote/spin
-	hotkey_keys = list("Unbound")
-	name = "spin"
-	full_name = "Spin"
-	description = "Spin me right round baby, right round."
