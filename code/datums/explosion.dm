@@ -1,5 +1,5 @@
 #define EXPLOSION_THROW_SPEED 4
-#define EXPLOSION_LAG_RANGE 10
+#define EXPLOSION_LAG_RANGE 7
 
 GLOBAL_LIST_EMPTY(explosions)
 //Against my better judgement, I will return the explosion datum
@@ -133,12 +133,13 @@ GLOBAL_LIST_EMPTY(explosions)
 			EX_PREPROCESS_CHECK_TICK
 
 	//Pause the master controller HOLY FUCK YOU MADMAN THIS ACTUALLY MAKES EXPLOSIONS LAG SO MUCH LESS
-	var/postponeCycles = max(round(devastation_range),1)
-	SSlighting.postpone(postponeCycles)
-	SSmachines.postpone(postponeCycles)
-	if(max_range > EXPLOSION_LAG_RANGE)//Nice
+	/*if(max_range >= EXPLOSION_LAG_RANGE)//Nice
 		Master.processing = FALSE
-
+	else
+		var/postponeCycles = max(round(devastation_range),1)
+		SSlighting.postpone(postponeCycles)
+		SSmachines.postpone(postponeCycles)
+	*/
 	if(heavy_impact_range > 1)
 		var/datum/effect_system/explosion/E
 		if(smoke)
@@ -269,7 +270,7 @@ GLOBAL_LIST_EMPTY(explosions)
 					var/turf/UnexplodeT = Unexplode
 					UnexplodeT.explosion_level = 0
 				exploded_this_tick.Cut()
-
+		Master.processing = FALSE
 	//unfuck the shit
 	for(var/Unexplode in exploded_this_tick)
 		var/turf/UnexplodeT = Unexplode
@@ -290,7 +291,6 @@ GLOBAL_LIST_EMPTY(explosions)
 
 	++stopped
 	qdel(src)
-	Master.processing = TRUE
 
 #undef EX_PREPROCESS_EXIT_CHECK
 #undef EX_PREPROCESS_CHECK_TICK
@@ -331,6 +331,7 @@ GLOBAL_LIST_EMPTY(explosions)
 		return QDEL_HINT_IWILLGC
 	GLOB.explosions -= src
 	explosion_source = null
+	Master.processing = TRUE
 	return ..()
 
 /client/proc/check_bomb_impacts()
