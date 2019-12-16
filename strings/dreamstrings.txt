@@ -42,26 +42,21 @@ the Wizard Federation
 water
 %ADJECTIVE% flames
 some %ADJECTIVE% melons
-a scientist
-riches 
-space
-a crash
+%ADJECTIVE% scientist
+%ADJECTIVE% crash
 happiness
 %ADJECTIVE% pride
-a fall
-water
-flames
+%ADJECTIVE% fall
 ice
-melons
-flying 
-a room full of soft, moist eye-balls
+some %ADJECTIVE% flying 
+%ADJECTIVE% room full of soft, moist eye-balls
 your family's childhood spaceship 
-a college buddy 
+%ADJECTIVE% college buddy 
 your hands falling off and spurting blood everywhere 
-a huge cave full of leeches
+%ADJECTIVE% huge cave full of leeches
 rockets blasting off
 rain made of your own tears
 the hidden places where I should go, and I knew that I went to before they even told me
-a crazy god laughing hysterically
-a team of men trying to blow up the station
-a 4'7 bearded drunk individual
+%ADJECTIVE% crazy god laughing hysterically
+%ADJECTIVE% team of men trying to blow up the station
+%ADJECTIVE% 4'7 bearded drunk individual
