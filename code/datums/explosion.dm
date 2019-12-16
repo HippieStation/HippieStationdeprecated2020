@@ -133,13 +133,11 @@ GLOBAL_LIST_EMPTY(explosions)
 			EX_PREPROCESS_CHECK_TICK
 
 	//Pause the master controller HOLY FUCK YOU MADMAN THIS ACTUALLY MAKES EXPLOSIONS LAG SO MUCH LESS
+	var/postponeCycles = max(round(devastation_range),1)
+	SSlighting.postpone(postponeCycles)
+	SSmachines.postpone(postponeCycles)
 	if(max_range > EXPLOSION_LAG_RANGE)//Nice
 		Master.processing = FALSE
-	else
-		var/postponeCycles = max(round(devastation_range),1)
-		SSlighting.postpone(postponeCycles)
-		SSmachines.postpone(postponeCycles)
-
 
 	if(heavy_impact_range > 1)
 		var/datum/effect_system/explosion/E
@@ -291,8 +289,8 @@ GLOBAL_LIST_EMPTY(explosions)
 			A.sense_explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, took,orig_dev_range, orig_heavy_range, orig_light_range)
 
 	++stopped
-	Master.processing = TRUE
 	qdel(src)
+	Master.processing = TRUE
 
 #undef EX_PREPROCESS_EXIT_CHECK
 #undef EX_PREPROCESS_CHECK_TICK
