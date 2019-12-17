@@ -39,7 +39,7 @@ export const Vending = props => {
           {inventory.map((product => {
             const free = ((data.department && data.user
               && data.department === data.user.department)
-              || product.price === 0 || !data.onstation);
+              || product.price === 0 || !data.onstation || !data.scanid);
             return (
               <Table.Row key={product.name}>
                 <Table.Cell>
