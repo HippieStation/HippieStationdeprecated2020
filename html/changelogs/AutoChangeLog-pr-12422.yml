@@ -1,7 +1,0 @@
-author: "yoyobatty"
-delete-after: True
-changes: 
-  - code_imp: "Explosion code has been significantly sped up"
-  - tweak: "Explosions throw all objects, even mobs if they're powerful enough"
-  - code_imp: "Explosions now spawn a more optimized hotspot"
-  - tweak: "Explosions no longer shake the camera for observers and ghosts"
