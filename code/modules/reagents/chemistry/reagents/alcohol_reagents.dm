@@ -1950,14 +1950,14 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	return ..()
 
 
-/datum/reagent/consumable/ethanol/applejack
-	name = "Applejack"
+/datum/reagent/consumable/ethanol/cider
+	name = "cider"
 	description = "The perfect beverage for when you feel the need to horse around."
 	color = "#ff6633"
 	boozepwr = 20
 	taste_description = "an honest day's work at the orchard"
-	glass_icon_state = "applejack_glass"
-	glass_name = "Applejack"
+	glass_icon_state = "cider_glass"
+	glass_name = "cider"
 	glass_desc = "You feel like you could drink this all neight."
 
 /datum/reagent/consumable/ethanol/jack_rose

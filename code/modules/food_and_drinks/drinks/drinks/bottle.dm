@@ -396,13 +396,13 @@
 	list_reagents = list(/datum/reagent/consumable/grenadine = 100)
 	foodtype = FRUIT
 
-/obj/item/reagent_containers/food/drinks/bottle/applejack
-	name = "Buckin' Bronco's Applejack"
+/obj/item/reagent_containers/food/drinks/bottle/cider
+	name = "Buckin' Bronco's cider"
 	desc = "Kicks like a horse, tastes like an apple!"
 	custom_price = 10
-	icon_state = "applejack_bottle"
+	icon_state = "cider_bottle"
 	isGlass = TRUE
-	list_reagents = list(/datum/reagent/consumable/ethanol/applejack = 100)
+	list_reagents = list(/datum/reagent/consumable/ethanol/cider = 100)
 	foodtype = FRUIT
 
 /obj/item/reagent_containers/food/drinks/bottle/champagne

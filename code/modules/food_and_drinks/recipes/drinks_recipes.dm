@@ -724,7 +724,7 @@
 	name = "Jack Rose"
 	id = /datum/reagent/consumable/ethanol/jack_rose
 	results = list(/datum/reagent/consumable/ethanol/jack_rose = 4)
-	required_reagents = list(/datum/reagent/consumable/grenadine = 1, /datum/reagent/consumable/ethanol/applejack = 2, /datum/reagent/consumable/limejuice = 1)
+	required_reagents = list(/datum/reagent/consumable/grenadine = 1, /datum/reagent/consumable/ethanol/cider = 2, /datum/reagent/consumable/limejuice = 1)
 	mix_message = "As the grenadine incorporates, the beverage takes on a mellow, red-orange glow."
 
 /datum/chemical_reaction/turbo
