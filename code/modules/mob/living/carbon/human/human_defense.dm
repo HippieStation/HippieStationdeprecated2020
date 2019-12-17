@@ -213,7 +213,7 @@
 		return
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.a_intent == INTENT_HARM && handle_vamp_biting(H)) // hippie start -- vampire biting				
+		if(H.a_intent == INTENT_HARM && handle_vamp_biting(H)) // hippie start -- vampire biting
 			return // hippie end
 		dna.species.spec_attack_hand(H, src)
 
@@ -403,7 +403,8 @@
 			if(bomb_armor < EXPLODE_GIB_THRESHOLD) //gibs the mob if their bomb armor is lower than EXPLODE_GIB_THRESHOLD
 				for(var/I in contents)
 					var/atom/A = I
-					A.ex_act(severity)
+					if(!QDELETED(A))
+						A.ex_act(severity)
 				gib()
 				return
 			else

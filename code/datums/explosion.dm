@@ -1,4 +1,5 @@
 #define EXPLOSION_THROW_SPEED 4
+#define EXPLOSION_LAG_RANGE 7
 
 GLOBAL_LIST_EMPTY(explosions)
 //Against my better judgement, I will return the explosion datum
@@ -120,22 +121,25 @@ GLOBAL_LIST_EMPTY(explosions)
 				// If inside the blast radius + world.view - 2
 				if(dist <= round(max_range + world.view - 2, 1))
 					M.playsound_local(epicenter, null, 100, 1, frequency, falloff = 5, S = explosion_sound)
-					if(baseshakeamount > 0)
+					if(baseshakeamount > 0 && isliving(M))
 						shake_camera(M, 25, CLAMP(baseshakeamount, 0, 10))
 				// You hear a far explosion if you're outside the blast radius. Small bombs shouldn't be heard all over the station.
 				else if(dist <= far_dist)
 					var/far_volume = CLAMP(far_dist, 30, 50) // Volume is based on explosion size and dist
 					far_volume += (dist <= far_dist * 0.5 ? 50 : 0) // add 50 volume if the mob is pretty close to the explosion
 					M.playsound_local(epicenter, null, far_volume, 1, frequency, falloff = 5, S = far_explosion_sound)
-					if(baseshakeamount > 0)
+					if(baseshakeamount > 0 && isliving(M))
 						shake_camera(M, 10, CLAMP(baseshakeamount*0.25, 0, 2.5))
 			EX_PREPROCESS_CHECK_TICK
 
-	//postpone processing for a bit
-	var/postponeCycles = max(round(devastation_range/8),1)
-	SSlighting.postpone(postponeCycles)
-	SSmachines.postpone(postponeCycles)
-
+	//Pause the master controller HOLY FUCK YOU MADMAN THIS ACTUALLY MAKES EXPLOSIONS LAG SO MUCH LESS
+	/*if(max_range >= EXPLOSION_LAG_RANGE)//Nice
+		Master.processing = FALSE
+	else
+		var/postponeCycles = max(round(devastation_range),1)
+		SSlighting.postpone(postponeCycles)
+		SSmachines.postpone(postponeCycles)
+	*/
 	if(heavy_impact_range > 1)
 		var/datum/effect_system/explosion/E
 		if(smoke)
@@ -206,19 +210,20 @@ GLOBAL_LIST_EMPTY(explosions)
 					A.ex_act(dist)
 
 		if(flame_dist && prob(40) && !isspaceturf(T) && !T.density)
-			new /obj/effect/hotspot(T) //Mostly for ambience!
+			new /obj/effect/explosion_hotspot(T) //Mostly for ambience!
 
 		if(dist > EXPLODE_NONE)
 			T.explosion_level = max(T.explosion_level, dist)	//let the bigger one have it
 			T.explosion_id = id
-			T.ex_act(dist)
+			if(!isspaceturf(T) || T.contents)
+				T.ex_act(dist)
 			exploded_this_tick += T
 
 		//--- THROW ITEMS AROUND ---
 
 		var/throw_dir = get_dir(epicenter,T)
-		for(var/obj/item/I in T)
-			if(!I.anchored)
+		for(var/atom/movable/I in T)
+			if(!I.anchored && !QDELETED(I) && (isobj(I) || (isliving(I) && dist <= heavy_impact_range)))
 				var/throw_range = rand(throw_dist, max_range)
 				var/turf/throw_at = get_ranged_target_turf(I, throw_dir, throw_range)
 				I.throw_at(throw_at, throw_range, EXPLOSION_THROW_SPEED)
@@ -265,7 +270,7 @@ GLOBAL_LIST_EMPTY(explosions)
 					var/turf/UnexplodeT = Unexplode
 					UnexplodeT.explosion_level = 0
 				exploded_this_tick.Cut()
-
+		Master.processing = FALSE
 	//unfuck the shit
 	for(var/Unexplode in exploded_this_tick)
 		var/turf/UnexplodeT = Unexplode
@@ -326,6 +331,7 @@ GLOBAL_LIST_EMPTY(explosions)
 		return QDEL_HINT_IWILLGC
 	GLOB.explosions -= src
 	explosion_source = null
+	Master.processing = TRUE
 	return ..()
 
 /client/proc/check_bomb_impacts()
