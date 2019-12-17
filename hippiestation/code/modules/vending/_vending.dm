@@ -133,6 +133,7 @@
 	for (var/datum/data/vending_product/R in product_records + coin_records + hidden_records)
 		.["stock"][R.name] = R.amount
 	.["extended_inventory"] = extended_inventory
+	.["scanid"] = scan_id
 
 /obj/machinery/vending/ui_act(action, params)
 	. = ..()
@@ -170,7 +171,7 @@
 				flick(icon_deny,src)
 				vend_ready = TRUE
 				return
-			if(onstation && ishuman(usr))
+			if(onstation && ishuman(usr) && scan_id)
 				var/mob/living/carbon/human/H = usr
 				var/obj/item/card/id/C = H.get_idcard(TRUE)
 
