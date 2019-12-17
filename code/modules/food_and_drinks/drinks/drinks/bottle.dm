@@ -397,8 +397,8 @@
 	foodtype = FRUIT
 
 /obj/item/reagent_containers/food/drinks/bottle/cider
-	name = "Buckin' Bronco's cider"
-	desc = "Kicks like a horse, tastes like an apple!"
+	name = "Buckin' Bronco's Cider"
+	desc = "Cider is the closest thing you can come to eating apples right off the tree. They’re chopped, mashed, and pressed to extract their liquid. This liquid is then sometimes pasteurized before being bottled, sometimes not. The result is a cloudy, caramel-colored drink that’s complex in flavor with both sweet and tart notes. Cider that’s unpasteurized should be kept cold and drunk within a week or two."
 	custom_price = 10
 	icon_state = "cider_bottle"
 	isGlass = TRUE
