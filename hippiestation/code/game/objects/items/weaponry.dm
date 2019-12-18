@@ -252,7 +252,7 @@
 /obj/item/ammo_casing/energy/flak
 	name = "metal shard clump"
 	desc = "A bunch of tightly clumped together metal shard. Beware tetanus."
-	e_cost = 250 //The amount of energy a cell needs to expend to create this shot.
+	e_cost = 150 //The amount of energy a cell needs to expend to create this shot.
 	select_name = "flak"
 	icon_state = "s-casing-live"
 	projectile_type = /obj/item/projectile/bullet/pellet/flak_shard
@@ -260,9 +260,9 @@
 	pellets = 12
 
 /obj/item/projectile/bullet/pellet/flak_shard
-	name = "flak shard"
+	name = "metal shard"
 	damage = 5
-	icon_state = "flak"
+//	icon_state = "flak"
 	pass_flags = PASSTABLE
 	damage_type = BRUTE
 	hitsound = 'sound/weapons/sear.ogg'
@@ -270,18 +270,16 @@
 	ricochets_max = 10
 	ricochet_chance = 100
 
-/obj/item/gun/ballistic/flak_cannon/attack(mob/living/target, mob/living/user, cell_type)
+/obj/item/gun/energy/flak_cannon/attack(mob/living/target, mob/living/user, cell_type)
 	. = ..()
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	target.throw_at(throw_target, rand(1,2), 7, user)
 
 /obj/item/gun/energy/flak_cannon/attackby(obj/item/A, mob/user, params)
 	if(istype(A,/obj/item/stack/sheet/metal))
-		if(A.use(10) || cell_type.charge != 1000) // || (cell not full)
+		if(A.use(10) && cell.charge != 600) // || (cell not full)
 			to_chat(user, "<span class='notice'>The [src]'s intake port hungrily gobbles up the [A].</span>")
-			var/obj/item/stock_parts/cell/S = cell_type
-			S.give(100)
+			cell.give(150)
 		else
 			to_chat(user, "<span class='warning'>The intake will not accept any less than ten sheets !</span>")
 			return
-
