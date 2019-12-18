@@ -1952,13 +1952,13 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/applejack
 	name = "Applejack"
-	description = "The perfect beverage for when you feel the need to horse around."
+	description = "Applejack is a strong apple-flavored alcoholic drink produced from apples. Popular in the American colonial era, the drink's prevalence declined in the 19th and 20th centuries amid competition from other spirits."
 	color = "#ff6633"
 	boozepwr = 20
-	taste_description = "an honest day's work at the orchard"
+	taste_description = "like you should shoot some redskins"
 	glass_icon_state = "applejack_glass"
 	glass_name = "Applejack"
-	glass_desc = "You feel like you could drink this all neight."
+	glass_desc = "The name applejack derives from the traditional method of producing the drink, jacking, the process of freezing fermented cider and then removing the ice, increasing the alcohol content. Alcoholic fruit beer produced after the fall harvest was left outside during the winter. Periodically the frozen chunks of ice which had formed were removed, thus concentrating the unfrozen alcohol in the remaining liquid. Starting with the fermented juice, with an alcohol content of less than ten percent, the concentrated result can contain 25–40% alcohol. Because freeze distillation is a low-infrastructure method of production compared to evaporative distillation, and does not require the burning firewood to create heat, hard cider and applejack were historically easy to produce, though more expensive than grain alcohol."
 
 /datum/reagent/consumable/ethanol/jack_rose
 	name = "Jack Rose"
