@@ -1958,7 +1958,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "an honest day's work at the orchard"
 	glass_icon_state = "applejack_glass"
 	glass_name = "Applejack"
-	glass_desc = "The name applejack derives from the traditional method of producing the drink, jacking, the process of freezing fermented cider and then removing the ice, increasing the alcohol content. Alcoholic fruit beer produced after the fall harvest was left outside during the winter. Periodically the frozen chunks of ice which had formed were removed, thus concentrating the unfrozen alcohol in the remaining liquid. Starting with the fermented juice, with an alcohol content of less than ten percent, the concentrated result can contain 25–40% alcohol. Because freeze distillation is a low-infrastructure method of production compared to evaporative distillation, and does not require the burning firewood to create heat, hard cider and applejack were historically easy to produce, though more expensive than grain alcohol."
+	glass_desc = "Applejack is created by distilling cider via a method known as jacking, where the beverage is frozen and the ice is removed, leaving only the alcoholic content."
 
 /datum/reagent/consumable/ethanol/jack_rose
 	name = "Jack Rose"
