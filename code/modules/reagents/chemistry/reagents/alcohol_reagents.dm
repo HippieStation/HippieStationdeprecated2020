@@ -1148,7 +1148,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 /datum/reagent/consumable/ethanol/hcider
 	name = "Hard Cider"
-	description = "juice, for adults."
+	description = "Apple juice, for adults."
 	color = "#CD6839"
 	nutriment_factor = 1 * REAGENTS_METABOLISM
 	boozepwr = 25
