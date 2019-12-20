@@ -1,0 +1,4 @@
+author: "yoyobatty"
+delete-after: True
+changes: 
+  - code_imp: "Extremely large explosions won't freeze the game anymore"
