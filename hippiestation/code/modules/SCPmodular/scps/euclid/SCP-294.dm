@@ -43,7 +43,7 @@ GLOBAL_LIST_EMPTY(scp294_reagents)
 		var/obj/item/reagent_containers/glass/bottle/precision/D = new /obj/item/reagent_containers/glass/bottle/precision(loc)
 		D.reagents.add_reagent(product, 30)
 		D.name = trim("[input_reagent] bottle")
-		visible_message("<span class='notice'>[src] dispenses a small glass.</span>")
+		visible_message("<span class='notice'>[src] dispenses a small glass of [input_reagent]</span>")
 	else
 		visible_message("<span class='notice'>[src]'s OUT OF RANGE light flashes rapidly.</span>")
 
