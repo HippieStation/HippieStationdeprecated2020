@@ -397,8 +397,8 @@
 	foodtype = FRUIT
 
 /obj/item/reagent_containers/food/drinks/bottle/applejack
-	name = "Buckin' Bronco's Applejack"
-	desc = "Kicks like a horse, tastes like an apple!"
+	name = "John Smith's All-American Applejack"
+	desc = "All American Applejack from the heartland, home of the brave and land of the guns."
 	custom_price = 10
 	icon_state = "applejack_bottle"
 	isGlass = TRUE
