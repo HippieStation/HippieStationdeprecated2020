@@ -30,6 +30,7 @@ GLOBAL_LIST_INIT(statechange_reagent_blacklist, typecacheof(list(
 	/datum/reagent/nitrogen,
 	/datum/reagent/nitrous_oxide,
 	/datum/reagent/toxin/plasma,
+	/datum/reagent/smoke_powder,
 	/datum/reagent/carbondioxide)
 ))
 
