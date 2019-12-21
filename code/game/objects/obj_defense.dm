@@ -56,6 +56,8 @@
 	if(QDELETED(src))
 		return
 	..() //contents explosion
+	if(QDELETED(src))
+		return
 	if(target == src)
 		obj_integrity = 0
 		qdel(src)
