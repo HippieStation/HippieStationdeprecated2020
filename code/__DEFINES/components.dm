@@ -79,6 +79,13 @@
 #define COMSIG_ATOM_CANREACH "atom_can_reach"					//from internal loop in atom/movable/proc/CanReach(): (list/next)
 	#define COMPONENT_BLOCK_REACH 1
 #define COMSIG_ATOM_SCREWDRIVER_ACT "atom_screwdriver_act"		//from base of atom/screwdriver_act(): (mob/living/user, obj/item/I)
+#define COMSIG_ATOM_WRENCH_ACT "atom_wrench_act"				//from base of atom/wrench_act(): (mob/living/user, obj/item/I)
+#define COMSIG_ATOM_MULTITOOL_ACT "atom_multitool_act"			//from base of atom/multitool_act(): (mob/living/user, obj/item/I)
+#define COMSIG_ATOM_WELDER_ACT "atom_welder_act"				//from base of atom/welder_act(): (mob/living/user, obj/item/I)
+#define COMSIG_ATOM_WIRECUTTER_ACT "atom_wirecutter_act"		//from base of atom/wirecutter_act(): (mob/living/user, obj/item/I)
+#define COMSIG_ATOM_CROWBAR_ACT "atom_crowbar_act"				//from base of atom/crowbar_act(): (mob/living/user, obj/item/I)
+#define COMSIG_ATOM_ANALYSER_ACT "atom_analyser_act"			//from base of atom/analyser_act(): (mob/living/user, obj/item/I)
+	#define COMPONENT_BLOCK_TOOL_ATTACK 1
 #define COMSIG_ATOM_INTERCEPT_TELEPORT "intercept_teleport"		//called when teleporting into a protected turf: (channel, turf/origin)
 	#define COMPONENT_BLOCK_TELEPORT 1
 /////////////////
@@ -193,8 +200,8 @@
 // /obj signals
 #define COMSIG_OBJ_DECONSTRUCT "obj_deconstruct"				//from base of obj/deconstruct(): (disassembled)
 #define COMSIG_OBJ_SETANCHORED "obj_setanchored"				//called in /obj/structure/setAnchored(): (value)
-
 #define COMSIG_OBJ_DEFAULT_UNFASTEN_WRENCH "obj_default_unfasten_wrench"	//from base of code/game/machinery
+
 #define COMSIG_OBJ_UPDATE_ICON	"obj_update_icon"				//Called by obj to itself whenever update_icon is run. Useful for containers that want to detect this change
 
 // /obj/machinery signals
@@ -250,7 +257,6 @@
 #define COMSIG_PROJECTILE_ON_HIT "projectile_on_hit"			// from base of /obj/item/projectile/proc/on_hit(): (atom/movable/firer, atom/target, Angle)
 #define COMSIG_PROJECTILE_BEFORE_FIRE "projectile_before_fire" 			// from base of /obj/item/projectile/proc/fire(): (obj/item/projectile, atom/original_target)
 
-
 // /mob/living/carbon/human signals
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACK "human_melee_unarmed_attack"			//from mob/living/carbon/human/UnarmedAttack(): (atom/target)
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACKBY "human_melee_unarmed_attackby"		//from mob/living/carbon/human/UnarmedAttack(): (mob/living/carbon/human/attacker)
@@ -281,11 +287,15 @@
 
 //Nanites
 #define COMSIG_HAS_NANITES "has_nanites"						//() returns TRUE if nanites are found
+#define COMSIG_NANITE_IS_STEALTHY "nanite_is_stealthy"			//() returns TRUE if nanites have stealth
+#define COMSIG_NANITE_DELETE "nanite_delete"					//() deletes the nanite component
 #define COMSIG_NANITE_GET_PROGRAMS	"nanite_get_programs"		//(list/nanite_programs) - makes the input list a copy the nanites' program list
+#define COMSIG_NANITE_GET_VOLUME "nanite_get_volume"			//(amount) Returns nanite amount
 #define COMSIG_NANITE_SET_VOLUME "nanite_set_volume"			//(amount) Sets current nanite volume to the given amount
 #define COMSIG_NANITE_ADJUST_VOLUME "nanite_adjust"				//(amount) Adjusts nanite volume by the given amount
 #define COMSIG_NANITE_SET_MAX_VOLUME "nanite_set_max_volume"	//(amount) Sets maximum nanite volume to the given amount
 #define COMSIG_NANITE_SET_CLOUD "nanite_set_cloud"				//(amount(0-100)) Sets cloud ID to the given amount
+#define COMSIG_NANITE_SET_CLOUD_SYNC "nanite_set_cloud_sync"	//(method) Modify cloud sync status. Method can be toggle, enable or disable
 #define COMSIG_NANITE_SET_SAFETY "nanite_set_safety"			//(amount) Sets safety threshold to the given amount
 #define COMSIG_NANITE_SET_REGEN "nanite_set_regen"				//(amount) Sets regeneration rate to the given amount
 #define COMSIG_NANITE_SIGNAL "nanite_signal"					//(code(1-9999)) Called when sending a nanite signal to a mob.

@@ -53,3 +53,11 @@
 	build_path = /obj/item/circuitboard/machine/bluespace
 	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_MEDICAL
 	category = list ("Medical Machinery")
+
+/datum/design/board/autodoc
+	name = "Machine Design (Auto-Doc Mark IX)"
+	desc = "Allows for the construction of circuit boards used to build a Auto-Doc Mark IX."
+	id = "autodoc"
+	build_path = /obj/item/circuitboard/machine/autodoc
+	departmental_flags = DEPARTMENTAL_FLAG_SCIENCE | DEPARTMENTAL_FLAG_MEDICAL
+	category = list ("Medical Machinery")

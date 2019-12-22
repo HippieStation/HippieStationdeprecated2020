@@ -1,6 +1,6 @@
 datum/controller/subsystem/vote
 	var/min_restart_time = 60 MINUTES
-	var/min_shuttle_time = 30 MINUTES
+	var/min_shuttle_time = 35 MINUTES
 
 /datum/controller/subsystem/vote/proc/get_result()
 	//get the highest number of votes
@@ -236,11 +236,12 @@ datum/controller/subsystem/vote
 		var/shuttle_timer = SSshuttle.emergency.timeLeft()
 		if(shuttle_timer >= 300 || (SSshuttle.emergency.mode != SHUTTLE_CALL && SSshuttle.emergency.mode != SHUTTLE_DOCKED && SSshuttle.emergency.mode != SHUTTLE_ESCAPE)) // hippie -- fix shuttle votes upping timers to 5 minutes
 			if(SSshuttle.emergency.mode == SHUTTLE_CALL && shuttle_timer >= 300)	//Apparently doing the emergency request twice cancels the call so these check are just in case
-				SSshuttle.emergency.setTimer(3000)
+				SSshuttle.emergency.setTimer(6000)
 				priority_announce("The emergency shuttle will arrive in [SSshuttle.emergency.timeLeft()/60] minutes.")
 			else if (SSshuttle.emergency.mode != SHUTTLE_CALL)
 				SSshuttle.emergency.request()
-				SSshuttle.emergency.setTimer(3000)
+				SSshuttle.emergency.setTimer(6000)
+				SSshuttle.emergencyNoRecall = TRUE
 				priority_announce("The emergency shuttle will arrive in [SSshuttle.emergency.timeLeft()/60] minutes.")
 
 			message_admins("The emergency shuttle has been force-called due to a successful shuttle call vote.")

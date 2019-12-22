@@ -40,7 +40,7 @@
 			var/atom/movable/A = X
 			if(A == wielder)
 				continue
-			if(A && !A.anchored && !ishuman(X))
+			if(A && !A.anchored && !ishuman(X) && !isobserver(X))
 				step_towards(A,pull)
 				step_towards(A,pull)
 				step_towards(A,pull)

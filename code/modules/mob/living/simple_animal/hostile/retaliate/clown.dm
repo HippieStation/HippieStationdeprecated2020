@@ -197,6 +197,26 @@
 	attack_sound = 'sound/items/airhorn2.ogg'
 	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/effect/particle_effect/foam, /obj/item/soap)
 
+/mob/living/simple_animal/hostile/retaliate/clown/clownhulk/destroyer
+	name = "The Destroyer"
+	icon_state = "destroyer"
+	icon_living = "destroyer"
+	response_disarm = "bounces off of"
+	response_harm = "bounces off of"
+	speak = list("HONK!!!", "The Honkmother is merciful, so I must act out her wrath.", "parce mihi ad beatus honkmother placet mihi ut peccata committere,", "DIE!!!")
+	maxHealth = 400
+	health = 400
+	speed = 5
+	harm_intent_damage = 30
+	melee_damage_lower = 20
+	melee_damage_upper = 40
+	armour_penetration = 30
+	stat_attack = UNCONSCIOUS
+	attacktext = "acts out divine vengeance on"
+	obj_damage = 50
+	environment_smash = ENVIRONMENT_SMASH_RWALLS
+	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/effect/particle_effect/foam, /obj/item/soap)
+
 /mob/living/simple_animal/hostile/retaliate/clown/clownhulk/honcmunculus
 	name = "Honkmunculus"
 	desc = "A slender wiry figure of alchemical origin."
@@ -216,24 +236,6 @@
 	attacktext = "ferociously mauls"
 	environment_smash = ENVIRONMENT_SMASH_NONE
 	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/xeno/bodypartless, /obj/effect/particle_effect/foam, /obj/item/soap)
-	name = "The Destroyer"
-	icon_state = "destroyer"
-	icon_living = "destroyer"
-	response_disarm = "bounces off of"
-	response_harm = "bounces off of"
-	speak = list("HONK!!!", "The Honkmother is merciful, so I must act out her wrath.", "parce mihi ad beatus honkmother placet mihi ut peccata committere,", "DIE!!!")
-	maxHealth = 400
-	health = 400
-	speed = 5
-	harm_intent_damage = 30
-	melee_damage_lower = 20
-	melee_damage_upper = 40
-	armour_penetration = 30
-	stat_attack = UNCONSCIOUS
-	attacktext = "acts out divine vengeance on"
-	obj_damage = 50
-	environment_smash = ENVIRONMENT_SMASH_RWALLS
-	loot = list(/obj/item/clothing/mask/gas/clown_hat, /obj/effect/gibspawner/human, /obj/effect/particle_effect/foam, /obj/item/soap)
 
 /mob/living/simple_animal/hostile/retaliate/clown/mutant
 	name = "Unknown"

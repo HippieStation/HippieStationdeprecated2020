@@ -53,7 +53,7 @@ GLOBAL_LIST(uplink_purchase_logs_by_key)	//assoc key = /datum/uplink_purchase_lo
 	else
 		UPE = new
 		purchase_log[hash] = UPE
-		UPE.path = A.type
+		UPE.path = A?.type // hippie -- fix runtime
 		UPE.icon_b64 = "[icon2base64html(A)]"
 		UPE.desc = uplink_item.desc
 		UPE.name = uplink_item.name

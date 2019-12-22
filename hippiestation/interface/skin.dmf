@@ -1,5 +1,6 @@
 macro "default"
 
+
 menu "menu"
 	elem 
 		name = "&File"
@@ -79,11 +80,6 @@ menu "menu"
 		command = "adminhelp"
 		category = "&Help"
 		saved-params = "is-checked"
-	elem 
-		name = "&Hotkeys"
-		command = "hotkeys-help"
-		category = "&Help"
-		saved-params = "is-checked"
 
 
 window "mainwindow"
@@ -95,7 +91,7 @@ window "mainwindow"
 		anchor2 = none
 		is-default = true
 		saved-params = "pos;size;is-minimized;is-maximized"
-		icon = 'icons\\ss13_64.png'
+		icon = 'icons\\hippie_64.png'
 		macro = "default"
 		menu = "menu"
 	elem "split"
@@ -190,12 +186,15 @@ window "mapwindow"
 window "infowindow"
 	elem "infowindow"
 		type = MAIN
-		pos = 0,0
+		pos = 281,0
 		size = 640x480
 		anchor1 = none
 		anchor2 = none
+		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
+		outer-size = 656x538
+		inner-size = 640x499
 	elem "info"
 		type = CHILD
 		pos = 0,30
@@ -211,55 +210,64 @@ window "infowindow"
 		pos = 16,5
 		size = 104x20
 		anchor1 = 3,0
-		anchor2 = 19,0
+		anchor2 = 20,0
 		saved-params = "is-checked"
 		text = "Changelog"
 		command = "changelog"
 	elem "rules"
 		type = BUTTON
 		pos = 120,5
-		size = 100x20
-		anchor1 = 19,0
-		anchor2 = 34,0
+		size = 75x20
+		anchor1 = 20,0
+		anchor2 = 32,0
 		saved-params = "is-checked"
 		text = "Rules"
 		command = "rules"
 	elem "wiki"
 		type = BUTTON
-		pos = 220,5
-		size = 100x20
-		anchor1 = 34,0
-		anchor2 = 50,0
+		pos = 195,5
+		size = 75x20
+		anchor1 = 32,0
+		anchor2 = 44,0
 		saved-params = "is-checked"
 		text = "Wiki"
 		command = "wiki"
 	elem "forum"
 		type = BUTTON
-		pos = 320,5
-		size = 100x20
-		anchor1 = 50,0
-		anchor2 = 66,0
+		pos = 270,5
+		size = 75x20
+		anchor1 = 44,0
+		anchor2 = 56,0
 		saved-params = "is-checked"
 		text = "Forum"
 		command = "forum"
 	elem "github"
 		type = BUTTON
-		pos = 420,5
-		size = 100x20
-		anchor1 = 66,0
-		anchor2 = 81,0
+		pos = 345,5
+		size = 75x20
+		anchor1 = 56,0
+		anchor2 = 68,0
 		saved-params = "is-checked"
 		text = "Github"
 		command = "github"
 	elem "report-issue"
 		type = BUTTON
-		pos = 520,5
-		size = 100x20
-		anchor1 = 81,0
-		anchor2 = 97,0
+		pos = 420,5
+		size = 75x20
+		anchor1 = 68,0
+		anchor2 = 80,0
 		saved-params = "is-checked"
 		text = "Report Issue"
 		command = "report-issue"
+	elem "statbus"
+		type = BUTTON
+		pos = 495,5
+		size = 75x20
+		anchor1 = 80,0
+		anchor2 = 92,0
+		saved-params = "is-checked"
+		text = "Statbus"
+		command = "statbus"
 
 window "outputwindow"
 	elem "outputwindow"
@@ -289,7 +297,7 @@ window "outputwindow"
 		anchor2 = 100,100
 		is-default = true
 		saved-params = ""
-		
+
 window "preferences_window"
 	elem "preferences_window"
 		type = MAIN
@@ -297,7 +305,6 @@ window "preferences_window"
 		size = 1280x1000
 		anchor1 = none
 		anchor2 = none
-		background-color = none
 		is-visible = false
 		saved-params = "pos;size;is-minimized;is-maximized"
 		statusbar = false
@@ -307,7 +314,6 @@ window "preferences_window"
 		size = 960x1000
 		anchor1 = 0,0
 		anchor2 = 75,100
-		background-color = none
 		saved-params = ""
 	elem "character_preview_map"
 		type = MAP

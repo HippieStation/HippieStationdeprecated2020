@@ -18,3 +18,40 @@
 
 /obj/item/ammo_casing/energy
 	fire_sound = 'hippiestation/sound/weapons/Laser.ogg'
+
+/obj/item/projectile/energy/singulo
+	name = "gravitational singularity"
+	desc = "A gravitational singularity."
+	icon = 'icons/obj/singularity.dmi'
+	icon_state = "singularity_s1"
+	var/singulo_range = 5
+	range = 30
+	movement_type = FLYING | UNSTOPPABLE
+
+/obj/item/projectile/energy/singulo/Range()
+	..()
+	transform *= 1.25 //25% larger per tile
+	eat()
+	if(range < 15)
+		DISABLE_BITFIELD(movement_type, UNSTOPPABLE)
+
+/obj/item/projectile/energy/singulo/on_range()
+	explosion(get_turf(src), 0, 1, 4, flame_range = 4)
+	return ..()
+
+/obj/item/projectile/energy/singulo/on_hit(atom/target)
+	. = ..()
+	target.singularity_act()
+
+/obj/item/projectile/energy/singulo/proc/eat()
+	for(var/tile in spiral_range_turfs(2, src))
+		var/turf/T = tile
+		if(!T || !isturf(loc))
+			continue
+		T.singularity_pull(src, singulo_range)
+		for(var/thing in T)
+			if(isturf(loc) && thing != src && thing != firer && thing != fired_from)
+				var/atom/movable/X = thing
+				X.singularity_pull(src, singulo_range)
+			CHECK_TICK
+	return

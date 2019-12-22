@@ -86,3 +86,7 @@
 	crate_name = "freon canister crate"
 	crate_type = /obj/structure/closet/crate/secure/science
 	dangerous = TRUE
+
+/datum/supply_pack/materials/bz
+	cost = 8000
+

@@ -49,10 +49,7 @@
 
 
 /obj/item/badmin_stone/ghost/DisarmEvent(atom/target, mob/living/user, proximity_flag)
-	var/total_spirits = 0
-	for(var/mob/dead/observer/O in get_turf(user))
-		total_spirits++
-	FireProjectile(/obj/item/projectile/spirit_fist, target, CLAMP(total_spirits*5, 3, 35))
+	FireProjectile(/obj/item/projectile/spirit_fist, target, CLAMP(ghost_check() * 5, 3, 35))
 	user.changeNext_move(CLICK_CD_RANGE)
 
 /obj/item/badmin_stone/ghost/GiveAbilities(mob/living/L, gauntlet = FALSE)
@@ -78,6 +75,37 @@
 		enter_link="<a href=?src=[REF(src)];orbit=1>(Click to help)</a>",
 		source = user, action=NOTIFY_ORBIT, ignore_key = POLL_IGNORE_SPECTRAL_BLADE)
 	summon_cooldown = world.time + 60 SECONDS
+
+/obj/item/badmin_stone/ghost/proc/recursive_orbit_collect(atom/A, list/L)
+	for(var/i in A.orbiters?.orbiters)
+		if(!isobserver(i) || (i in L))
+			continue
+		L |= i
+		recursive_orbit_collect(i, L)
+
+/obj/item/badmin_stone/ghost/proc/ghost_check()
+	var/list/mob/dead/observer/current_spirits = list()
+	
+	recursive_orbit_collect(src, current_spirits)
+	recursive_orbit_collect(loc, current_spirits)
+	var/mob/living/L = recursive_loc_check(src, /mob/living)
+	if(L)
+		recursive_orbit_collect(L, current_spirits)
+	
+	for(var/i in spirits - current_spirits)
+		var/mob/dead/observer/G = i
+		G.invisibility = GLOB.observer_default_invisibility
+
+	for(var/i in current_spirits)
+		var/mob/dead/observer/G = i
+		G.invisibility = 0
+	
+	spirits = current_spirits
+	return length(spirits)
+
+/obj/item/badmin_stone/ghost/process()
+	..()
+	ghost_check()
 
 /////////////////////////////////////////////
 /////////////////// SPELLS //////////////////

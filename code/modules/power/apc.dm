@@ -56,6 +56,8 @@
 	integrity_failure = 50
 	resistance_flags = FIRE_PROOF
 	interaction_flags_machine = INTERACT_MACHINE_WIRES_IF_OPEN | INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OPEN_SILICON
+	ui_x = 450 
+	ui_y = 460
 
 	var/lon_range = 1.5
 	var/area/area
@@ -580,7 +582,6 @@
 		var/turf/host_turf = get_turf(src)
 		if(!host_turf)
 			CRASH("attackby on APC when it's not on a turf")
-			return
 		if (host_turf.intact)
 			to_chat(user, "<span class='warning'>You must remove the floor plating in front of the APC first!</span>")
 			return
@@ -806,10 +807,8 @@
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "apc", name, 535, 515, master_ui, state)
+		ui = new(user, src, ui_key, "apc", name, ui_x, ui_y, master_ui, state)
 		ui.open()
-	if(ui)
-		ui.set_autoupdate(state = (failure_timer ? 1 : 0))
 
 /obj/machinery/power/apc/ui_data(mob/user)
 	var/list/data = list(
@@ -992,7 +991,7 @@
 		return
 	operating = !operating
 	add_hiddenprint(user)
-	log_combat(user, src, "turned [operating ? "on" : "off"]")
+	log_game("[key_name(user)] turned [operating ? "on" : "off"] the [src] in [AREACOORD(src)]")
 	update()
 	update_icon()
 
@@ -1123,9 +1122,9 @@
 	if(terminal && terminal.powernet)
 		terminal.add_load(amount)
 
-/obj/machinery/power/apc/avail()
+/obj/machinery/power/apc/avail(amount)
 	if(terminal)
-		return terminal.avail()
+		return terminal.avail(amount)
 	else
 		return 0
 
