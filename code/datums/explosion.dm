@@ -262,6 +262,8 @@ GLOBAL_LIST_EMPTY(explosions)
 					var/turf/UnexplodeT = Unexplode
 					UnexplodeT.explosion_level = 0
 				exploded_this_tick.Cut()
+		if(max_range < 100) //otherwise game lags
+			Master.processing = FALSE
 	//unfuck the shit
 	for(var/Unexplode in exploded_this_tick)
 		var/turf/UnexplodeT = Unexplode
@@ -322,6 +324,7 @@ GLOBAL_LIST_EMPTY(explosions)
 		return QDEL_HINT_IWILLGC
 	GLOB.explosions -= src
 	explosion_source = null
+	Master.processing = TRUE
 	return ..()
 
 /client/proc/check_bomb_impacts()
