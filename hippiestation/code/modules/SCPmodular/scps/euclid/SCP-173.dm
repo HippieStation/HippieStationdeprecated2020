@@ -14,7 +14,8 @@
 
 	var/last_snap = 0
 	var/list/next_blinks = list()
-
+	var/cannot_be_seen = 1
+	
 /mob/living/scp_173/Initialize(mapload, var/mob/living/creator)
 	. = ..()
 	// Give spells
@@ -42,7 +43,7 @@
 	// This loop will, at most, loop twice.
 	for(var/atom/check in check_list)
 		for(var/mob/living/M in viewers(world.view + 1, check) - src)
-			if(M.client && CanAttack(M) && !M.has_unlimited_silicon_privilege)
+			if(M.client && !M.has_unlimited_silicon_privilege)
 				if(!M.eye_blind)
 					return M
 		for(var/obj/mecha/M in view(world.view + 1, check)) //assuming if you can see them they can see you
