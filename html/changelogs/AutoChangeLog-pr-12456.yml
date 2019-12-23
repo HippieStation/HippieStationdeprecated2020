@@ -1,4 +1,0 @@
-author: "Toxici11i"
-delete-after: True
-changes: 
-  - tweak: "tweaks 173 to use statue code, which has a much better system for both detecting, and targetting people that are looking at you - Also adds nightvision to 173, along with a way to disable lights on a cooldown"
