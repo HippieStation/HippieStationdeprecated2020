@@ -584,7 +584,7 @@
 			cooldown = TRUE
 			call(src,realProc)(user)
 			if(!QDELETED(src))
-			addtimer(CALLBACK(src, .proc/cd), cooldownMax)
+				addtimer(CALLBACK(src, .proc/cd), cooldownMax)
 	else
 		to_chat(user, "<span class='notice'>You aren't quite sure what to do with this yet.</span>")
 

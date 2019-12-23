@@ -88,7 +88,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			if(body.mind.ghostname)
 				name = body.mind.ghostname
 			else
-			name = body.mind.name
+				name = body.mind.name
 		else
 			if(body.real_name)
 				name = body.real_name
