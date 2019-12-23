@@ -1,4 +1,0 @@
-author: "raelik"
-delete-after: True
-changes: 
-  - bugfix: "Fixed the Dockerfile so that it will work properly without tweaking the container post-install."
