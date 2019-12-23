@@ -53,8 +53,6 @@
 /obj/ex_act(severity, target)
 	if(resistance_flags & INDESTRUCTIBLE)
 		return
-	if(QDELETED(src))
-		return
 	..() //contents explosion
 	if(QDELETED(src))
 		return
