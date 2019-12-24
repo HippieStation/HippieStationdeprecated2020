@@ -235,3 +235,5 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define HIVEMIND_ONE_MIND_TRAIT "one_mind"
 #define VR_ZONE_TRAIT "vr_zone_trait"
 #define MADE_UNCLONEABLE "made-uncloneable"
+/*Hippie*/
+#define JUGGERNAUT_TRAIT "juggernaut_trait"
