@@ -9,14 +9,13 @@
     slowdown = -1
     alternate_worn_icon = 'hippiestation/icons/mob/head.dmi'
     item_color = "juggernaut_helmet"
-    
-/obj/item/clothing/head/helmet/juggernaut/Initialize()
-    ADD_TRAIT(src, TRAIT_NODROP, JUGGERNAUT_TRAIT)
 
 /obj/item/clothing/head/helmet/juggernaut/dropped()
     qdel(src)
 
 /obj/item/clothing/head/helmet/juggernaut/equipped(mob/M, slot)
+    ADD_TRAIT(src, TRAIT_NODROP, JUGGERNAUT_TRAIT)
+
     var/mob/living/carbon/human/owner = M
     ADD_TRAIT(owner, TRAIT_IGNORESLOWDOWN, JUGGERNAUT_TRAIT)
     ADD_TRAIT(owner, TRAIT_IGNOREDAMAGESLOWDOWN, JUGGERNAUT_TRAIT)
