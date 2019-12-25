@@ -88,7 +88,7 @@
 												// Declaring a doctype is necessary to enable BYOND's crappy browser's more advanced CSS functionality
 	dat = {"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">
 			<html>
-			<head>
+			<head>[UTF8HEADER]
 				<style type=\"text/css\">
 					body { background-image:url('html/paigrid.png'); }
 
