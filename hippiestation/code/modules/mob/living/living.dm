@@ -80,7 +80,7 @@
 		playsound(M, 'sound/effects/bang.ogg', 50, TRUE)
 		lM.adjustBruteLoss(20)
 		if (iscarbon(lM))
-			var/mob/living/carbon/human/H = lM
+			var/mob/living/carbon/H = lM
 			H.Stun(50)
 		M.visible_message("<span class='danger'>[M] gets knocked over as [src] runs into them!</span>" , "<span class='userdanger'>You get knocked over!</span>" , "<span class='danger'>You hear a BANG!</span>")
 	return ..()
