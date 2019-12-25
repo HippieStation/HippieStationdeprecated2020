@@ -12,6 +12,7 @@
 
 /obj/item/clothing/head/helmet/juggernaut/dropped()
     qdel(src)
+    return ..()
 
 /obj/item/clothing/head/helmet/juggernaut/equipped(mob/M, slot)
     ADD_TRAIT(src, TRAIT_NODROP, JUGGERNAUT_TRAIT)
@@ -37,4 +38,5 @@
 
     owner.dna.species.punchdamagehigh = 50
     owner.dna.species.punchdamagelow = 30
+    return ..()
 
