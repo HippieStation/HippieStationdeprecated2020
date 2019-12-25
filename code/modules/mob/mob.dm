@@ -12,9 +12,7 @@
 			var/mob/dead/observe = M
 			observe.reset_perspective(null)
 	qdel(hud_used)
-	for(var/cc in client_colours)
-		qdel(cc)
-	client_colours = null
+	QDEL_LIST(client_colours)
 	ghostize()
 	..()
 	return QDEL_HINT_HARDDEL
@@ -626,6 +624,10 @@
 		return FALSE
 	return ..()
 
+/mob/dead/observer/canface()
+	return TRUE
+
+///Hidden verb to turn east
 /mob/verb/eastface()
 	set hidden = TRUE
 	if(!canface())
