@@ -55,12 +55,34 @@
 	. = ..()
 	update_transform()
 
+/mob/living/Bump(atom/A)
+	if(isturf(A))
+		var/turf/T = A
+		if(TurfBump(T))
+			return
+	return ..()
+
+/mob/living/proc/TurfBump(turf/T)
+	if (isclosedturf(T))
+		if (move_force >= MOVE_FORCE_OVERPOWERING)
+			playsound(T, 'sound/effects/bang.ogg', 50, TRUE)
+			T.visible_message("<span class='danger'>[T] gets obliterated as [src] runs into it!</span>" , "" , "<span class='danger'>You hear a BANG!</span>")
+			T.ScrapeAway()
+			
 //Called when we bump onto a mob
 /mob/living/MobBump(mob/M)
+	var/mob/living/lM = M
 	// Can't move with pinned people
 	if (pinned_to || M.pinned_to)
 		return TRUE
 
+	if (move_force >= MOVE_FORCE_STRONG && M.move_resist < move_force)
+		playsound(M, 'sound/effects/bang.ogg', 50, TRUE)
+		lM.adjustBruteLoss(20)
+		if (iscarbon(lM))
+			var/mob/living/carbon/H = lM
+			H.Stun(50)
+		M.visible_message("<span class='danger'>[M] gets knocked over as [src] runs into them!</span>" , "<span class='userdanger'>You get knocked over!</span>" , "<span class='danger'>You hear a BANG!</span>")
 	return ..()
 
 /mob/living/proc/update_tts_hud()
