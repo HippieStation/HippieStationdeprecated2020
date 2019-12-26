@@ -95,7 +95,11 @@
 			L.Paralyze(50)
 		else
 			if(unlimited_power)
-				L.electrocute_act(1000, src, safety = TRUE, override = TRUE) //Just kill them
+				if(iscarbon(L))
+					var/mob/living/carbon/C = L
+					C.electrocute_act(1000, src, safety = TRUE, override = TRUE) //Just kill them
+				else
+					C.adjustBurnDamage(1000)
 			else
 				electrocute_mob(L, C, src)
 	else if(isobj(target))
