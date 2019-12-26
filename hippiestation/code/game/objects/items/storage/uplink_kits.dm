@@ -87,3 +87,11 @@
 /obj/item/storage/box/syndie_kit/synth/PopulateContents()
 	new /obj/item/synthmorpher(src)
 	new /obj/item/autosurgeon/armlaser(src)
+
+/obj/item/storage/box/syndie_kit/pgloves
+	name = "Power Gloves Kit"
+	desc = "Note: cannot be used to manipulate magnetism."
+
+/obj/item/storage/box/syndie_kit/pgloves/PopulateContents()
+	new /obj/item/clothing/gloves/color/yellow/palpatine(src)
+	new /obj/item/t_scanner(src)
