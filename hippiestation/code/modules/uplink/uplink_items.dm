@@ -549,3 +549,10 @@
 	desc = "Mark threats and check enemies for objective items, weapons and high level access. Guaranteed to greentext or your telecrystals back."
 	item = /obj/item/clothing/glasses/hud/threat
 	cost = 6
+
+/datum/uplink_item/dangerous/powergloves
+	name = "Power Gloves"
+	desc = "Gloves with an integrated tesla power modulator, capable of taking power from nearby power wires and discharging it into the world."
+	item = /obj/item/clothing/gloves/color/yellow/palpatine
+	cost = 10
+	surplus = 20

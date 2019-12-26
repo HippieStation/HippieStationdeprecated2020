@@ -1,4 +1,6 @@
 /obj/item/clothing/gloves/color/yellow/palpatine
+	name = "power gloves"
+	desc = "Gloves capable of giving people quite the shock. <b>DISARM</b> intent to stun, <b>HARM</b> intent to damage."
 	special_name = "Powermaster"
 	special_desc = "Drains more stamina and possibly causes burn damage the longer it is used."
 	special_cost = 0
