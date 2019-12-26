@@ -37,7 +37,7 @@
 			to_chat(L, "<span class='danger bold'>You're hit by lightning!</span>")
 			user.Beam(L, icon_state="red_lightning", time=15)
 			L.adjustFireLoss(13 / lt)
-		if(prob(30))
+		if(!LAZYLEN(targets) || prob(30))
 			var/list/machines = list()
 			for(var/obj/machinery/M in view(world.view, user))
 				machines += M
