@@ -554,6 +554,6 @@
 	name = "Power Gloves"
 	desc = "Gloves with an integrated tesla power modulator, capable of taking power from nearby power wires and discharging it into the world."
 	item = /obj/item/clothing/gloves/color/yellow/palpatine
-	cost = 12
+	cost = 8
 	surplus = 20
 	exclude_modes = list(/datum/game_mode/infiltration)
