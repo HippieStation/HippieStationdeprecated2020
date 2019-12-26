@@ -382,14 +382,6 @@
 	surplus = 20 // someone who respects the eldritch god Nar-Sie a little (((too much))) complained
 	exclude_modes = list(/datum/game_mode/infiltration)
 
-/datum/uplink_item/dangerous/juggernaut
-	name = "Juggernaut Helmet"
-	desc = "A helmet, made to turn you into a Human Juggernaut!"
-	item = /obj/item/clothing/head/helmet/juggernaut
-	cost = 20
-	surplus = 20 
-	exclude_modes = list(/datum/game_mode/infiltration)
-
 /datum/uplink_item/device_tools/brainwash_disk
 	restricted_roles = list("Medical Doctor", "Chief Medical Officer")
 
