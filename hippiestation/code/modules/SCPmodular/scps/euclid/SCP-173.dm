@@ -23,6 +23,20 @@
 	mob_spell_list += new /obj/effect/proc_holder/spell/aoe_turf/blindness(src)
 	mob_spell_list += new /obj/effect/proc_holder/spell/targeted/night_vision(src)
 
+/mob/living/scp_173/Life()
+	. = ..()
+	if (isobj(loc))
+		return
+	var/list/our_view = view(src, 13)
+	for(var/A in next_blinks)
+		if(world.time >= next_blinks[A])
+			var/mob/living/carbon/human/H = A
+			if(H.stat) // Sleeping or dead people can't blink!
+				next_blinks[A] = null
+				continue
+			H.visible_message("<span class='notice'>[H] blinks.</span>")
+			H.blind_eyes(3)
+			next_blinks[H] = 10+world.time+rand(6 SECONDS, 30 SECONDS)
 
 /mob/living/scp_173/proc/can_be_seen(turf/destination)
 	if(!cannot_be_seen)
@@ -75,22 +89,3 @@
 		visible_message("<span class='danger'>[src] snaps [H]'s neck!</span>")
 		playsound(loc, pick('hippiestation/sound/scpsounds/scp/spook/NeckSnap1.ogg', 'hippiestation/sound/scpsounds/scp/spook/NeckSnap3.ogg'), 50, 1)
 		H.death()
-
-
-/mob/living/scp_173/Life()
-	. = ..()
-	if (isobj(loc))
-		return
-	var/list/our_view = view(src, 13)
-	for(var/A in next_blinks)
-		if(!(A in our_view))
-			next_blinks[A] = null
-			continue
-		if(world.time >= next_blinks[A])
-			var/mob/living/carbon/human/H = A
-			if(H.stat) // Sleeping or dead people can't blink!
-				next_blinks[A] = null
-				continue
-			H.visible_message("<span class='notice'>[H] blinks.</span>")
-			H.blind_eyes(3)
-			next_blinks[H] = 10+world.time+rand(6 SECONDS, 30 SECONDS)
