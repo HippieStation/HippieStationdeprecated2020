@@ -27,7 +27,6 @@
 	. = ..()
 	if (isobj(loc))
 		return
-	var/list/our_view = view(src, 13)
 	for(var/A in next_blinks)
 		if(world.time >= next_blinks[A])
 			var/mob/living/carbon/human/H = A
