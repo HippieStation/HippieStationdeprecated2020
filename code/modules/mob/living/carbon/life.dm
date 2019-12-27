@@ -325,6 +325,7 @@
 /mob/living/carbon/proc/handle_organs()
 	for(var/V in internal_organs)
 		var/obj/item/organ/O = V
+			if(O.owner) // This exist mostly because reagent metabolization can cause organ reshuffling
 		O.on_life()
 
 /mob/living/carbon/handle_diseases()
