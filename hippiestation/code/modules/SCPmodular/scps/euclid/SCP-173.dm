@@ -76,7 +76,7 @@
 /mob/living/scp_173/movement_delay()
 	return -5
 
-/mob/living/simple_animal/hostile/statue/AttackingTarget()
+/mob/living/simple_animal/hostile/statue/AttackingTarget(var/atom/A)
 	if(can_be_seen(get_turf(loc)))
 		if(client)
 			to_chat(src, "<span class='warning'>You cannot attack, there are eyes on you!</span>")
