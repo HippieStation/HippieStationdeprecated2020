@@ -9,7 +9,6 @@
 /datum/emote/living/carbon/fart
 	key = "fart"
 	key_third_person = "farts"
-	default_keybind = "CtrlF"
 
 /datum/emote/living/carbon/fart/run_emote(mob/living/carbon/user, params)
 	var/fartsound = 'hippiestation/sound/effects/fart.ogg'
