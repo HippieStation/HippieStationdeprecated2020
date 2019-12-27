@@ -12,7 +12,7 @@
 	var/withdrawDelay = 0
 	var/account_holder_gender = NEUTER	
 
-/datum/bank_account/New(newname, job, gender)
+/datum/bank_account/New(newname, job, gender = MALE)
 	if(add_to_accounts)
 		SSeconomy.bank_accounts += src
 	account_holder = newname
@@ -53,7 +53,7 @@
 /datum/bank_account/proc/payday(amt_of_paychecks, free = FALSE)
 	var/money_to_transfer = account_job.paycheck * amt_of_paychecks
 	if(account_holder_gender == FEMALE)
-		money_to_transfer = money_to_transfer * 0.7
+		money_to_transfer *= 0.70
 	if(welfare)
 		money_to_transfer += PAYCHECK_WELFARE
 	if(free)
