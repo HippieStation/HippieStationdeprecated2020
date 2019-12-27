@@ -86,6 +86,11 @@
 		if(H.stat == DEAD)
 			to_chat(src, "<span class='warning'><I>[H] is already dead!</I></span>")
 			return
-		visible_message("<span class='danger'>[src] snaps [H]'s neck!</span>")
-		playsound(loc, pick('hippiestation/sound/scpsounds/scp/spook/NeckSnap1.ogg', 'hippiestation/sound/scpsounds/scp/spook/NeckSnap3.ogg'), 50, 1)
-		H.death()
+		if(ishuman(A))
+			visible_message("<span class='danger'>[src] snaps [H]'s neck!</span>")
+			playsound(loc, pick('hippiestation/sound/scpsounds/scp/spook/NeckSnap1.ogg', 'hippiestation/sound/scpsounds/scp/spook/NeckSnap3.ogg'), 50, 1)
+			H.death()
+		else
+			visible_message("<span class='danger'>[src] Crushes [H]'s with raw force!</span>")
+			playsound(loc, pick('hippiestation/sound/scpsounds/scp/spook/NeckSnap1.ogg', 'hippiestation/sound/scpsounds/scp/spook/NeckSnap3.ogg'), 50, 1)
+			H.death()
