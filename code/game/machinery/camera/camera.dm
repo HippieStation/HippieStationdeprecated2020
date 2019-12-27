@@ -365,6 +365,7 @@
 	if(status)
 		change_msg = "reactivates"
 		triggerCameraAlarm()
+		if(!QDELETED(src)) //We'll be doing it anyway in destroy
 		addtimer(CALLBACK(src, .proc/cancelCameraAlarm), 100)
 	if(displaymessage)
 		if(user)
