@@ -491,7 +491,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	name = CHRISTMAS
 	begin_day = 22
 	begin_month = DECEMBER
-	end_day = 27
+	end_day = 31
 	drone_hat = /obj/item/clothing/head/santa
 
 /datum/holiday/xmas/greet()
