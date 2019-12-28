@@ -1,0 +1,6 @@
+author: "YakumoChen and HideAndSeekLOGIC"
+delete-after: True
+changes: 
+  - balance: "box now disappears after a single hit"
+  - tweak: "cost of box is now 5TC, lowered from 8"
+  - bugfix: "cardboard boxes no longer get methspeed from moving next to walls"

@@ -72,7 +72,7 @@
 	var/datum/asset/spritesheet/assets = get_asset_datum(/datum/asset/spritesheet/vending)
 	. = replacetext(html, "<!--customheadhtml-->", assets.css_tag())
 
-/obj/machinery/vending/ui_interact(mob/user, ui_key, datum/tgui/ui = null, force_open, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.always_state)
+/obj/machinery/vending/ui_interact(mob/user, ui_key, datum/tgui/ui = null, force_open, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
 		var/datum/asset/assets = get_asset_datum(/datum/asset/spritesheet/vending)

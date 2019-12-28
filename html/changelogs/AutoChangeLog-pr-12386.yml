@@ -1,0 +1,4 @@
+author: "yoyobatty"
+delete-after: True
+changes: 
+  - rscadd: "Adds a map generator that makes the station look like Christmas"
