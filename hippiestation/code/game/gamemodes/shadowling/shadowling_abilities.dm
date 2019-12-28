@@ -890,7 +890,7 @@
 	action_icon = 'hippiestation/icons/mob/actions.dmi'
 	sound = 'sound/magic/lightningbolt.ogg'
 
-/obj/effect/proc_holder/spell/aoe_turf/ascendant_storm/cast(list/targets,mob/living/simple_animal/ascendant_shadowling/user = usr)
+/obj/effect/proc_holder/spell/aoe_turf/ascendant_storm/cast(list/targets, mob/living/user = usr)
 	if(user.incorporeal_move)
 		to_chat(user, "<span class='warning'>You are not in the same plane of existence. Unphase first.</span>")
 		revert_cast()
@@ -899,7 +899,7 @@
 						"<span class='shadowling'>You conjure a ball of lightning and release it.</span>")
 
 	for(var/mob/living/carbon/human/target in view(6))
-		if(is_shadow_or_thrall(target))
+		if(is_shadow_or_thrall(target) || target == user)
 			continue
 		to_chat(target, "<span class='userdanger'>You're struck by a bolt of lightning!</span>")
 		target.apply_damage(10, BURN)
