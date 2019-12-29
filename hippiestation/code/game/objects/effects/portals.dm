@@ -1,15 +1,8 @@
+#if DM_VERSION > 512
 /obj/effect/portal
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
-	layer = 5.2
 	vis_flags = VIS_HIDE
 	var/see_through = TRUE
-	var/current_ripple = 0
-
-/*/obj/effect/portal/proc/update_filter()
-	var/f = filters[3]
-	
-	animate(f, time = 3 SECONDS, loop = -1, easing = LINEAR_EASING, radius = 8)
-	addtimer(CALLBACK(src, .proc/update_filter), 3 SECONDS)*/
 
 /obj/effect/portal/link_portal(obj/effect/portal/newlink)
 	. = ..()
@@ -35,3 +28,4 @@
 
 /obj/effect/portal/anom
 	see_through = FALSE
+#endif

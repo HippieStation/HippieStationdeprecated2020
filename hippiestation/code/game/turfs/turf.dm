@@ -1,6 +1,9 @@
 /turf
 	var/elevation = 10
 	var/pinned = null
+#if DM_VERSION > 512
+	vis_flags = VIS_INHERIT_PLANE
+#endif
 
 /turf/Destroy()
 	if (pinned)
