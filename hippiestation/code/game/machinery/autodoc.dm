@@ -114,7 +114,7 @@ GLOBAL_LIST_INIT(autodoc_supported_surgery_steps, typecacheof(list(
 	STR.cant_hold = typecacheof(list(/obj/item/card/emag))
 
 /obj/machinery/autodoc/CtrlClick(mob/user)
-	if(in_use)
+	if(in_use && isliving(user))
 		playsound(src, 'sound/machines/buzz-two.ogg', 50, FALSE)
 		return
 	var/datum/component/storage/ST = GetComponent(/datum/component/storage/concrete/autodoc)

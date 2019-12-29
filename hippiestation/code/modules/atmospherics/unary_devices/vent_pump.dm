@@ -1,5 +1,4 @@
 /obj/machinery/atmospherics/components/unary/vent_pump
-	icon_hippie = 'hippiestation/icons/obj/atmospherics/components/unary_devices.dmi'
 	var/cover = 0 //For hiding tiny objects in, 1 means cover is up, can hide.
 	var/max_n_of_items = 5
 

@@ -8,3 +8,4 @@
 	)
 	tools = list(/obj/item/kitchen/rollingpin)
 	result = /obj/item/reagent_containers/food/snacks/sandwich/pilgrim
+	subcategory = CAT_SANDWICH

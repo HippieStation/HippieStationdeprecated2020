@@ -159,7 +159,7 @@ SUBSYSTEM_DEF(timer)
 
 			if (timer.timeToRun < head_offset)
 				bucket_resolution = null //force bucket recreation
-				CRASH("[i] Invalid timer state: Timer in long run queue with a time to run less then head_offset. [get_timer_debug_string(timer)] world.time: [world.time], head_offset: [head_offset], practical_offset: [practical_offset]")
+				stack_trace("[i] Invalid timer state: Timer in long run queue with a time to run less then head_offset. [get_timer_debug_string(timer)] world.time: [world.time], head_offset: [head_offset], practical_offset: [practical_offset]")
 
 				if (timer.callBack && !timer.spent)
 					timer.callBack.InvokeAsync()
@@ -171,7 +171,7 @@ SUBSYSTEM_DEF(timer)
 
 			if (timer.timeToRun < head_offset + TICKS2DS(practical_offset-1))
 				bucket_resolution = null //force bucket recreation
-				CRASH("[i] Invalid timer state: Timer in long run queue that would require a backtrack to transfer to short run queue. [get_timer_debug_string(timer)] world.time: [world.time], head_offset: [head_offset], practical_offset: [practical_offset]")
+				stack_trace("[i] Invalid timer state: Timer in long run queue that would require a backtrack to transfer to short run queue. [get_timer_debug_string(timer)] world.time: [world.time], head_offset: [head_offset], practical_offset: [practical_offset]")
 				if (timer.callBack && !timer.spent)
 					timer.callBack.InvokeAsync()
 					spent += timer
@@ -514,6 +514,21 @@ SUBSYSTEM_DEF(timer)
 		return TRUE
 	return FALSE
 
+// How long left on a timer
+/proc/timeleft(id)
+	if (!id)
+		return null
+	if (id == TIMER_ID_NULL)
+		CRASH("Tried to get timeleft of a null timerid. Use TIMER_STOPPABLE flag")
+	if (!istext(id))
+		if (istype(id, /datum/timedevent))
+			var/datum/timedevent/timer = id
+			return timer.timeToRun - world.time
+	//id is string
+	var/datum/timedevent/timer = SStimer.timer_id_dict[id]
+	if (timer && !timer.spent)
+		return timer.timeToRun - world.time
+	return null
 
 #undef BUCKET_LEN
 #undef BUCKET_POS

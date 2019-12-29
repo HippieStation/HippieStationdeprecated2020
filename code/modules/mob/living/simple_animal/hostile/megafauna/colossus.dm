@@ -42,7 +42,7 @@ Difficulty: Very Hard
 	ranged = TRUE
 	pixel_x = -32
 	del_on_death = TRUE
-	internal_type = /obj/item/gps/internal/colossus
+	gps_name = "Angelic Signal"
 	medal_type = BOSS_MEDAL_COLOSSUS
 	score_type = COLOSSUS_SCORE
 	crusher_loot = list(/obj/structure/closet/crate/necropolis/colossus/crusher)
@@ -257,13 +257,6 @@ Difficulty: Very Hard
 	. = ..()
 	if(isturf(target) || isobj(target))
 		target.ex_act(EXPLODE_HEAVY)
-
-
-/obj/item/gps/internal/colossus
-	icon_state = null
-	gpstag = "Angelic Signal"
-	desc = "Get in the fucking robot."
-	invisibility = 100
 
 
 
@@ -685,7 +678,7 @@ Difficulty: Very Hard
 			L.heal_overall_damage(heal_power, heal_power)
 			new /obj/effect/temp_visual/heal(get_turf(target), "#80F5FF")
 
-/mob/living/simple_animal/hostile/lightgeist/ghostize()
+/mob/living/simple_animal/hostile/lightgeist/ghost()
 	. = ..()
 	if(.)
 		death()

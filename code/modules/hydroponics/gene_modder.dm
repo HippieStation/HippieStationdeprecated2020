@@ -401,6 +401,7 @@
 	if(copytext(seed.name, 1, 13) == "experimental")
 		return // Already modded name and icon
 	seed.name = "experimental " + seed.name
+	seed.icon = 'icons/obj/hydroponics/seeds.dmi' //hippie edit -- Fixes having invisible experimental seeds due to them using the hippiestation/icons/obj/hydroponics/seeds.dmi file.
 	seed.icon_state = "seed-x"
 
 // Gene modder for seed vault ship, built with high tech alien parts.

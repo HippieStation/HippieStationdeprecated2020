@@ -17,7 +17,7 @@
 	var/volume = 500
 
 /obj/item/hockeypack/equipped(mob/user, slot)
-	..()
+	. = ..()
 	if (slot != SLOT_BACK) //The Pack is cursed so this should not happen, but i'm going to play it safe.
 		remove_stick()
 	if(slot == ITEM_SLOT_BACK)
@@ -156,7 +156,7 @@
 	return
 
 /obj/item/twohanded/hockeystick/dropped(mob/user) //The Stick is undroppable but just in case they lose an arm better put this here.
-	..()
+	. = ..()
 	to_chat(user, "<span class='notice'>The stick is drawn back to the backpack 'eh!</span>")
 	snap_back()
 
@@ -195,7 +195,7 @@
 	return ..()
 
 /obj/item/storage/belt/hippie/hockey/equipped(mob/user, slot)
-	..()
+	. = ..()
 	if(slot == SLOT_BELT)
 		ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
@@ -275,6 +275,7 @@
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/suit/hippie/hockey/equipped(mob/user, slot)
+	. = ..()
 	if(slot == SLOT_WEAR_SUIT)
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 
@@ -287,6 +288,7 @@
 	slowdown = -1
 
 /obj/item/clothing/shoes/hippie/hockey/equipped(mob/user, slot)
+	. = ..()
 	if(slot == SLOT_SHOES)
 		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 
@@ -299,6 +301,7 @@
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/mask/hippie/hockey/equipped(mob/user, slot)
+	. = ..()
 	if(slot == SLOT_WEAR_MASK)
 		ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
@@ -314,6 +317,7 @@
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/mask/head/hockey/equipped(mob/user, slot)
+	. = ..()
 	if(slot == SLOT_HEAD)
 		ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 

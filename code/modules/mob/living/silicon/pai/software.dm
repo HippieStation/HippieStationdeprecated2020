@@ -88,7 +88,7 @@
 												// Declaring a doctype is necessary to enable BYOND's crappy browser's more advanced CSS functionality
 	dat = {"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">
 			<html>
-			<head>
+			<head>[UTF8HEADER]
 				<style type=\"text/css\">
 					body { background-image:url('html/paigrid.png'); }
 
@@ -322,7 +322,7 @@
 		if(s == "crew manifest")
 			dat += "<a href='byond://?src=[REF(src)];software=manifest;sub=0'>Crew Manifest</a> <br>"
 		if(s == "host scan")
-			dat += "<a href='byond://?src=[REF(src)];software=hostscan;sub=0'>Host Health Scan</a>"
+			dat += "<a href='byond://?src=[REF(src)];software=hostscan;sub=0'>Host Health Scan</a> <br>"
 		if(s == "medical records")
 			dat += "<a href='byond://?src=[REF(src)];software=medicalrecord;sub=0'>Medical Records</a> <br>"
 		if(s == "security records")

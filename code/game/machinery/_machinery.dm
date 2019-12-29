@@ -105,6 +105,8 @@ Class Procs:
 	var/active_power_usage = 0
 	var/power_channel = EQUIP
 		//EQUIP,ENVIRON or LIGHT
+	var/wire_compatible = FALSE
+
 	var/list/component_parts = null //list of all the parts used to build it, if made from certain kinds of frames.
 	var/panel_open = FALSE
 	var/state_open = FALSE
@@ -119,6 +121,20 @@ Class Procs:
 	var/fair_market_price = 69
 	var/market_verb = "Customer"
 	var/payment_department = ACCOUNT_ENG
+
+	// For storing and overriding ui id and dimensions
+	var/tgui_id // ID of TGUI interface
+	var/ui_style // ID of custom TGUI style (optional)
+	var/ui_x // Default size of TGUI window, in pixels
+	var/ui_y
+
+
+	// hippie start -- percussive maintenance
+
+	var/percussive_delay = 300		
+	var/percussively_maintained	= FALSE
+
+	// hippie end
 
 /obj/machinery/Initialize()
 	if(!armor)
@@ -310,7 +326,7 @@ Class Procs:
 		user.changeNext_move(CLICK_CD_MELEE)
 		user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 		user.visible_message("<span class='danger'>[user.name] smashes against \the [src.name] with its paws.</span>", null, null, COMBAT_MESSAGE_RANGE)
-		take_damage(4, BRUTE, "melee", 1)
+		take_damage(4, BRUTE, "melee", FALSE)
 
 /obj/machinery/attack_robot(mob/user)
 	if(!(interaction_flags_machine & INTERACT_MACHINE_ALLOW_SILICON) && !IsAdminGhost(user))
@@ -371,7 +387,6 @@ Class Procs:
 	M.icon_state = "box_1"
 
 /obj/machinery/obj_break(damage_flag)
-	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
 	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
 		stat |= BROKEN
@@ -434,6 +449,7 @@ Class Procs:
 			to_chat(user, "<span class='notice'>You [anchored ? "un" : ""]secure [src].</span>")
 			setAnchored(!anchored)
 			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
+			SEND_SIGNAL(src, COMSIG_OBJ_DEFAULT_UNFASTEN_WRENCH, anchored)
 			return SUCCESSFUL_UNFASTEN
 		return FAILED_UNFASTEN
 	return CANT_UNFASTEN
@@ -514,6 +530,9 @@ Class Procs:
 				. += "<span class='warning'>It's falling apart!</span>"
 	if(user.research_scanner && component_parts)
 		. += display_parts(user, TRUE)
+	// hippie start -- percussive maintenance
+	if(percussively_maintained)
+		. += "<span class='notice'>This machine has a boot-shaped dent in its side. It looks like it won't malfunction for a while.</span>"
 
 //called on machinery construction (i.e from frame to machinery) but not on initialization
 /obj/machinery/proc/on_construction()
@@ -547,3 +566,43 @@ Class Procs:
 	. = . % 9
 	AM.pixel_x = -8 + ((.%3)*8)
 	AM.pixel_y = -8 + (round( . / 3)*8)
+
+// hippie -- machine malfunctions
+// I have to put this here because some absolute FUCKO decided to make mech machines without putting them in /obj/machinery/rdn/production since they don't know how to fucking code
+
+/obj/machinery/proc/process_malfunction(amount, malfunction_chance)
+	var/malfunction = FALSE
+	for(var/i=0, i < amount, i++)
+		if(prob(malfunction_chance))
+			malfunction = TRUE
+	if(malfunction)
+		malfunction_act()
+
+/obj/machinery/proc/malfunction_act()
+	var/turf/T = get_turf(src)
+	visible_message("<span class='warning'>[src] sizzles and sparks!</span>")
+	playsound(T, 'sound/effects/light_flicker.ogg', 50)
+	playsound(T, 'sound/effects/sparks1.ogg', 100)
+	if(percussively_maintained)
+		visible_message("<span class='notice'>...but quietens down thanks to a boot-shaped dent on its side.</span>")
+		return
+	sleep(15)
+	investigate_log("\A [src] has malfunctioned.", INVESTIGATE_RESEARCH)
+	message_admins("\A [src] has malfunctioned.")
+	playsound(T, 'sound/magic/fireball.ogg', 70)
+	if(src && powered(power_channel))
+		for(var/turf/turf in range(4,T))
+			if((prob(75)) && (isNotBlocked(src, turf)))
+				new /obj/effect/hotspot(turf)
+
+/obj/machinery/proc/maintain_percussively(mob/living/user)
+	user.changeNext_move(CLICK_CD_MELEE)
+	user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
+	user.visible_message("<span class='danger'>[user.name] angrily punts \the [src.name] with [user.p_their(FALSE)] boot.</span>", null, null, COMBAT_MESSAGE_RANGE)
+	take_damage(2, BRUTE, "melee", 1)
+	playsound(get_turf(src), 'sound/effects/clang.ogg', 80)
+	percussively_maintained = TRUE
+	sleep(percussive_delay)
+	percussively_maintained = FALSE
+
+// hippie end

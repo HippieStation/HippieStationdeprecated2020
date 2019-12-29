@@ -120,6 +120,11 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 
 /obj/item/badmin_gauntlet/proc/DoSnap(mob/living/snapee)
 	var/dust_time = rand(5 SECONDS, 10 SECONDS)
+	if(prob(25))
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, snapee, "<span class='danger'>You don't feel so good...</span>"), dust_time - 3 SECONDS)
+	addtimer(CALLBACK(src, .proc/Dustify, snapee), dust_time)
+
+/obj/item/badmin_gauntlet/proc/Dustify(mob/living/victim)
 	var/dust_sound = pick(
 		'hippiestation/sound/effects/snap/snap1.wav',
 		'hippiestation/sound/effects/snap/snap2.wav',
@@ -127,10 +132,22 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		'hippiestation/sound/effects/snap/snap4.wav',
 		'hippiestation/sound/effects/snap/snap5.wav',
 		'hippiestation/sound/effects/snap/snap6.wav')
-	if(prob(25))
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, snapee, "<span class='danger'>You don't feel so good...</span>"), dust_time - 3 SECONDS)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, snapee, dust_sound, 100, TRUE), dust_time - 2)
-	addtimer(CALLBACK(snapee, /mob/living.proc/dust, TRUE), dust_time)
+	playsound(victim, dust_sound, 100, TRUE)
+#if DM_VERSION < 513
+	victim.dust(TRUE)
+#else
+	var/obj/effect/snap_rt/snap_effect = new(victim.loc, REF(victim))
+	victim.filters += filter(type="displace", size=256, render_source="*snap[REF(victim)]")
+	animate(victim, alpha=0, time=20, easing=(EASE_IN | SINE_EASING))
+	sleep(5)
+	victim.spawn_dust(TRUE)
+	sleep(15)
+	victim.death(TRUE)
+	if(victim.buckled)
+		victim.buckled.unbuckle_mob(victim, force = TRUE)
+	qdel(snap_effect)
+	QDEL_IN(victim, 5)
+#endif
 
 /obj/item/badmin_gauntlet/proc/DoTheSnap(mob/living/snapper = usr)
 	GLOB.gauntlet_snapped = TRUE
@@ -144,11 +161,11 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 			addtimer(CALLBACK(L, /mob/living.proc/overlay_fullscreen, "thanos_snap", /obj/screen/fullscreen/thanos_snap), 10)
 			addtimer(CALLBACK(L, /mob/living.proc/clear_fullscreen, "thanos_snap"), 35)
 	var/list/eligible_mobs = list()	
-	for(var/mob/living/L in GLOB.player_list)
+	for(var/mob/living/L in GLOB.mob_living_list)
 		if(L.stat == DEAD || !L.ckey || L == snapper)
 			continue
 		eligible_mobs += L
-	var/players_to_wipe = FLOOR(eligible_mobs.len/2, 1)
+	var/players_to_wipe = max(FLOOR(eligible_mobs.len/2, 1), 1)
 	to_chat(world, "<span class='userdanger italics'>You feel as if something big has happened.</span>")
 	for(var/i = 1 to players_to_wipe)
 		var/mob/living/L = pick_n_take(eligible_mobs)
@@ -1010,6 +1027,7 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 		return
 	var/prompt = alert("Are you REALLY sure you'd like to erase half of all life in the universe?", "SNAP?", "YES!", "No")
 	if(prompt == "YES!" && !QDELETED(src))
+		IG.spells -= src
 		IG.DoTheSnap(user)
 		user.RemoveSpell(src)
 
@@ -1059,6 +1077,16 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 /obj/item/badmin_gauntlet/for_badmins
 	badmin = TRUE
 
+/obj/item/badmin_gauntlet/for_badmins/assembled/Initialize()
+	. = ..()
+	for(var/stone in subtypesof(/obj/item/badmin_stone))
+		var/obj/item/badmin_stone/BS = new stone(src)
+		stones += BS
+		var/datum/component/stationloving/stationloving = BS.GetComponent(/datum/component/stationloving)
+		if(stationloving)
+			stationloving.RemoveComponent()
+	spells += new /obj/effect/proc_holder/spell/self/infinity/snap
+	update_icon()
 
 // cool misc effects
 
@@ -1115,3 +1143,16 @@ GLOBAL_VAR_INIT(telescroll_time, 0)
 				break
 	if (progress)
 		qdel(progbar)
+
+
+#if DM_VERSION > 512
+/obj/effect/snap_rt
+	icon = 'hippiestation/icons/effects/filters.dmi'
+	icon_state = "nothing"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/obj/effect/snap_rt/New(L, id)
+	loc = L
+	icon_state = "snap3"
+	render_target = "*snap[id]"
+#endif

@@ -14,6 +14,7 @@
 	cost = 5
 	surplus = 90
 
+
 /datum/uplink_item/stealthy_tools/thermal
 	name = "Thermal Imaging Goggles"
 	desc = "These goggles allow you to see organisms through walls by capturing the upper portion of the infrared light spectrum, \
@@ -45,6 +46,9 @@
 	item = /obj/item/storage/box/syndie_kit/imp_gmindslave
 	exclude_modes = list(/datum/game_mode/infiltration)
 	cost = 10
+
+/datum/uplink_item/implants/stealthimplant
+	cost = 5
 
 /* Botany */
 /datum/uplink_item/role_restricted/lawnmower
@@ -86,22 +90,32 @@
 	cost = 13
 	surplus = 45
 
-/*/datum/uplink_item/nukeoffer/blastco
-	name = "Unlock the BlastCo(tm) Armory"
-	desc = "Enough gear to fully equip a team with explosive based weaponry."
+/datum/uplink_item/bundles_TC/blastco
+	name = "BlastCo(tm) Armory"
+	desc = "Enough gear to fully equip a team!"
 	item = /obj/effect/gibspawner/generic // non-tangible item because techwebs use this path to determine illegal tech
 	cost = 200
 
-/datum/uplink_item/nukeoffer/blastco/spawn_item(turf/loc, datum/component/uplink/U, mob/user)
-	if(LAZYLEN(GLOB.blastco_doors))
-		for(var/V in GLOB.blastco_doors)
-			var/obj/machinery/door/poddoor/shutters/blastco/X = V
-			X.open()
-		loc.visible_message("<span class='notice'>The Armory has been unlocked successfully!</span>")
+/datum/uplink_item/bundles_TC/blastco/spawn_item(spawn_path, mob/user, datum/component/uplink/U)
+	var/datum/antagonist/nukeop/N = user?.mind?.has_antag_datum(/datum/antagonist/nukeop)
+	if(!N || !istype(N))
+		to_chat(user, "<span class='warning'>The purchase was unsuccessful, and spent telecrystals have been refunded.</span>")
+		U.telecrystals += cost
+		return
+	if(N.nuke_team)
+		if(N.nuke_team.bought_blastco)
+			to_chat(user, "<span class='warning'>You have already recieved a BlastCo(tm) supply!</span>")
+			U.telecrystals += cost
+			return
+		N.nuke_team.bought_blastco = TRUE
+		for(var/datum/mind/M in N.nuke_team.members)
+			if(iscarbon(M.current))
+				var/mob/living/carbon/C = M.current
+				var/obj/item/blastco_spawner/BCS = new(get_turf(C))
+				to_chat(C, "<span class='notice'>\The [BCS] appears [C.put_in_hands(BCS) ? "in your hands" : "on the floor"]!</span>")
 	else
-		loc.visible_message("<span class='warning'>The purchase was unsuccessful, and spent telecrystals have been refunded.</span>")
-		U.telecrystals += cost //So the admins don't have to refund you
-	return*/
+		var/obj/item/blastco_spawner/BCS = new(get_turf(user))
+		to_chat(user, "<span class='notice'>\The [BCS] appears [user.put_in_hands(BCS) ? "in your hands" : "on the floor"]!</span>")
 
 /datum/uplink_item/role_restricted/firesuit_syndie
 	name = "Syndicate Firesuit"
@@ -139,6 +153,13 @@
 
 /datum/uplink_item/ammo/revolver
 	cost = 3
+
+/datum/uplink_item/role_restricted/canegun
+	name = "Concealed cane shotgun"
+	desc = "A shotgun cleverly disgusied as a pimp stick. Pull on it to rack it and fold it to fire. Holds 8 shells at once. Keep away from assistants."
+	restricted_roles = list("Clown","Mime")
+	cost = 8
+	item = /obj/item/gun/ballistic/shotgun/canegun
 
 /datum/uplink_item/dangerous/butterfly
 	name = "Energy Butterfly Knife"
@@ -373,7 +394,7 @@
 	item = /obj/item/storage/box/syndie_kit/nanosuit
 	cost = 20
 	surplus = 10
-	cant_discount = TRUE
+	cant_discount = TRUE	
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
 
 /datum/uplink_item/dangerous/synth
@@ -524,7 +545,7 @@
 	cost = 9
 	surplus = 15
 	exclude_modes = list(/datum/game_mode/infiltration)
-	
+
 /datum/uplink_item/device_tools/threat
 	name = "Threat scanning glasses"
 	desc = "Mark threats and check enemies for objective items, weapons and high level access. Guaranteed to greentext or your telecrystals back."
