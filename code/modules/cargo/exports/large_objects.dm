@@ -138,5 +138,5 @@
 	worth += gases[/datum/gas/miasma][MOLES]*10
 	worth += gases[/datum/gas/tritium][MOLES]*5
 	worth += gases[/datum/gas/pluoxium][MOLES]*5
-	worth += gases[/datum/gas/freon][MOLES]*50
+	worth += gases[/datum/gas/freon][MOLES]*6
 	return worth
