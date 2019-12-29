@@ -68,7 +68,7 @@
 
 /obj/item/desynchronizer/Destroy()
 	if(sync_holder)
-	resync()
+		resync()
 	return ..()
 
 /obj/effect/abstract/sync_holder
