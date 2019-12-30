@@ -7,12 +7,14 @@
 	cost = 5
 	allow_duplicates = FALSE
 
-/datum/map_template/ruin/lavaland/biodome/beach
-	name = "Biodome Beach"
-	id = "biodome-beach"
-	description = "Seemingly plucked from a tropical destination, this beach is calm and cool, with the salty waves roaring softly in the background. \
-	Comes with a rustic wooden bar and suicidal bartender."
-	suffix = "lavaland_biodome_beach.dmm"
+
+/datum/map_template/ruin/lavaland/dwarves
+	name = "Dwarven Settlement"
+	id = "dwarves"
+	description = "A settlement of dwarves from a strange faraway land."
+	suffix = "lavaland_surface_dwarves.dmm"
+	always_place = TRUE
+	allow_duplicates = FALSE
 
 /datum/map_template/ruin/lavaland/biodome/winter
 	name = "Biodome Winter"
@@ -33,49 +35,6 @@
 	description = "Nothing good can come from this. Learn from their mistakes and turn around."
 	suffix = "lavaland_surface_cube.dmm"
 	cost = 10
-	allow_duplicates = FALSE
-
-/datum/map_template/ruin/lavaland/seed_vault
-	name = "Seed Vault"
-	id = "seed-vault"
-	description = "The creators of these vaults were a highly advanced and benevolent race, and launched many into the stars, hoping to aid fledgling civilizations. \
-	However, all the inhabitants seem to do is grow drugs and guns."
-	suffix = "lavaland_surface_seed_vault.dmm"
-	cost = 10
-	allow_duplicates = FALSE
-
-/datum/map_template/ruin/lavaland/ash_walker
-	name = "Ash Walker Nest"
-	id = "ash-walker"
-	description = "A race of unbreathing lizards live here, that run faster than a human can, worship a broken dead city, and are capable of reproducing by something involving tentacles? \
-	Probably best to stay clear."
-	suffix = "lavaland_surface_ash_walker1.dmm"
-	cost = 20
-	allow_duplicates = FALSE
-
-/datum/map_template/ruin/lavaland/syndicate_base
-	name = "Syndicate Lava Base"
-	id = "lava-base"
-	description = "A secret base researching illegal bioweapons, it is closely guarded by an elite team of syndicate agents."
-	suffix = "lavaland_surface_syndicate_base1.dmm"
-	cost = 20
-	allow_duplicates = FALSE
-
-/datum/map_template/ruin/lavaland/free_golem
-	name = "Free Golem Ship"
-	id = "golem-ship"
-	description = "Lumbering humanoids, made out of precious metals, move inside this ship. They frequently leave to mine more minerals, which they somehow turn into more of them. \
-	Seem very intent on research and individual liberty, and also geology based naming?"
-	cost = 20
-	suffix = "lavaland_surface_golem_ship.dmm"
-	allow_duplicates = FALSE
-
-/datum/map_template/ruin/lavaland/animal_hospital
-	name = "Animal Hospital"
-	id = "animal-hospital"
-	description = "Rats with cancer do not live very long. And the ones that wake up from cryostasis seem to commit suicide out of boredom."
-	cost = 5
-	suffix = "lavaland_surface_animal_hospital.dmm"
 	allow_duplicates = FALSE
 
 /datum/map_template/ruin/lavaland/sin

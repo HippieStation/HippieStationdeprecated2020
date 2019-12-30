@@ -7,6 +7,7 @@
 	name = "Dwarf"
 	id = "dwarf"
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,NO_UNDERWEAR)
+	inherent_traits = list(TRAIT_RESISTLOWPRESSURE,TRAIT_RESISTHIGHPRESSURE,TRAIT_NOBREATH)//temporary nobreath
 	default_features = list("mcolor" = "FFF", "wings" = "None")
 	use_skintones = 1
 	disliked_food = GROSS | RAW
@@ -15,6 +16,7 @@
 	offset_features = list(OFFSET_UNIFORM = list(0,0), OFFSET_ID = list(0,0), OFFSET_GLOVES = list(0,0), OFFSET_GLASSES = list(0,0), OFFSET_EARS = list(0,0), OFFSET_SHOES = list(0,0), OFFSET_S_STORE = list(0,0), OFFSET_FACEMASK = list(0,-3), OFFSET_HEAD = list(0,-3), OFFSET_HAIR = list(0,-4), OFFSET_FACE = list(0,-3), OFFSET_BELT = list(0,0), OFFSET_BACK = list(0,0), OFFSET_SUIT = list(0,0), OFFSET_NECK = list(0,-3))
 	mutantlungs = /obj/item/organ/lungs/dwarven
 	mutanttongue = /obj/item/organ/tongue/dwarven
+	coldmod = 0
 	var/dwarfDrunkness = 100 // A value between 0 and 100.
 	var/notDrunkEnoughTime = 0 // World time offset
 
@@ -57,7 +59,7 @@
 			if(0 to 30) // too low, harmful
 				H.adjustBruteLoss(10)
 				H.adjustStaminaLoss(80)
-				to_chat(H, "<span class='userdanger'>The lack of alcohol hurts you!</span>") // I'm not good with fluff messages, todo: improve
+				to_chat(H, "<span class='userdanger'>Gods help you, you're dying for a drink!</span>") // improved fluff message - viv
 			if(30 to 45)
 				to_chat(H, "<span class='danger'>You feel really thirsty. Something's wrong.</span>")
 				if(prob(5))

@@ -1,0 +1,776 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/closed/mineral/snowmountain,
+/area/ruin/powered/dwarf)
+"c" = (
+/turf/closed/wall/mineral/snow,
+/area/ruin/powered/dwarf)
+"d" = (
+/obj/item/banner/red,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"e" = (
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"f" = (
+/obj/structure/ice_stasis,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"g" = (
+/obj/structure/headpike/bone,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"h" = (
+/obj/structure/flora/rock/pile/icy,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"i" = (
+/obj/structure/statue/snow/snowman,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"j" = (
+/obj/structure/fermenting_barrel,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"k" = (
+/obj/structure/glowshroom,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"l" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"m" = (
+/obj/structure/dresser,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"n" = (
+/obj/structure/flora/ausbushes/stalkybush,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"o" = (
+/obj/structure/chair/stool,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"p" = (
+/obj/item/kitchen/fork,
+/obj/structure/table/wood,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"q" = (
+/obj/item/grown/log,
+/obj/item/grown/log,
+/obj/item/grown/log,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"r" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"s" = (
+/obj/structure/sink/puddle,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"t" = (
+/obj/structure/bonfire/prelit,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"u" = (
+/obj/item/hatchet/wooden,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"v" = (
+/obj/structure/mineral_door/iron,
+/turf/open/floor/grass/snow/safe,
+/area/ruin/powered/dwarf)
+"w" = (
+/obj/effect/mob_spawn/human/dwarf{
+	light_range = 18
+	},
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"x" = (
+/obj/structure/kitchenspike,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"y" = (
+/obj/item/kitchen/rollingpin,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"z" = (
+/obj/item/chair/wood,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"A" = (
+/obj/machinery/hydroponics/soil,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"B" = (
+/obj/machinery/seed_extractor,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"C" = (
+/obj/structure/bed,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"D" = (
+/obj/structure/flora/ausbushes/brflowers,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"E" = (
+/obj/item/seeds/tower,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"F" = (
+/obj/item/cultivator/rake,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"G" = (
+/obj/item/seeds/plump,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"H" = (
+/obj/structure/flora/rock/icy,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"I" = (
+/obj/item/seeds/apple,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"J" = (
+/obj/structure/flora/ausbushes/leafybush,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"K" = (
+/obj/structure/ore_box,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"L" = (
+/obj/item/twohanded/forged/greatsword,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"M" = (
+/obj/item/twohanded/bonespear,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"N" = (
+/obj/item/kitchen/knife/combat/bone,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"O" = (
+/obj/item/twohanded/bostaff,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"P" = (
+/obj/item/kitchen/knife/butcher,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"Q" = (
+/obj/item/soap/homemade,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"R" = (
+/obj/item/pickaxe/mini,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"S" = (
+/obj/item/shovel,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"T" = (
+/obj/item/twohanded/forged/warhammer,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"U" = (
+/obj/item/twohanded/spear,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"V" = (
+/obj/item/flashlight/flare/torch,
+/obj/item/flashlight/flare/torch,
+/obj/item/flashlight/flare/torch,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+"W" = (
+/obj/item/flashlight/lantern,
+/turf/open/floor/grass/snow/safe{
+	initial_gas_mix = "co2=100;TEMP=293";
+	name = "dwarven snow"
+	},
+/area/ruin/powered/dwarf)
+
+(1,1,1) = {"
+a
+a
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+a
+a
+a
+"}
+(2,1,1) = {"
+b
+b
+c
+j
+j
+j
+e
+e
+e
+e
+u
+u
+u
+u
+F
+F
+c
+b
+b
+a
+"}
+(3,1,1) = {"
+b
+c
+j
+j
+j
+j
+e
+e
+e
+e
+e
+e
+e
+E
+G
+I
+F
+c
+b
+a
+"}
+(4,1,1) = {"
+c
+d
+k
+e
+e
+e
+e
+e
+e
+e
+e
+A
+A
+A
+A
+A
+e
+L
+c
+b
+"}
+(5,1,1) = {"
+c
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+k
+M
+e
+c
+"}
+(6,1,1) = {"
+c
+f
+e
+e
+r
+s
+e
+e
+e
+e
+e
+B
+D
+e
+e
+e
+e
+N
+z
+c
+"}
+(7,1,1) = {"
+c
+g
+e
+e
+e
+e
+e
+e
+e
+e
+e
+A
+A
+A
+A
+A
+e
+O
+e
+c
+"}
+(8,1,1) = {"
+c
+h
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+P
+R
+c
+"}
+(9,1,1) = {"
+v
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+S
+c
+"}
+(10,1,1) = {"
+c
+e
+l
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+W
+T
+c
+"}
+(11,1,1) = {"
+v
+e
+e
+e
+e
+t
+w
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+W
+S
+c
+"}
+(12,1,1) = {"
+c
+h
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+W
+U
+c
+"}
+(13,1,1) = {"
+c
+g
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+R
+c
+"}
+(14,1,1) = {"
+c
+f
+e
+n
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+H
+e
+e
+e
+z
+c
+"}
+(15,1,1) = {"
+c
+i
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+J
+e
+e
+z
+c
+"}
+(16,1,1) = {"
+c
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+z
+c
+"}
+(17,1,1) = {"
+c
+d
+k
+o
+o
+o
+e
+e
+e
+e
+x
+e
+e
+e
+e
+V
+k
+Q
+c
+b
+"}
+(18,1,1) = {"
+b
+c
+m
+p
+p
+p
+e
+e
+e
+e
+y
+e
+e
+e
+e
+V
+K
+c
+b
+a
+"}
+(19,1,1) = {"
+b
+b
+c
+q
+q
+q
+e
+e
+e
+e
+z
+C
+C
+C
+C
+C
+c
+b
+b
+a
+"}
+(20,1,1) = {"
+a
+a
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+a
+a
+a
+"}

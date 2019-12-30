@@ -320,7 +320,7 @@
 	outfit = /datum/outfit/job/doctor
 
 
-/obj/effect/mob_spawn/human/doctor/alive
+/*/obj/effect/mob_spawn/human/doctor/alive *All ghost roles being replaced with dwarves* - Viv
 	death = FALSE
 	roundstart = FALSE
 	random = TRUE
@@ -329,6 +329,7 @@
 	icon_state = "sleeper"
 	short_desc = "You are a space doctor!"
 	assignedrole = "Space Doctor"
+*/
 
 /obj/effect/mob_spawn/human/doctor/alive/equip(mob/living/carbon/human/H)
 	..()
@@ -375,7 +376,8 @@
 	id_access_list = list(ACCESS_BAR)
 	outfit = /datum/outfit/spacebartender
 
-/obj/effect/mob_spawn/human/bartender/alive
+/*
+/obj/effect/mob_spawn/human/bartender/alive *All ghost roles being replaced with dwarves* - Viv
 	death = FALSE
 	roundstart = FALSE
 	random = TRUE
@@ -386,6 +388,7 @@
 	flavour_text = "Time to mix drinks and change lives. Smoking space drugs makes it easier to understand your patrons' odd dialect."
 	assignedrole = "Space Bartender"
 	id_job = "Bartender"
+*/
 
 /datum/outfit/spacebartender
 	name = "Space Bartender"
@@ -399,7 +402,8 @@
 /obj/effect/mob_spawn/human/beach
 	outfit = /datum/outfit/beachbum
 
-/obj/effect/mob_spawn/human/beach/alive
+/*
+/obj/effect/mob_spawn/human/beach/alive *All ghost roles being replaced with dwarves* - Viv
 	death = FALSE
 	roundstart = FALSE
 	random = TRUE
@@ -418,6 +422,7 @@
 	name = "lifeguard sleeper"
 	id_job = "Lifeguard"
 	uniform = /obj/item/clothing/under/shorts/red
+*/
 
 /datum/outfit/beachbum
 	name = "Beach Bum"
