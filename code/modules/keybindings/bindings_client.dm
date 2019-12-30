@@ -95,5 +95,7 @@
 
 // Called every game tick
 /client/keyLoop()
-	holder?.keyLoop(src)
-	mob.focus?.keyLoop(src)
+	if(holder)
+		holder.keyLoop(src)
+	if(mob?.focus)
+		mob.focus.keyLoop(src)
