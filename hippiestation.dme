@@ -3185,6 +3185,7 @@
 #include "hippiestation\code\modules\detectivework\footprints_and_rag.dm"
 #include "hippiestation\code\modules\detectivework\scanner.dm"
 #include "hippiestation\code\modules\donator\donator.dm"
+#include "hippiestation\code\modules\donator\yousux.dm"
 #include "hippiestation\code\modules\emoji\emoji_parse.dm"
 #include "hippiestation\code\modules\events\aurora_caelus.dm"
 #include "hippiestation\code\modules\events\blob.dm"
