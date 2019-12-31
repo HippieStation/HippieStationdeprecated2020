@@ -19,7 +19,7 @@
 		if (danger_time)
 			next_event -= 0.5 MINUTES
 		if (critical_time)
-		   next_event -= 1.5 MINUTES 
+			next_event -= 1.5 MINUTES 
 		//time to trigger an event
 		var/datum/round_event_control/event = pick(SSevents.control)
 		
