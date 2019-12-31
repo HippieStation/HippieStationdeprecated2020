@@ -22,7 +22,6 @@
 
 	if (world.time - SSticker.round_start_time > next_event)
 		next_event = world.time + next_event_delay
-		deadchat_broadcast("A random event has just been triggered! Next event is in [next_event_delay] seconds.")
 		//time to trigger an event
 		var/datum/round_event_control/event = pick(SSevents.control)
 		
@@ -32,6 +31,8 @@
 		else   
 			event.random = TRUE
 			event.runEvent()
+		deadchat_broadcast("A random event has just been triggered! Next event is in [next_event_delay] seconds.")
+		
 
 
 /datum/game_mode/events/special_report()
