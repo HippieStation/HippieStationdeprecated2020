@@ -1,11 +1,11 @@
 /datum/game_mode/events
 	name = "Eventful"
 	config_tag = "event"
-	required_players = 5
+	required_players = 0
 	var/danger_time = 23 MINUTES
 	var/critical_time = 30 MINUTES
 	var/round_start_delay = 3 MINUTES
-	var/next_event_delay = 3 MINUTES
+	var/next_event_delay = 2.5 MINUTES
 	var/next_event = 3 MINUTES
 	announce_span = "danger"
 	announce_text = "The current game mode is - Events!\n\
