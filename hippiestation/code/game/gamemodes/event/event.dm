@@ -2,8 +2,8 @@
 	name = "Eventful"
 	config_tag = "event"
 	required_players = 0
-	var/danger_time = 23 MINUTES
-	var/critical_time = 30 MINUTES
+	var/danger_time = 20 MINUTES
+	var/critical_time = 26 MINUTES
 	var/round_start_delay = 3 MINUTES
 	var/next_event_delay = 2.5 MINUTES
 	var/next_event = 3 MINUTES
@@ -14,12 +14,14 @@
 /datum/game_mode/events/process()
 	if (round_start_delay > world.time)
 		return
+
+	if (world.time > danger_time)
+		next_event_delay = 2 MINUTES
+	if (world.time > critical_time)
+		next_event_delay = 0.5 MINUTES 
+
 	if (world.time - SSticker.round_start_time > next_event)
 		next_event = world.time + next_event_delay
-		if (world.time - SSticker.round_start_time > danger_time)
-			next_event -= 0.5 MINUTES
-		if (world.time - SSticker.round_start_time > critical_time)
-			next_event -= 1.5 MINUTES 
 		//time to trigger an event
 		var/datum/round_event_control/event = pick(SSevents.control)
 		
