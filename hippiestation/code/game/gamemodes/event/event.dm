@@ -2,33 +2,33 @@
 	name = "Eventful"
 	config_tag = "event"
 	required_players = 5
-    var/danger_time = 23 MINUTES
-    var/critical_time = 30 MINUTES
-    var/round_start_delay = 3 MINUTES
-    var/next_event_delay = 3 MINUTES
-    var/next_event = delay
+	var/danger_time = 23 MINUTES
+	var/critical_time = 30 MINUTES
+	var/round_start_delay = 3 MINUTES
+	var/next_event_delay = 3 MINUTES
+	var/next_event = delay
 	announce_span = "danger"
 	announce_text = "The current game mode is - Events!\n\
 					
 					<span class='notice'>Crew:</span> Stay alive!"
 /datum/game_mode/events/process()
-    if (round_start_delay > world.time)
-        return
-    if (world.time - SSticker.round_start_time > next_event)
-        next_event = world.time + next_event_delay
-        if (danger_time)
-            next_event -= 0.5 MINUTES
-        if (critical_time)
-           next_event -= 1.5 MINUTES 
-        //time to trigger an event
-        var/datum/round_event_control/event = pick(SSevents.control)
-        
-        if (event.preRunEvent() == EVENT_CANT_RUN)
-            //you got lucky, relent
-            return
-        else   
-            event.random = TRUE
-            event.runEvent()
+	if (round_start_delay > world.time)
+		return
+	if (world.time - SSticker.round_start_time > next_event)
+		next_event = world.time + next_event_delay
+		if (danger_time)
+			next_event -= 0.5 MINUTES
+		if (critical_time)
+		   next_event -= 1.5 MINUTES 
+		//time to trigger an event
+		var/datum/round_event_control/event = pick(SSevents.control)
+		
+		if (event.preRunEvent() == EVENT_CANT_RUN)
+			//you got lucky, relent
+			return
+		else   
+			event.random = TRUE
+			event.runEvent()
 
 
 /datum/game_mode/events/special_report()
@@ -54,4 +54,4 @@
 
 /datum/game_mode/events/generate_report()
 	return "Due to quantum bluespace effects and a testing of a finite improbability drive near your sector, strage anomalous events may take place on your station\
-    at a rapid pace and cause mass damage."
+	at a rapid pace and cause mass damage."
