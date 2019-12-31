@@ -16,9 +16,9 @@
 		return
 	if (world.time - SSticker.round_start_time > next_event)
 		next_event = world.time + next_event_delay
-		if (danger_time)
+		if (world.time - SSticker.round_start_time > danger_time)
 			next_event -= 0.5 MINUTES
-		if (critical_time)
+		if (world.time - SSticker.round_start_time > critical_time)
 			next_event -= 1.5 MINUTES 
 		//time to trigger an event
 		var/datum/round_event_control/event = pick(SSevents.control)
