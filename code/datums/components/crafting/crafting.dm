@@ -111,6 +111,10 @@
 	for(var/obj/item/I in get_environment(user))
 		if(I.flags_1 & HOLOGRAM_1)
 			continue
+		if(.["instances"][I.type])
+			.["instances"][I.type] += I
+		else
+			.["instances"][I.type] = list(I)
 		if(istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I
 			.["other"][I.type] += S.amount
@@ -368,7 +372,7 @@
 			crafting_recipes[R.category][R.subcategory] += list(build_recipe_data(R))
 
 	data["crafting_recipes"] = crafting_recipes
-	return data	
+	return data
 
 
 /datum/component/personal_crafting/ui_act(action, params)
