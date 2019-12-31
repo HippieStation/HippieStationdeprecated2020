@@ -6,7 +6,7 @@
 	var/critical_time = 30 MINUTES
 	var/round_start_delay = 3 MINUTES
 	var/next_event_delay = 3 MINUTES
-	var/next_event = next_event_delay
+	var/next_event = 3 MINUTES
 	announce_span = "danger"
 	announce_text = "The current game mode is - Events!\n\
 					
