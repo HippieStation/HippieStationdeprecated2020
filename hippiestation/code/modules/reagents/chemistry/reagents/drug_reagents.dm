@@ -302,10 +302,12 @@
 	var/obj/effect/hallucination/simple/druggy/brain
 	var/bad_trip = FALSE
 	var/badtrip_cooldown = 0
+	var/list/sounds = list()
+	var/static/list/sounds2 = list()
 
 /datum/reagent/drug/grape_blast/proc/create_brain(mob/living/carbon/C)
-	var/turf/where = locate(C.x + pick(-1, 1), C.y + pick(-1, 1), C.z)
-	brain = new(where, C)
+	var/turf/T = locate(C.x + pick(-1, 1), C.y + pick(-1, 1), C.z)
+	brain = new(T, C)
 
 /datum/reagent/drug/grape_blast/on_mob_life(mob/living/carbon/H)
 	if(!H && !H.hud_used)
@@ -325,6 +327,13 @@
 		if(31 to INFINITY)
 			if(prob(20) && (H.mobility_flags & MOBILITY_MOVE) && !ismovableatom(H.loc))
 				step(H, pick(GLOB.cardinals))
+			if(H.client)
+				sounds = H.client.SoundQuery()
+				for(var/sound/S in sounds)
+					if(S.len <= 3)
+						PlaySpook(H, S.file)
+						sounds = list()
+
 			high_message = pick("I feel like I'm flying!", "I feel something swimming inside my lungs....", "I can see the words I'm saying...")
 			if(prob(20))
 				var/rotation = min(round(current_cycle/4), 20)
@@ -434,3 +443,10 @@
 	sleep(10)
 	animate(src, transform = matrix()*0.75, time = 5)
 	QDEL_IN(src, 30)
+
+/datum/reagent/drug/grape_blast/proc/PlaySpook(mob/living/carbon/C, soundfile)
+	var/sound/sound = sound(soundfile)
+	sound.environment = 23 //druggy
+	sound.frequency = get_rand_frequency()
+	C.client << sound
+	return
