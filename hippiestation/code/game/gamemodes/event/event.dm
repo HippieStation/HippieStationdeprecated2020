@@ -5,7 +5,7 @@
 	var/danger_time = 20 MINUTES
 	var/critical_time = 26 MINUTES
 	var/round_start_delay = 3 MINUTES
-	var/next_event_delay = 2 MINUTES
+	var/next_event_delay = 1.5 MINUTES
 	var/next_event = 4 MINUTES
 	var/started = FALSE
 	announce_span = "danger"
