@@ -21,7 +21,7 @@
 			addtimer(CALLBACK(src, .proc/real_process), 50)
 		started = TRUE
 
-/datum/game_mode/events/real_process()
+/datum/game_mode/events/proc/real_process()
 	addtimer(CALLBACK(src, .proc/real_process), 50)
 	if (world.time > danger_time)
 		next_event_delay = 2 MINUTES
