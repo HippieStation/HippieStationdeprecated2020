@@ -880,6 +880,14 @@
 	block_chance = 50
 	id = MARTIALART_NANOSUIT
 
+/datum/martial_art/nanosuit/teach(mob/living/carbon/human/H, make_temporary = FALSE)
+	. = ..()
+	RegisterSignal(H, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, .proc/on_attack_hand)
+
+/datum/martial_art/nanosuit/remove(mob/living/carbon/human/H)
+	. = ..()
+	UnregisterSignal(H, COMSIG_HUMAN_EARLY_UNARMED_ATTACK)
+
 /datum/martial_art/nanosuit/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	A.hud_used.combo_object.update_icon(streak, 60)
 	if(findtext(streak,POWER_PUNCH))
@@ -1033,7 +1041,14 @@
 /mob/living/simple_animal/nanosuit_damage()
 	return 20
 
-/mob/living/simple_animal/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)
+/mob/living/attack_nanosuit(mob/living/carbon/human/user)
+	..()
+	if(HAS_TRAIT(user, TRAIT_PACIFISM))
+		to_chat(user, "<span class='warning'>You don't want to hurt [src]!</span>")
+		return FALSE
+	return TRUE
+
+/mob/living/simple_animal/attack_nanosuit(mob/living/carbon/human/user)
 	. = ..()
 	if(!.)
 		return
@@ -1049,34 +1064,30 @@
 /obj/item/attack_nanosuit(mob/living/carbon/human/user)
 	return FALSE
 
-/obj/effect/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)
+/obj/effect/attack_nanosuit(mob/living/carbon/human/user)
 	return FALSE
 
-/obj/structure/window/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)
+/obj/structure/window/attack_nanosuit(mob/living/carbon/human/user)
 	if(!can_be_reached(user))
 		return
 	. = ..()
 
-/obj/structure/grille/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)
+/obj/structure/grille/attack_nanosuit(mob/living/carbon/human/user)
 	if(shock(user, 70))
 		return
 	. = ..()
 
-/obj/structure/destructible/clockwork/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)
+/obj/structure/destructible/clockwork/attack_nanosuit(mob/living/carbon/human/user)
 	if(is_servant_of_ratvar(user) && immune_to_servant_attacks)
 		return FALSE
 	return ..()
 
-/obj/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)//attacking objects barehand
-	. = ..()
-	if(!.)
-		return
+/obj/attack_nanosuit(mob/living/carbon/human/user)//attacking objects barehand
+	..()
 	visible_message("<span class='danger'>[user] smashes [src]!</span>", null, null, COMBAT_MESSAGE_RANGE)
-	if(density)
-		playsound(src, 'sound/effects/bang.ogg', 100, TRUE)//less ear rape
-	else
-		playsound(src, 'sound/effects/bang.ogg', 50, TRUE)//less ear rape
+	playsound(src, 'sound/effects/bang.ogg', density ? 100 : 50, TRUE)//less ear rape
 	take_damage(nanosuit_damage(), BRUTE, "melee", FALSE, get_dir(src, user))
+	return TRUE
 
 /mob/living/carbon/human/check_weakness(obj/item/weapon, mob/living/carbon/attacker)
 	. = ..()
@@ -1104,22 +1115,17 @@
 /datum/martial_art/nanosuit/proc/on_attack_hand(mob/living/carbon/human/owner, atom/target, proximity)
 	if(!proximity)
 		return
-	if(owner.a_intent != INTENT_HARM)
-		return
-	if(target.attack_nanosuit(owner))
-		log_combat(owner, target, "punched", "nanosuit strength mode")
-		owner.do_attack_animation(src, ATTACK_EFFECT_SMASH)
-		owner.changeNext_move(CLICK_CD_MELEE)
-		return COMPONENT_NO_ATTACK_HAND
-
-/mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
-	var/datum/martial_art/nanosuit/style = mind?.has_martialart(MARTIALART_NANOSUIT)
-	if(style)
-		if(style.on_attack_hand(src, A, proximity))
-			return
-		else if(iscarbon(A) && !ishuman(A) && style.harm_act(src, A))
-			return
-	..()
+	var/datum/martial_art/nanosuit/style = owner.mind?.has_martialart(MARTIALART_NANOSUIT)
+	if(iscarbon(target) && !ishuman(target) && style?.harm_act(src, target))
+		message_admins("style.harm_act")
+		return TRUE
+	if(owner.a_intent == INTENT_HARM && !iscarbon(target))
+		if(target.attack_nanosuit(owner))
+			message_admins("attack_nanosuit")
+			log_combat(owner, target, "punched", "nanosuit strength mode")
+			owner.do_attack_animation(target, ATTACK_EFFECT_SMASH)
+			owner.changeNext_move(CLICK_CD_MELEE)
+			return COMPONENT_NO_ATTACK_HAND
 
 /mob/living/simple_animal/attack_hand(mob/living/carbon/human/M)
 	. = ..()
