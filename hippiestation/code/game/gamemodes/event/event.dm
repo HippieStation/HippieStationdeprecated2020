@@ -5,8 +5,8 @@
 	var/danger_time = 20 MINUTES
 	var/critical_time = 26 MINUTES
 	var/round_start_delay = 3 MINUTES
-	var/next_event_delay = 2.5 MINUTES
-	var/next_event = 4 MINUTES
+	var/next_event_delay = 2 MINUTES
+	var/next_event = 3.25 MINUTES
 	var/started = FALSE
 	announce_span = "danger"
 	announce_text = "The current game mode is - Events!\n\
@@ -24,7 +24,7 @@
 /datum/game_mode/events/proc/real_process()
 	addtimer(CALLBACK(src, .proc/real_process), 50)
 	if (world.time > danger_time)
-		next_event_delay = 2 MINUTES
+		next_event_delay = 1 MINUTES
 	if (world.time > critical_time)
 		next_event_delay = 0.5 MINUTES 
 
