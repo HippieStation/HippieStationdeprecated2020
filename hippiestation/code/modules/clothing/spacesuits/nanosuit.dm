@@ -1116,9 +1116,9 @@
 	if(!proximity)
 		return
 	var/datum/martial_art/nanosuit/style = owner.mind?.has_martialart(MARTIALART_NANOSUIT)
-	if(iscarbon(target) && !ishuman(target) && style?.harm_act(src, target))
+	if(iscarbon(target) && !ishuman(target) && style?.harm_act(owner, target))
 		message_admins("style.harm_act")
-		return TRUE
+		return
 	if(owner.a_intent == INTENT_HARM && !iscarbon(target))
 		if(target.attack_nanosuit(owner))
 			message_admins("attack_nanosuit")
@@ -1151,7 +1151,7 @@
 		Wearer.filters = filter(type="blur",size=1)
 		animate(Wearer, alpha = 40, time = stealth_cloak_in)
 
-/obj/item/storage/box/syndie_kit/nanosuit
+/obj/item/storage/box/syndie_kit/nanosuitLK
 	name = "\improper Crynet Systems kit"
 	desc = "Maximum Death."
 
