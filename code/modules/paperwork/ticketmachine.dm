@@ -148,10 +148,10 @@
 /obj/machinery/ticket_machine/attack_hand(mob/living/carbon/user)
 	. = ..()
 	if(!ready)
-		to_chat(user,"Temporarily unable to dispense ticket, please be patient!")
+		to_chat(user,"<span class='warning'>Temporarily unable to dispense ticket, please be patient!</span>")
 		return
 	if(ticket_number >= max_number)
-		to_chat(user,"Ticket supply depleted, please refill this unit with a hand labeller refill cartridge!")
+		to_chat(user,"<span class='warning'>Ticket supply depleted, please refill this unit with a hand labeller refill cartridge!</span>")
 		return
 	ready = FALSE
 	playsound(src, 'sound/machines/terminal_insert_disc.ogg', 100, 0)
