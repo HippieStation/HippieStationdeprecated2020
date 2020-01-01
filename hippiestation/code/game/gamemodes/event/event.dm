@@ -6,7 +6,8 @@
 	var/critical_time = 26 MINUTES
 	var/round_start_delay = 3 MINUTES
 	var/next_event_delay = 2.5 MINUTES
-	var/next_event = 3 MINUTES
+	var/next_event = 4 MINUTES
+	var/started = FALSE
 	announce_span = "danger"
 	announce_text = "The current game mode is - Events!\n\
 					
@@ -14,13 +15,20 @@
 /datum/game_mode/events/process()
 	if (round_start_delay > world.time)
 		return
+	else
+		if (started == FALSE)
+			priority_announce("We are testing a new improbability drive near your sector. Expect random events to occur at unfortunate times.","Central Command Higher Dimensional Affairs", 'hippiestation/sound/pyko/spanomalies.ogg') // hippie -- pykoai
+			addtimer(CALLBACK(src, .proc/real_process), 50)
+		started = TRUE
 
+/datum/game_mode/events/real_process()
+	addtimer(CALLBACK(src, .proc/real_process), 50)
 	if (world.time > danger_time)
 		next_event_delay = 2 MINUTES
 	if (world.time > critical_time)
 		next_event_delay = 0.5 MINUTES 
 
-	if (world.time - SSticker.round_start_time > next_event)
+	if (world.time > next_event)
 		next_event = world.time + next_event_delay
 		//time to trigger an event
 		var/datum/round_event_control/event = pick(SSevents.control)
@@ -31,7 +39,7 @@
 		else   
 			event.random = TRUE
 			event.runEvent()
-		deadchat_broadcast("A random event has just been triggered! Next event is in [next_event_delay] seconds.")
+		deadchat_broadcast("A random event has just been triggered! Next event is in [next_event_delay/10] seconds.")
 		
 
 
