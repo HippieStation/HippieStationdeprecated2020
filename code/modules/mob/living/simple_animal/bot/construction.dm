@@ -398,7 +398,7 @@
 				qdel(I)
 				qdel(src)
 			if(I.tool_behaviour == TOOL_WRENCH)
-				to_chat(user, "You adjust [src]'s arm slots to mount extra weapons")
+				to_chat(user, "<span class='notice'>You adjust [src]'s arm slots to mount extra weapons.</span>")
 				build_step ++
 				return
 			if(istype(I, /obj/item/toy/sword))
@@ -456,7 +456,7 @@
 			else if(I.tool_behaviour == TOOL_SCREWDRIVER) //deconstruct
 				build_step--
 				icon_state = initial(icon_state)
-				to_chat(user, "<span class='notice'>You unbolt [src]'s energy swords</span>")
+				to_chat(user, "<span class='notice'>You unbolt [src]'s energy swords.</span>")
 				for(var/IS in 1 to swordamt)
 					new /obj/item/melee/transforming/energy/sword/saber(Tsec)
 

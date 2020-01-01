@@ -211,7 +211,7 @@
 		things = typecache_filter_list(things, typecacheof(I.type))
 	var/len = length(things)
 	if(!len)
-		to_chat(M, "<span class='notice'>You failed to pick up anything with [parent].</span>")
+		to_chat(M, "<span class='warning'>You failed to pick up anything with [parent]!</span>")
 		return
 	var/datum/progressbar/progress = new(M, len, I.loc)
 	var/list/rejections = list()
@@ -803,8 +803,8 @@
 	collection_mode = (collection_mode+1)%3
 	switch(collection_mode)
 		if(COLLECT_SAME)
-			to_chat(user, "[parent] now picks up all items of a single type at once.")
+			to_chat(user, "<span class='notice'>[parent] now picks up all items of a single type at once.</span>")
 		if(COLLECT_EVERYTHING)
-			to_chat(user, "[parent] now picks up all items in a tile at once.")
+			to_chat(user, "<span class='notice'>[parent] now picks up all items in a tile at once.</span>")
 		if(COLLECT_ONE)
-			to_chat(user, "[parent] now picks up one item at a time.")
+			to_chat(user, "<span class='notice'>[parent] now picks up one item at a time.</span>")

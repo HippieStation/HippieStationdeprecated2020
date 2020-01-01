@@ -229,10 +229,10 @@
 		if(href_list["maint_access"] && maint_access && id_card)
 			if(state==0)
 				state = 1
-				to_chat(usr, "The securing bolts are now exposed.")
+				to_chat(usr, "<span class='notice'>The securing bolts are now exposed.</span>")
 			else if(state==1)
 				state = 0
-				to_chat(usr, "The securing bolts are now hidden.")
+				to_chat(usr, "<span class='notice'>The securing bolts are now hidden.</span>")
 			output_maintenance_dialog(id_card,usr)
 
 		if(href_list["set_internal_tank_valve"] && state >=1)
@@ -319,7 +319,7 @@
 
 	if(href_list["dna_lock"])
 		if(occupant && !iscarbon(occupant))
-			to_chat(occupant, "<span class='danger'> You do not have any DNA!</span>")
+			to_chat(occupant, "<span class='warning'> You do not have any DNA!</span>")
 			return
 		dna_lock = occupant.dna.unique_enzymes
 		occupant_message("You feel a prick as the needle takes your DNA sample.")

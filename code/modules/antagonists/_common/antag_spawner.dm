@@ -55,7 +55,7 @@
 		H.set_machine(src)
 		if(href_list["school"])
 			if(used)
-				to_chat(H, "You already used this contract!")
+				to_chat(H, "<span class='warning'>You already used this contract!</span>")
 				return
 			// hippie start -- anti-ghost-spam
 			if(is_spawning)
@@ -67,13 +67,13 @@
 				if(QDELETED(src))
 					return
 				if(used)
-					to_chat(H, "You already used this contract!")
+					to_chat(H, "<span class='warning'>You already used this contract!</span>")
 					return
 				used = TRUE
 				var/mob/dead/observer/C = pick(candidates)
 				spawn_antag(C.client, get_turf(src), href_list["school"],H.mind)
 			else
-				to_chat(H, "Unable to reach your apprentice! You can either attack the spellbook with the contract to refund your points, or wait and try again later.")
+				to_chat(H, "<span class='warning'>Unable to reach your apprentice! You can either attack the spellbook with the contract to refund your points, or wait and try again later.</span>")
 			is_spawning = FALSE // hippie -- anti-ghost-spam
 
 /obj/item/antag_spawner/contract/spawn_antag(client/C, turf/T, kind ,datum/mind/user)
@@ -250,7 +250,7 @@
 
 /obj/item/antag_spawner/slaughter_demon/attack_self(mob/user)
 	if(!is_station_level(user.z))
-		to_chat(user, "<span class='notice'>You should probably wait until you reach the station.</span>")
+		to_chat(user, "<span class='warning'>You should probably wait until you reach the station.</span>")
 		return
 	if(used)
 		return
@@ -271,7 +271,7 @@
 		playsound(user.loc, 'sound/effects/glassbr1.ogg', 100, 1)
 		qdel(src)
 	else
-		to_chat(user, "<span class='notice'>You can't seem to work up the nerve to shatter the bottle. Perhaps you should try again later.</span>")
+		to_chat(user, "<span class='warning'>You can't seem to work up the nerve to shatter the bottle! Perhaps you should try again later.</span>")
 	is_spawning = FALSE // hippie -- anti-ghost-spam
 
 
