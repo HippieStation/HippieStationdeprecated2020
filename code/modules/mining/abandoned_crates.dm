@@ -121,7 +121,7 @@
 			for(var/i in 1 to 3)
 			new /obj/item/clothing/mask/cigarette/rollie(src)
 		if(6 to 10)
-			new /obj/item/melee/skateboard/pro(src)
+			new /obj/item/melee/skateboard(src)
 		if(11 to 15)
 			new /mob/living/simple_animal/bot/honkbot(src)
 		if(16 to 20)
@@ -144,8 +144,6 @@
 			new /obj/item/storage/box/syndie_kit/chameleon/broken
 		if(51 to 52) // 2% chance
 			new /obj/item/melee/classic_baton(src)
-		if(53 to 54)
-			new /obj/item/toy/balloon/corgi(src)
 		if(55 to 56)
 			var/newitem = pick(subtypesof(/obj/item/toy/prize))
 			new newitem(src)
@@ -223,6 +221,4 @@
 			 new /mob/living/simple_animal/hostile/poison/bees/toxin(src)
 		if(99)
 			new /obj/item/implanter/sad_trombone(src)
-		if(100)
-			new /obj/item/melee/skateboard/hoverboard(src)
 	spawned_loot = TRUE
