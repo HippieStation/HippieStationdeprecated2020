@@ -228,6 +228,9 @@
 		if(MUTE_DEADCHAT)
 			mute_string = "deadchat and DSAY"
 			feedback_string = "Deadchat"
+		if(MUTE_MENTOR)
+			mute_string = "mentorhelp, mentor PM and MSAY"
+			feedback_string = "Mentorhelp"
 		if(MUTE_ALL)
 			mute_string = "everything"
 			feedback_string = "Everything"
@@ -1196,12 +1199,12 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /datum/admins/proc/modify_traits(datum/D)
 	if(!D)
 		return
-	
+
 	var/add_or_remove = input("Remove/Add?", "Trait Remove/Add") as null|anything in list("Add","Remove")
 	if(!add_or_remove)
 		return
 	var/list/availible_traits = list()
-	
+
 	switch(add_or_remove)
 		if("Add")
 			for(var/key in GLOB.traits_by_type)
