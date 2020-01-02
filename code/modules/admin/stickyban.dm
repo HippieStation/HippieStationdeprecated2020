@@ -371,7 +371,7 @@
 		banhtml += stickyban_gethtml(ckey)
 
 	var/html = {"
-	<head>
+	<head>[UTF8HEADER]
 		<title>Sticky Bans</title>
 	</head>
 	<body>

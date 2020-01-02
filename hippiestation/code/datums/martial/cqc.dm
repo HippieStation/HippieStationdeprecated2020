@@ -9,9 +9,7 @@
 	help_verb = /mob/living/carbon/human/proc/CQC_help
 	block_chance = 75
 	var/just_a_cook = FALSE
-	var/static/list/areas_under_siege = typecacheof(list(/area/crew_quarters/kitchen,
-	                                                     /area/crew_quarters/cafeteria,
-														 /area/crew_quarters/bar))
+	var/static/list/areas_under_siege = typecacheof(list(/area/crew_quarters/kitchen))
 
 /datum/martial_art/cqc/under_siege
 	name = "Close Quarters Cooking" // Original name "Culinary School Training"

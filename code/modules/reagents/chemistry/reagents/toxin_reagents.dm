@@ -130,7 +130,7 @@
 
 /datum/reagent/toxin/minttoxin/on_mob_life(mob/living/carbon/M)
 	if(HAS_TRAIT(M, TRAIT_FAT))
-		M.gib()
+		M.inflate_gib()
 	return ..()
 
 /datum/reagent/toxin/carpotoxin
@@ -377,7 +377,7 @@
 				M.emote("sneeze")
 			if(4)
 				if(prob(75))
-					to_chat(M, "You scratch at an itch.")
+					to_chat(M, "<span class='danger'>You scratch at an itch.</span>")
 					M.adjustBruteLoss(2*REM, 0)
 					. = 1
 	..()
@@ -452,7 +452,7 @@
 	if(prob(5))
 		M.losebreath += 1
 	if(prob(8))
-		to_chat(M, "You feel horrendously weak!")
+		to_chat(M, "<span class='danger'>You feel horrendously weak!</span>")
 		M.Stun(40, 0)
 		M.adjustToxLoss(2*REM, 0)
 	return ..()
@@ -481,15 +481,15 @@
 
 /datum/reagent/toxin/itching_powder/on_mob_life(mob/living/carbon/M)
 	if(prob(15))
-		to_chat(M, "You scratch at your head.")
+		to_chat(M, "<span class='danger'>You scratch at your head.</span>")
 		M.adjustBruteLoss(0.2*REM, 0)
 		. = 1
 	if(prob(15))
-		to_chat(M, "You scratch at your leg.")
+		to_chat(M, "<span class='danger'>You scratch at your leg.</span>")
 		M.adjustBruteLoss(0.2*REM, 0)
 		. = 1
 	if(prob(15))
-		to_chat(M, "You scratch at your arm.")
+		to_chat(M, "<span class='danger'>You scratch at your arm.</span>")
 		M.adjustBruteLoss(0.2*REM, 0)
 		. = 1
 	if(prob(3))

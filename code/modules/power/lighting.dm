@@ -623,7 +623,7 @@
 	add_fingerprint(user)
 
 	if(status == LIGHT_EMPTY)
-		to_chat(user, "There is no [fitting] in this light.")
+		to_chat(user, "<span class='warning'>There is no [fitting] in this light!</span>")
 		return
 
 	// make it burn hands unless you're wearing heat insulated gloves or have the RESISTHEAT/RESISTHEATHANDS traits
@@ -641,7 +641,7 @@
 						to_chat(H, "<span class='notice'>You receive some charge from the [fitting].</span>")
 						stomach.adjust_charge(5)
 					else
-						to_chat(H, "<span class='notice'>You can't receive charge from the [fitting].</span>")
+						to_chat(H, "<span class='warning'>You can't receive charge from the [fitting]!</span>")
 				return
 
 			if(H.gloves)
@@ -690,7 +690,7 @@
 
 /obj/machinery/light/attack_tk(mob/user)
 	if(status == LIGHT_EMPTY)
-		to_chat(user, "There is no [fitting] in this light.")
+		to_chat(user, "<span class='warning'>There is no [fitting] in this light!</span>")
 		return
 
 	to_chat(user, "<span class='notice'>You telekinetically remove the light [fitting].</span>")

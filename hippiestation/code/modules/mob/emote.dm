@@ -3,9 +3,6 @@
 	if(. != FALSE) // this is intentional. if emote succeeds, it simply won't return anything. but if it fails, it'll return false.
 		SEND_SIGNAL(src, COMSIG_MOB_EMOTE, act)
 
-/datum/emote
-	var/default_keybind = "Unbound"
-
 /datum/emote/flip/run_emote(mob/user, params)
 	. = ..()
 

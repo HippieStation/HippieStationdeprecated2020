@@ -224,7 +224,7 @@
 /obj/machinery/computer/shuttle/pod/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
-	if(SHUTTLE_DISABLED)//MODULE: SHUTTLE TOGGLE
+	if(SSshuttle.emergency.mode == SHUTTLE_DISABLED) //MODULE: SHUTTLE TOGGLE
 		return
 	ENABLE_BITFIELD(obj_flags, EMAGGED)
 	to_chat(user, "<span class='warning'>You fry the pod's alert level checking system.</span>")

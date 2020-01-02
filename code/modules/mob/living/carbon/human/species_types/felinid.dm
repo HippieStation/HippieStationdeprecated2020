@@ -132,8 +132,8 @@
 	H.set_species(/datum/species/human/felinid)
 
 	if(!silent)
-		to_chat(H, "Something is nya~t right.")
-		playsound(get_turf(H), 'sound/effects/meow1.ogg', 50, 1, -1)
+		to_chat(H, "<span class='boldnotice'>Something is nya~t right.</span>")
+		playsound(get_turf(H), 'sound/effects/meow1.ogg', 50, TRUE, -1)
 
 /proc/purrbation_remove(mob/living/carbon/human/H, silent = FALSE)
 	if(!ishuman(H) || !iscatperson(H))
@@ -142,4 +142,4 @@
 	H.set_species(/datum/species/human)
 
 	if(!silent)
-		to_chat(H, "You are no longer a cat.")
+		to_chat(H, "<span class='boldnotice'>You are no longer a cat.</span>")

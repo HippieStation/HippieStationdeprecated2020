@@ -1,0 +1,6 @@
+author: "yoyobatty"
+delete-after: True
+changes: 
+  - admin: "Admins now have the ability to mute mentors"
+  - bugfix: "Nanosuit and hulk punching spamming has been fixed"
+  - bugfix: "Cluwne bans should apply round start"

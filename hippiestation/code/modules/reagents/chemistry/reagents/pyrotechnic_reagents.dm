@@ -150,6 +150,8 @@
 
 /datum/reagent/superboom/process()
 	if(prob(0.5) && holder) //even if you do nothing it can explode
+		if(holder.has_reagent(/datum/reagent/stabilizing_agent)) //unless its stabilised :spoi:
+			return ..()
 		var/location = get_turf(holder.my_atom)
 		var/datum/effect_system/reagents_explosion/e = new()
 		e.set_up(round(volume, 0.5), location, 0, 0, message = 0)
