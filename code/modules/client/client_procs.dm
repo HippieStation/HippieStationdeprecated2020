@@ -281,6 +281,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 
 	if(SSinput.initialized)
 		set_macros()
+		update_movement_keys()
 
 	chatOutput.start() // Starts the chat
 
@@ -295,7 +296,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	var/cev = CONFIG_GET(number/client_error_version)
 	var/ceb = CONFIG_GET(number/client_error_build)
 	var/cwv = CONFIG_GET(number/client_warn_version)
-	if (byond_version < cev || byond_build < ceb)		//Out of date client.
+	if (byond_version < cev || (byond_version == cev && byond_build < ceb))		//Out of date client.
 		to_chat(src, "<span class='danger'><b>Your version of BYOND is too old:</b></span>")
 		to_chat(src, CONFIG_GET(string/client_error_message))
 		to_chat(src, "Your version: [byond_version].[byond_build]")
@@ -772,6 +773,9 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		// so that the visual focus indicator matches reality.
 		winset(src, null, "input.background-color=[COLOR_INPUT_DISABLED]")
 
+	else
+		winset(src, null, "input.focus=true input.background-color=[COLOR_INPUT_ENABLED]")
+
 	..()
 
 /client/proc/add_verbs_from_config()
@@ -842,6 +846,23 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	x = CLAMP(x+change, min, max)
 	y = CLAMP(y+change, min,max)
 	change_view("[x]x[y]")
+
+/client/proc/update_movement_keys(datum/preferences/direct_prefs)
+	var/datum/preferences/D = prefs || direct_prefs
+	if(!D?.key_bindings)
+		return
+	movement_keys = list()
+	for(var/key in D.key_bindings)
+		for(var/kb_name in D.key_bindings[key])
+			switch(kb_name)
+				if("North")
+					movement_keys[key] = NORTH
+				if("East")
+					movement_keys[key] = EAST
+				if("West")
+					movement_keys[key] = WEST
+				if("South")
+					movement_keys[key] = SOUTH
 
 /client/proc/change_view(new_size)
 	if (isnull(new_size))

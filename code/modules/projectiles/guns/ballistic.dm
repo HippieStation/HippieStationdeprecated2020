@@ -204,7 +204,7 @@
 			to_chat(user, "<span class='warning'>You can't seem to figure out how to fit [S] on [src]!</span>")
 			return
 		if(!user.is_holding(src))
-			to_chat(user, "<span class='notice'>You need be holding [src] to fit [S] to it!</span>")
+			to_chat(user, "<span class='warning'>You need be holding [src] to fit [S] to it!</span>")
 			return
 		if(suppressed)
 			to_chat(user, "<span class='warning'>[src] already has a suppressor!</span>")
@@ -334,7 +334,7 @@
 /obj/item/gun/ballistic/suicide_act(mob/user)
 	var/obj/item/organ/brain/B = user.getorganslot(ORGAN_SLOT_BRAIN)
 	if (B && chambered && chambered.BB && can_trigger_gun(user) && !chambered.BB.nodamage)
-		user.visible_message("<span class='suicide'>[user] is putting the barrel of [src] in [user.p_their()] mouth.  It looks like [user.p_theyre()] trying to commit suicide!</span>")
+		user.visible_message("<span class='suicide'>[user] is putting the barrel of [src] in [user.p_their()] mouth. It looks like [user.p_theyre()] trying to commit suicide!</span>")
 		sleep(25)
 		if(user.is_holding(src))
 			var/turf/T = get_turf(user)

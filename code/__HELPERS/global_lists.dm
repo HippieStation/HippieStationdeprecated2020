@@ -47,6 +47,9 @@
 		var/datum/material/D = new path()
 		GLOB.materials_list[D.id] = D
 
+	// Keybindings
+	init_keybindings()
+		
 	GLOB.emote_list = init_emote_list()
 	
 
@@ -69,3 +72,4 @@
 		for(var/path in subtypesof(prototype))
 			L+= path
 		return L
+

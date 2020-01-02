@@ -41,6 +41,8 @@ Thanks to spacemaniac and mcdonald for help with the JS side of this.
 	winset(src, "github", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
 	winset(src, "report-issue", "background-color = #492020;background-color = none")
 	winset(src, "report-issue", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "statbus", "background-color = #494949;background-color = none") // hippie - statbus
+	winset(src, "statbus", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000") // hippie - statbus
 	//Status and verb tabs
 	winset(src, "output", "background-color = [COLOR_DARKMODE_BACKGROUND];background-color = none")
 	winset(src, "output", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
@@ -91,6 +93,8 @@ Thanks to spacemaniac and mcdonald for help with the JS side of this.
 	winset(src, "github", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
 	winset(src, "report-issue", "background-color = none;background-color = #492020")
 	winset(src, "report-issue", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "statbus", "background-color = none;background-color = #3a3a3a") // hippie -- statbus
+	winset(src, "statbus", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]") // hippie -- statbus
 	//Status and verb tabs
 	winset(src, "output", "background-color = none;background-color = [COLOR_DARKMODE_DARKBACKGROUND]")
 	winset(src, "output", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")

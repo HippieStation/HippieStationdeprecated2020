@@ -6,7 +6,10 @@
 		return
 
 	msg = emoji_parse(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
-	if(!msg)	
+	if(!msg)
+		return
+	if(prefs.muted & MUTE_MENTOR)
+		to_chat(src, "<span class='danger'>Error: Msay: You are unable to use mentor say (muted).</span>", confidential=TRUE)
 		return
 
 	log_mentor("MSAY: [key_name(src)] : [msg]")

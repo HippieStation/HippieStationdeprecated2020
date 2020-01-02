@@ -78,11 +78,11 @@
 	..()
 
 /obj/structure/reagent_dispensers/chemical/examine(mob/user)
-	..()
+	. = ..()
 	if(reagents.flags & DRAWABLE)
-		to_chat(user, "It's lid is closed.")
+		. += "It's lid is closed."
 	else if(reagents.flags & OPENCONTAINER)
-		to_chat(user, "It's lid is open.")
+		. += "It's lid is open."
 
 /obj/structure/reagent_dispensers/chemical/update_icon()
 	..()

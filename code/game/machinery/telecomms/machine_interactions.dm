@@ -36,7 +36,7 @@
 			return
 	var/obj/item/multitool/P = get_multitool(user)
 	var/dat
-	dat = "<font face = \"Courier\"><HEAD><TITLE>[name]</TITLE></HEAD><center><H3>[name] Access</H3></center>"
+	dat = "<font face = \"Courier\"><HEAD>[UTF8HEADER]<TITLE>[name]</TITLE></HEAD><center><H3>[name] Access</H3></center>"
 	dat += "<br>[temp]<br>"
 	dat += "<br>Power Status: <a href='?src=[REF(src)];input=toggle'>[toggled ? "On" : "Off"]</a>"
 	if(on && toggled)

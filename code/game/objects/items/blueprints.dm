@@ -13,7 +13,7 @@
 
 /obj/item/areaeditor/attack_self(mob/user)
 	add_fingerprint(user)
-	. = "<BODY><HTML><head><title>[src]</title></head> \
+	. = "<BODY><HTML><head>[UTF8HEADER]<title>[src]</title></head> \
 				<h2>[station_name()] [src.name]</h2> \
 				<small>[fluffnotice]</small><hr>"
 	switch(get_area_type())
@@ -186,7 +186,7 @@
 	if(!str || !length(str) || str==prevname) //cancel
 		return
 	if(length(str) > 50)
-		to_chat(usr, "<span class='warning'>The given name is too long.  The area's name is unchanged.</span>")
+		to_chat(usr, "<span class='warning'>The given name is too long. The area's name is unchanged.</span>")
 		return
 
 	rename_area(A, str)

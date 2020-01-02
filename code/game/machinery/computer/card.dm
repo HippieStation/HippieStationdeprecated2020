@@ -500,8 +500,8 @@ GLOBAL_VAR_INIT(time_last_changed_position, 0)
 					return
 				else
 					SSjob.prioritized_jobs += j
-				to_chat(usr, "<span class='notice'>[j.title] has been successfully [priority ?  "prioritized" : "unprioritized"]. Potential employees will notice your request.</span>")
-				playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, 0)
+				to_chat(usr, "<span class='notice'>[j.title] has been successfully [priority ? "prioritized" : "unprioritized"]. Potential employees will notice your request.</span>")
+				playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 
 		if ("print")
 			if (!( printing ))

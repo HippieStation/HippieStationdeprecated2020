@@ -136,7 +136,7 @@
 	var/datum/browser/popup = new(user, "scannernew", name, 800, 630) // Set up the popup browser window
 	popup.add_stylesheet("scannernew", 'html/browser/assembly_ui.css')
 
-	var/HTML = "<html><head><title>[name]</title></head>\
+	var/HTML = "<html><head>[UTF8HEADER]<title>[name]</title></head>\
 		<body><table><thead><tr> \
 		<a href='?src=[REF(src)]'>Refresh</a>  |  <a href='?src=[REF(src)];rename=1'>Rename</a><br> \
 		[total_part_size]/[max_components] ([round((total_part_size / max_components) * 100, 0.1)]%) space taken up in the assembly.<br> \

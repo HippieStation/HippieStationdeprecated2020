@@ -47,6 +47,8 @@
 	exclude_modes = list(/datum/game_mode/infiltration)
 	cost = 10
 
+/datum/uplink_item/implants/stealthimplant
+	cost = 5
 
 /* Botany */
 /datum/uplink_item/role_restricted/lawnmower
@@ -392,7 +394,7 @@
 	item = /obj/item/storage/box/syndie_kit/nanosuit
 	cost = 20
 	surplus = 10
-	cant_discount = TRUE
+	cant_discount = TRUE	
 	exclude_modes = list(/datum/game_mode/nuclear, /datum/game_mode/infiltration)
 
 /datum/uplink_item/dangerous/synth

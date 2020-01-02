@@ -196,3 +196,28 @@
 				/obj/item/stack/rods = 1)
 	time = 120
 	category = CAT_MISC
+
+/datum/crafting_recipe/makeshiftlasrifle
+	name = "makeshift laser rifle"
+	result = /obj/item/gun/energy/laser/makeshiftlasrifle
+	reqs = list(/obj/item/stack/cable_coil = 15,
+				/obj/item/weaponcrafting/stock = 1,
+				/obj/item/pipe = 1,
+				/obj/item/light/bulb = 1,
+				/obj/item/stock_parts/cell = 1)
+	tools = list(/obj/item/screwdriver)
+	time = 120
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/triplethreat
+	name = "Triple-Barrel Shotgun"
+	result = /obj/item/gun/ballistic/shotgun/triplebarrel
+	reqs = list(/obj/item/pipe = 1,
+				/obj/item/gun/ballistic/shotgun/doublebarrel =1,
+				/obj/item/stack/sheet/metal = 10,
+				/obj/item/stack/wrapping_paper = 5)
+	time = 50
+	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH, TOOL_CROWBAR)
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON

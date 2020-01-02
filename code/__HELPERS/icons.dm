@@ -1085,6 +1085,7 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 		add_atom_colour(GLOB.freon_color_matrix, TEMPORARY_COLOUR_PRIORITY)
 		alpha -= 25
 		obj_flags |= FROZEN
+		light_color = initial(light_color)
 
 //Assumes already frozed
 /obj/proc/make_unfrozen()

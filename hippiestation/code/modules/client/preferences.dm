@@ -87,7 +87,7 @@
 			. += "<b>Play AI Vox:</b> <a href='?_src_=prefs;preference=hear_vox'>[(hippie_toggles & SOUND_VOX) ? "Enabled":"Disabled"]</a><br>" // let user toggle AI vox
 
 			. += "</tr></table>"
-		if(3)
+		if(4)
 			if(!gear_tab)
 				gear_tab = GLOB.loadout_items[1]
 			. += "<table align='center' width='100%'>"

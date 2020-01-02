@@ -338,7 +338,7 @@
 		to_chat(user, "<span class='notice'>You start drawing a [temp] on the [target.name]...</span>") // hippie -- removed a weird tab that had no reason to be here
 
 	if(pre_noise)
-		audible_message("<span class='notice'>You hear spraying.</span>")
+		audible_message("<span class='hear'>You hear spraying.</span>")
 		playsound(user.loc, 'sound/effects/spray.ogg', 5, 1, 5)
 
 	var/wait_time = 50
@@ -391,7 +391,7 @@
 		SStgui.update_uis(src)
 
 	if(post_noise)
-		audible_message("<span class='notice'>You hear spraying.</span>")
+		audible_message("<span class='hear'>You hear spraying.</span>")
 		playsound(user.loc, 'sound/effects/spray.ogg', 5, 1, 5)
 	// hippie start -- using changes moved to the end of the proc, so it won't use charges if the spraying fails for any reason.
 	var/charges_used = use_charges(user, cost)
@@ -411,7 +411,7 @@
 
 /obj/item/toy/crayon/attack(mob/M, mob/user)
 	if(edible && (M == user))
-		to_chat(user, "You take a bite of the [src.name]. Delicious!")
+		to_chat(user, "<span class='notice'>You take a bite of the [src.name]. Delicious!</span>")
 		var/eaten = use_charges(user, 5, FALSE)
 		if(check_empty(user)) //Prevents divsion by zero
 			return
@@ -528,13 +528,13 @@
 		var/obj/item/toy/crayon/C = W
 		switch(C.item_color)
 			if("mime")
-				to_chat(usr, "This crayon is too sad to be contained in this box.")
+				to_chat(usr, "<span class='warning'>This crayon is too sad to be contained in this box!</span>")
 				return
 			if("rainbow")
-				to_chat(usr, "This crayon is too powerful to be contained in this box.")
+				to_chat(usr, "<span class='warning'>This crayon is too powerful to be contained in this box!</span>")
 				return
 		if(istype(W, /obj/item/toy/crayon/spraycan))
-			to_chat(user, "Spraycans are not crayons.")
+			to_chat(user, "<span class='warning'>Spraycans are not crayons!</span>")
 			return
 	return ..()
 

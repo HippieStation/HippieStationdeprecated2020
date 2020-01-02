@@ -2,6 +2,10 @@
 	set category = "Mentor"
 	set name = "Mentorhelp"
 
+	if(prefs.muted & MUTE_MENTOR)
+		to_chat(src, "<span class='danger'>Error: Mentorhelp: You are unable to use mentorhelps (muted).</span>", confidential=TRUE)
+		return
+
 	//clean the input msg
 	if(!msg)	return
 

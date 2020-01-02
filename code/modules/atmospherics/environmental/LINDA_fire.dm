@@ -246,4 +246,31 @@
 	light_color = LIGHT_COLOR_FIRE
 	light_range = LIGHT_RANGE_FIRE
 
+/obj/effect/explosion_hotspot
+	anchored = TRUE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	icon = 'icons/effects/fire.dmi'
+	icon_state = "1"
+	layer = GASFIRE_LAYER
+	light_range = LIGHT_RANGE_FIRE
+	light_color = LIGHT_COLOR_FIRE
+	blend_mode = BLEND_ADD
+
+/obj/effect/explosion_hotspot/Initialize()
+	. = ..()
+	var/turf/T = loc
+	if(isturf(T))
+		T.hotspot_expose(1000,100)
+		for(var/A in T)
+			var/atom/AT = A
+			if(!QDELETED(AT) && AT != src) // It's possible that the item is deleted in temperature_expose
+				AT.fire_act(FIRE_MINIMUM_TEMPERATURE_TO_EXIST, 125)
+	QDEL_IN(src, 10)
+
+/obj/effect/explosion_hotspot/Crossed(atom/movable/AM, oldLoc)
+	..()
+	if(isliving(AM))
+		var/mob/living/L = AM
+		L.fire_act(FIRE_MINIMUM_TEMPERATURE_TO_EXIST, 125)
+
 #undef INSUFFICIENT
