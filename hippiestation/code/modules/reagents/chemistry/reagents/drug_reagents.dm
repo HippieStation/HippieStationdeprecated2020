@@ -333,7 +333,6 @@
 					if(S.len <= 3)
 						PlaySpook(H, S.file, 23)
 						sounds = list()
-
 			high_message = pick("I feel like I'm flying!", "I feel something swimming inside my lungs....", "I can see the words I'm saying...")
 			if(prob(25))
 				var/rotation = max(min(round(current_cycle/4), 20),125)
