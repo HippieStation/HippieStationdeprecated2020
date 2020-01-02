@@ -1,4 +1,0 @@
-author: "yoyobatty"
-delete-after: True
-changes: 
-  - tweak: "Field generators should no longer alert of a false loose singulo from other dimensions"
