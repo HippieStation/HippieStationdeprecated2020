@@ -303,7 +303,6 @@
 	var/bad_trip = FALSE
 	var/badtrip_cooldown = 0
 	var/list/sounds = list()
-	var/static/list/sounds2 = list()
 
 /datum/reagent/drug/grape_blast/proc/create_brain(mob/living/carbon/C)
 	var/turf/T = locate(C.x + pick(-1, 1), C.y + pick(-1, 1), C.z)
