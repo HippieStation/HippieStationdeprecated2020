@@ -28,9 +28,10 @@
 	glasses = /obj/item/clothing/glasses/sunglasses
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/headset_sec
-	uniform = /obj/item/clothing/under/rank/vice
+	suit = /obj/item/clothing/suit/hippie/viceofficer
+	uniform = /obj/item/clothing/under/rank/viceofficer
 	gloves = /obj/item/clothing/gloves/color/black
-	shoes = /obj/item/clothing/shoes/sneakers/black
+	shoes = /obj/item/clothing/shoes/viceofficer
 	r_pocket = /obj/item/assembly/flash/handheld
 	suit_store = /obj/item/gun/energy/disabler
 	backpack_contents = list(/obj/item/restraints/handcuffs/cable/zipties=1)
