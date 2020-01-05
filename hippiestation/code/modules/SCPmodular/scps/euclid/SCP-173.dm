@@ -13,6 +13,7 @@
 	response_help = "touches"
 	response_disarm = "pushes"
 	a_intent = INTENT_HARM
+	possible_a_intents = list(INTENT_HARM)
 	harm_intent_damage = 1
 	obj_damage = 100
 
@@ -38,20 +39,6 @@
 	mob_spell_list += new /obj/effect/proc_holder/spell/aoe_turf/blindness(src)
 	mob_spell_list += new /obj/effect/proc_holder/spell/targeted/night_vision(src) //this is being kept just incase normal vision fucks up
 
-/mob/living/simple_animal/hostile/scp_173/Life()
-	. = ..()
-	if (isobj(loc))
-		return
-	for(var/A in next_blinks)
-		if(world.time >= next_blinks[A])
-			var/mob/living/carbon/human/H = A
-			if(H.stat) // Sleeping or dead people can't blink!
-				next_blinks[A] = null
-				continue
-			H.visible_message("<span class='notice'>[H] blinks.</span>")
-			H.blind_eyes(3)
-			next_blinks[H] = 10+world.time+rand(6 SECONDS, 30 SECONDS)
-
 /mob/living/simple_animal/hostile/scp_173/proc/can_be_seen(turf/destination)
 	if(!cannot_be_seen)
 		return null
@@ -73,10 +60,14 @@
 		for(var/mob/living/M in viewers(world.view + 1, check) - src)
 			if(M.client && !M.has_unlimited_silicon_privilege)
 				if(!M.eye_blind)
+					if(next_blinks[M] == null)
+						next_blinks[M] = world.time+rand(15 SECONDS, 45 SECONDS)
 					return M
 		for(var/obj/mecha/M in view(world.view + 1, check)) //assuming if you can see them they can see you
 			if(M.occupant && M.occupant.client)
 				if(!M.occupant.eye_blind)
+					if(next_blinks[M.occupant] == null)
+						next_blinks[M.occupant] = world.time+rand(15 SECONDS, 45 SECONDS)
 					return M.occupant
 	return null
 	
@@ -90,16 +81,35 @@
 /mob/living/simple_animal/hostile/scp_173/movement_delay()
 	return -5
 
+/mob/living/simple_animal/hostile/scp_173/Life()
+	. = ..()
+	if (isobj(loc))
+		return
+	var/list/our_view = view(src, 23)
+	for(var/A in next_blinks)
+		if(!(A in our_view))
+			next_blinks[A] = null
+			continue
+		if(world.time >= next_blinks[A])
+			var/mob/living/carbon/human/H = A
+			if(H.stat) // Sleeping or dead people can't blink!
+				next_blinks[A] = null
+				continue
+			H.visible_message("<span class='notice'>[H] blinks.</span>")
+			H.blind_eyes(3)
+			next_blinks[H] = 10+world.time+rand(6 SECONDS, 30 SECONDS)
+			
+
 /mob/living/simple_animal/hostile/scp_173/sentience_act()
 	faction -= "neutral"
 
-/mob/living/simple_animal/hostile/statue/AttackingTarget(var/atom/A)
+/mob/living/simple_animal/hostile/scp_173/AttackingTarget(var/atom/A)
 	if(can_be_seen(get_turf(loc)))
 		if(client)
 			to_chat(src, "<span class='warning'>You cannot attack, there are eyes on you!</span>")
 		return FALSE
 	else
-		var/mob/living/carbon/human/H = A
+		var/mob/living/H = A
 		if(H.stat == DEAD)
 			to_chat(src, "<span class='warning'><I>[H] is already dead!</I></span>")
 			return
@@ -107,7 +117,9 @@
 			visible_message("<span class='danger'>[src] snaps [H]'s neck!</span>")
 			playsound(loc, pick('hippiestation/sound/scpsounds/scp/spook/NeckSnap1.ogg', 'hippiestation/sound/scpsounds/scp/spook/NeckSnap3.ogg'), 50, 1)
 			H.death()
-		else
+		if(!ishuman(A))
 			visible_message("<span class='danger'>[src] Crushes [H] with raw force!</span>")
 			playsound(loc, pick('hippiestation/sound/scpsounds/scp/spook/NeckSnap1.ogg', 'hippiestation/sound/scpsounds/scp/spook/NeckSnap3.ogg'), 50, 1)
 			H.death()
+		else
+			return
