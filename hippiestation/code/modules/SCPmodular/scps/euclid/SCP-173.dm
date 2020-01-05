@@ -12,7 +12,9 @@
 	pull_force = MOVE_FORCE_EXTREMELY_STRONG
 	response_help = "touches"
 	response_disarm = "pushes"
-
+	a_intent = INTENT_HARM
+	harm_intent_damage = 1
+	obj_damage = 100
 
 	var/last_snap = 0
 	var/list/next_blinks = list()
