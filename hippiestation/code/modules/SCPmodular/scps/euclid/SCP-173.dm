@@ -90,6 +90,6 @@
 			playsound(loc, pick('hippiestation/sound/scpsounds/scp/spook/NeckSnap1.ogg', 'hippiestation/sound/scpsounds/scp/spook/NeckSnap3.ogg'), 50, 1)
 			H.death()
 		else
-			visible_message("<span class='danger'>[src] Crushes [H]'s with raw force!</span>")
+			visible_message("<span class='danger'>[src] Crushes [H] with raw force!</span>")
 			playsound(loc, pick('hippiestation/sound/scpsounds/scp/spook/NeckSnap1.ogg', 'hippiestation/sound/scpsounds/scp/spook/NeckSnap3.ogg'), 50, 1)
 			H.death()
