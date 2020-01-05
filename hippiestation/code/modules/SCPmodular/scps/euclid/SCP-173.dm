@@ -10,33 +10,20 @@
 	move_force = MOVE_FORCE_EXTREMELY_STRONG
 	move_resist = MOVE_FORCE_EXTREMELY_STRONG
 	pull_force = MOVE_FORCE_EXTREMELY_STRONG
-	response_help = "touches"
-	response_disarm = "pushes"
 
 
 	var/last_snap = 0
 	var/list/next_blinks = list()
 	var/cannot_be_seen = 1
-	animate_movement = NO_STEPS // Do not animate movement, you jump around as you're a scary statue.
-	see_in_dark = 13
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
-	vision_range = 12
-	aggro_vision_range = 12
-	sight = SEE_SELF|SEE_MOBS|SEE_OBJS|SEE_TURFS
-
-	search_objects = 1 // So that it can see through walls
-
-/mob/living/scp_173/say(message, bubble_type, var/list/spans = list(), sanitize = TRUE, datum/language/language = null, ignore_spam = FALSE, forced = null)
-	return 0
-
-/mob/living/scp_173/Initialize(mapload, var/mob/living/creator)
+	
+/mob/living/simple_animal/hostile/scp_173/Initialize(mapload, var/mob/living/creator)
 	. = ..()
 	// Give spells
 	mob_spell_list += new /obj/effect/proc_holder/spell/aoe_turf/flicker_lights(src)
 	mob_spell_list += new /obj/effect/proc_holder/spell/aoe_turf/blindness(src)
-	mob_spell_list += new /obj/effect/proc_holder/spell/targeted/night_vision(src) //this is being kept just incase normal vision fucks up
+	mob_spell_list += new /obj/effect/proc_holder/spell/targeted/night_vision(src)
 
-/mob/living/scp_173/Life()
+/mob/living/simple_animal/hostile/scp_173/Life()
 	. = ..()
 	if (isobj(loc))
 		return
@@ -50,7 +37,7 @@
 			H.blind_eyes(3)
 			next_blinks[H] = 10+world.time+rand(6 SECONDS, 30 SECONDS)
 
-/mob/living/scp_173/proc/can_be_seen(turf/destination)
+/mob/living/simple_animal/hostile/scp_173/proc/can_be_seen(turf/destination)
 	if(!cannot_be_seen)
 		return null
 	// Check for darkness
@@ -78,18 +65,15 @@
 					return M.occupant
 	return null
 	
-/mob/living/scp_173/Move(turf/NewLoc)
+/mob/living/simple_animal/hostile/scp_173/Move(turf/NewLoc)
 	if(can_be_seen(NewLoc))
 		if(client)
 			to_chat(src, "<span class='warning'>You cannot move, there are eyes on you!</span>")
 		return 0
 	return ..()
 	
-/mob/living/scp_173/movement_delay()
+/mob/living/simple_animal/hostile/scp_173/movement_delay()
 	return -5
-
-/mob/living/scp_173/sentience_act()
-	faction -= "neutral"
 
 /mob/living/simple_animal/hostile/statue/AttackingTarget(var/atom/A)
 	if(can_be_seen(get_turf(loc)))
@@ -106,6 +90,6 @@
 			playsound(loc, pick('hippiestation/sound/scpsounds/scp/spook/NeckSnap1.ogg', 'hippiestation/sound/scpsounds/scp/spook/NeckSnap3.ogg'), 50, 1)
 			H.death()
 		else
-			visible_message("<span class='danger'>[src] Crushes [H] with raw force!</span>")
+			visible_message("<span class='danger'>[src] Crushes [H]'s with raw force!</span>")
 			playsound(loc, pick('hippiestation/sound/scpsounds/scp/spook/NeckSnap1.ogg', 'hippiestation/sound/scpsounds/scp/spook/NeckSnap3.ogg'), 50, 1)
 			H.death()
