@@ -120,7 +120,7 @@
 				playsound(loc, pick('hippiestation/sound/scpsounds/scp/spook/NeckSnap1.ogg', 'hippiestation/sound/scpsounds/scp/spook/NeckSnap3.ogg'), 50, 1)
 				H.death()
 			else
-				return
+				return // this is just for error catching
 		else
 			to_chat(src, "<span class='warning'><I>Why would we waste our energy attacking [H]</I></span>")
-			return
+			return //doesnt allow scp 173 to attack stuff like APC's and air alarms, or i guess anything that isnt classed as "living"
