@@ -104,7 +104,7 @@
 	faction -= "neutral"
 
 
-/mob/living/simple_animal/hostile/scp_173/AttackingTarget(var/atom/A)
+/mob/living/simple_animal/hostile/scp_173/AttackingTarget(var/atom/A) // doesnt work?
 	if(can_be_seen(get_turf(loc)))
 		if(client)
 			to_chat(src, "<span class='warning'>You cannot attack, there are eyes on you!</span>")
@@ -115,20 +115,27 @@
 			if(A == src)
 				to_chat(src, "<span class='warning'><I>Why would we waste our energy attacking Ourselves?</I></span>")
 				return
-			if(ishuman(A))
+			if(ishuman(H))
 				visible_message("<span class='danger'>[src] snaps [H]'s neck!</span>")
 				playsound(loc, pick('hippiestation/sound/scpsounds/scp/spook/NeckSnap1.ogg', 'hippiestation/sound/scpsounds/scp/spook/NeckSnap3.ogg'), 50, 1)
 				H.death()
-			if(!ishuman(A))
+				return ..()
+			if(!ishuman(H))
 				visible_message("<span class='danger'>[src] Crushes [H] with raw force!</span>")
 				playsound(loc, pick('hippiestation/sound/scpsounds/scp/spook/NeckSnap1.ogg', 'hippiestation/sound/scpsounds/scp/spook/NeckSnap3.ogg'), 50, 1)
 				H.death()
+				return ..()
 			else
-				return // this is just for error catching
+				return FALSE // this is just for error catching
 		else
 			to_chat(src, "<span class='warning'><I>Why would we waste our energy attacking [H]</I></span>")
 			return //doesnt allow 173 to attack apcs
 
+
+/mob/living/simple_animal/hostile/scp_173/DestroyPathToTarget()
+	
+	if(!can_be_seen(get_turf(loc)))
+		..()
 
 /mob/living/simple_animal/hostile/scp_173/UnarmedAttack(var/atom/A)
 	if(can_be_seen(get_turf(loc)))
