@@ -184,7 +184,8 @@
 		/obj/effect/decal/cleanable/greenglow,
 		/obj/effect/decal/cleanable/dirt,
 		/obj/effect/decal/cleanable/insectguts,
-		/obj/effect/decal/remains
+		/obj/effect/decal/remains,
+		/obj/effect/decal/cleanable/chempile //hippie edit -- clean up chem piles
 		)
 
 	if(blood)
