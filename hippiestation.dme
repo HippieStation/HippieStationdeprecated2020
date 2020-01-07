@@ -3472,6 +3472,7 @@
 #include "hippiestation\code\modules\mob\mob_defines.dm"
 #include "hippiestation\code\modules\mob\mob_helpers.dm"
 #include "hippiestation\code\modules\mob\mob_movement.dm"
+#include "hippiestation\code\modules\mob\status_procs.dm"
 #include "hippiestation\code\modules\mob\dead\new_player\new_player.dm"
 #include "hippiestation\code\modules\mob\dead\new_player\sprite_accessories.dm"
 #include "hippiestation\code\modules\mob\dead\observer\say.dm"
