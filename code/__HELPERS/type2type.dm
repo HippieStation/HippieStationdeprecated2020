@@ -601,9 +601,12 @@
 		return
 	var/r
 	var/c
-	for(var/i = 1 to length(str))
+	var/i = 1
+	var/l = length(str)
+	while(i <= l) // this is a while loop because BYOND is stupid and the compiler is also stupid
 		c= text2ascii(str,i)
-		r+= num2hex(c)
+		r += num2hex(c)
+		i++	
 	return r
 
 // Decodes hex to raw byte string.
@@ -613,9 +616,12 @@
 		return
 	var/r
 	var/c
-	for(var/i = 1 to length(str)/2)
+	var/l = length(str)/2
+	var/i = 1
+	while(i <= l) // this is a while loop because BYOND is stupid and the compiler is also stupid
 		c = hex2num(copytext(str,i*2-1,i*2+1), safe)
 		if(isnull(c))
 			return null
 		r += ascii2text(c)
+		i++
 	return r
