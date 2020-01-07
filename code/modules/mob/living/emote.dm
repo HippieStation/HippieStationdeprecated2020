@@ -219,7 +219,7 @@
 			if(user.gender == FEMALE)
 				return 'sound/voice/human/womanlaugh.ogg'
 			else
-				return pick('sound/voice/human/manlaugh1.ogg', 'sound/voice/human/manlaugh2.ogg')
+				return pick('sound/voice/human/manlaugh1.ogg', 'sound/voice/human/manlaugh2.ogg', 'hippiestation/sound/misc/laugh03.ogg', 'hippiestation/sound/misc/laugh04.ogg')
 
 /datum/emote/living/look
 	key = "look"
