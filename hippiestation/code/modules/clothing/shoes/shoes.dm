@@ -12,3 +12,10 @@
 	item_color = "dwarf"
 	item_state = "dwarf"
 	desc = "A pair of dwarven boots. Basically toddler shoes."
+
+/obj/item/clothing/shoes/viceofficer
+	name = "vice officer's dress shoes"
+	alternate_worn_icon = 'hippiestation/icons/mob/feet.dmi'
+	icon = 'hippiestation/icons/mob/feet.dmi'
+	icon_state = "dress-white"
+	item_color = "dress-white"
