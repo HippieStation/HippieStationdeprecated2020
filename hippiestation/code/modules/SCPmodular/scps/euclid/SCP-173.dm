@@ -121,7 +121,7 @@
 				H.death()
 				return ..()
 			if(!ishuman(H))
-				visible_message("<span class='danger'>[src] Crushes [H] with raw force!</span>")
+				visible_message("<span class='danger'>[src] crushes [H] with raw force!</span>")
 				playsound(loc, pick('hippiestation/sound/scpsounds/scp/spook/NeckSnap1.ogg', 'hippiestation/sound/scpsounds/scp/spook/NeckSnap3.ogg'), 50, 1)
 				H.death()
 				return ..()
@@ -133,7 +133,6 @@
 
 
 /mob/living/simple_animal/hostile/scp_173/DestroyPathToTarget()
-	
 	if(!can_be_seen(get_turf(loc)))
 		..()
 
@@ -146,14 +145,14 @@
 		var/mob/living/H = A
 		if(isliving(A))
 			if(A == src)
-				to_chat(src, "<span class='warning'><I>Why would we waste our energy attacking Ourselves?</I></span>")
+				to_chat(src, "<span class='warning'><I>Why would we waste our energy attacking ourselves?</I></span>")
 				return
 			if(ishuman(A))
 				visible_message("<span class='danger'>[src] snaps [H]'s neck!</span>")
 				playsound(loc, pick('hippiestation/sound/scpsounds/scp/spook/NeckSnap1.ogg', 'hippiestation/sound/scpsounds/scp/spook/NeckSnap3.ogg'), 50, 1)
 				H.death()
 			if(!ishuman(A))
-				visible_message("<span class='danger'>[src] Crushes [H] with raw force!</span>")
+				visible_message("<span class='danger'>[src] crushes [H] with raw force!</span>")
 				playsound(loc, pick('hippiestation/sound/scpsounds/scp/spook/NeckSnap1.ogg', 'hippiestation/sound/scpsounds/scp/spook/NeckSnap3.ogg'), 50, 1)
 				H.death()
 			else
