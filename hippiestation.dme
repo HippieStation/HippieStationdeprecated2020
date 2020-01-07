@@ -3171,7 +3171,6 @@
 #include "hippiestation\code\game\objects\items\storage\tools.dm"
 #include "hippiestation\code\game\objects\items\storage\uplink_kits.dm"
 #include "hippiestation\code\game\objects\items\tanks\tank_types.dm"
-#include "hippiestation\code\game\objects\items\tanks\tanks.dm"
 #include "hippiestation\code\game\objects\items\tools\crowbar.dm"
 #include "hippiestation\code\game\objects\items\tools\screwdriver.dm"
 #include "hippiestation\code\game\objects\items\tools\weldingtool.dm"
