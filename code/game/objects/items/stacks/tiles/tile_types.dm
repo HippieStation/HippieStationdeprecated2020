@@ -203,9 +203,9 @@
 	singular_name = "floor tile"
 	desc = "Those could work as a pretty decent throwing weapon."
 	icon_state = "tile"
-	force = 8
+	force = 6
 	materials = list(MAT_METAL=500)
-	throwforce = 12
+	throwforce = 10
 	flags_1 = CONDUCT_1
 	turf_type = /turf/open/floor/plasteel
 	mineralType = "metal"
