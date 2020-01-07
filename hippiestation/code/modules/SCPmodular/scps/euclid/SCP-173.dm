@@ -113,7 +113,7 @@
 		var/mob/living/H = A
 		if(isliving(A))
 			if(A == src)
-				to_chat(src, "<span class='warning'><I>Why would we waste our energy attacking Ourselves?</I></span>")
+				to_chat(src, "<span class='warning'><I>You can't hit yourself!</I></span>")
 				return
 			if(ishuman(H))
 				visible_message("<span class='danger'>[src] snaps [H]'s neck!</span>")
