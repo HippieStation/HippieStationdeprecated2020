@@ -137,6 +137,7 @@
 #include "code\__DEFINES\~hippie_defines\sound.dm"
 #include "code\__DEFINES\~hippie_defines\stat.dm"
 #include "code\__DEFINES\~hippie_defines\subsystems.dm"
+#include "code\__DEFINES\~hippie_defines\tools.dm"
 #include "code\__DEFINES\~hippie_defines\traits.dm"
 #include "code\__DEFINES\~hippie_defines\vv.dm"
 #include "code\__HELPERS\_lists.dm"
