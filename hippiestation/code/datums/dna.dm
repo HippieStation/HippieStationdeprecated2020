@@ -14,6 +14,8 @@
 /datum/dna/initialize_dna(newblood_type, skip_index = FALSE)
 	. = ..()
 	create_random_voice()
+	if(is_banned_from(holder.ckey, CLUWNEBAN) && !check_mutation(CLUWNEMUT))
+		add_mutation(CLUWNEMUT) // you can't escape hell
 
 /datum/dna/transfer_identity(mob/living/carbon/destination, transfer_SE = 0)
 	. = ..()

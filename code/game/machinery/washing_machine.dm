@@ -26,11 +26,11 @@
 		return
 
 	if(state_open)
-		to_chat(user, "<span class='notice'>Close the door first</span>")
+		to_chat(user, "<span class='warning'>Close the door first!</span>")
 		return
 
 	if(bloody_mess)
-		to_chat(user, "<span class='warning'>[src] must be cleaned up first.</span>")
+		to_chat(user, "<span class='warning'>[src] must be cleaned up first!</span>")
 		return
 
 	busy = TRUE
@@ -278,7 +278,7 @@
 	if(.)
 		return
 	if(busy)
-		to_chat(user, "<span class='warning'>[src] is busy.</span>")
+		to_chat(user, "<span class='warning'>[src] is busy!</span>")
 		return
 
 	if(user.pulling && user.a_intent == INTENT_GRAB && isliving(user.pulling))

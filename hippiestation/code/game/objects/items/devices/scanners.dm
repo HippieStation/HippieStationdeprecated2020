@@ -51,3 +51,9 @@
 				display += "-"
 			display += copytext(temp, 1 + i*DNA_MUTATION_BLOCKS, DNA_MUTATION_BLOCKS*(1+i) + 1)
 		to_chat(user, "<span class='boldnotice'>- [mut_name] > [display]</span>")
+
+/obj/item/t_scanner
+	tool_behaviour = TOOL_TRAY
+
+/obj/item/t_scanner/adv_mining_scanner
+	tool_behaviour = null

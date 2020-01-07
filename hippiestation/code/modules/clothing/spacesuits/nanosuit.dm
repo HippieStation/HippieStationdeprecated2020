@@ -880,6 +880,14 @@
 	block_chance = 50
 	id = MARTIALART_NANOSUIT
 
+/datum/martial_art/nanosuit/teach(mob/living/carbon/human/H, make_temporary = FALSE)
+	. = ..()
+	RegisterSignal(H, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, .proc/on_attack_hand)
+
+/datum/martial_art/nanosuit/remove(mob/living/carbon/human/H)
+	. = ..()
+	UnregisterSignal(H, COMSIG_HUMAN_EARLY_UNARMED_ATTACK)
+
 /datum/martial_art/nanosuit/proc/check_streak(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	A.hud_used.combo_object.update_icon(streak, 60)
 	if(findtext(streak,POWER_PUNCH))
@@ -1024,69 +1032,68 @@
 		if(D != A && is_A_facing_B(A,D) && (!D.stat || !D.IsParalyzed()))
 			basic_hit(A,D)
 
-/obj/proc/nanosuit_damage() //the damage nanosuits do on punches to this object, is affected by melee armor
+/atom/proc/nanosuit_damage() //the damage nanosuits do on punches to this object, is affected by melee armor
 	return 25 //just enough to damage an airlock
 
-/atom/proc/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)
+/atom/proc/attack_nanosuit(mob/living/carbon/human/user)
 	SEND_SIGNAL(src, COMSIG_MOB_ATTACK_HAND, user)
-	if(does_attack_animation)
-		user.changeNext_move(CLICK_CD_MELEE)
-		log_combat(user, src, "punched", "nanosuit strength mode")
-		user.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 
-/mob/living/simple_animal/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)
-	if(user.a_intent == INTENT_HARM)
-		..(user, TRUE)
-		apply_damage(20, BRUTE)
-		var/hitverb = "punched"
-		if(mob_size < MOB_SIZE_LARGE)
-			step_away(src,user,15)
-			hitverb = "slammed"
-		playsound(loc, "punch", 25, TRUE, -1)
-		visible_message("<span class='danger'>[user] has [hitverb] [src]!</span>", \
+/mob/living/simple_animal/nanosuit_damage()
+	return 20
+
+/mob/living/attack_nanosuit(mob/living/carbon/human/user)
+	..()
+	if(HAS_TRAIT(user, TRAIT_PACIFISM))
+		to_chat(user, "<span class='warning'>You don't want to hurt [src]!</span>")
+		return FALSE
+	return TRUE
+
+/mob/living/simple_animal/attack_nanosuit(mob/living/carbon/human/user)
+	. = ..()
+	if(!.)
+		return
+	adjustBruteLoss(nanosuit_damage())
+	var/hitverb = "punched"
+	if(mob_size < MOB_SIZE_LARGE)
+		safe_throw_at(get_edge_target_turf(src, get_dir(user, src)), 2, 1, user)
+		hitverb = "slammed"
+	playsound(loc, "punch", 25, TRUE, -1)
+	visible_message("<span class='danger'>[user] has [hitverb] [src]!</span>", \
 		"<span class='userdanger'>[user] has [hitverb] [src]!</span>", null, COMBAT_MESSAGE_RANGE)
-		return TRUE
 
 /obj/item/attack_nanosuit(mob/living/carbon/human/user)
 	return FALSE
 
-/obj/effect/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)
+/obj/effect/attack_nanosuit(mob/living/carbon/human/user)
 	return FALSE
 
-/obj/structure/window/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)
+/obj/structure/window/attack_nanosuit(mob/living/carbon/human/user)
 	if(!can_be_reached(user))
-		return TRUE
+		return
 	. = ..()
 
-/obj/structure/grille/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)
-	if(user.a_intent == INTENT_HARM)
-		if(!shock(user, 70))
-			..(user, TRUE)
-		return TRUE
+/obj/structure/grille/attack_nanosuit(mob/living/carbon/human/user)
+	if(shock(user, 70))
+		return
+	. = ..()
 
-/obj/structure/destructible/clockwork/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)
+/obj/structure/destructible/clockwork/attack_nanosuit(mob/living/carbon/human/user)
 	if(is_servant_of_ratvar(user) && immune_to_servant_attacks)
 		return FALSE
 	return ..()
 
-/obj/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation = FALSE)//attacking objects barehand
-	if(user.a_intent == INTENT_HARM)
-		..(user, TRUE)
-		visible_message("<span class='danger'>[user] smashes [src]!</span>", null, null, COMBAT_MESSAGE_RANGE)
-		if(density)
-			playsound(src, 'sound/effects/bang.ogg', 100, TRUE)//less ear rape
-		else
-			playsound(src, 'sound/effects/bang.ogg', 50, TRUE)//less ear rape
-		take_damage(nanosuit_damage(), BRUTE, "melee", FALSE, get_dir(src, user))
-		return TRUE
-	return FALSE
+/obj/attack_nanosuit(mob/living/carbon/human/user)//attacking objects barehand
+	..()
+	visible_message("<span class='danger'>[user] smashes [src]!</span>", null, null, COMBAT_MESSAGE_RANGE)
+	playsound(src, 'sound/effects/bang.ogg', density ? 100 : 50, TRUE)//less ear rape
+	take_damage(nanosuit_damage(), BRUTE, "melee", FALSE, get_dir(src, user))
+	return TRUE
 
 /mob/living/carbon/human/check_weakness(obj/item/weapon, mob/living/carbon/attacker)
 	. = ..()
 	if(attacker && ishuman(attacker))
 		if(attacker.mind.has_martialart(MARTIALART_NANOSUIT) && weapon && weapon.damtype == BRUTE)
 			. += 1.25 //deal 25% more damage in strength
-
 
 /obj/attacked_by(obj/item/I, mob/living/user)
 	if(I.force && I.damtype == BRUTE && ishuman(user) && !user.stat && user.mind.has_martialart(MARTIALART_NANOSUIT))
@@ -1101,22 +1108,24 @@
 		if(istype(H.wear_suit, /obj/item/clothing/suit/space/hardsuit/nano))
 			var/obj/item/clothing/suit/space/hardsuit/nano/NS = H.wear_suit
 			if(NS.mode == NANO_STRENGTH)
-				.=..(target, range*1.5, speed*2, thrower, spin, diagonals_first, callback)
+				. = ..(target, range*1.5, speed*2, thrower, spin, diagonals_first, callback)
 				return
 	. = ..()
 
 /datum/martial_art/nanosuit/proc/on_attack_hand(mob/living/carbon/human/owner, atom/target, proximity)
-	if(proximity)
-		return target.attack_nanosuit(owner)
-
-/mob/living/carbon/human/UnarmedAttack(atom/A, proximity)
-	var/datum/martial_art/nanosuit/style = mind?.has_martialart(MARTIALART_NANOSUIT)
-	if(style)
-		if(style.on_attack_hand(src, A, proximity))
-			return
-		else if(iscarbon(A) && !ishuman(A) && style.harm_act(src, A))
-			return
-	..()
+	if(!proximity)
+		return
+	var/datum/martial_art/nanosuit/style = owner.mind?.has_martialart(MARTIALART_NANOSUIT)
+	if(iscarbon(target) && !ishuman(target) && style?.harm_act(owner, target))
+		message_admins("style.harm_act")
+		return
+	if(owner.a_intent == INTENT_HARM && !iscarbon(target))
+		if(target.attack_nanosuit(owner))
+			message_admins("attack_nanosuit")
+			log_combat(owner, target, "punched", "nanosuit strength mode")
+			owner.do_attack_animation(target, ATTACK_EFFECT_SMASH)
+			owner.changeNext_move(CLICK_CD_MELEE)
+			return COMPONENT_NO_ATTACK_HAND
 
 /mob/living/simple_animal/attack_hand(mob/living/carbon/human/M)
 	. = ..()
@@ -1142,7 +1151,7 @@
 		Wearer.filters = filter(type="blur",size=1)
 		animate(Wearer, alpha = 40, time = stealth_cloak_in)
 
-/obj/item/storage/box/syndie_kit/nanosuit
+/obj/item/storage/box/syndie_kit/nanosuitLK
 	name = "\improper Crynet Systems kit"
 	desc = "Maximum Death."
 

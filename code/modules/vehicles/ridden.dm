@@ -43,14 +43,14 @@
 				inserted_key.forceMove(drop_location())
 			inserted_key = I
 		else
-			to_chat(user, "<span class='notice'>[I] seems to be stuck to your hand!</span>")
+			to_chat(user, "<span class='warning'>[I] seems to be stuck to your hand!</span>")
 		return
 	return ..()
 
 /obj/vehicle/ridden/AltClick(mob/user)
 	if(inserted_key && user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		if(!is_occupant(user))
-			to_chat(user, "<span class='notice'>You must be riding the [src] to remove [src]'s key!</span>")
+			to_chat(user, "<span class='warning'>You must be riding the [src] to remove [src]'s key!</span>")
 			return
 		to_chat(user, "<span class='notice'>You remove \the [inserted_key] from \the [src].</span>")
 		inserted_key.forceMove(drop_location())
@@ -74,8 +74,8 @@
 		if(how_many_arms < arms_required)
 			if(fall_off_if_missing_arms)
 				unbuckle_mob(user, TRUE)
-				user.visible_message("<span class='danger'>[user] falls off of \the [src].",\
-				"<span class='danger'>You fall of \the [src] while trying to operate it without [arms_required ? "both arms":"an arm"]!</span>")
+				user.visible_message("<span class='danger'>[user] falls off \the [src].</span>",\
+				"<span class='danger'>You fall off \the [src] while trying to operate it without [arms_required ? "both arms":"an arm"]!</span>")
 				if(isliving(user))
 					var/mob/living/L = user
 					L.Stun(30)

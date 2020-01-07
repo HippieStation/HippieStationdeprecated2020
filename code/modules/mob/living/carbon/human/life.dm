@@ -325,6 +325,7 @@
 	adjustBruteLoss(2)
 
 /mob/living/carbon/human/proc/handle_hygiene()
+/*
 	if(HAS_TRAIT(src, TRAIT_ALWAYS_CLEAN))
 		set_hygiene(HYGIENE_LEVEL_CLEAN)
 		return
@@ -352,8 +353,8 @@
 	if(feet && HAS_BLOOD_DNA(feet))
 		hygiene_loss -= 0.5 * HYGIENE_FACTOR
 
-	adjust_hygiene(hygiene_loss)
-
+	adjust_hygiene(hygiene_loss)*/
+/*Hippie above - removes hygiene*/
 
 #undef THERMAL_PROTECTION_HEAD
 #undef THERMAL_PROTECTION_CHEST

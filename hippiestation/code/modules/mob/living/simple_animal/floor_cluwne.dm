@@ -64,7 +64,10 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	return //we use a different hud
 
 /mob/living/simple_animal/hostile/floor_cluwne/Destroy()
-	QDEL_NULL(poi)
+	if(cluwnehole)
+		QDEL_NULL(cluwnehole)
+	if(poi)
+		QDEL_NULL(poi)
 	return ..()
 
 
@@ -76,7 +79,6 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 /mob/living/simple_animal/hostile/floor_cluwne/CanPass(atom/A, turf/target)
 	return TRUE
 
-
 /mob/living/simple_animal/hostile/floor_cluwne/Life()
 	do_jitter_animation(1000)
 	pixel_y = 8
@@ -87,7 +89,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 		var/area/tp = GLOB.teleportlocs[area]
 		forceMove(pick(get_area_turfs(tp.type)))
 
-	if(!current_victim)
+	if(QDELETED(current_victim) || current_victim.stat == DEAD)
 		Acquire_Victim()
 
 	if(stage && !manifested)
@@ -164,7 +166,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 	for(var/I in GLOB.player_list)//better than a potential recursive loop
 		var/mob/living/carbon/human/H = pick(GLOB.player_list)//so the check is fair
 		var/H_Area = get_area(H.loc)
-		
+
 		if(specific)
 			H = specific
 			if(H.stat != DEAD && H.has_dna() && !H.dna.check_mutation(CLUWNEMUT) && !is_type_in_typecache(H_Area, invalid_area_typecache) && is_station_level(H.z))
@@ -174,6 +176,8 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 			current_victim = H
 			interest = 0
 			stage = STAGE_HAUNT
+			eating = FALSE
+			manifested = FALSE
 			return target = current_victim
 
 	message_admins("Floor Cluwne was deleted due to a lack of valid targets, if this was a manually targeted instance please re-evaluate your choice.")
@@ -193,7 +197,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 		mobility_flags |= MOBILITY_MOVE
 		update_mobility()
 		if(cluwnehole)
-			qdel(cluwnehole)
+			QDEL_NULL(cluwnehole)
 
 
 /mob/living/simple_animal/hostile/floor_cluwne/proc/Appear()//handled in a seperate proc so floor cluwne doesn't appear before the animation finishes
@@ -261,7 +265,7 @@ GLOBAL_VAR_INIT(floor_cluwnes, 0)
 				if(current_victim.hud_used)//yay skewium
 					var/list/screens = list(current_victim.hud_used.plane_masters["[GAME_PLANE]"], current_victim.hud_used.plane_masters["[LIGHTING_PLANE]"])
 					var/matrix/skew = matrix()
-					var/intensity = 8
+					var/intensity = 4
 					skew.set_skew(rand(-intensity,intensity), rand(-intensity,intensity))
 					var/matrix/newmatrix = skew
 
