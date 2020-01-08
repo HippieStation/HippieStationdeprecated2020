@@ -3089,6 +3089,7 @@
 #include "hippiestation\code\game\objects\effects\contraband.dm"
 #include "hippiestation\code\game\objects\effects\countdown.dm"
 #include "hippiestation\code\game\objects\effects\landmarks.dm"
+#include "hippiestation\code\game\objects\effects\portals.dm"
 #include "hippiestation\code\game\objects\effects\decals\crayon.dm"
 #include "hippiestation\code\game\objects\effects\decals\cleanable\chem.dm"
 #include "hippiestation\code\game\objects\effects\decals\cleanable\humans.dm"
