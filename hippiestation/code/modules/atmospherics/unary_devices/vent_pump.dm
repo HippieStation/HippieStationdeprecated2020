@@ -29,6 +29,6 @@
 	..()
 
 /obj/machinery/atmospherics/components/unary/vent_pump/examine(mob/user)
-	..()
+	. + ..()
 	if(cover)
-		to_chat(user, "Its cover is open.")
+		. += "Its cover is open."
