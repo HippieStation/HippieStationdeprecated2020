@@ -1117,11 +1117,9 @@
 		return
 	var/datum/martial_art/nanosuit/style = owner.mind?.has_martialart(MARTIALART_NANOSUIT)
 	if(iscarbon(target) && !ishuman(target) && style?.harm_act(owner, target))
-		message_admins("style.harm_act")
 		return
 	if(owner.a_intent == INTENT_HARM && !iscarbon(target))
 		if(target.attack_nanosuit(owner))
-			message_admins("attack_nanosuit")
 			log_combat(owner, target, "punched", "nanosuit strength mode")
 			owner.do_attack_animation(target, ATTACK_EFFECT_SMASH)
 			owner.changeNext_move(CLICK_CD_MELEE)
