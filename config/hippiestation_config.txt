@@ -33,3 +33,6 @@ ENABLE_TTS
 
 ## Enables the GeoIP subsystem when you give it an ipstack.com API key
 #IPSTACK_API_KEY
+
+## Enables the Replay/Demo subsystem. This is now an option because it has high cpu/ram usage.
+#ENABLE_DEMO
