@@ -39,3 +39,4 @@ cp -r strings/* $1/strings/
 cp rust_g* $1/ || true
 cp *BSQL.* $1/ || true
 cp *quickwrite.* $1/ || true
+cp *extools* $1/ || true
