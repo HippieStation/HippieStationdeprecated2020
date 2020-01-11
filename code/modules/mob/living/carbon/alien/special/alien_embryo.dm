@@ -10,15 +10,15 @@
 /obj/item/organ/body_egg/alien_embryo/on_find(mob/living/finder)
 	..()
 	if(stage < 4)
-		to_chat(finder, "It's small and weak, barely the size of a foetus.")
+		to_chat(finder, "<span class='notice'>It's small and weak, barely the size of a foetus.</span>")
 	else
-		to_chat(finder, "It's grown quite large, and writhes slightly as you look at it.")
+		to_chat(finder, "<span class='notice'>It's grown quite large, and writhes slightly as you look at it.</span>")
 		if(prob(10))
 			AttemptGrow(0)
 
 /obj/item/organ/body_egg/alien_embryo/prepare_eat()
 	var/obj/S = ..()
-	S.reagents.add_reagent("sacid", 10)
+	S.reagents.add_reagent(/datum/reagent/toxin/acid, 10)
 	return S
 
 /obj/item/organ/body_egg/alien_embryo/on_life()

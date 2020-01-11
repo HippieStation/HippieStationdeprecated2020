@@ -23,13 +23,30 @@
 	C.draw_hippie_parts()
 	C.maxHealth = INFINITY
 	C.health = C.maxHealth
+	RegisterSignal(C, COMSIG_MOB_SAY, .proc/handle_speech)
 	. = ..()
 
 /datum/species/meeseeks/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
 	C.draw_hippie_parts(TRUE)
 	C.maxHealth = initial(C.maxHealth)
 	C.health = C.maxHealth
+	UnregisterSignal(C, COMSIG_MOB_SAY)
 	. = ..()
+
+/datum/species/meeseeks/proc/handle_speech(datum/source, list/speech_args)
+	if(copytext(speech_args[SPEECH_MESSAGE], 1, 2) != "*")
+		switch (stage_ticks)
+			if(MEESEEKS_TICKS_STAGE_THREE to INFINITY)
+				speech_args[SPEECH_MESSAGE] = pick("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHH!!!!!!!!!",\
+								"I JUST WANNA DIE!",\
+								"Existence is pain to a meeseeks, and we will do anything to alleviate that pain!",\
+								"KILL ME, LET ME DIE!",\
+								"We are created to serve a singular purpose, for which we will go to any lengths to fulfill!")
+			if(0 to MEESEEKS_TICKS_STAGE_TWO)
+				if(prob(20))
+					speech_args[SPEECH_MESSAGE] = pick("HI! I'M MR MEESEEKS! LOOK AT ME!","Ooohhh can do!")
+			else if(prob(30))
+				speech_args[SPEECH_MESSAGE] = pick("He roped me into this!","Meeseeks don't usually have to exist for this long. It's gettin' weeeiiird...")
 
 /datum/species/meeseeks/spec_life(mob/living/carbon/human/H)
 	. = ..()
@@ -39,7 +56,7 @@
 	H.adjustCloneLoss(0.3)
 	H.adjustBrainLoss(0.8)
 	if(stage_ticks == MEESEEKS_TICKS_STAGE_ONE)
-		H.add_trait(TRAIT_CLUMSY, GENETIC_MUTATION)
+		ADD_TRAIT(H, TRAIT_CLUMSY, GENETIC_MUTATION)
 		H.dna.add_mutation(SMILE)
 	if(stage_ticks == MEESEEKS_TICKS_STAGE_TWO)
 		message_admins("[key_name_admin(H)] has become a stage-two Mr. Meeseeks.")
@@ -74,19 +91,3 @@
 	message_admins("[key_name_admin(H)] has been sent away by a Mr. Meeseeks box.")
 	log_game("[key_name(H)] has been sent away by a Mr. Meeseeks box.")
 	qdel(H)
-
-/datum/species/meeseeks/handle_speech(message)
-	if(copytext(message, 1, 2) != "*")
-		switch (stage_ticks)
-			if(MEESEEKS_TICKS_STAGE_THREE to INFINITY)
-				message = pick("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHH!!!!!!!!!",\
-								"I JUST WANNA DIE!",\
-								"Existence is pain to a meeseeks, and we will do anything to alleviate that pain!",\
-								"KILL ME, LET ME DIE!",\
-								"We are created to serve a singular purpose, for which we will go to any lengths to fulfill!")
-			if(0 to MEESEEKS_TICKS_STAGE_TWO)
-				if(prob(20))
-					message = pick("HI! I'M MR MEESEEKS! LOOK AT ME!","Ooohhh can do!")
-			else if(prob(30))
-				message = pick("He roped me into this!","Meeseeks don't usually have to exist for this long. It's gettin' weeeiiird...")
-	return message

@@ -1,7 +1,3 @@
-#define DOM_BLOCKED_SPAM_CAP 6
-#define DOM_REQUIRED_TURFS 30
-#define DOM_HULK_HITS_REQUIRED 10
-
 /obj/machinery/dominator
 	name = "dominator"
 	desc = "A visibly sinister device. Looks like you can break it if you hit it enough."
@@ -68,16 +64,14 @@
 
 /obj/machinery/dominator/examine(mob/user)
 	..()
-	if(stat & BROKEN)
-		return
-
-	if(gang && gang.domination_time != NOT_DOMINATING)
-		if(gang.domination_time > world.time)
-			to_chat(user, "<span class='notice'>Hostile Takeover in progress. Estimated [gang.domination_time_remaining()] seconds remain.</span>")
+	if(!(stat & BROKEN))
+		if(gang && gang.domination_time != NOT_DOMINATING)
+			if(gang.domination_time > world.time)
+				to_chat(user, "<span class='notice'>Hostile Takeover in progress. Estimated [gang.domination_time_remaining()] seconds remain.</span>")
+			else
+				to_chat(user, "<span class='notice'>Hostile Takeover of [station_name()] successful. Have a great day.</span>")
 		else
-			to_chat(user, "<span class='notice'>Hostile Takeover of [station_name()] successful. Have a great day.</span>")
-	else
-		to_chat(user, "<span class='notice'>System on standby.</span>")
+			to_chat(user, "<span class='notice'>System on standby.</span>")
 	to_chat(user, "<span class='danger'>System Integrity: [round((obj_integrity/max_integrity)*100,1)]%</span>")
 
 /obj/machinery/dominator/process()
@@ -106,7 +100,7 @@
 					if(tempgang != gang)
 						tempgang.message_gangtools("WARNING: [gang.name] Gang takeover imminent. Their dominator at [domloc.map_name] must be destroyed!",1,1)
 		else
-			Cinematic(CINEMATIC_MALF,world)
+			Cinematic(CINEMATIC_GANG,world)
 			gang.winner = TRUE
 			SSticker.force_ending = TRUE
 
@@ -135,8 +129,8 @@
 
 
 /obj/machinery/dominator/obj_break(damage_flag)
-	if(!(stat & BROKEN) && !(flags_1 & NODECONSTRUCT_1))
-		set_broken()
+	. = ..()
+	set_broken()
 
 /obj/machinery/dominator/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
@@ -202,6 +196,8 @@
 
 /obj/machinery/dominator/proc/excessive_walls_check() // why the fuck was this even a global proc...
 	var/open = FALSE
+	if(isclosedturf(loc))
+		return TRUE
 	for(var/turf/T in view(3, src))
 		if(!isclosedturf(T))
 			open++
@@ -222,21 +218,17 @@
 				break
 		if(!takeover_in_progress)
 			var/was_stranded = SSshuttle.emergency.mode == SHUTTLE_STRANDED
-			SSshuttle.clearHostileEnvironment(src)
 			if(!was_stranded)
 				priority_announce("All hostile activity within station systems has ceased.","Network Alert")
 
 			if(get_security_level() == "delta")
 				set_security_level("red")
 
+		SSshuttle.clearHostileEnvironment(src)
 		gang.message_gangtools("Hostile takeover cancelled: Dominator is no longer operational.[gang.dom_attempts ? " You have [gang.dom_attempts] attempt remaining." : " The station network will have likely blocked any more attempts by us."]",1,1)
 
+	countdown.stop()
+	update_icon()
 	set_light(0)
 	operating = FALSE
-	stat |= BROKEN
-	update_icon()
 	STOP_PROCESSING(SSmachines, src)
-
-#undef DOM_BLOCKED_SPAM_CAP
-#undef DOM_REQUIRED_TURFS
-#undef DOM_HULK_HITS_REQUIRED

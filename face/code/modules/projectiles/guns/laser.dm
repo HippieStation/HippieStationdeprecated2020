@@ -29,12 +29,12 @@
 
 /obj/item/projectile/bullet/reusable/blunderbus/Initialize()
 	. = ..()
-	var/obj/item/reagent_containers/food/snacks/grown/watermelon/S = new ammo_type(src)
+	new ammo_type(src)
 	var/mutable_appearance/head = mutable_appearance('icons/obj/projectiles.dmi', "lollipop_2")
 	add_overlay(head)
 
 /obj/item/projectile/bullet/reusable/blunderbus/handle_drop()
 	if(!dropped)
 		var/turf/T = get_turf(src)
-		var/obj/item/reagent_containers/food/snacks/grown/watermelon/S = new ammo_type(T)
+		new ammo_type(T)
 		dropped = TRUE

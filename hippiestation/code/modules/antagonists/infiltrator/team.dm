@@ -59,6 +59,13 @@
 	O.find_target()
 	O.team = src
 	objectives |= O
+	if(istype(O, /datum/objective/steal))
+		var/datum/objective/steal/S = O
+		if(S.targetinfo)
+			for(var/item in S.targetinfo.special_equipment)
+				for(var/turf/T in GLOB.infiltrator_objective_items)
+					if(!(item in T.contents))
+						new item(T)
 
 /datum/team/infiltrator/proc/update_objectives()
 	if(LAZYLEN(objectives))

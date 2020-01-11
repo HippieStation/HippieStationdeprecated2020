@@ -53,7 +53,7 @@
 	var/cartridge_wording = "bullet"
 	var/rack_delay = 5
 	var/recent_rack = 0
-	var/tac_reloads = FALSE //Snowflake mechanic no more.
+	var/tac_reloads = TRUE //Snowflake mechanic no more.
 
 /obj/item/gun/ballistic/Initialize()
 	. = ..()
@@ -68,11 +68,13 @@
 
 /*hippie edit -- old skins*/
 /obj/item/gun/ballistic/update_icon()
+	if (QDELETED(src))
+		return
 	..()
 	if(current_skin)
-		icon_state = "[unique_reskin[current_skin]][suppressed ? "-suppressed" : ""][sawn_off ? "-sawn" : ""]"
+		icon_state = "[unique_reskin[current_skin]][sawn_off ? "_sawn" : ""]" // hippie -- fixes sawn-off sprites
 	else
-		icon_state = "[initial(icon_state)][suppressed ? "-suppressed" : ""][sawn_off ? "-sawn" : ""]"
+		icon_state = "[initial(icon_state)][suppressed ? "-suppressed" : ""][sawn_off ? "_sawn" : ""]" //hippie -- Same as above.
 /*hippie end -- old skins*/
 
 /obj/item/gun/ballistic/process_chamber(empty_chamber = TRUE, from_firing = TRUE, chamber_next_round = TRUE)
@@ -89,11 +91,11 @@
 	if (chamber_next_round && (magazine?.max_ammo > 1))
 		chamber_round()
 
-/obj/item/gun/ballistic/proc/chamber_round()
+/obj/item/gun/ballistic/proc/chamber_round(keep_bullet = FALSE)
 	if (chambered || !magazine)
 		return
 	if (magazine.ammo_count())
-		chambered = magazine.get_round((bolt_type == BOLT_TYPE_NO_BOLT))
+		chambered = magazine.get_round(keep_bullet || bolt_type == BOLT_TYPE_NO_BOLT)
 		if (bolt_type != BOLT_TYPE_OPEN)
 			chambered.forceMove(src)
 
@@ -103,7 +105,7 @@
 	if (bolt_type == BOLT_TYPE_OPEN)
 		if(!bolt_locked)	//If it's an open bolt, racking again would do nothing
 			if (user)
-				to_chat(user, "<span class='notice'>\The [src] is already ready to fire!</span>")
+				to_chat(user, "<span class='notice'>\The [src]'s [bolt_wording] is already cocked!</span>")
 			return
 		bolt_locked = FALSE
 	if (user)
@@ -125,6 +127,9 @@
 	update_icon()
 
 /obj/item/gun/ballistic/proc/insert_magazine(mob/user, obj/item/ammo_box/magazine/AM, display_message = TRUE)
+	if(!istype(AM, mag_type))
+		to_chat(user, "<span class='warning'>\The [AM] doesn't seem to fit into \the [src]...</span>")
+		return FALSE
 	if(user.transferItemToLoc(AM, src))
 		magazine = AM
 		if (display_message)
@@ -132,7 +137,7 @@
 		playsound(src, load_empty_sound, load_sound_volume, load_sound_vary)
 		drop_bolt(user)//hippie edit -- rack by default so you don't have to manually fucking do it
 		if (bolt_type == BOLT_TYPE_OPEN && !bolt_locked)
-			chamber_round()
+			chamber_round(TRUE)
 		update_icon()
 		return TRUE
 	else
@@ -149,12 +154,15 @@
 	magazine.forceMove(drop_location())
 	var/obj/item/ammo_box/magazine/old_mag = magazine
 	if (tac_load)
-		insert_magazine(user, tac_load, FALSE)
-		to_chat(user, "<span class='notice'>You perform a tactical reload on \the [src].")
+		if (insert_magazine(user, tac_load, FALSE))
+			to_chat(user, "<span class='notice'>You perform a tactical reload on \the [src].</span>")
+		else
+			to_chat(user, "<span class='warning'>You dropped the old [magazine_wording], but the new one doesn't fit. How embarassing.</span>")
+			magazine = null
+	else
+		magazine = null
 	user.put_in_hands(old_mag)
 	old_mag.update_icon()
-	if (!tac_load)
-		magazine = null
 	if (display_message)
 		to_chat(user, "<span class='notice'>You pull the [magazine_wording] out of \the [src].</span>")
 	update_icon()
@@ -168,10 +176,10 @@
 		return
 	if (!internal_magazine && istype(A, /obj/item/ammo_box/magazine))
 		var/obj/item/ammo_box/magazine/AM = A
-		if (!magazine && istype(AM, mag_type))
+		if (!magazine)
 			insert_magazine(user, AM)
-		else if (magazine)
-			if(tac_reloads || user.has_trait(TRAIT_TACRELOAD)) //hippie edit -- adds tac_reload trait for nanosuit
+		else
+			if (tac_reloads || HAS_TRAIT(user, TRAIT_TACRELOAD)) //hippie edit -- adds tac_reload trait for nanosuit
 				eject_magazine(user, FALSE, AM)
 			else
 				to_chat(user, "<span class='notice'>There's already a [magazine_wording] in \the [src].</span>")
@@ -196,7 +204,7 @@
 			to_chat(user, "<span class='warning'>You can't seem to figure out how to fit [S] on [src]!</span>")
 			return
 		if(!user.is_holding(src))
-			to_chat(user, "<span class='notice'>You need be holding [src] to fit [S] to it!</span>")
+			to_chat(user, "<span class='warning'>You need be holding [src] to fit [S] to it!</span>")
 			return
 		if(suppressed)
 			to_chat(user, "<span class='warning'>[src] already has a suppressor!</span>")
@@ -270,8 +278,9 @@
 		eject_magazine(user)
 		return
 	if(bolt_type == BOLT_TYPE_NO_BOLT)
+		chambered = null
 		var/num_unloaded = 0
-		for(var/obj/item/ammo_casing/CB in get_ammo_list(TRUE, TRUE))
+		for(var/obj/item/ammo_casing/CB in get_ammo_list(FALSE, TRUE))
 			CB.forceMove(drop_location())
 			CB.bounce_away(FALSE, NONE)
 			num_unloaded++
@@ -293,15 +302,15 @@
 
 
 /obj/item/gun/ballistic/examine(mob/user)
-	..()
-	var/count_chambered = !((bolt_type == BOLT_TYPE_NO_BOLT) || (bolt_type == BOLT_TYPE_OPEN))
-	to_chat(user, "It has [get_ammo(count_chambered)] round\s remaining.")
+	. = ..()
+	var/count_chambered = !(bolt_type == BOLT_TYPE_NO_BOLT || bolt_type == BOLT_TYPE_OPEN)
+	. += "It has [get_ammo(count_chambered)] round\s remaining."
 	if (!chambered)
-		to_chat(user, "It does not seem to have a round chambered.")
+		. += "It does not seem to have a round chambered."
 	if (bolt_locked)
-		to_chat(user, "The [bolt_wording] is locked back and needs to be released before firing.")
+		. += "The [bolt_wording] is locked back and needs to be released before firing."
 	if (suppressed)
-		to_chat(user, "It has a suppressor attached that can be removed with <b>alt+click</b>.")
+		. += "It has a suppressor attached that can be removed with <b>alt+click</b>."
 
 /obj/item/gun/ballistic/proc/get_ammo(countchambered = TRUE)
 	var/boolets = 0 //mature var names for mature people
@@ -325,7 +334,7 @@
 /obj/item/gun/ballistic/suicide_act(mob/user)
 	var/obj/item/organ/brain/B = user.getorganslot(ORGAN_SLOT_BRAIN)
 	if (B && chambered && chambered.BB && can_trigger_gun(user) && !chambered.BB.nodamage)
-		user.visible_message("<span class='suicide'>[user] is putting the barrel of [src] in [user.p_their()] mouth.  It looks like [user.p_theyre()] trying to commit suicide!</span>")
+		user.visible_message("<span class='suicide'>[user] is putting the barrel of [src] in [user.p_their()] mouth. It looks like [user.p_theyre()] trying to commit suicide!</span>")
 		sleep(25)
 		if(user.is_holding(src))
 			var/turf/T = get_turf(user)

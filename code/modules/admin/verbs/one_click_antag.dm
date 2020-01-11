@@ -66,15 +66,9 @@
 					candidates += applicant
 
 	if(candidates.len)
-		var/numTraitors = min(candidates.len, 3)
-
-		for(var/i = 0, i<numTraitors, i++)
-			H = pick(candidates)
-			H.mind.make_Traitor()
-			candidates.Remove(H)
-
+		H = pick(candidates)
+		H.mind.make_Traitor()
 		return 1
-
 
 	return 0
 

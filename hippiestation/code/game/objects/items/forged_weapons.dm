@@ -46,7 +46,7 @@
 		var/armour_block = C.getarmor(affecting, "melee") * 0.01
 		if(!armour_block)
 			armour_block = 1
-		C.reagents.add_reagent(reagent_type.id, max(0, (0.2 * stabby) * max(1, armour_block - armour_penetration)))
+		C.reagents.add_reagent(reagent_type.type, max(0, (0.2 * stabby) * max(1, armour_block - armour_penetration)))
 		if(stabby < 1 && stabby > 0)
 			reagent_type.reaction_mob(C, TOUCH, max(0, 1 / stabby))
 	if(proximity_flag && reagent_type)
@@ -67,7 +67,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	sharpness = IS_SHARP_ACCURATE
 	attack_verb = list("poked", "prodded", "stabbed", "pierced", "gashed", "punctured")
-
+	embedding = list("embed_chance" = 30, "embedded_pain_multiplier" = 0.25, "embedded_fall_pain_multiplier" = 1, "embedded_impact_pain_multiplier" = 0.75, "embedded_unsafe_removal_pain_multiplier" = 1.25)
 
 /obj/item/forged/melee/sword
 	name = "forged sword"
@@ -82,7 +82,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	sharpness = IS_SHARP
 	attack_verb = list("slashed", "sliced", "stabbed", "pierced", "diced", "run-through")
-
+	embedding = list("embed_chance" = 10, "embedded_pain_multiplier" = 1.25, "embedded_fall_pain_multiplier" = 1.5, "embedded_impact_pain_multiplier" = 1.2, "embedded_unsafe_removal_pain_multiplier" = 1.5)
 
 /obj/item/forged/melee/mace
 	name = "forged mace"
@@ -97,6 +97,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	sharpness = IS_BLUNT
 	attack_verb = list("beaten", "bludgeoned")
+	embedding = list("embed_chance" = 1, "embedded_pain_multiplier" = 2, "embedded_fall_pain_multiplier" = 2.5, "embedded_impact_pain_multiplier" = 3, "embedded_unsafe_removal_pain_multiplier" = 2.5)
 	armour_penetration = 5
 
 
@@ -150,7 +151,7 @@
 		var/armour_block = C.getarmor(affecting, "melee") * 0.01
 		if(!armour_block)
 			armour_block = 1
-		C.reagents.add_reagent(reagent_type.id, max(0, (0.2 * stabby) * max(1, armour_block - armour_penetration)))
+		C.reagents.add_reagent(reagent_type.type, max(0, (0.2 * stabby) * max(1, armour_block - armour_penetration)))
 		if(stabby < 1 && stabby > 0)
 			reagent_type.reaction_mob(C, TOUCH, max(0, 1 / stabby))
 	if(proximity_flag && reagent_type)
@@ -174,7 +175,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	sharpness = IS_SHARP
 	attack_verb = list("gored", "impaled", "stabbed", "slashed", "torn", "run-through")
-
+	embedding = list("embed_chance" = 5, "embedded_pain_multiplier" = 1.75, "embedded_fall_pain_multiplier" = 2, "embedded_impact_pain_multiplier" = 2, "embedded_unsafe_removal_pain_multiplier" = 1.5)
 
 /obj/item/twohanded/forged/greatsword/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	..()
@@ -262,7 +263,7 @@
 		var/armour_block = C.getarmor(limb_hit, "bullet") * 0.01
 		if(!armour_block)
 			armour_block = 1
-		C.reagents.add_reagent(reagent_type.id, max(0, 1 * max(1, armour_block - armour_penetration)))
+		C.reagents.add_reagent(reagent_type.type, max(0, 1 * max(1, armour_block - armour_penetration)))
 		reagent_type.reaction_mob(C, TOUCH, 1)
 
 
@@ -290,7 +291,7 @@
 	desc = "A custom bullet casing designed to be quickly changeable to any caliber"
 	projectile_type = /obj/item/projectile/bullet/forged
 	var/datum/reagent/reagent_type
-	var/static/list/calibers = list("357" = 4.5, "a762" = 5, "n762" = 5, ".50" = 6, "38" = 1.5, "10mm" = 3, "9mm" = 2, "4.6x30mm" = 2, ".45" = 2.5, "a556" = 3.5, "mm195129" = 4.5)
+	var/static/list/calibers = list("357" = 4.5, "a762" = 5, "n762" = 5, ".50" = 6, "38" = 1.5, "10mm" = 3, "9mm" = 2, "4.6x30mm" = 2, ".45" = 2.5, "a556" = 3.5, "mm195129" = 4.5, "shotgun" = 3.5)
 
 
 /obj/item/ammo_casing/forged/proc/assign_properties()//placeholder proc to prevent runtimes, this SHOULD be the only exception to the rule

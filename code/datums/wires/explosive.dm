@@ -1,5 +1,8 @@
+/datum/wires/explosive
+	var/duds_number = 2
+
 /datum/wires/explosive/New(atom/holder)
-	add_duds(2) // In this case duds actually explode.
+	add_duds(duds_number) // In this case duds actually explode.
 	..()
 
 /datum/wires/explosive/on_pulse(index)
@@ -11,6 +14,61 @@
 /datum/wires/explosive/proc/explode()
 	return
 
+/datum/wires/explosive/chem_grenade
+	duds_number = 1
+	holder_type = /obj/item/grenade/chem_grenade
+	randomize = TRUE
+	var/fingerprint
+
+/datum/wires/explosive/chem_grenade/interactable(mob/user)
+	var/obj/item/grenade/chem_grenade/G = holder
+	if(G.stage == GRENADE_WIRED)
+		return TRUE
+
+/datum/wires/explosive/chem_grenade/attach_assembly(color, obj/item/assembly/S)
+	if(istype(S,/obj/item/assembly/timer))
+		var/obj/item/grenade/chem_grenade/G = holder
+		var/obj/item/assembly/timer/T = S
+		G.det_time = T.saved_time*10
+	else if(istype(S,/obj/item/assembly/prox_sensor))
+		var/obj/item/grenade/chem_grenade/G = holder
+		G.landminemode = S
+		S.proximity_monitor.wire = TRUE
+	fingerprint = S.fingerprintslast
+	return ..()
+
+/datum/wires/explosive/chem_grenade/explode()
+	var/obj/item/grenade/chem_grenade/G = holder
+	var/obj/item/assembly/assembly = get_attached(get_wire(1))
+	message_admins("\An [assembly] has pulsed a grenade, which was installed by [fingerprint].")
+	log_game("\An [assembly] has pulsed a grenade, which was installed by [fingerprint].")
+	var/mob/M = get_mob_by_ckey(fingerprint)
+	var/turf/T = get_turf(M)	
+	G.log_grenade(M, T)
+	// hippie start -- nerf suicide bombs
+	var/turf/Tu = get_turf(G)
+	if(G.loc == Tu)
+		G.prime()
+	else
+		var/mob/living/mob_holder = recursive_loc_check(G, /mob/living)
+		do_sparks(2, 0, G)
+		if(mob_holder)
+			playsound(mob_holder, 'sound/items/timer.ogg', 100, 0)
+			mob_holder.visible_message("<span class='danger'>[mob_holder] starts beeping ominously!</span>") 
+		else
+			playsound(Tu, 'sound/items/timer.ogg', 100, 0)
+		G.preprime(mob_holder, null, FALSE, 100)
+	// hippie end
+
+/datum/wires/explosive/chem_grenade/detach_assembly(color)
+	var/obj/item/assembly/S = get_attached(color)
+	if(S && istype(S))
+		assemblies -= color
+		S.connected = null
+		S.forceMove(holder.drop_location())
+		var/obj/item/grenade/chem_grenade/G = holder
+		G.landminemode = null
+		return S
 
 /datum/wires/explosive/c4
 	holder_type = /obj/item/grenade/plastic/c4

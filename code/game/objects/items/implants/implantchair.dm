@@ -5,6 +5,8 @@
 	icon_state = "implantchair"
 	density = TRUE
 	opacity = 0
+	ui_x = 375
+	ui_y = 280
 
 	var/ready = TRUE
 	var/replenishing = FALSE
@@ -30,7 +32,7 @@
 /obj/machinery/implantchair/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.notcontained_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "implantchair", name, 375, 280, master_ui, state)
+		ui = new(user, src, ui_key, "implantchair", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 
@@ -189,7 +191,7 @@
 		objective = stripped_input(usr,"What order do you want to imprint on [C]?","Enter the order","",120)
 		message_admins("[ADMIN_LOOKUPFLW(user)] set brainwash machine objective to '[objective]'.")
 		log_game("[key_name(user)] set brainwash machine objective to '[objective]'.")
-	if(C.has_trait(TRAIT_MINDSHIELD))
+	if(HAS_TRAIT(C, TRAIT_MINDSHIELD))
 		return FALSE
 	brainwash(C, objective)
 	message_admins("[ADMIN_LOOKUPFLW(user)] brainwashed [key_name_admin(C)] with objective '[objective]'.")

@@ -13,10 +13,11 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
 /obj/machinery/drain/Initialize()
+	. = ..()
+	STOP_PROCESSING(SSmachines, src)
 	START_PROCESSING(SSprocessing, src)
 	for(var/obj/machinery/poolcontroller/control in range(srange,src))
 		poolcontrol += control
-	. = ..()
 
 /obj/machinery/drain/Destroy()
 	poolcontrol = null

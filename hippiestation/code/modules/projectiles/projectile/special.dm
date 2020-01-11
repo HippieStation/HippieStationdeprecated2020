@@ -8,8 +8,8 @@
 	damage_type = BRUTE
 	flag = "bullet"
 	hitsound = null // We use our own for different circumstances
-	var/impale_sound = "hippiestation/sound/weapons/rodgun_pierce.ogg"
-	var/hitsound_override = "bullet_impact_flesh"
+	var/impale_sound = 'hippiestation/sound/weapons/rodgun_pierce.ogg'
+	var/hitsound_override = 'sound/weapons/pierce.ogg'
 	var/charge = 0 // How much power is in the bolt, transferred from the crossbow
 
 /obj/item/projectile/rod/on_range()

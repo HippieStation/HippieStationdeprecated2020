@@ -17,12 +17,11 @@
 		M.adjustFireLoss(2, 0)
 		M.adjustOxyLoss(2, 0)
 		M.adjustBruteLoss(2, 0)
-	holder.remove_reagent(src.id, 1)
+	holder.remove_reagent(src.type, 1)
 	return FINISHONMOBLIFE(M)
 
 /datum/reagent/shadowling_blindness_smoke
 	name = "odd black liquid"
-	id = "blindness_smoke"
 	description = "<::ERROR::> CANNOT ANALYZE REAGENT <::ERROR::>"
 	color = "#000000" //Complete black (RGB: 0, 0, 0)
 	metabolization_rate = 100 //lel
@@ -76,16 +75,61 @@
 
 /datum/reagent/unstablemutationtoxin	//For some reason the TG Menace seems to have deleted this one :(
 	name = "Unstable Mutation Toxin"	//Also putting this in the hippie tree so that we don't get fucked by TG messing with the reagents again
-	id = "unstablemutationtoxin"
 	description = "A corruptive toxin... it seems to bubble and froth unpredictably. Are you sure you want to be around this for long?"
 	color = "#a872e6" // rgb: 168, 114, 230
 	metabolization_rate = INFINITY
 	taste_description = "fizzy slime"
 	can_synth = TRUE
 
-/datum/reagent/unstablemutationtoxin/on_mob_add(mob/living/carbon/human/H)
+/datum/reagent/unstablemutationtoxin/on_mob_metabolize(mob/living/carbon/human/H)
 	..()
 	if(!istype(H))
 		return
 	H.reagents.add_reagent(pick("stablemutationtoxin","lizardmutationtoxin","flymutationtoxin", "mothmutationtoxin", "podmutationtoxin", "jellymutationtoxin", "golemmutationtoxin", "abductormutationtoxin", "androidmutationtoxin", "skeletonmutationtoxin", "zombiemutationtoxin", "ashmutationtoxin", "shadowmutationtoxin"), 1) //No plasmaman 4u xDDD
 	return
+
+/datum/reagent/randonium
+	name = "Randonium"
+	description = "A whizzing, chaotic substance that affects any drinker unpredictably. It might not be a good idea to drink this."
+	color = "#245e28"	//rgb(36, 94, 40)
+	metabolization_rate = 0.1
+	taste_description = "a horrible mistake"
+	can_synth = TRUE
+	var/list/everycheminthefuckinguniverse = list()
+
+/datum/reagent/randonium/on_mob_add(mob/living/M)
+	..()
+	if(!everycheminthefuckinguniverse.len)
+		for(var/reagent in subtypesof(/datum/reagent))
+			everycheminthefuckinguniverse += reagent
+
+/datum/reagent/randonium/on_mob_life(mob/living/M)
+	..()
+	var/selectedchem = pick(everycheminthefuckinguniverse)
+	M.reagents.add_reagent(selectedchem, 5)
+
+/datum/reagent/sharplipium
+	name = "Sharplipium"
+	description = "A whizzing, chaotic substance that affects any drinker unpredictably. It might not be a good idea to drink this."
+	taste_description = "a raccoon clawing my mouth"
+
+/datum/reagent/sharplipium/on_mob_add(mob/living/L)
+	..()
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		if(H.dna && H.dna.species)
+			H.dna.species.attack_verb = "slash"
+			H.dna.species.attack_sound = 'sound/weapons/slash.ogg'
+			H.dna.species.miss_sound = 'sound/weapons/slashmiss.ogg'
+
+/datum/reagent/sharplipium/on_mob_delete(mob/living/L)
+	..()
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		if(H.dna && H.dna.species)
+			H.dna.species.attack_verb = initial(H.dna.species.attack_verb)
+			H.dna.species.attack_sound = initial(H.dna.species.attack_sound)
+			H.dna.species.miss_sound = initial(H.dna.species.miss_sound)
+
+/datum/reagent/bluespace
+	can_forge = FALSE

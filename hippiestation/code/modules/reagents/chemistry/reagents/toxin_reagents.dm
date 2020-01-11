@@ -9,7 +9,7 @@
 			var/modifier = CLAMP((1 - touch_protection), 0, 1)
 			var/amount = round(reac_volume*modifier, 0.1)
 			if(amount >= 0.5)
-				M.reagents.add_reagent(id, amount)
+				M.reagents.add_reagent(type, amount)
 		if(prob(min(33, reac_volume)))
 			M.randmuti()
 			if(prob(98))
@@ -30,9 +30,7 @@
 
 /datum/reagent/toxin/bone_hurting_juice
 	name = "Bone Hurting Juice"
-	id =  "bone_hurting_juice"
 	description = "A corrupted form of calcium that reacts horribly with more calcium."
-	reagent_state = LIQUID
 	color = "#DEDEDE" // a horrible shade of off-white grey, also FUG!!!
 	toxpwr = 0 //It only hurts your bones
 
@@ -67,7 +65,6 @@
 
 /datum/reagent/toxin/aus//does work well now
 	name = "Ausium"
-	id = "aus"
 	description = "You're a roight cant moit!"
 	color = "#75AC53"
 	toxpwr = 0
@@ -82,7 +79,6 @@
 
 /datum/reagent/toxin/emote
 	name = "Pure Emotium"
-	id = "emote"
 	description = "This shouldn't be difficult to figure out."
 	color = "#75AC53"
 	toxpwr = 0
@@ -95,7 +91,6 @@
 
 /datum/reagent/toxin/carbonf
 	name = "Carbonic fluoride"
-	id = "carbonf"
 	description = "A fairly nasty chemical used to produce potent medicines"
 	color = "#A300B3"
 	metabolization_rate = 1.5 * REAGENTS_METABOLISM
@@ -103,7 +98,6 @@
 
 /datum/reagent/toxin/radgoop
 	name = "Radioactive waste"
-	id = "radgoop"
 	description = "A filthy product left over from the production of nuclear materials"
 	color = "#000067"
 	toxpwr = 0.5
@@ -115,7 +109,6 @@
 
 /datum/reagent/toxin/goop
 	name = "Toxic goop"
-	id = "goop"
 	description = "A revolting mixture of toxic byproducts left over from the production of poisons"
 	color = "#A20067"
 	toxpwr = 1
@@ -128,7 +121,6 @@
 
 /datum/reagent/toxin/gibemitter
 	name = "Unstable gibs"
-	id = "gibemitter"
 	description = "This does not smell very nice."
 	color = "#FF1111"
 	toxpwr = 0
@@ -141,7 +133,6 @@
 
 /datum/reagent/toxin/bear
 	name = "Bearium"
-	id = "bear"
 	description = "If you like puns and gibbed monkeys you will like this."
 	color = "#CAD15A"
 	toxpwr = 0
@@ -173,14 +164,12 @@
 
 /datum/reagent/toxin/methphos
 	name = "Methylphosphonyl difluoride"
-	id = "methphos"
 	description = "Maybe you could make something really really toxic out of this?"
 	color = "#C8A5DC"
 	toxpwr = 0.5
 
 /datum/reagent/toxin/sarin_a
 	name = "Translucent mixture"
-	id = "sarina"
 	description = "This mixture has a very light white hint to it but is filled with impurities"
 	color = "#AAAACB"
 	toxpwr = 1
@@ -191,7 +180,6 @@
 
 /datum/reagent/toxin/sarin_b
 	name = "diluted sarin"
-	id = "sarinb"
 	description = "A very impure form of sarin"
 	color = "#CCCCCC"
 
@@ -204,7 +192,6 @@
 
 /datum/reagent/toxin/sarin //causes toxin damage, respiratory failure, blurs eyes and drowsiness, extremely lethal unless countered with atropine
 	name = "Sarin"
-	id = "sarin"
 	description = "A family friendly lethal nerve agent, handle with care!"
 	color = "#FFFFFF"
 	toxpwr = 0
@@ -249,25 +236,21 @@
 
 /datum/reagent/toxin/tabun_pa
 	name = "Dimethlymine"
-	id = "tabuna"
 	description = "A chemical that is used in the manufacturing of narcotics"
 	color = "#CF3600" // rgb: 207, 54, 0
 
 /datum/reagent/toxin/tabun_pb
 	name = "Phosphoryll"
-	id = "tabunb"
 	description = "Hmm looks just like water"
 	color = "#801E28"
 
 /datum/reagent/toxin/tabun_pc
 	name = "Noxious mixture"
-	id = "tabunc"
 	description = "A bubbling mixture"
 	color = "#CF3600" // rgb: 207, 54, 0
 
 /datum/reagent/toxin/tabun
 	name = "Tabun"
-	id = "tabun"
 	description = "First generation nerve agent invented by the Nazis, packs impressive toxicity"
 	color = "#003333"
 	metabolization_rate = 3 * REAGENTS_METABOLISM //goes really quickly but does huge amounts of damage
@@ -281,7 +264,6 @@
 
 /datum/reagent/toxin/acid/hydrazine//jack of all trades chem, acidic, fairly toxic and can cause firestacks
 	name = "Hydrazine"
-	id = "hydrazine"
 	description = "Toxic, unstable, flammable and used in rocket fuel. Aim away from face!"
 	color = "#CF36AC" // rgb: 207, 54, 0
 	toxpwr = 2
@@ -299,7 +281,7 @@
 		data++
 		if(prob(2) && data > 40) //randomly creates small explosions or fireballs but has a delay so it doesn't just kill people while they're still mixing
 			var/location = get_turf(holder.my_atom)
-			holder.remove_reagent(src.id,5,safety = 1)
+			holder.remove_reagent(src.type,5,safety = 1)
 			switch(prob(50))
 				if(TRUE)
 					var/datum/effect_system/reagents_explosion/e = new()
@@ -312,7 +294,6 @@
 
 /datum/reagent/toxin/sazide//replacement for cyanide, causes scaling oxyloss followed by sleeping and eye+liver damage
 	name = "Sodium Azide"
-	id = "sazide"
 	description = "A toxic and unstable chemical known for causing respiratory failure and sudden explosions"
 	color = "#CF3600" // rgb: 207, 54, 0
 	toxpwr = 0
@@ -343,9 +324,7 @@
 
 /datum/reagent/toxin/bleach
 	name = "Bleach"
-	id = "bleach"
 	description = "Also known as sodium hypochlorite. A potent and toxic cleaning agent"
-	reagent_state = LIQUID
 	color = "#FFFFFF"
 	toxpwr = 2
 
@@ -371,28 +350,24 @@
 
 /datum/reagent/toxin/impgluco
 	name = "Impure Glucosaryll"
-	id = "impgluco"
 	description = "The incredibly sweet precursor to a frighteningly dangerous substance that Nanotrasen once used to cut costs on soft drink sweetener before it was quietly recalled."
-	reagent_state = LIQUID
 	color = "#EFD6D0"
 	taste_description = "dizzying sweetness"
 	taste_mult = 2.0
 
 /datum/reagent/toxin/impgluco/on_mob_life(mob/living/M)
-	M.reagents.add_reagent("sugar",0.8*REM)
+	M.reagents.add_reagent(/datum/reagent/consumable/sugar,0.8*REM)
 	..()
 
 /datum/reagent/toxin/gluco
 	name = "Glucosaryll"
-	id = "gluco"
 	description = "This revolting sludge smells like the inside of the pillsbury doughboy's ascending colon."
-	reagent_state = LIQUID
 	color = "#F6F1D2"
 	taste_description = "ungodly sweetness"
 	taste_mult = 5.0
 
 /datum/reagent/toxin/gluco/on_mob_life(mob/living/M)
-	M.reagents.add_reagent("sugar", 4*REM)
+	M.reagents.add_reagent(/datum/reagent/consumable/sugar, 4*REM)
 	if(prob(15))
 		to_chat(M, "<span class='danger'>[pick("Your left leg is numb.","You feel tingly.","Everything seems airy.")]</span>")
 		M.Dizzy(10)
@@ -401,9 +376,7 @@
 
 /datum/reagent/toxin/screech
 	name = "Screechisol"
-	id = "screech"
 	description = "Stimulates the vocal cords heavily, inducing involuntary yelling."
-	reagent_state = LIQUID
 	color = "#853358"
 	taste_description = "salty and sour"
 
@@ -434,21 +407,19 @@
 	if(prob(1))
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			H.add_trait(TRAIT_CLUMSY, id)
+			ADD_TRAIT(H, TRAIT_CLUMSY, type)
 
 	..()
 
-/datum/reagent/impedrezene/on_mob_delete(mob/living/M)
+/datum/reagent/impedrezene/on_mob_end_metabolize(mob/living/M)
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
-		H.remove_trait(TRAIT_CLUMSY)
+		REMOVE_TRAIT(H, TRAIT_CLUMSY, type)
 	..()
 
 /datum/reagent/toxin/vomit
 	name = "Vomit"
-	id = "vomit"
 	description = "Chunky."
-	reagent_state = LIQUID
 	color = "#f4f442" // rgb(244, 244, 66)
 	toxpwr = 0.5
 	taste_description = "absolutely disgusting"
@@ -458,3 +429,4 @@
 	if(prob(10) && istype(M))
 		M.vomit(10)
 	..()
+

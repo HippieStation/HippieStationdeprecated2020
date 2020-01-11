@@ -1,4 +1,4 @@
-/obj/item/reagent_containers/glass/rag/afterattack(obj/A, mob/user,proximity)
+/obj/item/reagent_containers/glass/rag/afterattack(atom/A as obj|turf|area, mob/user,proximity)
 	if(!istype(A) || !proximity || !check_allowed_items(A, target_self=1))
 		return
 	if(iscarbon(A) && A.reagents && reagents.total_volume)

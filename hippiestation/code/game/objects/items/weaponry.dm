@@ -1,6 +1,6 @@
 /obj/item/wirerod/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/shard))
-		var/obj/item/twohanded/spear/S = new /obj/item/twohanded/spear
+		var/obj/item/twohanded/spear/S = new(src.loc)
 
 		remove_item_from_storage(user)
 		qdel(I)
@@ -9,8 +9,8 @@
 		user.put_in_hands(S)
 		to_chat(user, "<span class='notice'>You fasten the glass shard to the top of the rod with the cable.</span>")
 
-	else if(istype(I, /obj/item/assembly/igniter) && !has_trait(TRAIT_NODROP))
-		var/obj/item/melee/baton/cattleprod/hippie_cattleprod/P = new /obj/item/melee/baton/cattleprod/hippie_cattleprod
+	else if(istype(I, /obj/item/assembly/igniter) && !HAS_TRAIT(src, TRAIT_NODROP))
+		var/obj/item/melee/baton/cattleprod/hippie_cattleprod/P = new(src.loc)
 
 		remove_item_from_storage(user)
 
@@ -68,10 +68,10 @@
 /obj/item/mounted_energy_chainsaw/attack(mob/living/M, mob/living/user)
 	playsound(src, pick('hippiestation/sound/weapons/echainsawhit1.ogg','hippiestation/sound/weapons/echainsawhit2.ogg'))
 	..()
-	
+
 /obj/item/mounted_energy_chainsaw/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/staff // to make sure people don't get confused
 	desc = "Apparently a staff used by the wizard. Doesn't shoot anything."
@@ -164,7 +164,7 @@
 	var/durability = 5
 
 /obj/item/brick/Initialize()
-	.=..()
+	. = ..()
 	if(prob(0.5))
 		name = "brown brick"
 		desc = "<font color = #835C3B>I understand why all the kids are playing this game these days. It's because they like to build brown bricks with Minecrap. I also like to build brown bricks with Minecrap. It's the most fun you can possibly have.</font>"

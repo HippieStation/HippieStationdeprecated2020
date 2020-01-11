@@ -31,7 +31,7 @@
 		if(ispath(summoned_object_type, /turf))
 			var/turf/O = spawn_place
 			var/N = summoned_object_type
-			O.ChangeTurf(N)
+			O.ChangeTurf(N, flags = CHANGETURF_INHERIT_AIR)
 		else
 			var/atom/summoned_object = new summoned_object_type(spawn_place)
 
@@ -87,8 +87,8 @@
 		QDEL_NULL(item)
 	else
 		for(var/mob/living/carbon/C in targets)
-			if(C.dropItemToGround(C.get_active_held_item()))
-				C.put_in_hands(make_item(), TRUE)
+			//if(C.dropItemToGround(C.get_active_held_item())) // hippie -- fix pocket sand
+			C.put_in_hands(make_item(), TRUE)
 
 /obj/effect/proc_holder/spell/targeted/conjure_item/Destroy()
 	if(item)

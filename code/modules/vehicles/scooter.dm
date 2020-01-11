@@ -2,6 +2,8 @@
 	name = "scooter"
 	desc = "A fun way to get around."
 	icon_state = "scooter"
+	are_legs_exposed = TRUE
+	fall_off_if_missing_arms = TRUE
 
 /obj/vehicle/ridden/scooter/Initialize()
 	. = ..()
@@ -10,6 +12,7 @@
 
 
 /obj/vehicle/ridden/scooter/wrench_act(mob/living/user, obj/item/I)
+	..()
 	to_chat(user, "<span class='notice'>You begin to remove the handlebars...</span>")
 	if(I.use_tool(src, user, 40, volume=50))
 		var/obj/vehicle/ridden/scooter/skateboard/S = new(drop_location())
@@ -31,19 +34,21 @@
 		else
 			buckled_mob.pixel_y = -4
 
-/obj/vehicle/ridden/scooter/buckle_mob(mob/living/M, force = 0, check_loc = 1)
+/obj/vehicle/ridden/scooter/buckle_mob(mob/living/M, force = FALSE, check_loc = TRUE)
 	if(!istype(M))
-		return 0
-	if(M.get_num_legs() < 2 && M.get_num_arms() <= 0)
-		to_chat(M, "<span class='warning'>Your limbless body can't ride \the [src].</span>")
-		return 0
-	. = ..()
+		return FALSE
+	if(M.get_num_legs() < legs_required && M.get_num_arms() < arms_required)
+		to_chat(M, "<span class='warning'>You don't think it'd be a good idea trying to ride \the [src]...</span>")
+		return FALSE
+	return ..()
 
 /obj/vehicle/ridden/scooter/skateboard
 	name = "skateboard"
 	desc = "An unfinished scooter which can only barely be called a skateboard. It's still rideable, but probably unsafe. Looks like you'll need to add a few rods to make handlebars. Alt-click to adjust speed."
 	icon_state = "skateboard"
 	density = FALSE
+	arms_required = 0
+	fall_off_if_missing_arms = FALSE
 	var/adjusted_speed = FALSE
 
 /obj/vehicle/ridden/scooter/skateboard/Initialize()
@@ -125,6 +130,7 @@
 		return ..()
 
 /obj/item/scooter_frame/wrench_act(mob/living/user, obj/item/I)
+	..()
 	to_chat(user, "<span class='notice'>You deconstruct [src].</span>")
 	new /obj/item/stack/rods(drop_location(), 10)
 	I.play_tool_sound(src)
@@ -182,12 +188,12 @@
 
 /obj/vehicle/ridden/scooter/wheelys/post_unbuckle_mob(mob/living/M)
 	if(!has_buckled_mobs())
-		to_chat(M, "<span class='notice'>You pop the Wheely-Heel's wheels back into place.</span>")
+		to_chat(M, "<span class='notice'>You pop the Wheely-Heels' wheels back into place.</span>")
 		moveToNullspace()
 	return ..()
 
 /obj/vehicle/ridden/scooter/wheelys/post_buckle_mob(mob/living/M)
-	to_chat(M, "<span class='notice'>You pop out the Wheely-Heel's wheels.</span>")
+	to_chat(M, "<span class='notice'>You pop out the Wheely-Heels' wheels.</span>")
 	return ..()
 
 /obj/vehicle/ridden/scooter/wheelys/Bump(atom/A)

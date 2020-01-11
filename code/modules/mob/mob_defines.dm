@@ -99,8 +99,9 @@
 
 	var/list/progressbars = null	//for stacking do_after bars
 
-	var/list/mousemove_intercept_objects
-
 	var/datum/click_intercept
 
-	var/registered_z
+	///THe z level this mob is currently registered in
+	var/registered_z = null
+	
+	var/memory_throttle_time = 0

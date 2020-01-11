@@ -92,6 +92,8 @@ GLOBAL_LIST_EMPTY(atmos_air_controllers)
 	icon_screen = "tank"
 	icon_keyboard = "atmos_key"
 	circuit = /obj/item/circuitboard/computer/atmos_control
+	ui_x = 400
+	ui_y = 925
 
 	var/frequency = FREQ_ATMOS_STORAGE
 	var/list/sensors = list(
@@ -126,7 +128,7 @@ GLOBAL_LIST_EMPTY(atmos_air_controllers)
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "atmos_control", name, 400, 925, master_ui, state)
+		ui = new(user, src, ui_key, "atmos_control", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/atmos_control/ui_data(mob/user)
@@ -174,6 +176,9 @@ GLOBAL_LIST_EMPTY(atmos_air_controllers)
 
 	var/list/input_info
 	var/list/output_info
+
+	ui_x = 500
+	ui_y = 315
 
 /obj/machinery/computer/atmos_control/tank/oxygen_tank
 	name = "Oxygen Supply Control"
@@ -266,7 +271,7 @@ GLOBAL_LIST_EMPTY(atmos_air_controllers)
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "atmos_control", name, 500, 305, master_ui, state)
+		ui = new(user, src, ui_key, "atmos_control", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/atmos_control/tank/ui_data(mob/user)
@@ -291,8 +296,8 @@ GLOBAL_LIST_EMPTY(atmos_air_controllers)
 			signal.data += list("tag" = input_tag, "power_toggle" = TRUE)
 			. = TRUE
 		if("rate")
-			var/target = input("New target rate:", name, input_info ? input_info["volume_rate"] : 0) as num|null
-			if(!isnull(target) && !..())
+			var/target = text2num(params["rate"])
+			if(!isnull(target))
 				target =  CLAMP(target, 0, MAX_TRANSFER_RATE)
 				signal.data += list("tag" = input_tag, "set_volume_rate" = target)
 				. = TRUE
@@ -300,9 +305,9 @@ GLOBAL_LIST_EMPTY(atmos_air_controllers)
 			signal.data += list("tag" = output_tag, "power_toggle" = TRUE)
 			. = TRUE
 		if("pressure")
-			var/target = input("New target pressure:", name, output_info ? output_info["internal"] : 0) as num|null
-			if(!isnull(target) && !..())
-				target =  CLAMP(target, 0, 50 * ONE_ATMOSPHERE)
+			var/target = text2num(params["pressure"])
+			if(!isnull(target))
+				target = CLAMP(target, 0, 4500)
 				signal.data += list("tag" = output_tag, "set_internal_pressure" = target)
 				. = TRUE
 	radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)

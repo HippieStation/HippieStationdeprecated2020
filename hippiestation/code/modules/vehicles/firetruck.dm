@@ -15,7 +15,7 @@
 /obj/vehicle/ridden/firetruck/Initialize()
 	. = ..()
 	create_reagents(REAGENTS_PER_EFFECT*1000, OPENCONTAINER)
-	reagents.add_reagent("firefighting_foam", REAGENTS_PER_EFFECT*1000)
+	reagents.add_reagent(/datum/reagent/firefighting_foam, REAGENTS_PER_EFFECT*1000)
 	controls = new(src,src)
 	water_cannon = new
 	water_cannon.attach(src)
@@ -36,8 +36,8 @@
 	var/bad_reagent = FALSE
 	for(var/r in reagents.reagent_list)
 		var/datum/reagent/R = r
-		if(!(R.id in whitelist))
-			reagents.del_reagent(R.id)
+		if(!(R.type in whitelist))
+			reagents.del_reagent(R.type)
 			bad_reagent = TRUE
 	if(bad_reagent)
 		visible_message("<span class='danger'>An illegal reagent has been detected in the internal tank and successfully purged.</span>")
@@ -104,7 +104,7 @@
 /obj/item/water_cannon_controls/Initialize(mapload, obj/vehicle/ridden/the_firetruck)
 	. = ..()
 	firetruck = the_firetruck
-	add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/water_cannon_controls/CanItemAutoclick()
 	return TRUE

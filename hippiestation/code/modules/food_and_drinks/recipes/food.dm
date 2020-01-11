@@ -1,7 +1,7 @@
 /datum/chemical_reaction/pizzaification
 	name = "Pizzaification"
 	id = "pizzaification"
-	required_reagents = list("tomatojuice" = 10, "oil"  = 5, "flour"=20, "sodium"=5)
+	required_reagents = list(/datum/reagent/consumable/tomatojuice = 10, /datum/reagent/oil = 5, /datum/reagent/consumable/flour = 20, /datum/reagent/sodium = 5)
 	required_temp = 450
 	mob_react = FALSE
 

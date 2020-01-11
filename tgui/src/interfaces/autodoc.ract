@@ -1,0 +1,31 @@
+<ui-display title='Auto-Doc Mark IX'>
+  {{#if data.mode == 1}}
+    <ui-display title='Targets'>
+      <ui-button action='target' state='{{data.target == "head" ? "selected" : null}}' params='{"part": "head"}'>Head</ui-button>
+      <ui-button action='target' state='{{data.target == "chest" ? "selected" : null}}' params='{"part": "chest"}'>Chest</ui-button>
+      <ui-button action='target' state='{{data.target == "l_arm" ? "selected" : null}}' params='{"part": "l_arm"}'>Left Arm</ui-button>
+      <ui-button action='target' state='{{data.target == "r_arm" ? "selected" : null}}' params='{"part": "r_arm"}'>Right Arm</ui-button>
+      <ui-button action='target' state='{{data.target == "l_leg" ? "selected" : null}}' params='{"part": "l_leg"}'>Left Leg</ui-button>
+      <ui-button action='target' state='{{data.target == "r_leg" ? "selected" : null}}' params='{"part": "r_leg"}'>Right Leg</ui-button>
+      <ui-button action='target' state='{{data.target == "groin" ? "selected" : null}}' params='{"part": "groin"}'>Groin</ui-button>
+      <ui-button action='target' state='{{data.target == "eyes" ? "selected" : null}}' params='{"part": "eyes"}'>Eyes</ui-button>
+      <ui-button action='target' state='{{data.target == "mouth" ? "selected" : null}}' params='{"part": "mouth"}'>Mouth</ui-button>
+    </ui-display>
+    <ui-display title='Surgeries'>
+      {{#each data.surgeries}}
+        <ui-button state='{{selected ? "selected" : null}}' action='surgery' params='{"path": "{{path}}"}'>{{name}}</ui-button>
+      {{/each}}
+    </ui-display>
+    <center>
+      <ui-button action='start'>Start</ui-button>
+    </center>
+  {{else}}
+    <ui-section title='{{data.s_name}} Surgery' candystripe>
+      {{#each data.steps}}
+        <center>
+          <span class='{{current ? "good" : "average"}}'>{{current ? "> " : null}}{{name}}{{current ? " <" : null}}</span>
+        </center>
+      {{/each}}
+    </ui-section>
+  {{/if}}
+</ui-display>

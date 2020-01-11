@@ -21,8 +21,7 @@
 
 	if (!.)
 		return
-
-	if(findtext(message, "rouge"))	//You're an idiot and should feel as such
+	if(findtext(message, "rouge"))
 		var/mob/living/carbon/human/H = src
 		to_chat(src, "<span class='warning'><b>You feel like a fucking idiot.</b></span>")
 		playsound_local(src, 'hippiestation/sound/effects/whistlefail.ogg', 50, 0)	//Rip
@@ -109,10 +108,8 @@
 	if (istype(src, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = src
 
-		if (H)
-			if (H.dna)
-				if (H.dna.tts_voice)
-					tts_voice = H.dna.tts_voice
+		if (H && H.dna && H.dna.tts_voice)
+			tts_voice = H.dna.tts_voice
 
 	if (world.time > client.tts_cooldown && !SStts.check_processing(src))
 		var/tts_volume_mod = 1

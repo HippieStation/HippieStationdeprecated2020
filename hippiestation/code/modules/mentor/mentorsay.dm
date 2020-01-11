@@ -6,7 +6,10 @@
 		return
 
 	msg = emoji_parse(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
-	if(!msg)	
+	if(!msg)
+		return
+	if(prefs.muted & MUTE_MENTOR)
+		to_chat(src, "<span class='danger'>Error: Msay: You are unable to use mentor say (muted).</span>", confidential=TRUE)
 		return
 
 	log_mentor("MSAY: [key_name(src)] : [msg]")
@@ -15,7 +18,7 @@
 		msg = "<b><font color ='#8A2BE2'><span class='prefix'>MENTOR:</span> <EM>[key_name(src, 0, 0)]</EM>: <span class='message'>[msg]</span></font></b>"
 	else
 		msg = "<b><font color ='#E236D8'><span class='prefix'>MENTOR:</span> <EM>[key_name(src, 0, 0)]</EM>: <span class='message'>[msg]</span></font></b>"
-	to_chat(GLOB.admins | GLOB.mentors, msg)
+	to_chat(GLOB.admins | GLOB.mentors, msg, confidential=TRUE)
 
 	SSblackbox.record_feedback("tally", "mentor_verb", 1, "Msay") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

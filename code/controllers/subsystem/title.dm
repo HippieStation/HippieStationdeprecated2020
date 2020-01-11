@@ -20,13 +20,13 @@ SUBSYSTEM_DEF(title)
 
 	var/list/provisional_title_screens = flist("[global.config.directory]/title_screens/images/")
 	var/list/title_screens = list()
-	var/use_rare_screens = prob(1)
+	//var/use_rare_screens = prob(1) | hippie - fix title screens
 
 	SSmapping.HACK_LoadMapConfig()
 	for(var/S in provisional_title_screens)
-		var/list/L = splittext(S,"+")
-		if((L.len == 1 && L[1] != "blank.png")|| (L.len > 1 && ((use_rare_screens && lowertext(L[1]) == "rare") || (lowertext(L[1]) == lowertext(SSmapping.config.map_name)))))
-			title_screens += S
+		//var/list/L = splittext(S,"+") | hippie start -- fix title screens
+		//if((L.len > 1 && ((use_rare_screens && lowertext(L[1]) == "rare") || (lowertext(L[1]) == lowertext(SSmapping.config.map_name))))) | hippie end
+		title_screens += S
 
 	if(length(title_screens))
 		file_path = "[global.config.directory]/title_screens/images/[pick(title_screens)]"

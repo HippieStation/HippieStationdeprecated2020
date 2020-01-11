@@ -33,10 +33,14 @@
 	return TRUE
 
 /datum/surgery_step/lobotomize/preop(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	user.visible_message("[user] begins to cut a piece of [target]'s brain.", "<span class='notice'>You begin to cut a piece of [target]'s brain...</span>")
+	display_results(user, target, "<span class='notice'>You begin to perform a lobotomy on [target]'s brain...</span>",
+		"[user] begins to perform a lobotomy on [target]'s brain.",
+		"[user] begins to perform surgery on [target]'s brain.")
 
 /datum/surgery_step/lobotomize/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
-	user.visible_message("[user] successfully lobotomizes [target]!", "<span class='notice'>You succeed in lobotomizing [target].</span>")
+	display_results(user, target, "<span class='notice'>You succeed in lobotomizing [target].</span>",
+			"[user] successfully lobotomizes [target]!",
+			"[user] completes the surgery on [target]'s brain.")
 	target.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)
 	if(target.mind && target.mind.has_antag_datum(/datum/antagonist/brainwashed))
 		target.mind.remove_antag_datum(/datum/antagonist/brainwashed)
@@ -51,7 +55,9 @@
 
 /datum/surgery_step/lobotomize/failure(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery)
 	if(target.getorganslot(ORGAN_SLOT_BRAIN))
-		user.visible_message("<span class='warning'>[user] removes the wrong part, causing more damage!</span>", "<span class='warning'>You remove the wrong part, causing more damage!</span>")
+		display_results(user, target, "<span class='warning'>You remove the wrong part, causing more damage!</span>",
+			"[user] successfully lobotomizes [target]!",
+			"[user] completes the surgery on [target]'s brain.")
 		target.adjustBrainLoss(80)
 		switch(rand(1,3))
 			if(1)
@@ -61,5 +67,5 @@
 			if(3)
 				target.gain_trauma_type(BRAIN_TRAUMA_SPECIAL, TRAUMA_RESILIENCE_MAGIC)
 	else
-		user.visible_message("<span class='warning'>[user] suddenly notices that the brain [user.p_they()] [user.p_were()] working on is not there anymore.", "<span class='warning'>You suddenly notice that the brain you were working on is not there anymore.</span>")
+		user.visible_message("<span class='warning'>[user] suddenly notices that the brain [user.p_they()] [user.p_were()] working on is not there anymore.</span>", "<span class='warning'>You suddenly notice that the brain you were working on is not there anymore.</span>")
 	return FALSE

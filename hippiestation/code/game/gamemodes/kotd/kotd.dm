@@ -72,7 +72,7 @@
 			to_chat(M,"<span class='notice'>Your uplink inside the [I] vibrates softly. The Syndicate have rewarded you with an additional telecrystal for your possession of the disk.</span>")
 			if(U.active)
 				U.interact(M)
-	if(!has_disk || get_area(owner.current).type == /area/space)
+	if(!has_disk || get_area(owner.current) == /area/space)
 		king_time = world.time + 600
 
 /datum/game_mode/traitor/kotd/generate_report()

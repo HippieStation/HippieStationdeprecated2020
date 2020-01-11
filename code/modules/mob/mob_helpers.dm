@@ -1,4 +1,3 @@
-
 // see _DEFINES/is_helpers.dm for mob type checks
 
 /mob/proc/lowest_buckled_mob()
@@ -54,20 +53,20 @@
 	var/te = n
 	var/t = ""
 	n = length(n)
-	var/p = null
-	p = 1
-	while(p <= n)
+
+	for(var/p = 1 to min(n,MAX_BROADCAST_LEN))
 		if ((copytext(te, p, p + 1) == " " || prob(pr)))
 			t = text("[][]", t, copytext(te, p, p + 1))
 		else
 			t = text("[]*", t)
-		p++
+	if(n > MAX_BROADCAST_LEN)
+		t += "..." //signals missing text
 	return sanitize(t)
 
 /proc/slur(n)
 	var/phrase = html_decode(n)
-	var/leng = lentext(phrase)
-	var/counter=lentext(phrase)
+	var/leng = length(phrase)
+	var/counter=length(phrase)
 	var/newphrase=""
 	var/newletter=""
 	while(counter>=1)
@@ -101,8 +100,8 @@
 
 /proc/cultslur(n) // Inflicted on victims of a stun talisman
 	var/phrase = html_decode(n)
-	var/leng = lentext(phrase)
-	var/counter=lentext(phrase)
+	var/leng = length(phrase)
+	var/counter=length(phrase)
 	var/newphrase=""
 	var/newletter=""
 	while(counter>=1)
@@ -180,7 +179,6 @@
 	if(!stuttering && prob(15))
 		message = stutter(message)
 	return message
-
 
 /proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added
 	/* Turn text into complete gibberish! */
@@ -415,11 +413,12 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 		return
 	return TRUE
 
-/proc/offer_control(mob/M)
-	to_chat(M, "Control of your mob has been offered to dead players.")
-	if(usr)
-		log_admin("[key_name(usr)] has offered control of ([key_name(M)]) to ghosts.")
-		message_admins("[key_name_admin(usr)] has offered control of ([ADMIN_LOOKUPFLW(M)]) to ghosts")
+/proc/offer_control(mob/M, log_stuff = TRUE) // hippie start -- for ghost stone
+	if(log_stuff)
+		to_chat(M, "Control of your mob has been offered to dead players.")
+		if(usr)
+			log_admin("[key_name(usr)] has offered control of ([key_name(M)]) to ghosts.")
+			message_admins("[key_name_admin(usr)] has offered control of ([ADMIN_LOOKUPFLW(M)]) to ghosts") // hippie end
 	var/poll_message = "Do you want to play as [M.real_name]?"
 	if(M.mind && M.mind.assigned_role)
 		poll_message = "[poll_message] Job:[M.mind.assigned_role]."
@@ -495,15 +494,14 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 //Examine text for traits shared by multiple types. I wish examine was less copypasted.
 /mob/proc/common_trait_examine()
-	. = ""
-
-	if(has_trait(TRAIT_DISSECTED))
+	if(HAS_TRAIT(src, TRAIT_DISSECTED))
 		. += "<span class='notice'>This body has been dissected and analyzed. It is no longer worth experimenting on.</span><br>"
 
-/mob/has_trait(trait, list/sources, check_mind=TRUE)
-	. = ..(trait, sources)
-	if(.)
-		return
-
-	if(check_mind && istype(mind))
-		return mind.has_trait(trait, sources)
+/mob/proc/get_policy_keywords()
+	. = list()
+	. += "[type]"
+	if(mind)
+		. += mind.assigned_role
+		. += mind.special_role //In case there's something special leftover, try to avoid
+		for(var/datum/antagonist/A in mind.antag_datums)
+			. += "[A.type]"

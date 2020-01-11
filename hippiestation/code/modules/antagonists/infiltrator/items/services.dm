@@ -31,7 +31,7 @@ GLOBAL_VAR_INIT(next_button_push, 0)
 	desc = "Announces a fake ion storm."
 
 /obj/item/service/ion/attack_self(mob/user)
-	if(GLOB.next_button_push < world.time)
+	if(GLOB.next_button_push > world.time)
 		return
 	priority_announce("Ion storm detected near the station. Please check all AI-controlled equipment for errors.", "Anomaly Alert", 'sound/ai/ionstorm.ogg')
 	message_admins("[key_name_admin(user)] made a fake ion storm announcement!")
@@ -44,7 +44,7 @@ GLOBAL_VAR_INIT(next_button_push, 0)
 	desc = "Announces a fake meteor storm."
 
 /obj/item/service/meteor/attack_self(mob/user)
-	if(GLOB.next_button_push < world.time)
+	if(GLOB.next_button_push > world.time)
 		return
 	priority_announce("Meteors have been detected on collision course with the station.", "Meteor Alert", 'sound/ai/meteors.ogg')
 	message_admins("[key_name_admin(user)] made a fake meteor storm announcement!")
@@ -57,7 +57,7 @@ GLOBAL_VAR_INIT(next_button_push, 0)
 	desc = "Announces a fake immovable rod."
 
 /obj/item/service/rodgod/attack_self(mob/user)
-	if(GLOB.next_button_push < world.time)
+	if(GLOB.next_button_push > world.time)
 		return
 	priority_announce("What the fuck was that?!", "General Alert")
 	message_admins("[key_name_admin(user)] made a fake immovable rod announcement!")

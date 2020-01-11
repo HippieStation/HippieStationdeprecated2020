@@ -1,5 +1,5 @@
 /obj/machinery/power/port_gen
-	icon_hippie = 'hippiestation/icons/obj/power.dmi'
+	icon = 'hippiestation/icons/obj/power.dmi'
 	icon_state = "portgen0"
 
 /obj/machinery/power/port_gen/pacman/super
@@ -10,7 +10,7 @@
 
 /obj/machinery/power/port_gen/update_icon()
 	icon_state = "[base_icon]"
-
+/*
 /obj/machinery/power/port_gen/process()
 	..()
 	if(active)
@@ -63,3 +63,4 @@
 			usr.unset_machine()
 
 	updateDialog()
+*/
