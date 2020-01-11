@@ -10,6 +10,9 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 
 	enable_debugger()
 
+	if(fexists(EXTOOLS))
+		call(EXTOOLS, "maptick_initialize")()
+
 	log_world("World loaded at [time_stamp()]!")
 
 	SetupExternalRSC()
