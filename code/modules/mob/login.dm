@@ -42,8 +42,6 @@
 	update_client_colour()
 	update_mouse_pointer()
 	if(client)
-		if(client.prefs.widescreen)
-			CONFIG_SET(string/default_view, "19x15")
 		client.change_view(CONFIG_GET(string/default_view)) // Resets the client.view in case it was changed.
 
 		if(client.player_details.player_actions.len)

@@ -81,20 +81,6 @@
 /obj/proc/hulk_damage()
 	return 150 //the damage hulks do on punches to this object, is affected by melee armor
 
-<<<<<<< HEAD
-/obj/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
-	if(user.a_intent == INTENT_HARM)
-		..(user, 1)
-		visible_message("<span class='danger'>[user] smashes [src]!</span>", null, null, COMBAT_MESSAGE_RANGE)
-		if(density)
-			playsound(src, 'face/sound/impacts/meteorimpact.ogg', 100, 1)
-			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ), forced="hulk")
-		else
-			playsound(src, 'sound/effects/bang.ogg', 50, 1)
-		take_damage(hulk_damage(), BRUTE, "melee", 0, get_dir(src, user))
-		return 1
-	return 0
-=======
 /obj/attack_hulk(mob/living/carbon/human/user)
 	..()
 	user.visible_message("<span class='danger'>[user] smashes [src]!</span>", "<span class='danger'>You smash [src]!</span>", null, COMBAT_MESSAGE_RANGE)
@@ -104,7 +90,6 @@
 		playsound(src, 'sound/effects/bang.ogg', 50, 1)
 	take_damage(hulk_damage(), BRUTE, "melee", 0, get_dir(src, user))
 	return TRUE
->>>>>>> 9d6960d59236aeb316c5f290b1c9757e3fe90dac
 
 /obj/blob_act(obj/structure/blob/B)
 	if(isturf(loc))

@@ -149,8 +149,6 @@
 	time = 40
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
-<<<<<<< HEAD:hippiestation/code/modules/crafting/recipes.dm
-=======
 
 /datum/crafting_recipe/crowbar_ghetto
 	name = "ghetto crowbar"
@@ -223,4 +221,3 @@
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH, TOOL_CROWBAR)
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
->>>>>>> 9d6960d59236aeb316c5f290b1c9757e3fe90dac:hippiestation/code/datums/components/crafting/recipes.dm

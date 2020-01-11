@@ -39,7 +39,6 @@
 					trauma_resistance = TRAUMA_RESILIENCE_BASIC
 			H.adjustBrainLoss(20)
 			H.gain_trauma_type(trauma_type, trauma_resistance)
-<<<<<<< HEAD
 
 	if(findtext(message, "nigger"))	//Warning people about saying obscenties isn't working, so making it give them brain damage is the next best thing. I would make this do it to all race slang words, but I am very lazy and nobody ever says cracker, because going HAHA NIGG is more funny, apparently.
 		var/mob/living/carbon/human/H = src
@@ -62,9 +61,6 @@
 
 /*
 	say_tts(message, language) TTS removed, leaving handlers here for replacement
-=======
-	say_tts(message, language)
->>>>>>> 9d6960d59236aeb316c5f290b1c9757e3fe90dac
 
 /mob/living/proc/say_tts(tts_message, datum/language/tts_language = null)
 	if (!CONFIG_GET(flag/enable_tts))
@@ -128,3 +124,4 @@
 		if (!hud_used.tts)
 			return
 		hud_used.tts.icon_state = "tts_cooldown"
+*/

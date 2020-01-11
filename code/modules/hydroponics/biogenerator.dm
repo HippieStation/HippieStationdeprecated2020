@@ -311,10 +311,6 @@
 		var/amount = (text2num(href_list["amount"]))
 		//Can't be outside these (if you change this keep a sane limit)
 		amount = CLAMP(amount, 1, 10)
-<<<<<<< HEAD
-		var/datum/design/D = locate(href_list["create"])
-		create_product(D, amount)
-=======
 		var/id = href_list["create"]
 		if(!stored_research.researched_designs.Find(id))
 			//naughty naughty
@@ -329,7 +325,6 @@
 		//This shouldnt happen normally but href forgery is real
 		else
 			stack_trace("ID could not be turned into a valid techweb design datum [id]")
->>>>>>> 9d6960d59236aeb316c5f290b1c9757e3fe90dac
 		updateUsrDialog()
 
 	else if(href_list["menu"])
