@@ -72,6 +72,7 @@ SUBSYSTEM_DEF(demo)
 /datum/controller/subsystem/demo/Initialize()
 	if(!CONFIG_GET(flag/enable_demo))
 		disabled = TRUE
+		flags |= SS_NO_INIT
 		return FALSE
 	demo_file = "[GLOB.log_directory]/demo.log"
 	quickwrite_open(demo_file)
