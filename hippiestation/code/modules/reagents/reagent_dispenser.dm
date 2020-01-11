@@ -78,11 +78,11 @@
 	..()
 
 /obj/structure/reagent_dispensers/chemical/examine(mob/user)
-	..()
+	. = ..()
 	if(reagents.flags & DRAWABLE)
-		to_chat(user, "It's lid is closed.")
+		. += "It's lid is closed."
 	else if(reagents.flags & OPENCONTAINER)
-		to_chat(user, "It's lid is open.")
+		. += "It's lid is open."
 
 /obj/structure/reagent_dispensers/chemical/update_icon()
 	..()
@@ -102,7 +102,7 @@
 	name = "honk-cooler"
 	desc = "A machine that dispenses the clown's thick juice. HONK!"
 	icon_state = "honk_cooler"
-	reagent_id = "banana"
+	reagent_id = /datum/reagent/consumable/banana
 
 /obj/structure/reagent_dispensers/cooking_oil
 	icon = 'icons/obj/objects.dmi'

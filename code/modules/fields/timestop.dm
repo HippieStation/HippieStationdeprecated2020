@@ -29,20 +29,30 @@
 	for(var/mob/living/L in GLOB.player_list)
 		if(locate(/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop) in L.mind.spell_list) //People who can stop time are immune to its effects
 			immune[L] = TRUE
+	// hippie start -- add immunity for stone holders
+	for(var/mob/living/L in GLOB.player_list)
+		if((locate(/obj/item/badmin_stone) in L) || (locate(/obj/item/badmin_gauntlet) in L))
+			immune[L] = TRUE
+	//hippie end
 	for(var/mob/living/simple_animal/hostile/guardian/G in GLOB.parasites)
-		if(G.summoner && locate(/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop) in G.summoner.mind.spell_list) //It would only make sense that a person's stand would also be immune.
+		if(G.summoner && locate(/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop) in G.summoner.spell_list) //It would only make sense that a person's stand would also be immune.
 			immune[G] = TRUE
+		// hippie start -- if the stand has timestop, make the summoner immune
+		if(G.summoner?.current && locate(/obj/effect/proc_holder/spell/aoe_turf/conjure/timestop) in G.mob_spell_list)
+			immune[G] = TRUE
+			immune[G.summoner.current] = TRUE
+		//hippie end
 	if(start)
 		timestop()
 
 /obj/effect/timestop/Destroy()
 	qdel(chronofield)
-	playsound(src, 'sound/magic/timeparadox2.ogg', 75, TRUE, frequency = -1) //reverse!
+	playsound(src, start_sound, 75, TRUE, frequency = -1) //reverse! || Hippie -- customizable sound
 	return ..()
 
 /obj/effect/timestop/proc/timestop()
 	target = get_turf(src)
-	playsound(src, 'sound/magic/timeparadox2.ogg', 75, 1, -1)
+	playsound(src, start_sound, 75, 1, -1) // Hippie -- customizable sound
 	chronofield = make_field(/datum/proximity_monitor/advanced/timestop, list("current_range" = freezerange, "host" = src, "immune" = immune, "check_anti_magic" = check_anti_magic, "check_holy" = check_holy))
 	QDEL_IN(src, duration)
 
@@ -73,6 +83,11 @@
 /datum/proximity_monitor/advanced/timestop/proc/freeze_atom(atom/movable/A)
 	if(immune[A] || global_frozen_atoms[A] || !istype(A))
 		return FALSE
+	if(ismob(A))
+		var/mob/M = A
+		if(M.anti_magic_check(check_anti_magic, check_holy))
+			immune[A] = TRUE
+			return
 	var/frozen = TRUE
 	if(isliving(A))
 		freeze_mob(A)
@@ -154,9 +169,6 @@
 
 /datum/proximity_monitor/advanced/timestop/proc/freeze_mob(mob/living/L)
 	frozen_mobs += L
-	if(L.anti_magic_check(check_anti_magic, check_holy))
-		immune += L
-		return
 	L.Stun(20, 1, 1)
 	walk(L, 0) //stops them mid pathing even if they're stunimmune
 	if(isanimal(L))

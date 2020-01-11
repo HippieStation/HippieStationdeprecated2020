@@ -73,15 +73,15 @@
 
 /obj/item/tank/examine(mob/user)
 	var/obj/icon = src
-	..()
+	. = ..()
 	if(istype(src.loc, /obj/item/assembly))
 		icon = src.loc
 	if(!in_range(src, user) && !isobserver(user))
 		if(icon == src)
-			to_chat(user, "<span class='notice'>If you want any more information you'll need to get closer.</span>")
+			. += "<span class='notice'>If you want any more information you'll need to get closer.</span>"
 		return
 
-	to_chat(user, "<span class='notice'>The pressure gauge reads [round(src.air_contents.return_pressure(),0.01)] kPa.</span>")
+	. += "<span class='notice'>The pressure gauge reads [round(src.air_contents.return_pressure(),0.01)] kPa.</span>"
 
 	var/celsius_temperature = src.air_contents.temperature-T0C
 	var/descriptive
@@ -99,7 +99,7 @@
 	else
 		descriptive = "furiously hot"
 
-	to_chat(user, "<span class='notice'>It feels [descriptive].</span>")
+	. += "<span class='notice'>It feels [descriptive].</span>"
 
 /obj/item/tank/blob_act(obj/structure/blob/B)
 	if(B && B.loc == loc)
@@ -126,20 +126,12 @@
 	user.visible_message("<span class='suicide'>[user] is putting [src]'s valve to [user.p_their()] lips! It looks like [user.p_theyre()] trying to commit suicide!</span>")
 	playsound(loc, 'sound/effects/spray.ogg', 10, 1, -3)
 	if (!QDELETED(H) && air_contents && air_contents.return_pressure() >= 1000)
-		for(var/obj/item/W in H)
-			H.dropItemToGround(W)
-			if(prob(50))
-				step(W, pick(GLOB.alldirs))
-		H.add_trait(TRAIT_DISFIGURED, TRAIT_GENERIC)
-		H.bleed_rate = 5
-		H.gib_animation()
-		sleep(3)
-		H.adjustBruteLoss(1000) //to make the body super-bloody
-		H.spawn_gibs()
-		H.spill_organs()
-		H.spread_bodyparts()
-
-	return (BRUTELOSS)
+		ADD_TRAIT(H, TRAIT_DISFIGURED, TRAIT_GENERIC)
+		H.inflate_gib()
+		return MANUAL_SUICIDE
+	else
+		to_chat(user, "<span class='warning'>There isn't enough pressure in [src] to commit suicide with...</span>")
+	return SHAME
 
 /obj/item/tank/attackby(obj/item/W, mob/user, params)
 	add_fingerprint(user)
@@ -152,7 +144,7 @@
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.hands_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "tanks", name, 420, 200, master_ui, state)
+		ui = new(user, src, ui_key, "tanks", name, 400, 120, master_ui, state)
 		ui.open()
 
 /obj/item/tank/ui_data(mob/user)
@@ -244,8 +236,6 @@
 		if(!istype(src.loc, /obj/item/transfer_valve))
 			log_bomber(get_mob_by_key(fingerprintslast), "was last key to touch", src, "which ruptured explosively")
 		//Give the gas a chance to build up more pressure through reacting
-		air_contents.react(src)
-		air_contents.react(src)
 		air_contents.react(src)
 		pressure = air_contents.return_pressure()
 		var/range = (pressure-TANK_FRAGMENT_PRESSURE)/TANK_FRAGMENT_SCALE

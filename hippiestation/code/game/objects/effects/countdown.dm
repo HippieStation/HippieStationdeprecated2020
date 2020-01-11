@@ -5,9 +5,9 @@
 
 /obj/effect/countdown/dominator/get_value()
 	var/obj/machinery/dominator/D = attached_to
-	if(!istype(D))
+	if(!istype(D) || !D.gang)
 		return
-	else if(D.gang && D.gang.domination_time != NOT_DOMINATING)
+	if(D.gang.domination_time != NOT_DOMINATING)
 		return D.gang.domination_time_remaining()
 	else
 		return "OFFLINE"

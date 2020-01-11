@@ -1,24 +1,17 @@
 
-/mob/living/carbon/alien/humanoid/grabbedby(mob/living/carbon/user, supress_message = 0)
-	if(user == src && pulling && grab_state >= GRAB_AGGRESSIVE && !pulling.anchored && iscarbon(pulling))
-		devour_mob(pulling, devour_time = 60)
-	else
-		..()
 
-/mob/living/carbon/alien/humanoid/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
-	if(user.a_intent == INTENT_HARM)
-		..(user, 1)
-		adjustBruteLoss(15)
-		var/hitverb = "punched"
-		if(mob_size < MOB_SIZE_LARGE)
-			step_away(src,user,15)
-			sleep(1)
-			step_away(src,user,15)
-			hitverb = "slammed"
-		playsound(loc, "punch", 25, 1, -1)
-		visible_message("<span class='danger'>[user] has [hitverb] [src]!</span>", \
-		"<span class='userdanger'>[user] has [hitverb] [src]!</span>", null, COMBAT_MESSAGE_RANGE)
-		return 1
+/mob/living/carbon/alien/humanoid/attack_hulk(mob/living/carbon/human/user)
+	. = ..()
+	if(!.)
+		return
+	adjustBruteLoss(15)
+	var/hitverb = "punched"
+	if(mob_size < MOB_SIZE_LARGE)
+		safe_throw_at(get_edge_target_turf(src, get_dir(user, src)), 2, 1, user)
+		hitverb = "slams"
+	playsound(loc, "punch", 25, 1, -1)
+	visible_message("<span class='danger'>[user] [hitverb] [src]!</span>", \
+	"<span class='userdanger'>[user] [hitverb] you!</span>", null, COMBAT_MESSAGE_RANGE)
 
 /mob/living/carbon/alien/humanoid/attack_hand(mob/living/carbon/human/M)
 	if(..())

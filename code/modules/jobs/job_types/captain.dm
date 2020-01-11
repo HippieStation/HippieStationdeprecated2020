@@ -30,7 +30,7 @@
 	return get_all_accesses()
 
 /datum/job/captain/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
-	H.mind.add_trait(TRAIT_DISK_VERIFIER, JOB_TRAIT)
+	ADD_TRAIT(H.mind, TRAIT_DISK_VERIFIER, JOB_TRAIT)
 
 /datum/job/captain/announce(mob/living/carbon/human/H)
 	..()

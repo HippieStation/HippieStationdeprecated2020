@@ -442,15 +442,6 @@
 	begin_month = JUNE
 	begin_weekday = SUNDAY
 
-/datum/holiday/moth
-	name = "Moth Week"
-
-/datum/holiday/moth/shouldCelebrate(dd, mm, yy, ww, ddd) //National Moth Week falls on the last full week of July
-	return mm == JULY && (ww == 4 || (ww == 5 && ddd == SUNDAY))
-
-/datum/holiday/moth/getStationPrefix()
-	return pick("Mothball","Lepidopteran","Lightbulb","Moth","Giant Atlas","Twin-spotted Sphynx","Madagascan Sunset","Luna","Death's Head","Emperor Gum","Polyphenus","Oleander Hawk","Io","Rosy Maple","Cecropia","Noctuidae","Giant Leopard","Dysphania Militaris","Garden Tiger")
-
 /datum/holiday/ramadan
 	name = "Start of Ramadan"
 
@@ -500,7 +491,7 @@ Since Ramadan is an entire month that lasts 29.5 days on average, the start and 
 	name = CHRISTMAS
 	begin_day = 22
 	begin_month = DECEMBER
-	end_day = 27
+	end_day = 31
 	drone_hat = /obj/item/clothing/head/santa
 
 /datum/holiday/xmas/greet()

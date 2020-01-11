@@ -68,14 +68,12 @@
 			<A href='?src=[REF(src)];[HrefToken()];secrets=floorlava'>The floor is lava! (DANGEROUS: extremely lame)</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=customportal'>Spawn a custom portal storm</A><BR>
 			<BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=flipmovement'>Flip client movement directions</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=randommovement'>Randomize client movement directions</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=custommovement'>Set each movement direction manually</A><BR>
-			<A href='?src=[REF(src)];[HrefToken()];secrets=resetmovement'>Reset movement directions to default</A><BR>
-			<BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=changebombcap'>Change bomb cap</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=masspurrbation'>Mass Purrbation</A><BR>
 			<A href='?src=[REF(src)];[HrefToken()];secrets=massremovepurrbation'>Mass Remove Purrbation</A><BR>
+			<BR>
+			<A href='?src=[REF(src)];[HrefToken()];secrets=winter;toggle=1'>Start Winter</A><BR>
+			<A href='?src=[REF(src)];[HrefToken()];secrets=winter;toggle=0'>Stop Winter</A><BR>
 			"}
 
 	dat += "<BR>"
@@ -247,7 +245,7 @@
 				message_admins("[key_name_admin(usr)] [new_perma ? "stopped" : "started"] the arrivals shuttle")
 				log_admin("[key_name(usr)] [new_perma ? "stopped" : "started"] the arrivals shuttle")
 			else
-				to_chat(usr, "<span class='admin'>There is no arrivals shuttle</span>")
+				to_chat(usr, "<span class='admin'>There is no arrivals shuttle.</span>")
 		if("showailaws")
 			if(!check_rights(R_ADMIN))
 				return
@@ -410,7 +408,7 @@
 						var/obj/item/organ/tail/cat/tail = new
 						ears.Insert(H, drop_if_replaced=FALSE)
 						tail.Insert(H, drop_if_replaced=FALSE)
-					var/list/honorifics = list("[MALE]" = list("kun"), "[FEMALE]" = list("chan","tan"), "[NEUTER]" = list("san")) //John Robust -> Robust-kun
+					var/list/honorifics = list("[MALE]" = list("kun"), "[FEMALE]" = list("chan","tan"), "[NEUTER]" = list("san"), "[PLURAL]" = list("san")) //John Robust -> Robust-kun
 					var/list/names = splittext(H.real_name," ")
 					var/forename = names.len > 1 ? names[2] : names[1]
 					var/newname = "[forename]-[pick(honorifics["[H.gender]"])]"
@@ -424,9 +422,9 @@
 						H.equip_to_slot_or_del(I, SLOT_W_UNIFORM)
 						qdel(olduniform)
 						if(droptype == "Yes")
-							I.add_trait(TRAIT_NODROP, ADMIN_TRAIT)
+							ADD_TRAIT(I, TRAIT_NODROP, ADMIN_TRAIT)
 				else
-					to_chat(H, "You're not kawaii enough for this.")
+					to_chat(H, "<span class='warning'>You're not kawaii enough for this!</span>")
 
 		if("whiteout")
 			if(!check_rights(R_FUN))
@@ -471,7 +469,7 @@
 				if(is_station_level(W.z) && !istype(get_area(W), /area/bridge) && !istype(get_area(W), /area/crew_quarters) && !istype(get_area(W), /area/security/prison))
 					W.req_access = list()
 			message_admins("[key_name_admin(usr)] activated Egalitarian Station mode")
-			priority_announce("CentCom airlock control override activated. Please take this time to get acquainted with your coworkers.", null, 'sound/ai/commandreport.ogg')
+			priority_announce("CentCom airlock control override activated. Please take this time to get acquainted with your coworkers.", null, 'hippiestation/sound/pyko/commandreport.ogg') // hippie -- pykoai
 
 		if("ancap")
 			if(!check_rights(R_FUN))
@@ -480,9 +478,9 @@
 			SSeconomy.full_ancap = !SSeconomy.full_ancap
 			message_admins("[key_name_admin(usr)] toggled Anarcho-capitalist mode")
 			if(SSeconomy.full_ancap)
-				priority_announce("The NAP is now in full effect.", null, 'sound/ai/commandreport.ogg')
+				priority_announce("The NAP is now in full effect.", null, 'hippiestation/sound/pyko/commandreport.ogg') // hippie -- pykoai
 			else
-				priority_announce("The NAP has been revoked.", null, 'sound/ai/commandreport.ogg')
+				priority_announce("The NAP has been revoked.", null, 'hippiestation/sound/pyko/commandreport.ogg') // hippie -- pykoai
 
 
 
@@ -600,60 +598,6 @@
 				purrbation.")
 			log_admin("[key_name(usr)] has removed everyone from purrbation.")
 
-		if("flipmovement")
-			if(!check_rights(R_FUN))
-				return
-			if(alert("Flip all movement controls?","Confirm","Yes","Cancel") == "Cancel")
-				return
-			var/list/movement_keys = SSinput.movement_keys
-			for(var/i in 1 to movement_keys.len)
-				var/key = movement_keys[i]
-				movement_keys[key] = turn(movement_keys[key], 180)
-			message_admins("[key_name_admin(usr)] has flipped all movement directions.")
-			log_admin("[key_name(usr)] has flipped all movement directions.")
-
-		if("randommovement")
-			if(!check_rights(R_FUN))
-				return
-			if(alert("Randomize all movement controls?","Confirm","Yes","Cancel") == "Cancel")
-				return
-			var/list/movement_keys = SSinput.movement_keys
-			for(var/i in 1 to movement_keys.len)
-				var/key = movement_keys[i]
-				movement_keys[key] = turn(movement_keys[key], 45 * rand(1, 8))
-			message_admins("[key_name_admin(usr)] has randomized all movement directions.")
-			log_admin("[key_name(usr)] has randomized all movement directions.")
-
-		if("custommovement")
-			if(!check_rights(R_FUN))
-				return
-			if(alert("Are you sure you want to change every movement key?","Confirm","Yes","Cancel") == "Cancel")
-				return
-			var/list/movement_keys = SSinput.movement_keys
-			var/list/new_movement = list()
-			for(var/i in 1 to movement_keys.len)
-				var/key = movement_keys[i]
-
-				var/msg = "Please input the new movement direction when the user presses [key]. Ex. northeast"
-				var/title = "New direction for [key]"
-				var/new_direction = text2dir(input(usr, msg, title) as text|null)
-				if(!new_direction)
-					new_direction = movement_keys[key]
-
-				new_movement[key] = new_direction
-			SSinput.movement_keys = new_movement
-			message_admins("[key_name_admin(usr)] has configured all movement directions.")
-			log_admin("[key_name(usr)] has configured all movement directions.")
-
-		if("resetmovement")
-			if(!check_rights(R_FUN))
-				return
-			if(alert("Are you sure you want to reset movement keys to default?","Confirm","Yes","Cancel") == "Cancel")
-				return
-			SSinput.setup_default_movement_keys()
-			message_admins("[key_name_admin(usr)] has reset all movement keys.")
-			log_admin("[key_name(usr)] has reset all movement keys.")
-
 		if("customportal")
 			if(!check_rights(R_FUN))
 				return
@@ -683,7 +627,7 @@
 				var/list/prefs = settings["mainsettings"]
 
 				if (prefs["amount"]["value"] < 1 || prefs["portalnum"]["value"] < 1)
-					to_chat(usr, "Number of portals and mobs to spawn must be at least 1")
+					to_chat(usr, "<span class='warning'>Number of portals and mobs to spawn must be at least 1.</span>")
 					return
 
 				var/mob/pathToSpawn = prefs["typepath"]["value"]
@@ -691,7 +635,7 @@
 					pathToSpawn = text2path(pathToSpawn)
 
 				if (!ispath(pathToSpawn))
-					to_chat(usr, "Invalid path [pathToSpawn]")
+					to_chat(usr, "<span class='notice'>Invalid path [pathToSpawn].</span>")
 					return
 
 				var/list/candidates = list()

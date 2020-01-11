@@ -12,9 +12,7 @@
 			var/mob/dead/observe = M
 			observe.reset_perspective(null)
 	qdel(hud_used)
-	for(var/cc in client_colours)
-		qdel(cc)
-	client_colours = null
+	QDEL_LIST(client_colours)
 	ghostize()
 	..()
 	return QDEL_HINT_HARDDEL
@@ -105,18 +103,6 @@
 	else
 		to_chat(src, msg)
 
-/mob/proc/display_output(sound/S, mutable_appearance/vfx, text, turf/turf_source, vol as num, vary, frequency, falloff, channel = 0, pressure_affected = TRUE)
-	if(!can_hear())
-		return
-	//Process sound
-	if(S)
-		SEND_SOUND(src, S)
-	//Process text
-	if(text)
-		to_chat(src, "<span class='italics'>[text]</span>")
-	//to whoever sees this: icons are handled in living.dm
-
-
 // Show a message to all player mobs who sees this atom
 // Show a message to the src mob (if the src is a mob)
 // Use for atoms performing visible actions
@@ -126,17 +112,19 @@
 // vision_distance (optional) define how many tiles away the message can be seen.
 // ignored_mob (optional) doesn't show any message to a given mob if TRUE.
 
-/atom/proc/visible_message(message, self_message, blind_message, vision_distance, ignored_mob)
+/atom/proc/visible_message(message, self_message, blind_message, vision_distance, list/ignored_mobs)
 	var/turf/T = get_turf(src)
 	if(!T)
 		return
+	if(!islist(ignored_mobs))
+		ignored_mobs = list(ignored_mobs)
 	var/range = 7
 	if(vision_distance)
 		range = vision_distance
 	for(var/mob/M in get_hearers_in_view(range, src))
 		if(!M.client)
 			continue
-		if(M == ignored_mob)
+		if(M in ignored_mobs)
 			continue
 		var/msg = message
 		if(M == src) //the src always see the main message or self message
@@ -187,9 +175,6 @@
 		range = hearing_distance
 	for(var/mob/M in get_hearers_in_view(range, src))
 		M.show_message( message, 2, deaf_message, 1)
-
-/mob/proc/Life()
-	set waitfor = FALSE
 
 /mob/proc/get_item_by_slot(slot_id)
 	return null
@@ -314,11 +299,13 @@
 		return
 
 	if(is_blind(src))
-		to_chat(src, "<span class='notice'>Something is there but you can't see it.</span>")
+		to_chat(src, "<span class='warning'>Something is there but you can't see it!</span>")
 		return
 
 	face_atom(A)
-	A.examine(src)
+	var/list/result = A.examine(src)
+	to_chat(src, result.Join("\n"))
+	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, A)
 
 //same as above
 //note: ghosts can point, this is intended
@@ -401,11 +388,13 @@
 /mob/verb/add_memory(msg as message)
 	set name = "Add Note"
 	set category = "IC"
-
-	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
-	msg = sanitize(msg)
-
 	if(mind)
+		if (world.time < memory_throttle_time)
+			return
+		memory_throttle_time = world.time + 5 SECONDS
+		msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+		msg = sanitize(msg)
+		
 		mind.store_memory(msg)
 	else
 		to_chat(src, "You don't have a mind datum for some reason, so you can't add a note to it.")
@@ -516,7 +505,12 @@
 		return
 	if(isAI(M))
 		return
-	show_inv(usr)
+
+/mob/MouseDrop_T(atom/dropping, atom/user)
+	. = ..()
+	if(ismob(dropping) && dropping != user)
+		var/mob/M = dropping
+		M.show_inv(user)
 
 /mob/proc/is_muzzled()
 	return 0
@@ -630,6 +624,10 @@
 		return FALSE
 	return ..()
 
+/mob/dead/observer/canface()
+	return TRUE
+
+///Hidden verb to turn east
 /mob/verb/eastface()
 	set hidden = TRUE
 	if(!canface())
@@ -701,16 +699,16 @@
 			mob_spell_list -= S
 			qdel(S)
 
-/mob/proc/anti_magic_check(magic = TRUE, holy = FALSE, major = TRUE, self = FALSE)
-	if(!magic && !holy)
+/mob/proc/anti_magic_check(magic = TRUE, holy = FALSE, tinfoil = FALSE, chargecost = 1, self = FALSE)
+	if(!magic && !holy && !tinfoil)
 		return
 	var/list/protection_sources = list()
-	if(SEND_SIGNAL(src, COMSIG_MOB_RECEIVE_MAGIC, src, magic, holy, major, self, protection_sources) & COMPONENT_BLOCK_MAGIC)
+	if(SEND_SIGNAL(src, COMSIG_MOB_RECEIVE_MAGIC, src, magic, holy, tinfoil, chargecost, self, protection_sources) & COMPONENT_BLOCK_MAGIC)
 		if(protection_sources.len)
 			return pick(protection_sources)
 		else
 			return src
-	if((magic && has_trait(TRAIT_ANTIMAGIC)) || (holy && has_trait(TRAIT_HOLY)))
+	if((magic && HAS_TRAIT(src, TRAIT_ANTIMAGIC)) || (holy && HAS_TRAIT(src, TRAIT_HOLY)))
 		return src
 
 //You can buckle on mobs if you're next to them since most are dense
@@ -920,18 +918,65 @@
 
 /mob/vv_get_dropdown()
 	. = ..()
-	. += "---"
-	.["Gib"] = "?_src_=vars;[HrefToken()];gib=[REF(src)]"
-	.["Give Spell"] = "?_src_=vars;[HrefToken()];give_spell=[REF(src)]"
-	.["Remove Spell"] = "?_src_=vars;[HrefToken()];remove_spell=[REF(src)]"
-	.["Give Disease"] = "?_src_=vars;[HrefToken()];give_disease=[REF(src)]"
-	.["Toggle Godmode"] = "?_src_=vars;[HrefToken()];godmode=[REF(src)]"
-	.["Drop Everything"] = "?_src_=vars;[HrefToken()];drop_everything=[REF(src)]"
-	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"
-	.["Show player panel"] = "?_src_=vars;[HrefToken()];mob_player_panel=[REF(src)]"
-	.["Toggle Build Mode"] = "?_src_=vars;[HrefToken()];build_mode=[REF(src)]"
-	.["Assume Direct Control"] = "?_src_=vars;[HrefToken()];direct_control=[REF(src)]"
-	.["Offer Control to Ghosts"] = "?_src_=vars;[HrefToken()];offer_control=[REF(src)]"
+	VV_DROPDOWN_OPTION("", "---------")
+	VV_DROPDOWN_OPTION(VV_HK_GIB, "Gib")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_SPELL, "Give Spell")
+	VV_DROPDOWN_OPTION(VV_HK_REMOVE_SPELL, "Remove Spell")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_DISEASE, "Give Disease")
+	VV_DROPDOWN_OPTION(VV_HK_GODMODE, "Toggle Godmode")
+	VV_DROPDOWN_OPTION(VV_HK_DROP_ALL, "Drop Everything")
+	VV_DROPDOWN_OPTION(VV_HK_REGEN_ICONS, "Regenerate Icons")
+	VV_DROPDOWN_OPTION(VV_HK_PLAYER_PANEL, "Show player panel")
+	VV_DROPDOWN_OPTION(VV_HK_BUILDMODE, "Toggle Buildmode")
+	VV_DROPDOWN_OPTION(VV_HK_DIRECT_CONTROL, "Assume Direct Control")
+	VV_DROPDOWN_OPTION(VV_HK_OFFER_GHOSTS, "Offer Control to Ghosts")
+
+/mob/vv_do_topic(list/href_list)
+	. = ..()
+	if(href_list[VV_HK_REGEN_ICONS])
+		if(!check_rights(NONE))
+			return
+		regenerate_icons()
+	if(href_list[VV_HK_PLAYER_PANEL])
+		if(!check_rights(NONE))
+			return
+		usr.client.holder.show_player_panel(src)
+	if(href_list[VV_HK_GODMODE])
+		if(!check_rights(R_ADMIN))
+			return
+		usr.client.cmd_admin_godmode(src)
+	if(href_list[VV_HK_GIVE_SPELL])
+		if(!check_rights(NONE))
+			return
+		usr.client.give_spell(src)
+	if(href_list[VV_HK_REMOVE_SPELL])
+		if(!check_rights(NONE))
+			return
+		usr.client.remove_spell(src)
+	if(href_list[VV_HK_GIVE_DISEASE])
+		if(!check_rights(NONE))
+			return
+		usr.client.give_disease(src)
+	if(href_list[VV_HK_GIB])
+		if(!check_rights(R_FUN))
+			return
+		usr.client.cmd_admin_gib(src)
+	if(href_list[VV_HK_BUILDMODE])
+		if(!check_rights(R_BUILD))
+			return
+		togglebuildmode(src)
+	if(href_list[VV_HK_DROP_ALL])
+		if(!check_rights(NONE))
+			return
+		usr.client.cmd_admin_drop_everything(src)
+	if(href_list[VV_HK_DIRECT_CONTROL])
+		if(!check_rights(NONE))
+			return
+		usr.client.cmd_assume_direct_control(src)
+	if(href_list[VV_HK_OFFER_GHOSTS])
+		if(!check_rights(NONE))
+			return
+		offer_control(src)
 
 /mob/vv_get_var(var_name)
 	switch(var_name)
@@ -939,6 +984,11 @@
 			return debug_variable(var_name, logging, 0, src, FALSE)
 	. = ..()
 
+/mob/vv_auto_rename(new_name)
+	//Do not do parent's actions, as we *usually* do this differently.
+	fully_replace_character_name(real_name, new_name)
+
+///Show the language menu for this mob
 /mob/verb/open_language_menu()
 	set name = "Open Language Menu"
 	set category = "IC"

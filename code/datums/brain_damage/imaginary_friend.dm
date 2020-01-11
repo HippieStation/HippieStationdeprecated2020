@@ -43,7 +43,7 @@
 
 /datum/brain_trauma/special/imaginary_friend/proc/get_ghost()
 	set waitfor = FALSE
-	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as [owner]'s imaginary friend?", ROLE_PAI, null, null, 75, friend)
+	var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as [owner]'s imaginary friend?", ROLE_PAI, null, null, 75, friend, POLL_IGNORE_IMAGINARYFRIEND)
 	if(LAZYLEN(candidates))
 		var/mob/dead/observer/C = pick(candidates)
 		friend.key = C.key
@@ -138,7 +138,7 @@
 
 	if (src.client)
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, "You cannot send IC messages (muted).")
+			to_chat(src, "<span class='boldwarning'>You cannot send IC messages (muted).</span>")
 			return
 		if (src.client.handle_spam_prevention(message,MUTE_IC))
 			return

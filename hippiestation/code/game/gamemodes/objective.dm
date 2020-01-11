@@ -5,16 +5,18 @@
 	for(var/A in ok_areas)
 		compiled_areas += typesof(A)
 	for(var/A in compiled_areas)
-		for(var/obj/item/I in get_area_by_type(A)) //Check for items
-			if(istype(I, steal_target))
-				if(!targetinfo) //If there's no targetinfo, then that means it was a custom objective. At this point, we know you have the item, so return 1.
-					return TRUE
-				else if(targetinfo.check_special_completion(I))//Returns 1 by default. Items with special checks will return 1 if the conditions are fulfilled.
-					return TRUE
-			if(targetinfo && (I.type in targetinfo.altitems)) //Ok, so you don't have the item. Do you have an alternative, at least?
-				if(targetinfo.check_special_completion(I))//Yeah, we do! Don't return 0 if we don't though - then you could fail if you had 1 item that didn't pass and got checked first!
-					return TRUE
-			CHECK_TICK
+		var/area/AR = locate(A) in GLOB.sortedAreas
+		if(AR)
+			for(var/obj/item/I in AR.GetAllContents()) //Check for items
+				if(istype(I, steal_target))
+					if(!targetinfo) //If there's no targetinfo, then that means it was a custom objective. At this point, we know you have the item, so return 1.
+						return TRUE
+					else if(targetinfo.check_special_completion(I))//Returns 1 by default. Items with special checks will return 1 if the conditions are fulfilled.
+						return TRUE
+				if(targetinfo && (I.type in targetinfo.altitems)) //Ok, so you don't have the item. Do you have an alternative, at least?
+					if(targetinfo.check_special_completion(I))//Yeah, we do! Don't return 0 if we don't though - then you could fail if you had 1 item that didn't pass and got checked first!
+						return TRUE
+				CHECK_TICK
 	CHECK_TICK
 
 /datum/objective/give_special_equipment(special_equipment)

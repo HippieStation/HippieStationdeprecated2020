@@ -32,7 +32,7 @@
 			qdel(W)
 			disable = !disable
 	if(istype(W, /obj/item/reagent_containers) && (obj_flags & EMAGGED))
-		if(W.reagents.has_reagent("lean"))
+		if(W.reagents.has_reagent(/datum/reagent/consumable/lean))
 			W.reagents.clear_reagents()
 			playsound(src.loc, 'hippiestation/sound/effects/pottedLeanSpawnSound.ogg', 25)
 			new /mob/living/simple_animal/hostile/retaliate/pottedlean(get_turf(src))
@@ -53,13 +53,9 @@
 	qdel(src)
 
 /obj/item/twohanded/required/kirbyplants/equipped(mob/user, slot)
+	. = ..()
 	if((obj_flags & EMAGGED) && wielded)
 		unwield(user) //This is a ghetto way to make it one-handed and it works
-	var/image/I = image(icon = 'icons/obj/flora/plants.dmi' , icon_state = src.icon_state, loc = user)
-	I.copy_overlays(src)
-	I.override = 1
-	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/everyone, "sneaking_mission", I)
-	I.layer = ABOVE_MOB_LAYER
 	
 	
 /obj/item/kirbyplants_onehanded
@@ -77,18 +73,6 @@
 	var/disable = 0 //for screwdriver
 	var/is_sharpened = 0 //to prevent multiple sharpenings
 	var/sharp_prefix = "thorny"
-	
-obj/item/kirbyplants_onehanded/equipped(mob/living/user)
-	var/image/I = image(icon = 'icons/obj/flora/plants.dmi' , icon_state = src.icon_state, loc = user)
-	I.copy_overlays(src)
-	I.override = 1
-	add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/everyone, "sneaking_mission", I)
-	I.layer = ABOVE_MOB_LAYER
-	..()
-
-/obj/item/kirbyplants_onehanded/dropped(mob/living/user)
-	..()
-	user.remove_alt_appearance("sneaking_mission")
 	
 /obj/item/kirbyplants_onehanded/Initialize()
 	. = ..()
@@ -134,7 +118,7 @@ obj/item/kirbyplants_onehanded/equipped(mob/living/user)
 			qdel(W)
 			disable = !disable
 	if(istype(W, /obj/item/reagent_containers)) //You have to emag a plant to get this item, so it shouldn't need a check for emagging again
-		if(W.reagents.has_reagent("lean"))
+		if(W.reagents.has_reagent(/datum/reagent/consumable/lean))
 			W.reagents.clear_reagents()
 			playsound(src.loc, 'hippiestation/sound/effects/pottedLeanSpawnSound.ogg', 25)
 			new /mob/living/simple_animal/hostile/retaliate/pottedlean(get_turf(src))

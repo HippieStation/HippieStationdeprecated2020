@@ -32,3 +32,28 @@
 	if (T.cores > 1)
 		to_chat(user, "Anomalious slime core amount detected")
 	to_chat(user, "Growth progress: [T.amount_grown]/[SLIME_EVOLUTION_THRESHOLD]")
+
+/obj/item/sequence_scanner/gene_scan(mob/living/carbon/C, mob/living/user)
+	if(!iscarbon(C) || !C.has_dna())
+		return
+	to_chat(user, "<span class='notice'>[C.name]'s potential mutations.")
+	for(var/A in C.dna.mutation_index)
+		var/datum/mutation/human/HM = GET_INITIALIZED_MUTATION(A)
+		var/mut_name
+		if(A in discovered)
+			mut_name = "[HM.name] ([HM.alias])"
+		else
+			mut_name = HM.alias
+		var/temp = GET_GENE_STRING(HM.type, C.dna)
+		var/display
+		for(var/i in 0 to length(temp) / DNA_MUTATION_BLOCKS-1)
+			if(i)
+				display += "-"
+			display += copytext(temp, 1 + i*DNA_MUTATION_BLOCKS, DNA_MUTATION_BLOCKS*(1+i) + 1)
+		to_chat(user, "<span class='boldnotice'>- [mut_name] > [display]</span>")
+
+/obj/item/t_scanner
+	tool_behaviour = TOOL_TRAY
+
+/obj/item/t_scanner/adv_mining_scanner
+	tool_behaviour = null

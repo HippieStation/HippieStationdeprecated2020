@@ -57,7 +57,7 @@
 	else if(istype(old_headgear, /obj/item/clothing/mask/chameleon/drone))
 		new_headgear = new /obj/item/clothing/head/chameleon/drone()
 	else
-		to_chat(owner, "<span class='warning'>You shouldn't be able to toggle a camogear helmetmask if you're not wearing it</span>")
+		to_chat(owner, "<span class='warning'>You shouldn't be able to toggle a camogear helmetmask if you're not wearing it.</span>")
 	if(new_headgear)
 		// Force drop the item in the headslot, even though
 		// it's has TRAIT_NODROP
@@ -411,7 +411,7 @@
 
 /obj/item/clothing/head/chameleon/drone/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 	chameleon_action.random_look()
 	var/datum/action/item_action/chameleon/drone/togglehatmask/togglehatmask_action = new(src)
 	togglehatmask_action.UpdateButtonIcon()
@@ -466,7 +466,7 @@
 
 /obj/item/clothing/mask/chameleon/drone/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 	chameleon_action.random_look()
 	var/datum/action/item_action/chameleon/drone/togglehatmask/togglehatmask_action = new(src)
 	togglehatmask_action.UpdateButtonIcon()
@@ -550,7 +550,7 @@
 
 /obj/item/storage/belt/chameleon/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.silent = TRUE
 
 /obj/item/storage/belt/chameleon/emp_act(severity)

@@ -28,15 +28,11 @@
 /obj/machinery/transformer/examine(mob/user)
 	. = ..()
 	if(cooldown && (issilicon(user) || isobserver(user)))
-		to_chat(user, "It will be ready in [DisplayTimeText(cooldown_timer - world.time)].")
+		. += "It will be ready in [DisplayTimeText(cooldown_timer - world.time)]."
 
 /obj/machinery/transformer/Destroy()
 	QDEL_NULL(countdown)
 	. = ..()
-
-/obj/machinery/transformer/power_change()
-	..()
-	update_icon()
 
 /obj/machinery/transformer/update_icon()
 	..()

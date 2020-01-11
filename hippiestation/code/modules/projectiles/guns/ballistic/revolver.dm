@@ -1,5 +1,6 @@
 /obj/item/gun/ballistic/revolver
-	fire_sound = 'face/sound/weapons/firearms/gunshot_357.ogg'
+	fire_sound = 'hippiestation/sound/weapons/gunshot_magnum.ogg'
+	load_sound = 'hippiestation/sound/weapons/speedload.ogg'
 
 /obj/item/gun/ballistic/revolver/detective
 	fire_sound = 'face/sound/weapons/firearms/gunshot_38_alt.ogg'

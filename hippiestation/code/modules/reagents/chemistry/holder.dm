@@ -3,6 +3,7 @@
 	var/chem_radioactivity = 0
 	var/chem_bluespaced = FALSE
 	var/chem_centrifuged = FALSE
+	var/next_react = 0
 
 /proc/get_random_toxin_reagent_id()	// Returns a random toxin reagent ID minus blacklisted reagents
 	var/static/list/random_reagents = list()
@@ -10,7 +11,7 @@
 		for(var/thing  in subtypesof(/datum/reagent/toxin))
 			var/datum/reagent/RT = thing
 			if(initial(RT.can_synth))
-				random_reagents += initial(RT.id)
+				random_reagents += RT.type
 	var/picked_reagent = pick(random_reagents)
 	return picked_reagent
 
@@ -43,21 +44,25 @@
 							if(!is_type_in_typecache(cached_my_atom, GLOB.no_reagent_message_typecache) && SSticker.HasRoundStarted())
 								for(var/mob/M in viewers(3, T))
 									to_chat(M, ("<span class='notice'>[icon2html(cached_my_atom, viewers(cached_my_atom))] The solid chemicals melt into a liquid!</span>"))
+									//for(var/i = 1; i <= cached_reagents.len; i++)
+									//	message_admins("[cached_reagents[i]] melted into liquid of atom [my_atom] located in [my_atom.loc]")
+									///For debug purposes, feel free to uncomment in future. (YoYoBatty)
 
 					if(LIQUID)
-						if(chem_temp > R.boiling_point)
-							R.reagent_state = GAS
-							if(!is_type_in_typecache(cached_my_atom, GLOB.no_reagent_message_typecache) && SSticker.HasRoundStarted())
-								for(var/mob/M in viewers(4, T))
-									to_chat(M, ("<span class='notice'>[icon2html(cached_my_atom, viewers(cached_my_atom))] The solution rapidly boils into a vapour!</span>"))
+						if(!is_type_in_typecache(R, GLOB.statechange_reagent_blacklist)) //Reagent states are interchangeable, so one blacklist to rule them all.
+							if(chem_temp > R.boiling_point && !is_type_in_typecache(R, GLOB.vaporchange_reagent_blacklist))
+								R.reagent_state = GAS
+								if(!is_type_in_typecache(cached_my_atom, GLOB.no_reagent_message_typecache) && SSticker.HasRoundStarted())
+									for(var/mob/M in viewers(4, T))
+										to_chat(M, ("<span class='notice'>[icon2html(cached_my_atom, viewers(cached_my_atom))] The solution rapidly boils into a vapour!</span>"))
 
-						else if(chem_temp < R.melting_point)
-							R.reagent_state = SOLID
-							if(!is_type_in_typecache(cached_my_atom, GLOB.no_reagent_message_typecache) && SSticker.HasRoundStarted())
-								for(var/mob/M in viewers(3, T))
-									to_chat(M, ("<span class='notice'>[icon2html(cached_my_atom, viewers(cached_my_atom))] The solution solidifies!</span>"))
+							else if(chem_temp < R.melting_point && !is_type_in_typecache(R, GLOB.solidchange_reagent_blacklist))
+								R.reagent_state = SOLID
+								if(!is_type_in_typecache(cached_my_atom, GLOB.no_reagent_message_typecache) && SSticker.HasRoundStarted())
+									for(var/mob/M in viewers(3, T))
+										to_chat(M, ("<span class='notice'>[icon2html(cached_my_atom, viewers(cached_my_atom))] The solution solidifies!</span>"))
 
-				for(var/reaction in cached_reactions[R.id]) // Was a big list but now it should be smaller since we filtered it with our reagent id
+				for(var/reaction in cached_reactions[R.type]) // Was a big list but now it should be smaller since we filtered it with our reagent id
 					if(!reaction)
 						continue
 
@@ -187,8 +192,14 @@
 			if("TURF")
 				if(R.reagent_state != SOLID)
 					R.reaction_turf(A, R.volume * volume_modifier, show_message)
-				R.handle_state_change(A, R.volume * special_modifier, cached_my_atom)
+				if(world.time >= next_react)
+					R.handle_state_change(A, R.volume * special_modifier, cached_my_atom)
+					if(method == VAPOR)
+						next_react = world.time + 1
 			if("OBJ")
 				if(R.reagent_state != SOLID)
 					R.reaction_obj(A, R.volume * volume_modifier, show_message)
-				R.handle_state_change(get_turf(A), R.volume * special_modifier, cached_my_atom)
+				if(world.time >= next_react)
+					R.handle_state_change(get_turf(A), R.volume * special_modifier, cached_my_atom)
+					if(method == VAPOR)
+						next_react = world.time + 1

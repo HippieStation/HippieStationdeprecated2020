@@ -17,11 +17,11 @@
 	var/volume = 500
 
 /obj/item/hockeypack/equipped(mob/user, slot)
-	..()
+	. = ..()
 	if (slot != SLOT_BACK) //The Pack is cursed so this should not happen, but i'm going to play it safe.
 		remove_stick()
 	if(slot == ITEM_SLOT_BACK)
-		add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+		ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/hockeypack/ui_action_click()
 	toggle_stick()
@@ -126,7 +126,7 @@
 	. = ..()
 	if(istype(loc, /obj/item/hockeypack))
 		pack = loc
-	add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/twohanded/hockeystick/Destroy()
 	pack = null
@@ -156,7 +156,7 @@
 	return
 
 /obj/item/twohanded/hockeystick/dropped(mob/user) //The Stick is undroppable but just in case they lose an arm better put this here.
-	..()
+	. = ..()
 	to_chat(user, "<span class='notice'>The stick is drawn back to the backpack 'eh!</span>")
 	snap_back()
 
@@ -186,7 +186,7 @@
 
 /obj/item/storage/belt/hippie/hockey/ComponentInitialize()
 	. = ..()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	STR.max_items = 2
 	STR.can_hold = typecacheof(list(/obj/item/holopuck))
 
@@ -195,9 +195,9 @@
 	return ..()
 
 /obj/item/storage/belt/hippie/hockey/equipped(mob/user, slot)
-	..()
+	. = ..()
 	if(slot == SLOT_BELT)
-		add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+		ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/storage/belt/hippie/hockey/item_action_slot_check(slot, mob/user)
 	if(slot == user.getBeltSlot())
@@ -275,8 +275,9 @@
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/suit/hippie/hockey/equipped(mob/user, slot)
+	. = ..()
 	if(slot == SLOT_WEAR_SUIT)
-		add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
+		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 
 /obj/item/clothing/shoes/hippie/hockey
 	name = "Ka-Nada Hyperblades"
@@ -287,8 +288,9 @@
 	slowdown = -1
 
 /obj/item/clothing/shoes/hippie/hockey/equipped(mob/user, slot)
+	. = ..()
 	if(slot == SLOT_SHOES)
-		add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
+		ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 
 /obj/item/clothing/mask/hippie/hockey
 	name = "Ka-Nada Hockey Mask"
@@ -299,8 +301,9 @@
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/mask/hippie/hockey/equipped(mob/user, slot)
+	. = ..()
 	if(slot == SLOT_WEAR_MASK)
-		add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+		ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/clothing/head/hippie/hockey
 	name = "Ka-Nada winter sport combat helmet."
@@ -314,8 +317,9 @@
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 
 /obj/item/clothing/mask/head/hockey/equipped(mob/user, slot)
+	. = ..()
 	if(slot == SLOT_HEAD)
-		add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+		ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /datum/action/item_action/toggle_stick
 	name = "Get Stick"

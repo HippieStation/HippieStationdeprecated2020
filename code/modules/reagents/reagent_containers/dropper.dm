@@ -58,8 +58,8 @@
 			var/R
 			if(reagents)
 				for(var/datum/reagent/A in src.reagents.reagent_list)
-					R += A.id + " ("
-					R += num2text(A.volume) + "),"
+					R += "[A] ([num2text(A.volume)]),"
+
 			log_combat(user, M, "squirted", R)
 
 		trans = src.reagents.trans_to(target, amount_per_transfer_from_this, transfered_by = user)
@@ -69,7 +69,7 @@
 	else
 
 		if(!target.is_drawable(user, FALSE)) //No drawing from mobs here
-			to_chat(user, "<span class='notice'>You cannot directly remove reagents from [target].</span>")
+			to_chat(user, "<span class='warning'>You cannot directly remove reagents from [target]!</span>")
 			return
 
 		if(!target.reagents.total_volume)

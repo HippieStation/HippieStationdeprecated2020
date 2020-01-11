@@ -10,18 +10,18 @@
 	flags_1 = MASKINTERNALS
 	item_flags = ABSTRACT | DROPDEL
 	flags_inv = HIDEEARS|HIDEEYES
-	
+
 /obj/item/clothing/mask/hippie/cluwne/Initialize()
 	. = ..()
-	add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 
 /obj/item/clothing/mask/hippie/cluwne/equipped(mob/user, slot)
+	. = ..()
 	if(!ishuman(user))
 		return
 	if(slot == SLOT_WEAR_MASK)
 		var/mob/living/carbon/human/H = user
 		H.dna.add_mutation(CLUWNEMUT)
-	return
 
 /obj/item/clothing/mask/hippie/cluwne/happy_cluwne
 	name = "Happy Cluwne Mask"
@@ -31,6 +31,7 @@
 	var/can_cluwne = TRUE
 
 /obj/item/clothing/mask/hippie/cluwne/happy_cluwne/equipped(mob/user, slot)
+	. = ..()
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user

@@ -4,6 +4,7 @@
 	var/super_fart = 76
 	var/super_nova_fart = 12
 	var/fart_fly = 12
+	var/smug_cd = 0
 
 /datum/emote/living/carbon/fart
 	key = "fart"
@@ -26,7 +27,7 @@
 		if(blowass)
 			message = "hits <b>[M]</b> in the face with [B]!"
 			M.apply_damage(15,"brute","head")
-			user.log_message("had his ass deal damage to [key_name(M)]", LOG_ATTACK)
+			log_combat(user, M, "had his ass deal damage to")
 		else
 			message = pick(
 				"farts in <b>[M]</b>'s face!",
@@ -89,7 +90,7 @@
 			H.electrocution_animation(10)
 		addtimer(CALLBACK(user, /mob/proc/gib), 10)
 	else
-		GET_COMPONENT_FROM(STR, /datum/component/storage, B)
+		var/datum/component/storage/STR = B.GetComponent(/datum/component/storage)
 
 		if(STR)
 			var/list/STR_contents = STR.contents()
@@ -166,7 +167,7 @@
 			playsound(user, 'hippiestation/sound/effects/fart.ogg', 100, 1, 5)
 			sleep(1)
 		playsound(user, 'hippiestation/sound/effects/fartmassive.ogg', 75, 1, 5)
-		GET_COMPONENT_FROM(STR, /datum/component/storage, B)
+		var/datum/component/storage/STR = B.GetComponent(/datum/component/storage)
 
 		if(STR)
 			var/list/STR_contents = STR.contents()
@@ -205,7 +206,7 @@
 					if(M != user)
 						user.visible_message("<span class='warning'><b>[user]</b>'s ass blasts <b>[M]</b> in the face!</span>", "<span class='warning'>You ass blast <b>[M]</b>!</span>")
 						M.apply_damage(50,"brute","head")
-						user.log_message("dealt superfart damage to [key_name(M)]", LOG_ATTACK)
+						log_combat(user, M, "superfarted")
 
 				user.visible_message("<span class='warning'><b>[user]</b> blows their ass off!</span>", "<span class='warning'>Holy shit, your butt flies off in an arc!</span>")
 				if(!user.has_gravity())
@@ -247,3 +248,42 @@
 				user.gib() //can you belive I forgot to put this here?? yeah you need to see the message BEFORE you gib
 				priority_announce("What the fuck was that?!", "General Alert")
 				qdel(B)
+
+/datum/emote/living/smug
+	key = "smug"
+	key_third_person = "smugs"
+	message = "grins smugly."
+
+/obj/effect/smug
+	name = "smug"
+	desc = ":smug:"
+	icon = 'hippiestation/icons/mob/smug.dmi'
+	icon_state = "smug"
+	anchored = 1
+	pixel_x = -16
+	pixel_y = -16
+
+/datum/emote/living/smug/run_emote(mob/living/carbon/user, params)
+	if(!ishuman(user))
+		return ..()
+	var/obj/item/organ/tongue/L = user.getorgan(/obj/item/organ/tongue)
+	var/mob/living/carbon/human/H = user
+	if(!L)
+		to_chat(user, "<span class='warning'>You can't be smug without a tongue!</span>")
+		return FALSE // This will tell you that the emote is unusable as well.
+	var/bloodkind = /obj/effect/decal/cleanable/blood
+	var/toosmug = rand(1,20)
+	if(toosmug == 1 || world.time < H.smug_cd)
+		user.visible_message("<span class='warning'><b>[H]</b> tries to smugly grin, but bites their tongue off!</span>", "<span class='warning'>Holy shit, you just bit your tongue off!</span>")
+		playsound(H, 'sound/effects/snap.ogg', 50, TRUE)
+		L.Remove(user)
+		L.forceMove(get_turf(H))
+		new bloodkind(H.loc)
+		return
+	H.smug_cd = world.time + 300
+	var/obj/effect/smug/S = new(H.loc) // I heard the Goons didn't need this code any more. Oh well!
+	S.alpha = 0
+	animate(S,transform = matrix(0.5, MATRIX_SCALE), time = 20, alpha = 255, pixel_y = 27, easing = ELASTIC_EASING)
+	animate(time = 5, alpha = 0, pixel_y = -16, easing = CIRCULAR_EASING)
+	spawn(30) qdel(S)
+	return ..()

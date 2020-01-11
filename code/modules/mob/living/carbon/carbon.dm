@@ -11,8 +11,8 @@
 	//This must be done first, so the mob ghosts correctly before DNA etc is nulled
 	. =  ..()
 
+	QDEL_LIST(hand_bodyparts)
 	QDEL_LIST(internal_organs)
-	QDEL_LIST(stomach_contents)
 	QDEL_LIST(bodyparts)
 	QDEL_LIST(implants)
 	remove_from_all_data_huds()
@@ -21,30 +21,6 @@
 
 /mob/living/carbon/initialize_footstep()
 	AddComponent(/datum/component/footstep, 1, 2)
-
-/mob/living/carbon/relaymove(mob/user, direction)
-	if(user in src.stomach_contents)
-		if(prob(40))
-			if(prob(25))
-				audible_message("<span class='warning'>You hear something rumbling inside [src]'s stomach...</span>", \
-							 "<span class='warning'>You hear something rumbling.</span>", 4,\
-							  "<span class='userdanger'>Something is rumbling inside your stomach!</span>")
-			var/obj/item/I = user.get_active_held_item()
-			if(I && I.force)
-				var/d = rand(round(I.force / 4), I.force)
-				var/obj/item/bodypart/BP = get_bodypart(BODY_ZONE_CHEST)
-				if(BP.receive_damage(d, 0))
-					update_damage_overlays()
-				visible_message("<span class='danger'>[user] attacks [src]'s stomach wall with the [I.name]!</span>", \
-									"<span class='userdanger'>[user] attacks your stomach wall with the [I.name]!</span>")
-				playsound(user.loc, 'sound/effects/attackblob.ogg', 50, 1)
-
-				if(prob(src.getBruteLoss() - 50))
-					for(var/atom/movable/A in stomach_contents)
-						A.forceMove(drop_location())
-						stomach_contents.Remove(A)
-					src.gib()
-
 
 /mob/living/carbon/swap_hand(held_index)
 	if(!held_index)
@@ -106,10 +82,10 @@
 		if(hurt)
 			Paralyze(20)
 			take_bodypart_damage(10,check_armor = TRUE)
-		if(fist_casted)//hippie edit -- adds fist	
-			var/turf/T = get_turf(src)	
-			visible_message("<span class='danger'>[src] slams into [T] with explosive force!</span>", "<span class='userdanger'>You slam into [T] so hard everything nearby feels it!</span>")	
-			explosion(T, -1, 1, 4, 0, 0, 0) //No fire and no flash, this is less an explosion and more a shockwave from beign punched THAT hard.	
+		if(fist_casted)//hippie edit -- adds fist
+			var/turf/T = get_turf(src)
+			visible_message("<span class='danger'>[src] slams into [T] with explosive force!</span>", "<span class='userdanger'>You slam into [T] so hard everything nearby feels it!</span>")
+			explosion(T, -1, 1, 4, 0, 0, 0) //No fire and no flash, this is less an explosion and more a shockwave from beign punched THAT hard.
 			fist_casted = FALSE //hippie end -- fist
 	if(iscarbon(hit_atom) && hit_atom != src)
 		var/mob/living/carbon/victim = hit_atom
@@ -123,9 +99,9 @@
 			visible_message("<span class='danger'>[src] crashes into [victim], knocking them both over!</span>",\
 				"<span class='userdanger'>You violently crash into [victim]!</span>")
 		playsound(src,'sound/weapons/punch1.ogg',50,1)
-		if(fist_casted) //hippie edit -- adds fist	
-			visible_message("<span class='danger'>[src] slams into [victim] with enough force to level a skyscraper!</span>", "<span class='userdanger'>You crash into [victim] like a thunderbolt!</span>")	
-			var/turf/T = get_turf(src)	
+		if(fist_casted) //hippie edit -- adds fist
+			visible_message("<span class='danger'>[src] slams into [victim] with enough force to level a skyscraper!</span>", "<span class='userdanger'>You crash into [victim] like a thunderbolt!</span>")
+			var/turf/T = get_turf(src)
 			explosion(T, -1, 3, 5, 0, 0, 0) //The reward for lining the spell up to hit another person is a bigger boom! //hippie end -- fist
 
 
@@ -171,18 +147,18 @@
 			if(!throwable_mob.buckled)
 				thrown_thing = throwable_mob
 				stop_pulling()
-				if(has_trait(TRAIT_PACIFISM))
+				if(HAS_TRAIT(src, TRAIT_PACIFISM))
 					to_chat(src, "<span class='notice'>You gently let go of [throwable_mob].</span>")
 				var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
 				var/turf/end_T = get_turf(target)
 				if(start_T && end_T)
 					log_combat(src, throwable_mob, "thrown", addition="grab from tile in [AREACOORD(start_T)] towards tile at [AREACOORD(end_T)]")
 
-	else if(!CHECK_BITFIELD(I.item_flags, ABSTRACT) && !I.has_trait(TRAIT_NODROP))
+	else if(!CHECK_BITFIELD(I.item_flags, ABSTRACT) && !HAS_TRAIT(I, TRAIT_NODROP))
 		thrown_thing = I
 		dropItemToGround(I)
 
-		if(has_trait(TRAIT_PACIFISM) && I.throwforce)
+		if(HAS_TRAIT(src, TRAIT_PACIFISM) && I.throwforce)
 			to_chat(src, "<span class='notice'>You set [I] down gently on the ground.</span>")
 			return
 
@@ -412,7 +388,6 @@
 		else
 			dropItemToGround(I)
 			return
-		return TRUE
 
 /mob/living/carbon/get_standard_pixel_y_offset(lying = 0)
 	if(lying)
@@ -421,13 +396,13 @@
 		return initial(pixel_y)
 
 /mob/living/carbon/proc/accident(obj/item/I)
-	if(!I || (I.item_flags & ABSTRACT) || I.has_trait(TRAIT_NODROP))
+	if(!I || (I.item_flags & ABSTRACT) || HAS_TRAIT(I, TRAIT_NODROP))
 		return
 
 	dropItemToGround(I)
 
 	var/modifier = 0
-	if(has_trait(TRAIT_CLUMSY))
+	if(HAS_TRAIT(src, TRAIT_CLUMSY))
 		modifier -= 40 //Clumsy people are more likely to hit themselves -Honk!
 
 	switch(rand(1,100)+modifier) //91-100=Nothing special happens
@@ -465,7 +440,7 @@
 	return ..()
 
 /mob/living/carbon/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, toxic = FALSE)
-	if(has_trait(TRAIT_NOHUNGER))
+	if(HAS_TRAIT(src, TRAIT_NOHUNGER))
 		return 1
 
 	if(nutrition < 100 && !blood)
@@ -502,9 +477,12 @@
 				add_splatter_floor(T)
 			if(stun)
 				adjustBruteLoss(3)
+		else if(src.reagents.has_reagent(/datum/reagent/consumable/ethanol/blazaam))
+			if(T)
+				T.add_vomit_floor(src, VOMIT_PURPLE)
 		else
 			if(T)
-				T.add_vomit_floor(src, toxic)//toxic barf looks different
+				T.add_vomit_floor(src, VOMIT_TOXIC)//toxic barf looks different
 		T = get_step(T, dir)
 		if (is_blocked_turf(T))
 			break
@@ -536,8 +514,6 @@
 
 //Updates the mob's health from bodyparts and mob damage variables
 /mob/living/carbon/updatehealth()
-	if(status_flags & GODMODE)
-		return
 	var/total_burn	= 0
 	var/total_brute	= 0
 	var/total_stamina = 0
@@ -546,8 +522,14 @@
 		total_brute	+= (BP.brute_dam * BP.body_damage_coeff)
 		total_burn	+= (BP.burn_dam * BP.body_damage_coeff)
 		total_stamina += (BP.stamina_dam * BP.stam_damage_coeff)
-	health = round(maxHealth - getOxyLoss() - getToxLoss() - getCloneLoss() - total_burn - total_brute, DAMAGE_PRECISION)
-	staminaloss = round(total_stamina, DAMAGE_PRECISION)
+	// hippie start -- fix godmode
+	var/new_health = round(maxHealth - getOxyLoss() - getToxLoss() - getCloneLoss() - total_burn - total_brute, DAMAGE_PRECISION)
+	if(new_health < health && (status_flags & GODMODE))
+		return
+	health = new_health
+	if(!(status_flags & GODMODE))
+		staminaloss = round(total_stamina, DAMAGE_PRECISION)
+	// hippie end
 	update_stat()
 	update_mobility()
 	if(((maxHealth - total_burn) < HEALTH_THRESHOLD_DEAD) && stat == DEAD )
@@ -558,15 +540,16 @@
 	else
 		remove_movespeed_modifier(MOVESPEED_ID_CARBON_SOFTCRIT, TRUE)
 
+
 /mob/living/carbon/update_stamina()
 	var/stam = getStaminaLoss()
-	if(stam > DAMAGE_PRECISION)
-		var/total_health = (health - stam)
-		if(total_health <= crit_threshold && !stat)
-			if(!IsParalyzed())
-				to_chat(src, "<span class='notice'>You're too exhausted to keep going...</span>")
-			Paralyze(70) //hippie edit -- we nerfed this slightly
-			update_health_hud()
+	if(stam > DAMAGE_PRECISION && (maxHealth - stam) <= crit_threshold && !stat)
+		enter_stamcrit()
+	else if(stam_paralyzed)
+		stam_paralyzed = FALSE
+	else
+		return
+	update_health_hud()
 
 /mob/living/carbon/update_sight()
 	if(!client)
@@ -605,7 +588,11 @@
 		if(!isnull(G.lighting_alpha))
 			lighting_alpha = min(lighting_alpha, G.lighting_alpha)
 
-	if(has_trait(TRAIT_XRAY_VISION))
+	if(HAS_TRAIT(src, TRAIT_THERMAL_VISION))
+		sight |= (SEE_MOBS)
+		lighting_alpha = min(lighting_alpha, LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE)
+
+	if(HAS_TRAIT(src, TRAIT_XRAY_VISION))
 		sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
 		see_in_dark = max(see_in_dark, 8)
 
@@ -642,6 +629,18 @@
 
 	else
 		. += INFINITY
+
+/mob/living/carbon/get_permeability_protection(list/target_zones = list(HANDS,CHEST,GROIN,LEGS,FEET,ARMS,HEAD))
+	var/list/tally = list()
+	for(var/obj/item/I in get_equipped_items())
+		for(var/zone in target_zones)
+			if(I.body_parts_covered & zone)
+				tally["[zone]"] = max(1 - I.permeability_coefficient, target_zones["[zone]"])
+	var/protection = 0
+	for(var/key in tally)
+		protection += tally[key]
+	protection *= INVERSE(target_zones.len)
+	return protection
 
 //this handles hud updates
 /mob/living/carbon/update_damage_hud()
@@ -744,7 +743,7 @@
 	if(hud_used.healths)
 		if(stat != DEAD)
 			. = 1
-			if(!shown_health_amount)
+			if(shown_health_amount == null)
 				shown_health_amount = health
 			if(shown_health_amount >= maxHealth)
 				hud_used.healths.icon_state = "health0"
@@ -771,23 +770,23 @@
 	if(status_flags & GODMODE)
 		return
 	if(stat != DEAD)
-		if(health <= HEALTH_THRESHOLD_DEAD && !has_trait(TRAIT_NODEATH))
+		if(health <= HEALTH_THRESHOLD_DEAD && !HAS_TRAIT(src, TRAIT_NODEATH))
 			death()
 			return
-		if(IsUnconscious() || IsSleeping() || getOxyLoss() > 50 || (has_trait(TRAIT_DEATHCOMA)) || (health <= HEALTH_THRESHOLD_FULLCRIT && !has_trait(TRAIT_NOHARDCRIT)))
+		if(IsUnconscious() || IsSleeping() || getOxyLoss() > 50 || (HAS_TRAIT(src, TRAIT_DEATHCOMA)) || (health <= HEALTH_THRESHOLD_FULLCRIT && !HAS_TRAIT(src, TRAIT_NOHARDCRIT)))
 			stat = UNCONSCIOUS
 			blind_eyes(1)
-			if(CONFIG_GET(flag/near_death_experience) && health <= HEALTH_THRESHOLD_NEARDEATH && !has_trait(TRAIT_NODEATH))
-				add_trait(TRAIT_SIXTHSENSE, "near-death")
+			if(CONFIG_GET(flag/near_death_experience) && health <= HEALTH_THRESHOLD_NEARDEATH && !HAS_TRAIT(src, TRAIT_NODEATH))
+				ADD_TRAIT(src, TRAIT_SIXTHSENSE, "near-death")
 			else
-				remove_trait(TRAIT_SIXTHSENSE, "near-death")
+				REMOVE_TRAIT(src, TRAIT_SIXTHSENSE, "near-death")
 		else
-			if(health <= crit_threshold && !has_trait(TRAIT_NOSOFTCRIT))
+			if(health <= crit_threshold && !HAS_TRAIT(src, TRAIT_NOSOFTCRIT))
 				stat = SOFT_CRIT
 			else
 				stat = CONSCIOUS
 			adjust_blindness(-1)
-			remove_trait(TRAIT_SIXTHSENSE, "near-death")
+			REMOVE_TRAIT(src, TRAIT_SIXTHSENSE, "near-death")
 		update_mobility()
 	update_damage_hud()
 	update_health_hud()
@@ -871,19 +870,6 @@
 /mob/living/carbon/fakefireextinguish()
 	remove_overlay(FIRE_LAYER)
 
-
-/mob/living/carbon/proc/devour_mob(mob/living/carbon/C, devour_time = 130)
-	C.visible_message("<span class='danger'>[src] is attempting to devour [C]!</span>", \
-					"<span class='userdanger'>[src] is attempting to devour you!</span>")
-	if(!do_mob(src, C, devour_time))
-		return
-	if(pulling && pulling == C && grab_state >= GRAB_AGGRESSIVE && a_intent == INTENT_GRAB)
-		C.visible_message("<span class='danger'>[src] devours [C]!</span>", \
-						"<span class='userdanger'>[src] devours you!</span>")
-		C.forceMove(src)
-		stomach_contents.Add(C)
-		log_combat(src, C, "devoured")
-
 /mob/living/carbon/proc/create_bodyparts()
 	var/l_arm_index_next = -1
 	var/r_arm_index_next = 0
@@ -903,12 +889,12 @@
 
 /mob/living/carbon/do_after_coefficent()
 	. = ..()
-	GET_COMPONENT_FROM(mood, /datum/component/mood, src) //Currently, only carbons or higher use mood, move this once that changes.
+	var/datum/component/mood/mood = src.GetComponent(/datum/component/mood) //Currently, only carbons or higher use mood, move this once that changes.
 	if(mood)
 		switch(mood.sanity) //Alters do_after delay based on how sane you are
-			if(SANITY_INSANE to SANITY_DISTURBED)
+			if(-INFINITY to SANITY_DISTURBED)
 				. *= 1.25
-			if(SANITY_NEUTRAL to SANITY_GREAT)
+			if(SANITY_NEUTRAL to INFINITY)
 				. *= 0.90
 
 /mob/living/carbon/proc/create_internal_organs()
@@ -923,28 +909,135 @@
 
 /mob/living/carbon/vv_get_dropdown()
 	. = ..()
-	. += "---"
-	.["Make AI"] = "?_src_=vars;[HrefToken()];makeai=[REF(src)]"
-	.["Modify bodypart"] = "?_src_=vars;[HrefToken()];editbodypart=[REF(src)]"
-	.["Modify organs"] = "?_src_=vars;[HrefToken()];editorgans=[REF(src)]"
-	.["Hallucinate"] = "?_src_=vars;[HrefToken()];hallucinate=[REF(src)]"
-	.["Give martial arts"] = "?_src_=vars;[HrefToken()];givemartialart=[REF(src)]"
-	.["Give brain trauma"] = "?_src_=vars;[HrefToken()];givetrauma=[REF(src)]"
-	.["Cure brain traumas"] = "?_src_=vars;[HrefToken()];curetraumas=[REF(src)]"
+	VV_DROPDOWN_OPTION("", "---------")
+	VV_DROPDOWN_OPTION(VV_HK_MAKE_AI, "Make AI")
+	VV_DROPDOWN_OPTION(VV_HK_MODIFY_BODYPART, "Modify bodypart")
+	VV_DROPDOWN_OPTION(VV_HK_MODIFY_ORGANS, "Modify organs")
+	VV_DROPDOWN_OPTION(VV_HK_HALLUCINATION, "Hallucinate")
+	VV_DROPDOWN_OPTION(VV_HK_MARTIAL_ART, "Give Martial Arts")
+	VV_DROPDOWN_OPTION(VV_HK_GIVE_TRAUMA, "Give Brain Trauma")
+	VV_DROPDOWN_OPTION(VV_HK_CURE_TRAUMA, "Cure Brain Traumas")
+
+/mob/living/carbon/vv_do_topic(list/href_list)
+	. = ..()
+	if(href_list[VV_HK_MODIFY_BODYPART])
+		if(!check_rights(R_SPAWN))
+			return
+		var/edit_action = input(usr, "What would you like to do?","Modify Body Part") as null|anything in list("add","remove", "augment")
+		if(!edit_action)
+			return
+		var/list/limb_list = list()
+		if(edit_action == "remove" || edit_action == "augment")
+			for(var/obj/item/bodypart/B in bodyparts)
+				limb_list += B.body_zone
+			if(edit_action == "remove")
+				limb_list -= BODY_ZONE_CHEST
+		else
+			limb_list = list(BODY_ZONE_HEAD, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+			for(var/obj/item/bodypart/B in bodyparts)
+				limb_list -= B.body_zone
+		var/result = input(usr, "Please choose which body part to [edit_action]","[capitalize(edit_action)] Body Part") as null|anything in limb_list
+		if(result)
+			var/obj/item/bodypart/BP = get_bodypart(result)
+			switch(edit_action)
+				if("remove")
+					if(BP)
+						BP.drop_limb()
+					else
+						to_chat(usr, "<span class='boldwarning'>[src] doesn't have such bodypart.</span>")
+				if("add")
+					if(BP)
+						to_chat(usr, "<span class='boldwarning'>[src] already has such bodypart.</span>")
+					else
+						if(!regenerate_limb(result))
+							to_chat(usr, "<span class='boldwarning'>[src] cannot have such bodypart.</span>")
+				if("augment")
+					if(ishuman(src))
+						if(BP)
+							BP.change_bodypart_status(BODYPART_ROBOTIC, TRUE, TRUE)
+						else
+							to_chat(usr, "<span class='boldwarning'>[src] doesn't have such bodypart.</span>")
+					else
+						to_chat(usr, "<span class='boldwarning'>Only humans can be augmented.</span>")
+		admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [src]")
+	if(href_list[VV_HK_MAKE_AI])
+		if(!check_rights(R_SPAWN))
+			return
+		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
+			return
+		usr.client.holder.Topic("vv_override", list("makeai"=href_list[VV_HK_TARGET]))
+	if(href_list[VV_HK_MODIFY_ORGANS])
+		if(!check_rights(NONE))
+			return
+		usr.client.manipulate_organs(src)
+	if(href_list[VV_HK_MARTIAL_ART])
+		if(!check_rights(NONE))
+			return
+		var/list/artpaths = subtypesof(/datum/martial_art)
+		var/list/artnames = list()
+		for(var/i in artpaths)
+			var/datum/martial_art/M = i
+			artnames[initial(M.name)] = M
+		var/result = input(usr, "Choose the martial art to teach","JUDO CHOP") as null|anything in artnames
+		if(!usr)
+			return
+		if(QDELETED(src))
+			to_chat(usr, "<span class='boldwarning'>Mob doesn't exist anymore.</span>")
+			return
+		if(result)
+			var/chosenart = artnames[result]
+			var/datum/martial_art/MA = new chosenart
+			MA.teach(src)
+			log_admin("[key_name(usr)] has taught [MA] to [key_name(src)].")
+			message_admins("<span class='notice'>[key_name_admin(usr)] has taught [MA] to [key_name_admin(src)].</span>")
+	if(href_list[VV_HK_GIVE_TRAUMA])
+		if(!check_rights(NONE))
+			return
+		var/list/traumas = subtypesof(/datum/brain_trauma)
+		var/result = input(usr, "Choose the brain trauma to apply","Traumatize") as null|anything in traumas
+		if(!usr)
+			return
+		if(QDELETED(src))
+			to_chat(usr, "Mob doesn't exist anymore")
+			return
+		if(!result)
+			return
+		var/datum/brain_trauma/BT = gain_trauma(result)
+		if(BT)
+			log_admin("[key_name(usr)] has traumatized [key_name(src)] with [BT.name]")
+			message_admins("<span class='notice'>[key_name_admin(usr)] has traumatized [key_name_admin(src)] with [BT.name].</span>")
+	if(href_list[VV_HK_CURE_TRAUMA])
+		if(!check_rights(NONE))
+			return
+		cure_all_traumas(TRAUMA_RESILIENCE_ABSOLUTE)
+		log_admin("[key_name(usr)] has cured all traumas from [key_name(src)].")
+		message_admins("<span class='notice'>[key_name_admin(usr)] has cured all traumas from [key_name_admin(src)].</span>")
+	if(href_list[VV_HK_HALLUCINATION])
+		if(!check_rights(NONE))
+			return
+		var/list/hallucinations = subtypesof(/datum/hallucination)
+		var/result = input(usr, "Choose the hallucination to apply","Send Hallucination") as null|anything in hallucinations
+		if(!usr)
+			return
+		if(QDELETED(src))
+			to_chat(usr, "Mob doesn't exist anymore")
+			return
+		if(result)
+			new result(src, TRUE)
 
 /mob/living/carbon/can_resist()
 	return bodyparts.len > 2 && ..()
 
 /mob/living/carbon/proc/hypnosis_vulnerable()
-	if(has_trait(TRAIT_MINDSHIELD))
+	if(HAS_TRAIT(src, TRAIT_MINDSHIELD))
 		return FALSE
 	if(hallucinating())
 		return TRUE
 	if(IsSleeping())
 		return TRUE
-	if(has_trait(TRAIT_DUMB))
+	if(HAS_TRAIT(src, TRAIT_DUMB))
 		return TRUE
-	GET_COMPONENT_FROM(mood, /datum/component/mood, src)
+	var/datum/component/mood/mood = src.GetComponent(/datum/component/mood)
 	if(mood)
 		if(mood.sanity < SANITY_UNSTABLE)
 			return TRUE

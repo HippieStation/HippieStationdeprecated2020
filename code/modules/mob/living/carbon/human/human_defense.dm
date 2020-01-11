@@ -153,9 +153,9 @@
 		skipcatch = TRUE
 		blocked = TRUE
 	else if(I)
-		if((I.throw_speed >= EMBED_THROWSPEED_THRESHOLD) || I.embedding.embedded_ignore_throwspeed_threshold)
+		if(((throwingdatum ? throwingdatum.speed : I.throw_speed) >= EMBED_THROWSPEED_THRESHOLD) || I.embedding.embedded_ignore_throwspeed_threshold)
 			if(can_embed(I))
-				if(prob(I.embedding.embed_chance) && !has_trait(TRAIT_PIERCEIMMUNE))
+				if(prob(I.embedding.embed_chance) && !HAS_TRAIT(src, TRAIT_PIERCEIMMUNE))
 					throw_alert("embeddedobject", /obj/screen/alert/embeddedobject)
 					var/obj/item/bodypart/L = pick(bodyparts)
 					L.embedded_objects |= I
@@ -168,12 +168,6 @@
 					skipcatch = TRUE //can't catch the now embedded item
 
 	return ..()
-
-/mob/living/carbon/human/grabbedby(mob/living/carbon/user, supress_message = 0)
-	if(user == src && pulling && !pulling.anchored && grab_state >= GRAB_AGGRESSIVE && (has_trait(TRAIT_FAT)) && ismonkey(pulling))
-		devour_mob(pulling)
-	else
-		..()
 
 /mob/living/carbon/human/grippedby(mob/living/user, instant = FALSE)
 	if(w_uniform)
@@ -201,25 +195,26 @@
 	return dna.species.spec_attacked_by(I, user, affecting, a_intent, src)
 
 
-/mob/living/carbon/human/attack_hulk(mob/living/carbon/human/user, does_attack_animation = 0)
-	if(user.a_intent == INTENT_HARM)
-		var/hulk_verb = pick("smash","pummel")
-		if(check_shields(user, 15, "the [hulk_verb]ing"))
-			return
-		..(user, 1)
-		playsound(loc, user.dna.species.attack_sound, 25, 1, -1)
-		var/message = "[user] has [hulk_verb]ed [src]!"
-		visible_message("<span class='danger'>[message]</span>", \
-								"<span class='userdanger'>[message]</span>")
-		adjustBruteLoss(15)
-		return 1
+/mob/living/carbon/human/attack_hulk(mob/living/carbon/human/user)
+	. = ..()
+	if(!.)
+		return
+	var/hulk_verb = pick("smash","pummel")
+	if(check_shields(user, 15, "the [hulk_verb]ing"))
+		return
+	..()
+	playsound(loc, user.dna.species.attack_sound, 25, 1, -1)
+	var/message = "[user] has [hulk_verb]ed [src]!"
+	visible_message("<span class='danger'>[message]</span>", \
+							"<span class='userdanger'>[message]</span>")
+	adjustBruteLoss(15)
 
 /mob/living/carbon/human/attack_hand(mob/user)
 	if(..())	//to allow surgery to return properly.
 		return
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.a_intent == INTENT_HARM && handle_vamp_biting(H)) // hippie start -- vampire biting				
+		if(H.a_intent == INTENT_HARM && handle_vamp_biting(H)) // hippie start -- vampire biting
 			return // hippie end
 		dna.species.spec_attack_hand(H, src)
 
@@ -240,10 +235,16 @@
 					"<span class='userdanger'>[M] disarmed [src]!</span>")
 		else if(!M.client || prob(5)) // only natural monkeys get to stun reliably, (they only do it occasionaly)
 			playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
-			Paralyze(100)
-			log_combat(M, src, "tackled")
-			visible_message("<span class='danger'>[M] has tackled down [src]!</span>", \
-				"<span class='userdanger'>[M] has tackled down [src]!</span>")
+			if (src.IsKnockdown() && !src.IsParalyzed())
+				Paralyze(40)
+				log_combat(M, src, "pinned")
+				visible_message("<span class='danger'>[M] has pinned down [src]!</span>", \
+					"<span class='userdanger'>[M] has pinned down [src]!</span>")
+			else
+				Knockdown(30)
+				log_combat(M, src, "tackled")
+				visible_message("<span class='danger'>[M] has tackled down [src]!</span>", \
+					"<span class='userdanger'>[M] has tackled down [src]!</span>")
 
 	if(M.limb_destroyer)
 		dismembering_strike(M, affecting.body_zone)
@@ -388,49 +389,53 @@
 	if(origin && istype(origin, /datum/spacevine_mutation) && isvineimmune(src))
 		return
 	..()
-	if (!severity)
+	if (!severity || QDELETED(src))
 		return
-	var/b_loss = 0
-	var/f_loss = 0
+	var/brute_loss = 0
+	var/burn_loss = 0
 	var/bomb_armor = getarmor(null, "bomb")
 
+//200 max knockdown for EXPLODE_HEAVY
+//160 max knockdown for EXPLODE_LIGHT
+
+
 	switch (severity)
-		if (1)
-			if(prob(bomb_armor))
-				b_loss = 500
+		if (EXPLODE_DEVASTATE)
+			if(bomb_armor < EXPLODE_GIB_THRESHOLD) //gibs the mob if their bomb armor is lower than EXPLODE_GIB_THRESHOLD
+				for(var/I in contents)
+					var/atom/A = I
+					if(!QDELETED(A))
+						A.ex_act(severity)
+				gib()
+				return
+			else
+				brute_loss = 500
 				var/atom/throw_target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
 				throw_at(throw_target, 200, 4)
 				damage_clothes(400 - bomb_armor, BRUTE, "bomb")
-			else
-				for(var/I in contents)
-					var/atom/A = I
-					A.ex_act(severity)
-				gib()
-				return
 
-		if (2)
-			b_loss = 60
-			f_loss = 60
+		if (EXPLODE_HEAVY)
+			brute_loss = 60
+			burn_loss = 60
 			if(bomb_armor)
-				b_loss = 30*(2 - round(bomb_armor*0.01, 0.05))
-				f_loss = b_loss
+				brute_loss = 30*(2 - round(bomb_armor*0.01, 0.05))
+				burn_loss = brute_loss				//damage gets reduced from 120 to up to 60 combined brute+burn
 			damage_clothes(200 - bomb_armor, BRUTE, "bomb")
 			if (!istype(ears, /obj/item/clothing/ears/earmuffs))
 				adjustEarDamage(30, 120)
-			if (prob(max(70 - (bomb_armor * 0.5), 0)))
-				Unconscious(200)
+			Unconscious(20)							//short amount of time for follow up attacks against elusive enemies like wizards
+			Knockdown(200 - (bomb_armor * 1.6)) 	//between ~4 and ~20 seconds of knockdown depending on bomb armor
 
-		if(3)
-			b_loss = 30
+		if(EXPLODE_LIGHT)
+			brute_loss = 30
 			if(bomb_armor)
-				b_loss = 15*(2 - round(bomb_armor*0.01, 0.05))
+				brute_loss = 15*(2 - round(bomb_armor*0.01, 0.05))
 			damage_clothes(max(50 - bomb_armor, 0), BRUTE, "bomb")
 			if (!istype(ears, /obj/item/clothing/ears/earmuffs))
 				adjustEarDamage(15,60)
-			if (prob(max(50 - (bomb_armor * 0.5), 0)))
-				Unconscious(160)
+			Knockdown(160 - (bomb_armor * 1.6))		//100 bomb armor will prevent knockdown altogether
 
-	take_overall_damage(b_loss,f_loss)
+	take_overall_damage(brute_loss,burn_loss)
 
 	//attempt to dismember bodyparts
 	if(severity <= 2 || !bomb_armor)
@@ -455,7 +460,7 @@
 
 
 //Added a safety check in case you want to shock a human mob directly through electrocute_act.
-/mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
+/mob/living/carbon/human/electrocute_act(shock_damage, source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
 	if(tesla_shock)
 		var/total_coeff = 1
 		if(gloves)
@@ -636,7 +641,7 @@
 				facial_hair_style = "Shaved"
 				hair_style = "Bald"
 				update_hair()
-				add_trait(TRAIT_DISFIGURED, TRAIT_GENERIC)
+				ADD_TRAIT(src, TRAIT_DISFIGURED, TRAIT_GENERIC)
 
 		update_damage_overlays()
 
@@ -676,8 +681,6 @@
 				to_chat(src, "<span class='notice'>You succesfuly remove the durathread strand.</span>")
 				remove_status_effect(STATUS_EFFECT_CHOKINGSTRAND)
 			return
-		visible_message("[src] examines [p_them()]self.", \
-			"<span class='notice'>You check yourself for injuries.</span>")
 		check_self_for_injuries()
 
 
@@ -709,7 +712,7 @@
 			if(prob(30))
 				burndamage += rand(30,40)
 
-		if(has_trait(TRAIT_SELF_AWARE))
+		if(HAS_TRAIT(src, TRAIT_SELF_AWARE))
 			status = "[brutedamage] brute damage and [burndamage] burn damage"
 			if(!brutedamage && !burndamage)
 				status = "no damage"
@@ -736,7 +739,7 @@
 		var/no_damage
 		if(status == "OK" || status == "no damage")
 			no_damage = TRUE
-		to_chat(src, "\t <span class='[no_damage ? "notice" : "warning"]'>Your [LB.name] [has_trait(TRAIT_SELF_AWARE) ? "has" : "is"] [status].</span>")
+		to_chat(src, "\t <span class='[no_damage ? "notice" : "warning"]'>Your [LB.name] [HAS_TRAIT(src, TRAIT_SELF_AWARE) ? "has" : "is"] [status].</span>")
 
 		for(var/obj/item/I in LB.embedded_objects)
 			to_chat(src, "\t <a href='?src=[REF(src)];embedded_object=[REF(I)];embedded_limb=[REF(LB)]' class='warning'>There is \a [I] embedded in your [LB.name]!</a>")
@@ -751,7 +754,7 @@
 			to_chat(src, "<span class='info'>You're completely exhausted.</span>")
 		else
 			to_chat(src, "<span class='info'>You feel fatigued.</span>")
-	if(has_trait(TRAIT_SELF_AWARE))
+	if(HAS_TRAIT(src, TRAIT_SELF_AWARE))
 		if(toxloss)
 			if(toxloss > 10)
 				to_chat(src, "<span class='danger'>You feel sick.</span>")
@@ -767,7 +770,7 @@
 			else if(oxyloss > 30)
 				to_chat(src, "<span class='danger'>You're choking!</span>")
 
-	if(!has_trait(TRAIT_NOHUNGER))
+	if(!HAS_TRAIT(src, TRAIT_NOHUNGER))
 		switch(nutrition)
 			if(NUTRITION_LEVEL_FULL to INFINITY)
 				to_chat(src, "<span class='info'>You're completely stuffed!</span>")

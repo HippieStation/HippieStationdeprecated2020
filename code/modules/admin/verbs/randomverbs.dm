@@ -58,10 +58,10 @@
 		return
 
 	if(!istype(H))
-		to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+		to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human", confidential = TRUE)
 		return
 	if(!istype(H.ears, /obj/item/radio/headset))
-		to_chat(usr, "The person you are trying to contact is not wearing a headset.")
+		to_chat(usr, "The person you are trying to contact is not wearing a headset.", confidential = TRUE)
 		return
 
 	if (!sender)
@@ -77,7 +77,7 @@
 
 	log_directed_talk(mob, H, input, LOG_ADMIN, "reply")
 	message_admins("[key_name_admin(src)] replied to [key_name_admin(H)]'s [sender] message with: \"[input]\"")
-	to_chat(H, "You hear something crackle in your ears for a moment before a voice speaks.  \"Please stand by for a message from [sender == "Syndicate" ? "your benefactor" : "Central Command"].  Message as follows[sender == "Syndicate" ? ", agent." : ":"] <span class='bold'>[input].</span> Message ends.\"")
+	to_chat(H, "<span class='hear'>You hear something crackle in your ears for a moment before a voice speaks. \"Please stand by for a message from [sender == "Syndicate" ? "your benefactor" : "Central Command"]. Message as follows[sender == "Syndicate" ? ", agent." : ":"] <b>[input].</b> Message ends.\"</span>")
 
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Headset Message") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -117,7 +117,7 @@
 			log_text = "Subtracted [num2text(msg)]"
 			SSpersistence.antag_rep[C.ckey] = max(SSpersistence.antag_rep[C.ckey]-msg, 0)
 		else
-			to_chat(src, "Invalid operation for antag rep modification: [operation] by user [key_name(usr)]")
+			to_chat(src, "Invalid operation for antag rep modification: [operation] by user [key_name(usr)]", confidential = TRUE)
 			return
 
 		if(SSpersistence.antag_rep[C.ckey] <= 0)
@@ -196,7 +196,7 @@
 		return
 
 	M.status_flags ^= GODMODE
-	to_chat(usr, "<span class='adminnotice'>Toggled [(M.status_flags & GODMODE) ? "ON" : "OFF"]</span>")
+	to_chat(usr, "<span class='adminnotice'>Toggled [(M.status_flags & GODMODE) ? "ON" : "OFF"]</span>", confidential = TRUE)
 
 	log_admin("[key_name(usr)] has toggled [key_name(M)]'s nodamage to [(M.status_flags & GODMODE) ? "On" : "Off"]")
 	var/msg = "[key_name_admin(usr)] has toggled [ADMIN_LOOKUPFLW(M)]'s nodamage to [(M.status_flags & GODMODE) ? "On" : "Off"]"
@@ -228,6 +228,9 @@
 		if(MUTE_DEADCHAT)
 			mute_string = "deadchat and DSAY"
 			feedback_string = "Deadchat"
+		if(MUTE_MENTOR)
+			mute_string = "mentorhelp, mentor PM and MSAY"
+			feedback_string = "Mentorhelp"
 		if(MUTE_ALL)
 			mute_string = "everything"
 			feedback_string = "Everything"
@@ -263,7 +266,7 @@
 		log_admin("SPAM AUTOMUTE: [muteunmute] [key_name(whom)] from [mute_string]")
 		message_admins("SPAM AUTOMUTE: [muteunmute] [key_name_admin(whom)] from [mute_string].")
 		if(C)
-			to_chat(C, "You have been [muteunmute] from [mute_string] by the SPAM AUTOMUTE system. Contact an admin.")
+			to_chat(C, "You have been [muteunmute] from [mute_string] by the SPAM AUTOMUTE system. Contact an admin.", confidential = TRUE)
 		SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Auto Mute [feedback_string]", "1")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		return
 
@@ -277,7 +280,7 @@
 	log_admin("[key_name(usr)] has [muteunmute] [key_name(whom)] from [mute_string]")
 	message_admins("[key_name_admin(usr)] has [muteunmute] [key_name_admin(whom)] from [mute_string].")
 	if(C)
-		to_chat(C, "You have been [muteunmute] from [mute_string] by [key_name(usr, include_name = FALSE)].")
+		to_chat(C, "You have been [muteunmute] from [mute_string] by [key_name(usr, include_name = FALSE)].", confidential = TRUE)
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Mute [feedback_string]", "[P.muted & mute_type]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
@@ -298,7 +301,7 @@
 		if(candidates.len)
 			ckey = input("Pick the player you want to respawn as a xeno.", "Suitable Candidates") as null|anything in candidates
 		else
-			to_chat(usr, "<span class='danger'>Error: create_xeno(): no suitable candidates.</span>")
+			to_chat(usr, "<span class='danger'>Error: create_xeno(): no suitable candidates.</span>", confidential = TRUE)
 	if(!istext(ckey))
 		return 0
 
@@ -352,7 +355,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			break
 
 	if(!G_found)//If a ghost was not found.
-		to_chat(usr, "<font color='red'>There is no active key like that in the game or the person is not currently a ghost.</font>")
+		to_chat(usr, "<font color='red'>There is no active key like that in the game or the person is not currently a ghost.</font>", confidential = TRUE)
 		return
 
 	if(G_found.mind && !G_found.mind.active)	//mind isn't currently in use by someone/something
@@ -419,7 +422,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(record_found)//If they have a record we can determine a few things.
 		new_character.real_name = record_found.fields["name"]
-		new_character.gender = record_found.fields["sex"]
+		new_character.gender = record_found.fields["gender"]
 		new_character.age = record_found.fields["age"]
 		new_character.hardset_dna(record_found.fields["identity"], record_found.fields["enzymes"], record_found.fields["name"], record_found.fields["blood_type"], new record_found.fields["species"], record_found.fields["features"])
 	else
@@ -560,7 +563,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/announce_command_report = TRUE
 	switch(confirm)
 		if("Yes")
-			priority_announce(input, null, 'sound/ai/commandreport.ogg')
+			priority_announce(input, null, 'hippiestation/sound/pyko/commandreport.ogg') // hippie -- pykoai
 			announce_command_report = FALSE
 		if("Cancel")
 			return
@@ -593,31 +596,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	admin_delete(A)
-
-/client/proc/admin_delete(datum/D)
-	var/atom/A = D
-	var/coords = ""
-	var/jmp_coords = ""
-	if(istype(A))
-		var/turf/T = get_turf(A)
-		if(T)
-			coords = "at [COORD(T)]"
-			jmp_coords = "at [ADMIN_COORDJMP(T)]"
-		else
-			jmp_coords = coords = "in nullspace"
-
-	if (alert(src, "Are you sure you want to delete:\n[D]\n[coords]?", "Confirmation", "Yes", "No") == "Yes")
-		log_admin("[key_name(usr)] deleted [D] [coords]")
-		message_admins("[key_name_admin(usr)] deleted [D] [jmp_coords]")
-		SSblackbox.record_feedback("tally", "admin_verb", 1, "Delete") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		if(isturf(D))
-			var/turf/T = D
-			T.ScrapeAway()
-		else
-			vv_update_display(D, "deleted", VV_MSG_DELETED)
-			qdel(D)
-			if(!QDELETED(D))
-				vv_update_display(D, "deleted", "")
 
 /client/proc/cmd_admin_list_open_jobs()
 	set category = "Admin"
@@ -732,7 +710,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	var/list/L = M.get_contents()
 	for(var/t in L)
-		to_chat(usr, "[t]")
+		to_chat(usr, "[t]", confidential = TRUE)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Check Contents") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/toggle_view_range()
@@ -750,25 +728,31 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Change View Range", "[view]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/* HANDLED IN HIPPIESTATION MODULE: RANDOMVERBS.DM!! - MODULE: SHUTTLE TOGGLE - Changes here too.
 /client/proc/admin_call_shuttle()
-
 	set category = "Admin"
 	set name = "Call Shuttle"
 
 	if(EMERGENCY_AT_LEAST_DOCKED)
 		return
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_ADMIN))	return
+
+	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "Yes (No Recall)", "No")
+	if(confirm == "No")
 		return
 
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
-	if(confirm != "Yes")
-		return
+	if(confirm == "Yes (No Recall)")
+		SSshuttle.adminEmergencyNoRecall = TRUE
+		SSshuttle.emergency.mode = SHUTTLE_IDLE
 
 	SSshuttle.emergency.request()
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Call Shuttle") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] admin-called the emergency shuttle.")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] admin-called the emergency shuttle.</span>")
+	if(confirm == "Yes (No Recall)")
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] admin-called the emergency shuttle (non-recallable).</span>")
+	else
+		message_admins("<span class='adminnotice'>[key_name_admin(usr)] admin-called the emergency shuttle.</span>")
 	return
 
 /client/proc/admin_cancel_shuttle()
@@ -779,6 +763,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes")
 		return
 
+	if(SSshuttle.adminEmergencyNoRecall)
+		SSshuttle.adminEmergencyNoRecall = FALSE
+
 	if(EMERGENCY_AT_LEAST_DOCKED)
 		return
 
@@ -788,6 +775,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	message_admins("<span class='adminnotice'>[key_name_admin(usr)] admin-recalled the emergency shuttle.</span>")
 
 	return
+*/
 
 /client/proc/everyone_random()
 	set category = "Fun"
@@ -795,14 +783,14 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set desc = "Make everyone have a random appearance. You can only use this before rounds!"
 
 	if(SSticker.HasRoundStarted())
-		to_chat(usr, "Nope you can't do this, the game's already started. This only works before rounds!")
+		to_chat(usr, "Nope you can't do this, the game's already started. This only works before rounds!", confidential = TRUE)
 		return
 
 	var/frn = CONFIG_GET(flag/force_random_names)
 	if(frn)
 		CONFIG_SET(flag/force_random_names, FALSE)
 		message_admins("Admin [key_name_admin(usr)] has disabled \"Everyone is Special\" mode.")
-		to_chat(usr, "Disabled.")
+		to_chat(usr, "Disabled.", confidential = TRUE)
 		return
 
 
@@ -829,10 +817,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/new_are = !CONFIG_GET(flag/allow_random_events)
 	CONFIG_SET(flag/allow_random_events, new_are)
 	if(new_are)
-		to_chat(usr, "Random events enabled")
+		to_chat(usr, "Random events enabled", confidential = TRUE)
 		message_admins("Admin [key_name_admin(usr)] has enabled random events.")
 	else
-		to_chat(usr, "Random events disabled")
+		to_chat(usr, "Random events disabled", confidential = TRUE)
 		message_admins("Admin [key_name_admin(usr)] has disabled random events.")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Random Events", "[new_are ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -872,183 +860,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	message_admins("[ADMIN_LOOKUPFLW(usr)] [N.timing ? "activated" : "deactivated"] a nuke at [ADMIN_VERBOSEJMP(N)].")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Nuke", "[N.timing]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
-
-/client/proc/create_outfits()
-	set category = "Debug"
-	set name = "Create Custom Outfit"
-
-	if(!check_rights(R_DEBUG))
-		return
-
-	holder.create_outfit()
-
-/datum/admins/proc/create_outfit()
-	var/list/uniforms = typesof(/obj/item/clothing/under)
-	var/list/suits = typesof(/obj/item/clothing/suit)
-	var/list/gloves = typesof(/obj/item/clothing/gloves)
-	var/list/shoes = typesof(/obj/item/clothing/shoes)
-	var/list/headwear = typesof(/obj/item/clothing/head)
-	var/list/glasses = typesof(/obj/item/clothing/glasses)
-	var/list/masks = typesof(/obj/item/clothing/mask)
-	var/list/ids = typesof(/obj/item/card/id)
-
-	var/uniform_select = "<select name=\"outfit_uniform\"><option value=\"\">None</option>"
-	for(var/path in uniforms)
-		uniform_select += "<option value=\"[path]\">[path]</option>"
-	uniform_select += "</select>"
-
-	var/suit_select = "<select name=\"outfit_suit\"><option value=\"\">None</option>"
-	for(var/path in suits)
-		suit_select += "<option value=\"[path]\">[path]</option>"
-	suit_select += "</select>"
-
-	var/gloves_select = "<select name=\"outfit_gloves\"><option value=\"\">None</option>"
-	for(var/path in gloves)
-		gloves_select += "<option value=\"[path]\">[path]</option>"
-	gloves_select += "</select>"
-
-	var/shoes_select = "<select name=\"outfit_shoes\"><option value=\"\">None</option>"
-	for(var/path in shoes)
-		shoes_select += "<option value=\"[path]\">[path]</option>"
-	shoes_select += "</select>"
-
-	var/head_select = "<select name=\"outfit_head\"><option value=\"\">None</option>"
-	for(var/path in headwear)
-		head_select += "<option value=\"[path]\">[path]</option>"
-	head_select += "</select>"
-
-	var/glasses_select = "<select name=\"outfit_glasses\"><option value=\"\">None</option>"
-	for(var/path in glasses)
-		glasses_select += "<option value=\"[path]\">[path]</option>"
-	glasses_select += "</select>"
-
-	var/mask_select = "<select name=\"outfit_mask\"><option value=\"\">None</option>"
-	for(var/path in masks)
-		mask_select += "<option value=\"[path]\">[path]</option>"
-	mask_select += "</select>"
-
-	var/id_select = "<select name=\"outfit_id\"><option value=\"\">None</option>"
-	for(var/path in ids)
-		id_select += "<option value=\"[path]\">[path]</option>"
-	id_select += "</select>"
-
-	var/dat = {"
-	<html><head><title>Create Outfit</title></head><body>
-	<form name="outfit" action="byond://?src=[REF(src)];[HrefToken()]" method="get">
-	<input type="hidden" name="src" value="[REF(src)]">
-	[HrefTokenFormField()]
-	<input type="hidden" name="create_outfit" value="1">
-	<table>
-		<tr>
-			<th>Name:</th>
-			<td>
-				<input type="text" name="outfit_name" value="Custom Outfit">
-			</td>
-		</tr>
-		<tr>
-			<th>Uniform:</th>
-			<td>
-			   [uniform_select]
-			</td>
-		</tr>
-		<tr>
-			<th>Suit:</th>
-			<td>
-				[suit_select]
-			</td>
-		</tr>
-		<tr>
-			<th>Back:</th>
-			<td>
-				<input type="text" name="outfit_back" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Belt:</th>
-			<td>
-				<input type="text" name="outfit_belt" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Gloves:</th>
-			<td>
-				[gloves_select]
-			</td>
-		</tr>
-		<tr>
-			<th>Shoes:</th>
-			<td>
-				[shoes_select]
-			</td>
-		</tr>
-		<tr>
-			<th>Head:</th>
-			<td>
-				[head_select]
-			</td>
-		</tr>
-		<tr>
-			<th>Mask:</th>
-			<td>
-				[mask_select]
-			</td>
-		</tr>
-		<tr>
-			<th>Ears:</th>
-			<td>
-				<input type="text" name="outfit_ears" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Glasses:</th>
-			<td>
-				[glasses_select]
-			</td>
-		</tr>
-		<tr>
-			<th>ID:</th>
-			<td>
-				[id_select]
-			</td>
-		</tr>
-		<tr>
-			<th>Left Pocket:</th>
-			<td>
-				<input type="text" name="outfit_l_pocket" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Right Pocket:</th>
-			<td>
-				<input type="text" name="outfit_r_pocket" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Suit Store:</th>
-			<td>
-				<input type="text" name="outfit_s_store" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Right Hand:</th>
-			<td>
-				<input type="text" name="outfit_r_hand" value="">
-			</td>
-		</tr>
-		<tr>
-			<th>Left Hand:</th>
-			<td>
-				<input type="text" name="outfit_l_hand" value="">
-			</td>
-		</tr>
-	</table>
-	<br>
-	<input type="submit" value="Save">
-	</form></body></html>
-	"}
-	usr << browse(dat, "window=dressup;size=550x600")
-
 /client/proc/toggle_combo_hud()
 	set category = "Admin"
 	set name = "Toggle Combo HUD"
@@ -1073,7 +884,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 
 	mob.update_sight()
 
-	to_chat(usr, "You toggled your admin combo HUD [adding_hud ? "ON" : "OFF"].")
+	to_chat(usr, "You toggled your admin combo HUD [adding_hud ? "ON" : "OFF"].", confidential = TRUE)
 	message_admins("[key_name_admin(usr)] toggled their admin combo HUD [adding_hud ? "ON" : "OFF"].")
 	log_admin("[key_name(usr)] toggled their admin combo HUD [adding_hud ? "ON" : "OFF"].")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Combo HUD", "[adding_hud ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -1083,13 +894,6 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 	var/datum/atom_hud/A = GLOB.huds[ANTAG_HUD_TRAITOR]
 	return A.hudusers[mob]
 
-/client/proc/open_shuttle_manipulator()
-	set category = "Admin"
-	set name = "Shuttle Manipulator"
-	set desc = "Opens the shuttle manipulator UI."
-
-	for(var/obj/machinery/shuttle_manipulator/M in GLOB.machines)
-		M.ui_interact(usr)
 
 /client/proc/run_weather()
 	set category = "Fun"
@@ -1311,7 +1115,7 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 
 		if(ADMIN_PUNISHMENT_MAZING)
 			if(!puzzle_imprison(target))
-				to_chat(usr,"<span class='warning'>Imprisonment failed!</span>")
+				to_chat(usr,"<span class='warning'>Imprisonment failed!</span>", confidential = TRUE)
 				return
 
 	punish_log(target, punishment)
@@ -1342,77 +1146,28 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 		return
 
 	if(!CONFIG_GET(flag/use_exp_tracking))
-		to_chat(usr, "<span class='warning'>Tracking is disabled in the server configuration file.</span>")
+		to_chat(usr, "<span class='warning'>Tracking is disabled in the server configuration file.</span>", confidential = TRUE)
 		return
 
 	var/list/msg = list()
-	msg += "<html><head><title>Playtime Report</title></head><body>Playtime:<BR><UL>"
+	msg += "<html><head>[UTF8HEADER]<title>Playtime Report</title></head><body>Playtime:<BR><UL>"
 	for(var/client/C in GLOB.clients)
 		msg += "<LI> - [key_name_admin(C)]: <A href='?_src_=holder;[HrefToken()];getplaytimewindow=[REF(C.mob)]'>" + C.get_exp_living() + "</a></LI>"
 	msg += "</UL></BODY></HTML>"
 	src << browse(msg.Join(), "window=Player_playtime_check")
 
-/obj/effect/temp_visual/fireball
-	icon = 'icons/obj/wizard.dmi'
-	icon_state = "fireball"
-	name = "fireball"
-	desc = "Get out of the way!"
-	layer = FLY_LAYER
-	randomdir = FALSE
-	duration = 9
-	pixel_z = 270
-
-/obj/effect/temp_visual/fireball/Initialize()
-	. = ..()
-	animate(src, pixel_z = 0, time = duration)
-
-/obj/effect/temp_visual/target
-	icon = 'icons/mob/actions/actions_items.dmi'
-	icon_state = "sniper_zoom"
-	layer = BELOW_MOB_LAYER
-	light_range = 2
-	duration = 9
-
-/obj/effect/temp_visual/target/ex_act()
-	return
-
-/obj/effect/temp_visual/target/Initialize(mapload, list/flame_hit)
-	. = ..()
-	INVOKE_ASYNC(src, .proc/fall, flame_hit)
-
-/obj/effect/temp_visual/target/proc/fall(list/flame_hit)
-	var/turf/T = get_turf(src)
-	playsound(T,'sound/magic/fleshtostone.ogg', 80, 1)
-	new /obj/effect/temp_visual/fireball(T)
-	sleep(duration)
-	if(ismineralturf(T))
-		var/turf/closed/mineral/M = T
-		M.gets_drilled()
-	playsound(T, "explosion", 80, 1)
-	new /obj/effect/hotspot(T)
-	T.hotspot_expose(700, 50, 1)
-	for(var/mob/living/L in T.contents)
-		if(istype(L, /mob/living/simple_animal/hostile/megafauna/dragon))
-			continue
-		if(islist(flame_hit) && !flame_hit[L])
-			L.adjustFireLoss(40)
-			to_chat(L, "<span class='userdanger'>You're hit by the drake's fire breath!</span>")
-			flame_hit[L] = TRUE
-		else
-			L.adjustFireLoss(10) //if we've already hit them, do way less damage
-
 /datum/admins/proc/cmd_show_exp_panel(client/C)
 	if(!check_rights(R_ADMIN))
 		return
 	if(!C)
-		to_chat(usr, "<span class='danger'>ERROR: Client not found.</span>")
+		to_chat(usr, "<span class='danger'>ERROR: Client not found.</span>", confidential = TRUE)
 		return
 	if(!CONFIG_GET(flag/use_exp_tracking))
-		to_chat(usr, "<span class='warning'>Tracking is disabled in the server configuration file.</span>")
+		to_chat(usr, "<span class='warning'>Tracking is disabled in the server configuration file.</span>", confidential = TRUE)
 		return
 
 	var/list/body = list()
-	body += "<html><head><title>Playtime for [C.key]</title></head><BODY><BR>Playtime:"
+	body += "<html><head>[UTF8HEADER]<title>Playtime for [C.key]</title></head><BODY><BR>Playtime:"
 	body += C.get_exp_report()
 	body += "<A href='?_src_=holder;[HrefToken()];toggleexempt=[REF(C)]'>Toggle Exempt status</a>"
 	body += "</BODY></HTML>"
@@ -1422,11 +1177,11 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 	if(!check_rights(R_ADMIN))
 		return
 	if(!C)
-		to_chat(usr, "<span class='danger'>ERROR: Client not found.</span>")
+		to_chat(usr, "<span class='danger'>ERROR: Client not found.</span>", confidential = TRUE)
 		return
 
 	if(!C.set_db_player_flags())
-		to_chat(usr, "<span class='danger'>ERROR: Unable read player flags from database. Please check logs.</span>")
+		to_chat(usr, "<span class='danger'>ERROR: Unable read player flags from database. Please check logs.</span>", confidential = TRUE)
 	var/dbflags = C.prefs.db_flags
 	var/newstate = FALSE
 	if(dbflags & DB_FLAG_EXEMPT)
@@ -1435,7 +1190,51 @@ GLOBAL_LIST_EMPTY(custom_outfits) //Admin created outfits
 		newstate = TRUE
 
 	if(C.update_flag_db(DB_FLAG_EXEMPT, newstate))
-		to_chat(usr, "<span class='danger'>ERROR: Unable to update player flags. Please check logs.</span>")
+		to_chat(usr, "<span class='danger'>ERROR: Unable to update player flags. Please check logs.</span>", confidential = TRUE)
 	else
 		message_admins("[key_name_admin(usr)] has [newstate ? "activated" : "deactivated"] job exp exempt status on [key_name_admin(C)]")
 		log_admin("[key_name(usr)] has [newstate ? "activated" : "deactivated"] job exp exempt status on [key_name(C)]")
+
+/// Allow admin to add or remove traits of datum
+/datum/admins/proc/modify_traits(datum/D)
+	if(!D)
+		return
+
+	var/add_or_remove = input("Remove/Add?", "Trait Remove/Add") as null|anything in list("Add","Remove")
+	if(!add_or_remove)
+		return
+	var/list/availible_traits = list()
+
+	switch(add_or_remove)
+		if("Add")
+			for(var/key in GLOB.traits_by_type)
+				if(istype(D,key))
+					availible_traits += GLOB.traits_by_type[key]
+		if("Remove")
+			if(!GLOB.trait_name_map)
+				GLOB.trait_name_map = generate_trait_name_map()
+			for(var/trait in D.status_traits)
+				var/name = GLOB.trait_name_map[trait] || trait
+				availible_traits[name] = trait
+
+	var/chosen_trait = input("Select trait to modify", "Trait") as null|anything in availible_traits
+	if(!chosen_trait)
+		return
+	chosen_trait = availible_traits[chosen_trait]
+
+	var/source = "adminabuse"
+	switch(add_or_remove)
+		if("Add") //Not doing source choosing here intentionally to make this bit faster to use, you can always vv it.
+			ADD_TRAIT(D,chosen_trait,source)
+		if("Remove")
+			var/specific = input("All or specific source ?", "Trait Remove/Add") as null|anything in list("All","Specific")
+			if(!specific)
+				return
+			switch(specific)
+				if("All")
+					source = null
+				if("Specific")
+					source = input("Source to be removed","Trait Remove/Add") as null|anything in D.status_traits[chosen_trait]
+					if(!source)
+						return
+			REMOVE_TRAIT(D,chosen_trait,source)

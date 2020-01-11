@@ -36,11 +36,11 @@ This file contains the arcane tome files.
 	if(!iscultist(user))
 		return ..()
 	if(iscultist(M))
-		if(M.reagents && M.reagents.has_reagent("holywater")) //allows cultists to be rescued from the clutches of ordained religion
+		if(M.reagents && M.reagents.has_reagent(/datum/reagent/water/holywater)) //allows cultists to be rescued from the clutches of ordained religion
 			to_chat(user, "<span class='cult'>You remove the taint from [M].</span>" )
 			var/holy2unholy = M.reagents.get_reagent_amount("holywater")
-			M.reagents.del_reagent("holywater")
-			M.reagents.add_reagent("unholywater",holy2unholy)
+			M.reagents.del_reagent(/datum/reagent/water/holywater)
+			M.reagents.add_reagent(/datum/reagent/fuel/unholywater,holy2unholy)
 			log_combat(user, M, "smacked", src, " removing the holy water from them")
 		return
 	M.take_bodypart_damage(0, 15) //Used to be a random between 5 and 20
@@ -227,7 +227,7 @@ This file contains the arcane tome files.
 		if(!(A in summon_objective.summon_spots))  // Check again to make sure they didn't move
 			to_chat(user, "<span class='cultlarge'>The Geometer can only be summoned where the veil is weak - in [english_list(summon_objective.summon_spots)]!</span>")
 			return
-		priority_announce("Figments from an eldritch god are being summoned by [user] into [A.map_name] from an unknown dimension. Disrupt the ritual at all costs!","Central Command Higher Dimensional Affairs", 'sound/ai/spanomalies.ogg')
+		priority_announce("Figments from an eldritch god are being summoned by [user] into [A.map_name] from an unknown dimension. Disrupt the ritual at all costs!","Central Command Higher Dimensional Affairs", 'hippiestation/sound/pyko/spanomalies.ogg') // hippie -- pykoai
 		for(var/B in spiral_range_turfs(1, user, 1))
 			var/obj/structure/emergency_shield/sanguine/N = new(B)
 			shields += N

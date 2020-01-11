@@ -91,13 +91,7 @@
 /datum/mutation/human/proc/get_visual_indicator()
 	return
 
-/datum/mutation/human/proc/on_attack_hand( atom/target, proximity)
-	return
-
 /datum/mutation/human/proc/on_ranged_attack(atom/target)
-	return
-
-/datum/mutation/human/proc/on_move(new_loc)
 	return
 
 /datum/mutation/human/proc/on_life()
@@ -120,13 +114,6 @@
 			qdel(src)
 		return 0
 	return 1
-
-/datum/mutation/human/proc/say_mod(message)
-	if(message)
-		return message
-
-/datum/mutation/human/proc/get_spans()
-	return list()
 
 /mob/living/carbon/proc/update_mutations_overlay()
 	return
@@ -183,7 +170,7 @@
 		qdel(src)
 
 /datum/mutation/human/proc/grant_spell()
-	if(!power || !owner)
+	if(!ispath(power) || !owner)
 		return FALSE
 
 	power = new power()

@@ -1,3 +1,6 @@
+/mob/living/carbon
+	var/bloodcrawl_allow_items = FALSE
+
 /mob/living/carbon/breathe()
 	if(!getorganslot("breathing_tube"))
 		if(pulledby && pulledby.grab_state == GRAB_KILL)

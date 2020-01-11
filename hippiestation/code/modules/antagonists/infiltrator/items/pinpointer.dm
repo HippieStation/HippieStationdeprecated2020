@@ -9,28 +9,40 @@
 	var/mode = MODE_CUTTER
 	var/current_target
 
+/obj/item/pinpointer/infiltrator/Initialize()
+	. = ..()
+	current_target = SSshuttle.getShuttle("syndicatecutter")
+	scan_for_target()
+	update_icon()
+
 /obj/item/pinpointer/infiltrator/examine(mob/user)
 	. = ..()
 	to_chat(user, "<span class='notice'>It is tracking [mode == MODE_CUTTER ? "the syndicate cutter" : "an objective target"].</span>")
 
 /obj/item/pinpointer/infiltrator/scan_for_target()
-	switch(mode)
-		if(MODE_CUTTER)
-			target = SSshuttle.getShuttle("syndicatecutter")
-		if(MODE_TARGET)
-			if(team && LAZYLEN(team.objectives))
-				for(var/A in team.objectives)
-					var/datum/objective/O = A
-					if(istype(O) && O.target && !O.check_completion())
-						if(istype(O.target, /datum/mind))
-							var/datum/mind/M = O.target
-							target = M.current
-						else if(istype(O.target, /atom))
-							target = O.target
-						else
-							continue
-						break
+	target = current_target
 	..()
+
+/obj/item/pinpointer/infiltrator/proc/check_menu(mob/living/user)
+	if(!istype(user))
+		return FALSE
+	if(user.incapacitated() || !user.Adjacent(src))
+		return FALSE
+	return TRUE
+
+/obj/item/pinpointer/infiltrator/proc/get_targets()
+	var/list/targets = list()
+	if(team && LAZYLEN(team.objectives))
+		for(var/A in team.objectives)
+			var/datum/objective/O = A
+			if(istype(O) && !O.check_completion())
+				if(istype(O.target, /datum/mind))
+					var/datum/mind/M = O.target
+					targets[M.current.real_name] = M.current
+				else if(istype(O, /datum/objective/steal))
+					var/datum/objective/steal/S = O
+					targets[S.targetinfo.name] = locate(S.targetinfo.targetitem)
+	return targets
 
 /obj/item/pinpointer/infiltrator/attack_self(mob/user)
 	if(!upgraded)
@@ -38,14 +50,24 @@
 	if(!active)
 		active = TRUE
 		START_PROCESSING(SSfastprocess, src)
-	if(mode == MODE_CUTTER)
-		mode = MODE_TARGET
-		scan_for_target()
-		to_chat(user, "<span class='notice'>[src] is now tracking [target].</span>")
-	else
-		mode = MODE_CUTTER
-		scan_for_target()
-		to_chat(user, "<span class='notice'>[src] is now tracking the syndicate cutter.</span>")
+	var/list/radial_list = list()
+	var/list/targets = get_targets()
+	for(var/A in targets)
+		if(istype(targets[A], /mob))
+			radial_list[A] = getFlatIcon(targets[A])
+		else if(istype(targets[A], /atom))
+			var/atom/AT = targets[A]
+			radial_list[A] = image(AT.icon, AT.icon_state)
+	radial_list["ship"] = image(icon = 'icons/turf/shuttle.dmi', icon_state = "burst_s")
+	var/chosen = show_radial_menu(user, src, radial_list, custom_check = CALLBACK(src, .proc/check_menu, user))
+	if(!check_menu(user))
+		return
+	if(chosen)
+		if (chosen == "ship")
+			current_target = SSshuttle.getShuttle("syndicatecutter")
+		else
+			current_target = targets[chosen]
+	scan_for_target()
 	update_icon()
 
 /obj/item/pinpointer/infiltrator/attackby(obj/item/I, mob/user, params)

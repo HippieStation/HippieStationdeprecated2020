@@ -4,13 +4,17 @@
 /obj/item/gun/ballistic/revolver/grenadelauncher//this is only used for underbarrel grenade launchers at the moment, but admins can still spawn it if they feel like being assholes
 	desc = "A break-operated grenade launcher."
 	name = "grenade launcher"
-	icon_state = "dshotgun-sawn"
+	icon_state = "dshotgun_sawn"
 	item_state = "gun"
 	mag_type = /obj/item/ammo_box/magazine/internal/grenadelauncher
 	fire_sound = 'face/sound/weapons/firearms/rocketlaunch.ogg'
 	w_class = WEIGHT_CLASS_NORMAL
 	pin = /obj/item/firing_pin/implant/pindicate
 	bolt_type = BOLT_TYPE_NO_BOLT
+
+/obj/item/gun/ballistic/automatic/gyropistol/update_icon()
+	..()
+	icon_state = "[initial(icon_state)][magazine ? "loaded" : ""]"
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/unrestricted
 	pin = /obj/item/firing_pin
@@ -42,10 +46,6 @@
 	actions_types = list()
 	casing_ejector = FALSE
 
-/obj/item/gun/ballistic/automatic/gyropistol/update_icon()
-	..()
-	icon_state = "[initial(icon_state)][magazine ? "loaded" : ""]"
-
 /obj/item/gun/ballistic/rocketlauncher
 	name = "\improper PML-9"
 	desc = "A reusable rocket propelled grenade launcher. The words \"NT this way\" and an arrow have been written near the barrel."
@@ -64,6 +64,7 @@
 	internal_magazine = TRUE
 	cartridge_wording = "rocket"
 	empty_indicator = TRUE
+	tac_reloads = FALSE
 
 /obj/item/gun/ballistic/rocketlauncher/unrestricted
 	pin = /obj/item/firing_pin

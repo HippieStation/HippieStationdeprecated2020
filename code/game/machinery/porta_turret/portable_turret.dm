@@ -194,7 +194,7 @@
 		if(anchored)	//you can't turn a turret on/off if it's not anchored/secured
 			on = !on	//toggle on/off
 		else
-			to_chat(usr, "<span class='notice'>It has to be secured first!</span>")
+			to_chat(usr, "<span class='warning'>It has to be secured first!</span>")
 		interact(usr)
 		return
 
@@ -218,23 +218,10 @@
 		interact(usr)
 
 /obj/machinery/porta_turret/power_change()
-	if(!anchored)
+	. = ..()
+	if(!anchored || (stat & BROKEN) || !powered())
 		update_icon()
 		remove_control()
-		return
-	if(stat & BROKEN)
-		update_icon()
-		remove_control()
-	else
-		if( powered() )
-			stat &= ~NOPOWER
-			update_icon()
-		else
-			spawn(rand(0, 15))
-				stat |= NOPOWER
-				remove_control()
-				update_icon()
-
 
 /obj/machinery/porta_turret/attackby(obj/item/I, mob/user, params)
 	if(stat & BROKEN)
@@ -281,7 +268,7 @@
 			locked = !locked
 			to_chat(user, "<span class='notice'>Controls are now [locked ? "locked" : "unlocked"].</span>")
 		else
-			to_chat(user, "<span class='notice'>Access denied.</span>")
+			to_chat(user, "<span class='alert'>Access denied.</span>")
 	else if(I.tool_behaviour == TOOL_MULTITOOL && !locked)
 		if(!multitool_check_buffer(user, I))
 			return
@@ -295,7 +282,7 @@
 	if(obj_flags & EMAGGED)
 		return
 	to_chat(user, "<span class='warning'>You short out [src]'s threat assessment circuits.</span>")
-	visible_message("[src] hums oddly...")
+	audible_message("<span class='hear'>[src] hums oddly...</span>")
 	obj_flags |= EMAGGED
 	controllock = TRUE
 	on = FALSE //turns off the turret temporarily
@@ -498,7 +485,7 @@
 			threatcount += 4
 
 	if(shoot_unloyal)
-		if (!perp.has_trait(TRAIT_MINDSHIELD))
+		if (!HAS_TRAIT(perp, TRAIT_MINDSHIELD))
 			threatcount += 4
 
 	return threatcount
@@ -562,6 +549,7 @@
 	//Shooting Code:
 	A.preparePixelProjectile(target, T)
 	A.firer = src
+	A.fired_from = src
 	A.fire()
 	return A
 
@@ -828,10 +816,10 @@
 		T.cp = src
 
 /obj/machinery/turretid/examine(mob/user)
-	..()
+	. += ..()
 	if(issilicon(user) && (!stat & BROKEN))
-		to_chat(user, "<span class='notice'>Ctrl-click [src] to [ enabled ? "disable" : "enable"] turrets.</span>")
-		to_chat(user, "<span class='notice'>Alt-click [src] to set turrets to [ lethal ? "stun" : "kill"].</span>")
+		. += {"<span class='notice'>Ctrl-click [src] to [ enabled ? "disable" : "enable"] turrets.</span>
+					<span class='notice'>Alt-click [src] to set turrets to [ lethal ? "stun" : "kill"].</span>"}
 
 /obj/machinery/turretid/attackby(obj/item/I, mob/user, params)
 	if(stat & BROKEN)
@@ -843,7 +831,7 @@
 		var/obj/item/multitool/M = I
 		if(M.buffer && istype(M.buffer, /obj/machinery/porta_turret))
 			turrets |= M.buffer
-			to_chat(user, "You link \the [M.buffer] with \the [src]")
+			to_chat(user, "<span class='notice'>You link \the [M.buffer] with \the [src].</span>")
 			return
 
 	if (issilicon(user))
@@ -852,7 +840,7 @@
 	if ( get_dist(src, user) == 0 )		// trying to unlock the interface
 		if (allowed(usr))
 			if(obj_flags & EMAGGED)
-				to_chat(user, "<span class='notice'>The turret control is unresponsive.</span>")
+				to_chat(user, "<span class='warning'>The turret control is unresponsive!</span>")
 				return
 
 			locked = !locked
@@ -865,12 +853,12 @@
 				if (user.machine==src)
 					attack_hand(user)
 		else
-			to_chat(user, "<span class='warning'>Access denied.</span>")
+			to_chat(user, "<span class='alert'>Access denied.</span>")
 
 /obj/machinery/turretid/emag_act(mob/user)
 	if(obj_flags & EMAGGED)
 		return
-	to_chat(user, "<span class='danger'>You short out the turret controls' access analysis module.</span>")
+	to_chat(user, "<span class='notice'>You short out the turret controls' access analysis module.</span>")
 	obj_flags |= EMAGGED
 	locked = FALSE
 	if(user && user.machine == src)
@@ -880,13 +868,13 @@
 	if(!ailock || IsAdminGhost(user))
 		return attack_hand(user)
 	else
-		to_chat(user, "<span class='notice'>There seems to be a firewall preventing you from accessing this device.</span>")
+		to_chat(user, "<span class='warning'>There seems to be a firewall preventing you from accessing this device!</span>")
 
 /obj/machinery/turretid/ui_interact(mob/user)
 	. = ..()
 	if ( get_dist(src, user) > 0 )
 		if ( !(issilicon(user) || IsAdminGhost(user)) )
-			to_chat(user, "<span class='notice'>You are too far away.</span>")
+			to_chat(user, "<span class='warning'>You are too far away!</span>")
 			user.unset_machine()
 			user << browse(null, "window=turretid")
 			return
@@ -911,7 +899,7 @@
 		return
 	if (locked)
 		if(!(issilicon(usr) || IsAdminGhost(usr)))
-			to_chat(usr, "Control panel is locked!")
+			to_chat(usr, "<span class='warning'>Control panel is locked!</span>")
 			return
 	if (href_list["toggleOn"])
 		toggle_on(usr)
@@ -934,10 +922,6 @@
 /obj/machinery/turretid/proc/updateTurrets()
 	for (var/obj/machinery/porta_turret/aTurret in turrets)
 		aTurret.setState(enabled, lethal)
-	update_icon()
-
-/obj/machinery/turretid/power_change()
-	..()
 	update_icon()
 
 /obj/machinery/turretid/update_icon()

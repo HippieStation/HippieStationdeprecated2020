@@ -29,8 +29,10 @@ Bonus
 	symptom_delay_min = 25
 	symptom_delay_max = 80
 	var/remove_eyes = FALSE
-	threshold_desc = "<b>Resistance 12:</b> Weakens extraocular muscles, eventually leading to complete detachment of the eyes.<br>\
-					  <b>Stealth 4:</b> The symptom remains hidden until active."
+	threshold_descs = list(
+		"Resistance 12" = "Weakens extraocular muscles, eventually leading to complete detachment of the eyes.",
+		"Stealth 4" = "The symptom remains hidden until active.",
+	)
 
 /datum/symptom/visionloss/Start(datum/disease/advance/A)
 	if(!..())
@@ -61,7 +63,7 @@ Bonus
 					M.become_nearsighted(EYE_DAMAGE)
 				if(prob(eyes.eye_damage - 10 + 1))
 					if(!remove_eyes)
-						if(!M.has_trait(TRAIT_BLIND))
+						if(!HAS_TRAIT(M, TRAIT_BLIND))
 							to_chat(M, "<span class='userdanger'>You go blind!</span>")
 						M.become_blind(EYE_DAMAGE)
 					else

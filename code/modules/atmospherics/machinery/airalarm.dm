@@ -71,6 +71,8 @@
 	integrity_failure = 80
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 30)
 	resistance_flags = FIRE_PROOF
+	ui_x = 440
+	ui_y = 650
 
 	var/danger_level = 0
 	var/mode = AALARM_MODE_SCRUBBING
@@ -222,11 +224,11 @@
 	. = ..()
 	switch(buildstage)
 		if(0)
-			to_chat(user, "<span class='notice'>It is missing air alarm electronics.</span>")
+			. += "<span class='notice'>It is missing air alarm electronics.</span>"
 		if(1)
-			to_chat(user, "<span class='notice'>It is missing wiring.</span>")
+			. += "<span class='notice'>It is missing wiring.</span>"
 		if(2)
-			to_chat(user, "<span class='notice'>Alt-click to [locked ? "unlock" : "lock"] the interface.</span>")
+			. += "<span class='notice'>Alt-click to [locked ? "unlock" : "lock"] the interface.</span>"
 
 /obj/machinery/airalarm/ui_status(mob/user)
 	if(user.has_unlimited_silicon_privilege && aidisabled)
@@ -239,7 +241,7 @@
 									datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "airalarm", name, 440, 650, master_ui, state)
+		ui = new(user, src, ui_key, "airalarm", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/airalarm/ui_data(mob/user)
@@ -386,9 +388,8 @@
 			send_signal(device_id, list("checks" = text2num(params["val"])^2), usr)
 			. = TRUE
 		if("set_external_pressure", "set_internal_pressure")
-			var/area/A = get_area(src)
-			var/target = input("New target pressure:", name, A.air_vent_info[device_id][(action == "set_external_pressure" ? "external" : "internal")]) as num|null
-			if(!isnull(target) && !..())
+			var/target = params["value"]
+			if(!isnull(target))
 				send_signal(device_id, list("[action]" = target), usr)
 				. = TRUE
 		if("reset_external_pressure")
@@ -806,10 +807,6 @@
 		else
 			to_chat(user, "<span class='danger'>Access denied.</span>")
 	return
-
-/obj/machinery/airalarm/power_change()
-	..()
-	update_icon()
 
 /obj/machinery/airalarm/emag_act(mob/user)
 	if(obj_flags & EMAGGED)

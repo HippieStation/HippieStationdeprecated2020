@@ -34,7 +34,7 @@
 	var/launchCounter = 1 //Used with the "Ordered" launch mode (launchChoice = 1) to see what item is launched
 	var/atom/specificTarget //Do we want to target a specific mob instead of where we click? Also used for smiting
 	var/list/orderedArea = list() //Contains an ordered list of turfs in an area (filled in the createOrderedArea() proc), read top-left to bottom-right. Used for the "ordered" launch mode (launchChoice = 1)
-	var/list/acceptableTurfs = list() //Contians a list of turfs (in the "bay" area on centcom) that have items that can be launched. Taken from orderedArea
+	var/list/turf/acceptableTurfs = list() //Contians a list of turfs (in the "bay" area on centcom) that have items that can be launched. Taken from orderedArea
 	var/list/launchList = list() //Contains whatever is going to be put in the supplypod and fired. Taken from acceptableTurfs
 	var/obj/effect/supplypod_selector/selector = new() //An effect used for keeping track of what item is going to be launched when in "ordered" mode (launchChoice = 1)
 	var/obj/structure/closet/supplypod/centcompod/temp_pod //The temporary pod that is modified by this datum, then cloned. The buildObject() clone of this pod is what is launched
@@ -421,6 +421,9 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 		if("styleSeeThrough")
 			temp_pod.setStyle(STYLE_SEETHROUGH)
 			. = TRUE
+		if("styleClockpod")
+			temp_pod.setStyle(STYLE_CLOCKPOD)
+			. = TRUE
 		if("refresh") //Refresh the Pod bay. User should press this if they spawn something new in the centcom bay. Automatically called whenever the user launches a pod
 			refreshBay()
 			. = TRUE
@@ -471,7 +474,7 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 			else
 				return //if target is null and we don't have a specific target, cancel
 			if (effectAnnounce)
-				deadchat_broadcast("<span class='deadsay'>A special package is being launched at the station!</span>", turf_target = target)
+				deadchat_broadcast("A special package is being launched at the station!", turf_target = target)
 			var/list/bouttaDie = list()
 			for (var/mob/living/M in target)
 				bouttaDie.Add(M)
@@ -498,7 +501,6 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 	if (isnull(A)) //If theres no supplypod bay mapped into centcom, throw an error
 		to_chat(holder.mob, "No /area/centcom/supplypod/loading/one (or /two or /three or /four) in the world! You can make one yourself (then refresh) for now, but yell at a mapper to fix this, today!")
 		CRASH("No /area/centcom/supplypod/loading/one (or /two or /three or /four) has been mapped into the centcom z-level!")
-		return
 	orderedArea = list()
 	if (!isemptylist(A.contents)) //Go through the area passed into the proc, and figure out the top left and bottom right corners by calculating max and min values
 		var/startX = A.contents[1].x //Create the four values (we do it off a.contents[1] so they have some sort of arbitrary initial value. They should be overwritten in a few moments)

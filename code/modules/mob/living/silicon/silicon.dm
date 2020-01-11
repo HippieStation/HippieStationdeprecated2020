@@ -13,6 +13,7 @@
 	mob_biotypes = list(MOB_ROBOTIC)
 	rad_flags = RAD_PROTECT_CONTENTS | RAD_NO_CONTAMINATE
 	deathsound = 'sound/voice/borg_deathsound.ogg'
+	speech_span = SPAN_ROBOT
 
 	var/datum/ai_laws/laws = null//Now... THEY ALL CAN ALL HAVE LAWS
 	var/last_lawchange_announce = 0
@@ -23,7 +24,7 @@
 	var/obj/item/camera/siliconcam/aicamera = null //photography
 	hud_possible = list(ANTAG_HUD, DIAG_STAT_HUD, DIAG_HUD, DIAG_TRACK_HUD)
 
-	var/obj/item/radio/borg/radio = null //AIs dont use this but this is at the silicon level to advoid copypasta in say()
+	var/obj/item/radio/borg/radio = null //All silicons make use of this, with (p)AI's creating headsets
 
 	var/list/alarm_types_show = list("Motion" = 0, "Fire" = 0, "Atmosphere" = 0, "Power" = 0, "Camera" = 0)
 	var/list/alarm_types_clear = list("Motion" = 0, "Fire" = 0, "Atmosphere" = 0, "Power" = 0, "Camera" = 0)
@@ -44,6 +45,7 @@
 
 	var/hack_software = FALSE //Will be able to use hacking actions
 	var/interaction_range = 7			//wireless control range
+	var/obj/item/pda/aiPDA
 
 /mob/living/silicon/Initialize()
 	. = ..()
@@ -69,6 +71,9 @@
 
 /mob/living/silicon/contents_explosion(severity, target)
 	return
+
+/mob/living/silicon/prevent_content_explosion()
+	return TRUE
 
 /mob/living/silicon/proc/cancelAlarm()
 	return
@@ -321,9 +326,14 @@
 
 	usr << browse(list, "window=laws")
 
+/mob/living/silicon/proc/ai_roster()
+	var/datum/browser/popup = new(src, "airoster", "Crew Manifest", 387, 420)
+	popup.set_content(GLOB.data_core.get_manifest())
+	popup.open()
+
 /mob/living/silicon/proc/set_autosay() //For allowing the AI and borgs to set the radio behavior of auto announcements (state laws, arrivals).
 	if(!radio)
-		to_chat(src, "Radio not detected.")
+		to_chat(src, "<span class='alert'>Radio not detected.</span>")
 		return
 
 	//Ask the user to pick a channel from what it has available.
@@ -377,11 +387,11 @@
 		return
 	sensors_on = !sensors_on
 	if (!sensors_on)
-		to_chat(src, "Sensor overlay deactivated.")
+		to_chat(src, "<span class='notice'>Sensor overlay deactivated.</span>")
 		remove_sensors()
 		return
 	add_sensors()
-	to_chat(src, "Sensor overlay activated.")
+	to_chat(src, "<span class='notice'>Sensor overlay activated.</span>")
 
 /mob/living/silicon/proc/GetPhoto(mob/user)
 	if (aicamera)

@@ -2,6 +2,10 @@
 	set category = "Mentor"
 	set name = "Mentorhelp"
 
+	if(prefs.muted & MUTE_MENTOR)
+		to_chat(src, "<span class='danger'>Error: Mentorhelp: You are unable to use mentorhelps (muted).</span>", confidential=TRUE)
+		return
+
 	//clean the input msg
 	if(!msg)	return
 
@@ -20,9 +24,9 @@
 
 	for(var/client/X in GLOB.mentors | GLOB.admins)
 		X << 'sound/items/bikehorn.ogg'
-		to_chat(X, mentor_msg)
+		to_chat(X, mentor_msg, confidential=TRUE)
 
-	to_chat(src, "<span class='mentornotice'><font color='purple'>PM to-<b>Mentors</b>: [msg]</font></span>")
+	to_chat(src, "<span class='mentornotice'><font color='purple'>PM to-<b>Mentors</b>: [msg]</font></span>", confidential=TRUE)
 	return
 
 /proc/get_mentor_counts()

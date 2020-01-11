@@ -48,7 +48,7 @@ field_generator power level display
 	cut_overlays()
 	if(warming_up)
 		add_overlay("+a[warming_up]")
-	if(fields.len)
+	if(LAZYLEN(fields))
 		add_overlay("+on")
 	if(power_level)
 		add_overlay("+p[power_level]")
@@ -106,10 +106,12 @@ field_generator power level display
 			state = FG_UNSECURED
 
 /obj/machinery/field/generator/wrench_act(mob/living/user, obj/item/I)
+	..()
 	default_unfasten_wrench(user, I)
 	return TRUE
 
 /obj/machinery/field/generator/welder_act(mob/living/user, obj/item/I)
+	. = ..()
 	if(active)
 		to_chat(user, "<span class='warning'>[src] needs to be off!</span>")
 		return TRUE
@@ -329,12 +331,13 @@ field_generator power level display
 	spawn(1)
 		var/temp = 1 //stops spam
 		for(var/obj/singularity/O in GLOB.singularities)
-			if(O.last_warning && temp)
+			if(O.last_warning && temp && O.z == z)//Because the bag of holding singulo sets this off
 				if((world.time - O.last_warning) > 50) //to stop message-spam
 					temp = 0
 					var/turf/T = get_turf(src)
 					message_admins("A singulo exists and a containment field has failed at [ADMIN_VERBOSEJMP(T)].")
 					investigate_log("has <font color='red'>failed</font> whilst a singulo exists at [AREACOORD(T)].", INVESTIGATE_SINGULO)
+					notify_ghosts("IT'S LOOSE", source = src, action = NOTIFY_ORBIT, flashwindow = FALSE, ghost_sound = 'sound/machines/warning-buzzer.ogg', header = "IT'S LOOSE", notify_volume = 75)
 			O.last_warning = world.time
 
 	move_resist = initial(move_resist)

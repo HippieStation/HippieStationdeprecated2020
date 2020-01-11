@@ -23,7 +23,7 @@
 	throw_range = 7
 	materials = list(MAT_METAL=10)
 	pressure_resistance = 2
-	grind_results = list("iron" = 2, "iodine" = 1)
+	grind_results = list(/datum/reagent/iron = 2, /datum/reagent/iodine = 1)
 	var/colour = "black"	//what colour the ink is!
 	var/degrees = 0
 	var/font = PEN_FONT
@@ -134,10 +134,10 @@
 			if(QDELETED(O) || !user.canUseTopic(O, BE_CLOSE))
 				return
 			if(oldname == input)
-				to_chat(user, "You changed \the [O.name] to... well... \the [O.name].")
+				to_chat(user, "<span class='notice'>You changed \the [O.name] to... well... \the [O.name].</span>")
 			else
 				O.name = input
-				to_chat(user, "\The [oldname] has been successfully been renamed to \the [input].")
+				to_chat(user, "<span class='notice'>\The [oldname] has been successfully been renamed to \the [input].</span>")
 				O.renamedByPlayer = TRUE
 
 		if(penchoice == "Change description")
@@ -145,7 +145,7 @@
 			if(QDELETED(O) || !user.canUseTopic(O, BE_CLOSE))
 				return
 			O.desc = input
-			to_chat(user, "You have successfully changed \the [O.name]'s description.")
+			to_chat(user, "<span class='notice'>You have successfully changed \the [O.name]'s description.</span>")
 
 /*
  * Sleepypens
@@ -165,9 +165,9 @@
 /obj/item/pen/sleepy/Initialize()
 	. = ..()
 	create_reagents(45, OPENCONTAINER)
-	reagents.add_reagent("chloralhydratedelayed", 20)
-	reagents.add_reagent("mutetoxin", 15)
-	reagents.add_reagent("tirizene", 10)
+	reagents.add_reagent(/datum/reagent/toxin/chloralhydrate, 20)
+	reagents.add_reagent(/datum/reagent/toxin/mutetoxin, 15)
+	reagents.add_reagent(/datum/reagent/toxin/staminatoxin, 10)
 
 /*
  * (Alan) Edaggers
@@ -178,12 +178,21 @@
 
 /obj/item/pen/edagger/Initialize()
 	. = ..()
-	AddComponent(/datum/component/butchering, 60, 100, 0, 'face/sound/weapons/blade1.ogg', TRUE)
+	AddComponent(/datum/component/butchering, 60, 100, 0, 'sound/weapons/blade1.ogg', TRUE)
+	
+/obj/item/pen/edagger/suicide_act(mob/user)
+	. = BRUTELOSS
+	if(on)
+		user.visible_message("<span class='suicide'>[user] forcefully rams the pen into their mouth!</span>")
+	else
+		user.visible_message("<span class='suicide'>[user] is holding a pen up to their mouth! It looks like [user.p_theyre()] trying to commit suicide!</span>")
+		attack_self(user)
 
 /obj/item/pen/edagger/attack_self(mob/living/user)
 	if(on)
 		on = FALSE
 		force = initial(force)
+		throw_speed = initial(throw_speed)
 		w_class = initial(w_class)
 		name = initial(name)
 		hitsound = initial(hitsound)
@@ -194,14 +203,15 @@
 	else
 		on = TRUE
 		force = 18
+		throw_speed = 4
 		w_class = WEIGHT_CLASS_NORMAL
 		name = "energy dagger"
-		hitsound = 'face/sound/weapons/blade1.ogg'
+		hitsound = 'sound/weapons/blade1.ogg'
 		embedding = embedding.setRating(embed_chance = 100) //rule of cool
 		throwforce = 35
 		playsound(user, 'sound/weapons/saberon.ogg', 5, 1)
 		to_chat(user, "<span class='warning'>[src] is now active.</span>")
-	GET_COMPONENT_FROM(butchering, /datum/component/butchering, src)
+	var/datum/component/butchering/butchering = src.GetComponent(/datum/component/butchering)
 	butchering.butchering_enabled = on
 	update_icon()
 

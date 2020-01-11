@@ -15,3 +15,6 @@
 	default_price = 5
 	extra_price = 10
 	scan_id = FALSE
+
+/obj/machinery/vending/cart
+	light_color = LIGHT_COLOR_PINK

@@ -483,6 +483,14 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Atmospherics Engine"
 	icon_state = "atmos_engine"
 
+/area/engine/engine_room //donut station specific
+	name = "Engine Room"
+	icon_state = "atmos_engine"
+
+/area/engine/engine_room/external
+	name = "Supermatter External Access"
+	icon_state = "engine_foyer"
+
 /area/engine/supermatter
 	name = "Supermatter Engine"
 	icon_state = "engine_sm"
@@ -662,6 +670,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/medical/chemistry
 	name = "Chemistry"
 	icon_state = "chem"
+
+/area/medical/apothecary
+	name = "Apothecary"
+	icon_state = "apothecary"
 
 /area/medical/surgery
 	name = "Surgery"

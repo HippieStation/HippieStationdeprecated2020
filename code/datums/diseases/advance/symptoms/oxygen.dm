@@ -28,7 +28,9 @@ Bonus
 	symptom_delay_min = 1
 	symptom_delay_max = 1
 	var/regenerate_blood = FALSE
-	threshold_desc = "<b>Resistance 8:</b>Additionally regenerates lost blood.<br>"
+	threshold_descs = list(
+		"Resistance 8" = "Additionally regenerates lost blood."
+	)
 
 /datum/symptom/oxygen/Start(datum/disease/advance/A)
 	if(!..())
@@ -57,13 +59,13 @@ Bonus
 	var/mob/living/carbon/M = A.affected_mob
 	switch(A.stage)
 		if(3)
-			M.remove_trait(TRAIT_NOBREATH, DISEASE_TRAIT)
+			REMOVE_TRAIT(M, TRAIT_NOBREATH, DISEASE_TRAIT)
 		if(4)
-			M.add_trait(TRAIT_NOBREATH, DISEASE_TRAIT)
+			ADD_TRAIT(M, TRAIT_NOBREATH, DISEASE_TRAIT)
 	return TRUE
 
 /datum/symptom/oxygen/End(datum/disease/advance/A)
 	if(!..())
 		return
 	if(A.stage >= 4)
-		A.affected_mob.remove_trait(TRAIT_NOBREATH, DISEASE_TRAIT)
+		REMOVE_TRAIT(A.affected_mob, TRAIT_NOBREATH, DISEASE_TRAIT)

@@ -9,11 +9,12 @@
 	icon = 'hippiestation/icons/obj/clothing/masks.dmi'
 	alternate_worn_icon = 'hippiestation/icons/mob/mask.dmi'
 	alternate_screams = list('hippiestation/sound/voice/finnish_1.ogg', 'hippiestation/sound/voice/finnish_2.ogg', 'hippiestation/sound/voice/finnish_3.ogg')
+	modifies_speech = TRUE
 	// god emperor pyko has lended us his voice for scream sounds
 
-/obj/item/clothing/mask/spurdo/speechModification(M)
-	if(copytext(M, 1, 2) != "*")
-		M = " [M]"
+/obj/item/clothing/mask/spurdo/handle_speech(datum/source, list/speech_args)
+	if(copytext(speech_args[SPEECH_MESSAGE], 1, 2) != "*")
+		speech_args[SPEECH_MESSAGE] = " [speech_args[SPEECH_MESSAGE]]"
 		var/list/spurdo_words = strings("hippie_word_replacement.json", "spurdo") // Technically not modular, but unless we want to write an entire function for one damn mask then we'll just have this here.
 
 		for(var/key in spurdo_words)
@@ -21,34 +22,34 @@
 			if(islist(value))
 				value = pick(value)
 
-			M = replacetextEx(M, " [uppertext(key)]", " [uppertext(value)]")
-			M = replacetextEx(M, " [capitalize(key)]", " [capitalize(value)]")
-			M = replacetextEx(M, " [key]", " [value]")
+			speech_args[SPEECH_MESSAGE] = replacetextEx(speech_args[SPEECH_MESSAGE], " [uppertext(key)]", " [uppertext(value)]")
+			speech_args[SPEECH_MESSAGE] = replacetextEx(speech_args[SPEECH_MESSAGE], " [capitalize(key)]", " [capitalize(value)]")
+			speech_args[SPEECH_MESSAGE] = replacetextEx(speech_args[SPEECH_MESSAGE], " [key]", " [value]")
 
-		M = replacetext(M,"p","b") // This part and the lines below it are doubling down for accent's sake. It's modular.
-		M = replacetext(M,"c","g")
-		M = replacetext(M,"k","g")
-		M = replacetext(M,"z","s")
-		M = replacetext(M,"t","d")
+		speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE],"p","b") // This part and the lines below it are doubling down for accent's sake. It's modular.
+		speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE],"c","g")
+		speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE],"k","g")
+		speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE],"z","s")
+		speech_args[SPEECH_MESSAGE] = replacetext(speech_args[SPEECH_MESSAGE],"t","d")
 
 	if (prob(50))
-		M += " :"
+		speech_args[SPEECH_MESSAGE] += " :"
 		if (prob(50))
-			M += "-"
+			speech_args[SPEECH_MESSAGE] += "-"
 
 		var/smiles = rand(3, 8)
 
 		while (smiles > 0)
-			M += "D"
+			speech_args[SPEECH_MESSAGE] += "D"
 			smiles--
 
 		if (prob(50))
 			var/exclaim = rand(3, 8)
 
 			while (exclaim > 0)
-				M += "!"
+				speech_args[SPEECH_MESSAGE] += "!"
 				exclaim--
-	return uppertext(trim(M))
+	speech_args[SPEECH_MESSAGE] = uppertext(trim(speech_args[SPEECH_MESSAGE]))
 
 /obj/item/clothing/mask/spurdo/equipped(mob/user, slot) //when you put it on
 	var/mob/living/carbon/C = user
@@ -59,7 +60,7 @@
 
 obj/item/clothing/mask/spurdo/cursed
 	flags_1 =  MASKINTERNALS
-	
+
 obj/item/clothing/mask/spurdo/cursed/Initialize()
-	add_trait(TRAIT_NODROP, CLOTHING_TRAIT)
+	ADD_TRAIT(src, TRAIT_NODROP, CLOTHING_TRAIT)
 	. = ..()

@@ -17,7 +17,7 @@
 			H.add_splatter_floor(T)
 		H.visible_message("<span class='danger'>[user] slashes open one of [H]'s arteries with [src]!</span>", "<span class='userdanger'>[user] slices open one of your arteries with [src]!</span>")
 		playsound(H, 'sound/effects/splat.ogg', 50, 1)
-		return TRUE
+		return ..()
 
 	return FALSE
 
@@ -61,7 +61,7 @@
 					forceMove(HT.loc)
 
 			special_attack = FALSE
-			return TRUE
+			return ..()
 	else
 		to_chat(user, "<span class='warning'>You need to be 1 tile away from a human enemy to initiate the attack</span>")
 	return FALSE
@@ -77,7 +77,7 @@
 		user.visible_message("<span class='danger'>[user] begins to flail around wildly!</span>")
 		user.confused += 200
 		block_chance = 100
-		add_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+		ADD_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 		SpinAnimation(15, 50)
 		user.SpinAnimation(15, 50)
 		for(var/I in 1 to 60)
@@ -85,14 +85,13 @@
 				if((user.mobility_flags & MOBILITY_MOVE) && !isspaceturf(user.loc))
 					step(user, pick(GLOB.cardinals))
 					for(var/atom/movable/AM in orange(1, user))
-						if(prob(50))
+						if(prob(50) && !AM.IsObscured() && AM.level > 1)
 							AM.attackby(src, user)
-
-		remove_trait(TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
+		REMOVE_TRAIT(src, TRAIT_NODROP, ABSTRACT_ITEM_TRAIT)
 		user.confused = max(user.confused - 200, 0)
 		block_chance = initial(block_chance)
 		special_attack = FALSE
-		return TRUE
+		return ..()
 
 	return FALSE
 
@@ -114,7 +113,7 @@
 			playsound(H, 'sound/misc/splort.ogg', 50, 1, -1)
 			user.do_attack_animation(target)
 			special_attack = FALSE
-			return TRUE
+			return ..()
 		else
 			to_chat(user,"<span class='warning'>They have no butt!</span>")
 	return FALSE
@@ -137,7 +136,7 @@
 		playsound(C, hitsound, 100, 1, -1)
 		user.do_attack_animation(target)
 		special_attack = FALSE
-		return TRUE
+		return ..()
 
 	return FALSE
 
@@ -151,13 +150,11 @@
 	if(isliving(user) && status == TRUE)
 		tesla_zap(src, 4, 10000, TESLA_FUSION_FLAGS)
 		user.electrocute_act(20, src, TRUE, TRUE)
-		log_admin("[user] used [special_name] on [target]")
-		message_admins("<span class='adminnotice'>[user] used [special_name] on [target]</span>")
 		deductcharge(hitcost)
 		user.visible_message("<span class='danger'>[user] spits on the active end of [src]!</span>")
 		playsound(user, 'sound/magic/lightningbolt.ogg', 100, 1, -1)
 		special_attack = FALSE
-		return TRUE
+		return ..()
 
 	return FALSE
 
@@ -194,7 +191,7 @@
 					playsound(M, pick('hippiestation/sound/effects/bodyscrape-01.ogg', 'hippiestation/sound/effects/bodyscrape-02.ogg'), 20, 1, -4)
 			special_attack = FALSE
 			M.pass_flags = initial(M.pass_flags)
-			return TRUE
+			return ..()
 
 /obj/item/screwdriver
 	special_name = "Nipple Twist"
@@ -221,5 +218,5 @@
 				H.apply_damage(8, BRUTE, H.get_bodypart("chest"))
 				H.Stun(25)
 				H.visible_message("<span class='danger'>[user] twists one of [H]'s nipples with [src]!</span>", "<span class='userdanger'>[user] twists your nipple with [src]!</span>")
-		return TRUE
+		return ..()
 	return FALSE

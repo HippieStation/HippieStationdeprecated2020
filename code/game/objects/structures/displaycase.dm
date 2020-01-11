@@ -38,14 +38,13 @@
 	return ..()
 
 /obj/structure/displaycase/examine(mob/user)
-	..()
+	. = ..()
 	if(alert)
-		to_chat(user, "<span class='notice'>Hooked up with an anti-theft system.</span>")
+		. += "<span class='notice'>Hooked up with an anti-theft system.</span>"
 	if(showpiece)
-		to_chat(user, "<span class='notice'>There's [showpiece] inside.</span>")
+		. += "<span class='notice'>There's [showpiece] inside.</span>"
 	if(trophy_message)
-		to_chat(user, "The plaque reads:")
-		to_chat(user, trophy_message)
+		. += "The plaque reads:\n [trophy_message]"
 
 
 /obj/structure/displaycase/proc/dump()
@@ -105,13 +104,13 @@
 			to_chat(user,  "<span class='notice'>You [open ? "close":"open"] [src].</span>")
 			toggle_lock(user)
 		else
-			to_chat(user,  "<span class='warning'>Access denied.</span>")
+			to_chat(user,  "<span class='alert'>Access denied.</span>")
 	else if(W.tool_behaviour == TOOL_WELDER && user.a_intent == INTENT_HELP && !broken)
 		if(obj_integrity < max_integrity)
 			if(!W.tool_start_check(user, amount=5))
 				return
 
-			to_chat(user, "<span class='notice'>You begin repairing [src].</span>")
+			to_chat(user, "<span class='notice'>You begin repairing [src]...</span>")
 			if(W.use_tool(src, user, 40, amount=5, volume=50))
 				obj_integrity = max_integrity
 				update_icon()
@@ -122,19 +121,19 @@
 	else if(!alert && W.tool_behaviour == TOOL_CROWBAR && openable) //Only applies to the lab cage and player made display cases
 		if(broken)
 			if(showpiece)
-				to_chat(user, "<span class='notice'>Remove the displayed object first.</span>")
+				to_chat(user, "<span class='warning'>Remove the displayed object first!</span>")
 			else
-				to_chat(user, "<span class='notice'>You remove the destroyed case</span>")
+				to_chat(user, "<span class='notice'>You remove the destroyed case.</span>")
 				qdel(src)
 		else
-			to_chat(user, "<span class='notice'>You start to [open ? "close":"open"] [src].</span>")
+			to_chat(user, "<span class='notice'>You start to [open ? "close":"open"] [src]...</span>")
 			if(W.use_tool(src, user, 20))
 				to_chat(user,  "<span class='notice'>You [open ? "close":"open"] [src].</span>")
 				toggle_lock(user)
 	else if(open && !showpiece)
 		if(user.transferItemToLoc(W, src))
 			showpiece = W
-			to_chat(user, "<span class='notice'>You put [W] on display</span>")
+			to_chat(user, "<span class='notice'>You put [W] on display.</span>")
 			update_icon()
 	else if(istype(W, /obj/item/stack/sheet/glass) && broken)
 		var/obj/item/stack/sheet/glass/G = W
@@ -266,35 +265,35 @@
 	if(user.is_holding_item_of_type(/obj/item/key/displaycase))
 		if(added_roundstart)
 			is_locked = !is_locked
-			to_chat(user, "You [!is_locked ? "un" : ""]lock the case.")
+			to_chat(user, "<span class='notice'>You [!is_locked ? "un" : ""]lock the case.</span>")
 		else
-			to_chat(user, "<span class='danger'>The lock is stuck shut!</span>")
+			to_chat(user, "<span class='warning'>The lock is stuck shut!</span>")
 		return
 
 	if(is_locked)
-		to_chat(user, "<span class='danger'>The case is shut tight with an old fashioned physical lock. Maybe you should ask the curator for the key?</span>")
+		to_chat(user, "<span class='warning'>The case is shut tight with an old fashioned physical lock. Maybe you should ask the curator for the key?</span>")
 		return
 
 	if(!added_roundstart)
-		to_chat(user, "You've already put something new in this case.")
+		to_chat(user, "<span class='warning'>You've already put something new in this case!</span>")
 		return
 
 	if(is_type_in_typecache(W, GLOB.blacklisted_cargo_types))
-		to_chat(user, "<span class='danger'>The case rejects the [W].</span>")
+		to_chat(user, "<span class='warning'>The case rejects the [W]!</span>")
 		return
 
 	for(var/a in W.GetAllContents())
 		if(is_type_in_typecache(a, GLOB.blacklisted_cargo_types))
-			to_chat(user, "<span class='danger'>The case rejects the [W].</span>")
+			to_chat(user, "<span class='warning'>The case rejects the [W]!</span>")
 			return
 
 	if(user.transferItemToLoc(W, src))
 
 		if(showpiece)
-			to_chat(user, "You press a button, and [showpiece] descends into the floor of the case.")
+			to_chat(user, "<span class='notice'>You press a button, and [showpiece] descends into the floor of the case.</span>")
 			QDEL_NULL(showpiece)
 
-		to_chat(user, "You insert [W] into the case.")
+		to_chat(user, "<span class='notice'>You insert [W] into the case.</span>")
 		showpiece = W
 		added_roundstart = FALSE
 		update_icon()
@@ -307,9 +306,9 @@
 		if(chosen_plaque)
 			if(user.Adjacent(src))
 				trophy_message = chosen_plaque
-				to_chat(user, "You set the plaque's text.")
+				to_chat(user, "<span class='notice'>You set the plaque's text.</span>")
 			else
-				to_chat(user, "You are too far to set the plaque's text.")
+				to_chat(user, "<span class='warning'>You are too far to set the plaque's text!</span>")
 
 		SSpersistence.SaveTrophy(src)
 		return TRUE

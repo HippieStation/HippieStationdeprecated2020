@@ -34,7 +34,7 @@
 #define EXCITED_GROUP_DISMANTLE_CYCLES				16		//number of FULL air controller ticks before an excited group dismantles and removes its turfs from active
 #define MINIMUM_AIR_RATIO_TO_SUSPEND				0.1		//Ratio of air that must move to/from a tile to reset group processing
 #define MINIMUM_AIR_RATIO_TO_MOVE					0.001	//Minimum ratio of air that must move to/from a tile
-#define MINIMUM_AIR_TO_SUSPEND						(MOLES_CELLSTANDARD*MINIMUM_AIR_RATIO_TO_SUSPEND)	//Minimum amount of air that has to move before a group processing can be suspended
+#define MINIMUM_AIR_TO_SUSPEND 						(MOLES_CELLSTANDARD / CELL_VOLUME * MINIMUM_AIR_RATIO_TO_SUSPEND) //Minimum amount of air that has to move before a group processing can be suspended
 #define MINIMUM_MOLES_DELTA_TO_MOVE					(MOLES_CELLSTANDARD*MINIMUM_AIR_RATIO_TO_MOVE) //Either this must be active
 #define MINIMUM_TEMPERATURE_TO_MOVE					(T20C+100)			//or this (or both, obviously)
 #define MINIMUM_TEMPERATURE_DELTA_TO_SUSPEND		4		//Minimum temperature difference before group processing is suspended
@@ -169,7 +169,9 @@
 
 //LAVALAND
 #define LAVALAND_EQUIPMENT_EFFECT_PRESSURE 50 //what pressure you have to be under to increase the effect of equipment meant for lavaland
-#define LAVALAND_DEFAULT_ATMOS "o2=14;n2=23;TEMP=300"
+
+//ATMOS MIX IDS
+#define LAVALAND_DEFAULT_ATMOS		"LAVALAND_ATMOS"
 
 //ATMOSIA GAS MONITOR TAGS
 #define ATMOS_GAS_MONITOR_INPUT_O2 "o2_in"
@@ -285,6 +287,12 @@
 	for(var/total_moles_id in cached_gases){\
 		out_var += cached_gases[total_moles_id][MOLES];\
 	}
+#ifdef TESTING
+GLOBAL_LIST_INIT(atmos_adjacent_savings, list(0,0))
+#define CALCULATE_ADJACENT_TURFS(T) if (SSadjacent_air.queue[T]) { GLOB.atmos_adjacent_savings[1] += 1 } else { GLOB.atmos_adjacent_savings[2] += 1; SSadjacent_air.queue[T] = 1 }
+#else
+#define CALCULATE_ADJACENT_TURFS(T) SSadjacent_air.queue[T] = 1
+#endif
 
 GLOBAL_LIST_INIT(pipe_paint_colors, list(
 		"amethyst" = rgb(130,43,255), //supplymain

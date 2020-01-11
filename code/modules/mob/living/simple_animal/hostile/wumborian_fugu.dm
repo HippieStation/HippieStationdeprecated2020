@@ -71,13 +71,13 @@
 /datum/action/innate/fugu/expand/Activate()
 	var/mob/living/simple_animal/hostile/asteroid/fugu/F = owner
 	if(F.wumbo)
-		to_chat(F, "<span class='notice'>YOU'RE ALREADY WUMBO!</span>")
+		to_chat(F, "<span class='warning'>YOU'RE ALREADY WUMBO!</span>")
 		return
 	if(F.inflate_cooldown)
-		to_chat(F, "<span class='notice'>You need time to gather your strength.</span>")
+		to_chat(F, "<span class='warning'>You need time to gather your strength!</span>")
 		return
 	if(F.buffed)
-		to_chat(F, "<span class='notice'>Something is interfering with your growth.</span>")
+		to_chat(F, "<span class='warning'>Something is interfering with your growth!</span>")
 		return
 	F.wumbo = 1
 	F.icon_state = "Fugu1"
@@ -124,7 +124,7 @@
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_NORMAL
 	layer = MOB_LAYER
-	var/list/banned_mobs
+	var/list/banned_mobs = list(/mob/living/simple_animal/hostile/guardian) // hippie -- no more immortal standos
 
 /obj/item/fugu_gland/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()

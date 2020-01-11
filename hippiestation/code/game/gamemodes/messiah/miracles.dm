@@ -22,7 +22,7 @@ Jesus icons by rumpelgeist and FurryMcFlurry
 	var/dist = range-get_dist(user,target)
 	target.Dizzy(15)
 	if(target.reagents)
-		target.reagents.add_reagent("wine",rand(25,100))
+		target.reagents.add_reagent(/datum/reagent/consumable/ethanol/wine,rand(25,100))
 	if(prob(100*dist/range))
 		addtimer(CALLBACK(target, /mob/living/proc/apply_effect, rand(5,20), UNCONSCIOUS), rand(10,60))
 	target.visible_message("<span class='danger'>Some of [target]'s blood turns into wine!</span>", \

@@ -79,6 +79,7 @@ As a Roboticist, you can augment people with cyborg limbs. Augmented limbs can e
 As the AI, you can click on people's names to look at them. This only works if there are cameras that can see them, they aren't wearing agent IDs and aren't using digital camouflage as changelings.
 As the AI, you can quickly open and close doors by holding shift while clicking them, bolt them when holding ctrl, and even shock them while holding alt.
 As the AI, you can take pictures with your camera and upload them to newscasters.
+As the AI, you can use CTRL + 1-9 to set a location hotkey for your camera, allowing you to save the location and jump to it at will. Tilde and zero will return you to the last spot you jumped from, and the numpad numbers act as aliases to the regular number keys.
 As a Cyborg, choose your module carefully, as only cutting and mending your reset wire will let you repick it. If possible, refrain from choosing a module until a situation that requires one occurs.
 As a Cyborg, you are immune to most forms of stunning, and excel at almost everything far better than humans. However, flashes can easily stunlock you and you cannot do any precision work as you lack hands.
 As a Cyborg, you are impervious to fires and heat. If you are rogue, you can release plasma fires everywhere and walk through them without a care in the world!
@@ -207,7 +208,7 @@ As a Blobbernaut, you can communicate with overminds and other Blobbernauts via 
 As a Blobbernaut, your HUD shows your health and the core health of the overmind that created you.
 As a Revolutionary, you cannot convert a head of staff or someone who has a mindshield implant, such as a security officer or those they implant. Implants can however be surgically removed, and do not carry over with cloning. Take control of medbay to keep control of conversions!
 As a Revolutionary, cargo can be your best friend or your worst nightmare. In the best case scenario you will be able to order a limitless amount of guns and armor, in the worst case scenario security will take control and order a limitless number of mindshield implants to turn your fellow revolutionaries against you.
-As a Revolutionary, your main power comes from how quickly you spread. Convert people as fast as you can and overwhelm the heads of staff before security can arm up.
+As a Revolutionary, your main power comes from who you convert, choose your converts wisely to ensure you win the round.
 As a Changeling, the Extract DNA sting counts for your genome absorb objective, but does not let you respec your powers.
 As a Changeling, you can absorb someone by strangling them and using the Absorb verb; this gives you the ability to rechoose your powers, the DNA of whoever you absorbed, the memory of the absorbed, and some samples of things the absorbed said.
 As a Cultist, do not cause too much chaos before your objective is completed. If the shuttle gets called too soon, you may not have enough time to win.
@@ -248,3 +249,7 @@ When hacking doors, cutting and mending a "test light wire" will restore power t
 When crafting most items, you can either manually combine parts or use the crafting menu.
 Suit storage units not only remove blood and dirt from clothing, but also radiation!
 Remote devices will work when used through cameras. For example: Bluespace RPEDs and door remotes.
+As Thanos, you can switch which stone you're tracking by clicking on the pinpointer at the top right!
+As Thanos, your Super Jump has a shadow, so people CAN see where you're going!
+PROTIP: To defeat Thanos, shoot at him until he dies
+You can light a cigar on a supermatter crystal.

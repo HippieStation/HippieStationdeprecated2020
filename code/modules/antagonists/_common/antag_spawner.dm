@@ -3,6 +3,7 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_TINY
 	var/used = FALSE
+	var/is_spawning = FALSE // hippie -- anti-ghost-spam
 
 /obj/item/antag_spawner/proc/spawn_antag(client/C, turf/T, kind = "", datum/mind/user)
 	return
@@ -54,20 +55,26 @@
 		H.set_machine(src)
 		if(href_list["school"])
 			if(used)
-				to_chat(H, "You already used this contract!")
+				to_chat(H, "<span class='warning'>You already used this contract!</span>")
 				return
+			// hippie start -- anti-ghost-spam
+			if(is_spawning)
+				to_chat(H, "You're already trying to spawn an apprentice!")
+				return
+			is_spawning = TRUE // hippie end
 			var/list/candidates = pollCandidatesForMob("Do you want to play as a wizard's [href_list["school"]] apprentice?", ROLE_WIZARD, null, ROLE_WIZARD, 150, src)
 			if(LAZYLEN(candidates))
 				if(QDELETED(src))
 					return
 				if(used)
-					to_chat(H, "You already used this contract!")
+					to_chat(H, "<span class='warning'>You already used this contract!</span>")
 					return
 				used = TRUE
 				var/mob/dead/observer/C = pick(candidates)
 				spawn_antag(C.client, get_turf(src), href_list["school"],H.mind)
 			else
-				to_chat(H, "Unable to reach your apprentice! You can either attack the spellbook with the contract to refund your points, or wait and try again later.")
+				to_chat(H, "<span class='warning'>Unable to reach your apprentice! You can either attack the spellbook with the contract to refund your points, or wait and try again later.</span>")
+			is_spawning = FALSE // hippie -- anti-ghost-spam
 
 /obj/item/antag_spawner/contract/spawn_antag(client/C, turf/T, kind ,datum/mind/user)
 	new /obj/effect/particle_effect/smoke(T)
@@ -113,6 +120,10 @@
 	if(!user.onSyndieBase())
 		to_chat(user, "<span class='warning'>[src] is out of range! It can only be used at your base!</span>")
 		return FALSE
+	// hippie start -- anti-ghost-spam
+	if(is_spawning)
+		to_chat(user, "<span class='warning'>Wait for [src] to finish contacting Syndicate Command first!</span>")
+		return FALSE // hippie end
 	return TRUE
 
 
@@ -121,7 +132,9 @@
 		return
 
 	to_chat(user, "<span class='notice'>You activate [src] and wait for confirmation.</span>")
+	is_spawning = TRUE
 	var/list/nuke_candidates = pollGhostCandidates("Do you want to play as a syndicate [borg_to_spawn ? "[lowertext(borg_to_spawn)] cyborg":"operative"]?", ROLE_OPERATIVE, null, ROLE_OPERATIVE, 150, POLL_IGNORE_SYNDICATE)
+	is_spawning = FALSE
 	if(LAZYLEN(nuke_candidates))
 		if(QDELETED(src) || !check_usability(user))
 			return
@@ -237,10 +250,15 @@
 
 /obj/item/antag_spawner/slaughter_demon/attack_self(mob/user)
 	if(!is_station_level(user.z))
-		to_chat(user, "<span class='notice'>You should probably wait until you reach the station.</span>")
+		to_chat(user, "<span class='warning'>You should probably wait until you reach the station.</span>")
 		return
 	if(used)
 		return
+	// hippie start -- anti-ghost-spam
+	if(is_spawning)
+		to_chat(user, "<span class='notice'>You're already trying to shatter the bottle!</span>")
+		return
+	is_spawning = TRUE // hippie end
 	var/list/candidates = pollCandidatesForMob("Do you want to play as a [initial(demon_type.name)]?", ROLE_ALIEN, null, ROLE_ALIEN, 50, src)
 	if(LAZYLEN(candidates))
 		if(used || QDELETED(src))
@@ -253,7 +271,8 @@
 		playsound(user.loc, 'sound/effects/glassbr1.ogg', 100, 1)
 		qdel(src)
 	else
-		to_chat(user, "<span class='notice'>You can't seem to work up the nerve to shatter the bottle. Perhaps you should try again later.</span>")
+		to_chat(user, "<span class='warning'>You can't seem to work up the nerve to shatter the bottle! Perhaps you should try again later.</span>")
+	is_spawning = FALSE // hippie -- anti-ghost-spam
 
 
 /obj/item/antag_spawner/slaughter_demon/spawn_antag(client/C, turf/T, kind = "", datum/mind/user)

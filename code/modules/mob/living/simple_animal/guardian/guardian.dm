@@ -472,7 +472,7 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	var/used_message = "<span class='holoparasite'>All the cards seem to be blank now.</span>"
 	var/failure_message = "<span class='holoparasite bold'>..And draw a card! It's...blank? Maybe you should try again later.</span>"
 	var/ling_failure = "<span class='holoparasite bold'>The deck refuses to respond to a souless creature such as you.</span>"
-	var/list/possible_guardians = list("Assassin", "Chaos", "Charger", "Explosive", "Lightning", "Protector", "Ranged", "Standard", "Support")
+	var/list/possible_guardians = list("Assassin", "Chaos", "Charger", "Explosive", "Lightning", "Protector", "Ranged", "Standard", "Support", "Gravitokinetic", "Reflective") // hippie -- add reflective holopara
 	var/random = TRUE
 	var/allowmultiple = FALSE
 	var/allowling = TRUE
@@ -547,6 +547,13 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 		if("Dextrous")
 			pickedtype = /mob/living/simple_animal/hostile/guardian/dextrous
 
+		if("Gravitokinetic")
+			pickedtype = /mob/living/simple_animal/hostile/guardian/gravitokinetic
+		
+		// hippie start -- reflective holopara
+		if("Reflective")
+			pickedtype = /mob/living/simple_animal/hostile/guardian/reflective // hippie end
+
 	var/list/guardians = user.hasparasites()
 	if(guardians.len && !allowmultiple)
 		to_chat(user, "<span class='holoparasite'>You already have a [mob_name]!</span>" )
@@ -575,10 +582,10 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	random = FALSE
 
 /obj/item/guardiancreator/choose/dextrous
-	possible_guardians = list("Assassin", "Chaos", "Charger", "Dextrous", "Explosive", "Lightning", "Protector", "Ranged", "Standard", "Support")
+	possible_guardians = list("Assassin", "Chaos", "Charger", "Dextrous", "Explosive", "Lightning", "Protector", "Ranged", "Standard", "Support", "Gravitokinetic")
 
 /obj/item/guardiancreator/choose/wizard
-	possible_guardians = list("Assassin", "Chaos", "Charger", "Dextrous", "Explosive", "Lightning", "Protector", "Ranged", "Standard")
+	possible_guardians = list("Assassin", "Chaos", "Charger", "Dextrous", "Explosive", "Lightning", "Protector", "Ranged", "Standard", "Gravitokinetic")
 	allowmultiple = TRUE
 
 /obj/item/guardiancreator/tech
@@ -594,13 +601,13 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
 	ling_failure = "<span class='holoparasite bold'>The holoparasites recoil in horror. They want nothing to do with a creature like you.</span>"
 
 /obj/item/guardiancreator/tech/choose/traitor
-	possible_guardians = list("Assassin", "Chaos", "Charger", "Explosive", "Lightning", "Protector", "Ranged", "Standard", "Support")
+	possible_guardians = list("Assassin", "Chaos", "Charger", "Explosive", "Lightning", "Protector", "Ranged", "Standard", "Support", "Gravitokinetic", "Reflective") // hippie -- add reflective holopara
 
 /obj/item/guardiancreator/tech/choose
 	random = FALSE
 
 /obj/item/guardiancreator/tech/choose/dextrous
-	possible_guardians = list("Assassin", "Chaos", "Charger", "Dextrous", "Explosive", "Lightning", "Protector", "Ranged", "Standard", "Support")
+	possible_guardians = list("Assassin", "Chaos", "Charger", "Dextrous", "Explosive", "Lightning", "Protector", "Ranged", "Standard", "Support", "Gravitokinetic", "Reflective") // hippie -- add reflective holopara
 
 /obj/item/paper/guides/antag/guardian
 	name = "Holoparasite Guide"
@@ -624,7 +631,11 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
  <br>
  <b>Standard</b>: Devastating close combat attacks and high damage resist. Can smash through weak walls.<br>
  <br>
-"}
+ <b>Gravitokinetic</b>: Attacks will apply crushing gravity to the target. Can target the ground as well to slow targets advancing on you, but this will affect the user.<br>
+ <br>
+ <b>Reflective</b>: Can only manifest by reflecting into an object. Invisible to everyone until they examine it's host object, which gives off a green glow. Attack causes severe bloodloss and bleeding.<br>
+ <br>
+"} // hippie -- add reflective holopara
 
 /obj/item/paper/guides/antag/guardian/update_icon()
 	return
@@ -652,7 +663,11 @@ GLOBAL_LIST_EMPTY(parasites) //all currently existing/living guardians
  <br>
  <b>Standard</b>: Devastating close combat attacks and high damage resist. Can smash through weak walls.<br>
  <br>
-"}
+ <b>Gravitokinetic</b>: Attacks will apply crushing gravity to the target. Can target the ground as well to slow targets advancing on you, but this will affect the user.<br>
+ <br>
+ <b>Reflective</b>: Can only manifest by reflecting into an object. Invisible to everyone until they examine it's host object, which gives off a green glow. Attack causes severe bloodloss and bleeding.<br>
+ <br>
+"} // hippie -- add reflective holopara
 
 
 /obj/item/storage/box/syndie_kit/guardian

@@ -85,7 +85,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 				if(GLOB.OOC_COLOR)
 					to_chat(C, "<font color='[GLOB.OOC_COLOR]'><b><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font>")
 				else
-					to_chat(C, "<span class='ooc'><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span>")	// hippie end
+					to_chat(C, "<span class='ooc'><span class='prefix'>OOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span>")
 
 /proc/toggle_ooc(toggle = null)
 	if(toggle != null) //if we're specifically en/disabling ooc
@@ -271,7 +271,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		return
 
 	var/list/body = list()
-	body += "<html><head><title>Playtime for [key]</title></head><BODY><BR>Playtime:"
+	body += "<html><head>[UTF8HEADER]<title>Playtime for [key]</title></head><BODY><BR>Playtime:"
 	body += get_exp_report()
 	body += "</BODY></HTML>"
 	usr << browse(body.Join(), "window=playerplaytime[ckey];size=550x615")
@@ -360,3 +360,25 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 
 		pct += delta
 		winset(src, "mainwindow.split", "splitter=[pct]")
+
+
+/client/verb/policy()
+	set name = "Show Policy"
+	set desc = "Show special server rules related to your current character."
+	set category = "OOC"
+	
+	//Collect keywords
+	var/list/keywords = mob.get_policy_keywords()
+	var/header = get_policy(POLICY_VERB_HEADER)
+	var/list/policytext = list(header,"<hr>")
+	var/anything = FALSE
+	for(var/keyword in keywords)
+		var/p = get_policy(keyword)
+		if(p)
+			policytext += p
+			policytext += "<hr>"
+			anything = TRUE
+	if(!anything)
+		policytext += "No related rules found."
+
+	usr << browse(policytext.Join(""),"window=policy")

@@ -47,10 +47,11 @@
 		var/datum/material/D = new path()
 		GLOB.materials_list[D.id] = D
 
-	//Emotes
-	for(var/path in subtypesof(/datum/emote))
-		var/datum/emote/E = new path()
-		E.emote_list[E.key] = E
+	// Keybindings
+	init_keybindings()
+		
+	GLOB.emote_list = init_emote_list()
+	
 
 	init_subtypes(/datum/crafting_recipe, GLOB.crafting_recipes)
 
@@ -71,3 +72,4 @@
 		for(var/path in subtypesof(prototype))
 			L+= path
 		return L
+

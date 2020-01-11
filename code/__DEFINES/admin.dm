@@ -6,6 +6,7 @@
 #define MUTE_PRAY		(1<<2)
 #define MUTE_ADMINHELP	(1<<3)
 #define MUTE_DEADCHAT	(1<<4)
+#define MUTE_MENTOR		(1<<5)
 #define MUTE_ALL		(~0)
 
 //Some constants for DB_Ban
@@ -81,3 +82,21 @@
 
 #define SPAM_TRIGGER_WARNING	5	//Number of identical messages required before the spam-prevention will warn you to stfu
 #define SPAM_TRIGGER_AUTOMUTE	10	//Number of identical messages required before the spam-prevention will automute you
+
+///Max length of a keypress command before it's considered to be a forged packet/bogus command
+#define MAX_KEYPRESS_COMMANDLENGTH 16
+///Maximum keys that can be bound to one button
+#define MAX_COMMANDS_PER_KEY 5
+///Maximum keys per keybind
+#define MAX_KEYS_PER_KEYBIND 3
+///Max amount of keypress messages per second over two seconds before client is autokicked
+#define MAX_KEYPRESS_AUTOKICK 50
+///Length of held key rolling buffer
+#define HELD_KEY_BUFFER_LENGTH 15
+
+#define STICKYBAN_DB_CACHE_TIME 10 SECONDS
+#define STICKYBAN_ROGUE_CHECK_TIME 5
+
+
+#define POLICY_POLYMORPH "polymorph" //Shown to vicitm of staff of change and related effects.
+#define POLICY_VERB_HEADER "policy_verb_header" //Shown on top of policy verb window

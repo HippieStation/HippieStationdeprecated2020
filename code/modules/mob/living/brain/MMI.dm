@@ -76,6 +76,8 @@
 		update_icon()
 
 		SSblackbox.record_feedback("amount", "mmis_filled", 1)
+		
+		log_game("[key_name(user)] has put the brain of [key_name(brainmob)] into an MMI at [AREACOORD(src)]")
 
 	else if(brainmob)
 		O.attack(brainmob, user) //Oh noooeeeee
@@ -102,6 +104,7 @@
 	GLOB.alive_mob_list -= brainmob //Get outta here
 	GLOB.dead_mob_list += brainmob
 	brain.brainmob = brainmob //Set the brain to use the brainmob
+	log_game("[key_name(user)] has ejected the brain of [key_name(brainmob)] from an MMI at [AREACOORD(src)]")
 	brainmob = null //Set mmi brainmob var to null
 	if(user)
 		user.put_in_hands(brain) //puts brain in the user's hand or otherwise drops it on the user's turf
@@ -193,18 +196,18 @@
 	qdel(src)
 
 /obj/item/mmi/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>There is a switch to toggle the radio system [radio.on ? "off" : "on"].[brain ? " It is currently being covered by [brain]." : null]</span>")
+	. = ..()
+	. += "<span class='notice'>There is a switch to toggle the radio system [radio.on ? "off" : "on"].[brain ? " It is currently being covered by [brain]." : null]</span>"
 	if(brainmob)
 		var/mob/living/brain/B = brainmob
 		if(!B.key || !B.mind || B.stat == DEAD)
-			to_chat(user, "<span class='warning'>The MMI indicates the brain is completely unresponsive.</span>")
+			. += "<span class='warning'>The MMI indicates the brain is completely unresponsive.</span>"
 
 		else if(!B.client)
-			to_chat(user, "<span class='warning'>The MMI indicates the brain is currently inactive; it might change.</span>")
+			. += "<span class='warning'>The MMI indicates the brain is currently inactive; it might change.</span>"
 
 		else
-			to_chat(user, "<span class='notice'>The MMI indicates the brain is active.</span>")
+			. += "<span class='notice'>The MMI indicates the brain is active.</span>"
 
 /obj/item/mmi/relaymove(mob/user)
 	return //so that the MMI won't get a warning about not being able to move if it tries to move

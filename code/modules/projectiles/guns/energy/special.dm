@@ -40,6 +40,10 @@
 	if(!QDELETED(cell) && (cell.charge > shot.e_cost))
 		add_overlay("decloner_spin")
 
+/obj/item/gun/energy/decloner/unrestricted
+	pin = /obj/item/firing_pin
+	ammo_type = list(/obj/item/ammo_casing/energy/declone/weak)
+
 /obj/item/gun/energy/floragun
 	name = "floral somatoray"
 	desc = "A tool that discharges controlled radiation which induces mutation in plant cells."
@@ -139,9 +143,9 @@
 	AddComponent(/datum/component/butchering, 25, 105, 0, 'sound/weapons/plasma_cutter.ogg')
 
 /obj/item/gun/energy/plasmacutter/examine(mob/user)
-	..()
+	. = ..()
 	if(cell)
-		to_chat(user, "<span class='notice'>[src] is [round(cell.percent())]% charged.</span>")
+		. += "<span class='notice'>[src] is [round(cell.percent())]% charged.</span>"
 
 /obj/item/gun/energy/plasmacutter/attackby(obj/item/I, mob/user)
 	var/charge_multiplier = 0 //2 = Refined stack, 1 = Ore
@@ -339,3 +343,42 @@
 	item_state = "gravity_gun"
 	icon_state = "gravity_gun"
 	var/power = 4
+
+/obj/item/gun/energy/special/fivetaser
+	name = "tasertron"
+	desc = "Greytide-issue taser gun, it is able to fire four stun rounds at once but the other four tasers will be destroyed."
+	icon = "hippiestation/icons/obj/tasertron.dmi"
+	icon_state = "tasertron"
+	item_state = "tasertron"
+	cell_type = /obj/item/stock_parts/cell{charge = 400; maxcharge = 400}
+	ammo_type = list(/obj/item/ammo_casing/energy/electrode/four)
+	automatic_charge_overlays = TRUE
+	select = TRUE
+	old_ratio = TRUE
+	ammo_x_offset = 4
+	shaded_charge = FALSE
+	can_flashlight = FALSE
+	can_charge = FALSE
+	burst_size = 4
+	use_cyborg_cell = FALSE
+	lefthand_file = 'hippiestation/icons/mob/inhands/weapons/lefthand_tasertron.dmi'
+	righthand_file = 'hippiestation/icons/mob/inhands/weapons/righthand_tasertron.dmi'
+
+/obj/item/ammo_casing/energy/electrode/five
+	e_cost = 400 //The amount of energy a cell needs to expend to create this shot.
+	projectile_type = /obj/item/projectile/energy/electrode/four
+	variance = 1
+
+/obj/item/projectile/energy/electrode/four
+	name = "electrode"
+	icon_state = "spark"
+	color = "#FFFF00"
+	nodamage = FALSE
+	paralyze = 100
+	stutter = 5
+	jitter = 20
+	hitsound = 'sound/weapons/taserhit.ogg'
+	range = 12
+	tracer_type = /obj/effect/projectile/tracer/stun
+	muzzle_type = /obj/effect/projectile/muzzle/stun
+	impact_type = /obj/effect/projectile/impact/stun

@@ -114,7 +114,7 @@
 /obj/effect/proc_holder/spell/targeted/hypnotise/cast(list/targets, mob/user = usr)
 	for(var/mob/living/target in targets)
 		user.visible_message("<span class='warning'>[user]'s eyes flash briefly as he stares into [target]'s eyes</span>")
-		if(do_mob(user, target, 50))
+		if(do_mob(user, target, 20))
 			to_chat(user, "<span class='warning'>Your piercing gaze knocks out [target].</span>")
 			to_chat(target, "<span class='warning'>You find yourself unable to move and barely able to speak.</span>")
 			target.Paralyze(150)
@@ -274,7 +274,7 @@
 			to_chat(user, "<span class='warning'>They're already a vampire!</span>")
 			continue
 		user.visible_message("<span class='warning'>[user] latches onto [target]'s neck, and a pure dread eminates from them.</span>", "<span class='warning'>You latch onto [target]'s neck, preparing to transfer your unholy blood to them.</span>", "<span class='warning'>A dreadful feeling overcomes you</span>")
-		target.reagents.add_reagent("salbutamol", 10) //incase you're choking the victim
+		target.reagents.add_reagent(/datum/reagent/medicine/salbutamol, 10) //incase you're choking the victim
 		for(var/progress = 0, progress <= 3, progress++)
 			switch(progress)
 				if(1)
@@ -322,7 +322,7 @@
 		to_chat(user, "<span class='notice'>We aren't dead enough to do that yet!</span>")
 		revert_cast()
 		return
-	if(user.reagents.has_reagent("holywater"))
+	if(user.reagents.has_reagent(/datum/reagent/water/holywater))
 		to_chat(user, "<span class='danger'>We cannot revive, holy water is in our system!</span>")
 		return
 	var/mob/living/L = user
@@ -336,12 +336,13 @@
 /obj/effect/proc_holder/spell/self/revive/proc/revive(mob/living/user)
 	user.revive(full_heal = TRUE)
 	user.visible_message("<span class='warning'>[user] reanimates from death!</span>", "<span class='notice'>We get back up.</span>")
+	playsound(user, 'sound/magic/demon_consume.ogg', 50, 1)
 	var/list/missing = user.get_missing_limbs()
 	if(missing.len)
-		playsound(user, 'sound/magic/demon_consume.ogg', 50, 1)
 		user.visible_message("<span class='warning'>Shadowy matter takes the place of [user]'s missing limbs as they reform!</span>")
 		user.regenerate_limbs(0, list(BODY_ZONE_HEAD))
 	user.regenerate_organs()
+	user.Paralyze(100)
 	
 /obj/effect/proc_holder/spell/self/summon_coat
 	name = "Summon Dracula Coat (5)"

@@ -49,7 +49,7 @@
 /turf/open/indestructible/singularity_act()
 	return
 
-/turf/open/indestructible/TerraformTurf(path, defer_change = FALSE, ignore_air = FALSE)
+/turf/open/indestructible/TerraformTurf(path, new_baseturf, flags, defer_change = FALSE, ignore_air = FALSE)
 	return
 
 /turf/open/indestructible/sound
@@ -173,7 +173,7 @@
 	update_visuals()
 
 	current_cycle = times_fired
-	CalculateAdjacentTurfs()
+	ImmediateCalculateAdjacentTurfs()
 	for(var/i in atmos_adjacent_turfs)
 		var/turf/open/enemy_tile = i
 		var/datum/gas_mixture/enemy_air = enemy_tile.return_air()
@@ -195,14 +195,14 @@
 /turf/open/proc/freon_gas_act()
 	for(var/obj/I in contents)
 		if(I.resistance_flags & FREEZE_PROOF)
-			return
+			continue
 		if(!(I.obj_flags & FROZEN))
 			I.make_frozen_visual()
 	for(var/mob/living/L in contents)
 		if(L.bodytemperature <= 50)
 			L.apply_status_effect(/datum/status_effect/freon)
 	MakeSlippery(TURF_WET_PERMAFROST, 50)
-	return 1
+	return TRUE
 
 /turf/open/proc/water_vapor_gas_act()
 	MakeSlippery(TURF_WET_WATER, min_wet_time = 100, wet_time_to_add = 50)
@@ -226,24 +226,37 @@
 			if(!(lube&GALOSHES_DONT_HELP)) //can't slip while buckled unless it's lube.
 				return 0
 		else
-			if(!(C.mobility_flags & MOBILITY_STAND) || !(C.status_flags & CANKNOCKDOWN)) // can't slip unbuckled mob if they're lying or can't fall.
+			if(!(lube&SLIP_WHEN_CRAWLING) && (!(C.mobility_flags & MOBILITY_STAND) || !(C.status_flags & CANKNOCKDOWN))) // can't slip unbuckled mob if they're lying or can't fall.
 				return 0
 			if(C.m_intent == MOVE_INTENT_WALK && (lube&NO_SLIP_WHEN_WALKING))
 				return 0
 		if(!(lube&SLIDE_ICE))
 			to_chat(C, "<span class='notice'>You slipped[ O ? " on the [O.name]" : ""]!</span>")
-			playsound(C.loc, 'sound/misc/slip.ogg', 50, 1, -3)
+			// Hippie Start - custom sounds for slipping
+			var/slip_sound = 'sound/misc/slip.ogg'
+			if(prob(95))
+				if (O)
+					if (istype(O, /obj))
+						var/obj/Obj = O
+						if (Obj)
+							LAZYINITLIST(Obj.alternate_slip_sounds)
+							if (LAZYLEN(Obj.alternate_slip_sounds))
+								slip_sound = pick(Obj.alternate_slip_sounds)
+			else
+				slip_sound = 'hippiestation/sound/misc/oof.ogg'
+			playsound(C.loc, (slip_sound), 50, 1, -3)
+			// Hippie End
 
 		SEND_SIGNAL(C, COMSIG_ADD_MOOD_EVENT, "slipped", /datum/mood_event/slipped)
 		if(force_drop)
 			for(var/obj/item/I in C.held_items)
 				C.accident(I)
 
-		// hippie start -- Throw some hats if we slipped	
-		if (prob(33))	
-			var/list/L = list()	
-			LAZYADD(L, C.dir)	
-			C.throw_hats(1 + rand(1, 3), L)	
+		// hippie start -- Throw some hats if we slipped
+		if (prob(33))
+			var/list/L = list()
+			LAZYADD(L, C.dir)
+			C.throw_hats(1 + rand(1, 3), L)
 		// hippie end
 
 		var/olddir = C.dir

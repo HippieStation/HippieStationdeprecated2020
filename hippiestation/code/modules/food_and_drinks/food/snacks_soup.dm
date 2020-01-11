@@ -6,7 +6,7 @@
 	desc = "Monkey soup. A delicacy in Space Brazil."
 	icon = 'hippiestation/icons/obj/food/soupsalad.dmi'
 	icon_state = "sopademacaco"
-	list_reagents = list("nutriment" = 6, "vitamin" = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 3)
 	tastes = list("delicia" = 1)
 	foodtype = MEAT | GROSS
 	var/next_uma = 0
@@ -22,7 +22,7 @@
 	desc = "Gondola soup. A delicacy from CentComm."
 	icon = 'hippiestation/icons/obj/food/soupsalad.dmi'
 	icon_state = "sopadegondola"
-	list_reagents = list("nutriment" = 6, "blood" = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/blood = 3)
 	tastes = list("hoitoa" = 1)
 	foodtype = GONDOLA
 

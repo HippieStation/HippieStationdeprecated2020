@@ -50,7 +50,7 @@
 
 /obj/item/organ/butt/Remove(mob/living/carbon/M, special = 0)
 	var/turf/T = get_turf(M)
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	if(STR)
 		var/list/STR_contents = STR.contents()
 		for(var/i in STR_contents)
@@ -62,7 +62,7 @@
 	. = ..()
 
 /obj/item/organ/butt/on_life()
-	GET_COMPONENT(STR, /datum/component/storage)
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
 	if(owner && STR)
 		var/list/STR_contents = STR.contents()
 		for(var/obj/item/I in STR_contents)

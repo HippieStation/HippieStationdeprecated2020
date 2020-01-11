@@ -31,6 +31,7 @@
 	anchored = TRUE
 
 /obj/machinery/bsa/wrench_act(mob/living/user, obj/item/I)
+	..()
 	default_unfasten_wrench(user, I, 10)
 	return TRUE
 
@@ -182,7 +183,8 @@
 		T.ex_act(EXPLODE_DEVASTATE)
 	point.Beam(get_target_turf(),icon_state="bsa_beam",time=50,maxdistance = world.maxx) //ZZZAP
 
-	message_admins("[ADMIN_LOOKUPFLW(user)] has launched an artillery strike.")
+	message_admins("[ADMIN_LOOKUPFLW(user)] has launched an artillery strike targeting [ADMIN_VERBOSEJMP(bullseye)].")
+	log_game("[key_name(user)] has launched an artillery strike targeting [AREACOORD(bullseye)].")
 	explosion(bullseye,ex_power,ex_power*2,ex_power*4)
 
 	reload()
@@ -207,20 +209,23 @@
 
 /obj/machinery/computer/bsa_control
 	name = "bluespace artillery control"
-	var/obj/machinery/bsa/full/cannon
-	var/notice
-	var/target
 	use_power = NO_POWER_USE
 	circuit = /obj/item/circuitboard/computer/bsa_control
 	icon = 'icons/obj/machines/particle_accelerator.dmi'
 	icon_state = "control_boxp"
+	ui_x = 400
+	ui_y = 220
+
+	var/obj/machinery/bsa/full/cannon
+	var/notice
+	var/target
 	var/area_aim = FALSE //should also show areas for targeting
 
 /obj/machinery/computer/bsa_control/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.physical_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "bsa", name, 400, 305, master_ui, state)
+		ui = new(user, src, ui_key, "bsa", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/bsa_control/ui_data()
@@ -249,8 +254,10 @@
 	update_icon()
 
 /obj/machinery/computer/bsa_control/proc/calibrate(mob/user)
+	if(!GLOB.bsa_unlock)
+		return
 	var/list/gps_locators = list()
-	for(var/obj/item/gps/G in GLOB.GPS_list) //nulls on the list somehow
+	for(var/datum/component/gps/G in GLOB.GPS_list) //nulls on the list somehow
 		if(G.tracking)
 			gps_locators[G.gpstag] = G
 
