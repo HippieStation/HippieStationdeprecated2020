@@ -72,7 +72,6 @@ matrix:
         - mysql -u root -e 'CREATE DATABASE tg_travis_prefixed;'
         - mysql -u root tg_travis_prefixed < SQL/tgstation_schema_prefixed.sql
         - tools/travis/build_bsql.sh
-        - tools/travis/build_quickwrite.sh
       script:
         - tools/travis/dm.sh -DTRAVISBUILDING hippiestation.dme || travis_terminate 1
         - tools/travis/run_server.sh
