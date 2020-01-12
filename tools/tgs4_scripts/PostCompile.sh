@@ -76,6 +76,16 @@ else
 	cd ..
 fi
 
+if [ ! -d "extools" ]; then
+	echo "Cloning extools..."
+	git clone https://github.com/MCHSL/extools
+else
+	echo "Fetching extools..."
+	cd quickwrite
+	git fetch
+	cd ..
+fi
+
 echo "Deploying rust-g..."
 cd rust-g
 git checkout $RUST_G_VERSION
@@ -92,6 +102,17 @@ cd artifacts
 cmake .. -DCMAKE_CXX_COMPILER=g++-6 -DMARIA_LIBRARY=/usr/lib/i386-linux-gnu/libmariadb.so.2
 make
 mv src/BSQL/libBSQL.so $1/
+cd ..
+
+echo "Deploying extools..."
+cd extools
+git checkout $EXTOOLS_TAG
+cd byond-extools
+mkdir build
+cd build
+cmake ..
+make
+mv libbyond-extools.so $1/
 cd ..
 
 echo "Deploying quickwrite..."
