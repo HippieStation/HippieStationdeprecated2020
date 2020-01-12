@@ -20,9 +20,9 @@
 
 	for(var/client/X in GLOB.mentors | GLOB.admins)
 		X << 'sound/items/bikehorn.ogg'
-		to_chat(X, mentor_msg, confidential=TRUE)
+		to_chat(X, mentor_msg)
 
-	to_chat(src, "<span class='mentornotice'><font color='purple'>PM to-<b>Mentors</b>: [msg]</font></span>", confidential=TRUE)
+	to_chat(src, "<span class='mentornotice'><font color='purple'>PM to-<b>Mentors</b>: [msg]</font></span>")
 	return
 
 /proc/get_mentor_counts()

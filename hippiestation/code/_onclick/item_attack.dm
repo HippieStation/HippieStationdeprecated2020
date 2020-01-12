@@ -14,15 +14,3 @@
 			playsound(user, 'hippiestation/sound/weapons/special.ogg',40, 1, 1)
 			return
 	return ..()
-
-/obj/item/melee_attack_chain(mob/user, atom/target, params)
-	. = ..()
-	SSdemo.mark_dirty(src)
-	if(isturf(target))
-		SSdemo.mark_turf(target)
-	else
-		SSdemo.mark_dirty(target)
-
-/obj/item/attack_self(mob/user)
-	. = ..()
-	SSdemo.mark_dirty(src)

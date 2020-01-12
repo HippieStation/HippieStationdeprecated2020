@@ -3,7 +3,7 @@
 	set name = "Dsay"
 	set hidden = 1
 	if(!holder)
-		to_chat(src, "Only administrators may use this command.", confidential=TRUE)
+		to_chat(src, "Only administrators may use this command.")
 		return
 	if(!mob)
 		return
