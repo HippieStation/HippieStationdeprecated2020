@@ -82,24 +82,24 @@
 		return M.attack_animal(M)
 	return ..()
 
-/mob/living/carbon/human/attack_hulk(mob/living/carbon/human/user, does_attack_animation)
+/mob/living/carbon/human/attack_hulk(mob/living/carbon/human/user)
 	if(HAS_TRAIT(src, TRAIT_ONEWAYROAD))
-		return user.attack_hulk(user, does_attack_animation)
+		return user.attack_hulk(user)
 	return ..()
 
-/mob/living/simple_animal/hostile/guardian/attack_hulk(mob/living/carbon/human/user, does_attack_animation)
+/mob/living/simple_animal/hostile/guardian/attack_hulk(mob/living/carbon/human/user)
 	if(HAS_TRAIT(src, TRAIT_ONEWAYROAD))
-		return user.attack_hulk(user, does_attack_animation)
+		return user.attack_hulk(user)
 	return ..()
 
-/mob/living/carbon/human/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation)
+/mob/living/carbon/human/attack_nanosuit(mob/living/carbon/human/user)
 	if(HAS_TRAIT(src, TRAIT_ONEWAYROAD))
-		return user.attack_nanosuit(user, does_attack_animation)
+		return user.attack_nanosuit(user)
 	return ..()
 
-/mob/living/simple_animal/hostile/guardian/attack_nanosuit(mob/living/carbon/human/user, does_attack_animation)
+/mob/living/simple_animal/hostile/guardian/attack_nanosuit(mob/living/carbon/human/user)
 	if(HAS_TRAIT(src, TRAIT_ONEWAYROAD))
-		return user.attack_nanosuit(user, does_attack_animation)
+		return user.attack_nanosuit(user)
 	return ..()
 
 /mob/living/carbon/human/attack_alien(mob/living/carbon/alien/humanoid/M)

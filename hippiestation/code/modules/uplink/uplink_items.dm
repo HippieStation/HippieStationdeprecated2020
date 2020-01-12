@@ -236,6 +236,7 @@
 	surplus = 60
 
 /datum/uplink_item/implants/macrobomb
+	exclude_modes = list(/datum/game_mode/infiltration)
 	restricted = FALSE
 
 /datum/uplink_item/dangerous/hockey

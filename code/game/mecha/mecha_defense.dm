@@ -169,9 +169,9 @@
 
 	if(istype(W, /obj/item/mmi))
 		if(mmi_move_inside(W,user))
-			to_chat(user, "[src]-[W] interface initialized successfully.")
+			to_chat(user, "<span class='notice'>[src]-[W] interface initialized successfully.</span>")
 		else
-			to_chat(user, "[src]-[W] interface initialization failed.")
+			to_chat(user, "<span class='warning'>[src]-[W] interface initialization failed.</span>")
 		return
 
 	if(W.GetID())
@@ -239,7 +239,7 @@
 				cell = C
 				log_message("Powercell installed", LOG_MECHA)
 			else
-				to_chat(user, "<span class='notice'>There's already a powercell installed.</span>")
+				to_chat(user, "<span class='warning'>There's already a powercell installed!</span>")
 		return
 
 	else if(W.tool_behaviour == TOOL_WELDER && user.a_intent != INTENT_HARM)

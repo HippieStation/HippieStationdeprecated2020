@@ -25,7 +25,7 @@
 		else
 			log_admin("Client [ckey] was just autokicked for flooding keysends; likely abuse but potentially lagspike.")
 			message_admins("Client [ckey] was just autokicked for flooding keysends; likely abuse but potentially lagspike.")
-			QDEL_IN(src, 1)
+			qdel(src)
 			return
 
 	///Check if the key is short enough to even be a real key
@@ -33,7 +33,7 @@
 		to_chat(src, "<span class='userdanger'>Invalid KeyDown detected! You have been disconnected from the server automatically.</span>")
 		log_admin("Client [ckey] just attempted to send an invalid keypress. Keymessage was over [MAX_KEYPRESS_COMMANDLENGTH] characters, autokicking due to likely abuse.")
 		message_admins("Client [ckey] just attempted to send an invalid keypress. Keymessage was over [MAX_KEYPRESS_COMMANDLENGTH] characters, autokicking due to likely abuse.")
-		QDEL_IN(src, 1)
+		qdel(src)
 		return
 		
 	//Focus Chat failsafe. Overrides movement checks to prevent WASD.
@@ -95,5 +95,7 @@
 
 // Called every game tick
 /client/keyLoop()
-	holder?.keyLoop(src)
-	mob.focus?.keyLoop(src)
+	if(holder)
+		holder.keyLoop(src)
+	if(mob?.focus)
+		mob.focus.keyLoop(src)
