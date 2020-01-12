@@ -6,7 +6,7 @@
 		to_chat(src, "<font color='red'>Error: Mentor-PM-Panel: Only Mentors and Admins may use this command.</font>")
 		return
 	if(prefs.muted & MUTE_MENTOR)
-		to_chat(src, "<span class='danger'>Error: Mentor PM: You are unable to use mentor PM-s (muted).</span>", confidential=TRUE)
+		to_chat(src, "<span class='danger'>Error: Mentor PM: You are unable to use mentor PM-s (muted).</span>")
 		return
 	var/list/client/targets[0]
 	for(var/client/T)
@@ -36,7 +36,7 @@
 			mentorhelp(msg)	//Mentor we are replying to left. Mentorhelp instead(check below)
 			return
 	if(prefs.muted & MUTE_MENTOR)
-		to_chat(src, "<span class='danger'>Error: Mentor PM: You are unable to use mentor PM-s (muted).</span>", confidential=TRUE)
+		to_chat(src, "<span class='danger'>Error: Mentor PM: You are unable to use mentor PM-s (muted).</span>")
 		return
 
 	//get message text, limit it's length.and clean/escape html

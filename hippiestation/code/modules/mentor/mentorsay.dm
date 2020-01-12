@@ -9,7 +9,7 @@
 	if(!msg)
 		return
 	if(prefs.muted & MUTE_MENTOR)
-		to_chat(src, "<span class='danger'>Error: Msay: You are unable to use mentor say (muted).</span>", confidential=TRUE)
+		to_chat(src, "<span class='danger'>Error: Msay: You are unable to use mentor say (muted).</span>")
 		return
 
 	log_mentor("MSAY: [key_name(src)] : [msg]")
