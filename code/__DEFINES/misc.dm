@@ -462,4 +462,4 @@ GLOBAL_LIST_INIT(pda_styles, list(MONO, VT, ORBITRON, SHARE))
 
 #define UTF8HEADER "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' /><meta http-equiv='X-UA-Compatible' content='IE=edge' />"
 
-#define EXTOOLS (world.system_type == MS_WINDOWS ? "byond-extools.dll" : "libbyond-extools.so")
+#define EXTOOLS (world.system_type == MS_WINDOWS ? "byond-extools.dll" : "byond-extools.so")

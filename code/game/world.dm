@@ -11,7 +11,10 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	enable_debugger()
 
 	if(fexists(EXTOOLS))
-		call(EXTOOLS, "maptick_initialize")()
+		try
+			call(EXTOOLS, "maptick_initialize")()
+		catch
+			log_world("Failed to load Maptick!")
 
 	log_world("World loaded at [time_stamp()]!")
 
