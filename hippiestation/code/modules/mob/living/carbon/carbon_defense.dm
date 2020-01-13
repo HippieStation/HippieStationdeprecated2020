@@ -20,7 +20,7 @@
 /mob/living/carbon/flash_act(intensity = 1, override_blindness_check = 0, affect_silicon = 0, visual = 0, type = /obj/screen/fullscreen/flash)
 	if(status_flags & GODMODE)
 		return
-	. = .()
+	. = ..()
 
 //to damage the clothes worn by a mob
 /mob/living/carbon/damage_clothes(damage_amount, damage_type = BRUTE, damage_flag = 0, def_zone)
