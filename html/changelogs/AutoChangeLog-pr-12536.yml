@@ -1,0 +1,4 @@
+author: "yoyobatty"
+delete-after: True
+changes: 
+  - bugfix: "Garrotes are now properly able to be crafted using cable coils"
