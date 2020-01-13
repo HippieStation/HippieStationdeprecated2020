@@ -61,6 +61,7 @@
 /obj/machinery/power/emitter/Initialize()
 	. = ..()
 	START_PROCESSING(SSfastprocess, src) //hippie edit -- corrects their timing since the 20 tick delay of SSMachines makes them still fire slow even when upgraded
+	STOP_PROCESSING(SSmachines, src) //hippie edit -- corrects their timing since the 20 tick delay of SSMachines makes them still fire slow even when upgraded
 	RefreshParts()
 	wires = new /datum/wires/emitter(src)
 	if(state == EMITTER_WELDED && anchored)
