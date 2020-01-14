@@ -10,9 +10,6 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	layer            = LIGHTING_LAYER
 	invisibility     = INVISIBILITY_LIGHTING
-#if DM_VERSION > 512
-	vis_flags = VIS_HIDE
-#endif
 
 	var/needs_update = FALSE
 	var/turf/myturf
