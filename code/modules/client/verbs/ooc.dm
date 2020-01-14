@@ -382,3 +382,10 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		policytext += "No related rules found."
 
 	usr << browse(policytext.Join(""),"window=policy")
+
+/*Hippie*/
+/client/verb/disable_goonchat()
+	set name = "Disable goonchat"
+	set category = "OOC"
+	winset(src, "output", "is-visible=true;is-disabled=false")
+	winset(src, "browseroutput", "is-visible=false")
