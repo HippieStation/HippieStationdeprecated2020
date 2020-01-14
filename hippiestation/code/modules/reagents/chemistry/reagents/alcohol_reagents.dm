@@ -55,7 +55,7 @@
 	. = 1
 
 /datum/reagent/consumable/ethanol/whiskey/on_mob_life(mob/living/M)
-	if(ishuman(M) && M.job in list("Detective"))
+	if(ishuman(M) && (M.job in list("Detective")))
 		M.adjustBruteLoss(-0.5, 0)
 		. = 1
 	..()
@@ -87,7 +87,7 @@
 	..()
 
 /datum/reagent/consumable/ethanol/cognac/on_mob_life(mob/living/M)
-	if(ishuman(M) && M.job in list("Mime"))
+	if(ishuman(M) && (M.job in list("Mime")))
 		M.heal_bodypart_damage(0.5,0.5, 0)
 		. = 1
 	..()
@@ -98,7 +98,7 @@
 	..()
 
 /datum/reagent/consumable/ethanol/whiskey_cola/on_mob_life(mob/living/M)
-	if(ishuman(M) && M.job in list("Detective"))
+	if(ishuman(M) && (M.job in list("Detective")))
 		M.adjustFireLoss(-0.5, 0)
 		. = 1
 	..()
@@ -154,7 +154,7 @@
 	..()
 
 /datum/reagent/consumable/ethanol/whiskeysoda/on_mob_life(mob/living/M)
-	if(ishuman(M) && M.job in list("Detective"))
+	if(ishuman(M) && (M.job in list("Detective")))
 		M.adjustToxLoss(-0.5, 0)
 		. = 1
 	..()
