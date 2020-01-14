@@ -29,7 +29,7 @@
 		return
 	. = ..()
 
-/mob/living/carbon/human/electrocute_act(shock_damage, source, siemens_coeff = 1, safety = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
+/mob/living/carbon/human/electrocute_act(shock_damage, source, siemens_coeff = 1, safety = 0, override = 0, tesla_shock = 0, illusion = 0, stun = TRUE)
 	if(status_flags & GODMODE)
 		return
 	. = ..()
