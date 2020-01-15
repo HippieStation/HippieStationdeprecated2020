@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
 
 	//byond bug ID:2256651
-	if (asset_cache_job && asset_cache_job in completed_asset_jobs)
+	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
 		to_chat(src, "<span class='danger'>An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)</span>")
 		src << browse("...", "window=asset_cache_browser")
 
@@ -296,7 +296,7 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 	var/cev = CONFIG_GET(number/client_error_version)
 	var/ceb = CONFIG_GET(number/client_error_build)
 	var/cwv = CONFIG_GET(number/client_warn_version)
-	if (byond_version < cev || byond_build < ceb)		//Out of date client.
+	if (byond_version < cev || (byond_version == cev && byond_build < ceb))		//Out of date client.
 		to_chat(src, "<span class='danger'><b>Your version of BYOND is too old:</b></span>")
 		to_chat(src, CONFIG_GET(string/client_error_message))
 		to_chat(src, "Your version: [byond_version].[byond_build]")

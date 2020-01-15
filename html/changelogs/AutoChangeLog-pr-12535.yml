@@ -1,0 +1,4 @@
+author: "Neotw"
+delete-after: True
+changes: 
+  - bugfix: "Now you can make cable bridges with cable coil again"

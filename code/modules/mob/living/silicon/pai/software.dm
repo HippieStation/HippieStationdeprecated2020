@@ -211,7 +211,7 @@
 					if(iscarbon(card.loc))
 						CheckDNA(card.loc, src) //you should only be able to check when directly in hand, muh immersions?
 					else
-						to_chat(src, "You are not being carried by anyone!")
+						to_chat(src, "<span class='warning'>You are not being carried by anyone!</span>")
 						return 0 // FALSE ? If you return here you won't call paiinterface() below
 
 			if("pdamessage")
@@ -322,7 +322,7 @@
 		if(s == "crew manifest")
 			dat += "<a href='byond://?src=[REF(src)];software=manifest;sub=0'>Crew Manifest</a> <br>"
 		if(s == "host scan")
-			dat += "<a href='byond://?src=[REF(src)];software=hostscan;sub=0'>Host Health Scan</a>"
+			dat += "<a href='byond://?src=[REF(src)];software=hostscan;sub=0'>Host Health Scan</a> <br>"
 		if(s == "medical records")
 			dat += "<a href='byond://?src=[REF(src)];software=medicalrecord;sub=0'>Medical Records</a> <br>"
 		if(s == "security records")
@@ -425,7 +425,7 @@
 		else
 			to_chat(P, "<b>DNA does not match stored Master DNA.</b>")
 	else
-		to_chat(P, "[M] does not seem like [M.p_theyre()] going to provide a DNA sample willingly.")
+		to_chat(P, "<span class='warning'>[M] does not seem like [M.p_theyre()] going to provide a DNA sample willingly.</span>")
 
 // -=-=-=-= Software =-=-=-=-=- //
 

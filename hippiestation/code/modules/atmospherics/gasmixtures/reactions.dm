@@ -48,6 +48,41 @@
 				addtimer(CALLBACK(location, .atom/proc/set_light, 0, 0), 30)
 			return REACTING
 
+//cold as fuck formation
+/datum/gas_reaction/freonform //The formation of nitryl. Endothermic. Requires N2O as a catalyst.
+	priority = 3
+	name = "Freon formation"
+	id = "freonform"
+
+/datum/gas_reaction/freonform/init_reqs()
+	min_requirements = list(
+		/datum/gas/oxygen = 100,
+		/datum/gas/nitrogen = 20, // nitrogen and plasma as "catalysts" - also makes it so you have to extract freon quickly or it reacts...
+		/datum/gas/plasma = 50,
+		"TEMP" = (T0C-20) //The old value was at room temperature, it's now -20 since formation at 20C just spawns freon
+	)
+
+/datum/gas_reaction/freonform/react(datum/gas_mixture/air)
+	var/list/cached_gases = air.gases
+	var/temperature = air.temperature
+
+	var/old_heat_capacity = air.heat_capacity()
+	var/heat_efficency = min(temperature/(FIRE_MINIMUM_TEMPERATURE_TO_EXIST*3),cached_gases[/datum/gas/oxygen][MOLES],cached_gases[/datum/gas/nitrogen][MOLES])
+	var/energy_used = heat_efficency*NITRYL_FORMATION_ENERGY
+	ASSERT_GAS(/datum/gas/freon,air)
+	if ((cached_gases[/datum/gas/oxygen][MOLES] - heat_efficency < 0 )|| (cached_gases[/datum/gas/nitrogen][MOLES] - heat_efficency < 0)) //Shouldn't produce gas from nothing.
+		return NO_REACTION
+	cached_gases[/datum/gas/oxygen][MOLES] -= heat_efficency
+	cached_gases[/datum/gas/nitrogen][MOLES] -= heat_efficency
+	cached_gases[/datum/gas/freon][MOLES] += heat_efficency*2
+
+	if(energy_used > 0)
+		var/new_heat_capacity = air.heat_capacity()
+		if(new_heat_capacity > MINIMUM_HEAT_CAPACITY)
+			air.temperature = max(((temperature*old_heat_capacity - energy_used)/new_heat_capacity),TCMB)
+		return REACTING
+
+
 //freon: does a freezy thing?
 /datum/gas_reaction/freon
 	priority = 1
@@ -63,11 +98,11 @@
 	var/temperature = air.temperature
 	var/turf/open/location = isturf(holder) ? holder : null
 	var/air_requirements = cached_gases[/datum/gas/nitrogen][MOLES] * 0.05
-	if(location && location.freon_gas_act())
-		if(air_requirements && temperature <= T0C)
-			cached_gases[/datum/gas/freon][MOLES] -= MOLES_GAS_VISIBLE
-			cached_gases[/datum/gas/nitrogen][MOLES] -= air_requirements
-			if(air.heat_capacity() > MINIMUM_HEAT_CAPACITY)
-				air.temperature = max(temperature - max(500 / air.heat_capacity(), TCMB),TCMB)// energy released is thermal energy so we convert back to kelvin via division
-			. = REACTING
+	if(location && air_requirements && temperature <= T0C) //has a turf, the air requirements and it's below 0C
+		cached_gases[/datum/gas/freon][MOLES] -= MOLES_GAS_VISIBLE
+		cached_gases[/datum/gas/nitrogen][MOLES] -= air_requirements
+		location.freon_gas_act() //I put this here since it makes sense to have it cold enough to freeze stuff.
+		if(air.heat_capacity() > MINIMUM_HEAT_CAPACITY)
+			air.temperature = max(temperature - max(500 / air.heat_capacity(), TCMB),TCMB)// energy released is thermal energy so we convert back to kelvin via division
+		. = REACTING
 	. = NO_REACTION

@@ -181,7 +181,7 @@
 
 	add_fingerprint(user)
 	if((HAS_TRAIT(user, TRAIT_CLUMSY)) && prob(50))
-		to_chat(user, "<span class ='danger'>You club yourself over the head.</span>")
+		to_chat(user, "<span class='userdanger'>You club yourself over the head.</span>")
 		user.Paralyze(60 * force)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
@@ -211,8 +211,8 @@
 			target.Paralyze(60)
 			log_combat(user, target, "stunned", src)
 			src.add_fingerprint(user)
-			target.visible_message("<span class ='danger'>[user] has knocked down [target] with [src]!</span>", \
-				"<span class ='userdanger'>[user] has knocked down [target] with [src]!</span>")
+			target.visible_message("<span class='danger'>[user] has knocked down [target] with [src]!</span>", \
+				"<span class='userdanger'>[user] has knocked down [target] with [src]!</span>")
 			if(!iscarbon(user))
 				target.LAssailant = null
 			else
@@ -254,14 +254,14 @@
 /obj/item/melee/classic_baton/telescopic/attack_self(mob/user)
 	on = !on
 	if(on)
-		to_chat(user, "<span class ='warning'>You extend the baton.</span>")
+		to_chat(user, "<span class='warning'>You extend the baton.</span>")
 		icon_state = "telebaton_1"
 		item_state = "nullrod"
 		w_class = WEIGHT_CLASS_BULKY //doesnt fit in backpack when its on for balance
 		force = 10 //stun baton damage
 		attack_verb = list("smacked", "struck", "cracked", "beaten")
 	else
-		to_chat(user, "<span class ='notice'>You collapse the baton.</span>")
+		to_chat(user, "<span class='notice'>You collapse the baton.</span>")
 		icon_state = "telebaton_0"
 		item_state = null //no sprite for concealment even when in hand
 		slot_flags = ITEM_SLOT_BELT
@@ -453,13 +453,13 @@
 		add_overlay(sausage)
 
 /obj/item/melee/roastingstick/proc/extend(user)
-	to_chat(user, "<span class ='warning'>You extend [src].</span>")
+	to_chat(user, "<span class='warning'>You extend [src].</span>")
 	icon_state = "roastingstick_1"
 	item_state = "nullrod"
 	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/melee/roastingstick/proc/retract(user)
-	to_chat(user, "<span class ='notice'>You collapse [src].</span>")
+	to_chat(user, "<span class='notice'>You collapse [src].</span>")
 	icon_state = "roastingstick_0"
 	item_state = null
 	w_class = WEIGHT_CLASS_SMALL
@@ -475,15 +475,15 @@
 		return
 	if (is_type_in_typecache(target, ovens))
 		if (held_sausage && held_sausage.roasted)
-			to_chat("Your [held_sausage] has already been cooked.")
+			to_chat("<span class='warning'>Your [held_sausage] has already been cooked!</span>")
 			return
 		if (istype(target, /obj/singularity) && get_dist(user, target) < 10)
-			to_chat(user, "You send [held_sausage] towards [target].")
-			playsound(src, 'sound/items/rped.ogg', 50, 1)
+			to_chat(user, "<span class='notice'>You send [held_sausage] towards [target].</span>")
+			playsound(src, 'sound/items/rped.ogg', 50, TRUE)
 			beam = user.Beam(target,icon_state="rped_upgrade",time=100)
 		else if (user.Adjacent(target))
-			to_chat(user, "You extend [src] towards [target].")
-			playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, 1)
+			to_chat(user, "<span class='notice'>You extend [src] towards [target].</span>")
+			playsound(src.loc, 'sound/weapons/batonextend.ogg', 50, TRUE)
 		else
 			return
 		if(do_after(user, 100, target = user))
@@ -493,8 +493,8 @@
 			playsound(src, 'sound/weapons/batonextend.ogg', 50, 1)
 
 /obj/item/melee/roastingstick/proc/finish_roasting(user, atom/target)
-	to_chat(user, "You finish roasting [held_sausage]")
-	playsound(src,'sound/items/welder2.ogg',50,1)
+	to_chat(user, "<span class='notice'>You finish roasting [held_sausage].</span>")
+	playsound(src,'sound/items/welder2.ogg',50,TRUE)
 	held_sausage.add_atom_colour(rgb(103,63,24), FIXED_COLOUR_PRIORITY)
 	held_sausage.name = "[target.name]-roasted [held_sausage.name]"
 	held_sausage.desc = "[held_sausage.desc] It has been cooked to perfection on \a [target]."

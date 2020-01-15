@@ -7,10 +7,10 @@
 
 /datum/reagent/cryogenic_fluid/process()
 	if(holder)
-		data++
+		data["misc"]++
 		holder.chem_temp = max(holder.chem_temp - 15, TCMB)
 
-	if(data >= 13)
+	if(data["misc"] >= 13)
 		STOP_PROCESSING(SSreagent_states, src)
 	..()
 

@@ -47,6 +47,8 @@
 	exclude_modes = list(/datum/game_mode/infiltration)
 	cost = 10
 
+/datum/uplink_item/implants/stealthimplant
+	cost = 5
 
 /* Botany */
 /datum/uplink_item/role_restricted/lawnmower
@@ -234,6 +236,7 @@
 	surplus = 60
 
 /datum/uplink_item/implants/macrobomb
+	exclude_modes = list(/datum/game_mode/infiltration)
 	restricted = FALSE
 
 /datum/uplink_item/dangerous/hockey

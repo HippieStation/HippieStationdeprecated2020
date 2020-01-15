@@ -30,7 +30,7 @@
 
 /obj/item/clothing/glasses/hud/threat/proc/ToggleThreat(mob/living/user, mob/living/carbon/human/H)
 	LAZYINITLIST(threat_list)
-	if(threat_list.len && H in threat_list)
+	if(threat_list.len && (H in threat_list))
 		threat_list -= H
 		to_chat(user, "<span class='warning'>[H] was removed from the threat scan.</span>")
 	else

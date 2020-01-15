@@ -118,7 +118,7 @@
 	attack_hand(L)
 
 
-/obj/machinery/cooking/deepfryer/npc_tamper_act(mob/living/L)
+/obj/machinery/deepfryer/npc_tamper_act(mob/living/L)
 	//Deepfry a random nearby item
 	var/list/pickable_items = list()
 

@@ -12,6 +12,20 @@
 	var/subcategory = CAT_NONE
 	var/always_availible = TRUE //Set to FALSE if it needs to be learned first.
 
+/datum/crafting_recipe/New()
+	if(!(result in reqs))
+		blacklist += result
+
+/**
+  * Run custom pre-craft checks for this recipe
+  *
+  * user: The /mob that initiated the crafting
+  * collected_requirements: A list of lists of /obj/item instances that satisfy reqs. Top level list is keyed by requirement path.
+  */
+/datum/crafting_recipe/proc/check_requirements(mob/user, list/collected_requirements)
+	return TRUE
+
+
 /datum/crafting_recipe/pin_removal
 	name = "Pin Removal"
 	result = /obj/item/gun
@@ -19,18 +33,6 @@
 	parts = list(/obj/item/gun = 1)
 	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WIRECUTTER)
 	time = 50
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-
-/datum/crafting_recipe/triplethreat
-	name = "Triple-Barrel Shotgun"
-	result = /obj/item/gun/ballistic/shotgun/triplebarrel
-	reqs = list(/obj/item/pipe = 1,
-				/obj/item/gun/ballistic/shotgun/doublebarrel =1,
-				/obj/item/stack/sheet/metal = 10,
-				/obj/item/stack/wrapping_paper = 5)
-	time = 50
-	tools = list(TOOL_WELDER, TOOL_SCREWDRIVER, TOOL_WRENCH, TOOL_CROWBAR)
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
@@ -705,6 +707,14 @@
 					/obj/item/reagent_containers/food/snacks/grown/potato = 1,
 					/obj/item/stack/cable_coil = 5)
 	category = CAT_MISC
+
+/datum/crafting_recipe/aitater/check_requirements(mob/user, list/collected_requirements)
+	var/obj/item/aicard/aicard = collected_requirements[/obj/item/aicard][1]
+	if(!aicard.AI)
+		return TRUE
+
+	to_chat(user, "<span class='boldwarning'>You can't craft an intelliTater with an AI in the card!</span>")
+	return FALSE
 
 /datum/crafting_recipe/aispook
 	name = "intelliLantern"

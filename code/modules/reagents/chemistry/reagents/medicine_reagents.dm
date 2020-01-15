@@ -314,11 +314,11 @@
 
 /datum/reagent/medicine/salglu_solution/overdose_process(mob/living/M)
 	if(prob(3))
-		to_chat(M, "<span class = 'warning'>You feel salty.</span>")
+		to_chat(M, "<span class='warning'>You feel salty.</span>")
 		holder.add_reagent(/datum/reagent/consumable/sodiumchloride, 1)
 		holder.remove_reagent(/datum/reagent/medicine/salglu_solution, 0.5)
 	else if(prob(3))
-		to_chat(M, "<span class = 'warning'>You feel sweet.</span>")
+		to_chat(M, "<span class='warning'>You feel sweet.</span>")
 		holder.add_reagent(/datum/reagent/consumable/sugar, 1)
 		holder.remove_reagent(/datum/reagent/medicine/salglu_solution, 0.5)
 	if(prob(33))
@@ -548,7 +548,7 @@
 	if(prob(20) && iscarbon(M))
 		var/obj/item/I = M.get_active_held_item()
 		if(I && M.dropItemToGround(I))
-			to_chat(M, "<span class ='notice'>Your hands spaz out and you drop what you were holding!</span>")
+			to_chat(M, "<span class='notice'>Your hands spaz out and you drop what you were holding!</span>")
 			M.Jitter(10)
 
 	M.AdjustAllImmobility(-20, FALSE)
@@ -1269,11 +1269,11 @@ hippie end */
 			if(prob(50))
 				M.losebreath++
 			if(prob(20))
-				to_chat(M, "You have a sudden fit!")
+				to_chat(M, "<span class='userdanger'>You have a sudden fit!</span>")
 				M.emote("moan")
 				M.Paralyze(20, 1, 0) // you should be in a bad spot at this point unless epipen has been used
 		if(81)
-			to_chat(M, "You feel too exhausted to continue!") // at this point you will eventually die unless you get charcoal
+			to_chat(M, "<span class='userdanger'>You feel too exhausted to continue!</span>") // at this point you will eventually die unless you get charcoal
 			M.adjustOxyLoss(0.1*REM, 0)
 			M.adjustStaminaLoss(0.1*REM, 0)
 		if(82 to INFINITY)
