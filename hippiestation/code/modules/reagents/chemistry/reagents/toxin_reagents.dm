@@ -277,6 +277,8 @@
 	..()
 
 /datum/reagent/toxin/acid/hydrazine/process()
+	if(!data)
+		data = list("misc" = 1)
 	if(holder)
 		data["misc"]++
 		if(prob(2) && data > 40) //randomly creates small explosions or fireballs but has a delay so it doesn't just kill people while they're still mixing
