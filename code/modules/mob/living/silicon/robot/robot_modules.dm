@@ -285,7 +285,7 @@
 		/obj/item/organ_storage,
 		/obj/item/borg/lollipop,
 		/obj/item/twohanded/shockpaddles/cyborg,
-		/obj/item/surgical_processor)
+		/obj/item/surgical_processor) //Hippie edit -- added defib and surgical processor
 	emag_modules = list(/obj/item/reagent_containers/borghypo/hacked)
 	ratvar_modules = list(
 		/obj/item/clockwork/slab/cyborg/medical,
