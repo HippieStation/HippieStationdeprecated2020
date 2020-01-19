@@ -100,7 +100,7 @@
 	var/list/bot = list()
 	var/list/misc = list()
 	var/dat = {"
-	<head><style>
+	<head>[UTF8HEADER]<style>
 		.manifest {border-collapse:collapse;}
 		.manifest td, th {border:1px solid [monochrome?"black":"#DEF; background-color:white; color:black"]; padding:.25em}
 		.manifest th {height: 2em; [monochrome?"border-top-width: 3px":"background-color: #48C; color:white"]}

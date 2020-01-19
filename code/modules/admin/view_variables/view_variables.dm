@@ -91,7 +91,7 @@
 
 	var/html = {"
 <html>
-	<head>
+	<head>[UTF8HEADER]
 		<title>[title]</title>
 		<style>
 			body {

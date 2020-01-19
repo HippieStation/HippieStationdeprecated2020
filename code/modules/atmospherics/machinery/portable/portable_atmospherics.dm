@@ -18,6 +18,8 @@
 	..()
 	SSair.atmos_machinery += src
 
+/obj/machinery/portable_atmospherics/Initialize()
+	. = ..()
 	air_contents = new
 	air_contents.volume = volume
 	air_contents.temperature = T20C

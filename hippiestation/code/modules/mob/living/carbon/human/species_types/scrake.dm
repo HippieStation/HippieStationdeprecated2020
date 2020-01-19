@@ -10,11 +10,11 @@
 	no_equip = list(SLOT_GLOVES, SLOT_SHOES, SLOT_S_STORE, SLOT_BACK, SLOT_WEAR_ID)
 	mutanttongue = /obj/item/organ/tongue/zombie
 	mutanteyes = /obj/item/organ/eyes/night_vision/zombie
-	armor = 20
+	armor = 15
 	coldmod = 0.5
-	heatmod = 0.3
-	burnmod = 0.3
-	stunmod = 0.25
+	heatmod = 0.4
+	burnmod = 0.4
+	stunmod = 0.4
 	var/static/list/spooks = list('hippiestation/sound/creatures/ScrakeVoice1.ogg','hippiestation/sound/creatures/ScrakeVoice2.ogg','hippiestation/sound/creatures/ScrakeVoice3.ogg','hippiestation/sound/creatures/ScrakeVoice4.ogg','hippiestation/sound/creatures/ScrakeVoice7.ogg','hippiestation/sound/creatures/ScrakeVoice8.ogg','hippiestation/sound/creatures/ScrakeGiggle.ogg','hippiestation/sound/creatures/zombiegrowl1.ogg')
 	changesource_flags = MIRROR_BADMIN | WABBAJACK
 	deathsound = 'hippiestation/sound/creatures/ZombieDie2.ogg'

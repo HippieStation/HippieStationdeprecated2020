@@ -6,11 +6,13 @@
 	processes = TRUE
 
 /datum/reagent/cryogenic_fluid/process()
+	if(!data)
+		data = list("misc" = 1)
 	if(holder)
-		data++
+		data["misc"]++
 		holder.chem_temp = max(holder.chem_temp - 15, TCMB)
 
-	if(data >= 13)
+	if(data["misc"] >= 13)
 		STOP_PROCESSING(SSreagent_states, src)
 	..()
 
@@ -150,6 +152,8 @@
 
 /datum/reagent/superboom/process()
 	if(prob(0.5) && holder) //even if you do nothing it can explode
+		if(holder.has_reagent(/datum/reagent/stabilizing_agent)) //unless its stabilised :spoi:
+			return ..()
 		var/location = get_turf(holder.my_atom)
 		var/datum/effect_system/reagents_explosion/e = new()
 		e.set_up(round(volume, 0.5), location, 0, 0, message = 0)

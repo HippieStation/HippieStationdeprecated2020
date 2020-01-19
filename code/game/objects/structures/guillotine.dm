@@ -33,6 +33,19 @@
 	LAZYINITLIST(buckled_mobs)
 	. = ..()
 
+/obj/structure/guillotine/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/stack/sheet/plasteel))
+		to_chat(user, "<span class='notice'>You start repairing the guillotine with the plasteel...</span>")
+		if(blade_sharpness<10)
+			if(do_after(user,100,target=user))
+				blade_sharpness = min(10,blade_sharpness+3)
+				I.use(1)
+				to_chat(user, "<span class='notice'>You repair the guillotine with the plasteel.</span>")
+			else
+				to_chat(user, "<span class='notice'>You stop repairing the guillotine with the plasteel.</span>")
+		else
+			to_chat(user, "<span class='warning'>The guillotine is already fully repaired!</span>")
+
 /obj/structure/guillotine/examine(mob/user)
 	. = ..()
 
@@ -99,7 +112,7 @@
 	icon_state = "guillotine_raised"
 
 /obj/structure/guillotine/proc/drop_blade(mob/user)
-	if (buckled_mobs.len && blade_sharpness)
+	if (has_buckled_mobs() && blade_sharpness)
 		var/mob/living/carbon/human/H = buckled_mobs[1]
 
 		if (!H)

@@ -15,6 +15,9 @@
 
 /datum/config_entry/flag/enable_tts
 
+/datum/config_entry/flag/enable_demo
+	protection = CONFIG_ENTRY_LOCKED
+
 // %I is input textfile
 // %O is output wavefile
 // %V is voice name

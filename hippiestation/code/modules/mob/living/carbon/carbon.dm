@@ -1,9 +1,9 @@
 /mob/living/carbon
 	var/fist_casted = FALSE
 
-/mob/living/carbon/proc/reset_fist_casted()	
-	if(fist_casted)	
-		fist_casted = FALSE	
+/mob/living/carbon/proc/reset_fist_casted()
+	if(fist_casted)
+		fist_casted = FALSE
 
 /mob/living/carbon/update_sight()
 	. = ..()
@@ -58,3 +58,8 @@
 /mob/living/carbon/fall(forced)
 	if(loc)
 		..()
+
+/mob/living/carbon/human/prevent_content_explosion()
+	if(status_flags & GODMODE)
+		return TRUE
+	..()

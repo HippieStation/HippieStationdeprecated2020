@@ -122,7 +122,7 @@
 		ejectpda()
 
 	else
-		to_chat(user, "<span class='notice'>[src] is empty.</span>")
+		to_chat(user, "<span class='warning'>[src] is empty!</span>")
 
 
 /obj/machinery/pdapainter/verb/ejectpda()

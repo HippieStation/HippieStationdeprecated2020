@@ -18,8 +18,9 @@
 	var/datum/integrated_io/I = inputs[1]
 	set_pin_data(IC_OUTPUT, 1, null)
 	if(!isweakref(I.data))
-		return
 		activate_pin(3)
+		return
+
 	var/atom/A = I.data.resolve()
 	if(!A)
 		activate_pin(3)
@@ -234,7 +235,11 @@
 	brainholder.do_work(6)
 
 /mob/living/brain/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
-	return check_bot_self
+	//They only need the check_bot_self variable for electronic assemblies.
+	if(istype(M, /obj/item/electronic_assembly))
+		return check_bot_self
+
+	return ..()
 
 /obj/item/integrated_circuit/smart/advanced_pathfinder/proc/hippie_xor_decrypt()
 	var/Ps = get_pin_data(IC_INPUT, 4)
@@ -365,4 +370,12 @@
 	paiholder.do_work(6)
 
 /mob/living/silicon/pai/canUseTopic(atom/movable/M, be_close=FALSE, no_dextery=FALSE, no_tk=FALSE)
-	return check_bot_self
+	//It's only used for these.
+	if(istype(M, /obj/item/electronic_assembly))
+		return check_bot_self
+
+	//They could use these otherwise.
+	if(istype(M, /obj/item/integrated_circuit))
+		return FALSE
+
+	return ..()

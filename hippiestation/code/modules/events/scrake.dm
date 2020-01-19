@@ -31,4 +31,5 @@
 	spawned_mobs += S
 	message_admins("[ADMIN_LOOKUPFLW(S)] has been made into scrake by an event.")
 	log_game("[key_name(S)] was spawned as a scrake by an event.")
+	priority_announce("Scrake detected aboard [station_name()]. Find a hiding spot or fight.", "Lifesign Alert", 'hippiestation/sound/creatures/SawIdle.ogg')
 	return SUCCESSFUL_SPAWN

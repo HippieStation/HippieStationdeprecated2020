@@ -1,11 +1,9 @@
 import { Fragment } from 'inferno';
-import { act } from '../byond';
+import { useBackend } from '../backend';
 import { Button, LabeledList, Section, Tabs } from '../components';
 
 export const Guardian = props => {
-  const { state } = props;
-  const { config, data } = state;
-  const { ref } = config;
+  const { act, data } = useBackend(props);
   const number2grade = {
     1: "F",
     2: "D",
@@ -18,139 +16,127 @@ export const Guardian = props => {
       <LabeledList>
         <LabeledList.Item
           label="Points"
-          color={data.points > 0 ? 'good' : 'bad'}
-        >
+          color={data.points > 0 ? 'good' : 'bad'}>
           {data.points}
         </LabeledList.Item>
       </LabeledList>
       <Tabs>
         <Tabs.Tab
           key="General"
-          label="General"
-        >
+          label="General">
           <Section
-            title="General stuff"
-          >
+            title="General stuff">
             <Button
               content={data.guardian_name || "Random Name"}
-              onClick={() => act(ref, 'name')} />
+              onClick={() => act('name')} />
             <Button
               icon="undo"
               content="Reset All"
-              onClick={() => act(ref, 'reset')}
+              onClick={() => act('reset')}
             />
           </Section>
           <Section
-            title="Attack Type"
-          >
+            title="Attack Type">
             <Button
               content="Melee"
               selected={data.melee}
-              onClick={() => act(ref, 'melee')} />
+              onClick={() => act('melee')} />
             <Button
               content="Ranged"
               selected={!data.melee}
               disabled={data.melee && data.points < 3}
-              onClick={() => act(ref, 'ranged')} />
+              onClick={() => act('ranged')} />
           </Section>
         </Tabs.Tab>
         <Tabs.Tab
           key="stats"
-          label="Stats"
-        >
+          label="Stats">
           <LabeledList>
             {data.ratedskills.map(skill => (
               <LabeledList.Item
                 key={skill.name}
                 className="candystripe"
-                label={skill.name}
-              >
+                label={skill.name}>
                 <Button
                   content="A"
                   selected={skill.level === 5}
                   disabled={skill.level < 5 && data.points < 4}
-                  onClick={() => act(ref, 'set', { name: skill.name, level: 5 })} />
+                  onClick={() => act('set', { name: skill.name, level: 5 })} />
                 <Button
                   content="B"
                   selected={skill.level === 4}
                   disabled={skill.level < 4 && data.points < 3}
-                  onClick={() => act(ref, 'set', { name: skill.name, level: 4 })} />
+                  onClick={() => act('set', { name: skill.name, level: 4 })} />
                 <Button
                   content="C"
                   selected={skill.level === 3}
                   disabled={skill.level < 3 && data.points < 2}
-                  onClick={() => act(ref, 'set', { name: skill.name, level: 3 })} />
+                  onClick={() => act('set', { name: skill.name, level: 3 })} />
                 <Button
                   content="D"
                   selected={skill.level === 2}
                   disabled={skill.level < 2 && data.points < 1}
-                  onClick={() => act(ref, 'set', { name: skill.name, level: 2 })} />
+                  onClick={() => act('set', { name: skill.name, level: 2 })} />
                 <Button
                   content="F"
                   selected={skill.level === 1}
-                  onClick={() => act(ref, 'set', { name: skill.name, level: 1 })} />
+                  onClick={() => act('set', { name: skill.name, level: 1 })} />
               </LabeledList.Item>
             ))}
           </LabeledList>
         </Tabs.Tab>
         <Tabs.Tab
           key="ability_major"
-          label="Major Ability"
-        >
+          label="Major Ability">
           {data.abilities_major.map(ability => (
             <LabeledList.Item
               key={ability.name}
               className="candystripe"
               label={ability.name}
-              labelColor={ability.requiem ? "gold" : null}
-            >
+              labelColor={ability.requiem ? "gold" : null}>
               {ability.desc}<br />
               <Button
                 content={ability.cost + " points"}
                 selected={ability.selected}
-                disabled={!ability.selected && (data.points < ability.cost || !ability.available)}
-                onClick={() => act(ref, 'ability_major', { path: ability.path })} />
+                disabled={!ability.selected
+                  && (data.points < ability.cost || !ability.available)}
+                onClick={() => act('ability_major', { path: ability.path })} />
             </LabeledList.Item>
           ))}
         </Tabs.Tab>
         <Tabs.Tab
           key="ability_minor"
-          label="Minor Abilities"
-        >
+          label="Minor Abilities">
           {data.abilities_minor.map(ability => (
             <LabeledList.Item
               key={ability.name}
               className="candystripe"
-              label={ability.name}
-            >
+              label={ability.name}>
               {ability.desc}<br />
               <Button
                 content={ability.cost + " points"}
                 selected={ability.selected}
-                disabled={!ability.selected && (data.points < ability.cost || !ability.available)}
-                onClick={() => act(ref, 'ability_minor', { path: ability.path })} />
+                disabled={!ability.selected
+                  && (data.points < ability.cost || !ability.available)}
+                onClick={() => act('ability_minor', { path: ability.path })} />
             </LabeledList.Item>
           ))}
         </Tabs.Tab>
         <Tabs.Tab
           key="create"
-          label="Create"
-        >
+          label="Create">
           <Section
-            title="Name"
-          >
+            title="Name">
             {data.guardian_name || "Random Name"}
           </Section>
           <Section
-            title="Stats"
-          >
+            title="Stats">
             <LabeledList>
               {data.ratedskills.map(skill => (
                 <LabeledList.Item
                   key={skill.name}
                   className="candystripe"
-                  label={skill.name}
-                >
+                  label={skill.name}>
                   {number2grade[skill.level]}
                 </LabeledList.Item>
               ))}
@@ -158,15 +144,13 @@ export const Guardian = props => {
           </Section>
           {!data.no_ability && (
             <Section
-              title="Major Ability"
-            >
+              title="Major Ability">
               <LabeledList>
                 {data.abilities_major.map(ability => (
                   (!!ability.selected && (
                     <LabeledList.Item
                       key={ability.name}
-                      label={ability.name}
-                    >
+                      label={ability.name}>
                       {ability.desc}
                     </LabeledList.Item>
                   ))
@@ -175,16 +159,14 @@ export const Guardian = props => {
             </Section>
           )}
           <Section
-            title="Minor Abilities"
-          >
+            title="Minor Abilities">
             <LabeledList>
               {data.abilities_minor.map(ability => (
                 (!!ability.selected && (
                   <LabeledList.Item
                     key={ability.name}
                     className="candystripe"
-                    label={ability.name}
-                  >
+                    label={ability.name}>
                     {ability.desc}
                   </LabeledList.Item>
                 ))
@@ -193,8 +175,11 @@ export const Guardian = props => {
           </Section>
           <Button
             content={"Summon " + data.name}
-            style={{ width: '100%', 'text-align': 'center', position: 'fixed', bottom: '12px' }}
-            onClick={() => act(ref, 'spawn')} />
+            style={{
+              width: '100%', 'text-align': 'center',
+              position: 'fixed', bottom: '12px',
+            }}
+            onClick={() => act('spawn')} />
         </Tabs.Tab>
       </Tabs>
     </Fragment>

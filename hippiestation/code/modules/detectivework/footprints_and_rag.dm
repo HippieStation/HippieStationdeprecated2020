@@ -1,4 +1,4 @@
-/obj/item/reagent_containers/glass/rag/afterattack(obj/A, mob/user,proximity)
+/obj/item/reagent_containers/glass/rag/afterattack(atom/A as obj|turf|area, mob/user,proximity)
 	if(!istype(A) || !proximity || !check_allowed_items(A, target_self=1))
 		return
 	if(iscarbon(A) && A.reagents && reagents.total_volume)
@@ -45,7 +45,7 @@
 			return
 		var/trans = reagents.trans_to(A, amount_per_transfer_from_this)
 		to_chat(user, "<span class='notice'>You transfer [trans] unit\s of the solution to [A].</span>")
-	else if(istype(A) && src in user)
+	else if(istype(A) && (src in user))
 		user.visible_message("[user] starts to wipe down [A] with [src]!", "<span class='notice'>You start to wipe down [A] with [src]...</span>")
 		if(do_after(user,30, target = A))
 			user.visible_message("[user] finishes wiping off [A]!", "<span class='notice'>You finish wiping off [A].</span>")

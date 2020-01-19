@@ -1,4 +1,6 @@
 /obj/machinery/vending/cola
+	default_price = 5
+	extra_price = 10
 	light_color = LIGHT_COLOR_BLUE
 
 /obj/machinery/vending/cola/black

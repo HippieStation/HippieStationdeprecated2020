@@ -25,7 +25,8 @@ GLOBAL_LIST_EMPTY(abductortongue_other)
 			for(var/mob/M in GLOB.dead_mob_list)
 				var/link = FOLLOW_LINK(M, user)
 				to_chat(M, "[link] [rendered]")
-				return ""
+
+		speech_args[SPEECH_MESSAGE] = ""
 
 /obj/item/organ/tongue/abductor/Insert(mob/living/carbon/M, special = 0)	//Hippie add, we add mobs to the global list if they have an abductor tongue so they can get messages
 	..()

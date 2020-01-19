@@ -6,7 +6,7 @@
 	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_TEMP_PROTECT
 	clothing_flags = THICKMATERIAL | STOPSPRESSUREDAMAGE
-	armor = list("melee" = 70, "bullet" = 40, "laser" = 40, "energy" = 45, "bomb" = 75, "bio" = 0, "rad" = 30, "fire" = 80, "acid" = 100)
+	armor = list("melee" = 60, "bullet" = 40, "laser" = 40, "energy" = 45, "bomb" = 65, "bio" = 0, "rad" = 30, "fire" = 80, "acid" = 100)
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 	alternate_screams = list('hippiestation/sound/creatures/zombiegrowl1.ogg')
 	slowdown = 0.5
@@ -27,6 +27,7 @@
 		user.hair_color = "000"
 		user.regenerate_icons()
 		user.name = "Scrake"
+		user.name_override = "Scrake"
 		var/datum/component/footstep/FS = user.GetComponent(/datum/component/footstep)
 		FS.volume = 2.0 //big stomper
 
@@ -73,7 +74,7 @@
 	name = "mounted industrial chainsaw"
 	desc = "An industrial chainsaw that has replaced your arm."
 	force = 15
-	force_on = 40
+	force_on = 35
 	armour_penetration = 10
 	item_flags = DROPDEL
 	throwforce = 0

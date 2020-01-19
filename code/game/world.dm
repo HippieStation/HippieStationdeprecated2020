@@ -8,6 +8,8 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 //So subsystems globals exist, but are not initialised
 /world/New()
 
+	enable_debugger()
+
 	log_world("World loaded at [time_stamp()]!")
 
 	SetupExternalRSC()

@@ -436,3 +436,25 @@
 		M.emote(pick("twitch","laugh","frown"))
 	..()
 	. = 1
+
+/datum/reagent/drug/psychium
+	name = "Psychium"
+	description = "A drink derivative of the infamous drug psycho, popular with wastelanders."
+	reagent_state = LIQUID
+	color = "#FAFAFA"
+	taste_description = "pure rage"
+	var/datum/brain_trauma/special/psychotic_brawling/rage
+
+/datum/reagent/drug/psychium/on_mob_metabolize(mob/living/L)
+	..()
+	ADD_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		rage = new()
+		C.gain_trauma(rage, TRAUMA_RESILIENCE_ABSOLUTE)
+
+/datum/reagent/drug/psychium/on_mob_end_metabolize(mob/living/L)
+	REMOVE_TRAIT(L, TRAIT_SLEEPIMMUNE, type)
+	if(rage)
+		QDEL_NULL(rage)
+	..()

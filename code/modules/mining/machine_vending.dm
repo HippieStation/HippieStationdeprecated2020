@@ -42,6 +42,7 @@
 		new /datum/data/mining_equipment("Super Resonator",				/obj/item/resonator/upgraded,										2500),
 		new /datum/data/mining_equipment("Jump Boots",					/obj/item/clothing/shoes/bhop,										2500),
 		new /datum/data/mining_equipment("Luxury Shelter Capsule",		/obj/item/survivalcapsule/luxury,									3000),
+		new /datum/data/mining_equipment("Luxury Bar Capsule",			/obj/item/survivalcapsule/luxuryelite,								10000),
 		new /datum/data/mining_equipment("Nanotrasen Minebot",			/mob/living/simple_animal/hostile/mining_drone,						800),
 		new /datum/data/mining_equipment("Minebot Melee Upgrade",		/obj/item/mine_bot_upgrade,											400),
 		new /datum/data/mining_equipment("Minebot Armor Upgrade",		/obj/item/mine_bot_upgrade/health,									400),
@@ -121,7 +122,7 @@
 			var/datum/bank_account/account = inserted_id.registered_account
 			var/datum/data/mining_equipment/prize = locate(href_list["purchase"]) in prize_list
 			if (!prize || !(prize in prize_list))
-				to_chat(usr, "<span class='warning'>Error: Invalid choice!</span>")
+				to_chat(usr, "<span class='alert'>Error: Invalid choice!</span>")
 				flick(icon_deny, src)
 				return
 			if(prize.cost > account.account_balance)
@@ -133,7 +134,7 @@
 					new prize.equipment_path(src.loc)
 					SSblackbox.record_feedback("nested tally", "mining_equipment_bought", 1, list("[type]", "[prize.equipment_path]"))
 				else
-					to_chat(usr, "<span class='warning'>Error: Transaction failure, please try again later!</span>")
+					to_chat(usr, "<span class='alert'>Error: Transaction failure, please try again later!</span>")
 					flick(icon_deny, src)
 		else
 			to_chat(usr, "<span class='warning'>Error: Please insert a valid ID!</span>")
@@ -245,7 +246,7 @@
 		I.access |= ACCESS_MECH_MINING
 		I.access |= ACCESS_MINERAL_STOREROOM
 		I.access |= ACCESS_CARGO
-		to_chat(user, "You upgrade [I] with mining access.")
+		to_chat(user, "<span class='notice'>You upgrade [I] with mining access.</span>")
 		qdel(src)
 
 /obj/item/storage/backpack/duffelbag/mining_conscript

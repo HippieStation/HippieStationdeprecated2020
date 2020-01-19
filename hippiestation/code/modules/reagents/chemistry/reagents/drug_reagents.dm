@@ -302,10 +302,11 @@
 	var/obj/effect/hallucination/simple/druggy/brain
 	var/bad_trip = FALSE
 	var/badtrip_cooldown = 0
+	var/list/sounds = list()
 
 /datum/reagent/drug/grape_blast/proc/create_brain(mob/living/carbon/C)
-	var/turf/where = locate(C.x + pick(-1, 1), C.y + pick(-1, 1), C.z)
-	brain = new(where, C)
+	var/turf/T = locate(C.x + pick(-1, 1), C.y + pick(-1, 1), C.z)
+	brain = new(T, C)
 
 /datum/reagent/drug/grape_blast/on_mob_life(mob/living/carbon/H)
 	if(!H && !H.hud_used)
@@ -313,7 +314,7 @@
 	if(prob(5))
 		H.emote(pick("twitch","drool","moan"))
 	var/high_message
-	var/list/screens = list(H.hud_used.plane_masters["[FLOOR_PLANE]"], H.hud_used.plane_masters["[GAME_PLANE]"], H.hud_used.plane_masters["[LIGHTING_PLANE]"], H.hud_used.plane_masters["[CAMERA_STATIC_PLANE ]"])
+	var/list/screens = list(H.hud_used.plane_masters["[FLOOR_PLANE]"], H.hud_used.plane_masters["[GAME_PLANE]"], H.hud_used.plane_masters["[LIGHTING_PLANE]"], H.hud_used.plane_masters["[CAMERA_STATIC_PLANE ]"], H.hud_used.plane_masters["[PLANE_SPACE_PARALLAX]"], H.hud_used.plane_masters["[PLANE_SPACE]"])
 	switch(current_cycle)
 		if(1 to 20)
 			high_message = pick("Holy shit, I feel so fucking happy...", "What the fuck is going on?", "Where am I?")
@@ -325,20 +326,27 @@
 		if(31 to INFINITY)
 			if(prob(20) && (H.mobility_flags & MOBILITY_MOVE) && !ismovableatom(H.loc))
 				step(H, pick(GLOB.cardinals))
+			if(H.client)
+				sounds = H.client.SoundQuery()
+				for(var/sound/S in sounds)
+					if(S.len <= 3)
+						PlaySpook(H, S.file, 23)
+						sounds = list()
 			high_message = pick("I feel like I'm flying!", "I feel something swimming inside my lungs....", "I can see the words I'm saying...")
-			if(prob(20))
-				var/rotation = min(round(current_cycle/4), 20)
+			if(prob(25))
+				var/rotation = max(min(round(current_cycle/4), 20),125)
 				for(var/obj/screen/plane_master/whole_screen in screens)
 					if(prob(60))
-						animate(whole_screen, transform = matrix(rotation, MATRIX_ROTATE), time = 50, easing = CIRCULAR_EASING)
-						animate(transform = matrix(-rotation, MATRIX_ROTATE), time = 5, easing = BACK_EASING)
-					else if(prob(30))
-						animate(whole_screen, transform = matrix(rotation*4, MATRIX_ROTATE), time = 120, easing = QUAD_EASING)
-						animate(whole_screen, transform = matrix()*1.5, time = 120, easing = QUAD_EASING)
-					else if(prob(15))
+						animate(whole_screen, transform = turn(matrix(), rand(1,rotation)), time = 50, easing = CIRCULAR_EASING)
+						animate(transform = turn(matrix(), -rotation), time = 10, easing = BACK_EASING)
+					if(prob(30))
+						animate(whole_screen, transform = turn(matrix(), rotation*rand(0.5,5)), time = 50, easing = QUAD_EASING)
+						animate(whole_screen, transform = matrix()*1.5, time = 40, easing = BOUNCE_EASING)
+					if(prob(15))
 						whole_screen.filters += filter(type="wave", x=20*rand() - 20, y=20*rand() - 20, size=rand()*0.1, offset=rand()*0.5, flags = "WAVE_BOUNDED")
 						animate(whole_screen.filters[whole_screen.filters.len], size = rand(1,3), time = 30, easing = QUAD_EASING, loop = -1)
 						to_chat(H, "<span class='notice'>You feel reality melt away...</span>")
+						addtimer(VARSET_CALLBACK(whole_screen, filters, list()), 1200)
 				high_message = pick("Holy shit...", "Reality doesn't exist man.", "...", "No one flies around the sun.")
 			else if(prob(5))
 				create_brain(H)
@@ -411,10 +419,13 @@
 	if(!HAS_TRAIT(C, TRAIT_DUMB))
 		C.derpspeech = 0
 	if(C && C.hud_used)
-		var/list/screens = list(C.hud_used.plane_masters["[FLOOR_PLANE]"], C.hud_used.plane_masters["[GAME_PLANE]"], C.hud_used.plane_masters["[LIGHTING_PLANE]"], C.hud_used.plane_masters["[CAMERA_STATIC_PLANE]"])
+		var/list/screens = list(C.hud_used.plane_masters["[FLOOR_PLANE]"], C.hud_used.plane_masters["[GAME_PLANE]"], C.hud_used.plane_masters["[LIGHTING_PLANE]"], C.hud_used.plane_masters["[CAMERA_STATIC_PLANE ]"], C.hud_used.plane_masters["[PLANE_SPACE_PARALLAX]"], C.hud_used.plane_masters["[PLANE_SPACE]"])
 		for(var/obj/screen/plane_master/whole_screen in screens)
 			animate(whole_screen, transform = matrix(), time = 200, easing = ELASTIC_EASING)
-			whole_screen.filters = list()
+			//animate(whole_screen.filters[whole_screen.filters.len], size = rand(2,5), time = 60, easing = QUAD_EASING)
+			addtimer(VARSET_CALLBACK(whole_screen, filters, list()), 200) //reset filters
+			addtimer(CALLBACK(whole_screen, /obj/screen/plane_master/.proc/backdrop, C), 201) //reset backdrop filters so they reappear
+			PlaySpook(C, 'hippiestation/sound/misc/honk_echo_distant.ogg', 0, FALSE)
 
 /obj/effect/hallucination/simple/druggy
 	name = "Your brain"
@@ -428,9 +439,16 @@
 	var/message = "This is your brain on drugs."
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	if(L)
-		//L.send_speech("This is your brain on drugs.", 7, src, message_language=get_default_language())
 		L.Hear(message, src, L.get_default_language(), message)
 		INVOKE_ASYNC(GLOBAL_PROC, /.proc/flick_overlay, I, list(L.client), 30)
 	sleep(10)
 	animate(src, transform = matrix()*0.75, time = 5)
 	QDEL_IN(src, 30)
+
+/datum/reagent/drug/grape_blast/proc/PlaySpook(mob/living/carbon/C, soundfile, environment = 0, vary = TRUE)
+	var/sound/sound = sound(soundfile)
+	sound.environment = environment //druggy
+	sound.volume = rand(25,100)
+	if(vary)
+		sound.frequency = rand(10000,70000)
+	SEND_SOUND(C.client, sound)

@@ -331,7 +331,7 @@ field_generator power level display
 	spawn(1)
 		var/temp = 1 //stops spam
 		for(var/obj/singularity/O in GLOB.singularities)
-			if(O.last_warning && temp)
+			if(O.last_warning && temp && O.z == z)//Because the bag of holding singulo sets this off
 				if((world.time - O.last_warning) > 50) //to stop message-spam
 					temp = 0
 					var/turf/T = get_turf(src)

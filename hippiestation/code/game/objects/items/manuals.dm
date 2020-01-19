@@ -3,7 +3,7 @@
 	if(wikiurl)
 		dat = {"
 
-			<html><head>
+			<html><head>[UTF8HEADER]
 			<style>
 				iframe {
 					display: none;

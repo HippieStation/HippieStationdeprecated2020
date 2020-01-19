@@ -16,6 +16,8 @@ SUBSYSTEM_DEF(demo)
 	var/list/marked_turfs = list()
 	var/list/del_list = list()
 
+	var/disabled = FALSE
+
 	var/last_written_time = null
 	var/last_chat_message = null
 
@@ -24,6 +26,8 @@ SUBSYSTEM_DEF(demo)
 	var/last_completed = 0
 
 /datum/controller/subsystem/demo/proc/write_time()
+	if(disabled)
+		return
 	var/new_time = world.time
 	if(last_written_time != new_time)
 		if(initialized)
@@ -33,6 +37,8 @@ SUBSYSTEM_DEF(demo)
 	last_written_time = new_time
 
 /datum/controller/subsystem/demo/proc/write_event_line(line)
+	if(disabled)
+		return
 	write_time()
 	if(initialized)
 		QUICKWRITE_WRITE(demo_file, line + "\n")
@@ -40,6 +46,8 @@ SUBSYSTEM_DEF(demo)
 		pre_init_lines += line
 
 /datum/controller/subsystem/demo/proc/write_chat(target, text)
+	if(disabled)
+		return
 	var/target_text = ""
 	if(target == GLOB.clients)
 		target_text = "world"
@@ -62,6 +70,11 @@ SUBSYSTEM_DEF(demo)
 	last_chat_message = text
 
 /datum/controller/subsystem/demo/Initialize()
+	if(!CONFIG_GET(flag/enable_demo))
+		disabled = TRUE
+		flags |= SS_NO_INIT
+		can_fire = FALSE
+		return FALSE
 	demo_file = "[GLOB.log_directory]/demo.log"
 	quickwrite_open(demo_file)
 	QUICKWRITE_WRITE(demo_file, "demo version 1\n") // increment this if you change the format
@@ -148,6 +161,8 @@ SUBSYSTEM_DEF(demo)
 	return ..()
 
 /datum/controller/subsystem/demo/fire()
+	if(disabled)
+		return
 	if(!src.marked_new.len && !src.marked_dirty.len && !src.marked_turfs.len && !src.del_list.len)
 		return // nothing to do
 
@@ -239,6 +254,8 @@ SUBSYSTEM_DEF(demo)
 		return;
 
 /datum/controller/subsystem/demo/proc/encode_init_obj(var/atom/movable/M)
+	if(disabled)
+		return
 	M.demo_last_loc = M.loc
 	M.demo_last_appearance = M.appearance
 	var/encoded_appearance = encode_appearance(M.appearance)
@@ -250,6 +267,8 @@ SUBSYSTEM_DEF(demo)
 
 // please make sure the order you call this function in is the same as the order you write
 /datum/controller/subsystem/demo/proc/encode_appearance(image/appearance, image/diff_appearance, diff_remove_overlays = FALSE)
+	if(disabled)
+		return
 	if(appearance == null)
 		return "n"
 	if(appearance == diff_appearance)
@@ -395,11 +414,15 @@ SUBSYSTEM_DEF(demo)
 	..(msg)
 
 /datum/controller/subsystem/demo/proc/mark_turf(turf/T)
+	if(disabled)
+		return
 	if(!isturf(T))
 		return
 	marked_turfs[T] = TRUE
 
 /datum/controller/subsystem/demo/proc/mark_new(atom/movable/M)
+	if(disabled)
+		return
 	if(!isobj(M) && !ismob(M))
 		return
 	if(M.gc_destroyed)
@@ -410,6 +433,8 @@ SUBSYSTEM_DEF(demo)
 
 // I can't wait for when TG ports this and they make this a #define macro.
 /datum/controller/subsystem/demo/proc/mark_dirty(atom/movable/M)
+	if(disabled)
+		return
 	if(!isobj(M) && !ismob(M))
 		return
 	if(M.gc_destroyed)
@@ -418,6 +443,8 @@ SUBSYSTEM_DEF(demo)
 		marked_dirty[M] = TRUE
 
 /datum/controller/subsystem/demo/proc/mark_destroyed(atom/movable/M)
+	if(disabled)
+		return
 	if(!isobj(M) && !ismob(M))
 		return
 	if(marked_new[M])

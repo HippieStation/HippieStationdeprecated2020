@@ -18,16 +18,15 @@
 		var/mob/living/carbon/human/H = host_mob
 		H.physiology.stun_mod *= 2
 
-/datum/nanite_program/triggered/adrenaline
+/datum/nanite_program/adrenaline
 	name = "Adrenaline Burst"
-	desc = "The nanites cause a burst of adrenaline when triggered, waking the host from stuns and temporarily increasing their speed."
+	desc = "The nanites cause a burst of adrenaline when triggered, allowing the user to push their body past its normal limits."
+	can_trigger = TRUE
 	trigger_cost = 25
 	trigger_cooldown = 1200
 	rogue_types = list(/datum/nanite_program/toxic, /datum/nanite_program/nerve_decay)
 
-/datum/nanite_program/triggered/adrenaline/trigger()
-	if(!..())
-		return
+/datum/nanite_program/adrenaline/on_trigger()
 	to_chat(host_mob, "<span class='notice'>You feel a sudden surge of energy!</span>")
 	host_mob.SetAllImmobility(0)
 	host_mob.adjustStaminaLoss(-75)
