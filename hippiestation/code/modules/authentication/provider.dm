@@ -220,7 +220,7 @@ GLOBAL_DATUM_INIT(authProvider, /datum/auth_provider, new(global_instance = TRUE
 			var/datum/DBQuery/query_insert_auth = SSdbcore.NewQuery({"
 				INSERT INTO [format_table_name("authentication")] 
 				(`ckey`, `key`, `last_login`, `password`, `pubkey`) 
-				VALUES ('[sanitizeSQL(user.ckey)]', '[sanitizeSQL(user.key)]', '[sanitizeSQL(md5("[user.address][user.computer_id]"))]', [password], [pubkey])
+				VALUES ('[sanitizeSQL(user.ckey)]', '[sanitizeSQL(user.key)]', '[sanitizeSQL(md5("[user.address][user.computer_id]"))]', [password || "NULL"], [pubkey || "NULL"])
 				"})
 			query_insert_auth.warn_execute()
 			qdel(query_insert_auth)
