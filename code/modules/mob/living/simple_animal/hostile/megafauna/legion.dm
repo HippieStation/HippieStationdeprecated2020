@@ -18,8 +18,8 @@ Difficulty: Medium
 
 /mob/living/simple_animal/hostile/megafauna/legion
 	name = "Legion"
-	health = 800
-	maxHealth = 800
+	health = 400
+	maxHealth = 400
 	icon_state = "legion"
 	icon_living = "legion"
 	desc = "One of many."
