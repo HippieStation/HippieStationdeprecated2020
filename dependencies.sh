@@ -25,4 +25,11 @@ export PHP_VERSION=5.6
 # SpacemanDMM git tag
 export SPACEMAN_DMM_VERSION=suite-1.2
 
+# Quickwrite git tag
 export QUICKWRITE_TAG=98b5183e3da5d14e59c38030a9b6824a615c8260
+
+# Extools git tag
+export EXTOOLS_TAG=bb4299ed543704bdc09af801296c0c3adefbba6d
+
+# byondcrypt git tag
+export BYONDCRYPT_TAG=b558b8fa35407791173b19811c52c3a7ecb5e3a8

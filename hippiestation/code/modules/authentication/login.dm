@@ -9,7 +9,6 @@
 	if(spc && living_player_count() >= spc)
 		to_chat(src, "<span class='notice'><b>Server Notice:</b>\n \t [CONFIG_GET(string/soft_popcap_message)]</span>")
 	sight |= SEE_TURFS
-	if(SSauth.initialized)
-		if(!SSauth.can_fire)
-			to_chat(src, "<span class='big danger'>Warning: authentication is currently offline. Please contact admins.</span>")
-		auth_setup()
+	if(!GLOB.tffi_loaded)
+		to_chat(src, "<span class='big danger'>Warning: authentication is currently offline. Please contact admins.</span>")
+	auth_setup()

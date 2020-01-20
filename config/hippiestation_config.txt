@@ -35,3 +35,6 @@ ENABLE_TTS
 #IPSTACK_API_KEY
 
 #ENABLE_DEMO
+
+## Allow byond-less authentication. Requires byondcrypt and extools.
+#ALLOW_AUTH

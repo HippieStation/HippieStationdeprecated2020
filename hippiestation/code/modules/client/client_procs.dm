@@ -10,7 +10,7 @@
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
 
-	if(IsGuestKey(key) && CONFIG_GET(string/auth_provider))
+	if(IsGuestKey(key) && CONFIG_GET(flag/allow_auth))
 		prefs = new /datum/preferences(src)
 		GLOB.preferences_datums[ckey] = prefs
 		player_details = new

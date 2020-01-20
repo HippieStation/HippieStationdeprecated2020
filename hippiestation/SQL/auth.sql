@@ -6,4 +6,4 @@ CREATE TABLE `authentication` (
 	`password` CHAR(60),
 	`pubkey` BINARY(32),
 	PRIMARY KEY (`ckey`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

@@ -38,7 +38,7 @@ if ! { [ -x "$has_git" ] && [ -x "$has_cmake" ] && [ -x "$has_gpp" ] && [ -f "/u
 	else
 		sudo dpkg --add-architecture i386
 		sudo apt-get update
-		apt-get install -y git cmake libmariadb-dev:i386 libssl-dev:i386 grep g++-6 g++-6-multilib
+		sudo apt-get install -y git cmake libmariadb-dev:i386 libssl-dev:i386 grep g++-6 g++-6-multilib
 		sudo ln -s /usr/include/mariadb /usr/include/mysql
 		sudo rm -rf /var/lib/apt/lists/*
 	fi
@@ -76,6 +76,26 @@ else
 	cd ..
 fi
 
+if [ ! -d "extools" ]; then
+	echo "Cloning extools..."
+	git clone https://github.com/MCHSL/extools
+else
+	echo "Fetching extools..."
+	cd extools
+	git fetch
+	cd ..
+fi 
+
+if [ ! -d "byond-crypt" ]; then
+	echo "Cloning quickwrite..."
+	git clone https://github.com/steamp0rt/byond-crypt
+else
+	echo "Fetching quickwrite..."
+	cd byond-crypt
+	git fetch
+	cd ..
+fi
+
 echo "Deploying rust-g..."
 cd rust-g
 git checkout $RUST_G_VERSION
@@ -94,11 +114,31 @@ make
 mv src/BSQL/libBSQL.so $1/
 cd ..
 
+
+echo "Deploying extools..."
+cd extools
+git checkout $EXTOOLS_TAG
+cd byond-extools
+mkdir build
+cd build
+cmake ..
+make
+mv libbyond-extools.so $1/byond-extools.so
+cd .. 
+
 echo "Deploying quickwrite..."
 cd quickwrite
 git checkout $QUICKWRITE_TAG
 g++ -m32 -shared -o libquickwrite.so -fPIC dllmain.cpp
 mv libquickwrite.so $1/
+cd ..
+
+echo "Deploying byond-crypt..."
+cd byond-crypt
+git checkout $BYONDCRYPT_TAG
+~/.cargo/bin/cargo build --release
+mv target/release/libbyondcrypt.so $1/byondcrypt.so
+cd ..
 
 #run deploy.sh
 echo 'Deploying tgstation compilation...'

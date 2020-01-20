@@ -80,10 +80,9 @@
 	qdel(src)
 
 /mob/dead/unauthed/CanProcCall(procname)
-	return procname != "login_as" && ..() // how about NO
+	return FALSE
 
 /mob/dead/unauthed/proc/auth_setup()
-	provider = new SSauth.provider.type(src, FALSE)
-	provider.config = SSauth.provider.config
+	provider = new(src, FALSE)
 	provider.Setup()
 	login_panel()
