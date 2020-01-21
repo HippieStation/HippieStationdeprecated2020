@@ -287,6 +287,10 @@
 	for(var/total_moles_id in cached_gases){\
 		out_var += cached_gases[total_moles_id][MOLES];\
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 39823198496... Minor atmos optimizations (#7655)
 #ifdef TESTING
 GLOBAL_LIST_INIT(atmos_adjacent_savings, list(0,0))
 #define CALCULATE_ADJACENT_TURFS(T) if (SSadjacent_air.queue[T]) { GLOB.atmos_adjacent_savings[1] += 1 } else { GLOB.atmos_adjacent_savings[2] += 1; SSadjacent_air.queue[T] = 1 }

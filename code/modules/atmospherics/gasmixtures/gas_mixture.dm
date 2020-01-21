@@ -121,6 +121,7 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 	//Returns: 1 if we are mutable, 0 otherwise
 
 /datum/gas_mixture/proc/remove(amount)
+<<<<<<< HEAD
 	//Proportionally removes amount of gas from the gas_mixture
 	//Returns: gas_mixture with the gases removed
 
@@ -132,6 +133,19 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 	//Proportionally removes amount of gas from the gas_mixture
 	//Returns: gas_mixture with the gases removed
 
+=======
+	//Removes amount of gas from the gas_mixture
+	//Returns: gas_mixture with the gases removed
+
+/datum/gas_mixture/proc/transfer_to(datum/gas_mixture/target, amount)
+	//Transfers amount of gas to target. Equivalent to target.merge(remove(amount)) but faster.
+	//Removes amount of gas from the gas_mixture
+
+/datum/gas_mixture/proc/remove_ratio(ratio)
+	//Proportionally removes amount of gas from the gas_mixture
+	//Returns: gas_mixture with the gases removed
+
+>>>>>>> 39823198496... Minor atmos optimizations (#7655)
 /datum/gas_mixture/proc/copy()
 	//Creates new, identical gas mixture
 	//Returns: duplicate gas mixture
